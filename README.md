@@ -39,3 +39,5 @@ files/            study + model downloads
 - Telegram bot teaser → site
 - English toggle
 - More tickers: duplicate `phdc.html`, add a `TICKERS` entry.
+
+<!-- deploy refresh 2026-06-11 22:20 -->
