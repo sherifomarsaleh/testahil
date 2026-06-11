@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Public Ledger — every forecast stays, right or wrong | Testahil?</title>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;700;800&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="nav"><div class="wrap">
+  <span class="brand">Testahil?<small>does it deserve it?</small></span>
+  <nav><a href="index.html">Home</a><a href="phdc.html">Stocks</a><a href="calculator.html">Calculator</a><a href="ledger.html" class="on">Public Ledger</a><a href="models.html">Open Models</a><a href="method.html">Methodology</a></nav>
+</div></header>
+
+<main class="wrap">
+  <section>
+    <h1 style="font-size:2.2rem">The Public Ledger</h1>
+    <p class="sub" style="max-width:720px">In a market that deletes its bad calls, we grade our own homework in public. Every distribution is published with its date and stays here forever. When the resolve date comes, the realized price goes next to the forecast — <b>inside the band or outside it, no excuses, no deletions.</b></p>
+    <div class="card" style="background:#EFF5F4"><b id="lg-sum"></b></div>
+  </section>
+
+  <section class="card">
+    <table>
+      <thead><tr><th class="num">Published</th><th>Instrument</th><th class="num">Horizon</th><th class="num">Median</th><th class="num">Band</th><th>Outcome</th></tr></thead>
+      <tbody id="lg-body"></tbody>
+    </table>
+    <hr class="rule">
+    <p class="muted">Scoring method: we check whether the realized price fell inside the published band, and track the cumulative hit rate. A well-calibrated model's 90% bands should contain reality roughly 90% of the time — more means the bands are too wide, less means overconfidence. Finer accuracy scores (CRPS) come later.</p>
+  </section>
+</main>
+
+<footer><div class="wrap"><b>Reminder:</b> the ledger documents an educational methodology — it is not an investment track record and not an invitation to mirror any position. <a href="method.html#disclaimer">Full text</a>.</div></footer>
+
+<script src="assets/data.js"></script><script src="assets/app.js"></script>
+<script>buildLedger("lg-body","lg-sum");</script>
+</body></html>

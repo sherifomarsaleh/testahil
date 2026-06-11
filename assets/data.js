@@ -1,0 +1,64 @@
+/* =========================================================
+   testahil — the ONLY file you edit in the weekly ritual.
+   ========================================================= */
+
+const SITE = { updated: "2026-06-09" };
+
+/* ---------- covered tickers ---------- */
+const TICKERS = {
+  PHDC: {
+    name: "Palm Hills Developments",
+    code: "EGX:PHDC",
+    spot: 15.00,
+    spotDate: "close 8 Jun 2026",
+    ccy: "EGP",
+    fair: { bear: 7.62, base: 15.89, full: 24.92 },          // from the 9 Jun 2026 study
+    dist: {
+      t20: { label:"1 month (T+20)",   p5:11.93, p25:13.88, p50:15.44, p75:17.13, p95:19.99, resolve:"2026-07-07" },
+      t60: { label:"3 months (T+60)",  p5:10.53, p25:13.68, p50:16.37, p75:19.60, p95:25.35, resolve:"2026-09-02" }
+    },
+    touch: [ /* level, P(touch) T+20 %, T+60 % */
+      [15.55, 76, 88], [16.50, 52, 76], [17.50, 32, 63], [18.50, 18, 51], [20.00, 7, 35]
+    ],
+    levels: { res:[16.08, 15.90, 15.55], sup:[14.85, 14.30, 13.90] },
+    files: {
+      study: "files/PHDC_Valuation_Study_09-06-2026_public.docx",
+      model: "files/PHDC_Valuation_Study_09062026_public.xlsx"
+    }
+  }
+};
+
+/* coming-soon cards */
+const COMING = [
+  { code:"EGX:ORAS", name:"Orascom Construction" },
+  { code:"EGX:COMI", name:"Commercial International Bank" },
+  { code:"EGX:TMGH", name:"Talaat Moustafa Group" },
+  { code:"XAG/USD",  name:"Silver" }
+];
+
+/* ---------- public ledger ----------
+   Append a row whenever a distribution is published.
+   On resolve date: set realized + status:"scored". NEVER delete a row. */
+const LEDGER = [
+  { pub:"2026-06-09", inst:"PHDC", horizon:"T+20", median:15.44, lo:11.93, hi:19.99, band:"90%", resolve:"2026-07-07", status:"open", realized:null },
+  { pub:"2026-06-09", inst:"PHDC", horizon:"T+60", median:16.37, lo:10.53, hi:25.35, band:"90%", resolve:"2026-09-02", status:"open", realized:null }
+];
+
+/* ---------- calculator data ----------
+   Verified 11 Jun 2026 (end-of-year values). Sources:
+   usdEgp: CBE / FocusEconomics (2023:30.93, 2024:50.83, 2025:~47.45)
+   egx30: EGX official annual table via Wikipedia (1996-2023) + 31 Dec 2025 close 41,828.97; 2024 ~29,661 (+19.5%)
+   inflation: CAPMAS/CBE annual average urban headline (2024:28.3, 2025:~14.0 per CBE)
+   gold21g: local sagha quotes; 31 Dec 2025 = 5,910 EGP/g (Dostor). 2022-23 embed the
+            parallel-FX premium (that's what buyers actually paid). Pre-2024 values are
+            best-effort archival reconstructions (+/-5%).
+   cdRate: best available 1-yr fixed CD per year (NBE/BM announcements) - archival approx. */
+const CALC = {
+  verified: true,
+  years: [2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],
+  usdEgp:   [7.83, 18.12, 17.78, 17.92, 16.05, 15.73, 15.72, 24.72, 30.93, 50.83, 47.45],
+  gold21g:  [234, 587, 652, 646, 685, 840, 809, 1640, 3200, 3760, 5910],   // EGP per gram, 21k
+  egx30:    [7089, 12345, 15019, 13036, 13962, 10845, 11949, 14599, 24833, 29661, 41829],
+  cdRate:   [12.5, 20.0, 20.0, 17.0, 15.0, 11.0, 11.0, 18.0, 22.5, 27.0, 21.5],  // best annual CD %
+  inflation:[10.4, 13.8, 29.5, 14.4, 9.4, 5.1, 5.2, 13.9, 33.9, 28.3, 14.0]      // % avg per year
+};

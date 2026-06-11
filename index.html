@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Testahil? — Probability distributions for EGX stocks, not tips</title>
+<meta name="description" content="We won't tell you what to buy — we'll tell you the odds. Monte Carlo distributions for Egyptian stocks, a publicly scored forecast ledger, and open Excel models.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;700;800&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="nav"><div class="wrap">
+  <span class="brand">Testahil?<small>does it deserve it?</small></span>
+  <nav>
+    <a href="index.html" class="on">Home</a>
+    <a href="phdc.html">Stocks</a>
+    <a href="calculator.html">Calculator</a>
+    <a href="ledger.html">Public Ledger</a>
+    <a href="models.html">Open Models</a>
+    <a href="method.html">Methodology</a>
+  </nav>
+</div></header>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="q">Testahil<span>?</span></div>
+    <p class="sub">"Does it deserve my money?" — the question behind every trade. Our answer is different:
+    <b>we won't tell you what to buy. We'll tell you the odds.</b><br>
+    Monte Carlo distributions (50,000 paths) for EGX stocks, a public forecast ledger scored in front of you, and open Excel models you can attack.</p>
+  </section>
+
+  <section>
+    <div class="card">
+      <span class="kicker">LATEST PUBLISHED DISTRIBUTION · <span class="num" id="upd"></span></span>
+      <h2>Palm Hills Developments <span class="muted num">EGX:PHDC</span></h2>
+      <p class="muted">Where could the price be in 3 months? This is the 50,000-path distribution — not a single-number prediction:</p>
+      <div class="strip"><div class="lbl"><span>3-month horizon (T+60)</span><span class="num" id="phdc-resolve"></span></div><div id="strip-home"></div></div>
+      <div id="legend-home"></div>
+      <p><a class="btn" href="phdc.html">Full analysis and probabilities →</a></p>
+    </div>
+  </section>
+
+  <section class="grid g3">
+    <div class="card"><span class="kicker">1</span><h3>Distributions, not tips</h3>
+      <p class="muted">The market is full of certainty. We sell the only honest thing: uncertainty, quantified. Median, ranges, and the probability of touching every level.</p></div>
+    <div class="card"><span class="kicker">2</span><h3>A public ledger, scored</h3>
+      <p class="muted">Every forecast is published with its date and stays — right or wrong. When the horizon ends, the realized price goes next to the forecast. <a href="ledger.html">The ledger</a>.</p></div>
+    <div class="card"><span class="kicker">3</span><h3>Open models — attack them</h3>
+      <p class="muted">The full Excel behind every study, free. The strongest critique each month gets a public reply and a credited model revision. <a href="models.html">Download and attack</a>.</p></div>
+  </section>
+
+  <section>
+    <h2>Coverage</h2>
+    <div class="grid g3" id="coming"></div>
+  </section>
+
+  <section class="card" style="background:#EFF5F4">
+    <h3>The Egyptian dinner-table argument: CDs, gold, or dollars?</h3>
+    <p class="muted">Settle it with real numbers — after inflation.</p>
+    <a class="btn ghost" href="calculator.html">Real Return Calculator →</a>
+  </section>
+</main>
+
+<footer><div class="wrap">
+  <b>Disclaimer:</b> This site publishes educational valuation studies and personal analytical opinion — not investment advice, not recommendations, not a solicitation to deal in any security. The preparer is not licensed by Egypt's Financial Regulatory Authority (FRA), manages no money, accepts no clients, and may hold positions in instruments mentioned. <a href="method.html#disclaimer">Full text</a>.
+</div></footer>
+
+<script src="assets/data.js"></script><script src="assets/app.js"></script>
+<script>
+document.getElementById("upd").textContent = SITE.updated;
+document.getElementById("phdc-resolve").textContent = "resolves "+TICKERS.PHDC.dist.t60.resolve;
+renderStrip("strip-home", TICKERS.PHDC.dist.t60, TICKERS.PHDC.spot);
+document.getElementById("legend-home").innerHTML = stripLegend();
+document.getElementById("coming").innerHTML =
+  `<div class="card"><span class="chip">Covered</span><h3>Palm Hills</h3><p class="muted num">EGX:PHDC</p><a href="phdc.html">Page →</a></div>`+
+  COMING.map(c=>`<div class="card" style="opacity:.65"><span class="chip warn">Coming soon</span><h3>${c.name}</h3><p class="muted num">${c.code}</p></div>`).join("");
+</script>
+</body></html>

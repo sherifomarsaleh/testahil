@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Palm Hills PHDC — Probability Distribution | Testahil?</title>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;700;800&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="nav"><div class="wrap">
+  <span class="brand">Testahil?<small>does it deserve it?</small></span>
+  <nav><a href="index.html">Home</a><a href="phdc.html" class="on">Stocks</a><a href="calculator.html">Calculator</a><a href="ledger.html">Public Ledger</a><a href="models.html">Open Models</a><a href="method.html">Methodology</a></nav>
+</div></header>
+
+<main class="wrap">
+  <section>
+    <span class="chip num">EGX:PHDC</span><span class="chip">updated <span class="num" id="upd"></span></span>
+    <h1 style="font-size:2.2rem">Palm Hills Developments</h1>
+    <p class="muted">Spot <b class="num" id="spot"></b> EGP (<span id="spotdate"></span>) · risk-adjusted fair value <b class="num">15.89</b> · scenario range <span class="num">7.62 – 24.92</span></p>
+  </section>
+
+  <section class="card">
+    <h2>Probability distribution — 50,000 paths, 10 factors</h2>
+    <p class="muted">One Monte Carlo model driven by 10 external factors (policy rate, EGP/USD, inflation, foreign flows, oil, geopolitics, Ras El-Hekma sovereign inflows, launch execution, tourism, mortgage credit). Details in <a href="method.html">Methodology</a>.</p>
+    <div class="strip"><div class="lbl"><span>1-month horizon (T+20)</span><span class="num">resolves 2026-07-07</span></div><div id="s20"></div></div>
+    <div class="strip"><div class="lbl"><span>3-month horizon (T+60)</span><span class="num">resolves 2026-09-02</span></div><div id="s60"></div></div>
+    <div id="legend"></div>
+    <p class="muted" style="margin-top:14px">Reading it: the first month is close to a coin-toss (28% of paths below 14.11); the three-month view skews right — 40% of paths at or above 17.50 — because the launch and sovereign-inflow events fall in that window.</p>
+  </section>
+
+  <section class="grid g2">
+    <div class="card">
+      <h3>Level-touch probabilities</h3>
+      <table><thead><tr><th class="num">Level</th><th class="num">Within 1M</th><th class="num">Within 3M</th></tr></thead>
+      <tbody id="touch"></tbody></table>
+      <p class="muted">Probability the price touches the level at least once within the horizon — a descriptive output of the simulation.</p>
+    </div>
+    <div class="card">
+      <h3>Technical levels</h3>
+      <table><thead><tr><th>Type</th><th class="num">Levels</th></tr></thead><tbody>
+        <tr><td>Resistance</td><td class="num">15.55 · 15.90 · 16.08</td></tr>
+        <tr><td>Support</td><td class="num">14.85 · 14.30 · 13.90</td></tr>
+        <tr><td>Daily ATR(14)</td><td class="num">0.60</td></tr>
+        <tr><td>Rebuild boundary</td><td class="num">13.40</td></tr>
+      </tbody></table>
+      <p class="muted">Below 13.40 the market would price the company beneath the "no new launches ever" scenario — the level at which this study itself gets rebuilt.</p>
+    </div>
+  </section>
+
+  <section class="card">
+    <h3>Value range (execution scenarios)</h3>
+    <div class="strip"><div id="fair"></div></div>
+    <p class="muted">Left: bear 7.62 (contracted portfolio only, zero new launches). Middle: risk-adjusted base 15.89. Right: full execution 24.92. Gold dot: spot — today the market pays for the contracted business plus modest partial execution.</p>
+  </section>
+
+  <section class="card" style="background:#EFF5F4">
+    <h3>Full study and open model</h3>
+    <p class="muted">The study (Word) + the complete Excel model: every assumption editable. Found a flaw? <a href="models.html">Attack the model</a>.</p>
+    <a class="btn" id="dl-study" href="#">Download study (DOCX)</a>
+    <a class="btn ghost" id="dl-model" href="#">Download model (XLSX)</a>
+  </section>
+</main>
+
+<footer><div class="wrap"><b>Reminder:</b> educational distributions and probabilities — not a recommendation, not a price target. The preparer holds a position in PHDC — <a href="method.html#disclaimer">full disclosure</a>.</div></footer>
+
+<script src="assets/data.js"></script><script src="assets/app.js"></script>
+<script>
+const T=TICKERS.PHDC;
+document.getElementById("upd").textContent=SITE.updated;
+document.getElementById("spot").textContent=T.spot.toFixed(2);
+document.getElementById("spotdate").textContent=T.spotDate;
+renderStrip("s20",T.dist.t20,T.spot);
+renderStrip("s60",T.dist.t60,T.spot);
+document.getElementById("legend").innerHTML=stripLegend();
+document.getElementById("touch").innerHTML=T.touch.map(r=>
+ `<tr><td class="num">${r[0].toFixed(2)}</td><td class="num">${r[1]}%</td><td class="num">${r[2]}%</td></tr>`).join("");
+renderStrip("fair",{p5:T.fair.bear,p25:T.fair.base,p50:T.fair.base,p75:T.fair.base,p95:T.fair.full},T.spot);
+document.getElementById("dl-study").href=T.files.study;
+document.getElementById("dl-model").href=T.files.model;
+</script>
+</body></html>

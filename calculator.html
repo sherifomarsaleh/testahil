@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Real Return Calculator — CDs, gold, or dollars? | Testahil?</title>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;700;800&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="nav"><div class="wrap">
+  <span class="brand">Testahil?<small>does it deserve it?</small></span>
+  <nav><a href="index.html">Home</a><a href="phdc.html">Stocks</a><a href="calculator.html" class="on">Calculator</a><a href="ledger.html">Public Ledger</a><a href="models.html">Open Models</a><a href="method.html">Methodology</a></nav>
+</div></header>
+
+<main class="wrap">
+  <section>
+    <h1 style="font-size:2.2rem">CDs, gold, dollars — or the EGX?</h1>
+    <p class="muted">Put an amount in a year and see what it would be worth today — <b>in nominal terms and in real terms after inflation</b>. EGP 100 growing to 300 isn't a gain if prices grew 4x.</p>
+    <div class="disclaimer-box" id="c-warn" style="display:none">⚠️ <b>Prototype:</b> the historical series are indicative and must be verified against official sources (CBE, CAPMAS, EGX) before relying on them.</div>
+  </section>
+
+  <section class="card">
+    <div class="grid g3">
+      <div class="field"><label for="c-amt">Amount (EGP)</label><input id="c-amt" type="number" value="100000" min="1" class="num"></div>
+      <div class="field"><label for="c-from">From end of year</label><select id="c-from" class="num"></select></div>
+      <div class="field"><label for="c-to">To end of year</label><select id="c-to" class="num"></select></div>
+    </div>
+    <button class="btn" onclick="runCalc()">Calculate</button>
+    <div id="c-out" style="margin-top:22px"></div>
+  </section>
+
+  <section class="card" style="background:#EFF5F4">
+    <p class="muted" style="margin-top:0">Data note: FX, EGX30 and inflation series are verified against CBE/EGX/CAPMAS figures; the CD series and pre-2024 gold series are best-effort archival reconstructions (±5%). Gold values for 2022–23 reflect actual local market quotes, which embedded the parallel-rate premium.</p>
+    <p style="margin:0">What won in the past won't necessarily win next. That's why we work in probabilities, not rear-view mirrors — <a href="phdc.html">see the distributions</a>.</p>
+  </section>
+</main>
+
+<footer><div class="wrap"><b>Disclaimer:</b> an educational tool on historical data — not advice, not a basis for any decision. <a href="method.html#disclaimer">Full text</a>.</div></footer>
+
+<script src="assets/data.js"></script><script src="assets/app.js"></script>
+</body></html>
