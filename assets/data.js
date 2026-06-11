@@ -22,9 +22,9 @@ const TICKERS = {
     ],
     levels: { res:[16.08, 15.70, 15.00], sup:[14.49, 14.06, 13.90] },
     files: {
-      study: "files/PHDC_Valuation_Study_11-06-2026_public.docx",
-      model: "files/PHDC_Valuation_Study_11-06-2026_public.xlsx",
-      pdf:   "files/PHDC_Valuation_Study_11-06-2026_public.pdf"
+      study: "files/PHDC_Valuation_Study_11-06-2026_public.docx?v=1106",
+      model: "files/PHDC_Valuation_Study_11-06-2026_public.xlsx?v=1106",
+      pdf:   "files/PHDC_Valuation_Study_11-06-2026_public.pdf?v=1106"
     }
   }
 };
