@@ -22,7 +22,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--teal2); outline-off
 
 /* nav */
 .nav{position:sticky; top:0; z-index:50; background:rgba(246,248,247,.92); backdrop-filter:blur(6px); border-bottom:1px solid var(--line)}
-.nav .wrap{display:flex; align-items:center; gap:22px; height:62px}
+.nav .wrap{display:flex; align-items:center; flex-wrap:wrap; gap:6px 22px; min-height:62px; padding-top:10px; padding-bottom:10px}
 .brand{font-family:"Alexandria"; font-weight:800; font-size:1.35rem; color:var(--teal)}
 .brand small{color:var(--muted); font-weight:400; font-size:.7em; margin-inline-start:6px}
 .nav nav{display:flex; gap:18px; flex-wrap:wrap; font-size:.95rem}
@@ -73,3 +73,15 @@ footer b{color:var(--ink)}
 input,select{font:inherit; padding:9px 12px; border:1px solid var(--line); border-radius:9px; background:#fff; color:var(--ink); width:100%}
 label{font-size:.88rem; font-weight:600; display:block; margin-bottom:4px}
 .field{margin-bottom:14px}
+
+/* ---- mobile ---- */
+@media(max-width:700px){
+  .brand{font-size:1.15rem}
+  .brand small{display:none}
+  .nav nav{gap:8px 14px; font-size:.88rem; line-height:1.5}
+  .hero{padding:40px 0 24px}
+  body{font-size:16px}
+  table{font-size:.85rem}
+  th,td{padding:7px 6px}
+  .card{padding:16px}
+}
