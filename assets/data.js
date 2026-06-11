@@ -2,28 +2,29 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-06-09" };
+const SITE = { updated: "2026-06-11" };
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
   PHDC: {
     name: "Palm Hills Developments",
     code: "EGX:PHDC",
-    spot: 15.00,
-    spotDate: "close 8 Jun 2026",
+    spot: 14.50,
+    spotDate: "close 11 Jun 2026",
     ccy: "EGP",
-    fair: { bear: 7.62, base: 15.89, full: 24.92 },          // from the 9 Jun 2026 study
+    fair: { bear: 7.62, base: 15.89, full: 24.92 },          // 9 Jun 2026 valuation — unchanged in the 11 Jun price refresh
     dist: {
-      t20: { label:"1 month (T+20)",   p5:11.93, p25:13.88, p50:15.44, p75:17.13, p95:19.99, resolve:"2026-07-07" },
-      t60: { label:"3 months (T+60)",  p5:10.53, p25:13.68, p50:16.37, p75:19.60, p95:25.35, resolve:"2026-09-02" }
+      t20: { label:"1 month (T+20)",   p5:11.53, p25:13.42, p50:14.92, p75:16.56, p95:19.32, resolve:"2026-07-09" },
+      t60: { label:"3 months (T+60)",  p5:10.18, p25:13.22, p50:15.83, p75:18.95, p95:24.50, resolve:"2026-09-03" }
     },
     touch: [ /* level, P(touch) T+20 %, T+60 % */
-      [15.55, 76, 88], [16.50, 52, 76], [17.50, 32, 63], [18.50, 18, 51], [20.00, 7, 35]
+      [15.55, 62, 81], [16.50, 40, 68], [17.50, 23, 55], [18.50, 12, 44], [20.00, 5, 30]
     ],
-    levels: { res:[16.08, 15.90, 15.55], sup:[14.85, 14.30, 13.90] },
+    levels: { res:[16.08, 15.70, 15.00], sup:[14.49, 14.06, 13.90] },
     files: {
-      study: "files/PHDC_Valuation_Study_09-06-2026_public.docx",
-      model: "files/PHDC_Valuation_Study_09062026_public.xlsx"
+      study: "files/PHDC_Valuation_Study_11-06-2026_public.docx",
+      model: "files/PHDC_Valuation_Study_11-06-2026_public.xlsx",
+      pdf:   "files/PHDC_Valuation_Study_11-06-2026_public.pdf"
     }
   }
 };
@@ -41,7 +42,9 @@ const COMING = [
    On resolve date: set realized + status:"scored". NEVER delete a row. */
 const LEDGER = [
   { pub:"2026-06-09", inst:"PHDC", horizon:"T+20", median:15.44, lo:11.93, hi:19.99, band:"90%", resolve:"2026-07-07", status:"open", realized:null },
-  { pub:"2026-06-09", inst:"PHDC", horizon:"T+60", median:16.37, lo:10.53, hi:25.35, band:"90%", resolve:"2026-09-02", status:"open", realized:null }
+  { pub:"2026-06-09", inst:"PHDC", horizon:"T+60", median:16.37, lo:10.53, hi:25.35, band:"90%", resolve:"2026-09-02", status:"open", realized:null },
+  { pub:"2026-06-11", inst:"PHDC", horizon:"T+20", median:14.92, lo:11.53, hi:19.32, band:"90%", resolve:"2026-07-09", status:"open", realized:null },
+  { pub:"2026-06-11", inst:"PHDC", horizon:"T+60", median:15.83, lo:10.18, hi:24.50, band:"90%", resolve:"2026-09-03", status:"open", realized:null }
 ];
 
 /* ---------- calculator data ----------

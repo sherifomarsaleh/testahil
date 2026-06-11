@@ -22,10 +22,10 @@
   <section class="card">
     <h2>Probability distribution — 50,000 paths, 10 factors</h2>
     <p class="muted">One Monte Carlo model driven by 10 external factors (policy rate, EGP/USD, inflation, foreign flows, oil, geopolitics, Ras El-Hekma sovereign inflows, launch execution, tourism, mortgage credit). Details in <a href="method.html">Methodology</a>.</p>
-    <div class="strip"><div class="lbl"><span>1-month horizon (T+20)</span><span class="num">resolves 2026-07-07</span></div><div id="s20"></div></div>
-    <div class="strip"><div class="lbl"><span>3-month horizon (T+60)</span><span class="num">resolves 2026-09-02</span></div><div id="s60"></div></div>
+    <div class="strip"><div class="lbl"><span>1-month horizon (T+20)</span><span class="num">resolves 2026-07-09</span></div><div id="s20"></div></div>
+    <div class="strip"><div class="lbl"><span>3-month horizon (T+60)</span><span class="num">resolves 2026-09-03</span></div><div id="s60"></div></div>
     <div id="legend"></div>
-    <p class="muted" style="margin-top:14px">Reading it: the first month is close to a coin-toss (28% of paths below 14.11); the three-month view skews right — 40% of paths at or above 17.50 — because the launch and sovereign-inflow events fall in that window.</p>
+    <p class="muted" style="margin-top:14px">Reading it: the first month tilts heavy (36% of paths below 14.11); the three-month view still skews right — 36% of paths at or above 17.50 — because the launch and sovereign-inflow events fall in that window.</p>
   </section>
 
   <section class="grid g2">
@@ -38,9 +38,9 @@
     <div class="card">
       <h3>Technical levels</h3>
       <table><thead><tr><th>Type</th><th class="num">Levels</th></tr></thead><tbody>
-        <tr><td>Resistance</td><td class="num">15.55 · 15.90 · 16.08</td></tr>
-        <tr><td>Support</td><td class="num">14.85 · 14.30 · 13.90</td></tr>
-        <tr><td>Daily ATR(14)</td><td class="num">0.60</td></tr>
+        <tr><td>Resistance</td><td class="num">14.85–15.00 · 15.55–15.70 · 16.08</td></tr>
+        <tr><td>Support</td><td class="num">14.43–14.49 · 14.06 · 13.90</td></tr>
+        <tr><td>Daily ATR(14)</td><td class="num">0.56</td></tr>
         <tr><td>Rebuild boundary</td><td class="num">13.40</td></tr>
       </tbody></table>
       <p class="muted">Below 13.40 the market would price the company beneath the "no new launches ever" scenario — the level at which this study itself gets rebuilt.</p>
@@ -50,14 +50,16 @@
   <section class="card">
     <h3>Value range (execution scenarios)</h3>
     <div class="strip"><div id="fair"></div></div>
-    <p class="muted">Left: bear 7.62 (contracted portfolio only, zero new launches). Middle: risk-adjusted base 15.89. Right: full execution 24.92. Gold dot: spot — today the market pays for the contracted business plus modest partial execution.</p>
+    <p class="muted">Left: bear 7.62 (contracted portfolio only, zero new launches). Middle: risk-adjusted base 15.89. Right: full execution 24.92. Gold dot: spot — today the market pays for the contracted business plus very little pipeline execution.</p>
   </section>
 
   <section class="card" style="background:#EFF5F4">
     <h3>Full study and open model</h3>
     <p class="muted">The study (Word) + the complete Excel model: every assumption editable. Found a flaw? <a href="models.html">Attack the model</a>.</p>
-    <a class="btn" id="dl-study" href="#">Download study (DOCX)</a>
-    <a class="btn ghost" id="dl-model" href="#">Download model (XLSX)</a>
+    <a class="btn" id="dl-pdf" href="#">Download study (PDF)</a>
+    <a class="btn" id="dl-study" href="#">Study (DOCX)</a>
+    <a class="btn ghost" id="dl-model" href="#">Model (XLSX)</a>
+    <p class="muted" style="margin-top:10px">Edition: 11 Jun 2026 — previous editions remain published in <a href="models.html">Open Models</a>.</p>
   </section>
 </main>
 
@@ -75,6 +77,7 @@ document.getElementById("legend").innerHTML=stripLegend();
 document.getElementById("touch").innerHTML=T.touch.map(r=>
  `<tr><td class="num">${r[0].toFixed(2)}</td><td class="num">${r[1]}%</td><td class="num">${r[2]}%</td></tr>`).join("");
 renderStrip("fair",{p5:T.fair.bear,p25:T.fair.base,p50:T.fair.base,p75:T.fair.base,p95:T.fair.full},T.spot);
+document.getElementById("dl-pdf").href=T.files.pdf;
 document.getElementById("dl-study").href=T.files.study;
 document.getElementById("dl-model").href=T.files.model;
 </script>
