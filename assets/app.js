@@ -52,7 +52,7 @@ function renderStrip(elId, d, spot, opts={}){
   const el = document.getElementById(elId); if(!el) return;
   const min = Math.min(d.p5, spot) - (Math.max(d.p95,spot)-Math.min(d.p5,spot))*0.06;
   const max = Math.max(d.p95, spot) + (Math.max(d.p95,spot)-Math.min(d.p5,spot))*0.06;
-  const W=1000, H=150, y=64, X=v=>40+(v-min)/(max-min)*(W-80);
+  const W=1000, H=128, y=72, X=v=>40+(v-min)/(max-min)*(W-80);
 
   el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" role="img"
       aria-label="Likely price range. Today's price is ${F(spot)}; the middle outcome is ${F(d.p50)}. Half of outcomes fall between ${F(d.p25)} and ${F(d.p75)}.">
@@ -69,16 +69,15 @@ function renderStrip(elId, d, spot, opts={}){
     <line x1="${X(d.p50)}" x2="${X(d.p50)}" y1="${y-20}" y2="${y+20}" stroke="#1B5E5E" stroke-width="6" stroke-linecap="round"/>
     <!-- today mark -->
     <circle cx="${X(spot)}" cy="${y}" r="11" fill="#fff" stroke="#C98A2D" stroke-width="4"/>
-    <!-- ABOVE the bar: middle outcome -->
-    <text x="${X(d.p50)}" y="${y-30}" text-anchor="middle" class="lab mid">middle ${F(d.p50)}</text>
-    <!-- end labels: small, above, at the far extremes -->
-    <text x="${X(d.p5)}" y="${y-30}" text-anchor="middle" class="lab end">${F(d.p5)}</text>
-    <text x="${X(d.p95)}" y="${y-30}" text-anchor="middle" class="lab end">${F(d.p95)}</text>
-    <!-- inner band edges: the 25%–75% "middle half", just below the bar -->
-    <text x="${X(d.p25)}" y="${y+44}" text-anchor="middle" class="lab band">${F(d.p25)}</text>
-    <text x="${X(d.p75)}" y="${y+44}" text-anchor="middle" class="lab band">${F(d.p75)}</text>
-    <!-- today on its own lower row so it never overlaps the band labels -->
-    <text x="${X(spot)}" y="${y+70}" text-anchor="middle" class="lab tod">today ${F(spot)}</text>
+    <!-- TOP row above the bar: rare extremes + middle outcome -->
+    <text x="${X(d.p50)}" y="${y-54}" text-anchor="middle" class="lab mid">middle ${F(d.p50)}</text>
+    <text x="${X(d.p5)}" y="${y-54}" text-anchor="middle" class="lab end">${F(d.p5)}</text>
+    <text x="${X(d.p95)}" y="${y-54}" text-anchor="middle" class="lab end">${F(d.p95)}</text>
+    <!-- LOWER row, just above the bar: the 25%–75% middle-half edges -->
+    <text x="${X(d.p25)}" y="${y-26}" text-anchor="middle" class="lab band">${F(d.p25)}</text>
+    <text x="${X(d.p75)}" y="${y-26}" text-anchor="middle" class="lab band">${F(d.p75)}</text>
+    <!-- today below the bar -->
+    <text x="${X(spot)}" y="${y+44}" text-anchor="middle" class="lab tod">today ${F(spot)}</text>
   </svg>`;
 }
 
