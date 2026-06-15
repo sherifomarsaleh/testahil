@@ -50,10 +50,10 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--teal2); outline-off
 }
 
 /* hero */
-.hero{padding:36px 0 20px; text-align:left}
-.hero .q{font-size:clamp(2.4rem,7vw,5rem); font-weight:800; color:var(--teal); letter-spacing:-.5px}
+.hero{padding:24px 0 12px; text-align:left}
+.hero .q{font-size:clamp(2rem,5vw,3.4rem); font-weight:800; color:var(--teal); letter-spacing:-.5px}
 .hero .q span{color:var(--amber)}
-.hero .sub{font-size:1.1rem; max-width:640px; color:var(--ink); margin-top:8px}
+.hero .sub{font-size:.98rem; line-height:1.5; max-width:560px; color:var(--ink); margin-top:6px}
 .hero .sub b{background:linear-gradient(transparent 65%, #F0E2C8 65%)}
 
 /* cards & grid */
@@ -100,7 +100,7 @@ label{font-size:.85rem; font-weight:600; display:block; margin-bottom:3px}
   .brand{font-size:1.1rem}
   .brand small{display:none}
   .nav nav{gap:6px 12px; font-size:.85rem; line-height:1.5}
-  .hero{padding:24px 0 14px}
+  .hero{padding:16px 0 10px}
   body{font-size:15px}
   table{font-size:.82rem}
   th,td{padding:6px 5px}
@@ -189,9 +189,9 @@ details.more .more-body table{margin-top:8px}
    ============================================================ */
 
 /* ticker search */
-.search-wrap{position:relative; max-width:520px; margin:18px 0 4px}
+.search-wrap{position:relative; max-width:480px; margin:14px 0 4px}
 .search-wrap input{
-  width:100%; padding:14px 18px 14px 46px; font-size:1.05rem; border-radius:12px;
+  width:100%; padding:11px 16px 11px 42px; font-size:.98rem; border-radius:11px;
   border:1.5px solid var(--line); background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%235B7270' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.3-4.3'/%3E%3C/svg%3E") 14px center no-repeat;
 }
 .search-wrap input:focus{outline:none; border-color:var(--teal2); box-shadow:0 0 0 3px rgba(42,143,143,.15)}
