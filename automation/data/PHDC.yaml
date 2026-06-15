@@ -1,0 +1,49 @@
+# ─────────────────────────────────────────────────────────────────────
+# PHDC study inputs. EDIT THIS FILE ONLY — everything downstream regenerates.
+# Every drift / probability / impact is an explicit, editable judgment.
+# ─────────────────────────────────────────────────────────────────────
+ticker: PHDC
+name: Palm Hills Developments
+exchange: EGX
+currency: EGP
+
+market:
+  anchor: 14.50            # last close
+  close_date: "2026-06-11"
+  shares_bn: 2.86
+  valuation_date: "2026-06-09"
+
+valuation:
+  sotp:                    # risk-adjusted EGP/share, already weighted
+    - {label: "Contracted backlog",                  value: 7.25}
+    - {label: "Badya — West Cairo (unsold)",          value: 0.83}
+    - {label: "Saadiyat Shores — Abu Dhabi (45% JV)", value: 3.55}
+    - {label: "Ras El-Hekma — Miran (45% JV)",        value: 2.32}
+    - {label: "Ras El-Hekma — Modon (30% JV)",        value: 1.18}
+    - {label: "Hacienda series — North Coast",        value: 0.86}
+    - {label: "Jirian + other active compounds",      value: 2.42}
+    - {label: "Landbank + terminal value (5% g)",     value: 1.69}
+  net_debt_per_share: 4.20
+  full_execution: 24.92
+  bear: 7.62
+
+# 10-factor Monte Carlo. 5 continuous + 5 discrete events.
+montecarlo:
+  paths: 50000
+  seed: 42
+  horizons_days: [20, 60]
+  realized_vol_annual: 0.50
+  continuous:   # name, 3M drift, 3M vol
+    - {name: "CBE policy rate path",  drift:  0.020, vol: 0.05}
+    - {name: "EGP/USD exchange rate", drift: -0.025, vol: 0.07}
+    - {name: "Inflation (CPI)",       drift:  0.015, vol: 0.04}
+    - {name: "EGX30 & foreign flows", drift:  0.015, vol: 0.08}
+    - {name: "Brent / Gulf liquidity",drift:  0.005, vol: 0.04}
+  events:       # name, probability, mean impact, impact spread
+    - {name: "Geopolitical / security",        prob: 0.30, impact: -0.12, spread: 0.05}
+    - {name: "Ras El-Hekma sovereign inflows", prob: 0.35, impact:  0.10, spread: 0.04}
+    - {name: "Project launch & sales",         prob: 0.55, impact:  0.08, spread: 0.04}
+    - {name: "Tourism & North Coast demand",   prob: 0.40, impact:  0.02, spread: 0.06}
+    - {name: "Mortgage finance & credit",      prob: 0.35, impact:  0.02, spread: 0.05}
+
+touch_levels: [15.55, 16.50, 17.50, 18.50, 20.00]
