@@ -314,3 +314,9 @@ details.more .more-body table{margin-top:8px}
 .track-badge .tb-num{font-family:"IBM Plex Mono",monospace; font-weight:700; font-size:1.5rem; color:var(--amber); flex:none}
 .track-badge .tb-txt{font-size:.9rem; line-height:1.35}
 .track-badge u{color:#9FD0C9}
+
+/* compare table */
+.compare-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch}
+.compare-table{min-width:680px}
+.compare-table th, .compare-table td{vertical-align:top; padding:12px 10px}
+.compare-table tr.cmp-soon td{opacity:.7}

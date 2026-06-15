@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Compare stocks — EGX side by side | testahil?</title>
+<meta name="description" content="Compare the Egyptian stocks we cover side by side: today's price, our fair value, cheap-or-expensive read, and the 1- and 3-month odds.">
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;700;800&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="favicon.png?v=2">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
+<link rel="stylesheet" href="assets/style.css">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="testahil?">
+<meta property="og:title" content="Compare stocks — testahil?">
+<meta property="og:description" content="The Egyptian stocks we cover, side by side: price, our fair value, cheap-or-expensive, and the odds.">
+<meta property="og:image" content="https://testahil.com/og-image.png">
+<meta property="og:url" content="https://testahil.com/compare.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Compare stocks — testahil?">
+<meta name="twitter:description" content="The Egyptian stocks we cover, side by side.">
+<meta name="twitter:image" content="https://testahil.com/og-image.png">
+<link rel="canonical" href="https://testahil.com/compare.html">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-H9NV0ZK9RN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-H9NV0ZK9RN');
+</script>
+</head>
+<body>
+<header class="nav"><div class="wrap">
+  <span class="brand">testahil?<small>is it worth it?</small></span>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="egypt.html" class="on">Egypt</a>
+    <a href="calculator.html">Calculator</a>
+    <a href="method.html">Methodology</a>
+  </nav>
+</div></header>
+
+<!-- TOP SEARCH (under the banner, every page) -->
+<div class="topsearch"><div class="wrap">
+  <div class="search-wrap">
+    <input id="tk-search" type="text" placeholder="Search a stock — try PHDC or Palm Hills" autocomplete="off" aria-label="Search for a stock">
+    <div class="tk-results" id="tk-results"></div>
+  </div>
+</div></div>
+
+<main class="wrap">
+  <section>
+    <span class="chip">Egypt · Side by side</span>
+    <h1 style="font-size:1.9rem;margin-top:.4em">Compare</h1>
+    <p class="muted" style="max-width:600px">The stocks we cover, lined up against each other — today's price, what we think it's worth, whether it looks cheap or expensive, and the odds over 1 and 3 months. Tap any name for the full study.</p>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="compare-scroll">
+      <div id="compare"></div>
+    </div>
+    <p class="muted" style="margin-top:12px">"Cheap / expensive" compares today's price to our own fair-value estimate. "Odds up" is the share of 50,000 simulated 3-month outcomes that finish above today. None of this is advice — it's a map of estimates and probabilities. <a href="method.html">How we build these →</a></p>
+  </section>
+</main>
+
+<footer><div class="wrap">Testahil? — distributions, not tips. By Sherif Saleh, independent. © 2026</div></footer>
+<script src="assets/data.js"></script><script src="assets/app.js"></script>
+<script>renderCompare("compare");</script>
+</body></html>

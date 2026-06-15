@@ -355,3 +355,33 @@ function renderTrackBadge(elId){
   }
   el.innerHTML=inner;
 }
+
+/* ---------- full compare table (compare.html) ---------- */
+function renderCompare(elId){
+  const el=document.getElementById(elId); if(!el) return;
+  const rows = Object.entries(TICKERS).map(([code,t])=>{
+    const o60=plainOdds(t.dist.t60, t.spot);
+    const v=valuationVerdict(t.spot, t.fair.base);
+    const up60=Math.round(o60.pa*10);
+    const fvGap = Math.round((t.fair.base-t.spot)/t.spot*100);
+    const trend = (t.tech&&t.tech.trend) ? t.tech.trend : "—";
+    return `<tr>
+      <td><a href="${code.toLowerCase()}.html"><b>${t.name}</b></a><br><span class="muted num" style="font-size:.8rem">${t.code}</span></td>
+      <td class="num">${F(t.spot)}</td>
+      <td class="num">${F(t.fair.base)}<br><span class="muted" style="font-size:.8rem">${fvGap>=0?'+':''}${fvGap}%</span></td>
+      <td><span class="pill ${v.tone}">${v.tone==='cheap'?'Looks cheap':v.tone==='rich'?'Looks expensive':'About right'}</span></td>
+      <td class="num">${F(t.dist.t60.p50)}</td>
+      <td class="num">${up60} in 10</td>
+      <td style="font-size:.85rem">${trend}</td>
+    </tr>`;
+  }).join("");
+  // coming-soon rows (names only)
+  const soon = COMING.filter(c=>c.status!=="covered").map(c=>
+    `<tr class="cmp-soon"><td><b>${c.name}</b><br><span class="muted num" style="font-size:.8rem">${c.code}</span></td>
+     <td colspan="6" class="muted">Coming soon — <a href="${c.code.replace('EGX:','').toLowerCase()}.html">get notified</a></td></tr>`
+  ).join("");
+  el.innerHTML = `<table class="compare-table"><thead><tr>
+    <th>Stock</th><th class="num">Today</th><th class="num">Our value</th><th>Price view</th>
+    <th class="num">3-mo middle</th><th class="num">Odds up (3-mo)</th><th>Chart trend</th>
+  </tr></thead><tbody>${rows}${soon}</tbody></table>`;
+}
