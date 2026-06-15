@@ -7,6 +7,18 @@
 <link rel="icon" type="image/png" href="favicon.png?v=2">
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
 <link rel="stylesheet" href="assets/style.css">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="testahil?">
+<meta property="og:title" content="Public ledger — testahil?">
+<meta property="og:description" content="Every forecast published with a date and scored against reality, right or wrong.">
+<meta property="og:image" content="https://testahil.com/og-image.png">
+<meta property="og:url" content="https://testahil.com/ledger.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Public ledger — testahil?">
+<meta name="twitter:description" content="Every forecast published with a date and scored against reality, right or wrong.">
+<meta name="twitter:image" content="https://testahil.com/og-image.png">
+<link rel="canonical" href="https://testahil.com/ledger.html">
+
 <style>
 .tab-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
 .tab-btn{padding:8px 20px;border-radius:999px;border:1.5px solid var(--line);background:#fff;
@@ -32,8 +44,21 @@
     <a href="egypt.html">Egypt</a>
     <a href="calculator.html">Calculator</a>
     <a href="method.html">Methodology</a>
+    <button class="nav-search-btn" id="nav-search-btn" type="button" aria-label="Search stocks" title="Search (press /)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+    </button>
   </nav>
 </div></header>
+
+<!-- NAV SEARCH overlay -->
+<div class="nav-search-overlay" id="nav-search-overlay">
+  <div class="nav-search-panel">
+    <input id="tk-search" type="text" placeholder="Search a stock — try PHDC or Palm Hills" autocomplete="off" aria-label="Search for a stock">
+    <div class="tk-results" id="tk-results"></div>
+    <p class="nav-search-hint">Press Esc to close</p>
+  </div>
+</div>
+
 
 <main class="wrap">
   <section>

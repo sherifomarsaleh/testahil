@@ -8,6 +8,18 @@
 <link rel="icon" type="image/png" href="favicon.png?v=2">
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
 <link rel="stylesheet" href="assets/style.css">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="testahil?">
+<meta property="og:title" content="testahil? — Is the stock worth it?">
+<meta property="og:description" content="We won't tell you what to buy — we'll tell you the odds. Plain-language probability for Egyptian (EGX) stocks, a publicly scored track record, and open Excel models.">
+<meta property="og:image" content="https://testahil.com/og-image.png">
+<meta property="og:url" content="https://testahil.com/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="testahil? — Is the stock worth it?">
+<meta name="twitter:description" content="We won't tell you what to buy — we'll tell you the odds. Plain-language probability for Egyptian (EGX) stocks, a publicly scored track record, and open Excel models.">
+<meta name="twitter:image" content="https://testahil.com/og-image.png">
+<link rel="canonical" href="https://testahil.com/">
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-H9NV0ZK9RN"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-H9NV0ZK9RN');</script>
@@ -19,17 +31,26 @@
     <a href="egypt.html">Egypt</a>
     <a href="calculator.html">Calculator</a>
     <a href="method.html">Methodology</a>
+    <button class="nav-search-btn" id="nav-search-btn" type="button" aria-label="Search stocks" title="Search (press /)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+    </button>
   </nav>
 </div></header>
+
+<!-- NAV SEARCH overlay -->
+<div class="nav-search-overlay" id="nav-search-overlay">
+  <div class="nav-search-panel">
+    <input id="tk-search" type="text" placeholder="Search a stock — try PHDC or Palm Hills" autocomplete="off" aria-label="Search for a stock">
+    <div class="tk-results" id="tk-results"></div>
+    <p class="nav-search-hint">Press Esc to close</p>
+  </div>
+</div>
+
 <main class="wrap">
   <section class="hero">
     <div class="q">testahil<span>?</span></div>
     <p class="sub"><b>We won't tell you what to buy. We'll tell you the odds.</b><br>
     Where could an Egyptian stock be in a month or three? We run it 50,000 ways — in plain language, with the math open to check.</p>
-    <div class="search-wrap">
-      <input id="tk-search" type="text" placeholder="Search a stock — try PHDC or Palm Hills" autocomplete="off" aria-label="Search for a stock">
-      <div class="tk-results" id="tk-results"></div>
-    </div>
   </section>
 
   <!-- LATEST STUDY — plain answer first -->
@@ -84,7 +105,6 @@ document.getElementById("latest-name").innerHTML = T.name + ' — ' + o.lead + '
 renderPlain("plain", T.dist.t60, T.spot, "in 3 months");
 document.getElementById("legend").innerHTML = stripLegend();
 document.getElementById("latest-link").href = latest[0].toLowerCase() + ".html";
-initSearch();
 
 // coverage cards
 document.getElementById("coming").innerHTML =

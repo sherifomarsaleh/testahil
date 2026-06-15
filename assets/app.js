@@ -266,3 +266,58 @@ function renderPeers(elId, currentCode){
     <th>Stock</th><th class="num">Today</th><th class="num">Our value</th><th>Price view</th><th class="num">3-month odds</th>
   </tr></thead><tbody>${rows}</tbody></table>`;
 }
+
+/* ---------- nav search overlay (every page) ---------- */
+function initNavSearch(){
+  const btn = document.getElementById("nav-search-btn");
+  const overlay = document.getElementById("nav-search-overlay");
+  if(!btn || !overlay) return;
+  const input = overlay.querySelector("#tk-search");
+  const box   = overlay.querySelector("#tk-results");
+
+  // reuse the same index logic as initSearch
+  const live = Object.entries(TICKERS).map(([code,t])=>({code, name:t.name, url:code.toLowerCase()+".html", status:"Covered"}));
+  const soon = COMING.filter(c=>c.status!=="covered").map(c=>({code:c.code.replace("EGX:",""), name:c.name, url:null, status:"Coming soon"}));
+  const index=[...live,...soon];
+
+  function render(q){
+    q=q.trim().toLowerCase();
+    if(!q){ box.innerHTML=""; return; }
+    const hits=index.filter(x=>x.code.toLowerCase().includes(q)||x.name.toLowerCase().includes(q));
+    box.classList.add("open");
+    box.innerHTML = hits.length ? hits.map(x=>x.url
+      ? `<a class="tk-hit" href="${x.url}"><span><b>${x.code}</b> · ${x.name}</span><span class="tk-tag">${x.status}</span></a>`
+      : `<div class="tk-hit tk-hit-soon"><span><b>${x.code}</b> · ${x.name}</span><span class="tk-tag warn">${x.status}</span></div>`
+    ).join("") : `<div class="tk-empty">No match. We cover Egyptian Exchange (EGX) stocks.</div>`;
+  }
+  function open(){ overlay.classList.add("open"); setTimeout(()=>input.focus(),50); }
+  function close(){ overlay.classList.remove("open"); input.value=""; box.innerHTML=""; }
+
+  btn.addEventListener("click", open);
+  overlay.addEventListener("click", e=>{ if(e.target===overlay) close(); });
+  input.addEventListener("input", e=>render(e.target.value));
+  input.addEventListener("keydown", e=>{
+    if(e.key==="Escape") close();
+    if(e.key==="Enter"){ const first=box.querySelector("a.tk-hit"); if(first) location.href=first.getAttribute("href"); }
+  });
+  document.addEventListener("keydown", e=>{
+    // "/" opens search from anywhere (unless typing in a field)
+    if(e.key==="/" && !/input|textarea/i.test(document.activeElement.tagName)){ e.preventDefault(); open(); }
+  });
+}
+
+/* ---------- first-visit "how to read this" (stock pages) ---------- */
+function initFirstRunHowto(){
+  const modal = document.getElementById("howto-modal");
+  if(!modal) return;
+  try{
+    if(!localStorage.getItem("seen-howto")){
+      // open once, after a brief beat so the page settles
+      setTimeout(()=>{ modal.classList.add("open"); }, 900);
+      localStorage.setItem("seen-howto","1");
+    }
+  }catch(e){ /* localStorage blocked — skip, the button still works */ }
+}
+
+/* boot the global bits */
+document.addEventListener("DOMContentLoaded",()=>{ initNavSearch(); initFirstRunHowto(); });
