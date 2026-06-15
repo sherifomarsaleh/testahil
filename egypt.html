@@ -33,6 +33,10 @@
     <span class="chip">EGX Coverage</span>
     <h1 style="font-size:1.9rem;margin-top:.4em">Egypt</h1>
     <p class="muted" style="max-width:600px">Five Egyptian Exchange companies. For each: what it's worth and where the price could go — math open to check.</p>
+    <div class="search-wrap">
+      <input id="tk-search" type="text" placeholder="Search a stock — try PHDC or Palm Hills" autocomplete="off" aria-label="Search for a stock">
+      <div class="tk-results" id="tk-results"></div>
+    </div>
   </section>
 
   <section class="cover-grid" style="padding-top:0">
@@ -94,4 +98,5 @@
 </div></footer>
 
 <script src="assets/data.js"></script><script src="assets/app.js"></script>
+<script>initSearch();</script>
 </body></html>
