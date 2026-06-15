@@ -2,8 +2,8 @@
 <html lang="en" dir="ltr">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Talaat Moustafa TMGH — Valuation Study | testahil?</title>
-<meta name="description" content="Independent valuation study for EGX:TMGH — Talaat Moustafa Group. Bottom-up project SOTP, 10-factor Monte Carlo, open Excel model.">
+<title>Talaat Moustafa TMGH — Probability Distribution | testahil?</title>
+<meta name="description" content="Independent valuation study for EGX:TMGH — base EGP 147.1, range 83.6–189.6. Bottom-up project SOTP, 10-factor Monte Carlo, open Excel model.">
 <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;700;800&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <link rel="icon" type="image/png" href="favicon.png?v=2">
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
@@ -24,54 +24,84 @@
 
 <main class="wrap">
   <section>
-    <span class="chip num">EGX:TMGH</span><span class="chip warn">Study in progress</span>
-    <h1 style="font-size:2.2rem;margin-top:.4em">Talaat Moustafa Group</h1>
-    <p class="muted">Independent bottom-up valuation study — Q2 2026 edition. Full study, open Excel model, and 10-factor Monte Carlo distribution will be published here on completion. <a href="egypt.html">← All Egypt coverage</a></p>
+    <span class="chip num">EGX:TMGH</span><span class="chip">updated <span class="num" id="upd"></span></span>
+    <h1 style="font-size:2.2rem">Talaat Moustafa Group Holding</h1>
+    <p class="muted">Spot <b class="num" id="spot"></b> EGP (<span id="spotdate"></span>) · risk-adjusted fair value <b class="num">147.12</b> · scenario range <span class="num">83.6 – 189.6</span></p>
   </section>
 
   <section class="card">
-    <h2>What to expect</h2>
-    <p class="muted">The TMGH study follows the same standing format as <a href="phdc.html">PHDC</a>:</p>
-    <ul class="muted" style="padding-left:1.2em;line-height:2">
-      <li><b>Fundamental:</b> Project SOTP — each development valued bottom-up (units × price/m², costs/m²), contracted backlog separated from unsold remainder, execution probabilities applied to pipeline. Consolidated income statement, balance sheet, and cash flow verified to zero.</li>
-      <li><b>Technical:</b> Weekly / daily / intraday read, key levels, ATR, volume tell.</li>
-      <li><b>Monte Carlo:</b> 50,000 paths, 10 external factors (policy rate, EGP/USD, inflation, EGX flows, oil/Gulf liquidity, geopolitics, sovereign inflows, launch execution, tourism, mortgage credit).</li>
-      <li><b>Three-lens reconciliation + catalyst calendar + probability map.</b></li>
-    </ul>
-    <p class="muted">Every assumption will be in the open Excel model — editable, attackable.</p>
+    <h2>Probability distribution — 50,000 paths, 10 factors</h2>
+    <p class="muted">One Monte Carlo model driven by 10 external factors (policy rate, EGP/USD, inflation, foreign flows, oil/Gulf liquidity, geopolitics, cross-border JV inflows, launch execution, tourism/hospitality, mortgage credit). Details in <a href="method.html">Methodology</a>.</p>
+    <div class="strip"><div class="lbl"><span>1-month horizon (T+20)</span><span class="num">resolves 2026-07-14</span></div><div id="s20"></div></div>
+    <div class="strip"><div class="lbl"><span>3-month horizon (T+60)</span><span class="num">resolves 2026-09-08</span></div><div id="s60"></div></div>
+    <div id="legend"></div>
+    <p class="muted" style="margin-top:14px">Reading it: the one-month view is two-sided (28% of paths below 92 support); the three-month distribution skews right — 16% of paths at or above 126 — as the launch and cross-border events pay in the window.</p>
   </section>
 
   <section class="grid g2">
     <div class="card">
-      <h3>Company snapshot</h3>
-      <table><tbody>
-        <tr><td>Ticker</td><td class="num">EGX:TMGH</td></tr>
-        <tr><td>Sector</td><td>Real-estate developer</td></tr>
-        <tr><td>Methodology</td><td>Project SOTP (bottom-up)</td></tr>
-        <tr><td>Study status</td><td><span style="color:var(--amber);font-weight:600">In progress</span></td></tr>
-        <tr><td>Expected publication</td><td>Q2–Q3 2026</td></tr>
-      </tbody></table>
+      <h3>Level-touch probabilities</h3>
+      <table><thead><tr><th class="num">Level</th><th class="num">Within 1M</th><th class="num">Within 3M</th></tr></thead>
+      <tbody id="touch"></tbody></table>
+      <p class="muted">Probability the price touches the level at least once within the horizon — a descriptive output of the simulation.</p>
     </div>
     <div class="card">
-      <h3>Get notified</h3>
-      <p class="muted">The study will be announced on LinkedIn and the public ledger the moment it's published.</p>
-      <a class="btn" href="https://www.linkedin.com/company/testahil" target="_blank" rel="noopener">Follow on LinkedIn →</a>
-      <p class="muted" style="margin-top:12px">Or watch the <a href="ledger.html">Public Ledger</a> — TMGH distributions will appear there on publication date.</p>
+      <h3>Technical levels</h3>
+      <table><thead><tr><th>Type</th><th class="num">Levels (EGP)</th></tr></thead><tbody>
+        <tr><td>Resistance</td><td class="num">96.10–97.39 · 99.45–100.95 · 101.40</td></tr>
+        <tr><td>Support</td><td class="num">92.16–92.75 · 91.55 (SMA50) · 86.56</td></tr>
+        <tr><td>Daily ATR(14)</td><td class="num">2.49 (2.6%)</td></tr>
+        <tr><td>Rebuild boundary</td><td class="num">~83.6 (no-pipeline floor)</td></tr>
+      </tbody></table>
+      <p class="muted">Below ~83–84 the market would price the company beneath the "no new launches ever" scenario — the level at which this study itself gets rebuilt.</p>
     </div>
+  </section>
+
+  <section class="card">
+    <h3>Value range (execution scenarios)</h3>
+    <div class="strip"><div id="fair"></div></div>
+    <p class="muted">Left: bear ~83.6 (net cash + contracted backlog + hotels + recurring, zero new launches). Middle: risk-adjusted base 147.12. Right: full execution 189.6. Gold dot: spot — at 95.68 the market pays for the contracted business, segments and net cash (~EGP 72bn) plus very little pipeline execution.</p>
+  </section>
+
+  <section class="card">
+    <h3>Three operating streams</h3>
+    <table><thead><tr><th>Stream</th><th class="num">Risk-adj EV (EGP bn)</th><th class="num">Per share</th><th>Method</th></tr></thead>
+    <tbody>
+      <tr><td>Development + backlog (DCF/SOTP)</td><td class="num">183.5</td><td class="num">89.05</td><td>Project-by-project DCF</td></tr>
+      <tr><td>Hotels (9 owned, intl-operated)</td><td class="num">48.6</td><td class="num">23.59</td><td>EBITDA × 6.5×</td></tr>
+      <tr><td>Recurring income (malls/schools/clubs)</td><td class="num">31.2</td><td class="num">15.16</td><td>EBITDA × 7.5×</td></tr>
+      <tr><td>Net cash (90% parent, ~EGP 65bn)</td><td class="num">—</td><td class="num">+31.40</td><td>Balance sheet</td></tr>
+      <tr><td>Less: minority (hotels 40.5% + backlog wtd)</td><td class="num">—</td><td class="num">−12.06</td><td>Segment-specific</td></tr>
+      <tr style="font-weight:600"><td>Base-case equity value</td><td class="num">—</td><td class="num">147.12</td><td>+54% vs 95.68</td></tr>
+    </tbody></table>
   </section>
 
   <section class="card" style="background:#EFF5F4">
-    <h3>While you wait — read the PHDC study</h3>
-    <p class="muted">The same methodology, fully published: project SOTP, 10-factor Monte Carlo, open Excel model, and a public forecast ledger being scored in real time.</p>
-    <a class="btn ghost" href="phdc.html">PHDC full analysis →</a>
-    &nbsp;
-    <a class="btn ghost" href="models.html">Open Models →</a>
+    <h3>Full study and open model</h3>
+    <p class="muted">The study (Word + PDF) + the complete Excel model: every assumption editable. Found a flaw? <a href="models.html">Attack the model</a>.</p>
+    <a class="btn" id="dl-pdf" href="#">Download study (PDF)</a>
+    <a class="btn" id="dl-study" href="#">Study (DOCX)</a>
+    <a class="btn ghost" id="dl-model" href="#">Model (XLSX)</a>
+    <p class="muted" style="margin-top:10px">Edition: 15 Jun 2026</p>
   </section>
 </main>
 
-<footer><div class="wrap">
-  <b>Disclaimer:</b> Educational valuation studies and personal analytical opinion — not investment advice, not recommendations. The preparer is not licensed by Egypt's FRA, manages no money, accepts no clients, and may hold positions in instruments mentioned. <a href="method.html#disclaimer">Full text</a>.
-</div></footer>
+<footer><div class="wrap"><b>Reminder:</b> educational distributions and probabilities — not a recommendation, not a price target. The preparer does not hold a position in TMGH — <a href="method.html#disclaimer">full disclosure</a>.</div></footer>
 
 <script src="assets/data.js"></script><script src="assets/app.js"></script>
+<script>
+const T=TICKERS.TMGH;
+document.getElementById("upd").textContent=SITE.updated;
+document.getElementById("spot").textContent=T.spot.toFixed(2);
+document.getElementById("spotdate").textContent=T.spotDate;
+renderStrip("s20",T.dist.t20,T.spot);
+renderStrip("s60",T.dist.t60,T.spot);
+document.getElementById("legend").innerHTML=stripLegend();
+document.getElementById("touch").innerHTML=T.touch.map(r=>
+ `<tr><td class="num">${r[0].toFixed(2)}</td><td class="num">${r[1]}%</td><td class="num">${r[2]}%</td></tr>`).join("");
+renderStrip("fair",{p5:T.fair.bear,p25:T.fair.base,p50:T.fair.base,p75:T.fair.base,p95:T.fair.full},T.spot);
+document.getElementById("dl-pdf").href=T.files.pdf;
+document.getElementById("dl-study").href=T.files.study;
+document.getElementById("dl-model").href=T.files.model;
+</script>
 </body></html>

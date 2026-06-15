@@ -2,7 +2,7 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-06-11" };
+const SITE = { updated: "2026-06-15" };
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
@@ -26,15 +26,36 @@ const TICKERS = {
       model: "files/PHDC_Valuation_Study_11-06-2026_public.xlsx?v=1106",
       pdf:   "files/PHDC_Valuation_Study_11-06-2026_public.pdf?v=1106"
     }
+  },
+  TMGH: {
+    name: "Talaat Moustafa Group Holding",
+    code: "EGX:TMGH",
+    spot: 95.68,
+    spotDate: "close 14 Jun 2026",
+    ccy: "EGP",
+    fair: { bear: 83.6, base: 147.12, full: 189.6 },
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:81.42, p25:91.17, p50:98.31,  p75:106.10, p95:119.24, resolve:"2026-07-14" },
+      t60: { label:"3 months (T+60)", p5:75.58, p25:91.20, p50:103.93, p75:118.41, p95:142.75, resolve:"2026-09-08" }
+    },
+    touch: [
+      [100, 66, 85], [110, 24, 58], [118, 8, 39], [126, 2, 24], [88, 29, 48], [83, 11, 29]
+    ],
+    levels: { res:[101.40, 99.45, 96.10], sup:[92.16, 91.55, 86.56] },
+    files: {
+      study: "files/TMGH_Valuation_Study_15-06-2026_public.docx?v=1506",
+      model: "files/TMGH_Valuation_Study_15-06-2026_public.xlsx?v=1506",
+      pdf:   "files/TMGH_Valuation_Study_15-06-2026_public.pdf?v=1506"
+    }
   }
 };
 
 /* coming-soon cards (home page coverage section) */
 const COMING = [
-  { code:"EGX:TMGH", name:"Talaat Moustafa Group",        url:"tmgh.html" },
-  { code:"EGX:ORAS", name:"Orascom Construction",          url:null },
-  { code:"EGX:COMI", name:"Commercial International Bank", url:null },
-  { code:"EGX:CCAP", name:"Cairo Capital",                 url:null },
+  { code:"EGX:TMGH", name:"Talaat Moustafa Group",        url:"tmgh.html", status:"covered" },
+  { code:"EGX:ORAS", name:"Orascom Construction",          url:null,        status:"soon" },
+  { code:"EGX:COMI", name:"Commercial International Bank", url:null,        status:"soon" },
+  { code:"EGX:CCAP", name:"Cairo Capital",                 url:null,        status:"soon" },
 ];
 
 /* ---------- public ledger ----------
@@ -44,7 +65,9 @@ const LEDGER = [
   { pub:"2026-06-09", inst:"PHDC", horizon:"T+20", median:15.44, lo:11.93, hi:19.99, band:"90%", resolve:"2026-07-07", status:"open", realized:null },
   { pub:"2026-06-09", inst:"PHDC", horizon:"T+60", median:16.37, lo:10.53, hi:25.35, band:"90%", resolve:"2026-09-02", status:"open", realized:null },
   { pub:"2026-06-11", inst:"PHDC", horizon:"T+20", median:14.92, lo:11.53, hi:19.32, band:"90%", resolve:"2026-07-09", status:"open", realized:null },
-  { pub:"2026-06-11", inst:"PHDC", horizon:"T+60", median:15.83, lo:10.18, hi:24.50, band:"90%", resolve:"2026-09-03", status:"open", realized:null }
+  { pub:"2026-06-11", inst:"PHDC", horizon:"T+60", median:15.83, lo:10.18, hi:24.50, band:"90%", resolve:"2026-09-03", status:"open", realized:null },
+  { pub:"2026-06-15", inst:"TMGH", horizon:"T+20", median:98.31,  lo:81.42, hi:119.24, band:"90%", resolve:"2026-07-14", status:"open", realized:null },
+  { pub:"2026-06-15", inst:"TMGH", horizon:"T+60", median:103.93, lo:75.58, hi:142.75, band:"90%", resolve:"2026-09-08", status:"open", realized:null }
 ];
 
 /* ---------- calculator data ----------

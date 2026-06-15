@@ -75,8 +75,8 @@ renderStrip("strip-home", TICKERS.PHDC.dist.t60, TICKERS.PHDC.spot);
 document.getElementById("legend-home").innerHTML = stripLegend();
 document.getElementById("coming").innerHTML =
   `<div class="card"><span class="chip">Covered</span><h3>Palm Hills</h3><p class="muted num">EGX:PHDC</p><a href="phdc.html">Page →</a></div>`+
-  COMING.map(c=>c.url
-    ? `<div class="card" style="opacity:.85"><span class="chip warn">In progress</span><h3>${c.name}</h3><p class="muted num">${c.code}</p><a href="${c.url}">Page →</a></div>`
+  COMING.map(c=>c.status==="covered"
+    ? `<div class="card"><span class="chip">Covered</span><h3>${c.name}</h3><p class="muted num">${c.code}</p><a href="${c.url}">Page →</a></div>`
     : `<div class="card" style="opacity:.55"><span class="chip warn">Coming soon</span><h3>${c.name}</h3><p class="muted num">${c.code}</p></div>`
   ).join("");
 </script>
