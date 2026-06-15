@@ -75,6 +75,7 @@ const COMING = [
   { code:"EGX:EFID", name:"Edita",                            url:null,        status:"soon" },
   { code:"EGX:HRHO", name:"EFG Holding",                      url:null,        status:"soon" },
   { code:"EGX:MFPC", name:"MOPCO",                            url:null,        status:"soon" },
+  { code:"EGX:EMFM", name:"Emaar Misr",                       url:null,        status:"soon" },
 ];
 
 /* ---------- public ledger ----------
