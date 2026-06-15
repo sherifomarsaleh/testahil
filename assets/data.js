@@ -68,6 +68,13 @@ const COMING = [
   { code:"EGX:ORAS", name:"Orascom Construction",          url:null,        status:"soon" },
   { code:"EGX:COMI", name:"Commercial International Bank", url:null,        status:"soon" },
   { code:"EGX:CCAP", name:"Citadel Capital",                 url:null,        status:"soon" },
+  { code:"EGX:FWRY", name:"Fawry",                            url:null,        status:"soon" },
+  { code:"EGX:HELI", name:"Heliopolis Housing",              url:null,        status:"soon" },
+  { code:"EGX:BTFH", name:"Beltone",                          url:null,        status:"soon" },
+  { code:"EGX:ABUK", name:"Abu Kir Fertilizers",             url:null,        status:"soon" },
+  { code:"EGX:EFID", name:"Edita",                            url:null,        status:"soon" },
+  { code:"EGX:HRHO", name:"EFG Holding",                      url:null,        status:"soon" },
+  { code:"EGX:MFPC", name:"MOPCO",                            url:null,        status:"soon" },
 ];
 
 /* ---------- public ledger ----------

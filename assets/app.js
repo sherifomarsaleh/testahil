@@ -176,7 +176,7 @@ function initSearch(inputId="tk-search", resultsId="tk-results"){
     code, name:t.name, url:code.toLowerCase()+".html", status:"Covered"
   }));
   const soon = COMING.filter(c=>c.status!=="covered").map(c=>({
-    code:c.code.replace("EGX:",""), name:c.name, url:null, status:"Coming soon"
+    code:c.code.replace("EGX:",""), name:c.name, url:c.code.replace("EGX:","").toLowerCase()+".html", status:"Coming soon"
   }));
   const index = [...live, ...soon];
 
@@ -289,7 +289,7 @@ function initNavSearch(){
 
   // reuse the same index logic as initSearch
   const live = Object.entries(TICKERS).map(([code,t])=>({code, name:t.name, url:code.toLowerCase()+".html", status:"Covered"}));
-  const soon = COMING.filter(c=>c.status!=="covered").map(c=>({code:c.code.replace("EGX:",""), name:c.name, url:null, status:"Coming soon"}));
+  const soon = COMING.filter(c=>c.status!=="covered").map(c=>({code:c.code.replace("EGX:",""), name:c.name, url:c.code.replace("EGX:","").toLowerCase()+".html", status:"Coming soon"}));
   const index=[...live,...soon];
 
   function render(q){
