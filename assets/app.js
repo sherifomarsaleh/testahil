@@ -157,10 +157,10 @@ document.addEventListener("DOMContentLoaded",()=>{ initCalc(); });
    glossary tooltips, peer comparison
    ============================================================ */
 
-/* ---------- ticker search (works on any page; needs #tk-search input + #tk-results) ---------- */
-function initSearch(){
-  const input = document.getElementById("tk-search");
-  const box   = document.getElementById("tk-results");
+/* ---------- ticker search (works on any page; default ids #tk-search + #tk-results) ---------- */
+function initSearch(inputId="tk-search", resultsId="tk-results"){
+  const input = document.getElementById(inputId);
+  const box   = document.getElementById(resultsId);
   if(!input || !box) return;
 
   // Build the searchable index from data.js
