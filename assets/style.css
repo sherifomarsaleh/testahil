@@ -331,3 +331,9 @@ details.more .more-body table{margin-top:8px}
 .starthere .step-no{display:inline-flex; align-items:center; justify-content:center; width:26px; height:26px;
   background:var(--teal); color:#fff; border-radius:50%; font-family:"IBM Plex Mono",monospace; font-weight:600; font-size:.85rem; margin-bottom:6px}
 .starthere .grid b{display:block; margin:2px 0 4px}
+
+/* share button */
+.share-btn{display:inline-flex; align-items:center; gap:7px; background:none; border:1.5px solid var(--line);
+  color:var(--teal); cursor:pointer; font:inherit; font-weight:600; font-size:.9rem; padding:9px 16px; border-radius:10px}
+.share-btn:hover{background:#EAF2F1; border-color:var(--teal2)}
+.share-btn svg{width:16px; height:16px}

@@ -327,7 +327,7 @@ function initFirstRunHowto(){
 }
 
 /* boot the global bits */
-document.addEventListener("DOMContentLoaded",()=>{ initSearch(); initFirstRunHowto(); });
+document.addEventListener("DOMContentLoaded",()=>{ initSearch(); initFirstRunHowto(); initShare(); });
 
 /* ---------- track-record badge (honest: shows scored hit-rate, or "awaiting" if none yet) ---------- */
 function trackRecord(){
@@ -382,4 +382,26 @@ function renderCompare(elId){
     <th>Stock</th><th class="num">Today</th><th class="num">Our value</th><th>Price view</th>
     <th class="num">3-mo middle</th><th class="num">Odds up (3-mo)</th><th>Chart trend</th>
   </tr></thead><tbody>${rows}${soon}</tbody></table>`;
+}
+
+/* ---------- share button (native share on mobile, copy link on desktop) ---------- */
+function initShare(){
+  document.querySelectorAll("[data-share]").forEach(btn=>{
+    btn.addEventListener("click", async ()=>{
+      const url = location.href;
+      const title = document.title;
+      const text = btn.getAttribute("data-share") || title;
+      if(navigator.share){
+        try{ await navigator.share({title, text, url}); }catch(e){}
+      } else {
+        try{
+          await navigator.clipboard.writeText(url);
+          const old=btn.textContent; btn.textContent="Link copied ✓";
+          setTimeout(()=>btn.textContent=old, 1800);
+        }catch(e){
+          prompt("Copy this link:", url);
+        }
+      }
+    });
+  });
 }
