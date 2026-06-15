@@ -315,4 +315,4 @@ function initFirstRunHowto(){
 }
 
 /* boot the global bits */
-document.addEventListener("DOMContentLoaded",()=>{ initNavSearch(); initFirstRunHowto(); });
+document.addEventListener("DOMContentLoaded",()=>{ initSearch(); initFirstRunHowto(); });
