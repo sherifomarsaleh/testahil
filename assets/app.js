@@ -43,55 +43,46 @@ function plainOdds(d, spot){
   };
 }
 
-/* ---------- probability strip → quantile dotplot (signature element) ---------- */
+/* ---------- probability strip → horizontal range bar (signature element) ----------
+   A simple slider: the thin bar is the wide "almost-anything" range (5%–95%),
+   the thick bar is the most-likely middle half (25%–75%), the upright mark is
+   the middle outcome, and the gold dot is today's price. Plain words sit under
+   the ends. No statistics jargon on the face of it. */
 function renderStrip(elId, d, spot, opts={}){
   const el = document.getElementById(elId); if(!el) return;
-  const N = opts.dots || 50;
-  const f = invCDF(d);
-  const vals = [];
-  for(let i=0;i<N;i++) vals.push(f((i+0.5)/N));
+  const min = Math.min(d.p5, spot) - (Math.max(d.p95,spot)-Math.min(d.p5,spot))*0.06;
+  const max = Math.max(d.p95, spot) + (Math.max(d.p95,spot)-Math.min(d.p5,spot))*0.06;
+  const W=1000, H=132, y=64, X=v=>40+(v-min)/(max-min)*(W-80);
 
-  const lo = Math.min(vals[0], spot), hi = Math.max(vals[N-1], spot);
-  const min = lo-(hi-lo)*0.06, max = hi+(hi-lo)*0.06;
-  const W=1000, baseY=96, X=v=>26+(v-min)/(max-min)*(W-52);
-
-  const buckets = {};
-  const cols = Math.min(N,46), bucketW=(W-52)/cols;
-  const placed = vals.map(v=>{
-    const x=X(v), key=Math.round(x/bucketW);
-    const count=(buckets[key]=(buckets[key]||0)+1);
-    return { x, level:count-1, above:v>=spot };
-  });
-  const r=7, gap=3.2;
-  const dots = placed.map(p=>{
-    const cy=baseY-p.level*(r*2+gap)-r;
-    return `<circle cx="${p.x.toFixed(1)}" cy="${cy.toFixed(1)}" r="${r}" class="${p.above?'dot-up':'dot-dn'}"/>`;
-  }).join("");
-
-  const topY=8;
-  const todayLine = `<line x1="${X(spot)}" x2="${X(spot)}" y1="${topY}" y2="${baseY+6}" class="today-line"/>
-    <text x="${X(spot)}" y="${baseY+30}" text-anchor="middle" class="lab today-lab">today ${F(spot)}</text>`;
-  const zoneLab = `
-    <text x="${X(vals[2])}" y="${baseY+30}" text-anchor="middle" class="lab zone">rare low</text>
-    <text x="${X(vals[N-3])}" y="${baseY+30}" text-anchor="middle" class="lab zone">rare high</text>`;
-
-  el.innerHTML = `<svg viewBox="0 0 ${W} ${baseY+44}" xmlns="http://www.w3.org/2000/svg" role="img"
-      aria-label="Each dot is one of ${N} possible price outcomes. Today's price is ${F(spot)}.">
+  el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" role="img"
+      aria-label="Likely price range. Today's price is ${F(spot)}; the middle outcome is ${F(d.p50)}.">
     <style>
-      .dot-up{fill:#2A8F8F}.dot-dn{fill:#C98A2D}
-      .today-line{stroke:#0E2726;stroke-width:2.5;stroke-dasharray:2 4}
       .lab{font:600 21px 'IBM Plex Mono',monospace}
-      .today-lab{fill:#0E2726}.zone{fill:#8A9A98;font-weight:500}
+      .end{fill:#8A9A98}.mid{fill:#1B5E5E}.tod{fill:#C98A2D}
     </style>
-    ${dots}${zoneLab}${todayLine}
+    <!-- wide range 5–95% -->
+    <line x1="${X(d.p5)}" x2="${X(d.p95)}" y1="${y}" y2="${y}" stroke="#CFE0DE" stroke-width="12" stroke-linecap="round"/>
+    <!-- middle half 25–75% -->
+    <line x1="${X(d.p25)}" x2="${X(d.p75)}" y1="${y}" y2="${y}" stroke="#2A8F8F" stroke-width="22" stroke-linecap="round" opacity=".55"/>
+    <!-- middle outcome mark -->
+    <line x1="${X(d.p50)}" x2="${X(d.p50)}" y1="${y-20}" y2="${y+20}" stroke="#1B5E5E" stroke-width="6" stroke-linecap="round"/>
+    <!-- today mark -->
+    <circle cx="${X(spot)}" cy="${y}" r="11" fill="#fff" stroke="#C98A2D" stroke-width="4"/>
+    <!-- ABOVE the bar: middle outcome -->
+    <text x="${X(d.p50)}" y="${y-30}" text-anchor="middle" class="lab mid">middle ${F(d.p50)}</text>
+    <!-- BELOW the bar, center: today -->
+    <text x="${X(spot)}" y="${y+46}" text-anchor="middle" class="lab tod">today ${F(spot)}</text>
+    <!-- end labels: small, above, at the far extremes -->
+    <text x="${X(d.p5)}" y="${y-30}" text-anchor="middle" class="lab end">${F(d.p5)}</text>
+    <text x="${X(d.p95)}" y="${y-30}" text-anchor="middle" class="lab end">${F(d.p95)}</text>
   </svg>`;
 }
 
 function stripLegend(){
   return `<div class="legend">
-    <span><i class="sw" style="background:#C98A2D"></i> outcomes below today</span>
-    <span><i class="sw" style="background:#2A8F8F"></i> outcomes above today</span>
-    <span class="legend-note">each dot = one of many simulated outcomes</span>
+    <span><i class="sw" style="background:#2A8F8F;opacity:.55;border-radius:3px"></i> where it lands half the time</span>
+    <span><i class="sw" style="background:#CFE0DE;border-radius:3px"></i> almost the whole range (9 times in 10)</span>
+    <span><i class="sw" style="background:#fff;border:3px solid #C98A2D"></i> today's price</span>
   </div>`;
 }
 
@@ -102,7 +93,7 @@ function renderPlain(containerId, d, spot, horizonLabel){
   c.innerHTML = `
     <p class="odds-sentence">${o.sentence}</p>
     <div class="strip" id="${containerId}-strip"></div>
-    <p class="muted strip-note">Each dot is one possible price ${horizonLabel}. They pile up where outcomes are most likely. The dashed line is today's price.</p>
+    <p class="muted strip-note">The teal band is where the price lands most of the time ${horizonLabel}. The thin band is the rare extremes. The gold dot is today.</p>
   `;
   renderStrip(`${containerId}-strip`, d, spot);
 }
