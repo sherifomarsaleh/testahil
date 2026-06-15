@@ -306,3 +306,11 @@ details.more .more-body table{margin-top:8px}
   background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%235B7270' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.3-4.3'/%3E%3C/svg%3E") 14px center no-repeat;
 }
 .topsearch input:focus{outline:none; border-color:var(--teal2); box-shadow:0 0 0 3px rgba(42,143,143,.15)}
+
+/* track-record badge — the credibility signal */
+.track-badge{display:flex; align-items:center; gap:12px; background:#0E2726; color:#F6F8F7;
+  border-radius:12px; padding:12px 16px; margin:4px 0; text-decoration:none; max-width:560px}
+.track-badge:hover{text-decoration:none; background:#13322F}
+.track-badge .tb-num{font-family:"IBM Plex Mono",monospace; font-weight:700; font-size:1.5rem; color:var(--amber); flex:none}
+.track-badge .tb-txt{font-size:.9rem; line-height:1.35}
+.track-badge u{color:#9FD0C9}

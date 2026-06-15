@@ -328,3 +328,30 @@ function initFirstRunHowto(){
 
 /* boot the global bits */
 document.addEventListener("DOMContentLoaded",()=>{ initSearch(); initFirstRunHowto(); });
+
+/* ---------- track-record badge (honest: shows scored hit-rate, or "awaiting" if none yet) ---------- */
+function trackRecord(){
+  const scored = LEDGER.filter(r=>r.status==="scored" && r.realized!=null);
+  const inrange = scored.filter(r=>r.realized>=r.lo && r.realized<=r.hi).length;
+  const open = LEDGER.filter(r=>r.status==="open").length;
+  // next resolve date among open forecasts
+  const nextDate = LEDGER.filter(r=>r.status==="open").map(r=>r.resolve).sort()[0] || null;
+  return { total:LEDGER.length, scored:scored.length, inrange, open, nextDate };
+}
+function renderTrackBadge(elId){
+  const el=document.getElementById(elId); if(!el) return;
+  const t=trackRecord();
+  let inner;
+  if(t.scored>0){
+    const pct=Math.round(t.inrange/t.scored*100);
+    inner=`<a href="ledger.html" class="track-badge">
+      <span class="tb-num">${t.inrange}/${t.scored}</span>
+      <span class="tb-txt">forecasts landed in range <b>(${pct}%)</b> · ${t.open} still open → <u>see the scorecard</u></span></a>`;
+  } else {
+    const d = t.nextDate ? new Date(t.nextDate).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}) : "soon";
+    inner=`<a href="ledger.html" class="track-badge">
+      <span class="tb-num">${t.total}</span>
+      <span class="tb-txt">forecasts on the public record, awaiting their dates — first scores ${d} → <u>see the ledger</u></span></a>`;
+  }
+  el.innerHTML=inner;
+}
