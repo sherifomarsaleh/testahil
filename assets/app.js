@@ -343,15 +343,13 @@ function renderTrackBadge(elId){
   const t=trackRecord();
   let inner;
   if(t.scored>0){
-    const pct=Math.round(t.inrange/t.scored*100);
     inner=`<a href="ledger.html" class="track-badge">
       <span class="tb-num">${t.inrange}/${t.scored}</span>
-      <span class="tb-txt">forecasts landed in range <b>(${pct}%)</b> · ${t.open} still open → <u>see the scorecard</u></span></a>`;
+      <span class="tb-txt">past forecasts got it right so far → <u>see how we did</u></span></a>`;
   } else {
-    const d = t.nextDate ? new Date(t.nextDate).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}) : "soon";
     inner=`<a href="ledger.html" class="track-badge">
       <span class="tb-num">${t.total}</span>
-      <span class="tb-txt">forecasts on the public record, awaiting their dates — first scores ${d} → <u>see the ledger</u></span></a>`;
+      <span class="tb-txt">past forecasts you can check later to see if we were right → <u>see them</u></span></a>`;
   }
   el.innerHTML=inner;
 }
