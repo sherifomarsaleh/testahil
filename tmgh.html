@@ -78,7 +78,7 @@
       <div id="legend"></div>
       <button class="howto-link" id="howto-open" type="button">How to read this</button>
     </div>
-    <p class="muted" style="margin-top:14px">Today <b class="num" id="spot"></b> EGP (<span id="spotdate"></span>) · our fair value <b class="num" id="fv-base"></b> · scenarios <span class="num" id="fv-bear"></span> (bad) to <span class="num" id="fv-full"></span> (all goes right).</p>
+    <p class="muted" style="margin-top:14px">Today <b class="num" id="spot"></b> EGP (<span id="spotdate"></span>) · our fair value <b class="num">147.12</b> · scenarios <span class="num">83.6</span> (bad) to <span class="num">189.6</span> (all goes right).</p>
   </section>
 
   <!-- LENS 2: FUNDAMENTAL -->
@@ -113,7 +113,7 @@
   <!-- ONE-LINE WHAT-IT-MEANS -->
   <section style="padding-top:8px">
     <div class="card" style="background:#EFF5F4">
-      <p style="margin:0"><b>In plain terms:</b> <span id="floor-line"></span></p>
+      <p style="margin:0"><b>In plain terms:</b> cash, sold backlog, hotels and malls give a ~EGP 84 floor. Upside is new launches (SouthMED, The Spine, Noor) and the Gulf projects. More cash than debt — unusually safe for a developer.</p>
     </div>
   </section>
 
@@ -141,10 +141,10 @@
 
       <p class="qhead" style="margin-top:26px">Chart levels traders watch</p>
       <table><tbody>
-        <tr><td><span class="term" tabindex="0">Resistance (ceilings)<span class="tip">A price level where selling has repeatedly stopped past rallies — a "ceiling" the price has struggled to break above.</span></span></td><td class="num" id="res-detail">96.10–97.39 · 99.45–100.95 · 101.40</td></tr>
-        <tr><td><span class="term" tabindex="0">Support (floors)<span class="tip">A price level where buying has repeatedly stepped in — a "floor" the price has tended to bounce off.</span></span></td><td class="num" id="sup-detail">92.16–92.75 · 91.55 · 86.56</td></tr>
-        <tr><td><span class="term" tabindex="0">Typical daily move<span class="tip">Roughly how far the price swings in an average day (based on a measure called ATR). Bigger means choppier.</span></span></td><td class="num" id="atr-detail">2.49 (2.6%)</td></tr>
-        <tr><td>Where our case breaks</td><td class="num" id="break-detail">below ~83.6</td></tr>
+        <tr><td><span class="term" tabindex="0">Resistance (ceilings)<span class="tip">A price level where selling has repeatedly stopped past rallies — a "ceiling" the price has struggled to break above.</span></span></td><td class="num">96.10–97.39 · 99.45–100.95 · 101.40</td></tr>
+        <tr><td><span class="term" tabindex="0">Support (floors)<span class="tip">A price level where buying has repeatedly stepped in — a "floor" the price has tended to bounce off.</span></span></td><td class="num">92.16–92.75 · 91.55 · 86.56</td></tr>
+        <tr><td><span class="term" tabindex="0">Typical daily move<span class="tip">Roughly how far the price swings in an average day (based on a measure called ATR). Bigger means choppier.</span></span></td><td class="num">2.49 (2.6%)</td></tr>
+        <tr><td>Where our case breaks</td><td class="num">below ~83.6</td></tr>
       </tbody></table>
 
       <p class="qhead" style="margin-top:26px">The exact percentiles</p>
@@ -220,11 +220,6 @@ const T=TICKERS.TMGH;
 document.getElementById("upd").textContent=SITE.updated;
 document.getElementById("spot").textContent=T.spot.toFixed(2);
 document.getElementById("spotdate").textContent=T.spotDate;
-const _fv=n=>T.fair[n].toFixed(2);
-["base","bear","full"].forEach(k=>{const el=document.getElementById("fv-"+k); if(el) el.textContent=_fv(k);});
-const _P=T.page||{};
-const _set=(id,v)=>{const el=document.getElementById(id); if(el&&v!=null) el.textContent=v;};
-_set("floor-line",_P.floor); _set("res-detail",_P.resDetail); _set("sup-detail",_P.supDetail); _set("atr-detail",_P.atr); _set("break-detail",_P.breakBelow);
 document.getElementById("legend").innerHTML=stripLegend();
 
 document.getElementById("touch").innerHTML=T.touch.map(r=>

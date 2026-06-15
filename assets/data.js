@@ -9,22 +9,18 @@ const TICKERS = {
   PHDC: {
     name: "Palm Hills Developments",
     code: "EGX:PHDC",
-    spot: 14.5,
+    spot: 14.50,
     spotDate: "close 11 Jun 2026",
     ccy: "EGP",
-    fair: { bear: 7.62, base: 15.89, full: 24.92 },
+    fair: { bear: 7.62, base: 15.89, full: 24.92 },          // 9 Jun 2026 valuation — unchanged in the 11 Jun price refresh
     dist: {
-      t20: { label:"1 month (T+20)",  p5:11.53, p25:13.42, p50:14.92, p75:16.56, p95:19.32, resolve:"2026-07-09" },
-      t60: { label:"3 months (T+60)", p5:10.18, p25:13.22, p50:15.83, p75:18.95, p95:24.5, resolve:"2026-09-03" }
+      t20: { label:"1 month (T+20)",   p5:11.53, p25:13.42, p50:14.92, p75:16.56, p95:19.32, resolve:"2026-07-09" },
+      t60: { label:"3 months (T+60)",  p5:10.18, p25:13.22, p50:15.83, p75:18.95, p95:24.50, resolve:"2026-09-03" }
     },
-    touch: [
-      [20, 5, 30],
-      [18.5, 12, 44],
-      [17.5, 23, 55],
-      [16.5, 40, 68],
-      [15.55, 62, 81]
+    touch: [ /* level, P(touch) T+20 %, T+60 % — descending */
+      [20.00, 5, 30], [18.50, 12, 44], [17.50, 23, 55], [16.50, 40, 68], [15.55, 62, 81]
     ],
-    levels: { res:[16.08, 15.7, 15], sup:[14.49, 14.06, 13.9] },
+    levels: { res:[16.08, 15.70, 15.00], sup:[14.49, 14.06, 13.90] },
     tech: {
       trend: "Correcting inside a longer uptrend",
       summary: "The price pulled back from its recent high and is now testing a rising floor. Momentum has cooled and the daily MACD is still negative, so the dip isn't over yet — but the bigger uptrend is intact, and the selling has come on fading volume rather than heavy panic.",
@@ -35,13 +31,6 @@ const TICKERS = {
       study: "files/PHDC_Valuation_Study_11-06-2026_public.docx?v=1106",
       model: "files/PHDC_Valuation_Study_11-06-2026_public.xlsx?v=1106",
       pdf:   "files/PHDC_Valuation_Study_11-06-2026_public.pdf?v=1106"
-    },
-    page: {
-      floor: "the sold business alone is ~EGP 11–12 a share. Everything above depends on big new projects (Saadiyat, Ras El-Hekma, Jirian) launching. That's the bet.",
-      resDetail: "14.85–15.00 · 15.55–15.70 · 16.08",
-      supDetail: "14.43–14.49 · 14.06 · 13.90",
-      atr: "0.56",
-      breakBelow: "below 13.40"
     }
   },
   TMGH: {
@@ -52,18 +41,13 @@ const TICKERS = {
     ccy: "EGP",
     fair: { bear: 83.6, base: 147.12, full: 189.6 },
     dist: {
-      t20: { label:"1 month (T+20)",  p5:81.42, p25:91.17, p50:98.31, p75:106.1, p95:119.24, resolve:"2026-07-14" },
-      t60: { label:"3 months (T+60)", p5:75.58, p25:91.2, p50:103.93, p75:118.41, p95:142.75, resolve:"2026-09-08" }
+      t20: { label:"1 month (T+20)",  p5:81.42, p25:91.17, p50:98.31,  p75:106.10, p95:119.24, resolve:"2026-07-14" },
+      t60: { label:"3 months (T+60)", p5:75.58, p25:91.20, p50:103.93, p75:118.41, p95:142.75, resolve:"2026-09-08" }
     },
-    touch: [
-      [126, 2, 24],
-      [118, 8, 39],
-      [110, 24, 58],
-      [100, 66, 85],
-      [88, 29, 48],
-      [83, 11, 29]
+    touch: [ /* descending high → low */
+      [126, 2, 24], [118, 8, 39], [110, 24, 58], [100, 66, 85], [88, 29, 48], [83, 11, 29]
     ],
-    levels: { res:[101.4, 99.45, 96.1], sup:[92.16, 91.55, 86.56] },
+    levels: { res:[101.40, 99.45, 96.10], sup:[92.16, 91.55, 86.56] },
     tech: {
       trend: "Recovering — bounce off the 50-day on rising volume",
       summary: "After a pullback, the price found a floor at its rising 50-day average and bounced back on the heaviest buying in two weeks. Momentum is turning back up (RSI recovering, the daily MACD narrowing), and the price has reclaimed its short-term average — a correction that's resolving back upward inside an intact uptrend.",
@@ -74,13 +58,6 @@ const TICKERS = {
       study: "files/TMGH_Valuation_Study_15-06-2026_public.docx?v=1506",
       model: "files/TMGH_Valuation_Study_15-06-2026_public.xlsx?v=1506",
       pdf:   "files/TMGH_Valuation_Study_15-06-2026_public.pdf?v=1506"
-    },
-    page: {
-      floor: "cash, sold backlog, hotels and malls give a ~EGP 84 floor. Upside is new launches (SouthMED, The Spine, Noor) and the Gulf projects. More cash than debt — unusually safe for a developer.",
-      resDetail: "96.10–97.39 · 99.45–100.95 · 101.40",
-      supDetail: "92.16–92.75 · 91.55 · 86.56",
-      atr: "2.49 (2.6%)",
-      breakBelow: "below ~83.6"
     }
   }
 };
