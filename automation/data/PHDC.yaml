@@ -23,7 +23,7 @@ valuation:
     - {label: "Hacienda series — North Coast",        value: 0.86}
     - {label: "Jirian + other active compounds",      value: 2.42}
     - {label: "Landbank + terminal value (5% g)",     value: 1.69}
-  net_debt_per_share: 4.20
+  net_debt_per_share: 4.21   # reconciles SOTP rows (20.10) to published equity value 15.89
   full_execution: 24.92
   bear: 7.62
 
@@ -47,3 +47,35 @@ montecarlo:
     - {name: "Mortgage finance & credit",      prob: 0.35, impact:  0.02, spread: 0.05}
 
 touch_levels: [15.55, 16.50, 17.50, 18.50, 20.00]
+
+# ─── Site block fields (drive assets/data.js → phdc.html) ───
+site:
+  spot: 14.50
+  spot_date: "close 11 Jun 2026"
+  resolve_t20: "2026-07-09"
+  resolve_t60: "2026-09-03"
+  levels:
+    res: [16.08, 15.70, 15.00]
+    sup: [14.49, 14.06, 13.90]
+  tech:
+    trend: "Correcting inside a longer uptrend"
+    summary: "The price pulled back from its recent high and is now testing a rising floor. Momentum has cooled and the daily MACD is still negative, so the dip isn't over yet — but the bigger uptrend is intact, and the selling has come on fading volume rather than heavy panic."
+    bull: "A daily close back above 15.00 would say the dip is done."
+    bear: "A close below 13.90 would break the rising structure and open the door to 13.40."
+  files:
+    study: "files/PHDC_Valuation_Study_11-06-2026_public.docx?v=1106"
+    model: "files/PHDC_Valuation_Study_11-06-2026_public.xlsx?v=1106"
+    pdf:   "files/PHDC_Valuation_Study_11-06-2026_public.pdf?v=1106"
+
+# Distribution as PUBLISHED in the 11 Jun study (kept byte-consistent with the
+# downloadable PDF/Excel). The Monte-Carlo engine above reproduces these from
+# the 10 factors to within ~0.02 EGP — validated, see automation/README.
+published_dist:
+  t20: {p5: 11.53, p25: 13.42, p50: 14.92, p75: 16.56, p95: 19.32}
+  t60: {p5: 10.18, p25: 13.22, p50: 15.83, p75: 18.95, p95: 24.50}
+published_touch:   # [level, T+20 %, T+60 %] descending
+  - [20.00, 5, 30]
+  - [18.50, 12, 44]
+  - [17.50, 23, 55]
+  - [16.50, 40, 68]
+  - [15.55, 62, 81]
