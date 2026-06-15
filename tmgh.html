@@ -32,14 +32,14 @@
   <!-- LENS 1: SIMULATION -->
   <section style="padding-bottom:0">
     <div class="lens"><span class="lens-no">Lens 1 of 3</span><span class="lens-name">The simulation — what are the odds?</span></div>
-    <p class="lens-sub">A Monte Carlo model runs 50,000 possible futures to show the range of prices and how likely each is. It answers: <em>where could the price actually go?</em></p>
+    <p class="lens-sub">50,000 simulated futures — <em>where could the price go?</em></p>
   </section>
 
   <!-- PLAIN ANSWER FIRST -->
   <section style="padding-top:8px">
     <div class="answer">
       <p class="verdict" id="verdict"></p>
-      <p class="horizon-note">Here's the range of prices our simulation thinks is possible. Pick a timeframe:</p>
+      <p class="horizon-note">Pick a timeframe:</p>
       <div class="toggle" id="tg">
         <button data-h="t20" class="on">In 1 month</button>
         <button data-h="t60">In 3 months</button>
@@ -48,20 +48,20 @@
       <div id="legend"></div>
       <button class="howto-link" id="howto-open" type="button">How to read this</button>
     </div>
-    <p class="muted" style="margin-top:14px">Today's price is <b class="num" id="spot"></b> EGP (<span id="spotdate"></span>). Our study's fair-value estimate is <b class="num">147.12</b> EGP, and the full range of scenarios runs from <span class="num">83.6</span> (bad case) to <span class="num">189.6</span> (everything goes right).</p>
+    <p class="muted" style="margin-top:14px">Today <b class="num" id="spot"></b> EGP (<span id="spotdate"></span>) · our fair value <b class="num">147.12</b> · scenarios <span class="num">83.6</span> (bad) to <span class="num">189.6</span> (all goes right).</p>
   </section>
 
   <!-- LENS 2: FUNDAMENTAL -->
   <section style="padding-bottom:0">
     <div class="lens"><span class="lens-no">Lens 2 of 3</span><span class="lens-name">Fundamental analysis — what is it worth?</span></div>
-    <p class="lens-sub">We value the company from the ground up — its projects, cash, and earnings — to estimate fair value, regardless of today's price. It answers: <em>what is the business really worth?</em></p>
+    <p class="lens-sub">Built up from projects, cash and earnings — <em>what is it worth?</em></p>
   </section>
 
   <!-- VALUATION GAUGE -->
   <section style="padding-top:8px">
     <div class="card">
       <p class="qhead">Is it cheap or expensive right now?</p>
-      <p class="muted">Where today's price sits against what our study thinks the company is worth. A comparison, not a recommendation.</p>
+      <p class="muted">Today's price vs our fair value. A comparison, not a recommendation.</p>
       <div id="gauge"></div>
     </div>
   </section>
@@ -69,7 +69,7 @@
   <!-- LENS 3: TECHNICAL -->
   <section style="padding-bottom:0">
     <div class="lens"><span class="lens-no">Lens 3 of 3</span><span class="lens-name">Technical analysis — what is the chart doing?</span></div>
-    <p class="lens-sub">We read the price chart itself — trend, momentum, and the levels traders watch. It answers: <em>what is the price doing right now, and where might it turn?</em></p>
+    <p class="lens-sub">Trend, momentum and key levels — <em>what is the price doing now?</em></p>
   </section>
 
   <!-- TECHNICAL READ (visible) -->
@@ -83,7 +83,7 @@
   <!-- ONE-LINE WHAT-IT-MEANS -->
   <section style="padding-top:8px">
     <div class="card" style="background:#EFF5F4">
-      <p style="margin:0"><b>In plain terms:</b> the cash in the bank, the already-sold backlog, the hotels and the malls together are worth roughly EGP 84 a share — a solid floor. The big upside comes from new launches (SouthMED, The Spine, Noor) and the Saudi/Oman/Iraq projects delivering. The company sits on more cash than debt, which makes it unusually safe for a developer.</p>
+      <p style="margin:0"><b>In plain terms:</b> cash, sold backlog, hotels and malls give a ~EGP 84 floor. Upside is new launches (SouthMED, The Spine, Noor) and the Gulf projects. More cash than debt — unusually safe for a developer.</p>
     </div>
   </section>
 
@@ -93,12 +93,12 @@
     <div class="more-body">
 
       <p class="qhead" style="margin-top:18px">How likely is each price?</p>
-      <p class="muted">Chance the price <em>touches</em> each level at least once before the date.</p>
+      <p class="muted">Chance the price <em>touches</em> each level before the date.</p>
       <table><thead><tr><th class="num">Price level</th><th class="num">Within 1 month</th><th class="num">Within 3 months</th></tr></thead>
       <tbody id="touch"></tbody></table>
 
       <p class="qhead" style="margin-top:26px">What the company is made of</p>
-      <p class="muted">Three different businesses, each valued the right way, then minority owners and net cash accounted for.</p>
+      <p class="muted">Three businesses, each valued its own way; minority and net cash adjusted.</p>
       <table><thead><tr><th>Part of the business</th><th class="num">Worth per share</th><th>How it's valued</th></tr></thead>
       <tbody>
         <tr><td>Property + sold backlog</td><td class="num">89.05</td><td>Project-by-project cash flow</td></tr>
@@ -118,12 +118,12 @@
       </tbody></table>
 
       <p class="qhead" style="margin-top:26px">The exact percentiles</p>
-      <p class="muted">For the technically minded: the <span class="term" tabindex="0">5th / 25th / middle / 75th / 95th outcomes<span class="tip">If you lined up all 50,000 simulated outcomes from lowest to highest, these are the values at the 5%, 25%, 50%, 75% and 95% marks along that line.</span></span> from 50,000 simulated paths.</p>
+      <p class="muted">The <span class="term" tabindex="0">5th / 25th / middle / 75th / 95th outcomes<span class="tip">Line up all 50,000 outcomes low to high — these are the values at the 5%, 25%, 50%, 75% and 95% marks.</span></span>, from 50,000 paths.</p>
       <table><thead><tr><th>Timeframe</th><th class="num">Rare low (5%)</th><th class="num">25%</th><th class="num">Middle</th><th class="num">75%</th><th class="num">Rare high (95%)</th></tr></thead>
       <tbody id="pct"></tbody></table>
 
       <p class="qhead" style="margin-top:26px">What drives the odds</p>
-      <p class="muted">One Monte Carlo model, 50,000 paths, driven by 10 outside forces: the central-bank rate, the EGP/USD rate, inflation, foreign money flows, oil and Gulf liquidity, regional politics, the Saudi/Oman/Iraq projects, project launches, tourism, and mortgage lending. Full mechanics in the <a href="method.html">methodology</a>.</p>
+      <p class="muted">50,000 paths, 10 forces: rates, EGP/USD, inflation, foreign flows, oil/Gulf liquidity, politics, the Gulf projects, launches, tourism, mortgages. Details in the <a href="method.html">methodology</a>.</p>
     </div>
   </details>
 
@@ -132,7 +132,7 @@
     <div class="card">
       <p class="qhead">How it compares to the others we cover</p>
       <div id="peers"></div>
-      <p class="muted" style="margin-top:10px">"Looks cheap / expensive" compares today's price to our own fair-value estimate — not advice.</p>
+      <p class="muted" style="margin-top:10px">"Cheap / expensive" = vs our fair value. Not advice.</p>
     </div>
   </section>
 
@@ -140,7 +140,7 @@
   <section style="padding-top:8px">
     <div class="card">
       <p class="qhead">Want the full study and the spreadsheet?</p>
-      <p class="muted">The complete write-up plus the Excel model — every assumption is editable, so you can change a number and watch the value move. Think we got something wrong? <a href="library.html">Attack the model</a>.</p>
+      <p class="muted">Full write-up plus the editable Excel model. Found a flaw? <a href="library.html">Attack the model</a>.</p>
       <a class="btn" id="dl-pdf" href="#">Read the study (PDF)</a>
       <a class="btn ghost" id="dl-model" href="#">Open the model (Excel)</a>
       <p class="muted" style="margin-top:12px">Edition: 15 Jun 2026. Older editions stay in the <a href="library.html">Research Library</a>.</p>
