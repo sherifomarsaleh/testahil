@@ -65,5 +65,8 @@
 
 <footer><div class="wrap">Testahil? — distributions, not tips. © 2026</div></footer>
 <script src="assets/data.js"></script><script src="assets/app.js"></script>
-<script>renderCompare("compare");</script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(){ try{ renderCompare("compare"); }catch(e){ console.error(e); } });
+  if (document.readyState !== "loading") { try{ renderCompare("compare"); }catch(e){ console.error(e); } }
+</script>
 </body></html>
