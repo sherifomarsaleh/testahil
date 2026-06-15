@@ -15,7 +15,7 @@
   <span class="brand">testahil?<small>is it worth it?</small></span>
   <nav>
     <a href="index.html" class="on">Home</a>
-    <a href="phdc.html">Stocks</a>
+    <div class="drop"><a href="egypt.html">Egypt</a><div class="menu"><a href="phdc.html">Palm Hills <span class="chip">PHDC</span></a><a href="tmgh.html">Talaat Moustafa <span class="chip">TMGH</span></a><a href="oras.html" class="soon">Orascom Construction <span class="chip">ORAS</span></a><a href="comi.html" class="soon">Commercial Intl Bank <span class="chip">COMI</span></a><a href="ccap.html" class="soon">Cairo Capital <span class="chip">CCAP</span></a></div></div>
     <a href="calculator.html">Calculator</a>
     <a href="ledger.html">Public Ledger</a>
     <a href="models.html">Open Models</a>
@@ -75,6 +75,9 @@ renderStrip("strip-home", TICKERS.PHDC.dist.t60, TICKERS.PHDC.spot);
 document.getElementById("legend-home").innerHTML = stripLegend();
 document.getElementById("coming").innerHTML =
   `<div class="card"><span class="chip">Covered</span><h3>Palm Hills</h3><p class="muted num">EGX:PHDC</p><a href="phdc.html">Page →</a></div>`+
-  COMING.map(c=>`<div class="card" style="opacity:.65"><span class="chip warn">Coming soon</span><h3>${c.name}</h3><p class="muted num">${c.code}</p></div>`).join("");
+  COMING.map(c=>c.url
+    ? `<div class="card" style="opacity:.85"><span class="chip warn">In progress</span><h3>${c.name}</h3><p class="muted num">${c.code}</p><a href="${c.url}">Page →</a></div>`
+    : `<div class="card" style="opacity:.55"><span class="chip warn">Coming soon</span><h3>${c.name}</h3><p class="muted num">${c.code}</p></div>`
+  ).join("");
 </script>
 </body></html>

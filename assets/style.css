@@ -28,6 +28,27 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--teal2); outline-off
 .nav nav{display:flex; gap:18px; flex-wrap:wrap; font-size:.95rem}
 .nav a.on{color:var(--ink); font-weight:600; border-bottom:2px solid var(--amber)}
 
+/* dropdown */
+.nav .drop{position:relative}
+.nav .drop>a{display:flex; align-items:center; gap:4px}
+.nav .drop>a::after{content:"▾"; font-size:.7em; opacity:.6}
+.nav .drop:hover>a,.nav .drop:focus-within>a{color:var(--teal2); text-decoration:none}
+.nav .drop .menu{
+  display:none; position:absolute; top:calc(100% + 8px); left:0;
+  background:#fff; border:1px solid var(--line); border-radius:12px;
+  box-shadow:0 8px 24px rgba(0,0,0,.1); min-width:200px; padding:6px 0; z-index:100;
+}
+.nav .drop:hover .menu,.nav .drop:focus-within .menu{display:block}
+.nav .drop .menu a{display:flex; justify-content:space-between; align-items:center; padding:9px 16px; color:var(--ink); font-size:.9rem; gap:16px}
+.nav .drop .menu a:hover{background:#EAF2F1; text-decoration:none}
+.nav .drop .menu a .chip{font-size:.72rem; padding:1px 8px; margin:0}
+.nav .drop .menu a.soon{opacity:.55; pointer-events:none}
+@media(max-width:700px){
+  .nav .drop .menu{position:static; box-shadow:none; border:0; border-radius:0; padding:0; background:transparent}
+  .nav .drop .menu a{padding:4px 0; font-size:.85rem}
+  .nav .drop>a::after{display:none}
+}
+
 /* hero */
 .hero{padding:72px 0 40px; text-align:left}
 .hero .q{font-size:clamp(3.2rem,9vw,6.5rem); font-weight:800; color:var(--teal); letter-spacing:-.5px}

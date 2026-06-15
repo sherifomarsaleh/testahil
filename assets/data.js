@@ -29,12 +29,12 @@ const TICKERS = {
   }
 };
 
-/* coming-soon cards */
+/* coming-soon cards (home page coverage section) */
 const COMING = [
-  { code:"EGX:ORAS", name:"Orascom Construction" },
-  { code:"EGX:COMI", name:"Commercial International Bank" },
-  { code:"EGX:TMGH", name:"Talaat Moustafa Group" },
-  { code:"XAG/USD",  name:"Silver" }
+  { code:"EGX:TMGH", name:"Talaat Moustafa Group",        url:"tmgh.html" },
+  { code:"EGX:ORAS", name:"Orascom Construction",          url:null },
+  { code:"EGX:COMI", name:"Commercial International Bank", url:null },
+  { code:"EGX:CCAP", name:"Cairo Capital",                 url:null },
 ];
 
 /* ---------- public ledger ----------
