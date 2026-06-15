@@ -310,13 +310,8 @@ function initNavSearch(){
 function initFirstRunHowto(){
   const modal = document.getElementById("howto-modal");
   if(!modal) return;
-  try{
-    if(!localStorage.getItem("seen-howto")){
-      // open once, after a brief beat so the page settles
-      setTimeout(()=>{ modal.classList.add("open"); }, 900);
-      localStorage.setItem("seen-howto","1");
-    }
-  }catch(e){ /* localStorage blocked — skip, the button still works */ }
+  // auto-popup disabled — the "How to read this" button opens it on demand instead
+  return;
 }
 
 /* boot the global bits */

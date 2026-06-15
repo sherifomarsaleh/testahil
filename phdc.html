@@ -34,6 +34,7 @@
     <a href="method.html">Methodology</a>
     <button class="nav-search-btn" id="nav-search-btn" type="button" aria-label="Search stocks" title="Search (press /)">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <span class="nsb-label">Search</span>
     </button>
   </nav>
 </div></header>
@@ -52,6 +53,14 @@
   <section style="padding-bottom:8px">
     <span class="chip num">EGX:PHDC</span><span class="chip">updated <span class="num" id="upd"></span></span>
     <h1 style="font-size:1.8rem;margin-top:.4em">Palm Hills Developments</h1>
+  </section>
+
+  <!-- SEARCH -->
+  <section style="padding:6px 0 0">
+    <div class="search-wrap" style="margin:0 0 4px">
+      <input id="tk-search-inline" type="text" placeholder="Search another stock — try TMGH or Palm Hills" autocomplete="off" aria-label="Search for a stock">
+      <div class="tk-results" id="tk-results-inline"></div>
+    </div>
   </section>
 
   <!-- LENS 1: SIMULATION -->
@@ -232,6 +241,7 @@ show("t20");
 document.getElementById("dl-pdf").href=T.files.pdf;
 document.getElementById("dl-model").href=T.files.model;
 
+initSearch("tk-search-inline","tk-results-inline");
 renderGauge("gauge", T.spot, T.fair);
 renderPeers("peers", "PHDC");
 initHowto();

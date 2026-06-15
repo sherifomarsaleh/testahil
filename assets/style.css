@@ -267,11 +267,13 @@ details.more .more-body table{margin-top:8px}
 /* nav search: a small icon in the header that opens an overlay */
 .nav .wrap{position:relative}
 .nav-search-btn{
-  background:none; border:0; cursor:pointer; padding:6px; margin-inline-start:auto;
-  display:inline-flex; align-items:center; color:var(--muted); border-radius:8px;
+  background:#EAF2F1; border:1px solid var(--line); cursor:pointer; padding:6px 12px; margin-inline-start:auto;
+  display:inline-flex; align-items:center; gap:6px; color:var(--teal); border-radius:999px; font:inherit; font-size:.85rem; font-weight:600;
 }
-.nav-search-btn:hover{color:var(--teal); background:#EAF2F1}
-.nav-search-btn svg{width:20px; height:20px}
+.nav-search-btn:hover{background:var(--teal); color:#fff; border-color:var(--teal)}
+.nav-search-btn svg{width:16px; height:16px}
+.nav-search-btn .nsb-label{}
+@media(max-width:600px){ .nav-search-btn .nsb-label{display:none} .nav-search-btn{padding:8px} }
 /* push the search button to the right of the nav links */
 .nav nav{margin-inline-end:8px}
 
