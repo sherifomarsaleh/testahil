@@ -34,11 +34,11 @@
   <section>
     <div class="card">
       <span class="kicker">LATEST PUBLISHED DISTRIBUTION · <span class="num" id="upd"></span></span>
-      <h2>Palm Hills Developments <span class="muted num">EGX:PHDC</span></h2>
+      <h2>Talaat Moustafa Group <span class="muted num">EGX:TMGH</span></h2>
       <p class="muted">Where could the price be in 3 months? This is the 50,000-path distribution — not a single-number prediction:</p>
-      <div class="strip"><div class="lbl"><span>3-month horizon (T+60)</span><span class="num" id="phdc-resolve"></span></div><div id="strip-home"></div></div>
+      <div class="strip"><div class="lbl"><span>3-month horizon (T+60)</span><span class="num" id="tmgh-resolve"></span></div><div id="strip-home"></div></div>
       <div id="legend-home"></div>
-      <p><a class="btn" href="phdc.html">Full analysis and probabilities →</a></p>
+      <p><a class="btn" href="tmgh.html">Full analysis and probabilities →</a> &nbsp;<a class="btn ghost" href="phdc.html">PHDC →</a></p>
     </div>
   </section>
 
@@ -70,8 +70,8 @@
 <script src="assets/data.js"></script><script src="assets/app.js"></script>
 <script>
 document.getElementById("upd").textContent = SITE.updated;
-document.getElementById("phdc-resolve").textContent = "resolves "+TICKERS.PHDC.dist.t60.resolve;
-renderStrip("strip-home", TICKERS.PHDC.dist.t60, TICKERS.PHDC.spot);
+document.getElementById("tmgh-resolve").textContent = "resolves "+TICKERS.TMGH.dist.t60.resolve;
+renderStrip("strip-home", TICKERS.TMGH.dist.t60, TICKERS.TMGH.spot);
 document.getElementById("legend-home").innerHTML = stripLegend();
 document.getElementById("coming").innerHTML =
   `<div class="card"><span class="chip">Covered</span><h3>Palm Hills</h3><p class="muted num">EGX:PHDC</p><a href="phdc.html">Page →</a></div>`+
