@@ -57,9 +57,9 @@ function renderStrip(elId, d, spot, opts={}){
   el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" role="img"
       aria-label="Likely price range. Today's price is ${F(spot)}; the middle outcome is ${F(d.p50)}. Half of outcomes fall between ${F(d.p25)} and ${F(d.p75)}.">
     <style>
-      .lab{font:600 21px 'IBM Plex Mono',monospace}
+      .lab{font:600 19px 'IBM Plex Mono',monospace}
       .end{fill:#8A9A98}.mid{fill:#1B5E5E}.tod{fill:#C98A2D}
-      .band{fill:#2A8F8F;font-size:18px}
+      .band{fill:#2A8F8F;font-size:16px}
     </style>
     <!-- wide range 5–95% -->
     <line x1="${X(d.p5)}" x2="${X(d.p95)}" y1="${y}" y2="${y}" stroke="#CFE0DE" stroke-width="12" stroke-linecap="round"/>
@@ -217,7 +217,7 @@ function renderGauge(elId, spot, fair){
   const todayX = Math.max(70, Math.min(W-70, X(spot)));
   el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" role="img"
       aria-label="Today's price ${F(spot)} versus our fair value ${F(base)}.">
-    <style>.g{font:600 20px 'IBM Plex Mono',monospace}.gsm{font:600 17px 'IBM Plex Mono',monospace}.gmut{fill:#8A9A98}.gink{fill:#0E2726}.gbase{fill:#1B5E5E}</style>
+    <style>.g{font:600 18px 'IBM Plex Mono',monospace}.gsm{font:600 15px 'IBM Plex Mono',monospace}.gmut{fill:#8A9A98}.gink{fill:#0E2726}.gbase{fill:#1B5E5E}</style>
     <defs><linearGradient id="vg" x1="0" x2="1">
       <stop offset="0" stop-color="#B5483A"/><stop offset="0.5" stop-color="#C98A2D"/><stop offset="1" stop-color="#2E7D5B"/>
     </linearGradient></defs>
