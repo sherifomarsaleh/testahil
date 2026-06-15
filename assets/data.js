@@ -21,6 +21,12 @@ const TICKERS = {
       [15.55, 62, 81], [16.50, 40, 68], [17.50, 23, 55], [18.50, 12, 44], [20.00, 5, 30]
     ],
     levels: { res:[16.08, 15.70, 15.00], sup:[14.49, 14.06, 13.90] },
+    tech: {
+      trend: "Correcting inside a longer uptrend",
+      summary: "The price pulled back from its recent high and is now testing a rising floor. Momentum has cooled and the daily MACD is still negative, so the dip isn't over yet — but the bigger uptrend is intact, and the selling has come on fading volume rather than heavy panic.",
+      bull: "A daily close back above 15.00 would say the dip is done.",
+      bear: "A close below 13.90 would break the rising structure and open the door to 13.40."
+    },
     files: {
       study: "files/PHDC_Valuation_Study_11-06-2026_public.docx?v=1106",
       model: "files/PHDC_Valuation_Study_11-06-2026_public.xlsx?v=1106",
@@ -42,6 +48,12 @@ const TICKERS = {
       [100, 66, 85], [110, 24, 58], [118, 8, 39], [126, 2, 24], [88, 29, 48], [83, 11, 29]
     ],
     levels: { res:[101.40, 99.45, 96.10], sup:[92.16, 91.55, 86.56] },
+    tech: {
+      trend: "Recovering — bounce off the 50-day on rising volume",
+      summary: "After a pullback, the price found a floor at its rising 50-day average and bounced back on the heaviest buying in two weeks. Momentum is turning back up (RSI recovering, the daily MACD narrowing), and the price has reclaimed its short-term average — a correction that's resolving back upward inside an intact uptrend.",
+      bull: "A daily close above 97.40 confirms the recovery is back on.",
+      bear: "A close below 91.55 reopens the lower supports at 88 and 83."
+    },
     files: {
       study: "files/TMGH_Valuation_Study_15-06-2026_public.docx?v=1506",
       model: "files/TMGH_Valuation_Study_15-06-2026_public.xlsx?v=1506",

@@ -83,6 +83,9 @@
         <tr style="font-weight:700"><td>Fair value</td><td class="num">147.12</td><td>+54% vs today</td></tr>
       </tbody></table>
 
+      <p class="qhead" style="margin-top:18px">Reading the chart</p>
+      <div id="techread"></div>
+
       <p class="qhead" style="margin-top:26px">Chart levels traders watch</p>
       <table><tbody>
         <tr><td><span class="term" tabindex="0">Resistance (ceilings)<span class="tip">A price level where selling has repeatedly stopped past rallies — a "ceiling" the price has struggled to break above.</span></span></td><td class="num">96.10–97.39 · 99.45–100.95 · 101.40</td></tr>
@@ -165,6 +168,14 @@ document.getElementById("touch").innerHTML=T.touch.map(r=>
  `<tr><td class="num">${r[0].toFixed(2)}</td><td class="num">${r[1]}%</td><td class="num">${r[2]}%</td></tr>`).join("");
 const pctRow=(lbl,d)=>`<tr><td>${lbl}</td><td class="num">${F(d.p5)}</td><td class="num">${F(d.p25)}</td><td class="num">${F(d.p50)}</td><td class="num">${F(d.p75)}</td><td class="num">${F(d.p95)}</td></tr>`;
 document.getElementById("pct").innerHTML=pctRow("In 1 month",T.dist.t20)+pctRow("In 3 months",T.dist.t60);
+
+// technical read
+if(T.tech){
+  document.getElementById("techread").innerHTML =
+    `<p style="margin:0 0 8px"><b>${T.tech.trend}.</b></p>`+
+    `<p class="muted" style="margin:0 0 10px">${T.tech.summary}</p>`+
+    `<p class="muted" style="margin:0"><span style="color:var(--green)">▲ ${T.tech.bull}</span><br><span style="color:var(--red)">▼ ${T.tech.bear}</span></p>`;
+}
 
 function show(h){
   const d=T.dist[h]; const label = h==="t20" ? "in 1 month" : "in 3 months";
