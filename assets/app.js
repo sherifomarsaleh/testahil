@@ -67,7 +67,7 @@ function renderStrip(elId, d, spot, opts={}){
     <style>
       .lab{font:600 ${fLab}px 'IBM Plex Mono',monospace}
       .end{fill:#8A9A98}.mid{fill:#1B5E5E}.tod{fill:#C98A2D}
-      .band{fill:#2A8F8F;font-size:${fBand}px}
+      .band{fill:#1B5E5E;font-size:${fBand}px}
     </style>
     <!-- wide range 5–95% -->
     <line x1="${X(d.p5)}" x2="${X(d.p95)}" y1="${y}" y2="${y}" stroke="#CFE0DE" stroke-width="12" stroke-linecap="round"/>

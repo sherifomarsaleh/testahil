@@ -2,7 +2,7 @@
    Palette: paper #F6F8F7 / ink #0E2726 / teal #1B5E5E / teal2 #2A8F8F / amber #C98A2D */
 :root{
   --paper:#F6F8F7; --ink:#0E2726; --teal:#1B5E5E; --teal2:#2A8F8F;
-  --line:#D9E4E2; --muted:#5B7270; --amber:#C98A2D; --red:#B5483A; --green:#2E7D5B;
+  --line:#D9E4E2; --muted:#5B7270; --amber:#C98A2D; --amber-text:#956818; --red:#B5483A; --green:#2E7D5B;
   --card:#FFFFFF;
 }
 *{box-sizing:border-box}
@@ -62,7 +62,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--teal2); outline-off
 @media(max-width:760px){.g3,.g2{grid-template-columns:1fr}}
 .card{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px}
 .card h3{color:var(--teal)}
-.kicker{font-size:.78rem; letter-spacing:.06em; color:var(--amber); font-weight:600; margin-bottom:2px; display:block}
+.kicker{font-size:.78rem; letter-spacing:.06em; color:var(--amber-text); font-weight:600; margin-bottom:2px; display:block}
 .muted{color:var(--muted); font-size:.88rem}
 .chip{display:inline-block; background:#EAF2F1; color:var(--teal); border:1px solid var(--line); border-radius:999px; padding:1px 10px; font-size:.78rem; margin-inline-end:5px}
 .chip.warn{background:#FBF3E4; color:#8A5E16; border-color:#EAD9B5}
@@ -213,7 +213,7 @@ details.more .more-body table{margin-top:8px}
 .gauge-verdict{font-size:.98rem; font-weight:600; margin:6px 0 0}
 .gauge-verdict.cheap{color:var(--green)}
 .gauge-verdict.rich{color:var(--red)}
-.gauge-verdict.fair{color:var(--amber)}
+.gauge-verdict.fair{color:var(--amber-text)}
 
 /* "how to read this" trigger + modal */
 .howto-link{display:inline-flex; align-items:center; gap:6px; background:none; border:0; cursor:pointer;
@@ -255,7 +255,7 @@ details.more .more-body table{margin-top:8px}
 
 /* three-lens section banners (Simulation / Fundamental / Technical) */
 .lens{display:flex; align-items:baseline; gap:10px; margin:4px 0 2px; flex-wrap:wrap}
-.lens .lens-no{font-family:"IBM Plex Mono",monospace; font-weight:500; font-size:.85rem; color:var(--amber); flex:none}
+.lens .lens-no{font-family:"IBM Plex Mono",monospace; font-weight:500; font-size:.85rem; color:var(--amber-text); flex:none}
 .lens .lens-name{font-family:"Alexandria",sans-serif; font-weight:700; font-size:1.3rem; color:var(--ink); line-height:1.2}
 .lens-sub{color:var(--muted); font-size:.9rem; margin:0 0 10px}
 @media(max-width:700px){ .lens .lens-name{font-size:1.15rem} }
