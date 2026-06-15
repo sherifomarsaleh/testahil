@@ -297,8 +297,8 @@ details.more .more-body table{margin-top:8px}
 /* ============================================================
    TOP SEARCH BAND — one search, directly under the nav, every page
    ============================================================ */
-.topsearch{background:#fff; border-bottom:1px solid var(--line)}
-.topsearch .wrap{padding:12px 20px}
+.topsearch{background:transparent; border-bottom:0}
+.topsearch .wrap{padding:14px 20px 0}
 .topsearch .search-wrap{max-width:560px; margin:0}
 .topsearch input{
   width:100%; padding:11px 16px 11px 42px; font-size:.98rem; border-radius:11px;
