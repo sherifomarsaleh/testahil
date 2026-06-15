@@ -39,7 +39,7 @@
 <main class="wrap">
   <section>
     <h1 style="font-size:2.2rem">Research Library</h1>
-    <p class="sub" style="max-width:720px">Every study published here stays — PDF to read, Excel to attack. Below each study the forecast ledger shows whether the published distributions contained the realized price when the horizon closed. <b>No deletions, no revisions without a credited note.</b></p>
+    <p class="sub" style="max-width:720px">Two things live here: the studies themselves (a PDF to read and the Excel behind it), and our track record — every past forecast with the real price next to what we said. <b>Nothing is deleted. We grade our own homework in public.</b></p>
   </section>
 
   <section>
@@ -78,12 +78,12 @@ function ledgerRows(ticker){
   const trs = rows.map(r=>{
     let res;
     if(r.status==="open"){
-      res = `<span class="chip">open — resolves ${r.resolve}</span>`;
+      res = `<span class="chip">waiting — we'll know on ${r.resolve}</span>`;
     } else {
       scored++; const inBand = r.realized>=r.lo && r.realized<=r.hi; if(inBand) hit++;
       res = `<span class="num">${F2(r.realized)}</span> ${inBand
-        ?'<span class="ok">inside band ✓</span>'
-        :'<span class="bad">outside band ✗</span>'}`;
+        ?'<span class="ok">landed in range ✓</span>'
+        :'<span class="bad">outside range ✗</span>'}`;
     }
     return `<tr><td class="num">${r.pub}</td><td><b>${r.inst}</b></td><td class="num">${r.horizon}</td>
       <td class="num">${F2(r.median)}</td>
@@ -91,13 +91,13 @@ function ledgerRows(ticker){
       <td>${res}</td></tr>`;
   }).join("");
   const summary = scored
-    ? `${scored} resolved · ${hit} inside band (${Math.round(hit/scored*100)}% hit rate on 90% bands)`
-    : `No resolved forecasts yet — first resolution on ${rows.filter(r=>r.status==="open").sort((a,b)=>a.resolve.localeCompare(b.resolve))[0]?.resolve}`;
+    ? `${scored} graded so far · the real price landed inside our range ${hit} times (${Math.round(hit/scored*100)}%)`
+    : `Nothing graded yet — the first one comes due on ${rows.filter(r=>r.status==="open").sort((a,b)=>a.resolve.localeCompare(b.resolve))[0]?.resolve}`;
   return `<div class="card" style="margin-top:18px">
-    <h3 style="margin-bottom:12px">Forecast ledger</h3>
+    <h3 style="margin-bottom:12px">Our track record</h3>
     <table><thead><tr>
       <th class="num">Published</th><th>Ticker</th><th class="num">Horizon</th>
-      <th class="num">Median</th><th class="num">Band (90%)</th><th>Outcome</th>
+      <th class="num">Our middle guess</th><th class="num">Range we gave</th><th>Outcome</th>
     </tr></thead><tbody>${trs}</tbody></table>
     <p class="muted" style="margin-top:10px;font-size:.85rem">${summary}</p>
   </div>`;
@@ -111,11 +111,11 @@ function studyBlock(code){
   return `<div class="card">
     <span class="chip num">${T.code}</span><span class="chip">${T.spotDate.replace("close ","")}</span>
     <h3 style="margin-top:10px">${T.name}</h3>
-    <p class="muted">Spot <b class="num">${T.spot.toFixed(2)}</b> EGP · risk-adjusted base <b class="num">${T.fair.base.toFixed(2)}</b> · range <span class="num">${T.fair.bear} – ${T.fair.full}</span></p>
+    <p class="muted">Today <b class="num">${T.spot.toFixed(2)}</b> EGP · our fair value <b class="num">${T.fair.base.toFixed(2)}</b> · full range <span class="num">${T.fair.bear} – ${T.fair.full}</span></p>
     <div class="dl-row">
       <a class="btn" href="${T.files.pdf}">Study (PDF)</a>
       <a class="btn ghost" href="${T.files.model}">Model (XLSX)</a>
-      <a class="btn ghost" href="${code.toLowerCase()}.html">Interactive page →</a>
+      <a class="btn ghost" href="${code.toLowerCase()}.html">See the simple read →</a>
     </div>
   </div>`;
 }

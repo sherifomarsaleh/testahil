@@ -2,19 +2,15 @@
 <html lang="en" dir="ltr">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>testahil? — Is the stock worth it? | testahil?</title>
+<title>testahil? — Is the stock worth it?</title>
+<meta name="description" content="We won't tell you what to buy — we'll tell you the odds. Plain-language probability for Egyptian (EGX) stocks, a publicly scored track record, and open Excel models.">
 <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;700;800&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <link rel="icon" type="image/png" href="favicon.png?v=2">
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
 <link rel="stylesheet" href="assets/style.css">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-H9NV0ZK9RN"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-H9NV0ZK9RN');
-</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-H9NV0ZK9RN');</script>
 </head>
 <body><header class="nav"><div class="wrap">
   <span class="brand">testahil?<small>is it worth it?</small></span>
@@ -28,39 +24,69 @@
 <main class="wrap">
   <section class="hero">
     <div class="q">testahil<span>?</span></div>
-    <p class="sub">"Does it deserve my money?" — the question behind every trade. Our answer is different:
-    <b>we won't tell you what to buy. We'll tell you the odds.</b><br>
-    Monte Carlo distributions (50,000 paths) for EGX stocks, a public forecast ledger scored in front of you, and open Excel models you can attack.</p>
+    <p class="sub"><b>We won't tell you what to buy. We'll tell you the odds.</b><br>
+    Where could an Egyptian stock be in a month or three? We run the numbers 50,000 ways and show you the full range of what could happen — in plain language, with the math open for anyone to check.</p>
   </section>
 
+  <!-- LATEST STUDY — plain answer first -->
   <section>
-    <div class="card">
-      <span class="kicker">LATEST PUBLISHED STUDY · <span class="num" id="upd"></span></span>
-      <h2 id="latest-name"></h2>
-      <p class="muted">Where could the price be in 3 months? This is the 50,000-path distribution — not a single-number prediction:</p>
-      <div class="strip"><div class="lbl"><span>3-month horizon (T+60)</span><span class="num" id="latest-resolve"></span></div><div id="strip-home"></div></div>
-      <div id="legend-home"></div>
-      <p><a class="btn" id="latest-link" href="#">Full analysis and probabilities →</a></p>
+    <div class="answer">
+      <span class="kicker">LATEST STUDY · <span class="num" id="upd"></span></span>
+      <p class="verdict" id="latest-name" style="margin-top:6px"></p>
+      <p class="horizon-note">Where our simulation thinks the price could be in 3 months:</p>
+      <div id="plain"></div>
+      <div id="legend"></div>
+      <p style="margin-top:16px"><a class="btn" id="latest-link" href="#">See the full read →</a></p>
     </div>
   </section>
 
-  <section class="card" style="background:#EFF5F4">
-    <h3>The Egyptian dinner-table argument: CDs, gold, or dollars?</h3>
-    <p class="muted">Settle it with real numbers — after inflation.</p>
-    <a class="btn ghost" href="calculator.html">Real Return Calculator →</a>
+  <!-- HOW IT WORKS — three plain promises -->
+  <section>
+    <p class="qhead">How this is different</p>
+    <div class="grid g3">
+      <div class="card"><span class="kicker">1</span><h3>Odds, not tips</h3>
+        <p class="muted">Everyone else sells certainty. We show you the honest thing: the range of what could happen, and how likely each part of it is.</p></div>
+      <div class="card"><span class="kicker">2</span><h3>We grade ourselves</h3>
+        <p class="muted">Every forecast is published with a date and stays — right or wrong. When the date comes, the real price goes next to what we said. <a href="library.html">See the track record</a>.</p></div>
+      <div class="card"><span class="kicker">3</span><h3>Nothing hidden</h3>
+        <p class="muted">The full spreadsheet behind every study is free to download. Change any number yourself. Find a flaw and we'll fix it in public. <a href="library.html">See the math</a>.</p></div>
+    </div>
+  </section>
+
+  <!-- COVERAGE -->
+  <section>
+    <p class="qhead">Stocks we cover</p>
+    <div class="cover-grid" id="coming"></div>
+  </section>
+
+  <!-- CALCULATOR -->
+  <section>
+    <div class="card" style="background:#EFF5F4">
+      <p class="qhead">CDs, gold, or dollars — what actually kept its value?</p>
+      <p class="muted">The Egyptian dinner-table argument, settled with real numbers after inflation.</p>
+      <a class="btn ghost" href="calculator.html">Try the calculator →</a>
+    </div>
   </section>
 </main>
 <footer><div class="wrap"><b>Disclaimer:</b> Educational valuation studies and personal analytical opinion — not investment advice, not recommendations. The preparer is not licensed by Egypt's FRA, manages no money, accepts no clients, and may hold positions in instruments mentioned. <a href="method.html#disclaimer">Full text</a>.</div></footer>
 <script src="assets/data.js"></script><script src="assets/app.js"></script>
 <script>
-// Show most recently updated ticker
+// most recently updated ticker
 const latest = Object.entries(TICKERS).sort((a,b)=>b[1].spotDate.localeCompare(a[1].spotDate))[0];
 const T = latest[1];
 document.getElementById("upd").textContent = SITE.updated;
-document.getElementById("latest-name").innerHTML = T.name + ' <span class="muted num">' + T.code + '</span>';
-document.getElementById("latest-resolve").textContent = "resolves " + T.dist.t60.resolve;
-renderStrip("strip-home", T.dist.t60, T.spot);
-document.getElementById("legend-home").innerHTML = stripLegend();
+const o = plainOdds(T.dist.t60, T.spot);
+document.getElementById("latest-name").innerHTML = T.name + ' — ' + o.lead + ' <span class="tk">in 3 months</span>';
+renderPlain("plain", T.dist.t60, T.spot, "in 3 months");
+document.getElementById("legend").innerHTML = stripLegend();
 document.getElementById("latest-link").href = latest[0].toLowerCase() + ".html";
+
+// coverage cards
+document.getElementById("coming").innerHTML =
+  `<a class="card" href="phdc.html" style="display:block"><span class="chip">Covered</span><h3 style="margin:8px 0 2px">Palm Hills</h3><p class="muted num" style="margin:0">EGX:PHDC</p></a>`+
+  COMING.map(c=>c.status==="covered"
+    ? `<a class="card" href="${c.url}" style="display:block"><span class="chip">Covered</span><h3 style="margin:8px 0 2px">${c.name}</h3><p class="muted num" style="margin:0">${c.code}</p></a>`
+    : `<div class="card" style="opacity:.55"><span class="chip warn">Coming soon</span><h3 style="margin:8px 0 2px">${c.name}</h3><p class="muted num" style="margin:0">${c.code}</p></div>`
+  ).join("");
 </script>
 </body></html>

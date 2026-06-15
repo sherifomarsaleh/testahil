@@ -106,3 +106,80 @@ label{font-size:.85rem; font-weight:600; display:block; margin-bottom:3px}
   th,td{padding:6px 5px}
   .card{padding:12px}
 }
+
+/* ============================================================
+   REDESIGN LAYER — plain-language legibility + calm simplicity
+   (appended; overrides earlier rules where needed)
+   ============================================================ */
+
+/* calmer base rhythm: more air, slightly larger body text */
+body{font-size:18px; line-height:1.7}
+.wrap{max-width:880px}              /* narrower column = easier reading */
+section{padding:28px 0}
+.card{padding:26px; border-radius:16px}
+@media(max-width:700px){ body{font-size:17px} .card{padding:18px} }
+
+/* the plain answer band — the first thing a nervous reader sees */
+.answer{
+  background:linear-gradient(180deg,#FBFDFC,#EFF5F4);
+  border:1px solid var(--line); border-radius:18px;
+  padding:30px 28px; margin:8px 0 4px;
+}
+.answer .verdict{
+  font-family:"Alexandria",sans-serif; font-weight:700;
+  font-size:1.55rem; color:var(--ink); line-height:1.25; margin:0 0 4px;
+}
+.answer .verdict .tk{color:var(--teal)}
+.answer .horizon-note{color:var(--muted); font-size:.95rem; margin:0 0 18px}
+
+/* the one-sentence odds, large and friendly */
+.odds-sentence{
+  font-size:1.18rem; line-height:1.55; color:var(--ink);
+  margin:6px 0 14px;
+}
+.odds-sentence b{color:var(--teal); font-weight:700}
+
+/* dotplot strip */
+.strip{margin:10px 0 6px}
+.strip svg{width:100%; height:auto; display:block}
+.strip-note{margin-top:6px; font-size:.88rem}
+
+/* plain legend */
+.legend{display:flex; gap:14px 20px; flex-wrap:wrap; font-size:.86rem; color:var(--muted); margin-top:10px; align-items:center}
+.legend .sw{display:inline-block; width:14px; height:14px; border-radius:50%; vertical-align:-2px; margin-inline-end:6px}
+.legend .legend-note{font-style:italic}
+
+/* horizon toggle (1 month / 3 months) */
+.toggle{display:inline-flex; background:#EAF2F1; border:1px solid var(--line); border-radius:999px; padding:4px; gap:4px; margin:4px 0 6px}
+.toggle button{
+  border:0; background:transparent; cursor:pointer; font:inherit; font-weight:600;
+  font-size:.92rem; color:var(--muted); padding:8px 18px; border-radius:999px; transition:all .15s;
+}
+.toggle button.on{background:#fff; color:var(--teal); box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.toggle button:focus-visible{outline:3px solid var(--teal2); outline-offset:2px}
+
+/* progressive disclosure — "show the detailed numbers" */
+details.more{
+  border:1px solid var(--line); border-radius:14px; background:#fff;
+  margin:18px 0; overflow:hidden;
+}
+details.more>summary{
+  list-style:none; cursor:pointer; padding:16px 20px; font-weight:600; color:var(--teal);
+  display:flex; align-items:center; justify-content:space-between; font-size:1rem;
+}
+details.more>summary::-webkit-details-marker{display:none}
+details.more>summary::after{content:"＋"; font-size:1.2rem; color:var(--muted)}
+details.more[open]>summary::after{content:"–"}
+details.more>summary:hover{background:#F6FAF9}
+details.more .more-body{padding:4px 20px 20px; border-top:1px solid var(--line)}
+details.more .more-body table{margin-top:8px}
+
+/* friendly section subheads as plain questions */
+.qhead{font-family:"Alexandria",sans-serif; font-weight:700; font-size:1.25rem; color:var(--ink); margin:0 0 12px}
+
+/* coverage cards: bigger tap targets, calmer */
+.cover-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:16px}
+@media(max-width:700px){ .cover-grid{grid-template-columns:1fr} }
+
+/* big friendly CTA button on mobile */
+@media(max-width:700px){ .btn{padding:14px 24px; font-size:1.05rem} }

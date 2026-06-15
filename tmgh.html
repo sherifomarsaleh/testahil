@@ -2,20 +2,15 @@
 <html lang="en" dir="ltr">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Talaat Moustafa TMGH — Probability Distribution | testahil?</title>
-<meta name="description" content="Independent valuation study for EGX:TMGH — base EGP 147.1, range 83.6–189.6. Bottom-up project SOTP, 10-factor Monte Carlo, open Excel model.">
+<title>Talaat Moustafa (TMGH) — is the stock worth it? | testahil?</title>
+<meta name="description" content="Where could Talaat Moustafa (EGX:TMGH) be in 1–3 months? A plain-language read of the odds, plus the full study and open model.">
 <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;700;800&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <link rel="icon" type="image/png" href="favicon.png?v=2">
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
 <link rel="stylesheet" href="assets/style.css">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-H9NV0ZK9RN"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-H9NV0ZK9RN');
-</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-H9NV0ZK9RN');</script>
 </head>
 <body>
 <header class="nav"><div class="wrap">
@@ -29,70 +24,86 @@
 </div></header>
 
 <main class="wrap">
-  <section>
+  <section style="padding-bottom:8px">
     <span class="chip num">EGX:TMGH</span><span class="chip">updated <span class="num" id="upd"></span></span>
-    <h1 style="font-size:2.2rem">Talaat Moustafa Group Holding</h1>
-    <p class="muted">Spot <b class="num" id="spot"></b> EGP (<span id="spotdate"></span>) · risk-adjusted fair value <b class="num">147.12</b> · scenario range <span class="num">83.6 – 189.6</span></p>
+    <h1 style="font-size:2.1rem;margin-top:.45em">Talaat Moustafa Group</h1>
   </section>
 
-  <section class="card">
-    <h2>Probability distribution — 50,000 paths, 10 factors</h2>
-    <p class="muted">One Monte Carlo model driven by 10 external factors (policy rate, EGP/USD, inflation, foreign flows, oil/Gulf liquidity, geopolitics, cross-border JV inflows, launch execution, tourism/hospitality, mortgage credit). Details in
-    <a href="method.html">Methodology</a>.</p>
-    <div class="strip"><div class="lbl"><span>1-month horizon (T+20)</span><span class="num">resolves 2026-07-14</span></div><div id="s20"></div></div>
-    <div class="strip"><div class="lbl"><span>3-month horizon (T+60)</span><span class="num">resolves 2026-09-08</span></div><div id="s60"></div></div>
-    <div id="legend"></div>
-    <p class="muted" style="margin-top:14px">Reading it: the one-month view is two-sided (28% of paths below 92 support); the three-month distribution skews right — 16% of paths at or above 126 — as the launch and cross-border events pay in the window.</p>
+  <!-- PLAIN ANSWER FIRST -->
+  <section style="padding-top:8px">
+    <div class="answer">
+      <p class="verdict" id="verdict"></p>
+      <p class="horizon-note">Here's the range of prices our simulation thinks is possible. Pick a timeframe:</p>
+      <div class="toggle" id="tg">
+        <button data-h="t20" class="on">In 1 month</button>
+        <button data-h="t60">In 3 months</button>
+      </div>
+      <div id="plain"></div>
+      <div id="legend"></div>
+    </div>
+    <p class="muted" style="margin-top:14px">Today's price is <b class="num" id="spot"></b> EGP (<span id="spotdate"></span>). Our study's fair-value estimate is <b class="num">147.12</b> EGP, and the full range of scenarios runs from <span class="num">83.6</span> (bad case) to <span class="num">189.6</span> (everything goes right).</p>
   </section>
 
-  <section class="grid g2">
-    <div class="card">
-      <h3>Level-touch probabilities</h3>
-      <table><thead><tr><th class="num">Level</th><th class="num">Within 1M</th><th class="num">Within 3M</th></tr></thead>
+  <!-- ONE-LINE WHAT-IT-MEANS -->
+  <section style="padding-top:8px">
+    <div class="card" style="background:#EFF5F4">
+      <p style="margin:0"><b>In plain terms:</b> the cash in the bank, the already-sold backlog, the hotels and the malls together are worth roughly EGP 84 a share — a solid floor. The big upside comes from new launches (SouthMED, The Spine, Noor) and the Saudi/Oman/Iraq projects delivering. The company sits on more cash than debt, which makes it unusually safe for a developer.</p>
+    </div>
+  </section>
+
+  <!-- DETAILED NUMBERS — opt in -->
+  <details class="more">
+    <summary>Show the detailed numbers</summary>
+    <div class="more-body">
+
+      <p class="qhead" style="margin-top:18px">How likely is each price?</p>
+      <p class="muted">Chance the price <em>touches</em> each level at least once before the date.</p>
+      <table><thead><tr><th class="num">Price level</th><th class="num">Within 1 month</th><th class="num">Within 3 months</th></tr></thead>
       <tbody id="touch"></tbody></table>
-      <p class="muted">Probability the price touches the level at least once within the horizon — a descriptive output of the simulation.</p>
-    </div>
-    <div class="card">
-      <h3>Technical levels</h3>
-      <table><thead><tr><th>Type</th><th class="num">Levels (EGP)</th></tr></thead><tbody>
-        <tr><td>Resistance</td><td class="num">96.10–97.39 · 99.45–100.95 · 101.40</td></tr>
-        <tr><td>Support</td><td class="num">92.16–92.75 · 91.55 (SMA50) · 86.56</td></tr>
-        <tr><td>Daily ATR(14)</td><td class="num">2.49 (2.6%)</td></tr>
-        <tr><td>Rebuild boundary</td><td class="num">~83.6 (no-pipeline floor)</td></tr>
+
+      <p class="qhead" style="margin-top:26px">What the company is made of</p>
+      <p class="muted">Three different businesses, each valued the right way, then minority owners and net cash accounted for.</p>
+      <table><thead><tr><th>Part of the business</th><th class="num">Worth per share</th><th>How it's valued</th></tr></thead>
+      <tbody>
+        <tr><td>Property + sold backlog</td><td class="num">89.05</td><td>Project-by-project cash flow</td></tr>
+        <tr><td>Hotels (9 owned)</td><td class="num">23.59</td><td>Profit × 6.5</td></tr>
+        <tr><td>Malls, schools, clubs</td><td class="num">15.16</td><td>Profit × 7.5</td></tr>
+        <tr><td>Cash in the bank (parent's share)</td><td class="num">+31.40</td><td>Balance sheet</td></tr>
+        <tr><td>Less: other owners' share</td><td class="num">−12.06</td><td>Per segment</td></tr>
+        <tr style="font-weight:700"><td>Fair value</td><td class="num">147.12</td><td>+54% vs today</td></tr>
       </tbody></table>
-      <p class="muted">Below ~83–84 the market would price the company beneath the "no new launches ever" scenario — the level at which this study itself gets rebuilt.</p>
+
+      <p class="qhead" style="margin-top:26px">Chart levels traders watch</p>
+      <table><tbody>
+        <tr><td>Resistance (ceilings)</td><td class="num">96.10–97.39 · 99.45–100.95 · 101.40</td></tr>
+        <tr><td>Support (floors)</td><td class="num">92.16–92.75 · 91.55 · 86.56</td></tr>
+        <tr><td>Typical daily move</td><td class="num">2.49 (2.6%)</td></tr>
+        <tr><td>Where our case breaks</td><td class="num">below ~83.6</td></tr>
+      </tbody></table>
+
+      <p class="qhead" style="margin-top:26px">The exact percentiles</p>
+      <p class="muted">For the technically minded: the 5th / 25th / middle / 75th / 95th outcomes from 50,000 simulated paths.</p>
+      <table><thead><tr><th>Timeframe</th><th class="num">Rare low (5%)</th><th class="num">25%</th><th class="num">Middle</th><th class="num">75%</th><th class="num">Rare high (95%)</th></tr></thead>
+      <tbody id="pct"></tbody></table>
+
+      <p class="qhead" style="margin-top:26px">What drives the odds</p>
+      <p class="muted">One Monte Carlo model, 50,000 paths, driven by 10 outside forces: the central-bank rate, the EGP/USD rate, inflation, foreign money flows, oil and Gulf liquidity, regional politics, the Saudi/Oman/Iraq projects, project launches, tourism, and mortgage lending. Full mechanics in the <a href="method.html">methodology</a>.</p>
     </div>
-  </section>
+  </details>
 
-  <section class="card">
-    <h3>Value range (execution scenarios)</h3>
-    <div class="strip"><div id="fair"></div></div>
-    <p class="muted">Left: bear ~83.6 (net cash + contracted backlog + hotels + recurring, zero new launches). Middle: risk-adjusted base 147.12. Right: full execution 189.6. Gold dot: spot — at 95.68 the market pays for the contracted business, segments and net cash (~EGP 72bn) plus very little pipeline execution.</p>
-  </section>
-
-  <section class="card">
-    <h3>Three operating streams</h3>
-    <table><thead><tr><th>Stream</th><th class="num">Risk-adj EV (EGP bn)</th><th class="num">Per share</th><th>Method</th></tr></thead>
-    <tbody>
-      <tr><td>Development + backlog (DCF/SOTP)</td><td class="num">183.5</td><td class="num">89.05</td><td>Project-by-project DCF</td></tr>
-      <tr><td>Hotels (9 owned, intl-operated)</td><td class="num">48.6</td><td class="num">23.59</td><td>EBITDA × 6.5×</td></tr>
-      <tr><td>Recurring income (malls/schools/clubs)</td><td class="num">31.2</td><td class="num">15.16</td><td>EBITDA × 7.5×</td></tr>
-      <tr><td>Net cash (90% parent, ~EGP 65bn)</td><td class="num">—</td><td class="num">+31.40</td><td>Balance sheet</td></tr>
-      <tr><td>Less: minority (hotels 40.5% + backlog wtd)</td><td class="num">—</td><td class="num">−12.06</td><td>Segment-specific</td></tr>
-      <tr style="font-weight:600"><td>Base-case equity value</td><td class="num">—</td><td class="num">147.12</td><td>+54% vs 95.68</td></tr>
-    </tbody></table>
-  </section>
-
-  <section class="card" style="background:#EFF5F4">
-    <h3>Full study and open model</h3>
-    <p class="muted">The study (Word + PDF) + the complete Excel model: every assumption editable. Found a flaw? <a href="models.html">Attack the model</a>.</p>
-    <a class="btn" id="dl-pdf" href="#">Download study (PDF)</a>
-    <a class="btn ghost" id="dl-model" href="#">Model (XLSX)</a>
-    <p class="muted" style="margin-top:10px">Edition: 15 Jun 2026</p>
+  <!-- GET THE STUDY -->
+  <section style="padding-top:8px">
+    <div class="card">
+      <p class="qhead">Want the full study and the spreadsheet?</p>
+      <p class="muted">The complete write-up plus the Excel model — every assumption is editable, so you can change a number and watch the value move. Think we got something wrong? <a href="library.html">Attack the model</a>.</p>
+      <a class="btn" id="dl-pdf" href="#">Read the study (PDF)</a>
+      <a class="btn ghost" id="dl-model" href="#">Open the model (Excel)</a>
+      <p class="muted" style="margin-top:12px">Edition: 15 Jun 2026. Older editions stay in the <a href="library.html">Research Library</a>.</p>
+    </div>
   </section>
 </main>
 
-<footer><div class="wrap"><b>Reminder:</b> educational distributions and probabilities — not a recommendation, not a price target. The preparer does not hold a position in TMGH — <a href="method.html#disclaimer">full disclosure</a>.</div></footer>
+<footer><div class="wrap"><b>One reminder:</b> these are educational estimates and odds — not a recommendation, not a price target. The preparer does not hold a position in TMGH — <a href="method.html#disclaimer">full disclosure</a>.</div></footer>
 
 <script src="assets/data.js"></script><script src="assets/app.js"></script>
 <script>
@@ -100,12 +111,26 @@ const T=TICKERS.TMGH;
 document.getElementById("upd").textContent=SITE.updated;
 document.getElementById("spot").textContent=T.spot.toFixed(2);
 document.getElementById("spotdate").textContent=T.spotDate;
-renderStrip("s20",T.dist.t20,T.spot);
-renderStrip("s60",T.dist.t60,T.spot);
 document.getElementById("legend").innerHTML=stripLegend();
+
 document.getElementById("touch").innerHTML=T.touch.map(r=>
  `<tr><td class="num">${r[0].toFixed(2)}</td><td class="num">${r[1]}%</td><td class="num">${r[2]}%</td></tr>`).join("");
-renderStrip("fair",{p5:T.fair.bear,p25:T.fair.base,p50:T.fair.base,p75:T.fair.base,p95:T.fair.full},T.spot);
+const pctRow=(lbl,d)=>`<tr><td>${lbl}</td><td class="num">${F(d.p5)}</td><td class="num">${F(d.p25)}</td><td class="num">${F(d.p50)}</td><td class="num">${F(d.p75)}</td><td class="num">${F(d.p95)}</td></tr>`;
+document.getElementById("pct").innerHTML=pctRow("In 1 month",T.dist.t20)+pctRow("In 3 months",T.dist.t60);
+
+function show(h){
+  const d=T.dist[h]; const label = h==="t20" ? "in 1 month" : "in 3 months";
+  const o=plainOdds(d,T.spot);
+  document.getElementById("verdict").innerHTML = o.lead + ' <span class="tk">' + label + '</span>';
+  renderPlain("plain", d, T.spot, label);
+}
+document.getElementById("tg").addEventListener("click",e=>{
+  const b=e.target.closest("button"); if(!b) return;
+  [...e.currentTarget.children].forEach(x=>x.classList.remove("on"));
+  b.classList.add("on"); show(b.dataset.h);
+});
+show("t20");
+
 document.getElementById("dl-pdf").href=T.files.pdf;
 document.getElementById("dl-model").href=T.files.model;
 </script>
