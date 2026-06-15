@@ -18,7 +18,16 @@ def fmt(x):
 def main(cfg_path):
     cfg = yaml.safe_load(open(cfg_path))
     v, s = cfg["valuation"], cfg["site"]
-    base = round(sum(p["value"] for p in v["sotp"]) - v["net_debt_per_share"], 2)
+    # base derivation, most-specific first:
+    #  1) explicit base (reconciled to the published study), else
+    #  2) signed-component bridge (holding cos: + segments + net cash − minority), else
+    #  3) PHDC-style: sum of SOTP rows − net debt
+    if v.get("base") is not None:
+        base = round(v["base"], 2)
+    elif v.get("components"):
+        base = round(sum(c["value"] for c in v["components"]), 2)
+    else:
+        base = round(sum(p["value"] for p in v["sotp"]) - v["net_debt_per_share"], 2)
 
     # --- validation: do my 10 factors reproduce the published distribution? ---
     mc = montecarlo.run(cfg)
@@ -58,6 +67,13 @@ def main(cfg_path):
       study: "{s['files']['study']}",
       model: "{s['files']['model']}",
       pdf:   "{s['files']['pdf']}"
+    }},
+    page: {{
+      floor: "{cfg['page']['floor']}",
+      resDetail: "{cfg['page']['resDetail']}",
+      supDetail: "{cfg['page']['supDetail']}",
+      atr: "{cfg['page']['atr']}",
+      breakBelow: "{cfg['page']['breakBelow']}"
     }}
   }}"""
     print(block)

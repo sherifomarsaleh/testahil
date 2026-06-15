@@ -1,0 +1,82 @@
+# ─────────────────────────────────────────────────────────────────────
+# TMGH study inputs. Holding-company structure: per-segment SOTP + net cash
+# − minority. Grounded in the 15 Jun 2026 study; every figure owned/editable.
+# ─────────────────────────────────────────────────────────────────────
+ticker: TMGH
+name: Talaat Moustafa Group Holding
+exchange: EGX
+currency: EGP
+
+market:
+  anchor: 95.68
+  close_date: "2026-06-14"
+  shares_bn: 2.061
+  valuation_date: "2026-06-14"
+
+valuation:
+  base: 147.12          # reconciled to the published segment bridge below
+  bear: 83.6
+  full_execution: 189.6
+  components:           # signed bridge, EGP/share, risk-adjusted
+    - {label: "Development + backlog subtotal",        value:  89.05}
+    - {label: "Hotels (9 owned, intl-operated)",       value:  23.59}
+    - {label: "Recurring income (malls/schools/clubs)",value:  15.16}
+    - {label: "Add: net cash (90% parent)",            value:  31.40}
+    - {label: "Less: minority (hotels 40.5% + backlog)",value: -12.06}
+
+montecarlo:
+  paths: 50000
+  seed: 42
+  horizons_days: [20, 60]
+  realized_vol_annual: 0.42
+  continuous:
+    - {name: "CBE policy rate path",  drift:  0.020, vol: 0.04}
+    - {name: "EGP/USD exchange rate", drift: -0.025, vol: 0.07}
+    - {name: "Inflation (CPI)",       drift:  0.015, vol: 0.04}
+    - {name: "EGX30 & foreign flows", drift:  0.015, vol: 0.07}
+    - {name: "Brent / Gulf liquidity",drift:  0.005, vol: 0.05}
+  events:
+    - {name: "Geopolitical / security",          prob: 0.30, impact: -0.12, spread: 0.05}
+    - {name: "Cross-border JV inflows (KSA/Oman)",prob: 0.30, impact:  0.06, spread: 0.04}
+    - {name: "Project launch & sales",           prob: 0.55, impact:  0.08, spread: 0.04}
+    - {name: "Tourism & hospitality demand",     prob: 0.45, impact:  0.04, spread: 0.06}
+    - {name: "Mortgage finance & credit",        prob: 0.35, impact:  0.02, spread: 0.05}
+
+touch_levels: [126, 118, 110, 100, 88, 83]
+
+site:
+  spot: 95.68
+  spot_date: "close 14 Jun 2026"
+  resolve_t20: "2026-07-14"
+  resolve_t60: "2026-09-08"
+  levels:
+    res: [101.40, 99.45, 96.10]
+    sup: [92.16, 91.55, 86.56]
+  tech:
+    trend: "Recovering — bounce off the 50-day on rising volume"
+    summary: "After a pullback, the price found a floor at its rising 50-day average and bounced back on the heaviest buying in two weeks. Momentum is turning back up (RSI recovering, the daily MACD narrowing), and the price has reclaimed its short-term average — a correction that's resolving back upward inside an intact uptrend."
+    bull: "A daily close above 97.40 confirms the recovery is back on."
+    bear: "A close below 91.55 reopens the lower supports at 88 and 83."
+  files:
+    study: "files/TMGH_Valuation_Study_15-06-2026_public.docx?v=1506"
+    model: "files/TMGH_Valuation_Study_15-06-2026_public.xlsx?v=1506"
+    pdf:   "files/TMGH_Valuation_Study_15-06-2026_public.pdf?v=1506"
+
+published_dist:
+  t20: {p5: 81.42, p25: 91.17, p50: 98.31,  p75: 106.10, p95: 119.24}
+  t60: {p5: 75.58, p25: 91.20, p50: 103.93, p75: 118.41, p95: 142.75}
+published_touch:   # [level, T+20 %, T+60 %] descending
+  - [126, 2, 24]
+  - [118, 8, 39]
+  - [110, 24, 58]
+  - [100, 66, 85]
+  - [88, 29, 48]
+  - [83, 11, 29]
+
+# Descriptive page prose (was hardcoded in tmgh.html) — now config-driven
+page:
+  floor: "cash, sold backlog, hotels and malls give a ~EGP 84 floor. Upside is new launches (SouthMED, The Spine, Noor) and the Gulf projects. More cash than debt — unusually safe for a developer."
+  resDetail: "96.10–97.39 · 99.45–100.95 · 101.40"
+  supDetail: "92.16–92.75 · 91.55 · 86.56"
+  atr: "2.49 (2.6%)"
+  breakBelow: "below ~83.6"

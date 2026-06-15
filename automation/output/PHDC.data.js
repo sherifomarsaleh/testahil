@@ -27,5 +27,12 @@
       study: "files/PHDC_Valuation_Study_11-06-2026_public.docx?v=1106",
       model: "files/PHDC_Valuation_Study_11-06-2026_public.xlsx?v=1106",
       pdf:   "files/PHDC_Valuation_Study_11-06-2026_public.pdf?v=1106"
+    },
+    page: {
+      floor: "the sold business alone is ~EGP 11–12 a share. Everything above depends on big new projects (Saadiyat, Ras El-Hekma, Jirian) launching. That's the bet.",
+      resDetail: "14.85–15.00 · 15.55–15.70 · 16.08",
+      supDetail: "14.43–14.49 · 14.06 · 13.90",
+      atr: "0.56",
+      breakBelow: "below 13.40"
     }
   }

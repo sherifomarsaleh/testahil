@@ -79,3 +79,11 @@ published_touch:   # [level, T+20 %, T+60 %] descending
   - [17.50, 23, 55]
   - [16.50, 40, 68]
   - [15.55, 62, 81]
+
+# Descriptive page prose (was hardcoded in phdc.html) — now config-driven
+page:
+  floor: "the sold business alone is ~EGP 11–12 a share. Everything above depends on big new projects (Saadiyat, Ras El-Hekma, Jirian) launching. That's the bet."
+  resDetail: "14.85–15.00 · 15.55–15.70 · 16.08"
+  supDetail: "14.43–14.49 · 14.06 · 13.90"
+  atr: "0.56"
+  breakBelow: "below 13.40"
