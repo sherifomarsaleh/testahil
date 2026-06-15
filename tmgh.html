@@ -16,8 +16,9 @@
     <a href="index.html">Home</a>
     <div class="drop"><a href="egypt.html" class="on">Egypt</a><div class="menu"><a href="phdc.html">Palm Hills <span class="chip">PHDC</span></a><a href="tmgh.html">Talaat Moustafa <span class="chip">TMGH</span></a><a href="oras.html" class="soon">Orascom Construction <span class="chip">ORAS</span></a><a href="comi.html" class="soon">Commercial Intl Bank <span class="chip">COMI</span></a><a href="ccap.html" class="soon">Cairo Capital <span class="chip">CCAP</span></a></div></div>
     <a href="calculator.html">Calculator</a>
-    <a href="ledger.html">Public Ledger</a>
-    <a href="models.html">Open Models</a>
+    
+    
+    <a href="library.html">Research Library</a>
     <a href="method.html">Methodology</a>
   </nav>
 </div></header>
@@ -31,7 +32,8 @@
 
   <section class="card">
     <h2>Probability distribution — 50,000 paths, 10 factors</h2>
-    <p class="muted">One Monte Carlo model driven by 10 external factors (policy rate, EGP/USD, inflation, foreign flows, oil/Gulf liquidity, geopolitics, cross-border JV inflows, launch execution, tourism/hospitality, mortgage credit). Details in <a href="method.html">Methodology</a>.</p>
+    <p class="muted">One Monte Carlo model driven by 10 external factors (policy rate, EGP/USD, inflation, foreign flows, oil/Gulf liquidity, geopolitics, cross-border JV inflows, launch execution, tourism/hospitality, mortgage credit). Details in <a href="library.html">Research Library</a>
+    <a href="method.html">Methodology</a>.</p>
     <div class="strip"><div class="lbl"><span>1-month horizon (T+20)</span><span class="num">resolves 2026-07-14</span></div><div id="s20"></div></div>
     <div class="strip"><div class="lbl"><span>3-month horizon (T+60)</span><span class="num">resolves 2026-09-08</span></div><div id="s60"></div></div>
     <div id="legend"></div>
@@ -80,7 +82,6 @@
     <h3>Full study and open model</h3>
     <p class="muted">The study (Word + PDF) + the complete Excel model: every assumption editable. Found a flaw? <a href="models.html">Attack the model</a>.</p>
     <a class="btn" id="dl-pdf" href="#">Download study (PDF)</a>
-    <a class="btn" id="dl-study" href="#">Study (DOCX)</a>
     <a class="btn ghost" id="dl-model" href="#">Model (XLSX)</a>
     <p class="muted" style="margin-top:10px">Edition: 15 Jun 2026</p>
   </section>
@@ -101,7 +102,6 @@ document.getElementById("touch").innerHTML=T.touch.map(r=>
  `<tr><td class="num">${r[0].toFixed(2)}</td><td class="num">${r[1]}%</td><td class="num">${r[2]}%</td></tr>`).join("");
 renderStrip("fair",{p5:T.fair.bear,p25:T.fair.base,p50:T.fair.base,p75:T.fair.base,p95:T.fair.full},T.spot);
 document.getElementById("dl-pdf").href=T.files.pdf;
-document.getElementById("dl-study").href=T.files.study;
 document.getElementById("dl-model").href=T.files.model;
 </script>
 </body></html>

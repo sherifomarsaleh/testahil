@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Research Library — every study, open to attack | testahil?</title>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;700;800&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="favicon.png?v=2">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+.tab-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.tab-btn{padding:8px 20px;border-radius:999px;border:1.5px solid var(--line);background:#fff;
+  color:var(--muted);font-size:.9rem;font-weight:600;cursor:pointer;font-family:inherit;transition:all .15s}
+.tab-btn:hover{border-color:var(--teal);color:var(--teal)}
+.tab-btn.active{background:var(--teal);color:#fff;border-color:var(--teal)}
+.tab-panel{display:none}.tab-panel.active{display:block}
+.dl-row{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.archive-link{font-size:.85rem;color:var(--muted)}
+.archive-link a{color:var(--teal)}
+</style>
+</head>
+<body><header class="nav"><div class="wrap">
+  <span class="brand">testahil?<small>is it worth it?</small></span>
+  <nav>
+    <a href="index.html">Home</a>
+    <div class="drop"><a href="egypt.html">Egypt</a><div class="menu"><a href="phdc.html">Palm Hills <span class="chip">PHDC</span></a><a href="tmgh.html">Talaat Moustafa <span class="chip">TMGH</span></a><a href="oras.html" class="soon">Orascom Construction <span class="chip">ORAS</span></a><a href="comi.html" class="soon">Commercial Intl Bank <span class="chip">COMI</span></a><a href="ccap.html" class="soon">Cairo Capital <span class="chip">CCAP</span></a></div></div>
+    <a href="calculator.html">Calculator</a>
+    <a href="library.html" class="on">Research Library</a>
+    <a href="method.html">Methodology</a>
+  </nav>
+</div></header>
+<main class="wrap">
+  <section>
+    <h1 style="font-size:2.2rem">Research Library</h1>
+    <p class="sub" style="max-width:720px">Every study published here stays — PDF to read, Excel to attack. Below each study the forecast ledger shows whether the published distributions contained the realized price when the horizon closed. <b>No deletions, no revisions without a credited note.</b></p>
+  </section>
+
+  <section>
+    <div class="tab-bar" id="tab-bar"></div>
+    <div id="tab-panels"></div>
+  </section>
+
+  <section class="card" style="border-color:#C98A2D;margin-top:8px">
+    <span class="kicker">MONTHLY CHALLENGE</span>
+    <h2>Attack the Model</h2>
+    <p>Found a weak assumption? A broken formula? An execution probability that's too generous? <b>The strongest attack each month gets a detailed public reply and a credited revision.</b></p>
+    <p class="muted">Name the cell or assumption, explain why it's wrong, propose the alternative with a source.</p>
+    <a class="btn" href="mailto:info@testahil.com?subject=Attack on the model">Send your attack</a>
+    <p class="muted" style="margin-top:10px">— or on LinkedIn with <span class="num">#AttackTheModel</span></p>
+  </section>
+</main>
+<footer><div class="wrap"><b>Disclaimer:</b> Educational valuation studies and personal analytical opinion — not investment advice, not recommendations. The preparer is not licensed by Egypt's FRA, manages no money, accepts no clients, and may hold positions in instruments mentioned. <a href="method.html#disclaimer">Full text</a>.</div></footer>
+<script src="assets/data.js"></script><script src="assets/app.js"></script>
+<script>
+const F2 = n => Number(n).toLocaleString("en-US",{maximumFractionDigits:2});
+
+// Build ticker info map from TICKERS (only covered ones with files)
+const covered = Object.entries(TICKERS).filter(([,t])=>t.files);
+
+// Ticker order: most recently spotted first
+const tickerOrder = covered
+  .sort((a,b)=>b[1].spotDate.localeCompare(a[1].spotDate))
+  .map(([k])=>k);
+
+function ledgerRows(ticker){
+  const rows = [...LEDGER]
+    .filter(r => ticker === "ALL" || r.inst === ticker)
+    .sort((a,b) => b.pub.localeCompare(a.pub) || b.horizon.localeCompare(a.horizon));
+  if(!rows.length) return "";
+  let hit=0, scored=0;
+  const trs = rows.map(r=>{
+    let res;
+    if(r.status==="open"){
+      res = `<span class="chip">open — resolves ${r.resolve}</span>`;
+    } else {
+      scored++; const inBand = r.realized>=r.lo && r.realized<=r.hi; if(inBand) hit++;
+      res = `<span class="num">${F2(r.realized)}</span> ${inBand
+        ?'<span class="ok">inside band ✓</span>'
+        :'<span class="bad">outside band ✗</span>'}`;
+    }
+    return `<tr><td class="num">${r.pub}</td><td><b>${r.inst}</b></td><td class="num">${r.horizon}</td>
+      <td class="num">${F2(r.median)}</td>
+      <td class="num">${F2(r.lo)} – ${F2(r.hi)} <span class="muted">(${r.band})</span></td>
+      <td>${res}</td></tr>`;
+  }).join("");
+  const summary = scored
+    ? `${scored} resolved · ${hit} inside band (${Math.round(hit/scored*100)}% hit rate on 90% bands)`
+    : `No resolved forecasts yet — first resolution on ${rows.filter(r=>r.status==="open").sort((a,b)=>a.resolve.localeCompare(b.resolve))[0]?.resolve}`;
+  return `<div class="card" style="margin-top:18px">
+    <h3 style="margin-bottom:12px">Forecast ledger</h3>
+    <table><thead><tr>
+      <th class="num">Published</th><th>Ticker</th><th class="num">Horizon</th>
+      <th class="num">Median</th><th class="num">Band (90%)</th><th>Outcome</th>
+    </tr></thead><tbody>${trs}</tbody></table>
+    <p class="muted" style="margin-top:10px;font-size:.85rem">${summary}</p>
+  </div>`;
+}
+
+function studyBlock(code){
+  const T = TICKERS[code];
+  if(!T || !T.files) return "";
+  // find archived files for this ticker — any ledger pub dates before latest
+  const dates = [...new Set(LEDGER.filter(r=>r.inst===code).map(r=>r.pub))].sort((a,b)=>b.localeCompare(a));
+  return `<div class="card">
+    <span class="chip num">${T.code}</span><span class="chip">${T.spotDate.replace("close ","")}</span>
+    <h3 style="margin-top:10px">${T.name}</h3>
+    <p class="muted">Spot <b class="num">${T.spot.toFixed(2)}</b> EGP · risk-adjusted base <b class="num">${T.fair.base.toFixed(2)}</b> · range <span class="num">${T.fair.bear} – ${T.fair.full}</span></p>
+    <div class="dl-row">
+      <a class="btn" href="${T.files.pdf}">Study (PDF)</a>
+      <a class="btn ghost" href="${T.files.model}">Model (XLSX)</a>
+      <a class="btn ghost" href="${code.toLowerCase()}.html">Interactive page →</a>
+    </div>
+  </div>`;
+}
+
+// Build tab bar
+const tabBar = document.getElementById("tab-bar");
+tabBar.innerHTML = `<button class="tab-btn active" data-tab="ALL">All</button>`
+  + tickerOrder.map(t=>`<button class="tab-btn" data-tab="${t}">${t}</button>`).join("");
+
+// Build panels
+const panels = document.getElementById("tab-panels");
+
+// ALL panel
+panels.innerHTML = `<div class="tab-panel active" id="panel-ALL">
+  ${tickerOrder.map(t=>studyBlock(t)).join("")}
+  ${ledgerRows("ALL")}
+</div>`;
+
+// Per-ticker panels
+tickerOrder.forEach(t=>{
+  panels.innerHTML += `<div class="tab-panel" id="panel-${t}">
+    ${studyBlock(t)}
+    ${ledgerRows(t)}
+  </div>`;
+});
+
+// Tab switching
+tabBar.addEventListener("click", e=>{
+  const btn = e.target.closest(".tab-btn"); if(!btn) return;
+  document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
+  document.querySelectorAll(".tab-panel").forEach(p=>p.classList.remove("active"));
+  btn.classList.add("active");
+  document.getElementById("panel-"+btn.dataset.tab).classList.add("active");
+});
+</script>
+</body></html>
