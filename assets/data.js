@@ -55,7 +55,7 @@ const COMING = [
   { code:"EGX:TMGH", name:"Talaat Moustafa Group",        url:"tmgh.html", status:"covered" },
   { code:"EGX:ORAS", name:"Orascom Construction",          url:null,        status:"soon" },
   { code:"EGX:COMI", name:"Commercial International Bank", url:null,        status:"soon" },
-  { code:"EGX:CCAP", name:"Cairo Capital",                 url:null,        status:"soon" },
+  { code:"EGX:CCAP", name:"Citadel Capital",                 url:null,        status:"soon" },
 ];
 
 /* ---------- public ledger ----------
