@@ -52,14 +52,22 @@ function renderStrip(elId, d, spot, opts={}){
   const el = document.getElementById(elId); if(!el) return;
   const min = Math.min(d.p5, spot) - (Math.max(d.p95,spot)-Math.min(d.p5,spot))*0.06;
   const max = Math.max(d.p95, spot) + (Math.max(d.p95,spot)-Math.min(d.p5,spot))*0.06;
-  const W=1000, H=128, y=72, X=v=>40+(v-min)/(max-min)*(W-80);
+  const mob = (typeof window!=="undefined" && window.innerWidth < 640);
+  const fLab = mob ? 30 : 19, fBand = mob ? 26 : 16;
+  // vertical positions: spread the label rows further apart on mobile (bigger text)
+  const W = 1000;
+  const H = mob ? 168 : 128, y = mob ? 92 : 72;
+  const topY = mob ? y-78 : y-54;   // extremes + middle row
+  const bandY = mob ? y-40 : y-26;  // 25/75 row
+  const todY = mob ? y+58 : y+44;   // today row
+  const X = v=>40+(v-min)/(max-min)*(W-80);
 
   el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" role="img"
       aria-label="Likely price range. Today's price is ${F(spot)}; the middle outcome is ${F(d.p50)}. Half of outcomes fall between ${F(d.p25)} and ${F(d.p75)}.">
     <style>
-      .lab{font:600 19px 'IBM Plex Mono',monospace}
+      .lab{font:600 ${fLab}px 'IBM Plex Mono',monospace}
       .end{fill:#8A9A98}.mid{fill:#1B5E5E}.tod{fill:#C98A2D}
-      .band{fill:#2A8F8F;font-size:16px}
+      .band{fill:#2A8F8F;font-size:${fBand}px}
     </style>
     <!-- wide range 5–95% -->
     <line x1="${X(d.p5)}" x2="${X(d.p95)}" y1="${y}" y2="${y}" stroke="#CFE0DE" stroke-width="12" stroke-linecap="round"/>
@@ -70,14 +78,14 @@ function renderStrip(elId, d, spot, opts={}){
     <!-- today mark -->
     <circle cx="${X(spot)}" cy="${y}" r="11" fill="#fff" stroke="#C98A2D" stroke-width="4"/>
     <!-- TOP row above the bar: rare extremes + middle outcome -->
-    <text x="${X(d.p50)}" y="${y-54}" text-anchor="middle" class="lab mid">middle ${F(d.p50)}</text>
-    <text x="${X(d.p5)}" y="${y-54}" text-anchor="middle" class="lab end">${F(d.p5)}</text>
-    <text x="${X(d.p95)}" y="${y-54}" text-anchor="middle" class="lab end">${F(d.p95)}</text>
+    <text x="${X(d.p50)}" y="${topY}" text-anchor="middle" class="lab mid">middle ${F(d.p50)}</text>
+    <text x="${X(d.p5)}" y="${topY}" text-anchor="middle" class="lab end">${F(d.p5)}</text>
+    <text x="${X(d.p95)}" y="${topY}" text-anchor="middle" class="lab end">${F(d.p95)}</text>
     <!-- LOWER row, just above the bar: the 25%–75% middle-half edges -->
-    <text x="${X(d.p25)}" y="${y-26}" text-anchor="middle" class="lab band">${F(d.p25)}</text>
-    <text x="${X(d.p75)}" y="${y-26}" text-anchor="middle" class="lab band">${F(d.p75)}</text>
+    <text x="${X(d.p25)}" y="${bandY}" text-anchor="middle" class="lab band">${F(d.p25)}</text>
+    <text x="${X(d.p75)}" y="${bandY}" text-anchor="middle" class="lab band">${F(d.p75)}</text>
     <!-- today below the bar -->
-    <text x="${X(spot)}" y="${y+44}" text-anchor="middle" class="lab tod">today ${F(spot)}</text>
+    <text x="${X(spot)}" y="${todY}" text-anchor="middle" class="lab tod">today ${F(spot)}</text>
   </svg>`;
 }
 
@@ -212,25 +220,29 @@ function renderGauge(elId, spot, fair){
   const {bear,base,full}=fair;
   const lo=Math.min(bear,spot), hi=Math.max(full,spot);
   const pad=(hi-lo)*0.04, min=lo-pad, max=hi+pad;
-  const W=1000,H=124,y=46,X=v=>30+(v-min)/(max-min)*(W-60);
+  const mob = (typeof window!=="undefined" && window.innerWidth < 640);
+  const fG = mob ? 28 : 18, fGsm = mob ? 24 : 15;
+  const W=1000, H = mob ? 168 : 124, y = mob ? 62 : 46;
+  const valY = mob ? y-34 : y-24, todY = mob ? y+46 : y+32, endY = mob ? y+82 : y+58;
+  const X=v=>30+(v-min)/(max-min)*(W-60);
   const v=valuationVerdict(spot,base);
   const todayX = Math.max(70, Math.min(W-70, X(spot)));
   el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" role="img"
       aria-label="Today's price ${F(spot)} versus our fair value ${F(base)}.">
-    <style>.g{font:600 18px 'IBM Plex Mono',monospace}.gsm{font:600 15px 'IBM Plex Mono',monospace}.gmut{fill:#8A9A98}.gink{fill:#0E2726}.gbase{fill:#1B5E5E}</style>
+    <style>.g{font:600 ${fG}px 'IBM Plex Mono',monospace}.gsm{font:600 ${fGsm}px 'IBM Plex Mono',monospace}.gmut{fill:#8A9A98}.gink{fill:#0E2726}.gbase{fill:#1B5E5E}</style>
     <defs><linearGradient id="vg" x1="0" x2="1">
       <stop offset="0" stop-color="#B5483A"/><stop offset="0.5" stop-color="#C98A2D"/><stop offset="1" stop-color="#2E7D5B"/>
     </linearGradient></defs>
     <line x1="${X(min)}" x2="${X(max)}" y1="${y}" y2="${y}" stroke="url(#vg)" stroke-width="12" stroke-linecap="round" opacity=".85"/>
     <!-- our value mark + label ABOVE -->
     <line x1="${X(base)}" x2="${X(base)}" y1="${y-16}" y2="${y+16}" stroke="#1B5E5E" stroke-width="5"/>
-    <text x="${X(base)}" y="${y-24}" text-anchor="middle" class="g gbase">our value ${F(base)}</text>
+    <text x="${X(base)}" y="${valY}" text-anchor="middle" class="g gbase">our value ${F(base)}</text>
     <!-- today mark + label BELOW -->
     <circle cx="${X(spot)}" cy="${y}" r="10" fill="#fff" stroke="#0E2726" stroke-width="4"/>
-    <text x="${todayX}" y="${y+32}" text-anchor="middle" class="g gink">today ${F(spot)}</text>
+    <text x="${todayX}" y="${todY}" text-anchor="middle" class="g gink">today ${F(spot)}</text>
     <!-- end labels on the lowest row -->
-    <text x="30" y="${y+58}" class="gsm gmut">← expensive</text>
-    <text x="${W-30}" y="${y+58}" text-anchor="end" class="gsm gmut">cheap →</text>
+    <text x="30" y="${endY}" class="gsm gmut">← expensive</text>
+    <text x="${W-30}" y="${endY}" text-anchor="end" class="gsm gmut">cheap →</text>
   </svg>
   <p class="gauge-verdict ${v.tone}">${v.label} <span class="muted">(${v.gap>=0?'+':''}${Math.round(v.gap*100)}% to our value)</span></p>`;
 }
