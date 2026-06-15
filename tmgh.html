@@ -40,8 +40,18 @@
       </div>
       <div id="plain"></div>
       <div id="legend"></div>
+      <button class="howto-link" id="howto-open" type="button">How to read this</button>
     </div>
     <p class="muted" style="margin-top:14px">Today's price is <b class="num" id="spot"></b> EGP (<span id="spotdate"></span>). Our study's fair-value estimate is <b class="num">147.12</b> EGP, and the full range of scenarios runs from <span class="num">83.6</span> (bad case) to <span class="num">189.6</span> (everything goes right).</p>
+  </section>
+
+  <!-- VALUATION GAUGE -->
+  <section style="padding-top:8px">
+    <div class="card">
+      <p class="qhead">Is it cheap or expensive right now?</p>
+      <p class="muted">Where today's price sits against what our study thinks the company is worth. A comparison, not a recommendation.</p>
+      <div id="gauge"></div>
+    </div>
   </section>
 
   <!-- ONE-LINE WHAT-IT-MEANS -->
@@ -75,14 +85,14 @@
 
       <p class="qhead" style="margin-top:26px">Chart levels traders watch</p>
       <table><tbody>
-        <tr><td>Resistance (ceilings)</td><td class="num">96.10–97.39 · 99.45–100.95 · 101.40</td></tr>
-        <tr><td>Support (floors)</td><td class="num">92.16–92.75 · 91.55 · 86.56</td></tr>
-        <tr><td>Typical daily move</td><td class="num">2.49 (2.6%)</td></tr>
+        <tr><td><span class="term" tabindex="0">Resistance (ceilings)<span class="tip">A price level where selling has repeatedly stopped past rallies — a "ceiling" the price has struggled to break above.</span></span></td><td class="num">96.10–97.39 · 99.45–100.95 · 101.40</td></tr>
+        <tr><td><span class="term" tabindex="0">Support (floors)<span class="tip">A price level where buying has repeatedly stepped in — a "floor" the price has tended to bounce off.</span></span></td><td class="num">92.16–92.75 · 91.55 · 86.56</td></tr>
+        <tr><td><span class="term" tabindex="0">Typical daily move<span class="tip">Roughly how far the price swings in an average day (based on a measure called ATR). Bigger means choppier.</span></span></td><td class="num">2.49 (2.6%)</td></tr>
         <tr><td>Where our case breaks</td><td class="num">below ~83.6</td></tr>
       </tbody></table>
 
       <p class="qhead" style="margin-top:26px">The exact percentiles</p>
-      <p class="muted">For the technically minded: the 5th / 25th / middle / 75th / 95th outcomes from 50,000 simulated paths.</p>
+      <p class="muted">For the technically minded: the <span class="term" tabindex="0">5th / 25th / middle / 75th / 95th outcomes<span class="tip">If you lined up all 50,000 simulated outcomes from lowest to highest, these are the values at the 5%, 25%, 50%, 75% and 95% marks along that line.</span></span> from 50,000 simulated paths.</p>
       <table><thead><tr><th>Timeframe</th><th class="num">Rare low (5%)</th><th class="num">25%</th><th class="num">Middle</th><th class="num">75%</th><th class="num">Rare high (95%)</th></tr></thead>
       <tbody id="pct"></tbody></table>
 
@@ -90,6 +100,15 @@
       <p class="muted">One Monte Carlo model, 50,000 paths, driven by 10 outside forces: the central-bank rate, the EGP/USD rate, inflation, foreign money flows, oil and Gulf liquidity, regional politics, the Saudi/Oman/Iraq projects, project launches, tourism, and mortgage lending. Full mechanics in the <a href="method.html">methodology</a>.</p>
     </div>
   </details>
+
+  <!-- PEER COMPARISON -->
+  <section style="padding-top:8px">
+    <div class="card">
+      <p class="qhead">How it compares to the others we cover</p>
+      <div id="peers"></div>
+      <p class="muted" style="margin-top:10px">"Looks cheap / expensive" compares today's price to our own fair-value estimate — not advice.</p>
+    </div>
+  </section>
 
   <!-- GET THE STUDY -->
   <section style="padding-top:8px">
@@ -101,9 +120,38 @@
       <p class="muted" style="margin-top:12px">Edition: 15 Jun 2026. Older editions stay in the <a href="library.html">Research Library</a>.</p>
     </div>
   </section>
+
+  <!-- FOLLOW BY EMAIL -->
+  <section style="padding-top:8px">
+    <div class="card" style="background:#EFF5F4">
+      <p class="qhead">Get the next update on Talaat Moustafa</p>
+      <p class="muted">We refresh each study on a fixed schedule. Leave your email and we'll tell you when the next edition is out — nothing else, no spam.</p>
+      <form class="follow-row" action="https://formsubmit.co/info@testahil.com" method="POST">
+        <input type="hidden" name="_subject" value="Follow TMGH updates">
+        <input type="hidden" name="stock" value="TMGH">
+        <input type="email" name="email" placeholder="you@example.com" required aria-label="Your email">
+        <button class="btn" type="submit">Notify me</button>
+      </form>
+    </div>
+  </section>
 </main>
 
-<footer><div class="wrap"><b>One reminder:</b> these are educational estimates and odds — not a recommendation, not a price target. The preparer does not hold a position in TMGH — <a href="method.html#disclaimer">full disclosure</a>.</div></footer>
+<footer><div class="wrap"><b>One reminder:</b> these are educational estimates and odds — not a recommendation, not a price target. By Sherif Saleh, independent. Built from EGX filings, CBE data and vendor price history — <a href="method.html">sources &amp; method</a> · the preparer does not hold a position in TMGH — <a href="method.html#disclaimer">full disclosure</a>.</div></footer>
+
+
+<!-- HOW TO READ THIS — modal -->
+<div class="modal" id="howto-modal" role="dialog" aria-modal="true" aria-label="How to read the odds bar">
+  <div class="modal-card">
+    <button class="modal-close" data-close type="button" aria-label="Close">&times;</button>
+    <h3>How to read the odds bar</h3>
+    <p class="muted">It's a picture of where the price could be — not a single guess. Here's each part:</p>
+    <div class="ex"><span class="dot" style="background:#2A8F8F;opacity:.55"></span><span><b>The thick teal band</b> is where the price lands about half the time. The two numbers above it are the edges of that "middle half."</span></div>
+    <div class="ex"><span class="dot" style="background:#CFE0DE"></span><span><b>The thin pale band</b> is almost the whole range — about 9 times out of 10 the price stays inside it. The far numbers are the rare low and rare high.</span></div>
+    <div class="ex"><span class="dot" style="background:#1B5E5E"></span><span><b>The upright line is the middle outcome</b> — half the simulations land above it, half below.</span></div>
+    <div class="ex"><span class="dot" style="background:#fff;border:3px solid #C98A2D"></span><span><b>The gold dot is today's price.</b> If most of the bar sits to its right, the odds lean up; to its left, they lean down.</span></div>
+    <p class="muted" style="margin-top:6px">The sentence above the bar says the same thing in words. These are model estimates from 50,000 simulations — useful odds, never guarantees.</p>
+  </div>
+</div>
 
 <script src="assets/data.js"></script><script src="assets/app.js"></script>
 <script>
@@ -133,5 +181,9 @@ show("t20");
 
 document.getElementById("dl-pdf").href=T.files.pdf;
 document.getElementById("dl-model").href=T.files.model;
+
+renderGauge("gauge", T.spot, T.fair);
+renderPeers("peers", "TMGH");
+initHowto();
 </script>
 </body></html>

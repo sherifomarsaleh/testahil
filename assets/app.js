@@ -151,3 +151,118 @@ function initCalc(){
   runCalc();
 }
 document.addEventListener("DOMContentLoaded",()=>{ initCalc(); });
+
+/* ============================================================
+   BEST-IN-CLASS LAYER — search, valuation gauge, "how to read",
+   glossary tooltips, peer comparison
+   ============================================================ */
+
+/* ---------- ticker search (works on any page; needs #tk-search input + #tk-results) ---------- */
+function initSearch(){
+  const input = document.getElementById("tk-search");
+  const box   = document.getElementById("tk-results");
+  if(!input || !box) return;
+
+  // Build the searchable index from data.js
+  const live = Object.entries(TICKERS).map(([code,t])=>({
+    code, name:t.name, url:code.toLowerCase()+".html", status:"Covered"
+  }));
+  const soon = COMING.filter(c=>c.status!=="covered").map(c=>({
+    code:c.code.replace("EGX:",""), name:c.name, url:null, status:"Coming soon"
+  }));
+  const index = [...live, ...soon];
+
+  function render(q){
+    q = q.trim().toLowerCase();
+    if(!q){ box.innerHTML=""; box.classList.remove("open"); return; }
+    const hits = index.filter(x =>
+      x.code.toLowerCase().includes(q) || x.name.toLowerCase().includes(q));
+    if(!hits.length){
+      box.innerHTML = `<div class="tk-empty">No match. We currently cover Egyptian Exchange (EGX) stocks.</div>`;
+      box.classList.add("open"); return;
+    }
+    box.innerHTML = hits.map(x => x.url
+      ? `<a class="tk-hit" href="${x.url}"><span><b>${x.code}</b> · ${x.name}</span><span class="tk-tag">${x.status}</span></a>`
+      : `<div class="tk-hit tk-hit-soon"><span><b>${x.code}</b> · ${x.name}</span><span class="tk-tag warn">${x.status}</span></div>`
+    ).join("");
+    box.classList.add("open");
+  }
+  input.addEventListener("input", e=>render(e.target.value));
+  input.addEventListener("focus", e=>render(e.target.value));
+  document.addEventListener("click", e=>{
+    if(!input.contains(e.target) && !box.contains(e.target)) box.classList.remove("open");
+  });
+  // keyboard: Enter jumps to first hit
+  input.addEventListener("keydown", e=>{
+    if(e.key==="Enter"){ const first=box.querySelector("a.tk-hit"); if(first) location.href=first.getAttribute("href"); }
+  });
+}
+
+/* ---------- valuation gauge ----------
+   Shows where today's price sits versus our fair value: a simple
+   "looks cheap / about right / looks expensive" reading, no buy/sell call. */
+function valuationVerdict(spot, base){
+  const gap = (base - spot)/spot;            // how far below fair value we are
+  if(gap >=  0.15) return {label:"Looks cheap vs our estimate",   tone:"cheap",   gap};
+  if(gap <= -0.15) return {label:"Looks expensive vs our estimate", tone:"rich",  gap};
+  return {label:"About fairly priced vs our estimate", tone:"fair", gap};
+}
+function renderGauge(elId, spot, fair){
+  const el=document.getElementById(elId); if(!el) return;
+  const {bear,base,full}=fair;
+  const lo=Math.min(bear,spot), hi=Math.max(full,spot);
+  const pad=(hi-lo)*0.04, min=lo-pad, max=hi+pad;
+  const W=1000,H=124,y=46,X=v=>30+(v-min)/(max-min)*(W-60);
+  const v=valuationVerdict(spot,base);
+  const todayX = Math.max(70, Math.min(W-70, X(spot)));
+  el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" role="img"
+      aria-label="Today's price ${F(spot)} versus our fair value ${F(base)}.">
+    <style>.g{font:600 20px 'IBM Plex Mono',monospace}.gsm{font:600 17px 'IBM Plex Mono',monospace}.gmut{fill:#8A9A98}.gink{fill:#0E2726}.gbase{fill:#1B5E5E}</style>
+    <defs><linearGradient id="vg" x1="0" x2="1">
+      <stop offset="0" stop-color="#B5483A"/><stop offset="0.5" stop-color="#C98A2D"/><stop offset="1" stop-color="#2E7D5B"/>
+    </linearGradient></defs>
+    <line x1="${X(min)}" x2="${X(max)}" y1="${y}" y2="${y}" stroke="url(#vg)" stroke-width="12" stroke-linecap="round" opacity=".85"/>
+    <!-- our value mark + label ABOVE -->
+    <line x1="${X(base)}" x2="${X(base)}" y1="${y-16}" y2="${y+16}" stroke="#1B5E5E" stroke-width="5"/>
+    <text x="${X(base)}" y="${y-24}" text-anchor="middle" class="g gbase">our value ${F(base)}</text>
+    <!-- today mark + label BELOW -->
+    <circle cx="${X(spot)}" cy="${y}" r="10" fill="#fff" stroke="#0E2726" stroke-width="4"/>
+    <text x="${todayX}" y="${y+32}" text-anchor="middle" class="g gink">today ${F(spot)}</text>
+    <!-- end labels on the lowest row -->
+    <text x="30" y="${y+58}" class="gsm gmut">← expensive</text>
+    <text x="${W-30}" y="${y+58}" text-anchor="end" class="gsm gmut">cheap →</text>
+  </svg>
+  <p class="gauge-verdict ${v.tone}">${v.label} <span class="muted">(${v.gap>=0?'+':''}${Math.round(v.gap*100)}% to our value)</span></p>`;
+}
+
+/* ---------- "How to read this" modal ---------- */
+function initHowto(){
+  const open = document.getElementById("howto-open");
+  const modal= document.getElementById("howto-modal");
+  if(!open || !modal) return;
+  const close = ()=> modal.classList.remove("open");
+  open.addEventListener("click", ()=> modal.classList.add("open"));
+  modal.addEventListener("click", e=>{ if(e.target===modal || e.target.closest("[data-close]")) close(); });
+  document.addEventListener("keydown", e=>{ if(e.key==="Escape") close(); });
+}
+
+/* ---------- peer comparison (covered stocks side by side) ---------- */
+function renderPeers(elId, currentCode){
+  const el=document.getElementById(elId); if(!el) return;
+  const rows = Object.entries(TICKERS).map(([code,t])=>{
+    const o = plainOdds(t.dist.t60, t.spot);
+    const v = valuationVerdict(t.spot, t.fair.base);
+    const up = Math.round(o.pa*10);
+    const here = code===currentCode;
+    return `<tr${here?' class="peer-here"':''}>
+      <td>${here?'<b>':''}<a href="${code.toLowerCase()}.html">${t.name}</a>${here?'</b>':''} <span class="muted num">${t.code}</span></td>
+      <td class="num">${F(t.spot)}</td>
+      <td class="num">${F(t.fair.base)}</td>
+      <td><span class="pill ${v.tone}">${v.tone==='cheap'?'Looks cheap':v.tone==='rich'?'Looks expensive':'About right'}</span></td>
+      <td class="num">${up} in 10 up</td>
+    </tr>`;
+  }).join("");
+  el.innerHTML = `<table><thead><tr>
+    <th>Stock</th><th class="num">Today</th><th class="num">Our value</th><th>Price view</th><th class="num">3-month odds</th>
+  </tr></thead><tbody>${rows}</tbody></table>`;
+}

@@ -26,6 +26,10 @@
     <div class="q">testahil<span>?</span></div>
     <p class="sub"><b>We won't tell you what to buy. We'll tell you the odds.</b><br>
     Where could an Egyptian stock be in a month or three? We run the numbers 50,000 ways and show you the full range of what could happen — in plain language, with the math open for anyone to check.</p>
+    <div class="search-wrap">
+      <input id="tk-search" type="text" placeholder="Search a stock — try PHDC or Palm Hills" autocomplete="off" aria-label="Search for a stock">
+      <div class="tk-results" id="tk-results"></div>
+    </div>
   </section>
 
   <!-- LATEST STUDY — plain answer first -->
@@ -80,6 +84,7 @@ document.getElementById("latest-name").innerHTML = T.name + ' — ' + o.lead + '
 renderPlain("plain", T.dist.t60, T.spot, "in 3 months");
 document.getElementById("legend").innerHTML = stripLegend();
 document.getElementById("latest-link").href = latest[0].toLowerCase() + ".html";
+initSearch();
 
 // coverage cards
 document.getElementById("coming").innerHTML =
