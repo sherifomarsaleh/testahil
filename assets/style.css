@@ -23,9 +23,9 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--teal2); outline-off
 /* nav */
 .nav{position:sticky; top:0; z-index:50; background:rgba(246,248,247,.92); backdrop-filter:blur(6px); border-bottom:1px solid var(--line)}
 .nav .wrap{display:flex; align-items:center; flex-wrap:wrap; gap:4px 20px; min-height:52px; padding-top:8px; padding-bottom:8px}
-.brand{font-family:"Alexandria"; font-weight:800; font-size:1.25rem; color:var(--teal)}
+.brand{font-family:"Alexandria"; font-weight:800; font-size:1.45rem; color:var(--teal)}
 .brand small{color:var(--muted); font-weight:400; font-size:.7em; margin-inline-start:6px}
-.nav nav{display:flex; gap:16px; flex-wrap:wrap; font-size:.9rem}
+.nav nav{display:flex; gap:18px; flex-wrap:wrap; font-size:1.05rem}
 .nav a.on{color:var(--ink); font-weight:600; border-bottom:2px solid var(--amber)}
 
 /* dropdown */
@@ -97,9 +97,9 @@ label{font-size:.85rem; font-weight:600; display:block; margin-bottom:3px}
 
 /* ---- mobile ---- */
 @media(max-width:700px){
-  .brand{font-size:1.1rem}
+  .brand{font-size:1.3rem}
   .brand small{display:none}
-  .nav nav{gap:6px 12px; font-size:.85rem; line-height:1.5}
+  .nav nav{gap:8px 14px; font-size:.98rem; line-height:1.5}
   .hero{padding:16px 0 10px}
   body{font-size:15px}
   table{font-size:.82rem}
@@ -113,11 +113,11 @@ label{font-size:.85rem; font-weight:600; display:block; margin-bottom:3px}
    ============================================================ */
 
 /* calmer base rhythm — slightly tighter than before */
-body{font-size:16.5px; line-height:1.6}
+body{font-size:15px; line-height:1.5}
 .wrap{max-width:880px}              /* narrower column = easier reading */
-section{padding:22px 0}
-.card{padding:22px; border-radius:16px}
-@media(max-width:700px){ body{font-size:15.5px} .card{padding:16px} }
+section{padding:16px 0}
+.card{padding:18px; border-radius:14px}
+@media(max-width:700px){ body{font-size:14.5px} .card{padding:15px} }
 
 /* the plain answer band — the first thing a nervous reader sees */
 .answer{
@@ -175,7 +175,7 @@ details.more .more-body{padding:4px 20px 20px; border-top:1px solid var(--line)}
 details.more .more-body table{margin-top:8px}
 
 /* friendly section subheads as plain questions */
-.qhead{font-family:"Alexandria",sans-serif; font-weight:700; font-size:1.12rem; color:var(--ink); margin:0 0 9px}
+.qhead{font-family:"Alexandria",sans-serif; font-weight:700; font-size:1.05rem; color:var(--ink); margin:0 0 8px}
 
 /* coverage cards: bigger tap targets, calmer */
 .cover-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:16px}
@@ -256,7 +256,7 @@ details.more .more-body table{margin-top:8px}
 /* three-lens section banners (Simulation / Fundamental / Technical) */
 .lens{display:flex; align-items:baseline; gap:10px; margin:4px 0 2px; flex-wrap:wrap}
 .lens .lens-no{font-family:"IBM Plex Mono",monospace; font-weight:500; font-size:.85rem; color:var(--amber-text); flex:none}
-.lens .lens-name{font-family:"Alexandria",sans-serif; font-weight:700; font-size:1.3rem; color:var(--ink); line-height:1.2}
+.lens .lens-name{font-family:"Alexandria",sans-serif; font-weight:700; font-size:1.2rem; color:var(--ink); line-height:1.2}
 .lens-sub{color:var(--muted); font-size:.9rem; margin:0 0 10px}
 @media(max-width:700px){ .lens .lens-name{font-size:1.15rem} }
 
