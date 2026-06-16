@@ -136,10 +136,11 @@ function runCalc(){
   const i1=CALC.years.indexOf(y1), i2=CALC.years.indexOf(y2);
   let cpi=1; for(let k=i1+1;k<=i2;k++) cpi*=1+CALC.inflation[k]/100;
   let cd=amt; for(let k=i1+1;k<=i2;k++) cd*=1+CALC.cdRate[k]/100;
-  const usd = amt*CALC.usdEgp[i2]/CALC.usdEgp[i1];
+  let usdGrow=1; for(let k=i1+1;k<=i2;k++) usdGrow*=1+(CALC.usdRate[k]||0)/100;   // USD deposit interest, compounded
+  const usd = amt*CALC.usdEgp[i2]/CALC.usdEgp[i1]*usdGrow;   // buy USD, earn USD interest, convert back to EGP
   const gold= amt*CALC.gold21g[i2]/CALC.gold21g[i1];
   const egx = amt*CALC.egx30[i2]/CALC.egx30[i1];
-  const rows=[["Bank CDs",cd],["US dollar",usd],["Gold (21k)",gold],["EGX30 index",egx]]
+  const rows=[["Egyptian pound CD",cd],["US-dollar CD",usd],["Gold (21k)",gold],["EGX30 index",egx]]
     .sort((a,b)=>b[1]-a[1]);
   const maxV=rows[0][1];
   out.innerHTML = `<table><thead><tr><th>Where you put it</th><th class="num">What you'd have</th><th class="num">Really worth*</th><th style="width:38%"></th></tr></thead><tbody>`+
