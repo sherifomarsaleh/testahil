@@ -23,9 +23,9 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--teal2); outline-off
 /* nav */
 .nav{position:sticky; top:0; z-index:50; background:rgba(246,248,247,.92); backdrop-filter:blur(6px); border-bottom:1px solid var(--line)}
 .nav .wrap{display:flex; align-items:center; flex-wrap:wrap; gap:4px 20px; min-height:52px; padding-top:8px; padding-bottom:8px}
-.brand{font-family:"Alexandria"; font-weight:800; font-size:1.45rem; color:var(--teal)}
+.brand{font-family:"Alexandria"; font-weight:800; font-size:2.1rem; color:var(--teal)}
 .brand small{color:var(--muted); font-weight:400; font-size:.7em; margin-inline-start:6px}
-.nav nav{display:flex; gap:18px; flex-wrap:wrap; font-size:1.05rem}
+.nav nav{display:flex; gap:20px; flex-wrap:wrap; font-size:1.2rem}
 .nav a.on{color:var(--ink); font-weight:600; border-bottom:2px solid var(--amber)}
 
 /* dropdown */
@@ -51,7 +51,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--teal2); outline-off
 
 /* hero */
 .hero{padding:24px 0 12px; text-align:left}
-.hero .q{font-size:clamp(2rem,5vw,3.4rem); font-weight:800; color:var(--teal); letter-spacing:-.5px}
+.hero .q{font-size:clamp(1.6rem,4vw,2rem); font-weight:800; color:var(--teal); letter-spacing:-.5px}
 .hero .q span{color:var(--amber)}
 .hero .sub{font-size:.98rem; line-height:1.5; max-width:560px; color:var(--ink); margin-top:6px}
 .hero .sub b{background:linear-gradient(transparent 65%, #F0E2C8 65%)}
@@ -97,9 +97,9 @@ label{font-size:.85rem; font-weight:600; display:block; margin-bottom:3px}
 
 /* ---- mobile ---- */
 @media(max-width:700px){
-  .brand{font-size:1.3rem}
+  .brand{font-size:1.75rem}
   .brand small{display:none}
-  .nav nav{gap:8px 14px; font-size:.98rem; line-height:1.5}
+  .nav nav{gap:8px 14px; font-size:1.05rem; line-height:1.4}
   .hero{padding:16px 0 10px}
   body{font-size:15px}
   table{font-size:.82rem}
