@@ -55,9 +55,9 @@ const TICKERS = {
       bear: "A close below 91.55 reopens the lower supports at 88 and 83."
     },
     files: {
-      study: "files/TMGH_Valuation_Study_15-06-2026_public.docx?v=1506",
-      model: "files/TMGH_Valuation_Study_15-06-2026_public.xlsx?v=1506",
-      pdf:   "files/TMGH_Valuation_Study_15-06-2026_public.pdf?v=1506"
+      study: "files/TMGH_Valuation_Study_15-06-2026_public.docx?v=1506b",
+      model: "files/TMGH_Valuation_Study_15-06-2026_public.xlsx?v=1506b",
+      pdf:   "files/TMGH_Valuation_Study_15-06-2026_public.pdf?v=1506b"
     }
   }
 };
