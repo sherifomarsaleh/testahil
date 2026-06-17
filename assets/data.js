@@ -2,7 +2,7 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-06-15" };
+const SITE = { updated: "2026-06-17" };
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
@@ -36,23 +36,23 @@ const TICKERS = {
   TMGH: {
     name: "Talaat Moustafa Group Holding",
     code: "EGX:TMGH",
-    spot: 95.68,
-    spotDate: "close 14 Jun 2026",
+    spot: 96.80,
+    spotDate: "close 17 Jun 2026",
     ccy: "EGP",
-    fair: { bear: 83.6, base: 147.12, full: 189.6 },
+    fair: { bear: 83.6, base: 147.12, full: 189.6 },          // 9 Jun 2026 valuation — unchanged in the 17 Jun price refresh
     dist: {
-      t20: { label:"1 month (T+20)",  p5:81.42, p25:91.17, p50:98.31,  p75:106.10, p95:119.24, resolve:"2026-07-14" },
-      t60: { label:"3 months (T+60)", p5:75.58, p25:91.20, p50:103.93, p75:118.41, p95:142.75, resolve:"2026-09-08" }
+      t20: { label:"1 month (T+20)",  p5:82.37, p25:92.24, p50:99.46,  p75:107.34, p95:120.63, resolve:"2026-07-16" },
+      t60: { label:"3 months (T+60)", p5:76.47, p25:92.27, p50:105.14, p75:119.80, p95:144.42, resolve:"2026-09-10" }
     },
     touch: [ /* descending high → low */
-      [126, 2, 24], [118, 8, 39], [110, 24, 58], [100, 66, 85], [88, 29, 48], [83, 11, 29]
+      [126, 3, 27], [118, 10, 42], [110, 28, 61], [100, 73, 88], [88, 25, 44], [83, 9, 26]
     ],
-    levels: { res:[101.40, 99.45, 96.10], sup:[92.16, 91.55, 86.56] },
+    levels: { res:[101.40, 99.27, 97.40], sup:[95.26, 92.78, 86.56] },
     tech: {
-      trend: "Recovering — bounce off the 50-day on rising volume",
-      summary: "After a pullback, the price found a floor at its rising 50-day average and bounced back on the heaviest buying in two weeks. Momentum is turning back up (RSI recovering, the daily MACD narrowing), and the price has reclaimed its short-term average — a correction that's resolving back upward inside an intact uptrend.",
-      bull: "A daily close above 97.40 confirms the recovery is back on.",
-      bear: "A close below 91.55 reopens the lower supports at 88 and 83."
+      trend: "Recovering — pullback held the 50-day, bounce extended on heavy volume",
+      summary: "The pullback off the recent high held at the rising 50-day average and the recovery has extended on the heaviest volume in the sample, reclaiming the 20-day average and tagging a new intraday high. Momentum has turned back up (RSI back above its moving average, the daily MACD histogram narrowing) — a correction resolving back upward inside an intact uptrend.",
+      bull: "A daily close above the 97.4–98.0 swing-high cluster confirms the resumption toward 100–101.4.",
+      bear: "A close below the 92.78 fifty-day reopens the lower supports at 88 and 83."
     },
     files: {
       study: "files/TMGH_Valuation_Study_17-06-2026_public.docx?v=1706",
