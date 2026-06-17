@@ -84,43 +84,47 @@
 <script>
 const F2 = n => Number(n).toLocaleString("en-US",{maximumFractionDigits:2});
 
+// open until graded (realized_close filled)
+const isOpen = r => r.realized_close == null;
+const isInBand = r => (r.in_90 != null) ? r.in_90 : (r.realized_close >= r.p5 && r.realized_close <= r.p95);
+
 function renderRow(r){
   let res;
-  if(r.status==="open"){
-    const d = new Date(r.resolve).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
+  if(isOpen(r)){
+    const d = new Date(r.grade_date).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
     res = `<span class="chip">check on ${d}</span>`;
   } else {
-    const inBand = r.realized >= r.lo && r.realized <= r.hi;
-    res = `<span class="num">${F2(r.realized)}</span> ${inBand
+    const inBand = isInBand(r);
+    res = `<span class="num">${F2(r.realized_close)}</span> ${inBand
       ? '<span class="ok">we got it right ✓</span>'
       : '<span class="bad">we were off ✗</span>'}`;
   }
   return `<tr>
-    <td class="num">${r.pub}</td>
-    <td><b>${r.inst}</b></td>
-    <td class="num">${r.horizon}</td>
-    <td class="num">${F2(r.median)}</td>
-    <td class="num">${F2(r.lo)} – ${F2(r.hi)} <span class="muted">(${r.band})</span></td>
+    <td class="num">${r.anchor_date}</td>
+    <td><b>${r.instrument}</b></td>
+    <td class="num">${r.horizon_label}</td>
+    <td class="num">${F2(r.p50)}</td>
+    <td class="num">${F2(r.p5)} – ${F2(r.p95)} <span class="muted">(90%)</span></td>
     <td>${res}</td>
   </tr>`;
 }
 
 function buildPanel(rows, tbodyId, summaryId){
   // newest first
-  const sorted = [...rows].sort((a,b) => b.pub.localeCompare(a.pub) || b.horizon.localeCompare(a.horizon));
+  const sorted = [...rows].sort((a,b) => b.anchor_date.localeCompare(a.anchor_date) || b.horizon_label.localeCompare(a.horizon_label));
   document.getElementById(tbodyId).innerHTML = sorted.map(renderRow).join("");
   let hit=0, scored=0;
-  rows.forEach(r=>{ if(r.status!=="open"){ scored++; if(r.realized>=r.lo && r.realized<=r.hi) hit++; }});
+  rows.forEach(r=>{ if(!isOpen(r)){ scored++; if(isInBand(r)) hit++; }});
   const sm = document.getElementById(summaryId);
   if(!sm) return;
   sm.textContent = scored
     ? `Right ${hit} out of ${scored} times so far.`
-    : `Nothing to check yet — first one on ${new Date([...rows].sort((a,b)=>a.resolve.localeCompare(b.resolve))[0].resolve).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}.`;
+    : `Nothing to check yet — first one on ${new Date([...rows].sort((a,b)=>a.grade_date.localeCompare(b.grade_date))[0].grade_date).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}.`;
 }
 
-// Collect unique tickers in order of most-recent publication
+// Collect unique instruments in order of most-recent anchor
 const tickerOrder = [...new Set(
-  [...LEDGER].sort((a,b)=>b.pub.localeCompare(a.pub)).map(r=>r.inst)
+  [...LEDGER].sort((a,b)=>b.anchor_date.localeCompare(a.anchor_date)).map(r=>r.instrument)
 )];
 
 const tabBar    = document.getElementById("tab-bar");
@@ -155,13 +159,13 @@ buildPanel(LEDGER, "tbody-all", "sum-all");
 
 // Build per-ticker panels
 tickerOrder.forEach(t=>{
-  buildPanel(LEDGER.filter(r=>r.inst===t), `tbody-${t}`, `sum-${t}`);
+  buildPanel(LEDGER.filter(r=>r.instrument===t), `tbody-${t}`, `sum-${t}`);
 });
 
 // Overall summary
 let hit=0, scored=0;
-LEDGER.forEach(r=>{ if(r.status!=="open"){ scored++; if(r.realized>=r.lo && r.realized<=r.hi) hit++; }});
-const firstDate = new Date([...LEDGER].sort((a,b)=>a.resolve.localeCompare(b.resolve))[0].resolve)
+LEDGER.forEach(r=>{ if(!isOpen(r)){ scored++; if(isInBand(r)) hit++; }});
+const firstDate = new Date([...LEDGER].sort((a,b)=>a.grade_date.localeCompare(b.grade_date))[0].grade_date)
   .toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
 document.getElementById("lg-sum-all").textContent = scored
   ? `So far, the real price landed inside our forecast range ${hit} times out of ${scored}.`

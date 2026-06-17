@@ -81,13 +81,83 @@ const COMING = [
 /* ---------- public ledger ----------
    Append a row whenever a distribution is published.
    On resolve date: set realized + status:"scored". NEVER delete a row. */
+/* ============================================================================
+   CALIBRATION LEDGER — universal, security-agnostic schema.
+   Keyed off `instrument` + `asset_class` (equity | metal | other), NOT EGX- or
+   stock-specific. Every future study (any exchange, any asset class) inherits
+   this exact structure. Anchor fields are logged at publication; grade_* fields
+   stay null until grade_date, then filled with the realized outcome.
+   Relative touch bands (touch_*) store the model's P(touch ±X% from anchor)
+   within the horizon; touch_hit_* are filled at grade time (true/false/null).
+   ----------------------------------------------------------------------------
+   Field reference (per row):
+     instrument        ticker/symbol, e.g. "PHDC", "XAGUSD"
+     asset_class        "equity" | "metal" | "other"
+     anchor_date        ISO date the forecast was struck (study anchor)
+     anchor_price       price at anchor
+     ccy                currency of price
+     horizon_label      free text, e.g. "T+20", "T+60", "3M"
+     grade_date         ISO date the horizon matures / is graded
+     cycle_no           rolling-cycle number for this instrument (1,2,3…)
+     reanchor_from      anchor_date of the prior cycle this supersedes, or null
+     p5..p95            predicted percentile path values at the horizon
+     touch              relative touch-probability bands from anchor:
+                          { "+5":%, "+10":%, "+15":%, "+20":%, "-5":%, "-10":% }
+     --- grade-time (null until graded) ---
+     realized_close     close at grade_date
+     realized_high      highest close reached within the horizon window
+     realized_low       lowest close reached within the horizon window
+     in_90              realized_close within [p5,p95]?            (bool|null)
+     in_50              realized_close within [p25,p75]?           (bool|null)
+     realized_quantile  empirical quantile of realized_close in the dist (0..1)
+     median_err         realized_close − p50 (signed)
+     touch_hit          per-band hit flags filled at grade time:
+                          { "+5":bool, "+10":bool, "+15":bool, "+20":bool,
+                            "-5":bool, "-10":bool }
+   ========================================================================== */
 const LEDGER = [
-  { pub:"2026-06-09", inst:"PHDC", horizon:"T+20", median:15.44, lo:11.93, hi:19.99, band:"90%", resolve:"2026-07-07", status:"open", realized:null },
-  { pub:"2026-06-09", inst:"PHDC", horizon:"T+60", median:16.37, lo:10.53, hi:25.35, band:"90%", resolve:"2026-09-02", status:"open", realized:null },
-  { pub:"2026-06-11", inst:"PHDC", horizon:"T+20", median:14.92, lo:11.53, hi:19.32, band:"90%", resolve:"2026-07-09", status:"open", realized:null },
-  { pub:"2026-06-11", inst:"PHDC", horizon:"T+60", median:15.83, lo:10.18, hi:24.50, band:"90%", resolve:"2026-09-03", status:"open", realized:null },
-  { pub:"2026-06-15", inst:"TMGH", horizon:"T+20", median:98.31,  lo:81.42, hi:119.24, band:"90%", resolve:"2026-07-14", status:"open", realized:null },
-  { pub:"2026-06-15", inst:"TMGH", horizon:"T+60", median:103.93, lo:75.58, hi:142.75, band:"90%", resolve:"2026-09-08", status:"open", realized:null }
+  // ---- PHDC · equity · cycle 2 (11 Jun 2026 published study) ----
+  {
+    instrument:"PHDC", asset_class:"equity",
+    anchor_date:"2026-06-11", anchor_price:14.50, ccy:"EGP",
+    horizon_label:"T+20", grade_date:"2026-07-09", cycle_no:2, reanchor_from:"2026-06-09",
+    p5:11.53, p25:13.42, p50:14.92, p75:16.56, p95:19.32,
+    touch:{ "+5":62, "+10":38, "+15":21, "+20":12, "-5":55, "-10":33 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"PHDC", asset_class:"equity",
+    anchor_date:"2026-06-11", anchor_price:14.50, ccy:"EGP",
+    horizon_label:"T+60", grade_date:"2026-09-03", cycle_no:2, reanchor_from:"2026-06-09",
+    p5:10.18, p25:13.10, p50:15.83, p75:19.40, p95:24.50,
+    touch:{ "+5":72, "+10":55, "+15":41, "+20":30, "-5":61, "-10":44 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  // ---- TMGH · equity · cycle 1 (15 Jun 2026 published study) ----
+  {
+    instrument:"TMGH", asset_class:"equity",
+    anchor_date:"2026-06-15", anchor_price:95.68, ccy:"EGP",
+    horizon_label:"T+20", grade_date:"2026-07-14", cycle_no:1, reanchor_from:null,
+    p5:81.42, p25:91.17, p50:98.31, p75:106.10, p95:119.24,
+    touch:{ "+5":66, "+10":24, "+15":8, "+20":2, "-5":29, "-10":11 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"TMGH", asset_class:"equity",
+    anchor_date:"2026-06-15", anchor_price:95.68, ccy:"EGP",
+    horizon_label:"T+60", grade_date:"2026-09-08", cycle_no:1, reanchor_from:null,
+    p5:75.58, p25:91.20, p50:103.93, p75:118.41, p95:142.75,
+    touch:{ "+5":85, "+10":58, "+15":39, "+20":24, "-5":48, "-10":29 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  }
 ];
 
 /* ---------- calculator data ----------

@@ -110,21 +110,31 @@ function renderPlain(containerId, d, spot, horizonLabel){
 }
 
 /* ---------- public ledger helper (kept) ---------- */
+/* derived status from the universal ledger row: open until graded */
+function ledgerStatus(r){ return (r.realized_close==null) ? "open" : "graded"; }
+
 function buildLedger(tbodyId, summaryId){
   const tb=document.getElementById(tbodyId); if(!tb) return;
   let hit=0, scored=0;
-  tb.innerHTML = LEDGER.map(r=>{
+  // newest anchor first, then longer horizon first
+  const rows=[...LEDGER].sort((a,b)=> b.anchor_date.localeCompare(a.anchor_date) || b.horizon_label.localeCompare(a.horizon_label));
+  tb.innerHTML = rows.map(r=>{
     let res;
-    if(r.status==="open"){ res = `<span class="chip">waiting — we'll know on ${r.resolve}</span>`; }
-    else { scored++; const inBand=r.realized>=r.lo&&r.realized<=r.hi; if(inBand) hit++;
-      res = `<span class="num">${F(r.realized)}</span> ${inBand?'<span class="ok">landed in range ✓</span>':'<span class="bad">outside range ✗</span>'}`;}
-    return `<tr><td class="num">${r.pub}</td><td>${r.inst}</td><td class="num">${r.horizon}</td>
-      <td class="num">${F(r.median)}</td><td class="num">${F(r.lo)} – ${F(r.hi)}</td><td>${res}</td></tr>`;
+    if(ledgerStatus(r)==="open"){
+      const d=new Date(r.grade_date).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
+      res = `<span class="chip">waiting — we'll know on ${d}</span>`;
+    } else {
+      scored++; const inBand = (r.in_90!=null) ? r.in_90 : (r.realized_close>=r.p5 && r.realized_close<=r.p95); if(inBand) hit++;
+      res = `<span class="num">${F(r.realized_close)}</span> ${inBand?'<span class="ok">landed in range ✓</span>':'<span class="bad">outside range ✗</span>'}`;
+    }
+    return `<tr><td class="num">${r.anchor_date}</td><td>${r.instrument}</td><td class="num">${r.horizon_label}</td>
+      <td class="num">${F(r.p50)}</td><td class="num">${F(r.p5)} – ${F(r.p95)}</td><td>${res}</td></tr>`;
   }).join("");
   const sm=document.getElementById(summaryId);
+  const firstGrade=[...LEDGER].sort((a,b)=>a.grade_date.localeCompare(b.grade_date))[0].grade_date;
   if(sm) sm.textContent = scored
     ? `Our range contained the real price in ${hit} of ${scored} forecasts we've graded so far.`
-    : `Nothing graded yet — first forecast comes due on ${LEDGER[0].resolve}. Everything we publish stays here, right or wrong.`;
+    : `Nothing graded yet — first forecast comes due on ${new Date(firstGrade).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})}. Everything we publish stays here, right or wrong.`;
 }
 
 /* ---------- calculator ---------- */
@@ -332,11 +342,11 @@ document.addEventListener("DOMContentLoaded",()=>{ initSearch(); initFirstRunHow
 
 /* ---------- track-record badge (honest: shows scored hit-rate, or "awaiting" if none yet) ---------- */
 function trackRecord(){
-  const scored = LEDGER.filter(r=>r.status==="scored" && r.realized!=null);
-  const inrange = scored.filter(r=>r.realized>=r.lo && r.realized<=r.hi).length;
-  const open = LEDGER.filter(r=>r.status==="open").length;
-  // next resolve date among open forecasts
-  const nextDate = LEDGER.filter(r=>r.status==="open").map(r=>r.resolve).sort()[0] || null;
+  const scored = LEDGER.filter(r=>ledgerStatus(r)==="graded");
+  const inrange = scored.filter(r=> (r.in_90!=null) ? r.in_90 : (r.realized_close>=r.p5 && r.realized_close<=r.p95)).length;
+  const open = LEDGER.filter(r=>ledgerStatus(r)==="open").length;
+  // next grade date among open forecasts
+  const nextDate = LEDGER.filter(r=>ledgerStatus(r)==="open").map(r=>r.grade_date).sort()[0] || null;
   return { total:LEDGER.length, scored:scored.length, inrange, open, nextDate };
 }
 function renderTrackBadge(elId){
