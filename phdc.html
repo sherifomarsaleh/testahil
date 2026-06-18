@@ -117,6 +117,342 @@
     </div>
   </section>
 
+  <!-- ============ INTERACTIVE MONTE CARLO (self-contained, scoped #mc-lab) ============ -->
+  <section style="padding-top:8px">
+  <div id="mc-lab">
+    <style>
+      #mc-lab{
+        --mc-bad:var(--red); --mc-mid:var(--amber); --mc-good:var(--green);
+        --mc-band-outer:rgba(42,143,143,.16); --mc-band-inner:rgba(42,143,143,.32);
+        margin-top:4px;
+      }
+      #mc-lab .mc-head{display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-bottom:4px}
+      #mc-lab .mc-eyebrow{font-family:"IBM Plex Mono",monospace; font-size:.7rem; letter-spacing:.18em; text-transform:uppercase; color:var(--teal); margin:0 0 2px}
+      #mc-lab h3.mc-title{font-family:"Alexandria","IBM Plex Sans",sans-serif; font-weight:700; font-size:1.15rem; color:var(--teal); margin:0}
+      #mc-lab .mc-sub{color:var(--muted); font-size:.9rem; margin:2px 0 12px; max-width:62ch}
+      #mc-lab .mc-sub b{color:var(--ink)}
+
+      #mc-lab .mc-card{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px}
+      #mc-lab .mc-card + .mc-card{margin-top:12px}
+      #mc-lab .mc-card-h{display:flex; align-items:baseline; justify-content:space-between; gap:10px; margin:0 0 6px}
+      #mc-lab .mc-card-h h4{font-family:"Alexandria","IBM Plex Sans",sans-serif; font-size:.92rem; font-weight:600; color:var(--ink); margin:0}
+      #mc-lab .mc-card-h .mc-hint{font-size:.72rem; color:var(--muted); font-family:"IBM Plex Mono",monospace}
+
+      #mc-lab .mc-seg{display:inline-flex; background:#EAF2F1; border:1px solid var(--line); border-radius:999px; padding:3px; gap:3px}
+      #mc-lab .mc-seg button{appearance:none; border:0; background:transparent; cursor:pointer; font-family:"IBM Plex Mono",monospace; font-weight:500; font-size:.78rem; letter-spacing:.04em; color:var(--teal); padding:5px 12px; border-radius:999px}
+      #mc-lab .mc-seg button[aria-pressed="true"]{background:#fff; color:var(--ink); box-shadow:0 1px 3px rgba(0,0,0,.1)}
+      #mc-lab .mc-seg button:focus-visible{outline:3px solid var(--teal2); outline-offset:2px}
+
+      #mc-lab .mc-chartwrap{padding:2px 2px 0}
+      #mc-lab svg{display:block; width:100%; height:auto}
+      #mc-lab .mc-axis text{font-family:"IBM Plex Mono",monospace; font-size:10px; fill:var(--muted)}
+      #mc-lab .mc-grid{stroke:var(--line); stroke-width:1}
+      #mc-lab .mc-ref{stroke-dasharray:5 4; stroke-width:1.4}
+      #mc-lab .mc-ref-sup{stroke:var(--red)}
+      #mc-lab .mc-ref-con{stroke:var(--amber)}
+      #mc-lab .mc-ref-anchor{stroke:rgba(14,39,38,.32); stroke-dasharray:1 4; stroke-width:1.1}
+      #mc-lab .mc-reflabel{font-family:"IBM Plex Mono",monospace; font-size:10px; font-weight:600}
+      #mc-lab .mc-median{fill:none; stroke:var(--amber); stroke-width:2.4}
+      #mc-lab .mc-hz{stroke:var(--teal); stroke-width:1.1; stroke-dasharray:2 3; opacity:.5}
+
+      #mc-lab .mc-legend{display:flex; flex-wrap:wrap; gap:6px 14px; margin-top:8px; font-size:.74rem; color:var(--muted)}
+      #mc-lab .mc-legend span{display:inline-flex; align-items:center; gap:6px}
+      #mc-lab .mc-sw{width:15px; height:9px; border-radius:2px; display:inline-block}
+
+      #mc-lab .mc-controls{display:grid; gap:15px}
+      #mc-lab .mc-ctl label{display:flex; justify-content:space-between; align-items:baseline; gap:10px; margin-bottom:7px}
+      #mc-lab .mc-ctl .mc-name{font-size:.9rem; font-weight:600; color:var(--ink)}
+      #mc-lab .mc-ctl .mc-val{font-family:"IBM Plex Mono",monospace; font-size:.78rem; color:var(--teal); background:#EAF2F1; padding:3px 8px; border-radius:6px; white-space:nowrap}
+      #mc-lab .mc-ctl .mc-chan{font-size:.76rem; color:var(--muted); margin:6px 2px 0}
+      #mc-lab input[type=range]{-webkit-appearance:none; appearance:none; width:100%; height:8px; border-radius:8px; outline:none;
+        background:linear-gradient(90deg,var(--mc-bad) 0%,var(--mc-mid) 50%,var(--mc-good) 100%);
+        box-shadow:inset 0 0 0 1px rgba(14,39,38,.10)}
+      #mc-lab input[type=range]::-webkit-slider-thumb{-webkit-appearance:none; width:22px; height:22px; border-radius:50%;
+        background:var(--mc-thumb,#fff); border:3px solid #fff; cursor:pointer; box-shadow:0 0 0 1px rgba(14,39,38,.30),0 1px 4px rgba(14,39,38,.35)}
+      #mc-lab input[type=range]::-moz-range-thumb{width:22px; height:22px; border-radius:50%;
+        background:var(--mc-thumb,#fff); border:3px solid #fff; cursor:pointer; box-shadow:0 0 0 1px rgba(14,39,38,.30),0 1px 4px rgba(14,39,38,.35)}
+      #mc-lab input[type=range]:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 3px var(--teal2)}
+      #mc-lab input[type=range]:focus-visible::-moz-range-thumb{box-shadow:0 0 0 3px var(--teal2)}
+      #mc-lab .mc-ends{display:flex; justify-content:space-between; font-size:.7rem; margin-top:6px}
+      #mc-lab .mc-ends .mc-b{color:var(--red); font-weight:600}
+      #mc-lab .mc-ends .mc-g{color:var(--green); font-weight:600}
+
+      #mc-lab .mc-verdict{padding:13px 16px}
+      #mc-lab .mc-vline{font-size:.92rem; margin:0 0 4px}
+      #mc-lab .mc-big{font-family:"IBM Plex Mono",monospace; font-weight:500; color:var(--teal)}
+      #mc-lab .mc-big.mc-down{color:var(--red)}
+
+      #mc-lab .mc-grid2{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+      @media(max-width:640px){#mc-lab .mc-grid2{grid-template-columns:1fr}}
+      #mc-lab table.mc-pct{width:100%; border-collapse:collapse; font-family:"IBM Plex Mono",monospace; font-size:.78rem}
+      #mc-lab table.mc-pct th,#mc-lab table.mc-pct td{padding:6px 5px; text-align:right; border-bottom:1px solid var(--line)}
+      #mc-lab table.mc-pct th:first-child,#mc-lab table.mc-pct td:first-child{text-align:left; font-family:"IBM Plex Sans",sans-serif}
+      #mc-lab table.mc-pct thead th{font-size:.66rem; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); font-weight:600}
+      #mc-lab table.mc-pct tr.mc-on td{background:rgba(42,143,143,.08)}
+      #mc-lab table.mc-pct .mc-medc{color:var(--amber-text); font-weight:600}
+
+      #mc-lab .mc-zbar{display:flex; height:30px; border-radius:7px; overflow:hidden; margin:2px 0 10px; border:1px solid var(--line)}
+      #mc-lab .mc-zbar div{display:flex; align-items:center; justify-content:center; color:#fff; font-family:"IBM Plex Mono",monospace; font-weight:500; font-size:.72rem; min-width:0}
+      #mc-lab .mc-zleg{display:grid; grid-template-columns:1fr 1fr; gap:4px 12px; font-size:.74rem; color:var(--muted)}
+      #mc-lab .mc-zleg span{display:flex; align-items:center; gap:6px}
+      #mc-lab .mc-dot{width:9px; height:9px; border-radius:2px; flex:none}
+
+      #mc-lab table.mc-ladder{width:100%; border-collapse:collapse; font-family:"IBM Plex Mono",monospace; font-size:.76rem}
+      #mc-lab table.mc-ladder th,#mc-lab table.mc-ladder td{padding:5px 6px; text-align:right; border-bottom:1px solid var(--line)}
+      #mc-lab table.mc-ladder th:first-child,#mc-lab table.mc-ladder td:first-child{text-align:left}
+      #mc-lab table.mc-ladder thead th{font-size:.64rem; letter-spacing:.04em; text-transform:uppercase; color:var(--muted)}
+      #mc-lab table.mc-ladder tr.mc-up td:first-child{color:var(--teal)}
+      #mc-lab table.mc-ladder tr.mc-dn td:first-child{color:var(--red)}
+
+      #mc-lab .mc-foot{font-size:.72rem; color:var(--muted); margin:12px 2px 0; line-height:1.5}
+      #mc-lab .mc-reset{appearance:none; border:1.5px solid var(--teal); background:transparent; cursor:pointer; font-family:"IBM Plex Mono",monospace; font-weight:500; font-size:.74rem; color:var(--teal); padding:6px 12px; border-radius:8px; margin-top:12px}
+      #mc-lab .mc-reset:hover{background:var(--teal); color:#fff}
+      #mc-lab .mc-reset:focus-visible{outline:3px solid var(--teal2); outline-offset:2px}
+    </style>
+
+    <div class="mc-head">
+      <div>
+        <p class="mc-eyebrow">Interactive · runs on your device</p>
+        <h3 class="mc-title">Tune the three biggest forces yourself</h3>
+      </div>
+      <div class="mc-seg" role="group" aria-label="Horizon">
+        <button id="mc-h20" aria-pressed="false">1 month</button>
+        <button id="mc-h60" aria-pressed="true">3 months</button>
+      </div>
+    </div>
+    <p class="mc-sub">Drag a slider and the whole distribution recomputes live — <b>green is better, red is worse</b>. The other seven forces (including the Ras El-Hekma sovereign catalyst) stay fixed at the study calibration. Anchored at today's price; nothing is sent anywhere.</p>
+
+    <div class="mc-card">
+      <div class="mc-chartwrap">
+        <svg id="mc-fan" viewBox="0 0 760 340" role="img" aria-label="Forward price distribution cone">
+          <g id="mc-gridG" class="mc-axis"></g>
+          <path id="mc-band95" fill="var(--mc-band-outer)"></path>
+          <path id="mc-band75" fill="var(--mc-band-inner)"></path>
+          <path id="mc-medianP" class="mc-median"></path>
+          <g id="mc-refG"></g>
+          <line id="mc-hzLine" class="mc-hz"></line>
+          <g id="mc-xlab" class="mc-axis"></g>
+        </svg>
+      </div>
+      <div class="mc-legend">
+        <span><i class="mc-sw" style="background:var(--mc-band-inner)"></i> 25–75% band</span>
+        <span><i class="mc-sw" style="background:var(--mc-band-outer)"></i> 5–95% band</span>
+        <span><i class="mc-sw" style="background:var(--amber); height:3px"></i> median path</span>
+        <span><i class="mc-sw" style="background:var(--red); height:3px"></i> floor 14.11</span>
+        <span><i class="mc-sw" style="background:var(--amber); height:3px; opacity:.7"></i> HSBC target 17.50</span>
+      </div>
+    </div>
+
+    <div class="mc-card">
+      <div class="mc-card-h"><h4>The three levers</h4><span class="mc-hint">most decision-relevant of the 10 forces</span></div>
+      <div class="mc-controls">
+        <div class="mc-ctl">
+          <label for="mc-egp"><span class="mc-name">EGP/USD — impact on PHDC</span><span class="mc-val" id="mc-egpVal">−2.5% / quarter</span></label>
+          <input type="range" id="mc-egp" min="-12" max="2" step="0.5" value="-2.5">
+          <div class="mc-ends"><span class="mc-b">sharp depreciation</span><span class="mc-g">EGP firm / tailwind</span></div>
+          <p class="mc-chan">FX translation and the bid from USD-based investors — the dominant macro driver for an Egyptian developer.</p>
+        </div>
+        <div class="mc-ctl">
+          <label for="mc-geo"><span class="mc-name">Regional security shock — probability</span><span class="mc-val" id="mc-geoVal">30% · −12% if it hits</span></label>
+          <input type="range" id="mc-geo" min="-60" max="-5" step="1" value="-30">
+          <div class="mc-ends"><span class="mc-b">elevated risk</span><span class="mc-g">calm</span></div>
+          <p class="mc-chan">A one-off risk-premium shock over the quarter — the dominant downside tail.</p>
+        </div>
+        <div class="mc-ctl">
+          <label for="mc-lnch"><span class="mc-name">Project launch &amp; sales execution — probability</span><span class="mc-val" id="mc-lnchVal">55% · +8% if it lands</span></label>
+          <input type="range" id="mc-lnch" min="0" max="90" step="1" value="55">
+          <div class="mc-ends"><span class="mc-b">stalls</span><span class="mc-g">strong execution</span></div>
+          <p class="mc-chan">Saadiyat, Ras El-Hekma and Jirian launching on schedule — the summer catalyst and the core bet.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mc-card mc-verdict">
+      <p class="mc-vline">At <b id="mc-hzName">3 months</b> the model centres on <span class="mc-big" id="mc-vMed">EGP 15.8</span> &nbsp;·&nbsp; 5–95% range <span class="mc-big" id="mc-vRange">10.2 – 24.5</span></p>
+      <p class="mc-vline">Chance of finishing below the 14.11 floor: <span class="mc-big mc-down" id="mc-vBelow">33%</span> &nbsp;·&nbsp; at or above HSBC's 17.50 target: <span class="mc-big" id="mc-vCons">35%</span></p>
+    </div>
+
+    <div class="mc-grid2">
+      <div class="mc-card">
+        <div class="mc-card-h"><h4>Probability zones</h4><span class="mc-hint" id="mc-zHz">at 3 months</span></div>
+        <div class="mc-zbar" id="mc-zbar" aria-hidden="true"></div>
+        <div class="mc-zleg">
+          <span><i class="mc-dot" style="background:var(--red)"></i> below floor &lt;14.11</span>
+          <span><i class="mc-dot" style="background:var(--amber)"></i> 14.11 – 15.55</span>
+          <span><i class="mc-dot" style="background:var(--teal2)"></i> 15.55 – 17.50</span>
+          <span><i class="mc-dot" style="background:var(--teal)"></i> ≥ HSBC 17.50</span>
+        </div>
+      </div>
+      <div class="mc-card">
+        <div class="mc-card-h"><h4>Percentiles (EGP/share)</h4></div>
+        <table class="mc-pct">
+          <thead><tr><th>Horizon</th><th>5%</th><th>25%</th><th>Median</th><th>75%</th><th>95%</th></tr></thead>
+          <tbody>
+            <tr id="mc-row20"><td>1 month</td><td id="mc-p20_5"></td><td id="mc-p20_25"></td><td class="mc-medc" id="mc-p20_50"></td><td id="mc-p20_75"></td><td id="mc-p20_95"></td></tr>
+            <tr id="mc-row60"><td>3 months</td><td id="mc-p60_5"></td><td id="mc-p60_25"></td><td class="mc-medc" id="mc-p60_50"></td><td id="mc-p60_75"></td><td id="mc-p60_95"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="mc-card" style="margin-top:12px">
+      <div class="mc-card-h"><h4>Level-touch probabilities</h4><span class="mc-hint">chance the price touches a level before the date</span></div>
+      <table class="mc-ladder">
+        <thead><tr><th>Level</th><th>within 1 month</th><th>within 3 months</th></tr></thead>
+        <tbody id="mc-ladderBody"></tbody>
+      </table>
+    </div>
+
+    <button class="mc-reset" id="mc-reset">Reset to study baseline</button>
+
+    <p class="mc-foot">One lognormal forward built from the study's 10-factor calibration: five continuous forces set the drift and spread, five event forces add skew and width. Percentiles and zones are closed-form; touch probabilities use the reflection principle with a discrete-monitoring correction, reproducing the published 50,000-path engine. Moving a lever re-derives the maths instantly. Illustrative of the model — not a forecast, not advice.</p>
+
+    <script>
+    (function(){
+      "use strict";
+      function boot(){
+        var T=null;
+        try{ if(typeof TICKERS!=="undefined" && TICKERS && TICKERS.PHDC){ T=TICKERS.PHDC; } }catch(e){}
+        var S0=(T&&typeof T.spot==="number")?T.spot:14.5;
+        var H=60, BETA=0.5826;
+        // PHDC reference levels (Monte Carlo sheet)
+        var FLOOR=14.11, R2=15.55, TARGET=17.50;
+        // fixed factors (held at study calibration)
+        var CONT_FIXED=[["CBE",0.020,0.05],["CPI",0.015,0.04],["EGX30",0.015,0.08],["Brent",0.005,0.04]];
+        var IDIO=0.205, EGP_VOL=0.07;
+        var EV_FIXED=[["RasElHekma",0.35,0.10,0.04],["Tourism",0.40,0.02,0.06],["Mortgage",0.35,0.02,0.05]];
+        var GEO_MEAN=-0.12, GEO_SD=0.05, LNCH_MEAN=0.08, LNCH_SD=0.04;
+
+        function erf(x){var s=x<0?-1:1;x=Math.abs(x);var t=1/(1+0.3275911*x);
+          var y=1-(((((1.061405429*t-1.453152027)*t)+1.421413741)*t-0.284496736)*t+0.254829592)*t*Math.exp(-x*x);return s*y;}
+        var Phi=function(z){return 0.5*(1+erf(z/Math.SQRT2));};
+        var Z={5:-1.6448536,25:-0.6744898,50:0,75:0.6744898,95:1.6448536};
+
+        function moments(egpDrift,geoP,lnchP){
+          var mu=egpDrift, v=EGP_VOL*EGP_VOL+IDIO*IDIO, i;
+          for(i=0;i<CONT_FIXED.length;i++){mu+=CONT_FIXED[i][1]; v+=CONT_FIXED[i][2]*CONT_FIXED[i][2];}
+          var ev=[["Geo",geoP,GEO_MEAN,GEO_SD],["Launch",lnchP,LNCH_MEAN,LNCH_SD]].concat(EV_FIXED);
+          for(i=0;i<ev.length;i++){var p=ev[i][1],m=ev[i][2],sd=ev[i][3]; mu+=p*m; v+=p*(sd*sd+(1-p)*m*m);}
+          return {mu3:mu,var3:v};
+        }
+        function price(M,Tn,q){return S0*Math.exp(M.mu3*(Tn/H)+Z[q]*Math.sqrt(M.var3*Tn/H));}
+        function touch(M,L,Tn,up){
+          var nu=M.mu3*(Tn/H), sg=Math.sqrt(M.var3*Tn/H), sStep=Math.sqrt(M.var3/H), b=Math.log(L/S0);
+          b+=up?BETA*sStep:-BETA*sStep;
+          if(up)return Phi((-b+nu)/sg)+Math.exp(2*nu*b/(sg*sg))*Phi((-b-nu)/sg);
+          return Phi((b-nu)/sg)+Math.exp(2*nu*b/(sg*sg))*Phi((b+nu)/sg);
+        }
+        function cdfBelow(M,L,Tn){return Phi((Math.log(L/S0)-M.mu3*(Tn/H))/Math.sqrt(M.var3*Tn/H));}
+
+        // number formatting adapts to price magnitude
+        var DEC=S0<30?1:0;
+        var fmtN=function(v,d){d=(d==null)?DEC:d; return v.toFixed(d);};
+        var fmt=function(v){return "EGP "+fmtN(v);};
+        var lvl=function(v){return (Math.round(v*100)/100).toString();};
+
+        // scales — y-domain auto-fits the full slider range
+        var VB={w:760,h:340}, m={l:48,r:58,t:14,b:26};
+        var X0=m.l, X1=VB.w-m.r, Y0=VB.h-m.b, Y1=m.t;
+        var worst=moments(-0.12,0.60,0.0), best=moments(0.02,0.05,0.90);
+        var lo=price(worst,60,5)*0.97, hi=price(best,60,95)*1.03;
+        var rng=hi-lo, rstep=Math.pow(10,Math.floor(Math.log(rng/6)/Math.LN10));
+        var niceStep=(rng/6/rstep>=5)?5*rstep:(rng/6/rstep>=2)?2*rstep:rstep;
+        var PMIN=Math.floor(lo/niceStep)*niceStep, PMAX=Math.ceil(hi/niceStep)*niceStep;
+        var gdec=niceStep<1?(niceStep<0.5?2:1):0;
+        var xToPx=function(t){return X0+(t/H)*(X1-X0);};
+        var yToPx=function(p){return Y0+((p-PMIN)/(PMAX-PMIN))*(Y1-Y0);};
+        var el=function(id){return document.getElementById(id);};
+
+        (function staticChart(){
+          var g=el("mc-gridG"), s="", p, y;
+          for(p=PMIN;p<=PMAX+1e-9;p+=niceStep){ y=yToPx(p);
+            s+='<line class="mc-grid" x1="'+X0+'" x2="'+X1+'" y1="'+y.toFixed(1)+'" y2="'+y.toFixed(1)+'"></line>';
+            s+='<text x="'+(X0-8)+'" y="'+(y+3).toFixed(1)+'" text-anchor="end">'+p.toFixed(gdec)+'</text>';}
+          g.innerHTML=s;
+          var xl=el("mc-xlab"), xs="";[0,10,20,30,40,50,60].forEach(function(t){var x=xToPx(t);
+            xs+='<text x="'+x.toFixed(1)+'" y="'+(Y0+18)+'" text-anchor="middle">'+(t===0?"today":"T+"+t)+'</text>';});
+          xl.innerHTML=xs;
+          var r=el("mc-refG"), ya=yToPx(S0), ys=yToPx(FLOOR), yc=yToPx(TARGET);
+          r.innerHTML='<line class="mc-ref mc-ref-anchor" x1="'+X0+'" x2="'+X1+'" y1="'+ya.toFixed(1)+'" y2="'+ya.toFixed(1)+'"></line>'+
+            '<line class="mc-ref mc-ref-sup" x1="'+X0+'" x2="'+X1+'" y1="'+ys.toFixed(1)+'" y2="'+ys.toFixed(1)+'"></line>'+
+            '<text class="mc-reflabel" fill="var(--red)" x="'+(X1+4)+'" y="'+(ys+3).toFixed(1)+'">'+FLOOR.toFixed(1)+'</text>'+
+            '<line class="mc-ref mc-ref-con" x1="'+X0+'" x2="'+X1+'" y1="'+yc.toFixed(1)+'" y2="'+yc.toFixed(1)+'"></line>'+
+            '<text class="mc-reflabel" fill="var(--amber-text)" x="'+(X1+4)+'" y="'+(yc+3).toFixed(1)+'">'+TARGET.toFixed(1)+'</text>';
+        })();
+
+        function bandPath(M,qHi,qLo){var up="",lo2="",t,x;
+          for(t=0;t<=H;t++){x=xToPx(t).toFixed(1); up+=(t?"L":"M")+x+","+yToPx(price(M,t,qHi)).toFixed(1)+" ";}
+          for(t=H;t>=0;t--){x=xToPx(t).toFixed(1); lo2+="L"+x+","+yToPx(price(M,t,qLo)).toFixed(1)+" ";}
+          return up+lo2+"Z";}
+        function medianPath(M){var d="",t,x; for(t=0;t<=H;t++){x=xToPx(t).toFixed(1); d+=(t?"L":"M")+x+","+yToPx(price(M,t,50)).toFixed(1)+" ";} return d;}
+
+        function lerp(a,b,t){return Math.round(a+(b-a)*t);}
+        function gradeColor(f){f=Math.max(0,Math.min(1,f));
+          var bad=[181,72,58],mid=[201,138,45],good=[46,125,91],r,g,b,t;
+          if(f<0.5){t=f/0.5; r=lerp(bad[0],mid[0],t); g=lerp(bad[1],mid[1],t); b=lerp(bad[2],mid[2],t);}
+          else{t=(f-0.5)/0.5; r=lerp(mid[0],good[0],t); g=lerp(mid[1],good[1],t); b=lerp(mid[2],good[2],t);}
+          return "rgb("+r+","+g+","+b+")";}
+        function paintThumb(s){var f=(parseFloat(s.value)-parseFloat(s.min))/(parseFloat(s.max)-parseFloat(s.min));
+          s.style.setProperty("--mc-thumb",gradeColor(f));}
+
+        var egp=el("mc-egp"), geo=el("mc-geo"), lnch=el("mc-lnch"), HZ=60;
+        var LADDER_UP=[15.55,16.5,17.5,18.5,20], LADDER_DN=[13.9,13.4];
+
+        function setZbar(M,Tn){
+          var pf=cdfBelow(M,FLOOR,Tn), pr2=cdfBelow(M,R2,Tn), pt=cdfBelow(M,TARGET,Tn);
+          var z=[pf,pr2-pf,pt-pr2,1-pt], cols=["var(--red)","var(--amber)","var(--teal2)","var(--teal)"];
+          var bar=el("mc-zbar"); bar.innerHTML="";
+          z.forEach(function(p,i){var d=document.createElement("div");
+            d.style.flex="0 0 "+(p*100).toFixed(2)+"%"; d.style.background=cols[i];
+            d.textContent=p>=0.07?Math.round(p*100)+"%":""; bar.appendChild(d);});
+        }
+        function setLadder(M){var s="";
+          LADDER_UP.forEach(function(L){s+='<tr class="mc-up"><td>'+lvl(L)+'</td><td>'+Math.round(touch(M,L,20,true)*100)+'%</td><td>'+Math.round(touch(M,L,60,true)*100)+'%</td></tr>';});
+          LADDER_DN.forEach(function(L){s+='<tr class="mc-dn"><td>'+lvl(L)+' ▼</td><td>'+Math.round(touch(M,L,20,false)*100)+'%</td><td>'+Math.round(touch(M,L,60,false)*100)+'%</td></tr>';});
+          el("mc-ladderBody").innerHTML=s;}
+
+        function render(){
+          var egpD=parseFloat(egp.value)/100, geoP=-parseInt(geo.value,10)/100, lnchP=parseInt(lnch.value,10)/100;
+          var M=moments(egpD,geoP,lnchP);
+          paintThumb(egp); paintThumb(geo); paintThumb(lnch);
+          el("mc-egpVal").textContent=(egpD>=0?"+":"−")+Math.abs(egpD*100).toFixed(1)+"% / quarter";
+          el("mc-geoVal").textContent=Math.round(geoP*100)+"% · −12% if it hits";
+          el("mc-lnchVal").textContent=Math.round(lnchP*100)+"% · +8% if it lands";
+          el("mc-band95").setAttribute("d",bandPath(M,95,5));
+          el("mc-band75").setAttribute("d",bandPath(M,75,25));
+          el("mc-medianP").setAttribute("d",medianPath(M));
+          var xh=xToPx(HZ).toFixed(1), hz=el("mc-hzLine");
+          hz.setAttribute("x1",xh); hz.setAttribute("x2",xh); hz.setAttribute("y1",Y0.toFixed(1)); hz.setAttribute("y2",Y1.toFixed(1));
+          [20,60].forEach(function(Tn){[5,25,50,75,95].forEach(function(q){el("mc-p"+Tn+"_"+q).textContent=fmtN(price(M,Tn,q),2);});});
+          el("mc-row20").classList.toggle("mc-on",HZ===20);
+          el("mc-row60").classList.toggle("mc-on",HZ===60);
+          var hLabel=HZ===20?"1 month":"3 months";
+          el("mc-hzName").textContent=hLabel;
+          el("mc-vMed").textContent=fmt(price(M,HZ,50));
+          el("mc-vRange").textContent=fmtN(price(M,HZ,5))+" – "+fmtN(price(M,HZ,95));
+          el("mc-vBelow").textContent=Math.round(cdfBelow(M,FLOOR,HZ)*100)+"%";
+          el("mc-vCons").textContent=Math.round((1-cdfBelow(M,TARGET,HZ))*100)+"%";
+          el("mc-zHz").textContent="at "+hLabel;
+          setZbar(M,HZ); setLadder(M);
+        }
+        var raf=null;
+        function schedule(){ if(raf)return; raf=requestAnimationFrame(function(){raf=null;render();}); }
+        [egp,geo,lnch].forEach(function(s){s.addEventListener("input",schedule);});
+        function setHz(h){HZ=h; el("mc-h20").setAttribute("aria-pressed",h===20); el("mc-h60").setAttribute("aria-pressed",h===60); render();}
+        el("mc-h20").addEventListener("click",function(){setHz(20);});
+        el("mc-h60").addEventListener("click",function(){setHz(60);});
+        el("mc-reset").addEventListener("click",function(){egp.value="-2.5"; geo.value="-30"; lnch.value="55"; setHz(60); render();});
+        render();
+      }
+      if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",boot);
+      else boot();
+    })();
+    </script>
+  </div>
+  </section>
+  <!-- ============ /INTERACTIVE MONTE CARLO ============ -->
+
+
   <!-- DETAILED NUMBERS — opt in -->
   <details class="more">
     <summary>Show the detailed numbers</summary>
