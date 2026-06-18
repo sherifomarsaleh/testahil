@@ -242,7 +242,7 @@ function renderGauge(elId, spot, fair){
       aria-label="Today's price ${F(spot)} versus our fair value ${F(base)}.">
     <style>.g{font:600 ${fG}px 'IBM Plex Mono',monospace}.gsm{font:600 ${fGsm}px 'IBM Plex Mono',monospace}.gmut{fill:#8A9A98}.gink{fill:#0E2726}.gbase{fill:#1B5E5E}</style>
     <defs><linearGradient id="vg" gradientUnits="userSpaceOnUse" x1="${X(min)}" y1="0" x2="${X(max)}" y2="0">
-      <stop offset="0" stop-color="#C0392B"/><stop offset="0.25" stop-color="#D06A2C"/><stop offset="0.5" stop-color="#C98A2D"/><stop offset="0.75" stop-color="#6FA85C"/><stop offset="1" stop-color="#2E7D5B"/>
+      <stop offset="0" stop-color="#2E7D5B"/><stop offset="0.25" stop-color="#6FA85C"/><stop offset="0.5" stop-color="#C98A2D"/><stop offset="0.75" stop-color="#D06A2C"/><stop offset="1" stop-color="#C0392B"/>
     </linearGradient></defs>
     <rect x="${X(min)}" y="${y-6}" width="${X(max)-X(min)}" height="12" rx="6" fill="url(#vg)"/>
     <!-- our value mark + label ABOVE -->
@@ -252,8 +252,8 @@ function renderGauge(elId, spot, fair){
     <circle cx="${X(spot)}" cy="${y}" r="10" fill="#fff" stroke="#0E2726" stroke-width="4"/>
     <text x="${todayX}" y="${todY}" text-anchor="middle" class="g gink">today ${F(spot)}</text>
     <!-- end labels on the lowest row -->
-    <text x="30" y="${endY}" class="gsm gmut">← expensive</text>
-    <text x="${W-30}" y="${endY}" text-anchor="end" class="gsm gmut">cheap →</text>
+    <text x="30" y="${endY}" class="gsm gmut">← cheap</text>
+    <text x="${W-30}" y="${endY}" text-anchor="end" class="gsm gmut">expensive →</text>
   </svg>
   <p class="gauge-verdict ${v.tone}">${v.label} <span class="muted">(${v.gap>=0?'+':''}${Math.round(v.gap*100)}% to our value)</span></p>`;
 }
