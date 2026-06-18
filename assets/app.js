@@ -226,21 +226,21 @@ function valuationVerdict(spot, base){
   if(gap <= -0.15) return {label:"Looks expensive vs our estimate", tone:"rich",  gap};
   return {label:"About fairly priced vs our estimate", tone:"fair", gap};
 }
-function renderGauge(elId, spot, fair){
+function renderGauge(elId, spot, fair, asof){
   const el=document.getElementById(elId); if(!el) return;
   const {bear,base,full}=fair;
   const lo=Math.min(bear,spot), hi=Math.max(full,spot);
   const pad=(hi-lo)*0.04, min=lo-pad, max=hi+pad;
   const mob = (typeof window!=="undefined" && window.innerWidth < 640);
-  const fG = mob ? 28 : 18, fGsm = mob ? 24 : 15;
-  const W=1000, H = mob ? 168 : 124, y = mob ? 62 : 46;
-  const valY = mob ? y-34 : y-24, todY = mob ? y+46 : y+32, endY = mob ? y+82 : y+58;
+  const fG = mob ? 28 : 18, fGsm = mob ? 24 : 15, fGdt = mob ? 20 : 13;
+  const W=1000, H = mob ? 184 : 138, y = mob ? 62 : 46;
+  const valY = mob ? y-34 : y-24, todY = mob ? y+44 : y+30, dateY = mob ? y+74 : y+50, endY = mob ? y+104 : y+74;
   const X=v=>30+(v-min)/(max-min)*(W-60);
   const v=valuationVerdict(spot,base);
   const todayX = Math.max(70, Math.min(W-70, X(spot)));
   el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" role="img"
-      aria-label="Today's price ${F(spot)} versus our fair value ${F(base)}.">
-    <style>.g{font:600 ${fG}px 'IBM Plex Mono',monospace}.gsm{font:600 ${fGsm}px 'IBM Plex Mono',monospace}.gmut{fill:#8A9A98}.gink{fill:#0E2726}.gbase{fill:#1B5E5E}</style>
+      aria-label="Latest price ${F(spot)} versus our fair value ${F(base)}.">
+    <style>.g{font:600 ${fG}px 'IBM Plex Mono',monospace}.gsm{font:600 ${fGsm}px 'IBM Plex Mono',monospace}.gdt{font:500 ${fGdt}px 'IBM Plex Mono',monospace}.gmut{fill:#8A9A98}.gink{fill:#0E2726}.gbase{fill:#1B5E5E}</style>
     <defs><linearGradient id="vg" gradientUnits="userSpaceOnUse" x1="${X(min)}" y1="0" x2="${X(max)}" y2="0">
       <stop offset="0" stop-color="#2E7D5B"/><stop offset="0.25" stop-color="#6FA85C"/><stop offset="0.5" stop-color="#C98A2D"/><stop offset="0.75" stop-color="#D06A2C"/><stop offset="1" stop-color="#C0392B"/>
     </linearGradient></defs>
@@ -250,7 +250,8 @@ function renderGauge(elId, spot, fair){
     <text x="${X(base)}" y="${valY}" text-anchor="middle" class="g gbase">our value ${F(base)}</text>
     <!-- today mark + label BELOW -->
     <circle cx="${X(spot)}" cy="${y}" r="10" fill="#fff" stroke="#0E2726" stroke-width="4"/>
-    <text x="${todayX}" y="${todY}" text-anchor="middle" class="g gink">today ${F(spot)}</text>
+    <text x="${todayX}" y="${todY}" text-anchor="middle" class="g gink">latest ${F(spot)}</text>
+    ${asof?`<text x="${todayX}" y="${dateY}" text-anchor="middle" class="gdt gmut">${asof}</text>`:""}
     <!-- end labels on the lowest row -->
     <text x="30" y="${endY}" class="gsm gmut">← cheap</text>
     <text x="${W-30}" y="${endY}" text-anchor="end" class="gsm gmut">expensive →</text>

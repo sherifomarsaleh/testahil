@@ -557,7 +557,7 @@
   </div>
 </div>
 
-<script src="assets/data.js"></script><script src="assets/app.js?v=20260618c"></script>
+<script src="assets/data.js"></script><script src="assets/app.js?v=20260618d"></script>
 <script>
 const T=TICKERS.PHDC;
 document.getElementById("upd").textContent=SITE.updated;
@@ -596,7 +596,7 @@ show("t20");
 document.getElementById("dl-pdf").href=T.files.pdf;
 document.getElementById("dl-model").href=T.files.model;
 
-renderGauge("gauge", T.spot, T.fair);
+renderGauge("gauge", T.spot, T.fair, T.spotDate);
 renderPeers("peers", "PHDC");
 renderTrackBadge("track-badge");
 initHowto();
