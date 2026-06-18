@@ -76,11 +76,17 @@
     </div>
   </section>
 
+  <section id="backtest-sec">
+    <h2 style="font-size:1.3rem;margin-top:8px">Backtest — the model replayed on the past</h2>
+    <p class="sub" style="max-width:720px">A separate, historical check: we re-run the <em>same</em> published model on past windows and ask the same question — did the real price land inside the range as often as the range claimed? <b>This does not count toward the score above.</b> It is methodology validation, not a forward call, and historical replays flatter less than live ones.</p>
+    <div id="backtest-mount"></div>
+  </section>
+
 </main>
 
 <footer><div class="wrap"><b>Disclaimer:</b> Educational valuation studies and personal analytical opinion — not investment advice, not recommendations. The preparer is not licensed by Egypt's FRA, manages no money, accepts no clients, and may hold positions in instruments mentioned. <a href="method.html#disclaimer">Full text</a>.</div></footer>
 
-<script src="assets/data.js"></script><script src="assets/app.js"></script>
+<script src="assets/data.js?v=2"></script><script src="assets/app.js?v=2"></script>
 <script>
 const F2 = n => Number(n).toLocaleString("en-US",{maximumFractionDigits:2});
 
@@ -179,5 +185,38 @@ document.getElementById("tab-bar").addEventListener("click", e=>{
   btn.classList.add("active");
   document.getElementById("panel-"+btn.dataset.tab).classList.add("active");
 });
+</script>
+<script>
+/* Backtest panel — isolated from the forward ledger; never affects the live score. */
+(function(){
+  if (typeof BACKTEST === "undefined") return;
+  const mount = document.getElementById("backtest-mount");
+  if (!mount) return;
+  const f2 = n => Number(n).toLocaleString("en-US",{maximumFractionDigits:2});
+  if (!BACKTEST.length){
+    mount.innerHTML = `<div class="card"><p class="muted">No backtest cohorts published yet. The historical coverage replay will appear here as past-window forecasts are scored — kept strictly separate from the live ledger above.</p></div>`;
+    return;
+  }
+  const inBand = r => (r.in_90 != null) ? r.in_90 : (r.realized_close >= r.p5 && r.realized_close <= r.p95);
+  const rows = [...BACKTEST].sort((a,b)=> b.anchor_date.localeCompare(a.anchor_date) || b.horizon_label.localeCompare(a.horizon_label));
+  const body = rows.map(r=>`<tr>
+    <td class="num">${r.anchor_date}</td>
+    <td><b>${r.instrument}</b></td>
+    <td class="num">${r.horizon_label}</td>
+    <td class="num">${f2(r.p50)}</td>
+    <td class="num">${f2(r.p5)} – ${f2(r.p95)} <span class="muted">(90%)</span></td>
+    <td><span class="num">${f2(r.realized_close)}</span> ${inBand(r) ? '<span class="ok">inside ✓</span>' : '<span class="bad">outside ✗</span>'}</td>
+    <td><span class="muted">${r.evidence || ""}</span></td>
+  </tr>`).join("");
+  let hit=0; rows.forEach(r=>{ if(inBand(r)) hit++; });
+  const cov = rows.length ? Math.round(100*hit/rows.length) : 0;
+  mount.innerHTML = `<div class="card">
+    <table>
+      <thead><tr><th class="num">Anchor</th><th>Instrument</th><th class="num">Horizon</th><th class="num">Said (mid)</th><th class="num">90% range</th><th>Real close</th><th>Tier</th></tr></thead>
+      <tbody>${body}</tbody>
+    </table>
+  </div>
+  <p class="muted" style="margin-top:8px"><b>Historical coverage: ${hit} of ${rows.length} inside the 90% range (${cov}%).</b> Separate from the live score — replays only, not a forward record.</p>`;
+})();
 </script>
 </body></html>

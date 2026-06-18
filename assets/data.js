@@ -160,6 +160,20 @@ const LEDGER = [
   }
 ];
 
+/* ==========================================================================
+   BACKTEST — historical coverage replay of the PUBLISHED model on past windows.
+   SEPARATE from the forward LEDGER above and NOT counted in the "were we right?"
+   score. Each row is a past anchor whose horizon already elapsed (realized_* known).
+   evidence: "quasi-OOS"  (calibrated class, different name, e.g. PHDC)
+             "in-sample"  (TMGH — the class was calibrated from it; plumbing only)
+             "illustrative" (uncalibrated class — shape only, not a record)
+   fields: instrument, asset_class, anchor_date, anchor_price, horizon_label,
+           p5,p25,p50,p75,p95, realized_close, realized_high, realized_low,
+           in_90, in_50, evidence
+   ========================================================================== */
+const BACKTEST = [
+];
+
 /* ---------- calculator data ----------
    Verified 11 Jun 2026 (end-of-year values). Sources:
    usdEgp: CBE / FocusEconomics (2023:30.93, 2024:50.83, 2025:~47.45)
