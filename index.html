@@ -60,7 +60,7 @@
       <div class="starthere-body">
         <div class="grid g3" style="margin-top:14px">
           <div><span class="step-no">1</span><b>Pick a stock</b><p class="muted">Search any stock at the top, or tap one we cover. Each gets its own page.</p></div>
-          <div><span class="step-no">2</span><b>Read the odds bar</b><p class="muted">A simple picture of where the price could go — most likely range, and today's price. Plain words underneath.</p></div>
+          <div><span class="step-no">2</span><b>Read the odds bar</b><p class="muted">A simple picture of where the price could go — most likely range, and the latest price. Plain words underneath.</p></div>
           <div><span class="step-no">3</span><b>Go deeper if you want</b><p class="muted">See whether it's cheap or expensive, what the chart says, and open the full spreadsheet. Or just take the headline.</p></div>
         </div>
         <p class="muted" style="margin-top:12px">We never tell you to buy or sell — we show the odds and the reasoning, and let you decide. <a href="method.html">How we build these →</a></p>
@@ -110,7 +110,7 @@
 
 </main>
 <footer><div class="wrap"><b>Disclaimer:</b> Educational valuation studies and personal analytical opinion — not investment advice, not recommendations. The preparer is not licensed by Egypt's FRA, manages no money, accepts no clients, and may hold positions in instruments mentioned. <a href="method.html#disclaimer">Full text</a>.</div></footer>
-<script src="assets/data.js"></script><script src="assets/app.js"></script>
+<script src="assets/data.js"></script><script src="assets/app.js?v=20260618e"></script>
 <script>
 // most recently updated ticker
 const latest = Object.entries(TICKERS).sort((a,b)=>b[1].spotDate.localeCompare(a[1].spotDate))[0];
@@ -118,7 +118,7 @@ const T = latest[1];
 document.getElementById("upd").textContent = SITE.updated;
 const o = plainOdds(T.dist.t60, T.spot);
 document.getElementById("latest-name").innerHTML = T.name + ' — ' + o.lead + ' <span class="tk">in 3 months</span>';
-renderPlain("plain", T.dist.t60, T.spot, "in 3 months");
+renderPlain("plain", T.dist.t60, T.spot, "in 3 months", T.spotDate);
 document.getElementById("legend").innerHTML = stripLegend();
 document.getElementById("latest-link").href = latest[0].toLowerCase() + ".html";
 renderTrackBadge("track-badge");

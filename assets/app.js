@@ -38,7 +38,7 @@ function plainOdds(d, spot){
   else                lead = "Could go either way";
   return {
     lead,
-    sentence: `Out of 10 possible outcomes, about <b>${up10}</b> end higher than today and about <b>${down10}</b> end lower.`,
+    sentence: `Out of 10 possible outcomes, about <b>${up10}</b> end higher than the latest price and about <b>${down10}</b> end lower.`,
     pa
   };
 }
@@ -50,24 +50,27 @@ function plainOdds(d, spot){
    the ends. No statistics jargon on the face of it. */
 function renderStrip(elId, d, spot, opts={}){
   const el = document.getElementById(elId); if(!el) return;
+  const asof = opts.asof;
   const min = Math.min(d.p5, spot) - (Math.max(d.p95,spot)-Math.min(d.p5,spot))*0.06;
   const max = Math.max(d.p95, spot) + (Math.max(d.p95,spot)-Math.min(d.p5,spot))*0.06;
   const mob = (typeof window!=="undefined" && window.innerWidth < 640);
-  const fLab = mob ? 30 : 19, fBand = mob ? 26 : 16;
+  const fLab = mob ? 30 : 19, fBand = mob ? 26 : 16, fDate = mob ? 20 : 13;
   // vertical positions: spread the label rows further apart on mobile (bigger text)
   const W = 1000;
-  const H = mob ? 168 : 128, y = mob ? 92 : 72;
+  const H = mob ? 204 : 152, y = mob ? 92 : 72;
   const topY = mob ? y-78 : y-54;   // extremes + middle row
   const bandY = mob ? y-40 : y-26;  // 25/75 row
-  const todY = mob ? y+58 : y+44;   // today row
+  const todY = mob ? y+58 : y+44;   // latest-price row
+  const dateY = mob ? y+92 : y+62;  // as-of date row
   const X = v=>40+(v-min)/(max-min)*(W-80);
 
   el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" role="img"
-      aria-label="Likely price range. Today's price is ${F(spot)}; the middle outcome is ${F(d.p50)}. Half of outcomes fall between ${F(d.p25)} and ${F(d.p75)}.">
+      aria-label="Likely price range. The latest price is ${F(spot)}; the middle outcome is ${F(d.p50)}. Half of outcomes fall between ${F(d.p25)} and ${F(d.p75)}.">
     <style>
       .lab{font:600 ${fLab}px 'IBM Plex Mono',monospace}
       .end{fill:#8A9A98}.mid{fill:#1B5E5E}.tod{fill:#C98A2D}
       .band{fill:#1B5E5E;font-size:${fBand}px}
+      .dat{font:500 ${fDate}px 'IBM Plex Mono',monospace;fill:#8A9A98}
     </style>
     <!-- wide range 5–95% -->
     <line x1="${X(d.p5)}" x2="${X(d.p95)}" y1="${y}" y2="${y}" stroke="#CFE0DE" stroke-width="12" stroke-linecap="round"/>
@@ -75,7 +78,7 @@ function renderStrip(elId, d, spot, opts={}){
     <line x1="${X(d.p25)}" x2="${X(d.p75)}" y1="${y}" y2="${y}" stroke="#2A8F8F" stroke-width="22" stroke-linecap="round" opacity=".55"/>
     <!-- middle outcome mark -->
     <line x1="${X(d.p50)}" x2="${X(d.p50)}" y1="${y-20}" y2="${y+20}" stroke="#1B5E5E" stroke-width="6" stroke-linecap="round"/>
-    <!-- today mark -->
+    <!-- latest-price mark -->
     <circle cx="${X(spot)}" cy="${y}" r="11" fill="#fff" stroke="#C98A2D" stroke-width="4"/>
     <!-- TOP row above the bar: rare extremes + middle outcome -->
     <text x="${X(d.p50)}" y="${topY}" text-anchor="middle" class="lab mid">middle ${F(d.p50)}</text>
@@ -84,8 +87,9 @@ function renderStrip(elId, d, spot, opts={}){
     <!-- LOWER row, just above the bar: the 25%–75% middle-half edges -->
     <text x="${X(d.p25)}" y="${bandY}" text-anchor="middle" class="lab band">${F(d.p25)}</text>
     <text x="${X(d.p75)}" y="${bandY}" text-anchor="middle" class="lab band">${F(d.p75)}</text>
-    <!-- today below the bar -->
-    <text x="${X(spot)}" y="${todY}" text-anchor="middle" class="lab tod">today ${F(spot)}</text>
+    <!-- latest price below the bar -->
+    <text x="${X(spot)}" y="${todY}" text-anchor="middle" class="lab tod">latest ${F(spot)}</text>
+    ${asof?`<text x="${X(spot)}" y="${dateY}" text-anchor="middle" class="dat">${asof}</text>`:""}
   </svg>`;
 }
 
@@ -93,20 +97,20 @@ function stripLegend(){
   return `<div class="legend">
     <span><i class="sw" style="background:#2A8F8F;opacity:.55;border-radius:3px"></i> where it lands half the time</span>
     <span><i class="sw" style="background:#CFE0DE;border-radius:3px"></i> almost the whole range (9 times in 10)</span>
-    <span><i class="sw" style="background:#fff;border:3px solid #C98A2D"></i> today's price</span>
+    <span><i class="sw" style="background:#fff;border:3px solid #C98A2D"></i> latest price</span>
   </div>`;
 }
 
 /* "plain answer + dotplot + sentence" block — identical everywhere it's used */
-function renderPlain(containerId, d, spot, horizonLabel){
+function renderPlain(containerId, d, spot, horizonLabel, asof){
   const c = document.getElementById(containerId); if(!c) return;
   const o = plainOdds(d, spot);
   c.innerHTML = `
     <p class="odds-sentence">${o.sentence}</p>
     <div class="strip" id="${containerId}-strip"></div>
-    <p class="muted strip-note">The teal band is where the price lands most of the time ${horizonLabel}. The thin band is the rare extremes. The gold dot is today.</p>
+    <p class="muted strip-note">The teal band is where the price lands most of the time ${horizonLabel}. The thin band is the rare extremes. The gold dot is the latest price.</p>
   `;
-  renderStrip(`${containerId}-strip`, d, spot);
+  renderStrip(`${containerId}-strip`, d, spot, {asof});
 }
 
 /* ---------- public ledger helper (kept) ---------- */
@@ -218,7 +222,7 @@ function initSearch(inputId="tk-search", resultsId="tk-results"){
 }
 
 /* ---------- valuation gauge ----------
-   Shows where today's price sits versus our fair value: a simple
+   Shows where the latest price sits versus our fair value: a simple
    "looks cheap / about right / looks expensive" reading, no buy/sell call. */
 function valuationVerdict(spot, base){
   const gap = (base - spot)/spot;            // how far below fair value we are
@@ -287,7 +291,7 @@ function renderPeers(elId, currentCode){
     </tr>`;
   }).join("");
   el.innerHTML = `<table><thead><tr>
-    <th>Stock</th><th class="num">Today</th><th class="num">Our value</th><th>Price view</th><th class="num">3-month odds</th>
+    <th>Stock</th><th class="num">Latest</th><th class="num">Our value</th><th>Price view</th><th class="num">3-month odds</th>
   </tr></thead><tbody>${rows}</tbody></table>`;
 }
 
@@ -391,7 +395,7 @@ function renderCompare(elId){
      <td colspan="6" class="muted">Coming soon — <a href="${c.code.replace('EGX:','').toLowerCase()}.html">get notified</a></td></tr>`
   ).join("");
   el.innerHTML = `<table class="compare-table"><thead><tr>
-    <th>Stock</th><th class="num">Today</th><th class="num">Our value</th><th>Price view</th>
+    <th>Stock</th><th class="num">Latest</th><th class="num">Our value</th><th>Price view</th>
     <th class="num">3-mo middle</th><th class="num">Odds up (3-mo)</th><th>Chart trend</th>
   </tr></thead><tbody>${rows}${soon}</tbody></table>`;
 }

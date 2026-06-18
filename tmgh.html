@@ -96,7 +96,7 @@
       <div id="legend"></div>
       <button class="howto-link" id="howto-open" type="button">How to read this</button>
     </div>
-    <p class="muted" style="margin-top:14px">Today <b class="num" id="spot"></b> EGP (<span id="spotdate"></span>) · our fair value <b class="num">147.12</b> · scenarios <span class="num">83.6</span> (bad) to <span class="num">189.6</span> (all goes right).</p>
+    <p class="muted" style="margin-top:14px">Latest <b class="num" id="spot"></b> EGP (<span id="spotdate"></span>) · our fair value <b class="num">147.12</b> · scenarios <span class="num">83.6</span> (bad) to <span class="num">189.6</span> (all goes right).</p>
   </section>
 
   <!-- LENS 2: FUNDAMENTAL -->
@@ -109,7 +109,7 @@
   <section style="padding-top:8px">
     <div class="card">
       <p class="qhead">Is it cheap or expensive right now?</p>
-      <p class="muted">Today's price vs our fair value. A comparison, not a recommendation.</p>
+      <p class="muted">Latest price vs our fair value. A comparison, not a recommendation.</p>
       <div id="gauge"></div>
     </div>
   </section>
@@ -238,7 +238,7 @@
         <button id="mc-h60" aria-pressed="true">3 months</button>
       </div>
     </div>
-    <p class="mc-sub">Drag a slider and the whole distribution recomputes live — <b>green is better, red is worse</b>. The other seven forces stay fixed at the study calibration. Anchored at today's price; nothing is sent anywhere.</p>
+    <p class="mc-sub">Drag a slider and the whole distribution recomputes live — <b>green is better, red is worse</b>. The other seven forces stay fixed at the study calibration. Anchored at the latest price; nothing is sent anywhere.</p>
 
     <div class="mc-card">
       <div class="mc-chartwrap">
@@ -375,7 +375,7 @@
             s+='<text x="'+(X0-8)+'" y="'+(y+3).toFixed(1)+'" text-anchor="end">'+p+'</text>';}
           g.innerHTML=s;
           var xl=el("mc-xlab"), xs="";[0,10,20,30,40,50,60].forEach(function(t){var x=xToPx(t);
-            xs+='<text x="'+x.toFixed(1)+'" y="'+(Y0+18)+'" text-anchor="middle">'+(t===0?"today":"T+"+t)+'</text>';});
+            xs+='<text x="'+x.toFixed(1)+'" y="'+(Y0+18)+'" text-anchor="middle">'+(t===0?"latest":"T+"+t)+'</text>';});
           xl.innerHTML=xs;
           var r=el("mc-refG"), ya=yToPx(S0), ys=yToPx(SUPPORT), yc=yToPx(CONSENSUS);
           r.innerHTML='<line class="mc-ref mc-ref-anchor" x1="'+X0+'" x2="'+X1+'" y1="'+ya.toFixed(1)+'" y2="'+ya.toFixed(1)+'"></line>'+
@@ -478,7 +478,7 @@
         <tr><td>Malls, schools, clubs</td><td class="num">15.16</td><td>Profit × 7.5</td></tr>
         <tr><td>Cash in the bank (parent's share)</td><td class="num">+31.40</td><td>Balance sheet</td></tr>
         <tr><td>Less: other owners' share</td><td class="num">−12.06</td><td>Per segment</td></tr>
-        <tr style="font-weight:700"><td>Fair value</td><td class="num">147.12</td><td>+54% vs today</td></tr>
+        <tr style="font-weight:700"><td>Fair value</td><td class="num">147.12</td><td>+54% vs latest</td></tr>
       </tbody></table>
 
       <p class="qhead" style="margin-top:26px">Chart levels traders watch</p>
@@ -551,12 +551,12 @@
     <div class="ex"><span class="dot" style="background:#2A8F8F;opacity:.55"></span><span><b>The thick teal band</b> is where the price lands about half the time. The two numbers above it are the edges of that "middle half."</span></div>
     <div class="ex"><span class="dot" style="background:#CFE0DE"></span><span><b>The thin pale band</b> is almost the whole range — about 9 times out of 10 the price stays inside it. The far numbers are the rare low and rare high.</span></div>
     <div class="ex"><span class="dot" style="background:#1B5E5E"></span><span><b>The upright line is the middle outcome</b> — half the simulations land above it, half below.</span></div>
-    <div class="ex"><span class="dot" style="background:#fff;border:3px solid #C98A2D"></span><span><b>The gold dot is today's price.</b> If most of the bar sits to its right, the odds lean up; to its left, they lean down.</span></div>
+    <div class="ex"><span class="dot" style="background:#fff;border:3px solid #C98A2D"></span><span><b>The gold dot is the latest price.</b> If most of the bar sits to its right, the odds lean up; to its left, they lean down.</span></div>
     <p class="muted" style="margin-top:6px">The sentence above the bar says the same thing in words. These are model estimates from 50,000 simulations — useful odds, never guarantees.</p>
   </div>
 </div>
 
-<script src="assets/data.js"></script><script src="assets/app.js?v=20260618d"></script>
+<script src="assets/data.js"></script><script src="assets/app.js?v=20260618e"></script>
 <script>
 const T=TICKERS.TMGH;
 document.getElementById("upd").textContent=SITE.updated;
@@ -581,7 +581,7 @@ function show(h){
   const d=T.dist[h]; const label = h==="t20" ? "in 1 month" : "in 3 months";
   const o=plainOdds(d,T.spot);
   document.getElementById("verdict").innerHTML = o.lead + ' <span class="tk">' + label + '</span>';
-  renderPlain("plain", d, T.spot, label);
+  renderPlain("plain", d, T.spot, label, T.spotDate);
 }
 document.getElementById("tg").addEventListener("click",e=>{
   const b=e.target.closest("button"); if(!b) return;

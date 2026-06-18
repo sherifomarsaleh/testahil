@@ -82,7 +82,7 @@
 
 </main>
 <footer><div class="wrap"><b>Disclaimer:</b> Educational valuation studies and personal analytical opinion — not investment advice, not recommendations. The preparer is not licensed by Egypt's FRA, manages no money, accepts no clients, and may hold positions in instruments mentioned. <a href="method.html#disclaimer">Full text</a>.</div></footer>
-<script src="assets/data.js"></script><script src="assets/app.js"></script>
+<script src="assets/data.js"></script><script src="assets/app.js?v=20260618e"></script>
 <script>
 const F2 = n => Number(n).toLocaleString("en-US",{maximumFractionDigits:2});
 
@@ -136,7 +136,7 @@ function studyBlock(code){
   return `<div class="card">
     <span class="chip num">${T.code}</span><span class="chip">${T.spotDate.replace("close ","")}</span>
     <h3 style="margin-top:10px">${T.name}</h3>
-    <p class="muted">Today <b class="num">${T.spot.toFixed(2)}</b> EGP · our fair value <b class="num">${T.fair.base.toFixed(2)}</b> · full range <span class="num">${T.fair.bear} – ${T.fair.full}</span></p>
+    <p class="muted">Latest <b class="num">${T.spot.toFixed(2)}</b> EGP · our fair value <b class="num">${T.fair.base.toFixed(2)}</b> · full range <span class="num">${T.fair.bear} – ${T.fair.full}</span></p>
     <div class="dl-row">
       <a class="btn" href="${T.files.pdf}" target="_blank" rel="noopener">Study (PDF)</a>
       <a class="btn ghost" href="${T.files.model}" target="_blank" rel="noopener">Model (XLSX)</a>
