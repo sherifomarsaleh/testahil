@@ -25,6 +25,24 @@
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-H9NV0ZK9RN"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-H9NV0ZK9RN');</script>
+<style>
+/* ── On-this-page rail (uses the empty left gutter on wide screens) ── */
+.anchor{scroll-margin-top:84px}
+.secnav{display:none}
+@media (min-width:1220px){
+  .secnav{display:block; position:fixed; top:96px; left:calc(50% - 604px); width:144px;
+    max-height:calc(100vh - 130px); overflow:auto; z-index:40}
+}
+.secnav .secnav-h{font-family:"Alexandria","IBM Plex Sans",sans-serif; font-size:.7rem;
+  letter-spacing:.09em; text-transform:uppercase; color:var(--muted); margin:0 0 10px; padding-left:14px}
+.secnav ol{list-style:none; margin:0; padding:0; border-left:2px solid var(--line)}
+.secnav a{display:block; padding:6px 0 6px 14px; margin-left:-2px; border-left:2px solid transparent;
+  color:var(--muted); font-size:.86rem; line-height:1.3; text-decoration:none;
+  transition:color .15s ease, border-color .15s ease}
+.secnav a:hover{color:var(--teal2); text-decoration:none}
+.secnav a.active{color:var(--ink); font-weight:600; border-left-color:var(--amber)}
+@media (prefers-reduced-motion:reduce){.secnav a{transition:none}}
+</style>
 </head>
 <body>
 <header class="nav"><div class="wrap">
@@ -48,7 +66,7 @@
 
 
 <main class="wrap">
-  <section style="padding-bottom:8px">
+  <section id="sec-top" class="anchor" style="padding-bottom:8px">
     <span class="chip num">EGX:TMGH</span><span class="chip">updated <span class="num" id="upd"></span></span>
     <h1 style="font-size:1.8rem;margin-top:.4em">Talaat Moustafa Group</h1>
   </section>
@@ -60,7 +78,7 @@
   <section style="padding:0 0 4px"><div id="track-badge"></div></section>
 
   <!-- LENS 1: SIMULATION -->
-  <section style="padding-bottom:0">
+  <section id="sec-odds" class="anchor" style="padding-bottom:0">
     <div class="lens"><span class="lens-no">Lens 1 of 3</span><span class="lens-name">The simulation — what are the odds?</span></div>
     <p class="lens-sub">50,000 simulated futures — <em>where could the price go?</em></p>
   </section>
@@ -82,7 +100,7 @@
   </section>
 
   <!-- LENS 2: FUNDAMENTAL -->
-  <section style="padding-bottom:0">
+  <section id="sec-value" class="anchor" style="padding-bottom:0">
     <div class="lens"><span class="lens-no">Lens 2 of 3</span><span class="lens-name">Fundamental analysis — what is it worth?</span></div>
     <p class="lens-sub">Built up from projects, cash and earnings — <em>what is it worth?</em></p>
   </section>
@@ -97,7 +115,7 @@
   </section>
 
   <!-- LENS 3: TECHNICAL -->
-  <section style="padding-bottom:0">
+  <section id="sec-chart" class="anchor" style="padding-bottom:0">
     <div class="lens"><span class="lens-no">Lens 3 of 3</span><span class="lens-name">Technical analysis — what is the chart doing?</span></div>
     <p class="lens-sub">Trend, momentum and key levels — <em>what is the price doing now?</em></p>
   </section>
@@ -118,7 +136,7 @@
   </section>
 
   <!-- ============ INTERACTIVE MONTE CARLO (self-contained, scoped #mc-lab) ============ -->
-  <section style="padding-top:8px">
+  <section id="sec-model" class="anchor" style="padding-top:8px">
   <div id="mc-lab">
     <style>
       #mc-lab{
@@ -442,7 +460,7 @@
 
 
   <!-- DETAILED NUMBERS — opt in -->
-  <details class="more">
+  <details id="sec-details" class="more anchor">
     <summary>Show the detailed numbers</summary>
     <div class="more-body">
 
@@ -482,7 +500,7 @@
   </details>
 
   <!-- PEER COMPARISON -->
-  <section style="padding-top:8px">
+  <section id="sec-peers" class="anchor" style="padding-top:8px">
     <div class="card">
       <p class="qhead">How it compares to the others we cover</p>
       <div id="peers"></div>
@@ -491,7 +509,7 @@
   </section>
 
   <!-- GET THE STUDY -->
-  <section style="padding-top:8px">
+  <section id="sec-study" class="anchor" style="padding-top:8px">
     <div class="card">
       <p class="qhead">Want the full study and the spreadsheet?</p>
       <p class="muted">Full write-up plus the editable Excel model. Found a flaw? <a href="library.html">Attack the model</a>.</p>
@@ -506,7 +524,7 @@
   </section>
 
   <!-- FOLLOW BY EMAIL -->
-  <section style="padding-top:8px">
+  <section id="sec-follow" class="anchor" style="padding-top:8px">
     <div class="card" style="background:#EFF5F4">
       <p class="qhead">Get the next update on Talaat Moustafa</p>
       <p class="muted">We refresh each study on a fixed schedule. Leave your email and we'll tell you when the next edition is out — nothing else, no spam.</p>
@@ -579,5 +597,33 @@ renderGauge("gauge", T.spot, T.fair);
 renderPeers("peers", "TMGH");
 renderTrackBadge("track-badge");
 initHowto();
+</script>
+<script>
+(function(){
+  var S=[["sec-top","Overview"],["sec-odds","The odds"],["sec-value","Fair value"],
+    ["sec-chart","The chart"],["sec-model","Explore the model"],["sec-details","Detailed numbers"],
+    ["sec-peers","Peers"],["sec-study","Get the study"],["sec-follow","Updates"]]
+    .filter(function(x){return document.getElementById(x[0]);});
+  if(S.length<3) return;
+  var nav=document.createElement("nav");
+  nav.className="secnav"; nav.setAttribute("aria-label","On this page");
+  var h="<p class='secnav-h'>On this page</p><ol>";
+  S.forEach(function(x){ h+="<li><a href='#"+x[0]+"'>"+x[1]+"</a></li>"; });
+  nav.innerHTML=h+"</ol>";
+  var main=document.querySelector("main.wrap")||document.body;
+  main.parentNode.insertBefore(nav, main);
+  var links={}; S.forEach(function(x){ links[x[0]]=nav.querySelector("a[href='#"+x[0]+"']"); });
+  function setActive(id){ S.forEach(function(x){ if(links[x[0]]) links[x[0]].classList.toggle("active", x[0]===id); }); }
+  nav.addEventListener("click", function(e){
+    var a=e.target.closest("a"); if(!a) return;
+    if(a.getAttribute("href")==="#sec-details"){ var d=document.getElementById("sec-details"); if(d&&d.tagName==="DETAILS") d.open=true; }
+  });
+  if("IntersectionObserver" in window){
+    var io=new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting) setActive(en.target.id); }); },
+      {rootMargin:"-42% 0px -52% 0px", threshold:0});
+    S.forEach(function(x){ var el=document.getElementById(x[0]); if(el) io.observe(el); });
+  }
+  setActive(S[0][0]);
+})();
 </script>
 </body></html>
