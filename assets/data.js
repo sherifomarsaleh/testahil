@@ -2,7 +2,7 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-06-17" };
+const SITE = { updated: "2026-06-19" };
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
@@ -59,6 +59,33 @@ const TICKERS = {
       model: "files/TMGH_Valuation_Study_17-06-2026_public.xlsx?v=1706",
       pdf:   "files/TMGH_Valuation_Study_17-06-2026_public.pdf?v=1706"
     }
+  },
+  EMFD: {
+    name: "Emaar Misr for Development",
+    code: "EGX:EMFD",
+    spot: 12.44,
+    spotDate: "close 17 Jun 2026",
+    ccy: "EGP",
+    fair: { bear: 13.71, base: 19.84, full: 23.43 },          // 17 Jun 2026 valuation — SOTP/RNAV risk-adjusted base; full execution 23.43; four-method synthesis ~19.5
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:10.50, p25:11.80, p50:12.75, p75:13.78, p95:15.46, resolve:"2026-07-16" },
+      t60: { label:"3 months (T+60)", p5:9.64,  p25:11.71, p50:13.39, p75:15.29, p95:18.47, resolve:"2026-09-13" }
+    },
+    touch: [ /* descending high → low */
+      [17.00, 1, 18], [16.00, 4, 28], [15.00, 12, 44], [14.00, 31, 63], [13.00, 67, 84]
+    ],
+    levels: { res:[15.00, 13.00, 12.50], sup:[11.40, 10.62, 9.82] },
+    tech: {
+      trend: "Strong uptrend, stretched at resistance",
+      summary: "The price closed 12.44 just under the 12.50 period high after a ~40% run, riding above a rising stack of moving averages (20- above 50- above 150-day). Momentum is firm but extended — RSI(14) is ~64 on Wilder's method, approaching but not at the 70 overbought line — on a thin ~11% float that amplifies moves both ways.",
+      bull: "A daily close above 12.50 confirms continuation into blue-sky territory.",
+      bear: "A rejection at 12.50 with RSI rolling over opens a mean-reversion pullback toward the 11.4–10.6 moving-average supports."
+    },
+    files: {
+      study: "files/EMFD_Valuation_Study_17-06-2026_public.docx?v=1706",
+      model: "files/EMFD_Valuation_Study_17-06-2026_public.xlsx?v=1706",
+      pdf:   "files/EMFD_Valuation_Study_17-06-2026_public.pdf?v=1706"
+    }
   }
 };
 
@@ -75,7 +102,7 @@ const COMING = [
   { code:"EGX:EFID", name:"Edita",                            url:null,        status:"soon" },
   { code:"EGX:HRHO", name:"EFG Holding",                      url:null,        status:"soon" },
   { code:"EGX:MFPC", name:"MOPCO",                            url:null,        status:"soon" },
-  { code:"EGX:EMFM", name:"Emaar Misr",                       url:null,        status:"soon" },
+  { code:"EGX:EMFD", name:"Emaar Misr for Development",        url:"emfd.html", status:"covered" },
 ];
 
 /* ---------- public ledger ----------
@@ -154,6 +181,28 @@ const LEDGER = [
     horizon_label:"T+60", grade_date:"2026-09-08", cycle_no:1, reanchor_from:null,
     p5:75.58, p25:91.20, p50:103.93, p75:118.41, p95:142.75,
     touch:{ "+5":85, "+10":58, "+15":39, "+20":24, "-5":48, "-10":29 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  }
+,
+  // ---- EMFD · equity · cycle 1 (17 Jun 2026 published study) ----
+  {
+    instrument:"EMFD", asset_class:"equity",
+    anchor_date:"2026-06-17", anchor_price:12.44, ccy:"EGP",
+    horizon_label:"T+20", grade_date:"2026-07-16", cycle_no:1, reanchor_from:null,
+    p5:10.50, p25:11.80, p50:12.75, p75:13.78, p95:15.46,
+    touch:{ "+5":64, "+10":41, "+15":24, "+20":13, "-5":49, "-10":23 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"EMFD", asset_class:"equity",
+    anchor_date:"2026-06-17", anchor_price:12.44, ccy:"EGP",
+    horizon_label:"T+60", grade_date:"2026-09-13", cycle_no:1, reanchor_from:null,
+    p5:9.64, p25:11.71, p50:13.39, p75:15.29, p95:18.47,
+    touch:{ "+5":83, "+10":70, "+15":57, "+20":45, "-5":64, "-10":43 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
