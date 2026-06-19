@@ -55,9 +55,9 @@ const TICKERS = {
       bear: "A close below the 92.78 fifty-day reopens the lower supports at 88 and 83."
     },
     files: {
-      study: "files/TMGH_Valuation_Study_17-06-2026_public.docx?v=1706",
-      model: "files/TMGH_Valuation_Study_17-06-2026_public.xlsx?v=1706",
-      pdf:   "files/TMGH_Valuation_Study_17-06-2026_public.pdf?v=1706"
+      study: "files/TMGH_Valuation_Study_17-06-2026_public.docx?v=1706b",
+      model: "files/TMGH_Valuation_Study_17-06-2026_public.xlsx?v=1706b",
+      pdf:   "files/TMGH_Valuation_Study_17-06-2026_public.pdf?v=1706b"
     }
   },
   EMFD: {
