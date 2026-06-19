@@ -377,7 +377,8 @@
         var niceStep=(rng/6/rstep>=5)?5*rstep:(rng/6/rstep>=2)?2*rstep:rstep;
         var PMIN=Math.floor(lo/niceStep)*niceStep, PMAX=Math.ceil(hi/niceStep)*niceStep;
         var gdec=niceStep<1?(niceStep<0.5?2:1):0;
-        var xToPx=function(t){return X0+(t/H)*(X1-X0);};
+        var AX=60;
+        var xToPx=function(t){return X0+(t/AX)*(X1-X0);};
         var yToPx=function(p){return Y0+((p-PMIN)/(PMAX-PMIN))*(Y1-Y0);};
         var el=function(id){return document.getElementById(id);};
 
@@ -387,9 +388,7 @@
             s+='<line class="mc-grid" x1="'+X0+'" x2="'+X1+'" y1="'+y.toFixed(1)+'" y2="'+y.toFixed(1)+'"></line>';
             s+='<text x="'+(X0-8)+'" y="'+(y+3).toFixed(1)+'" text-anchor="end">'+p.toFixed(gdec)+'</text>';}
           g.innerHTML=s;
-          var xl=el("mc-xlab"), xs="";[0,10,20,30,40,50,60].forEach(function(t){var x=xToPx(t);
-            xs+='<text x="'+x.toFixed(1)+'" y="'+(Y0+18)+'" text-anchor="middle">'+(t===0?"latest":"T+"+t)+'</text>';});
-          xl.innerHTML=xs;
+          drawXAxis();
           var r=el("mc-refG"), ya=yToPx(S0), ys=yToPx(FLOOR), yc=yToPx(TARGET);
           r.innerHTML='<line class="mc-ref mc-ref-anchor" x1="'+X0+'" x2="'+X1+'" y1="'+ya.toFixed(1)+'" y2="'+ya.toFixed(1)+'"></line>'+
             '<line class="mc-ref mc-ref-sup" x1="'+X0+'" x2="'+X1+'" y1="'+ys.toFixed(1)+'" y2="'+ys.toFixed(1)+'"></line>'+
@@ -398,11 +397,18 @@
             '<text class="mc-reflabel" fill="var(--amber-text)" x="'+(X1+4)+'" y="'+(yc+3).toFixed(1)+'">'+TARGET.toFixed(1)+'</text>';
         })();
 
+        function drawXAxis(){
+          el("mc-hzLine").style.display="none";
+          var xl=el("mc-xlab"), ticks=(AX<=20?[0,5,10,15,20]:[0,10,20,30,40,50,60]), xs="";
+          ticks.forEach(function(t){var x=xToPx(t);
+            xs+='<text x="'+x.toFixed(1)+'" y="'+(Y0+18)+'" text-anchor="middle">'+(t===0?"latest":"T+"+t)+'</text>';});
+          xl.innerHTML=xs;
+        }
         function bandPath(M,qHi,qLo){var up="",lo2="",t,x;
-          for(t=0;t<=H;t++){x=xToPx(t).toFixed(1); up+=(t?"L":"M")+x+","+yToPx(price(M,t,qHi)).toFixed(1)+" ";}
-          for(t=H;t>=0;t--){x=xToPx(t).toFixed(1); lo2+="L"+x+","+yToPx(price(M,t,qLo)).toFixed(1)+" ";}
+          for(t=0;t<=AX;t++){x=xToPx(t).toFixed(1); up+=(t?"L":"M")+x+","+yToPx(price(M,t,qHi)).toFixed(1)+" ";}
+          for(t=AX;t>=0;t--){x=xToPx(t).toFixed(1); lo2+="L"+x+","+yToPx(price(M,t,qLo)).toFixed(1)+" ";}
           return up+lo2+"Z";}
-        function medianPath(M){var d="",t,x; for(t=0;t<=H;t++){x=xToPx(t).toFixed(1); d+=(t?"L":"M")+x+","+yToPx(price(M,t,50)).toFixed(1)+" ";} return d;}
+        function medianPath(M){var d="",t,x; for(t=0;t<=AX;t++){x=xToPx(t).toFixed(1); d+=(t?"L":"M")+x+","+yToPx(price(M,t,50)).toFixed(1)+" ";} return d;}
 
         function lerp(a,b,t){return Math.round(a+(b-a)*t);}
         function gradeColor(f){f=Math.max(0,Math.min(1,f));
@@ -456,7 +462,7 @@
         var raf=null;
         function schedule(){ if(raf)return; raf=requestAnimationFrame(function(){raf=null;render();}); }
         [egp,geo,lnch].forEach(function(s){s.addEventListener("input",schedule);});
-        function setHz(h){HZ=h; el("mc-h20").setAttribute("aria-pressed",h===20); el("mc-h60").setAttribute("aria-pressed",h===60); render();}
+        function setHz(h){HZ=h; AX=h; el("mc-h20").setAttribute("aria-pressed",h===20); el("mc-h60").setAttribute("aria-pressed",h===60); drawXAxis(); render();}
         el("mc-h20").addEventListener("click",function(){setHz(20);});
         el("mc-h60").addEventListener("click",function(){setHz(60);});
         el("mc-reset").addEventListener("click",function(){egp.value="-2.5"; geo.value="-30"; lnch.value="55"; setHz(60); render();});
