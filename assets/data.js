@@ -92,6 +92,7 @@ const TICKERS = {
 /* coming-soon cards (home page coverage section) */
 const COMING = [
   { code:"EGX:TMGH", name:"Talaat Moustafa Group",        url:"tmgh.html", status:"covered" },
+  { code:"EGX:EMFD", name:"Emaar Misr for Development",        url:"emfd.html", status:"covered" },
   { code:"EGX:ORAS", name:"Orascom Construction",          url:null,        status:"soon" },
   { code:"EGX:COMI", name:"Commercial International Bank", url:null,        status:"soon" },
   { code:"EGX:CCAP", name:"Citadel Capital",                 url:null,        status:"soon" },
@@ -102,7 +103,6 @@ const COMING = [
   { code:"EGX:EFID", name:"Edita",                            url:null,        status:"soon" },
   { code:"EGX:HRHO", name:"EFG Holding",                      url:null,        status:"soon" },
   { code:"EGX:MFPC", name:"MOPCO",                            url:null,        status:"soon" },
-  { code:"EGX:EMFD", name:"Emaar Misr for Development",        url:"emfd.html", status:"covered" },
 ];
 
 /* ---------- public ledger ----------
