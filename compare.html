@@ -53,17 +53,38 @@
 </div></div>
 
 <main class="wrap">
-  <section>
+  <section id="sec-top" class="anchor" data-nav="Overview">
     <span class="chip">Egypt · Side by side</span>
     <h1 style="font-size:1.9rem;margin-top:.4em">Compare</h1>
     <p class="muted" style="max-width:600px">The stocks we cover, lined up against each other — the latest price, what we think it's worth, whether it looks cheap or expensive, and the odds over 1 and 3 months. Tap any name for the full study.</p>
   </section>
 
-  <section style="padding-top:0">
+  <section id="sec-table" style="padding-top:0" class="anchor" data-nav="The comparison">
     <div class="compare-scroll">
       <div id="compare"></div>
     </div>
     <p class="muted" style="margin-top:12px">"Cheap / expensive" compares the latest price to our own fair-value estimate. "Odds up" is the share of 50,000 simulated 3-month outcomes that finish above the latest price. None of this is advice — it's a map of estimates and probabilities. <a href="method.html">How we build these →</a></p>
+  </section>
+
+
+  <section class="anchor" id="sec-read" data-nav="How to read it">
+    <p class="qhead">How to read it</p>
+    <div class="grid g3">
+      <div class="card"><span class="kicker">Price vs value</span><h3>Cheap or expensive</h3><p class="muted">We line today’s price up against our own fair-value estimate for that company. “Cheap” sits below where our work lands, “expensive” above. It’s the gap between two numbers — never a signal to act.</p></div>
+      <div class="card"><span class="kicker">The odds</span><h3>Odds up</h3><p class="muted">The share of 50,000 simulated 3-month futures that finish above today’s price. 60% doesn’t mean it will rise — it means it rose in 6 of 10 simulated futures and fell in 4.</p></div>
+      <div class="card"><span class="kicker">The range</span><h3>1- and 3-month</h3><p class="muted">Each name carries a likely range, not a target. A wider range means more uncertainty, not more opportunity — the spread is the point.</p></div>
+    </div>
+  </section>
+
+  <section class="card anchor" id="sec-not" data-nav="What this isn’t" style="background:#FBF8F1;border:1px solid #EAD9B5">
+    <p class="qhead" style="margin-top:0">What this is not</p>
+    <p class="muted" style="margin-bottom:0">This page ranks nothing and tells you to buy nothing. Fair value is an estimate that can be wrong; the odds are model output, not a promise; and a cheap-looking name can stay cheap or get cheaper. It’s a map of estimates and probabilities to think with — the decision is always yours.</p>
+  </section>
+
+  <section class="card anchor" id="sec-deeper" data-nav="Go deeper" style="background:#EFF5F4">
+    <p class="qhead" style="margin-top:0">Go deeper</p>
+    <p class="muted">Every number on this page comes from a full study — the company valued from the ground up, the chart read, the price run 50,000 ways, every assumption open to challenge.</p>
+    <p style="margin-bottom:0"><a class="btn" href="egypt.html">See all coverage →</a> &nbsp; <a class="btn ghost" href="method.html">How we build these →</a></p>
   </section>
 
 </main>
@@ -73,5 +94,25 @@
 <script>
   document.addEventListener("DOMContentLoaded", function(){ try{ renderCompare("compare"); }catch(e){ console.error(e); } });
   if (document.readyState !== "loading") { try{ renderCompare("compare"); }catch(e){ console.error(e); } }
+</script>
+<script>
+(function(){
+  var secs=[].slice.call(document.querySelectorAll('[data-nav][id]'));
+  if(secs.length<3) return;
+  var nav=document.createElement('nav');
+  nav.className='secnav'; nav.setAttribute('aria-label','On this page');
+  var h="<p class='secnav-h'>On this page</p><ol>";
+  secs.forEach(function(s){ h+="<li><a href='#"+s.id+"'>"+s.getAttribute('data-nav')+"</a></li>"; });
+  nav.innerHTML=h+"</ol>";
+  var main=document.querySelector('main.wrap')||document.body;
+  main.parentNode.insertBefore(nav, main);
+  var links={}; secs.forEach(function(s){ links[s.id]=nav.querySelector("a[href='#"+s.id+"']"); });
+  function setActive(id){ secs.forEach(function(s){ if(links[s.id]) links[s.id].classList.toggle('active', s.id===id); }); }
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting) setActive(en.target.id); }); }, {rootMargin:'-42% 0px -52% 0px', threshold:0});
+    secs.forEach(function(s){ io.observe(s); });
+  }
+  setActive(secs[0].id);
+})();
 </script>
 </body></html>

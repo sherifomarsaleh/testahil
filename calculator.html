@@ -54,13 +54,13 @@
 
 
 <main class="wrap">
-  <section>
+  <section id="sec-top" class="anchor" data-nav="Overview">
     <h1 style="font-size:1.9rem">CDs, gold, dollars — or the EGX?</h1>
     <p class="muted">Put an amount in a year and see what it would be worth today — <b>in nominal terms and in real terms after inflation</b>. EGP 100 growing to 300 isn't a gain if prices grew 4x.</p>
     <div class="disclaimer-box" id="c-warn" style="display:none">⚠️ <b>Prototype:</b> the historical series are indicative and must be verified against official sources (CBE, CAPMAS, EGX) before relying on them.</div>
   </section>
 
-  <section class="card">
+  <section id="sec-calc" class="card anchor" data-nav="The calculator">
     <div class="grid g3">
       <div class="field"><label for="c-amt">Amount (EGP)</label><input id="c-amt" type="number" value="100000" min="1" class="num"></div>
       <div class="field"><label for="c-from">From end of year</label><select id="c-from" class="num"></select></div>
@@ -70,7 +70,22 @@
     <div id="c-out" style="margin-top:22px"></div>
   </section>
 
-  <section class="card" style="background:#EFF5F4">
+  <section class="anchor" id="sec-real" data-nav="Real vs nominal">
+    <p class="qhead">Why real returns, not nominal</p>
+    <p class="muted">A pound today buys less than a pound did a few years ago, so a number that grew on paper can still have shrunk in what it actually buys. This tool always shows both: the <b>nominal</b> figure — the headline amount — and the <b>real</b> figure, after inflation. When prices roughly quadruple, EGP 100 turning into EGP 300 is a loss in purchasing power, not a gain. Only the real number tells you that.</p>
+  </section>
+
+  <section class="anchor" id="sec-options" data-nav="The options">
+    <p class="qhead">What each option means</p>
+    <div class="grid g3">
+      <div class="card"><h3>EGP deposit</h3><p class="muted">A one-year fixed certificate, rolled each year at that year’s best available rate.</p></div>
+      <div class="card"><h3>USD deposit</h3><p class="muted">Held in dollars, earning USD interest, then converted back to pounds — so it captures the rate and the currency move together.</p></div>
+      <div class="card"><h3>Gold</h3><p class="muted">Local 21-karat gold at the prices buyers actually paid — including the parallel-rate premium of 2022–23.</p></div>
+      <div class="card"><h3>The EGX30</h3><p class="muted">The main Egyptian Exchange index, end-of-year level, as a stand-in for the broad market.</p></div>
+    </div>
+  </section>
+
+  <section id="sec-data" class="card anchor" style="background:#EFF5F4" data-nav="Data & caveats">
     <p class="muted" style="margin-top:0">Data note: FX, EGX30 and inflation series are verified against CBE/EGX/CAPMAS figures; the EGP and USD deposit-rate series and the pre-2024 gold series are best-effort archival reconstructions (±5%). The dollar option is modelled as a USD deposit — it earns USD interest and is then converted back to pounds. Gold values for 2022–23 reflect actual local market quotes, which embedded the parallel-rate premium.</p>
     <p style="margin:0">What won in the past won't necessarily win next. That's why we work in probabilities, not rear-view mirrors — <a href="phdc.html">see the distributions</a>.</p>
   </section>
@@ -80,4 +95,24 @@
 <footer><div class="wrap"><b>Disclaimer:</b> Educational valuation studies and personal analytical opinion — not investment advice, not recommendations. The preparer is not licensed by Egypt's FRA, manages no money, accepts no clients, and may hold positions in instruments mentioned. <a href="method.html#disclaimer">Full text</a>.</div></footer>
 
 <script src="assets/data.js?v=20260619b"></script><script src="assets/app.js"></script>
+<script>
+(function(){
+  var secs=[].slice.call(document.querySelectorAll('[data-nav][id]'));
+  if(secs.length<3) return;
+  var nav=document.createElement('nav');
+  nav.className='secnav'; nav.setAttribute('aria-label','On this page');
+  var h="<p class='secnav-h'>On this page</p><ol>";
+  secs.forEach(function(s){ h+="<li><a href='#"+s.id+"'>"+s.getAttribute('data-nav')+"</a></li>"; });
+  nav.innerHTML=h+"</ol>";
+  var main=document.querySelector('main.wrap')||document.body;
+  main.parentNode.insertBefore(nav, main);
+  var links={}; secs.forEach(function(s){ links[s.id]=nav.querySelector("a[href='#"+s.id+"']"); });
+  function setActive(id){ secs.forEach(function(s){ if(links[s.id]) links[s.id].classList.toggle('active', s.id===id); }); }
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting) setActive(en.target.id); }); }, {rootMargin:'-42% 0px -52% 0px', threshold:0});
+    secs.forEach(function(s){ io.observe(s); });
+  }
+  setActive(secs[0].id);
+})();
+</script>
 </body></html>
