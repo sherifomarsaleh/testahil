@@ -9,7 +9,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;700;800&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <link rel="icon" type="image/png" href="favicon.png?v=2">
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
-<link rel="stylesheet" href="assets/style.css">
+<script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('#theme-toggle');if(!b)return;var dark=document.documentElement.getAttribute('data-theme')==='dark';var n=dark?'light':'dark';if(n==='dark'){document.documentElement.setAttribute('data-theme','dark');}else{document.documentElement.removeAttribute('data-theme');}try{localStorage.setItem('theme',n);}catch(e){}b.setAttribute('aria-pressed',String(n==='dark'));});document.addEventListener('DOMContentLoaded',function(){var x=document.getElementById('theme-toggle');if(x)x.setAttribute('aria-pressed',String(document.documentElement.getAttribute('data-theme')==='dark'));});})();</script>
+<link rel="stylesheet" href="assets/style.css?v=20260620">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="testahil?">
 <meta property="og:title" content="Emaar Misr (EMFD) — is it worth it? | testahil?">
@@ -55,6 +56,7 @@
     <a href="ledger.html">Ledger</a>
     <a href="method.html">Methodology</a>
   </nav>
+  <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode" aria-pressed="false" title="Toggle dark / light"><span class="tt-moon" aria-hidden="true">☾</span><span class="tt-sun" aria-hidden="true">☀</span></button>
 </div></header>
 
 <!-- TOP SEARCH (under the banner, every page) -->

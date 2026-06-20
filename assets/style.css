@@ -354,3 +354,81 @@ details.more .more-body table{margin-top:8px}
 .secnav a:hover{color:var(--teal2); text-decoration:none}
 .secnav a.active{color:var(--ink); font-weight:600; border-left-color:var(--amber)}
 @media (prefers-reduced-motion:reduce){.secnav a{transition:none}}
+
+/* ============================================================
+   DARK MODE  (appended 2026-06-20) — toggle lives in the header
+   Enabled via data-theme="dark" on <html>; first visit respects the
+   OS prefers-color-scheme, then the user's choice is remembered.
+   Light rules are untouched; dark rules override only where a colour
+   was hard-coded (variables flip automatically everywhere else).
+   ============================================================ */
+:root[data-theme="dark"]{
+  --paper:#0D1F1D; --ink:#E7EFEC; --card:#15302D;
+  --teal:#4FB3A4; --teal2:#63C7B8;
+  --line:#26433F; --muted:#9DB3AF;
+  --amber:#D8BC74; --amber-text:#CBB06A;
+  --red:#E07767; --green:#54B583;
+}
+
+/* gentle cross-fade on switch (not for reduced-motion users) */
+body{transition:background-color .2s ease, color .2s ease}
+@media (prefers-reduced-motion:reduce){body{transition:none}}
+
+/* theme toggle button (sits at the right of the header) */
+.theme-toggle{margin-inline-start:auto; align-self:center; flex:none; width:38px; height:38px;
+  background:transparent; border:1px solid var(--line); color:var(--muted); border-radius:999px;
+  cursor:pointer; display:inline-flex; align-items:center; justify-content:center;
+  font-size:1.02rem; line-height:1; padding:0; transition:color .15s, border-color .15s, background .15s}
+.theme-toggle:hover{color:var(--teal); border-color:var(--teal2)}
+.theme-toggle:focus-visible{outline:3px solid var(--teal2); outline-offset:2px}
+.theme-toggle .tt-sun{display:none}
+.theme-toggle .tt-moon{display:inline}
+:root[data-theme="dark"] .theme-toggle .tt-moon{display:none}
+:root[data-theme="dark"] .theme-toggle .tt-sun{display:inline}
+@media(max-width:700px){ .theme-toggle{width:34px; height:34px; font-size:.95rem} }
+
+/* ---- dark overrides for hard-coded light surfaces ---- */
+[data-theme="dark"] .nav{background:rgba(13,31,29,.9)}
+[data-theme="dark"] .nav .drop .menu{background:#15302D; box-shadow:0 6px 22px rgba(0,0,0,.55)}
+[data-theme="dark"] .nav .drop .menu a:hover{background:#1B3B37}
+[data-theme="dark"] .chip{background:#1B3B37; color:var(--teal)}
+[data-theme="dark"] .chip.warn{background:#2A2414; color:#D8BC74; border-color:#54471F}
+[data-theme="dark"] .disclaimer-box{background:#241F12; border-color:#54471F}
+[data-theme="dark"] input,[data-theme="dark"] select{background-color:#0F2724; color:var(--ink); border-color:var(--line)}
+[data-theme="dark"] .answer{background:linear-gradient(180deg,#163530,#0F2623)}
+[data-theme="dark"] .toggle{background:#163530}
+[data-theme="dark"] .toggle button.on{background:#0F2724; color:var(--teal)}
+[data-theme="dark"] details.more{background:#15302D}
+[data-theme="dark"] details.more>summary:hover{background:#1B3B37}
+[data-theme="dark"] .search-wrap input,
+[data-theme="dark"] .topsearch input,
+[data-theme="dark"] .nav-search-panel input{background-color:#0F2724}
+[data-theme="dark"] .tk-results{background:#15302D; box-shadow:0 10px 30px rgba(0,0,0,.55)}
+[data-theme="dark"] .tk-hit:hover{background:#1B3B37}
+[data-theme="dark"] .tk-tag{background:#1B3B37; color:var(--teal)}
+[data-theme="dark"] .tk-tag.warn{background:#2A2414; color:#D8BC74}
+[data-theme="dark"] .modal-card{background:#15302D}
+[data-theme="dark"] .term .tip{background:#081512; color:#fff}
+[data-theme="dark"] .term .tip::after{border-top-color:#081512}
+[data-theme="dark"] .peer-here{background:#16332F}
+[data-theme="dark"] .pill.cheap{background:#123028; color:var(--green)}
+[data-theme="dark"] .pill.rich{background:#33201D; color:var(--red)}
+[data-theme="dark"] .pill.fair{background:#2A2414; color:#D8BC74}
+[data-theme="dark"] .nav-search-btn{background:#1B3B37; color:var(--teal)}
+[data-theme="dark"] .nav-search-btn:hover{background:var(--teal); color:#06110F}
+[data-theme="dark"] .track-badge{background:#081512; border:1px solid var(--line)}
+[data-theme="dark"] .track-badge:hover{background:#0A1A18}
+[data-theme="dark"] .starthere{background:#16332F}
+[data-theme="dark"] .share-btn:hover{background:#1B3B37}
+[data-theme="dark"] .hero .sub b{background:linear-gradient(transparent 65%, rgba(192,164,95,.22) 65%)}
+
+/* study-page tab pills + Monte-Carlo segment toggle (defined in page-level <style>) */
+[data-theme="dark"] .tab-btn{background:#15302D; color:var(--ink)}
+[data-theme="dark"] #mc-lab .mc-seg button[aria-pressed="true"]{background:#163530; color:var(--ink)}
+
+/* inline callout backgrounds in page HTML (override non-important inline styles) */
+[data-theme="dark"] [style*="#eff5f4" i],
+[data-theme="dark"] [style*="#eef4f2" i]{background-color:#16332F !important}
+[data-theme="dark"] [style*="#eaf2f1" i]{background-color:#1B3B37 !important}
+[data-theme="dark"] [style*="#cfe0de" i]{background-color:#1E433E !important}
+[data-theme="dark"] [style*="#fbf8f1" i]{background-color:#241F12 !important}
