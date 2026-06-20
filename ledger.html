@@ -77,13 +77,13 @@
 
 
 <main class="wrap">
-  <section>
+  <section id="sec-top" class="anchor" data-nav="Track record">
     <h1 style="font-size:1.9rem">Were we right?</h1>
     <p class="sub" style="max-width:720px">Most people who talk about stocks quietly forget their bad calls. We don't. Every forecast we make is saved here with its date — and when that date arrives, we put the real price next to what we said, <b>right or wrong, nothing deleted.</b> So you can judge for yourself how good our forecasts actually are.</p>
     <div class="card" style="background:#EFF5F4"><b id="lg-sum-all"></b></div>
   </section>
 
-  <section>
+  <section id="sec-bystock" class="anchor" data-nav="By stock">
     <div class="tab-bar" id="tab-bar"></div>
 
     <div id="tab-panels"></div>
@@ -93,7 +93,7 @@
     </div>
   </section>
 
-  <section id="backtest-sec">
+  <section id="backtest-sec" class="anchor" data-nav="The backtest">
     <h2 style="font-size:1.3rem;margin-top:8px">Backtest — the model replayed on the past</h2>
     <p class="sub" style="max-width:720px">A separate, historical check: we re-run the <em>same</em> published model on past windows and ask the same question — did the real price land inside the range as often as the range claimed? <b>This does not count toward the score above.</b> It is methodology validation, not a forward call, and historical replays flatter less than live ones.</p>
     <div id="backtest-mount">
@@ -266,6 +266,27 @@ document.getElementById("tab-bar").addEventListener("click", e=>{
     </table>
   </div>
   <p class="muted" style="margin-top:8px"><b>Historical coverage: ${hit} of ${rows.length} inside the 90% range (${cov}%).</b> Separate from the live score — replays only, not a forward record.</p>`;
+})();
+</script>
+<script>
+(function(){
+  var secs=[].slice.call(document.querySelectorAll('[data-nav][id]'));
+  if(secs.length<3) return;
+  var nav=document.createElement('nav');
+  nav.className='secnav'; nav.setAttribute('aria-label','On this page');
+  var h="<p class='secnav-h'>On this page</p><ol>";
+  secs.forEach(function(s){ h+="<li><a href='#"+s.id+"'>"+s.getAttribute('data-nav')+"</a></li>"; });
+  nav.innerHTML=h+"</ol>";
+  var main=document.querySelector('main.wrap')||document.body;
+  main.parentNode.insertBefore(nav, main);
+  var links={}; secs.forEach(function(s){ links[s.id]=nav.querySelector("a[href='#"+s.id+"']"); });
+  function setActive(id){ secs.forEach(function(s){ if(links[s.id]) links[s.id].classList.toggle('active', s.id===id); }); }
+  nav.addEventListener('click', function(e){ var a=e.target.closest('a'); if(!a) return; var t=document.getElementById(a.getAttribute('href').slice(1)); if(t&&t.tagName==='DETAILS') t.open=true; });
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting) setActive(en.target.id); }); }, {rootMargin:'-42% 0px -52% 0px', threshold:0});
+    secs.forEach(function(s){ io.observe(s); });
+  }
+  setActive(secs[0].id);
 })();
 </script>
 </body></html>

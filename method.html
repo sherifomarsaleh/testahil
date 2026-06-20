@@ -54,12 +54,12 @@
 
 
 <main class="wrap">
-  <section>
+  <section id="sec-top" class="anchor" data-nav="Overview">
     <h1 style="font-size:1.9rem">Methodology</h1>
     <p class="sub" style="max-width:740px">Every instrument passes through three independent lenses, then the results are reconciled — agreement raises confidence, divergence is published as-is.</p>
   </section>
 
-  <section class="grid g3">
+  <section id="sec-lenses" class="grid g3 anchor" data-nav="The three lenses">
     <div class="card"><span class="kicker">LENS 1</span><h3>Fundamental</h3>
       <p class="muted">Bottom-up: each project valued from its units (area × price/m² and cost/m²), rolled into full financial statements, then DCF and sum-of-the-parts with each project weighted by its execution probability. Output: a value range (bear / base / full execution) — never one number.</p></div>
     <div class="card"><span class="kicker">LENS 2</span><h3>Technical</h3>
@@ -68,7 +68,7 @@
       <p class="muted">One model, 50,000 paths, 10 external factors: 5 continuous (policy rate, EGP/USD, inflation, market flows, oil) and 5 events with stated probabilities (geopolitics, sovereign inflows, launch execution, tourism, mortgage credit). Every assumption is a published, criticizable number — the table IS the model.</p></div>
   </section>
 
-  <section class="card">
+  <section id="sec-why" class="card anchor" data-nav="Why distributions">
     <h3>Why distributions, not price targets?</h3>
     <p>Because a single number is a comfortable lie. The future is a probability distribution, and whoever sells you certainty sells you an illusion. We publish the median, the bands, and level-touch probabilities — then <a href="ledger.html">measure our calibration in public</a>: do the 90% bands actually contain reality 90% of the time?</p>
     <h3>Momentum-reading rule (educational)</h3>
@@ -81,7 +81,7 @@
     <p class="muted">Found an error or a weak assumption? That's the point — write to <a href="mailto:info@testahil.com">info@testahil.com</a> or attack the open model in the <a href="library.html">Latest Studies</a>.</p>
   </section>
 
-  <section class="card">
+  <section id="sec-sources" class="card anchor" data-nav="Sources">
     <p class="qhead">Where the numbers come from</p>
     <p class="muted">We separate hard facts from our own estimates, and we label vendor data when we use it:</p>
     <ul class="muted" style="padding-left:1.2em;line-height:2">
@@ -94,7 +94,7 @@
     <p class="muted">Audited figures are distinguished from estimates inside each model. When a number is a vendor figure or a best-effort reconstruction, we say so.</p>
   </section>
 
-  <section class="card" id="disclaimer" style="border-color:#C98A2D">
+  <section class="card anchor" id="disclaimer" style="border-color:#C98A2D" data-nav="Disclaimer">
     <h2>Disclosure & Disclaimer — read in full</h2>
     <p><b>Nature of this content.</b> Everything published on this site is an educational valuation exercise and an expression of personal analytical opinion, based exclusively on publicly available information and on assumptions stated in the text and accompanying models. It is published free of charge, on a pre-set periodic schedule, to demonstrate methodology and invite scrutiny of it.</p>
     <p><b>No advice, no recommendation, no solicitation.</b> Nothing here constitutes investment advice, financial consultancy, securities analysis services, a recommendation, a rating, a price target, an offer, or a solicitation or invitation to buy, sell, hold or subscribe for any security. Nothing is directed at, or calibrated to, any reader's circumstances, and nothing should be acted on without independent verification and licensed professional advice.</p>
@@ -108,4 +108,25 @@
 
 <footer><div class="wrap"><b>Disclaimer:</b> Educational valuation studies and personal analytical opinion — not investment advice, not recommendations. The preparer is not licensed by Egypt's FRA, manages no money, accepts no clients, and may hold positions in instruments mentioned. <a href="method.html#disclaimer">Full text</a>.</div></footer>
 <script src="assets/data.js?v=20260619b"></script><script src="assets/app.js"></script>
+<script>
+(function(){
+  var secs=[].slice.call(document.querySelectorAll('[data-nav][id]'));
+  if(secs.length<3) return;
+  var nav=document.createElement('nav');
+  nav.className='secnav'; nav.setAttribute('aria-label','On this page');
+  var h="<p class='secnav-h'>On this page</p><ol>";
+  secs.forEach(function(s){ h+="<li><a href='#"+s.id+"'>"+s.getAttribute('data-nav')+"</a></li>"; });
+  nav.innerHTML=h+"</ol>";
+  var main=document.querySelector('main.wrap')||document.body;
+  main.parentNode.insertBefore(nav, main);
+  var links={}; secs.forEach(function(s){ links[s.id]=nav.querySelector("a[href='#"+s.id+"']"); });
+  function setActive(id){ secs.forEach(function(s){ if(links[s.id]) links[s.id].classList.toggle('active', s.id===id); }); }
+  nav.addEventListener('click', function(e){ var a=e.target.closest('a'); if(!a) return; var t=document.getElementById(a.getAttribute('href').slice(1)); if(t&&t.tagName==='DETAILS') t.open=true; });
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting) setActive(en.target.id); }); }, {rootMargin:'-42% 0px -52% 0px', threshold:0});
+    secs.forEach(function(s){ io.observe(s); });
+  }
+  setActive(secs[0].id);
+})();
+</script>
 </body></html>
