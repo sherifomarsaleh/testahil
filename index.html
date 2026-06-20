@@ -113,7 +113,7 @@
   <section class="card anchor" id="sec-notify" data-nav="Get notified" style="background:#1B5E5E;color:#fff;border:0">
     <p class="qhead" style="margin-top:0;color:#fff">Get told when it matters</p>
     <p style="color:#D9E4E2;max-width:560px;margin-top:0">One short email when we publish a new study, or when a forecast resolves — right or wrong. No spam, and we never sell your address.</p>
-    <form data-notify action="https://formsubmit.co/info@testahil.com" method="POST" style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;max-width:520px">
+    <form data-notify action="https://formsubmit.co/info@testahil.com" method="POST" onsubmit="if(this.dataset.sub){return false}this.dataset.sub=1;this.querySelector('button').disabled=true" style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;max-width:520px">
       <input type="hidden" name="_subject" value="New testahil notify-me signup">
       <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="_template" value="table">
