@@ -28,6 +28,21 @@
 .tab-btn:hover{border-color:var(--teal);color:var(--teal)}
 .tab-btn.active{background:var(--teal);color:#fff;border-color:var(--teal)}
 .tab-panel{display:none}.tab-panel.active{display:block}
+
+.bt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:16px 0}
+.bt-card .bt-head{display:flex;align-items:center;justify-content:space-between}
+.bt-card h3{margin:0}
+.bt-name{color:var(--muted);font-size:.84rem;margin:2px 0 12px}
+.bt-rl{font-size:.92rem;margin-bottom:6px}.bt-mut{color:var(--muted);font-size:.8rem}
+.bt-track{position:relative;height:10px;background:#EEF4F2;border-radius:999px;margin:4px 0}
+.bt-tick{position:absolute;top:-3px;left:50%;width:2px;height:16px;background:var(--ink);transform:translateX(-1px)}
+.bt-dot{position:absolute;top:-2px;width:14px;height:14px;border-radius:50%;border:2px solid #fff;transform:translateX(-7px);box-shadow:0 1px 3px rgba(0,0,0,.25)}
+.bt-scale{display:flex;justify-content:space-between;color:var(--muted);font-size:.66rem;margin-bottom:11px}
+.bt-cov{display:flex;gap:26px;font-size:.86rem;font-family:'IBM Plex Mono',monospace;border-top:1px solid var(--line);padding-top:9px;margin-bottom:7px}
+.bt-cov span{white-space:nowrap}.bt-cov b{color:var(--teal)}
+.bt-verdict{color:var(--muted);font-size:.83rem;line-height:1.4}
+.bt-fig{padding:10px;margin-top:4px}.bt-fig img{width:100%;height:auto;border-radius:8px;display:block}
+@media(max-width:760px){.bt-grid{grid-template-columns:1fr}}
 </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-H9NV0ZK9RN"></script>
@@ -79,14 +94,47 @@
   <section id="backtest-sec">
     <h2 style="font-size:1.3rem;margin-top:8px">Backtest — the model replayed on the past</h2>
     <p class="sub" style="max-width:720px">A separate, historical check: we re-run the <em>same</em> published model on past windows and ask the same question — did the real price land inside the range as often as the range claimed? <b>This does not count toward the score above.</b> It is methodology validation, not a forward call, and historical replays flatter less than live ones.</p>
-    <div id="backtest-mount"></div>
+    <div id="backtest-mount">
+      <div class="bt-grid">
+      <div class="card bt-card">
+        <div class="bt-head"><h3>PHDC</h3><span class="chip">5-yr · 9.6×</span></div>
+        <div class="bt-name">Palm Hills</div>
+        <div class="bt-rl">Range width vs reality <b style="color:var(--amber)">0.75</b> <span class="bt-mut">(1.0 = exactly right)</span></div>
+        <div class="bt-track"><div class="bt-tick"></div><div class="bt-dot" style="left:25%;background:var(--amber)"></div></div>
+        <div class="bt-scale"><span>0.5 · too wide</span><span>1.0</span><span>too narrow · 1.5</span></div>
+        <div class="bt-cov"><span>5–95% <b>98%</b></span><span>25–75% <b>62%</b></span></div>
+        <div class="bt-verdict">Well-aimed; range ~25% wider than the price actually moved</div>
+      </div>
+      <div class="card bt-card">
+        <div class="bt-head"><h3>TMGH</h3><span class="chip">5-yr · 16.9×</span></div>
+        <div class="bt-name">Talaat Moustafa</div>
+        <div class="bt-rl">Range width vs reality <b style="color:var(--red)">1.42</b> <span class="bt-mut">(1.0 = exactly right)</span></div>
+        <div class="bt-track"><div class="bt-tick"></div><div class="bt-dot" style="left:92%;background:var(--red)"></div></div>
+        <div class="bt-scale"><span>0.5 · too wide</span><span>1.0</span><span>too narrow · 1.5</span></div>
+        <div class="bt-cov"><span>5–95% <b>87%</b></span><span>25–75% <b>52%</b></span></div>
+        <div class="bt-verdict">Too narrow — outcomes broke the range at the 2024 currency float</div>
+      </div>
+      <div class="card bt-card">
+        <div class="bt-head"><h3>EMFD</h3><span class="chip">5-yr · 5.7×</span></div>
+        <div class="bt-name">Emaar Misr</div>
+        <div class="bt-rl">Range width vs reality <b style="color:var(--amber)">0.77</b> <span class="bt-mut">(1.0 = exactly right)</span></div>
+        <div class="bt-track"><div class="bt-tick"></div><div class="bt-dot" style="left:27%;background:var(--amber)"></div></div>
+        <div class="bt-scale"><span>0.5 · too wide</span><span>1.0</span><span>too narrow · 1.5</span></div>
+        <div class="bt-cov"><span>5–95% <b>97%</b></span><span>25–75% <b>60%</b></span></div>
+        <div class="bt-verdict">Well-aimed; range ~23% wider than the price actually moved</div>
+      </div>
+      </div>
+      <div class="card bt-fig"><img alt="Five-year calibration backtest — PHDC, TMGH and EMFD, each replayed against its own published model" src="assets/calibration_backtest_5y.png?v=20260620"></div>
+      <div id="backtest-table"></div>
+      <p class="muted" style="margin-top:10px">The five-year window spans the 2022–24 currency moves, so the large nominal swings are mostly FX — this checks the <b>width</b> of each range, not its direction. About 20 independent 3-month windows per name, so the middle (25–75%) band is the sturdier read than the extreme tails.</p>
+    </div>
   </section>
 
 </main>
 
 <footer><div class="wrap"><b>Disclaimer:</b> Educational valuation studies and personal analytical opinion — not investment advice, not recommendations. The preparer is not licensed by Egypt's FRA, manages no money, accepts no clients, and may hold positions in instruments mentioned. <a href="method.html#disclaimer">Full text</a>.</div></footer>
 
-<script src="assets/data.js?v=20260619b"></script><script src="assets/app.js?v=20260619b"></script>
+<script src="assets/data.js?v=20260620"></script><script src="assets/app.js?v=20260620"></script>
 <script>
 const F2 = n => Number(n).toLocaleString("en-US",{maximumFractionDigits:2});
 
@@ -190,11 +238,10 @@ document.getElementById("tab-bar").addEventListener("click", e=>{
 /* Backtest panel — isolated from the forward ledger; never affects the live score. */
 (function(){
   if (typeof BACKTEST === "undefined") return;
-  const mount = document.getElementById("backtest-mount");
-  if (!mount) return;
+  const tbl = document.getElementById("backtest-table");
+  if (!tbl) return;
   const f2 = n => Number(n).toLocaleString("en-US",{maximumFractionDigits:2});
   if (!BACKTEST.length){
-    mount.innerHTML = `<div class="card"><p class="muted">No backtest cohorts published yet. The historical coverage replay will appear here as past-window forecasts are scored — kept strictly separate from the live ledger above.</p></div>`;
     return;
   }
   const inBand = r => (r.in_90 != null) ? r.in_90 : (r.realized_close >= r.p5 && r.realized_close <= r.p95);
@@ -210,7 +257,7 @@ document.getElementById("tab-bar").addEventListener("click", e=>{
   </tr>`).join("");
   let hit=0; rows.forEach(r=>{ if(inBand(r)) hit++; });
   const cov = rows.length ? Math.round(100*hit/rows.length) : 0;
-  mount.innerHTML = `<div class="card">
+  tbl.innerHTML = `<div class="card">
     <table>
       <thead><tr><th class="num">Anchor</th><th>Instrument</th><th class="num">Horizon</th><th class="num">Said (mid)</th><th class="num">90% range</th><th>Real close</th><th>Tier</th></tr></thead>
       <tbody>${body}</tbody>
