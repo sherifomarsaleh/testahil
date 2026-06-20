@@ -157,13 +157,21 @@ function runCalc(){
   const rows=[["Egyptian pound CD",cd],["US-dollar CD",usd],["Gold (21k)",gold],["EGX30 index",egx]]
     .sort((a,b)=>b[1]-a[1]);
   const maxV=rows[0][1];
-  out.innerHTML = `<table><thead><tr><th>Where you put it</th><th class="num">What you'd have</th><th class="num">Really worth*</th><th style="width:38%"></th></tr></thead><tbody>`+
+  out.innerHTML = `<table><thead><tr><th>Where you put it</th><th class="num">What you'd have</th><th class="num">Really worth</th><th style="width:38%"></th></tr></thead><tbody>`+
     rows.map(([n,v])=>{const real=v/cpi; const pct=Math.max(4,v/maxV*100);
       return `<tr><td>${n}</td><td class="num">${F(v)}</td><td class="num">${F(real)}</td>
       <td><div style="background:${real>=amt?'#2E7D5B':'#B5483A'};opacity:.85;height:14px;border-radius:7px;width:${pct}%"></div></td></tr>`;}).join("")+
     `</tbody></table>
-    <p class="muted">* After prices rose ${F((cpi-1)*100)}% over the period. Starting from EGP ${F(amt)}, end-${y1} to end-${y2}.</p>
     <p class="muted">A red bar means that even though the number grew, it bought less than when you started.</p>`;
+  const rc=document.getElementById("real-chart");
+  if(rc){
+    const rr=rows.map(([n,v])=>[n,(v/cpi/amt-1)*100]).sort((a,b)=>b[1]-a[1]);
+    const maxAbs=Math.max(...rr.map(x=>Math.abs(x[1])),1);
+    rc.innerHTML = `<table><thead><tr><th>Where you put it</th><th class="num">After inflation</th><th style="width:46%"></th></tr></thead><tbody>`+
+      rr.map(([n,p])=>{const w=Math.max(4,Math.abs(p)/maxAbs*100); const c=p>=0?'#2E7D5B':'#B5483A';
+        return `<tr><td>${n}</td><td class="num">${p>=0?'+':'−'}${F(Math.abs(p))}%</td><td><div style="background:${c};opacity:.85;height:14px;border-radius:7px;width:${w}%"></div></td></tr>`;}).join("")+
+      `</tbody></table><p class="muted">Each bar is the real return — what the money gained (green) or lost (red) in buying power, after inflation of ${F((cpi-1)*100)}% over end-${y1} to end-${y2}.</p>`;
+  }
 }
 function initCalc(){
   const from=document.getElementById("c-from"), to=document.getElementById("c-to");
