@@ -117,11 +117,11 @@
       <input type="hidden" name="_subject" value="New testahil notify-me signup">
       <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_next" value="https://testahil.com/thanks.html">
       <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
       <input type="email" name="email" required placeholder="you@email.com" aria-label="Your email" style="flex:1;min-width:220px;padding:12px 14px;border-radius:8px;border:0;font-size:1rem;font-family:inherit">
       <button type="submit" class="btn" style="background:#C0A45F;border-color:#C0A45F;color:#1C3A36">Notify me</button>
     </form>
-    <p class="notify-msg" aria-live="polite" style="font-size:.9rem;margin:10px 0 0;min-height:1.1em"></p>
     <p style="color:#9FB0AC;font-size:.78rem;margin:6px 0 0">We use your email only for these updates. Unsubscribe any time by replying.</p>
   </section>
 
@@ -167,27 +167,6 @@ document.getElementById("coming").innerHTML =
     secs.forEach(function(s){ io.observe(s); });
   }
   setActive(secs[0].id);
-})();
-</script>
-<script>
-(function(){
-  document.querySelectorAll("form[data-notify]").forEach(function(f){
-    f.addEventListener("submit", function(e){
-      e.preventDefault();
-      var msg=f.querySelector(".notify-msg"), btn=f.querySelector("button[type=submit]");
-      var email=(f.querySelector("input[type=email]").value||"").trim();
-      if(!email) return;
-      btn.disabled=true; var label=btn.textContent; btn.textContent="Sending..."; msg.textContent="";
-      fetch("https://formsubmit.co/ajax/info@testahil.com",{
-        method:"POST", headers:{"Content-Type":"application/json","Accept":"application/json"},
-        body:JSON.stringify({email:email,_subject:"New testahil notify-me signup",_template:"table"})
-      }).then(function(r){return r.json();}).then(function(){
-        f.reset(); msg.style.color="#C0A45F"; msg.textContent="You're on the list. We'll email you when it matters.";
-      }).catch(function(){
-        msg.style.color="#9FB0AC"; msg.textContent="That didn't go through. Email info@testahil.com and we'll add you.";
-      }).finally(function(){ btn.disabled=false; btn.textContent=label; });
-    });
-  });
 })();
 </script>
 </body></html>
