@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Public Ledger — every forecast stays, right or wrong | testahil?</title>
+<meta name="description" content="Every forecast published with a date and scored against reality, right or wrong.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;700;800&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
@@ -81,6 +82,11 @@
     <h1 style="font-size:1.9rem">Were we right?</h1>
     <p class="sub" style="max-width:720px">Most people who talk about stocks quietly forget their bad calls. We don't. Every forecast we make is saved here with its date — and when that date arrives, we put the real price next to what we said, <b>right or wrong, nothing deleted.</b> So you can judge for yourself how good our forecasts actually are.</p>
     <div class="card" style="background:#EFF5F4"><b id="lg-sum-all"></b></div>
+    <div class="card" id="lg-countdown" style="display:none;background:#1B5E5E;color:#fff;border:0;text-align:center;margin-top:14px">
+      <div style="font-family:'Alexandria','IBM Plex Sans',sans-serif;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;opacity:.85;margin-bottom:6px">First forecast resolves in</div>
+      <div id="lg-cd-num" class="num" style="font-size:2rem;font-weight:700;line-height:1.05"></div>
+      <div id="lg-cd-sub" style="font-size:.86rem;opacity:.9;margin-top:5px"></div>
+    </div>
   </section>
 
   <section id="sec-bystock" class="anchor" data-nav="By stock">
@@ -287,6 +293,22 @@ document.getElementById("tab-bar").addEventListener("click", e=>{
     secs.forEach(function(s){ io.observe(s); });
   }
   setActive(secs[0].id);
+})();
+</script>
+<script>
+(function(){
+  var el=document.getElementById("lg-countdown"); if(!el) return;
+  var target=new Date("2026-07-09T00:00:00+03:00").getTime();
+  function tick(){
+    var d=target-Date.now();
+    var num=document.getElementById("lg-cd-num"), sub=document.getElementById("lg-cd-sub");
+    if(d<=0){ num.textContent="It's here"; sub.textContent="9 July 2026 \u2014 our first forecast (PHDC) reaches its date. The result goes here, right or wrong."; el.style.display="block"; return; }
+    var day=Math.floor(d/864e5), hr=Math.floor(d%864e5/36e5), mi=Math.floor(d%36e5/6e4);
+    num.textContent = day+(day===1?" day":" days");
+    sub.textContent = hr+" h "+mi+" m \u2014 until 9 July 2026, our first gradable forecast (PHDC T+20)";
+    el.style.display="block";
+  }
+  tick(); setInterval(tick,60000);
 })();
 </script>
 </body></html>
