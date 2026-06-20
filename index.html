@@ -48,7 +48,7 @@
 
 
 <main class="wrap">
-  <section class="hero">
+  <section id="sec-top" class="hero anchor" data-nav="Welcome">
     <div class="q">testahil<span>?</span></div>
     <p class="sub"><b>We won't tell you what to buy. We'll tell you the odds.</b><br>
     Where could an Egyptian stock be in a month or three? We run it 50,000 ways — in plain language, with the math open to check.</p>
@@ -56,7 +56,7 @@
   </section>
 
   <!-- NEW HERE — orientation for first-timers -->
-  <section style="padding-top:6px">
+  <section id="sec-start" style="padding-top:6px" class="anchor" data-nav="New here?">
     <details class="starthere">
       <summary><b>New here?</b> How to use this site in 30 seconds</summary>
       <div class="starthere-body">
@@ -71,7 +71,7 @@
   </section>
 
   <!-- LATEST STUDY — plain answer first -->
-  <section>
+  <section id="sec-latest" class="anchor" data-nav="Latest study">
     <div class="answer">
       <span class="kicker">LATEST STUDY · <span class="num" id="upd"></span></span>
       <p class="verdict" id="latest-name" style="margin-top:6px"></p>
@@ -83,7 +83,7 @@
   </section>
 
   <!-- HOW IT WORKS — three plain promises -->
-  <section>
+  <section id="sec-diff" class="anchor" data-nav="How it's different">
     <p class="qhead">How this is different</p>
     <div class="grid g3">
       <div class="card"><span class="kicker">1</span><h3>Odds, not tips</h3>
@@ -96,13 +96,13 @@
   </section>
 
   <!-- COVERAGE -->
-  <section>
+  <section id="sec-cover" class="anchor" data-nav="Stocks we cover">
     <p class="qhead">Stocks we cover</p>
     <div class="cover-grid" id="coming"></div>
   </section>
 
   <!-- CALCULATOR -->
-  <section>
+  <section id="sec-saved" class="anchor" data-nav="What kept value">
     <div class="card" style="background:#EFF5F4">
       <p class="qhead">CDs, gold, or dollars — what actually kept its value?</p>
       <p class="muted">The dinner-table argument, settled with real numbers after inflation.</p>
@@ -132,5 +132,26 @@ document.getElementById("coming").innerHTML =
     ? `<a class="card" href="${c.url}" style="display:block"><span class="chip">Covered</span><h3 style="margin:8px 0 2px">${c.name}</h3><p class="muted num" style="margin:0">${c.code}</p></a>`
     : `<div class="card" style="opacity:.55"><span class="chip warn">Coming soon</span><h3 style="margin:8px 0 2px">${c.name}</h3><p class="muted num" style="margin:0">${c.code}</p></div>`
   ).join("");
+</script>
+<script>
+(function(){
+  var secs=[].slice.call(document.querySelectorAll('[data-nav][id]'));
+  if(secs.length<3) return;
+  var nav=document.createElement('nav');
+  nav.className='secnav'; nav.setAttribute('aria-label','On this page');
+  var h="<p class='secnav-h'>On this page</p><ol>";
+  secs.forEach(function(s){ h+="<li><a href='#"+s.id+"'>"+s.getAttribute('data-nav')+"</a></li>"; });
+  nav.innerHTML=h+"</ol>";
+  var main=document.querySelector('main.wrap')||document.body;
+  main.parentNode.insertBefore(nav, main);
+  var links={}; secs.forEach(function(s){ links[s.id]=nav.querySelector("a[href='#"+s.id+"']"); });
+  function setActive(id){ secs.forEach(function(s){ if(links[s.id]) links[s.id].classList.toggle('active', s.id===id); }); }
+  nav.addEventListener('click', function(e){ var a=e.target.closest('a'); if(!a) return; var t=document.getElementById(a.getAttribute('href').slice(1)); if(t&&t.tagName==='DETAILS') t.open=true; });
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting) setActive(en.target.id); }); }, {rootMargin:'-42% 0px -52% 0px', threshold:0});
+    secs.forEach(function(s){ io.observe(s); });
+  }
+  setActive(secs[0].id);
+})();
 </script>
 </body></html>
