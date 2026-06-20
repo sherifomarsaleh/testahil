@@ -374,18 +374,25 @@ details.more .more-body table{margin-top:8px}
 body{transition:background-color .2s ease, color .2s ease}
 @media (prefers-reduced-motion:reduce){body{transition:none}}
 
-/* theme toggle button (sits at the right of the header) */
-.theme-toggle{margin-inline-start:auto; align-self:center; flex:none; width:38px; height:38px;
-  background:transparent; border:1px solid var(--line); color:var(--muted); border-radius:999px;
-  cursor:pointer; display:inline-flex; align-items:center; justify-content:center;
-  font-size:1.02rem; line-height:1; padding:0; transition:color .15s, border-color .15s, background .15s}
-.theme-toggle:hover{color:var(--teal); border-color:var(--teal2)}
+/* theme toggle — bold labelled pill at the right of the header */
+.theme-toggle{margin-inline-start:auto; align-self:center; display:inline-flex; align-items:center; gap:8px;
+  background:#EAF2F1; border:1.5px solid var(--teal); color:var(--teal); border-radius:999px;
+  cursor:pointer; padding:10px 17px; font:inherit; font-weight:700; font-size:.92rem; line-height:1;
+  transition:background .15s, color .15s, border-color .15s}
+.theme-toggle:hover{background:var(--teal); color:#fff; border-color:var(--teal)}
 .theme-toggle:focus-visible{outline:3px solid var(--teal2); outline-offset:2px}
-.theme-toggle .tt-sun{display:none}
-.theme-toggle .tt-moon{display:inline}
-:root[data-theme="dark"] .theme-toggle .tt-moon{display:none}
-:root[data-theme="dark"] .theme-toggle .tt-sun{display:inline}
-@media(max-width:700px){ .theme-toggle{width:34px; height:34px; font-size:.95rem} }
+.theme-toggle .tt-icon{width:19px; height:19px; flex:none}
+.theme-toggle .tt-moon{fill:currentColor}
+.theme-toggle .tt-sun{fill:none; stroke:currentColor; stroke-width:2.1; stroke-linecap:round}
+.theme-toggle .tt-sun,.theme-toggle .tt-label-light{display:none}
+.theme-toggle .tt-moon,.theme-toggle .tt-label-dark{display:inline-block}
+:root[data-theme="dark"] .theme-toggle{background:#1B3B37; color:var(--teal); border-color:var(--teal)}
+:root[data-theme="dark"] .theme-toggle:hover{background:var(--teal); color:#06110F; border-color:var(--teal)}
+:root[data-theme="dark"] .theme-toggle .tt-moon,
+:root[data-theme="dark"] .theme-toggle .tt-label-dark{display:none}
+:root[data-theme="dark"] .theme-toggle .tt-sun,
+:root[data-theme="dark"] .theme-toggle .tt-label-light{display:inline-block}
+@media(max-width:600px){ .theme-toggle .tt-label{display:none !important} .theme-toggle{padding:10px 12px} }
 
 /* ---- dark overrides for hard-coded light surfaces ---- */
 [data-theme="dark"] .nav{background:rgba(13,31,29,.9)}
