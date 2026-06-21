@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
+<script>try{var t=localStorage.getItem("theme");if(t==="dark"||(!t&&window.matchMedia&&matchMedia("(prefers-color-scheme:dark)").matches))document.documentElement.setAttribute("data-theme","dark");}catch(e){}</script>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>المنهجية — كيف نقيّم أسهم البورصة المصرية | تستاهل؟</title>
 <meta name="description" content="ثلاث عدسات مستقلة لكل سهم: تحليل أساسي من الأسفل للأعلى، تحليل فني، ومحاكاة مونت كارلو بخمسين ألف مسار. توزيعات لا أسعار مستهدفة. مع الإفصاح الكامل.">
@@ -52,6 +53,26 @@ ul{padding-inline-start:22px} li{margin:.4em 0}
 footer{background:var(--pine);color:#c7d2ce;font-size:13px;padding:22px 0;margin-top:34px}
 footer b{color:#fff} footer a{color:var(--gold)}
 </style>
+<style id="ar-dark">
+:root[data-theme="dark"]{--paper:#0D1F1D;--gold:#C9AE6A;--brass:#C9AE6A;--sage:#9DB3AF}
+[data-theme="dark"] body{background:#0D1F1D;color:#E7EFEC}
+[data-theme="dark"] h2{color:#5FBDAE}
+[data-theme="dark"] h3{color:#C9AE6A}
+[data-theme="dark"] .lens{background:#15302D;border-color:#26433F}
+[data-theme="dark"] .soon span{background:#1B3B37;color:#9DB3AF}
+[data-theme="dark"] .soon span b{color:#cfe0db}
+[data-theme="dark"] .disc{background:#15302D;color:#cfe0db}
+[data-theme="dark"] .hero p{color:#9DB3AF}
+[data-theme="dark"] .study{background:#15302D}
+body{transition:background-color .2s ease,color .2s ease}
+@media(prefers-reduced-motion:reduce){body{transition:none}}
+.ttog{display:inline-flex;align-items:center;gap:7px;background:transparent;border:1.5px solid var(--gold);color:var(--gold);border-radius:999px;padding:6px 13px;font:inherit;font-weight:700;font-size:.85rem;cursor:pointer;margin-inline-start:10px;line-height:1}
+.ttog:hover{background:var(--gold);color:var(--pine)}
+.ttog .tt-i{width:16px;height:16px;flex:none}
+.ttog .tt-sun,.ttog .tt-l-l{display:none}.ttog .tt-moon,.ttog .tt-l-d{display:inline}
+[data-theme="dark"] .ttog .tt-moon,[data-theme="dark"] .ttog .tt-l-d{display:none}
+[data-theme="dark"] .ttog .tt-sun,[data-theme="dark"] .ttog .tt-l-l{display:inline}
+</style>
 </head><header class="nav"><div class="wrap">
   <a href="index.html" class="brand">تستاهل؟<small>هل يستحق؟</small></a>
   <nav>
@@ -59,6 +80,7 @@ footer b{color:#fff} footer a{color:var(--gold)}
     <a href="egypt.html">مصر</a>
     <a href="method.html" class="on">المنهجية</a>
   </nav>
+  <button id="theme-toggle" class="ttog" type="button" aria-label="تبديل الوضع الداكن"><svg class="tt-i" viewBox="0 0 24 24" aria-hidden="true"><path class="tt-moon" fill="currentColor" d="M21 12.8A8.5 8.5 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/><g class="tt-sun" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.4 1.4M17.6 17.6l1.4 1.4M19 5l-1.4 1.4M6.4 17.6L5 19"/></g></svg><span class="tt-l tt-l-d">داكن</span><span class="tt-l tt-l-l">فاتح</span></button>
   <a class="lang" href="../method.html">English</a>
 </div></header>
 <section class="hero"><div class="wrap">
@@ -111,4 +133,5 @@ footer b{color:#fff} footer a{color:var(--gold)}
 <footer><div class="wrap">
   <b>إخلاء مسؤولية:</b> دراسات تقييم تعليمية ورأي تحليلي شخصي — وليست توصية استثمارية ولا نصيحة بشراء أو بيع. مُعِدّ التقرير غير مرخّص من الهيئة العامة للرقابة المالية المصرية، ولا يدير أموالاً ولا يقبل عملاء، وقد يملك مراكز في أوراق مذكورة. <a href="method.html#disclaimer">النص الكامل</a>.
 </div></footer>
+<script>document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest("#theme-toggle");if(!b)return;var d=document.documentElement.getAttribute("data-theme")==="dark";if(d){document.documentElement.removeAttribute("data-theme");}else{document.documentElement.setAttribute("data-theme","dark");}try{localStorage.setItem("theme",d?"light":"dark");}catch(_){}});</script>
 </body></html>
