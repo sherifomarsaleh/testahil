@@ -229,6 +229,16 @@ h1[id],h2[id],h3[id],.lead[id],[id^="m-"],[id^="a-"],#disclaimer{scroll-margin-t
 @media(max-width:1180px){ .hero .wrap{padding-inline-start:24px} } /* page-map column drops */
 @media(max-width:860px){ .hero .wrap{padding-inline-end:24px} }    /* side column drops below */
 </style>
+<style id="ar-header-align">
+/* Match the header content row to the article column (same offset as the hero). */
+header.nav .wrap{max-width:1240px; padding-inline-start:204px !important; padding-inline-end:344px !important}
+@media(max-width:1180px){ header.nav .wrap{padding-inline-start:24px !important} }
+@media(max-width:860px){ header.nav .wrap{padding-inline-end:24px !important} }
+</style>
+<style id="ar-search-align">
+/* Match the search bar's right edge to the article column on wide (3-col) screens. */
+@media(min-width:1181px){ .ar-topsearch{padding-inline-start:204px} }
+</style>
 </head>
 <body>
 <header class="nav"><div class="wrap">
