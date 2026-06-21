@@ -111,6 +111,25 @@ body{transition:background-color .2s ease,color .2s ease}
 @media(max-width:1180px){.ar-layout{grid-template-columns:minmax(0,1fr) 290px}.ar-toc{display:none}}
 @media(max-width:860px){.ar-layout{grid-template-columns:1fr}.ar-side{position:static}}
 </style>
+<style id="ar-search-css">
+.ar-topsearch{max-width:1240px;margin:0 auto;padding:18px 24px 0;direction:rtl;box-sizing:border-box}
+.ar-topsearch .sw{position:relative;max-width:560px;margin:0}
+.ar-topsearch input{width:100%;padding:12px 44px 12px 16px;font-size:1rem;border-radius:11px;border:1.5px solid var(--line,#E6DFCE);background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%235B7270' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.3-4.3'/%3E%3C/svg%3E") no-repeat right 14px center;font-family:inherit;color:var(--ink,#16302C);box-sizing:border-box;text-align:right}
+.ar-topsearch input::placeholder{color:#8A9B97}
+.ar-topsearch input:focus{outline:none;border-color:var(--teal2,#2A8F8F);box-shadow:0 0 0 3px rgba(42,143,143,.15)}
+.ar-tkres{position:absolute;top:calc(100% + 6px);right:0;left:0;z-index:60;background:#fff;border:1px solid var(--line,#E6DFCE);border-radius:12px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.12);display:none}
+.ar-tkres.open{display:block}
+.ar-hit{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:13px 18px;color:var(--ink,#16302C);border-bottom:1px solid var(--line,#E6DFCE);text-decoration:none;cursor:pointer}
+.ar-hit:last-child{border-bottom:0}
+.ar-hit:hover{background:#EAF2F1;text-decoration:none}
+.ar-hit .tk-code{font-family:ui-monospace,monospace;color:#5B7270;font-size:.85em}
+:root[data-theme="dark"] .ar-topsearch input{background-color:#0F2724;border-color:#2A4B47;color:#E7EFEC}
+:root[data-theme="dark"] .ar-tkres{background:#15302D;border-color:#2A4B47;box-shadow:0 10px 30px rgba(0,0,0,.55)}
+:root[data-theme="dark"] .ar-hit{color:#E7EFEC;border-color:#2A4B47}
+:root[data-theme="dark"] .ar-hit .tk-code{color:#9DB3AF}
+:root[data-theme="dark"] .ar-hit:hover{background:#1B3B37}
+@media(max-width:860px){.ar-topsearch{padding:14px 18px 0}}
+</style>
 </head>
 <body>
 <header class="nav"><div class="wrap">
@@ -130,6 +149,10 @@ body{transition:background-color .2s ease,color .2s ease}
   <div class="sub">EGX:EMFD · توقّع لأفق شهر إلى 3 أشهر · بالجنيه المصري</div>
 </div></section>
 
+<div class="ar-topsearch"><div class="sw">
+  <input id="tk-search-ar" type="text" placeholder="ابحث عن سهم — جرّب PHDC أو بالم هيلز" autocomplete="off" aria-label="ابحث عن سهم">
+  <div class="ar-tkres" id="tk-results-ar"></div>
+</div></div>
 <main class="ar-layout"><nav class="ar-toc" aria-label="على هذه الصفحة"><p class="ar-toc-h">على هذه الصفحة</p><ol><li><a href="#a-top">نظرة عامة</a></li><li><a href="#a-value">كيف نحسب التقييم؟</a></li><li><a href="#a-read">كيف تقرأ الشريط؟</a></li><li><a href="#a-study">الدراسة الكاملة</a></li></ol></nav><div class="ar-main">
   <p class="lead" id="a-top">«السعر المستهدف» رقم واحد، والحقيقة نطاق. لذلك بدل رقم واحد، <strong>نُحاكي عشرات الآلاف من السيناريوهات</strong> لنرى أين قد يستقر سعر إعمار مصر خلال الأشهر الثلاثة القادمة — من أسوأ 5٪ من النتائج إلى أفضل 5٪، مع إبراز النصف الأوسط الأكثر ترجيحاً. لا نوصي بشراء أو بيع؛ نعرض شكل الاحتمالات فقط.</p>
 <figure dir="ltr" style="margin:24px 0;background:#13302C;border-radius:14px;padding:18px 10px 8px">
@@ -180,5 +203,35 @@ body{transition:background-color .2s ease,color .2s ease}
 <script>document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest("#theme-toggle");if(!b)return;var d=document.documentElement.getAttribute("data-theme")==="dark";if(d){document.documentElement.removeAttribute("data-theme");}else{document.documentElement.setAttribute("data-theme","dark");}try{localStorage.setItem("theme",d?"light":"dark");}catch(_){}});</script>
 <script>document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest(".ss-copy");if(!b)return;var ta=b.parentNode.querySelector(".ss-code");if(!ta)return;ta.select();try{navigator.clipboard.writeText(ta.value);}catch(_){try{document.execCommand("copy");}catch(__){}}var o=b.getAttribute("data-l")||b.textContent;b.setAttribute("data-l",o);b.textContent="\u2713 تم النسخ";setTimeout(function(){b.textContent=o;},1700);});</script>
 <script>(function(){var ids=["a-top","a-value","a-read","a-study"],L={};ids.forEach(function(i){L[i]=document.querySelector('.ar-toc a[href="#'+i+'"]');});function A(i){ids.forEach(function(x){if(L[x])L[x].classList.toggle("active",x===i);});}if("IntersectionObserver" in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)A(e.target.id);});},{rootMargin:"-30% 0px -55% 0px",threshold:0});ids.forEach(function(i){var el=document.getElementById(i);if(el)io.observe(el);});}A("a-top");})();</script>
+<script id="ar-search-js">
+(function(){
+  var input=document.getElementById('tk-search-ar'),box=document.getElementById('tk-results-ar');
+  if(!input||!box)return;
+  var S=[
+    {code:"PHDC",name:"بالم هيلز للتعمير",en:"Palm Hills",url:"/ar/phdc.html"},
+    {code:"TMGH",name:"مجموعة طلعت مصطفى",en:"Talaat Moustafa",url:"/ar/tmgh.html"},
+    {code:"EMFD",name:"إعمار مصر للتنمية",en:"Emaar Misr",url:"/ar/emfd.html"}
+  ];
+  function render(q){
+    q=(q||'').trim().toLowerCase();box.innerHTML='';
+    if(!q){box.classList.remove('open');return;}
+    var hits=S.filter(function(s){return (s.code+' '+s.name+' '+s.en).toLowerCase().indexOf(q)>-1;});
+    if(!hits.length){
+      var a=document.createElement('a');a.className='ar-hit';a.href='/ar/egypt.html';
+      a.innerHTML='<span>تصفّح كل التغطية</span><span class="tk-code">مصر</span>';box.appendChild(a);
+    }else{
+      hits.forEach(function(s){
+        var a=document.createElement('a');a.className='ar-hit';a.href=s.url;
+        a.innerHTML='<span>'+s.name+'</span><span class="tk-code">EGX:'+s.code+'</span>';box.appendChild(a);
+      });
+    }
+    box.classList.add('open');
+  }
+  input.addEventListener('input',function(){render(input.value);});
+  input.addEventListener('focus',function(){if(input.value)render(input.value);});
+  input.addEventListener('keydown',function(e){if(e.key==='Enter'){var f=box.querySelector('.ar-hit');if(f)location.href=f.getAttribute('href');}});
+  document.addEventListener('click',function(e){if(!box.contains(e.target)&&e.target!==input)box.classList.remove('open');});
+})();
+</script>
 </body>
 </html>
