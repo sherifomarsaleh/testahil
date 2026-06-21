@@ -44,6 +44,9 @@ h2{font-family:Alexandria,sans-serif;font-weight:700;font-size:21px;color:var(--
 .cta{display:block;background:var(--pine);color:#fff;border-radius:14px;padding:22px 24px;text-decoration:none;margin:26px 0}
 .cta b{font-family:Alexandria,sans-serif;font-size:18px;color:#fff;display:block;margin-bottom:6px}
 .cta span{color:var(--gold);font-family:"IBM Plex Mono",monospace;font-size:14px}
+.cta-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.cta-links a{font-family:"IBM Plex Mono",monospace;font-size:13px;color:#fff;border:1px solid rgba(192,164,95,.5);border-radius:999px;padding:7px 16px;text-decoration:none;background:rgba(255,255,255,.05)}
+.cta-links a:hover{background:rgba(192,164,95,.18);border-color:var(--gold)}
 .note{background:#f3f1e8;border-inline-start:3px solid var(--gold);padding:14px 18px;border-radius:8px;font-size:15px;color:#42514c}
 footer{background:var(--pine);color:#c7d2ce;font-size:13px;padding:22px 0;margin-top:30px}
 footer b{color:#fff} footer a{color:var(--gold)}
@@ -284,10 +287,15 @@ header.nav .wrap{max-width:1240px; padding-inline-start:204px !important; paddin
   <h2 id="a-value">كيف نحسب التقييم؟</h2>
   <p>لكل نوع من الشركات أداة تقييم مناسبة. وإعمار مصر مطوّر عقاري، فنعتمد <strong>تقييم مجموع الأجزاء (SOTP/RNAV)</strong>: نُقيّم كل مشروع ومحفظة الأراضي على حِدة. ثم نُشغّل محاكاة <strong>مونت كارلو بخمسين ألف مسار</strong> تُحوّل النتيجة من رقم جامد إلى توزيع احتمالي. كل الافتراضات مكشوفة وقابلة للتعديل في النموذج — غيّرها بنفسك وشاهد أثرها على النطاق.</p>
 
-  <a class="cta" id="a-study" href="../emfd.html">
+  <div class="cta" id="a-study">
     <b>اقرأ الدراسة الكاملة وحمّل النموذج ←</b>
     <span>الدراسة (PDF/Word) والنموذج المفتوح (Excel) — بالإنجليزية، ومجاناً بالكامل</span>
-  </a>
+    <div class="cta-links">
+      <a href="../files/EMFD_Valuation_Study_17-06-2026_public.pdf?v=1706" target="_blank" rel="noopener">PDF</a>
+      <a href="../files/EMFD_Valuation_Study_17-06-2026_public.docx?v=1706" target="_blank" rel="noopener">Word</a>
+      <a href="../files/EMFD_Valuation_Study_17-06-2026_public.xlsx?v=1706" target="_blank" rel="noopener">Excel</a>
+    </div>
+  </div>
 
   <h2 id="a-read">كيف تقرأ الشريط؟</h2>
   <p>الشريط الكامل = المدى من أسوأ 5٪ إلى أفضل 5٪ من خمسين ألف سعر محاكى على مدى 3 أشهر. الجزء الأغمق في المنتصف هو النصف الأوسط الأكثر ترجيحاً (من 25٪ إلى 75٪)، والخط هو الوسيط، والنقطة هي آخر سعر. الأرقام التفصيلية كاملةً داخل الدراسة.</p>
