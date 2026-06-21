@@ -720,7 +720,7 @@ initHowto();
   S.forEach(function(x){ h+="<li><a href='#"+x[0]+"'>"+x[1]+"</a></li>"; });
   nav.innerHTML=h+"</ol>";
   var main=document.querySelector("main.wrap")||document.body;
-  main.parentNode.insertBefore(nav, main);
+  main.insertBefore(nav, main.firstChild);
   var links={}; S.forEach(function(x){ links[x[0]]=nav.querySelector("a[href='#"+x[0]+"']"); });
   function setActive(id){ S.forEach(function(x){ if(links[x[0]]) links[x[0]].classList.toggle("active", x[0]===id); }); }
   nav.addEventListener("click", function(e){
@@ -736,12 +736,11 @@ initHowto();
 })();
 </script>
 <style id="tst-2col">
-/* Two-column study layout: wider content, smaller margins, right sidebar */
-.study-wrap{max-width:1240px;margin:0 auto;padding:0 26px;display:grid;grid-template-columns:minmax(0,1fr) 292px;gap:36px;align-items:start}
+.study-wrap{max-width:1400px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:140px minmax(0,1fr) 288px;gap:28px;align-items:start}
 .study-main{min-width:0}
 .study-main :where(p){max-width:none;margin:0 0 1em;padding:0}
-.study-main,.study-main p,.study-main li{font-size:16.5px;line-height:1.72}
-.study-side{position:sticky;top:86px;display:flex;flex-direction:column;gap:16px}
+.study-main,.study-main p,.study-main li{font-size:18px;line-height:1.72}
+.study-side{position:sticky;top:120px;display:flex;flex-direction:column;gap:16px}
 .study-side .ss-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
 .ss-h{font-weight:700;font-size:15px;margin:0 0 6px;color:var(--ink)}
 .ss-embed .ss-h{font-family:"IBM Plex Mono",ui-monospace,monospace;color:var(--teal2);font-size:14px}
@@ -754,11 +753,9 @@ initHowto();
 .ss-code{width:100%;box-sizing:border-box;font-family:ui-monospace,monospace;font-size:10px;line-height:1.45;background:#0f2420;color:#dfe8e4;border:1px solid #2c4a43;border-radius:8px;padding:8px;resize:none;margin-bottom:8px}
 .ss-prev{display:block;color:var(--muted);font-size:12px;text-decoration:none;text-align:center}
 .ss-prev:hover{color:var(--teal2)}
-/* reposition the On-this-page rail for the wider layout (very wide screens only) */
-@media(max-width:1499px){.secnav{display:none !important}}
-@media(min-width:1500px){.secnav{left:calc(50% - 752px) !important}}
-/* stack on narrow screens: sidebar drops below the narrative */
-@media(max-width:1040px){.study-wrap{grid-template-columns:1fr;padding:0 18px}.study-side{position:static}.study-main,.study-main p,.study-main li{font-size:16px}}
+.secnav{display:block !important;position:sticky !important;top:120px !important;left:auto !important;width:auto !important;align-self:start;max-height:calc(100vh - 150px);overflow:auto}
+@media(max-width:1199px){.study-wrap{grid-template-columns:minmax(0,1fr) 288px}.secnav{display:none !important}}
+@media(max-width:1040px){.study-wrap{grid-template-columns:1fr}.study-side{position:static}.study-main,.study-main p,.study-main li{font-size:16.5px}}
 </style>
 <script>(function(){document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.ss-copy');if(!b)return;var ta=b.parentNode.querySelector('.ss-code');if(!ta)return;ta.select();try{navigator.clipboard.writeText(ta.value);}catch(_){try{document.execCommand('copy');}catch(__){}}var o=b.getAttribute('data-l')||b.textContent;b.setAttribute('data-l',o);b.textContent='Copied \u2713';setTimeout(function(){b.textContent=o;},1700);});})();</script>
 </body></html>
