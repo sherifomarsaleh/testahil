@@ -49,7 +49,8 @@ footer{background:var(--pine);color:#c7d2ce;font-size:13px;padding:22px 0;margin
 footer b{color:#fff} footer a{color:var(--gold)}
 </style>
 <style id="ar-dark">
-:root[data-theme="dark"]{--paper:#0D1F1D;--gold:#C9AE6A;--brass:#C9AE6A;--sage:#9DB3AF}
+:root{--teal:#1B5E5E;--teal2:#2A8F8F}
+:root[data-theme="dark"]{--paper:#0D1F1D;--gold:#C9AE6A;--brass:#C9AE6A;--sage:#9DB3AF;--teal:#4FB3A4;--teal2:#63C7B8}
 [data-theme="dark"] body{background:#0D1F1D;color:#E7EFEC}
 [data-theme="dark"] h2{color:#5FBDAE}
 [data-theme="dark"] h3{color:#C9AE6A}
@@ -61,12 +62,19 @@ footer b{color:#fff} footer a{color:var(--gold)}
 [data-theme="dark"] .study{background:#15302D}
 body{transition:background-color .2s ease,color .2s ease}
 @media(prefers-reduced-motion:reduce){body{transition:none}}
-.ttog{display:inline-flex;align-items:center;gap:7px;background:transparent;border:1.5px solid var(--gold);color:var(--gold);border-radius:999px;padding:6px 13px;font:inherit;font-weight:700;font-size:.85rem;cursor:pointer;margin-inline-start:10px;line-height:1}
-.ttog:hover{background:var(--gold);color:var(--pine)}
-.ttog .tt-i{width:16px;height:16px;flex:none}
-.ttog .tt-sun,.ttog .tt-l-l{display:none}.ttog .tt-moon,.ttog .tt-l-d{display:inline}
-[data-theme="dark"] .ttog .tt-moon,[data-theme="dark"] .ttog .tt-l-d{display:none}
-[data-theme="dark"] .ttog .tt-sun,[data-theme="dark"] .ttog .tt-l-l{display:inline}
+.theme-toggle{margin-inline-start:10px;align-self:center;display:inline-flex;align-items:center;gap:8px;background:#EAF2F1;border:1.5px solid var(--teal);color:var(--teal);border-radius:999px;cursor:pointer;padding:10px 17px;font:inherit;font-weight:700;font-size:.92rem;line-height:1;transition:background .15s,color .15s,border-color .15s}
+.theme-toggle:hover{background:var(--teal);color:#fff;border-color:var(--teal)}
+.theme-toggle:focus-visible{outline:3px solid var(--teal2);outline-offset:2px}
+.theme-toggle .tt-icon{width:19px;height:19px;flex:none}
+.theme-toggle .tt-moon{fill:currentColor}
+.theme-toggle .tt-sun{fill:none;stroke:currentColor;stroke-width:2.1;stroke-linecap:round}
+.theme-toggle .tt-sun,.theme-toggle .tt-label-light{display:none}
+.theme-toggle .tt-moon,.theme-toggle .tt-label-dark{display:inline-block}
+:root[data-theme="dark"] .theme-toggle{background:#1B3B37;color:var(--teal);border-color:var(--teal)}
+:root[data-theme="dark"] .theme-toggle:hover{background:var(--teal);color:#06110F;border-color:var(--teal)}
+:root[data-theme="dark"] .theme-toggle .tt-moon,:root[data-theme="dark"] .theme-toggle .tt-label-dark{display:none}
+:root[data-theme="dark"] .theme-toggle .tt-sun,:root[data-theme="dark"] .theme-toggle .tt-label-light{display:inline-block}
+@media(max-width:600px){.theme-toggle .tt-label{display:none !important}.theme-toggle{padding:10px 12px}}
 </style>
 <style id="ar-cards">
 .ss-wrap{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:24px 0}
@@ -96,8 +104,8 @@ body{transition:background-color .2s ease,color .2s ease}
     <a href="egypt.html">مصر</a>
     <a href="method.html">المنهجية</a>
   </nav>
-  <button id="theme-toggle" class="ttog" type="button" aria-label="تبديل الوضع الداكن"><svg class="tt-i" viewBox="0 0 24 24" aria-hidden="true"><path class="tt-moon" fill="currentColor" d="M21 12.8A8.5 8.5 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/><g class="tt-sun" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.4 1.4M17.6 17.6l1.4 1.4M19 5l-1.4 1.4M6.4 17.6L5 19"/></g></svg><span class="tt-l tt-l-d">داكن</span><span class="tt-l tt-l-l">فاتح</span></button>
   <a class="lang" href="../tmgh.html">English</a>
+  <button class="theme-toggle" id="theme-toggle" type="button" aria-label="تبديل الوضع الداكن" aria-pressed="false" title="الوضع الداكن / الفاتح"><svg class="tt-icon tt-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="tt-icon tt-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg><span class="tt-label tt-label-dark">داكن</span><span class="tt-label tt-label-light">فاتح</span></button>
 </div></header>
 
 <section class="hero"><div class="wrap">
