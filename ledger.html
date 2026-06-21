@@ -54,6 +54,11 @@
   gtag('js', new Date());
   gtag('config', 'G-H9NV0ZK9RN');
 </script>
+<style id="lr-check-fix">
+@media(max-width:640px){
+  .lr-check{background:transparent !important;border:0 !important;padding:0 !important;margin:0 !important;border-radius:0 !important;display:inline;white-space:normal;color:var(--teal) !important;font-weight:600}
+}
+</style>
 </head>
 <body>
 <header class="nav"><div class="wrap">
@@ -172,7 +177,7 @@ function renderRow(r){
   let res;
   if(isOpen(r)){
     const d = new Date(r.grade_date).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
-    res = `<span class="chip">check on ${d}</span>`;
+    res = `<span class="chip lr-check">check on ${d}</span>`;
   } else {
     const inBand = isInBand(r);
     res = `<span class="num">${F2(r.realized_close)}</span> ${inBand
