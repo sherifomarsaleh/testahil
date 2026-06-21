@@ -54,9 +54,12 @@
   gtag('js', new Date());
   gtag('config', 'G-H9NV0ZK9RN');
 </script>
-<style id="lr-check-fix">
-@media(max-width:640px){
-  .lr-check{background:transparent !important;border:0 !important;padding:0 !important;margin:0 !important;border-radius:0 !important;display:inline;white-space:normal;color:var(--teal) !important;font-weight:600}
+<style id="lr-mobile-fix">
+/* Mobile: wide ledger tables scroll inside their card instead of spilling out of bounds; cells stay single-line so the pending pill can't wrap into an ellipse */
+@media(max-width:760px){
+  .card{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .card>table{min-width:600px}
+  .card th,.card td{white-space:nowrap}
 }
 </style>
 </head>
