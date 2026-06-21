@@ -146,6 +146,11 @@ header.nav .wrap{line-height:1.25}
 .ar-side{top:116px !important}
 h1[id],h2[id],h3[id],.lead[id],[id^="m-"],[id^="a-"],#disclaimer{scroll-margin-top:124px !important}
 </style>
+<style id="ar-toch-fix">
+/* Match the study pages' page-map header (Alexandria sans), not mono — mono mangles Arabic joining */
+.ar-toc .toc-h{font-family:"Alexandria",sans-serif !important;font-size:.72rem;letter-spacing:.05em !important;color:var(--sage) !important;font-weight:700 !important;text-transform:none !important;margin:0 0 10px}
+:root[data-theme="dark"] .ar-toc .toc-h{color:#9DB3AF !important}
+</style>
 </head><header class="nav"><div class="wrap">
   <a href="index.html" class="brand">تستاهل؟<small>هل يستحق؟</small></a>
   <nav>
