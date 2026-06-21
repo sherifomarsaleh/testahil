@@ -130,6 +130,45 @@ body{transition:background-color .2s ease,color .2s ease}
 :root[data-theme="dark"] .ar-hit:hover{background:#1B3B37}
 @media(max-width:860px){.ar-topsearch{padding:14px 18px 0}}
 </style>
+<style id="ar-header-fix">
+/* palette alignment with English */
+:root{--paper:#F6F8F7}
+:root[data-theme="dark"]{--paper:#0D1F1D}
+body{color:#0E2726}
+:root[data-theme="dark"] body{color:#E7EFEC}
+/* HEADER — light, mirrors English exactly (RTL flips it automatically) */
+.nav{position:sticky;top:0;z-index:50;background:rgba(246,248,247,.92);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border-bottom:1px solid #D9E4E2;color:#0E2726}
+.nav .wrap{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 20px;min-height:52px;max-width:1240px;margin:0 auto;padding:8px 24px;position:relative}
+.brand{font-family:"Alexandria",sans-serif;font-weight:800;font-size:2.1rem;color:#1B5E5E;text-decoration:none;display:inline-flex;flex-direction:row;align-items:baseline;line-height:1}
+.brand small{display:inline;font-family:"IBM Plex Sans Arabic",system-ui,sans-serif;font-weight:400;font-size:.5em;color:#5B7270;margin:0;margin-inline-start:8px}
+.nav nav{display:flex;gap:8px 18px;flex-wrap:wrap;font-size:1.05rem;line-height:1.4;margin-inline-start:0;margin-inline-end:6px}
+.nav nav a{color:#1B5E5E;text-decoration:none;font-size:1.05rem}
+.nav nav a:hover{color:#2A8F8F;text-decoration:underline}
+.nav nav a.on{color:#0E2726;font-weight:600;border-bottom:2px solid #C98A2D}
+.lang{margin-inline-start:14px;align-self:center;border:1px solid #C0A45F;color:#C0A45F;border-radius:7px;padding:3px 10px;font-size:13px;text-decoration:none;font-family:"IBM Plex Mono",monospace}
+.theme-toggle{margin-inline-start:auto;align-self:center;background:#EAF2F1;border:1.5px solid #1B5E5E;color:#1B5E5E}
+.theme-toggle:hover{background:#1B5E5E;color:#fff;border-color:#1B5E5E}
+/* HERO — light title block like English (no dark band) */
+.hero{background:transparent;color:#0E2726;padding:26px 0 4px;border:0}
+.hero .wrap{max-width:1240px;margin:0 auto;padding:0 24px}
+.hero .tk{font-family:"IBM Plex Mono",monospace;color:#2A8F8F;font-size:.8rem;letter-spacing:.04em}
+.hero h1{font-family:"Alexandria",sans-serif;font-weight:800;color:#0E2726;font-size:2.1rem;line-height:1.28;margin:.32em 0 .18em}
+.hero .sub{color:#5B7270;font-size:1rem}
+.hero p{color:#5B7270}
+/* dark-mode header/hero (matches English dark) */
+:root[data-theme="dark"] .nav{background:rgba(13,31,29,.9);border-bottom-color:#26433F;color:#E7EFEC}
+:root[data-theme="dark"] .brand{color:#4FB3A4}
+:root[data-theme="dark"] .brand small{color:#9DB3AF}
+:root[data-theme="dark"] .nav nav a{color:#4FB3A4}
+:root[data-theme="dark"] .nav nav a:hover{color:#63C7B8}
+:root[data-theme="dark"] .nav nav a.on{color:#E7EFEC;border-bottom-color:#D8BC74}
+:root[data-theme="dark"] .lang{color:#C9AE6A;border-color:#C9AE6A}
+:root[data-theme="dark"] .theme-toggle{background:#1B3B37;color:#4FB3A4;border-color:#4FB3A4}
+:root[data-theme="dark"] .theme-toggle:hover{background:#4FB3A4;color:#06110F;border-color:#4FB3A4}
+:root[data-theme="dark"] .hero,:root[data-theme="dark"] .hero h1{color:#E7EFEC}
+:root[data-theme="dark"] .hero .sub,:root[data-theme="dark"] .hero p{color:#9DB3AF}
+:root[data-theme="dark"] .hero .tk{color:#63C7B8}
+</style>
 </head>
 <body>
 <header class="nav"><div class="wrap">
@@ -142,6 +181,11 @@ body{transition:background-color .2s ease,color .2s ease}
   <a class="lang" href="../tmgh.html">English</a>
   <button class="theme-toggle" id="theme-toggle" type="button" aria-label="تبديل الوضع الداكن" aria-pressed="false" title="الوضع الداكن / الفاتح"><svg class="tt-icon tt-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="tt-icon tt-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg><span class="tt-label tt-label-dark">داكن</span><span class="tt-label tt-label-light">فاتح</span></button>
 </div></header>
+<div class="ar-topsearch"><div class="sw">
+  <input id="tk-search-ar" type="text" placeholder="ابحث عن سهم — جرّب PHDC أو بالم هيلز" autocomplete="off" aria-label="ابحث عن سهم">
+  <div class="ar-tkres" id="tk-results-ar"></div>
+</div></div>
+
 
 <section class="hero"><div class="wrap">
   <div class="tk">دراسة تقييم مستقلة · تحليل تعليمي</div>
@@ -149,10 +193,6 @@ body{transition:background-color .2s ease,color .2s ease}
   <div class="sub">EGX:TMGH · توقّع لأفق شهر إلى 3 أشهر · بالجنيه المصري</div>
 </div></section>
 
-<div class="ar-topsearch"><div class="sw">
-  <input id="tk-search-ar" type="text" placeholder="ابحث عن سهم — جرّب PHDC أو بالم هيلز" autocomplete="off" aria-label="ابحث عن سهم">
-  <div class="ar-tkres" id="tk-results-ar"></div>
-</div></div>
 <main class="ar-layout"><nav class="ar-toc" aria-label="على هذه الصفحة"><p class="ar-toc-h">على هذه الصفحة</p><ol><li><a href="#a-top">نظرة عامة</a></li><li><a href="#a-value">كيف نحسب التقييم؟</a></li><li><a href="#a-read">كيف تقرأ الشريط؟</a></li><li><a href="#a-study">الدراسة الكاملة</a></li></ol></nav><div class="ar-main">
   <p class="lead" id="a-top">«السعر المستهدف» رقم واحد، والحقيقة نطاق. لذلك بدل رقم واحد، <strong>نُحاكي عشرات الآلاف من السيناريوهات</strong> لنرى أين قد يستقر سعر طلعت مصطفى خلال الأشهر الثلاثة القادمة — من أسوأ 5٪ من النتائج إلى أفضل 5٪، مع إبراز النصف الأوسط الأكثر ترجيحاً. لا نوصي بشراء أو بيع؛ نعرض شكل الاحتمالات فقط.</p>
 <figure dir="ltr" style="margin:24px 0;background:#13302C;border-radius:14px;padding:18px 10px 8px">
