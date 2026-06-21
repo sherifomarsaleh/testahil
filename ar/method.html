@@ -138,6 +138,14 @@ header.nav .theme-toggle .tt-icon{width:19px;height:19px}
 :root[data-theme="dark"] .ar-toc a:hover,:root[data-theme="dark"] .ar-toc a.on{color:#63C7B8;border-inline-start-color:#C0A45F}
 @media(max-width:900px){.ar-layout{grid-template-columns:1fr;padding:0 22px}.ar-toc{display:none}}
 </style>
+<style id="ar-toc-fix">
+/* Two-row nav was inflated by the inherited 1.75 line-height; tame it, then push the sticky page-map + scroll anchors clear of the nav so the first items aren't hidden. */
+header.nav .brand{line-height:1.15 !important}
+header.nav .wrap{line-height:1.25}
+.ar-toc{top:116px !important}
+.ar-side{top:116px !important}
+h1[id],h2[id],h3[id],.lead[id],[id^="m-"],[id^="a-"],#disclaimer{scroll-margin-top:124px !important}
+</style>
 </head><header class="nav"><div class="wrap">
   <a href="index.html" class="brand">تستاهل؟<small>هل يستحق؟</small></a>
   <nav>
