@@ -120,6 +120,12 @@ header.nav .theme-toggle .tt-icon{width:19px;height:19px}
 }
 </style>
 <style id="ar-hero-p-fix">.hero p{color:#5B7270 !important}:root[data-theme="dark"] .hero p{color:#9DB3AF !important}</style>
+<style id="ar-hero-align">
+/* Title block was 1240px while the body column (.wrap) is 920px, so the title's right
+   edge floated past the article. Match the body column so they share edges, mirroring
+   the English page. */
+.hero .wrap{max-width:920px; padding-inline:22px}
+</style>
 </head>
 <body>
 <header class="nav"><div class="wrap">

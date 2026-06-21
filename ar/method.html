@@ -151,6 +151,18 @@ h1[id],h2[id],h3[id],.lead[id],[id^="m-"],[id^="a-"],#disclaimer{scroll-margin-t
 .ar-toc .toc-h{font-family:"Alexandria",sans-serif !important;font-size:.72rem;letter-spacing:.05em !important;color:var(--sage) !important;font-weight:700 !important;text-transform:none !important;margin:0 0 10px}
 :root[data-theme="dark"] .ar-toc .toc-h{color:#9DB3AF !important}
 </style>
+<style id="ar-hero-align">
+/* Align the title block's right edge with the article column (.ar-main), mirroring the
+   English page where the H1 shares the body column's edge. .ar-layout is max-width 1100
+   with a 210px page-map track + 44px gap on the inline-start (the right, in RTL); match
+   that container width and offset the hero by the same amount so the title sits directly
+   above the article rather than above the sticky page-map. */
+.hero .wrap{max-width:1100px; padding-inline-start:278px; padding-inline-end:24px}
+@media(max-width:900px){
+  /* page-map hidden below 900px (.ar-layout collapses to one column) — drop the offset */
+  .hero .wrap{padding-inline-start:22px; padding-inline-end:22px}
+}
+</style>
 </head><header class="nav"><div class="wrap">
   <a href="index.html" class="brand">تستاهل؟<small>هل يستحق؟</small></a>
   <nav>

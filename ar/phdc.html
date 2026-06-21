@@ -220,6 +220,15 @@ header.nav .wrap{line-height:1.25}
 .ar-side{top:116px !important}
 h1[id],h2[id],h3[id],.lead[id],[id^="m-"],[id^="a-"],#disclaimer{scroll-margin-top:124px !important}
 </style>
+<style id="ar-hero-align">
+/* Align the title block with the article column (.ar-main, the centre 1fr track),
+   mirroring the English page where the H1 shares the body column's edges. Grid is
+   [150 page-map | 1fr article | 290 side] at 24px pad, gap 30 -> article sits 204px in
+   from the right (page-map+gap+pad) and 344px in from the left (side+gap+pad). */
+.hero .wrap{max-width:1240px; padding-inline-start:204px; padding-inline-end:344px}
+@media(max-width:1180px){ .hero .wrap{padding-inline-start:24px} } /* page-map column drops */
+@media(max-width:860px){ .hero .wrap{padding-inline-end:24px} }    /* side column drops below */
+</style>
 </head>
 <body>
 <header class="nav"><div class="wrap">
