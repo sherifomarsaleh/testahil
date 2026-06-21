@@ -81,6 +81,63 @@ body{transition:background-color .2s ease,color .2s ease}
 :root[data-theme="dark"] .theme-toggle .tt-sun,:root[data-theme="dark"] .theme-toggle .tt-label-light{display:inline-block}
 @media(max-width:600px){.theme-toggle .tt-label{display:none !important}.theme-toggle{padding:10px 12px}}
 </style>
+<style id="ar-hdr-fix">
+/* ===== Header + hero: mirror the English light design, RTL ===== */
+header.nav{background:#F6F8F7 !important;color:#0E2726 !important;border-bottom:1px solid #D9E4E2 !important}
+header.nav .wrap{display:flex !important;flex-wrap:wrap !important;align-items:baseline !important;gap:4px 20px !important;max-width:1240px;margin:0 auto;padding:10px 24px 8px !important}
+header.nav .brand{flex:0 0 100% !important;color:#1B5E5E !important;font-family:Alexandria,system-ui,sans-serif;font-weight:800;font-size:1.9rem;display:flex;align-items:baseline;text-decoration:none}
+header.nav .brand small{display:inline !important;color:#5B7270 !important;font-weight:400;font-size:.5em;margin-inline-start:8px;font-family:"IBM Plex Sans Arabic",system-ui,sans-serif}
+header.nav nav{display:flex !important;gap:18px !important;flex-wrap:wrap;margin-inline-start:0 !important;align-self:center}
+header.nav nav a{color:#1B5E5E !important;text-decoration:none;font-size:15px;font-weight:500}
+header.nav nav a:hover{color:#2A8F8F !important}
+header.nav nav a.on{color:#0E2726 !important;font-weight:600;border-bottom:2px solid #C98A2D}
+header.nav .lang{margin-inline-start:14px;border:1px solid #C0A45F !important;color:#C0A45F !important;background:transparent !important;border-radius:7px;padding:3px 10px;font-size:13px;text-decoration:none;align-self:center}
+header.nav .lang:hover{background:#C0A45F !important;color:#1C3A36 !important;text-decoration:none}
+header.nav .theme-toggle{margin-inline-start:auto !important;align-self:center;background:#EAF2F1 !important;border:1.5px solid #1B5E5E !important;color:#1B5E5E !important;border-radius:999px;padding:9px 16px}
+header.nav .theme-toggle:hover{background:#1B5E5E !important;color:#fff !important}
+header.nav .theme-toggle .tt-icon{width:19px;height:19px}
+/* hero → light title block (no dark green), mirror English */
+.hero{background:transparent !important;color:#0E2726 !important;padding:24px 0 6px !important;border-bottom:0 !important}
+.hero .wrap{max-width:1240px;margin:0 auto;padding:0 24px}
+.hero .tk{color:#2A8F8F !important;font-family:"IBM Plex Mono",monospace;font-size:.8rem;letter-spacing:.04em}
+.hero h1{color:#0E2726 !important;font-family:Alexandria,sans-serif;font-weight:800;font-size:2.05rem;line-height:1.3;margin:.3em 0 .18em}
+.hero .sub{color:#5B7270 !important;font-size:1rem}
+/* dark mode — mirror English dark header */
+:root[data-theme="dark"] header.nav{background:rgba(13,31,29,.92) !important;color:#E7EFEC !important;border-bottom-color:#26433F !important}
+:root[data-theme="dark"] header.nav .brand{color:#4FB3A4 !important}
+:root[data-theme="dark"] header.nav .brand small{color:#9DB3AF !important}
+:root[data-theme="dark"] header.nav nav a{color:#C7D6D2 !important}
+:root[data-theme="dark"] header.nav nav a:hover{color:#63C7B8 !important}
+:root[data-theme="dark"] header.nav nav a.on{color:#E7EFEC !important;border-bottom-color:#D8BC74}
+:root[data-theme="dark"] header.nav .lang{border-color:#C0A45F !important;color:#C0A45F !important}
+:root[data-theme="dark"] header.nav .theme-toggle{background:#1B3B37 !important;border-color:#4FB3A4 !important;color:#4FB3A4 !important}
+:root[data-theme="dark"] header.nav .theme-toggle:hover{background:#4FB3A4 !important;color:#06110F !important}
+:root[data-theme="dark"] .hero{background:transparent !important}
+:root[data-theme="dark"] .hero .tk{color:#63C7B8 !important}
+:root[data-theme="dark"] .hero h1{color:#E7EFEC !important}
+:root[data-theme="dark"] .hero .sub{color:#9DB3AF !important}
+@media(max-width:760px){
+  header.nav .brand{font-size:1.7rem}
+  header.nav .theme-toggle .tt-label{display:none !important}
+  header.nav .theme-toggle{padding:9px 11px}
+  .hero h1{font-size:1.7rem}
+}
+</style>
+<style id="ar-hero-p-fix">.hero p{color:#5B7270 !important}:root[data-theme="dark"] .hero p{color:#9DB3AF !important}</style>
+<style id="ar-method-toc">
+.ar-layout{max-width:1100px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:210px minmax(0,1fr);gap:44px;align-items:start}
+.ar-main{min-width:0}
+.ar-toc{position:sticky;top:96px;align-self:start;font-size:.9rem;direction:rtl}
+.ar-toc .toc-h{font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.08em;color:#8A9B97;text-transform:uppercase;margin-bottom:10px}
+.ar-toc a{display:block;padding:6px 0;padding-inline-start:14px;border-inline-start:2px solid #E6DFCE;color:#5f726d;text-decoration:none;line-height:1.45;transition:color .15s,border-color .15s}
+.ar-toc a:hover{color:#1B5E5E;text-decoration:none}
+.ar-toc a.on{color:#1B5E5E;border-inline-start-color:#C0A45F;font-weight:600}
+.ar-layout h2,.ar-layout .lens h3{scroll-margin-top:104px}
+:root[data-theme="dark"] .ar-toc .toc-h{color:#9DB3AF}
+:root[data-theme="dark"] .ar-toc a{color:#9DB3AF;border-inline-start-color:#2A4B47}
+:root[data-theme="dark"] .ar-toc a:hover,:root[data-theme="dark"] .ar-toc a.on{color:#63C7B8;border-inline-start-color:#C0A45F}
+@media(max-width:900px){.ar-layout{grid-template-columns:1fr;padding:0 22px}.ar-toc{display:none}}
+</style>
 </head><header class="nav"><div class="wrap">
   <a href="index.html" class="brand">تستاهل؟<small>هل يستحق؟</small></a>
   <nav>
@@ -96,28 +153,28 @@ body{transition:background-color .2s ease,color .2s ease}
   <h1>المنهجية</h1>
   <p>يمرّ كل سهم عبر ثلاث عدسات مستقلة، ثم نوفّق بين النتائج — توافقها يرفع الثقة، واختلافها يُنشر كما هو.</p>
 </div></section>
-<main><div class="wrap">
+<main class="ar-layout"><nav class="ar-toc" aria-label="على هذه الصفحة"><div class="toc-h">على هذه الصفحة</div><a href="#m-fund">التحليل الأساسي</a><a href="#m-tech">التحليل الفني</a><a href="#m-mc">محاكاة مونت كارلو</a><a href="#m-why">لماذا التوزيعات لا الأسعار</a><a href="#m-momentum">قراءة الزخم</a><a href="#m-who">من يكتب هذا</a><a href="#m-data">من أين تأتي الأرقام</a><a href="#disclaimer">الإفصاح والإخلاء</a></nav><div class="ar-main">
 
-  <div class="lens"><h3>التحليل الأساسي</h3>
+  <div class="lens"><h3 id="m-fund">التحليل الأساسي</h3>
   <p>من الأسفل إلى الأعلى: نُقيّم كل مشروع من وحداته (المساحة × السعر/م² والتكلفة/م²)، ونجمعها في قوائم مالية كاملة، ثم تدفّق نقدي مخصوم (DCF) ومجموع الأجزاء، مع ترجيح كل مشروع باحتمال تنفيذه. الناتج: نطاق قيمة (متشائم / أساسي / تنفيذ كامل) — لا رقم واحد.</p></div>
 
-  <div class="lens"><h3>التحليل الفني</h3>
+  <div class="lens"><h3 id="m-tech">التحليل الفني</h3>
   <p>ثلاثة أُطُر زمنية (أسبوعي / يومي / بالساعة): الاتجاه والبنية، والمستويات، والمتوسطات المتحركة، والزخم (RSI/MACD)، والحَكَم الفاصل — هل يؤكّد حجم التداول الحركة أم يكشف زيفها.</p></div>
 
-  <div class="lens"><h3>محاكاة مونت كارلو</h3>
+  <div class="lens"><h3 id="m-mc">محاكاة مونت كارلو</h3>
   <p>نموذج واحد، 50,000 مسار، 10 عوامل خارجية: 5 مستمرة (سعر الفائدة، الجنيه/الدولار، التضخم، تدفقات السوق، النفط) و5 أحداث باحتمالات معلنة (الجغرافيا السياسية، التدفقات السيادية، تنفيذ الإطلاقات، السياحة، التمويل العقاري). كل افتراض رقم منشور قابل للنقد — الجدول هو النموذج.</p></div>
 
-  <h2>لماذا التوزيعات لا الأسعار المستهدفة؟</h2>
+  <h2 id="m-why">لماذا التوزيعات لا الأسعار المستهدفة؟</h2>
   <p>لأن الرقم الواحد كذبة مريحة. المستقبل توزيع احتمالي، ومن يبيعك اليقين يبيعك وهماً. ننشر الوسيط والنطاقات واحتمالات ملامسة المستويات — ثم نقيس معايرتنا علناً: هل تحتوي نطاقات الـ90٪ الواقعَ فعلاً 90٪ من الوقت؟</p>
 
-  <h2>قاعدة قراءة الزخم (تعليمية)</h2>
+  <h2 id="m-momentum">قاعدة قراءة الزخم (تعليمية)</h2>
   <p>ارتفاع السعر بينما يتوقّف RSI أو يهبط = تباعد هابط، الزخم يموت رغم القوة. ارتفاعهما معاً = اتجاه صحي. هبوط السعر بينما يرتفع RSI = إنهاك بائعين يستحق المتابعة. هبوطهما معاً = اتجاه هابط صحي، لا تُمسك السكين الساقط. أنماط وصفية لقراءة الزخم — لا إشارات للتنفيذ.</p>
 
-  <h2>من يكتب هذا</h2>
+  <h2 id="m-who">من يكتب هذا</h2>
   <p>تُنتَج هذه الدراسات بشكل مستقل تحت اسم «تستاهل» كمشروع تعليمي. العمل فردي وذاتي التمويل: لا شركة، ولا عملاء، ولا أموال خارجية، ولا راعٍ. الهدف إظهار منهجية تقييم شفّافة ودعوة الناس لمراجعتها.</p>
   <p>وجدت خطأً أو افتراضاً ضعيفاً؟ هذا هو المقصود — راسلنا على <a href="mailto:info@testahil.com" style="color:#896F36">info@testahil.com</a> أو هاجِم النموذج المفتوح في أحدث الدراسات.</p>
 
-  <h2>من أين تأتي الأرقام</h2>
+  <h2 id="m-data">من أين تأتي الأرقام</h2>
   <p>نفصل الحقائق الثابتة عن تقديراتنا، ونُعلِّم بيانات المزوّدين عند استخدامها:</p>
   <ul>
     <li><strong>إفصاحات الشركات والتقارير المدققة</strong> — إفصاحات البورصة المصرية (EGX)، والقوائم المالية السنوية والربعية، للإيرادات ودفتر الأعمال والديون والنقد وتفاصيل القطاعات.</li>
@@ -142,4 +199,12 @@ body{transition:background-color .2s ease,color .2s ease}
   <b>إخلاء مسؤولية:</b> دراسات تقييم تعليمية ورأي تحليلي شخصي — وليست توصية استثمارية ولا نصيحة بشراء أو بيع. مُعِدّ التقرير غير مرخّص من الهيئة العامة للرقابة المالية المصرية، ولا يدير أموالاً ولا يقبل عملاء، وقد يملك مراكز في أوراق مذكورة. <a href="method.html#disclaimer">النص الكامل</a>.
 </div></footer>
 <script>document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest("#theme-toggle");if(!b)return;var d=document.documentElement.getAttribute("data-theme")==="dark";if(d){document.documentElement.removeAttribute("data-theme");}else{document.documentElement.setAttribute("data-theme","dark");}try{localStorage.setItem("theme",d?"light":"dark");}catch(_){}});</script>
+<script id="ar-method-spy">
+(function(){
+  var links=[].slice.call(document.querySelectorAll('.ar-toc a'));if(!links.length)return;
+  var map={};links.forEach(function(a){var id=a.getAttribute('href').slice(1);var el=document.getElementById(id);if(el)map[id]=a;});
+  var obs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){links.forEach(function(l){l.classList.remove('on');});if(map[e.target.id])map[e.target.id].classList.add('on');}});},{rootMargin:"-110px 0px -70% 0px",threshold:0});
+  Object.keys(map).forEach(function(id){obs.observe(document.getElementById(id));});
+})();
+</script>
 </body></html>
