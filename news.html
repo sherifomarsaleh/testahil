@@ -90,7 +90,7 @@
   function fmt(iso){try{return new Intl.DateTimeFormat('en-GB',{day:'numeric',month:'long',year:'numeric'}).format(new Date(iso+'T00:00:00'));}catch(e){return iso;}}
   fetch('news/news.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.json();}).then(function(d){
     var en=(d&&d.en)||{}; var date=en.date||d.updated||''; var file=en.file||'testahil-news-en.pdf';
-    var v=encodeURIComponent(date); var href='news/'+file+(v?('?v='+v):'');
+    var rev=(d&&d.rev!=null)?d.rev:date; var v=encodeURIComponent(rev); var href='news/'+file+(v?('?v='+v):'');
     var dd=document.getElementById('news-date'); if(dd) dd.textContent = date ? ('Latest edition · '+fmt(date)) : 'Latest edition';
     var tt=document.getElementById('news-title'); if(tt&&en.title) tt.textContent=en.title;
     ['news-open','news-dl'].forEach(function(id){var a=document.getElementById(id); if(a) a.href=href;});
