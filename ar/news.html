@@ -14,7 +14,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;700;800&family=IBM+Plex+Sans+Arabic:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <link rel="icon" type="image/png" href="../favicon.png?v=2">
 <meta property="og:type" content="website"><meta property="og:locale" content="ar_EG">
-<meta property="og:title" content="النشرة اليومية — تستاهل؟"><meta property="og:description" content="نشرة يومية موجزة عن السوق المصري، تُحدَّث كل يوم وتُنشر كملف PDF. تحليل تعليمي — وليست نصيحة استثمارية.">
+<meta property="og:title" content="النشرة اليومية — أسواق مصر | تستاهل؟"><meta property="og:description" content="نشرة يومية موجزة عن السوق المصري (البورصة المصرية EGX)، تُنشر كملف PDF وتُحدَّث كل يوم. نحتفظ بأحدث إصدار فقط. تحليل تعليمي — وليست نصيحة استثمارية.">
 <meta property="og:image" content="https://testahil.com/og-image.png">
 <meta property="og:url" content="https://testahil.com/ar/news.html">
 <style>
@@ -124,35 +124,15 @@ header.nav .theme-toggle .tt-icon{width:19px;height:19px}
 }
 </style>
 <style id="ar-hero-p-fix">.hero p{color:#5B7270 !important}:root[data-theme="dark"] .hero p{color:#9DB3AF !important}</style>
-<style id="ar-toc-fix">
-/* Two-row nav was inflated by the inherited 1.75 line-height; tame it, then push the sticky page-map + scroll anchors clear of the nav so the first items aren't hidden. */
-header.nav .brand{line-height:1.15 !important}
-header.nav .wrap{line-height:1.25}
-.ar-toc{top:116px !important}
-.ar-side{top:116px !important}
-h1[id],h2[id],h3[id],.lead[id],[id^="m-"],[id^="a-"],#disclaimer{scroll-margin-top:124px !important}
-</style>
-<style id="ar-toch-fix">
-/* Match the study pages' page-map header (Alexandria sans), not mono — mono mangles Arabic joining */
-.ar-toc .toc-h{font-family:"Alexandria",sans-serif !important;font-size:.72rem;letter-spacing:.05em !important;color:var(--sage) !important;font-weight:700 !important;text-transform:none !important;margin:0 0 10px}
-:root[data-theme="dark"] .ar-toc .toc-h{color:#9DB3AF !important}
-</style>
 <style id="ar-hero-align">
-/* Align the title block's right edge with the article column (.ar-main), mirroring the
-   English page where the H1 shares the body column's edge. .ar-layout is max-width 1100
-   with a 210px page-map track + 44px gap on the inline-start (the right, in RTL); match
-   that container width and offset the hero by the same amount so the title sits directly
-   above the article rather than above the sticky page-map. */
-.hero .wrap{max-width:1100px; padding-inline-start:278px; padding-inline-end:24px}
-@media(max-width:900px){
-  /* page-map hidden below 900px (.ar-layout collapses to one column) — drop the offset */
-  .hero .wrap{padding-inline-start:22px; padding-inline-end:22px}
-}
+/* Title block was 1240px while the body column (.wrap) is 920px, so the title's right
+   edge floated past the article. Match the body column so they share edges, mirroring
+   the English page. */
+.hero .wrap{max-width:920px; padding-inline:22px}
 </style>
 <style id="ar-header-align">
-/* Match the header content row to the article column (same offset as the hero). */
-header.nav .wrap{max-width:1100px; padding-inline-start:278px !important; padding-inline-end:24px !important}
-@media(max-width:900px){ header.nav .wrap{padding-inline-start:22px !important; padding-inline-end:22px !important} }
+/* Match the header content row to the 920px body column (same as the hero). */
+header.nav .wrap{max-width:920px; padding-left:22px !important; padding-right:22px !important}
 </style>
 <style id="ar-news">
 .news-card{background:#fff;border:1px solid #e3e0d6;border-radius:12px;padding:18px 22px;margin:16px 0}
@@ -169,9 +149,7 @@ header.nav .wrap{max-width:1100px; padding-inline-start:278px !important; paddin
 .news-frame{width:100%;height:78vh;min-height:520px;border:1px solid rgba(127,127,127,.28);border-radius:12px;margin-top:14px;background:transparent;direction:ltr}
 @media(max-width:700px){.news-frame{height:60vh;min-height:360px}}
 </style>
-</head>
-<body>
-<header class="nav"><div class="wrap">
+</head><header class="nav"><div class="wrap">
   <a href="index.html" class="brand">تستاهل؟<small>هل يستحق؟</small></a>
   <nav>
     <a href="index.html">الرئيسية</a>
@@ -182,13 +160,11 @@ header.nav .wrap{max-width:1100px; padding-inline-start:278px !important; paddin
   <a class="lang" href="../news.html">English</a>
   <button class="theme-toggle" id="theme-toggle" type="button" aria-label="تبديل الوضع الداكن" aria-pressed="false" title="الوضع الداكن / الفاتح"><svg class="tt-icon tt-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="tt-icon tt-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg><span class="tt-label tt-label-dark">داكن</span><span class="tt-label tt-label-light">فاتح</span></button>
 </div></header>
-
 <section class="hero"><div class="wrap">
   <div class="tk">نشرة يومية · تحليل تعليمي</div>
   <h1>نشرة أسواق مصر اليومية</h1>
   <p>موجز يومي قصير عن السوق المصري، يُحدَّث كل يوم ويُنشر كملف PDF. نحتفظ بأحدث إصدار فقط — ويُحذف إصدار الأمس عند رفع إصدار اليوم.</p>
 </div></section>
-
 <main><div class="wrap">
   <div class="news-card">
     <p class="news-meta" id="news-date">يتم تحميل أحدث إصدار…</p>
@@ -202,7 +178,6 @@ header.nav .wrap{max-width:1100px; padding-inline-start:278px !important; paddin
   </div>
   <p style="font-size:.85rem;color:var(--sage)">تحليل تعليمي — وليست نصيحة استثمارية ولا توصية. قد يملك مُعِدّ التقرير، وقد يتخذ أو يتخلّى مستقبلاً عن، مركزاً في الأوراق المذكورة.</p>
 </div></main>
-
 <footer><div class="wrap">
   <b>إخلاء مسؤولية:</b> دراسات تقييم تعليمية ورأي تحليلي شخصي — وليست توصية استثمارية ولا نصيحة بشراء أو بيع. مُعِدّ التقرير غير مرخّص من الهيئة العامة للرقابة المالية المصرية، ولا يدير أموالاً ولا يقبل عملاء، وقد يملك مراكز في أوراق مذكورة. <a href="method.html#disclaimer">النص الكامل</a>.
 </div></footer>
@@ -217,9 +192,7 @@ header.nav .wrap{max-width:1100px; padding-inline-start:278px !important; paddin
     var tt=document.getElementById('news-title'); if(tt&&ar.title) tt.textContent=ar.title;
     ['news-open','news-dl'].forEach(function(id){var a=document.getElementById(id); if(a) a.href=href;});
     var fr=document.getElementById('news-frame'); if(fr) fr.src=href;
-  }).catch(function(){
-    var dd=document.getElementById('news-date'); if(dd) dd.textContent='أحدث إصدار';
-  });
+  }).catch(function(){ var dd=document.getElementById('news-date'); if(dd) dd.textContent='أحدث إصدار'; });
 })();
 </script>
 </body></html>
