@@ -22,7 +22,7 @@
 *{box-sizing:border-box}
 body{margin:0;background:var(--paper);color:#1b2926;font-family:"IBM Plex Sans Arabic",system-ui,sans-serif;line-height:1.8}
 .wrap{max-width:920px;margin:0 auto;padding:0 22px}
-header.nav{background:var(--pine);color:#fff}
+header.nav{background:var(--pine);color:#fff;position:sticky;top:0;z-index:50}
 header.nav .wrap{display:flex;align-items:center;gap:16px;padding:14px 22px;flex-wrap:wrap}
 .brand{font-family:Alexandria,sans-serif;font-weight:800;font-size:22px;color:#fff;text-decoration:none;display:flex;flex-direction:column;line-height:1}
 .brand small{font-family:"IBM Plex Sans Arabic";font-weight:400;font-size:11px;color:var(--gold);margin-top:3px}
@@ -169,10 +169,6 @@ header.nav .wrap{max-width:920px; padding-left:22px !important; padding-right:22
   <div class="news-card">
     <p class="news-meta" id="news-date">يتم تحميل أحدث إصدار…</p>
     <h2 id="news-title">—</h2>
-    <div class="news-actions">
-      <a id="news-open" class="dl" href="../news/testahil-news-ar.pdf" target="_blank" rel="noopener">افتح نشرة اليوم (PDF)</a>
-      <a id="news-dl" class="dl ghost" href="../news/testahil-news-ar.pdf" download>تحميل</a>
-    </div>
     <p class="news-x">إصدار جديد كل يوم · نحتفظ بالأحدث فقط · <a href="../news.html">English edition</a></p>
     <iframe id="news-frame" class="news-frame" title="أحدث نشرة يومية (PDF)" src="../news/testahil-news-ar.pdf"></iframe>
   </div>
@@ -190,7 +186,6 @@ header.nav .wrap{max-width:920px; padding-left:22px !important; padding-right:22
     var rev=(d&&d.rev!=null)?d.rev:date; var v=encodeURIComponent(rev); var href='../news/'+file+(v?('?v='+v):'');
     var dd=document.getElementById('news-date'); if(dd) dd.textContent = date ? ('أحدث إصدار · '+fmt(date)) : 'أحدث إصدار';
     var tt=document.getElementById('news-title'); if(tt&&ar.title) tt.textContent=ar.title;
-    ['news-open','news-dl'].forEach(function(id){var a=document.getElementById(id); if(a) a.href=href;});
     var fr=document.getElementById('news-frame'); if(fr) fr.src=href;
   }).catch(function(){ var dd=document.getElementById('news-date'); if(dd) dd.textContent='أحدث إصدار'; });
 })();
