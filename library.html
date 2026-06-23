@@ -144,8 +144,8 @@ function studyBlock(code){
     <h3 style="margin-top:10px">${T.name}</h3>
     <p class="muted">Latest <b class="num">${T.spot.toFixed(2)}</b> EGP · our fair value <b class="num">${T.fair.base.toFixed(2)}</b> · full range <span class="num">${T.fair.bear} – ${T.fair.full}</span></p>
     <div class="dl-row">
-      <a class="btn" href="${T.files.pdf}" target="_blank" rel="noopener">Study (PDF)</a>
-      <a class="btn ghost" href="${T.files.model}" target="_blank" rel="noopener">Model (XLSX)</a>
+      <a class="btn" href="${T.files.pdf}" rel="noopener">Study (PDF)</a>
+      <a class="btn ghost" href="${T.files.model}" rel="noopener">Model (XLSX)</a>
       <a class="btn ghost" href="${code.toLowerCase()}.html">See the simple read →</a>
     </div>
   </div>`;
