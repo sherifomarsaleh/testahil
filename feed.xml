@@ -6,30 +6,30 @@
     <atom:link href="https://testahil.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>دراسات تقييم تعليمية مستقلة لأسهم البورصة المصرية — توزيعات احتمالية، وليست توصيات. Educational EGX valuation studies — distributions, not tips.</description>
     <language>ar</language>
-    <lastBuildDate>Tue, 23 Jun 2026 13:00:00 +0300</lastBuildDate>
-
-    <item>
-      <title>إعمار مصر (EMFD): دراسة تقييم — هل يستحق السهم؟</title>
-      <link>https://testahil.com/ar/emfd.html</link>
-      <guid isPermaLink="true">https://testahil.com/ar/emfd.html</guid>
-      <description>نطاق القيمة العادلة وتوزيع احتمالي لسعر السهم خلال ٣ شهور — تحليل تعليمي مستقل.</description>
-      <pubDate>Wed, 17 Jun 2026 08:30:00 +0300</pubDate>
-    </item>
+    <lastBuildDate>Wed, 17 Jun 2026 08:30:00 +0300</lastBuildDate>
 
     <item>
       <title>طلعت مصطفى (TMGH): دراسة تقييم — هل يستحق السهم؟</title>
       <link>https://testahil.com/ar/tmgh.html</link>
       <guid isPermaLink="true">https://testahil.com/ar/tmgh.html</guid>
-      <description>نطاق القيمة العادلة وتوزيع احتمالي لسعر السهم خلال ٣ شهور — تحليل تعليمي مستقل.</description>
-      <pubDate>Sun, 14 Jun 2026 08:30:00 +0300</pubDate>
+      <description>السعر 96.80 · الوسيط (٣ شهور) 105.14 · النطاق 76.47–144.42 جنيه — تحليل تعليمي، توزيع وليس توصية.</description>
+      <pubDate>Wed, 17 Jun 2026 08:30:00 +0300</pubDate>
+    </item>
+
+    <item>
+      <title>إعمار مصر (EMFD): دراسة تقييم — هل يستحق السهم؟</title>
+      <link>https://testahil.com/ar/emfd.html</link>
+      <guid isPermaLink="true">https://testahil.com/ar/emfd.html</guid>
+      <description>السعر 12.44 · الوسيط (٣ شهور) 13.39 · النطاق 9.64–18.47 جنيه — تحليل تعليمي، توزيع وليس توصية.</description>
+      <pubDate>Wed, 17 Jun 2026 08:30:00 +0300</pubDate>
     </item>
 
     <item>
       <title>بالم هيلز (PHDC): دراسة تقييم — هل يستحق السهم؟</title>
       <link>https://testahil.com/ar/phdc.html</link>
       <guid isPermaLink="true">https://testahil.com/ar/phdc.html</guid>
-      <description>نطاق القيمة العادلة وتوزيع احتمالي لسعر السهم خلال ٣ شهور — تحليل تعليمي مستقل.</description>
-      <pubDate>Mon, 09 Jun 2026 08:30:00 +0300</pubDate>
+      <description>السعر 14.50 · الوسيط (٣ شهور) 15.83 · النطاق 10.18–24.50 جنيه — تحليل تعليمي، توزيع وليس توصية.</description>
+      <pubDate>Thu, 11 Jun 2026 08:30:00 +0300</pubDate>
     </item>
 
   </channel>
