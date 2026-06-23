@@ -439,3 +439,6 @@ body{transition:background-color .2s ease, color .2s ease}
 [data-theme="dark"] [style*="#eaf2f1" i]{background-color:#1B3B37 !important}
 [data-theme="dark"] [style*="#cfe0de" i]{background-color:#1E433E !important}
 [data-theme="dark"] [style*="#fbf8f1" i]{background-color:#241F12 !important}
+
+/* Mobile: hide PDF/Excel file access; show desktop-only note */
+.mobileonly{display:none}@media(max-width:700px){.dlfile{display:none!important}.mobileonly{display:block!important}}

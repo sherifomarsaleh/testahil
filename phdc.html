@@ -10,7 +10,7 @@
 <link rel="icon" type="image/png" href="favicon.png?v=2">
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
 <script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('#theme-toggle');if(!b)return;var dark=document.documentElement.getAttribute('data-theme')==='dark';var n=dark?'light':'dark';if(n==='dark'){document.documentElement.setAttribute('data-theme','dark');}else{document.documentElement.removeAttribute('data-theme');}try{localStorage.setItem('theme',n);}catch(e){}b.setAttribute('aria-pressed',String(n==='dark'));});document.addEventListener('DOMContentLoaded',function(){var x=document.getElementById('theme-toggle');if(x)x.setAttribute('aria-pressed',String(document.documentElement.getAttribute('data-theme')==='dark'));});})();</script>
-<link rel="stylesheet" href="assets/style.css?v=20260622a">
+<link rel="stylesheet" href="assets/style.css?v=20260623a">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="testahil?">
 <meta property="og:title" content="Palm Hills (PHDC) — is it worth it? | testahil?">
@@ -629,8 +629,9 @@
     <div class="card">
       <p class="qhead">Want the full study and the spreadsheet?</p>
       <p class="muted">Full write-up plus the editable Excel model. Found a flaw? <a href="library.html">Attack the model</a>.</p>
-      <a class="btn" id="dl-pdf" href="#" rel="noopener">Read the study (PDF)</a>
-      <a class="btn ghost" id="dl-model" href="#" rel="noopener">Open the model (Excel)</a>
+      <a class="btn dlfile" id="dl-pdf" href="#" rel="noopener">Read the study (PDF)</a>
+      <a class="btn ghost dlfile" id="dl-model" href="#" rel="noopener">Open the model (Excel)</a>
+      <p class="muted mobileonly" style="margin-top:8px">The full study (PDF) and Excel model are available on a computer.</p>
       <button class="share-btn" data-share="See the odds on Palm Hills — testahil" type="button" style="margin-left:8px">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"/><line x1="15.4" y1="6.5" x2="8.6" y2="10.5"/></svg>
         Share

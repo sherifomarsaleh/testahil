@@ -10,7 +10,7 @@
 <link rel="icon" type="image/png" href="favicon.png?v=2">
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
 <script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('#theme-toggle');if(!b)return;var dark=document.documentElement.getAttribute('data-theme')==='dark';var n=dark?'light':'dark';if(n==='dark'){document.documentElement.setAttribute('data-theme','dark');}else{document.documentElement.removeAttribute('data-theme');}try{localStorage.setItem('theme',n);}catch(e){}b.setAttribute('aria-pressed',String(n==='dark'));});document.addEventListener('DOMContentLoaded',function(){var x=document.getElementById('theme-toggle');if(x)x.setAttribute('aria-pressed',String(document.documentElement.getAttribute('data-theme')==='dark'));});})();</script>
-<link rel="stylesheet" href="assets/style.css?v=20260622a">
+<link rel="stylesheet" href="assets/style.css?v=20260623a">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="testahil?">
 <meta property="og:title" content="Daily News — testahil?">
@@ -75,7 +75,8 @@
     <p class="news-meta" id="news-date">Loading the latest edition…</p>
     <h2 id="news-title" style="font-family:Alexandria,sans-serif;margin:.25em 0 0">—</h2>
     <p class="news-x muted">New edition each day · only the latest is kept · <a href="ar/news.html" lang="ar">النسخة العربية</a></p>
-    <iframe id="news-frame" class="news-frame" title="Latest daily brief (PDF)" src="news/testahil-news-en.pdf"></iframe>
+    <iframe id="news-frame" class="news-frame dlfile" title="Latest daily brief (PDF)" src="news/testahil-news-en.pdf"></iframe>
+    <p class="muted mobileonly" style="margin-top:14px">Open testahil.com on a computer to read today's brief.</p>
   </div>
 
   <p class="muted" style="font-size:.85rem;margin-top:18px">Educational analysis — not investment advice, not a recommendation. The preparer may hold, and may in the future take or dispose of, a position in the securities discussed.</p>
