@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Testahil · تستاهل — دراسات تقييم البورصة المصرية</title>
+    <link>https://testahil.com/</link>
+    <atom:link href="https://testahil.com/feed.xml" rel="self" type="application/rss+xml"/>
+    <description>دراسات تقييم تعليمية مستقلة لأسهم البورصة المصرية — توزيعات احتمالية، وليست توصيات. Educational EGX valuation studies — distributions, not tips.</description>
+    <language>ar</language>
+    <lastBuildDate>Tue, 23 Jun 2026 13:00:00 +0300</lastBuildDate>
+
+    <item>
+      <title>إعمار مصر (EMFD): دراسة تقييم — هل يستحق السهم؟</title>
+      <link>https://testahil.com/ar/emfd.html</link>
+      <guid isPermaLink="true">https://testahil.com/ar/emfd.html</guid>
+      <description>نطاق القيمة العادلة وتوزيع احتمالي لسعر السهم خلال ٣ شهور — تحليل تعليمي مستقل.</description>
+      <pubDate>Wed, 17 Jun 2026 08:30:00 +0300</pubDate>
+    </item>
+
+    <item>
+      <title>طلعت مصطفى (TMGH): دراسة تقييم — هل يستحق السهم؟</title>
+      <link>https://testahil.com/ar/tmgh.html</link>
+      <guid isPermaLink="true">https://testahil.com/ar/tmgh.html</guid>
+      <description>نطاق القيمة العادلة وتوزيع احتمالي لسعر السهم خلال ٣ شهور — تحليل تعليمي مستقل.</description>
+      <pubDate>Sun, 14 Jun 2026 08:30:00 +0300</pubDate>
+    </item>
+
+    <item>
+      <title>بالم هيلز (PHDC): دراسة تقييم — هل يستحق السهم؟</title>
+      <link>https://testahil.com/ar/phdc.html</link>
+      <guid isPermaLink="true">https://testahil.com/ar/phdc.html</guid>
+      <description>نطاق القيمة العادلة وتوزيع احتمالي لسعر السهم خلال ٣ شهور — تحليل تعليمي مستقل.</description>
+      <pubDate>Mon, 09 Jun 2026 08:30:00 +0300</pubDate>
+    </item>
+
+  </channel>
+</rss>
