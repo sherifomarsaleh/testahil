@@ -450,7 +450,7 @@ body{transition:background-color .2s ease, color .2s ease}
 .attack>summary::after{content:"\2192";transition:transform .15s}
 .attack[open]>summary::after{transform:rotate(90deg)}
 .attack>summary:hover{text-decoration:underline}
-.attack-form{display:flex;flex-direction:column;gap:10px;max-width:520px;margin:12px 0 2px}
+.attack-form{display:flex;flex-direction:column;gap:10px;max-width:none;margin:12px 0 2px}
 .attack-form textarea{font:inherit;padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);width:100%;resize:vertical;min-height:90px;line-height:1.5}
 [data-theme="dark"] .attack-form textarea{background-color:#0F2724;color:var(--ink);border-color:var(--line)}
 .attack-form button{align-self:flex-start;width:auto}
