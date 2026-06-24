@@ -198,8 +198,8 @@
       <p class="verdict" id="verdict"></p>
       <p class="horizon-note">Pick a timeframe:</p>
       <div class="toggle" id="tg">
-        <button data-h="t20" class="on">In 1 month</button>
-        <button data-h="t60">In 3 months</button>
+        <button data-h="t20">In 1 month</button>
+        <button data-h="t60" class="on">In 3 months</button>
       </div>
       <div id="plain"></div>
       <div id="legend"></div>
@@ -711,7 +711,7 @@ document.getElementById("tg").addEventListener("click",e=>{
   [...e.currentTarget.children].forEach(x=>x.classList.remove("on"));
   b.classList.add("on"); show(b.dataset.h);
 });
-show("t20");
+show("t60");
 
 document.getElementById("dl-pdf").href=T.files.pdf;
 document.getElementById("dl-model").href=T.files.model;
