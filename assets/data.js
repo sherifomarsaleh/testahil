@@ -2,7 +2,7 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-06-19" };
+const SITE = { updated: "2026-06-24" };
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
@@ -86,6 +86,33 @@ const TICKERS = {
       model: "files/EMFD_Valuation_Study_17-06-2026_public.xlsx?v=1706",
       pdf:   "files/EMFD_Valuation_Study_17-06-2026_public.pdf?v=1706"
     }
+  },
+  OCDI: {
+    name: "Sixth of October Development & Investment",
+    code: "EGX:OCDI",
+    spot: 22.80,
+    spotDate: "close 23 Jun 2026",
+    ccy: "EGP",
+    fair: { bear: 16.72, base: 26.43, full: 30.77 },          // 24 Jun 2026 valuation — SOTP/RNAV risk-adjusted base; full execution 30.77; four-method synthesis ~27.7
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:18.31, p25:21.08, p50:23.21, p75:25.56, p95:29.35, resolve:"2026-07-21" },
+      t60: { label:"3 months (T+60)", p5:16.08, p25:20.38, p50:24.03, p75:28.30, p95:35.79, resolve:"2026-09-22" }
+    },
+    touch: [ /* descending high -> low */
+      [30.00, 5, 30], [28.00, 14, 44], [27.00, 22, 52], [25.00, 48, 72], [24.00, 66, 82], [19.50, 19, 41]
+    ],
+    levels: { res:[27.00, 24.00, 23.14], sup:[21.46, 21.30, 19.50] },
+    tech: {
+      trend: "Strong uptrend, stretched near the 52-week high",
+      summary: "The price closed 22.80 just under the 23.14 period high after a ~28% three-month run, riding above a rising stack of moving averages (20- above 50- above 150- above 200-day, all rising). Momentum is firm but extended — RSI(14) is ~62, approaching but short of the 70 overbought line — on a thin ~14.5% float that amplifies moves both ways.",
+      bull: "A daily close that holds above the 23.14 period high opens blue-sky continuation toward the 24–27 zone.",
+      bear: "A rejection here with RSI rolling over risks a mean-reversion pullback toward the 21.5–21.3 moving-average supports."
+    },
+    files: {
+      study: "files/OCDI_Valuation_Study_24-06-2026_public.docx?v=2406",
+      model: "files/OCDI_Valuation_Study_24-06-2026_public.xlsx?v=2406",
+      pdf:   "files/OCDI_Valuation_Study_24-06-2026_public.pdf?v=2406"
+    }
   }
 };
 
@@ -93,6 +120,7 @@ const TICKERS = {
 const COMING = [
   { code:"EGX:TMGH", name:"Talaat Moustafa Group",        url:"tmgh.html", status:"covered" },
   { code:"EGX:EMFD", name:"Emaar Misr for Development",        url:"emfd.html", status:"covered" },
+  { code:"EGX:OCDI", name:"SODIC",                            url:"ocdi.html", status:"covered" },
   { code:"EGX:ORAS", name:"Orascom Construction",          url:null,        status:"soon" },
   { code:"EGX:COMI", name:"Commercial International Bank", url:null,        status:"soon" },
   { code:"EGX:CCAP", name:"Citadel Capital",                 url:null,        status:"soon" },
@@ -203,6 +231,27 @@ const LEDGER = [
     horizon_label:"T+60", grade_date:"2026-09-13", cycle_no:1, reanchor_from:null,
     p5:9.64, p25:11.71, p50:13.39, p75:15.29, p95:18.47,
     touch:{ "+5":83, "+10":70, "+15":57, "+20":45, "-5":64, "-10":43 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  // ---- OCDI · equity · cycle 1 (24 Jun 2026 published study) ----
+  {
+    instrument:"OCDI", asset_class:"equity",
+    anchor_date:"2026-06-24", anchor_price:22.80, ccy:"EGP",
+    horizon_label:"T+20", grade_date:"2026-07-21", cycle_no:1, reanchor_from:null,
+    p5:18.31, p25:21.08, p50:23.21, p75:25.56, p95:29.35,
+    touch:{ "+5":66, "+10":45, "+15":28, "+20":17, "-5":56, "-10":32 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"OCDI", asset_class:"equity",
+    anchor_date:"2026-06-24", anchor_price:22.80, ccy:"EGP",
+    horizon_label:"T+60", grade_date:"2026-09-22", cycle_no:1, reanchor_from:null,
+    p5:16.08, p25:20.38, p50:24.03, p75:28.30, p95:35.79,
+    touch:{ "+5":83, "+10":71, "+15":59, "+20":49, "-5":72, "-10":53 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
