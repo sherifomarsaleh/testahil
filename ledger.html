@@ -146,14 +146,15 @@
       <div class="card bt-card">
         <div class="bt-head"><h3>OCDI</h3><span class="chip">5-yr · 5.1×</span></div>
         <div class="bt-name">SODIC</div>
-        <div class="bt-rl">Range width vs reality <b style="color:var(--amber)">1.13</b> <span class="bt-mut">(1.0 = exactly right)</span></div>
-        <div class="bt-track"><div class="bt-tick"></div><div class="bt-dot" style="left:63%;background:var(--amber)"></div></div>
+        <div class="bt-rl">Range width vs reality <b style="color:var(--amber)">0.87</b> <span class="bt-mut">(1.0 = exactly right)</span></div>
+        <div class="bt-track"><div class="bt-tick"></div><div class="bt-dot" style="left:37%;background:var(--amber)"></div></div>
         <div class="bt-scale"><span>0.5 · too wide</span><span>1.0</span><span>too narrow · 1.5</span></div>
-        <div class="bt-cov"><span>5–95% <b>88%</b></span><span>25–75% <b>50%</b></span></div>
-        <div class="bt-verdict">Well-aimed on the merger-adjusted history; range ~13% tighter than the price actually moved</div>
+        <div class="bt-cov"><span>5–95% <b>90%</b></span><span>25–75% <b>56%</b></span></div>
+        <div class="bt-verdict">Well-aimed on the merger-adjusted history; range ~13% wider than the price actually moved</div>
       </div>
       </div>
       <div class="card bt-fig"><img alt="Five-year calibration backtest — PHDC, TMGH and EMFD, each replayed against its own published model" src="assets/calibration_backtest_5y.png?v=20260620"></div>
+      <div class="card bt-fig"><img alt="SODIC (OCDI) five-year calibration backtest — quarterly cone replay, PIT histogram, and coverage bars, replayed against its published Monte-Carlo engine (merger-adjusted)" src="assets/calibration_backtest_ocdi.png?v=20260624"></div>
       <div id="backtest-table"></div>
       <p class="muted" style="margin-top:10px">The five-year window spans the 2022–24 currency moves, so the large nominal swings are mostly FX — this checks the <b>width</b> of each range, not its direction. About 20 independent 3-month windows per name, so the middle (25–75%) band is the sturdier read than the extreme tails.</p>
     </div>
