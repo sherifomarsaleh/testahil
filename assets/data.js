@@ -2,7 +2,7 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-06-24" };
+const SITE = { updated: "2026-06-25" };
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
@@ -113,6 +113,33 @@ const TICKERS = {
       model: "files/OCDI_Valuation_Study_24-06-2026_public.xlsx?v=2406",
       pdf:   "files/OCDI_Valuation_Study_24-06-2026_public.pdf?v=2406"
     }
+  },
+  ORHD: {
+    name: "Orascom Development Egypt",
+    code: "EGX:ORHD",
+    spot: 39.30,
+    spotDate: "close 24 Jun 2026",
+    ccy: "EGP",
+    fair: { bear: 22.5, base: 53.79, full: 70.52 },          // 24 Jun 2026 valuation — SOTP/RNAV risk-adjusted base; full execution 70.52; four-method synthesis ~55.8
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:32.54, p25:36.93, p50:40.22, p75:43.82, p95:49.64, resolve:"2026-07-21" },
+      t60: { label:"3 months (T+60)", p5:29.42, p25:36.38, p50:42.10, p75:48.74, p95:59.97, resolve:"2026-09-22" }
+    },
+    touch: [ /* descending high -> low */
+      [50.00, 7, 34], [48.00, 12, 43], [46.00, 22, 54], [44.00, 37, 66], [42.00, 57, 78], [33.60, 13, 33]
+    ],
+    levels: { res:[46.00, 42.00, 39.60], sup:[37.73, 33.59, 26.54] },
+    tech: {
+      trend: "Strong uptrend, pinned at the all-time high",
+      summary: "The price closed 39.30 a whisker below its 39.60 all-time high, riding above a rising, correctly-stacked set of moving averages (SMA-50 above SMA-200, both rising) — the signature of a strong, intact uptrend. Momentum is firm but extended — RSI(14) is ~65 on Wilder's method, elevated but short of the 70 overbought line — and above the all-time high is blue-sky territory with no overhead supply.",
+      bull: "A daily close that clears the 39.60 all-time high opens blue-sky continuation toward the 42 round level and the 42–46 re-rating zone.",
+      bear: "A rejection here with RSI rolling over risks a pullback toward the 37.73 (SMA-20) support; below it the 33.6 structure level opens."
+    },
+    files: {
+      study: "files/ORHD_Valuation_Study_25-06-2026_public.docx?v=2506",
+      model: "files/ORHD_Valuation_Study_25-06-2026_public.xlsx?v=2506",
+      pdf:   "files/ORHD_Valuation_Study_25-06-2026_public.pdf?v=2506"
+    }
   }
 };
 
@@ -121,6 +148,7 @@ const COMING = [
   { code:"EGX:TMGH", name:"Talaat Moustafa Group",        url:"tmgh.html", status:"covered" },
   { code:"EGX:EMFD", name:"Emaar Misr for Development",        url:"emfd.html", status:"covered" },
   { code:"EGX:OCDI", name:"SODIC",                            url:"ocdi.html", status:"covered" },
+  { code:"EGX:ORHD", name:"Orascom Development",          url:"orhd.html", status:"covered" },
   { code:"EGX:ORAS", name:"Orascom Construction",          url:null,        status:"soon" },
   { code:"EGX:COMI", name:"Commercial International Bank", url:null,        status:"soon" },
   { code:"EGX:CCAP", name:"Citadel Capital",                 url:null,        status:"soon" },
@@ -252,6 +280,27 @@ const LEDGER = [
     horizon_label:"T+60", grade_date:"2026-09-22", cycle_no:1, reanchor_from:null,
     p5:16.08, p25:20.38, p50:24.03, p75:28.30, p95:35.79,
     touch:{ "+5":83, "+10":71, "+15":59, "+20":49, "-5":72, "-10":53 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  // ---- ORHD · equity · cycle 1 (25 Jun 2026 published study; anchored 24 Jun) ----
+  {
+    instrument:"ORHD", asset_class:"equity",
+    anchor_date:"2026-06-24", anchor_price:39.30, ccy:"EGP",
+    horizon_label:"T+20", grade_date:"2026-07-21", cycle_no:1, reanchor_from:null,
+    p5:32.54, p25:36.93, p50:40.22, p75:43.82, p95:49.64,
+    touch:{ "+5":60, "+10":43, "+15":28, "+20":16, "-5":48, "-10":28 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"ORHD", asset_class:"equity",
+    anchor_date:"2026-06-24", anchor_price:39.30, ccy:"EGP",
+    horizon_label:"T+60", grade_date:"2026-09-22", cycle_no:1, reanchor_from:null,
+    p5:29.42, p25:36.38, p50:42.10, p75:48.74, p95:59.97,
+    touch:{ "+5":80, "+10":70, "+15":58, "+20":47, "-5":62, "-10":46 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }

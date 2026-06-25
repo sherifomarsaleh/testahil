@@ -17,7 +17,7 @@ const BASE = 'https://testahil.com';
 
 // Arabic display names (prefilled for live + coming-soon tickers; English fallback)
 const AR_NAMES = {
-  PHDC: 'بالم هيلز', TMGH: 'طلعت مصطفى', EMFD: 'إعمار مصر', OCDI: 'سوديك',
+  PHDC: 'بالم هيلز', TMGH: 'طلعت مصطفى', EMFD: 'إعمار مصر', OCDI: 'سوديك', ORHD: 'أوراسكوم للتنمية',
   ORAS: 'أوراسكوم للإنشاء', COMI: 'البنك التجاري الدولي', CCAP: 'القلعة',
   FWRY: 'فوري', HELI: 'مصر الجديدة للإسكان والتعمير', BTFH: 'بلتون',
   ABUK: 'أبو قير للأسمدة', EFID: 'إيديتا', HRHO: 'المجموعة المالية هيرميس',
