@@ -13,6 +13,17 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
 <script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('#theme-toggle');if(!b)return;var dark=document.documentElement.getAttribute('data-theme')==='dark';var n=dark?'light':'dark';if(n==='dark'){document.documentElement.setAttribute('data-theme','dark');}else{document.documentElement.removeAttribute('data-theme');}try{localStorage.setItem('theme',n);}catch(e){}b.setAttribute('aria-pressed',String(n==='dark'));});document.addEventListener('DOMContentLoaded',function(){var x=document.getElementById('theme-toggle');if(x)x.setAttribute('aria-pressed',String(document.documentElement.getAttribute('data-theme')==='dark'));});})();</script>
 <link rel="stylesheet" href="assets/style.css?v=20260625">
+<style>
+  .cover-disc{margin:0}
+  .cover-sum{cursor:pointer;list-style:none;display:flex;align-items:center;gap:10px;user-select:none;width:fit-content;margin:0}
+  .cover-sum::-webkit-details-marker{display:none}
+  .cover-sum:hover{color:var(--teal)}
+  .cover-count{font-family:"IBM Plex Sans",sans-serif;font-size:.72rem;font-weight:600;color:var(--muted);background:#EAF2F1;border:1px solid var(--line);border-radius:999px;padding:1px 9px}
+  .cover-chev{font-size:.85em;color:var(--muted);transition:transform .2s;line-height:1}
+  details[open] > .cover-sum .cover-chev{transform:rotate(90deg)}
+  .cover-disc .cover-grid{margin-top:16px}
+  [data-theme="dark"] .cover-count{background:#1B3B37;color:var(--teal)}
+</style>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="testahil?">
 <meta property="og:title" content="testahil? — Is the stock worth it?">
@@ -131,9 +142,15 @@
   </section>
 
   <!-- COVERAGE -->
-  <section id="sec-cover" class="anchor" data-nav="Stocks we cover">
-    <p class="qhead">Stocks we cover</p>
-    <div class="cover-grid" id="coming"></div>
+  <section id="sec-cover" class="anchor" data-nav="What we cover">
+    <details class="cover-disc">
+      <summary class="qhead cover-sum">Stocks we cover <span class="cover-count" id="cover-count-stocks"></span><span class="cover-chev" aria-hidden="true">&#9656;</span></summary>
+      <div class="cover-grid" id="coming"></div>
+    </details>
+    <details class="cover-disc" style="margin-top:22px">
+      <summary class="qhead cover-sum">Metals we cover <span class="cover-count" id="cover-count-metals"></span><span class="cover-chev" aria-hidden="true">&#9656;</span></summary>
+      <div class="cover-grid" id="cover-metals"></div>
+    </details>
   </section>
 
   <!-- CALCULATOR -->
@@ -175,13 +192,19 @@ document.getElementById("legend").innerHTML = stripLegend();
 document.getElementById("latest-link").href = latest[0].toLowerCase() + ".html";
 renderTrackBadge("track-badge");
 
-// coverage cards
-document.getElementById("coming").innerHTML =
-  `<a class="card" href="phdc.html" style="display:block"><span class="chip">Covered</span><h3 style="margin:8px 0 2px">Palm Hills</h3><p class="muted num" style="margin:0">EGX:PHDC</p></a>`+
-  COMING.map(c=>c.status==="covered"
-    ? `<a class="card" href="${c.url}" style="display:block"><span class="chip">Covered</span><h3 style="margin:8px 0 2px">${c.name}</h3><p class="muted num" style="margin:0">${c.code}</p></a>`
-    : `<div class="card" style="opacity:.55"><span class="chip warn">Coming soon</span><h3 style="margin:8px 0 2px">${c.name}</h3><p class="muted num" style="margin:0">${c.code}</p></div>`
-  ).join("");
+// coverage cards — covered only
+const coveredStocks =
+  [`<a class="card" href="phdc.html" style="display:block"><span class="chip">Covered</span><h3 style="margin:8px 0 2px">Palm Hills</h3><p class="muted num" style="margin:0">EGX:PHDC</p></a>`]
+  .concat(COMING.filter(c=>c.status==="covered").map(c=>
+    `<a class="card" href="${c.url}" style="display:block"><span class="chip">Covered</span><h3 style="margin:8px 0 2px">${c.name}</h3><p class="muted num" style="margin:0">${c.code}</p></a>`));
+document.getElementById("coming").innerHTML = coveredStocks.join("");
+document.getElementById("cover-count-stocks").textContent = coveredStocks.length + " covered";
+
+// metals — covered only
+const coveredMetals =
+  [`<a class="card" href="gold.html" style="display:block"><span class="chip">Covered</span><h3 style="margin:8px 0 2px">Gold</h3><p class="muted num" style="margin:0">XAU/USD</p></a>`];
+document.getElementById("cover-metals").innerHTML = coveredMetals.join("");
+document.getElementById("cover-count-metals").textContent = coveredMetals.length + " covered";
 </script>
 <script>
 (function(){
