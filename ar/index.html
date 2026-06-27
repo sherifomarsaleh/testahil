@@ -37,7 +37,7 @@ header.nav nav a:hover{color:var(--gold)}
 .hero h1{font-family:Alexandria,sans-serif;font-weight:800;font-size:38px;margin:.3em 0 .2em;line-height:1.25}
 .hero p{color:#9fb0ac;font-size:18px;max-width:620px}
 main{padding:38px 0 10px}
-h2{font-family:Alexandria,sans-serif;font-weight:700;font-size:22px;color:var(--pine);margin:1.4em 0 .6em}
+h2{font-family:Alexandria,sans-serif;font-weight:800;font-size:clamp(1.6rem,4vw,2rem);color:var(--pine);margin:1.4em 0 .6em;line-height:1.2}
 .pills{display:flex;gap:14px;flex-wrap:wrap;margin:18px 0 6px}
 .pill{flex:1 1 240px;background:#fff;border:1px solid #e3e0d6;border-radius:14px;padding:18px 20px}
 .pill b{font-family:Alexandria,sans-serif;color:var(--pine);font-size:16px;display:block;margin-bottom:4px}
@@ -47,6 +47,13 @@ h2{font-family:Alexandria,sans-serif;font-weight:700;font-size:22px;color:var(--
 .study b{font-family:Alexandria,sans-serif;font-size:18px;color:#fff;display:block}
 .study .tk{font-family:"IBM Plex Mono",monospace;color:var(--gold);font-size:13px;margin-top:4px}
 .more{display:inline-block;margin:8px 0 4px;color:var(--brass);font-weight:600;text-decoration:none}
+.cover-disc{margin:0}
+.cover-sum{cursor:pointer;list-style:none;display:flex;align-items:center;gap:12px;user-select:none;width:fit-content;font-family:Alexandria,sans-serif;font-weight:800;font-size:clamp(1.6rem,4vw,2rem);color:var(--pine);line-height:1.2;margin:1.4em 0 .2em}
+.cover-sum::-webkit-details-marker{display:none}
+.cover-sum:hover{color:var(--teal)}
+.cover-count{font-family:"IBM Plex Sans Arabic",sans-serif;font-size:.78rem;font-weight:600;color:#5f726d;background:#EAF2F1;border:1px solid #e3e0d6;border-radius:999px;padding:2px 10px}
+.cover-chev{font-size:1.1rem;color:#5f726d;transition:transform .2s;line-height:1}
+details[open] > .cover-sum .cover-chev{transform:rotate(-90deg)}
 footer{background:var(--pine);color:#c7d2ce;font-size:13px;padding:22px 0;margin-top:34px}
 footer b{color:#fff} footer a{color:var(--gold)}
 </style>
@@ -54,7 +61,9 @@ footer b{color:#fff} footer a{color:var(--gold)}
 :root{--teal:#1B5E5E;--teal2:#2A8F8F}
 :root[data-theme="dark"]{--paper:#0D1F1D;--gold:#C9AE6A;--brass:#C9AE6A;--sage:#9DB3AF;--teal:#4FB3A4;--teal2:#63C7B8}
 [data-theme="dark"] body{background:#0D1F1D;color:#E7EFEC}
-[data-theme="dark"] h2{color:#5FBDAE}
+[data-theme="dark"] h2{color:#fff}
+[data-theme="dark"] .cover-sum{color:#fff}
+[data-theme="dark"] .cover-count{background:#1B3B37;color:var(--gold)}
 [data-theme="dark"] h3{color:#C9AE6A}
 [data-theme="dark"] .lens{background:#15302D;border-color:#26433F}
 [data-theme="dark"] .soon span{background:#1B3B37;color:#9DB3AF}
@@ -159,14 +168,22 @@ header.nav .wrap{max-width:920px; padding-left:22px !important; padding-right:22
     <div class="pill"><b>نماذج مفتوحة</b><span>حمّل نموذج إكسل لكل دراسة وغيّر أي افتراض بنفسك لترى أثره على النطاق.</span></div>
   </div>
 
-  <h2>أحدث الدراسات</h2>
-  <div class="studies">
-    <a class="study" href="phdc.html"><b>بالم هيلز</b><div class="tk">EGX:PHDC ←</div></a>
-    <a class="study" href="tmgh.html"><b>طلعت مصطفى</b><div class="tk">EGX:TMGH ←</div></a>
-    <a class="study" href="emfd.html"><b>إعمار مصر</b><div class="tk">EGX:EMFD ←</div></a>
-    <a class="study" href="ocdi.html"><b>سوديك</b><div class="tk">EGX:OCDI ←</div></a>
-    <a class="study" href="orhd.html"><b>أوراسكوم للتنمية</b><div class="tk">EGX:ORHD ←</div></a>
-  </div>
+  <details class="cover-disc">
+    <summary class="cover-sum">الأسهم التي نغطيها <span class="cover-count">5 مغطّاة</span><span class="cover-chev" aria-hidden="true">&#9666;</span></summary>
+    <div class="studies">
+      <a class="study" href="phdc.html"><b>بالم هيلز</b><div class="tk">EGX:PHDC ←</div></a>
+      <a class="study" href="tmgh.html"><b>طلعت مصطفى</b><div class="tk">EGX:TMGH ←</div></a>
+      <a class="study" href="emfd.html"><b>إعمار مصر</b><div class="tk">EGX:EMFD ←</div></a>
+      <a class="study" href="ocdi.html"><b>سوديك</b><div class="tk">EGX:OCDI ←</div></a>
+      <a class="study" href="orhd.html"><b>أوراسكوم للتنمية</b><div class="tk">EGX:ORHD ←</div></a>
+    </div>
+  </details>
+  <details class="cover-disc" style="margin-top:22px">
+    <summary class="cover-sum">المعادن التي نغطيها <span class="cover-count">1 مغطّاة</span><span class="cover-chev" aria-hidden="true">&#9666;</span></summary>
+    <div class="studies">
+      <a class="study" href="gold.html"><b>الذهب</b><div class="tk">XAU/USD ←</div></a>
+    </div>
+  </details>
   <a class="more" href="egypt.html">كل التغطية ←</a>
 </div></main>
 
