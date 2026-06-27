@@ -474,26 +474,34 @@
         // scales — domain scales with the anchor
         var VB={w:760,h:340}, m={l:46,r:54,t:14,b:26};
         var X0=m.l, X1=VB.w-m.r, Y0=VB.h-m.b, Y1=m.t;
-        var PMIN=Math.round(S0*0.62/5)*5, PMAX=Math.round(S0*1.70/5)*5;
-        var AX=60;
+        // scales — y-domain recomputes from the CURRENT distribution on every render (dynamic)
+        var PMIN, PMAX, niceStep, AX=60;
         var xToPx=function(t){return X0+(t/AX)*(X1-X0);};
         var yToPx=function(p){return Y0+((p-PMIN)/(PMAX-PMIN))*(Y1-Y0);};
         var el=function(id){return document.getElementById(id);};
+        var fmtAxis=function(v){return Math.abs(v)>=10000?(Math.round(v/100)/10)+"k":(Math.abs(v)>=1000?Math.round(v).toLocaleString("en-US"):(Math.round(v*100)/100).toString());};
+        function computeDomain(M){
+          var lo=Infinity, hi=-Infinity, t, a, b;
+          for(t=0;t<=AX;t++){ a=price(M,t,5); b=price(M,t,95); if(a<lo)lo=a; if(b>hi)hi=b; }
+          lo=Math.min(lo, SUPPORT, S0)*0.985; hi=Math.max(hi, CONSENSUS, S0)*1.015;
+          var rng=hi-lo, rstep=Math.pow(10,Math.floor(Math.log(rng/7)/Math.LN10));
+          niceStep=(rng/7/rstep>=5)?5*rstep:(rng/7/rstep>=2)?2*rstep:rstep;
+          PMIN=Math.floor(lo/niceStep)*niceStep; PMAX=Math.ceil(hi/niceStep)*niceStep;
+        }
 
-        (function staticChart(){
-          var g=el("mc-gridG"), s="", p, step=Math.max(10,Math.round((PMAX-PMIN)/10/5)*5), start=Math.ceil(PMIN/step)*step;
-          for(p=start;p<=PMAX-2;p+=step){var y=yToPx(p);
+        function drawAxes(){
+          var g=el("mc-gridG"), s="", p, y;
+          for(p=PMIN;p<=PMAX+niceStep*1e-6;p+=niceStep){ y=yToPx(p);
             s+='<line class="mc-grid" x1="'+X0+'" x2="'+X1+'" y1="'+y.toFixed(1)+'" y2="'+y.toFixed(1)+'"></line>';
-            s+='<text x="'+(X0-8)+'" y="'+(y+3).toFixed(1)+'" text-anchor="end">'+p+'</text>';}
+            s+='<text x="'+(X0-8)+'" y="'+(y+3).toFixed(1)+'" text-anchor="end">'+fmtAxis(p)+'</text>';}
           g.innerHTML=s;
-          drawXAxis();
           var r=el("mc-refG"), ya=yToPx(S0), ys=yToPx(SUPPORT), yc=yToPx(CONSENSUS);
           r.innerHTML='<line class="mc-ref mc-ref-anchor" x1="'+X0+'" x2="'+X1+'" y1="'+ya.toFixed(1)+'" y2="'+ya.toFixed(1)+'"></line>'+
             '<line class="mc-ref mc-ref-sup" x1="'+X0+'" x2="'+X1+'" y1="'+ys.toFixed(1)+'" y2="'+ys.toFixed(1)+'"></line>'+
-            '<text class="mc-reflabel" fill="var(--red)" x="'+(X1+4)+'" y="'+(ys+3).toFixed(1)+'">21</text>'+
+            '<text class="mc-reflabel" fill="var(--red)" x="'+(X1+4)+'" y="'+(ys+3).toFixed(1)+'">'+fmtAxis(SUPPORT)+'</text>'+
             '<line class="mc-ref mc-ref-con" x1="'+X0+'" x2="'+X1+'" y1="'+yc.toFixed(1)+'" y2="'+yc.toFixed(1)+'"></line>'+
-            '<text class="mc-reflabel" fill="var(--amber-text)" x="'+(X1+4)+'" y="'+(yc+3).toFixed(1)+'">27</text>';
-        })();
+            '<text class="mc-reflabel" fill="var(--amber-text)" x="'+(X1+4)+'" y="'+(yc+3).toFixed(1)+'">'+fmtAxis(CONSENSUS)+'</text>';
+        }
 
         function drawXAxis(){
           el("mc-hzLine").style.display="none";
@@ -537,6 +545,7 @@
         function render(){
           var egpD=parseFloat(egp.value)/100, geoP=-parseInt(geo.value,10)/100, lnchP=parseInt(lnch.value,10)/100;
           var M=moments(egpD,geoP,lnchP);
+          computeDomain(M); drawAxes(); drawXAxis();
           paintThumb(egp); paintThumb(geo); paintThumb(lnch);
           el("mc-egpVal").textContent=(egpD>=0?"+":"−")+Math.abs(egpD*100).toFixed(1)+"% / quarter";
           el("mc-geoVal").textContent=Math.round(geoP*100)+"% · −10% if it hits";
