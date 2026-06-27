@@ -8,6 +8,7 @@ const SITE = { updated: "2026-06-25" };
 const TICKERS = {
   PHDC: {
     name: "Palm Hills Developments",
+    nameAr: "بالم هيلز للتعمير",
     code: "EGX:PHDC",
     spot: 14.50,
     spotDate: "close 11 Jun 2026",
@@ -35,6 +36,7 @@ const TICKERS = {
   },
   TMGH: {
     name: "Talaat Moustafa Group Holding",
+    nameAr: "مجموعة طلعت مصطفى القابضة",
     code: "EGX:TMGH",
     spot: 96.80,
     spotDate: "close 17 Jun 2026",
@@ -62,6 +64,7 @@ const TICKERS = {
   },
   EMFD: {
     name: "Emaar Misr for Development",
+    nameAr: "إعمار مصر للتنمية",
     code: "EGX:EMFD",
     spot: 12.44,
     spotDate: "close 17 Jun 2026",
@@ -89,6 +92,7 @@ const TICKERS = {
   },
   OCDI: {
     name: "Sixth of October Development & Investment",
+    nameAr: "السادس من أكتوبر للتنمية والاستثمار (سوديك)",
     code: "EGX:OCDI",
     spot: 22.80,
     spotDate: "close 23 Jun 2026",
@@ -116,6 +120,7 @@ const TICKERS = {
   },
   ORHD: {
     name: "Orascom Development Egypt",
+    nameAr: "أوراسكوم للتنمية مصر",
     code: "EGX:ORHD",
     spot: 39.30,
     spotDate: "close 24 Jun 2026",

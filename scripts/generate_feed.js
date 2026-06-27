@@ -79,7 +79,7 @@ function build() {
   const equityItems = Object.keys(TICKERS).flatMap(code => {
     const t = TICKERS[code];
     const slug = code.toLowerCase();
-    const arName = AR_NAMES[code] || t.name || code;
+    const arName = t.nameAr || AR_NAMES[code] || t.name || code;
     const enName = t.name || code;
     const dt = parseStudyDate(t) || fallback;
     const sortKey = dt.y * 10000 + dt.mo * 100 + dt.d;
