@@ -209,7 +209,7 @@ function initSearch(inputId="tk-search", resultsId="tk-results"){
     const hits = index.filter(x =>
       x.code.toLowerCase().includes(q) || x.name.toLowerCase().includes(q));
     if(!hits.length){
-      box.innerHTML = `<div class="tk-empty">No match. We currently cover Egyptian Exchange (EGX) stocks.</div>`;
+      box.innerHTML = `<div class="tk-empty">No match. We cover EGX stocks, selected global names, and metals.</div>`;
       box.classList.add("open"); return;
     }
     box.innerHTML = hits.map(x => x.url

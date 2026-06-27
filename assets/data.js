@@ -2,7 +2,7 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-06-25" };
+const SITE = { updated: "2026-06-27" };
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
@@ -144,6 +144,34 @@ const TICKERS = {
       study: "files/ORHD_Valuation_Study_25-06-2026_public.docx?v=2506",
       model: "files/ORHD_Valuation_Study_25-06-2026_public.xlsx?v=2506",
       pdf:   "files/ORHD_Valuation_Study_25-06-2026_public.pdf?v=2506"
+    }
+  },
+  SAMSUNG: {
+    name: "Samsung Electronics Co., Ltd.",
+    nameAr: "سامسونج للإلكترونيات",
+    code: "KRX:005930",
+    spot: 339500,
+    spotDate: "close 26 Jun 2026",
+    ccy: "KRW",
+    fair: { bear: 214800, base: 296502, full: 410754 },      // 26 Jun 2026 — weighted central 296,502 (-13% vs spot); bear = consolidated DCF cross-check 214,800; full = supercycle/bull 410,754. Deeper SOTP cycle-reversion bear ~95,000 covered in the study text.
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:277676, p25:316898, p50:346091, p75:378203, p95:430413, resolve:"2026-07-24" },
+      t60: { label:"3 months (T+60)", p5:246827, p25:308298, p50:359482, p75:418176, p95:520627, resolve:"2026-09-18" }
+    },
+    touch: [ /* descending high -> low */
+      [440000, 5, 30], [400000, 21, 51], [360000, 61, 80], [286000, 12, 33], [250000, 1, 11]
+    ],
+    levels: { res:[362500, 350000, 344000], sup:[334675, 320000, 286320] },
+    tech: {
+      trend: "Extended uptrend, well above every moving average",
+      summary: "The price is in a powerful, stretched advance — about 485% above its 52-week low and roughly 6% below its 362,500 all-time high, riding a correctly-stacked, rising set of moving averages (20-day above 50-day above 200-day). Momentum is firm but not yet stretched: RSI(14) is ~55, short of the 70 overbought line, so the trend has room. But realized 60-day volatility near 82% — far above the long-run ~33% — and strongly fat-tailed returns mean the same energy that drove the melt-up can also produce violent two-way moves.",
+      bull: "A daily close above the 362,500 all-time high opens blue-sky continuation toward the 400,000 bull-case zone.",
+      bear: "A close below the 50-day near 286,000 breaks the rising structure and opens the cycle-reversion zone toward the base-SOTP area."
+    },
+    files: {
+      study: "files/Samsung_Valuation_Study_27-06-2026_public.docx?v=2706",
+      model: "files/Samsung_Valuation_Study_27-06-2026_public.xlsx?v=2706",
+      pdf:   "files/Samsung_Valuation_Study_27-06-2026_public.pdf?v=2706"
     }
   }
 };
