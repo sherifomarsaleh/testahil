@@ -304,6 +304,36 @@ const LEDGER = [
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"Gold", asset_class:"metal",
+    anchor_date:"2026-06-25", anchor_price:3989.85, ccy:"USD",
+    horizon_label:"1 month", grade_date:"2026-07-23", cycle_no:1, reanchor_from:null,
+    p5:3431, p25:3754, p50:3975, p75:4214, p95:4598,
+    touch:{ "+5":49, "+10":22, "+15":9, "+20":3, "-5":50, "-10":20 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"Gold", asset_class:"metal",
+    anchor_date:"2026-06-25", anchor_price:3989.85, ccy:"USD",
+    horizon_label:"3 months", grade_date:"2026-09-17", cycle_no:1, reanchor_from:null,
+    p5:3064, p25:3560, p50:3944, p75:4369, p95:5074,
+    touch:{ "+5":68, "+10":47, "+15":31, "+20":19, "-5":71, "-10":48 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"Gold", asset_class:"metal",
+    anchor_date:"2026-06-25", anchor_price:3989.85, ccy:"USD",
+    horizon_label:"12 months", grade_date:"2027-06-25", cycle_no:1, reanchor_from:null,
+    p5:2624, p25:3515, p50:4295, p75:5246, p95:7026,
+    touch:{ "+5":88, "+10":77, "+15":67, "+20":57, "-5":76, "-10":59 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   }
 ];
 
