@@ -14,12 +14,15 @@
 <script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('#theme-toggle');if(!b)return;var dark=document.documentElement.getAttribute('data-theme')==='dark';var n=dark?'light':'dark';if(n==='dark'){document.documentElement.setAttribute('data-theme','dark');}else{document.documentElement.removeAttribute('data-theme');}try{localStorage.setItem('theme',n);}catch(e){}b.setAttribute('aria-pressed',String(n==='dark'));});document.addEventListener('DOMContentLoaded',function(){var x=document.getElementById('theme-toggle');if(x)x.setAttribute('aria-pressed',String(document.documentElement.getAttribute('data-theme')==='dark'));});})();</script>
 <link rel="stylesheet" href="assets/style.css?v=20260625">
 <style>
+  /* Homepage section headings — match the testahil wordmark (Alexandria 800), white in dark mode */
+  main .qhead{font-family:"Alexandria",sans-serif;font-weight:800;font-size:clamp(1.6rem,4vw,2rem);line-height:1.2}
+  [data-theme="dark"] main .qhead{color:#fff}
   .cover-disc{margin:0}
-  .cover-sum{cursor:pointer;list-style:none;display:flex;align-items:center;gap:10px;user-select:none;width:fit-content;margin:0}
+  .cover-sum{cursor:pointer;list-style:none;display:flex;align-items:center;gap:12px;user-select:none;width:fit-content;margin:0}
   .cover-sum::-webkit-details-marker{display:none}
   .cover-sum:hover{color:var(--teal)}
-  .cover-count{font-family:"IBM Plex Sans",sans-serif;font-size:.72rem;font-weight:600;color:var(--muted);background:#EAF2F1;border:1px solid var(--line);border-radius:999px;padding:1px 9px}
-  .cover-chev{font-size:.85em;color:var(--muted);transition:transform .2s;line-height:1}
+  .cover-count{font-family:"IBM Plex Sans",sans-serif;font-size:.78rem;font-weight:600;color:var(--muted);background:#EAF2F1;border:1px solid var(--line);border-radius:999px;padding:2px 10px}
+  .cover-chev{font-size:1.1rem;color:var(--muted);transition:transform .2s;line-height:1}
   details[open] > .cover-sum .cover-chev{transform:rotate(90deg)}
   .cover-disc .cover-grid{margin-top:16px}
   [data-theme="dark"] .cover-count{background:#1B3B37;color:var(--teal)}
