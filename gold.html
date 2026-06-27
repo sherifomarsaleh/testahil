@@ -1,37 +1,112 @@
 <!doctype html>
 <html lang="en" dir="ltr">
 <head>
-<meta name="robots" content="noindex,follow">
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-<title>Gold XAU — Valuation Study | testahil?</title>
-<meta name="description" content="Independent valuation study — coming soon.">
+<title>Gold (XAU/USD) — is it worth it? | testahil?</title>
+<meta name="description" content="Where could gold (XAU/USD) go in 1–3 months? A plain-language read of the odds, a fair-value zone, plus the full study and open model.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;700;800&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <link rel="icon" type="image/png" href="favicon.png?v=2">
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
 <script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('#theme-toggle');if(!b)return;var dark=document.documentElement.getAttribute('data-theme')==='dark';var n=dark?'light':'dark';if(n==='dark'){document.documentElement.setAttribute('data-theme','dark');}else{document.documentElement.removeAttribute('data-theme');}try{localStorage.setItem('theme',n);}catch(e){}b.setAttribute('aria-pressed',String(n==='dark'));});document.addEventListener('DOMContentLoaded',function(){var x=document.getElementById('theme-toggle');if(x)x.setAttribute('aria-pressed',String(document.documentElement.getAttribute('data-theme')==='dark'));});})();</script>
+<script>window.GOLDDATA={
+ name:"Gold", code:"XAU/USD", spot:3989.85, spotDate:"close 25 Jun 2026", ccy:"USD",
+ fair:{ bear:4200, base:4600, full:5000 },
+ dist:{
+   t20:{ label:"1 month (T+20)",  p5:3431, p25:3754, p50:3975, p75:4214, p95:4598, resolve:"2026-07-23" },
+   t60:{ label:"3 months (T+60)", p5:3064, p25:3560, p50:3944, p75:4369, p95:5074, resolve:"2026-09-17" },
+   t252:{ label:"12 months (T+252)", p5:2624, p25:3515, p50:4295, p75:5246, p95:7026, resolve:"2027-06-25" }
+ },
+ touch:[ [4800,3,19], [4600,8,30], [4500,13,37], [4300,32,55], [4200,47,66], [3800,52,72], [3700,35,60], [3600,21,49], [3500,12,39] ],
+ levels:{ res:[4200,4470,4487], sup:[3700,3600,3500] },
+ tech:{
+   trend:"Broken below both averages \u2014 oversold, with a fresh death-cross",
+   summary:"Gold closed $3,989.85 after a ~29% correction from a $5,595 all-time high in January 2026. Price sits ~11% below both the 50- and 200-day moving averages, MACD (12\u00b726\u00b79) is negative (\u2212121.3 / \u2212105.0 / \u221216.3) and RSI(14) is ~30 \u2014 oversold. Crucially the 50-day has just crossed beneath the 200-day for the first time this cycle: a fresh death-cross and a momentum-regime change, not a pullback inside an intact uptrend.",
+   bull:"Stabilising real rates and a structural central-bank bid lift gold back toward the $4,200\u20134,600 consensus zone; reclaiming the $4,470 / $4,487 averages would confirm.",
+   bear:"A confirmed September Fed hike and a stronger dollar extend the correction toward $3,700 \u2192 $3,600 \u2192 $3,500 and the $3,268 52-week low."
+ },
+ files:{
+   study:"files/XAUUSD_Valuation_Study_25-06-2026_public.docx?v=2506",
+   model:"files/XAUUSD_Valuation_Study_25-06-2026_public.xlsx?v=2506",
+   pdf:"files/XAUUSD_Valuation_Study_25-06-2026_public.pdf?v=2506"
+ }
+};</script>
 <link rel="stylesheet" href="assets/style.css?v=20260625">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="testahil?">
-<meta property="og:title" content="Gold (XAU) — testahil?">
-<meta property="og:description" content="Independent valuation study — coming soon.">
-<meta property="og:image" content="https://testahil.com/og-image.png">
+<meta property="og:title" content="Gold (XAU/USD) — is it worth it? | testahil?">
+<meta property="og:description" content="Where could gold go in 1–3 months? Plain-language odds, a fair-value zone, and the open model.">
+<meta property="og:image" content="https://testahil.com/og/gold.png">
 <meta property="og:url" content="https://testahil.com/gold.html">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Gold (XAU) — testahil?">
-<meta name="twitter:description" content="Independent valuation study — coming soon.">
-<meta name="twitter:image" content="https://testahil.com/og-image.png">
+<meta name="twitter:title" content="Gold (XAU/USD) — is it worth it? | testahil?">
+<meta name="twitter:description" content="Where could gold go in 1–3 months? Plain-language odds, a fair-value zone, and the open model.">
+<meta name="twitter:image" content="https://testahil.com/og/gold.png">
 <link rel="canonical" href="https://testahil.com/gold.html">
+<link rel="alternate" hreflang="en" href="https://testahil.com/gold.html">
+<link rel="alternate" hreflang="ar" href="https://testahil.com/ar/gold.html">
+<link rel="alternate" hreflang="x-default" href="https://testahil.com/gold.html">
+
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-H9NV0ZK9RN"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-H9NV0ZK9RN');
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-H9NV0ZK9RN');</script>
+<style>
+/* ── On-this-page rail (uses the empty left gutter on wide screens) ── */
+.anchor{scroll-margin-top:84px}
+.secnav{display:none}
+@media (min-width:1220px){
+  .secnav{display:block; position:fixed; top:120px; left:calc(50% - 604px); width:144px;
+    max-height:calc(100vh - 150px); overflow:auto; z-index:40}
+}
+.secnav .secnav-h{font-family:"Alexandria","IBM Plex Sans",sans-serif; font-size:.7rem;
+  letter-spacing:.09em; text-transform:uppercase; color:var(--muted); margin:0 0 10px; padding-left:14px}
+.secnav ol{list-style:none; margin:0; padding:0; border-left:2px solid var(--line)}
+.secnav a{display:block; padding:6px 0 6px 14px; margin-left:-2px; border-left:2px solid transparent;
+  color:var(--muted); font-size:.86rem; line-height:1.3; text-decoration:none;
+  transition:color .15s ease, border-color .15s ease}
+.secnav a:hover{color:var(--teal2); text-decoration:none}
+.secnav a.active{color:var(--ink); font-weight:600; border-left-color:var(--amber)}
+@media (prefers-reduced-motion:reduce){.secnav a{transition:none}}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Gold (XAU/USD) — Independent Valuation Study",
+      "description": "Where could gold (XAU/USD) trade over the next 1–3 months? A probability distribution, a fair-value zone, and the open model. Educational analysis, not investment advice.",
+      "datePublished": "2026-06-25",
+      "dateModified": "2026-06-25",
+      "image": "https://testahil.com/og/gold.png",
+      "author": { "@type": "Organization", "name": "testahil", "url": "https://testahil.com/" },
+      "publisher": { "@type": "Organization", "name": "testahil", "logo": { "@type": "ImageObject", "url": "https://testahil.com/favicon.png" } },
+      "mainEntityOfPage": { "@type": "WebPage", "@id": "https://testahil.com/gold.html" },
+      "about": { "@type": "Thing", "name": "Gold (XAU/USD spot)" },
+      "isAccessibleForFree": true
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://testahil.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Metals", "item": "https://testahil.com/metals.html" },
+        { "@type": "ListItem", "position": 3, "name": "Gold (XAU/USD)", "item": "https://testahil.com/gold.html" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "What is the fair-value zone for gold (XAU/USD)?",
+          "acceptedAnswer": { "@type": "Answer", "text": "testahil estimates a fair-value zone of roughly $4,200–$5,000 per ounce (centre about $4,600) from the published analyst consensus, the record structural supply/demand balance, a non-binding mining cost floor and real-rate carry — not a single price target or a buy/sell call. Educational analysis, not investment advice." } },
+        { "@type": "Question", "name": "Where could gold trade over the next 1–3 months?",
+          "acceptedAnswer": { "@type": "Answer", "text": "A 50,000-path Monte Carlo anchored at the 25 Jun 2026 close of $3,989.85 puts the three-month median near $3,944 on a flat net factor drift, with a 90% band of roughly $3,064–$5,074. The full study and open model show the methodology." } }
+      ]
+    }
+  ]
+}
 </script>
 </head>
 <body>
@@ -46,6 +121,7 @@
     <a href="ledger.html">Ledger</a>
     <a href="method.html">Methodology</a>
   </nav>
+  <a href="ar/gold.html" class="lang-ar" lang="ar" style="margin-inline-start:14px;border:1px solid #C0A45F;color:#C0A45F;border-radius:7px;padding:3px 10px;font-size:13px;text-decoration:none">العربية</a>
   <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode" aria-pressed="false" title="Toggle dark / light"><svg class="tt-icon tt-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="tt-icon tt-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg><span class="tt-label tt-label-dark">Dark mode</span><span class="tt-label tt-label-light">Light mode</span></button>
 </div></header>
 
@@ -58,40 +134,634 @@
 </div></div>
 
 
-<main class="wrap">
-  <section>
-    <span class="chip num">XAU</span><span class="chip warn">Coming soon</span>
-    <h1 style="font-size:1.9rem;margin-top:.4em">Gold</h1>
-    <p class="muted">We don't cover this one yet. A full study is on the way. <a href="metals.html">&larr; All Metals coverage</a></p>
-  </section>
-  <section class="card">
-    <h3>Company snapshot</h3>
-    <table><tbody>
-      <tr><td>Code</td><td class="num">XAU</td></tr>
-      <tr><td>Type</td><td>Precious metal</td></tr>
-      <tr><td>Study status</td><td><span style="color:var(--amber);font-weight:600">Coming soon</span></td></tr>
-    </tbody></table>
-    <p class="muted" style="margin-top:14px">The classic store of value and a core central-bank reserve asset. We'll value it once the study is ready.</p>
-  </section>
-  <section class="card" style="background:#EFF5F4">
-    <p class="qhead">Be first to see the Gold study</p>
-    <p class="muted">Leave your email and we'll tell you the moment the Gold study goes live — nothing else, no spam.</p>
-    <form class="follow-row" action="https://formsubmit.co/info@testahil.com" method="POST">
-      <input type="hidden" name="_subject" value="Notify when the Gold study is live">
-      <input type="hidden" name="stock" value="XAU">
-      <input type="email" name="email" placeholder="you@example.com" required aria-label="Your email">
-      <button class="btn" type="submit">Notify me</button>
-    </form>
+
+<main class="wrap study-wrap">
+<div class="study-main">
+  <section id="sec-top" class="anchor" style="padding-bottom:8px">
+    <span class="chip num">XAU/USD</span><span class="chip">updated <span class="num" id="upd"></span></span>
+    <h1 style="font-size:1.8rem;margin-top:.4em">Gold</h1>
   </section>
 
-  <section class="card" style="background:#EFF5F4">
-    <p class="qhead">While you wait</p>
-    <a class="btn ghost" href="phdc.html">See a published study &rarr;</a>
-    &nbsp;
-    <a class="btn ghost" href="archive.html">Library &rarr;</a>
+  <!-- SEARCH -->
+  <section style="padding:6px 0 0">
   </section>
 
+  <section style="padding:0 0 4px"><div id="track-badge"></div></section>
+
+  <!-- LENS 1: SIMULATION -->
+  <section id="sec-odds" class="anchor" style="padding-bottom:0">
+    <div class="lens"><span class="lens-no">Lens 1 of 3</span><span class="lens-name">The simulation — what are the odds?</span></div>
+    <p class="lens-sub">50,000 simulated futures — <em>where could the price go?</em></p>
+  </section>
+
+  <!-- PLAIN ANSWER FIRST -->
+  <section style="padding-top:8px">
+    <div class="answer">
+      <p class="verdict" id="verdict"></p>
+      <p class="horizon-note">Pick a timeframe:</p>
+      <div class="toggle" id="tg">
+        <button data-h="t20" class="on">In 1 month</button>
+        <button data-h="t60">In 3 months</button>
+        <button data-h="t252">In 12 months</button>
+      </div>
+      <div id="plain"></div>
+      <div id="legend"></div>
+      <button class="howto-link" id="howto-open" type="button">How to read this</button>
+    </div>
+    <p class="muted" style="margin-top:14px">Latest <b class="num" id="spot"></b> USD (<span id="spotdate"></span>) &middot; our fair-value centre <b class="num">4,600</b> &middot; consensus zone <span class="num">4,200</span> (floor) to <span class="num">5,000</span> (top).</p>
+  </section>
+
+  <!-- LENS 2: FUNDAMENTAL -->
+  <section id="sec-value" class="anchor" style="padding-bottom:0">
+    <div class="lens"><span class="lens-no">Lens 2 of 3</span><span class="lens-name">Fundamental analysis — what is it worth?</span></div>
+    <p class="lens-sub">Built up from projects, cash and earnings — <em>what is it worth?</em></p>
+  </section>
+
+  <!-- VALUATION GAUGE -->
+  <section style="padding-top:8px">
+    <div class="card">
+      <p class="qhead">Is it cheap or expensive right now?</p>
+      <p class="muted">Latest price vs our fair value. A comparison, not a recommendation.</p>
+      <div id="gauge"></div>
+    </div>
+  </section>
+
+  <!-- LENS 3: TECHNICAL -->
+  <section id="sec-chart" class="anchor" style="padding-bottom:0">
+    <div class="lens"><span class="lens-no">Lens 3 of 3</span><span class="lens-name">Technical analysis — what is the chart doing?</span></div>
+    <p class="lens-sub">Trend, momentum and key levels — <em>what is the price doing now?</em></p>
+  </section>
+
+  <!-- TECHNICAL READ (visible) -->
+  <section style="padding-top:8px">
+    <div class="card">
+      <p class="qhead">What the chart says</p>
+      <div id="techread"></div>
+    </div>
+  </section>
+
+  <!-- ONE-LINE WHAT-IT-MEANS -->
+  <section style="padding-top:8px">
+    <div class="card" style="background:#EFF5F4">
+      <p style="margin:0"><b>In plain terms:</b> gold pays nothing and has no cash flows, so its value rests on the published analyst consensus (a Reuters poll of 30 analysts centres on ~$4,800 for 2026) and the strongest structural demand in its modern history &mdash; record 2025 demand above 5,000 tonnes, central banks buying 863 tonnes, and gold now the largest reserve asset by value. Spot ~$3,990 sits about 5% below the $4,200&ndash;5,000 consensus zone after a ~29% correction. The near-term cap is rising real rates and a firm dollar; the floor is the structural central-bank bid.</p>
+    </div>
+  </section>
+
+  <!-- ============ INTERACTIVE MONTE CARLO (self-contained, scoped #mc-lab) ============ -->
+  <section id="sec-model" class="anchor" style="padding-top:8px">
+  <div id="mc-lab">
+    <style>
+      #mc-lab{
+        --mc-bad:var(--red); --mc-mid:var(--amber); --mc-good:var(--green);
+        --mc-band-outer:rgba(42,143,143,.16); --mc-band-inner:rgba(42,143,143,.32);
+        margin-top:4px;
+      }
+      #mc-lab .mc-head{display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-bottom:4px}
+      #mc-lab .mc-eyebrow{font-family:"IBM Plex Mono",monospace; font-size:.7rem; letter-spacing:.18em; text-transform:uppercase; color:var(--teal); margin:0 0 2px}
+      #mc-lab h3.mc-title{font-family:"Alexandria","IBM Plex Sans",sans-serif; font-weight:700; font-size:1.15rem; color:var(--teal); margin:0}
+      #mc-lab .mc-sub{color:var(--muted); font-size:.9rem; margin:2px 0 12px; max-width:60ch}
+      #mc-lab .mc-sub b{color:var(--ink)}
+
+      #mc-lab .mc-card{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px}
+      #mc-lab .mc-card + .mc-card{margin-top:12px}
+      #mc-lab .mc-card-h{display:flex; align-items:baseline; justify-content:space-between; gap:10px; margin:0 0 6px}
+      #mc-lab .mc-card-h h4{font-family:"Alexandria","IBM Plex Sans",sans-serif; font-size:.92rem; font-weight:600; color:var(--ink); margin:0}
+      #mc-lab .mc-card-h .mc-hint{font-size:.72rem; color:var(--muted); font-family:"IBM Plex Mono",monospace}
+
+      #mc-lab .mc-seg{display:inline-flex; background:#EAF2F1; border:1px solid var(--line); border-radius:999px; padding:3px; gap:3px}
+      #mc-lab .mc-seg button{appearance:none; border:0; background:transparent; cursor:pointer; font-family:"IBM Plex Mono",monospace; font-weight:500; font-size:.78rem; letter-spacing:.04em; color:var(--teal); padding:5px 12px; border-radius:999px}
+      #mc-lab .mc-seg button[aria-pressed="true"]{background:#fff; color:var(--ink); box-shadow:0 1px 3px rgba(0,0,0,.1)}
+      #mc-lab .mc-seg button:focus-visible{outline:3px solid var(--teal2); outline-offset:2px}
+
+      #mc-lab .mc-chartwrap{padding:2px 2px 0}
+      #mc-lab svg{display:block; width:100%; height:auto}
+      #mc-lab .mc-axis text{font-family:"IBM Plex Mono",monospace; font-size:10px; fill:var(--muted)}
+      #mc-lab .mc-grid{stroke:var(--line); stroke-width:1}
+      #mc-lab .mc-ref{stroke-dasharray:5 4; stroke-width:1.4}
+      #mc-lab .mc-ref-sup{stroke:var(--red)}
+      #mc-lab .mc-ref-con{stroke:var(--amber)}
+      #mc-lab .mc-ref-anchor{stroke:rgba(14,39,38,.32); stroke-dasharray:1 4; stroke-width:1.1}
+      #mc-lab .mc-reflabel{font-family:"IBM Plex Mono",monospace; font-size:10px; font-weight:600}
+      #mc-lab .mc-median{fill:none; stroke:var(--amber); stroke-width:2.4}
+      #mc-lab .mc-hz{stroke:var(--teal); stroke-width:1.1; stroke-dasharray:2 3; opacity:.5}
+
+      #mc-lab .mc-legend{display:flex; flex-wrap:wrap; gap:6px 14px; margin-top:8px; font-size:.74rem; color:var(--muted)}
+      #mc-lab .mc-legend span{display:inline-flex; align-items:center; gap:6px}
+      #mc-lab .mc-sw{width:15px; height:9px; border-radius:2px; display:inline-block}
+
+      #mc-lab .mc-controls{display:grid; gap:15px}
+      #mc-lab .mc-ctl label{display:flex; justify-content:space-between; align-items:baseline; gap:10px; margin-bottom:7px}
+      #mc-lab .mc-ctl .mc-name{font-size:.9rem; font-weight:600; color:var(--ink)}
+      #mc-lab .mc-ctl .mc-val{font-family:"IBM Plex Mono",monospace; font-size:.78rem; color:var(--teal); background:#EAF2F1; padding:3px 8px; border-radius:6px; white-space:nowrap}
+      #mc-lab .mc-ctl .mc-chan{font-size:.76rem; color:var(--muted); margin:6px 2px 0}
+      #mc-lab input[type=range]{-webkit-appearance:none; appearance:none; width:100%; height:8px; border-radius:8px; outline:none;
+        background:linear-gradient(90deg,var(--mc-bad) 0%,var(--mc-mid) 50%,var(--mc-good) 100%);
+        box-shadow:inset 0 0 0 1px rgba(14,39,38,.10)}
+      #mc-lab input[type=range]::-webkit-slider-thumb{-webkit-appearance:none; width:22px; height:22px; border-radius:50%;
+        background:var(--mc-thumb,#fff); border:3px solid #fff; cursor:pointer; box-shadow:0 0 0 1px rgba(14,39,38,.30),0 1px 4px rgba(14,39,38,.35)}
+      #mc-lab input[type=range]::-moz-range-thumb{width:22px; height:22px; border-radius:50%;
+        background:var(--mc-thumb,#fff); border:3px solid #fff; cursor:pointer; box-shadow:0 0 0 1px rgba(14,39,38,.30),0 1px 4px rgba(14,39,38,.35)}
+      #mc-lab input[type=range]:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 3px var(--teal2)}
+      #mc-lab input[type=range]:focus-visible::-moz-range-thumb{box-shadow:0 0 0 3px var(--teal2)}
+      #mc-lab .mc-ends{display:flex; justify-content:space-between; font-size:.7rem; margin-top:6px}
+      #mc-lab .mc-ends .mc-b{color:var(--red); font-weight:600}
+      #mc-lab .mc-ends .mc-g{color:var(--green); font-weight:600}
+
+      #mc-lab .mc-verdict{padding:13px 16px}
+      #mc-lab .mc-vline{font-size:.92rem; margin:0 0 4px}
+      #mc-lab .mc-big{font-family:"IBM Plex Mono",monospace; font-weight:500; color:var(--teal)}
+      #mc-lab .mc-big.mc-down{color:var(--red)}
+
+      #mc-lab .mc-grid2{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+      @media(max-width:640px){#mc-lab .mc-grid2{grid-template-columns:1fr}}
+      #mc-lab table.mc-pct{width:100%; border-collapse:collapse; font-family:"IBM Plex Mono",monospace; font-size:.78rem}
+      #mc-lab table.mc-pct th,#mc-lab table.mc-pct td{padding:6px 5px; text-align:right; border-bottom:1px solid var(--line)}
+      #mc-lab table.mc-pct th:first-child,#mc-lab table.mc-pct td:first-child{text-align:left; font-family:"IBM Plex Sans",sans-serif}
+      #mc-lab table.mc-pct thead th{font-size:.66rem; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); font-weight:600}
+      #mc-lab table.mc-pct tr.mc-on td{background:rgba(42,143,143,.08)}
+      #mc-lab table.mc-pct .mc-medc{color:var(--amber-text); font-weight:600}
+
+      #mc-lab .mc-zbar{display:flex; height:30px; border-radius:7px; overflow:hidden; margin:2px 0 10px; border:1px solid var(--line)}
+      #mc-lab .mc-zbar div{display:flex; align-items:center; justify-content:center; color:#fff; font-family:"IBM Plex Mono",monospace; font-weight:500; font-size:.72rem; min-width:0}
+      #mc-lab .mc-zleg{display:grid; grid-template-columns:1fr 1fr; gap:4px 12px; font-size:.74rem; color:var(--muted)}
+      #mc-lab .mc-zleg span{display:flex; align-items:center; gap:6px}
+      #mc-lab .mc-dot{width:9px; height:9px; border-radius:2px; flex:none}
+
+      #mc-lab table.mc-ladder{width:100%; border-collapse:collapse; font-family:"IBM Plex Mono",monospace; font-size:.76rem}
+      #mc-lab table.mc-ladder th,#mc-lab table.mc-ladder td{padding:5px 6px; text-align:right; border-bottom:1px solid var(--line)}
+      #mc-lab table.mc-ladder th:first-child,#mc-lab table.mc-ladder td:first-child{text-align:left}
+      #mc-lab table.mc-ladder thead th{font-size:.64rem; letter-spacing:.04em; text-transform:uppercase; color:var(--muted)}
+      #mc-lab table.mc-ladder tr.mc-up td:first-child{color:var(--teal)}
+      #mc-lab table.mc-ladder tr.mc-dn td:first-child{color:var(--red)}
+
+      #mc-lab .mc-foot{font-size:.72rem; color:var(--muted); margin:12px 2px 0; line-height:1.5}
+      #mc-lab .mc-reset{appearance:none; border:1.5px solid var(--teal); background:transparent; cursor:pointer; font-family:"IBM Plex Mono",monospace; font-weight:500; font-size:.74rem; color:var(--teal); padding:6px 12px; border-radius:8px; margin-top:12px}
+      #mc-lab .mc-reset:hover{background:var(--teal); color:#fff}
+      #mc-lab .mc-reset:focus-visible{outline:3px solid var(--teal2); outline-offset:2px}
+    </style>
+
+    <div class="mc-head">
+      <div>
+        <p class="mc-eyebrow">Interactive · runs on your device</p>
+        <h3 class="mc-title">Tune the five biggest forces yourself</h3>
+      </div>
+      <div class="mc-seg" role="group" aria-label="Horizon">
+        <button id="mc-h20" aria-pressed="false">1 month</button>
+        <button id="mc-h60" aria-pressed="true">3 months</button>
+        <button id="mc-h252" aria-pressed="false">12 months</button>
+      </div>
+    </div>
+    <p class="mc-sub">Drag a slider and the whole distribution recomputes live — <b>green is better, red is worse</b>. The other six forces stay fixed at the study calibration. Anchored at the latest price; nothing is sent anywhere.</p>
+
+    <div class="mc-card">
+      <div class="mc-chartwrap">
+        <svg id="mc-fan" viewBox="0 0 760 340" role="img" aria-label="Forward price distribution cone">
+          <g id="mc-gridG" class="mc-axis"></g>
+          <path id="mc-band95" fill="var(--mc-band-outer)"></path>
+          <path id="mc-band75" fill="var(--mc-band-inner)"></path>
+          <path id="mc-medianP" class="mc-median"></path>
+          <g id="mc-refG"></g>
+          <line id="mc-hzLine" class="mc-hz"></line>
+          <g id="mc-xlab" class="mc-axis"></g>
+        </svg>
+      </div>
+      <div class="mc-legend">
+        <span><i class="mc-sw" style="background:var(--mc-band-inner)"></i> 25–75% band</span>
+        <span><i class="mc-sw" style="background:var(--mc-band-outer)"></i> 5–95% band</span>
+        <span><i class="mc-sw" style="background:var(--amber); height:3px"></i> median path</span>
+        <span><i class="mc-sw" style="background:var(--red); height:3px"></i> support 3,700</span>
+        <span><i class="mc-sw" style="background:var(--amber); height:3px; opacity:.7"></i> target 4,700</span>
+      </div>
+    </div>
+
+    <div class="mc-card">
+      <div class="mc-card-h"><h4>The five forces</h4><span class="mc-hint">the most decision-relevant of the 11 drivers</span></div>
+      <div class="mc-controls">
+        <div class="mc-ctl">
+          <label for="mc-rate"><span class="mc-name">Real rates / Fed path</span><span class="mc-val" id="mc-rateVal">&minus;2.5% / quarter</span></label>
+          <input type="range" id="mc-rate" min="-10" max="6" step="0.5" value="-2.5">
+          <div class="mc-ends"><span class="mc-b">higher-for-longer</span><span class="mc-g">Fed cuts / easing</span></div>
+          <p class="mc-chan">The opportunity cost of holding a non-yielding metal &mdash; the dominant near-term force. A hawkish Fed with no 2026 cuts (easing pushed to 2027) and a dollar index above 100 drove the correction off the January high.</p>
+        </div>
+        <div class="mc-ctl">
+          <label for="mc-dxy"><span class="mc-name">US dollar (DXY)</span><span class="mc-val" id="mc-dxyVal">&minus;1.0% / quarter</span></label>
+          <input type="range" id="mc-dxy" min="-9" max="5" step="0.5" value="-1">
+          <div class="mc-ends"><span class="mc-b">dollar surges</span><span class="mc-g">dollar weakens</span></div>
+          <p class="mc-chan">Gold is priced in dollars, so a stronger dollar is a direct headwind. DXY is above 100, its highest since May-2025.</p>
+        </div>
+        <div class="mc-ctl">
+          <label for="mc-infl"><span class="mc-name">Inflation / debasement</span><span class="mc-val" id="mc-inflVal">+0.0% / quarter</span></label>
+          <input type="range" id="mc-infl" min="-5" max="6" step="0.5" value="0">
+          <div class="mc-ends"><span class="mc-b">disinflation</span><span class="mc-g">reflation</span></div>
+          <p class="mc-chan">The real-asset / debasement bid &mdash; rising inflation expectations and a deteriorating US fiscal path lift gold as a store of value.</p>
+        </div>
+        <div class="mc-ctl">
+          <label for="mc-cb"><span class="mc-name">Central-bank demand</span><span class="mc-val" id="mc-cbVal">30% &middot; +4% if strong</span></label>
+          <input type="range" id="mc-cb" min="0" max="90" step="1" value="30">
+          <div class="mc-ends"><span class="mc-b">demand fades</span><span class="mc-g">record buying</span></div>
+          <p class="mc-chan">The structural reserve bid &mdash; central banks bought 863 tonnes in 2025, the fourth-largest on record. A step-up or mobilisation is the signature upside.</p>
+        </div>
+        <div class="mc-ctl">
+          <label for="mc-geo"><span class="mc-name">Geopolitical / haven bid</span><span class="mc-val" id="mc-geoVal">25% &middot; +4% if it hits</span></label>
+          <input type="range" id="mc-geo" min="0" max="90" step="1" value="25">
+          <div class="mc-ends"><span class="mc-b">calm</span><span class="mc-g">risk-off surge</span></div>
+          <p class="mc-chan">A one-off safe-haven shock over the quarter &mdash; the war-premium can re-arm if the US&ndash;Iran ceasefire breaks down.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mc-card mc-verdict">
+      <p class="mc-vline">At <b id="mc-hzName">3 months</b> the model centres on <span class="mc-big" id="mc-vMed">$3,942</span> &nbsp;·&nbsp; 5–95% range <span class="mc-big" id="mc-vRange">3,051 – 5,092</span></p>
+      <p class="mc-vline">Chance of finishing below support ($3,700): <span class="mc-big mc-down" id="mc-vBelow">34%</span> &nbsp;·&nbsp; at or above target ($4,700): <span class="mc-big" id="mc-vCons">13%</span></p>
+    </div>
+
+    <div class="mc-grid2">
+      <div class="mc-card">
+        <div class="mc-card-h"><h4>Probability zones</h4><span class="mc-hint" id="mc-zHz">at 3 months</span></div>
+        <div class="mc-zbar" id="mc-zbar" aria-hidden="true"></div>
+        <div class="mc-zleg">
+          <span><i class="mc-dot" style="background:var(--red)"></i> below support &lt;$3,700</span>
+          <span><i class="mc-dot" style="background:var(--amber)"></i> $3,700 &ndash; $4,200</span>
+          <span><i class="mc-dot" style="background:var(--teal2)"></i> $4,200 &ndash; $4,700</span>
+          <span><i class="mc-dot" style="background:var(--teal)"></i> &ge; target $4,700</span>
+        </div>
+      </div>
+      <div class="mc-card">
+        <div class="mc-card-h"><h4>Percentiles (USD/oz)</h4></div>
+        <table class="mc-pct">
+          <thead><tr><th>Horizon</th><th>5%</th><th>25%</th><th>Median</th><th>75%</th><th>95%</th></tr></thead>
+          <tbody>
+            <tr id="mc-row20"><td>1 month</td><td id="mc-p20_5"></td><td id="mc-p20_25"></td><td class="mc-medc" id="mc-p20_50"></td><td id="mc-p20_75"></td><td id="mc-p20_95"></td></tr>
+            <tr id="mc-row60"><td>3 months</td><td id="mc-p60_5"></td><td id="mc-p60_25"></td><td class="mc-medc" id="mc-p60_50"></td><td id="mc-p60_75"></td><td id="mc-p60_95"></td></tr>
+            <tr id="mc-row252"><td>12 months</td><td id="mc-p252_5"></td><td id="mc-p252_25"></td><td class="mc-medc" id="mc-p252_50"></td><td id="mc-p252_75"></td><td id="mc-p252_95"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="mc-card" style="margin-top:12px">
+      <div class="mc-card-h"><h4>Level-touch probabilities</h4><span class="mc-hint">chance the price touches a level before the date</span></div>
+      <table class="mc-ladder">
+        <thead><tr><th>Level</th><th>within 1 month</th><th>within 3 months</th></tr></thead>
+        <tbody id="mc-ladderBody"></tbody>
+      </table>
+    </div>
+
+    <button class="mc-reset" id="mc-reset">Reset to study baseline</button>
+
+    <p class="mc-foot">One lognormal forward built from the study's 11-factor calibration: five continuous forces set the drift and spread, six event forces add skew and width. Percentiles and zones are closed-form; touch probabilities use the reflection principle with a discrete-monitoring correction, reproducing the published 50,000-path engine. Moving a lever re-derives the maths instantly. Illustrative of the model — not a forecast, not advice.</p>
+
+    <script>
+    (function(){
+      "use strict";
+      function boot(){
+        var T=null;
+        try{ if(window.GOLDDATA){ T=window.GOLDDATA; } }catch(e){}
+        var S0=(T&&typeof T.spot==="number")?T.spot:3989.85;
+        var H=60, BETA=0.5826, SUPPORT=3700, MID=4200, CONSENSUS=4700;
+        // fixed factors (held at study calibration)
+        var IDIO=0.135, CB_CONT=0.020, ETF_CONT=-0.005;          // diffusion = realized 27% (factor vols informational, no double-count); fixed structural continuous bid
+        var CB_M=0.04, CB_SD=0.04, GEO_M=0.04, GEO_SD=0.05;       // the two event sliders' impact
+        var EV_FIXED=[["Mon",0.30,-0.03,0.05],["Fis",0.25,0.04,0.05],["Unw",0.30,-0.05,0.06],["ETFr",0.30,0.04,0.04]];  // the 4 fixed events
+
+        function erf(x){var s=x<0?-1:1;x=Math.abs(x);var t=1/(1+0.3275911*x);
+          var y=1-(((((1.061405429*t-1.453152027)*t)+1.421413741)*t-0.284496736)*t+0.254829592)*t*Math.exp(-x*x);return s*y;}
+        var Phi=function(z){return 0.5*(1+erf(z/Math.SQRT2));};
+        var Z={5:-1.6448536,25:-0.6744898,50:0,75:0.6744898,95:1.6448536};
+
+        function moments(rateD,dxyD,inflD,cbP,geoP){
+          var mu=rateD+dxyD+inflD+CB_CONT+ETF_CONT, v=IDIO*IDIO, i;
+          var ev=[["CB",cbP,CB_M,CB_SD],["Geo",geoP,GEO_M,GEO_SD]].concat(EV_FIXED);
+          for(i=0;i<ev.length;i++){var p=ev[i][1],m=ev[i][2],sd=ev[i][3]; mu+=p*m; v+=p*(sd*sd+(1-p)*m*m);}
+          return {mu3:mu - v/2, var3:v};
+        }
+        function price(M,Tn,q){return S0*Math.exp(M.mu3*(Tn/H)+Z[q]*Math.sqrt(M.var3*Tn/H));}
+        function touch(M,L,Tn,up){
+          var nu=M.mu3*(Tn/H), sg=Math.sqrt(M.var3*Tn/H), sStep=Math.sqrt(M.var3/H), b=Math.log(L/S0);
+          b+=up?BETA*sStep:-BETA*sStep;
+          if(up)return Phi((-b+nu)/sg)+Math.exp(2*nu*b/(sg*sg))*Phi((-b-nu)/sg);
+          return Phi((b-nu)/sg)+Math.exp(2*nu*b/(sg*sg))*Phi((b+nu)/sg);
+        }
+        function cdfBelow(M,L,Tn){return Phi((Math.log(L/S0)-M.mu3*(Tn/H))/Math.sqrt(M.var3*Tn/H));}
+
+        // scales — domain scales with the anchor
+        var VB={w:760,h:340}, m={l:46,r:54,t:14,b:26};
+        var X0=m.l, X1=VB.w-m.r, Y0=VB.h-m.b, Y1=m.t;
+        var PMIN=2900, PMAX=5300, AX=60;   // y-domain auto-fits the cone on every render
+        var xToPx=function(t){return X0+(t/AX)*(X1-X0);};
+        var yToPx=function(p){return Y0+((p-PMIN)/(PMAX-PMIN))*(Y1-Y0);};
+        var el=function(id){return document.getElementById(id);};
+
+        function niceStep(range){
+          var raw=range/8, mag=Math.pow(10,Math.floor(Math.log(raw)/Math.LN10)), n=raw/mag;
+          var st=n<1.5?1:(n<3?2:(n<7?5:10)); return st*mag;
+        }
+        function computeDomain(M){
+          var lo=Math.min(price(M,AX,5),SUPPORT,S0), hi=Math.max(price(M,AX,95),CONSENSUS,S0);
+          var pad=(hi-lo)*0.08; lo-=pad; hi+=pad;
+          var step=niceStep(hi-lo);
+          PMIN=Math.floor(lo/step)*step; PMAX=Math.ceil(hi/step)*step;
+          return step;
+        }
+        function drawGrid(step){
+          var g=el("mc-gridG"), s="", p, start=Math.ceil(PMIN/step)*step, y;
+          for(p=start;p<=PMAX-1;p+=step){ y=yToPx(p);
+            s+='<line class="mc-grid" x1="'+X0+'" x2="'+X1+'" y1="'+y.toFixed(1)+'" y2="'+y.toFixed(1)+'"></line>';
+            s+='<text x="'+(X0-8)+'" y="'+(y+3).toFixed(1)+'" text-anchor="end">'+Math.round(p).toLocaleString("en-US")+'</text>';}
+          g.innerHTML=s;
+          var r=el("mc-refG"), ya=yToPx(S0), ys=yToPx(SUPPORT), yc=yToPx(CONSENSUS);
+          r.innerHTML='<line class="mc-ref mc-ref-anchor" x1="'+X0+'" x2="'+X1+'" y1="'+ya.toFixed(1)+'" y2="'+ya.toFixed(1)+'"></line>'+
+            '<line class="mc-ref mc-ref-sup" x1="'+X0+'" x2="'+X1+'" y1="'+ys.toFixed(1)+'" y2="'+ys.toFixed(1)+'"></line>'+
+            '<text class="mc-reflabel" fill="var(--red)" x="'+(X1+4)+'" y="'+(ys+3).toFixed(1)+'">3,700</text>'+
+            '<line class="mc-ref mc-ref-con" x1="'+X0+'" x2="'+X1+'" y1="'+yc.toFixed(1)+'" y2="'+yc.toFixed(1)+'"></line>'+
+            '<text class="mc-reflabel" fill="var(--amber-text)" x="'+(X1+4)+'" y="'+(yc+3).toFixed(1)+'">4,700</text>';
+        }
+        function drawXAxis(){
+          el("mc-hzLine").style.display="none";
+          var ticks=AX<=20?[0,5,10,15,20]:(AX<=60?[0,10,20,30,40,50,60]:[0,63,126,189,252]);
+          var xl=el("mc-xlab"), xs="";
+          ticks.forEach(function(t){var x=xToPx(t);
+            xs+='<text x="'+x.toFixed(1)+'" y="'+(Y0+18)+'" text-anchor="middle">'+(t===0?"latest":"T+"+t)+'</text>';});
+          xl.innerHTML=xs;
+        }
+        function bandPath(M,qHi,qLo){var up="",lo="",t,x;
+          for(t=0;t<=AX;t++){x=xToPx(t).toFixed(1); up+=(t?"L":"M")+x+","+yToPx(price(M,t,qHi)).toFixed(1)+" ";}
+          for(t=AX;t>=0;t--){x=xToPx(t).toFixed(1); lo+="L"+x+","+yToPx(price(M,t,qLo)).toFixed(1)+" ";}
+          return up+lo+"Z";}
+        function medianPath(M){var d="",t,x; for(t=0;t<=AX;t++){x=xToPx(t).toFixed(1); d+=(t?"L":"M")+x+","+yToPx(price(M,t,50)).toFixed(1)+" ";} return d;}
+
+        function lerp(a,b,t){return Math.round(a+(b-a)*t);}
+        function gradeColor(f){f=Math.max(0,Math.min(1,f));
+          var bad=[181,72,58],mid=[201,138,45],good=[46,125,91],r,g,b,t;
+          if(f<0.5){t=f/0.5; r=lerp(bad[0],mid[0],t); g=lerp(bad[1],mid[1],t); b=lerp(bad[2],mid[2],t);}
+          else{t=(f-0.5)/0.5; r=lerp(mid[0],good[0],t); g=lerp(mid[1],good[1],t); b=lerp(mid[2],good[2],t);}
+          return "rgb("+r+","+g+","+b+")";}
+        function paintThumb(s){var f=(parseFloat(s.value)-parseFloat(s.min))/(parseFloat(s.max)-parseFloat(s.min));
+          s.style.setProperty("--mc-thumb",gradeColor(f));}
+
+        var rate=el("mc-rate"), dxy=el("mc-dxy"), infl=el("mc-infl"), cb=el("mc-cb"), geo=el("mc-geo"), HZ=60;
+        var fmt=function(v){return "$"+Math.round(v).toLocaleString("en-US");};
+        var LADDER_UP=[4200,4400,4600,4800,5000], LADDER_DN=[3700,3500];
+
+        function setZbar(M,Tn){
+          var pb=cdfBelow(M,SUPPORT,Tn), p100=cdfBelow(M,MID,Tn), p126=cdfBelow(M,CONSENSUS,Tn);
+          var z=[pb,p100-pb,p126-p100,1-p126], cols=["var(--red)","var(--amber)","var(--teal2)","var(--teal)"];
+          var bar=el("mc-zbar"); bar.innerHTML="";
+          z.forEach(function(p,i){var d=document.createElement("div");
+            d.style.flex="0 0 "+(p*100).toFixed(2)+"%"; d.style.background=cols[i];
+            d.textContent=p>=0.07?Math.round(p*100)+"%":""; bar.appendChild(d);});
+        }
+        function setLadder(M){var s="";
+          LADDER_UP.forEach(function(L){s+='<tr class="mc-up"><td>'+L.toLocaleString("en-US")+'</td><td>'+Math.round(touch(M,L,20,true)*100)+'%</td><td>'+Math.round(touch(M,L,60,true)*100)+'%</td></tr>';});
+          LADDER_DN.forEach(function(L){s+='<tr class="mc-dn"><td>'+L.toLocaleString("en-US")+' ▼</td><td>'+Math.round(touch(M,L,20,false)*100)+'%</td><td>'+Math.round(touch(M,L,60,false)*100)+'%</td></tr>';});
+          el("mc-ladderBody").innerHTML=s;}
+
+        function render(){
+          var rD=parseFloat(rate.value)/100, dD=parseFloat(dxy.value)/100, iD=parseFloat(infl.value)/100;
+          var cbP=parseInt(cb.value,10)/100, geoP=parseInt(geo.value,10)/100;
+          var M=moments(rD,dD,iD,cbP,geoP);
+          var __step=computeDomain(M); drawGrid(__step);
+          paintThumb(rate); paintThumb(dxy); paintThumb(infl); paintThumb(cb); paintThumb(geo);
+          function pc(x){return (x>=0?"+":"\u2212")+Math.abs(x*100).toFixed(1)+"% / quarter";}
+          el("mc-rateVal").textContent=pc(rD);
+          el("mc-dxyVal").textContent=pc(dD);
+          el("mc-inflVal").textContent=pc(iD);
+          el("mc-cbVal").textContent=Math.round(cbP*100)+"% \u00b7 +4% if strong";
+          el("mc-geoVal").textContent=Math.round(geoP*100)+"% \u00b7 +4% if it hits";
+          el("mc-band95").setAttribute("d",bandPath(M,95,5));
+          el("mc-band75").setAttribute("d",bandPath(M,75,25));
+          el("mc-medianP").setAttribute("d",medianPath(M));
+          var xh=xToPx(HZ).toFixed(1), hz=el("mc-hzLine");
+          hz.setAttribute("x1",xh); hz.setAttribute("x2",xh); hz.setAttribute("y1",Y0.toFixed(1)); hz.setAttribute("y2",Y1.toFixed(1));
+          [20,60,252].forEach(function(Tn){[5,25,50,75,95].forEach(function(q){el("mc-p"+Tn+"_"+q).textContent=Math.round(price(M,Tn,q)).toLocaleString("en-US");});});
+          el("mc-row20").classList.toggle("mc-on",HZ===20);
+          el("mc-row60").classList.toggle("mc-on",HZ===60);
+          el("mc-row252").classList.toggle("mc-on",HZ===252);
+          var hLabel=HZ===20?"1 month":(HZ===60?"3 months":"12 months");
+          el("mc-hzName").textContent=hLabel;
+          el("mc-vMed").textContent=fmt(price(M,HZ,50));
+          el("mc-vRange").textContent=Math.round(price(M,HZ,5)).toLocaleString("en-US")+" \u2013 "+Math.round(price(M,HZ,95)).toLocaleString("en-US");
+          el("mc-vBelow").textContent=Math.round(cdfBelow(M,SUPPORT,HZ)*100)+"%";
+          el("mc-vCons").textContent=Math.round((1-cdfBelow(M,CONSENSUS,HZ))*100)+"%";
+          el("mc-zHz").textContent="at "+hLabel;
+          setZbar(M,HZ); setLadder(M);
+        }
+        var raf=null;
+        function schedule(){ if(raf)return; raf=requestAnimationFrame(function(){raf=null;render();}); }
+        [rate,dxy,infl,cb,geo].forEach(function(s){s.addEventListener("input",schedule);});
+        function setHz(h){HZ=h; AX=h; el("mc-h20").setAttribute("aria-pressed",h===20); el("mc-h60").setAttribute("aria-pressed",h===60); el("mc-h252").setAttribute("aria-pressed",h===252); drawXAxis(); render();}
+        el("mc-h20").addEventListener("click",function(){setHz(20);});
+        el("mc-h60").addEventListener("click",function(){setHz(60);});
+        el("mc-h252").addEventListener("click",function(){setHz(252);});
+        el("mc-reset").addEventListener("click",function(){rate.value="-2.5"; dxy.value="-1"; infl.value="0"; cb.value="30"; geo.value="25"; setHz(60); render();});
+        drawXAxis(); render();
+      }
+      if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",boot);
+      else boot();
+    })();
+    </script>
+  </div>
+  </section>
+  <!-- ============ /INTERACTIVE MONTE CARLO ============ -->
+
+
+  <!-- DETAILED NUMBERS — opt in -->
+  <details id="sec-details" class="more anchor">
+    <summary>Show the detailed numbers</summary>
+    <div class="more-body">
+
+      <p class="qhead" style="margin-top:18px">How likely is each price?</p>
+      <p class="muted">Chance the price <em>touches</em> each level before the date.</p>
+      <table><thead><tr><th class="num">Price level</th><th class="num">Within 1 month</th><th class="num">Within 3 months</th></tr></thead>
+      <tbody id="touch"></tbody></table>
+
+      <p class="qhead" style="margin-top:26px">What underpins the value</p>
+      <p class="muted">A commodity has no balance sheet — four lenses bound a fair-value zone instead.</p>
+      <table><thead><tr><th>What sets the value</th><th class="num">Reference</th><th>How it's read</th></tr></thead>
+      <tbody>
+        <tr><td>Analyst-consensus anchor</td><td class="num">~4,800</td><td>Reuters 30-analyst 2026 median</td></tr>
+        <tr><td>Structural supply/demand</td><td class="num">record</td><td>CB 863t · demand &gt;5,000t · largest reserve asset</td></tr>
+        <tr><td>Mining cost floor</td><td class="num">~1,400&ndash;1,600</td><td>far below spot — non-binding</td></tr>
+        <tr><td>Real-rate carry</td><td class="num">near-term cap</td><td>hawkish Fed · DXY &gt;100</td></tr>
+        <tr style="font-weight:700"><td>Fair-value zone (centre)</td><td class="num">4,600</td><td>+15% vs latest · zone 4,200&ndash;5,000</td></tr>
+      </tbody></table>
+      <p class="muted" style="margin-top:8px">The consensus anchors the level, the structural bid underpins it, cost is a distant floor, and real-rate carry sets the near-term tilt. Spot ~$3,990 sits ~5% below the zone floor. Full detail and the four lenses are in the study and the open model.</p>
+
+      <p class="qhead" style="margin-top:26px">Chart levels traders watch</p>
+      <table><tbody>
+        <tr><td><span class="term" tabindex="0">Resistance (ceilings)<span class="tip">A price level where selling has repeatedly stopped past rallies — a "ceiling" the price has struggled to break above.</span></span></td><td class="num">4,200 &middot; 4,470 &middot; 4,487</td></tr>
+        <tr><td><span class="term" tabindex="0">Support (floors)<span class="tip">A price level where buying has repeatedly stepped in — a "floor" the price has tended to bounce off.</span></span></td><td class="num">3,700 &middot; 3,600 &middot; 3,500</td></tr>
+        <tr><td><span class="term" tabindex="0">Typical daily move<span class="tip">Roughly how far the price swings in an average day (based on a measure called ATR). Bigger means choppier.</span></span></td><td class="num">$108 (2.7%)</td></tr>
+        <tr><td>Where our case breaks</td><td class="num">below ~3,500</td></tr>
+      </tbody></table>
+
+      <p class="qhead" style="margin-top:26px">The exact percentiles</p>
+      <p class="muted">The <span class="term" tabindex="0">5th / 25th / middle / 75th / 95th outcomes<span class="tip">Line up all 50,000 outcomes low to high — these are the values at the 5%, 25%, 50%, 75% and 95% marks.</span></span>, from 50,000 paths.</p>
+      <table><thead><tr><th>Timeframe</th><th class="num">Rare low (5%)</th><th class="num">25%</th><th class="num">Middle</th><th class="num">75%</th><th class="num">Rare high (95%)</th></tr></thead>
+      <tbody id="pct"></tbody></table>
+
+      <p class="qhead" style="margin-top:26px">What drives the odds</p>
+      <p class="muted">50,000 paths, 11 forces: real US 10-year yields, the dollar index, the Fed path, central-bank/official-sector demand, ETF &amp; investment flows, geopolitical shocks, central-bank buying surprises, monetary-policy surprises, fiscal/debasement stress, a positioning/ETF unwind, and an ETF resurgence. Details in the <a href="method.html">methodology</a>.</p>
+    </div>
+  </details>
+
+  <!-- METALS COVERAGE -->
+  <section id="sec-peers" class="anchor" style="padding-top:8px">
+    <div class="card">
+      <p class="qhead">More metals coverage</p>
+      <p class="muted">Gold is the senior monetary metal — valued on consensus and structural demand, not against a higher metal.</p>
+      <a class="btn ghost" href="metals.html">All Metals →</a> &nbsp;
+      <a class="btn ghost" href="silver.html">Silver →</a> &nbsp;
+      <a class="btn ghost" href="archive.html">Library →</a>
+    </div>
+  </section>
+
+  <!-- GET THE STUDY -->
+  <section id="sec-study" class="anchor" style="padding-top:8px">
+    <div class="card">
+      <p class="qhead">Want the full study and the spreadsheet?</p>
+      <p class="muted">Full write-up plus the editable Excel model.</p>
+      <details class="attack">
+        <summary>Found a flaw? Attack the model</summary>
+        <form class="attack-form" action="https://formsubmit.co/info@testahil.com" method="POST">
+          <input type="hidden" name="_subject" value="Attack on the model — Gold (XAU/USD), 25 Jun 2026 edition">
+          <input type="hidden" name="study" value="Gold (XAU/USD) — 25 Jun 2026 edition">
+          <input type="hidden" name="stock" value="XAU">
+          <input type="hidden" name="_template" value="table">
+          <input type="text" name="name" placeholder="Your name (optional)" aria-label="Your name">
+          <input type="email" name="email" placeholder="Your email (for a reply)" required aria-label="Your email">
+          <textarea name="message" rows="4" placeholder="Which number or assumption looks wrong, and why?" required aria-label="Your critique"></textarea>
+          <button type="submit" class="btn">Send the attack</button>
+          <p class="attack-note">Sent straight to info@testahil.com — we fix confirmed flaws in public.</p>
+        </form>
+      </details>
+      <a class="btn dlfile" id="dl-pdf" href="#" rel="noopener" download>Open the study (PDF)</a>
+      <a class="btn ghost dlfile" id="dl-model" href="#" rel="noopener">Open the model (Excel)</a>
+      <p class="muted mobileonly" style="margin-top:8px">The full study (PDF) and Excel model are available on a computer.</p>
+      <button class="share-btn" data-share="See the odds on gold — testahil" type="button" style="margin-left:8px">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"/><line x1="15.4" y1="6.5" x2="8.6" y2="10.5"/></svg>
+        Share
+      </button>
+      <p class="muted" style="margin-top:12px">Edition: 25 Jun 2026. Older editions stay in the <a href="archive.html">Library</a>.</p>
+    </div>
+  </section>
+
+  <!-- FOLLOW BY EMAIL -->
+  </div>
+<aside class="study-side"><div class="ss-card ss-notify"><p class="ss-h">Get the next Gold update</p><p class="ss-sub">New edition on a fixed schedule. Your email, nothing else — no spam.</p><form class="ss-form" action="https://formsubmit.co/info@testahil.com" method="POST"><input type="hidden" name="_subject" value="Follow Gold updates"><input type="hidden" name="stock" value="XAU"><input type="email" name="email" placeholder="you@example.com" required aria-label="Your email"><button type="submit">Notify me</button></form></div><div class="ss-card ss-embed"><p class="ss-h">&lt;/&gt; Embed this widget</p><p class="ss-sub">Put this distribution on your site or blog — it links back here.</p><textarea class="ss-code" readonly rows="3">&lt;iframe src=&quot;https://testahil.com/embed/gold.html&quot; width=&quot;100%&quot; height=&quot;320&quot; style=&quot;border:0;max-width:640px&quot; title=&quot;Gold (XAU/USD) 3-month distribution — testahil&quot; loading=&quot;lazy&quot;&gt;&lt;/iframe&gt;
+&lt;a href=&quot;https://testahil.com/gold.html&quot;&gt;Gold (XAU/USD) valuation — testahil&lt;/a&gt;</textarea><button class="ss-copy" type="button">Copy embed code</button><a class="ss-prev" href="/embed/gold.html" target="_blank" rel="noopener">Preview the widget &#8594;</a></div></aside>
 </main>
+
+
+
 <footer><div class="wrap"><b>Disclaimer:</b> Educational valuation studies and personal analytical opinion — not investment advice, not recommendations. The preparer is not licensed by Egypt's FRA, manages no money, accepts no clients, and may hold positions in instruments mentioned. <a href="method.html#disclaimer">Full text</a>.<br><br><span class="social" style="font-size:1.05rem;font-weight:700">Follow Testahil &mdash; <a href="https://t.me/testahil_markets" target="_blank" rel="noopener">Telegram</a> &middot; <a href="https://www.facebook.com/testahil.markets" target="_blank" rel="noopener">Facebook</a> &middot; <a href="https://www.linkedin.com/company/testahil" target="_blank" rel="noopener">LinkedIn</a></span></div></footer>
+
+
+<!-- HOW TO READ THIS — modal -->
+<div class="modal" id="howto-modal" role="dialog" aria-modal="true" aria-label="How to read the odds bar">
+  <div class="modal-card">
+    <button class="modal-close" data-close type="button" aria-label="Close">&times;</button>
+    <h3>How to read the odds bar</h3>
+    <p class="muted">It's a picture of where the price could be — not a single guess. Here's each part:</p>
+    <div class="ex"><span class="dot" style="background:#2A8F8F;opacity:.55"></span><span><b>The thick teal band</b> is where the price lands about half the time. The two numbers above it are the edges of that "middle half."</span></div>
+    <div class="ex"><span class="dot" style="background:#CFE0DE"></span><span><b>The thin pale band</b> is almost the whole range — about 9 times out of 10 the price stays inside it. The far numbers are the rare low and rare high.</span></div>
+    <div class="ex"><span class="dot" style="background:#1B5E5E"></span><span><b>The upright line is the middle outcome</b> — half the simulations land above it, half below.</span></div>
+    <div class="ex"><span class="dot" style="background:#fff;border:3px solid #C98A2D"></span><span><b>The gold dot is the latest price.</b> If most of the bar sits to its right, the odds lean up; to its left, they lean down.</span></div>
+    <p class="muted" style="margin-top:6px">The sentence above the bar says the same thing in words. These are model estimates from 50,000 simulations — useful odds, never guarantees.</p>
+  </div>
+</div>
+
 <script src="assets/data.js?v=20260625"></script><script src="assets/app.js?v=20260625"></script>
+<script>
+const T=window.GOLDDATA;
+document.getElementById("upd").textContent=SITE.updated;
+document.getElementById("spot").textContent=T.spot.toFixed(2);
+document.getElementById("spotdate").textContent=T.spotDate;
+document.getElementById("legend").innerHTML=stripLegend();
+
+document.getElementById("touch").innerHTML=T.touch.map(r=>
+ `<tr><td class="num">${r[0].toFixed(2)}</td><td class="num">${r[1]}%</td><td class="num">${r[2]}%</td></tr>`).join("");
+const pctRow=(lbl,d)=>`<tr><td>${lbl}</td><td class="num">${F(d.p5)}</td><td class="num">${F(d.p25)}</td><td class="num">${F(d.p50)}</td><td class="num">${F(d.p75)}</td><td class="num">${F(d.p95)}</td></tr>`;
+document.getElementById("pct").innerHTML=pctRow("In 1 month",T.dist.t20)+pctRow("In 3 months",T.dist.t60)+pctRow("In 12 months",T.dist.t252);
+
+// technical read
+if(T.tech){
+  document.getElementById("techread").innerHTML =
+    `<p style="margin:0 0 8px"><b>${T.tech.trend}.</b></p>`+
+    `<p class="muted" style="margin:0 0 10px">${T.tech.summary}</p>`+
+    `<p class="muted" style="margin:0"><span style="color:var(--green)">▲ ${T.tech.bull}</span><br><span style="color:var(--red)">▼ ${T.tech.bear}</span></p>`;
+}
+
+function show(h){
+  const d=T.dist[h]; const label = h==="t20" ? "in 1 month" : h==="t60" ? "in 3 months" : "in 12 months";
+  const o=plainOdds(d,T.spot);
+  document.getElementById("verdict").innerHTML = o.lead + ' <span class="tk">' + label + '</span>';
+  renderPlain("plain", d, T.spot, label, T.spotDate);
+}
+document.getElementById("tg").addEventListener("click",e=>{
+  const b=e.target.closest("button"); if(!b) return;
+  [...e.currentTarget.children].forEach(x=>x.classList.remove("on"));
+  b.classList.add("on"); show(b.dataset.h);
+});
+show("t20");
+
+document.getElementById("dl-pdf").href=T.files.pdf;
+document.getElementById("dl-model").href=T.files.model;
+
+renderGauge("gauge", T.spot, T.fair, T.spotDate);
+/* metals page: no equity peers */
+renderTrackBadge("track-badge");
+initHowto();
+</script>
+<script>
+(function(){
+  var S=[["sec-top","Overview"],["sec-odds","The odds"],["sec-value","Fair value"],
+    ["sec-chart","The chart"],["sec-model","Explore the model"],["sec-details","Detailed numbers"],
+    ["sec-peers","Peers"],["sec-study","Get the study"],["sec-follow","Updates"]]
+    .filter(function(x){return document.getElementById(x[0]);});
+  if(S.length<3) return;
+  var nav=document.createElement("nav");
+  nav.className="secnav"; nav.setAttribute("aria-label","On this page");
+  var h="<p class='secnav-h'>On this page</p><ol>";
+  S.forEach(function(x){ h+="<li><a href='#"+x[0]+"'>"+x[1]+"</a></li>"; });
+  nav.innerHTML=h+"</ol>";
+  var main=document.querySelector("main.wrap")||document.body;
+  main.insertBefore(nav, main.firstChild);
+  var links={}; S.forEach(function(x){ links[x[0]]=nav.querySelector("a[href='#"+x[0]+"']"); });
+  function setActive(id){ S.forEach(function(x){ if(links[x[0]]) links[x[0]].classList.toggle("active", x[0]===id); }); }
+  nav.addEventListener("click", function(e){
+    var a=e.target.closest("a"); if(!a) return;
+    if(a.getAttribute("href")==="#sec-details"){ var d=document.getElementById("sec-details"); if(d&&d.tagName==="DETAILS") d.open=true; }
+  });
+  if("IntersectionObserver" in window){
+    var io=new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting) setActive(en.target.id); }); },
+      {rootMargin:"-42% 0px -52% 0px", threshold:0});
+    S.forEach(function(x){ var el=document.getElementById(x[0]); if(el) io.observe(el); });
+  }
+  setActive(S[0][0]);
+})();
+</script>
+<style id="tst-2col">
+.study-wrap{max-width:1400px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:140px minmax(0,1fr) 288px;gap:28px;align-items:start}
+.study-main{min-width:0}
+.study-main :where(p){max-width:none;margin:0 0 1em;padding:0}
+.study-main,.study-main p,.study-main li{font-size:18px;line-height:1.72}
+.study-side{position:sticky;top:120px;display:flex;flex-direction:column;gap:16px}
+.study-side .ss-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+.ss-h{font-weight:700;font-size:15px;margin:0 0 6px;color:var(--ink)}
+.ss-embed .ss-h{font-family:"IBM Plex Mono",ui-monospace,monospace;color:var(--teal2);font-size:14px}
+.ss-sub{font-size:12.5px;line-height:1.5;color:var(--muted);margin:0 0 10px}
+.ss-form{display:flex;flex-direction:column;gap:8px}
+.ss-form input{padding:10px;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink);font-size:13px;width:100%;box-sizing:border-box}
+.ss-form button,.ss-copy{background:var(--teal);color:#fff;font-weight:700;border:0;border-radius:8px;padding:10px;cursor:pointer;font-size:13px;width:100%}
+.ss-embed .ss-copy{background:var(--amber);color:#1C3A36}
+.ss-form button:hover,.ss-copy:hover{filter:brightness(1.06)}
+.ss-code{width:100%;box-sizing:border-box;font-family:ui-monospace,monospace;font-size:10px;line-height:1.45;background:#0f2420;color:#dfe8e4;border:1px solid #2c4a43;border-radius:8px;padding:8px;resize:none;margin-bottom:8px}
+.ss-prev{display:block;color:var(--muted);font-size:12px;text-decoration:none;text-align:center}
+.ss-prev:hover{color:var(--teal2)}
+.secnav{display:block !important;position:sticky !important;top:120px !important;left:auto !important;width:auto !important;align-self:start;max-height:calc(100vh - 150px);overflow:auto}
+@media(max-width:1199px){.study-wrap{grid-template-columns:minmax(0,1fr) 288px}.secnav{display:none !important}}
+@media(max-width:1040px){.study-wrap{grid-template-columns:1fr}.study-side{position:static}.study-main,.study-main p,.study-main li{font-size:16.5px}}
+</style>
+<script>(function(){document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.ss-copy');if(!b)return;var ta=b.parentNode.querySelector('.ss-code');if(!ta)return;ta.select();try{navigator.clipboard.writeText(ta.value);}catch(_){try{document.execCommand('copy');}catch(__){}}var o=b.getAttribute('data-l')||b.textContent;b.setAttribute('data-l',o);b.textContent='Copied \u2713';setTimeout(function(){b.textContent=o;},1700);});})();</script>
 </body></html>
