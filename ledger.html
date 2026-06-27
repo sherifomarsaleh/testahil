@@ -127,7 +127,7 @@
 
 <footer><div class="wrap"><b>Disclaimer:</b> Educational valuation studies and personal analytical opinion — not investment advice, not recommendations. The preparer is not licensed by Egypt's FRA, manages no money, accepts no clients, and may hold positions in instruments mentioned. <a href="method.html#disclaimer">Full text</a>.<br><br><span class="social" style="font-size:1.05rem;font-weight:700">Follow Testahil &mdash; <a href="https://t.me/testahil_markets" target="_blank" rel="noopener">Telegram</a> &middot; <a href="https://www.facebook.com/testahil.markets" target="_blank" rel="noopener">Facebook</a> &middot; <a href="https://www.linkedin.com/company/testahil" target="_blank" rel="noopener">LinkedIn</a></span></div></footer>
 
-<script src="assets/data.js?v=20260627"></script><script src="assets/app.js?v=20260627"></script>
+<script src="assets/data.js?v=20260628"></script><script src="assets/app.js?v=20260628"></script>
 <script>
 const F2 = n => Number(n).toLocaleString("en-US",{maximumFractionDigits:2});
 
@@ -177,15 +177,21 @@ const tickerOrder = [...new Set(
 const tabBar    = document.getElementById("tab-bar");
 const tabPanels = document.getElementById("tab-panels");
 
+// Instruments with a published 5-year calibration backtest image in assets/.
+// Panels for instruments not listed here omit the backtest block (no broken image).
+const HAS_BACKTEST = new Set(["PHDC","TMGH","EMFD","OCDI","ORHD","Gold"]);
+
 // "All" tab first
 const classOf = {};
 LEDGER.forEach(r=>{ if(!(r.instrument in classOf)) classOf[r.instrument]=r.asset_class; });
 const egxList    = tickerOrder.filter(t=>classOf[t]==="equity");
 const metalsList = tickerOrder.filter(t=>classOf[t]==="metal");
+const otherList  = tickerOrder.filter(t=>classOf[t]==="other");
 const mkBtns = arr => arr.map(t=>`<button class="tab-btn" data-tab="${t}">${t}</button>`).join("");
 let _tb = `<div class="tab-row"><button class="tab-btn active" data-tab="all">All</button></div>`;
 if(egxList.length)    _tb += `<div class="tab-group"><div class="tab-group-title">EGX</div><div class="tab-row">${mkBtns(egxList)}</div></div>`;
 if(metalsList.length) _tb += `<div class="tab-group"><div class="tab-group-title">Metals</div><div class="tab-row">${mkBtns(metalsList)}</div></div>`;
+if(otherList.length)  _tb += `<div class="tab-group"><div class="tab-group-title">International markets</div><div class="tab-row">${mkBtns(otherList)}</div></div>`;
 tabBar.innerHTML = _tb;
 
 // All panel
@@ -206,9 +212,9 @@ tabPanels.innerHTML = `<div class="tab-panel active" id="panel-all">
     </table>
   </div>
   <p class="muted" style="margin-top:8px"><b id="sum-${t}"></b></p>
-  <h3 style="font-size:1.08rem;margin:24px 0 4px">Five-year calibration backtest</h3>
+  ${HAS_BACKTEST.has(t) ? `<h3 style="font-size:1.08rem;margin:24px 0 4px">Five-year calibration backtest</h3>
   <p class="muted" style="margin:0 0 12px;max-width:760px">The same model replayed on ${t}’s past five years — each quarter’s 3-month forecast cone against the price that actually printed, the PIT histogram (flat = well-calibrated), and how often each band actually held. Methodology validation; it does not count toward the live score above.</p>
-  <div class="card bt-fig"><img alt="${t} five-year calibration backtest — quarterly cone replay, PIT histogram, and band coverage vs target" src="assets/calibration_${t}.png?v=20260627"></div>
+  <div class="card bt-fig"><img alt="${t} five-year calibration backtest — quarterly cone replay, PIT histogram, and band coverage vs target" src="assets/calibration_${t}.png?v=20260627"></div>` : ``}
 </div>`).join("");
 
 // Build all panel

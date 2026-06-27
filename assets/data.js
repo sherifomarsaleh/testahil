@@ -367,6 +367,27 @@ const LEDGER = [
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  // ---- Samsung Electronics (KRX:005930) · other / international · cycle 1 (27 Jun 2026 published study; anchored 26 Jun close) ----
+  {
+    instrument:"Samsung", asset_class:"other",
+    anchor_date:"2026-06-26", anchor_price:339500, ccy:"KRW",
+    horizon_label:"T+20", grade_date:"2026-07-24", cycle_no:1, reanchor_from:null,
+    p5:277676, p25:316898, p50:346091, p75:378203, p95:430413,
+    touch:{ "+5":68, "+10":48, "+15":31, "+20":18, "-5":72, "-10":44 },   // interpolated from the study's absolute touch ladder — replace with the model's exact relative barrier-hit probabilities before these bands are graded
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"Samsung", asset_class:"other",
+    anchor_date:"2026-06-26", anchor_price:339500, ccy:"KRW",
+    horizon_label:"T+60", grade_date:"2026-09-18", cycle_no:1, reanchor_from:null,
+    p5:246827, p25:308298, p50:359482, p75:418176, p95:520627,
+    touch:{ "+5":83, "+10":70, "+15":58, "+20":47, "-5":79, "-10":58 },   // interpolated from the study's absolute touch ladder — replace with the model's exact relative barrier-hit probabilities before these bands are graded
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   }
 ];
 
