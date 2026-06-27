@@ -179,7 +179,7 @@ const tabPanels = document.getElementById("tab-panels");
 
 // Instruments with a published 5-year calibration backtest image in assets/.
 // Panels for instruments not listed here omit the backtest block (no broken image).
-const HAS_BACKTEST = new Set(["PHDC","TMGH","EMFD","OCDI","ORHD","Gold"]);
+const HAS_BACKTEST = new Set(["PHDC","TMGH","EMFD","OCDI","ORHD","Gold","Samsung"]);
 
 // "All" tab first
 const classOf = {};
@@ -190,8 +190,8 @@ const otherList  = tickerOrder.filter(t=>classOf[t]==="other");
 const mkBtns = arr => arr.map(t=>`<button class="tab-btn" data-tab="${t}">${t}</button>`).join("");
 let _tb = `<div class="tab-row"><button class="tab-btn active" data-tab="all">All</button></div>`;
 if(egxList.length)    _tb += `<div class="tab-group"><div class="tab-group-title">EGX</div><div class="tab-row">${mkBtns(egxList)}</div></div>`;
-if(metalsList.length) _tb += `<div class="tab-group"><div class="tab-group-title">Metals</div><div class="tab-row">${mkBtns(metalsList)}</div></div>`;
 if(otherList.length)  _tb += `<div class="tab-group"><div class="tab-group-title">International markets</div><div class="tab-row">${mkBtns(otherList)}</div></div>`;
+if(metalsList.length) _tb += `<div class="tab-group"><div class="tab-group-title">Metals</div><div class="tab-row">${mkBtns(metalsList)}</div></div>`;
 tabBar.innerHTML = _tb;
 
 // All panel
