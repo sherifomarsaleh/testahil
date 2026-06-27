@@ -311,7 +311,7 @@
         <button id="mc-h252" aria-pressed="false">12 months</button>
       </div>
     </div>
-    <p class="mc-sub">Drag a slider and the whole distribution recomputes live — <b>green is better, red is worse</b>. The other six forces stay fixed at the study calibration. Anchored at the latest price; nothing is sent anywhere.</p>
+    <p class="mc-sub">Each slider below is one real-world force that moves gold. Drag it toward the <b>green</b> side and that force turns good for gold &mdash; the whole forecast lifts; drag toward <b>red</b> and it turns bad &mdash; the forecast drops. The chart and the odds redraw the moment you let go. The other six forces stay fixed at the study&rsquo;s setting, and it all runs in your browser &mdash; nothing is sent anywhere.</p>
 
     <div class="mc-card">
       <div class="mc-chartwrap">
@@ -335,37 +335,38 @@
     </div>
 
     <div class="mc-card">
-      <div class="mc-card-h"><h4>The five forces</h4><span class="mc-hint">the most decision-relevant of the 11 drivers</span></div>
+      <div class="mc-card-h"><h4>The five forces &mdash; drag to explore</h4><span class="mc-hint">the most decision-relevant of the 11 drivers</span></div>
+      <p class="mc-sub" style="margin-top:0;background:var(--mc-band-inner);border-radius:10px;padding:11px 13px">There are <b>two kinds of slider</b>. The first three are <b>steady pressures</b>: the number is how much that force pushes gold each quarter &mdash; e.g. <b>&minus;2.5% / quarter</b> means it is right now dragging gold down about 2.5% over three months; slide it positive and it lifts gold instead. The last two are <b>one-off events</b>: the number is the <b>chance it happens</b> and the <b>jump if it does</b> &mdash; e.g. <b>30% &middot; +4%</b> is a 30% chance, worth +4% to gold. Either way, dragging <b>right is better for gold, left is worse</b>.</p>
       <div class="mc-controls">
         <div class="mc-ctl">
           <label for="mc-rate"><span class="mc-name">Real rates / Fed path</span><span class="mc-val" id="mc-rateVal">&minus;2.5% / quarter</span></label>
           <input type="range" id="mc-rate" min="-10" max="6" step="0.5" value="-2.5">
           <div class="mc-ends"><span class="mc-b">higher-for-longer</span><span class="mc-g">Fed cuts / easing</span></div>
-          <p class="mc-chan">The opportunity cost of holding a non-yielding metal &mdash; the dominant near-term force. A hawkish Fed with no 2026 cuts (easing pushed to 2027) and a dollar index above 100 drove the correction off the January high.</p>
+          <p class="mc-chan"><b>What it is:</b> how attractive cash and bonds are next to gold, which pays no interest. While the Fed holds rates high (&ldquo;higher-for-longer&rdquo;), money prefers bonds and gold slips &mdash; the biggest near-term drag, and the reason for the fall off the January high. <b>Drag right</b> (rate cuts) to ease the drag and lift the forecast; <b>left</b> to deepen it.</p>
         </div>
         <div class="mc-ctl">
           <label for="mc-dxy"><span class="mc-name">US dollar (DXY)</span><span class="mc-val" id="mc-dxyVal">&minus;1.0% / quarter</span></label>
           <input type="range" id="mc-dxy" min="-9" max="5" step="0.5" value="-1">
           <div class="mc-ends"><span class="mc-b">dollar surges</span><span class="mc-g">dollar weakens</span></div>
-          <p class="mc-chan">Gold is priced in dollars, so a stronger dollar is a direct headwind. DXY is above 100, its highest since May-2025.</p>
+          <p class="mc-chan"><b>What it is:</b> the US dollar&rsquo;s strength. Gold is bought and sold in dollars, so a stronger dollar makes it pricier everywhere else and cools demand (DXY is above 100, its highest since May-2025). <b>Drag right</b> (weaker dollar) to push the forecast up; <b>left</b> (dollar surge) to push it down.</p>
         </div>
         <div class="mc-ctl">
           <label for="mc-infl"><span class="mc-name">Inflation / debasement</span><span class="mc-val" id="mc-inflVal">+0.0% / quarter</span></label>
           <input type="range" id="mc-infl" min="-5" max="6" step="0.5" value="0">
           <div class="mc-ends"><span class="mc-b">disinflation</span><span class="mc-g">reflation</span></div>
-          <p class="mc-chan">The real-asset / debasement bid &mdash; rising inflation expectations and a deteriorating US fiscal path lift gold as a store of value.</p>
+          <p class="mc-chan"><b>What it is:</b> how fast money is losing value. When inflation runs hot or government debt balloons, people buy gold to protect their savings. <b>Drag right</b> (reflation) to lift gold; <b>left</b> (disinflation) to soften it; the centre is neutral &mdash; which is where the study sets it today.</p>
         </div>
         <div class="mc-ctl">
           <label for="mc-cb"><span class="mc-name">Central-bank demand</span><span class="mc-val" id="mc-cbVal">30% &middot; +4% if strong</span></label>
           <input type="range" id="mc-cb" min="0" max="90" step="1" value="30">
           <div class="mc-ends"><span class="mc-b">demand fades</span><span class="mc-g">record buying</span></div>
-          <p class="mc-chan">The structural reserve bid &mdash; central banks bought 863 tonnes in 2025, the fourth-largest on record. A step-up or mobilisation is the signature upside.</p>
+          <p class="mc-chan"><b>What it is:</b> how hard the world&rsquo;s central banks are buying gold for their reserves &mdash; the single largest structural buyer (863 tonnes in 2025). This one is an event: the number is the <b>chance of a fresh buying surge</b> and the +4% it would add. <b>Drag right</b> for a higher chance of record buying; <b>left</b> for fading demand.</p>
         </div>
         <div class="mc-ctl">
           <label for="mc-geo"><span class="mc-name">Geopolitical / haven bid</span><span class="mc-val" id="mc-geoVal">25% &middot; +4% if it hits</span></label>
           <input type="range" id="mc-geo" min="0" max="90" step="1" value="25">
           <div class="mc-ends"><span class="mc-b">calm</span><span class="mc-g">risk-off surge</span></div>
-          <p class="mc-chan">A one-off safe-haven shock over the quarter &mdash; the war-premium can re-arm if the US&ndash;Iran ceasefire breaks down.</p>
+          <p class="mc-chan"><b>What it is:</b> fear. Wars, crises and market panics send money rushing into gold as a safe haven. This is also an event: the number is the <b>chance of a haven shock</b> this quarter and the +4% it would add. <b>Drag right</b> for a higher chance of a risk-off surge; <b>left</b> for calm.</p>
         </div>
       </div>
     </div>
