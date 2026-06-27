@@ -41,6 +41,10 @@ function nowRfc822() {
        + `${String(dt.getUTCHours()).padStart(2,'0')}:${String(dt.getUTCMinutes()).padStart(2,'0')}:${String(dt.getUTCSeconds()).padStart(2,'0')} +0000`;
 }
 function fmt(n) { return (typeof n === 'number') ? n.toFixed(2) : String(n); }
+function fmtMetal(n) {            // whole units + thousands separators (no ICU dependency)
+  if (typeof n !== 'number') return String(n);
+  return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
 
 // --- load data.js in a sandbox and capture TICKERS / SITE ---
 function loadData(p) {
@@ -49,7 +53,8 @@ function loadData(p) {
   vm.createContext(sandbox);
   vm.runInContext(
     src + '\n;this.TICKERS = (typeof TICKERS!=="undefined")?TICKERS:null;'
-        + '\n;this.SITE = (typeof SITE!=="undefined")?SITE:null;',
+        + '\n;this.SITE = (typeof SITE!=="undefined")?SITE:null;'
+        + '\n;this.METALS = (typeof METALS!=="undefined")?METALS:null;',
     sandbox, { filename: 'data.js' }
   );
   if (!sandbox.TICKERS || typeof sandbox.TICKERS !== 'object') {
@@ -67,11 +72,11 @@ function parseStudyDate(t) {
 }
 
 function build() {
-  const { TICKERS, SITE } = loadData(DATA_PATH);
+  const { TICKERS, SITE, METALS } = loadData(DATA_PATH);
   const today = new Date();
   const fallback = { y: today.getUTCFullYear(), mo: today.getUTCMonth() + 1, d: today.getUTCDate() };
 
-  const items = Object.keys(TICKERS).map(code => {
+  const equityItems = Object.keys(TICKERS).map(code => {
     const t = TICKERS[code];
     const slug = code.toLowerCase();
     const arName = AR_NAMES[code] || t.name || code;
@@ -88,6 +93,28 @@ function build() {
       link, pubDate: rfc822FromYMD(dt.y, dt.mo, dt.d), description: desc
     };
   });
+
+  // --- metals: USD-denominated, separate source so equity UI is untouched ---
+  const metalsObj = (METALS && typeof METALS === 'object') ? METALS : {};
+  const metalItems = Object.keys(metalsObj).map(code => {
+    const m = metalsObj[code];
+    const slug = String(m.slug || code).toLowerCase();
+    const dt = parseStudyDate(m) || fallback;
+    const link = `${BASE}/ar/${slug}.html`;
+    const t60 = (m.dist && m.dist.t60) ? m.dist.t60 : null;
+    const unit = m.unit || 'دولار';
+    let desc = 'نطاق القيمة العادلة وتوزيع احتمالي للسعر خلال ٣ شهور — تحليل تعليمي مستقل.';
+    if (t60 && typeof m.spot === 'number') {
+      desc = `السعر ${fmtMetal(m.spot)} · الوسيط (٣ شهور) ${fmtMetal(t60.p50)} · النطاق ${fmtMetal(t60.p5)}–${fmtMetal(t60.p95)} ${unit} — تحليل تعليمي، توزيع وليس توصية.`;
+    }
+    return {
+      sortKey: dt.y * 10000 + dt.mo * 100 + dt.d,
+      title: `${m.name || code} (${m.code || code}): دراسة تقييم — هل يستحق؟`,
+      link, pubDate: rfc822FromYMD(dt.y, dt.mo, dt.d), description: desc
+    };
+  });
+
+  const items = equityItems.concat(metalItems);
 
   // newest-first
   items.sort((a, b) => b.sortKey - a.sortKey);
@@ -121,7 +148,7 @@ ${itemXml}
 </rss>
 `;
   fs.writeFileSync(OUT_PATH, xml, 'utf8');
-  console.log(`Wrote ${OUT_PATH} with ${items.length} item(s): ${items.map(i=>i.title.match(/\(([A-Z]+)\)/)[1]).join(', ')}`);
+  console.log(`Wrote ${OUT_PATH} with ${items.length} item(s).`);
 }
 
 build();

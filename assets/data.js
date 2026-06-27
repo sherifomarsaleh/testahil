@@ -431,3 +431,24 @@ const CALC = {
   usdRate:  [2.5,  2.5,  2.0,  2.5,  2.5,  1.5,  1.5,  3.5,  5.0,  5.0,  4.0],     // best annual USD deposit/CD % to an Egyptian saver (archival approx, +/-)
   inflation:[10.4, 13.8, 29.5, 14.4, 9.4, 5.1, 5.2, 13.9, 33.9, 28.3, 14.0]      // % avg per year
 };
+
+
+/* =========================================================================
+   METALS — feed source for non-EGX, USD-denominated instruments (gold, …).
+   Kept separate from TICKERS so the equity UI (app.js / index.html iterate
+   TICKERS) is unaffected. Consumed by scripts/generate_feed.js to emit
+   USD/oz RSS items. Per-page numbers still live in each metal page (GOLDDATA).
+   ========================================================================= */
+const METALS = {
+  GOLD: {
+    name: 'الذهب',
+    code: 'XAU/USD',
+    slug: 'gold',
+    spot: 3989.85,
+    unit: 'دولار للأونصة',
+    files: { study: 'XAUUSD_Valuation_Study_25-06-2026_public.pdf' },
+    dist: {
+      t60: { label: '3 months (T+60)', p5: 3064, p25: 3560, p50: 3944, p75: 4369, p95: 5074, resolve: '2026-09-17' }
+    }
+  }
+};
