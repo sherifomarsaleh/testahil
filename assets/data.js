@@ -442,8 +442,10 @@ const CALC = {
 const METALS = {
   GOLD: {
     slug: "gold",
-    unit: "دولار للأونصة",   // feed wording; page title lives in markup
- name:"الذهب", code:"XAU/USD", spot:3989.85, spotDate:"close 25 Jun 2026", ccy:"USD",
+    unit: "دولار للأونصة",   // Arabic unit (AR feed)
+    unitEn: "USD/oz",         // English unit (EN feed)
+    nameAr: "الذهب",          // Arabic display name (AR feed)
+ name:"Gold", code:"XAU/USD", spot:3989.85, spotDate:"close 25 Jun 2026", ccy:"USD",
  fair:{ bear:4200, base:4600, full:5000 },
  dist:{
    t20:{ label:"1 month (T+20)",  p5:3431, p25:3754, p50:3975, p75:4214, p95:4598, resolve:"2026-07-23" },

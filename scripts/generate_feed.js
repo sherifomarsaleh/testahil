@@ -76,42 +76,57 @@ function build() {
   const today = new Date();
   const fallback = { y: today.getUTCFullYear(), mo: today.getUTCMonth() + 1, d: today.getUTCDate() };
 
-  const equityItems = Object.keys(TICKERS).map(code => {
+  const equityItems = Object.keys(TICKERS).flatMap(code => {
     const t = TICKERS[code];
     const slug = code.toLowerCase();
     const arName = AR_NAMES[code] || t.name || code;
+    const enName = t.name || code;
     const dt = parseStudyDate(t) || fallback;
-    const link = `${BASE}/ar/${slug}.html`;
+    const sortKey = dt.y * 10000 + dt.mo * 100 + dt.d;
+    const pubDate = rfc822FromYMD(dt.y, dt.mo, dt.d);
     const t60 = (t.dist && t.dist.t60) ? t.dist.t60 : null;
-    let desc = 'نطاق القيمة العادلة وتوزيع احتمالي لسعر السهم خلال ٣ شهور — تحليل تعليمي مستقل.';
-    if (t60 && typeof t.spot === 'number') {
-      desc = `السعر ${fmt(t.spot)} · الوسيط (٣ شهور) ${fmt(t60.p50)} · النطاق ${fmt(t60.p5)}–${fmt(t60.p95)} جنيه — تحليل تعليمي، توزيع وليس توصية.`;
-    }
-    return {
-      sortKey: dt.y * 10000 + dt.mo * 100 + dt.d,
-      title: `${arName} (${code}): دراسة تقييم — هل يستحق السهم؟`,
-      link, pubDate: rfc822FromYMD(dt.y, dt.mo, dt.d), description: desc
-    };
+    const has = t60 && typeof t.spot === 'number';
+    const arDesc = has
+      ? `السعر ${fmt(t.spot)} · الوسيط (٣ شهور) ${fmt(t60.p50)} · النطاق ${fmt(t60.p5)}–${fmt(t60.p95)} جنيه — تحليل تعليمي، توزيع وليس توصية.`
+      : 'نطاق القيمة العادلة وتوزيع احتمالي لسعر السهم خلال ٣ شهور — تحليل تعليمي مستقل.';
+    const enDesc = has
+      ? `Latest ${fmt(t.spot)} · 3-month median ${fmt(t60.p50)} · range ${fmt(t60.p5)}–${fmt(t60.p95)} EGP — educational analysis, a distribution not a recommendation.`
+      : 'Fair-value range and a 3-month probability distribution for the share — independent educational analysis.';
+    return [
+      { sortKey, pubDate, title: `${arName} (${code}): دراسة تقييم — هل يستحق السهم؟`,
+        link: `${BASE}/ar/${slug}.html`, description: arDesc },
+      { sortKey, pubDate, title: `${enName} (${code}): Valuation Study — is it worth it?`,
+        link: `${BASE}/${slug}.html`, description: enDesc }
+    ];
   });
 
   // --- metals: USD-denominated, separate source so equity UI is untouched ---
   const metalsObj = (METALS && typeof METALS === 'object') ? METALS : {};
-  const metalItems = Object.keys(metalsObj).map(code => {
+  const metalItems = Object.keys(metalsObj).flatMap(code => {
     const m = metalsObj[code];
     const slug = String(m.slug || code).toLowerCase();
+    const arName = m.nameAr || m.name || code;
+    const enName = m.name || code;
+    const codeLbl = m.code || code;
     const dt = parseStudyDate(m) || fallback;
-    const link = `${BASE}/ar/${slug}.html`;
+    const sortKey = dt.y * 10000 + dt.mo * 100 + dt.d;
+    const pubDate = rfc822FromYMD(dt.y, dt.mo, dt.d);
     const t60 = (m.dist && m.dist.t60) ? m.dist.t60 : null;
-    const unit = m.unit || 'دولار';
-    let desc = 'نطاق القيمة العادلة وتوزيع احتمالي للسعر خلال ٣ شهور — تحليل تعليمي مستقل.';
-    if (t60 && typeof m.spot === 'number') {
-      desc = `السعر ${fmtMetal(m.spot)} · الوسيط (٣ شهور) ${fmtMetal(t60.p50)} · النطاق ${fmtMetal(t60.p5)}–${fmtMetal(t60.p95)} ${unit} — تحليل تعليمي، توزيع وليس توصية.`;
-    }
-    return {
-      sortKey: dt.y * 10000 + dt.mo * 100 + dt.d,
-      title: `${m.name || code} (${m.code || code}): دراسة تقييم — هل يستحق؟`,
-      link, pubDate: rfc822FromYMD(dt.y, dt.mo, dt.d), description: desc
-    };
+    const unitAr = m.unit || 'دولار';
+    const unitEn = m.unitEn || 'USD/oz';
+    const has = t60 && typeof m.spot === 'number';
+    const arDesc = has
+      ? `السعر ${fmtMetal(m.spot)} · الوسيط (٣ شهور) ${fmtMetal(t60.p50)} · النطاق ${fmtMetal(t60.p5)}–${fmtMetal(t60.p95)} ${unitAr} — تحليل تعليمي، توزيع وليس توصية.`
+      : 'نطاق القيمة العادلة وتوزيع احتمالي للسعر خلال ٣ شهور — تحليل تعليمي مستقل.';
+    const enDesc = has
+      ? `Latest ${fmtMetal(m.spot)} · 3-month median ${fmtMetal(t60.p50)} · range ${fmtMetal(t60.p5)}–${fmtMetal(t60.p95)} ${unitEn} — educational analysis, a distribution not a recommendation.`
+      : 'Fair-value range and a 3-month probability distribution — independent educational analysis.';
+    return [
+      { sortKey, pubDate, title: `${arName} (${codeLbl}): دراسة تقييم — هل يستحق؟`,
+        link: `${BASE}/ar/${slug}.html`, description: arDesc },
+      { sortKey, pubDate, title: `${enName} (${codeLbl}): Valuation Study — is it worth it?`,
+        link: `${BASE}/${slug}.html`, description: enDesc }
+    ];
   });
 
   const items = equityItems.concat(metalItems);
