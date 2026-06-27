@@ -11,28 +11,7 @@
 <link rel="icon" type="image/png" href="favicon.png?v=2">
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
 <script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('#theme-toggle');if(!b)return;var dark=document.documentElement.getAttribute('data-theme')==='dark';var n=dark?'light':'dark';if(n==='dark'){document.documentElement.setAttribute('data-theme','dark');}else{document.documentElement.removeAttribute('data-theme');}try{localStorage.setItem('theme',n);}catch(e){}b.setAttribute('aria-pressed',String(n==='dark'));});document.addEventListener('DOMContentLoaded',function(){var x=document.getElementById('theme-toggle');if(x)x.setAttribute('aria-pressed',String(document.documentElement.getAttribute('data-theme')==='dark'));});})();</script>
-<script>window.GOLDDATA={
- name:"Gold", code:"XAU/USD", spot:3989.85, spotDate:"close 25 Jun 2026", ccy:"USD",
- fair:{ bear:4200, base:4600, full:5000 },
- dist:{
-   t20:{ label:"1 month (T+20)",  p5:3431, p25:3754, p50:3975, p75:4214, p95:4598, resolve:"2026-07-23" },
-   t60:{ label:"3 months (T+60)", p5:3064, p25:3560, p50:3944, p75:4369, p95:5074, resolve:"2026-09-17" },
-   t252:{ label:"12 months (T+252)", p5:2624, p25:3515, p50:4295, p75:5246, p95:7026, resolve:"2027-06-25" }
- },
- touch:[ [4800,3,19], [4600,8,30], [4500,13,37], [4300,32,55], [4200,47,66], [3800,52,72], [3700,35,60], [3600,21,49], [3500,12,39] ],
- levels:{ res:[4200,4470,4487], sup:[3700,3600,3500] },
- tech:{
-   trend:"Broken below both averages \u2014 oversold, with a fresh death-cross",
-   summary:"Gold closed $3,989.85 after a ~29% correction from a $5,595 all-time high in January 2026. Price sits ~11% below both the 50- and 200-day moving averages, MACD (12\u00b726\u00b79) is negative (\u2212121.3 / \u2212105.0 / \u221216.3) and RSI(14) is ~30 \u2014 oversold. Crucially the 50-day has just crossed beneath the 200-day for the first time this cycle: a fresh death-cross and a momentum-regime change, not a pullback inside an intact uptrend.",
-   bull:"Stabilising real rates and a structural central-bank bid lift gold back toward the $4,200\u20134,600 consensus zone; reclaiming the $4,470 / $4,487 averages would confirm.",
-   bear:"A confirmed September Fed hike and a stronger dollar extend the correction toward $3,700 \u2192 $3,600 \u2192 $3,500 and the $3,268 52-week low."
- },
- files:{
-   study:"files/XAUUSD_Valuation_Study_25-06-2026_public.docx?v=2506",
-   model:"files/XAUUSD_Valuation_Study_25-06-2026_public.xlsx?v=2506",
-   pdf:"files/XAUUSD_Valuation_Study_25-06-2026_public.pdf?v=2506"
- }
-};</script>
+<!-- Gold data is single-sourced from METALS.GOLD in assets/data.js (window.GOLDDATA assigned after data.js loads). -->
 <link rel="stylesheet" href="assets/style.css?v=20260625">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="testahil?">
@@ -672,8 +651,9 @@
   </div>
 </div>
 
-<script src="assets/data.js?v=20260625"></script><script src="assets/app.js?v=20260625"></script>
+<script src="assets/data.js?v=20260627"></script><script src="assets/app.js?v=20260627"></script>
 <script>
+window.GOLDDATA=METALS.GOLD;
 const T=window.GOLDDATA;
 document.getElementById("upd").textContent=SITE.updated;
 document.getElementById("spot").textContent=T.spot.toFixed(2);

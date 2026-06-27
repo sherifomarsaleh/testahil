@@ -432,23 +432,36 @@ const CALC = {
   inflation:[10.4, 13.8, 29.5, 14.4, 9.4, 5.1, 5.2, 13.9, 33.9, 28.3, 14.0]      // % avg per year
 };
 
-
 /* =========================================================================
-   METALS — feed source for non-EGX, USD-denominated instruments (gold, …).
-   Kept separate from TICKERS so the equity UI (app.js / index.html iterate
-   TICKERS) is unaffected. Consumed by scripts/generate_feed.js to emit
-   USD/oz RSS items. Per-page numbers still live in each metal page (GOLDDATA).
+   METALS — single source for non-EGX, USD-denominated instruments (gold, ...),
+   mirroring TICKERS for equities. Drives BOTH the metal page (window.GOLDDATA
+   is assigned from METALS.GOLD after data.js loads) AND the RSS feed
+   (scripts/generate_feed.js emits USD/oz items). Separate from TICKERS so the
+   equity UI (app.js / index.html, which iterate TICKERS) is unaffected.
    ========================================================================= */
 const METALS = {
   GOLD: {
-    name: 'الذهب',
-    code: 'XAU/USD',
-    slug: 'gold',
-    spot: 3989.85,
-    unit: 'دولار للأونصة',
-    files: { study: 'XAUUSD_Valuation_Study_25-06-2026_public.pdf' },
-    dist: {
-      t60: { label: '3 months (T+60)', p5: 3064, p25: 3560, p50: 3944, p75: 4369, p95: 5074, resolve: '2026-09-17' }
-    }
+    slug: "gold",
+    unit: "دولار للأونصة",   // feed wording; page title lives in markup
+ name:"الذهب", code:"XAU/USD", spot:3989.85, spotDate:"close 25 Jun 2026", ccy:"USD",
+ fair:{ bear:4200, base:4600, full:5000 },
+ dist:{
+   t20:{ label:"1 month (T+20)",  p5:3431, p25:3754, p50:3975, p75:4214, p95:4598, resolve:"2026-07-23" },
+   t60:{ label:"3 months (T+60)", p5:3064, p25:3560, p50:3944, p75:4369, p95:5074, resolve:"2026-09-17" },
+   t252:{ label:"12 months (T+252)", p5:2624, p25:3515, p50:4295, p75:5246, p95:7026, resolve:"2027-06-25" }
+ },
+ touch:[ [4800,3,19], [4600,8,30], [4500,13,37], [4300,32,55], [4200,47,66], [3800,52,72], [3700,35,60], [3600,21,49], [3500,12,39] ],
+ levels:{ res:[4200,4470,4487], sup:[3700,3600,3500] },
+ tech:{
+   trend:"Broken below both averages \u2014 oversold, with a fresh death-cross",
+   summary:"Gold closed $3,989.85 after a ~29% correction from a $5,595 all-time high in January 2026. Price sits ~11% below both the 50- and 200-day moving averages, MACD (12\u00b726\u00b79) is negative (\u2212121.3 / \u2212105.0 / \u221216.3) and RSI(14) is ~30 \u2014 oversold. Crucially the 50-day has just crossed beneath the 200-day for the first time this cycle: a fresh death-cross and a momentum-regime change, not a pullback inside an intact uptrend.",
+   bull:"Stabilising real rates and a structural central-bank bid lift gold back toward the $4,200\u20134,600 consensus zone; reclaiming the $4,470 / $4,487 averages would confirm.",
+   bear:"A confirmed September Fed hike and a stronger dollar extend the correction toward $3,700 \u2192 $3,600 \u2192 $3,500 and the $3,268 52-week low."
+ },
+ files:{
+   study:"files/XAUUSD_Valuation_Study_25-06-2026_public.docx?v=2506",
+   model:"files/XAUUSD_Valuation_Study_25-06-2026_public.xlsx?v=2506",
+   pdf:"files/XAUUSD_Valuation_Study_25-06-2026_public.pdf?v=2506"
+ }
   }
 };
