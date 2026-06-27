@@ -349,7 +349,7 @@
         <button id="mc-h60" aria-pressed="true">3 months</button>
       </div>
     </div>
-    <p class="mc-sub">Drag a slider and the whole distribution recomputes live — <b>green is better, red is worse</b>. The other seven forces stay fixed at the study calibration. Anchored at the latest price; nothing is sent anywhere.</p>
+    <p class="mc-sub">Drag a slider and the whole distribution recomputes live — <b>green is better, red is worse</b>. The other five forces stay fixed at the study calibration. Anchored at the latest price; nothing is sent anywhere.</p>
 
     <div class="mc-card">
       <div class="mc-chartwrap">
@@ -373,7 +373,7 @@
     </div>
 
     <div class="mc-card">
-      <div class="mc-card-h"><h4>The three levers</h4><span class="mc-hint">most decision-relevant of the 10 forces</span></div>
+      <div class="mc-card-h"><h4>The five levers</h4><span class="mc-hint">most decision-relevant of the 10 forces</span></div>
       <div class="mc-controls">
         <div class="mc-ctl">
           <label for="mc-egp"><span class="mc-name">Memory pricing — DRAM / NAND ASPs</span><span class="mc-val" id="mc-egpVal">+5.2% / quarter</span></label>
@@ -392,6 +392,18 @@
           <input type="range" id="mc-lnch" min="0" max="90" step="1" value="45">
           <div class="mc-ends"><span class="mc-b">stays behind</span><span class="mc-g">retakes the lead</span></div>
           <p class="mc-chan">Confirmation of Nvidia HBM4 volume and the Vera-Rubin allocation, plus the AMD MI455X win — the route by which Samsung closes its high-bandwidth-memory gap with SK Hynix. The dominant upside catalyst.</p>
+        </div>
+        <div class="mc-ctl">
+          <label for="mc-aicap"><span class="mc-name">AI datacentre capex — memory demand</span><span class="mc-val" id="mc-aicapVal">+1.2% / quarter</span></label>
+          <input type="range" id="mc-aicap" min="-8" max="12" step="0.5" value="1.2">
+          <div class="mc-ends"><span class="mc-b">spending pauses</span><span class="mc-g">buildout accelerates</span></div>
+          <p class="mc-chan">Hyperscaler AI spending sets the demand under memory. A sustained datacentre buildout keeps DRAM and HBM tight and lifts the drift; the first sign hyperscalers slow their orders loosens it.</p>
+        </div>
+        <div class="mc-ctl">
+          <label for="mc-krw"><span class="mc-name">Korean won — USD / KRW translation</span><span class="mc-val" id="mc-krwVal">+0.5% / quarter</span></label>
+          <input type="range" id="mc-krw" min="-6" max="8" step="0.5" value="0.5">
+          <div class="mc-ends"><span class="mc-b">won strengthens</span><span class="mc-g">won weakens</span></div>
+          <p class="mc-chan">Samsung earns in dollars and reports in won, so a weaker won lifts translated export earnings and a stronger won trims them — a steady second-order pull on the quarter's drift.</p>
         </div>
       </div>
     </div>
@@ -444,9 +456,9 @@
         try{ if(typeof TICKERS!=="undefined" && TICKERS && TICKERS.SAMSUNG){ T=TICKERS.SAMSUNG; } }catch(e){}
         var S0=(T&&typeof T.spot==="number")?T.spot:339500;
         var H=60, BETA=0.5826, SUPPORT=320000, MID=360000, CONSENSUS=400000;
-        // fixed factors (held at study calibration) — memory pricing is the tunable continuous lever
-        var CONT_FIXED=[["USDKRW",0.005,0.06],["AIcapex",0.012,0.07],["KOSPI",0.008,0.06],["Devices",0.000,0.04]];
-        var IDIO=0.08, EGP_VOL=0.16;
+        // fixed factors (held at study calibration). Memory pricing, AI-capex and the won are the tunable continuous levers.
+        var CONT_FIXED=[["KOSPI",0.008,0.06],["Devices",0.000,0.04]];
+        var IDIO=0.08, EGP_VOL=0.16, AICAP_VOL=0.07, KRW_VOL=0.06;
         var EV_FIXED=[["Tariff",0.25,-0.06,0.04],["CapReturn",0.50,0.04,0.03],["Labour",0.15,-0.03,0.03]];
         var GEO_MEAN=-0.09, GEO_SD=0.05, LNCH_MEAN=0.07, LNCH_SD=0.04;
 
@@ -455,8 +467,8 @@
         var Phi=function(z){return 0.5*(1+erf(z/Math.SQRT2));};
         var Z={5:-1.6448536,25:-0.6744898,50:0,75:0.6744898,95:1.6448536};
 
-        function moments(egpDrift,geoP,lnchP){
-          var mu=egpDrift, v=EGP_VOL*EGP_VOL+IDIO*IDIO, i;
+        function moments(egpDrift,aicapDrift,krwDrift,geoP,lnchP){
+          var mu=egpDrift+aicapDrift+krwDrift, v=EGP_VOL*EGP_VOL+IDIO*IDIO+AICAP_VOL*AICAP_VOL+KRW_VOL*KRW_VOL, i;
           for(i=0;i<CONT_FIXED.length;i++){mu+=CONT_FIXED[i][1]; v+=CONT_FIXED[i][2]*CONT_FIXED[i][2];}
           var ev=[["Geo",geoP,GEO_MEAN,GEO_SD],["Launch",lnchP,LNCH_MEAN,LNCH_SD]].concat(EV_FIXED);
           for(i=0;i<ev.length;i++){var p=ev[i][1],m=ev[i][2],sd=ev[i][3]; mu+=p*m; v+=p*(sd*sd+(1-p)*m*m);}
@@ -525,7 +537,7 @@
         function paintThumb(s){var f=(parseFloat(s.value)-parseFloat(s.min))/(parseFloat(s.max)-parseFloat(s.min));
           s.style.setProperty("--mc-thumb",gradeColor(f));}
 
-        var egp=el("mc-egp"), geo=el("mc-geo"), lnch=el("mc-lnch"), HZ=60;
+        var egp=el("mc-egp"), aicap=el("mc-aicap"), krw=el("mc-krw"), geo=el("mc-geo"), lnch=el("mc-lnch"), HZ=60;
         var fmt=function(v){return "KRW "+Math.round(v).toLocaleString("en-US");};
         var LADDER_UP=[360000,400000,440000], LADDER_DN=[320000,286000,250000];
 
@@ -543,11 +555,13 @@
           el("mc-ladderBody").innerHTML=s;}
 
         function render(){
-          var egpD=parseFloat(egp.value)/100, geoP=-parseInt(geo.value,10)/100, lnchP=parseInt(lnch.value,10)/100;
-          var M=moments(egpD,geoP,lnchP);
+          var egpD=parseFloat(egp.value)/100, aicapD=parseFloat(aicap.value)/100, krwD=parseFloat(krw.value)/100, geoP=-parseInt(geo.value,10)/100, lnchP=parseInt(lnch.value,10)/100;
+          var M=moments(egpD,aicapD,krwD,geoP,lnchP);
           computeDomain(M); drawAxes(); drawXAxis();
-          paintThumb(egp); paintThumb(geo); paintThumb(lnch);
+          paintThumb(egp); paintThumb(aicap); paintThumb(krw); paintThumb(geo); paintThumb(lnch);
           el("mc-egpVal").textContent=(egpD>=0?"+":"−")+Math.abs(egpD*100).toFixed(1)+"% / quarter";
+          el("mc-aicapVal").textContent=(aicapD>=0?"+":"−")+Math.abs(aicapD*100).toFixed(1)+"% / quarter";
+          el("mc-krwVal").textContent=(krwD>=0?"+":"−")+Math.abs(krwD*100).toFixed(1)+"% / quarter";
           el("mc-geoVal").textContent=Math.round(geoP*100)+"% · −9% if it hits";
           el("mc-lnchVal").textContent=Math.round(lnchP*100)+"% · +7% if it lands";
           el("mc-band95").setAttribute("d",bandPath(M,95,5));
@@ -569,11 +583,11 @@
         }
         var raf=null;
         function schedule(){ if(raf)return; raf=requestAnimationFrame(function(){raf=null;render();}); }
-        [egp,geo,lnch].forEach(function(s){s.addEventListener("input",schedule);});
+        [egp,aicap,krw,geo,lnch].forEach(function(s){s.addEventListener("input",schedule);});
         function setHz(h){HZ=h; AX=h; el("mc-h20").setAttribute("aria-pressed",h===20); el("mc-h60").setAttribute("aria-pressed",h===60); drawXAxis(); render();}
         el("mc-h20").addEventListener("click",function(){setHz(20);});
         el("mc-h60").addEventListener("click",function(){setHz(60);});
-        el("mc-reset").addEventListener("click",function(){egp.value="5.2"; geo.value="-30"; lnch.value="45"; setHz(60); render();});
+        el("mc-reset").addEventListener("click",function(){egp.value="5.2"; aicap.value="1.2"; krw.value="0.5"; geo.value="-30"; lnch.value="45"; setHz(60); render();});
         render();
       }
       if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",boot);
