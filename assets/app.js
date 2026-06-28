@@ -249,7 +249,12 @@ function renderGauge(elId, spot, fair, asof){
   const valY = mob ? y-34 : y-24, todY = mob ? y+44 : y+30, dateY = mob ? y+74 : y+50, endY = mob ? y+104 : y+74;
   const X=v=>30+(v-min)/(max-min)*(W-60);
   const v=valuationVerdict(spot,base);
-  const todayX = Math.max(70, Math.min(W-70, X(spot)));
+  // half-width-aware clamp: keep each label fully inside the 0..W viewBox (IBM Plex Mono ≈ 0.62em advance)
+  const labHalf = (s, fs) => s.length * fs * 0.31 + 8;
+  const todHalf = labHalf("latest "+F(spot), fG);
+  const todayX  = Math.max(todHalf, Math.min(W-todHalf, X(spot)));
+  const valHalf = labHalf("our value "+F(base), fG);
+  const baseX   = Math.max(valHalf, Math.min(W-valHalf, X(base)));
   el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" role="img"
       aria-label="Latest price ${F(spot)} versus our fair value ${F(base)}.">
     <style>.g{font:600 ${fG}px 'IBM Plex Mono',monospace}.gsm{font:600 ${fGsm}px 'IBM Plex Mono',monospace}.gdt{font:500 ${fGdt}px 'IBM Plex Mono',monospace}.gmut{fill:#8A9A98}.gink{fill:var(--ink)}.gbase{fill:#1B5E5E}</style>
@@ -259,7 +264,7 @@ function renderGauge(elId, spot, fair, asof){
     <rect x="${X(min)}" y="${y-6}" width="${X(max)-X(min)}" height="12" rx="6" fill="url(#vg)"/>
     <!-- our value mark + label ABOVE -->
     <line x1="${X(base)}" x2="${X(base)}" y1="${y-16}" y2="${y+16}" stroke="#1B5E5E" stroke-width="5"/>
-    <text x="${X(base)}" y="${valY}" text-anchor="middle" class="g gbase">our value ${F(base)}</text>
+    <text x="${baseX}" y="${valY}" text-anchor="middle" class="g gbase">our value ${F(base)}</text>
     <!-- today mark + label BELOW -->
     <circle cx="${X(spot)}" cy="${y}" r="10" fill="#fff" stroke="#0E2726" stroke-width="4"/>
     <text x="${todayX}" y="${todY}" text-anchor="middle" class="g gink">latest ${F(spot)}</text>
