@@ -379,9 +379,12 @@ function renderTrackBadge(elId){
 }
 
 /* ---------- full compare table (compare.html) ---------- */
-function renderCompare(elId){
+function renderCompare(elId, market){
   const el=document.getElementById(elId); if(!el) return;
-  const rows = Object.entries(TICKERS).map(([code,t])=>{
+  market = market || "egx";
+  const _isEgx = (t)=> (t.code||"").indexOf("EGX:")===0;
+  const _entries = Object.entries(TICKERS).filter(function(e){ return market==="intl" ? !_isEgx(e[1]) : _isEgx(e[1]); });
+  const rows = _entries.map(([code,t])=>{
     const o60=plainOdds(t.dist.t60, t.spot);
     const v=valuationVerdict(t.spot, t.fair.base);
     const up60=Math.round(o60.pa*10);
@@ -397,8 +400,8 @@ function renderCompare(elId){
       <td style="font-size:.85rem">${trend}</td>
     </tr>`;
   }).join("");
-  // coming-soon rows (names only)
-  const soon = COMING.filter(c=>c.status!=="covered").map(c=>
+  // coming-soon rows (names only) — EGX coverage only
+  const soon = (market==="intl") ? "" : COMING.filter(c=>c.status!=="covered").map(c=>
     `<tr class="cmp-soon"><td><b>${c.name}</b><br><span class="muted num" style="font-size:.8rem">${c.code}</span></td>
      <td colspan="6" class="muted">Coming soon — <a href="${c.code.replace('EGX:','').toLowerCase()}.html">get notified</a></td></tr>`
   ).join("");
