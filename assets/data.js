@@ -201,6 +201,34 @@ const TICKERS = {
       model: "files/Kakao_Valuation_Study_28-06-2026_public.xlsx?v=2806",
       pdf:   "files/Kakao_Valuation_Study_28-06-2026_public.pdf?v=2806"
     }
+  },
+  LGES: {
+    name: "LG Energy Solution, Ltd.",
+    nameAr: "إل جي إنرجي سوليوشن",
+    code: "KRX:373220",
+    spot: 331500,
+    spotDate: "close 26 Jun 2026",
+    ccy: "KRW",
+    fair: { bear: 150000, base: 248000, full: 415000 },      // 28 Jun 2026 — weighted central 248,000 (-25% vs spot); bear = AMPC-cut / EV-weak 150,000; full = recovery / ESS-AI supercycle 415,000. Going-concern DCF parent floor ~146,000 covered in the study text.
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:268200, p25:304400, p50:332400, p75:363000, p95:411900, resolve:"2026-07-24" },
+      t60: { label:"3 months (T+60)", p5:230500, p25:286900, p50:334200, p75:389200, p95:484500, resolve:"2026-09-18" }
+    },
+    touch: [ /* descending high -> low */
+      [450000, 2, 16], [410000, 8, 32], [370000, 33, 59], [300000, 35, 59], [270000, 9, 31], [240000, 1, 13]
+    ],
+    levels: { res:[423510, 407345, 399725], sup:[300000, 288000, 270000] },
+    tech: {
+      trend: "Downtrend, below every moving average",
+      summary: "The price is in a sustained decline — sitting about 15% above its 52-week low and roughly 36% below its 514,000 52-week high, beneath a falling cluster of moving averages (the 20-, 50- and 200-day all sit between ~400,000 and ~424,000, with price below all three). Momentum is washed out rather than stretched: RSI(14) is ~33, approaching oversold, which often precedes a bounce — but in a downtrend a bounce need not hold. Realized 60-day volatility near 61% — well above the long-run ~55% — and right-skewed, fat-tailed returns mean the same energy that drove the ~21% three-month slide can also produce sharp two-way moves.",
+      bull: "A reclaim of the falling 20-day near 400,000 would be the first sign the downtrend is stalling; a push toward 450,000 would need EV-demand fears to ease and the margin recovery to gain traction.",
+      bear: "A daily close below the 288,000 52-week low opens the downside toward the DCF / bear-case zone near 240,000–270,000."
+    },
+    files: {
+      study: "files/LG_Energy_Solution_Valuation_Study_28-06-2026_public.docx?v=2806",
+      model: "files/LG_Energy_Solution_Valuation_Study_28-06-2026_public.xlsx?v=2806",
+      pdf:   "files/LG_Energy_Solution_Valuation_Study_28-06-2026_public.pdf?v=2806"
+    }
   }
 };
 
@@ -434,6 +462,27 @@ const LEDGER = [
     horizon_label:"T+60", grade_date:"2026-09-18", cycle_no:1, reanchor_from:null,
     p5:21022, p25:27714, p50:33584, p75:40697, p95:53651,
     touch:{ "+5":81, "+10":69, "+15":59, "+20":49, "-5":79, "-10":64 },   // relative barrier-hit probabilities from the published model (reflection principle, discrete-monitoring correction)
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  // ---- LG Energy Solution (KRX:373220) · other / international · cycle 1 (28 Jun 2026 published study; anchored 26 Jun close) ----
+  {
+    instrument:"LGES", asset_class:"other",
+    anchor_date:"2026-06-26", anchor_price:331500, ccy:"KRW",
+    horizon_label:"T+20", grade_date:"2026-07-24", cycle_no:1, reanchor_from:null,
+    p5:268200, p25:304400, p50:332400, p75:363000, p95:411900,
+    touch:{ "+5":62, "+10":40, "+15":24, "+20":13, "-5":60, "-10":34 },   // relative barrier-hit probabilities from the published 50,000-path model (reflection principle, discrete-monitoring correction)
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"LGES", asset_class:"other",
+    anchor_date:"2026-06-26", anchor_price:331500, ccy:"KRW",
+    horizon_label:"T+60", grade_date:"2026-09-18", cycle_no:1, reanchor_from:null,
+    p5:230500, p25:286900, p50:334200, p75:389200, p95:484500,
+    touch:{ "+5":78, "+10":63, "+15":50, "+20":39, "-5":75, "-10":58 },   // relative barrier-hit probabilities from the published 50,000-path model (reflection principle, discrete-monitoring correction)
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
