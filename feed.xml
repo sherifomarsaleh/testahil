@@ -6,7 +6,23 @@
     <atom:link href="https://testahil.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>دراسات تقييم تعليمية مستقلة لأسهم البورصة المصرية — توزيعات احتمالية، وليست توصيات. Educational EGX valuation studies — distributions, not tips.</description>
     <language>ar</language>
-    <lastBuildDate>Sat, 27 Jun 2026 08:30:00 +0300</lastBuildDate>
+    <lastBuildDate>Sun, 28 Jun 2026 08:30:00 +0300</lastBuildDate>
+
+    <item>
+      <title>كاكاو (KAKAO): دراسة تقييم — هل يستحق السهم؟</title>
+      <link>https://testahil.com/ar/kakao.html</link>
+      <guid isPermaLink="true">https://testahil.com/ar/kakao.html</guid>
+      <description>السعر 33150.00 · الوسيط (٣ شهور) 33584.00 · النطاق 21022.00–53651.00 جنيه — تحليل تعليمي، توزيع وليس توصية.</description>
+      <pubDate>Sun, 28 Jun 2026 08:30:00 +0300</pubDate>
+    </item>
+
+    <item>
+      <title>Kakao Corp. (KAKAO): Valuation Study — is it worth it?</title>
+      <link>https://testahil.com/kakao.html</link>
+      <guid isPermaLink="true">https://testahil.com/kakao.html</guid>
+      <description>Latest 33150.00 · 3-month median 33584.00 · range 21022.00–53651.00 EGP — educational analysis, a distribution not a recommendation.</description>
+      <pubDate>Sun, 28 Jun 2026 08:30:00 +0300</pubDate>
+    </item>
 
     <item>
       <title>سامسونج للإلكترونيات (SAMSUNG): دراسة تقييم — هل يستحق السهم؟</title>
