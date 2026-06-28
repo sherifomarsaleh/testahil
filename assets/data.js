@@ -2,7 +2,7 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-06-27" };
+const SITE = { updated: "2026-06-28" };
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
@@ -172,6 +172,34 @@ const TICKERS = {
       study: "files/Samsung_Valuation_Study_27-06-2026_public.docx?v=2706",
       model: "files/Samsung_Valuation_Study_27-06-2026_public.xlsx?v=2706",
       pdf:   "files/Samsung_Valuation_Study_27-06-2026_public.pdf?v=2706"
+    }
+  },
+  KAKAO: {
+    name: "Kakao Corp.",
+    nameAr: "كاكاو",
+    code: "KRX:035720",
+    spot: 33150,
+    spotDate: "close 26 Jun 2026",
+    ccy: "KRW",
+    fair: { bear: 24517, base: 34258, full: 46401 },      // 28 Jun 2026 — weighted central 34,258 (+3% vs spot); bear = consolidated DCF 24,517 (excludes stakes, conservative floor); full = discount-compression / SOTP bull 46,401. Gross net-asset value ~51,788 at no discount; deeper SOTP bear ~21,745 at a wide discount, covered in the study text.
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:25404, p25:29799, p50:33294, p75:37199, p95:43634, resolve:"2026-07-24" },
+      t60: { label:"3 months (T+60)", p5:21022, p25:27714, p50:33584, p75:40697, p95:53651, resolve:"2026-09-18" }
+    },
+    touch: [ /* descending high -> low */
+      [44000, 7, 30], [40000, 21, 48], [37000, 43, 66], [32000, 72, 83], [28000, 24, 49], [24000, 3, 21]
+    ],
+    levels: { res:[42949, 38888, 37000], sup:[32250, 30000, 28000] },
+    tech: {
+      trend: "Extended downtrend, below every moving average",
+      summary: "The price is in a sustained decline — sitting at its 52-week low, about 36% below where it traded a year ago and roughly 53% off its 52-week high, beneath a correctly-stacked, falling set of moving averages (20-day below 50-day below 200-day). Momentum is washed out rather than stretched: RSI(14) is ~27, in oversold territory, which often precedes a bounce — but in a sustained downtrend a bounce need not hold. Realized 60-day volatility near 51% — far above quieter periods — and fat-tailed returns mean the same energy that drove the decline can also produce sharp two-way moves.",
+      bull: "A reclaim of the falling 20-day near 38,900 would be the first sign the downtrend is stalling; a push toward 44,000 would need the holding-company discount to compress.",
+      bear: "A daily close below the 32,250 52-week low opens the wide-discount zone toward the DCF / stale-marks area near 24,000–28,000."
+    },
+    files: {
+      study: "files/Kakao_Valuation_Study_28-06-2026_public.docx?v=2806",
+      model: "files/Kakao_Valuation_Study_28-06-2026_public.xlsx?v=2806",
+      pdf:   "files/Kakao_Valuation_Study_28-06-2026_public.pdf?v=2806"
     }
   }
 };
@@ -385,6 +413,27 @@ const LEDGER = [
     horizon_label:"T+60", grade_date:"2026-09-18", cycle_no:1, reanchor_from:null,
     p5:246827, p25:308298, p50:359482, p75:418176, p95:520627,
     touch:{ "+5":83, "+10":70, "+15":58, "+20":47, "-5":79, "-10":58 },   // interpolated from the study's absolute touch ladder — replace with the model's exact relative barrier-hit probabilities before these bands are graded
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  // ---- Kakao Corp. (KRX:035720) · other / international · cycle 1 (28 Jun 2026 published study; anchored 26 Jun close) ----
+  {
+    instrument:"Kakao", asset_class:"other",
+    anchor_date:"2026-06-26", anchor_price:33150, ccy:"KRW",
+    horizon_label:"T+20", grade_date:"2026-07-24", cycle_no:1, reanchor_from:null,
+    p5:25404, p25:29799, p50:33294, p75:37199, p95:43634,
+    touch:{ "+5":68, "+10":49, "+15":34, "+20":22, "-5":65, "-10":43 },   // relative barrier-hit probabilities from the published model (reflection principle, discrete-monitoring correction)
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"Kakao", asset_class:"other",
+    anchor_date:"2026-06-26", anchor_price:33150, ccy:"KRW",
+    horizon_label:"T+60", grade_date:"2026-09-18", cycle_no:1, reanchor_from:null,
+    p5:21022, p25:27714, p50:33584, p75:40697, p95:53651,
+    touch:{ "+5":81, "+10":69, "+15":59, "+20":49, "-5":79, "-10":64 },   // relative barrier-hit probabilities from the published model (reflection principle, discrete-monitoring correction)
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
