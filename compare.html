@@ -60,7 +60,6 @@
 
 <main class="wrap">
   <section id="sec-top" class="anchor" data-nav="Overview">
-    <span class="chip" id="cmp-chip">Egypt · Side by side</span>
     <h1 style="font-size:1.9rem;margin-top:.4em">Compare</h1>
     <p class="muted" style="max-width:600px" id="cmp-intro">The stocks we cover, lined up against each other — the latest price, what we think it's worth, whether it looks cheap or expensive, and the odds over 1 and 3 months. Tap any name for the full study.</p>
   </section>
@@ -96,18 +95,17 @@
 </main>
 
 <footer><div class="wrap"><b>Disclaimer:</b> Educational valuation studies and personal analytical opinion — not investment advice, not recommendations. The preparer is not licensed by Egypt's FRA, manages no money, accepts no clients, and may hold positions in instruments mentioned. <a href="method.html#disclaimer">Full text</a>.<br><br><span class="social" style="font-size:1.05rem;font-weight:700">Follow Testahil &mdash; <a href="https://t.me/testahil_markets" target="_blank" rel="noopener">Telegram</a> &middot; <a href="https://www.facebook.com/testahil.markets" target="_blank" rel="noopener">Facebook</a> &middot; <a href="https://www.linkedin.com/company/testahil" target="_blank" rel="noopener">LinkedIn</a></span></div></footer>
-<script src="assets/data.js?v=20260628c"></script><script src="assets/app.js?v=20260628c"></script>
+<script src="assets/data.js?v=20260628d"></script><script src="assets/app.js?v=20260628d"></script>
 <script>
   (function(){
     var intl = new URLSearchParams(location.search).get("m")==="intl";
     function init(){
       if(intl){
         document.title="Compare international stocks — side by side | testahil?";
-        var c=document.getElementById("cmp-chip"); if(c) c.textContent="International · Side by side";
         var i=document.getElementById("cmp-intro"); if(i) i.innerHTML="The global names we cover, lined up against each other — the latest price, what we think it's worth, whether it looks cheap or expensive, and the odds over 1 and 3 months. All figures in Korean won (KRW). Tap any name for the full study.";
         var d=document.getElementById("cmp-deeplink"); if(d){ d.setAttribute("href","other-markets.html"); d.textContent="See all international coverage →"; }
       }
-      try{ renderCompare("compare", intl?"intl":"egx"); }catch(e){ console.error(e); }
+      try{ renderCompare("compare", intl?"intl":"all"); }catch(e){ console.error(e); }
     }
     if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",init); else init();
   })();

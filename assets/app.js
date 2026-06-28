@@ -381,9 +381,9 @@ function renderTrackBadge(elId){
 /* ---------- full compare table (compare.html) ---------- */
 function renderCompare(elId, market){
   const el=document.getElementById(elId); if(!el) return;
-  market = market || "egx";
+  market = market || "all";
   const _isEgx = (t)=> (t.code||"").indexOf("EGX:")===0;
-  const _entries = Object.entries(TICKERS).filter(function(e){ return market==="intl" ? !_isEgx(e[1]) : _isEgx(e[1]); });
+  const _entries = Object.entries(TICKERS).filter(function(e){ if(market==="intl") return !_isEgx(e[1]); if(market==="egx") return _isEgx(e[1]); return true; });
   const rows = _entries.map(([code,t])=>{
     const o60=plainOdds(t.dist.t60, t.spot);
     const v=valuationVerdict(t.spot, t.fair.base);
@@ -391,7 +391,7 @@ function renderCompare(elId, market){
     const fvGap = Math.round((t.fair.base-t.spot)/t.spot*100);
     const trend = (t.tech&&t.tech.trend) ? t.tech.trend : "—";
     return `<tr>
-      <td><a href="${code.toLowerCase()}.html"><b>${t.name}</b></a><br><span class="muted num" style="font-size:.8rem">${t.code}</span></td>
+      <td><a href="${code.toLowerCase()}.html"><b>${t.name}</b></a><br><span class="muted num" style="font-size:.8rem">${t.code} &middot; ${t.ccy}</span></td>
       <td class="num">${F(t.spot)}</td>
       <td class="num">${F(t.fair.base)}<br><span class="muted" style="font-size:.8rem">${fvGap>=0?'+':''}${fvGap}%</span></td>
       <td><span class="pill ${v.tone}">${v.tone==='cheap'?'Looks cheap':v.tone==='rich'?'Looks expensive':'About right'}</span></td>
@@ -400,15 +400,10 @@ function renderCompare(elId, market){
       <td style="font-size:.85rem">${trend}</td>
     </tr>`;
   }).join("");
-  // coming-soon rows (names only) — EGX coverage only
-  const soon = (market==="intl") ? "" : COMING.filter(c=>c.status!=="covered").map(c=>
-    `<tr class="cmp-soon"><td><b>${c.name}</b><br><span class="muted num" style="font-size:.8rem">${c.code}</span></td>
-     <td colspan="6" class="muted">Coming soon — <a href="${c.code.replace('EGX:','').toLowerCase()}.html">get notified</a></td></tr>`
-  ).join("");
   el.innerHTML = `<table class="compare-table"><thead><tr>
     <th>Stock</th><th class="num">Latest</th><th class="num">Our value</th><th>Price view</th>
     <th class="num">3-mo middle</th><th class="num">Odds up (3-mo)</th><th>Chart trend</th>
-  </tr></thead><tbody>${rows}${soon}</tbody></table>`;
+  </tr></thead><tbody>${rows}</tbody></table>`;
 }
 
 /* ---------- share button (native share on mobile, copy link on desktop) ---------- */
