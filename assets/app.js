@@ -252,7 +252,7 @@ function renderGauge(elId, spot, fair, asof){
   const todayX = Math.max(70, Math.min(W-70, X(spot)));
   el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" role="img"
       aria-label="Latest price ${F(spot)} versus our fair value ${F(base)}.">
-    <style>.g{font:600 ${fG}px 'IBM Plex Mono',monospace}.gsm{font:600 ${fGsm}px 'IBM Plex Mono',monospace}.gdt{font:500 ${fGdt}px 'IBM Plex Mono',monospace}.gmut{fill:#8A9A98}.gink{fill:#0E2726}.gbase{fill:#1B5E5E}</style>
+    <style>.g{font:600 ${fG}px 'IBM Plex Mono',monospace}.gsm{font:600 ${fGsm}px 'IBM Plex Mono',monospace}.gdt{font:500 ${fGdt}px 'IBM Plex Mono',monospace}.gmut{fill:#8A9A98}.gink{fill:var(--ink)}.gbase{fill:#1B5E5E}</style>
     <defs><linearGradient id="vg" gradientUnits="userSpaceOnUse" x1="${X(min)}" y1="0" x2="${X(max)}" y2="0">
       <stop offset="0" stop-color="#2E7D5B"/><stop offset="0.25" stop-color="#6FA85C"/><stop offset="0.5" stop-color="#C98A2D"/><stop offset="0.75" stop-color="#D06A2C"/><stop offset="1" stop-color="#C0392B"/>
     </linearGradient></defs>
