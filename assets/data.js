@@ -2,7 +2,7 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-06-28" };
+const SITE = { updated: "2026-06-29" };
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
@@ -146,6 +146,34 @@ const TICKERS = {
       pdf:   "files/ORHD_Valuation_Study_25-06-2026_public.pdf?v=2506"
     }
   },
+  COMI: {
+    name: "Commercial International Bank",
+    nameAr: "البنك التجاري الدولي",
+    code: "EGX:COMI",
+    spot: 129.25,
+    spotDate: "close 29 Jun 2026",
+    ccy: "EGP",
+    fair: { bear: 90.86, base: 123.30, full: 169.70 },          // 29 Jun 2026 — justified-P/B / residual-income primary; weighted central 123.3 (-5% vs spot); bear = excess-return DCF (spread fades without capital return) 90.9; full = RI bull 169.7. Deeper RI-bear ~53.5 (ROE≈CoE) covered in the study text.
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:103.44, p25:117.89, p50:128.87, p75:140.85, p95:159.92, resolve:"2026-07-27" },
+      t60: { label:"3 months (T+60)", p5:87.93,  p25:109.91, p50:127.83, p75:148.88, p95:185.40, resolve:"2026-09-21" }
+    },
+    touch: [ /* descending high -> low */
+      [150.00, 20, 45], [140.00, 45, 65], [135.00, 63, 78], [120.00, 49, 70], [110.00, 18, 45], [100.00, 5, 24]
+    ],
+    levels: { res:[135.15, 132.82, 129.50], sup:[120.00, 116.04, 110.00] },
+    tech: {
+      trend: "Consolidating below the moving-average stack, above a rising 200-day",
+      summary: "The price closed 129.25 below a falling 20-day (132.8) and 50-day (135.2) but well above a rising 200-day (116.0) — a pullback inside a longer uptrend rather than a breakdown. Momentum is neutral: RSI(14) is ~48 and the daily ATR near 2.2 (~1.7%) points to an orderly tape. The whole equity case rests on the spread between a ~30% return on equity and a ~24% cost of equity, not on the chart.",
+      bull: "A daily close back above the 132.8\u2013135.2 moving-average cluster would say the pullback is over and reopen the highs.",
+      bear: "A close below the 120 round level and the rising 200-day near 116 would break the structure and open the 110 zone."
+    },
+    files: {
+      study: "files/COMI_Valuation_Study_29-06-2026_public.docx?v=2906",
+      model: "files/COMI_Valuation_Study_29-06-2026_public.xlsx?v=2906",
+      pdf:   "files/COMI_Valuation_Study_29-06-2026_public.pdf?v=2906"
+    }
+  },
   SAMSUNG: {
     name: "Samsung Electronics Co., Ltd.",
     nameAr: "سامسونج للإلكترونيات",
@@ -239,7 +267,7 @@ const COMING = [
   { code:"EGX:OCDI", name:"SODIC",                            url:"ocdi.html", status:"covered" },
   { code:"EGX:ORHD", name:"Orascom Development",          url:"orhd.html", status:"covered" },
   { code:"EGX:ORAS", name:"Orascom Construction",          url:null,        status:"soon" },
-  { code:"EGX:COMI", name:"Commercial International Bank", url:null,        status:"soon" },
+  { code:"EGX:COMI", name:"Commercial International Bank", url:"comi.html", status:"covered" },
   { code:"EGX:CCAP", name:"Citadel Capital",                 url:null,        status:"soon" },
   { code:"EGX:FWRY", name:"Fawry",                            url:null,        status:"soon" },
   { code:"EGX:HELI", name:"Heliopolis Housing",              url:null,        status:"soon" },
@@ -390,6 +418,27 @@ const LEDGER = [
     horizon_label:"T+60", grade_date:"2026-09-22", cycle_no:1, reanchor_from:null,
     p5:29.42, p25:36.38, p50:42.10, p75:48.74, p95:59.97,
     touch:{ "+5":80, "+10":70, "+15":58, "+20":47, "-5":62, "-10":46 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  // ---- COMI · equity · cycle 1 (29 Jun 2026 published study) ----
+  {
+    instrument:"COMI", asset_class:"equity",
+    anchor_date:"2026-06-29", anchor_price:129.25, ccy:"EGP",
+    horizon_label:"T+20", grade_date:"2026-07-27", cycle_no:1, reanchor_from:null,
+    p5:103.44, p25:117.89, p50:128.87, p75:140.85, p95:159.92,
+    touch:{ "+5":61, "+10":40, "+15":23, "+20":13, "-5":62, "-10":38 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"COMI", asset_class:"equity",
+    anchor_date:"2026-06-29", anchor_price:129.25, ccy:"EGP",
+    horizon_label:"T+60", grade_date:"2026-09-21", cycle_no:1, reanchor_from:null,
+    p5:87.93, p25:109.91, p50:127.83, p75:148.88, p95:185.40,
+    touch:{ "+5":76, "+10":60, "+15":47, "+20":37, "-5":78, "-10":62 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
