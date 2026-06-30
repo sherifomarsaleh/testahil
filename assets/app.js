@@ -198,10 +198,7 @@ function initSearch(inputId="tk-search", resultsId="tk-results"){
   const live = Object.entries(TICKERS).map(([code,t])=>({
     code, name:t.name, url:code.toLowerCase()+".html", status:"Covered"
   }));
-  const soon = COMING.filter(c=>c.status!=="covered").map(c=>({
-    code:c.code.replace("EGX:",""), name:c.name, url:c.code.replace("EGX:","").toLowerCase()+".html", status:"Coming soon"
-  }));
-  const index = [...live, ...soon];
+  const index = [...live];   // search lists covered stocks only — no coming-soon
 
   function render(q){
     q = q.trim().toLowerCase();
@@ -318,8 +315,7 @@ function initNavSearch(){
 
   // reuse the same index logic as initSearch
   const live = Object.entries(TICKERS).map(([code,t])=>({code, name:t.name, url:code.toLowerCase()+".html", status:"Covered"}));
-  const soon = COMING.filter(c=>c.status!=="covered").map(c=>({code:c.code.replace("EGX:",""), name:c.name, url:c.code.replace("EGX:","").toLowerCase()+".html", status:"Coming soon"}));
-  const index=[...live,...soon];
+  const index=[...live];   // covered stocks only — no coming-soon
 
   function render(q){
     q=q.trim().toLowerCase();
