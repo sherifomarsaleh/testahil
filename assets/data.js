@@ -629,6 +629,27 @@ const LEDGER = [
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  // ---- TMPV · other (NSE India) · cycle 1 (30 Jun 2026 published study) ----
+  {
+    instrument:"TMPV", asset_class:"other",
+    anchor_date:"2026-06-30", anchor_price:352.20, ccy:"INR",
+    horizon_label:"T+20", grade_date:"2026-07-28", cycle_no:1, reanchor_from:null,
+    p5:294, p25:327, p50:353, p75:379, p95:422,
+    touch:{ "+5":57, "+10":33, "+15":17, "+20":7, "-5":56, "-10":30 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"TMPV", asset_class:"other",
+    anchor_date:"2026-06-30", anchor_price:352.20, ccy:"INR",
+    horizon_label:"T+60", grade_date:"2026-09-22", cycle_no:1, reanchor_from:null,
+    p5:258, p25:310, p50:352, p75:400, p95:481,
+    touch:{ "+5":74, "+10":57, "+15":42, "+20":31, "-5":73, "-10":55 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   }
 ];
 
