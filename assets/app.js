@@ -420,7 +420,7 @@ function _compareRowHTML(code, t){
   const trend= (t.tech&&t.tech.trend) ? t.tech.trend : "—";
   return `<tr>
       <td><a href="${code.toLowerCase()}.html"><b>${t.name}</b></a><br><span class="muted num" style="font-size:.8rem">${t.code} &middot; ${t.ccy}</span></td>
-      <td class="num">${F(t.spot)}</td>
+      <td class="num">${F(t.spot)}<br><span class="muted" style="font-size:.8rem">${(t.spotDate||"").replace(/^close\s+/i,"")}</span></td>
       <td class="num">${F(t.fair.base)}<br><span class="muted" style="font-size:.8rem">${fvGap>=0?'+':''}${fvGap}%</span></td>
       <td><span class="pill ${v.tone}">${v.tone==='cheap'?'Looks cheap':v.tone==='rich'?'Looks expensive':'About right'}</span></td>
       <td class="num">${F(t.dist.t60.p50)}</td>
