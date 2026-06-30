@@ -6,7 +6,23 @@
     <atom:link href="https://testahil.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>دراسات تقييم تعليمية مستقلة لأسهم البورصة المصرية — توزيعات احتمالية، وليست توصيات. Educational EGX valuation studies — distributions, not tips.</description>
     <language>ar</language>
-    <lastBuildDate>Mon, 29 Jun 2026 08:30:00 +0300</lastBuildDate>
+    <lastBuildDate>Tue, 30 Jun 2026 08:30:00 +0300</lastBuildDate>
+
+    <item>
+      <title>القلعة القابضة (CCAP): دراسة تقييم — هل يستحق السهم؟</title>
+      <link>https://testahil.com/ar/ccap.html</link>
+      <guid isPermaLink="true">https://testahil.com/ar/ccap.html</guid>
+      <description>السعر 4.77 · الوسيط (٣ شهور) 4.89 · النطاق 3.22–7.39 جنيه — تحليل تعليمي، توزيع وليس توصية.</description>
+      <pubDate>Tue, 30 Jun 2026 08:30:00 +0300</pubDate>
+    </item>
+
+    <item>
+      <title>Qalaa Holdings (CCAP): Valuation Study — is it worth it?</title>
+      <link>https://testahil.com/ccap.html</link>
+      <guid isPermaLink="true">https://testahil.com/ccap.html</guid>
+      <description>Latest 4.77 · 3-month median 4.89 · range 3.22–7.39 EGP — educational analysis, a distribution not a recommendation.</description>
+      <pubDate>Tue, 30 Jun 2026 08:30:00 +0300</pubDate>
+    </item>
 
     <item>
       <title>البنك التجاري الدولي (COMI): دراسة تقييم — هل يستحق السهم؟</title>
