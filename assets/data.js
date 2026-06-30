@@ -2,7 +2,7 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-06-29" };
+const SITE = { updated: "2026-06-30" };
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
@@ -257,6 +257,34 @@ const TICKERS = {
       model: "files/LG_Energy_Solution_Valuation_Study_28-06-2026_public.xlsx?v=2806",
       pdf:   "files/LG_Energy_Solution_Valuation_Study_28-06-2026_public.pdf?v=2806"
     }
+  },
+  CCAP: {
+    name: "Qalaa Holdings",
+    nameAr: "القلعة القابضة",
+    code: "EGX:CCAP",
+    spot: 4.77,
+    spotDate: "close 30 Jun 2026",
+    ccy: "EGP",
+    fair: { bear: 3.296, base: 5.89, full: 8.601 },      // 30 Jun 2026 — weighted central 5.89 (+23% vs spot); bear = consolidated bottom-up DCF 3.296 (excludes asset marks, conservative floor); full = discount-compression / SOTP bull 8.601. Gross net-asset value ~8.48 at no discount; market prices a ~44% discount, covered in the study text.
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:3.771, p25:4.36, p50:4.809, p75:5.312, p95:6.126, resolve:"2026-07-28" },
+      t60: { label:"3 months (T+60)", p5:3.224, p25:4.126, p50:4.889, p75:5.789, p95:7.391, resolve:"2026-09-22" }
+    },
+    touch: [ /* descending high -> low */
+      [5.7, 20, 47],[5.2, 49, 70],[6.3, 5, 27],[4.5, 57, 74],[4, 17, 41],[3.5, 2, 17]
+    ],
+    levels: { res:[5.7, 5.2, 4.87], sup:[4.87, 4.5, 4] },
+    tech: {
+      trend: "Strong uptrend, pulling back to the rising 20- and 50-day",
+      summary: "The price is in a strong uptrend taking a sharp breather — up roughly 84% over the past year and only about 16% below its 52-week high, but recently pulled back from EGP 5.70 to sit just under a still-rising 20- and 50-day, with the 200-day far below. Momentum is oversold rather than broken: RSI(14) is ~27, which often precedes a bounce — though a stock that has run this far can still correct further. Realized 60-day volatility near 52% and fat right-skewed tails mean the same energy that drove the run can produce sharp two-way moves.",
+      bull: "A reclaim above the 20-day near EGP 5.20 would signal the pullback is stalling; a push toward the EGP 5.70 high would need the holding-company discount to start compressing.",
+      bear: "A daily close below the rising 50-day near EGP 4.87, then EGP 4.50, opens the wide-discount zone toward the DCF / stale-marks area near EGP 3.50–4.00."
+    },
+    files: {
+      study: "files/Qalaa_Holdings_Valuation_Study_30-06-2026_public.docx?v=3006",
+      model: "files/Qalaa_Holdings_Valuation_Study_30062026_public.xlsx?v=3006",
+      pdf:   "files/Qalaa_Holdings_Valuation_Study_30-06-2026_public.pdf?v=3006"
+    }
   }
 };
 
@@ -268,7 +296,6 @@ const COMING = [
   { code:"EGX:ORHD", name:"Orascom Development",          url:"orhd.html", status:"covered" },
   { code:"EGX:ORAS", name:"Orascom Construction",          url:null,        status:"soon" },
   { code:"EGX:COMI", name:"Commercial International Bank", url:"comi.html", status:"covered" },
-  { code:"EGX:CCAP", name:"Citadel Capital",                 url:null,        status:"soon" },
   { code:"EGX:FWRY", name:"Fawry",                            url:null,        status:"soon" },
   { code:"EGX:HELI", name:"Heliopolis Housing",              url:null,        status:"soon" },
   { code:"EGX:BTFH", name:"Beltone",                          url:null,        status:"soon" },
@@ -532,6 +559,24 @@ const LEDGER = [
     horizon_label:"T+60", grade_date:"2026-09-18", cycle_no:1, reanchor_from:null,
     p5:230500, p25:286900, p50:334200, p75:389200, p95:484500,
     touch:{ "+5":78, "+10":63, "+15":50, "+20":39, "-5":75, "-10":58 },   // relative barrier-hit probabilities from the published 50,000-path model (reflection principle, discrete-monitoring correction)
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"CCAP", asset_class:"equity", anchor_date:"2026-06-30", anchor_price:4.77, ccy:"EGP",
+    horizon_label:"T+20", grade_date:"2026-07-28", cycle_no:1, reanchor_from:null,
+    p5:3.771, p25:4.36, p50:4.809, p75:5.312, p95:6.126,
+    touch:{ "+5":66, "+10":45, "+15":30, "+20":19, "-5":61, "-10":38 },   // barrier-hit probabilities from the published 50,000-path model (reflection principle, discrete-monitoring correction)
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"CCAP", asset_class:"equity", anchor_date:"2026-06-30", anchor_price:4.77, ccy:"EGP",
+    horizon_label:"T+60", grade_date:"2026-09-22", cycle_no:1, reanchor_from:null,
+    p5:3.224, p25:4.126, p50:4.889, p75:5.789, p95:7.391,
+    touch:{ "+5":81, "+10":68, "+15":56, "+20":46, "-5":76, "-10":60 },   // barrier-hit probabilities from the published 50,000-path model (reflection principle, discrete-monitoring correction)
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
