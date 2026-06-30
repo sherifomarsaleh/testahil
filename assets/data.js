@@ -285,6 +285,34 @@ const TICKERS = {
       model: "files/Qalaa_Holdings_Valuation_Study_30062026_public.xlsx?v=3006",
       pdf:   "files/Qalaa_Holdings_Valuation_Study_30-06-2026_public.pdf?v=3006"
     }
+  },
+  ORAS: {
+    name: "Orascom Construction",
+    nameAr: "أوراسكوم للإنشاءات",
+    code: "EGX:ORAS",
+    spot: 720.00,
+    spotDate: "close 30 Jun 2026",
+    ccy: "EGP",
+    fair: { bear: 740, base: 928, full: 1272 },              // 30 Jun 2026 study — 5-lens weighted central 928 (+29% vs spot 720); bear = normalized-earnings low lens 740; full = SOTP bull 1272. USD fundamentals at USD/EGP 49.2.
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:575, p25:658, p50:719, p75:785, p95:893,  resolve:"2026-07-28" },
+      t60: { label:"3 months (T+60)", p5:488, p25:611, p50:714, p75:834, p95:1040, resolve:"2026-09-22" }
+    },
+    touch: [ /* descending high → low; P(touch) T+20 %, T+60 % */
+      [850, 16, 41], [800, 35, 58], [760, 58, 75], [680, 57, 75], [640, 31, 57], [600, 14, 40]
+    ],
+    levels: { res:[749, 785, 800], sup:[686, 658, 640] },
+    tech: {
+      trend: "Uptrend, consolidating below the 20-day after a strong run",
+      summary: "Orascom has run roughly eight-fold off its 2021 lows and sits in the upper quartile of its 52-week range. The moving-average stack is bullish — the 20-, 50- and 200-day are in rising order — but spot has slipped just below the 20-day in a near-term pause. Momentum is cooling (the daily MACD histogram is negative) and RSI is neutral near 50 — a healthy consolidation inside an intact uptrend, not a breakdown.",
+      bull: "A daily close back above the 749 twenty-day reopens the prior-high zone near 800.",
+      bear: "A close below the 686 fifty-day opens a deeper retracement toward 640."
+    },
+    files: {
+      study: "files/ORAS_Valuation_Study_30-06-2026_public.docx?v=3006",
+      model: "files/ORAS_Valuation_Study_30-06-2026_public.xlsx?v=3006",
+      pdf:   "files/ORAS_Valuation_Study_30-06-2026_public.pdf?v=3006"
+    }
   }
 };
 
@@ -294,7 +322,7 @@ const COMING = [
   { code:"EGX:EMFD", name:"Emaar Misr for Development",        url:"emfd.html", status:"covered" },
   { code:"EGX:OCDI", name:"SODIC",                            url:"ocdi.html", status:"covered" },
   { code:"EGX:ORHD", name:"Orascom Development",          url:"orhd.html", status:"covered" },
-  { code:"EGX:ORAS", name:"Orascom Construction",          url:null,        status:"soon" },
+  { code:"EGX:ORAS", name:"Orascom Construction",          url:"oras.html", status:"covered" },
   { code:"EGX:COMI", name:"Commercial International Bank", url:"comi.html", status:"covered" },
   { code:"EGX:FWRY", name:"Fawry",                            url:null,        status:"soon" },
   { code:"EGX:HELI", name:"Heliopolis Housing",              url:null,        status:"soon" },
@@ -577,6 +605,27 @@ const LEDGER = [
     horizon_label:"T+60", grade_date:"2026-09-22", cycle_no:1, reanchor_from:null,
     p5:3.224, p25:4.126, p50:4.889, p75:5.789, p95:7.391,
     touch:{ "+5":81, "+10":68, "+15":56, "+20":46, "-5":76, "-10":60 },   // barrier-hit probabilities from the published 50,000-path model (reflection principle, discrete-monitoring correction)
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  // ---- ORAS · equity · cycle 1 (30 Jun 2026 published study) ----
+  {
+    instrument:"ORAS", asset_class:"equity",
+    anchor_date:"2026-06-30", anchor_price:720.00, ccy:"EGP",
+    horizon_label:"T+20", grade_date:"2026-07-28", cycle_no:1, reanchor_from:null,
+    p5:575, p25:658, p50:719, p75:785, p95:893,
+    touch:{ "+5":61, "+10":39, "+15":23, "+20":13, "-5":60, "-10":35 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"ORAS", asset_class:"equity",
+    anchor_date:"2026-06-30", anchor_price:720.00, ccy:"EGP",
+    horizon_label:"T+60", grade_date:"2026-09-22", cycle_no:1, reanchor_from:null,
+    p5:488, p25:611, p50:714, p75:834, p95:1040,
+    touch:{ "+5":77, "+10":61, "+15":48, "+20":37, "-5":77, "-10":60 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
