@@ -411,6 +411,180 @@ function renderCompare(elId, market){
   </tr></thead><tbody>${rows}</tbody></table>`;
 }
 
+/* ---------- compare picker: populate a <select> + render two chosen rows ---------- */
+function _compareRowHTML(code, t){
+  const o60  = plainOdds(t.dist.t60, t.spot);
+  const v    = valuationVerdict(t.spot, t.fair.base);
+  const up60 = Math.round(o60.pa*10);
+  const fvGap= Math.round((t.fair.base-t.spot)/t.spot*100);
+  const trend= (t.tech&&t.tech.trend) ? t.tech.trend : "—";
+  return `<tr>
+      <td><a href="${code.toLowerCase()}.html"><b>${t.name}</b></a><br><span class="muted num" style="font-size:.8rem">${t.code} &middot; ${t.ccy}</span></td>
+      <td class="num">${F(t.spot)}</td>
+      <td class="num">${F(t.fair.base)}<br><span class="muted" style="font-size:.8rem">${fvGap>=0?'+':''}${fvGap}%</span></td>
+      <td><span class="pill ${v.tone}">${v.tone==='cheap'?'Looks cheap':v.tone==='rich'?'Looks expensive':'About right'}</span></td>
+      <td class="num">${F(t.dist.t60.p50)}</td>
+      <td class="num">${up60} in 10</td>
+      <td style="font-size:.85rem">${trend}</td>
+    </tr>`;
+}
+/* fill a <select> with every covered ticker, grouped Egypt / International, marking `selected` */
+function fillCompareSelect(sel, selected){
+  if(!sel) return;
+  const _isEgx = (t)=> (t.code||"").indexOf("EGX:")===0;
+  const ents = Object.entries(TICKERS);
+  const egx  = ents.filter(e=> _isEgx(e[1]));
+  const intl = ents.filter(e=> !_isEgx(e[1]));
+  const opt  = ([code,t])=> `<option value="${code}"${code===selected?" selected":""}>${t.name} (${t.code})</option>`;
+  let html="";
+  if(egx.length)  html += `<optgroup label="Egypt (EGX)">${egx.map(opt).join("")}</optgroup>`;
+  if(intl.length) html += `<optgroup label="International">${intl.map(opt).join("")}</optgroup>`;
+  sel.innerHTML = html;
+}
+/* searchable combobox: type to filter OR click to open the full grouped list */
+function makeCompareCombo(mount, opts){
+  opts = opts || {};
+  const onChange = opts.onChange || function(){};
+  const _isEgx = (t)=> (t.code||"").indexOf("EGX:")===0;
+  const ents = Object.entries(TICKERS);
+  const groups = [
+    ["Egypt (EGX)",  ents.filter(e=> _isEgx(e[1]))],
+    ["International", ents.filter(e=> !_isEgx(e[1]))]
+  ].filter(g=> g[1].length);
+
+  let selected = TICKERS[opts.selected] ? opts.selected : (ents[0]||[])[0];
+  let open=false, activeCode=null, flat=[];
+
+  mount.classList.add("cmp-combo");
+  mount.innerHTML =
+    '<input class="cmp-combo-input" type="text" role="combobox" aria-expanded="false" aria-autocomplete="list" autocomplete="off" placeholder="Search or pick a stock\u2026">' +
+    '<span class="cmp-combo-caret" aria-hidden="true">\u25BE</span>' +
+    '<div class="cmp-combo-panel" role="listbox" hidden></div>';
+  const input = mount.querySelector(".cmp-combo-input");
+  const panel = mount.querySelector(".cmp-combo-panel");
+  if(opts.label) input.setAttribute("aria-label", opts.label);
+
+  const labelFor = code => { const t=TICKERS[code]; return t ? t.name : ""; };
+
+  function matches(q){
+    q=(q||"").trim().toLowerCase();
+    if(!q) return groups.map(g=>[g[0], g[1].slice()]);
+    const f = ([code,t])=> t.name.toLowerCase().indexOf(q)>=0 || (t.code||"").toLowerCase().indexOf(q)>=0 || code.toLowerCase().indexOf(q)>=0;
+    return groups.map(g=>[g[0], g[1].filter(f)]).filter(g=>g[1].length);
+  }
+  function renderPanel(){
+    const showAll = input.value===labelFor(selected);
+    const gs = matches(showAll ? "" : input.value);
+    flat=[]; let html="";
+    if(!gs.length) html='<div class="cmp-combo-empty">No match</div>';
+    gs.forEach(([gname,list])=>{
+      html+='<div class="cmp-combo-group">'+gname+'</div>';
+      list.forEach(([code,t])=>{ flat.push(code);
+        html+='<div class="cmp-combo-opt'+(code===selected?' sel':'')+(code===activeCode?' active':'')+'" role="option" data-code="'+code+'" aria-selected="'+(code===selected)+'">'+
+                '<span class="cmp-combo-name">'+t.name+'</span><span class="muted num cmp-combo-code">'+t.code+'</span></div>';
+      });
+    });
+    panel.innerHTML=html;
+    if(flat.indexOf(activeCode)<0) activeCode = flat[0]||null;
+  }
+  function scrollActive(){ const a=panel.querySelector(".cmp-combo-opt.active"); if(a&&a.scrollIntoView) a.scrollIntoView({block:"nearest"}); }
+  function openPanel(){ open=true; panel.hidden=false; input.setAttribute("aria-expanded","true"); activeCode=selected; renderPanel(); scrollActive(); }
+  function closePanel(restore){ open=false; panel.hidden=true; input.setAttribute("aria-expanded","false"); if(restore!==false) input.value=labelFor(selected); }
+  function choose(code){ if(!TICKERS[code]) return; selected=code; input.value=labelFor(code); closePanel(false); onChange(code); }
+  function move(dir){ if(!flat.length) return; let i=flat.indexOf(activeCode); i = i<0?0:i+dir; i=Math.max(0,Math.min(flat.length-1,i)); activeCode=flat[i]; renderPanel(); scrollActive(); }
+
+  input.value = labelFor(selected);
+  input.addEventListener("focus", ()=>{ input.select(); openPanel(); });
+  input.addEventListener("click", ()=>{ if(!open) openPanel(); });
+  input.addEventListener("input", ()=>{ open=true; panel.hidden=false; input.setAttribute("aria-expanded","true"); activeCode=null; renderPanel(); scrollActive(); });
+  input.addEventListener("keydown", e=>{
+    if(e.key==="ArrowDown"){ e.preventDefault(); if(!open){openPanel();} else move(1); }
+    else if(e.key==="ArrowUp"){ e.preventDefault(); if(open) move(-1); }
+    else if(e.key==="Enter"){ if(open && activeCode){ e.preventDefault(); choose(activeCode); } }
+    else if(e.key==="Escape"){ if(open){ e.preventDefault(); closePanel(true); input.blur&&input.blur(); } }
+  });
+  panel.addEventListener("mousedown", e=>{ const o=e.target.closest&&e.target.closest(".cmp-combo-opt"); if(o){ e.preventDefault(); choose(o.getAttribute("data-code")); } });
+  document.addEventListener("click", e=>{ if(!mount.contains(e.target)) closePanel(true); });
+
+  renderPanel();
+  return { get value(){ return selected; }, set(code){ if(TICKERS[code]){ selected=code; input.value=labelFor(code); } } };
+}
+
+/* render exactly two chosen tickers as two rows, one above the other */
+function renderComparePair(elId, codeA, codeB){
+  const el=document.getElementById(elId); if(!el) return;
+  const a=TICKERS[codeA], b=TICKERS[codeB];
+  const rows=[];
+  if(a) rows.push(_compareRowHTML(codeA, a));
+  if(b) rows.push(_compareRowHTML(codeB, b));
+  const same = codeA===codeB ? `<p class="muted" style="margin:10px 0 0">Both rows show the same stock — pick a different one in either box to compare.</p>` : "";
+  el.innerHTML = `<table class="compare-table"><thead><tr>
+    <th>Stock</th><th class="num">Latest</th><th class="num">Our value</th><th>Price view</th>
+    <th class="num">3-mo middle</th><th class="num">Odds up (3-mo)</th><th>Chart trend</th>
+  </tr></thead><tbody>${rows.join("")}</tbody></table>${same}`;
+}
+
+/* ---------- searchable combobox for the compare picker (type to search OR open full list) ---------- */
+function initCompareCombo(opts){
+  const input  = document.getElementById(opts.input);
+  const list   = document.getElementById(opts.list);
+  const toggle = opts.toggle ? document.getElementById(opts.toggle) : null;
+  if(!input || !list) return null;
+  const _isEgx = t => (t.code||"").indexOf("EGX:")===0;
+  const index = Object.entries(TICKERS).map(([code,t])=>({
+    code, name:t.name, label:`${t.name} (${t.code})`, tag:t.code, group:_isEgx(t)?"Egypt (EGX)":"International"
+  }));
+  let current = TICKERS[opts.initial] ? opts.initial : index[0].code;
+  let active  = -1;     // keyboard-highlighted row
+  let hits    = [];
+  const labelFor = code => { const x=index.find(i=>i.code===code); return x?x.label:""; };
+  const isOpen   = () => list.classList.contains("open");
+
+  function close(){ list.classList.remove("open"); input.setAttribute("aria-expanded","false"); active=-1; }
+  function commit(code){
+    if(!TICKERS[code]) return;
+    current = code; input.value = labelFor(code); input.dataset.code = code;
+    close(); if(opts.onChange) opts.onChange(code);
+  }
+  function rowsHTML(){
+    if(!hits.length) return `<div class="tk-empty">No match — try a code like PHDC or a name.</div>`;
+    let html="", lastGroup=null;
+    hits.forEach((h,i)=>{
+      if(h.group!==lastGroup){ html+=`<div class="combo-group">${h.group}</div>`; lastGroup=h.group; }
+      const sel=h.code===current?" is-current":"", act=i===active?" is-active":"";
+      html+=`<div class="tk-hit combo-item${sel}${act}" role="option" data-code="${h.code}" aria-selected="${h.code===current}"><span>${h.name}</span><span class="tk-tag">${h.tag}</span></div>`;
+    });
+    return html;
+  }
+  function open(q){
+    const s=(q==null?"":q).trim().toLowerCase();
+    hits = s ? index.filter(i=> i.code.toLowerCase().includes(s) || i.name.toLowerCase().includes(s)) : index.slice();
+    active=-1; list.innerHTML=rowsHTML(); list.classList.add("open"); input.setAttribute("aria-expanded","true");
+  }
+  function move(d){
+    if(!isOpen()) open("");
+    if(!hits.length) return;
+    active=(active+d+hits.length)%hits.length; list.innerHTML=rowsHTML();
+    const el=list.querySelector(".combo-item.is-active"); if(el) el.scrollIntoView({block:"nearest"});
+  }
+
+  input.addEventListener("focus", ()=>{ input.select(); open(""); });
+  input.addEventListener("input", ()=> open(input.value));
+  input.addEventListener("keydown", e=>{
+    if(e.key==="ArrowDown"){ e.preventDefault(); move(1); }
+    else if(e.key==="ArrowUp"){ e.preventDefault(); move(-1); }
+    else if(e.key==="Enter"){ if(isOpen() && active>=0){ e.preventDefault(); commit(hits[active].code); } }
+    else if(e.key==="Escape"){ close(); input.value=labelFor(current); input.blur(); }
+  });
+  list.addEventListener("mousedown", e=>{ const it=e.target.closest(".combo-item"); if(!it) return; e.preventDefault(); commit(it.dataset.code); });
+  if(toggle) toggle.addEventListener("mousedown", e=>{ e.preventDefault(); if(isOpen()){ close(); } else { input.focus(); open(""); } });
+  input.addEventListener("blur", ()=> setTimeout(()=>{ if(!isOpen()){ input.value=labelFor(current); } close(); }, 120));
+  document.addEventListener("click", e=>{ if(!list.parentNode.contains(e.target)) close(); });
+
+  input.value=labelFor(current); input.dataset.code=current;
+  return { get value(){ return input.dataset.code; }, set(code){ commit(code); } };
+}
+
 /* ---------- share button (native share on mobile, copy link on desktop) ---------- */
 function initShare(){
   document.querySelectorAll("[data-share]").forEach(btn=>{

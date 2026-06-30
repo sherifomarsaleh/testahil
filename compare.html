@@ -61,11 +61,34 @@
 <main class="wrap">
   <section id="sec-top" class="anchor" data-nav="Overview">
     <h1 style="font-size:1.9rem;margin-top:.4em">Compare</h1>
-    <p class="muted" style="max-width:600px" id="cmp-intro">The stocks we cover, lined up against each other — the latest price, what we think it's worth, whether it looks cheap or expensive, and the odds over 1 and 3 months. Tap any name for the full study.</p>
+    <p class="muted" style="max-width:600px" id="cmp-intro">Pick any two of the stocks we cover and see them stacked line by line — the latest price, what we think it's worth, whether it looks cheap or expensive, and the 3-month odds. Tap a name for the full study.</p>
   </section>
 
   <section id="sec-table" style="padding-top:0" class="anchor" data-nav="The comparison">
-    <div class="compare-scroll">
+    <style>
+      .cmp-pick{display:flex;flex-wrap:wrap;align-items:flex-end;gap:14px;margin:6px 0 4px}
+      .cmp-field{display:flex;flex-direction:column;gap:5px;min-width:240px;flex:1 1 240px}
+      .cmp-field>span{font-size:.8rem;font-weight:600;color:var(--muted);letter-spacing:.02em;text-transform:uppercase}
+      .cmp-vs{padding-bottom:9px;font-weight:700;color:var(--teal)}
+      @media(max-width:560px){.cmp-vs{display:none}}
+      .cmp-combo{position:relative}
+      .cmp-combo-input{width:100%;padding-right:30px}
+      .cmp-combo-caret{position:absolute;right:11px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--muted);font-size:.7rem;transition:transform .15s}
+      .cmp-combo-input[aria-expanded="true"] ~ .cmp-combo-caret{transform:translateY(-50%) rotate(180deg)}
+      .cmp-combo-panel{position:absolute;z-index:30;top:calc(100% + 4px);left:0;right:0;max-height:300px;overflow-y:auto;background:var(--card);border:1px solid var(--line);border-radius:10px;box-shadow:0 10px 28px rgba(0,0,0,.14);padding:5px}
+      .cmp-combo-group{font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);padding:8px 10px 4px}
+      .cmp-combo-opt{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:8px 10px;border-radius:7px;cursor:pointer}
+      .cmp-combo-opt:hover,.cmp-combo-opt.active{background:rgba(42,143,143,.13)}
+      .cmp-combo-opt.sel .cmp-combo-name::after{content:" \2713";color:var(--teal)}
+      .cmp-combo-code{font-size:.78rem;white-space:nowrap}
+      .cmp-combo-empty{padding:10px;color:var(--muted);font-size:.85rem}
+    </style>
+    <div class="cmp-pick">
+      <div class="cmp-field"><span>Stock 1</span><div id="cmp-a"></div></div>
+      <span class="cmp-vs">vs</span>
+      <div class="cmp-field"><span>Stock 2</span><div id="cmp-b"></div></div>
+    </div>
+    <div class="compare-scroll" style="margin-top:14px">
       <div id="compare"></div>
     </div>
     <p class="muted" style="margin-top:12px">"Cheap / expensive" compares the latest price to our own fair-value estimate. "Odds up" is the share of 50,000 simulated 3-month outcomes that finish above the latest price. None of this is advice — it's a map of estimates and probabilities. <a href="method.html">How we build these →</a></p>
@@ -95,17 +118,27 @@
 </main>
 
 <footer><div class="wrap"><b>Disclaimer:</b> Educational valuation studies and personal analytical opinion — not investment advice, not recommendations. The preparer is not licensed by Egypt's FRA, manages no money, accepts no clients, and may hold positions in instruments mentioned. <a href="method.html#disclaimer">Full text</a>.<br><br><span class="social" style="font-size:1.05rem;font-weight:700">Follow Testahil &mdash; <a href="https://t.me/testahil_markets" target="_blank" rel="noopener">Telegram</a> &middot; <a href="https://www.facebook.com/testahil.markets" target="_blank" rel="noopener">Facebook</a> &middot; <a href="https://www.linkedin.com/company/testahil" target="_blank" rel="noopener">LinkedIn</a></span></div></footer>
-<script src="assets/data.js?v=20260629a"></script><script src="assets/app.js?v=20260629a"></script>
+<script src="assets/data.js?v=20260630a"></script><script src="assets/app.js?v=20260630a"></script>
 <script>
   (function(){
-    var intl = new URLSearchParams(location.search).get("m")==="intl";
+    var params=new URLSearchParams(location.search);
+    var intl = params.get("m")==="intl";
     function init(){
+      var ma=document.getElementById("cmp-a"), mb=document.getElementById("cmp-b");
+      if(!ma||!mb){ return; }
+      var defA = intl ? "SAMSUNG" : "PHDC";
+      var defB = intl ? "LGES"    : "TMGH";
+      var qa=(params.get("a")||"").toUpperCase(), qb=(params.get("b")||"").toUpperCase();
+      if(TICKERS[qa]) defA=qa;
+      if(TICKERS[qb]) defB=qb;
+      function draw(){ try{ renderComparePair("compare", comboA.value, comboB.value); }catch(e){ console.error(e); } }
+      var comboA = makeCompareCombo(ma, {selected:defA, label:"Stock 1", onChange:draw});
+      var comboB = makeCompareCombo(mb, {selected:defB, label:"Stock 2", onChange:draw});
+      draw();
       if(intl){
-        document.title="Compare international stocks — side by side | testahil?";
-        var i=document.getElementById("cmp-intro"); if(i) i.innerHTML="The global names we cover, lined up against each other — the latest price, what we think it's worth, whether it looks cheap or expensive, and the odds over 1 and 3 months. All figures in Korean won (KRW). Tap any name for the full study.";
+        document.title="Compare stocks — side by side | testahil?";
         var d=document.getElementById("cmp-deeplink"); if(d){ d.setAttribute("href","other-markets.html"); d.textContent="See all international coverage →"; }
       }
-      try{ renderCompare("compare", intl?"intl":"all"); }catch(e){ console.error(e); }
     }
     if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",init); else init();
   })();
