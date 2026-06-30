@@ -258,6 +258,34 @@ const TICKERS = {
       pdf:   "files/LG_Energy_Solution_Valuation_Study_28-06-2026_public.pdf?v=2806"
     }
   },
+  TMPV: {
+    name: "Tata Motors Passenger Vehicles Ltd.",
+    nameAr: "تاتا موتورز للسيارات (الركاب)",
+    code: "NSE:TMPV",
+    spot: 352.20,
+    spotDate: "close 30 Jun 2026",
+    ccy: "INR",
+    fair: { bear: 236, base: 378, full: 579 },      // 30 Jun 2026 — weighted central 378 (+7% vs spot 352.20). Lenses: SOTP 376, consolidated DCF 376, relative 324 (floor), normalized earnings 416 (ceiling). bear/full = weighted bear/bull of the football field. Swing factor: JLR through-cycle margin and the conglomerate discount.
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:294, p25:327, p50:353, p75:379, p95:422, resolve:"2026-07-28" },
+      t60: { label:"3 months (T+60)", p5:258, p25:310, p50:352, p75:400, p95:481, resolve:"2026-09-22" }
+    },
+    touch: [ /* descending high -> low */
+      [420, 8, 32], [400, 20, 46], [380, 41, 63], [360, 74, 85], [340, 65, 79], [320, 31, 56], [300, 11, 36]
+    ],
+    levels: { res:[375, 365, 356], sup:[340, 320, 294] },
+    tech: {
+      trend: "Below every major moving average; oversold but still corrective",
+      summary: "The tape is the mirror image of the fundamentals. The price trades below all four major moving averages (the 20-, 50-, 100- and 200-day cluster between ~356 and ~375, just overhead), the daily MACD histogram is firmly negative, and RSI(14) sits in the low-30s — near, but not yet at, oversold. The structure is a post-demerger de-rating that carried price from the high-440s to the low-350s, with the 52-week low at 294 as the visible floor. Realized 252-day volatility near 31% is elevated, and the same energy that drove the slide can produce sharp two-way moves.",
+      bull: "A daily close back above the 365–375 moving-average cluster would be the first sign the downtrend is stalling; a push toward 400 would need JLR margin recovery to gain traction.",
+      bear: "A daily close below 340 reopens the lower supports toward the 294 fifty-two-week low."
+    },
+    files: {
+      study: "files/TMPV_Valuation_Study_30-06-2026_public.docx?v=3006",
+      model: "files/TMPV_Valuation_Model_30-06-2026_public.xlsx?v=3006",
+      pdf:   "files/TMPV_Valuation_Study_30-06-2026_public.pdf?v=3006"
+    }
+  },
   CCAP: {
     name: "Qalaa Holdings",
     nameAr: "القلعة القابضة",
