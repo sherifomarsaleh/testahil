@@ -168,8 +168,8 @@ details.more>summary{
   display:flex; align-items:center; justify-content:space-between; font-size:1rem;
 }
 details.more>summary::-webkit-details-marker{display:none}
-details.more>summary::after{content:""; width:11px; height:11px; border-right:2px solid var(--muted); border-bottom:2px solid var(--muted); transform:rotate(45deg); transition:transform .18s; flex:none; margin-right:4px}
-details.more[open]>summary::after{transform:rotate(225deg)}
+details.more>summary::after{content:"＋"; font-size:1.2rem; color:var(--muted)}
+details.more[open]>summary::after{content:"–"}
 details.more>summary:hover{background:#F6FAF9}
 details.more .more-body{padding:4px 20px 20px; border-top:1px solid var(--line)}
 details.more .more-body table{margin-top:8px}
