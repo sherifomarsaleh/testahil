@@ -473,3 +473,14 @@ body{transition:background-color .2s ease, color .2s ease}
 /* linked ledger rows */
 .ledger-link{color:var(--teal);text-decoration:none;font-weight:600}
 .ledger-link:hover{text-decoration:underline}
+
+/* ---- footer studies nav (change 4) ---- */
+.foot-studies{font-size:.9rem;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.14);line-height:1.9}
+.foot-studies b{color:var(--sage,#9FB0AC);font-weight:700;margin-right:4px}
+.foot-studies a{color:var(--brass,#C0A45F);text-decoration:none}
+.foot-studies a:hover{text-decoration:underline}
+/* ---- contextual tool buttons at foot of a study (change 5) ---- */
+.ctx-row{display:flex;flex-wrap:wrap;gap:12px;margin:20px 0 6px}
+.ctx-btn{display:inline-block;background:var(--teal);color:#fff;padding:11px 17px;border-radius:10px;text-decoration:none;font-weight:600;font-size:.92rem;transition:transform .15s,filter .15s}
+.ctx-btn:hover{transform:translateY(-2px);filter:brightness(1.05)}
+.ctx-btn.ghost{background:var(--card);color:var(--teal);border:1px solid var(--teal)}
