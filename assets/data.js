@@ -2,7 +2,7 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-06-30" };
+const SITE = { updated: "2026-07-01" };
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
@@ -341,6 +341,34 @@ const TICKERS = {
       model: "files/ORAS_Valuation_Study_30-06-2026_public.xlsx?v=3006",
       pdf:   "files/ORAS_Valuation_Study_30-06-2026_public.pdf?v=3006"
     }
+  },
+  ARAMCO: {
+    name: "Saudi Aramco",
+    nameAr: "أرامكو السعودية",
+    code: "TADAWUL:2222",
+    spot: 26.24,
+    spotDate: "close 1 Jul 2026",
+    ccy: "SAR",
+    fair: { bear: 20, base: 25.04, full: 31 },      // 1 Jul 2026 — weighted central 25.04 (−4.6% vs spot 26.24). Lenses: DCF (5-yr FCFF) 23.47, dividend-yield 26.09, relative 21.48 (floor), reserves-NAV 29.63 (ceiling), normalized 23.24. bear/full = weighted bear/bull of the football field. Swing factor: the oil-price path and the base dividend's free-cash coverage.
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:23.80, p25:25.33, p50:26.23, p75:27.13, p95:28.57, resolve:"2026-07-29" },
+      t60: { label:"3 months (T+60)", p5:21.99, p25:24.47, p50:26.12, p75:27.78, p95:30.35, resolve:"2026-09-23" }
+    },
+    touch: [ /* descending high -> low */
+      [30, 1, 11], [29, 4, 22], [28, 15, 40], [27, 47, 67], [25, 27, 54], [24, 9, 31], [23, 3, 16]
+    ],
+    levels: { res:[27.16, 26.64, 26.24], sup:[25.74, 24.50, 23.13] },
+    tech: {
+      trend: "Below the 20- and 50-day averages but holding above a rising 200-day; quiet and range-bound",
+      summary: "The tape is quiet for a $1.7tn mega-cap. Price sits just under the 20-day (SAR 26.64) and 50-day (SAR 27.16) moving averages but above a rising 200-day line (SAR 25.74) — a mild near-term drift within a longer-term base, not a breakdown. RSI(14) near 31 is approaching, but not yet at, oversold, and price sits mid-range in a tight 52-week band of SAR 23.13–27.96. Realized 252-day volatility of only ~15% is a fraction of a typical single stock; the market is not currently excited in either direction.",
+      bull: "A daily close back above the SAR 26.6–27.2 moving-average cluster would signal the near-term soft patch is over; reclaiming the 52-week high near SAR 28 would need an oil re-rating.",
+      bear: "A daily close below the rising 200-day at SAR 25.74 opens the lower band toward SAR 24 and the 52-week low at SAR 23.13."
+    },
+    files: {
+      study: "files/Aramco_Valuation_Study_01-07-2026_public.docx?v=0107",
+      model: "files/Aramco_Valuation_Model_01-07-2026_public.xlsx?v=0107",
+      pdf:   "files/Aramco_Valuation_Study_01-07-2026_public.pdf?v=0107"
+    }
   }
 };
 
@@ -675,6 +703,27 @@ const LEDGER = [
     horizon_label:"T+60", grade_date:"2026-09-22", cycle_no:1, reanchor_from:null,
     p5:258, p25:310, p50:352, p75:400, p95:481,
     touch:{ "+5":74, "+10":57, "+15":42, "+20":31, "-5":73, "-10":55 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  // ---- ARAMCO · other (TADAWUL Saudi Arabia) · cycle 1 (1 Jul 2026 published study) ----
+  {
+    instrument:"ARAMCO", asset_class:"other",
+    anchor_date:"2026-07-01", anchor_price:26.24, ccy:"SAR",
+    horizon_label:"T+20", grade_date:"2026-07-29", cycle_no:1, reanchor_from:null,
+    p5:23.80, p25:25.33, p50:26.23, p75:27.13, p95:28.57,
+    touch:{ "+5":26, "+10":5, "+15":1, "+20":0, "-5":25, "-10":6 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"ARAMCO", asset_class:"other",
+    anchor_date:"2026-07-01", anchor_price:26.24, ccy:"SAR",
+    horizon_label:"T+60", grade_date:"2026-09-23", cycle_no:1, reanchor_from:null,
+    p5:21.99, p25:24.47, p50:26.12, p75:27.78, p95:30.35,
+    touch:{ "+5":51, "+10":24, "+15":10, "+20":3, "-5":52, "-10":25 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
