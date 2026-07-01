@@ -309,9 +309,9 @@ const TICKERS = {
       bear: "A close below the 11.50 shelf, then 10.50, opens the wide-discount zone toward the 10.15 fifty-two-week low."
     },
     files: {
-      study: "files/Emaar_Valuation_Study_01-07-2026_public.docx?v=0107",
+      study: "files/Emaar_Valuation_Study_01-07-2026_public.docx?v=0107b",
       model: "files/Emaar_Valuation_Model_01-07-2026_public.xlsx?v=0107",
-      pdf:   "files/Emaar_Valuation_Study_01-07-2026_public.pdf?v=0107"
+      pdf:   "files/Emaar_Valuation_Study_01-07-2026_public.pdf?v=0107b"
     }
   },
   CCAP: {
