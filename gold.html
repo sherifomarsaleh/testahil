@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
 <script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('#theme-toggle');if(!b)return;var dark=document.documentElement.getAttribute('data-theme')==='dark';var n=dark?'light':'dark';if(n==='dark'){document.documentElement.setAttribute('data-theme','dark');}else{document.documentElement.removeAttribute('data-theme');}try{localStorage.setItem('theme',n);}catch(e){}b.setAttribute('aria-pressed',String(n==='dark'));});document.addEventListener('DOMContentLoaded',function(){var x=document.getElementById('theme-toggle');if(x)x.setAttribute('aria-pressed',String(document.documentElement.getAttribute('data-theme')==='dark'));});})();</script>
 <!-- Gold data is single-sourced from METALS.GOLD in assets/data.js (window.GOLDDATA assigned after data.js loads). -->
-<link rel="stylesheet" href="assets/style.css?v=20260701x">
+<link rel="stylesheet" href="assets/style.css?v=20260701y">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="testahil?">
 <meta property="og:title" content="Gold (XAU/USD) — is it worth it? | testahil?">
@@ -141,7 +141,6 @@
       <button class="howto-link" id="howto-open" type="button">How to read this</button>
     </div>
     <p class="muted" style="margin-top:14px">Latest <b class="num" id="spot"></b> USD (<span id="spotdate"></span>) &middot; our fair-value centre <b class="num">4,600</b> &middot; consensus zone <span class="num">4,200</span> (floor) to <span class="num">5,000</span> (top).</p>
-    <div class="ctx-row" style="margin-top:12px"><a class="btn dlfile" id="dl-pdf-top" href="#" rel="noopener" download>Open the study (PDF)</a><a class="btn ghost dlfile" id="dl-model-top" href="#" rel="noopener">Open the model (Excel)</a></div>
   </section>
 
   <!-- LENS 2: FUNDAMENTAL -->
@@ -668,7 +667,7 @@
   </div>
 </div>
 
-<script src="assets/data.js?v=20260701x"></script><script src="assets/app.js?v=20260701x"></script>
+<script src="assets/data.js?v=20260701y"></script><script src="assets/app.js?v=20260701y"></script>
 <script>
 window.GOLDDATA=METALS.GOLD;
 const T=window.GOLDDATA;
@@ -707,8 +706,6 @@ document.getElementById("dl-pdf").href=T.files.pdf;
 document.getElementById("dl-model").href=T.files.model;
 document.getElementById("dl-pdf-side").href=T.files.pdf;
 document.getElementById("dl-model-side").href=T.files.model;
-document.getElementById("dl-pdf-top").href=T.files.pdf;
-document.getElementById("dl-model-top").href=T.files.model;
 
 renderGauge("gauge", T.spot, T.fair, T.spotDate);
 /* metals page: no equity peers */
