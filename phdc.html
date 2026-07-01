@@ -11,7 +11,7 @@
 <link rel="icon" type="image/png" href="favicon.png?v=2">
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
 <script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('#theme-toggle');if(!b)return;var dark=document.documentElement.getAttribute('data-theme')==='dark';var n=dark?'light':'dark';if(n==='dark'){document.documentElement.setAttribute('data-theme','dark');}else{document.documentElement.removeAttribute('data-theme');}try{localStorage.setItem('theme',n);}catch(e){}b.setAttribute('aria-pressed',String(n==='dark'));});document.addEventListener('DOMContentLoaded',function(){var x=document.getElementById('theme-toggle');if(x)x.setAttribute('aria-pressed',String(document.documentElement.getAttribute('data-theme')==='dark'));});})();</script>
-<link rel="stylesheet" href="assets/style.css?v=20260701p">
+<link rel="stylesheet" href="assets/style.css?v=20260701q">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="testahil?">
 <meta property="og:title" content="Palm Hills (PHDC) — is it worth it? | testahil?">
@@ -197,9 +197,6 @@
   <section style="padding:0 0 4px"><div id="track-badge"></div></section>
 
   <!-- LENS 1: SIMULATION -->
-<details class="rds" open>
-<summary><span class="rds-t">The odds &mdash; where could the price go?</span><span class="rds-note">50,000 simulated futures</span><span class="rds-x" aria-hidden="true"></span></summary>
-<div class="rds-body">
   <section id="sec-odds" class="anchor" style="padding-bottom:0">
     <div class="lens"><span class="lens-no">Lens 1 of 3</span><span class="lens-name">The simulation — what are the odds?</span></div>
     <p class="lens-sub">50,000 simulated futures — <em>where could the price go?</em></p>
@@ -221,8 +218,6 @@
     <p class="muted" style="margin-top:14px">Latest <b class="num" id="spot"></b> EGP (<span id="spotdate"></span>) · our fair value <b class="num">15.89</b> · scenarios <span class="num">7.62</span> (bad) to <span class="num">24.92</span> (all goes right).</p>
   </section>
 
-</div>
-</details>
   <!-- LENS 2: FUNDAMENTAL -->
 <details class="rds">
 <summary><span class="rds-t">Fundamental &mdash; what it's worth</span><span class="rds-note" id="sum-fund">bottom-up fair value</span><span class="rds-x" aria-hidden="true"></span></summary>
@@ -288,9 +283,6 @@
 
 </div>
 </details>
-<details class="rds" open>
-<summary><span class="rds-t">Explore the model</span><span class="rds-note">tune the 10 forces</span><span class="rds-x" aria-hidden="true"></span></summary>
-<div class="rds-body">
   <!-- ============ INTERACTIVE MONTE CARLO (self-contained, scoped #mc-lab) ============ -->
   <section id="sec-model" class="anchor" style="padding-top:8px">
   <div id="mc-lab">
@@ -672,8 +664,6 @@
     </div>
   </details>
 
-</div>
-</details>
   <!-- PEER COMPARISON -->
 <details class="rds">
 <summary><span class="rds-t">Peer set &amp; risks</span><span class="rds-x" aria-hidden="true"></span></summary>
@@ -750,7 +740,7 @@
   </div>
 </div>
 
-<script src="assets/data.js?v=20260701p"></script><script src="assets/app.js?v=20260701p"></script>
+<script src="assets/data.js?v=20260701q"></script><script src="assets/app.js?v=20260701q"></script>
 <script>
 const T=TICKERS.PHDC;
 document.getElementById("upd").textContent=SITE.updated;
