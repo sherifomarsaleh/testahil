@@ -455,3 +455,21 @@ body{transition:background-color .2s ease, color .2s ease}
 [data-theme="dark"] .attack-form textarea{background-color:#0F2724;color:var(--ink);border-color:var(--line)}
 .attack-form button{align-self:flex-start;width:auto}
 .attack-note{font-size:.82rem;color:#6b7d79;margin:2px 0 0}
+
+/* ---- related studies (cross-links at foot of each study) ---- */
+#related{margin:34px 0 8px}
+.rel-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:14px}
+.rel-title{font-family:"Alexandria";font-weight:800;font-size:1.05rem;letter-spacing:.02em;margin:0}
+.rel-all{font-size:.9rem;color:var(--teal);text-decoration:none;white-space:nowrap}
+.rel-all:hover{text-decoration:underline}
+.rel-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.rel-card{display:flex;flex-direction:column;gap:4px;padding:14px 15px;border:1px solid var(--line);border-radius:12px;background:var(--card);text-decoration:none;transition:border-color .15s,transform .15s}
+.rel-card:hover{border-color:var(--teal);transform:translateY(-2px)}
+.rel-code{font-family:"IBM Plex Mono";font-size:.74rem;color:var(--muted);letter-spacing:.04em}
+.rel-name{font-family:"Alexandria";font-weight:700;font-size:.96rem;color:var(--ink);line-height:1.25}
+.rel-go{margin-top:6px;font-size:.82rem;color:var(--teal)}
+@media(max-width:820px){.rel-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:460px){.rel-grid{grid-template-columns:1fr}}
+/* linked ledger rows */
+.ledger-link{color:var(--teal);text-decoration:none;font-weight:600}
+.ledger-link:hover{text-decoration:underline}

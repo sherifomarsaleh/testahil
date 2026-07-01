@@ -131,7 +131,9 @@ function buildLedger(tbodyId, summaryId){
       scored++; const inBand = (r.in_90!=null) ? r.in_90 : (r.realized_close>=r.p5 && r.realized_close<=r.p95); if(inBand) hit++;
       res = `<span class="num">${F(r.realized_close)}</span> ${inBand?'<span class="ok">landed in range ✓</span>':'<span class="bad">outside range ✗</span>'}`;
     }
-    return `<tr><td class="num">${r.anchor_date}</td><td>${r.instrument}</td><td class="num">${r.horizon_label}</td>
+    const _slug = String(r.instrument).toLowerCase();
+    const _inst = `<a class="ledger-link" href="${_slug}.html#mc-lab">${r.instrument}</a>`;
+    return `<tr><td class="num">${r.anchor_date}</td><td>${_inst}</td><td class="num">${r.horizon_label}</td>
       <td class="num">${F(r.p50)}</td><td class="num">${F(r.p5)} – ${F(r.p95)}</td><td>${res}</td></tr>`;
   }).join("");
   const sm=document.getElementById(summaryId);
@@ -602,3 +604,61 @@ function initShare(){
     });
   });
 }
+/* ============================================================
+   RELATED STUDIES — cross-links every study page to its siblings
+   Reads TICKERS (+ METALS for Gold). No per-page editing: each
+   study page carries <div id="related" data-ticker="PHDC"></div>
+   and this renders 4 sibling cards, same-sector first.
+   ============================================================ */
+(function(){
+  // sector map (data.js has no sector field; fixed lookup, extend as coverage grows)
+  var SECTOR = {
+    PHDC:"egx-realestate", TMGH:"egx-realestate", EMFD:"egx-realestate",
+    OCDI:"egx-realestate", ORHD:"egx-realestate", EMAAR:"egx-realestate",
+    ORAS:"egx-industrial", CCAP:"egx-holding", COMI:"egx-bank",
+    SAMSUNG:"intl-tech", KAKAO:"intl-tech", LGES:"intl-industrial",
+    TMPV:"intl-industrial", ARAMCO:"intl-energy", TSLA:"intl-industrial",
+    GOLD:"metal"
+  };
+  // page url + display fields, pulling from TICKERS then METALS
+  function rec(key){
+    var t = (typeof TICKERS!=="undefined") && TICKERS[key];
+    if(t) return { name:t.name, code:t.code, url:key.toLowerCase()+".html" };
+    var m = (typeof METALS!=="undefined") && METALS[key];
+    if(m) return { name:m.name||key, code:m.code||"", url:key.toLowerCase()+".html" };
+    return null;
+  }
+  function build(el){
+    var me = (el.getAttribute("data-ticker")||"").toUpperCase();
+    if(!me) return;
+    var mySector = SECTOR[me];
+    // universe = every key we can resolve to a page, minus self
+    var universe = Object.keys(SECTOR).filter(function(k){ return k!==me && rec(k); });
+    // same sector first (keep data.js order within each bucket), then the rest
+    var same = universe.filter(function(k){ return SECTOR[k]===mySector; });
+    var rest = universe.filter(function(k){ return SECTOR[k]!==mySector; });
+    var pick = same.concat(rest).slice(0,4);
+    if(!pick.length) return;
+    var cards = pick.map(function(k){
+      var r = rec(k);
+      return '<a class="rel-card" href="'+r.url+'">'
+           +   '<span class="rel-code num">'+ (r.code||k) +'</span>'
+           +   '<span class="rel-name">'+ r.name +'</span>'
+           +   '<span class="rel-go" aria-hidden="true">Read the study →</span>'
+           + '</a>';
+    }).join("");
+    el.innerHTML =
+      '<div class="rel-head">'
+      +  '<h2 class="rel-title">Keep reading</h2>'
+      +  '<a class="rel-all" href="stocks.html">All studies →</a>'
+      + '</div>'
+      + '<div class="rel-grid">'+ cards +'</div>';
+    el.setAttribute("data-built","1");
+  }
+  function run(){
+    var nodes = document.querySelectorAll('#related[data-ticker]');
+    for(var i=0;i<nodes.length;i++){ if(!nodes[i].getAttribute("data-built")) build(nodes[i]); }
+  }
+  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",run);
+  else run();
+})();
