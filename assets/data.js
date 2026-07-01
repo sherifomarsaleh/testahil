@@ -286,6 +286,34 @@ const TICKERS = {
       pdf:   "files/TMPV_Valuation_Study_30-06-2026_public.pdf?v=3006"
     }
   },
+  EMAAR: {
+    name: "Emaar Properties PJSC",
+    nameAr: "إعمار العقارية",
+    code: "DFM:EMAAR",
+    spot: 12.14,
+    spotDate: "close 29 Jun 2026",
+    ccy: "AED",
+    fair: { bear: 11.08, base: 14.80, full: 18.75 },      // 01 Jul 2026 — weighted central 14.80 (+22% vs spot 12.14). Lenses: RNAV/SOTP 14.12 (primary), going-concern DCF 14.74, relative 15.53, normalized earnings 15.27. bear/full = weighted bear/bull of the football field. Swing factors: the recurring EV/EBITDA multiple and the NAV/conglomerate discount. Gross NAV ~17.6/share; the market prices a ~31% discount at spot.
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:9.98, p25:11.22, p50:12.18, p75:13.22, p95:14.86, resolve:"2026-07-27" },
+      t60: { label:"3 months (T+60)", p5:8.64, p25:10.62, p50:12.24, p75:14.11, p95:17.32, resolve:"2026-09-21" }
+    },
+    touch: [ /* descending high -> low */
+      [15.5, 3, 23], [14.0, 20, 47], [13.0, 49, 70], [11.5, 55, 73], [10.5, 18, 44], [9.5, 3, 21], [8.5, 0, 8]
+    ],
+    levels: { res:[13.04, 13.53, 17.25], sup:[11.50, 10.50, 10.15] },
+    tech: {
+      trend: "Consolidating after a ~29% correction; above the short averages, below the long",
+      summary: "The tape is the mirror image of the fundamentals — undervalued, but the price has corrected about 29% from its high and is digesting the move. It trades just above the 20- and 50-day (clustered near 11.9–12.0) yet below the 100- and 200-day (about 13.0 and 13.5, overhead) — a post-run consolidation rather than a breakdown. Momentum is neutral-to-improving: RSI(14) is around 51 and the daily MACD histogram has turned slightly positive. Realized 252-day volatility near 36% (about 46% over 60 days) with fat, right-skewed tails means the same energy that drove the slide can produce sharp two-way moves.",
+      bull: "A daily close back above the 13.0–13.5 moving-average band would signal the correction is stalling; a push toward the 17.25 prior high would need the NAV discount to start compressing.",
+      bear: "A close below the 11.50 shelf, then 10.50, opens the wide-discount zone toward the 10.15 fifty-two-week low."
+    },
+    files: {
+      study: "files/Emaar_Valuation_Study_01-07-2026_public.docx?v=0107",
+      model: "files/Emaar_Valuation_Model_01-07-2026_public.xlsx?v=0107",
+      pdf:   "files/Emaar_Valuation_Study_01-07-2026_public.pdf?v=0107"
+    }
+  },
   CCAP: {
     name: "Qalaa Holdings",
     nameAr: "القلعة القابضة",
@@ -724,6 +752,27 @@ const LEDGER = [
     horizon_label:"T+60", grade_date:"2026-09-23", cycle_no:1, reanchor_from:null,
     p5:21.99, p25:24.47, p50:26.12, p75:27.78, p95:30.35,
     touch:{ "+5":51, "+10":24, "+15":10, "+20":3, "-5":52, "-10":25 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  // ---- EMAAR · other (DFM Dubai) · cycle 1 (01 Jul 2026 published study) ----
+  {
+    instrument:"EMAAR", asset_class:"other",
+    anchor_date:"2026-06-29", anchor_price:12.14, ccy:"AED",
+    horizon_label:"T+20", grade_date:"2026-07-27", cycle_no:1, reanchor_from:null,
+    p5:9.98, p25:11.22, p50:12.18, p75:13.22, p95:14.86,
+    touch:{ "+5":60, "+10":36, "+15":20, "+20":11, "-5":56, "-10":30 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"EMAAR", asset_class:"other",
+    anchor_date:"2026-06-29", anchor_price:12.14, ccy:"AED",
+    horizon_label:"T+60", grade_date:"2026-09-21", cycle_no:1, reanchor_from:null,
+    p5:8.64, p25:10.62, p50:12.24, p75:14.11, p95:17.32,
+    touch:{ "+5":77, "+10":61, "+15":48, "+20":37, "-5":74, "-10":56 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
