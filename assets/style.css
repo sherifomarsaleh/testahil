@@ -484,3 +484,16 @@ body{transition:background-color .2s ease, color .2s ease}
 .ctx-btn{display:inline-block;background:var(--teal);color:#fff;padding:11px 17px;border-radius:10px;text-decoration:none;font-weight:600;font-size:.92rem;transition:transform .15s,filter .15s}
 .ctx-btn:hover{transform:translateY(-2px);filter:brightness(1.05)}
 .ctx-btn.ghost{background:var(--card);color:var(--teal);border:1px solid var(--teal)}
+
+/* progressive-disclosure panels (rds) — global */
+.rds{border:1px solid var(--line,#d7e0de);border-radius:14px;margin:14px 0;background:var(--card,#fff);overflow:hidden}
+.rds>summary{list-style:none;cursor:pointer;padding:16px 20px;display:flex;align-items:center;gap:12px;font-family:"Alexandria",sans-serif;font-weight:700;color:var(--ink,#12211e)}
+.rds>summary::-webkit-details-marker{display:none}
+.rds .rds-t{font-size:1.02rem}
+.rds .rds-note{font-family:"IBM Plex Mono",monospace;font-weight:400;font-size:.76rem;color:var(--muted,#6b7c78);letter-spacing:.03em}
+.rds .rds-x{margin-left:auto;flex:none;color:var(--muted,#6b7c78);font-size:1.3rem;line-height:1;font-weight:400}
+.rds .rds-x::before{content:"＋"}
+.rds[open]>summary .rds-x::before{content:"–"}
+.rds>summary:hover{background:rgba(27,94,94,.04)}
+.rds .rds-body{padding:2px 20px 8px}
+.rds.rds-inner{border-style:dashed;background:transparent}

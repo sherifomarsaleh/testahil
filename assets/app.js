@@ -662,3 +662,11 @@ function initShare(){
   if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",run);
   else run();
 })();
+
+/* rds panels: open on anchor nav + resize charts on open */
+(function(){
+  function openTo(hash){ if(!hash) return; var el=document.getElementById(hash.replace('#','')); while(el){ if(el.tagName==='DETAILS' && !el.open){ el.open=true; } el=el.parentElement; } setTimeout(function(){ window.dispatchEvent(new Event('resize')); },30); }
+  document.addEventListener('click',function(e){ var a=e.target.closest&&e.target.closest('a[href^="#"]'); if(a) openTo(a.getAttribute('href')); });
+  window.addEventListener('hashchange',function(){ openTo(location.hash); });
+  document.addEventListener('DOMContentLoaded',function(){ document.querySelectorAll('details.rds').forEach(function(d){ d.addEventListener('toggle',function(){ if(d.open){ setTimeout(function(){ window.dispatchEvent(new Event('resize')); },30); } }); }); if(location.hash){ setTimeout(function(){ openTo(location.hash); },60); } });
+})();
