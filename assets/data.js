@@ -405,7 +405,7 @@ const TICKERS = {
     spot: 420.60,
     spotDate: "close 30 Jun 2026",
     ccy: "USD",
-    fair: { bear: 103, base: 174, full: 337 },      // 01 Jul 2026 — weighted central 174 (−59% vs spot 420.60). Four lenses: SOTP 230 (primary), consolidated DCF 90 (floor), relative 175, normalized earnings 150. bear/full = weighted bear/bull of the football field; autonomy-at-scale (SOTP bull) reaches 560. Swing factor: the FSD/Robotaxi/Optimus autonomy option.
+    fair: { bear: 105, base: 254, full: 350 },      // 01 Jul 2026 — five-lens weighted central 254 (−40% vs spot 420.60). Lenses: SOTP 230 (primary), consolidated DCF 90 (floor), relative 172, normalized earnings 130, and autonomy-at-scale (SOTP bull) 560 carrying a full 25% weight. bear = operating-only floor / cash-returns 105; full = scenario real-options / weighted football bull ~350; autonomy-at-scale reaches 560. Swing factor: the FSD/Robotaxi/Optimus autonomy option.
     dist: {
       t20: { label:"1 month (T+20)",  p5:325, p25:379, p50:420, p75:466, p95:541, resolve:"2026-07-28" },
       t60: { label:"3 months (T+60)", p5:270, p25:350, p50:419, p75:501, p95:647, resolve:"2026-09-22" }
@@ -421,9 +421,9 @@ const TICKERS = {
       bear: "A daily close below the 400–405 moving-average cluster reopens the lower supports toward 360, then the 294 range low."
     },
     files: {
-      study: "files/TSLA_Valuation_Study_30-06-2026_public.docx?v=0107",
-      model: "files/TSLA_Valuation_Model_30-06-2026_public.xlsx?v=0107",
-      pdf:   "files/TSLA_Valuation_Study_30-06-2026_public.pdf?v=0107"
+      study: "files/TSLA_Valuation_Study_30-06-2026_public.docx?v=0108",
+      model: "files/TSLA_Valuation_Model_30-06-2026_public.xlsx?v=0108",
+      pdf:   "files/TSLA_Valuation_Study_30-06-2026_public.pdf?v=0108"
     }
   }
 };

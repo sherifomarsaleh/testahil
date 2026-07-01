@@ -123,7 +123,7 @@
           "name": "How is the Tesla valuation calculated?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "The study triangulates four lenses — a segment sum-of-the-parts (the automotive business, energy generation and storage, services, net cash, and a probability-weighted autonomy option); a consolidated discounted cash flow; a relative-multiples cross-check; and a through-cycle normalized-earnings view — then expresses the result as a 50,000-path Monte Carlo probability distribution. Every assumption is visible and editable in the free Excel model."
+            "text": "The study triangulates five lenses — a segment sum-of-the-parts (the automotive business, energy generation and storage, services, net cash, and a probability-weighted autonomy option); a consolidated discounted cash flow; a relative-multiples cross-check; a through-cycle normalized-earnings view; and, given explicit weight, the autonomy-at-scale case in which the option is credited close to full value — then expresses the result as a 50,000-path Monte Carlo probability distribution. Every assumption is visible and editable in the free Excel model."
           }
         },
         {
@@ -199,7 +199,7 @@
       <div id="legend"></div>
       <button class="howto-link" id="howto-open" type="button">How to read this</button>
     </div>
-    <p class="muted" style="margin-top:14px">Latest <b class="num" id="spot"></b> USD (<span id="spotdate"></span>) · our weighted fair value <b class="num">174</b> · scenarios <span class="num">103</span> (cautious) to <span class="num">337</span> (all goes right).</p>
+    <p class="muted" style="margin-top:14px">Latest <b class="num" id="spot"></b> USD (<span id="spotdate"></span>) · our weighted fair value <b class="num">254</b> · scenarios <span class="num">105</span> (cautious) to <span class="num">350</span> (all goes right).</p>
   </section>
 
   <!-- LENS 2: FUNDAMENTAL -->
@@ -602,17 +602,18 @@
       <table><thead><tr><th class="num">Price level</th><th class="num">Within 1 month</th><th class="num">Within 3 months</th></tr></thead>
       <tbody id="touch"></tbody></table>
 
-      <p class="qhead" style="margin-top:26px">What it's worth — four lenses</p>
-      <p class="muted">Four independent valuation methods, blended into one weighted central fair value.</p>
+      <p class="qhead" style="margin-top:26px">What it's worth — five lenses</p>
+      <p class="muted">Five independent valuation methods, blended into one weighted central fair value; the autonomy-at-scale case carries a full quarter of the weight.</p>
       <table><thead><tr><th>Valuation lens</th><th class="num">Per share (USD)</th><th class="num">Weight</th></tr></thead>
       <tbody>
-        <tr><td>Sum-of-the-parts — base (primary)</td><td class="num">230</td><td class="num">40%</td></tr>
-        <tr><td>Consolidated DCF (FCFF)</td><td class="num">90</td><td class="num">20%</td></tr>
-        <tr><td>Relative multiples (blended)</td><td class="num">175</td><td class="num">15%</td></tr>
-        <tr><td>Normalized earnings power</td><td class="num">150</td><td class="num">25%</td></tr>
-        <tr style="font-weight:700"><td>Weighted central fair value</td><td class="num">174</td><td class="num">−59% vs spot</td></tr>
+        <tr><td>Sum-of-the-parts — base (primary)</td><td class="num">230</td><td class="num">20%</td></tr>
+        <tr><td>Consolidated DCF (FCFF) — floor</td><td class="num">90</td><td class="num">25%</td></tr>
+        <tr><td>Relative multiples (blended)</td><td class="num">172</td><td class="num">15%</td></tr>
+        <tr><td>Normalized earnings power</td><td class="num">130</td><td class="num">15%</td></tr>
+        <tr><td>Autonomy-at-scale (SOTP bull) — ceiling</td><td class="num">560</td><td class="num">25%</td></tr>
+        <tr style="font-weight:700"><td>Weighted central fair value</td><td class="num">254</td><td class="num">−40% vs spot</td></tr>
       </tbody></table>
-      <p class="muted" style="margin-top:8px">The sum-of-the-parts spans a wide range — the operating businesses at ~$127, an autonomy option risk-weighted to reach ~$230 (base), up to ~$560 if the option is credited at full scale. The autonomy option is the swing factor. Full detail and the four lenses are in the study and the open model.</p>
+      <p class="muted" style="margin-top:8px">The sum-of-the-parts spans a wide range — the operating businesses at ~$127, an autonomy option risk-weighted to reach ~$230 (base), up to ~$560 if the option is credited at full scale. The autonomy option is the swing factor. Full detail and the five lenses are in the study and the open model.</p>
 
       <p class="qhead" style="margin-top:26px">Chart levels traders watch</p>
       <table><tbody>
@@ -704,7 +705,7 @@
   </div>
 </div>
 
-<script src="assets/data.js?v=20260701e"></script><script src="assets/app.js?v=20260701e"></script>
+<script src="assets/data.js?v=20260701f"></script><script src="assets/app.js?v=20260701f"></script>
 <script>
 const T=TICKERS.TSLA;
 document.getElementById("upd").textContent=SITE.updated;
