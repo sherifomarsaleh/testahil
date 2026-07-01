@@ -397,6 +397,34 @@ const TICKERS = {
       model: "files/Aramco_Valuation_Model_01-07-2026_public.xlsx?v=0107",
       pdf:   "files/Aramco_Valuation_Study_01-07-2026_public.pdf?v=0107"
     }
+  },
+  TSLA: {
+    name: "Tesla, Inc.",
+    nameAr: "تسلا",
+    code: "NASDAQ:TSLA",
+    spot: 420.60,
+    spotDate: "close 30 Jun 2026",
+    ccy: "USD",
+    fair: { bear: 103, base: 174, full: 337 },      // 01 Jul 2026 — weighted central 174 (−59% vs spot 420.60). Four lenses: SOTP 230 (primary), consolidated DCF 90 (floor), relative 175, normalized earnings 150. bear/full = weighted bear/bull of the football field; autonomy-at-scale (SOTP bull) reaches 560. Swing factor: the FSD/Robotaxi/Optimus autonomy option.
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:325, p25:379, p50:420, p75:466, p95:541, resolve:"2026-07-28" },
+      t60: { label:"3 months (T+60)", p5:270, p25:350, p50:419, p75:501, p95:647, resolve:"2026-09-22" }
+    },
+    touch: [ /* descending high -> low; P(touch) T+20 %, T+60 % */
+      [540, 8, 30], [500, 21, 46], [485, 29, 54], [460, 47, 68], [380, 42, 65], [360, 25, 51], [320, 6, 28]
+    ],
+    levels: { res:[466, 490, 541], sup:[405, 360, 294] },
+    tech: {
+      trend: "Above a compressed moving-average stack; constructive but extended",
+      summary: "The tape is the mirror image of the fundamentals. Price has recovered to sit just above a compressed 20/50/200-day cluster (~400–419), roughly 14% below the 52-week high at 489.88, with RSI(14) near 58 (neutral) and a daily MACD still below zero but with a positive histogram (−3.3 line / −4.4 signal / +1.1 histogram) — a bullish crossover forming. Realized volatility near 46% and an elevated ATR mean moves in either direction can be violent. Nearest support is the moving-average cluster around 400–405, then the range lows near 294; nearest resistance is the 52-week high near 490.",
+      bull: "A push through the 466–490 zone (the one-month upper quartile into the 52-week high) would open the autonomy-re-rating extension toward 500+.",
+      bear: "A daily close below the 400–405 moving-average cluster reopens the lower supports toward 360, then the 294 range low."
+    },
+    files: {
+      study: "files/TSLA_Valuation_Study_30-06-2026_public.docx?v=0107",
+      model: "files/TSLA_Valuation_Model_30-06-2026_public.xlsx?v=0107",
+      pdf:   "files/TSLA_Valuation_Study_30-06-2026_public.pdf?v=0107"
+    }
   }
 };
 
@@ -773,6 +801,27 @@ const LEDGER = [
     horizon_label:"T+60", grade_date:"2026-09-21", cycle_no:1, reanchor_from:null,
     p5:8.64, p25:10.62, p50:12.24, p75:14.11, p95:17.32,
     touch:{ "+5":77, "+10":61, "+15":48, "+20":37, "-5":74, "-10":56 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  // ---- TSLA · other (NASDAQ US) · cycle 1 (01 Jul 2026 published study) ----
+  {
+    instrument:"TSLA", asset_class:"other",
+    anchor_date:"2026-06-30", anchor_price:420.60, ccy:"USD",
+    horizon_label:"T+20", grade_date:"2026-07-28", cycle_no:1, reanchor_from:null,
+    p5:325, p25:379, p50:420, p75:466, p95:541,
+    touch:{ "+5":60, "+10":46, "+15":30, "+20":20, "-5":58, "-10":43 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"TSLA", asset_class:"other",
+    anchor_date:"2026-06-30", anchor_price:420.60, ccy:"USD",
+    horizon_label:"T+60", grade_date:"2026-09-22", cycle_no:1, reanchor_from:null,
+    p5:270, p25:350, p50:419, p75:501, p95:647,
+    touch:{ "+5":74, "+10":67, "+15":55, "+20":46, "-5":72, "-10":65 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
