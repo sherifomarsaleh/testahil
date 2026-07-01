@@ -393,9 +393,9 @@ const TICKERS = {
       bear: "A daily close below the rising 200-day at SAR 25.74 opens the lower band toward SAR 24 and the 52-week low at SAR 23.13."
     },
     files: {
-      study: "files/Aramco_Valuation_Study_01-07-2026_public.docx?v=0107",
-      model: "files/Aramco_Valuation_Model_01-07-2026_public.xlsx?v=0107",
-      pdf:   "files/Aramco_Valuation_Study_01-07-2026_public.pdf?v=0107"
+      study: "files/Aramco_Valuation_Study_01-07-2026_public.docx?v=0107b",
+      model: "files/Aramco_Valuation_Model_01-07-2026_public.xlsx?v=0107b",
+      pdf:   "files/Aramco_Valuation_Study_01-07-2026_public.pdf?v=0107b"
     }
   },
   TSLA: {
