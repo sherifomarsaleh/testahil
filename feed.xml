@@ -6,7 +6,23 @@
     <atom:link href="https://testahil.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>دراسات تقييم تعليمية مستقلة لأسهم البورصة المصرية — توزيعات احتمالية، وليست توصيات. Educational EGX valuation studies — distributions, not tips.</description>
     <language>ar</language>
-    <lastBuildDate>Tue, 30 Jun 2026 08:30:00 +0300</lastBuildDate>
+    <lastBuildDate>Wed, 01 Jul 2026 08:30:00 +0300</lastBuildDate>
+
+    <item>
+      <title>أرامكو السعودية (ARAMCO): دراسة تقييم — هل يستحق السهم؟</title>
+      <link>https://testahil.com/ar/aramco.html</link>
+      <guid isPermaLink="true">https://testahil.com/ar/aramco.html</guid>
+      <description>السعر 26.24 · الوسيط (٣ شهور) 26.12 · النطاق 21.99–30.35 جنيه — تحليل تعليمي، توزيع وليس توصية.</description>
+      <pubDate>Wed, 01 Jul 2026 08:30:00 +0300</pubDate>
+    </item>
+
+    <item>
+      <title>Saudi Aramco (ARAMCO): Valuation Study — is it worth it?</title>
+      <link>https://testahil.com/aramco.html</link>
+      <guid isPermaLink="true">https://testahil.com/aramco.html</guid>
+      <description>Latest 26.24 · 3-month median 26.12 · range 21.99–30.35 EGP — educational analysis, a distribution not a recommendation.</description>
+      <pubDate>Wed, 01 Jul 2026 08:30:00 +0300</pubDate>
+    </item>
 
     <item>
       <title>تاتا موتورز للسيارات (الركاب) (TMPV): دراسة تقييم — هل يستحق السهم؟</title>
