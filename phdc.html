@@ -218,6 +218,9 @@
   </section>
 
   <!-- LENS 2: FUNDAMENTAL -->
+<details class="rds">
+<summary><span class="rds-t">Fundamental &mdash; what it's worth</span><span class="rds-note" id="sum-fund">bottom-up fair value</span><span class="rds-x" aria-hidden="true"></span></summary>
+<div class="rds-body">
   <section id="sec-value" class="anchor" style="padding-bottom:0">
     <div class="lens"><span class="lens-no">Lens 2 of 3</span><span class="lens-name">Fundamental analysis — what is it worth?</span></div>
     <p class="lens-sub">Built up from projects, cash and earnings — <em>what is it worth?</em></p>
@@ -232,9 +235,11 @@
     </div>
   </section>
 
+</div>
+</details>
   <!-- LENS 3: TECHNICAL -->
 <details class="rds">
-<summary><span class="rds-t">Technical &amp; price structure</span><span class="rds-note">trend, momentum, key levels</span><span class="rds-x" aria-hidden="true"></span></summary>
+<summary><span class="rds-t">Technical &amp; price structure</span><span class="rds-note" id="sum-tech">trend, momentum, key levels</span><span class="rds-x" aria-hidden="true"></span></summary>
 <div class="rds-body">
   <section id="sec-chart" class="anchor" style="padding-bottom:0">
     <div class="lens"><span class="lens-no">Lens 3 of 3</span><span class="lens-name">Technical analysis — what is the chart doing?</span></div>
@@ -734,7 +739,7 @@
   </div>
 </div>
 
-<script src="assets/data.js?v=20260701k"></script><script src="assets/app.js?v=20260701k"></script>
+<script src="assets/data.js?v=20260701m"></script><script src="assets/app.js?v=20260701m"></script>
 <script>
 const T=TICKERS.PHDC;
 document.getElementById("upd").textContent=SITE.updated;
@@ -776,6 +781,15 @@ document.getElementById("dl-model").href=T.files.model;
 renderGauge("gauge", T.spot, T.fair, T.spotDate);
 renderPeers("peers", "PHDC");
 renderTrackBadge("track-badge");
+// collapsed-section one-line answers
+var _sf=document.getElementById("sum-fund");
+if(_sf && typeof T.fair==="number" && typeof T.spot==="number"){
+  var _g=(T.fair-T.spot)/T.spot*100;
+  _sf.textContent="fair "+F(T.fair)+" \u00b7 "+(_g>=0?"+":"")+_g.toFixed(0)+"% vs price";
+}
+var _st=document.getElementById("sum-tech");
+if(_st && T.tech && T.tech.trend){ _st.textContent=T.tech.trend; }
+
 initHowto();
 </script>
 <script>
