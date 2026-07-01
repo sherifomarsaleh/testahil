@@ -147,6 +147,21 @@
   ]
 }
 </script>
+
+<style>
+/* progressive-disclosure panels (readability prototype) */
+.rds{border:1px solid var(--line,#d7e0de);border-radius:14px;margin:14px 0;background:var(--card,#fff);overflow:hidden}
+.rds>summary{list-style:none;cursor:pointer;padding:16px 20px;display:flex;align-items:center;gap:12px;font-family:"Alexandria",sans-serif;font-weight:700;color:var(--ink,#12211e)}
+.rds>summary::-webkit-details-marker{display:none}
+.rds .rds-t{font-size:1.02rem}
+.rds .rds-note{font-family:"IBM Plex Mono",monospace;font-weight:400;font-size:.76rem;color:var(--muted,#6b7c78);letter-spacing:.03em}
+.rds .rds-x{margin-left:auto;width:11px;height:11px;border-right:2px solid var(--muted,#6b7c78);border-bottom:2px solid var(--muted,#6b7c78);transform:rotate(45deg);transition:transform .18s;flex:none}
+.rds[open]>summary .rds-x{transform:rotate(225deg)}
+.rds>summary:hover{background:rgba(27,94,94,.04)}
+.rds .rds-body{padding:2px 20px 8px}
+.rds.rds-inner{border-style:dashed;background:transparent}
+.rds[open]{background:var(--card,#fff)}
+</style>
 </head>
 <body>
 <header class="nav"><div class="wrap">
@@ -218,6 +233,9 @@
   </section>
 
   <!-- LENS 3: TECHNICAL -->
+<details class="rds">
+<summary><span class="rds-t">Technical &amp; price structure</span><span class="rds-note">trend, momentum, key levels</span><span class="rds-x" aria-hidden="true"></span></summary>
+<div class="rds-body">
   <section id="sec-chart" class="anchor" style="padding-bottom:0">
     <div class="lens"><span class="lens-no">Lens 3 of 3</span><span class="lens-name">Technical analysis — what is the chart doing?</span></div>
     <p class="lens-sub">Trend, momentum and key levels — <em>what is the price doing now?</em></p>
@@ -238,6 +256,9 @@
     </div>
   </section>
 
+
+</div>
+</details>
   <!-- ============ INTERACTIVE MONTE CARLO (self-contained, scoped #mc-lab) ============ -->
   <section id="sec-model" class="anchor" style="padding-top:8px">
   <div id="mc-lab">
@@ -404,7 +425,10 @@
           <span><i class="mc-dot" style="background:var(--teal)"></i> ≥ HSBC 17.50</span>
         </div>
       </div>
-      <div class="mc-card">
+      <details class="rds rds-inner">
+<summary><span class="rds-t">Percentiles &amp; touch probabilities</span><span class="rds-note">1- and 3-month tables</span><span class="rds-x" aria-hidden="true"></span></summary>
+<div class="rds-body">
+<div class="mc-card">
         <div class="mc-card-h"><h4>Percentiles (EGP/share)</h4></div>
         <table class="mc-pct">
           <thead><tr><th>Horizon</th><th>5%</th><th>25%</th><th>Median</th><th>75%</th><th>95%</th></tr></thead>
@@ -424,6 +448,9 @@
       </table>
     </div>
 
+
+</div>
+</details>
     <button class="mc-reset" id="mc-reset">Reset to study baseline</button>
 
     <p class="mc-foot">One lognormal forward built from the study's 10-factor calibration: five continuous forces set the drift and spread, five event forces add skew and width. Percentiles and zones are closed-form; touch probabilities use the reflection principle with a discrete-monitoring correction, reproducing the published 50,000-path engine. Moving a lever re-derives the maths instantly. Illustrative of the model — not a forecast, not advice.</p>
@@ -614,6 +641,9 @@
   </details>
 
   <!-- PEER COMPARISON -->
+<details class="rds">
+<summary><span class="rds-t">Peer set &amp; risks</span><span class="rds-x" aria-hidden="true"></span></summary>
+<div class="rds-body">
   <section id="sec-peers" class="anchor" style="padding-top:8px">
     <div class="card">
       <p class="qhead">How it compares to the others we cover</p>
@@ -623,6 +653,12 @@
   </section>
 
   <!-- GET THE STUDY -->
+
+</div>
+</details>
+<details class="rds">
+<summary><span class="rds-t">About this series &amp; how we build these</span><span class="rds-x" aria-hidden="true"></span></summary>
+<div class="rds-body">
   <section id="sec-study" class="anchor" style="padding-top:8px">
     <div class="card">
       <p class="qhead">Want the full study and the spreadsheet?</p>
@@ -657,6 +693,9 @@
 <aside class="study-side"><div class="ss-card ss-notify"><p class="ss-h">Get the next Palm Hills update</p><p class="ss-sub">New edition on a fixed schedule. Your email, nothing else — no spam.</p><a class="ss-copy" href="https://testahil.substack.com/subscribe" target="_blank" rel="noopener" style="display:block;text-align:center;text-decoration:none;box-sizing:border-box">Subscribe by email &rarr;</a></div><div class="ss-card ss-embed"><p class="ss-h">&lt;/&gt; Embed this widget</p><p class="ss-sub">Put this distribution on your site or blog — it links back here.</p><textarea class="ss-code" readonly rows="3">&lt;iframe src=&quot;https://testahil.com/embed/phdc.html&quot; width=&quot;100%&quot; height=&quot;320&quot; style=&quot;border:0;max-width:640px&quot; title=&quot;Palm Hills (PHDC) 3-month distribution — testahil&quot; loading=&quot;lazy&quot;&gt;&lt;/iframe&gt;
 &lt;a href=&quot;https://testahil.com/phdc.html&quot;&gt;Palm Hills (PHDC) valuation — testahil&lt;/a&gt;</textarea><button class="ss-copy" type="button">Copy embed code</button><a class="ss-prev" href="/embed/phdc.html" target="_blank" rel="noopener">Preview the widget &#8594;</a></div></aside>
 </main>
+</div>
+</details>
+
 
 <div class="wrap"><div id="related" data-ticker="PHDC"></div><div class="ctx-row"><a class="ctx-btn" href="compare.html?a=PHDC">Compare PHDC vs peers &rarr;</a><a class="ctx-btn ghost" href="calculator.html">What kept its value? &rarr;</a></div></div>
 
@@ -677,7 +716,7 @@
   </div>
 </div>
 
-<script src="assets/data.js?v=20260701h"></script><script src="assets/app.js?v=20260701h"></script>
+<script src="assets/data.js?v=20260701j"></script><script src="assets/app.js?v=20260701j"></script>
 <script>
 const T=TICKERS.PHDC;
 document.getElementById("upd").textContent=SITE.updated;
@@ -772,4 +811,24 @@ initHowto();
 @media(max-width:1040px){.study-wrap{grid-template-columns:1fr}.study-side{position:static}.study-main,.study-main p,.study-main li{font-size:16.5px}}
 </style>
 <script>(function(){document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.ss-copy');if(!b)return;var ta=b.parentNode.querySelector('.ss-code');if(!ta)return;ta.select();try{navigator.clipboard.writeText(ta.value);}catch(_){try{document.execCommand('copy');}catch(__){}}var o=b.getAttribute('data-l')||b.textContent;b.setAttribute('data-l',o);b.textContent='Copied \u2713';setTimeout(function(){b.textContent=o;},1700);});})();</script>
+
+<script>
+(function(){
+  function openTo(hash){
+    if(!hash) return;
+    var el=document.getElementById(hash.replace('#',''));
+    while(el){ if(el.tagName==='DETAILS' && !el.open){ el.open=true; } el=el.parentElement; }
+    setTimeout(function(){ window.dispatchEvent(new Event('resize')); },30);
+  }
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('a[href^="#"]');
+    if(a) openTo(a.getAttribute('href'));
+  });
+  window.addEventListener('hashchange',function(){ openTo(location.hash); });
+  document.querySelectorAll('details.rds').forEach(function(d){
+    d.addEventListener('toggle',function(){ if(d.open){ setTimeout(function(){ window.dispatchEvent(new Event('resize')); },30); } });
+  });
+  if(location.hash) setTimeout(function(){ openTo(location.hash); },60);
+})();
+</script>
 </body></html>
