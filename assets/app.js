@@ -327,7 +327,7 @@ function initNavSearch(){
     box.innerHTML = hits.length ? hits.map(x=>x.url
       ? `<a class="tk-hit" href="${x.url}"><span><b>${x.code}</b> · ${x.name}</span><span class="tk-tag">${x.status}</span></a>`
       : `<div class="tk-hit tk-hit-soon"><span><b>${x.code}</b> · ${x.name}</span><span class="tk-tag warn">${x.status}</span></div>`
-    ).join("") : `<div class="tk-empty">No match. We cover Egyptian Exchange (EGX) stocks.</div>`;
+    ).join("") : `<div class="tk-empty">No match. We cover the stocks and metals in the coverage list.</div>`;
   }
   function open(){ overlay.classList.add("open"); setTimeout(()=>input.focus(),50); }
   function close(){ overlay.classList.remove("open"); input.value=""; box.innerHTML=""; }
@@ -426,28 +426,20 @@ function _compareRowHTML(code, t){
       <td style="font-size:.85rem">${trend}</td>
     </tr>`;
 }
-/* fill a <select> with every covered ticker, grouped Egypt / International, marking `selected` */
+/* fill a <select> with every covered ticker under a single Stocks group, marking `selected` */
 function fillCompareSelect(sel, selected){
   if(!sel) return;
-  const _isEgx = (t)=> (t.code||"").indexOf("EGX:")===0;
   const ents = Object.entries(TICKERS);
-  const egx  = ents.filter(e=> _isEgx(e[1]));
-  const intl = ents.filter(e=> !_isEgx(e[1]));
   const opt  = ([code,t])=> `<option value="${code}"${code===selected?" selected":""}>${t.name} (${t.code})</option>`;
-  let html="";
-  if(egx.length)  html += `<optgroup label="Egypt (EGX)">${egx.map(opt).join("")}</optgroup>`;
-  if(intl.length) html += `<optgroup label="International">${intl.map(opt).join("")}</optgroup>`;
-  sel.innerHTML = html;
+  sel.innerHTML = ents.length ? `<optgroup label="Stocks">${ents.map(opt).join("")}</optgroup>` : "";
 }
 /* searchable combobox: type to filter OR click to open the full grouped list */
 function makeCompareCombo(mount, opts){
   opts = opts || {};
   const onChange = opts.onChange || function(){};
-  const _isEgx = (t)=> (t.code||"").indexOf("EGX:")===0;
   const ents = Object.entries(TICKERS);
   const groups = [
-    ["Egypt (EGX)",  ents.filter(e=> _isEgx(e[1]))],
-    ["International", ents.filter(e=> !_isEgx(e[1]))]
+    ["Stocks", ents]
   ].filter(g=> g[1].length);
 
   let selected = TICKERS[opts.selected] ? opts.selected : (ents[0]||[])[0];
@@ -528,9 +520,8 @@ function initCompareCombo(opts){
   const list   = document.getElementById(opts.list);
   const toggle = opts.toggle ? document.getElementById(opts.toggle) : null;
   if(!input || !list) return null;
-  const _isEgx = t => (t.code||"").indexOf("EGX:")===0;
   const index = Object.entries(TICKERS).map(([code,t])=>({
-    code, name:t.name, label:`${t.name} (${t.code})`, tag:t.code, group:_isEgx(t)?"Egypt (EGX)":"International"
+    code, name:t.name, label:`${t.name} (${t.code})`, tag:t.code, group:"Stocks"
   }));
   let current = TICKERS[opts.initial] ? opts.initial : index[0].code;
   let active  = -1;     // keyboard-highlighted row
