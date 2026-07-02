@@ -154,6 +154,7 @@ footer{border-top:1px solid var(--line);margin-top:20px;padding:16px 0 24px;colo
   .flyout .fly-arrow{display:none}
   #scrim.open{background:rgba(0,0,0,.35)}
 }
+.pager{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:22px 0 8px}.pg-btn{font:inherit;font-size:.9rem;padding:6px 12px;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;cursor:pointer;min-width:38px}.pg-btn:hover:not([disabled]){border-color:var(--teal);color:var(--teal)}.pg-btn.on{background:var(--teal);color:#fff;border-color:var(--teal)}.pg-btn[disabled]{opacity:.4;cursor:default}
 </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-H9NV0ZK9RN"></script>
@@ -222,6 +223,7 @@ footer{border-top:1px solid var(--line);margin-top:20px;padding:16px 0 24px;colo
       <div class="active-chips" id="active-chips"></div>
       <p class="count" id="count"></p>
       <div class="results list" id="results"></div>
+      <div class="pager" id="pager"></div>
     </section>
 
   </div>
@@ -255,7 +257,7 @@ function optionsFor(group){
   return Object.keys(counts).sort((a,b)=>a.localeCompare(b)).map(v => ({v, n:counts[v]}));
 }
 
-const state = { sector:new Set(), country:new Set(), company:new Set(), q:"", view:"list" };
+const state = { sector:new Set(), country:new Set(), company:new Set(), q:"", view:"list", page:0 };
 let activeGroup = null, temp = new Set();
 
 const $ = s => document.querySelector(s);
@@ -274,10 +276,14 @@ function matches(d){
   return true;
 }
 
+function renderPager(total,pages){var el=document.querySelector("#pager");if(!el)return;if(pages<=1){el.innerHTML="";return;}var c=state.page,h="";h+='<button class="pg-btn" data-pg="'+(c-1)+'"'+(c===0?" disabled":"")+'>‹ Prev</button>';for(var i=0;i<pages;i++)h+='<button class="pg-btn pg-num'+(i===c?" on":"")+'" data-pg="'+i+'">'+(i+1)+'</button>';h+='<button class="pg-btn" data-pg="'+(c+1)+'"'+(c===pages-1?" disabled":"")+'>Next ›</button>';el.innerHTML=h;el.querySelectorAll(".pg-btn").forEach(function(b){b.addEventListener("click",function(){if(b.hasAttribute("disabled"))return;state.page=+b.dataset.pg;render();results.scrollIntoView({behavior:"smooth",block:"start"});});});}
 function render(){
   const rows = DATA.filter(matches);
+  const PER=10,pages=Math.max(1,Math.ceil(rows.length/PER));
+  if(state.page>=pages)state.page=pages-1;if(state.page<0)state.page=0;
+  const pageRows=rows.slice(state.page*PER,state.page*PER+PER);
   results.className = "results " + state.view;
-  results.innerHTML = rows.length ? rows.map(d => `
+  results.innerHTML = rows.length ? pageRows.map(d => `
     <a class="res-row" href="${d.url}">
       <span class="badge">${d.tk}</span>
       <div class="res-body">
@@ -293,7 +299,7 @@ function render(){
   countEl.textContent = rows.length === DATA.length
     ? `${DATA.length} studies` : `${rows.length} of ${DATA.length} studies`;
   const rl = $("#reset-link"); if(rl) rl.addEventListener("click", e=>{e.preventDefault();clearAll();});
-  renderChips(); renderBadges();
+  renderPager(rows.length,pages); renderChips(); renderBadges();
 }
 
 function renderBadges(){
@@ -312,7 +318,7 @@ function renderChips(){
   push("sector","Sector"); push("country","Country"); push("company","Company");
   chipsEl.innerHTML = chips.map((c,i)=>`<span class="ac"><b>${c.label}:</b> ${c.v}<button data-i="${i}" aria-label="Remove">✕</button></span>`).join("");
   chipsEl.querySelectorAll("button").forEach(btn=>{
-    btn.addEventListener("click",()=>{ const c=chips[+btn.dataset.i]; state[c.g].delete(c.v); render(); });
+    btn.addEventListener("click",()=>{ const c=chips[+btn.dataset.i]; state[c.g].delete(c.v); state.page=0; render(); });
   });
 }
 
@@ -362,7 +368,7 @@ function closeFilter(){
 }
 function commit(){
   if(activeGroup){ state[activeGroup] = new Set(temp); }
-  closeFilter(); render();
+  state.page=0; closeFilter(); render();
 }
 
 document.querySelectorAll(".filter-row").forEach(btn=>{
@@ -378,7 +384,7 @@ scrim.addEventListener("click", closeFilter);
 document.addEventListener("keydown", e=>{ if(e.key==="Escape" && activeGroup) closeFilter(); });
 
 /* ---- top search + views + clear ---- */
-$("#topsearch").addEventListener("input", e=>{ state.q = e.target.value.trim().toLowerCase(); render(); });
+$("#topsearch").addEventListener("input", e=>{ state.q = e.target.value.trim().toLowerCase(); state.page=0; render(); });
 function setView(v){
   state.view = v;
   $("#view-grid").classList.toggle("on", v==="grid");
@@ -387,7 +393,7 @@ function setView(v){
 }
 $("#view-grid").addEventListener("click", ()=>setView("grid"));
 $("#view-list").addEventListener("click", ()=>setView("list"));
-function clearAll(){ state.sector.clear(); state.country.clear(); state.company.clear(); state.q=""; $("#topsearch").value=""; render(); }
+function clearAll(){ state.sector.clear(); state.country.clear(); state.company.clear(); state.q=""; $("#topsearch").value=""; state.page=0; render(); }
 $("#clear-all").addEventListener("click", clearAll);
 
 render();
