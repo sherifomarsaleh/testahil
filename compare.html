@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-<title>Compare stocks — side by side | testahil?</title>
+<title>Compare stocks — EGX side by side | testahil?</title>
 <meta name="description" content="Compare the Egyptian stocks we cover side by side: the latest price, our fair value, cheap-or-expensive read, and the 1- and 3-month odds.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,7 +11,7 @@
 <link rel="icon" type="image/png" href="favicon.png?v=2">
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
 <script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('#theme-toggle');if(!b)return;var dark=document.documentElement.getAttribute('data-theme')==='dark';var n=dark?'light':'dark';if(n==='dark'){document.documentElement.setAttribute('data-theme','dark');}else{document.documentElement.removeAttribute('data-theme');}try{localStorage.setItem('theme',n);}catch(e){}b.setAttribute('aria-pressed',String(n==='dark'));});document.addEventListener('DOMContentLoaded',function(){var x=document.getElementById('theme-toggle');if(x)x.setAttribute('aria-pressed',String(document.documentElement.getAttribute('data-theme')==='dark'));});})();</script>
-<link rel="stylesheet" href="assets/style.css?v=20260702b">
+<link rel="stylesheet" href="assets/style.css?v=20260701r">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="testahil?">
 <meta property="og:title" content="Compare stocks — testahil?">
@@ -45,14 +45,14 @@
     <a href="ledger.html">Ledger</a>
     <a href="method.html">Methodology</a>
   </nav>
-  <a href="ar/index.html" class="lang-ar" lang="ar" style="margin-inline-start:14px;border:1px solid var(--gold);color:var(--gold);border-radius:7px;padding:3px 10px;font-size:var(--fs-small);text-decoration:none">العربية</a>
+  <a href="ar/index.html" class="lang-ar" lang="ar" style="margin-inline-start:14px;border:1px solid #C0A45F;color:#C0A45F;border-radius:7px;padding:3px 10px;font-size:13px;text-decoration:none">العربية</a>
   <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode" aria-pressed="false" title="Toggle dark / light"><svg class="tt-icon tt-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="tt-icon tt-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg><span class="tt-label tt-label-dark">Dark mode</span><span class="tt-label tt-label-light">Light mode</span></button>
 </div></header>
 
 
 <main class="wrap">
   <section id="sec-top" class="anchor" data-nav="Overview">
-    <h1 style="font-size:var(--fs-h1);margin-top:.4em">Compare</h1>
+    <h1 style="font-size:1.9rem;margin-top:.4em">Compare</h1>
     <p class="muted" style="max-width:600px" id="cmp-intro">Pick any two of the stocks we cover and see them stacked line by line — the latest price, what we think it's worth, whether it looks cheap or expensive, and the 3-month odds. Tap a name for the full study.</p>
   </section>
 
@@ -60,20 +60,20 @@
     <style>
       .cmp-pick{display:flex;flex-wrap:wrap;align-items:flex-end;gap:14px;margin:6px 0 4px}
       .cmp-field{display:flex;flex-direction:column;gap:5px;min-width:240px;flex:1 1 240px}
-      .cmp-field>span{font-size:var(--fs-small);font-weight:600;color:var(--muted);letter-spacing:.02em;text-transform:uppercase}
+      .cmp-field>span{font-size:.8rem;font-weight:600;color:var(--muted);letter-spacing:.02em;text-transform:uppercase}
       .cmp-vs{padding-bottom:9px;font-weight:700;color:var(--teal)}
       @media(max-width:560px){.cmp-vs{display:none}}
       .cmp-combo{position:relative}
       .cmp-combo-input{width:100%;padding-right:30px}
-      .cmp-combo-caret{position:absolute;right:11px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--muted);font-size:var(--fs-caption);transition:transform .15s}
+      .cmp-combo-caret{position:absolute;right:11px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--muted);font-size:.7rem;transition:transform .15s}
       .cmp-combo-input[aria-expanded="true"] ~ .cmp-combo-caret{transform:translateY(-50%) rotate(180deg)}
       .cmp-combo-panel{position:absolute;z-index:30;top:calc(100% + 4px);left:0;right:0;max-height:300px;overflow-y:auto;background:var(--card);border:1px solid var(--line);border-radius:10px;box-shadow:0 10px 28px rgba(0,0,0,.14);padding:5px}
-      .cmp-combo-group{font-size:var(--fs-caption);font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);padding:8px 10px 4px}
+      .cmp-combo-group{font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);padding:8px 10px 4px}
       .cmp-combo-opt{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:8px 10px;border-radius:7px;cursor:pointer}
       .cmp-combo-opt:hover,.cmp-combo-opt.active{background:rgba(42,143,143,.13)}
       .cmp-combo-opt.sel .cmp-combo-name::after{content:" \2713";color:var(--teal)}
-      .cmp-combo-code{font-size:var(--fs-small);white-space:nowrap}
-      .cmp-combo-empty{padding:10px;color:var(--muted);font-size:var(--fs-small)}
+      .cmp-combo-code{font-size:.78rem;white-space:nowrap}
+      .cmp-combo-empty{padding:10px;color:var(--muted);font-size:.85rem}
     </style>
     <div class="cmp-pick">
       <div class="cmp-field"><span>Stock 1</span><div id="cmp-a"></div></div>
@@ -101,7 +101,7 @@
     <p class="muted" style="margin-bottom:0">This page ranks nothing and tells you to buy nothing. Fair value is an estimate that can be wrong; the odds are model output, not a promise; and a cheap-looking name can stay cheap or get cheaper. It’s a map of estimates and probabilities to think with — the decision is always yours.</p>
   </section>
 
-  <section class="card anchor" id="sec-deeper" data-nav="Go deeper" style="background:var(--tint2)">
+  <section class="card anchor" id="sec-deeper" data-nav="Go deeper" style="background:#EFF5F4">
     <p class="qhead" style="margin-top:0">Go deeper</p>
     <p class="muted">Every number on this page comes from a full study — the company valued from the ground up, the chart read, the price run 50,000 ways, every assumption open to challenge.</p>
     <p style="margin-bottom:0"><a class="btn" href="stocks.html" id="cmp-deeplink">See all coverage →</a> &nbsp; <a class="btn ghost" href="method.html">How we build these →</a></p>
@@ -109,8 +109,8 @@
 
 </main>
 
-<footer><div class="wrap"><div class="foot-studies"><b>Studies:</b> <a href="phdc.html">Palm Hills</a> &middot; <a href="tmgh.html">Talaat Moustafa</a> &middot; <a href="ocdi.html">SODIC</a> &middot; <a href="orhd.html">Orascom Dev</a> &middot; <a href="oras.html">Orascom Const</a> &middot; <a href="comi.html">CIB</a> &middot; <a href="emfd.html">Emaar Misr</a> &middot; <a href="gold.html">Gold</a> &middot; <a href="stocks.html">all &rarr;</a></div><b>Disclaimer:</b> Educational valuation studies and personal analytical opinion — not investment advice, not recommendations. The preparer is not licensed by Egypt's FRA, manages no money, accepts no clients, and may hold positions in instruments mentioned. <a href="method.html#disclaimer">Full text</a>.<br><br><span class="social" style="font-size:var(--fs-lead);font-weight:700">Follow Testahil &mdash; <a href="https://t.me/testahil_markets" target="_blank" rel="noopener">Telegram</a> &middot; <a href="https://www.facebook.com/testahil.markets" target="_blank" rel="noopener">Facebook</a> &middot; <a href="https://www.linkedin.com/company/testahil" target="_blank" rel="noopener">LinkedIn</a></span></div></footer>
-<script src="assets/data.js?v=20260702b"></script><script src="assets/app.js?v=20260702b"></script>
+<footer><div class="wrap"><div class="foot-studies"><b>Studies:</b> <a href="phdc.html">Palm Hills</a> &middot; <a href="tmgh.html">Talaat Moustafa</a> &middot; <a href="ocdi.html">SODIC</a> &middot; <a href="orhd.html">Orascom Dev</a> &middot; <a href="oras.html">Orascom Const</a> &middot; <a href="comi.html">CIB</a> &middot; <a href="emfd.html">Emaar Misr</a> &middot; <a href="gold.html">Gold</a> &middot; <a href="stocks.html">all &rarr;</a></div><b>Disclaimer:</b> Educational valuation studies and personal analytical opinion — not investment advice, not recommendations. The preparer is not licensed by Egypt's FRA, manages no money, accepts no clients, and may hold positions in instruments mentioned. <a href="method.html#disclaimer">Full text</a>.<br><br><span class="social" style="font-size:1.05rem;font-weight:700">Follow Testahil &mdash; <a href="https://t.me/testahil_markets" target="_blank" rel="noopener">Telegram</a> &middot; <a href="https://www.facebook.com/testahil.markets" target="_blank" rel="noopener">Facebook</a> &middot; <a href="https://www.linkedin.com/company/testahil" target="_blank" rel="noopener">LinkedIn</a></span></div></footer>
+<script src="assets/data.js?v=20260701r"></script><script src="assets/app.js?v=20260701r"></script>
 <script>
   (function(){
     var params=new URLSearchParams(location.search);
@@ -129,7 +129,7 @@
       draw();
       if(intl){
         document.title="Compare stocks — side by side | testahil?";
-        var d=document.getElementById("cmp-deeplink"); if(d){ d.setAttribute("href","stocks.html"); d.textContent="See all coverage →"; }
+        var d=document.getElementById("cmp-deeplink"); if(d){ d.setAttribute("href","other-markets.html"); d.textContent="See all international coverage →"; }
       }
     }
     if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",init); else init();
