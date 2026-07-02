@@ -11,7 +11,7 @@
 <link rel="icon" type="image/png" href="favicon.png?v=2">
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
 <script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('#theme-toggle');if(!b)return;var dark=document.documentElement.getAttribute('data-theme')==='dark';var n=dark?'light':'dark';if(n==='dark'){document.documentElement.setAttribute('data-theme','dark');}else{document.documentElement.removeAttribute('data-theme');}try{localStorage.setItem('theme',n);}catch(e){}b.setAttribute('aria-pressed',String(n==='dark'));});document.addEventListener('DOMContentLoaded',function(){var x=document.getElementById('theme-toggle');if(x)x.setAttribute('aria-pressed',String(document.documentElement.getAttribute('data-theme')==='dark'));});})();</script>
-<link rel="stylesheet" href="assets/style.css?v=20260702g">
+<link rel="stylesheet" href="assets/style.css?v=20260703d">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="testahil?">
 <meta property="og:title" content="Fawry (FWRY) — is it worth it? | testahil?">
@@ -287,15 +287,25 @@
       #mc-lab .mc-grid{stroke:var(--line); stroke-width:1}
       #mc-lab .mc-median{fill:none; stroke:var(--teal); stroke-width:2}
       #mc-lab .mc-hz{stroke:var(--gold); stroke-width:1.4; stroke-dasharray:4 3}
-      #mc-lab .mc-ctl{margin-top:14px}
-      #mc-lab .mc-ctl label{display:flex; justify-content:space-between; font-size:var(--fs-small); margin-bottom:5px}
-      #mc-lab .mc-name{color:var(--ink); font-weight:600}
-      #mc-lab .mc-val{font-family:"IBM Plex Mono",monospace; color:var(--teal)}
-      #mc-lab input[type=range]{width:100%; -webkit-appearance:none; height:6px; border-radius:4px; background:var(--line); --mc-thumb:var(--teal)}
-      #mc-lab input[type=range]::-webkit-slider-thumb{-webkit-appearance:none; width:17px; height:17px; border-radius:50%; background:var(--mc-thumb); cursor:pointer; border:2px solid #fff; box-shadow:0 0 0 1px var(--line)}
-      #mc-lab input[type=range]::-moz-range-thumb{width:17px; height:17px; border-radius:50%; background:var(--mc-thumb); cursor:pointer; border:2px solid #fff}
-      #mc-lab .mc-ends{display:flex; justify-content:space-between; font-size:var(--fs-caption); color:var(--muted); margin-top:3px}
-      #mc-lab .mc-chan{font-size:var(--fs-caption); color:var(--muted); margin:5px 0 0; max-width:62ch}
+      #mc-lab .mc-controls{margin-top:6px}
+      #mc-lab .mc-ctl{margin-top:18px}
+      #mc-lab .mc-ctl:first-child{margin-top:0}
+      #mc-lab .mc-ctl label{display:flex; justify-content:space-between; align-items:baseline; gap:10px; margin-bottom:7px}
+      #mc-lab .mc-name{font-size:var(--fs-body); font-weight:600; color:var(--ink)}
+      #mc-lab .mc-val{font-family:"IBM Plex Mono",monospace; font-size:var(--fs-small); color:var(--teal); background:var(--tint); padding:3px 8px; border-radius:6px; white-space:nowrap}
+      #mc-lab input[type=range]{-webkit-appearance:none; appearance:none; width:100%; height:8px; border-radius:8px; outline:none;
+        background:linear-gradient(90deg,var(--mc-bad) 0%,var(--mc-mid) 50%,var(--mc-good) 100%);
+        box-shadow:inset 0 0 0 1px rgba(14,39,38,.10)}
+      #mc-lab input[type=range]::-webkit-slider-thumb{-webkit-appearance:none; width:22px; height:22px; border-radius:50%;
+        background:var(--mc-thumb,#fff); border:3px solid #fff; cursor:pointer; box-shadow:0 0 0 1px rgba(14,39,38,.30),0 1px 4px rgba(14,39,38,.35)}
+      #mc-lab input[type=range]::-moz-range-thumb{width:22px; height:22px; border-radius:50%;
+        background:var(--mc-thumb,#fff); border:3px solid #fff; cursor:pointer; box-shadow:0 0 0 1px rgba(14,39,38,.30),0 1px 4px rgba(14,39,38,.35)}
+      #mc-lab input[type=range]:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 3px var(--teal2)}
+      #mc-lab input[type=range]:focus-visible::-moz-range-thumb{box-shadow:0 0 0 3px var(--teal2)}
+      #mc-lab .mc-ends{display:flex; justify-content:space-between; font-size:var(--fs-caption); margin-top:6px}
+      #mc-lab .mc-ends .mc-b{color:var(--mc-bad)}
+      #mc-lab .mc-ends .mc-g{color:var(--mc-good)}
+      #mc-lab .mc-chan{font-size:var(--fs-small); color:var(--muted); margin:6px 2px 0}
       #mc-lab .mc-verdict{background:var(--tint2)}
       #mc-lab .mc-vline{margin:0 0 6px; font-size:var(--fs-body)}
       #mc-lab .mc-vline:last-child{margin-bottom:0}
@@ -344,6 +354,8 @@
     </div>
 
     <div class="mc-card">
+      <div class="mc-card-h"><h4>The three levers</h4><span class="mc-hint">most decision-relevant of the 16 factors</span></div>
+      <div class="mc-controls">
       <div class="mc-ctl">
         <label for="mc-drift"><span class="mc-name">CBE rate path — impact on the discount rate</span><span class="mc-val" id="mc-driftVal">+2.0% / quarter</span></label>
         <input type="range" id="mc-drift" min="-8" max="8" step="0.5" value="2">
@@ -362,7 +374,7 @@
         <div class="mc-ends"><span class="mc-b">gradual cuts</span><span class="mc-g">rapid cuts</span></div>
         <p class="mc-chan">More than 400bp of cuts within 12 months, re-rating the multiple toward the market's current 20x.</p>
       </div>
-
+      </div>
     </div>
 
     <div class="mc-card mc-verdict">
@@ -658,7 +670,7 @@
   </div>
 </div>
 
-<script src="assets/data.js?v=20260703b"></script><script src="assets/app.js?v=20260703b"></script>
+<script src="assets/data.js?v=20260703d"></script><script src="assets/app.js?v=20260703d"></script>
 <script>
 const T=TICKERS.FWRY;
 document.getElementById("upd").textContent=SITE.updated;
