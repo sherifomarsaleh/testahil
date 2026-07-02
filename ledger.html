@@ -176,7 +176,7 @@ const tabPanels = document.getElementById("tab-panels");
 
 // Instruments with a published 5-year calibration backtest image in assets/.
 // Panels for instruments not listed here omit the backtest block (no broken image).
-const HAS_BACKTEST = new Set(["PHDC","TMGH","EMFD","OCDI","ORHD","COMI","CCAP","ORAS","Gold","Samsung","Kakao","LGES","TMPV","ARAMCO","EMAAR","TSLA"]);
+const HAS_BACKTEST = new Set(["PHDC","TMGH","EMFD","OCDI","ORHD","COMI","CCAP","ORAS","Gold","Samsung","Kakao","LGES","TMPV","ARAMCO","EMAAR","TSLA","ABUK","FWRY","HRHO","ORWE"]);
 
 // "All" tab first
 const classOf = {};
@@ -213,7 +213,7 @@ tabPanels.innerHTML = `<div class="tab-panel active" id="panel-all">
   <p class="muted" style="margin-top:8px"><b id="sum-${t}"></b></p>
   ${HAS_BACKTEST.has(t) ? `<h3 style="font-size:var(--fs-h3);margin:24px 0 4px">Five-year calibration backtest</h3>
   <p class="muted" style="margin:0 0 12px;max-width:760px">The same model replayed on ${t}’s past five years — each quarter’s 3-month forecast cone against the price that actually printed, the PIT histogram (flat = well-calibrated), and how often each band actually held. Methodology validation; it does not count toward the live score above.</p>
-  <div class="card bt-fig"><img alt="${t} five-year calibration backtest — quarterly cone replay, PIT histogram, and band coverage vs target" src="assets/calibration_${t}.png?v=20260701j"></div>` : ``}
+  <div class="card bt-fig"><img alt="${t} five-year calibration backtest — quarterly cone replay, PIT histogram, and band coverage vs target" src="assets/calibration_${t}.png?v=20260703b"></div>` : ``}
 </div>`).join("");
 
 // Build all panel
