@@ -6,6 +6,110 @@ const SITE = { updated: "2026-07-01" };
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
+  FWRY: {
+    name: "Fawry",
+    nameAr: "فوري",
+    code: "EGX:FWRY",
+    spot: 18.4,
+    spotDate: "close 1 Jul 2026",
+    ccy: "EGP",
+    fair: { bear: 11.5, base: 14.7, full: 20.3 },
+    dist: {
+      t20: { label:"1 month (T+20)", p5:15.45, p25:17.37, p50:18.76, p75:20.22, p95:22.56, resolve:"2026-07-29" },
+      t60: { label:"3 months (T+60)", p5:14.05, p25:16.97, p50:19.38, p75:22.09, p95:26.64, resolve:"2026-09-23" }
+    },
+    touch: [ [22.08, 10, 40], [20.24, 37, 65], [19.32, 61, 80], [17.48, 47, 65], [16.56, 23, 44], [14.72, 4, 16] ],
+    levels: { res:[18.9, 19.5, 20.0], sup:[17.5, 17.0, 16.0] },
+    tech: {
+      trend: "Consolidating in the upper third of a strong uptrend",
+      summary: "Price sits just under the 20- and 50-day and on the 100-day, but well above a rising 200-day — a pause inside a strong 12-month advance. RSI ~55 is neutral. Pullbacks to the rising 200-day have been bought all year.",
+      bull: "A daily close back above the 19.5 fifty-day resumes the advance toward 20+.",
+      bear: "A close below the 17.0–17.5 shelf would change the read."
+    },
+    files: {
+      study: "files/FWRY_Valuation_Study_01-07-2026_public.docx?v=0703",
+      model: "files/FWRY_Valuation_Study_01-07-2026_public.xlsx?v=0703",
+      pdf:   "files/FWRY_Valuation_Study_01-07-2026_public.pdf?v=0703"
+    }
+  },
+  ABUK: {
+    name: "Abu Kir Fertilizers",
+    nameAr: "أبو قير للأسمدة",
+    code: "EGX:ABUK",
+    spot: 67.97,
+    spotDate: "close 1 Jul 2026",
+    ccy: "EGP",
+    fair: { bear: 50, base: 60, full: 72 },
+    dist: {
+      t20: { label:"1 month (T+20)", p5:51.67, p25:60.72, p50:67.7, p75:75.45, p95:88.03, resolve:"2026-07-29" },
+      t60: { label:"3 months (T+60)", p5:42.38, p25:55.61, p50:66.96, p75:80.83, p95:105.78, resolve:"2026-09-23" }
+    },
+    touch: [ [81.56, 20, 45], [74.77, 46, 66], [71.37, 66, 79], [64.57, 66, 80], [61.17, 44, 67], [54.38, 14, 40] ],
+    levels: { res:[75.0, 79.1, 81.3], sup:[64.8, 61.0, 60.0] },
+    tech: {
+      trend: "Sharp correction inside a longer uptrend — deeply oversold",
+      summary: "Price fell hard from its high and now sits below the 20/50/100-day averages but above a rising 200-day. RSI near 19 is deeply oversold — a reading that has marked exhaustion in ABUK's tape before, though it is a timing signal, not a value one.",
+      bull: "A daily close back above the 79–81 average cluster would say the correction is spent.",
+      bear: "A close below the rising 200-day (~65) opens the recent low near 60."
+    },
+    files: {
+      study: "files/ABUK_Valuation_Study_01-07-2026_public.docx?v=0703",
+      model: "files/ABUK_Valuation_Study_01-07-2026_public.xlsx?v=0703",
+      pdf:   "files/ABUK_Valuation_Study_01-07-2026_public.pdf?v=0703"
+    }
+  },
+  HRHO: {
+    name: "EFG Holding",
+    nameAr: "المجموعة المالية هيرميس القابضة",
+    code: "EGX:HRHO",
+    spot: 26.83,
+    spotDate: "close 1 Jul 2026",
+    ccy: "EGP",
+    fair: { bear: 23, base: 27.7, full: 33.6 },
+    dist: {
+      t20: { label:"1 month (T+20)", p5:21.22, p25:24.36, p50:26.65, p75:29.06, p95:32.99, resolve:"2026-07-29" },
+      t60: { label:"3 months (T+60)", p5:17.87, p25:22.4, p50:26.1, p75:30.33, p95:37.71, resolve:"2026-09-23" }
+    },
+    touch: [ [32.2, 11, 33], [29.51, 36, 58], [28.17, 58, 74], [25.49, 60, 78], [24.15, 35, 62], [21.46, 9, 33] ],
+    levels: { res:[27.5, 29.0, 30.86], sup:[26.5, 25.0, 24.0] },
+    tech: {
+      trend: "Tight coil — all four moving averages converged",
+      summary: "Price sits fractionally below four moving averages compressed into a two-point band — a textbook coil after a 52-week round trip. RSI ~59 is neutral-firm. No trend to lean on; the tape will follow the next catalyst.",
+      bull: "A daily close above ~29 opens the 30.86 high.",
+      bear: "A close below ~24 would break the coil lower."
+    },
+    files: {
+      study: "files/HRHO_Valuation_Study_01-07-2026_public.docx?v=0703",
+      model: "files/HRHO_Valuation_Study_01-07-2026_public.xlsx?v=0703",
+      pdf:   "files/HRHO_Valuation_Study_01-07-2026_public.pdf?v=0703"
+    }
+  },
+  ORWE: {
+    name: "Oriental Weavers",
+    nameAr: "النساجون الشرقيون",
+    code: "EGX:ORWE",
+    spot: 22.34,
+    spotDate: "close 1 Jul 2026",
+    ccy: "EGP",
+    fair: { bear: 16.7, base: 20.9, full: 29.7 },
+    dist: {
+      t20: { label:"1 month (T+20)", p5:19.84, p25:21.46, p50:22.53, p75:23.66, p95:25.6, resolve:"2026-07-29" },
+      t60: { label:"3 months (T+60)", p5:18.42, p25:21.01, p50:22.91, p75:25.01, p95:28.48, resolve:"2026-09-23" }
+    },
+    touch: [ [26.81, 2, 18], [24.57, 18, 47], [23.46, 43, 69], [21.22, 33, 55], [20.11, 10, 30], [17.87, 1, 5] ],
+    levels: { res:[22.8, 23.1, 24.92], sup:[21.0, 20.0, 19.0] },
+    tech: {
+      trend: "Tight one-year coil, grinding at its lower edge",
+      summary: "Price sits below four flattened moving averages inside a 12-month sideways range, now at its lower edge. RSI ~33 approaches oversold without confirming. Soft but compressed — a low-energy drift awaiting a policy or earnings catalyst.",
+      bull: "A daily close back above the ~23 average cluster relieves the pressure.",
+      bear: "A close below 21 opens the range floor toward 20."
+    },
+    files: {
+      study: "files/ORWE_Valuation_Study_01-07-2026_public.docx?v=0703",
+      model: "files/ORWE_Valuation_Study_01-07-2026_public.xlsx?v=0703",
+      pdf:   "files/ORWE_Valuation_Study_01-07-2026_public.pdf?v=0703"
+    }
+  },
   PHDC: {
     name: "Palm Hills Developments",
     nameAr: "بالم هيلز للتعمير",
@@ -436,12 +540,9 @@ const COMING = [
   { code:"EGX:ORHD", name:"Orascom Development",          url:"orhd.html", status:"covered" },
   { code:"EGX:ORAS", name:"Orascom Construction",          url:"oras.html", status:"covered" },
   { code:"EGX:COMI", name:"Commercial International Bank", url:"comi.html", status:"covered" },
-  { code:"EGX:FWRY", name:"Fawry",                            url:null,        status:"soon" },
   { code:"EGX:HELI", name:"Heliopolis Housing",              url:null,        status:"soon" },
   { code:"EGX:BTFH", name:"Beltone",                          url:null,        status:"soon" },
-  { code:"EGX:ABUK", name:"Abu Kir Fertilizers",             url:null,        status:"soon" },
   { code:"EGX:EFID", name:"Edita",                            url:null,        status:"soon" },
-  { code:"EGX:HRHO", name:"EFG Holding",                      url:null,        status:"soon" },
   { code:"EGX:MFPC", name:"MOPCO",                            url:null,        status:"soon" },
 ];
 
@@ -825,7 +926,63 @@ const LEDGER = [
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
-  }
+  },
+  { instrument:"FWRY", asset_class:"equity", anchor_date:"2026-07-01", anchor_price:18.4, ccy:"EGP",
+    horizon_label:"T+20", grade_date:"2026-07-29", cycle_no:1, reanchor_from:null,
+    p5:15.45, p25:17.37, p50:18.76, p75:20.22, p95:22.56,
+    touch:{ "+5":80, "+10":65, "+15":52, "+20":40, "-5":65, "-10":44 },
+    anchor_vol:0.3332, horizon_days:20,
+    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
+    realized_quantile:null, median_err:null, touch_hit:null },
+  { instrument:"FWRY", asset_class:"equity", anchor_date:"2026-07-01", anchor_price:18.4, ccy:"EGP",
+    horizon_label:"T+60", grade_date:"2026-09-23", cycle_no:1, reanchor_from:null,
+    p5:14.05, p25:16.97, p50:19.38, p75:22.09, p95:26.64,
+    touch:{ "+5":80, "+10":65, "+15":52, "+20":40, "-5":65, "-10":44 },
+    anchor_vol:0.3332, horizon_days:60,
+    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
+    realized_quantile:null, median_err:null, touch_hit:null },
+  { instrument:"ABUK", asset_class:"equity", anchor_date:"2026-07-01", anchor_price:67.97, ccy:"EGP",
+    horizon_label:"T+20", grade_date:"2026-07-29", cycle_no:1, reanchor_from:null,
+    p5:51.67, p25:60.72, p50:67.7, p75:75.45, p95:88.03,
+    touch:{ "+5":79, "+10":66, "+15":55, "+20":45, "-5":80, "-10":67 },
+    anchor_vol:0.3624, horizon_days:20,
+    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
+    realized_quantile:null, median_err:null, touch_hit:null },
+  { instrument:"ABUK", asset_class:"equity", anchor_date:"2026-07-01", anchor_price:67.97, ccy:"EGP",
+    horizon_label:"T+60", grade_date:"2026-09-23", cycle_no:1, reanchor_from:null,
+    p5:42.38, p25:55.61, p50:66.96, p75:80.83, p95:105.78,
+    touch:{ "+5":79, "+10":66, "+15":55, "+20":45, "-5":80, "-10":67 },
+    anchor_vol:0.3624, horizon_days:60,
+    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
+    realized_quantile:null, median_err:null, touch_hit:null },
+  { instrument:"HRHO", asset_class:"equity", anchor_date:"2026-07-01", anchor_price:26.83, ccy:"EGP",
+    horizon_label:"T+20", grade_date:"2026-07-29", cycle_no:1, reanchor_from:null,
+    p5:21.22, p25:24.36, p50:26.65, p75:29.06, p95:32.99,
+    touch:{ "+5":74, "+10":58, "+15":44, "+20":34, "-5":78, "-10":62 },
+    anchor_vol:0.2955, horizon_days:20,
+    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
+    realized_quantile:null, median_err:null, touch_hit:null },
+  { instrument:"HRHO", asset_class:"equity", anchor_date:"2026-07-01", anchor_price:26.83, ccy:"EGP",
+    horizon_label:"T+60", grade_date:"2026-09-23", cycle_no:1, reanchor_from:null,
+    p5:17.87, p25:22.4, p50:26.1, p75:30.33, p95:37.71,
+    touch:{ "+5":74, "+10":58, "+15":44, "+20":34, "-5":78, "-10":62 },
+    anchor_vol:0.2955, horizon_days:60,
+    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
+    realized_quantile:null, median_err:null, touch_hit:null },
+  { instrument:"ORWE", asset_class:"equity", anchor_date:"2026-07-01", anchor_price:22.34, ccy:"EGP",
+    horizon_label:"T+20", grade_date:"2026-07-29", cycle_no:1, reanchor_from:null,
+    p5:19.84, p25:21.46, p50:22.53, p75:23.66, p95:25.6,
+    touch:{ "+5":69, "+10":47, "+15":30, "+20":18, "-5":55, "-10":30 },
+    anchor_vol:0.2248, horizon_days:20,
+    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
+    realized_quantile:null, median_err:null, touch_hit:null },
+  { instrument:"ORWE", asset_class:"equity", anchor_date:"2026-07-01", anchor_price:22.34, ccy:"EGP",
+    horizon_label:"T+60", grade_date:"2026-09-23", cycle_no:1, reanchor_from:null,
+    p5:18.42, p25:21.01, p50:22.91, p75:25.01, p95:28.48,
+    touch:{ "+5":69, "+10":47, "+15":30, "+20":18, "-5":55, "-10":30 },
+    anchor_vol:0.2248, horizon_days:60,
+    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
+    realized_quantile:null, median_err:null, touch_hit:null }
 ];
 
 /* ==========================================================================
