@@ -47,8 +47,9 @@ a{color:var(--teal);text-decoration:none}
 .nav .wrap{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 20px;min-height:52px;padding-top:8px;padding-bottom:8px}
 .brand{font-family:"Alexandria";font-weight:800;font-size:2.2rem;color:var(--teal)}
 .brand small{display:inline;font-size:.7em;font-weight:400;color:var(--muted);margin-inline-start:6px}
-@media(max-width:700px){ .brand{font-size:1.8rem} .brand small{display:none} .nav nav{gap:8px 10px} }
 .nav nav{display:flex;gap:14px;flex-wrap:wrap;font-size:1rem}
+@media(max-width:700px){ .brand{font-size:1.8rem} .brand small{display:none} .nav nav{gap:8px 8px} .nav nav .lang-ar{padding:3px 7px !important} }
+@media(max-width:400px){ .nav nav{gap:6px 7px;font-size:.92rem} .nav nav .lang-ar{padding:2px 6px !important} }
 .nav nav a{color:var(--ink)}
 .nav nav a.on{font-weight:600;border-bottom:2px solid var(--amber)}
 .theme-toggle{margin-inline-start:auto; align-self:center; display:inline-flex; align-items:center; gap:8px;
