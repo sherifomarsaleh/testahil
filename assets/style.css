@@ -112,6 +112,17 @@ label{font-size:var(--fs-small); font-weight:600; display:block; margin-bottom:3
   table{font-size:var(--fs-small)}
   th,td{padding:6px 5px}
   .card{padding:12px}
+  /* wide tables scroll inside their own box instead of pushing the page past the screen edge */
+  table:not(.compare-table){display:block; width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch}
+}
+
+/* mobile: stop Monte-Carlo cards from blowing past the screen edge.
+   Grid items default to min-width:auto and refuse to shrink below their content,
+   forcing the 1fr column wider than the viewport. Let them shrink; the inner
+   table (rule above) scrolls instead. */
+@media(max-width:640px){
+  .mc-grid2, .mc-grid3{grid-template-columns:minmax(0,1fr) !important}
+  .mc-card{min-width:0}
 }
 
 /* ============================================================
