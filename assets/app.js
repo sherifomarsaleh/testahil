@@ -68,18 +68,18 @@ function renderStrip(elId, d, spot, opts={}){
       aria-label="Likely price range. The latest price is ${F(spot)}; the middle outcome is ${F(d.p50)}. Half of outcomes fall between ${F(d.p25)} and ${F(d.p75)}.">
     <style>
       .lab{font:600 ${fLab}px 'IBM Plex Mono',monospace}
-      .end{fill:#8A9A98}.mid{fill:#1B5E5E}.tod{fill:#C98A2D}
-      .band{fill:#1B5E5E;font-size:${fBand}px}
+      .end{fill:#8A9A98}.mid{fill:#12796B}.tod{fill:#C0A45F}
+      .band{fill:#12796B;font-size:${fBand}px}
       .dat{font:500 ${fDate}px 'IBM Plex Mono',monospace;fill:#8A9A98}
     </style>
     <!-- wide range 5–95% -->
-    <line x1="${X(d.p5)}" x2="${X(d.p95)}" y1="${y}" y2="${y}" stroke="#CFE0DE" stroke-width="12" stroke-linecap="round"/>
+    <line x1="${X(d.p5)}" x2="${X(d.p95)}" y1="${y}" y2="${y}" stroke="#D9E4E2" stroke-width="12" stroke-linecap="round"/>
     <!-- middle half 25–75% -->
-    <line x1="${X(d.p25)}" x2="${X(d.p75)}" y1="${y}" y2="${y}" stroke="#2A8F8F" stroke-width="22" stroke-linecap="round" opacity=".55"/>
+    <line x1="${X(d.p25)}" x2="${X(d.p75)}" y1="${y}" y2="${y}" stroke="#178A76" stroke-width="22" stroke-linecap="round" opacity=".55"/>
     <!-- middle outcome mark -->
-    <line x1="${X(d.p50)}" x2="${X(d.p50)}" y1="${y-20}" y2="${y+20}" stroke="#1B5E5E" stroke-width="6" stroke-linecap="round"/>
+    <line x1="${X(d.p50)}" x2="${X(d.p50)}" y1="${y-20}" y2="${y+20}" stroke="#12796B" stroke-width="6" stroke-linecap="round"/>
     <!-- latest-price mark -->
-    <circle cx="${X(spot)}" cy="${y}" r="11" fill="#fff" stroke="#C98A2D" stroke-width="4"/>
+    <circle cx="${X(spot)}" cy="${y}" r="11" fill="#fff" stroke="#C0A45F" stroke-width="4"/>
     <!-- TOP row above the bar: rare extremes + middle outcome -->
     <text x="${X(d.p50)}" y="${topY}" text-anchor="middle" class="lab mid">middle ${F(d.p50)}</text>
     <text x="${X(d.p5)}" y="${topY}" text-anchor="middle" class="lab end">${F(d.p5)}</text>
@@ -95,9 +95,9 @@ function renderStrip(elId, d, spot, opts={}){
 
 function stripLegend(){
   return `<div class="legend">
-    <span><i class="sw" style="background:#2A8F8F;opacity:.55;border-radius:3px"></i> where it lands half the time</span>
-    <span><i class="sw" style="background:#CFE0DE;border-radius:3px"></i> almost the whole range (9 times in 10)</span>
-    <span><i class="sw" style="background:#fff;border:3px solid #C98A2D"></i> latest price</span>
+    <span><i class="sw" style="background:#178A76;opacity:.55;border-radius:3px"></i> where it lands half the time</span>
+    <span><i class="sw" style="background:#D9E4E2;border-radius:3px"></i> almost the whole range (9 times in 10)</span>
+    <span><i class="sw" style="background:#fff;border:3px solid #C0A45F"></i> latest price</span>
   </div>`;
 }
 
@@ -256,13 +256,13 @@ function renderGauge(elId, spot, fair, asof){
   const baseX   = Math.max(valHalf, Math.min(W-valHalf, X(base)));
   el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" role="img"
       aria-label="Latest price ${F(spot)} versus our fair value ${F(base)}.">
-    <style>.g{font:600 ${fG}px 'IBM Plex Mono',monospace}.gsm{font:600 ${fGsm}px 'IBM Plex Mono',monospace}.gdt{font:500 ${fGdt}px 'IBM Plex Mono',monospace}.gmut{fill:#8A9A98}.gink{fill:var(--ink)}.gbase{fill:#1B5E5E}</style>
+    <style>.g{font:600 ${fG}px 'IBM Plex Mono',monospace}.gsm{font:600 ${fGsm}px 'IBM Plex Mono',monospace}.gdt{font:500 ${fGdt}px 'IBM Plex Mono',monospace}.gmut{fill:#8A9A98}.gink{fill:var(--ink)}.gbase{fill:#12796B}</style>
     <defs><linearGradient id="vg" gradientUnits="userSpaceOnUse" x1="${X(min)}" y1="0" x2="${X(max)}" y2="0">
-      <stop offset="0" stop-color="#2E7D5B"/><stop offset="0.25" stop-color="#6FA85C"/><stop offset="0.5" stop-color="#C98A2D"/><stop offset="0.75" stop-color="#D06A2C"/><stop offset="1" stop-color="#C0392B"/>
+      <stop offset="0" stop-color="#2E7D5B"/><stop offset="0.25" stop-color="#6FA85C"/><stop offset="0.5" stop-color="#C0A45F"/><stop offset="0.75" stop-color="#D06A2C"/><stop offset="1" stop-color="#C0392B"/>
     </linearGradient></defs>
     <rect x="${X(min)}" y="${y-6}" width="${X(max)-X(min)}" height="12" rx="6" fill="url(#vg)"/>
     <!-- our value mark + label ABOVE -->
-    <line x1="${X(base)}" x2="${X(base)}" y1="${y-16}" y2="${y+16}" stroke="#1B5E5E" stroke-width="5"/>
+    <line x1="${X(base)}" x2="${X(base)}" y1="${y-16}" y2="${y+16}" stroke="#12796B" stroke-width="5"/>
     <text x="${baseX}" y="${valY}" text-anchor="middle" class="g gbase">our value ${F(base)}</text>
     <!-- today mark + label BELOW -->
     <circle cx="${X(spot)}" cy="${y}" r="10" fill="#fff" stroke="#0E2726" stroke-width="4"/>
