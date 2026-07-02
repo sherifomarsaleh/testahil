@@ -352,9 +352,9 @@
         <p class="mc-chan">Cuts re-rate the multiple and fuel the consumer-credit engine, but compress the treasury/float income — the two effects partly net out.</p>
       </div>
       <div class="mc-ctl">
-        <label for="mc-ev1"><span class="mc-name">Margin / growth disappointment — probability</span><span class="mc-val" id="mc-ev1Val">20% &middot; −10% if it lands</span></label>
-        <input type="range" id="mc-ev1" min="0" max="60" step="1" value="20">
-        <div class="mc-ends"><span class="mc-b">growth holds</span><span class="mc-g">growth disappoints</span></div>
+        <label for="mc-ev1"><span class="mc-name">Margin / growth disappointment — probability</span><span class="mc-val" id="mc-ev1Val">-20% &middot; −10% if it lands</span></label>
+        <input type="range" id="mc-ev1" min="-50" max="-5" step="1" value="-20">
+        <div class="mc-ends"><span class="mc-b">growth disappoints</span><span class="mc-g">growth holds</span></div>
         <p class="mc-chan">Two soft quarters of sub-20% revenue growth or a margin print below 45%.</p>
       </div>
       <div class="mc-ctl">
@@ -508,7 +508,7 @@
           el("mc-ladderBody").innerHTML=s;}
 
         function render(){
-          var driftV=parseFloat(drift.value)/100, ev1P=parseInt(ev1.value,10)/100, ev2P=parseInt(ev2.value,10)/100;
+          var driftV=parseFloat(drift.value)/100, ev1P=Math.abs(parseInt(ev1.value,10))/100, ev2P=Math.abs(parseInt(ev2.value,10))/100;
           var M=moments(driftV,ev1P,ev2P);
           computeDomain(M); drawAxes(); drawXAxis();
           paintThumb(drift); paintThumb(ev1); paintThumb(ev2);
@@ -538,7 +538,7 @@
         function setHz(h){HZ=h; AX=h; el("mc-h20").setAttribute("aria-pressed",h===20); el("mc-h60").setAttribute("aria-pressed",h===60); drawXAxis(); render();}
         el("mc-h20").addEventListener("click",function(){setHz(20);});
         el("mc-h60").addEventListener("click",function(){setHz(60);});
-        el("mc-reset").addEventListener("click",function(){drift.value="2"; ev1.value="20"; ev2.value="30"; setHz(60); render();});
+        el("mc-reset").addEventListener("click",function(){drift.value="2"; ev1.value="-20"; ev2.value="30"; setHz(60); render();});
         render();
       }
       if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",boot);

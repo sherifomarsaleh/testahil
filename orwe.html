@@ -352,16 +352,16 @@
         <p class="mc-chan">Each 10% EGP depreciation is worth roughly +1.5–2 gross-margin points on the export book — about EGP 3–4/share capitalized.</p>
       </div>
       <div class="mc-ctl">
-        <label for="mc-ev1"><span class="mc-name">Export-rebate lapse — probability</span><span class="mc-val" id="mc-ev1Val">30% &middot; −5% if it lands</span></label>
-        <input type="range" id="mc-ev1" min="0" max="60" step="1" value="30">
-        <div class="mc-ends"><span class="mc-b">rebates continue</span><span class="mc-g">rebates restored</span></div>
+        <label for="mc-ev1"><span class="mc-name">Export-rebate lapse — probability</span><span class="mc-val" id="mc-ev1Val">-30% &middot; −5% if it lands</span></label>
+        <input type="range" id="mc-ev1" min="-50" max="-5" step="1" value="-30">
+        <div class="mc-ends"><span class="mc-b">rebates lapse</span><span class="mc-g">rebates continue</span></div>
         <p class="mc-chan">The state export-support program the AGM itself flagged as fading — a full lapse costs an estimated EGP 2–3/share.</p>
       </div>
       <div class="mc-ctl">
-        <label for="mc-ev2"><span class="mc-name">New EGP devaluation leg — probability</span><span class="mc-val" id="mc-ev2Val">30% &middot; +9% if it lands</span></label>
-        <input type="range" id="mc-ev2" min="0" max="60" step="1" value="30">
-        <div class="mc-ends"><span class="mc-b">no move</span><span class="mc-g">devaluation hits</span></div>
-        <p class="mc-chan">A repeat of the FY23 playbook — a step-devaluation that re-arms the export margin overnight.</p>
+        <label for="mc-ev2"><span class="mc-name">US tariff on Egyptian exports — probability of a step-up</span><span class="mc-val" id="mc-ev2Val">-25% &middot; −5% if it lands</span></label>
+        <input type="range" id="mc-ev2" min="-45" max="-5" step="1" value="-25">
+        <div class="mc-ends"><span class="mc-b">tariffs step up</span><span class="mc-g">tariffs stay flat</span></div>
+        <p class="mc-chan">The US ‘baseline’ tariff on Egyptian goods rising further — it sits on roughly a third of sales, routed through the Americas book.</p>
       </div>
 
     </div>
@@ -418,7 +418,7 @@
         var CONT_FIXED=[["Polypropylene / oil cost",-0.003,0.03],["US demand",0.004,0.03],["Freight / Red Sea",-0.002,0.025]];
         var IDIO=0.1, EGP_VOL=0.03;
         var EV_FIXED=[];
-        var GEO_MEAN=-0.05, GEO_SD=0.03, LNCH_MEAN=0.09, LNCH_SD=0.04;
+        var GEO_MEAN=-0.05, GEO_SD=0.03, LNCH_MEAN=-0.05, LNCH_SD=0.025;
 
         function erf(x){var s=x<0?-1:1;x=Math.abs(x);var t=1/(1+0.3275911*x);
           var y=1-(((((1.061405429*t-1.453152027)*t)+1.421413741)*t-0.284496736)*t+0.254829592)*t*Math.exp(-x*x);return s*y;}
@@ -508,13 +508,13 @@
           el("mc-ladderBody").innerHTML=s;}
 
         function render(){
-          var driftV=parseFloat(drift.value)/100, ev1P=parseInt(ev1.value,10)/100, ev2P=parseInt(ev2.value,10)/100;
+          var driftV=parseFloat(drift.value)/100, ev1P=Math.abs(parseInt(ev1.value,10))/100, ev2P=Math.abs(parseInt(ev2.value,10))/100;
           var M=moments(driftV,ev1P,ev2P);
           computeDomain(M); drawAxes(); drawXAxis();
           paintThumb(drift); paintThumb(ev1); paintThumb(ev2);
           el("mc-driftVal").textContent=(driftV>=0?"+":"−")+Math.abs(driftV*100).toFixed(1)+"% / quarter";
           el("mc-ev1Val").textContent=Math.round(ev1P*100)+"% · −5% if it lands";
-          el("mc-ev2Val").textContent=Math.round(ev2P*100)+"% · +9% if it lands";
+          el("mc-ev2Val").textContent=Math.round(ev2P*100)+"% · −5% if it lands";
           el("mc-band95").setAttribute("d",bandPath(M,95,5));
           el("mc-band75").setAttribute("d",bandPath(M,75,25));
           el("mc-medianP").setAttribute("d",medianPath(M));
@@ -538,7 +538,7 @@
         function setHz(h){HZ=h; AX=h; el("mc-h20").setAttribute("aria-pressed",h===20); el("mc-h60").setAttribute("aria-pressed",h===60); drawXAxis(); render();}
         el("mc-h20").addEventListener("click",function(){setHz(20);});
         el("mc-h60").addEventListener("click",function(){setHz(60);});
-        el("mc-reset").addEventListener("click",function(){drift.value="1.5"; ev1.value="30"; ev2.value="30"; setHz(60); render();});
+        el("mc-reset").addEventListener("click",function(){drift.value="1.5"; ev1.value="-30"; ev2.value="-25"; setHz(60); render();});
         render();
       }
       if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",boot);
