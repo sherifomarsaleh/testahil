@@ -48,6 +48,7 @@
 .bt-verdict{color:var(--muted);font-size:var(--fs-small);line-height:1.4}
 .bt-fig{padding:10px;margin-top:4px}.bt-fig img{width:100%;height:auto;border-radius:8px;display:block}
 @media(max-width:760px){.bt-grid{grid-template-columns:1fr}}
+.pager{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:22px 0 8px}.pg-btn{font:inherit;font-size:.9rem;padding:6px 12px;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;cursor:pointer;min-width:38px}.pg-btn:hover:not([disabled]){border-color:var(--teal);color:var(--teal)}.pg-btn.on{background:var(--teal);color:#fff;border-color:var(--teal)}.pg-btn[disabled]{opacity:.4;cursor:default}
 </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-H9NV0ZK9RN"></script>
@@ -148,10 +149,14 @@ function renderRow(r){
   </tr>`;
 }
 
+const ledgerPage = {};
 function buildPanel(rows, tbodyId, summaryId){
   // newest first
   const sorted = [...rows].sort((a,b) => b.anchor_date.localeCompare(a.anchor_date) || b.horizon_label.localeCompare(a.horizon_label));
-  document.getElementById(tbodyId).innerHTML = sorted.map(renderRow).join("");
+  const PER=10, pages=Math.max(1,Math.ceil(sorted.length/PER));
+  let __pg = ledgerPage[tbodyId]||0; if(__pg>=pages)__pg=pages-1; if(__pg<0)__pg=0; ledgerPage[tbodyId]=__pg;
+  document.getElementById(tbodyId).innerHTML = sorted.slice(__pg*PER,__pg*PER+PER).map(renderRow).join("");
+  (function(){var pel=document.getElementById("pager-"+tbodyId);if(!pel)return;if(pages<=1){pel.innerHTML="";return;}var h='<button class="pg-btn" data-pg="'+(__pg-1)+'"'+(__pg===0?" disabled":"")+'>‹ Prev</button>';for(var i=0;i<pages;i++)h+='<button class="pg-btn pg-num'+(i===__pg?" on":"")+'" data-pg="'+i+'">'+(i+1)+'</button>';h+='<button class="pg-btn" data-pg="'+(__pg+1)+'"'+(__pg===pages-1?" disabled":"")+'>Next ›</button>';pel.innerHTML=h;pel.querySelectorAll(".pg-btn").forEach(function(b){b.addEventListener("click",function(){if(b.hasAttribute("disabled"))return;ledgerPage[tbodyId]=+b.dataset.pg;buildPanel(rows,tbodyId,summaryId);});});})();
   let hit=0, scored=0;
   rows.forEach(r=>{ if(!isOpen(r)){ scored++; if(isInBand(r)) hit++; }});
   const sm = document.getElementById(summaryId);
@@ -194,6 +199,7 @@ tabPanels.innerHTML = `<div class="tab-panel active" id="panel-all">
       <tbody id="tbody-all"></tbody>
     </table>
   </div>
+  <div class="pager" id="pager-tbody-all"></div>
   <p class="muted" style="margin-top:8px"><b id="sum-all"></b></p>
 </div>`
 + tickerOrder.map(t=>`<div class="tab-panel" id="panel-${t}">
@@ -203,6 +209,7 @@ tabPanels.innerHTML = `<div class="tab-panel active" id="panel-all">
       <tbody id="tbody-${t}"></tbody>
     </table>
   </div>
+  <div class="pager" id="pager-tbody-${t}"></div>
   <p class="muted" style="margin-top:8px"><b id="sum-${t}"></b></p>
   ${HAS_BACKTEST.has(t) ? `<h3 style="font-size:var(--fs-h3);margin:24px 0 4px">Five-year calibration backtest</h3>
   <p class="muted" style="margin:0 0 12px;max-width:760px">The same model replayed on ${t}’s past five years — each quarter’s 3-month forecast cone against the price that actually printed, the PIT histogram (flat = well-calibrated), and how often each band actually held. Methodology validation; it does not count toward the live score above.</p>
