@@ -106,7 +106,7 @@ label{font-size:var(--fs-small); font-weight:600; display:block; margin-bottom:3
 @media(max-width:700px){
   .brand{font-size:var(--fs-h1)}
   .brand small{display:none}
-  .nav nav{gap:8px 14px; font-size:var(--fs-lead); line-height:1.4}
+  .nav nav{gap:8px 10px; font-size:var(--fs-lead); line-height:1.4}
   .hero{padding:16px 0 10px}
   body{font-size:var(--fs-body)}
   table{font-size:var(--fs-small)}
