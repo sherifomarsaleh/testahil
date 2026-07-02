@@ -7,6 +7,10 @@
 'use strict';
 
 const COVERAGE_EN = [
+  {tk:"FWRY",   code:"EGX:FWRY",    name:"Fawry",                          sector:"Financial Services",        sub:"Digital payments & fintech", country:"Egypt",       cur:"EGP", fair:"14.7",    price:"18.40",   gap:"−20%",  date:"1 Jul 2026", url:"fwry.html",    thesis:"Egypt's leading digital-payments platform; a superb compounder trading ~25% above the blended fundamental centre."},
+  {tk:"ABUK",   code:"EGX:ABUK",    name:"Abu Kir Fertilizers",            sector:"Chemicals",                 sub:"Nitrogen fertilizers",       country:"Egypt",       cur:"EGP", fair:"60",      price:"67.97",   gap:"−11%",  date:"1 Jul 2026", url:"abuk.html",    thesis:"Debt-free nitrogen producer with large net cash; the whole argument is whether subsidised gas holds."},
+  {tk:"HRHO",   code:"EGX:HRHO",    name:"EFG Holding",                    sector:"Financial Services",        sub:"Investment bank & holdco",   country:"Egypt",       cur:"EGP", fair:"27.7",    price:"26.83",   gap:"+3%",   date:"1 Jul 2026", url:"hrho.html",    thesis:"Three-vertical financial holdco — IB, NBFI and Bank NXT; the market applies a fair ~17% holding-company discount."},
+  {tk:"ORWE",   code:"EGX:ORWE",    name:"Oriental Weavers",               sector:"Consumer Durables",         sub:"Machine-woven carpets",      country:"Egypt",       cur:"EGP", fair:"20.9",    price:"22.34",   gap:"−6%",   date:"1 Jul 2026", url:"orwe.html",    thesis:"World's largest machine-woven carpet maker; cheap-looking at 6x earnings, but margins rest on three policy crutches."},
   {tk:"PHDC",   code:"EGX:PHDC",    name:"Palm Hills Developments",       sector:"Real Estate & Hospitality", sub:"Developer",                country:"Egypt",       cur:"EGP", fair:"15.89",   price:"14.50",   gap:"+10%",   date:"11 Jun 2026", url:"phdc.html",    thesis:"Large-float developer; an intact uptrend, the recent dip on fading volume."},
   {tk:"TMGH",   code:"EGX:TMGH",    name:"Talaat Moustafa Group",         sector:"Real Estate & Hospitality", sub:"Developer",                country:"Egypt",       cur:"EGP", fair:"147",     price:"96.80",   gap:"+52%",   date:"17 Jun 2026", url:"tmgh.html",    thesis:"More cash than debt — unusually safe for a developer."},
   {tk:"EMFD",   code:"EGX:EMFD",    name:"Emaar Misr for Development",    sector:"Real Estate & Hospitality", sub:"Developer",                country:"Egypt",       cur:"EGP", fair:"19.8",    price:"12.44",   gap:"+60%",   date:"17 Jun 2026", url:"emfd.html",    thesis:"Net cash, a deep sold backlog, and the Marassi Red Sea upside."},
@@ -25,6 +29,10 @@ const COVERAGE_EN = [
 ];
 
 const COVERAGE_AR = [
+  {tk:"FWRY",   code:"EGX:FWRY",    name:"فوري",                     sector:"الخدمات المالية",      sub:"مدفوعات رقمية وتكنولوجيا مالية", country:"مصر", cur:"EGP", fair:"14.7",    price:"18.40",   gap:"−20%",  date:"1 يوليو 2026", url:"fwry.html",    thesis:"منصة المدفوعات الرقمية الرائدة في مصر؛ شركة نمو ممتازة تتداول بعلاوة ~25% فوق المركز الأساسي المرجح."},
+  {tk:"ABUK",   code:"EGX:ABUK",    name:"أبو قير للأسمدة",           sector:"الكيماويات",           sub:"أسمدة نيتروجينية",              country:"مصر", cur:"EGP", fair:"60",      price:"67.97",   gap:"−11%",  date:"1 يوليو 2026", url:"abuk.html",    thesis:"منتج أسمدة خالٍ من الديون بصافي نقد كبير؛ المحور هو استمرار دعم الغاز."},
+  {tk:"HRHO",   code:"EGX:HRHO",    name:"المجموعة المالية هيرميس",   sector:"الخدمات المالية",      sub:"بنك استثماري وشركة قابضة",       country:"مصر", cur:"EGP", fair:"27.7",    price:"26.83",   gap:"+3%",   date:"1 يوليو 2026", url:"hrho.html",    thesis:"شركة قابضة مالية بثلاثة قطاعات — بنك استثماري وتمويل غير مصرفي وبنك NXT؛ خصم الشركة القابضة عادل عند نحو 17%."},
+  {tk:"ORWE",   code:"EGX:ORWE",    name:"النساجون الشرقيون",         sector:"السلع الاستهلاكية المعمرة", sub:"سجاد آلي النسج",                country:"مصر", cur:"EGP", fair:"20.9",    price:"22.34",   gap:"−6%",   date:"1 يوليو 2026", url:"orwe.html",    thesis:"أكبر منتج سجاد آلي النسج في العالم؛ يبدو رخيصًا عند 6 أضعاف الأرباح، لكن الهوامش تقوم على ثلاث ركائز سياسية."},
   {tk:"PHDC",   code:"EGX:PHDC",    name:"بالم هيلز",                sector:"العقارات والضيافة",   sub:"مطوّر عقاري",            country:"مصر",            cur:"EGP", fair:"15.89",   price:"14.50",   gap:"+10%",   date:"11 يونيو 2026", url:"phdc.html",    thesis:"مطوّر كبير السيولة؛ اتجاه صاعد سليم، والتراجع الأخير جاء بأحجام متراجعة."},
   {tk:"TMGH",   code:"EGX:TMGH",    name:"طلعت مصطفى",               sector:"العقارات والضيافة",   sub:"مطوّر عقاري",            country:"مصر",            cur:"EGP", fair:"147",     price:"96.80",   gap:"+52%",   date:"17 يونيو 2026", url:"tmgh.html",    thesis:"نقد أكثر من الدين — آمن بدرجة غير معتادة لمطوّر عقاري."},
   {tk:"EMFD",   code:"EGX:EMFD",    name:"إعمار مصر",                sector:"العقارات والضيافة",   sub:"مطوّر عقاري",            country:"مصر",            cur:"EGP", fair:"19.8",    price:"12.44",   gap:"+60%",   date:"17 يونيو 2026", url:"emfd.html",    thesis:"صافي نقد، وحجز مبيعات عميق، وفرصة مرسى البحر الأحمر."},
@@ -46,5 +54,6 @@ const SHORT = {
   PHDC:"Palm Hills", TMGH:"Talaat Moustafa", EMFD:"Emaar Misr", OCDI:"SODIC",
   ORHD:"Orascom Dev", COMI:"CIB", CCAP:"Qalaa", ORAS:"Orascom Const",
   "005930":"Samsung", "035720":"Kakao", "373220":"LG Energy",
-  TMPV:"Tata Motors", ARAMCO:"Aramco", EMAAR:"Emaar", TSLA:"Tesla"
+  TMPV:"Tata Motors", ARAMCO:"Aramco", EMAAR:"Emaar", TSLA:"Tesla",
+  FWRY:"Fawry", ABUK:"Abu Kir Fert.", HRHO:"EFG Holding", ORWE:"Oriental Weavers"
 };
