@@ -124,22 +124,27 @@ function buildSitemap() {
 }
 
 // -------------------------------------------------------- homepage footer
-function footerStrip() {
-  const { COVERAGE_EN, SHORT } = loadGlobals(COV_PATH, ['COVERAGE_EN', 'SHORT']);
-  if (!Array.isArray(COVERAGE_EN)) throw new Error('COVERAGE_EN not found in ' + COV_PATH);
-  const short = SHORT || {};
-
-  const parseDate = s => {
+// English dates ("11 Jun 2026") parse cleanly; Arabic coverage rows carry the
+// same tickers in the same order, so we key the sort off the English dates for
+// both languages (Arabic month names would otherwise need their own map).
+function dateKeyMap() {
+  const { COVERAGE_EN } = loadGlobals(COV_PATH, ['COVERAGE_EN']);
+  const parse = s => {
     const m = String(s || '').match(/(\d{1,2})\s+([A-Za-z]{3})\w*\s+(\d{4})/);
     return m ? (Number(m[3]) * 10000 + (MONS[m[2]] || 0) * 100 + Number(m[1])) : 0;
   };
-  const items = COVERAGE_EN
-    .map(d => ({ url: d.url, label: short[d.tk] || d.name, key: parseDate(d.date) }))
+  const map = {};
+  (COVERAGE_EN || []).forEach(d => { map[d.tk] = parse(d.date); });
+  return map;
+}
+
+function stripFrom(cov, labelFn, keyMap) {
+  return (cov || [])
+    .map(d => ({ url: d.url, label: labelFn(d), key: keyMap[d.tk] || 0 }))
     .sort((a, b) => b.key - a.key)
     .slice(0, FOOTER_MAX)
     .map(d => `<a href="${d.url}">${esc(d.label)}</a>`)
     .join(' &middot; ');
-  return items;
 }
 
 function updateFooter(path) {
@@ -148,7 +153,12 @@ function updateFooter(path) {
   const START = '<!--STUDIES:START-->', END = '<!--STUDIES:END-->';
   const i = s.indexOf(START), j = s.indexOf(END);
   if (i === -1 || j === -1 || j < i) return null;   // no markers -> skip this file
-  const strip = footerStrip();
+  const { COVERAGE_EN, COVERAGE_AR, SHORT } = loadGlobals(COV_PATH, ['COVERAGE_EN', 'COVERAGE_AR', 'SHORT']);
+  const keyMap = dateKeyMap();
+  const isAr = path.startsWith('ar/');
+  const strip = isAr
+    ? stripFrom(COVERAGE_AR, d => d.name, keyMap)              // Arabic labels are already short
+    : stripFrom(COVERAGE_EN, d => (SHORT || {})[d.tk] || d.name, keyMap);
   const next = s.slice(0, i + START.length) + strip + s.slice(j);
   return writeIfChanged(path, next, `footer studies strip in ${path}`);
 }
