@@ -11,7 +11,7 @@
 <link rel="icon" type="image/png" href="favicon.png?v=2">
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
 <script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('#theme-toggle');if(!b)return;var dark=document.documentElement.getAttribute('data-theme')==='dark';var n=dark?'light':'dark';if(n==='dark'){document.documentElement.setAttribute('data-theme','dark');}else{document.documentElement.removeAttribute('data-theme');}try{localStorage.setItem('theme',n);}catch(e){}b.setAttribute('aria-pressed',String(n==='dark'));});document.addEventListener('DOMContentLoaded',function(){var x=document.getElementById('theme-toggle');if(x)x.setAttribute('aria-pressed',String(document.documentElement.getAttribute('data-theme')==='dark'));});})();</script>
-<link rel="stylesheet" href="assets/style.css?v=20260701y">
+<link rel="stylesheet" href="assets/style.css?v=20260702a">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="testahil?">
 <meta property="og:title" content="LG Energy Solution (373220) — is it worth it? | testahil?">
@@ -39,11 +39,11 @@
   .secnav{display:block; position:fixed; top:120px; left:calc(50% - 604px); width:144px;
     max-height:calc(100vh - 150px); overflow:auto; z-index:40}
 }
-.secnav .secnav-h{font-family:"Alexandria","IBM Plex Sans",sans-serif; font-size:.7rem;
+.secnav .secnav-h{font-family:"Alexandria","IBM Plex Sans",sans-serif; font-size:var(--fs-caption);
   letter-spacing:.09em; text-transform:uppercase; color:var(--muted); margin:0 0 10px; padding-left:14px}
 .secnav ol{list-style:none; margin:0; padding:0; border-left:2px solid var(--line)}
 .secnav a{display:block; padding:6px 0 6px 14px; margin-left:-2px; border-left:2px solid transparent;
-  color:var(--muted); font-size:.86rem; line-height:1.3; text-decoration:none;
+  color:var(--muted); font-size:var(--fs-small); line-height:1.3; text-decoration:none;
   transition:color .15s ease, border-color .15s ease}
 .secnav a:hover{color:var(--teal2); text-decoration:none}
 .secnav a.active{color:var(--ink); font-weight:600; border-left-color:var(--amber)}
@@ -160,7 +160,7 @@
     <a href="ledger.html">Ledger</a>
     <a href="method.html">Methodology</a>
   </nav>
-  <a href="ar/lges.html" class="lang-ar" lang="ar" style="margin-inline-start:14px;border:1px solid #C0A45F;color:#C0A45F;border-radius:7px;padding:3px 10px;font-size:13px;text-decoration:none">العربية</a>
+  <a href="ar/lges.html" class="lang-ar" lang="ar" style="margin-inline-start:14px;border:1px solid var(--gold);color:var(--gold);border-radius:7px;padding:3px 10px;font-size:var(--fs-small);text-decoration:none">العربية</a>
   <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode" aria-pressed="false" title="Toggle dark / light"><svg class="tt-icon tt-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="tt-icon tt-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg><span class="tt-label tt-label-dark">Dark mode</span><span class="tt-label tt-label-light">Light mode</span></button>
 </div></header>
 
@@ -171,7 +171,7 @@
 <div class="study-main">
   <section id="sec-top" class="anchor" style="padding-bottom:8px">
     <span class="chip num">KRX:373220</span><span class="chip">updated <span class="num" id="upd"></span></span>
-    <h1 style="font-size:1.8rem;margin-top:.4em">LG Energy Solution, Ltd.</h1>
+    <h1 style="font-size:var(--fs-h1);margin-top:.4em">LG Energy Solution, Ltd.</h1>
   </section>
 
   <!-- SEARCH -->
@@ -241,7 +241,7 @@
 
   <!-- ONE-LINE WHAT-IT-MEANS -->
   <section style="padding-top:8px">
-    <div class="card" style="background:#EFF5F4">
+    <div class="card" style="background:var(--tint2)">
       <p style="margin:0"><b>In plain terms:</b> LG Energy Solution trades well above our weighted central fair value — about 25% above it — so the model reads it as modestly expensive, not cheap. It is the world's #3 EV-battery maker and a major energy-storage supplier, but its defining quirk is structural: the US production credits that make the group profitable flow mostly through North-American joint ventures with carmakers, so the parent's own shareholders were attributed a net loss in 2024 and 2025. A disciplined discounted-cash-flow value of the parent lands near&nbsp;~KRW&nbsp;146,000 — well below spot — and only mid-cycle EBITDA multiples or a full recovery get you back toward today's price. The bull case (~KRW&nbsp;415,000, above spot) needs EV demand to stabilise, energy storage and the 46-series cylindrical line to scale, the US credit to be retained, and capital spending to normalise so the parent's earnings inflect positive; the cautious case (~KRW&nbsp;150,000) is an AMPC cut plus a longer EV downturn. What moves it is the EV cycle and US tax policy — not current earnings, which are negative at the owner level.</p>
     </div>
   </section>
@@ -258,43 +258,43 @@
         margin-top:4px;
       }
       #mc-lab .mc-head{display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-bottom:4px}
-      #mc-lab .mc-eyebrow{font-family:"IBM Plex Mono",monospace; font-size:.7rem; letter-spacing:.18em; text-transform:uppercase; color:var(--teal); margin:0 0 2px}
-      #mc-lab h3.mc-title{font-family:"Alexandria","IBM Plex Sans",sans-serif; font-weight:700; font-size:1.15rem; color:var(--teal); margin:0}
-      #mc-lab .mc-sub{color:var(--muted); font-size:.9rem; margin:2px 0 12px; max-width:60ch}
+      #mc-lab .mc-eyebrow{font-family:"IBM Plex Mono",monospace; font-size:var(--fs-caption); letter-spacing:.18em; text-transform:uppercase; color:var(--teal); margin:0 0 2px}
+      #mc-lab h3.mc-title{font-family:"Alexandria","IBM Plex Sans",sans-serif; font-weight:700; font-size:var(--fs-h3); color:var(--teal); margin:0}
+      #mc-lab .mc-sub{color:var(--muted); font-size:var(--fs-body); margin:2px 0 12px; max-width:60ch}
       #mc-lab .mc-sub b{color:var(--ink)}
 
       #mc-lab .mc-card{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px}
       #mc-lab .mc-card + .mc-card{margin-top:12px}
       #mc-lab .mc-card-h{display:flex; align-items:baseline; justify-content:space-between; gap:10px; margin:0 0 6px}
-      #mc-lab .mc-card-h h4{font-family:"Alexandria","IBM Plex Sans",sans-serif; font-size:.92rem; font-weight:600; color:var(--ink); margin:0}
-      #mc-lab .mc-card-h .mc-hint{font-size:.72rem; color:var(--muted); font-family:"IBM Plex Mono",monospace}
+      #mc-lab .mc-card-h h4{font-family:"Alexandria","IBM Plex Sans",sans-serif; font-size:var(--fs-body); font-weight:600; color:var(--ink); margin:0}
+      #mc-lab .mc-card-h .mc-hint{font-size:var(--fs-caption); color:var(--muted); font-family:"IBM Plex Mono",monospace}
 
-      #mc-lab .mc-seg{display:inline-flex; background:#EAF2F1; border:1px solid var(--line); border-radius:999px; padding:3px; gap:3px}
-      #mc-lab .mc-seg button{appearance:none; border:0; background:transparent; cursor:pointer; font-family:"IBM Plex Mono",monospace; font-weight:500; font-size:.78rem; letter-spacing:.04em; color:var(--teal); padding:5px 12px; border-radius:999px}
+      #mc-lab .mc-seg{display:inline-flex; background:var(--tint); border:1px solid var(--line); border-radius:999px; padding:3px; gap:3px}
+      #mc-lab .mc-seg button{appearance:none; border:0; background:transparent; cursor:pointer; font-family:"IBM Plex Mono",monospace; font-weight:500; font-size:var(--fs-small); letter-spacing:.04em; color:var(--teal); padding:5px 12px; border-radius:999px}
       #mc-lab .mc-seg button[aria-pressed="true"]{background:#fff; color:var(--ink); box-shadow:0 1px 3px rgba(0,0,0,.1)}
       #mc-lab .mc-seg button:focus-visible{outline:3px solid var(--teal2); outline-offset:2px}
 
       #mc-lab .mc-chartwrap{padding:2px 2px 0}
       #mc-lab svg{display:block; width:100%; height:auto}
-      #mc-lab .mc-axis text{font-family:"IBM Plex Mono",monospace; font-size:10px; fill:var(--muted)}
+      #mc-lab .mc-axis text{font-family:"IBM Plex Mono",monospace; font-size:var(--fs-caption); fill:var(--muted)}
       #mc-lab .mc-grid{stroke:var(--line); stroke-width:1}
       #mc-lab .mc-ref{stroke-dasharray:5 4; stroke-width:1.4}
       #mc-lab .mc-ref-sup{stroke:var(--red)}
       #mc-lab .mc-ref-con{stroke:var(--amber)}
       #mc-lab .mc-ref-anchor{stroke:rgba(14,39,38,.32); stroke-dasharray:1 4; stroke-width:1.1}
-      #mc-lab .mc-reflabel{font-family:"IBM Plex Mono",monospace; font-size:10px; font-weight:600}
+      #mc-lab .mc-reflabel{font-family:"IBM Plex Mono",monospace; font-size:var(--fs-caption); font-weight:600}
       #mc-lab .mc-median{fill:none; stroke:var(--amber); stroke-width:2.4}
       #mc-lab .mc-hz{stroke:var(--teal); stroke-width:1.1; stroke-dasharray:2 3; opacity:.5}
 
-      #mc-lab .mc-legend{display:flex; flex-wrap:wrap; gap:6px 14px; margin-top:8px; font-size:.74rem; color:var(--muted)}
+      #mc-lab .mc-legend{display:flex; flex-wrap:wrap; gap:6px 14px; margin-top:8px; font-size:var(--fs-caption); color:var(--muted)}
       #mc-lab .mc-legend span{display:inline-flex; align-items:center; gap:6px}
       #mc-lab .mc-sw{width:15px; height:9px; border-radius:2px; display:inline-block}
 
       #mc-lab .mc-controls{display:grid; gap:15px}
       #mc-lab .mc-ctl label{display:flex; justify-content:space-between; align-items:baseline; gap:10px; margin-bottom:7px}
-      #mc-lab .mc-ctl .mc-name{font-size:.9rem; font-weight:600; color:var(--ink)}
-      #mc-lab .mc-ctl .mc-val{font-family:"IBM Plex Mono",monospace; font-size:.78rem; color:var(--teal); background:#EAF2F1; padding:3px 8px; border-radius:6px; white-space:nowrap}
-      #mc-lab .mc-ctl .mc-chan{font-size:.76rem; color:var(--muted); margin:6px 2px 0}
+      #mc-lab .mc-ctl .mc-name{font-size:var(--fs-body); font-weight:600; color:var(--ink)}
+      #mc-lab .mc-ctl .mc-val{font-family:"IBM Plex Mono",monospace; font-size:var(--fs-small); color:var(--teal); background:var(--tint); padding:3px 8px; border-radius:6px; white-space:nowrap}
+      #mc-lab .mc-ctl .mc-chan{font-size:var(--fs-small); color:var(--muted); margin:6px 2px 0}
       #mc-lab input[type=range]{-webkit-appearance:none; appearance:none; width:100%; height:8px; border-radius:8px; outline:none;
         background:linear-gradient(90deg,var(--mc-bad) 0%,var(--mc-mid) 50%,var(--mc-good) 100%);
         box-shadow:inset 0 0 0 1px rgba(14,39,38,.10)}
@@ -304,39 +304,39 @@
         background:var(--mc-thumb,#fff); border:3px solid #fff; cursor:pointer; box-shadow:0 0 0 1px rgba(14,39,38,.30),0 1px 4px rgba(14,39,38,.35)}
       #mc-lab input[type=range]:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 3px var(--teal2)}
       #mc-lab input[type=range]:focus-visible::-moz-range-thumb{box-shadow:0 0 0 3px var(--teal2)}
-      #mc-lab .mc-ends{display:flex; justify-content:space-between; font-size:.7rem; margin-top:6px}
+      #mc-lab .mc-ends{display:flex; justify-content:space-between; font-size:var(--fs-caption); margin-top:6px}
       #mc-lab .mc-ends .mc-b{color:var(--red); font-weight:600}
       #mc-lab .mc-ends .mc-g{color:var(--green); font-weight:600}
 
       #mc-lab .mc-verdict{padding:13px 16px}
-      #mc-lab .mc-vline{font-size:.92rem; margin:0 0 4px}
+      #mc-lab .mc-vline{font-size:var(--fs-body); margin:0 0 4px}
       #mc-lab .mc-big{font-family:"IBM Plex Mono",monospace; font-weight:500; color:var(--teal)}
       #mc-lab .mc-big.mc-down{color:var(--red)}
 
       #mc-lab .mc-grid2{display:grid; grid-template-columns:1fr 1fr; gap:12px}
       @media(max-width:640px){#mc-lab .mc-grid2{grid-template-columns:1fr}}
-      #mc-lab table.mc-pct{width:100%; border-collapse:collapse; font-family:"IBM Plex Mono",monospace; font-size:.78rem}
+      #mc-lab table.mc-pct{width:100%; border-collapse:collapse; font-family:"IBM Plex Mono",monospace; font-size:var(--fs-small)}
       #mc-lab table.mc-pct th,#mc-lab table.mc-pct td{padding:6px 5px; text-align:right; border-bottom:1px solid var(--line)}
       #mc-lab table.mc-pct th:first-child,#mc-lab table.mc-pct td:first-child{text-align:left; font-family:"IBM Plex Sans",sans-serif}
-      #mc-lab table.mc-pct thead th{font-size:.66rem; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); font-weight:600}
+      #mc-lab table.mc-pct thead th{font-size:var(--fs-caption); letter-spacing:.04em; text-transform:uppercase; color:var(--muted); font-weight:600}
       #mc-lab table.mc-pct tr.mc-on td{background:rgba(42,143,143,.08)}
       #mc-lab table.mc-pct .mc-medc{color:var(--amber-text); font-weight:600}
 
       #mc-lab .mc-zbar{display:flex; height:30px; border-radius:7px; overflow:hidden; margin:2px 0 10px; border:1px solid var(--line)}
-      #mc-lab .mc-zbar div{display:flex; align-items:center; justify-content:center; color:#fff; font-family:"IBM Plex Mono",monospace; font-weight:500; font-size:.72rem; min-width:0}
-      #mc-lab .mc-zleg{display:grid; grid-template-columns:1fr 1fr; gap:4px 12px; font-size:.74rem; color:var(--muted)}
+      #mc-lab .mc-zbar div{display:flex; align-items:center; justify-content:center; color:#fff; font-family:"IBM Plex Mono",monospace; font-weight:500; font-size:var(--fs-caption); min-width:0}
+      #mc-lab .mc-zleg{display:grid; grid-template-columns:1fr 1fr; gap:4px 12px; font-size:var(--fs-caption); color:var(--muted)}
       #mc-lab .mc-zleg span{display:flex; align-items:center; gap:6px}
       #mc-lab .mc-dot{width:9px; height:9px; border-radius:2px; flex:none}
 
-      #mc-lab table.mc-ladder{width:100%; border-collapse:collapse; font-family:"IBM Plex Mono",monospace; font-size:.76rem}
+      #mc-lab table.mc-ladder{width:100%; border-collapse:collapse; font-family:"IBM Plex Mono",monospace; font-size:var(--fs-small)}
       #mc-lab table.mc-ladder th,#mc-lab table.mc-ladder td{padding:5px 6px; text-align:right; border-bottom:1px solid var(--line)}
       #mc-lab table.mc-ladder th:first-child,#mc-lab table.mc-ladder td:first-child{text-align:left}
-      #mc-lab table.mc-ladder thead th{font-size:.64rem; letter-spacing:.04em; text-transform:uppercase; color:var(--muted)}
+      #mc-lab table.mc-ladder thead th{font-size:var(--fs-caption); letter-spacing:.04em; text-transform:uppercase; color:var(--muted)}
       #mc-lab table.mc-ladder tr.mc-up td:first-child{color:var(--teal)}
       #mc-lab table.mc-ladder tr.mc-dn td:first-child{color:var(--red)}
 
-      #mc-lab .mc-foot{font-size:.72rem; color:var(--muted); margin:12px 2px 0; line-height:1.5}
-      #mc-lab .mc-reset{appearance:none; border:1.5px solid var(--teal); background:transparent; cursor:pointer; font-family:"IBM Plex Mono",monospace; font-weight:500; font-size:.74rem; color:var(--teal); padding:6px 12px; border-radius:8px; margin-top:12px}
+      #mc-lab .mc-foot{font-size:var(--fs-caption); color:var(--muted); margin:12px 2px 0; line-height:1.5}
+      #mc-lab .mc-reset{appearance:none; border:1.5px solid var(--teal); background:transparent; cursor:pointer; font-family:"IBM Plex Mono",monospace; font-weight:500; font-size:var(--fs-caption); color:var(--teal); padding:6px 12px; border-radius:8px; margin-top:12px}
       #mc-lab .mc-reset:hover{background:var(--teal); color:#fff}
       #mc-lab .mc-reset:focus-visible{outline:3px solid var(--teal2); outline-offset:2px}
     </style>
@@ -705,7 +705,7 @@
 </main>
 <div class="wrap"><div id="related" data-ticker="LGES"></div><div class="ctx-row"><a class="ctx-btn" href="compare.html?a=LGES">Compare LGES vs peers &rarr;</a><a class="ctx-btn ghost" href="calculator.html">What kept its value? &rarr;</a></div></div>
 
-<footer><div class="wrap"><div class="foot-studies"><b>Studies:</b> <a href="phdc.html">Palm Hills</a> &middot; <a href="tmgh.html">Talaat Moustafa</a> &middot; <a href="ocdi.html">SODIC</a> &middot; <a href="orhd.html">Orascom Dev</a> &middot; <a href="oras.html">Orascom Const</a> &middot; <a href="comi.html">CIB</a> &middot; <a href="emfd.html">Emaar Misr</a> &middot; <a href="gold.html">Gold</a> &middot; <a href="stocks.html">all &rarr;</a></div><b>Disclaimer:</b> Educational valuation studies and personal analytical opinion — not investment advice, not recommendations. The preparer is not licensed by Egypt's FRA or any other securities regulator, manages no money, accepts no clients, and may hold positions in instruments mentioned. <a href="method.html#disclaimer">Full text</a>.<br><br><span class="social" style="font-size:1.05rem;font-weight:700">Follow Testahil &mdash; <a href="https://t.me/testahil_markets" target="_blank" rel="noopener">Telegram</a> &middot; <a href="https://www.facebook.com/testahil.markets" target="_blank" rel="noopener">Facebook</a> &middot; <a href="https://www.linkedin.com/company/testahil" target="_blank" rel="noopener">LinkedIn</a></span></div></footer>
+<footer><div class="wrap"><div class="foot-studies"><b>Studies:</b> <a href="phdc.html">Palm Hills</a> &middot; <a href="tmgh.html">Talaat Moustafa</a> &middot; <a href="ocdi.html">SODIC</a> &middot; <a href="orhd.html">Orascom Dev</a> &middot; <a href="oras.html">Orascom Const</a> &middot; <a href="comi.html">CIB</a> &middot; <a href="emfd.html">Emaar Misr</a> &middot; <a href="gold.html">Gold</a> &middot; <a href="stocks.html">all &rarr;</a></div><b>Disclaimer:</b> Educational valuation studies and personal analytical opinion — not investment advice, not recommendations. The preparer is not licensed by Egypt's FRA or any other securities regulator, manages no money, accepts no clients, and may hold positions in instruments mentioned. <a href="method.html#disclaimer">Full text</a>.<br><br><span class="social" style="font-size:var(--fs-lead);font-weight:700">Follow Testahil &mdash; <a href="https://t.me/testahil_markets" target="_blank" rel="noopener">Telegram</a> &middot; <a href="https://www.facebook.com/testahil.markets" target="_blank" rel="noopener">Facebook</a> &middot; <a href="https://www.linkedin.com/company/testahil" target="_blank" rel="noopener">LinkedIn</a></span></div></footer>
 
 
 <!-- HOW TO READ THIS — modal -->
@@ -714,15 +714,15 @@
     <button class="modal-close" data-close type="button" aria-label="Close">&times;</button>
     <h3>How to read the odds bar</h3>
     <p class="muted">It's a picture of where the price could be — not a single guess. Here's each part:</p>
-    <div class="ex"><span class="dot" style="background:#2A8F8F;opacity:.55"></span><span><b>The thick teal band</b> is where the price lands about half the time. The two numbers above it are the edges of that "middle half."</span></div>
-    <div class="ex"><span class="dot" style="background:#CFE0DE"></span><span><b>The thin pale band</b> is almost the whole range — about 9 times out of 10 the price stays inside it. The far numbers are the rare low and rare high.</span></div>
-    <div class="ex"><span class="dot" style="background:#1B5E5E"></span><span><b>The upright line is the middle outcome</b> — half the simulations land above it, half below.</span></div>
-    <div class="ex"><span class="dot" style="background:#fff;border:3px solid #C98A2D"></span><span><b>The gold dot is the latest price.</b> If most of the bar sits to its right, the odds lean up; to its left, they lean down.</span></div>
+    <div class="ex"><span class="dot" style="background:var(--teal2);opacity:.55"></span><span><b>The thick teal band</b> is where the price lands about half the time. The two numbers above it are the edges of that "middle half."</span></div>
+    <div class="ex"><span class="dot" style="background:var(--line)"></span><span><b>The thin pale band</b> is almost the whole range — about 9 times out of 10 the price stays inside it. The far numbers are the rare low and rare high.</span></div>
+    <div class="ex"><span class="dot" style="background:var(--teal)"></span><span><b>The upright line is the middle outcome</b> — half the simulations land above it, half below.</span></div>
+    <div class="ex"><span class="dot" style="background:#fff;border:3px solid var(--gold)"></span><span><b>The gold dot is the latest price.</b> If most of the bar sits to its right, the odds lean up; to its left, they lean down.</span></div>
     <p class="muted" style="margin-top:6px">The sentence above the bar says the same thing in words. These are model estimates from 50,000 simulations — useful odds, never guarantees.</p>
   </div>
 </div>
 
-<script src="assets/data.js?v=20260701y"></script><script src="assets/app.js?v=20260701y"></script>
+<script src="assets/data.js?v=20260702a"></script><script src="assets/app.js?v=20260702a"></script>
 <script>
 const T=TICKERS.LGES;
 document.getElementById("upd").textContent=SITE.updated;
@@ -799,23 +799,23 @@ initHowto();
 .study-wrap{max-width:1400px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:140px minmax(0,1fr) 288px;gap:28px;align-items:start}
 .study-main{min-width:0}
 .study-main :where(p){max-width:none;margin:0 0 1em;padding:0}
-.study-main,.study-main p,.study-main li{font-size:18px;line-height:1.72}
+.study-main,.study-main p,.study-main li{font-size:var(--fs-h3);line-height:1.72}
 .study-side{position:sticky;top:120px;display:flex;flex-direction:column;gap:16px}
 .study-side .ss-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
-.ss-h{font-weight:700;font-size:15px;margin:0 0 6px;color:var(--ink)}
-.ss-embed .ss-h{font-family:"IBM Plex Mono",ui-monospace,monospace;color:var(--teal2);font-size:14px}
-.ss-sub{font-size:12.5px;line-height:1.5;color:var(--muted);margin:0 0 10px}
+.ss-h{font-weight:700;font-size:var(--fs-body);margin:0 0 6px;color:var(--ink)}
+.ss-embed .ss-h{font-family:"IBM Plex Mono",ui-monospace,monospace;color:var(--teal2);font-size:var(--fs-body)}
+.ss-sub{font-size:var(--fs-small);line-height:1.5;color:var(--muted);margin:0 0 10px}
 .ss-form{display:flex;flex-direction:column;gap:8px}
-.ss-form input{padding:10px;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink);font-size:13px;width:100%;box-sizing:border-box}
-.ss-form button,.ss-copy{background:var(--teal);color:#fff;font-weight:700;border:0;border-radius:8px;padding:10px;cursor:pointer;font-size:13px;width:100%}
+.ss-form input{padding:10px;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink);font-size:var(--fs-small);width:100%;box-sizing:border-box}
+.ss-form button,.ss-copy{background:var(--teal);color:#fff;font-weight:700;border:0;border-radius:8px;padding:10px;cursor:pointer;font-size:var(--fs-small);width:100%}
 .ss-embed .ss-copy{background:var(--amber);color:#1C3A36}
 .ss-form button:hover,.ss-copy:hover{filter:brightness(1.06)}
-.ss-code{width:100%;box-sizing:border-box;font-family:ui-monospace,monospace;font-size:10px;line-height:1.45;background:#0f2420;color:#dfe8e4;border:1px solid #2c4a43;border-radius:8px;padding:8px;resize:none;margin-bottom:8px}
-.ss-prev{display:block;color:var(--muted);font-size:12px;text-decoration:none;text-align:center}
+.ss-code{width:100%;box-sizing:border-box;font-family:ui-monospace,monospace;font-size:var(--fs-caption);line-height:1.45;background:#0f2420;color:var(--line);border:1px solid #2c4a43;border-radius:8px;padding:8px;resize:none;margin-bottom:8px}
+.ss-prev{display:block;color:var(--muted);font-size:var(--fs-caption);text-decoration:none;text-align:center}
 .ss-prev:hover{color:var(--teal2)}
 .secnav{display:block !important;position:sticky !important;top:120px !important;left:auto !important;width:auto !important;align-self:start;max-height:calc(100vh - 150px);overflow:auto}
 @media(max-width:1199px){.study-wrap{grid-template-columns:minmax(0,1fr) 288px}.secnav{display:none !important}}
-@media(max-width:1040px){.study-wrap{grid-template-columns:1fr}.study-side{position:static}.study-main,.study-main p,.study-main li{font-size:16.5px}}
+@media(max-width:1040px){.study-wrap{grid-template-columns:1fr}.study-side{position:static}.study-main,.study-main p,.study-main li{font-size:var(--fs-lead)}}
 </style>
 <script>(function(){document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.ss-copy');if(!b)return;var ta=b.parentNode.querySelector('.ss-code');if(!ta)return;ta.select();try{navigator.clipboard.writeText(ta.value);}catch(_){try{document.execCommand('copy');}catch(__){}}var o=b.getAttribute('data-l')||b.textContent;b.setAttribute('data-l',o);b.textContent='Copied \u2713';setTimeout(function(){b.textContent=o;},1700);});})();</script>
 </body></html>
