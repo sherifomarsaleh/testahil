@@ -12,7 +12,7 @@
 <link rel="icon" type="image/png" href="favicon.png?v=2">
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
 <script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('#theme-toggle');if(!b)return;var dark=document.documentElement.getAttribute('data-theme')==='dark';var n=dark?'light':'dark';if(n==='dark'){document.documentElement.setAttribute('data-theme','dark');}else{document.documentElement.removeAttribute('data-theme');}try{localStorage.setItem('theme',n);}catch(e){}b.setAttribute('aria-pressed',String(n==='dark'));});document.addEventListener('DOMContentLoaded',function(){var x=document.getElementById('theme-toggle');if(x)x.setAttribute('aria-pressed',String(document.documentElement.getAttribute('data-theme')==='dark'));});})();</script>
-<link rel="stylesheet" href="assets/style.css?v=20260702d">
+<link rel="stylesheet" href="assets/style.css?v=20260702g">
 <style>
   /* Homepage section headings — match the testahil wordmark (Alexandria 800), white in dark mode */
   main .qhead{font-family:"Alexandria",sans-serif;font-weight:800;font-size:clamp(1.6rem,4vw,2rem);line-height:1.2}
@@ -83,9 +83,8 @@
     <a href="calculator.html">Calculator</a>
     <a href="ledger.html">Ledger</a>
     <a href="method.html">Methodology</a>
-  </nav>
-  <a href="ar/index.html" class="lang-ar" lang="ar" style="margin-inline-start:14px;border:1px solid var(--gold);color:var(--gold);border-radius:7px;padding:3px 10px;font-size:var(--fs-small);text-decoration:none">العربية</a>
-  <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode" aria-pressed="false" title="Toggle dark / light"><svg class="tt-icon tt-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="tt-icon tt-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg><span class="tt-label tt-label-dark">Dark mode</span><span class="tt-label tt-label-light">Light mode</span></button>
+      <a href="ar/index.html" class="lang-ar" lang="ar" style="border:1px solid var(--gold);color:var(--gold);border-radius:7px;padding:3px 10px;font-size:var(--fs-small);text-decoration:none;white-space:nowrap">العربية</a>
+  </nav>  <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode" aria-pressed="false" title="Toggle dark / light"><svg class="tt-icon tt-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="tt-icon tt-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg><span class="tt-label tt-label-dark">Dark mode</span><span class="tt-label tt-label-light">Light mode</span></button>
 </div></header>
 
 <!-- TOP SEARCH (under the banner, every page) -->

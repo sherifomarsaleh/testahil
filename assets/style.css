@@ -106,7 +106,8 @@ label{font-size:var(--fs-small); font-weight:600; display:block; margin-bottom:3
 @media(max-width:700px){
   .brand{font-size:var(--fs-h1)}
   .brand small{display:none}
-  .nav nav{gap:8px 14px; font-size:var(--fs-lead); line-height:1.4}
+  .nav nav{gap:8px 8px; font-size:var(--fs-lead); line-height:1.4}
+  .nav nav .lang-ar{padding:3px 7px !important}
   .hero{padding:16px 0 10px}
   body{font-size:var(--fs-body)}
   table{font-size:var(--fs-small)}
@@ -114,6 +115,10 @@ label{font-size:var(--fs-small); font-weight:600; display:block; margin-bottom:3
   .card{padding:12px}
   /* wide tables scroll inside their own box instead of pushing the page past the screen edge */
   table:not(.compare-table){display:block; width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch}
+}
+@media(max-width:400px){
+  .nav nav{gap:6px 7px; font-size:.92rem}
+  .nav nav .lang-ar{padding:2px 6px !important}
 }
 
 /* mobile: stop Monte-Carlo cards from blowing past the screen edge.
