@@ -84,6 +84,32 @@ const TICKERS = {
       pdf:   "files/ABUK_Valuation_Study_01-07-2026_public.pdf?v=0703"
     }
   },
+  ADIB: {
+    name: "ADIB-Egypt",
+    nameAr: "مصرف أبوظبي الإسلامي – مصر",
+    code: "EGX:ADIB",
+    spot: 46.64,
+    spotDate: "close 1 Jul 2026",
+    ccy: "EGP",
+    fair: { bear: 31.6, base: 54.3, full: 95.3 },
+    dist: {
+      t20: { label:"1 month (T+20)", p5:38.5, p25:44.5, p50:48.2, p75:52.2, p95:59.7, resolve:"2026-07-29" },
+      t60: { label:"3 months (T+60)", p5:35.3, p25:44.7, p50:51.5, p75:59.3, p95:74.4, resolve:"2026-09-23" }
+    },
+    touch: [ [55, 21, 55], [52, 39, 70], [50, 57, 81], [48, 78, 91], [45, 56, 68], [42, 25, 42] ],
+    levels: { res:[48.0, 49.6, 52.0], sup:[46.3, 43.0, 40.0] },
+    tech: {
+      trend: "Strong bull stack — above all four moving averages",
+      summary: "A twelve-month double that has paused just under its 49.60 high: price holds above the 20/50-day shelf at ~46.3 with the 100- and 200-day rising far below. RSI ~51 is neutral after June's consolidation; realized vol ~40% is high for a bank — a crowded, contested EGX leader.",
+      bull: "A daily close above ~49.6 opens the EGP 52 zone toward fair value.",
+      bear: "A close below the ~46.3 shelf targets the 100-day at 43.0."
+    },
+    files: {
+      study: "files/ADIB_Valuation_Study_03-07-2026_public.docx?v=0703",
+      model: "files/ADIB_Valuation_Study_03-07-2026_public.xlsx?v=0703",
+      pdf:   "files/ADIB_Valuation_Study_03-07-2026_public.pdf?v=0703"
+    }
+  },
   HRHO: {
     name: "EFG Holding",
     nameAr: "المجموعة المالية هيرميس القابضة",
@@ -972,6 +998,20 @@ const LEDGER = [
     p5:51.67, p25:60.72, p50:67.7, p75:75.45, p95:88.03,
     touch:{ "+5":79, "+10":66, "+15":55, "+20":45, "-5":80, "-10":67 },
     anchor_vol:0.3624, horizon_days:20,
+    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
+    realized_quantile:null, median_err:null, touch_hit:null },
+  { instrument:"ADIB", asset_class:"equity", anchor_date:"2026-07-01", anchor_price:46.64, ccy:"EGP",
+    horizon_label:"T+20", grade_date:"2026-07-29", cycle_no:1, reanchor_from:null,
+    p5:38.5, p25:44.5, p50:48.2, p75:52.2, p95:59.7,
+    touch:{ "+5":67, "+10":45, "+15":28, "+20":17, "-5":47, "-10":25 },
+    anchor_vol:0.4040, horizon_days:20,
+    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
+    realized_quantile:null, median_err:null, touch_hit:null },
+  { instrument:"ADIB", asset_class:"equity", anchor_date:"2026-07-01", anchor_price:46.64, ccy:"EGP",
+    horizon_label:"T+60", grade_date:"2026-09-23", cycle_no:1, reanchor_from:null,
+    p5:35.3, p25:44.7, p50:51.5, p75:59.3, p95:74.4,
+    touch:{ "+5":86, "+10":74, "+15":62, "+20":51, "-5":61, "-10":41 },
+    anchor_vol:0.4040, horizon_days:60,
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
     realized_quantile:null, median_err:null, touch_hit:null },
   { instrument:"ABUK", asset_class:"equity", anchor_date:"2026-07-01", anchor_price:67.97, ccy:"EGP",
