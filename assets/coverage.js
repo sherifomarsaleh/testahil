@@ -7,6 +7,7 @@
 'use strict';
 
 const COVERAGE_EN = [
+  {tk:"EFID",   code:"EGX:EFID",    name:"Edita Food Industries",          sector:"Consumer Staples",          sub:"Packaged snack foods",       country:"Egypt",       cur:"EGP", fair:"27.7",    price:"27.34",   gap:"+1%",   date:"1 Jul 2026", url:"efid.html",    thesis:"Egypt's snack-shelf compounder — cakes, croissants and the HTT brands now owned across Africa; the re-rating is done, the case rests on holding a 34% gross margin through the next pound move."},
   {tk:"BTFH",   code:"EGX:BTFH",    name:"Beltone Financial Holding",      sector:"Financial Services",        sub:"Investment bank & NBFI holdco", country:"Egypt",     cur:"EGP", fair:"2.88",    price:"2.97",    gap:"−3%",   date:"1 Jul 2026", url:"btfh.html",    thesis:"Four platforms in one wrapper — brokerage, Egypt's largest non-bank asset manager, NBFI lending and pan-African microfinance; the price already pays for most of the ROE bridge."},
   {tk:"FWRY",   code:"EGX:FWRY",    name:"Fawry",                          sector:"Financial Services",        sub:"Digital payments & fintech", country:"Egypt",       cur:"EGP", fair:"14.7",    price:"18.40",   gap:"−20%",  date:"1 Jul 2026", url:"fwry.html",    thesis:"Egypt's leading digital-payments platform; a superb compounder trading ~25% above the blended fundamental centre."},
   {tk:"ABUK",   code:"EGX:ABUK",    name:"Abu Kir Fertilizers",            sector:"Chemicals",                 sub:"Nitrogen fertilizers",       country:"Egypt",       cur:"EGP", fair:"60",      price:"67.97",   gap:"−11%",  date:"1 Jul 2026", url:"abuk.html",    thesis:"Debt-free nitrogen producer with large net cash; the whole argument is whether subsidised gas holds."},
@@ -31,6 +32,7 @@ const COVERAGE_EN = [
 ];
 
 const COVERAGE_AR = [
+  {tk:"EFID",   code:"EGX:EFID",    name:"إيديتا للصناعات الغذائية",   sector:"السلع الاستهلاكية الأساسية", sub:"أغذية خفيفة معبأة",             country:"مصر", cur:"EGP", fair:"27.7",    price:"27.34",   gap:"+1%",   date:"1 يوليو 2026", url:"efid.html",    thesis:"رائدة الوجبات الخفيفة المعبأة في مصر — الكيك والكرواسون وعلامات HTT عبر أفريقيا؛ اكتملت إعادة التسعير، والرهان الآن على صمود هامش مجمل 34% عبر أي تحرك قادم للجنيه."},
   {tk:"BTFH",   code:"EGX:BTFH",    name:"بلتون المالية القابضة",       sector:"الخدمات المالية",      sub:"بنك استثمار وقابضة تمويل غير مصرفي", country:"مصر", cur:"EGP", fair:"2.88",    price:"2.97",    gap:"−3%",   date:"1 يوليو 2026", url:"btfh.html",    thesis:"أربع منصات في كيان واحد — وساطة وأكبر مدير أصول غير مصرفي في مصر وتمويل غير مصرفي وتمويل أصغر أفريقي؛ والسعر يدفع مقدماً مقابل معظم جسر العائد على حقوق الملكية."},
   {tk:"FWRY",   code:"EGX:FWRY",    name:"فوري",                     sector:"الخدمات المالية",      sub:"مدفوعات رقمية وتكنولوجيا مالية", country:"مصر", cur:"EGP", fair:"14.7",    price:"18.40",   gap:"−20%",  date:"1 يوليو 2026", url:"fwry.html",    thesis:"منصة المدفوعات الرقمية الرائدة في مصر؛ شركة نمو ممتازة تتداول بعلاوة ~25% فوق المركز الأساسي المرجح."},
   {tk:"ABUK",   code:"EGX:ABUK",    name:"أبو قير للأسمدة",           sector:"الكيماويات",           sub:"أسمدة نيتروجينية",              country:"مصر", cur:"EGP", fair:"60",      price:"67.97",   gap:"−11%",  date:"1 يوليو 2026", url:"abuk.html",    thesis:"منتج أسمدة خالٍ من الديون بصافي نقد كبير؛ المحور هو استمرار دعم الغاز."},
@@ -59,5 +61,5 @@ const SHORT = {
   ORHD:"Orascom Dev", COMI:"CIB", CCAP:"Qalaa", ORAS:"Orascom Const",
   "005930":"Samsung", "035720":"Kakao", "373220":"LG Energy",
   TMPV:"Tata Motors", ARAMCO:"Aramco", EMAAR:"Emaar", TSLA:"Tesla",
-  FWRY:"Fawry", ADIB:"ADIB-Egypt", ABUK:"Abu Kir Fert.", HRHO:"EFG Holding", ORWE:"Oriental Weavers", BTFH:"Beltone"
+  EFID:"Edita", FWRY:"Fawry", ADIB:"ADIB-Egypt", ABUK:"Abu Kir Fert.", HRHO:"EFG Holding", ORWE:"Oriental Weavers", BTFH:"Beltone"
 };

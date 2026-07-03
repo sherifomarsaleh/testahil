@@ -2,10 +2,43 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-07-03" };
+const SITE = { updated: "2026-07-04" };
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
+  EFID: {
+    name: "Edita Food Industries",
+    nameAr: "إيديتا للصناعات الغذائية",
+    code: "EGX:EFID",
+    spot: 27.34,
+    spotDate: "close 1 Jul 2026",
+    ccy: "EGP",
+    fair: { bear: 16.41, base: 27.68, full: 42.78 },
+    dist: {
+      t20: { label:"1 month (T+20)", p5:22.35, p25:25.48, p50:27.48, p75:29.62, p95:33.56, resolve:"2026-07-29" },
+      t60: { label:"3 months (T+60)", p5:19.4, p25:24.4, p50:27.82, p75:31.65, p95:38.98, resolve:"2026-09-23" }
+    },
+    touch: [
+      [32.81, 20, 34],
+      [30.07, 34, 60],
+      [28.71, 43, 76],
+      [25.97, 36, 70],
+      [24.61, 26, 50],
+      [21.87, 12, 22]
+    ],
+    levels: { res:[28.31, 28.55, 32.50], sup:[25.86, 25.50, 23.95] },
+    tech: {
+      trend: "A pause inside a completed re-rating — holding above a rising 200-day",
+      summary: "From the split-adjusted 2022 low the shares six-folded to an all-time high of 32.50 in February 2026, then spent five months consolidating. At 27.34 the price sits below the 50- and 100-day averages (28.55 / 28.31) but above a rising 200-day (25.86); RSI 46 and a mildly negative MACD read as a stall, not distribution — flat year-to-date, still +106% over twelve months.",
+      bull: "A daily close back above the 28.3–28.6 average cluster turns the stack from ceiling into floor and re-opens the February high at 32.50.",
+      bear: "Losing the 25.5–25.9 zone (the rising 200-day plus the June swing low) opens 24.6, then the 22.00 shelf."
+    },
+    files: {
+      study: "files/EFID_Valuation_Study_03-07-2026_public.docx?v=0704",
+      model: "files/EFID_Valuation_Model_03072026_public.xlsx?v=0704",
+      pdf:   "files/EFID_Valuation_Study_03-07-2026_public.pdf?v=0704"
+    }
+  },
   BTFH: {
     name: "Beltone Financial Holding",
     nameAr: "بلتون المالية القابضة",
@@ -594,7 +627,6 @@ const COMING = [
   { code:"EGX:COMI", name:"Commercial International Bank", url:"comi.html", status:"covered" },
   { code:"EGX:HELI", name:"Heliopolis Housing",              url:null,        status:"soon" },
   { code:"EGX:BTFH", name:"Beltone Financial Holding",        url:"btfh.html", status:"covered" },
-  { code:"EGX:EFID", name:"Edita",                            url:null,        status:"soon" },
   { code:"EGX:MFPC", name:"MOPCO",                            url:null,        status:"soon" },
 ];
 
@@ -636,6 +668,20 @@ const COMING = [
                             "-5":bool, "-10":bool }
    ========================================================================== */
 const LEDGER = [
+  { instrument:"EFID", asset_class:"equity", anchor_date:"2026-07-01", anchor_price:27.34, ccy:"EGP",
+    horizon_label:"T+20", grade_date:"2026-07-29", cycle_no:1, reanchor_from:null,
+    p5:22.35, p25:25.48, p50:27.48, p75:29.62, p95:33.56,
+    touch:{ "+5":76, "+10":60, "+15":46, "+20":34, "-5":70, "-10":50 },
+    anchor_vol:0.4127, horizon_days:20,
+    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
+    realized_quantile:null, median_err:null, touch_hit:null },
+  { instrument:"EFID", asset_class:"equity", anchor_date:"2026-07-01", anchor_price:27.34, ccy:"EGP",
+    horizon_label:"T+60", grade_date:"2026-09-23", cycle_no:1, reanchor_from:null,
+    p5:19.4, p25:24.4, p50:27.82, p75:31.65, p95:38.98,
+    touch:{ "+5":76, "+10":60, "+15":46, "+20":34, "-5":70, "-10":50 },
+    anchor_vol:0.4127, horizon_days:60,
+    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
+    realized_quantile:null, median_err:null, touch_hit:null },
   // ---- PHDC · equity · cycle 2 (11 Jun 2026 published study) ----
   {
     instrument:"PHDC", asset_class:"equity",
