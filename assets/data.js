@@ -637,6 +637,34 @@ const TICKERS = {
       pdf:   "files/Qalaa_Holdings_Valuation_Study_30-06-2026_public.pdf?v=3006"
     }
   },
+  OIH: {
+    name: "Orascom Investment Holding",
+    nameAr: "أوراسكوم للاستثمار القابضة",
+    code: "EGX:OIH",
+    spot: 1.41,
+    spotDate: "close 1 Jul 2026",
+    ccy: "EGP",
+    fair: { bear: 0.53, base: 0.78, full: 1.70 },           // 03 Jul 2026 study — four-lens weighted central 0.78 (−45% vs spot 1.41). Lenses: holdco NAV 0.81 (primary), consolidated DCF 0.48 (floor), relative P/NAV 0.72, normalized earnings 1.03 (ceiling). bear = weighted bear; full = weighted bull (DPRK cash recovered + OPE at maturity). USD marks at EGP/USD 49.09.
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:1.18, p25:1.35, p50:1.46, p75:1.58, p95:1.80, resolve:"2026-07-29" },
+      t60: { label:"3 months (T+60)", p5:1.09, p25:1.36, p50:1.57, p75:1.80, p95:2.23, resolve:"2026-09-23" }
+    },
+    touch: [ /* descending high → low; P(touch) T+20 %, T+60 % */
+      [1.80, 7, 36], [1.60, 31, 66], [1.50, 59, 83], [1.30, 30, 46], [1.20, 11, 25], [1.10, 4, 12]
+    ],
+    levels: { res:[1.50, 1.58, 1.60], sup:[1.37, 1.30, 1.20] },
+    tech: {
+      trend: "Uptrend, consolidating just under the 50-day after a strong run",
+      summary: "The tape is the mirror image of the fundamentals: strong, extended and orderly. OIH has advanced ~74% over twelve months and ~22% year-to-date, sits above the 20-, 100- and 200-day averages, and is consolidating a hair under the 50-day (EGP 1.47) after a pullback from the March high of EGP 1.58. RSI(14) near 62 is constructive without being overbought, the daily MACD histogram has just crossed back positive, and turnover of ~51m shares a day marks this as one of the exchange's liquidity bellwethers. Realized 252-day volatility near 42% is high — a retail-flow counter. Nothing in the price structure is broken, which is precisely the tension of this study.",
+      bull: "A daily close back above the 50-day near EGP 1.47 reopens the March high at 1.58, then the round 1.60.",
+      bear: "A close below the EGP 1.37 twenty-day cluster opens a retracement toward 1.30, then the 1.20 shelf."
+    },
+    files: {
+      study: "files/OIH_Valuation_Study_03-07-2026_public.docx?v=0407",
+      model: "files/OIH_Valuation_Model_03072026_public.xlsx?v=0407",
+      pdf:   "files/OIH_Valuation_Study_03-07-2026_public.pdf?v=0407"
+    }
+  },
   ORAS: {
     name: "Orascom Construction",
     nameAr: "أوراسكوم للإنشاءات",
@@ -730,6 +758,7 @@ const COMING = [
   { code:"EGX:OCDI", name:"SODIC",                            url:"ocdi.html", status:"covered" },
   { code:"EGX:ORHD", name:"Orascom Development",          url:"orhd.html", status:"covered" },
   { code:"EGX:ORAS", name:"Orascom Construction",          url:"oras.html", status:"covered" },
+  { code:"EGX:OIH",  name:"Orascom Investment Holding",    url:"oih.html",  status:"covered" },
   { code:"EGX:COMI", name:"Commercial International Bank", url:"comi.html", status:"covered" },
   { code:"EGX:HELI", name:"Heliopolis Housing",              url:null,        status:"soon" },
   { code:"EGX:EGAL", name:"Egypt Aluminum",                   url:"egal.html", status:"covered" },
@@ -1058,6 +1087,27 @@ const LEDGER = [
     horizon_label:"T+60", grade_date:"2026-09-22", cycle_no:1, reanchor_from:null,
     p5:3.224, p25:4.126, p50:4.889, p75:5.789, p95:7.391,
     touch:{ "+5":81, "+10":68, "+15":56, "+20":46, "-5":76, "-10":60 },   // barrier-hit probabilities from the published 50,000-path model (reflection principle, discrete-monitoring correction)
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  // ---- OIH · equity · cycle 1 (03 Jul 2026 published study) ----
+  {
+    instrument:"OIH", asset_class:"equity",
+    anchor_date:"2026-07-01", anchor_price:1.41, ccy:"EGP", anchor_vol:0.383, horizon_days:20,
+    horizon_label:"T+20", grade_date:"2026-07-29", cycle_no:1, reanchor_from:null,
+    p5:1.18, p25:1.35, p50:1.46, p75:1.58, p95:1.80,
+    touch:{ "+5":68, "+10":46, "+15":29, "+20":16, "-5":49, "-10":24 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"OIH", asset_class:"equity",
+    anchor_date:"2026-07-01", anchor_price:1.41, ccy:"EGP", anchor_vol:0.383, horizon_days:60,
+    horizon_label:"T+60", grade_date:"2026-09-23", cycle_no:1, reanchor_from:null,
+    p5:1.09, p25:1.36, p50:1.57, p75:1.80, p95:2.23,
+    touch:{ "+5":86, "+10":75, "+15":63, "+20":52, "-5":63, "-10":41 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
