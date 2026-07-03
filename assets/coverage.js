@@ -7,6 +7,7 @@
 'use strict';
 
 const COVERAGE_EN = [
+  {tk:"EFIH",   code:"EGX:EFIH",    name:"e-finance for Digital & Financial Investments", sector:"Technology & Payments", sub:"Fintech / payments infrastructure", country:"Egypt",       cur:"EGP", fair:"14.16",   price:"20.74",   gap:"−32%",   date:"01 Jul 2026", url:"efih.html",    thesis:"Excellent payments-and-cloud franchise at a full price; intrinsic lenses sit below a market pricing continued ~30% growth and a falling EGP rate path."},
   {tk:"EGAL",   code:"EGX:EGAL",    name:"Egypt Aluminum",                 sector:"Metals & Mining",           sub:"Primary aluminium producer", country:"Egypt",       cur:"EGP", fair:"250",     price:"285.88",  gap:"−12%",  date:"1 Jul 2026", url:"egal.html",    thesis:"Egypt's sole primary-aluminium smelter — debt-free with ~EGP 9bn net cash, LME-dollar revenue on EGP costs; the price pre-pays part of the US$900m Trafigura capacity doubling."},
   {tk:"EFID",   code:"EGX:EFID",    name:"Edita Food Industries",          sector:"Consumer Staples",          sub:"Packaged snack foods",       country:"Egypt",       cur:"EGP", fair:"27.7",    price:"27.34",   gap:"+1%",   date:"1 Jul 2026", url:"efid.html",    thesis:"Egypt's snack-shelf compounder — cakes, croissants and the HTT brands now owned across Africa; the re-rating is done, the case rests on holding a 34% gross margin through the next pound move."},
   {tk:"BTFH",   code:"EGX:BTFH",    name:"Beltone Financial Holding",      sector:"Financial Services",        sub:"Investment bank & NBFI holdco", country:"Egypt",     cur:"EGP", fair:"2.88",    price:"2.97",    gap:"−3%",   date:"1 Jul 2026", url:"btfh.html",    thesis:"Four platforms in one wrapper — brokerage, Egypt's largest non-bank asset manager, NBFI lending and pan-African microfinance; the price already pays for most of the ROE bridge."},
@@ -35,6 +36,7 @@ const COVERAGE_EN = [
 ];
 
 const COVERAGE_AR = [
+  {tk:"EFIH",   code:"EGX:EFIH",    name:"إي فاينانس",              sector:"التكنولوجيا والمدفوعات", sub:"بنية تحتية للمدفوعات",        country:"مصر",            cur:"EGP", fair:"14.16",   price:"20.74",   gap:"−32%",   date:"01 يوليو 2026", url:"efih.html",    thesis:"امتياز قوي في المدفوعات والحوسبة السحابية لكن بسعر كامل؛ التقييمات الجوهرية أدنى من سعر السوق الذي يفترض استمرار نمو نحو 30٪ وتراجع أسعار الفائدة."},
   {tk:"EGAL",   code:"EGX:EGAL",    name:"مصر للألومنيوم",              sector:"المعادن والتعدين",     sub:"منتج الألومنيوم الأولي",           country:"مصر", cur:"EGP", fair:"250",     price:"285.88",  gap:"−12%",  date:"1 يوليو 2026", url:"egal.html",    thesis:"المصهر الوحيد للألومنيوم الأولي في مصر — بلا ديون وبصافي نقد نحو 9 مليارات جنيه وإيرادات دولارية بتكاليف بالجنيه؛ والسعر يدفع مقدماً جزءاً من مضاعفة الطاقة مع ترافيغورا (900 مليون دولار)."},
   {tk:"EFID",   code:"EGX:EFID",    name:"إيديتا للصناعات الغذائية",   sector:"السلع الاستهلاكية الأساسية", sub:"أغذية خفيفة معبأة",             country:"مصر", cur:"EGP", fair:"27.7",    price:"27.34",   gap:"+1%",   date:"1 يوليو 2026", url:"efid.html",    thesis:"رائدة الوجبات الخفيفة المعبأة في مصر — الكيك والكرواسون وعلامات HTT عبر أفريقيا؛ اكتملت إعادة التسعير، والرهان الآن على صمود هامش مجمل 34% عبر أي تحرك قادم للجنيه."},
   {tk:"BTFH",   code:"EGX:BTFH",    name:"بلتون المالية القابضة",       sector:"الخدمات المالية",      sub:"بنك استثمار وقابضة تمويل غير مصرفي", country:"مصر", cur:"EGP", fair:"2.88",    price:"2.97",    gap:"−3%",   date:"1 يوليو 2026", url:"btfh.html",    thesis:"أربع منصات في كيان واحد — وساطة وأكبر مدير أصول غير مصرفي في مصر وتمويل غير مصرفي وتمويل أصغر أفريقي؛ والسعر يدفع مقدماً مقابل معظم جسر العائد على حقوق الملكية."},
@@ -63,6 +65,7 @@ const COVERAGE_AR = [
 ];
 
 const SHORT = {
+  EFIH:"e-finance",
   EGAL:"Egypt Aluminum",
   PHDC:"Palm Hills", TMGH:"Talaat Moustafa", EMFD:"Emaar Misr", OCDI:"SODIC",
   ORHD:"Orascom Dev", COMI:"CIB", CCAP:"Qalaa", ORAS:"Orascom Const",

@@ -6,6 +6,34 @@ const SITE = { updated: "2026-07-04" };
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
+  EFIH: {
+    name: "e-finance for Digital & Financial Investments",
+    nameAr: "إي فاينانس للاستثمارات المالية والرقمية",
+    code: "EGX:EFIH",
+    spot: 20.74,
+    spotDate: "close 01 Jul 2026",
+    ccy: "EGP",
+    fair: { bear: 10.20, base: 14.16, full: 23.60 },          // 03 Jul 2026 valuation — weighted four-lens central
+    dist: {
+      t20: { label:"1 month (T+20)",   p5:16.58, p25:19.13, p50:20.74, p75:22.48, p95:25.94, resolve:"2026-07-29" },
+      t60: { label:"3 months (T+60)",  p5:14.08, p25:18.04, p50:20.74, p75:23.85, p95:30.56, resolve:"2026-09-23" }
+    },
+    touch: [ /* level, P(touch) T+20 %, T+60 % — descending */
+      [26.00, 8, 26], [24.00, 21, 44], [23.00, 33, 57], [22.00, 54, 72], [21.00, 81, 89]
+    ],
+    levels: { res:[21.06, 21.31, 23.28], sup:[20.00, 18.32, 17.50] },
+    tech: {
+      trend: "Mild pullback, holding above the 200-day",
+      summary: "The price eased back below its short-term moving averages after a strong recovery off the 11.20 low, but it is still well above the rising 200-day line. Momentum is neutral (RSI ~46) and the daily MACD is mildly negative, so the pullback may have a little further to run — the larger recovery structure is intact.",
+      bull: "A daily close back above the 21.3 50-day line would say the pullback is done.",
+      bear: "A close below 20.00 would open the door back toward the 200-day near 18.30."
+    },
+    files: {
+      study: "files/EFIH_Valuation_Study_03-07-2026_public.docx?v=0307",
+      model: "files/EFIH_Valuation_Study_03-07-2026_public.xlsx?v=0307",
+      pdf:   "files/EFIH_Valuation_Study_03-07-2026_public.pdf?v=0307"
+    }
+  },
   JUFO: {
     name: "Juhayna Food Industries",
     nameAr: "جهينة للصناعات الغذائية",
@@ -748,6 +776,26 @@ const COMING = [
                             "-5":bool, "-10":bool }
    ========================================================================== */
 const LEDGER = [
+  {
+    instrument:"EFIH", asset_class:"equity",
+    anchor_date:"2026-07-01", anchor_price:20.74, ccy:"EGP",
+    horizon_label:"T+20", grade_date:"2026-07-29", cycle_no:1, reanchor_from:null,
+    p5:16.58, p25:19.13, p50:20.74, p75:22.48, p95:25.94,
+    touch:{ "+5":59, "+10":37, "+15":22, "+20":13, "-5":57, "-10":32 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"EFIH", asset_class:"equity",
+    anchor_date:"2026-07-01", anchor_price:20.74, ccy:"EGP",
+    horizon_label:"T+60", grade_date:"2026-09-23", cycle_no:1, reanchor_from:null,
+    p5:14.08, p25:18.04, p50:20.74, p75:23.85, p95:30.56,
+    touch:{ "+5":76, "+10":59, "+15":46, "+20":35, "-5":74, "-10":56 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
   { instrument:"JUFO", asset_class:"equity", anchor_date:"2026-07-01", anchor_price:29.99, ccy:"EGP",
     horizon_label:"T+20", grade_date:"2026-07-29", cycle_no:1, reanchor_from:null,
     p5:26.04, p25:28.92, p50:30.67, p75:32.54, p95:36.15,
