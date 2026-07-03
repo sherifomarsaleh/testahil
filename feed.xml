@@ -6,7 +6,23 @@
     <atom:link href="https://testahil.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>دراسات تقييم تعليمية مستقلة لأسهم البورصة المصرية — توزيعات احتمالية، وليست توصيات. Educational EGX valuation studies — distributions, not tips.</description>
     <language>ar</language>
-    <lastBuildDate>Wed, 01 Jul 2026 08:30:00 +0300</lastBuildDate>
+    <lastBuildDate>Fri, 03 Jul 2026 08:30:00 +0300</lastBuildDate>
+
+    <item>
+      <title>بلتون المالية القابضة (BTFH): دراسة تقييم — هل يستحق السهم؟</title>
+      <link>https://testahil.com/ar/btfh.html</link>
+      <guid isPermaLink="true">https://testahil.com/ar/btfh.html</guid>
+      <description>السعر 2.97 · الوسيط (٣ شهور) 2.89 · النطاق 2.04–4.04 جنيه — تحليل تعليمي، توزيع وليس توصية.</description>
+      <pubDate>Fri, 03 Jul 2026 08:30:00 +0300</pubDate>
+    </item>
+
+    <item>
+      <title>Beltone Financial Holding (BTFH): Valuation Study — is it worth it?</title>
+      <link>https://testahil.com/btfh.html</link>
+      <guid isPermaLink="true">https://testahil.com/btfh.html</guid>
+      <description>Latest 2.97 · 3-month median 2.89 · range 2.04–4.04 EGP — educational analysis, a distribution not a recommendation.</description>
+      <pubDate>Fri, 03 Jul 2026 08:30:00 +0300</pubDate>
+    </item>
 
     <item>
       <title>فوري (FWRY): دراسة تقييم — هل يستحق السهم؟</title>
