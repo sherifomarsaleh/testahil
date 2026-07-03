@@ -6,6 +6,32 @@ const SITE = { updated: "2026-07-04" };
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
+  JUFO: {
+    name: "Juhayna Food Industries",
+    nameAr: "جهينة للصناعات الغذائية",
+    code: "EGX:JUFO",
+    spot: 29.99,
+    spotDate: "close 1 Jul 2026",
+    ccy: "EGP",
+    fair: { bear: 22, base: 26, full: 33 },
+    dist: {
+      t20: { label:"1 month (T+20)", p5:26.04, p25:28.92, p50:30.67, p75:32.54, p95:36.15, resolve:"2026-07-29" },
+      t60: { label:"3 months (T+60)", p5:24.17, p25:28.96, p50:32.07, p75:35.46, p95:42.63, resolve:"2026-09-23" }
+    },
+    touch: [ [35.99, 8, 34], [32.99, 31, 63], [31.49, 58, 80], [28.49, 40, 55], [26.99, 16, 32], [23.99, 2, 10] ],
+    levels: { res:[30.3, 31.8, 33.0], sup:[29.2, 28.3, 26.2] },
+    tech: {
+      trend: "Constructive uptrend near 52-week highs — a mild momentum cooling",
+      summary: "Price trades above its 50-, 100- and 200-day averages and near the top of its 52-week range, with only a shallow pause — it has slipped just below the 20-day and the MACD histogram has turned mildly negative, while RSI near 51 is neutral. The rising 200-day (~EGP 26) is the visible trend floor; for once the tape agrees with the secular story rather than fighting it.",
+      bull: "A daily close back above the 20-day (~EGP 30.3) and the 52-week high near EGP 31.8 would say the pause is over.",
+      bear: "A close below the rising 200-day (~EGP 26) would break the trend and open the low-EGP-20s."
+    },
+    files: {
+      study: "files/JUFO_Valuation_Study_01-07-2026_public.docx?v=0704",
+      model: "files/JUFO_Valuation_Study_01-07-2026_public.xlsx?v=0704",
+      pdf:   "files/JUFO_Valuation_Study_01-07-2026_public.pdf?v=0704"
+    }
+  },
   EGAL: {
     name: "Egypt Aluminum",
     nameAr: "مصر للألومنيوم",
@@ -722,6 +748,20 @@ const COMING = [
                             "-5":bool, "-10":bool }
    ========================================================================== */
 const LEDGER = [
+  { instrument:"JUFO", asset_class:"equity", anchor_date:"2026-07-01", anchor_price:29.99, ccy:"EGP",
+    horizon_label:"T+20", grade_date:"2026-07-29", cycle_no:1, reanchor_from:null,
+    p5:26.04, p25:28.92, p50:30.67, p75:32.54, p95:36.15,
+    touch:{ "+5":58, "+10":31, "+15":16, "+20":8, "-5":40, "-10":16 },
+    anchor_vol:0.3735, horizon_days:20,
+    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
+    realized_quantile:null, median_err:null, touch_hit:null },
+  { instrument:"JUFO", asset_class:"equity", anchor_date:"2026-07-01", anchor_price:29.99, ccy:"EGP",
+    horizon_label:"T+60", grade_date:"2026-09-23", cycle_no:1, reanchor_from:null,
+    p5:24.17, p25:28.96, p50:32.07, p75:35.46, p95:42.63,
+    touch:{ "+5":80, "+10":63, "+15":47, "+20":34, "-5":55, "-10":32 },
+    anchor_vol:0.3735, horizon_days:60,
+    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
+    realized_quantile:null, median_err:null, touch_hit:null },
   { instrument:"EFID", asset_class:"equity", anchor_date:"2026-07-01", anchor_price:27.34, ccy:"EGP",
     horizon_label:"T+20", grade_date:"2026-07-29", cycle_no:1, reanchor_from:null,
     p5:22.35, p25:25.48, p50:27.48, p75:29.62, p95:33.56,
