@@ -6,6 +6,32 @@ const SITE = { updated: "2026-07-04" };
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
+  EGAL: {
+    name: "Egypt Aluminum",
+    nameAr: "مصر للألومنيوم",
+    code: "EGX:EGAL",
+    spot: 285.88,
+    spotDate: "close 1 Jul 2026",
+    ccy: "EGP",
+    fair: { bear: 183, base: 250, full: 358 },
+    dist: {
+      t20: { label:"1 month (T+20)", p5:244.5, p25:277.8, p50:298.8, p75:321.2, p95:362.0, resolve:"2026-07-29" },
+      t60: { label:"3 months (T+60)", p5:231.5, p25:287.5, p50:326.3, p75:369.4, p95:451.7, resolve:"2026-09-23" }
+    },
+    touch: [ [343.1, 15, 54], [314.5, 45, 78], [300.2, 69, 89], [271.6, 41, 53], [257.3, 19, 32], [228.7, 4, 11] ],
+    levels: { res:[300, 320, 338], sup:[270, 250, 244] },
+    tech: {
+      trend: "Strong primary uptrend, six weeks into a consolidation",
+      summary: "Price sits below the 20- and 50-day averages (301/307) and fractionally under the 100-day, but ~17% above a rising 200-day at 244 — a pause inside a 25-fold five-year advance. RSI 39 is soft, not oversold; the MACD histogram is negative and shallowing. The March high at 338 caps the range; the 240–250 shelf — which coincides with our fair value — is the support that matters.",
+      bull: "A daily close back above the 300–307 average cluster resumes the advance toward the 338 high.",
+      bear: "A close below the 244–250 shelf (the 200-day) would put the 52-week low regime back in play."
+    },
+    files: {
+      study: "files/EGAL_Valuation_Study_03-07-2026_public.docx?v=0703",
+      model: "files/EGAL_Valuation_Model_03072026_public.xlsx?v=0703",
+      pdf:   "files/EGAL_Valuation_Study_03-07-2026_public.pdf?v=0703"
+    }
+  },
   EFID: {
     name: "Edita Food Industries",
     nameAr: "إيديتا للصناعات الغذائية",
@@ -652,6 +678,7 @@ const COMING = [
   { code:"EGX:ORAS", name:"Orascom Construction",          url:"oras.html", status:"covered" },
   { code:"EGX:COMI", name:"Commercial International Bank", url:"comi.html", status:"covered" },
   { code:"EGX:HELI", name:"Heliopolis Housing",              url:null,        status:"soon" },
+  { code:"EGX:EGAL", name:"Egypt Aluminum",                   url:"egal.html", status:"covered" },
   { code:"EGX:BTFH", name:"Beltone Financial Holding",        url:"btfh.html", status:"covered" },
   { code:"EGX:MFPC", name:"MOPCO",                            url:null,        status:"soon" },
   { code:"EGX:ETEL", name:"Telecom Egypt",                    url:"etel.html", status:"covered" },
@@ -1120,6 +1147,20 @@ const LEDGER = [
     p5:18.42, p25:21.01, p50:22.91, p75:25.01, p95:28.48,
     touch:{ "+5":69, "+10":47, "+15":30, "+20":18, "-5":55, "-10":30 },
     anchor_vol:0.2248, horizon_days:60,
+    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
+    realized_quantile:null, median_err:null, touch_hit:null },
+  { instrument:"EGAL", asset_class:"equity", anchor_date:"2026-07-01", anchor_price:285.88, ccy:"EGP",
+    horizon_label:"T+20", grade_date:"2026-07-29", cycle_no:1, reanchor_from:null,
+    p5:244.5, p25:277.8, p50:298.8, p75:321.2, p95:362.0,
+    touch:{ "+5":69, "+10":45, "+15":27, "+20":15, "-5":41, "-10":19 },
+    anchor_vol:0.4236, horizon_days:20,
+    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
+    realized_quantile:null, median_err:null, touch_hit:null },
+  { instrument:"EGAL", asset_class:"equity", anchor_date:"2026-07-01", anchor_price:285.88, ccy:"EGP",
+    horizon_label:"T+60", grade_date:"2026-09-23", cycle_no:1, reanchor_from:null,
+    p5:231.5, p25:287.5, p50:326.3, p75:369.4, p95:451.7,
+    touch:{ "+5":89, "+10":78, "+15":66, "+20":54, "-5":53, "-10":32 },
+    anchor_vol:0.4236, horizon_days:60,
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
     realized_quantile:null, median_err:null, touch_hit:null },
   { instrument:"BTFH", asset_class:"equity", anchor_date:"2026-07-01", anchor_price:2.97, ccy:"EGP",
