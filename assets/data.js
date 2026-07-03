@@ -748,6 +748,34 @@ const TICKERS = {
       model: "files/TSLA_Valuation_Model_30-06-2026_public.xlsx?v=0108",
       pdf:   "files/TSLA_Valuation_Study_30-06-2026_public.pdf?v=0108"
     }
+  },
+  HELI: {
+    name: "Heliopolis Housing",
+    nameAr: "مصر الجديدة للإسكان والتعمير",
+    code: "EGX:HELI",
+    spot: 6.43,
+    spotDate: "close 1 Jul 2026",
+    ccy: "EGP",
+    fair: { bear: 5.20, base: 8.40, full: 11.82 },          // 3 Jul 2026 valuation — weighted central 8.40 (RNAV 8.30 primary / DCF 8.30 / relative 7.45 / normalized 9.25; 40/20/15/25). bear 5.20, bull 11.82. Swing: partnership-annuity marks & the RNAV/state discount.
+    dist: {
+      t20: { label:"1 month (T+20)",   p5:5.37, p25:6.09, p50:6.54, p75:7.01, p95:7.89, resolve:"2026-07-29" },
+      t60: { label:"3 months (T+60)",  p5:4.84, p25:5.95, p50:6.74, p75:7.60, p95:9.27, resolve:"2026-09-24" }
+    },
+    touch: [ /* level, P(touch) T+20 %, T+60 % — descending */
+      [8.00, 6, 28], [7.50, 16, 44], [7.00, 39, 67], [6.75, 59, 79], [6.10, 46, 63], [5.75, 21, 41]
+    ],
+    levels: { res:[6.75, 6.60, 6.51], sup:[6.10, 5.75, 5.40] },
+    tech: {
+      trend: "Consolidating inside a strong uptrend",
+      summary: "The stock has nearly doubled since January and is now digesting the run — sitting on its 20- and 50-day averages, comfortably above the 100- and 200-day. Momentum has cooled to neutral (RSI ~49) and the daily MACD is flat, so this reads as a pause inside an intact uptrend rather than a top, with the rising 200-day far below as trend support.",
+      bull: "A daily close back above the 6.75 range-top clears the way toward the 7.08 high.",
+      bear: "A close below 6.10 breaks the two-month range and opens 5.75, then 5.40."
+    },
+    files: {
+      study: "files/HELI_Valuation_Study_03-07-2026_public.docx?v=0307",
+      model: "files/HELI_Valuation_Study_03-07-2026_public.xlsx?v=0307",
+      pdf:   "files/HELI_Valuation_Study_03-07-2026_public.pdf?v=0307"
+    }
   }
 };
 
@@ -760,7 +788,7 @@ const COMING = [
   { code:"EGX:ORAS", name:"Orascom Construction",          url:"oras.html", status:"covered" },
   { code:"EGX:OIH",  name:"Orascom Investment Holding",    url:"oih.html",  status:"covered" },
   { code:"EGX:COMI", name:"Commercial International Bank", url:"comi.html", status:"covered" },
-  { code:"EGX:HELI", name:"Heliopolis Housing",              url:null,        status:"soon" },
+  { code:"EGX:HELI", name:"Heliopolis Housing",              url:"heli.html", status:"covered" },
   { code:"EGX:EGAL", name:"Egypt Aluminum",                   url:"egal.html", status:"covered" },
   { code:"EGX:BTFH", name:"Beltone Financial Holding",        url:"btfh.html", status:"covered" },
   { code:"EGX:MFPC", name:"MOPCO",                            url:null,        status:"soon" },
@@ -1327,6 +1355,21 @@ const LEDGER = [
     p5:77.5, p25:94.3, p50:106.3, p75:119.4, p95:145.3,
     touch:{"+5": 89, "+10": 78, "+15": 66, "+20": 54, "-5": 49, "-10": 28},
     anchor_vol:0.3830, horizon_days:60,
+    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
+    realized_quantile:null, median_err:null, touch_hit:null },
+  // ---- HELI · equity · cycle 1 (3 Jul 2026 published study) ----
+  { instrument:"HELI", asset_class:"equity", anchor_date:"2026-07-03", anchor_price:6.43, ccy:"EGP",
+    horizon_label:"T+20", grade_date:"2026-07-29", cycle_no:1, reanchor_from:null,
+    p5:5.37, p25:6.09, p50:6.54, p75:7.01, p95:7.89,
+    touch:{ "+5":59, "+10":37, "+15":19, "+20":11, "-5":46, "-10":21 },
+    anchor_vol:0.382, horizon_days:20,
+    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
+    realized_quantile:null, median_err:null, touch_hit:null },
+  { instrument:"HELI", asset_class:"equity", anchor_date:"2026-07-03", anchor_price:6.43, ccy:"EGP",
+    horizon_label:"T+60", grade_date:"2026-09-24", cycle_no:1, reanchor_from:null,
+    p5:4.84, p25:5.95, p50:6.74, p75:7.60, p95:9.27,
+    touch:{ "+5":79, "+10":65, "+15":47, "+20":35, "-5":63, "-10":41 },
+    anchor_vol:0.382, horizon_days:60,
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
     realized_quantile:null, median_err:null, touch_hit:null }
 ];
