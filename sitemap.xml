@@ -12,6 +12,8 @@
   <url><loc>https://testahil.com/ar/stocks.html</loc><lastmod>2026-07-03</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://testahil.com/ar/metals.html</loc><lastmod>2026-07-02</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://testahil.com/ar/method.html</loc><lastmod>2026-07-02</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://testahil.com/raya.html</loc><lastmod>2026-07-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://testahil.com/ar/raya.html</loc><lastmod>2026-07-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://testahil.com/efih.html</loc><lastmod>2026-07-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://testahil.com/jufo.html</loc><lastmod>2026-07-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://testahil.com/egal.html</loc><lastmod>2026-07-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
@@ -55,6 +57,8 @@
   <url><loc>https://testahil.com/ar/aramco.html</loc><lastmod>2026-07-02</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://testahil.com/tsla.html</loc><lastmod>2026-07-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://testahil.com/ar/tsla.html</loc><lastmod>2026-07-02</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://testahil.com/heli.html</loc><lastmod>2026-07-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://testahil.com/ar/heli.html</loc><lastmod>2026-07-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://testahil.com/gold.html</loc><lastmod>2026-07-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://testahil.com/ar/gold.html</loc><lastmod>2026-07-02</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
 </urlset>
