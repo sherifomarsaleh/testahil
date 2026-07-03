@@ -65,6 +65,32 @@ const TICKERS = {
       pdf:   "files/BTFH_Valuation_Study_03-07-2026_public.pdf?v=0703"
     }
   },
+  ETEL: {
+    name: "Telecom Egypt",
+    nameAr: "المصرية للاتصالات",
+    code: "EGX:ETEL",
+    spot: 92.61,
+    spotDate: "close 1 Jul 2026",
+    ccy: "EGP",
+    fair: { bear: 82, base: 118, full: 160 },
+    dist: {
+      t20: { label:"1 month (T+20)", p5:80.7, p25:90.5, p50:96.9, p75:103.7, p95:116.5, resolve:"2026-07-29" },
+      t60: { label:"3 months (T+60)", p5:77.5, p25:94.3, p50:106.3, p75:119.4, p95:145.3, resolve:"2026-09-23" }
+    },
+    touch: [ [111.13, 14, 54], [101.87, 43, 78], [97.24, 68, 89], [87.98, 37, 49], [83.35, 16, 28], [74.09, 3, 8] ],
+    levels: { res:[94.6, 105, 113], sup:[91.3, 85, 80] },
+    tech: {
+      trend: "Consolidating just under the short averages inside a powerful primary uptrend",
+      summary: "Price sits a fraction below the 20- and 50-day (93.3/94.6) but above the 100-day and far above a rising 200-day at 74.7, after a ~148% twelve-month run to the February all-time high of 112.98 and an 18% spring correction. RSI 47 and a fractionally negative MACD read as digestion, not distribution — a high-volatility range in the low-to-mid 90s.",
+      bull: "A daily close back above the 93.3–94.6 average cluster reopens 105, then the 112.98 high.",
+      bear: "A close below the 100-day at 91.3 opens the 85 shelf, then 80."
+    },
+    files: {
+      study: "files/ETEL_Valuation_Study_03-07-2026_public.docx?v=0704",
+      model: "files/ETEL_Valuation_Model_03072026_public.xlsx?v=0704",
+      pdf:   "files/ETEL_Valuation_Study_03-07-2026_public.pdf?v=0704"
+    }
+  },
   FWRY: {
     name: "Fawry",
     nameAr: "فوري",
@@ -628,6 +654,7 @@ const COMING = [
   { code:"EGX:HELI", name:"Heliopolis Housing",              url:null,        status:"soon" },
   { code:"EGX:BTFH", name:"Beltone Financial Holding",        url:"btfh.html", status:"covered" },
   { code:"EGX:MFPC", name:"MOPCO",                            url:null,        status:"soon" },
+  { code:"EGX:ETEL", name:"Telecom Egypt",                    url:"etel.html", status:"covered" },
 ];
 
 /* ---------- public ledger ----------
@@ -1107,6 +1134,20 @@ const LEDGER = [
     p5:2.04, p25:2.53, p50:2.89, p75:3.29, p95:4.04,
     touch:{ "+5":70, "+10":51, "+15":37, "+20":27, "-5":75, "-10":57 },
     anchor_vol:0.3448, horizon_days:60,
+    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
+    realized_quantile:null, median_err:null, touch_hit:null },
+  { instrument:"ETEL", asset_class:"equity", anchor_date:"2026-07-01", anchor_price:92.61, ccy:"EGP",
+    horizon_label:"T+20", grade_date:"2026-07-29", cycle_no:1, reanchor_from:null,
+    p5:80.7, p25:90.5, p50:96.9, p75:103.7, p95:116.5,
+    touch:{"+5": 89, "+10": 78, "+15": 66, "+20": 54, "-5": 49, "-10": 28},
+    anchor_vol:0.3830, horizon_days:20,
+    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
+    realized_quantile:null, median_err:null, touch_hit:null },
+  { instrument:"ETEL", asset_class:"equity", anchor_date:"2026-07-01", anchor_price:92.61, ccy:"EGP",
+    horizon_label:"T+60", grade_date:"2026-09-23", cycle_no:1, reanchor_from:null,
+    p5:77.5, p25:94.3, p50:106.3, p75:119.4, p95:145.3,
+    touch:{"+5": 89, "+10": 78, "+15": 66, "+20": 54, "-5": 49, "-10": 28},
+    anchor_vol:0.3830, horizon_days:60,
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
     realized_quantile:null, median_err:null, touch_hit:null }
 ];
