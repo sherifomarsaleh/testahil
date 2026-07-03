@@ -6,6 +6,32 @@ const SITE = { updated: "2026-07-04" };
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
+  RAYA: {
+    name: "Raya Holding",
+    nameAr: "راية القابضة",
+    code: "EGX:RAYA",
+    spot: 7.70,
+    spotDate: "close 1 Jul 2026",
+    ccy: "EGP",
+    fair: { bear: 4.77, base: 5.56, full: 8.22 },
+    dist: {
+      t20: { label:"1 month (T+20)", p5:5.68, p25:6.90, p50:7.74, p75:8.66, p95:10.48, resolve:"2026-07-29" },
+      t60: { label:"3 months (T+60)", p5:4.60, p25:6.40, p50:7.79, p75:9.45, p95:13.06, resolve:"2026-09-23" }
+    },
+    touch: [ [10.01, 12, 38], [8.85, 38, 62], [8.09, 70, 83], [7.31, 68, 81], [6.54, 30, 55], [5.39, 4, 22] ],
+    levels: { res:[8.0, 8.47, 9.24], sup:[7.31, 6.93, 6.54] },
+    tech: {
+      trend: "Near the all-time high, above every moving average",
+      summary: "Price sits above all four moving averages, stacked in bullish order (20>50>100>200), a hair below the 8.00 all-time high after a run from 2.55 over the past year. RSI ~67 is elevated but not yet overbought; MACD is positive with the histogram flattening. A strong momentum leader — extended, but the trend is intact.",
+      bull: "A clean break of 8.00 opens fresh highs toward the mid-8s.",
+      bear: "A close back below the ~7.0 shelf relieves the overbought pressure toward the 6.9 fifty-day."
+    },
+    files: {
+      study: "files/RAYA_Valuation_Study_01-07-2026_public.docx?v=0703",
+      model: "files/RAYA_Valuation_Model_01-07-2026_public.xlsx?v=0703",
+      pdf:   "files/RAYA_Valuation_Study_01-07-2026_public.pdf?v=0703"
+    }
+  },
   EFIH: {
     name: "e-finance for Digital & Financial Investments",
     nameAr: "إي فاينانس للاستثمارات المالية والرقمية",
@@ -1370,6 +1396,20 @@ const LEDGER = [
     p5:4.84, p25:5.95, p50:6.74, p75:7.60, p95:9.27,
     touch:{ "+5":79, "+10":65, "+15":47, "+20":35, "-5":63, "-10":41 },
     anchor_vol:0.382, horizon_days:60,
+    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
+    realized_quantile:null, median_err:null, touch_hit:null },
+  { instrument:"RAYA", asset_class:"equity", anchor_date:"2026-07-01", anchor_price:7.70, ccy:"EGP",
+    horizon_label:"T+20", grade_date:"2026-07-29", cycle_no:1, reanchor_from:null,
+    p5:5.68, p25:6.90, p50:7.74, p75:8.66, p95:10.48,
+    touch:{ "+5":70, "+10":53, "+15":38, "+20":27, "-5":68, "-10":48 },
+    anchor_vol:0.6310, horizon_days:20,
+    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
+    realized_quantile:null, median_err:null, touch_hit:null },
+  { instrument:"RAYA", asset_class:"equity", anchor_date:"2026-07-01", anchor_price:7.70, ccy:"EGP",
+    horizon_label:"T+60", grade_date:"2026-09-23", cycle_no:1, reanchor_from:null,
+    p5:4.60, p25:6.40, p50:7.79, p75:9.45, p95:13.06,
+    touch:{ "+5":83, "+10":72, "+15":62, "+20":53, "-5":81, "-10":68 },
+    anchor_vol:0.6310, horizon_days:60,
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
     realized_quantile:null, median_err:null, touch_hit:null }
 ];
