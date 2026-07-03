@@ -2,10 +2,36 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-07-01" };
+const SITE = { updated: "2026-07-03" };
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
+  BTFH: {
+    name: "Beltone Financial Holding",
+    nameAr: "بلتون المالية القابضة",
+    code: "EGX:BTFH",
+    spot: 2.97,
+    spotDate: "close 1 Jul 2026",
+    ccy: "EGP",
+    fair: { bear: 1.89, base: 2.88, full: 4.13 },
+    dist: {
+      t20: { label:"1 month (T+20)", p5:2.39, p25:2.74, p50:2.95, p75:3.17, p95:3.58, resolve:"2026-07-29" },
+      t60: { label:"3 months (T+60)", p5:2.04, p25:2.53, p50:2.89, p75:3.29, p95:4.04, resolve:"2026-09-23" }
+    },
+    touch: [ [3.56, 9, 27], [3.27, 30, 51], [3.12, 53, 70], [2.82, 55, 75], [2.67, 30, 57], [2.38, 7, 27] ],
+    levels: { res:[3.02, 3.08, 3.30], sup:[2.80, 2.65, 2.40] },
+    tech: {
+      trend: "Sideways drift below a flat average stack — waiting for proof",
+      summary: "Price sits just below all four major averages (the 20/50/100/200-day cluster at 3.02–3.08) after a year spent digesting two record rights issues. RSI 43 and a mildly negative MACD read as soft momentum, not stress — down ~5% over twelve months against a stronger EGX, the tape is waiting for the same ROE proof the valuation is.",
+      bull: "A daily close above the 3.02–3.08 average cluster would turn the stack from ceiling into floor.",
+      bear: "A close below 2.80 opens the 52-week low at 2.65, then the 2.40 shelf."
+    },
+    files: {
+      study: "files/BTFH_Valuation_Study_03-07-2026_public.docx?v=0703",
+      model: "files/BTFH_Valuation_Model_03072026_public.xlsx?v=0703",
+      pdf:   "files/BTFH_Valuation_Study_03-07-2026_public.pdf?v=0703"
+    }
+  },
   FWRY: {
     name: "Fawry",
     nameAr: "فوري",
@@ -541,7 +567,7 @@ const COMING = [
   { code:"EGX:ORAS", name:"Orascom Construction",          url:"oras.html", status:"covered" },
   { code:"EGX:COMI", name:"Commercial International Bank", url:"comi.html", status:"covered" },
   { code:"EGX:HELI", name:"Heliopolis Housing",              url:null,        status:"soon" },
-  { code:"EGX:BTFH", name:"Beltone",                          url:null,        status:"soon" },
+  { code:"EGX:BTFH", name:"Beltone Financial Holding",        url:"btfh.html", status:"covered" },
   { code:"EGX:EFID", name:"Edita",                            url:null,        status:"soon" },
   { code:"EGX:MFPC", name:"MOPCO",                            url:null,        status:"soon" },
 ];
@@ -981,6 +1007,20 @@ const LEDGER = [
     p5:18.42, p25:21.01, p50:22.91, p75:25.01, p95:28.48,
     touch:{ "+5":69, "+10":47, "+15":30, "+20":18, "-5":55, "-10":30 },
     anchor_vol:0.2248, horizon_days:60,
+    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
+    realized_quantile:null, median_err:null, touch_hit:null },
+  { instrument:"BTFH", asset_class:"equity", anchor_date:"2026-07-01", anchor_price:2.97, ccy:"EGP",
+    horizon_label:"T+20", grade_date:"2026-07-29", cycle_no:1, reanchor_from:null,
+    p5:2.39, p25:2.74, p50:2.95, p75:3.17, p95:3.58,
+    touch:{ "+5":70, "+10":51, "+15":37, "+20":27, "-5":75, "-10":57 },
+    anchor_vol:0.3448, horizon_days:20,
+    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
+    realized_quantile:null, median_err:null, touch_hit:null },
+  { instrument:"BTFH", asset_class:"equity", anchor_date:"2026-07-01", anchor_price:2.97, ccy:"EGP",
+    horizon_label:"T+60", grade_date:"2026-09-23", cycle_no:1, reanchor_from:null,
+    p5:2.04, p25:2.53, p50:2.89, p75:3.29, p95:4.04,
+    touch:{ "+5":70, "+10":51, "+15":37, "+20":27, "-5":75, "-10":57 },
+    anchor_vol:0.3448, horizon_days:60,
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
     realized_quantile:null, median_err:null, touch_hit:null }
 ];
