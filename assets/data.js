@@ -803,6 +803,34 @@ const TICKERS = {
       pdf:   "files/Al_Rajhi_Valuation_Study_02-07-2026_public.pdf?v=0207a"
     }
   },
+  SNB: {
+    name: "The Saudi National Bank",
+    nameAr: "البنك الأهلي السعودي",
+    code: "TADAWUL:1180",
+    spot: 38.96,
+    spotDate: "close 2 Jul 2026",
+    ccy: "SAR",
+    fair: { bear: 36, base: 45, full: 55 },      // 2 Jul 2026 — weighted central 45.3 (+16% vs spot 38.96). Lenses: DDM (primary) 44.2, DCF (FCFF) 44.9, relative P/E-and-P/B 46.1, justified P/B (sustainable ROE) 46.9. bear/full = weighted bear/bull of the football field. Swing factor: the net interest margin through the SAMA easing cycle (a 74%-fixed investment book repricing slowly) and the Turkiye / legacy international drag.
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:33.75, p25:37.10, p50:39.03, p75:40.93, p95:44.44, resolve:"2026-07-30" },
+      t60: { label:"3 months (T+60)", p5:30.81, p25:35.62, p50:39.00, p75:42.56, p95:48.66, resolve:"2026-09-24" }
+    },
+    touch: [ /* descending high -> low; P(touch) T+20 %, T+60 % */
+      [46, 3, 18], [44, 9, 31], [42, 24, 50], [40, 59, 76], [38, 57, 75], [36, 23, 48], [34, 8, 27]
+    ],
+    levels: { res:[39.76, 40.21, 41.01], sup:[38.00, 36.00, 33.68] },
+    tech: {
+      trend: "Below all four major moving averages but only mildly; RSI in the low-40s — a soft, corrective tape, not a breakdown",
+      summary: "The tape is mildly soft rather than distressed. SNB sits below its 20-day (SAR 40.21), 50-day (39.76), 100-day (41.01) and 200-day (39.76) averages, about 2% under the 200-day. RSI(14) near 41 is neutral-to-weak but not oversold, and MACD is modestly negative (-0.22 line / +0.03 signal / -0.25 histogram). Price sits in the lower-middle of a 52-week band of SAR 33.68-45.00; realized 252-day volatility near 24% is moderate for a large-cap bank, and the YZ-HAR engine reads the current 60-day regime near 21%.",
+      bull: "A daily close back above the SAR 39.8-41.0 moving-average cluster would signal the soft patch is over; reclaiming the 52-week high near SAR 45 would need a margin-resilience or dividend surprise.",
+      bear: "A daily close below support around SAR 38 opens the lower band toward SAR 36 and the 52-week low at SAR 33.68."
+    },
+    files: {
+      study: "files/SNB_Valuation_Study_04-07-2026_public.docx?v=0407j",
+      model: "files/SNB_Valuation_Model_04072026_public.xlsx?v=0407j",
+      pdf:   "files/SNB_Valuation_Study_04-07-2026_public.pdf?v=0407j"
+    }
+  },
   TSLA: {
     name: "Tesla, Inc.",
     nameAr: "تسلا",
@@ -1353,6 +1381,29 @@ const LEDGER = [
     anchor_vol:0.1781, horizon_days:60,
     p5:54.27, p25:61.32, p50:65.95, p75:70.75, p95:78.70,
     touch:{ "+5":57, "+10":31, "+15":16, "+20":8, "-5":54, "-10":29 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  // ---- SNB · other (TADAWUL Saudi Arabia) · cycle 1 (2 Jul 2026 published study) ----
+  {
+    instrument:"SNB", asset_class:"other",
+    anchor_date:"2026-07-02", anchor_price:38.96, ccy:"SAR",
+    horizon_label:"T+20", grade_date:"2026-07-30", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.2118, horizon_days:20,
+    p5:33.75, p25:37.10, p50:39.03, p75:40.93, p95:44.44,
+    touch:{ "+5":40, "+10":16, "+15":6, "+20":2, "-5":37, "-10":15 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"SNB", asset_class:"other",
+    anchor_date:"2026-07-02", anchor_price:38.96, ccy:"SAR",
+    horizon_label:"T+60", grade_date:"2026-09-24", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.2118, horizon_days:60,
+    p5:30.81, p25:35.62, p50:39.00, p75:42.56, p95:48.66,
+    touch:{ "+5":63, "+10":41, "+15":25, "+20":15, "-5":60, "-10":37 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
