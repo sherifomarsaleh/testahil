@@ -8,7 +8,7 @@
   <url><loc>https://testahil.com/compare.html</loc><lastmod>2026-07-04</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://testahil.com/calculator.html</loc><lastmod>2026-07-04</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://testahil.com/archive.html</loc><lastmod>2026-07-04</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://testahil.com/ar/</loc><lastmod>2026-07-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://testahil.com/ar/</loc><lastmod>2026-07-04</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://testahil.com/ar/stocks.html</loc><lastmod>2026-07-04</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://testahil.com/ar/metals.html</loc><lastmod>2026-07-02</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://testahil.com/ar/method.html</loc><lastmod>2026-07-02</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
@@ -55,6 +55,8 @@
   <url><loc>https://testahil.com/ar/oras.html</loc><lastmod>2026-07-02</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://testahil.com/aramco.html</loc><lastmod>2026-07-04</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://testahil.com/ar/aramco.html</loc><lastmod>2026-07-02</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://testahil.com/adnocgas.html</loc><lastmod>2026-07-04</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://testahil.com/ar/adnocgas.html</loc><lastmod>2026-07-04</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://testahil.com/tsla.html</loc><lastmod>2026-07-04</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://testahil.com/ar/tsla.html</loc><lastmod>2026-07-02</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://testahil.com/ihc.html</loc><lastmod>2026-07-04</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
