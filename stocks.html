@@ -252,6 +252,14 @@ footer{border-top:1px solid var(--line);margin-top:20px;padding:16px 0 24px;colo
 <script>
 const DATA = COVERAGE_EN;
 
+/* Latest studies first — sort coverage by publish date descending.
+   Stable sort keeps same-date studies in their curated order. */
+(function(){
+  const MONS={Jan:1,Feb:2,Mar:3,Apr:4,May:5,Jun:6,Jul:7,Aug:8,Sep:9,Oct:10,Nov:11,Dec:12};
+  const key=s=>{const m=String(s||"").match(/(\d{1,2})\s+([A-Za-z]{3})\w*\s+(\d{4})/);return m?(+m[3]*10000+(MONS[m[2]]||0)*100+ +m[1]):0;};
+  DATA.sort((a,b)=>key(b.date)-key(a.date));
+})();
+
 const GROUP_KEY = { sector:"sector", country:"country", company:"name" };
 function optionsFor(group){
   const key = GROUP_KEY[group];

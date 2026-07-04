@@ -292,6 +292,15 @@ header.nav .theme-toggle .tt-icon{width:19px;height:19px}
 <script>
 const DATA = COVERAGE_AR;
 
+/* الأحدث أولاً — نرتّب حسب تاريخ النشر تنازليًا، بمفتاح من تواريخ التغطية الإنجليزية
+   (نفس الرموز؛ أسماء الأشهر العربية لا يقرأها المُحلِّل). الترتيب المستقر يحفظ ترتيب الدراسات بنفس التاريخ. */
+(function(){
+  const MONS={Jan:1,Feb:2,Mar:3,Apr:4,May:5,Jun:6,Jul:7,Aug:8,Sep:9,Oct:10,Nov:11,Dec:12};
+  const key=s=>{const m=String(s||"").match(/(\d{1,2})\s+([A-Za-z]{3})\w*\s+(\d{4})/);return m?(+m[3]*10000+(MONS[m[2]]||0)*100+ +m[1]):0;};
+  const dk={}; (typeof COVERAGE_EN!=="undefined"?COVERAGE_EN:[]).forEach(d=>{dk[d.tk]=key(d.date);});
+  DATA.sort((a,b)=>(dk[b.tk]||0)-(dk[a.tk]||0));
+})();
+
 const GROUP_KEY = { sector:"sector", country:"country", company:"name" };
 function optionsFor(group){
   const key = GROUP_KEY[group];
