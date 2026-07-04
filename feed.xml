@@ -6,7 +6,23 @@
     <atom:link href="https://testahil.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>دراسات تقييم تعليمية مستقلة لأسهم البورصة المصرية — توزيعات احتمالية، وليست توصيات. Educational EGX valuation studies — distributions, not tips.</description>
     <language>ar</language>
-    <lastBuildDate>Fri, 03 Jul 2026 08:30:00 +0300</lastBuildDate>
+    <lastBuildDate>Sat, 04 Jul 2026 08:30:00 +0300</lastBuildDate>
+
+    <item>
+      <title>الشركة العالمية القابضة (IHC): دراسة تقييم — هل يستحق السهم؟</title>
+      <link>https://testahil.com/ar/ihc.html</link>
+      <guid isPermaLink="true">https://testahil.com/ar/ihc.html</guid>
+      <description>السعر 382.30 · الوسيط (٣ شهور) 391.30 · النطاق 322.60–462.30 جنيه — تحليل تعليمي، توزيع وليس توصية.</description>
+      <pubDate>Sat, 04 Jul 2026 08:30:00 +0300</pubDate>
+    </item>
+
+    <item>
+      <title>International Holding Company (IHC): Valuation Study — is it worth it?</title>
+      <link>https://testahil.com/ihc.html</link>
+      <guid isPermaLink="true">https://testahil.com/ihc.html</guid>
+      <description>Latest 382.30 · 3-month median 391.30 · range 322.60–462.30 EGP — educational analysis, a distribution not a recommendation.</description>
+      <pubDate>Sat, 04 Jul 2026 08:30:00 +0300</pubDate>
+    </item>
 
     <item>
       <title>إي فاينانس للاستثمارات المالية والرقمية (EFIH): دراسة تقييم — هل يستحق السهم؟</title>
