@@ -747,6 +747,34 @@ const TICKERS = {
       pdf:   "files/Aramco_Valuation_Study_01-07-2026_public.pdf?v=0107b"
     }
   },
+  ADNOCGAS: {
+    name: "ADNOC Gas",
+    nameAr: "أدنوك للغاز",
+    code: "ADX:ADNOCGAS",
+    spot: 3.44,
+    spotDate: "close 3 Jul 2026",
+    ccy: "AED",
+    fair: { bear: 3.30, base: 3.79, full: 4.60 },      // 4 Jul 2026 — weighted five-lens central 3.79 (+10% vs spot 3.44). Lenses: DCF (5-yr FCFF) 4.50 (ceiling), DDM (committed dividend, split-Ke 8.25%) 3.41, relative EV/EBITDA 3.83, justified P/E 3.62, dividend yield 3.83. bear/full = weighted bear/bull of the football field. Swing: Brent-linked export pricing and the gap between enterprise cash flow and the distributed dividend.
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:3.05, p25:3.32, p50:3.45, p75:3.59, p95:3.86, resolve:"2026-07-31" },
+      t60: { label:"3 months (T+60)", p5:2.83, p25:3.22, p50:3.48, p75:3.75, p95:4.21, resolve:"2026-09-25" }
+    },
+    touch: [ /* descending high -> low; P(touch) T+20 %, T+60 % */
+      [3.90, 5, 25], [3.75, 14, 40], [3.65, 27, 55], [3.55, 49, 71], [3.35, 49, 68], [3.25, 25, 49], [3.15, 13, 34]
+    ],
+    levels: { res:[3.55, 3.65, 3.72], sup:[3.34, 3.25, 3.14] },
+    tech: {
+      trend: "Flat and range-bound, sitting on its 20- and 200-day averages",
+      summary: "The tape is quiet, as befits a low-beta income name. Price (AED 3.44) sits almost exactly on its 20-day (3.42) and 200-day (3.42) moving averages and just above the 50-day (3.34) — a flat, coiled structure with no trend. RSI(14) near 56 is neutral; MACD is marginally positive on the line with the histogram just below zero, i.e. momentum flat-to-fading. The 52-week range is narrow (3.14–3.72) and realized volatility of ~17% is a fraction of a typical single stock.",
+      bull: "A daily close above the 3.55–3.65 shelf opens the way toward the 3.72 fifty-two-week high; a re-rating would need a firmer oil/gas tape.",
+      bear: "A close below the 3.35 support opens 3.25, then the 3.14 fifty-two-week low."
+    },
+    files: {
+      study: "files/ADNOC_Gas_Valuation_Study_04-07-2026_public.docx?v=0704",
+      model: "files/ADNOC_Gas_Valuation_Model_04-07-2026_public.xlsx?v=0704",
+      pdf:   "files/ADNOC_Gas_Valuation_Study_04-07-2026_public.pdf?v=0704"
+    }
+  },
   TSLA: {
     name: "Tesla, Inc.",
     nameAr: "تسلا",
@@ -1253,6 +1281,27 @@ const LEDGER = [
     horizon_label:"T+60", grade_date:"2026-09-23", cycle_no:1, reanchor_from:null,
     p5:21.99, p25:24.47, p50:26.12, p75:27.78, p95:30.35,
     touch:{ "+5":51, "+10":24, "+15":10, "+20":3, "-5":52, "-10":25 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  // ---- ADNOCGAS · other (ADX Abu Dhabi) · cycle 1 (4 Jul 2026 published study) ----
+  {
+    instrument:"ADNOCGAS", asset_class:"other",
+    anchor_date:"2026-07-03", anchor_price:3.44, ccy:"AED",
+    horizon_label:"T+20", grade_date:"2026-07-31", cycle_no:1, reanchor_from:null,
+    p5:3.05, p25:3.32, p50:3.45, p75:3.59, p95:3.86,
+    touch:{ "+5":34, "+10":12, "+15":4, "+20":1, "-5":28, "-10":9 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"ADNOCGAS", asset_class:"other",
+    anchor_date:"2026-07-03", anchor_price:3.44, ccy:"AED",
+    horizon_label:"T+60", grade_date:"2026-09-25", cycle_no:1, reanchor_from:null,
+    p5:2.83, p25:3.22, p50:3.48, p75:3.75, p95:4.21,
+    touch:{ "+5":61, "+10":36, "+15":20, "+20":11, "-5":52, "-10":28 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
