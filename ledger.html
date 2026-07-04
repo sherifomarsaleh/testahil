@@ -150,8 +150,8 @@ function renderRow(r){
 
 const ledgerPage = {};
 function buildPanel(rows, tbodyId, summaryId){
-  // newest first
-  const sorted = [...rows].sort((a,b) => b.anchor_date.localeCompare(a.anchor_date) || b.horizon_label.localeCompare(a.horizon_label));
+  // soonest calibration first: nearest check (grade) date at the top, overdue ahead of upcoming
+  const sorted = [...rows].sort((a,b) => (a.grade_date||"").localeCompare(b.grade_date||"") || a.horizon_label.localeCompare(b.horizon_label));
   const PER=10, pages=Math.max(1,Math.ceil(sorted.length/PER));
   let __pg = ledgerPage[tbodyId]||0; if(__pg>=pages)__pg=pages-1; if(__pg<0)__pg=0; ledgerPage[tbodyId]=__pg;
   document.getElementById(tbodyId).innerHTML = sorted.slice(__pg*PER,__pg*PER+PER).map(renderRow).join("");
@@ -165,10 +165,20 @@ function buildPanel(rows, tbodyId, summaryId){
     : `Nothing to check yet — first one on ${new Date([...rows].sort((a,b)=>a.grade_date.localeCompare(b.grade_date))[0].grade_date).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}.`;
 }
 
-// Collect unique instruments in order of most-recent anchor
-const tickerOrder = [...new Set(
-  [...LEDGER].sort((a,b)=>b.anchor_date.localeCompare(a.anchor_date)).map(r=>r.instrument)
-)];
+// Order instruments by soonest pending calibration: nearest ungraded grade_date first
+// (overdue names sort ahead of upcoming ones). Fully-scored names fall to the end;
+// ties break to the most-recent anchor so active studies stay near the front.
+const nextGrade = {}, lastAnchor = {};
+LEDGER.forEach(r=>{
+  if(r.realized_close==null && r.grade_date && (!(r.instrument in nextGrade) || r.grade_date < nextGrade[r.instrument]))
+    nextGrade[r.instrument] = r.grade_date;
+  if(!(r.instrument in lastAnchor) || r.anchor_date > lastAnchor[r.instrument])
+    lastAnchor[r.instrument] = r.anchor_date;
+});
+const tickerOrder = [...new Set(LEDGER.map(r=>r.instrument))].sort((a,b)=>{
+  const ga = nextGrade[a] || "9999-99-99", gb = nextGrade[b] || "9999-99-99";
+  return ga.localeCompare(gb) || lastAnchor[b].localeCompare(lastAnchor[a]);
+});
 
 const tabBar    = document.getElementById("tab-bar");
 const tabPanels = document.getElementById("tab-panels");
