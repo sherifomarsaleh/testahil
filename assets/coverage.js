@@ -35,7 +35,8 @@ const COVERAGE_EN = [
   {tk:"TMPV",   code:"NSE:TMPV",    name:"Tata Motors Passenger Vehicles", sector:"Automobiles",               sub:"Passenger vehicles & JLR", country:"India",       cur:"INR", fair:"378",     price:"352",     gap:"+7%",    date:"30 Jun 2026", url:"tmpv.html",    thesis:"PV holdco — India cars, the EV unit and Jaguar Land Rover; the case turns on JLR margin recovery and the conglomerate discount."},
   {tk:"ARAMCO", code:"TADAWUL:2222", name:"Saudi Aramco", sector:"Energy", sub:"Integrated oil & gas", country:"Saudi Arabia", cur:"SAR", fair:"25.04", price:"26.24", gap:"−5%", date:"1 Jul 2026", url:"aramco.html", thesis:"World's largest, lowest-cost oil producer; priced as a ~5.2% dividend instrument — the case turns on the oil path and the dividend's free-cash coverage."},
   {tk:"EMAAR",  code:"DFM:EMAAR",   name:"Emaar Properties",              sector:"Real Estate & Hospitality", sub:"Developer holdco",         country:"UAE",         cur:"AED", fair:"14.80",   price:"12.14",   gap:"+22%",   date:"01 Jul 2026", url:"emaar.html",   thesis:"Dubai's dominant developer plus a prime recurring mall-and-hotel portfolio; the case turns on the recurring multiple and the NAV/holdco discount."},
-  {tk:"TSLA",   code:"NASDAQ:TSLA", name:"Tesla, Inc.",                   sector:"Automobiles",               sub:"EVs, energy & autonomy",   country:"United States",cur:"USD", fair:"254",     price:"421",     gap:"−40%", date:"01 Jul 2026", url:"tsla.html",    thesis:"EV maker wrapped around a large autonomy option; the entire premium to the operating value rests on Robotaxi, FSD and Optimus."}
+  {tk:"TSLA",   code:"NASDAQ:TSLA", name:"Tesla, Inc.",                   sector:"Automobiles",               sub:"EVs, energy & autonomy",   country:"United States",cur:"USD", fair:"254",     price:"421",     gap:"−40%", date:"01 Jul 2026", url:"tsla.html",    thesis:"EV maker wrapped around a large autonomy option; the entire premium to the operating value rests on Robotaxi, FSD and Optimus."},
+  {tk:"IHC",    code:"ADX:IHC",     name:"International Holding Company",  sector:"Diversified Holdings",      sub:"Investment holding",       country:"UAE",         cur:"AED", fair:"104.5",   price:"382.30",  gap:"−73%",  date:"4 Jul 2026", url:"ihc.html",     thesis:"Abu Dhabi's ~$230bn flagship holdco — Alpha Dhabi, NMDC, the merging Multiply/2PointZero/Ghitha, plus IRH metals and a vast private tail; every fundamental lens sits far below a market price that pays a large premium to look-through NAV (the inverse of the usual holdco discount)."}
 ];
 
 const COVERAGE_AR = [
@@ -67,7 +68,8 @@ const COVERAGE_AR = [
   {tk:"TMPV",   code:"NSE:TMPV",    name:"تاتا موتورز للركاب", sector:"السيارات", sub:"سيارات الركاب وجاكوار لاند روفر", country:"الهند", cur:"INR", fair:"378", price:"352", gap:"+7%", date:"30 يونيو 2026", url:"tmpv.html", thesis:"شركة قابضة لسيارات الركاب — سيارات الهند ووحدة الكهرباء وجاكوار لاند روفر؛ والمحور تعافي هوامش جاكوار لاند روفر وخصم الشركة القابضة."},
   {tk:"ARAMCO", code:"TADAWUL:2222", name:"أرامكو السعودية", sector:"الطاقة", sub:"نفط وغاز متكامل", country:"السعودية", cur:"SAR", fair:"25.04", price:"26.24", gap:"−5%", date:"1 يوليو 2026", url:"aramco.html", thesis:"أكبر منتج للنفط وأقلّه تكلفة في العالم؛ مُسعّر كأداة دخل بعائد ~5.2٪ — والمحور مسار النفط وتغطية التوزيع من التدفق الحر."},
   {tk:"EMAAR",  code:"DFM:EMAAR",   name:"إعمار العقارية",            sector:"العقارات والضيافة",   sub:"شركة تطوير قابضة",        country:"الإمارات",       cur:"AED", fair:"14.80",   price:"12.14",   gap:"+22%",   date:"1 يوليو 2026",  url:"emaar.html",   thesis:"المطوّر المهيمن في دبي مع محفظة مراكز تجارية وفنادق متكرّرة راقية؛ والمحور المضاعف على المحفظة المتكرّرة وخصم صافي قيمة الأصول."},
-  {tk:"TSLA", code:"NASDAQ:TSLA", name:"تسلا", sector:"السيارات", sub:"سيارات كهربائية وطاقة وقيادة ذاتية", country:"الولايات المتحدة", cur:"USD", fair:"254", price:"421", gap:"−40%", date:"1 يوليو 2026", url:"tsla.html", thesis:"صانع سيارات كهربائية مع خيار قيادة ذاتية كبير؛ العلاوة الكاملة على القيمة التشغيلية تعتمد على روبوتاكسي وFSD وأوبتيموس."}
+  {tk:"TSLA", code:"NASDAQ:TSLA", name:"تسلا", sector:"السيارات", sub:"سيارات كهربائية وطاقة وقيادة ذاتية", country:"الولايات المتحدة", cur:"USD", fair:"254", price:"421", gap:"−40%", date:"1 يوليو 2026", url:"tsla.html", thesis:"صانع سيارات كهربائية مع خيار قيادة ذاتية كبير؛ العلاوة الكاملة على القيمة التشغيلية تعتمد على روبوتاكسي وFSD وأوبتيموس."},
+  {tk:"IHC",  code:"ADX:IHC",   name:"الشركة العالمية القابضة",  sector:"شركات قابضة متنوّعة",  sub:"شركة قابضة استثمارية",   country:"الإمارات",       cur:"AED", fair:"104.5",   price:"382.30",   gap:"−73%",   date:"4 يوليو 2026",  url:"ihc.html",   thesis:"الشركة القابضة الرائدة في أبوظبي بقيمة سوقية نحو 230 مليار دولار — ألفا ظبي وشركة الملاحة الوطنية واندماج مالتيبلاي/تو بوينت زيرو/غذاء، إضافة إلى معادن IRH وذيل خاص واسع؛ كل عدسات التقييم الجوهرية أدنى بكثير من سعر سوقي يدفع علاوة كبيرة على صافي القيمة المُقوَّمة — عكس خصم الشركات القابضة المعتاد."}
 ];
 
 const SHORT = {
@@ -78,5 +80,6 @@ const SHORT = {
   "005930":"Samsung", "035720":"Kakao", "373220":"LG Energy",
   TMPV:"Tata Motors", ARAMCO:"Aramco", EMAAR:"Emaar", TSLA:"Tesla",
   EFID:"Edita", RAYA:"Raya Holding", FWRY:"Fawry", ADIB:"ADIB-Egypt", ABUK:"Abu Kir Fert.", HRHO:"EFG Holding", ORWE:"Oriental Weavers", BTFH:"Beltone", ETEL:"Telecom Egypt", JUFO:"Juhayna",
-  HELI:"Heliopolis Housing"
+  HELI:"Heliopolis Housing",
+  IHC:"Int\u0027l Holding"
 };

@@ -775,6 +775,34 @@ const TICKERS = {
       pdf:   "files/TSLA_Valuation_Study_30-06-2026_public.pdf?v=0108"
     }
   },
+  IHC: {
+    name: "International Holding Company",
+    nameAr: "الشركة العالمية القابضة",
+    code: "ADX:IHC",
+    spot: 382.30,
+    spotDate: "close 3 Jul 2026",
+    ccy: "AED",
+    fair: { bear: 78, base: 104.5, full: 150 },      // 4 Jul 2026 — five-lens weighted central 104.5 (−73% vs spot 382.30). Lenses: look-through SOTP/NAV 120 (primary), consolidated operating DCF 81 (floor), relative multiples 102, normalized earnings 91; weights 45/15/20/20. Swing: the premium the market pays over reconstructable NAV — IHC trades at ~3.2x look-through NAV / ~5.5x attributable book, the inverse of the usual holdco discount.
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:340.6, p25:376.0, p50:384.4, p75:397.1, p95:427.9, resolve:"2026-07-31" },
+      t60: { label:"3 months (T+60)", p5:322.6, p25:364.8, p50:391.3, p75:418.2, p95:462.3, resolve:"2026-09-25" }
+    },
+    touch: [ /* descending high -> low; P(touch) T+20 %, T+60 % */
+      [459, 1, 8], [440, 3, 17], [421, 10, 33], [405, 21, 51], [394, 35, 67], [371, 23, 47], [359, 14, 34], [344, 8, 20], [325, 2, 9]
+    ],
+    levels: { res:[384.9, 388.2, 391.5], sup:[380.0, 371.0, 359.0] },
+    tech: {
+      trend: "Below every major moving average in a descending stack; a soft, low-volatility drift",
+      summary: "The tape is soft and, above all, tight. IHC sits below all four major moving averages, arranged in a stepwise-descending stack (200-day AED 395.65 > 100-day 391.46 > 50-day 388.23 > 20-day 384.85 > price 382.30) — the classic signature of a mild, orderly downtrend. RSI(14) near 42.9 is neutral-to-soft and the daily MACD is modestly below its signal (−1.95 line / −1.62 signal / −0.33 histogram). What stands out is the range: a 52-week band of barely 6% (AED 380–404), reflecting very low turnover and buy-and-hold ownership — the same thinness that makes the observed −0.24 beta a float artifact rather than a true low-risk signal.",
+      bull: "A daily close back above the 385–392 moving-average cluster would signal the soft patch is over; reclaiming the 52-week high near AED 404 would need a positive catalyst — a deal, the pending Multiply/2PointZero/Ghitha merger, or index / flow support.",
+      bear: "A daily close below the 52-week low at AED 380 opens the lower band toward AED 371, then 359."
+    },
+    files: {
+      study: "files/IHC_Valuation_Study_04-07-2026_public.docx?v=0407",
+      model: "files/IHC_Valuation_Model_04-07-2026_public.xlsx?v=0407",
+      pdf:   "files/IHC_Valuation_Study_04-07-2026_public.pdf?v=0407"
+    }
+  },
   HELI: {
     name: "Heliopolis Housing",
     nameAr: "مصر الجديدة للإسكان والتعمير",
@@ -1411,7 +1439,30 @@ const LEDGER = [
     touch:{ "+5":83, "+10":72, "+15":62, "+20":53, "-5":81, "-10":68 },
     anchor_vol:0.6310, horizon_days:60,
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
-    realized_quantile:null, median_err:null, touch_hit:null }
+    realized_quantile:null, median_err:null, touch_hit:null },
+  // ---- IHC · other (ADX Abu Dhabi) · cycle 1 (4 Jul 2026 published study) ----
+  {
+    instrument:"IHC", asset_class:"other",
+    anchor_date:"2026-07-03", anchor_price:382.30, ccy:"AED",
+    horizon_label:"T+20", grade_date:"2026-07-31", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.061, horizon_days:20,
+    p5:340.6, p25:376.0, p50:384.4, p75:397.1, p95:427.9,
+    touch:{ "+5":27, "+10":10, "+15":3, "+20":1, "-5":19, "-10":8 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"IHC", asset_class:"other",
+    anchor_date:"2026-07-03", anchor_price:382.30, ccy:"AED",
+    horizon_label:"T+60", grade_date:"2026-09-25", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.061, horizon_days:60,
+    p5:322.6, p25:364.8, p50:391.3, p75:418.2, p95:462.3,
+    touch:{ "+5":58, "+10":33, "+15":17, "+20":8, "-5":42, "-10":20 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  }
 ];
 
 /* ==========================================================================
