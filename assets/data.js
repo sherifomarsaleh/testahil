@@ -775,6 +775,34 @@ const TICKERS = {
       pdf:   "files/ADNOC_Gas_Valuation_Study_04-07-2026_public.pdf?v=0704"
     }
   },
+  ALRAJHI: {
+    name: "Al Rajhi Bank",
+    nameAr: "مصرف الراجحي",
+    code: "TADAWUL:1120",
+    spot: 66.00,
+    spotDate: "close 2 Jul 2026",
+    ccy: "SAR",
+    fair: { bear: 58, base: 70, full: 80 },      // 2 Jul 2026 — weighted central 70.1 (+6.2% vs spot 66.00). Lenses: DDM (primary) 58.2, residual income 76.8, FCFE (DCF) 79.5, justified P/B 75.7, normalized 65.3. bear/full = weighted bear/bull of the football field. Swing factors: the NIM path through the SAMA easing cycle and whether retained capital (~23% ROE) is valued on the dividend or the excess return.
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:58.70, p25:63.53, p50:66.08, p75:68.62, p95:73.15, resolve:"2026-07-30" },
+      t60: { label:"3 months (T+60)", p5:54.27, p25:61.32, p50:65.95, p75:70.75, p95:78.70, resolve:"2026-09-24" }
+    },
+    touch: [ /* descending high -> low */
+      [74, 6, 24], [72, 12, 35], [70, 24, 50], [68, 49, 70], [64, 46, 67], [62, 23, 48], [60, 12, 33]
+    ],
+    levels: { res:[67.92, 67.39, 66.66], sup:[64.50, 62.00, 60.67] },
+    tech: {
+      trend: "Below all four major moving averages but only mildly; RSI in the low-40s — a soft, corrective tape, not a breakdown",
+      summary: "The tape is soft, not washed out. Al Rajhi sits below its 20-day (SAR 66.66), 50-day (67.39), 100-day (68.55) and 200-day (67.92) averages, about 2.8% under the 200-day — a mild drift lower after the post-bonus consolidation. RSI(14) near 41 is neutral-to-weak but not oversold, and MACD is modestly negative with the histogram below zero. Price sits at the 42nd percentile of a tight 52-week band of SAR 60.67–73.33; realized 252-day volatility near 20% is calm for a single name, and the YZ-HAR engine reads the current regime tighter still at ~17.8%.",
+      bull: "A daily close back above the SAR 66.7–68.0 moving-average cluster would signal the soft patch is over; reclaiming the 52-week high near SAR 73 would need a margin-resilience or dividend surprise.",
+      bear: "A daily close below recent support around SAR 64.5 opens the lower band toward SAR 62 and the 52-week low at SAR 60.67."
+    },
+    files: {
+      study: "files/Al_Rajhi_Valuation_Study_02-07-2026_public.docx?v=0207a",
+      model: "files/Al_Rajhi_Valuation_Model_02-07-2026_public.xlsx?v=0207a",
+      pdf:   "files/Al_Rajhi_Valuation_Study_02-07-2026_public.pdf?v=0207a"
+    }
+  },
   TSLA: {
     name: "Tesla, Inc.",
     nameAr: "تسلا",
@@ -1302,6 +1330,29 @@ const LEDGER = [
     horizon_label:"T+60", grade_date:"2026-09-25", cycle_no:1, reanchor_from:null,
     p5:2.83, p25:3.22, p50:3.48, p75:3.75, p95:4.21,
     touch:{ "+5":61, "+10":36, "+15":20, "+20":11, "-5":52, "-10":28 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  // ---- ALRAJHI · other (TADAWUL Saudi Arabia) · cycle 1 (2 Jul 2026 published study) ----
+  {
+    instrument:"ALRAJHI", asset_class:"other",
+    anchor_date:"2026-07-02", anchor_price:66.00, ccy:"SAR",
+    horizon_label:"T+20", grade_date:"2026-07-30", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.1781, horizon_days:20,
+    p5:58.70, p25:63.53, p50:66.08, p75:68.62, p95:73.15,
+    touch:{ "+5":32, "+10":9, "+15":3, "+20":1, "-5":29, "-10":9 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"ALRAJHI", asset_class:"other",
+    anchor_date:"2026-07-02", anchor_price:66.00, ccy:"SAR",
+    horizon_label:"T+60", grade_date:"2026-09-24", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.1781, horizon_days:60,
+    p5:54.27, p25:61.32, p50:65.95, p75:70.75, p95:78.70,
+    touch:{ "+5":57, "+10":31, "+15":16, "+20":8, "-5":54, "-10":29 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
