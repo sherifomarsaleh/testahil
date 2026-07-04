@@ -166,8 +166,19 @@
 <footer><div class="wrap"><div class="foot-studies"><b>Studies:</b> <!--STUDIES:START--><a href="adnocgas.html">ADNOC Gas</a> &middot; <a href="ihc.html">Int'l Holding</a> &middot; <a href="heli.html">Heliopolis Housing</a> &middot; <a href="oih.html">Orascom Invest</a> &middot; <a href="alrajhi.html">Al Rajhi Bank</a> &middot; <a href="snb.html">Saudi National Bank</a> &middot; <a href="efih.html">e-finance</a> &middot; <a href="egal.html">Egypt Aluminum</a> &middot; <a href="efid.html">Edita</a> &middot; <a href="btfh.html">Beltone</a><!--STUDIES:END--> &middot; <a href="stocks.html">all &rarr;</a></div><b>Disclaimer:</b> Educational valuation studies and personal analytical opinion — not investment advice, not recommendations. The preparer is not licensed by Egypt's FRA, manages no money, accepts no clients, and may hold positions in instruments mentioned. <a href="method.html#disclaimer">Full text</a>.<br><br><span class="social" style="font-size:var(--fs-lead);font-weight:700">Follow Testahil &mdash; <a href="https://t.me/testahil_markets" target="_blank" rel="noopener">Telegram</a> &middot; <a href="https://www.facebook.com/testahil.markets" target="_blank" rel="noopener">Facebook</a> &middot; <a href="https://www.linkedin.com/company/testahil" target="_blank" rel="noopener">LinkedIn</a></span></div></footer>
 <script src="assets/data.js?v=20260704j"></script><script src="assets/app.js?v=20260704j"></script>
 <script>
-// most recently updated ticker
-const latest = Object.entries(TICKERS).sort((a,b)=>b[1].spotDate.localeCompare(a[1].spotDate))[0];
+// Latest published study = last instrument appended to LEDGER (written on every publish),
+// with a newest-spotDate fallback. The old localeCompare sorted the human "close DD Mon YYYY"
+// strings lexically, which pinned the hero to Tata Motors instead of the real latest study.
+const latest = (function(){
+  for (let i = LEDGER.length - 1; i >= 0; i--){
+    const k = LEDGER[i].instrument;
+    if (k && TICKERS[k]) return [k, TICKERS[k]];
+  }
+  const M = {Jan:0,Feb:1,Mar:2,Apr:3,May:4,Jun:5,Jul:6,Aug:7,Sep:8,Oct:9,Nov:10,Dec:11};
+  const t = s => { const m=/(\d{1,2})\s+([A-Za-z]{3})\s+(\d{4})/.exec(TICKERS[s].spotDate||""); return m ? Date.UTC(+m[3], M[m[2]]||0, +m[1]) : 0; };
+  const k = Object.keys(TICKERS).sort((a,b)=>t(b)-t(a))[0];
+  return [k, TICKERS[k]];
+})();
 const T = latest[1];
 document.getElementById("upd").textContent = SITE.updated;
 const o = plainOdds(T.dist.t60, T.spot);
