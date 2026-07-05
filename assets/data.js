@@ -2,7 +2,7 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-07-05" };
+const SITE = { updated: "2026-07-05", latest: "ENBD" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
