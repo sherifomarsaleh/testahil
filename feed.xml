@@ -6,7 +6,23 @@
     <atom:link href="https://testahil.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>دراسات تقييم تعليمية مستقلة لأسهم البورصة المصرية — توزيعات احتمالية، وليست توصيات. Educational EGX valuation studies — distributions, not tips.</description>
     <language>ar</language>
-    <lastBuildDate>Sat, 04 Jul 2026 08:30:00 +0300</lastBuildDate>
+    <lastBuildDate>Sun, 05 Jul 2026 08:30:00 +0300</lastBuildDate>
+
+    <item>
+      <title>شركة التعدين العربية السعودية (معادن) (MAADEN): دراسة تقييم — هل يستحق السهم؟</title>
+      <link>https://testahil.com/ar/maaden.html</link>
+      <guid isPermaLink="true">https://testahil.com/ar/maaden.html</guid>
+      <description>السعر 58.80 · الوسيط (٣ شهور) 60.10 · النطاق 46.10–78.40 جنيه — تحليل تعليمي، توزيع وليس توصية.</description>
+      <pubDate>Sun, 05 Jul 2026 08:30:00 +0300</pubDate>
+    </item>
+
+    <item>
+      <title>Saudi Arabian Mining Company (Ma&apos;aden) (MAADEN): Valuation Study — is it worth it?</title>
+      <link>https://testahil.com/maaden.html</link>
+      <guid isPermaLink="true">https://testahil.com/maaden.html</guid>
+      <description>Latest 58.80 · 3-month median 60.10 · range 46.10–78.40 EGP — educational analysis, a distribution not a recommendation.</description>
+      <pubDate>Sun, 05 Jul 2026 08:30:00 +0300</pubDate>
+    </item>
 
     <item>
       <title>أدنوك للغاز (ADNOCGAS): دراسة تقييم — هل يستحق السهم؟</title>
