@@ -859,6 +859,34 @@ const TICKERS = {
       pdf:   "files/SNB_Valuation_Study_04-07-2026_public.pdf?v=0407j"
     }
   },
+  ENBD: {
+    name: "Emirates NBD Bank",
+    nameAr: "بنك الإمارات دبي الوطني",
+    code: "DFM:EMIRATESNBD",
+    spot: 30.64,
+    spotDate: "close 3 Jul 2026",
+    ccy: "AED",
+    fair: { bear: 25, base: 32.3, full: 43.2 },      // 3 Jul 2026 — weighted central 32.3 (+5.4% vs spot 30.64). Lenses: DDM/residual income (primary) 32.9, FCFE (DCF) 31.1, relative P/TBV-and-P/E 33.4, normalized through-cycle 31.4. bear/full = weighted bear/bull of the football field. Swing factors: sustainable ROTE as the Fed/CBUAE ease the pegged dirham (NIM 3.46% off a 4.0% peak, CASA-cushioned) and the through-cycle cost of risk normalising off a ~0.2% recovery-flattered trough.
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:23.69, p25:28.14, p50:31.04, p75:34.23, p95:40.59, resolve:"2026-07-31" },
+      t60: { label:"3 months (T+60)", p5:22.31, p25:27.97, p50:31.81, p75:36.15, p95:45.24, resolve:"2026-09-25" }
+    },
+    touch: [ /* descending high -> low; P(touch) T+20 %, T+60 % */
+      [37, 20, 35], [35, 33, 49], [33, 55, 68], [31, 82, 88], [30, 74, 79], [29, 58, 66], [27, 31, 42]
+    ],
+    levels: { res:[31.30, 33.00, 35.00], sup:[29.52, 28.72, 22.80] },
+    tech: {
+      trend: "Above all four major moving averages; RSI in the high-50s, MACD mildly positive — a constructive, trending tape",
+      summary: "The tape is constructive and aligned with the fundamentals for once. Emirates NBD trades above its 20-day (AED 29.52), 50-day (28.96), 100-day (30.10) and 200-day (28.72) averages, with the rising 200-day as the visible trend floor. RSI(14) near 58 is neutral-to-firm — not overbought — and MACD is mildly positive (+0.55 line / +0.53 signal / +0.01 histogram). Price sits in the upper-middle of a wide 52-week band of AED 22.80-37.00; realized 252-day volatility near 38% is elevated after a turbulent first half of 2026 (a genuine ~10% single session in April), and the YZ-HAR engine reads the current 60-day regime wider still at ~45%.",
+      bull: "A daily close above the AED 33 shelf toward the AED 35 prior resistance would extend the uptrend; reclaiming the AED 37 fifty-two-week high would need a margin-resilience or dividend/RBL surprise.",
+      bear: "A daily close below the AED 29.5 moving-average cluster opens the AED 28.7 two-hundred-day and, beneath it, the wide gap toward the AED 22.80 fifty-two-week low."
+    },
+    files: {
+      study: "files/ENBD_Valuation_Study_03-07-2026_public.docx?v=0307a",
+      model: "files/ENBD_Valuation_Model_03072026_public.xlsx?v=0307a",
+      pdf:   "files/ENBD_Valuation_Study_03-07-2026_public.pdf?v=0307a"
+    }
+  },
   FAB: {
     name: "First Abu Dhabi Bank",
     nameAr: "بنك أبوظبي الأول",
@@ -1512,6 +1540,29 @@ const LEDGER = [
     anchor_vol:0.2118, horizon_days:60,
     p5:30.81, p25:35.62, p50:39.00, p75:42.56, p95:48.66,
     touch:{ "+5":63, "+10":41, "+15":25, "+20":15, "-5":60, "-10":37 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  // ---- ENBD · other (DFM UAE) · cycle 1 (3 Jul 2026 published study) ----
+  {
+    instrument:"ENBD", asset_class:"other",
+    anchor_date:"2026-07-03", anchor_price:30.64, ccy:"AED",
+    horizon_label:"T+20", grade_date:"2026-07-31", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.45, horizon_days:20,
+    p5:23.69, p25:28.14, p50:31.04, p75:34.23, p95:40.59,
+    touch:{ "+5":66, "+10":46, "+15":31, "+20":21, "-5":59, "-10":38 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"ENBD", asset_class:"other",
+    anchor_date:"2026-07-03", anchor_price:30.64, ccy:"AED",
+    horizon_label:"T+60", grade_date:"2026-09-25", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.45, horizon_days:60,
+    p5:22.31, p25:27.97, p50:31.81, p75:36.15, p95:45.24,
+    touch:{ "+5":76, "+10":61, "+15":47, "+20":36, "-5":67, "-10":48 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
