@@ -859,6 +859,34 @@ const TICKERS = {
       pdf:   "files/SNB_Valuation_Study_04-07-2026_public.pdf?v=0407j"
     }
   },
+  ACWA: {
+    name: "ACWA Power Company",
+    nameAr: "شركة أكوا باور",
+    code: "TADAWUL:2082",
+    spot: 193.90,
+    spotDate: "close 5 Jul 2026",
+    ccy: "SAR",
+    fair: { bear: 129, base: 195, full: 299 },      // 5 Jul 2026 — weighted central 195.3 (+0.7% vs spot 193.90). Lenses: SOTP/NAV (primary) 215.3, consolidated DCF (normalized attributable FCFF) 184.2, relative P/E-P/B-EV/EBITDA blend 158.1, pipeline-maturation earnings 197.1. bear/full = weighted bear/bull of the football field. Swing factor: whether Vision-2030 growth capital earns above its cost (ROIC vs Ke) as the SAR 100bn-plus under-construction book reaches commercial operation.
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:158.5, p25:180.4, p50:194.1, p75:208.7, p95:235.2, resolve:"2026-08-02" },
+      t60: { label:"3 months (T+60)", p5:136.9, p25:171.0, p50:194.2, p75:220.0, p95:268.4, resolve:"2026-09-27" }
+    },
+    touch: [ /* descending high -> low; P(touch) T+20 %, T+60 % */
+      [250, 5, 19], [230, 13, 34], [210, 30, 52], [195, 49, 66], [180, 63, 74], [165, 32, 52], [150, 14, 35]
+    ],
+    levels: { res:[197.30, 210.00, 235.00], sup:[191.20, 185.50, 179.40] },
+    tech: {
+      trend: "Consolidating on the 200-day; above the 50/100-day, just below the 20-day — a balanced, base-building tape after the bounce off the SAR 157 low",
+      summary: "The tape is neutral and consolidating. ACWA trades right on its 200-day average (SAR 191), above the 50-day (185.5) and 100-day (179.4) but just below the 20-day (197.3). RSI(14) near 51 sits at the midline, and MACD is mildly negative (2.15 line / 3.46 signal / -1.31 histogram) — momentum cooling after a bounce. Price sits in the lower-middle of a 52-week band of SAR 156.6-266.0; realized 252-day volatility near 37% is moderate, and the YZ-HAR engine reads the current 60-day regime near 41%.",
+      bull: "A daily close back above the SAR 197 20-day, then the SAR 210 area, would signal the consolidation is resolving up; reclaiming the SAR 235-266 zone would need proof that the Vision-2030 build is converting to earnings.",
+      bear: "A daily close below the SAR 185 50-day and SAR 179 100-day opens the lower band toward the SAR 157 52-week low."
+    },
+    files: {
+      study: "files/ACWA_Valuation_Study_05-07-2026_public.docx?v=0705a",
+      model: "files/ACWA_Valuation_Model_05072026_public.xlsx?v=0705a",
+      pdf:   "files/ACWA_Valuation_Study_05-07-2026_public.pdf?v=0705a"
+    }
+  },
   TSLA: {
     name: "Tesla, Inc.",
     nameAr: "تسلا",
@@ -1456,6 +1484,29 @@ const LEDGER = [
     anchor_vol:0.2118, horizon_days:60,
     p5:30.81, p25:35.62, p50:39.00, p75:42.56, p95:48.66,
     touch:{ "+5":63, "+10":41, "+15":25, "+20":15, "-5":60, "-10":37 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  // ---- ACWA · other (TADAWUL Saudi Arabia) · cycle 1 (5 Jul 2026 published study) ----
+  {
+    instrument:"ACWA", asset_class:"other",
+    anchor_date:"2026-07-05", anchor_price:193.90, ccy:"SAR",
+    horizon_label:"T+20", grade_date:"2026-08-02", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.4116, horizon_days:20,
+    p5:158.5, p25:180.4, p50:194.1, p75:208.7, p95:235.2,
+    touch:{ "+5":56, "+10":32, "+15":17, "+20":9, "-5":54, "-10":28 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"ACWA", asset_class:"other",
+    anchor_date:"2026-07-05", anchor_price:193.90, ccy:"SAR",
+    horizon_label:"T+60", grade_date:"2026-09-27", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.4116, horizon_days:60,
+    p5:136.9, p25:171.0, p50:194.2, p75:220.0, p95:268.4,
+    touch:{ "+5":73, "+10":56, "+15":42, "+20":30, "-5":72, "-10":52 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
