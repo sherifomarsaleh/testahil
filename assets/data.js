@@ -2,7 +2,7 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-07-04" };
+const SITE = { updated: "2026-07-05" };
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
@@ -747,6 +747,34 @@ const TICKERS = {
       pdf:   "files/Aramco_Valuation_Study_01-07-2026_public.pdf?v=0107b"
     }
   },
+  MAADEN: {
+    name: "Saudi Arabian Mining Company (Ma'aden)",
+    nameAr: "شركة التعدين العربية السعودية (معادن)",
+    code: "TADAWUL:1211",
+    spot: 58.80,
+    spotDate: "close 5 Jul 2026",
+    ccy: "SAR",
+    fair: { bear: 27, base: 42, full: 57 },      // 5 Jul 2026 — weighted central 42 (−29% vs spot 58.80). Lenses: SOTP 44 (primary), consolidated DCF (5-yr FCFF) 47, relative 26 (floor), mid-cycle earnings 42. bear/full = weighted bear/bull of the football field. Swing: the commodity deck (DAP/aluminium/gold) and whether the growth capex earns its cost of capital. Note: §3 Monte Carlo showed no CRPS skill vs a random-walk cone (see study Appendix B) — the distribution is an honest probability map, not a skill-validated forecast.
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:50.7, p25:55.6, p50:59.2, p75:63.1, p95:69.1, resolve:"2026-08-02" },
+      t60: { label:"3 months (T+60)", p5:46.1, p25:53.9, p50:60.1, p75:67.1, p95:78.4, resolve:"2026-09-27" }
+    },
+    touch: [ /* descending high -> low */
+      [80, 0, 6], [72, 3, 22], [66, 20, 48], [62, 52, 73], [58, 76, 85], [54, 28, 51], [50, 6, 25], [46, 1, 9]
+    ],
+    levels: { res:[60.99, 63.22, 66.63], sup:[54.00, 51.10, 46.00] },
+    tech: {
+      trend: "Below all four major moving averages; corrective, near the lower third of the 52-week range",
+      summary: "The tape is weak and stretched to the downside, and for once it agrees with the fundamentals. Price sits below the 20-day (SAR 61.0), 50-day (SAR 63.2), 100-day (SAR 66.6) and 200-day (SAR 65.1) moving averages — a corrective de-rating from the high-70s. RSI(14) near 34 is approaching, but not yet at, oversold; the MACD histogram is negative. Realized 252-day volatility is ~32%, moderately elevated. The trailing-year range is SAR 51.1–79.5, and price sits in its lower third.",
+      bull: "A daily close back above the SAR 61–63 moving-average cluster would signal the near-term de-rating is pausing; reclaiming the mid-60s would need a stronger commodity deck.",
+      bear: "A sustained close below the SAR 54 shelf opens the trailing-year low near SAR 51 and the lower band toward SAR 46."
+    },
+    files: {
+      study: "files/Maaden_Valuation_Study_05-07-2026_public.docx?v=0507",
+      model: "files/Maaden_Valuation_Model_05-07-2026_public.xlsx?v=0507",
+      pdf:   "files/Maaden_Valuation_Study_05-07-2026_public.pdf?v=0507"
+    }
+  },
   ADNOCGAS: {
     name: "ADNOC Gas",
     nameAr: "أدنوك للغاز",
@@ -1337,6 +1365,30 @@ const LEDGER = [
     horizon_label:"T+60", grade_date:"2026-09-23", cycle_no:1, reanchor_from:null,
     p5:21.99, p25:24.47, p50:26.12, p75:27.78, p95:30.35,
     touch:{ "+5":51, "+10":24, "+15":10, "+20":3, "-5":52, "-10":25 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"MAADEN", asset_class:"other",
+    anchor_date:"2026-07-05", anchor_price:58.80, ccy:"SAR",
+    horizon_label:"T+20", grade_date:"2026-08-02", cycle_no:1, reanchor_from:null,
+    p5:50.7, p25:55.6, p50:59.2, p75:63.1, p95:69.1,
+    touch:{ "+5":54, "+10":34, "+15":18, "+20":9, "-5":45, "-10":22 },
+    anchor_vol:0.324, horizon_days:20,
+    note:"No CRPS skill vs random-walk benchmark (indicative only) — see study Appendix B.",
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"MAADEN", asset_class:"other",
+    anchor_date:"2026-07-05", anchor_price:58.80, ccy:"SAR",
+    horizon_label:"T+60", grade_date:"2026-09-27", cycle_no:1, reanchor_from:null,
+    p5:46.1, p25:53.9, p50:60.1, p75:67.1, p95:78.4,
+    touch:{ "+5":73, "+10":55, "+15":40, "+20":28, "-5":62, "-10":40 },
+    anchor_vol:0.324, horizon_days:60,
+    note:"No CRPS skill vs random-walk benchmark (indicative only) — see study Appendix B.",
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
