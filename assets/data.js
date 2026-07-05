@@ -2,7 +2,7 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-07-05", latest: "QNB" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
+const SITE = { updated: "2026-07-05", latest: "QGTS" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
@@ -942,6 +942,34 @@ const TICKERS = {
       study: "files/QNB_Valuation_Study_05-07-2026_public.docx?v=0705a",
       model: "files/QNB_Valuation_Model_05072026_public.xlsx?v=0705a",
       pdf:   "files/QNB_Valuation_Study_05-07-2026_public.pdf?v=0705a"
+    }
+  },
+  QGTS: {
+    name: "Nakilat",
+    nameAr: "\u0646\u0627\u0642\u0644\u0627\u062a",
+    code: "QSE:QGTS",
+    spot: 4.319,
+    spotDate: "close 5 Jul 2026",
+    ccy: "QAR",
+    fair: { bear: 2.71, base: 4.29, full: 6.40 },      // 5 Jul 2026 \u2014 weighted central 4.29 (\u22120.7% vs spot 4.319). Four lenses: DCF on the contracted fleet (primary) 4.90, two-stage dividend-discount 3.56, relative EV/EBITDA & P/E 4.00, fleet-replacement NAV 4.06; blend 40/20/15/25. bear/full = weighted bear/bull of the football field. Swing factor: the discount rate on a bond-like ~20-year QatarEnergy charter stream (\u22487.5% base) and how much credit the newbuild programme (69\u2192112 vessels, first delivery end-2026) earns above its cost of capital. Note: the \u00a73 Monte-Carlo engine ties \u2014 does not beat \u2014 its random-walk benchmark for this unusually stable name (Appendix B), so the price map is illustrative only.
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:3.86, p25:4.16, p50:4.34, p75:4.54, p95:4.88, resolve:"2026-08-02" },
+      t60: { label:"3 months (T+60)", p5:3.60, p25:4.08, p50:4.40, p75:4.74, p95:5.36, resolve:"2026-09-27" }
+    },
+    touch: [ /* descending high -> low; P(touch) T+20 %, T+60 % */
+      [4.90, 7, 28], [4.70, 18, 45], [4.55, 37, 63], [4.40, 68, 83], [4.20, 52, 69], [4.05, 24, 45], [3.90, 10, 28]
+    ],
+    levels: { res:[4.42, 4.50, 4.70], sup:[4.20, 4.05, 4.03] },
+    tech: {
+      trend: "Just below a tightly-clustered moving-average stack; RSI near 49, MACD marginally below signal \u2014 a flat, range-bound tape",
+      summary: "The tape is quiet and balanced rather than trending. QGTS trades just below its 20-day (QAR 4.32) and 50-day (4.33) averages and further below the 100-day (4.42) and 200-day (4.50) \u2014 a mild post-peak drift. RSI(14) near 49 is neutral, and MACD is marginally negative (-0.002 line / +0.007 signal / -0.009 histogram). Price sits mid-range in a 52-week band of QAR 4.03-4.97; realized 252-day volatility near 23% is low for a shipping name, and the YZ-HAR engine reads the current 60-day regime at a similar ~23%.",
+      bull: "A daily close back above the QAR 4.42-4.50 moving-average cluster would neutralise the mild downtrend; reclaiming the QAR 4.70 shelf toward the QAR 4.97 fifty-two-week high would need rate relief or a charter-extension surprise.",
+      bear: "A daily close below QAR 4.20 opens the QAR 4.05 income-lens floor; beneath it the distribution thins toward the QAR 4.03 fifty-two-week low."
+    },
+    files: {
+      study: "files/Nakilat_QGTS_Valuation_Study_05-07-2026_public.docx?v=0705a",
+      model: "files/Nakilat_QGTS_Valuation_Model_05072026_public.xlsx?v=0705a",
+      pdf:   "files/Nakilat_QGTS_Valuation_Study_05-07-2026_public.pdf?v=0705a"
     }
   },
   FAB: {
@@ -1949,6 +1977,29 @@ const LEDGER = [
     anchor_vol:0.18, horizon_days:60,
     p5:13.96, p25:15.91, p50:17.24, p75:18.60, p95:20.91,
     touch:{ "+5":54, "+10":31, "+15":17, "+20":8, "-5":61, "-10":36 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  // ---- QGTS \u00b7 other (QSE Qatar) \u00b7 cycle 1 (5 Jul 2026 published study; MC ties benchmark, illustrative) ----
+  {
+    instrument:"QGTS", asset_class:"other",
+    anchor_date:"2026-07-05", anchor_price:4.319, ccy:"QAR",
+    horizon_label:"T+20", grade_date:"2026-08-02", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.23, horizon_days:20,
+    p5:3.86, p25:4.16, p50:4.34, p75:4.54, p95:4.88,
+    touch:{ "+5":42, "+10":17, "+15":7, "+20":3, "-5":39, "-10":13 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"QGTS", asset_class:"other",
+    anchor_date:"2026-07-05", anchor_price:4.319, ccy:"QAR",
+    horizon_label:"T+60", grade_date:"2026-09-27", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.23, horizon_days:60,
+    p5:3.60, p25:4.08, p50:4.40, p75:4.74, p95:5.36,
+    touch:{ "+5":65, "+10":41, "+15":25, "+20":16, "-5":60, "-10":34 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }

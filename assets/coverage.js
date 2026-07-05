@@ -7,6 +7,7 @@
 'use strict';
 
 const COVERAGE_EN = [
+  {tk:"QGTS",   code:"QSE:QGTS",     name:"Nakilat",                       sector:"Industrials",               sub:"LNG shipping infrastructure", country:"Qatar",      cur:"QAR", fair:"4.29",    price:"4.32",    gap:"−1%",   date:"5 Jul 2026", url:"qgts.html",    thesis:"The world's largest LNG shipping company — ~69 carriers on 20-25-year time charters to QatarEnergy affiliates, expanding to 112 vessels from end-2026; an investment-grade, bond-like contracted-infrastructure income stock. Four lenses cluster QAR 3.56-4.90 around spot, the swing being the discount rate on a two-decade charter stream (≈7.5%) and how much credit the newbuild programme earns above its cost of capital. Note: for this unusually stable name the Monte-Carlo engine ties, not beats, a random walk (Appendix B) — the price map is illustrative only."},
   {tk:"IQCD",   code:"QSE:IQCD",     name:"Industries Qatar",               sector:"Diversified Holdings",      sub:"Industrial holdco (fertilizers/petrochemicals/steel)", country:"Qatar",      cur:"QAR", fair:"10.9",    price:"11.07",   gap:"−2%",   date:"5 Jul 2026", url:"iqcd.html",    thesis:"Qatar’s quasi-sovereign industrial flagship — QAFCO fertilizers, QAPCO petrochemicals and Qatar Steel — debt-free with ~QR 8.5bn net cash and a ~6% payout; five lenses cluster near spot, the swing being petrochemical margin normalisation from its early-2026 trough (Q1-26 segment profit just QR 4mn) plus the Ammonia-7 and Ras Laffan pipeline."},
   {tk:"EFIH",   code:"EGX:EFIH",    name:"e-finance for Digital & Financial Investments", sector:"Technology & Payments", sub:"Fintech / payments infrastructure", country:"Egypt",       cur:"EGP", fair:"14.16",   price:"20.74",   gap:"−32%",   date:"01 Jul 2026", url:"efih.html",    thesis:"Excellent payments-and-cloud franchise at a full price; intrinsic lenses sit below a market pricing continued ~30% growth and a falling EGP rate path."},
   {tk:"EGAL",   code:"EGX:EGAL",    name:"Egypt Aluminum",                 sector:"Metals & Mining",           sub:"Primary aluminium producer", country:"Egypt",       cur:"EGP", fair:"250",     price:"285.88",  gap:"−12%",  date:"1 Jul 2026", url:"egal.html",    thesis:"Egypt's sole primary-aluminium smelter — debt-free with ~EGP 9bn net cash, LME-dollar revenue on EGP costs; the price pre-pays part of the US$900m Trafigura capacity doubling."},
@@ -49,6 +50,7 @@ const COVERAGE_EN = [
 ];
 
 const COVERAGE_AR = [
+  {tk:"QGTS",   code:"QSE:QGTS",     name:"ناقلات",   sector:"صناعات",  sub:"بنية تحتية لشحن الغاز المسال",   country:"قطر",       cur:"QAR", fair:"4.29",    price:"4.32",    gap:"−1%",   date:"5 يوليو 2026",  url:"qgts.html",   thesis:"أكبر شركة لشحن الغاز الطبيعي المسال في العالم — نحو 69 ناقلة بعقود إيجار زمنية طويلة (20-25 عاماً) لشركات تابعة لقطر للطاقة، وتتوسّع إلى 112 ناقلة اعتباراً من أواخر 2026؛ سهم دخل بنيوي شبه سيادي يشبه السند. تتجمّع أربع عدسات بين 3.56 و‏4.90 ريال قرب السعر، والمحور معدّل الخصم على تدفّق إيجارات يمتد عقدين (نحو 7.5%). ملاحظة: يتعادل محرك مونت كارلو مع المسار العشوائي ولا يتفوّق عليه لهذا السهم (الملحق ب) — فخريطة الأسعار توضيحية فقط."},
   {tk:"IQCD",   code:"QSE:IQCD",     name:"صناعات قطر",   sector:"شركات قابضة متنوّعة",  sub:"شركة صناعية قابضة (أسمدة/بتروكيماويات/صلب)",   country:"قطر",       cur:"QAR", fair:"10.9",    price:"11.07",   gap:"−2%",   date:"5 يوليو 2026",  url:"iqcd.html",   thesis:"الشركة الصناعية الرائدة شبه السيادية في قطر — أسمدة قافكو وبتروكيماويات قابكو وحديد قطر — خالية من الديون بصافي نقد نحو 8.5 مليار ريال وتوزيعات نحو 6%؛ تتقارب خمس عدسات قرب السعر، والمحور تطبيع هوامش البتروكيماويات من قاع مطلع 2026 إضافة إلى مشروعي الأمونيا-7 ورأس لفان."},
   {tk:"EFIH",   code:"EGX:EFIH",    name:"إي فاينانس",              sector:"التكنولوجيا والمدفوعات", sub:"بنية تحتية للمدفوعات",        country:"مصر",            cur:"EGP", fair:"14.16",   price:"20.74",   gap:"−32%",   date:"01 يوليو 2026", url:"efih.html",    thesis:"امتياز قوي في المدفوعات والحوسبة السحابية لكن بسعر كامل؛ التقييمات الجوهرية أدنى من سعر السوق الذي يفترض استمرار نمو نحو 30٪ وتراجع أسعار الفائدة."},
   {tk:"EGAL",   code:"EGX:EGAL",    name:"مصر للألومنيوم",              sector:"المعادن والتعدين",     sub:"منتج الألومنيوم الأولي",           country:"مصر", cur:"EGP", fair:"250",     price:"285.88",  gap:"−12%",  date:"1 يوليو 2026", url:"egal.html",    thesis:"المصهر الوحيد للألومنيوم الأولي في مصر — بلا ديون وبصافي نقد نحو 9 مليارات جنيه وإيرادات دولارية بتكاليف بالجنيه؛ والسعر يدفع مقدماً جزءاً من مضاعفة الطاقة مع ترافيغورا (900 مليون دولار)."},
@@ -91,6 +93,7 @@ const COVERAGE_AR = [
 ];
 
 const SHORT = {
+  QGTS:"Nakilat",
   IQCD:"Industries Qatar",
   EFIH:"e-finance",
   EGAL:"Egypt Aluminum",
