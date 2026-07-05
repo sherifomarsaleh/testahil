@@ -2,7 +2,7 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-07-05", latest: "IQCD" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
+const SITE = { updated: "2026-07-05", latest: "QNB" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
@@ -914,6 +914,34 @@ const TICKERS = {
       study: "files/ENBD_Valuation_Study_03-07-2026_public.docx?v=0307a",
       model: "files/ENBD_Valuation_Model_03072026_public.xlsx?v=0307a",
       pdf:   "files/ENBD_Valuation_Study_03-07-2026_public.pdf?v=0307a"
+    }
+  },
+  QNB: {
+    name: "QNB Group",
+    nameAr: "\u0645\u062c\u0645\u0648\u0639\u0629 QNB",
+    code: "QSE:QNBK",
+    spot: 17.54,
+    spotDate: "close 5 Jul 2026",
+    ccy: "QAR",
+    fair: { bear: 14.0, base: 18.76, full: 28.5 },      // 5 Jul 2026 — weighted central 18.76 (+7.0% vs spot 17.54). Lenses: two-stage DDM on actual policy (primary) 18.7, FCFE/distributable-capital 20.2 (full-capacity ceiling 22.0), relative P/B-RoTE + peer 18.2, normalized through-cycle 17.6. bear/full = weighted bear/bull of the football field. Swing factors: the permanent Pillar-Two tax step (FY25 net profit +1.7% on ~+10% pre-tax), the 2026 rate-cut path through NIM (the pegged riyal), and how much of a 19.3%-capitalised balance sheet is returned rather than retained.
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:15.35, p25:16.74, p50:17.48, p75:18.19, p95:19.55, resolve:"2026-08-02" },
+      t60: { label:"3 months (T+60)", p5:13.96, p25:15.91, p50:17.24, p75:18.60, p95:20.91, resolve:"2026-09-27" }
+    },
+    touch: [ /* descending high -> low; P(touch) T+20 %, T+60 % */
+      [19.5, 8, 26], [19.0, 15, 36], [18.5, 28, 50], [18.0, 51, 69], [17.0, 49, 72], [16.5, 28, 56], [15.5, 8, 30]
+    ],
+    levels: { res:[17.67, 18.05, 18.43], sup:[17.00, 16.68, 15.50] },
+    tech: {
+      trend: "Below all four major moving averages; RSI in the high-30s, MACD below signal — a soft, range-bound tape",
+      summary: "The tape is soft and range-bound rather than distressed. QNB trades below its 20-day (QAR 17.67), 50-day (17.62), 100-day (18.05) and 200-day (18.43) averages, a slow post-peak drift. RSI(14) near 38 is weak but not oversold, and MACD is mildly negative (-0.01 line / +0.03 signal / -0.04 histogram). Price sits in the lower half of a 52-week band of QAR 16.68-20.40; realized 252-day volatility near 20% is moderate for a large-cap bank, and the YZ-HAR engine reads the current 60-day regime a touch tighter at ~18%.",
+      bull: "A daily close back above the QAR 18.05-18.43 moving-average cluster would neutralise the downtrend; reclaiming the QAR 19.5 shelf toward the QAR 20.40 fifty-two-week high would need a capital-return or NIM-resilience surprise.",
+      bear: "A daily close below QAR 17.00 opens the QAR 16.68 fifty-two-week low; beneath it the distribution thins toward the QAR 15.5 stress zone."
+    },
+    files: {
+      study: "files/QNB_Valuation_Study_05-07-2026_public.docx?v=0705a",
+      model: "files/QNB_Valuation_Model_05072026_public.xlsx?v=0705a",
+      pdf:   "files/QNB_Valuation_Study_05-07-2026_public.pdf?v=0705a"
     }
   },
   FAB: {
@@ -1901,7 +1929,30 @@ const LEDGER = [
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
-  }
+  },
+  // ---- QNB \u00b7 other (QSE Qatar) \u00b7 cycle 1 (5 Jul 2026 published study) ----
+  {
+    instrument:"QNB", asset_class:"other",
+    anchor_date:"2026-07-05", anchor_price:17.54, ccy:"QAR",
+    horizon_label:"T+20", grade_date:"2026-08-02", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.18, horizon_days:20,
+    p5:15.35, p25:16.74, p50:17.48, p75:18.19, p95:19.55,
+    touch:{ "+5":30, "+10":11, "+15":4, "+20":1, "-5":34, "-10":12 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"QNB", asset_class:"other",
+    anchor_date:"2026-07-05", anchor_price:17.54, ccy:"QAR",
+    horizon_label:"T+60", grade_date:"2026-09-27", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.18, horizon_days:60,
+    p5:13.96, p25:15.91, p50:17.24, p75:18.60, p95:20.91,
+    touch:{ "+5":54, "+10":31, "+15":17, "+20":8, "-5":61, "-10":36 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
 ];
 
 /* ==========================================================================
