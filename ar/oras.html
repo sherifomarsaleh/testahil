@@ -312,6 +312,17 @@ header.nav .wrap{max-width:1180px !important}
 </svg>
 <figcaption style="color:#9FB0AC;font-size:.82rem;text-align:center;margin-top:2px">الشريط = المدى من المئين الخامس إلى الخامس والتسعين لخمسين ألف سعر محاكى · النصف الأوسط بلون أغمق · الخط الأبيض هو الوسيط · النقطة هي آخر سعر</figcaption>
 </figure>
+<!-- PROBABILITY READ (static, study baseline) -->
+<div dir="rtl" style="margin:14px 0 24px;background:#13302C;border-radius:14px;padding:16px 18px">
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:8px"><b style="color:#FFFFFF;font-size:1.02rem">قراءة الاحتمالات</b><span style="color:#9FB0AC;font-family:'IBM Plex Mono',monospace;font-size:.78rem">خلال 3 أشهر</span></div>
+<table style="width:100%;border-collapse:collapse;font-size:.95rem"><tr><td style="padding:6px 0;border-bottom:1px dashed rgba(159,176,172,.35);color:#DDE6E3">احتمال أن يكون السعر أعلى من سعر اليوم</td><td dir="ltr" style="padding:6px 0;border-bottom:1px dashed rgba(159,176,172,.35);text-align:left;color:#C0A45F;font-family:'IBM Plex Mono',monospace;font-size:.92rem;white-space:nowrap">48%</td></tr>
+<tr><td style="padding:6px 0;border-bottom:1px dashed rgba(159,176,172,.35);color:#DDE6E3">+10٪ أو أفضل مقابل −10٪ أو أسوأ</td><td dir="ltr" style="padding:6px 0;border-bottom:1px dashed rgba(159,176,172,.35);text-align:left;color:#C0A45F;font-family:'IBM Plex Mono',monospace;font-size:.92rem;white-space:nowrap">32% / 34% · ≈1.0:1 ↓</td></tr>
+<tr><td style="padding:6px 0;border-bottom:1px dashed rgba(159,176,172,.35);color:#DDE6E3">الوسيط (منتصف التوزيع)</td><td dir="ltr" style="padding:6px 0;border-bottom:1px dashed rgba(159,176,172,.35);text-align:left;color:#C0A45F;font-family:'IBM Plex Mono',monospace;font-size:.92rem;white-space:nowrap">EGP 713 (−1%)</td></tr>
+<tr><td style="padding:6px 0;border-bottom:1px dashed rgba(159,176,172,.35);color:#DDE6E3">النطاق الأرجح (النصف الأوسط 25–75٪)</td><td dir="ltr" style="padding:6px 0;border-bottom:1px dashed rgba(159,176,172,.35);text-align:left;color:#C0A45F;font-family:'IBM Plex Mono',monospace;font-size:.92rem;white-space:nowrap">611 – 832</td></tr>
+<tr><td style="padding:6px 0;border-bottom:0;color:#DDE6E3">يلامس +10٪ / يلامس −10٪ خلال الفترة</td><td dir="ltr" style="padding:6px 0;border-bottom:0;text-align:left;color:#C0A45F;font-family:'IBM Plex Mono',monospace;font-size:.92rem;white-space:nowrap">61% / 61%</td></tr></table>
+<p style="color:#9FB0AC;font-size:.8rem;margin:8px 0 0">الأرقام من المحاكاة نفسها المعروضة في الشريط أعلاه — الاتجاه والميل مُضمّنان فيها؛ التفاصيل الكاملة في الدراسة.</p>
+</div>
+
 
   <h2 id="a-value">كيف نحسب التقييم؟</h2>
   <p>لكل نوع من الشركات أداة تقييم مناسبة. وأوراسكوم للإنشاءات شركة مقاولات وهندسة، فنعتمد <strong>التدفق النقدي الحر المخصوم للشركة</strong> (FCFF) عدسةً رئيسية، ونتحقّق منها بـ<strong>مجموع قيمة الأجزاء</strong> على الأصول القابلة للفصل (الامتيازات وحصة BESIX ومواد البناء والنقد الصافي القابل للتوزيع)، إضافةً إلى المضاعفات المقارنة وقوة الأرباح المُعدّلة عبر الدورة. ثم نُشغّل محاكاة <strong>مونت كارلو بخمسين ألف مسار</strong> تُحوّل النتيجة من رقم جامد إلى توزيع احتمالي. كل الافتراضات مكشوفة وقابلة للتعديل في النموذج — غيّرها بنفسك وشاهد أثرها على النطاق.</p>
@@ -371,11 +382,46 @@ header.nav .wrap{max-width:1180px !important}
   var input=document.getElementById('tk-search-ar'),box=document.getElementById('tk-results-ar');
   if(!input||!box)return;
   var S=[
-    {code:"PHDC",name:"بالم هيلز للتعمير",en:"Palm Hills",url:"/ar/phdc.html"},
-    {code:"TMGH",name:"مجموعة طلعت مصطفى",en:"Talaat Moustafa",url:"/ar/tmgh.html"},
-    {code:"OCDI",name:"سوديك — السادس من أكتوبر",en:"SODIC",url:"/ar/ocdi.html"},
+    {code:"QGTS",name:"ناقلات",en:"Nakilat",url:"/ar/qgts.html"},
+    {code:"IQCD",name:"صناعات قطر",en:"Industries Qatar",url:"/ar/iqcd.html"},
+    {code:"EFIH",name:"إي فاينانس",en:"e-finance for Digital & Financial Investments",url:"/ar/efih.html"},
+    {code:"EGAL",name:"مصر للألومنيوم",en:"Egypt Aluminum",url:"/ar/egal.html"},
+    {code:"EFID",name:"إيديتا للصناعات الغذائية",en:"Edita Food Industries",url:"/ar/efid.html"},
+    {code:"BTFH",name:"بلتون المالية القابضة",en:"Beltone Financial Holding",url:"/ar/btfh.html"},
+    {code:"FWRY",name:"فوري",en:"Fawry",url:"/ar/fwry.html"},
+    {code:"ABUK",name:"أبو قير للأسمدة",en:"Abu Kir Fertilizers",url:"/ar/abuk.html"},
+    {code:"ETEL",name:"المصرية للاتصالات",en:"Telecom Egypt",url:"/ar/etel.html"},
+    {code:"ADIB",name:"مصرف أبوظبي الإسلامي – مصر",en:"ADIB-Egypt",url:"/ar/adib.html"},
+    {code:"HRHO",name:"المجموعة المالية هيرميس",en:"EFG Holding",url:"/ar/hrho.html"},
+    {code:"ORWE",name:"النساجون الشرقيون",en:"Oriental Weavers",url:"/ar/orwe.html"},
+    {code:"JUFO",name:"جهينة للصناعات الغذائية",en:"Juhayna Food Industries",url:"/ar/jufo.html"},
+    {code:"PHDC",name:"بالم هيلز",en:"Palm Hills Developments",url:"/ar/phdc.html"},
+    {code:"TMGH",name:"طلعت مصطفى",en:"Talaat Moustafa Group",url:"/ar/tmgh.html"},
+    {code:"EMFD",name:"إعمار مصر",en:"Emaar Misr for Development",url:"/ar/emfd.html"},
+    {code:"OCDI",name:"سوديك",en:"SODIC",url:"/ar/ocdi.html"},
+    {code:"ORHD",name:"أوراسكوم للتنمية",en:"Orascom Development Egypt",url:"/ar/orhd.html"},
+    {code:"HELI",name:"مصر الجديدة للإسكان",en:"Heliopolis Housing",url:"/ar/heli.html"},
+    {code:"COMI",name:"البنك التجاري الدولي",en:"Commercial International Bank",url:"/ar/comi.html"},
+    {code:"CCAP",name:"القلعة القابضة",en:"Qalaa Holdings",url:"/ar/ccap.html"},
+    {code:"RAYA",name:"راية القابضة",en:"Raya Holding",url:"/ar/raya.html"},
     {code:"ORAS",name:"أوراسكوم للإنشاءات",en:"Orascom Construction",url:"/ar/oras.html"},
-    {code:"ORAS",name:"أوراسكوم للإنشاءات",en:"Orascom Construction",url:"/ar/oras.html"}
+    {code:"OIH",name:"أوراسكوم للاستثمار القابضة",en:"Orascom Investment Holding",url:"/ar/oih.html"},
+    {code:"005930",name:"سامسونج للإلكترونيات",en:"Samsung Electronics",url:"/ar/samsung.html"},
+    {code:"035720",name:"كاكاو",en:"Kakao",url:"/ar/kakao.html"},
+    {code:"373220",name:"إل جي إنرجي سوليوشن",en:"LG Energy Solution",url:"/ar/lges.html"},
+    {code:"TMPV",name:"تاتا موتورز للركاب",en:"Tata Motors Passenger Vehicles",url:"/ar/tmpv.html"},
+    {code:"ARAMCO",name:"أرامكو السعودية",en:"Saudi Aramco",url:"/ar/aramco.html"},
+    {code:"MAADEN",name:"معادن (شركة التعدين العربية السعودية)",en:"Ma'aden (Saudi Arabian Mining Co.)",url:"/ar/maaden.html"},
+    {code:"ALRAJHI",name:"مصرف الراجحي",en:"Al Rajhi Bank",url:"/ar/alrajhi.html"},
+    {code:"SNB",name:"البنك الأهلي السعودي",en:"Saudi National Bank",url:"/ar/snb.html"},
+    {code:"ENBD",name:"بنك الإمارات دبي الوطني",en:"Emirates NBD Bank",url:"/ar/enbd.html"},
+    {code:"QNB",name:"مجموعة QNB",en:"QNB Group",url:"/ar/qnb.html"},
+    {code:"ACWA",name:"أكوا باور",en:"ACWA Power",url:"/ar/acwa.html"},
+    {code:"ADNOCGAS",name:"أدنوك للغاز",en:"ADNOC Gas",url:"/ar/adnocgas.html"},
+    {code:"FAB",name:"بنك أبوظبي الأول",en:"First Abu Dhabi Bank",url:"/ar/fab.html"},
+    {code:"EMAAR",name:"إعمار العقارية",en:"Emaar Properties",url:"/ar/emaar.html"},
+    {code:"TSLA",name:"تسلا",en:"Tesla, Inc.",url:"/ar/tsla.html"},
+    {code:"IHC",name:"الشركة العالمية القابضة",en:"International Holding Company",url:"/ar/ihc.html"}
   ];
   function render(q){
     q=(q||'').trim().toLowerCase();box.innerHTML='';

@@ -17,15 +17,15 @@
 <meta property="og:title" content="EFG Holding (HRHO) — is it worth it? | testahil?">
 <meta property="og:description" content="Where could EFG Holding go in 1–3 months? Plain-language odds, a fair-value read, and the open model.">
 <meta property="og:image" content="https://testahil.com/og-image.png">
-<meta property="og:url" content="https://testahil.com/emfd.html">
+<meta property="og:url" content="https://testahil.com/hrho.html">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="EFG Holding (HRHO) — is it worth it? | testahil?">
 <meta name="twitter:description" content="Where could EFG Holding go in 1–3 months? Plain-language odds, a fair-value read, and the open model.">
-<meta name="twitter:image" content="https://testahil.com/og/emfd.png">
-<link rel="canonical" href="https://testahil.com/emfd.html">
-<link rel="alternate" hreflang="en" href="https://testahil.com/emfd.html">
-<link rel="alternate" hreflang="ar" href="https://testahil.com/ar/emfd.html">
-<link rel="alternate" hreflang="x-default" href="https://testahil.com/emfd.html">
+<meta name="twitter:image" content="https://testahil.com/og/hrho.png">
+<link rel="canonical" href="https://testahil.com/hrho.html">
+<link rel="alternate" hreflang="en" href="https://testahil.com/hrho.html">
+<link rel="alternate" hreflang="ar" href="https://testahil.com/ar/hrho.html">
+<link rel="alternate" hreflang="x-default" href="https://testahil.com/hrho.html">
 
 
 <!-- Google tag (gtag.js) -->
@@ -59,7 +59,7 @@
       "description": "Where could EFG Holding (HRHO) trade in 1–3 months? A probability distribution, fair-value range, and the open model. Educational analysis, not investment advice.",
       "datePublished": "2026-06-17",
       "dateModified": "2026-06-17",
-      "image": "https://testahil.com/og/emfd.png",
+      "image": "https://testahil.com/og/hrho.png",
       "author": {
         "@type": "Organization",
         "name": "testahil",
@@ -75,7 +75,7 @@
       },
       "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "https://testahil.com/emfd.html"
+        "@id": "https://testahil.com/hrho.html"
       },
       "about": {
         "@type": "Corporation",
@@ -103,7 +103,7 @@
           "@type": "ListItem",
           "position": 3,
           "name": "EFG Holding (HRHO)",
-          "item": "https://testahil.com/emfd.html"
+          "item": "https://testahil.com/hrho.html"
         }
       ]
     },
@@ -159,7 +159,7 @@
     <a href="calculator.html">Calculator</a>
     <a href="ledger.html">Ledger</a>
     <a href="method.html">Methodology</a>
-      <a href="ar/stocks.html" class="lang-ar" lang="ar" style="border:1px solid var(--gold);color:var(--gold);border-radius:7px;padding:3px 10px;font-size:var(--fs-small);text-decoration:none;white-space:nowrap">العربية</a>
+      <a href="ar/hrho.html" class="lang-ar" lang="ar" style="border:1px solid var(--gold);color:var(--gold);border-radius:7px;padding:3px 10px;font-size:var(--fs-small);text-decoration:none;white-space:nowrap">العربية</a>
   </nav>  <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode" aria-pressed="false" title="Toggle dark / light"><svg class="tt-icon tt-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="tt-icon tt-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg><span class="tt-label tt-label-dark">Dark mode</span><span class="tt-label tt-label-light">Light mode</span></button>
 </div></header>
 
@@ -327,6 +327,13 @@
       #mc-lab .mc-reset{margin-top:14px; background:none; border:1px solid var(--line); border-radius:8px; padding:8px 14px; font-size:var(--fs-small); color:var(--muted); cursor:pointer; font-family:"IBM Plex Mono",monospace}
       #mc-lab .mc-reset:hover{border-color:var(--teal); color:var(--teal)}
       #mc-lab .mc-foot{font-size:var(--fs-caption); color:var(--muted); margin-top:12px; max-width:70ch}
+          #mc-lab .mc-read{margin-bottom:12px}
+      #mc-lab table.mc-readt{width:100%; border-collapse:collapse; font-size:var(--fs-body)}
+      #mc-lab table.mc-readt td{padding:5px 0; border-bottom:1px dashed var(--line)}
+      #mc-lab table.mc-readt tr:last-child td{border-bottom:0}
+      #mc-lab table.mc-readt td:last-child{text-align:right; font-family:"IBM Plex Mono",monospace; font-weight:500; color:var(--teal); white-space:nowrap; padding-left:12px}
+      #mc-lab table.mc-readt td:last-child .mc-down{color:var(--red)}
+      #mc-lab .mc-readnote{font-size:var(--fs-caption); color:var(--muted); margin:8px 0 0}
     </style>
 
     <div class="mc-head">
@@ -341,7 +348,20 @@
     </div>
     <p class="mc-sub">Move the sliders below — the forward price cone and every number on this page redraws instantly. Reset any time to the study's own calibration.</p>
 
-    <div class="mc-card mc-chart-wrap">
+        <!-- PROBABILITY READ — leads the section: direction first, cone second -->
+    <div class="mc-card mc-read">
+      <div class="mc-card-h"><h4>The probability read</h4><span class="mc-hint" id="mc-rHz">at 3 months</span></div>
+      <table class="mc-readt">
+        <tr><td>Chance the price is <b>higher than today</b></td><td id="mc-rUp">&mdash;</td></tr>
+        <tr><td><b>+10% or better</b> vs <b>&minus;10% or worse</b></td><td id="mc-rOdds">&mdash;</td></tr>
+        <tr><td>Middle-of-the-road outcome (median)</td><td id="mc-rMed">&mdash;</td></tr>
+        <tr><td>Most likely zone (50% band)</td><td id="mc-rBand">&mdash;</td></tr>
+        <tr><td>Touches +10% / touches &minus;10% along the way</td><td id="mc-rTouch">&mdash;</td></tr>
+      </table>
+      <p class="mc-readnote">Not a coin flip &mdash; the drift and skew are already in these numbers. They update live with the sliders and the horizon toggle.</p>
+    </div>
+
+<div class="mc-card mc-chart-wrap">
       <svg id="mc-fan" viewBox="0 0 760 340" role="img" aria-label="Forward price distribution cone">
         <g id="mc-gridG" class="mc-axis"></g>
         <path id="mc-band95" fill="var(--mc-band-outer)"></path>
@@ -540,6 +560,19 @@
           el("mc-vRange").textContent=price(M,HZ,5).toFixed(2)+" – "+price(M,HZ,95).toFixed(2);
           el("mc-vBelow").textContent=Math.round(cdfBelow(M,SUPPORT,HZ)*100)+"%";
           el("mc-vCons").textContent=Math.round((1-cdfBelow(M,CONSENSUS,HZ))*100)+"%";
+                    // probability read — leads the section
+          var pUp=1-cdfBelow(M,S0,HZ), pW=1-cdfBelow(M,S0*1.10,HZ), pL=cdfBelow(M,S0*0.90,HZ);
+          var _rN=function(v){return fmt(v).replace(/^[^0-9\-\u2212.]+/,"");};
+          var oddsHtml; if(pW>=pL){oddsHtml=Math.round(pW*100)+"% vs <span class=\"mc-down\">"+Math.round(pL*100)+"%</span> &mdash; odds &asymp; "+(pL>0.001?(pW/pL).toFixed(1):"&gt;99")+" : 1 up";}
+          else{oddsHtml=Math.round(pW*100)+"% vs <span class=\"mc-down\">"+Math.round(pL*100)+"%</span> &mdash; odds &asymp; "+(pW>0.001?(pL/pW).toFixed(1):"&gt;99")+" : 1 down";}
+          var _med=price(M,HZ,50), _mv=(_med/S0-1)*100;
+          el("mc-rUp").textContent=Math.round(pUp*100)+"%";
+          el("mc-rOdds").innerHTML=oddsHtml;
+          el("mc-rMed").textContent=fmt(_med)+" ("+(_mv>=0?"+":"\u2212")+Math.abs(_mv).toFixed(0)+"%)";
+          el("mc-rBand").textContent=_rN(price(M,HZ,25))+" \u2013 "+_rN(price(M,HZ,75));
+          el("mc-rTouch").textContent=Math.round(touch(M,S0*1.10,HZ,true)*100)+"% / "+Math.round(touch(M,S0*0.90,HZ,false)*100)+"%";
+          el("mc-rHz").textContent="at "+hLabel;
+          try{window.__probRead={pUp:pUp,pW:pW,pL:pL,med:_med,mv:_mv,b25:price(M,HZ,25),b75:price(M,HZ,75),tUp:touch(M,S0*1.10,HZ,true),tDn:touch(M,S0*0.90,HZ,false),spot:S0,fmtMed:fmt(_med),b25s:_rN(price(M,HZ,25)),b75s:_rN(price(M,HZ,75))};}catch(_e){}
           el("mc-zHz").textContent="at "+hLabel;
           setZbar(M,HZ); setLadder(M);
         }
@@ -672,7 +705,7 @@
   </div>
 </div>
 
-<script src="assets/data.js?v=20260705i"></script><script src="assets/app.js?v=20260705i"></script>
+<script src="assets/data.js?v=20260705j"></script><script src="assets/app.js?v=20260705j"></script>
 <script>
 const T=TICKERS.HRHO;
 document.getElementById("upd").textContent=SITE.updated;

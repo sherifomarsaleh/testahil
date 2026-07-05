@@ -338,6 +338,13 @@
       #mc-lab .mc-reset{appearance:none; border:1.5px solid var(--teal); background:transparent; cursor:pointer; font-family:"IBM Plex Mono",monospace; font-weight:500; font-size:var(--fs-caption); color:var(--teal); padding:6px 12px; border-radius:8px; margin-top:12px}
       #mc-lab .mc-reset:hover{background:var(--teal); color:#fff}
       #mc-lab .mc-reset:focus-visible{outline:3px solid var(--teal2); outline-offset:2px}
+          #mc-lab .mc-read{margin-bottom:12px}
+      #mc-lab table.mc-readt{width:100%; border-collapse:collapse; font-size:var(--fs-body)}
+      #mc-lab table.mc-readt td{padding:5px 0; border-bottom:1px dashed var(--line)}
+      #mc-lab table.mc-readt tr:last-child td{border-bottom:0}
+      #mc-lab table.mc-readt td:last-child{text-align:right; font-family:"IBM Plex Mono",monospace; font-weight:500; color:var(--teal); white-space:nowrap; padding-left:12px}
+      #mc-lab table.mc-readt td:last-child .mc-down{color:var(--red)}
+      #mc-lab .mc-readnote{font-size:var(--fs-caption); color:var(--muted); margin:8px 0 0}
     </style>
 
     <div class="mc-head">
@@ -352,7 +359,20 @@
     </div>
     <p class="mc-sub">Drag a slider and the whole distribution recomputes live — <b>green is better, red is worse</b>. The other eleven forces stay fixed at the study calibration. Anchored at the latest price; nothing is sent anywhere.</p>
 
-    <div class="mc-card">
+        <!-- PROBABILITY READ — leads the section: direction first, cone second -->
+    <div class="mc-card mc-read">
+      <div class="mc-card-h"><h4>The probability read</h4><span class="mc-hint" id="mc-rHz">at 3 months</span></div>
+      <table class="mc-readt">
+        <tr><td>Chance the price is <b>higher than today</b></td><td id="mc-rUp">&mdash;</td></tr>
+        <tr><td><b>+10% or better</b> vs <b>&minus;10% or worse</b></td><td id="mc-rOdds">&mdash;</td></tr>
+        <tr><td>Middle-of-the-road outcome (median)</td><td id="mc-rMed">&mdash;</td></tr>
+        <tr><td>Most likely zone (50% band)</td><td id="mc-rBand">&mdash;</td></tr>
+        <tr><td>Touches +10% / touches &minus;10% along the way</td><td id="mc-rTouch">&mdash;</td></tr>
+      </table>
+      <p class="mc-readnote">Not a coin flip &mdash; the drift and skew are already in these numbers. They update live with the sliders and the horizon toggle.</p>
+    </div>
+
+<div class="mc-card">
       <div class="mc-chartwrap">
         <svg id="mc-fan" viewBox="0 0 760 340" role="img" aria-label="Forward price distribution cone">
           <g id="mc-gridG" class="mc-axis"></g>
@@ -579,6 +599,19 @@
           el("mc-vRange").textContent=Math.round(price(M,HZ,5)).toLocaleString("en-US")+" – "+Math.round(price(M,HZ,95)).toLocaleString("en-US");
           el("mc-vBelow").textContent=Math.round(cdfBelow(M,SUPPORT,HZ)*100)+"%";
           el("mc-vCons").textContent=Math.round((1-cdfBelow(M,CONSENSUS,HZ))*100)+"%";
+                    // probability read — leads the section
+          var pUp=1-cdfBelow(M,S0,HZ), pW=1-cdfBelow(M,S0*1.10,HZ), pL=cdfBelow(M,S0*0.90,HZ);
+          var _rN=function(v){return fmt(v).replace(/^[^0-9\-\u2212.]+/,"");};
+          var oddsHtml; if(pW>=pL){oddsHtml=Math.round(pW*100)+"% vs <span class=\"mc-down\">"+Math.round(pL*100)+"%</span> &mdash; odds &asymp; "+(pL>0.001?(pW/pL).toFixed(1):"&gt;99")+" : 1 up";}
+          else{oddsHtml=Math.round(pW*100)+"% vs <span class=\"mc-down\">"+Math.round(pL*100)+"%</span> &mdash; odds &asymp; "+(pW>0.001?(pL/pW).toFixed(1):"&gt;99")+" : 1 down";}
+          var _med=price(M,HZ,50), _mv=(_med/S0-1)*100;
+          el("mc-rUp").textContent=Math.round(pUp*100)+"%";
+          el("mc-rOdds").innerHTML=oddsHtml;
+          el("mc-rMed").textContent=fmt(_med)+" ("+(_mv>=0?"+":"\u2212")+Math.abs(_mv).toFixed(0)+"%)";
+          el("mc-rBand").textContent=_rN(price(M,HZ,25))+" \u2013 "+_rN(price(M,HZ,75));
+          el("mc-rTouch").textContent=Math.round(touch(M,S0*1.10,HZ,true)*100)+"% / "+Math.round(touch(M,S0*0.90,HZ,false)*100)+"%";
+          el("mc-rHz").textContent="at "+hLabel;
+          try{window.__probRead={pUp:pUp,pW:pW,pL:pL,med:_med,mv:_mv,b25:price(M,HZ,25),b75:price(M,HZ,75),tUp:touch(M,S0*1.10,HZ,true),tDn:touch(M,S0*0.90,HZ,false),spot:S0,fmtMed:fmt(_med),b25s:_rN(price(M,HZ,25)),b75s:_rN(price(M,HZ,75))};}catch(_e){}
           el("mc-zHz").textContent="at "+hLabel;
           setZbar(M,HZ); setLadder(M);
         }
@@ -721,7 +754,7 @@
   </div>
 </div>
 
-<script src="assets/data.js?v=20260705i"></script><script src="assets/app.js?v=20260705i"></script>
+<script src="assets/data.js?v=20260705j"></script><script src="assets/app.js?v=20260705j"></script>
 <script>
 const T=TICKERS.FAB;
 document.getElementById("upd").textContent=SITE.updated;
