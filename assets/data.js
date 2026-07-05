@@ -859,6 +859,34 @@ const TICKERS = {
       pdf:   "files/SNB_Valuation_Study_04-07-2026_public.pdf?v=0407j"
     }
   },
+  FAB: {
+    name: "First Abu Dhabi Bank",
+    nameAr: "بنك أبوظبي الأول",
+    code: "ADX:FAB",
+    spot: 17.40,
+    spotDate: "close 3 Jul 2026",
+    ccy: "AED",
+    fair: { bear: 17.1, base: 19.9, full: 22.4 },      // 3 Jul 2026 — weighted central 19.9 (+14% vs spot 17.40). Lenses: DDM (primary) 19.81, FCFE-DCF 20.70, relative P/B-ROE & peer P/E 18.78, normalized ROTE 19.90. bear/full = weighted bear/bull of the football field. Swing factor: the NIM through the Fed easing cycle (imported via the AED-USD peg) and the normalization of a benign ~49bps cost of risk.
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:14.97, p25:16.44, p50:17.32, p75:18.18, p95:19.75, resolve:"2026-07-31" },
+      t60: { label:"3 months (T+60)", p5:13.37, p25:15.53, p50:17.05, p75:18.59, p95:21.45, resolve:"2026-09-25" }
+    },
+    touch: [ /* descending high -> low; P(touch) T+20 %, T+60 % */
+      [20, 6, 22], [19, 18, 40], [18.5, 30, 52], [18, 51, 68], [17, 64, 81], [16, 24, 52], [15, 8, 29]
+    ],
+    levels: { res:[17.52, 18.00, 20.70], sup:[17.00, 16.50, 15.48] },
+    tech: {
+      trend: "Neutral and balanced — on its 20-, 50- and 200-day averages, below the 100-day; RSI near 49, a consolidation not a breakdown",
+      summary: "The tape is neutral and balanced. FAB sits essentially on its 20-day (AED 17.33), 50-day (17.34) and 200-day (17.52) averages and just below its 100-day (18.00). RSI(14) near 49 is mid-range, and MACD is marginally negative (0.04 line / 0.06 signal / -0.03 histogram). Price sits in the middle of a 52-week band of AED 15.48-20.70; realized 252-day volatility near 29% is moderate for a large-cap bank, and the YZ-HAR engine reads the current 60-day regime near 24%.",
+      bull: "A daily close above the AED 18.00 hundred-day and the AED 18.5 shelf would signal the consolidation is resolving up; reclaiming the 52-week high near AED 20.70 would need a margin-resilience or dividend surprise.",
+      bear: "A daily close below support around AED 17.00 opens the lower band toward AED 16.00 and the 52-week low at AED 15.48."
+    },
+    files: {
+      study: "files/FAB_Valuation_Study_03-07-2026_public.docx?v=0705",
+      model: "files/FAB_Valuation_Model_03072026_public.xlsx?v=0705",
+      pdf:   "files/FAB_Valuation_Study_03-07-2026_public.pdf?v=0705"
+    }
+  },
   ACWA: {
     name: "ACWA Power Company",
     nameAr: "شركة أكوا باور",
@@ -1507,6 +1535,29 @@ const LEDGER = [
     anchor_vol:0.4116, horizon_days:60,
     p5:136.9, p25:171.0, p50:194.2, p75:220.0, p95:268.4,
     touch:{ "+5":73, "+10":56, "+15":42, "+20":30, "-5":72, "-10":52 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  // ---- FAB · other (ADX Abu Dhabi) · cycle 1 (3 Jul 2026 published study) ----
+  {
+    instrument:"FAB", asset_class:"other",
+    anchor_date:"2026-07-03", anchor_price:17.40, ccy:"AED",
+    horizon_label:"T+20", grade_date:"2026-07-31", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.2404, horizon_days:20,
+    p5:14.97, p25:16.44, p50:17.32, p75:18.18, p95:19.75,
+    touch:{ "+5":37, "+10":14, "+15":5, "+20":2, "-5":40, "-10":16 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"FAB", asset_class:"other",
+    anchor_date:"2026-07-03", anchor_price:17.40, ccy:"AED",
+    horizon_label:"T+60", grade_date:"2026-09-25", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.2404, horizon_days:60,
+    p5:13.37, p25:15.53, p50:17.05, p75:18.59, p95:21.45,
+    touch:{ "+5":59, "+10":36, "+15":21, "+20":12, "-5":66, "-10":43 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
