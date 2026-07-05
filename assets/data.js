@@ -1288,6 +1288,37 @@ const LEDGER = [
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   },
+  // ---- Silver (XAG/USD) · metal · cycle 1 (05 Jul 2026 published study; anchored 03 Jul close) ----
+  {
+    instrument:"Silver", asset_class:"metal",
+    anchor_date:"2026-07-03", anchor_price:62.43, ccy:"USD",
+    horizon_label:"1 month", grade_date:"2026-07-31", cycle_no:1, reanchor_from:null,
+    p5:50, p25:58, p50:63, p75:68, p95:78,
+    touch:{ "+5":61, "+10":38, "+15":23, "+20":14, "-5":56, "-10":31 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"Silver", asset_class:"metal",
+    anchor_date:"2026-07-03", anchor_price:62.43, ccy:"USD",
+    horizon_label:"3 months", grade_date:"2026-09-25", cycle_no:1, reanchor_from:null,
+    p5:44, p25:56, p50:63, p75:72, p95:91,
+    touch:{ "+5":76, "+10":60, "+15":46, "+20":35, "-5":71, "-10":51 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"Silver", asset_class:"metal",
+    anchor_date:"2026-07-03", anchor_price:62.43, ccy:"USD",
+    horizon_label:"12 months", grade_date:"2027-07-02", cycle_no:1, reanchor_from:null,
+    p5:34, p25:52, p50:67, p75:86, p95:135,
+    touch:{ "+5":89, "+10":80, "+15":72, "+20":65, "-5":83, "-10":70 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
   // ---- Samsung Electronics (KRX:005930) · other / international · cycle 1 (27 Jun 2026 published study; anchored 26 Jun close) ----
   {
     instrument:"Samsung", asset_class:"other",
@@ -1948,6 +1979,32 @@ const METALS = {
    study:"files/XAUUSD_Valuation_Study_25-06-2026_public.docx?v=2506",
    model:"files/XAUUSD_Valuation_Study_25-06-2026_public.xlsx?v=2506",
    pdf:"files/XAUUSD_Valuation_Study_25-06-2026_public.pdf?v=2506"
+ }
+  },
+  SILVER: {
+    slug: "silver",
+    unit: "دولار للأونصة",   // Arabic unit (AR feed)
+    unitEn: "USD/oz",         // English unit (EN feed)
+    nameAr: "الفضة",          // Arabic display name (AR feed)
+ name:"Silver", code:"XAG/USD", spot:62.43, spotDate:"close 03 Jul 2026", ccy:"USD",
+ fair:{ bear:58, base:68, full:78 },
+ dist:{
+   t20:{ label:"1 month (T+20)",  p5:50, p25:58, p50:63, p75:68, p95:78, resolve:"2026-07-31" },
+   t60:{ label:"3 months (T+60)", p5:44, p25:56, p50:63, p75:72, p95:91, resolve:"2026-09-25" },
+   t252:{ label:"12 months (T+252)", p5:34, p25:52, p50:67, p75:86, p95:135, resolve:"2027-07-02" }
+ },
+ touch:[ [85,3,14], [78,9,26], [72,22,45], [68,42,63], [58,45,62], [55,25,44], [50,8,22], [45,2,10] ],
+ levels:{ res:[68,71,78], sup:[58,55,50] },
+ tech:{
+   trend:"Corrective below all major averages \\u2014 RSI recovering from oversold, a death-cross approaching",
+   summary:"Silver closed $62.43 after the most violent year in its modern history \\u2014 a run from the high-$30s to an intraday all-time high near $121 in late January 2026, then a halving back to the low-$60s as the war premium unwound and the Fed turned hawkish. Price sits ~12% below both the 50- and 200-day moving averages, MACD (12\\u00b726\\u00b79) is negative (\\u22123.37 / \\u22123.67 / +0.30) but its histogram has just turned up, and RSI(14) is ~44 \\u2014 neutral, off oversold. The 50-day is still fractionally above the 200-day, but with price well below both and the halving so recent, a death-cross is the more likely next structural event.",
+   bull:"Gold-silver ratio compression toward 55\\u201350\\u00d7 and a gold reversion toward its own consensus zone lift silver toward $72\\u201380; reclaiming the ~$71 (SMA50) average would confirm.",
+   bear:"A confirmed Fed hike and a stronger dollar, plus a positioning/ETF unwind, extend the fall toward $55 \\u2192 $50 \\u2192 the mid-$40s (J.P. Morgan flags $50)."
+ },
+ files:{
+   study:"files/XAGUSD_Combined_1-3-12M_Valuation_Study_05-07-2026_public.docx?v=2607",
+   model:"files/XAGUSD_Combined_1-3-12M_Valuation_Model_05-07-2026_public.xlsx?v=2607",
+   pdf:"files/XAGUSD_Combined_1-3-12M_Valuation_Study_05-07-2026_public.pdf?v=2607"
  }
   }
 };
