@@ -628,13 +628,24 @@
           (function(){
             var dl=el("mc-distlabelsG"); if(!dl) return;
             var xh=xToPx(HZ);
+            var xLbl=Math.min(xh+7, VB.w-46); // keep label text inside the viewBox
             var pts=[[5,"var(--muted)"],[25,"var(--teal2)"],[50,"var(--ink)"],[75,"var(--teal2)"],[95,"var(--muted)"]];
+            var rows=pts.map(function(pr){
+              var q=pr[0], v=price(M,HZ,q);
+              return {q:q,col:pr[1],v:v,y:yToPx(v)};
+            });
+            rows.sort(function(a,b){return a.y-b.y;});
+            var minGap=11;
+            for(var i=1;i<rows.length;i++){
+              if(rows[i].y-rows[i-1].y<minGap) rows[i].y=rows[i-1].y+minGap;
+            }
+            rows.sort(function(a,b){return a.q-b.q;});
             var h="";
-            pts.forEach(function(pr){
-              var q=pr[0], col=pr[1], v=price(M,HZ,q), y=yToPx(v);
+            rows.forEach(function(r){
+              var q=r.q, col=r.col, v=r.v, y=r.y;
               var lbl=(q===50?"median ":"")+(typeof fmtN==="function"?fmtN(v):(typeof fmt==="function"?fmt(v).replace(/^[^0-9\-]+/,""):v.toFixed(2)));
-              h+='<circle cx="'+xh.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="'+(q===50?3.5:2.5)+'" fill="'+col+'"></circle>';
-              h+='<text class="mc-distlabel" x="'+(xh+7).toFixed(1)+'" y="'+(y+3.5).toFixed(1)+'" font-family="\'IBM Plex Mono\',monospace" font-size="10" fill="'+col+'">'+lbl+'</text>';
+              h+='<circle cx="'+xh.toFixed(1)+'" cy="'+yToPx(v).toFixed(1)+'" r="'+(q===50?3.5:2.5)+'" fill="'+col+'"></circle>';
+              h+='<text class="mc-distlabel" x="'+xLbl.toFixed(1)+'" y="'+(y+3.5).toFixed(1)+'" font-family="\'IBM Plex Mono\',monospace" font-size="10" fill="'+col+'">'+lbl+'</text>';
             });
             dl.innerHTML=h;
           })();
