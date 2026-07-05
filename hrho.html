@@ -368,6 +368,7 @@
         <path id="mc-band75" fill="var(--mc-band-inner)"></path>
         <path id="mc-medianP" class="mc-median"></path>
         <g id="mc-refG"></g>
+          <g id="mc-distlabelsG"></g>
         <line id="mc-hzLine" class="mc-hz"></line>
         <g id="mc-xlab" class="mc-axis"></g>
       </svg>
@@ -399,7 +400,7 @@
 
     <div class="mc-card mc-verdict">
       <p class="mc-vline">At <b id="mc-hzName">3 months</b> the model centres on <span class="mc-big" id="mc-vMed">EGP 27.70</span> &nbsp;&middot;&nbsp; 5&ndash;95% range <span class="mc-big" id="mc-vRange">19.55 &ndash; 38.64</span></p>
-      <p class="mc-vline">Chance of finishing below support (23.00): <span class="mc-big mc-down" id="mc-vBelow">21%</span> &nbsp;&middot;&nbsp; at or above target (33.60): <span class="mc-big" id="mc-vCons">28%</span></p>
+      <p class="mc-vline">Chance of finishing below technical support (23.00): <span class="mc-big mc-down" id="mc-vBelow">21%</span> &nbsp;&middot;&nbsp; at or above technical resistance (33.60): <span class="mc-big" id="mc-vCons">28%</span></p>
     </div>
 
     <div class="mc-grid2">
@@ -407,10 +408,10 @@
         <div class="mc-card-h"><h4>Probability zones</h4><span class="mc-hint" id="mc-zHz">at 3 months</span></div>
         <div class="mc-zbar" id="mc-zbar" aria-hidden="true"></div>
         <div class="mc-zleg">
-          <span><i class="mc-dot" style="background:var(--red)"></i> below support &lt;23.00</span>
+          <span><i class="mc-dot" style="background:var(--red)"></i> below technical support &lt;23.00</span>
           <span><i class="mc-dot" style="background:var(--amber)"></i> 23.00 &ndash; 27.70</span>
           <span><i class="mc-dot" style="background:var(--teal2)"></i> 27.70 &ndash; 33.60</span>
-          <span><i class="mc-dot" style="background:var(--teal)"></i> &ge; target 33.60</span>
+          <span><i class="mc-dot" style="background:var(--teal)"></i> &ge; technical resistance 33.60</span>
         </div>
       </div>
       <div class="mc-card">
@@ -549,6 +550,21 @@
           el("mc-band95").setAttribute("d",bandPath(M,95,5));
           el("mc-band75").setAttribute("d",bandPath(M,75,25));
           el("mc-medianP").setAttribute("d",medianPath(M));
+          // value labels on the chart: median, 25-75%, 5-95% at the current horizon
+          (function(){
+            var dl=el("mc-distlabelsG"); if(!dl) return;
+            var xh=xToPx(HZ);
+            var pts=[[5,"var(--muted)"],[25,"var(--teal2)"],[50,"var(--ink)"],[75,"var(--teal2)"],[95,"var(--muted)"]];
+            var h="";
+            pts.forEach(function(pr){
+              var q=pr[0], col=pr[1], v=price(M,HZ,q), y=yToPx(v);
+              var lbl=(q===50?"median ":"")+(typeof fmtN==="function"?fmtN(v):(typeof fmt==="function"?fmt(v).replace(/^[^0-9\-]+/,""):v.toFixed(2)));
+              h+='<circle cx="'+xh.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="'+(q===50?3.5:2.5)+'" fill="'+col+'"></circle>';
+              h+='<text class="mc-distlabel" x="'+(xh+7).toFixed(1)+'" y="'+(y+3.5).toFixed(1)+'" font-family="\'IBM Plex Mono\',monospace" font-size="10" fill="'+col+'">'+lbl+'</text>';
+            });
+            dl.innerHTML=h;
+          })();
+
           var xh=xToPx(HZ).toFixed(1), hz=el("mc-hzLine");
           hz.setAttribute("x1",xh); hz.setAttribute("x2",xh); hz.setAttribute("y1",Y0.toFixed(1)); hz.setAttribute("y2",Y1.toFixed(1));
           [20,60].forEach(function(Tn){[5,25,50,75,95].forEach(function(q){el("mc-p"+Tn+"_"+q).textContent=price(M,Tn,q).toFixed(2);});});
@@ -617,8 +633,8 @@
 
       <p class="qhead" style="margin-top:26px">Chart levels traders watch</p>
       <table><tbody>
-        <tr><td><span class="term" tabindex="0">Resistance (ceilings)<span class="tip">A price level where selling has repeatedly stopped past rallies.</span></span></td><td class="num">27.5 · 29.0 · 30.86</td></tr>
-        <tr><td><span class="term" tabindex="0">Support (floors)<span class="tip">A price level where buying has repeatedly stepped in.</span></span></td><td class="num">26.5 · 25.0 · 24.0</td></tr>
+        <tr><td><span class="term" tabindex="0">Technical Resistance (ceilings)<span class="tip">A price level where selling has repeatedly stopped past rallies.</span></span></td><td class="num">27.5 · 29.0 · 30.86</td></tr>
+        <tr><td><span class="term" tabindex="0">Technical Support (floors)<span class="tip">A price level where buying has repeatedly stepped in.</span></span></td><td class="num">26.5 · 25.0 · 24.0</td></tr>
         <tr><td><span class="term" tabindex="0">Typical daily move<span class="tip">Roughly how far the price swings in an average day (ATR).</span></span></td><td class="num">~0.5 (1.9%)</td></tr>
         <tr><td>Where our case breaks</td><td class="num">below ~23</td></tr>
       </tbody></table>
