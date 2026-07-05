@@ -2,10 +2,39 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-07-05", latest: "ENBD" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
+const SITE = { updated: "2026-07-05", latest: "IQCD" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
+
+  IQCD: {
+    name: "Industries Qatar",
+    nameAr: "صناعات قطر",
+    code: "QSE:IQCD",
+    spot: 11.07,
+    spotDate: "close 5 Jul 2026",
+    ccy: "QAR",
+    fair: { bear: 6.9, base: 10.9, full: 15.0 },      // 5 Jul 2026 — weighted central 10.9 (−2% vs spot 11.07). Five lenses: holdco SOTP (primary) 10.38, consolidated DCF 11.0-11.4, relative multiples 11.02, normalized earnings 11.02, dividend-discount 11.07. bear/full = weighted bear/bull of the football field. Swing factor: petrochemical (QAPCO/QAFAC) margin normalisation from its early-2026 trough (Q1-26 segment NI just QR4mn) plus the Ammonia-7 (Q2-26) and Ras Laffan pipeline; QAFCO fertilizers are the cash anchor, steel a restart option. ~6% dividend yield, debt-free, ~QR8.5bn net cash, QatarEnergy ~51%.
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:9.62, p25:10.60, p50:11.13, p75:11.68, p95:12.73, resolve:"2026-08-02" },
+      t60: { label:"3 months (T+60)", p5:8.84, p25:10.24, p50:11.21, p75:12.25, p95:14.08, resolve:"2026-09-27" }
+    },
+    touch: [ /* descending high -> low; P(touch) T+20 %, T+60 % */
+      [12.5, 13, 42], [12.0, 27, 58], [11.5, 53, 77], [11.0, 77, 84], [10.5, 30, 50], [10.0, 12, 29], [9.5, 5, 16]
+    ],
+    levels: { res:[11.37, 11.85, 13.41], sup:[10.60, 10.00, 9.13] },
+    tech: {
+      trend: "Below all four major moving averages; RSI in the mid-30s, MACD mildly negative — a weak, corrective tape near the 52-week low",
+      summary: "The tape is weak and has been for a year. Industries Qatar trades below its 20-day (QAR 11.37), 50-day (11.85), 100-day (11.79) and 200-day (12.07) averages — a full bearish stack — sitting near the floor of a QAR 10.60-13.41 fifty-two-week range. RSI(14) near 36 is approaching oversold without being washed out; MACD is mildly negative (−0.24 line / −0.22 signal / −0.02 histogram), so momentum is soft but no longer accelerating down. Realized 252-day volatility is about 20%, and the YZ-HAR engine reads the current 60-day regime near 22%.",
+      bull: "A daily close back above the QAR 11.37 twenty-day and the QAR 11.85 moving-average cluster would ease the corrective read; reclaiming the QAR 13.41 fifty-two-week high would need a petrochemical-margin recovery or an Ammonia-7 earnings surprise.",
+      bear: "A daily close below the QAR 10.60 fifty-two-week low opens the gap toward the QAR 10.00 round level and, beneath it, the simulated lower quartile — the main driver of the left tail being regional-conflict disruption of Gulf logistics."
+    },
+    files: {
+      study: "files/IQCD_Valuation_Study_05-07-2026_public.docx?v=0705g",
+      model: "files/IQCD_Valuation_Model_05072026_public.xlsx?v=0705g",
+      pdf:   "files/IQCD_Valuation_Study_05-07-2026_public.pdf?v=0705g"
+    }
+  },
   RAYA: {
     name: "Raya Holding",
     nameAr: "راية القابضة",
@@ -1083,6 +1112,29 @@ const COMING = [
                             "-5":bool, "-10":bool }
    ========================================================================== */
 const LEDGER = [
+
+  {
+    instrument:"IQCD", asset_class:"equity",
+    anchor_date:"2026-07-05", anchor_price:11.07, ccy:"QAR",
+    horizon_label:"T+20", grade_date:"2026-08-02", cycle_no:1, reanchor_from:null,
+    p5:9.62, p25:10.60, p50:11.13, p75:11.68, p95:12.73,
+    touch:{ "+5":30, "+10":13, "+15":6, "+20":3, "-5":50, "-10":29 },
+    anchor_vol:0.2178, horizon_days:20,
+    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
+    realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"IQCD", asset_class:"equity",
+    anchor_date:"2026-07-05", anchor_price:11.07, ccy:"QAR",
+    horizon_label:"T+60", grade_date:"2026-09-27", cycle_no:1, reanchor_from:null,
+    p5:8.84, p25:10.24, p50:11.21, p75:12.25, p95:14.08,
+    touch:{ "+5":58, "+10":42, "+15":29, "+20":20, "-5":77, "-10":50 },
+    anchor_vol:0.2178, horizon_days:60,
+    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
+    realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
   {
     instrument:"EFIH", asset_class:"equity",
     anchor_date:"2026-07-01", anchor_price:20.74, ccy:"EGP",
