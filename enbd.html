@@ -390,7 +390,7 @@
         <span><i class="mc-sw" style="background:var(--mc-band-inner)"></i> 25–75% band</span>
         <span><i class="mc-sw" style="background:var(--mc-band-outer)"></i> 5–95% band</span>
         <span><i class="mc-sw" style="background:var(--amber); height:3px"></i> median path</span>
-        <span><i class="mc-sw" style="background:var(--red); height:3px"></i> support 27</span>
+        <span><i class="mc-sw" style="background:var(--red); height:3px"></i> technical support 27</span>
         <span><i class="mc-sw" style="background:var(--amber); height:3px; opacity:.7"></i> technical resistance 32.3</span>
       </div>
     </div>
@@ -591,29 +591,34 @@
           el("mc-band75").setAttribute("d",bandPath(M,75,25));
           el("mc-medianP").setAttribute("d",medianPath(M));
           // value labels on the chart: median, 25-75%, 5-95% at the current horizon
+          // merged with the support/resistance ref labels so nothing overlaps and nothing clips
           (function(){
             var dl=el("mc-distlabelsG"); if(!dl) return;
             var xh=xToPx(HZ);
-            var xLbl=Math.min(xh+7, VB.w-46); // keep label text inside the viewBox
-            var pts=[[5,"var(--muted)"],[25,"var(--teal2)"],[50,"var(--ink)"],[75,"var(--teal2)"],[95,"var(--muted)"]];
+            var xLbl=Math.min(xh-6, X1-4); // always left of the dot, capped at the plot's right edge
+            var pts=[[5,"var(--muted)",false],[25,"var(--teal2)",false],[50,"var(--ink)",true],
+                     [75,"var(--teal2)",false],[95,"var(--muted)",false]];
             var rows=pts.map(function(pr){
-              var q=pr[0], v=price(M,HZ,q);
-              return {q:q,col:pr[1],v:v,y:yToPx(v)};
+              var v=price(M,HZ,pr[0]);
+              return {y:yToPx(v),col:pr[1],med:pr[2],
+                lbl:(pr[2]?"median ":"")+(typeof fmtN==="function"?fmtN(v):(typeof fmt==="function"?fmt(v).replace(/^[^0-9\-]+/,""):v.toFixed(2)))};
             });
+            // include the ref lines (support / resistance) in the SAME collision-avoidance pass
+            if(typeof SUPPORT!=="undefined") rows.push({y:yToPx(SUPPORT),col:"var(--red)",med:false,lbl:"support "+fmtAxis(SUPPORT),ref:true});
+            if(typeof CONSENSUS!=="undefined") rows.push({y:yToPx(CONSENSUS),col:"var(--amber-text)",med:false,lbl:"resistance "+fmtAxis(CONSENSUS),ref:true});
+            if(typeof FLOOR!=="undefined") rows.push({y:yToPx(FLOOR),col:"var(--red)",med:false,lbl:"support "+fmtN(FLOOR),ref:true});
+            if(typeof TARGET!=="undefined") rows.push({y:yToPx(TARGET),col:"var(--amber-text)",med:false,lbl:"resistance "+fmtN(TARGET),ref:true});
             rows.sort(function(a,b){return a.y-b.y;});
             var minGap=11;
-            for(var i=1;i<rows.length;i++){
-              if(rows[i].y-rows[i-1].y<minGap) rows[i].y=rows[i-1].y+minGap;
-            }
-            rows.sort(function(a,b){return a.q-b.q;});
+            for(var i=1;i<rows.length;i++){ if(rows[i].y-rows[i-1].y<minGap) rows[i].y=rows[i-1].y+minGap; }
             var h="";
             rows.forEach(function(r){
-              var q=r.q, col=r.col, v=r.v, y=r.y;
-              var lbl=(q===50?"median ":"")+(typeof fmtN==="function"?fmtN(v):(typeof fmt==="function"?fmt(v).replace(/^[^0-9\-]+/,""):v.toFixed(2)));
-              h+='<circle cx="'+xh.toFixed(1)+'" cy="'+yToPx(v).toFixed(1)+'" r="'+(q===50?3.5:2.5)+'" fill="'+col+'"></circle>';
-              h+='<text class="mc-distlabel" x="'+xLbl.toFixed(1)+'" y="'+(y+3.5).toFixed(1)+'" font-family="\'IBM Plex Mono\',monospace" font-size="10" fill="'+col+'">'+lbl+'</text>';
+              if(!r.ref) h+='<circle cx="'+xh.toFixed(1)+'" cy="'+(r._y0!==undefined?r._y0:r.y).toFixed(1)+'" r="'+(r.med?3.5:2.5)+'" fill="'+r.col+'"></circle>';
+              h+='<text class="mc-distlabel" x="'+xLbl.toFixed(1)+'" y="'+(r.y+3.5).toFixed(1)+'" text-anchor="end" font-family="\'IBM Plex Mono\',monospace" font-size="10" fill="'+r.col+'">'+r.lbl+'</text>';
             });
             dl.innerHTML=h;
+            // suppress the old separate reflabel text (now folded into the merged stack above)
+            var rg=el("mc-refG"); if(rg){ var t=rg.querySelectorAll?rg.querySelectorAll("text.mc-reflabel"):[]; for(var k=0;k<t.length;k++) t[k].style.display="none"; }
           })();
 
           var xh=xToPx(HZ).toFixed(1), hz=el("mc-hzLine");
