@@ -27,6 +27,19 @@
   details[open] > .cover-sum .cover-chev{transform:rotate(90deg)}
   .cover-disc .cover-grid{margin-top:16px}
   [data-theme="dark"] .cover-count{background:#1B3B37;color:var(--teal)}
+  /* Hero "probability read" card — style-parity with the ticker-page mc-read card */
+  #hero-read.mc-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-top:20px;max-width:620px}
+  #hero-read .mc-card-h{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:0 0 6px}
+  #hero-read .mc-card-h h4{font-family:"Alexandria","IBM Plex Sans",sans-serif;font-size:var(--fs-lead);font-weight:600;color:var(--ink);margin:0}
+  #hero-read .mc-card-h .mc-hint{font-size:var(--fs-caption);color:var(--muted);font-family:"IBM Plex Mono",monospace}
+  #hero-read table.mc-readt{width:100%;border-collapse:collapse;font-size:var(--fs-body)}
+  #hero-read table.mc-readt td{padding:6px 0;border-bottom:1px dashed var(--line)}
+  #hero-read table.mc-readt tr:last-child td{border-bottom:0}
+  #hero-read table.mc-readt td:last-child{text-align:right;font-family:"IBM Plex Mono",monospace;font-weight:500;color:var(--teal);white-space:nowrap;padding-left:12px}
+  #hero-read table.mc-readt td:last-child .mc-down{color:var(--red)}
+  #hero-read .mc-readnote{font-size:var(--fs-caption);color:var(--muted);margin:8px 0 0}
+  #hero-read .mc-readnote a{color:var(--teal);font-weight:600;text-decoration:none;white-space:nowrap}
+  #hero-read .mc-readnote a:hover{text-decoration:underline}
 </style>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="testahil?">
@@ -102,6 +115,18 @@
     <p class="sub"><b>We won't tell you what to buy. We'll tell you the odds.</b><br>
     Where could an Egyptian stock be in a month or three? We run it 50,000 ways — in plain language, with the math open to check.</p>
     <div id="track-badge" style="margin-top:14px"></div>
+
+    <!-- PROBABILITY READ — front and center: the plain-language odds first, before anything else -->
+    <div class="mc-card" id="hero-read">
+      <div class="mc-card-h"><h4>The probability read</h4><span class="mc-hint" id="hr-hint">at 3 months</span></div>
+      <table class="mc-readt">
+        <tr><td>Chance the price is <b>higher than today</b></td><td id="hr-up">&mdash;</td></tr>
+        <tr><td><b>+10% or better</b> vs <b>&minus;10% or worse</b></td><td id="hr-odds">&mdash;</td></tr>
+        <tr><td>Middle-of-the-road outcome (median)</td><td id="hr-med">&mdash;</td></tr>
+        <tr><td>Most likely zone (50% band)</td><td id="hr-band">&mdash;</td></tr>
+      </table>
+      <p class="mc-readnote">The drift and skew are already baked in &mdash; not a coin flip. <a id="hr-link" href="#">See the full read &rarr;</a></p>
+    </div>
   </section>
 
   <!-- NEW HERE — orientation for first-timers -->
@@ -193,6 +218,28 @@ document.getElementById("latest-name").innerHTML = T.name + ' — ' + o.lead + '
 renderPlain("plain", T.dist.t60, T.spot, "in 3 months", T.spotDate);
 document.getElementById("legend").innerHTML = stripLegend();
 document.getElementById("latest-link").href = latest[0].toLowerCase() + ".html";
+
+// Hero probability-read card — the same latest study, summarised from its stored distribution.
+// Presentation-only: it reads the p5/p25/p50/p75/p95 already in data.js (an approximation of
+// the full 50,000-path run, same as the strip below) and never re-runs the engine.
+(function(){
+  var card=document.getElementById("hero-read"); if(!card) return;
+  var d=T.dist.t60, S=T.spot, ccy=T.ccy||"";
+  var f2=function(x){return Number(x).toFixed(2);};
+  var pUp=probAbove(d,S), pW=probAbove(d,S*1.10), pL=1-probAbove(d,S*0.90);
+  var odds;
+  if(pW>=pL){ odds=Math.round(pW*100)+"% vs <span class=\"mc-down\">"+Math.round(pL*100)+"%</span> &mdash; odds &asymp; "+(pL>0.001?(pW/pL).toFixed(1):"&gt;99")+" : 1 up"; }
+  else{       odds=Math.round(pW*100)+"% vs <span class=\"mc-down\">"+Math.round(pL*100)+"%</span> &mdash; odds &asymp; "+(pW>0.001?(pL/pW).toFixed(1):"&gt;99")+" : 1 down"; }
+  var mv=(d.p50/S-1)*100;
+  document.getElementById("hr-hint").textContent=T.name+" \u00b7 at 3 months";
+  document.getElementById("hr-up").textContent=Math.round(pUp*100)+"%";
+  document.getElementById("hr-odds").innerHTML=odds;
+  document.getElementById("hr-med").textContent=(ccy?ccy+" ":"")+f2(d.p50)+" ("+(mv>=0?"+":"\u2212")+Math.abs(mv).toFixed(0)+"%)";
+  document.getElementById("hr-band").textContent=f2(d.p25)+" \u2013 "+f2(d.p75);
+  var lnk=document.getElementById("hr-link");
+  if(lnk){ lnk.href=latest[0].toLowerCase()+".html#mc-lab"; lnk.innerHTML="See "+T.name+"\u2019s full read &rarr;"; }
+})();
+
 renderTrackBadge("track-badge");
 
 // coverage grid is static HTML above (crawlable); see COVERED cards in markup

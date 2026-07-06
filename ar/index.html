@@ -149,6 +149,21 @@ header.nav .wrap{max-width:920px; padding-left:22px !important; padding-right:22
 .wrap{max-width:1180px !important}
 header.nav .wrap{max-width:1180px !important}
 </style>
+<style id="ar-probread">
+/* Hero "probability read" card — RTL mirror of the English hero card, lifted on the pine hero */
+.hero-read{background:#21433E;border:1px solid rgba(192,164,95,.42);border-radius:12px;padding:14px 16px;margin-top:24px;max-width:560px}
+.hero-read .hr-h{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:0 0 6px}
+.hero-read .hr-h b{font-family:Alexandria,sans-serif;font-size:1.02rem;font-weight:800;color:#fff}
+.hero-read .hr-h span{font-family:"IBM Plex Mono",monospace;font-size:.78rem;color:#9FB0AC}
+.hero-read table{width:100%;border-collapse:collapse;font-size:.95rem}
+.hero-read td{padding:6px 0;border-bottom:1px dashed rgba(159,176,172,.35);color:#DDE6E3}
+.hero-read tr:last-child td{border-bottom:0}
+.hero-read td:last-child{text-align:left;color:#C0A45F;font-family:"IBM Plex Mono",monospace;font-size:.92rem;white-space:nowrap;padding-inline-start:12px}
+.hero-read .hr-note{color:#9FB0AC;font-size:.8rem;margin:8px 0 0}
+.hero-read .hr-note a{color:#C0A45F;font-weight:700;text-decoration:none}
+.hero-read .hr-note a:hover{text-decoration:underline}
+:root[data-theme="dark"] .hero-read{background:#15302D;border-color:rgba(192,164,95,.42)}
+</style>
 </head>
 <body>
 <header class="nav"><div class="wrap">
@@ -167,6 +182,18 @@ header.nav .wrap{max-width:1180px !important}
   <div class="tk">تقييم مستقل لأسهم البورصة المصرية · تحليل تعليمي</div>
   <h1>لا نقول لك ماذا تشتري — نُريك الاحتمالات</h1>
   <p>لكل سهم نعرض نطاق سعر محتمل خلال شهر إلى 3 أشهر، مبنياً على محاكاة عشرات الآلاف من السيناريوهات. بلا توصيات، وبأرقام مفتوحة يمكنك مراجعتها بنفسك.</p>
+
+  <!-- قراءة الاحتمالات — في الصدارة: الأرقام أولاً، لأحدث دراسة منشورة -->
+  <div class="hero-read">
+    <div class="hr-h"><b>قراءة الاحتمالات</b><span>ناقلات · خلال 3 أشهر</span></div>
+    <table>
+      <tr><td>احتمال أن يكون السعر أعلى من سعر اليوم</td><td dir="ltr">56%</td></tr>
+      <tr><td>+10٪ أو أفضل مقابل −10٪ أو أسوأ</td><td dir="ltr">25% / 17% · ≈1.4:1 ↑</td></tr>
+      <tr><td>الوسيط (منتصف التوزيع)</td><td dir="ltr">QAR 4.40 (+2%)</td></tr>
+      <tr><td>النطاق الأرجح (النصف الأوسط 25–75٪)</td><td dir="ltr">4.08 – 4.74</td></tr>
+    </table>
+    <p class="hr-note">الاتجاه والميل مُضمّنان في الأرقام — ليست قرعة. <a href="qgts.html">القراءة الكاملة ←</a></p>
+  </div>
 </div></section>
 
 <main><div class="wrap">
