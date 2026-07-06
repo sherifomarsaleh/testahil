@@ -2,7 +2,7 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-07-06", latest: "RELIANCE" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
+const SITE = { updated: "2026-07-06", latest: "AAPL" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
@@ -1169,6 +1169,34 @@ const TICKERS = {
       pdf:   "files/ACWA_Valuation_Study_05-07-2026_public.pdf?v=0705a"
     }
   },
+  AAPL: {
+    name: "Apple Inc.",
+    nameAr: "أبل",
+    code: "NASDAQ:AAPL",
+    spot: 313.09,
+    spotDate: "close 6 Jul 2026",
+    ccy: "USD",
+    fair: { bear: 182, base: 208, full: 244 },      // 06 Jul 2026 — four-lens weighted central 208 (spot 313.09 = +51% above central). Lenses: consolidated DCF 152 (primary/floor), segment sum-of-the-parts 184, forward multiples 249, normalized earnings 253; DCF & relative weighted 30% each, normalized & SOTP 20% each. The ~$90 DCF-vs-multiple spread is the story — the durability/Services annuity the explicit cash flows do not capitalise; a football field, never a rating. Swing: Services attach-rate, gross-margin trajectory, the AI upgrade cycle.
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:267, p25:293, p50:310, p75:327, p95:356, resolve:"2026-08-03" },
+      t60: { label:"3 months (T+60)", p5:237, p25:276, p50:303, p75:333, p95:386, resolve:"2026-09-28" }
+    },
+    touch: [ /* descending high -> low; P(touch) T+20 %, T+60 % */
+      [376, 3, 13], [360, 7, 23], [344, 18, 38], [329, 41, 60], [297, 47, 72], [282, 21, 50], [266, 7, 29], [250, 2, 15]
+    ],
+    levels: { res:[329, 344, 376], sup:[297, 282, 250] },
+    tech: {
+      trend: "Above a rising moving-average stack — constructive and extended",
+      summary: "The tape is the mirror image of the fundamentals. Price sits above a rising 50/100/200-day stack (≈294 / 277 / 271) and just under the 52-week high near 315, with RSI(14) around 64 (firm, not yet overbought) and a daily MACD (12·26·9) that has crossed above its signal (+0.91 line / −0.58 signal / +1.49 histogram) — a bullish posture. Trailing realized volatility is in the mid-20s% while the gap-aware cone volatility is ≈28%. Nearest support is the 50-day around 294, then 282 and the 100/200-day cluster near 271–277; nearest resistance is the 52-week high near 315, then the +5% / +10% levels at 329 and 344.",
+      bull: "A clean break above the 52-week high (315) into the 329–344 zone would extend the uptrend toward the one-month upper quartile.",
+      bear: "A daily close back below the 50-day (≈294) reopens 282, then the 271–277 moving-average cluster."
+    },
+    files: {
+      study: "files/AAPL_Valuation_Study_06-07-2026_public.docx?v=20260706j",
+      model: "files/AAPL_Valuation_Model_06-07-2026_public.xlsx?v=20260706j",
+      pdf:   "files/AAPL_Valuation_Study_06-07-2026_public.pdf?v=20260706j"
+    }
+  },
   TSLA: {
     name: "Tesla, Inc.",
     nameAr: "تسلا",
@@ -2309,6 +2337,20 @@ const LEDGER = [
     realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   },
+  { instrument:"AAPL", asset_class:"other", anchor_date:"2026-07-06", anchor_price:313.09, ccy:"USD",
+    horizon_label:"T+20", grade_date:"2026-08-03", cycle_no:1, reanchor_from:null,
+    p5:267, p25:293, p50:310, p75:327, p95:356,
+    touch:{ "+5":41, "+10":18, "+15":7, "+20":3, "-5":47, "-10":21 },
+    anchor_vol:0.2843, horizon_days:20,
+    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
+    realized_quantile:null, median_err:null, touch_hit:null },
+  { instrument:"AAPL", asset_class:"other", anchor_date:"2026-07-06", anchor_price:313.09, ccy:"USD",
+    horizon_label:"T+60", grade_date:"2026-09-28", cycle_no:1, reanchor_from:null,
+    p5:237, p25:276, p50:303, p75:333, p95:386,
+    touch:{ "+5":60, "+10":38, "+15":23, "+20":13, "-5":72, "-10":50 },
+    anchor_vol:0.2843, horizon_days:60,
+    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
+    realized_quantile:null, median_err:null, touch_hit:null },
 ];
 
 /* ==========================================================================
