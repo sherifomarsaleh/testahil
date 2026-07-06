@@ -2,10 +2,38 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-07-06", latest: "INFY" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
+const SITE = { updated: "2026-07-06", latest: "RELIANCE" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
+  RELIANCE: {
+    name: "Reliance Industries Limited",
+    nameAr: "ريلاينس إندستريز",
+    code: "NSE:RELIANCE",
+    spot: 1321.30,
+    spotDate: "close 6 Jul 2026",
+    ccy: "INR",
+    fair: { bear: 1112, base: 1395, full: 1719 },      // 6 Jul 2026 — weighted central 1,395 (+6% vs spot 1,321.30). Four lenses: sum-of-the-parts (primary) 1,342, consolidated DCF 1,359, relative multiples 1,322 (floor), normalized earnings 1,552 (ceiling); weights 40/20/15/25. bear/full = weighted bear/bull of the football field. Swing: crystallising the unlisted digital (Jio) and retail value via the Jio Platforms IPO (DRHP filed 19 Jun 2026), the O2C refining/petrochemical margin cycle, and the ~5% holding-company discount.
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:1160, p25:1266, p50:1331, p75:1400, p95:1526, resolve:"2026-08-03" },
+      t60: { label:"3 months (T+60)", p5:1067, p25:1235, p50:1351, p75:1478, p95:1707, resolve:"2026-09-28" }
+    },
+    touch: [ /* level, P(touch) T+20 %, T+60 % — descending */
+      [1550, 6, 25], [1500, 11, 36], [1450, 21, 49], [1400, 39, 65], [1350, 68, 83], [1300, 68, 80], [1250, 34, 55], [1200, 15, 36], [1150, 7, 23]
+    ],
+    levels: { res:[1366, 1418, 1592], sup:[1303, 1259, 1200] },
+    tech: {
+      trend: "Below the 50-, 100- and 200-day moving averages but holding the 20-day; RSI neutral, MACD turning up — a corrective tape stabilising off the low",
+      summary: "The tape is corrective but stabilising rather than trending down. Reliance has retraced from a January-2026 high near \u20b91,600 to the low-\u20b91,300s and sits below its 50-day (\u20b91,341), 100-day (\u20b91,366) and 200-day (\u20b91,418) moving averages, but has reclaimed the 20-day (\u20b91,303). RSI(14) near 52 is neutral; MACD is negative but the histogram has turned positive (\u22125.90 line / \u22128.69 signal / +2.79 histogram) as the MACD line crosses back above its signal \u2014 an early momentum turn off the correction low. Realized 252-day volatility is about 21%, and the YZ-HAR engine reads the current 60-day regime near 25%.",
+      bull: "A daily close back above the \u20b91,341 fifty-day and the \u20b91,366 hundred-day would confirm the turn and open the \u20b91,418 two-hundred-day; reclaiming \u20b91,592 would need the Jio IPO to crystallise or an O2C-margin surprise.",
+      bear: "A close back below the \u20b91,303 twenty-day and the \u20b91,259 fifty-two-week low would reopen the downtrend toward the \u20b91,200 shelf, the main driver of the left tail being an O2C-margin squeeze or a crude-spike shock."
+    },
+    files: {
+      study: "files/RELIANCE_Valuation_Study_06-07-2026_public.docx?v=0706i",
+      model: "files/RELIANCE_Valuation_Model_06-07-2026_public.xlsx?v=0706i",
+      pdf:   "files/RELIANCE_Valuation_Study_06-07-2026_public.pdf?v=0706i"
+    }
+  },
   NVDA: {
     name: "NVIDIA Corporation",
     nameAr: "\u0625\u0646\u0641\u064a\u062f\u064a\u0627",
@@ -1309,6 +1337,29 @@ const COMING = [
                             "-5":bool, "-10":bool }
    ========================================================================== */
 const LEDGER = [
+  {
+    instrument:"RELIANCE", asset_class:"other",
+    anchor_date:"2026-07-06", anchor_price:1321.30, ccy:"INR",
+    horizon_label:"T+20", grade_date:"2026-08-03", cycle_no:1, reanchor_from:null,
+    p5:1160, p25:1266, p50:1331, p75:1400, p95:1526,
+    touch:{ "+5":45, "+10":20, "+15":8, "+20":4, "-5":37, "-10":13 },
+    anchor_vol:0.2073, horizon_days:20,
+    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
+    realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"RELIANCE", asset_class:"other",
+    anchor_date:"2026-07-06", anchor_price:1321.30, ccy:"INR",
+    horizon_label:"T+60", grade_date:"2026-09-28", cycle_no:1, reanchor_from:null,
+    p5:1067, p25:1235, p50:1351, p75:1478, p95:1707,
+    touch:{ "+5":69, "+10":48, "+15":31, "+20":20, "-5":57, "-10":33 },
+    anchor_vol:0.2073, horizon_days:60,
+    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
+    realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+
   // ---- INFY · other (NSE India) · cycle 1 (6 Jul 2026 published study) ----
   {
     instrument:"INFY", asset_class:"other",
