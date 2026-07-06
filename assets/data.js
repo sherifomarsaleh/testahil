@@ -2,10 +2,38 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-07-06", latest: "LCSW" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
+const SITE = { updated: "2026-07-06", latest: "NVDA" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
+  NVDA: {
+    name: "NVIDIA Corporation",
+    nameAr: "\u0625\u0646\u0641\u064a\u062f\u064a\u0627",
+    code: "NASDAQ:NVDA",
+    spot: 196.44,
+    spotDate: "close 6 Jul 2026",
+    ccy: "USD",
+    fair: { bear: 147, base: 204, full: 287 },      // 6 Jul 2026 \u2014 weighted central 204 (+3.9% vs spot 196.44). Lenses: DCF 5-yr FCFF 189 (primary, TV ~79% of EV), relative multiples 200, forward-earnings power 230. bear/full = weighted bear/bull of the football field. Swing: how many years AI data-center capex sustains super-normal growth; China export controls; customer concentration. \u00a73 Monte Carlo PASSED its Step 0 calibration (CRPS skill +2.7% vs a random-walk cone) \u2014 an honest, skill-validated probability map. International name: zero secular drift, DCF-primary lens.
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:155.90, p25:179.63, p50:195.34, p75:212.20, p95:244.04, resolve:"2026-08-03" },
+      t60: { label:"3 months (T+60)", p5:131.56, p25:166.88, p50:193.31, p75:223.35, p95:282.86, resolve:"2026-09-28" }
+    },
+    touch: [ /* descending high -> low */
+      [240, 10, 29], [230, 17, 39], [220, 29, 52], [210, 48, 67], [200, 76, 85], [190, 69, 82], [180, 41, 64], [170, 22, 48], [160, 10, 34]
+    ],
+    levels: { res:[209.67, 202.37, 197.06], sup:[191.14, 180.00, 170.00] },
+    tech: {
+      trend: "Below the 20-, 50- and 100-day averages but holding above a rising 200-day; consolidating after a pullback",
+      summary: "The tape is soft but not broken. Price ($196.44) sits below the 20-day ($202.37), 50-day ($209.67) and 100-day ($197.06) moving averages, but above a rising 200-day line ($191.14) \u2014 a mid-range consolidation after a pullback from the high-$230s, not a breakdown. RSI(14) near 43 is neutral, tilted soft; the daily MACD is mildly negative (\u22124.06 line / \u22123.28 signal / \u22120.78 histogram). The trailing-year range is $158.24\u2013$235.74, and price sits mid-range. Realized 252-day volatility near 35% is elevated but typical for the name.",
+      bull: "A daily close back above the $202\u2013210 moving-average cluster would signal the consolidation is resolving up, opening the $220 band and, above it, the 52-week high near $236.",
+      bear: "A sustained close below the rising 200-day at $191 opens the $180 shelf and, beneath it, the $170 level."
+    },
+    files: {
+      study: "files/NVDA_Valuation_Study_06-07-2026_public.docx?v=0706",
+      model: "files/NVDA_Valuation_Model_06-07-2026_public.xlsx?v=0706",
+      pdf:   "files/NVDA_Valuation_Study_06-07-2026_public.pdf?v=0706"
+    }
+  },
   KABO: {
     name: "El Nasr Clothing & Textiles (Kabo)",
     nameAr: "النصر للملابس والمنسوجات (كابو)",
@@ -1252,6 +1280,29 @@ const COMING = [
                             "-5":bool, "-10":bool }
    ========================================================================== */
 const LEDGER = [
+  {
+    instrument:"NVDA", asset_class:"other",
+    anchor_date:"2026-07-06", anchor_price:196.44, ccy:"USD",
+    horizon_label:"T+20", grade_date:"2026-08-03", cycle_no:1, reanchor_from:null,
+    p5:155.90, p25:179.63, p50:195.34, p75:212.20, p95:244.04,
+    touch:{ "+5":76, "+10":48, "+15":29, "+20":17, "-5":50, "-10":41 },
+    anchor_vol:0.3512, horizon_days:20,
+    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
+    realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"NVDA", asset_class:"other",
+    anchor_date:"2026-07-06", anchor_price:196.44, ccy:"USD",
+    horizon_label:"T+60", grade_date:"2026-09-28", cycle_no:1, reanchor_from:null,
+    p5:131.56, p25:166.88, p50:193.31, p75:223.35, p95:282.86,
+    touch:{ "+5":85, "+10":67, "+15":52, "+20":39, "-5":64, "-10":59 },
+    anchor_vol:0.3512, horizon_days:60,
+    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
+    realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+
   {
     instrument:"LCSW", asset_class:"equity",
     anchor_date:"2026-07-06", anchor_price:29.45, ccy:"EGP",
