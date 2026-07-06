@@ -2,7 +2,7 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-07-05", latest: "QGTS" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
+const SITE = { updated: "2026-07-06", latest: "PRDC" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
@@ -1111,6 +1111,34 @@ const TICKERS = {
       model: "files/HELI_Valuation_Study_03-07-2026_public.xlsx?v=0307",
       pdf:   "files/HELI_Valuation_Study_03-07-2026_public.pdf?v=0307"
     }
+  },
+  PRDC: {
+    name: "Pioneers Properties for Urban Development",
+    nameAr: "بايونيرز بروبرتيز للتنمية العمرانية",
+    code: "EGX:PRDC",
+    spot: 8.28,
+    spotDate: "close 6 Jul 2026",
+    ccy: "EGP",
+    fair: { bear: 5.92, base: 8.23, full: 11.51 },          // 6 Jul 2026 valuation — split-leg RNAV primary lens
+    dist: {
+      t20: { label:"1 month (T+20)",   p5:6.63, p25:7.74, p50:8.45,  p75:9.24,  p95:10.68, resolve:"2026-08-03" },
+      t60: { label:"3 months (T+60)",  p5:5.86, p25:7.55, p50:8.81,  p75:10.25, p95:13.17, resolve:"2026-09-28" }
+    },
+    touch: [ /* level, P(touch) T+20 %, T+60 % — descending */
+      [10.76, 7, 30], [9.94, 18, 47], [9.11, 44, 70], [8.69, 66, 83], [7.87, 54, 69], [7.45, 30, 50], [6.62, 8, 23]
+    ],
+    levels: { res:[8.55, 8.75, 9.11], sup:[8.02, 7.55, 7.08] },
+    tech: {
+      trend: "Strong uptrend — extended above every major average",
+      summary: "The stock has nearly tripled off its 52-week low to a June high and sits above the 20-, 50-, 100- and 200-day averages, with RSI near 70 and a positive MACD. It is a powerful post-discount re-rating that has run into overbought territory — momentum is still up but stretched, and pullbacks from here read as mean-reversion inside an intact trend rather than a break.",
+      bull: "A daily close above the 8.75 high extends the breakout toward the 9-handle.",
+      bear: "A close back below the rising 20-day near 7.08 would signal the overbought move is unwinding toward 6.1."
+    },
+    files: {
+      study: "files/PRDC_Valuation_Study_06-07-2026_public.docx?v=0706",
+      model: "files/PRDC_Valuation_Study_06-07-2026_public.xlsx?v=0706",
+      pdf:   "files/PRDC_Valuation_Study_06-07-2026_public.pdf?v=0706"
+    }
   }
 };
 
@@ -2004,6 +2032,28 @@ const LEDGER = [
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   },
+  {
+    instrument:"PRDC", asset_class:"equity",
+    anchor_date:"2026-07-06", anchor_price:8.28, ccy:"EGP",
+    horizon_label:"T+20", grade_date:"2026-08-03", cycle_no:1, reanchor_from:null,
+    p5:6.63, p25:7.74, p50:8.45, p75:9.24, p95:10.68,
+    touch:{ "+5":65, "+10":44, "+15":28, "+20":18, "-5":54, "-10":30 },
+    anchor_vol:0.4463, horizon_days:20,
+    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
+    realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"PRDC", asset_class:"equity",
+    anchor_date:"2026-07-06", anchor_price:8.28, ccy:"EGP",
+    horizon_label:"T+60", grade_date:"2026-09-28", cycle_no:1, reanchor_from:null,
+    p5:5.86, p25:7.55, p50:8.81, p75:10.25, p95:13.17,
+    touch:{ "+5":83, "+10":70, "+15":58, "+20":47, "-5":68, "-10":50 },
+    anchor_vol:0.4463, horizon_days:60,
+    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
+    realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
 ];
 
 /* ==========================================================================
@@ -2078,6 +2128,23 @@ const BACKTEST = [
   {anchor_date:"2025-08-19", instrument:"EMFD", horizon_label:"T+60", p5:6.572, p50:9.114, p95:12.638, realized_close:10.0, in_90:true, evidence:"quasi-OOS"},
   {anchor_date:"2025-11-13", instrument:"EMFD", horizon_label:"T+60", p5:7.76, p50:10.76, p95:14.921, realized_close:9.7, in_90:true, evidence:"quasi-OOS"},
   {anchor_date:"2026-02-10", instrument:"EMFD", horizon_label:"T+60", p5:7.527, p50:10.437, p95:14.473, realized_close:11.1, in_90:true, evidence:"quasi-OOS"},
+  {anchor_date:"2022-02-22", instrument:"PRDC", horizon_label:"T+60", p5:1.417, p50:2.047, p95:2.929, realized_close:1.71, in_90:true, evidence:"quasi-OOS"},
+  {anchor_date:"2022-05-26", instrument:"PRDC", horizon_label:"T+60", p5:1.136, p50:1.717, p95:2.565, realized_close:1.83, in_90:true, evidence:"quasi-OOS"},
+  {anchor_date:"2022-08-28", instrument:"PRDC", horizon_label:"T+60", p5:1.215, p50:1.837, p95:2.747, realized_close:1.83, in_90:true, evidence:"quasi-OOS"},
+  {anchor_date:"2022-11-21", instrument:"PRDC", horizon_label:"T+60", p5:1.361, p50:1.835, p95:2.455, realized_close:2.15, in_90:true, evidence:"quasi-OOS"},
+  {anchor_date:"2023-02-16", instrument:"PRDC", horizon_label:"T+60", p5:1.537, p50:2.157, p95:3.0, realized_close:1.96, in_90:true, evidence:"quasi-OOS"},
+  {anchor_date:"2023-05-22", instrument:"PRDC", horizon_label:"T+60", p5:1.397, p50:1.966, p95:2.743, realized_close:2.01, in_90:true, evidence:"quasi-OOS"},
+  {anchor_date:"2023-08-23", instrument:"PRDC", horizon_label:"T+60", p5:1.398, p50:2.017, p95:2.882, realized_close:2.14, in_90:true, evidence:"quasi-OOS"},
+  {anchor_date:"2023-11-19", instrument:"PRDC", horizon_label:"T+60", p5:1.547, p50:2.146, p95:2.954, realized_close:3.24, in_90:false, evidence:"quasi-OOS"},
+  {anchor_date:"2024-02-14", instrument:"PRDC", horizon_label:"T+60", p5:2.248, p50:3.251, p95:4.657, realized_close:2.5, in_90:true, evidence:"quasi-OOS"},
+  {anchor_date:"2024-05-19", instrument:"PRDC", horizon_label:"T+60", p5:1.726, p50:2.509, p95:3.611, realized_close:3.04, in_90:true, evidence:"quasi-OOS"},
+  {anchor_date:"2024-08-21", instrument:"PRDC", horizon_label:"T+60", p5:2.133, p50:3.05, p95:4.321, realized_close:3.4, in_90:true, evidence:"quasi-OOS"},
+  {anchor_date:"2024-11-17", instrument:"PRDC", horizon_label:"T+60", p5:2.459, p50:3.421, p95:4.718, realized_close:3.18, in_90:true, evidence:"quasi-OOS"},
+  {anchor_date:"2025-02-11", instrument:"PRDC", horizon_label:"T+60", p5:2.334, p50:3.189, p95:4.323, realized_close:3.32, in_90:true, evidence:"quasi-OOS"},
+  {anchor_date:"2025-05-18", instrument:"PRDC", horizon_label:"T+60", p5:2.511, p50:3.332, p95:4.389, realized_close:3.35, in_90:true, evidence:"quasi-OOS"},
+  {anchor_date:"2025-08-19", instrument:"PRDC", horizon_label:"T+60", p5:2.501, p50:3.364, p95:4.491, realized_close:3.85, in_90:true, evidence:"quasi-OOS"},
+  {anchor_date:"2025-11-13", instrument:"PRDC", horizon_label:"T+60", p5:2.827, p50:3.9, p95:5.334, realized_close:4.27, in_90:true, evidence:"quasi-OOS"},
+  {anchor_date:"2026-02-10", instrument:"PRDC", horizon_label:"T+60", p5:3.091, p50:4.349, p95:6.066, realized_close:5.73, in_90:true, evidence:"quasi-OOS"},
 ];
 
 /* ---------- calculator data ----------
