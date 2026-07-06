@@ -2,10 +2,38 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-07-06", latest: "PRDC" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
+const SITE = { updated: "2026-07-06", latest: "KABO" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
+  KABO: {
+    name: "El Nasr Clothing & Textiles (Kabo)",
+    nameAr: "النصر للملابس والمنسوجات (كابو)",
+    code: "EGX:KABO",
+    spot: 7.00,
+    spotDate: "close 6 Jul 2026",
+    ccy: "EGP",
+    fair: { bear: 1.42, base: 2.39, full: 3.52 },      // 6 Jul 2026 — weighted central 2.39 (\u221266% vs spot 7.00). Four lenses: revalued NAV (primary) 3.28, going-concern DCF 0.54 (floor), relative price-to-book 2.65, normalized earnings 1.24. bear/full = weighted bear/bull of the football field. Swing: the realizable value of the legacy Alexandria land against a ~95%-collapsed earnings base — at 7.00 the market prices a ~EGP 2.8bn land re-mark that has not been disclosed or monetised. Note: \u00a73 Monte Carlo FAILED its Step 0 calibration on this name (CRPS skill \u22120.010 vs a random-walk cone; study Appendix B) — no probabilistic price forecast is published; the distribution is an illustrative volatility map only.
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:5.58, p25:6.46, p50:7.03, p75:7.67, p95:8.92, resolve:"2026-08-03" },
+      t60: { label:"3 months (T+60)", p5:4.79, p25:6.12, p50:7.12, p75:8.28, p95:10.68, resolve:"2026-09-28" }
+    },
+    touch: [ /* descending high -> low; illustrative only */
+      [9.0, 7, 26], [8.3, 17, 43], [7.7, 39, 63], [7.13, 78, 88], [6.65, 57, 73], [6.3, 33, 55], [5.6, 8, 27], [4.8, 1, 9]
+    ],
+    levels: { res:[7.13, 7.70, 8.30], sup:[6.30, 6.15, 5.60] },
+    tech: {
+      trend: "Above all four major moving averages; RSI in the high-70s, MACD positive — a strong, overbought uptrend near an all-time high",
+      summary: "The tape is strong and stretched to the upside, the mirror image of the fundamentals. Price sits above the 20-day (EGP 6.30), 50-day (6.19), 100-day (6.14) and 200-day (6.15) moving averages — a full bullish stack — a hair below the EGP 7.13 fifty-two-week high after a run to an all-time high of EGP 7.30 in November 2025. RSI(14) near 78 is overbought; MACD is positive (+0.093 line / +0.040 signal / +0.053 histogram). Realized 252-day volatility is about 35%, and the YZ-HAR engine reads the current 60-day regime near 47% — a thin, jumpy small-cap.",
+      bull: "A clean hold above the EGP 7.13 fifty-two-week high on volume would open fresh highs, though the overbought oscillators argue for a pause first.",
+      bear: "A daily close back below the EGP 6.30 moving-average cluster would relieve the overbought pressure toward the EGP 6.15 two-hundred-day and, beneath it, the EGP 5.60 shelf."
+    },
+    files: {
+      study: "files/KABO_Valuation_Study_06-07-2026_public.docx?v=0706",
+      model: "files/KABO_Valuation_Model_06072026_public.xlsx?v=0706",
+      pdf:   "files/KABO_Valuation_Study_06-07-2026_public.pdf?v=0706"
+    }
+  },
 
   IQCD: {
     name: "Industries Qatar",
@@ -1196,6 +1224,28 @@ const COMING = [
                             "-5":bool, "-10":bool }
    ========================================================================== */
 const LEDGER = [
+  {
+    instrument:"KABO", asset_class:"equity",
+    anchor_date:"2026-07-06", anchor_price:7.00, ccy:"EGP",
+    horizon_label:"T+20", grade_date:"2026-08-03", cycle_no:1, reanchor_from:null,
+    p5:5.58, p25:6.46, p50:7.03, p75:7.67, p95:8.92,
+    touch:{ "+5":60, "+10":39, "+15":24, "+20":15, "-5":57, "-10":33 },
+    anchor_vol:0.345, horizon_days:20,
+    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
+    realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"KABO", asset_class:"equity",
+    anchor_date:"2026-07-06", anchor_price:7.00, ccy:"EGP",
+    horizon_label:"T+60", grade_date:"2026-09-28", cycle_no:1, reanchor_from:null,
+    p5:4.79, p25:6.12, p50:7.12, p75:8.28, p95:10.68,
+    touch:{ "+5":77, "+10":63, "+15":50, "+20":40, "-5":73, "-10":55 },
+    anchor_vol:0.345, horizon_days:60,
+    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
+    realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
 
   {
     instrument:"IQCD", asset_class:"equity",
