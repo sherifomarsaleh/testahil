@@ -2,7 +2,7 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-07-06", latest: "KABO" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
+const SITE = { updated: "2026-07-06", latest: "LCSW" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
@@ -382,6 +382,34 @@ const TICKERS = {
       study: "files/ORWE_Valuation_Study_01-07-2026_public.docx?v=0703",
       model: "files/ORWE_Valuation_Study_01-07-2026_public.xlsx?v=0703",
       pdf:   "files/ORWE_Valuation_Study_01-07-2026_public.pdf?v=0703"
+    }
+  },
+  LCSW: {
+    name: "Lecico Egypt (S.A.E.)",
+    nameAr: "ليسيكو مصر",
+    code: "EGX:LCSW",
+    spot: 29.45,
+    spotDate: "close 6 Jul 2026",
+    ccy: "EGP",
+    fair: { bear: 26, base: 37, full: 51 },      // 6 Jul 2026 — weighted central 37 (+26% vs spot 29.45). Lenses: FCFF DCF 37 (primary), relative multiples 39, normalized earnings 39, FCFE/owner-earnings 32 (floor), asset/reproduction 36. bear/full = weighted bear/bull of the football field. Swing factor: the EGP/USD path and whether booked earnings convert to cash.
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:24.29, p25:27.76, p50:29.99, p75:32.38, p95:36.98, resolve:"2026-08-03" },
+      t60: { label:"3 months (T+60)", p5:21.69, p25:27.07, p50:31.01, p75:35.54, p95:44.37, resolve:"2026-09-28" }
+    },
+    touch: [ /* descending high -> low */
+      [36.8, 8, 32], [33.9, 23, 53], [31.5, 52, 75], [28.9, 70, 80], [26.5, 26, 46], [24.4, 9, 25], [22.1, 2, 11]
+    ],
+    levels: { res:[29.72, 31.0, 33.0], sup:[27.6, 26.0, 24.4] },
+    tech: {
+      trend: "Above every major moving average; a firm short-term uptrend, not yet overbought",
+      summary: "The tape agrees with the fundamentals' direction for once. The price trades above all four major moving averages (the 20-, 50-, 100- and 200-day cluster between ~26.0 and ~27.6, now support), the daily MACD histogram is positive, and RSI(14) sits in the low-60s — firm but not yet overbought. The structure is a steady grind higher off the ~22 area, with the 52-week high at 29.72 the immediate overhead level; the last session closed up 3.7% on above-average volume. Realized 252-day volatility near 30% is moderate and calmer than the stock's multi-year history.",
+      bull: "A daily close above the 29.72 fifty-two-week high would open room toward the 31–34 normalized/DCF cluster; it needs a weaker pound feeding export margins to sustain.",
+      bear: "A daily close back below the 27.6 moving-average support reopens the 26.0 (200-day) and 24.4 levels."
+    },
+    files: {
+      study: "files/LCSW_Valuation_Study_06-07-2026_public.docx?v=0706",
+      model: "files/LCSW_Valuation_Model_06-07-2026_public.xlsx?v=0706",
+      pdf:   "files/LCSW_Valuation_Study_06-07-2026_public.pdf?v=0706"
     }
   },
   PHDC: {
@@ -1224,6 +1252,29 @@ const COMING = [
                             "-5":bool, "-10":bool }
    ========================================================================== */
 const LEDGER = [
+  {
+    instrument:"LCSW", asset_class:"equity",
+    anchor_date:"2026-07-06", anchor_price:29.45, ccy:"EGP",
+    horizon_label:"T+20", grade_date:"2026-08-03", cycle_no:1, reanchor_from:null,
+    p5:24.29, p25:27.76, p50:29.99, p75:32.38, p95:36.98,
+    touch:{ "+5":62, "+10":39, "+15":23, "+20":14, "-5":50, "-10":26 },
+    anchor_vol:0.4191, horizon_days:20,
+    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
+    realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"LCSW", asset_class:"equity",
+    anchor_date:"2026-07-06", anchor_price:29.45, ccy:"EGP",
+    horizon_label:"T+60", grade_date:"2026-09-28", cycle_no:1, reanchor_from:null,
+    p5:21.69, p25:27.07, p50:31.01, p75:35.54, p95:44.37,
+    touch:{ "+5":80, "+10":66, "+15":53, "+20":41, "-5":66, "-10":46 },
+    anchor_vol:0.4191, horizon_days:60,
+    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
+    realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+
   {
     instrument:"KABO", asset_class:"equity",
     anchor_date:"2026-07-06", anchor_price:7.00, ccy:"EGP",
