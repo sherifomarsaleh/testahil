@@ -2,7 +2,7 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-07-06", latest: "NVDA" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
+const SITE = { updated: "2026-07-06", latest: "INFY" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
@@ -720,6 +720,35 @@ const TICKERS = {
       pdf:   "files/TMPV_Valuation_Study_30-06-2026_public.pdf?v=3006"
     }
   },
+  INFY: {
+    name: "Infosys Limited",
+    nameAr: "إنفوسيس",
+    code: "NSE:INFY",
+    spot: 1042.20,
+    spotDate: "close 6 Jul 2026",
+    ccy: "INR",
+    fair: { bear: 995, base: 1242, full: 1556 },      // 6 Jul 2026 — weighted central 1,242 (+19% vs spot 1,042.20). Four lenses: intrinsic DCF (primary) 1,143 (floor), owner-earnings / shareholder-yield 1,267, relative multiples 1,284, normalized earnings power 1,368 (ceiling). bear/full = weighted bear/bull of the football field. Swing factor: the GenAI effect on the labour-arbitrage margin — whether Infosys cannibalises its own hours and keeps the margin, or AI deflates pricing faster than it cuts cost. Net-cash (~₹43,000 cr), ~33% ROE, >100% FCF conversion, >₹37,500 cr returned to owners in FY26.
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:918, p25:998, p50:1047, p75:1099, p95:1193, resolve:"2026-08-03" },
+      t60: { label:"3 months (T+60)", p5:845, p25:972, p50:1058, p75:1151, p95:1326, resolve:"2026-09-28" }
+    },
+    touch: [ /* descending high -> low; P(touch) T+20 %, T+60 % */
+      [1250, 3, 17], [1200, 7, 27], [1150, 17, 43], [1100, 40, 65], [1050, 82, 90], [1000, 45, 64], [950, 16, 38], [900, 5, 20]
+    ],
+    levels: { res:[1085, 1138, 1230], sup:[985, 950, 900] },
+    tech: {
+      trend: "Below all four major moving averages; RSI in the mid-30s, MACD negative — a clear downtrend near the lower end of a wide 52-week range",
+      summary: "The tape is the mirror image of the fundamentals. Infosys trades below its 20-day (₹1,085), 50-day (₹1,138), 100-day (₹1,230) and 200-day (₹1,395) moving averages — a full bearish stack — well down from the ₹1,689.80 fifty-two-week high toward the ₹985.30 low. RSI(14) near 37 is approaching oversold without being washed out; MACD is negative (−39.64 line / −37.90 signal / −1.75 histogram), so momentum is soft but no longer accelerating hard. Realized 252-day volatility is about 29%, and the YZ-HAR engine reads the current 60-day regime near 27% — a large-cap that can still move sharply on results or a GenAI headline.",
+      bull: "A daily close back above the ₹1,085 twenty-day and the ₹1,138 fifty-day cluster would be the first sign the de-rating is stalling; a push toward the ₹1,230 hundred-day would need a demand-cycle recovery or an AI-margin surprise to gain traction.",
+      bear: "A daily close below the ₹985 fifty-two-week-low shelf opens the simulated lower quartile toward ₹950 and ₹900, the main driver of the left tail being a US/EU discretionary-spend freeze or a GenAI pricing shock."
+    },
+    files: {
+      study: "files/INFY_Valuation_Study_06-07-2026_public.docx?v=0706",
+      model: "files/INFY_Valuation_Model_06-07-2026_public.xlsx?v=0706",
+      pdf:   "files/INFY_Valuation_Study_06-07-2026_public.pdf?v=0706"
+    }
+  },
+
   EMAAR: {
     name: "Emaar Properties PJSC",
     nameAr: "إعمار العقارية",
@@ -1280,6 +1309,29 @@ const COMING = [
                             "-5":bool, "-10":bool }
    ========================================================================== */
 const LEDGER = [
+  // ---- INFY · other (NSE India) · cycle 1 (6 Jul 2026 published study) ----
+  {
+    instrument:"INFY", asset_class:"other",
+    anchor_date:"2026-07-06", anchor_price:1042.20, ccy:"INR",
+    horizon_label:"T+20", grade_date:"2026-08-03", cycle_no:1, reanchor_from:null,
+    p5:918, p25:998, p50:1047, p75:1099, p95:1193,
+    touch:{ "+5":44, "+10":18, "+15":7, "+20":3, "-5":37, "-10":12 },
+    anchor_vol:0.2702, horizon_days:20,
+    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
+    realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"INFY", asset_class:"other",
+    anchor_date:"2026-07-06", anchor_price:1042.20, ccy:"INR",
+    horizon_label:"T+60", grade_date:"2026-09-28", cycle_no:1, reanchor_from:null,
+    p5:845, p25:972, p50:1058, p75:1151, p95:1326,
+    touch:{ "+5":67, "+10":44, "+15":28, "+20":17, "-5":58, "-10":33 },
+    anchor_vol:0.2702, horizon_days:60,
+    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
+    realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
   {
     instrument:"NVDA", asset_class:"other",
     anchor_date:"2026-07-06", anchor_price:196.44, ccy:"USD",
