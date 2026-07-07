@@ -2,10 +2,38 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-07-07", latest: "SABIC" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
+const SITE = { updated: "2026-07-07", latest: "ISPH" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
+  ISPH: {
+    name: "Ibnsina Pharma",
+    nameAr: "\u0627\u0628\u0646 \u0633\u064a\u0646\u0627 \u0641\u0627\u0631\u0645\u0627",
+    code: "EGX:ISPH",
+    spot: 11.67,
+    spotDate: "close 7 Jul 2026",
+    ccy: "EGP",
+    fair: { bear: 12.85, base: 17.78, full: 22.68 },      // 7 Jul 2026 \u2014 weighted central 17.78 (+52% vs spot 11.67). Four lenses: DCF (primary) 19.79, relative EV/EBITDA 16.71, normalized earnings 17.98, dividend-yield floor 11.00; blend 45/25/20/10. bear/full = weighted bear/bull of the football field. Swing: the thin net margin normalising as the CBE rate path eases finance costs and the drug-re-pricing cycle feeds through \u2014 on ~EGP 76.6bn FY25 revenue at an ~8% gross / ~5% EBITDA / ~1.2% net margin with a near-zero cash-conversion cycle. INDICATIVE: the \u00a73 Monte-Carlo engine did NOT beat its zero-drift random-walk benchmark in the Step-0 backtest (CRPS skill < 0 on every scheme) \u2014 the price map is illustrative only, not a skill-validated forecast.
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:10.16, p25:11.14, p50:11.75, p75:12.39, p95:13.52, resolve:"2026-08-04" },
+      t60: { label:"3 months (T+60)", p5:9.29,  p25:10.85, p50:11.91, p75:13.06, p95:15.18, resolve:"2026-09-29" }
+    },
+    touch: [ /* descending high -> low; P(touch) T+20 %, T+60 % */
+      [13.50, 8, 30], [12.75, 25, 52], [12.25, 48, 70], [12.00, 64, 81], [11.50, 72, 82], [11.00, 35, 56], [10.50, 15, 36]
+    ],
+    levels: { res:[11.96, 12.75, 13.52], sup:[11.39, 11.23, 9.09] },
+    tech: {
+      trend: "Just below the two short moving averages and above the two long \u2014 a consolidating, range-bound tape; RSI ~40 neutral-to-soft, MACD mildly negative",
+      summary: "The tape is quiet and range-bound. ISPH trades at EGP 11.67, just below its 20-day (11.96) and 50-day (11.68) averages but above the 100-day (11.39) and 200-day (11.23) \u2014 a tight, bunched stack consistent with consolidation after the 2024\u201325 re-rating. RSI(14) near 40 is neutral-to-soft; MACD is mildly negative (\u22120.038 line / 0.047 signal / \u22120.086 histogram). Price sits mid-range in a 52-week band of EGP 9.09\u201312.75; realized 252-day volatility is ~35% and the YZ-HAR engine reads the current 60-day regime near ~29%.",
+      bull: "A daily close back above the EGP 11.96 twenty-day and the EGP 12.75 fifty-two-week high would confirm a turn; sustaining it toward EGP 13.50 would need CBE rate relief or a re-pricing surprise feeding the margin.",
+      bear: "A daily close below the EGP 11.23 two-hundred-day opens the EGP 11.00 shelf; beneath it the distribution thins toward the EGP 9.09 fifty-two-week low on an FX or receivables shock."
+    },
+    files: {
+      study: "files/ISPH_Valuation_Study_07-07-2026_public.docx?v=0707a",
+      model: "files/ISPH_Valuation_Model_07072026_public.xlsx?v=0707a",
+      pdf:   "files/ISPH_Valuation_Study_07-07-2026_public.pdf?v=0707a"
+    }
+  },
   RELIANCE: {
     name: "Reliance Industries Limited",
     nameAr: "ريلاينس إندستريز",
@@ -1393,6 +1421,31 @@ const COMING = [
                             "-5":bool, "-10":bool }
    ========================================================================== */
 const LEDGER = [
+  // ---- ISPH \u00b7 equity (EGX Egypt) \u00b7 cycle 1 (7 Jul 2026 published study; MC FAILED benchmark, indicative) ----
+  {
+    instrument:"ISPH", asset_class:"equity",
+    anchor_date:"2026-07-07", anchor_price:11.67, ccy:"EGP",
+    horizon_label:"T+20", grade_date:"2026-08-04", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.29, horizon_days:20,
+    note:"No CRPS skill vs random-walk benchmark (indicative only) \u2014 see study \u00a73.",
+    p5:10.16, p25:11.14, p50:11.75, p75:12.39, p95:13.52,
+    touch:{ "+5":48, "+10":22, "+15":9, "+20":4, "-5":40, "-10":15 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"ISPH", asset_class:"equity",
+    anchor_date:"2026-07-07", anchor_price:11.67, ccy:"EGP",
+    horizon_label:"T+60", grade_date:"2026-09-29", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.29, horizon_days:60,
+    note:"No CRPS skill vs random-walk benchmark (indicative only) \u2014 see study \u00a73.",
+    p5:9.29, p25:10.85, p50:11.91, p75:13.06, p95:15.18,
+    touch:{ "+5":70, "+10":49, "+15":32, "+20":21, "-5":60, "-10":36 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
   {
     instrument:"SABIC", asset_class:"other",
     anchor_date:"2026-07-07", anchor_price:51.80, ccy:"SAR",
