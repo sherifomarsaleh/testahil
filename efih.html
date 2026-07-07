@@ -698,6 +698,8 @@
         (function(){
           var svgEl=el("mc-fan"); if(!svgEl) return;
           var svgNS="http://www.w3.org/2000/svg";
+          var hoverDEC=S0<30?1:0;
+          function hoverFmt(v){ return (typeof v==="number"&&isFinite(v)) ? v.toFixed(hoverDEC) : String(v); }
           var hoverG=document.createElementNS(svgNS,"g"); hoverG.setAttribute("id","mc-hoverG"); hoverG.style.pointerEvents="none";
           svgEl.appendChild(hoverG);
           var vline=document.createElementNS(svgNS,"line");
@@ -716,7 +718,7 @@
           function onMove(clientX){
             var M=window.__mcLastM; if(!M) return;
             var rect=svgEl.getBoundingClientRect();
-            var scaleX=VB.w/rect.width;
+            var scaleX=VB.w/(rect.width||VB.w);
             var localX=(clientX-rect.left)*scaleX;
             var t=Math.round(((localX-X0)/(X1-X0))*AX);
             if(t<0)t=0; if(t>AX)t=AX;
@@ -731,13 +733,13 @@
               dots[k].setAttribute("cx",xPx.toFixed(1)); dots[k].setAttribute("cy",y.toFixed(1));
               dots[k].setAttribute("fill",k==="p50"?"var(--amber-text,#854F0B)":"var(--teal2,#2A8F8F)");
               dots[k].style.display="block";
-              rows+='<div style="display:flex;justify-content:space-between;gap:14px;"><span style="opacity:.75">'+labelFor[k]+'</span><span style="font-weight:600;'+(k==="p50"?"color:#F2C879":"")+'">'+fmtN(vals[k],2)+'</span></div>';
+              rows+='<div style="display:flex;justify-content:space-between;gap:14px;"><span style="opacity:.75">'+labelFor[k]+'</span><span style="font-weight:600;'+(k==="p50"?"color:#F2C879":"")+'">'+hoverFmt(vals[k])+'</span></div>';
             });
             var refRows="";
             var floorLv=(typeof FLOOR!=="undefined")?FLOOR:(typeof SUPPORT!=="undefined"?SUPPORT:null);
             var targetLv=(typeof TARGET!=="undefined")?TARGET:(typeof CONSENSUS!=="undefined"?CONSENSUS:null);
-            if(floorLv!=null) refRows+='<div style="display:flex;justify-content:space-between;gap:14px;"><span style="opacity:.75">support</span><span style="font-weight:600">'+fmtN(floorLv,2)+'</span></div>';
-            if(targetLv!=null) refRows+='<div style="display:flex;justify-content:space-between;gap:14px;"><span style="opacity:.75">resistance</span><span style="font-weight:600">'+fmtN(targetLv,2)+'</span></div>';
+            if(floorLv!=null) refRows+='<div style="display:flex;justify-content:space-between;gap:14px;"><span style="opacity:.75">support</span><span style="font-weight:600">'+hoverFmt(floorLv)+'</span></div>';
+            if(targetLv!=null) refRows+='<div style="display:flex;justify-content:space-between;gap:14px;"><span style="opacity:.75">resistance</span><span style="font-weight:600">'+hoverFmt(targetLv)+'</span></div>';
             tip.innerHTML='<div style="font-weight:700;margin-bottom:4px;">T+'+t+'</div>'+rows+refRows;
             tip.style.display="block";
             var tipW=tip.offsetWidth, tipH=tip.offsetHeight;
@@ -757,7 +759,6 @@
           svgEl.addEventListener("touchmove",function(e){ if(e.touches&&e.touches[0]){ onMove(e.touches[0].clientX); e.preventDefault(); } },{passive:false});
           svgEl.addEventListener("touchend",onLeave);
         })();
-
         var raf=null;
         function schedule(){ if(raf)return; raf=requestAnimationFrame(function(){raf=null;render();}); }
         [egp,geo,lnch].forEach(function(s){s.addEventListener("input",schedule);});
