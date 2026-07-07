@@ -1515,6 +1515,7 @@ const LEDGER = [
     p5:5.58, p25:6.46, p50:7.03, p75:7.67, p95:8.92,
     touch:{ "+5":60, "+10":39, "+15":24, "+20":15, "-5":57, "-10":33 },
     anchor_vol:0.345, horizon_days:20,
+    note:"No CRPS skill vs random-walk benchmark (indicative only) — see study Appendix B.",
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
     realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
@@ -1526,6 +1527,7 @@ const LEDGER = [
     p5:4.79, p25:6.12, p50:7.12, p75:8.28, p95:10.68,
     touch:{ "+5":77, "+10":63, "+15":50, "+20":40, "-5":73, "-10":55 },
     anchor_vol:0.345, horizon_days:60,
+    note:"No CRPS skill vs random-walk benchmark (indicative only) — see study Appendix B.",
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
     realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
@@ -2349,6 +2351,7 @@ const LEDGER = [
     anchor_date:"2026-07-05", anchor_price:4.319, ccy:"QAR",
     horizon_label:"T+20", grade_date:"2026-08-02", cycle_no:1, reanchor_from:null,
     anchor_vol:0.23, horizon_days:20,
+    note:"No CRPS skill vs random-walk benchmark (indicative only) — see study Appendix B.",
     p5:3.86, p25:4.16, p50:4.34, p75:4.54, p95:4.88,
     touch:{ "+5":42, "+10":17, "+15":7, "+20":3, "-5":39, "-10":13 },
     realized_close:null, realized_high:null, realized_low:null,
@@ -2360,6 +2363,7 @@ const LEDGER = [
     anchor_date:"2026-07-05", anchor_price:4.319, ccy:"QAR",
     horizon_label:"T+60", grade_date:"2026-09-27", cycle_no:1, reanchor_from:null,
     anchor_vol:0.23, horizon_days:60,
+    note:"No CRPS skill vs random-walk benchmark (indicative only) — see study Appendix B.",
     p5:3.60, p25:4.08, p50:4.40, p75:4.74, p95:5.36,
     touch:{ "+5":65, "+10":41, "+15":25, "+20":16, "-5":60, "-10":34 },
     realized_close:null, realized_high:null, realized_low:null,
