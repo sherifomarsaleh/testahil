@@ -2,7 +2,7 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-07-06", latest: "AAPL" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
+const SITE = { updated: "2026-07-07", latest: "SABIC" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
@@ -917,6 +917,34 @@ const TICKERS = {
       pdf:   "files/Aramco_Valuation_Study_01-07-2026_public.pdf?v=0107b"
     }
   },
+  SABIC: {
+    name: "Saudi Basic Industries Corp",
+    nameAr: "الشركة السعودية للصناعات الأساسية (سابك)",
+    code: "TADAWUL:2010",
+    spot: 51.80,
+    spotDate: "close 7 Jul 2026",
+    ccy: "SAR",
+    fair: { bear: 43, base: 55.5, full: 66 },      // 7 Jul 2026 — weighted central 55.5 (+7% vs spot 51.80). Four lenses: DCF (5-yr FCFF, mid-cycle) 60.3 (40%), dividend-yield 56.4 (25%), EV/EBITDA relative 47.8 (20%, floor), P/B asset-replacement 51.5 (15%). bear/full = weighted bear/bull of the football field. Swing factor: the product–feedstock spread in $/t and the timing of the margin-cycle recovery.
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:45.16, p25:49.46, p50:51.85, p75:54.26, p95:58.79, resolve:"2026-08-04" },
+      t60: { label:"3 months (T+60)", p5:41.26, p25:47.42, p50:51.74, p75:56.35, p95:64.22, resolve:"2026-09-29" }
+    },
+    touch: [ /* descending high -> low */
+      [58, 10, 32], [56, 21, 47], [54, 43, 65], [52, 83, 91], [50, 47, 69], [48, 22, 48], [46, 10, 31]
+    ],
+    levels: { res:[53.56, 56.72, 62.80], sup:[49.74, 47.42, 44.30] },
+    tech: {
+      trend: "Below all four moving averages after a long slide; oversold-leaning within a wide base",
+      summary: "SABIC trades below its 20-, 50-, 100- and 200-day moving averages (SAR 53.56 / 56.72 / 57.12 / 56.95) after a multi-year decline from the 2022 highs, and sits in the lower half of a 52-week SAR 49.74–62.80 band. RSI(14) near 31 is approaching, but not yet at, oversold, and the daily MACD histogram is mildly negative — a weak, below-trend tape rather than a fresh breakdown. Realized 252-day volatility of ~19% is modest for a single stock; the market is priced for a cyclical trough, not a crisis.",
+      bull: "A daily close back above the SAR 53.6 twenty-day, then the 56.7–57.1 moving-average cluster, would signal the downtrend is stalling; reclaiming the 52-week high near SAR 63 would need the petrochemical spread to turn.",
+      bear: "A daily close below the 52-week low at SAR 49.74 opens the lower band toward SAR 47.4, and in a deeper risk-off toward SAR 44."
+    },
+    files: {
+      study: "files/SABIC_Valuation_Study_07-07-2026_public.docx?v=0707",
+      model: "files/SABIC_Valuation_Model_07-07-2026_public.xlsx?v=0707",
+      pdf:   "files/SABIC_Valuation_Study_07-07-2026_public.pdf?v=0707"
+    }
+  },
   MAADEN: {
     name: "Saudi Arabian Mining Company (Ma'aden)",
     nameAr: "شركة التعدين العربية السعودية (معادن)",
@@ -1365,6 +1393,29 @@ const COMING = [
                             "-5":bool, "-10":bool }
    ========================================================================== */
 const LEDGER = [
+  {
+    instrument:"SABIC", asset_class:"other",
+    anchor_date:"2026-07-07", anchor_price:51.80, ccy:"SAR",
+    horizon_label:"T+20", grade_date:"2026-08-04", cycle_no:1, reanchor_from:null,
+    p5:45.16, p25:49.46, p50:51.85, p75:54.26, p95:58.79,
+    touch:{ "+5":37, "+10":15, "+15":6, "+20":2, "-5":35, "-10":13 },
+    anchor_vol:0.1927, horizon_days:20,
+    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
+    realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"SABIC", asset_class:"other",
+    anchor_date:"2026-07-07", anchor_price:51.80, ccy:"SAR",
+    horizon_label:"T+60", grade_date:"2026-09-29", cycle_no:1, reanchor_from:null,
+    p5:41.26, p25:47.42, p50:51.74, p75:56.35, p95:64.22,
+    touch:{ "+5":61, "+10":39, "+15":23, "+20":13, "-5":60, "-10":36 },
+    anchor_vol:0.1927, horizon_days:60,
+    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
+    realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+
   {
     instrument:"RELIANCE", asset_class:"other",
     anchor_date:"2026-07-06", anchor_price:1321.30, ccy:"INR",
