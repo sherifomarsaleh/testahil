@@ -541,7 +541,7 @@
 
         function render(){
           var driftV=parseFloat(drift.value)/100, ev1P=Math.abs(parseInt(ev1.value,10))/100, ev2P=Math.abs(parseInt(ev2.value,10))/100;
-          var M=moments(driftV,ev1P,ev2P);
+          var M=moments(driftV,ev1P,ev2P); window.__mcLastM=M;
           computeDomain(M); drawAxes(); drawXAxis();
           paintThumb(drift); paintThumb(ev1); paintThumb(ev2);
           el("mc-driftVal").textContent=(driftV>=0?"+":"−")+Math.abs(driftV*100).toFixed(1)+"% / quarter";
@@ -608,6 +608,70 @@
           el("mc-zHz").textContent="at "+hLabel;
           setZbar(M,HZ); setLadder(M);
         }
+
+        (function(){
+          var svgEl=el("mc-fan"); if(!svgEl) return;
+          var svgNS="http://www.w3.org/2000/svg";
+          var hoverG=document.createElementNS(svgNS,"g"); hoverG.setAttribute("id","mc-hoverG"); hoverG.style.pointerEvents="none";
+          svgEl.appendChild(hoverG);
+          var vline=document.createElementNS(svgNS,"line");
+          vline.setAttribute("stroke","var(--muted)"); vline.setAttribute("stroke-width","1"); vline.setAttribute("stroke-dasharray","3 3");
+          vline.style.display="none"; hoverG.appendChild(vline);
+          var dotOrder=["p95","p75","p50","p25","p5"], dots={};
+          dotOrder.forEach(function(k){
+            var c=document.createElementNS(svgNS,"circle"); c.setAttribute("r",k==="p50"?"3.5":"2.5"); c.style.display="none";
+            hoverG.appendChild(c); dots[k]=c;
+          });
+          var wrap=svgEl.parentNode; wrap.style.position="relative";
+          var tip=document.createElement("div");
+          tip.style.cssText="position:absolute;pointer-events:none;z-index:5;display:none;background:rgba(14,39,38,0.94);color:#fff;font-family:'IBM Plex Mono',monospace;font-size:12px;line-height:1.55;padding:8px 10px;border-radius:6px;white-space:nowrap;box-shadow:0 4px 14px rgba(0,0,0,.25);";
+          wrap.appendChild(tip);
+          var labelFor={p95:"95th",p75:"75th",p50:"median",p25:"25th",p5:"5th"};
+          function onMove(clientX){
+            var M=window.__mcLastM; if(!M) return;
+            var rect=svgEl.getBoundingClientRect();
+            var scaleX=VB.w/rect.width;
+            var localX=(clientX-rect.left)*scaleX;
+            var t=Math.round(((localX-X0)/(X1-X0))*AX);
+            if(t<0)t=0; if(t>AX)t=AX;
+            var xPx=xToPx(t);
+            vline.setAttribute("x1",xPx.toFixed(1)); vline.setAttribute("x2",xPx.toFixed(1));
+            vline.setAttribute("y1",Y1.toFixed(1)); vline.setAttribute("y2",Y0.toFixed(1));
+            vline.style.display="block";
+            var vals={p95:price(M,t,95),p75:price(M,t,75),p50:price(M,t,50),p25:price(M,t,25),p5:price(M,t,5)};
+            var rows="";
+            dotOrder.forEach(function(k){
+              var y=yToPx(vals[k]);
+              dots[k].setAttribute("cx",xPx.toFixed(1)); dots[k].setAttribute("cy",y.toFixed(1));
+              dots[k].setAttribute("fill",k==="p50"?"var(--amber-text,#854F0B)":"var(--teal2,#2A8F8F)");
+              dots[k].style.display="block";
+              rows+='<div style="display:flex;justify-content:space-between;gap:14px;"><span style="opacity:.75">'+labelFor[k]+'</span><span style="font-weight:600;'+(k==="p50"?"color:#F2C879":"")+'">'+fmtN(vals[k],2)+'</span></div>';
+            });
+            var refRows="";
+            var floorLv=(typeof FLOOR!=="undefined")?FLOOR:(typeof SUPPORT!=="undefined"?SUPPORT:null);
+            var targetLv=(typeof TARGET!=="undefined")?TARGET:(typeof CONSENSUS!=="undefined"?CONSENSUS:null);
+            if(floorLv!=null) refRows+='<div style="display:flex;justify-content:space-between;gap:14px;"><span style="opacity:.75">support</span><span style="font-weight:600">'+fmtN(floorLv,2)+'</span></div>';
+            if(targetLv!=null) refRows+='<div style="display:flex;justify-content:space-between;gap:14px;"><span style="opacity:.75">resistance</span><span style="font-weight:600">'+fmtN(targetLv,2)+'</span></div>';
+            tip.innerHTML='<div style="font-weight:700;margin-bottom:4px;">T+'+t+'</div>'+rows+refRows;
+            tip.style.display="block";
+            var tipW=tip.offsetWidth, tipH=tip.offsetHeight;
+            var localPxX=(xPx/VB.w)*rect.width, localPxY=(yToPx(vals.p50)/VB.h)*rect.height;
+            var left=localPxX+14, top=localPxY-tipH/2;
+            if(left+tipW>rect.width) left=localPxX-tipW-14;
+            if(top<0) top=4; if(top+tipH>rect.height) top=rect.height-tipH-4;
+            tip.style.left=left.toFixed(0)+"px"; tip.style.top=top.toFixed(0)+"px";
+          }
+          function onLeave(){
+            vline.style.display="none";
+            dotOrder.forEach(function(k){ dots[k].style.display="none"; });
+            tip.style.display="none";
+          }
+          svgEl.addEventListener("mousemove",function(e){ onMove(e.clientX); });
+          svgEl.addEventListener("mouseleave",onLeave);
+          svgEl.addEventListener("touchmove",function(e){ if(e.touches&&e.touches[0]){ onMove(e.touches[0].clientX); e.preventDefault(); } },{passive:false});
+          svgEl.addEventListener("touchend",onLeave);
+        })();
+
         var raf=null;
         function schedule(){ if(raf)return; raf=requestAnimationFrame(function(){raf=null;render();}); }
         [drift,ev1,ev2].forEach(function(s){s.addEventListener("input",schedule);});
