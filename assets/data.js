@@ -2,7 +2,7 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-07-08", latest: "GBCO" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
+const SITE = { updated: "2026-07-08", latest: "AGTHIA" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
@@ -1309,6 +1309,34 @@ const TICKERS = {
       pdf:   "files/ACWA_Valuation_Study_05-07-2026_public.pdf?v=0705a"
     }
   },
+  AGTHIA: {
+    name: "Agthia Group PJSC",
+    nameAr: "مجموعة أغذية",
+    code: "ADX:AGTHIA",
+    spot: 3.51,
+    spotDate: "close 6 Jul 2026",
+    ccy: "AED",
+    fair: { bear: 3.05, base: 4.37, full: 6.09 },      // 06 Jul 2026 — four-lens weighted central 4.37 (+25% vs spot 3.51). Lenses: consolidated DCF 4.60 (primary; sleeve-built WACC ~10.6%, TV 70% of EV disclosed), segment SOTP 4.24, relative EV/EBITDA 3.83 (floor), normalized earnings 4.51; weights 35/25/15/25. FY25 optics (EPS 0.103, EBITDA −32%) carry AED 143mn of ring-fenced provisions; underlying EBITDA margin held 12.5% and Q1-26 turned. Swing: the Snacking margin reset (green coffee + EGP) and the KSA protein ramp. §3 Monte Carlo FAILED Step 0 — INDICATIVE ONLY on the ledger.
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:3.11, p25:3.36, p50:3.51, p75:3.67, p95:3.95, resolve:"2026-08-03" },
+      t60: { label:"3 months (T+60)", p5:2.85, p25:3.26, p50:3.52, p75:3.79, p95:4.31, resolve:"2026-09-28" }
+    },
+    touch: [ /* descending high -> low; P(touch) T+20 %, T+60 % */
+      [4.40, 1, 7], [4.20, 2, 13], [4.00, 6, 24], [3.70, 36, 59], [3.40, 54, 72], [3.20, 15, 38], [3.00, 4, 17]
+    ],
+    levels: { res:[3.70, 4.00, 4.20], sup:[3.40, 3.20, 3.00] },
+    tech: {
+      trend: "Below the full 20/50/100/200-day stack — soft, corrective",
+      summary: "The tape sold the FY25 print in March and has not yet paid for the Q1 turn. Price sits below all four moving averages (≈3.57 / 3.59 / 3.64 / 3.73), RSI(14) is near 43 (neutral-weak, no washout), and the daily MACD (12·26·9) holds below its signal (−0.022 line / −0.011 signal / −0.012 histogram) — a bearish but flattening posture. Trailing realized volatility is ~22% while the gap-aware cone volatility is ≈26%. Nearest resistance is the 20/50-day cluster at 3.57–3.59, then the 200-day near 3.73 and the round 4.00; nearest support is the recent floor at 3.40, then the 52-week low 3.34 and 3.20.",
+      bull: "A daily close above the 20/50-day cluster (≈3.59) opens the 200-day near 3.73 — the first repair signal.",
+      bear: "Losing 3.40 exposes the 52-week low at 3.34; below that, the 3.00–3.20 zone is the bear-case shelf."
+    },
+    files: {
+      study: "files/Agthia_Valuation_Study_06-07-2026_public.docx?v=0607a",
+      model: "files/Agthia_Valuation_Model_06-07-2026_public.xlsx?v=0607a",
+      pdf:   "files/Agthia_Valuation_Study_06-07-2026_public.pdf?v=0607a"
+    }
+  },
   AAPL: {
     name: "Apple Inc.",
     nameAr: "أبل",
@@ -1505,6 +1533,31 @@ const COMING = [
                             "-5":bool, "-10":bool }
    ========================================================================== */
 const LEDGER = [
+  // ---- AGTHIA · other (ADX UAE) · cycle 1 (8 Jul 2026 published study; MC FAILS Step 0 — indicative only) ----
+  {
+    instrument:"AGTHIA", asset_class:"other",
+    anchor_date:"2026-07-06", anchor_price:3.51, ccy:"AED",
+    horizon_label:"T+20", grade_date:"2026-08-03", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.223, horizon_days:20,
+    note:"FAILED Step 0 — no CRPS skill vs the zero-drift random-walk benchmark on any scheme (−0.004 non-overlapping; drift variants also fail). Widths honest (PIT flat, coverage near target) — INDICATIVE ONLY. See study §3.",
+    p5:3.11, p25:3.36, p50:3.51, p75:3.67, p95:3.95,
+    touch:{ "+5":39, "+10":14, "+15":5, "+20":2, "-5":37, "-10":11 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"AGTHIA", asset_class:"other",
+    anchor_date:"2026-07-06", anchor_price:3.51, ccy:"AED",
+    horizon_label:"T+60", grade_date:"2026-09-28", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.223, horizon_days:60,
+    note:"FAILED Step 0 — no CRPS skill vs the zero-drift random-walk benchmark on any scheme (−0.004 non-overlapping; drift variants also fail). Widths honest (PIT flat, coverage near target) — INDICATIVE ONLY. See study §3.",
+    p5:2.85, p25:3.26, p50:3.52, p75:3.79, p95:4.31,
+    touch:{ "+5":62, "+10":37, "+15":21, "+20":12, "-5":59, "-10":32 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
   // ---- GBCO · equity (EGX Egypt) · cycle 1 (8 Jul 2026 published study; MC PASSES benchmark, secular drift ON) ----
   {
     instrument:"GBCO", asset_class:"equity",
