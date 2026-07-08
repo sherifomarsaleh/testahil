@@ -2,7 +2,7 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-07-08", latest: "EMAARDEV" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
+const SITE = { updated: "2026-07-08", latest: "ALDAR" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
@@ -833,6 +833,34 @@ const TICKERS = {
     }
   },
 
+  ALDAR: {
+    name: "Aldar Properties PJSC",
+    nameAr: "الدار العقارية",
+    code: "ADX:ALDAR",
+    spot: 8.30,
+    spotDate: "close 3 Jul 2026",
+    ccy: "AED",
+    fair: { bear: 7.95, base: 10.18, full: 11.77 },      // 08 Jul 2026 — weighted central 10.18 (+23% vs spot 8.30). Lenses: split-legs SOTP/RNAV 10.14 (primary), going-concern DCF (exit-multiple terminal) 9.81, relative 9.45, full-execution SOTP 11.29. bear/full = weighted bear/bull of the football field. Swing factors: the development-franchise value beyond backlog and the recurring cap rate. Gross asset value ~11.22/share; the market prices a discount at spot.
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:7.02, p25:7.86, p50:8.37, p75:8.92, p95:9.91, resolve:"2026-07-31" },
+      t60: { label:"3 months (T+60)", p5:6.36, p25:7.60, p50:8.50, p75:9.48, p95:11.29, resolve:"2026-09-25" }
+    },
+    touch: [ /* descending high -> low */
+      [9.9, 8, 30], [9.5, 15, 42], [9.0, 35, 61], [8.6, 61, 79], [8.0, 54, 71], [7.5, 21, 44], [7.0, 8, 24]
+    ],
+    levels: { res:[8.62, 8.87, 11.80], sup:[8.00, 7.60, 7.03] },
+    tech: {
+      trend: "Two-sided and mid-recovery; above the short averages, below the long stack",
+      summary: "The tape mirrors a name that has round-tripped: after running to AED 11.80 and falling to AED 7.03, price at AED 8.30 sits above the rising 20- and 50-day (about 8.16 and 7.98) but below the 100/150/200-day stack (about 8.62, 8.72, 8.87), which now acts as overhead resistance. Momentum is neutral: RSI(14) near 53.5 and the daily MACD histogram has just rolled marginally negative. Realized 252-day volatility near 34% (about 41% over 60 days) with right-skewed tails means the same energy behind the round-trip can drive sharp two-way moves.",
+      bull: "A daily close back above the 8.6–8.9 moving-average stack would signal the recovery is resuming; a push toward the AED 11.80 prior high would need the market to credit more of the development franchise and a firmer recurring cap rate.",
+      bear: "A close below the 8.00 shelf, then 7.60, opens the way toward the 7.03 fifty-two-week low."
+    },
+    files: {
+      study: "files/Aldar_Valuation_Study_08-07-2026_public.docx?v=0807a",
+      model: "files/Aldar_Valuation_Model_08-07-2026_public.xlsx?v=0807a",
+      pdf:   "files/Aldar_Valuation_Study_08-07-2026_public.pdf?v=0807a"
+    }
+  },
   EMAAR: {
     name: "Emaar Properties PJSC",
     nameAr: "إعمار العقارية",
@@ -1449,6 +1477,31 @@ const COMING = [
                             "-5":bool, "-10":bool }
    ========================================================================== */
 const LEDGER = [
+  // ---- ALDAR · other (ADX UAE) · cycle 1 (8 Jul 2026 published study; MC PASSES benchmark) ----
+  {
+    instrument:"ALDAR", asset_class:"other",
+    anchor_date:"2026-07-03", anchor_price:8.30, ccy:"AED",
+    horizon_label:"T+20", grade_date:"2026-07-31", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.34, horizon_days:20,
+    note:"Beats the zero-drift random-walk benchmark on CRPS skill (+0.018 non-overlapping) with a roughly uniform PIT — passes calibration. See study §3.",
+    p5:7.02, p25:7.86, p50:8.37, p75:8.92, p95:9.91,
+    touch:{ "+5":52, "+10":28, "+15":14, "+20":7, "-5":44, "-10":20 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"ALDAR", asset_class:"other",
+    anchor_date:"2026-07-03", anchor_price:8.30, ccy:"AED",
+    horizon_label:"T+60", grade_date:"2026-09-25", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.34, horizon_days:60,
+    note:"Beats the zero-drift random-walk benchmark on CRPS skill (+0.018 non-overlapping) with a roughly uniform PIT — passes calibration. See study §3.",
+    p5:6.36, p25:7.60, p50:8.50, p75:9.48, p95:11.29,
+    touch:{ "+5":74, "+10":56, "+15":41, "+20":28, "-5":64, "-10":42 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
   // ---- EMAARDEV · other (DFM UAE) · cycle 1 (8 Jul 2026 published study; MC matches benchmark, indicative) ----
   {
     instrument:"EMAARDEV", asset_class:"other",
