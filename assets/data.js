@@ -13,7 +13,7 @@ const TICKERS = {
     spot: 31.25,
     spotDate: "close 7 Jul 2026",
     ccy: "EGP",
-    fair: { bear: 24.1, base: 37.3, full: 53.9 },      // CORRECTED 09 Jul 2026 — weighted central 37.3 (+19% vs spot 31.25). Correction: GB Corp's own 28-Jul-2024 press release discloses its MNT-Halan stake directly as 42.58% fully diluted — replacing an earlier ~20% unsourced placeholder used in the 08-Jul-2026 first draft. Four lenses: split-the-legs SOTP (primary) 41.2 (Auto FCFF DCF + GB Capital adjusted book ×1.0 + MNT-Halan at 42.58% × the Jun-26 USD 1.4bn round, less a 10% complexity discount), pre-discount NAV 45.8, relative multiples 28.9 (floor, stake-blind), normalized mid-cycle earnings 32.9 (also stake-blind); blend 40/15/20/25. IMPORTANT CAVEAT: applying 42.58% to the full round implies MNT-Halan alone ≈83% of GB Corp's entire market cap — implausible on its face, and the clearest sign the stake has been diluted further by two unquantified capital events since mid-2024. Treat 37.3 as the upper case if the stake holds, not a settled number; the stake-blind relative/normalized lenses (28.9–32.9) are the more conservative read. Swing factors, in order: the MNT-Halan stake itself (every 5pp ≈ EGP 3.3/sh), Auto working-capital release, the CBE rate path. MC PASSES Step 0 with the secular drift ON (CRPS skill +3.2% non-overlapping, +9.6% monthly; zero drift FAILED) — unaffected by the stake correction, since the engine prices the stock's own path, not the SOTP.
+    fair: { bear: 23.8, base: 37.0, full: 53.5 },      // UPDATED 09 Jul 2026 — weighted central 37.0 (+18% vs spot 31.25). GB Corp's own 9-June-2026 press release ("MNT-Halan ... Closes Capital Increase Round Led by Al Ahly Capital Holding") confirms the current stake directly: "GB Corp's ownership stake in MNT-Halan will be adjusted to 41.61%, compared to 42.58% prior to the transaction" — a dated, current, company-confirmed figure, replacing both the original unsourced ~20% placeholder and the interim 42.58% correction. Four lenses: split-the-legs SOTP (primary) 40.6 (Auto FCFF DCF + GB Capital adjusted book ×1.0 + MNT-Halan at the confirmed 41.61% × the Jun-26 USD 1.4bn round, less a 10% complexity discount), pre-discount NAV 45.1, relative multiples 28.9 (floor, stake-blind), normalized mid-cycle earnings 32.9 (also stake-blind); blend 40/15/20/25. THE REAL OPEN QUESTION: with the stake now confirmed, applying it to the round's valuation implies MNT-Halan alone is worth ~73% of GB Corp's entire market cap — a genuine puzzle, not a sourcing gap. Either the market applies a far steeper discount to this private mark than this study's 10%, or GB Corp is meaningfully mispriced. Treat 37.0 as the read if the round's valuation holds at face value; the stake-blind relative/normalized lenses (28.9–32.9) are the more conservative anchor if you believe the market's skepticism is warranted. Swing factors, in order: the discount applied to the MNT-Halan mark (the stake itself is no longer in question), Auto working-capital release, the CBE rate path. MC PASSES Step 0 with the secular drift ON (CRPS skill +3.2% non-overlapping, +9.6% monthly; zero drift FAILED) — entirely unaffected by any of this, since the engine prices the stock's own path, not the SOTP.
     dist: {
       t20: { label:"1 month (T+20)",  p5:26.09, p25:29.96, p50:32.47, p75:35.12, p95:40.53, resolve:"2026-08-04" },
       t60: { label:"3 months (T+60)", p5:23.97, p25:30.62, p50:34.98, p75:40.13, p95:51.08, resolve:"2026-09-29" }
@@ -29,9 +29,9 @@ const TICKERS = {
       bear: "A close below 29.95 (the 20-day) says the leg is tiring; below 28.20 the uptrend structure itself is in question."
     },
     files: {
-      study: "files/GBCO_Valuation_Study_08-07-2026_public.docx?v=0709a",
-      model: "files/GBCO_Valuation_Model_08072026_public.xlsx?v=0709a",
-      pdf:   "files/GBCO_Valuation_Study_08-07-2026_public.pdf?v=0709a"
+      study: "files/GBCO_Valuation_Study_08-07-2026_public.docx?v=0709b",
+      model: "files/GBCO_Valuation_Model_08072026_public.xlsx?v=0709b",
+      pdf:   "files/GBCO_Valuation_Study_08-07-2026_public.pdf?v=0709b"
     }
   },
   EMAARDEV: {
@@ -884,9 +884,9 @@ const TICKERS = {
       bear: "A close below the 8.00 shelf, then 7.60, opens the way toward the 7.03 fifty-two-week low."
     },
     files: {
-      study: "files/Aldar_Valuation_Study_08-07-2026_public.docx?v=0709a",
-      model: "files/Aldar_Valuation_Model_08-07-2026_public.xlsx?v=0709a",
-      pdf:   "files/Aldar_Valuation_Study_08-07-2026_public.pdf?v=0709a"
+      study: "files/Aldar_Valuation_Study_08-07-2026_public.docx?v=0709b",
+      model: "files/Aldar_Valuation_Model_08-07-2026_public.xlsx?v=0709b",
+      pdf:   "files/Aldar_Valuation_Study_08-07-2026_public.pdf?v=0709b"
     }
   },
   EMAAR: {
