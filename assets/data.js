@@ -2,10 +2,38 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-07-08", latest: "ALDAR" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
+const SITE = { updated: "2026-07-08", latest: "GBCO" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
+  GBCO: {
+    name: "GB Corp (Ghabbour)",
+    nameAr: "جي بي كورب (غبور)",
+    code: "EGX:GBCO",
+    spot: 31.25,
+    spotDate: "close 7 Jul 2026",
+    ccy: "EGP",
+    fair: { bear: 18.8, base: 30.2, full: 45.1 },      // 08 Jul 2026 — weighted central 30.2 (−3% vs spot 31.25). Four lenses: split-the-legs SOTP (primary) 28.7 (Auto FCFF DCF + GB Capital adjusted book ×1.0 + associates at the Jun-26 MNT-Halan round, less a 10% complexity discount), pre-discount NAV 31.9, relative multiples 28.9 (floor), normalized mid-cycle earnings 32.9 (ceiling); blend 40/15/20/25. bear/full = weighted bear/bull of the football field. MNT-Halan (~20% est.) alone ≈ EGP 11/share post-discount — about a third of the market value. Swing factors: Auto working-capital release (1pp ≈ EGP 4–5/sh), the CBE rate path, the complexity discount. MC PASSES Step 0 with the secular drift ON (CRPS skill +3.2% non-overlapping, +9.6% monthly; zero drift FAILED) — the first EGX non-developer carrying the secular drift, adopted empirically; the bootstrap CI is thin and the drift is re-tested every cycle (study Appendix B).
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:26.09, p25:29.96, p50:32.47, p75:35.12, p95:40.53, resolve:"2026-08-04" },
+      t60: { label:"3 months (T+60)", p5:23.97, p25:30.62, p50:34.98, p75:40.13, p95:51.08, resolve:"2026-09-29" }
+    },
+    touch: [ /* level, P(touch) T+20 %, T+60 % — descending; up-levels then down-levels */
+      [40.00, 8, 37], [38.00, 15, 50], [36.00, 29, 64], [34.00, 51, 79], [32.00, 82, 93], [30.00, 53, 64], [28.00, 22, 37], [26.00, 9, 20]
+    ],
+    levels: { res:[31.70, 32.30, 33.40], sup:[29.96, 28.20, 26.73] },
+    tech: {
+      trend: "Strong uptrend — above all four moving averages, six percent from the all-time high",
+      summary: "The advance has come in stair-steps: a February spike to the EGP 33.40 all-time high, a two-month pullback that held near 24, and a renewed leg that has carried price back above every major average. Momentum is positive but not stretched — RSI sits in the low-60s and the MACD histogram has just re-crossed positive. Unusually, the tape is more bullish than the fundamental work: price has led the cash-conversion proof.",
+      bull: "A daily close above 32.50 opens a retest of the 33.40 all-time high.",
+      bear: "A close below 29.95 (the 20-day) says the leg is tiring; below 28.20 the uptrend structure itself is in question."
+    },
+    files: {
+      study: "files/GBCO_Valuation_Study_08-07-2026_public.docx?v=0807a",
+      model: "files/GBCO_Valuation_Model_08072026_public.xlsx?v=0807a",
+      pdf:   "files/GBCO_Valuation_Study_08-07-2026_public.pdf?v=0807a"
+    }
+  },
   EMAARDEV: {
     name: "Emaar Development PJSC",
     nameAr: "إعمار للتطوير",
@@ -1477,6 +1505,31 @@ const COMING = [
                             "-5":bool, "-10":bool }
    ========================================================================== */
 const LEDGER = [
+  // ---- GBCO · equity (EGX Egypt) · cycle 1 (8 Jul 2026 published study; MC PASSES benchmark, secular drift ON) ----
+  {
+    instrument:"GBCO", asset_class:"equity",
+    anchor_date:"2026-07-07", anchor_price:31.25, ccy:"EGP",
+    horizon_label:"T+20", grade_date:"2026-08-04", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.50, horizon_days:20,
+    note:"Beats the zero-drift random-walk benchmark on CRPS skill (+0.032 non-overlapping, +0.096 monthly origins) with a roughly uniform PIT — passes calibration with the EGX secular drift ON (zero drift failed; first EGX non-developer with the drift, adopted empirically). See study Appendix B.",
+    p5:26.09, p25:29.96, p50:32.47, p75:35.12, p95:40.53,
+    touch:{ "+5":69, "+10":46, "+15":29, "+20":18, "-5":47, "-10":23 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"GBCO", asset_class:"equity",
+    anchor_date:"2026-07-07", anchor_price:31.25, ccy:"EGP",
+    horizon_label:"T+60", grade_date:"2026-09-29", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.50, horizon_days:60,
+    note:"Beats the zero-drift random-walk benchmark on CRPS skill (+0.032 non-overlapping, +0.096 monthly origins) with a roughly uniform PIT — passes calibration with the EGX secular drift ON (zero drift failed; first EGX non-developer with the drift, adopted empirically). See study Appendix B.",
+    p5:23.97, p25:30.62, p50:34.98, p75:40.13, p95:51.08,
+    touch:{ "+5":87, "+10":76, "+15":64, "+20":53, "-5":59, "-10":38 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
   // ---- ALDAR · other (ADX UAE) · cycle 1 (8 Jul 2026 published study; MC PASSES benchmark) ----
   {
     instrument:"ALDAR", asset_class:"other",
