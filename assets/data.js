@@ -2,10 +2,38 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-07-07", latest: "ISPH" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
+const SITE = { updated: "2026-07-08", latest: "EMAARDEV" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
+  EMAARDEV: {
+    name: "Emaar Development PJSC",
+    nameAr: "إعمار للتطوير",
+    code: "DFM:EMAARDEV",
+    spot: 14.26,
+    spotDate: "close 3 Jul 2026",
+    ccy: "AED",
+    fair: { bear: 12.88, base: 17.29, full: 22.76 },      // 08 Jul 2026 — weighted central 17.29 (+21% vs spot 14.26). Four lenses: RNAV / split-NAV (primary) 17.56, going-concern DCF (exit-multiple terminal, not Gordon) 18.43, relative multiples 15.75 (floor), property-cycle earnings 16.88; blend 40/20/15/25. bear/full = weighted bear/bull of the football field. Development legs carry no terminal value; swing factors are the Dubai property cycle, the sustainable development margin and the net-cash mark. A naive Gordon-perpetuity DCF would imply ~27 (disclosed, not used). MC INDICATIVE: the §3 engine (run drift-on for this name) MATCHES — ties — its zero-drift random-walk benchmark in the Step-0 backtest (CRPS skill ≈ 0, CI spans zero) with a well-calibrated PIT; no demonstrated edge, but not a failed calibration.
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:12.42, p25:13.78, p50:14.60, p75:15.49, p95:17.18, resolve:"2026-07-31" },
+      t60: { label:"3 months (T+60)", p5:11.59, p25:13.87, p50:15.34, p75:16.97, p95:20.33, resolve:"2026-09-25" }
+    },
+    touch: [ /* descending high -> low; P(touch) T+20 %, T+60 % */
+      [18, 4, 23], [17, 9, 37], [16, 23, 57], [15, 57, 81], [14, 65, 75], [13, 19, 35], [12, 5, 15]
+    ],
+    levels: { res:[14.37, 15.29, 20.00], sup:[13.87, 12.65, 11.59] },
+    tech: {
+      trend: "Consolidating in the mid-14s after a ~30% correction from the AED 20 high; around the short averages, below the 100/200-day",
+      summary: "The tape is corrective and mid-range, not stretched. EMAARDEV has pulled back from a 52-week high near AED 20.00 to the mid-14s and is consolidating: it trades just around its 20-day (14.19) and 50-day (14.37) but below the 100-day (15.29) and 200-day (15.19) — a post-correction pause rather than a breakdown. Momentum is neutral: RSI(14) is ~51 and the daily MACD histogram is marginally negative (−0.04 line / −0.02 signal / −0.02 histogram). Price sits in the lower third of a 52-week band of AED 12.65–20.00; realized 252-day volatility is ~37%, and the YZ-HAR engine reads the current 60-day regime near the same level.",
+      bull: "A daily close back above the ~15.2 hundred/two-hundred-day band would signal the correction is stalling; a push toward the AED 17 RNAV/DCF zone, then the AED 20 prior high, would need the Dubai sales pace and margin to hold.",
+      bear: "A close below the AED 13.87 shelf, then the AED 12.65 fifty-two-week low, opens the downside as the property cycle and development margin normalise faster than assumed."
+    },
+    files: {
+      study: "files/EMAARDEV_Valuation_Study_08-07-2026_public.docx?v=0708a",
+      model: "files/EMAARDEV_Valuation_Model_08072026_public.xlsx?v=0708a",
+      pdf:   "files/EMAARDEV_Valuation_Study_08-07-2026_public.pdf?v=0708a"
+    }
+  },
   ISPH: {
     name: "Ibnsina Pharma",
     nameAr: "\u0627\u0628\u0646 \u0633\u064a\u0646\u0627 \u0641\u0627\u0631\u0645\u0627",
@@ -1421,6 +1449,31 @@ const COMING = [
                             "-5":bool, "-10":bool }
    ========================================================================== */
 const LEDGER = [
+  // ---- EMAARDEV · other (DFM UAE) · cycle 1 (8 Jul 2026 published study; MC matches benchmark, indicative) ----
+  {
+    instrument:"EMAARDEV", asset_class:"other",
+    anchor_date:"2026-07-03", anchor_price:14.26, ccy:"AED",
+    horizon_label:"T+20", grade_date:"2026-07-31", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.369, horizon_days:20, cal:"matches",
+    note:"Matches (ties) the zero-drift random-walk benchmark — no demonstrated CRPS edge; distribution well-calibrated (indicative). See study Appendix B.",
+    p5:12.42, p25:13.78, p50:14.60, p75:15.49, p95:17.18,
+    touch:{ "+5":57, "+10":40, "+15":18, "+20":9, "-5":40, "-10":14 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"EMAARDEV", asset_class:"other",
+    anchor_date:"2026-07-03", anchor_price:14.26, ccy:"AED",
+    horizon_label:"T+60", grade_date:"2026-09-25", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.369, horizon_days:60, cal:"matches",
+    note:"Matches (ties) the zero-drift random-walk benchmark — no demonstrated CRPS edge; distribution well-calibrated (indicative). See study Appendix B.",
+    p5:11.59, p25:13.87, p50:15.34, p75:16.97, p95:20.33,
+    touch:{ "+5":81, "+10":64, "+15":49, "+20":37, "-5":53, "-10":30 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
   // ---- ISPH \u00b7 equity (EGX Egypt) \u00b7 cycle 1 (7 Jul 2026 published study; MC FAILED benchmark, indicative) ----
   {
     instrument:"ISPH", asset_class:"equity",
