@@ -13,7 +13,7 @@ const TICKERS = {
     spot: 31.25,
     spotDate: "close 7 Jul 2026",
     ccy: "EGP",
-    fair: { bear: 18.8, base: 30.2, full: 45.1 },      // 08 Jul 2026 — weighted central 30.2 (−3% vs spot 31.25). Four lenses: split-the-legs SOTP (primary) 28.7 (Auto FCFF DCF + GB Capital adjusted book ×1.0 + associates at the Jun-26 MNT-Halan round, less a 10% complexity discount), pre-discount NAV 31.9, relative multiples 28.9 (floor), normalized mid-cycle earnings 32.9 (ceiling); blend 40/15/20/25. bear/full = weighted bear/bull of the football field. MNT-Halan (~20% est.) alone ≈ EGP 11/share post-discount — about a third of the market value. Swing factors: Auto working-capital release (1pp ≈ EGP 4–5/sh), the CBE rate path, the complexity discount. MC PASSES Step 0 with the secular drift ON (CRPS skill +3.2% non-overlapping, +9.6% monthly; zero drift FAILED) — the first EGX non-developer carrying the secular drift, adopted empirically; the bootstrap CI is thin and the drift is re-tested every cycle (study Appendix B).
+    fair: { bear: 24.1, base: 37.3, full: 53.9 },      // CORRECTED 09 Jul 2026 — weighted central 37.3 (+19% vs spot 31.25). Correction: GB Corp's own 28-Jul-2024 press release discloses its MNT-Halan stake directly as 42.58% fully diluted — replacing an earlier ~20% unsourced placeholder used in the 08-Jul-2026 first draft. Four lenses: split-the-legs SOTP (primary) 41.2 (Auto FCFF DCF + GB Capital adjusted book ×1.0 + MNT-Halan at 42.58% × the Jun-26 USD 1.4bn round, less a 10% complexity discount), pre-discount NAV 45.8, relative multiples 28.9 (floor, stake-blind), normalized mid-cycle earnings 32.9 (also stake-blind); blend 40/15/20/25. IMPORTANT CAVEAT: applying 42.58% to the full round implies MNT-Halan alone ≈83% of GB Corp's entire market cap — implausible on its face, and the clearest sign the stake has been diluted further by two unquantified capital events since mid-2024. Treat 37.3 as the upper case if the stake holds, not a settled number; the stake-blind relative/normalized lenses (28.9–32.9) are the more conservative read. Swing factors, in order: the MNT-Halan stake itself (every 5pp ≈ EGP 3.3/sh), Auto working-capital release, the CBE rate path. MC PASSES Step 0 with the secular drift ON (CRPS skill +3.2% non-overlapping, +9.6% monthly; zero drift FAILED) — unaffected by the stake correction, since the engine prices the stock's own path, not the SOTP.
     dist: {
       t20: { label:"1 month (T+20)",  p5:26.09, p25:29.96, p50:32.47, p75:35.12, p95:40.53, resolve:"2026-08-04" },
       t60: { label:"3 months (T+60)", p5:23.97, p25:30.62, p50:34.98, p75:40.13, p95:51.08, resolve:"2026-09-29" }
@@ -29,9 +29,9 @@ const TICKERS = {
       bear: "A close below 29.95 (the 20-day) says the leg is tiring; below 28.20 the uptrend structure itself is in question."
     },
     files: {
-      study: "files/GBCO_Valuation_Study_08-07-2026_public.docx?v=0807a",
-      model: "files/GBCO_Valuation_Model_08072026_public.xlsx?v=0807a",
-      pdf:   "files/GBCO_Valuation_Study_08-07-2026_public.pdf?v=0807a"
+      study: "files/GBCO_Valuation_Study_08-07-2026_public.docx?v=0709a",
+      model: "files/GBCO_Valuation_Model_08072026_public.xlsx?v=0709a",
+      pdf:   "files/GBCO_Valuation_Study_08-07-2026_public.pdf?v=0709a"
     }
   },
   EMAARDEV: {
@@ -884,9 +884,9 @@ const TICKERS = {
       bear: "A close below the 8.00 shelf, then 7.60, opens the way toward the 7.03 fifty-two-week low."
     },
     files: {
-      study: "files/Aldar_Valuation_Study_08-07-2026_public.docx?v=0807a",
-      model: "files/Aldar_Valuation_Model_08-07-2026_public.xlsx?v=0807a",
-      pdf:   "files/Aldar_Valuation_Study_08-07-2026_public.pdf?v=0807a"
+      study: "files/Aldar_Valuation_Study_08-07-2026_public.docx?v=0709a",
+      model: "files/Aldar_Valuation_Model_08-07-2026_public.xlsx?v=0709a",
+      pdf:   "files/Aldar_Valuation_Study_08-07-2026_public.pdf?v=0709a"
     }
   },
   EMAAR: {
