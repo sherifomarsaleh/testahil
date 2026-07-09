@@ -118,8 +118,23 @@ UAE = MarketProfile("AE", "UAE (ADX/DFM)", [("2020-01-01", 0.0450)], 0.0450,
 INDIA = MarketProfile("IN", "India (NSE)", [("2020-01-01", 0.0650)], 0.0650,
     "PLACEHOLDER — source 10Y G-Sec at first IN study.", "mom_12_1", +1, 0.07, True,
     notes="Robust Indian momentum evidence.")
-QATAR = MarketProfile("QA", "Qatar (QE)", [("2020-01-01", 0.0450)], 0.0450,
-    "PLACEHOLDER — source QAR sovereign; never UST (peg rule).", "rev_1m", -1, 0.06, False,
-    notes="Thin literature: carry-only until panel.")
+QATAR = MarketProfile("QA", "Qatar (QE)",
+    carry_schedule=[
+        ("2020-01-01", 0.0100), ("2022-03-17", 0.0125), ("2022-05-05", 0.0175),
+        ("2022-06-16", 0.0225), ("2022-07-28", 0.0300), ("2022-09-22", 0.0375),
+        ("2022-11-03", 0.0450), ("2022-12-15", 0.0500), ("2023-02-02", 0.0525),
+        ("2023-03-23", 0.0550), ("2023-05-04", 0.0575), ("2023-07-27", 0.0600),
+        ("2024-09-19", 0.0550), ("2024-11-08", 0.0525), ("2024-12-19", 0.0500),
+        ("2025-09-18", 0.0475), ("2025-10-30", 0.0450), ("2025-12-11", 0.0425),
+        ("2026-06-18", 0.0400),
+    ],
+    rf_live=0.0425,
+    rf_live_source=("QCB-tracking ESTIMATE: Qatar's peg means QCB moved with the Fed on "
+                    "essentially the SAMA dates/levels; schedule cloned from the Saudi "
+                    "SAMA-repo schedule as the backtest carry (gate-neutral by "
+                    "construction). FLAG per no-UST-shortcut rule: source a real QAR "
+                    "sovereign/T-bill yield before any Qatar publish."),
+    signal_type="rev_1m", signal_sign=-1, ic=0.06, signal_active=False,
+    notes="Thin literature: carry-only until a ~5-name Qatar panel exists.")
 
 PROFILES = {p.code: p for p in [EGYPT, SAUDI, USA, UK, BRAZIL, KOREA, UAE, INDIA, QATAR]}
