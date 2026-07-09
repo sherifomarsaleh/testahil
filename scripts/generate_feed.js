@@ -41,6 +41,10 @@ function nowRfc822() {
        + `${String(dt.getUTCHours()).padStart(2,'0')}:${String(dt.getUTCMinutes()).padStart(2,'0')}:${String(dt.getUTCSeconds()).padStart(2,'0')} +0000`;
 }
 function fmt(n) { return (typeof n === 'number') ? n.toFixed(2) : String(n); }
+// Arabic currency-unit words, keyed by the ticker's ccy field (site convention: SAR/QAR both "ريال", matching coverage.js prose)
+const AR_CCY = { EGP: 'جنيه', SAR: 'ريال', QAR: 'ريال', AED: 'درهم', USD: 'دولار', KRW: 'وون', INR: 'روبية' };
+function arCcy(ccy) { return AR_CCY[ccy] || ccy || 'جنيه'; }
+function enCcy(ccy) { return ccy || 'EGP'; }
 function fmtMetal(n) {            // whole units + thousands separators (no ICU dependency)
   if (typeof n !== 'number') return String(n);
   return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -87,10 +91,10 @@ function build() {
     const t60 = (t.dist && t.dist.t60) ? t.dist.t60 : null;
     const has = t60 && typeof t.spot === 'number';
     const arDesc = has
-      ? `السعر ${fmt(t.spot)} · الوسيط (٣ شهور) ${fmt(t60.p50)} · النطاق ${fmt(t60.p5)}–${fmt(t60.p95)} جنيه — تحليل تعليمي، توزيع وليس توصية.`
+      ? `السعر ${fmt(t.spot)} · الوسيط (٣ شهور) ${fmt(t60.p50)} · النطاق ${fmt(t60.p5)}–${fmt(t60.p95)} ${arCcy(t.ccy)} — تحليل تعليمي، توزيع وليس توصية.`
       : 'نطاق القيمة العادلة وتوزيع احتمالي لسعر السهم خلال ٣ شهور — تحليل تعليمي مستقل.';
     const enDesc = has
-      ? `Latest ${fmt(t.spot)} · 3-month median ${fmt(t60.p50)} · range ${fmt(t60.p5)}–${fmt(t60.p95)} EGP — educational analysis, a distribution not a recommendation.`
+      ? `Latest ${fmt(t.spot)} · 3-month median ${fmt(t60.p50)} · range ${fmt(t60.p5)}–${fmt(t60.p95)} ${enCcy(t.ccy)} — educational analysis, a distribution not a recommendation.`
       : 'Fair-value range and a 3-month probability distribution for the share — independent educational analysis.';
     return [
       { sortKey, pubDate, title: `${arName} (${code}): دراسة تقييم — هل يستحق السهم؟`,
