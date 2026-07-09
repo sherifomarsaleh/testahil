@@ -36,25 +36,57 @@ title(ws, 'Sum-of-the-parts — split the legs (primary lens, §3.5-F5)',
       'Auto = FCFF DCF · captive lender = adjusted book × multiple · fintech associate = carrying value ≈ Jun-26 round. Links to DCF / Assumptions.', 7)
 rows = [
  ('Leg', 'Basis', 'Value (EGP mn)', True),
- ('GB Auto operating leg', 'FCFF DCF (WACC = Ke/Kd blend; TV% disclosed on DCF sheet)', f"=DCF!B{DCJ['AEQ']}", False),
- ('GB Capital lending leg', 'Adjusted operating equity × return-justified multiple', "=Assumptions!B21*Assumptions!B22", False),
- ('Associates (MNT-Halan, Bedaya, Kaf)', 'Balance-sheet carrying × mark; ≈ USD 1.4bn round × ~20% est.', "=Assumptions!B23*Assumptions!B24", False),
- ('Σ Equity value (pre-discount)', '', '=SUM(C7:C9)', True),
+ ('GB Auto operating leg', 'FCFF DCF (§1.2): EV − net debt − NCI', f"=DCF!B{DCJ['AEQ']}", False),
+ ('GB Capital lending leg', 'Adjusted operating book 9,500 × 1.0×', "=Assumptions!B21*Assumptions!B22", False),
+ ('Associate — MNT-Halan (41.61%, confirmed 9-Jun-2026)', 'USD 1.4bn Jun-26 round × stake × FX, × mark', "=Assumptions!B79*Assumptions!B24", False),
+ ('Other associates (Bedaya, Kaf)', 'Residual carrying value × mark', "=Assumptions!B80*Assumptions!B24", False),
+ ('Σ Equity value (pre-discount)', '', '=SUM(C6:C9)', True),
  ('  per share (EGP), pre-discount', '', '=C10/Assumptions!B6', True),
  ('less: complexity / conglomerate discount', 'applied', '=-C10*Assumptions!B25', False),
  ('SOTP equity value', '', '=C10+C12', True),
  ('SOTP fair value per share (EGP)', '', '=C13/Assumptions!B6', True),
  ('Upside / (downside) vs spot', '', '=C14/Assumptions!B5-1', True),
+ ('memo: MNT-Halan share of SOTP value', 'C8 ÷ Σ legs (discount pro-rata)', '=C8/C10', False),
+ ('memo: MNT-Halan per share, post-discount (EGP)', '', '=C8*(1-Assumptions!B25)/Assumptions!B6', False),
 ]
 r = 5
 for a, b, c, bold in rows:
     put(ws, f'A{r}', a, BLACK, None, bold=bold)
     put(ws, f'B{r}', b, SUB if b else BLACK, None)
     if c: put(ws, f'C{r}', c, GREEN if isinstance(c, str) and ('DCF!' in c or 'Assumptions!' in c) else BLACK,
-              PCT if r == 15 else (PX if r in (11, 14) else NUM0), bold=bold)
+              PCT if r in (15, 16) else (PX if r in (11, 14, 17) else NUM0), bold=bold)
     r += 1
 ws.column_dimensions['B'].width = 56; ws.column_dimensions['C'].width = 16
-put(ws, 'A17', 'The market-implied read: mkt cap − lender − associates ≈ EGP 10.7bn for the Auto leg ≈ 4.0× FY26E Auto EBITDA.', SUB, None)
+r += 1  # blank spacer row (row 18)
+put(ws, f'A{r}',
+    "The market-implied read is now a genuine puzzle, not a sanity check: mkt cap − lender − associates at the "
+    "confirmed 41.61% stake implies a NEGATIVE value for the Auto leg (≈ −EGP 3.6bn) — impossible for a real, "
+    "profitable business. MNT-Halan alone is ≈82% of GB Corp's market cap. Either the market discounts this "
+    "private mark far more steeply than this study's 10%, or GB Corp is meaningfully mispriced (see the study's §7).",
+    SUB, None)
+r += 1  # no blank spacer here — the stake-sensitivity header sits immediately below (row 20)
+put(ws, f'A{r}', 'MNT-Halan stake sensitivity — now largely resolved: 41.61% is a confirmed, dated figure (9-Jun-2026)', BLACK, None, True, FILL_H)
+r += 1
+put(ws, f'A{r}', 'GB stake in MNT-Halan', bold=True); put(ws, f'B{r}', 'MNT-Halan value (EGP mn)', bold=True)
+put(ws, f'C{r}', 'SOTP fair value/sh (EGP)', bold=True)
+r += 1
+stakes_notes = [
+ (0.20, 'prior placeholder (wrong)'),
+ (0.25, None), (0.30, None),
+ (0.3545, 'implied by pro-rata defense of the 2024 raise only'),
+ (0.40, None),
+ (0.4258, 'superseded — was the pre-transaction figure (28-Jul-2024)'),
+ (0.4161, 'CONFIRMED current (GB Corp PR, 9-Jun-2026, post Al Ahly round) — base case'),
+]
+for st, note in stakes_notes:
+    put(ws, f'A{r}', st, BLUE, PCT)
+    put(ws, f'B{r}', f"=A{r}*Assumptions!$B$76*Assumptions!$B$78", GREEN, NUM0)
+    put(ws, f'C{r}', f"=((DCF!$B$25)+B{r}+Assumptions!$B$80+Assumptions!$B$21*Assumptions!$B$22)*(1-Assumptions!$B$25)/Assumptions!$B$6", GREEN, PX)
+    if note: put(ws, f'D{r}', note, SUB)
+    r += 1
+put(ws, f'A{r}',
+    "Every 5pp of stake ≈ EGP 3.3/share of SOTP fair value — by far the single largest swing factor in this study; "
+    "confirm the FY25 annual-report associates footnote before relying on any point estimate.", SUB, None)
 
 # ================= Relative & Normalized ====================================
 ws = sheet('Relative & Normalized')

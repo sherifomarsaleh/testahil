@@ -49,8 +49,11 @@ def srow(r, label, hist, ffml=None, fmt=NUM, font_hist=BLUE):
             if f is not None: put(ws, f'{col}{r}', f, BLACK, fmt)
     return r + 1
 r = 6
-r = srow(r, 'PC volume (units)', [26994, 42043, 56548],
-         lambda j, c: f"={get_column_letter(ord(c[0])-65)}{SR['PC volume (units)']}*(1+{ac('PC volume growth', ACOLS[j])})", NUM0)
+r = srow(r, None, [], lambda j, c: None, NUM0)  # row 6 intentionally blank: an earlier version of this
+    # script duplicated the 'PC volume (units)' row here (a leftover from a bug-fix that patched the
+    # SECOND call without removing the first); the delivered GBCO_Valuation_Model_08072026_public.xlsx
+    # had this exact orphaned duplicate at row 6, cleared on 09-07-2026. This placeholder keeps every
+    # subsequent row number identical to that verified file rather than shifting everything up by one.
 r = srow(r, 'PC volume (units)', [26994, 42043, 56548],
          lambda j, c: f"={chr(ord(c)-1)}{SR['PC volume (units)']}*(1+{ac('PC volume growth', ACOLS[j])})", NUM0)
 r = srow(r, 'PC revenue', [16544.3, 36533.4, 52827.3],

@@ -78,14 +78,36 @@ r = hdr(wa, r, 'ANCHORS')
 r = inp(wa, r, 'Spot price (EGP/share)', 31.25, PX)
 r = inp(wa, r, 'Shares outstanding (mn)', 1085.5, NUM0)
 r = inp(wa, r, 'Tax rate', 0.28, PCT)
-r = hdr(wa, r, 'COST OF CAPITAL (Ke published as rf + β × ERP — house rule §3.5-G)')
-r = inp(wa, r, 'Risk-free rate (blended 5-yr EGP; 12M T-bill ~21.5% gliding to ~15%)', 0.19, PCT, 'flagged: house view of the CBE easing path')
-r = inp(wa, r, 'Equity beta (house band 0.8–1.3)', 0.95, '0.00')
-r = inp(wa, r, 'Equity risk premium (Egypt)', 0.07, PCT)
-put(wa, f'A{r}', 'Cost of equity Ke = rf + β × ERP'); put(wa, f'B{r}', '=B9+B10*B11', BLACK, PCT); KE=f'B{r}'; r+=1
-r = inp(wa, r, 'Pre-tax cost of debt', 0.21, PCT)
+r = hdr(wa, r, 'COST OF CAPITAL — bottom-up, sourced (house rule §3.5-G, rebuilt 09-07-2026; full detail row 82+)')
+r = inp(wa, r, 'Risk-free rate (Egypt 10Y local govt bond, 3-Jul-2026)', 0.2255, PCT,
+        'SOURCE: investing.com, "Egypt 10-Year Bond Yield Historical Data" — market quote, per '
+        "Damodaran's own stated method (use the local bond yield directly when a liquid local market exists).")
+r = inp(wa, r, 'Equity beta (see row 86 for why =1.0)', 1.0, '0.00',
+        'CORRECTED 09-07-2026: was 0.95 (unsourced "house band" guess). A genuine GBCO-vs-EGX30 regression was '
+        'attempted (n=5 annual: beta=-0.15, R2=0.008, unusable; higher-frequency EGX30 data inaccessible via '
+        'available tools) and rejected. Beta=1.0 per standing instruction when no reliable regression is '
+        'obtainable — see wacc_builder.py.')
+r = inp(wa, r, 'Equity risk premium — Egypt, CDS-based (primary; rating-based alt. at row 84)', 0.0941, PCT,
+        "Same Damodaran original file (ctryprem.html), Egypt row, CDS column — uses Egypt's actual sovereign CDS "
+        'spread (3.41%), more current than the rating-based figure since CDS prices continuously. CORRECTED '
+        '09-07-2026: was 0.07 (flat unsourced house number), then briefly 0.1487 (WRONG — a secondary '
+        "source's misquote).")
+put(wa, f'A{r}', 'Cost of equity Ke = rf + β × ERP'); put(wa, f'B{r}', '=B9+B10*B11', BLACK, PCT); KE=f'B{r}'
+put(wa, f'C{r}', 'Primary Ke, used in the base-case WACC below.', SUB); r += 1
+r = inp(wa, r, 'Pre-tax cost of debt (EGP; ~100% of debt is EGP-denominated, row 88)', 0.207, PCT,
+        'CORRECTED 09-07-2026: was 0.21 (flat unsourced guess). SOURCE: CBE weighted-average EGP bank lending '
+        "rate, <12mo tenor, Feb-2026 (CEIC/TradingEconomics quoting CBE); cross-checked against CBE's own "
+        'overnight lending-rate ceiling 20.0% (held since the Apr-2026 policy pause). Currency mix: 5 '
+        'separately disclosed GB Corp/GB Capital financing facilities found (Drive Finance EGP5bn syndication, '
+        'Ghabbour Egypt EGP1.2bn Sadat facility, GB Lease EGP4.16bn securitization, Drive Finance EGP2.4bn '
+        'bond, GB Capital Securitization EGP28.8bn book) are ALL EGP-denominated; zero USD facilities found '
+        'in any search — treated as ~100% local currency.')
 put(wa, f'A{r}', 'After-tax Kd'); put(wa, f'B{r}', '=B13*(1-B7)', BLACK, PCT); r+=1
-r = inp(wa, r, 'Debt weight (target, market)', 0.35, PCT)
+r = inp(wa, r, 'Debt weight D/(D+E) — sourced, row 89', '=38041.4/(31.25*1085.5+38041.4)', PCT,
+        'CORRECTED 09-07-2026: was 0.35 (assumed, not computed). Market cap = spot(31.25) x shares(1,085.5mn) '
+        '= 33,922; total debt = FY25 disclosed consolidated borrowings (38,041.4). D/(D+E) = '
+        '38,041.4/(33,922+38,041.4).')
+wa[f'B{r-1}'].font = BLACK  # this is a formula, not an input — override inp()'s default blue
 put(wa, f'A{r}', 'WACC'); put(wa, f'B{r}', f'=(1-B15)*B12+B15*B14', BLACK, PCT); WACC='Assumptions!$B$16'; r+=1
 r = inp(wa, r, 'Terminal growth (nominal EGP)', 0.115, PCT)
 TG='Assumptions!$B$17'
@@ -94,11 +116,13 @@ r = inp(wa, r, 'GB Auto net debt (31 Dec 2025)', 15210.0, NUM0, 'disclosed; 1Q26
 r = inp(wa, r, 'GB Auto non-controlling interests', 800.4, NUM0)
 r = inp(wa, r, 'GB Capital adjusted operating equity', 9500.0, NUM0, 'from disclosed adjusted-ROAE basis (NP 1,366 / 15.1%)')
 r = inp(wa, r, 'GB Capital multiple (× adjusted book)', 1.0, MULT, 'return-justified ~1× book')
-r = inp(wa, r, 'Associates carrying value (MNT-Halan + Bedaya + Kaf)', 13689.5, NUM0, '≈ Jun-26 USD 1.4bn round × ~20% est. stake')
+r = inp(wa, r, 'Associates carrying value (MNT-Halan + Bedaya + Kaf)', '=B79+B80', NUM0,
+        'FY25 carrying 13,689.5 — split in the MNT-Halan detail block (rows 75–80)')
+wa[f'B{r-1}'].font = BLACK  # this is a formula, not an input — override inp()'s default blue
 r = inp(wa, r, 'Associates mark (× carrying)', 1.0, MULT)
 r = inp(wa, r, 'Complexity / conglomerate discount', 0.10, PCT, 'sensitized 0–20%')
 r = hdr(wa, r, 'RELATIVE & NORMALIZED')
-r = inp(wa, r, 'FY26E group net profit for the relative lens', 3300.0, NUM0, 'set slightly below the IS build for conservatism')
+r = inp(wa, r, 'FY26E group net profit for the relative lens', 3300.0, NUM0, 'aligned to the IS build (≈ EGP 3.3bn FY26E)')
 r = inp(wa, r, 'Justified P/E (base)', 9.5, MULT)
 r = inp(wa, r, 'Mid-cycle group PAT (normalized)', 4200.0, NUM0)
 r = inp(wa, r, 'Justified through-cycle P/E', 8.5, MULT)
@@ -142,21 +166,75 @@ r = drv(r, 'Auto D&A (% of revenue)', [0.011]*5)
 r = drv(r, 'Auto capex (EGP mn)', [3000, 2400, 2500, 2600, 2800], NUM0)
 r = drv(r, 'Rental-fleet & other capex (EGP mn)', [700, 800, 900, 1000, 1100], NUM0)
 r = drv(r, 'GB Capital D&A (EGP mn)', [560, 640, 730, 830, 940], NUM0)
-r = drv(r, 'Auto inventory (% of Auto rev)', [0.345, 0.325, 0.308, 0.296, 0.285])
+r = drv(r, 'Auto inventory (% of Auto rev)', [0.36, 0.338, 0.32, 0.308, 0.296])
 r = drv(r, 'Auto receivables (% of Auto rev)', [0.08]*5)
-r = drv(r, 'Auto advances & debtors (% rev)', [0.085, 0.083, 0.080, 0.078, 0.076])
-r = drv(r, 'Auto payables (% of Auto rev)', [0.245, 0.238, 0.233, 0.229, 0.226])
-r = drv(r, 'Group opex S&M+Admin (% of group rev)', [0.082, 0.081, 0.080, 0.079, 0.078])
+r = drv(r, 'Auto advances & debtors (% rev)', [0.07, 0.069, 0.0675, 0.066, 0.0645])
+r = drv(r, 'Auto payables (% of Auto rev)', [0.245, 0.237, 0.2325, 0.229, 0.2255])
+r = drv(r, 'Group opex S&M+Admin (% of group rev)', [0.080, 0.079, 0.078, 0.0775, 0.077])
 r = drv(r, 'Group other income (% of group rev)', [0.011]*5)
 r = drv(r, 'Group provisions (% of group rev)', [-0.003]*5)
 r = drv(r, 'GB Capital gross margin', [0.188, 0.19, 0.192, 0.194, 0.196])
-r = drv(r, 'Associates income (EGP mn)', [1180, 1360, 1560, 1760, 1960], NUM0)
+r = drv(r, 'Associates income (EGP mn)', [1250, 1430, 1630, 1830, 2030], NUM0)
 r = drv(r, 'Net finance cost (EGP mn)', [-4100, -3800, -3500, -3300, -3100], NUM0)
 r = drv(r, 'Minority interest (% of NP before MI)', [-0.02]*5)
-r = drv(r, 'Increase in borrowings, net (EGP mn)', [4000, 3000, 2800, 2500, 2300], NUM0)
+r = drv(r, 'Increase in borrowings, net (EGP mn)', [5500, 5200, 5600, 5800, 6100], NUM0)
 r = drv(r, 'Dividend payout (of attributable NP)', [0.14, 0.15, 0.16, 0.18, 0.20])
 r = drv(r, 'Intercompany eliminations (% of gross revenue)', [0.011]*5)
 wa.column_dimensions['C'].width = 11
+
+# ===== MNT-HALAN DETAIL (rows 75-80) — added 09-07-2026 to reflect the confirmed stake =====
+r = hdr(wa, 75, 'MNT-HALAN DETAIL (feeds the associates line, row 23)')
+r = inp(wa, r, 'MNT-Halan round valuation (USD mn, Jun-26 first close)', 1400.0, NUM0)
+r = inp(wa, r, 'GB stake — CONFIRMED current (GB Corp PR, 9-Jun-2026, post Al Ahly Capital round)', 0.4161, PCT,
+        "UPDATED 09-07-2026: GB Corp's own press release, 9 June 2026 (\"MNT-Halan ... Closes Capital Increase "
+        'Round Led by Al Ahly Capital Holding\"): "GB Corp\'s ownership stake in MNT-Halan will be adjusted to '
+        '41.61%, compared to 42.58% prior to the transaction." This is a current, dated, confirmed figure — not '
+        "an estimate. Applying it to the round still implies MNT-Halan alone ≈ 82% of GB Corp's market cap; "
+        'flagged as a genuine valuation puzzle (steep implied private-mark discount, or undervaluation) rather '
+        'than a sourcing gap.')
+r = inp(wa, r, 'EGP/USD (study date)', 47.5, PX)
+put(wa, f'A{r}', 'MNT-Halan implied value (EGP mn)'); put(wa, f'B{r}', '=B76*B77*B78', BLACK, NUM0); r += 1
+r = inp(wa, r, 'Other associates (Bedaya, Kaf) — residual carrying', 390.0, NUM0)
+
+# ===== WACC BUILD — FULL DETAIL & SOURCING (rows 82-90) — reference only, feeds rows 9-17 =====
+r = hdr(wa, 82, 'WACC BUILD — FULL DETAIL & SOURCING (feeds rows 9-17 above; this block is reference only)')
+put(wa, f'A{r}', 'rf source')
+put(wa, f'C{r}', 'investing.com, "Egypt 10-Year Bond Yield Historical Data" — market quote, 3-Jul-2026. Per '
+                  "Damodaran's own stated method: use the local bond yield directly when a liquid local market exists.", SUB)
+r += 1
+r = inp(wa, r, 'ERP — rating-based (Damodaran "standard practice"), alternative to primary', 0.1394, PCT,
+        'CORRECTED 09-07-2026: an interim figure of 14.87% (from a secondary source claiming to summarize '
+        '"Damodaran\'s July 2026 table") was WRONG — verified against Damodaran\'s own ORIGINAL file '
+        '(ctryprem.html), Egypt row, "Last updated January 2026": country risk premium 9.71% + mature-market ERP '
+        '4.23% = 13.94%. Logged as Fundamental Driver Ledger S2.')
+put(wa, f'A{r}', 'Ke, alternative (rating-based ERP)'); put(wa, f'B{r}', '=B9+B10*B84', BLACK, PCT); r += 1
+put(wa, f'A{r}', 'WACC, alternative (rating-based ERP)'); put(wa, f'B{r}', '=(1-B15)*B85+B15*B14', BLACK, PCT); r += 1
+put(wa, f'A{r}', 'Beta — why 1.0')
+put(wa, f'C{r}', 'CORRECTED 09-07-2026: was 0.95 ("house band" guess). A genuine GBCO-vs-EGX30 regression was '
+                  'attempted: n=5 annual observations gave beta=-0.15, R2=0.008 (statistically unusable — '
+                  'SE(beta) exceeds the estimate itself). Higher-frequency (monthly) EGX30 data proved '
+                  "inaccessible via any available tool (EGX's own site blocks automated access; other sources "
+                  'are JS-rendered, no bulk export). Beta=1.0 applied per standing instruction (house rule '
+                  '§3.5-G) when no reliable regression is obtainable — see wacc_builder.py / '
+                  'RegressionBetaAttempt gate.', SUB)
+r += 1
+put(wa, f'A{r}', 'Kd source & currency-mix evidence')
+put(wa, f'C{r}', 'Pre-tax rate: CBE weighted-average EGP bank lending rate, <12mo tenor, Feb-2026 '
+                  "(CEIC/TradingEconomics quoting CBE); cross-checked against CBE's own overnight lending-rate "
+                  'ceiling 20.0% (held since the Apr-2026 policy pause). Currency mix: 5 separately disclosed '
+                  'GB Corp/GB Capital financing facilities found (Drive Finance EGP5bn syndication, Ghabbour '
+                  'Egypt EGP1.2bn Sadat facility, GB Lease EGP4.16bn securitization, Drive Finance EGP2.4bn bond, '
+                  'GB Capital Securitization EGP28.8bn book) are ALL EGP-denominated; zero USD facilities found '
+                  'in any search — treated as ~100% local currency (no FX tranche blended in).', SUB)
+r += 1
+put(wa, f'A{r}', 'Weights source')
+put(wa, f'C{r}', 'Market cap = spot(31.25) x shares(1,085.5mn) = 33,922; total debt = FY25 disclosed consolidated '
+                  'borrowings (38,041.4). Sourced, not assumed (prior draft used a flat 65/35 house default).', SUB)
+r += 1
+put(wa, f'A{r}', 'Full reference & cache')
+put(wa, f'C{r}', 'See Cost_of_Capital_Reference.md (Egypt row) and wacc_builder.py in the project repo for the '
+                  'standing method applied to every future study across every market.', SUB)
+
 ROWSA = {k: v for k, v in DRV.items()}
 json.dump(ROWSA, open('_asm_rows.json', 'w'))
 wb.save('GBCO_Valuation_Model_08072026_public.xlsx')

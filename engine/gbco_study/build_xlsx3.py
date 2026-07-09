@@ -121,12 +121,12 @@ r = brow(r, 'Inventories', [6366.1, 21134.3, 24649.7],
          lambda j, c: f"=Segments!{c}{AUTOR}*{ac('Auto inventory (% of Auto rev)', j)}")
 r = brow(r, 'Trade receivables — Auto', [1743.5, 3708.7, 5316.9],
          lambda j, c: f"=Segments!{c}{AUTOR}*{ac('Auto receivables (% of Auto rev)', j)}")
-r = brow(r, 'Advances, debtors & other current', [3345.9, 5580.1, 5823.8],
+r = brow(r, 'Advances, debtors & other current', [1039.1, 2942.2, 4670.6],
          lambda j, c: f"=Segments!{c}{AUTOR}*{ac('Auto advances & debtors (% rev)', j)}")
 r = brow(r, 'Cash & cash equivalents', [4504.2, 7420.9, 9523.6],
          lambda j, c: f"='Cash Flow'!{c}22")
 CASH = BS['Cash & cash equivalents']
-r = brow(r, 'Other assets (DTA, held-for-sale, misc.)', [1274.5, 1294.0, 1448.3],
+r = brow(r, 'Other assets (DTA, held-for-sale, misc.)', [3581.4, 3931.9, 2601.3],
          lambda j, c: f"={chr(ord(c)-1)}{BS['Other assets (DTA, held-for-sale, misc.)']}")
 r = brow(r, 'TOTAL ASSETS', [42585.4, 72725.2, 91359.0],
          lambda j, c: f"=SUM({c}{BS['PP&E, intangibles, ROU & inv. property']}:{c}{BS['Other assets (DTA, held-for-sale, misc.)']})", NUM0, BLACK, True)
@@ -166,9 +166,12 @@ r = brow(r, 'Group net debt (borrowings − cash)', [None]*3,
 for col in 'BCD':
     ws[f'{col}{BS["Group net debt (borrowings − cash)"]}'] = f"={col}{BS['Borrowings (loans, overdrafts & bonds)']}-{col}{CASH}"
 r += 1
-r = brow(r, 'Net Auto working capital (inv + rec + adv − pay)', [4466.3, 10783.9, 18917.0],
-         lambda j, c: f"={c}{BS['Inventories']}+{c}{BS['Trade receivables — Auto']}+{c}{BS['Advances, debtors & other current']}-2716.3-Segments!{c}{AUTOR}*{ac('Auto payables (% of Auto rev)', j)}", NUM0, BLACK)
+r = brow(r, 'Net Auto working capital (inv + rec + adv − pay)', [None]*3,
+         lambda j, c: f"={c}{BS['Inventories']}+{c}{BS['Trade receivables — Auto']}+{c}{BS['Advances, debtors & other current']}-({c}{BS['Trade & notes payables']}-2716.3)", NUM0, BLACK)
 NWC = BS['Net Auto working capital (inv + rec + adv − pay)']
+for col in 'BCD':
+    ws[f'{col}{NWC}'] = f"={col}{BS['Inventories']}+{col}{BS['Trade receivables — Auto']}+{col}{BS['Advances, debtors & other current']}-({col}{BS['Trade & notes payables']}-2716.3)"
+    ws[f'{col}{NWC}'].number_format = NUM0
 r = brow(r, 'Increase in net Auto working capital', [None]*3,
          lambda j, c: f"={c}{NWC}-{chr(ord(c)-1)}{NWC}", NUM0, BLACK)
 DNWC = BS['Increase in net Auto working capital']

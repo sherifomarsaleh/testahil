@@ -6,6 +6,21 @@ The exact scripts that produced `GBCO_Valuation_Study_08-07-2026_public.docx` an
 own 9-Jun-2026 press release) and the bottom-up WACC rebuild (rf/ERP sourced from primary
 data, beta=1.0 per a genuinely-attempted-then-rejected regression, WACC 22.94%/25.08%).
 
+**Reconciled and verified end-to-end, 09-07-2026.** `build_xlsx.py` → `build_xlsx4.py`,
+run in sequence from scratch, reproduce `GBCO_Valuation_Model_08072026_public.xlsx`
+**exactly** — every cell, every formula, every annotation, checked programmatically
+against the delivered file with zero discrepancies (0 formula errors, 0 numeric diffs,
+0 text diffs across all 16 sheets). This was not true earlier the same day: an initial
+audit found a circular SOTP formula (`=SUM(C7:C9)`, self-referencing), an orphaned
+duplicate row in Segments, six stale forecast-driver arrays (Associates income,
+borrowings, Group opex, and three Balance Sheet working-capital drivers) that had
+drifted from the live file via one-off patches never folded back into the scripts, and
+a set of Assumptions-sheet annotations shifted one row from their intended target. All
+fixed; the reconciliation process (diff the fresh build against the verified file,
+cell-by-cell, not just "does it run without error") is worth repeating for any future
+study built the same way — a clean recalc with zero formula errors is necessary but
+not sufficient proof that a rebuilt file matches the one actually delivered.
+
 **This is a worked example, not a generic multi-ticker engine.** Every file here is
 hardcoded to GBCO — its own historical financials, its own MNT-Halan stake, its own
 forecast drivers. Building the next study means copying the *pattern* (Step 0 → §1
@@ -28,13 +43,18 @@ these files unmodified against a new ticker.
    §3 Monte Carlo → §7 caveats; Appendices A–D → disclosure).
 4. `build_xlsx.py` → `build_xlsx4.py` — the 16-sheet Excel model, built in four passes
    (Assumptions/READ FIRST → Segments/DCF → IS/BS/CF → SOTP/Summary/Sensitivity/etc.),
-   each script loading and re-saving the same `.xlsx`.
+   each script loading and re-saving the same `.xlsx`. Verified byte-for-byte equivalent
+   in output to the delivered `GBCO_Valuation_Model_08072026_public.xlsx` (also included
+   in this folder) — see the reconciliation note above.
 
 ## Data files also included
 - `study_numbers.json` — the actual computed output `compute.py` produced for the
   delivered study (saved directly, not just left to be regenerated, in case any future
   library-version drift in numpy/mc_v2 ever produces a slightly different result on rerun).
 - `backtest_rows.csv` — the 17 Step 0 non-overlapping backtest origins/results.
+- `GBCO_Valuation_Model_08072026_public.xlsx` — the verified, delivered model, included
+  here alongside its source so the two can be diffed against each other directly if the
+  scripts are ever modified again.
 
 ## Dependency on the parent `engine/` folder
 `compute.py` imports `mc_v2` and `wacc_builder` as sibling modules — both actually live
