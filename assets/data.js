@@ -2,10 +2,38 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-07-09", latest: "STC" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
+const SITE = { updated: "2026-07-10", latest: "ALINMA" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
+  ALINMA: {
+    name: "Alinma Bank",
+    nameAr: "مصرف الإنماء",
+    code: "TADAWUL:1150",
+    spot: 24.00,
+    spotDate: "close 07 Jul 2026",
+    ccy: "SAR",
+    fair: { bear: 19.90, base: 27.32, full: 31.23 },      // 10 Jul 2026 — weighted central 27.32 (+13.8% vs spot 24.00). Lenses: DDM (primary, terminal payout forced consistent 1−g/ROE_t, 35%) 31.23, residual income (multi-period build, 20%) 28.41, FCFE (equity DCF, 15%) 23.79, relative multiples (20%) 25.68, normalized floor (β=1, CDS ERP, 10%) 19.90. bear/full = normalized floor / DDM ceiling. The crux is the cost of equity: regressed β 0.74 (short window) → Ke 8.5–9.0%; β=1.0 → 9.8–10.5%; base Ke 9.46% is the disclosed four-corner mean, and the market's ~2.1× common book implies ~9.2% — inside the band. Second swing: the NIM glide (3.55% FY25 → 3.40%) through the SAMA/Fed easing cycle.
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:22.1, p25:23.31, p50:24.00, p75:24.7, p95:26.09, resolve:"2026-08-04" },
+      t60: { label:"3 months (T+60)", p5:20.76, p25:22.82, p50:24.00, p75:25.24, p95:27.7, resolve:"2026-09-29" }
+    },
+    touch: [ /* descending high -> low */
+      [27.60, 2, 10], [26.40, 6, 21], [25.20, 23, 47], [22.80, 22, 45], [21.60, 4, 18], [20.40, 1, 7]
+    ],
+    levels: { res:[25.30, 26.60, 27.80], sup:[23.30, 22.10, 20.40] },
+    tech: {
+      trend: "Below the 20/50/100-day averages with the 200-day still underfoot; RSI mid-40s — a corrective tape inside an intact long advance",
+      summary: "The tape is digesting a strong 2025 run, not breaking down. Alinma sits below its 20-day (SAR 24.77), 50-day (24.32) and 100-day (24.12) averages but above the rising 200-day (22.72). RSI(14) near 11 is neutral-soft and the MACD histogram is negative but flattening — momentum bleeding out rather than accelerating. Price sits mid-range in a 52-week band of SAR 20.05–25.47; the v3 engine reads current 60-day regime width at ~20% annualised.",
+      bull: "A daily close back above the SAR 24.6–25.3 moving-average cluster would end the correction; reclaiming the 52-week high near SAR 25.47 needs a NIM-resilience or payout surprise.",
+      bear: "A daily close below SAR 23.3 opens 22.1 and then the MA200/20.4 shelf — the line between digestion and a trend change."
+    },
+    files: {
+      study: "files/Alinma_Valuation_Study_10-07-2026_public.docx?v=0710a",
+      model: "files/Alinma_Valuation_Model_10072026_public.xlsx?v=0710a",
+      pdf:   "files/Alinma_Valuation_Study_10-07-2026_public.pdf?v=0710a"
+    }
+  },
   GBCO: {
     name: "GB Corp (Ghabbour)",
     nameAr: "جي بي كورب (غبور)",
@@ -2777,6 +2805,30 @@ const LEDGER = [
     anchor_vol:0.2843, horizon_days:60,
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
     realized_quantile:null, median_err:null, touch_hit:null },
+  {
+    instrument:"ALINMA", asset_class:"other", cal:"matches",
+    anchor_date:"2026-07-07", anchor_price:24.00, ccy:"SAR",
+    horizon_label:"T+20", grade_date:"2026-08-04", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.196, horizon_days:20,
+    note:"PARITY under the v3 carry-anchored gate: CRPS skill \u22120.009 vs a carry-anchored random-walk benchmark, bootstrap 90% CI [\u22120.026, +0.018] spans zero, PIT mean 0.485 (n=18 non-overlapping 60-day windows). A calibrated, market-panel-validated distribution \u2014 no single-name edge demonstrated, and none claimed. Carry-anchored drift: rf \u2248 dividend yield, so the expected total return arrives as dividend and the price path is an explained flat. Saudi names run carry-only until the Tadawul panel reaches ~5 names.",
+    p5:22.1, p25:23.31, p50:24.00, p75:24.7, p95:26.09,
+    touch:{ "+5":23, "+10":6, "+15":2, "+20":1, "-5":22, "-10":4 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"ALINMA", asset_class:"other", cal:"matches",
+    anchor_date:"2026-07-07", anchor_price:24.00, ccy:"SAR",
+    horizon_label:"T+60", grade_date:"2026-09-29", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.196, horizon_days:60,
+    note:"PARITY under the v3 carry-anchored gate: CRPS skill \u22120.009 vs a carry-anchored random-walk benchmark, bootstrap 90% CI [\u22120.026, +0.018] spans zero, PIT mean 0.485 (n=18 non-overlapping 60-day windows). A calibrated, market-panel-validated distribution \u2014 no single-name edge demonstrated, and none claimed. Carry-anchored drift: rf \u2248 dividend yield, so the expected total return arrives as dividend and the price path is an explained flat. Saudi names run carry-only until the Tadawul panel reaches ~5 names.",
+    p5:20.76, p25:22.82, p50:24.00, p75:25.24, p95:27.7,
+    touch:{ "+5":47, "+10":21, "+15":10, "+20":5, "-5":45, "-10":18 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
 ];
 
 /* ==========================================================================
