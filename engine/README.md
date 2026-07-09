@@ -1,40 +1,44 @@
 # Testahil analytics engine
 
-The full production engine referenced by the Standing Research Protocol, versioned here
-alongside the site it publishes to. Reconciled end-to-end against real OHLC (PHDC) on
-2026-07-09: full `study_runner.py` run completed all 8 stages without error, Step 0 passed
-(CRPS skill +0.124, 18 non-overlapping 5-yr origins), and the QC gate correctly separated
-mechanized checks (PASS) from analyst-authored narrative items (PENDING, with receipts).
+This folder was previously populated with a parallel, generic multi-ticker engine
+(`model_builder.py`, `report_builder.py`, `study_runner.py`, etc.) built in a session this
+one has no visibility into and could not verify against the corrections made to the GBCO
+study (MNT-Halan stake, sourced WACC). To avoid two unreconciled implementations sitting
+side by side, that version was removed on 09-07-2026 and replaced with what is actually
+verified: the exact scripts that built the current GBCO study, plus the standing WACC
+module, both reconciled against the delivered `.docx`/`.xlsx` line by line.
 
-## Files
-- `data_io.py` — OHLC loader (investing.com CSV export format)
-- `factor_library.py` — per-asset-class factor sets (16-factor structure, Appendix A)
-- `mc_v2.py` — the "YZ-HAR" Monte Carlo engine (gap-aware Yang-Zhang width, pooled log-HAR
-  cascade, unit-variance Student-t(5), asset-class-conditional drift)
-- `monte_carlo.py` — the original v1 engine that `mc_v2.py` is a drop-in replacement for
-- `step0_backtest.py` — Step 0 calibration backtest (CRPS skill / Winkler / PIT vs the
-  zero-drift random-walk benchmark)
-- `house_figures.py` — fan chart, distribution figures, touch ladder, PIT histogram, MA-stack
-- `model_builder.py` — 16-sheet Excel model builder (Assumptions-linked, fully wired DCF)
-- `report_builder.py` — Word study skeleton builder (TMPV house structure)
-- `qc_gate.py` — Final QC gate, reads the produced .docx/.xlsx and emits a filled evidence table
-- `study_runner.py` — orchestrator; CLI: `python study_runner.py <ohlc_csv> <TICKER> [out_dir] [shares_mn]`
-- `wacc_builder.py` — bottom-up WACC engine (house rule §3.5-G). Arithmetic only — every input
-  (rf, ERP, beta, Kd, weights) must be sourced by the analyst before calling it; raises on any
-  missing input rather than defaulting. Includes `RegressionBetaAttempt`, a usability gate that
-  rejects unreliable regression betas (n too small, R² too low, SE(beta) exceeding the estimate)
-  so a rejected regression can't quietly get used — falls back to beta=1.0 per house rule instead.
-  Adapted by market type (mature / GCC-pegged / other floating EM / metals-excluded — see the
-  module docstring and `Cost_of_Capital_Reference.md` in project files for the full guidance).
-  Built and reconciled against GBCO (09-07-2026): reproduces WACC 22.94% (CDS-based ERP) /
-  25.08% (rating-based ERP) exactly against the hand-verified figures in that study.
+## What's here now
 
-## Known open item
-Step 0 interval-coverage diagnostics on the PHDC reconciliation run under-covered relative to
-target (50/80/90% targets vs 39/67/78% empirical) despite a passing CRPS skill. Coverage is a
-diagnostic only, not the pass gate, but worth investigating before treating Step 0 passes as
-fully trustworthy at scale.
+- **`mc_v2.py`** — the "YZ-HAR" Monte Carlo engine (gap-aware Yang-Zhang width, pooled
+  log-HAR cascade, unit-variance Student-t(5), asset-class-conditional drift). The version
+  actually used to produce GBCO's Step 0 backtest and §3 Monte Carlo section.
+- **`wacc_builder.py`** — the standing bottom-up WACC engine (house rule §3.5-G). Arithmetic
+  only — every input (rf, ERP, beta, Kd, weights) must be sourced by the analyst before
+  calling it; raises rather than defaulting on anything missing. Includes
+  `RegressionBetaAttempt`, a usability gate that rejects unreliable regression betas (too
+  few observations, R² too low, SE(beta) exceeding the estimate) instead of letting a
+  rejected estimate get used — this is what caught GBCO's own n=5 annual regression
+  (beta=-0.15, R²=0.008) and forced the beta=1.0 fallback. Adapted by market type (mature /
+  GCC-pegged / other floating EM / metals-excluded — see the module docstring and the
+  companion project file `Cost_of_Capital_Reference.md` for the full guidance). Reproduces
+  GBCO's WACC exactly: 22.94% (CDS-based ERP, primary) / 25.08% (rating-based, alternative).
+- **`gbco_study/`** — the exact source that produced `GBCO_Valuation_Study_08-07-2026_public.docx`
+  and `GBCO_Valuation_Model_08072026_public.xlsx` (see that folder's own README). A worked
+  example / template for the next study, not a generic plug-and-play pipeline — every file
+  in it is hardcoded to GBCO's own numbers.
 
 ## Honest boundary
-The runner does not pull financials (Step 2) or author the §1 narrative / three-expert
-appendix — those are the analyst/model layer applied on top of this spine.
+There is no generic `study_runner.py`-style orchestrator here anymore — building the next
+study means following the pattern in `gbco_study/` (Step 0 → §1 fundamental build → DCF →
+SOTP → Monte Carlo → docx/xlsx render → QC gate) adapted to the new ticker's own numbers,
+not running unmodified code against a new CSV. Step 2 (pulling historical financials) and
+the Step 4 expert-appendix authoring happen as research/writing in conversation, not as code.
+
+## Prior state (for the record, not for reuse)
+The removed generic-engine attempt (`model_builder.py`, `report_builder.py`,
+`study_runner.py`, `qc_gate.py`, `step0_backtest.py`, `data_io.py`, `factor_library.py`,
+`house_figures.py`, an earlier `mc_v2.py`/`monte_carlo.py` pair) claimed to have been
+"reconciled end-to-end against real OHLC (PHDC)" with a passing Step 0 run. That claim was
+never independently verified by this session before removal — noted here only so the
+history isn't silently erased, not as a statement that the removal was wrong.

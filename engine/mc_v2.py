@@ -1,180 +1,180 @@
+"""mc_v2.py — Testahil YZ-HAR Monte Carlo engine (v2).
+Width : pooled log-HAR cascade (variance lags 1/5/22) on a gap-aware
+        Yang-Zhang variance proxy (overnight^2 + Rogers-Satchell),
+        projecting the average daily variance over the next H sessions.
+Shape : unit-variance Student-t(5) via a per-path chi-square variance
+        mixture on the Gaussian diffusion (60-day aggregate exactly t5).
+Drift : asset-class-conditional — expanding-window mean daily log-return
+        (secular) when enabled; zero otherwise. No kvol floor.
 """
-Testahil — Monte Carlo engine v2 ("YZ-HAR").
-
-Drop-in for monte_carlo.run: same call signature, same MCResult output, same factor
-semantics. Three changes vs v1, per the Standing Research Protocol:
-
-  WIDTH  — a pooled log-HAR cascade (variance lags 1 / 5 / 22) projecting the AVERAGE daily
-           variance over the next `horizon` sessions, built on a gap-aware Yang-Zhang variance
-           proxy (overnight-return squared + Rogers-Satchell from the OHLC). Regime-conditional
-           by construction: tight in calm tape, wide in storm. The old x1.15 / x1.30 kvol floor
-           is retired (it over-covered and cost CRPS). If no OHLC is supplied, falls back to the
-           flat annualized `realized_vol` passed in (so it is still a valid drop-in).
-
-  SHAPE  — unit-variance Student-t(5) innovations, implemented as a per-PATH chi-square variance
-           mixture on the Gaussian diffusion so the `horizon`-day AGGREGATE is exactly
-           unit-variance t5. (Independent daily t-draws would CLT back to Gaussian and lose the
-           tails; one shared chi-square scale per path preserves the t-structure of the sum.)
-           Tighter interquartile body, honest tails.
-
-  DRIFT  — asset-class-conditional. Secular drift (the expanding-window mean daily log-return of
-           the name's OWN history) is ON for EGX developers (a genuine 5-yr secular uptrend) and
-           OFF (zero) for international names and metals — a confident trend drift breaks at a
-           regime turn. The 16 factors layer on top of this diffusion unchanged, and the §1
-           fundamental value gap never enters the drift (lens independence).
-
-Outputs are identical to v1 (MCResult), so viz.py / ledger_scorer.py / study_runner consume it
-unchanged. `run(...)` accepts the same positional args as monte_carlo.run plus optional keyword
-args (ohlc, asset_class, secular_drift_daily, enable_secular_drift, nu).
-"""
-from __future__ import annotations
-from typing import Optional, Sequence
 import numpy as np
-
-from monte_carlo import MCResult, TRADING_DAYS  # reuse the identical output type
-
-# EGX developers are the only class carrying secular drift (see protocol / factor_library).
-_SECULAR_DRIFT_CLASSES = {"egx_developer"}
+import pandas as pd
 
 
-# --------------------------------------------------------------------------- Yang-Zhang proxy
-def yang_zhang_daily_var(open_, high, low, close) -> np.ndarray:
-    """
-    Gap-aware daily variance proxy = overnight-return^2 + Rogers-Satchell intraday term.
+def load_ohlc(path):
+    df = pd.read_csv(path)
+    df.columns = [c.replace('\ufeff', '').strip() for c in df.columns]
+    df['Date'] = pd.to_datetime(df['Date'], format='%m/%d/%Y')
+    df = df.sort_values('Date').reset_index(drop=True)
+    for c in ['Price', 'Open', 'High', 'Low']:
+        df[c] = pd.to_numeric(df[c].astype(str).str.replace(',', ''), errors='coerce')
+    df = df.dropna(subset=['Price', 'Open', 'High', 'Low']).reset_index(drop=True)
+    return df
 
-    Rogers-Satchell is drift-independent, so the proxy captures both the close-to-open gap and the
-    intraday range without assuming zero drift. Returns a length-(n-1) series (needs prior close).
-    """
-    o = np.asarray(open_, float); h = np.asarray(high, float)
-    l = np.asarray(low, float);   c = np.asarray(close, float)
-    c_prev = c[:-1]
-    o_, h_, l_, c_ = o[1:], h[1:], l[1:], c[1:]
-    overnight = np.log(o_ / c_prev)
-    rs = (np.log(h_ / c_) * np.log(h_ / o_) + np.log(l_ / c_) * np.log(l_ / o_))
+
+def yz_variance_proxy(df):
+    """Gap-aware daily variance proxy: overnight-return^2 + Rogers-Satchell."""
+    o, h, l, c = df['Open'].values, df['High'].values, df['Low'].values, df['Price'].values
+    c_prev = np.roll(c, 1)
+    with np.errstate(divide='ignore', invalid='ignore'):
+        overnight = np.log(o / c_prev)
+        rs = np.log(h / c) * np.log(h / o) + np.log(l / c) * np.log(l / o)
     v = overnight ** 2 + rs
-    return np.clip(v, 1e-8, None)  # positivity for the log-HAR fit
+    v[0] = np.nan
+    v = np.where(v <= 0, np.nan, v)  # guard degenerate bars
+    return pd.Series(v, index=df.index)
 
 
-# --------------------------------------------------------------------------- pooled log-HAR
-def har_project_daily_var(v: np.ndarray, horizon: int = 60):
-    """
-    Pooled log-HAR (variance components 1/5/22) projecting the AVERAGE daily variance over the next
-    `horizon` sessions. Returns (avg_daily_var, beta).
-
-    Uses a DIRECT h-step regression — the target is the realized average daily variance over the
-    next `horizon` days, regressed on today's daily / weekly / monthly log-variance components — so
-    there is no forward iteration to compound bias, and a Jensen correction (+0.5 * residual
-    variance) converts the log-space fit from a median to a mean. Falls back to the sample mean of
-    the proxy when history is too short for the direct fit.
-    """
-    v = np.asarray(v, float)
-    n = len(v)
-    if n < 22 + horizon + 10:
-        return float(np.mean(v)), None
-
-    # HAR components (inclusive of today t): daily = v[t], weekly = mean last 5, monthly = mean 22
-    w = np.array([v[max(0, t - 4):t + 1].mean() for t in range(n)])
-    m = np.array([v[max(0, t - 21):t + 1].mean() for t in range(n)])
-
-    X, Y = [], []
-    for t in range(22, n - horizon):                         # direct h-step target
-        X.append([1.0, np.log(v[t]), np.log(w[t]), np.log(m[t])])
-        Y.append(np.log(v[t + 1:t + 1 + horizon].mean()))
-    X = np.array(X); Y = np.array(Y)
-    beta, *_ = np.linalg.lstsq(X, Y, rcond=None)
-    resid_var = float((Y - X @ beta).var())
-
-    xT = np.array([1.0, np.log(v[-1]), np.log(w[-1]), np.log(m[-1])])
-    avg_daily_var = float(np.exp(xT @ beta + 0.5 * resid_var))  # Jensen: median -> mean
-    return avg_daily_var, beta
+def har_features(v, idx):
+    """log variance averages at lags 1 / 5 / 22 ending at idx (inclusive)."""
+    if idx < 22:
+        return None
+    w = v.iloc[:idx + 1].ffill()
+    v1 = w.iloc[-1]
+    v5 = w.iloc[-5:].mean()
+    v22 = w.iloc[-22:].mean()
+    if not np.all(np.isfinite([v1, v5, v22])) or min(v1, v5, v22) <= 0:
+        return None
+    return np.log([v1, v5, v22])
 
 
-def har_annualized_sigma(open_, high, low, close, horizon: int = 60) -> float:
-    """Convenience: OHLC -> annualized diffusion sigma the HAR projects for the horizon."""
-    v = yang_zhang_daily_var(open_, high, low, close)
-    avg_daily_var, _ = har_project_daily_var(v, horizon)
-    return float(np.sqrt(avg_daily_var * TRADING_DAYS))
+def fit_har(v, end_idx, horizon=60, min_obs=60):
+    """Fit log-HAR: log(mean var over next `horizon` d) ~ log v1,v5,v22.
+    Uses only data up to end_idx (walk-forward safe)."""
+    X, y = [], []
+    vv = v.ffill()
+    for t in range(22, end_idx - horizon):
+        f = har_features(v, t)
+        if f is None:
+            continue
+        fut = vv.iloc[t + 1:t + 1 + horizon]
+        m = fut.mean()
+        if np.isfinite(m) and m > 0:
+            X.append(f)
+            y.append(np.log(m))
+    if len(y) < min_obs:
+        return None
+    X = np.column_stack([np.ones(len(y)), np.array(X)])
+    beta, *_ = np.linalg.lstsq(X, np.array(y), rcond=None)
+    return beta
 
 
-# --------------------------------------------------------------------------- the engine
-def run(
-    anchor: float,
-    realized_vol: float,                 # annualized fallback if `ohlc` is None
-    continuous,                          # list[factor_library.Factor] tier 'C'
-    events,                             # list[factor_library.Factor] tier 'M'/'E'
-    horizon: int = 60,
-    n_paths: int = 50_000,
-    seed: int = 42,
-    vol_floor: float = 0.05,
-    *,
-    ohlc: Optional[dict] = None,         # {'open':..,'high':..,'low':..,'close':..} for YZ-HAR width
-    asset_class: Optional[str] = None,   # drives the secular-drift switch
-    secular_drift_daily: Optional[float] = None,  # explicit override (per-day log-return)
-    enable_secular_drift: Optional[bool] = None,  # override the class default
-    nu: int = 5,                        # Student-t degrees of freedom
-) -> MCResult:
+def har_forecast_daily_var(v, origin_idx, beta, horizon=60):
+    f = har_features(v, origin_idx)
+    if f is None or beta is None:
+        w = v.ffill().iloc[max(0, origin_idx - 251):origin_idx + 1]
+        return float(w.mean())
+    return float(np.exp(beta[0] + beta[1:] @ f))
+
+
+def simulate_terminal(spot, daily_var, horizon, drift_daily=0.0,
+                      n_paths=50000, seed=42, nu=5):
+    """Terminal-price distribution at T+horizon under the YZ-HAR width,
+    unit-variance t(nu) shape (per-path chi-square mixture), given drift."""
     rng = np.random.default_rng(seed)
-
-    # ---- WIDTH: YZ-HAR projected sigma if OHLC given, else flat realized_vol -------------
-    if ohlc is not None:
-        sigma = har_annualized_sigma(ohlc["open"], ohlc["high"], ohlc["low"], ohlc["close"], horizon)
-    else:
-        sigma = float(realized_vol)
-    sigma = max(sigma, vol_floor)
-    daily_var = (sigma ** 2) / TRADING_DAYS
-    daily_sigma = np.sqrt(daily_var)
-
-    # ---- DRIFT: asset-class-conditional secular drift + factor drift ----------------------
-    if enable_secular_drift is None:
-        enable_secular_drift = (asset_class in _SECULAR_DRIFT_CLASSES)
-    if secular_drift_daily is None:
-        if enable_secular_drift and ohlc is not None:
-            c = np.asarray(ohlc["close"], float)
-            secular_drift_daily = float(np.mean(np.diff(np.log(c))))  # expanding-window mean
-        else:
-            secular_drift_daily = 0.0
-    if not enable_secular_drift:
-        secular_drift_daily = 0.0
-
-    net_drift_3m = float(sum((f.drift_3m or 0.0) for f in continuous))
-    factor_daily_drift = np.log1p(net_drift_3m) / horizon
-    daily_drift = secular_drift_daily + factor_daily_drift
-
-    # ---- SHAPE: unit-variance t5 via one shared chi-square scale per path -----------------
-    # base Gaussian sigma s0 chosen so that after the per-path scale g the realized daily
-    # variance equals daily_var:  Var(g * s0 * Z) = (nu/(nu-2)) * s0^2 = daily_var.
-    s0 = daily_sigma * np.sqrt((nu - 2) / nu)
-    Z = rng.standard_normal((n_paths, horizon))
-    W = rng.chisquare(nu, size=n_paths)          # ONE per path -> preserves t5 in the aggregate
-    g = np.sqrt(nu / W)[:, None]
-    # lognormal drift correction uses the realized per-day variance (daily_var)
-    log_incr = (daily_drift - 0.5 * daily_var) + g * s0 * Z
-    log_paths = np.concatenate([np.zeros((n_paths, 1)), np.cumsum(log_incr, axis=1)], axis=1)
-
-    # ---- discrete events: identical semantics to v1 (level shift from a random session) ---
-    for f in events:
-        if not f.prob:
-            continue
-        hit = rng.random(n_paths) < f.prob
-        k = int(hit.sum())
-        if k == 0:
-            continue
-        impacts = rng.normal(f.impact_mean or 0.0, f.impact_spread or 0.0, size=k)
-        days = rng.integers(1, horizon + 1, size=k)
-        log_impacts = np.log1p(np.clip(impacts, -0.95, None))
-        idx = np.where(hit)[0]
-        for j, p_idx in enumerate(idx):
-            log_paths[p_idx, days[j]:] += log_impacts[j]
-
-    paths = anchor * np.exp(log_paths)
-    dlr = np.diff(np.log(paths), axis=1)
-    ann_path_vol = float(dlr.std() * np.sqrt(TRADING_DAYS))
-
-    return MCResult(anchor, horizon, n_paths, seed, paths, sigma, ann_path_vol, net_drift_3m)
+    sigma_h = np.sqrt(daily_var * horizon)
+    z = rng.standard_normal(n_paths)
+    chi = rng.chisquare(nu, n_paths)
+    mix = np.sqrt((nu - 2) / chi)          # unit-variance t(nu) multiplier
+    shocks = z * mix * sigma_h
+    logret = drift_daily * horizon + shocks
+    return spot * np.exp(logret)
 
 
-def expected_factor_contribution(continuous, events) -> float:
-    """Net expected 3M contribution = sum(C drifts) + sum(prob*impact_mean). Same as v1."""
-    c = sum((f.drift_3m or 0.0) for f in continuous)
-    e = sum((f.prob or 0.0) * (f.impact_mean or 0.0) for f in events)
-    return c + e
+def simulate_paths(spot, daily_var, horizon, drift_daily=0.0,
+                   n_paths=50000, seed=42, nu=5):
+    """Full path array (n_paths, horizon+1) for fan charts / touch ladders."""
+    rng = np.random.default_rng(seed)
+    sd = np.sqrt(daily_var)
+    z = rng.standard_normal((n_paths, horizon))
+    chi = rng.chisquare(nu, n_paths)
+    mix = np.sqrt((nu - 2) / chi)[:, None]
+    incr = drift_daily + z * mix * sd
+    logp = np.cumsum(incr, axis=1)
+    paths = np.empty((n_paths, horizon + 1))
+    paths[:, 0] = spot
+    paths[:, 1:] = spot * np.exp(logp)
+    return paths
+
+
+def crps_sample(samples, y):
+    """Sample CRPS: E|X−y| − 0.5·E|X−X'| (unbiased pairwise form)."""
+    s = np.sort(np.asarray(samples, dtype=float))
+    n = len(s)
+    t1 = np.mean(np.abs(s - y))
+    i = np.arange(1, n + 1)
+    t2 = 2.0 / (n * n) * np.sum((2 * i - n - 1) * s)
+    return t1 - 0.5 * t2
+
+
+def winkler(lo, hi, y, alpha=0.10):
+    w = hi - lo
+    if y < lo:
+        w += 2.0 / alpha * (lo - y)
+    elif y > hi:
+        w += 2.0 / alpha * (y - hi)
+    return w
+
+
+def trailing_cc_vol(close, idx, window=252):
+    lr = np.diff(np.log(close[max(0, idx - window):idx + 1]))
+    return float(np.std(lr, ddof=1))
+
+
+def backtest(df, horizon=60, step=None, secular_drift=False,
+             n_paths=8000, seed=42, min_history=260):
+    """Walk-forward Step 0 backtest. Non-overlapping when step=horizon."""
+    if step is None:
+        step = horizon
+    v = yz_variance_proxy(df)
+    close = df['Price'].values
+    n = len(df)
+    rows = []
+    origin = min_history
+    while origin + horizon < n:
+        beta = fit_har(v, origin, horizon=horizon)
+        dv = har_forecast_daily_var(v, origin, beta, horizon=horizon)
+        spot = close[origin]
+        drift = 0.0
+        if secular_drift:
+            lr = np.diff(np.log(close[:origin + 1]))
+            drift = float(np.mean(lr))
+        samp = simulate_terminal(spot, dv, horizon, drift_daily=drift,
+                                 n_paths=n_paths, seed=seed + origin)
+        y = close[origin + horizon]
+        # benchmark: zero-drift lognormal random walk, trailing cc vol
+        sig_b = trailing_cc_vol(close, origin)
+        rngb = np.random.default_rng(seed + origin + 1)
+        bench = spot * np.exp(sig_b * np.sqrt(horizon) * rngb.standard_normal(n_paths))
+        q = np.percentile(samp, [5, 10, 25, 50, 75, 90, 95])
+        qb = np.percentile(bench, [5, 95])
+        pit = float(np.mean(samp <= y))
+        rows.append(dict(
+            origin=df['Date'].iloc[origin], spot=spot, realized=y,
+            crps=crps_sample(samp, y), crps_bench=crps_sample(bench, y),
+            wink=winkler(q[0], q[6], y), wink_bench=winkler(qb[0], qb[1], y),
+            pit=pit,
+            in50=q[2] <= y <= q[4], in80=q[1] <= y <= q[5], in90=q[0] <= y <= q[6],
+            p5=q[0], p25=q[2], p50=q[3], p75=q[4], p95=q[6],
+            anchor_vol=np.sqrt(dv * 252), drift_daily=drift,
+        ))
+        origin += step
+    r = pd.DataFrame(rows)
+    if len(r) == 0:
+        return r, {}
+    skill = 1 - r['crps'].sum() / r['crps_bench'].sum()
+    iskill = 1 - r['wink'].sum() / r['wink_bench'].sum()
+    summary = dict(n=len(r), crps_skill=skill, interval_skill=iskill,
+                   cov50=r['in50'].mean(), cov80=r['in80'].mean(),
+                   cov90=r['in90'].mean(), pit_mean=r['pit'].mean())
+    return r, summary
