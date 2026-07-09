@@ -19,6 +19,15 @@ mechanized checks (PASS) from analyst-authored narrative items (PENDING, with re
 - `report_builder.py` — Word study skeleton builder (TMPV house structure)
 - `qc_gate.py` — Final QC gate, reads the produced .docx/.xlsx and emits a filled evidence table
 - `study_runner.py` — orchestrator; CLI: `python study_runner.py <ohlc_csv> <TICKER> [out_dir] [shares_mn]`
+- `wacc_builder.py` — bottom-up WACC engine (house rule §3.5-G). Arithmetic only — every input
+  (rf, ERP, beta, Kd, weights) must be sourced by the analyst before calling it; raises on any
+  missing input rather than defaulting. Includes `RegressionBetaAttempt`, a usability gate that
+  rejects unreliable regression betas (n too small, R² too low, SE(beta) exceeding the estimate)
+  so a rejected regression can't quietly get used — falls back to beta=1.0 per house rule instead.
+  Adapted by market type (mature / GCC-pegged / other floating EM / metals-excluded — see the
+  module docstring and `Cost_of_Capital_Reference.md` in project files for the full guidance).
+  Built and reconciled against GBCO (09-07-2026): reproduces WACC 22.94% (CDS-based ERP) /
+  25.08% (rating-based ERP) exactly against the hand-verified figures in that study.
 
 ## Known open item
 Step 0 interval-coverage diagnostics on the PHDC reconciliation run under-covered relative to
