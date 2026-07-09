@@ -2,7 +2,7 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-07-09", latest: "RIBL" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
+const SITE = { updated: "2026-07-09", latest: "STC" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
@@ -1141,6 +1141,34 @@ const TICKERS = {
       pdf:   "files/Al_Rajhi_Valuation_Study_02-07-2026_public.pdf?v=0207a"
     }
   },
+  STC: {
+    name: "stc Group (Saudi Telecom)",
+    nameAr: "شركة الاتصالات السعودية",
+    code: "TADAWUL:7010",
+    spot: 43.58,
+    spotDate: "close 07 Jul 2026",
+    ccy: "SAR",
+    fair: { bear: 36.2, base: 47.11, full: 59.1 },      // 09 Jul 2026 — weighted central 47.11 (+8.1% vs spot 43.58). Four lenses: FCFF DCF (primary, 35%) 50.12, DDM (25%) 45.88, relative EV/EBITDA (20%) 47.21, normalized earnings power (20%) 43.29. bear/full = weighted bear/bull of the football field. Swing factors: 5G/FTTH capex intensity vs. the dividend-cover math (FCF/dividend ~0.93x at the base FY26E 16.5%-of-revenue capex plan, tightening to ~0.86x at the top of guidance), the KSA consumer (CBU) ARPU/data-monetization path, and whether the international-subsidiary drag keeps fading.
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:40.79, p25:42.61, p50:43.69, p75:44.80, p95:46.81, resolve:"2026-08-04" },
+      t60: { label:"3 months (T+60)", p5:39.00, p25:42.03, p50:43.91, p75:45.85, p95:49.51, resolve:"2026-09-29" }
+    },
+    touch: [ /* descending high -> low; P(touch) T+20 %, T+60 % */
+      [50.00, 1, 7], [48.00, 3, 16], [46.00, 15, 41], [44.00, 71, 85], [42.00, 26, 48], [40.00, 4, 16], [38.00, 1, 5], [36.00, 0, 2]
+    ],
+    levels: { res:[43.93, 44.88, 45.38], sup:[43.30, 42.46, 40.20] },
+    tech: {
+      trend: "Tightly bunched moving-average stack just below the 20-day — a quiet, consolidating tape after a slow multi-month grind higher; RSI near neutral",
+      summary: "The tape is unusually quiet. stc sits at SAR 43.58, just below its 20-day average (43.93) but above its 50-day (43.56), 200-day (43.41) and 100-day (43.25) — the four averages sit within about SAR 0.7 of each other, a classic low-volatility coil. RSI(14) at ~48 is neutral, and the MACD histogram is mildly negative (-0.086) on a soft bearish cross, consistent with the 20-day change (-1.3%) fading a 60-day gain (+3.8%). Realized 252-day volatility of ~13% is low even by telecom standards — among the calmest names on the site. Price sits in the upper-middle of a 52-week band of SAR 40.20-45.38.",
+      bull: "A daily close back above the SAR 43.93 twenty-day average would reopen the SAR 44.88 recent swing high (17 Jun), then the SAR 45.38 fifty-two-week high.",
+      bear: "A daily close below the SAR 43.30 recent higher-low (7 Jun) opens the SAR 42.46 April low; beneath it the fifty-two-week low at SAR 40.20 comes into view."
+    },
+    files: {
+      study: "files/STC_Valuation_Study_09-07-2026_public.docx?v=0709a",
+      model: "files/STC_Valuation_Model_09072026_public.xlsx?v=0709a",
+      pdf:   "files/STC_Valuation_Study_09-07-2026_public.pdf?v=0709a"
+    }
+  },
   RIBL: {
     name: "Riyad Bank",
     nameAr: "مصرف الرياض",
@@ -1632,6 +1660,31 @@ const LEDGER = [
     note:"Beats the zero-drift random-walk benchmark on CRPS skill (+0.36%, n=18 non-overlapping 60-day windows) with PIT mean 0.464 — passes calibration, but marginally on a thin sample (below the ~20-window 'decent validation' bar), a property of RIBL's ~5-year listed history. Zero drift (GCC-pegged bank, per house rule).",
     p5:16.95, p25:18.97, p50:20.22, p75:21.57, p95:24.19,
     touch:{ "+5":55, "+10":29, "+15":15, "+20":7, "-5":54, "-10":25 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  // ---- STC · equity (TADAWUL Saudi Arabia) · cycle 1 (09 Jul 2026 published study; MC PASSES benchmark, zero drift) ----
+  {
+    instrument:"STC", asset_class:"other",
+    anchor_date:"2026-07-07", anchor_price:43.58, ccy:"SAR",
+    horizon_label:"T+20", grade_date:"2026-08-04", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.151, horizon_days:20,
+    note:"Beats the zero-drift random-walk benchmark on CRPS skill (+0.63%, n=18 non-overlapping 60-day windows) with PIT mean 0.499 — passes calibration (bootstrap 90% CI [-1.1%, +2.8%], P(skill>0)~71%). Zero drift (non-EGX international name, per house rule); the EGX-style secular-drift scheme was tested and failed (CRPS skill -4.8%), confirming zero drift is the right adopted scheme for this name.",
+    p5:40.79, p25:42.61, p50:43.69, p75:44.80, p95:46.81,
+    touch:{ "+5":19, "+10":3, "+15":1, "+20":0, "-5":15, "-10":2 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"STC", asset_class:"other",
+    anchor_date:"2026-07-07", anchor_price:43.58, ccy:"SAR",
+    horizon_label:"T+60", grade_date:"2026-09-29", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.151, horizon_days:60,
+    note:"Beats the zero-drift random-walk benchmark on CRPS skill (+0.63%, n=18 non-overlapping 60-day windows) with PIT mean 0.499 — passes calibration (bootstrap 90% CI [-1.1%, +2.8%], P(skill>0)~71%). Zero drift (non-EGX international name, per house rule); the EGX-style secular-drift scheme was tested and failed (CRPS skill -4.8%), confirming zero drift is the right adopted scheme for this name.",
+    p5:39.00, p25:42.03, p50:43.91, p75:45.85, p95:49.51,
+    touch:{ "+5":44, "+10":17, "+15":6, "+20":2, "-5":35, "-10":11 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
