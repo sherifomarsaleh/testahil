@@ -2,7 +2,7 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-07-08", latest: "AGTHIA" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
+const SITE = { updated: "2026-07-09", latest: "RIBL" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
@@ -1141,6 +1141,34 @@ const TICKERS = {
       pdf:   "files/Al_Rajhi_Valuation_Study_02-07-2026_public.pdf?v=0207a"
     }
   },
+  RIBL: {
+    name: "Riyad Bank",
+    nameAr: "مصرف الرياض",
+    code: "TADAWUL:1010",
+    spot: 20.23,
+    spotDate: "close 07 Jul 2026",
+    ccy: "SAR",
+    fair: { bear: 20.85, base: 26.61, full: 33.24 },      // 09 Jul 2026 — weighted central 26.61 (+31.5% vs spot 20.23). Lenses: DDM (primary, 30%) 23.62, residual income (multi-period build, 20%) 33.24, FCFE (equity DCF, 15%) 32.18, relative multiples (20%) 24.62, normalized earnings power (15%) 20.85. bear/full = normalized floor / residual-income ceiling. Swing factors: the NIM path through the SAMA/Fed easing cycle and whether Riyad Bank's ~16% ROE persists (excess-return lenses) or fades toward the ~10.3% cost of equity (the market's implied ~1.2x book read).
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:18.27, p25:19.49, p50:20.22, p75:20.99, p95:22.43, resolve:"2026-08-04" },
+      t60: { label:"3 months (T+60)", p5:16.95, p25:18.97, p50:20.22, p75:21.57, p95:24.19, resolve:"2026-09-29" }
+    },
+    touch: [ /* descending high -> low */
+      [23.26, 3, 15], [22.25, 10, 29], [21.24, 32, 55], [19.22, 30, 54], [18.21, 8, 25], [17.20, 2, 11]
+    ],
+    levels: { res:[20.99, 20.59, 20.49], sup:[19.49, 19.14, 18.21] },
+    tech: {
+      trend: "Below all four major moving averages; RSI in the high-20s (oversold) — a soft, range-bound tape, not a breakdown",
+      summary: "The tape is soft and oversold, not washed out. Riyad Bank sits below its 20-day (SAR 20.49), 50-day (20.59), 100-day (20.99) and 200-day (20.54) averages. RSI(14) near 27 is oversold (sub-30), and MACD is mildly negative with the histogram below zero. Price sits in the lower third of a tight 52-week band of SAR 19.14-22.35; realized 60-day volatility near 16% is calm for a single name, and the YZ-HAR engine reads the current regime at ~23%.",
+      bull: "A daily close back above the SAR 20.5-21.0 moving-average cluster would signal the soft patch is over; reclaiming the 52-week high near SAR 22.35 would need a margin-resilience or dividend surprise.",
+      bear: "A daily close below recent support around SAR 19.5 opens the lower band toward the 52-week low at SAR 19.14."
+    },
+    files: {
+      study: "files/RIBL_Valuation_Study_09-07-2026_public.docx?v=0709d",
+      model: "files/RIBL_Valuation_Model_09072026_public.xlsx?v=0709d",
+      pdf:   "files/RIBL_Valuation_Study_09-07-2026_public.pdf?v=0709d"
+    }
+  },
   SNB: {
     name: "The Saudi National Bank",
     nameAr: "البنك الأهلي السعودي",
@@ -1579,6 +1607,31 @@ const LEDGER = [
     note:"Beats the zero-drift random-walk benchmark on CRPS skill (+0.032 non-overlapping, +0.096 monthly origins) with a roughly uniform PIT — passes calibration with the EGX secular drift ON (zero drift failed; first EGX non-developer with the drift, adopted empirically). See study Appendix B.",
     p5:23.97, p25:30.62, p50:34.98, p75:40.13, p95:51.08,
     touch:{ "+5":87, "+10":76, "+15":64, "+20":53, "-5":59, "-10":38 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  // ---- RIBL · other (TADAWUL Saudi Arabia) · cycle 1 (09 Jul 2026 published study; MC PASSES benchmark marginally, zero drift) ----
+  {
+    instrument:"RIBL", asset_class:"other",
+    anchor_date:"2026-07-07", anchor_price:20.23, ccy:"SAR",
+    horizon_label:"T+20", grade_date:"2026-08-04", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.233, horizon_days:20,
+    note:"Beats the zero-drift random-walk benchmark on CRPS skill (+0.36%, n=18 non-overlapping 60-day windows) with PIT mean 0.464 — passes calibration, but marginally on a thin sample (below the ~20-window 'decent validation' bar), a property of RIBL's ~5-year listed history. Zero drift (GCC-pegged bank, per house rule).",
+    p5:18.27, p25:19.49, p50:20.22, p75:20.99, p95:22.43,
+    touch:{ "+5":32, "+10":10, "+15":3, "+20":1, "-5":30, "-10":8 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"RIBL", asset_class:"other",
+    anchor_date:"2026-07-07", anchor_price:20.23, ccy:"SAR",
+    horizon_label:"T+60", grade_date:"2026-09-29", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.233, horizon_days:60,
+    note:"Beats the zero-drift random-walk benchmark on CRPS skill (+0.36%, n=18 non-overlapping 60-day windows) with PIT mean 0.464 — passes calibration, but marginally on a thin sample (below the ~20-window 'decent validation' bar), a property of RIBL's ~5-year listed history. Zero drift (GCC-pegged bank, per house rule).",
+    p5:16.95, p25:18.97, p50:20.22, p75:21.57, p95:24.19,
+    touch:{ "+5":55, "+10":29, "+15":15, "+20":7, "-5":54, "-10":25 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
