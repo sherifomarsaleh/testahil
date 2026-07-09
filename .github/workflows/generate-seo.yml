@@ -17,7 +17,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: generate-seo
+  group: site-auto-commit
   cancel-in-progress: false
 
 jobs:
