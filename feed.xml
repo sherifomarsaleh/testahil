@@ -6,7 +6,23 @@
     <atom:link href="https://testahil.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>دراسات تقييم تعليمية مستقلة لأسهم البورصة المصرية — توزيعات احتمالية، وليست توصيات. Educational EGX valuation studies — distributions, not tips.</description>
     <language>ar</language>
-    <lastBuildDate>Wed, 08 Jul 2026 08:30:00 +0300</lastBuildDate>
+    <lastBuildDate>Thu, 09 Jul 2026 08:30:00 +0300</lastBuildDate>
+
+    <item>
+      <title>مصرف الرياض (RIBL): دراسة تقييم — هل يستحق السهم؟</title>
+      <link>https://testahil.com/ar/ribl.html</link>
+      <guid isPermaLink="true">https://testahil.com/ar/ribl.html</guid>
+      <description>السعر 20.23 · الوسيط (٣ شهور) 20.22 · النطاق 16.95–24.19 جنيه — تحليل تعليمي، توزيع وليس توصية.</description>
+      <pubDate>Thu, 09 Jul 2026 08:30:00 +0300</pubDate>
+    </item>
+
+    <item>
+      <title>Riyad Bank (RIBL): Valuation Study — is it worth it?</title>
+      <link>https://testahil.com/ribl.html</link>
+      <guid isPermaLink="true">https://testahil.com/ribl.html</guid>
+      <description>Latest 20.23 · 3-month median 20.22 · range 16.95–24.19 EGP — educational analysis, a distribution not a recommendation.</description>
+      <pubDate>Thu, 09 Jul 2026 08:30:00 +0300</pubDate>
+    </item>
 
     <item>
       <title>جي بي كورب (غبور) (GBCO): دراسة تقييم — هل يستحق السهم؟</title>
