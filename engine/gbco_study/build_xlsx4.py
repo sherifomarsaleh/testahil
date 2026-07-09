@@ -61,8 +61,9 @@ r += 1  # blank spacer row (row 18)
 put(ws, f'A{r}',
     "The market-implied read is now a genuine puzzle, not a sanity check: mkt cap − lender − associates at the "
     "confirmed 41.61% stake implies a NEGATIVE value for the Auto leg (≈ −EGP 3.6bn) — impossible for a real, "
-    "profitable business. MNT-Halan alone is ≈82% of GB Corp's market cap. Either the market discounts this "
-    "private mark far more steeply than this study's 10%, or GB Corp is meaningfully mispriced (see the study's §7).",
+    "profitable business. MNT-Halan alone is ≈82% of GB Corp's market cap pre-discount (≈73% after this study's "
+    "10% complexity discount). Either the market discounts this private mark far more steeply than this study's "
+    "10%, or GB Corp is meaningfully mispriced (see the study's §7).",
     SUB, None)
 r += 1  # no blank spacer here — the stake-sensitivity header sits immediately below (row 20)
 put(ws, f'A{r}', 'MNT-Halan stake sensitivity — now largely resolved: 41.61% is a confirmed, dated figure (9-Jun-2026)', BLACK, None, True, FILL_H)
