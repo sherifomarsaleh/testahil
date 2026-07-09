@@ -13,6 +13,10 @@ fundamental build → DCF → SOTP → Monte Carlo → docx/xlsx render → QC g
 these files unmodified against a new ticker.
 
 ## Files, in the order they run
+0. `GB_AUTO_Stock_Price_History.csv` — the raw daily OHLC input (3 Jan 2021 → 7 Jul 2026,
+   1,334 rows, spot 31.25 on the last row). Everything downstream depends on this; it was
+   never saved anywhere before 09-07-2026 and would have been unrecoverable if the working
+   sandbox had been discarded.
 1. `compute.py` — the master computation: Step 0 backtest, MC engine call, DCF, SOTP,
    relative/normalized lenses, expert panel figures, sensitivity grids. Writes
    `study_numbers.json`, the single source of truth every other script reads from.
@@ -25,6 +29,12 @@ these files unmodified against a new ticker.
 4. `build_xlsx.py` → `build_xlsx4.py` — the 16-sheet Excel model, built in four passes
    (Assumptions/READ FIRST → Segments/DCF → IS/BS/CF → SOTP/Summary/Sensitivity/etc.),
    each script loading and re-saving the same `.xlsx`.
+
+## Data files also included
+- `study_numbers.json` — the actual computed output `compute.py` produced for the
+  delivered study (saved directly, not just left to be regenerated, in case any future
+  library-version drift in numpy/mc_v2 ever produces a slightly different result on rerun).
+- `backtest_rows.csv` — the 17 Step 0 non-overlapping backtest origins/results.
 
 ## Dependency on the parent `engine/` folder
 `compute.py` imports `mc_v2` and `wacc_builder` as sibling modules — both actually live
