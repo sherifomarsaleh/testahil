@@ -11,7 +11,7 @@
 <link rel="icon" type="image/png" href="favicon.png?v=2">
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
 <script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('#theme-toggle');if(!b)return;var dark=document.documentElement.getAttribute('data-theme')==='dark';var n=dark?'light':'dark';if(n==='dark'){document.documentElement.setAttribute('data-theme','dark');}else{document.documentElement.removeAttribute('data-theme');}try{localStorage.setItem('theme',n);}catch(e){}b.setAttribute('aria-pressed',String(n==='dark'));});document.addEventListener('DOMContentLoaded',function(){var x=document.getElementById('theme-toggle');if(x)x.setAttribute('aria-pressed',String(document.documentElement.getAttribute('data-theme')==='dark'));});})();</script>
-<link rel="stylesheet" href="assets/style.css?v=20260710a">
+<link rel="stylesheet" href="assets/style.css?v=20260710b">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="testahil?">
 <meta property="og:title" content="Industries Qatar (IQCD) — is it worth it? | testahil?">
@@ -606,8 +606,8 @@
             // include the ref lines (support / resistance) in the SAME collision-avoidance pass
             if(typeof SUPPORT!=="undefined") rows.push({y:yToPx(SUPPORT),col:"var(--red)",med:false,lbl:"support "+(typeof fmtAxis==="function"?fmtAxis(SUPPORT):(typeof fmtN==="function"?fmtN(SUPPORT):(typeof fmt==="function"?fmt(SUPPORT).replace(/^[^0-9\-]+/,""):Math.round(SUPPORT).toLocaleString("en-US")))),ref:true});
             if(typeof CONSENSUS!=="undefined") rows.push({y:yToPx(CONSENSUS),col:"var(--amber-text)",med:false,lbl:"resistance "+(typeof fmtAxis==="function"?fmtAxis(CONSENSUS):(typeof fmtN==="function"?fmtN(CONSENSUS):(typeof fmt==="function"?fmt(CONSENSUS).replace(/^[^0-9\-]+/,""):Math.round(CONSENSUS).toLocaleString("en-US")))),ref:true});
-            if(typeof FLOOR!=="undefined") rows.push({y:yToPx(FLOOR),col:"var(--red)",med:false,lbl:"support "+fmtN(FLOOR),ref:true});
-            if(typeof TARGET!=="undefined") rows.push({y:yToPx(TARGET),col:"var(--amber-text)",med:false,lbl:"resistance "+fmtN(TARGET),ref:true});
+            if(typeof FLOOR!=="undefined") rows.push({y:yToPx(FLOOR),col:"var(--red)",med:false,lbl:"support "+(typeof fmt==="function"?fmt(FLOOR).replace(/^[^0-9\-]+/,""):FLOOR.toFixed(2)),ref:true});
+            if(typeof TARGET!=="undefined") rows.push({y:yToPx(TARGET),col:"var(--amber-text)",med:false,lbl:"resistance "+(typeof fmt==="function"?fmt(TARGET).replace(/^[^0-9\-]+/,""):TARGET.toFixed(2)),ref:true});
             rows.sort(function(a,b){return a.y-b.y;});
             var minGap=11;
             for(var i=1;i<rows.length;i++){ if(rows[i].y-rows[i-1].y<minGap) rows[i].y=rows[i-1].y+minGap; }
@@ -853,7 +853,7 @@
   </div>
 </div>
 
-<script src="assets/data.js?v=20260710a"></script><script src="assets/app.js?v=20260710a"></script>
+<script src="assets/data.js?v=20260710b"></script><script src="assets/app.js?v=20260710b"></script>
 <script>
 const T=TICKERS.IQCD;
 document.getElementById("upd").textContent=SITE.updated;
