@@ -147,8 +147,18 @@ SAUDI = MarketProfile(
 USA = MarketProfile("US", "United States", FED_SCHEDULE, 0.0363,
     "UST 10Y 4.58% (tradingeconomics 8-Jul-2026, cached CoC-Reference); use 3M bill 3.71% "
     "(investing.com 10-Jul-2026) for the 60d carry at publish.",
-    "mom_12_1", +1, 0.05, True, nu=None,
-    notes="Mature-market momentum prior (JT 12-1).")
+    "mom_12_1", +1, 0.05, False, nu=12.0, width_cal=1.014,
+    fit_meta=("Fitted 10-Jul-2026 on the 3-name US panel (AAPL/NVDA/TSLA, 54 windows, "
+              "2021-2026): nu=12, cal=1.014 - thin tails like metals, far from EGX. "
+              "SIGNAL ABLATION on this panel: carry-only (+0.012 CI[-0.006,+0.017]) "
+              "marginally beats the mom_12_1 prior ON (+0.010 CI[-0.013,+0.019]) -> "
+              "fallback rule applies, signal_active=False; the JT prior is retained "
+              "for re-estimation at ~5 names. Panel verdict PARITY. Per-name "
+              "(carry-only LONO, robust blocks): AAPL PARITY -0.002 (was BOUNDARY "
+              "with the signal ON - the momentum prior was hurting it), NVDA PARITY "
+              "+0.002, TSLA PARITY +0.015."),
+    notes="Mature-market momentum prior (JT 12-1) - ablated OFF on the first panel; "
+          "re-estimate as the panel grows.")
 UK = MarketProfile("GB", "United Kingdom", [("2020-01-01", 0.0400)], 0.0400,
     "PLACEHOLDER — source gilt/3M at first UK study.", "mom_12_1", +1, 0.05, True,
     notes="Strong UK momentum literature.")
