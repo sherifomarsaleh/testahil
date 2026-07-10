@@ -200,9 +200,12 @@ UAE = MarketProfile("AE", "UAE (ADX/DFM)", FED_SCHEDULE, 0.0365,
               "ALDAR -0.007 (its ledger PASS+1.8% was old zero-drift benchmark; PARITY here), "
               "ADNOCGAS +0.028, AGTHIA -0.004 (supersedes its old skill<0 FAILED banner -> "
               "PARITY), IHC -0.095 (boundary, NOT robust FAIL; liquidity screen advised). "
-              "ALPHADHABI is a 10th UAE name; its panel (AE_ALPHADHABI_60d.csv) is kept for "
-              "the next re-fit, but one new name does not force one under the standing ~2-name "
-              "threshold -- this 9-name fit stays production. The pre-10-Jul UAE studies "
+              "ALPHADHABI folded in as a 10th panel name (its OHLC supplied 10-Jul): the 10-name "
+              "MLE CONFIRMS the fit at nu=4, scale=1.110 -> cal=1.077 (135 windows); production "
+              "width_cal held at 1.070 for continuity with the ADCB publish -- the 0.7% "
+              "difference is immaterial to any band. ALPHADHABI is PARITY under the fitted "
+              "profile (+0.007, CI spans zero), superseding its provisional 1-name Gaussian "
+              "self-fit. The pre-10-Jul UAE studies "
               "(incl. ALPHADHABI) were published on other fits; their §3 distributions are "
               "superseded -- re-render on next cycle."),
     breaks=["2022-01-01"], notes="Workweek switch Jan-2022: vol pool post-2022 only.")
