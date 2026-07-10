@@ -174,8 +174,22 @@ UAE = MarketProfile("AE", "UAE (ADX/DFM)", [("2020-01-01", 0.0450)], 0.0450,
     "Signal off until 5-name panel estimated (FAB/ENBD/EMAAR/ADNOCGAS/IHC available). "
     "IHC needs liquidity screen.")
 INDIA = MarketProfile("IN", "India (NSE)", [("2020-01-01", 0.0650)], 0.0650,
-    "PLACEHOLDER — source 10Y G-Sec at first IN study.", "mom_12_1", +1, 0.07, True,
-    notes="Robust Indian momentum evidence.")
+    "PLACEHOLDER — source 10Y G-Sec at first IN study.", "mom_12_1", +1, 0.07, False,
+    nu=250.0, width_cal=0.930,
+    fit_meta=("Fitted 10-Jul-2026 on the 3-name IN panel (TMPV/RELIANCE/INFY, 51 "
+              "windows, 2021-2026): MLE selected the Gaussian limit (nu=250 encodes "
+              "normal), cal=0.930 - thin tails, cone ~7% wide. SIGNAL ABLATION is "
+              "DECISIVE: the mom_12_1 prior HURTS (panel -0.018 ON vs +0.002 "
+              "carry-only) despite India's strong momentum literature -> fallback "
+              "rule, signal_active=False; re-estimate at ~5 names. Panel verdict "
+              "PARITY +0.002 CI[-0.007,+0.016]. Per-name (carry-only LONO, robust "
+              "blocks): TMPV PARITY -0.009, RELIANCE PARITY +0.006, INFY PARITY "
+              "+0.004 - all robust. NB the backtest carry schedule is a flat 6.50% "
+              "placeholder (RBI repo actually 4.00->6.50->~5.50 over the window) - "
+              "gate-neutral for skill, but source the real schedule + live G-Sec "
+              "before any IN publish."),
+    notes="Robust Indian momentum evidence in the literature - but ablated OFF on "
+          "the first panel; re-estimate as the panel grows.")
 QATAR = MarketProfile("QA", "Qatar (QE)",
     carry_schedule=[
         ("2020-01-01", 0.0100), ("2022-03-17", 0.0125), ("2022-05-05", 0.0175),
