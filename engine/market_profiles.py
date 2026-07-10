@@ -183,14 +183,18 @@ QATAR = MarketProfile("QA", "Qatar (QE)",
                     "construction). FLAG per no-UST-shortcut rule: source a real QAR "
                     "sovereign/T-bill yield before any Qatar publish."),
     signal_type="rev_1m", signal_sign=-1, ic=0.06, signal_active=False,
-    nu=250.0, width_cal=0.916,
-    fit_meta=("PROVISIONAL single-name self-fit 10-Jul-2026 (QGTS only, 18 windows): "
-              "MLE selected the Gaussian limit (nu=250 encodes normal; mc_v3 treats "
-              "nu>200 as Gaussian) with cal=0.916 - a pegged low-vol utility, thin "
-              "tails, cone slightly wide. QGTS re-scores PARITY -0.011 "
-              "CI[-0.037,+0.005] under its own fit (was FAIL under the borrowed "
-              "EG-archetype nu=4/cal=1.0 - the fabricated-FAIL pattern the standing "
-              "rule exists for). Refit at 2+ QA names (QNB/IQCD OHLC queued)."),
+    nu=12.0, width_cal=0.972,
+    fit_meta=("Fitted 10-Jul-2026 on the 3-name QA panel (QGTS/QNB/IQCD, 54 windows, "
+              "2021-2026) - REPLACES the provisional QGTS-only self-fit (Gaussian/"
+              "0.916). nu=12, cal=0.972: thin-tailed pegged market, cone near-"
+              "unbiased. Panel verdict PARITY -0.010 CI[-0.017,+0.001] - on low-vol "
+              "Qatari mega-caps the HAR cascade adds ~nothing over trailing vol. "
+              "Per-name (LONO, robust-verdict blocks {2,3,4}): QGTS PARITY -0.012 "
+              "(robust; its old FAIL confirmed as the borrowed-config artifact), "
+              "QNB PARITY -0.005 (robust), IQCD FAIL -0.018 (ROBUST across all "
+              "blocks - a genuine name-level FAIL under own-market config, the "
+              "first; HAR width underperforms plain trailing vol on this name; "
+              "banner decision = separately-initiated publish step)."),
     notes="Thin literature: carry-only until a ~5-name Qatar panel exists.")
 
 METALS = MarketProfile("XAU", "Metals (Gold/Silver, USD)", FED_SCHEDULE, 0.0363,
