@@ -15,6 +15,25 @@ GATE-NEUTRAL by construction (engine and benchmark carry the same anchor, so
 the CRPS/pinball/interval skill difference is unaffected by the level).
 Live-forecast anchors must be freshly sourced per Cost_of_Capital_Reference.md
 staleness rules before any publish.
+
+STANDING PER-MARKET FIT RULE (user, 10-Jul-2026 — "every market is different"):
+every market Testahil operates in carries its OWN fitted (nu, width_cal) from
+its OWN pooled panel — never a borrowed archetype presented as final. A new
+market's FIRST action is fitting its own shape/width on its first covered
+names' panel; until that fit exists, any borrowed config is FLAGGED and no
+name-level FAIL under a borrowed config is treated as real (borrowed configs
+fabricate FAILs — QGTS under Egypt's devaluation-fat nu=4 is the canonical
+case; PARITY under its own Gaussian/0.92 fit). Single-name fits are
+PROVISIONAL until the panel reaches 2+ names; refits follow the panel-growth
+cadence (~2+ new names or ~1yr new windows) with the outlier-triggered
+immediate-review exception. backtest_v3 resolves nu/width_cal from the
+profile automatically when not passed explicitly.
+
+ROBUST-VERDICT RULE (10-Jul-2026): a name-level FAIL requires the bootstrap
+CI to sit entirely below zero ROBUSTLY across block sizes {2,3,4} (10k draws,
+50k paths). A verdict that flips sign with the block choice is BOUNDARY ->
+recorded as PARITY with a flag, reviewed at the name's next live grade.
+(ALINMA is the current boundary case.)
 """
 from dataclasses import dataclass, field
 from typing import Optional, List, Tuple
@@ -35,6 +54,8 @@ class MarketProfile:
     ic: float                        # information-coefficient prior
     signal_active: bool              # False -> carry-only (fallback rule)
     nu: Optional[float] = None       # None -> fit from pooled panel
+    width_cal: float = 1.0           # per-market cone multiplier from the panel shape fit
+    fit_meta: str = ""               # provenance of the (nu, width_cal) fit
     breaks: List[str] = field(default_factory=list)
     notes: str = ""
 
@@ -46,6 +67,20 @@ class MarketProfile:
                 r = rate
         return r
 
+
+FED_SCHEDULE = [
+    ("2009-01-01", 0.0013), ("2015-12-17", 0.0038), ("2016-12-15", 0.0063),
+    ("2017-03-16", 0.0088), ("2017-06-15", 0.0113), ("2017-12-14", 0.0138),
+    ("2018-03-22", 0.0163), ("2018-06-14", 0.0188), ("2018-09-27", 0.0213),
+    ("2018-12-20", 0.0238), ("2019-08-01", 0.0213), ("2019-09-19", 0.0188),
+    ("2019-10-31", 0.0163), ("2020-03-16", 0.0013), ("2022-03-17", 0.0038),
+    ("2022-05-05", 0.0088), ("2022-06-16", 0.0163), ("2022-07-28", 0.0238),
+    ("2022-09-22", 0.0313), ("2022-11-03", 0.0388), ("2022-12-15", 0.0438),
+    ("2023-02-02", 0.0463), ("2023-03-23", 0.0488), ("2023-05-04", 0.0513),
+    ("2023-07-27", 0.0538), ("2024-09-19", 0.0488), ("2024-11-08", 0.0463),
+    ("2024-12-19", 0.0438), ("2025-09-18", 0.0413), ("2025-10-30", 0.0388),
+    ("2025-12-11", 0.0363), ("2026-06-18", 0.0363),
+]  # Fed funds target midpoints (policy history; Jun-2026 3.50-3.75% per cached note)
 
 EGYPT = MarketProfile(
     code="EG", name="Egypt (EGX)",
@@ -64,6 +99,10 @@ EGYPT = MarketProfile(
                     "yield before first EGX publish under v3 — bills have traded above "
                     "the corridor; 19.50% is the conservative sourced floor."),
     signal_type="rev_1m", signal_sign=-1, ic=0.08, signal_active=True,
+    nu=4.0, width_cal=0.965,
+    fit_meta=("Fitted 10-Jul-2026 on the 7-name EG panel (EMFD/GBCO/KABO/OCDI/ORHD/"
+              "PHDC/TMGH, 115 windows), LONO-stable (per-name nu=4, cal 0.92-0.99). "
+              "Panel verdict under this fit: PASS +0.062 CI[+0.036,+0.078]."),
     breaks=["2016-11-03", "2022-03-21", "2023-01-11"],
     notes=("Literature: no EGX momentum; overreaction/short-term reversal supported "
            "(EGX event studies; Kuwait 1m reversal ~3.1%/mo t≈4.4 as GCC analogue). "
@@ -89,6 +128,15 @@ SAUDI = MarketProfile(
                     "with FTSE SAGBI or iBoxx Tadawul SAR sukuk yield before publish. "
                     "Sensitivity: ±50bp = ±0.12% on the 60d median — immaterial vs band."),
     signal_type="mom_12_1", signal_sign=-1, ic=0.06, signal_active=False,
+    nu=5.0, width_cal=1.28,
+    fit_meta=("Fitted 10-Jul-2026 on the 2-name SA panel (ALINMA/MAADEN, 36 windows). "
+              "MLE scale wanted 1.40; shrink_cal CAP (1.30) binding at 1.28 -> Saudi "
+              "HAR structurally a touch narrow; revisit the cap as the panel passes "
+              "~5 names. Panel verdict: PASS +0.022 CI[+0.001,+0.041]. ALINMA is "
+              "BOUNDARY (skill -0.010; CI edge flips sign with bootstrap block size "
+              "2 vs 3/4) -> per the robust-verdict rule it stays PARITY-flagged, not "
+              "FAIL; review at its first live grade (T+20 2026-08-04). LONO with n=2 "
+              "is unstable (single-name fits) - the pooled fit is the production config."),
     breaks=["2015-06-15"],
     notes=("Signal OFF (fallback rule): 1-name panel cannot establish IC; literature "
            "sign-unstable (contrarian post-2015 opening). Runs carry-only until the "
@@ -96,7 +144,7 @@ SAUDI = MarketProfile(
 )
 
 # ---- Approved-design stubs (priors from the two profile tables signed off 09/10-Jul) ----
-USA = MarketProfile("US", "United States", [("2020-01-01", 0.0458)], 0.0458,
+USA = MarketProfile("US", "United States", FED_SCHEDULE, 0.0363,
     "UST 10Y 4.58% (tradingeconomics 8-Jul-2026, cached CoC-Reference); use 3M bill 3.71% "
     "(investing.com 10-Jul-2026) for the 60d carry at publish.",
     "mom_12_1", +1, 0.05, True, nu=None,
@@ -135,6 +183,29 @@ QATAR = MarketProfile("QA", "Qatar (QE)",
                     "construction). FLAG per no-UST-shortcut rule: source a real QAR "
                     "sovereign/T-bill yield before any Qatar publish."),
     signal_type="rev_1m", signal_sign=-1, ic=0.06, signal_active=False,
+    nu=250.0, width_cal=0.916,
+    fit_meta=("PROVISIONAL single-name self-fit 10-Jul-2026 (QGTS only, 18 windows): "
+              "MLE selected the Gaussian limit (nu=250 encodes normal; mc_v3 treats "
+              "nu>200 as Gaussian) with cal=0.916 - a pegged low-vol utility, thin "
+              "tails, cone slightly wide. QGTS re-scores PARITY -0.011 "
+              "CI[-0.037,+0.005] under its own fit (was FAIL under the borrowed "
+              "EG-archetype nu=4/cal=1.0 - the fabricated-FAIL pattern the standing "
+              "rule exists for). Refit at 2+ QA names (QNB/IQCD OHLC queued)."),
     notes="Thin literature: carry-only until a ~5-name Qatar panel exists.")
 
-PROFILES = {p.code: p for p in [EGYPT, SAUDI, USA, UK, BRAZIL, KOREA, UAE, INDIA, QATAR]}
+METALS = MarketProfile("XAU", "Metals (Gold/Silver, USD)", FED_SCHEDULE, 0.0363,
+    "USD cost-of-carry anchor: Fed funds midpoint schedule (q=0, no dividend). "
+    "Documented assumption: the carry-anchored null for a zero-yield USD store of "
+    "value is spot x exp(rf) — the futures-contango-consistent center; gate-neutral "
+    "(same anchor both sides).",
+    None, +1, 0.0, False,
+    nu=12.0, width_cal=1.014,
+    fit_meta=("PROVISIONAL single-instrument self-fit 10-Jul-2026 (GOLD, 67 windows "
+              "2009-2026): nu=12, cal=1.014 - near-Gaussian, tails far thinner than "
+              "EGX (nu=4); the old borrowed t5 was too fat for metals. Verdict "
+              "PARITY +0.009 CI[-0.003,+0.028] (near-PASS). Silver shares this fit, "
+              "flagged, until its own OHLC panel exists."),
+    notes="Carry-only. Shape/width fitted on the gold panel; silver SHARES the "
+          "metals fit until its own OHLC panel exists (flagged).")
+
+PROFILES = {p.code: p for p in [EGYPT, SAUDI, USA, UK, BRAZIL, KOREA, UAE, INDIA, QATAR, METALS]}

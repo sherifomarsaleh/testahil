@@ -133,13 +133,19 @@ def simulate_paths_v3(spot, daily_var, horizon, drift_log_h, nu=8.0,
 
 # ---------------------------------------------------------------- backtest
 def backtest_v3(df, profile, horizon=60, q_annual=0.0, use_signal=True,
-                nu=8.0, width_cal=1.0, n_paths=20000, seed=42,
+                nu=None, width_cal=None, n_paths=20000, seed=42,
                 min_history=260, legacy_mode=None):
     """Walk-forward, non-overlapping. legacy_mode replicates v2 for the ladder:
       'v2_egx_dev' -> t5, zero carry, expanding-mean secular drift (old EGX dev)
       'v2_zero'    -> t5, zero carry, zero drift (old non-EGX)
     Benchmark is ALWAYS the carry-anchored trailing-vol lognormal RW (new null).
+    nu/width_cal default to the profile's own fitted config (standing per-market
+    fit rule, 10-Jul-2026) when not passed explicitly.
     """
+    if nu is None:
+        nu = profile.nu if getattr(profile, 'nu', None) else 8.0
+    if width_cal is None:
+        width_cal = getattr(profile, 'width_cal', 1.0)
     v = yz_variance_proxy(df)
     close = df['Price'].values
     n = len(df)
