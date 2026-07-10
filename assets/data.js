@@ -2,7 +2,7 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-07-10", latest: "ELM" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
+const SITE = { updated: "2026-07-10", latest: "EXTRA" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
@@ -32,6 +32,34 @@ const TICKERS = {
       study: "files/Elm_Valuation_Study_10-07-2026_public.docx?v=0710b",
       model: "files/Elm_Valuation_Model_10-07-2026_public.xlsx?v=0710b",
       pdf:   "files/Elm_Valuation_Study_10-07-2026_public.pdf?v=0710b"
+    }
+  },
+  EXTRA: {
+    name: "United Electronics Company (eXtra)",
+    nameAr: "الشركة المتحدة للإلكترونيات (إكسترا)",
+    code: "TADAWUL:4003",
+    spot: 68.10,
+    spotDate: "close 09 Jul 2026",
+    ccy: "SAR",
+    fair: { bear: 66, base: 81, full: 92 },      // 10 Jul 2026 — weighted central 81 (+19% vs spot 68.10). Split-legs SOTP: retail operating-co DCF (SAR 65/sh, net-cash, Ke ~9.5%) + Tasheel, the 68.75%-owned captive consumer-finance lender (SAR 25/sh, equity book × justified P/B). SOTP 90 (primary), relative P/E 12× 75, Monte-Carlo T+60 median 68. bear/full = weighted bear/bull of the football field. Crux: the retail discount rate (regressed β 0.55 on a short window → 0.80 base, sensitized 0.55–1.0) and the Tasheel multiple. At a 52-week low with RSI 27.
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:59.2, p25:64.6, p50:67.9, p75:71.4, p95:78.2, resolve:"2026-08-06" },
+      t60: { label:"3 months (T+60)", p5:53.3, p25:62.0, p50:67.6, p75:73.8, p95:86.2, resolve:"2026-10-04" }
+    },
+    touch: [ /* descending high -> low */
+      [81.7, 3, 16], [74.9, 18, 40], [71.5, 42, 63], [64.7, 42, 65], [61.3, 16, 39], [54.5, 2, 11]
+    ],
+    levels: { res:[73.4, 76.7, 79.7], sup:[68.1, 65.0, 62.0] },
+    tech: {
+      trend: "At a 52-week low, below all four major moving averages; oversold and stretched to the downside",
+      summary: "The tape is oversold and at its lows. eXtra sits at a 52-week low of SAR 68.1, below its 20-day (SAR 73.4), 50-day (76.7), 100-day (79.7) and 200-day (83.9) averages — a clean downtrend after a slide from the SAR 80–105 range. RSI(14) near 27 is firmly oversold and the MACD histogram is negative. Realized 252-day volatility is ~32% after the Saudi width_cal. For a defensive, high-dividend name, a 52-week low with a sub-30 RSI is the kind of setup where price often runs ahead of any change in fundamentals.",
+      bull: "A daily close back above the SAR 73–77 moving-average cluster would signal the de-rating is pausing; reclaiming the high-70s needs a consumer-finance stabilisation or a dividend surprise.",
+      bear: "There is little chart support below a 52-week low — a sustained break opens the low-60s (the Monte-Carlo 25th percentile) toward the mid-50s tail."
+    },
+    files: {
+      study: "files/eXtra_Valuation_Study_10-07-2026_public.docx?v=0710d",
+      model: "files/eXtra_Valuation_Model_10-07-2026_public.xlsx?v=0710d",
+      pdf:   "files/eXtra_Valuation_Study_10-07-2026_public.pdf?v=0710d"
     }
   },
   ALINMA: {
@@ -2877,6 +2905,30 @@ const LEDGER = [
     note:"PARITY under the v3 carry-anchored gate on Saudi-fitted shape/width (ν=5, width_cal 1.28): CRPS skill \u22120.003 vs a carry-anchored random-walk benchmark, bootstrap 90% CI [\u22120.028, +0.016] spans zero, 0.77 band-90 coverage on n=13 non-overlapping 60-day windows. A calibrated, market-panel-validated distribution \u2014 no single-name edge demonstrated, and none claimed. Saudi shape/width was FITTED on the Tadawul panel (Alinma+Ma\u0027aden), not borrowed from another market \u2014 the borrowed-Egypt archetype had manufactured a false FAIL. Carry-anchored drift (rf 4.60% 1yr Sah govt sukuk \u2212 1.3% dividend yield); Saudi names run carry-only until the Tadawul panel reaches ~5 names.",
     p5:471, p25:577, p50:664, p75:763, p95:934,
     touch:{ "+5":76, "+10":60, "+15":46, "+20":35, "-5":73, "-10":54 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"EXTRA", asset_class:"other", cal:"matches",
+    anchor_date:"2026-07-09", anchor_price:68.10, ccy:"SAR",
+    horizon_label:"T+20", grade_date:"2026-08-06", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.316, horizon_days:20,
+    note:"PARITY under the v3 carry-anchored gate. Name-level CRPS skill −0.050 vs a carry-anchored random-walk benchmark, bootstrap 90% CI [−0.140, +0.007] spans zero; the Saudi market panel (Alinma + Ma'aden + eXtra, n=54) is PARITY at −0.021, CI [−0.050, +0.005], PIT 0.500. A calibrated, market-panel-validated distribution — no single-name edge demonstrated, and none claimed. Carry-anchored drift: the ~6.9% dividend yield exceeds the ~4.25% risk-free, so the price median is an explained flat (slightly below spot), with the return delivered as dividend. Saudi shape/width fitted on the Tadawul panel (ν=5, width_cal=1.28); carry-only until ~5 names.",
+    p5:59.2, p25:64.6, p50:67.9, p75:71.4, p95:78.2,
+    touch:{ "+5":42, "+10":18, "+15":7, "+20":3, "-5":42, "-10":16 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"EXTRA", asset_class:"other", cal:"matches",
+    anchor_date:"2026-07-09", anchor_price:68.10, ccy:"SAR",
+    horizon_label:"T+60", grade_date:"2026-10-04", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.316, horizon_days:60,
+    note:"PARITY under the v3 carry-anchored gate. Name-level CRPS skill −0.050 vs a carry-anchored random-walk benchmark, bootstrap 90% CI [−0.140, +0.007] spans zero; the Saudi market panel (Alinma + Ma'aden + eXtra, n=54) is PARITY at −0.021, CI [−0.050, +0.005], PIT 0.500. A calibrated, market-panel-validated distribution — no single-name edge demonstrated, and none claimed. Carry-anchored drift: the ~6.9% dividend yield exceeds the ~4.25% risk-free, so the price median is an explained flat (slightly below spot), with the return delivered as dividend. Saudi shape/width fitted on the Tadawul panel (ν=5, width_cal=1.28); carry-only until ~5 names.",
+    p5:53.3, p25:62.0, p50:67.6, p75:73.8, p95:86.2,
+    touch:{ "+5":63, "+10":40, "+15":25, "+20":16, "-5":65, "-10":39 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
