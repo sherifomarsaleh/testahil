@@ -2,10 +2,38 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-07-10", latest: "ALINMA" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
+const SITE = { updated: "2026-07-10", latest: "ELM" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
+  ELM: {
+    name: "Elm Company",
+    nameAr: "شركة علم",
+    code: "TADAWUL:7203",
+    spot: 658.50,
+    spotDate: "close 07 Jul 2026",
+    ccy: "SAR",
+    fair: { bear: 530, base: 620, full: 720 },      // 10 Jul 2026 — weighted central ~620 (−5.8% vs spot 658.50): roughly fairly valued, a slight premium. Lenses: DCF (primary, β=1.0 neutral, WACC 10.5%, g 4%, 40%) 576, forward P/E (24× 2025e EPS 28.6, 30%) 686, EV/EBITDA (18–20× 2025e, 25%) ~625, MC T+60 median 664. bear/full = football-field range 530–720. The crux is the discount rate: 77% of DCF value is terminal, so a low-beta government-defensive read (β 0.7, WACC 9%) gives ~750, neutral (β 1.0) ~576, and a high-beta post-crash re-rate (β 1.6, WACC 13.5%) ~396. Second swing: registry-exclusivity durability behind the ~46%-margin Digital Business.
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:543, p25:610, p50:660, p75:715, p95:803, resolve:"2026-08-04" },
+      t60: { label:"3 months (T+60)", p5:471, p25:577, p50:664, p75:763, p95:934, resolve:"2026-09-29" }
+    },
+    touch: [ /* descending high -> low */
+      [757.3, 19, 46], [724.4, 35, 60], [691.4, 58, 76], [625.6, 55, 73], [592.6, 29, 54], [559.7, 13, 37]
+    ],
+    levels: { res:[695, 730, 795], sup:[593, 546, 510] },
+    tech: {
+      trend: "Below all four moving averages (20/50/100/200) after a ~49% de-rate from the Jan-2025 peak; RSI mid-30s (oversold-leaning), MACD negative but flattening — a washed-out downtrend near support",
+      summary: "Elm crashed from an all-time high of SAR 1,289 (P/E ~56×) in January 2025 to SAR 658.5 (P/E ~24×), and trades below its 20-day (SAR 695), 50-day (670), 100-day (634) and 200-day (730) averages — a clean downtrend, not a top being made. RSI(14) near 37 is oversold-leaning and the MACD histogram is negative but flattening; price sits in the lower third of a 52-week band of SAR 510–983. The v3 engine reads current 60-day regime width at ~33% annualised — about two-thirds wider than a Saudi bank like Alinma, reflecting Elm's growth-stock volatility.",
+      bull: "A daily close back above the SAR 695–730 moving-average cluster would end the downtrend; fundamentally the case re-rates up if the market prices Elm as the low-beta government compounder it has historically been (β ~0.4 → WACC ~8% → DCF ~750–900).",
+      bear: "A daily close below SAR 590 opens 546 and then the 52-week-low shelf near SAR 510; fundamentally, a high-beta post-crash re-rate (β ~1.6 → WACC ~13.5%) or any erosion of registry exclusivity drops fair value toward the mid-400s."
+    },
+    files: {
+      study: "files/Elm_Valuation_Study_10-07-2026_public.docx?v=0710b",
+      model: "files/Elm_Valuation_Model_10-07-2026_public.xlsx?v=0710b",
+      pdf:   "files/Elm_Valuation_Study_10-07-2026_public.pdf?v=0710b"
+    }
+  },
   ALINMA: {
     name: "Alinma Bank",
     nameAr: "مصرف الإنماء",
@@ -2825,6 +2853,30 @@ const LEDGER = [
     note:"PARITY under the v3 carry-anchored gate: CRPS skill \u22120.009 vs a carry-anchored random-walk benchmark, bootstrap 90% CI [\u22120.026, +0.018] spans zero, PIT mean 0.485 (n=18 non-overlapping 60-day windows). A calibrated, market-panel-validated distribution \u2014 no single-name edge demonstrated, and none claimed. Carry-anchored drift: rf \u2248 dividend yield, so the expected total return arrives as dividend and the price path is an explained flat. Saudi names run carry-only until the Tadawul panel reaches ~5 names.",
     p5:20.76, p25:22.82, p50:24.00, p75:25.24, p95:27.7,
     touch:{ "+5":47, "+10":21, "+15":10, "+20":5, "-5":45, "-10":18 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"ELM", asset_class:"other", cal:"matches",
+    anchor_date:"2026-07-07", anchor_price:658.50, ccy:"SAR",
+    horizon_label:"T+20", grade_date:"2026-08-04", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.3338, horizon_days:20,
+    note:"PARITY under the v3 carry-anchored gate on Saudi-fitted shape/width (ν=5, width_cal 1.28): CRPS skill \u22120.003 vs a carry-anchored random-walk benchmark, bootstrap 90% CI [\u22120.028, +0.016] spans zero, 0.77 band-90 coverage on n=13 non-overlapping 60-day windows. A calibrated, market-panel-validated distribution \u2014 no single-name edge demonstrated, and none claimed. Saudi shape/width was FITTED on the Tadawul panel (Alinma+Ma\u0027aden), not borrowed from another market \u2014 the borrowed-Egypt archetype had manufactured a false FAIL. Carry-anchored drift (rf 4.60% 1yr Sah govt sukuk \u2212 1.3% dividend yield); Saudi names run carry-only until the Tadawul panel reaches ~5 names.",
+    p5:543, p25:610, p50:660, p75:715, p95:803,
+    touch:{ "+5":58, "+10":35, "+15":19, "+20":10, "-5":55, "-10":29 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"ELM", asset_class:"other", cal:"matches",
+    anchor_date:"2026-07-07", anchor_price:658.50, ccy:"SAR",
+    horizon_label:"T+60", grade_date:"2026-09-29", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.3338, horizon_days:60,
+    note:"PARITY under the v3 carry-anchored gate on Saudi-fitted shape/width (ν=5, width_cal 1.28): CRPS skill \u22120.003 vs a carry-anchored random-walk benchmark, bootstrap 90% CI [\u22120.028, +0.016] spans zero, 0.77 band-90 coverage on n=13 non-overlapping 60-day windows. A calibrated, market-panel-validated distribution \u2014 no single-name edge demonstrated, and none claimed. Saudi shape/width was FITTED on the Tadawul panel (Alinma+Ma\u0027aden), not borrowed from another market \u2014 the borrowed-Egypt archetype had manufactured a false FAIL. Carry-anchored drift (rf 4.60% 1yr Sah govt sukuk \u2212 1.3% dividend yield); Saudi names run carry-only until the Tadawul panel reaches ~5 names.",
+    p5:471, p25:577, p50:664, p75:763, p95:934,
+    touch:{ "+5":76, "+10":60, "+15":46, "+20":35, "-5":73, "-10":54 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
