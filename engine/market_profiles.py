@@ -167,6 +167,17 @@ BRAZIL = MarketProfile("BR", "Brazil", [("2020-01-01", 0.1300)], 0.1300,
     notes="EM momentum prior (Rouwenhorst).")
 KOREA = MarketProfile("KR", "South Korea", [("2020-01-01", 0.0300)], 0.0300,
     "PLACEHOLDER — source KTB at first KR study.", None, +1, 0.03, False,
+    nu=6.0, width_cal=1.070,
+    fit_meta=("Fitted 10-Jul-2026 on the 3-name KR panel (SAMSUNG/KAKAO/LGES, 55 "
+              "windows, 2021-2026): nu=6, cal=1.070. DATA REPAIR: the KAKAO "
+              "investing.com export interleaved pre/post-split price scales through "
+              "Mar-Apr 2021 (13 rows at ~5x); repaired exactly (rows with Price>"
+              "200,000 KRW / 5, the corporate 5:1 ratio) - before the repair a "
+              "single poisoned trailing-vol window fabricated +0.33 'skill'. Panel "
+              "verdict PARITY +0.006 CI[-0.006,+0.008]. Per-name (LONO, robust "
+              "blocks): SAMSUNG PARITY -0.022, KAKAO PARITY +0.006, LGES PARITY "
+              "+0.005. Supersedes the legacy per-instrument Samsung KVOL=1.30 "
+              "uplift from the v1-era site config."),
     notes="Asia momentum-failure pattern: carry-only.")
 UAE = MarketProfile("AE", "UAE (ADX/DFM)", [("2020-01-01", 0.0450)], 0.0450,
     "PLACEHOLDER — source AED federal bond; never UST (peg rule).", "rev_1m", -1, 0.06, False,
