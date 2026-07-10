@@ -179,22 +179,33 @@ KOREA = MarketProfile("KR", "South Korea", [("2020-01-01", 0.0300)], 0.0300,
               "+0.005. Supersedes the legacy per-instrument Samsung KVOL=1.30 "
               "uplift from the v1-era site config."),
     notes="Asia momentum-failure pattern: carry-only.")
-UAE = MarketProfile("AE", "UAE (ADX/DFM)", [("2020-01-01", 0.0450), ("2026-07-01", 0.0393)], 0.0393,
-    "3M EIBOR (CBUAE fixings; Fed-mirror via the peg) — never UST. Long rf for CoC: AED federal T-bond.",
-    "rev_1m", -1, 0.06, False,
-    nu=250.0, width_cal=1.042,
-    fit_meta=("PROVISIONAL 1-NAME FIT 10-Jul-2026 on ALPHADHABI (14 non-overlapping 60d "
-              "windows, post-2022 ADX-workweek panel, 2023-2026): MLE selected the "
-              "Gaussian limit (nu=250 encodes normal), cal=1.042 (shrink 0.7). Backtest "
-              "carry = CBUAE mirror of the Fed schedule. Name verdict PARITY +0.006 "
-              "CI[-0.008,+0.016], P(skill>0)=0.80, robust blocks {2,3,4}. QGTS-precedent "
-              "rule applies: single-name AE fit is provisional — no AE name-level FAIL "
-              "is real, and this fit is re-estimated, once a >=3-name panel exists "
-              "(FAB/ENBD/EMAAR/ADNOCGAS/ALDAR/IHC candidates; IHC needs a liquidity "
-              "screen). Panel frame: engine/panels/AE_ALPHADHABI_60d.csv."),
-    breaks=["2022-01-01"], notes="Workweek switch Jan-2022: vol pool post-2022 only. "
-    "Signal off until 5-name panel estimated (FAB/ENBD/EMAAR/ADNOCGAS/IHC available). "
-    "IHC needs liquidity screen.")
+UAE = MarketProfile("AE", "UAE (ADX/DFM)", FED_SCHEDULE, 0.0365,
+    "Carry = USD/Fed policy path (AED hard-pegged); rf_live 3.65% = CBUAE Base Rate held "
+    "18-Jun-2026. NB the peg 'never-UST' rule governs the VALUATION rf (AED govt bond) -- "
+    "the MC carry correctly tracks the Fed for a pegged currency.", "rev_1m", -1, 0.06, False,
+    nu=4.0, width_cal=1.070,
+    fit_meta=("Fitted 10-Jul-2026 on the 9-name AE panel (ADCB/FAB/ENBD/EMAAR/EMAARDEV/"
+              "ALDAR/ADNOCGAS/AGTHIA/IHC, 121 windows, 2022-2026 post-workweek-switch): MLE "
+              "nu=4, scale=1.100 -> width_cal=1.070. Fat-tailed AND slightly wide -- unlike "
+              "the thin-tailed pegged peers (QA nu=12, SA nu=5): UAE equity tails are heavy "
+              "(IHC/EMAAR idiosyncratic swings + the 2026 war shock drive it), so the panel "
+              "picks nu=4 like Egypt but WITHOUT Egypt's FX-jump cause -- fitted, not "
+              "borrowed. This SUPERSEDES the provisional 1-name ALPHADHABI fit (nu=250 "
+              "Gaussian / cal=1.042) that the ALPHADHABI publish carried -- exactly the "
+              ">=3-name re-estimation that fit anticipated; a single stable holdco looked "
+              "Gaussian, the market panel is fat-tailed. SIGNAL: rev_1m ablated OFF (ic 0.06, "
+              "carry-only). Panel verdict PARITY (skill -0.021, CI robust across blocks "
+              "2/3/4). Per-name (LONO, robust blocks): ADCB PASS +0.024 (first AE name with "
+              "a demonstrated edge); FAB -0.018, ENBD -0.022, EMAAR +0.011, EMAARDEV -0.005, "
+              "ALDAR -0.007 (its ledger PASS+1.8% was old zero-drift benchmark; PARITY here), "
+              "ADNOCGAS +0.028, AGTHIA -0.004 (supersedes its old skill<0 FAILED banner -> "
+              "PARITY), IHC -0.095 (boundary, NOT robust FAIL; liquidity screen advised). "
+              "ALPHADHABI is a 10th UAE name; its panel (AE_ALPHADHABI_60d.csv) is kept for "
+              "the next re-fit, but one new name does not force one under the standing ~2-name "
+              "threshold -- this 9-name fit stays production. The pre-10-Jul UAE studies "
+              "(incl. ALPHADHABI) were published on other fits; their §3 distributions are "
+              "superseded -- re-render on next cycle."),
+    breaks=["2022-01-01"], notes="Workweek switch Jan-2022: vol pool post-2022 only.")
 INDIA = MarketProfile("IN", "India (NSE)", [("2020-01-01", 0.0650)], 0.0650,
     "PLACEHOLDER — source 10Y G-Sec at first IN study.", "mom_12_1", +1, 0.07, False,
     nu=250.0, width_cal=0.930,

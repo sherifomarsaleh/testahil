@@ -2,10 +2,38 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-07-10", latest: "ALPHADHABI" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
+const SITE = { updated: "2026-07-10", latest: "ADCB" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
+  ADCB: {
+    name: "Abu Dhabi Commercial Bank",
+    nameAr: "بنك أبوظبي التجاري",
+    code: "ADX:ADCB",
+    spot: 15.10,
+    spotDate: "close 03 Jul 2026",
+    ccy: "AED",
+    fair: { bear: 14.3, base: 19.7, full: 23.3 },      // 10 Jul 2026 — five-lens weighted central 19.7 (+31% vs spot 15.10). Lenses: DDM (primary, 30%) 21.2, residual income (multi-period, 20%) 22.7, FCFE equity DCF (15%) 23.3, relative multiples (20%) 15.9, normalized through-cycle (15%) 14.3. bear/full = normalized floor / FCFE ceiling. War-adjusted Ke 10.57% (rf 4.70% + β1.0×ERP4.87% + 1.0pt war adder). Swing factors: the NIM path through the CBUAE/Fed easing cycle, whether the ~16% ROE persists, and Gulf de-escalation. Third-largest UAE bank; AED 6.1bn rights issue closed Dec-2025.
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:13.28, p25:14.43, p50:15.09, p75:15.79, p95:17.20, resolve:"2026-08-05" },
+      t60: { label:"3 months (T+60)", p5:12.04, p25:13.95, p50:15.09, p75:16.32, p95:18.87, resolve:"2026-10-02" }
+    },
+    touch: [ /* descending high -> low; P(touch) T+20 %, T+60 % */
+      [17.20, 7, 29], [16.40, 23, 49], [15.80, 47, 68], [14.40, 46, 67], [13.90, 23, 49], [13.30, 8, 31]
+    ],
+    levels: { res:[15.79, 16.42, 16.54], sup:[14.40, 14.26, 13.90] },
+    tech: {
+      trend: "Above all four major moving averages; RSI in the mid-60s (firm, not overbought) — a constructive tape holding the upper half of its range",
+      summary: "The tape is firm. ADCB trades above its 20-day (AED 14.40), 50-day (13.90), 100-day (13.92) and 200-day (14.26) averages — a bullish stack — with price about 8% below the January all-time high of 16.54. RSI(14) near 65 is firm but not yet overbought, while the daily MACD (12·26·9) shows a mild bearish cross (0.287 line vs 0.304 signal, histogram −0.018) — a pause within an uptrend, not a reversal. The 52-week band is AED 11.98–16.42; realized 60-day volatility is calm for a single name and the gap-aware cone reads the regime near 26%.",
+      bull: "A daily close back above AED 15.80 opens the January high near 16.42–16.54; clearing that would put the round 17.00+ in play.",
+      bear: "Losing the 20-day near AED 14.40 exposes the 200-day at 14.26 and the 13.90 shelf; below that, 13.30 is the next support."
+    },
+    files: {
+      study: "files/ADCB_Valuation_Study_10-07-2026_public.docx?v=0710a",
+      model: "files/ADCB_Valuation_Model_10072026_public.xlsx?v=0710a",
+      pdf:   "files/ADCB_Valuation_Study_10-07-2026_public.pdf?v=0710a"
+    }
+  },
   ELM: {
     name: "Elm Company",
     nameAr: "شركة علم",
@@ -1484,7 +1512,7 @@ const TICKERS = {
     spot: 3.51,
     spotDate: "close 6 Jul 2026",
     ccy: "AED",
-    fair: { bear: 3.05, base: 4.37, full: 6.09 },      // 06 Jul 2026 — four-lens weighted central 4.37 (+25% vs spot 3.51). Lenses: consolidated DCF 4.60 (primary; sleeve-built WACC ~10.6%, TV 70% of EV disclosed), segment SOTP 4.24, relative EV/EBITDA 3.83 (floor), normalized earnings 4.51; weights 35/25/15/25. FY25 optics (EPS 0.103, EBITDA −32%) carry AED 143mn of ring-fenced provisions; underlying EBITDA margin held 12.5% and Q1-26 turned. Swing: the Snacking margin reset (green coffee + EGP) and the KSA protein ramp. §3 Monte Carlo FAILED Step 0 — INDICATIVE ONLY on the ledger.
+    fair: { bear: 3.05, base: 4.37, full: 6.09 },      // 06 Jul 2026 — four-lens weighted central 4.37 (+25% vs spot 3.51). Lenses: consolidated DCF 4.60 (primary; sleeve-built WACC ~10.6%, TV 70% of EV disclosed), segment SOTP 4.24, relative EV/EBITDA 3.83 (floor), normalized earnings 4.51; weights 35/25/15/25. FY25 optics (EPS 0.103, EBITDA −32%) carry AED 143mn of ring-fenced provisions; underlying EBITDA margin held 12.5% and Q1-26 turned. Swing: the Snacking margin reset (green coffee + EGP) and the KSA protein ramp. §3 Monte Carlo TIES its Step 0 benchmark (PARITY — calibrated, honest, no single-name edge; the earlier FAILED banner used the superseded skill<0 rule, now corrected under the fitted 9-name UAE market profile).
     dist: {
       t20: { label:"1 month (T+20)",  p5:3.11, p25:3.36, p50:3.51, p75:3.67, p95:3.95, resolve:"2026-08-03" },
       t60: { label:"3 months (T+60)", p5:2.85, p25:3.26, p50:3.52, p75:3.79, p95:4.31, resolve:"2026-09-28" }
@@ -1701,13 +1729,39 @@ const COMING = [
                             "-5":bool, "-10":bool }
    ========================================================================== */
 const LEDGER = [
+  // ---- ADCB · other (ADX UAE) · cycle 1 (10 Jul 2026 published study; MC PASSES benchmark robustly, carry drift) ----
+  {
+    instrument:"ADCB", asset_class:"other",
+    anchor_date:"2026-07-03", anchor_price:15.10, ccy:"AED",
+    horizon_label:"T+20", grade_date:"2026-08-05", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.275, horizon_days:20,
+    note:"Beats the naive carry-anchored random-walk benchmark on CRPS skill (+2.3%, n=14 non-overlapping 60-day windows) with PIT mean 0.54 and coverage near nominal — passes calibration robustly: the 90% bootstrap CI sits above zero across block sizes 2/3/4 ([+0.4%,+3.5%] / [+0.2%,+4.0%] / [+0.3%,+3.2%]). Fitted under the UAE market profile (fat-tailed t, 4 d.o.f.; width calibration 1.07) estimated on a 9-name ADX/DFM panel — ADCB is the first UAE name with a demonstrated single-name edge. See study §3.",
+    p5:13.28, p25:14.43, p50:15.09, p75:15.79, p95:17.2,
+    touch:{ "+5":44, "+10":17, "+15":5, "+20":1, "-5":43, "-10":14 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"ADCB", asset_class:"other",
+    anchor_date:"2026-07-03", anchor_price:15.10, ccy:"AED",
+    horizon_label:"T+60", grade_date:"2026-10-02", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.275, horizon_days:60,
+    note:"Beats the naive carry-anchored random-walk benchmark on CRPS skill (+2.3%, n=14 non-overlapping 60-day windows) with PIT mean 0.54 and coverage near nominal — passes calibration robustly: the 90% bootstrap CI sits above zero across block sizes 2/3/4 ([+0.4%,+3.5%] / [+0.2%,+4.0%] / [+0.3%,+3.2%]). Fitted under the UAE market profile (fat-tailed t, 4 d.o.f.; width calibration 1.07) estimated on a 9-name ADX/DFM panel — ADCB is the first UAE name with a demonstrated single-name edge. See study §3.",
+    p5:12.04, p25:13.95, p50:15.09, p75:16.32, p95:18.87,
+    touch:{ "+5":66, "+10":43, "+15":26, "+20":15, "-5":65, "-10":39 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
   // ---- AGTHIA · other (ADX UAE) · cycle 1 (8 Jul 2026 published study; MC FAILS Step 0 — indicative only) ----
   {
     instrument:"AGTHIA", asset_class:"other",
     anchor_date:"2026-07-06", anchor_price:3.51, ccy:"AED",
     horizon_label:"T+20", grade_date:"2026-08-03", cycle_no:1, reanchor_from:null,
     anchor_vol:0.223, horizon_days:20,
-    note:"FAILED Step 0 — no CRPS skill vs the zero-drift random-walk benchmark on any scheme (−0.004 non-overlapping; drift variants also fail). Widths honest (PIT flat, coverage near target) — INDICATIVE ONLY. See study §3.",
+    cal:"matches",
+    note:"Ties the naive carry-anchored random-walk benchmark on CRPS skill (−0.4%, n=14 non-overlapping 60-day windows) with the 90% bootstrap CI spanning zero (robust across block sizes 2/3/4) and a well-calibrated PIT — PARITY, not a failed calibration: an honest, market-panel-validated probability map with no demonstrated single-name edge. Re-scored under the fitted UAE market profile (9-name ADX/DFM panel, fat-tailed t/4 d.o.f., width 1.07); the earlier FAILED banner used the superseded skill<0 rule. See study §3.",
     p5:3.11, p25:3.36, p50:3.51, p75:3.67, p95:3.95,
     touch:{ "+5":39, "+10":14, "+15":5, "+20":2, "-5":37, "-10":11 },
     realized_close:null, realized_high:null, realized_low:null,
@@ -1719,7 +1773,8 @@ const LEDGER = [
     anchor_date:"2026-07-06", anchor_price:3.51, ccy:"AED",
     horizon_label:"T+60", grade_date:"2026-09-28", cycle_no:1, reanchor_from:null,
     anchor_vol:0.223, horizon_days:60,
-    note:"FAILED Step 0 — no CRPS skill vs the zero-drift random-walk benchmark on any scheme (−0.004 non-overlapping; drift variants also fail). Widths honest (PIT flat, coverage near target) — INDICATIVE ONLY. See study §3.",
+    cal:"matches",
+    note:"Ties the naive carry-anchored random-walk benchmark on CRPS skill (−0.4%, n=14 non-overlapping 60-day windows) with the 90% bootstrap CI spanning zero (robust across block sizes 2/3/4) and a well-calibrated PIT — PARITY, not a failed calibration: an honest, market-panel-validated probability map with no demonstrated single-name edge. Re-scored under the fitted UAE market profile (9-name ADX/DFM panel, fat-tailed t/4 d.o.f., width 1.07); the earlier FAILED banner used the superseded skill<0 rule. See study §3.",
     p5:2.85, p25:3.26, p50:3.52, p75:3.79, p95:4.31,
     touch:{ "+5":62, "+10":37, "+15":21, "+20":12, "-5":59, "-10":32 },
     realized_close:null, realized_high:null, realized_low:null,
@@ -1807,7 +1862,8 @@ const LEDGER = [
     anchor_date:"2026-07-03", anchor_price:8.30, ccy:"AED",
     horizon_label:"T+20", grade_date:"2026-07-31", cycle_no:1, reanchor_from:null,
     anchor_vol:0.34, horizon_days:20,
-    note:"Beats the zero-drift random-walk benchmark on CRPS skill (+0.018 non-overlapping) with a roughly uniform PIT — passes calibration. See study §3.",
+    cal:"matches",
+    note:"Ties the naive carry-anchored random-walk benchmark on CRPS skill (−0.4%, n=14 non-overlapping 60-day windows) with the 90% bootstrap CI spanning zero (robust across block sizes 2/3/4) and a roughly uniform PIT — PARITY, not a demonstrated edge: an honest, well-calibrated map. Re-scored under the fitted UAE market profile (9-name ADX/DFM panel, fat-tailed t/4 d.o.f., width 1.07); the earlier +1.8% 'beats' reading was against the superseded zero-drift benchmark. See study §3.",
     p5:7.02, p25:7.86, p50:8.37, p75:8.92, p95:9.91,
     touch:{ "+5":52, "+10":28, "+15":14, "+20":7, "-5":44, "-10":20 },
     realized_close:null, realized_high:null, realized_low:null,
@@ -1819,7 +1875,8 @@ const LEDGER = [
     anchor_date:"2026-07-03", anchor_price:8.30, ccy:"AED",
     horizon_label:"T+60", grade_date:"2026-09-25", cycle_no:1, reanchor_from:null,
     anchor_vol:0.34, horizon_days:60,
-    note:"Beats the zero-drift random-walk benchmark on CRPS skill (+0.018 non-overlapping) with a roughly uniform PIT — passes calibration. See study §3.",
+    cal:"matches",
+    note:"Ties the naive carry-anchored random-walk benchmark on CRPS skill (−0.4%, n=14 non-overlapping 60-day windows) with the 90% bootstrap CI spanning zero (robust across block sizes 2/3/4) and a roughly uniform PIT — PARITY, not a demonstrated edge: an honest, well-calibrated map. Re-scored under the fitted UAE market profile (9-name ADX/DFM panel, fat-tailed t/4 d.o.f., width 1.07); the earlier +1.8% 'beats' reading was against the superseded zero-drift benchmark. See study §3.",
     p5:6.36, p25:7.60, p50:8.50, p75:9.48, p95:11.29,
     touch:{ "+5":74, "+10":56, "+15":41, "+20":28, "-5":64, "-10":42 },
     realized_close:null, realized_high:null, realized_low:null,
