@@ -179,8 +179,19 @@ KOREA = MarketProfile("KR", "South Korea", [("2020-01-01", 0.0300)], 0.0300,
               "+0.005. Supersedes the legacy per-instrument Samsung KVOL=1.30 "
               "uplift from the v1-era site config."),
     notes="Asia momentum-failure pattern: carry-only.")
-UAE = MarketProfile("AE", "UAE (ADX/DFM)", [("2020-01-01", 0.0450)], 0.0450,
-    "PLACEHOLDER — source AED federal bond; never UST (peg rule).", "rev_1m", -1, 0.06, False,
+UAE = MarketProfile("AE", "UAE (ADX/DFM)", [("2020-01-01", 0.0450), ("2026-07-01", 0.0393)], 0.0393,
+    "3M EIBOR (CBUAE fixings; Fed-mirror via the peg) — never UST. Long rf for CoC: AED federal T-bond.",
+    "rev_1m", -1, 0.06, False,
+    nu=250.0, width_cal=1.042,
+    fit_meta=("PROVISIONAL 1-NAME FIT 10-Jul-2026 on ALPHADHABI (14 non-overlapping 60d "
+              "windows, post-2022 ADX-workweek panel, 2023-2026): MLE selected the "
+              "Gaussian limit (nu=250 encodes normal), cal=1.042 (shrink 0.7). Backtest "
+              "carry = CBUAE mirror of the Fed schedule. Name verdict PARITY +0.006 "
+              "CI[-0.008,+0.016], P(skill>0)=0.80, robust blocks {2,3,4}. QGTS-precedent "
+              "rule applies: single-name AE fit is provisional — no AE name-level FAIL "
+              "is real, and this fit is re-estimated, once a >=3-name panel exists "
+              "(FAB/ENBD/EMAAR/ADNOCGAS/ALDAR/IHC candidates; IHC needs a liquidity "
+              "screen). Panel frame: engine/panels/AE_ALPHADHABI_60d.csv."),
     breaks=["2022-01-01"], notes="Workweek switch Jan-2022: vol pool post-2022 only. "
     "Signal off until 5-name panel estimated (FAB/ENBD/EMAAR/ADNOCGAS/IHC available). "
     "IHC needs liquidity screen.")

@@ -2,7 +2,7 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-07-10", latest: "EXTRA" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
+const SITE = { updated: "2026-07-10", latest: "ALPHADHABI" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
@@ -32,6 +32,34 @@ const TICKERS = {
       study: "files/Elm_Valuation_Study_10-07-2026_public.docx?v=0710b",
       model: "files/Elm_Valuation_Model_10-07-2026_public.xlsx?v=0710b",
       pdf:   "files/Elm_Valuation_Study_10-07-2026_public.pdf?v=0710b"
+    }
+  },
+  ALPHADHABI: {
+    name: "Alpha Dhabi Holding",
+    nameAr: "ألفا ظبي القابضة",
+    code: "ADX:ALPHADHABI",
+    spot: 8.22,
+    spotDate: "close 03 Jul 2026 — pre the 7–8 Jul war re-escalation, flagged in the study",
+    ccy: "AED",
+    fair: { bear: 6.08, base: 7.30, full: 8.82 },      // 10 Jul 2026 — weighted central 7.30 (−11% vs spot 8.22). Holdco SOTP/NAV primary: four listed stakes at ADX marks (Aldar 31.63% = AED 20.5bn, NMDC 76.68% = 14.4bn, PureHealth 35.06% = 8.6bn, NCTH 73.73% = 2.4bn) + Trojan 51% at the ADQ transaction mark (5.2bn) + residual audited book → NAV 7.44/sh at par, 6.32 at a 15% holdco discount (45% weight). Consolidated FCFF DCF 11.72 = a multi-year ceiling (80% TV, ΔWC absorption) at 15%; look-through relative 8.07 at 25%; dividend-policy DDM 4.55 at 15%. The crux: spot pays ~+10% ABOVE undiscounted NAV — the premium is the trade. bear/full = weighted bear/bull.
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:7.04, p25:7.73, p50:8.24, p75:8.79, p95:9.67, resolve:"2026-07-31" },
+      t60: { label:"3 months (T+60)", p5:6.30, p25:7.42, p50:8.29, p75:9.27, p95:10.93, resolve:"2026-09-25" }
+    },
+    touch: [ /* descending high -> low */
+      [9.50, 11, 36], [8.84, 39, 63], [8.50, 64, 80], [7.44, 23, 48], [7.00, 7, 28], [6.58, 1, 14]
+    ],
+    levels: { res:[8.50, 8.84, 9.50], sup:[7.80, 7.40, 6.84] },
+    tech: {
+      trend: "Post-war-trough recovery inside a longer downtrend: above the 20/50/100-day averages, still ~7% below the 200-day",
+      summary: "The tape is a recovery inside a downtrend. Alpha Dhabi slid from the AED 9–12 shelf to an intraday 6.84 on 31 Mar 2026 as Hormuz closed, then retraced on the April ceasefire; at 8.22 it sits above its 20-day (7.84), 50-day (7.54) and 100-day (7.85) averages but below the 200-day (8.84) — the classic signature of a bounce that has not yet become a new uptrend. RSI(14) at 64 is warm but not overbought, and the MACD histogram has flattened to ~0: the post-trough momentum impulse is spent and price is deciding at the middle of its 52-week range (6.84–12.58). One-year return −33%. Note the data ends 3 Jul — the 7–8 Jul ceasefire collapse post-dates every level here.",
+      bull: "A daily close above the 200-day (~8.84) that holds would turn the recovery into a trend and re-open the 9.5–10.3 zone (the Monte-Carlo 75th–90th).",
+      bear: "Losing the 7.4–7.8 congestion shelf targets par NAV (7.44) and then the discounted-NAV zone; the war low at 6.84 is the line under everything."
+    },
+    files: {
+      study: "files/ALPHADHABI_Valuation_Study_10-07-2026_public.docx?v=0710e",
+      model: "files/ALPHADHABI_Valuation_Model_10-07-2026_public.xlsx?v=0710e",
+      pdf:   "files/ALPHADHABI_Valuation_Study_10-07-2026_public.pdf?v=0710e"
     }
   },
   EXTRA: {
@@ -2905,6 +2933,30 @@ const LEDGER = [
     note:"PARITY under the v3 carry-anchored gate on Saudi-fitted shape/width (ν=5, width_cal 1.28): CRPS skill \u22120.003 vs a carry-anchored random-walk benchmark, bootstrap 90% CI [\u22120.028, +0.016] spans zero, 0.77 band-90 coverage on n=13 non-overlapping 60-day windows. A calibrated, market-panel-validated distribution \u2014 no single-name edge demonstrated, and none claimed. Saudi shape/width was FITTED on the Tadawul panel (Alinma+Ma\u0027aden), not borrowed from another market \u2014 the borrowed-Egypt archetype had manufactured a false FAIL. Carry-anchored drift (rf 4.60% 1yr Sah govt sukuk \u2212 1.3% dividend yield); Saudi names run carry-only until the Tadawul panel reaches ~5 names.",
     p5:471, p25:577, p50:664, p75:763, p95:934,
     touch:{ "+5":76, "+10":60, "+15":46, "+20":35, "-5":73, "-10":54 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"ALPHADHABI", asset_class:"other", cal:"matches",
+    anchor_date:"2026-07-03", anchor_price:8.22, ccy:"AED",
+    horizon_label:"T+20", grade_date:"2026-07-31", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.341, horizon_days:20,
+    note:"PARITY under the v3 carry-anchored gate. Name-level CRPS skill +0.006 vs a carry-anchored random-walk benchmark, bootstrap 90% CI [\u22120.008, +0.016] spans zero (P(skill>0)=0.80), robust across block sizes {2,3,4}. The AE market fit is a 1-name PROVISIONAL (Gaussian innovations, width_cal 1.042, 14 non-overlapping 60d windows on the post-2022 ADX workweek panel) \u2014 per the QGTS precedent no AE name-level verdict is treated as more than provisional until a \u22653-name panel exists. A calibrated distribution \u2014 no single-name edge demonstrated, and none claimed. Carry-anchored drift: 3M EIBOR 3.93%, no ex-dividend date in the window (FY25 distribution paid Q1-26; q=0). TIMING FLAG: the anchor pre-dates the 7\u20138 Jul ceasefire collapse \u2014 this cohort will be graded inside the war-regime window; outlier-triggered out-of-cycle review applies if structurally surprising.",
+    p5:7.04, p25:7.73, p50:8.24, p75:8.79, p95:9.67,
+    touch:{ "+5":54, "+10":27, "+15":12, "+20":5, "-5":50, "-10":21 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"ALPHADHABI", asset_class:"other", cal:"matches",
+    anchor_date:"2026-07-03", anchor_price:8.22, ccy:"AED",
+    horizon_label:"T+60", grade_date:"2026-09-25", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.341, horizon_days:60,
+    note:"PARITY under the v3 carry-anchored gate. Name-level CRPS skill +0.006 vs a carry-anchored random-walk benchmark, bootstrap 90% CI [\u22120.008, +0.016] spans zero (P(skill>0)=0.80), robust across block sizes {2,3,4}. The AE market fit is a 1-name PROVISIONAL (Gaussian innovations, width_cal 1.042, 14 non-overlapping 60d windows on the post-2022 ADX workweek panel) \u2014 per the QGTS precedent no AE name-level verdict is treated as more than provisional until a \u22653-name panel exists. A calibrated distribution \u2014 no single-name edge demonstrated, and none claimed. Carry-anchored drift: 3M EIBOR 3.93%, no ex-dividend date in the window (FY25 distribution paid Q1-26; q=0). TIMING FLAG: the anchor pre-dates the 7\u20138 Jul ceasefire collapse \u2014 this cohort will be graded inside the war-regime window; outlier-triggered out-of-cycle review applies if structurally surprising.",
+    p5:6.30, p25:7.42, p50:8.29, p75:9.27, p95:10.93,
+    touch:{ "+5":73, "+10":54, "+15":38, "+20":26, "-5":69, "-10":46 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }

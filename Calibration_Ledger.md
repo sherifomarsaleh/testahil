@@ -47,6 +47,7 @@ read (an indicative-only forecast failing calibration later is expected, not a s
 | **ISPH** | FAILED | CRPS skill < 0 vs. random walk. §3 marked illustrative only, not skill-validated. |
 | **MAADEN** | FAILED | Monte Carlo lens showed no skill. §3 is a probability map, not a validated forecast. |
 | **QGTS** | TIES (does not beat) | Unusually stable name — engine ties, rather than beats, a random walk. §3 illustrative only. |
+| **ALPHADHABI** | PARITY (v3 gate) | CRPS skill +0.006, 90% CI [−0.008, +0.016] spans zero; robust across blocks {2,3,4}. AE fit is 1-name PROVISIONAL (Gaussian, width_cal 1.042) per the QGTS precedent. Published on the parity tier; anchor 03-Jul-26 pre-dates the 7–8 Jul ceasefire collapse (timing-flagged). |
 | **LCSW** | PASSED | No failure note attached; confirmed calibration pass per memory and site content. |
 | *(all other covered names)* | Presumed passed | No failure/tie note found in `coverage.js`; not individually re-verified line-by-line in this snapshot. |
 
