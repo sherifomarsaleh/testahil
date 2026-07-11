@@ -174,7 +174,8 @@ def refresh_market(market, new_csvs, raw_csv_lookup):
             nu_l, cal_l = nu_pool, cal_pool
         sk, sk_raw, r = rescore(path, profile, nu_l, cal_l)
         verd, detail = robust_verdict(r['crps_n'].values, r['crps_b_n'].values)
-        per_name[n] = dict(nu=nu_l, width_cal=round(cal_l, 3),
+        nu_disp = round(float(nu_l), 3) if nu_l < 200 else "Gaussian"
+        per_name[n] = dict(nu=nu_disp, width_cal=round(cal_l, 3),
                             skill=round(float(sk), 4),
                             skill_raw_basis=round(float(sk_raw), 4),
                             verdict=verd,
