@@ -54,6 +54,24 @@ MIN_HISTORY = 260
 
 
 # ---------------------------------------------------------------- utilities
+def apply_breaks(r, profile):
+    """Drop windows whose ORIGIN precedes the market's last structural break.
+
+    Closes a documented-but-unimplemented gap (found 11-Jul-2026): the Standing
+    Research Protocol says "volatility pools use post-break windows only where a
+    MarketProfile lists a structural break", and every profile declares `breaks`,
+    but grep shows NEITHER mc_v2.py NOR mc_v3.py ever reads the field. Break
+    filtering was therefore never applied — it only *appeared* to be, because
+    min_history=260 happens to push most markets' first origin past their break
+    anyway. It bites for real when a name carries history from before the break
+    (e.g. EAND's OHLC starts 2016, six years before the UAE Jan-2022 workweek
+    switch, while every other AE name starts 2021)."""
+    if not getattr(profile, 'breaks', None):
+        return r
+    last = max(pd.Timestamp(b) for b in profile.breaks)
+    return r[pd.DatetimeIndex(r['origin']) >= last].reset_index(drop=True)
+
+
 def panel_path(market, name):
     return os.path.join(PANELS_DIR, f"{market}_{name}_60d.csv")
 
@@ -128,6 +146,7 @@ def rescore(raw_csv_path, profile, nu, cal):
                         use_signal=profile.signal_active,
                         n_paths=N_PATHS, seed=SEED, min_history=MIN_HISTORY)
     r = pd.DataFrame(rows)
+    r = apply_breaks(r, profile)
     r['crps_n'] = r['crps'] / r['spot']
     r['crps_b_n'] = r['crps_b'] / r['spot']
     skill_norm = 1 - r['crps_n'].sum() / r['crps_b_n'].sum()
@@ -154,7 +173,8 @@ def refresh_market(market, new_csvs, raw_csv_lookup):
 
     # 2. pool 'u' across the FULL current panel (old + new)
     names = sorted(set(existing_panel_names(market)) | set(new_csvs))
-    panel = {n: pd.read_csv(panel_path(market, n)) for n in names}
+    panel = {n: apply_breaks(pd.read_csv(panel_path(market, n)), profile) for n in names}
+    names = [n for n in names if len(panel[n]) > 0]
     pooled_u = np.concatenate([panel[n]['u'].values for n in names])
     nu_pool, s_pool = fit_nu_scale(pooled_u)
     cal_pool = shrink_cal(s_pool)
