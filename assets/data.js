@@ -2,7 +2,7 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-07-11", latest: "2POINTZERO" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
+const SITE = { updated: "2026-07-11", latest: "ADIBUAE" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
@@ -89,6 +89,34 @@ const TICKERS = {
       study: "files/ADCB_Valuation_Study_10-07-2026_public.docx?v=0711a",
       model: "files/ADCB_Valuation_Model_10072026_public.xlsx?v=0711a",
       pdf:   "files/ADCB_Valuation_Study_10-07-2026_public.pdf?v=0711a"
+    }
+  },
+  ADIBUAE: {
+    name: "Abu Dhabi Islamic Bank",
+    nameAr: "مصرف أبوظبي الإسلامي",
+    code: "ADX:ADIB",
+    spot: 21.76,
+    spotDate: "close 03 Jul 2026",
+    ccy: "AED",
+    fair: { bear: 17.9, base: 21.2, full: 23.5 },      // 11 Jul 2026 — five-lens weighted central 21.23 (-2.4% vs spot 21.76). Lenses: DDM (primary, 30%) 22.54, residual income (20%) 22.54, FCFE equity DCF (15%) 23.48, relative multiples ROE-adjusted (20%) 17.94 (dual-framed at A&M's 1.64x P/TBV: 18.45), normalized through-cycle (15%) 19.00. bear/full = relative-lens floor / FCFE ceiling. Ke 10.57% (rf 4.70% + b1.00 x ERP 4.87% + 1.0pt conflict adder). ADIB trades at 3.31x book vs a sector at 1.55x -- its 28.8% ROE justifies 2.69x, a +23% premium above that. The crux is how long a 25%+ ROE lasts as the equity base compounds, and the UAE DMTT tax step (ETR 13% to 16% from FY27 -- DIB is already paying 15%). Spot is the 3-Jul close, set on the ceasefire de-escalation low; the ceasefire has since frayed, so the 1.0pt conflict adder is the low end of a live range (2.5pt -> 17.73).
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:18.91, p25:20.61, p50:21.74, p75:22.95, p95:24.95, resolve:"2026-08-03" },
+      t60: { label:"3 months (T+60)", p5:17.10, p25:19.81, p50:21.73, p75:23.84, p95:27.70, resolve:"2026-09-30" }
+    },
+    touch: [ /* descending high -> low; P(touch) T+20 %, T+60 % */
+      [24.00, 19, 43], [23.00, 41, 63], [22.00, 78, 87], [21.00, 57, 74], [20.00, 25, 50], [19.00, 9, 30]
+    ],
+    levels: { res:[21.88, 22.10, 23.84], sup:[20.75, 20.71, 19.81] },
+    tech: {
+      trend: "Above the 20/50-day shelf but below the 100/200-day averages -- a repair, not yet a reclaimed trend; RSI mid-50s, MACD histogram mildly positive",
+      summary: "ADIB trades above its 20-day (AED 20.71) and 50-day (AED 20.75) averages but below its 100-day (AED 22.10) and 200-day (AED 21.88) -- a stock that has bounced hard off its mid-June war low (AED 18.80) but has not yet reclaimed the longer trend. It sits 21% below its 18-Feb-2026 all-time high of AED 27.40 and about 34% up its 52-week range of AED 18.80-27.40. RSI(14) near 59 is neutral-warm; the daily MACD (12.26.9) reads 0.263 vs signal 0.179 (histogram +0.084) -- momentum building, not yet overbought. One-year return is flat (+1.2%) after a five-year +363% compounding: the profit kept growing through 2025-26 while the multiple gave most of it back. Anchor volatility under the production UAE panel fit (nu=10, width_cal 1.049) reads 30.7%.",
+      bull: "A daily close back above the 200-day (AED 21.88) then the 100-day (AED 22.10) reclaims the longer trend; clearing both puts the T+60 75th percentile (AED 23.84) in play.",
+      bear: "Losing the 20-day near AED 20.71 exposes the 50-day at AED 20.75; below that, the T+60 25th percentile (AED 19.81) is the next reference down."
+    },
+    files: {
+      study: "files/ADIB_UAE_Valuation_Study_11-07-2026_public.docx?v=0711d",
+      model: "files/ADIB_UAE_Valuation_Model_11072026_public.xlsx?v=0711d",
+      pdf:   "files/ADIB_UAE_Valuation_Study_11-07-2026_public.pdf?v=0711d"
     }
   },
   ELM: {
@@ -1857,6 +1885,31 @@ const LEDGER = [
     note:"Beats the naive carry-anchored random-walk benchmark on CRPS skill (+2.3%, n=14 non-overlapping 60-day windows) with PIT mean 0.54 and coverage near nominal — passes calibration robustly: the 90% bootstrap CI sits above zero across block sizes 2/3/4 ([+0.4%,+3.5%] / [+0.2%,+4.0%] / [+0.3%,+3.2%]). Fitted under the UAE market profile (fat-tailed t, 4 d.o.f.; width calibration 1.07) estimated on a 9-name ADX/DFM panel — ADCB is the first UAE name with a demonstrated single-name edge. See study §3.",
     p5:12.04, p25:13.95, p50:15.09, p75:16.32, p95:18.87,
     touch:{ "+5":66, "+10":43, "+15":26, "+20":15, "-5":65, "-10":39 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  // ---- ADIBUAE · other (ADX UAE) · cycle 1 (11 Jul 2026 published study; PARITY, panel-validated) ----
+  {
+    instrument:"ADIBUAE", asset_class:"other",
+    anchor_date:"2026-07-03", anchor_price:21.76, ccy:"AED",
+    horizon_label:"T+20", grade_date:"2026-08-03", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.307, horizon_days:20,
+    note:"PARITY under the production UAE market profile (14-name ADX/DFM panel, refit 11-Jul-2026: nu=10, width_cal 1.049; panel-level CRPS skill +0.49%, CI[-0.004,+0.015]). ADIB is a panel constituent (skill +0.51%, PARITY). A dedicated walk-forward replay of ADIB's own five-year tape under these production parameters gives CRPS skill +0.93% (n=14 non-overlapping 60-day windows, scale-normalized basis), PIT mean 0.62, coverage 43%/79%/100% against 50/80/90 targets -- a calibrated, market-panel-validated distribution with no single-name edge demonstrated or claimed. Winkler-90 is negative (-0.109): ADIB's own leave-one-out fit (nu=12, width_cal 1.035) is narrower than the 14-name panel it borrows, so the published cone over-covers -- disclosed in the study, not hidden. Carry = 3M EIBOR 3.90% less the FY25 dividend yield (4.46%). Spot is the 3-Jul close; the 7-8 Jul ceasefire fraying post-dates it -- read the downside percentiles as floors. See study S3.1.",
+    p5:18.91, p25:20.61, p50:21.74, p75:22.95, p95:24.95,
+    touch:{ "+5":46, "+10":20, "+15":8, "+20":3, "-5":45, "-10":16 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"ADIBUAE", asset_class:"other",
+    anchor_date:"2026-07-03", anchor_price:21.76, ccy:"AED",
+    horizon_label:"T+60", grade_date:"2026-09-30", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.307, horizon_days:60,
+    note:"PARITY under the production UAE market profile (14-name ADX/DFM panel, refit 11-Jul-2026: nu=10, width_cal 1.049; panel-level CRPS skill +0.49%, CI[-0.004,+0.015]). ADIB is a panel constituent (skill +0.51%, PARITY). A dedicated walk-forward replay of ADIB's own five-year tape under these production parameters gives CRPS skill +0.93% (n=14 non-overlapping 60-day windows, scale-normalized basis), PIT mean 0.62, coverage 43%/79%/100% against 50/80/90 targets -- a calibrated, market-panel-validated distribution with no single-name edge demonstrated or claimed. Winkler-90 is negative (-0.109): ADIB's own leave-one-out fit (nu=12, width_cal 1.035) is narrower than the 14-name panel it borrows, so the published cone over-covers -- disclosed in the study, not hidden. Carry = 3M EIBOR 3.90% less the FY25 dividend yield (4.46%). Spot is the 3-Jul close; the 7-8 Jul ceasefire fraying post-dates it -- read the downside percentiles as floors. See study S3.1.",
+    p5:17.10, p25:19.81, p50:21.73, p75:23.84, p95:27.70,
+    touch:{ "+5":66, "+10":44, "+15":28, "+20":17, "-5":66, "-10":41 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
