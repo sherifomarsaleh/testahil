@@ -219,26 +219,41 @@ def write_pending_review(market, result, reasons, incumbent_profile):
 
 def write_production(market, result):
     """Auto-commit path: write nu/width_cal into market_profiles.py in place,
-    and refresh the fitted_configs.json mirror entry for this market."""
+    and refresh the fitted_configs.json mirror entry for this market.
+
+    NOTE the nu serialization. refresh_market() reports nu as the STRING "Gaussian"
+    when the MLE selects the Gaussian limit (it is nicer to read in a report), but
+    market_profiles.py is executable Python — writing `nu=Gaussian` there emits a
+    bare undefined name and market_profiles.py stops importing, i.e. the auto-commit
+    would push an engine that cannot even load. The house convention for the Gaussian
+    limit is the numeric sentinel nu=250.0 (mc_v3 treats any nu > 200 as Gaussian;
+    KOREA and INDIA already carry it). Caught 11-Jul-2026 before it ever fired."""
     path = os.path.join(HERE, 'market_profiles.py')
     src = open(path).read()
-    import re
     prof = PROFILES[market]
     class_name = {'EG': 'EGYPT', 'SA': 'SAUDI', 'US': 'USA', 'GB': 'UK', 'BR': 'BRAZIL',
                   'KR': 'KOREA', 'AE': 'UAE', 'IN': 'INDIA', 'QA': 'QATAR', 'XAU': 'METALS'}[market]
-    old_nu, old_cal = prof.nu, prof.width_cal
-    old_token = f"nu={old_nu}, width_cal={old_cal}"
-    new_token = f"nu={result['nu']}, width_cal={result['width_cal']}"
-    i = src.index(f"{class_name} = MarketProfile")
-    j = src.index(old_token, i)
-    src = src[:j] + new_token + src[j + len(old_token):]
-    stamp = (f'\n    auto_refresh_note="AUTO-REFRESHED {datetime.date.today().isoformat()} by '
-             f'auto_refresh.py (non-material change, no verdict/config-regime shift; see '
-             f'fitted_configs.json for full detail).",')
-    open(path, 'w').write(src)
+
+    nu_out = result['nu']
+    if isinstance(nu_out, str):                      # "Gaussian" -> numeric sentinel
+        nu_out = 250.0 if 'gauss' in nu_out.lower() else float(nu_out)
+    nu_out = float(nu_out)
+
+    old_token = f"nu={prof.nu}, width_cal={prof.width_cal}"
+    new_token = f"nu={nu_out}, width_cal={result['width_cal']}"
+    if old_token == new_token:
+        pass                                          # nothing to change
+    else:
+        i = src.index(f"{class_name} = MarketProfile")
+        j = src.index(old_token, i)
+        src = src[:j] + new_token + src[j + len(old_token):]
+        # never commit a market_profiles.py that will not import
+        import ast as _ast
+        _ast.parse(src)
+        open(path, 'w').write(src)
 
     reg = json.load(open(REGISTRY_PATH)) if os.path.exists(REGISTRY_PATH) else {}
-    reg[market] = dict(reg.get(market, {}), nu=result['nu'], width_cal=result['width_cal'],
+    reg[market] = dict(reg.get(market, {}), nu=nu_out, width_cal=result['width_cal'],
                         panel_names=result['panel_names'], windows=result['windows'],
                         market_skill=result['market_skill'], market_ci90=result['market_ci90'],
                         market_verdict=result['market_verdict'], per_name=result['per_name'],
