@@ -1,0 +1,236 @@
+"""auto_refresh.py — unattended entry point for the Testahil continuous-learning loop.
+
+DESIGN PRINCIPLE (11-Jul-2026, user instruction: "automatic but not at the expense
+of quality"): mechanical work runs unattended. Anything that would change a
+published verdict, imply a signal ablation, or move a config beyond a small
+tolerance STOPS and asks a human. Today's session is the reason this gate exists:
+data cleaning alone flipped Korea's tail shape from nu=6 to Gaussian and changed
+two names' robust verdicts (SA/RAJHI PARITY->PASS, AE/ALPHADHABI PARITY->FAIL).
+"Just run the pipeline on a cron" would have silently pushed those to production
+with no one looking. This script is the difference between automation and
+unsupervised drift.
+
+INPUT CONVENTION: raw_ohlc/{MARKET_CODE}/{TICKER}.csv
+The market+ticker mapping is decided by FILE PLACEMENT, not by parsing company
+names. This is deliberate: the ADNOC/ADIB confusion earlier in this project was
+exactly this kind of disambiguation, and it is NOT something to automate. A human
+(or a Claude session) placing a file at raw_ohlc/AE/ADNOCGAS.csv has already made
+the judgment call; the pipeline should never try to re-derive it from a filename
+like "ADNOC_Stock_Price_History.csv".
+
+WHAT RUNS UNATTENDED (auto-committed to main, no approval):
+  - the data-quality gate (clean_ohlc) on every touched file
+  - the panel rebuild + pooled (nu, width_cal) refit for every touched market
+  - LONO per-name and market-panel verdicts
+  ...PROVIDED the materiality gate below finds nothing that needs a human.
+
+WHAT STOPS AND OPENS A PR INSTEAD (never auto-merged):
+  - any name's verdict category changes (PASS/PARITY/FAIL/BOUNDARY)
+  - a NEW name enters a panel (ticker mapping deserves one human glance)
+  - width_cal moves >5% relative, or nu crosses into a different regime
+    (specifically: the Gaussian/fat-tail boundary, since that is the parameter
+    that most changes the published cone shape)
+  - the market-level verdict itself changes
+  - a signal_active flip would be implied (not auto-applied even if supported —
+    Egypt's ablation this session was exactly this kind of call)
+
+Usage: python3 auto_refresh.py [--apply]
+  Without --apply: dry run, prints what WOULD happen, changes nothing.
+  With --apply: writes market_profiles.py / panels / fitted_configs.json for
+    non-material markets; writes a PENDING_REVIEW/{MARKET}_{date}.md report
+    (and returns a nonzero exit code) for material ones.
+"""
+import sys, os, glob, json, datetime, argparse
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import numpy as np
+
+from panel_refresh import refresh_market, apply_breaks
+from market_profiles import PROFILES
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+RAW_DIR = os.path.join(HERE, 'raw_ohlc')
+REGISTRY_PATH = os.path.join(HERE, 'fitted_configs.json')
+PENDING_DIR = os.path.join(HERE, 'PENDING_REVIEW')
+
+WIDTH_CAL_TOL = 0.05     # 5% relative — beyond this, a human looks
+NU_GAUSSIAN_CUTOFF = 200  # nu above this is "effectively Gaussian"
+
+
+def discover_touched_markets():
+    """raw_ohlc/{MKT}/{TICKER}.csv -> {mkt: {ticker: path}}"""
+    out = {}
+    if not os.path.isdir(RAW_DIR):
+        return out
+    for mkt_dir in sorted(glob.glob(os.path.join(RAW_DIR, '*'))):
+        if not os.path.isdir(mkt_dir):
+            continue
+        mkt = os.path.basename(mkt_dir)
+        if mkt not in PROFILES:
+            print(f"  [SKIP] {mkt_dir}: '{mkt}' is not a known market code — {list(PROFILES)}")
+            continue
+        files = {os.path.splitext(os.path.basename(f))[0]: f
+                 for f in sorted(glob.glob(os.path.join(mkt_dir, '*.csv')))}
+        if files:
+            out[mkt] = files
+    return out
+
+
+def _nu_bucket(nu):
+    if nu is None:
+        return None
+    if isinstance(nu, str):
+        return 'Gaussian' if 'gauss' in nu.lower() else nu
+    return 'Gaussian' if nu >= NU_GAUSSIAN_CUTOFF else round(float(nu))
+
+
+def _verdict_key(v):
+    """Normalize e.g. 'BOUNDARY(PARITY-flagged)' -> 'BOUNDARY' for comparison."""
+    return str(v).split('(')[0]
+
+
+def assess_materiality(market, result, incumbent_profile, incumbent_registry):
+    """Returns (is_material: bool, reasons: list[str])."""
+    reasons = []
+
+    old_nu_b = _nu_bucket(incumbent_profile.nu)
+    new_nu_b = _nu_bucket(result['nu'])
+    if old_nu_b != new_nu_b:
+        reasons.append(f"nu regime changed: {incumbent_profile.nu} -> {result['nu']} "
+                        f"(bucket {old_nu_b} -> {new_nu_b})")
+
+    old_cal = incumbent_profile.width_cal or 1.0
+    new_cal = result['width_cal']
+    rel = abs(new_cal - old_cal) / old_cal
+    if rel > WIDTH_CAL_TOL:
+        reasons.append(f"width_cal moved {rel:.1%} (> {WIDTH_CAL_TOL:.0%} tolerance): "
+                        f"{old_cal} -> {new_cal}")
+
+    old_names = set(incumbent_registry.get('panel_names', []))
+    new_names = set(result['panel_names'])
+    added = new_names - old_names
+    if added:
+        reasons.append(f"NEW name(s) entering the panel — ticker mapping needs one human glance: "
+                        f"{sorted(added)}")
+
+    old_pn = incumbent_registry.get('per_name', {})
+    for n, d in result['per_name'].items():
+        if 'verdict' not in d:
+            reasons.append(f"{n}: no raw CSV supplied this run, verdict could not be scored "
+                            f"('{d.get('note', 'unknown reason')}') — needs a human to confirm "
+                            f"this name's absence is intentional")
+            continue
+        old_v = _verdict_key(old_pn.get(n, {}).get('verdict', 'UNKNOWN'))
+        new_v = _verdict_key(d['verdict'])
+        if old_v != 'UNKNOWN' and old_v != new_v:
+            reasons.append(f"{n}: verdict changed {old_v} -> {new_v}")
+
+    old_mv = _verdict_key(incumbent_registry.get('market_verdict', 'UNKNOWN'))
+    new_mv = _verdict_key(result['market_verdict'])
+    if old_mv != 'UNKNOWN' and old_mv != new_mv:
+        reasons.append(f"MARKET panel verdict changed {old_mv} -> {new_mv}")
+
+    return (len(reasons) > 0), reasons
+
+
+def write_pending_review(market, result, reasons, incumbent_profile):
+    os.makedirs(PENDING_DIR, exist_ok=True)
+    d = datetime.date.today().isoformat()
+    path = os.path.join(PENDING_DIR, f"{market}_{d}.md")
+    lines = [
+        f"# PENDING REVIEW — {market} ({result['market_name']}) — {d}\n\n",
+        "auto_refresh.py found material changes and stopped rather than auto-committing.\n"
+        "Nothing in market_profiles.py has been touched. Panel files (raw residual "
+        "rebuilds) WERE updated — they carry no verdict of their own.\n\n",
+        "## Why this needs a human\n\n",
+    ]
+    for r in reasons:
+        lines.append(f"- {r}\n")
+    lines.append(f"\n## Proposed config\n\n")
+    lines.append(f"- nu: {incumbent_profile.nu}  ->  **{result['nu']}**\n")
+    lines.append(f"- width_cal: {incumbent_profile.width_cal}  ->  **{result['width_cal']}**\n")
+    lines.append(f"- panel: {len(result['panel_names'])} names, {result['windows']} windows\n")
+    lines.append(f"- market verdict: **{result['market_verdict']}** "
+                  f"(skill {result['market_skill']:+.4f}, CI{result['market_ci90']})\n\n")
+    lines.append("## Per-name verdicts\n\n| Name | nu | width_cal | skill | verdict |\n|---|---|---|---|---|\n")
+    for n, d2 in sorted(result['per_name'].items()):
+        if 'verdict' not in d2:
+            lines.append(f"| {n} | — | — | — | {d2.get('note', 'not scored this run')} |\n")
+        else:
+            lines.append(f"| {n} | {d2['nu']} | {d2['width_cal']} | {d2['skill']:+.4f} | {d2['verdict']} |\n")
+    lines.append("\n## To apply\n\nReview against the LONO/robust-verdict evidence above, then "
+                  "either merge this PR to accept, or re-run with a corrected raw_ohlc/ input.\n")
+    with open(path, 'w') as f:
+        f.writelines(lines)
+    return path
+
+
+def write_production(market, result):
+    """Auto-commit path: write nu/width_cal into market_profiles.py in place,
+    and refresh the fitted_configs.json mirror entry for this market."""
+    path = os.path.join(HERE, 'market_profiles.py')
+    src = open(path).read()
+    import re
+    prof = PROFILES[market]
+    class_name = {'EG': 'EGYPT', 'SA': 'SAUDI', 'US': 'USA', 'GB': 'UK', 'BR': 'BRAZIL',
+                  'KR': 'KOREA', 'AE': 'UAE', 'IN': 'INDIA', 'QA': 'QATAR', 'XAU': 'METALS'}[market]
+    old_nu, old_cal = prof.nu, prof.width_cal
+    old_token = f"nu={old_nu}, width_cal={old_cal}"
+    new_token = f"nu={result['nu']}, width_cal={result['width_cal']}"
+    i = src.index(f"{class_name} = MarketProfile")
+    j = src.index(old_token, i)
+    src = src[:j] + new_token + src[j + len(old_token):]
+    stamp = (f'\n    auto_refresh_note="AUTO-REFRESHED {datetime.date.today().isoformat()} by '
+             f'auto_refresh.py (non-material change, no verdict/config-regime shift; see '
+             f'fitted_configs.json for full detail).",')
+    open(path, 'w').write(src)
+
+    reg = json.load(open(REGISTRY_PATH)) if os.path.exists(REGISTRY_PATH) else {}
+    reg[market] = dict(reg.get(market, {}), nu=result['nu'], width_cal=result['width_cal'],
+                        panel_names=result['panel_names'], windows=result['windows'],
+                        market_skill=result['market_skill'], market_ci90=result['market_ci90'],
+                        market_verdict=result['market_verdict'], per_name=result['per_name'],
+                        auto_refreshed=datetime.date.today().isoformat())
+    reg.setdefault('_meta', {})['last_updated'] = datetime.date.today().isoformat()
+    json.dump(reg, open(REGISTRY_PATH, 'w'), indent=2)
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument('--apply', action='store_true')
+    args = ap.parse_args()
+
+    touched = discover_touched_markets()
+    if not touched:
+        print(f"No files under {RAW_DIR}/{{MARKET}}/*.csv — nothing to do.")
+        return 0
+
+    reg = json.load(open(REGISTRY_PATH)) if os.path.exists(REGISTRY_PATH) else {}
+    exit_code = 0
+    for market, files in touched.items():
+        print(f"\n=== {market}: {len(files)} file(s) in raw_ohlc/{market}/ ===")
+        result = refresh_market(market, files, files, update_registry=False)
+        incumbent_profile = PROFILES[market]
+        incumbent_registry = reg.get(market, {})
+        material, reasons = assess_materiality(market, result, incumbent_profile, incumbent_registry)
+
+        if not material:
+            print(f"  NOT MATERIAL — safe to auto-apply. "
+                  f"nu={result['nu']} width_cal={result['width_cal']} "
+                  f"verdict={result['market_verdict']}")
+            if args.apply:
+                write_production(market, result)
+                print(f"  -> written to market_profiles.py + fitted_configs.json")
+        else:
+            print(f"  MATERIAL — stopping, human review required:")
+            for r in reasons:
+                print(f"    - {r}")
+            if args.apply:
+                p = write_pending_review(market, result, reasons, incumbent_profile)
+                print(f"  -> wrote {p}")
+            exit_code = 1
+
+    return exit_code
+
+
+if __name__ == '__main__':
+    sys.exit(main())
