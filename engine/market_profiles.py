@@ -128,15 +128,21 @@ SAUDI = MarketProfile(
                     "with FTSE SAGBI or iBoxx Tadawul SAR sukuk yield before publish. "
                     "Sensitivity: ±50bp = ±0.12% on the 60d median — immaterial vs band."),
     signal_type="mom_12_1", signal_sign=-1, ic=0.06, signal_active=False,
-    nu=5.0, width_cal=1.28,
-    fit_meta=("Fitted 10-Jul-2026 on the 2-name SA panel (ALINMA/MAADEN, 36 windows). "
-              "MLE scale wanted 1.40; shrink_cal CAP (1.30) binding at 1.28 -> Saudi "
-              "HAR structurally a touch narrow; revisit the cap as the panel passes "
-              "~5 names. Panel verdict: PASS +0.022 CI[+0.001,+0.041]. ALINMA is "
-              "BOUNDARY (skill -0.010; CI edge flips sign with bootstrap block size "
-              "2 vs 3/4) -> per the robust-verdict rule it stays PARITY-flagged, not "
-              "FAIL; review at its first live grade (T+20 2026-08-04). LONO with n=2 "
-              "is unstable (single-name fits) - the pooled fit is the production config."),
+    nu=6.0, width_cal=1.063,
+    fit_meta=(
+        "REFIT 11-Jul-2026 on the 11-name SA panel "
+        "(ACWA/ALINMA/ARAMCO/ELM/EXTRA/MAADEN/RAJHI/RIBL/SABIC/SNB/STC, 190 windows) "
+        "— supersedes the 2-name fit (nu=5, cal=1.28). The old cal=1.28 was CAP-BOUND "
+        "thin-panel conservatism, not real Tadawul vol: on an 11-name panel the MLE "
+        "lands at scale=1.09 -> cal=1.063, a ~17% narrower cone. LONO out-of-sample "
+        "check of the SELECTION PROCEDURE: MLE +0.0008 beats both a direct CRPS-skill "
+        "grid search (-0.0011, overfits) and the old incumbent (-0.0000) — "
+        "MLE-on-residuals retained as the house method. Panel PARITY +0.0023 "
+        "CI[-0.004,+0.008] on the corrected scale-normalized gate. Per-name (LONO, "
+        "robust blocks): RAJHI PASS +0.0151 (clean: PIT 0.495, width ratio 0.991); "
+        "ELM robust FAIL -0.0142 across blocks {2,3,4}; all others PARITY. Signal "
+        "still OFF — 11 names clears the ~5-name threshold, so the mom_12_1 IC is now "
+        "estimable and should be ablated at the next refit. "),
     breaks=["2015-06-15"],
     notes=("Signal OFF (fallback rule): 1-name panel cannot establish IC; literature "
            "sign-unstable (contrarian post-2015 opening). Runs carry-only until the "
@@ -183,31 +189,24 @@ UAE = MarketProfile("AE", "UAE (ADX/DFM)", FED_SCHEDULE, 0.0365,
     "Carry = USD/Fed policy path (AED hard-pegged); rf_live 3.65% = CBUAE Base Rate held "
     "17-Jun-2026. NB the peg 'never-UST' rule governs the VALUATION rf (AED govt bond) -- "
     "the MC carry correctly tracks the Fed for a pegged currency.", "rev_1m", -1, 0.06, False,
-    nu=4.0, width_cal=1.070,
-    fit_meta=("Fitted 10-Jul-2026 on the 9-name AE panel (ADCB/FAB/ENBD/EMAAR/EMAARDEV/"
-              "ALDAR/ADNOCGAS/AGTHIA/IHC, 121 windows, 2022-2026 post-workweek-switch): MLE "
-              "nu=4, scale=1.100 -> width_cal=1.070. Fat-tailed AND slightly wide -- unlike "
-              "the thin-tailed pegged peers (QA nu=12, SA nu=5): UAE equity tails are heavy "
-              "(IHC/EMAAR idiosyncratic swings + the 2026 war shock drive it), so the panel "
-              "picks nu=4 like Egypt but WITHOUT Egypt's FX-jump cause -- fitted, not "
-              "borrowed. This SUPERSEDES the provisional 1-name ALPHADHABI fit (nu=250 "
-              "Gaussian / cal=1.042) that the ALPHADHABI publish carried -- exactly the "
-              ">=3-name re-estimation that fit anticipated; a single stable holdco looked "
-              "Gaussian, the market panel is fat-tailed. SIGNAL: rev_1m ablated OFF (ic 0.06, "
-              "carry-only). Panel verdict PARITY (skill -0.021, CI robust across blocks "
-              "2/3/4). Per-name (LONO, robust blocks): ADCB PASS +0.024 (first AE name with "
-              "a demonstrated edge); FAB -0.018, ENBD -0.022, EMAAR +0.011, EMAARDEV -0.005, "
-              "ALDAR -0.007 (its ledger PASS+1.8% was old zero-drift benchmark; PARITY here), "
-              "ADNOCGAS +0.028, AGTHIA -0.004 (supersedes its old skill<0 FAILED banner -> "
-              "PARITY), IHC -0.095 (boundary, NOT robust FAIL; liquidity screen advised). "
-              "ALPHADHABI folded in as a 10th panel name (its OHLC supplied 10-Jul): the 10-name "
-              "MLE CONFIRMS the fit at nu=4, scale=1.110 -> cal=1.077 (135 windows); production "
-              "width_cal held at 1.070 for continuity with the ADCB publish -- the 0.7% "
-              "difference is immaterial to any band. ALPHADHABI is PARITY under the fitted "
-              "profile (+0.007, CI spans zero), superseding its provisional 1-name Gaussian "
-              "self-fit. The pre-10-Jul UAE studies "
-              "(incl. ALPHADHABI) were published on other fits; their §3 distributions are "
-              "superseded -- re-render on next cycle."),
+    nu=10.0, width_cal=1.056,
+    fit_meta=(
+        "REFIT 11-Jul-2026 on the 14-name AE panel (adds ADIB/DIB/TWOPOINTZERO/EAND "
+        "to the prior 10; 237 post-break windows) — supersedes nu=4/cal=1.070. Tail "
+        "moves 4 -> 10: the old fat tail was carried by IHC/EMAAR idiosyncratic "
+        "swings on a smaller panel; four more well-behaved names (two banks, a telco, "
+        "a holding) dilute it. HONESTY NOTE: nu is only WEAKLY IDENTIFIED here — "
+        "every nu from 5 to Gaussian sits inside the 95% likelihood interval (nu=4 is "
+        "only dlogL=2.23 away), and nu trades off against cal (fatter tail wants a "
+        "wider scale). The (nu,cal) PAIR is what is fitted; neither coordinate should "
+        "be quoted as precise. LONO OOS: this MLE config scores +0.0032 vs the "
+        "incumbent's -0.0017. Panel PARITY +0.0039. BREAK FILTERING NOW APPLIED (see "
+        "apply_breaks in panel_refresh.py): EAND's OHLC starts 2016, so 21 of its 39 "
+        "windows predate the Jan-2022 workweek switch and are excluded from the "
+        "calibration sample — unfiltered they pulled the fit to nu=6/cal=1.084. "
+        "Per-name: ALPHADHABI robust FAIL -0.0122 (cone 1.136x benchmark, cov90=0.94 "
+        "vs 0.90 target — over-wide); rest PARITY. Signal OFF; 14 names now clears "
+        "the threshold for a rev_1m ablation. "),
     breaks=["2022-01-01"], notes="Workweek switch Jan-2022: vol pool post-2022 only.")
 INDIA = MarketProfile("IN", "India (NSE)", [("2020-01-01", 0.0650)], 0.0650,
     "PLACEHOLDER — source 10Y G-Sec at first IN study.", "mom_12_1", +1, 0.07, False,
