@@ -145,3 +145,37 @@ Market panel verdict: skill=-0.0056 CI90=[-0.021, 0.006] **PARITY**
 | AAPL | 4.0 | 1.098 | -0.0064 | PARITY |
 | NVDA | 30.0 | 0.972 | -0.0233 | PARITY |
 | TSLA | Gaussian | 1.014 | +0.0077 | PARITY |
+
+## EG (Egypt (EGX)) — refit 2026-07-11
+Gate basis: scale-normalized (crps/spot) — primary since 11-Jul-2026
+Panel: 25 names (ABUK, ADIB, BTFH, CCAP, EFID, EFIH, EGAL, EMFD, ETEL, FWRY, GBCO, HELI, HRHO, ISPH, JUFO, KABO, LCSW, OCDI, OIH, ORHD, ORWE, PHDC, PRDC, RAYA, TMGH), 325 pooled windows.
+Production fit: nu=4.0, width_cal=0.909 (mle_scale=0.87).
+Market panel verdict: skill=+0.0252 CI90=[0.015, 0.036] **PASS**
+
+| Name | nu | width_cal | skill | verdict |
+|---|---|---|---|---|
+| ABUK | 4.0 | 0.895 | +0.0212 | BOUNDARY(PARITY-flagged) |
+| ADIB | 4.0 | 0.909 | +0.0242 | PARITY |
+| BTFH | 4.0 | 0.902 | +0.0189 | PARITY |
+| CCAP | 4.0 | 0.909 | +0.0904 | PASS |
+| EFID | 4.0 | 0.916 | +0.0079 | PARITY |
+| EFIH | 4.0 | 0.909 | +0.0349 | BOUNDARY(PARITY-flagged) |
+| EGAL | 4.0 | 0.909 | +0.0487 | PARITY |
+| EMFD | 4.0 | 0.909 | +0.0776 | PASS |
+| ETEL | 4.0 | 0.902 | +0.0393 | BOUNDARY(PARITY-flagged) |
+| FWRY | 4.0 | 0.909 | +0.0463 | BOUNDARY(PARITY-flagged) |
+| GBCO | 4.0 | 0.916 | +0.0342 | BOUNDARY(PARITY-flagged) |
+| HELI | 4.0 | 0.916 | +0.0703 | PASS |
+| HRHO | 4.0 | 0.909 | +0.0197 | PARITY |
+| ISPH | 4.0 | 0.895 | -0.0438 | PARITY |
+| JUFO | 4.0 | 0.909 | +0.0284 | PARITY |
+| KABO | 4.0 | 0.916 | -0.0015 | PARITY |
+| LCSW | 4.0 | 0.916 | +0.0509 | PASS |
+| OCDI | 4.0 | 0.909 | +0.0484 | PASS |
+| OIH | 4.0 | 0.895 | -0.0110 | PARITY |
+| ORHD | 4.0 | 0.916 | +0.0294 | PARITY |
+| ORWE | 4.0 | 0.902 | +0.0095 | PARITY |
+| PHDC | 4.0 | 0.902 | +0.0058 | PARITY |
+| PRDC | 4.0 | 0.916 | +0.0366 | PASS |
+| RAYA | 4.0 | 0.902 | +0.0132 | PARITY |
+| TMGH | 4.0 | 0.895 | +0.0149 | PARITY |
