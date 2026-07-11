@@ -54,6 +54,18 @@ jobs:
         # exit 0 = every touched market was NON-material  -> safe to auto-commit
         # exit 1 = at least one MATERIAL change            -> must go to a PR
 
+      - name: Smoke-test — the engine must actually IMPORT before anything is committed
+        working-directory: engine
+        run: |
+          python3 -c "
+          import market_profiles, mc_v3, panel_refresh, data_quality, auto_refresh
+          from market_profiles import PROFILES
+          for c,p in PROFILES.items():
+              assert p.width_cal is not None, c
+              assert p.nu is None or isinstance(p.nu,(int,float)), (c, p.nu)
+          print('engine imports cleanly;', len(PROFILES), 'market profiles OK')
+          "
+
       - name: Auto-commit (only when nothing was material)
         if: steps.refresh.outputs.exit_code == '0'
         run: |
