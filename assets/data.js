@@ -21,7 +21,7 @@ const TICKERS = {
     touch: [ /* descending high -> low; P(touch) T+20 %, T+60 % */
       [2.60, 8, 29], [2.40, 28, 53], [2.20, 76, 87], [2.00, 38, 60], [1.90, 18, 42], [1.80, 8, 27]
     ],
-    levels: { res:[2.46, 2.42, 2.43], sup:[2.19, 1.93, 1.65] },
+    levels: { res:[2.42, 2.43, 3.26], sup:[2.07, 2.00, 1.65] },
     tech: {
       trend: "Recovery inside a downtrend — price above the 20/50/100-day averages but 11% below the 200-day; RSI neutral near 37",
       summary: "The tape is unresolved. 2POINTZERO trades above its 20-day (AED 2.19), 50-day (2.12) and 100-day (2.07) averages, but sits 11% below the 200-day (2.42) — the signature of a bounce inside a downtrend, not a new uptrend. The 52-week range is AED 1.65–3.26 and spot sits in the lower third of it. RSI(14) at 37 is dead neutral, and the daily MACD (12·26·9) has just rolled over (0.0139 line vs 0.0289 signal, histogram -0.0151) — the post-trough impulse is spent. Realised 252-day volatility is about 39%, which is why the §3 cone is wide.",
@@ -29,10 +29,10 @@ const TICKERS = {
       bear: "Losing the 20-day near AED 2.19 exposes the T+60 25th percentile at 1.93 and then the war low at 1.65."
     },
     files: {
-      study: "files/2POINTZERO_Valuation_Study_11-07-2026_public.docx?v=20260711e",
-      model: "files/2POINTZERO_Valuation_Model_11072026_public.xlsx?v=20260711e",
-      pdf:   "files/2POINTZERO_Valuation_Study_11-07-2026_public.pdf?v=20260711e",
-      biblio:"files/2POINTZERO_Bibliography_11-07-2026.docx?v=20260711e"
+      study: "files/2POINTZERO_Valuation_Study_11-07-2026_public.docx?v=20260711f",
+      model: "files/2POINTZERO_Valuation_Model_11072026_public.xlsx?v=20260711f",
+      pdf:   "files/2POINTZERO_Valuation_Study_11-07-2026_public.pdf?v=20260711f",
+      biblio:"files/2POINTZERO_Bibliography_11-07-2026.docx?v=20260711f"
     }
   },
   EAND: {
