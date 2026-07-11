@@ -257,3 +257,38 @@ Re-ran the 14-name UAE panel through data_quality.clean_ohlc. EAND(3)/ADCB(5)/AD
 carried trading-halt rows (O=H=L=C, no volume) that flatten the Yang-Zhang intraday range.
 width_cal 1.056 -> 1.049; nu unchanged (10); panel skill +0.0039 -> +0.0049.
 SA / QA / US series screened and CLEAN — no jumps past threshold, no placeholder rows.
+
+## KR (South Korea) — refit 2026-07-11
+Gate basis: scale-normalized (crps/spot) — primary since 11-Jul-2026
+Panel: 3 names (KAKAO, LGES, SAMSUNG), 49 pooled windows.
+Production fit: nu=Gaussian, width_cal=1.154 (mle_scale=1.22).
+Market panel verdict: skill=+0.0144 CI90=[-0.005, 0.017] **PARITY**
+
+| Name | nu | width_cal | skill | verdict |
+|---|---|---|---|---|
+| KAKAO | 20.0 | 1.168 | +0.0022 | PARITY |
+| LGES | Gaussian | 1.245 | -0.0268 | FAIL |
+| SAMSUNG | Gaussian | 1.021 | +0.0094 | PARITY |
+
+## AE (UAE (ADX/DFM)) — refit 2026-07-11
+Gate basis: scale-normalized (crps/spot) — primary since 11-Jul-2026
+Panel: 14 names (ADCB, ADIB, ADNOCGAS, AGTHIA, ALDAR, ALPHADHABI, DIB, EAND, EMAAR, EMAARDEV, ENBD, FAB, IHC, TWOPOINTZERO), 237 pooled windows.
+Production fit: nu=10.0, width_cal=1.049 (mle_scale=1.07).
+Market panel verdict: skill=+0.0049 CI90=[-0.004, 0.015] **PARITY**
+
+| Name | nu | width_cal | skill | verdict |
+|---|---|---|---|---|
+| ADCB | 10.0 | 1.063 | +0.0228 | PARITY |
+| ADIB | 12.0 | 1.035 | +0.0051 | PARITY |
+| ADNOCGAS | 10.0 | 1.063 | -0.0043 | PARITY |
+| AGTHIA | 10.0 | 1.049 | +0.0073 | PARITY |
+| ALDAR | 8.0 | 1.035 | -0.0102 | PARITY |
+| ALPHADHABI | 10.0 | 1.063 | -0.0139 | FAIL |
+| DIB | 15.0 | 1.035 | -0.0014 | PARITY |
+| EAND | 10.0 | 1.063 | +0.0022 | PARITY |
+| EMAAR | 10.0 | 1.035 | +0.0050 | PARITY |
+| EMAARDEV | 8.0 | 1.056 | +0.0005 | PARITY |
+| ENBD | 8.0 | 1.056 | +0.0015 | PARITY |
+| FAB | 10.0 | 1.042 | -0.0065 | PARITY |
+| IHC | 12.0 | 1.056 | +0.0474 | PARITY |
+| TWOPOINTZERO | 10.0 | 1.049 | +0.0007 | PARITY |
