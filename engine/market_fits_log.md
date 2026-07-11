@@ -42,3 +42,27 @@ Market panel verdict: skill=+0.0026 CI90=[-0.006, 0.013] **PARITY**
 | FAB | 6.0 | 1.077 | -0.0065 | PARITY |
 | IHC | 8.0 | 1.077 | +0.0472 | PARITY |
 | TWOPOINTZERO | 6.0 | 1.084 | -0.0002 | PARITY |
+
+## QA (Qatar (QE)) — refit 2026-07-11
+Gate basis: scale-normalized (crps/spot) — primary since 11-Jul-2026
+Panel: 3 names (IQCD, QGTS, QNB), 54 pooled windows.
+Production fit: nu=12.0, width_cal=0.972 (mle_scale=0.96).
+Market panel verdict: skill=-0.0091 CI90=[-0.022, 0.002] **PARITY**
+
+| Name | nu | width_cal | skill | verdict |
+|---|---|---|---|---|
+| IQCD | 12.0 | 0.951 | -0.0179 | FAIL |
+| QGTS | 6.0 | 1.014 | -0.0119 | PARITY |
+| QNB | 1000000000.0 | 0.965 | -0.0011 | PARITY |
+
+## QA (Qatar (QE)) — refit 2026-07-11
+Gate basis: scale-normalized (crps/spot) — primary since 11-Jul-2026
+Panel: 3 names (IQCD, QGTS, QNB), 54 pooled windows.
+Production fit: nu=12.0, width_cal=0.972 (mle_scale=0.96).
+Market panel verdict: skill=-0.0091 CI90=[-0.022, 0.002] **PARITY**
+
+| Name | nu | width_cal | skill | verdict |
+|---|---|---|---|---|
+| IQCD | 12.0 | 0.951 | -0.0179 | FAIL |
+| QGTS | 6.0 | 1.014 | -0.0119 | PARITY |
+| QNB | Gaussian | 0.965 | -0.0011 | PARITY |
