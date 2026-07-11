@@ -38,9 +38,11 @@ stays a separate, explicitly-initiated step per the Standing Research Protocol.
 """
 import sys, os, glob, json, datetime
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import hashlib
 import numpy as np
 import pandas as pd
-from mc_v3 import fit_nu_scale, shrink_cal, backtest_v3
+from mc_v3 import fit_nu_scale, shrink_cal, backtest_v3, simulate_terminal_v3
+from mc_v2 import crps_sample
 from mc_v2 import load_ohlc as _raw_load_ohlc
 from market_profiles import PROFILES
 from data_quality import clean_ohlc
@@ -84,6 +86,58 @@ def panel_path(market, name):
     return os.path.join(PANELS_DIR, f"{market}_{name}_60d.csv")
 
 
+HASH_PATH = os.path.join(HERE, 'panel_hashes.json')
+
+
+def _file_hash(path):
+    return hashlib.sha256(open(path, 'rb').read()).hexdigest()[:16]
+
+
+def _load_hashes():
+    if os.path.exists(HASH_PATH):
+        try:
+            return json.load(open(HASH_PATH))
+        except Exception:
+            return {}
+    return {}
+
+
+def _save_hashes(h):
+    json.dump(h, open(HASH_PATH, 'w'), indent=2)
+
+
+# ---------------------------------------------------------------- fast rescore
+def fast_rescore(r, nu, cal, n_paths=N_PATHS, seed=SEED):
+    """Re-score a prebuilt panel under a new (nu, width_cal) WITHOUT re-running the
+    engine. This is EXACT, not an approximation, and it is what makes a one-stock-at-
+    a-time upload practical (the naive path re-ran ~3 full backtests per name, each
+    O(n^2) in the HAR refit — the full 65-stock library timed out).
+
+    Why it is exact: nu and width_cal enter ONLY at the simulation step.
+      sigma_h(cal) = sigma_h(1.0) * cal          [HAR variance is cal-independent]
+      alpha(cal)   = alpha(1.0) * cal            [alpha = IC*sigma_h*sign*clip(z),
+                                                  and its cap is +/-0.5*sigma_h —
+                                                  both scale linearly in sigma_h]
+      carry        = drift - alpha               [cal-invariant]
+      => drift(cal) = carry + alpha(1.0)*cal
+    The benchmark (crps_b) depends on neither, so it is reused as stored.
+    Panels are built at the baseline (nu=8, width_cal=1.0), so r's sigma_h/alpha are
+    the (1.0) quantities. Verified bit-for-bit against backtest_v3 before adoption.
+    """
+    carry = r['drift'].values - r['alpha'].values
+    sigma = r['sigma_h'].values * cal
+    drift = carry + r['alpha'].values * cal
+    spot = r['spot'].values
+    realized = r['realized'].values
+    idx = r['origin_idx'].values
+    out = np.empty(len(r))
+    for i in range(len(r)):
+        samp = simulate_terminal_v3(spot[i], sigma[i], drift[i], nu=nu,
+                                     n_paths=n_paths, seed=int(seed + idx[i]))
+        out[i] = crps_sample(samp, realized[i])
+    return out
+
+
 def existing_panel_names(market):
     return sorted({os.path.basename(f).split('_')[1]
                    for f in glob.glob(os.path.join(PANELS_DIR, f"{market}_*_60d.csv"))})
@@ -100,6 +154,10 @@ def build_panel_file(market, name, raw_csv_path, profile):
                         use_signal=profile.signal_active,
                         n_paths=N_PATHS, seed=SEED, min_history=MIN_HISTORY)
     r = pd.DataFrame(rows)
+    # backtest_v3 walks origins as: origin = MIN_HISTORY, += horizon. Recording the
+    # index makes the per-origin RNG seed (seed + origin) reconstructible, which is
+    # what lets fast_rescore re-simulate EXACTLY instead of re-running the engine.
+    r['origin_idx'] = MIN_HISTORY + np.arange(len(r)) * 60
     r.to_csv(panel_path(market, name), index=False)
     return r, df
 
@@ -182,12 +240,21 @@ def refresh_market(market, new_csvs, raw_csv_lookup, update_registry=True):
     training scaffolding, not a verdict — see build_panel_file)."""
     profile = PROFILES[market]
     os.makedirs(PANELS_DIR, exist_ok=True)
+    hashes = _load_hashes()
 
-    # 1. rebuild/refresh panel files for touched names
+    # 1. rebuild ONLY the panels whose raw CSV actually changed (content hash).
+    #    This is what makes posting one stock cheap: 1 rebuild, not N.
+    rebuilt = []
     for name, path in new_csvs.items():
-        build_panel_file(market, name, path, profile)
+        h = _file_hash(path)
+        key = f"{market}_{name}"
+        if hashes.get(key) != h or not os.path.exists(panel_path(market, name)):
+            build_panel_file(market, name, path, profile)
+            hashes[key] = h
+            rebuilt.append(name)
+    _save_hashes(hashes)
 
-    # 2. pool 'u' across the FULL current panel (old + new)
+    # 2. pool 'u' across the FULL current panel (old + new), break-filtered
     names = sorted(set(existing_panel_names(market)) | set(new_csvs))
     panel = {n: apply_breaks(pd.read_csv(panel_path(market, n)), profile) for n in names}
     names = [n for n in names if len(panel[n]) > 0]
@@ -195,49 +262,51 @@ def refresh_market(market, new_csvs, raw_csv_lookup, update_registry=True):
     nu_pool, s_pool = fit_nu_scale(pooled_u)
     cal_pool = shrink_cal(s_pool)
 
-    # 3. LONO per-name verdicts + pooled market verdict
+    # 3. LONO per-name verdicts + pooled market verdict — all via fast_rescore,
+    #    which is bit-for-bit identical to re-running the engine (verified) but
+    #    skips the O(n^2) HAR refit. The naive path timed out on the full library.
     per_name = {}
     for n in names:
-        path = raw_csv_lookup.get(n) or new_csvs.get(n)
-        if path is None:
-            per_name[n] = dict(note="raw CSV not supplied this session — "
-                                     "panel u reused, LONO verdict skipped")
+        r = panel[n]
+        if 'origin_idx' not in r.columns:
+            per_name[n] = dict(note="panel predates origin_idx — supply the raw CSV to rebuild")
             continue
         if len(names) >= 2:
             u = np.concatenate([panel[m]['u'].values for m in names if m != n])
             nu_l, s_l = fit_nu_scale(u); cal_l = shrink_cal(s_l)
         else:
             nu_l, cal_l = nu_pool, cal_pool
-        sk, sk_raw, r = rescore(path, profile, nu_l, cal_l)
-        verd, detail = robust_verdict(r['crps_n'].values, r['crps_b_n'].values)
+        c = fast_rescore(r, nu_l, cal_l)
+        cb = r['crps_b'].values
+        spot = r['spot'].values
+        cn, cbn = c / spot, cb / spot
+        sk = float(1 - cn.sum() / cbn.sum())
+        sk_raw = float(1 - c.sum() / cb.sum())
+        verd, detail = robust_verdict(cn, cbn)
         nu_disp = round(float(nu_l), 3) if nu_l < 200 else "Gaussian"
-        per_name[n] = dict(nu=nu_disp, width_cal=round(cal_l, 3),
-                            skill=round(float(sk), 4),
-                            skill_raw_basis=round(float(sk_raw), 4),
+        per_name[n] = dict(nu=nu_disp, width_cal=round(float(cal_l), 3),
+                            skill=round(sk, 4), skill_raw_basis=round(sk_raw, 4),
                             verdict=verd,
                             ci_block2=[round(float(detail[2][0]), 3),
                                        round(float(detail[2][1]), 3)])
 
     allc, allb, allc_r, allb_r = [], [], [], []
+    weights = {}
     for n in names:
-        path = raw_csv_lookup.get(n) or new_csvs.get(n)
-        if path is None:
+        r = panel[n]
+        if 'origin_idx' not in r.columns:
             continue
-        _, _, r = rescore(path, profile, nu_pool, cal_pool)
-        allc.append(r['crps_n'].values); allb.append(r['crps_b_n'].values)
-        allc_r.append(r['crps'].values); allb_r.append(r['crps_b'].values)
+        c = fast_rescore(r, nu_pool, cal_pool)
+        cb = r['crps_b'].values; spot = r['spot'].values
+        allc.append(c / spot); allb.append(cb / spot)
+        allc_r.append(c); allb_r.append(cb)
+        weights[n] = float((cb / spot).sum())
     ac, ab = np.concatenate(allc), np.concatenate(allb)
     market_skill = float(1 - ac.sum() / ab.sum())
     lo, hi, market_verdict = verdict_ci(ac, ab, block=6)
     lo, hi = float(lo), float(hi)
     acr, abr = np.concatenate(allc_r), np.concatenate(allb_r)
     market_skill_raw = float(1 - acr.sum() / abr.sum())
-    # concentration diagnostic: how much of the pooled weight does one name carry?
-    weights = {}
-    for n in names:
-        pf = panel.get(n)
-        if pf is not None and 'spot' in pf:
-            weights[n] = float((pf['crps_b'] / pf['spot']).sum())
     tot = sum(weights.values()) or 1.0
     top_name = max(weights, key=weights.get) if weights else None
     top_share = round(weights[top_name] / tot, 3) if top_name else None
@@ -246,6 +315,7 @@ def refresh_market(market, new_csvs, raw_csv_lookup, update_registry=True):
         market=market, market_name=profile.name,
         fit_date=datetime.date.today().isoformat(),
         panel_names=names, windows=len(pooled_u),
+        rebuilt_this_run=rebuilt,
         nu=round(float(nu_pool), 3) if nu_pool < 200 else "Gaussian",
         width_cal=round(float(cal_pool), 3),
         mle_scale=round(float(s_pool), 3),
