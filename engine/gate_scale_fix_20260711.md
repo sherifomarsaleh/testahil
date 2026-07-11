@@ -90,3 +90,71 @@ MarketProfile lists a structural break") but is **never read** by `mc_v2.py` or
 `mc_v3.py`. grep returns no reference. Regime-break vol pooling is documented but
 not implemented. Left in place rather than silently changed, because fixing it
 would move Egypt's fit (2016 float, 2022-23 devaluations) as well as UAE's.
+
+---
+
+# Addendum — selection procedure tested and NOT changed (11-Jul-2026)
+
+## nu is weakly identified — do not quote it as precise
+
+Profiling the log-likelihood across the nu grid on the refreshed panels:
+
+- **UAE (237 windows, 14 names):** *every* nu from 5 through the Gaussian limit sits
+  inside the 95% likelihood interval. nu=4 (the incumbent) is only dlogL=2.23 from
+  the MLE at nu=10.
+- **Saudi (190 windows, 11 names):** nu=4 through nu=15 are all within the interval.
+  The incumbent nu=5 vs the new MLE nu=6 differ by dlogL=0.23 — indistinguishable.
+  (The Gaussian limit IS decisively rejected at dlogL=-6.42, so Saudi genuinely has
+  fat tails — they are simply not pinned between 4 and 15.)
+
+nu also trades off against width_cal: a fatter tail wants a wider scale to fit the
+same residuals. **The (nu, width_cal) PAIR is what is fitted. Neither coordinate is
+individually precise and neither should be quoted as though it were.**
+
+## A CRPS-skill grid search was tried, and it LOST out-of-sample
+
+Since nu is weakly identified by likelihood but strongly determines the published
+p5/p95, an obvious idea is to select (nu, width_cal) by maximizing pooled CRPS skill
+instead of likelihood. In-sample this looked like a clear win (UAE +0.0038 vs the
+incumbent's -0.0017).
+
+It was then tested honestly, leave-one-name-out: for each held-out name, run BOTH
+selection procedures on the other names only, then score the held-out name.
+
+| Selection procedure | UAE OOS skill | Saudi OOS skill |
+|---|---|---|
+| **MLE on residuals (house method)** | **+0.0032** | **+0.0008** |
+| CRPS-skill grid search | +0.0021 | -0.0011 |
+| Incumbent config in production | -0.0017 | -0.0000 |
+
+**The CRPS grid search overfits.** It wins in-sample and loses out-of-sample, in both
+markets. The house's existing MLE-on-standardized-residuals procedure is retained
+unchanged. This is recorded as a tested-and-rejected idea; do not revive it without
+new evidence.
+
+What the exercise *did* establish is that the incumbent **configs** were stale, not
+that the **procedure** was wrong. Same procedure + bigger panel = better fit:
+
+| Market | Old config | New config | Panel |
+|---|---|---|---|
+| Saudi | nu=5, cal=1.28 (2 names) | **nu=6, cal=1.063** (11 names) | cone ~17% narrower |
+| UAE | nu=4, cal=1.070 (9-10 names) | **nu=10, cal=1.056** (14 names) | thinner tail |
+| Qatar | nu=12, cal=0.972 (3 names) | unchanged — reproduced exactly | — |
+| US | nu=12, cal=1.014 (3 names) | unchanged — reproduced exactly | — |
+
+Qatar and the US reproducing the incumbent fits *exactly* is a useful validation that
+the refreshed pipeline is the same engine, not a fork.
+
+## Break filtering now applied to the CALIBRATION SAMPLE (partial fix)
+
+`panel_refresh.apply_breaks` now drops windows whose origin precedes a market's last
+declared structural break, so pre-regime data no longer contaminates the shape/width
+fit. This bit for real on UAE: EAND's OHLC starts in 2016 and 21 of its 39 windows
+predate the Jan-2022 workweek switch. Unfiltered, they pulled the UAE fit to
+nu=6/cal=1.084; filtered, it is nu=10/cal=1.056.
+
+**This is only a partial fix.** The Standing Research Protocol's actual claim is that
+*volatility pools* use post-break windows only, which would require the per-origin vol
+estimation INSIDE mc_v3 (the YZ proxy / HAR window) to be break-aware. It still is not
+— `breaks` remains unread by mc_v2.py and mc_v3.py. Fixing that would move every
+published distribution, Egypt's included, and is left as an open decision.
