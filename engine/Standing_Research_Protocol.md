@@ -119,7 +119,8 @@ revive.** What the exercise established was that the incumbent *configs* were st
 ## [NEW 11-Jul] THE UNATTENDED LOOP
 
 `engine/raw_ohlc/{MARKET}/{TICKER}.csv` is a **persistent library of every covered stock**, not an
-inbox — 65 stocks across 8 markets. To add or refresh ONE stock, add or overwrite ONE file. The
+inbox — **65 stocks across 8 fitted markets** (27 EG · 11 SA · 14 AE · 3 QA · 3 US · 3 KR · 3 IN · 1 XAU).
+To add or refresh ONE stock, add or overwrite ONE file. The
 pipeline then refits that stock's **whole market** against the full library.
 
 **One-stock post ≈ 12 seconds** even for Egypt's 27 names: panels are content-hashed (only the
