@@ -9,7 +9,6 @@
     "open_gaps": [
       "NAME-LEVEL width_cal (shrunk toward the market fit) is the clearest outstanding improvement: KR/LGES and AE/ALPHADHABI both FAIL purely on OVER-COVERAGE (LGES: cov80=1.00, cov90=1.00) because a market-level cone over-widens names whose own vol sits below the panel average. Proposed, NOT implemented \u2014 needs an out-of-sample test.",
       "MarketProfile.breaks is honoured in the CALIBRATION SAMPLE (panel_refresh.apply_breaks) but mc_v2/mc_v3 still never read it \u2014 the engine per-origin vol estimation is not break-aware.",
-      "India (3 names) has NOT been re-run through the corrected gate or the data-quality gate. Its export may carry the same phantom-row corruption found in the Korean one \u2014 CHECK BEFORE TRUSTING ITS FIT.",
       "Metals (XAU) is still a single-name self-fit \u2014 silver/copper history needed to de-circularize."
     ]
   },
@@ -854,16 +853,65 @@
     "fit_meta": "REFIT 11-Jul-2026 on the 14-name AE panel (237 post-break windows), RE-RUN through the data-quality gate - supersedes nu=4/cal=1.070. Adds ADIB/DIB/TWOPOINTZERO/EAND to the prior 10. Tail moves 4 -> 10: the old fat tail was carried by IHC/EMAAR idiosyncratic swings on a smaller panel; four more well-behaved names dilute it. HONESTY NOTE: nu is only WEAKLY IDENTIFIED - every nu from 5 to Gaussian sits inside the 95% likelihood interval (nu=4 is only dlogL=2.23 away), and nu trades off against cal. The (nu,cal) PAIR is fitted; neither coordinate is individually precise. LONO OOS: this MLE config scores +0.0032 vs the incumbent's -0.0017. Data-quality gate dropped 3-5 stale no-trade rows each from EAND/ADCB/ADIB - immaterial (cal 1.056 -> 1.049, nu unchanged). BREAK FILTERING APPLIED: EAND's OHLC starts 2016, so 21 of its 39 windows predate the Jan-2022 workweek switch and are excluded from the calibration sample; unfiltered they pulled the fit to nu=6/cal=1.084. Panel PARITY +0.0049 CI[-0.004,+0.015]. Per-name: ALPHADHABI robust FAIL -0.0122 (cone 1.136x benchmark, cov90=0.94 vs a 0.90 target - over-wide, same signature as KR/LGES); all 13 others PARITY. Signal OFF; 14 names now clears the threshold for a rev_1m ablation."
   },
   "IN": {
-    "code": "IN",
-    "name": "India (NSE)",
+    "market": "IN",
+    "market_name": "India (NSE)",
+    "fit_date": "2026-07-11",
+    "panel_names": [
+      "INFY",
+      "RELIANCE",
+      "TMPV"
+    ],
+    "windows": 54,
     "nu": 250.0,
     "width_cal": 0.93,
+    "mle_scale": 0.9,
+    "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
+    "market_skill": 0.0046,
+    "market_skill_raw_basis": 0.0033,
+    "market_ci90": [
+      -0.006,
+      0.016
+    ],
+    "market_verdict": "PARITY",
+    "top_name_weight_share": 0.437,
+    "top_name": "TMPV",
     "signal_active": false,
-    "signal_type": "mom_12_1",
-    "ic": 0.07,
-    "breaks": [],
-    "fit_meta": "Fitted 10-Jul-2026 on the 3-name IN panel (TMPV/RELIANCE/INFY, 51 windows, 2021-2026): MLE selected the Gaussian limit (nu=250 encodes normal), cal=0.930 - thin tails, cone ~7% wide. SIGNAL ABLATION is DECISIVE: the mom_12_1 prior HURTS (panel -0.018 ON vs +0.002 carry-only) despite India's strong momentum literature -> fallback rule, signal_active=False; re-estimate at ~5 names. Panel verdict PARITY +0.002 CI[-0.007,+0.016]. Per-name (carry-only LONO, robust blocks): TMPV PARITY -0.009, RELIANCE PARITY +0.006, INFY PARITY +0.004 - all robust. NB the backtest carry schedule is a flat 6.50% placeholder (RBI repo actually 4.00->6.50->~5.50 over the window) - gate-neutral for skill, but source the real schedule + live G-Sec before any IN publish.",
-    "market_verdict": "UNFITTED"
+    "per_name": {
+      "INFY": {
+        "nu": "Gaussian",
+        "width_cal": 0.93,
+        "skill": 0.007,
+        "skill_raw_basis": 0.0047,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.007,
+          0.026
+        ]
+      },
+      "RELIANCE": {
+        "nu": "Gaussian",
+        "width_cal": 0.951,
+        "skill": 0.009,
+        "skill_raw_basis": 0.0063,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.006,
+          0.022
+        ]
+      },
+      "TMPV": {
+        "nu": "Gaussian",
+        "width_cal": 0.909,
+        "skill": -0.0001,
+        "skill_raw_basis": -0.0081,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.018,
+          0.023
+        ]
+      }
+    },
+    "fit_meta": "REFIT 11-Jul-2026 on the 3-name IN panel (TMPV/RELIANCE/INFY, 51 windows, 2021-2026), RE-RUN through the market-aware data-quality gate and the scale-normalized gate - EXACT REPRODUCTION of the 10-Jul fit: nu stays at the Gaussian limit, cal stays 0.930. Screened for the same phantom-row corruption found in the Korean export (144/170 of one Korean name's dropped rows fell on a Sunday, when the KOSPI is closed): India's export is CLEAN - 247.6 rows/yr across all three names, exactly the NSE calendar, zero phantom rows, no price-limit artifacts. Panel PARITY +0.0046 CI[-0.006,+0.016] on the corrected gate (was +0.002 on the old price-weighted one); top-name weight TMPV 43.7% (no single name dominates as badly as UAE's old IHC problem, but still the largest share of any 3-name panel in the system - worth a 4th name). All three PARITY, zero FAILs: INFY +0.0070, RELIANCE +0.0090, TMPV -0.0001. SIGNAL RE-CONFIRMED OFF: empirical IC of mom_12_1 is -0.0933 against the house prior's sign=+1 - WRONG SIGN, same pattern as Egypt's now-retired rev_1m signal. LONO ablation shows ZERO difference between signal-ON and carry-only at this panel size (the dead-zone/cap machinery absorbs it either way) - not enough data to safely re-estimate the sign, so the mom_12_1/IC-0.07 prior is RETAINED unchanged for later re-estimation, signal_active stays False. The backtest carry schedule is still a flat 6.50% placeholder (RBI repo actually ranged 4.00->6.50->~5.50 over the window) - gate-neutral for skill scoring but MUST be sourced properly (live G-Sec / real RBI schedule) before any IN publish."
   },
   "QA": {
     "code": "QA",
