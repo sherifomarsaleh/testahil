@@ -265,18 +265,30 @@ UAE = MarketProfile("AE", "UAE (ADX/DFM)", FED_SCHEDULE, 0.0365,
 INDIA = MarketProfile("IN", "India (NSE)", [("2020-01-01", 0.0650)], 0.0650,
     "PLACEHOLDER — source 10Y G-Sec at first IN study.", "mom_12_1", +1, 0.07, False,
     nu=250.0, width_cal=0.930,
-    fit_meta=("Fitted 10-Jul-2026 on the 3-name IN panel (TMPV/RELIANCE/INFY, 51 "
-              "windows, 2021-2026): MLE selected the Gaussian limit (nu=250 encodes "
-              "normal), cal=0.930 - thin tails, cone ~7% wide. SIGNAL ABLATION is "
-              "DECISIVE: the mom_12_1 prior HURTS (panel -0.018 ON vs +0.002 "
-              "carry-only) despite India's strong momentum literature -> fallback "
-              "rule, signal_active=False; re-estimate at ~5 names. Panel verdict "
-              "PARITY +0.002 CI[-0.007,+0.016]. Per-name (carry-only LONO, robust "
-              "blocks): TMPV PARITY -0.009, RELIANCE PARITY +0.006, INFY PARITY "
-              "+0.004 - all robust. NB the backtest carry schedule is a flat 6.50% "
-              "placeholder (RBI repo actually 4.00->6.50->~5.50 over the window) - "
-              "gate-neutral for skill, but source the real schedule + live G-Sec "
-              "before any IN publish."),
+    fit_meta=(
+        "REFIT 11-Jul-2026 on the 3-name IN panel (TMPV/RELIANCE/INFY, 51 windows, "
+        "2021-2026), RE-RUN through the market-aware data-quality gate and the "
+        "scale-normalized gate - EXACT REPRODUCTION of the 10-Jul fit: nu stays at "
+        "the Gaussian limit, cal stays 0.930. Screened for the same phantom-row "
+        "corruption found in the Korean export (144/170 of one Korean name's "
+        "dropped rows fell on a Sunday, when the KOSPI is closed): India's export "
+        "is CLEAN - 247.6 rows/yr across all three names, exactly the NSE calendar, "
+        "zero phantom rows, no price-limit artifacts. Panel PARITY +0.0046 "
+        "CI[-0.006,+0.016] on the corrected gate (was +0.002 on the old "
+        "price-weighted one); top-name weight TMPV 43.7% (no single name dominates "
+        "as badly as UAE's old IHC problem, but still the largest share of any "
+        "3-name panel in the system - worth a 4th name). All three PARITY, zero "
+        "FAILs: INFY +0.0070, RELIANCE +0.0090, TMPV -0.0001. SIGNAL RE-CONFIRMED "
+        "OFF: empirical IC of mom_12_1 is -0.0933 against the house prior's sign=+1 "
+        "- WRONG SIGN, same pattern as Egypt's now-retired rev_1m signal. LONO "
+        "ablation shows ZERO difference between signal-ON and carry-only at this "
+        "panel size (the dead-zone/cap machinery absorbs it either way) - not "
+        "enough data to safely re-estimate the sign, so the mom_12_1/IC-0.07 prior "
+        "is RETAINED unchanged for later re-estimation, signal_active stays False. "
+        "The backtest carry schedule is still a flat 6.50% placeholder (RBI repo "
+        "actually ranged 4.00->6.50->~5.50 over the window) - gate-neutral for "
+        "skill scoring but MUST be sourced properly (live G-Sec / real RBI "
+        "schedule) before any IN publish."),
     notes="Robust Indian momentum evidence in the literature - but ablated OFF on "
           "the first panel; re-estimate as the panel grows.")
 QATAR = MarketProfile("QA", "Qatar (QE)",
