@@ -104,13 +104,35 @@ def robust_verdict(crps, crps_b):
 
 
 def rescore(raw_csv_path, profile, nu, cal):
+    """Returns (skill_norm, skill_raw, r). SCALE-NORMALIZED skill is primary.
+
+    WHY (fixed 11-Jul-2026): CRPS is denominated in PRICE UNITS, so pooling raw
+    CRPS across names weights each name by its share price, not its information
+    content. Measured on the live panels: IHC (382 AED) carried 57.9% of the
+    14-name UAE panel and ELM (874 SAR) carried 58.7% of the 11-name Saudi
+    panel — a "panel verdict" that was arithmetically a one-name verdict. The
+    same defect applies WITHIN a name across time (IHC ran 42 -> 382, so its
+    recent windows outweighed its early ones ~9:1).
+
+    Dividing each window's CRPS by that window's spot makes the score scale-free
+    and fixes both. Validated on all three fitted markets (EG/SA/AE): ZERO
+    verdict changes, market-level or name-level, but CIs tighten sharply (UAE
+    panel CI went from +/-0.07 to +/-0.01) and headline skills de-inflate
+    (Egypt's pooled PASS was +0.059 raw vs +0.039 normalized — the raw figure
+    was ~50% overstated by TMGH's 42% price weight).
+
+    The raw basis is still reported so numbers already published against the
+    old basis remain reconcilable."""
     df = load_ohlc(raw_csv_path)
     rows = backtest_v3(df, profile, horizon=60, nu=nu, width_cal=cal,
                         use_signal=profile.signal_active,
                         n_paths=N_PATHS, seed=SEED, min_history=MIN_HISTORY)
     r = pd.DataFrame(rows)
-    skill = 1 - r['crps'].sum() / r['crps_b'].sum()
-    return skill, r
+    r['crps_n'] = r['crps'] / r['spot']
+    r['crps_b_n'] = r['crps_b'] / r['spot']
+    skill_norm = 1 - r['crps_n'].sum() / r['crps_b_n'].sum()
+    skill_raw = 1 - r['crps'].sum() / r['crps_b'].sum()
+    return skill_norm, skill_raw, r
 
 
 # ---------------------------------------------------------------- main entry
@@ -150,23 +172,38 @@ def refresh_market(market, new_csvs, raw_csv_lookup):
             nu_l, s_l = fit_nu_scale(u); cal_l = shrink_cal(s_l)
         else:
             nu_l, cal_l = nu_pool, cal_pool
-        sk, r = rescore(path, profile, nu_l, cal_l)
-        verd, detail = robust_verdict(r['crps'].values, r['crps_b'].values)
-        per_name[n] = dict(nu=nu_l, width_cal=round(cal_l, 3), skill=round(float(sk), 4),
+        sk, sk_raw, r = rescore(path, profile, nu_l, cal_l)
+        verd, detail = robust_verdict(r['crps_n'].values, r['crps_b_n'].values)
+        per_name[n] = dict(nu=nu_l, width_cal=round(cal_l, 3),
+                            skill=round(float(sk), 4),
+                            skill_raw_basis=round(float(sk_raw), 4),
                             verdict=verd,
-                            ci_block2=[round(detail[2][0], 3), round(detail[2][1], 3)])
+                            ci_block2=[round(float(detail[2][0]), 3),
+                                       round(float(detail[2][1]), 3)])
 
-    allc, allb = [], []
+    allc, allb, allc_r, allb_r = [], [], [], []
     for n in names:
         path = raw_csv_lookup.get(n) or new_csvs.get(n)
         if path is None:
             continue
-        _, r = rescore(path, profile, nu_pool, cal_pool)
-        allc.append(r['crps'].values); allb.append(r['crps_b'].values)
+        _, _, r = rescore(path, profile, nu_pool, cal_pool)
+        allc.append(r['crps_n'].values); allb.append(r['crps_b_n'].values)
+        allc_r.append(r['crps'].values); allb_r.append(r['crps_b'].values)
     ac, ab = np.concatenate(allc), np.concatenate(allb)
     market_skill = float(1 - ac.sum() / ab.sum())
     lo, hi, market_verdict = verdict_ci(ac, ab, block=6)
     lo, hi = float(lo), float(hi)
+    acr, abr = np.concatenate(allc_r), np.concatenate(allb_r)
+    market_skill_raw = float(1 - acr.sum() / abr.sum())
+    # concentration diagnostic: how much of the pooled weight does one name carry?
+    weights = {}
+    for n in names:
+        pf = panel.get(n)
+        if pf is not None and 'spot' in pf:
+            weights[n] = float((pf['crps_b'] / pf['spot']).sum())
+    tot = sum(weights.values()) or 1.0
+    top_name = max(weights, key=weights.get) if weights else None
+    top_share = round(weights[top_name] / tot, 3) if top_name else None
 
     result = dict(
         market=market, market_name=profile.name,
@@ -175,9 +212,12 @@ def refresh_market(market, new_csvs, raw_csv_lookup):
         nu=round(float(nu_pool), 3) if nu_pool < 200 else "Gaussian",
         width_cal=round(float(cal_pool), 3),
         mle_scale=round(float(s_pool), 3),
+        gate_basis="scale-normalized (crps/spot) — primary since 11-Jul-2026",
         market_skill=round(float(market_skill), 4),
+        market_skill_raw_basis=round(float(market_skill_raw), 4),
         market_ci90=[round(lo, 3), round(hi, 3)],
         market_verdict=market_verdict,
+        top_name_weight_share=top_share, top_name=top_name,
         signal_active=profile.signal_active,
         per_name=per_name,
     )
@@ -200,6 +240,7 @@ def _update_registry(market, result):
 
 def _append_log(result):
     lines = [f"\n## {result['market']} ({result['market_name']}) — refit {result['fit_date']}\n",
+             f"Gate basis: {result.get('gate_basis','')}\n",
              f"Panel: {len(result['panel_names'])} names ({', '.join(result['panel_names'])}), "
              f"{result['windows']} pooled windows.\n",
              f"Production fit: nu={result['nu']}, width_cal={result['width_cal']} "
