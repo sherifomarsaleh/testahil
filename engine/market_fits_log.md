@@ -179,3 +179,81 @@ Market panel verdict: skill=+0.0252 CI90=[0.015, 0.036] **PASS**
 | PRDC | 4.0 | 0.916 | +0.0366 | PASS |
 | RAYA | 4.0 | 0.902 | +0.0132 | PARITY |
 | TMGH | 4.0 | 0.895 | +0.0149 | PARITY |
+
+## AE (UAE (ADX/DFM)) — refit 2026-07-11
+Gate basis: scale-normalized (crps/spot) — primary since 11-Jul-2026
+Panel: 14 names (ADCB, ADIB, ADNOCGAS, AGTHIA, ALDAR, ALPHADHABI, DIB, EAND, EMAAR, EMAARDEV, ENBD, FAB, IHC, TWOPOINTZERO), 237 pooled windows.
+Production fit: nu=10.0, width_cal=1.049 (mle_scale=1.07).
+Market panel verdict: skill=+0.0049 CI90=[-0.004, 0.015] **PARITY**
+
+| Name | nu | width_cal | skill | verdict |
+|---|---|---|---|---|
+| ADCB | 10.0 | 1.063 | +0.0228 | PARITY |
+| ADIB | 12.0 | 1.035 | +0.0051 | PARITY |
+| ADNOCGAS | 10.0 | 1.063 | -0.0043 | PARITY |
+| AGTHIA | 10.0 | 1.049 | +0.0073 | PARITY |
+| ALDAR | 8.0 | 1.035 | -0.0102 | PARITY |
+| ALPHADHABI | 10.0 | 1.063 | -0.0139 | FAIL |
+| DIB | 15.0 | 1.035 | -0.0014 | PARITY |
+| EAND | 10.0 | 1.063 | +0.0022 | PARITY |
+| EMAAR | 10.0 | 1.035 | +0.0050 | PARITY |
+| EMAARDEV | 8.0 | 1.056 | +0.0005 | PARITY |
+| ENBD | 8.0 | 1.056 | +0.0015 | PARITY |
+| FAB | 10.0 | 1.042 | -0.0065 | PARITY |
+| IHC | 12.0 | 1.056 | +0.0474 | PARITY |
+| TWOPOINTZERO | 10.0 | 1.049 | +0.0007 | PARITY |
+
+## EG (Egypt (EGX)) — refit 2026-07-11
+Gate basis: scale-normalized (crps/spot) — primary since 11-Jul-2026
+Panel: 27 names (ABUK, ADIB, BTFH, CCAP, COMI, EFID, EFIH, EGAL, EMFD, ETEL, FWRY, GBCO, HELI, HRHO, ISPH, JUFO, KABO, LCSW, OCDI, OIH, ORAS, ORHD, ORWE, PHDC, PRDC, RAYA, TMGH), 351 pooled windows.
+Production fit: nu=4.0, width_cal=0.909 (mle_scale=0.87).
+Market panel verdict: skill=+0.0352 CI90=[0.023, 0.057] **PASS**
+
+| Name | nu | width_cal | skill | verdict |
+|---|---|---|---|---|
+| ABUK | — | — | — | raw CSV not supplied this session — panel u reused, LONO verdict skipped |
+| ADIB | — | — | — | raw CSV not supplied this session — panel u reused, LONO verdict skipped |
+| BTFH | — | — | — | raw CSV not supplied this session — panel u reused, LONO verdict skipped |
+| CCAP | — | — | — | raw CSV not supplied this session — panel u reused, LONO verdict skipped |
+| COMI | 4.0 | 0.909 | +0.0226 | PARITY |
+| EFID | — | — | — | raw CSV not supplied this session — panel u reused, LONO verdict skipped |
+| EFIH | — | — | — | raw CSV not supplied this session — panel u reused, LONO verdict skipped |
+| EGAL | — | — | — | raw CSV not supplied this session — panel u reused, LONO verdict skipped |
+| EMFD | 4.0 | 0.909 | +0.0776 | PASS |
+| ETEL | — | — | — | raw CSV not supplied this session — panel u reused, LONO verdict skipped |
+| FWRY | — | — | — | raw CSV not supplied this session — panel u reused, LONO verdict skipped |
+| GBCO | 4.0 | 0.916 | +0.0342 | BOUNDARY(PARITY-flagged) |
+| HELI | — | — | — | raw CSV not supplied this session — panel u reused, LONO verdict skipped |
+| HRHO | — | — | — | raw CSV not supplied this session — panel u reused, LONO verdict skipped |
+| ISPH | — | — | — | raw CSV not supplied this session — panel u reused, LONO verdict skipped |
+| JUFO | — | — | — | raw CSV not supplied this session — panel u reused, LONO verdict skipped |
+| KABO | — | — | — | raw CSV not supplied this session — panel u reused, LONO verdict skipped |
+| LCSW | — | — | — | raw CSV not supplied this session — panel u reused, LONO verdict skipped |
+| OCDI | 4.0 | 0.916 | +0.0484 | PASS |
+| OIH | — | — | — | raw CSV not supplied this session — panel u reused, LONO verdict skipped |
+| ORAS | 4.0 | 0.902 | +0.0211 | PARITY |
+| ORHD | 4.0 | 0.916 | +0.0294 | PARITY |
+| ORWE | — | — | — | raw CSV not supplied this session — panel u reused, LONO verdict skipped |
+| PHDC | 4.0 | 0.916 | +0.0657 | PASS |
+| PRDC | — | — | — | raw CSV not supplied this session — panel u reused, LONO verdict skipped |
+| RAYA | — | — | — | raw CSV not supplied this session — panel u reused, LONO verdict skipped |
+| TMGH | 4.0 | 0.895 | +0.0149 | PARITY |
+
+## EG (Egypt EGX) — panel extended to 27 names, 11-Jul-2026
+Added ORAS (Orascom Construction) + COMI (Commercial International Bank) to the 25-name panel;
+refreshed EMFD/OCDI/ORHD/PHDC/TMGH history. 351 post-break windows.
+**Production fit UNCHANGED at nu=4, width_cal=0.909** — two new names and five refreshed
+histories moved the fit by exactly zero. The Egypt fit has converged; this is the most
+stable market in the registry.
+Panel: PASS skill=+0.0352 CI90=[+0.023,+0.057] on the scale-normalized gate.
+Per-name (the 8 with raw OHLC this session): EMFD PASS +0.078 · PHDC PASS +0.066 ·
+OCDI PASS +0.048 · GBCO BOUNDARY(PARITY-flagged) +0.034 · ORHD PARITY +0.029 ·
+COMI PARITY +0.023 · ORAS PARITY +0.021 · TMGH PARITY +0.015. Zero FAILs.
+The other 19 panel names contribute to the pooled shape fit but were not re-scored
+(no raw OHLC supplied this session).
+
+## AE — data-quality correction, 11-Jul-2026
+Re-ran the 14-name UAE panel through data_quality.clean_ohlc. EAND(3)/ADCB(5)/ADIB(2)
+carried trading-halt rows (O=H=L=C, no volume) that flatten the Yang-Zhang intraday range.
+width_cal 1.056 -> 1.049; nu unchanged (10); panel skill +0.0039 -> +0.0049.
+SA / QA / US series screened and CLEAN — no jumps past threshold, no placeholder rows.
