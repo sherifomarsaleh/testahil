@@ -386,17 +386,62 @@
   "QA": {
     "market": "QA",
     "market_name": "Qatar (QE)",
-    "fit_date": "2026-07-10",
+    "fit_date": "2026-07-11",
     "panel_names": [
-      "QGTS"
+      "IQCD",
+      "QGTS",
+      "QNB"
     ],
-    "windows": 18,
-    "nu": "Gaussian(250)",
-    "width_cal": 0.916,
-    "market_skill": -0.011,
+    "windows": 54,
+    "nu": 12.0,
+    "width_cal": 0.972,
+    "mle_scale": 0.96,
+    "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
+    "market_skill": -0.0091,
+    "market_skill_raw_basis": -0.0096,
+    "market_ci90": [
+      -0.022,
+      0.002
+    ],
     "market_verdict": "PARITY",
+    "top_name_weight_share": 0.365,
+    "top_name": "QGTS",
     "signal_active": false,
-    "source": "carried over from market_fits_20260710.md \u2014 single-name PROVISIONAL self-fit; not refit this session; raw (price-weighted) basis \u2014 single name so unaffected by the pooling fix"
+    "per_name": {
+      "IQCD": {
+        "nu": 12.0,
+        "width_cal": 0.951,
+        "skill": -0.0179,
+        "skill_raw_basis": -0.0174,
+        "verdict": "FAIL",
+        "ci_block2": [
+          -0.032,
+          -0.004
+        ]
+      },
+      "QGTS": {
+        "nu": 6.0,
+        "width_cal": 1.014,
+        "skill": -0.0119,
+        "skill_raw_basis": -0.0145,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.036,
+          0.002
+        ]
+      },
+      "QNB": {
+        "nu": "Gaussian",
+        "width_cal": 0.965,
+        "skill": -0.0011,
+        "skill_raw_basis": -0.004,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.022,
+          0.018
+        ]
+      }
+    }
   },
   "XAU": {
     "market": "XAU",
