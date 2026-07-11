@@ -20,128 +20,339 @@
     "nu": 6.0,
     "width_cal": 1.063,
     "mle_scale": 1.09,
-    "market_skill": -0.0092,
+    "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
+    "market_skill": 0.0023,
+    "market_skill_raw_basis": -0.0092,
     "market_ci90": [
-      -0.016,
-      0.002
+      -0.004,
+      0.008
     ],
     "market_verdict": "PARITY",
+    "top_name_weight_share": 0.185,
+    "top_name": "MAADEN",
     "signal_active": false,
     "per_name": {
       "ACWA": {
         "nu": 6.0,
         "width_cal": 1.056,
-        "skill": -0.011,
+        "skill": -0.0054,
+        "skill_raw_basis": -0.011,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.027,
-          0.009
+          -0.023,
+          0.012
         ]
       },
       "ALINMA": {
         "nu": 12.0,
         "width_cal": 1.021,
-        "skill": -0.0063,
-        "verdict": "PARITY",
-        "ci_block2": [
-          -0.012,
-          0.003
-        ]
-      },
-      "ARAMCO": {
-        "nu": 6.0,
-        "width_cal": 1.056,
-        "skill": 0.0062,
-        "verdict": "PARITY",
-        "ci_block2": [
-          -0.013,
-          0.023
-        ]
-      },
-      "ELM": {
-        "nu": 6.0,
-        "width_cal": 1.042,
-        "skill": -0.0163,
-        "verdict": "FAIL",
-        "ci_block2": [
-          -0.03,
-          -0.005
-        ]
-      },
-      "EXTRA": {
-        "nu": 6.0,
-        "width_cal": 1.091,
-        "skill": -0.0133,
-        "verdict": "PARITY",
-        "ci_block2": [
-          -0.045,
-          0.014
-        ]
-      },
-      "MAADEN": {
-        "nu": 6.0,
-        "width_cal": 1.028,
-        "skill": 0.0119,
-        "verdict": "PARITY",
-        "ci_block2": [
-          -0.004,
-          0.034
-        ]
-      },
-      "RAJHI": {
-        "nu": 6.0,
-        "width_cal": 1.07,
-        "skill": 0.0131,
-        "verdict": "BOUNDARY(PARITY-flagged)",
-        "ci_block2": [
-          -0.001,
-          0.038
-        ]
-      },
-      "RIBL": {
-        "nu": 6.0,
-        "width_cal": 1.07,
-        "skill": 0.0049,
-        "verdict": "PARITY",
-        "ci_block2": [
-          -0.013,
-          0.038
-        ]
-      },
-      "SABIC": {
-        "nu": 8.0,
-        "width_cal": 1.049,
-        "skill": 0.0077,
-        "verdict": "PARITY",
-        "ci_block2": [
-          -0.003,
-          0.023
-        ]
-      },
-      "SNB": {
-        "nu": 6.0,
-        "width_cal": 1.077,
-        "skill": -0.0039,
+        "skill": -0.0078,
+        "skill_raw_basis": -0.0063,
         "verdict": "PARITY",
         "ci_block2": [
           -0.014,
           0.003
         ]
       },
+      "ARAMCO": {
+        "nu": 6.0,
+        "width_cal": 1.056,
+        "skill": 0.0065,
+        "skill_raw_basis": 0.0062,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.013,
+          0.024
+        ]
+      },
+      "ELM": {
+        "nu": 6.0,
+        "width_cal": 1.042,
+        "skill": -0.0142,
+        "skill_raw_basis": -0.0163,
+        "verdict": "FAIL",
+        "ci_block2": [
+          -0.03,
+          -0.004
+        ]
+      },
+      "EXTRA": {
+        "nu": 6.0,
+        "width_cal": 1.091,
+        "skill": -0.014,
+        "skill_raw_basis": -0.0133,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.044,
+          0.011
+        ]
+      },
+      "MAADEN": {
+        "nu": 6.0,
+        "width_cal": 1.028,
+        "skill": 0.0132,
+        "skill_raw_basis": 0.0119,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.004,
+          0.035
+        ]
+      },
+      "RAJHI": {
+        "nu": 6.0,
+        "width_cal": 1.07,
+        "skill": 0.0151,
+        "skill_raw_basis": 0.0131,
+        "verdict": "PASS",
+        "ci_block2": [
+          0.0,
+          0.04
+        ]
+      },
+      "RIBL": {
+        "nu": 6.0,
+        "width_cal": 1.07,
+        "skill": 0.0047,
+        "skill_raw_basis": 0.0049,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.012,
+          0.035
+        ]
+      },
+      "SABIC": {
+        "nu": 8.0,
+        "width_cal": 1.049,
+        "skill": 0.0086,
+        "skill_raw_basis": 0.0077,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.004,
+          0.024
+        ]
+      },
+      "SNB": {
+        "nu": 6.0,
+        "width_cal": 1.077,
+        "skill": -0.0046,
+        "skill_raw_basis": -0.0039,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.015,
+          0.004
+        ]
+      },
       "STC": {
         "nu": 6.0,
         "width_cal": 1.077,
-        "skill": 0.0007,
+        "skill": 0.0,
+        "skill_raw_basis": 0.0007,
         "verdict": "PARITY",
         "ci_block2": [
           -0.011,
-          0.01
+          0.009
         ]
       }
     }
   },
   "_meta": {
-    "last_updated": "2026-07-11"
+    "last_updated": "2026-07-11",
+    "gate_basis": "scale-normalized CRPS (crps/spot). Primary since 11-Jul-2026.",
+    "gate_change_note": "Pooled CRPS was price-weighted: IHC (382 AED) carried 57.9% of the UAE panel and ELM (874 SAR) 58.7% of the Saudi panel. Normalizing each window by its spot makes the gate scale-free. Isolated effect on the existing panels: ZERO verdict changes; CIs tighten sharply; headline skills de-inflate. Two BOUNDARY names later resolved under the combined LONO+normalized gate: SA/RAJHI -> PASS, AE/ALPHADHABI -> FAIL.",
+    "engine": "mc_v3 (carry-anchored YZ-HAR-t)",
+    "known_gap": "MarketProfile.breaks is declared but NEVER read by mc_v2/mc_v3 \u2014 regime-break vol pooling is documented in the protocol but not implemented in the engine."
+  },
+  "AE": {
+    "market": "AE",
+    "market_name": "UAE (ADX/DFM)",
+    "fit_date": "2026-07-11",
+    "panel_names": [
+      "ADCB",
+      "ADIB",
+      "ADNOCGAS",
+      "AGTHIA",
+      "ALDAR",
+      "ALPHADHABI",
+      "DIB",
+      "EAND",
+      "EMAAR",
+      "EMAARDEV",
+      "ENBD",
+      "FAB",
+      "IHC",
+      "TWOPOINTZERO"
+    ],
+    "windows": 258,
+    "nu": 6.0,
+    "width_cal": 1.084,
+    "mle_scale": 1.12,
+    "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
+    "market_skill": 0.0026,
+    "market_skill_raw_basis": 0.0051,
+    "market_ci90": [
+      -0.006,
+      0.013
+    ],
+    "market_verdict": "PARITY",
+    "top_name_weight_share": 0.114,
+    "top_name": "EAND",
+    "signal_active": false,
+    "per_name": {
+      "ADCB": {
+        "nu": 6.0,
+        "width_cal": 1.084,
+        "skill": 0.0068,
+        "skill_raw_basis": 0.0015,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.015,
+          0.046
+        ]
+      },
+      "ADIB": {
+        "nu": 8.0,
+        "width_cal": 1.056,
+        "skill": 0.0035,
+        "skill_raw_basis": 0.0062,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.007,
+          0.019
+        ]
+      },
+      "ADNOCGAS": {
+        "nu": 8.0,
+        "width_cal": 1.077,
+        "skill": -0.0037,
+        "skill_raw_basis": -0.0035,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.016,
+          0.015
+        ]
+      },
+      "AGTHIA": {
+        "nu": 6.0,
+        "width_cal": 1.077,
+        "skill": 0.0056,
+        "skill_raw_basis": 0.0033,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.01,
+          0.025
+        ]
+      },
+      "ALDAR": {
+        "nu": 6.0,
+        "width_cal": 1.063,
+        "skill": -0.0106,
+        "skill_raw_basis": -0.0158,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.03,
+          0.019
+        ]
+      },
+      "ALPHADHABI": {
+        "nu": 8.0,
+        "width_cal": 1.077,
+        "skill": -0.0122,
+        "skill_raw_basis": -0.012,
+        "verdict": "FAIL",
+        "ci_block2": [
+          -0.028,
+          -0.002
+        ]
+      },
+      "DIB": {
+        "nu": 8.0,
+        "width_cal": 1.063,
+        "skill": -0.0017,
+        "skill_raw_basis": 0.0006,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.019,
+          0.005
+        ]
+      },
+      "EAND": {
+        "nu": 10.0,
+        "width_cal": 1.07,
+        "skill": -0.0051,
+        "skill_raw_basis": 0.0005,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.031,
+          0.025
+        ]
+      },
+      "EMAAR": {
+        "nu": 6.0,
+        "width_cal": 1.07,
+        "skill": 0.0036,
+        "skill_raw_basis": 0.0097,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.008,
+          0.012
+        ]
+      },
+      "EMAARDEV": {
+        "nu": 6.0,
+        "width_cal": 1.084,
+        "skill": -0.0003,
+        "skill_raw_basis": 0.0011,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.013,
+          0.014
+        ]
+      },
+      "ENBD": {
+        "nu": 6.0,
+        "width_cal": 1.084,
+        "skill": 0.0009,
+        "skill_raw_basis": -0.0026,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.014,
+          0.013
+        ]
+      },
+      "FAB": {
+        "nu": 6.0,
+        "width_cal": 1.077,
+        "skill": -0.0065,
+        "skill_raw_basis": -0.0131,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.029,
+          0.042
+        ]
+      },
+      "IHC": {
+        "nu": 8.0,
+        "width_cal": 1.077,
+        "skill": 0.0472,
+        "skill_raw_basis": 0.006,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.261,
+          0.095
+        ]
+      },
+      "TWOPOINTZERO": {
+        "nu": 6.0,
+        "width_cal": 1.084,
+        "skill": -0.0002,
+        "skill_raw_basis": 0.0018,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.012,
+          0.015
+        ]
+      }
+    }
   },
   "EG": {
     "market": "EG",
@@ -159,14 +370,18 @@
     "windows": 115,
     "nu": 4,
     "width_cal": 0.965,
-    "market_skill": 0.062,
+    "market_skill": 0.0387,
+    "market_skill_raw_basis": 0.0591,
     "market_ci90": [
-      0.036,
-      0.078
+      0.016,
+      0.062
     ],
     "market_verdict": "PASS",
     "signal_active": true,
-    "source": "carried over from market_fits_20260710.md \u2014 not recomputed this session"
+    "gate_basis": "scale-normalized (crps/spot) \u2014 recomputed on existing panels 11-Jul-2026",
+    "top_name": "TMGH",
+    "top_name_weight_share_RAW": 0.42,
+    "source": "shape fit (nu, width_cal) carried over from market_fits_20260710.md \u2014 NOT refit this session (no fresh EG OHLC). Pooled skill RESTATED on the corrected scale-normalized gate: +0.0387 (was +0.0591 on the price-weighted basis, which TMGH dominated at 42% weight). VERDICT UNCHANGED: PASS. Refit through panel_refresh.py at the next EG OHLC upload."
   },
   "QA": {
     "market": "QA",
@@ -179,13 +394,9 @@
     "nu": "Gaussian(250)",
     "width_cal": 0.916,
     "market_skill": -0.011,
-    "market_ci90": [
-      -0.037,
-      0.005
-    ],
     "market_verdict": "PARITY",
     "signal_active": false,
-    "source": "carried over from market_fits_20260710.md \u2014 single-name PROVISIONAL self-fit, not recomputed this session"
+    "source": "carried over from market_fits_20260710.md \u2014 single-name PROVISIONAL self-fit; not refit this session; raw (price-weighted) basis \u2014 single name so unaffected by the pooling fix"
   },
   "XAU": {
     "market": "XAU",
@@ -198,10 +409,6 @@
     "nu": 12,
     "width_cal": 1.014,
     "market_skill": 0.009,
-    "market_ci90": [
-      -0.003,
-      0.028
-    ],
     "market_verdict": "PARITY",
     "signal_active": false,
     "source": "carried over from market_fits_20260710.md \u2014 single-name PROVISIONAL self-fit; silver history queued to de-circularize"
@@ -211,41 +418,34 @@
     "market_verdict": "UNFITTED",
     "nu": null,
     "width_cal": 1.0,
-    "source": "no own-market pooled fit yet as of 10-Jul-2026 snapshot \u2014 runs on borrowed/default config until panel history is uploaded and refit through panel_refresh.py"
+    "source": "no own-market pooled fit yet \u2014 runs on borrowed/default config until OHLC is uploaded and refit through panel_refresh.py"
   },
   "UK": {
     "market": "UK",
     "market_verdict": "UNFITTED",
     "nu": null,
     "width_cal": 1.0,
-    "source": "no own-market pooled fit yet as of 10-Jul-2026 snapshot \u2014 runs on borrowed/default config until panel history is uploaded and refit through panel_refresh.py"
+    "source": "no own-market pooled fit yet \u2014 runs on borrowed/default config until OHLC is uploaded and refit through panel_refresh.py"
   },
   "BR": {
     "market": "BR",
     "market_verdict": "UNFITTED",
     "nu": null,
     "width_cal": 1.0,
-    "source": "no own-market pooled fit yet as of 10-Jul-2026 snapshot \u2014 runs on borrowed/default config until panel history is uploaded and refit through panel_refresh.py"
+    "source": "no own-market pooled fit yet \u2014 runs on borrowed/default config until OHLC is uploaded and refit through panel_refresh.py"
   },
   "KR": {
     "market": "KR",
     "market_verdict": "UNFITTED",
     "nu": null,
     "width_cal": 1.0,
-    "source": "no own-market pooled fit yet as of 10-Jul-2026 snapshot \u2014 runs on borrowed/default config until panel history is uploaded and refit through panel_refresh.py"
-  },
-  "AE": {
-    "market": "AE",
-    "market_verdict": "UNFITTED",
-    "nu": null,
-    "width_cal": 1.0,
-    "source": "no own-market pooled fit yet as of 10-Jul-2026 snapshot \u2014 runs on borrowed/default config until panel history is uploaded and refit through panel_refresh.py"
+    "source": "no own-market pooled fit yet \u2014 runs on borrowed/default config until OHLC is uploaded and refit through panel_refresh.py"
   },
   "IN": {
     "market": "IN",
     "market_verdict": "UNFITTED",
     "nu": null,
     "width_cal": 1.0,
-    "source": "no own-market pooled fit yet as of 10-Jul-2026 snapshot \u2014 runs on borrowed/default config until panel history is uploaded and refit through panel_refresh.py"
+    "source": "no own-market pooled fit yet \u2014 runs on borrowed/default config until OHLC is uploaded and refit through panel_refresh.py"
   }
 }
