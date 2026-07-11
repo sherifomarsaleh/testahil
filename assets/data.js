@@ -97,7 +97,7 @@ const TICKERS = {
     spot: 8.22,
     spotDate: "close 03 Jul 2026 — pre the 7–8 Jul war re-escalation, flagged in the study",
     ccy: "AED",
-    fair: { bear: 6.08, base: 7.30, full: 8.82 },      // 10 Jul 2026 — weighted central 7.30 (−11% vs spot 8.22). Holdco SOTP/NAV primary: four listed stakes at ADX marks (Aldar 31.63% = AED 20.5bn, NMDC 76.68% = 14.4bn, PureHealth 35.06% = 8.6bn, NCTH 73.73% = 2.4bn) + Trojan 51% at the ADQ transaction mark (5.2bn) + residual audited book → NAV 7.44/sh at par, 6.32 at a 15% holdco discount (45% weight). Consolidated FCFF DCF 11.72 = a multi-year ceiling (80% TV, ΔWC absorption) at 15%; look-through relative 8.07 at 25%; dividend-policy DDM 4.55 at 15%. The crux: spot pays ~+10% ABOVE undiscounted NAV — the premium is the trade. bear/full = weighted bear/bull.
+    fair: { bear: 5.95, base: 7.13, full: 8.63 },      // 10 Jul 2026, reweighted 11 Jul 2026 — weighted central 7.13 (−13% vs spot 8.22). Holdco SOTP/NAV primary: four listed stakes at ADX marks (Aldar 31.63% = AED 20.5bn, NMDC 76.68% = 14.4bn, PureHealth 35.06% = 8.6bn, NCTH 73.73% = 2.4bn) + Trojan 51% at the ADQ transaction buyer-outlay mark (5.2bn; seller-note framing 3.71bn carried as a sensitivity) + residual audited book → NAV 7.44/sh at par, 6.32 at a 15% holdco discount (55% weight, raised from 45% on 11 Jul 2026). Consolidated FCFF DCF 11.72 = a multi-year ceiling (80% TV, ΔWC absorption) at 15%; look-through relative 8.07 cut to 15% weight (from 25%, external-audit double-count flag upheld); dividend-policy DDM 4.55 at 15%. The crux: spot pays ~+10% ABOVE undiscounted NAV — the premium is the trade. bear/full = weighted bear/bull.
     dist: {
       t20: { label:"1 month (T+20)",  p5:7.04, p25:7.73, p50:8.24, p75:8.79, p95:9.67, resolve:"2026-07-31" },
       t60: { label:"3 months (T+60)", p5:6.30, p25:7.42, p50:8.29, p75:9.27, p95:10.93, resolve:"2026-09-25" }
@@ -113,9 +113,9 @@ const TICKERS = {
       bear: "Losing the 7.4–7.8 congestion shelf targets par NAV (7.44) and then the discounted-NAV zone; the war low at 6.84 is the line under everything."
     },
     files: {
-      study: "files/ALPHADHABI_Valuation_Study_10-07-2026_public.docx?v=0711a",
-      model: "files/ALPHADHABI_Valuation_Model_10-07-2026_public.xlsx?v=0711a",
-      pdf:   "files/ALPHADHABI_Valuation_Study_10-07-2026_public.pdf?v=0711a"
+      study: "files/ALPHADHABI_Valuation_Study_10-07-2026_public.docx?v=0711c",
+      model: "files/ALPHADHABI_Valuation_Model_10-07-2026_public.xlsx?v=0711c",
+      pdf:   "files/ALPHADHABI_Valuation_Study_10-07-2026_public.pdf?v=0711c"
     }
   },
   EXTRA: {
