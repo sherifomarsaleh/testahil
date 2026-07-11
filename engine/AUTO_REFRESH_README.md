@@ -8,11 +8,23 @@ two names' robust verdicts (SA/RAJHI PARITY->PASS, AE/ALPHADHABI PARITY->FAIL).
 A naive "run the pipeline on a cron" would have pushed both to production with
 no one looking. `auto_refresh.py`'s materiality gate is the fix.
 
-## How to add or refresh a name
+## How to add or refresh a name — ONE STOCK AT A TIME IS THE NORMAL CASE
 
-Drop the raw OHLC CSV at:
+`raw_ohlc/` is a **persistent library**, not an inbox. Every covered stock keeps its
+current OHLC there permanently (65 stocks across 8 markets as of 11-Jul-2026). To add
+or refresh ONE stock, add or overwrite ONE file:
 
     engine/raw_ohlc/{MARKET_CODE}/{TICKER}.csv
+
+The pipeline then refits that stock's **whole market** against the full library, so a
+single-stock post is the default, cheapest path — not a broken one. (An earlier design
+treated `raw_ohlc/` as "this session's uploads", which meant every one-at-a-time post
+left the other panel names without a raw CSV and falsely tripped the gate. Fixed.)
+
+**Cost of a one-stock post: ~12 seconds** (Egypt, 27 names). Panels are content-hashed,
+so only the changed CSV is rebuilt; every other name is re-scored via `fast_rescore`,
+which is bit-for-bit identical to re-running the engine but skips the O(n^2) HAR refit.
+A cold rebuild of all 65 stocks is ~4 minutes and happens only once.
 
 Market codes: EG, SA, US, GB, BR, KR, AE, IN, QA, XAU (must match
 `market_profiles.PROFILES`). The ticker is whatever you name the file — this
@@ -38,12 +50,23 @@ for the daily 03:00 UTC sweep.
 
 ## What stops and opens a PR instead (never auto-merged)
 
-- any name's verdict category changes
-- a NEW name enters a panel (one human glance at the ticker mapping)
-- width_cal moves >5% relative, or nu crosses the Gaussian/fat-tail boundary
+- any EXISTING name's verdict category changes
+- a NEW name arrives already FAILING (likely a misfiled or bad file)
+- **the published 90% cone moves more than 5%** — this is measured on the band the
+  reader actually sees, `cal x q95(t(nu))`, NOT on nu and width_cal separately. Those
+  two trade off against each other, so watching them individually both misses real
+  changes and fires on noise. (Concretely: cleaning 8 stale gold rows moved the MLE
+  from nu=12 to Gaussian — which a naive "nu regime" rule called material, but the two
+  are statistically indistinguishable, dlogL=0.31, and the cone moves 0.3%. The cone
+  rule ignores it, while still catching every real change from 11-Jul: Saudi +15.6%,
+  Korea +11.8%, Egypt +5.8%.)
 - the market-level panel verdict changes
-- a name's raw CSV was dropped from this run but the panel still carries it
-  (ambiguous: intentional removal, or an accidental omission?)
+- a panel carries a name with NO raw CSV in the library (stale residuals)
+
+**A new name is NOT material by itself.** Adding a stock is the most common thing that
+happens here; blocking on it would mean a PR on every post. You placing the file at
+`raw_ohlc/{MKT}/{TICKER}.csv` IS the human decision about what the series is. New names
+are always named explicitly in the run output so an arrival is never invisible.
 
 None of these are auto-applied even when the LONO evidence looks solid — see
 `gate_scale_fix_20260711.md` for why a CRPS-skill selection procedure that
