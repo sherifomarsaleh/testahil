@@ -163,15 +163,23 @@ def rescore(raw_csv_path, profile, nu, cal):
 
 
 # ---------------------------------------------------------------- main entry
-def refresh_market(market, new_csvs, raw_csv_lookup):
+def refresh_market(market, new_csvs, raw_csv_lookup, update_registry=True):
     """market: profile code, e.g. 'SA'
     new_csvs: dict {name: raw_csv_path} for names touched THIS session
               (new names, or existing names with updated OHLC)
     raw_csv_lookup: dict {name: raw_csv_path} for EVERY name on the panel
               (old names not touched this session need their raw path too,
               so LONO/pooled rescoring can run against full current history)
-    Returns a result dict; also writes panel files + updates the registry
-    + appends the log entry."""
+    update_registry: if True (default — the historical interactive behaviour
+              this whole session used), writes straight to fitted_configs.json
+              and appends to market_fits_log.md. Set False when called from
+              auto_refresh.py's unattended path: writing the registry must go
+              through the materiality gate, or an unattended degraded/partial
+              re-run (e.g. one name's raw CSV missing) silently corrupts the
+              registry even when production (market_profiles.py) is correctly
+              protected. Caught 11-Jul-2026 while building auto_refresh.py.
+    Returns a result dict; also writes panel files always (panel files are
+    training scaffolding, not a verdict — see build_panel_file)."""
     profile = PROFILES[market]
     os.makedirs(PANELS_DIR, exist_ok=True)
 
@@ -251,8 +259,9 @@ def refresh_market(market, new_csvs, raw_csv_lookup):
         per_name=per_name,
     )
 
-    _update_registry(market, result)
-    _append_log(result)
+    if update_registry:
+        _update_registry(market, result)
+        _append_log(result)
     return result
 
 
