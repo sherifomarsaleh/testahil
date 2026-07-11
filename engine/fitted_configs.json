@@ -10,8 +10,7 @@
       "NAME-LEVEL width_cal (shrunk toward the market fit) is the clearest outstanding improvement: KR/LGES and AE/ALPHADHABI both FAIL purely on OVER-COVERAGE (LGES: cov80=1.00, cov90=1.00) because a market-level cone over-widens names whose own vol sits below the panel average. Proposed, NOT implemented \u2014 needs an out-of-sample test.",
       "MarketProfile.breaks is honoured in the CALIBRATION SAMPLE (panel_refresh.apply_breaks) but mc_v2/mc_v3 still never read it \u2014 the engine per-origin vol estimation is not break-aware.",
       "India (3 names) has NOT been re-run through the corrected gate or the data-quality gate. Its export may carry the same phantom-row corruption found in the Korean one \u2014 CHECK BEFORE TRUSTING ITS FIT.",
-      "Metals (XAU) is still a single-name self-fit \u2014 silver/copper history needed to de-circularize.",
-      "Remaining EGX names to append (25 of 27 fitted)."
+      "Metals (XAU) is still a single-name self-fit \u2014 silver/copper history needed to de-circularize."
     ]
   },
   "EG": {
@@ -52,11 +51,11 @@
     "width_cal": 0.909,
     "mle_scale": 0.87,
     "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
-    "market_skill": 0.0352,
-    "market_skill_raw_basis": 0.0302,
+    "market_skill": 0.027,
+    "market_skill_raw_basis": 0.0333,
     "market_ci90": [
-      0.023,
-      0.057
+      0.018,
+      0.038
     ],
     "market_verdict": "PASS",
     "top_name_weight_share": 0.089,
@@ -64,16 +63,48 @@
     "signal_active": false,
     "per_name": {
       "ABUK": {
-        "note": "raw CSV not supplied this session \u2014 panel u reused, LONO verdict skipped"
+        "nu": 4.0,
+        "width_cal": 0.902,
+        "skill": 0.0217,
+        "skill_raw_basis": 0.016,
+        "verdict": "BOUNDARY(PARITY-flagged)",
+        "ci_block2": [
+          -0.01,
+          0.047
+        ]
       },
       "ADIB": {
-        "note": "raw CSV not supplied this session \u2014 panel u reused, LONO verdict skipped"
+        "nu": 4.0,
+        "width_cal": 0.916,
+        "skill": 0.0238,
+        "skill_raw_basis": 0.0268,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.013,
+          0.096
+        ]
       },
       "BTFH": {
-        "note": "raw CSV not supplied this session \u2014 panel u reused, LONO verdict skipped"
+        "nu": 4.0,
+        "width_cal": 0.902,
+        "skill": 0.0189,
+        "skill_raw_basis": 0.0575,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.038,
+          0.144
+        ]
       },
       "CCAP": {
-        "note": "raw CSV not supplied this session \u2014 panel u reused, LONO verdict skipped"
+        "nu": 4.0,
+        "width_cal": 0.909,
+        "skill": 0.0904,
+        "skill_raw_basis": 0.0725,
+        "verdict": "PASS",
+        "ci_block2": [
+          0.006,
+          0.207
+        ]
       },
       "COMI": {
         "nu": 4.0,
@@ -87,13 +118,37 @@
         ]
       },
       "EFID": {
-        "note": "raw CSV not supplied this session \u2014 panel u reused, LONO verdict skipped"
+        "nu": 4.0,
+        "width_cal": 0.916,
+        "skill": 0.0079,
+        "skill_raw_basis": 0.0053,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.038,
+          0.044
+        ]
       },
       "EFIH": {
-        "note": "raw CSV not supplied this session \u2014 panel u reused, LONO verdict skipped"
+        "nu": 4.0,
+        "width_cal": 0.909,
+        "skill": 0.0349,
+        "skill_raw_basis": 0.0262,
+        "verdict": "BOUNDARY(PARITY-flagged)",
+        "ci_block2": [
+          0.001,
+          0.091
+        ]
       },
       "EGAL": {
-        "note": "raw CSV not supplied this session \u2014 panel u reused, LONO verdict skipped"
+        "nu": 4.0,
+        "width_cal": 0.916,
+        "skill": 0.0485,
+        "skill_raw_basis": 0.0633,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.005,
+          0.133
+        ]
       },
       "EMFD": {
         "nu": 4.0,
@@ -107,10 +162,26 @@
         ]
       },
       "ETEL": {
-        "note": "raw CSV not supplied this session \u2014 panel u reused, LONO verdict skipped"
+        "nu": 4.0,
+        "width_cal": 0.909,
+        "skill": 0.0398,
+        "skill_raw_basis": 0.0357,
+        "verdict": "BOUNDARY(PARITY-flagged)",
+        "ci_block2": [
+          0.002,
+          0.091
+        ]
       },
       "FWRY": {
-        "note": "raw CSV not supplied this session \u2014 panel u reused, LONO verdict skipped"
+        "nu": 4.0,
+        "width_cal": 0.916,
+        "skill": 0.0456,
+        "skill_raw_basis": 0.0381,
+        "verdict": "BOUNDARY(PARITY-flagged)",
+        "ci_block2": [
+          -0.006,
+          0.122
+        ]
       },
       "GBCO": {
         "nu": 4.0,
@@ -124,22 +195,70 @@
         ]
       },
       "HELI": {
-        "note": "raw CSV not supplied this session \u2014 panel u reused, LONO verdict skipped"
+        "nu": 4.0,
+        "width_cal": 0.916,
+        "skill": 0.0703,
+        "skill_raw_basis": 0.0708,
+        "verdict": "PASS",
+        "ci_block2": [
+          0.03,
+          0.178
+        ]
       },
       "HRHO": {
-        "note": "raw CSV not supplied this session \u2014 panel u reused, LONO verdict skipped"
+        "nu": 4.0,
+        "width_cal": 0.909,
+        "skill": 0.0197,
+        "skill_raw_basis": 0.0048,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.043,
+          0.102
+        ]
       },
       "ISPH": {
-        "note": "raw CSV not supplied this session \u2014 panel u reused, LONO verdict skipped"
+        "nu": 4.0,
+        "width_cal": 0.902,
+        "skill": -0.0429,
+        "skill_raw_basis": -0.0098,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.07,
+          0.006
+        ]
       },
       "JUFO": {
-        "note": "raw CSV not supplied this session \u2014 panel u reused, LONO verdict skipped"
+        "nu": 4.0,
+        "width_cal": 0.916,
+        "skill": 0.0279,
+        "skill_raw_basis": 0.0339,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.014,
+          0.08
+        ]
       },
       "KABO": {
-        "note": "raw CSV not supplied this session \u2014 panel u reused, LONO verdict skipped"
+        "nu": 4.0,
+        "width_cal": 0.916,
+        "skill": -0.0015,
+        "skill_raw_basis": -0.0086,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.014,
+          0.013
+        ]
       },
       "LCSW": {
-        "note": "raw CSV not supplied this session \u2014 panel u reused, LONO verdict skipped"
+        "nu": 4.0,
+        "width_cal": 0.916,
+        "skill": 0.0509,
+        "skill_raw_basis": 0.0659,
+        "verdict": "PASS",
+        "ci_block2": [
+          0.011,
+          0.126
+        ]
       },
       "OCDI": {
         "nu": 4.0,
@@ -153,7 +272,15 @@
         ]
       },
       "OIH": {
-        "note": "raw CSV not supplied this session \u2014 panel u reused, LONO verdict skipped"
+        "nu": 4.0,
+        "width_cal": 0.902,
+        "skill": -0.0102,
+        "skill_raw_basis": -0.0158,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.042,
+          0.064
+        ]
       },
       "ORAS": {
         "nu": 4.0,
@@ -178,7 +305,15 @@
         ]
       },
       "ORWE": {
-        "note": "raw CSV not supplied this session \u2014 panel u reused, LONO verdict skipped"
+        "nu": 4.0,
+        "width_cal": 0.909,
+        "skill": 0.0097,
+        "skill_raw_basis": 0.0122,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.031,
+          0.095
+        ]
       },
       "PHDC": {
         "nu": 4.0,
@@ -192,10 +327,26 @@
         ]
       },
       "PRDC": {
-        "note": "raw CSV not supplied this session \u2014 panel u reused, LONO verdict skipped"
+        "nu": 4.0,
+        "width_cal": 0.916,
+        "skill": 0.0366,
+        "skill_raw_basis": 0.0391,
+        "verdict": "PASS",
+        "ci_block2": [
+          0.01,
+          0.083
+        ]
       },
       "RAYA": {
-        "note": "raw CSV not supplied this session \u2014 panel u reused, LONO verdict skipped"
+        "nu": 4.0,
+        "width_cal": 0.909,
+        "skill": 0.0134,
+        "skill_raw_basis": 0.016,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.014,
+          0.059
+        ]
       },
       "TMGH": {
         "nu": 4.0,
@@ -208,7 +359,8 @@
           0.118
         ]
       }
-    }
+    },
+    "fit_meta": "REFIT 11-Jul-2026 on the FULL 27-name EG panel (351 post-break windows) - supersedes the 7-name/115-window fit (nu=4, cal=0.965, signal ON). The fit is CONVERGED: going 25 -> 27 names (adding COMI and ORAS) left nu=4 and cal=0.909 completely unchanged. Three changes, each tested: (1) DATA-QUALITY GATE (data_quality.py) cleans every series first, with a PER-MARKET artifact threshold derived from the exchange's daily price limit (EGX +/-20% -> every clean name tops out at |log move| <= 0.223, so anything past 0.29 cannot be trading). Two artifacts found: EFIH carried flat 0.50 pre-IPO placeholder rows (a fake +333% log jump) and an unadjusted 3:2 split on 26-May-2025; OCDI/SODIC carried an unadjusted corporate action on 14-Aug-2025 showing as a fake -73% crash. OCDI was IN the production 7-name fit - but repairing it does NOT move nu (still 4; cal 0.979 -> 0.958), so Egypt's fat tail is GENUINE devaluation-jump risk, not a data bug. (2) BREAK FILTERING ADOPTED: calibrating on post-2023-01-11 origins only beats calibrating on all windows out-of-sample (LONO +0.0211 vs +0.0198, both scored on the same post-break windows) AND narrows the cone from cal=0.972 to 0.909. (3) SIGNAL ABLATED OFF - this was the LAST active signal in the system. On the panel the empirical IC of rev_1m is +0.018: the house prior's contrarian sign=-1 is REFUTED and the magnitude is ~0. Ablation: carry-only +0.0252 beats signal-ON +0.0211; the signal helps in only 13/25 names; paired bootstrap P(signal helps)=0.31. Fallback rule applies. The rev_1m/IC-0.08 prior is retained for re-estimation, but signal_active=False. EVERY market in the system is now carry-only. RESULT: panel PASS +0.0270 CI[+0.018,+0.038] on the scale-normalized gate; top-name weight 8.9% (vs 42% under the old price-weighted gate). ZERO name-level FAILs. PASS: CCAP +0.090, EMFD +0.078, HELI +0.070, PHDC +0.066, LCSW +0.051, OCDI +0.048, PRDC +0.037. BOUNDARY(PARITY-flagged): FWRY, ETEL, EFIH, GBCO, ABUK. 15 PARITY (incl. the two names added last: COMI +0.023, ORAS +0.021). NB PHDC moved to PASS on refreshed OHLC (1328 rows to 28-Jun-2026, vs a stale 1223-row project copy) - relevant, since PHDC carries the live ledger cohorts. The old 7-name panel was sector-concentrated (5 of 7 were RE developers); the 27-name panel is cross-sector and its lower headline skill is the more honest number."
   },
   "SA": {
     "code": "SA",
