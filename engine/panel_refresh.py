@@ -46,9 +46,10 @@ from market_profiles import PROFILES
 from data_quality import clean_ohlc
 
 
-def load_ohlc(path, ticker=""):
-    """Every series entering a panel passes the data-quality gate first."""
-    df, _ = clean_ohlc(_raw_load_ohlc(path), ticker, verbose=False)
+def load_ohlc(path, ticker="", market=None):
+    """Every series entering a panel passes the data-quality gate first.
+    `market` selects the exchange's daily-limit-derived artifact threshold."""
+    df, _ = clean_ohlc(_raw_load_ohlc(path), ticker, verbose=False, market=market)
     return df
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -94,7 +95,7 @@ def build_panel_file(market, name, raw_csv_path, profile):
     raw history each refresh), NOT published forecasts — overwrite is safe
     and expected; the Calibration Ledger's append-only rule does not apply
     here."""
-    df = load_ohlc(raw_csv_path)
+    df = load_ohlc(raw_csv_path, name, market=market)
     rows = backtest_v3(df, profile, horizon=60, nu=8.0, width_cal=1.0,
                         use_signal=profile.signal_active,
                         n_paths=N_PATHS, seed=SEED, min_history=MIN_HISTORY)
@@ -148,7 +149,7 @@ def rescore(raw_csv_path, profile, nu, cal):
 
     The raw basis is still reported so numbers already published against the
     old basis remain reconcilable."""
-    df = load_ohlc(raw_csv_path)
+    df = load_ohlc(raw_csv_path, market=profile.code)
     rows = backtest_v3(df, profile, horizon=60, nu=nu, width_cal=cal,
                         use_signal=profile.signal_active,
                         n_paths=N_PATHS, seed=SEED, min_history=MIN_HISTORY)
