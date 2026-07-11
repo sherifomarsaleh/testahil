@@ -1,0 +1,251 @@
+{
+  "SA": {
+    "market": "SA",
+    "market_name": "Saudi Arabia (Tadawul)",
+    "fit_date": "2026-07-11",
+    "panel_names": [
+      "ACWA",
+      "ALINMA",
+      "ARAMCO",
+      "ELM",
+      "EXTRA",
+      "MAADEN",
+      "RAJHI",
+      "RIBL",
+      "SABIC",
+      "SNB",
+      "STC"
+    ],
+    "windows": 190,
+    "nu": 6.0,
+    "width_cal": 1.063,
+    "mle_scale": 1.09,
+    "market_skill": -0.0092,
+    "market_ci90": [
+      -0.016,
+      0.002
+    ],
+    "market_verdict": "PARITY",
+    "signal_active": false,
+    "per_name": {
+      "ACWA": {
+        "nu": 6.0,
+        "width_cal": 1.056,
+        "skill": -0.011,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.027,
+          0.009
+        ]
+      },
+      "ALINMA": {
+        "nu": 12.0,
+        "width_cal": 1.021,
+        "skill": -0.0063,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.012,
+          0.003
+        ]
+      },
+      "ARAMCO": {
+        "nu": 6.0,
+        "width_cal": 1.056,
+        "skill": 0.0062,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.013,
+          0.023
+        ]
+      },
+      "ELM": {
+        "nu": 6.0,
+        "width_cal": 1.042,
+        "skill": -0.0163,
+        "verdict": "FAIL",
+        "ci_block2": [
+          -0.03,
+          -0.005
+        ]
+      },
+      "EXTRA": {
+        "nu": 6.0,
+        "width_cal": 1.091,
+        "skill": -0.0133,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.045,
+          0.014
+        ]
+      },
+      "MAADEN": {
+        "nu": 6.0,
+        "width_cal": 1.028,
+        "skill": 0.0119,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.004,
+          0.034
+        ]
+      },
+      "RAJHI": {
+        "nu": 6.0,
+        "width_cal": 1.07,
+        "skill": 0.0131,
+        "verdict": "BOUNDARY(PARITY-flagged)",
+        "ci_block2": [
+          -0.001,
+          0.038
+        ]
+      },
+      "RIBL": {
+        "nu": 6.0,
+        "width_cal": 1.07,
+        "skill": 0.0049,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.013,
+          0.038
+        ]
+      },
+      "SABIC": {
+        "nu": 8.0,
+        "width_cal": 1.049,
+        "skill": 0.0077,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.003,
+          0.023
+        ]
+      },
+      "SNB": {
+        "nu": 6.0,
+        "width_cal": 1.077,
+        "skill": -0.0039,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.014,
+          0.003
+        ]
+      },
+      "STC": {
+        "nu": 6.0,
+        "width_cal": 1.077,
+        "skill": 0.0007,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.011,
+          0.01
+        ]
+      }
+    }
+  },
+  "_meta": {
+    "last_updated": "2026-07-11"
+  },
+  "EG": {
+    "market": "EG",
+    "market_name": "Egypt (EGX)",
+    "fit_date": "2026-07-10",
+    "panel_names": [
+      "EMFD",
+      "GBCO",
+      "KABO",
+      "OCDI",
+      "ORHD",
+      "PHDC",
+      "TMGH"
+    ],
+    "windows": 115,
+    "nu": 4,
+    "width_cal": 0.965,
+    "market_skill": 0.062,
+    "market_ci90": [
+      0.036,
+      0.078
+    ],
+    "market_verdict": "PASS",
+    "signal_active": true,
+    "source": "carried over from market_fits_20260710.md \u2014 not recomputed this session"
+  },
+  "QA": {
+    "market": "QA",
+    "market_name": "Qatar (QE)",
+    "fit_date": "2026-07-10",
+    "panel_names": [
+      "QGTS"
+    ],
+    "windows": 18,
+    "nu": "Gaussian(250)",
+    "width_cal": 0.916,
+    "market_skill": -0.011,
+    "market_ci90": [
+      -0.037,
+      0.005
+    ],
+    "market_verdict": "PARITY",
+    "signal_active": false,
+    "source": "carried over from market_fits_20260710.md \u2014 single-name PROVISIONAL self-fit, not recomputed this session"
+  },
+  "XAU": {
+    "market": "XAU",
+    "market_name": "Metals (XAU spot)",
+    "fit_date": "2026-07-10",
+    "panel_names": [
+      "GOLD"
+    ],
+    "windows": 67,
+    "nu": 12,
+    "width_cal": 1.014,
+    "market_skill": 0.009,
+    "market_ci90": [
+      -0.003,
+      0.028
+    ],
+    "market_verdict": "PARITY",
+    "signal_active": false,
+    "source": "carried over from market_fits_20260710.md \u2014 single-name PROVISIONAL self-fit; silver history queued to de-circularize"
+  },
+  "US": {
+    "market": "US",
+    "market_verdict": "UNFITTED",
+    "nu": null,
+    "width_cal": 1.0,
+    "source": "no own-market pooled fit yet as of 10-Jul-2026 snapshot \u2014 runs on borrowed/default config until panel history is uploaded and refit through panel_refresh.py"
+  },
+  "UK": {
+    "market": "UK",
+    "market_verdict": "UNFITTED",
+    "nu": null,
+    "width_cal": 1.0,
+    "source": "no own-market pooled fit yet as of 10-Jul-2026 snapshot \u2014 runs on borrowed/default config until panel history is uploaded and refit through panel_refresh.py"
+  },
+  "BR": {
+    "market": "BR",
+    "market_verdict": "UNFITTED",
+    "nu": null,
+    "width_cal": 1.0,
+    "source": "no own-market pooled fit yet as of 10-Jul-2026 snapshot \u2014 runs on borrowed/default config until panel history is uploaded and refit through panel_refresh.py"
+  },
+  "KR": {
+    "market": "KR",
+    "market_verdict": "UNFITTED",
+    "nu": null,
+    "width_cal": 1.0,
+    "source": "no own-market pooled fit yet as of 10-Jul-2026 snapshot \u2014 runs on borrowed/default config until panel history is uploaded and refit through panel_refresh.py"
+  },
+  "AE": {
+    "market": "AE",
+    "market_verdict": "UNFITTED",
+    "nu": null,
+    "width_cal": 1.0,
+    "source": "no own-market pooled fit yet as of 10-Jul-2026 snapshot \u2014 runs on borrowed/default config until panel history is uploaded and refit through panel_refresh.py"
+  },
+  "IN": {
+    "market": "IN",
+    "market_verdict": "UNFITTED",
+    "nu": null,
+    "width_cal": 1.0,
+    "source": "no own-market pooled fit yet as of 10-Jul-2026 snapshot \u2014 runs on borrowed/default config until panel history is uploaded and refit through panel_refresh.py"
+  }
+}
