@@ -215,7 +215,7 @@ UAE = MarketProfile("AE", "UAE (ADX/DFM)", FED_SCHEDULE, 0.0365,
     "Carry = USD/Fed policy path (AED hard-pegged); rf_live 3.65% = CBUAE Base Rate held "
     "17-Jun-2026. NB the peg 'never-UST' rule governs the VALUATION rf (AED govt bond) -- "
     "the MC carry correctly tracks the Fed for a pegged currency.", "rev_1m", -1, 0.06, False,
-    nu=10.0, width_cal=1.056,
+    nu=10.0, width_cal=1.049,
     fit_meta=(
         "REFIT 11-Jul-2026 on the 14-name AE panel (adds ADIB/DIB/TWOPOINTZERO/EAND "
         "to the prior 10; 237 post-break windows) — supersedes nu=4/cal=1.070. Tail "
@@ -233,7 +233,12 @@ UAE = MarketProfile("AE", "UAE (ADX/DFM)", FED_SCHEDULE, 0.0365,
         "Per-name: ALPHADHABI robust FAIL -0.0122 (cone 1.136x benchmark, cov90=0.94 "
         "vs 0.90 target — over-wide); rest PARITY. Signal OFF; 14 names now clears "
         "the threshold for a rev_1m ablation. "),
-    breaks=["2022-01-01"], notes="Workweek switch Jan-2022: vol pool post-2022 only.")
+    breaks=["2022-01-01"], notes=("Workweek switch Jan-2022: vol pool post-2022 only. "
+    "CORRECTION 11-Jul-2026: re-run through the data_quality gate (EAND/ADCB/ADIB carried "
+    "10 trading-halt rows with O=H=L=C and no volume, which flatten the YZ intraday range "
+    "and bias the variance proxy DOWN). Immaterial as expected -- width_cal 1.056 -> 1.049, "
+    "nu unchanged at 10, panel skill +0.0039 -> +0.0049, ALPHADHABI still a robust FAIL -- "
+    "but the fit now conforms to the house cleaning gate."))
 INDIA = MarketProfile("IN", "India (NSE)", [("2020-01-01", 0.0650)], 0.0650,
     "PLACEHOLDER — source 10Y G-Sec at first IN study.", "mom_12_1", +1, 0.07, False,
     nu=250.0, width_cal=0.930,
