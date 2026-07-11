@@ -98,11 +98,37 @@ EGYPT = MarketProfile(
                     "(investing.com 3-Jul-2026). FLAG: source a fresh 3M T-bill auction "
                     "yield before first EGX publish under v3 — bills have traded above "
                     "the corridor; 19.50% is the conservative sourced floor."),
-    signal_type="rev_1m", signal_sign=-1, ic=0.08, signal_active=True,
-    nu=4.0, width_cal=0.965,
-    fit_meta=("Fitted 10-Jul-2026 on the 7-name EG panel (EMFD/GBCO/KABO/OCDI/ORHD/"
-              "PHDC/TMGH, 115 windows), LONO-stable (per-name nu=4, cal 0.92-0.99). "
-              "Panel verdict under this fit: PASS +0.062 CI[+0.036,+0.078]."),
+    signal_type="rev_1m", signal_sign=-1, ic=0.08, signal_active=False,
+    nu=4.0, width_cal=0.909,
+    fit_meta=(
+        "REFIT 11-Jul-2026 on the 25-name EG panel (325 post-break windows) - "
+        "supersedes the 7-name/115-window fit (nu=4, cal=0.965, signal ON). Three "
+        "changes, each tested: (1) DATA-QUALITY GATE (data_quality.py) now cleans "
+        "every series first. Two artifacts found: EFIH carried flat 0.50 pre-IPO "
+        "placeholder rows (a fake +333% log jump) and an unadjusted 3:2 split on "
+        "26-May-2025; OCDI/SODIC carried an unadjusted corporate action on "
+        "14-Aug-2025 showing as a fake -73% crash. Detection is principled, not a "
+        "magic number: the EGX +/-20% daily limit means every clean name tops out "
+        "at |log move| <= 0.223, so anything past 0.35 cannot be trading. OCDI was "
+        "IN the production 7-name fit - but repairing it does NOT move nu (still 4, "
+        "cal 0.979 -> 0.958), so Egypt's fat tail is GENUINE devaluation-jump risk, "
+        "not a data bug. (2) BREAK FILTERING ADOPTED: calibrating on "
+        "post-2023-01-11 origins only beats calibrating on all windows "
+        "out-of-sample (LONO +0.0211 vs +0.0198, both scored on the same post-break "
+        "windows) AND narrows the cone from cal=0.972 to 0.909. (3) SIGNAL ABLATED "
+        "OFF. This was the last active signal in the system. On 25 names the "
+        "empirical IC of rev_1m is +0.018 - the house prior's contrarian sign=-1 is "
+        "REFUTED and the magnitude is ~0. Ablation: carry-only +0.0252 beats "
+        "signal-ON +0.0211; the signal helps in only 13/25 names; paired bootstrap "
+        "P(signal helps)=0.31. Fallback rule applies. The rev_1m/IC-0.08 prior is "
+        "retained in the profile for re-estimation, but signal_active=False. "
+        "RESULT: panel PASS +0.0252 CI[+0.015,+0.036] on the scale-normalized gate, "
+        "top-name weight 9.3% (vs 42% under the old price-weighted gate). ZERO "
+        "name-level FAILs. PASS: CCAP +0.090, EMFD +0.078, HELI +0.070, LCSW "
+        "+0.051, OCDI +0.048, PRDC +0.037. BOUNDARY(PARITY-flagged): FWRY, ETEL, "
+        "EFIH, GBCO, ABUK. 14 PARITY. NB the old 7-name panel was "
+        "sector-concentrated (5 of 7 were RE developers); the 25-name panel is "
+        "cross-sector and its lower headline skill is the more honest number."),
     breaks=["2016-11-03", "2022-03-21", "2023-01-11"],
     notes=("Literature: no EGX momentum; overreaction/short-term reversal supported "
            "(EGX event studies; Kuwait 1m reversal ~3.1%/mo t≈4.4 as GCC analogue). "
