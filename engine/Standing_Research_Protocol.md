@@ -83,7 +83,7 @@ cross-fitted residuals; drift = carry anchor + an IC-shrunk, dead-zoned, capped 
 | USA (US) | 3 names, 54 w | 12 | 1.014 | PARITY −0.006 |
 | Korea (KR) | 3 names, 49 w | Gaussian | **1.154** | PARITY +0.014 |
 | India (IN) | 3 names, 54 w | Gaussian | 0.930 | PARITY +0.005 |
-| Metals (XAU) | gold, 67 w | Gaussian | 1.000 | PARITY (provisional self-fit) |
+| Metals (XAU) | gold, 67 w | Gaussian | 1.000 | PARITY +0.004 — **single-name SELF-FIT, circular** |
 | UK, Brazil | — | unfitted | 1.0 | no covered names |
 
 **[NEW 11-Jul] EVERY MARKET NOW RUNS CARRY-ONLY.** Egypt's `rev_1m` was the last active signal
@@ -191,5 +191,11 @@ reached `main` on 11-Jul and left the engine unloadable while a digit-only regex
    Must clear the same LONO gate that killed the CRPS-selection idea.
 2. **Break-aware volatility estimation inside the engine** (currently only the calibration sample
    is filtered). Moves every published distribution — a deliberate decision, not a silent fix.
-3. **Metals is a single-name self-fit.** Silver/copper history would de-circularise it.
+3. **Metals is the weakest calibration in the system — say so plainly.** Gold is a **single-name
+   self-fit**: it is calibrated on its own data, so its PARITY verdict is **circular** in exactly the
+   way Qatar's was until IQCD and QNB de-circularised it. Worse, **silver is a PUBLISHED instrument
+   with no fit of its own — it borrows gold's.** Every other market has been pulled onto a real
+   panel; metals has not. Until silver/copper/platinum history arrives, the metals cone is the
+   least-evidenced thing Testahil publishes, and it should not be presented with the same confidence
+   as an EGX or GCC name.
 4. **UK and Brazil have no covered names**; their profiles are stubs.
