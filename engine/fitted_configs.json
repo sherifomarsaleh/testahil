@@ -12,35 +12,328 @@
     ]
   },
   "EG": {
-    "code": "EG",
-    "name": "Egypt (EGX)",
-    "nu": 4.0,
-    "width_cal": 0.965,
-    "signal_active": true,
-    "signal_type": "rev_1m",
-    "ic": 0.08,
-    "breaks": [
-      "2016-11-03",
-      "2022-03-21",
-      "2023-01-11"
-    ],
-    "fit_meta": "Fitted 10-Jul-2026 on the 7-name EG panel (EMFD/GBCO/KABO/OCDI/ORHD/PHDC/TMGH, 115 windows), LONO-stable (per-name nu=4, cal 0.92-0.99). Panel verdict under this fit: PASS +0.062 CI[+0.036,+0.078].",
+    "market": "EG",
+    "market_name": "Egypt (EGX)",
+    "fit_date": "2026-07-11",
     "panel_names": [
+      "ABUK",
+      "ADIB",
+      "BTFH",
+      "CCAP",
+      "EFID",
+      "EFIH",
+      "EGAL",
       "EMFD",
+      "ETEL",
+      "FWRY",
       "GBCO",
+      "HELI",
+      "HRHO",
+      "ISPH",
+      "JUFO",
       "KABO",
+      "LCSW",
       "OCDI",
+      "OIH",
       "ORHD",
+      "ORWE",
       "PHDC",
+      "PRDC",
+      "RAYA",
       "TMGH"
     ],
-    "windows": 115,
-    "market_skill": 0.0387,
+    "windows": 325,
+    "nu": 4.0,
+    "width_cal": 0.909,
+    "mle_scale": 0.87,
+    "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
+    "market_skill": 0.0252,
+    "market_skill_raw_basis": 0.0362,
     "market_ci90": [
-      0.016,
-      0.062
+      0.015,
+      0.036
     ],
-    "market_verdict": "PASS"
+    "market_verdict": "PASS",
+    "top_name_weight_share": 0.093,
+    "top_name": "TMGH",
+    "signal_active": false,
+    "per_name": {
+      "ABUK": {
+        "nu": 4.0,
+        "width_cal": 0.895,
+        "skill": 0.0212,
+        "skill_raw_basis": 0.0155,
+        "verdict": "BOUNDARY(PARITY-flagged)",
+        "ci_block2": [
+          -0.011,
+          0.047
+        ]
+      },
+      "ADIB": {
+        "nu": 4.0,
+        "width_cal": 0.909,
+        "skill": 0.0242,
+        "skill_raw_basis": 0.0269,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.013,
+          0.099
+        ]
+      },
+      "BTFH": {
+        "nu": 4.0,
+        "width_cal": 0.902,
+        "skill": 0.0189,
+        "skill_raw_basis": 0.0575,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.038,
+          0.144
+        ]
+      },
+      "CCAP": {
+        "nu": 4.0,
+        "width_cal": 0.909,
+        "skill": 0.0904,
+        "skill_raw_basis": 0.0725,
+        "verdict": "PASS",
+        "ci_block2": [
+          0.006,
+          0.207
+        ]
+      },
+      "EFID": {
+        "nu": 4.0,
+        "width_cal": 0.916,
+        "skill": 0.0079,
+        "skill_raw_basis": 0.0053,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.038,
+          0.044
+        ]
+      },
+      "EFIH": {
+        "nu": 4.0,
+        "width_cal": 0.909,
+        "skill": 0.0349,
+        "skill_raw_basis": 0.0262,
+        "verdict": "BOUNDARY(PARITY-flagged)",
+        "ci_block2": [
+          0.001,
+          0.091
+        ]
+      },
+      "EGAL": {
+        "nu": 4.0,
+        "width_cal": 0.909,
+        "skill": 0.0487,
+        "skill_raw_basis": 0.0637,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.006,
+          0.135
+        ]
+      },
+      "EMFD": {
+        "nu": 4.0,
+        "width_cal": 0.909,
+        "skill": 0.0776,
+        "skill_raw_basis": 0.0919,
+        "verdict": "PASS",
+        "ci_block2": [
+          0.011,
+          0.186
+        ]
+      },
+      "ETEL": {
+        "nu": 4.0,
+        "width_cal": 0.902,
+        "skill": 0.0393,
+        "skill_raw_basis": 0.0348,
+        "verdict": "BOUNDARY(PARITY-flagged)",
+        "ci_block2": [
+          0.001,
+          0.093
+        ]
+      },
+      "FWRY": {
+        "nu": 4.0,
+        "width_cal": 0.909,
+        "skill": 0.0463,
+        "skill_raw_basis": 0.0388,
+        "verdict": "BOUNDARY(PARITY-flagged)",
+        "ci_block2": [
+          -0.006,
+          0.124
+        ]
+      },
+      "GBCO": {
+        "nu": 4.0,
+        "width_cal": 0.916,
+        "skill": 0.0342,
+        "skill_raw_basis": 0.029,
+        "verdict": "BOUNDARY(PARITY-flagged)",
+        "ci_block2": [
+          -0.001,
+          0.085
+        ]
+      },
+      "HELI": {
+        "nu": 4.0,
+        "width_cal": 0.916,
+        "skill": 0.0703,
+        "skill_raw_basis": 0.0708,
+        "verdict": "PASS",
+        "ci_block2": [
+          0.03,
+          0.178
+        ]
+      },
+      "HRHO": {
+        "nu": 4.0,
+        "width_cal": 0.909,
+        "skill": 0.0197,
+        "skill_raw_basis": 0.0048,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.043,
+          0.102
+        ]
+      },
+      "ISPH": {
+        "nu": 4.0,
+        "width_cal": 0.895,
+        "skill": -0.0438,
+        "skill_raw_basis": -0.0097,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.072,
+          0.006
+        ]
+      },
+      "JUFO": {
+        "nu": 4.0,
+        "width_cal": 0.909,
+        "skill": 0.0284,
+        "skill_raw_basis": 0.035,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.014,
+          0.082
+        ]
+      },
+      "KABO": {
+        "nu": 4.0,
+        "width_cal": 0.916,
+        "skill": -0.0015,
+        "skill_raw_basis": -0.0086,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.014,
+          0.013
+        ]
+      },
+      "LCSW": {
+        "nu": 4.0,
+        "width_cal": 0.916,
+        "skill": 0.0509,
+        "skill_raw_basis": 0.0659,
+        "verdict": "PASS",
+        "ci_block2": [
+          0.011,
+          0.126
+        ]
+      },
+      "OCDI": {
+        "nu": 4.0,
+        "width_cal": 0.909,
+        "skill": 0.0484,
+        "skill_raw_basis": 0.0532,
+        "verdict": "PASS",
+        "ci_block2": [
+          0.019,
+          0.084
+        ]
+      },
+      "OIH": {
+        "nu": 4.0,
+        "width_cal": 0.895,
+        "skill": -0.011,
+        "skill_raw_basis": -0.0167,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.043,
+          0.064
+        ]
+      },
+      "ORHD": {
+        "nu": 4.0,
+        "width_cal": 0.916,
+        "skill": 0.0294,
+        "skill_raw_basis": 0.0372,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.014,
+          0.094
+        ]
+      },
+      "ORWE": {
+        "nu": 4.0,
+        "width_cal": 0.902,
+        "skill": 0.0095,
+        "skill_raw_basis": 0.0121,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.032,
+          0.097
+        ]
+      },
+      "PHDC": {
+        "nu": 4.0,
+        "width_cal": 0.902,
+        "skill": 0.0058,
+        "skill_raw_basis": 0.0281,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.036,
+          0.093
+        ]
+      },
+      "PRDC": {
+        "nu": 4.0,
+        "width_cal": 0.916,
+        "skill": 0.0366,
+        "skill_raw_basis": 0.0391,
+        "verdict": "PASS",
+        "ci_block2": [
+          0.01,
+          0.083
+        ]
+      },
+      "RAYA": {
+        "nu": 4.0,
+        "width_cal": 0.902,
+        "skill": 0.0132,
+        "skill_raw_basis": 0.0157,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.015,
+          0.061
+        ]
+      },
+      "TMGH": {
+        "nu": 4.0,
+        "width_cal": 0.895,
+        "skill": 0.0149,
+        "skill_raw_basis": 0.0258,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.01,
+          0.118
+        ]
+      }
+    }
   },
   "SA": {
     "code": "SA",
