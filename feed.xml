@@ -6,7 +6,23 @@
     <atom:link href="https://testahil.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>دراسات تقييم تعليمية مستقلة لأسهم البورصة المصرية — توزيعات احتمالية، وليست توصيات. Educational EGX valuation studies — distributions, not tips.</description>
     <language>ar</language>
-    <lastBuildDate>Fri, 10 Jul 2026 08:30:00 +0300</lastBuildDate>
+    <lastBuildDate>Sat, 11 Jul 2026 08:30:00 +0300</lastBuildDate>
+
+    <item>
+      <title>مجموعة تو بوينت زيرو (2POINTZERO): دراسة تقييم — هل يستحق السهم؟</title>
+      <link>https://testahil.com/ar/2pointzero.html</link>
+      <guid isPermaLink="true">https://testahil.com/ar/2pointzero.html</guid>
+      <description>السعر 2.16 · الوسيط (٣ شهور) 2.18 · النطاق 1.59–3.00 درهم — تحليل تعليمي، توزيع وليس توصية.</description>
+      <pubDate>Sat, 11 Jul 2026 08:30:00 +0300</pubDate>
+    </item>
+
+    <item>
+      <title>Two Point Zero Group (2POINTZERO): Valuation Study — is it worth it?</title>
+      <link>https://testahil.com/2pointzero.html</link>
+      <guid isPermaLink="true">https://testahil.com/2pointzero.html</guid>
+      <description>Latest 2.16 · 3-month median 2.18 · range 1.59–3.00 AED — educational analysis, a distribution not a recommendation.</description>
+      <pubDate>Sat, 11 Jul 2026 08:30:00 +0300</pubDate>
+    </item>
 
     <item>
       <title>إي آند (مجموعة الإمارات للاتصالات) (EAND): دراسة تقييم — هل يستحق السهم؟</title>
