@@ -22,6 +22,14 @@ permissions:
   contents: write
   pull-requests: write
 
+# Uploading a market's CSVs one file at a time creates one commit — and therefore one
+# run — per file, each seeing a PARTIAL panel (1 name, then 2, then 3). Each of those
+# correctly trips the materiality gate, which is right but noisy. Collapsing to the
+# latest state means only the complete upload is judged.
+concurrency:
+  group: testahil-calibration
+  cancel-in-progress: true
+
 jobs:
   refresh:
     runs-on: ubuntu-latest
@@ -39,43 +47,64 @@ jobs:
         id: refresh
         working-directory: engine
         run: |
+          set +e
           python3 auto_refresh.py --apply
           echo "exit_code=$?" >> "$GITHUB_OUTPUT"
-        continue-on-error: true
+          set -e
+        # exit 0 = every touched market was NON-material  -> safe to auto-commit
+        # exit 1 = at least one MATERIAL change            -> must go to a PR
 
-      - name: Commit mechanical (non-material) refits directly to main
+      - name: Auto-commit (only when nothing was material)
+        if: steps.refresh.outputs.exit_code == '0'
         run: |
           git config user.name "testahil-bot"
           git config user.email "info@testahil.com"
-          if ! git diff --quiet -- engine/market_profiles.py engine/fitted_configs.json engine/panels engine/market_fits_log.md; then
-            git add engine/market_profiles.py engine/fitted_configs.json engine/panels engine/market_fits_log.md
+          if ! git diff --quiet -- engine/; then
+            git add engine/
             git commit -m "Auto-refresh: non-material calibration update ($(date -u +%Y-%m-%d))"
             git push
+            echo "Committed a non-material calibration refresh."
           else
-            echo "No mechanical changes to commit."
+            echo "Nothing changed."
           fi
 
-      - name: Open a PR for anything material (never auto-merged)
-        if: always()
+      - name: Open a review PR (only when something WAS material)
+        if: steps.refresh.outputs.exit_code != '0'
         run: |
-          if [ -d engine/PENDING_REVIEW ] && [ "$(ls -A engine/PENDING_REVIEW)" ]; then
-            BRANCH="calibration-review-$(date -u +%Y%m%d-%H%M%S)"
-            git checkout -b "$BRANCH"
-            git add engine/panels engine/PENDING_REVIEW
-            git commit -m "Material calibration change pending review ($(date -u +%Y-%m-%d)) — see engine/PENDING_REVIEW/*.md"
-            git push origin "$BRANCH"
-            gh pr create --title "Calibration review needed: $(ls engine/PENDING_REVIEW)" \
-                          --body-file "$(ls engine/PENDING_REVIEW/*.md | head -1)" \
-                          --base main --head "$BRANCH"
+          git config user.name "testahil-bot"
+          git config user.email "info@testahil.com"
+          BRANCH="calibration-review-$(date -u +%Y%m%d-%H%M%S)"
+          git checkout -b "$BRANCH"
+          git add engine/PENDING_REVIEW engine/panels
+          git commit -m "Material calibration change pending review ($(date -u +%Y-%m-%d))"
+          git push origin "$BRANCH"
+
+          TITLE="Calibration review needed: $(ls engine/PENDING_REVIEW | tr '\n' ' ')"
+          BODY_FILE="$(ls engine/PENDING_REVIEW/*.md | head -1)"
+
+          # gh pr create with GITHUB_TOKEN silently fails if the repo/account setting
+          # "Allow GitHub Actions to create and approve pull requests" is off. Fall back
+          # to the REST API and, if that also fails, FAIL LOUDLY with the branch name so
+          # the analysis is never lost — a silent no-PR is the one outcome we cannot have.
+          if gh pr create --title "$TITLE" --body-file "$BODY_FILE" --base main --head "$BRANCH"; then
+            echo "PR opened via gh."
           else
-            echo "Nothing pending review."
+            echo "::warning::gh pr create failed — falling back to the REST API."
+            BODY=$(python3 -c "import json,sys; print(json.dumps(open(sys.argv[1]).read()))" "$BODY_FILE")
+            HTTP=$(curl -s -o /tmp/pr.json -w '%{http_code}' -X POST \
+              -H "Authorization: token $GH_TOKEN" -H "Accept: application/vnd.github+json" \
+              "https://api.github.com/repos/${{ github.repository }}/pulls" \
+              -d "{\"title\":\"$TITLE\",\"head\":\"$BRANCH\",\"base\":\"main\",\"body\":$BODY}")
+            cat /tmp/pr.json
+            if [ "$HTTP" != "201" ]; then
+              echo "::error::Could not open a PR (HTTP $HTTP). The review report IS SAFE on branch '$BRANCH' — open the PR manually. Enable Settings > Actions > General > Workflow permissions > 'Allow GitHub Actions to create and approve pull requests'."
+            fi
           fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Fail the run if anything is pending review
+      - name: Fail the run so a material change is never mistaken for a clean one
+        if: steps.refresh.outputs.exit_code != '0'
         run: |
-          if [ -d engine/PENDING_REVIEW ] && [ "$(ls -A engine/PENDING_REVIEW)" ]; then
-            echo "::warning::Material calibration change(s) opened for review — see the PR."
-            exit 1
-          fi
+          echo "::error::Material calibration change detected — production was NOT modified. Review the PR."
+          exit 1
