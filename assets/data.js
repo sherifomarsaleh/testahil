@@ -29,9 +29,9 @@ const TICKERS = {
       bear: "Losing the 20-day near AED 14.40 exposes the 200-day at 14.26 and the 13.90 shelf; below that, 13.30 is the next support."
     },
     files: {
-      study: "files/ADCB_Valuation_Study_10-07-2026_public.docx?v=0710a",
-      model: "files/ADCB_Valuation_Model_10072026_public.xlsx?v=0710a",
-      pdf:   "files/ADCB_Valuation_Study_10-07-2026_public.pdf?v=0710a"
+      study: "files/ADCB_Valuation_Study_10-07-2026_public.docx?v=0711a",
+      model: "files/ADCB_Valuation_Model_10072026_public.xlsx?v=0711a",
+      pdf:   "files/ADCB_Valuation_Study_10-07-2026_public.pdf?v=0711a"
     }
   },
   ELM: {

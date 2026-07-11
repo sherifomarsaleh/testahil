@@ -181,7 +181,7 @@ KOREA = MarketProfile("KR", "South Korea", [("2020-01-01", 0.0300)], 0.0300,
     notes="Asia momentum-failure pattern: carry-only.")
 UAE = MarketProfile("AE", "UAE (ADX/DFM)", FED_SCHEDULE, 0.0365,
     "Carry = USD/Fed policy path (AED hard-pegged); rf_live 3.65% = CBUAE Base Rate held "
-    "18-Jun-2026. NB the peg 'never-UST' rule governs the VALUATION rf (AED govt bond) -- "
+    "17-Jun-2026. NB the peg 'never-UST' rule governs the VALUATION rf (AED govt bond) -- "
     "the MC carry correctly tracks the Fed for a pegged currency.", "rev_1m", -1, 0.06, False,
     nu=4.0, width_cal=1.070,
     fit_meta=("Fitted 10-Jul-2026 on the 9-name AE panel (ADCB/FAB/ENBD/EMAAR/EMAARDEV/"
