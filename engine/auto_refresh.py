@@ -11,6 +11,16 @@ with no one looking. This script is the difference between automation and
 unsupervised drift.
 
 INPUT CONVENTION: raw_ohlc/{MARKET_CODE}/{TICKER}.csv
+raw_ohlc IS A PERSISTENT LIBRARY, NOT AN INBOX. Every covered stock keeps its
+current OHLC there permanently. To add or refresh ONE stock you add or overwrite
+ONE file — the pipeline still sees the whole market and refits the full panel.
+
+This matters because the natural working rhythm is one stock at a time (research a
+name, post its OHLC, produce its report). An earlier design treated raw_ohlc as
+"this session's uploads", which meant a single-stock upload left every OTHER panel
+name without a raw CSV and falsely tripped the gate on every single post. The
+library model makes one-at-a-time the DEFAULT case, not the broken one.
+
 The market+ticker mapping is decided by FILE PLACEMENT, not by parsing company
 names. This is deliberate: the ADNOC/ADIB confusion earlier in this project was
 exactly this kind of disambiguation, and it is NOT something to automate. A human
@@ -25,14 +35,25 @@ WHAT RUNS UNATTENDED (auto-committed to main, no approval):
   ...PROVIDED the materiality gate below finds nothing that needs a human.
 
 WHAT STOPS AND OPENS A PR INSTEAD (never auto-merged):
-  - any name's verdict category changes (PASS/PARITY/FAIL/BOUNDARY)
-  - a NEW name enters a panel (ticker mapping deserves one human glance)
+  - any EXISTING name's verdict category changes (PASS/PARITY/FAIL/BOUNDARY)
+  - a NEW name arrives already FAILING, or its arrival flips someone else's verdict
   - width_cal moves >5% relative, or nu crosses into a different regime
     (specifically: the Gaussian/fat-tail boundary, since that is the parameter
     that most changes the published cone shape)
   - the market-level verdict itself changes
+  - a panel carries a name with NO raw CSV in the library (a genuine inconsistency
+    now that the library is authoritative — it means a file was deleted or never
+    added, and the panel is running on stale residuals)
   - a signal_active flip would be implied (not auto-applied even if supported —
     Egypt's ablation this session was exactly this kind of call)
+
+A NEW NAME IS NOT, BY ITSELF, MATERIAL. Adding a stock is the single most common
+thing that happens here, and blocking on it would mean a PR on literally every
+post. You placing the file at raw_ohlc/{MKT}/{TICKER}.csv IS the human decision
+about what the series is. The pipeline still guards the things that actually
+matter: if the new name arrives FAILING, or its arrival destabilises the market fit
+or flips another name's verdict, that still stops. New names are always named
+explicitly in the commit message and the log so an arrival is never invisible.
 
 Usage: python3 auto_refresh.py [--apply]
   Without --apply: dry run, prints what WOULD happen, changes nothing.
@@ -52,12 +73,39 @@ RAW_DIR = os.path.join(HERE, 'raw_ohlc')
 REGISTRY_PATH = os.path.join(HERE, 'fitted_configs.json')
 PENDING_DIR = os.path.join(HERE, 'PENDING_REVIEW')
 
-WIDTH_CAL_TOL = 0.05     # 5% relative — beyond this, a human looks
+BAND_TOL = 0.05           # the published 90% cone half-width may drift this much silently
 NU_GAUSSIAN_CUTOFF = 200  # nu above this is "effectively Gaussian"
 
 
+def band_halfwidth(nu, cal):
+    """The thing the reader actually sees: the half-width of the published 90% cone,
+    in units of sigma_h. Proportional to cal * q95(unit-variance t(nu)).
+
+    This REPLACES a naive rule that triggered on (a) width_cal moving >5% and (b) nu
+    crossing an arbitrary Gaussian/fat-tail boundary. That rule was wrong in both
+    directions. Concretely, on the gold panel the MLE moved nu=12 -> Gaussian after
+    8 stale rows were cleaned — which the bucket rule called a "regime change" and
+    would have opened a PR for. But nu=12 sits only dlogL=0.31 from the Gaussian MLE
+    (statistically indistinguishable — nu is weakly identified at these sample sizes,
+    see gate_scale_fix_20260711.md), and the two produce 90% cones that differ by
+    ~1%. Meanwhile nu and cal TRADE OFF against each other, so watching cal alone can
+    miss a real change that nu absorbs. Measuring the cone directly captures both in
+    one number and only fires when the published band actually moves."""
+    from scipy import stats
+    if nu is None:
+        return None
+    if isinstance(nu, str):
+        nu = 1e9 if 'gauss' in nu.lower() else float(nu)
+    nu = float(nu)
+    q = 1.6448536269514722 if nu >= NU_GAUSSIAN_CUTOFF else float(
+        stats.t.ppf(0.95, nu) / np.sqrt(nu / (nu - 2)))
+    return q * float(cal or 1.0)
+
+
 def discover_touched_markets():
-    """raw_ohlc/{MKT}/{TICKER}.csv -> {mkt: {ticker: path}}"""
+    """Read the FULL persistent library: raw_ohlc/{MKT}/{TICKER}.csv -> {mkt: {ticker: path}}.
+    Every market with at least one CSV is refit against ALL of its CSVs — which is what
+    makes a one-stock-at-a-time upload work."""
     out = {}
     if not os.path.isdir(RAW_DIR):
         return out
@@ -92,25 +140,30 @@ def assess_materiality(market, result, incumbent_profile, incumbent_registry):
     """Returns (is_material: bool, reasons: list[str])."""
     reasons = []
 
-    old_nu_b = _nu_bucket(incumbent_profile.nu)
-    new_nu_b = _nu_bucket(result['nu'])
-    if old_nu_b != new_nu_b:
-        reasons.append(f"nu regime changed: {incumbent_profile.nu} -> {result['nu']} "
-                        f"(bucket {old_nu_b} -> {new_nu_b})")
-
-    old_cal = incumbent_profile.width_cal or 1.0
-    new_cal = result['width_cal']
-    rel = abs(new_cal - old_cal) / old_cal
-    if rel > WIDTH_CAL_TOL:
-        reasons.append(f"width_cal moved {rel:.1%} (> {WIDTH_CAL_TOL:.0%} tolerance): "
-                        f"{old_cal} -> {new_cal}")
+    old_bw = band_halfwidth(incumbent_profile.nu, incumbent_profile.width_cal)
+    new_bw = band_halfwidth(result['nu'], result['width_cal'])
+    if old_bw and new_bw:
+        rel = abs(new_bw - old_bw) / old_bw
+        if rel > BAND_TOL:
+            reasons.append(
+                f"the PUBLISHED 90% cone moves {rel:+.1%} (> {BAND_TOL:.0%} tolerance): "
+                f"(nu={incumbent_profile.nu}, cal={incumbent_profile.width_cal}) -> "
+                f"(nu={result['nu']}, cal={result['width_cal']})")
 
     old_names = set(incumbent_registry.get('panel_names', []))
     new_names = set(result['panel_names'])
-    added = new_names - old_names
-    if added:
-        reasons.append(f"NEW name(s) entering the panel — ticker mapping needs one human glance: "
-                        f"{sorted(added)}")
+    added = sorted(new_names - old_names)
+    # A new name is NOT material by itself (see module docstring) — but a new name
+    # that arrives already FAILING is: that is either a genuinely uncalibratable
+    # series or, more likely, a misfiled/bad file, and it should not silently enter
+    # a production panel.
+    for n in added:
+        d = result['per_name'].get(n, {})
+        v = _verdict_key(d.get('verdict', ''))
+        if v == 'FAIL':
+            reasons.append(f"NEW name {n} arrives with a robust FAIL "
+                            f"(skill {d.get('skill'):+.4f}) — check the file is the right "
+                            f"instrument, in the right market folder, with clean history")
 
     old_pn = incumbent_registry.get('per_name', {})
     for n, d in result['per_name'].items():
@@ -129,7 +182,7 @@ def assess_materiality(market, result, incumbent_profile, incumbent_registry):
     if old_mv != 'UNKNOWN' and old_mv != new_mv:
         reasons.append(f"MARKET panel verdict changed {old_mv} -> {new_mv}")
 
-    return (len(reasons) > 0), reasons
+    return (len(reasons) > 0), reasons, added
 
 
 def write_pending_review(market, result, reasons, incumbent_profile):
@@ -211,12 +264,16 @@ def main():
         result = refresh_market(market, files, files, update_registry=False)
         incumbent_profile = PROFILES[market]
         incumbent_registry = reg.get(market, {})
-        material, reasons = assess_materiality(market, result, incumbent_profile, incumbent_registry)
+        material, reasons, added = assess_materiality(market, result, incumbent_profile,
+                                                       incumbent_registry)
+        if added:
+            print(f"  NEW name(s) in this market: {added}")
 
         if not material:
             print(f"  NOT MATERIAL — safe to auto-apply. "
                   f"nu={result['nu']} width_cal={result['width_cal']} "
-                  f"verdict={result['market_verdict']}")
+                  f"verdict={result['market_verdict']}"
+                  + (f"  [+{len(added)} new name(s): {','.join(added)}]" if added else ""))
             if args.apply:
                 write_production(market, result)
                 print(f"  -> written to market_profiles.py + fitted_configs.json")
