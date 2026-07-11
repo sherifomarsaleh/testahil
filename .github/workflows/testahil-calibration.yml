@@ -1,0 +1,81 @@
+name: Testahil continuous calibration
+
+# Unattended by design, gated by design (11-Jul-2026):
+#   - Drop OHLC into engine/raw_ohlc/{MARKET}/{TICKER}.csv and push (or run manually).
+#   - Mechanical work (cleaning, panel rebuild, refit, LONO verdicts) always runs.
+#   - If auto_refresh.py's materiality gate finds nothing that needs a human
+#     (no verdict flips, no new names, nu/width_cal within tolerance), the
+#     result is committed straight to main. No PR, no approval step.
+#   - If it DOES find something material, this workflow opens a PR with a
+#     PENDING_REVIEW/*.md report and does NOT touch market_profiles.py.
+#     Nothing merges without a human clicking merge.
+
+on:
+  push:
+    paths:
+      - 'engine/raw_ohlc/**.csv'
+  workflow_dispatch: {}   # manual "run it now" button in the Actions tab
+  schedule:
+    - cron: '0 3 * * *'   # 03:00 UTC daily — catches anything pushed without triggering the path filter
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install numpy pandas scipy
+
+      - name: Run the continuous-learning pipeline
+        id: refresh
+        working-directory: engine
+        run: |
+          python3 auto_refresh.py --apply
+          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
+        continue-on-error: true
+
+      - name: Commit mechanical (non-material) refits directly to main
+        run: |
+          git config user.name "testahil-bot"
+          git config user.email "info@testahil.com"
+          if ! git diff --quiet -- engine/market_profiles.py engine/fitted_configs.json engine/panels engine/market_fits_log.md; then
+            git add engine/market_profiles.py engine/fitted_configs.json engine/panels engine/market_fits_log.md
+            git commit -m "Auto-refresh: non-material calibration update ($(date -u +%Y-%m-%d))"
+            git push
+          else
+            echo "No mechanical changes to commit."
+          fi
+
+      - name: Open a PR for anything material (never auto-merged)
+        if: always()
+        run: |
+          if [ -d engine/PENDING_REVIEW ] && [ "$(ls -A engine/PENDING_REVIEW)" ]; then
+            BRANCH="calibration-review-$(date -u +%Y%m%d-%H%M%S)"
+            git checkout -b "$BRANCH"
+            git add engine/panels engine/PENDING_REVIEW
+            git commit -m "Material calibration change pending review ($(date -u +%Y-%m-%d)) — see engine/PENDING_REVIEW/*.md"
+            git push origin "$BRANCH"
+            gh pr create --title "Calibration review needed: $(ls engine/PENDING_REVIEW)" \
+                          --body-file "$(ls engine/PENDING_REVIEW/*.md | head -1)" \
+                          --base main --head "$BRANCH"
+          else
+            echo "Nothing pending review."
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Fail the run if anything is pending review
+        run: |
+          if [ -d engine/PENDING_REVIEW ] && [ "$(ls -A engine/PENDING_REVIEW)" ]; then
+            echo "::warning::Material calibration change(s) opened for review — see the PR."
+            exit 1
+          fi
