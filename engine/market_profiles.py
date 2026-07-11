@@ -205,7 +205,7 @@ BRAZIL = MarketProfile("BR", "Brazil", [("2020-01-01", 0.1300)], 0.1300,
     notes="EM momentum prior (Rouwenhorst).")
 KOREA = MarketProfile("KR", "South Korea", [("2020-01-01", 0.0300)], 0.0300,
     "PLACEHOLDER — source KTB at first KR study.", None, +1, 0.03, False,
-    nu=250.0, width_cal=1.154,
+    nu=Gaussian, width_cal=1.154,
     fit_meta=(
         "REFIT 11-Jul-2026 on the 3-name KR panel after a MAJOR DATA REPAIR - "
         "supersedes nu=6/cal=1.070. THE INVESTING.COM KOREAN EXPORT CONTAINS "
@@ -264,7 +264,7 @@ UAE = MarketProfile("AE", "UAE (ADX/DFM)", FED_SCHEDULE, 0.0365,
     "but the fit now conforms to the house cleaning gate."))
 INDIA = MarketProfile("IN", "India (NSE)", [("2020-01-01", 0.0650)], 0.0650,
     "PLACEHOLDER — source 10Y G-Sec at first IN study.", "mom_12_1", +1, 0.07, False,
-    nu=250.0, width_cal=0.930,
+    nu=Gaussian, width_cal=0.930,
     fit_meta=(
         "REFIT 11-Jul-2026 on the 3-name IN panel (TMPV/RELIANCE/INFY, 51 windows, "
         "2021-2026), RE-RUN through the market-aware data-quality gate and the "
@@ -328,7 +328,7 @@ METALS = MarketProfile("XAU", "Metals (Gold/Silver, USD)", FED_SCHEDULE, 0.0363,
     "value is spot x exp(rf) — the futures-contango-consistent center; gate-neutral "
     "(same anchor both sides).",
     None, +1, 0.0, False,
-    nu=12.0, width_cal=1.014,
+    nu=Gaussian, width_cal=1.0,
     fit_meta=("PROVISIONAL single-instrument self-fit 10-Jul-2026 (GOLD, 67 windows "
               "2009-2026): nu=12, cal=1.014 - near-Gaussian, tails far thinner than "
               "EGX (nu=4); the old borrowed t5 was too fat for metals. Verdict "
