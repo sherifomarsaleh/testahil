@@ -85,9 +85,9 @@ const TICKERS = {
       bear: "Losing the 7.4–7.8 congestion shelf targets par NAV (7.44) and then the discounted-NAV zone; the war low at 6.84 is the line under everything."
     },
     files: {
-      study: "files/ALPHADHABI_Valuation_Study_10-07-2026_public.docx?v=0710e",
-      model: "files/ALPHADHABI_Valuation_Model_10-07-2026_public.xlsx?v=0710e",
-      pdf:   "files/ALPHADHABI_Valuation_Study_10-07-2026_public.pdf?v=0710e"
+      study: "files/ALPHADHABI_Valuation_Study_10-07-2026_public.docx?v=0711a",
+      model: "files/ALPHADHABI_Valuation_Model_10-07-2026_public.xlsx?v=0711a",
+      pdf:   "files/ALPHADHABI_Valuation_Study_10-07-2026_public.pdf?v=0711a"
     }
   },
   EXTRA: {
