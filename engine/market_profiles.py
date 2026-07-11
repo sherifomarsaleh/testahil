@@ -199,17 +199,32 @@ BRAZIL = MarketProfile("BR", "Brazil", [("2020-01-01", 0.1300)], 0.1300,
     notes="EM momentum prior (Rouwenhorst).")
 KOREA = MarketProfile("KR", "South Korea", [("2020-01-01", 0.0300)], 0.0300,
     "PLACEHOLDER — source KTB at first KR study.", None, +1, 0.03, False,
-    nu=6.0, width_cal=1.070,
-    fit_meta=("Fitted 10-Jul-2026 on the 3-name KR panel (SAMSUNG/KAKAO/LGES, 55 "
-              "windows, 2021-2026): nu=6, cal=1.070. DATA REPAIR: the KAKAO "
-              "investing.com export interleaved pre/post-split price scales through "
-              "Mar-Apr 2021 (13 rows at ~5x); repaired exactly (rows with Price>"
-              "200,000 KRW / 5, the corporate 5:1 ratio) - before the repair a "
-              "single poisoned trailing-vol window fabricated +0.33 'skill'. Panel "
-              "verdict PARITY +0.006 CI[-0.006,+0.008]. Per-name (LONO, robust "
-              "blocks): SAMSUNG PARITY -0.022, KAKAO PARITY +0.006, LGES PARITY "
-              "+0.005. Supersedes the legacy per-instrument Samsung KVOL=1.30 "
-              "uplift from the v1-era site config."),
+    nu=250.0, width_cal=1.154,
+    fit_meta=(
+        "REFIT 11-Jul-2026 on the 3-name KR panel after a MAJOR DATA REPAIR - "
+        "supersedes nu=6/cal=1.070. THE INVESTING.COM KOREAN EXPORT CONTAINS "
+        "PHANTOM NON-TRADING ROWS: ~160 rows per name carrying NaN volume and "
+        "O=H=L=C, of which 144 of SAMSUNG's 170 fall on a SUNDAY (KOSPI is closed). "
+        "Raw density is 276.8 rows/yr; after removing them it is 245.8/yr - exactly "
+        "the KOSPI calendar. These phantom rows inject fake zero-return, "
+        "zero-intraday-range days straight into the Yang-Zhang variance proxy, "
+        "DEPRESSING the volatility estimate. The 10-Jul repair caught only the 13 "
+        "pre/post-split price-scale rows (fixed by dividing by 5, which SYNTHESIZES "
+        "a price on a day the market never opened); it never saw the ~160 phantom "
+        "rows. They are now DROPPED, not rescaled. EFFECT: the tail goes 6 -> "
+        "Gaussian and the cone WIDENS 1.070 -> 1.154 - the old fit was "
+        "simultaneously too narrow AND falsely fat-tailed, an artifact of the "
+        "depressed vol. Skill nevertheless IMPROVES: panel PARITY +0.0144 "
+        "CI[-0.005,+0.017] (was +0.006). Per-name (LONO, robust blocks): SAMSUNG "
+        "PARITY +0.0094, KAKAO PARITY +0.0022, LGES robust FAIL -0.0268 across "
+        "blocks {2,3,4} - and its signature is OVER-COVERAGE: cov80=1.00 and "
+        "cov90=1.00 (every outcome inside the 80% band), cone 1.112x the benchmark, "
+        "PIT 0.471 (well centred). LGES is not mis-centred, it is simply too wide: "
+        "it IPO'd Jan-2022, has the shortest history and only 13 windows, and the "
+        "market-level width_cal over-widens a name whose own vol is below the panel "
+        "average. This is the clearest case in the whole system for a NAME-LEVEL "
+        "width_cal shrunk toward the market fit - proposed, NOT implemented, "
+        "pending an out-of-sample test."),
     notes="Asia momentum-failure pattern: carry-only.")
 UAE = MarketProfile("AE", "UAE (ADX/DFM)", FED_SCHEDULE, 0.0365,
     "Carry = USD/Fed policy path (AED hard-pegged); rf_live 3.65% = CBUAE Base Rate held "
@@ -217,22 +232,24 @@ UAE = MarketProfile("AE", "UAE (ADX/DFM)", FED_SCHEDULE, 0.0365,
     "the MC carry correctly tracks the Fed for a pegged currency.", "rev_1m", -1, 0.06, False,
     nu=10.0, width_cal=1.049,
     fit_meta=(
-        "REFIT 11-Jul-2026 on the 14-name AE panel (adds ADIB/DIB/TWOPOINTZERO/EAND "
-        "to the prior 10; 237 post-break windows) — supersedes nu=4/cal=1.070. Tail "
-        "moves 4 -> 10: the old fat tail was carried by IHC/EMAAR idiosyncratic "
-        "swings on a smaller panel; four more well-behaved names (two banks, a telco, "
-        "a holding) dilute it. HONESTY NOTE: nu is only WEAKLY IDENTIFIED here — "
-        "every nu from 5 to Gaussian sits inside the 95% likelihood interval (nu=4 is "
-        "only dlogL=2.23 away), and nu trades off against cal (fatter tail wants a "
-        "wider scale). The (nu,cal) PAIR is what is fitted; neither coordinate should "
-        "be quoted as precise. LONO OOS: this MLE config scores +0.0032 vs the "
-        "incumbent's -0.0017. Panel PARITY +0.0039. BREAK FILTERING NOW APPLIED (see "
-        "apply_breaks in panel_refresh.py): EAND's OHLC starts 2016, so 21 of its 39 "
-        "windows predate the Jan-2022 workweek switch and are excluded from the "
-        "calibration sample — unfiltered they pulled the fit to nu=6/cal=1.084. "
-        "Per-name: ALPHADHABI robust FAIL -0.0122 (cone 1.136x benchmark, cov90=0.94 "
-        "vs 0.90 target — over-wide); rest PARITY. Signal OFF; 14 names now clears "
-        "the threshold for a rev_1m ablation. "),
+        "REFIT 11-Jul-2026 on the 14-name AE panel (237 post-break windows), RE-RUN "
+        "through the data-quality gate - supersedes nu=4/cal=1.070. Adds "
+        "ADIB/DIB/TWOPOINTZERO/EAND to the prior 10. Tail moves 4 -> 10: the old "
+        "fat tail was carried by IHC/EMAAR idiosyncratic swings on a smaller panel; "
+        "four more well-behaved names dilute it. HONESTY NOTE: nu is only WEAKLY "
+        "IDENTIFIED - every nu from 5 to Gaussian sits inside the 95% likelihood "
+        "interval (nu=4 is only dlogL=2.23 away), and nu trades off against cal. "
+        "The (nu,cal) PAIR is fitted; neither coordinate is individually precise. "
+        "LONO OOS: this MLE config scores +0.0032 vs the incumbent's -0.0017. "
+        "Data-quality gate dropped 3-5 stale no-trade rows each from EAND/ADCB/ADIB "
+        "- immaterial (cal 1.056 -> 1.049, nu unchanged). BREAK FILTERING APPLIED: "
+        "EAND's OHLC starts 2016, so 21 of its 39 windows predate the Jan-2022 "
+        "workweek switch and are excluded from the calibration sample; unfiltered "
+        "they pulled the fit to nu=6/cal=1.084. Panel PARITY +0.0049 "
+        "CI[-0.004,+0.015]. Per-name: ALPHADHABI robust FAIL -0.0122 (cone 1.136x "
+        "benchmark, cov90=0.94 vs a 0.90 target - over-wide, same signature as "
+        "KR/LGES); all 13 others PARITY. Signal OFF; 14 names now clears the "
+        "threshold for a rev_1m ablation."),
     breaks=["2022-01-01"], notes=("Workweek switch Jan-2022: vol pool post-2022 only. "
     "CORRECTION 11-Jul-2026: re-run through the data_quality gate (EAND/ADCB/ADIB carried "
     "10 trading-halt rows with O=H=L=C and no volume, which flatten the YZ intraday range "
