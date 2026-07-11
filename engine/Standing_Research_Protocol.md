@@ -72,25 +72,30 @@ per-market `width_cal`; Student-t(ν) shape with ν **fitted per market** on poo
 cross-fitted residuals; drift = carry anchor + an IC-shrunk, dead-zoned, capped signal alpha.
 50,000 paths, seed 42. Raw secular drift and unshrunk trend drift remain **retired, do-not-revive**.
 
-### [NEW 11-Jul] Production fits — all refitted on full panels, all carry-only
+### [NEW 11-Jul] Production fits — RULES ONLY, never a number
 
-| Market | Panel | ν | width_cal | Panel verdict |
-|---|---|---|---|---|
-| Egypt (EG) | 27 names, 351 w | 4 | **0.909** | **PASS +0.027** |
-| Saudi (SA) | 11 names, 190 w | 6 | **1.063** | PARITY +0.002 |
-| UAE (AE) | 14 names, 237 w | 10 | **1.049** | PARITY +0.005 |
-| Qatar (QA) | 3 names, 54 w | 12 | 0.972 | PARITY −0.009 |
-| USA (US) | 3 names, 54 w | 12 | 1.014 | PARITY −0.006 |
-| Korea (KR) | 3 names, 49 w | Gaussian | **1.154** | PARITY +0.014 |
-| India (IN) | 3 names, 54 w | Gaussian | 0.930 | PARITY +0.005 |
-| Metals (XAU) | gold, 67 w | Gaussian | 1.000 | PARITY +0.004 — **single-name SELF-FIT, circular** |
-| UK, Brazil | — | unfitted | 1.0 | no covered names |
+**Do not quote a fit from this document.** Every figure below (name counts, window counts, ν,
+width_cal, verdicts) is exactly what the unattended loop refits every time a stock is posted —
+they were already stale by the next commit on 11-Jul, and this file is not live-updated by the
+pipeline. Read the live state before quoting anything:
+
+    curl -s https://raw.githubusercontent.com/sherifomarsaleh/testahil/main/engine/market_profiles.py
+    curl -s https://raw.githubusercontent.com/sherifomarsaleh/testahil/main/engine/fitted_configs.json
+
+No token needed — the repo is public. `market_profiles.py` is the single source of truth (what
+production reads); `fitted_configs.json` is a derived mirror.
+
+What IS stable and worth stating here: eight markets are fitted (Egypt, Saudi, UAE, Qatar, USA,
+Korea, India, Metals); UK and Brazil have no covered names yet. Egypt is the largest and only
+panel to reach a robust PASS verdict on the market level. Metals is the weakest calibration in
+the system (see below) and should never be read with the confidence of an EGX or GCC name.
 
 **[NEW 11-Jul] EVERY MARKET NOW RUNS CARRY-ONLY.** Egypt's `rev_1m` was the last active signal
 anywhere in the system and was **ablated off on evidence**: on the 27-name panel its empirical IC
 is **+0.018** against a contrarian `sign=−1` prior (i.e. the *sign is refuted* and the magnitude
-is ~zero); carry-only (+0.0252) beats signal-on (+0.0211); it helps in only 13/25 names; paired
-bootstrap P(signal helps) = **0.31**. India's `mom_12_1` shows the same wrong-sign pattern
+is ~zero); carry-only (+0.0252) beats signal-on (+0.0211); it helped in only 13/25 names on the
+25-name panel the test was run against (11-Jul-2026, a fixed historical result, not the current
+panel size); paired bootstrap P(signal helps) = **0.31**. India's `mom_12_1` shows the same wrong-sign pattern
 (IC −0.093 against a +1 prior). Priors are **retained in the profiles for re-estimation** as
 panels grow, but `signal_active=False` everywhere.
 
@@ -123,7 +128,8 @@ inbox — **65 stocks across 8 fitted markets** (27 EG · 11 SA · 14 AE · 3 QA
 To add or refresh ONE stock, add or overwrite ONE file. The
 pipeline then refits that stock's **whole market** against the full library.
 
-**One-stock post ≈ 12 seconds** even for Egypt's 27 names: panels are content-hashed (only the
+**One-stock post ≈ 12 seconds**, even on Egypt (the largest panel — check its current size live):
+panels are content-hashed (only the
 changed file rebuilds) and re-scoring uses `fast_rescore`, a closed-form re-simulation that is
 **bit-for-bit identical** to re-running the engine (verified) but skips the O(n²) HAR refit.
 
