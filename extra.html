@@ -480,8 +480,8 @@
         var S0=(T&&typeof T.spot==="number")?T.spot:24.00;
         var H=60, BETA=0.5826, FLOOR=65.00, R2=68.10, TARGET=73.40;
         // fixed factors (held at study calibration). The SAMA/Fed rate path, Vision-2030 credit demand and the oil/fiscal impulse are the tunable continuous levers; the downside shock and the dividend surprise are the tunable events.
-        var CONT_FIXED=[["Deposits",-0.002,0.015],["TASI",0.0045,0.027],["Liquidity",-0.002,0.015],["CoR",-0.0005,0.012]];
-        var IDIO=0.0174, EGP_VOL=0.042, AICAP_VOL=0.023, INR_VOL=0.023;
+        var CONT_FIXED=[["Deposits",-0.00997,0.015],["TASI",0.0045,0.027],["Liquidity",-0.002,0.015],["CoR",-0.0005,0.012]];
+        var IDIO=0.0395, EGP_VOL=0.0953, AICAP_VOL=0.0522, INR_VOL=0.0522;
         var EV_FIXED=[["earn",0.5,0.0118,0.031],["fed",0.3,-0.006,0.031],["cor",0.25,-0.02,0.031],["oil",0.25,-0.028,0.038],["projfin",0.3,0.014,0.031],["index",0.3,0.014,0.023],["capital",0.2,0.008,0.023]];
         var GEO_MEAN=-0.07, GEO_SD=0.038, LNCH_MEAN=0.01, LNCH_SD=0.018;
 

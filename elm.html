@@ -198,7 +198,7 @@
       <div id="legend"></div>
       <button class="howto-link" id="howto-open" type="button">How to read this</button>
     </div>
-    <p class="muted" style="margin-top:14px">Latest <b class="num" id="spot"></b> SAR (<span id="spotdate"></span>) · our weighted fair value <b class="num">27.32</b> · scenarios <span class="num">19.9</span> (cautious) to <span class="num">31.2</span> (all goes right).</p>
+    <p class="muted" style="margin-top:14px">Latest <b class="num" id="spot"></b> SAR (<span id="spotdate"></span>) · our weighted fair value <b class="num">620</b> · scenarios <span class="num">530</span> (cautious) to <span class="num">720</span> (all goes right).</p>
   </section>
 
   <!-- LENS 2: FUNDAMENTAL -->
@@ -480,8 +480,8 @@
         var S0=(T&&typeof T.spot==="number")?T.spot:658.50;
         var H=60, BETA=0.62, FLOOR=592.6, R2=658.5, TARGET=695.0;
         // fixed factors (held at study calibration). Discount-rate re-rating, government digital spend and Tadawul risk appetite are the tunable continuous levers; the exclusivity shock and the launch/contract surprise are the tunable events.
-        var CONT_FIXED=[["Carry (rf minus dividend yield)",0.0044,0.010],["Sector/peer drift",0.0,0.020]];
-        var IDIO=0.08, EGP_VOL=0.09, AICAP_VOL=0.03, INR_VOL=0.04;
+        var CONT_FIXED=[["Carry (rf minus dividend yield)",0.00532,0.01],["Sector/peer drift",0.0,0.02]];
+        var IDIO=0.1239, EGP_VOL=0.1394, AICAP_VOL=0.0465, INR_VOL=0.0619;
         var EV_FIXED=[["earn",0.4,0.005,0.03],["macro",0.3,-0.01,0.035],["index",0.25,0.008,0.04]];
         var GEO_MEAN=-0.05, GEO_SD=0.05, LNCH_MEAN=0.02, LNCH_SD=0.03;
 
