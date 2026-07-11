@@ -247,9 +247,23 @@ def write_production(market, result):
         i = src.index(f"{class_name} = MarketProfile")
         j = src.index(old_token, i)
         src = src[:j] + new_token + src[j + len(old_token):]
-        # never commit a market_profiles.py that will not import
-        import ast as _ast
-        _ast.parse(src)
+
+        # GUARD: verify by IMPORT, never by ast.parse alone. `nu=Gaussian` is a bare
+        # identifier — it PARSES perfectly and only dies at import with NameError. An
+        # ast.parse check would wave it straight through. This exact bug reached main
+        # on 11-Jul-2026 and left market_profiles.py unimportable (the engine could not
+        # load) while a digit-only regex check reported it "intact". Write to a temp
+        # file, import it for real, and only then replace production.
+        import importlib.util, tempfile
+        with tempfile.NamedTemporaryFile('w', suffix='.py', delete=False) as tf:
+            tf.write(src); tmp = tf.name
+        try:
+            spec = importlib.util.spec_from_file_location('_mp_check', tmp)
+            mod = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(mod)              # raises if the edit broke anything
+            assert mod.PROFILES[market].nu is not None
+        finally:
+            os.unlink(tmp)
         open(path, 'w').write(src)
 
     reg = json.load(open(REGISTRY_PATH)) if os.path.exists(REGISTRY_PATH) else {}
