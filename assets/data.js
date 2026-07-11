@@ -1814,9 +1814,9 @@ const COMING = [
                             "-5":bool, "-10":bool }
    ========================================================================== */
 const LEDGER = [
-  // ---- DIB · equity (DFM UAE) · cycle 1 (11 Jul 2026 published study; MC FAILED calibration — indicative only) ----
+  // ---- DIB · other (DFM UAE) · cycle 1 (11 Jul 2026 published study; MC FAILED calibration — indicative only) ----
   {
-    instrument:"DIB", asset_class:"equity",
+    instrument:"DIB", asset_class:"other",
     anchor_date:"2026-07-03", anchor_price:7.72, ccy:"AED",
     horizon_label:"T+20", grade_date:"2026-08-05", cycle_no:1, reanchor_from:null,
     p5:6.97, p25:7.45, p50:7.72, p75:7.99, p95:8.55,
@@ -1828,7 +1828,7 @@ const LEDGER = [
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   },
   {
-    instrument:"DIB", asset_class:"equity",
+    instrument:"DIB", asset_class:"other",
     anchor_date:"2026-07-03", anchor_price:7.72, ccy:"AED",
     horizon_label:"T+60", grade_date:"2026-10-02", cycle_no:1, reanchor_from:null,
     p5:6.46, p25:7.25, p50:7.71, p75:8.19, p95:9.18,
