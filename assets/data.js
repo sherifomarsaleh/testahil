@@ -2,10 +2,39 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-07-11", latest: "EAND" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
+const SITE = { updated: "2026-07-11", latest: "2POINTZERO" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
+  "2POINTZERO": {
+    name: "Two Point Zero Group",
+    nameAr: "مجموعة تو بوينت زيرو",
+    code: "ADX:2POINTZERO",
+    spot: 2.16,
+    spotDate: "close 03 Jul 2026",
+    ccy: "AED",
+    fair: { bear: 1.55, base: 1.91, full: 2.27 },      // 11 Jul 2026 — four-lens weighted central 1.91 (-11.7% vs spot 2.16). Lenses: sum-of-the-parts (primary, 45%) 1.95 — operating businesses marked on their own earnings, investment portfolio at management's mark less a 25% opacity discount, cash at par, less a 7.5% structural discount; DCF on the operating legs + portfolio (ceiling, 15%) 2.39 (TV 81% of operating EV, disclosed); relative on reported earnings with a normalised mark contribution (25%) 1.85; underlying earnings, no marks at all (floor, 15%) 1.39. THE CRUX: the AED 58.7bn investment portfolio is carried against AED 48.0bn invested — a AED 10.7bn gain. But the 7.29% TAQA stake sold on 11-Jun-2026 (9,095,702,934 shares at AED 2.37) was worth ~AED 21.6bn against AED 10bn paid. Strip it out and the REST of the portfolio — now entirely unlisted — is carried AED 0.9bn BELOW cost. The entire mark-up was one listed stake, and it has been sold, with ~AED 14.4bn of the proceeds redeployed into unlisted assets (Traverse, Mopani, Alphamin, ISEM). Operating economics are disclosed and modest: gross margin 30%, G&A 18% of revenue → ~12% operating margin — NOT the 25% that a blended adjusted-EBITDA figure implies, because that figure has AED 1.2bn/qtr of portfolio income inside it. Tax modelled at the statutory 15% DMTT floor (no phase-in exists). Attributable ratio 84.2%, derived from the PUBLISHED Q1-26 EPS of AED 0.056. Beta assumed 1.0 (regression failed the usability gate; no downloadable ADX index series), sensitised 0.8–1.3.
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:1.80, p25:2.02, p50:2.17, p75:2.33, p95:2.59, resolve:"2026-07-31" },
+      t60: { label:"3 months (T+60)", p5:1.59, p25:1.93, p50:2.18, p75:2.46, p95:3.00, resolve:"2026-09-25" }
+    },
+    touch: [ /* descending high -> low; P(touch) T+20 %, T+60 % */
+      [2.60, 8, 29], [2.40, 28, 53], [2.20, 76, 87], [2.00, 38, 60], [1.90, 18, 42], [1.80, 8, 27]
+    ],
+    levels: { res:[2.46, 2.42, 2.43], sup:[2.19, 1.93, 1.65] },
+    tech: {
+      trend: "Recovery inside a downtrend — price above the 20/50/100-day averages but 11% below the 200-day; RSI neutral near 37",
+      summary: "The tape is unresolved. 2POINTZERO trades above its 20-day (AED 2.19), 50-day (2.12) and 100-day (2.07) averages, but sits 11% below the 200-day (2.42) — the signature of a bounce inside a downtrend, not a new uptrend. The 52-week range is AED 1.65–3.26 and spot sits in the lower third of it. RSI(14) at 37 is dead neutral, and the daily MACD (12·26·9) has just rolled over (0.0139 line vs 0.0289 signal, histogram -0.0151) — the post-trough impulse is spent. Realised 252-day volatility is about 39%, which is why the §3 cone is wide.",
+      bull: "A daily close back above AED 2.46 (the Monte-Carlo T+60 75th percentile) opens the 200-day at 2.42 and then par book at 2.43.",
+      bear: "Losing the 20-day near AED 2.19 exposes the T+60 25th percentile at 1.93 and then the war low at 1.65."
+    },
+    files: {
+      study: "files/2POINTZERO_Valuation_Study_11-07-2026_public.docx?v=20260711e",
+      model: "files/2POINTZERO_Valuation_Model_11072026_public.xlsx?v=20260711e",
+      pdf:   "files/2POINTZERO_Valuation_Study_11-07-2026_public.pdf?v=20260711e",
+      biblio:"files/2POINTZERO_Bibliography_11-07-2026.docx?v=20260711e"
+    }
+  },
   EAND: {
     name: "e& (Emirates Telecommunications Group)",
     nameAr: "إي آند (مجموعة الإمارات للاتصالات)",
@@ -1757,6 +1786,31 @@ const COMING = [
                             "-5":bool, "-10":bool }
    ========================================================================== */
 const LEDGER = [
+  // ---- 2POINTZERO · other (ADX UAE) · cycle 1 (11 Jul 2026 published study; production UAE panel constituent, PARITY / matches benchmark) ----
+  {
+    instrument:"2POINTZERO", asset_class:"other", cal:"matches",
+    anchor_date:"2026-07-03", anchor_price:2.16, ccy:"AED",
+    horizon_label:"T+20", grade_date:"2026-07-31", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.383, horizon_days:20,
+    note:"MATCHES BENCHMARK under the production UAE market profile (14-name ADX/DFM panel, refit 11-Jul-2026: nu=10, width_cal 1.049; 2POINTZERO is a panel constituent and scores PARITY). A replay of its own tape under these production parameters gives CRPS skill +0.18% over 14 non-overlapping 60-day windows, with a 90% bootstrap CI straddling zero and coverage of 50/79/93% against 50/80/90 targets -- a calibrated, market-panel-validated distribution with no single-name edge demonstrated or claimed. Carry = CBUAE Base Rate 3.65%; no dividend declared, so q=0. NOTE: the price history ends 3-Jul-2026 and the 7-8 Jul US-Iran ceasefire collapse post-dates it -- read the downside percentiles as floors. See study S3.",
+    p5:1.80, p25:2.02, p50:2.17, p75:2.33, p95:2.59,
+    touch:{ "+5":56, "+10":32, "+15":16, "+20":8, "-5":53, "-10":26 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"2POINTZERO", asset_class:"other", cal:"matches",
+    anchor_date:"2026-07-03", anchor_price:2.16, ccy:"AED",
+    horizon_label:"T+60", grade_date:"2026-09-25", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.383, horizon_days:60,
+    note:"MATCHES BENCHMARK under the production UAE market profile (14-name ADX/DFM panel, refit 11-Jul-2026: nu=10, width_cal 1.049; 2POINTZERO is a panel constituent and scores PARITY). A replay of its own tape under these production parameters gives CRPS skill +0.18% over 14 non-overlapping 60-day windows, with a 90% bootstrap CI straddling zero and coverage of 50/79/93% against 50/80/90 targets -- a calibrated, market-panel-validated distribution with no single-name edge demonstrated or claimed. Carry = CBUAE Base Rate 3.65%; no dividend declared, so q=0. NOTE: the price history ends 3-Jul-2026 and the 7-8 Jul US-Iran ceasefire collapse post-dates it -- read the downside percentiles as floors. See study S3.",
+    p5:1.59, p25:1.93, p50:2.18, p75:2.46, p95:3.00,
+    touch:{ "+5":74, "+10":57, "+15":42, "+20":30, "-5":71, "-10":50 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
   // ---- EAND · other (ADX UAE) · cycle 1 (11 Jul 2026 published study; production UAE panel fit, PARITY) ----
   {
     instrument:"EAND", asset_class:"other",
