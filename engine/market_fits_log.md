@@ -328,3 +328,15 @@ Market panel verdict: skill=+0.0270 CI90=[0.018, 0.038] **PASS**
 | PRDC | 4.0 | 0.916 | +0.0366 | PASS |
 | RAYA | 4.0 | 0.909 | +0.0134 | PARITY |
 | TMGH | 4.0 | 0.895 | +0.0149 | PARITY |
+
+## IN (India (NSE)) — refit 2026-07-11
+Gate basis: scale-normalized (crps/spot) — primary since 11-Jul-2026
+Panel: 3 names (INFY, RELIANCE, TMPV), 54 pooled windows.
+Production fit: nu=Gaussian, width_cal=0.93 (mle_scale=0.9).
+Market panel verdict: skill=+0.0046 CI90=[-0.006, 0.016] **PARITY**
+
+| Name | nu | width_cal | skill | verdict |
+|---|---|---|---|---|
+| INFY | Gaussian | 0.93 | +0.0070 | PARITY |
+| RELIANCE | Gaussian | 0.951 | +0.0090 | PARITY |
+| TMPV | Gaussian | 0.909 | -0.0001 | PARITY |
