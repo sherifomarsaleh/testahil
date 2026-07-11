@@ -2,10 +2,38 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-07-10", latest: "ADCB" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
+const SITE = { updated: "2026-07-11", latest: "EAND" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
+  EAND: {
+    name: "e& (Emirates Telecommunications Group)",
+    nameAr: "إي آند (مجموعة الإمارات للاتصالات)",
+    code: "ADX:EAND",
+    spot: 19.66,
+    spotDate: "close 09 Jul 2026",
+    ccy: "AED",
+    fair: { bear: 17.61, base: 22.72, full: 28.75 },      // 11 Jul 2026 — four-lens weighted central 22.72 (+15.5% vs spot 19.66). Lenses: FCFF DCF + sourced stakes-and-claims bridge (primary, 35%) 28.38 (TV 79% of EV, disclosed; core EV under the production UAE Monte-Carlo panel fit does not feed this lens), dividend discount (policy lens, 25%) 17.03, relative EV/EBITDA through the same bridge (20%) 23.72, normalized earnings (20%) 18.90. bear/full = weighted bear/bull. The crux is the 2027 UAE federal royalty reset (current 38%+9% regime expires 31-Dec-2026, undecided): each 4pp of royalty ≈ AED 1.1/share. Same-day event: 10-Jul-2026 e& agreed to sell its entire Vodafone stake for AED 21.8bn gross (~4.7bn net cash), pending regulatory approvals — carried at deal value, dual-framed against the undisturbed mark. Beta assumed 1.0 (regression inaccessible; no downloadable ADX General Index series found after two independent attempts), sensitised 0.8–1.3.
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:17.84, p25:19.05, p50:19.72, p75:20.43, p95:21.81, resolve:"2026-08-06" },
+      t60: { label:"3 months (T+60)", p5:16.70, p25:18.68, p50:19.86, p75:21.09, p95:23.59, resolve:"2026-10-02" }
+    },
+    touch: [ /* descending high -> low; P(touch) T+20 %, T+60 % */
+      [22.00, 6, 24], [21.00, 21, 46], [20.00, 66, 81], [19.00, 42, 62], [18.00, 10, 28], [17.00, 3, 12]
+    ],
+    levels: { res:[20.50, 21.09, 21.60], sup:[19.43, 18.99, 17.40] },
+    tech: {
+      trend: "Fully bullish-ordered moving-average stack (price above the 20/50/100/200-day averages); RSI in the high-50s (constructive, not overbought)",
+      summary: "The tape is constructive. e& trades above its 20-day (AED 19.43), 50-day (18.99), 100-day (19.33) and 200-day (19.09) averages — a bullish stack — with the 52-week range at AED 17.40–21.60 (spot sits about 54% up that range). RSI(14) near 58 is firm but not overbought, and the daily MACD (12·26·9) shows a mildly positive histogram (0.195 line vs 0.182 signal, +0.013) — quiet, constructive momentum. Realised 252-day volatility is about 22%, in line with the production UAE market-panel calibration (ν=4, width_cal 1.07).",
+      bull: "A daily close back above AED 20.50 opens the 21.09 (the Monte-Carlo T+60 75th percentile) and then the 52-week high at 21.60.",
+      bear: "Losing the 20-day near AED 19.43 exposes the 50-day (18.99) and then the 52-week low at 17.40."
+    },
+    files: {
+      study: "files/EAND_Valuation_Study_10-07-2026_public.docx?v=0711a",
+      model: "files/EAND_Valuation_Model_10072026_public.xlsx?v=0711a",
+      pdf:   "files/EAND_Valuation_Study_10-07-2026_public.pdf?v=0711a"
+    }
+  },
   ADCB: {
     name: "Abu Dhabi Commercial Bank",
     nameAr: "بنك أبوظبي التجاري",
@@ -1729,6 +1757,31 @@ const COMING = [
                             "-5":bool, "-10":bool }
    ========================================================================== */
 const LEDGER = [
+  // ---- EAND · other (ADX UAE) · cycle 1 (11 Jul 2026 published study; production UAE panel fit, PARITY) ----
+  {
+    instrument:"EAND", asset_class:"other",
+    anchor_date:"2026-07-09", anchor_price:19.66, ccy:"AED",
+    horizon_label:"T+20", grade_date:"2026-08-06", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.233, horizon_days:20,
+    note:"PARITY under the production UAE market profile (10-name ADX/DFM panel, fitted 10-Jul-2026: nu=4, width_cal 1.070; panel-level CRPS skill -2.1%, bootstrap 90% CI robust across block sizes 2/3/4). A diagnostic replay of e&'s own five-year tape under these production parameters gives CRPS skill -2.0% (n=18 non-overlapping 60-day windows), closely tracking the panel: a calibrated, market-panel-validated distribution, no single-name edge demonstrated or claimed. e& is not yet a panel constituent (first publish) -- carry = CBUAE Base Rate 3.65% less the forward dividend yield. See study S3.",
+    p5:17.84, p25:19.05, p50:19.72, p75:20.43, p95:21.81,
+    touch:{ "+5":32, "+10":10, "+15":3, "+20":1, "-5":27, "-10":7 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"EAND", asset_class:"other",
+    anchor_date:"2026-07-09", anchor_price:19.66, ccy:"AED",
+    horizon_label:"T+60", grade_date:"2026-10-02", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.233, horizon_days:60,
+    note:"PARITY under the production UAE market profile (10-name ADX/DFM panel, fitted 10-Jul-2026: nu=4, width_cal 1.070; panel-level CRPS skill -2.1%, bootstrap 90% CI robust across block sizes 2/3/4). A diagnostic replay of e&'s own five-year tape under these production parameters gives CRPS skill -2.0% (n=18 non-overlapping 60-day windows), closely tracking the panel: a calibrated, market-panel-validated distribution, no single-name edge demonstrated or claimed. e& is not yet a panel constituent (first publish) -- carry = CBUAE Base Rate 3.65% less the forward dividend yield. See study S3.",
+    p5:16.70, p25:18.68, p50:19.86, p75:21.09, p95:23.59,
+    touch:{ "+5":57, "+10":31, "+15":16, "+20":9, "-5":49, "-10":22 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
   // ---- ADCB · other (ADX UAE) · cycle 1 (10 Jul 2026 published study; MC PASSES benchmark robustly, carry drift) ----
   {
     instrument:"ADCB", asset_class:"other",
