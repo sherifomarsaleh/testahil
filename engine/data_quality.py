@@ -28,10 +28,36 @@ ratio so the artifact day's return becomes zero.
 import numpy as np
 import pandas as pd
 
-JUMP_LOG_THRESHOLD = 0.35   # |log return|; EGX limit ~0.20, clean-name max observed 0.223
+# Exchange daily price limits (circuit breakers). A single-session move beyond the
+# limit is NOT reachable by trading — it can only be a corporate action or a data
+# error. This is the principled basis for artifact detection, and it is PER-MARKET:
+# a global threshold is wrong. KOSPI's limit is +/-30%, so a legitimate Korean
+# limit-down day is log(0.70) = -0.357 — which an EGX-calibrated threshold of 0.35
+# would have falsely "repaired". (Caught 11-Jul-2026 on the Korea ingest.)
+DAILY_LIMIT = {
+    'EG': 0.20,   # EGX
+    'SA': 0.10,   # Tadawul
+    'AE': 0.15,   # ADX / DFM
+    'QA': 0.10,   # Qatar Exchange
+    'KR': 0.30,   # KOSPI
+    'IN': 0.20,   # NSE (banded 5/10/20)
+    'US': None,   # no single-stock limit — real -40% earnings crashes happen
+    'GB': None,
+    'BR': None,
+    'XAU': None,  # spot metal, no limit
+}
+NO_LIMIT_THRESHOLD = 0.70   # markets without a limit: only a >50% one-day move is suspect
+LIMIT_SAFETY = 1.30         # margin above the limit before we call it an artifact
 
 
-def clean_ohlc(df, ticker="", verbose=True):
+def jump_threshold(market):
+    lim = DAILY_LIMIT.get(market)
+    if lim is None:
+        return NO_LIMIT_THRESHOLD
+    return abs(np.log(1 - lim)) * LIMIT_SAFETY
+
+
+def clean_ohlc(df, ticker="", verbose=True, market=None):
     df = df.copy().reset_index(drop=True)
     log = []
 
@@ -53,10 +79,11 @@ def clean_ohlc(df, ticker="", verbose=True):
             log.append(f"dropped {interior} interior stale/no-trade rows")
 
     # --- 2. detect + back-adjust unadjusted corporate actions ---
+    thr = jump_threshold(market)
     for _ in range(6):  # iterate: repairing one can reveal another
         p = df['Price'].values
         lr = np.diff(np.log(p))
-        hits = np.where(np.abs(lr) > JUMP_LOG_THRESHOLD)[0]
+        hits = np.where(np.abs(lr) > thr)[0]
         if len(hits) == 0:
             break
         i = int(hits[0])                       # index of the day BEFORE the break
@@ -65,8 +92,8 @@ def clean_ohlc(df, ticker="", verbose=True):
         for c in ['Price', 'Open', 'High', 'Low']:
             df.loc[:i, c] = df.loc[:i, c] * factor
         log.append(f"back-adjusted {i+1} rows before {d} by x{factor:.4f} "
-                   f"(raw 1-day log move {lr[i]:+.3f} -> corporate action / data error, "
-                   f"beyond the ~0.20 EGX daily limit)")
+                   f"(raw 1-day log move {lr[i]:+.3f} exceeds the {market or '?'} "
+                   f"artifact threshold {thr:.3f} — not reachable by trading)")
 
     if verbose and log:
         print(f"  [{ticker}] " + f"\n  [{ticker}] ".join(log))
