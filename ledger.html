@@ -272,11 +272,11 @@ tabPanels.innerHTML = `<div class="tab-panel active" id="panel-all">
   <p class="muted" style="margin-top:8px"><b id="sum-${t}"></b></p>
   ${CAL_UNTESTED.has(t) ? CALIB_UNTESTED_BANNER + `<h3 style="font-size:var(--fs-h3);margin:24px 0 4px">What this forecast IS validated on</h3>
   <p class="muted" style="margin:0 0 12px;max-width:760px">There is no five-year backtest for this stock — it has not been listed long enough to have one. So instead of a backtest it does not have, here is the evidence it actually rests on: why the test cannot be run, what the market panel behind the cone scored, and where this stock sits relative to that panel. Methodology transparency; it does not count toward the live score above.</p>
-  <div class="card bt-fig"><img alt="${t} — why there is no name-level calibration, what the cone is validated on, and how the UAE market panel scored" src="assets/calibration_${t}.png?v=20260712h"></div>` : ``}
+  <div class="card bt-fig"><img alt="${t} — why there is no name-level calibration, what the cone is validated on, and how the UAE market panel scored" src="assets/calibration_${t}.png?v=20260712i"></div>` : ``}
   ${HAS_BACKTEST.has(t) ? `<h3 style="font-size:var(--fs-h3);margin:24px 0 4px">Five-year calibration backtest</h3>
   <p class="muted" style="margin:0 0 12px;max-width:760px">The same model replayed on ${t}’s past five years — each quarter’s 3-month forecast cone against the price that actually printed, the PIT histogram (flat = well-calibrated), and how often each band actually held. Methodology validation; it does not count toward the live score above.</p>
   ${CAL_FAIL.has(t) && !BANNER_BAKED.has(t) ? CALIB_FAIL_BANNER : (CAL_MATCH.has(t) ? CALIB_MATCH_BANNER : ``)}
-  <div class="card bt-fig"><img alt="${t} five-year calibration backtest — quarterly cone replay, PIT histogram, and band coverage vs target" src="assets/calibration_${t}.png?v=20260712h"></div>` : ``}
+  <div class="card bt-fig"><img alt="${t} five-year calibration backtest — quarterly cone replay, PIT histogram, and band coverage vs target" src="assets/calibration_${t}.png?v=20260712i"></div>` : ``}
 </div>`).join("");
 
 // Build all panel
