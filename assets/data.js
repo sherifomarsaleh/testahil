@@ -29,9 +29,9 @@ const TICKERS = {
       bear: "Losing the 50-day near AED 1.09 exposes the 52-week low at AED 1.00, a level touched 7-Apr-2026."
     },
     files: {
-      study: "files/BURJEEL_Valuation_Study_11-07-2026_public.docx?v=20260712b",
-      model: "files/BURJEEL_Valuation_Model_11072026_public.xlsx?v=20260712b",
-      pdf:   "files/BURJEEL_Valuation_Study_11-07-2026_public.pdf?v=20260712b"
+      study: "files/BURJEEL_Valuation_Study_11-07-2026_public.docx?v=20260712c",
+      model: "files/BURJEEL_Valuation_Model_11072026_public.xlsx?v=20260712c",
+      pdf:   "files/BURJEEL_Valuation_Study_11-07-2026_public.pdf?v=20260712c"
     }
   },
   SALIK: {
@@ -57,10 +57,10 @@ const TICKERS = {
       bear: "Losing the 50-day near AED 5.72 exposes AED 5.25 and then the 52-week low at 4.99."
     },
     files: {
-      study: "files/SALIK_Valuation_Study_11-07-2026_public.docx?v=20260712b",
-      model: "files/SALIK_Valuation_Model_11072026_public.xlsx?v=20260712b",
-      pdf:   "files/SALIK_Valuation_Study_11-07-2026_public.pdf?v=20260712b",
-      biblio:"files/SALIK_Source_Register_11-07-2026.docx?v=20260712b"
+      study: "files/SALIK_Valuation_Study_11-07-2026_public.docx?v=20260712c",
+      model: "files/SALIK_Valuation_Model_11072026_public.xlsx?v=20260712c",
+      pdf:   "files/SALIK_Valuation_Study_11-07-2026_public.pdf?v=20260712c",
+      biblio:"files/SALIK_Source_Register_11-07-2026.docx?v=20260712c"
     }
   },
   DIB: {
