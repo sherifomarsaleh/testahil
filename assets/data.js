@@ -29,9 +29,9 @@ const TICKERS = {
       bear: "Losing the 50-day near AED 2.71 exposes the 100-day (2.70) and then the 52-week low at 2.47."
     },
     files: {
-      study: "files/DEWA_Valuation_Study_11-07-2026_public.docx?v=20260713a",
-      model: "files/DEWA_Valuation_Model_11072026_public.xlsx?v=20260713a",
-      pdf:   "files/DEWA_Valuation_Study_11-07-2026_public.pdf?v=20260713a"
+      study: "files/DEWA_Valuation_Study_11-07-2026_public.docx?v=20260713b",
+      model: "files/DEWA_Valuation_Model_11072026_public.xlsx?v=20260713b",
+      pdf:   "files/DEWA_Valuation_Study_11-07-2026_public.pdf?v=20260713b"
     }
   },
   LULU: {
@@ -57,10 +57,10 @@ const TICKERS = {
       bear: "Losing AED 0.93 — the all-time low, one fil below spot — puts the stock into price territory it has never traded in. There is no support below it because there is no history below it."
     },
     files: {
-      study: "files/LULU_Valuation_Study_13-07-2026_public.docx?v=20260713a",
-      model: "files/LULU_Valuation_Model_13072026_public.xlsx?v=20260713a",
-      pdf:   "files/LULU_Valuation_Study_13-07-2026_public.pdf?v=20260713a",
-      biblio:"files/LULU_Source_Register_12-07-2026.docx?v=20260713a"
+      study: "files/LULU_Valuation_Study_13-07-2026_public.docx?v=20260713b",
+      model: "files/LULU_Valuation_Model_13072026_public.xlsx?v=20260713b",
+      pdf:   "files/LULU_Valuation_Study_13-07-2026_public.pdf?v=20260713b",
+      biblio:"files/LULU_Source_Register_13-07-2026.docx?v=20260713b"
     }
   },
 
@@ -87,9 +87,9 @@ const TICKERS = {
       bear: "Losing the 50-day near AED 1.09 exposes the 52-week low at AED 1.00, a level touched 7-Apr-2026."
     },
     files: {
-      study: "files/BURJEEL_Valuation_Study_11-07-2026_public.docx?v=20260713a",
-      model: "files/BURJEEL_Valuation_Model_11072026_public.xlsx?v=20260713a",
-      pdf:   "files/BURJEEL_Valuation_Study_11-07-2026_public.pdf?v=20260713a"
+      study: "files/BURJEEL_Valuation_Study_11-07-2026_public.docx?v=20260713b",
+      model: "files/BURJEEL_Valuation_Model_11072026_public.xlsx?v=20260713b",
+      pdf:   "files/BURJEEL_Valuation_Study_11-07-2026_public.pdf?v=20260713b"
     }
   },
   SALIK: {
@@ -115,10 +115,10 @@ const TICKERS = {
       bear: "Losing the 50-day near AED 5.72 exposes AED 5.25 and then the 52-week low at 4.99."
     },
     files: {
-      study: "files/SALIK_Valuation_Study_11-07-2026_public.docx?v=20260713a",
-      model: "files/SALIK_Valuation_Model_11072026_public.xlsx?v=20260713a",
-      pdf:   "files/SALIK_Valuation_Study_11-07-2026_public.pdf?v=20260713a",
-      biblio:"files/SALIK_Source_Register_11-07-2026.docx?v=20260713a"
+      study: "files/SALIK_Valuation_Study_11-07-2026_public.docx?v=20260713b",
+      model: "files/SALIK_Valuation_Model_11072026_public.xlsx?v=20260713b",
+      pdf:   "files/SALIK_Valuation_Study_11-07-2026_public.pdf?v=20260713b",
+      biblio:"files/SALIK_Source_Register_11-07-2026.docx?v=20260713b"
     }
   },
   DIB: {
