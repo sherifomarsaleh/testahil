@@ -2,10 +2,38 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-07-12", latest: "LULU" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
+const SITE = { updated: "2026-07-12", latest: "DEWA" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
+  DEWA: {
+    name: "DEWA (Dubai Electricity and Water Authority)",
+    nameAr: "هيئة كهرباء ومياه دبي",
+    code: "DFM:DEWA",
+    spot: 2.79,
+    spotDate: "close 10 Jul 2026",
+    ccy: "AED",
+    fair: { bear: 2.18, base: 3.32, full: 4.92 },      // 12 Jul 2026 -- four-lens weighted central 3.32 (+19.1% vs spot 2.79). Lenses: dividend discount (policy lens, primary, 35%) 3.83 off the AED 6.2bn/yr floor to Oct-2027, FCFF DCF (20%, ceiling -- 87% of EV is terminal value, disclosed) 3.36, relative EV/EBITDA vs GCC utility peers (25%) 2.93, justified P/B off the regulated return spread (20%) 2.91. bear/full = weighted bear/bull. The crux is the post-Oct-2027 dividend-policy signal (undecided): market-implied perpetual growth is just 1.3-2.3%, well below the DCF's 2.5% terminal assumption. Beta 0.50 used vs 0.42 regressed (equal-weight 14-name UAE proxy, DFM General Index not programmatically retrievable), sensitised 0.40-0.70. WACC 6.24%/6.27% (rating/CDS ERP basis).
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:2.508, p25:2.681, p50:2.795, p75:2.914, p95:3.109, resolve:"2026-08-07" },
+      t60: { label:"3 months (T+60)", p5:2.330, p25:2.611, p50:2.806, p75:3.015, p95:3.388, resolve:"2026-10-02" }
+    },
+    touch: [ /* descending high -> low; P(touch) T+20 %, T+60 % */
+      [3.30, 1, 13], [3.20, 4, 20], [3.10, 9, 31], [3.00, 22, 47], [2.90, 47, 68], [2.80, 84, 91], [2.70, 50, 69], [2.60, 21, 45], [2.50, 7, 27], [2.40, 2, 14]
+    ],
+    levels: { res:[2.90, 3.02, 3.15], sup:[2.79, 2.71, 2.47] },
+    tech: {
+      trend: "Consolidating just under the 200-day average, comfortably above the 50/100-day; RSI mid-50s (neutral); MACD histogram mildly negative (momentum cooling after the run-up)",
+      summary: "DEWA is coiled tight: spot AED 2.79 sits almost exactly on its 20-day average (2.7905), just below its 200-day (2.7941), and comfortably above its 50-day (2.7116) and 100-day (2.7700) -- a consolidation, not a clean trend in either direction. The 52-week range is AED 2.47-3.15, spot roughly mid-range. RSI(14) near 55 is neutral. The daily MACD (12*26*9) shows a mildly negative histogram (0.0211 line vs 0.0252 signal, -0.0041) -- momentum cooling, consistent with a name digesting its post-IPO advance. Realised 252-day volatility is about 22.3%, close to the production UAE market-panel calibration (nu=10, cone width 1.049).",
+      bull: "A daily close back above the 200-day near AED 2.79 and then AED 2.90 opens the T+60 75th percentile at 3.02 and the 52-week high at 3.15.",
+      bear: "Losing the 50-day near AED 2.71 exposes the 100-day (2.70) and then the 52-week low at 2.47."
+    },
+    files: {
+      study: "files/DEWA_Valuation_Study_11-07-2026_public.docx?v=20260712e",
+      model: "files/DEWA_Valuation_Model_11072026_public.xlsx?v=20260712e",
+      pdf:   "files/DEWA_Valuation_Study_11-07-2026_public.pdf?v=20260712e"
+    }
+  },
   LULU: {
     name: "Lulu Retail Holdings",
     nameAr: "\u0644\u0648\u0644\u0648 \u0644\u0644\u062a\u062c\u0632\u0626\u0629",
@@ -1901,6 +1929,31 @@ const COMING = [
                             "-5":bool, "-10":bool }
    ========================================================================== */
 const LEDGER = [
+  // ---- DEWA · other (DFM UAE) · cycle 1 (12 Jul 2026 published study; MC BOUNDARY, PARITY-flagged -- calibrated, no single-name edge) ----
+  {
+    instrument:"DEWA", asset_class:"other",
+    anchor_date:"2026-07-10", anchor_price:2.79, ccy:"AED",
+    horizon_label:"T+20", grade_date:"2026-08-07", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.227, horizon_days:20,
+    note:"BOUNDARY (PARITY-flagged) under the production UAE market profile (14-name ADX/DFM panel, fitted 11-Jul-2026: nu=10, cone width 1.049; panel-level CRPS skill +0.49%, bootstrap 90% CI robust across block sizes 2/3/4). A diagnostic replay of DEWA's own five-year tape under these production parameters gives CRPS skill -0.70% (n=13 non-overlapping 60-day windows, after routine data-quality checks): robust across block sizes {2,3,4} at 90%% CI but with a block-dependent sign flip (PARITY/PARITY/FAIL) -- recorded BOUNDARY, PARITY-flagged, never a silent proceed. Coverage 50/80/90%% = 0.46/0.85/1.00 (0 of 13 outside the 90%% band) -- DEWA is not mis-centred, it is over-covered, the same signature as the standing name-level cone-width open item. DEWA is not yet a panel constituent (first publish) -- carry = CBUAE Base Rate 3.65%% less the forward dividend yield. See study S1/S3 and the Calibration Ledger.",
+    p5:2.508, p25:2.681, p50:2.795, p75:2.914, p95:3.109,
+    touch:{ "+5":38, "+10":12, "+15":3, "+20":1, "-5":34, "-10":8 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"DEWA", asset_class:"other",
+    anchor_date:"2026-07-10", anchor_price:2.79, ccy:"AED",
+    horizon_label:"T+60", grade_date:"2026-10-02", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.227, horizon_days:60,
+    note:"BOUNDARY (PARITY-flagged) under the production UAE market profile (14-name ADX/DFM panel, fitted 11-Jul-2026: nu=10, cone width 1.049; panel-level CRPS skill +0.49%, bootstrap 90% CI robust across block sizes 2/3/4). A diagnostic replay of DEWA's own five-year tape under these production parameters gives CRPS skill -0.70% (n=13 non-overlapping 60-day windows, after routine data-quality checks): robust across block sizes {2,3,4} at 90%% CI but with a block-dependent sign flip (PARITY/PARITY/FAIL) -- recorded BOUNDARY, PARITY-flagged, never a silent proceed. Coverage 50/80/90%% = 0.46/0.85/1.00 (0 of 13 outside the 90%% band) -- DEWA is not mis-centred, it is over-covered, the same signature as the standing name-level cone-width open item. DEWA is not yet a panel constituent (first publish) -- carry = CBUAE Base Rate 3.65%% less the forward dividend yield. See study S1/S3 and the Calibration Ledger.",
+    p5:2.330, p25:2.611, p50:2.806, p75:3.015, p95:3.388,
+    touch:{ "+5":61, "+10":36, "+15":19, "+20":10, "-5":57, "-10":28 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
   // ---- LULU · other (ADX UAE) · cycle 1 (12 Jul 2026 published study v3; NO NAME-LEVEL CALIBRATION — market-panel validated only) ----
   {
     instrument:"LULU", asset_class:"other", cal:"untested",
