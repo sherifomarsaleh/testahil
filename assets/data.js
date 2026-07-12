@@ -2,10 +2,39 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-07-11", latest: "DIB" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
+const SITE = { updated: "2026-07-12", latest: "SALIK" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
+  SALIK: {
+    name: "Salik Company",
+    nameAr: "\u0633\u0627\u0644\u0643",
+    code: "DFM:SALIK",
+    spot: 5.70,
+    spotDate: "close 10 Jul 2026",
+    ccy: "AED",
+    fair: { bear: 3.32, base: 4.62, full: 7.05 },      // 12 Jul 2026 (v3) — four-lens weighted central 4.62 (-19% vs spot 5.70). Lenses: FCFF DCF (primary, 45%) 4.49, normalized earnings power (20%) 5.44, relative P/E which with a 100% payout IS the dividend yield (20%) 4.89, dividend discount (15%) 3.55 — the DDM is a structural FLOOR because the payout is 100% of PROFIT but only 93% of CASH. bear/full = weighted bear/bull. BETA IS MEASURED, NOT ASSUMED: weekly regression vs an equal-weighted 14-name UAE market portfolio (both exchanges) gives β 0.637 (n=195, t=6.1, R² 16%) — the gate PASSES; we publish the Blume-adjusted 0.76. THE CRUX: SALIK's beta was 0.47 BEFORE the war and 1.00 DURING it. The war cut Q1 chargeable trips 7.7% AND doubled the discount rate's risk loading — numerator and denominator at once. Spot implies β 0.52, inside our measured 95% CI [0.43, 0.84] and almost exactly the PRE-WAR reading: the market is pricing Salik as though the war is already over. TWO OTHER FINDINGS: (1) the 8 gates the RTA HANDED Salik at the IPO earn 32% ROIC; the 2 it SOLD Salik in 2024 for AED 2,734mn earn 9.5% against an 8.1% WACC — growth by acquiring gates is not free growth. (2) 84% of FY2025's +35% revenue growth was two one-offs (gate count 8→10; tariff flat→variable). And a senior claim sits in front of the dividend: AED 455.7mn/yr to the RTA until Nov-2030 against a retained wedge of only AED 116mn.
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:4.94, p25:5.40, p50:5.70, p75:6.02, p95:6.57, resolve:"2026-08-07" },
+      t60: { label:"3 months (T+60)", p5:4.42, p25:5.17, p50:5.69, p75:6.28, p95:7.34, resolve:"2026-10-02" }
+    },
+    touch: [ /* descending high -> low; P(touch) T+20 %, T+60 %. NOTE: the Step-0 cone is OVER-COVERED, so read these as UPPER BOUNDS. */
+      [7.00, 2, 15], [6.50, 11, 33], [6.25, 23, 47], [6.00, 46, 66], [5.50, 58, 75], [5.25, 27, 52], [5.00, 10, 33], [4.50, 1, 10]
+    ],
+    levels: { res:[5.87, 6.00, 6.85], sup:[5.72, 5.25, 4.99] },
+    tech: {
+      trend: "Below every moving average in the stack (20/50/100/200-day) — the stock broke down in the March war selloff and has not reclaimed it; RSI-14 at 46 is neutral, with no oversold bounce signal",
+      summary: "The tape is mildly negative and it is not saying anything the fundamentals are not already saying. Salik at AED 5.70 sits below its 20-day (AED 5.87), 50-day (5.72), 100-day (5.74) and 200-day (5.96) — the opposite of a repaired uptrend. RSI(14) near 46 is neutral. The daily MACD (12·26·9) reads 0.006 line vs 0.043 signal, histogram -0.037 — the line has crossed BELOW its signal. The 52-week range is AED 4.99–6.85 and spot sits about 38% up it. Realised 252-day volatility is 28% — high, and roughly twice the UAE market portfolio's; but 88% of that risk is IDIOSYNCRATIC, which is exactly how a 26%-volatility stock carries a 0.64 beta. Volatility and beta are not the same thing, and for Salik they point in opposite directions.",
+      bull: "A daily close back above the 20-day near AED 5.87 opens AED 6.00 and then the 52-week high at 6.85.",
+      bear: "Losing the 50-day near AED 5.72 exposes AED 5.25 and then the 52-week low at 4.99."
+    },
+    files: {
+      study: "files/SALIK_Valuation_Study_11-07-2026_public.docx?v=20260712a",
+      model: "files/SALIK_Valuation_Model_11072026_public.xlsx?v=20260712a",
+      pdf:   "files/SALIK_Valuation_Study_11-07-2026_public.pdf?v=20260712a",
+      biblio:"files/SALIK_Source_Register_11-07-2026.docx?v=20260712a"
+    }
+  },
   DIB: {
     name: "Dubai Islamic Bank",
     nameAr: "بنك دبي الإسلامي",
@@ -1814,6 +1843,31 @@ const COMING = [
                             "-5":bool, "-10":bool }
    ========================================================================== */
 const LEDGER = [
+  // ---- SALIK · other (DFM UAE) · cycle 1 (12 Jul 2026 published study v3; MC PARITY -- calibrated, no single-name edge) ----
+  {
+    instrument:"SALIK", asset_class:"other", cal:"matches",
+    anchor_date:"2026-07-10", anchor_price:5.70, ccy:"AED",
+    horizon_label:"T+20", grade_date:"2026-08-07", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.285, horizon_days:20,
+    note:"MATCHES BENCHMARK (PARITY) under the production UAE market profile (14-name ADX/DFM panel: nu=10, width_cal 1.049, signal OFF). SALIK's own tape replayed under these production parameters gives CRPS skill -1.82% over 11 non-overlapping 60-day windows, with a 90% bootstrap CI straddling zero [-7.72%, +1.67%] and ROBUST across bootstrap block sizes 2/3/4 -- a calibrated, market-panel-validated distribution with no single-name edge demonstrated or claimed. TWO HONESTY FLAGS. (1) Only 11 windows: SALIK listed 29-Sep-2022, so the five-year walk-forward truncates to 3.8 years. (2) The cone is OVER-COVERED -- coverage 55/91/100% against 50/80/90 targets, and it runs 1.26x as wide as the benchmark. Read the bands, and ESPECIALLY the touch probabilities, as UPPER BOUNDS: an over-wide cone lets a path graze a level it would not otherwise reach. Carry = CBUAE Base Rate 3.63% less the trailing declared dividend yield 3.886%; they nearly cancel, which is why the median is an EXPLAINED flat. NOTE: the 7-8 Jul Hormuz re-escalation sits three days before the anchor and INSIDE the T+60 window. See study S3.",
+    p5:4.94, p25:5.40, p50:5.70, p75:6.02, p95:6.57,
+    touch:{ "+5":48, "+10":22, "+15":9, "+20":3, "-5":46, "-10":17 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"SALIK", asset_class:"other", cal:"matches",
+    anchor_date:"2026-07-10", anchor_price:5.70, ccy:"AED",
+    horizon_label:"T+60", grade_date:"2026-10-02", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.285, horizon_days:60,
+    note:"MATCHES BENCHMARK (PARITY) under the production UAE market profile (14-name ADX/DFM panel: nu=10, width_cal 1.049, signal OFF). SALIK's own tape replayed under these production parameters gives CRPS skill -1.82% over 11 non-overlapping 60-day windows, with a 90% bootstrap CI straddling zero [-7.72%, +1.67%] and ROBUST across bootstrap block sizes 2/3/4 -- a calibrated, market-panel-validated distribution with no single-name edge demonstrated or claimed. TWO HONESTY FLAGS. (1) Only 11 windows: SALIK listed 29-Sep-2022, so the five-year walk-forward truncates to 3.8 years. (2) The cone is OVER-COVERED -- coverage 55/91/100% against 50/80/90 targets, and it runs 1.26x as wide as the benchmark. Read the bands, and ESPECIALLY the touch probabilities, as UPPER BOUNDS: an over-wide cone lets a path graze a level it would not otherwise reach. Carry = CBUAE Base Rate 3.63% less the trailing declared dividend yield 3.886%; they nearly cancel, which is why the median is an EXPLAINED flat. NOTE: the 7-8 Jul Hormuz re-escalation sits three days before the anchor and INSIDE the T+60 window. See study S3.",
+    p5:4.42, p25:5.17, p50:5.69, p75:6.28, p95:7.34,
+    touch:{ "+5":68, "+10":46, "+15":30, "+20":19, "-5":67, "-10":42 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
   // ---- DIB · other (DFM UAE) · cycle 1 (11 Jul 2026 published study; MC FAILED calibration — indicative only) ----
   {
     instrument:"DIB", asset_class:"other",
