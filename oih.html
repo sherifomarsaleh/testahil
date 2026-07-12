@@ -468,7 +468,7 @@
         try{ if(typeof TICKERS!=="undefined" && TICKERS && TICKERS.OIH){ T=TICKERS.OIH; } }catch(e){}
         var S0=(T&&typeof T.spot==="number")?T.spot:1.41;
         var H=60, BETA=0.5826, SUPPORT=1.20, MID=1.41, CONSENSUS=1.60;
-        // fixed continuous forces (held at study calibration) — holdco: tourism/GEM footfall, CBE rate, EGX30 & foreign flows; secular drift ON per Step 0
+        // fixed continuous forces (held at study calibration) — holdco: tourism/GEM footfall, CBE rate, EGX30 & foreign flows; secular drift ON per the calibration back-test
         var CONT_FIXED=[["Tourism",0.080,0.055],["CBErate",-0.005,0.045],["EGX30",0.038,0.050]];
         var IDIO=0.140, EGP_VOL=0.05;
         var EV_FIXED=[["Discount",0.30,0.040,0.06],["NKrepat",0.20,0.020,0.10],["Concession",0.25,-0.030,0.06],["KLloan",0.30,0.020,0.07],["Monetize",0.25,0.040,0.05],["Earnings",0.50,0.010,0.06],["Capital",0.25,-0.030,0.07]];

@@ -393,7 +393,7 @@
         <button id="mc-h60" aria-pressed="true">3 months</button>
       </div>
     </div>
-    <p class="mc-sub">Drag a slider and the whole distribution recomputes live — <b>green is better, red is worse</b>. The other thirteen forces (including the calibrated secular EGX-repricing drift, which passed the Step 0 backtest, and the Sadat localization ramp) stay fixed at the study calibration. Anchored at the latest price; nothing is sent anywhere.</p>
+    <p class="mc-sub">Drag a slider and the whole distribution recomputes live — <b>green is better, red is worse</b>. The other thirteen forces (including the calibrated secular EGX-repricing drift, which passed the calibration back-test, and the Sadat localization ramp) stay fixed at the study calibration. Anchored at the latest price; nothing is sent anywhere.</p>
 
         <!-- PROBABILITY READ — leads the section: direction first, cone second -->
     <div class="mc-card mc-read">
@@ -498,7 +498,7 @@
 </details>
     <button class="mc-reset" id="mc-reset">Reset to study baseline</button>
 
-    <p class="mc-foot">One lognormal forward built from the study's 16-factor calibration: the Step 0-passed secular drift plus seven continuous forces set the trend and spread, nine event forces add skew and width. Percentiles and zones are closed-form; touch probabilities use the reflection principle with a discrete-monitoring correction, reproducing the published 50,000-path engine. Moving a lever re-derives the maths instantly. Illustrative of the model — not a forecast, not advice.</p>
+    <p class="mc-foot">One lognormal forward built from the study's 16-factor calibration: the calibration back-test-passed secular drift plus seven continuous forces set the trend and spread, nine event forces add skew and width. Percentiles and zones are closed-form; touch probabilities use the reflection principle with a discrete-monitoring correction, reproducing the published 50,000-path engine. Moving a lever re-derives the maths instantly. Illustrative of the model — not a forecast, not advice.</p>
 
     <script>
     (function(){
@@ -510,7 +510,7 @@
         var H=60, BETA=0.5826;
         // GBCO reference levels (Monte Carlo sheet)
         var FLOOR=28.20, R2=30.00, TARGET=33.40;
-        // fixed factors (held at study calibration): the Step 0-passed secular drift + six continuous forces
+        // fixed factors (held at study calibration): the calibration back-test-passed secular drift + six continuous forces
         var CONT_FIXED=[["Secular",0.0981,0.0],["PCdemand",0.009,0.05],["EGP",0.0,0.06],["IraqJordan",-0.004,0.04],["ChineseImports",-0.003,0.03],["Sadat",0.004,0.03],["Funding",-0.003,0.03]];
         var IDIO=0.199, EGP_VOL=0.0;
         var EV_FIXED=[["Results2Q26",0.90,0.005,0.03],["SadatModel",0.55,0.006,0.02],["Dividend",0.15,0.005,0.02],["Devaluation",0.12,-0.020,0.04],["EGXflows",0.25,0.006,0.03]];
@@ -790,7 +790,7 @@
       <tbody id="pct"></tbody></table>
 
       <p class="qhead" style="margin-top:26px">What drives the odds</p>
-      <p class="muted">One Monte Carlo model, 50,000 paths, driven by 16 outside forces: the calibrated secular EGX-repricing drift (Step 0-passed), Egyptian car demand, the CBE rate path, the EGP/USD rate, the Iraq/Jordan conflict, Chinese competition and grey imports, the Sadat localization ramp, lending-book funding costs — plus nine discrete events led by 2Q26 results (11 Aug), an MNT-Halan second closing, CBE cuts, a regional escalation, BYD's entry pricing and a devaluation tail. Full mechanics in the <a href="method.html">methodology</a>.</p>
+      <p class="muted">One Monte Carlo model, 50,000 paths, driven by 16 outside forces: the calibrated secular EGX-repricing drift (the calibration back-test-passed), Egyptian car demand, the CBE rate path, the EGP/USD rate, the Iraq/Jordan conflict, Chinese competition and grey imports, the Sadat localization ramp, lending-book funding costs — plus nine discrete events led by 2Q26 results (11 Aug), an MNT-Halan second closing, CBE cuts, a regional escalation, BYD's entry pricing and a devaluation tail. Full mechanics in the <a href="method.html">methodology</a>.</p>
     </div>
   </details>
 

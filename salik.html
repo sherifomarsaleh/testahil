@@ -479,7 +479,7 @@
         try{ if(typeof TICKERS!=="undefined" && TICKERS && TICKERS.SALIK){ T=TICKERS.SALIK; } }catch(e){}
         var S0=(T&&typeof T.spot==="number")?T.spot:5.70;
         var H=60, BETA=0.5826, FLOOR=5.25, R2=5.70, TARGET=6.00;
-        // fixed factors (held at study calibration). The policy-rate path, Dubai traffic normalisation and the resident/visitor base are the tunable continuous levers; the Hormuz re-escalation and the payout-trim risk are the tunable events -- calibrated to reproduce the study's own T+60 mean/variance (mu3=-0.00135, var3=0.023682) at these defaults. NOTE: the Step-0 cone is OVER-COVERED, so the touch probabilities this lab reports are UPPER BOUNDS.
+        // fixed factors (held at study calibration). The policy-rate path, Dubai traffic normalisation and the resident/visitor base are the tunable continuous levers; the Hormuz re-escalation and the payout-trim risk are the tunable events -- calibrated to reproduce the study's own T+60 mean/variance (mu3=-0.00135, var3=0.023682) at these defaults. NOTE: the back-tested cone is OVER-COVERED, so the touch probabilities this lab reports are UPPER BOUNDS.
         var CONT_FIXED=[["Carry",-0.0006,0.0001]];
         var IDIO=0.12694, EGP_VOL=0.03, AICAP_VOL=0.05, INR_VOL=0.035;
         var EV_FIXED=[["q2results",0.9,0.0,0.03],["q2above",0.4,0.025,0.0125],["q2below",0.3,-0.035,0.0175],["h1div",0.88,0.005,0.0025],["warend",0.35,0.035,0.0175],["tariff",0.15,0.015,0.0075],["newgate",0.1,-0.01,0.005],["fedcut",0.45,0.005,0.0025]];

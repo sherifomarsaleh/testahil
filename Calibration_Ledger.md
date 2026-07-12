@@ -2,9 +2,9 @@
 
 **Purpose.** This is the Monte Carlo counterpart to `Fundamental_Driver_Ledger.md` — the append-only
 scoreboard that grades every published price-distribution forecast against what actually happened.
-Where the Fundamental Driver Ledger scores individual *assumptions* name-by-name, this ledger scores
+Where the Forecast-Assumptions Log scores individual *assumptions* name-by-name, this ledger scores
 the *whole forecast distribution* for a ticker at a given horizon: pass/fail on CRPS skill versus a
-zero-drift random-walk benchmark, per the Standing Research Protocol's grading rule.
+zero-drift random-walk benchmark, per the published research standards's grading rule.
 
 **Source of truth.** The live, authoritative copy of this ledger is the `LEDGER` array in
 `assets/data.js` (repo: `sherifomarsaleh/testahil`), rendered publicly at `testahil.com/ledger`. This
@@ -34,10 +34,10 @@ to propagate to the site.
   fields (`realized_close`, `in_90`, `in_50`, `realized_quantile`, `median_err`, `touch_hit`) stay
   `null` until `grade_date`.
 
-## Step 0 calibration status (pass/fail gate, separate from the ledger's own grading)
+## the calibration back-test status (pass/fail gate, separate from the ledger's own grading)
 
-This is the *pre-publication* CRPS-skill test (Step 0), not the ledger's post-hoc grading — but it's
-tracked alongside the ledger because a Step 0 failure changes how a row's eventual grade should be
+This is the *pre-publication* CRPS-skill test (the calibration back-test), not the ledger's post-hoc grading — but it's
+tracked alongside the ledger because a the calibration back-test failure changes how a row's eventual grade should be
 read (an indicative-only forecast failing calibration later is expected, not a surprise).
 
 | Ticker | Status | Detail |
@@ -53,7 +53,7 @@ read (an indicative-only forecast failing calibration later is expected, not a s
 
 **Note on this snapshot vs. prior memory:** earlier working memory recorded only KABO, QGTS, and
 MAADEN as confirmed failures. Pulling the live `coverage.js` text directly for this file surfaced two
-more — **AGTHIA and ISPH** — also carrying explicit Step-0-failure notes. Treat this ledger file as
+more — **AGTHIA and ISPH** — also carrying explicit the calibration back-test-failure notes. Treat this ledger file as
 the more current source on failure status; worth reconciling into standing memory.
 
 ---
