@@ -29,9 +29,9 @@ const TICKERS = {
       bear: "Losing the 50-day near AED 2.71 exposes the 100-day (2.70) and then the 52-week low at 2.47."
     },
     files: {
-      study: "files/DEWA_Valuation_Study_11-07-2026_public.docx?v=20260712e",
-      model: "files/DEWA_Valuation_Model_11072026_public.xlsx?v=20260712e",
-      pdf:   "files/DEWA_Valuation_Study_11-07-2026_public.pdf?v=20260712e"
+      study: "files/DEWA_Valuation_Study_11-07-2026_public.docx?v=20260712g",
+      model: "files/DEWA_Valuation_Model_11072026_public.xlsx?v=20260712g",
+      pdf:   "files/DEWA_Valuation_Study_11-07-2026_public.pdf?v=20260712g"
     }
   },
   LULU: {
@@ -57,10 +57,10 @@ const TICKERS = {
       bear: "Losing AED 0.93 — the all-time low, one fil below spot — puts the stock into price territory it has never traded in. There is no support below it because there is no history below it."
     },
     files: {
-      study: "files/LULU_Valuation_Study_12-07-2026_public.docx?v=20260712e",
-      model: "files/LULU_Valuation_Model_12072026_public.xlsx?v=20260712e",
-      pdf:   "files/LULU_Valuation_Study_12-07-2026_public.pdf?v=20260712e",
-      biblio:"files/LULU_Source_Register_12-07-2026.docx?v=20260712e"
+      study: "files/LULU_Valuation_Study_12-07-2026_public.docx?v=20260712g",
+      model: "files/LULU_Valuation_Model_12072026_public.xlsx?v=20260712g",
+      pdf:   "files/LULU_Valuation_Study_12-07-2026_public.pdf?v=20260712g",
+      biblio:"files/LULU_Source_Register_12-07-2026.docx?v=20260712g"
     }
   },
 
@@ -87,9 +87,9 @@ const TICKERS = {
       bear: "Losing the 50-day near AED 1.09 exposes the 52-week low at AED 1.00, a level touched 7-Apr-2026."
     },
     files: {
-      study: "files/BURJEEL_Valuation_Study_11-07-2026_public.docx?v=20260712e",
-      model: "files/BURJEEL_Valuation_Model_11072026_public.xlsx?v=20260712e",
-      pdf:   "files/BURJEEL_Valuation_Study_11-07-2026_public.pdf?v=20260712e"
+      study: "files/BURJEEL_Valuation_Study_11-07-2026_public.docx?v=20260712g",
+      model: "files/BURJEEL_Valuation_Model_11072026_public.xlsx?v=20260712g",
+      pdf:   "files/BURJEEL_Valuation_Study_11-07-2026_public.pdf?v=20260712g"
     }
   },
   SALIK: {
@@ -115,10 +115,10 @@ const TICKERS = {
       bear: "Losing the 50-day near AED 5.72 exposes AED 5.25 and then the 52-week low at 4.99."
     },
     files: {
-      study: "files/SALIK_Valuation_Study_11-07-2026_public.docx?v=20260712f",
-      model: "files/SALIK_Valuation_Model_11072026_public.xlsx?v=20260712f",
-      pdf:   "files/SALIK_Valuation_Study_11-07-2026_public.pdf?v=20260712f",
-      biblio:"files/SALIK_Source_Register_11-07-2026.docx?v=20260712f"
+      study: "files/SALIK_Valuation_Study_11-07-2026_public.docx?v=20260712g",
+      model: "files/SALIK_Valuation_Model_11072026_public.xlsx?v=20260712g",
+      pdf:   "files/SALIK_Valuation_Study_11-07-2026_public.pdf?v=20260712g",
+      biblio:"files/SALIK_Source_Register_11-07-2026.docx?v=20260712g"
     }
   },
   DIB: {
@@ -1960,7 +1960,7 @@ const LEDGER = [
     anchor_date:"2026-07-10", anchor_price:0.94, ccy:"AED",
     horizon_label:"T+20", grade_date:"2026-08-07", cycle_no:1, reanchor_from:null,
     anchor_vol:0.223, horizon_days:20,
-    note:"NO NAME-LEVEL CALIBRATION EXISTS FOR THIS STOCK, AND NONE IS CLAIMED. Lulu listed on 14-Nov-2024. Its 410 sessions of price history yield exactly TWO non-overlapping 60-day test windows against the eighteen or so a meaningful test needs — so the five-year walk-forward that every other name on this ledger carries simply cannot be run. The cone below is therefore the UAE MARKET cone applied to Lulu's own volatility: the production UAE profile (14-name ADX/DFM panel, tail parameter 10, cone width 1.049, signal OFF) scores a pooled forecast skill of +0.49% against a carry-anchored random-walk benchmark across 237 non-overlapping windows, with a 90% bootstrap interval of [-0.24%, +1.26%] — a statistical dead heat. Honestly calibrated at the market level; NO single-name edge demonstrated or claimed for LULU. Read the bands as a probability map, not a forecast. Carry = CBUAE base rate 3.65% less the declared dividend yield 7.45%; the yield EXCEEDS the cash rate, so the forward-consistent price centre must drift DOWN by the excess (-0.86% over 60 sessions) — the holder is not losing money in that world, the total return is simply delivered as dividend instead of price. The event ledger then pushes back UP by +0.23%, because at the anchor the Islamabad MOU has been signed (17-Jun), the naval blockade is lifted and the Strait of Hormuz is reopening — none of which the Q1 print reflects. Net: an EXPLAINED near-flat centre. When these two cohorts mature they are graded against the frozen percentiles above and become two more windows in the UAE panel — which is how a name with no history earns one.",
+    note:"NO NAME-LEVEL CALIBRATION EXISTS FOR THIS STOCK, AND NONE IS CLAIMED. Lulu listed on 14-Nov-2024. Its 410 sessions of price history yield exactly TWO non-overlapping 60-day test windows against the eighteen or so a meaningful test needs — so the five-year walk-forward that every other name on this ledger carries simply cannot be run. The cone below is therefore the UAE MARKET cone applied to Lulu's own volatility: the production UAE profile (14-name ADX/DFM panel, tail parameter 10, cone width 1.049, signal OFF) scores a pooled forecast skill of +0.49% against a carry-anchored random-walk benchmark across 237 non-overlapping windows, with a 90% bootstrap interval of [-0.40%, +1.50%] — a statistical dead heat. Honestly calibrated at the market level; NO single-name edge demonstrated or claimed for LULU. Read the bands as a probability map, not a forecast. Carry = CBUAE base rate 3.65% less the declared dividend yield 7.45%; the yield EXCEEDS the cash rate, so the forward-consistent price centre must drift DOWN by the excess (-0.86% over 60 sessions) — the holder is not losing money in that world, the total return is simply delivered as dividend instead of price. The event ledger then pushes back UP by +0.23%, because at the anchor the Islamabad MOU has been signed (17-Jun), the naval blockade is lifted and the Strait of Hormuz is reopening — none of which the Q1 print reflects. Net: an EXPLAINED near-flat centre. When these two cohorts mature they are graded against the frozen percentiles above and become two more windows in the UAE panel — which is how a name with no history earns one.",
     p5:0.80, p25:0.88, p50:0.94, p75:1.00, p95:1.10,
     touch:{ "+5":49, "+10":23, "+15":10, "+20":4, "-5":49, "-10":20 },
     realized_close:null, realized_high:null, realized_low:null,
@@ -1972,7 +1972,7 @@ const LEDGER = [
     anchor_date:"2026-07-10", anchor_price:0.94, ccy:"AED",
     horizon_label:"T+60", grade_date:"2026-10-02", cycle_no:1, reanchor_from:null,
     anchor_vol:0.223, horizon_days:60,
-    note:"NO NAME-LEVEL CALIBRATION EXISTS FOR THIS STOCK, AND NONE IS CLAIMED. Lulu listed on 14-Nov-2024. Its 410 sessions of price history yield exactly TWO non-overlapping 60-day test windows against the eighteen or so a meaningful test needs — so the five-year walk-forward that every other name on this ledger carries simply cannot be run. The cone below is therefore the UAE MARKET cone applied to Lulu's own volatility: the production UAE profile (14-name ADX/DFM panel, tail parameter 10, cone width 1.049, signal OFF) scores a pooled forecast skill of +0.49% against a carry-anchored random-walk benchmark across 237 non-overlapping windows, with a 90% bootstrap interval of [-0.24%, +1.26%] — a statistical dead heat. Honestly calibrated at the market level; NO single-name edge demonstrated or claimed for LULU. Read the bands as a probability map, not a forecast. Carry = CBUAE base rate 3.65% less the declared dividend yield 7.45%; the yield EXCEEDS the cash rate, so the forward-consistent price centre must drift DOWN by the excess (-0.86% over 60 sessions) — the holder is not losing money in that world, the total return is simply delivered as dividend instead of price. The event ledger then pushes back UP by +0.23%, because at the anchor the Islamabad MOU has been signed (17-Jun), the naval blockade is lifted and the Strait of Hormuz is reopening — none of which the Q1 print reflects. Net: an EXPLAINED near-flat centre. When these two cohorts mature they are graded against the frozen percentiles above and become two more windows in the UAE panel — which is how a name with no history earns one.",
+    note:"NO NAME-LEVEL CALIBRATION EXISTS FOR THIS STOCK, AND NONE IS CLAIMED. Lulu listed on 14-Nov-2024. Its 410 sessions of price history yield exactly TWO non-overlapping 60-day test windows against the eighteen or so a meaningful test needs — so the five-year walk-forward that every other name on this ledger carries simply cannot be run. The cone below is therefore the UAE MARKET cone applied to Lulu's own volatility: the production UAE profile (14-name ADX/DFM panel, tail parameter 10, cone width 1.049, signal OFF) scores a pooled forecast skill of +0.49% against a carry-anchored random-walk benchmark across 237 non-overlapping windows, with a 90% bootstrap interval of [-0.40%, +1.50%] — a statistical dead heat. Honestly calibrated at the market level; NO single-name edge demonstrated or claimed for LULU. Read the bands as a probability map, not a forecast. Carry = CBUAE base rate 3.65% less the declared dividend yield 7.45%; the yield EXCEEDS the cash rate, so the forward-consistent price centre must drift DOWN by the excess (-0.86% over 60 sessions) — the holder is not losing money in that world, the total return is simply delivered as dividend instead of price. The event ledger then pushes back UP by +0.23%, because at the anchor the Islamabad MOU has been signed (17-Jun), the naval blockade is lifted and the Strait of Hormuz is reopening — none of which the Q1 print reflects. Net: an EXPLAINED near-flat centre. When these two cohorts mature they are graded against the frozen percentiles above and become two more windows in the UAE panel — which is how a name with no history earns one.",
     p5:0.71, p25:0.84, p50:0.93, p75:1.04, p95:1.22,
     touch:{ "+5":68, "+10":47, "+15":32, "+20":21, "-5":69, "-10":46 },
     realized_close:null, realized_high:null, realized_low:null,

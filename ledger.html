@@ -11,7 +11,7 @@
 <link rel="icon" type="image/png" href="favicon.png?v=2">
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
 <script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('#theme-toggle');if(!b)return;var dark=document.documentElement.getAttribute('data-theme')==='dark';var n=dark?'light':'dark';if(n==='dark'){document.documentElement.setAttribute('data-theme','dark');}else{document.documentElement.removeAttribute('data-theme');}try{localStorage.setItem('theme',n);}catch(e){}b.setAttribute('aria-pressed',String(n==='dark'));});document.addEventListener('DOMContentLoaded',function(){var x=document.getElementById('theme-toggle');if(x)x.setAttribute('aria-pressed',String(document.documentElement.getAttribute('data-theme')==='dark'));});})();</script>
-<link rel="stylesheet" href="assets/style.css?v=20260712e">
+<link rel="stylesheet" href="assets/style.css?v=20260712g">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="testahil?">
 <meta property="og:title" content="Public ledger — testahil?">
@@ -143,7 +143,7 @@
 
 <footer><div class="wrap"><div class="foot-studies"><b>Studies:</b> <a href="phdc.html">Palm Hills</a> &middot; <a href="tmgh.html">Talaat Moustafa</a> &middot; <a href="ocdi.html">SODIC</a> &middot; <a href="orhd.html">Orascom Dev</a> &middot; <a href="oras.html">Orascom Const</a> &middot; <a href="comi.html">CIB</a> &middot; <a href="emfd.html">Emaar Misr</a> &middot; <a href="gold.html">Gold</a> &middot; <a href="stocks.html">all &rarr;</a></div><b>Disclaimer:</b> Educational valuation studies and personal analytical opinion — not investment advice, not recommendations. The preparer is not licensed by Egypt's FRA, manages no money, accepts no clients, and may hold positions in instruments mentioned. <a href="method.html#disclaimer">Full text</a>.<br><br><span class="social" style="font-size:var(--fs-lead);font-weight:700">Follow Testahil &mdash; <a href="https://t.me/testahil_markets" target="_blank" rel="noopener">Telegram</a> &middot; <a href="https://www.facebook.com/testahil.markets" target="_blank" rel="noopener">Facebook</a> &middot; <a href="https://www.linkedin.com/company/testahil" target="_blank" rel="noopener">LinkedIn</a></span></div></footer>
 
-<script src="assets/data.js?v=20260712e"></script><script src="assets/app.js?v=20260712e"></script>
+<script src="assets/data.js?v=20260712g"></script><script src="assets/app.js?v=20260712g"></script>
 <script>
 const F2 = n => Number(n).toLocaleString("en-US",{maximumFractionDigits:2});
 
@@ -234,7 +234,7 @@ const BANNER_BAKED = new Set(["MAADEN"]);
 const CALIB_FAIL_BANNER = `<div class="calib-fail-banner"><p class="cfb-title">⚠ INDICATIVE ONLY · CALIBRATION FAILED</p><p class="cfb-sub">The Monte-Carlo engine did NOT beat the house random-walk benchmark cone (CRPS skill &lt; 0 on every scheme). The §3 distribution is shown as an honest probability map — not a skill-validated forecast. See the study and the public ledger.</p></div>`;
 const CAL_MATCH = new Set(LEDGER.filter(isCalMatch).map(r=>r.instrument));
 const CAL_UNTESTED = new Set(LEDGER.filter(isCalUntested).map(r=>r.instrument));
-const CALIB_UNTESTED_BANNER = `<div class="calib-match-banner"><p class="cmb-title">◇ NO NAME-LEVEL CALIBRATION · MARKET-PANEL VALIDATED ONLY</p><p class="cmb-sub">This stock has too little listed history to run the five-year walk-forward that every other name on this ledger carries — it yields only two non-overlapping test windows against the eighteen or so a meaningful test needs. So there is <b>no name-level calibration record, and none is claimed</b>. The cone is the <em>market</em> cone: the 14-name UAE panel it is drawn from scores a pooled forecast skill of +0.49% against a carry-anchored random-walk benchmark across 237 windows, with a 90% interval of [−0.24%, +1.26%] — a statistical dead heat. Honestly calibrated at the market level; no single-name edge demonstrated. Read the bands as a probability map, not a forecast. When these cohorts mature they are graded against the frozen percentiles and become two more windows in that panel — which is how a name with no history earns one.</p></div>`;
+const CALIB_UNTESTED_BANNER = `<div class="calib-match-banner"><p class="cmb-title">◇ NO NAME-LEVEL CALIBRATION · MARKET-PANEL VALIDATED ONLY</p><p class="cmb-sub">This stock has too little listed history to run the five-year walk-forward that every other name on this ledger carries — it yields only two non-overlapping test windows against the eighteen or so a meaningful test needs. So there is <b>no name-level calibration record, and none is claimed</b>. The cone is the <em>market</em> cone: the 14-name UAE panel it is drawn from scores a pooled forecast skill of +0.49% against a carry-anchored random-walk benchmark across 237 windows, with a 90% interval of [−0.40%, +1.50%] — a statistical dead heat. Honestly calibrated at the market level; no single-name edge demonstrated. Read the bands as a probability map, not a forecast. When these cohorts mature they are graded against the frozen percentiles and become two more windows in that panel — which is how a name with no history earns one.</p></div>`;
 const CALIB_MATCH_BANNER = `<div class="calib-match-banner"><p class="cmb-title">◆ INDICATIVE · MATCHES BENCHMARK</p><p class="cmb-sub">The Monte-Carlo engine MATCHES — ties — the house random-walk benchmark cone (CRPS skill ≈ 0; the confidence interval spans zero) with a well-calibrated PIT. It has no <em>demonstrated</em> edge for this name, but this is not a failed calibration: the §3 distribution is an honest, well-calibrated, market-panel-validated probability map. See the study and the public ledger.</p></div>`;
 
 // "All" tab first
@@ -270,11 +270,13 @@ tabPanels.innerHTML = `<div class="tab-panel active" id="panel-all">
   </div>
   <div class="pager" id="pager-tbody-${t}"></div>
   <p class="muted" style="margin-top:8px"><b id="sum-${t}"></b></p>
-  ${CAL_UNTESTED.has(t) ? CALIB_UNTESTED_BANNER : ``}
+  ${CAL_UNTESTED.has(t) ? CALIB_UNTESTED_BANNER + `<h3 style="font-size:var(--fs-h3);margin:24px 0 4px">What this forecast IS validated on</h3>
+  <p class="muted" style="margin:0 0 12px;max-width:760px">There is no five-year backtest for this stock — it has not been listed long enough to have one. So instead of a backtest it does not have, here is the evidence it actually rests on: why the test cannot be run, what the market panel behind the cone scored, and where this stock sits relative to that panel. Methodology transparency; it does not count toward the live score above.</p>
+  <div class="card bt-fig"><img alt="${t} — why there is no name-level calibration, what the cone is validated on, and how the UAE market panel scored" src="assets/calibration_${t}.png?v=20260712g"></div>` : ``}
   ${HAS_BACKTEST.has(t) ? `<h3 style="font-size:var(--fs-h3);margin:24px 0 4px">Five-year calibration backtest</h3>
   <p class="muted" style="margin:0 0 12px;max-width:760px">The same model replayed on ${t}’s past five years — each quarter’s 3-month forecast cone against the price that actually printed, the PIT histogram (flat = well-calibrated), and how often each band actually held. Methodology validation; it does not count toward the live score above.</p>
   ${CAL_FAIL.has(t) && !BANNER_BAKED.has(t) ? CALIB_FAIL_BANNER : (CAL_MATCH.has(t) ? CALIB_MATCH_BANNER : ``)}
-  <div class="card bt-fig"><img alt="${t} five-year calibration backtest — quarterly cone replay, PIT histogram, and band coverage vs target" src="assets/calibration_${t}.png?v=20260712e"></div>` : ``}
+  <div class="card bt-fig"><img alt="${t} five-year calibration backtest — quarterly cone replay, PIT histogram, and band coverage vs target" src="assets/calibration_${t}.png?v=20260712g"></div>` : ``}
 </div>`).join("");
 
 // Build all panel
