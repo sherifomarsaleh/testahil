@@ -2,10 +2,40 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-07-12", latest: "BURJEEL" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
+const SITE = { updated: "2026-07-12", latest: "LULU" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
+  LULU: {
+    name: "Lulu Retail Holdings",
+    nameAr: "\u0644\u0648\u0644\u0648 \u0644\u0644\u062a\u062c\u0632\u0626\u0629",
+    code: "ADX:LULU",
+    spot: 0.94,
+    spotDate: "close 10 Jul 2026",
+    ccy: "AED",
+    fair: { bear: 0.78, base: 1.28, full: 1.74 },      // 12 Jul 2026 (v3) — four-lens weighted central 1.28 (+36% vs spot 0.94). Lenses: FCFF DCF, segment-built from six country models (30%) 1.54; relative EV/EBITDA (30%) 1.18; dividend discount (25%) 1.15; normalized earnings (15%) 1.16. bear/full = weighted bear/bull. THE COMPANY DOES NOT REPORT SALES DENSITY, SO WE BUILT IT. Revenue per square metre fell -1.4% in FY2025 and roughly -8% in Q1-2026 (bounded -4.3% to -9.4% — one input, Q1-2025 floor space, is not disclosed). Lulu is adding space into falling productivity. THE ENGINE: operating cost tracks SPACE; revenue tracks SPACE x DENSITY. So the EBITDA margin is flat only when density growth equals mature-store cost inflation — a break-even that is DERIVED, not assumed, and which ties on both periods we can test. It reproduces the Q1 margin bridge with nothing modelled: 10.23% -> 9.50%, of which -65bp is OPERATING DELEVERAGE (revenue -2.9%, cash opex +1.1% — both disclosed) and only -7bp is gross margin. The margin is not a lever management pulls; it falls out of the density. TWO MORE FINDINGS. (1) SAUDI: we rebuilt segment floor space from the company's own hypermarket/express split and its disclosed 9,200 sqm average hypermarket — it reconstructs the disclosed 1.380m sqm estate to 0.6%. Saudi sells US$4,489 per sqm against Qatar's US$9,027. Its stores are not small: 46% are hypermarkets, the same share as the group. They are UNPRODUCTIVE, which is why Saudi opex runs 22.1% of revenue against the UAE's 14.5% and its EBITDA margin is 4.66%. (2) THE DIVIDEND: 7 fils is 96% of EARNINGS but 1.40x covered by CASH, because depreciation (US$388mn) is nearly three times capex (US$139mn) — the leases ARE the capex. A cash-covered 7.45% yield is a very different proposition from an uncovered one. AND THE HONEST CAVEAT: at 7.15x EV/EBITDAaL (after lease payments) Lulu is NOT cheap on an absolute basis. It is cheap RELATIVE to how its peers are quoted, because every peer multiple is struck on the same post-IFRS-16 basis. Two different claims; we make only the second.
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:0.80, p25:0.88, p50:0.94, p75:1.00, p95:1.10, resolve:"2026-08-07" },
+      t60: { label:"3 months (T+60)", p5:0.71, p25:0.84, p50:0.93, p75:1.04, p95:1.22, resolve:"2026-10-02" }
+    },
+    touch: [ /* descending high -> low; P(touch) T+20 %, T+60 %. The UAE market cone is OVER-COVERED, so read these as UPPER BOUNDS. */
+      [1.30, 0, 4], [1.20, 1, 11], [1.10, 7, 27], [1.05, 18, 41], [1.00, 40, 62], [0.90, 54, 73], [0.85, 22, 48], [0.80, 7, 28], [0.75, 2, 14]
+    ],
+    levels: { res:[0.97, 0.99, 1.08], sup:[0.93, 0.85, 0.80] },
+    tech: {
+      trend: "Below every moving average in the stack (20/50/100/200-day), the stack itself is bearish-ordered, and the stock sits ONE FIL above its all-time low",
+      summary: "The tape is unambiguous and it disagrees with the fundamentals. Lulu at AED 0.94 sits below its 20-day (AED 0.97), 50-day (0.99), 100-day (1.01) and 200-day (1.08) — and those averages are stacked in the order a downtrend puts them. RSI(14) at 37 is weak but not washed out. The daily MACD (12\u00b726\u00b79) reads -0.014 line vs -0.012 signal, histogram -0.003 — still below its signal. The 52-week range is AED 0.93\u20131.29 and spot sits about 3% up it: the low is not a distant memory, it is one fil away, and it was set on 23-Mar-2026 — the week the Strait of Hormuz closed. Realised 252-day volatility is 22%. The entire listed history is a single drawdown: -54% from the AED 2.04 IPO of Nov-2024. We do not dress this up. The chart says falling knife; the model says a cheap grocer with falling productivity and a cash-covered dividend. Both can be true, and the argument is settled by a date, not by an opinion: the H1 print on 19 August.",
+      bull: "A daily close back above the 20-day near AED 0.97 would be the first sign of repair; above the 50-day at 0.99 opens the 100-day at 1.01.",
+      bear: "Losing AED 0.93 — the all-time low, one fil below spot — puts the stock into price territory it has never traded in. There is no support below it because there is no history below it."
+    },
+    files: {
+      study: "files/LULU_Valuation_Study_12-07-2026_public.docx?v=20260712d",
+      model: "files/LULU_Valuation_Model_12072026_public.xlsx?v=20260712d",
+      pdf:   "files/LULU_Valuation_Study_12-07-2026_public.pdf?v=20260712d",
+      biblio:"files/LULU_Source_Register_12-07-2026.docx?v=20260712d"
+    }
+  },
+
   BURJEEL: {
     name: "Burjeel Holdings PLC",
     nameAr: "\u0628\u0631\u062c\u064a\u0644 \u0627\u0644\u0642\u0627\u0628\u0636\u0629",
@@ -29,9 +59,9 @@ const TICKERS = {
       bear: "Losing the 50-day near AED 1.09 exposes the 52-week low at AED 1.00, a level touched 7-Apr-2026."
     },
     files: {
-      study: "files/BURJEEL_Valuation_Study_11-07-2026_public.docx?v=20260712c",
-      model: "files/BURJEEL_Valuation_Model_11072026_public.xlsx?v=20260712c",
-      pdf:   "files/BURJEEL_Valuation_Study_11-07-2026_public.pdf?v=20260712c"
+      study: "files/BURJEEL_Valuation_Study_11-07-2026_public.docx?v=20260712d",
+      model: "files/BURJEEL_Valuation_Model_11072026_public.xlsx?v=20260712d",
+      pdf:   "files/BURJEEL_Valuation_Study_11-07-2026_public.pdf?v=20260712d"
     }
   },
   SALIK: {
@@ -57,10 +87,10 @@ const TICKERS = {
       bear: "Losing the 50-day near AED 5.72 exposes AED 5.25 and then the 52-week low at 4.99."
     },
     files: {
-      study: "files/SALIK_Valuation_Study_11-07-2026_public.docx?v=20260712b",
-      model: "files/SALIK_Valuation_Model_11072026_public.xlsx?v=20260712b",
-      pdf:   "files/SALIK_Valuation_Study_11-07-2026_public.pdf?v=20260712b",
-      biblio:"files/SALIK_Source_Register_11-07-2026.docx?v=20260712b"
+      study: "files/SALIK_Valuation_Study_11-07-2026_public.docx?v=20260712d",
+      model: "files/SALIK_Valuation_Model_11072026_public.xlsx?v=20260712d",
+      pdf:   "files/SALIK_Valuation_Study_11-07-2026_public.pdf?v=20260712d",
+      biblio:"files/SALIK_Source_Register_11-07-2026.docx?v=20260712d"
     }
   },
   DIB: {
@@ -1871,6 +1901,32 @@ const COMING = [
                             "-5":bool, "-10":bool }
    ========================================================================== */
 const LEDGER = [
+  // ---- LULU · other (ADX UAE) · cycle 1 (12 Jul 2026 published study v3; NO NAME-LEVEL CALIBRATION — market-panel validated only) ----
+  {
+    instrument:"LULU", asset_class:"other", cal:"untested",
+    anchor_date:"2026-07-10", anchor_price:0.94, ccy:"AED",
+    horizon_label:"T+20", grade_date:"2026-08-07", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.223, horizon_days:20,
+    note:"NO NAME-LEVEL CALIBRATION EXISTS FOR THIS STOCK, AND NONE IS CLAIMED. Lulu listed on 14-Nov-2024. Its 410 sessions of price history yield exactly TWO non-overlapping 60-day test windows against the eighteen or so a meaningful test needs — so the five-year walk-forward that every other name on this ledger carries simply cannot be run. The cone below is therefore the UAE MARKET cone applied to Lulu's own volatility: the production UAE profile (14-name ADX/DFM panel, tail parameter 10, cone width 1.049, signal OFF) scores a pooled forecast skill of +0.49% against a carry-anchored random-walk benchmark across 237 non-overlapping windows, with a 90% bootstrap interval of [-0.24%, +1.26%] — a statistical dead heat. Honestly calibrated at the market level; NO single-name edge demonstrated or claimed for LULU. Read the bands as a probability map, not a forecast. Carry = CBUAE base rate 3.65% less the declared dividend yield 7.45%; the yield EXCEEDS the cash rate, so the forward-consistent price centre must drift DOWN by the excess (-0.86% over 60 sessions) — the holder is not losing money in that world, the total return is simply delivered as dividend instead of price. The event ledger then pushes back UP by +0.23%, because at the anchor the Islamabad MOU has been signed (17-Jun), the naval blockade is lifted and the Strait of Hormuz is reopening — none of which the Q1 print reflects. Net: an EXPLAINED near-flat centre. When these two cohorts mature they are graded against the frozen percentiles above and become two more windows in the UAE panel — which is how a name with no history earns one.",
+    p5:0.80, p25:0.88, p50:0.94, p75:1.00, p95:1.10,
+    touch:{ "+5":49, "+10":23, "+15":10, "+20":4, "-5":49, "-10":20 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"LULU", asset_class:"other", cal:"untested",
+    anchor_date:"2026-07-10", anchor_price:0.94, ccy:"AED",
+    horizon_label:"T+60", grade_date:"2026-10-02", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.223, horizon_days:60,
+    note:"NO NAME-LEVEL CALIBRATION EXISTS FOR THIS STOCK, AND NONE IS CLAIMED. Lulu listed on 14-Nov-2024. Its 410 sessions of price history yield exactly TWO non-overlapping 60-day test windows against the eighteen or so a meaningful test needs — so the five-year walk-forward that every other name on this ledger carries simply cannot be run. The cone below is therefore the UAE MARKET cone applied to Lulu's own volatility: the production UAE profile (14-name ADX/DFM panel, tail parameter 10, cone width 1.049, signal OFF) scores a pooled forecast skill of +0.49% against a carry-anchored random-walk benchmark across 237 non-overlapping windows, with a 90% bootstrap interval of [-0.24%, +1.26%] — a statistical dead heat. Honestly calibrated at the market level; NO single-name edge demonstrated or claimed for LULU. Read the bands as a probability map, not a forecast. Carry = CBUAE base rate 3.65% less the declared dividend yield 7.45%; the yield EXCEEDS the cash rate, so the forward-consistent price centre must drift DOWN by the excess (-0.86% over 60 sessions) — the holder is not losing money in that world, the total return is simply delivered as dividend instead of price. The event ledger then pushes back UP by +0.23%, because at the anchor the Islamabad MOU has been signed (17-Jun), the naval blockade is lifted and the Strait of Hormuz is reopening — none of which the Q1 print reflects. Net: an EXPLAINED near-flat centre. When these two cohorts mature they are graded against the frozen percentiles above and become two more windows in the UAE panel — which is how a name with no history earns one.",
+    p5:0.71, p25:0.84, p50:0.93, p75:1.04, p95:1.22,
+    touch:{ "+5":68, "+10":47, "+15":32, "+20":21, "-5":69, "-10":46 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+
   // ---- BURJEEL \u00b7 other (ADX UAE) \u00b7 cycle 1 (11 Jul 2026 published study, v4 reissued 12 Jul 2026; MC PARITY -- calibrated, no single-name edge) ----
   {
     instrument:"BURJEEL", asset_class:"other", cal:"matches",
