@@ -2,10 +2,38 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-07-12", latest: "SALIK" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
+const SITE = { updated: "2026-07-12", latest: "BURJEEL" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
+  BURJEEL: {
+    name: "Burjeel Holdings PLC",
+    nameAr: "\u0628\u0631\u062c\u064a\u0644 \u0627\u0644\u0642\u0627\u0628\u0636\u0629",
+    code: "ADX:BURJEEL",
+    spot: 1.11,
+    spotDate: "close 10 Jul 2026",
+    ccy: "AED",
+    fair: { bear: 1.14, base: 1.85, full: 2.35 },      // 12 Jul 2026 (rev. 2 reissue) — four-lens weighted central 1.85 (+67% vs spot 1.11). bear/full = weighted bear/bull. Lenses: FCFF DCF (primary, 35%) 2.64, relative EV/EBITDA (25%) 1.89 at a 11.5x base — a deliberate discount to the verified GCC hospital-peer FLOOR (MEH ~13x; Al Habib 24-34x, Dallah 22-26x, Mouwasat 18-19x, Hammadi 17.5x — Bloomberg/U Capital, MarketScreener, multiples.vc, dated), normalized earnings (25%) 1.49 at 17x clean FY26E EPS, dividend discount (15%) 0.56 reflecting the FY2025 payout cut. TAX REBUILT ON MECHANICS, NOT THE HEADLINE: the UAE's 15% DMTT top-up applies only to income above a substance-based income exclusion (9.4% of payroll + 7.4% of tangible assets in 2026, stepping to 5%/5% by 2033) — Burjeel's own FY2025 effective rate was 7.0% (tax 38 on PBT 541), consistent with a 10-to-13% modelled path rather than a flat 15%; the transitional CbCR safe harbour can deem the top-up zero outright for FYs starting pre-2027. Flat 15% is kept as the bear rung only. THE CRUX IS CASH, NOT THE STORY: FY2025 absorbed AED 649mn of operating surplus into working capital before it reached cash (DSO 135 days, rising), which is why the marginal sukuk priced at 7.00%/5yr (BB+) against a ~3.9% sovereign, and why the dividend was cut. Spot 1.11 sits just BELOW the weighted bear case (1.14): the market prices a margin stuck in the high-teens, the full 15% assessed with no substance relief, receivables never normalizing, Saudi staying a rounding error, and zero credit for a management team that guided a 23.5% margin and delivered 18.1% — then discounts a little further. Genuinely thin float (~11%; some 2024-25 buyback execution undisclosed) keeps idiosyncratic volatility high. Calibration: PARITY on the production UAE panel (11 non-overlapping 60-day windows, CRPS skill +0.85%, 90% CI [-1.7%, +2.5%], robust across bootstrap block sizes) — a calibrated, market-panel-validated distribution with no single-name edge claimed.
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:0.94, p25:1.04, p50:1.11, p75:1.18, p95:1.31, resolve:"2026-08-07" },
+      t60: { label:"3 months (T+60)", p5:0.84, p25:1.00, p50:1.11, p75:1.24, p95:1.49, resolve:"2026-10-02" }
+    },
+    touch: [ /* descending high -> low; P(touch) T+20 %, T+60 %. */
+      [1.30, 8, 31], [1.25, 18, 43], [1.20, 34, 59], [1.15, 61, 78], [1.05, 46, 67], [1.00, 22, 47], [0.95, 9, 30], [0.90, 3, 18]
+    ],
+    levels: { res:[1.13, 1.23, 1.57], sup:[1.09, 1.05, 1.00] },
+    tech: {
+      trend: "Sits just above the 50-day (AED 1.09) but below the 20-, 100- and 200-day averages (1.13 / 1.13 / 1.23) \u2014 a matted average stack, not a clean trend; RSI-14 at 49.7 is neutral",
+      summary: "Burjeel at AED 1.11 sits inside a flattened moving-average stack: just above the 50-day (1.09) but below the 20-day (1.13), the 100-day (1.13) and the 200-day (1.23). RSI(14) near 49.7 is neutral \u2014 no oversold signal. The daily MACD (12\u00b726\u00b79) reads 0.006 line vs 0.0121 signal, histogram -0.0061 \u2014 the line sits below its signal, a mildly bearish read. The 52-week range is AED 1.00\u20131.57 and spot sits near the lower quarter of it, down 24.5% over the trailing year and 68.7% off its all-time high. Realised volatility is high (~31% annualized) on a genuinely thin (~11%) float \u2014 idiosyncratic risk, not a market-wide read.",
+      bull: "A daily close back above the 100-day near AED 1.13 opens the 200-day at 1.23 and then the 52-week high at 1.57.",
+      bear: "Losing the 50-day near AED 1.09 exposes the 52-week low at AED 1.00, a level touched 7-Apr-2026."
+    },
+    files: {
+      study: "files/BURJEEL_Valuation_Study_11-07-2026_public.docx?v=20260712b",
+      model: "files/BURJEEL_Valuation_Model_11072026_public.xlsx?v=20260712b",
+      pdf:   "files/BURJEEL_Valuation_Study_11-07-2026_public.pdf?v=20260712b"
+    }
+  },
   SALIK: {
     name: "Salik Company",
     nameAr: "\u0633\u0627\u0644\u0643",
@@ -29,10 +57,10 @@ const TICKERS = {
       bear: "Losing the 50-day near AED 5.72 exposes AED 5.25 and then the 52-week low at 4.99."
     },
     files: {
-      study: "files/SALIK_Valuation_Study_11-07-2026_public.docx?v=20260712a",
-      model: "files/SALIK_Valuation_Model_11072026_public.xlsx?v=20260712a",
-      pdf:   "files/SALIK_Valuation_Study_11-07-2026_public.pdf?v=20260712a",
-      biblio:"files/SALIK_Source_Register_11-07-2026.docx?v=20260712a"
+      study: "files/SALIK_Valuation_Study_11-07-2026_public.docx?v=20260712b",
+      model: "files/SALIK_Valuation_Model_11072026_public.xlsx?v=20260712b",
+      pdf:   "files/SALIK_Valuation_Study_11-07-2026_public.pdf?v=20260712b",
+      biblio:"files/SALIK_Source_Register_11-07-2026.docx?v=20260712b"
     }
   },
   DIB: {
@@ -1843,6 +1871,32 @@ const COMING = [
                             "-5":bool, "-10":bool }
    ========================================================================== */
 const LEDGER = [
+  // ---- BURJEEL \u00b7 other (ADX UAE) \u00b7 cycle 1 (11 Jul 2026 published study, v4 reissued 12 Jul 2026; MC PARITY -- calibrated, no single-name edge) ----
+  {
+    instrument:"BURJEEL", asset_class:"other", cal:"matches",
+    anchor_date:"2026-07-10", anchor_price:1.11, ccy:"AED",
+    horizon_label:"T+20", grade_date:"2026-08-07", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.308, horizon_days:20,
+    note:"MATCHES BENCHMARK (PARITY) under the production UAE market profile (live panel: production nu/width_cal, signal OFF). BURJEEL's own tape replayed under production parameters gives CRPS skill +0.85% over 11 non-overlapping 60-day windows, with a 90% bootstrap CI [-1.69%, +2.53%] and ROBUST across bootstrap block sizes 2/3/4 -- a calibrated, market-panel-validated distribution with no single-name edge demonstrated or claimed. Coverage 46/91/91% against 50/80/90 targets. Carry is the AED risk-free anchor less a trailing dividend-yield proxy. This is the v4 reissue (12-Jul-2026): the underlying study rebuilt the tax path on Pillar-Two SBIE mechanics and recalibrated relative multiples to verified peer marks -- the MC engine, this calibration verdict, and the grading dates are UNCHANGED from the original 11-Jul-2026 anchor. See study S1.7/B.4.",
+    p5:0.94, p25:1.04, p50:1.11, p75:1.18, p95:1.31,
+    touch:{ "+5":52, "+10":26, "+15":12, "+20":5, "-5":49, "-10":21 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"BURJEEL", asset_class:"other", cal:"matches",
+    anchor_date:"2026-07-10", anchor_price:1.11, ccy:"AED",
+    horizon_label:"T+60", grade_date:"2026-10-02", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.308, horizon_days:60,
+    note:"MATCHES BENCHMARK (PARITY) under the production UAE market profile (live panel: production nu/width_cal, signal OFF). BURJEEL's own tape replayed under production parameters gives CRPS skill +0.85% over 11 non-overlapping 60-day windows, with a 90% bootstrap CI [-1.69%, +2.53%] and ROBUST across bootstrap block sizes 2/3/4 -- a calibrated, market-panel-validated distribution with no single-name edge demonstrated or claimed. Coverage 46/91/91% against 50/80/90 targets. Carry is the AED risk-free anchor less a trailing dividend-yield proxy. This is the v4 reissue (12-Jul-2026): the underlying study rebuilt the tax path on Pillar-Two SBIE mechanics and recalibrated relative multiples to verified peer marks -- the MC engine, this calibration verdict, and the grading dates are UNCHANGED from the original 11-Jul-2026 anchor. See study S1.7/B.4.",
+    p5:0.84, p25:1.00, p50:1.11, p75:1.24, p95:1.49,
+    touch:{ "+5":71, "+10":52, "+15":36, "+20":25, "-5":69, "-10":46 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+
   // ---- SALIK · other (DFM UAE) · cycle 1 (12 Jul 2026 published study v3; MC PARITY -- calibrated, no single-name edge) ----
   {
     instrument:"SALIK", asset_class:"other", cal:"matches",
