@@ -29,9 +29,9 @@ const TICKERS = {
       bear: "Losing the 50-day near AED 2.71 exposes the 100-day (2.70) and then the 52-week low at 2.47."
     },
     files: {
-      study: "files/DEWA_Valuation_Study_11-07-2026_public.docx?v=20260712g",
-      model: "files/DEWA_Valuation_Model_11072026_public.xlsx?v=20260712g",
-      pdf:   "files/DEWA_Valuation_Study_11-07-2026_public.pdf?v=20260712g"
+      study: "files/DEWA_Valuation_Study_11-07-2026_public.docx?v=20260713a",
+      model: "files/DEWA_Valuation_Model_11072026_public.xlsx?v=20260713a",
+      pdf:   "files/DEWA_Valuation_Study_11-07-2026_public.pdf?v=20260713a"
     }
   },
   LULU: {
@@ -41,7 +41,7 @@ const TICKERS = {
     spot: 0.94,
     spotDate: "close 10 Jul 2026",
     ccy: "AED",
-    fair: { bear: 0.78, base: 1.28, full: 1.74 },      // 12 Jul 2026 (v3) — four-lens weighted central 1.28 (+36% vs spot 0.94). Lenses: FCFF DCF, segment-built from six country models (30%) 1.54; relative EV/EBITDA (30%) 1.18; dividend discount (25%) 1.15; normalized earnings (15%) 1.16. bear/full = weighted bear/bull. THE COMPANY DOES NOT REPORT SALES DENSITY, SO WE BUILT IT. Revenue per square metre fell -1.4% in FY2025 and roughly -8% in Q1-2026 (bounded -4.3% to -9.4% — one input, Q1-2025 floor space, is not disclosed). Lulu is adding space into falling productivity. THE ENGINE: operating cost tracks SPACE; revenue tracks SPACE x DENSITY. So the EBITDA margin is flat only when density growth equals mature-store cost inflation — a break-even that is DERIVED, not assumed, and which ties on both periods we can test. It reproduces the Q1 margin bridge with nothing modelled: 10.23% -> 9.50%, of which -65bp is OPERATING DELEVERAGE (revenue -2.9%, cash opex +1.1% — both disclosed) and only -7bp is gross margin. The margin is not a lever management pulls; it falls out of the density. TWO MORE FINDINGS. (1) SAUDI: we rebuilt segment floor space from the company's own hypermarket/express split and its disclosed 9,200 sqm average hypermarket — it reconstructs the disclosed 1.380m sqm estate to 0.6%. Saudi sells US$4,489 per sqm against Qatar's US$9,027. Its stores are not small: 46% are hypermarkets, the same share as the group. They are UNPRODUCTIVE, which is why Saudi opex runs 22.1% of revenue against the UAE's 14.5% and its EBITDA margin is 4.66%. (2) THE DIVIDEND: 7 fils is 96% of EARNINGS but 1.40x covered by CASH, because depreciation (US$388mn) is nearly three times capex (US$139mn) — the leases ARE the capex. A cash-covered 7.45% yield is a very different proposition from an uncovered one. AND THE HONEST CAVEAT: at 7.15x EV/EBITDAaL (after lease payments) Lulu is NOT cheap on an absolute basis. It is cheap RELATIVE to how its peers are quoted, because every peer multiple is struck on the same post-IFRS-16 basis. Two different claims; we make only the second.
+    fair: { bear: 0.78, base: 1.28, full: 1.74 },      // 12 Jul 2026 (v3) — four-lens weighted central 1.28 (+36% vs spot 0.94). Lenses: FCFF DCF, segment-built from six country models (30%) 1.54; relative EV/EBITDA (30%) 1.18; dividend discount (25%) 1.15; normalized earnings (15%) 1.16. bear/full = weighted bear/bull. THE COMPANY DOES NOT REPORT SALES DENSITY, SO WE BUILT IT. Revenue per square metre fell -1.4% in FY2025 and roughly -8% in Q1-2026 (bounded -4.3% to -9.4% — one input, Q1-2025 floor space, is not disclosed). Lulu is adding space into falling productivity. THE ENGINE: operating cost tracks SPACE; revenue tracks SPACE x DENSITY. So the EBITDA margin is flat only when density growth equals mature-store cost inflation — a break-even that is DERIVED, not assumed, and which ties on both periods we can test. It reproduces the Q1 margin bridge with nothing modelled: 10.23% -> 9.50%, of which -65bp is OPERATING DELEVERAGE (revenue -2.9%, cash opex +1.1% — both disclosed) and only -7bp is gross margin. The margin is not a lever management pulls; it falls out of the density. TWO MORE FINDINGS. (1) SAUDI: we rebuilt segment floor space from the company's own hypermarket/express split and its disclosed 9,200 sqm average hypermarket — it reconstructs the disclosed 1.380m sqm estate to 0.6%. Saudi sells US$4,489 per sqm against Qatar's US$9,027. Its stores are not small: 46% are hypermarkets, the same share as the group. They are UNPRODUCTIVE, which is why Saudi opex runs 22.1% of revenue against the UAE's 14.5% and its EBITDA margin is 4.66%. (2) THE DIVIDEND: 7 fils is 96% of EARNINGS but 1.33x covered by CASH (after charging working capital — the 12-Jul revision omitted it and printed 1.40x), because depreciation (US$388mn) is nearly three times capex (US$139mn) — the leases ARE the capex. A cash-covered 7.45% yield is a very different proposition from an uncovered one. AND THE HONEST CAVEAT: at 7.15x EV/EBITDAaL (after lease payments) Lulu is NOT cheap on an absolute basis. It is cheap RELATIVE to how its peers are quoted, because every peer multiple is struck on the same post-IFRS-16 basis. Two different claims; we make only the second. REVISION r1 (13-Jul-2026, build e9fc9b7dba6a): twelve corrections after two external audits, listed in full at the end of the study. The most important CUTS AGAINST US — the 12-Jul revision claimed a -6% density year puts the central at spot; its own grid says the central is 1.12 there, and density alone NEVER reaches spot. The market is pricing lost density AND a terminal de-rating AND a higher cost of capital AND a dividend cut. The crux was overclaimed. Also corrected: the beta diagnostics (mutually impossible as printed), a circular debt cross-check (withdrawn), the dividend cover (now charges working capital: 1.40x -> 1.33x), FY2024 stores (247 -> 250, per the company release), and Pillar Two / UAE DMTT (15% floor, in force since FY2025) is now modelled and in the risk register. THE REGISTERED FORECAST BELOW IS UNCHANGED: the Monte-Carlo drift is carry plus the event ledger, and no correction touches either. The study is revised; the forecast is not.
     dist: {
       t20: { label:"1 month (T+20)",  p5:0.80, p25:0.88, p50:0.94, p75:1.00, p95:1.10, resolve:"2026-08-07" },
       t60: { label:"3 months (T+60)", p5:0.71, p25:0.84, p50:0.93, p75:1.04, p95:1.22, resolve:"2026-10-02" }
@@ -57,10 +57,10 @@ const TICKERS = {
       bear: "Losing AED 0.93 — the all-time low, one fil below spot — puts the stock into price territory it has never traded in. There is no support below it because there is no history below it."
     },
     files: {
-      study: "files/LULU_Valuation_Study_12-07-2026_public.docx?v=20260712g",
-      model: "files/LULU_Valuation_Model_12072026_public.xlsx?v=20260712g",
-      pdf:   "files/LULU_Valuation_Study_12-07-2026_public.pdf?v=20260712g",
-      biblio:"files/LULU_Source_Register_12-07-2026.docx?v=20260712g"
+      study: "files/LULU_Valuation_Study_13-07-2026_public.docx?v=20260713a",
+      model: "files/LULU_Valuation_Model_13072026_public.xlsx?v=20260713a",
+      pdf:   "files/LULU_Valuation_Study_13-07-2026_public.pdf?v=20260713a",
+      biblio:"files/LULU_Source_Register_12-07-2026.docx?v=20260713a"
     }
   },
 
@@ -87,9 +87,9 @@ const TICKERS = {
       bear: "Losing the 50-day near AED 1.09 exposes the 52-week low at AED 1.00, a level touched 7-Apr-2026."
     },
     files: {
-      study: "files/BURJEEL_Valuation_Study_11-07-2026_public.docx?v=20260712g",
-      model: "files/BURJEEL_Valuation_Model_11072026_public.xlsx?v=20260712g",
-      pdf:   "files/BURJEEL_Valuation_Study_11-07-2026_public.pdf?v=20260712g"
+      study: "files/BURJEEL_Valuation_Study_11-07-2026_public.docx?v=20260713a",
+      model: "files/BURJEEL_Valuation_Model_11072026_public.xlsx?v=20260713a",
+      pdf:   "files/BURJEEL_Valuation_Study_11-07-2026_public.pdf?v=20260713a"
     }
   },
   SALIK: {
@@ -115,10 +115,10 @@ const TICKERS = {
       bear: "Losing the 50-day near AED 5.72 exposes AED 5.25 and then the 52-week low at 4.99."
     },
     files: {
-      study: "files/SALIK_Valuation_Study_11-07-2026_public.docx?v=20260712h",
-      model: "files/SALIK_Valuation_Model_11072026_public.xlsx?v=20260712h",
-      pdf:   "files/SALIK_Valuation_Study_11-07-2026_public.pdf?v=20260712h",
-      biblio:"files/SALIK_Source_Register_11-07-2026.docx?v=20260712h"
+      study: "files/SALIK_Valuation_Study_11-07-2026_public.docx?v=20260713a",
+      model: "files/SALIK_Valuation_Model_11072026_public.xlsx?v=20260713a",
+      pdf:   "files/SALIK_Valuation_Study_11-07-2026_public.pdf?v=20260713a",
+      biblio:"files/SALIK_Source_Register_11-07-2026.docx?v=20260713a"
     }
   },
   DIB: {
