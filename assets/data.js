@@ -29,10 +29,10 @@ const TICKERS = {
       bear: "Losing AED 0.93 — the all-time low, one fil below spot — puts the stock into price territory it has never traded in. There is no support below it because there is no history below it."
     },
     files: {
-      study: "files/LULU_Valuation_Study_12-07-2026_public.docx?v=20260712d",
-      model: "files/LULU_Valuation_Model_12072026_public.xlsx?v=20260712d",
-      pdf:   "files/LULU_Valuation_Study_12-07-2026_public.pdf?v=20260712d",
-      biblio:"files/LULU_Source_Register_12-07-2026.docx?v=20260712d"
+      study: "files/LULU_Valuation_Study_12-07-2026_public.docx?v=20260712e",
+      model: "files/LULU_Valuation_Model_12072026_public.xlsx?v=20260712e",
+      pdf:   "files/LULU_Valuation_Study_12-07-2026_public.pdf?v=20260712e",
+      biblio:"files/LULU_Source_Register_12-07-2026.docx?v=20260712e"
     }
   },
 
@@ -59,9 +59,9 @@ const TICKERS = {
       bear: "Losing the 50-day near AED 1.09 exposes the 52-week low at AED 1.00, a level touched 7-Apr-2026."
     },
     files: {
-      study: "files/BURJEEL_Valuation_Study_11-07-2026_public.docx?v=20260712d",
-      model: "files/BURJEEL_Valuation_Model_11072026_public.xlsx?v=20260712d",
-      pdf:   "files/BURJEEL_Valuation_Study_11-07-2026_public.pdf?v=20260712d"
+      study: "files/BURJEEL_Valuation_Study_11-07-2026_public.docx?v=20260712e",
+      model: "files/BURJEEL_Valuation_Model_11072026_public.xlsx?v=20260712e",
+      pdf:   "files/BURJEEL_Valuation_Study_11-07-2026_public.pdf?v=20260712e"
     }
   },
   SALIK: {
@@ -87,10 +87,10 @@ const TICKERS = {
       bear: "Losing the 50-day near AED 5.72 exposes AED 5.25 and then the 52-week low at 4.99."
     },
     files: {
-      study: "files/SALIK_Valuation_Study_11-07-2026_public.docx?v=20260712d",
-      model: "files/SALIK_Valuation_Model_11072026_public.xlsx?v=20260712d",
-      pdf:   "files/SALIK_Valuation_Study_11-07-2026_public.pdf?v=20260712d",
-      biblio:"files/SALIK_Source_Register_11-07-2026.docx?v=20260712d"
+      study: "files/SALIK_Valuation_Study_11-07-2026_public.docx?v=20260712e",
+      model: "files/SALIK_Valuation_Model_11072026_public.xlsx?v=20260712e",
+      pdf:   "files/SALIK_Valuation_Study_11-07-2026_public.pdf?v=20260712e",
+      biblio:"files/SALIK_Source_Register_11-07-2026.docx?v=20260712e"
     }
   },
   DIB: {
