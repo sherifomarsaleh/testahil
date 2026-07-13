@@ -461,9 +461,9 @@
         var S0=(T&&typeof T.spot==="number")?T.spot:5.00;
         var H=60, BETA=0.5826, FLOOR=4.63, R2=5.00, TARGET=5.29;
         // fixed factors (held at study calibration). The CBE facility-cost path (Kd glide) and NWC normalisation speed are the tunable continuous levers -- the study\u2019s own two named crux drivers (every 100bp of facility cost = EGP 21mn pre-tax, per \u00a71.7); export/tender growth is a third minor lever. The UCP/MEC receivable recovery and the new product-acquisition catalyst are the tunable events, taken directly from the study\u2019s own catalyst map \u00a75 -- calibrated to reproduce the study\u2019s own T+60 mean/variance (mu3=0.0401, var3=0.02759) at these defaults.
-        var CONT_FIXED=[["Carry",0.0258,0.0002]];
-        var IDIO=0.100, EGP_VOL=0.088, AICAP_VOL=0.088, INR_VOL=0.030;
-        var EV_FIXED=[["h1results",0.90,0.005,0.0020],["cbecut",0.35,0.008,0.0040],["cbehike",0.10,-0.012,0.0060],["favedapx",0.25,0.008,0.0040],["injectdrag",0.15,-0.008,0.0040],["regional",0.20,-0.015,0.0075],["egpdeval",0.10,-0.030,0.0150],["lvpmto",0.25,0.025,0.0125]];
+        var CONT_FIXED=[["Carry",0.0498,0.0002]];
+        var IDIO=0.0812, EGP_VOL=0.088, AICAP_VOL=0.088, INR_VOL=0.030;
+        var EV_FIXED=[["h1results",0.90,0.005,0.0020],["cbecut",0.35,0.008,0.0040],["cbehike",0.10,-0.012,0.0060],["favedapx",0.25,0.008,0.0040],["injectdrag",0.15,-0.008,0.0040],["regional",0.20,-0.015,0.0075],["egpdeval",0.15,-0.18,0.030],["lvpmto",0.25,0.025,0.0125]];
         var GEO_MEAN=0.010, GEO_SD=0.0050, LNCH_MEAN=0.012, LNCH_SD=0.0060;
 
         function erf(x){var s=x<0?-1:1;x=Math.abs(x);var t=1/(1+0.3275911*x);
@@ -788,7 +788,7 @@
       <tbody id="pct"></tbody></table>
 
       <p class="qhead" style="margin-top:26px">What drives the odds</p>
-      <p class="muted">50,000 paths, 16 forces: the EGP (each devaluation re-arms the margin), the export-rebate program, US tariffs on ~a third of sales, the working-capital cycle, polypropylene/oil costs and Red Sea freight. Details in the <a href="method.html">methodology</a>.</p>
+      <p class="muted">50,000 paths, 16 forces: the CBE facility-cost path (24.0% observed effective → a norm-built 15% terminal), NWC normalisation speed (66.4% → 54% of revenue), the EDA pricing regime unwinding, USD-linked API costs, and the risk of a further EGP step-devaluation — Egypt has devalued five times since 2016, several by 14–45% in a single move, so this is modelled as a recurring risk, not a rare one-off. Details in the <a href="method.html">methodology</a>.</p>
     </div>
   </details>
 
