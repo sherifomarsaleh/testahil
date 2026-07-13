@@ -1,5 +1,5 @@
 # TESTAHIL — Standing Research Protocol
-### Updated 13 July 2026 (rev. 2) — terminal growth · beta · Ke/Kd/WACC · engine-reconciliation
+### Updated 13 July 2026 (rev. 3) — terminal growth · beta · Ke/Kd/WACC · engine-reconciliation · maximum-history calibration
 
 This supersedes the 12-July text and the first 13-July revision. Changes new in **rev. 2** are marked
 **[NEW 13-Jul r2]**; the same-day **[NEW 13-Jul]**, **[NEW 12-Jul]** and **[NEW 11-Jul]** markers are
@@ -133,6 +133,29 @@ incumbent's −0.0017). Tested honestly leave-one-name-out on two markets, it **
 (UAE +0.0021 vs MLE's +0.0032; Saudi −0.0011 vs +0.0008). **It overfits. REJECTED — do not
 revive.** What the exercise established was that the incumbent *configs* were stale, not that the
 *procedure* was wrong.
+
+### [NEW 13-Jul] MAXIMUM AVAILABLE HISTORY — standing rule, decided against a real alternative
+
+**Always calibrate on the maximum available history for a market — 5, 10, 15 years, whatever the
+raw OHLC covers — never carve out a shorter "post-shock" or "current regime" sub-period as the
+production fit.** This was tested, not asserted: Sherif proposed a genuine two-model design for
+Egypt (full 2016→ history vs. post-1-Apr-2024-float only), reasoning that a shorter, calmer window
+would be too naive to price a market where devaluation, rate spikes and political shocks recur.
+
+Both regimes were fit and simulated on CLHO (the pilot name, per his instruction to test on one
+stock before adopting anything as a procedure) before either was accepted. Result: the two cones
+were **not meaningfully different** — median identical at every horizon, and even the tails only
+diverged by single-digit percentages, because Egypt's variance is driven by more than the
+devaluation calendar (political risk, regional geopolitics, rate policy all load onto the same
+tail whether or not a float happened in the sample window). A shorter "calm" window narrows the
+cone without actually removing the risk that makes Egypt Egypt — it just removes some of the
+*evidence* of that risk from the fit. Conclusion, confirmed independently of (and consistent
+with) the 2022-03-21 break-point already adopted market-wide: **more history is better history**
+for this market, and by extension the same logic applies to every other covered market — a
+shorter window should never be adopted merely because it is calmer or produces a tighter-looking
+cone. The corresponding two-regime engine build (dual `MarketProfile.regimes`, both published
+side-by-side) was implemented, pilot-tested, and then **closed unmerged** on this evidence
+(PR #6).
 
 ---
 
