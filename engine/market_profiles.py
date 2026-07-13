@@ -35,11 +35,36 @@ CI to sit entirely below zero ROBUSTLY across block sizes {2,3,4} (10k draws,
 recorded as PARITY with a flag, reviewed at the name's next live grade.
 (ALINMA is the current boundary case.)
 """
-from dataclasses import dataclass, field
-from typing import Optional, List, Tuple
+from dataclasses import dataclass, field, replace
+from typing import Dict, Optional, List, Tuple
 import pandas as pd
 
 Sched = List[Tuple[str, float]]  # [(effective_date_iso, annual_rate_decimal)]
+
+
+@dataclass
+class Regime:
+    """A calibration regime: one market, one set of assumptions about what history counts.
+
+    Adopted 13-Jul-2026 (Sherif). Egypt is a market where political turmoil, regional
+    geopolitics, sudden devaluations and interest-rate spikes are the ORDER OF THE DAY,
+    not the exception. A single cone cannot honestly answer both of the questions a
+    reader actually has:
+
+        "What if Egypt keeps doing what Egypt does?"     -> the FULL-history regime
+        "What if the current calm holds?"                -> the CURRENT regime
+
+    So we fit BOTH and publish BOTH. The gap between them IS the information: it is the
+    price of assuming the shocks are over. Neither is 'the' answer, and pretending one
+    of them is would be the dishonest move.
+    """
+    key: str
+    label: str
+    blurb: str
+    breaks: List[str] = field(default_factory=list)
+    nu: Optional[float] = None
+    width_cal: float = 1.0
+    fit_meta: str = ""
 
 
 @dataclass
@@ -58,6 +83,26 @@ class MarketProfile:
     fit_meta: str = ""               # provenance of the (nu, width_cal) fit
     breaks: List[str] = field(default_factory=list)
     notes: str = ""
+    regimes: Dict[str, "Regime"] = field(default_factory=dict)
+    primary_regime: Optional[str] = None
+
+    def for_regime(self, key: Optional[str]):
+        """Return this profile with a regime's breaks/nu/width_cal swapped in.
+
+        Everything downstream — apply_breaks(), backtest_v3(), mc_v3() — reads
+        profile.breaks / profile.nu / profile.width_cal, so swapping them here means
+        the whole engine runs a regime with ZERO further changes. No branching, no
+        regime-aware special cases scattered through the code.
+        """
+        if not key or key not in self.regimes:
+            return self
+        rg = self.regimes[key]
+        return replace(self, breaks=rg.breaks, nu=rg.nu, width_cal=rg.width_cal)
+
+    def regime_keys(self):
+        """Every regime to fit/publish. A market with no regimes declared behaves
+        exactly as before (single implicit regime = the profile itself)."""
+        return list(self.regimes.keys()) if self.regimes else [None]
 
     def carry_rate(self, date) -> float:
         d = pd.Timestamp(date)
@@ -178,6 +223,57 @@ EGYPT = MarketProfile(
     # A cone that is too narrow during a devaluation is the failure mode that loses money,
     # and the lower headline number is the more honest one.
     breaks=["2016-11-03", "2022-03-21"],
+    # ---------------- TWO REGIMES, BOTH PUBLISHED (13-Jul-2026, Sherif) ----------------
+    # "Egypt is a country where political turmoil, geopolitical uncertainty in the region,
+    #  and currency sudden devaluation and interest rate spikes are the order of the day."
+    #
+    # That is not a caveat, it is the design brief. A single cone has to silently pick one
+    # of two answers, and both are legitimate questions a reader actually asks:
+    #
+    #   FULL    -> "What if Egypt keeps doing what Egypt does?"   Every devaluation, rate
+    #              spike and shock since the 2016 float is in the sample. Fat tail, wide cone.
+    #   CURRENT -> "What if the current calm holds?"              From 1-Apr-2024, after the
+    #              March-2024 float. The pound still moves, but nothing like a step-devaluation.
+    #
+    # We fit BOTH and publish BOTH. THE GAP BETWEEN THEM IS THE INFORMATION: it is the price
+    # of assuming the shocks are over. Averaging them into one number would destroy exactly
+    # the thing worth knowing.
+    #
+    # Measured on the 29-name panel:
+    #                nu    cal   windows  panel        CLHO
+    #   FULL        4.0  0.958     508    PASS +1.7%   FAIL   -3.4%
+    #   CURRENT     5.0  0.850     232    PASS +3.9%   PARITY +0.2%
+    #
+    # Read that CLHO row carefully -- it is the whole case for doing this. Under the
+    # all-crises model our cone CANNOT beat a random walk on that name. Under the calm model
+    # it just about can. One number would have hidden that; two numbers make it the headline.
+    #
+    # `breaks` above stays as the PRIMARY (full) regime's cut for any legacy caller that
+    # reads profile.breaks directly. Regime-aware callers use profile.for_regime(key).
+    regimes={
+        "full": Regime(
+            key="full", label="Full history (2016 \u2192 today)",
+            blurb=("Every devaluation, rate spike and shock Egypt has actually delivered since "
+                   "the 2016 float \u2014 Mar-2022, Oct-2022, Jan-2023 and the big Mar-2024 float. "
+                   "This is the cone if Egypt keeps behaving like Egypt. It is wide on purpose."),
+            breaks=[], nu=4.0, width_cal=0.958,
+            fit_meta=("29 names, 508 windows, ~17/name. Panel PASS +0.0169 CI[+0.010,+0.023]. "
+                      "nu=4.0 (fat tail) and cal=0.958 are what the jumps put there. One name-level "
+                      "FAIL: CLHO -0.0336 -- the cone does not beat a carry-anchored random walk on "
+                      "that name once every crisis is in the sample. Published as a FAIL, not hidden.")),
+        "current": Regime(
+            key="current", label="Current regime (Apr 2024 \u2192 today)",
+            blurb=("From 1 April 2024, after the March-2024 float. The pound still fluctuates and "
+                   "rates still move, but there has been no step-devaluation. This is the cone if the "
+                   "current calm holds \u2014 narrower, and conditional on an assumption that Egypt "
+                   "has repeatedly falsified."),
+            breaks=["2024-04-01"], nu=5.0, width_cal=0.850,
+            fit_meta=("29 names, 232 windows, ~8/name. Panel PASS +0.0388 CI[+0.025,+0.052] -- higher "
+                      "skill than the full regime, but that is partly BECAUSE it is scored on a calm "
+                      "sample. Thinner tail (nu=5.0) and an 11%-narrower cone (cal=0.850). One FAIL: "
+                      "KABO -0.0135. CLHO recovers to PARITY +0.0017.")),
+    },
+    primary_regime="full",
     notes=("Literature: no EGX momentum; overreaction/short-term reversal supported "
            "(EGX event studies; Kuwait 1m reversal ~3.1%/mo t≈4.4 as GCC analogue). "
            "Signal sign/IC re-estimated on the 6-name pooled panel each cycle."),

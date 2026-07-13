@@ -316,6 +316,21 @@
 <details class="rds">
 <summary><span class="rds-t">Peer set &amp; risks</span><span class="rds-x" aria-hidden="true"></span></summary>
 <div class="rds-body">
+
+  <!-- ================= TWO REGIMES ================= -->
+  <section id="sec-regimes" class="anchor" style="padding-top:8px">
+    <div class="lens"><span class="lens-no">Two models, not one</span><span class="lens-name">What if Egypt keeps doing what Egypt does?</span></div>
+    <p class="lens-sub">Devaluation is not an interruption in Egypt — it is the pattern.</p>
+  </section>
+  <section style="padding-top:8px">
+    <div class="answer">
+      <p style="margin:0 0 12px">Egypt has devalued its currency in <b>2016, March 2022, October 2022, January 2023 and March 2024</b> — roughly once every two years, alongside political turmoil, regional conflict and sudden interest-rate spikes. So we do not run one simulation. We run <b>two</b>, and we publish both:</p>
+      <div id="regime-cards" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0"></div>
+      <p style="margin:14px 0 6px"><b>Here is the point.</b> The two models agree almost <em>exactly</em> about the middle — the same median, nearly the same likely range. They part company in the <b>tail</b>. And that is right, because a devaluation <em>is</em> a tail event.</p>
+      <table class="tbl" id="regime-tail" style="margin-top:10px"></table>
+      <p class="foot" style="margin-top:10px">The gap between those two columns is the <b>price of assuming the shocks are over</b>. We do not average them — averaging would destroy the only thing worth knowing. The wider model is the default shown everywhere else on this page.</p>
+    </div>
+  </section>
   <section id="sec-peers" class="anchor" style="padding-top:8px">
     <div class="card">
       <p class="qhead">How it compares to the others we cover</p>
@@ -396,6 +411,39 @@ document.getElementById("touch").innerHTML=T.touch.map(r=>
  `<tr><td class="num">${r[0].toFixed(2)}</td><td class="num">${r[1]}%</td><td class="num">${r[2]}%</td></tr>`).join("");
 const pctRow=(lbl,d)=>`<tr><td>${lbl}</td><td class="num">${F(d.p5)}</td><td class="num">${F(d.p25)}</td><td class="num">${F(d.p50)}</td><td class="num">${F(d.p75)}</td><td class="num">${F(d.p95)}</td></tr>`;
 document.getElementById("pct").innerHTML=pctRow("In 1 month",T.dist.t20)+pctRow("In 3 months",T.dist.t60);
+
+/* ---- two regimes ---- */
+(function(){
+  const R = T.dist && T.dist.regimes;
+  if(!R) return;
+  const pc = x => (x*100).toFixed(x<0.01?2:1)+"%";
+  const vBadge = v => v==="FAIL"
+      ? '<span style="color:#C4553B;font-weight:700">FAIL</span>'
+      : (v==="PASS" ? '<span style="color:#5E8C6A;font-weight:700">PASS</span>'
+                    : '<span style="color:#C0A45F;font-weight:700">'+v+'</span>');
+  document.getElementById("regime-cards").innerHTML = ["full","current"].map(k=>{
+    const r = R[k];
+    return `<div style="border:1px solid rgba(159,176,172,.35);border-radius:12px;padding:14px 16px;${k==="full"?"border-color:#C0A45F":""}">
+      <div style="font-weight:700;margin-bottom:2px">${r.label}${r.primary?' <span style="font-size:.72rem;color:#C0A45F">· shown by default</span>':''}</div>
+      <p style="font-size:.88rem;line-height:1.5;margin:6px 0 10px">${r.blurb}</p>
+      <table style="width:100%;font-size:.86rem;border-collapse:collapse">
+        <tr><td>Likely range (3mo)</td><td class="num">${F(r.t60.p25)} – ${F(r.t60.p75)}</td></tr>
+        <tr><td>Wide range (90%)</td><td class="num">${F(r.t60.p5)} – ${F(r.t60.p95)}</td></tr>
+        <tr><td>Does it beat a coin-flip?</td><td class="num">${vBadge(r.verdict)}</td></tr>
+      </table></div>`;
+  }).join("");
+  const f=R.full, c=R.current, rows=[
+    ["Median (the middle)",            F(f.t60.p50),  F(c.t60.p50), "identical"],
+    ["Worst 5% case",                  F(f.t60.p5),   F(c.t60.p5),  ""],
+    ["Worst 1% case",                  F(f.t60.p1),   F(c.t60.p1),  ""],
+    ["Chance of falling &gt;30%",      pc(f.crash.dn30), pc(c.crash.dn30), ""],
+    ["Chance of falling &gt;50%",      pc(f.crash.dn50), pc(c.crash.dn50), "<b>2× as likely</b>"],
+  ];
+  document.getElementById("regime-tail").innerHTML =
+    `<thead><tr><th></th><th class="num">If Egypt stays Egypt</th><th class="num">If the calm holds</th><th></th></tr></thead><tbody>`
+    + rows.map(r=>`<tr><td>${r[0]}</td><td class="num">${r[1]}</td><td class="num">${r[2]}</td><td class="foot">${r[3]}</td></tr>`).join("")
+    + `</tbody>`;
+})();
 
 // technical read
 if(T.tech){

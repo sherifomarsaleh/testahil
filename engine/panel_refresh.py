@@ -221,6 +221,71 @@ def rescore(raw_csv_path, profile, nu, cal):
 
 
 # ---------------------------------------------------------------- main entry
+def _fit_and_score(panel, names):
+    """Fit (nu, width_cal) on the pooled panel and score every name + the market.
+
+    Extracted 13-Jul-2026 so the regime loop and the primary path run the IDENTICAL
+    code. Previously this was inline in refresh_market; duplicating it for regimes
+    would have been the obvious way to let the two silently drift apart.
+    """
+    pooled_u = np.concatenate([panel[n]['u'].values for n in names])
+    nu_pool, s_pool = fit_nu_scale(pooled_u)
+    cal_pool = shrink_cal(s_pool)
+
+    per_name = {}
+    for n in names:
+        r = panel[n]
+        if 'origin_idx' not in r.columns:
+            per_name[n] = dict(note="panel predates origin_idx — supply the raw CSV to rebuild")
+            continue
+        if len(names) >= 2:                      # leave-one-name-out cross-fit
+            u = np.concatenate([panel[m]['u'].values for m in names if m != n])
+            nu_l, s_l = fit_nu_scale(u); cal_l = shrink_cal(s_l)
+        else:
+            nu_l, cal_l = nu_pool, cal_pool
+        c = fast_rescore(r, nu_l, cal_l)
+        cb = r['crps_b'].values; spot = r['spot'].values
+        cn, cbn = c / spot, cb / spot
+        verd, detail = robust_verdict(cn, cbn)
+        per_name[n] = dict(
+            nu=(round(float(nu_l), 3) if nu_l < 200 else "Gaussian"),
+            width_cal=round(float(cal_l), 3),
+            skill=round(float(1 - cn.sum() / cbn.sum()), 4),
+            skill_raw_basis=round(float(1 - c.sum() / cb.sum()), 4),
+            verdict=verd,
+            ci_block2=[round(float(detail[2][0]), 3), round(float(detail[2][1]), 3)])
+
+    allc, allb, allc_r, allb_r, weights = [], [], [], [], {}
+    for n in names:
+        r = panel[n]
+        if 'origin_idx' not in r.columns:
+            continue
+        c = fast_rescore(r, nu_pool, cal_pool)
+        cb = r['crps_b'].values; spot = r['spot'].values
+        allc.append(c / spot); allb.append(cb / spot)
+        allc_r.append(c); allb_r.append(cb)
+        weights[n] = float((cb / spot).sum())
+    ac, ab = np.concatenate(allc), np.concatenate(allb)
+    lo, hi, market_verdict = verdict_ci(ac, ab, block=6)
+    acr, abr = np.concatenate(allc_r), np.concatenate(allb_r)
+    tot = sum(weights.values()) or 1.0
+    top_name = max(weights, key=weights.get) if weights else None
+
+    return dict(
+        panel_names=names, windows=len(pooled_u),
+        nu=(round(float(nu_pool), 3) if nu_pool < 200 else "Gaussian"),
+        width_cal=round(float(cal_pool), 3),
+        mle_scale=round(float(s_pool), 3),
+        market_skill=round(float(1 - ac.sum() / ab.sum()), 4),
+        market_skill_raw_basis=round(float(1 - acr.sum() / abr.sum()), 4),
+        market_ci90=[round(float(lo), 3), round(float(hi), 3)],
+        market_verdict=market_verdict,
+        top_name_weight_share=(round(weights[top_name] / tot, 3) if top_name else None),
+        top_name=top_name,
+        per_name=per_name,
+    )
+
+
 def refresh_market(market, new_csvs, raw_csv_lookup, update_registry=True):
     """market: profile code, e.g. 'SA'
     new_csvs: dict {name: raw_csv_path} for names touched THIS session
@@ -241,6 +306,7 @@ def refresh_market(market, new_csvs, raw_csv_lookup, update_registry=True):
     profile = PROFILES[market]
     os.makedirs(PANELS_DIR, exist_ok=True)
     hashes = _load_hashes()
+    _regime_keys = profile.regime_keys()
 
     # 1. rebuild ONLY the panels whose raw CSV actually changed (content hash).
     #    This is what makes posting one stock cheap: 1 rebuild, not N.
@@ -256,7 +322,29 @@ def refresh_market(market, new_csvs, raw_csv_lookup, update_registry=True):
 
     # 2. pool 'u' across the FULL current panel (old + new), break-filtered
     names = sorted(set(existing_panel_names(market)) | set(new_csvs))
-    panel = {n: apply_breaks(pd.read_csv(panel_path(market, n)), profile) for n in names}
+    _raw_panel = {n: pd.read_csv(panel_path(market, n)) for n in names}
+
+    # ---- REGIME LOOP (13-Jul-2026). A market may declare several calibration regimes;
+    # each is a different answer to "what history counts". Panels are rebuilt ONCE (they
+    # hold full history) and each regime just filters them differently at read time.
+    _regime_fits = {}
+    for _rk in _regime_keys:
+        _rp = profile.for_regime(_rk)
+        _rpanel = {n: apply_breaks(_raw_panel[n].copy(), _rp) for n in names}
+        _rnames = [n for n in names if len(_rpanel[n]) > 0]
+        if not _rnames:
+            continue
+        _rfit = _fit_and_score(_rpanel, _rnames)
+        if _rk is not None:
+            rg = profile.regimes[_rk]
+            _rfit.update(regime=_rk, regime_label=rg.label, regime_blurb=rg.blurb,
+                         breaks=list(rg.breaks))
+            _regime_fits[_rk] = _rfit
+
+    # the PRIMARY regime drives the top-level (backward-compatible) fields
+    _primary = profile.primary_regime or (_regime_keys[0] if _regime_keys[0] else None)
+    profile = profile.for_regime(_primary)
+    panel = {n: apply_breaks(_raw_panel[n].copy(), profile) for n in names}
     names = [n for n in names if len(panel[n]) > 0]
     pooled_u = np.concatenate([panel[n]['u'].values for n in names])
     nu_pool, s_pool = fit_nu_scale(pooled_u)
@@ -328,6 +416,9 @@ def refresh_market(market, new_csvs, raw_csv_lookup, update_registry=True):
         signal_active=profile.signal_active,
         per_name=per_name,
     )
+    if _regime_fits:
+        result['primary_regime'] = _primary
+        result['regimes'] = _regime_fits
 
     if update_registry:
         _update_registry(market, result)
