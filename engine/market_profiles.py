@@ -141,6 +141,7 @@ EGYPT = MarketProfile(
         "positive, CI[0.006,0.207] -- straddles the boundary, not a sign flip), which is why the "
         "materiality gate correctly stopped for review rather than auto-committing. Market panel: "
         "PASS +0.0259 CI[0.017,0.036], materially the same as pre-CLHO."),
+    breaks=["2016-11-03", "2022-03-21", "2023-01-11"],
     notes=("Literature: no EGX momentum; overreaction/short-term reversal supported "
            "(EGX event studies; Kuwait 1m reversal ~3.1%/mo t≈4.4 as GCC analogue). "
            "Signal sign/IC re-estimated on the 6-name pooled panel each cycle."),
