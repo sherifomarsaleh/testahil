@@ -31,7 +31,8 @@ const TICKERS = {
     files: {
       study: "files/RMDA_Valuation_Study_13-07-2026_public.docx?v=20260713c",
       model: "files/RMDA_Valuation_Model_13072026_public.xlsx?v=20260713c",
-      pdf:   "files/RMDA_Valuation_Study_13-07-2026_public.pdf?v=20260713c"
+      pdf:   "files/RMDA_Valuation_Study_13-07-2026_public.pdf?v=20260713c",
+      biblio:"files/RMDA_Source_Register_13-07-2026.docx?v=20260713c"
     }
   },
   DEWA: {

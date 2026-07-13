@@ -1,8 +1,16 @@
 # TESTAHIL — Standing Research Protocol
-### Updated 11 July 2026 — the continuous-learning release
+### Updated 13 July 2026 (rev. 2) — terminal growth · beta · Ke/Kd/WACC · engine-reconciliation
 
-This supersedes the 10-July text. Changes are marked **[NEW 11-Jul]**. Everything not
-marked is unchanged and still binding.
+This supersedes the 12-July text and the first 13-July revision. Changes new in **rev. 2** are marked
+**[NEW 13-Jul r2]**; the same-day **[NEW 13-Jul]**, **[NEW 12-Jul]** and **[NEW 11-Jul]** markers are
+retained for provenance. Everything not marked is unchanged and still binding.
+
+**Rev. 2 adds two procedures, both adopted from live failures caught in the RMDA build:**
+a **Ke/Kd/WACC standing procedure** (the discount rate is a sliding schedule, not a flat number; the
+sovereign double-count is removed; the terminal anchor is norm-built; and a Kd-integrity gate now blocks
+the specific error that understated Rameda's cost of debt by 350bp), and an **engine-reconciliation rule**
+(a study's Step-0 must reproduce the committed production fit exactly — enforced by assertion, after a
+study script was found silently scoring windows production excludes).
 
 ---
 
@@ -56,6 +64,13 @@ the same post-break windows) *and* narrows the cone (0.972 → 0.909).
 **Open gap, honestly flagged:** the engine's *per-origin volatility estimation* inside mc_v3 is
 still not break-aware. Fixing that would move every published distribution and is a deliberate,
 separate decision.
+
+**[NEW 13-Jul r2] The filter is a PRODUCTION rule, and a study script that does not apply it is
+WRONG — see the engine-reconciliation rule below.** This was not hypothetical: RMDA's study script
+scored all 22 windows, including 9 origins before Egypt's 2023-01-11 break, and reported skill
++1.7% / **PARITY**. Production, applying the filter, scored 13 post-break windows and reported
++2.8% / **robust PASS**. The study was understating its own name, and the error was invisible
+because both numbers looked plausible.
 
 **Verdicts.** Three-way and pooled. The name's own bootstrap CI gives PASS/PARITY/FAIL as a
 diagnostic; the **market-panel pooled CI is the standing gate**. Proceed if the market panel is
@@ -171,6 +186,254 @@ reached `main` on 11-Jul and left the engine unloadable while a digit-only regex
 
 ---
 
+## [NEW 12-Jul] THE CODE-FIRST RULE — QC gate v2.2 (items n, o, p)
+
+**No financial arithmetic outside executed code.** Every figure that reaches a delivered study
+must originate in an executed, asserting compute script — SOTP aggregation, DCF discounting,
+bridge algebra, and multiples are never performed in the narrative layer. Adopted 12-Jul-2026 as
+the single compatible element of an external QC-architecture prompt; the remainder of that prompt
+was rejected on standing rules (its GBM cone is exactly the Step-0 null benchmark, its "Headline
+Verdict" breaches the no-rating rule, its third-party identity breaches the branding rule, and a
+flat 10–25% holdco discount is inferior to disciplined-SOTP).
+
+**compute.py structure (enforced per study):**
+- **INPUTS** — every hardcoded figure is a four-field dict `{value, source, date, ring}`.
+  A bare numeral in the inputs block fails the build.
+- **CALC** — unchanged from current practice.
+- **ASSERT** — the script raises (no study_numbers.json is emitted) unless: the EV→equity bridge
+  closes exactly; terminal value as a % of EV is computed and printed (mechanizing device A-7 /
+  gate item (g)'s disclosure); implied fair-value-to-spot sits inside a stated plausibility band;
+  and net debt and NCI carry the correct signs into the bridge.
+
+**Builders** (docx_*, build_xlsx*) read study_numbers.json exclusively; a numeral typed directly
+into a builder script is an item-(n) fail.
+
+**QC gate v2.2 — three rows appended after the existing (a)–(m):**
+- **(n) Numeric traceability.** At the existing item-(l) cell-by-cell diff, every number in the
+  delivered Word/Excel traces to a study_numbers.json key or a Sweep-Register-logged source.
+  Evidence: the trace log with zero orphans.
+- **(o) Assertion log.** compute.py's printed ASSERT output pasted verbatim as evidence.
+- **(p) Provenance completeness.** The INPUTS block validates four-fields-complete and
+  cross-checks against Sweep-Register IDs (extends item (m)'s register validation to the
+  compute layer).
+
+**Lettering note (correction on the record):** the session that adopted this rule initially
+labeled the new items (j)–(l), working from a stale memory summary describing the gate as
+"(a)–(i)". The gate has in fact been (a)–(m) since 11-Jul — (j) probability-read table,
+(k) driver-ledger logging, (l) script-reconciliation diff, (m) Sweep-Register validation — so
+the code-first items are (n)–(p). Verified against the master file before adoption, per the
+standing corrections pattern.
+
+---
+
+## [NEW 13-Jul] TERMINAL GROWTH — standing procedure
+
+Adopted from the CLHO (Cleopatra Hospitals Group) terminal-value stress test. Extends QC gate
+items (d)/(g). Applies to **every future study with a perpetuity/terminal-value component**.
+
+**What triggered this.** The delivered CLHO study assumed an 11% terminal growth rate funded by a
+reinvestment rate of only 16.5% of NOPAT. Back-solving `g = ROIC × RR` for the implied return
+(`ROIC = g ÷ RR`) gives an implied terminal ROIC of **67%** — roughly 4x what the study's own
+EV-per-bed lens says a new hospital bed actually earns (~16%), and roughly 4x the return realized
+in the one clean historical stable year (17.0% ROIC, 2022). The terminal value was not wrong
+because 11% was too high in isolation; it was wrong because growth was let through without paying
+for the capital it required.
+
+**1. Default terminal g grid.** Center **5%**, sensitized **3% / 4% / 5% / 6% / 7%**, crossed
+against a WACC range — never a single point. 5% is the standard analyst convention for
+well-established Egyptian/EM companies once currency turbulence and hyperinflation have passed.
+This **replaces** any company-specific macro-derived point estimate (e.g. "CBE inflation target +
+real growth") as the default center. Deviating from 5% must be **explicitly argued**, not asserted.
+
+**2. Mandatory historical reconciliation table**, built as far back as reliable financials allow:
+
+| Year | Capex | Capex/EBITDA | Character | NOPAT | Actual NOPAT growth | ROIC | RR | Implied g (ROIC×RR) |
+|---|---|---|---|---|---|---|---|---|
+
+- **Character** = stable (self-funded, RR<100%) or burst (debt-funded capacity step-change, RR>100%).
+- Flag any year sourced from an aggregator rather than the company's own filings.
+- ROIC = NOPAT ÷ average invested capital. RR = net reinvestment (capex − D&A, ex-ΔWC) ÷ NOPAT.
+
+**3. Two check numbers, stated explicitly in every report:**
+- **(a)** actual historical NOPAT CAGR over the maximum available look-back window, dated and sourced.
+- **(b)** the ROIC×RR-implied g computed **only from stable years** — burst/debt-funded years
+  (RR>100%) are excluded, with the reason stated: they reflect debt-funded capacity step-changes,
+  not steady-state reinvestment, and including them contaminates the identity (a reinvestment rate
+  above 100% is financed by new debt, not retained profit, and produces an implied ROIC or implied
+  g with no economic meaning).
+
+**4. Framing rule.** Historical actual growth, however high, belongs in the **explicit forecast
+years**, describing a specific, dated, disclosed capacity/growth event. The **terminal** rate
+describes what happens *after* that story ends and carries a hard, non-negotiable ceiling: it
+cannot exceed the long-run nominal growth of the economy the company sits in, else the company
+mathematically overtakes total GDP within a finite, checkable horizon. **Show this crossover-year
+math** whenever a historical CAGR is floated as a terminal candidate — this is arithmetic
+necessity, not a modeling assumption, and is the strongest single disqualifier for an inflated
+terminal g.
+
+**5. QC consequence.** A terminal-growth section with no WACC×g grid (center 5%, range 3–7%) +
+historical reconciliation table + the two stated check numbers shown as receipts is a **QC FAIL**
+going forward.
+
+---
+
+## [NEW 13-Jul] BETA — standing procedure
+
+Adopted from the CLHO WACC beta stress test. Extends the existing `RegressionBetaAttempt`
+usability gate (n≥24, R²≥5%, SE(β)<|β|) in `wacc_builder.py`. Applies to **every future study**
+that uses a regression beta in the cost-of-equity build.
+
+**What triggered this.** CLHO's regression beta was 0.446 (weekly vs. a 27-name equal-weight EGX
+composite, n=103), with R² = 5.9% and SE(β) = 0.177 — clearing the usability gate, but only just.
+The implied 90% confidence interval is roughly **[0.15, 0.74]**, a ~5x span top-to-bottom. The gate
+correctly allowed the regression instead of defaulting to 1.0; but a beta this weakly identified
+needs more than a bare point estimate reaching the report.
+
+**1. Report the full diagnostic triple, always.** n, R², and SE(β), plus the resulting confidence
+interval, next to the beta — never the point estimate alone.
+
+**2. Weak-instrument flag.** If R²<10% (within 2x the 5% floor) or the 90% CI (β ± 1.645×SE) spans
+more than 2x the point estimate: explicitly label the beta as **statistically weak / wide-CI**, and
+never restate it elsewhere in the narrative as if precise (never "beta of 0.446" without the
+qualifier, every time it's used to support a conclusion).
+
+**3. Mandatory beta sensitivity table**, spanning at minimum the 90% CI, plus fixed round anchors
+for cross-study comparability: **0.6 / 0.8 / 1.0 / 1.15 / 1.3**.
+
+**4. Plausibility cross-check** against **(a)** an unlevered/relevered peer or sector beta where
+available, and **(b)** a simple prior (defensive/staple ~0.6–0.9, cyclical/leveraged ~1.0–1.5). If
+the regression beta is a clear outlier vs both, state a plausible reason (thin trading, a managed
+currency peg dampening observed co-movement, index composition effects, a short listing history)
+rather than accepting it at face value.
+
+**5. No silent default to 1.0** — unchanged: only on a genuine gate failure (n<24, R²<5%, or
+SE(β)≥|β|), shown with the failed diagnostics that triggered it.
+
+**QC consequence.** A WACC/Ke section stating a beta without the diagnostic triple + CI, the
+weak-instrument flag where applicable, the sensitivity table, and the plausibility cross-check
+where the beta is an outlier, is a **QC FAIL** going forward.
+
+---
+
+## [NEW 13-Jul r2] KE / KD / WACC — standing procedure
+
+Adopted from the RMDA discount-rate stress test (a line-by-line reconciliation of the Testahil DCF
+against a published sell-side DCF on the same company). Governs the discount-rate construction in
+**every future study**. The prior flat-WACC and flat-two-stage conventions are **RETIRED as primary**.
+
+**What triggered this.** Three separate defects, all found in one study:
+1. A **single flat WACC** was applied to both the five explicit years and a perpetuity — which asserts
+   that Egypt's cost of capital never normalises, an implausible claim given the CBE's own published
+   disinflation path, and one the model's *own* `kd_path` (easing 23.0% → 16.0%) already contradicted
+   internally. The study was discounting at a rate its own interest-expense forecast said would fall.
+2. Ke stacked a full CDS-based country ERP **on top of an un-netted local-currency risk-free rate** —
+   double-charging Egypt's sovereign default risk, which is already the reason the EGP 10Y prints
+   22.55% rather than 4–5%.
+3. **Kd was taken as the midpoint of a disclosed contractual range** (15–25.27%, FS Note 20 → 20.5%)
+   instead of the rate the company actually pays. The paid rate, computed independently, was **24.0%**
+   (1Q26 interest ÷ average facilities) — a **350bp understatement** of the single input the whole
+   valuation is most convex to.
+
+**1. Sliding schedule — not flat, not two-stage-flat.** Each explicit year is discounted at **that
+year's own forward rate**, moving from the explicit-window WACC (Y1) to the terminal WACC (Y5). The
+terminal value is capitalised at the terminal WACC and discounted using the **identical cumulative
+factor as year 5's cash flow**. `WACC_TERM < WACC_EXP` is a **hard ASSERT**.
+
+**The error this exists to prevent — "two prices for one date."** The common sell-side construction
+discounts the explicit years at one rate and then brings the *terminal value alone* home at a much
+lower one. Measured on the RMDA comparison: a pound arriving 31-Dec-2030 as a forecast **cash flow**
+carried a discount factor of 0.410, while the same pound arriving the same day inside the **terminal
+value** carried 0.532 — a **30% premium for relabelling it**. That single inconsistency manufactured
+roughly EGP 1.0–1.3 of a EGP 5.35 target. One date, one price of time. Always.
+
+**2. The glide SHAPE is tied to `kd_path`, never invented separately.** Use `kd_path`'s own
+cumulative-progress fractions as the WACC glide fractions:
+
+    GLIDE_FRAC[i] = (kd_path[0] - kd_path[i]) / (kd_path[0] - kd_path[-1])
+    FWD[i]        = WACC_EXP - (WACC_EXP - WACC_TERM) * GLIDE_FRAC[i]
+
+Ke and Kd then normalise on **one** assumed central-bank easing calendar rather than two independent
+judgment calls. Because `kd_path` is typically front-loaded (bigger cuts early, tapering later), the
+WACC glide inherits that shape **by construction** — front-loading is not a second free parameter.
+
+**3. Explicit-window Ke — sovereign double-count removed.**
+
+    Ke_explicit = (rf − CDS_spread) + β × ERP_cds     ← PRIMARY
+    Ke_raw      =  rf              + β × ERP_cds      ← RETIRED, disclosed only for the audit trail
+
+**4. Terminal Ke/Kd — norm-built, never backed out of a price.** No terminal input is an observable
+quote; each is a named, arguable **house macro view**, disclosed as such:
+- **Terminal rf** = the central bank's *own stated* medium-term inflation target + a standard EM
+  real-rate convention (~5.5pp). Deliberately **not** a raw historical average that cannot be
+  re-verified live.
+- **Terminal Kd** = the market's long-run corporate-borrowing norm (Egypt: **14–16%**, midpoint 15%
+  absent a name-specific reason to deviate).
+- **Terminal ERP** = normalised **below** the currently-elevated crisis-era level; never held flat
+  into perpetuity.
+
+A terminal rate that is *reverse-engineered from a target price* is the sell-side's quietest lever
+and is prohibited outright.
+
+**5. THE KD-INTEGRITY GATE — mandatory, three hard ASSERTs.** A disclosed contractual rate *range's*
+midpoint is **NOT sufficient evidence** for Kd and may never be used as Kd on its own. Every study
+must show, as evidence rather than narrative:
+
+- **(i) Currency composition of the debt book**, sourced to the facility note — % local vs % foreign
+  currency, bank-by-bank where disclosed. A name with meaningful foreign-currency debt gets a
+  **currency-blended Kd**; a single-currency shortcut is a fail. *(RMDA: 100% EGP across all 11
+  facilities; the FX exposure sits in import payables and LC margins, not in debt — so no cheap-dollar
+  blend was available to lower it. The evidence cut **against** the valuation, which is exactly why it
+  must be produced rather than assumed.)*
+- **(ii) An INDEPENDENTLY computed effective rate** — interest expense ÷ average interest-bearing debt,
+  over **at least two periods** — cross-checked against the adopted Kd.
+- **(iii) Bounds:** Kd must sit **within 150bp** of the most recent effective-rate check, and may not
+  exceed the peak-year effective rate by more than **50bp**.
+
+All three raise. The build **fails**, it does not warn.
+
+**6. Mandatory sensitivity: an explicit-window × terminal-WACC grid**, in addition to the existing
+WACC × terminal-g grid, each anchor varied **independently** around its own base. This shows what the
+valuation needs *the economy* to do, not merely what growth rate the model needs.
+
+**7. QC consequence.** A WACC/Ke/Kd section without **(a)** the two-anchor schedule shown year-by-year
+(forward rate + cumulative discount factor), **(b)** the Kd-integrity evidence triple, **(c)** the
+glide-shape disclosure, and **(d)** the explicit × terminal WACC grid, is a **QC FAIL** going forward.
+
+---
+
+## [NEW 13-Jul r2] ENGINE RECONCILIATION — a study may not disagree with production
+
+Adopted after the RMDA publish, where a study script and the production engine were found to be
+scoring **different window sets** and therefore reporting **different verdicts** for the same name on
+the same day — PARITY in the study, robust PASS in the committed fit.
+
+**The rule.** A study's Step-0 block is not an independent re-derivation and is not free to use its
+own methodology. It must **reproduce the committed production fit**, and prove it:
+
+- Read the live fit **before** scoring: `engine/fitted_configs.json` and `engine/market_profiles.py`.
+  Never quote a fit from a document, from memory, or from a previous session.
+- Apply **every** production transform: `data_quality.clean_ohlc` → `backtest_v3` → **`apply_breaks`**
+  (the break filter) → **scale-normalisation** (`crps ÷ spot`) → `robust_verdict` on the *normalized*
+  series across bootstrap block sizes **{2, 3, 4}**.
+- **A hard ASSERT reconciling the study's recomputed skill and verdict to the committed
+  `fitted_configs.json` entry for that name.** The build fails if they diverge.
+
+**Two specific traps this closes**, both live in the RMDA script:
+- **Missing break filter** — 9 pre-break origins scored that production excludes (skill +1.7% vs the
+  true +2.8%; PARITY vs the true PASS).
+- **Wrong CI estimator** — the study used a *calendar*-block bootstrap on the **raw**,
+  price-denominated CRPS series; production uses a *moving*-block bootstrap on the **scale-normalized**
+  series with a robustness requirement across block sizes. Two different estimators silently answering
+  the same question differently.
+
+**Corollary — the site may never contradict the engine.** Before publishing, re-read the live fit. If
+a name has entered a panel since the study was built, its verdict, panel membership and (ν, width_cal)
+must be refreshed in the document **before** it goes to the site — a study that says "provisional,
+not yet in the panel" while the engine says "panel constituent, PASS" is a publication defect, not a
+harmless staleness.
+
+---
+
 ## UNCHANGED AND STILL BINDING
 
 - **Template:** match TMPV + its Excel exactly. Reference studies by class: EAND (operating-co),
@@ -206,3 +469,13 @@ reached `main` on 11-Jul and left the engine unloadable while a digit-only regex
    least-evidenced thing Testahil publishes, and it should not be presented with the same confidence
    as an EGX or GCC name.
 4. **UK and Brazil have no covered names**; their profiles are stubs.
+5. **[NEW 13-Jul r2] Sweep every existing study script for the same two Step-0 defects.** The
+   break-filter omission and the raw-basis CI estimator were found in RMDA's script; any study built
+   from the same lineage may carry them, and both bias a name's verdict **downward** (understating
+   skill, reporting PARITY where the engine says PASS). Every live study should be re-run under the
+   new engine-reconciliation assert and any divergence corrected on the record. Ledger rows already
+   published are **not** retro-edited — the append-only rule stands; corrections attach to the *next*
+   cycle.
+6. **[NEW 13-Jul r2] Retro-fit the Ke/Kd/WACC procedure to the live studies that predate it**
+   (EAND, ADCB, ALPHADHABI and the other names carrying a flat WACC). Each will move; none should
+   move silently.
