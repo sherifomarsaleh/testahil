@@ -469,13 +469,40 @@ harmless staleness.
    least-evidenced thing Testahil publishes, and it should not be presented with the same confidence
    as an EGX or GCC name.
 4. **UK and Brazil have no covered names**; their profiles are stubs.
-5. **[NEW 13-Jul r2] Sweep every existing study script for the same two Step-0 defects.** The
-   break-filter omission and the raw-basis CI estimator were found in RMDA's script; any study built
-   from the same lineage may carry them, and both bias a name's verdict **downward** (understating
-   skill, reporting PARITY where the engine says PASS). Every live study should be re-run under the
-   new engine-reconciliation assert and any divergence corrected on the record. Ledger rows already
-   published are **not** retro-edited — the append-only rule stands; corrections attach to the *next*
-   cycle.
-6. **[NEW 13-Jul r2] Retro-fit the Ke/Kd/WACC procedure to the live studies that predate it**
-   (EAND, ADCB, ALPHADHABI and the other names carrying a flat WACC). Each will move; none should
-   move silently.
+5. **[DONE 13-Jul r2 — sweep executed; 4 contradictions found and corrected]** Every covered name's
+   published calibration claim was run against the live production fit (65 names carry a fitted
+   verdict). **Four contradicted the site**, and they did not all fail in the same direction:
+   - **ALPHADHABI was OVER-CLAIMING** — the site described a 9-name UAE panel at ν=4 / width 1.07,
+     *a fit that no longer exists*, and called the name PARITY, "a calibrated distribution". Under the
+     live 14-name fit (ν=10, width 1.049) it is a **robust FAIL**: skill −1.2%, CI entirely below zero
+     at every block size. It had **no calibration disclosure on its coverage page at all**. Now carries
+     the FAIL and the illustrative-only framing. Diagnosis: **over-coverage, not mis-centring**
+     (50/80/90 = 0.69/0.81/0.94) — i.e. open item 1, the name-level `width_cal` problem, in the wild.
+   - **DIB, ISPH, KABO were UNDER-claiming** — all three publish "FAILED its calibration"; all three are
+     PARITY under the current fits. Labels corrected, **but the caution was deliberately retained**: all
+     three still carry *negative point estimates* (−0.15% / −4.2% / −0.02%), so the cone is not
+     demonstrably better than a random walk, merely not provably worse. **A classification technicality
+     is never used to upgrade a weak name.**
+   **Append-only was respected**: no registered forecast was retro-edited — every percentile and touch
+   probability is frozen as published and will be graded against exactly those numbers. Original note
+   text is *preserved* with a dated correction appended after it, so the record shows both what was said
+   and what was wrong with it. **Standing lesson: a verdict is not a fact you publish once — it is a
+   function of a fit that keeps moving, so the site must be re-reconciled against the engine on every
+   publish, not only when a study is built.**
+6. **[NEW 13-Jul r2, PRIORITY CORRECTED ON EVIDENCE] Retro-fit the Ke/Kd/WACC procedure to the
+   ~27 live studies that predate it.** The first draft of this item named the GCC reference studies
+   (EAND, ADCB, ALPHADHABI). **That was the wrong priority, and measuring it proved so:**
+   - **For GCC names the sliding schedule does nothing.** The AED is pegged to the USD and rf 4.30%
+     **is already at its long-run norm** — today *is* the terminal, so explicit = terminal and the glide
+     collapses to flat. Measured on EAND's published model: **+0.0%**.
+   - **What does bite in the GCC is the sovereign double-count fix**, and by more than intuition
+     suggests: netting UAE's ~40–55bp default spread out of rf lifts EAND's EV **+4% to +6%**, because
+     the WACC−g spread is only **5.1%** and **79% of EV is terminal**. In a low-rate model small rate
+     moves are not small.
+   - **The real exposure is EGYPT**, where both changes bite hard. Capitalising the terminal at a
+     norm-built ~18.8% instead of a flat ~29% lifts the terminal multiple from **4.2× to 7.3×**.
+     Measured on RMDA: the DCF lens moved **0.66 → 1.73 (+162%)**. **Every Egyptian DCF still on a flat
+     WACC is therefore materially understated**, and there are ~27 of them live.
+   **Order of work: Egypt first (highest impact, and the market the flat-WACC assumption is least
+   defensible in), GCC second (double-count fix only). Each name is a full pipeline rebuild — none of
+   these move silently, and none should be re-issued without the QC gate.**
