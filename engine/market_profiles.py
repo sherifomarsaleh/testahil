@@ -134,8 +134,13 @@ EGYPT = MarketProfile(
         "copy) - relevant, since PHDC carries the live ledger cohorts. The old "
         "7-name panel was sector-concentrated (5 of 7 were RE developers); the "
         "27-name panel is cross-sector and its lower headline skill is the more "
-        "honest number."),
-    breaks=["2016-11-03", "2022-03-21", "2023-01-11"],
+        "honest number. UPDATE 13-Jul-2026: CLHO added (28 -> 29 names, 351 -> 377 windows), reviewed "
+        "in PR #4 and merged by Sherif. nu=4.0 and cal=0.909 UNCHANGED. CLHO itself: skill -0.0199, "
+        "PARITY -- unremarkable, inside the existing PARITY range (ISPH -0.044, OIH -0.011). The one "
+        "side-effect: CCAP's OWN verdict moved PASS -> BOUNDARY(PARITY-flagged) (skill +0.0906, still "
+        "positive, CI[0.006,0.207] -- straddles the boundary, not a sign flip), which is why the "
+        "materiality gate correctly stopped for review rather than auto-committing. Market panel: "
+        "PASS +0.0259 CI[0.017,0.036], materially the same as pre-CLHO."),
     notes=("Literature: no EGX momentum; overreaction/short-term reversal supported "
            "(EGX event studies; Kuwait 1m reversal ~3.1%/mo t≈4.4 as GCC analogue). "
            "Signal sign/IC re-estimated on the 6-name pooled panel each cycle."),

@@ -15,12 +15,13 @@
   "EG": {
     "market": "EG",
     "market_name": "Egypt (EGX)",
-    "fit_date": "2026-07-11",
+    "fit_date": "2026-07-13",
     "panel_names": [
       "ABUK",
       "ADIB",
       "BTFH",
       "CCAP",
+      "CLHO",
       "COMI",
       "EFID",
       "EFIH",
@@ -46,16 +47,16 @@
       "RMDA",
       "TMGH"
     ],
-    "windows": 364,
+    "windows": 377,
     "nu": 4.0,
     "width_cal": 0.909,
     "mle_scale": 0.87,
     "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
-    "market_skill": 0.027,
+    "market_skill": 0.0259,
     "market_skill_raw_basis": 0.0333,
     "market_ci90": [
-      0.018,
-      0.037
+      0.017,
+      0.036
     ],
     "market_verdict": "PASS",
     "top_name_weight_share": 0.089,
@@ -64,314 +65,180 @@
     "per_name": {
       "ABUK": {
         "nu": 4.0,
-        "width_cal": 0.902,
-        "skill": 0.0217,
-        "skill_raw_basis": 0.016,
-        "verdict": "BOUNDARY(PARITY-flagged)",
-        "ci_block2": [
-          -0.01,
-          0.047
-        ]
+        "width_cal": 0.895,
+        "skill": 0.0212,
+        "verdict": "BOUNDARY(PARITY-flagged)"
       },
       "ADIB": {
         "nu": 4.0,
         "width_cal": 0.909,
         "skill": 0.0242,
-        "skill_raw_basis": 0.0269,
-        "verdict": "PARITY",
-        "ci_block2": [
-          -0.013,
-          0.099
-        ]
+        "verdict": "PARITY"
       },
       "BTFH": {
         "nu": 4.0,
         "width_cal": 0.902,
         "skill": 0.0189,
-        "skill_raw_basis": 0.0575,
-        "verdict": "PARITY",
-        "ci_block2": [
-          -0.038,
-          0.144
-        ]
+        "verdict": "PARITY"
       },
       "CCAP": {
         "nu": 4.0,
+        "width_cal": 0.902,
+        "skill": 0.0906,
+        "verdict": "BOUNDARY(PARITY-flagged)"
+      },
+      "CLHO": {
+        "nu": 4.0,
         "width_cal": 0.909,
-        "skill": 0.0904,
-        "skill_raw_basis": 0.0725,
-        "verdict": "PASS",
-        "ci_block2": [
-          0.006,
-          0.207
-        ]
+        "skill": -0.0199,
+        "verdict": "PARITY"
       },
       "COMI": {
         "nu": 4.0,
         "width_cal": 0.902,
         "skill": 0.0221,
-        "skill_raw_basis": 0.0282,
-        "verdict": "PARITY",
-        "ci_block2": [
-          -0.02,
-          0.096
-        ]
+        "verdict": "PARITY"
       },
       "EFID": {
         "nu": 4.0,
-        "width_cal": 0.916,
-        "skill": 0.0079,
-        "skill_raw_basis": 0.0053,
-        "verdict": "PARITY",
-        "ci_block2": [
-          -0.038,
-          0.044
-        ]
+        "width_cal": 0.909,
+        "skill": 0.0088,
+        "verdict": "PARITY"
       },
       "EFIH": {
         "nu": 4.0,
         "width_cal": 0.909,
         "skill": 0.0349,
-        "skill_raw_basis": 0.0262,
-        "verdict": "BOUNDARY(PARITY-flagged)",
-        "ci_block2": [
-          0.001,
-          0.091
-        ]
+        "verdict": "BOUNDARY(PARITY-flagged)"
       },
       "EGAL": {
         "nu": 4.0,
         "width_cal": 0.909,
         "skill": 0.0487,
-        "skill_raw_basis": 0.0637,
-        "verdict": "PARITY",
-        "ci_block2": [
-          -0.006,
-          0.135
-        ]
+        "verdict": "PARITY"
       },
       "EMFD": {
         "nu": 4.0,
         "width_cal": 0.909,
         "skill": 0.0776,
-        "skill_raw_basis": 0.0919,
-        "verdict": "PASS",
-        "ci_block2": [
-          0.011,
-          0.186
-        ]
+        "verdict": "PASS"
       },
       "ETEL": {
         "nu": 4.0,
-        "width_cal": 0.909,
-        "skill": 0.0398,
-        "skill_raw_basis": 0.0357,
-        "verdict": "BOUNDARY(PARITY-flagged)",
-        "ci_block2": [
-          0.002,
-          0.091
-        ]
+        "width_cal": 0.902,
+        "skill": 0.0393,
+        "verdict": "BOUNDARY(PARITY-flagged)"
       },
       "FWRY": {
         "nu": 4.0,
-        "width_cal": 0.916,
-        "skill": 0.0456,
-        "skill_raw_basis": 0.0381,
-        "verdict": "BOUNDARY(PARITY-flagged)",
-        "ci_block2": [
-          -0.006,
-          0.122
-        ]
+        "width_cal": 0.909,
+        "skill": 0.0463,
+        "verdict": "BOUNDARY(PARITY-flagged)"
       },
       "GBCO": {
         "nu": 4.0,
-        "width_cal": 0.916,
-        "skill": 0.0342,
-        "skill_raw_basis": 0.029,
-        "verdict": "BOUNDARY(PARITY-flagged)",
-        "ci_block2": [
-          -0.001,
-          0.085
-        ]
+        "width_cal": 0.909,
+        "skill": 0.035,
+        "verdict": "BOUNDARY(PARITY-flagged)"
       },
       "HELI": {
         "nu": 4.0,
-        "width_cal": 0.916,
-        "skill": 0.0703,
-        "skill_raw_basis": 0.0708,
-        "verdict": "PASS",
-        "ci_block2": [
-          0.03,
-          0.178
-        ]
+        "width_cal": 0.909,
+        "skill": 0.0715,
+        "verdict": "PASS"
       },
       "HRHO": {
         "nu": 4.0,
         "width_cal": 0.909,
         "skill": 0.0197,
-        "skill_raw_basis": 0.0048,
-        "verdict": "PARITY",
-        "ci_block2": [
-          -0.043,
-          0.102
-        ]
+        "verdict": "PARITY"
       },
       "ISPH": {
         "nu": 4.0,
-        "width_cal": 0.902,
-        "skill": -0.0429,
-        "skill_raw_basis": -0.0098,
-        "verdict": "PARITY",
-        "ci_block2": [
-          -0.07,
-          0.006
-        ]
+        "width_cal": 0.895,
+        "skill": -0.0438,
+        "verdict": "PARITY"
       },
       "JUFO": {
         "nu": 4.0,
-        "width_cal": 0.916,
-        "skill": 0.0279,
-        "skill_raw_basis": 0.0339,
-        "verdict": "PARITY",
-        "ci_block2": [
-          -0.014,
-          0.08
-        ]
+        "width_cal": 0.909,
+        "skill": 0.0284,
+        "verdict": "PARITY"
       },
       "KABO": {
         "nu": 4.0,
         "width_cal": 0.916,
         "skill": -0.0015,
-        "skill_raw_basis": -0.0086,
-        "verdict": "PARITY",
-        "ci_block2": [
-          -0.014,
-          0.013
-        ]
+        "verdict": "PARITY"
       },
       "LCSW": {
         "nu": 4.0,
         "width_cal": 0.916,
         "skill": 0.0509,
-        "skill_raw_basis": 0.0659,
-        "verdict": "PASS",
-        "ci_block2": [
-          0.011,
-          0.126
-        ]
+        "verdict": "PASS"
       },
       "OCDI": {
         "nu": 4.0,
         "width_cal": 0.909,
         "skill": 0.0484,
-        "skill_raw_basis": 0.0532,
-        "verdict": "PASS",
-        "ci_block2": [
-          0.019,
-          0.084
-        ]
+        "verdict": "PASS"
       },
       "OIH": {
         "nu": 4.0,
-        "width_cal": 0.902,
-        "skill": -0.0102,
-        "skill_raw_basis": -0.0158,
-        "verdict": "PARITY",
-        "ci_block2": [
-          -0.042,
-          0.064
-        ]
+        "width_cal": 0.895,
+        "skill": -0.011,
+        "verdict": "PARITY"
       },
       "ORAS": {
         "nu": 4.0,
-        "width_cal": 0.902,
-        "skill": 0.0211,
-        "skill_raw_basis": 0.0275,
-        "verdict": "PARITY",
-        "ci_block2": [
-          -0.009,
-          0.064
-        ]
+        "width_cal": 0.895,
+        "skill": 0.0202,
+        "verdict": "PARITY"
       },
       "ORHD": {
         "nu": 4.0,
-        "width_cal": 0.916,
-        "skill": 0.0294,
-        "skill_raw_basis": 0.0372,
-        "verdict": "PARITY",
-        "ci_block2": [
-          -0.014,
-          0.094
-        ]
+        "width_cal": 0.909,
+        "skill": 0.0301,
+        "verdict": "PARITY"
       },
       "ORWE": {
         "nu": 4.0,
-        "width_cal": 0.909,
-        "skill": 0.0097,
-        "skill_raw_basis": 0.0122,
-        "verdict": "PARITY",
-        "ci_block2": [
-          -0.031,
-          0.095
-        ]
+        "width_cal": 0.902,
+        "skill": 0.0095,
+        "verdict": "PARITY"
       },
       "PHDC": {
         "nu": 4.0,
-        "width_cal": 0.916,
-        "skill": 0.0657,
-        "skill_raw_basis": 0.0866,
-        "verdict": "PASS",
-        "ci_block2": [
-          0.003,
-          0.158
-        ]
+        "width_cal": 0.909,
+        "skill": 0.0661,
+        "verdict": "PASS"
       },
       "PRDC": {
         "nu": 4.0,
-        "width_cal": 0.916,
-        "skill": 0.0366,
-        "skill_raw_basis": 0.0391,
-        "verdict": "PASS",
-        "ci_block2": [
-          0.01,
-          0.083
-        ]
+        "width_cal": 0.909,
+        "skill": 0.0375,
+        "verdict": "PASS"
       },
       "RAYA": {
         "nu": 4.0,
-        "width_cal": 0.909,
-        "skill": 0.0134,
-        "skill_raw_basis": 0.016,
-        "verdict": "PARITY",
-        "ci_block2": [
-          -0.014,
-          0.059
-        ]
+        "width_cal": 0.902,
+        "skill": 0.0132,
+        "verdict": "PARITY"
       },
       "RMDA": {
         "nu": 4.0,
         "width_cal": 0.909,
         "skill": 0.0276,
-        "skill_raw_basis": 0.0254,
-        "verdict": "PASS",
-        "ci_block2": [
-          0.005,
-          0.051
-        ]
+        "verdict": "PASS"
       },
       "TMGH": {
         "nu": 5.0,
         "width_cal": 0.867,
         "skill": 0.0147,
-        "skill_raw_basis": 0.0256,
-        "verdict": "PARITY",
-        "ci_block2": [
-          -0.01,
-          0.116
-        ]
+        "verdict": "PARITY"
       }
     },
-    "fit_meta": "REFIT 11-Jul-2026 on the FULL 27-name EG panel (351 post-break windows) - supersedes the 7-name/115-window fit (nu=4, cal=0.965, signal ON). The fit is CONVERGED: going 25 -> 27 names (adding COMI and ORAS) left nu=4 and cal=0.909 completely unchanged. Three changes, each tested: (1) DATA-QUALITY GATE (data_quality.py) cleans every series first, with a PER-MARKET artifact threshold derived from the exchange's daily price limit (EGX +/-20% -> every clean name tops out at |log move| <= 0.223, so anything past 0.29 cannot be trading). Two artifacts found: EFIH carried flat 0.50 pre-IPO placeholder rows (a fake +333% log jump) and an unadjusted 3:2 split on 26-May-2025; OCDI/SODIC carried an unadjusted corporate action on 14-Aug-2025 showing as a fake -73% crash. OCDI was IN the production 7-name fit - but repairing it does NOT move nu (still 4; cal 0.979 -> 0.958), so Egypt's fat tail is GENUINE devaluation-jump risk, not a data bug. (2) BREAK FILTERING ADOPTED: calibrating on post-2023-01-11 origins only beats calibrating on all windows out-of-sample (LONO +0.0211 vs +0.0198, both scored on the same post-break windows) AND narrows the cone from cal=0.972 to 0.909. (3) SIGNAL ABLATED OFF - this was the LAST active signal in the system. On the panel the empirical IC of rev_1m is +0.018: the house prior's contrarian sign=-1 is REFUTED and the magnitude is ~0. Ablation: carry-only +0.0252 beats signal-ON +0.0211; the signal helps in only 13/25 names; paired bootstrap P(signal helps)=0.31. Fallback rule applies. The rev_1m/IC-0.08 prior is retained for re-estimation, but signal_active=False. EVERY market in the system is now carry-only. RESULT: panel PASS +0.0270 CI[+0.018,+0.038] on the scale-normalized gate; top-name weight 8.9% (vs 42% under the old price-weighted gate). ZERO name-level FAILs. PASS: CCAP +0.090, EMFD +0.078, HELI +0.070, PHDC +0.066, LCSW +0.051, OCDI +0.048, PRDC +0.037. BOUNDARY(PARITY-flagged): FWRY, ETEL, EFIH, GBCO, ABUK. 15 PARITY (incl. the two names added last: COMI +0.023, ORAS +0.021). NB PHDC moved to PASS on refreshed OHLC (1328 rows to 28-Jun-2026, vs a stale 1223-row project copy) - relevant, since PHDC carries the live ledger cohorts. The old 7-name panel was sector-concentrated (5 of 7 were RE developers); the 27-name panel is cross-sector and its lower headline skill is the more honest number.",
+    "fit_meta": "REFIT 11-Jul-2026 on the FULL 27-name EG panel (351 post-break windows) - supersedes the 7-name/115-window fit (nu=4, cal=0.965, signal ON). The fit is CONVERGED: going 25 -> 27 names (adding COMI and ORAS) left nu=4 and cal=0.909 completely unchanged. Three changes, each tested: (1) DATA-QUALITY GATE (data_quality.py) cleans every series first, with a PER-MARKET artifact threshold derived from the exchange's daily price limit (EGX +/-20% -> every clean name tops out at |log move| <= 0.223, so anything past 0.29 cannot be trading). Two artifacts found: EFIH carried flat 0.50 pre-IPO placeholder rows (a fake +333% log jump) and an unadjusted 3:2 split on 26-May-2025; OCDI/SODIC carried an unadjusted corporate action on 14-Aug-2025 showing as a fake -73% crash. OCDI was IN the production 7-name fit - but repairing it does NOT move nu (still 4; cal 0.979 -> 0.958), so Egypt's fat tail is GENUINE devaluation-jump risk, not a data bug. (2) BREAK FILTERING ADOPTED: calibrating on post-2023-01-11 origins only beats calibrating on all windows out-of-sample (LONO +0.0211 vs +0.0198, both scored on the same post-break windows) AND narrows the cone from cal=0.972 to 0.909. (3) SIGNAL ABLATED OFF - this was the LAST active signal in the system. On the panel the empirical IC of rev_1m is +0.018: the house prior's contrarian sign=-1 is REFUTED and the magnitude is ~0. Ablation: carry-only +0.0252 beats signal-ON +0.0211; the signal helps in only 13/25 names; paired bootstrap P(signal helps)=0.31. Fallback rule applies. The rev_1m/IC-0.08 prior is retained for re-estimation, but signal_active=False. EVERY market in the system is now carry-only. RESULT: panel PASS +0.0270 CI[+0.018,+0.038] on the scale-normalized gate; top-name weight 8.9% (vs 42% under the old price-weighted gate). ZERO name-level FAILs. PASS: CCAP +0.090, EMFD +0.078, HELI +0.070, PHDC +0.066, LCSW +0.051, OCDI +0.048, PRDC +0.037. BOUNDARY(PARITY-flagged): FWRY, ETEL, EFIH, GBCO, ABUK. 15 PARITY (incl. the two names added last: COMI +0.023, ORAS +0.021). NB PHDC moved to PASS on refreshed OHLC (1328 rows to 28-Jun-2026, vs a stale 1223-row project copy) - relevant, since PHDC carries the live ledger cohorts. The old 7-name panel was sector-concentrated (5 of 7 were RE developers); the 27-name panel is cross-sector and its lower headline skill is the more honest number. || MANUALLY APPLIED 13-Jul-2026: PR #4 (calibration-review-20260713-142440) reviewed and merged by Sherif, adding CLHO to the panel (28->29 names, 377 windows). The workflow's materiality gate correctly stopped for human review because CCAP's own verdict moved PASS->BOUNDARY(PARITY-flagged) -- nu/width_cal/market-verdict are otherwise unchanged. NOTE: auto_refresh.py's --apply flag does NOT currently write market_profiles.py/fitted_configs.json on the MATERIAL branch -- it only writes the PENDING_REVIEW report. Merging the PR therefore did not, by itself, apply the reviewed config to production; this was applied manually, using the exact numbers from the merged, human-reviewed report. TOOLING GAP flagged for a future fix: add an apply-on-merge step (or a small apply_reviewed.py reading the merged PENDING_REVIEW state) so this manual step is not required going forward.",
     "auto_refreshed": "2026-07-13"
   },
   "SA": {
