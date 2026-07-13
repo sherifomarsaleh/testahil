@@ -559,15 +559,15 @@
           el("mc-ladderBody").innerHTML=s;}
 
         function render(){
-          var egpD=parseFloat(egp.value)/100, aicapD=parseFloat(aicap.value)/100, krwD=parseFloat(krw.value)/100, geoP=-parseInt(geo.value,10)/100, lnchP=parseInt(lnch.value,10)/100;
+          var egpD=parseFloat(egp.value)/100, aicapD=parseFloat(aicap.value)/100, krwD=parseFloat(krw.value)/100, geoP=parseInt(geo.value,10)/100, lnchP=parseInt(lnch.value,10)/100;
           var M=moments(egpD,aicapD,krwD,geoP,lnchP); window.__mcLastM=M;
           computeDomain(M); drawAxes(); drawXAxis();
           paintThumb(egp); paintThumb(aicap); paintThumb(krw); paintThumb(geo); paintThumb(lnch);
           el("mc-egpVal").textContent=(egpD>=0?"+":"−")+Math.abs(egpD*100).toFixed(1)+"% / quarter";
           el("mc-aicapVal").textContent=(aicapD>=0?"+":"−")+Math.abs(aicapD*100).toFixed(1)+"% / quarter";
           el("mc-krwVal").textContent=(krwD>=0?"+":"−")+Math.abs(krwD*100).toFixed(1)+"% / quarter";
-          el("mc-geoVal").textContent=Math.round(geoP*100)+"% · −2.0% if it hits";
-          el("mc-lnchVal").textContent=Math.round(lnchP*100)+"% · +1.5% if it lands";
+          el("mc-geoVal").textContent=Math.round(geoP*100)+"% · +1.0% if it lands";
+          el("mc-lnchVal").textContent=Math.round(lnchP*100)+"% · +1.2% if it lands";
           el("mc-band95").setAttribute("d",bandPath(M,95,5));
           el("mc-band75").setAttribute("d",bandPath(M,75,25));
           el("mc-medianP").setAttribute("d",medianPath(M));
