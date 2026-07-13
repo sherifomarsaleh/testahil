@@ -43,9 +43,10 @@
       "PHDC",
       "PRDC",
       "RAYA",
+      "RMDA",
       "TMGH"
     ],
-    "windows": 351,
+    "windows": 364,
     "nu": 4.0,
     "width_cal": 0.909,
     "mle_scale": 0.87,
@@ -54,7 +55,7 @@
     "market_skill_raw_basis": 0.0333,
     "market_ci90": [
       0.018,
-      0.038
+      0.037
     ],
     "market_verdict": "PASS",
     "top_name_weight_share": 0.089,
@@ -74,13 +75,13 @@
       },
       "ADIB": {
         "nu": 4.0,
-        "width_cal": 0.916,
-        "skill": 0.0238,
-        "skill_raw_basis": 0.0268,
+        "width_cal": 0.909,
+        "skill": 0.0242,
+        "skill_raw_basis": 0.0269,
         "verdict": "PARITY",
         "ci_block2": [
           -0.013,
-          0.096
+          0.099
         ]
       },
       "BTFH": {
@@ -107,12 +108,12 @@
       },
       "COMI": {
         "nu": 4.0,
-        "width_cal": 0.909,
-        "skill": 0.0226,
-        "skill_raw_basis": 0.0286,
+        "width_cal": 0.902,
+        "skill": 0.0221,
+        "skill_raw_basis": 0.0282,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.019,
+          -0.02,
           0.096
         ]
       },
@@ -140,13 +141,13 @@
       },
       "EGAL": {
         "nu": 4.0,
-        "width_cal": 0.916,
-        "skill": 0.0485,
-        "skill_raw_basis": 0.0633,
+        "width_cal": 0.909,
+        "skill": 0.0487,
+        "skill_raw_basis": 0.0637,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.005,
-          0.133
+          -0.006,
+          0.135
         ]
       },
       "EMFD": {
@@ -261,13 +262,13 @@
       },
       "OCDI": {
         "nu": 4.0,
-        "width_cal": 0.916,
+        "width_cal": 0.909,
         "skill": 0.0484,
-        "skill_raw_basis": 0.0522,
+        "skill_raw_basis": 0.0532,
         "verdict": "PASS",
         "ci_block2": [
           0.019,
-          0.083
+          0.084
         ]
       },
       "OIH": {
@@ -347,15 +348,26 @@
           0.059
         ]
       },
-      "TMGH": {
+      "RMDA": {
         "nu": 4.0,
-        "width_cal": 0.895,
-        "skill": 0.0149,
-        "skill_raw_basis": 0.0258,
+        "width_cal": 0.909,
+        "skill": 0.0276,
+        "skill_raw_basis": 0.0254,
+        "verdict": "PASS",
+        "ci_block2": [
+          0.005,
+          0.051
+        ]
+      },
+      "TMGH": {
+        "nu": 5.0,
+        "width_cal": 0.867,
+        "skill": 0.0147,
+        "skill_raw_basis": 0.0256,
         "verdict": "PARITY",
         "ci_block2": [
           -0.01,
-          0.118
+          0.116
         ]
       }
     },
