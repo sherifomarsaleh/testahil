@@ -2,10 +2,38 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-07-13", latest: "RMDA" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
+const SITE = { updated: "2026-07-13", latest: "CLHO" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
+  CLHO: {
+    name: "Cleopatra Hospitals Group",
+    nameAr: "\u0645\u062c\u0645\u0648\u0639\u0629 \u0645\u0633\u062a\u0634\u0641\u064a\u0627\u062a \u0643\u0644\u064a\u0648\u0628\u0627\u062a\u0631\u0627",
+    code: "EGX:CLHO",
+    spot: 16.31,
+    spotDate: "close 12 Jul 2026",
+    ccy: "EGP",
+    fair: { bear: 6.51, base: 9.21, full: 11.05 },      // 13 Jul 2026 \u2014 four-lens weighted central EGP 9.21 (\u221244% vs spot 16.31). Lenses: rate-path FCFF DCF (40%) 7.17; relative multiples, FY27E EPS discounted back to today (25%) 13.21; normalized earnings power, interest re-priced not deleted (20%) 8.37; EV per operational bed, re-anchored to CLHO\u2019s own build cost and discounted from 2027 (15%) 9.08. THIS RANGE WAS REBUILT UNDER EXTERNAL AUDIT (13-Jul-2026): the prior version (central 13.29) capitalised terminal value directly (implied terminal ROIC 34.2%, above anything CLHO has ever earned), deducted minority interests at book value instead of fair value, and blended two forward-dated lenses into a same-day estimate without discounting them back \u2014 all three biased the same direction, upward. Corrected: terminal value now forces reinvestment to g/ROIC (ROIC 18%, inside CLHO\u2019s realized 17\u201323% range); non-controlling interest is a Cairo Specialized Hospital mini-SOTP at fair value (~EGP 782mn vs EGP 453mn book); both forward lenses are discounted to a present value. Discount rate: WACC 25.15% explicit \u2192 17.87% terminal, a sliding schedule glide-shaped off the CBE easing calendar, with the sovereign CDS spread netted out of the risk-free rate and beta floored at the house band minimum (0.80, vs a weak, wide-CI 0.446 regression). Cost of debt is audited, not assumed: CLHO\u2019s own FY2024 accounts show 28.90% contractual on loans against a 28.25% CBE corridor \u2014 a +65bp spread confirmed at two year-ends \u2014 and the debt book is 100% EGP, zero FX exposure. SPOT IS RICH ON EVERY FUNDAMENTAL LENS BUT ONE (EV/bed bull, which requires a takeout-style re-rating): the DCF bull case alone (8.12) is barely half of spot, so the market is pricing something closer to a strategic-review / per-bed transaction outcome than standalone cash-flow generation. Revenue itself is rebuilt bottom-up from disclosed KPI volumes and ARPs (77% of FY25 revenue, incl. laboratory and radiology), fading from each line\u2019s own FY24\u2192FY25 growth rate as the group\u2019s bed-capacity ramp (880\u21921,320 by 2027) completes \u2014 reaching 2.07\u00d7 FY2028E vs FY2025, almost exactly management\u2019s own \u201cmore than double by 2028\u201d guidance. Risk flagged but not yet in the base case: a developing 2026-27 El Ni\u00f1o carries a 96% NOAA probability and could keep global food inflation elevated into 2028 (Goldman Sachs, UniCredit), which would prevent the CBE easing this valuation\u2019s terminal WACC assumes.",
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:11.75, p25:15.46, p50:16.54, p75:17.71, p95:20.17, resolve:"2026-08-09" },
+      t60: { label:"3 months (T+60)", p5:12.12, p25:15.13, p50:17.02, p75:19.15, p95:23.83, resolve:"2026-10-04" }
+    },
+    touch: [ /* descending high -> low; P(touch) T+20 %, T+60 % */
+      [22.00, 3, 15], [21.00, 5, 21], [20.00, 9, 30], [19.00, 16, 43], [18.00, 33, 60], [17.00, 64, 81],
+      [16.00, 71, 80], [15.00, 31, 50], [14.00, 12, 29], [13.00, 5, 16], [12.00, 2, 9], [11.00, 1, 5]
+    ],
+    levels: { res:[16.85, 17.19, 17.39], sup:[16.09, 15.46, 14.04] },
+    tech: {
+      trend: "Price sits above its full moving-average stack (SMA20 16.09, SMA50 15.46, SMA100 14.04, SMA200 13.01) with RSI at a neutral 54.6 and a MACD histogram that has just turned marginally negative (-0.046), suggesting a pause rather than a reversal after the recent run from the 52-week low of 7.90.",
+      summary: "CLHO at EGP 16.31 is consolidating just under its 52-week high of 17.39, having roughly doubled off its 52-week low. Every moving average sits below the current price, a constructive medium-term structure, but momentum has flattened at the top of the range.",
+      bull: "A daily close back above the recent swing high of EGP 16.85 re-opens the 17.19-17.39 zone (the 52-week high); a break there has no chart-based resistance on the way to the touch-ladder's higher rungs.",
+      bear: "Losing the 20-day average at EGP 16.09 exposes the 50-day at 15.46; a deeper break of the 100-day at 14.04 would mark the first genuine trend change since the CTH-launch rally began."
+    },
+    files: {
+      study: "files/CLHO_Valuation_Study_13-07-2026_public.docx?v=20260713d",
+      model: "files/CLHO_Valuation_Model_13072026_public.xlsx?v=20260713d"
+    }
+  },
   RMDA: {
     name: "Rameda Pharmaceuticals",
     nameAr: "\u0631\u0627\u0645\u064a\u062f\u0627 \u0644\u0644\u0623\u062f\u0648\u064a\u0629",
@@ -1958,6 +1986,27 @@ const COMING = [
                             "-5":bool, "-10":bool }
    ========================================================================== */
 const LEDGER = [
+  // ---- CLHO \u00b7 equity (EGX Egypt) \u00b7 cycle 1 (13 Jul 2026 published study; PARITY \u2014 own fitted verdict, 29-name EG panel) ----
+  { instrument:"CLHO", asset_class:"equity", anchor_date:"2026-07-12", anchor_price:16.31, ccy:"EGP",
+    horizon_label:"T+20", grade_date:"2026-08-09", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.3548, horizon_days:20,
+    note:"PARITY on the name\u2019s own fitted verdict, committed to engine/fitted_configs.json 13-Jul-2026 (PR #4): CLHO is a constituent of the 29-name Egypt panel (fitted nu=4.0, cone width 0.909; panel-level verdict PASS, scale-normalized CRPS skill +2.6%%, 90%% CI [+1.7%%, +3.6%%]). Name-level Step-0: 36 non-overlapping 60-session windows, 2017\u20132026, scored from the market\u2019s last structural break (2023-01-11) forward. Scale-normalized CRPS skill -2.0%% against a CARRY-ANCHORED random-walk benchmark \u2014 PARITY, meaning the cone is calibrated and market-panel validated, but this specific name shows no demonstrated single-name edge over the carry-anchored benchmark; this is the modal EGX verdict (15 of 29 panel names are PARITY, including names with skill as low as -4.4%%), not a failure. Coverage 50/80/90%% = 0.64/0.92/1.00; mean PIT 0.51 \u2014 well-centred. Carry = CBE main rate 19.50%% less CLHO\u2019s trailing dividend yield; the Egypt profile runs CARRY-ONLY (no signal, ablated off on evidence). Adding CLHO to the panel also moved CCAP\u2019s own verdict from PASS to BOUNDARY(PARITY-flagged) \u2014 disclosed for transparency, reviewed and merged by the analyst before this fit was committed. The cone is a 3-month object and is NEVER blended with the 12-month fundamental anchor. See study \u00a73 and the Calibration Ledger.",
+    p5:13.59, p25:15.46, p50:16.54, p75:17.71, p95:20.17,
+    touch:{ "+5":60, "+10":35, "+15":20, "+20":12, "-5":50, "-10":25 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  { instrument:"CLHO", asset_class:"equity", anchor_date:"2026-07-12", anchor_price:16.31, ccy:"EGP",
+    horizon_label:"T+60", grade_date:"2026-10-04", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.3548, horizon_days:60,
+    note:"PARITY on the name\u2019s own fitted verdict, committed to engine/fitted_configs.json 13-Jul-2026 (PR #4): CLHO is a constituent of the 29-name Egypt panel (fitted nu=4.0, cone width 0.909; panel-level verdict PASS, scale-normalized CRPS skill +2.6%%, 90%% CI [+1.7%%, +3.6%%]). Name-level Step-0: 36 non-overlapping 60-session windows, 2017\u20132026, scored from the market\u2019s last structural break (2023-01-11) forward. Scale-normalized CRPS skill -2.0%% against a CARRY-ANCHORED random-walk benchmark \u2014 PARITY, meaning the cone is calibrated and market-panel validated, but this specific name shows no demonstrated single-name edge over the carry-anchored benchmark; this is the modal EGX verdict (15 of 29 panel names are PARITY, including names with skill as low as -4.4%%), not a failure. Coverage 50/80/90%% = 0.64/0.92/1.00; mean PIT 0.51 \u2014 well-centred. Carry = CBE main rate 19.50%% less CLHO\u2019s trailing dividend yield; the Egypt profile runs CARRY-ONLY (no signal, ablated off on evidence). Adding CLHO to the panel also moved CCAP\u2019s own verdict from PASS to BOUNDARY(PARITY-flagged) \u2014 disclosed for transparency, reviewed and merged by the analyst before this fit was committed. The cone is a 3-month object and is NEVER blended with the 12-month fundamental anchor. See study \u00a73 and the Calibration Ledger.",
+    p5:12.12, p25:15.13, p50:17.02, p75:19.15, p95:23.83,
+    touch:{ "+5":79, "+10":62, "+15":47, "+20":36, "-5":65, "-10":43 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
   // ---- RMDA \u00b7 equity (EGX Egypt) \u00b7 cycle 1 (13 Jul 2026 published study; MC PASS \u2014 own fitted verdict, 28-name EG panel) ----
   { instrument:"RMDA", asset_class:"equity", anchor_date:"2026-07-12", anchor_price:5.00, ccy:"EGP",
     horizon_label:"T+20", grade_date:"2026-08-09", cycle_no:1, reanchor_from:null,
