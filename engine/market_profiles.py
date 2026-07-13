@@ -99,7 +99,7 @@ EGYPT = MarketProfile(
                     "yield before first EGX publish under v3 — bills have traded above "
                     "the corridor; 19.50% is the conservative sourced floor."),
     signal_type="rev_1m", signal_sign=-1, ic=0.08, signal_active=False,
-    nu=4.0, width_cal=0.909,
+    nu=4.0, width_cal=0.972,
     fit_meta=(
         "REFIT 11-Jul-2026 on the FULL 27-name EG panel (351 post-break windows) - "
         "supersedes the 7-name/115-window fit (nu=4, cal=0.965, signal ON). The fit "
@@ -141,7 +141,43 @@ EGYPT = MarketProfile(
         "positive, CI[0.006,0.207] -- straddles the boundary, not a sign flip), which is why the "
         "materiality gate correctly stopped for review rather than auto-committing. Market panel: "
         "PASS +0.0259 CI[0.017,0.036], materially the same as pre-CLHO."),
-    breaks=["2016-11-03", "2022-03-21", "2023-01-11"],
+    # EGYPT BREAKS RE-DERIVED, 13-Jul-2026 (Sherif: "devaluation is a way of life in
+    # Egypt, even sharp ones") -- and he is right, which changes the answer.
+    #
+    # THE OLD LIST WAS WRONG ON ITS FACE: it ended at 2023-01-11 and MISSED the largest
+    # devaluation in the series, 6-Mar-2024 (EGP ~30.9 -> ~50.2). apply_breaks cuts at
+    # MAX(breaks), so the live filter only worked BY ACCIDENT -- it happened to leave the
+    # Mar-2024 float INSIDE the sample. Had the list been "complete", the filter would have
+    # excised the very jump the fat tail (nu=4) exists to price.
+    #
+    # THE DEEPER POINT: a devaluation is not a one-off regime change here, it is the
+    # process -- Mar-2022, Oct-2022, Jan-2023, Mar-2024. Filtering them out filters out
+    # the risk. Cutting at the TRUE last break (2024-03-06) leaves a devaluation-free
+    # sample, and the fit obediently thins the tail (nu 4 -> 5) and narrows the cone
+    # (cal 0.909 -> 0.850). It then WINS the skill test -- because it is scored on a calm
+    # period. That is the trap, and the original adoption test walked into it: it compared
+    # configs "both scored on the same post-break windows", which is circular by construction.
+    #
+    # MEASURED on the committed 29-name panel. The column that matters is coverage during
+    # the windows that actually CONTAIN the Mar-2024 float:
+    #   cut          nu    cal   windows  panel skill  FAILs   dev-window 90% coverage
+    #   none/2016   4.0  0.958      508     +0.0169      1            86.2%
+    #   2022-03-21  4.0  0.972      462     +0.0204      0            86.2%   <-- ADOPTED
+    #   2023-01-11  4.0  0.909      377     +0.0259      0            82.8%   (retired)
+    #   2024-03-06  5.0  0.850      237     +0.0376      1            82.8%   (the trap)
+    #
+    # 2022-03-21 is where Egypt's SERIAL-devaluation regime begins: the pound sat flat at
+    # ~15.7 for years, then stepped Mar-22 -> Oct-22 -> Jan-23 -> Mar-24. Cutting there keeps
+    # THREE devaluations in the calibration sample -- so the cone is the widest of any config
+    # (0.972), devaluation coverage is the best available (86.2%), and there are ZERO
+    # name-level FAILs. Going further back to 2016 drags in the stable, managed post-float
+    # years -- a genuinely different regime -- and it HURTS (skill falls, CLHO turns FAIL)
+    # without improving jump coverage at all.
+    #
+    # Cost, stated honestly: headline panel skill falls +0.0259 -> +0.0204. We accept that.
+    # A cone that is too narrow during a devaluation is the failure mode that loses money,
+    # and the lower headline number is the more honest one.
+    breaks=["2016-11-03", "2022-03-21"],
     notes=("Literature: no EGX momentum; overreaction/short-term reversal supported "
            "(EGX event studies; Kuwait 1m reversal ~3.1%/mo t≈4.4 as GCC analogue). "
            "Signal sign/IC re-estimated on the 6-name pooled panel each cycle."),
