@@ -317,6 +317,24 @@ where the beta is an outlier, is a **QC FAIL** going forward.
 
 ## [NEW 13-Jul r2] KE / KD / WACC — standing procedure
 
+**[NEW 13-Jul r3] SCOPE, stated explicitly before the mechanics.** The sliding schedule is a device for
+markets in monetary transition, not a universal replacement for a flat WACC. It applies where the
+current risk-free rate sits materially above its own long-run/norm-built level — currently: **Egypt**.
+It does **not** apply to currency-pegged markets (UAE, Saudi, Qatar) where the risk-free rate already
+sits at its long-run level by construction of the peg — there, today *is* the terminal, the glide
+collapses to flat, and applying it produces zero effect while adding needless complexity (measured on
+EAND: +0.0%). The sovereign-double-count fix (Ke section, item 3) is a **separate, market-agnostic**
+correction and applies everywhere a country ERP is stacked on a local rf, GCC included.
+
+**[NEW 13-Jul r3] APPLICATION: PROSPECTIVE ONLY, NOT RETROSPECTIVE.** This procedure governs every
+**new** Egyptian study and every Egyptian study that is next **substantively updated** (a refresh, a
+reforecast, a driver revision). It does **not** trigger a mandatory rebuild of the ~27 Egyptian studies
+already live. Each of those keeps its published flat-WACC DCF, understated as it may be, until it is
+naturally revisited for its own reasons — no name is pulled forward solely to apply this procedure.
+This mirrors the append-only rule already governing the Calibration Ledger: corrections attach to the
+next cycle, not to history. Adopted after Sherif's explicit instruction, 13-Jul-2026: *"Apply the glide
+only in Egypt going forward — not in retrospect."*
+
 Adopted from the RMDA discount-rate stress test (a line-by-line reconciliation of the Testahil DCF
 against a published sell-side DCF on the same company). Governs the discount-rate construction in
 **every future study**. The prior flat-WACC and flat-two-stage conventions are **RETIRED as primary**.
@@ -489,8 +507,9 @@ harmless staleness.
    and what was wrong with it. **Standing lesson: a verdict is not a fact you publish once — it is a
    function of a fit that keeps moving, so the site must be re-reconciled against the engine on every
    publish, not only when a study is built.**
-6. **[NEW 13-Jul r2, PRIORITY CORRECTED ON EVIDENCE] Retro-fit the Ke/Kd/WACC procedure to the
-   ~27 live studies that predate it.** The first draft of this item named the GCC reference studies
+6. **[NEW 13-Jul r3, SCOPED — prospective only, per Sherif's explicit instruction]** The Ke/Kd/WACC
+   procedure applies to Egypt **going forward**, not retroactively; the ~27 live Egyptian studies are
+   **not** queued for a mandatory rebuild (see the SCOPE clause above). The first draft of this item named the GCC reference studies
    (EAND, ADCB, ALPHADHABI). **That was the wrong priority, and measuring it proved so:**
    - **For GCC names the sliding schedule does nothing.** The AED is pegged to the USD and rf 4.30%
      **is already at its long-run norm** — today *is* the terminal, so explicit = terminal and the glide
@@ -503,6 +522,11 @@ harmless staleness.
      norm-built ~18.8% instead of a flat ~29% lifts the terminal multiple from **4.2× to 7.3×**.
      Measured on RMDA: the DCF lens moved **0.66 → 1.73 (+162%)**. **Every Egyptian DCF still on a flat
      WACC is therefore materially understated**, and there are ~27 of them live.
-   **Order of work: Egypt first (highest impact, and the market the flat-WACC assumption is least
-   defensible in), GCC second (double-count fix only). Each name is a full pipeline rebuild — none of
-   these move silently, and none should be re-issued without the QC gate.**
+   **What the earlier measurement remains useful for**: it quantifies the honest cost of *not*
+   rebuilding — every live Egyptian DCF is understated by a magnitude roughly like RMDA's (terminal
+   multiple 4.2× → 7.3×, DCF lens +162% in RMDA's case, amplified further by leverage on the
+   EV→equity bridge since net debt is fixed while EV moves). That number is disclosed here so the
+   backlog is a known, sized cost, not a hidden one — but it is a **backlog**, not a queue. If and when
+   a name IS next rebuilt for its own reasons, Egypt-market names apply the sliding schedule as a
+   matter of course; GCC names apply only the double-count fix. Each rebuild is a full pipeline run
+   through the QC gate — none move silently.
