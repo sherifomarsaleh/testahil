@@ -11,7 +11,7 @@
 <link rel="icon" type="image/png" href="favicon.png?v=2">
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
 <script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('#theme-toggle');if(!b)return;var dark=document.documentElement.getAttribute('data-theme')==='dark';var n=dark?'light':'dark';if(n==='dark'){document.documentElement.setAttribute('data-theme','dark');}else{document.documentElement.removeAttribute('data-theme');}try{localStorage.setItem('theme',n);}catch(e){}b.setAttribute('aria-pressed',String(n==='dark'));});document.addEventListener('DOMContentLoaded',function(){var x=document.getElementById('theme-toggle');if(x)x.setAttribute('aria-pressed',String(document.documentElement.getAttribute('data-theme')==='dark'));});})();</script>
-<link rel="stylesheet" href="assets/style.css?v=20260713d">
+<link rel="stylesheet" href="assets/style.css?v=20260713e">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="testahil?">
 <meta property="og:title" content="Nakilat (QGTS) — is it worth it? | testahil?">
@@ -815,7 +815,7 @@
         </form>
       </details>
       <a class="btn dlfile" id="dl-pdf" href="#" rel="noopener" download>Open the study (PDF)</a>
-      <a class="btn ghost dlfile" id="dl-model" href="#" rel="noopener">Open the model (Excel)</a>
+      <a class="btn ghost dlfile" id="dl-model" href="#" rel="noopener">Open the model (Excel)</a><a class="btn ghost dlfile" id="dl-biblio" href="#" rel="noopener" style="display:none">Open the source register</a>
       <p class="muted mobileonly" style="margin-top:8px">The full study (PDF) and Excel model are available on a computer.</p>
       <button class="share-btn" data-share="See the odds on Nakilat — testahil" type="button" style="margin-left:8px">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"/><line x1="15.4" y1="6.5" x2="8.6" y2="10.5"/></svg>
@@ -829,7 +829,7 @@
 
   <!-- FOLLOW BY EMAIL -->
   </div>
-<aside class="study-side"><div class="ss-card ss-get"><p class="ss-h">Get the study</p><a class="btn dlfile" id="dl-pdf-side" href="#" rel="noopener" download style="display:block;text-align:center;box-sizing:border-box;margin-bottom:8px">Open the study (PDF)</a><a class="btn ghost dlfile" id="dl-model-side" href="#" rel="noopener" style="display:block;text-align:center;box-sizing:border-box">Open the model (Excel)</a></div><div class="ss-card ss-notify"><p class="ss-h">Get the next Nakilat update</p><p class="ss-sub">New edition on a fixed schedule. Your email, nothing else — no spam.</p><a class="ss-copy" href="https://testahil.substack.com/subscribe" target="_blank" rel="noopener" style="display:block;text-align:center;text-decoration:none;box-sizing:border-box">Subscribe by email &rarr;</a></div></aside>
+<aside class="study-side"><div class="ss-card ss-get"><p class="ss-h">Get the study</p><a class="btn dlfile" id="dl-pdf-side" href="#" rel="noopener" download style="display:block;text-align:center;box-sizing:border-box;margin-bottom:8px">Open the study (PDF)</a><a class="btn ghost dlfile" id="dl-model-side" href="#" rel="noopener" style="display:block;text-align:center;box-sizing:border-box">Open the model (Excel)</a><a class="btn ghost dlfile" id="dl-biblio-side" href="#" rel="noopener" style="display:none;text-align:center;box-sizing:border-box;margin-top:8px">Open the source register</a></div><div class="ss-card ss-notify"><p class="ss-h">Get the next Nakilat update</p><p class="ss-sub">New edition on a fixed schedule. Your email, nothing else — no spam.</p><a class="ss-copy" href="https://testahil.substack.com/subscribe" target="_blank" rel="noopener" style="display:block;text-align:center;text-decoration:none;box-sizing:border-box">Subscribe by email &rarr;</a></div></aside>
 </main>
 <div class="wrap"><div id="related" data-ticker="QGTS"></div><div class="ctx-row"><a class="ctx-btn" href="compare.html?a=QGTS">Compare Nakilat vs peers &rarr;</a><a class="ctx-btn ghost" href="calculator.html">What kept its value? &rarr;</a></div></div>
 
@@ -850,7 +850,7 @@
   </div>
 </div>
 
-<script src="assets/data.js?v=20260713d"></script><script src="assets/app.js?v=20260713d"></script>
+<script src="assets/data.js?v=20260713e"></script><script src="assets/app.js?v=20260713e"></script>
 <script>
 const T=TICKERS.QGTS;
 document.getElementById("upd").textContent=SITE.updated;
@@ -888,6 +888,10 @@ document.getElementById("dl-pdf").href=T.files.pdf;
 document.getElementById("dl-model").href=T.files.model;
 document.getElementById("dl-pdf-side").href=T.files.pdf;
 document.getElementById("dl-model-side").href=T.files.model;
+if(T.files && T.files.biblio){
+  var _b=document.getElementById("dl-biblio");      if(_b){ _b.href=T.files.biblio; _b.style.display=""; }
+  var _bs=document.getElementById("dl-biblio-side"); if(_bs){ _bs.href=T.files.biblio; _bs.style.display="block"; }
+}
 
 renderGauge("gauge", T.spot, T.fair, T.spotDate);
 /* peers rendered statically for Nakilat (no homogeneous EGX peer set) */
