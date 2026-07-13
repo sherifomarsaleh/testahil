@@ -2,10 +2,38 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-07-12", latest: "DEWA" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
+const SITE = { updated: "2026-07-13", latest: "RMDA" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
+  RMDA: {
+    name: "Rameda Pharmaceuticals",
+    nameAr: "\u0631\u0627\u0645\u064a\u062f\u0627 \u0644\u0644\u0623\u062f\u0648\u064a\u0629",
+    code: "EGX:RMDA",
+    spot: 5.00,
+    spotDate: "close 12 Jul 2026",
+    ccy: "EGP",
+    fair: { bear: 2.11, base: 2.77, full: 3.48 },      // 13 Jul 2026 \u2014 four-lens weighted central EGP 2.77 (\u221245% vs spot 5.00). Lenses: FCFF DCF (35%) 1.73; relative EV/EBITDA on RMDA\u2019s own trading band (25%) 4.40; normalized earnings power (25%) 3.65; dividend discount (15%) 1.00. bear/full = weighted bear/bull. THE DIVERGENCE IS THE FINDING AND WE REFUSE TO BLEND IT AWAY: the cash-flow lens discounted at Egypt\u2019s SOURCED cost of capital says 1.73, while the lenses that price the engine at market multiples say 3.65\u20134.40. A price of 5.00 is the market asserting that Egyptian discount rates normalise AND the balance sheet deleverages \u2014 both plausible, neither yet in the sourced numbers. WHY REVENUE DOUBLED, AND WHY IT WILL NOT DOUBLE AGAIN: FY23\u2192FY25 revenue went 1,922 \u2192 4,096 (+113%), but the decomposition says that was THREE ONE-OFFS stacked on a real engine \u2014 (1) the EDA pricing catch-up regime (40\u201350% approvals, now ~82% of market SKUs complete), (2) a shortage-driven private volume spike (2Q25 units +56% because rivals could not supply), and (3) export resumption from literally ZERO (the Iraq suspension made FY24 exports nil). The 1Q26 print is the proof the regime is over: revenue +23% but volumes ex-toll only +7% and PRIVATE VOLUMES \u22125%, with management stating growth came \u2018with limited reliance on pricing actions\u2019. None of the three repeats, so the forward path tapers +19% \u2192 +9%, it does not re-double. THE COST OF DEBT WAS AUDITED, NOT ASSUMED: the facility book is 100% EGP-denominated (Note 20 lists all 11 banks in EGP; FX exposure sits in import payables, not debt \u2014 there is no cheap-dollar blend available), and the rate Rameda ACTUALLY PAYS is 24.0% annualised in 1Q26 (interest \u00f7 average facilities), not the 20.5% midpoint of the disclosed contractual range \u2014 a 350bp understatement we caught and corrected. THE DISCOUNT RATE SLIDES, IT IS NOT FLAT: 26.6% in FY26E easing to a norm-built 18.8% terminal, on the same CBE calendar already used for the interest forecast \u2014 one price of time per date, so the terminal value is never quietly discounted at a rate the explicit years are denied. THE CRUX IS THE RATE PATH, IN REAL UNITS: every 100bp off the facility cost is EGP 21mn of pre-tax profit, and at a flat ~12.5% WACC the same cash flows are worth spot. This is a pharmaceutical manufacturer wearing the costume of a leveraged bet on Egyptian monetary policy, and the study says so in numbers rather than adjectives.
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:4.321, p25:4.797, p50:5.067, p75:5.356, p95:5.951, resolve:"2026-08-09" },
+      t60: { label:"3 months (T+60)", p5:3.952, p25:4.731, p50:5.205, p75:5.728, p95:6.840, resolve:"2026-10-04" }
+    },
+    touch: [ /* descending high -> low; P(touch) T+20 %, T+60 % */
+      [6.50, 2, 13], [6.00, 7, 27], [5.75, 13, 39], [5.50, 26, 55], [5.25, 53, 75], [4.75, 40, 57], [4.50, 16, 34], [4.25, 7, 19], [4.00, 3, 11]
+    ],
+    levels: { res:[5.02, 5.29, 5.38], sup:[4.96, 4.63, 3.92] },
+    tech: {
+      trend: "Consolidating just under the 20-day average and a shade above the 50-day, but 28% above the 200-day \u2014 a pause at the top of a +66% year-long recovery, not a trend break; RSI-14 at 49.7 is neutral and the MACD histogram has turned mildly negative",
+      summary: "Rameda at EGP 5.00 is consolidating at the top of a powerful year-long recovery. The stock bottomed at EGP 3.02 in September 2025 and ran to an intraday all-time high of 5.38 on 8-Jun-2026 (close peak 5.29 the next session) \u2014 a +66% leg \u2014 and has spent the five weeks since going sideways beneath it. Spot sits 0.5% BELOW the 20-day (5.02), 0.7% above the 50-day (4.96), 8% above the 100-day (4.63) and 28% above the 200-day (3.92): the long-term stack is firmly bullish, the short-term stack is flat. RSI(14) at 49.7 is dead neutral \u2014 neither overbought after the run nor washed out. The daily MACD (12\u00b726\u00b79) reads 0.006 line vs 0.015 signal, histogram \u22120.009 \u2014 the line has slipped below its signal, momentum cooling rather than reversing. Realised 252-day volatility is 30.2%, high even by EGX standards. The 3-month cone is a carry-anchored YZ-HAR-t(\u03bd=4.0, width 0.909) fit on the 28-name Egypt panel, and RMDA PASSES its own Step-0 calibration gate (13 non-overlapping post-break windows, CRPS skill +2.8% against a carry-anchored random walk, bootstrap CI entirely above zero and robust at every block size tested). The cone says nothing about the fundamental gap below \u2014 they are different clocks, and this study refuses to let one impersonate the other.",
+      bull: "A daily close back above the 20-day at EGP 5.02 re-opens the 9-Jun close peak at 5.29 and the intraday all-time high at 5.38; the T+60 75th percentile sits at 5.73.",
+      bear: "Losing the 50-day at EGP 4.96 exposes the 100-day at 4.63. The 200-day is far below at 3.92 \u2014 there is a lot of air under this recovery."
+    },
+    files: {
+      study: "files/RMDA_Valuation_Study_13-07-2026_public.docx?v=20260713c",
+      model: "files/RMDA_Valuation_Model_13072026_public.xlsx?v=20260713c",
+      pdf:   "files/RMDA_Valuation_Study_13-07-2026_public.pdf?v=20260713c"
+    }
+  },
   DEWA: {
     name: "DEWA (Dubai Electricity and Water Authority)",
     nameAr: "هيئة كهرباء ومياه دبي",
@@ -1929,6 +1957,27 @@ const COMING = [
                             "-5":bool, "-10":bool }
    ========================================================================== */
 const LEDGER = [
+  // ---- RMDA \u00b7 equity (EGX Egypt) \u00b7 cycle 1 (13 Jul 2026 published study; MC PASS \u2014 own fitted verdict, 28-name EG panel) ----
+  { instrument:"RMDA", asset_class:"equity", anchor_date:"2026-07-12", anchor_price:5.00, ccy:"EGP",
+    horizon_label:"T+20", grade_date:"2026-08-09", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.3022, horizon_days:20,
+    note:"PASS on the name\u2019s own fitted verdict, committed to engine/fitted_configs.json: RMDA is a constituent of the 28-name Egypt panel (fitted nu=4.0, cone width 0.909; panel-level verdict PASS, scale-normalized CRPS skill +2.7%%, 90%% CI [+1.8%%, +3.7%%]). Name-level Step-0: 13 non-overlapping 60-session windows scored from the market\u2019s last structural break (2023-01-11) forward \u2014 9 pre-break origins dropped, because break filtering beats scoring all windows out-of-sample and is the adopted production rule. Scale-normalized CRPS skill +2.8%% against a CARRY-ANCHORED random-walk benchmark (raw basis +2.5%%, reported so older-basis figures stay reconcilable); moving-block bootstrap 90%% CI [+0.4%%, +5.1%%] at block 2, and the CI sits entirely above zero at EVERY block size tested (2/3/4) \u2014 a robust PASS, not a boundary case. Coverage 50/80/90%% = 0.54/0.85/0.85; mean PIT 0.61. Carry = CBE main rate 19.50%% less the forward dividend yield on the committed EGP 120mn (two 60mn tranches); the Egypt profile runs CARRY-ONLY (no signal). The cone is a 3-month object and is NEVER blended with the 12-month fundamental anchor. See study \u00a73 and the Calibration Ledger.",
+    p5:4.321, p25:4.797, p50:5.067, p75:5.356, p95:5.951,
+    touch:{ "+5":53, "+10":26, "+15":13, "+20":7, "-5":40, "-10":16 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  { instrument:"RMDA", asset_class:"equity", anchor_date:"2026-07-12", anchor_price:5.00, ccy:"EGP",
+    horizon_label:"T+60", grade_date:"2026-10-04", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.3022, horizon_days:60,
+    note:"PASS on the name\u2019s own fitted verdict, committed to engine/fitted_configs.json: RMDA is a constituent of the 28-name Egypt panel (fitted nu=4.0, cone width 0.909; panel-level verdict PASS, scale-normalized CRPS skill +2.7%%, 90%% CI [+1.8%%, +3.7%%]). Name-level Step-0: 13 non-overlapping 60-session windows scored from the market\u2019s last structural break (2023-01-11) forward \u2014 9 pre-break origins dropped, because break filtering beats scoring all windows out-of-sample and is the adopted production rule. Scale-normalized CRPS skill +2.8%% against a CARRY-ANCHORED random-walk benchmark (raw basis +2.5%%, reported so older-basis figures stay reconcilable); moving-block bootstrap 90%% CI [+0.4%%, +5.1%%] at block 2, and the CI sits entirely above zero at EVERY block size tested (2/3/4) \u2014 a robust PASS, not a boundary case. Coverage 50/80/90%% = 0.54/0.85/0.85; mean PIT 0.61. Carry = CBE main rate 19.50%% less the forward dividend yield on the committed EGP 120mn (two 60mn tranches); the Egypt profile runs CARRY-ONLY (no signal). The cone is a 3-month object and is NEVER blended with the 12-month fundamental anchor. See study \u00a73 and the Calibration Ledger.",
+    p5:3.952, p25:4.731, p50:5.205, p75:5.728, p95:6.840,
+    touch:{ "+5":75, "+10":55, "+15":39, "+20":27, "-5":57, "-10":34 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
   // ---- DEWA · other (DFM UAE) · cycle 1 (12 Jul 2026 published study; MC BOUNDARY, PARITY-flagged -- calibrated, no single-name edge) ----
   {
     instrument:"DEWA", asset_class:"other",
