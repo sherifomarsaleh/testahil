@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_updated": "2026-07-13",
+    "last_updated": "2026-07-14",
     "SOURCE_OF_TRUTH": "engine/market_profiles.py \u2014 this JSON is a DERIVED MIRROR, do not hand-edit",
     "gate_basis": "scale-normalized CRPS (crps/spot); primary since 11-Jul-2026",
     "data_quality_gate": "data_quality.clean_ohlc \u2014 PER-MARKET thresholds derived from each exchange daily price limit (a move beyond the limit is not reachable by trading). A single global threshold was WRONG: KOSPI allows \u00b130%, so a legitimate limit-down (log -0.357) would have been falsely \"repaired\" by the EGX-calibrated 0.35. Also drops non-trading placeholder rows.",
@@ -384,7 +384,7 @@
       }
     },
     "fit_meta": "REFIT 11-Jul-2026 on the FULL 27-name EG panel (351 post-break windows) - supersedes the 7-name/115-window fit (nu=4, cal=0.965, signal ON). The fit is CONVERGED: going 25 -> 27 names (adding COMI and ORAS) left nu=4 and cal=0.909 completely unchanged. Three changes, each tested: (1) DATA-QUALITY GATE (data_quality.py) cleans every series first, with a PER-MARKET artifact threshold derived from the exchange's daily price limit (EGX +/-20% -> every clean name tops out at |log move| <= 0.223, so anything past 0.29 cannot be trading). Two artifacts found: EFIH carried flat 0.50 pre-IPO placeholder rows (a fake +333% log jump) and an unadjusted 3:2 split on 26-May-2025; OCDI/SODIC carried an unadjusted corporate action on 14-Aug-2025 showing as a fake -73% crash. OCDI was IN the production 7-name fit - but repairing it does NOT move nu (still 4; cal 0.979 -> 0.958), so Egypt's fat tail is GENUINE devaluation-jump risk, not a data bug. (2) BREAK FILTERING ADOPTED: calibrating on post-2023-01-11 origins only beats calibrating on all windows out-of-sample (LONO +0.0211 vs +0.0198, both scored on the same post-break windows) AND narrows the cone from cal=0.972 to 0.909. (3) SIGNAL ABLATED OFF - this was the LAST active signal in the system. On the panel the empirical IC of rev_1m is +0.018: the house prior's contrarian sign=-1 is REFUTED and the magnitude is ~0. Ablation: carry-only +0.0252 beats signal-ON +0.0211; the signal helps in only 13/25 names; paired bootstrap P(signal helps)=0.31. Fallback rule applies. The rev_1m/IC-0.08 prior is retained for re-estimation, but signal_active=False. EVERY market in the system is now carry-only. RESULT: panel PASS +0.0270 CI[+0.018,+0.038] on the scale-normalized gate; top-name weight 8.9% (vs 42% under the old price-weighted gate). ZERO name-level FAILs. PASS: CCAP +0.090, EMFD +0.078, HELI +0.070, PHDC +0.066, LCSW +0.051, OCDI +0.048, PRDC +0.037. BOUNDARY(PARITY-flagged): FWRY, ETEL, EFIH, GBCO, ABUK. 15 PARITY (incl. the two names added last: COMI +0.023, ORAS +0.021). NB PHDC moved to PASS on refreshed OHLC (1328 rows to 28-Jun-2026, vs a stale 1223-row project copy) - relevant, since PHDC carries the live ledger cohorts. The old 7-name panel was sector-concentrated (5 of 7 were RE developers); the 27-name panel is cross-sector and its lower headline skill is the more honest number. || MANUALLY APPLIED 13-Jul-2026: PR #4 (calibration-review-20260713-142440) reviewed and merged by Sherif, adding CLHO to the panel (28->29 names, 377 windows). The workflow's materiality gate correctly stopped for human review because CCAP's own verdict moved PASS->BOUNDARY(PARITY-flagged) -- nu/width_cal/market-verdict are otherwise unchanged. NOTE: auto_refresh.py's --apply flag does NOT currently write market_profiles.py/fitted_configs.json on the MATERIAL branch -- it only writes the PENDING_REVIEW report. Merging the PR therefore did not, by itself, apply the reviewed config to production; this was applied manually, using the exact numbers from the merged, human-reviewed report. TOOLING GAP flagged for a future fix: add an apply-on-merge step (or a small apply_reviewed.py reading the merged PENDING_REVIEW state) so this manual step is not required going forward.",
-    "auto_refreshed": "2026-07-13"
+    "auto_refreshed": "2026-07-14"
   },
   "SA": {
     "code": "SA",
@@ -541,7 +541,7 @@
         ]
       }
     },
-    "auto_refreshed": "2026-07-13"
+    "auto_refreshed": "2026-07-14"
   },
   "US": {
     "code": "US",
@@ -600,7 +600,7 @@
         ]
       }
     },
-    "auto_refreshed": "2026-07-13"
+    "auto_refreshed": "2026-07-14"
   },
   "GB": {
     "code": "GB",
@@ -685,7 +685,7 @@
       }
     },
     "fit_meta": "REFIT 11-Jul-2026 on the 3-name KR panel after a MAJOR DATA REPAIR - supersedes nu=6/cal=1.070. THE INVESTING.COM KOREAN EXPORT CONTAINS PHANTOM NON-TRADING ROWS: ~160 rows per name carrying NaN volume and O=H=L=C, of which 144 of SAMSUNG's 170 fall on a SUNDAY (KOSPI is closed). Raw density is 276.8 rows/yr; after removing them it is 245.8/yr - exactly the KOSPI calendar. These phantom rows inject fake zero-return, zero-intraday-range days straight into the Yang-Zhang variance proxy, DEPRESSING the volatility estimate. The 10-Jul repair caught only the 13 pre/post-split price-scale rows (fixed by dividing by 5, which SYNTHESIZES a price on a day the market never opened); it never saw the ~160 phantom rows. They are now DROPPED, not rescaled. EFFECT: the tail goes 6 -> Gaussian and the cone WIDENS 1.070 -> 1.154 - the old fit was simultaneously too narrow AND falsely fat-tailed, an artifact of the depressed vol. Skill nevertheless IMPROVES: panel PARITY +0.0144 CI[-0.005,+0.017] (was +0.006). Per-name (LONO, robust blocks): SAMSUNG PARITY +0.0094, KAKAO PARITY +0.0022, LGES robust FAIL -0.0268 across blocks {2,3,4} - and its signature is OVER-COVERAGE: cov80=1.00 and cov90=1.00 (every outcome inside the 80% band), cone 1.112x the benchmark, PIT 0.471 (well centred). LGES is not mis-centred, it is simply too wide: it IPO'd Jan-2022, has the shortest history and only 13 windows, and the market-level width_cal over-widens a name whose own vol is below the panel average. This is the clearest case in the whole system for a NAME-LEVEL width_cal shrunk toward the market fit - proposed, NOT implemented, pending an out-of-sample test.",
-    "auto_refreshed": "2026-07-13"
+    "auto_refreshed": "2026-07-14"
   },
   "AE": {
     "market": "AE",
@@ -879,7 +879,7 @@
       }
     },
     "fit_meta": "REFIT 11-Jul-2026 on the 14-name AE panel (237 post-break windows), RE-RUN through the data-quality gate - supersedes nu=4/cal=1.070. Adds ADIB/DIB/TWOPOINTZERO/EAND to the prior 10. Tail moves 4 -> 10: the old fat tail was carried by IHC/EMAAR idiosyncratic swings on a smaller panel; four more well-behaved names dilute it. HONESTY NOTE: nu is only WEAKLY IDENTIFIED - every nu from 5 to Gaussian sits inside the 95% likelihood interval (nu=4 is only dlogL=2.23 away), and nu trades off against cal. The (nu,cal) PAIR is fitted; neither coordinate is individually precise. LONO OOS: this MLE config scores +0.0032 vs the incumbent's -0.0017. Data-quality gate dropped 3-5 stale no-trade rows each from EAND/ADCB/ADIB - immaterial (cal 1.056 -> 1.049, nu unchanged). BREAK FILTERING APPLIED: EAND's OHLC starts 2016, so 21 of its 39 windows predate the Jan-2022 workweek switch and are excluded from the calibration sample; unfiltered they pulled the fit to nu=6/cal=1.084. Panel PARITY +0.0049 CI[-0.004,+0.015]. Per-name: ALPHADHABI robust FAIL -0.0122 (cone 1.136x benchmark, cov90=0.94 vs a 0.90 target - over-wide, same signature as KR/LGES); all 13 others PARITY. Signal OFF; 14 names now clears the threshold for a rev_1m ablation.",
-    "auto_refreshed": "2026-07-13"
+    "auto_refreshed": "2026-07-14"
   },
   "IN": {
     "market": "IN",
@@ -941,7 +941,7 @@
       }
     },
     "fit_meta": "REFIT 11-Jul-2026 on the 3-name IN panel (TMPV/RELIANCE/INFY, 51 windows, 2021-2026), RE-RUN through the market-aware data-quality gate and the scale-normalized gate - EXACT REPRODUCTION of the 10-Jul fit: nu stays at the Gaussian limit, cal stays 0.930. Screened for the same phantom-row corruption found in the Korean export (144/170 of one Korean name's dropped rows fell on a Sunday, when the KOSPI is closed): India's export is CLEAN - 247.6 rows/yr across all three names, exactly the NSE calendar, zero phantom rows, no price-limit artifacts. Panel PARITY +0.0046 CI[-0.006,+0.016] on the corrected gate (was +0.002 on the old price-weighted one); top-name weight TMPV 43.7% (no single name dominates as badly as UAE's old IHC problem, but still the largest share of any 3-name panel in the system - worth a 4th name). All three PARITY, zero FAILs: INFY +0.0070, RELIANCE +0.0090, TMPV -0.0001. SIGNAL RE-CONFIRMED OFF: empirical IC of mom_12_1 is -0.0933 against the house prior's sign=+1 - WRONG SIGN, same pattern as Egypt's now-retired rev_1m signal. LONO ablation shows ZERO difference between signal-ON and carry-only at this panel size (the dead-zone/cap machinery absorbs it either way) - not enough data to safely re-estimate the sign, so the mom_12_1/IC-0.07 prior is RETAINED unchanged for later re-estimation, signal_active stays False. The backtest carry schedule is still a flat 6.50% placeholder (RBI repo actually ranged 4.00->6.50->~5.50 over the window) - gate-neutral for skill scoring but MUST be sourced properly (live G-Sec / real RBI schedule) before any IN publish.",
-    "auto_refreshed": "2026-07-13"
+    "auto_refreshed": "2026-07-14"
   },
   "QA": {
     "code": "QA",
@@ -1000,7 +1000,7 @@
         ]
       }
     },
-    "auto_refreshed": "2026-07-13"
+    "auto_refreshed": "2026-07-14"
   },
   "XAU": {
     "code": "XAU",
@@ -1035,6 +1035,6 @@
         ]
       }
     },
-    "auto_refreshed": "2026-07-13"
+    "auto_refreshed": "2026-07-14"
   }
 }
