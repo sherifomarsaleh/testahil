@@ -846,16 +846,17 @@ function renderLevelList(elId, res, sup){
 }
 
 /* ============ technical zoom panel (recent window magnified) ============ */
-function renderZoomChart(sourceSvgId, targetElId, res, sup, tailSessions){
+function renderZoomChart(sourceSvgId, targetElId, res, sup, defaultSessions){
   const src = document.getElementById(sourceSvgId); if (!src) return;
-  const targetEl = document.getElementById(targetElId); if (!targetEl) return;
+  const host = document.getElementById(targetElId); if (!host) return;
+
   const labels = Array.prototype.slice.call(src.querySelectorAll("text")).filter(function(t){
     return /var\(--muted/.test(t.getAttribute("fill") || "") && /^-?\d+(\.\d+)?$/.test((t.textContent||"").trim());
   });
   if (labels.length < 2) return;
-  const pts = labels.map(function(t){ return [parseFloat(t.getAttribute("y")), parseFloat(t.textContent)]; });
-  const n = pts.length, sy = pts.reduce((s,p)=>s+p[0],0)/n, sp = pts.reduce((s,p)=>s+p[1],0)/n;
-  let num=0, den=0; pts.forEach(function(p){ num += (p[0]-sy)*(p[1]-sp); den += (p[0]-sy)*(p[0]-sy); });
+  const cal = labels.map(function(t){ return [parseFloat(t.getAttribute("y")), parseFloat(t.textContent)]; });
+  const n0 = cal.length, sy = cal.reduce((s,p)=>s+p[0],0)/n0, sp = cal.reduce((s,p)=>s+p[1],0)/n0;
+  let num=0, den=0; cal.forEach(function(p){ num += (p[0]-sy)*(p[1]-sp); den += (p[0]-sy)*(p[0]-sy); });
   const slope = num/den, intercept = sp - slope*sy;
   const priceOfY = y => intercept + slope*y;
   const yOfPrice = p => (p - intercept) / slope;
@@ -870,64 +871,123 @@ function renderZoomChart(sourceSvgId, targetElId, res, sup, tailSessions){
   }
   const priceAll = pointsOf(strokes.price), ma50All = pointsOf(strokes.ma50), ma200All = pointsOf(strokes.ma200);
   if (!priceAll.length) return;
-
   const xAll = priceAll.map(p=>p[0]);
-  const xMin = Math.min.apply(null, xAll), xMax = Math.max.apply(null, xAll);
+  const xMax = Math.max.apply(null, xAll), xMin = Math.min.apply(null, xAll);
   const pxPerSession = (xMax - xMin) / (priceAll.length - 1);
-  const xThresh = xMax - tailSessions * pxPerSession;
+  const totalSessions = priceAll.length;
 
-  function tail(arr){ return arr.filter(function(p){ return p[0] >= xThresh; }); }
-  const priceT = tail(priceAll), ma50T = tail(ma50All), ma200T = tail(ma200All);
-  if (priceT.length < 2) return;
+  const OPTIONS = [30, 60, 90, 180].filter(function(s){ return s <= totalSessions; });
+  if (OPTIONS[OPTIONS.length-1] !== totalSessions && OPTIONS.length < 5) OPTIONS.push(totalSessions);
+  let sessions = OPTIONS.indexOf(defaultSessions) >= 0 ? defaultSessions : OPTIONS[Math.min(2, OPTIONS.length-1)];
 
-  const allY = priceT.concat(ma50T).concat(ma200T).map(p=>p[1]);
-  const yLo = Math.min.apply(null, allY), yHi = Math.max.apply(null, allY);
-  const pad = (yHi - yLo) * 0.12 || 4;
-  const yLoP = yLo - pad, yHiP = yHi + pad;
+  const btns = OPTIONS.map(function(s){
+    const lbl = (s >= totalSessions) ? "All" : s + "d";
+    return '<button type="button" class="zoom-win-btn" data-s="'+s+'" style="'+
+      'font-family:\'IBM Plex Mono\',monospace;font-size:12px;padding:4px 12px;border:1px solid var(--line);'+
+      'background:transparent;color:var(--muted);border-radius:6px;cursor:pointer">'+lbl+'</button>';
+  }).join("");
 
-  const W = 760, H = 260, ML = 46, MR = 54, MT = 14, MB = 26;
-  const X0 = ML, X1 = W - MR, Y0 = H - MB, Y1 = MT;
-  const xLo = priceT[0][0], xHi = priceT[priceT.length-1][0];
-  const xr = v => X0 + (v - xLo) / (xHi - xLo) * (X1 - X0);
-  const yr = v => Y0 + (v - yLoP) / (yHiP - yLoP) * (Y1 - Y0);
+  host.innerHTML =
+    '<div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:2px">'+
+      '<p class="qhead" style="margin:0">Zoomed \u2014 recent window vs the levels</p>'+
+      '<div id="'+targetElId+'-btns" style="display:flex;gap:6px">'+btns+'</div>'+
+    '</div>'+
+    '<p class="muted" style="font-size:var(--fs-small);margin:0 0 8px">Same price, 50-day MA and 200-day MA lines as the chart above, magnified so the support and resistance levels are readable against current price action. Pick a window.</p>'+
+    '<div id="'+targetElId+'-svg"></div>';
 
-  function scaledPath(arr){
-    return arr.map(function(p,i){ return (i?"L":"M") + xr(p[0]).toFixed(1) + "," + yr(p[1]).toFixed(1); }).join(" ");
+  function draw(){
+    const xThresh = xMax - (sessions - 1) * pxPerSession;
+    function tail(arr){ return arr.filter(function(p){ return p[0] >= xThresh - 1e-6; }); }
+    const priceT = tail(priceAll), ma50T = tail(ma50All), ma200T = tail(ma200All);
+    if (priceT.length < 2) return;
+
+    const allY = priceT.concat(ma50T).concat(ma200T).map(p=>p[1]);
+    let yLo = Math.min.apply(null, allY), yHi = Math.max.apply(null, allY);
+    // make sure any reference level that falls inside the window is visible
+    const visRefs = (res||[]).concat(sup||[]).map(yOfPrice).filter(function(y){ return isFinite(y); });
+    // (in y-pixel space, larger y = lower price; keep bounds by price instead)
+    const priceLoData = priceOfY(yHi), priceHiData = priceOfY(yLo);
+    let pLo = priceLoData, pHi = priceHiData;
+    (res||[]).concat(sup||[]).forEach(function(p){ if (p < pLo) pLo = p; if (p > pHi) pHi = p; });
+    const padP = (pHi - pLo) * 0.10 || 0.4;
+    pLo -= padP; pHi += padP;
+
+    const W = 760, H = 300, ML = 46, MR = 60, MT = 14, MB = 26;
+    const X0 = ML, X1 = W - MR, Y0 = H - MB, Y1 = MT;
+    const xLo = priceT[0][0], xHi = priceT[priceT.length-1][0];
+    const xr = v => X0 + (v - xLo) / (xHi - xLo) * (X1 - X0);
+    const yr = p => Y0 + (pHi - p) / (pHi - pLo) * (Y1 - Y0);
+
+    function pathOf(arr){ return arr.map(function(p,i){ return (i?"L":"M") + xr(p[0]).toFixed(1) + "," + yr(priceOfY(p[1])).toFixed(1); }).join(" "); }
+
+    // auto-fit ~7 nice gridlines for the current price window
+    const rng = pHi - pLo;
+    const raw = rng / 7;
+    const mag = Math.pow(10, Math.floor(Math.log(raw)/Math.LN10));
+    const norm = raw / mag;
+    const stepN = norm >= 5 ? 5 : norm >= 2 ? 2 : norm >= 1 ? 1 : 0.5;
+    const step = stepN * mag;
+    const gdec = step < 1 ? (step < 0.5 ? 2 : 1) : 0;
+    let grid = "";
+    for (let g = Math.ceil(pLo/step)*step; g <= pHi; g += step){
+      const y = yr(g);
+      grid += '<line x1="'+X0+'" x2="'+X1+'" y1="'+y.toFixed(1)+'" y2="'+y.toFixed(1)+'" stroke="var(--line,#dce4e2)" stroke-width="1" opacity=".45"/>';
+      grid += '<text x="'+(X0-8)+'" y="'+(y+3).toFixed(1)+'" text-anchor="end" font-size="10" fill="var(--muted,#6b7c78)" font-family="IBM Plex Mono,monospace">'+g.toFixed(gdec)+'</text>';
+    }
+
+    // reference lines, with collision-avoided right-edge labels
+    const refRows = [];
+    (res||[]).forEach(function(p){ if (p>=pLo && p<=pHi) refRows.push({p:p, y:yr(p), col:"var(--amber-text,#854F0B)"}); });
+    (sup||[]).forEach(function(p){ if (p>=pLo && p<=pHi) refRows.push({p:p, y:yr(p), col:"var(--red,#B5483A)"}); });
+    let refLines = "";
+    refRows.forEach(function(r){
+      refLines += '<line x1="'+X0+'" x2="'+X1+'" y1="'+r.y.toFixed(1)+'" y2="'+r.y.toFixed(1)+'" stroke="'+r.col+'" stroke-width="1.2" stroke-dasharray="5 3" opacity=".85"/>';
+    });
+    // label y-positions: sort, then push apart so none overlap (min 12px)
+    const lab = refRows.map(function(r){ return {ly:r.y, col:r.col, txt:F(r.p)}; }).sort(function(a,b){ return a.ly-b.ly; });
+    const minGap = 12;
+    for (let i=1;i<lab.length;i++){ if (lab[i].ly - lab[i-1].ly < minGap) lab[i].ly = lab[i-1].ly + minGap; }
+    // keep inside the plot
+    for (let i=lab.length-1;i>=0;i--){ if (lab[i].ly > Y0) lab[i].ly = (i===lab.length-1? Y0 : lab[i+1].ly - minGap); }
+    let refLabels = "";
+    lab.forEach(function(l){
+      refLabels += '<text x="'+(X1+6)+'" y="'+(l.ly+3.5).toFixed(1)+'" font-size="10.5" font-family="IBM Plex Mono,monospace" fill="'+l.col+'">'+l.txt+'</text>';
+    });
+
+    const lastPrice = priceOfY(priceT[priceT.length-1][1]);
+    const dot = '<circle cx="'+xr(priceT[priceT.length-1][0]).toFixed(1)+'" cy="'+yr(lastPrice).toFixed(1)+'" r="3.5" fill="var(--gold,#C0A45F)"/>';
+
+    // x tick labels (a few evenly spaced session offsets, counting back from latest)
+    let xt = "";
+    const nT = priceT.length;
+    [0, Math.floor(nT*0.25), Math.floor(nT*0.5), Math.floor(nT*0.75), nT-1].forEach(function(idx){
+      const back = (nT-1) - idx;
+      const x = xr(priceT[idx][0]);
+      xt += '<text x="'+x.toFixed(1)+'" y="'+(Y0+18)+'" text-anchor="middle" font-size="10" fill="var(--muted,#6b7c78)" font-family="IBM Plex Mono,monospace">'+(back===0?"latest":"-"+back)+'</text>';
+    });
+
+    document.getElementById(targetElId+"-svg").innerHTML =
+      '<svg viewBox="0 0 '+W+' '+H+'" width="100%" role="img" aria-label="Zoomed recent price action against support and resistance">'+
+        grid + refLines +
+        '<path d="'+pathOf(ma200T)+'" fill="none" stroke="var(--brass,#896F36)" stroke-width="1.6" opacity=".85"/>'+
+        '<path d="'+pathOf(ma50T)+'" fill="none" stroke="var(--teal,#12796B)" stroke-width="1.6" opacity=".85"/>'+
+        '<path d="'+pathOf(priceT)+'" fill="none" stroke="var(--ink,#12211e)" stroke-width="1.6" opacity=".95"/>'+
+        refLabels + xt + dot +
+      '</svg>';
+
+    // active-button styling
+    Array.prototype.forEach.call(document.querySelectorAll("#"+targetElId+"-btns .zoom-win-btn"), function(b){
+      const on = parseInt(b.getAttribute("data-s"),10) === sessions;
+      b.style.borderColor = on ? "var(--teal,#12796B)" : "var(--line)";
+      b.style.color = on ? "var(--teal,#12796B)" : "var(--muted)";
+      b.style.fontWeight = on ? "600" : "400";
+    });
   }
 
-  const priceLo = priceOfY(yHiP), priceHi = priceOfY(yLoP);
-  const step = (priceHi - priceLo) > 4 ? 1 : 0.5;
-  let grid = "";
-  for (let g = Math.ceil(priceLo/step)*step; g <= priceHi; g += step){
-    const y = yr(yOfPrice(g));
-    grid += '<line x1="'+X0+'" x2="'+X1+'" y1="'+y.toFixed(1)+'" y2="'+y.toFixed(1)+'" stroke="var(--line,#dce4e2)" stroke-width="1" opacity=".5"/>';
-    grid += '<text x="'+(X0-8)+'" y="'+(y+3).toFixed(1)+'" text-anchor="end" font-size="10" fill="var(--muted,#6b7c78)" font-family="IBM Plex Mono,monospace">'+g.toFixed(step<1?1:0)+'</text>';
-  }
-  let refLines = "";
-  (res||[]).forEach(function(p){
-    const yv = yOfPrice(p); if (yv < yLoP-pad || yv > yHiP+pad) return;
-    const y = yr(yv);
-    refLines += '<line x1="'+X0+'" x2="'+X1+'" y1="'+y.toFixed(1)+'" y2="'+y.toFixed(1)+'" stroke="var(--amber-text,#854F0B)" stroke-width="1.2" stroke-dasharray="4 3" opacity=".85"/>';
-    refLines += '<text x="'+(X1-4)+'" y="'+(y-3).toFixed(1)+'" text-anchor="end" font-size="10" font-family="IBM Plex Mono,monospace" fill="var(--amber-text,#854F0B)">'+F(p)+'</text>';
+  host.querySelector("#"+targetElId+"-btns").addEventListener("click", function(e){
+    const b = e.target.closest(".zoom-win-btn"); if (!b) return;
+    sessions = parseInt(b.getAttribute("data-s"),10);
+    draw();
   });
-  (sup||[]).forEach(function(p){
-    const yv = yOfPrice(p); if (yv < yLoP-pad || yv > yHiP+pad) return;
-    const y = yr(yv);
-    refLines += '<line x1="'+X0+'" x2="'+X1+'" y1="'+y.toFixed(1)+'" y2="'+y.toFixed(1)+'" stroke="var(--red,#B5483A)" stroke-width="1.2" stroke-dasharray="4 3" opacity=".85"/>';
-    refLines += '<text x="'+(X1-4)+'" y="'+(y-3).toFixed(1)+'" text-anchor="end" font-size="10" font-family="IBM Plex Mono,monospace" fill="var(--red,#B5483A)">'+F(p)+'</text>';
-  });
-
-  const lastPrice = priceT[priceT.length-1][1];
-  const dot = '<circle cx="'+xr(priceT[priceT.length-1][0]).toFixed(1)+'" cy="'+yr(lastPrice).toFixed(1)+'" r="3.5" fill="var(--gold,#C0A45F)"/>';
-
-  targetEl.innerHTML =
-    '<p class="qhead" style="margin-bottom:2px">Zoomed \u2014 last '+tailSessions+' sessions vs the levels</p>' +
-    '<p class="muted" style="font-size:var(--fs-small);margin:0 0 8px">Same price, 50-day MA and 200-day MA lines as the chart above, just the recent window at a magnified scale so the levels are readable against current price action.</p>' +
-    '<svg viewBox="0 0 '+W+' '+H+'" width="100%" role="img" aria-label="Zoomed recent price action against support and resistance">' +
-      grid + refLines +
-      '<path d="'+scaledPath(ma200T)+'" fill="none" stroke="var(--brass,#896F36)" stroke-width="1.6" opacity=".9"/>' +
-      '<path d="'+scaledPath(ma50T)+'" fill="none" stroke="var(--teal,#12796B)" stroke-width="1.6" opacity=".9"/>' +
-      '<path d="'+scaledPath(priceT)+'" fill="none" stroke="var(--ink,#12211e)" stroke-width="1.6" opacity=".95"/>' +
-      dot +
-    '</svg>';
+  draw();
 }
