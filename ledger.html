@@ -329,7 +329,7 @@ function cohortChartSVG(r, chartId){
   svg.appendChild(chEl("g",{id:chartId+"-actual"}));
   // anchor + realized dots (always present, even before/without the actual line)
   svg.appendChild(chEl("circle",{cx:px(0),cy:py(A),r:4,fill:"var(--ink)"}));
-  const rcColor = r.in_90 ? "#1F8A4C" : "var(--red)";
+  const rcColor = "#2a78d6";
   svg.appendChild(chEl("circle",{cx:px(steps),cy:py(rc),r:7,fill:rcColor,stroke:"var(--paper)","stroke-width":2}));
   // ---- right-edge endpoint value labels (final forecast percentiles + actual close) ----
   // stack them at their true y, then push apart so text doesn't overlap
@@ -408,7 +408,7 @@ function cohortChartBlock(t, rows){
     <span style="display:flex;align-items:center;gap:5px"><span style="width:14px;height:0;border-top:2px dashed var(--ink);display:inline-block"></span>our best guess (middle)</span>
     <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:12px;background:var(--teal);opacity:.55;display:inline-block;border-radius:2px"></span>25%–75% band</span>
     <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:12px;background:var(--brass);opacity:.34;display:inline-block;border-radius:2px"></span>5%–95% band</span>
-    <span style="display:flex;align-items:center;gap:5px"><span style="width:11px;height:11px;border-radius:50%;background:#1F8A4C;display:inline-block"></span>where it closed</span>
+    <span style="display:flex;align-items:center;gap:5px"><span style="width:11px;height:11px;border-radius:50%;background:#2a78d6;display:inline-block"></span>where it closed</span>
   </div>`;
   const pathNote = hasActual
     ? `the blue line is where the price actually traded, day by day, against the range we published on ${r.anchor_date} (the funnel)`
