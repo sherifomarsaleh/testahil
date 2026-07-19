@@ -842,9 +842,9 @@ function injectLevels(svgId, res, sup){
   }
   (res||[]).forEach(function(p){ addLine(p, "var(--amber-text,#854F0B)", F(p)); });
   (sup||[]).forEach(function(p){ addLine(p, "var(--red,#B5483A)", F(p)); });
-  // collision pass: sort by y and push labels at least 11px apart so none overlap
+  // collision pass: sort by y and push labels at least 12px apart so none overlap
   labelRows.sort(function(a,b){ return a.y - b.y; });
-  const minGap = 11;
+  const minGap = 12;
   for (let i=1; i<labelRows.length; i++){
     if (labelRows[i].y - labelRows[i-1].y < minGap) labelRows[i].y = labelRows[i-1].y + minGap;
   }
@@ -853,8 +853,15 @@ function injectLevels(svgId, res, sup){
     if (labelRows[i].y > 291) labelRows[i].y = (i===labelRows.length-1 ? 291 : labelRows[i+1].y - minGap);
   }
   labelRows.forEach(function(r){
-    const text = document.createElementNS(ns, "text");
-    text.setAttribute("x", x1 - 4); text.setAttribute("y", (r.y - 3).toFixed(1));
+    var w = (r.label.length * 6.0) + 6;   // approx text width + padding
+    var rect = document.createElementNS(ns, "rect");
+    rect.setAttribute("x", (x1 - 4 - w).toFixed(1)); rect.setAttribute("y", (r.y - 11).toFixed(1));
+    rect.setAttribute("width", w.toFixed(1)); rect.setAttribute("height", "12");
+    rect.setAttribute("fill", "var(--card,#15302D)"); rect.setAttribute("opacity", "0.85");
+    rect.setAttribute("rx", "2");
+    svg.appendChild(rect);
+    var text = document.createElementNS(ns, "text");
+    text.setAttribute("x", x1 - 4); text.setAttribute("y", (r.y - 2).toFixed(1));
     text.setAttribute("text-anchor", "end"); text.setAttribute("font-size", "9.5");
     text.setAttribute("font-family", "IBM Plex Mono,monospace"); text.setAttribute("fill", r.color);
     text.textContent = r.label;
