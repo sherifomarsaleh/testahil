@@ -284,7 +284,7 @@ function cohortGeom(r){
   const allV = [A, rc].concat(path[5], path[95]);
   let lo = Math.min(...allV), hi = Math.max(...allV);
   const pad = (hi-lo)*0.10; lo-=pad; hi+=pad;
-  const W=680, HT=300, ml=54, mr=14, mt=14, mb=34;
+  const W=680, HT=300, ml=54, mr=88, mt=14, mb=34;
   const px=i=> ml + i*(W-ml-mr)/steps;      // i in [0..steps]
   const pxFrac=f=> ml + f*(W-ml-mr);          // f in [0..1] of the horizon
   const py=v=> mt + (hi-v)*(HT-mt-mb)/(hi-lo);
@@ -293,7 +293,7 @@ function cohortGeom(r){
 
 function cohortChartSVG(r, chartId){
   const g = cohortGeom(r);
-  const {A,P,rc,steps,path,lo,hi,W,HT,ml,mr,px,py} = g;
+  const {A,P,rc,steps,path,lo,hi,W,HT,ml,mr,mb,px,py} = g;
   const fmt=v=> v.toFixed(2);
 
   function bandPath(kHi,kLo){
@@ -329,6 +329,34 @@ function cohortChartSVG(r, chartId){
   svg.appendChild(chEl("circle",{cx:px(0),cy:py(A),r:4,fill:"var(--ink)"}));
   const rcColor = r.in_90 ? "#1F8A4C" : "var(--red)";
   svg.appendChild(chEl("circle",{cx:px(steps),cy:py(rc),r:7,fill:rcColor,stroke:"var(--paper)","stroke-width":2}));
+  // ---- right-edge endpoint value labels (final forecast percentiles + actual close) ----
+  // stack them at their true y, then push apart so text doesn't overlap
+  const xLab = px(steps) + 12;
+  const labels = [
+    {v:P[95], txt:fmt(P[95]), color:"#8A6A2E", w:400},
+    {v:P[75], txt:fmt(P[75]), color:"#0F6E56", w:400},
+    {v:P[50], txt:fmt(P[50]), color:"var(--ink)", w:600},
+    {v:P[25], txt:fmt(P[25]), color:"#0F6E56", w:400},
+    {v:P[5],  txt:fmt(P[5]),  color:"#8A6A2E", w:400},
+    {v:rc,    txt:fmt(rc)+" ●", color:rcColor, w:600}
+  ];
+  // desired y for each, then de-collide (min 13px apart), preserving order by value desc
+  labels.sort((a,b)=> b.v - a.v);
+  const minGap = 13;
+  let ys = labels.map(l=> py(l.v));
+  for(let i=1;i<ys.length;i++){ if(ys[i] - ys[i-1] < minGap) ys[i] = ys[i-1] + minGap; }
+  // clamp within chart, then re-spread upward if pushed past bottom
+  const bottom = HT - mb + 4;
+  if(ys[ys.length-1] > bottom){
+    ys[ys.length-1] = bottom;
+    for(let i=ys.length-2;i>=0;i--){ if(ys[i+1] - ys[i] < minGap) ys[i] = ys[i+1] - minGap; }
+  }
+  labels.forEach((l,i)=>{
+    // tiny connector tick from the funnel edge to the label row
+    svg.appendChild(chEl("line",{x1:px(steps)+2, y1:py(l.v), x2:xLab-3, y2:ys[i], stroke:l.color,"stroke-width":0.8,"stroke-opacity":0.5}));
+    const tx=chEl("text",{x:xLab, y:ys[i]+3.5, "font-size":11.5, "font-weight":l.w, fill:l.color, "font-family":"'IBM Plex Mono',monospace"});
+    tx.textContent=l.txt; svg.appendChild(tx);
+  });
   return svg.outerHTML;
 }
 
