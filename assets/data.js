@@ -3749,7 +3749,7 @@ const METALS = {
    t252:{ label:"12 months (T+252)", p5:34, p25:52, p50:67, p75:86, p95:135, resolve:"2027-07-02" }
  },
  touch:[ [85,3,14], [78,9,26], [72,22,45], [68,42,63], [58,45,62], [55,25,44], [50,8,22], [45,2,10] ],
- levels:{ res:[68,71,78], sup:[58,55,50] },
+ levels:{ res:[63.15, 71.65, 83.07], sup:[61.50, 60.97, 55.62] },
  tech:{
    trend:"Corrective below all major averages \\u2014 RSI recovering from oversold, a death-cross approaching",
    summary:"Silver closed $62.43 after the most violent year in its modern history \\u2014 a run from the high-$30s to an intraday all-time high near $121 in late January 2026, then a halving back to the low-$60s as the war premium unwound and the Fed turned hawkish. Price sits ~12% below both the 50- and 200-day moving averages, MACD (12\\u00b726\\u00b79) is negative (\\u22123.37 / \\u22123.67 / +0.30) but its histogram has just turned up, and RSI(14) is ~44 \\u2014 neutral, off oversold. The 50-day is still fractionally above the 200-day, but with price well below both and the halving so recent, a death-cross is the more likely next structural event.",
