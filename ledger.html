@@ -257,7 +257,9 @@ function chEl(t,a){const e=document.createElementNS(CH_NS,t);for(const k in a)e.
 // broken fetch. raw.githubusercontent serves Access-Control-Allow-Origin:* so the browser
 // can fetch it cross-origin. Add a name here when its cohort chart should show the path.
 const COHORT_OHLC = {
-  PHDC: "https://raw.githubusercontent.com/sherifomarsaleh/testahil/main/engine/raw_ohlc/EG/PHDC.csv"
+  PHDC: "https://raw.githubusercontent.com/sherifomarsaleh/testahil/main/engine/raw_ohlc/EG/PHDC.csv",
+  TMGH: "https://raw.githubusercontent.com/sherifomarsaleh/testahil/main/engine/raw_ohlc/EG/TMGH.csv",
+  EMFD: "https://raw.githubusercontent.com/sherifomarsaleh/testahil/main/engine/raw_ohlc/EG/EMFD.csv"
 };
 
 function latestGradedCohort(rows){

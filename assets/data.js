@@ -981,16 +981,16 @@ const TICKERS = {
     name: "Talaat Moustafa Group Holding",
     nameAr: "مجموعة طلعت مصطفى القابضة",
     code: "EGX:TMGH",
-    spot: 96.80,
-    spotDate: "close 17 Jun 2026",
+    spot: 99.88,
+    spotDate: "close 19 Jul 2026",
     ccy: "EGP",
-    fair: { bear: 83.6, base: 147.12, full: 189.6 },          // 9 Jun 2026 valuation — unchanged in the 17 Jun price refresh
+    fair: { bear: 83.6, base: 147.12, full: 189.6 },          // 9 Jun 2026 valuation — unchanged; separate clock, not touched by the 19 Jul roll-forward
     dist: {
-      t20: { label:"1 month (T+20)",  p5:82.37, p25:92.24, p50:99.46,  p75:107.34, p95:120.63, resolve:"2026-07-16" },
-      t60: { label:"3 months (T+60)", p5:76.47, p25:92.27, p50:105.14, p75:119.80, p95:144.42, resolve:"2026-09-10" }
+      t20: { label:"1 month (T+20)",  p5:88.50, p25:96.71, p50:101.32, p75:106.20, p95:116.12, resolve:"2026-08-16" },
+      t60: { label:"3 months (T+60)", p5:82.52, p25:96.14, p50:104.25, p75:113.08, p95:131.46, resolve:"2026-10-11" }
     },
-    touch: [ /* descending high → low */
-      [126, 3, 27], [118, 10, 42], [110, 28, 61], [100, 73, 88], [88, 25, 44], [83, 9, 26]
+    touch: [ /* descending high → low — same absolute levels, reprobabilised on the 19 Jul cycle-2 paths */
+      [126, 2, 13], [118, 6, 26], [110, 21, 51], [100, 89, 95], [88, 8, 21], [83, 3, 11]
     ],
     levels: { res:[101.40, 99.27, 97.40], sup:[95.26, 92.78, 86.56] },
     tech: {
@@ -1009,16 +1009,16 @@ const TICKERS = {
     name: "Emaar Misr for Development",
     nameAr: "إعمار مصر للتنمية",
     code: "EGX:EMFD",
-    spot: 12.44,
-    spotDate: "close 17 Jun 2026",
+    spot: 11.70,
+    spotDate: "close 19 Jul 2026",
     ccy: "EGP",
-    fair: { bear: 13.71, base: 19.84, full: 23.43 },          // 17 Jun 2026 valuation — SOTP/RNAV risk-adjusted base; full execution 23.43; four-method synthesis ~19.5
+    fair: { bear: 13.71, base: 19.84, full: 23.43 },          // 17 Jun 2026 valuation — unchanged; separate clock, not touched by the 19 Jul roll-forward
     dist: {
-      t20: { label:"1 month (T+20)",  p5:10.50, p25:11.80, p50:12.75, p75:13.78, p95:15.46, resolve:"2026-07-16" },
-      t60: { label:"3 months (T+60)", p5:9.64,  p25:11.71, p50:13.39, p75:15.29, p95:18.47, resolve:"2026-09-13" }
+      t20: { label:"1 month (T+20)",  p5:10.21, p25:11.27, p50:11.87, p75:12.51, p95:13.81, resolve:"2026-08-16" },
+      t60: { label:"3 months (T+60)", p5:9.42,  p25:11.16, p50:12.21, p75:13.37, p95:15.81, resolve:"2026-10-11" }
     },
-    touch: [ /* descending high → low */
-      [17.00, 1, 18], [16.00, 4, 28], [15.00, 12, 44], [14.00, 31, 63], [13.00, 67, 84]
+    touch: [ /* descending high → low — same absolute levels, reprobabilised on the 19 Jul cycle-2 paths */
+      [17.00, 1, 4], [16.00, 1, 7], [15.00, 2, 14], [14.00, 6, 26], [13.00, 21, 50]
     ],
     levels: { res:[15.00, 13.00, 12.50], sup:[11.40, 10.62, 9.82] },
     tech: {
@@ -2666,12 +2666,13 @@ const LEDGER = [
   {
     instrument:"TMGH", asset_class:"equity",
     anchor_date:"2026-06-15", anchor_price:95.68, ccy:"EGP",
-    horizon_label:"T+20", grade_date:"2026-07-14", cycle_no:1, reanchor_from:null,
+    horizon_label:"T+20", grade_date:"2026-07-15", cycle_no:1, reanchor_from:null,
+    grade_date_projected:"2026-07-13", grade_note:"Projected grade_date (Sun\u2013Thu calendar, no holiday awareness) fell 2 sessions short of a true T+20; graded on the actual 20th session close.",
     p5:81.42, p25:91.17, p50:98.31, p75:106.10, p95:119.24,
     touch:{ "+5":66, "+10":24, "+15":8, "+20":2, "-5":29, "-10":11 },
-    realized_close:null, realized_high:null, realized_low:null,
-    in_90:null, in_50:null, realized_quantile:null, median_err:null,
-    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+    realized_close:101.01, realized_high:101.99, realized_low:92.10,
+    in_90:true, in_50:true, realized_quantile:0.587, median_err:0.0275,
+    touch_hit:{ "+5":true, "+10":false, "+15":false, "+20":false, "-5":false, "-10":false }
   },
   {
     instrument:"TMGH", asset_class:"equity",
@@ -2682,18 +2683,39 @@ const LEDGER = [
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  }  ,
+  {
+    instrument:"TMGH", asset_class:"equity",
+    anchor_date:"2026-07-19", anchor_price:99.88, ccy:"EGP",
+    horizon_label:"T+20", grade_date:"2026-08-16", cycle_no:2, reanchor_from:"2026-06-15",
+    p5:88.50, p25:96.71, p50:101.32, p75:106.20, p95:116.12,
+    touch:{ "+5":48, "+10":21, "+15":9, "+20":5, "-5":33, "-10":11 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"TMGH", asset_class:"equity",
+    anchor_date:"2026-07-19", anchor_price:99.88, ccy:"EGP",
+    horizon_label:"T+60", grade_date:"2026-10-11", cycle_no:2, reanchor_from:"2026-06-15",
+    p5:82.52, p25:96.14, p50:104.25, p75:113.08, p95:131.46,
+    touch:{ "+5":74, "+10":51, "+15":34, "+20":22, "-5":50, "-10":26 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   }
 ,
   // ---- EMFD · equity · cycle 1 (17 Jun 2026 published study) ----
   {
     instrument:"EMFD", asset_class:"equity",
     anchor_date:"2026-06-17", anchor_price:12.44, ccy:"EGP",
-    horizon_label:"T+20", grade_date:"2026-07-16", cycle_no:1, reanchor_from:null,
+    horizon_label:"T+20", grade_date:"2026-07-19", cycle_no:1, reanchor_from:null,
+    grade_date_projected:"2026-07-15", grade_note:"Projected grade_date (Sun\u2013Thu calendar, no holiday awareness) fell 2 sessions short of a true T+20; graded on the actual 20th session close.",
     p5:10.50, p25:11.80, p50:12.75, p75:13.78, p95:15.46,
     touch:{ "+5":64, "+10":41, "+15":24, "+20":13, "-5":49, "-10":23 },
-    realized_close:null, realized_high:null, realized_low:null,
-    in_90:null, in_50:null, realized_quantile:null, median_err:null,
-    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+    realized_close:11.70, realized_high:12.57, realized_low:11.24,
+    in_90:true, in_50:false, realized_quantile:0.235, median_err:-0.0824,
+    touch_hit:{ "+5":false, "+10":false, "+15":false, "+20":false, "-5":true, "-10":false }
   },
   {
     instrument:"EMFD", asset_class:"equity",
@@ -2705,6 +2727,27 @@ const LEDGER = [
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   },
+  {
+    instrument:"EMFD", asset_class:"equity",
+    anchor_date:"2026-07-19", anchor_price:11.70, ccy:"EGP",
+    horizon_label:"T+20", grade_date:"2026-08-16", cycle_no:2, reanchor_from:"2026-06-17",
+    p5:10.21, p25:11.27, p50:11.87, p75:12.51, p95:13.81,
+    touch:{ "+5":52, "+10":25, "+15":12, "+20":6, "-5":38, "-10":14 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"EMFD", asset_class:"equity",
+    anchor_date:"2026-07-19", anchor_price:11.70, ccy:"EGP",
+    horizon_label:"T+60", grade_date:"2026-10-11", cycle_no:2, reanchor_from:"2026-06-17",
+    p5:9.42, p25:11.16, p50:12.21, p75:13.37, p95:15.81,
+    touch:{ "+5":75, "+10":54, "+15":38, "+20":25, "-5":55, "-10":31 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+
   // ---- OCDI · equity · cycle 1 (24 Jun 2026 published study) ----
   {
     instrument:"OCDI", asset_class:"equity",
