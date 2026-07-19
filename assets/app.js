@@ -670,3 +670,264 @@ function initShare(){
   window.addEventListener('hashchange',function(){ openTo(location.hash); });
   document.addEventListener('DOMContentLoaded',function(){ document.querySelectorAll('details.rds').forEach(function(d){ d.addEventListener('toggle',function(){ if(d.open){ setTimeout(function(){ window.dispatchEvent(new Event('resize')); },30); } }); }); if(location.hash){ setTimeout(function(){ openTo(location.hash); },60); } });
 })();
+
+/* ============ static MC fan (Fundamental/Technical/MC redesign) ============ */
+function fitPowerLaw(spot, t20, t60){
+  const out = {};
+  ["p5","p25","p50","p75","p95"].forEach(function(q){
+    const y20 = Math.log(t20[q]/spot), y60 = Math.log(t60[q]/spot);
+    const b = Math.log(Math.abs(y60)/Math.abs(y20)) / Math.log(3);
+    const a = y20 / Math.pow(20, b);
+    out[q] = [a, b];
+  });
+  return out;
+}
+function fanVal(fit, spot, q, t){
+  if (t === 0) return spot;
+  const a = fit[q][0], b = fit[q][1];
+  return spot * Math.exp(a * Math.pow(t, b));
+}
+function renderStaticFan(elId, T){
+  const el = document.getElementById(elId); if (!el) return;
+  const spot = T.spot, t20 = T.dist.t20, t60 = T.dist.t60;
+  const fit = fitPowerLaw(spot, t20, t60);
+  const W = 760, H = 300, ML = 46, MR = 54, MT = 16, MB = 30;
+  const X0 = ML, X1 = W - MR, Y0 = H - MB, Y1 = MT, AX = 60;
+  const allT = []; for (let t = 0; t <= 60; t += 2) allT.push(t);
+  let lo = Infinity, hi = -Infinity;
+  allT.forEach(function(t){
+    ["p5","p95"].forEach(function(q){
+      const v = fanVal(fit, spot, q, t);
+      if (v < lo) lo = v; if (v > hi) hi = v;
+    });
+  });
+  const pad = (hi - lo) * 0.08; const PMIN = lo - pad, PMAX = hi + pad;
+  const xpx = t => X0 + (t / AX) * (X1 - X0);
+  const ypx = p => Y0 + (p - PMIN) / (PMAX - PMIN) * (Y1 - Y0);
+  function bandPath(qHi, qLo){
+    let d = "";
+    allT.forEach(function(t, i){ const v = fanVal(fit, spot, qHi, t); d += (i ? "L" : "M") + xpx(t).toFixed(1) + "," + ypx(v).toFixed(1) + " "; });
+    for (let i = allT.length - 1; i >= 0; i--){ const t = allT[i]; const v = fanVal(fit, spot, qLo, t); d += "L" + xpx(t).toFixed(1) + "," + ypx(v).toFixed(1) + " "; }
+    return d + "Z";
+  }
+  function linePath(q){
+    let d = "";
+    allT.forEach(function(t, i){ const v = fanVal(fit, spot, q, t); d += (i ? "L" : "M") + xpx(t).toFixed(1) + "," + ypx(v).toFixed(1) + " "; });
+    return d;
+  }
+  const niceStep = (PMAX - PMIN) > 10 ? 2 : 1;
+  let grid = ""; for (let g = Math.ceil(PMIN / niceStep) * niceStep; g <= PMAX; g += niceStep){
+    const y = ypx(g);
+    grid += '<line x1="' + X0 + '" x2="' + X1 + '" y1="' + y.toFixed(1) + '" y2="' + y.toFixed(1) + '" stroke="var(--line,#dce4e2)" stroke-width="1" opacity=".5"/>';
+    grid += '<text x="' + (X0 - 8) + '" y="' + (y + 3).toFixed(1) + '" text-anchor="end" font-size="10" fill="var(--muted,#6b7c78)" font-family="IBM Plex Mono,monospace">' + g.toFixed(0) + '</text>';
+  }
+  let xt = ""; [0,10,20,30,40,50,60].forEach(function(t){
+    xt += '<text x="' + xpx(t).toFixed(1) + '" y="' + (Y0 + 18) + '" text-anchor="middle" font-size="10" fill="var(--muted,#6b7c78)" font-family="IBM Plex Mono,monospace">' + (t === 0 ? "latest" : "T+" + t) + '</text>';
+  });
+  const cols = {p95:"var(--teal2,#2A8F8F)",p75:"var(--teal,#12796B)",p50:"var(--gold,#C0A45F)",p25:"var(--teal,#12796B)",p5:"var(--teal2,#2A8F8F)"};
+  let rows = ["p5","p25","p50","p75","p95"].map(function(q){ return [fanVal(fit, spot, q, 60), q]; });
+  rows.sort(function(a,b){ return b[0]-a[0]; });
+  let endLabels = "", prevY = null;
+  rows.forEach(function(r){
+    let y = ypx(r[0]);
+    if (prevY !== null && y - prevY < 12) y = prevY + 12;
+    prevY = y;
+    endLabels += '<circle cx="' + X1.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="' + (r[1]==="p50"?3.5:2.5) + '" fill="' + cols[r[1]] + '"/>';
+    endLabels += '<text x="' + (X1+8).toFixed(1) + '" y="' + (y+3.5).toFixed(1) + '" font-size="10.5" font-family="IBM Plex Mono,monospace" fill="' + cols[r[1]] + '">' + F(r[0]) + '</text>';
+  });
+  const touchRows = (T.touch||[]).map(function(r){
+    return '<tr><td class="num">' + r[0].toFixed(2) + '</td><td class="num">' + r[1] + '%</td><td class="num">' + r[2] + '%</td></tr>';
+  }).join("");
+  el.innerHTML =
+    '<svg viewBox="0 0 ' + W + ' ' + (Y0+40) + '" width="100%" role="img" aria-label="90% and 50% probability bands from latest to T+60">' +
+      grid +
+      '<path d="' + bandPath("p95","p5") + '" fill="var(--teal,#12796B)" opacity=".16"/>' +
+      '<path d="' + bandPath("p75","p25") + '" fill="var(--teal,#12796B)" opacity=".34"/>' +
+      '<path d="' + linePath("p50") + '" fill="none" stroke="var(--gold,#C0A45F)" stroke-width="1.8"/>' +
+      xt + endLabels +
+    '</svg>' +
+    '<div style="display:flex;gap:18px;flex-wrap:wrap;font-size:var(--fs-small);color:var(--muted);margin:10px 0 4px">' +
+      '<span><span style="display:inline-block;width:14px;height:10px;border-radius:2px;background:var(--teal,#12796B);opacity:.34;margin-right:5px"></span>50% band (25th\u201375th)</span>' +
+      '<span><span style="display:inline-block;width:14px;height:10px;border-radius:2px;background:var(--teal,#12796B);opacity:.16;margin-right:5px"></span>90% band (5th\u201395th)</span>' +
+      '<span><span style="display:inline-block;width:14px;height:2px;background:var(--gold,#C0A45F);margin-right:5px;vertical-align:middle"></span>median path</span>' +
+    '</div>' +
+    '<table class="mc-ladder" style="margin-top:14px"><thead><tr><th>Level</th><th>P(touch) T+20</th><th>P(touch) T+60</th></tr></thead><tbody>' + touchRows + '</tbody></table>' +
+    '<p class="muted" style="font-size:var(--fs-small);margin-top:12px">t20 and t60 are the published calibration exactly as saved. The curve between them is a smooth fit using the real Student-t shape for this market through those two points \u2014 not a fresh simulation at every day, and not adjustable \u2014 so it always agrees with the published numbers at the two horizons that matter.</p>';
+}
+
+/* ============ fair-value sensitivity (Lens 2) ============ */
+function renderFairLevers(elId, T, levers){
+  const el = document.getElementById(elId); if (!el || !levers || !levers.length) return;
+  const bear = T.fair.bear, base = T.fair.base, full = T.fair.full, spot = T.spot;
+  const range = full - bear;
+  const pct = v => Math.max(0, Math.min(100, (v - bear) / range * 100));
+  const leverHtml = levers.map(function(lv, i){
+    return '<div class="fl-lever" style="margin-bottom:14px">' +
+      '<div style="display:flex;justify-content:space-between;font-size:var(--fs-small);margin-bottom:5px">' +
+        '<span>' + lv.name + '</span><span class="num" id="fl-val-' + i + '" style="color:var(--gold)"></span></div>' +
+      '<input type="range" id="fl-' + i + '" min="' + lv.min + '" max="' + lv.max + '" step="' + lv.step + '" value="' + lv.def + '" style="width:100%">' +
+      '<div style="display:flex;justify-content:space-between;font-size:10.5px;color:var(--muted)"><span>' + lv.lo + '</span><span>' + lv.hi + '</span></div>' +
+    '</div>';
+  }).join("");
+  el.innerHTML =
+    '<div class="card">' +
+    '<p class="qhead">What could move it \u2014 sensitivity</p>' +
+    '<p class="muted">A simple weighted what-if off the published fair value. Not a re-run DCF, and it never touches the Monte Carlo section below.</p>' +
+    '<div style="position:relative;margin:30px 6px 6px">' +
+      '<div style="position:relative;height:6px;border-radius:3px;background:linear-gradient(90deg,#B5483A,#4A4A3A,#178A76)">' +
+        '<div style="position:absolute;left:0%;top:-20px;transform:translateX(-50%);text-align:center;font-family:\'IBM Plex Mono\',monospace;font-size:11px;color:var(--muted)">' + F(bear) + '<span style="display:block;font-size:9.5px">bear</span></div>' +
+        '<div style="position:absolute;left:100%;top:-20px;transform:translateX(-50%);text-align:center;font-family:\'IBM Plex Mono\',monospace;font-size:11px;color:var(--muted)">' + F(full) + '<span style="display:block;font-size:9.5px">full</span></div>' +
+        '<div style="position:absolute;left:' + pct(spot).toFixed(1) + '%;top:14px;transform:translateX(-50%);text-align:center;font-family:\'IBM Plex Mono\',monospace;font-size:10.5px;color:var(--muted)">\u25B2<span style="display:block;font-size:9.5px">spot ' + F(spot) + '</span></div>' +
+        '<div id="fl-marker" style="position:absolute;left:' + pct(base).toFixed(1) + '%;top:50%;width:13px;height:13px;transform:translate(-50%,-50%) rotate(45deg);background:var(--gold);border:2px solid var(--bg,#0d1f1d)"></div>' +
+      '</div>' +
+    '</div>' +
+    '<p style="font-family:\'IBM Plex Mono\',monospace;font-size:14px;margin:26px 0 18px">Fair value: <b id="fl-fair" style="color:var(--gold);font-size:17px"></b> <span class="muted" id="fl-delta"></span></p>' +
+    leverHtml +
+    '<button type="button" id="fl-reset" class="btn-ghost" style="font-size:12px;padding:6px 12px">Reset to base case</button>' +
+    '</div>';
+  function render(){
+    let effect = 0;
+    levers.forEach(function(lv, i){
+      const v = parseFloat(document.getElementById("fl-" + i).value);
+      effect += lv.impact * (v - lv.def) / 100;
+      document.getElementById("fl-val-" + i).textContent = lv.fmt(v);
+    });
+    const fair = base * Math.exp(effect);
+    document.getElementById("fl-marker").style.left = pct(fair) + "%";
+    document.getElementById("fl-fair").textContent = "EGP " + F(fair);
+    const d = (fair / spot - 1) * 100;
+    document.getElementById("fl-delta").textContent = "(" + (d >= 0 ? "+" : "\u2212") + Math.abs(d).toFixed(1) + "% vs spot)";
+  }
+  levers.forEach(function(lv, i){ document.getElementById("fl-" + i).addEventListener("input", render); });
+  document.getElementById("fl-reset").addEventListener("click", function(){
+    levers.forEach(function(lv, i){ document.getElementById("fl-" + i).value = lv.def; });
+    render();
+  });
+  render();
+}
+
+/* ============ technical reference lines (Lens 3) ============ */
+function injectLevels(svgId, res, sup){
+  const svg = document.getElementById(svgId); if (!svg) return;
+  const labels = Array.prototype.slice.call(svg.querySelectorAll('text')).filter(function(t){
+    return /var\(--muted/.test(t.getAttribute("fill") || "") && /^-?\d+(\.\d+)?$/.test((t.textContent||"").trim());
+  });
+  if (labels.length < 2) return;
+  const pts = labels.map(function(t){ return [parseFloat(t.getAttribute("y")), parseFloat(t.textContent)]; });
+  const n = pts.length, sy = pts.reduce((s,p)=>s+p[0],0)/n, sp = pts.reduce((s,p)=>s+p[1],0)/n;
+  let num=0, den=0; pts.forEach(function(p){ num += (p[0]-sy)*(p[1]-sp); den += (p[0]-sy)*(p[0]-sy); });
+  const slope = num/den, intercept = sp - slope*sy;
+  const priceToY = price => (price - intercept) / slope;
+  const x0 = svg.querySelector('rect') ? 46 : 46, x1 = 746;
+  const ns = "http://www.w3.org/2000/svg";
+  function addLine(price, color, label){
+    const y = priceToY(price);
+    const line = document.createElementNS(ns, "line");
+    line.setAttribute("x1", x0); line.setAttribute("x2", x1);
+    line.setAttribute("y1", y.toFixed(1)); line.setAttribute("y2", y.toFixed(1));
+    line.setAttribute("stroke", color); line.setAttribute("stroke-width", "1");
+    line.setAttribute("stroke-dasharray", "4 3"); line.setAttribute("opacity", ".7");
+    svg.appendChild(line);
+    const text = document.createElementNS(ns, "text");
+    text.setAttribute("x", x1 - 4); text.setAttribute("y", (y - 3).toFixed(1));
+    text.setAttribute("text-anchor", "end"); text.setAttribute("font-size", "9.5");
+    text.setAttribute("font-family", "IBM Plex Mono,monospace"); text.setAttribute("fill", color);
+    text.textContent = label;
+    svg.appendChild(text);
+  }
+  (res||[]).forEach(function(p){ addLine(p, "var(--amber-text,#854F0B)", F(p)); });
+  (sup||[]).forEach(function(p){ addLine(p, "var(--red,#B5483A)", F(p)); });
+}
+function renderLevelList(elId, res, sup){
+  const el = document.getElementById(elId); if (!el) return;
+  const col = (arr, label) => '<div><p class="qhead" style="font-size:11px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted)">' + label + '</p>' +
+    arr.map(function(p,i){ return '<div style="display:flex;justify-content:space-between;font-family:\'IBM Plex Mono\',monospace;font-size:13px;padding:4px 0;border-bottom:1px solid var(--line)"><span>' + label[0] + (i+1) + '</span><span>' + F(p) + '</span></div>'; }).join("") + '</div>';
+  el.innerHTML = '<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px">' + col(res,"Resistance") + col(sup,"Support") + '</div>';
+}
+
+/* ============ technical zoom panel (recent window magnified) ============ */
+function renderZoomChart(sourceSvgId, targetElId, res, sup, tailSessions){
+  const src = document.getElementById(sourceSvgId); if (!src) return;
+  const targetEl = document.getElementById(targetElId); if (!targetEl) return;
+  const labels = Array.prototype.slice.call(src.querySelectorAll("text")).filter(function(t){
+    return /var\(--muted/.test(t.getAttribute("fill") || "") && /^-?\d+(\.\d+)?$/.test((t.textContent||"").trim());
+  });
+  if (labels.length < 2) return;
+  const pts = labels.map(function(t){ return [parseFloat(t.getAttribute("y")), parseFloat(t.textContent)]; });
+  const n = pts.length, sy = pts.reduce((s,p)=>s+p[0],0)/n, sp = pts.reduce((s,p)=>s+p[1],0)/n;
+  let num=0, den=0; pts.forEach(function(p){ num += (p[0]-sy)*(p[1]-sp); den += (p[0]-sy)*(p[0]-sy); });
+  const slope = num/den, intercept = sp - slope*sy;
+  const priceOfY = y => intercept + slope*y;
+  const yOfPrice = p => (p - intercept) / slope;
+
+  const strokes = { price:"var(--ink,#12211e)", ma50:"var(--teal,#12796B)", ma200:"var(--brass,#896F36)" };
+  function pointsOf(strokeVal){
+    const el = Array.prototype.slice.call(src.querySelectorAll("polyline")).find(function(pl){ return pl.getAttribute("stroke") === strokeVal; });
+    if (!el) return [];
+    return el.getAttribute("points").trim().split(/\s+/).map(function(s){
+      const xy = s.split(","); return [parseFloat(xy[0]), parseFloat(xy[1])];
+    });
+  }
+  const priceAll = pointsOf(strokes.price), ma50All = pointsOf(strokes.ma50), ma200All = pointsOf(strokes.ma200);
+  if (!priceAll.length) return;
+
+  const xAll = priceAll.map(p=>p[0]);
+  const xMin = Math.min.apply(null, xAll), xMax = Math.max.apply(null, xAll);
+  const pxPerSession = (xMax - xMin) / (priceAll.length - 1);
+  const xThresh = xMax - tailSessions * pxPerSession;
+
+  function tail(arr){ return arr.filter(function(p){ return p[0] >= xThresh; }); }
+  const priceT = tail(priceAll), ma50T = tail(ma50All), ma200T = tail(ma200All);
+  if (priceT.length < 2) return;
+
+  const allY = priceT.concat(ma50T).concat(ma200T).map(p=>p[1]);
+  const yLo = Math.min.apply(null, allY), yHi = Math.max.apply(null, allY);
+  const pad = (yHi - yLo) * 0.12 || 4;
+  const yLoP = yLo - pad, yHiP = yHi + pad;
+
+  const W = 760, H = 260, ML = 46, MR = 54, MT = 14, MB = 26;
+  const X0 = ML, X1 = W - MR, Y0 = H - MB, Y1 = MT;
+  const xLo = priceT[0][0], xHi = priceT[priceT.length-1][0];
+  const xr = v => X0 + (v - xLo) / (xHi - xLo) * (X1 - X0);
+  const yr = v => Y0 + (v - yLoP) / (yHiP - yLoP) * (Y1 - Y0);
+
+  function scaledPath(arr){
+    return arr.map(function(p,i){ return (i?"L":"M") + xr(p[0]).toFixed(1) + "," + yr(p[1]).toFixed(1); }).join(" ");
+  }
+
+  const priceLo = priceOfY(yHiP), priceHi = priceOfY(yLoP);
+  const step = (priceHi - priceLo) > 4 ? 1 : 0.5;
+  let grid = "";
+  for (let g = Math.ceil(priceLo/step)*step; g <= priceHi; g += step){
+    const y = yr(yOfPrice(g));
+    grid += '<line x1="'+X0+'" x2="'+X1+'" y1="'+y.toFixed(1)+'" y2="'+y.toFixed(1)+'" stroke="var(--line,#dce4e2)" stroke-width="1" opacity=".5"/>';
+    grid += '<text x="'+(X0-8)+'" y="'+(y+3).toFixed(1)+'" text-anchor="end" font-size="10" fill="var(--muted,#6b7c78)" font-family="IBM Plex Mono,monospace">'+g.toFixed(step<1?1:0)+'</text>';
+  }
+  let refLines = "";
+  (res||[]).forEach(function(p){
+    const yv = yOfPrice(p); if (yv < yLoP-pad || yv > yHiP+pad) return;
+    const y = yr(yv);
+    refLines += '<line x1="'+X0+'" x2="'+X1+'" y1="'+y.toFixed(1)+'" y2="'+y.toFixed(1)+'" stroke="var(--amber-text,#854F0B)" stroke-width="1.2" stroke-dasharray="4 3" opacity=".85"/>';
+    refLines += '<text x="'+(X1-4)+'" y="'+(y-3).toFixed(1)+'" text-anchor="end" font-size="10" font-family="IBM Plex Mono,monospace" fill="var(--amber-text,#854F0B)">'+F(p)+'</text>';
+  });
+  (sup||[]).forEach(function(p){
+    const yv = yOfPrice(p); if (yv < yLoP-pad || yv > yHiP+pad) return;
+    const y = yr(yv);
+    refLines += '<line x1="'+X0+'" x2="'+X1+'" y1="'+y.toFixed(1)+'" y2="'+y.toFixed(1)+'" stroke="var(--red,#B5483A)" stroke-width="1.2" stroke-dasharray="4 3" opacity=".85"/>';
+    refLines += '<text x="'+(X1-4)+'" y="'+(y-3).toFixed(1)+'" text-anchor="end" font-size="10" font-family="IBM Plex Mono,monospace" fill="var(--red,#B5483A)">'+F(p)+'</text>';
+  });
+
+  const lastPrice = priceT[priceT.length-1][1];
+  const dot = '<circle cx="'+xr(priceT[priceT.length-1][0]).toFixed(1)+'" cy="'+yr(lastPrice).toFixed(1)+'" r="3.5" fill="var(--gold,#C0A45F)"/>';
+
+  targetEl.innerHTML =
+    '<p class="qhead" style="margin-bottom:2px">Zoomed \u2014 last '+tailSessions+' sessions vs the levels</p>' +
+    '<p class="muted" style="font-size:var(--fs-small);margin:0 0 8px">Same price, 50-day MA and 200-day MA lines as the chart above, just the recent window at a magnified scale so the levels are readable against current price action.</p>' +
+    '<svg viewBox="0 0 '+W+' '+H+'" width="100%" role="img" aria-label="Zoomed recent price action against support and resistance">' +
+      grid + refLines +
+      '<path d="'+scaledPath(ma200T)+'" fill="none" stroke="var(--brass,#896F36)" stroke-width="1.6" opacity=".9"/>' +
+      '<path d="'+scaledPath(ma50T)+'" fill="none" stroke="var(--teal,#12796B)" stroke-width="1.6" opacity=".9"/>' +
+      '<path d="'+scaledPath(priceT)+'" fill="none" stroke="var(--ink,#12211e)" stroke-width="1.6" opacity=".95"/>' +
+      dot +
+    '</svg>';
+}

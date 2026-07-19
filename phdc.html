@@ -235,6 +235,11 @@
     </div>
   </section>
 
+  <!-- FAIR-VALUE SENSITIVITY LEVERS -->
+  <section style="padding-top:8px">
+    <div id="fl-lever-card"></div>
+  </section>
+
 </div>
 </details>
   <!-- LENS 3: TECHNICAL -->
@@ -247,7 +252,7 @@
   </section>
 
 <figure class="ta-fig" style="margin:14px 0 4px">
-<svg viewBox="0 0 760 320" width="100%" role="img" aria-label="PHDC price with 50- and 200-day moving averages" style="display:block">
+<svg id="ta-chart-svg" viewBox="0 0 760 320" width="100%" role="img" aria-label="PHDC price with 50- and 200-day moving averages" style="display:block">
 <rect x="0" y="0" width="760" height="320" fill="none"/>
 <line x1="46" y1="294.0" x2="746" y2="294.0" stroke="var(--line,#dce4e2)" stroke-width="1" opacity=".6"/><text x="40" y="297.0" text-anchor="end" font-size="10" fill="var(--muted,#6b7c78)" font-family="IBM Plex Mono,monospace">2.2</text><line x1="46" y1="224.0" x2="746" y2="224.0" stroke="var(--line,#dce4e2)" stroke-width="1" opacity=".6"/><text x="40" y="227.0" text-anchor="end" font-size="10" fill="var(--muted,#6b7c78)" font-family="IBM Plex Mono,monospace">5.9</text><line x1="46" y1="154.0" x2="746" y2="154.0" stroke="var(--line,#dce4e2)" stroke-width="1" opacity=".6"/><text x="40" y="157.0" text-anchor="end" font-size="10" fill="var(--muted,#6b7c78)" font-family="IBM Plex Mono,monospace">9.6</text><line x1="46" y1="84.0" x2="746" y2="84.0" stroke="var(--line,#dce4e2)" stroke-width="1" opacity=".6"/><text x="40" y="87.0" text-anchor="end" font-size="10" fill="var(--muted,#6b7c78)" font-family="IBM Plex Mono,monospace">13.3</text><line x1="46" y1="14.0" x2="746" y2="14.0" stroke="var(--line,#dce4e2)" stroke-width="1" opacity=".6"/><text x="40" y="17.0" text-anchor="end" font-size="10" fill="var(--muted,#6b7c78)" font-family="IBM Plex Mono,monospace">17.0</text>
 <polyline points="46.0,279.0 47.4,278.9 48.8,278.7 50.2,278.5 51.6,278.4 53.0,278.2 54.4,278.0 55.8,277.9 57.2,277.7 58.6,277.5 60.0,277.3 61.4,277.2 62.8,277.0 64.2,276.8 65.6,276.6 67.0,276.4 68.4,276.2 69.8,276.0 71.3,275.8 72.7,275.6 74.1,275.4 75.5,275.2 76.9,274.9 78.3,274.7 79.7,274.5 81.1,274.3 82.5,274.0 83.9,273.8 85.3,273.5 86.7,273.3 88.1,273.0 89.5,272.8 90.9,272.5 92.3,272.3 93.7,272.0 95.1,271.8 96.5,271.5 97.9,271.3 99.3,271.0 100.7,270.8 102.1,270.5 103.5,270.3 104.9,270.1 106.3,269.8 107.7,269.6 109.1,269.4 110.5,269.3 111.9,269.0 113.3,268.8 114.7,268.6 116.1,268.4 117.5,268.2 118.9,267.9 120.3,267.7 121.8,267.4 123.2,267.2 124.6,266.9 126.0,266.6 127.4,266.3 128.8,265.9 130.2,265.6 131.6,265.3 133.0,264.9 134.4,264.5 135.8,264.1 137.2,263.7 138.6,263.4 140.0,263.0 141.4,262.7 142.8,262.3 144.2,262.0 145.6,261.6 147.0,261.2 148.4,260.9 149.8,260.5 151.2,260.2 152.6,259.9 154.0,259.6 155.4,259.3 156.8,258.9 158.2,258.6 159.6,258.3 161.0,258.0 162.4,257.6 163.8,257.3 165.2,257.0 166.6,256.6 168.0,256.2 169.4,255.9 170.8,255.6 172.3,255.3 173.7,255.0 175.1,254.8 176.5,254.5 177.9,254.2 179.3,254.0 180.7,253.7 182.1,253.5 183.5,253.3 184.9,253.0 186.3,252.8 187.7,252.5 189.1,252.2 190.5,251.9 191.9,251.6 193.3,251.3 194.7,251.0 196.1,250.7 197.5,250.5 198.9,250.2 200.3,249.9 201.7,249.7 203.1,249.4 204.5,249.2 205.9,248.9 207.3,248.7 208.7,248.5 210.1,248.2 211.5,248.0 212.9,247.9 214.3,247.7 215.7,247.5 217.1,247.3 218.5,247.1 219.9,246.9 221.4,246.7 222.8,246.5 224.2,246.2 225.6,246.0 227.0,245.7 228.4,245.5 229.8,245.2 231.2,245.0 232.6,244.7 234.0,244.4 235.4,244.1 236.8,243.9 238.2,243.6 239.6,243.3 241.0,243.0 242.4,242.8 243.8,242.6 245.2,242.4 246.6,242.2 248.0,242.1 249.4,242.0 250.8,241.9 252.2,241.7 253.6,241.6 255.0,241.4 256.4,241.2 257.8,241.0 259.2,240.8 260.6,240.5 262.0,240.2 263.4,240.0 264.8,239.7 266.2,239.4 267.6,239.2 269.0,238.9 270.4,238.6 271.9,238.2 273.3,237.9 274.7,237.6 276.1,237.2 277.5,236.9 278.9,236.6 280.3,236.3 281.7,236.0 283.1,235.7 284.5,235.4 285.9,235.2 287.3,234.9 288.7,234.6 290.1,234.4 291.5,234.1 292.9,233.8 294.3,233.6 295.7,233.4 297.1,233.2 298.5,233.0 299.9,232.7 301.3,232.5 302.7,232.2 304.1,231.9 305.5,231.6 306.9,231.3 308.3,231.0 309.7,230.7 311.1,230.4 312.5,230.1 313.9,229.8 315.3,229.5 316.7,229.2 318.1,228.8 319.5,228.5 320.9,228.1 322.4,227.8 323.8,227.5 325.2,227.1 326.6,226.8 328.0,226.5 329.4,226.2 330.8,225.9 332.2,225.5 333.6,225.2 335.0,224.8 336.4,224.5 337.8,224.2 339.2,223.9 340.6,223.6 342.0,223.3 343.4,223.1 344.8,222.8 346.2,222.6 347.6,222.4 349.0,222.2 350.4,221.9 351.8,221.7 353.2,221.5 354.6,221.3 356.0,221.0 357.4,220.8 358.8,220.6 360.2,220.4 361.6,220.1 363.0,219.9 364.4,219.7 365.8,219.4 367.2,219.2 368.6,219.0 370.0,218.8 371.5,218.6 372.9,218.4 374.3,218.2 375.7,218.0 377.1,217.8 378.5,217.6 379.9,217.4 381.3,217.2 382.7,217.0 384.1,216.8 385.5,216.5 386.9,216.3 388.3,215.9 389.7,215.6 391.1,215.2 392.5,214.9 393.9,214.5 395.3,214.2 396.7,213.8 398.1,213.4 399.5,213.0 400.9,212.7 402.3,212.4 403.7,212.1 405.1,211.9 406.5,211.6 407.9,211.4 409.3,211.2 410.7,211.0 412.1,210.7 413.5,210.5 414.9,210.2 416.3,210.0 417.7,209.8 419.1,209.6 420.5,209.3 422.0,209.0 423.4,208.7 424.8,208.5 426.2,208.2 427.6,208.0 429.0,207.8 430.4,207.5 431.8,207.3 433.2,207.0 434.6,206.8 436.0,206.6 437.4,206.4 438.8,206.2 440.2,206.0 441.6,205.9 443.0,205.7 444.4,205.5 445.8,205.4 447.2,205.3 448.6,205.1 450.0,204.9 451.4,204.7 452.8,204.5 454.2,204.3 455.6,204.1 457.0,203.9 458.4,203.7 459.8,203.4 461.2,203.2 462.6,202.9 464.0,202.7 465.4,202.5 466.8,202.3 468.2,202.1 469.6,202.0 471.1,201.8 472.5,201.5 473.9,201.4 475.3,201.1 476.7,200.9 478.1,200.7 479.5,200.6 480.9,200.4 482.3,200.3 483.7,200.1 485.1,200.0 486.5,199.9 487.9,199.7 489.3,199.6 490.7,199.5 492.1,199.3 493.5,199.2 494.9,199.0 496.3,198.9 497.7,198.7 499.1,198.5 500.5,198.3 501.9,198.1 503.3,197.9 504.7,197.8 506.1,197.7 507.5,197.5 508.9,197.4 510.3,197.3 511.7,197.2 513.1,197.1 514.5,197.0 515.9,196.9 517.3,196.8 518.7,196.7 520.1,196.6 521.6,196.5 523.0,196.3 524.4,196.2 525.8,196.0 527.2,195.8 528.6,195.7 530.0,195.5 531.4,195.3 532.8,195.2 534.2,195.1 535.6,194.9 537.0,194.8 538.4,194.7 539.8,194.6 541.2,194.5 542.6,194.4 544.0,194.3 545.4,194.1 546.8,194.0 548.2,193.8 549.6,193.7 551.0,193.5 552.4,193.4 553.8,193.3 555.2,193.1 556.6,193.0 558.0,192.9 559.4,192.8 560.8,192.7 562.2,192.5 563.6,192.3 565.0,192.2 566.4,192.0 567.8,191.9 569.2,191.7 570.6,191.5 572.1,191.3 573.5,191.1 574.9,190.8 576.3,190.6 577.7,190.4 579.1,190.2 580.5,190.0 581.9,189.8 583.3,189.6 584.7,189.5 586.1,189.3 587.5,189.1 588.9,189.0 590.3,188.7 591.7,188.5 593.1,188.3 594.5,188.1 595.9,187.9 597.3,187.7 598.7,187.6 600.1,187.4 601.5,187.2 602.9,187.1 604.3,186.9 605.7,186.8 607.1,186.6 608.5,186.5 609.9,186.3 611.3,186.2 612.7,186.0 614.1,185.9 615.5,185.8 616.9,185.6 618.3,185.4 619.7,185.3 621.2,185.1 622.6,185.0 624.0,184.7 625.4,184.5 626.8,184.3 628.2,184.0 629.6,183.8 631.0,183.6 632.4,183.4 633.8,183.2 635.2,182.9 636.6,182.6 638.0,182.3 639.4,182.1 640.8,181.8 642.2,181.6 643.6,181.3 645.0,181.1 646.4,180.9 647.8,180.8 649.2,180.6 650.6,180.4 652.0,180.2 653.4,180.0 654.8,179.8 656.2,179.6 657.6,179.5 659.0,179.3 660.4,179.1 661.8,178.9 663.2,178.7 664.6,178.6 666.0,178.5 667.4,178.4 668.8,178.3 670.2,178.2 671.7,178.1 673.1,178.1 674.5,178.1 675.9,178.0 677.3,178.0 678.7,178.0 680.1,178.0 681.5,178.0 682.9,178.0 684.3,177.9 685.7,177.8 687.1,177.8 688.5,177.7 689.9,177.6 691.3,177.5 692.7,177.4 694.1,177.3 695.5,177.2 696.9,176.9 698.3,176.7 699.7,176.5 701.1,176.4 702.5,176.2 703.9,176.0 705.3,175.8 706.7,175.5 708.1,175.1 709.5,174.8 710.9,174.4 712.3,173.8 713.7,173.3 715.1,172.8 716.5,172.3 717.9,171.8 719.3,171.3 720.7,170.8 722.2,170.3 723.6,169.8 725.0,169.3 726.4,168.7 727.8,168.0 729.2,167.3 730.6,166.6 732.0,165.9 733.4,165.3 734.8,164.7 736.2,164.0 737.6,163.4 739.0,162.8 740.4,162.2 741.8,161.4 743.2,160.7 744.6,159.9 746.0,159.2" fill="none" stroke="var(--brass,#896F36)" stroke-width="1.6" opacity=".95"/>
@@ -264,6 +269,12 @@
 </figcaption>
 </figure>
 
+  <!-- ZOOMED RECENT WINDOW -->
+  <section style="padding-top:8px">
+    <div class="card" id="zoom-chart"></div>
+  </section>
+
+
   <!-- TECHNICAL READ (visible) -->
   <section style="padding-top:8px">
     <div class="card">
@@ -279,490 +290,23 @@
     </div>
   </section>
 
+  <!-- KEY LEVELS -->
+  <section style="padding-top:8px">
+    <div class="card">
+      <p class="qhead">Key levels</p>
+      <div id="level-list"></div>
+    </div>
+  </section>
+
 
 </div>
 </details>
   <!-- ============ INTERACTIVE MONTE CARLO (self-contained, scoped #mc-lab) ============ -->
   <section id="sec-model" class="anchor" style="padding-top:8px">
-  <div id="mc-lab">
-    <style>
-      #mc-lab{
-        --mc-bad:var(--red); --mc-mid:var(--amber); --mc-good:var(--green);
-        --mc-band-outer:rgba(42,143,143,.16); --mc-band-inner:rgba(42,143,143,.32);
-        margin-top:4px;
-      }
-      #mc-lab .mc-head{display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-bottom:4px}
-      #mc-lab .mc-eyebrow{font-family:"IBM Plex Mono",monospace; font-size:var(--fs-caption); letter-spacing:.18em; text-transform:uppercase; color:var(--teal); margin:0 0 2px}
-      #mc-lab h3.mc-title{font-family:"Alexandria","IBM Plex Sans",sans-serif; font-weight:700; font-size:var(--fs-h3); color:var(--teal); margin:0}
-      #mc-lab .mc-sub{color:var(--muted); font-size:var(--fs-body); margin:2px 0 12px; max-width:62ch}
-      #mc-lab .mc-sub b{color:var(--ink)}
-
-      #mc-lab .mc-card{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px}
-      #mc-lab .mc-card + .mc-card{margin-top:12px}
-      #mc-lab .mc-card-h{display:flex; align-items:baseline; justify-content:space-between; gap:10px; margin:0 0 6px}
-      #mc-lab .mc-card-h h4{font-family:"Alexandria","IBM Plex Sans",sans-serif; font-size:var(--fs-body); font-weight:600; color:var(--ink); margin:0}
-      #mc-lab .mc-card-h .mc-hint{font-size:var(--fs-caption); color:var(--muted); font-family:"IBM Plex Mono",monospace}
-
-      #mc-lab .mc-seg{display:inline-flex; background:var(--tint); border:1px solid var(--line); border-radius:999px; padding:3px; gap:3px}
-      #mc-lab .mc-seg button{appearance:none; border:0; background:transparent; cursor:pointer; font-family:"IBM Plex Mono",monospace; font-weight:500; font-size:var(--fs-small); letter-spacing:.04em; color:var(--teal); padding:5px 12px; border-radius:999px}
-      #mc-lab .mc-seg button[aria-pressed="true"]{background:#fff; color:var(--ink); box-shadow:0 1px 3px rgba(0,0,0,.1)}
-      #mc-lab .mc-seg button:focus-visible{outline:3px solid var(--teal2); outline-offset:2px}
-
-      #mc-lab .mc-chartwrap{padding:2px 2px 0}
-      #mc-lab svg{display:block; width:100%; height:auto}
-      #mc-lab .mc-axis text{font-family:"IBM Plex Mono",monospace; font-size:var(--fs-caption); fill:var(--muted)}
-      #mc-lab .mc-grid{stroke:var(--line); stroke-width:1}
-      #mc-lab .mc-ref{stroke-dasharray:5 4; stroke-width:1.4}
-      #mc-lab .mc-ref-sup{stroke:var(--red)}
-      #mc-lab .mc-ref-con{stroke:var(--amber)}
-      #mc-lab .mc-ref-anchor{stroke:rgba(14,39,38,.32); stroke-dasharray:1 4; stroke-width:1.1}
-      #mc-lab .mc-reflabel{font-family:"IBM Plex Mono",monospace; font-size:var(--fs-caption); font-weight:600}
-      #mc-lab .mc-distlabel{pointer-events:none}
-      #mc-lab .mc-median{fill:none; stroke:var(--amber); stroke-width:2.4}
-      #mc-lab .mc-hz{stroke:var(--teal); stroke-width:1.1; stroke-dasharray:2 3; opacity:.5}
-
-      #mc-lab .mc-legend{display:flex; flex-wrap:wrap; gap:6px 14px; margin-top:8px; font-size:var(--fs-caption); color:var(--muted)}
-      #mc-lab .mc-legend span{display:inline-flex; align-items:center; gap:6px}
-      #mc-lab .mc-sw{width:15px; height:9px; border-radius:2px; display:inline-block}
-
-      #mc-lab .mc-controls{display:grid; gap:15px}
-      #mc-lab .mc-ctl label{display:flex; justify-content:space-between; align-items:baseline; gap:10px; margin-bottom:7px}
-      #mc-lab .mc-ctl .mc-name{font-size:var(--fs-body); font-weight:600; color:var(--ink)}
-      #mc-lab .mc-ctl .mc-val{font-family:"IBM Plex Mono",monospace; font-size:var(--fs-small); color:var(--teal); background:var(--tint); padding:3px 8px; border-radius:6px; white-space:nowrap}
-      #mc-lab .mc-ctl .mc-chan{font-size:var(--fs-small); color:var(--muted); margin:6px 2px 0}
-      #mc-lab input[type=range]{-webkit-appearance:none; appearance:none; width:100%; height:8px; border-radius:8px; outline:none;
-        background:linear-gradient(90deg,var(--mc-bad) 0%,var(--mc-mid) 50%,var(--mc-good) 100%);
-        box-shadow:inset 0 0 0 1px rgba(14,39,38,.10)}
-      #mc-lab input[type=range]::-webkit-slider-thumb{-webkit-appearance:none; width:22px; height:22px; border-radius:50%;
-        background:var(--mc-thumb,#fff); border:3px solid #fff; cursor:pointer; box-shadow:0 0 0 1px rgba(14,39,38,.30),0 1px 4px rgba(14,39,38,.35)}
-      #mc-lab input[type=range]::-moz-range-thumb{width:22px; height:22px; border-radius:50%;
-        background:var(--mc-thumb,#fff); border:3px solid #fff; cursor:pointer; box-shadow:0 0 0 1px rgba(14,39,38,.30),0 1px 4px rgba(14,39,38,.35)}
-      #mc-lab input[type=range]:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 3px var(--teal2)}
-      #mc-lab input[type=range]:focus-visible::-moz-range-thumb{box-shadow:0 0 0 3px var(--teal2)}
-      #mc-lab .mc-ends{display:flex; justify-content:space-between; font-size:var(--fs-caption); margin-top:6px}
-      #mc-lab .mc-ends .mc-b{color:var(--red); font-weight:600}
-      #mc-lab .mc-ends .mc-g{color:var(--green); font-weight:600}
-
-      #mc-lab .mc-verdict{padding:13px 16px}
-      #mc-lab .mc-vline{font-size:var(--fs-body); margin:0 0 4px}
-      #mc-lab .mc-big{font-family:"IBM Plex Mono",monospace; font-weight:500; color:var(--teal)}
-      #mc-lab .mc-big.mc-down{color:var(--red)}
-
-      #mc-lab .mc-grid2{display:grid; grid-template-columns:1fr 1fr; gap:12px}
-      @media(max-width:640px){#mc-lab .mc-grid2{grid-template-columns:1fr}}
-      #mc-lab table.mc-pct{width:100%; border-collapse:collapse; font-family:"IBM Plex Mono",monospace; font-size:var(--fs-small)}
-      #mc-lab table.mc-pct th,#mc-lab table.mc-pct td{padding:6px 5px; text-align:right; border-bottom:1px solid var(--line)}
-      #mc-lab table.mc-pct th:first-child,#mc-lab table.mc-pct td:first-child{text-align:left; font-family:"IBM Plex Sans",sans-serif}
-      #mc-lab table.mc-pct thead th{font-size:var(--fs-caption); letter-spacing:.04em; text-transform:uppercase; color:var(--muted); font-weight:600}
-      #mc-lab table.mc-pct tr.mc-on td{background:rgba(42,143,143,.08)}
-      #mc-lab table.mc-pct .mc-medc{color:var(--amber-text); font-weight:600}
-
-      #mc-lab .mc-zbar{display:flex; height:30px; border-radius:7px; overflow:hidden; margin:2px 0 10px; border:1px solid var(--line)}
-      #mc-lab .mc-zbar div{display:flex; align-items:center; justify-content:center; color:#fff; font-family:"IBM Plex Mono",monospace; font-weight:500; font-size:var(--fs-caption); min-width:0}
-      #mc-lab .mc-zleg{display:grid; grid-template-columns:1fr 1fr; gap:4px 12px; font-size:var(--fs-caption); color:var(--muted)}
-      #mc-lab .mc-zleg span{display:flex; align-items:center; gap:6px}
-      #mc-lab .mc-dot{width:9px; height:9px; border-radius:2px; flex:none}
-
-      #mc-lab table.mc-ladder{width:100%; border-collapse:collapse; font-family:"IBM Plex Mono",monospace; font-size:var(--fs-small)}
-      #mc-lab table.mc-ladder th,#mc-lab table.mc-ladder td{padding:5px 6px; text-align:right; border-bottom:1px solid var(--line)}
-      #mc-lab table.mc-ladder th:first-child,#mc-lab table.mc-ladder td:first-child{text-align:left}
-      #mc-lab table.mc-ladder thead th{font-size:var(--fs-caption); letter-spacing:.04em; text-transform:uppercase; color:var(--muted)}
-      #mc-lab table.mc-ladder tr.mc-up td:first-child{color:var(--teal)}
-      #mc-lab table.mc-ladder tr.mc-dn td:first-child{color:var(--red)}
-
-      #mc-lab .mc-foot{font-size:var(--fs-caption); color:var(--muted); margin:12px 2px 0; line-height:1.5}
-      #mc-lab .mc-reset{appearance:none; border:1.5px solid var(--teal); background:transparent; cursor:pointer; font-family:"IBM Plex Mono",monospace; font-weight:500; font-size:var(--fs-caption); color:var(--teal); padding:6px 12px; border-radius:8px; margin-top:12px}
-      #mc-lab .mc-reset:hover{background:var(--teal); color:#fff}
-      #mc-lab .mc-reset:focus-visible{outline:3px solid var(--teal2); outline-offset:2px}
-          #mc-lab .mc-read{margin-bottom:12px}
-      #mc-lab table.mc-readt{width:100%; border-collapse:collapse; font-size:var(--fs-body)}
-      #mc-lab table.mc-readt td{padding:5px 0; border-bottom:1px dashed var(--line)}
-      #mc-lab table.mc-readt tr:last-child td{border-bottom:0}
-      #mc-lab table.mc-readt td:last-child{text-align:right; font-family:"IBM Plex Mono",monospace; font-weight:500; color:var(--teal); white-space:nowrap; padding-left:12px}
-      #mc-lab table.mc-readt td:last-child .mc-down{color:var(--red)}
-      #mc-lab .mc-readnote{font-size:var(--fs-caption); color:var(--muted); margin:8px 0 0}
-    </style>
-
-    <div class="mc-head">
-      <div>
-        <p class="mc-eyebrow">Interactive · runs on your device</p>
-        <h3 class="mc-title">Tune the three biggest forces yourself</h3>
-      </div>
-      <div class="mc-seg" role="group" aria-label="Horizon">
-        <button id="mc-h20" aria-pressed="false">1 month</button>
-        <button id="mc-h60" aria-pressed="true">3 months</button>
-      </div>
-    </div>
-    <p class="mc-sub">Drag a slider and the whole distribution recomputes live — <b>green is better, red is worse</b>. The other seven forces (including the Ras El-Hekma sovereign catalyst) stay fixed at the study calibration. Anchored at the latest price; nothing is sent anywhere.</p>
-
-        <!-- PROBABILITY READ — leads the section: direction first, cone second -->
-    <div class="mc-card mc-read">
-      <div class="mc-card-h"><h4>The probability read</h4><span class="mc-hint" id="mc-rHz">at 3 months</span></div>
-      <table class="mc-readt">
-        <tr><td>Chance the price is <b>higher than today</b></td><td id="mc-rUp">&mdash;</td></tr>
-        <tr><td><b>+10% or better</b> vs <b>&minus;10% or worse</b></td><td id="mc-rOdds">&mdash;</td></tr>
-        <tr><td>Middle-of-the-road outcome (median)</td><td id="mc-rMed">&mdash;</td></tr>
-        <tr><td>Most likely zone (50% band)</td><td id="mc-rBand">&mdash;</td></tr>
-        <tr><td>Touches +10% / touches &minus;10% along the way</td><td id="mc-rTouch">&mdash;</td></tr>
-      </table>
-      <p class="mc-readnote">Not a coin flip &mdash; the drift and skew are already in these numbers. They update live with the sliders and the horizon toggle.</p>
-    </div>
-
-<div class="mc-card">
-      <div class="mc-chartwrap">
-        <svg id="mc-fan" viewBox="0 0 760 340" role="img" aria-label="Forward price distribution cone">
-          <g id="mc-gridG" class="mc-axis"></g>
-          <path id="mc-band95" fill="var(--mc-band-outer)"></path>
-          <path id="mc-band75" fill="var(--mc-band-inner)"></path>
-          <path id="mc-medianP" class="mc-median"></path>
-          <g id="mc-refG"></g>
-          <g id="mc-distlabelsG"></g>
-          <line id="mc-hzLine" class="mc-hz"></line>
-          <g id="mc-xlab" class="mc-axis"></g>
-        </svg>
-      </div>
-      <div class="mc-legend">
-        <span><i class="mc-sw" style="background:var(--mc-band-inner)"></i> 25–75% band</span>
-        <span><i class="mc-sw" style="background:var(--mc-band-outer)"></i> 90% band</span>
-        <span><i class="mc-sw" style="background:var(--amber); height:3px"></i> median path</span>
-        <span><i class="mc-sw" style="background:var(--red); height:3px"></i> technical support 14.11</span>
-        <span><i class="mc-sw" style="background:var(--amber); height:3px; opacity:.7"></i> HSBC technical resistance 17.50</span>
-      </div>
-    </div>
-
-    <div class="mc-card">
-      <div class="mc-card-h"><h4>The three levers</h4><span class="mc-hint">most decision-relevant of the 10 forces</span></div>
-      <div class="mc-controls">
-        <div class="mc-ctl">
-          <label for="mc-egp"><span class="mc-name">EGP/USD — impact on PHDC</span><span class="mc-val" id="mc-egpVal">−2.5% / quarter</span></label>
-          <input type="range" id="mc-egp" min="-12" max="2" step="0.5" value="-2.5">
-          <div class="mc-ends"><span class="mc-b">sharp depreciation</span><span class="mc-g">EGP firm / tailwind</span></div>
-          <p class="mc-chan">FX translation and the bid from USD-based investors — the dominant macro driver for an Egyptian developer.</p>
-        </div>
-        <div class="mc-ctl">
-          <label for="mc-geo"><span class="mc-name">Regional security shock — probability</span><span class="mc-val" id="mc-geoVal">30% · −12% if it hits</span></label>
-          <input type="range" id="mc-geo" min="-60" max="-5" step="1" value="-30">
-          <div class="mc-ends"><span class="mc-b">elevated risk</span><span class="mc-g">calm</span></div>
-          <p class="mc-chan">A one-off risk-premium shock over the quarter — the dominant downside tail.</p>
-        </div>
-        <div class="mc-ctl">
-          <label for="mc-lnch"><span class="mc-name">Project launch &amp; sales execution — probability</span><span class="mc-val" id="mc-lnchVal">55% · +8% if it lands</span></label>
-          <input type="range" id="mc-lnch" min="0" max="90" step="1" value="55">
-          <div class="mc-ends"><span class="mc-b">stalls</span><span class="mc-g">strong execution</span></div>
-          <p class="mc-chan">Saadiyat, Ras El-Hekma and Jirian launching on schedule — the summer catalyst and the core bet.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="mc-card mc-verdict">
-      <p class="mc-vline">At <b id="mc-hzName">3 months</b> the model centres on <span class="mc-big" id="mc-vMed">EGP 15.8</span> &nbsp;·&nbsp; 90% range <span class="mc-big" id="mc-vRange">10.2 – 24.5</span></p>
-      <p class="mc-vline">Chance of finishing below the 14.11 technical support: <span class="mc-big mc-down" id="mc-vBelow">33%</span> &nbsp;·&nbsp; at or above HSBC's 17.50 technical resistance: <span class="mc-big" id="mc-vCons">35%</span></p>
-    </div>
-
-    <div class="mc-grid2">
-      <div class="mc-card">
-        <div class="mc-card-h"><h4>Probability zones</h4><span class="mc-hint" id="mc-zHz">at 3 months</span></div>
-        <div class="mc-zbar" id="mc-zbar" aria-hidden="true"></div>
-        <div class="mc-zleg">
-          <span><i class="mc-dot" style="background:var(--red)"></i> below technical support &lt;14.11</span>
-          <span><i class="mc-dot" style="background:var(--amber)"></i> 14.11 – 15.55</span>
-          <span><i class="mc-dot" style="background:var(--teal2)"></i> 15.55 – 17.50</span>
-          <span><i class="mc-dot" style="background:var(--teal)"></i> ≥ HSBC 17.50</span>
-        </div>
-      </div>
-      <details class="rds rds-inner">
-<summary><span class="rds-t">Percentiles &amp; touch probabilities</span><span class="rds-note">1- and 3-month tables</span><span class="rds-x" aria-hidden="true"></span></summary>
-<div class="rds-body">
-<div class="mc-card">
-        <div class="mc-card-h"><h4>Percentiles (EGP/share)</h4></div>
-        <table class="mc-pct">
-          <thead><tr><th>Horizon</th><th>5%</th><th>25%</th><th>Median</th><th>75%</th><th>95%</th></tr></thead>
-          <tbody>
-            <tr id="mc-row20"><td>1 month</td><td id="mc-p20_5"></td><td id="mc-p20_25"></td><td class="mc-medc" id="mc-p20_50"></td><td id="mc-p20_75"></td><td id="mc-p20_95"></td></tr>
-            <tr id="mc-row60"><td>3 months</td><td id="mc-p60_5"></td><td id="mc-p60_25"></td><td class="mc-medc" id="mc-p60_50"></td><td id="mc-p60_75"></td><td id="mc-p60_95"></td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <div class="mc-card" style="margin-top:12px">
-      <div class="mc-card-h"><h4>Level-touch probabilities</h4><span class="mc-hint">chance the price touches a level before the date</span></div>
-      <table class="mc-ladder">
-        <thead><tr><th>Level</th><th>within 1 month</th><th>within 3 months</th></tr></thead>
-        <tbody id="mc-ladderBody"></tbody>
-      </table>
-    </div>
-
-
-</div>
-</details>
-    <button class="mc-reset" id="mc-reset">Reset to study baseline</button>
-
-    <p class="mc-foot">One lognormal forward built from the study's 10-factor calibration: five continuous forces set the drift and spread, five event forces add skew and width. Percentiles and zones are closed-form; touch probabilities use the reflection principle with a discrete-monitoring correction, reproducing the published 50,000-path engine. Moving a lever re-derives the maths instantly. Illustrative of the model — not a forecast, not advice.</p>
-
-    <script>
-    (function(){
-      "use strict";
-      function boot(){
-        var T=null;
-        try{ if(typeof TICKERS!=="undefined" && TICKERS && TICKERS.PHDC){ T=TICKERS.PHDC; } }catch(e){}
-        var S0=(T&&typeof T.spot==="number")?T.spot:14.5;
-        var H=60, BETA=0.5826;
-        // PHDC reference levels (Monte Carlo sheet)
-        var FLOOR=14.11, R2=15.55, TARGET=17.50;
-        // fixed factors (held at study calibration)
-        var CONT_FIXED=[["CBE",0.020,0.05],["CPI",0.015,0.04],["EGX30",0.015,0.08],["Brent",0.005,0.04]];
-        var IDIO=0.205, EGP_VOL=0.07;
-        var EV_FIXED=[["RasElHekma",0.35,0.10,0.04],["Tourism",0.40,0.02,0.06],["Mortgage",0.35,0.02,0.05]];
-        var GEO_MEAN=-0.12, GEO_SD=0.05, LNCH_MEAN=0.08, LNCH_SD=0.04;
-
-        function erf(x){var s=x<0?-1:1;x=Math.abs(x);var t=1/(1+0.3275911*x);
-          var y=1-(((((1.061405429*t-1.453152027)*t)+1.421413741)*t-0.284496736)*t+0.254829592)*t*Math.exp(-x*x);return s*y;}
-        var Phi=function(z){return 0.5*(1+erf(z/Math.SQRT2));};
-        var Z={5:-1.6448536,25:-0.6744898,50:0,75:0.6744898,95:1.6448536};
-
-        function moments(egpDrift,geoP,lnchP){
-          var mu=egpDrift, v=EGP_VOL*EGP_VOL+IDIO*IDIO, i;
-          for(i=0;i<CONT_FIXED.length;i++){mu+=CONT_FIXED[i][1]; v+=CONT_FIXED[i][2]*CONT_FIXED[i][2];}
-          var ev=[["Geo",geoP,GEO_MEAN,GEO_SD],["Launch",lnchP,LNCH_MEAN,LNCH_SD]].concat(EV_FIXED);
-          for(i=0;i<ev.length;i++){var p=ev[i][1],m=ev[i][2],sd=ev[i][3]; mu+=p*m; v+=p*(sd*sd+(1-p)*m*m);}
-          return {mu3:mu,var3:v};
-        }
-        function price(M,Tn,q){return S0*Math.exp(M.mu3*(Tn/H)+Z[q]*Math.sqrt(M.var3*Tn/H));}
-        function touch(M,L,Tn,up){
-          var nu=M.mu3*(Tn/H), sg=Math.sqrt(M.var3*Tn/H), sStep=Math.sqrt(M.var3/H), b=Math.log(L/S0);
-          b+=up?BETA*sStep:-BETA*sStep;
-          if(up)return Phi((-b+nu)/sg)+Math.exp(2*nu*b/(sg*sg))*Phi((-b-nu)/sg);
-          return Phi((b-nu)/sg)+Math.exp(2*nu*b/(sg*sg))*Phi((b+nu)/sg);
-        }
-        function cdfBelow(M,L,Tn){return Phi((Math.log(L/S0)-M.mu3*(Tn/H))/Math.sqrt(M.var3*Tn/H));}
-
-        // number formatting adapts to price magnitude
-        var DEC=S0<30?1:0;
-        var fmtN=function(v,d){d=(d==null)?DEC:d; return v.toFixed(d);};
-        var fmt=function(v){return "EGP "+fmtN(v);};
-        var lvl=function(v){return (Math.round(v*100)/100).toString();};
-
-        // scales — y-domain auto-fits the full slider range
-        var VB={w:760,h:340}, m={l:48,r:58,t:14,b:26};
-        var X0=m.l, X1=VB.w-m.r, Y0=VB.h-m.b, Y1=m.t;
-        // y-domain recomputes from the CURRENT distribution on every render (dynamic)
-        var PMIN, PMAX, niceStep, gdec, AX=60;
-        var xToPx=function(t){return X0+(t/AX)*(X1-X0);};
-        var yToPx=function(p){return Y0+((p-PMIN)/(PMAX-PMIN))*(Y1-Y0);};
-        var el=function(id){return document.getElementById(id);};
-        function computeDomain(M){
-          var lo=Infinity, hi=-Infinity, t, a, b;
-          for(t=0;t<=AX;t++){ a=price(M,t,5); b=price(M,t,95); if(a<lo)lo=a; if(b>hi)hi=b; }
-          lo=Math.min(lo, FLOOR, S0)*0.97; hi=Math.max(hi, TARGET, S0)*1.03;
-          var rng=hi-lo, rstep=Math.pow(10,Math.floor(Math.log(rng/6)/Math.LN10));
-          niceStep=(rng/6/rstep>=5)?5*rstep:(rng/6/rstep>=2)?2*rstep:rstep;
-          PMIN=Math.floor(lo/niceStep)*niceStep; PMAX=Math.ceil(hi/niceStep)*niceStep;
-          gdec=niceStep<1?(niceStep<0.5?2:1):0;
-        }
-
-        function drawAxes(){
-          var g=el("mc-gridG"), s="", p, y;
-          for(p=PMIN;p<=PMAX+niceStep*1e-6;p+=niceStep){ y=yToPx(p);
-            s+='<line class="mc-grid" x1="'+X0+'" x2="'+X1+'" y1="'+y.toFixed(1)+'" y2="'+y.toFixed(1)+'"></line>';
-            s+='<text x="'+(X0-8)+'" y="'+(y+3).toFixed(1)+'" text-anchor="end">'+p.toFixed(gdec)+'</text>';}
-          g.innerHTML=s;
-          var r=el("mc-refG"), ya=yToPx(S0), ys=yToPx(FLOOR), yc=yToPx(TARGET);
-          r.innerHTML='<line class="mc-ref mc-ref-anchor" x1="'+X0+'" x2="'+X1+'" y1="'+ya.toFixed(1)+'" y2="'+ya.toFixed(1)+'"></line>'+
-            '<line class="mc-ref mc-ref-sup" x1="'+X0+'" x2="'+X1+'" y1="'+ys.toFixed(1)+'" y2="'+ys.toFixed(1)+'"></line>'+
-            '<text class="mc-reflabel" fill="var(--red)" x="'+(X1+4)+'" y="'+(ys+3).toFixed(1)+'">'+FLOOR.toFixed(1)+'</text>'+
-            '<line class="mc-ref mc-ref-con" x1="'+X0+'" x2="'+X1+'" y1="'+yc.toFixed(1)+'" y2="'+yc.toFixed(1)+'"></line>'+
-            '<text class="mc-reflabel" fill="var(--amber-text)" x="'+(X1+4)+'" y="'+(yc+3).toFixed(1)+'">'+TARGET.toFixed(1)+'</text>';
-        }
-
-        function drawXAxis(){
-          el("mc-hzLine").style.display="none";
-          var xl=el("mc-xlab"), ticks=(AX<=20?[0,5,10,15,20]:[0,10,20,30,40,50,60]), xs="";
-          ticks.forEach(function(t){var x=xToPx(t);
-            xs+='<text x="'+x.toFixed(1)+'" y="'+(Y0+18)+'" text-anchor="middle">'+(t===0?"latest":"T+"+t)+'</text>';});
-          xl.innerHTML=xs;
-        }
-        function bandPath(M,qHi,qLo){var up="",lo2="",t,x;
-          for(t=0;t<=AX;t++){x=xToPx(t).toFixed(1); up+=(t?"L":"M")+x+","+yToPx(price(M,t,qHi)).toFixed(1)+" ";}
-          for(t=AX;t>=0;t--){x=xToPx(t).toFixed(1); lo2+="L"+x+","+yToPx(price(M,t,qLo)).toFixed(1)+" ";}
-          return up+lo2+"Z";}
-        function medianPath(M){var d="",t,x; for(t=0;t<=AX;t++){x=xToPx(t).toFixed(1); d+=(t?"L":"M")+x+","+yToPx(price(M,t,50)).toFixed(1)+" ";} return d;}
-
-        function lerp(a,b,t){return Math.round(a+(b-a)*t);}
-        function gradeColor(f){f=Math.max(0,Math.min(1,f));
-          var bad=[181,72,58],mid=[201,138,45],good=[46,125,91],r,g,b,t;
-          if(f<0.5){t=f/0.5; r=lerp(bad[0],mid[0],t); g=lerp(bad[1],mid[1],t); b=lerp(bad[2],mid[2],t);}
-          else{t=(f-0.5)/0.5; r=lerp(mid[0],good[0],t); g=lerp(mid[1],good[1],t); b=lerp(mid[2],good[2],t);}
-          return "rgb("+r+","+g+","+b+")";}
-        function paintThumb(s){var f=(parseFloat(s.value)-parseFloat(s.min))/(parseFloat(s.max)-parseFloat(s.min));
-          s.style.setProperty("--mc-thumb",gradeColor(f));}
-
-        var egp=el("mc-egp"), geo=el("mc-geo"), lnch=el("mc-lnch"), HZ=60;
-        var LADDER_UP=[15.55,16.5,17.5,18.5,20], LADDER_DN=[13.9,13.4];
-
-        function setZbar(M,Tn){
-          var pf=cdfBelow(M,FLOOR,Tn), pr2=cdfBelow(M,R2,Tn), pt=cdfBelow(M,TARGET,Tn);
-          var z=[pf,pr2-pf,pt-pr2,1-pt], cols=["var(--red)","var(--amber)","var(--teal2)","var(--teal)"];
-          var bar=el("mc-zbar"); bar.innerHTML="";
-          z.forEach(function(p,i){var d=document.createElement("div");
-            d.style.flex="0 0 "+(p*100).toFixed(2)+"%"; d.style.background=cols[i];
-            d.textContent=p>=0.07?Math.round(p*100)+"%":""; bar.appendChild(d);});
-        }
-        function setLadder(M){var s="";
-          LADDER_UP.forEach(function(L){s+='<tr class="mc-up"><td>'+lvl(L)+'</td><td>'+Math.round(touch(M,L,20,true)*100)+'%</td><td>'+Math.round(touch(M,L,60,true)*100)+'%</td></tr>';});
-          LADDER_DN.forEach(function(L){s+='<tr class="mc-dn"><td>'+lvl(L)+' ▼</td><td>'+Math.round(touch(M,L,20,false)*100)+'%</td><td>'+Math.round(touch(M,L,60,false)*100)+'%</td></tr>';});
-          el("mc-ladderBody").innerHTML=s;}
-
-        function render(){
-          var egpD=parseFloat(egp.value)/100, geoP=-parseInt(geo.value,10)/100, lnchP=parseInt(lnch.value,10)/100;
-          var M=moments(egpD,geoP,lnchP); window.__mcLastM=M;
-          computeDomain(M); drawAxes(); drawXAxis();
-          paintThumb(egp); paintThumb(geo); paintThumb(lnch);
-          el("mc-egpVal").textContent=(egpD>=0?"+":"−")+Math.abs(egpD*100).toFixed(1)+"% / quarter";
-          el("mc-geoVal").textContent=Math.round(geoP*100)+"% · −12% if it hits";
-          el("mc-lnchVal").textContent=Math.round(lnchP*100)+"% · +8% if it lands";
-          el("mc-band95").setAttribute("d",bandPath(M,95,5));
-          el("mc-band75").setAttribute("d",bandPath(M,75,25));
-          el("mc-medianP").setAttribute("d",medianPath(M));
-          // value labels on the chart: median, 25-75%, 5-95% at the current horizon
-          // merged with the support/resistance ref labels so nothing overlaps and nothing clips
-          (function(){
-            var dl=el("mc-distlabelsG"); if(!dl) return;
-            var xh=xToPx(HZ);
-            var xLbl=Math.min(xh-6, X1-4); // always left of the dot, capped at the plot's right edge
-            var pts=[[5,"var(--muted)",false],[25,"var(--teal2)",false],[50,"var(--ink)",true],
-                     [75,"var(--teal2)",false],[95,"var(--muted)",false]];
-            var rows=pts.map(function(pr){
-              var v=price(M,HZ,pr[0]);
-              return {y:yToPx(v),col:pr[1],med:pr[2],
-                lbl:(pr[2]?"median ":"")+(typeof fmtN==="function"?fmtN(v):(typeof fmt==="function"?fmt(v).replace(/^[^0-9\-]+/,""):v.toFixed(2)))};
-            });
-            // include the ref lines (support / resistance) in the SAME collision-avoidance pass
-            if(typeof SUPPORT!=="undefined") rows.push({y:yToPx(SUPPORT),col:"var(--red)",med:false,lbl:"support "+(typeof fmtAxis==="function"?fmtAxis(SUPPORT):(typeof fmtN==="function"?fmtN(SUPPORT):(typeof fmt==="function"?fmt(SUPPORT).replace(/^[^0-9\-]+/,""):Math.round(SUPPORT).toLocaleString("en-US")))),ref:true});
-            if(typeof CONSENSUS!=="undefined") rows.push({y:yToPx(CONSENSUS),col:"var(--amber-text)",med:false,lbl:"resistance "+(typeof fmtAxis==="function"?fmtAxis(CONSENSUS):(typeof fmtN==="function"?fmtN(CONSENSUS):(typeof fmt==="function"?fmt(CONSENSUS).replace(/^[^0-9\-]+/,""):Math.round(CONSENSUS).toLocaleString("en-US")))),ref:true});
-            if(typeof FLOOR!=="undefined") rows.push({y:yToPx(FLOOR),col:"var(--red)",med:false,lbl:"support "+(typeof fmt==="function"?fmt(FLOOR).replace(/^[^0-9\-]+/,""):FLOOR.toFixed(2)),ref:true});
-            if(typeof TARGET!=="undefined") rows.push({y:yToPx(TARGET),col:"var(--amber-text)",med:false,lbl:"resistance "+(typeof fmt==="function"?fmt(TARGET).replace(/^[^0-9\-]+/,""):TARGET.toFixed(2)),ref:true});
-            rows.sort(function(a,b){return a.y-b.y;});
-            var minGap=11;
-            for(var i=1;i<rows.length;i++){ if(rows[i].y-rows[i-1].y<minGap) rows[i].y=rows[i-1].y+minGap; }
-            var h="";
-            rows.forEach(function(r){
-              if(!r.ref) h+='<circle cx="'+xh.toFixed(1)+'" cy="'+(r._y0!==undefined?r._y0:r.y).toFixed(1)+'" r="'+(r.med?3.5:2.5)+'" fill="'+r.col+'"></circle>';
-              h+='<text class="mc-distlabel" x="'+xLbl.toFixed(1)+'" y="'+(r.y+3.5).toFixed(1)+'" text-anchor="end" font-family="\'IBM Plex Mono\',monospace" font-size="10" fill="'+r.col+'">'+r.lbl+'</text>';
-            });
-            dl.innerHTML=h;
-            // suppress the old separate reflabel text (now folded into the merged stack above)
-            var rg=el("mc-refG"); if(rg){ var t=rg.querySelectorAll?rg.querySelectorAll("text.mc-reflabel"):[]; for(var k=0;k<t.length;k++) t[k].style.display="none"; }
-          })();
-
-          var xh=xToPx(HZ).toFixed(1), hz=el("mc-hzLine");
-          hz.setAttribute("x1",xh); hz.setAttribute("x2",xh); hz.setAttribute("y1",Y0.toFixed(1)); hz.setAttribute("y2",Y1.toFixed(1));
-          [20,60].forEach(function(Tn){[5,25,50,75,95].forEach(function(q){el("mc-p"+Tn+"_"+q).textContent=fmtN(price(M,Tn,q),2);});});
-          el("mc-row20").classList.toggle("mc-on",HZ===20);
-          el("mc-row60").classList.toggle("mc-on",HZ===60);
-          var hLabel=HZ===20?"1 month":"3 months";
-          el("mc-hzName").textContent=hLabel;
-          el("mc-vMed").textContent=fmt(price(M,HZ,50));
-          el("mc-vRange").textContent=fmtN(price(M,HZ,5))+" – "+fmtN(price(M,HZ,95));
-          el("mc-vBelow").textContent=Math.round(cdfBelow(M,FLOOR,HZ)*100)+"%";
-          el("mc-vCons").textContent=Math.round((1-cdfBelow(M,TARGET,HZ))*100)+"%";
-                    // probability read — leads the section
-          var pUp=1-cdfBelow(M,S0,HZ), pW=1-cdfBelow(M,S0*1.10,HZ), pL=cdfBelow(M,S0*0.90,HZ);
-          var _rN=function(v){return fmt(v).replace(/^[^0-9\-\u2212.]+/,"");};
-          var oddsHtml; if(pW>=pL){oddsHtml=Math.round(pW*100)+"% vs <span class=\"mc-down\">"+Math.round(pL*100)+"%</span> &mdash; odds &asymp; "+(pL>0.001?(pW/pL).toFixed(1):"&gt;99")+" : 1 up";}
-          else{oddsHtml=Math.round(pW*100)+"% vs <span class=\"mc-down\">"+Math.round(pL*100)+"%</span> &mdash; odds &asymp; "+(pW>0.001?(pL/pW).toFixed(1):"&gt;99")+" : 1 down";}
-          var _med=price(M,HZ,50), _mv=(_med/S0-1)*100;
-          el("mc-rUp").textContent=Math.round(pUp*100)+"%";
-          el("mc-rOdds").innerHTML=oddsHtml;
-          el("mc-rMed").textContent=fmt(_med)+" ("+(_mv>=0?"+":"\u2212")+Math.abs(_mv).toFixed(0)+"%)";
-          el("mc-rBand").textContent=_rN(price(M,HZ,25))+" \u2013 "+_rN(price(M,HZ,75));
-          el("mc-rTouch").textContent=Math.round(touch(M,S0*1.10,HZ,true)*100)+"% / "+Math.round(touch(M,S0*0.90,HZ,false)*100)+"%";
-          el("mc-rHz").textContent="at "+hLabel;
-          try{window.__probRead={pUp:pUp,pW:pW,pL:pL,med:_med,mv:_mv,b25:price(M,HZ,25),b75:price(M,HZ,75),tUp:touch(M,S0*1.10,HZ,true),tDn:touch(M,S0*0.90,HZ,false),spot:S0,fmtMed:fmt(_med),b25s:_rN(price(M,HZ,25)),b75s:_rN(price(M,HZ,75))};}catch(_e){}
-          el("mc-zHz").textContent="at "+hLabel;
-          setZbar(M,HZ); setLadder(M);
-        }
-
-        (function(){
-          var svgEl=el("mc-fan"); if(!svgEl) return;
-          var svgNS="http://www.w3.org/2000/svg";
-          var hoverDEC=S0<30?1:0;
-          function hoverFmt(v){ return (typeof v==="number"&&isFinite(v)) ? v.toFixed(hoverDEC) : String(v); }
-          var hoverG=document.createElementNS(svgNS,"g"); hoverG.setAttribute("id","mc-hoverG"); hoverG.style.pointerEvents="none";
-          svgEl.appendChild(hoverG);
-          var vline=document.createElementNS(svgNS,"line");
-          vline.setAttribute("stroke","var(--muted)"); vline.setAttribute("stroke-width","1"); vline.setAttribute("stroke-dasharray","3 3");
-          vline.style.display="none"; hoverG.appendChild(vline);
-          var dotOrder=["p95","p75","p50","p25","p5"], dots={};
-          dotOrder.forEach(function(k){
-            var c=document.createElementNS(svgNS,"circle"); c.setAttribute("r",k==="p50"?"3.5":"2.5"); c.style.display="none";
-            hoverG.appendChild(c); dots[k]=c;
-          });
-          var wrap=svgEl.parentNode; wrap.style.position="relative";
-          var tip=document.createElement("div");
-          tip.style.cssText="position:absolute;pointer-events:none;z-index:5;display:none;background:rgba(14,39,38,0.94);color:#fff;font-family:'IBM Plex Mono',monospace;font-size:12px;line-height:1.55;padding:8px 10px;border-radius:6px;white-space:nowrap;box-shadow:0 4px 14px rgba(0,0,0,.25);";
-          wrap.appendChild(tip);
-          var labelFor={p95:"95th",p75:"75th",p50:"median",p25:"25th",p5:"5th"};
-          function onMove(clientX){
-            var M=window.__mcLastM; if(!M) return;
-            var rect=svgEl.getBoundingClientRect();
-            var scaleX=VB.w/(rect.width||VB.w);
-            var localX=(clientX-rect.left)*scaleX;
-            var t=Math.round(((localX-X0)/(X1-X0))*AX);
-            if(t<0)t=0; if(t>AX)t=AX;
-            var xPx=xToPx(t);
-            vline.setAttribute("x1",xPx.toFixed(1)); vline.setAttribute("x2",xPx.toFixed(1));
-            vline.setAttribute("y1",Y1.toFixed(1)); vline.setAttribute("y2",Y0.toFixed(1));
-            vline.style.display="block";
-            var vals={p95:price(M,t,95),p75:price(M,t,75),p50:price(M,t,50),p25:price(M,t,25),p5:price(M,t,5)};
-            var rows="";
-            dotOrder.forEach(function(k){
-              var y=yToPx(vals[k]);
-              dots[k].setAttribute("cx",xPx.toFixed(1)); dots[k].setAttribute("cy",y.toFixed(1));
-              dots[k].setAttribute("fill",k==="p50"?"var(--amber-text,#854F0B)":"var(--teal2,#2A8F8F)");
-              dots[k].style.display="block";
-              rows+='<div style="display:flex;justify-content:space-between;gap:14px;"><span style="opacity:.75">'+labelFor[k]+'</span><span style="font-weight:600;'+(k==="p50"?"color:#F2C879":"")+'">'+hoverFmt(vals[k])+'</span></div>';
-            });
-            var refRows="";
-            var floorLv=(typeof FLOOR!=="undefined")?FLOOR:(typeof SUPPORT!=="undefined"?SUPPORT:null);
-            var targetLv=(typeof TARGET!=="undefined")?TARGET:(typeof CONSENSUS!=="undefined"?CONSENSUS:null);
-            if(floorLv!=null) refRows+='<div style="display:flex;justify-content:space-between;gap:14px;"><span style="opacity:.75">support</span><span style="font-weight:600">'+hoverFmt(floorLv)+'</span></div>';
-            if(targetLv!=null) refRows+='<div style="display:flex;justify-content:space-between;gap:14px;"><span style="opacity:.75">resistance</span><span style="font-weight:600">'+hoverFmt(targetLv)+'</span></div>';
-            tip.innerHTML='<div style="font-weight:700;margin-bottom:4px;">T+'+t+'</div>'+rows+refRows;
-            tip.style.display="block";
-            var tipW=tip.offsetWidth, tipH=tip.offsetHeight;
-            var localPxX=(xPx/VB.w)*rect.width, localPxY=(yToPx(vals.p50)/VB.h)*rect.height;
-            var left=localPxX+14, top=localPxY-tipH/2;
-            if(left+tipW>rect.width) left=localPxX-tipW-14;
-            if(top<0) top=4; if(top+tipH>rect.height) top=rect.height-tipH-4;
-            tip.style.left=left.toFixed(0)+"px"; tip.style.top=top.toFixed(0)+"px";
-          }
-          function onLeave(){
-            vline.style.display="none";
-            dotOrder.forEach(function(k){ dots[k].style.display="none"; });
-            tip.style.display="none";
-          }
-          svgEl.addEventListener("mousemove",function(e){ onMove(e.clientX); });
-          svgEl.addEventListener("mouseleave",onLeave);
-          svgEl.addEventListener("touchmove",function(e){ if(e.touches&&e.touches[0]){ onMove(e.touches[0].clientX); e.preventDefault(); } },{passive:false});
-          svgEl.addEventListener("touchend",onLeave);
-        })();
-        var raf=null;
-        function schedule(){ if(raf)return; raf=requestAnimationFrame(function(){raf=null;render();}); }
-        [egp,geo,lnch].forEach(function(s){s.addEventListener("input",schedule);});
-        function setHz(h){HZ=h; AX=h; el("mc-h20").setAttribute("aria-pressed",h===20); el("mc-h60").setAttribute("aria-pressed",h===60); drawXAxis(); render();}
-        el("mc-h20").addEventListener("click",function(){setHz(20);});
-        el("mc-h60").addEventListener("click",function(){setHz(60);});
-        el("mc-reset").addEventListener("click",function(){egp.value="-2.5"; geo.value="-30"; lnch.value="55"; setHz(60); render();});
-        render();
-      }
-      if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",boot);
-      else boot();
-    })();
-    </script>
-  </div>
+    <p class="muted" style="margin:0 0 12px;max-width:62ch">The full 90-day path, from the same distribution as the odds above. Static \u2014 nothing here is adjustable, unlike the levers under Fundamental.</p>
+    <div id="mc-fan-static"></div>
   </section>
-  <!-- ============ /INTERACTIVE MONTE CARLO ============ -->
+  <!-- ============ /STATIC MONTE CARLO FAN ============ -->
 
 
   <!-- DETAILED NUMBERS — opt in -->
@@ -869,7 +413,7 @@
   </div>
 </div>
 
-<script src="assets/data.js?v=20260713f"></script><script src="assets/app.js?v=20260713f"></script>
+<script src="assets/data.js?v=20260713f"></script><script src="assets/app.js?v=20260719a"></script>
 <script>
 const T=TICKERS.PHDC;
 document.getElementById("upd").textContent=SITE.updated;
@@ -917,6 +461,30 @@ if(T.files && T.files.biblio){
 renderGauge("gauge", T.spot, T.fair, T.spotDate);
 renderPeers("peers", "PHDC");
 renderTrackBadge("track-badge");
+
+renderStaticFan("mc-fan-static", T);
+renderFairLevers("fl-lever-card", T, [
+  { name:"EGP/USD \u2014 impact on fair value", min:-6, max:2, step:0.5, def:-2.5, impact:1.8,
+    lo:"sharp depreciation", hi:"EGP firm / tailwind",
+    fmt:v=>(v>=0?"+":"\u2212")+Math.abs(v).toFixed(1)+"% / quarter" },
+  { name:"Mortgage / financing rate", min:-3, max:3, step:0.5, def:0, impact:1.2,
+    lo:"rates rising", hi:"rates easing",
+    fmt:v=>(-v>=0?"+":"\u2212")+Math.abs(v).toFixed(1)+"pp this cycle" },
+  { name:"Geopolitical risk", min:0, max:60, step:5, def:30, impact:0.12,
+    lo:"high tension", hi:"calm",
+    fmt:v=>Math.round(60-v)+"% risk \u00b7 \u221212% if it hits" },
+  { name:"New launch lands", min:0, max:100, step:5, def:55, impact:0.08,
+    lo:"unlikely", hi:"likely",
+    fmt:v=>Math.round(v)+"% \u00b7 +8% if it lands" },
+  { name:"Tourism / foreign demand", min:-15, max:15, step:1, def:0, impact:0.15,
+    lo:"demand softening", hi:"demand accelerating",
+    fmt:v=>(v>=0?"+":"\u2212")+Math.abs(v).toFixed(0)+"% YoY" }
+]);
+if (T.levels) {
+  injectLevels("ta-chart-svg", T.levels.res, T.levels.sup);
+  renderLevelList("level-list", T.levels.res, T.levels.sup);
+  renderZoomChart("ta-chart-svg", "zoom-chart", T.levels.res, T.levels.sup, 90);
+}
 // collapsed-section one-line answers
 var _sf=document.getElementById("sum-fund");
 if(_sf && typeof T.fair==="number" && typeof T.spot==="number"){
@@ -931,7 +499,7 @@ initHowto();
 <script>
 (function(){
   var S=[["sec-top","Overview"],["sec-odds","The odds"],["sec-value","Fair value"],
-    ["sec-chart","The chart"],["sec-model","Explore the model"],["sec-details","Detailed numbers"],
+    ["sec-chart","The chart"],["sec-model","The full path"],["sec-details","Detailed numbers"],
     ["sec-peers","Peers"],["sec-study","Get the study"],["sec-follow","Updates"]]
     .filter(function(x){return document.getElementById(x[0]);});
   if(S.length<3) return;
