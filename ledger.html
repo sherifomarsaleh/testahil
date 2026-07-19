@@ -391,6 +391,68 @@ async function drawActualLine(r, chartId){
   grp.appendChild(pathEl);
   // small dots along the actual path (skip the final one; the big realized dot already marks it)
   win.forEach((o,i)=>{ if(i===win.length-1) return; grp.appendChild(chEl("circle",{cx:g.pxFrac(i/n),cy:g.py(o.price),r:2.2,fill:"#2a78d6"})); });
+  // wire the hover readout now that we have the actual series + dates
+  wireCohortHover(chartId, r, win);
+}
+
+// Hover readout: track the pointer across the chart, snap to the nearest trading session,
+// and show that session's date, actual close, and all five forecast percentiles (5/25/50/
+// 75/95) computed analytically at that point on the cone. Pure SVG + pointer math; scales
+// with the responsive viewBox via getBoundingClientRect (no library, no createSVGPoint).
+function wireCohortHover(chartId, r, win){
+  const svg = document.getElementById(chartId);
+  if(!svg || !svg.getBoundingClientRect) return;
+  const g = cohortGeom(r);
+  const {W,HT,ml,mr,mt,mb,px,pxFrac,py,steps} = g;
+  const n = win.length - 1;
+  const P = {5:r.p5,25:r.p25,50:r.p50,75:r.p75,95:r.p95};
+  const off={}; for(const k in P) off[k]=Math.log(P[k]/P[50]);
+  const driftTot = Math.log(P[50]/r.anchor_price);
+  const coneAt = f => { const md=r.anchor_price*Math.exp(driftTot*f); const o={}; for(const k of [5,25,50,75,95]) o[k]=md*Math.exp(off[k]*Math.sqrt(Math.max(f,0))); return o; };
+  const plotL=px(0), plotR=px(steps), plotT=mt, plotB=HT-mb;
+  const fmt = v => (r.ccy?r.ccy+" ":"")+v.toFixed(2);
+  const bandCol = {95:"#8A6A2E",75:"#12796B",50:"var(--ink)",25:"#12796B",5:"#8A6A2E"};
+  const MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  const pretty = iso => { const p=iso.split("-"); return parseInt(p[2])+" "+MON[parseInt(p[1])-1]+" "+p[0]; };
+
+  const cur = chEl("g",{id:chartId+"-cursor"}); cur.setAttribute("opacity","0"); cur.setAttribute("style","pointer-events:none");
+  svg.appendChild(cur);
+  const ov = chEl("rect",{x:plotL,y:plotT,width:(plotR-plotL),height:(plotB-plotT),fill:"transparent"}); ov.setAttribute("style","cursor:crosshair");
+  svg.appendChild(ov);
+
+  function draw(i){
+    while(cur.firstChild) cur.removeChild(cur.firstChild);
+    const f=i/n, x=pxFrac(f), vals=coneAt(f), actual=win[i].price;
+    cur.appendChild(chEl("line",{x1:x,y1:plotT,x2:x,y2:plotB,stroke:"var(--muted)","stroke-width":1,"stroke-dasharray":"3 3","stroke-opacity":0.7}));
+    for(const k of [95,75,50,25,5]) cur.appendChild(chEl("circle",{cx:x,cy:py(vals[k]),r:2.6,fill:bandCol[k]}));
+    cur.appendChild(chEl("circle",{cx:x,cy:py(actual),r:4,fill:"#2a78d6",stroke:"var(--paper)","stroke-width":1.5}));
+    // tooltip
+    const rows=[["actual",actual,"#2a78d6"],["95%",vals[95],"#8A6A2E"],["75%",vals[75],"#12796B"],["50% (mid)",vals[50],"var(--ink)"],["25%",vals[25],"#12796B"],["5%",vals[5],"#8A6A2E"]];
+    const bw=142, lh=14.5, hh=17, py0=7, bh=hh+rows.length*lh+py0;
+    let bx = x+14; if(bx+bw > W-2) bx = x-14-bw;
+    let by = plotT+4;
+    cur.appendChild(chEl("rect",{x:bx,y:by,width:bw,height:bh,rx:6,fill:"var(--card)",stroke:"var(--line)","stroke-width":1,"fill-opacity":0.98}));
+    const th=chEl("text",{x:bx+9,y:by+13,"font-size":11,"font-weight":600,fill:"var(--ink)","font-family":"'IBM Plex Mono',monospace"}); th.textContent=pretty(win[i].iso); cur.appendChild(th);
+    rows.forEach((rw,ri)=>{
+      const yy=by+hh+ri*lh+3;
+      cur.appendChild(chEl("circle",{cx:bx+13,cy:yy-3.5,r:3,fill:rw[2]}));
+      const lb=chEl("text",{x:bx+21,y:yy,"font-size":10.5,fill:"var(--muted)","font-family":"'IBM Plex Mono',monospace"}); lb.textContent=rw[0]; cur.appendChild(lb);
+      const vv=chEl("text",{x:bx+bw-9,y:yy,"font-size":10.5,"font-weight":600,"text-anchor":"end",fill:"var(--ink)","font-family":"'IBM Plex Mono',monospace"}); vv.textContent=rw[1].toFixed(2); cur.appendChild(vv);
+    });
+    cur.setAttribute("opacity","1");
+  }
+  function move(e){
+    const src=(e.touches&&e.touches[0])?e.touches[0]:e;
+    const rect=svg.getBoundingClientRect(); if(!rect.width) return;
+    const vbX=(src.clientX-rect.left)/rect.width*W;
+    let f=(vbX-ml)/(W-ml-mr); let i=Math.round(f*n); i=Math.max(0,Math.min(n,i));
+    draw(i);
+  }
+  ov.addEventListener("mousemove",move);
+  ov.addEventListener("touchstart",move,{passive:true});
+  ov.addEventListener("touchmove",move,{passive:true});
+  ov.addEventListener("mouseleave",()=>cur.setAttribute("opacity","0"));
+  ov.addEventListener("touchend",()=>cur.setAttribute("opacity","0"));
 }
 
 function cohortChartBlock(t, rows){
@@ -411,7 +473,7 @@ function cohortChartBlock(t, rows){
     <span style="display:flex;align-items:center;gap:5px"><span style="width:11px;height:11px;border-radius:50%;background:#2a78d6;display:inline-block"></span>where it closed</span>
   </div>`;
   const pathNote = hasActual
-    ? `the blue line is where the price actually traded, day by day, against the range we published on ${r.anchor_date} (the funnel)`
+    ? `the blue line is where the price actually traded, day by day, against the range we published on ${r.anchor_date} (the funnel). Hover any point to read that day's actual price and the full 5/25/50/75/95% range`
     : `where the price actually closed on ${r.grade_date} (the dot), against the range we published on ${r.anchor_date} (the funnel)`;
   // schedule the async actual-line draw after this HTML is in the DOM
   if(hasActual) setTimeout(()=>drawActualLine(r, chartId), 0);
