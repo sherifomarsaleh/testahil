@@ -816,10 +816,10 @@ function renderFairLevers(elId, T, levers){
 function injectLevels(svgId, res, sup){
   const svg = document.getElementById(svgId); if (!svg) return;
   const labels = Array.prototype.slice.call(svg.querySelectorAll('text')).filter(function(t){
-    return /var\(--muted/.test(t.getAttribute("fill") || "") && /^-?\d+(\.\d+)?$/.test((t.textContent||"").trim());
+    return /var\(--muted/.test(t.getAttribute("fill") || "") && /^-?[\d,]+(\.\d+)?$/.test((t.textContent||"").trim());
   });
   if (labels.length < 2) return;
-  const pts = labels.map(function(t){ return [parseFloat(t.getAttribute("y")), parseFloat(t.textContent)]; });
+  const pts = labels.map(function(t){ return [parseFloat(t.getAttribute("y")), parseFloat((t.textContent||"").replace(/,/g,""))]; });
   const n = pts.length, sy = pts.reduce((s,p)=>s+p[0],0)/n, sp = pts.reduce((s,p)=>s+p[1],0)/n;
   let num=0, den=0; pts.forEach(function(p){ num += (p[0]-sy)*(p[1]-sp); den += (p[0]-sy)*(p[0]-sy); });
   const slope = num/den, intercept = sp - slope*sy;
@@ -857,10 +857,10 @@ function renderZoomChart(sourceSvgId, targetElId, res, sup, defaultSessions){
   const host = document.getElementById(targetElId); if (!host) return;
 
   const labels = Array.prototype.slice.call(src.querySelectorAll("text")).filter(function(t){
-    return /var\(--muted/.test(t.getAttribute("fill") || "") && /^-?\d+(\.\d+)?$/.test((t.textContent||"").trim());
+    return /var\(--muted/.test(t.getAttribute("fill") || "") && /^-?[\d,]+(\.\d+)?$/.test((t.textContent||"").trim());
   });
   if (labels.length < 2) return;
-  const cal = labels.map(function(t){ return [parseFloat(t.getAttribute("y")), parseFloat(t.textContent)]; });
+  const cal = labels.map(function(t){ return [parseFloat(t.getAttribute("y")), parseFloat((t.textContent||"").replace(/,/g,""))]; });
   const n0 = cal.length, sy = cal.reduce((s,p)=>s+p[0],0)/n0, sp = cal.reduce((s,p)=>s+p[1],0)/n0;
   let num=0, den=0; cal.forEach(function(p){ num += (p[0]-sy)*(p[1]-sp); den += (p[0]-sy)*(p[0]-sy); });
   const slope = num/den, intercept = sp - slope*sy;
