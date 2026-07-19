@@ -911,13 +911,13 @@ function renderZoomChart(sourceSvgId, targetElId, res, sup, defaultSessions){
 
     const allY = priceT.concat(ma50T).concat(ma200T).map(p=>p[1]);
     let yLo = Math.min.apply(null, allY), yHi = Math.max.apply(null, allY);
-    // make sure any reference level that falls inside the window is visible
-    const visRefs = (res||[]).concat(sup||[]).map(yOfPrice).filter(function(y){ return isFinite(y); });
-    // (in y-pixel space, larger y = lower price; keep bounds by price instead)
-    const priceLoData = priceOfY(yHi), priceHiData = priceOfY(yLo);
-    let pLo = priceLoData, pHi = priceHiData;
+    // pixel space: larger y = lower price. Convert the pixel extremes to prices and
+    // order them low->high (priceOfY(yHi) is the LOWEST price, priceOfY(yLo) the highest).
+    const pA = priceOfY(yHi), pB = priceOfY(yLo);
+    let pLo = Math.min(pA, pB), pHi = Math.max(pA, pB);
+    // widen to include any reference level that falls in the window
     (res||[]).concat(sup||[]).forEach(function(p){ if (p < pLo) pLo = p; if (p > pHi) pHi = p; });
-    const padP = (pHi - pLo) * 0.14 || 0.4;
+    const padP = (pHi - pLo) * 0.08 || 0.4;
     pLo -= padP; pHi += padP;
 
     const W = 760, H = 300, ML = 46, MR = 60, MT = 14, MB = 26;
