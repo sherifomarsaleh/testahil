@@ -980,30 +980,30 @@ const TICKERS = {
     }
   },
   DSCW: {
-    name: "Dice For Ready-Made Garments (SAE)",
-    nameAr: "دايس للملابس الجاهزة",
+    name: "Dice For Ready-Made Garments",
+    nameAr: "دايس للملابس الجاهزة (دايس سبورت آند كاجوال وير)",
     code: "EGX:DSCW",
     spot: 1.94,
     spotDate: "close 19 Jul 2026",
     ccy: "EGP",
-    fair: { bear: 0.59, base: 0.88, full: 1.29 },          // 19 Jul 2026 valuation — weighted central (35% FCFF DCF, floored / 35% normalized earnings / 30% relative EV/EBITDA). Raw DCF is negative (-0.50) at the sourced 23.53% WACC (TV 94% of EV, disclosed); bear/full = weighted bear/bull.
+    fair: { bear: 0.59, base: 0.88, full: 1.29 },          // 19 Jul 2026 valuation — weighted central: 35% FCFF DCF (floored at 0; raw −0.50 at sourced WACC 23.53%, TV 94% of EV, disclosed) / 35% normalized earnings power (7.5% through-cycle margin) / 30% relative EV/EBITDA. full = weighted bull central.
     dist: {
-      t20: { label:"1 month (T+20)",  p5:1.65, p25:1.85, p50:1.97, p75:2.09, p95:2.35, resolve:"2026-08-16" },
+      t20: { label:"1 month (T+20)",  p5:1.65, p25:1.85, p50:1.97, p75:2.09, p95:2.34, resolve:"2026-08-16" },
       t60: { label:"3 months (T+60)", p5:1.50, p25:1.82, p50:2.02, p75:2.25, p95:2.73, resolve:"2026-10-11" }
     },
-    touch: [ /* descending high -> low */
-      [2.40, 6, 24], [2.30, 10, 34], [2.20, 19, 47], [2.10, 37, 65], [2.00, 69, 85], [1.80, 30, 49], [1.60, 5, 17]
+    touch: [ /* level, P(touch) T+20 %, T+60 % — descending */
+      [2.40, 6, 24], [2.20, 19, 47], [2.00, 69, 85], [1.80, 30, 49], [1.60, 5, 17]
     ],
-    levels: { res:[2.10, 2.23], sup:[1.80, 1.79, 1.61] },
+    levels: { res:[2.00, 2.10, 2.17], sup:[1.83, 1.80, 1.71] },
     tech: {
-      trend: "Repairing off a spring base, back above the full moving-average stack",
-      summary: "The stock fell from the 2.23 high (Jul-25) to a 1.45-1.61 base across the spring, and has spent June-July repairing the damage - through the 200-day at 1.79, through the 1.80 shelf, to a close at 1.94. RSI(14) is 70 - overbought, on a tape where the Q1 loss is public and H1 results are due. MACD (12,26,9) just turned positive (0.022 line vs -0.000 signal): fresh, not yet extended.",
-      bull: "A daily close above 2.10 opens the last distribution zone before the 2.23 fifty-two-week high.",
-      bear: "Losing the 1.80 shelf re-exposes the 200-day at 1.79 and then the 1.61 spring low."
+      trend: "Testing the top of its range after a sharp rebound",
+      summary: "Spot 1.94 sits right at the 30-day high, above a bullish stack of moving averages (20-day 1.80, 50-day 1.83, 100-day 1.82, 200-day 1.79). RSI(14) is at 70, the overbought threshold, and the daily MACD (12,26,9) just turned positive (0.022 line vs −0.000 signal, +0.023 histogram) — a fresh bullish cross rather than an extended one. The 52-week range is 1.58–2.17; the stock is +5.4% over 20 sessions but still −10.5% over the past year.",
+      bull: "A daily close above 2.00 opens the 60–90 day swing high near 2.10, then the 52-week high at 2.17.",
+      bear: "A close back below the 1.80–1.83 moving-average cluster reopens the 60-day low near 1.71."
     },
     files: {
       study: "files/DSCW_Valuation_Study_19-07-2026_public.docx?v=1907",
-      model: "files/DSCW_Valuation_Model_19072026_public.xlsx?v=1907",
+      model: "files/DSCW_Valuation_Study_19-07-2026_public.xlsx?v=1907",
       pdf:   "files/DSCW_Valuation_Study_19-07-2026_public.pdf?v=1907"
     }
   },
