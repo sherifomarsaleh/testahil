@@ -195,34 +195,12 @@
 
   <section style="padding:0 0 4px"><div id="track-badge"></div></section>
 
-  <!-- LENS 1: SIMULATION -->
-  <section id="sec-odds" class="anchor" style="padding-bottom:0">
-    <div class="lens"><span class="lens-no">Lens 1 of 3</span><span class="lens-name">The simulation — what are the odds?</span></div>
-    <p class="lens-sub">50,000 simulated futures — <em>where could the price go?</em></p>
-  </section>
-
-  <!-- PLAIN ANSWER FIRST -->
-  <section style="padding-top:8px">
-    <div class="answer">
-      <p class="verdict" id="verdict"></p>
-      <p class="horizon-note">Pick a timeframe:</p>
-      <div class="toggle" id="tg">
-        <button data-h="t20" class="on">In 1 month</button>
-        <button data-h="t60">In 3 months</button>
-      </div>
-      <div id="plain"></div>
-      <div id="legend"></div>
-      <button class="howto-link" id="howto-open" type="button">How to read this</button>
-    </div>
-    <p class="muted" style="margin-top:14px">Latest <b class="num" id="spot"></b> EGP (<span id="spotdate"></span>) · our fair value <b class="num">15.89</b> · scenarios <span class="num">7.62</span> (bad) to <span class="num">24.92</span> (all goes right).</p>
-  </section>
-
-  <!-- LENS 2: FUNDAMENTAL -->
+  <!-- LENS 1: FUNDAMENTAL -->
 <details class="rds">
 <summary><span class="rds-t">Fundamental &mdash; what it's worth</span><span class="rds-note" id="sum-fund">bottom-up fair value</span><span class="rds-x" aria-hidden="true"></span></summary>
 <div class="rds-body">
   <section id="sec-value" class="anchor" style="padding-bottom:0">
-    <div class="lens"><span class="lens-no">Lens 2 of 3</span><span class="lens-name">Fundamental analysis — what is it worth?</span></div>
+    <div class="lens"><span class="lens-no">Lens 1 of 3</span><span class="lens-name">Fundamental analysis — what is it worth?</span></div>
     <p class="lens-sub">Built up from projects, cash and earnings — <em>what is it worth?</em></p>
   </section>
 
@@ -242,12 +220,12 @@
 
 </div>
 </details>
-  <!-- LENS 3: TECHNICAL -->
+  <!-- LENS 2: TECHNICAL -->
 <details class="rds">
 <summary><span class="rds-t">Technical &amp; price structure</span><span class="rds-note" id="sum-tech">trend, momentum, key levels</span><span class="rds-x" aria-hidden="true"></span></summary>
 <div class="rds-body">
   <section id="sec-chart" class="anchor" style="padding-bottom:0">
-    <div class="lens"><span class="lens-no">Lens 3 of 3</span><span class="lens-name">Technical analysis — what is the chart doing?</span></div>
+    <div class="lens"><span class="lens-no">Lens 2 of 3</span><span class="lens-name">Technical analysis — what is the chart doing?</span></div>
     <p class="lens-sub">Trend, momentum and key levels — <em>what is the price doing now?</em></p>
   </section>
 
@@ -302,10 +280,39 @@
 </div>
 </details>
   <!-- ============ INTERACTIVE MONTE CARLO (self-contained, scoped #mc-lab) ============ -->
-  <section id="sec-model" class="anchor" style="padding-top:8px">
+    <!-- LENS 3: MONTE CARLO -->
+<details class="rds" open>
+<summary><span class="rds-t">Monte Carlo &mdash; where could the price go?</span><span class="rds-note">near-term price paths</span><span class="rds-x" aria-hidden="true"></span></summary>
+<div class="rds-body">
+
+  <section id="sec-odds" class="anchor" style="padding-bottom:0">
+    <div class="lens"><span class="lens-no">Lens 3 of 3</span><span class="lens-name">Monte Carlo — where could the price go?</span></div>
+    <p class="lens-sub">50,000 simulated futures — <em>near-term price paths, independent of the fundamental value.</em></p>
+  </section>
+
+  <!-- PLAIN ANSWER FIRST -->
+  <section style="padding-top:8px">
+    <div class="answer">
+      <p class="verdict" id="verdict"></p>
+      <p class="horizon-note">Pick a timeframe:</p>
+      <div class="toggle" id="tg">
+        <button data-h="t20" class="on">In 1 month</button>
+        <button data-h="t60">In 3 months</button>
+      </div>
+      <div id="plain"></div>
+      <div id="legend"></div>
+      <button class="howto-link" id="howto-open" type="button">How to read this</button>
+    </div>
+    <p class="muted" style="margin-top:14px">Latest <b class="num" id="spot"></b> <span id="spotdate"></span> — these are near-term price paths only; the fair value lives in the Fundamental lens above.</p>
+  </section>
+
+  
     <p class="muted" style="margin:0 0 12px;max-width:62ch">The full 90-day path, from the same distribution as the odds above. Static \u2014 nothing here is adjustable, unlike the levers under Fundamental.</p>
     <div id="mc-fan-static"></div>
-  </section>
+  
+</div>
+</details>
+
   <!-- ============ /STATIC MONTE CARLO FAN ============ -->
 
 

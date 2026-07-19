@@ -179,34 +179,12 @@
 
   <section style="padding:0 0 4px"><div id="track-badge"></div></section>
 
-  <!-- LENS 1: SIMULATION -->
-  <section id="sec-odds" class="anchor" style="padding-bottom:0">
-    <div class="lens"><span class="lens-no">Lens 1 of 3</span><span class="lens-name">The simulation — what are the odds?</span></div>
-    <p class="lens-sub">50,000 simulated futures — <em>where could the price go?</em></p>
-  </section>
-
-  <!-- PLAIN ANSWER FIRST -->
-  <section style="padding-top:8px">
-    <div class="answer">
-      <p class="verdict" id="verdict"></p>
-      <p class="horizon-note">Pick a timeframe:</p>
-      <div class="toggle" id="tg">
-        <button data-h="t20">In 1 month</button>
-        <button data-h="t60" class="on">In 3 months</button>
-      </div>
-      <div id="plain"></div>
-      <div id="legend"></div>
-      <button class="howto-link" id="howto-open" type="button">How to read this</button>
-    </div>
-    <p class="muted" style="margin-top:14px">Latest <b class="num" id="spot"></b> AED (<span id="spotdate"></span>) · our weighted fair value <b class="num">3.32</b> · scenarios <span class="num">2.18</span> (cautious) to <span class="num">4.92</span> (all goes right).</p>
-  </section>
-
-  <!-- LENS 2: FUNDAMENTAL -->
+  <!-- LENS 1: FUNDAMENTAL -->
 <details class="rds">
 <summary><span class="rds-t">Fundamental &mdash; what it's worth</span><span class="rds-note" id="sum-fund">bottom-up fair value</span><span class="rds-x" aria-hidden="true"></span></summary>
 <div class="rds-body">
   <section id="sec-value" class="anchor" style="padding-bottom:0">
-    <div class="lens"><span class="lens-no">Lens 2 of 3</span><span class="lens-name">Fundamental analysis — what is it worth?</span></div>
+    <div class="lens"><span class="lens-no">Lens 1 of 3</span><span class="lens-name">Fundamental analysis — what is it worth?</span></div>
     <p class="lens-sub">Built from a consolidated free-cash-flow DCF with a sum-of-the-parts stake bridge, a dividend-policy model, relative multiples and normalized earnings power — <em>what is it worth?</em></p>
   </section>
 
@@ -219,14 +197,19 @@
     </div>
   </section>
 
+  <!-- FAIR-VALUE SENSITIVITY LEVERS -->
+  <section style="padding-top:8px">
+    <div id="fl-lever-card"></div>
+  </section>
+
 </div>
 </details>
-  <!-- LENS 3: TECHNICAL -->
+  <!-- LENS 2: TECHNICAL -->
 <details class="rds">
 <summary><span class="rds-t">Technical &amp; price structure</span><span class="rds-note" id="sum-tech">trend, momentum, key levels</span><span class="rds-x" aria-hidden="true"></span></summary>
 <div class="rds-body">
   <section id="sec-chart" class="anchor" style="padding-bottom:0">
-    <div class="lens"><span class="lens-no">Lens 3 of 3</span><span class="lens-name">Technical analysis — what is the chart doing?</span></div>
+    <div class="lens"><span class="lens-no">Lens 2 of 3</span><span class="lens-name">Technical analysis — what is the chart doing?</span></div>
     <p class="lens-sub">Trend, momentum and key levels — <em>what is the price doing now?</em></p>
   </section>
 
@@ -245,489 +228,50 @@
     </div>
   </section>
 
+  <!-- KEY LEVELS -->
+  <section style="padding-top:8px">
+    <div class="card">
+      <p class="qhead">Key levels</p>
+      <div id="level-list"></div>
+    </div>
+  </section>
+
 </div>
 </details>
   <!-- ============ INTERACTIVE MONTE CARLO (self-contained, scoped #mc-lab) ============ -->
-  <section id="sec-model" class="anchor" style="padding-top:8px">
-  <div id="mc-lab">
-    <style>
-      #mc-lab{
-        --mc-bad:var(--red); --mc-mid:var(--amber); --mc-good:var(--green);
-        --mc-band-outer:rgba(42,143,143,.16); --mc-band-inner:rgba(42,143,143,.32);
-        margin-top:4px;
-      }
-      #mc-lab .mc-head{display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-bottom:4px}
-      #mc-lab .mc-eyebrow{font-family:"IBM Plex Mono",monospace; font-size:var(--fs-caption); letter-spacing:.18em; text-transform:uppercase; color:var(--teal); margin:0 0 2px}
-      #mc-lab h3.mc-title{font-family:"Alexandria","IBM Plex Sans",sans-serif; font-weight:700; font-size:var(--fs-h3); color:var(--teal); margin:0}
-      #mc-lab .mc-sub{color:var(--muted); font-size:var(--fs-body); margin:2px 0 12px; max-width:60ch}
-      #mc-lab .mc-sub b{color:var(--ink)}
+    <!-- LENS 3: MONTE CARLO -->
+<details class="rds" open>
+<summary><span class="rds-t">Monte Carlo &mdash; where could the price go?</span><span class="rds-note">near-term price paths</span><span class="rds-x" aria-hidden="true"></span></summary>
+<div class="rds-body">
 
-      #mc-lab .mc-card{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px}
-      #mc-lab .mc-card + .mc-card{margin-top:12px}
-      #mc-lab .mc-card-h{display:flex; align-items:baseline; justify-content:space-between; gap:10px; margin:0 0 6px}
-      #mc-lab .mc-card-h h4{font-family:"Alexandria","IBM Plex Sans",sans-serif; font-size:var(--fs-body); font-weight:600; color:var(--ink); margin:0}
-      #mc-lab .mc-card-h .mc-hint{font-size:var(--fs-caption); color:var(--muted); font-family:"IBM Plex Mono",monospace}
-
-      #mc-lab .mc-seg{display:inline-flex; background:var(--tint); border:1px solid var(--line); border-radius:999px; padding:3px; gap:3px}
-      #mc-lab .mc-seg button{appearance:none; border:0; background:transparent; cursor:pointer; font-family:"IBM Plex Mono",monospace; font-weight:500; font-size:var(--fs-small); letter-spacing:.04em; color:var(--teal); padding:5px 12px; border-radius:999px}
-      #mc-lab .mc-seg button[aria-pressed="true"]{background:#fff; color:var(--ink); box-shadow:0 1px 3px rgba(0,0,0,.1)}
-      #mc-lab .mc-seg button:focus-visible{outline:3px solid var(--teal2); outline-offset:2px}
-
-      #mc-lab .mc-chartwrap{padding:2px 2px 0}
-      #mc-lab svg{display:block; width:100%; height:auto}
-      #mc-lab .mc-axis text{font-family:"IBM Plex Mono",monospace; font-size:var(--fs-caption); fill:var(--muted)}
-      #mc-lab .mc-grid{stroke:var(--line); stroke-width:1}
-      #mc-lab .mc-ref{stroke-dasharray:5 4; stroke-width:1.4}
-      #mc-lab .mc-ref-sup{stroke:var(--red)}
-      #mc-lab .mc-ref-con{stroke:var(--amber)}
-      #mc-lab .mc-ref-anchor{stroke:rgba(14,39,38,.32); stroke-dasharray:1 4; stroke-width:1.1}
-      #mc-lab .mc-reflabel{font-family:"IBM Plex Mono",monospace; font-size:var(--fs-caption); font-weight:600}
-      #mc-lab .mc-distlabel{pointer-events:none}
-      #mc-lab .mc-median{fill:none; stroke:var(--amber); stroke-width:2.4}
-      #mc-lab .mc-hz{stroke:var(--teal); stroke-width:1.1; stroke-dasharray:2 3; opacity:.5}
-
-      #mc-lab .mc-legend{display:flex; flex-wrap:wrap; gap:6px 14px; margin-top:8px; font-size:var(--fs-caption); color:var(--muted)}
-      #mc-lab .mc-legend span{display:inline-flex; align-items:center; gap:6px}
-      #mc-lab .mc-sw{width:15px; height:9px; border-radius:2px; display:inline-block}
-
-      #mc-lab .mc-controls{display:grid; gap:15px}
-      #mc-lab .mc-ctl label{display:flex; justify-content:space-between; align-items:baseline; gap:10px; margin-bottom:7px}
-      #mc-lab .mc-ctl .mc-name{font-size:var(--fs-body); font-weight:600; color:var(--ink)}
-      #mc-lab .mc-ctl .mc-val{font-family:"IBM Plex Mono",monospace; font-size:var(--fs-small); color:var(--teal); background:var(--tint); padding:3px 8px; border-radius:6px; white-space:nowrap}
-      #mc-lab .mc-ctl .mc-chan{font-size:var(--fs-small); color:var(--muted); margin:6px 2px 0}
-      #mc-lab input[type=range]{-webkit-appearance:none; appearance:none; width:100%; height:8px; border-radius:8px; outline:none;
-        background:linear-gradient(90deg,var(--mc-bad) 0%,var(--mc-mid) 50%,var(--mc-good) 100%);
-        box-shadow:inset 0 0 0 1px rgba(14,39,38,.10)}
-      #mc-lab input[type=range]::-webkit-slider-thumb{-webkit-appearance:none; width:22px; height:22px; border-radius:50%;
-        background:var(--mc-thumb,#fff); border:3px solid #fff; cursor:pointer; box-shadow:0 0 0 1px rgba(14,39,38,.30),0 1px 4px rgba(14,39,38,.35)}
-      #mc-lab input[type=range]::-moz-range-thumb{width:22px; height:22px; border-radius:50%;
-        background:var(--mc-thumb,#fff); border:3px solid #fff; cursor:pointer; box-shadow:0 0 0 1px rgba(14,39,38,.30),0 1px 4px rgba(14,39,38,.35)}
-      #mc-lab input[type=range]:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 3px var(--teal2)}
-      #mc-lab input[type=range]:focus-visible::-moz-range-thumb{box-shadow:0 0 0 3px var(--teal2)}
-      #mc-lab .mc-ends{display:flex; justify-content:space-between; font-size:var(--fs-caption); margin-top:6px}
-      #mc-lab .mc-ends .mc-b{color:var(--red); font-weight:600}
-      #mc-lab .mc-ends .mc-g{color:var(--green); font-weight:600}
-
-      #mc-lab .mc-verdict{padding:13px 16px}
-      #mc-lab .mc-vline{font-size:var(--fs-body); margin:0 0 4px}
-      #mc-lab .mc-big{font-family:"IBM Plex Mono",monospace; font-weight:500; color:var(--teal)}
-      #mc-lab .mc-big.mc-down{color:var(--red)}
-
-      #mc-lab .mc-grid2{display:grid; grid-template-columns:1fr 1fr; gap:12px}
-      @media(max-width:640px){#mc-lab .mc-grid2{grid-template-columns:1fr}}
-      #mc-lab table.mc-pct{width:100%; border-collapse:collapse; font-family:"IBM Plex Mono",monospace; font-size:var(--fs-small)}
-      #mc-lab table.mc-pct th,#mc-lab table.mc-pct td{padding:6px 5px; text-align:right; border-bottom:1px solid var(--line)}
-      #mc-lab table.mc-pct th:first-child,#mc-lab table.mc-pct td:first-child{text-align:left; font-family:"IBM Plex Sans",sans-serif}
-      #mc-lab table.mc-pct thead th{font-size:var(--fs-caption); letter-spacing:.04em; text-transform:uppercase; color:var(--muted); font-weight:600}
-      #mc-lab table.mc-pct tr.mc-on td{background:rgba(42,143,143,.08)}
-      #mc-lab table.mc-pct .mc-medc{color:var(--amber-text); font-weight:600}
-
-      #mc-lab .mc-zbar{display:flex; height:30px; border-radius:7px; overflow:hidden; margin:2px 0 10px; border:1px solid var(--line)}
-      #mc-lab .mc-zbar div{display:flex; align-items:center; justify-content:center; color:#fff; font-family:"IBM Plex Mono",monospace; font-weight:500; font-size:var(--fs-caption); min-width:0}
-      #mc-lab .mc-zleg{display:grid; grid-template-columns:1fr 1fr; gap:4px 12px; font-size:var(--fs-caption); color:var(--muted)}
-      #mc-lab .mc-zleg span{display:flex; align-items:center; gap:6px}
-      #mc-lab .mc-dot{width:9px; height:9px; border-radius:2px; flex:none}
-
-      #mc-lab table.mc-ladder{width:100%; border-collapse:collapse; font-family:"IBM Plex Mono",monospace; font-size:var(--fs-small)}
-      #mc-lab table.mc-ladder th,#mc-lab table.mc-ladder td{padding:5px 6px; text-align:right; border-bottom:1px solid var(--line)}
-      #mc-lab table.mc-ladder th:first-child,#mc-lab table.mc-ladder td:first-child{text-align:left}
-      #mc-lab table.mc-ladder thead th{font-size:var(--fs-caption); letter-spacing:.04em; text-transform:uppercase; color:var(--muted)}
-      #mc-lab table.mc-ladder tr.mc-up td:first-child{color:var(--teal)}
-      #mc-lab table.mc-ladder tr.mc-dn td:first-child{color:var(--red)}
-
-      #mc-lab .mc-foot{font-size:var(--fs-caption); color:var(--muted); margin:12px 2px 0; line-height:1.5}
-      #mc-lab .mc-reset{appearance:none; border:1.5px solid var(--teal); background:transparent; cursor:pointer; font-family:"IBM Plex Mono",monospace; font-weight:500; font-size:var(--fs-caption); color:var(--teal); padding:6px 12px; border-radius:8px; margin-top:12px}
-      #mc-lab .mc-reset:hover{background:var(--teal); color:#fff}
-      #mc-lab .mc-reset:focus-visible{outline:3px solid var(--teal2); outline-offset:2px}
-          #mc-lab .mc-read{margin-bottom:12px}
-      #mc-lab table.mc-readt{width:100%; border-collapse:collapse; font-size:var(--fs-body)}
-      #mc-lab table.mc-readt td{padding:5px 0; border-bottom:1px dashed var(--line)}
-      #mc-lab table.mc-readt tr:last-child td{border-bottom:0}
-      #mc-lab table.mc-readt td:last-child{text-align:right; font-family:"IBM Plex Mono",monospace; font-weight:500; color:var(--teal); white-space:nowrap; padding-left:12px}
-      #mc-lab table.mc-readt td:last-child .mc-down{color:var(--red)}
-      #mc-lab .mc-readnote{font-size:var(--fs-caption); color:var(--muted); margin:8px 0 0}
-    </style>
-
-    <div class="mc-head">
-      <div>
-        <p class="mc-eyebrow">Interactive · runs on your device</p>
-        <h3 class="mc-title">Tune the biggest forces yourself</h3>
-      </div>
-      <div class="mc-seg" role="group" aria-label="Horizon">
-        <button id="mc-h20" aria-pressed="false">1 month</button>
-        <button id="mc-h60" aria-pressed="true">3 months</button>
-      </div>
-    </div>
-    <p class="mc-sub">Drag a slider and the whole distribution recomputes live — <b>green is better, red is worse</b>. The other eight forces stay fixed at the study calibration. Anchored at the latest price; nothing is sent anywhere.</p>
-
-        <!-- PROBABILITY READ — leads the section: direction first, cone second -->
-    <div class="mc-card mc-read">
-      <div class="mc-card-h"><h4>The probability read</h4><span class="mc-hint" id="mc-rHz">at 3 months</span></div>
-      <table class="mc-readt">
-        <tr><td>Chance the price is <b>higher than today</b></td><td id="mc-rUp">&mdash;</td></tr>
-        <tr><td><b>+10% or better</b> vs <b>&minus;10% or worse</b></td><td id="mc-rOdds">&mdash;</td></tr>
-        <tr><td>Middle-of-the-road outcome (median)</td><td id="mc-rMed">&mdash;</td></tr>
-        <tr><td>Most likely zone (50% band)</td><td id="mc-rBand">&mdash;</td></tr>
-        <tr><td>Touches +10% / touches &minus;10% along the way</td><td id="mc-rTouch">&mdash;</td></tr>
-      </table>
-      <p class="mc-readnote">Not a coin flip &mdash; the drift and skew are already in these numbers. They update live with the sliders and the horizon toggle.</p>
-    </div>
-
-<div class="mc-card">
-      <div class="mc-chartwrap">
-        <svg id="mc-fan" viewBox="0 0 760 340" role="img" aria-label="Forward price distribution cone">
-          <g id="mc-gridG" class="mc-axis"></g>
-          <path id="mc-band95" fill="var(--mc-band-outer)"></path>
-          <path id="mc-band75" fill="var(--mc-band-inner)"></path>
-          <path id="mc-medianP" class="mc-median"></path>
-          <g id="mc-refG"></g>
-          <g id="mc-distlabelsG"></g>
-          <line id="mc-hzLine" class="mc-hz"></line>
-          <g id="mc-xlab" class="mc-axis"></g>
-        </svg>
-      </div>
-      <div class="mc-legend">
-        <span><i class="mc-sw" style="background:var(--mc-band-inner)"></i> 25–75% band</span>
-        <span><i class="mc-sw" style="background:var(--mc-band-outer)"></i> 90% band</span>
-        <span><i class="mc-sw" style="background:var(--amber); height:3px"></i> median path</span>
-        <span><i class="mc-sw" style="background:var(--red); height:3px"></i> technical support 2.70</span>
-        <span><i class="mc-sw" style="background:var(--amber); height:3px; opacity:.7"></i> technical resistance 2.90</span>
-      </div>
-    </div>
-
-    <div class="mc-card">
-      <div class="mc-card-h"><h4>The five levers</h4><span class="mc-hint">most decision-relevant of the 16 forces</span></div>
-      <div class="mc-controls">
-        <div class="mc-ctl">
-          <label for="mc-egp"><span class="mc-name">CBUAE / Fed policy-rate path</span><span class="mc-val" id="mc-egpVal">+0.1% / quarter</span></label>
-          <input type="range" id="mc-egp" min="-3" max="3" step="0.1" value="0.1">
-          <div class="mc-ends"><span class="mc-b">faster cuts</span><span class="mc-g">higher-for-longer</span></div>
-          <p class="mc-chan">The AED peg makes UAE rates a USD derivative. DEWA’s own MC drift leans on the CBUAE Base Rate carry against the ~4.4% dividend yield; faster cuts compress that carry and tilt the path down, a higher-for-longer stance holds it flatter.</p>
-        </div>
-        <div class="mc-ctl">
-          <label for="mc-geo"><span class="mc-name">Post-2027 dividend policy — probability of a frozen-or-cut signal</span><span class="mc-val" id="mc-geoVal">10% · −2.0% if it hits</span></label>
-          <input type="range" id="mc-geo" min="-50" max="-3" step="1" value="-10">
-          <div class="mc-ends"><span class="mc-b">policy frozen or cut</span><span class="mc-g">policy holds or grows</span></div>
-          <p class="mc-chan">The crux. The AED 6.2bn/yr floor holds only to October 2027, and the board has said nothing about what follows. A signal that the coupon is frozen or cut is worth roughly −2% in the model — the single largest downside swing.</p>
-        </div>
-        <div class="mc-ctl">
-          <label for="mc-lnch"><span class="mc-name">Post-2027 dividend policy — probability of a growth signal</span><span class="mc-val" id="mc-lnchVal">20% · +1.5% if it lands</span></label>
-          <input type="range" id="mc-lnch" min="5" max="60" step="1" value="20">
-          <div class="mc-ends"><span class="mc-b">stays quiet</span><span class="mc-g">signals growth early</span></div>
-          <p class="mc-chan">The mirror image of the lever above, drawn from the same October-2027 decision: a signal that the board intends to grow the coupon is worth roughly +1.5% in the model. The two levers are independent draws — both, either or neither can occur before the horizon.</p>
-        </div>
-        <div class="mc-ctl">
-          <label for="mc-aicap"><span class="mc-name">2030 clean-energy build pace</span><span class="mc-val" id="mc-aicapVal">+0.1% / quarter</span></label>
-          <input type="range" id="mc-aicap" min="-3" max="3" step="0.1" value="0.1">
-          <div class="mc-ends"><span class="mc-b">programme slips</span><span class="mc-g">ahead of schedule</span></div>
-          <p class="mc-chan">The 2030 programme (&gt;23GW installed, 8.3GW renewable) is capital-intensive and multi-year. Commissioning ahead of guidance lowers the fuel-cost-per-unit glide path sooner; slippage delays the margin story the DCF is pricing.</p>
-        </div>
-        <div class="mc-ctl">
-          <label for="mc-krw"><span class="mc-name">Regulatory deferral account swing</span><span class="mc-val" id="mc-krwVal">+0.0% / quarter</span></label>
-          <input type="range" id="mc-krw" min="-3" max="3" step="0.1" value="0">
-          <div class="mc-ends"><span class="mc-b">deferral enlarges</span><span class="mc-g">deferral releases</span></div>
-          <p class="mc-chan">DEWA’s regulator can defer or release cost recovery through the regulatory deferral account (AED 698.6mn credit balance at FY25). A release flatters near-term earnings; an enlarged deferral pushes cash recognition into future periods.</p>
-        </div>
-      </div>
-
-
-    <div class="mc-card mc-verdict">
-      <p class="mc-vline">At <b id="mc-hzName">3 months</b> the model centres on <span class="mc-big" id="mc-vMed">AED 2.81</span> &nbsp;·&nbsp; 90% range <span class="mc-big" id="mc-vRange">2 – 3</span></p>
-      <p class="mc-vline">Chance of finishing below technical support (2.70): <span class="mc-big mc-down" id="mc-vBelow">26%</span> &nbsp;·&nbsp; at or above technical resistance (2.90): <span class="mc-big" id="mc-vCons">27%</span></p>
-    </div>
-
-    <div class="mc-grid2">
-      <div class="mc-card">
-        <div class="mc-card-h"><h4>Probability zones</h4><span class="mc-hint" id="mc-zHz">at 3 months</span></div>
-        <div class="mc-zbar" id="mc-zbar" aria-hidden="true"></div>
-        <div class="mc-zleg">
-          <span><i class="mc-dot" style="background:var(--red)"></i> below 2.70</span>
-          <span><i class="mc-dot" style="background:var(--amber)"></i> 2.70 – 2.79</span>
-          <span><i class="mc-dot" style="background:var(--teal2)"></i> 2.79 – 2.90</span>
-          <span><i class="mc-dot" style="background:var(--teal)"></i> ≥ 2.90</span>
-        </div>
-      </div>
-      <div class="mc-card">
-        <div class="mc-card-h"><h4>Percentiles (AED/share)</h4></div>
-        <table class="mc-pct">
-          <thead><tr><th>Horizon</th><th>5%</th><th>25%</th><th>Median</th><th>75%</th><th>95%</th></tr></thead>
-          <tbody>
-            <tr id="mc-row20"><td>1 month</td><td id="mc-p20_5"></td><td id="mc-p20_25"></td><td class="mc-medc" id="mc-p20_50"></td><td id="mc-p20_75"></td><td id="mc-p20_95"></td></tr>
-            <tr id="mc-row60"><td>3 months</td><td id="mc-p60_5"></td><td id="mc-p60_25"></td><td class="mc-medc" id="mc-p60_50"></td><td id="mc-p60_75"></td><td id="mc-p60_95"></td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <div class="mc-card" style="margin-top:12px">
-      <div class="mc-card-h"><h4>Level-touch probabilities</h4><span class="mc-hint">chance the price touches a level before the date</span></div>
-      <table class="mc-ladder">
-        <thead><tr><th>Level</th><th>within 1 month</th><th>within 3 months</th></tr></thead>
-        <tbody id="mc-ladderBody"></tbody>
-      </table>
-    </div>
-
-    <button class="mc-reset" id="mc-reset">Reset to study baseline</button>
-
-    <p class="mc-foot">One lognormal forward built from the study's 13-factor calibration: four continuous forces set the drift and spread, nine event forces add skew and width. Percentiles and zones are closed-form; touch probabilities use the reflection principle with a discrete-monitoring correction, approximating the published 50,000-path carry-anchored Student-t engine. Moving a lever re-derives the maths instantly. Illustrative of the model — not a forecast, not advice.</p>
-
-    <script>
-    (function(){
-      "use strict";
-      function boot(){
-        var T=null;
-        try{ if(typeof TICKERS!=="undefined" && TICKERS && TICKERS.DEWA){ T=TICKERS.DEWA; } }catch(e){}
-        var S0=(T&&typeof T.spot==="number")?T.spot:2.79;
-        var H=60, BETA=0.5826, FLOOR=2.70, R2=2.79, TARGET=2.90;
-        // fixed factors (held at study calibration). Rate path, clean-energy build pace and the regulatory-deferral swing are the tunable continuous levers; the two post-2027 dividend-policy signal events are the tunable events -- calibrated to reproduce the study\u2019s own T+60 mean/variance (mu3=0.0072, var3=0.012586) at these defaults.
-        var CONT_FIXED=[["Carry",-0.0018,0.0003]];
-        var IDIO=0.088, EGP_VOL=0.045, AICAP_VOL=0.030, INR_VOL=0.040;
-        var EV_FIXED=[["h1results",0.90,0.0040,0.0020],["octdiv",0.90,0.0020,0.0010],["fedcut",0.55,0.0060,0.0030],["regional",0.20,-0.0300,0.0150],["dsce",0.15,0.0080,0.0040],["peakdemand",0.80,0.0030,0.0015],["mna",0.10,-0.0030,0.0015]];
-        var GEO_MEAN=-0.020, GEO_SD=0.010, LNCH_MEAN=0.015, LNCH_SD=0.0075;
-
-        function erf(x){var s=x<0?-1:1;x=Math.abs(x);var t=1/(1+0.3275911*x);
-          var y=1-(((((1.061405429*t-1.453152027)*t)+1.421413741)*t-0.284496736)*t+0.254829592)*t*Math.exp(-x*x);return s*y;}
-        var Phi=function(z){return 0.5*(1+erf(z/Math.SQRT2));};
-        var Z={5:-1.6448536,25:-0.6744898,50:0,75:0.6744898,95:1.6448536};
-
-        function moments(egpDrift,aicapDrift,krwDrift,geoP,lnchP){
-          var mu=egpDrift+aicapDrift+krwDrift, v=EGP_VOL*EGP_VOL+IDIO*IDIO+AICAP_VOL*AICAP_VOL+INR_VOL*INR_VOL, i;
-          for(i=0;i<CONT_FIXED.length;i++){mu+=CONT_FIXED[i][1]; v+=CONT_FIXED[i][2]*CONT_FIXED[i][2];}
-          var ev=[["Geo",geoP,GEO_MEAN,GEO_SD],["Launch",lnchP,LNCH_MEAN,LNCH_SD]].concat(EV_FIXED);
-          for(i=0;i<ev.length;i++){var p=ev[i][1],m=ev[i][2],sd=ev[i][3]; mu+=p*m; v+=p*(sd*sd+(1-p)*m*m);}
-          return {mu3:mu, var3:v};
-        }
-        function price(M,Tn,q){return S0*Math.exp(M.mu3*(Tn/H)+Z[q]*Math.sqrt(M.var3*Tn/H));}
-        function touch(M,L,Tn,up){
-          var nu=M.mu3*(Tn/H), sg=Math.sqrt(M.var3*Tn/H), sStep=Math.sqrt(M.var3/H), b=Math.log(L/S0);
-          b+=up?BETA*sStep:-BETA*sStep;
-          if(up)return Phi((-b+nu)/sg)+Math.exp(2*nu*b/(sg*sg))*Phi((-b-nu)/sg);
-          return Phi((b-nu)/sg)+Math.exp(2*nu*b/(sg*sg))*Phi((b+nu)/sg);
-        }
-        function cdfBelow(M,L,Tn){return Phi((Math.log(L/S0)-M.mu3*(Tn/H))/Math.sqrt(M.var3*Tn/H));}
-
-        // scales — domain scales with the anchor
-        var VB={w:760,h:340}, m={l:46,r:54,t:14,b:26};
-        var X0=m.l, X1=VB.w-m.r, Y0=VB.h-m.b, Y1=m.t;
-        // scales — y-domain recomputes from the CURRENT distribution on every render (dynamic)
-        var PMIN, PMAX, niceStep, AX=60;
-        var xToPx=function(t){return X0+(t/AX)*(X1-X0);};
-        var yToPx=function(p){return Y0+((p-PMIN)/(PMAX-PMIN))*(Y1-Y0);};
-        var el=function(id){return document.getElementById(id);};
-        var fmtAxis=function(v){return Math.abs(v)>=10000?(Math.round(v/100)/10)+"k":(Math.abs(v)>=1000?Math.round(v).toLocaleString("en-US"):(Math.round(v*100)/100).toString());};
-        function computeDomain(M){
-          var lo=Infinity, hi=-Infinity, t, a, b;
-          for(t=0;t<=AX;t++){ a=price(M,t,5); b=price(M,t,95); if(a<lo)lo=a; if(b>hi)hi=b; }
-          lo=Math.min(lo, FLOOR, S0)*0.97; hi=Math.max(hi, TARGET, S0)*1.03;
-          var rng=hi-lo, rstep=Math.pow(10,Math.floor(Math.log(rng/7)/Math.LN10));
-          niceStep=(rng/7/rstep>=5)?5*rstep:(rng/7/rstep>=2)?2*rstep:rstep;
-          PMIN=Math.floor(lo/niceStep)*niceStep; PMAX=Math.ceil(hi/niceStep)*niceStep;
-        }
-
-        function drawAxes(){
-          var g=el("mc-gridG"), s="", p, y;
-          for(p=PMIN;p<=PMAX+niceStep*1e-6;p+=niceStep){ y=yToPx(p);
-            s+='<line class="mc-grid" x1="'+X0+'" x2="'+X1+'" y1="'+y.toFixed(1)+'" y2="'+y.toFixed(1)+'"></line>';
-            s+='<text x="'+(X0-8)+'" y="'+(y+3).toFixed(1)+'" text-anchor="end">'+fmtAxis(p)+'</text>';}
-          g.innerHTML=s;
-          var r=el("mc-refG"), ya=yToPx(S0), ys=yToPx(FLOOR), yc=yToPx(TARGET);
-          r.innerHTML='<line class="mc-ref mc-ref-anchor" x1="'+X0+'" x2="'+X1+'" y1="'+ya.toFixed(1)+'" y2="'+ya.toFixed(1)+'"></line>'+
-            '<line class="mc-ref mc-ref-sup" x1="'+X0+'" x2="'+X1+'" y1="'+ys.toFixed(1)+'" y2="'+ys.toFixed(1)+'"></line>'+
-            '<text class="mc-reflabel" fill="var(--red)" x="'+(X1+4)+'" y="'+(ys+3).toFixed(1)+'">'+fmtAxis(FLOOR)+'</text>'+
-            '<line class="mc-ref mc-ref-con" x1="'+X0+'" x2="'+X1+'" y1="'+yc.toFixed(1)+'" y2="'+yc.toFixed(1)+'"></line>'+
-            '<text class="mc-reflabel" fill="var(--amber-text)" x="'+(X1+4)+'" y="'+(yc+3).toFixed(1)+'">'+fmtAxis(TARGET)+'</text>';
-        }
-
-        function drawXAxis(){
-          el("mc-hzLine").style.display="none";
-          var xl=el("mc-xlab"), ticks=(AX<=20?[0,5,10,15,20]:[0,10,20,30,40,50,60]), xs="";
-          ticks.forEach(function(t){var x=xToPx(t);
-            xs+='<text x="'+x.toFixed(1)+'" y="'+(Y0+18)+'" text-anchor="middle">'+(t===0?"latest":"T+"+t)+'</text>';});
-          xl.innerHTML=xs;
-        }
-        function bandPath(M,qHi,qLo){var up="",lo="",t,x;
-          for(t=0;t<=AX;t++){x=xToPx(t).toFixed(1); up+=(t?"L":"M")+x+","+yToPx(price(M,t,qHi)).toFixed(1)+" ";}
-          for(t=AX;t>=0;t--){x=xToPx(t).toFixed(1); lo+="L"+x+","+yToPx(price(M,t,qLo)).toFixed(1)+" ";}
-          return up+lo+"Z";}
-        function medianPath(M){var d="",t,x; for(t=0;t<=AX;t++){x=xToPx(t).toFixed(1); d+=(t?"L":"M")+x+","+yToPx(price(M,t,50)).toFixed(1)+" ";} return d;}
-
-        function lerp(a,b,t){return Math.round(a+(b-a)*t);}
-        function gradeColor(f){f=Math.max(0,Math.min(1,f));
-          var bad=[181,72,58],mid=[201,138,45],good=[46,125,91],r,g,b,t;
-          if(f<0.5){t=f/0.5; r=lerp(bad[0],mid[0],t); g=lerp(bad[1],mid[1],t); b=lerp(bad[2],mid[2],t);}
-          else{t=(f-0.5)/0.5; r=lerp(mid[0],good[0],t); g=lerp(mid[1],good[1],t); b=lerp(mid[2],good[2],t);}
-          return "rgb("+r+","+g+","+b+")";}
-        function paintThumb(s){var f=(parseFloat(s.value)-parseFloat(s.min))/(parseFloat(s.max)-parseFloat(s.min));
-          s.style.setProperty("--mc-thumb",gradeColor(f));}
-
-        var egp=el("mc-egp"), aicap=el("mc-aicap"), krw=el("mc-krw"), geo=el("mc-geo"), lnch=el("mc-lnch"), HZ=60;
-        var fmt=function(v){return "AED "+(Math.round(v*100)/100).toFixed(2);};
-        var LADDER_UP=[2.90,3.00,3.20], LADDER_DN=[2.70,2.60,2.50];
-
-        function setZbar(M,Tn){
-          var pb=cdfBelow(M,FLOOR,Tn), p100=cdfBelow(M,R2,Tn), p126=cdfBelow(M,TARGET,Tn);
-          var z=[pb,p100-pb,p126-p100,1-p126], cols=["var(--red)","var(--amber)","var(--teal2)","var(--teal)"];
-          var bar=el("mc-zbar"); bar.innerHTML="";
-          z.forEach(function(p,i){var d=document.createElement("div");
-            d.style.flex="0 0 "+(p*100).toFixed(2)+"%"; d.style.background=cols[i];
-            d.textContent=p>=0.07?Math.round(p*100)+"%":""; bar.appendChild(d);});
-        }
-        function setLadder(M){var s="";
-          LADDER_UP.forEach(function(L){s+='<tr class="mc-up"><td>'+L.toLocaleString("en-US")+'</td><td>'+Math.round(touch(M,L,20,true)*100)+'%</td><td>'+Math.round(touch(M,L,60,true)*100)+'%</td></tr>';});
-          LADDER_DN.forEach(function(L){s+='<tr class="mc-dn"><td>'+L.toLocaleString("en-US")+' ▼</td><td>'+Math.round(touch(M,L,20,false)*100)+'%</td><td>'+Math.round(touch(M,L,60,false)*100)+'%</td></tr>';});
-          el("mc-ladderBody").innerHTML=s;}
-
-        function render(){
-          var egpD=parseFloat(egp.value)/100, aicapD=parseFloat(aicap.value)/100, krwD=parseFloat(krw.value)/100, geoP=-parseInt(geo.value,10)/100, lnchP=parseInt(lnch.value,10)/100;
-          var M=moments(egpD,aicapD,krwD,geoP,lnchP); window.__mcLastM=M;
-          computeDomain(M); drawAxes(); drawXAxis();
-          paintThumb(egp); paintThumb(aicap); paintThumb(krw); paintThumb(geo); paintThumb(lnch);
-          el("mc-egpVal").textContent=(egpD>=0?"+":"−")+Math.abs(egpD*100).toFixed(1)+"% / quarter";
-          el("mc-aicapVal").textContent=(aicapD>=0?"+":"−")+Math.abs(aicapD*100).toFixed(1)+"% / quarter";
-          el("mc-krwVal").textContent=(krwD>=0?"+":"−")+Math.abs(krwD*100).toFixed(1)+"% / quarter";
-          el("mc-geoVal").textContent=Math.round(geoP*100)+"% · −2.0% if it hits";
-          el("mc-lnchVal").textContent=Math.round(lnchP*100)+"% · +1.5% if it lands";
-          el("mc-band95").setAttribute("d",bandPath(M,95,5));
-          el("mc-band75").setAttribute("d",bandPath(M,75,25));
-          el("mc-medianP").setAttribute("d",medianPath(M));
-          // value labels on the chart: median, 25-75%, 5-95% at the current horizon
-          // merged with the support/resistance ref labels so nothing overlaps and nothing clips
-          (function(){
-            var dl=el("mc-distlabelsG"); if(!dl) return;
-            var xh=xToPx(HZ);
-            var xLbl=Math.min(xh-6, X1-4); // always left of the dot, capped at the plot's right edge
-            var pts=[[5,"var(--muted)",false],[25,"var(--teal2)",false],[50,"var(--ink)",true],
-                     [75,"var(--teal2)",false],[95,"var(--muted)",false]];
-            var rows=pts.map(function(pr){
-              var v=price(M,HZ,pr[0]);
-              return {y:yToPx(v),col:pr[1],med:pr[2],
-                lbl:(pr[2]?"median ":"")+(typeof fmtN==="function"?fmtN(v):(typeof fmt==="function"?fmt(v).replace(/^[^0-9\-]+/,""):v.toFixed(2)))};
-            });
-            // include the ref lines (support / resistance) in the SAME collision-avoidance pass
-            if(typeof SUPPORT!=="undefined") rows.push({y:yToPx(SUPPORT),col:"var(--red)",med:false,lbl:"support "+(typeof fmtAxis==="function"?fmtAxis(SUPPORT):(typeof fmtN==="function"?fmtN(SUPPORT):(typeof fmt==="function"?fmt(SUPPORT).replace(/^[^0-9\-]+/,""):Math.round(SUPPORT).toLocaleString("en-US")))),ref:true});
-            if(typeof CONSENSUS!=="undefined") rows.push({y:yToPx(CONSENSUS),col:"var(--amber-text)",med:false,lbl:"resistance "+(typeof fmtAxis==="function"?fmtAxis(CONSENSUS):(typeof fmtN==="function"?fmtN(CONSENSUS):(typeof fmt==="function"?fmt(CONSENSUS).replace(/^[^0-9\-]+/,""):Math.round(CONSENSUS).toLocaleString("en-US")))),ref:true});
-            if(typeof FLOOR!=="undefined") rows.push({y:yToPx(FLOOR),col:"var(--red)",med:false,lbl:"support "+(typeof fmt==="function"?fmt(FLOOR).replace(/^[^0-9\-]+/,""):FLOOR.toFixed(2)),ref:true});
-            if(typeof TARGET!=="undefined") rows.push({y:yToPx(TARGET),col:"var(--amber-text)",med:false,lbl:"resistance "+(typeof fmt==="function"?fmt(TARGET).replace(/^[^0-9\-]+/,""):TARGET.toFixed(2)),ref:true});
-            rows.sort(function(a,b){return a.y-b.y;});
-            var minGap=11;
-            for(var i=1;i<rows.length;i++){ if(rows[i].y-rows[i-1].y<minGap) rows[i].y=rows[i-1].y+minGap; }
-            var h="";
-            rows.forEach(function(r){
-              if(!r.ref) h+='<circle cx="'+xh.toFixed(1)+'" cy="'+(r._y0!==undefined?r._y0:r.y).toFixed(1)+'" r="'+(r.med?3.5:2.5)+'" fill="'+r.col+'"></circle>';
-              h+='<text class="mc-distlabel" x="'+xLbl.toFixed(1)+'" y="'+(r.y+3.5).toFixed(1)+'" text-anchor="end" font-family="\'IBM Plex Mono\',monospace" font-size="10" fill="'+r.col+'">'+r.lbl+'</text>';
-            });
-            dl.innerHTML=h;
-            // suppress the old separate reflabel text (now folded into the merged stack above)
-            var rg=el("mc-refG"); if(rg){ var t=rg.querySelectorAll?rg.querySelectorAll("text.mc-reflabel"):[]; for(var k=0;k<t.length;k++) t[k].style.display="none"; }
-          })();
-
-          var xh=xToPx(HZ).toFixed(1), hz=el("mc-hzLine");
-          hz.setAttribute("x1",xh); hz.setAttribute("x2",xh); hz.setAttribute("y1",Y0.toFixed(1)); hz.setAttribute("y2",Y1.toFixed(1));
-          [20,60].forEach(function(Tn){[5,25,50,75,95].forEach(function(q){var _v=price(M,Tn,q); el("mc-p"+Tn+"_"+q).textContent=(S0<30?_v.toFixed(2):Math.round(_v).toLocaleString("en-US"));});});
-          el("mc-row20").classList.toggle("mc-on",HZ===20);
-          el("mc-row60").classList.toggle("mc-on",HZ===60);
-          var hLabel=HZ===20?"1 month":"3 months";
-          el("mc-hzName").textContent=hLabel;
-          el("mc-vMed").textContent=fmt(price(M,HZ,50));
-          el("mc-vRange").textContent=(S0<30?price(M,HZ,5).toFixed(2)+" – "+price(M,HZ,95).toFixed(2):Math.round(price(M,HZ,5)).toLocaleString("en-US")+" – "+Math.round(price(M,HZ,95)).toLocaleString("en-US"));
-          el("mc-vBelow").textContent=Math.round(cdfBelow(M,FLOOR,HZ)*100)+"%";
-          el("mc-vCons").textContent=Math.round((1-cdfBelow(M,TARGET,HZ))*100)+"%";
-                    // probability read — leads the section
-          var pUp=1-cdfBelow(M,S0,HZ), pW=1-cdfBelow(M,S0*1.10,HZ), pL=cdfBelow(M,S0*0.90,HZ);
-          var _rN=function(v){return fmt(v).replace(/^[^0-9\-\u2212.]+/,"");};
-          var oddsHtml; if(pW>=pL){oddsHtml=Math.round(pW*100)+"% vs <span class=\"mc-down\">"+Math.round(pL*100)+"%</span> &mdash; odds &asymp; "+(pL>0.001?(pW/pL).toFixed(1):"&gt;99")+" : 1 up";}
-          else{oddsHtml=Math.round(pW*100)+"% vs <span class=\"mc-down\">"+Math.round(pL*100)+"%</span> &mdash; odds &asymp; "+(pW>0.001?(pL/pW).toFixed(1):"&gt;99")+" : 1 down";}
-          var _med=price(M,HZ,50), _mv=(_med/S0-1)*100;
-          el("mc-rUp").textContent=Math.round(pUp*100)+"%";
-          el("mc-rOdds").innerHTML=oddsHtml;
-          el("mc-rMed").textContent=fmt(_med)+" ("+(_mv>=0?"+":"\u2212")+Math.abs(_mv).toFixed(0)+"%)";
-          el("mc-rBand").textContent=_rN(price(M,HZ,25))+" \u2013 "+_rN(price(M,HZ,75));
-          el("mc-rTouch").textContent=Math.round(touch(M,S0*1.10,HZ,true)*100)+"% / "+Math.round(touch(M,S0*0.90,HZ,false)*100)+"%";
-          el("mc-rHz").textContent="at "+hLabel;
-          try{window.__probRead={pUp:pUp,pW:pW,pL:pL,med:_med,mv:_mv,b25:price(M,HZ,25),b75:price(M,HZ,75),tUp:touch(M,S0*1.10,HZ,true),tDn:touch(M,S0*0.90,HZ,false),spot:S0,fmtMed:fmt(_med),b25s:_rN(price(M,HZ,25)),b75s:_rN(price(M,HZ,75))};}catch(_e){}
-          el("mc-zHz").textContent="at "+hLabel;
-          setZbar(M,HZ); setLadder(M);
-        }
-
-        (function(){
-          var svgEl=el("mc-fan"); if(!svgEl) return;
-          var svgNS="http://www.w3.org/2000/svg";
-          var hoverDEC=S0<30?1:0;
-          function hoverFmt(v){ return (typeof v==="number"&&isFinite(v)) ? v.toFixed(hoverDEC) : String(v); }
-          var hoverG=document.createElementNS(svgNS,"g"); hoverG.setAttribute("id","mc-hoverG"); hoverG.style.pointerEvents="none";
-          svgEl.appendChild(hoverG);
-          var vline=document.createElementNS(svgNS,"line");
-          vline.setAttribute("stroke","var(--muted)"); vline.setAttribute("stroke-width","1"); vline.setAttribute("stroke-dasharray","3 3");
-          vline.style.display="none"; hoverG.appendChild(vline);
-          var dotOrder=["p95","p75","p50","p25","p5"], dots={};
-          dotOrder.forEach(function(k){
-            var c=document.createElementNS(svgNS,"circle"); c.setAttribute("r",k==="p50"?"3.5":"2.5"); c.style.display="none";
-            hoverG.appendChild(c); dots[k]=c;
-          });
-          var wrap=svgEl.parentNode; wrap.style.position="relative";
-          var tip=document.createElement("div");
-          tip.style.cssText="position:absolute;pointer-events:none;z-index:5;display:none;background:rgba(14,39,38,0.94);color:#fff;font-family:'IBM Plex Mono',monospace;font-size:12px;line-height:1.55;padding:8px 10px;border-radius:6px;white-space:nowrap;box-shadow:0 4px 14px rgba(0,0,0,.25);";
-          wrap.appendChild(tip);
-          var labelFor={p95:"95th",p75:"75th",p50:"median",p25:"25th",p5:"5th"};
-          function onMove(clientX){
-            var M=window.__mcLastM; if(!M) return;
-            var rect=svgEl.getBoundingClientRect();
-            var scaleX=VB.w/(rect.width||VB.w);
-            var localX=(clientX-rect.left)*scaleX;
-            var t=Math.round(((localX-X0)/(X1-X0))*AX);
-            if(t<0)t=0; if(t>AX)t=AX;
-            var xPx=xToPx(t);
-            vline.setAttribute("x1",xPx.toFixed(1)); vline.setAttribute("x2",xPx.toFixed(1));
-            vline.setAttribute("y1",Y1.toFixed(1)); vline.setAttribute("y2",Y0.toFixed(1));
-            vline.style.display="block";
-            var vals={p95:price(M,t,95),p75:price(M,t,75),p50:price(M,t,50),p25:price(M,t,25),p5:price(M,t,5)};
-            var rows="";
-            dotOrder.forEach(function(k){
-              var y=yToPx(vals[k]);
-              dots[k].setAttribute("cx",xPx.toFixed(1)); dots[k].setAttribute("cy",y.toFixed(1));
-              dots[k].setAttribute("fill",k==="p50"?"var(--amber-text,#854F0B)":"var(--teal2,#2A8F8F)");
-              dots[k].style.display="block";
-              rows+='<div style="display:flex;justify-content:space-between;gap:14px;"><span style="opacity:.75">'+labelFor[k]+'</span><span style="font-weight:600;'+(k==="p50"?"color:#F2C879":"")+'">'+hoverFmt(vals[k])+'</span></div>';
-            });
-            var refRows="";
-            var floorLv=(typeof FLOOR!=="undefined")?FLOOR:(typeof SUPPORT!=="undefined"?SUPPORT:null);
-            var targetLv=(typeof TARGET!=="undefined")?TARGET:(typeof CONSENSUS!=="undefined"?CONSENSUS:null);
-            if(floorLv!=null) refRows+='<div style="display:flex;justify-content:space-between;gap:14px;"><span style="opacity:.75">support</span><span style="font-weight:600">'+hoverFmt(floorLv)+'</span></div>';
-            if(targetLv!=null) refRows+='<div style="display:flex;justify-content:space-between;gap:14px;"><span style="opacity:.75">resistance</span><span style="font-weight:600">'+hoverFmt(targetLv)+'</span></div>';
-            tip.innerHTML='<div style="font-weight:700;margin-bottom:4px;">T+'+t+'</div>'+rows+refRows;
-            tip.style.display="block";
-            var tipW=tip.offsetWidth, tipH=tip.offsetHeight;
-            var localPxX=(xPx/VB.w)*rect.width, localPxY=(yToPx(vals.p50)/VB.h)*rect.height;
-            var left=localPxX+14, top=localPxY-tipH/2;
-            if(left+tipW>rect.width) left=localPxX-tipW-14;
-            if(top<0) top=4; if(top+tipH>rect.height) top=rect.height-tipH-4;
-            tip.style.left=left.toFixed(0)+"px"; tip.style.top=top.toFixed(0)+"px";
-          }
-          function onLeave(){
-            vline.style.display="none";
-            dotOrder.forEach(function(k){ dots[k].style.display="none"; });
-            tip.style.display="none";
-          }
-          svgEl.addEventListener("mousemove",function(e){ onMove(e.clientX); });
-          svgEl.addEventListener("mouseleave",onLeave);
-          svgEl.addEventListener("touchmove",function(e){ if(e.touches&&e.touches[0]){ onMove(e.touches[0].clientX); e.preventDefault(); } },{passive:false});
-          svgEl.addEventListener("touchend",onLeave);
-        })();
-        var raf=null;
-        function schedule(){ if(raf)return; raf=requestAnimationFrame(function(){raf=null;render();}); }
-        [egp,aicap,krw,geo,lnch].forEach(function(s){s.addEventListener("input",schedule);});
-        function setHz(h){HZ=h; AX=h; el("mc-h20").setAttribute("aria-pressed",h===20); el("mc-h60").setAttribute("aria-pressed",h===60); drawXAxis(); render();}
-        el("mc-h20").addEventListener("click",function(){setHz(20);});
-        el("mc-h60").addEventListener("click",function(){setHz(60);});
-        el("mc-reset").addEventListener("click",function(){egp.value="-0.2"; aicap.value="-0.1"; krw.value="0.3"; geo.value="-15"; lnch.value="75"; setHz(60); render();});
-        render();
-      }
-      if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",boot);
-      else boot();
-    })();
-    </script>
-  </div>
+  <section id="sec-odds" class="anchor" style="padding-bottom:0">
+    <div class="lens"><span class="lens-no">Lens 3 of 3</span><span class="lens-name">Monte Carlo — where could the price go?</span></div>
+    <p class="lens-sub">50,000 simulated futures — <em>near-term price paths, independent of the fundamental value.</em></p>
   </section>
+
+  <!-- PLAIN ANSWER FIRST -->
+  <section style="padding-top:8px">
+    <div class="answer">
+      <p class="verdict" id="verdict"></p>
+      <p class="horizon-note">Pick a timeframe:</p>
+      <div class="toggle" id="tg">
+        <button data-h="t20">In 1 month</button>
+        <button data-h="t60" class="on">In 3 months</button>
+      </div>
+      <div id="plain"></div>
+      <div id="legend"></div>
+      <button class="howto-link" id="howto-open" type="button">How to read this</button>
+    </div>
+    <p class="muted" style="margin-top:14px">Latest <b class="num" id="spot"></b> <span id="spotdate"></span> — these are near-term price paths only; the fair value lives in the Fundamental lens above.</p>
+  </section>
+
+  
+    <p class="muted" style="margin:0 0 12px;max-width:62ch">The full 90-day path, from the same distribution as the odds above. Static — nothing here is adjustable, unlike the levers under Fundamental.</p>
+    <div id="mc-fan-static"></div>
+  
+</div>
+</details>
+
   <!-- ============ /INTERACTIVE MONTE CARLO ============ -->
 
 
@@ -852,7 +396,7 @@
   </div>
 </div>
 
-<script src="assets/data.js?v=20260713f"></script><script src="assets/app.js?v=20260713f"></script>
+<script src="assets/data.js?v=20260713f"></script><script src="assets/app.js?v=20260719b"></script>
 <script>
 const T=TICKERS.DEWA;
 document.getElementById("upd").textContent=SITE.updated;
@@ -896,6 +440,23 @@ if(T.files && T.files.biblio){
 }
 
 renderGauge("gauge", T.spot, T.fair, T.spotDate);
+
+renderStaticFan("mc-fan-static", T);
+renderFairLevers("fl-lever-card", T, [
+  { name:'CBUAE / Fed policy-rate path', min:-3, max:3, step:0.1, def:0.1, impact:1,
+    lo:'tighter / rate headwind', hi:'easier / rate tailwind', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' },
+  { name:'Post-2027 dividend policy — probability of a frozen-or-cut signal', min:0, max:47, step:1, def:40, impact:0.02,
+    lo:'no surprise', hi:'upside surprise', fmt:v=>Math.round(v)+'% chance' },
+  { name:'Post-2027 dividend policy — probability of a growth signal', min:5, max:60, step:1, def:20, impact:0.05,
+    lo:'no surprise', hi:'upside surprise', fmt:v=>Math.round(v)+'% chance' },
+  { name:'2030 clean-energy build pace', min:-3, max:3, step:0.1, def:0.1, impact:1,
+    lo:'weaker', hi:'stronger', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' },
+  { name:'Regulatory deferral account swing', min:-3, max:3, step:0.1, def:0, impact:1,
+    lo:'weaker', hi:'stronger', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' }
+]);
+if (T.levels) {
+  renderLevelList("level-list", T.levels.res, T.levels.sup);
+}
 /* peers rendered statically for DEWA (Dubai Electricity and Water Authority) (no homogeneous EGX peer set) */
 renderTrackBadge("track-badge");
 var _sf=document.getElementById("sum-fund");if(_sf&&T&&typeof T.fair==="number"&&typeof T.spot==="number"){var _g=(T.fair-T.spot)/T.spot*100;_sf.textContent="fair "+F(T.fair)+" \u00b7 "+(_g>=0?"+":"")+_g.toFixed(0)+"% vs price";}var _st=document.getElementById("sum-tech");if(_st&&T&&T.tech&&T.tech.trend){_st.textContent=T.tech.trend;}

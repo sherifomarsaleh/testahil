@@ -715,11 +715,17 @@ function renderStaticFan(elId, T){
     allT.forEach(function(t, i){ const v = fanVal(fit, spot, q, t); d += (i ? "L" : "M") + xpx(t).toFixed(1) + "," + ypx(v).toFixed(1) + " "; });
     return d;
   }
-  const niceStep = (PMAX - PMIN) > 10 ? 2 : 1;
+  // magnitude-aware step: always ~7 gridlines, never a runaway loop on high-priced names
+  const _rng = PMAX - PMIN;
+  const _raw = _rng / 7;
+  const _mag = Math.pow(10, Math.floor(Math.log(_raw) / Math.LN10));
+  const _n = _raw / _mag;
+  const niceStep = (_n >= 5 ? 5 : _n >= 2 ? 2 : 1) * _mag;
+  const _gdec = niceStep < 1 ? (niceStep < 0.5 ? 2 : 1) : 0;
   let grid = ""; for (let g = Math.ceil(PMIN / niceStep) * niceStep; g <= PMAX; g += niceStep){
     const y = ypx(g);
     grid += '<line x1="' + X0 + '" x2="' + X1 + '" y1="' + y.toFixed(1) + '" y2="' + y.toFixed(1) + '" stroke="var(--line,#dce4e2)" stroke-width="1" opacity=".5"/>';
-    grid += '<text x="' + (X0 - 8) + '" y="' + (y + 3).toFixed(1) + '" text-anchor="end" font-size="10" fill="var(--muted,#6b7c78)" font-family="IBM Plex Mono,monospace">' + g.toFixed(0) + '</text>';
+    grid += '<text x="' + (X0 - 8) + '" y="' + (y + 3).toFixed(1) + '" text-anchor="end" font-size="10" fill="var(--muted,#6b7c78)" font-family="IBM Plex Mono,monospace">' + g.toFixed(_gdec) + '</text>';
   }
   let xt = ""; [0,10,20,30,40,50,60].forEach(function(t){
     xt += '<text x="' + xpx(t).toFixed(1) + '" y="' + (Y0 + 18) + '" text-anchor="middle" font-size="10" fill="var(--muted,#6b7c78)" font-family="IBM Plex Mono,monospace">' + (t === 0 ? "latest" : "T+" + t) + '</text>';
@@ -794,7 +800,7 @@ function renderFairLevers(elId, T, levers){
     });
     const fair = base * Math.exp(effect);
     document.getElementById("fl-marker").style.left = pct(fair) + "%";
-    document.getElementById("fl-fair").textContent = "EGP " + F(fair);
+    document.getElementById("fl-fair").textContent = (T.ccy || "") + " " + F(fair);
     const d = (fair / spot - 1) * 100;
     document.getElementById("fl-delta").textContent = "(" + (d >= 0 ? "+" : "\u2212") + Math.abs(d).toFixed(1) + "% vs spot)";
   }
