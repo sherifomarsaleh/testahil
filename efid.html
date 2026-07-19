@@ -266,24 +266,7 @@
     <p class="lens-sub">50,000 simulated futures — <em>near-term price paths, independent of the fundamental value.</em></p>
   </section>
 
-  <!-- PLAIN ANSWER FIRST -->
-  <section style="padding-top:8px">
-    <div class="answer">
-      <p class="verdict" id="verdict"></p>
-      <p class="horizon-note">Pick a timeframe:</p>
-      <div class="toggle" id="tg">
-        <button data-h="t20" class="on">In 1 month</button>
-        <button data-h="t60">In 3 months</button>
-      </div>
-      <div id="plain"></div>
-      <div id="legend"></div>
-      <button class="howto-link" id="howto-open" type="button">How to read this</button>
-    </div>
-    <p class="muted" style="margin-top:14px">Latest <b class="num" id="spot"></b> <span id="spotdate"></span> — these are near-term price paths only; the fair value lives in the Fundamental lens above.</p>
-  </section>
-
-  
-    <p class="muted" style="margin:0 0 12px;max-width:62ch">The full 90-day path, from the same distribution as the odds above. Static — nothing here is adjustable, unlike the levers under Fundamental.</p>
+  <p class="muted" style="margin:0 0 12px;max-width:62ch">The full 90-day path, The 5th–95th and 25th–75th percentile bands from the 50,000-path simulation. Static and pre-computed — independent of the fundamental levers above.</p>
     <div id="mc-fan-static"></div>
   
 </div>
@@ -406,9 +389,6 @@
 <script>
 const T=TICKERS.EFID;
 document.getElementById("upd").textContent=SITE.updated;
-document.getElementById("spot").textContent=T.spot.toFixed(2);
-document.getElementById("spotdate").textContent=T.spotDate;
-document.getElementById("legend").innerHTML=stripLegend();
 
 document.getElementById("touch").innerHTML=T.touch.map(r=>
  `<tr><td class="num">${r[0].toFixed(2)}</td><td class="num">${r[1]}%</td><td class="num">${r[2]}%</td></tr>`).join("");
@@ -426,14 +406,7 @@ if(T.tech){
 function show(h){
   const d=T.dist[h]; const label = h==="t20" ? "in 1 month" : "in 3 months";
   const o=plainOdds(d,T.spot);
-  document.getElementById("verdict").innerHTML = o.lead + ' <span class="tk">' + label + '</span>';
-  renderPlain("plain", d, T.spot, label, T.spotDate);
 }
-document.getElementById("tg").addEventListener("click",e=>{
-  const b=e.target.closest("button"); if(!b) return;
-  [...e.currentTarget.children].forEach(x=>x.classList.remove("on"));
-  b.classList.add("on"); show(b.dataset.h);
-});
 show("t20");
 
 document.getElementById("dl-pdf").href=T.files.pdf;
