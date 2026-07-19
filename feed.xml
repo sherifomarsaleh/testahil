@@ -6,7 +6,23 @@
     <atom:link href="https://testahil.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>دراسات تقييم تعليمية مستقلة لأسهم البورصة المصرية — توزيعات احتمالية، وليست توصيات. Educational EGX valuation studies — distributions, not tips.</description>
     <language>ar</language>
-    <lastBuildDate>Mon, 13 Jul 2026 08:30:00 +0300</lastBuildDate>
+    <lastBuildDate>Sun, 19 Jul 2026 08:30:00 +0300</lastBuildDate>
+
+    <item>
+      <title>دايس للملابس الجاهزة (DSCW): دراسة تقييم — هل يستحق السهم؟</title>
+      <link>https://testahil.com/ar/dscw.html</link>
+      <guid isPermaLink="true">https://testahil.com/ar/dscw.html</guid>
+      <description>السعر 1.94 · الوسيط (٣ شهور) 2.02 · النطاق 1.50–2.73 جنيه — تحليل تعليمي، توزيع وليس توصية.</description>
+      <pubDate>Sun, 19 Jul 2026 08:30:00 +0300</pubDate>
+    </item>
+
+    <item>
+      <title>Dice For Ready-Made Garments (SAE) (DSCW): Valuation Study — is it worth it?</title>
+      <link>https://testahil.com/dscw.html</link>
+      <guid isPermaLink="true">https://testahil.com/dscw.html</guid>
+      <description>Latest 1.94 · 3-month median 2.02 · range 1.50–2.73 EGP — educational analysis, a distribution not a recommendation.</description>
+      <pubDate>Sun, 19 Jul 2026 08:30:00 +0300</pubDate>
+    </item>
 
     <item>
       <title>مجموعة مستشفيات كليوباترا (CLHO): دراسة تقييم — هل يستحق السهم؟</title>
@@ -133,6 +149,22 @@
       <link>https://testahil.com/2pointzero.html</link>
       <guid isPermaLink="true">https://testahil.com/2pointzero.html</guid>
       <description>Latest 2.16 · 3-month median 2.18 · range 1.59–3.00 AED — educational analysis, a distribution not a recommendation.</description>
+      <pubDate>Sat, 11 Jul 2026 08:30:00 +0300</pubDate>
+    </item>
+
+    <item>
+      <title>مصرف أبوظبي الإسلامي (ADIBUAE): دراسة تقييم — هل يستحق السهم؟</title>
+      <link>https://testahil.com/ar/adibuae.html</link>
+      <guid isPermaLink="true">https://testahil.com/ar/adibuae.html</guid>
+      <description>السعر 21.76 · الوسيط (٣ شهور) 21.73 · النطاق 17.10–27.70 درهم — تحليل تعليمي، توزيع وليس توصية.</description>
+      <pubDate>Sat, 11 Jul 2026 08:30:00 +0300</pubDate>
+    </item>
+
+    <item>
+      <title>Abu Dhabi Islamic Bank (ADIBUAE): Valuation Study — is it worth it?</title>
+      <link>https://testahil.com/adibuae.html</link>
+      <guid isPermaLink="true">https://testahil.com/adibuae.html</guid>
+      <description>Latest 21.76 · 3-month median 21.73 · range 17.10–27.70 AED — educational analysis, a distribution not a recommendation.</description>
       <pubDate>Sat, 11 Jul 2026 08:30:00 +0300</pubDate>
     </item>
 
