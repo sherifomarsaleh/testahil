@@ -2,7 +2,7 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-07-13", latest: "CLHO" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
+const SITE = { updated: "2026-07-19", latest: "DSCW" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
@@ -977,6 +977,34 @@ const TICKERS = {
       study: "files/LCSW_Valuation_Study_06-07-2026_public.docx?v=0706",
       model: "files/LCSW_Valuation_Model_06-07-2026_public.xlsx?v=0706",
       pdf:   "files/LCSW_Valuation_Study_06-07-2026_public.pdf?v=0706"
+    }
+  },
+  DSCW: {
+    name: "Dice For Ready-Made Garments (SAE)",
+    nameAr: "دايس للملابس الجاهزة",
+    code: "EGX:DSCW",
+    spot: 1.94,
+    spotDate: "close 19 Jul 2026",
+    ccy: "EGP",
+    fair: { bear: 0.59, base: 0.88, full: 1.29 },          // 19 Jul 2026 valuation — weighted central (35% FCFF DCF, floored / 35% normalized earnings / 30% relative EV/EBITDA). Raw DCF is negative (-0.50) at the sourced 23.53% WACC (TV 94% of EV, disclosed); bear/full = weighted bear/bull.
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:1.65, p25:1.85, p50:1.97, p75:2.09, p95:2.35, resolve:"2026-08-16" },
+      t60: { label:"3 months (T+60)", p5:1.50, p25:1.82, p50:2.02, p75:2.25, p95:2.73, resolve:"2026-10-11" }
+    },
+    touch: [ /* descending high -> low */
+      [2.40, 6, 24], [2.30, 10, 34], [2.20, 19, 47], [2.10, 37, 65], [2.00, 69, 85], [1.80, 30, 49], [1.60, 5, 17]
+    ],
+    levels: { res:[2.10, 2.23], sup:[1.80, 1.79, 1.61] },
+    tech: {
+      trend: "Repairing off a spring base, back above the full moving-average stack",
+      summary: "The stock fell from the 2.23 high (Jul-25) to a 1.45-1.61 base across the spring, and has spent June-July repairing the damage - through the 200-day at 1.79, through the 1.80 shelf, to a close at 1.94. RSI(14) is 70 - overbought, on a tape where the Q1 loss is public and H1 results are due. MACD (12,26,9) just turned positive (0.022 line vs -0.000 signal): fresh, not yet extended.",
+      bull: "A daily close above 2.10 opens the last distribution zone before the 2.23 fifty-two-week high.",
+      bear: "Losing the 1.80 shelf re-exposes the 200-day at 1.79 and then the 1.61 spring low."
+    },
+    files: {
+      study: "files/DSCW_Valuation_Study_19-07-2026_public.docx?v=1907",
+      model: "files/DSCW_Valuation_Model_19072026_public.xlsx?v=1907",
+      pdf:   "files/DSCW_Valuation_Study_19-07-2026_public.pdf?v=1907"
     }
   },
   PHDC: {
@@ -2016,6 +2044,27 @@ const COMING = [
                             "-5":bool, "-10":bool }
    ========================================================================== */
 const LEDGER = [
+  // ---- DSCW · equity (EGX Egypt) · cycle 1 (19 Jul 2026 published study; BOUNDARY(PARITY-flagged) — own fitted verdict, first-coverage name) ----
+  { instrument:"DSCW", asset_class:"equity", anchor_date:"2026-07-19", anchor_price:1.94, ccy:"EGP",
+    horizon_label:"T+20", grade_date:"2026-08-16", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.324, horizon_days:20,
+    note:"BOUNDARY (PARITY-flagged) single-name Step-0, own OHLC, using the live 29-name Egypt panel\u2019s pooled fit (nu=4.0, cone width 0.972; panel-level verdict PASS, scale-normalized CRPS skill +2.59%%, 90%% CI [+1.7%%, +3.6%%], as of the 13-Jul-2026 CLHO merge). DSCW itself is a first-coverage name and is not yet folded into a panel-inclusive refit (its own OHLC posting queues behind Egypt\u2019s unattended calibration loop; see engine/raw_ohlc/EG/DSCW.csv). Name-level Step-0: 16 non-overlapping 60-session windows from 2022-05-26 forward (post-break, per the adopted 2022-03-21 devaluation-regime cutoff). Scale-normalized CRPS skill +1.17%% against a CARRY-ANCHORED random-walk benchmark (raw basis +1.76%%). Moving-block bootstrap CI: block 2 [-0.70%%, +2.66%%] PARITY, block 3 [-0.12%%, +2.73%%] PARITY, block 4 [+0.12%%, +2.80%%] PASS - a block-dependent sign flip, recorded PARITY-flagged per the robustness rule rather than a silent PASS. Coverage 50/80/90%% = 62.5/87.5/93.75%%; mean PIT 0.616. Carry = CBE main rate 19.50%% less DSCW\u2019s zero dividend yield (no common dividend paid FY25); the Egypt profile runs CARRY-ONLY (no signal, ablated off on evidence). The cone is a 3-month object and is NEVER blended with the 12-month fundamental anchor. See study section 3 and the Calibration Ledger.",
+    p5:1.65, p25:1.85, p50:1.97, p75:2.09, p95:2.35,
+    touch:{ "+5":55, "+10":29, "+15":15, "+20":8, "-5":43, "-10":18 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  { instrument:"DSCW", asset_class:"equity", anchor_date:"2026-07-19", anchor_price:1.94, ccy:"EGP",
+    horizon_label:"T+60", grade_date:"2026-10-11", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.324, horizon_days:60,
+    note:"BOUNDARY (PARITY-flagged) single-name Step-0, own OHLC, using the live 29-name Egypt panel\u2019s pooled fit (nu=4.0, cone width 0.972; panel-level verdict PASS, scale-normalized CRPS skill +2.59%%, 90%% CI [+1.7%%, +3.6%%], as of the 13-Jul-2026 CLHO merge). DSCW itself is a first-coverage name and is not yet folded into a panel-inclusive refit (its own OHLC posting queues behind Egypt\u2019s unattended calibration loop; see engine/raw_ohlc/EG/DSCW.csv). Name-level Step-0: 16 non-overlapping 60-session windows from 2022-05-26 forward (post-break, per the adopted 2022-03-21 devaluation-regime cutoff). Scale-normalized CRPS skill +1.17%% against a CARRY-ANCHORED random-walk benchmark (raw basis +1.76%%). Moving-block bootstrap CI: block 2 [-0.70%%, +2.66%%] PARITY, block 3 [-0.12%%, +2.73%%] PARITY, block 4 [+0.12%%, +2.80%%] PASS - a block-dependent sign flip, recorded PARITY-flagged per the robustness rule rather than a silent PASS. Coverage 50/80/90%% = 62.5/87.5/93.75%%; mean PIT 0.616. Carry = CBE main rate 19.50%% less DSCW\u2019s zero dividend yield (no common dividend paid FY25); the Egypt profile runs CARRY-ONLY (no signal, ablated off on evidence). The cone is a 3-month object and is NEVER blended with the 12-month fundamental anchor. See study section 3 and the Calibration Ledger.",
+    p5:1.50, p25:1.82, p50:2.02, p75:2.25, p95:2.73,
+    touch:{ "+5":77, "+10":58, "+15":42, "+20":30, "-5":60, "-10":37 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
   // ---- CLHO \u00b7 equity (EGX Egypt) \u00b7 cycle 1 (13 Jul 2026 published study; PARITY \u2014 own fitted verdict, 29-name EG panel) ----
   { instrument:"CLHO", asset_class:"equity", anchor_date:"2026-07-12", anchor_price:16.31, ccy:"EGP",
     horizon_label:"T+20", grade_date:"2026-08-09", cycle_no:1, reanchor_from:null,
