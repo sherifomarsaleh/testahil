@@ -878,7 +878,13 @@ function injectLevels(svgId, res, sup){
   let num=0, den=0; pts.forEach(function(p){ num += (p[0]-sy)*(p[1]-sp); den += (p[0]-sy)*(p[0]-sy); });
   const slope = num/den, intercept = sp - slope*sy;
   const priceToY = price => (price - intercept) / slope;
-  const x0 = svg.querySelector('rect') ? 46 : 46, x1 = 746;
+  // derive the plot's actual x-span from its own gridlines, so this always matches
+  // whatever margin the chart was baked with (no hardcoded geometry).
+  const gridLines = Array.prototype.slice.call(svg.querySelectorAll('line')).filter(function(ln){
+    return /var\(--line/.test(ln.getAttribute("stroke") || "");
+  });
+  const x0 = gridLines.length ? parseFloat(gridLines[0].getAttribute("x1")) : 46;
+  const x1 = gridLines.length ? parseFloat(gridLines[0].getAttribute("x2")) : 700;
   const ns = "http://www.w3.org/2000/svg";
   // draw all the dashed lines first, and collect label positions for a collision pass
   const labelRows = [];
@@ -904,17 +910,12 @@ function injectLevels(svgId, res, sup){
   for (let i=labelRows.length-1; i>=0; i--){
     if (labelRows[i].y > 291) labelRows[i].y = (i===labelRows.length-1 ? 291 : labelRows[i+1].y - minGap);
   }
+  // labels sit OUTSIDE the plot, in the right margin -- same placement as the zoom
+  // chart's reference labels -- so they never sit on top of the price/MA lines.
   labelRows.forEach(function(r){
-    var w = (r.label.length * 6.0) + 6;   // approx text width + padding
-    var rect = document.createElementNS(ns, "rect");
-    rect.setAttribute("x", (x1 - 4 - w).toFixed(1)); rect.setAttribute("y", (r.y - 11).toFixed(1));
-    rect.setAttribute("width", w.toFixed(1)); rect.setAttribute("height", "12");
-    rect.setAttribute("fill", "var(--card,#15302D)"); rect.setAttribute("opacity", "0.85");
-    rect.setAttribute("rx", "2");
-    svg.appendChild(rect);
-    var text = document.createElementNS(ns, "text");
-    text.setAttribute("x", x1 - 4); text.setAttribute("y", (r.y - 2).toFixed(1));
-    text.setAttribute("text-anchor", "end"); text.setAttribute("font-size", "9.5");
+    const text = document.createElementNS(ns, "text");
+    text.setAttribute("x", (x1 + 6).toFixed(1)); text.setAttribute("y", (r.y + 3.2).toFixed(1));
+    text.setAttribute("font-size", "9.5");
     text.setAttribute("font-family", "IBM Plex Mono,monospace"); text.setAttribute("fill", r.color);
     text.textContent = r.label;
     svg.appendChild(text);
