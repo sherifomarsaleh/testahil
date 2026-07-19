@@ -964,7 +964,7 @@ const TICKERS = {
     touch: [ /* level, P(touch) T+20 %, T+60 % — descending */
       [20.00, 1, 9], [18.50, 3, 18], [17.50, 8, 30], [16.50, 21, 50], [15.55, 53, 76]
     ],
-    levels: { res:[16.08, 15.70, 15.00], sup:[14.49, 14.06, 13.90] },
+    levels: { res:[15.00, 16.08, 16.43], sup:[14.60, 14.26, 13.90] },
     tech: {
       trend: "Correcting inside a longer uptrend",
       summary: "The price pulled back from its recent high and is now testing a rising floor. Momentum has cooled and the daily MACD is still negative, so the dip isn't over yet — but the bigger uptrend is intact, and the selling has come on fading volume rather than heavy panic.",
