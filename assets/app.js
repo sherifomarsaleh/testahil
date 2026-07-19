@@ -902,13 +902,24 @@ function injectLevels(svgId, res, sup){
   (sup||[]).forEach(function(p){ addLine(p, "var(--red,#B5483A)", F(p)); });
   // collision pass: sort by y and push labels at least 12px apart so none overlap
   labelRows.sort(function(a,b){ return a.y - b.y; });
-  const minGap = 12;
+  const minGap = 12, topBound = 20, bottomBound = 291;
   for (let i=1; i<labelRows.length; i++){
     if (labelRows[i].y - labelRows[i-1].y < minGap) labelRows[i].y = labelRows[i-1].y + minGap;
   }
-  // keep inside the plot bottom (294); if pushed past, pull the stack up from the bottom
-  for (let i=labelRows.length-1; i>=0; i--){
-    if (labelRows[i].y > 291) labelRows[i].y = (i===labelRows.length-1 ? 291 : labelRows[i+1].y - minGap);
+  // if the stack now runs past the plot floor, shift the WHOLE stack up by the overflow
+  // (a uniform shift preserves both the order and the gaps -- pulling individual labels
+  // up one at a time, as before, could invert two adjacent labels' order).
+  if (labelRows.length){
+    const overflow = labelRows[labelRows.length-1].y - bottomBound;
+    if (overflow > 0) labelRows.forEach(function(r){ r.y -= overflow; });
+    // if that pushed the top label above the plot ceiling (too many crowded labels for
+    // the space), clamp the top and re-run the forward pass from there.
+    if (labelRows[0].y < topBound){
+      labelRows[0].y = topBound;
+      for (let i=1; i<labelRows.length; i++){
+        if (labelRows[i].y - labelRows[i-1].y < minGap) labelRows[i].y = labelRows[i-1].y + minGap;
+      }
+    }
   }
   // labels sit OUTSIDE the plot, in the right margin -- same placement as the zoom
   // chart's reference labels -- so they never sit on top of the price/MA lines.
