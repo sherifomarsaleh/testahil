@@ -747,13 +747,23 @@ function renderStaticFan(elId, T){
     return '<tr><td class="num">' + r[0].toFixed(2) + '</td><td class="num">' + r[1] + '%</td><td class="num">' + r[2] + '%</td></tr>';
   }).join("");
   el.innerHTML =
-    '<svg viewBox="0 0 ' + W + ' ' + (Y0+40) + '" width="100%" role="img" aria-label="90% and 50% probability bands from latest to T+60">' +
+    '<svg id="' + elId + '-svg" viewBox="0 0 ' + W + ' ' + (Y0+40) + '" width="100%" role="img" aria-label="90% and 50% probability bands from latest to T+60" style="touch-action:none">' +
       grid +
       '<path d="' + bandPath("p95","p5") + '" fill="var(--teal,#12796B)" opacity=".16"/>' +
       '<path d="' + bandPath("p75","p25") + '" fill="var(--teal,#12796B)" opacity=".34"/>' +
       '<path d="' + linePath("p50") + '" fill="none" stroke="var(--gold,#C0A45F)" stroke-width="1.8"/>' +
       xt + endLabels +
+      '<g id="' + elId + '-hover" style="display:none;pointer-events:none">' +
+        '<line id="' + elId + '-hline" y1="' + Y1 + '" y2="' + Y0 + '" stroke="var(--muted,#6b7c78)" stroke-width="1" stroke-dasharray="3 3" opacity=".8"/>' +
+        '<circle id="' + elId + '-hdot-p95" r="2.6" fill="var(--teal2,#2A8F8F)"/>' +
+        '<circle id="' + elId + '-hdot-p75" r="2.6" fill="var(--teal,#12796B)"/>' +
+        '<circle id="' + elId + '-hdot-p50" r="3.2" fill="var(--gold,#C0A45F)"/>' +
+        '<circle id="' + elId + '-hdot-p25" r="2.6" fill="var(--teal,#12796B)"/>' +
+        '<circle id="' + elId + '-hdot-p5" r="2.6" fill="var(--teal2,#2A8F8F)"/>' +
+      '</g>' +
+      '<rect id="' + elId + '-hit" x="' + X0 + '" y="' + Y1 + '" width="' + (X1-X0) + '" height="' + (Y0-Y1) + '" fill="transparent" style="cursor:crosshair"/>' +
     '</svg>' +
+    '<div id="' + elId + '-tip" style="display:none;font-family:\'IBM Plex Mono\',monospace;font-size:12px;background:var(--card,#15302D);border:1px solid var(--line,#2a4b46);border-radius:8px;padding:8px 10px;margin-top:8px;line-height:1.7"></div>' +
     '<div style="display:flex;gap:18px;flex-wrap:wrap;font-size:var(--fs-small);color:var(--muted);margin:10px 0 4px">' +
       '<span><span style="display:inline-block;width:14px;height:10px;border-radius:2px;background:var(--teal,#12796B);opacity:.34;margin-right:5px"></span>50% band (25th\u201375th)</span>' +
       '<span><span style="display:inline-block;width:14px;height:10px;border-radius:2px;background:var(--teal,#12796B);opacity:.16;margin-right:5px"></span>90% band (5th\u201395th)</span>' +
@@ -761,6 +771,48 @@ function renderStaticFan(elId, T){
     '</div>' +
     '<table class="mc-ladder" style="margin-top:14px"><thead><tr><th>Level</th><th>P(touch) T+20</th><th>P(touch) T+60</th></tr></thead><tbody>' + touchRows + '</tbody></table>' +
     '<p class="muted" style="font-size:var(--fs-small);margin-top:12px">t20 and t60 are the published calibration exactly as saved. The curve between them is a smooth fit using the real Student-t shape for this market through those two points \u2014 not a fresh simulation at every day, and not adjustable \u2014 so it always agrees with the published numbers at the two horizons that matter.</p>';
+
+  // ---- hover read-out: move over the cone to read the bands at that horizon ----
+  var svgEl = document.getElementById(elId + '-svg');
+  var hit = document.getElementById(elId + '-hit');
+  var hov = document.getElementById(elId + '-hover');
+  var tip = document.getElementById(elId + '-tip');
+  var hline = document.getElementById(elId + '-hline');
+  if (svgEl && hit && hov && tip){
+    var moveTo = function(clientX){
+      var r = svgEl.getBoundingClientRect();
+      var sx = W / r.width;                       // viewBox units per screen px
+      var vx = (clientX - r.left) * sx;           // x in viewBox coords
+      vx = Math.max(X0, Math.min(X1, vx));
+      var t = (vx - X0) / (X1 - X0) * AX;          // horizon in days
+      t = Math.max(0, Math.min(AX, Math.round(t)));
+      var px = xpx(t);
+      hov.style.display = '';
+      hline.setAttribute('x1', px.toFixed(1)); hline.setAttribute('x2', px.toFixed(1));
+      ['p95','p75','p50','p25','p5'].forEach(function(q){
+        var v = fanVal(fit, spot, q, t);
+        var dot = document.getElementById(elId + '-hdot-' + q);
+        dot.setAttribute('cx', px.toFixed(1)); dot.setAttribute('cy', ypx(v).toFixed(1));
+      });
+      var vp5 = fanVal(fit, spot, 'p5', t), vp25 = fanVal(fit, spot, 'p25', t),
+          vp50 = fanVal(fit, spot, 'p50', t), vp75 = fanVal(fit, spot, 'p75', t),
+          vp95 = fanVal(fit, spot, 'p95', t);
+      var when = (t === 0) ? 'now' : 'in ' + t + ' trading day' + (t===1?'':'s');
+      var pctMove = ((vp50 / spot - 1) * 100);
+      var sign = pctMove >= 0 ? '+' : '';
+      tip.style.display = '';
+      tip.innerHTML =
+        '<b>T+' + t + '</b> \u00b7 ' + when +
+        '<br><span style="color:var(--gold,#C0A45F)">median ' + F(vp50) + '</span> (' + sign + pctMove.toFixed(1) + '% vs spot)' +
+        '<br><span style="color:var(--muted)">50% band</span> ' + F(vp25) + ' \u2013 ' + F(vp75) +
+        '<br><span style="color:var(--muted)">90% band</span> ' + F(vp5) + ' \u2013 ' + F(vp95);
+    };
+    var hide = function(){ hov.style.display = 'none'; tip.style.display = 'none'; };
+    hit.addEventListener('mousemove', function(e){ moveTo(e.clientX); });
+    hit.addEventListener('mouseleave', hide);
+    hit.addEventListener('touchstart', function(e){ if(e.touches[0]) moveTo(e.touches[0].clientX); }, {passive:true});
+    hit.addEventListener('touchmove', function(e){ if(e.touches[0]) moveTo(e.touches[0].clientX); }, {passive:true});
+  }
 }
 
 /* ============ fair-value sensitivity (Lens 2) ============ */
