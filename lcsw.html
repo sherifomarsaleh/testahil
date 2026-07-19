@@ -441,7 +441,11 @@ renderFairLevers("fl-lever-card", T, [
   { name:'Energy cost — gas & diesel', min:-4, max:1.5, step:0.25, def:-0.8, impact:0.05,
     lo:'unlikely', hi:'likely', fmt:v=>Math.round(v)+'% chance' },
   { name:'Export demand & margin recovery', min:-3, max:6, step:0.25, def:1.2, impact:0.05,
-    lo:'soft', hi:'strong', fmt:v=>Math.round(v)+'% chance' }
+    lo:'soft', hi:'strong', fmt:v=>Math.round(v)+'% chance' },
+  { name:'Profit-to-cash conversion', min:-8, max:12, step:1, def:0, impact:0.8,
+    lo:'deteriorates', hi:'improves', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' },
+  { name:'Domestic construction / tile demand', min:-10, max:12, step:1, def:2, impact:0.6,
+    lo:'weak', hi:'strong', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' }
 ]);
 if (T.levels) {
   injectLevels("ta-chart-svg", T.levels.res, T.levels.sup);

@@ -422,7 +422,15 @@ renderGauge("gauge", T.spot, T.fair, T.spotDate);
 renderStaticFan("mc-fan-static", T);
 renderFairLevers("fl-lever-card", T, [
   { name:'Calibrated secular drift — fades vs. persists', min:-6, max:26, step:0.5, def:15, impact:1,
-    lo:'weaker', hi:'stronger', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' }
+    lo:'weaker', hi:'stronger', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' },
+  { name:'LME aluminium price ($/t)', min:-25, max:25, step:1, def:0, impact:1,
+    lo:'prices fall', hi:'prices rally', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' },
+  { name:'EGP / USD translation (LME in $)', min:-12, max:4, step:0.5, def:-2, impact:1,
+    lo:'sharp depreciation', hi:'firm / tailwind', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' },
+  { name:'Administered power contract holds — probability', min:0, max:95, step:1, def:75, impact:0.08,
+    lo:'tariff reset up', hi:'contract holds', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' },
+  { name:'Trafigura US$900m expansion signs — probability', min:0, max:90, step:1, def:55, impact:0.06,
+    lo:'stalls', hi:'signs / doubles capacity', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' }
 ]);
 if (T.levels) {
   injectLevels("ta-chart-svg", T.levels.res, T.levels.sup);

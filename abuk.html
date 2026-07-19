@@ -424,7 +424,15 @@ renderGauge("gauge", T.spot, T.fair, T.spotDate);
 renderStaticFan("mc-fan-static", T);
 renderFairLevers("fl-lever-card", T, [
   { name:'Gas-feedstock margin — subsidised vs. export parity', min:-25, max:10, step:0.5, def:-3, impact:1,
-    lo:'margin squeeze', hi:'margin tailwind', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' }
+    lo:'margin squeeze', hi:'margin tailwind', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' },
+  { name:'Urea / ammonia export price ($/t)', min:-30, max:30, step:1, def:0, impact:0.9,
+    lo:'prices fall', hi:'prices rally', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' },
+  { name:'EGP / USD translation', min:-12, max:4, step:0.5, def:-2, impact:1,
+    lo:'sharp depreciation', hi:'firm / tailwind', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' },
+  { name:'~9–10% dividend sustained — probability', min:0, max:95, step:1, def:80, impact:0.05,
+    lo:'cut risk', hi:'held', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' },
+  { name:'Plant utilisation / gas availability', min:-15, max:8, step:0.5, def:0, impact:0.8,
+    lo:'curtailed', hi:'full run-rate', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' }
 ]);
 if (T.levels) {
   injectLevels("ta-chart-svg", T.levels.res, T.levels.sup);

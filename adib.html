@@ -422,7 +422,15 @@ renderGauge("gauge", T.spot, T.fair, T.spotDate);
 renderStaticFan("mc-fan-static", T);
 renderFairLevers("fl-lever-card", T, [
   { name:'Nominal-repricing drift — fades vs. persists', min:-4, max:20, step:0.5, def:11, impact:1,
-    lo:'weaker', hi:'stronger', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' }
+    lo:'weaker', hi:'stronger', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' },
+  { name:'ROE persistence through CBE easing', min:-6, max:6, step:0.5, def:0, impact:1,
+    lo:'spread compresses', hi:'spread holds', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' },
+  { name:'Financing book growth', min:-10, max:20, step:1, def:5, impact:0.6,
+    lo:'contraction', hi:'rapid growth', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' },
+  { name:'Cost of risk / provisioning', min:-8, max:4, step:0.5, def:0, impact:0.7,
+    lo:'NPLs rise', hi:'benign', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' },
+  { name:'Capital return / payout lift — probability', min:0, max:90, step:1, def:30, impact:0.05,
+    lo:'hoards capital', hi:'returns it', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' }
 ]);
 if (T.levels) {
   injectLevels("ta-chart-svg", T.levels.res, T.levels.sup);

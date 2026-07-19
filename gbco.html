@@ -446,7 +446,11 @@ renderFairLevers("fl-lever-card", T, [
   { name:'MNT-Halan second closing at ≥ USD 1.4 bn — probability', min:0, max:90, step:1, def:45, impact:0.05,
     lo:'unlikely', hi:'lands', fmt:v=>Math.round(v)+'% chance' },
   { name:'Regional escalation (Iraq / Jordan spillover) — probability', min:0, max:55, step:1, def:35, impact:0.05,
-    lo:'high risk', hi:'calm', fmt:v=>Math.round(v)+'% chance' }
+    lo:'high risk', hi:'calm', fmt:v=>Math.round(v)+'% chance' },
+  { name:'Auto volumes / cycle (82k vs ~200k peak)', min:-10, max:20, step:1, def:5, impact:0.8,
+    lo:'trough deepens', hi:'recovery', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' },
+  { name:'GB Capital financing-book quality', min:-8, max:10, step:1, def:2, impact:0.6,
+    lo:'NPLs rise', hi:'clean growth', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' }
 ]);
 if (T.levels) {
   injectLevels("ta-chart-svg", T.levels.res, T.levels.sup);

@@ -458,7 +458,11 @@ renderFairLevers("fl-lever-card", T, [
   { name:'Regulatory / fee-cap shock — probability', min:0, max:35, step:1, def:20, impact:0.12,
     lo:'high risk', hi:'calm', fmt:v=>Math.round(v)+'% chance' },
   { name:'New government mandate / growth execution — probability', min:0, max:90, step:1, def:25, impact:0.05,
-    lo:'unlikely', hi:'likely', fmt:v=>Math.round(v)+'% chance' }
+    lo:'unlikely', hi:'likely', fmt:v=>Math.round(v)+'% chance' },
+  { name:'Transaction / e-payment volume growth', min:-12, max:20, step:1, def:8, impact:0.8,
+    lo:'growth stalls', hi:'growth accelerates', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' },
+  { name:'Blended take-rate / margin', min:-8, max:8, step:0.5, def:0, impact:1,
+    lo:'compresses', hi:'expands', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' }
 ]);
 if (T.levels) {
   injectLevels("ta-chart-svg", T.levels.res, T.levels.sup);

@@ -422,7 +422,15 @@ renderGauge("gauge", T.spot, T.fair, T.spotDate);
 renderStaticFan("mc-fan-static", T);
 renderFairLevers("fl-lever-card", T, [
   { name:'CBE rate path — impact on the discount rate', min:-8, max:8, step:0.5, def:2, impact:1,
-    lo:'tighter / rate headwind', hi:'easier / rate tailwind', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' }
+    lo:'tighter / rate headwind', hi:'easier / rate tailwind', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' },
+  { name:'Transaction throughput growth', min:-12, max:20, step:1, def:8, impact:0.8,
+    lo:'growth stalls', hi:'growth accelerates', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' },
+  { name:'Blended take-rate / EBITDA margin', min:-8, max:8, step:0.5, def:0, impact:1,
+    lo:'compresses', hi:'expands', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' },
+  { name:'New-product / banking-services mix', min:-6, max:12, step:1, def:3, impact:0.6,
+    lo:'stagnant', hi:'scaling', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' },
+  { name:'Competitive fee pressure', min:-10, max:5, step:0.5, def:0, impact:0.7,
+    lo:'intense', hi:'benign', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' }
 ]);
 if (T.levels) {
   injectLevels("ta-chart-svg", T.levels.res, T.levels.sup);

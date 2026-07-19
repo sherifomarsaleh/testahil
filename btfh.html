@@ -425,7 +425,15 @@ renderGauge("gauge", T.spot, T.fair, T.spotDate);
 renderStaticFan("mc-fan-static", T);
 renderFairLevers("fl-lever-card", T, [
   { name:'CBE easing tailwind vs. Baobab integration drag', min:-10, max:12, step:0.5, def:2, impact:1,
-    lo:'weaker', hi:'stronger', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' }
+    lo:'weaker', hi:'stronger', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' },
+  { name:'ROE lift 11%→18% — probability', min:0, max:90, step:1, def:40, impact:0.1,
+    lo:'stays ~11%', hi:'reaches ~18%', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' },
+  { name:'Baobab microfinance accretion — probability', min:0, max:90, step:1, def:45, impact:0.06,
+    lo:'dilutive', hi:'accretive', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' },
+  { name:'Brokerage + AUM market flow', min:-12, max:15, step:1, def:3, impact:0.7,
+    lo:'volumes dry', hi:'volumes surge', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' },
+  { name:'Fairness / holdco discount narrowing', min:-10, max:12, step:1, def:0, impact:0.6,
+    lo:'widens', hi:'narrows', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' }
 ]);
 if (T.levels) {
   injectLevels("ta-chart-svg", T.levels.res, T.levels.sup);

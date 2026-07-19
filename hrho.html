@@ -424,7 +424,15 @@ renderGauge("gauge", T.spot, T.fair, T.spotDate);
 renderStaticFan("mc-fan-static", T);
 renderFairLevers("fl-lever-card", T, [
   { name:'Holdco discount — narrowing vs. widening', min:-12, max:12, step:0.5, def:-2, impact:1,
-    lo:'weaker', hi:'stronger', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' }
+    lo:'weaker', hi:'stronger', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' },
+  { name:'Investment-bank revenue cycle', min:-12, max:15, step:1, def:3, impact:0.7,
+    lo:'deal drought', hi:'deal surge', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' },
+  { name:'Valu / NBFI book growth & ROE', min:-8, max:15, step:1, def:5, impact:0.6,
+    lo:'contraction', hi:'rapid, profitable', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' },
+  { name:'Bank NXT ramp — probability', min:0, max:90, step:1, def:45, impact:0.05,
+    lo:'slow', hi:'scales', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' },
+  { name:'Regional capital-markets flows', min:-12, max:12, step:1, def:0, impact:0.6,
+    lo:'risk-off', hi:'risk-on', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' }
 ]);
 if (T.levels) {
   injectLevels("ta-chart-svg", T.levels.res, T.levels.sup);
