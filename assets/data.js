@@ -872,6 +872,33 @@ const TICKERS = {
       pdf:   "files/ADIB_Valuation_Study_03-07-2026_public.pdf?v=0703"
     }
   },
+  ADIBUAE: {
+    name: "Abu Dhabi Islamic Bank",
+    nameAr: "مصرف أبوظبي الإسلامي",
+    code: "ADX:ADIB",
+    spot: 21.76,
+    spotDate: "close 03 Jul 2026",
+    ccy: "AED",
+    fair: { bear: 17.73, base: 21.23, full: 24.63 },      // 11 Jul 2026 — five-lens weighted central 21.23 (-2.4% vs spot 21.76). Lenses: DDM (primary, 30%) 22.54, residual income (20%) 22.54, FCFE equity DCF (15%) 23.48, relative multiples ROE-adjusted (20%) 17.94, normalized through-cycle (15%) 19.00. bear = renewed-Hormuz-closure lower reference (2.5pt conflict adder); full = plan-delivered-at-peacetime-Ke upper reference. War-adjusted Ke 10.57% (rf 4.70% + β1.0×ERP4.87% + 1.0pt). The load-bearing tension is durability: a bank earning 28.8% ROE, with the terminal ROE (20% base) the swing input. Backtest PARITY (CRPS skill +0.009, 14 UAE windows). UAE's largest listed Islamic bank; 3,632.0mn shares.
+    dist: {
+      t20: { label:"1 month (T+20)",  p5:18.91, p25:20.61, p50:21.74, p75:22.95, p95:24.95, resolve:"2026-07-31" },
+      t60: { label:"3 months (T+60)", p5:17.10, p25:19.81, p50:21.73, p75:23.84, p95:27.70, resolve:"2026-09-25" }
+    },
+    touch: [ /* descending high -> low; P(touch) T+20 %, T+60 % */
+      [24.63, 12, 33], [23.30, 35, 59], [22.10, 74, 85], [20.75, 46, 66], [20.00, 25, 47], [18.80, 9, 30]
+    ],
+    levels: { res:[22.10, 23.30, 24.63], sup:[20.75, 20.00, 18.80] },
+    tech: {
+      trend: "A stock in repair, not in a trend — above its 20-day and 50-day averages but still below the 100-day and 200-day, 20.6% under its February high",
+      summary: "The technical picture is one of a stock in repair, not a stock in a trend — a notably different picture from the one the fundamentals paint. Price at AED 21.76 sits above the 20-day (AED 20.71) and 50-day (AED 20.75) moving averages but BELOW the 100-day (AED 22.10) and 200-day (AED 21.88) — the signature of a stock that bounced hard off a low but has not yet reclaimed its longer trend. It is 20.6% below its February all-time high of AED 27.40 and only ~34% of the way up its 52-week range of AED 18.80–27.40. RSI(14) at 59 is neutral — warm, with room. MACD (12·26·9) reads 0.263 / 0.179 / +0.084: the line is above zero and the histogram is positive, so momentum is building rather than fading.",
+      bull: "A daily close back above the 100-day near AED 22.10 would reclaim the longer trend and open 23.30, then the round AED 24 and the February high beyond.",
+      bear: "Losing the 50-day near AED 20.75 exposes the round AED 20.00; below that, the war-drawdown shelf near AED 18.80 is the next support."
+    },
+    files: {
+      study: "files/ADIB_Valuation_Study_11-07-2026_public.docx?v=0719a",
+      model: "files/ADIB_Valuation_Model_11072026_public.xlsx?v=0719a"
+    }
+  },
   HRHO: {
     name: "EFG Holding",
     nameAr: "المجموعة المالية هيرميس القابضة",
