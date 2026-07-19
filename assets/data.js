@@ -953,16 +953,16 @@ const TICKERS = {
     name: "Palm Hills Developments",
     nameAr: "بالم هيلز للتعمير",
     code: "EGX:PHDC",
-    spot: 14.50,
-    spotDate: "close 11 Jun 2026",
+    spot: 14.84,
+    spotDate: "close 19 Jul 2026",
     ccy: "EGP",
-    fair: { bear: 7.62, base: 15.89, full: 24.92 },          // 9 Jun 2026 valuation — unchanged in the 11 Jun price refresh
+    fair: { bear: 7.62, base: 15.89, full: 24.92 },          // 9 Jun 2026 valuation — UNCHANGED: fundamental fair value is a separate clock from the MC price refresh (two-clocks rule); needs its own study cycle, not touched by a raw-OHLC roll-forward
     dist: {
-      t20: { label:"1 month (T+20)",   p5:11.53, p25:13.42, p50:14.92, p75:16.56, p95:19.32, resolve:"2026-07-09" },
-      t60: { label:"3 months (T+60)",  p5:10.18, p25:13.22, p50:15.83, p75:18.95, p95:24.50, resolve:"2026-09-03" }
+      t20: { label:"1 month (T+20)",   p5:12.94, p25:14.29, p50:15.05, p75:15.87, p95:17.53, resolve:"2026-08-16" },
+      t60: { label:"3 months (T+60)",  p5:11.93, p25:14.15, p50:15.49, p75:16.96, p95:20.07, resolve:"2026-10-11" }
     },
     touch: [ /* level, P(touch) T+20 %, T+60 % — descending */
-      [20.00, 5, 30], [18.50, 12, 44], [17.50, 23, 55], [16.50, 40, 68], [15.55, 62, 81]
+      [20.00, 1, 9], [18.50, 3, 18], [17.50, 8, 30], [16.50, 21, 50], [15.55, 53, 76]
     ],
     levels: { res:[16.08, 15.70, 15.00], sup:[14.49, 14.06, 13.90] },
     tech: {
@@ -2624,12 +2624,13 @@ const LEDGER = [
   {
     instrument:"PHDC", asset_class:"equity",
     anchor_date:"2026-06-11", anchor_price:14.50, ccy:"EGP",
-    horizon_label:"T+20", grade_date:"2026-07-09", cycle_no:2, reanchor_from:"2026-06-09",
+    horizon_label:"T+20", grade_date:"2026-07-13", cycle_no:2, reanchor_from:"2026-06-09",
+    grade_date_projected:"2026-07-09", grade_note:"Projected grade_date (Sun\u2013Thu calendar, no holiday awareness) landed on only the 18th real trading session, 2 short of a true T+20; graded instead on the actual 20th session close.",
     p5:11.53, p25:13.42, p50:14.92, p75:16.56, p95:19.32,
     touch:{ "+5":62, "+10":38, "+15":21, "+20":12, "-5":55, "-10":33 },
-    realized_close:null, realized_high:null, realized_low:null,
-    in_90:null, in_50:null, realized_quantile:null, median_err:null,
-    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+    realized_close:14.85, realized_high:16.43, realized_low:14.26,
+    in_90:true, in_50:true, realized_quantile:0.488, median_err:-0.0047,
+    touch_hit:{ "+5":true, "+10":true, "+15":false, "+20":false, "-5":false, "-10":false }
   },
   {
     instrument:"PHDC", asset_class:"equity",
@@ -2637,6 +2638,26 @@ const LEDGER = [
     horizon_label:"T+60", grade_date:"2026-09-03", cycle_no:2, reanchor_from:"2026-06-09",
     p5:10.18, p25:13.10, p50:15.83, p75:19.40, p95:24.50,
     touch:{ "+5":72, "+10":55, "+15":41, "+20":30, "-5":61, "-10":44 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"PHDC", asset_class:"equity",
+    anchor_date:"2026-07-19", anchor_price:14.84, ccy:"EGP",
+    horizon_label:"T+20", grade_date:"2026-08-16", cycle_no:3, reanchor_from:"2026-06-11",
+    p5:12.94, p25:14.29, p50:15.05, p75:15.87, p95:17.53,
+    touch:{ "+5":52, "+10":25, "+15":12, "+20":6, "-5":38, "-10":15 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"PHDC", asset_class:"equity",
+    anchor_date:"2026-07-19", anchor_price:14.84, ccy:"EGP",
+    horizon_label:"T+60", grade_date:"2026-10-11", cycle_no:3, reanchor_from:"2026-06-11",
+    p5:11.93, p25:14.15, p50:15.49, p75:16.96, p95:20.07,
+    touch:{ "+5":75, "+10":55, "+15":38, "+20":26, "-5":55, "-10":31 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
