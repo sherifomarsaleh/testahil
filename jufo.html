@@ -319,17 +319,8 @@
     <table><thead><tr><th class="num">Price level</th><th class="num">Within 1 month</th><th class="num">Within 3 months</th></tr></thead>
     <tbody id="touch"></tbody></table>
   </div>
-  
-</div>
-</details>
 
-  <!-- DETAILED NUMBERS — opt in -->
-  <details id="sec-details" class="more anchor">
-    <summary>Show the detailed numbers</summary>
-    <div class="more-body">
-
-      
-
+  <div class="card" style="margin-top:16px">
       <p class="qhead" style="margin-top:26px">The exact percentiles</p>
       <p class="muted">The <span class="term" tabindex="0">5th / 25th / middle / 75th / 95th outcomes<span class="tip">Line up all 50,000 outcomes low to high — these are the values at the 5%, 25%, 50%, 75% and 95% marks.</span></span>, from 50,000 paths.</p>
       <table><thead><tr><th>Timeframe</th><th class="num">Rare low (5%)</th><th class="num">25%</th><th class="num">Middle</th><th class="num">75%</th><th class="num">Rare high (95%)</th></tr></thead>
@@ -337,8 +328,13 @@
 
       <p class="qhead" style="margin-top:26px">What drives the odds</p>
       <p class="muted">50,000 paths, 16 forces: the gas-feedstock cost (the dominant swing), the EGP, global urea/ammonia prices, rates, inflation, foreign flows, dividend policy and gas-supply interruptions. Details in the <a href="method.html">methodology</a>.</p>
-    </div>
-  </details>
+  </div>
+  
+</div>
+</details>
+
+  <!-- DETAILED NUMBERS — opt in -->
+  
 
   <!-- PEER COMPARISON -->
 <details class="rds">
@@ -473,8 +469,7 @@ initHowto();
 <script>
 (function(){
   var S=[["sec-top","Overview"],["sec-odds","The odds"],["sec-value","Fair value"],
-    ["sec-chart","The chart"],["sec-model","Explore the model"],["sec-details","Detailed numbers"],
-    ["sec-peers","Peers"],["sec-study","Get the study"],["sec-follow","Updates"]]
+    ["sec-chart","The chart"],["sec-model","Explore the model"],["sec-peers","Peers"],["sec-study","Get the study"],["sec-follow","Updates"]]
     .filter(function(x){return document.getElementById(x[0]);});
   if(S.length<3) return;
   var nav=document.createElement("nav");
@@ -488,7 +483,6 @@ initHowto();
   function setActive(id){ S.forEach(function(x){ if(links[x[0]]) links[x[0]].classList.toggle("active", x[0]===id); }); }
   nav.addEventListener("click", function(e){
     var a=e.target.closest("a"); if(!a) return;
-    if(a.getAttribute("href")==="#sec-details"){ var d=document.getElementById("sec-details"); if(d&&d.tagName==="DETAILS") d.open=true; }
   });
   if("IntersectionObserver" in window){
     var io=new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting) setActive(en.target.id); }); },

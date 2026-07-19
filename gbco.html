@@ -309,19 +309,8 @@
     <table><thead><tr><th class="num">Price level</th><th class="num">Within 1 month</th><th class="num">Within 3 months</th></tr></thead>
     <tbody id="touch"></tbody></table>
   </div>
-  
-</div>
-</details>
 
-  <!-- ============ /INTERACTIVE MONTE CARLO ============ -->
-
-
-  <!-- DETAILED NUMBERS — opt in -->
-  <details id="sec-details" class="more anchor">
-    <summary>Show the detailed numbers</summary>
-    <div class="more-body">
-
-      
+  <div class="card" style="margin-top:16px">
       <p class="muted">Below 24.3 the market would be paying less than eight times this year's earnings with the MNT-Halan stake thrown in free — the point where we'd rebuild the study.</p>
 
       <p class="qhead" style="margin-top:26px">The exact percentiles</p>
@@ -331,8 +320,16 @@
 
       <p class="qhead" style="margin-top:26px">What drives the odds</p>
       <p class="muted">One Monte Carlo model, 50,000 paths, driven by 16 outside forces: the calibrated secular EGX-repricing drift (the calibration back-test-passed), Egyptian car demand, the CBE rate path, the EGP/USD rate, the Iraq/Jordan conflict, Chinese competition and grey imports, the Sadat localization ramp, lending-book funding costs — plus nine discrete events led by 2Q26 results (11 Aug), an MNT-Halan second closing, CBE cuts, a regional escalation, BYD's entry pricing and a devaluation tail. Full mechanics in the <a href="method.html">methodology</a>.</p>
-    </div>
-  </details>
+  </div>
+  
+</div>
+</details>
+
+  <!-- ============ /INTERACTIVE MONTE CARLO ============ -->
+
+
+  <!-- DETAILED NUMBERS — opt in -->
+  
 
   <!-- PEER COMPARISON -->
 <details class="rds">
@@ -480,8 +477,7 @@ initHowto();
 <script>
 (function(){
   var S=[["sec-top","Overview"],["sec-odds","The odds"],["sec-value","Fair value"],
-    ["sec-chart","The chart"],["sec-model","Explore the model"],["sec-details","Detailed numbers"],
-    ["sec-peers","Peers"],["sec-study","Get the study"],["sec-follow","Updates"]]
+    ["sec-chart","The chart"],["sec-model","Explore the model"],["sec-peers","Peers"],["sec-study","Get the study"],["sec-follow","Updates"]]
     .filter(function(x){return document.getElementById(x[0]);});
   if(S.length<3) return;
   var nav=document.createElement("nav");
@@ -495,7 +491,6 @@ initHowto();
   function setActive(id){ S.forEach(function(x){ if(links[x[0]]) links[x[0]].classList.toggle("active", x[0]===id); }); }
   nav.addEventListener("click", function(e){
     var a=e.target.closest("a"); if(!a) return;
-    if(a.getAttribute("href")==="#sec-details"){ var d=document.getElementById("sec-details"); if(d&&d.tagName==="DETAILS") d.open=true; }
   });
   if("IntersectionObserver" in window){
     var io=new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting) setActive(en.target.id); }); },
