@@ -266,8 +266,15 @@
     <p class="lens-sub">50,000 simulated futures — <em>near-term price paths, independent of the fundamental value.</em></p>
   </section>
 
-  <p class="muted" style="margin:0 0 12px;max-width:62ch">The full 90-day path, The 5th–95th and 25th–75th percentile bands from the 50,000-path simulation. Static and pre-computed — independent of the fundamental levers above.</p>
+  <p class="muted" style="margin:0 0 12px;max-width:62ch">The 5th–95th and 25th–75th percentile bands from the 50,000-path simulation. Static and pre-computed — independent of the fundamental levers above.</p>
     <div id="mc-fan-static"></div>
+
+  <div class="card" style="margin-top:16px">
+    <p class="qhead">How likely is each price?</p>
+    <p class="muted">Chance the price <em>touches</em> each level before the date &mdash; from the same 50,000 paths as the cone.</p>
+    <table><thead><tr><th class="num">Price level</th><th class="num">Within 1 month</th><th class="num">Within 3 months</th></tr></thead>
+    <tbody id="touch"></tbody></table>
+  </div>
   
 </div>
 </details>
@@ -279,11 +286,6 @@
   <details id="sec-details" class="more anchor">
     <summary>Show the detailed numbers</summary>
     <div class="more-body">
-
-      <p class="qhead" style="margin-top:18px">How likely is each price?</p>
-      <p class="muted">Chance the price <em>touches</em> each level before the date.</p>
-      <table><thead><tr><th class="num">Price level</th><th class="num">Within 1 month</th><th class="num">Within 3 months</th></tr></thead>
-      <tbody id="touch"></tbody></table>
 
       <p class="qhead" style="margin-top:26px">What it's worth — five lenses</p>
       <p class="muted">Five independent valuation methods, blended into one weighted central fair value.</p>
