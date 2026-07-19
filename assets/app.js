@@ -828,6 +828,8 @@ function injectLevels(svgId, res, sup){
   const priceToY = price => (price - intercept) / slope;
   const x0 = svg.querySelector('rect') ? 46 : 46, x1 = 746;
   const ns = "http://www.w3.org/2000/svg";
+  // draw all the dashed lines first, and collect label positions for a collision pass
+  const labelRows = [];
   function addLine(price, color, label){
     const y = priceToY(price);
     const line = document.createElementNS(ns, "line");
@@ -836,15 +838,28 @@ function injectLevels(svgId, res, sup){
     line.setAttribute("stroke", color); line.setAttribute("stroke-width", "1");
     line.setAttribute("stroke-dasharray", "4 3"); line.setAttribute("opacity", ".7");
     svg.appendChild(line);
-    const text = document.createElementNS(ns, "text");
-    text.setAttribute("x", x1 - 4); text.setAttribute("y", (y - 3).toFixed(1));
-    text.setAttribute("text-anchor", "end"); text.setAttribute("font-size", "9.5");
-    text.setAttribute("font-family", "IBM Plex Mono,monospace"); text.setAttribute("fill", color);
-    text.textContent = label;
-    svg.appendChild(text);
+    labelRows.push({ y: y, color: color, label: label });
   }
   (res||[]).forEach(function(p){ addLine(p, "var(--amber-text,#854F0B)", F(p)); });
   (sup||[]).forEach(function(p){ addLine(p, "var(--red,#B5483A)", F(p)); });
+  // collision pass: sort by y and push labels at least 11px apart so none overlap
+  labelRows.sort(function(a,b){ return a.y - b.y; });
+  const minGap = 11;
+  for (let i=1; i<labelRows.length; i++){
+    if (labelRows[i].y - labelRows[i-1].y < minGap) labelRows[i].y = labelRows[i-1].y + minGap;
+  }
+  // keep inside the plot bottom (294); if pushed past, pull the stack up from the bottom
+  for (let i=labelRows.length-1; i>=0; i--){
+    if (labelRows[i].y > 291) labelRows[i].y = (i===labelRows.length-1 ? 291 : labelRows[i+1].y - minGap);
+  }
+  labelRows.forEach(function(r){
+    const text = document.createElementNS(ns, "text");
+    text.setAttribute("x", x1 - 4); text.setAttribute("y", (r.y - 3).toFixed(1));
+    text.setAttribute("text-anchor", "end"); text.setAttribute("font-size", "9.5");
+    text.setAttribute("font-family", "IBM Plex Mono,monospace"); text.setAttribute("fill", r.color);
+    text.textContent = r.label;
+    svg.appendChild(text);
+  });
 }
 function renderLevelList(elId, res, sup){
   const el = document.getElementById(elId); if (!el) return;
