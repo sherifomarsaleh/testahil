@@ -304,13 +304,6 @@
     <div id="mc-fan-static"></div>
 
   <div class="card" style="margin-top:16px">
-    <p class="qhead">How likely is each price?</p>
-    <p class="muted">Chance the price <em>touches</em> each level before the date &mdash; from the same 50,000 paths as the cone.</p>
-    <table><thead><tr><th class="num">Price level</th><th class="num">Within 1 month</th><th class="num">Within 3 months</th></tr></thead>
-    <tbody id="touch"></tbody></table>
-  </div>
-
-  <div class="card" style="margin-top:16px">
       <p class="muted">Below 24.3 the market would be paying less than eight times this year's earnings with the MNT-Halan stake thrown in free — the point where we'd rebuild the study.</p>
 
       <p class="qhead" style="margin-top:26px">The exact percentiles</p>
@@ -406,14 +399,12 @@
   </div>
 </div>
 
-<script src="assets/data.js?v=20260713f"></script><script src="assets/app.js?v=20260719c"></script>
+<script src="assets/data.js?v=20260713f"></script><script src="assets/app.js?v=20260719d"></script>
 <script>
 const T=TICKERS.GBCO;
 document.getElementById("upd").textContent=SITE.updated;
 
 // touch + percentile tables
-document.getElementById("touch").innerHTML=T.touch.map(r=>
- `<tr><td class="num">${r[0].toFixed(2)}</td><td class="num">${r[1]}%</td><td class="num">${r[2]}%</td></tr>`).join("");
 const pctRow=(lbl,d)=>`<tr><td>${lbl}</td><td class="num">${F(d.p5)}</td><td class="num">${F(d.p25)}</td><td class="num">${F(d.p50)}</td><td class="num">${F(d.p75)}</td><td class="num">${F(d.p95)}</td></tr>`;
 document.getElementById("pct").innerHTML=pctRow("In 1 month",T.dist.t20)+pctRow("In 3 months",T.dist.t60);
 

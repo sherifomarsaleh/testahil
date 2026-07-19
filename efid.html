@@ -299,13 +299,6 @@
     <div id="mc-fan-static"></div>
 
   <div class="card" style="margin-top:16px">
-    <p class="qhead">How likely is each price?</p>
-    <p class="muted">Chance the price <em>touches</em> each level before the date &mdash; from the same 50,000 paths as the cone.</p>
-    <table><thead><tr><th class="num">Price level</th><th class="num">Within 1 month</th><th class="num">Within 3 months</th></tr></thead>
-    <tbody id="touch"></tbody></table>
-  </div>
-
-  <div class="card" style="margin-top:16px">
       <p class="qhead" style="margin-top:26px">The exact percentiles</p>
       <p class="muted">The <span class="term" tabindex="0">5th / 25th / middle / 75th / 95th outcomes<span class="tip">Line up all 50,000 outcomes low to high — these are the values at the 5%, 25%, 50%, 75% and 95% marks.</span></span>, from 50,000 paths.</p>
       <table><thead><tr><th>Timeframe</th><th class="num">Rare low (5%)</th><th class="num">25%</th><th class="num">Middle</th><th class="num">75%</th><th class="num">Rare high (95%)</th></tr></thead>
@@ -393,13 +386,11 @@
   </div>
 </div>
 
-<script src="assets/data.js?v=20260713f"></script><script src="assets/app.js?v=20260719c"></script>
+<script src="assets/data.js?v=20260713f"></script><script src="assets/app.js?v=20260719d"></script>
 <script>
 const T=TICKERS.EFID;
 document.getElementById("upd").textContent=SITE.updated;
 
-document.getElementById("touch").innerHTML=T.touch.map(r=>
- `<tr><td class="num">${r[0].toFixed(2)}</td><td class="num">${r[1]}%</td><td class="num">${r[2]}%</td></tr>`).join("");
 const pctRow=(lbl,d)=>`<tr><td>${lbl}</td><td class="num">${F(d.p5)}</td><td class="num">${F(d.p25)}</td><td class="num">${F(d.p50)}</td><td class="num">${F(d.p75)}</td><td class="num">${F(d.p95)}</td></tr>`;
 document.getElementById("pct").innerHTML=pctRow("In 1 month",T.dist.t20)+pctRow("In 3 months",T.dist.t60);
 

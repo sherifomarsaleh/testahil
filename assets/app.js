@@ -289,7 +289,9 @@ function initHowto(){
 /* ---------- peer comparison (covered stocks side by side) ---------- */
 function renderPeers(elId, currentCode){
   const el=document.getElementById(elId); if(!el) return;
-  const rows = Object.entries(TICKERS).map(([code,t])=>{
+  const rows = Object.entries(TICKERS)
+    .sort((a,b)=> a[1].name.localeCompare(b[1].name))
+    .map(([code,t])=>{
     const o = plainOdds(t.dist.t60, t.spot);
     const v = valuationVerdict(t.spot, t.fair.base);
     const up = Math.round(o.pa*10);
@@ -915,7 +917,7 @@ function renderZoomChart(sourceSvgId, targetElId, res, sup, defaultSessions){
     const priceLoData = priceOfY(yHi), priceHiData = priceOfY(yLo);
     let pLo = priceLoData, pHi = priceHiData;
     (res||[]).concat(sup||[]).forEach(function(p){ if (p < pLo) pLo = p; if (p > pHi) pHi = p; });
-    const padP = (pHi - pLo) * 0.10 || 0.4;
+    const padP = (pHi - pLo) * 0.14 || 0.4;
     pLo -= padP; pHi += padP;
 
     const W = 760, H = 300, ML = 46, MR = 60, MT = 14, MB = 26;
@@ -979,7 +981,14 @@ function renderZoomChart(sourceSvgId, targetElId, res, sup, defaultSessions){
         '<path d="'+pathOf(ma50T)+'" fill="none" stroke="var(--teal,#12796B)" stroke-width="1.6" opacity=".85"/>'+
         '<path d="'+pathOf(priceT)+'" fill="none" stroke="var(--ink,#12211e)" stroke-width="1.6" opacity=".95"/>'+
         refLabels + xt + dot +
-      '</svg>';
+      '</svg>'+
+      '<div style="display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--muted,#6b7c78);margin-top:6px;font-family:\'IBM Plex Mono\',monospace">'+
+        '<span style="display:inline-flex;align-items:center;gap:6px"><span style="width:14px;height:2px;background:var(--ink,#12211e);display:inline-block"></span> Price</span>'+
+        '<span style="display:inline-flex;align-items:center;gap:6px"><span style="width:14px;height:2px;background:var(--teal,#12796B);display:inline-block"></span> 50-day MA</span>'+
+        '<span style="display:inline-flex;align-items:center;gap:6px"><span style="width:14px;height:2px;background:var(--brass,#896F36);display:inline-block"></span> 200-day MA</span>'+
+        '<span style="display:inline-flex;align-items:center;gap:6px"><span style="width:14px;height:0;border-top:1.2px dashed var(--amber-text,#854F0B);display:inline-block"></span> Resistance</span>'+
+        '<span style="display:inline-flex;align-items:center;gap:6px"><span style="width:14px;height:0;border-top:1.2px dashed var(--red,#B5483A);display:inline-block"></span> Support</span>'+
+      '</div>';
 
     // active-button styling
     Array.prototype.forEach.call(document.querySelectorAll("#"+targetElId+"-btns .zoom-win-btn"), function(b){
