@@ -986,7 +986,7 @@ const TICKERS = {
     spot: 1.94,
     spotDate: "close 19 Jul 2026",
     ccy: "EGP",
-    fair: { bear: 0.59, base: 0.88, full: 1.29 },          // 19 Jul 2026 valuation — weighted central: 35% FCFF DCF (floored at 0; raw −0.50 at sourced WACC 23.53%, TV 94% of EV, disclosed) / 35% normalized earnings power (7.5% through-cycle margin) / 30% relative EV/EBITDA. full = weighted bull central.
+    fair: { bear: 0.59, base: 0.88, full: 1.20 },          // 20 Jul 2026 revision — terminal g set to 5% (explicit conservative override, below all reconciliation anchors, disclosed §1.7). weighted central: 35% FCFF DCF (floored at 0; raw −0.51 at sourced WACC 23.53%, TV 94% of EV) / 35% normalized earnings power (7.5% through-cycle margin) / 30% relative EV/EBITDA. full = weighted bull central.
     dist: {
       t20: { label:"1 month (T+20)",  p5:1.65, p25:1.85, p50:1.97, p75:2.09, p95:2.34, resolve:"2026-08-16" },
       t60: { label:"3 months (T+60)", p5:1.50, p25:1.82, p50:2.02, p75:2.25, p95:2.73, resolve:"2026-10-11" }
