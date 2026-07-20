@@ -861,7 +861,7 @@ function renderFairLevers(elId, T, levers){
     });
     const fair = base * Math.exp(effect);
     document.getElementById("fl-marker").style.left = pct(fair) + "%";
-    document.getElementById("fl-fair").textContent = (T.ccy || "") + " " + F(fair);
+    document.getElementById("fl-fair").textContent = (T.ccy || "") + " " + fair.toFixed(2);
     const d = (fair / spot - 1) * 100;
     document.getElementById("fl-delta").textContent = "(" + (d >= 0 ? "+" : "\u2212") + Math.abs(d).toFixed(1) + "% vs spot)";
   }

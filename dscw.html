@@ -216,7 +216,7 @@
   <!-- FAIR-VALUE SENSITIVITY LEVERS -->
   <section style="padding-top:8px">
     <div id="fl-lever-card"></div>
-    <p class="muted" style="font-size:var(--fs-caption);max-width:760px;margin:10px 2px 0">Only one lever is shown because only one moves the published range: at today\u2019s 23.53% discount rate, the DCF is deeply enough negative that no realistic combination of cotton cost, EGP/USD, and inventory-day pace &mdash; even all three moving favourably together &mdash; is enough to change it (tested jointly, not assumed). This is presently a rates story. Operational execution matters for the business; it does not move this number until the discount rate moves first.</p>
+    <p class="muted" style="font-size:var(--fs-caption);max-width:760px;margin:10px 2px 0">A weighted what-if off the published fair value &mdash; not a re-run DCF, and it never touches the Monte Carlo section below. The discount-rate lever dominates by design: at today&rsquo;s cost of capital this is primarily a rates story, so cotton and the pound move the number far less than the CBE does. That ordering is the finding, not a display quirk.</p>
   </section>
 
 </div>
@@ -432,9 +432,21 @@ renderTrackBadge("track-badge");
 
 renderStaticFan("mc-fan-static", T);
 renderFairLevers("fl-lever-card", T, [
-  { name:"CBE policy rate (the crux)", min:0, max:8.53, step:0.25, def:0, impact:4.13,
+  { name:"CBE policy rate", min:0, max:8.53, step:0.25, def:0, impact:4.13,
     lo:"today\u2019s rate (23.53%)", hi:"full easing (15.0%)",
-    fmt:v=>(23.53-v).toFixed(2)+"% WACC \u2014 easing "+v.toFixed(1)+"pp from today, the sourced discount rate moves 1:1 with it" }
+    fmt:v=>(23.53-v).toFixed(2)+"% WACC \u2014 easing "+v.toFixed(1)+"pp, the single biggest driver here" },
+  { name:"Cotton / input cost (gross margin)", min:-2, max:2, step:0.25, def:0, impact:8.0,
+    lo:"cotton dearer / margin worse", hi:"cotton cheaper / margin better",
+    fmt:v=>(v>=0?"+":"\u2212")+Math.abs(v).toFixed(2)+"pp gross margin vs the 22.5% FY26E base" },
+  { name:"EGP/USD (export translation)", min:-4, max:8, step:0.5, def:0, impact:0.8,
+    lo:"EGP firm / no further slide", hi:"faster depreciation (export tailwind)",
+    fmt:v=>(v>=0?"+":"\u2212")+Math.abs(v).toFixed(1)+"% vs the FY26E path" },
+  { name:"US / EU apparel-import demand", min:-10, max:10, step:1, def:0, impact:2.0,
+    lo:"demand softens", hi:"demand firms",
+    fmt:v=>(v>=0?"+":"\u2212")+Math.abs(v).toFixed(0)+"% export volume vs base" },
+  { name:"Regional geopolitics / shipping lanes", min:0, max:60, step:5, def:15, impact:0.10,
+    lo:"disruption / higher freight", hi:"calm / normal freight",
+    fmt:v=>Math.round(60-v)+"% disruption risk priced in" }
 ]);
 if (T.levels) {
   injectLevels("ta-chart-svg", T.levels.res, T.levels.sup);
