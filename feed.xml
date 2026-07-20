@@ -6,7 +6,15 @@
     <atom:link href="https://testahil.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>دراسات تقييم تعليمية مستقلة لأسهم البورصة المصرية — توزيعات احتمالية، وليست توصيات. Educational EGX valuation studies — distributions, not tips.</description>
     <language>ar</language>
-    <lastBuildDate>Sun, 19 Jul 2026 08:30:00 +0300</lastBuildDate>
+    <lastBuildDate>Mon, 20 Jul 2026 08:30:00 +0300</lastBuildDate>
+
+    <item>
+      <title>Platinum (XPT/USD): Valuation Study — is it worth it?</title>
+      <link>https://testahil.com/platinum.html</link>
+      <guid isPermaLink="true">https://testahil.com/platinum.html</guid>
+      <description>Latest 1,608 · 3-month median 1,623 · range 1,239–2,128 USD/oz — educational analysis, a distribution not a recommendation.</description>
+      <pubDate>Mon, 20 Jul 2026 08:30:00 +0300</pubDate>
+    </item>
 
     <item>
       <title>Dice For Ready-Made Garments (DSCW): Valuation Study — is it worth it?</title>
