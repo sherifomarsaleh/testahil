@@ -216,7 +216,7 @@
   <!-- FAIR-VALUE SENSITIVITY LEVERS -->
   <section style="padding-top:8px">
     <div id="fl-lever-card"></div>
-    <p class="muted" style="font-size:var(--fs-caption);max-width:760px;margin:10px 2px 0">Of the four levers above, only CBE policy rate clears the DCF's zero-floor from today's starting point &mdash; moving cotton cost, EGP/USD, or inventory-day pace alone, even to their realistic extremes, does not change the published range (the raw DCF still lands well below zero either way). That is a real finding about this valuation, not a display limit: at the current cost of capital this is presently a rates story, and the operational factors only start to matter once rates move first.</p>
+    <p class="muted" style="font-size:var(--fs-caption);max-width:760px;margin:10px 2px 0">Only one lever is shown because only one moves the published range: at today\u2019s 23.53% discount rate, the DCF is deeply enough negative that no realistic combination of cotton cost, EGP/USD, and inventory-day pace &mdash; even all three moving favourably together &mdash; is enough to change it (tested jointly, not assumed). This is presently a rates story. Operational execution matters for the business; it does not move this number until the discount rate moves first.</p>
   </section>
 
 </div>
@@ -434,16 +434,7 @@ renderStaticFan("mc-fan-static", T);
 renderFairLevers("fl-lever-card", T, [
   { name:"CBE policy rate (the crux)", min:0, max:8.53, step:0.25, def:0, impact:4.13,
     lo:"today\u2019s rate (23.53%)", hi:"full easing (15.0%)",
-    fmt:v=>(23.53-v).toFixed(2)+"% WACC \u2014 easing "+v.toFixed(1)+"pp from today, the sourced discount rate moves 1:1 with it" },
-  { name:"Cotton / input cost (gross margin)", min:-2, max:2, step:0.25, def:0, impact:0,
-    lo:"cotton / costs worse", hi:"cotton / costs better",
-    fmt:v=>(v>=0?"+":"\u2212")+Math.abs(v).toFixed(2)+"pp vs the 22.5% FY26E base \u2014 doesn\u2019t clear the DCF floor alone" },
-  { name:"EGP/USD (export revenue translation)", min:-4, max:8, step:0.5, def:0, impact:0,
-    lo:"EGP firm / no further slide", hi:"faster depreciation (export tailwind)",
-    fmt:v=>(v>=0?"+":"\u2212")+Math.abs(v).toFixed(1)+"% vs the FY26E path \u2014 doesn\u2019t clear the DCF floor alone" },
-  { name:"Inventory-day normalisation pace", min:-15, max:15, step:1, def:0, impact:0,
-    lo:"slower (175 days)", hi:"faster (145 days)",
-    fmt:v=>(v>=0?"\u2212":"+")+Math.abs(v).toFixed(0)+" days vs the 160-day FY30E base \u2014 doesn\u2019t clear the DCF floor alone" }
+    fmt:v=>(23.53-v).toFixed(2)+"% WACC \u2014 easing "+v.toFixed(1)+"pp from today, the sourced discount rate moves 1:1 with it" }
 ]);
 if (T.levels) {
   injectLevels("ta-chart-svg", T.levels.res, T.levels.sup);
