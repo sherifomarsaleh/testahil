@@ -379,4 +379,24 @@ METALS = MarketProfile("XAU", "Metals (Gold/Silver, USD)", FED_SCHEDULE, 0.0363,
     notes="Carry-only. Shape/width fitted on the gold panel; silver SHARES the "
           "metals fit until its own OHLC panel exists (flagged).")
 
-PROFILES = {p.code: p for p in [EGYPT, SAUDI, USA, UK, BRAZIL, KOREA, UAE, INDIA, QATAR, METALS]}
+PLATINUM = MarketProfile("XPT", "Platinum (USD)", FED_SCHEDULE, 0.0363,
+    "USD cost-of-carry anchor: Fed funds midpoint schedule (q=0, no yield). Same "
+    "documented assumption as METALS: the carry-anchored null for a zero-yield USD "
+    "store of value is spot x exp(rf); gate-neutral (same anchor both sides).",
+    None, +1, 0.0, False,
+    nu=250.0, width_cal=0.853,
+    fit_meta=("PROVISIONAL single-instrument self-fit 20-Jul-2026 (PLATINUM, 62 windows "
+              "2012-2026, production chain, reproduction check vs live gold registry EXACT: "
+              "67 windows, +0.0035, CI[-0.005,+0.013]): nu=Gaussian (MLE scale 0.790 -> "
+              "width_cal 0.853, clip floor 0.85 active). Verdict PARITY -0.0004 "
+              "CI[-0.009,+0.009] robust {2,3,4}. De-circularized cross-check (fit "
+              "gold+silver, score platinum OOS): PARITY -0.0114 CI[-0.032,+0.009]. "
+              "Borrowed live METALS (Gaussian/1.0): PARITY -0.0094. Pooled 3-metal fit "
+              "(nu=20, cal=0.965, 148 windows) is the likely future config once metals "
+              "pool - NOT adopted (per-market fit rule). Platinum does NOT arrive "
+              "failing. Step-0.0 gate: 4041->4032 rows, 260.0 rows/yr = metals Mon-Fri "
+              "calendar, zero corporate-action repairs."),
+    notes="Carry-only. Single-name PROVISIONAL self-fit, flagged circular like gold's "
+          "first fit; metals remain the weakest calibration in the system.")
+
+PROFILES = {p.code: p for p in [EGYPT, SAUDI, USA, UK, BRAZIL, KOREA, UAE, INDIA, QATAR, METALS, PLATINUM]}

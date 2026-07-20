@@ -2,7 +2,7 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-07-19", latest: "DSCW" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
+const SITE = { updated: "2026-07-20", latest: "DSCW" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
 /* ---------- covered tickers ---------- */
 const TICKERS = {
@@ -2044,6 +2044,27 @@ const COMING = [
                             "-5":bool, "-10":bool }
    ========================================================================== */
 const LEDGER = [
+  // ---- XPTUSD · metal (spot platinum, USD) · cycle 1 (20 Jul 2026 published study; PARITY — own provisional self-fit, first metals name with a de-circularized cross-check) ----
+  { instrument:"XPTUSD", asset_class:"metal", anchor_date:"2026-07-20", anchor_price:1608.37, ccy:"USD",
+    horizon_label:"T+20", grade_date:"2026-08-17", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.3356, horizon_days:20,
+    note:"PARITY single-instrument Step-0, own OHLC, under platinum\u2019s own PROVISIONAL self-fit (mc_v3 carry-anchored YZ-HAR-t: nu=Gaussian, cone width 0.853 \u2014 the MLE scale was 0.790 and the house clip floor bound it at 0.853; single-name fit, flagged circular exactly as gold\u2019s first fit was). 62 non-overlapping 60-session windows, origins 05-Jan-2012 \u2192 13-Feb-2026, after the Step-0.0 data-quality gate (4,041 \u2192 4,032 rows; 260.0 rows/yr = the metals Mon\u2013Fri calendar; zero corporate-action repairs). Scale-normalized CRPS skill \u22120.04% vs a CARRY-ANCHORED lognormal random-walk benchmark, robust verdict PARITY across bootstrap blocks {2,3,4} (block-2 CI [\u22120.9%, +0.9%]). De-circularized cross-check \u2014 fit trained on gold+silver only, platinum fully out-of-sample: \u22121.14%, CI [\u22123.2%, +0.9%], PARITY. Borrowed live METALS config (Gaussian/1.0): \u22120.94%, PARITY. Platinum does NOT arrive failing (materiality-gate criterion). Coverage 50/80/90% = 48/81/93.5% (mildly over-covered at the tails); PIT mean 0.489 \u2014 centred. Reproduction check: this session\u2019s chain reproduced the live gold registry EXACTLY (67 windows, +0.35%, CI[\u22120.5%,+1.3%], PARITY). Carry = Fed funds midpoint 3.63% (held, statement 17-Jun-2026), q = 0 (zero-yield store of value; the lease rate is a user\u2019s borrow cost, not a holder yield) \u2014 metals run CARRY-ONLY, no signal, no factor drift. METALS REMAIN THE WEAKEST CALIBRATION IN THE SYSTEM (gold self-fit; silver borrows gold\u2019s; platinum provisional until the metals panel pools \u2014 the pooled 3-metal fit, nu\u224820/width 0.965 on 148 windows, is the likely future config, not adopted). The cone is a 1/3-month object and is NEVER blended with the undated fair-value zone. See study \u00a73, Appendix B, and the Calibration Ledger.",
+    p5:1381.97, p25:1514.01, p50:1612.84, p75:1718.44, p95:1881.84,
+    touch:{ "+5":53, "+10":26, "+15":11, "+20":4, "-5":49, "-10":21 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  { instrument:"XPTUSD", asset_class:"metal", anchor_date:"2026-07-20", anchor_price:1608.37, ccy:"USD",
+    horizon_label:"T+60", grade_date:"2026-10-12", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.3395, horizon_days:60,
+    note:"PARITY single-instrument Step-0, own OHLC, under platinum\u2019s own PROVISIONAL self-fit (mc_v3 carry-anchored YZ-HAR-t: nu=Gaussian, cone width 0.853 \u2014 the MLE scale was 0.790 and the house clip floor bound it at 0.853; single-name fit, flagged circular exactly as gold\u2019s first fit was). 62 non-overlapping 60-session windows, origins 05-Jan-2012 \u2192 13-Feb-2026, after the Step-0.0 data-quality gate (4,041 \u2192 4,032 rows; 260.0 rows/yr = the metals Mon\u2013Fri calendar; zero corporate-action repairs). Scale-normalized CRPS skill \u22120.04% vs a CARRY-ANCHORED lognormal random-walk benchmark, robust verdict PARITY across bootstrap blocks {2,3,4} (block-2 CI [\u22120.9%, +0.9%]). De-circularized cross-check \u2014 fit trained on gold+silver only, platinum fully out-of-sample: \u22121.14%, CI [\u22123.2%, +0.9%], PARITY. Borrowed live METALS config (Gaussian/1.0): \u22120.94%, PARITY. Platinum does NOT arrive failing (materiality-gate criterion). Coverage 50/80/90% = 48/81/93.5% (mildly over-covered at the tails); PIT mean 0.489 \u2014 centred. Reproduction check: this session\u2019s chain reproduced the live gold registry EXACTLY (67 windows, +0.35%, CI[\u22120.5%,+1.3%], PARITY). Carry = Fed funds midpoint 3.63% (held, statement 17-Jun-2026), q = 0 (zero-yield store of value; the lease rate is a user\u2019s borrow cost, not a holder yield) \u2014 metals run CARRY-ONLY, no signal, no factor drift. METALS REMAIN THE WEAKEST CALIBRATION IN THE SYSTEM (gold self-fit; silver borrows gold\u2019s; platinum provisional until the metals panel pools \u2014 the pooled 3-metal fit, nu\u224820/width 0.965 on 148 windows, is the likely future config, not adopted). The cone is a 1/3-month object and is NEVER blended with the undated fair-value zone. See study \u00a73, Appendix B, and the Calibration Ledger.",
+    p5:1238.91, p25:1452.81, p50:1623.02, p75:1813.36, p95:2128.49,
+    touch:{ "+5":73, "+10":53, "+15":38, "+20":26, "-5":69, "-10":46 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
   // ---- DSCW · equity (EGX Egypt) · cycle 1 (19 Jul 2026 published study; BOUNDARY(PARITY-flagged) — own fitted verdict, first-coverage name) ----
   { instrument:"DSCW", asset_class:"equity", anchor_date:"2026-07-19", anchor_price:1.94, ccy:"EGP",
     horizon_label:"T+20", grade_date:"2026-08-16", cycle_no:1, reanchor_from:null,
@@ -3836,6 +3857,32 @@ const METALS = {
    study:"files/XAGUSD_Combined_1-3-12M_Valuation_Study_05-07-2026_public.docx?v=2607",
    model:"files/XAGUSD_Combined_1-3-12M_Valuation_Model_05-07-2026_public.xlsx?v=2607",
    pdf:"files/XAGUSD_Combined_1-3-12M_Valuation_Study_05-07-2026_public.pdf?v=2607"
+ }
+  },
+  PLATINUM: {
+    slug: "platinum",
+    unit: "دولار للأونصة",   // Arabic unit (AR feed)
+    unitEn: "USD/oz",         // English unit (EN feed)
+    nameAr: "البلاتين",       // Arabic display name (AR feed)
+ name:"Platinum", code:"XPT/USD", spot:1608.37, spotDate:"close 20 Jul 2026", ccy:"USD",
+ fair:{ bear:1310, base:1634, full:2139 },
+ dist:{
+   t20:{ label:"1 month (T+20)",  p5:1382, p25:1514, p50:1613, p75:1718, p95:1882, resolve:"2026-08-17" },
+   t60:{ label:"3 months (T+60)", p5:1239, p25:1453, p50:1623, p75:1813, p95:2128, resolve:"2026-10-12" },
+   t252:{ label:"12 months (T+252)", p5:961, p25:1333, p50:1669, p75:2086, p95:2897, resolve:"2027-07-07" }
+ },
+ touch:[ [2400,0,1], [2222,0,5], [1990,2,19], [1750,32,58], [1700,49,70], [1540,55,72], [1500,38,61], [1348,4,24], [1200,0,6] ],
+ levels:{ res:[1758, 1990, 2222], sup:[1540, 1500, 1348] },
+ tech:{
+   trend:"Stabilising below a rolling-over trend stack \u2014 on the 20-day, far under the 50/200, a fresh death-cross",
+   summary:"Platinum closed $1,608.37 after the most dramatic sequence in its modern history \u2014 a ~128% run in 2025 from ~$904, an all-time closing high of $2,772 on 23 January 2026 (intraday records near $2,920), then a \u221217.6% single-day crash on 30 January \u2014 the session of the surprise Warsh Fed-chair nomination, which rallied the dollar and unwound the haven mania \u2014 and a slide to a 30 June low of $1,555 as the spring\u2019s Hormuz war premium faded and the Fed repricing hardened. Price has reclaimed the 20-day average but sits ~9% below the 50-day ($1,758) and ~16% below the 200-day ($1,926), with the 50-day now beneath the 200-day \u2014 a death-cross configuration. RSI(14) ~54 is neutral; MACD is negative with a positive but fading histogram \u2014 a bounce inside a downtrend, not yet a trend change.",
+   bull:"The stock-depletion squeeze re-arms (eleven weeks of cover) or gold runs with the Pt/Au ratio re-rating toward its 5-year mean \u2014 reclaiming the falling 50-day at ~$1,758 then the $1,990 May recovery high would confirm.",
+   bear:"Reverse Pt\u2192Pd substitution and jewellery destruction erase the deficit while an ~18-year-high real yield caps the complex \u2014 losing the $1,540 June\u2013July floor reopens $1,500 \u2192 the $1,348 Feb-2021 shelf."
+ },
+ files:{
+   study:"files/XPTUSD_Valuation_Study_20-07-2026_public.docx?v=2007",
+   model:"files/XPTUSD_Valuation_Model_20072026_public.xlsx?v=2007",
+   pdf:"files/XPTUSD_Valuation_Study_20-07-2026_public.pdf?v=2007"
  }
   }
 };

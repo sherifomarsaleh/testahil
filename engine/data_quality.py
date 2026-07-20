@@ -45,6 +45,7 @@ DAILY_LIMIT = {
     'GB': None,
     'BR': None,
     'XAU': None,  # spot metal, no limit
+    'XPT': None,  # spot metal, no limit
 }
 NO_LIMIT_THRESHOLD = 0.70   # markets without a limit: only a >50% one-day move is suspect
 LIMIT_SAFETY = 1.30         # margin above the limit before we call it an artifact

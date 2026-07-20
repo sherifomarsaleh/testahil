@@ -340,3 +340,23 @@ Market panel verdict: skill=+0.0046 CI90=[-0.006, 0.016] **PARITY**
 | INFY | Gaussian | 0.93 | +0.0070 | PARITY |
 | RELIANCE | Gaussian | 0.951 | +0.0090 | PARITY |
 | TMPV | Gaussian | 0.909 | -0.0001 | PARITY |
+
+## XPT (Platinum (USD)) — refit 2026-07-20
+Gate basis: scale-normalized (crps/spot) — primary since 11-Jul-2026
+Panel: 1 names (PLATINUM), 62 pooled windows.
+Production fit: nu=Gaussian, width_cal=0.853 (mle_scale=0.79).
+Market panel verdict: skill=-0.0004 CI90=[-0.012, 0.006] **PARITY**
+
+| Name | nu | width_cal | skill | verdict |
+|---|---|---|---|---|
+| PLATINUM | Gaussian | 0.853 | -0.0004 | PARITY |
+
+## XPT (Platinum (USD)) — refit 2026-07-20
+Gate basis: scale-normalized (crps/spot) — primary since 11-Jul-2026
+Panel: 1 names (PLATINUM), 62 pooled windows.
+Production fit: nu=Gaussian, width_cal=0.853 (mle_scale=0.79).
+Market panel verdict: skill=-0.0004 CI90=[-0.012, 0.006] **PARITY**
+
+| Name | nu | width_cal | skill | verdict |
+|---|---|---|---|---|
+| PLATINUM | Gaussian | 0.853 | -0.0004 | PARITY |

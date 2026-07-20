@@ -232,7 +232,8 @@ def write_production(market, result):
     src = open(path).read()
     prof = PROFILES[market]
     class_name = {'EG': 'EGYPT', 'SA': 'SAUDI', 'US': 'USA', 'GB': 'UK', 'BR': 'BRAZIL',
-                  'KR': 'KOREA', 'AE': 'UAE', 'IN': 'INDIA', 'QA': 'QATAR', 'XAU': 'METALS'}[market]
+                  'KR': 'KOREA', 'AE': 'UAE', 'IN': 'INDIA', 'QA': 'QATAR', 'XAU': 'METALS',
+                  'XPT': 'PLATINUM'}[market]
 
     nu_out = result['nu']
     if isinstance(nu_out, str):                      # "Gaussian" -> numeric sentinel
