@@ -133,7 +133,9 @@ function build() {
     ];
   });
 
-  const items = equityItems.concat(metalItems);
+  const INCLUDE_AR = false;   // Arabic pages hidden (redirect to English); flip to true to restore
+  let items = equityItems.concat(metalItems);
+  if (!INCLUDE_AR) items = items.filter(it => !/\/ar\//.test(it.link));
 
   // newest-first
   items.sort((a, b) => b.sortKey - a.sortKey);

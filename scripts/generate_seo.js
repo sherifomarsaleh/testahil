@@ -27,6 +27,7 @@ const DATA_PATH = 'assets/data.js';
 const COV_PATH  = 'assets/coverage.js';
 const SITEMAP_OUT = 'sitemap.xml';
 const FOOTER_MAX = 10;            // most-recent studies shown in the homepage footer strip
+const INCLUDE_AR = false;         // Arabic pages are hidden (redirect to English); flip to true to restore
 
 const TODAY = new Date().toISOString().slice(0, 10);
 const MONS = { Jan:1, Feb:2, Mar:3, Apr:4, May:5, Jun:6, Jul:7, Aug:8, Sep:9, Oct:10, Nov:11, Dec:12 };
@@ -85,6 +86,7 @@ function buildSitemap() {
   const rows = [];
   const seen = new Set();
   function add(rel, priority, changefreq) {
+    if (!INCLUDE_AR && String(rel).startsWith('ar/')) return;   // Arabic hidden
     const file = fileFor(rel);
     if (!fs.existsSync(file)) return;   // never emit a URL with no page
     if (seen.has(rel)) return;
@@ -176,7 +178,7 @@ function main() {
   let changed = false;
   changed = buildSitemap() || changed;
   changed = updateFooter('index.html') || changed;
-  changed = updateFooter('ar/index.html') || changed;   // no-op unless it carries markers
+  if (INCLUDE_AR) changed = updateFooter('ar/index.html') || changed;   // no-op unless it carries markers
   console.log(changed ? 'SEO surfaces updated.' : 'SEO surfaces already current.');
 }
 
