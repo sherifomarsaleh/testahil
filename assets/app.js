@@ -680,14 +680,21 @@ function fitPowerLaw(spot, t20, t60){
     const y20 = Math.log(t20[q]/spot), y60 = Math.log(t60[q]/spot);
     const b = Math.log(Math.abs(y60)/Math.abs(y20)) / Math.log(3);
     const a = y20 / Math.pow(20, b);
-    out[q] = [a, b];
+    // keep the log-space anchors so fanVal can fall back when the power law is degenerate
+    out[q] = [a, b, y20, y60];
   });
   return out;
 }
 function fanVal(fit, spot, q, t){
   if (t === 0) return spot;
-  const a = fit[q][0], b = fit[q][1];
-  return spot * Math.exp(a * Math.pow(t, b));
+  const f = fit[q], a = f[0], b = f[1];
+  const v = spot * Math.exp(a * Math.pow(t, b));
+  if (isFinite(v)) return v;
+  // Degenerate power law: a quantile sits exactly on spot at T+20 (y20==0 -> a,b blow up to 0*Inf=NaN).
+  // Fall back to piecewise-linear-in-log through the published anchors (spot@0, v20@20, v60@60).
+  const y20 = f[2], y60 = f[3];
+  const y = (t <= 20) ? y20 * (t / 20) : y20 + (y60 - y20) * ((t - 20) / 40);
+  return spot * Math.exp(y);
 }
 function renderStaticFan(elId, T){
   const el = document.getElementById(elId); if (!el) return;
