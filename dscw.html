@@ -216,6 +216,7 @@
   <!-- FAIR-VALUE SENSITIVITY LEVERS -->
   <section style="padding-top:8px">
     <div id="fl-lever-card"></div>
+    <p class="muted" style="font-size:var(--fs-caption);max-width:760px;margin:10px 2px 0">Of the four levers above, only CBE policy rate clears the DCF's zero-floor from today's starting point &mdash; moving cotton cost, EGP/USD, or inventory-day pace alone, even to their realistic extremes, does not change the published range (the raw DCF still lands well below zero either way). That is a real finding about this valuation, not a display limit: at the current cost of capital this is presently a rates story, and the operational factors only start to matter once rates move first.</p>
   </section>
 
 </div>
@@ -434,12 +435,15 @@ renderFairLevers("fl-lever-card", T, [
   { name:"CBE policy rate (the crux)", min:0, max:8.53, step:0.25, def:0, impact:4.13,
     lo:"today\u2019s rate (23.53%)", hi:"full easing (15.0%)",
     fmt:v=>(23.53-v).toFixed(2)+"% WACC \u2014 easing "+v.toFixed(1)+"pp from today, the sourced discount rate moves 1:1 with it" },
-  { name:"Normalized earnings multiple (P/E)", min:6.0, max:9.0, step:0.25, def:7.5, impact:9.8,
-    lo:"trough multiple (6.0\u00d7)", hi:"peak multiple (9.0\u00d7)",
-    fmt:v=>v.toFixed(2)+"\u00d7 normalized EPS \u2014 EGX consumer/industrial peer band" },
-  { name:"Relative peer multiple (EV/EBITDA)", min:4.5, max:6.5, step:0.25, def:5.5, impact:19.0,
-    lo:"low end (4.5\u00d7)", hi:"high end (6.5\u00d7)",
-    fmt:v=>v.toFixed(2)+"\u00d7 FY27E EBITDA \u2014 EGX consumer/industrial peer band" }
+  { name:"Cotton / input cost (gross margin)", min:-2, max:2, step:0.25, def:0, impact:0,
+    lo:"cotton / costs worse", hi:"cotton / costs better",
+    fmt:v=>(v>=0?"+":"\u2212")+Math.abs(v).toFixed(2)+"pp vs the 22.5% FY26E base \u2014 doesn\u2019t clear the DCF floor alone" },
+  { name:"EGP/USD (export revenue translation)", min:-4, max:8, step:0.5, def:0, impact:0,
+    lo:"EGP firm / no further slide", hi:"faster depreciation (export tailwind)",
+    fmt:v=>(v>=0?"+":"\u2212")+Math.abs(v).toFixed(1)+"% vs the FY26E path \u2014 doesn\u2019t clear the DCF floor alone" },
+  { name:"Inventory-day normalisation pace", min:-15, max:15, step:1, def:0, impact:0,
+    lo:"slower (175 days)", hi:"faster (145 days)",
+    fmt:v=>(v>=0?"\u2212":"+")+Math.abs(v).toFixed(0)+" days vs the 160-day FY30E base \u2014 doesn\u2019t clear the DCF floor alone" }
 ]);
 if (T.levels) {
   injectLevels("ta-chart-svg", T.levels.res, T.levels.sup);
