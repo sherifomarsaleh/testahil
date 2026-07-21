@@ -47,7 +47,8 @@ Do-not-revive within this module:
   - Historical/accounting capitalized borrowing rate used as the WACC cost of debt.
   - A raw FX coupon dropped into a local-nominal WACC without depreciation adjustment.
   - Flat house-default ERP reused across countries without checking Damodaran's file.
-  - Cross-country sector-peer betas substituted for a genuine regression/bottom-up attempt.
+  - FOREIGN (cross-country) peer betas — tier-2 peers must be listed in the SAME country.
+  - Cross-country sector-peer betas substituted for a genuine own-stock regression attempt.
   - Book-value EQUITY weights, or any flat (e.g. 65/35) E/D weights when market data exists.
 """
 from dataclasses import dataclass, field
@@ -56,12 +57,18 @@ from typing import Optional, List, Tuple
 
 # ---------------------------------------------------------------------------
 # Regression-beta sanity gate. Encodes the GBCO lesson (n=5 annual regression,
-# beta=-0.15, R^2=0.008 = noise). PREFERENCE ORDER for beta, per the 21-Jul-2026
-# review: (1) 2-5yr WEEKLY (or monthly) regression; (2) a bottom-up beta from
-# comparable unlevered peers re-levered to the target structure (see relever_beta);
-# (3) a short-window daily regression ONLY as a flagged interim; (4) 1.0 only on a
-# genuine usability-gate failure. Daily EM returns carry illiquidity / non-synchronous
-# -trading bias and understate/￼noise-up beta — treat a daily fit as provisional.
+# beta=-0.15, R^2=0.008 = noise). STRICT PREFERENCE ORDER for beta (21-Jul-2026,
+# updated) — take the FIRST that is available, only fall through when it is not:
+#   (1) OWN-STOCK 2-5yr WEEKLY (or monthly) regression vs its own local index,
+#       whenever that much usable history exists (longest window up to 5yr;
+#       "usable" = passes is_usable() below). FIRST CHOICE.
+#   (2) SAME-COUNTRY peer beta — only if (1) is unavailable (short listing, too
+#       illiquid/thin, or fails the gate): median unlevered beta of peers listed in
+#       the SAME country, re-levered via relever_beta(). Never foreign peers.
+#   (3) beta = 1.0 — only if neither (1) nor (2) is available.
+# A short-window/DAILY regression is NOT one of these tiers; if used as a stopgap it
+# must be flagged interim and replaced by (1) (EM daily returns carry illiquidity /
+# non-synchronous-trading bias and understate/noise-up beta).
 # ---------------------------------------------------------------------------
 @dataclass
 class RegressionBetaAttempt:
@@ -95,10 +102,12 @@ class RegressionBetaAttempt:
 
 def relever_beta(unlevered_beta_peers_median: float, target_debt_to_equity: float,
                  tax_rate: float) -> float:
-    """Bottom-up beta: re-lever the median UNLEVERED peer beta to the target D/E
-    (Hamada). Preferred over a thin single-name regression for EM names. For a
-    multi-segment company (e.g. developer + hotels) build the unlevered beta as a
-    business-value-weighted blend of the two segment peer sets BEFORE calling this."""
+    """Tier-2 beta: re-lever the median UNLEVERED peer beta to the target D/E
+    (Hamada). Use ONLY when a tier-1 own-stock 2-5yr regression is unavailable.
+    Peers MUST be listed in the SAME country as the subject (same market/liquidity/
+    risk regime) — never foreign peers. For a multi-segment company (e.g. developer +
+    hotels) build the unlevered beta as a business-value-weighted blend of the segment
+    peer sets BEFORE calling this."""
     return unlevered_beta_peers_median * (1 + (1 - tax_rate) * target_debt_to_equity)
 
 
@@ -112,7 +121,7 @@ class WaccInputs:
     sov_default_spread_rating: float = 0.0
     erp_cds: Optional[float] = None        # Damodaran CDS-based total ERP (None if no CDS exists)
     sov_default_spread_cds: Optional[float] = None  # CDS-implied default spread; if None, rating spread is reused (flagged)
-    beta: float = 1.0                      # 1.0 ONLY on a real usability-gate failure
+    beta: float = 1.0                      # tier-3: 1.0 ONLY if no own-stock 2-5yr history AND no same-country peer set
     beta_source: str = "assumed_1.0_no_reliable_regression"
 
     # --- Cost of debt (MARGINAL, forward-looking, cash-flow currency) ---
