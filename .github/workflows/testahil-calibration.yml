@@ -91,8 +91,10 @@ jobs:
           git commit -m "Material calibration change pending review ($(date -u +%Y-%m-%d))"
           git push origin "$BRANCH"
 
-          TITLE="Calibration review needed: $(ls engine/PENDING_REVIEW | tr '\n' ' ')"
-          BODY_FILE="$(ls engine/PENDING_REVIEW/*.md | head -1)"
+          # Newest report first — `ls` alphabetical once picked a STALE report (the
+          # 13-Jul EG breaks note) as the PR body for an unrelated AE failure.
+          TITLE="Calibration review needed: $(ls -t engine/PENDING_REVIEW | head -3 | tr '\n' ' ')"
+          BODY_FILE="$(ls -t engine/PENDING_REVIEW/*.md | head -1)"
 
           # gh pr create with GITHUB_TOKEN silently fails if the repo/account setting
           # "Allow GitHub Actions to create and approve pull requests" is off. Fall back
