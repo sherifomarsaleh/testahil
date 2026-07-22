@@ -140,7 +140,11 @@ EGYPT = MarketProfile(
         "side-effect: CCAP's OWN verdict moved PASS -> BOUNDARY(PARITY-flagged) (skill +0.0906, still "
         "positive, CI[0.006,0.207] -- straddles the boundary, not a sign flip), which is why the "
         "materiality gate correctly stopped for review rather than auto-committing. Market panel: "
-        "PASS +0.0259 CI[0.017,0.036], materially the same as pre-CLHO."),
+        "PASS +0.0259 CI[0.017,0.036], materially the same as pre-CLHO. "
+        "UPDATE 22-Jul-2026: DSCW added (29 -> 30 names, 462 -> 478 windows under the "
+        "adopted 2022-03-21 break cut below). NOT material by itself - nu and cal "
+        "UNCHANGED at 4.0/0.972. DSCW itself: skill +0.0117, BOUNDARY(PARITY-flagged) "
+        "CI[-0.007,+0.027] - unremarkable, inside the existing PARITY/BOUNDARY range."),
     # EGYPT BREAKS RE-DERIVED, 13-Jul-2026 (Sherif: "devaluation is a way of life in
     # Egypt, even sharp ones") -- and he is right, which changes the answer.
     #
@@ -278,7 +282,7 @@ UAE = MarketProfile("AE", "UAE (ADX/DFM)", FED_SCHEDULE, 0.0365,
     "Carry = USD/Fed policy path (AED hard-pegged); rf_live 3.65% = CBUAE Base Rate held "
     "17-Jun-2026. NB the peg 'never-UST' rule governs the VALUATION rf (AED govt bond) -- "
     "the MC carry correctly tracks the Fed for a pegged currency.", "rev_1m", -1, 0.06, False,
-    nu=10.0, width_cal=1.049,
+    nu=10.0, width_cal=1.028,
     fit_meta=(
         "REFIT 11-Jul-2026 on the 14-name AE panel (237 post-break windows), RE-RUN "
         "through the data-quality gate - supersedes nu=4/cal=1.070. Adds "
@@ -297,7 +301,26 @@ UAE = MarketProfile("AE", "UAE (ADX/DFM)", FED_SCHEDULE, 0.0365,
         "CI[-0.004,+0.015]. Per-name: ALPHADHABI robust FAIL -0.0122 (cone 1.136x "
         "benchmark, cov90=0.94 vs a 0.90 target - over-wide, same signature as "
         "KR/LGES); all 13 others PARITY. Signal OFF; 14 names now clears the "
-        "threshold for a rev_1m ablation."),
+        "threshold for a rev_1m ablation. "
+        "UPDATE 22-Jul-2026: BURJEEL/DEWA/LULU/SALIK added (14 -> 18 names, 237 -> 274 "
+        "windows); ADIBUAE removed as a byte-identical duplicate of ADIB that was "
+        "double-weighting ADIB's windows in every pooled and LONO fit (cmp-verified, "
+        "not a data change). nu unchanged at 10; cal 1.049 -> 1.028 (narrower - the "
+        "four new names are well-behaved). Panel PARITY +0.0033 CI[-0.005,+0.013]. "
+        "MATERIALITY: two verdicts changed, both reviewed before merge (PR #13). "
+        "ALPHADHABI: robust FAIL -0.0122 -> PARITY -0.0094 CI[-0.022,0.0] - removing "
+        "the double-counted ADIB windows and adding four well-behaved names both moved "
+        "the panel-average vol enough to bring ALPHADHABI's own cone back to a "
+        "defensible width; no longer a robust FAIL under blocks {2,3,4}. ADCB: PARITY "
+        "-> BOUNDARY(PARITY-flagged), skill +0.0259 CI[0.001,0.067] - straddles the "
+        "boundary, not a sign flip; flagged for the next grade (ADCB is the bank "
+        "reference-study exemplar, worth watching). New names: BURJEEL PARITY +0.0099, "
+        "SALIK PARITY -0.0139, DEWA BOUNDARY(PARITY-flagged) -0.0056. LULU: only 2 "
+        "non-overlapping windows since its Nov-2024 IPO - too thin for the robust "
+        "{2,3,4}-block standard (block=3 has no valid start); verdict is "
+        "PROVISIONAL(insufficient-windows) under the now-fixed verdict_ci (previously "
+        "this crashed the entire daily AE run; see panel_refresh.py NOBLOCK fix, same "
+        "PR). Re-resolves automatically once LULU accrues >=4 windows."),
     breaks=["2022-01-01"], notes=("Workweek switch Jan-2022: vol pool post-2022 only. "
     "CORRECTION 11-Jul-2026: re-run through the data_quality gate (EAND/ADCB/ADIB carried "
     "10 trading-halt rows with O=H=L=C and no volume, which flatten the YZ intraday range "
@@ -370,14 +393,30 @@ METALS = MarketProfile("XAU", "Metals (Gold/Silver, USD)", FED_SCHEDULE, 0.0363,
     "value is spot x exp(rf) — the futures-contango-consistent center; gate-neutral "
     "(same anchor both sides).",
     None, +1, 0.0, False,
-    nu=250.0, width_cal=1.0,
+    nu=20.0, width_cal=1.035,
     fit_meta=("PROVISIONAL single-instrument self-fit 10-Jul-2026 (GOLD, 67 windows "
               "2009-2026): nu=12, cal=1.014 - near-Gaussian, tails far thinner than "
               "EGX (nu=4); the old borrowed t5 was too fat for metals. Verdict "
               "PARITY +0.009 CI[-0.003,+0.028] (near-PASS). Silver shares this fit, "
-              "flagged, until its own OHLC panel exists."),
-    notes="Carry-only. Shape/width fitted on the gold panel; silver SHARES the "
-          "metals fit until its own OHLC panel exists (flagged).")
+              "flagged, until its own OHLC panel exists. "
+              "UPDATE 22-Jul-2026 (PR #13, de-circularization): raw_ohlc/XAG/SILVER.csv "
+              "sat unused under a profile code ('XAG') the unattended loop never reads; "
+              "moved to raw_ohlc/XAU/ so it pools natively under this profile - the FIRST "
+              "time XAU has been a real multi-name panel. Panel: 2 names, 86 windows, "
+              "nu 12->20 / cal 1.014->1.035. MARKET VERDICT PARITY -> PASS +0.0099 "
+              "CI[0.001,0.015]. Per-name via LONO (fit excluding that name's own "
+              "contribution, score it OOS - each metal's FIRST non-circular verdict): "
+              "GOLD PARITY +0.0011, SILVER PASS +0.0181. A cross-code 3-metal pool "
+              "(with platinum: nu=20, cal=0.965, 148w, all PARITY/PASS) was analyzed and "
+              "NOT adopted - hard-coding pooled numbers across profile codes fights the "
+              "per-market refit loop (every future run would flag materiality drift "
+              "against a number that isn't really this profile's own fit). Per the "
+              "standing per-market fit rule, XAU fits its own panel; XPT stays a "
+              "flagged single-name provisional until copper history or an approved "
+              "fit-group mechanism exists."),
+    notes="Carry-only. Shape/width fitted on the pooled GOLD+SILVER panel (2 names, "
+          "de-circularized via LONO as of 22-Jul-2026) - the first non-circular metals "
+          "fit in the system. Still the weakest panel by name-count in Testahil.")
 
 PLATINUM = MarketProfile("XPT", "Platinum (USD)", FED_SCHEDULE, 0.0363,
     "USD cost-of-carry anchor: Fed funds midpoint schedule (q=0, no yield). Same "
