@@ -165,6 +165,14 @@ def build_panel_file(market, name, raw_csv_path, profile):
 def verdict_ci(crps, crps_b, block, n_boot=3000, seed=SEED):
     rng = np.random.default_rng(seed)
     n = len(crps)
+    # A series with fewer windows than the block size cannot be block-bootstrapped at
+    # that block: rng.integers(0, n-block+1) has high<=0 and raises. This is not a
+    # hypothetical — LULU (listed Nov-2024, 2 post-burn-in windows) entered raw_ohlc/AE
+    # and the unattended loop crashed HERE on block=3, which killed the ENTIRE daily
+    # run for every market from 19-Jul-2026 onward (AE is processed first
+    # alphabetically). A thin name must degrade gracefully, never crash the loop.
+    if n < block:
+        return float('nan'), float('nan'), "NOBLOCK"
     boot = []
     for _ in range(n_boot):
         starts = rng.integers(0, n - block + 1, size=int(np.ceil(n / block)))
@@ -180,6 +188,13 @@ def robust_verdict(crps, crps_b):
     A sign flip across block sizes -> BOUNDARY (PARITY-flagged), never FAIL."""
     detail = {b: verdict_ci(crps, crps_b, b) for b in (2, 3, 4)}
     verds = [detail[b][2] for b in (2, 3, 4)]
+    if "NOBLOCK" in verds:
+        # The robust standard (CI < 0 across ALL of blocks {2,3,4}) cannot even be
+        # evaluated when a block cannot run. A too-thin name therefore gets an
+        # explicit PROVISIONAL verdict: never FAIL (the robust bar is unmeetable),
+        # never a silent PARITY (that would overstate the evidence), never a crash.
+        # It re-resolves automatically once the name accrues >=4 windows.
+        return "PROVISIONAL(insufficient-windows)", detail
     if all(v == "FAIL" for v in verds):
         return "FAIL", detail
     if len(set(verds)) > 1:

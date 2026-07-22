@@ -291,7 +291,31 @@ def main():
     exit_code = 0
     for market, files in touched.items():
         print(f"\n=== {market}: {len(files)} file(s) in raw_ohlc/{market}/ ===")
-        result = refresh_market(market, files, files, update_registry=False)
+        # One market's failure must never kill the others. Before this guard, LULU's
+        # 2-window panel crashed the robust-verdict bootstrap inside AE, and because
+        # AE sorts first the WHOLE daily run died with it: no market was refit from
+        # 19-Jul-2026 until the fix, DSCW (EG) sat unprocessed, and the workflow's
+        # failure path shipped junk branches (half-written panels, a stale PR body).
+        # A crashed market is by definition material: report it, exit nonzero, move on.
+        try:
+            result = refresh_market(market, files, files, update_registry=False)
+        except Exception as exc:
+            import traceback
+            tb = traceback.format_exc()
+            print(f"  PIPELINE ERROR — {market} could not be refit: {exc}")
+            if args.apply:
+                os.makedirs(PENDING_DIR, exist_ok=True)
+                p = os.path.join(PENDING_DIR,
+                                 f"{market}_{datetime.date.today().isoformat()}-ERROR.md")
+                with open(p, 'w') as f:
+                    f.write(f"# PENDING REVIEW — {market} — PIPELINE ERROR — "
+                            f"{datetime.date.today().isoformat()}\n\n"
+                            f"auto_refresh.py could not refit this market. Production was "
+                            f"NOT touched. Other markets continued normally.\n\n"
+                            f"```\n{tb}```\n")
+                print(f"  -> wrote {p}")
+            exit_code = 1
+            continue
         incumbent_profile = PROFILES[market]
         incumbent_registry = reg.get(market, {})
         material, reasons, added = assess_materiality(market, result, incumbent_profile,
