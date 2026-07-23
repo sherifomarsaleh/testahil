@@ -387,13 +387,13 @@ QATAR = MarketProfile("QA", "Qatar (QE)",
               "banner decision = separately-initiated publish step)."),
     notes="Thin literature: carry-only until a ~5-name Qatar panel exists.")
 
-METALS = MarketProfile("XAU", "Metals (Gold/Silver, USD)", FED_SCHEDULE, 0.0363,
+METALS = MarketProfile("XAU", "Metals (Gold/Silver/Platinum, USD)", FED_SCHEDULE, 0.0363,
     "USD cost-of-carry anchor: Fed funds midpoint schedule (q=0, no dividend). "
     "Documented assumption: the carry-anchored null for a zero-yield USD store of "
     "value is spot x exp(rf) — the futures-contango-consistent center; gate-neutral "
     "(same anchor both sides).",
     None, +1, 0.0, False,
-    nu=20.0, width_cal=1.035,
+    nu=20.0, width_cal=0.965,
     fit_meta=("PROVISIONAL single-instrument self-fit 10-Jul-2026 (GOLD, 67 windows "
               "2009-2026): nu=12, cal=1.014 - near-Gaussian, tails far thinner than "
               "EGX (nu=4); the old borrowed t5 was too fat for metals. Verdict "
@@ -413,29 +413,44 @@ METALS = MarketProfile("XAU", "Metals (Gold/Silver, USD)", FED_SCHEDULE, 0.0363,
               "against a number that isn't really this profile's own fit). Per the "
               "standing per-market fit rule, XAU fits its own panel; XPT stays a "
               "flagged single-name provisional until copper history or an approved "
-              "fit-group mechanism exists."),
-    notes="Carry-only. Shape/width fitted on the pooled GOLD+SILVER panel (2 names, "
-          "de-circularized via LONO as of 22-Jul-2026) - the first non-circular metals "
-          "fit in the system. Still the weakest panel by name-count in Testahil.")
+              "fit-group mechanism exists. "
+              "UPDATE 23-Jul-2026 (3-metal pool adopted the CLEAN way): PR #13's "
+              "objection to the pooled fit was hard-coding pooled numbers across "
+              "profile CODES. Resolved by MOVING raw_ohlc/XPT/PLATINUM.csv -> "
+              "raw_ohlc/XAU/PLATINUM.csv, so XAU is now a genuine 3-name market and "
+              "the per-market refit loop computes nu=20 / cal=0.965 NATIVELY every run "
+              "(no hard-coding, no cross-code drift flag). Panel: 3 names, 148 windows. "
+              "MARKET PARITY +0.0020 CI[-0.007,+0.009]. Per-name LONO: GOLD PARITY "
+              "+0.0013, SILVER PASS +0.0124, PLATINUM PARITY -0.0114. Published 90% "
+              "cone: gold -6.8% (cal 1.035->0.965), platinum +12.5% (was nu=Gaussian/"
+              "cal=0.853 under the retired XPT self-fit) - both material, hence this "
+              "went through the PR gate, not an auto-commit. XPT profile retired "
+              "(repointed to this pooled fit); platinum.html must be republished off "
+              "this cone as a separate step."),
+    notes="Carry-only. Shape/width fitted on the pooled GOLD+SILVER+PLATINUM panel "
+          "(3 names, de-circularized via LONO as of 23-Jul-2026) - silver PASSES "
+          "leave-one-metal-out, and gold's original self-fit circularity is fully "
+          "lifted. Still the weakest panel by name-count in Testahil, but no longer "
+          "circular and no longer single-instrument.")
 
 PLATINUM = MarketProfile("XPT", "Platinum (USD)", FED_SCHEDULE, 0.0363,
     "USD cost-of-carry anchor: Fed funds midpoint schedule (q=0, no yield). Same "
     "documented assumption as METALS: the carry-anchored null for a zero-yield USD "
     "store of value is spot x exp(rf); gate-neutral (same anchor both sides).",
     None, +1, 0.0, False,
-    nu=250.0, width_cal=0.853,
-    fit_meta=("PROVISIONAL single-instrument self-fit 20-Jul-2026 (PLATINUM, 62 windows "
-              "2012-2026, production chain, reproduction check vs live gold registry EXACT: "
-              "67 windows, +0.0035, CI[-0.005,+0.013]): nu=Gaussian (MLE scale 0.790 -> "
-              "width_cal 0.853, clip floor 0.85 active). Verdict PARITY -0.0004 "
-              "CI[-0.009,+0.009] robust {2,3,4}. De-circularized cross-check (fit "
-              "gold+silver, score platinum OOS): PARITY -0.0114 CI[-0.032,+0.009]. "
-              "Borrowed live METALS (Gaussian/1.0): PARITY -0.0094. Pooled 3-metal fit "
-              "(nu=20, cal=0.965, 148 windows) is the likely future config once metals "
-              "pool - NOT adopted (per-market fit rule). Platinum does NOT arrive "
-              "failing. Step-0.0 gate: 4041->4032 rows, 260.0 rows/yr = metals Mon-Fri "
-              "calendar, zero corporate-action repairs."),
-    notes="Carry-only. Single-name PROVISIONAL self-fit, flagged circular like gold's "
-          "first fit; metals remain the weakest calibration in the system.")
+    nu=20.0, width_cal=0.965,
+    fit_meta=("RETIRED 23-Jul-2026 as a standalone market: PLATINUM now pools under the "
+              "XAU metals profile (its raw CSV moved to raw_ohlc/XAU/PLATINUM.csv). This "
+              "profile is repointed to the pooled 3-metal fit (nu=20, cal=0.965) purely "
+              "so any lingering reference to code 'XPT' returns numbers consistent with "
+              "the pool rather than the stale single-name self-fit; XPT is no longer in "
+              "the active refit loop (raw_ohlc/XPT/ is empty). Platinum's own LONO "
+              "verdict on the 3-metal panel is PARITY -0.0114 CI[-0.032,+0.009]. "
+              "HISTORY (standalone self-fit, 20-Jul-2026): 62 windows 2012-2026, "
+              "nu=Gaussian / cal=0.853 (clip floor active), PARITY -0.0004; that fit "
+              "was circular (self-scored) - the pool removes the circularity."),
+    notes="RETIRED standalone; folded into the XAU 3-metal pool 23-Jul-2026. Kept in "
+          "PROFILES only so code 'XPT' references resolve to the pooled fit; drop once "
+          "platinum.html is republished off the XAU cone.")
 
 PROFILES = {p.code: p for p in [EGYPT, SAUDI, USA, UK, BRAZIL, KOREA, UAE, INDIA, QATAR, METALS, PLATINUM]}
