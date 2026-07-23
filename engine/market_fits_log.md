@@ -360,3 +360,15 @@ Market panel verdict: skill=-0.0004 CI90=[-0.012, 0.006] **PARITY**
 | Name | nu | width_cal | skill | verdict |
 |---|---|---|---|---|
 | PLATINUM | Gaussian | 0.853 | -0.0004 | PARITY |
+
+## XAU (Metals (Gold/Silver, USD)) — refit 2026-07-23
+Gate basis: scale-normalized (crps/spot) — primary since 11-Jul-2026
+Panel: 3 names (GOLD, PLATINUM, SILVER), 148 pooled windows.
+Production fit: nu=20.0, width_cal=0.965 (mle_scale=0.95).
+Market panel verdict: skill=+0.0020 CI90=[-0.007, 0.009] **PARITY**
+
+| Name | nu | width_cal | skill | verdict |
+|---|---|---|---|---|
+| GOLD | 15.0 | 0.93 | +0.0013 | PARITY |
+| PLATINUM | 20.0 | 1.035 | -0.0114 | PARITY |
+| SILVER | Gaussian | 0.93 | +0.0124 | PASS |
