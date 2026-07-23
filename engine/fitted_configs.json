@@ -698,6 +698,8 @@
       "AGTHIA",
       "ALDAR",
       "ALPHADHABI",
+      "BURJEEL",
+      "DEWA",
       "DIB",
       "EAND",
       "EMAAR",
@@ -705,18 +707,20 @@
       "ENBD",
       "FAB",
       "IHC",
+      "LULU",
+      "SALIK",
       "TWOPOINTZERO"
     ],
-    "windows": 237,
+    "windows": 274,
     "nu": 10.0,
-    "width_cal": 1.049,
+    "width_cal": 1.028,
     "mle_scale": 1.07,
     "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
-    "market_skill": 0.0049,
+    "market_skill": 0.0033,
     "market_skill_raw_basis": 0.005,
     "market_ci90": [
-      -0.004,
-      0.015
+      -0.005,
+      0.013
     ],
     "market_verdict": "PARITY",
     "top_name_weight_share": 0.1,
@@ -725,119 +729,141 @@
     "per_name": {
       "ADCB": {
         "nu": 10.0,
-        "width_cal": 1.063,
-        "skill": 0.0228,
-        "skill_raw_basis": 0.0246,
-        "verdict": "PARITY",
+        "width_cal": 1.035,
+        "skill": 0.0259,
+        "skill_raw_basis": 0.0278,
+        "verdict": "BOUNDARY(PARITY-flagged)",
         "ci_block2": [
-          -0.0,
-          0.059
+          0.001,
+          0.067
         ]
       },
       "ADIB": {
         "nu": 12.0,
-        "width_cal": 1.035,
-        "skill": 0.0051,
-        "skill_raw_basis": 0.0084,
+        "width_cal": 1.014,
+        "skill": 0.0042,
+        "skill_raw_basis": 0.0066,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.007,
-          0.022
+          -0.006,
+          0.023
         ]
       },
       "ADNOCGAS": {
         "nu": 10.0,
-        "width_cal": 1.063,
-        "skill": -0.0043,
-        "skill_raw_basis": -0.0043,
+        "width_cal": 1.042,
+        "skill": 0.0024,
+        "skill_raw_basis": 0.0026,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.016,
-          0.012
+          -0.01,
+          0.023
         ]
       },
       "AGTHIA": {
         "nu": 10.0,
-        "width_cal": 1.049,
-        "skill": 0.0073,
-        "skill_raw_basis": 0.0051,
+        "width_cal": 1.028,
+        "skill": 0.0068,
+        "skill_raw_basis": 0.0043,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.009,
+          -0.01,
           0.027
         ]
       },
       "ALDAR": {
-        "nu": 8.0,
-        "width_cal": 1.035,
-        "skill": -0.0102,
-        "skill_raw_basis": -0.0152,
+        "nu": 10.0,
+        "width_cal": 1.014,
+        "skill": -0.0105,
+        "skill_raw_basis": -0.0154,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.028,
-          0.019
+          -0.029,
+          0.02
         ]
       },
       "ALPHADHABI": {
         "nu": 10.0,
-        "width_cal": 1.063,
-        "skill": -0.0139,
-        "skill_raw_basis": -0.0135,
-        "verdict": "FAIL",
+        "width_cal": 1.035,
+        "skill": -0.0094,
+        "skill_raw_basis": -0.0088,
+        "verdict": "PARITY",
         "ci_block2": [
-          -0.032,
-          -0.003
+          -0.022,
+          0.0
+        ]
+      },
+      "BURJEEL": {
+        "nu": 10.0,
+        "width_cal": 1.028,
+        "skill": 0.0099,
+        "skill_raw_basis": 0.0081,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.009,
+          0.025
+        ]
+      },
+      "DEWA": {
+        "nu": 10.0,
+        "width_cal": 1.035,
+        "skill": -0.0056,
+        "skill_raw_basis": -0.0057,
+        "verdict": "BOUNDARY(PARITY-flagged)",
+        "ci_block2": [
+          -0.018,
+          0.003
         ]
       },
       "DIB": {
-        "nu": 15.0,
-        "width_cal": 1.035,
-        "skill": -0.0014,
-        "skill_raw_basis": 0.0009,
+        "nu": 12.0,
+        "width_cal": 1.021,
+        "skill": -0.0019,
+        "skill_raw_basis": -0.0002,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.021,
-          0.006
+          -0.017,
+          0.004
         ]
       },
       "EAND": {
         "nu": 10.0,
-        "width_cal": 1.063,
-        "skill": 0.0022,
-        "skill_raw_basis": 0.0048,
+        "width_cal": 1.035,
+        "skill": 0.0049,
+        "skill_raw_basis": 0.0064,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.017,
-          0.035
+          -0.015,
+          0.039
         ]
       },
       "EMAAR": {
         "nu": 10.0,
-        "width_cal": 1.035,
-        "skill": 0.005,
-        "skill_raw_basis": 0.0106,
+        "width_cal": 1.021,
+        "skill": 0.0035,
+        "skill_raw_basis": 0.0093,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.005,
-          0.012
+          -0.006,
+          0.011
         ]
       },
       "EMAARDEV": {
         "nu": 8.0,
-        "width_cal": 1.056,
-        "skill": 0.0005,
-        "skill_raw_basis": 0.0021,
+        "width_cal": 1.035,
+        "skill": -0.0011,
+        "skill_raw_basis": 0.0003,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.012,
+          -0.015,
           0.014
         ]
       },
       "ENBD": {
-        "nu": 8.0,
-        "width_cal": 1.056,
-        "skill": 0.0015,
-        "skill_raw_basis": -0.0018,
+        "nu": 10.0,
+        "width_cal": 1.028,
+        "skill": 0.0018,
+        "skill_raw_basis": -0.0012,
         "verdict": "PARITY",
         "ci_block2": [
           -0.014,
@@ -846,40 +872,62 @@
       },
       "FAB": {
         "nu": 10.0,
-        "width_cal": 1.042,
-        "skill": -0.0065,
-        "skill_raw_basis": -0.013,
+        "width_cal": 1.021,
+        "skill": -0.0071,
+        "skill_raw_basis": -0.0143,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.028,
-          0.038
+          -0.031,
+          0.042
         ]
       },
       "IHC": {
         "nu": 12.0,
-        "width_cal": 1.056,
-        "skill": 0.0474,
-        "skill_raw_basis": 0.0046,
+        "width_cal": 1.035,
+        "skill": 0.0469,
+        "skill_raw_basis": 0.0068,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.273,
-          0.097
+          -0.254,
+          0.094
+        ]
+      },
+      "LULU": {
+        "nu": 10.0,
+        "width_cal": 1.035,
+        "skill": -0.1142,
+        "skill_raw_basis": -0.1083,
+        "verdict": "PROVISIONAL(insufficient-windows)",
+        "ci_block2": [
+          -0.114,
+          -0.114
+        ]
+      },
+      "SALIK": {
+        "nu": 10.0,
+        "width_cal": 1.035,
+        "skill": -0.0139,
+        "skill_raw_basis": -0.0179,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.05,
+          0.02
         ]
       },
       "TWOPOINTZERO": {
         "nu": 10.0,
-        "width_cal": 1.049,
+        "width_cal": 1.028,
         "skill": 0.0007,
-        "skill_raw_basis": 0.0036,
+        "skill_raw_basis": 0.0027,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.013,
+          -0.011,
           0.015
         ]
       }
     },
     "fit_meta": "REFIT 11-Jul-2026 on the 14-name AE panel (237 post-break windows), RE-RUN through the data-quality gate - supersedes nu=4/cal=1.070. Adds ADIB/DIB/TWOPOINTZERO/EAND to the prior 10. Tail moves 4 -> 10: the old fat tail was carried by IHC/EMAAR idiosyncratic swings on a smaller panel; four more well-behaved names dilute it. HONESTY NOTE: nu is only WEAKLY IDENTIFIED - every nu from 5 to Gaussian sits inside the 95% likelihood interval (nu=4 is only dlogL=2.23 away), and nu trades off against cal. The (nu,cal) PAIR is fitted; neither coordinate is individually precise. LONO OOS: this MLE config scores +0.0032 vs the incumbent's -0.0017. Data-quality gate dropped 3-5 stale no-trade rows each from EAND/ADCB/ADIB - immaterial (cal 1.056 -> 1.049, nu unchanged). BREAK FILTERING APPLIED: EAND's OHLC starts 2016, so 21 of its 39 windows predate the Jan-2022 workweek switch and are excluded from the calibration sample; unfiltered they pulled the fit to nu=6/cal=1.084. Panel PARITY +0.0049 CI[-0.004,+0.015]. Per-name: ALPHADHABI robust FAIL -0.0122 (cone 1.136x benchmark, cov90=0.94 vs a 0.90 target - over-wide, same signature as KR/LGES); all 13 others PARITY. Signal OFF; 14 names now clears the threshold for a rev_1m ablation.",
-    "auto_refreshed": "2026-07-19"
+    "auto_refreshed": "2026-07-23"
   },
   "IN": {
     "market": "IN",
