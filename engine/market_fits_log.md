@@ -360,3 +360,28 @@ Market panel verdict: skill=-0.0004 CI90=[-0.012, 0.006] **PARITY**
 | Name | nu | width_cal | skill | verdict |
 |---|---|---|---|---|
 | PLATINUM | Gaussian | 0.853 | -0.0004 | PARITY |
+
+## EG — ADAPTIVE PER-STOCK WIDTH OVERLAY ADOPTED, 23-Jul-2026 (OVERLAY, not a refit)
+Not a (nu, width_cal) refit: the EG pooled fit is UNCHANGED at **nu=4.0, width_cal=0.972**. This
+records adoption of an ONLINE per-stock WIDTH OVERLAY (`engine/adaptive_width.py`) layered on top of
+the pooled fit for LIVE EG forecasts only. Drift (pure carry) and tail nu are untouched.
+
+- **What**: per-name multiplier `m_raw=clip(sqrt(EWMA_0.85(u^2)),0.7,1.5)`, gentled+dead-zoned
+  `mult=1+0.5*sign(m_raw-1)*max(0,|m_raw-1|-0.10)`, learned online from each name's own resolved 60d
+  residuals. Walk-forward safe (a window enters only once resolved).
+- **Promotion (30-name EG panel, strict LONO / held-out FINAL, block bootstrap {2,3,4}Q)**: proper
+  score **PARITY** — log-CRPS 0.0154 -> 0.0152 (zero cost, robust across block sizes); calibration
+  **improves** — pooled |std_u-1| 0.096 -> 0.069, cov90 0.903 -> 0.893 (both in-band), 24/30 names
+  closer to std_u=1. Passed the SAME gate that rejected the CRPS-selection and Amihud/dynamic-DoF ideas.
+- **Targets the over-coverage failure mode** the system's robust FAILs show (LGES/ALPHADHABI: cov90~1.00,
+  PIT well-centred) — not mis-centring, just cones too wide for names whose own vol is below panel average.
+- **History-gated** (`adaptive_width.MIN_WINDOWS=28`): inert (mult=1.0) below 28 resolved windows. The
+  current `raw_ohlc/EG` (~5yr, ~17 windows/name) is in the over-correction regime, so the overlay is
+  presently **DORMANT on the live library**; it activates per name only once that name's long (~10-15yr)
+  history is loaded into `raw_ohlc/EG`.
+- **Scope / going-forward**: EG only; every other market runs mult=1.0 until it clears the same gate on
+  its own panel. Cohorts anchored on/after adoption only; published cohorts NEVER retro-fitted. Going live
+  is a reviewed-PR / materiality step (moves some published 90% cones >5%).
+- **Verified by import**: `adaptive_width.py` reproduces the validated live multipliers on the long
+  histories (ISPH m_raw 0.924 -> mult 1.000 dead-zone; ORHD 0.753 -> 0.926) and is dormant on the 5yr
+  production library.

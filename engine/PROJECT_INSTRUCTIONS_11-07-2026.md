@@ -42,3 +42,21 @@ VERIFY BY IMPORT, NOT BY PARSE. market_profiles.py must be checked by actually I
 RESPONSE STYLE: 3–4 sentences max, no preamble, lead with the answer. Expand only if asked.
 
 TOP OPEN ITEM: a NAME-LEVEL width_cal shrunk toward the market fit — the real fix for the "bands are too broad" complaint. The current robust FAILs fail for the SAME reason and it is NOT mis-centring: they are OVER-COVERED (one name had cov80=1.00 and cov90=1.00 — every outcome inside the 80% band — with a PIT of 0.471, perfectly centred). A market-level cone over-widens any name whose own vol sits below the panel average. PROPOSED, NOT BUILT — must clear the same LONO gate that killed the CRPS-selection idea. Also open: the engine's per-origin vol estimation is still not break-aware; metals needs silver/copper history.
+
+---
+## ADDENDUM 23-Jul-2026 — ADAPTIVE PER-STOCK WIDTH OVERLAY (a RULE, EG-only)
+On top of the pooled per-market (nu, width_cal), EG now runs an ONLINE PER-STOCK WIDTH OVERLAY
+(engine/adaptive_width.py): a per-name multiplier learned from each name's OWN resolved 60d
+residuals — m_raw=clip(sqrt(EWMA_0.85(u^2)),0.7,1.5), gentled+dead-zoned
+mult=1+0.5*sign(m_raw-1)*max(0,|m_raw-1|-0.10). It is an OVERLAY, never a refit: pooled (nu,
+width_cal) and the Step-0 gate are UNCHANGED; drift stays pure carry; tail nu untouched. It fixes
+the OVER-COVERAGE failure mode (a name whose own vol sits below the panel average gets too wide a
+cone — LGES/ALPHADHABI). PROMOTED on the 30-name EG LONO gate at proper-score PARITY (zero CRPS
+cost) with improved per-name calibration (pooled |std_u-1| 0.096->0.069; 24/30 names closer to 1).
+Activation is the per-profile flag width_overlay_active; EG-ONLY — every other market runs mult=1.0
+until it clears the SAME gate on its own panel. HISTORY-GATED (inert below ~28 resolved windows):
+the live ~5yr raw_ohlc/EG is in the over-correction regime, so the overlay is DORMANT until each
+name's long history is loaded. GOING-FORWARD only — published cohorts are never retro-fitted.
+NB: the live condensed custom-instructions block (authoritative) should carry this rule under MC
+ENGINE, and its "TOP OPEN ITEM: a NAME-LEVEL width_cal shrunk toward the market fit" line is now
+"ADOPTED for EG (history-gated, dormant until long histories load); pending per-market gates elsewhere."

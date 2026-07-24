@@ -134,6 +134,41 @@ incumbent's −0.0017). Tested honestly leave-one-name-out on two markets, it **
 revive.** What the exercise established was that the incumbent *configs* were stale, not that the
 *procedure* was wrong.
 
+### [NEW 23-Jul] ADAPTIVE PER-STOCK WIDTH OVERLAY — adopted, EG-only, going-forward
+
+The long-standing open item — a **name-level `width_cal` shrunk toward the market fit** — is now
+**built and adopted for Egypt** as an ONLINE overlay (`engine/adaptive_width.py`): the first idea in
+the whole MC-improvement program to *clear* the promotion gate rather than die on it.
+
+**What.** A per-name multiplier on the market cone width, learned online from that name's OWN
+resolved 60-day residuals: `m_raw = clip(sqrt(EWMA_0.85(u²)), 0.7, 1.5)`, then gentled + dead-zoned,
+`mult = 1 + 0.5·sign(m_raw−1)·max(0, |m_raw−1| − 0.10)`. It corrects the **over-coverage** failure
+mode — a name whose own volatility sits below the panel average is handed a market cone too wide for
+it (LGES, ALPHADHABI: `cov90 ≈ 1.00` with a well-centred PIT). Walk-forward safe: a 60d window only
+enters the estimate once it has resolved.
+
+**Overlay, NOT a refit.** The pooled (ν, width_cal) are **unchanged** and keep driving the Step-0
+gate; drift stays pure carry; the tail ν is untouched. Turn the per-profile flag off and the engine
+is bit-for-bit the prior production engine.
+
+**Promotion evidence** (30-name EG panel, strict LONO / held-out FINAL, block bootstrap {2,3,4}Q):
+proper score **PARITY** — log-CRPS `0.0154 → 0.0152`, robust across block sizes, **zero cost** (this
+is deliberately *not* a CRPS gain); calibration **improves** — pooled `|std_u−1| 0.096 → 0.069`,
+`cov90 0.903 → 0.893` (both in-band), **24/30** names closer to `std_u = 1`. It passed the SAME gate
+that killed the CRPS-selection idea and the Amihud/dynamic-DoF arm.
+
+**History-gated (safety).** The overlay over-corrects on short (~5yr) history and only behaves on
+long (~10–15yr) history, so it is **inert (mult = 1.0) below ~28 resolved windows** (`adaptive_width.
+MIN_WINDOWS`). The current `raw_ohlc/EG` library is mostly ~5yr (~17 windows/name), so the overlay is
+**presently DORMANT on the live library** — merging it changes nothing until each name's long history
+is loaded into `raw_ohlc/EG`. Below the floor it is exact baseline, which is always safe.
+
+**Scope / going-forward.** EG only; every other market runs mult = 1.0 until it clears the SAME gate
+on its own panel. Applies to cohorts anchored on/after adoption — **published cohorts are never
+retro-fitted** (append-only). Turning it live for a market is a **reviewed-PR / materiality** step,
+because it moves some published 90% cones by >5% (measured on the cone a reader sees, not on ν and
+width_cal separately).
+
 ### [NEW 13-Jul] MAXIMUM AVAILABLE HISTORY — standing rule, decided against a real alternative
 
 **Always calibrate on the maximum available history for a market — 5, 10, 15 years, whatever the
@@ -493,13 +528,16 @@ harmless staleness.
 
 ## OPEN ITEMS (honestly ranked)
 
-1. **Name-level `width_cal`, shrunk toward the market fit.** This is the real answer to the
-   "bands are too broad" complaint, and it is *proposed, not built*. Both current robust FAILs
-   fail for the SAME reason and it is **not** mis-centring — they are **over-covered**:
-   LGES has `cov80 = 1.00` and `cov90 = 1.00` (every single outcome inside the 80% band), a cone
-   1.11× the benchmark, and a PIT of 0.471 (perfectly centred). ALPHADHABI is the same shape.
-   A market-level cone **over-widens any name whose own volatility sits below the panel average**.
-   Must clear the same LONO gate that killed the CRPS-selection idea.
+1. **[ADOPTED 23-Jul — EG; see "ADAPTIVE PER-STOCK WIDTH OVERLAY" above] Name-level `width_cal`,
+   shrunk toward the market fit.** The real answer to the "bands are too broad" complaint is now
+   **built and adopted for Egypt** as an online overlay (`engine/adaptive_width.py`): it cleared the
+   30-name LONO gate at proper-score **PARITY (zero CRPS cost)** while improving per-name calibration
+   (pooled `|std_u−1| 0.096 → 0.069`, 24/30 names closer to 1). It targets exactly the **over-coverage**
+   both robust FAILs show — LGES `cov80 = cov90 = 1.00`, cone 1.11× the benchmark, PIT 0.471 (perfectly
+   centred); ALPHADHABI the same shape — a market cone **over-widening any name whose own vol sits below
+   the panel average**. *Remaining:* it is EG-only and currently **DORMANT** on the live 5yr `raw_ohlc/EG`
+   (history-gated) — activation needs the long EG histories loaded; every other market needs the same
+   LONO gate on its own panel before the flag is turned on there.
 2. **Break-aware volatility estimation inside the engine** (currently only the calibration sample
    is filtered). Moves every published distribution — a deliberate decision, not a silent fix.
 3. **Metals is the weakest calibration in the system — say so plainly.** Gold is a **single-name

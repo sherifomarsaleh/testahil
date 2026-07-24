@@ -34,6 +34,18 @@ CI to sit entirely below zero ROBUSTLY across block sizes {2,3,4} (10k draws,
 50k paths). A verdict that flips sign with the block choice is BOUNDARY ->
 recorded as PARITY with a flag, reviewed at the name's next live grade.
 (ALINMA is the current boundary case.)
+
+WIDTH-OVERLAY RULE (23-Jul-2026): on TOP of the pooled (nu, width_cal), a market
+may run an ONLINE PER-STOCK WIDTH OVERLAY (engine/adaptive_width.py) that scales
+width_cal per name from that name's OWN resolved 60d residuals — correcting a name
+whose own vol sits off the panel average (the OVER-COVERAGE failure mode: LGES,
+ALPHADHABI). It is an OVERLAY, NEVER a refit: the pooled (nu, width_cal) and the
+Step-0 gate are untouched, and drift stays pure carry. Activation is per-profile
+(width_overlay_active) and EG-ONLY for now — EG cleared the 30-name LONO gate at
+proper-score PARITY (zero CRPS cost) with improved per-name calibration; every
+other market runs mult=1.0 until it clears the SAME gate on its own panel
+(promotion rule). HISTORY-GATED (inert on short history, which over-corrects) and
+GOING-FORWARD only (published cohorts are never retro-fitted).
 """
 from dataclasses import dataclass, field
 from typing import Optional, List, Tuple
@@ -58,6 +70,8 @@ class MarketProfile:
     fit_meta: str = ""               # provenance of the (nu, width_cal) fit
     breaks: List[str] = field(default_factory=list)
     notes: str = ""
+    width_overlay_active: bool = False   # per-stock ONLINE width overlay (engine/adaptive_width.py); EG-only, 23-Jul-2026
+    width_overlay_meta: str = ""         # provenance of the overlay adoption (RULES/evidence, not a fit)
 
     def carry_rate(self, date) -> float:
         d = pd.Timestamp(date)
@@ -185,6 +199,24 @@ EGYPT = MarketProfile(
     notes=("Literature: no EGX momentum; overreaction/short-term reversal supported "
            "(EGX event studies; Kuwait 1m reversal ~3.1%/mo t≈4.4 as GCC analogue). "
            "Signal sign/IC re-estimated on the 6-name pooled panel each cycle."),
+    width_overlay_active=True,
+    width_overlay_meta=(
+        "ADAPTIVE PER-STOCK WIDTH OVERLAY — ADOPTED 23-Jul-2026, EG ONLY, GOING FORWARD "
+        "(engine/adaptive_width.py). Online per-name multiplier on width_cal, learned from "
+        "each name's OWN resolved 60d residuals: m_raw=clip(sqrt(EWMA_0.85(u^2)),0.7,1.5), "
+        "mult=1+0.5*sign(m_raw-1)*max(0,|m_raw-1|-0.10). OVERLAY ONLY — pooled (nu=4.0, "
+        "width_cal=0.972) and the Step-0 gate are UNCHANGED; drift stays pure carry; tail nu "
+        "untouched. PROMOTION: cleared the 30-name EG LONO/held-out gate — proper score PARITY "
+        "(log-CRPS 0.0154->0.0152, robust across blocks {2,3,4}Q, ZERO cost) while per-name "
+        "calibration improved (pooled |std_u-1| 0.096->0.069; cov90 0.903->0.893 both in-band; "
+        "24/30 names closer to std_u=1). Fixes the OVER-COVERAGE signature behind the system's "
+        "robust FAILs (LGES/ALPHADHABI: cov90~1.00, PIT well-centred). HISTORY-GATED "
+        "(adaptive_width.MIN_WINDOWS=28): INERT (mult=1.0) on the current ~5yr EG raw_ohlc "
+        "(~17 windows/name — the over-correction regime), so merging changes nothing until each "
+        "name's LONG (~10-15yr) history is loaded into raw_ohlc/EG. Applies to cohorts anchored "
+        "on/after adoption; published/graded cohorts are NEVER retro-fitted (append-only). Going "
+        "live is a reviewed-PR/materiality step (moves some published 90% cones >5%). Every OTHER "
+        "market runs mult=1.0 until it clears the SAME gate on its own panel."),
 )
 
 SAUDI = MarketProfile(
