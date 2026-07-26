@@ -99,7 +99,7 @@ EGYPT = MarketProfile(
                     "yield before first EGX publish under v3 — bills have traded above "
                     "the corridor; 19.50% is the conservative sourced floor."),
     signal_type="rev_1m", signal_sign=-1, ic=0.08, signal_active=False,
-    nu=4.0, width_cal=0.972,
+    nu=5.0, width_cal=0.93,
     fit_meta=(
         "REFIT 11-Jul-2026 on the FULL 27-name EG panel (351 post-break windows) - "
         "supersedes the 7-name/115-window fit (nu=4, cal=0.965, signal ON). The fit "
@@ -161,7 +161,25 @@ EGYPT = MarketProfile(
         "does not justify moving a live cone. Do not re-litigate on skill alone; skill "
         "did not decide the break cut originally (devaluation-window coverage did) and "
         "that column has NOT been re-run on patched data. nu and cal UNCHANGED at "
-        "4.0/0.972; the 2022-03-21 cut STANDS."),
+        "4.0/0.972; the 2022-03-21 cut STANDS. "
+        "26-Jul-2026 -- ROUTINE REFIT APPLIED (PR #27, decision Sherif): this is a "
+        "DIFFERENT change from the LONG-sample question above -- same adopted "
+        "2022-03-21+ CURRENT window, just re-fit on the patched, library-extended "
+        "panel (30 names, 492 windows, up from 478). auto_refresh.py flagged it "
+        "material (market verdict PARITY -> PASS) and stopped for review per the "
+        "materiality gate; PR #24 (stale, pre-DQ-patch) was closed unmerged and "
+        "superseded by PR #27, run after the fix/dq-nonpositive-prices patch "
+        "landed on main. nu 4.0 -> 5.0, width_cal 0.972 -> 0.93. Market panel: "
+        "PASS skill +0.0158 CI[0.009,0.023] (does not cross zero). Verdict shifts: "
+        "ABUK/ADIB BOUNDARY->PARITY, CCAP/EFIH/ORWE/PHDC/TMGH ->PASS, "
+        "GBCO/ORHD BOUNDARY-flagged, LCSW/OCDI/ORAS PASS->PARITY, ISPH "
+        "BOUNDARY->FAIL. ISPH is the one name-level FAIL: skill -0.0332, checked "
+        "robust across bootstrap blocks {2,3,4} (reported as a plain FAIL, not "
+        "BOUNDARY, i.e. no block-dependent sign flip) -- a genuine finding, not a "
+        "data artifact of the non-positive-price bug (same FAIL was already present "
+        "on the stale pre-patch run). XAU was unaffected by the DQ bug and its "
+        "PENDING_REVIEW numbers were identical pre- and post-patch, confirming the "
+        "fix was correctly scoped to EG only."),
     # EGYPT BREAKS RE-DERIVED, 13-Jul-2026 (Sherif: "devaluation is a way of life in
     # Egypt, even sharp ones") -- and he is right, which changes the answer.
     #
