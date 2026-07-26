@@ -144,7 +144,24 @@ EGYPT = MarketProfile(
         "UPDATE 22-Jul-2026: DSCW added (29 -> 30 names, 462 -> 478 windows under the "
         "adopted 2022-03-21 break cut below). NOT material by itself - nu and cal "
         "UNCHANGED at 4.0/0.972. DSCW itself: skill +0.0117, BOUNDARY(PARITY-flagged) "
-        "CI[-0.007,+0.027] - unremarkable, inside the existing PARITY/BOUNDARY range."),
+        "CI[-0.007,+0.027] - unremarkable, inside the existing PARITY/BOUNDARY range. "
+        "26-Jul-2026 -- 15-YEAR CALIBRATION SAMPLE: TESTED, NOT ADOPTED (decision, "
+        "Sherif). A 15-year EG library (32 series, 97,756 cleaned sessions, median 15.6 "
+        "yrs) was ingested and the calibration-sample comparison re-run on it. NOTE the "
+        "first run of that comparison was INVALID: data_quality.clean_ohlc corrupted 9 "
+        "of 30 names via non-positive prices (see the step-1b fix in data_quality.py). "
+        "On PATCHED data, identical scoring windows (492, 30 names, post-2022-03-21), "
+        "LONO-cross-fitted: LONG(2011+) nu=6.0/cal=0.909 skill +0.0157; MID(2016+) "
+        "nu=6.0/cal=0.923 +0.0155; CURRENT(2022-03-21+) nu=5.0/cal=0.930 +0.0153. "
+        "LONG beats CURRENT ROBUSTLY across bootstrap blocks {2,3,4} AND survives a "
+        "drop-one-name jackknife (0 flips in 30; top contributor ISPH 18.1%, no name "
+        ">25%) -- i.e. it passes both robustness checks, separately. NOT ADOPTED anyway: "
+        "the published 90% cone (width_cal x q95(t(nu))) moves only -0.65%, an order of "
+        "magnitude inside the 5% materiality gate. A result that is real but immaterial "
+        "does not justify moving a live cone. Do not re-litigate on skill alone; skill "
+        "did not decide the break cut originally (devaluation-window coverage did) and "
+        "that column has NOT been re-run on patched data. nu and cal UNCHANGED at "
+        "4.0/0.972; the 2022-03-21 cut STANDS."),
     # EGYPT BREAKS RE-DERIVED, 13-Jul-2026 (Sherif: "devaluation is a way of life in
     # Egypt, even sharp ones") -- and he is right, which changes the answer.
     #

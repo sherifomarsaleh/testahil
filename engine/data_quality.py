@@ -79,6 +79,32 @@ def clean_ohlc(df, ticker="", verbose=True, market=None):
             df = df[~(df['Vol.'].isna() & (df['High'] == df['Low']))].reset_index(drop=True)
             log.append(f"dropped {interior} interior stale/no-trade rows")
 
+    # --- 1b. drop non-positive OHLC rows ---------------------------------------
+    # A zero or negative price is not a tradeable quote; it is a vendor fill. It MUST
+    # be removed before step 2, because step 2 takes log(price) and divides by it.
+    #
+    # Why this exists (26-Jul-2026, EG 15-year library ingest): 22 rows across 10 of
+    # 32 series carried a zero OHLC value, 7 of them on a single market-wide date
+    # (2013-05-07: CCAP, HRHO, KABO, LCSW, OCDI, OIH, TMGH). Without this guard,
+    # log(0) = -inf trips the artifact threshold, and the repair below computes
+    # factor = p[i+1]/p[i] = x/0 -> inf. The gate then back-adjusted entire histories
+    # by x0.0000 and then by xinf, destroying pre-2013 data for NINE names while
+    # REPORTING SUCCESS. Same failure class as the nu=Gaussian incident: it survives
+    # every check that is not a numerical inspection of the output.
+    #
+    # Interior rows only -- a leading block is already handled by step 1. Dropping
+    # (not interpolating) is deliberate: a session with no valid price contributes no
+    # information, and synthesising one invents a trade that never happened.
+    px = ['Price', 'Open', 'High', 'Low']
+    bad = (df[px] <= 0).any(axis=1) | ~np.isfinite(df[px].astype(float)).all(axis=1)
+    if bad.any():
+        dates = df['Date'][bad]
+        log.append(f"dropped {int(bad.sum())} rows carrying a non-positive or "
+                   f"non-finite OHLC value ({dates.iloc[0].date()}"
+                   f"{'..' + str(dates.iloc[-1].date()) if bad.sum() > 1 else ''}) "
+                   f"— vendor fills, not tradeable prices")
+        df = df[~bad].reset_index(drop=True)
+
     # --- 2. detect + back-adjust unadjusted corporate actions ---
     thr = jump_threshold(market)
     for _ in range(6):  # iterate: repairing one can reveal another
@@ -89,6 +115,12 @@ def clean_ohlc(df, ticker="", verbose=True, market=None):
             break
         i = int(hits[0])                       # index of the day BEFORE the break
         factor = p[i + 1] / p[i]               # scale prior history onto the new basis
+        # Defence in depth: step 1b should make this unreachable, but a factor that is
+        # not finite and strictly positive can only corrupt the series, never repair it.
+        if not np.isfinite(factor) or factor <= 0:
+            log.append(f"ABORTED repair at {df['Date'].iloc[i + 1].date()}: "
+                       f"non-finite/non-positive factor from p={p[i]:.6g}->{p[i+1]:.6g}")
+            break
         d = df['Date'].iloc[i + 1].date()
         for c in ['Price', 'Open', 'High', 'Low']:
             df.loc[:i, c] = df.loc[:i, c] * factor
