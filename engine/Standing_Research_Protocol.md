@@ -16,9 +16,67 @@ study script was found silently scoring windows production excludes).
 
 ## STEP 0 — The calibration gate (before anything else)
 
-5-year walk-forward backtest, h=60 trading days, non-overlapping windows, scored against a
-**carry-anchored** lognormal random-walk benchmark (spot × exp(carry); carry = ln(1+rf) −
-ln(1+q)), so skill isolates signal and width and can never harvest the time-value of money.
+5-year walk-forward backtest, **h = the calendar 3-month horizon** (see *Horizon convention*
+immediately below), non-overlapping windows, scored against a **carry-anchored** lognormal
+random-walk benchmark (spot × exp(carry); carry = ln(1+rf) − ln(1+q)), so skill isolates signal
+and width and can never harvest the time-value of money.
+
+### [CHANGED 27-Jul-2026] Horizon convention — calendar, not session count
+
+**The two published horizons are 1 MONTH and 3 MONTHS, as calendar objects.** This replaces the
+retired T+20 / T+60 session counts for every cohort struck on or after 27-Jul-2026.
+
+    target_date = anchor_date + 1 (or 3) calendar months, month-end clamped
+                  (31-Jan + 1M -> 28/29-Feb)
+    grade_date  = the first REAL trading session on or after target_date on that
+                  exchange's own calendar; weekend/holiday rolls FORWARD, never back
+    h           = the session count spanning that calendar window — NOT a constant
+                  (18-24 for a month, 55-67 for a quarter, by market and anchor)
+
+Why: "T+20" is roughly a month and "T+60" roughly a quarter, but the drift landed in the check
+DATE. Every public holiday pushed it, so a published `grade_date` was routinely 2 sessions wrong
+and needed a manual `grade_note` correction at grade time (PHDC, TMGH and EMFD each carry one). A
+calendar target cannot drift; only which session it lands on can, and by at most a few days.
+
+**GRANDFATHERING IS ABSOLUTE.** Cohorts struck before 27-Jul-2026 keep the horizon they were
+issued on, grade on it, and count in the score exactly as before. Nothing is re-labelled and
+nothing is re-struck — the Calibration Ledger's append-only rule governs, and `horizon_label` is
+the field that records which convention a row belongs to.
+
+**Mechanics live in `engine/horizons.py`** — never hand-computed, never assumed:
+
+- Each market's trading calendar is the UNION of session dates across its whole
+  `raw_ohlc/{MARKET}/` library, passed through Step 0.0 first. Union, not intersection: one name
+  being suspended for a day does not close the exchange.
+- The week-mask is derived empirically per market from recent sessions, so a market that changed
+  its trading week (ADX/DFM moved Sun–Thu → Mon–Fri in Jan-2022) is described by the week it
+  actually keeps now.
+- At publish time the target is in the future, so `h` is PROJECTED — the average of a
+  session-density leg and a same-season median leg. All three candidates were backtested
+  out-of-sample on every market; the blend was adopted because it wins on the loss that matters
+  (cone-width error, since width goes as √h): mean 1.33% vs 1.39% seasonal and 1.51% density,
+  worst cell 2.84%. Sessions-error alone would have picked seasonal — and would have meant
+  selecting a different rule per horizon on the same sample used to score it, which is exactly
+  the failure the PROMOTION RULE names. Worst-case residual sits inside the 5% materiality
+  threshold and touches only the published cone.
+- At GRADE time the projection is discarded. Grading reads the real calendar and grades on the
+  actual first session on or after `target_date`.
+
+**In the gate, `h_grade` and `h_size` are NOT the same number** (`mc_v3.calendar_horizons`). The
+window ENDS where the calendar says (`h_grade`), but the cone is SIZED on a causally projected
+session count (`h_size`) built only from data up to the origin. Using the realized count for both
+would put hindsight in the gate: a name suspended for two of the three months has `h_grade ≈ 6`
+while any live forecaster would still have sized a full quarter, so scoring that outcome against
+a 6-session cone would credit the engine with a cone it could never have drawn. The gap return
+stays in the sample and is scored against the quarter-wide cone that was actually issuable.
+Carry, likewise, now runs on the EXACT calendar year-fraction rather than h/252 — with a calendar
+target the elapsed time is known, so there is no reason to infer it from a session count. (The
+legacy fixed-h path keeps h/252 *and its exact floating-point expression order*, so every panel
+already on disk still reproduces bit-for-bit — verified on EG/AE/QA/SA/KR.)
+
+Panels are namespaced by horizon set (`{MKT}_{NAME}_60d.csv` vs `_3m.csv`) so the retired gate
+stays re-runnable for the grandfathered cohorts and the two calibrations never overwrite each
+other.
 
 **[NEW 11-Jul] Step 0.0 — the data-quality gate runs FIRST, before any calibration.**
 `engine/data_quality.py::clean_ohlc`. No series enters a panel, a fit, or a study without

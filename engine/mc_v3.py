@@ -65,9 +65,25 @@ def har_forecast_v3(v, origin_idx, beta, s2, horizon=60,
 
 
 # ---------------------------------------------------------------- drift
-def carry_log_h(profile, date, q_annual, horizon):
+def carry_log_h(profile, date, q_annual, horizon, yearfrac=None):
+    """Carry drift over the horizon, in log space.
+
+    yearfrac (27-Jul-2026): elapsed time as an exact fraction of a year. Under
+    the calendar horizon convention that is KNOWN — "3 months" is 0.25 of a
+    year by definition — so the session-count proxy horizon/252 is unnecessary
+    there and is only used when yearfrac is not supplied (the legacy fixed-h
+    path, where sessions are all we have). Gate-neutral either way: the engine
+    and the benchmark are handed the same anchor.
+    """
     rf = profile.carry_rate(date)
-    return (np.log1p(rf) - np.log1p(q_annual)) * horizon / 252.0
+    base = np.log1p(rf) - np.log1p(q_annual)
+    if yearfrac is None:
+        # NB the exact expression order of the pre-27-Jul engine is preserved
+        # here on purpose: (base * horizon) / 252 and base * (horizon / 252)
+        # differ in the last floating-point bit, which is enough to break the
+        # bit-for-bit regression against every panel already on disk.
+        return base * horizon / 252.0
+    return base * float(yearfrac)
 
 
 def signal_z(close, idx, kind):
@@ -132,15 +148,74 @@ def simulate_paths_v3(spot, daily_var, horizon, drift_log_h, nu=8.0,
 
 
 # ---------------------------------------------------------------- backtest
+def calendar_horizons(dates, origin_idx, months, density_lookback=252):
+    """Resolve the calendar horizon at one origin. Returns (h_grade, h_size).
+
+    The calendar-anchored convention (adopted 27-Jul-2026) is resolved on THIS
+    SERIES' own sessions, so the window the gate validates ends on the same bar
+    the cohort would actually be graded against. Returns None past end of sample.
+
+    TWO horizons come out of it, and conflating them would put HINDSIGHT in the
+    gate:
+
+      h_grade  sessions from the origin to the first real session on or after
+               origin + N calendar months. This is WHERE the outcome is read —
+               a fact about the calendar, no forecasting involved.
+
+      h_size   the session count used to SIZE the cone (HAR variance, carry).
+               At publish time nobody knows how many sessions the next quarter
+               will actually hold, so the backtest must not know either: h_size
+               is PROJECTED from the series' own trailing session density over
+               the last `density_lookback` bars, using only data up to the
+               origin.
+
+    They differ materially exactly where it matters. A name suspended for two
+    of the three months has h_grade ~6 while a live forecaster would still have
+    sized a full quarter (h_size ~61). Scoring that outcome against a 6-session
+    cone would hand the engine a cone it could never have drawn, and would
+    reward it for a suspension it did not predict. The realized gap return is
+    real and stays in the sample — it is scored against the quarter-wide cone
+    that was actually issuable.
+    """
+    t0 = pd.Timestamp(dates.iloc[origin_idx]).normalize()
+    tgt = t0 + pd.DateOffset(months=int(months))
+    j = int(dates.searchsorted(tgt, side='left'))
+    if j >= len(dates):
+        return None
+    h_grade = j - origin_idx
+
+    lo = max(0, origin_idx - density_lookback)
+    span_days = (t0 - pd.Timestamp(dates.iloc[lo]).normalize()).days
+    if span_days <= 0:
+        h_size = h_grade
+    else:
+        per_day = (origin_idx - lo) / span_days          # causal: <= origin
+        h_size = int(round(per_day * (tgt - t0).days))
+    return h_grade, max(int(h_size), 1)
+
+
 def backtest_v3(df, profile, horizon=60, q_annual=0.0, use_signal=True,
                 nu=None, width_cal=None, n_paths=20000, seed=42,
-                min_history=260, legacy_mode=None):
+                min_history=260, legacy_mode=None, horizon_months=None):
     """Walk-forward, non-overlapping. legacy_mode replicates v2 for the ladder:
       'v2_egx_dev' -> t5, zero carry, expanding-mean secular drift (old EGX dev)
       'v2_zero'    -> t5, zero carry, zero drift (old non-EGX)
     Benchmark is ALWAYS the carry-anchored trailing-vol lognormal RW (new null).
     nu/width_cal default to the profile's own fitted config (standing per-market
     fit rule, 10-Jul-2026) when not passed explicitly.
+
+    horizon_months (27-Jul-2026): when set (1 or 3), the window is the CALENDAR
+    horizon resolved on this series' own sessions and varies per origin, instead
+    of the fixed `horizon` session count. This exists so the gate validates the
+    same object that gets published — under the calendar convention a published
+    "3 months" is 55-67 sessions depending on market and anchor, and a gate
+    frozen at 60 would be scoring a horizon nobody issues. See
+    calendar_horizons() for the h_grade / h_size split that keeps hindsight out
+    of it, and note the carry then runs on the EXACT calendar year-fraction
+    rather than h/252 — with a calendar target the elapsed time is known
+    exactly, so there is no reason to infer it from a session count.
+    `horizon` is ignored when horizon_months is set. Passing neither leaves the
+    legacy fixed-h path bit-for-bit unchanged.
     """
     if nu is None:
         nu = profile.nu if getattr(profile, 'nu', None) else 8.0
@@ -148,13 +223,29 @@ def backtest_v3(df, profile, horizon=60, q_annual=0.0, use_signal=True,
         width_cal = getattr(profile, 'width_cal', 1.0)
     v = yz_variance_proxy(df)
     close = df['Price'].values
+    dates = pd.to_datetime(df['Date']).dt.normalize().reset_index(drop=True)
     n = len(df)
     rows = []
     origin = min_history
-    while origin + horizon < n:
+    h_grade = h_size = horizon
+    yearfrac = None
+    while origin < n:
+        if horizon_months is not None:
+            got = calendar_horizons(dates, origin, horizon_months)
+            if got is None:
+                break
+            h_grade, h_size = got
+            if h_grade < 1:
+                break
+            yearfrac = horizon_months / 12.0
+        else:
+            h_grade = h_size = horizon
+        if origin + h_grade >= n:
+            break
         date = df['Date'].iloc[origin]
         spot = close[origin]
-        y = close[origin + horizon]
+        y = close[origin + h_grade]
+        horizon = h_size          # everything below sizes the cone on h_size
 
         # --- engine drift & width per rung ---
         if legacy_mode is not None:
@@ -172,7 +263,8 @@ def backtest_v3(df, profile, horizon=60, q_annual=0.0, use_signal=True,
             beta, s2 = fit_har_v3(v, origin, horizon=horizon)
             dv = har_forecast_v3(v, origin, beta, s2, horizon=horizon)
             sigma_h = np.sqrt(dv * horizon) * width_cal
-            carry = carry_log_h(profile, date, q_annual, horizon)
+            carry = carry_log_h(profile, date, q_annual, horizon,
+                                yearfrac=yearfrac)
             alpha, z = (signal_alpha(profile, close, origin, sigma_h)
                         if use_signal else (0.0, signal_z(close, origin, profile.signal_type)))
             drift = carry + alpha
@@ -182,7 +274,7 @@ def backtest_v3(df, profile, horizon=60, q_annual=0.0, use_signal=True,
                                     n_paths=n_paths, seed=seed + origin)
 
         # --- carry-anchored benchmark (fixed null across all rungs) ---
-        carry_b = carry_log_h(profile, date, q_annual, horizon)
+        carry_b = carry_log_h(profile, date, q_annual, horizon, yearfrac=yearfrac)
         sig_b = trailing_cc_vol(close, origin) * np.sqrt(horizon)
         rngb = np.random.default_rng(seed + origin + 1)
         bench = spot * np.exp(carry_b + sig_b * rngb.standard_normal(n_paths))
@@ -190,7 +282,9 @@ def backtest_v3(df, profile, horizon=60, q_annual=0.0, use_signal=True,
         q_e = np.percentile(samp, [5, 25, 50, 75, 95])
         q_b = np.percentile(bench, [5, 25, 50, 75, 95])
         rows.append(dict(
-            origin=date, spot=spot, realized=y, z=z, alpha=alpha,
+            origin=date, origin_idx=origin, h=h_size, h_grade=h_grade,
+            grade_date=df['Date'].iloc[origin + h_grade],
+            spot=spot, realized=y, z=z, alpha=alpha,
             drift=drift, sigma_h=sigma_h,
             crps=crps_sample(samp, y), crps_b=crps_sample(bench, y),
             pin50=0.5 * abs(y - q_e[2]), pin50_b=0.5 * abs(y - q_b[2]),
@@ -202,7 +296,7 @@ def backtest_v3(df, profile, horizon=60, q_annual=0.0, use_signal=True,
             med_disp=(q_e[2] / spot - 1),
             u=(np.log(y / spot) - drift) / sigma_h if sigma_h > 0 else np.nan,
         ))
-        origin += horizon
+        origin += h_grade      # non-overlapping in the series' OWN sessions
     return pd.DataFrame(rows)
 
 

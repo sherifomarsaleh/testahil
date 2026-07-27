@@ -22,7 +22,33 @@ to propagate to the site.
 
 ---
 
+## HORIZON CONVENTION — CHANGED 27-JUL-2026
+
+Cohorts struck **on or after 27-Jul-2026** are graded at **1 month** and **3 months** —
+calendar horizons. `grade_date` is `anchor_date + N calendar months` (month-end clamped),
+rolled forward to the first real trading session on that exchange if the target is closed.
+`horizon_days` is whatever session count spans that window (≈21 and ≈63, varying by market and
+month), projected at publish time by `engine/horizons.py` and re-resolved against the real
+calendar at grade time.
+
+Cohorts struck **before** that date keep **T+20 / T+60** — a fixed 20 or 60 sessions, with a
+`grade_date` projected on a naive Sun–Thu calendar. **They are not re-labelled and not
+re-struck.** They grade on the horizon they were issued on and count in the score exactly as
+before; append-only governs. `horizon_label` is the field that says which convention a row
+belongs to. Full rationale in `engine/Standing_Research_Protocol.md` → Step 0 → *Horizon
+convention*.
+
+The change was made because the old convention's error landed in the check DATE: the projected
+Sun–Thu `grade_date` had no holiday awareness, so it routinely fell ~2 sessions short of a true
+T+20 — every graded row so far (PHDC, TMGH, EMFD) carries a `grade_note` recording exactly that
+correction. A calendar target cannot drift.
+
+---
+
 ## Snapshot as of 2026-07-09
+
+> **Stale — this snapshot predates both the first three grades and the 27-Jul-2026 horizon
+> change. Kept as the dated record it is; `assets/data.js` is the source of truth.**
 
 - **112 anchor rows** logged (T+20 and T+60 per instrument), across **55 covered instruments**
   (EGX, GCC/international equities, and metals).

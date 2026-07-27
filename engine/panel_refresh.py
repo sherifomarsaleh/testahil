@@ -82,8 +82,33 @@ def apply_breaks(r, profile):
     return r[pd.DatetimeIndex(r['origin']) >= last].reset_index(drop=True)
 
 
-def panel_path(market, name):
-    return os.path.join(PANELS_DIR, f"{market}_{name}_60d.csv")
+# ---------------------------------------------------------------- horizon set
+# HORIZON SETS (27-Jul-2026). '60d' is the retired session-counted gate that
+# calibrated every T+20/T+60 cohort; it stays here, untouched and re-runnable,
+# because those cohorts are grandfathered and must keep grading under the fit
+# they were published on. '3m' is the calendar-anchored gate: a per-origin
+# window running to the first session on or after origin + 3 calendar months,
+# so the gate scores the horizon that is actually published.
+# Panels are namespaced by tag, so the two calibrations never overwrite each
+# other and can be compared side by side.
+HORIZON_SETS = {
+    '60d': dict(months=None, horizon=60,
+                label='T+60 (retired, session-counted)'),
+    '3m':  dict(months=3, horizon=None,
+                label='3 months (calendar-anchored)'),
+}
+DEFAULT_TAG = '60d'
+
+
+def _hset(tag):
+    if tag not in HORIZON_SETS:
+        raise KeyError(f"unknown horizon tag {tag!r}; "
+                       f"expected one of {sorted(HORIZON_SETS)}")
+    return HORIZON_SETS[tag]
+
+
+def panel_path(market, name, tag=DEFAULT_TAG):
+    return os.path.join(PANELS_DIR, f"{market}_{name}_{tag}.csv")
 
 
 HASH_PATH = os.path.join(HERE, 'panel_hashes.json')
@@ -138,27 +163,33 @@ def fast_rescore(r, nu, cal, n_paths=N_PATHS, seed=SEED):
     return out
 
 
-def existing_panel_names(market):
+def existing_panel_names(market, tag=DEFAULT_TAG):
     return sorted({os.path.basename(f).split('_')[1]
-                   for f in glob.glob(os.path.join(PANELS_DIR, f"{market}_*_60d.csv"))})
+                   for f in glob.glob(os.path.join(PANELS_DIR,
+                                                   f"{market}_*_{tag}.csv"))})
 
 
-def build_panel_file(market, name, raw_csv_path, profile):
+def build_panel_file(market, name, raw_csv_path, profile, tag=DEFAULT_TAG):
     """Baseline backtest (nu=8.0, width_cal=1.0) -> writes/overwrites the
     panel window-file. Panel files are training scaffolding (re-derived from
     raw history each refresh), NOT published forecasts — overwrite is safe
     and expected; the Calibration Ledger's append-only rule does not apply
     here."""
+    hs = _hset(tag)
     df = load_ohlc(raw_csv_path, name, market=market)
-    rows = backtest_v3(df, profile, horizon=60, nu=8.0, width_cal=1.0,
-                        use_signal=profile.signal_active,
-                        n_paths=N_PATHS, seed=SEED, min_history=MIN_HISTORY)
+    rows = backtest_v3(df, profile, horizon=hs['horizon'] or 60,
+                       horizon_months=hs['months'], nu=8.0, width_cal=1.0,
+                       use_signal=profile.signal_active,
+                       n_paths=N_PATHS, seed=SEED, min_history=MIN_HISTORY)
     r = pd.DataFrame(rows)
-    # backtest_v3 walks origins as: origin = MIN_HISTORY, += horizon. Recording the
-    # index makes the per-origin RNG seed (seed + origin) reconstructible, which is
-    # what lets fast_rescore re-simulate EXACTLY instead of re-running the engine.
-    r['origin_idx'] = MIN_HISTORY + np.arange(len(r)) * 60
-    r.to_csv(panel_path(market, name), index=False)
+    # The per-origin RNG seed is (seed + origin_idx); recording origin_idx is
+    # what lets fast_rescore re-simulate EXACTLY instead of re-running the
+    # engine. backtest_v3 now emits it directly — under a calendar horizon the
+    # stride VARIES per window, so the old MIN_HISTORY + i*60 reconstruction is
+    # only valid for the fixed-h '60d' set and is no longer used.
+    if 'origin_idx' not in r.columns:      # panel built by a pre-27-Jul engine
+        r['origin_idx'] = MIN_HISTORY + np.arange(len(r)) * 60
+    r.to_csv(panel_path(market, name, tag), index=False)
     return r, df
 
 
@@ -236,7 +267,8 @@ def rescore(raw_csv_path, profile, nu, cal):
 
 
 # ---------------------------------------------------------------- main entry
-def refresh_market(market, new_csvs, raw_csv_lookup, update_registry=True):
+def refresh_market(market, new_csvs, raw_csv_lookup, update_registry=True,
+                   tag=DEFAULT_TAG):
     """market: profile code, e.g. 'SA'
     new_csvs: dict {name: raw_csv_path} for names touched THIS session
               (new names, or existing names with updated OHLC)
@@ -251,9 +283,15 @@ def refresh_market(market, new_csvs, raw_csv_lookup, update_registry=True):
               re-run (e.g. one name's raw CSV missing) silently corrupts the
               registry even when production (market_profiles.py) is correctly
               protected. Caught 11-Jul-2026 while building auto_refresh.py.
+    tag:      horizon set (see HORIZON_SETS). '60d' is the retired
+              session-counted gate kept for the grandfathered T+20/T+60
+              cohorts; '3m' is the live calendar-anchored gate. Panels and
+              content hashes are namespaced per tag, so refreshing one horizon
+              set never invalidates the other's cache.
     Returns a result dict; also writes panel files always (panel files are
     training scaffolding, not a verdict — see build_panel_file)."""
     profile = PROFILES[market]
+    _hset(tag)
     os.makedirs(PANELS_DIR, exist_ok=True)
     hashes = _load_hashes()
 
@@ -262,16 +300,16 @@ def refresh_market(market, new_csvs, raw_csv_lookup, update_registry=True):
     rebuilt = []
     for name, path in new_csvs.items():
         h = _file_hash(path)
-        key = f"{market}_{name}"
-        if hashes.get(key) != h or not os.path.exists(panel_path(market, name)):
-            build_panel_file(market, name, path, profile)
+        key = f"{market}_{name}" if tag == '60d' else f"{market}_{name}_{tag}"
+        if hashes.get(key) != h or not os.path.exists(panel_path(market, name, tag)):
+            build_panel_file(market, name, path, profile, tag=tag)
             hashes[key] = h
             rebuilt.append(name)
     _save_hashes(hashes)
 
     # 2. pool 'u' across the FULL current panel (old + new), break-filtered
-    names = sorted(set(existing_panel_names(market)) | set(new_csvs))
-    panel = {n: apply_breaks(pd.read_csv(panel_path(market, n)), profile) for n in names}
+    names = sorted(set(existing_panel_names(market, tag)) | set(new_csvs))
+    panel = {n: apply_breaks(pd.read_csv(panel_path(market, n, tag)), profile) for n in names}
     names = [n for n in names if len(panel[n]) > 0]
     pooled_u = np.concatenate([panel[n]['u'].values for n in names])
     nu_pool, s_pool = fit_nu_scale(pooled_u)
