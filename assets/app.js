@@ -685,11 +685,18 @@ function initShare(){
    A ticker restruck under the new convention carries `hz` in data.js:
        hz:{ h1:21, h3:63, l1:"1 month", l3:"3 months", cal:true }
    and this code follows it. Absent `hz`, the legacy 20/60 anchors apply. */
-const HZ_LEGACY = { h1:20, h3:60, l1:"T+20", l3:"T+60", cal:false };
+const HZ_LEGACY = { h1:20, h3:60, l1:"T+20", l3:"T+60",
+                     l1Long:"T+20 (~1 month)", l3Long:"T+60 (~3 months)", cal:false };
 function hzOf(T){
   const z = (T && T.hz) || {};
+  // l1Long/l3Long are for spots with room (table headers) — a legacy cohort's
+  // T+20/T+60 gets the approximate calendar read-out alongside it so the page
+  // visibly acknowledges today's convention without touching the axis/prose,
+  // which still carry the exact published session count. A calendar-hz ticker
+  // already says "1 month"/"3 months" outright, so its long form is the same.
   return { h1: z.h1 || HZ_LEGACY.h1, h3: z.h3 || HZ_LEGACY.h3,
            l1: z.l1 || HZ_LEGACY.l1, l3: z.l3 || HZ_LEGACY.l3,
+           l1Long: z.l1 || HZ_LEGACY.l1Long, l3Long: z.l3 || HZ_LEGACY.l3Long,
            cal: !!z.cal };
 }
 function fitPowerLaw(spot, t20, t60, h1, h3){
@@ -812,7 +819,7 @@ function renderStaticFan(elId, T){
       '<span><span style="display:inline-block;width:14px;height:10px;border-radius:2px;background:var(--teal,#12796B);opacity:.16;margin-right:5px"></span>90% band (5th\u201395th)</span>' +
       '<span><span style="display:inline-block;width:14px;height:2px;background:var(--gold,#C0A45F);margin-right:5px;vertical-align:middle"></span>median path</span>' +
     '</div>' +
-    '<table class="mc-ladder" style="margin-top:14px"><thead><tr><th>Level</th><th>P(touch) ' + HZ.l1 + '</th><th>P(touch) ' + HZ.l3 + '</th></tr></thead><tbody>' + touchRows + '</tbody></table>' +
+    '<table class="mc-ladder" style="margin-top:14px"><thead><tr><th>Level</th><th>P(touch) ' + HZ.l1Long + '</th><th>P(touch) ' + HZ.l3Long + '</th></tr></thead><tbody>' + touchRows + '</tbody></table>' +
     '<p class="muted" style="font-size:var(--fs-small);margin-top:12px">The ' + HZ.l1 + ' and ' + HZ.l3 + ' columns are the published calibration exactly as saved. The curve between them is a smooth fit using the real Student-t shape for this market through those two points \u2014 not a fresh simulation at every day, and not adjustable \u2014 so it always agrees with the published numbers at the two horizons that matter.' +
     (HZ.cal
       ? ' Horizons are calendar-anchored: ' + HZ.l1 + ' and ' + HZ.l3 + ' from the anchor date, which on this market works out to about ' + HZ.h1 + ' and ' + HZ.h3 + ' trading sessions.'
