@@ -38,6 +38,7 @@
   .hbtns{display:flex;gap:6px}
   .hbtn{border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:999px;padding:7px 16px;font:inherit;font-size:var(--fs-small);font-weight:600;cursor:pointer}
   .hbtn.on{background:var(--teal);border-color:var(--teal);color:#fff}
+  .hbtn-ro{cursor:default}
   .addrow{display:flex;gap:8px;align-items:flex-end;flex-wrap:wrap;margin-top:14px}
   .addrow .field{flex:1;min-width:220px;margin-bottom:0}
   .chip-rows{display:flex;flex-direction:column;gap:2px;margin-top:12px}
@@ -60,6 +61,11 @@
   .outgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px}
   .outbox .ol{font-size:var(--fs-small);color:var(--muted);margin-bottom:4px}
   .outbox .ov{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-h3);font-weight:500}
+  .mix-pair{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px;align-items:start}
+  .mix-card{border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px}
+  .mix-card h4{margin:0 0 3px;font-size:var(--fs-small)}
+  .mix-card .sub{font-size:var(--fs-caption);color:var(--muted);margin:0 0 4px}
+  .mix-card .outgrid{grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
 
   .odds-table{display:grid;grid-template-columns:1.6fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
   .odds-table>div{background:var(--card,var(--paper));padding:12px 14px}
@@ -128,7 +134,7 @@
     </div>
     <div class="chip-rows" id="p-chips"></div>
     <div class="wsum" id="p-wsum"></div>
-    <p id="p-diag" class="muted" style="margin:6px 0 0;font-size:10px;opacity:.5">build egx-first-v3</p>
+    <p id="p-diag" class="muted" style="margin:6px 0 0;font-size:10px;opacity:.5">build loss-explain-v6</p>
     <p class="muted" style="margin:10px 0 0;font-size:var(--fs-small)">"Load a starting mix" picks the five EGX names with the best typical return for the downside risk they carry (median outcome divided by the worst-1-in-20 case) at the chosen horizon, equally weighted — not just the highest headline number. Each name below shows its own bad case too, so a weak trade-off is visible before you swap anything. Nothing on this page is stored or sent anywhere.</p>
   </section>
 
@@ -172,16 +178,23 @@
     </div>
   </section>
 
-  <section id="sec-min" class="card anchor" data-nav="Minimum-risk mix (EGX)">
-    <p class="qhead" style="margin-top:0">Build me the least-risky EGX mix for a target return</p>
-    <p class="muted">Type a target and this finds, among all covered EGX names, the mix of up to five stocks — weights included — whose <b>typical (median) outcome reaches your target with the softest plausible bad case</b>. The search runs on the same correlated simulation as everything above, so it accounts for both each name's own risk and the fact that a combination is less risky than its parts. EGX names only for now.</p>
+  <section id="sec-min" class="card anchor" data-nav="Best mixes for my risk (EGX)">
+    <p class="qhead" style="margin-top:0">Build me EGX mixes for the risk I can live with</p>
+    <p class="muted">Type a number for the <b>same "worst 1-in-20" measure used everywhere on this page</b> — the outcome so bad that only about 1 run in 20 (a 5% chance) would be this bad or worse — and this builds two reference mixes from all covered EGX names, weights included, using the same correlated simulation as everything above. Each card below shows all three loss figures used elsewhere on this page (chance of any loss, the 1-in-20 bad case, and chance of a big loss), not just one. EGX names only for now.</p>
     <div class="hrow">
-      <div class="field" style="margin-bottom:0;max-width:180px"><label for="m-target">Target return (%)</label><input id="m-target" type="number" value="10" step="1" class="num"></div>
-      <button type="button" class="btn" id="m-go">Build the mix</button>
+      <div class="field" style="margin-bottom:0"><label>Horizon <span class="muted" style="font-weight:400">(set above)</span></label>
+        <div class="hbtns">
+          <span class="hbtn hbtn-ro" id="m-hb20">1 month</span>
+          <span class="hbtn hbtn-ro on" id="m-hb60">3 months</span>
+        </div>
+      </div>
+      <div class="field" style="margin-bottom:0;max-width:280px"><label for="m-risk">Worst 1-in-20 loss you can live with (%)</label><input id="m-risk" type="number" value="15" step="1" class="num"></div>
+      <button type="button" class="btn" id="m-go">Find my mixes</button>
     </div>
+    <p class="muted" style="font-size:var(--fs-caption);margin:6px 0 0">This is the exact same measure as "Plausible bad case (worst 1-in-20)" above: not your worst possible loss, and not something that happens on a schedule — just the threshold that a 1-in-20 (5%) run would cross. Type 15 to mean "I could live with a 1-in-20 chance of losing about 15%."</p>
     <div id="m-note"></div>
     <div id="m-out" style="margin-top:14px"></div>
-    <p class="muted" style="font-size:var(--fs-caption);margin:12px 0 0">This is an optimisation over published simulations — arithmetic, not a recommendation. Targets above the highest typical outcome of any covered EGX name have no typical path; the tool then builds the least-risky mix for the highest reachable return and says so.</p>
+    <p class="muted" style="font-size:var(--fs-caption);margin:12px 0 0">This is an optimisation over published simulations — arithmetic, not a recommendation. The minimum-risk mix is the single safest available combination regardless of what you type above; the maximum-return mix is the best available combination that still respects your stated tolerance. If your tolerance is looser than what the single best-returning name needs, or tighter than the safest mix can offer, the note above the mixes says so plainly.</p>
   </section>
 
   <section id="sec-caveats" class="card anchor" style="background:var(--tint2)" data-nav="What this can't tell you">
@@ -383,6 +396,10 @@ window.addEventListener('error', function(e){
     var amt = parseFloat($('p-amt').value)||0;
     $('o-tgt').textContent = pct(target*100,0);
     $('o-hz').textContent = hzLabel(which);
+    // the optimizer section mirrors the horizon toggle above — same pill look,
+    // but not clickable here, so there's only one place to actually change it
+    $('m-hb20').classList.toggle('on', which==='t20');
+    $('m-hb60').classList.toggle('on', which==='t60');
 
     var ids=['o-ct','o-med','o-cl','o-p5','o-bl'];
     if(!sel.length){
@@ -430,7 +447,7 @@ window.addEventListener('error', function(e){
     $('o-cl').textContent = Math.round(loss*100)+'%';
     $('o-clf').textContent = 'Chance the mix ends below zero over ' + hzLabel(which) + '.';
     $('o-p5').textContent = pct(p5Sim*100);
-    $('o-p5f').textContent = 'About ' + moneyLbl(amt*p5Sim) + ' on the amount above. One time in twenty, the outcome is this bad or worse.';
+    $('o-p5f').textContent = 'About ' + moneyLbl(amt*p5Sim) + ' on the amount above. "Worst 1-in-20" means a 1-in-20 chance (5%) of an outcome this bad or worse — not that it happens every 20th time, just that it\'s about as bad as the bad days get, roughly one run in twenty.';
     $('o-bl').textContent = Math.round(b.bigLoss*100)+'%';
     $('o-blf').textContent = 'A move of −10% or worse for the mix as a whole.';
 
@@ -557,9 +574,28 @@ window.addEventListener('error', function(e){
      simulation noise. Correlation model identical to the rest of the page
      (EGX pairs ~0.55), so the "combination is less risky than its parts"
      effect is part of the score, not bolted on. */
+  // Deterministic PRNG (mulberry32) so "Build the mix" is reproducible: the same
+  // target gives the same mix every click, not a fresh lottery each time. Both the
+  // scenario matrix and the search below draw from seeded streams, never Math.random().
+  function mulberry32(seed){
+    var s = seed >>> 0;
+    return function(){
+      s = (s + 0x6D2B79F5) | 0;
+      var t = Math.imul(s ^ (s >>> 15), 1 | s);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+  function seededGaussian(rng){
+    var u=0, v=0;
+    while(u===0) u=rng();
+    while(v===0) v=rng();
+    return Math.sqrt(-2*Math.log(u)) * Math.cos(2*Math.PI*v);
+  }
   var OPT_N = 4000, optCache = {};
   function optMatrix(which){
     if(optCache[which]) return optCache[which];
+    var rng = mulberry32(which==='t20' ? 0x1E5A20 : 0x1E5A60);   // fixed per horizon
     var names = KEYS.filter(function(k){ return exOf(TICKERS[k])==='EGX'; });
     var A = Math.sqrt(RHO_SAME), C = Math.sqrt(1-RHO_SAME);
     var ret = names.map(function(k){
@@ -567,9 +603,9 @@ window.addEventListener('error', function(e){
       return { k:k, f:invCDF(t.dist[which]), s:t.spot, r:new Float64Array(OPT_N) };
     });
     for(var n=0;n<OPT_N;n++){
-      var F = gaussianRandom();
+      var F = seededGaussian(rng);
       for(var i=0;i<ret.length;i++){
-        var u = Math.min(0.999, Math.max(0.001, normCdf(A*F + C*gaussianRandom())));
+        var u = Math.min(0.999, Math.max(0.001, normCdf(A*F + C*seededGaussian(rng))));
         ret[i].r[n] = ret[i].f(u)/ret[i].s - 1;
       }
     }
@@ -584,31 +620,39 @@ window.addEventListener('error', function(e){
       for(var n=0;n<OPT_N;n++) R[n]+=wi*ri[n];
     }
     var S = Array.prototype.slice.call(R).sort(function(a,b){ return a-b; });
-    return { p5:S[Math.floor(0.05*OPT_N)], med:S[Math.floor(0.5*OPT_N)] };
+    return { p5:S[Math.floor(0.05*OPT_N)], med:S[Math.floor(0.5*OPT_N)], sorted:S };
+  }
+  // Chance-at-least on the SAME deterministic scenario set used to pick the mix —
+  // so the displayed numbers (median, bad case, chance of target) are exactly as
+  // reproducible as the mix itself, not a fresh Math.random() re-simulation.
+  function optChanceAtLeast(sorted, x){
+    var lo=0, hi=sorted.length;
+    while(lo<hi){ var mid=(lo+hi)>>1; if(sorted[mid] < x) lo=mid+1; else hi=mid; }
+    return Math.min(0.99, Math.max(0.01, (sorted.length-lo)/sorted.length));
   }
   function optObjective(st, target){
     // maximise the bad case (make it least bad); missing the target dominates everything
     return st.p5 - 100*Math.max(0, target - st.med);
   }
-  function optimize(which, target){
-    var m = optMatrix(which), N = m.names.length;
+  // One local-search pass for a single target, optionally warm-started from a
+  // previous solution's full-universe weights. Returns the capped 5-name mix
+  // plus its stats and the pre-cap weights (for warm-starting the next point).
+  function optRunSearch(m, tgt, rng, seedRawW, iters1, iters2){
+    var N = m.names.length;
     var single = m.names.map(function(k,i){
       var w1=new Float64Array(N); w1[i]=1;
       var st1=optStats(m,w1);
       return { i:i, med:st1.med, p5:st1.p5, score: st1.med/Math.max(0.01,-st1.p5) };
     });
-    var mMax = Math.max.apply(null, single.map(function(s){ return s.med; }));
-    var clamped = null;
-    if(target > mMax - 0.002) clamped = mMax - 0.002;
-    var tgt = clamped!=null ? clamped : target;
-
-    // seed: equal weights on the six best return-for-risk names
-    var w = new Float64Array(N);
-    single.slice().sort(function(a,b){ return b.score-a.score; }).slice(0,6)
-      .forEach(function(s){ w[s.i]=1/6; });
+    var w;
+    if(seedRawW){ w = seedRawW.slice(); }
+    else {
+      w = new Float64Array(N);
+      single.slice().sort(function(a,b){ return b.score-a.score; }).slice(0,6)
+        .forEach(function(s){ w[s.i]=1/6; });
+    }
     var st = optStats(m,w), best = optObjective(st,tgt);
 
-    // if the seed's median misses the target, tilt weight toward the highest-median name
     var hiMed = single.slice().sort(function(a,b){ return b.med-a.med; })[0].i;
     var guard=0;
     while(st.med < tgt && guard++ < 60){
@@ -619,20 +663,20 @@ window.addEventListener('error', function(e){
       st=optStats(m,w); best=optObjective(st,tgt);
     }
 
-    // pairwise exchange search over the whole EGX universe
-    for(var it=0; it<1400; it++){
+    for(var it=0; it<iters1; it++){
       var support=[]; for(var i3=0;i3<N;i3++) if(w[i3]>0.001) support.push(i3);
-      var a = support[Math.floor(Math.random()*support.length)];
-      var b = Math.floor(Math.random()*N);
+      var a = support[Math.floor(rng()*support.length)];
+      var b = Math.floor(rng()*N);
       if(a===b) continue;
-      var d2 = Math.min([0.10,0.04,0.015][Math.floor(Math.random()*3)], w[a]);
+      var d2 = Math.min([0.10,0.04,0.015][Math.floor(rng()*3)], w[a]);
       if(d2<=0) continue;
       w[a]-=d2; w[b]+=d2;
       var st2=optStats(m,w), o2=optObjective(st2,tgt);
       if(o2 > best + 1e-9){ best=o2; st=st2; } else { w[a]+=d2; w[b]-=d2; }
     }
 
-    // cap at five names, renormalise, polish within the five
+    var wRawFinal = w.slice();   // full-universe weights, pre-cap — next point's warm start
+
     var idx=[]; for(var i4=0;i4<N;i4++) if(w[i4]>0.004) idx.push(i4);
     idx.sort(function(x,y){ return w[y]-w[x]; });
     idx = idx.slice(0,5);
@@ -640,17 +684,16 @@ window.addEventListener('error', function(e){
     idx.forEach(function(i5){ sum+=w[i5]; });
     idx.forEach(function(i5){ w2[i5]=w[i5]/sum; });
     w=w2; st=optStats(m,w); best=optObjective(st,tgt);
-    for(var it2=0; it2<700; it2++){
-      var a2=idx[Math.floor(Math.random()*idx.length)], b2=idx[Math.floor(Math.random()*idx.length)];
+    for(var it2=0; it2<iters2; it2++){
+      var a2=idx[Math.floor(rng()*idx.length)], b2=idx[Math.floor(rng()*idx.length)];
       if(a2===b2) continue;
-      var d3=Math.min([0.05,0.02,0.01][Math.floor(Math.random()*3)], w[a2]);
+      var d3=Math.min([0.05,0.02,0.01][Math.floor(rng()*3)], w[a2]);
       if(d3<=0) continue;
       w[a2]-=d3; w[b2]+=d3;
       var st3=optStats(m,w), o3=optObjective(st3,tgt);
       if(o3 > best + 1e-9){ best=o3; st=st3; } else { w[a2]+=d3; w[b2]-=d3; }
     }
 
-    // integer weights summing to exactly 100 (largest remainder)
     var picks = idx.filter(function(i6){ return w[i6]>0.004; })
       .map(function(i6){ return { k:m.names[i6], raw:w[i6]*100 }; })
       .sort(function(x,y){ return y.raw-x.raw; });
@@ -660,47 +703,194 @@ window.addEventListener('error', function(e){
       .sort(function(x,y){ return y.fr-x.fr; });
     for(var r2=0;r2<rem;r2++) floors[order[r2%order.length].j]++;
     var mix = picks.map(function(p,j){ return { k:p.k, w:floors[j] }; }).filter(function(p){ return p.w>0; });
-    return { mix:mix, clamped:clamped, mMax:mMax };
+
+    var finalSt = optStats(m, w);
+    var lossProb = 1 - optChanceAtLeast(finalSt.sorted, 0);
+    return { mix:mix, wRaw:wRawFinal, p5:finalSt.p5, med:finalSt.med, lossProb:lossProb };
   }
-  function renderMinRisk(res, originalTarget, which){
-    var sel = res.mix.map(function(p){ return { k:p.k, w:p.w/100 }; });
-    var sims = simMix(sel, which);   // displayed numbers use the page's standard 20k-path sim
-    var med = simQuantile(sims, 0.5), p5v = simQuantile(sims, 0.05);
-    var loss = 1 - simChanceAtLeast(sims, 0);
-    var chanceOrig = simChanceAtLeast(sims, originalTarget);
-    $('m-note').innerHTML = res.clamped==null ? '' :
-      '<div class="warnbox" style="margin-top:12px"><b>'+pct(originalTarget*100,0)+' has no typical path.</b> The highest typical (median) outcome of any covered EGX name over '+hzLabel(which)+' is '+pct(res.mMax*100)+', and no weighting can average medians above the best one. Built instead: the least-risky mix for the highest reachable typical outcome. The chance this mix still delivers your '+pct(originalTarget*100,0)+' is about '+Math.round(chanceOrig*100)+'% — an above-typical run, and a plan that needs it should be sized like one.</div>';
-    var rows = res.mix.map(function(p){
+  /* ---------- efficient frontier (EGX) ----------
+     A target's feasible set (mixes with median >= target) can only SHRINK as the
+     target rises — every mix that clears a higher bar clears every lower one too.
+     So the best-achievable bad case at a higher target can never beat the best
+     achievable at a lower one; it can only tie or get worse. That's not a property
+     of THIS search, it's a property of the underlying problem (nested feasible
+     sets), so we enforce it exactly rather than hope 2100 random pairwise swaps
+     happen to respect it: walk the frontier from the highest target down to zero,
+     warm-starting each point's search from the previous (higher-target) point's
+     weights, and explicitly keep the previous point's mix whenever the fresh
+     search fails to match or beat it on BOTH the bad case AND the loss
+     probability. Every point stays feasible (a higher-target mix always clears a
+     lower target too), so the fallback is always valid — this makes the frontier
+     non-decreasing in risk as target rises by construction, not by chance.
+
+     Below the return of the single best-available mix (the point where the
+     ">= target" floor stops being the binding constraint), every target on this
+     frontier resolves to that SAME mix — and that's not a bug to search harder
+     against. Forcing the median down toward a low target there would mean
+     giving up return AND taking on more risk at once, which is never the
+     lowest-risk choice for ANY target at or below that point. That's exactly
+     why the section below asks for a risk tolerance instead of a target
+     return: points[0] on this frontier is always the single safest mix
+     regardless of input, and optimizeByRisk below just walks in from the
+     other end to find the best-return point that still respects it. */
+  var frontierCache = {};
+  function buildFrontier(which){
+    if(frontierCache[which]) return frontierCache[which];
+    var m = optMatrix(which);
+    var mMax = Math.max.apply(null, m.names.map(function(k){
+      var t=TICKERS[k]; return t.dist[which].p50/t.spot - 1;
+    }));
+    var gridMax = Math.max(0, mMax - 0.002);
+    var GRID = 20;
+    var points = [], prevRawW = null, prevPoint = null;
+    for(var g=GRID; g>=0; g--){
+      var tgt = gridMax * (g/GRID);
+      var rng = mulberry32((which==='t20'?0x3A1:0x3B2)*1000003 + g);
+      // cold start (no warm start) gets a full search; every warm-started point
+      // downstream only needs to refine a neighbour, so it can run far fewer
+      // iterations without losing quality — keeps the first build well under
+      // ten seconds instead of the ~25s a finer grid cost. Cutting the warm
+      // iteration count much further than this made the search too weak to
+      // tell neighbouring grid points apart — the whole frontier collapsed to
+      // one mix, which is a quality regression, not a speedup worth having.
+      var cand = prevRawW
+        ? optRunSearch(m, tgt, rng, prevRawW, 150, 75)
+        : optRunSearch(m, tgt, rng, null, 1400, 700);
+      var point;
+      if(prevPoint && (cand.p5 < prevPoint.p5 - 1e-9 || cand.lossProb > prevPoint.lossProb + 1e-9)){
+        point = { target:tgt, mix:prevPoint.mix, p5:prevPoint.p5, med:prevPoint.med, lossProb:prevPoint.lossProb, wRaw:prevPoint.wRaw };
+      } else {
+        point = { target:tgt, mix:cand.mix, p5:cand.p5, med:cand.med, lossProb:cand.lossProb, wRaw:cand.wRaw };
+      }
+      points.push(point);
+      prevRawW = point.wRaw;
+      prevPoint = point;
+    }
+    points.reverse();   // ascending target order
+    var out = { points:points, mMax:mMax };
+    frontierCache[which] = out;
+    return out;
+  }
+  // Finds the best-return mix that still respects a stated worst-case loss
+  // tolerance. Reuses the SAME frontier built above rather than searching
+  // again: p5 is already proven non-increasing as target rises along it, so
+  // walking in from the highest-target end for the first point whose p5 still
+  // clears -maxLoss finds the best-return mix inside budget in one pass.
+  // The repair mechanism in buildFrontier reuses an earlier point's mix by
+  // copying its p5/med/mix into a NEW point object (a different target), so
+  // two points can be the same mix in every way that matters while failing a
+  // reference check (===). Compare by value instead.
+  function sameFrontierMix(a, b){ return Math.abs(a.p5-b.p5) < 1e-9 && Math.abs(a.med-b.med) < 1e-9; }
+  function optimizeByRisk(which, maxLoss){
+    var frontier = buildFrontier(which);
+    var pts = frontier.points, floor = -maxLoss;
+    var chosen = null;
+    for(var i=pts.length-1;i>=0;i--){
+      if(pts[i].p5 >= floor - 1e-9){ chosen = pts[i]; break; }
+    }
+    var safest = pts[0], best = pts[pts.length-1];
+    if(!chosen){
+      // even the single safest available mix breaches the stated tolerance
+      return { mix:safest.mix, infeasible:true, nonBinding:false, gap:false, safestP5:safest.p5, bestMed:best.med };
+    }
+    var nonBinding = sameFrontierMix(chosen, best);
+    return {
+      mix: chosen.mix,
+      infeasible: false,
+      nonBinding: nonBinding,
+      // the tolerance clears the safest mix but not the next step up this
+      // 21-point grid actually sampled — same mix on both cards, but for a
+      // different reason than infeasibility, so it needs its own honest note
+      // rather than silently looking identical with no explanation.
+      gap: (!nonBinding && sameFrontierMix(chosen, safest)),
+      safestP5: safest.p5,
+      bestMed: best.med
+    };
+  }
+  // Same deterministic scenario matrix the frontier search was scored on, so
+  // every card's displayed numbers are exactly as reproducible as its mix.
+  function riskMixStats(mix, which){
+    var m = optMatrix(which);
+    var idxByK = {}; m.names.forEach(function(k,i){ idxByK[k]=i; });
+    var w = new Float64Array(m.names.length);
+    mix.forEach(function(p){ var i=idxByK[p.k]; if(i!==undefined) w[i]=p.w/100; });
+    var stats = optStats(m, w);
+    return {
+      med: stats.med,
+      p5: stats.p5,
+      loss: 1 - optChanceAtLeast(stats.sorted, 0),
+      // same BIG=0.10 threshold as the main tool's four-outcome framework, so
+      // "big loss" means the same thing everywhere on this page.
+      bigLoss: 1 - optChanceAtLeast(stats.sorted, -BIG)
+    };
+  }
+  // All three loss figures used elsewhere on this page (chance of any loss, the
+  // 1-in-20 bad case, and chance of a big loss) — not just the bad case — plus
+  // the same plain-language captions and EGP conversion the main tool uses, so
+  // "worst 1-in-20" reads the same way here as it does above. EGX-only mixes
+  // are always single-currency (EGP), so no mixed-currency branching is needed.
+  function mixCardHtml(title, sub, mix, stats, which, noteHtml, loadId){
+    var rows = mix.map(function(p){
       var t=TICKERS[p.k];
       var m50=(t.dist[which].p50/t.spot-1)*100, m5=(t.dist[which].p5/t.spot-1)*100;
       return '<div class="crow"><div class="cn"><b>'+t.name+'</b><span class="cc">'+(t.code||p.k)+'</span></div>'+
         '<span class="cmed">median '+pct(m50)+' &middot; bad case '+pct(m5)+'</span>'+
         '<span style="font-family:\'IBM Plex Mono\',monospace;font-weight:600;white-space:nowrap">'+p.w+'%</span></div>';
     }).join('');
-    $('m-out').innerHTML =
+    var amt = parseFloat($('p-amt').value)||0;
+    var moneyLbl = function(v){ return 'EGP ' + money(v); };
+    return '<div class="mix-card"><h4>'+title+'</h4><p class="sub">'+sub+'</p>'+(noteHtml||'')+
       '<div class="chip-rows">'+rows+'</div>'+
-      '<div class="outgrid" style="margin-top:14px">'+
-        '<div class="outbox"><div class="ol">Typical outcome of this mix</div><div class="bigpct '+(med>=0?'g':'r')+'">'+pct(med*100)+'</div></div>'+
-        '<div class="outbox"><div class="ol">Plausible bad case (worst 1-in-20)</div><div class="bigpct r">'+pct(p5v*100)+'</div></div>'+
-        '<div class="outbox"><div class="ol">Chance of losing money</div><div class="bigpct r">'+Math.round(loss*100)+'%</div></div>'+
-        '<div class="outbox"><div class="ol">Chance of reaching '+pct(originalTarget*100,0)+'</div><div class="bigpct g">'+Math.round(chanceOrig*100)+'%</div></div>'+
+      '<div class="outgrid" style="margin-top:12px">'+
+        '<div class="outbox"><div class="ol">Typical outcome</div><div class="bigpct '+(stats.med>=0?'g':'r')+'">'+pct(stats.med*100)+'</div>'+
+          '<div class="rangefine">On '+moneyLbl(amt)+': '+moneyLbl(amt*stats.med)+'. Half of outcomes land below this, half above.</div></div>'+
+        '<div class="outbox"><div class="ol">Chance of losing money</div><div class="bigpct r">'+Math.round(stats.loss*100)+'%</div>'+
+          '<div class="rangefine">Chance the mix ends below zero over '+hzLabel(which)+'.</div></div>'+
+        '<div class="outbox"><div class="ol">Plausible bad case (worst 1-in-20)</div><div class="bigpct r">'+pct(stats.p5*100)+'</div>'+
+          '<div class="rangefine">About '+moneyLbl(amt*stats.p5)+' on the amount above — a 1-in-20 (5%) chance of an outcome this bad or worse.</div></div>'+
+        '<div class="outbox"><div class="ol">Chance of a big loss (&minus;10% or more)</div><div class="bigpct r">'+Math.round(stats.bigLoss*100)+'%</div>'+
+          '<div class="rangefine">A move of &minus;10% or worse for the mix as a whole.</div></div>'+
       '</div>'+
-      '<button type="button" class="btn ghost2" id="m-load" style="margin-top:12px">Load this mix into the tool above</button>';
-    $('m-load').addEventListener('click', function(){
-      state.mix = res.mix.map(function(p){ return { k:p.k, w:p.w }; });
-      $('p-target').value = Math.round(originalTarget*100);
-      renderAll();
-      document.getElementById('sec-target').scrollIntoView({ behavior:'smooth' });
-    });
+      '<button type="button" class="btn ghost2" id="'+loadId+'" style="margin-top:12px">Load this mix into the tool above</button>'+
+      '</div>';
+  }
+  function loadMixIntoTool(mix, med){
+    state.mix = mix.map(function(p){ return { k:p.k, w:p.w }; });
+    $('p-target').value = Math.round(med*100);
+    renderAll();
+    document.getElementById('sec-target').scrollIntoView({ behavior:'smooth' });
+  }
+  function renderRiskMixes(which, maxLoss){
+    var res = optimizeByRisk(which, maxLoss);
+    var frontier = buildFrontier(which);
+    var safestMix = frontier.points[0].mix;
+    var safeStats = riskMixStats(safestMix, which);
+    var maxStats = riskMixStats(res.mix, which);
+
+    var note = '';
+    if(res.infeasible){
+      note = '<div class="warnbox" style="margin:0 0 10px"><b>Even the safest available mix has a worst case of '+pct(res.safestP5*100)+', beyond your '+pct(-maxLoss*100)+' tolerance.</b> No covered EGX combination gets safer than that, so this mix matches the minimum-risk one exactly rather than pretending a tighter option exists.</div>';
+    } else if(res.nonBinding){
+      note = '<div class="warnbox" style="margin:0 0 10px"><b>Your '+pct(-maxLoss*100)+' tolerance comfortably covers the highest-returning available mix.</b> A looser tolerance would not find something with even higher return — '+pct(res.bestMed*100)+' is already the best typical outcome any covered EGX name offers.</div>';
+    } else if(res.gap){
+      note = '<div class="warnbox" style="margin:0 0 10px"><b>Your '+pct(-maxLoss*100)+' tolerance sits just below what it takes to reach a higher-return mix.</b> The safest mix is the closest match within it for now, which is why this matches the minimum-risk mix — a slightly looser number may unlock a different combination.</div>';
+    }
+
+    $('m-note').innerHTML = '';
+    $('m-out').innerHTML = '<div class="mix-pair">' +
+      mixCardHtml('Minimum-risk mix', 'The single safest available combination of covered EGX names — the same regardless of the tolerance above.', safestMix, safeStats, which, '', 'm-load-safe') +
+      mixCardHtml('Maximum-return mix within your tolerance', 'The best available typical outcome without exceeding your stated worst case.', res.mix, maxStats, which, note, 'm-load-max') +
+      '</div>';
+    $('m-load-safe').addEventListener('click', function(){ loadMixIntoTool(safestMix, safeStats.med); });
+    $('m-load-max').addEventListener('click', function(){ loadMixIntoTool(res.mix, maxStats.med); });
   }
   $('m-go').addEventListener('click', function(){
-    var btn=$('m-go'), t=(parseFloat($('m-target').value)||0)/100;
-    if(t<=0){ $('m-note').innerHTML='<div class="warnbox">Type a positive target return first.</div>'; $('m-out').innerHTML=''; return; }
+    var btn=$('m-go'), r=(parseFloat($('m-risk').value)||0)/100;
+    if(r<=0){ $('m-note').innerHTML='<div class="warnbox">Type a positive risk tolerance first.</div>'; $('m-out').innerHTML=''; return; }
     btn.disabled=true; btn.textContent='Optimising…';
     setTimeout(function(){
-      var res = optimize(state.h, t);
-      renderMinRisk(res, t, state.h);
-      btn.disabled=false; btn.textContent='Build the mix';
+      renderRiskMixes(state.h, r);
+      btn.disabled=false; btn.textContent='Find my mixes';
     }, 30);
   });
 
