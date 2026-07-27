@@ -300,7 +300,7 @@ BRAZIL = MarketProfile("BR", "Brazil", [("2020-01-01", 0.1300)], 0.1300,
     notes="EM momentum prior (Rouwenhorst).")
 KOREA = MarketProfile("KR", "South Korea", [("2020-01-01", 0.0300)], 0.0300,
     "PLACEHOLDER — source KTB at first KR study.", None, +1, 0.03, False,
-    nu=12.0, width_cal=1.105,
+    nu=10.0, width_cal=1.063,
     fit_meta=(
         "REFIT 27-Jul-2026 on the 3-name KR panel after a 15-YEAR SAMSUNG INGEST - "
         "supersedes nu=Gaussian/cal=1.154. Samsung's library goes 1,515 -> 3,709 "
@@ -324,6 +324,15 @@ KOREA = MarketProfile("KR", "South Korea", [("2020-01-01", 0.0300)], 0.0300,
         "shared sessions) - i.e. this is purely ADDITIVE history, not a restatement. "
         "NOTE the panel is now badly unbalanced: Samsung carries 15 years while "
         "KAKAO and LGES still carry ~5. Backfilling those two is the next upgrade. "
+        "UPDATE 27-Jul-2026 (calendar-horizon 3m adoption, PR #32 site-wide switch): "
+        "re-fit on the calendar 3-month window. nu 12 -> 10, cal 1.105 -> 1.063 -- "
+        "-2.17% band move (width_cal x q95(t(nu))) vs the just-adopted 60d incumbent "
+        "above, NON-MATERIAL under the 5% gate. All three names unchanged: "
+        "KAKAO/LGES/SAMSUNG stay PARITY. Market panel PARITY +0.0008 CI[-0.003,+0.009] "
+        "(was +0.0004). Windows 85 (vs 88 at 60d). Source: "
+        "engine/PENDING_REVIEW/reverify_post_merge.json (KR.3m). Auto-adopted per the "
+        "standing non-material gate — no per-name verdict changed, no market-verdict "
+        "changed, band move under 5%. "
         "SUPERSEDED TEXT (11-Jul-2026) FOLLOWS - "
         "supersedes nu=6/cal=1.070. THE INVESTING.COM KOREAN EXPORT CONTAINS "
         "PHANTOM NON-TRADING ROWS: ~160 rows per name carrying NaN volume and "
