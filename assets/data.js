@@ -1095,16 +1095,16 @@ const TICKERS = {
     name: "Sixth of October Development & Investment",
     nameAr: "السادس من أكتوبر للتنمية والاستثمار (سوديك)",
     code: "EGX:OCDI",
-    spot: 22.80,
-    spotDate: "close 23 Jun 2026",
+    spot: 27.48,
+    spotDate: "close 27 Jul 2026",
     ccy: "EGP",
     fair: { bear: 16.72, base: 26.43, full: 30.77 },          // 24 Jun 2026 valuation — SOTP/RNAV risk-adjusted base; full execution 30.77; four-method synthesis ~27.7
     dist: {
-      t20: { label:"1 month (T+20)",  p5:18.31, p25:21.08, p50:23.21, p75:25.56, p95:29.35, resolve:"2026-07-21" },
-      t60: { label:"3 months (T+60)", p5:16.08, p25:20.38, p50:24.03, p75:28.30, p95:35.79, resolve:"2026-09-22" }
+      t20: { label:"1 month (T+20)",  p5:23.06, p25:26.03, p50:27.87, p75:29.84, p95:33.67, resolve:"2026-08-24" },
+      t60: { label:"3 months (T+60)", p5:20.45, p25:25.39, p50:28.69, p75:32.35, p95:40.33, resolve:"2026-10-19" }
     },
     touch: [ /* descending high -> low */
-      [30.00, 5, 30], [28.00, 14, 44], [27.00, 22, 52], [25.00, 48, 72], [24.00, 66, 82], [19.50, 19, 41]
+      [30.00, 37, 65], [28.00, 78, 89], [27.00, 72, 82], [25.00, 27, 47], [24.00, 15, 34], [19.50, 1, 7]
     ],
     levels: { res:[27.00, 24.00, 23.14], sup:[21.46, 21.30, 19.50] },
     tech: {
@@ -1123,16 +1123,16 @@ const TICKERS = {
     name: "Orascom Development Egypt",
     nameAr: "أوراسكوم للتنمية مصر",
     code: "EGX:ORHD",
-    spot: 39.30,
-    spotDate: "close 24 Jun 2026",
+    spot: 40.16,
+    spotDate: "close 27 Jul 2026",
     ccy: "EGP",
     fair: { bear: 22.5, base: 53.79, full: 70.52 },          // 24 Jun 2026 valuation — SOTP/RNAV risk-adjusted base; full execution 70.52; four-method synthesis ~55.8
     dist: {
-      t20: { label:"1 month (T+20)",  p5:32.54, p25:36.93, p50:40.22, p75:43.82, p95:49.64, resolve:"2026-07-21" },
-      t60: { label:"3 months (T+60)", p5:29.42, p25:36.38, p50:42.10, p75:48.74, p95:59.97, resolve:"2026-09-22" }
+      t20: { label:"1 month (T+20)",  p5:35.15, p25:38.63, p50:40.73, p75:42.95, p95:47.19, resolve:"2026-08-24" },
+      t60: { label:"3 months (T+60)", p5:31.54, p25:37.84, p50:41.92, p75:46.38, p95:55.82, resolve:"2026-10-19" }
     },
     touch: [ /* descending high -> low */
-      [50.00, 7, 34], [48.00, 12, 43], [46.00, 22, 54], [44.00, 37, 66], [42.00, 57, 78], [33.60, 13, 33]
+      [50.00, 3, 21], [48.00, 6, 31], [46.00, 12, 43], [44.00, 26, 60], [42.00, 55, 79], [33.60, 4, 18]
     ],
     levels: { res:[46.00, 42.00, 39.60], sup:[37.73, 33.59, 26.54] },
     tech: {
@@ -1179,16 +1179,16 @@ const TICKERS = {
     name: "Samsung Electronics Co., Ltd.",
     nameAr: "سامسونج للإلكترونيات",
     code: "KRX:005930",
-    spot: 339500,
-    spotDate: "close 26 Jun 2026",
+    spot: 254000,
+    spotDate: "close 27 Jul 2026",
     ccy: "KRW",
     fair: { bear: 214800, base: 296502, full: 410754 },      // 26 Jun 2026 — weighted central 296,502 (-13% vs spot); bear = consolidated DCF cross-check 214,800; full = supercycle/bull 410,754. Deeper SOTP cycle-reversion bear ~95,000 covered in the study text.
     dist: {
-      t20: { label:"1 month (T+20)",  p5:277676, p25:316898, p50:346091, p75:378203, p95:430413, resolve:"2026-07-24" },
-      t60: { label:"3 months (T+60)", p5:246827, p25:308298, p50:359482, p75:418176, p95:520627, resolve:"2026-09-18" }
+      t20: { label:"1 month (T+20)",  p5:177014, p25:219386, p50:254565, p75:295509, p95:365889, resolve:"2026-08-24" },
+      t60: { label:"3 months (T+60)", p5:144517, p25:202523, p50:256106, p75:323940, p95:454889, resolve:"2026-10-19" }
     },
     touch: [ /* descending high -> low */
-      [440000, 5, 30], [400000, 21, 51], [360000, 61, 80], [286000, 12, 33], [250000, 1, 11]
+      [440000, 1, 10], [400000, 3, 18], [360000, 9, 29], [286000, 51, 69], [250000, 83, 90]
     ],
     levels: { res:[362500, 350000, 344000], sup:[334675, 320000, 286320] },
     tech: {
@@ -2852,12 +2852,14 @@ const LEDGER = [
   {
     instrument:"OCDI", asset_class:"equity",
     anchor_date:"2026-06-24", anchor_price:22.80, ccy:"EGP",
-    horizon_label:"T+20", grade_date:"2026-07-21", cycle_no:1, reanchor_from:null,
+    horizon_label:"T+20", grade_date:"2026-07-26", cycle_no:1, reanchor_from:null,
+    grade_date_projected:"2026-07-21",
+    grade_note:"Projected grade_date (Sun–Thu calendar, no holiday awareness) fell 3 sessions short of a true T+20 — EGX was closed 2 Jul and 23 Jul (Revolution Day); graded on the actual 20th session close.",
     p5:18.31, p25:21.08, p50:23.21, p75:25.56, p95:29.35,
     touch:{ "+5":66, "+10":45, "+15":28, "+20":17, "-5":56, "-10":32 },
-    realized_close:null, realized_high:null, realized_low:null,
-    in_90:null, in_50:null, realized_quantile:null, median_err:null,
-    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+    realized_close:27.1, realized_high:28.7, realized_low:23.75,
+    in_90:true, in_50:false, realized_quantile:0.831, median_err:0.1676,
+    touch_hit:{ "+5":true, "+10":true, "+15":true, "+20":true, "-5":false, "-10":false }
   },
   {
     instrument:"OCDI", asset_class:"equity",
@@ -2869,16 +2871,40 @@ const LEDGER = [
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   },
+  {
+    instrument:"OCDI", asset_class:"equity",
+    anchor_date:"2026-07-27", anchor_price:27.48, ccy:"EGP",
+    horizon_label:"T+20", grade_date:"2026-08-24", cycle_no:2, reanchor_from:"2026-06-24",
+    note:"Cycle 2 roll-forward, 27-Jul-2026. Production chain, no approximation: Step 0.0 data-quality gate \u2192 YZ variance proxy \u2192 fit_har_v3 \u2192 har_forecast_v3 \u2192 carry drift ln(1+rf_live)\u2212ln(1+q) \u2192 simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED \u2014 house convention; drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=5, width_cal=0.93; rf_live 19.50% (CBE main operation rate).",
+    p5:23.06, p25:26.03, p50:27.87, p75:29.84, p95:33.67,
+    touch:{ "+5":59, "+10":34, "+15":19, "+20":10, "-5":48, "-10":23 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"OCDI", asset_class:"equity",
+    anchor_date:"2026-07-27", anchor_price:27.48, ccy:"EGP",
+    horizon_label:"T+60", grade_date:"2026-10-19", cycle_no:2, reanchor_from:"2026-06-24",
+    note:"Cycle 2 roll-forward, 27-Jul-2026. Production chain, no approximation: Step 0.0 data-quality gate \u2192 YZ variance proxy \u2192 fit_har_v3 \u2192 har_forecast_v3 \u2192 carry drift ln(1+rf_live)\u2212ln(1+q) \u2192 simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED \u2014 house convention; drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=5, width_cal=0.93; rf_live 19.50% (CBE main operation rate).",
+    p5:20.45, p25:25.39, p50:28.69, p75:32.35, p95:40.33,
+    touch:{ "+5":79, "+10":63, "+15":48, "+20":36, "-5":65, "-10":44 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
   // ---- ORHD · equity · cycle 1 (25 Jun 2026 published study; anchored 24 Jun) ----
   {
     instrument:"ORHD", asset_class:"equity",
     anchor_date:"2026-06-24", anchor_price:39.30, ccy:"EGP",
-    horizon_label:"T+20", grade_date:"2026-07-21", cycle_no:1, reanchor_from:null,
+    horizon_label:"T+20", grade_date:"2026-07-26", cycle_no:1, reanchor_from:null,
+    grade_date_projected:"2026-07-21",
+    grade_note:"Projected grade_date (Sun–Thu calendar, no holiday awareness) fell 3 sessions short of a true T+20 — EGX was closed 2 Jul and 23 Jul (Revolution Day); graded on the actual 20th session close.",
     p5:32.54, p25:36.93, p50:40.22, p75:43.82, p95:49.64,
     touch:{ "+5":60, "+10":43, "+15":28, "+20":16, "-5":48, "-10":28 },
-    realized_close:null, realized_high:null, realized_low:null,
-    in_90:null, in_50:null, realized_quantile:null, median_err:null,
-    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+    realized_close:39.9, realized_high:40.8, realized_low:37,
+    in_90:true, in_50:true, realized_quantile:0.476, median_err:-0.008,
+    touch_hit:{ "+5":false, "+10":false, "+15":false, "+20":false, "-5":true, "-10":false }
   },
   {
     instrument:"ORHD", asset_class:"equity",
@@ -2886,6 +2912,28 @@ const LEDGER = [
     horizon_label:"T+60", grade_date:"2026-09-22", cycle_no:1, reanchor_from:null,
     p5:29.42, p25:36.38, p50:42.10, p75:48.74, p95:59.97,
     touch:{ "+5":80, "+10":70, "+15":58, "+20":47, "-5":62, "-10":46 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"ORHD", asset_class:"equity",
+    anchor_date:"2026-07-27", anchor_price:40.16, ccy:"EGP",
+    horizon_label:"T+20", grade_date:"2026-08-24", cycle_no:2, reanchor_from:"2026-06-24",
+    note:"Cycle 2 roll-forward, 27-Jul-2026. Production chain, no approximation: Step 0.0 data-quality gate \u2192 YZ variance proxy \u2192 fit_har_v3 \u2192 har_forecast_v3 \u2192 carry drift ln(1+rf_live)\u2212ln(1+q) \u2192 simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED \u2014 house convention; drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=5, width_cal=0.93; rf_live 19.50% (CBE main operation rate).",
+    p5:35.15, p25:38.63, p50:40.73, p75:42.95, p95:47.19,
+    touch:{ "+5":52, "+10":25, "+15":11, "+20":5, "-5":38, "-10":14 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"ORHD", asset_class:"equity",
+    anchor_date:"2026-07-27", anchor_price:40.16, ccy:"EGP",
+    horizon_label:"T+60", grade_date:"2026-10-19", cycle_no:2, reanchor_from:"2026-06-24",
+    note:"Cycle 2 roll-forward, 27-Jul-2026. Production chain, no approximation: Step 0.0 data-quality gate \u2192 YZ variance proxy \u2192 fit_har_v3 \u2192 har_forecast_v3 \u2192 carry drift ln(1+rf_live)\u2212ln(1+q) \u2192 simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED \u2014 house convention; drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=5, width_cal=0.93; rf_live 19.50% (CBE main operation rate).",
+    p5:31.54, p25:37.84, p50:41.92, p75:46.38, p95:55.82,
+    touch:{ "+5":77, "+10":58, "+15":42, "+20":30, "-5":59, "-10":36 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
@@ -2917,9 +2965,9 @@ const LEDGER = [
     horizon_label:"1 month", grade_date:"2026-07-23", cycle_no:1, reanchor_from:null,
     p5:3431, p25:3754, p50:3975, p75:4214, p95:4598,
     touch:{ "+5":49, "+10":22, "+15":9, "+20":3, "-5":50, "-10":20 },
-    realized_close:null, realized_high:null, realized_low:null,
-    in_90:null, in_50:null, realized_quantile:null, median_err:null,
-    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+    realized_close:4048.78, realized_high:4202.67, realized_low:3944.23,
+    in_90:true, in_50:true, realized_quantile:0.577, median_err:0.0186,
+    touch_hit:{ "+5":true, "+10":false, "+15":false, "+20":false, "-5":false, "-10":false }
   },
   {
     instrument:"Gold", asset_class:"metal",
@@ -2937,6 +2985,28 @@ const LEDGER = [
     horizon_label:"12 months", grade_date:"2027-06-25", cycle_no:1, reanchor_from:null,
     p5:2624, p25:3515, p50:4295, p75:5246, p95:7026,
     touch:{ "+5":88, "+10":77, "+15":67, "+20":57, "-5":76, "-10":59 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"Gold", asset_class:"metal",
+    anchor_date:"2026-07-27", anchor_price:4090.87, ccy:"USD",
+    horizon_label:"1 month", grade_date:"2026-08-24", cycle_no:2, reanchor_from:"2026-06-25",
+    note:"Cycle 2 roll-forward, 27-Jul-2026. Production chain, no approximation: Step 0.0 data-quality gate \u2192 YZ variance proxy \u2192 fit_har_v3 \u2192 har_forecast_v3 \u2192 carry drift ln(1+rf_live)\u2212ln(1+q) \u2192 simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED \u2014 house convention; drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). Metals live fit nu=20, width_cal=1.035; rf_live 3.63% (USD carry, q=0 by construction for a zero-yield metal). METALS REMAINS THE WEAKEST CALIBRATION IN THE SYSTEM \u2014 a 2-name panel, read the cone accordingly.",
+    p5:3725, p25:3948, p50:4102, p75:4263, p95:4516,
+    touch:{ "+5":34, "+10":9, "+15":2, "+20":0, "-5":30, "-10":5 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"Gold", asset_class:"metal",
+    anchor_date:"2026-07-27", anchor_price:4090.87, ccy:"USD",
+    horizon_label:"3 months", grade_date:"2026-10-19", cycle_no:2, reanchor_from:"2026-06-25",
+    note:"Cycle 2 roll-forward, 27-Jul-2026. Production chain, no approximation: Step 0.0 data-quality gate \u2192 YZ variance proxy \u2192 fit_har_v3 \u2192 har_forecast_v3 \u2192 carry drift ln(1+rf_live)\u2212ln(1+q) \u2192 simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED \u2014 house convention; drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). Metals live fit nu=20, width_cal=1.035; rf_live 3.63% (USD carry, q=0 by construction for a zero-yield metal). METALS REMAINS THE WEAKEST CALIBRATION IN THE SYSTEM \u2014 a 2-name panel, read the cone accordingly.",
+    p5:3493, p25:3862, p50:4127, p75:4410, p95:4880,
+    touch:{ "+5":60, "+10":33, "+15":16, "+20":7, "-5":53, "-10":23 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
@@ -2976,12 +3046,14 @@ const LEDGER = [
   {
     instrument:"Samsung", asset_class:"other",
     anchor_date:"2026-06-26", anchor_price:339500, ccy:"KRW",
-    horizon_label:"T+20", grade_date:"2026-07-24", cycle_no:1, reanchor_from:null,
+    horizon_label:"T+20", grade_date:"2026-07-27", cycle_no:1, reanchor_from:null,
+    grade_date_projected:"2026-07-24",
+    grade_note:"Projected grade_date (Mon–Fri calendar, no holiday awareness) fell 1 session short of a true T+20 — KRX was closed 17 Jul (reinstated Constitution Day); graded on the actual 20th session close. Closed BELOW the published p5, so realized_quantile is left-censored (<0.05) and recorded null rather than extrapolated.",
     p5:277676, p25:316898, p50:346091, p75:378203, p95:430413,
     touch:{ "+5":68, "+10":48, "+15":31, "+20":18, "-5":72, "-10":44 },   // interpolated from the study's absolute touch ladder — replace with the model's exact relative barrier-hit probabilities before these bands are graded
-    realized_close:null, realized_high:null, realized_low:null,
-    in_90:null, in_50:null, realized_quantile:null, median_err:null,
-    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+    realized_close:254000, realized_high:343000, realized_low:240000,
+    in_90:false, in_50:false, realized_quantile:null, median_err:-0.2661,
+    touch_hit:{ "+5":false, "+10":false, "+15":false, "+20":false, "-5":true, "-10":true }
   },
   {
     instrument:"Samsung", asset_class:"other",
@@ -2989,6 +3061,28 @@ const LEDGER = [
     horizon_label:"T+60", grade_date:"2026-09-18", cycle_no:1, reanchor_from:null,
     p5:246827, p25:308298, p50:359482, p75:418176, p95:520627,
     touch:{ "+5":83, "+10":70, "+15":58, "+20":47, "-5":79, "-10":58 },   // interpolated from the study's absolute touch ladder — replace with the model's exact relative barrier-hit probabilities before these bands are graded
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"Samsung", asset_class:"other",
+    anchor_date:"2026-07-27", anchor_price:254000, ccy:"KRW",
+    horizon_label:"T+20", grade_date:"2026-08-24", cycle_no:2, reanchor_from:"2026-06-26",
+    note:"Cycle 2 roll-forward, 27-Jul-2026. Production chain, no approximation: Step 0.0 data-quality gate \u2192 YZ variance proxy \u2192 fit_har_v3 \u2192 har_forecast_v3 \u2192 carry drift ln(1+rf_live)\u2212ln(1+q) \u2192 simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED \u2014 house convention; drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). KR live fit nu=Gaussian, width_cal=1.154; rf_live 3.00% (placeholder KTB anchor). STRUCK ON THE INCUMBENT FIT BY DESIGN: the 15-year Samsung history ingested this session refits KR to nu=12/width_cal=1.105 (published 90% cone \u22125.3%), which trips the materiality gate and is therefore held on a feature branch pending PR review, not applied to production.",
+    p5:177014, p25:219386, p50:254565, p75:295509, p95:365889,
+    touch:{ "+5":73, "+10":58, "+15":45, "+20":35, "-5":72, "-10":55 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"Samsung", asset_class:"other",
+    anchor_date:"2026-07-27", anchor_price:254000, ccy:"KRW",
+    horizon_label:"T+60", grade_date:"2026-10-19", cycle_no:2, reanchor_from:"2026-06-26",
+    note:"Cycle 2 roll-forward, 27-Jul-2026. Production chain, no approximation: Step 0.0 data-quality gate \u2192 YZ variance proxy \u2192 fit_har_v3 \u2192 har_forecast_v3 \u2192 carry drift ln(1+rf_live)\u2212ln(1+q) \u2192 simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED \u2014 house convention; drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). KR live fit nu=Gaussian, width_cal=1.154; rf_live 3.00% (placeholder KTB anchor). STRUCK ON THE INCUMBENT FIT BY DESIGN: the 15-year Samsung history ingested this session refits KR to nu=12/width_cal=1.105 (published 90% cone \u22125.3%), which trips the materiality gate and is therefore held on a feature branch pending PR review, not applied to production.",
+    p5:144517, p25:202523, p50:256106, p75:323940, p95:454889,
+    touch:{ "+5":84, "+10":73, "+15":64, "+20":56, "-5":82, "-10":70 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
@@ -3812,14 +3906,14 @@ const METALS = {
     unit: "دولار للأونصة",   // Arabic unit (AR feed)
     unitEn: "USD/oz",         // English unit (EN feed)
     nameAr: "الذهب",          // Arabic display name (AR feed)
- name:"Gold", code:"XAU/USD", spot:3989.85, spotDate:"close 25 Jun 2026", ccy:"USD",
+ name:"Gold", code:"XAU/USD", spot:4090.87, spotDate:"close 27 Jul 2026", ccy:"USD",
  fair:{ bear:4200, base:4600, full:5000 },
  dist:{
-   t20:{ label:"1 month (T+20)",  p5:3431, p25:3754, p50:3975, p75:4214, p95:4598, resolve:"2026-07-23" },
-   t60:{ label:"3 months (T+60)", p5:3064, p25:3560, p50:3944, p75:4369, p95:5074, resolve:"2026-09-17" },
+   t20:{ label:"1 month (T+20)",  p5:3725, p25:3948, p50:4102, p75:4263, p95:4516, resolve:"2026-08-24" },
+   t60:{ label:"3 months (T+60)", p5:3493, p25:3862, p50:4127, p75:4410, p95:4880, resolve:"2026-10-19" },
    t252:{ label:"12 months (T+252)", p5:2624, p25:3515, p50:4295, p75:5246, p95:7026, resolve:"2027-06-25" }
  },
- touch:[ [4800,3,19], [4600,8,30], [4500,13,37], [4300,32,55], [4200,47,66], [3800,52,72], [3700,35,60], [3600,21,49], [3500,12,39] ],
+ touch:[ [4800,1,11], [4600,4,24], [4500,9,33], [4300,34,59], [4200,57,75], [3800,15,39], [3700,6,25], [3600,2,16], [3500,1,9] ],
  levels:{ res:[4200,4470,4487], sup:[3700,3600,3500] },
  tech:{
    trend:"Broken below both averages \u2014 oversold, with a fresh death-cross",
