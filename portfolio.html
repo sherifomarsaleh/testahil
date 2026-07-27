@@ -134,7 +134,7 @@
     </div>
     <div class="chip-rows" id="p-chips"></div>
     <div class="wsum" id="p-wsum"></div>
-    <p id="p-diag" class="muted" style="margin:6px 0 0;font-size:10px;opacity:.5">build big-loss-only-v7</p>
+    <p id="p-diag" class="muted" style="margin:6px 0 0;font-size:10px;opacity:.5">build note-full-width-v8</p>
     <p class="muted" style="margin:10px 0 0;font-size:var(--fs-small)">"Load a starting mix" picks the five EGX names with the best typical return for the downside risk they carry (median outcome divided by the worst-1-in-20 case) at the chosen horizon, equally weighted — not just the highest headline number. Each name below shows its own bad case too, so a weak trade-off is visible before you swap anything. Nothing on this page is stored or sent anywhere.</p>
   </section>
 
@@ -833,7 +833,7 @@ window.addEventListener('error', function(e){
   // chance of a big loss) — not just one — plus the same plain-language
   // captions and EGP conversion the main tool uses. EGX-only mixes are always
   // single-currency (EGP), so no mixed-currency branching is needed.
-  function mixCardHtml(title, sub, mix, stats, which, noteHtml, loadId){
+  function mixCardHtml(title, sub, mix, stats, which, loadId){
     var rows = mix.map(function(p){
       var t=TICKERS[p.k];
       var m50=(t.dist[which].p50/t.spot-1)*100, m5=(t.dist[which].p5/t.spot-1)*100;
@@ -843,7 +843,7 @@ window.addEventListener('error', function(e){
     }).join('');
     var amt = parseFloat($('p-amt').value)||0;
     var moneyLbl = function(v){ return 'EGP ' + money(v); };
-    return '<div class="mix-card"><h4>'+title+'</h4><p class="sub">'+sub+'</p>'+(noteHtml||'')+
+    return '<div class="mix-card"><h4>'+title+'</h4><p class="sub">'+sub+'</p>'+
       '<div class="chip-rows">'+rows+'</div>'+
       '<div class="outgrid" style="margin-top:12px">'+
         '<div class="outbox"><div class="ol">Typical outcome</div><div class="bigpct '+(stats.med>=0?'g':'r')+'">'+pct(stats.med*100)+'</div>'+
@@ -872,17 +872,20 @@ window.addEventListener('error', function(e){
 
     var note = '';
     if(res.infeasible){
-      note = '<div class="warnbox" style="margin:0 0 10px"><b>Even the safest available mix has about a '+Math.round(res.safestBigLoss*100)+'% chance of a big loss, beyond your '+tolPct+'% tolerance.</b> No covered EGX combination gets safer than that, so this mix matches the minimum-risk one exactly rather than pretending a tighter option exists.</div>';
+      note = '<div class="warnbox"><b>Even the safest available mix has about a '+Math.round(res.safestBigLoss*100)+'% chance of a big loss, beyond your '+tolPct+'% tolerance.</b> No covered EGX combination gets safer than that, so this mix matches the minimum-risk one exactly rather than pretending a tighter option exists.</div>';
     } else if(res.nonBinding){
-      note = '<div class="warnbox" style="margin:0 0 10px"><b>Your '+tolPct+'% tolerance comfortably covers the highest-returning available mix.</b> A looser tolerance would not find something with even higher return — '+pct(res.bestMed*100)+' is already the best typical outcome any covered EGX name offers.</div>';
+      note = '<div class="warnbox"><b>Your '+tolPct+'% tolerance comfortably covers the highest-returning available mix.</b> A looser tolerance would not find something with even higher return — '+pct(res.bestMed*100)+' is already the best typical outcome any covered EGX name offers.</div>';
     } else if(res.gap){
-      note = '<div class="warnbox" style="margin:0 0 10px"><b>Your '+tolPct+'% tolerance sits just below what it takes to reach a higher-return mix.</b> The safest mix is the closest match within it for now, which is why this matches the minimum-risk mix — a slightly looser number may unlock a different combination.</div>';
+      note = '<div class="warnbox"><b>Your '+tolPct+'% tolerance sits just below what it takes to reach a higher-return mix.</b> The safest mix is the closest match within it for now, which is why this matches the minimum-risk mix — a slightly looser number may unlock a different combination.</div>';
     }
 
-    $('m-note').innerHTML = '';
+    // full-width, above both cards — not squeezed inside the max-return
+    // column, since it can speak about either or both cards depending on
+    // which of the three cases above fired.
+    $('m-note').innerHTML = note;
     $('m-out').innerHTML = '<div class="mix-pair">' +
-      mixCardHtml('Minimum-risk mix', 'The single safest available combination of covered EGX names — the same regardless of the tolerance above.', safestMix, safeStats, which, '', 'm-load-safe') +
-      mixCardHtml('Maximum-return mix within your tolerance', 'The best available typical outcome without exceeding your stated worst case.', res.mix, maxStats, which, note, 'm-load-max') +
+      mixCardHtml('Minimum-risk mix', 'The single safest available combination of covered EGX names — the same regardless of the tolerance above.', safestMix, safeStats, which, 'm-load-safe') +
+      mixCardHtml('Maximum-return mix within your tolerance', 'The best available typical outcome without exceeding your stated worst case.', res.mix, maxStats, which, 'm-load-max') +
       '</div>';
     $('m-load-safe').addEventListener('click', function(){ loadMixIntoTool(safestMix, safeStats.med); });
     $('m-load-max').addEventListener('click', function(){ loadMixIntoTool(res.mix, maxStats.med); });
