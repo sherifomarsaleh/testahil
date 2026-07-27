@@ -121,14 +121,14 @@
       <div class="field" style="margin-bottom:0;max-width:200px"><label for="p-amt">Amount to invest</label><input id="p-amt" type="number" value="100000" min="1" step="1000" class="num"></div>
     </div>
     <div class="addrow">
-      <div class="field"><label for="p-sel">Add a name — picking one from this list adds it below</label><select id="p-sel" class="num" onchange="if(window.__addName) window.__addName(this.value)"></select></div>
+      <div class="field"><label for="p-sel">Add a name — picking one from this list adds it below</label><select id="p-sel" class="num" onchange="if(window.__addName){window.__addName(this.value); this.selectedIndex=0;}"></select></div>
       <button type="button" class="btn" id="p-add" onclick="if(window.__addName) window.__addName(document.getElementById('p-sel').value)">+ Add</button>
       <button type="button" class="btn ghost2" id="p-start">Load a starting mix</button>
       <button type="button" class="btn ghost2" id="p-eq">Equal weights</button>
     </div>
     <div class="chip-rows" id="p-chips"></div>
     <div class="wsum" id="p-wsum"></div>
-    <p id="p-diag" class="muted" style="margin:6px 0 0;font-size:10px;opacity:.5">build inline-add-v2</p>
+    <p id="p-diag" class="muted" style="margin:6px 0 0;font-size:10px;opacity:.5">build egx-first-v3</p>
     <p class="muted" style="margin:10px 0 0;font-size:var(--fs-small)">"Load a starting mix" picks the five EGX names with the best typical return for the downside risk they carry (median outcome divided by the worst-1-in-20 case) at the chosen horizon, equally weighted — not just the highest headline number. Each name below shows its own bad case too, so a weak trade-off is visible before you swap anything. Nothing on this page is stored or sent anywhere.</p>
   </section>
 
@@ -322,8 +322,20 @@ window.addEventListener('error', function(e){
   var KEYS = Object.keys(TICKERS).filter(function(k){ var t=TICKERS[k]; return t && t.spot && t.dist && t.dist.t20 && t.dist.t60; });
   (function buildSelect(){
     var sel=$('p-sel'), groups={};
+    // Start on a placeholder, never on a real name. A box already showing a stock
+    // is a trap: picking the option a native menu ALREADY has selected fires no
+    // change event in any browser, so "adding" the shown name silently does
+    // nothing. With a placeholder, every pick is a real pick.
+    var ph=document.createElement('option');
+    ph.value=''; ph.textContent='— choose a stock to add —'; ph.selected=true; ph.disabled=true;
+    sel.appendChild(ph);
     KEYS.forEach(function(k){ var g=exOf(TICKERS[k]); (groups[g]=groups[g]||[]).push(k); });
-    Object.keys(groups).sort().forEach(function(g){
+    // EGX first — it's the bulk of the coverage and what most readers come for.
+    // Alphabetical group order buried all 30 EGX names below 18 Gulf ones, which
+    // read as "the stock I want isn't in this list."
+    Object.keys(groups).sort(function(a,b){
+      if(a==='EGX') return -1; if(b==='EGX') return 1; return a.localeCompare(b);
+    }).forEach(function(g){
       var og=document.createElement('optgroup'); og.label=g;
       groups[g].sort(function(a,b){ return TICKERS[a].name.localeCompare(TICKERS[b].name); })
         .forEach(function(k){ var o=document.createElement('option'); o.value=k; o.textContent=TICKERS[k].name+' ('+k+')'; og.appendChild(o); });
@@ -477,7 +489,9 @@ window.addEventListener('error', function(e){
   // depends on a reader noticing a separate button), and the Add button still
   // works too — harmless if both fire, since addName() ignores repeats.
   $('p-add').addEventListener('click', function(){ addName($('p-sel').value); });
-  $('p-sel').addEventListener('change', function(){ addName(this.value); });
+  // after each add, snap back to the placeholder so the box invites the next pick
+  // and the SAME name can be picked again later (a change event needs a change).
+  $('p-sel').addEventListener('change', function(){ addName(this.value); this.selectedIndex=0; });
   $('p-start').addEventListener('click', function(){
     // score = typical return / downside risk taken (median% divided by the worst-1-in-20
     // case, floored at 1pp of downside so a near-zero-downside name can't post an absurd
