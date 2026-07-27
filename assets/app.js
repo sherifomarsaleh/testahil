@@ -685,15 +685,18 @@ function initShare(){
    A ticker restruck under the new convention carries `hz` in data.js:
        hz:{ h1:21, h3:63, l1:"1 month", l3:"3 months", cal:true }
    and this code follows it. Absent `hz`, the legacy 20/60 anchors apply. */
-const HZ_LEGACY = { h1:20, h3:60, l1:"T+20", l3:"T+60",
-                     l1Long:"T+20 (~1 month)", l3Long:"T+60 (~3 months)", cal:false };
+const HZ_LEGACY = { h1:20, h3:60, l1:"1 month", l3:"3 months",
+                     l1Long:"1 month (T+20)", l3Long:"3 months (T+60)", cal:false };
 function hzOf(T){
   const z = (T && T.hz) || {};
-  // l1Long/l3Long are for spots with room (table headers) — a legacy cohort's
-  // T+20/T+60 gets the approximate calendar read-out alongside it so the page
-  // visibly acknowledges today's convention without touching the axis/prose,
-  // which still carry the exact published session count. A calendar-hz ticker
-  // already says "1 month"/"3 months" outright, so its long form is the same.
+  // l1/l3 lead with the calendar name EVERYWHERE now (axis, tooltip, aria-label,
+  // prose) — a legacy cohort's h1/h3 anchors stay EXACTLY 20/60 sessions (the fan
+  // still fits through the two published percentile points, untouched), only the
+  // TEXT describing them changed. l1Long/l3Long add the exact session count back
+  // in parentheses for spots with room (table headers, the explainer prose) so
+  // the precise published fact is never lost, just no longer the lead. A
+  // calendar-hz ticker has no fixed session count to parenthesize, so its long
+  // form is the same as its short form.
   return { h1: z.h1 || HZ_LEGACY.h1, h3: z.h3 || HZ_LEGACY.h3,
            l1: z.l1 || HZ_LEGACY.l1, l3: z.l3 || HZ_LEGACY.l3,
            l1Long: z.l1 || HZ_LEGACY.l1Long, l3Long: z.l3 || HZ_LEGACY.l3Long,
@@ -820,7 +823,7 @@ function renderStaticFan(elId, T){
       '<span><span style="display:inline-block;width:14px;height:2px;background:var(--gold,#C0A45F);margin-right:5px;vertical-align:middle"></span>median path</span>' +
     '</div>' +
     '<table class="mc-ladder" style="margin-top:14px"><thead><tr><th>Level</th><th>P(touch) ' + HZ.l1Long + '</th><th>P(touch) ' + HZ.l3Long + '</th></tr></thead><tbody>' + touchRows + '</tbody></table>' +
-    '<p class="muted" style="font-size:var(--fs-small);margin-top:12px">The ' + HZ.l1 + ' and ' + HZ.l3 + ' columns are the published calibration exactly as saved. The curve between them is a smooth fit using the real Student-t shape for this market through those two points \u2014 not a fresh simulation at every day, and not adjustable \u2014 so it always agrees with the published numbers at the two horizons that matter.' +
+    '<p class="muted" style="font-size:var(--fs-small);margin-top:12px">The ' + HZ.l1Long + ' and ' + HZ.l3Long + ' columns are the published calibration exactly as saved. The curve between them is a smooth fit using the real Student-t shape for this market through those two points \u2014 not a fresh simulation at every day, and not adjustable \u2014 so it always agrees with the published numbers at the two horizons that matter.' +
     (HZ.cal
       ? ' Horizons are calendar-anchored: ' + HZ.l1 + ' and ' + HZ.l3 + ' from the anchor date, which on this market works out to about ' + HZ.h1 + ' and ' + HZ.h3 + ' trading sessions.'
       : ' Horizons on this cohort are the retired session count \u2014 20 and 60 trading sessions from the anchor \u2014 kept exactly as published. Cohorts struck from 27 July 2026 are anchored to calendar months instead.') +

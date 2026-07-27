@@ -122,10 +122,10 @@
 
   <section id="sec-bystock" class="anchor" data-nav="By stock">
     <details class="card" id="hz-note" open style="margin-bottom:14px;background:var(--tint2)">
-      <summary style="cursor:pointer;font-weight:700">Why some rows say “1 month” and older ones say “T+20”</summary>
+      <summary style="cursor:pointer;font-weight:700">Why some rows carry a (T+20) or (T+60) tag</summary>
       <p class="muted" style="margin:10px 0 0">From <b>27 July 2026</b> every new forecast is checked at <b>1 month</b> and <b>3 months</b> from the day it was published — real calendar dates. If that date is a weekend or a public holiday on that exchange, we check on the next day it actually trades. Nothing else moves it.</p>
       <p class="muted" style="margin:10px 0 0">Before that date we counted <b>trading sessions</b> instead: “T+20” meant the 20th day the market was open, “T+60” the 60th. That is roughly a month and roughly three months — but only roughly, and it drifted with every public holiday, which made the check date hard to predict and hard to explain.</p>
-      <p class="muted" style="margin:10px 0 0"><b>We did not go back and change the old forecasts.</b> Every cohort published before 27 July 2026 keeps the horizon it was issued on, is graded on that horizon, and still counts in the score exactly as it always did. Rows labelled <b>T+20 / T+60</b> are on the old session count; rows labelled <b>1 month / 3 months</b> are on the calendar. Both are live, and the difference is small — a calendar month is about 21 trading sessions and a calendar quarter about 63, against the old 20 and 60.</p>
+      <p class="muted" style="margin:10px 0 0"><b>We did not go back and change the old forecasts.</b> Every cohort published before 27 July 2026 keeps the horizon it was issued on, is graded on that horizon, and still counts in the score exactly as it always did — only how it's <em>displayed</em> changed: every row below now leads with the calendar name, <b>1 month</b> or <b>3 months</b>, so the table reads consistently. A row struck under the old session count carries its exact original count alongside, e.g. <b>1 month (T+20)</b>, so the precise published fact is never lost. A row struck directly on the calendar convention has no fixed session count to show, so it carries no parenthetical. Both are live, and the difference is small — a calendar month is about 21 trading sessions and a calendar quarter about 63, against the old 20 and 60.</p>
       <p class="muted" style="margin:10px 0 0">The engine was re-calibrated to match: the five-year test that validates each cone now measures the same calendar window we publish, instead of a fixed 60 sessions. <a href="method.html">Full methodology →</a></p>
     </details>
 
@@ -152,7 +152,7 @@
 
 <footer><div class="wrap"><div class="foot-studies"><b>Studies:</b> <a href="phdc.html">Palm Hills</a> &middot; <a href="tmgh.html">Talaat Moustafa</a> &middot; <a href="ocdi.html">SODIC</a> &middot; <a href="orhd.html">Orascom Dev</a> &middot; <a href="oras.html">Orascom Const</a> &middot; <a href="comi.html">CIB</a> &middot; <a href="emfd.html">Emaar Misr</a> &middot; <a href="gold.html">Gold</a> &middot; <a href="stocks.html">all &rarr;</a></div><b>Disclaimer:</b> Educational valuation studies and personal analytical opinion — not investment advice, not recommendations. The preparer is not licensed by Egypt's FRA, manages no money, accepts no clients, and may hold positions in instruments mentioned. <a href="method.html#disclaimer">Full text</a>.<br><br><span class="social" style="font-size:var(--fs-lead);font-weight:700">Follow Testahil &mdash; <a href="https://t.me/testahil_markets" target="_blank" rel="noopener">Telegram</a> &middot; <a href="https://www.facebook.com/testahil.markets" target="_blank" rel="noopener">Facebook</a> &middot; <a href="https://www.linkedin.com/company/testahil" target="_blank" rel="noopener">LinkedIn</a></span></div></footer>
 
-<script src="assets/data.js?v=20260727t"></script><script src="assets/app.js?v=20260727b"></script>
+<script src="assets/data.js?v=20260727t"></script><script src="assets/app.js?v=20260727c"></script>
 <script>
 const F2 = n => Number(n).toLocaleString("en-US",{maximumFractionDigits:2});
 
@@ -177,6 +177,17 @@ const fmtDateL = s => fmtDate(s,{day:'numeric',month:'long',year:'numeric'});
 // conventions, which a raw string compare does not do ("1 month" < "3 months" <
 // "T+20" < "T+60" happens to work, but "12 months" would sort before "3 months").
 // Rank by the horizon's actual length instead.
+// ---- horizon DISPLAY (calendar-first) -----------------------------------------
+// r.horizon_label ITSELF is never touched anywhere below — hzRank, byHorizon and
+// every stored ledger/backtest row keep exactly "T+20"/"T+60"/"1 month"/
+// "3 months" as struck; that's the un-relabelled, append-only record. This map
+// only changes what a READER sees: every rendered cell leads with the calendar
+// name, with the exact retired session count kept alongside in parentheses so
+// the precise published fact is never lost — just no longer the lead. A row
+// already struck on the calendar convention has no fixed session count to
+// parenthesize, so it passes through unchanged.
+const HZ_DISPLAY = {"T+20":"1 month (T+20)", "T+60":"3 months (T+60)"};
+function hzDisplay(label){ return HZ_DISPLAY[label] || label; }
 const HZ_MONTHS = {"T+20":1, "T+60":3, "1 month":1, "3 months":3, "12 months":12};
 function hzRank(label){
   if(label in HZ_MONTHS) return HZ_MONTHS[label];
@@ -223,7 +234,7 @@ function renderRow(r){
   return `<tr${failed ? ' class="row-cal-fail"' : matched ? ' class="row-cal-match"' : ''}>
     <td class="num">${r.anchor_date}</td>
     <td><b>${r.instrument}</b>${failed ? ` <span class="chip fail">indicative</span>` : matched ? ` <span class="chip match">indicative</span>` : ``}</td>
-    <td class="num">${r.horizon_label}</td>
+    <td class="num">${hzDisplay(r.horizon_label)}</td>
     <td class="num">${F2(r.p50)}</td>
     <td class="num">${F2(r.p5)} – ${F2(r.p95)} <span class="muted">(90%)</span></td>
     <td>${res}</td>
@@ -386,7 +397,7 @@ function cohortChartSVG(r, chartId){
     return d;
   }
   const svg = chEl("svg",{id:chartId, viewBox:`0 0 ${W} ${HT}`, width:"100%", role:"img",
-    "aria-label":`${r.instrument} ${r.horizon_label} forecast published ${r.anchor_date}: predicted 90% range ${fmt(P[5])} to ${fmt(P[95])} ${r.ccy||""}, middle estimate ${fmt(P[50])}; actual close ${fmt(rc)}, which landed ${r.in_90?"inside":"outside"} the range.`});
+    "aria-label":`${r.instrument} ${hzDisplay(r.horizon_label)} forecast published ${r.anchor_date}: predicted 90% range ${fmt(P[5])} to ${fmt(P[95])} ${r.ccy||""}, middle estimate ${fmt(P[50])}; actual close ${fmt(rc)}, which landed ${r.in_90?"inside":"outside"} the range.`});
   const gsteps=5;
   for(let gi=0;gi<=gsteps;gi++){
     const v = lo + (hi-lo)*gi/gsteps;
@@ -397,7 +408,7 @@ function cohortChartSVG(r, chartId){
   const xa=chEl("text",{x:px(0),y:HT-12,"text-anchor":"start","font-size":11,fill:"var(--muted)"});
   xa.textContent="published "+r.anchor_date; svg.appendChild(xa);
   const xh=chEl("text",{x:px(steps),y:HT-12,"text-anchor":"end","font-size":11,fill:"var(--muted)"});
-  xh.textContent=r.horizon_label+" · "+r.grade_date; svg.appendChild(xh);
+  xh.textContent=hzDisplay(r.horizon_label)+" · "+r.grade_date; svg.appendChild(xh);
   svg.appendChild(chEl("path",{d:bandPath(95,5),fill:"var(--brass)","fill-opacity":0.34,stroke:"none"}));
   svg.appendChild(chEl("path",{d:bandPath(75,25),fill:"var(--teal)","fill-opacity":0.55,stroke:"none"}));
   svg.appendChild(chEl("path",{d:linePath(50),fill:"none",stroke:"var(--ink)","stroke-width":1.5,"stroke-dasharray":"6 3","stroke-linecap":"round"}));
@@ -657,7 +668,7 @@ document.getElementById("tab-bar").addEventListener("click", e=>{
   const body = rows.map(r=>`<tr>
     <td class="num">${r.anchor_date}</td>
     <td><b>${r.instrument}</b></td>
-    <td class="num">${r.horizon_label}</td>
+    <td class="num">${hzDisplay(r.horizon_label)}</td>
     <td class="num">${f2(r.p50)}</td>
     <td class="num">${f2(r.p5)} – ${f2(r.p95)} <span class="muted">(90%)</span></td>
     <td><span class="num">${f2(r.realized_close)}</span> ${inBand(r) ? '<span class="ok">inside ✓</span>' : '<span class="bad">outside ✗</span>'}</td>
@@ -713,7 +724,7 @@ document.getElementById("tab-bar").addEventListener("click", e=>{
   var upcoming=open.filter(function(r){ return isoDate(r.grade_date) > today; });
 
   function whoOf(rows){
-    if(rows.length===1) return rows[0].instrument+" "+rows[0].horizon_label;
+    if(rows.length===1) return rows[0].instrument+" "+hzDisplay(rows[0].horizon_label);
     var names=[...new Set(rows.map(function(r){return r.instrument;}))];
     return rows.length+" cohorts ("+names.slice(0,3).join(", ")+(names.length>3?" and others":"")+")";
   }
