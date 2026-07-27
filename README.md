@@ -55,3 +55,24 @@ build-tickers.js        regenerates tickers/*.html from data.js
 
 No build step is required to view the site — open `index.html` in a browser, or serve the folder with any
 static file server (everything is plain HTML/CSS/vanilla JS, no framework, no bundler).
+
+## Publishing this to GitHub yourself
+
+This folder is already a git repo with one commit (`main` branch). The agent session that built this
+could not push it directly — its network access to the GitHub API is restricted to repos explicitly
+attached to the session, and no such attachment exists here. To publish it yourself:
+
+```
+# 1. Create an empty repo on GitHub (no README/license — this folder already has one), then:
+cd testahil-web
+git remote add origin https://github.com/<you>/<repo-name>.git
+git push -u origin main
+
+# 2. Optional — a live-but-unlisted preview via GitHub Pages:
+#    Settings -> Pages -> Deploy from branch -> main -> / (root)
+#    (Private-repo Pages needs GitHub Pro/Team/Enterprise; on the free tier, keep the repo private
+#    for source control and skip Pages, or make the repo public once the data is real.)
+```
+
+Revoke/rotate the token you used while testing this, if you haven't already — it was pasted in plaintext
+during the session that built this.
