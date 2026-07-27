@@ -598,7 +598,12 @@ window.addEventListener('error', function(e){
       var st1=optStats(m,w1);
       return { i:i, med:st1.med, p5:st1.p5, score: st1.med/Math.max(0.01,-st1.p5) };
     });
-    var mMax = Math.max.apply(null, single.map(function(s){ return s.med; }));
+    // the reachability ceiling uses the EXACT published medians, not the sampled
+    // ones — otherwise the note can quote a ceiling of "+15.0%" (sampling noise)
+    // while calling a 15% target unreachable, which reads as a contradiction.
+    var mMax = Math.max.apply(null, m.names.map(function(k){
+      var t=TICKERS[k]; return t.dist[which].p50/t.spot - 1;
+    }));
     var clamped = null;
     if(target > mMax - 0.002) clamped = mMax - 0.002;
     var tgt = clamped!=null ? clamped : target;
