@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<title>Portfolio Odds — set a target return, see the chances | testahil?</title>
+<meta name="description" content="Build a mix of covered stocks, set a target return, and see the chance of reaching it — plus the chance of loss, how much that loss could be, and which names carry the gain and the risk.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;700;800&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="favicon.png?v=2">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
+<script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('#theme-toggle');if(!b)return;var dark=document.documentElement.getAttribute('data-theme')==='dark';var n=dark?'light':'dark';if(n==='dark'){document.documentElement.setAttribute('data-theme','dark');}else{document.documentElement.removeAttribute('data-theme');}try{localStorage.setItem('theme',n);}catch(e){}b.setAttribute('aria-pressed',String(n==='dark'));});document.addEventListener('DOMContentLoaded',function(){var x=document.getElementById('theme-toggle');if(x)x.setAttribute('aria-pressed',String(document.documentElement.getAttribute('data-theme')==='dark'));});})();</script>
+<link rel="stylesheet" href="assets/style.css?v=20260713f">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="testahil?">
+<meta property="og:title" content="Portfolio odds — set a target return, see the chances | testahil?">
+<meta property="og:description" content="The chance a mix of covered stocks reaches your target — and the chance, and size, of the loss instead.">
+<meta property="og:image" content="https://testahil.com/og-image.png">
+<meta property="og:url" content="https://testahil.com/portfolio.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Portfolio odds — set a target return, see the chances | testahil?">
+<meta name="twitter:description" content="The chance a mix of covered stocks reaches your target — and the chance, and size, of the loss instead.">
+<meta name="twitter:image" content="https://testahil.com/og-image.png">
+<link rel="canonical" href="https://testahil.com/portfolio.html">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-H9NV0ZK9RN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-H9NV0ZK9RN');
+</script>
+
+<style>
+  .hrow{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}
+  .hbtns{display:flex;gap:6px}
+  .hbtn{border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:999px;padding:7px 16px;font:inherit;font-size:var(--fs-small);font-weight:600;cursor:pointer}
+  .hbtn.on{background:var(--teal);border-color:var(--teal);color:#fff}
+  .addrow{display:flex;gap:8px;align-items:flex-end;flex-wrap:wrap;margin-top:14px}
+  .addrow .field{flex:1;min-width:220px;margin-bottom:0}
+  .chip-rows{display:flex;flex-direction:column;gap:2px;margin-top:12px}
+  .crow{display:flex;align-items:center;gap:10px;padding:8px 12px;border:1px solid var(--line);border-radius:var(--radius)}
+  .crow .cn{flex:1;min-width:0}
+  .crow .cn b{font-size:var(--fs-small)}
+  .crow .cn .cc{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-caption);color:var(--muted);margin-left:6px}
+  .crow .cmed{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-caption);color:var(--muted);white-space:nowrap}
+  .crow input.wt{width:74px;min-width:74px;padding:5px 8px;text-align:right;font-family:'IBM Plex Mono',monospace}
+  .crow .wl{font-size:var(--fs-caption);color:var(--muted)}
+  .crow .rm{border:none;background:transparent;color:var(--muted);font-size:16px;cursor:pointer;padding:2px 6px;line-height:1}
+  .crow .rm:hover{color:var(--red)}
+  .btn.ghost2{background:transparent;border:1px solid var(--line);color:var(--ink)}
+  .wsum{font-size:var(--fs-small);color:var(--muted);margin-top:8px}
+  .wsum b.bad2{color:var(--red)}
+
+  .bigpct{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-display);font-weight:600;line-height:1.05}
+  .bigpct.g{color:var(--green)} .bigpct.r{color:var(--red)}
+  .rangefine{font-size:var(--fs-caption);color:var(--muted);margin-top:6px;line-height:1.5}
+  .outgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px}
+  .outbox .ol{font-size:var(--fs-small);color:var(--muted);margin-bottom:4px}
+  .outbox .ov{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-h3);font-weight:500}
+
+  .odds-table{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+  .odds-table>div{background:var(--card,var(--paper));padding:12px 14px}
+  .odds-table .oh{font-weight:700;font-size:var(--fs-small);background:var(--tint2)}
+  .odds-table .rowlabel{font-weight:600;font-size:var(--fs-small);display:flex;flex-direction:column;justify-content:center;gap:2px}
+  .odds-table .rowlabel .rr{font-weight:400;color:var(--muted);font-size:var(--fs-caption)}
+  .odds-cell .pctnum{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-h2);font-weight:600;line-height:1.1}
+  .odds-cell.gain .pctnum{color:var(--green)}
+  .odds-cell.loss .pctnum{color:var(--red)}
+  .odds-cell .detail{font-size:var(--fs-caption);color:var(--muted);margin-top:5px;line-height:1.4}
+  @media (max-width:640px){
+    .odds-table{grid-template-columns:1fr 0.8fr 0.8fr;font-size:var(--fs-caption)}
+    .odds-table>div{padding:9px 8px}
+    .odds-cell .pctnum{font-size:var(--fs-h3)}
+  }
+
+  .contrib{display:flex;flex-direction:column;gap:6px;margin-top:10px}
+  .cline{display:grid;grid-template-columns:minmax(110px,1.1fr) 2fr auto;gap:10px;align-items:center}
+  .cline .nm{font-size:var(--fs-small);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .cline .bar{height:12px;border-radius:6px;background:var(--tint);position:relative;overflow:hidden}
+  .cline .bar i{position:absolute;top:0;bottom:0;left:0;border-radius:6px}
+  .cline.g .bar i{background:var(--green)}
+  .cline.r .bar i{background:var(--red)}
+  .cline .val{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-small);white-space:nowrap}
+  .warnbox{border:1px solid var(--amber);background:var(--tint2);border-radius:var(--radius);padding:12px 14px;margin-top:14px;font-size:var(--fs-small)}
+</style>
+</head>
+<body>
+<header class="nav"><div class="wrap">
+  <a href="index.html" style="text-decoration:none" aria-label="testahil — home"><span class="brand">testahil?<small>is it worth it?</small></span></a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="stocks.html">Stocks</a>
+    <a href="metals.html">Metals</a>
+    <a href="compare.html">Compare</a>
+    <a href="calculator.html">Calculator</a>
+    <a href="ledger.html">Ledger</a>
+    <a href="method.html">Methodology</a>
+  </nav>  <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode" aria-pressed="false" title="Toggle dark / light"><svg class="tt-icon tt-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="tt-icon tt-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg><span class="tt-label tt-label-dark">Dark mode</span><span class="tt-label tt-label-light">Light mode</span></button>
+</div></header>
+
+<main class="wrap">
+
+  <section id="sec-top" class="anchor" data-nav="Overview">
+    <h1 style="font-size:var(--fs-h1)">A whole portfolio — what are the odds?</h1>
+    <p class="muted">Build a mix of covered names, set a target return, and see what the simulations already published for each name say about the mix: the <b>chance of reaching your target</b>, the <b>chance of losing money instead</b> and roughly how much, and <b>which names carry the gain and which carry the risk</b>.</p>
+    <p class="muted">Same discipline as everywhere else on this site: these are odds read off published studies, not a recommendation of any stock or mix. You choose the names and the weights — the page only does the arithmetic on what we've already published.</p>
+  </section>
+
+  <section id="sec-build" class="card anchor" data-nav="Build the mix">
+    <div class="hrow">
+      <div class="field" style="margin-bottom:0"><label>Horizon</label>
+        <div class="hbtns">
+          <button type="button" class="hbtn" data-h="t20" id="hb20">1 month</button>
+          <button type="button" class="hbtn on" data-h="t60" id="hb60">3 months</button>
+        </div>
+      </div>
+      <div class="field" style="margin-bottom:0;max-width:150px"><label for="p-target">Target return (%)</label><input id="p-target" type="number" value="25" step="1" class="num"></div>
+      <div class="field" style="margin-bottom:0;max-width:200px"><label for="p-amt">Amount to invest</label><input id="p-amt" type="number" value="100000" min="1" step="1000" class="num"></div>
+    </div>
+    <div class="addrow">
+      <div class="field"><label for="p-sel">Add a name</label><select id="p-sel" class="num"></select></div>
+      <button type="button" class="btn" id="p-add">Add</button>
+      <button type="button" class="btn ghost2" id="p-start">Load a starting mix</button>
+      <button type="button" class="btn ghost2" id="p-eq">Equal weights</button>
+    </div>
+    <div class="chip-rows" id="p-chips"></div>
+    <div class="wsum" id="p-wsum"></div>
+    <p class="muted" style="margin:10px 0 0;font-size:var(--fs-small)">"Load a starting mix" picks the five EGX names with the best typical return for the downside risk they carry (median outcome divided by the worst-1-in-20 case) at the chosen horizon, equally weighted — not just the highest headline number. Each name below shows its own bad case too, so a weak trade-off is visible before you swap anything. Nothing on this page is stored or sent anywhere.</p>
+  </section>
+
+  <section id="sec-target" class="card anchor" data-nav="Chance of the target">
+    <p class="qhead" style="margin-top:0">The chance of reaching <span id="o-tgt">+25%</span> in <span id="o-hz">3 months</span></p>
+    <div class="outgrid">
+      <div class="outbox"><div class="ol">Chance of reaching your target</div><div class="bigpct g" id="o-ct">—</div><div class="rangefine" id="o-ctf"></div></div>
+      <div class="outbox"><div class="ol">Middle-of-the-road (typical) outcome for this mix</div><div class="bigpct" id="o-med">—</div><div class="rangefine" id="o-medf"></div></div>
+    </div>
+    <div id="o-reality"></div>
+  </section>
+
+  <section id="sec-loss" class="card anchor" data-nav="Chance of loss">
+    <p class="qhead" style="margin-top:0">And the loss side</p>
+    <div class="outgrid">
+      <div class="outbox"><div class="ol">Chance this mix loses money</div><div class="bigpct r" id="o-cl">—</div><div class="rangefine" id="o-clf"></div></div>
+      <div class="outbox"><div class="ol">Plausible bad case (worst 1-in-20)</div><div class="bigpct r" id="o-p5">—</div><div class="rangefine" id="o-p5f"></div></div>
+      <div class="outbox"><div class="ol">Chance of a big loss (−10% or more)</div><div class="bigpct r" id="o-bl">—</div><div class="rangefine" id="o-blf"></div></div>
+    </div>
+    <div id="o-div"></div>
+  </section>
+
+  <section id="sec-buckets" class="anchor" data-nav="The four outcomes">
+    <p class="qhead">The four outcomes, side by side</p>
+    <p class="muted">Same four buckets as the <a href="trade.html">single-stock odds page</a> — a move of <b>10% or more</b> is "big" — applied to the whole mix under the one co-movement assumption above. Adds to 100%.</p>
+    <div class="odds-table" id="o-odds"></div>
+  </section>
+
+  <section id="sec-contrib" class="anchor" data-nav="Who carries what">
+    <p class="qhead">Where the gain would come from — and where the risk sits</p>
+    <p class="muted">Each name's weight times its own published outcome, in percentage points of the whole portfolio. The gain side adds up exactly to the mix's middle-of-the-road outcome — that's always true, it's just arithmetic on an average. The risk side isn't: summing each name's own bad case assumes every name has its worst day at once, which overstates the mix's real bad case. The true, correlated figure is smaller — see the note under the risk list.</p>
+    <div class="grid g2">
+      <div class="card">
+        <p class="qhead" style="margin-top:0;font-size:var(--fs-body)">Contribution to the middle outcome</p>
+        <div class="contrib" id="o-cg"></div>
+      </div>
+      <div class="card">
+        <p class="qhead" style="margin-top:0;font-size:var(--fs-body)">Contribution to the plausible bad case</p>
+        <div class="contrib" id="o-cr"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sec-caveats" class="card anchor" style="background:var(--tint2)" data-nav="What this can't tell you">
+    <p class="qhead" style="margin-top:0">What this can't tell you</p>
+    <p class="muted"><b>How much these names actually move together day to day is the biggest unknown on this page.</b> Each study publishes its own stock's distribution, but not how the stocks move jointly, so some assumption is unavoidable. Rather than asking you to guess, this page uses one stated assumption: pairs on the same exchange are modelled at about 0.55 correlation, pairs on different exchanges at about 0.25 — both on the high side of typically measured equity correlations, because EGX and Gulf names share FX, rate-cycle and foreign-flow exposure. That is a modelling choice, not a live measurement and not a view on any stock — it only shapes how the odds of whatever mix you build combine, the same role a covariance matrix plays in any risk model.</p>
+    <p class="muted">Mixing currencies adds a risk these numbers don't carry at all: each name's odds are in its own currency, so a mix of EGX and Gulf names also bets on the exchange rates between them. Percentile figures come from each study's date (shown on its page), not live prices. And a target is just a number you typed — setting 25% doesn't make 25% likely, and no mix of covered names has a <i>typical</i> outcome anywhere near it over these horizons; the page will tell you when your target lives in the tail.</p>
+    <p style="margin-bottom:0">Educational tooling and personal analytical opinion — not investment advice, not a recommendation, and not an invitation to build any particular portfolio. <a href="method.html#disclaimer">Full disclaimer</a>.</p>
+  </section>
+
+</main>
+
+<footer><div class="wrap"><div class="foot-studies"><b>Studies:</b> <a href="phdc.html">Palm Hills</a> &middot; <a href="tmgh.html">Talaat Moustafa</a> &middot; <a href="ocdi.html">SODIC</a> &middot; <a href="orhd.html">Orascom Dev</a> &middot; <a href="oras.html">Orascom Const</a> &middot; <a href="comi.html">CIB</a> &middot; <a href="emfd.html">Emaar Misr</a> &middot; <a href="gold.html">Gold</a> &middot; <a href="stocks.html">all &rarr;</a></div><b>Disclaimer:</b> Educational valuation studies and personal analytical opinion — not investment advice, not recommendations. The preparer is not licensed by Egypt's FRA, manages no money, accepts no clients, and may hold positions in instruments mentioned. <a href="method.html#disclaimer">Full text</a>.<br><br><span class="social" style="font-size:var(--fs-lead);font-weight:700">Follow Testahil &mdash; <a href="https://t.me/testahil_markets" target="_blank" rel="noopener">Telegram</a> &middot; <a href="https://www.facebook.com/testahil.markets" target="_blank" rel="noopener">Facebook</a> &middot; <a href="https://www.linkedin.com/company/testahil" target="_blank" rel="noopener">LinkedIn</a></span></div></footer>
+
+<script src="assets/data.js?v=20260727t"></script>
+<script>
+(function(){
+  'use strict';
+  if (typeof TICKERS === 'undefined') return;
+
+  var $ = function(id){ return document.getElementById(id); };
+  var state = { h:'t60', mix:[] };   // mix: [{k, w}] w in % as typed
+
+  /* ---------- formatting ---------- */
+  /* U+2212 minus for negatives — matches the typography the rest of the site uses */
+  function sgn(v,s){ return v>0 ? '+'+s : (v<0 ? '−'+s : s); }
+  function pct(v,d){ if(v==null||isNaN(v)) return '—'; return sgn(v, Math.abs(v).toFixed(d==null?1:d)) + '%'; }
+  function pp(v,d){ if(v==null||isNaN(v)) return '—'; return sgn(v, Math.abs(v).toFixed(d==null?1:d)) + ' pp'; }
+  function money(v){ if(v==null||isNaN(v)) return '—'; var s=Math.round(Math.abs(v)).toLocaleString('en-US'); return (v<0?'−':'')+ s; }
+
+  /* ---------- odds math: same invCDF as assets/app.js and trade.html ---------- */
+  function invCDF(d){
+    var pts = [[0.05,d.p5],[0.25,d.p25],[0.50,d.p50],[0.75,d.p75],[0.95,d.p95]];
+    return function(p){
+      if(p <= pts[0][0]){ var p1=pts[0][0],v1=pts[0][1],p2=pts[1][0],v2=pts[1][1];
+        return Math.max(v1-(v2-v1)*((p1-p)/(p2-p1)), v1*0.80); }
+      if(p >= pts[4][0]){ var p1b=pts[3][0],v1b=pts[3][1],p2b=pts[4][0],v2b=pts[4][1];
+        return v2b+(v2b-v1b)*((p-p2b)/(p2b-p1b)); }
+      for(var i=0;i<pts.length-1;i++){ var pa=pts[i][0],va=pts[i][1],pb=pts[i+1][0],vb=pts[i+1][1];
+        if(p>=pa&&p<=pb) return va+(vb-va)*((p-pa)/(pb-pa)); }
+      return d.p50;
+    };
+  }
+  function retQ(t, which, p){ return invCDF(t.dist[which])(p)/t.spot - 1; }  // fractional return at quantile p
+
+  function normMix(){
+    var live = state.mix.filter(function(m){ return m.w > 0 && TICKERS[m.k]; });
+    var sum = live.reduce(function(a,m){ return a + m.w; }, 0);
+    if(!sum) return [];
+    return live.map(function(m){ return { k:m.k, w:m.w/sum }; });
+  }
+  /* Fully-comonotonic reference point ONLY — every name sharing one quantile
+     draw is not shown to the reader as an option; it exists purely so we can
+     state, with a real number, how much softer the correlated simulation's
+     bad case is than "every name's worst day landing on the same day." */
+  function portQ(sel, which, p){
+    return sel.reduce(function(a,m){ return a + m.w * retQ(TICKERS[m.k], which, p); }, 0);
+  }
+
+  /* ---------- one co-movement assumption, not a reader's choice ----------
+     Names publish their own distributions but not how they move jointly, so
+     SOME assumption is unavoidable. Rather than making the reader pick between
+     two extremes, we assume a level of co-movement typical of this market and
+     compute one number: same-exchange pairs ~0.55 correlation, cross-exchange
+     pairs ~0.25 — both on the high side of what's typically measured for
+     same-market / cross-market equity pairs, because EGX and Gulf names share
+     FX, rate-cycle and foreign-flow exposure that shows up as correlation.
+     This is a stated modelling assumption, not a live measurement, and it
+     is NOT a view on any stock — it only shapes how the odds of a chosen mix
+     combine, the same role a covariance matrix plays in any risk model. */
+  var RHO_SAME = 0.55, RHO_CROSS = 0.25;
+  var CF_A = Math.sqrt(RHO_CROSS), CF_B = Math.sqrt(RHO_SAME - RHO_CROSS), CF_C = Math.sqrt(1 - RHO_SAME);
+  function gaussianRandom(){
+    var u=0, v=0;
+    while(u===0) u=Math.random();
+    while(v===0) v=Math.random();
+    return Math.sqrt(-2*Math.log(u)) * Math.cos(2*Math.PI*v);
+  }
+  function normCdf(x){ // Abramowitz-Stegun approximation, ~7 decimal digits
+    var t = 1/(1+0.2316419*Math.abs(x));
+    var d = 0.3989423*Math.exp(-x*x/2);
+    var p = d*t*(0.3193815+t*(-0.3565638+t*(1.781478+t*(-1.821256+t*1.330274))));
+    return x>0 ? 1-p : p;
+  }
+  var SIM_N = 20000;
+  function simMix(sel, which){
+    var names = sel.map(function(m){ var t=TICKERS[m.k]; return { w:m.w, f:invCDF(t.dist[which]), s:t.spot, c:exOf(t) }; });
+    var out = new Array(SIM_N);
+    for(var i=0;i<SIM_N;i++){
+      var F0 = gaussianRandom();
+      var Fc = {};
+      var r = 0;
+      for(var j=0;j<names.length;j++){
+        var nm = names[j];
+        if(Fc[nm.c] === undefined) Fc[nm.c] = gaussianRandom();
+        var z = CF_A*F0 + CF_B*Fc[nm.c] + CF_C*gaussianRandom();
+        var u = Math.min(0.999, Math.max(0.001, normCdf(z)));
+        r += nm.w * (nm.f(u)/nm.s - 1);
+      }
+      out[i] = r;
+    }
+    out.sort(function(a,b){ return a-b; });
+    return out;
+  }
+  function simChanceAtLeast(sims, target){
+    var lo=0, hi=sims.length;
+    while(lo<hi){ var mid=(lo+hi)>>1; if(sims[mid] < target) lo=mid+1; else hi=mid; }
+    return Math.min(0.99, Math.max(0.01, (sims.length-lo)/sims.length));
+  }
+  function simQuantile(sims, q){ return sims[Math.max(0, Math.min(sims.length-1, Math.floor(q*sims.length)))]; }
+
+  var BIG = 0.10;  // "big" = 10%+ move, matching the site's existing framing
+  function buckets(chanceFn){
+    var up = chanceFn(BIG), above = chanceFn(0), down = chanceFn(-BIG);
+    var bg = Math.max(0,up), bl = Math.max(0,1-down);
+    var sg = Math.max(0,above-up), sl = Math.max(0,(1-above)-bl);
+    var s = bg+sg+sl+bl;
+    if(s>0){ bg/=s; sg/=s; sl/=s; bl/=s; }
+    return { bigGain:bg, smallGain:sg, smallLoss:sl, bigLoss:bl };
+  }
+
+  function hzLabel(which){
+    for(var i=0;i<state.mix.length;i++){
+      var t=TICKERS[state.mix[i].k];
+      if(t && t.dist && t.dist[which] && t.dist[which].label) return t.dist[which].label.replace(/\s*\(T\+\d+\)\s*/,'').trim();
+    }
+    return which==='t20' ? '1 month' : '3 months';
+  }
+
+  /* ---------- UI: name picker ---------- */
+  function exOf(t){ var c=(t.code||''); var i=c.indexOf(':'); return i>0 ? c.slice(0,i) : 'Other'; }
+  var KEYS = Object.keys(TICKERS).filter(function(k){ var t=TICKERS[k]; return t && t.spot && t.dist && t.dist.t20 && t.dist.t60; });
+  (function buildSelect(){
+    var sel=$('p-sel'), groups={};
+    KEYS.forEach(function(k){ var g=exOf(TICKERS[k]); (groups[g]=groups[g]||[]).push(k); });
+    Object.keys(groups).sort().forEach(function(g){
+      var og=document.createElement('optgroup'); og.label=g;
+      groups[g].sort(function(a,b){ return TICKERS[a].name.localeCompare(TICKERS[b].name); })
+        .forEach(function(k){ var o=document.createElement('option'); o.value=k; o.textContent=TICKERS[k].name+' ('+k+')'; og.appendChild(o); });
+      sel.appendChild(og);
+    });
+  })();
+
+  function renderChips(){
+    var box=$('p-chips');
+    box.innerHTML = state.mix.map(function(m,i){
+      var t=TICKERS[m.k];
+      var med=(t.dist[state.h].p50/t.spot-1)*100;
+      var p5own=(t.dist[state.h].p5/t.spot-1)*100;
+      return '<div class="crow">'+
+        '<div class="cn"><b>'+t.name+'</b><span class="cc">'+(t.code||m.k)+'</span></div>'+
+        '<span class="cmed">median '+pct(med)+' &middot; bad case '+pct(p5own)+'</span>'+
+        '<input class="wt num" type="number" min="0" max="100" step="1" value="'+m.w+'" data-i="'+i+'" aria-label="weight of '+m.k+'">'+
+        '<span class="wl">%</span>'+
+        '<button type="button" class="rm" data-i="'+i+'" aria-label="remove '+m.k+'">&#10005;</button>'+
+        '</div>';
+    }).join('') || '<p class="muted" style="margin:6px 0 0">No names yet — add one above, or load the starting mix.</p>';
+    var sum = state.mix.reduce(function(a,m){ return a+ (m.w>0?m.w:0); },0);
+    $('p-wsum').innerHTML = state.mix.length
+      ? 'Weights add to <b class="'+(Math.abs(sum-100)>0.5?'bad2':'')+'">'+sum.toFixed(0)+'%</b>'+(Math.abs(sum-100)>0.5?' — the odds below use each weight as a share of that total.':'.')
+      : '';
+  }
+
+  /* ---------- results ---------- */
+  function renderResults(){
+    var sel = normMix();
+    var which = state.h;
+    var target = (parseFloat($('p-target').value)||0)/100;
+    var amt = parseFloat($('p-amt').value)||0;
+    $('o-tgt').textContent = pct(target*100,0);
+    $('o-hz').textContent = hzLabel(which);
+
+    var ids=['o-ct','o-med','o-cl','o-p5','o-bl'];
+    if(!sel.length){
+      ids.forEach(function(id){ $(id).textContent='—'; });
+      $('o-odds').innerHTML=''; $('o-cg').innerHTML=''; $('o-cr').innerHTML='';
+      $('o-reality').innerHTML=''; $('o-ctf').textContent=''; $('o-medf').textContent='';
+      $('o-clf').textContent=''; $('o-p5f').textContent=''; $('o-blf').textContent='';
+      $('o-div').innerHTML='';
+      return;
+    }
+
+    var ccys={}; sel.forEach(function(m){ ccys[TICKERS[m.k].ccy]=1; });
+    var oneCcy = Object.keys(ccys).length===1 ? Object.keys(ccys)[0] : null;
+    var moneyLbl = function(v){ return (oneCcy? oneCcy+' ' : '') + money(v); };
+
+    // one correlated simulation — the assumption is fixed (RHO_SAME/RHO_CROSS above),
+    // not offered to the reader as a choice between bookends.
+    var sims = simMix(sel, which);
+    var chance = simChanceAtLeast(sims, target);
+    var medSim = simQuantile(sims, 0.5);
+    var p5Sim  = simQuantile(sims, 0.05);
+    var loss   = 1 - simChanceAtLeast(sims, 0);
+    var b = buckets(function(x){ return simChanceAtLeast(sims, x); });
+
+    // reference-only: every name's worst day landing on the same day — used
+    // solely to state the diversification benefit in plain language below,
+    // never shown as a selectable alternative.
+    var p5Lockstep = portQ(sel, which, 0.05);
+
+    $('o-ct').textContent = Math.round(chance*100)+'%';
+    $('o-ctf').textContent = 'Assumes these names move together about as much as EGX/Gulf equities typically do (same-exchange pairs ~0.55 correlation, cross-exchange ~0.25) — a stated modelling assumption, not a live measurement.';
+    $('o-med').textContent = pct(medSim*100);
+    $('o-med').className = 'bigpct ' + (medSim>=0?'g':'r');
+    $('o-medf').textContent = 'On the amount above: ' + moneyLbl(amt*medSim) + '. Half of outcomes land below this, half above.';
+
+    // reality check vs the best available typical outcome
+    var bestK=null, bestM=-Infinity;
+    KEYS.forEach(function(k){ var t=TICKERS[k]; var m=t.dist[which].p50/t.spot-1; if(m>bestM){ bestM=m; bestK=k; } });
+    if(target > bestM && target > 0){
+      $('o-reality').innerHTML = '<div class="warnbox"><b>Your target lives in the tail.</b> The highest <i>typical</i> (median) outcome of any covered name over '+hzLabel(which)+' is '+pct(bestM*100)+' ('+TICKERS[bestK].name+'), so no mix of covered names has a typical path to '+pct(target*100,0)+' — no weighting can average medians above the best one. The chance shown is the chance of an <i>above-typical</i> run, and a plan that needs the tail to happen should be sized like one.</div>';
+    } else {
+      $('o-reality').innerHTML = '';
+    }
+
+    $('o-cl').textContent = Math.round(loss*100)+'%';
+    $('o-clf').textContent = 'Chance the mix ends below zero over ' + hzLabel(which) + '.';
+    $('o-p5').textContent = pct(p5Sim*100);
+    $('o-p5f').textContent = 'About ' + moneyLbl(amt*p5Sim) + ' on the amount above. One time in twenty, the outcome is this bad or worse.';
+    $('o-bl').textContent = Math.round(b.bigLoss*100)+'%';
+    $('o-blf').textContent = 'A move of −10% or worse for the mix as a whole.';
+
+    // diversification benefit, stated in plain language with real numbers
+    var divPP = (p5Sim - p5Lockstep) * 100; // how much softer (less negative) the correlated bad case is than lockstep
+    var divBox = $('o-div');
+    if(sel.length > 1 && divPP > 0.3){
+      divBox.innerHTML = '<div class="warnbox" style="border-color:var(--teal);background:var(--tint)"><b>Spreading across '+sel.length+' names softens the downside.</b> If every name in this mix had its worst day on the same day, the bad case would be '+pct(p5Lockstep*100)+'. Because names rarely all move in perfect lockstep, this mix’s actual plausible bad case is '+pct(p5Sim*100)+' — about '+divPP.toFixed(1)+' percentage points softer. The single riskiest stock in this mix (see below) is worse than either figure on its own.</div>';
+    } else {
+      divBox.innerHTML = '';
+    }
+
+    // buckets table — single column now: one assumption, one number
+    var rows=[['Big win','+10% or more','bigGain','gain'],['Small win','0% to +10%','smallGain','gain'],['Small loss','0% to −10%','smallLoss','loss'],['Big loss','−10% or more','bigLoss','loss']];
+    var html='<div class="oh"></div><div class="oh">Chance</div>';
+    rows.forEach(function(r){
+      html+='<div class="rowlabel">'+r[0]+'<span class="rr">'+r[1]+'</span></div>'+
+        '<div class="odds-cell '+r[3]+'"><div class="pctnum">'+Math.round(b[r[2]]*100)+'%</div></div>';
+    });
+    $('o-odds').innerHTML=html;
+
+    // contributions to the median: exact regardless of correlation, since
+    // expectation of a weighted sum is always the weighted sum of expectations.
+    var cg = sel.map(function(m){ var t=TICKERS[m.k]; return { k:m.k, name:t.name, v: m.w*(t.dist[which].p50/t.spot-1)*100 }; })
+                .sort(function(a,b){ return b.v-a.v; });
+    // "risk contribution": each name's own weighted worst-1-in-20 case. These do
+    // NOT sum to the mix's simulated bad case once correlation is below 1 — the
+    // total row below states that explicitly instead of implying exact additivity.
+    var cr = sel.map(function(m){ var t=TICKERS[m.k]; return { k:m.k, name:t.name, v: m.w*(t.dist[which].p5/t.spot-1)*100 }; })
+                .sort(function(a,b){ return a.v-b.v; });
+    var maxg = Math.max.apply(null, cg.map(function(c){ return Math.abs(c.v); }).concat([0.0001]));
+    var maxr = Math.max.apply(null, cr.map(function(c){ return Math.abs(c.v); }).concat([0.0001]));
+    $('o-cg').innerHTML = cg.map(function(c){
+      return '<div class="cline '+(c.v>=0?'g':'r')+'"><span class="nm">'+c.name+'</span><span class="bar"><i style="width:'+(Math.abs(c.v)/maxg*100)+'%"></i></span><span class="val">'+pp(c.v)+' · '+moneyLbl(amt*c.v/100)+'</span></div>';
+    }).join('') + '<div class="cline"><span class="nm" style="color:var(--muted)">Total (the mix\'s median — exact)</span><span class="bar" style="visibility:hidden"></span><span class="val">'+pp(medSim*100)+'</span></div>';
+    $('o-cr').innerHTML = cr.map(function(c){
+      return '<div class="cline '+(c.v>=0?'g':'r')+'"><span class="nm">'+c.name+'</span><span class="bar"><i style="width:'+(Math.abs(c.v)/maxr*100)+'%"></i></span><span class="val">'+pp(c.v)+' · '+moneyLbl(amt*c.v/100)+'</span></div>';
+    }).join('') + '<div class="cline"><span class="nm" style="color:var(--muted)">Sum of each name\'s own bad case</span><span class="bar" style="visibility:hidden"></span><span class="val">'+pp(p5Lockstep*100)+'</span></div>'
+      + '<p class="muted" style="font-size:var(--fs-caption);margin:8px 0 0">These add to '+pct(p5Lockstep*100)+' — what the mix\'s bad case would be if every name fell at once. The mix\'s actual bad case above ('+pct(p5Sim*100)+') is softer, because that\'s unlikely.</p>';
+
+    // FX caveat when currencies mix
+    var fxNote = $('fx-note');
+    if(!oneCcy){
+      if(!fxNote){
+        fxNote=document.createElement('div'); fxNote.id='fx-note'; fxNote.className='warnbox';
+        fxNote.innerHTML='<b>This mix crosses currencies ('+Object.keys(ccys).join(', ')+').</b> Each name\'s odds are in its own currency; moves between those currencies are not in these numbers, and money figures are shown unit-less for that reason.';
+        $('sec-loss').appendChild(fxNote);
+      }
+    } else if(fxNote){ fxNote.parentNode.removeChild(fxNote); }
+  }
+
+  function renderAll(){ renderChips(); renderResults(); }
+
+  /* ---------- events ---------- */
+  $('p-add').addEventListener('click', function(){
+    var k=$('p-sel').value;
+    if(!k || state.mix.some(function(m){ return m.k===k; })) return;
+    var even = state.mix.length ? Math.round(100/(state.mix.length+1)) : 100;
+    state.mix.push({ k:k, w:even });
+    renderAll();
+  });
+  $('p-start').addEventListener('click', function(){
+    // score = typical return / downside risk taken (median% divided by the worst-1-in-20
+    // case, floored at 1pp of downside so a near-zero-downside name can't post an absurd
+    // score). Favours a good return-for-risk trade-off, not just the highest headline number.
+    function score(k){
+      var t=TICKERS[k], d=t.dist[state.h];
+      var med=(d.p50/t.spot-1)*100, p5v=(d.p5/t.spot-1)*100;
+      return med / Math.max(1, -p5v);
+    }
+    var egx = KEYS.filter(function(k){ return exOf(TICKERS[k])==='EGX'; })
+      .sort(function(a,b){ return score(b) - score(a); })
+      .slice(0,5);
+    state.mix = egx.map(function(k){ return { k:k, w:20 }; });
+    renderAll();
+  });
+  $('p-eq').addEventListener('click', function(){
+    if(!state.mix.length) return;
+    var w = Math.floor(100/state.mix.length);
+    state.mix.forEach(function(m){ m.w=w; });
+    renderAll();
+  });
+  $('p-chips').addEventListener('input', function(e){
+    if(!e.target.classList.contains('wt')) return;
+    var i=parseInt(e.target.getAttribute('data-i'),10);
+    if(state.mix[i]) state.mix[i].w = parseFloat(e.target.value)||0;
+    var sum = state.mix.reduce(function(a,m){ return a+(m.w>0?m.w:0); },0);
+    $('p-wsum').innerHTML = 'Weights add to <b class="'+(Math.abs(sum-100)>0.5?'bad2':'')+'">'+sum.toFixed(0)+'%</b>'+(Math.abs(sum-100)>0.5?' — the odds below use each weight as a share of that total.':'.');
+    renderResults();
+  });
+  $('p-chips').addEventListener('click', function(e){
+    var b=e.target.closest('.rm'); if(!b) return;
+    state.mix.splice(parseInt(b.getAttribute('data-i'),10),1);
+    renderAll();
+  });
+  [$('hb20'),$('hb60')].forEach(function(b){
+    b.addEventListener('click', function(){
+      state.h=b.getAttribute('data-h');
+      $('hb20').classList.toggle('on', state.h==='t20');
+      $('hb60').classList.toggle('on', state.h==='t60');
+      renderAll();
+    });
+  });
+  ['p-target','p-amt'].forEach(function(id){ $(id).addEventListener('input', renderResults); });
+
+  /* ---------- boot: start with the starting mix so the page answers immediately ---------- */
+  $('p-start').click();
+})();
+</script>
+<script>
+(function(){
+  var secs=[].slice.call(document.querySelectorAll('[data-nav][id]'));
+  if(secs.length<3) return;
+  var nav=document.createElement('nav');
+  nav.className='secnav'; nav.setAttribute('aria-label','On this page');
+  var h="<p class='secnav-h'>On this page</p><ol>";
+  secs.forEach(function(s){ h+="<li><a href='#"+s.id+"'>"+s.getAttribute('data-nav')+"</a></li>"; });
+  nav.innerHTML=h+"</ol>";
+  var main=document.querySelector('main.wrap')||document.body;
+  main.parentNode.insertBefore(nav, main);
+  var links={}; secs.forEach(function(s){ links[s.id]=nav.querySelector("a[href='#"+s.id+"']"); });
+  function setActive(id){ secs.forEach(function(s){ if(links[s.id]) links[s.id].classList.toggle('active', s.id===id); }); }
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting) setActive(en.target.id); }); }, {rootMargin:'-42% 0px -52% 0px', threshold:0});
+    secs.forEach(function(s){ io.observe(s); });
+  }
+  setActive(secs[0].id);
+})();
+</script>
+</body></html>
