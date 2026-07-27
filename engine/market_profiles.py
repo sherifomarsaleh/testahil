@@ -241,7 +241,7 @@ SAUDI = MarketProfile(
                     "with FTSE SAGBI or iBoxx Tadawul SAR sukuk yield before publish. "
                     "Sensitivity: ±50bp = ±0.12% on the 60d median — immaterial vs band."),
     signal_type="mom_12_1", signal_sign=-1, ic=0.06, signal_active=False,
-    nu=6.0, width_cal=1.063,
+    nu=8.0, width_cal=1.021,
     fit_meta=(
         "REFIT 11-Jul-2026 on the 11-name SA panel "
         "(ACWA/ALINMA/ARAMCO/ELM/EXTRA/MAADEN/RAJHI/RIBL/SABIC/SNB/STC, 190 windows) "
@@ -255,7 +255,21 @@ SAUDI = MarketProfile(
         "robust blocks): RAJHI PASS +0.0151 (clean: PIT 0.495, width ratio 0.991); "
         "ELM robust FAIL -0.0142 across blocks {2,3,4}; all others PARITY. Signal "
         "still OFF — 11 names clears the ~5-name threshold, so the mom_12_1 IC is now "
-        "estimable and should be ablated at the next refit. "),
+        "estimable and should be ablated at the next refit. "
+        "UPDATE 27-Jul-2026: re-verified after main's long-history ingest re-pulled "
+        "full price series for all 11 SA names. No break filter excludes it here "
+        "(breaks=2015-06-15 only), so the fuller history fully enters the calibration "
+        "sample; windows 190 -> 410. nu 6 -> 8, cal 1.063 -> 1.021 -- -8.08% band move "
+        "(width_cal x q95(t(nu))), MATERIAL under the standing 5% gate, routed through "
+        "a PR rather than auto-committed. Panel PARITY +0.0004 CI[-0.005,+0.006] (was "
+        "+0.0023). Per-name verdict changes (4 of 11): EXTRA PARITY -> robust FAIL "
+        "-0.0308 CI[-0.047,-0.016] -- confirmed on 2x+ the data, this is not a fresh "
+        "signal, the prior short-library fit already read PARITY -0.0140 in the same "
+        "direction; ALINMA PARITY -> BOUNDARY(PARITY-flagged) +0.0143; MAADEN PARITY "
+        "-> PASS +0.0223; RAJHI PASS -> PARITY +0.0048 (loses PASS, not a FAIL). ELM "
+        "stays a robust FAIL -0.0131 (unchanged, pre-existing). Signal still OFF. "
+        "Source: engine/reverify_post_merge.py, "
+        "engine/PENDING_REVIEW/reverify_post_merge.json."),
     breaks=["2015-06-15"],
     notes=("Signal OFF (fallback rule): 1-name panel cannot establish IC; literature "
            "sign-unstable (contrarian post-2015 opening). Runs carry-only until the "
@@ -339,7 +353,7 @@ UAE = MarketProfile("AE", "UAE (ADX/DFM)", FED_SCHEDULE, 0.0365,
     "Carry = USD/Fed policy path (AED hard-pegged); rf_live 3.65% = CBUAE Base Rate held "
     "17-Jun-2026. NB the peg 'never-UST' rule governs the VALUATION rf (AED govt bond) -- "
     "the MC carry correctly tracks the Fed for a pegged currency.", "rev_1m", -1, 0.06, False,
-    nu=10.0, width_cal=1.028,
+    nu=8.0, width_cal=0.895,
     fit_meta=(
         "REFIT 11-Jul-2026 on the 14-name AE panel (237 post-break windows), RE-RUN "
         "through the data-quality gate - supersedes nu=4/cal=1.070. Adds "
@@ -377,7 +391,20 @@ UAE = MarketProfile("AE", "UAE (ADX/DFM)", FED_SCHEDULE, 0.0365,
         "{2,3,4}-block standard (block=3 has no valid start); verdict is "
         "PROVISIONAL(insufficient-windows) under the now-fixed verdict_ci (previously "
         "this crashed the entire daily AE run; see panel_refresh.py NOBLOCK fix, same "
-        "PR). Re-resolves automatically once LULU accrues >=4 windows."),
+        "PR). Re-resolves automatically once LULU accrues >=4 windows. "
+        "UPDATE 27-Jul-2026: re-verified after main's long-history ingest re-pulled "
+        "full price series for all 18 AE names. Break filter (post-2022-01-01) still "
+        "applies, so the added deeper history mostly falls outside the calibration "
+        "sample; windows 274 -> 275, just new trailing sessions. nu 10 -> 8, cal "
+        "1.028 -> 0.895 -- -10.68% band move (width_cal x q95(t(nu))), MATERIAL under "
+        "the standing 5% gate, routed through a PR rather than auto-committed. Panel "
+        "PARITY +0.008 CI[-0.0,+0.015] (was +0.0033). Per-name verdict changes (4 of "
+        "18): ADCB BOUNDARY(PARITY-flagged) -> PARITY +0.0097; ADIB PARITY -> PASS "
+        "+0.0395; DEWA BOUNDARY(PARITY-flagged) -> PARITY +0.0012; ADNOCGAS PARITY -> "
+        "BOUNDARY(PARITY-flagged) +0.044 CI[0.002,0.114]; EAND PARITY -> "
+        "BOUNDARY(PARITY-flagged) +0.0325. No new FAIL, no lost PASS. LULU remains "
+        "PROVISIONAL(insufficient-windows). Signal still OFF. Source: "
+        "engine/reverify_post_merge.py, engine/PENDING_REVIEW/reverify_post_merge.json."),
     breaks=["2022-01-01"], notes=("Workweek switch Jan-2022: vol pool post-2022 only. "
     "CORRECTION 11-Jul-2026: re-run through the data_quality gate (EAND/ADCB/ADIB carried "
     "10 trading-halt rows with O=H=L=C and no volume, which flatten the YZ intraday range "
