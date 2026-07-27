@@ -76,6 +76,15 @@ PENDING_DIR = os.path.join(HERE, 'PENDING_REVIEW')
 BAND_TOL = 0.05           # the published 90% cone half-width may drift this much silently
 NU_GAUSSIAN_CUTOFF = 200  # nu above this is "effectively Gaussian"
 
+# Which horizon set the unattended pipeline calibrates on (panel_refresh.HORIZON_SETS).
+# '3m' = the calendar 3-month gate adopted 27-Jul-2026, matching what is published.
+# '60d' = the retired fixed-60-session gate, kept re-runnable for the grandfathered
+# T+20/T+60 cohorts. Flipping this constant is the whole adoption switch — and it is
+# deliberately loud: the first run after the flip compares a calendar-3M fit against a
+# 60d incumbent in market_profiles.py, so the materiality gate fires and opens a PR
+# instead of auto-committing. That is the intended behaviour, not a fault.
+HORIZON_TAG = '3m'
+
 
 def band_halfwidth(nu, cal):
     """The thing the reader actually sees: the half-width of the published 90% cone,
@@ -298,7 +307,8 @@ def main():
         # failure path shipped junk branches (half-written panels, a stale PR body).
         # A crashed market is by definition material: report it, exit nonzero, move on.
         try:
-            result = refresh_market(market, files, files, update_registry=False)
+            result = refresh_market(market, files, files, update_registry=False,
+                                    tag=HORIZON_TAG)
         except Exception as exc:
             import traceback
             tb = traceback.format_exc()

@@ -1,0 +1,1146 @@
+{
+  "AE": {
+    "market": "AE",
+    "market_name": "UAE (ADX/DFM)",
+    "fit_date": "2026-07-27",
+    "panel_names": [
+      "ADCB",
+      "ADIB",
+      "ADNOCGAS",
+      "AGTHIA",
+      "ALDAR",
+      "ALPHADHABI",
+      "BURJEEL",
+      "DEWA",
+      "DIB",
+      "EAND",
+      "EMAAR",
+      "EMAARDEV",
+      "ENBD",
+      "FAB",
+      "IHC",
+      "LULU",
+      "SALIK",
+      "TWOPOINTZERO"
+    ],
+    "windows": 274,
+    "rebuilt_this_run": [],
+    "nu": 10.0,
+    "width_cal": 1.028,
+    "mle_scale": 1.04,
+    "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
+    "market_skill": 0.0033,
+    "market_skill_raw_basis": 0.0058,
+    "market_ci90": [
+      -0.005,
+      0.013
+    ],
+    "market_verdict": "PARITY",
+    "top_name_weight_share": 0.089,
+    "top_name": "EMAAR",
+    "signal_active": false,
+    "per_name": {
+      "ADCB": {
+        "nu": 10.0,
+        "width_cal": 1.035,
+        "skill": 0.0259,
+        "skill_raw_basis": 0.0278,
+        "verdict": "BOUNDARY(PARITY-flagged)",
+        "ci_block2": [
+          0.001,
+          0.067
+        ]
+      },
+      "ADIB": {
+        "nu": 12.0,
+        "width_cal": 1.014,
+        "skill": 0.0042,
+        "skill_raw_basis": 0.0066,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.006,
+          0.023
+        ]
+      },
+      "ADNOCGAS": {
+        "nu": 10.0,
+        "width_cal": 1.042,
+        "skill": 0.0024,
+        "skill_raw_basis": 0.0026,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.01,
+          0.023
+        ]
+      },
+      "AGTHIA": {
+        "nu": 10.0,
+        "width_cal": 1.028,
+        "skill": 0.0068,
+        "skill_raw_basis": 0.0043,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.01,
+          0.027
+        ]
+      },
+      "ALDAR": {
+        "nu": 10.0,
+        "width_cal": 1.014,
+        "skill": -0.0105,
+        "skill_raw_basis": -0.0154,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.029,
+          0.02
+        ]
+      },
+      "ALPHADHABI": {
+        "nu": 10.0,
+        "width_cal": 1.035,
+        "skill": -0.0094,
+        "skill_raw_basis": -0.0088,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.022,
+          0.0
+        ]
+      },
+      "BURJEEL": {
+        "nu": 10.0,
+        "width_cal": 1.028,
+        "skill": 0.0099,
+        "skill_raw_basis": 0.0081,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.009,
+          0.025
+        ]
+      },
+      "DEWA": {
+        "nu": 10.0,
+        "width_cal": 1.035,
+        "skill": -0.0056,
+        "skill_raw_basis": -0.0057,
+        "verdict": "BOUNDARY(PARITY-flagged)",
+        "ci_block2": [
+          -0.018,
+          0.003
+        ]
+      },
+      "DIB": {
+        "nu": 12.0,
+        "width_cal": 1.021,
+        "skill": -0.0019,
+        "skill_raw_basis": -0.0002,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.017,
+          0.004
+        ]
+      },
+      "EAND": {
+        "nu": 10.0,
+        "width_cal": 1.035,
+        "skill": 0.0049,
+        "skill_raw_basis": 0.0064,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.015,
+          0.039
+        ]
+      },
+      "EMAAR": {
+        "nu": 10.0,
+        "width_cal": 1.021,
+        "skill": 0.0035,
+        "skill_raw_basis": 0.0093,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.006,
+          0.011
+        ]
+      },
+      "EMAARDEV": {
+        "nu": 8.0,
+        "width_cal": 1.035,
+        "skill": -0.0011,
+        "skill_raw_basis": 0.0003,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.015,
+          0.014
+        ]
+      },
+      "ENBD": {
+        "nu": 10.0,
+        "width_cal": 1.028,
+        "skill": 0.0018,
+        "skill_raw_basis": -0.0012,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.014,
+          0.013
+        ]
+      },
+      "FAB": {
+        "nu": 10.0,
+        "width_cal": 1.021,
+        "skill": -0.0071,
+        "skill_raw_basis": -0.0143,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.031,
+          0.042
+        ]
+      },
+      "IHC": {
+        "nu": 12.0,
+        "width_cal": 1.035,
+        "skill": 0.0469,
+        "skill_raw_basis": 0.0068,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.254,
+          0.094
+        ]
+      },
+      "LULU": {
+        "nu": 10.0,
+        "width_cal": 1.035,
+        "skill": -0.1142,
+        "skill_raw_basis": -0.1083,
+        "verdict": "PROVISIONAL(insufficient-windows)",
+        "ci_block2": [
+          -0.114,
+          -0.114
+        ]
+      },
+      "SALIK": {
+        "nu": 10.0,
+        "width_cal": 1.035,
+        "skill": -0.0139,
+        "skill_raw_basis": -0.0179,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.05,
+          0.02
+        ]
+      },
+      "TWOPOINTZERO": {
+        "nu": 10.0,
+        "width_cal": 1.028,
+        "skill": 0.0007,
+        "skill_raw_basis": 0.0027,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.011,
+          0.015
+        ]
+      }
+    }
+  },
+  "EG": {
+    "market": "EG",
+    "market_name": "Egypt (EGX)",
+    "fit_date": "2026-07-27",
+    "panel_names": [
+      "ABUK",
+      "ADIB",
+      "BTFH",
+      "CCAP",
+      "CLHO",
+      "COMI",
+      "DSCW",
+      "EFID",
+      "EFIH",
+      "EGAL",
+      "EMFD",
+      "ETEL",
+      "FWRY",
+      "GBCO",
+      "HELI",
+      "HRHO",
+      "ISPH",
+      "JUFO",
+      "KABO",
+      "LCSW",
+      "OCDI",
+      "OIH",
+      "ORAS",
+      "ORHD",
+      "ORWE",
+      "PHDC",
+      "PRDC",
+      "RAYA",
+      "RMDA",
+      "TMGH"
+    ],
+    "windows": 492,
+    "rebuilt_this_run": [
+      "ABUK",
+      "ADIB",
+      "BTFH",
+      "CCAP",
+      "CLHO",
+      "COMI",
+      "DSCW",
+      "EFID",
+      "EFIH",
+      "EGAL",
+      "EMFD",
+      "ETEL",
+      "FWRY",
+      "GBCO",
+      "HELI",
+      "HRHO",
+      "ISPH",
+      "JUFO",
+      "KABO",
+      "LCSW",
+      "OCDI",
+      "OIH",
+      "ORAS",
+      "ORHD",
+      "ORWE",
+      "PHDC",
+      "PRDC",
+      "RAYA",
+      "RMDA",
+      "TMGH"
+    ],
+    "nu": 5.0,
+    "width_cal": 0.93,
+    "mle_scale": 0.9,
+    "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
+    "market_skill": 0.0158,
+    "market_skill_raw_basis": 0.0262,
+    "market_ci90": [
+      0.009,
+      0.023
+    ],
+    "market_verdict": "PASS",
+    "top_name_weight_share": 0.072,
+    "top_name": "BTFH",
+    "signal_active": false,
+    "per_name": {
+      "ABUK": {
+        "nu": 5.0,
+        "width_cal": 0.93,
+        "skill": 0.0084,
+        "skill_raw_basis": 0.0104,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.013,
+          0.037
+        ]
+      },
+      "ADIB": {
+        "nu": 5.0,
+        "width_cal": 0.93,
+        "skill": 0.0209,
+        "skill_raw_basis": 0.016,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.007,
+          0.041
+        ]
+      },
+      "BTFH": {
+        "nu": 5.0,
+        "width_cal": 0.923,
+        "skill": 0.0192,
+        "skill_raw_basis": 0.0277,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.007,
+          0.062
+        ]
+      },
+      "CCAP": {
+        "nu": 5.0,
+        "width_cal": 0.937,
+        "skill": 0.0465,
+        "skill_raw_basis": 0.0518,
+        "verdict": "PASS",
+        "ci_block2": [
+          0.006,
+          0.132
+        ]
+      },
+      "CLHO": {
+        "nu": 5.0,
+        "width_cal": 0.937,
+        "skill": -0.023,
+        "skill_raw_basis": -0.0216,
+        "verdict": "BOUNDARY(PARITY-flagged)",
+        "ci_block2": [
+          -0.046,
+          0.003
+        ]
+      },
+      "COMI": {
+        "nu": 5.0,
+        "width_cal": 0.93,
+        "skill": 0.0145,
+        "skill_raw_basis": 0.0288,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.011,
+          0.059
+        ]
+      },
+      "DSCW": {
+        "nu": 5.0,
+        "width_cal": 0.937,
+        "skill": 0.0104,
+        "skill_raw_basis": 0.0124,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.011,
+          0.026
+        ]
+      },
+      "EFID": {
+        "nu": 5.0,
+        "width_cal": 0.937,
+        "skill": 0.0324,
+        "skill_raw_basis": -0.0129,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.058,
+          0.102
+        ]
+      },
+      "EFIH": {
+        "nu": 5.0,
+        "width_cal": 0.937,
+        "skill": 0.0294,
+        "skill_raw_basis": 0.0223,
+        "verdict": "PASS",
+        "ci_block2": [
+          0.007,
+          0.07
+        ]
+      },
+      "EGAL": {
+        "nu": 5.0,
+        "width_cal": 0.93,
+        "skill": 0.0061,
+        "skill_raw_basis": 0.0009,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.018,
+          0.04
+        ]
+      },
+      "EMFD": {
+        "nu": 5.0,
+        "width_cal": 0.937,
+        "skill": 0.0469,
+        "skill_raw_basis": 0.064,
+        "verdict": "PASS",
+        "ci_block2": [
+          0.004,
+          0.097
+        ]
+      },
+      "ETEL": {
+        "nu": 5.0,
+        "width_cal": 0.93,
+        "skill": 0.0467,
+        "skill_raw_basis": 0.0521,
+        "verdict": "PASS",
+        "ci_block2": [
+          0.022,
+          0.063
+        ]
+      },
+      "FWRY": {
+        "nu": 5.0,
+        "width_cal": 0.937,
+        "skill": 0.0155,
+        "skill_raw_basis": 0.0054,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.012,
+          0.065
+        ]
+      },
+      "GBCO": {
+        "nu": 5.0,
+        "width_cal": 0.937,
+        "skill": 0.0097,
+        "skill_raw_basis": 0.0057,
+        "verdict": "BOUNDARY(PARITY-flagged)",
+        "ci_block2": [
+          -0.007,
+          0.035
+        ]
+      },
+      "HELI": {
+        "nu": 6.0,
+        "width_cal": 0.923,
+        "skill": 0.023,
+        "skill_raw_basis": 0.0295,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.008,
+          0.08
+        ]
+      },
+      "HRHO": {
+        "nu": 5.0,
+        "width_cal": 0.937,
+        "skill": -0.0116,
+        "skill_raw_basis": -0.0104,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.033,
+          0.017
+        ]
+      },
+      "ISPH": {
+        "nu": 5.0,
+        "width_cal": 0.923,
+        "skill": -0.0332,
+        "skill_raw_basis": -0.0117,
+        "verdict": "FAIL",
+        "ci_block2": [
+          -0.054,
+          -0.001
+        ]
+      },
+      "JUFO": {
+        "nu": 5.0,
+        "width_cal": 0.944,
+        "skill": 0.0061,
+        "skill_raw_basis": 0.0144,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.037,
+          0.05
+        ]
+      },
+      "KABO": {
+        "nu": 5.0,
+        "width_cal": 0.93,
+        "skill": 0.0009,
+        "skill_raw_basis": -0.0054,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.018,
+          0.017
+        ]
+      },
+      "LCSW": {
+        "nu": 5.0,
+        "width_cal": 0.93,
+        "skill": 0.0084,
+        "skill_raw_basis": 0.002,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.033,
+          0.035
+        ]
+      },
+      "OCDI": {
+        "nu": 5.0,
+        "width_cal": 0.937,
+        "skill": -0.0041,
+        "skill_raw_basis": 0.019,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.063,
+          0.042
+        ]
+      },
+      "OIH": {
+        "nu": 5.0,
+        "width_cal": 0.93,
+        "skill": -0.004,
+        "skill_raw_basis": 0.0025,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.032,
+          0.035
+        ]
+      },
+      "ORAS": {
+        "nu": 5.0,
+        "width_cal": 0.923,
+        "skill": 0.0229,
+        "skill_raw_basis": 0.034,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.007,
+          0.065
+        ]
+      },
+      "ORHD": {
+        "nu": 5.0,
+        "width_cal": 0.937,
+        "skill": 0.014,
+        "skill_raw_basis": 0.018,
+        "verdict": "BOUNDARY(PARITY-flagged)",
+        "ci_block2": [
+          0.001,
+          0.024
+        ]
+      },
+      "ORWE": {
+        "nu": 5.0,
+        "width_cal": 0.944,
+        "skill": 0.0826,
+        "skill_raw_basis": 0.1123,
+        "verdict": "PASS",
+        "ci_block2": [
+          0.033,
+          0.164
+        ]
+      },
+      "PHDC": {
+        "nu": 5.0,
+        "width_cal": 0.93,
+        "skill": 0.0267,
+        "skill_raw_basis": 0.0393,
+        "verdict": "PASS",
+        "ci_block2": [
+          0.003,
+          0.063
+        ]
+      },
+      "PRDC": {
+        "nu": 5.0,
+        "width_cal": 0.937,
+        "skill": 0.0211,
+        "skill_raw_basis": 0.0232,
+        "verdict": "PASS",
+        "ci_block2": [
+          0.002,
+          0.05
+        ]
+      },
+      "RAYA": {
+        "nu": 5.0,
+        "width_cal": 0.937,
+        "skill": 0.0061,
+        "skill_raw_basis": 0.0032,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.024,
+          0.052
+        ]
+      },
+      "RMDA": {
+        "nu": 5.0,
+        "width_cal": 0.937,
+        "skill": 0.0198,
+        "skill_raw_basis": 0.0194,
+        "verdict": "BOUNDARY(PARITY-flagged)",
+        "ci_block2": [
+          -0.003,
+          0.041
+        ]
+      },
+      "TMGH": {
+        "nu": 6.0,
+        "width_cal": 0.909,
+        "skill": 0.0377,
+        "skill_raw_basis": 0.0577,
+        "verdict": "PASS",
+        "ci_block2": [
+          0.015,
+          0.092
+        ]
+      }
+    }
+  },
+  "IN": {
+    "market": "IN",
+    "market_name": "India (NSE)",
+    "fit_date": "2026-07-27",
+    "panel_names": [
+      "INFY",
+      "RELIANCE",
+      "TMPV"
+    ],
+    "windows": 54,
+    "rebuilt_this_run": [],
+    "nu": "Gaussian",
+    "width_cal": 0.93,
+    "mle_scale": 0.9,
+    "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
+    "market_skill": 0.0046,
+    "market_skill_raw_basis": 0.0033,
+    "market_ci90": [
+      -0.006,
+      0.016
+    ],
+    "market_verdict": "PARITY",
+    "top_name_weight_share": 0.437,
+    "top_name": "TMPV",
+    "signal_active": false,
+    "per_name": {
+      "INFY": {
+        "nu": "Gaussian",
+        "width_cal": 0.93,
+        "skill": 0.007,
+        "skill_raw_basis": 0.0047,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.007,
+          0.026
+        ]
+      },
+      "RELIANCE": {
+        "nu": "Gaussian",
+        "width_cal": 0.951,
+        "skill": 0.009,
+        "skill_raw_basis": 0.0063,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.006,
+          0.022
+        ]
+      },
+      "TMPV": {
+        "nu": "Gaussian",
+        "width_cal": 0.909,
+        "skill": -0.0001,
+        "skill_raw_basis": -0.0081,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.018,
+          0.023
+        ]
+      }
+    }
+  },
+  "KR": {
+    "market": "KR",
+    "market_name": "South Korea",
+    "fit_date": "2026-07-27",
+    "panel_names": [
+      "KAKAO",
+      "LGES",
+      "SAMSUNG"
+    ],
+    "windows": 49,
+    "rebuilt_this_run": [],
+    "nu": "Gaussian",
+    "width_cal": 1.154,
+    "mle_scale": 1.22,
+    "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
+    "market_skill": 0.0144,
+    "market_skill_raw_basis": 0.013,
+    "market_ci90": [
+      -0.005,
+      0.017
+    ],
+    "market_verdict": "PARITY",
+    "top_name_weight_share": 0.449,
+    "top_name": "SAMSUNG",
+    "signal_active": false,
+    "per_name": {
+      "KAKAO": {
+        "nu": 20.0,
+        "width_cal": 1.168,
+        "skill": 0.0022,
+        "skill_raw_basis": 0.0019,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.011,
+          0.015
+        ]
+      },
+      "LGES": {
+        "nu": "Gaussian",
+        "width_cal": 1.245,
+        "skill": -0.0268,
+        "skill_raw_basis": -0.0294,
+        "verdict": "FAIL",
+        "ci_block2": [
+          -0.053,
+          -0.007
+        ]
+      },
+      "SAMSUNG": {
+        "nu": "Gaussian",
+        "width_cal": 1.021,
+        "skill": 0.0094,
+        "skill_raw_basis": 0.0223,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.02,
+          0.022
+        ]
+      }
+    }
+  },
+  "QA": {
+    "market": "QA",
+    "market_name": "Qatar (QE)",
+    "fit_date": "2026-07-27",
+    "panel_names": [
+      "IQCD",
+      "QGTS",
+      "QNB"
+    ],
+    "windows": 54,
+    "rebuilt_this_run": [],
+    "nu": 12.0,
+    "width_cal": 0.972,
+    "mle_scale": 0.96,
+    "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
+    "market_skill": -0.0091,
+    "market_skill_raw_basis": -0.0096,
+    "market_ci90": [
+      -0.022,
+      0.002
+    ],
+    "market_verdict": "PARITY",
+    "top_name_weight_share": 0.365,
+    "top_name": "QGTS",
+    "signal_active": false,
+    "per_name": {
+      "IQCD": {
+        "nu": 12.0,
+        "width_cal": 0.951,
+        "skill": -0.0179,
+        "skill_raw_basis": -0.0174,
+        "verdict": "FAIL",
+        "ci_block2": [
+          -0.032,
+          -0.004
+        ]
+      },
+      "QGTS": {
+        "nu": 6.0,
+        "width_cal": 1.014,
+        "skill": -0.0119,
+        "skill_raw_basis": -0.0145,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.036,
+          0.002
+        ]
+      },
+      "QNB": {
+        "nu": "Gaussian",
+        "width_cal": 0.965,
+        "skill": -0.0011,
+        "skill_raw_basis": -0.004,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.022,
+          0.018
+        ]
+      }
+    }
+  },
+  "SA": {
+    "market": "SA",
+    "market_name": "Saudi Arabia (Tadawul)",
+    "fit_date": "2026-07-27",
+    "panel_names": [
+      "ACWA",
+      "ALINMA",
+      "ARAMCO",
+      "ELM",
+      "EXTRA",
+      "MAADEN",
+      "RAJHI",
+      "RIBL",
+      "SABIC",
+      "SNB",
+      "STC"
+    ],
+    "windows": 190,
+    "rebuilt_this_run": [],
+    "nu": 6.0,
+    "width_cal": 1.063,
+    "mle_scale": 1.09,
+    "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
+    "market_skill": 0.0023,
+    "market_skill_raw_basis": -0.0092,
+    "market_ci90": [
+      -0.004,
+      0.008
+    ],
+    "market_verdict": "PARITY",
+    "top_name_weight_share": 0.185,
+    "top_name": "MAADEN",
+    "signal_active": false,
+    "per_name": {
+      "ACWA": {
+        "nu": 6.0,
+        "width_cal": 1.056,
+        "skill": -0.0054,
+        "skill_raw_basis": -0.011,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.023,
+          0.012
+        ]
+      },
+      "ALINMA": {
+        "nu": 12.0,
+        "width_cal": 1.021,
+        "skill": -0.0078,
+        "skill_raw_basis": -0.0063,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.014,
+          0.003
+        ]
+      },
+      "ARAMCO": {
+        "nu": 6.0,
+        "width_cal": 1.056,
+        "skill": 0.0065,
+        "skill_raw_basis": 0.0062,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.013,
+          0.024
+        ]
+      },
+      "ELM": {
+        "nu": 6.0,
+        "width_cal": 1.042,
+        "skill": -0.0142,
+        "skill_raw_basis": -0.0163,
+        "verdict": "FAIL",
+        "ci_block2": [
+          -0.03,
+          -0.004
+        ]
+      },
+      "EXTRA": {
+        "nu": 6.0,
+        "width_cal": 1.091,
+        "skill": -0.014,
+        "skill_raw_basis": -0.0133,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.044,
+          0.011
+        ]
+      },
+      "MAADEN": {
+        "nu": 6.0,
+        "width_cal": 1.028,
+        "skill": 0.0132,
+        "skill_raw_basis": 0.0119,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.004,
+          0.035
+        ]
+      },
+      "RAJHI": {
+        "nu": 6.0,
+        "width_cal": 1.07,
+        "skill": 0.0151,
+        "skill_raw_basis": 0.0131,
+        "verdict": "PASS",
+        "ci_block2": [
+          0.0,
+          0.04
+        ]
+      },
+      "RIBL": {
+        "nu": 6.0,
+        "width_cal": 1.07,
+        "skill": 0.0047,
+        "skill_raw_basis": 0.0049,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.012,
+          0.035
+        ]
+      },
+      "SABIC": {
+        "nu": 8.0,
+        "width_cal": 1.049,
+        "skill": 0.0086,
+        "skill_raw_basis": 0.0077,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.004,
+          0.024
+        ]
+      },
+      "SNB": {
+        "nu": 6.0,
+        "width_cal": 1.077,
+        "skill": -0.0046,
+        "skill_raw_basis": -0.0039,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.015,
+          0.004
+        ]
+      },
+      "STC": {
+        "nu": 6.0,
+        "width_cal": 1.077,
+        "skill": 0.0,
+        "skill_raw_basis": 0.0007,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.011,
+          0.009
+        ]
+      }
+    }
+  },
+  "US": {
+    "market": "US",
+    "market_name": "United States",
+    "fit_date": "2026-07-27",
+    "panel_names": [
+      "AAPL",
+      "NVDA",
+      "TSLA"
+    ],
+    "windows": 54,
+    "rebuilt_this_run": [],
+    "nu": 12.0,
+    "width_cal": 1.014,
+    "mle_scale": 1.02,
+    "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
+    "market_skill": -0.0056,
+    "market_skill_raw_basis": 0.0137,
+    "market_ci90": [
+      -0.021,
+      0.006
+    ],
+    "market_verdict": "PARITY",
+    "top_name_weight_share": 0.443,
+    "top_name": "NVDA",
+    "signal_active": false,
+    "per_name": {
+      "AAPL": {
+        "nu": 4.0,
+        "width_cal": 1.098,
+        "skill": -0.0064,
+        "skill_raw_basis": -0.0004,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.036,
+          0.02
+        ]
+      },
+      "NVDA": {
+        "nu": 30.0,
+        "width_cal": 0.972,
+        "skill": -0.0233,
+        "skill_raw_basis": -0.0057,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.046,
+          0.003
+        ]
+      },
+      "TSLA": {
+        "nu": "Gaussian",
+        "width_cal": 1.014,
+        "skill": 0.0077,
+        "skill_raw_basis": 0.0165,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.008,
+          0.024
+        ]
+      }
+    }
+  },
+  "XAU": {
+    "market": "XAU",
+    "market_name": "Metals (Gold/Silver, USD)",
+    "fit_date": "2026-07-27",
+    "panel_names": [
+      "GOLD",
+      "SILVER"
+    ],
+    "windows": 86,
+    "rebuilt_this_run": [],
+    "nu": 20.0,
+    "width_cal": 1.035,
+    "mle_scale": 1.05,
+    "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
+    "market_skill": 0.0099,
+    "market_skill_raw_basis": 0.002,
+    "market_ci90": [
+      0.001,
+      0.015
+    ],
+    "market_verdict": "PASS",
+    "top_name_weight_share": 0.584,
+    "top_name": "GOLD",
+    "signal_active": false,
+    "per_name": {
+      "GOLD": {
+        "nu": 8.0,
+        "width_cal": 1.147,
+        "skill": 0.0011,
+        "skill_raw_basis": 0.0008,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.01,
+          0.012
+        ]
+      },
+      "SILVER": {
+        "nu": "Gaussian",
+        "width_cal": 1.0,
+        "skill": 0.0181,
+        "skill_raw_basis": 0.0151,
+        "verdict": "PASS",
+        "ci_block2": [
+          0.012,
+          0.028
+        ]
+      }
+    }
+  },
+  "XPT": {
+    "market": "XPT",
+    "market_name": "Platinum (USD)",
+    "fit_date": "2026-07-27",
+    "panel_names": [
+      "PLATINUM"
+    ],
+    "windows": 62,
+    "rebuilt_this_run": [],
+    "nu": "Gaussian",
+    "width_cal": 0.853,
+    "mle_scale": 0.79,
+    "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
+    "market_skill": -0.0004,
+    "market_skill_raw_basis": 0.0003,
+    "market_ci90": [
+      -0.012,
+      0.006
+    ],
+    "market_verdict": "PARITY",
+    "top_name_weight_share": 1.0,
+    "top_name": "PLATINUM",
+    "signal_active": false,
+    "per_name": {
+      "PLATINUM": {
+        "nu": "Gaussian",
+        "width_cal": 0.853,
+        "skill": -0.0004,
+        "skill_raw_basis": 0.0003,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.009,
+          0.009
+        ]
+      }
+    }
+  }
+}

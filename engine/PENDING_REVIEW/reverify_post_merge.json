@@ -1,0 +1,1877 @@
+{
+  "XAU": {
+    "60d": {
+      "market": "XAU",
+      "market_name": "Metals (Gold/Silver, USD)",
+      "fit_date": "2026-07-27",
+      "panel_names": [
+        "GOLD",
+        "SILVER"
+      ],
+      "windows": 86,
+      "rebuilt_this_run": [],
+      "nu": 20.0,
+      "width_cal": 1.035,
+      "mle_scale": 1.05,
+      "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
+      "market_skill": 0.0099,
+      "market_skill_raw_basis": 0.002,
+      "market_ci90": [
+        0.001,
+        0.015
+      ],
+      "market_verdict": "PASS",
+      "top_name_weight_share": 0.584,
+      "top_name": "GOLD",
+      "signal_active": false,
+      "per_name": {
+        "GOLD": {
+          "nu": 8.0,
+          "width_cal": 1.147,
+          "skill": 0.0011,
+          "skill_raw_basis": 0.0008,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.01,
+            0.012
+          ]
+        },
+        "SILVER": {
+          "nu": "Gaussian",
+          "width_cal": 1.0,
+          "skill": 0.0181,
+          "skill_raw_basis": 0.0151,
+          "verdict": "PASS",
+          "ci_block2": [
+            0.012,
+            0.028
+          ]
+        }
+      },
+      "_elapsed_s": 3.4
+    },
+    "3m": {
+      "market": "XAU",
+      "market_name": "Metals (Gold/Silver, USD)",
+      "fit_date": "2026-07-27",
+      "panel_names": [
+        "GOLD",
+        "SILVER"
+      ],
+      "windows": 80,
+      "rebuilt_this_run": [
+        "GOLD"
+      ],
+      "nu": 12.0,
+      "width_cal": 1.0,
+      "mle_scale": 1.0,
+      "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
+      "market_skill": 0.0073,
+      "market_skill_raw_basis": -0.0047,
+      "market_ci90": [
+        -0.004,
+        0.014
+      ],
+      "market_verdict": "PARITY",
+      "top_name_weight_share": 0.609,
+      "top_name": "GOLD",
+      "signal_active": false,
+      "per_name": {
+        "GOLD": {
+          "nu": 6.0,
+          "width_cal": 1.042,
+          "skill": -0.0028,
+          "skill_raw_basis": -0.0076,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.013,
+            0.008
+          ]
+        },
+        "SILVER": {
+          "nu": 20.0,
+          "width_cal": 0.986,
+          "skill": 0.0189,
+          "skill_raw_basis": 0.0184,
+          "verdict": "PASS",
+          "ci_block2": [
+            0.012,
+            0.027
+          ]
+        }
+      },
+      "_elapsed_s": 39.8
+    }
+  },
+  "EG": {
+    "60d": {
+      "market": "EG",
+      "market_name": "Egypt (EGX)",
+      "fit_date": "2026-07-27",
+      "panel_names": [
+        "ABUK",
+        "ADIB",
+        "BTFH",
+        "CCAP",
+        "CLHO",
+        "COMI",
+        "DSCW",
+        "EFID",
+        "EFIH",
+        "EGAL",
+        "EMFD",
+        "ETEL",
+        "FWRY",
+        "GBCO",
+        "HELI",
+        "HRHO",
+        "ISPH",
+        "JUFO",
+        "KABO",
+        "LCSW",
+        "OCDI",
+        "OIH",
+        "ORAS",
+        "ORHD",
+        "ORWE",
+        "PHDC",
+        "PRDC",
+        "RAYA",
+        "RMDA",
+        "TMGH"
+      ],
+      "windows": 492,
+      "rebuilt_this_run": [],
+      "nu": 5.0,
+      "width_cal": 0.93,
+      "mle_scale": 0.9,
+      "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
+      "market_skill": 0.0158,
+      "market_skill_raw_basis": 0.0262,
+      "market_ci90": [
+        0.009,
+        0.023
+      ],
+      "market_verdict": "PASS",
+      "top_name_weight_share": 0.072,
+      "top_name": "BTFH",
+      "signal_active": false,
+      "per_name": {
+        "ABUK": {
+          "nu": 5.0,
+          "width_cal": 0.93,
+          "skill": 0.0084,
+          "skill_raw_basis": 0.0104,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.013,
+            0.037
+          ]
+        },
+        "ADIB": {
+          "nu": 5.0,
+          "width_cal": 0.93,
+          "skill": 0.0209,
+          "skill_raw_basis": 0.016,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.007,
+            0.041
+          ]
+        },
+        "BTFH": {
+          "nu": 5.0,
+          "width_cal": 0.923,
+          "skill": 0.0192,
+          "skill_raw_basis": 0.0277,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.007,
+            0.062
+          ]
+        },
+        "CCAP": {
+          "nu": 5.0,
+          "width_cal": 0.937,
+          "skill": 0.0465,
+          "skill_raw_basis": 0.0518,
+          "verdict": "PASS",
+          "ci_block2": [
+            0.006,
+            0.132
+          ]
+        },
+        "CLHO": {
+          "nu": 5.0,
+          "width_cal": 0.937,
+          "skill": -0.023,
+          "skill_raw_basis": -0.0216,
+          "verdict": "BOUNDARY(PARITY-flagged)",
+          "ci_block2": [
+            -0.046,
+            0.003
+          ]
+        },
+        "COMI": {
+          "nu": 5.0,
+          "width_cal": 0.93,
+          "skill": 0.0145,
+          "skill_raw_basis": 0.0288,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.011,
+            0.059
+          ]
+        },
+        "DSCW": {
+          "nu": 5.0,
+          "width_cal": 0.937,
+          "skill": 0.0104,
+          "skill_raw_basis": 0.0124,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.011,
+            0.026
+          ]
+        },
+        "EFID": {
+          "nu": 5.0,
+          "width_cal": 0.937,
+          "skill": 0.0324,
+          "skill_raw_basis": -0.0129,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.058,
+            0.102
+          ]
+        },
+        "EFIH": {
+          "nu": 5.0,
+          "width_cal": 0.937,
+          "skill": 0.0294,
+          "skill_raw_basis": 0.0223,
+          "verdict": "PASS",
+          "ci_block2": [
+            0.007,
+            0.07
+          ]
+        },
+        "EGAL": {
+          "nu": 5.0,
+          "width_cal": 0.93,
+          "skill": 0.0061,
+          "skill_raw_basis": 0.0009,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.018,
+            0.04
+          ]
+        },
+        "EMFD": {
+          "nu": 5.0,
+          "width_cal": 0.937,
+          "skill": 0.0469,
+          "skill_raw_basis": 0.064,
+          "verdict": "PASS",
+          "ci_block2": [
+            0.004,
+            0.097
+          ]
+        },
+        "ETEL": {
+          "nu": 5.0,
+          "width_cal": 0.93,
+          "skill": 0.0467,
+          "skill_raw_basis": 0.0521,
+          "verdict": "PASS",
+          "ci_block2": [
+            0.022,
+            0.063
+          ]
+        },
+        "FWRY": {
+          "nu": 5.0,
+          "width_cal": 0.937,
+          "skill": 0.0155,
+          "skill_raw_basis": 0.0054,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.012,
+            0.065
+          ]
+        },
+        "GBCO": {
+          "nu": 5.0,
+          "width_cal": 0.937,
+          "skill": 0.0097,
+          "skill_raw_basis": 0.0057,
+          "verdict": "BOUNDARY(PARITY-flagged)",
+          "ci_block2": [
+            -0.007,
+            0.035
+          ]
+        },
+        "HELI": {
+          "nu": 6.0,
+          "width_cal": 0.923,
+          "skill": 0.023,
+          "skill_raw_basis": 0.0295,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.008,
+            0.08
+          ]
+        },
+        "HRHO": {
+          "nu": 5.0,
+          "width_cal": 0.937,
+          "skill": -0.0116,
+          "skill_raw_basis": -0.0104,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.033,
+            0.017
+          ]
+        },
+        "ISPH": {
+          "nu": 5.0,
+          "width_cal": 0.923,
+          "skill": -0.0332,
+          "skill_raw_basis": -0.0117,
+          "verdict": "FAIL",
+          "ci_block2": [
+            -0.054,
+            -0.001
+          ]
+        },
+        "JUFO": {
+          "nu": 5.0,
+          "width_cal": 0.944,
+          "skill": 0.0061,
+          "skill_raw_basis": 0.0144,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.037,
+            0.05
+          ]
+        },
+        "KABO": {
+          "nu": 5.0,
+          "width_cal": 0.93,
+          "skill": 0.0009,
+          "skill_raw_basis": -0.0054,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.018,
+            0.017
+          ]
+        },
+        "LCSW": {
+          "nu": 5.0,
+          "width_cal": 0.93,
+          "skill": 0.0084,
+          "skill_raw_basis": 0.002,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.033,
+            0.035
+          ]
+        },
+        "OCDI": {
+          "nu": 5.0,
+          "width_cal": 0.937,
+          "skill": -0.0041,
+          "skill_raw_basis": 0.019,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.063,
+            0.042
+          ]
+        },
+        "OIH": {
+          "nu": 5.0,
+          "width_cal": 0.93,
+          "skill": -0.004,
+          "skill_raw_basis": 0.0025,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.032,
+            0.035
+          ]
+        },
+        "ORAS": {
+          "nu": 5.0,
+          "width_cal": 0.923,
+          "skill": 0.0229,
+          "skill_raw_basis": 0.034,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.007,
+            0.065
+          ]
+        },
+        "ORHD": {
+          "nu": 5.0,
+          "width_cal": 0.937,
+          "skill": 0.014,
+          "skill_raw_basis": 0.018,
+          "verdict": "BOUNDARY(PARITY-flagged)",
+          "ci_block2": [
+            0.001,
+            0.024
+          ]
+        },
+        "ORWE": {
+          "nu": 5.0,
+          "width_cal": 0.944,
+          "skill": 0.0826,
+          "skill_raw_basis": 0.1123,
+          "verdict": "PASS",
+          "ci_block2": [
+            0.033,
+            0.164
+          ]
+        },
+        "PHDC": {
+          "nu": 5.0,
+          "width_cal": 0.93,
+          "skill": 0.0267,
+          "skill_raw_basis": 0.0393,
+          "verdict": "PASS",
+          "ci_block2": [
+            0.003,
+            0.063
+          ]
+        },
+        "PRDC": {
+          "nu": 5.0,
+          "width_cal": 0.937,
+          "skill": 0.0211,
+          "skill_raw_basis": 0.0232,
+          "verdict": "PASS",
+          "ci_block2": [
+            0.002,
+            0.05
+          ]
+        },
+        "RAYA": {
+          "nu": 5.0,
+          "width_cal": 0.937,
+          "skill": 0.0061,
+          "skill_raw_basis": 0.0032,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.024,
+            0.052
+          ]
+        },
+        "RMDA": {
+          "nu": 5.0,
+          "width_cal": 0.937,
+          "skill": 0.0198,
+          "skill_raw_basis": 0.0194,
+          "verdict": "BOUNDARY(PARITY-flagged)",
+          "ci_block2": [
+            -0.003,
+            0.041
+          ]
+        },
+        "TMGH": {
+          "nu": 6.0,
+          "width_cal": 0.909,
+          "skill": 0.0377,
+          "skill_raw_basis": 0.0577,
+          "verdict": "PASS",
+          "ci_block2": [
+            0.015,
+            0.092
+          ]
+        }
+      },
+      "_elapsed_s": 13.6
+    },
+    "3m": {
+      "market": "EG",
+      "market_name": "Egypt (EGX)",
+      "fit_date": "2026-07-27",
+      "panel_names": [
+        "ABUK",
+        "ADIB",
+        "BTFH",
+        "CCAP",
+        "CLHO",
+        "COMI",
+        "DSCW",
+        "EFID",
+        "EFIH",
+        "EGAL",
+        "EMFD",
+        "ETEL",
+        "FWRY",
+        "GBCO",
+        "HELI",
+        "HRHO",
+        "ISPH",
+        "JUFO",
+        "KABO",
+        "LCSW",
+        "OCDI",
+        "OIH",
+        "ORAS",
+        "ORHD",
+        "ORWE",
+        "PHDC",
+        "PRDC",
+        "RAYA",
+        "RMDA",
+        "TMGH"
+      ],
+      "windows": 494,
+      "rebuilt_this_run": [
+        "OCDI",
+        "ORHD"
+      ],
+      "nu": 6.0,
+      "width_cal": 0.951,
+      "mle_scale": 0.93,
+      "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
+      "market_skill": 0.0158,
+      "market_skill_raw_basis": 0.0351,
+      "market_ci90": [
+        0.009,
+        0.022
+      ],
+      "market_verdict": "PASS",
+      "top_name_weight_share": 0.067,
+      "top_name": "BTFH",
+      "signal_active": false,
+      "per_name": {
+        "ABUK": {
+          "nu": 6.0,
+          "width_cal": 0.944,
+          "skill": 0.0446,
+          "skill_raw_basis": 0.0397,
+          "verdict": "PASS",
+          "ci_block2": [
+            0.011,
+            0.076
+          ]
+        },
+        "ADIB": {
+          "nu": 6.0,
+          "width_cal": 0.951,
+          "skill": 0.0218,
+          "skill_raw_basis": 0.0304,
+          "verdict": "BOUNDARY(PARITY-flagged)",
+          "ci_block2": [
+            -0.0,
+            0.044
+          ]
+        },
+        "BTFH": {
+          "nu": 6.0,
+          "width_cal": 0.944,
+          "skill": 0.0245,
+          "skill_raw_basis": 0.0367,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.005,
+            0.071
+          ]
+        },
+        "CCAP": {
+          "nu": 6.0,
+          "width_cal": 0.944,
+          "skill": 0.0219,
+          "skill_raw_basis": 0.0198,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.009,
+            0.072
+          ]
+        },
+        "CLHO": {
+          "nu": 6.0,
+          "width_cal": 0.951,
+          "skill": -0.0117,
+          "skill_raw_basis": -0.0194,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.047,
+            0.008
+          ]
+        },
+        "COMI": {
+          "nu": 6.0,
+          "width_cal": 0.944,
+          "skill": 0.0207,
+          "skill_raw_basis": 0.031,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.002,
+            0.057
+          ]
+        },
+        "DSCW": {
+          "nu": 6.0,
+          "width_cal": 0.958,
+          "skill": -0.0046,
+          "skill_raw_basis": -0.0151,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.036,
+            0.021
+          ]
+        },
+        "EFID": {
+          "nu": 6.0,
+          "width_cal": 0.951,
+          "skill": 0.025,
+          "skill_raw_basis": -0.0084,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.051,
+            0.07
+          ]
+        },
+        "EFIH": {
+          "nu": 6.0,
+          "width_cal": 0.951,
+          "skill": 0.0215,
+          "skill_raw_basis": 0.0219,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.011,
+            0.064
+          ]
+        },
+        "EGAL": {
+          "nu": 6.0,
+          "width_cal": 0.951,
+          "skill": 0.0322,
+          "skill_raw_basis": 0.0437,
+          "verdict": "PASS",
+          "ci_block2": [
+            0.016,
+            0.063
+          ]
+        },
+        "EMFD": {
+          "nu": 6.0,
+          "width_cal": 0.951,
+          "skill": -0.008,
+          "skill_raw_basis": -0.0086,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.036,
+            0.016
+          ]
+        },
+        "ETEL": {
+          "nu": 6.0,
+          "width_cal": 0.944,
+          "skill": 0.0565,
+          "skill_raw_basis": 0.0591,
+          "verdict": "PASS",
+          "ci_block2": [
+            0.034,
+            0.072
+          ]
+        },
+        "FWRY": {
+          "nu": 6.0,
+          "width_cal": 0.958,
+          "skill": 0.0092,
+          "skill_raw_basis": -0.0045,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.018,
+            0.05
+          ]
+        },
+        "GBCO": {
+          "nu": 6.0,
+          "width_cal": 0.951,
+          "skill": 0.0086,
+          "skill_raw_basis": 0.0062,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.01,
+            0.036
+          ]
+        },
+        "HELI": {
+          "nu": 6.0,
+          "width_cal": 0.951,
+          "skill": 0.0067,
+          "skill_raw_basis": 0.0139,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.024,
+            0.039
+          ]
+        },
+        "HRHO": {
+          "nu": 6.0,
+          "width_cal": 0.951,
+          "skill": 0.0016,
+          "skill_raw_basis": -0.0039,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.025,
+            0.016
+          ]
+        },
+        "ISPH": {
+          "nu": 6.0,
+          "width_cal": 0.937,
+          "skill": -0.0186,
+          "skill_raw_basis": -0.0133,
+          "verdict": "BOUNDARY(PARITY-flagged)",
+          "ci_block2": [
+            -0.042,
+            0.003
+          ]
+        },
+        "JUFO": {
+          "nu": 6.0,
+          "width_cal": 0.958,
+          "skill": -0.0163,
+          "skill_raw_basis": -0.0018,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.063,
+            0.024
+          ]
+        },
+        "KABO": {
+          "nu": 6.0,
+          "width_cal": 0.951,
+          "skill": 0.0117,
+          "skill_raw_basis": 0.0069,
+          "verdict": "BOUNDARY(PARITY-flagged)",
+          "ci_block2": [
+            -0.003,
+            0.032
+          ]
+        },
+        "LCSW": {
+          "nu": 6.0,
+          "width_cal": 0.951,
+          "skill": 0.0406,
+          "skill_raw_basis": 0.0313,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.03,
+            0.078
+          ]
+        },
+        "OCDI": {
+          "nu": 6.0,
+          "width_cal": 0.951,
+          "skill": 0.0321,
+          "skill_raw_basis": 0.0541,
+          "verdict": "BOUNDARY(PARITY-flagged)",
+          "ci_block2": [
+            -0.008,
+            0.069
+          ]
+        },
+        "OIH": {
+          "nu": 6.0,
+          "width_cal": 0.951,
+          "skill": -0.0185,
+          "skill_raw_basis": -0.0163,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.044,
+            0.019
+          ]
+        },
+        "ORAS": {
+          "nu": 6.0,
+          "width_cal": 0.944,
+          "skill": 0.039,
+          "skill_raw_basis": 0.0396,
+          "verdict": "PASS",
+          "ci_block2": [
+            0.005,
+            0.073
+          ]
+        },
+        "ORHD": {
+          "nu": 6.0,
+          "width_cal": 0.951,
+          "skill": 0.0147,
+          "skill_raw_basis": 0.0072,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.01,
+            0.037
+          ]
+        },
+        "ORWE": {
+          "nu": 6.0,
+          "width_cal": 0.951,
+          "skill": 0.0283,
+          "skill_raw_basis": 0.0292,
+          "verdict": "PASS",
+          "ci_block2": [
+            0.005,
+            0.054
+          ]
+        },
+        "PHDC": {
+          "nu": 6.0,
+          "width_cal": 0.944,
+          "skill": 0.0094,
+          "skill_raw_basis": 0.0127,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.014,
+            0.024
+          ]
+        },
+        "PRDC": {
+          "nu": 6.0,
+          "width_cal": 0.958,
+          "skill": 0.0172,
+          "skill_raw_basis": 0.0202,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.008,
+            0.036
+          ]
+        },
+        "RAYA": {
+          "nu": 6.0,
+          "width_cal": 0.944,
+          "skill": -0.0232,
+          "skill_raw_basis": -0.0263,
+          "verdict": "BOUNDARY(PARITY-flagged)",
+          "ci_block2": [
+            -0.069,
+            0.013
+          ]
+        },
+        "RMDA": {
+          "nu": 6.0,
+          "width_cal": 0.951,
+          "skill": -0.0067,
+          "skill_raw_basis": -0.0044,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.028,
+            0.016
+          ]
+        },
+        "TMGH": {
+          "nu": 6.0,
+          "width_cal": 0.944,
+          "skill": 0.039,
+          "skill_raw_basis": 0.0526,
+          "verdict": "PASS",
+          "ci_block2": [
+            0.016,
+            0.091
+          ]
+        }
+      },
+      "_elapsed_s": 62.7
+    }
+  },
+  "KR": {
+    "60d": {
+      "market": "KR",
+      "market_name": "South Korea",
+      "fit_date": "2026-07-27",
+      "panel_names": [
+        "KAKAO",
+        "LGES",
+        "SAMSUNG"
+      ],
+      "windows": 88,
+      "rebuilt_this_run": [],
+      "nu": 12.0,
+      "width_cal": 1.105,
+      "mle_scale": 1.15,
+      "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
+      "market_skill": 0.0004,
+      "market_skill_raw_basis": 0.005,
+      "market_ci90": [
+        -0.006,
+        0.005
+      ],
+      "market_verdict": "PARITY",
+      "top_name_weight_share": 0.632,
+      "top_name": "SAMSUNG",
+      "signal_active": false,
+      "per_name": {
+        "KAKAO": {
+          "nu": 10.0,
+          "width_cal": 1.098,
+          "skill": -0.002,
+          "skill_raw_basis": -0.0004,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.01,
+            0.011
+          ]
+        },
+        "LGES": {
+          "nu": 15.0,
+          "width_cal": 1.147,
+          "skill": 0.0005,
+          "skill_raw_basis": -0.0009,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.014,
+            0.015
+          ]
+        },
+        "SAMSUNG": {
+          "nu": "Gaussian",
+          "width_cal": 1.021,
+          "skill": -0.004,
+          "skill_raw_basis": -0.0031,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.013,
+            0.005
+          ]
+        }
+      },
+      "_elapsed_s": 1.7
+    },
+    "3m": {
+      "market": "KR",
+      "market_name": "South Korea",
+      "fit_date": "2026-07-27",
+      "panel_names": [
+        "KAKAO",
+        "LGES",
+        "SAMSUNG"
+      ],
+      "windows": 85,
+      "rebuilt_this_run": [
+        "SAMSUNG"
+      ],
+      "nu": 10.0,
+      "width_cal": 1.063,
+      "mle_scale": 1.09,
+      "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
+      "market_skill": 0.0008,
+      "market_skill_raw_basis": 0.0077,
+      "market_ci90": [
+        -0.003,
+        0.009
+      ],
+      "market_verdict": "PARITY",
+      "top_name_weight_share": 0.604,
+      "top_name": "SAMSUNG",
+      "signal_active": false,
+      "per_name": {
+        "KAKAO": {
+          "nu": 8.0,
+          "width_cal": 1.035,
+          "skill": -0.0024,
+          "skill_raw_basis": 0.0003,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.012,
+            0.018
+          ]
+        },
+        "LGES": {
+          "nu": 12.0,
+          "width_cal": 1.084,
+          "skill": 0.0077,
+          "skill_raw_basis": 0.0097,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.02,
+            0.048
+          ]
+        },
+        "SAMSUNG": {
+          "nu": "Gaussian",
+          "width_cal": 1.035,
+          "skill": -0.0015,
+          "skill_raw_basis": -0.0004,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.01,
+            0.007
+          ]
+        }
+      },
+      "_elapsed_s": 32.2
+    }
+  },
+  "AE": {
+    "60d": {
+      "market": "AE",
+      "market_name": "UAE (ADX/DFM)",
+      "fit_date": "2026-07-27",
+      "panel_names": [
+        "ADCB",
+        "ADIB",
+        "ADNOCGAS",
+        "AGTHIA",
+        "ALDAR",
+        "ALPHADHABI",
+        "BURJEEL",
+        "DEWA",
+        "DIB",
+        "EAND",
+        "EMAAR",
+        "EMAARDEV",
+        "ENBD",
+        "FAB",
+        "IHC",
+        "LULU",
+        "SALIK",
+        "TWOPOINTZERO"
+      ],
+      "windows": 275,
+      "rebuilt_this_run": [
+        "ADCB",
+        "ADIB",
+        "ADNOCGAS",
+        "AGTHIA",
+        "ALDAR",
+        "ALPHADHABI",
+        "BURJEEL",
+        "DEWA",
+        "DIB",
+        "EAND",
+        "EMAAR",
+        "EMAARDEV",
+        "ENBD",
+        "FAB",
+        "IHC",
+        "LULU",
+        "SALIK",
+        "TWOPOINTZERO"
+      ],
+      "nu": 8.0,
+      "width_cal": 0.895,
+      "mle_scale": 0.85,
+      "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
+      "market_skill": 0.008,
+      "market_skill_raw_basis": 0.0095,
+      "market_ci90": [
+        -0.0,
+        0.015
+      ],
+      "market_verdict": "PARITY",
+      "top_name_weight_share": 0.093,
+      "top_name": "EMAARDEV",
+      "signal_active": false,
+      "per_name": {
+        "ADCB": {
+          "nu": 6.0,
+          "width_cal": 0.895,
+          "skill": 0.0097,
+          "skill_raw_basis": 0.0045,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.009,
+            0.037
+          ]
+        },
+        "ADIB": {
+          "nu": 8.0,
+          "width_cal": 0.902,
+          "skill": 0.0395,
+          "skill_raw_basis": 0.0347,
+          "verdict": "PASS",
+          "ci_block2": [
+            0.019,
+            0.077
+          ]
+        },
+        "ADNOCGAS": {
+          "nu": 8.0,
+          "width_cal": 0.902,
+          "skill": 0.044,
+          "skill_raw_basis": 0.0461,
+          "verdict": "BOUNDARY(PARITY-flagged)",
+          "ci_block2": [
+            0.002,
+            0.114
+          ]
+        },
+        "AGTHIA": {
+          "nu": 8.0,
+          "width_cal": 0.895,
+          "skill": -0.0015,
+          "skill_raw_basis": -0.0007,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.045,
+            0.043
+          ]
+        },
+        "ALDAR": {
+          "nu": 8.0,
+          "width_cal": 0.888,
+          "skill": 0.0128,
+          "skill_raw_basis": 0.0156,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.019,
+            0.045
+          ]
+        },
+        "ALPHADHABI": {
+          "nu": 8.0,
+          "width_cal": 0.895,
+          "skill": 0.0106,
+          "skill_raw_basis": 0.0117,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.012,
+            0.052
+          ]
+        },
+        "BURJEEL": {
+          "nu": 8.0,
+          "width_cal": 0.888,
+          "skill": 0.0155,
+          "skill_raw_basis": 0.0084,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.008,
+            0.048
+          ]
+        },
+        "DEWA": {
+          "nu": 6.0,
+          "width_cal": 0.902,
+          "skill": 0.0012,
+          "skill_raw_basis": 0.0015,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.024,
+            0.043
+          ]
+        },
+        "DIB": {
+          "nu": 10.0,
+          "width_cal": 0.895,
+          "skill": 0.0045,
+          "skill_raw_basis": 0.005,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.019,
+            0.041
+          ]
+        },
+        "EAND": {
+          "nu": 8.0,
+          "width_cal": 0.895,
+          "skill": 0.0325,
+          "skill_raw_basis": 0.0204,
+          "verdict": "BOUNDARY(PARITY-flagged)",
+          "ci_block2": [
+            -0.007,
+            0.104
+          ]
+        },
+        "EMAAR": {
+          "nu": 10.0,
+          "width_cal": 0.881,
+          "skill": -0.0006,
+          "skill_raw_basis": 0.0065,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.026,
+            0.048
+          ]
+        },
+        "EMAARDEV": {
+          "nu": 6.0,
+          "width_cal": 0.895,
+          "skill": -0.0162,
+          "skill_raw_basis": -0.015,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.037,
+            0.016
+          ]
+        },
+        "ENBD": {
+          "nu": 8.0,
+          "width_cal": 0.909,
+          "skill": -0.0192,
+          "skill_raw_basis": -0.013,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.05,
+            0.013
+          ]
+        },
+        "FAB": {
+          "nu": 8.0,
+          "width_cal": 0.895,
+          "skill": 0.0209,
+          "skill_raw_basis": 0.0177,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.008,
+            0.061
+          ]
+        },
+        "IHC": {
+          "nu": 10.0,
+          "width_cal": 0.895,
+          "skill": 0.0186,
+          "skill_raw_basis": 0.0071,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.149,
+            0.06
+          ]
+        },
+        "LULU": {
+          "nu": 8.0,
+          "width_cal": 0.895,
+          "skill": -0.0653,
+          "skill_raw_basis": -0.0623,
+          "verdict": "PROVISIONAL(insufficient-windows)",
+          "ci_block2": [
+            -0.065,
+            -0.065
+          ]
+        },
+        "SALIK": {
+          "nu": 8.0,
+          "width_cal": 0.895,
+          "skill": -0.006,
+          "skill_raw_basis": -0.0045,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.015,
+            0.006
+          ]
+        },
+        "TWOPOINTZERO": {
+          "nu": 8.0,
+          "width_cal": 0.888,
+          "skill": -0.0004,
+          "skill_raw_basis": -0.0062,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.022,
+            0.025
+          ]
+        }
+      },
+      "_elapsed_s": 356.3
+    },
+    "3m": {
+      "market": "AE",
+      "market_name": "UAE (ADX/DFM)",
+      "fit_date": "2026-07-27",
+      "panel_names": [
+        "ADCB",
+        "ADIB",
+        "ADNOCGAS",
+        "AGTHIA",
+        "ALDAR",
+        "ALPHADHABI",
+        "BURJEEL",
+        "DEWA",
+        "DIB",
+        "EAND",
+        "EMAAR",
+        "EMAARDEV",
+        "ENBD",
+        "FAB",
+        "IHC",
+        "LULU",
+        "SALIK",
+        "TWOPOINTZERO"
+      ],
+      "windows": 261,
+      "rebuilt_this_run": [
+        "ADCB",
+        "ADIB",
+        "ADNOCGAS",
+        "AGTHIA",
+        "ALDAR",
+        "ALPHADHABI",
+        "BURJEEL",
+        "DEWA",
+        "DIB",
+        "EAND",
+        "EMAAR",
+        "EMAARDEV",
+        "ENBD",
+        "FAB",
+        "IHC",
+        "LULU",
+        "SALIK",
+        "TWOPOINTZERO"
+      ],
+      "nu": 10.0,
+      "width_cal": 0.979,
+      "mle_scale": 0.97,
+      "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
+      "market_skill": 0.0068,
+      "market_skill_raw_basis": 0.0078,
+      "market_ci90": [
+        -0.001,
+        0.014
+      ],
+      "market_verdict": "PARITY",
+      "top_name_weight_share": 0.09,
+      "top_name": "TWOPOINTZERO",
+      "signal_active": false,
+      "per_name": {
+        "ADCB": {
+          "nu": 10.0,
+          "width_cal": 0.979,
+          "skill": 0.0345,
+          "skill_raw_basis": 0.031,
+          "verdict": "PASS",
+          "ci_block2": [
+            0.013,
+            0.056
+          ]
+        },
+        "ADIB": {
+          "nu": 8.0,
+          "width_cal": 0.972,
+          "skill": 0.0177,
+          "skill_raw_basis": 0.0121,
+          "verdict": "PASS",
+          "ci_block2": [
+            0.002,
+            0.032
+          ]
+        },
+        "ADNOCGAS": {
+          "nu": 10.0,
+          "width_cal": 0.979,
+          "skill": 0.0016,
+          "skill_raw_basis": 0.0021,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.009,
+            0.027
+          ]
+        },
+        "AGTHIA": {
+          "nu": 10.0,
+          "width_cal": 0.979,
+          "skill": -0.0369,
+          "skill_raw_basis": -0.0409,
+          "verdict": "BOUNDARY(PARITY-flagged)",
+          "ci_block2": [
+            -0.111,
+            0.013
+          ]
+        },
+        "ALDAR": {
+          "nu": 10.0,
+          "width_cal": 0.972,
+          "skill": 0.0273,
+          "skill_raw_basis": 0.0221,
+          "verdict": "PASS",
+          "ci_block2": [
+            0.005,
+            0.045
+          ]
+        },
+        "ALPHADHABI": {
+          "nu": 8.0,
+          "width_cal": 0.986,
+          "skill": 0.0005,
+          "skill_raw_basis": -0.0017,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.008,
+            0.009
+          ]
+        },
+        "BURJEEL": {
+          "nu": 10.0,
+          "width_cal": 0.979,
+          "skill": 0.0137,
+          "skill_raw_basis": 0.0065,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.01,
+            0.04
+          ]
+        },
+        "DEWA": {
+          "nu": 10.0,
+          "width_cal": 0.986,
+          "skill": 0.0046,
+          "skill_raw_basis": 0.0055,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.013,
+            0.017
+          ]
+        },
+        "DIB": {
+          "nu": 12.0,
+          "width_cal": 0.965,
+          "skill": 0.0269,
+          "skill_raw_basis": 0.0267,
+          "verdict": "PASS",
+          "ci_block2": [
+            0.004,
+            0.041
+          ]
+        },
+        "EAND": {
+          "nu": 10.0,
+          "width_cal": 0.979,
+          "skill": 0.0221,
+          "skill_raw_basis": 0.0187,
+          "verdict": "BOUNDARY(PARITY-flagged)",
+          "ci_block2": [
+            -0.003,
+            0.06
+          ]
+        },
+        "EMAAR": {
+          "nu": 12.0,
+          "width_cal": 0.965,
+          "skill": 0.0182,
+          "skill_raw_basis": 0.0234,
+          "verdict": "PASS",
+          "ci_block2": [
+            0.011,
+            0.039
+          ]
+        },
+        "EMAARDEV": {
+          "nu": 10.0,
+          "width_cal": 0.972,
+          "skill": -0.0111,
+          "skill_raw_basis": -0.0088,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.02,
+            0.003
+          ]
+        },
+        "ENBD": {
+          "nu": 10.0,
+          "width_cal": 0.979,
+          "skill": -0.0128,
+          "skill_raw_basis": -0.0095,
+          "verdict": "BOUNDARY(PARITY-flagged)",
+          "ci_block2": [
+            -0.057,
+            0.009
+          ]
+        },
+        "FAB": {
+          "nu": 10.0,
+          "width_cal": 0.979,
+          "skill": -0.0117,
+          "skill_raw_basis": -0.0135,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.03,
+            0.018
+          ]
+        },
+        "IHC": {
+          "nu": 12.0,
+          "width_cal": 0.972,
+          "skill": 0.0236,
+          "skill_raw_basis": 0.0083,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.183,
+            0.073
+          ]
+        },
+        "LULU": {
+          "nu": 10.0,
+          "width_cal": 0.979,
+          "skill": -0.0876,
+          "skill_raw_basis": -0.089,
+          "verdict": "PROVISIONAL(insufficient-windows)",
+          "ci_block2": [
+            -0.088,
+            -0.088
+          ]
+        },
+        "SALIK": {
+          "nu": 8.0,
+          "width_cal": 0.986,
+          "skill": 0.0069,
+          "skill_raw_basis": 0.0066,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.008,
+            0.023
+          ]
+        },
+        "TWOPOINTZERO": {
+          "nu": 8.0,
+          "width_cal": 0.972,
+          "skill": -0.0068,
+          "skill_raw_basis": -0.0071,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.015,
+            0.003
+          ]
+        }
+      },
+      "_elapsed_s": 329.6
+    }
+  },
+  "SA": {
+    "60d": {
+      "market": "SA",
+      "market_name": "Saudi Arabia (Tadawul)",
+      "fit_date": "2026-07-27",
+      "panel_names": [
+        "ACWA",
+        "ALINMA",
+        "ARAMCO",
+        "ELM",
+        "EXTRA",
+        "MAADEN",
+        "RAJHI",
+        "RIBL",
+        "SABIC",
+        "SNB",
+        "STC"
+      ],
+      "windows": 410,
+      "rebuilt_this_run": [
+        "ACWA",
+        "ALINMA",
+        "ARAMCO",
+        "ELM",
+        "EXTRA",
+        "MAADEN",
+        "RAJHI",
+        "RIBL",
+        "SABIC",
+        "SNB",
+        "STC"
+      ],
+      "nu": 8.0,
+      "width_cal": 1.021,
+      "mle_scale": 1.03,
+      "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
+      "market_skill": 0.0004,
+      "market_skill_raw_basis": -0.01,
+      "market_ci90": [
+        -0.005,
+        0.006
+      ],
+      "market_verdict": "PARITY",
+      "top_name_weight_share": 0.145,
+      "top_name": "EXTRA",
+      "signal_active": false,
+      "per_name": {
+        "ACWA": {
+          "nu": 6.0,
+          "width_cal": 1.035,
+          "skill": -0.0073,
+          "skill_raw_basis": -0.0133,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.026,
+            0.01
+          ]
+        },
+        "ALINMA": {
+          "nu": 8.0,
+          "width_cal": 1.021,
+          "skill": 0.0143,
+          "skill_raw_basis": 0.0103,
+          "verdict": "BOUNDARY(PARITY-flagged)",
+          "ci_block2": [
+            -0.002,
+            0.031
+          ]
+        },
+        "ARAMCO": {
+          "nu": 8.0,
+          "width_cal": 1.021,
+          "skill": 0.0024,
+          "skill_raw_basis": -0.0008,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.025,
+            0.022
+          ]
+        },
+        "ELM": {
+          "nu": 8.0,
+          "width_cal": 1.014,
+          "skill": -0.0131,
+          "skill_raw_basis": -0.0151,
+          "verdict": "FAIL",
+          "ci_block2": [
+            -0.029,
+            -0.003
+          ]
+        },
+        "EXTRA": {
+          "nu": 8.0,
+          "width_cal": 1.021,
+          "skill": -0.0308,
+          "skill_raw_basis": -0.0412,
+          "verdict": "FAIL",
+          "ci_block2": [
+            -0.047,
+            -0.016
+          ]
+        },
+        "MAADEN": {
+          "nu": 6.0,
+          "width_cal": 1.042,
+          "skill": 0.0223,
+          "skill_raw_basis": 0.0285,
+          "verdict": "PASS",
+          "ci_block2": [
+            0.007,
+            0.04
+          ]
+        },
+        "RAJHI": {
+          "nu": 6.0,
+          "width_cal": 1.042,
+          "skill": 0.0048,
+          "skill_raw_basis": 0.007,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.007,
+            0.017
+          ]
+        },
+        "RIBL": {
+          "nu": 8.0,
+          "width_cal": 1.014,
+          "skill": -0.0018,
+          "skill_raw_basis": -0.0001,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.019,
+            0.018
+          ]
+        },
+        "SABIC": {
+          "nu": 8.0,
+          "width_cal": 1.021,
+          "skill": 0.0037,
+          "skill_raw_basis": -0.0016,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.021,
+            0.026
+          ]
+        },
+        "SNB": {
+          "nu": 8.0,
+          "width_cal": 1.021,
+          "skill": 0.0063,
+          "skill_raw_basis": 0.0046,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.001,
+            0.015
+          ]
+        },
+        "STC": {
+          "nu": 8.0,
+          "width_cal": 1.042,
+          "skill": -0.0025,
+          "skill_raw_basis": -0.0049,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.012,
+            0.008
+          ]
+        }
+      },
+      "_elapsed_s": 272.4
+    },
+    "3m": {
+      "market": "SA",
+      "market_name": "Saudi Arabia (Tadawul)",
+      "fit_date": "2026-07-27",
+      "panel_names": [
+        "ACWA",
+        "ALINMA",
+        "ARAMCO",
+        "ELM",
+        "EXTRA",
+        "MAADEN",
+        "RAJHI",
+        "RIBL",
+        "SABIC",
+        "SNB",
+        "STC"
+      ],
+      "windows": 392,
+      "rebuilt_this_run": [
+        "ACWA",
+        "ALINMA",
+        "ARAMCO",
+        "ELM",
+        "EXTRA",
+        "MAADEN",
+        "RAJHI",
+        "RIBL",
+        "SABIC",
+        "SNB",
+        "STC"
+      ],
+      "nu": 12.0,
+      "width_cal": 1.07,
+      "mle_scale": 1.1,
+      "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
+      "market_skill": -0.002,
+      "market_skill_raw_basis": -0.0037,
+      "market_ci90": [
+        -0.009,
+        0.004
+      ],
+      "market_verdict": "PARITY",
+      "top_name_weight_share": 0.138,
+      "top_name": "EXTRA",
+      "signal_active": false,
+      "per_name": {
+        "ACWA": {
+          "nu": 12.0,
+          "width_cal": 1.07,
+          "skill": 0.0032,
+          "skill_raw_basis": 0.0004,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.018,
+            0.022
+          ]
+        },
+        "ALINMA": {
+          "nu": 15.0,
+          "width_cal": 1.063,
+          "skill": 0.0061,
+          "skill_raw_basis": 0.0041,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.011,
+            0.027
+          ]
+        },
+        "ARAMCO": {
+          "nu": 12.0,
+          "width_cal": 1.07,
+          "skill": -0.0011,
+          "skill_raw_basis": -0.0027,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.022,
+            0.015
+          ]
+        },
+        "ELM": {
+          "nu": 12.0,
+          "width_cal": 1.063,
+          "skill": 0.0056,
+          "skill_raw_basis": 0.0001,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.017,
+            0.017
+          ]
+        },
+        "EXTRA": {
+          "nu": 15.0,
+          "width_cal": 1.07,
+          "skill": -0.0372,
+          "skill_raw_basis": -0.0704,
+          "verdict": "FAIL",
+          "ci_block2": [
+            -0.065,
+            -0.021
+          ]
+        },
+        "MAADEN": {
+          "nu": 12.0,
+          "width_cal": 1.077,
+          "skill": 0.0073,
+          "skill_raw_basis": 0.0072,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.009,
+            0.028
+          ]
+        },
+        "RAJHI": {
+          "nu": 12.0,
+          "width_cal": 1.056,
+          "skill": 0.0135,
+          "skill_raw_basis": 0.0147,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.004,
+            0.029
+          ]
+        },
+        "RIBL": {
+          "nu": 15.0,
+          "width_cal": 1.049,
+          "skill": -0.0011,
+          "skill_raw_basis": -0.0034,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.02,
+            0.019
+          ]
+        },
+        "SABIC": {
+          "nu": 12.0,
+          "width_cal": 1.077,
+          "skill": -0.0003,
+          "skill_raw_basis": -0.0037,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.024,
+            0.022
+          ]
+        },
+        "SNB": {
+          "nu": 15.0,
+          "width_cal": 1.084,
+          "skill": -0.0103,
+          "skill_raw_basis": -0.015,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.029,
+            0.005
+          ]
+        },
+        "STC": {
+          "nu": 15.0,
+          "width_cal": 1.084,
+          "skill": -0.0011,
+          "skill_raw_basis": -0.0019,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.022,
+            0.017
+          ]
+        }
+      },
+      "_elapsed_s": 254.8
+    }
+  }
+}

@@ -4,7 +4,25 @@
 
 const SITE = { updated: "2026-07-20", latest: "DSCW" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
-/* ---------- covered tickers ---------- */
+/* ---------- covered tickers ----------
+   HORIZON FIELDS (see the HORIZON CONVENTION block above the LEDGER):
+     dist.t20 / dist.t60   the two published cones. The KEY NAMES are historical
+                           (they date from the retired T+20/T+60 session count)
+                           and are kept so every ticker page keeps working — read
+                           them as "near horizon" and "far horizon", not as a
+                           claim about 20 and 60 sessions. dist.*.label carries
+                           the human horizon name.
+     hz                    OPTIONAL, set on a cohort struck under the calendar
+                           convention (27-Jul-2026 onward):
+                             hz:{ h1:21, h3:63, l1:"1 month", l3:"3 months", cal:true }
+                           h1/h3 are the session counts the cones were actually
+                           simulated over, from engine/horizons.py resolve().
+                           app.js (hzOf) reads it for the fan axis, the touch
+                           ladder headers and the hover read-out. ABSENT means
+                           legacy: 20/60 sessions, labelled T+20/T+60. Do not add
+                           hz to a ticker whose cones are still legacy — the
+                           label would then misstate what was simulated.
+   ------------------------------------- */
 const TICKERS = {
   CLHO: {
     name: "Cleopatra Hospitals Group",
@@ -2024,7 +2042,11 @@ const COMING = [
      anchor_date        ISO date the forecast was struck (study anchor)
      anchor_price       price at anchor
      ccy                currency of price
-     horizon_label      free text, e.g. "T+20", "T+60", "3M"
+     horizon_label      the cohort's horizon, and the record of WHICH CONVENTION
+                        it was struck under. See HORIZON CONVENTION below.
+                          "1 month" / "3 months"  calendar-anchored (from 27-Jul-2026)
+                          "T+20" / "T+60"         retired session count (before that)
+                          "12 months"             annual metals cohort
      grade_date         ISO date the horizon matures / is graded
      cycle_no           rolling-cycle number for this instrument (1,2,3…)
      reanchor_from      anchor_date of the prior cycle this supersedes, or null
@@ -2042,6 +2064,36 @@ const COMING = [
      touch_hit          per-band hit flags filled at grade time:
                           { "+5":bool, "+10":bool, "+15":bool, "+20":bool,
                             "-5":bool, "-10":bool }
+   ----------------------------------------------------------------------------
+   HORIZON CONVENTION — CHANGED 27-JUL-2026. READ BEFORE ADDING A ROW.
+   ----------------------------------------------------------------------------
+   Cohorts struck ON OR AFTER 27-Jul-2026 are CALENDAR-anchored:
+
+     target_date = anchor_date + 1 (or 3) calendar months, month-end clamped
+                   (31-Jan +1M -> 28/29-Feb).
+     grade_date  = the first REAL trading session on or after target_date on
+                   that exchange's own calendar. Weekend/holiday rolls FORWARD,
+                   never back.
+     horizon_days = the session count that maps onto that calendar span. It is
+                   NOT a constant: 18-24 sessions for a month and 55-67 for a
+                   quarter, depending on market and anchor. At publish time it
+                   is projected from the exchange's own realized calendar by
+                   engine/horizons.py (resolve()); at GRADE time the real
+                   calendar decides and the projection is discarded.
+
+   Cohorts struck BEFORE 27-Jul-2026 are session-counted: horizon_days was
+   fixed at exactly 20 or 60 and grade_date was a projected Sun-Thu target with
+   no holiday awareness (which is why several carry grade_date_projected +
+   grade_note corrections). THOSE ROWS ARE NOT RE-LABELLED AND NOT RE-STRUCK.
+   The register is append-only: every legacy cohort grades on the horizon it
+   was issued on and counts in the score exactly as before. Both conventions
+   coexist here, and horizon_label is what tells them apart.
+
+   Why the change: "T+20" is roughly a month and "T+60" roughly a quarter, but
+   only roughly, and the drift was in the check DATE — every public holiday
+   pushed it, so the published grade_date was regularly 2 sessions wrong and
+   needed a manual correction note. A calendar target cannot drift; only which
+   session it lands on can, and by at most a few days.
    ========================================================================== */
 const LEDGER = [
   // ---- XPTUSD · metal (spot platinum, USD) · cycle 1 (20 Jul 2026 published study; PARITY — own provisional self-fit, first metals name with a de-circularized cross-check) ----

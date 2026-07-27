@@ -114,7 +114,7 @@
     <p class="sub" style="max-width:720px">Most people who talk about stocks quietly forget their bad calls. We don't. Every forecast we make is saved here with its date — and when that date arrives, we put the real price next to what we said, <b>right or wrong, nothing deleted.</b> So you can judge for yourself how good our forecasts actually are.</p>
     <div class="card" style="background:var(--tint2)"><b id="lg-sum-all"></b></div>
     <div class="card" id="lg-countdown" style="display:none;background:var(--teal);color:#fff;border:0;text-align:center;margin-top:14px">
-      <div style="font-family:'Alexandria','IBM Plex Sans',sans-serif;font-size:var(--fs-caption);letter-spacing:.1em;text-transform:uppercase;opacity:.85;margin-bottom:6px">First forecast resolves in</div>
+      <div style="font-family:'Alexandria','IBM Plex Sans',sans-serif;font-size:var(--fs-caption);letter-spacing:.1em;text-transform:uppercase;opacity:.85;margin-bottom:6px">Next forecast resolves in</div>
       <div id="lg-cd-num" class="num" style="font-size:var(--fs-display);font-weight:700;line-height:1.05"></div>
       <div id="lg-cd-sub" style="font-size:var(--fs-small);opacity:.9;margin-top:5px"></div>
     </div>
@@ -128,6 +128,14 @@
     <div class="card" style="margin-top:24px">
       <p class="muted">How we check: each forecast gives a likely range. When its date comes, we see whether the real price landed inside that range, and keep a running tally. If our "9 times out of 10" ranges are honest, the price should land inside them about 9 times out of 10 — more often means we're being too cautious, less often means we're too confident.</p>
     </div>
+
+    <details class="card" id="hz-note" style="margin-top:14px">
+      <summary style="cursor:pointer;font-weight:700">Why some rows say “1 month” and older ones say “T+20”</summary>
+      <p class="muted" style="margin:10px 0 0">From <b>27 July 2026</b> every new forecast is checked at <b>1 month</b> and <b>3 months</b> from the day it was published — real calendar dates. If that date is a weekend or a public holiday on that exchange, we check on the next day it actually trades. Nothing else moves it.</p>
+      <p class="muted" style="margin:10px 0 0">Before that date we counted <b>trading sessions</b> instead: “T+20” meant the 20th day the market was open, “T+60” the 60th. That is roughly a month and roughly three months — but only roughly, and it drifted with every public holiday, which made the check date hard to predict and hard to explain.</p>
+      <p class="muted" style="margin:10px 0 0"><b>We did not go back and change the old forecasts.</b> Every cohort published before 27 July 2026 keeps the horizon it was issued on, is graded on that horizon, and still counts in the score exactly as it always did. Rows labelled <b>T+20 / T+60</b> are on the old session count; rows labelled <b>1 month / 3 months</b> are on the calendar. Both are live, and the difference is small — a calendar month is about 21 trading sessions and a calendar quarter about 63, against the old 20 and 60.</p>
+      <p class="muted" style="margin:10px 0 0">The engine was re-calibrated to match: the five-year test that validates each cone now measures the same calendar window we publish, instead of a fixed 60 sessions. <a href="method.html">Full methodology →</a></p>
+    </details>
   </section>
 
 
@@ -148,6 +156,39 @@
 <script>
 const F2 = n => Number(n).toLocaleString("en-US",{maximumFractionDigits:2});
 
+// Grade dates are PLAIN CALENDAR DATES, not instants. new Date("2026-08-17")
+// parses as UTC midnight, so toLocaleDateString rendered it a day early for
+// every reader west of UTC — a ledger whose whole subject is "on what date" was
+// showing the wrong date to part of its audience. Build the Date from parts so
+// it is local midnight and cannot shift.
+function isoDate(s){
+  if(!s) return null;
+  const p = String(s).slice(0,10).split("-");
+  return new Date(+p[0], +p[1]-1, +p[2]);
+}
+const fmtDate  = (s,o) => { const d=isoDate(s); return d ? d.toLocaleDateString('en-GB', o||{day:'numeric',month:'short',year:'numeric'}) : String(s); };
+const fmtDateL = s => fmtDate(s,{day:'numeric',month:'long',year:'numeric'});
+
+// ---- horizon convention -------------------------------------------------------
+// Cohorts struck from 27-Jul-2026 carry CALENDAR horizon labels ("1 month",
+// "3 months"); everything published before keeps the retired session-counted
+// "T+20"/"T+60" it was issued on, un-relabelled — the register is append-only.
+// Sorting must therefore put a near horizon before a far one ACROSS both
+// conventions, which a raw string compare does not do ("1 month" < "3 months" <
+// "T+20" < "T+60" happens to work, but "12 months" would sort before "3 months").
+// Rank by the horizon's actual length instead.
+const HZ_MONTHS = {"T+20":1, "T+60":3, "1 month":1, "3 months":3, "12 months":12};
+function hzRank(label){
+  if(label in HZ_MONTHS) return HZ_MONTHS[label];
+  const mM = /^(\d+)\s*month/i.exec(label||"");        // "6 months"
+  if(mM) return +mM[1];
+  const mT = /^T\+(\d+)$/i.exec(label||"");            // "T+40" -> sessions/21
+  if(mT) return +mT[1]/21;
+  return 99;
+}
+const byHorizon = (a,b) => hzRank(a.horizon_label) - hzRank(b.horizon_label)
+                        || String(a.horizon_label).localeCompare(String(b.horizon_label));
+
 // open until graded (realized_close filled)
 const isOpen = r => r.realized_close == null;
 const isInBand = r => (r.in_90 != null) ? r.in_90 : (r.realized_close >= r.p5 && r.realized_close <= r.p95);
@@ -165,8 +206,9 @@ function renderRow(r){
   const matched = isCalMatch(r);
   let res;
   if(isOpen(r)){
-    const d = new Date(r.grade_date).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
-    res = `<span class="chip lr-check">check on ${d}</span>`;
+    const d = fmtDate(r.grade_date);
+    const due = isoDate(r.grade_date) <= new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
+    res = `<span class="chip lr-check">${due ? "due — grading" : "check on"} ${d}</span>`;
   } else {
     const inBand = isInBand(r);
     res = `<span class="num">${F2(r.realized_close)}</span> ${inBand
@@ -191,7 +233,7 @@ function renderRow(r){
 const ledgerPage = {};
 function buildPanel(rows, tbodyId, summaryId){
   // soonest calibration first: nearest check (grade) date at the top, overdue ahead of upcoming
-  const sorted = [...rows].sort((a,b) => (a.grade_date||"").localeCompare(b.grade_date||"") || a.horizon_label.localeCompare(b.horizon_label));
+  const sorted = [...rows].sort((a,b) => (a.grade_date||"").localeCompare(b.grade_date||"") || byHorizon(a,b));
   const PER=10, pages=Math.max(1,Math.ceil(sorted.length/PER));
   let __pg = ledgerPage[tbodyId]||0; if(__pg>=pages)__pg=pages-1; if(__pg<0)__pg=0; ledgerPage[tbodyId]=__pg;
   document.getElementById(tbodyId).innerHTML = sorted.slice(__pg*PER,__pg*PER+PER).map(renderRow).join("");
@@ -202,7 +244,7 @@ function buildPanel(rows, tbodyId, summaryId){
   if(!sm) return;
   sm.textContent = scored
     ? `Right ${hit} out of ${scored} times so far.`
-    : `Nothing to check yet — first one on ${new Date([...rows].sort((a,b)=>a.grade_date.localeCompare(b.grade_date))[0].grade_date).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}.`;
+    : `Nothing to check yet — first one on ${fmtDateL([...rows].sort((a,b)=>a.grade_date.localeCompare(b.grade_date))[0].grade_date)}.`;
 }
 
 // Order instruments by soonest pending calibration: nearest ungraded grade_date first
@@ -268,10 +310,11 @@ const COHORT_OHLC = {
 };
 
 function latestGradedCohort(rows){
-  // graded = realized_close present; take the most recent by grade_date; prefer T+20 then T+60
+  // graded = realized_close present; take the most recent by grade_date, and on a
+  // tie the NEAREST horizon first (1 month before 3 months; T+20 before T+60)
   const graded = rows.filter(r=>r.realized_close!=null && r.p25!=null && r.anchor_price!=null && r.grade_date);
   if(!graded.length) return null;
-  graded.sort((a,b)=> (b.grade_date||"").localeCompare(a.grade_date||"") || a.horizon_label.localeCompare(b.horizon_label));
+  graded.sort((a,b)=> (b.grade_date||"").localeCompare(a.grade_date||"") || byHorizon(a,b));
   return graded[0];
 }
 
@@ -585,8 +628,7 @@ tickerOrder.forEach(t=>{
 // Overall summary
 let hit=0, scored=0;
 LEDGER.forEach(r=>{ if(!isOpen(r)){ scored++; if(isInBand(r)) hit++; }});
-const firstDate = new Date([...LEDGER].sort((a,b)=>a.grade_date.localeCompare(b.grade_date))[0].grade_date)
-  .toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
+const firstDate = fmtDateL([...LEDGER].sort((a,b)=>a.grade_date.localeCompare(b.grade_date))[0].grade_date);
 document.getElementById("lg-sum-all").textContent = scored
   ? `So far, the real price landed inside our forecast range ${hit} times out of ${scored}.`
   : `Nothing to score yet — the first forecast can be checked on ${firstDate}. Every forecast stays here, right or wrong.`;
@@ -654,16 +696,62 @@ document.getElementById("tab-bar").addEventListener("click", e=>{
 })();
 </script>
 <script>
+/* Next-resolution countdown \u2014 DATA-DRIVEN.
+   Was hard-coded to "9 July 2026, PHDC T+20" and went stale the moment that
+   cohort graded. It now reads the register: the soonest grade_date among rows
+   that are still open. Nothing to maintain per roll-forward, and it cannot
+   contradict the table underneath it. */
 (function(){
   var el=document.getElementById("lg-countdown"); if(!el) return;
-  var target=new Date("2026-07-09T00:00:00+03:00").getTime();
+  if(typeof LEDGER==="undefined") return;
+  var open=LEDGER.filter(function(r){ return r.realized_close==null && r.grade_date; });
+  if(!open.length) return;
+  open.sort(function(a,b){ return a.grade_date.localeCompare(b.grade_date) || byHorizon(a,b); });
+
+  var now=new Date(), today=new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  var matured=open.filter(function(r){ return isoDate(r.grade_date) <= today; });
+  var upcoming=open.filter(function(r){ return isoDate(r.grade_date) > today; });
+
+  function whoOf(rows){
+    if(rows.length===1) return rows[0].instrument+" "+rows[0].horizon_label;
+    var names=[...new Set(rows.map(function(r){return r.instrument;}))];
+    return rows.length+" cohorts ("+names.slice(0,3).join(", ")+(names.length>3?" and others":"")+")";
+  }
+
+  // Cohorts whose date has already passed are AWAITING GRADING, not "here".
+  // Saying "it's here" about a horizon that matured a week ago reads as a live
+  // countdown when it is actually a backlog \u2014 name it for what it is.
+  if(matured.length){
+    var head=document.querySelector("#lg-countdown div");
+    if(head) head.textContent = matured.length===1 ? "Awaiting grading" : "Awaiting grading";
+    document.getElementById("lg-cd-num").textContent =
+      matured.length + (matured.length===1 ? " forecast" : " forecasts");
+    document.getElementById("lg-cd-sub").textContent =
+      "reached "+(matured.length===1?"its date":"their dates")+" \u2014 "+whoOf(matured)+
+      ", earliest "+fmtDateL(matured[0].grade_date)+
+      ". Each is graded against the close on its own date, right or wrong.";
+    el.style.display="block";
+    return;
+  }
+  if(!upcoming.length) return;
+
+  var next=upcoming[0];
+  var sameDay=upcoming.filter(function(r){ return r.grade_date===next.grade_date; });
+  var who=whoOf(sameDay);
+  var verb=sameDay.length===1 ? "is" : "are";
+  var prettyStr=fmtDateL(next.grade_date);
+  var target=isoDate(next.grade_date).getTime();
   function tick(){
     var d=target-Date.now();
     var num=document.getElementById("lg-cd-num"), sub=document.getElementById("lg-cd-sub");
-    if(d<=0){ num.textContent="It's here"; sub.textContent="9 July 2026 \u2014 our first forecast (PHDC) reaches its date. The result goes here, right or wrong."; el.style.display="block"; return; }
+    if(d<=0){
+      num.textContent="It's here";
+      sub.textContent=prettyStr+" \u2014 "+who+" "+verb+" checked against the real price. The result goes here, right or wrong.";
+      el.style.display="block"; return;
+    }
     var day=Math.floor(d/864e5), hr=Math.floor(d%864e5/36e5), mi=Math.floor(d%36e5/6e4);
     num.textContent = day+(day===1?" day":" days");
-    sub.textContent = hr+" h "+mi+" m \u2014 until 9 July 2026, our first gradable forecast (PHDC T+20)";
+    sub.textContent = hr+" h "+mi+" m \u2014 until "+prettyStr+", when "+who+" "+verb+" checked against the real price";
     el.style.display="block";
   }
   tick(); setInterval(tick,60000);

@@ -674,14 +674,34 @@ function initShare(){
 })();
 
 /* ============ static MC fan (Fundamental/Technical/MC redesign) ============ */
-function fitPowerLaw(spot, t20, t60){
+/* HORIZON CONVENTION (27-Jul-2026). Cohorts struck from 27-Jul-2026 are anchored
+   to CALENDAR horizons — 1 month and 3 months — instead of the retired T+20 /
+   T+60 session counts. A calendar month is not a fixed number of sessions
+   (18-24, depending on the market and the month), so the two anchor points of
+   this fan are no longer constants: they come from the ticker's own cohort.
+
+   Every ticker still carrying legacy data keeps T+20 / T+60 EXACTLY as
+   published — the register is append-only and nothing here is retro-relabelled.
+   A ticker restruck under the new convention carries `hz` in data.js:
+       hz:{ h1:21, h3:63, l1:"1 month", l3:"3 months", cal:true }
+   and this code follows it. Absent `hz`, the legacy 20/60 anchors apply. */
+const HZ_LEGACY = { h1:20, h3:60, l1:"T+20", l3:"T+60", cal:false };
+function hzOf(T){
+  const z = (T && T.hz) || {};
+  return { h1: z.h1 || HZ_LEGACY.h1, h3: z.h3 || HZ_LEGACY.h3,
+           l1: z.l1 || HZ_LEGACY.l1, l3: z.l3 || HZ_LEGACY.l3,
+           cal: !!z.cal };
+}
+function fitPowerLaw(spot, t20, t60, h1, h3){
+  h1 = h1 || HZ_LEGACY.h1; h3 = h3 || HZ_LEGACY.h3;
   const out = {};
   ["p5","p25","p50","p75","p95"].forEach(function(q){
     const y20 = Math.log(t20[q]/spot), y60 = Math.log(t60[q]/spot);
-    const b = Math.log(Math.abs(y60)/Math.abs(y20)) / Math.log(3);
-    const a = y20 / Math.pow(20, b);
-    // keep the log-space anchors so fanVal can fall back when the power law is degenerate
-    out[q] = [a, b, y20, y60];
+    const b = Math.log(Math.abs(y60)/Math.abs(y20)) / Math.log(h3/h1);
+    const a = y20 / Math.pow(h1, b);
+    // keep the log-space anchors AND their horizons so fanVal can fall back
+    // when the power law is degenerate
+    out[q] = [a, b, y20, y60, h1, h3];
   });
   return out;
 }
@@ -690,19 +710,23 @@ function fanVal(fit, spot, q, t){
   const f = fit[q], a = f[0], b = f[1];
   const v = spot * Math.exp(a * Math.pow(t, b));
   if (isFinite(v)) return v;
-  // Degenerate power law: a quantile sits exactly on spot at T+20 (y20==0 -> a,b blow up to 0*Inf=NaN).
-  // Fall back to piecewise-linear-in-log through the published anchors (spot@0, v20@20, v60@60).
-  const y20 = f[2], y60 = f[3];
-  const y = (t <= 20) ? y20 * (t / 20) : y20 + (y60 - y20) * ((t - 20) / 40);
+  // Degenerate power law: a quantile sits exactly on spot at the near horizon
+  // (y20==0 -> a,b blow up to 0*Inf=NaN). Fall back to piecewise-linear-in-log
+  // through the published anchors (spot@0, near@h1, far@h3).
+  const y20 = f[2], y60 = f[3], h1 = f[4] || HZ_LEGACY.h1, h3 = f[5] || HZ_LEGACY.h3;
+  const y = (t <= h1) ? y20 * (t / h1) : y20 + (y60 - y20) * ((t - h1) / (h3 - h1));
   return spot * Math.exp(y);
 }
 function renderStaticFan(elId, T){
   const el = document.getElementById(elId); if (!el) return;
   const spot = T.spot, t20 = T.dist.t20, t60 = T.dist.t60;
-  const fit = fitPowerLaw(spot, t20, t60);
+  const HZ = hzOf(T);
+  const fit = fitPowerLaw(spot, t20, t60, HZ.h1, HZ.h3);
   const W = 760, H = 300, ML = 46, MR = 54, MT = 16, MB = 30;
-  const X0 = ML, X1 = W - MR, Y0 = H - MB, Y1 = MT, AX = 60;
-  const allT = []; for (let t = 0; t <= 60; t += 2) allT.push(t);
+  const X0 = ML, X1 = W - MR, Y0 = H - MB, Y1 = MT, AX = HZ.h3;
+  const _step = Math.max(1, Math.round(AX / 30));
+  const allT = []; for (let t = 0; t <= AX; t += _step) allT.push(t);
+  if (allT[allT.length - 1] !== AX) allT.push(AX);
   let lo = Infinity, hi = -Infinity;
   allT.forEach(function(t){
     ["p5","p95"].forEach(function(q){
@@ -736,11 +760,23 @@ function renderStaticFan(elId, T){
     grid += '<line x1="' + X0 + '" x2="' + X1 + '" y1="' + y.toFixed(1) + '" y2="' + y.toFixed(1) + '" stroke="var(--line,#dce4e2)" stroke-width="1" opacity=".5"/>';
     grid += '<text x="' + (X0 - 8) + '" y="' + (y + 3).toFixed(1) + '" text-anchor="end" font-size="10" fill="var(--muted,#6b7c78)" font-family="IBM Plex Mono,monospace">' + g.toFixed(_gdec) + '</text>';
   }
-  let xt = ""; [0,10,20,30,40,50,60].forEach(function(t){
-    xt += '<text x="' + xpx(t).toFixed(1) + '" y="' + (Y0 + 18) + '" text-anchor="middle" font-size="10" fill="var(--muted,#6b7c78)" font-family="IBM Plex Mono,monospace">' + (t === 0 ? "latest" : "T+" + t) + '</text>';
+  // x-axis: the two published anchors always get a tick and are labelled with
+  // the cohort's own horizon names; the rest are evenly spaced session marks.
+  const _ticks = [0, HZ.h1, HZ.h3];
+  for (let g = 1; g <= 5; g++){
+    const t = Math.round(AX * g / 6);
+    if (_ticks.every(function(u){ return Math.abs(u - t) > AX * 0.09; })) _ticks.push(t);
+  }
+  _ticks.sort(function(a,b){ return a-b; });
+  let xt = ""; _ticks.forEach(function(t){
+    const lab = t === 0 ? "latest"
+              : t === HZ.h1 ? HZ.l1
+              : t === HZ.h3 ? HZ.l3
+              : (HZ.cal ? t + "d" : "T+" + t);
+    xt += '<text x="' + xpx(t).toFixed(1) + '" y="' + (Y0 + 18) + '" text-anchor="middle" font-size="10" fill="var(--muted,#6b7c78)" font-family="IBM Plex Mono,monospace">' + lab + '</text>';
   });
   const cols = {p95:"var(--teal2,#2A8F8F)",p75:"var(--teal,#12796B)",p50:"var(--gold,#C0A45F)",p25:"var(--teal,#12796B)",p5:"var(--teal2,#2A8F8F)"};
-  let rows = ["p5","p25","p50","p75","p95"].map(function(q){ return [fanVal(fit, spot, q, 60), q]; });
+  let rows = ["p5","p25","p50","p75","p95"].map(function(q){ return [fanVal(fit, spot, q, HZ.h3), q]; });
   rows.sort(function(a,b){ return b[0]-a[0]; });
   let endLabels = "", prevY = null;
   rows.forEach(function(r){
@@ -754,7 +790,7 @@ function renderStaticFan(elId, T){
     return '<tr><td class="num">' + r[0].toFixed(2) + '</td><td class="num">' + r[1] + '%</td><td class="num">' + r[2] + '%</td></tr>';
   }).join("");
   el.innerHTML =
-    '<svg id="' + elId + '-svg" viewBox="0 0 ' + W + ' ' + (Y0+40) + '" width="100%" role="img" aria-label="90% and 50% probability bands from latest to T+60" style="touch-action:none">' +
+    '<svg id="' + elId + '-svg" viewBox="0 0 ' + W + ' ' + (Y0+40) + '" width="100%" role="img" aria-label="90% and 50% probability bands from latest to ' + HZ.l3 + '" style="touch-action:none">' +
       grid +
       '<path d="' + bandPath("p95","p5") + '" fill="var(--teal,#12796B)" opacity=".16"/>' +
       '<path d="' + bandPath("p75","p25") + '" fill="var(--teal,#12796B)" opacity=".34"/>' +
@@ -776,8 +812,12 @@ function renderStaticFan(elId, T){
       '<span><span style="display:inline-block;width:14px;height:10px;border-radius:2px;background:var(--teal,#12796B);opacity:.16;margin-right:5px"></span>90% band (5th\u201395th)</span>' +
       '<span><span style="display:inline-block;width:14px;height:2px;background:var(--gold,#C0A45F);margin-right:5px;vertical-align:middle"></span>median path</span>' +
     '</div>' +
-    '<table class="mc-ladder" style="margin-top:14px"><thead><tr><th>Level</th><th>P(touch) T+20</th><th>P(touch) T+60</th></tr></thead><tbody>' + touchRows + '</tbody></table>' +
-    '<p class="muted" style="font-size:var(--fs-small);margin-top:12px">t20 and t60 are the published calibration exactly as saved. The curve between them is a smooth fit using the real Student-t shape for this market through those two points \u2014 not a fresh simulation at every day, and not adjustable \u2014 so it always agrees with the published numbers at the two horizons that matter.</p>';
+    '<table class="mc-ladder" style="margin-top:14px"><thead><tr><th>Level</th><th>P(touch) ' + HZ.l1 + '</th><th>P(touch) ' + HZ.l3 + '</th></tr></thead><tbody>' + touchRows + '</tbody></table>' +
+    '<p class="muted" style="font-size:var(--fs-small);margin-top:12px">The ' + HZ.l1 + ' and ' + HZ.l3 + ' columns are the published calibration exactly as saved. The curve between them is a smooth fit using the real Student-t shape for this market through those two points \u2014 not a fresh simulation at every day, and not adjustable \u2014 so it always agrees with the published numbers at the two horizons that matter.' +
+    (HZ.cal
+      ? ' Horizons are calendar-anchored: ' + HZ.l1 + ' and ' + HZ.l3 + ' from the anchor date, which on this market works out to about ' + HZ.h1 + ' and ' + HZ.h3 + ' trading sessions.'
+      : ' Horizons on this cohort are the retired session count \u2014 20 and 60 trading sessions from the anchor \u2014 kept exactly as published. Cohorts struck from 27 July 2026 are anchored to calendar months instead.') +
+    '</p>';
 
   // ---- hover read-out: move over the cone to read the bands at that horizon ----
   var svgEl = document.getElementById(elId + '-svg');
@@ -805,11 +845,15 @@ function renderStaticFan(elId, T){
           vp50 = fanVal(fit, spot, 'p50', t), vp75 = fanVal(fit, spot, 'p75', t),
           vp95 = fanVal(fit, spot, 'p95', t);
       var when = (t === 0) ? 'now' : 'in ' + t + ' trading day' + (t===1?'':'s');
+      var head = (t === 0) ? 'latest'
+               : (t === HZ.h1) ? HZ.l1
+               : (t === HZ.h3) ? HZ.l3
+               : (HZ.cal ? t + ' sessions' : 'T+' + t);
       var pctMove = ((vp50 / spot - 1) * 100);
       var sign = pctMove >= 0 ? '+' : '';
       tip.style.display = '';
       tip.innerHTML =
-        '<b>T+' + t + '</b> \u00b7 ' + when +
+        '<b>' + head + '</b> \u00b7 ' + when +
         '<br><span style="color:var(--gold,#C0A45F)">median ' + F(vp50) + '</span> (' + sign + pctMove.toFixed(1) + '% vs spot)' +
         '<br><span style="color:var(--muted)">50% band</span> ' + F(vp25) + ' \u2013 ' + F(vp75) +
         '<br><span style="color:var(--muted)">90% band</span> ' + F(vp5) + ' \u2013 ' + F(vp95);
