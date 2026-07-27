@@ -286,9 +286,31 @@ BRAZIL = MarketProfile("BR", "Brazil", [("2020-01-01", 0.1300)], 0.1300,
     notes="EM momentum prior (Rouwenhorst).")
 KOREA = MarketProfile("KR", "South Korea", [("2020-01-01", 0.0300)], 0.0300,
     "PLACEHOLDER — source KTB at first KR study.", None, +1, 0.03, False,
-    nu=250.0, width_cal=1.154,
+    nu=12.0, width_cal=1.105,
     fit_meta=(
-        "REFIT 11-Jul-2026 on the 3-name KR panel after a MAJOR DATA REPAIR - "
+        "REFIT 27-Jul-2026 on the 3-name KR panel after a 15-YEAR SAMSUNG INGEST - "
+        "supersedes nu=Gaussian/cal=1.154. Samsung's library goes 1,515 -> 3,709 "
+        "sessions (2011-08-23 onward), which triples the panel's dominant name and "
+        "is the first KR fit with a pre-2021 sample. Tail goes Gaussian -> 12 and "
+        "the cone NARROWS 1.154 -> 1.105: the published 90% cone (width_cal x "
+        "q95(t(nu))) moves -5.3%, tripping the >5% materiality gate, so this went "
+        "to PR rather than auto-commit. LGES moves FAIL -> PARITY; all three names "
+        "now PARITY; market panel stays PARITY (+0.0004). LONO per-name fits: "
+        "KAKAO nu=10/1.098, LGES nu=15/1.147, SAMSUNG nu=Gaussian/1.021. "
+        "DATA REPAIR THAT MADE IT POSSIBLE (27-Jul-2026): the Samsung export carried "
+        "41 PHANTOM PRE-SPLIT PRINTS - Change % literally '4,900.00%' (= 50x-1, the "
+        "May-2018 50:1 split), O=H=L=C, volume '0.00K'..'0.09K' or NaN - every one "
+        "on a NON-TRADING day (33 Sundays + 8 confirmed KRX closures incl. Memorial "
+        "Day, Seollal, Buddha's Birthday, the 2017 presidential election and Hangul "
+        "Day). Same class as the 10-Jul KAKAO 5:1 finding, at 41 rows and 50:1. They "
+        "survive step 1 of the gate ONLY because their volume string is non-NaN. "
+        "Dropped, not rescaled. What remains is a single genuine unadjusted segment "
+        "before 2016-04-14, back-adjusted x0.0204 by the gate. Post-break history "
+        "reproduces the previous library EXACTLY (max abs diff 0.000000 over 1,365 "
+        "shared sessions) - i.e. this is purely ADDITIVE history, not a restatement. "
+        "NOTE the panel is now badly unbalanced: Samsung carries 15 years while "
+        "KAKAO and LGES still carry ~5. Backfilling those two is the next upgrade. "
+        "SUPERSEDED TEXT (11-Jul-2026) FOLLOWS - "
         "supersedes nu=6/cal=1.070. THE INVESTING.COM KOREAN EXPORT CONTAINS "
         "PHANTOM NON-TRADING ROWS: ~160 rows per name carrying NaN volume and "
         "O=H=L=C, of which 144 of SAMSUNG's 170 fall on a SUNDAY (KOSPI is closed). "

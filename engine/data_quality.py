@@ -96,7 +96,13 @@ def clean_ohlc(df, ticker="", verbose=True, market=None):
     # (not interpolating) is deliberate: a session with no valid price contributes no
     # information, and synthesising one invents a trade that never happened.
     px = ['Price', 'Open', 'High', 'Low']
-    bad = (df[px] <= 0).any(axis=1) | ~np.isfinite(df[px].astype(float)).all(axis=1)
+    # Cast to float BEFORE any repair. The step-2 back-adjust multiplies a price
+    # column by a fractional factor; on an integer-dtype column (Korean prices are
+    # whole KRW, so pandas infers int64) that raises LossySetitemError and the gate
+    # DIES mid-repair. Never bit before because EG/AE/QA/SA/US/XAU prices all carry
+    # decimals and parse as float. Found 27-Jul-2026 on the Samsung 15-year ingest.
+    df[px] = df[px].astype(float)
+    bad = (df[px] <= 0).any(axis=1) | ~np.isfinite(df[px]).all(axis=1)
     if bad.any():
         dates = df['Date'][bad]
         log.append(f"dropped {int(bad.sum())} rows carrying a non-positive or "
