@@ -136,7 +136,7 @@
     </div>
     <div class="chip-rows" id="p-chips"></div>
     <div class="wsum" id="p-wsum"></div>
-    <p id="p-diag" class="muted" style="margin:6px 0 0;font-size:10px;opacity:.5">build fix-nonbinding-claim-v9</p>
+    <p id="p-diag" class="muted" style="margin:6px 0 0;font-size:10px;opacity:.5">build unified-sim-v10</p>
     <p class="muted" style="margin:10px 0 0;font-size:var(--fs-small)">"Load a starting mix" picks the five EGX names with the best typical return for the downside risk they carry (median outcome divided by the worst-1-in-20 case) at the chosen horizon, equally weighted — not just the highest headline number. Each name below shows its own bad case too, so a weak trade-off is visible before you swap anything. Nothing on this page is stored or sent anywhere.</p>
   </section>
 
@@ -286,12 +286,9 @@ window.addEventListener('error', function(e){
      combine, the same role a covariance matrix plays in any risk model. */
   var RHO_SAME = 0.55, RHO_CROSS = 0.25;
   var CF_A = Math.sqrt(RHO_CROSS), CF_B = Math.sqrt(RHO_SAME - RHO_CROSS), CF_C = Math.sqrt(1 - RHO_SAME);
-  function gaussianRandom(){
-    var u=0, v=0;
-    while(u===0) u=Math.random();
-    while(v===0) v=Math.random();
-    return Math.sqrt(-2*Math.log(u)) * Math.cos(2*Math.PI*v);
-  }
+  // No Math.random() left on this page as of this build: every figure — this
+  // mix's own live simulation included — now draws from a seed, never a
+  // fresh unseeded roll. See simMix and mulberry32/seededGaussian below.
   function normCdf(x){ // Abramowitz-Stegun approximation, ~7 decimal digits
     var t = 1/(1+0.2316419*Math.abs(x));
     var d = 0.3989423*Math.exp(-x*x/2);
@@ -299,19 +296,63 @@ window.addEventListener('error', function(e){
     return x>0 ? 1-p : p;
   }
   var SIM_N = 20000;
+  // Deterministic 32-bit string hash (FNV-1a) — turns a mix's own signature
+  // into a seed, so "the same mix" always means "the same seed" and never
+  // touches Math.random(). Not cryptographic, just needs to be stable.
+  function strSeed(s){
+    var h = 0x811c9dc5;
+    for(var i=0;i<s.length;i++){ h ^= s.charCodeAt(i); h = Math.imul(h, 0x01000193); }
+    return h >>> 0;
+  }
+  // Reads off the published simulations for whatever mix the reader built.
+  // Two cases:
+  //  1) Every name is EGX -> reuse optMatrix's own scenario rows directly
+  //     instead of drawing an independent sample of the same distribution.
+  //     The correlation formula below (two correlated factors: one global,
+  //     one per exchange) collapses to exactly optMatrix's single-factor
+  //     form when only one exchange is in play (both give same-exchange
+  //     pairs correlation RHO_SAME by construction) — so this isn't an
+  //     approximation, it's the same model from one shared source of data.
+  //     That's also why this mix's numbers now match the "Best mixes for my
+  //     risk" cards below exactly, not just approximately, when they cover
+  //     the same names and weights.
+  //  2) Any Gulf name is present -> optMatrix doesn't cover non-EGX names,
+  //     so there's no shared matrix to draw from yet. Falls back to this
+  //     page's own correlated simulation, but seeded from the mix's own
+  //     signature (names sorted, so add-order never changes the result)
+  //     rather than Math.random() — the same mix now always gives the same
+  //     answer on reload instead of a fresh draw every time.
   function simMix(sel, which){
-    var names = sel.map(function(m){ var t=TICKERS[m.k]; return { w:m.w, f:invCDF(t.dist[which]), s:t.spot, c:exOf(t) }; });
+    var names = sel.map(function(m){ var t=TICKERS[m.k]; return { k:m.k, w:m.w, f:invCDF(t.dist[which]), s:t.spot, c:exOf(t) }; });
+    names.sort(function(a,b){ return a.k < b.k ? -1 : (a.k > b.k ? 1 : 0); });
+
+    if(names.length && names.every(function(nm){ return nm.c === 'EGX'; })){
+      var em = optMatrix(which);
+      var idxByK = {}; em.names.forEach(function(k,i){ idxByK[k]=i; });
+      if(names.every(function(nm){ return idxByK[nm.k] !== undefined; })){
+        var R = new Float64Array(OPT_N);
+        names.forEach(function(nm){
+          var row = em.ret[idxByK[nm.k]].r;
+          for(var n=0;n<OPT_N;n++) R[n] += nm.w*row[n];
+        });
+        var outEgx = Array.prototype.slice.call(R);
+        outEgx.sort(function(a,b){ return a-b; });
+        return outEgx;
+      }
+    }
+
+    var rng = mulberry32(strSeed(which+'|'+names.map(function(nm){ return nm.k+':'+nm.w; }).join(',')));
     var out = new Array(SIM_N);
     for(var i=0;i<SIM_N;i++){
-      var F0 = gaussianRandom();
+      var F0 = seededGaussian(rng);
       var Fc = {};
       var r = 0;
       for(var j=0;j<names.length;j++){
-        var nm = names[j];
-        if(Fc[nm.c] === undefined) Fc[nm.c] = gaussianRandom();
-        var z = CF_A*F0 + CF_B*Fc[nm.c] + CF_C*gaussianRandom();
+        var nm2 = names[j];
+        if(Fc[nm2.c] === undefined) Fc[nm2.c] = seededGaussian(rng);
+        var z = CF_A*F0 + CF_B*Fc[nm2.c] + CF_C*seededGaussian(rng);
         var u = Math.min(0.999, Math.max(0.001, normCdf(z)));
-        r += nm.w * (nm.f(u)/nm.s - 1);
+        r += nm2.w * (nm2.f(u)/nm2.s - 1);
       }
       out[i] = r;
     }
