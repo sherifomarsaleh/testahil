@@ -1071,7 +1071,8 @@ function renderZoomChart(sourceSvgId, targetElId, res, sup, defaultSessions){
     const X0 = ML, X1 = W - MR, Y0 = H - MB, Y1 = MT;
     const xLo = priceT[0][0], xHi = priceT[priceT.length-1][0];
     const xr = v => X0 + (v - xLo) / (xHi - xLo) * (X1 - X0);
-    const yr = p => Y0 + (pHi - p) / (pHi - pLo) * (Y1 - Y0);
+    // p==pLo (lowest price in window) must map to Y0 (bottom); p==pHi (highest) to Y1 (top).
+    const yr = p => Y0 + (p - pLo) / (pHi - pLo) * (Y1 - Y0);
 
     function pathOf(arr){ return arr.map(function(p,i){ return (i?"L":"M") + xr(p[0]).toFixed(1) + "," + yr(priceOfY(p[1])).toFixed(1); }).join(" "); }
 
