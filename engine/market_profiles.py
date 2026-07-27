@@ -99,7 +99,7 @@ EGYPT = MarketProfile(
                     "yield before first EGX publish under v3 — bills have traded above "
                     "the corridor; 19.50% is the conservative sourced floor."),
     signal_type="rev_1m", signal_sign=-1, ic=0.08, signal_active=False,
-    nu=5.0, width_cal=0.93,
+    nu=6.0, width_cal=0.951,
     fit_meta=(
         "REFIT 11-Jul-2026 on the FULL 27-name EG panel (351 post-break windows) - "
         "supersedes the 7-name/115-window fit (nu=4, cal=0.965, signal ON). The fit "
@@ -179,7 +179,19 @@ EGYPT = MarketProfile(
         "data artifact of the non-positive-price bug (same FAIL was already present "
         "on the stale pre-patch run). XAU was unaffected by the DQ bug and its "
         "PENDING_REVIEW numbers were identical pre- and post-patch, confirming the "
-        "fix was correctly scoped to EG only."),
+        "fix was correctly scoped to EG only. "
+        "UPDATE 27-Jul-2026 (calendar-horizon 3m adoption, PR #32 site-wide switch): "
+        "re-fit on the calendar 3-month window. nu 5 -> 6, cal 0.93 -> 0.951 -- "
+        "-1.39% band move (narrows), non-material on the market-level band alone. "
+        "Market panel stays PASS +0.0158 CI[0.009,0.022] (was CI[0.009,0.023]). BUT "
+        "15 of 30 names change verdict category, FIVE of them WORSENING -- CCAP, "
+        "EFIH, EMFD, PHDC, PRDC all lose PASS -> PARITY. Three improve to PASS from "
+        "PARITY (ABUK, EGAL, ORAS); ISPH partially un-fails (FAIL -> "
+        "BOUNDARY(PARITY-flagged)); the rest shuffle between PARITY/BOUNDARY. "
+        "Adopted on EXPLICIT user override of the standing 'no worsening' rule "
+        "(instruction: 'switch all to one month and 3 months') -- the five PASS "
+        "losses above are real and were surfaced before this shipped, not missed. "
+        "Source: engine/PENDING_REVIEW/reverify_post_merge.json (EG.3m)."),
     # EGYPT BREAKS RE-DERIVED, 13-Jul-2026 (Sherif: "devaluation is a way of life in
     # Egypt, even sharp ones") -- and he is right, which changes the answer.
     #
@@ -241,7 +253,7 @@ SAUDI = MarketProfile(
                     "with FTSE SAGBI or iBoxx Tadawul SAR sukuk yield before publish. "
                     "Sensitivity: ±50bp = ±0.12% on the 60d median — immaterial vs band."),
     signal_type="mom_12_1", signal_sign=-1, ic=0.06, signal_active=False,
-    nu=8.0, width_cal=1.021,
+    nu=12.0, width_cal=1.07,
     fit_meta=(
         "REFIT 11-Jul-2026 on the 11-name SA panel "
         "(ACWA/ALINMA/ARAMCO/ELM/EXTRA/MAADEN/RAJHI/RIBL/SABIC/SNB/STC, 190 windows) "
@@ -269,7 +281,19 @@ SAUDI = MarketProfile(
         "-> PASS +0.0223; RAJHI PASS -> PARITY +0.0048 (loses PASS, not a FAIL). ELM "
         "stays a robust FAIL -0.0131 (unchanged, pre-existing). Signal still OFF. "
         "Source: engine/reverify_post_merge.py, "
-        "engine/PENDING_REVIEW/reverify_post_merge.json."),
+        "engine/PENDING_REVIEW/reverify_post_merge.json. "
+        "UPDATE 27-Jul-2026 (calendar-horizon 3m adoption, PR #32 site-wide switch): "
+        "re-fit on the calendar 3-month window. nu 8 -> 12, cal 1.021 -> 1.07 -- "
+        "+0.45% band move vs the just-adopted 60d incumbent above, non-material on "
+        "the band alone. Market panel PARITY -0.002 CI[-0.009,0.004] (was +0.0004). "
+        "EXTRA stays a robust FAIL both ways (-0.0308 -> -0.0372) -- confirmed again, "
+        "not sensitive to window convention. MAADEN WORSENS: PASS -> PARITY "
+        "(+0.0223 -> +0.0073, loses PASS). ELM IMPROVES: FAIL -> PARITY (-0.0131 -> "
+        "+0.0056, un-fails). ALINMA BOUNDARY(PARITY-flagged) -> PARITY (resolves). "
+        "Adopted on EXPLICIT user override of the standing 'no worsening' rule "
+        "(instruction: 'switch all to one month and 3 months') -- MAADEN's PASS "
+        "loss is real and was surfaced before this shipped, not missed. Source: "
+        "engine/PENDING_REVIEW/reverify_post_merge.json (SA.3m)."),
     breaks=["2015-06-15"],
     notes=("Signal OFF (fallback rule): 1-name panel cannot establish IC; literature "
            "sign-unstable (contrarian post-2015 opening). Runs carry-only until the "
@@ -373,7 +397,7 @@ UAE = MarketProfile("AE", "UAE (ADX/DFM)", FED_SCHEDULE, 0.0365,
     "Carry = USD/Fed policy path (AED hard-pegged); rf_live 3.65% = CBUAE Base Rate held "
     "17-Jun-2026. NB the peg 'never-UST' rule governs the VALUATION rf (AED govt bond) -- "
     "the MC carry correctly tracks the Fed for a pegged currency.", "rev_1m", -1, 0.06, False,
-    nu=8.0, width_cal=0.895,
+    nu=10.0, width_cal=0.979,
     fit_meta=(
         "REFIT 11-Jul-2026 on the 14-name AE panel (237 post-break windows), RE-RUN "
         "through the data-quality gate - supersedes nu=4/cal=1.070. Adds "
@@ -424,7 +448,20 @@ UAE = MarketProfile("AE", "UAE (ADX/DFM)", FED_SCHEDULE, 0.0365,
         "BOUNDARY(PARITY-flagged) +0.044 CI[0.002,0.114]; EAND PARITY -> "
         "BOUNDARY(PARITY-flagged) +0.0325. No new FAIL, no lost PASS. LULU remains "
         "PROVISIONAL(insufficient-windows). Signal still OFF. Source: "
-        "engine/reverify_post_merge.py, engine/PENDING_REVIEW/reverify_post_merge.json."),
+        "engine/reverify_post_merge.py, engine/PENDING_REVIEW/reverify_post_merge.json. "
+        "UPDATE 27-Jul-2026 (calendar-horizon 3m adoption, PR #32 site-wide switch): "
+        "re-fit on the calendar 3-month window. nu 8 -> 10, cal 0.895 -> 0.979 -- "
+        "+6.62% band move vs the just-adopted 60d incumbent above, MATERIAL (widens, "
+        "over the 5% gate). Market panel PARITY +0.0068 CI[-0.001,0.014] (was "
+        "+0.008). Per-name: ADCB, ALDAR, DIB, EMAAR all move PARITY -> PASS "
+        "(improvements); ADNOCGAS BOUNDARY(PARITY-flagged) -> PARITY (improvement); "
+        "AGTHIA PARITY -> BOUNDARY(PARITY-flagged) and ENBD PARITY -> "
+        "BOUNDARY(PARITY-flagged) (both WORSEN, flagged not failed). No new FAIL, "
+        "no lost PASS. LULU still PROVISIONAL. Adopted on EXPLICIT user override of "
+        "the standing 'no worsening' rule (instruction: 'switch all to one month and "
+        "3 months') -- the market-level widening and the AGTHIA/ENBD flags above are "
+        "real and were surfaced before this shipped. Source: "
+        "engine/PENDING_REVIEW/reverify_post_merge.json (AE.3m)."),
     breaks=["2022-01-01"], notes=("Workweek switch Jan-2022: vol pool post-2022 only. "
     "CORRECTION 11-Jul-2026: re-run through the data_quality gate (EAND/ADCB/ADIB carried "
     "10 trading-halt rows with O=H=L=C and no volume, which flatten the YZ intraday range "
@@ -433,7 +470,7 @@ UAE = MarketProfile("AE", "UAE (ADX/DFM)", FED_SCHEDULE, 0.0365,
     "but the fit now conforms to the house cleaning gate."))
 INDIA = MarketProfile("IN", "India (NSE)", [("2020-01-01", 0.0650)], 0.0650,
     "PLACEHOLDER — source 10Y G-Sec at first IN study.", "mom_12_1", +1, 0.07, False,
-    nu=250.0, width_cal=0.930,
+    nu=250.0, width_cal=0.986,
     fit_meta=(
         "REFIT 11-Jul-2026 on the 3-name IN panel (TMPV/RELIANCE/INFY, 51 windows, "
         "2021-2026), RE-RUN through the market-aware data-quality gate and the "
@@ -457,7 +494,16 @@ INDIA = MarketProfile("IN", "India (NSE)", [("2020-01-01", 0.0650)], 0.0650,
         "The backtest carry schedule is still a flat 6.50% placeholder (RBI repo "
         "actually ranged 4.00->6.50->~5.50 over the window) - gate-neutral for "
         "skill scoring but MUST be sourced properly (live G-Sec / real RBI "
-        "schedule) before any IN publish."),
+        "schedule) before any IN publish. "
+        "UPDATE 27-Jul-2026 (calendar-horizon 3m adoption, PR #32 site-wide switch): "
+        "re-fit fresh on the calendar 3-month window via refresh_market. nu stays "
+        "Gaussian, cal 0.930 -> 0.986 -- +6.02% band move (WIDENS), MATERIAL on its "
+        "own, no per-name churn (INFY/RELIANCE/TMPV all stay PARITY). Market panel "
+        "PARITY +0.0042 CI[-0.002,0.011] (was +0.0046). Adopted on EXPLICIT user "
+        "override of the standing 'no worsening' rule (instruction: 'switch all to "
+        "one month and 3 months') -- the 6% widening is real and was surfaced "
+        "before this shipped, not missed. Source: "
+        "engine/PENDING_REVIEW/reverify_usa_qatar_india.json (IN.3m)."),
     notes="Robust Indian momentum evidence in the literature - but ablated OFF on "
           "the first panel; re-estimate as the panel grows.")
 QATAR = MarketProfile("QA", "Qatar (QE)",
@@ -512,7 +558,7 @@ METALS = MarketProfile("XAU", "Metals (Gold/Silver, USD)", FED_SCHEDULE, 0.0363,
     "value is spot x exp(rf) — the futures-contango-consistent center; gate-neutral "
     "(same anchor both sides).",
     None, +1, 0.0, False,
-    nu=20.0, width_cal=1.035,
+    nu=12.0, width_cal=1.0,
     fit_meta=("PROVISIONAL single-instrument self-fit 10-Jul-2026 (GOLD, 67 windows "
               "2009-2026): nu=12, cal=1.014 - near-Gaussian, tails far thinner than "
               "EGX (nu=4); the old borrowed t5 was too fat for metals. Verdict "
@@ -532,7 +578,21 @@ METALS = MarketProfile("XAU", "Metals (Gold/Silver, USD)", FED_SCHEDULE, 0.0363,
               "against a number that isn't really this profile's own fit). Per the "
               "standing per-market fit rule, XAU fits its own panel; XPT stays a "
               "flagged single-name provisional until copper history or an approved "
-              "fit-group mechanism exists."),
+              "fit-group mechanism exists. "
+              "UPDATE 27-Jul-2026 (calendar-horizon 3m adoption, PR #32 site-wide "
+              "switch): re-fit on the calendar 3-month window. nu 20 -> 12, cal "
+              "1.035 -> 1.0 -- -0.16% band move (essentially flat). BUT the MARKET "
+              "VERDICT WORSENS: PASS -> PARITY (+0.0099 -> +0.0073 CI[-0.004,0.014]) "
+              "even though neither name individually changes category -- GOLD stays "
+              "PARITY (+0.0011 -> -0.0028), SILVER stays PASS (+0.0181 -> +0.0189). "
+              "This is a pooled-panel effect, not a per-name one. Adopted on "
+              "EXPLICIT user override of the standing 'no worsening' rule "
+              "(instruction: 'switch all to one month and 3 months') -- the lost "
+              "market-level PASS is real and was surfaced before this shipped, not "
+              "missed. Metals remains the weakest calibration in the system either "
+              "way -- read this cone with correspondingly less confidence than an "
+              "EGX/GCC name regardless of which convention it's fitted on. Source: "
+              "engine/PENDING_REVIEW/reverify_post_merge.json (XAU.3m)."),
     notes="Carry-only. Shape/width fitted on the pooled GOLD+SILVER panel (2 names, "
           "de-circularized via LONO as of 22-Jul-2026) - the first non-circular metals "
           "fit in the system. Still the weakest panel by name-count in Testahil.")
@@ -542,7 +602,7 @@ PLATINUM = MarketProfile("XPT", "Platinum (USD)", FED_SCHEDULE, 0.0363,
     "documented assumption as METALS: the carry-anchored null for a zero-yield USD "
     "store of value is spot x exp(rf); gate-neutral (same anchor both sides).",
     None, +1, 0.0, False,
-    nu=250.0, width_cal=0.853,
+    nu=8.0, width_cal=0.86,
     fit_meta=("PROVISIONAL single-instrument self-fit 20-Jul-2026 (PLATINUM, 62 windows "
               "2012-2026, production chain, reproduction check vs live gold registry EXACT: "
               "67 windows, +0.0035, CI[-0.005,+0.013]): nu=Gaussian (MLE scale 0.790 -> "
@@ -553,7 +613,21 @@ PLATINUM = MarketProfile("XPT", "Platinum (USD)", FED_SCHEDULE, 0.0363,
               "(nu=20, cal=0.965, 148 windows) is the likely future config once metals "
               "pool - NOT adopted (per-market fit rule). Platinum does NOT arrive "
               "failing. Step-0.0 gate: 4041->4032 rows, 260.0 rows/yr = metals Mon-Fri "
-              "calendar, zero corporate-action repairs."),
+              "calendar, zero corporate-action repairs. "
+              "UPDATE 27-Jul-2026 (calendar-horizon 3m adoption, PR #32 site-wide "
+              "switch): re-fit on the calendar 3-month window. nu Gaussian -> 8, cal "
+              "0.853 -> 0.86 -- +13.98% band move, the LARGEST widening of any market "
+              "checked in this pass -- driven mainly by the tail thickening from the "
+              "Gaussian limit to t(8), not the small width_cal change. Verdict stays "
+              "PARITY (+0.0078, unchanged). Single-name panel, so this IS the market. "
+              "Adopted on EXPLICIT user override of the standing 'no worsening' rule "
+              "(instruction: 'switch all to one month and 3 months') -- this is the "
+              "single biggest cone widening shipped in this batch and was surfaced "
+              "plainly before it went out, not buried. Metals remains the weakest "
+              "calibration in the system regardless of horizon convention. Source: "
+              "engine/PENDING_REVIEW/calendar_horizon_refit_3m.json (XPT.3m, "
+              "cross-checked: incumbent in that file matches live production exactly, "
+              "unlike the KR entry there which was stale)."),
     notes="Carry-only. Single-name PROVISIONAL self-fit, flagged circular like gold's "
           "first fit; metals remain the weakest calibration in the system.")
 
