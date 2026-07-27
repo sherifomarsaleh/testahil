@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<title>Position Sizer — what would this actually risk? | testahil?</title>
+<meta name="description" content="Take the levels we already publish and do the arithmetic: how much of a portfolio a position would put at risk, and what the published odds say about getting there.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;700;800&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="favicon.png?v=2">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
+<script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}if(t==='dark'){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}document.addEventListener('click',function(e){var b=e.target&&e.target.closest&&e.target.closest('#theme-toggle');if(!b)return;var dark=document.documentElement.getAttribute('data-theme')==='dark';var n=dark?'light':'dark';if(n==='dark'){document.documentElement.setAttribute('data-theme','dark');}else{document.documentElement.removeAttribute('data-theme');}try{localStorage.setItem('theme',n);}catch(e){}b.setAttribute('aria-pressed',String(n==='dark'));});document.addEventListener('DOMContentLoaded',function(){var x=document.getElementById('theme-toggle');if(x)x.setAttribute('aria-pressed',String(document.documentElement.getAttribute('data-theme')==='dark'));});})();</script>
+<link rel="stylesheet" href="assets/style.css?v=20260713f">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="testahil?">
+<meta property="og:title" content="Position sizer — what would this actually risk? | testahil?">
+<meta property="og:description" content="Take the levels we already publish and do the arithmetic on them.">
+<meta property="og:image" content="https://testahil.com/og-image.png">
+<meta property="og:url" content="https://testahil.com/trade.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Position sizer — what would this actually risk? | testahil?">
+<meta name="twitter:description" content="Take the levels we already publish and do the arithmetic on them.">
+<meta name="twitter:image" content="https://testahil.com/og-image.png">
+<link rel="canonical" href="https://testahil.com/trade.html">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-H9NV0ZK9RN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-H9NV0ZK9RN');
+</script>
+
+<style>
+  .tr-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+  .tr-code{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-small);color:var(--muted)}
+  .lvl-list{display:flex;flex-direction:column;gap:2px;margin:0}
+  /* label{} and input{width:100%} are global on this site — both must be neutralised here,
+     otherwise the radio eats the whole row and the spans overflow the card. */
+  .lvl{display:flex;align-items:center;gap:12px;padding:9px 12px;border:1px solid var(--line);border-radius:var(--radius);cursor:pointer;background:transparent;font-weight:400;font-size:var(--fs-body);margin-bottom:0}
+  .lvl:hover{background:var(--tint)}
+  .lvl input[type=radio]{width:16px;min-width:16px;height:16px;flex:none;margin:0;padding:0;border-radius:50%;accent-color:var(--teal)}
+  .lvl .lp{font-family:'IBM Plex Mono',monospace;font-weight:500;min-width:5.5em}
+  .lvl .ll{flex:1;font-size:var(--fs-small)}
+  .lvl .ld{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-small);color:var(--muted);white-space:nowrap}
+  .lvl.sel{border-color:var(--teal);background:var(--tint)}
+  .tagk{font-size:var(--fs-caption);text-transform:uppercase;letter-spacing:.04em;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:1px 7px;white-space:nowrap}
+  .bignum{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-display);font-weight:500;line-height:1.1}
+  .outgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px}
+  .outbox .ol{font-size:var(--fs-small);color:var(--muted);margin-bottom:4px}
+  .outbox .ov{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-h3);font-weight:500}
+  table.tt{width:100%;border-collapse:collapse;font-size:var(--fs-small)}
+  table.tt th,table.tt td{padding:7px 8px;border-bottom:1px solid var(--line);text-align:right}
+  table.tt th:first-child,table.tt td:first-child{text-align:left}
+  table.tt td.n{font-family:'IBM Plex Mono',monospace}
+  table.tt tr.here td{background:var(--tint);font-weight:600}
+  .warnbox{border:1px solid var(--amber);background:var(--tint2);border-radius:var(--radius);padding:12px 14px;margin-top:14px;font-size:var(--fs-small)}
+</style>
+</head>
+<body>
+<header class="nav"><div class="wrap">
+  <a href="index.html" style="text-decoration:none" aria-label="testahil — home"><span class="brand">testahil?<small>is it worth it?</small></span></a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="stocks.html">Stocks</a>
+    <a href="metals.html">Metals</a>
+    <a href="compare.html">Compare</a>
+    <a href="calculator.html">Calculator</a>
+    <a href="ledger.html">Ledger</a>
+    <a href="method.html">Methodology</a>
+  </nav>  <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode" aria-pressed="false" title="Toggle dark / light"><svg class="tt-icon tt-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="tt-icon tt-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg><span class="tt-label tt-label-dark">Dark mode</span><span class="tt-label tt-label-light">Light mode</span></button>
+</div></header>
+
+<main class="wrap">
+
+  <section id="sec-top" class="anchor" data-nav="Overview">
+    <h1 style="font-size:var(--fs-h1)">What would this actually risk?</h1>
+    <p class="muted">We publish where a case breaks, where the chart's levels sit, and how often 50,000 simulated paths touch a given price. This page does nothing new with that — it just does the <b>arithmetic</b> on it: if a position were sized so that being wrong costs a fixed slice of the portfolio, how many shares is that, and what do the published odds say about reaching the level you had in mind.</p>
+    <p class="muted">It is a calculator, not a call. Nothing here says buy, sell, or hold, and no level on this page is chosen for you — you pick from the ones already published in each study.</p>
+  </section>
+
+  <section id="sec-pick" class="card anchor" data-nav="Set it up">
+    <div class="grid g3">
+      <div class="field"><label for="t-sym">Name</label><select id="t-sym" class="num"></select></div>
+      <div class="field"><label for="t-port">Portfolio size (<span id="t-ccy">EGP</span>)</label><input id="t-port" type="number" value="100000" min="1" step="1000" class="num"></div>
+      <div class="field"><label for="t-risk">Most you'd accept losing on this one position (%)</label><input id="t-risk" type="number" value="2" min="0.1" max="100" step="0.1" class="num"></div>
+    </div>
+    <p class="muted" style="margin-bottom:0;font-size:var(--fs-small)">Nothing is stored or sent anywhere — the arithmetic runs in your browser.</p>
+  </section>
+
+  <section id="sec-pub" class="anchor" data-nav="What we published">
+    <p class="qhead">What we already published for this name</p>
+    <div class="card" style="background:var(--tint2)">
+      <div class="tr-head"><h2 style="margin:0;font-size:var(--fs-h3)" id="o-name">—</h2><span class="tr-code" id="o-code"></span></div>
+      <p class="muted" style="margin:6px 0 16px" id="o-spotline">—</p>
+      <div class="outgrid" id="o-pub"></div>
+      <p style="margin:16px 0 0"><a id="o-study" href="#">Open the full study for this name →</a></p>
+    </div>
+  </section>
+
+  <section id="sec-stop" class="card anchor" data-nav="Where you'd be wrong">
+    <p class="qhead" style="margin-top:0">Which level would tell you you were wrong?</p>
+    <p class="muted">This single choice drives everything below it. A level close to today's price means a small loss per share, so the arithmetic allows more shares — and it also means ordinary noise can reach it. A level far away means the opposite. Every option here is a number already published on this name's study page; the percentage is its distance from the last close.</p>
+    <div class="lvl-list" id="o-stops"></div>
+  </section>
+
+  <section id="sec-size" class="card anchor" data-nav="The arithmetic">
+    <p class="qhead" style="margin-top:0">The arithmetic</p>
+    <p class="muted" id="o-sizeline">—</p>
+    <div class="outgrid" id="o-size"></div>
+    <div id="o-warn"></div>
+  </section>
+
+  <section id="sec-target" class="card anchor" data-nav="The other side">
+    <p class="qhead" style="margin-top:0">And if it goes the other way</p>
+    <p class="muted">Same position, measured against a level above today's price. The ratio is just the distance up divided by the distance down — it says nothing about how likely either is. For that, the published touch odds are in the next section.</p>
+    <div class="lvl-list" id="o-targets"></div>
+    <div class="outgrid" id="o-rr" style="margin-top:18px"></div>
+  </section>
+
+  <section id="sec-touch" class="anchor" data-nav="The published odds">
+    <p class="qhead">What the simulation says about getting there</p>
+    <p class="muted">Out of 50,000 simulated paths, the share that <b>touch</b> each price at any point before the horizon — not where the price ends up, but whether it gets there along the way. These are the published ladders from this name's study, unedited. Levels you selected above are highlighted where they line up with a published rung.</p>
+    <div class="card" style="padding:0;overflow:hidden">
+      <table class="tt" id="o-touch"><thead><tr><th>Price</th><th id="o-th1">1 month</th><th id="o-th3">3 months</th></tr></thead><tbody></tbody></table>
+    </div>
+    <p class="muted" style="font-size:var(--fs-small);margin-top:10px">The ladder is published at fixed rungs, so the odds shown next to your chosen levels are for the <b>nearest published rung</b>, named explicitly rather than interpolated. Where a level sits between rungs, read it as a bracket, not a point estimate.</p>
+  </section>
+
+  <section id="sec-caveats" class="card anchor" style="background:var(--tint2)" data-nav="What this can't tell you">
+    <p class="qhead" style="margin-top:0">What this can't tell you</p>
+    <p class="muted">The arithmetic assumes you can leave at the level you chose. Real exits gap through levels, especially on thin EGX small-caps and around results — a position sized to lose 2% can lose considerably more if the price opens below your level rather than trading down to it. Prices here are the last close in each study, not live quotes, and the study date is shown above; anything that has happened since is not in these numbers.</p>
+    <p class="muted">Sizing arithmetic is also not a view. A tight level produces a large share count on this page whether or not the case is any good — the calculation cannot distinguish a well-founded idea from a poor one, and a bigger number here is not more confidence. The fundamental work that would tell you whether the case holds is in the study itself, and the record of how often our published ranges have actually contained the price is in the <a href="ledger.html">public ledger</a>, right and wrong alike.</p>
+    <p style="margin-bottom:0">Educational tooling and personal analytical opinion — not investment advice, not a recommendation, and not a suggestion to take any position. <a href="method.html#disclaimer">Full disclaimer</a>.</p>
+  </section>
+
+</main>
+
+<footer><div class="wrap"><div class="foot-studies"><b>Studies:</b> <a href="phdc.html">Palm Hills</a> &middot; <a href="tmgh.html">Talaat Moustafa</a> &middot; <a href="ocdi.html">SODIC</a> &middot; <a href="orhd.html">Orascom Dev</a> &middot; <a href="oras.html">Orascom Const</a> &middot; <a href="comi.html">CIB</a> &middot; <a href="emfd.html">Emaar Misr</a> &middot; <a href="gold.html">Gold</a> &middot; <a href="stocks.html">all &rarr;</a></div><b>Disclaimer:</b> Educational valuation studies and personal analytical opinion — not investment advice, not recommendations. The preparer is not licensed by Egypt's FRA, manages no money, accepts no clients, and may hold positions in instruments mentioned. <a href="method.html#disclaimer">Full text</a>.<br><br><span class="social" style="font-size:var(--fs-lead);font-weight:700">Follow Testahil &mdash; <a href="https://t.me/testahil_markets" target="_blank" rel="noopener">Telegram</a> &middot; <a href="https://www.facebook.com/testahil.markets" target="_blank" rel="noopener">Facebook</a> &middot; <a href="https://www.linkedin.com/company/testahil" target="_blank" rel="noopener">LinkedIn</a></span></div></footer>
+
+<script src="assets/data.js?v=20260727t"></script>
+<script>
+(function(){
+  'use strict';
+  if (typeof TICKERS === 'undefined') { return; }
+
+  var $ = function(id){ return document.getElementById(id); };
+  var state = { sym:null, stop:null, target:null };
+
+  /* ---------- formatting ---------- */
+  /* Decimals follow the NAME's quote convention, not each value's own magnitude —
+     otherwise a 0.06 price difference on a 2-dp stock renders as 0.0600. Driven off
+     spot: four-figure quotes (KRW, INR) take none, sub-0.1 prices take four. */
+  var DEC = 2;
+  function decFor(t){ var a = Math.abs(t && t.spot || 1); if(a>=10000) return 0; if(a>=0.1) return 2; return 4; }
+  function px(v){
+    if(v==null||isNaN(v)) return '—';
+    return Number(v).toLocaleString('en-US', { minimumFractionDigits:DEC, maximumFractionDigits:DEC });
+  }
+  function money(v, ccy){
+    if(v==null||isNaN(v)) return '—';
+    return ccy + ' ' + Math.round(v).toLocaleString('en-US');
+  }
+  function pct(v, d){ if(v==null||isNaN(v)) return '—'; return (v>0?'+':'') + v.toFixed(d==null?1:d) + '%'; }
+  function ints(v){ return Number(v).toLocaleString('en-US'); }
+
+  /* ---------- ticker list, grouped by exchange ---------- */
+  function exOf(t){ var c=(t.code||''); var i=c.indexOf(':'); return i>0 ? c.slice(0,i) : 'Other'; }
+  function buildSymbols(){
+    var sel = $('t-sym');
+    var keys = Object.keys(TICKERS).filter(function(k){
+      var t = TICKERS[k];
+      return t && t.spot && t.dist && t.dist.t20 && t.dist.t60;
+    });
+    var groups = {};
+    keys.forEach(function(k){ var g = exOf(TICKERS[k]); (groups[g] = groups[g] || []).push(k); });
+    Object.keys(groups).sort().forEach(function(g){
+      var og = document.createElement('optgroup'); og.label = g;
+      groups[g].sort(function(a,b){ return TICKERS[a].name.localeCompare(TICKERS[b].name); })
+        .forEach(function(k){
+          var o = document.createElement('option');
+          o.value = k; o.textContent = TICKERS[k].name + ' (' + k + ')';
+          og.appendChild(o);
+        });
+      sel.appendChild(og);
+    });
+    var pref = (typeof SITE !== 'undefined' && SITE.latest && TICKERS[SITE.latest]) ? SITE.latest : keys[0];
+    sel.value = pref;
+    return pref;
+  }
+
+  /* ---------- candidate levels, all from published data ---------- */
+  function stopCandidates(t){
+    var out = [];
+    if(t.levels && t.levels.sup) t.levels.sup.forEach(function(p,i){
+      out.push({ p:p, label: i===0 ? 'Nearest chart support' : 'Chart support ' + (i+1), kind:'Chart' });
+    });
+    if(t.dist && t.dist.t20) out.push({ p:t.dist.t20.p5, label:'Rare low over ' + hz(t,'t20') + ' (5th percentile)', kind:'Simulation' });
+    if(t.dist && t.dist.t60) out.push({ p:t.dist.t60.p5, label:'Rare low over ' + hz(t,'t60') + ' (5th percentile)', kind:'Simulation' });
+    if(t.fair && t.fair.bear) out.push({ p:t.fair.bear, label:'Bear-case fair value — where our case breaks', kind:'Fundamental' });
+    return dedupe(out.filter(function(c){ return c.p && c.p < t.spot; })).sort(function(a,b){ return b.p - a.p; });
+  }
+  function targetCandidates(t){
+    var out = [];
+    if(t.levels && t.levels.res) t.levels.res.forEach(function(p,i){
+      out.push({ p:p, label: i===0 ? 'Nearest chart resistance' : 'Chart resistance ' + (i+1), kind:'Chart' });
+    });
+    if(t.dist && t.dist.t20) out.push({ p:t.dist.t20.p75, label:'75th percentile over ' + hz(t,'t20'), kind:'Simulation' });
+    if(t.dist && t.dist.t60) out.push({ p:t.dist.t60.p75, label:'75th percentile over ' + hz(t,'t60'), kind:'Simulation' });
+    if(t.dist && t.dist.t60) out.push({ p:t.dist.t60.p95, label:'Rare high over ' + hz(t,'t60') + ' (95th percentile)', kind:'Simulation' });
+    if(t.fair && t.fair.base) out.push({ p:t.fair.base, label:'Central fair value', kind:'Fundamental' });
+    if(t.fair && t.fair.full) out.push({ p:t.fair.full, label:'Bull-case fair value', kind:'Fundamental' });
+    return dedupe(out.filter(function(c){ return c.p && c.p > t.spot; })).sort(function(a,b){ return a.p - b.p; });
+  }
+  function dedupe(arr){
+    var seen = {}, out = [];
+    arr.forEach(function(c){ var k = c.p.toFixed(4); if(!seen[k]){ seen[k]=1; out.push(c); } });
+    return out;
+  }
+  function hz(t, which){
+    var d = t.dist && t.dist[which];
+    if(!d) return which;
+    if(d.label) return d.label.replace(/\s*\(T\+\d+\)\s*/,'').trim();
+    return which === 't20' ? '1 month' : '3 months';
+  }
+
+  /* ---------- published touch ladder ---------- */
+  function nearestRung(t, price){
+    if(!t.touch || !t.touch.length) return null;
+    var best = null, bd = Infinity;
+    t.touch.forEach(function(r){ var d = Math.abs(r[0] - price); if(d < bd){ bd = d; best = r; } });
+    return best;
+  }
+  function rungNote(t, price, dir){
+    var r = nearestRung(t, price);
+    if(!r) return '';
+    var p1 = r[1], p3 = r[2];
+    var exact = Math.abs(r[0] - price) < 1e-9;
+    return (exact ? 'touch odds ' : 'nearest rung ' + px(r[0]) + ': ') + p1 + '% / ' + p3 + '%';
+  }
+
+  /* ---------- rendering ---------- */
+  function renderPublished(t){
+    $('o-name').textContent = t.name;
+    $('o-code').textContent = t.code || '';
+    $('o-spotline').textContent = 'Last close ' + t.ccy + ' ' + px(t.spot) + (t.spotDate ? ' · ' + t.spotDate : '');
+    var f = t.fair || {}, d = t.dist || {};
+    var cells = [
+      ['Bear-case fair value', f.bear!=null ? t.ccy + ' ' + px(f.bear) : '—'],
+      ['Central fair value',   f.base!=null ? t.ccy + ' ' + px(f.base) : '—'],
+      ['Bull-case fair value', f.full!=null ? t.ccy + ' ' + px(f.full) : '—'],
+      [hz(t,'t20') + ' range (25th–75th)', d.t20 ? px(d.t20.p25) + ' – ' + px(d.t20.p75) : '—'],
+      [hz(t,'t60') + ' range (25th–75th)', d.t60 ? px(d.t60.p25) + ' – ' + px(d.t60.p75) : '—'],
+      ['Checked on', d.t60 && d.t60.resolve ? d.t60.resolve : '—']
+    ];
+    $('o-pub').innerHTML = cells.map(function(c){
+      return '<div class="outbox"><div class="ol">' + c[0] + '</div><div class="ov">' + c[1] + '</div></div>';
+    }).join('');
+    var a = $('o-study'); a.setAttribute('href', state.sym.toLowerCase() + '.html');
+    a.textContent = 'Open the full ' + t.name + ' study →';
+  }
+
+  function renderLevels(t){
+    var stops = stopCandidates(t), targets = targetCandidates(t);
+    if(state.stop == null && stops.length) state.stop = stops[0].p;
+    if(state.target == null && targets.length) state.target = targets[0].p;
+
+    $('o-stops').innerHTML = stops.length ? stops.map(function(c,i){
+      var dist = (c.p - t.spot) / t.spot * 100;
+      return '<label class="lvl' + (c.p === state.stop ? ' sel' : '') + '">' +
+        '<input type="radio" name="stoplvl" value="' + c.p + '"' + (c.p === state.stop ? ' checked' : '') + '>' +
+        '<span class="lp">' + t.ccy + ' ' + px(c.p) + '</span>' +
+        '<span class="ll">' + c.label + ' <span class="tagk">' + c.kind + '</span></span>' +
+        '<span class="ld">' + pct(dist) + ' · ' + rungNote(t, c.p) + '</span>' +
+        '</label>';
+    }).join('') : '<p class="muted">No published level for this name sits below the last close — the whole published range is above it, so there is no downside reference to size against here.</p>';
+
+    $('o-targets').innerHTML = targets.length ? targets.map(function(c){
+      var dist = (c.p - t.spot) / t.spot * 100;
+      return '<label class="lvl' + (c.p === state.target ? ' sel' : '') + '">' +
+        '<input type="radio" name="tgtlvl" value="' + c.p + '"' + (c.p === state.target ? ' checked' : '') + '>' +
+        '<span class="lp">' + t.ccy + ' ' + px(c.p) + '</span>' +
+        '<span class="ll">' + c.label + ' <span class="tagk">' + c.kind + '</span></span>' +
+        '<span class="ld">' + pct(dist) + ' · ' + rungNote(t, c.p) + '</span>' +
+        '</label>';
+    }).join('') : '<p class="muted">No published level for this name sits above the last close.</p>';
+  }
+
+  function renderTouch(t){
+    var tb = $('o-touch').querySelector('tbody');
+    $('o-th1').textContent = hz(t,'t20');
+    $('o-th3').textContent = hz(t,'t60');
+    if(!t.touch || !t.touch.length){
+      tb.innerHTML = '<tr><td colspan="3" class="muted">No touch ladder published for this name.</td></tr>';
+      return;
+    }
+    var ns = nearestRung(t, state.stop), nt = nearestRung(t, state.target);
+    tb.innerHTML = t.touch.map(function(r){
+      var mark = (ns && r[0]===ns[0]) || (nt && r[0]===nt[0]);
+      return '<tr class="' + (mark ? 'here' : '') + '"><td class="n">' + t.ccy + ' ' + px(r[0]) + '</td>' +
+             '<td class="n">' + r[1] + '%</td><td class="n">' + r[2] + '%</td></tr>';
+    }).join('');
+  }
+
+  function renderSize(t){
+    var port = parseFloat($('t-port').value) || 0;
+    var riskPct = parseFloat($('t-risk').value) || 0;
+    var stop = state.stop, target = state.target;
+    var out = $('o-size'), warn = $('o-warn'), rr = $('o-rr');
+
+    if(!stop || !port || !riskPct){
+      out.innerHTML = '<p class="muted">Pick a level above and enter a portfolio size.</p>';
+      warn.innerHTML = ''; rr.innerHTML = '';
+      $('o-sizeline').textContent = '—';
+      return;
+    }
+
+    var riskPerShare = t.spot - stop;
+    var riskAmount = port * riskPct / 100;
+    var shares = Math.floor(riskAmount / riskPerShare);
+    var positionValue = shares * t.spot;
+    var positionPct = port ? positionValue / port * 100 : 0;
+
+    $('o-sizeline').innerHTML = 'If ' + t.ccy + ' ' + px(t.spot) + ' were the entry and ' + t.ccy + ' ' + px(stop) +
+      ' the level that ends it, each share puts <b>' + t.ccy + ' ' + px(riskPerShare) + '</b> at risk — ' +
+      pct(riskPerShare / t.spot * 100).replace('+','') + ' of the price. Losing ' + riskPct + '% of a ' +
+      money(port, t.ccy) + ' portfolio means ' + money(riskAmount, t.ccy) + ', so the arithmetic divides out to:';
+
+    out.innerHTML = [
+      ['Shares', ints(shares)],
+      ['Position value', money(positionValue, t.ccy)],
+      ['Share of portfolio', positionPct.toFixed(1) + '%'],
+      ['At risk if the level breaks', money(shares * riskPerShare, t.ccy)]
+    ].map(function(c){
+      return '<div class="outbox"><div class="ol">' + c[0] + '</div><div class="ov">' + c[1] + '</div></div>';
+    }).join('');
+
+    var w = [];
+    if(positionPct > 100){
+      w.push('At this level the arithmetic asks for ' + positionPct.toFixed(0) + '% of the portfolio — more money than there is. ' +
+        'That is what a level this close to the price does: the loss per share is small, so the formula allows an enormous number of shares. ' +
+        'It is a sign the level is too tight to size against this way, not a green light for leverage.');
+    } else if(positionPct > 25){
+      w.push('This works out at ' + positionPct.toFixed(0) + '% of the portfolio in a single name. The ' + riskPct +
+        '% risk figure only holds if the exit actually happens at ' + t.ccy + ' ' + px(stop) + '; a gap through it would cost more, and concentration that size makes that gap matter a great deal.');
+    }
+    if(shares < 1){
+      w.push('The distance to this level is wide enough that a ' + riskPct + '% risk budget does not cover a single share. ' +
+        'Either the level is far below the price, or the portfolio is small relative to the share price — both are real answers, not errors.');
+    }
+    warn.innerHTML = w.map(function(s){ return '<div class="warnbox">' + s + '</div>'; }).join('');
+
+    if(target && target > t.spot && riskPerShare > 0){
+      var rewardPerShare = target - t.spot;
+      var ratio = rewardPerShare / riskPerShare;
+      var rung = nearestRung(t, target), rungS = nearestRung(t, stop);
+      rr.innerHTML = [
+        ['Distance up', t.ccy + ' ' + px(rewardPerShare) + ' (' + pct(rewardPerShare / t.spot * 100).replace('+','') + ')'],
+        ['Distance down', t.ccy + ' ' + px(riskPerShare) + ' (' + pct(riskPerShare / t.spot * 100).replace('+','') + ')'],
+        ['Ratio', ratio.toFixed(2) + ' : 1'],
+        ['Gain at that level, same size', money(shares * rewardPerShare, t.ccy)],
+        ['Published odds of touching it', rung ? (rung[1] + '% / ' + rung[2] + '% at rung ' + t.ccy + ' ' + px(rung[0])) : '—'],
+        ['Published odds of touching the downside', rungS ? (rungS[1] + '% / ' + rungS[2] + '% at rung ' + t.ccy + ' ' + px(rungS[0])) : '—']
+      ].map(function(c){
+        return '<div class="outbox"><div class="ol">' + c[0] + '</div><div class="ov">' + c[1] + '</div></div>';
+      }).join('');
+    } else {
+      rr.innerHTML = '';
+    }
+  }
+
+  function renderAll(){
+    var t = TICKERS[state.sym];
+    if(!t) return;
+    DEC = decFor(t);
+    $('t-ccy').textContent = t.ccy || '';
+    renderPublished(t);
+    renderLevels(t);
+    renderTouch(t);
+    renderSize(t);
+  }
+
+  /* ---------- events ---------- */
+  $('t-sym').addEventListener('change', function(e){
+    state.sym = e.target.value; state.stop = null; state.target = null;
+    var t = TICKERS[state.sym];
+    if(t && t.ccy) { /* portfolio figure is left as typed; the label changes currency */ }
+    renderAll();
+    if(history.replaceState) history.replaceState(null,'', '?n=' + state.sym);
+  });
+  ['t-port','t-risk'].forEach(function(id){
+    $(id).addEventListener('input', function(){ renderSize(TICKERS[state.sym]); });
+  });
+  /* Re-mark selection in place rather than re-rendering the list: rebuilding the
+     radios on every change detaches the input the user just clicked, which loses
+     keyboard focus and breaks arrow-key navigation between levels. */
+  function markSelected(containerId, value){
+    [].forEach.call($(containerId).querySelectorAll('.lvl'), function(el){
+      var input = el.querySelector('input');
+      el.classList.toggle('sel', !!input && parseFloat(input.value) === value);
+    });
+  }
+  $('o-stops').addEventListener('change', function(e){
+    if(e.target.name !== 'stoplvl') return;
+    state.stop = parseFloat(e.target.value);
+    markSelected('o-stops', state.stop);
+    renderTouch(TICKERS[state.sym]); renderSize(TICKERS[state.sym]);
+  });
+  $('o-targets').addEventListener('change', function(e){
+    if(e.target.name !== 'tgtlvl') return;
+    state.target = parseFloat(e.target.value);
+    markSelected('o-targets', state.target);
+    renderTouch(TICKERS[state.sym]); renderSize(TICKERS[state.sym]);
+  });
+
+  /* ---------- boot ---------- */
+  var initial = buildSymbols();
+  var q = (location.search.match(/[?&]n=([A-Za-z0-9_]+)/) || [])[1];
+  if(q && TICKERS[q.toUpperCase()]) { initial = q.toUpperCase(); $('t-sym').value = initial; }
+  state.sym = initial;
+  renderAll();
+})();
+</script>
+<script>
+(function(){
+  var secs=[].slice.call(document.querySelectorAll('[data-nav][id]'));
+  if(secs.length<3) return;
+  var nav=document.createElement('nav');
+  nav.className='secnav'; nav.setAttribute('aria-label','On this page');
+  var h="<p class='secnav-h'>On this page</p><ol>";
+  secs.forEach(function(s){ h+="<li><a href='#"+s.id+"'>"+s.getAttribute('data-nav')+"</a></li>"; });
+  nav.innerHTML=h+"</ol>";
+  var main=document.querySelector('main.wrap')||document.body;
+  main.parentNode.insertBefore(nav, main);
+  var links={}; secs.forEach(function(s){ links[s.id]=nav.querySelector("a[href='#"+s.id+"']"); });
+  function setActive(id){ secs.forEach(function(s){ if(links[s.id]) links[s.id].classList.toggle('active', s.id===id); }); }
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting) setActive(en.target.id); }); }, {rootMargin:'-42% 0px -52% 0px', threshold:0});
+    secs.forEach(function(s){ io.observe(s); });
+  }
+  setActive(secs[0].id);
+})();
+</script>
+</body></html>
