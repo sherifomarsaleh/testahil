@@ -477,7 +477,7 @@ QATAR = MarketProfile("QA", "Qatar (QE)",
                     "construction). FLAG per no-UST-shortcut rule: source a real QAR "
                     "sovereign/T-bill yield before any Qatar publish."),
     signal_type="rev_1m", signal_sign=-1, ic=0.06, signal_active=False,
-    nu=12.0, width_cal=0.972,
+    nu=10.0, width_cal=0.937,
     fit_meta=("Fitted 10-Jul-2026 on the 3-name QA panel (QGTS/QNB/IQCD, 54 windows, "
               "2021-2026) - REPLACES the provisional QGTS-only self-fit (Gaussian/"
               "0.916). nu=12, cal=0.972: thin-tailed pegged market, cone near-"
@@ -488,7 +488,22 @@ QATAR = MarketProfile("QA", "Qatar (QE)",
               "QNB PARITY -0.005 (robust), IQCD FAIL -0.018 (ROBUST across all "
               "blocks - a genuine name-level FAIL under own-market config, the "
               "first; HAR width underperforms plain trailing vol on this name; "
-              "banner decision = separately-initiated publish step)."),
+              "banner decision = separately-initiated publish step). "
+              "UPDATE 27-Jul-2026 (calendar-horizon 3m adoption, PR #32 site-wide "
+              "switch): re-fit fresh on the calendar 3-month window via refresh_market. "
+              "nu 12 -> 10, cal 0.972 -> 0.937 -- -1.97% band move vs the live 60d "
+              "incumbent, NON-MATERIAL, market panel narrows PARITY -0.0091 -> -0.0028. "
+              "IQCD FAIL -> PARITY, the one per-name change -- but read this carefully "
+              "before treating it as a clean improvement: IQCD's point skill is "
+              "UNCHANGED to marginally worse (-0.0179 -> -0.0183); what moved is the "
+              "CI, [-0.032,-0.004] -> [-0.035,+0.006], now crossing zero on fewer, "
+              "noisier quarterly windows (51 vs 54). This is a LOSS OF STATISTICAL "
+              "POWER under coarser windowing, not evidence IQCD got better -- adopted "
+              "per the standing 'no worsening' rule on the letter (no name's verdict "
+              "moves to a WORSE category, market narrows) while flagging that the "
+              "mechanism here is reduced precision, not improved performance. QGTS/QNB "
+              "unchanged PARITY. Windows 51 (vs 54 at 60d). Source: "
+              "engine/PENDING_REVIEW/reverify_usa_qatar_india.json (QA.3m)."),
     notes="Thin literature: carry-only until a ~5-name Qatar panel exists.")
 
 METALS = MarketProfile("XAU", "Metals (Gold/Silver, USD)", FED_SCHEDULE, 0.0363,
