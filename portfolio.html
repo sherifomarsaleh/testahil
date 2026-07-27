@@ -134,7 +134,7 @@
     </div>
     <div class="chip-rows" id="p-chips"></div>
     <div class="wsum" id="p-wsum"></div>
-    <p id="p-diag" class="muted" style="margin:6px 0 0;font-size:10px;opacity:.5">build loss-explain-v6</p>
+    <p id="p-diag" class="muted" style="margin:6px 0 0;font-size:10px;opacity:.5">build big-loss-only-v7</p>
     <p class="muted" style="margin:10px 0 0;font-size:var(--fs-small)">"Load a starting mix" picks the five EGX names with the best typical return for the downside risk they carry (median outcome divided by the worst-1-in-20 case) at the chosen horizon, equally weighted — not just the highest headline number. Each name below shows its own bad case too, so a weak trade-off is visible before you swap anything. Nothing on this page is stored or sent anywhere.</p>
   </section>
 
@@ -151,7 +151,6 @@
     <p class="qhead" style="margin-top:0">And the loss side</p>
     <div class="outgrid">
       <div class="outbox"><div class="ol">Chance this mix loses money</div><div class="bigpct r" id="o-cl">—</div><div class="rangefine" id="o-clf"></div></div>
-      <div class="outbox"><div class="ol">Plausible bad case (worst 1-in-20)</div><div class="bigpct r" id="o-p5">—</div><div class="rangefine" id="o-p5f"></div></div>
       <div class="outbox"><div class="ol">Chance of a big loss (−10% or more)</div><div class="bigpct r" id="o-bl">—</div><div class="rangefine" id="o-blf"></div></div>
     </div>
     <div id="o-div"></div>
@@ -180,7 +179,7 @@
 
   <section id="sec-min" class="card anchor" data-nav="Best mixes for my risk (EGX)">
     <p class="qhead" style="margin-top:0">Build me EGX mixes for the risk I can live with</p>
-    <p class="muted">Type a number for the <b>same "worst 1-in-20" measure used everywhere on this page</b> — the outcome so bad that only about 1 run in 20 (a 5% chance) would be this bad or worse — and this builds two reference mixes from all covered EGX names, weights included, using the same correlated simulation as everything above. Each card below shows all three loss figures used elsewhere on this page (chance of any loss, the 1-in-20 bad case, and chance of a big loss), not just one. EGX names only for now.</p>
+    <p class="muted">Type a number for the <b>same "chance of a big loss" measure used everywhere on this page</b> — the chance the mix moves −10% or worse over the horizon below, not how large a loss might be — and this builds two reference mixes from all covered EGX names, weights included, using the same correlated simulation as everything above. Each card below shows both loss figures used elsewhere on this page (chance of any loss and chance of a big loss). EGX names only for now.</p>
     <div class="hrow">
       <div class="field" style="margin-bottom:0"><label>Horizon <span class="muted" style="font-weight:400">(set above)</span></label>
         <div class="hbtns">
@@ -188,10 +187,10 @@
           <span class="hbtn hbtn-ro on" id="m-hb60">3 months</span>
         </div>
       </div>
-      <div class="field" style="margin-bottom:0;max-width:280px"><label for="m-risk">Worst 1-in-20 loss you can live with (%)</label><input id="m-risk" type="number" value="15" step="1" class="num"></div>
+      <div class="field" style="margin-bottom:0;max-width:280px"><label for="m-risk">Chance of a big loss (−10% or more) you can live with (%)</label><input id="m-risk" type="number" value="15" step="1" class="num"></div>
       <button type="button" class="btn" id="m-go">Find my mixes</button>
     </div>
-    <p class="muted" style="font-size:var(--fs-caption);margin:6px 0 0">This is the exact same measure as "Plausible bad case (worst 1-in-20)" above: not your worst possible loss, and not something that happens on a schedule — just the threshold that a 1-in-20 (5%) run would cross. Type 15 to mean "I could live with a 1-in-20 chance of losing about 15%."</p>
+    <p class="muted" style="font-size:var(--fs-caption);margin:6px 0 0">This is the exact same measure as "Chance of a big loss (−10% or more)" above: the <i>chance</i> of a big loss, not its size — specifically, the chance the mix moves −10% or worse over the horizon. Type 15 to mean "I could live with about a 15% chance of a −10%-or-worse run."</p>
     <div id="m-note"></div>
     <div id="m-out" style="margin-top:14px"></div>
     <p class="muted" style="font-size:var(--fs-caption);margin:12px 0 0">This is an optimisation over published simulations — arithmetic, not a recommendation. The minimum-risk mix is the single safest available combination regardless of what you type above; the maximum-return mix is the best available combination that still respects your stated tolerance. If your tolerance is looser than what the single best-returning name needs, or tighter than the safest mix can offer, the note above the mixes says so plainly.</p>
@@ -401,12 +400,12 @@ window.addEventListener('error', function(e){
     $('m-hb20').classList.toggle('on', which==='t20');
     $('m-hb60').classList.toggle('on', which==='t60');
 
-    var ids=['o-ct','o-med','o-cl','o-p5','o-bl'];
+    var ids=['o-ct','o-med','o-cl','o-bl'];
     if(!sel.length){
       ids.forEach(function(id){ $(id).textContent='—'; });
       $('o-odds').innerHTML=''; $('o-cg').innerHTML=''; $('o-cr').innerHTML='';
       $('o-reality').innerHTML=''; $('o-ctf').textContent=''; $('o-medf').textContent='';
-      $('o-clf').textContent=''; $('o-p5f').textContent=''; $('o-blf').textContent='';
+      $('o-clf').textContent=''; $('o-blf').textContent='';
       $('o-div').innerHTML='';
       return;
     }
@@ -446,8 +445,6 @@ window.addEventListener('error', function(e){
 
     $('o-cl').textContent = Math.round(loss*100)+'%';
     $('o-clf').textContent = 'Chance the mix ends below zero over ' + hzLabel(which) + '.';
-    $('o-p5').textContent = pct(p5Sim*100);
-    $('o-p5f').textContent = 'About ' + moneyLbl(amt*p5Sim) + ' on the amount above. "Worst 1-in-20" means a 1-in-20 chance (5%) of an outcome this bad or worse — not that it happens every 20th time, just that it\'s about as bad as the bad days get, roughly one run in twenty.';
     $('o-bl').textContent = Math.round(b.bigLoss*100)+'%';
     $('o-blf').textContent = 'A move of −10% or worse for the mix as a whole.';
 
@@ -706,7 +703,11 @@ window.addEventListener('error', function(e){
 
     var finalSt = optStats(m, w);
     var lossProb = 1 - optChanceAtLeast(finalSt.sorted, 0);
-    return { mix:mix, wRaw:wRawFinal, p5:finalSt.p5, med:finalSt.med, lossProb:lossProb };
+    // same BIG=0.10 threshold as the main tool's four-outcome framework and
+    // riskMixStats below, tracked alongside p5/lossProb so buildFrontier can
+    // guarantee it never improves as target rises, exactly like the other two.
+    var bigLoss = 1 - optChanceAtLeast(finalSt.sorted, -BIG);
+    return { mix:mix, wRaw:wRawFinal, p5:finalSt.p5, med:finalSt.med, lossProb:lossProb, bigLoss:bigLoss };
   }
   /* ---------- efficient frontier (EGX) ----------
      A target's feasible set (mixes with median >= target) can only SHRINK as the
@@ -718,10 +719,11 @@ window.addEventListener('error', function(e){
      happen to respect it: walk the frontier from the highest target down to zero,
      warm-starting each point's search from the previous (higher-target) point's
      weights, and explicitly keep the previous point's mix whenever the fresh
-     search fails to match or beat it on BOTH the bad case AND the loss
-     probability. Every point stays feasible (a higher-target mix always clears a
-     lower target too), so the fallback is always valid — this makes the frontier
-     non-decreasing in risk as target rises by construction, not by chance.
+     search fails to match or beat it on the bad case, the loss probability, OR
+     the chance of a big loss. Every point stays feasible (a higher-target mix
+     always clears a lower target too), so the fallback is always valid — this
+     makes the frontier non-decreasing in risk as target rises by construction,
+     not by chance, on all three tracked measures at once.
 
      Below the return of the single best-available mix (the point where the
      ">= target" floor stops being the binding constraint), every target on this
@@ -732,7 +734,8 @@ window.addEventListener('error', function(e){
      why the section below asks for a risk tolerance instead of a target
      return: points[0] on this frontier is always the single safest mix
      regardless of input, and optimizeByRisk below just walks in from the
-     other end to find the best-return point that still respects it. */
+     other end (scanning by chance of a big loss, the tolerance the UI asks
+     for) to find the best-return point that still respects it. */
   var frontierCache = {};
   function buildFrontier(which){
     if(frontierCache[which]) return frontierCache[which];
@@ -757,10 +760,10 @@ window.addEventListener('error', function(e){
         ? optRunSearch(m, tgt, rng, prevRawW, 150, 75)
         : optRunSearch(m, tgt, rng, null, 1400, 700);
       var point;
-      if(prevPoint && (cand.p5 < prevPoint.p5 - 1e-9 || cand.lossProb > prevPoint.lossProb + 1e-9)){
-        point = { target:tgt, mix:prevPoint.mix, p5:prevPoint.p5, med:prevPoint.med, lossProb:prevPoint.lossProb, wRaw:prevPoint.wRaw };
+      if(prevPoint && (cand.p5 < prevPoint.p5 - 1e-9 || cand.lossProb > prevPoint.lossProb + 1e-9 || cand.bigLoss > prevPoint.bigLoss + 1e-9)){
+        point = { target:tgt, mix:prevPoint.mix, p5:prevPoint.p5, med:prevPoint.med, lossProb:prevPoint.lossProb, bigLoss:prevPoint.bigLoss, wRaw:prevPoint.wRaw };
       } else {
-        point = { target:tgt, mix:cand.mix, p5:cand.p5, med:cand.med, lossProb:cand.lossProb, wRaw:cand.wRaw };
+        point = { target:tgt, mix:cand.mix, p5:cand.p5, med:cand.med, lossProb:cand.lossProb, bigLoss:cand.bigLoss, wRaw:cand.wRaw };
       }
       points.push(point);
       prevRawW = point.wRaw;
@@ -771,27 +774,29 @@ window.addEventListener('error', function(e){
     frontierCache[which] = out;
     return out;
   }
-  // Finds the best-return mix that still respects a stated worst-case loss
+  // Finds the best-return mix that still respects a stated chance-of-a-big-loss
   // tolerance. Reuses the SAME frontier built above rather than searching
-  // again: p5 is already proven non-increasing as target rises along it, so
-  // walking in from the highest-target end for the first point whose p5 still
-  // clears -maxLoss finds the best-return mix inside budget in one pass.
+  // again: bigLoss is already proven non-decreasing as target rises along it
+  // (buildFrontier's repair mechanism guarantees this, the same way it does
+  // for p5 and lossProb), so walking in from the highest-target end for the
+  // first point whose bigLoss still clears maxChance finds the best-return
+  // mix inside budget in one pass.
   // The repair mechanism in buildFrontier reuses an earlier point's mix by
   // copying its p5/med/mix into a NEW point object (a different target), so
   // two points can be the same mix in every way that matters while failing a
   // reference check (===). Compare by value instead.
   function sameFrontierMix(a, b){ return Math.abs(a.p5-b.p5) < 1e-9 && Math.abs(a.med-b.med) < 1e-9; }
-  function optimizeByRisk(which, maxLoss){
+  function optimizeByRisk(which, maxChance){
     var frontier = buildFrontier(which);
-    var pts = frontier.points, floor = -maxLoss;
+    var pts = frontier.points;
     var chosen = null;
     for(var i=pts.length-1;i>=0;i--){
-      if(pts[i].p5 >= floor - 1e-9){ chosen = pts[i]; break; }
+      if(pts[i].bigLoss <= maxChance + 1e-9){ chosen = pts[i]; break; }
     }
     var safest = pts[0], best = pts[pts.length-1];
     if(!chosen){
       // even the single safest available mix breaches the stated tolerance
-      return { mix:safest.mix, infeasible:true, nonBinding:false, gap:false, safestP5:safest.p5, bestMed:best.med };
+      return { mix:safest.mix, infeasible:true, nonBinding:false, gap:false, safestBigLoss:safest.bigLoss, bestMed:best.med };
     }
     var nonBinding = sameFrontierMix(chosen, best);
     return {
@@ -803,7 +808,7 @@ window.addEventListener('error', function(e){
       // different reason than infeasibility, so it needs its own honest note
       // rather than silently looking identical with no explanation.
       gap: (!nonBinding && sameFrontierMix(chosen, safest)),
-      safestP5: safest.p5,
+      safestBigLoss: safest.bigLoss,
       bestMed: best.med
     };
   }
@@ -824,11 +829,10 @@ window.addEventListener('error', function(e){
       bigLoss: 1 - optChanceAtLeast(stats.sorted, -BIG)
     };
   }
-  // All three loss figures used elsewhere on this page (chance of any loss, the
-  // 1-in-20 bad case, and chance of a big loss) — not just the bad case — plus
-  // the same plain-language captions and EGP conversion the main tool uses, so
-  // "worst 1-in-20" reads the same way here as it does above. EGX-only mixes
-  // are always single-currency (EGP), so no mixed-currency branching is needed.
+  // Both loss figures used elsewhere on this page (chance of any loss and
+  // chance of a big loss) — not just one — plus the same plain-language
+  // captions and EGP conversion the main tool uses. EGX-only mixes are always
+  // single-currency (EGP), so no mixed-currency branching is needed.
   function mixCardHtml(title, sub, mix, stats, which, noteHtml, loadId){
     var rows = mix.map(function(p){
       var t=TICKERS[p.k];
@@ -846,8 +850,6 @@ window.addEventListener('error', function(e){
           '<div class="rangefine">On '+moneyLbl(amt)+': '+moneyLbl(amt*stats.med)+'. Half of outcomes land below this, half above.</div></div>'+
         '<div class="outbox"><div class="ol">Chance of losing money</div><div class="bigpct r">'+Math.round(stats.loss*100)+'%</div>'+
           '<div class="rangefine">Chance the mix ends below zero over '+hzLabel(which)+'.</div></div>'+
-        '<div class="outbox"><div class="ol">Plausible bad case (worst 1-in-20)</div><div class="bigpct r">'+pct(stats.p5*100)+'</div>'+
-          '<div class="rangefine">About '+moneyLbl(amt*stats.p5)+' on the amount above — a 1-in-20 (5%) chance of an outcome this bad or worse.</div></div>'+
         '<div class="outbox"><div class="ol">Chance of a big loss (&minus;10% or more)</div><div class="bigpct r">'+Math.round(stats.bigLoss*100)+'%</div>'+
           '<div class="rangefine">A move of &minus;10% or worse for the mix as a whole.</div></div>'+
       '</div>'+
@@ -860,20 +862,21 @@ window.addEventListener('error', function(e){
     renderAll();
     document.getElementById('sec-target').scrollIntoView({ behavior:'smooth' });
   }
-  function renderRiskMixes(which, maxLoss){
-    var res = optimizeByRisk(which, maxLoss);
+  function renderRiskMixes(which, maxChance){
+    var res = optimizeByRisk(which, maxChance);
     var frontier = buildFrontier(which);
     var safestMix = frontier.points[0].mix;
     var safeStats = riskMixStats(safestMix, which);
     var maxStats = riskMixStats(res.mix, which);
+    var tolPct = Math.round(maxChance*100);
 
     var note = '';
     if(res.infeasible){
-      note = '<div class="warnbox" style="margin:0 0 10px"><b>Even the safest available mix has a worst case of '+pct(res.safestP5*100)+', beyond your '+pct(-maxLoss*100)+' tolerance.</b> No covered EGX combination gets safer than that, so this mix matches the minimum-risk one exactly rather than pretending a tighter option exists.</div>';
+      note = '<div class="warnbox" style="margin:0 0 10px"><b>Even the safest available mix has about a '+Math.round(res.safestBigLoss*100)+'% chance of a big loss, beyond your '+tolPct+'% tolerance.</b> No covered EGX combination gets safer than that, so this mix matches the minimum-risk one exactly rather than pretending a tighter option exists.</div>';
     } else if(res.nonBinding){
-      note = '<div class="warnbox" style="margin:0 0 10px"><b>Your '+pct(-maxLoss*100)+' tolerance comfortably covers the highest-returning available mix.</b> A looser tolerance would not find something with even higher return — '+pct(res.bestMed*100)+' is already the best typical outcome any covered EGX name offers.</div>';
+      note = '<div class="warnbox" style="margin:0 0 10px"><b>Your '+tolPct+'% tolerance comfortably covers the highest-returning available mix.</b> A looser tolerance would not find something with even higher return — '+pct(res.bestMed*100)+' is already the best typical outcome any covered EGX name offers.</div>';
     } else if(res.gap){
-      note = '<div class="warnbox" style="margin:0 0 10px"><b>Your '+pct(-maxLoss*100)+' tolerance sits just below what it takes to reach a higher-return mix.</b> The safest mix is the closest match within it for now, which is why this matches the minimum-risk mix — a slightly looser number may unlock a different combination.</div>';
+      note = '<div class="warnbox" style="margin:0 0 10px"><b>Your '+tolPct+'% tolerance sits just below what it takes to reach a higher-return mix.</b> The safest mix is the closest match within it for now, which is why this matches the minimum-risk mix — a slightly looser number may unlock a different combination.</div>';
     }
 
     $('m-note').innerHTML = '';
