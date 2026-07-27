@@ -121,14 +121,14 @@
       <div class="field" style="margin-bottom:0;max-width:200px"><label for="p-amt">Amount to invest</label><input id="p-amt" type="number" value="100000" min="1" step="1000" class="num"></div>
     </div>
     <div class="addrow">
-      <div class="field"><label for="p-sel">Add a name — picking one from this list adds it below</label><select id="p-sel" class="num"></select></div>
-      <button type="button" class="btn" id="p-add">+ Add</button>
+      <div class="field"><label for="p-sel">Add a name — picking one from this list adds it below</label><select id="p-sel" class="num" onchange="if(window.__addName) window.__addName(this.value)"></select></div>
+      <button type="button" class="btn" id="p-add" onclick="if(window.__addName) window.__addName(document.getElementById('p-sel').value)">+ Add</button>
       <button type="button" class="btn ghost2" id="p-start">Load a starting mix</button>
       <button type="button" class="btn ghost2" id="p-eq">Equal weights</button>
     </div>
     <div class="chip-rows" id="p-chips"></div>
     <div class="wsum" id="p-wsum"></div>
-    <p id="p-diag" class="muted" style="margin:6px 0 0;font-size:10px;opacity:.5">build a338c6c+addfix</p>
+    <p id="p-diag" class="muted" style="margin:6px 0 0;font-size:10px;opacity:.5">build inline-add-v2</p>
     <p class="muted" style="margin:10px 0 0;font-size:var(--fs-small)">"Load a starting mix" picks the five EGX names with the best typical return for the downside risk they carry (median outcome divided by the worst-1-in-20 case) at the chosen horizon, equally weighted — not just the highest headline number. Each name below shows its own bad case too, so a weak trade-off is visible before you swap anything. Nothing on this page is stored or sent anywhere.</p>
   </section>
 
@@ -467,6 +467,12 @@ window.addEventListener('error', function(e){
     state.mix.push({ k:k, w:even });
     renderAll();
   }
+  // exposed globally as a second, independent path to trigger an add (see the
+  // inline onclick/onchange on the button and select in the HTML) — in case some
+  // browser extension or ad blocker interferes with addEventListener-bound clicks
+  // on this specific page, an inline attribute handler runs through a different
+  // code path and isn't affected the same way. Harmless if both fire.
+  window.__addName = addName;
   // both work: picking a name from the dropdown adds it immediately (so nothing
   // depends on a reader noticing a separate button), and the Add button still
   // works too — harmless if both fire, since addName() ignores repeats.
