@@ -1,0 +1,42 @@
+name: Page integrity check
+
+# Added 27-Jul-2026 after a user found rmda.html rendering with no Monte
+# Carlo section (a missing </details> had buried it inside the Technical
+# accordion) and, on a full sweep, 5 more pages quietly publishing another
+# ticker's valuation table (ihc.html showing Aramco's lenses, etc.) plus a
+# 6th partially-cloned one the first pass of this same script missed
+# (rmda.html carrying oriental-weavers' lens VALUES under RMDA's labels).
+# See scripts/check_page_integrity.py for the full check list and how each
+# one was validated against that exact historical bug before being trusted.
+#
+# Deliberately separate from deploy-pages.yml and does not block it: this
+# check is brand new and static-analysis-only (no browser, doesn't confirm
+# the page actually renders correctly at runtime — see the script's own
+# docstring for that boundary). A red X here is a strong signal to look
+# before the next push to main, not a hard gate on deployment.
+
+on:
+  push:
+    paths:
+      - '**.html'
+      - 'assets/data.js'
+      - 'scripts/check_page_integrity.py'
+  pull_request:
+    paths:
+      - '**.html'
+      - 'assets/data.js'
+      - 'scripts/check_page_integrity.py'
+  workflow_dispatch: {}
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run page integrity check
+        run: python3 scripts/check_page_integrity.py
