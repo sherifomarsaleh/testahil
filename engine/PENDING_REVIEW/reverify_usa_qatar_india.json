@@ -1,0 +1,380 @@
+{
+  "US": {
+    "60d": {
+      "market": "US",
+      "market_name": "United States",
+      "fit_date": "2026-07-27",
+      "panel_names": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "windows": 54,
+      "rebuilt_this_run": [],
+      "nu": 12.0,
+      "width_cal": 1.014,
+      "mle_scale": 1.02,
+      "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
+      "market_skill": -0.0056,
+      "market_skill_raw_basis": 0.0137,
+      "market_ci90": [
+        -0.021,
+        0.006
+      ],
+      "market_verdict": "PARITY",
+      "top_name_weight_share": 0.443,
+      "top_name": "NVDA",
+      "signal_active": false,
+      "per_name": {
+        "AAPL": {
+          "nu": 4.0,
+          "width_cal": 1.098,
+          "skill": -0.0064,
+          "skill_raw_basis": -0.0004,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.036,
+            0.02
+          ]
+        },
+        "NVDA": {
+          "nu": 30.0,
+          "width_cal": 0.972,
+          "skill": -0.0233,
+          "skill_raw_basis": -0.0057,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.046,
+            0.003
+          ]
+        },
+        "TSLA": {
+          "nu": "Gaussian",
+          "width_cal": 1.014,
+          "skill": 0.0077,
+          "skill_raw_basis": 0.0165,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.008,
+            0.024
+          ]
+        }
+      },
+      "_elapsed_s": 2.1
+    },
+    "3m": {
+      "market": "US",
+      "market_name": "United States",
+      "fit_date": "2026-07-27",
+      "panel_names": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "windows": 51,
+      "rebuilt_this_run": [],
+      "nu": "Gaussian",
+      "width_cal": 1.077,
+      "mle_scale": 1.11,
+      "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
+      "market_skill": 0.0085,
+      "market_skill_raw_basis": 0.014,
+      "market_ci90": [
+        -0.003,
+        0.018
+      ],
+      "market_verdict": "PARITY",
+      "top_name_weight_share": 0.447,
+      "top_name": "TSLA",
+      "signal_active": false,
+      "per_name": {
+        "AAPL": {
+          "nu": "Gaussian",
+          "width_cal": 1.126,
+          "skill": 0.0031,
+          "skill_raw_basis": 0.002,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.032,
+            0.03
+          ]
+        },
+        "NVDA": {
+          "nu": "Gaussian",
+          "width_cal": 1.063,
+          "skill": -0.0028,
+          "skill_raw_basis": 0.0035,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.024,
+            0.018
+          ]
+        },
+        "TSLA": {
+          "nu": "Gaussian",
+          "width_cal": 1.042,
+          "skill": 0.0135,
+          "skill_raw_basis": 0.0162,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.0,
+            0.026
+          ]
+        }
+      },
+      "_elapsed_s": 0.9
+    }
+  },
+  "QA": {
+    "60d": {
+      "market": "QA",
+      "market_name": "Qatar (QE)",
+      "fit_date": "2026-07-27",
+      "panel_names": [
+        "IQCD",
+        "QGTS",
+        "QNB"
+      ],
+      "windows": 54,
+      "rebuilt_this_run": [],
+      "nu": 12.0,
+      "width_cal": 0.972,
+      "mle_scale": 0.96,
+      "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
+      "market_skill": -0.0091,
+      "market_skill_raw_basis": -0.0096,
+      "market_ci90": [
+        -0.022,
+        0.002
+      ],
+      "market_verdict": "PARITY",
+      "top_name_weight_share": 0.365,
+      "top_name": "QGTS",
+      "signal_active": false,
+      "per_name": {
+        "IQCD": {
+          "nu": 12.0,
+          "width_cal": 0.951,
+          "skill": -0.0179,
+          "skill_raw_basis": -0.0174,
+          "verdict": "FAIL",
+          "ci_block2": [
+            -0.032,
+            -0.004
+          ]
+        },
+        "QGTS": {
+          "nu": 6.0,
+          "width_cal": 1.014,
+          "skill": -0.0119,
+          "skill_raw_basis": -0.0145,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.036,
+            0.002
+          ]
+        },
+        "QNB": {
+          "nu": "Gaussian",
+          "width_cal": 0.965,
+          "skill": -0.0011,
+          "skill_raw_basis": -0.004,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.022,
+            0.018
+          ]
+        }
+      },
+      "_elapsed_s": 0.9
+    },
+    "3m": {
+      "market": "QA",
+      "market_name": "Qatar (QE)",
+      "fit_date": "2026-07-27",
+      "panel_names": [
+        "IQCD",
+        "QGTS",
+        "QNB"
+      ],
+      "windows": 51,
+      "rebuilt_this_run": [],
+      "nu": 10.0,
+      "width_cal": 0.937,
+      "mle_scale": 0.91,
+      "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
+      "market_skill": -0.0028,
+      "market_skill_raw_basis": -0.0076,
+      "market_ci90": [
+        -0.013,
+        0.012
+      ],
+      "market_verdict": "PARITY",
+      "top_name_weight_share": 0.376,
+      "top_name": "IQCD",
+      "signal_active": false,
+      "per_name": {
+        "IQCD": {
+          "nu": 30.0,
+          "width_cal": 0.881,
+          "skill": -0.0183,
+          "skill_raw_basis": -0.0198,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.035,
+            0.006
+          ]
+        },
+        "QGTS": {
+          "nu": 8.0,
+          "width_cal": 1.014,
+          "skill": 0.0017,
+          "skill_raw_basis": 0.0011,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.025,
+            0.025
+          ]
+        },
+        "QNB": {
+          "nu": 8.0,
+          "width_cal": 0.909,
+          "skill": 0.0007,
+          "skill_raw_basis": -0.0029,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.018,
+            0.03
+          ]
+        }
+      },
+      "_elapsed_s": 0.9
+    }
+  },
+  "IN": {
+    "60d": {
+      "market": "IN",
+      "market_name": "India (NSE)",
+      "fit_date": "2026-07-27",
+      "panel_names": [
+        "INFY",
+        "RELIANCE",
+        "TMPV"
+      ],
+      "windows": 54,
+      "rebuilt_this_run": [],
+      "nu": "Gaussian",
+      "width_cal": 0.93,
+      "mle_scale": 0.9,
+      "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
+      "market_skill": 0.0046,
+      "market_skill_raw_basis": 0.0033,
+      "market_ci90": [
+        -0.006,
+        0.016
+      ],
+      "market_verdict": "PARITY",
+      "top_name_weight_share": 0.437,
+      "top_name": "TMPV",
+      "signal_active": false,
+      "per_name": {
+        "INFY": {
+          "nu": "Gaussian",
+          "width_cal": 0.93,
+          "skill": 0.007,
+          "skill_raw_basis": 0.0047,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.007,
+            0.026
+          ]
+        },
+        "RELIANCE": {
+          "nu": "Gaussian",
+          "width_cal": 0.951,
+          "skill": 0.009,
+          "skill_raw_basis": 0.0063,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.006,
+            0.022
+          ]
+        },
+        "TMPV": {
+          "nu": "Gaussian",
+          "width_cal": 0.909,
+          "skill": -0.0001,
+          "skill_raw_basis": -0.0081,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.018,
+            0.023
+          ]
+        }
+      },
+      "_elapsed_s": 0.9
+    },
+    "3m": {
+      "market": "IN",
+      "market_name": "India (NSE)",
+      "fit_date": "2026-07-27",
+      "panel_names": [
+        "INFY",
+        "RELIANCE",
+        "TMPV"
+      ],
+      "windows": 51,
+      "rebuilt_this_run": [],
+      "nu": "Gaussian",
+      "width_cal": 0.986,
+      "mle_scale": 0.98,
+      "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
+      "market_skill": 0.0042,
+      "market_skill_raw_basis": 0.0058,
+      "market_ci90": [
+        -0.002,
+        0.011
+      ],
+      "market_verdict": "PARITY",
+      "top_name_weight_share": 0.382,
+      "top_name": "INFY",
+      "signal_active": false,
+      "per_name": {
+        "INFY": {
+          "nu": "Gaussian",
+          "width_cal": 0.902,
+          "skill": -0.0036,
+          "skill_raw_basis": -0.0041,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.012,
+            0.011
+          ]
+        },
+        "RELIANCE": {
+          "nu": "Gaussian",
+          "width_cal": 1.028,
+          "skill": 0.0085,
+          "skill_raw_basis": 0.0065,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.007,
+            0.021
+          ]
+        },
+        "TMPV": {
+          "nu": "Gaussian",
+          "width_cal": 1.014,
+          "skill": -0.0045,
+          "skill_raw_basis": -0.0052,
+          "verdict": "PARITY",
+          "ci_block2": [
+            -0.021,
+            0.011
+          ]
+        }
+      },
+      "_elapsed_s": 0.8
+    }
+  }
+}

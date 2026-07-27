@@ -280,7 +280,7 @@ SAUDI = MarketProfile(
 USA = MarketProfile("US", "United States", FED_SCHEDULE, 0.0363,
     "UST 10Y 4.58% (tradingeconomics 8-Jul-2026, cached CoC-Reference); use 3M bill 3.71% "
     "(investing.com 10-Jul-2026) for the 60d carry at publish.",
-    "mom_12_1", +1, 0.05, False, nu=12.0, width_cal=1.014,
+    "mom_12_1", +1, 0.05, False, nu=250.0, width_cal=1.077,
     fit_meta=("Fitted 10-Jul-2026 on the 3-name US panel (AAPL/NVDA/TSLA, 54 windows, "
               "2021-2026): nu=12, cal=1.014 - thin tails like metals, far from EGX. "
               "SIGNAL ABLATION on this panel: carry-only (+0.012 CI[-0.006,+0.017]) "
@@ -289,7 +289,18 @@ USA = MarketProfile("US", "United States", FED_SCHEDULE, 0.0363,
               "for re-estimation at ~5 names. Panel verdict PARITY. Per-name "
               "(carry-only LONO, robust blocks): AAPL PARITY -0.002 (was BOUNDARY "
               "with the signal ON - the momentum prior was hurting it), NVDA PARITY "
-              "+0.002, TSLA PARITY +0.015."),
+              "+0.002, TSLA PARITY +0.015. "
+              "UPDATE 27-Jul-2026 (calendar-horizon 3m adoption, PR #32 site-wide "
+              "switch): re-fit fresh on the calendar 3-month window, freshly recomputed "
+              "via refresh_market (not read from the older calendar_horizon_refit_3m.json "
+              "snapshot, cross-checked and it agreed). nu Gaussian, cal 1.014 -> 1.077 -- "
+              "-1.98% band move (width_cal x q95(t(nu))) vs the live 60d incumbent -- "
+              "counterintuitive sign: cal widens but the Gaussian tail is thinner than "
+              "t(12), so the cone narrows net. NON-MATERIAL. All three names unchanged: "
+              "AAPL/NVDA/TSLA stay PARITY. Market panel PARITY +0.0085 CI[-0.003,+0.018] "
+              "(was -0.0056). Windows 51 (vs 54 at 60d). Source: "
+              "engine/PENDING_REVIEW/reverify_usa_qatar_india.json (US.3m). Auto-adopted "
+              "per the standing non-material gate."),
     notes="Mature-market momentum prior (JT 12-1) - ablated OFF on the first panel; "
           "re-estimate as the panel grows.")
 UK = MarketProfile("GB", "United Kingdom", [("2020-01-01", 0.0400)], 0.0400,
