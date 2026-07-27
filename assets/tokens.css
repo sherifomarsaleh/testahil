@@ -1,0 +1,76 @@
+/* Testahil shared design tokens — light mode. See dataviz palette.md for source values. */
+:root{
+  color-scheme: light;
+  --page:            #f9f9f7;
+  --surface-1:       #fcfcfb;
+  --surface-2:       #f4f3f0;
+  --text-primary:    #0b0b0b;
+  --text-secondary:  #52514e;
+  --text-muted:      #898781;
+  --gridline:        #e1e0d9;
+  --baseline:        #c3c2b7;
+  --border:          rgba(11,11,11,0.10);
+  --series-1:        #2a78d6;
+  --series-1-tint:   rgba(42,120,214,0.12);
+  --good:            #0ca30c;
+  --good-tint:       rgba(12,163,12,0.12);
+  --warning:         #fab219;
+  --warning-tint:    rgba(250,178,25,0.16);
+  --critical:        #d03b3b;
+  --critical-tint:   rgba(208,59,59,0.12);
+  --success-text:    #006300;
+}
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; }
+body{
+  background:var(--page); font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  color:var(--text-primary);
+}
+a{ color:inherit; text-decoration:none; }
+
+/* ---- staging banner (remove when this ships to the real domain) ---- */
+.staging-banner{
+  background:#0b0b0b; color:#fff; text-align:center; font-size:11px; font-weight:600;
+  padding:7px 12px; letter-spacing:0.01em;
+}
+.staging-banner b{ color:#fab219; }
+
+/* ---- top nav ---- */
+.sitenav{
+  position:sticky; top:0; z-index:10; background:var(--surface-1); border-bottom:1px solid var(--border);
+  backdrop-filter:saturate(1.4) blur(6px);
+}
+.sitenav-inner{
+  max-width:480px; margin:0 auto; padding:12px 20px; display:flex; align-items:center; justify-content:space-between;
+}
+.sitenav .brand{ display:flex; align-items:baseline; gap:8px; }
+.sitenav .brand .name{ font-size:16px; font-weight:700; letter-spacing:-0.01em; }
+.sitenav .brand .ar{ font-size:14px; font-weight:700; color:var(--text-secondary); }
+.sitenav .links{ display:flex; gap:16px; }
+.sitenav .links a{ font-size:12px; font-weight:600; color:var(--text-secondary); }
+.sitenav .links a.active{ color:var(--series-1); }
+
+/* ---- page shell ---- */
+.page{ max-width:480px; margin:0 auto; padding:24px 20px 60px 20px; }
+.page-head p{ font-size:12px; color:var(--text-muted); margin:6px 0 0 0; line-height:1.5; }
+
+.section-title{ font-size:14px; font-weight:700; margin:18px 0 2px 0; }
+.section-sub{ font-size:11px; color:var(--text-muted); margin:0 0 10px 0; }
+.divider-label{ font-size:11px; font-weight:700; color:var(--text-secondary); text-transform:uppercase; letter-spacing:0.03em; margin:18px 0 8px 0; }
+
+.card{
+  background:var(--surface-1); border:1px solid var(--border); border-radius:16px;
+  padding:14px 16px; box-shadow:0 1px 2px var(--border);
+}
+
+.watermark{ text-align:center; font-size:11px; color:var(--text-muted); margin-top:24px; }
+.devnote{
+  margin:26px 0 0 0; background:var(--surface-1); border:1px dashed var(--gridline);
+  border-radius:12px; padding:12px 14px; font-size:11px; color:var(--text-secondary); line-height:1.6;
+}
+.devnote b{ color:var(--text-primary); }
+
+.sitefoot{
+  max-width:480px; margin:34px auto 0 auto; padding:16px 20px 0 20px; border-top:1px solid var(--gridline);
+  font-size:11px; color:var(--text-muted); text-align:center;
+}

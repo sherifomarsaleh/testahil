@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Testahil — Coverage (concept preview)</title>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+<link rel="stylesheet" href="assets/tokens.css" />
+<style>
+  .grid{ display:flex; flex-direction:column; gap:10px; margin-top:10px; }
+  .tcard{ display:flex; align-items:center; justify-content:space-between; padding:14px 16px; }
+  .tcard .left{ display:flex; flex-direction:column; }
+  .tcard .sym{ font-size:15px; font-weight:700; }
+  .tcard .co{ font-size:11px; color:var(--text-muted); margin-top:1px; }
+  .tcard .right{ text-align:right; }
+  .tcard .px{ font-size:15px; font-weight:700; font-variant-numeric:tabular-nums; }
+  .tcard .delta{ font-size:10.5px; font-weight:600; margin-top:2px; }
+  .tcard .delta.up{ color:var(--success-text); }
+  .tcard .delta.down{ color:var(--critical); }
+  .ledger-cta{
+    display:flex; align-items:center; justify-content:space-between; margin-top:22px; padding:16px;
+    background:var(--series-1); color:#fff; border-radius:16px;
+  }
+  .ledger-cta .t1{ font-size:13px; font-weight:700; }
+  .ledger-cta .t2{ font-size:11px; opacity:0.85; margin-top:2px; }
+  .ledger-cta .arrow{ font-size:18px; }
+</style>
+</head>
+<body>
+
+  <div class="staging-banner">Concept preview — not published on testahil.com. <b>Sample data only.</b></div>
+  <nav class="sitenav">
+    <div class="sitenav-inner">
+      <div class="brand"><span class="name">Testahil</span><span class="ar">تستاهل</span></div>
+      <div class="links"><a href="index.html" class="active">Coverage</a><a href="ledger.html">Ledger</a></div>
+    </div>
+  </nav>
+
+  <div class="page">
+    <div class="page-head">
+      <div class="section-title" style="margin-top:0; font-size:18px;">Coverage</div>
+      <p>Every name gets a Trade Card: entry, target, and stop read directly off its Monte Carlo cone, plus a
+      position-size calculator. Sample percentile data — wire <code>assets/data.js</code> to your live MC output to go live.</p>
+    </div>
+
+    <div class="grid" id="coverageGrid"></div>
+
+    <a class="ledger-cta" href="ledger.html">
+      <div><div class="t1">Verified track record</div><div class="t2">Win rate, R-multiples, and a per-ticker Trust Meter</div></div>
+      <div class="arrow">→</div>
+    </a>
+
+    <div class="devnote">
+      <b>What this is:</b> a working concept preview of two product ideas — Trade Cards and a Verified Ledger —
+      built on top of Testahil's Monte Carlo engine. Not linked from testahil.com and not indexed. Every number
+      on this site is illustrative sample data, not a live signal or a real track record.
+    </div>
+  </div>
+
+  <div class="sitefoot">Testahil تستاهل · concept preview</div>
+
+<script src="assets/data.js"></script>
+<script>
+  var grid = document.getElementById('coverageGrid');
+  grid.innerHTML = window.TESTAHIL_TICKER_ORDER.map(function(sym){
+    var t = window.TESTAHIL_TICKERS[sym];
+    var up = t.changePct >= 0;
+    return '<a class="card tcard" href="tickers/' + sym + '.html">' +
+      '<div class="left"><span class="sym">' + sym + '</span><span class="co">' + t.name + '</span></div>' +
+      '<div class="right"><div class="px">EGP ' + t.price.toFixed(2) + '</div>' +
+      '<div class="delta ' + (up ? 'up' : 'down') + '">' + (up ? '▲ +' : '▼ ') + Math.abs(t.changePct).toFixed(2) + '%</div></div>' +
+      '</a>';
+  }).join('');
+</script>
+
+</body>
+</html>

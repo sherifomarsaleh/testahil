@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Testahil Ledger — verified track record (concept preview)</title>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+<link rel="stylesheet" href="assets/tokens.css" />
+<link rel="stylesheet" href="assets/ledger.css" />
+</head>
+<body>
+
+  <div class="staging-banner">Concept preview — not published on testahil.com. <b>Sample data only.</b></div>
+  <nav class="sitenav">
+    <div class="sitenav-inner">
+      <div class="brand"><span class="name">Testahil</span><span class="ar">تستاهل</span></div>
+      <div class="links"><a href="index.html">Coverage</a><a href="ledger.html" class="active">Ledger</a></div>
+    </div>
+  </nav>
+
+  <div class="page">
+    <div class="page-head">
+      <div class="section-title" style="margin-top:0; font-size:18px;">Verified track record</div>
+      <p>Every call, logged before the outcome was known. Sample data — wire <code>assets/data.js</code>'s
+      <code>CALLS</code> / <code>TRUST</code> arrays to your real logs to go live.</p>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat-tile"><div class="slabel">Calls tracked</div><div class="sval" id="statCount">—</div><div class="sdelta" id="statCountDelta"></div></div>
+      <div class="stat-tile"><div class="slabel">Win rate (closed)</div><div class="sval" id="statWinRate">—</div><div class="sdelta" id="statWinDelta"></div></div>
+      <div class="stat-tile"><div class="slabel">Avg R-multiple</div><div class="sval" id="statAvgR">—</div><div class="sdelta" id="statAvgDelta"></div></div>
+    </div>
+
+    <div class="divider-label">Trust meter — by ticker</div>
+    <div class="card" id="trustList"></div>
+    <div class="section-sub" style="margin-top:6px;">% of the last 90 sessions the price closed inside the cone</div>
+
+    <div class="divider-label">Recent calls</div>
+    <div class="filters" id="filterChips"></div>
+    <div class="card">
+      <table>
+        <thead>
+          <tr>
+            <th data-key="ticker">Ticker <span class="arrow">▲▼</span></th>
+            <th data-key="date">Entry <span class="arrow">▲▼</span></th>
+            <th data-key="pct">Result <span class="arrow">▲▼</span></th>
+            <th data-key="r">R <span class="arrow">▲▼</span></th>
+          </tr>
+        </thead>
+        <tbody id="ledgerBody"></tbody>
+      </table>
+    </div>
+
+    <div class="divider-label">Cumulative R · closed calls, oldest → newest</div>
+    <div class="card equity-card chart-tip">
+      <svg id="equitySvg" viewBox="0 0 300 110" preserveAspectRatio="none">
+        <line x1="14" y1="14" x2="290" y2="14" stroke="var(--gridline)" stroke-width="1"/>
+        <line x1="14" y1="50" x2="290" y2="50" stroke="var(--gridline)" stroke-width="1"/>
+        <line x1="14" y1="86" x2="290" y2="86" stroke="var(--baseline)" stroke-width="1"/>
+        <path id="equityArea" fill="var(--series-1)" opacity="0.10"/>
+        <path id="equityLine" fill="none" stroke="var(--series-1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle id="equityEnd" r="4" fill="var(--series-1)" stroke="var(--surface-1)" stroke-width="2"/>
+        <g id="equityPoints"></g>
+        <text id="equityMaxLabel" x="10" y="18" font-size="9" fill="var(--text-muted)"></text>
+        <text x="10" y="90" font-size="9" fill="var(--text-muted)">0R</text>
+        <text id="equityStartLabel" x="14" y="102" font-size="9" fill="var(--text-muted)"></text>
+        <text id="equityEndLabel" x="280" y="102" text-anchor="end" font-size="9" fill="var(--text-muted)"></text>
+        <rect id="equityCatcher" x="14" y="4" width="276" height="90" fill="transparent"/>
+      </svg>
+      <div id="tooltip"></div>
+    </div>
+
+    <div class="devnote">
+      <b>Wiring notes for a dev:</b> <code>CALLS</code> is the source of truth — every stat tile, the ledger table,
+      and the equity curve are computed from it, nothing is hardcoded. Push a new call in as
+      <code>{ticker, date, entry, horizon, pct, status, r}</code> (status one of <code>hit</code> /
+      <code>open</code> / <code>stopped</code>) and everything recalculates. <code>TRUST</code> drives the
+      per-ticker meter — feed it your rolling "% of sessions price closed inside the cone" figure per name.
+    </div>
+  </div>
+
+  <div class="sitefoot">Testahil تستاهل · concept preview</div>
+
+<script src="assets/data.js"></script>
+<script src="assets/ledger.js"></script>
+<script>window.initLedger();</script>
+</body>
+</html>

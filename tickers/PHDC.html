@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>PHDC Trade Card — Testahil (concept preview)</title>
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+<link rel="stylesheet" href="../assets/tokens.css" />
+<link rel="stylesheet" href="../assets/trade-card.css" />
+</head>
+<body>
+
+  <div class="staging-banner">Concept preview — not published on testahil.com. <b>Sample data only.</b></div>
+  <nav class="sitenav">
+    <div class="sitenav-inner">
+      <div class="brand"><span class="name">Testahil</span><span class="ar">تستاهل</span></div>
+      <div class="links"><a href="../index.html" class="active">Coverage</a><a href="../ledger.html">Ledger</a></div>
+    </div>
+  </nav>
+
+  <div class="page">
+    <div class="ticker-select-row">
+      <label for="tickerSelect">Coverage · EGX</label>
+      <select id="tickerSelect"></select>
+    </div>
+
+    <div class="ticker-nav" id="tickerNav"></div>
+
+    <div class="ticker-head">
+      <div>
+        <div class="sym" id="outSym">PHDC</div>
+        <div class="co" id="outName">—</div>
+      </div>
+      <div class="badge">MC cone · 30D</div>
+    </div>
+    <div class="price-row">
+      <span class="px" id="outPrice">—</span>
+      <span class="delta up" id="outDelta"></span>
+    </div>
+
+    <div class="chart-card chart-tip">
+      <svg id="coneChart" viewBox="0 0 300 150" preserveAspectRatio="none">
+        <line x1="18" y1="20" x2="284" y2="20" stroke="var(--gridline)" stroke-width="1"/>
+        <line x1="18" y1="75" x2="284" y2="75" stroke="var(--gridline)" stroke-width="1"/>
+        <line x1="18" y1="130" x2="284" y2="130" stroke="var(--baseline)" stroke-width="1"/>
+
+        <path id="coneBand" fill="var(--series-1)" opacity="0.12"/>
+        <path id="coneMedian" fill="none" stroke="var(--series-1)" stroke-width="2" stroke-linecap="round"/>
+        <circle id="coneNow" cx="20" cy="100" r="4" fill="var(--series-1)" stroke="var(--surface-1)" stroke-width="2"/>
+
+        <line id="targetLine" x1="18" x2="284" stroke="var(--good)" stroke-width="1.5" stroke-dasharray="3,3"/>
+        <text id="targetLabel" text-anchor="end" font-size="9" font-weight="700" fill="var(--good)"></text>
+
+        <rect id="entryBand" x="18" width="266" fill="var(--series-1)" opacity="0.10"/>
+        <text id="entryLabel" font-size="9" font-weight="700" fill="var(--series-1)"></text>
+
+        <line id="stopLine" x1="18" x2="284" stroke="var(--critical)" stroke-width="1.5" stroke-dasharray="3,3"/>
+        <text id="stopLabel" text-anchor="end" font-size="9" font-weight="700" fill="var(--critical)"></text>
+
+        <rect id="hoverCatcher" x="18" y="10" width="266" height="130" fill="transparent"/>
+      </svg>
+      <div id="tooltip"></div>
+      <div class="chart-caption"><span>Today</span><span>+15d</span><span>+30d</span></div>
+    </div>
+
+    <div class="section-title">Trade card</div>
+    <div class="section-sub">Entry / target / stop read directly off this cone's percentiles</div>
+
+    <div class="card">
+      <div class="trow">
+        <div class="ticon blue">
+          <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="10" r="1.6" fill="currentColor"/></svg>
+        </div>
+        <div class="tlabel"><div class="l1">Entry zone</div><div class="l2">P15–P30</div></div>
+        <div class="tval" id="outEntry">—</div>
+      </div>
+      <div class="trow">
+        <div class="ticon good">
+          <svg viewBox="0 0 20 20" fill="none"><path d="M5.5 10.5l2.7 2.7L15 6.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="tlabel"><div class="l1">Target</div><div class="l2">P75 · 30-day horizon</div></div>
+        <div class="tval" id="outTarget">—</div>
+      </div>
+      <div class="trow">
+        <div class="ticon critical">
+          <svg viewBox="0 0 20 20" fill="none"><path d="M6.5 6.5l7 7M13.5 6.5l-7 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        </div>
+        <div class="tlabel"><div class="l1">Stop-loss</div><div class="l2">Cone invalidation level</div></div>
+        <div class="tval" id="outStop">—</div>
+      </div>
+
+      <div class="rr-block">
+        <div class="rr-top"><span>Risk : reward</span><span class="val" id="outRR">—</span></div>
+        <div class="meter-track"><div class="meter-fill" id="rrFill" style="width:0%;"></div></div>
+      </div>
+
+      <div class="pill" id="confPill">
+        <svg viewBox="0 0 20 20" fill="none"><path d="M5.5 10.5l2.7 2.7L15 6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span id="confText"></span>
+      </div>
+    </div>
+
+    <div class="divider-label">Position size calculator</div>
+    <div class="card">
+      <div class="calc">
+        <div class="field">
+          <div class="flabel">Portfolio size (EGP)</div>
+          <input type="number" id="portfolioInput" value="100000" min="0" step="1000" />
+        </div>
+        <div class="field">
+          <div class="flabel">Max risk / trade (%)</div>
+          <input type="number" id="riskInput" value="2.0" min="0.1" max="10" step="0.1" />
+        </div>
+      </div>
+      <div class="calc-out">
+        <div class="colabel">Suggested position</div>
+        <div class="coval" id="outPosition">—</div>
+        <div class="cowarn" id="outWarn" style="display:none;"></div>
+      </div>
+    </div>
+
+    <div class="note">
+      <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.2" stroke="currentColor" stroke-width="1.4"/><line x1="10" y1="9" x2="10" y2="13.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><circle cx="10" cy="6.6" r="0.9" fill="currentColor"/></svg>
+      <span id="outInvalidation"></span>
+    </div>
+
+    <div class="cta-row">
+      <button class="btn primary" type="button">Set price alert</button>
+      <button class="btn secondary" type="button">Watchlist</button>
+    </div>
+
+    <div class="watermark">Working prototype · sample percentile data, not live signals</div>
+  </div>
+
+  <div class="sitefoot">Testahil تستاهل · concept preview</div>
+
+<script src="../assets/data.js"></script>
+<script src="../assets/trade-card.js"></script>
+<script>
+  document.getElementById('tickerNav').innerHTML = window.TESTAHIL_TICKER_ORDER.map(function(s){
+    return '<a data-sym="' + s + '" href="' + s + '.html">' + s + '</a>';
+  }).join('');
+  initTradeCard('PHDC', { navigate: true });
+</script>
+</body>
+</html>
