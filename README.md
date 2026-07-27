@@ -11,10 +11,13 @@ A working prototype of two product ideas for Testahil, built on top of the Monte
 
 ## Status
 
-This is a **staging/concept repo**, not the production site. `testahil.com` currently runs on GoDaddy
-WebsiteBuilder (no git backing), so nothing here is wired to that domain. Every page carries a visible
-"concept preview" banner and `<meta name="robots" content="noindex, nofollow">` so it won't get indexed if
-it's ever made public.
+This branch is a **concept preview**, not the production site. Every page carries a visible "concept
+preview" banner and `<meta name="robots" content="noindex, nofollow">`.
+
+> **Do not deploy this branch to GitHub Pages from this repository.** `main` carries a `CNAME` for
+> `testahil.com` and is the live production site. A repository serves exactly one Pages site, so any
+> Pages deployment from this branch would replace testahil.com. To host this preview, use a separate
+> repository (or a separate host) — never this repo's Pages.
 
 **All data is illustrative / sample data** — ticker percentiles, calls, and trust scores are invented for
 the prototype, not real MC output or a real trading record. Do not treat any figure on this site as a live
