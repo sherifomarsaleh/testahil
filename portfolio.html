@@ -441,13 +441,17 @@
   function renderAll(){ renderChips(); renderResults(); }
 
   /* ---------- events ---------- */
-  $('p-add').addEventListener('click', function(){
-    var k=$('p-sel').value;
+  function addName(k){
     if(!k || state.mix.some(function(m){ return m.k===k; })) return;
     var even = state.mix.length ? Math.round(100/(state.mix.length+1)) : 100;
     state.mix.push({ k:k, w:even });
     renderAll();
-  });
+  }
+  // both work: picking a name from the dropdown adds it immediately (so nothing
+  // depends on a reader noticing a separate button), and the Add button still
+  // works too — harmless if both fire, since addName() ignores repeats.
+  $('p-add').addEventListener('click', function(){ addName($('p-sel').value); });
+  $('p-sel').addEventListener('change', function(){ addName(this.value); });
   $('p-start').addEventListener('click', function(){
     // score = typical return / downside risk taken (median% divided by the worst-1-in-20
     // case, floored at 1pp of downside so a near-zero-downside name can't post an absurd
