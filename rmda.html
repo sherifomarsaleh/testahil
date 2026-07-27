@@ -227,33 +227,6 @@
     <div class="lens"><span class="lens-no">Lens 2 of 3</span><span class="lens-name">Technical analysis — what is the chart doing?</span></div>
     <p class="lens-sub">Trend, momentum and key levels — <em>what is the price doing now?</em></p>
   </section>
-  <!-- LENS 3: MONTE CARLO -->
-<details class="rds">
-<summary><span class="rds-t">Monte Carlo &mdash; where could the price go?</span><span class="rds-note">near-term price paths</span><span class="rds-x" aria-hidden="true"></span></summary>
-<div class="rds-body">
-
-  <section id="sec-odds" class="anchor" style="padding-bottom:0">
-    <div class="lens"><span class="lens-no">Lens 3 of 3</span><span class="lens-name">Monte Carlo — where could the price go?</span></div>
-    <p class="lens-sub">50,000 simulated futures — <em>near-term price paths, independent of the fundamental value.</em></p>
-  </section>
-
-  <p class="muted" style="margin:0 0 12px;max-width:62ch">The 5th–95th and 25th–75th percentile bands from the 50,000-path simulation. Static and pre-computed — independent of the fundamental levers above.</p>
-    <div id="mc-fan-static"></div>
-
-  <div class="card" style="margin-top:16px">
-      <p class="qhead" style="margin-top:26px">The exact percentiles</p>
-      <p class="muted">The <span class="term" tabindex="0">5th / 25th / middle / 75th / 95th outcomes<span class="tip">Line up all 50,000 outcomes low to high — these are the values at the 5%, 25%, 50%, 75% and 95% marks.</span></span>, from 50,000 paths.</p>
-      <table><thead><tr><th>Timeframe</th><th class="num">Rare low (5%)</th><th class="num">25%</th><th class="num">Middle</th><th class="num">75%</th><th class="num">Rare high (95%)</th></tr></thead>
-      <tbody id="pct"></tbody></table>
-
-      <p class="qhead" style="margin-top:26px">What drives the odds</p>
-      <p class="muted">50,000 paths, 16 forces: the CBE facility-cost path (24.0% observed effective → a norm-built 15% terminal), NWC normalisation speed (66.4% → 54% of revenue), the EDA pricing regime unwinding, USD-linked API costs, and the risk of a further EGP step-devaluation — Egypt has devalued five times since 2016, several by 14–45% in a single move, so this is modelled as a recurring risk, not a rare one-off. Details in the <a href="method.html">methodology</a>.</p>
-  </div>
-  
-</div>
-</details>
-
-
 <figure class="ta-fig" style="margin:14px 0 4px">
 <svg id="ta-chart-svg" viewBox="0 0 760 320" width="100%" role="img" aria-label="price with 50- and 200-day moving averages" style="display:block">
 <line x1="46" y1="17.0" x2="700.0" y2="17.0" stroke="var(--line,#dce4e2)" stroke-width="1" opacity=".6"/><text x="40" y="20.0" text-anchor="end" font-size="10" fill="var(--muted,#6b7c78)" font-family="IBM Plex Mono,monospace">5.5</text>
@@ -319,6 +292,32 @@
 
 </div>
 </details>
+
+  <!-- LENS 3: MONTE CARLO (moved out of the Technical accordion) -->
+<details class="rds">
+<summary><span class="rds-t">Monte Carlo &mdash; where could the price go?</span><span class="rds-note">near-term price paths</span><span class="rds-x" aria-hidden="true"></span></summary>
+<div class="rds-body">
+
+  <section id="sec-odds" class="anchor" style="padding-bottom:0">
+    <div class="lens"><span class="lens-no">Lens 3 of 3</span><span class="lens-name">Monte Carlo — where could the price go?</span></div>
+    <p class="lens-sub">50,000 simulated futures — <em>near-term price paths, independent of the fundamental value.</em></p>
+  </section>
+
+  <p class="muted" style="margin:0 0 12px;max-width:62ch">The 5th–95th and 25th–75th percentile bands from the 50,000-path simulation. Static and pre-computed — independent of the fundamental levers above.</p>
+    <div id="mc-fan-static"></div>
+
+  <div class="card" style="margin-top:16px">
+      <p class="qhead" style="margin-top:26px">The exact percentiles</p>
+      <p class="muted">The <span class="term" tabindex="0">5th / 25th / middle / 75th / 95th outcomes<span class="tip">Line up all 50,000 outcomes low to high — these are the values at the 5%, 25%, 50%, 75% and 95% marks.</span></span>, from 50,000 paths.</p>
+      <table><thead><tr><th>Timeframe</th><th class="num">Rare low (5%)</th><th class="num">25%</th><th class="num">Middle</th><th class="num">75%</th><th class="num">Rare high (95%)</th></tr></thead>
+      <tbody id="pct"></tbody></table>
+
+      <p class="qhead" style="margin-top:26px">What drives the odds</p>
+      <p class="muted">50,000 paths, 16 forces: the CBE facility-cost path (24.0% observed effective → a norm-built 15% terminal), NWC normalisation speed (66.4% → 54% of revenue), the EDA pricing regime unwinding, USD-linked API costs, and the risk of a further EGP step-devaluation — Egypt has devalued five times since 2016, several by 14–45% in a single move, so this is modelled as a recurring risk, not a rare one-off. Details in the <a href="method.html">methodology</a>.</p>
+  </div>
+  
+</div>
+</details>
   
   <!-- DETAILED NUMBERS — opt in -->
   
@@ -378,7 +377,7 @@
 </main>
 <div class="wrap"><div id="related" data-ticker="RMDA"></div><div class="ctx-row"><a class="ctx-btn" href="compare.html?a=RMDA">Compare RMDA vs peers &rarr;</a><a class="ctx-btn ghost" href="calculator.html">What kept its value? &rarr;</a></div></div>
 
-<footer><div class="wrap"><div class="foot-studies"><b>Studies:</b> <a href="phdc.html">Palm Hills</a> &middot; <a href="tmgh.html">Talaat Moustafa</a> &middot; <a href="ocdi.html">SODIC</a> &middot; <a href="orhd.html">Orascom Dev</a> &middot; <a href="oras.html">Orascom Const</a> &middot; <a href="comi.html">CIB</a> &middot; <a href="emfd.html">Rameda</a> &middot; <a href="gold.html">Gold</a> &middot; <a href="stocks.html">all &rarr;</a></div><b>Disclaimer:</b> Educational valuation studies and personal analytical opinion — not investment advice, not recommendations. The preparer is not licensed by Egypt's FRA, manages no money, accepts no clients, and may hold positions in instruments mentioned. <a href="method.html#disclaimer">Full text</a>.<br><br><span class="social" style="font-size:var(--fs-lead);font-weight:700">Follow Testahil &mdash; <a href="https://t.me/testahil_markets" target="_blank" rel="noopener">Telegram</a> &middot; <a href="https://www.facebook.com/testahil.markets" target="_blank" rel="noopener">Facebook</a> &middot; <a href="https://www.linkedin.com/company/testahil" target="_blank" rel="noopener">LinkedIn</a></span></div></footer>
+<footer><div class="wrap"><div class="foot-studies"><b>Studies:</b> <a href="phdc.html">Palm Hills</a> &middot; <a href="tmgh.html">Talaat Moustafa</a> &middot; <a href="ocdi.html">SODIC</a> &middot; <a href="orhd.html">Orascom Dev</a> &middot; <a href="oras.html">Orascom Const</a> &middot; <a href="comi.html">CIB</a> &middot; <a href="emfd.html">Emaar Misr</a> &middot; <a href="gold.html">Gold</a> &middot; <a href="stocks.html">all &rarr;</a></div><b>Disclaimer:</b> Educational valuation studies and personal analytical opinion — not investment advice, not recommendations. The preparer is not licensed by Egypt's FRA, manages no money, accepts no clients, and may hold positions in instruments mentioned. <a href="method.html#disclaimer">Full text</a>.<br><br><span class="social" style="font-size:var(--fs-lead);font-weight:700">Follow Testahil &mdash; <a href="https://t.me/testahil_markets" target="_blank" rel="noopener">Telegram</a> &middot; <a href="https://www.facebook.com/testahil.markets" target="_blank" rel="noopener">Facebook</a> &middot; <a href="https://www.linkedin.com/company/testahil" target="_blank" rel="noopener">LinkedIn</a></span></div></footer>
 
 
 <!-- HOW TO READ THIS — modal -->
@@ -395,7 +394,7 @@
   </div>
 </div>
 
-<script src="assets/data.js?v=20260727t"></script><script src="assets/app.js?v=20260720a"></script>
+<script src="assets/data.js?v=20260727t"></script><script src="assets/app.js?v=20260727b"></script>
 <script>
 const T=TICKERS.RMDA;
 document.getElementById("upd").textContent=SITE.updated;
