@@ -38,6 +38,7 @@
   .hbtns{display:flex;gap:6px}
   .hbtn{border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:999px;padding:7px 16px;font:inherit;font-size:var(--fs-small);font-weight:600;cursor:pointer}
   .hbtn.on{background:var(--teal);border-color:var(--teal);color:#fff}
+  .hbtn-ro{cursor:default}
   .addrow{display:flex;gap:8px;align-items:flex-end;flex-wrap:wrap;margin-top:14px}
   .addrow .field{flex:1;min-width:220px;margin-bottom:0}
   .chip-rows{display:flex;flex-direction:column;gap:2px;margin-top:12px}
@@ -176,7 +177,13 @@
     <p class="qhead" style="margin-top:0">Build me the least-risky EGX mix for a target return</p>
     <p class="muted">Type a target and this finds, among all covered EGX names, the mix of up to five stocks — weights included — whose <b>typical (median) outcome reaches your target with the softest plausible bad case</b>. The search runs on the same correlated simulation as everything above, so it accounts for both each name's own risk and the fact that a combination is less risky than its parts. EGX names only for now.</p>
     <div class="hrow">
-      <div class="field" style="margin-bottom:0;max-width:180px"><label for="m-target">Target return (%) over <b id="m-hz">3 months</b></label><input id="m-target" type="number" value="10" step="1" class="num"></div>
+      <div class="field" style="margin-bottom:0"><label>Horizon <span class="muted" style="font-weight:400">(set above)</span></label>
+        <div class="hbtns">
+          <span class="hbtn hbtn-ro" id="m-hb20">1 month</span>
+          <span class="hbtn hbtn-ro on" id="m-hb60">3 months</span>
+        </div>
+      </div>
+      <div class="field" style="margin-bottom:0;max-width:180px"><label for="m-target">Target return (%)</label><input id="m-target" type="number" value="10" step="1" class="num"></div>
       <button type="button" class="btn" id="m-go">Build the mix</button>
     </div>
     <div id="m-note"></div>
@@ -383,7 +390,10 @@ window.addEventListener('error', function(e){
     var amt = parseFloat($('p-amt').value)||0;
     $('o-tgt').textContent = pct(target*100,0);
     $('o-hz').textContent = hzLabel(which);
-    $('m-hz').textContent = hzLabel(which);   // the optimizer section states its horizon too
+    // the optimizer section mirrors the horizon toggle above — same pill look,
+    // but not clickable here, so there's only one place to actually change it
+    $('m-hb20').classList.toggle('on', which==='t20');
+    $('m-hb60').classList.toggle('on', which==='t60');
 
     var ids=['o-ct','o-med','o-cl','o-p5','o-bl'];
     if(!sel.length){
