@@ -121,14 +121,14 @@
       <div class="field" style="margin-bottom:0;max-width:200px"><label for="p-amt">Amount to invest</label><input id="p-amt" type="number" value="100000" min="1" step="1000" class="num"></div>
     </div>
     <div class="addrow">
-      <div class="field"><label for="p-sel">Add a name — picking one from this list adds it below</label><select id="p-sel" class="num" onchange="if(window.__addName) window.__addName(this.value)"></select></div>
+      <div class="field"><label for="p-sel">Add a name — picking one from this list adds it below</label><select id="p-sel" class="num" onchange="if(window.__addName){window.__addName(this.value); this.selectedIndex=0;}"></select></div>
       <button type="button" class="btn" id="p-add" onclick="if(window.__addName) window.__addName(document.getElementById('p-sel').value)">+ Add</button>
       <button type="button" class="btn ghost2" id="p-start">Load a starting mix</button>
       <button type="button" class="btn ghost2" id="p-eq">Equal weights</button>
     </div>
     <div class="chip-rows" id="p-chips"></div>
     <div class="wsum" id="p-wsum"></div>
-    <p id="p-diag" class="muted" style="margin:6px 0 0;font-size:10px;opacity:.5">build inline-add-v2</p>
+    <p id="p-diag" class="muted" style="margin:6px 0 0;font-size:10px;opacity:.5">build egx-first-v3</p>
     <p class="muted" style="margin:10px 0 0;font-size:var(--fs-small)">"Load a starting mix" picks the five EGX names with the best typical return for the downside risk they carry (median outcome divided by the worst-1-in-20 case) at the chosen horizon, equally weighted — not just the highest headline number. Each name below shows its own bad case too, so a weak trade-off is visible before you swap anything. Nothing on this page is stored or sent anywhere.</p>
   </section>
 
@@ -170,6 +170,18 @@
         <div class="contrib" id="o-cr"></div>
       </div>
     </div>
+  </section>
+
+  <section id="sec-min" class="card anchor" data-nav="Minimum-risk mix (EGX)">
+    <p class="qhead" style="margin-top:0">Build me the least-risky EGX mix for a target return</p>
+    <p class="muted">Type a target and this finds, among all covered EGX names, the mix of up to five stocks — weights included — whose <b>typical (median) outcome reaches your target with the softest plausible bad case</b>. The search runs on the same correlated simulation as everything above, so it accounts for both each name's own risk and the fact that a combination is less risky than its parts. EGX names only for now.</p>
+    <div class="hrow">
+      <div class="field" style="margin-bottom:0;max-width:180px"><label for="m-target">Target return (%)</label><input id="m-target" type="number" value="10" step="1" class="num"></div>
+      <button type="button" class="btn" id="m-go">Build the mix</button>
+    </div>
+    <div id="m-note"></div>
+    <div id="m-out" style="margin-top:14px"></div>
+    <p class="muted" style="font-size:var(--fs-caption);margin:12px 0 0">This is an optimisation over published simulations — arithmetic, not a recommendation. Targets above the highest typical outcome of any covered EGX name have no typical path; the tool then builds the least-risky mix for the highest reachable return and says so.</p>
   </section>
 
   <section id="sec-caveats" class="card anchor" style="background:var(--tint2)" data-nav="What this can't tell you">
@@ -322,8 +334,20 @@ window.addEventListener('error', function(e){
   var KEYS = Object.keys(TICKERS).filter(function(k){ var t=TICKERS[k]; return t && t.spot && t.dist && t.dist.t20 && t.dist.t60; });
   (function buildSelect(){
     var sel=$('p-sel'), groups={};
+    // Start on a placeholder, never on a real name. A box already showing a stock
+    // is a trap: picking the option a native menu ALREADY has selected fires no
+    // change event in any browser, so "adding" the shown name silently does
+    // nothing. With a placeholder, every pick is a real pick.
+    var ph=document.createElement('option');
+    ph.value=''; ph.textContent='— choose a stock to add —'; ph.selected=true; ph.disabled=true;
+    sel.appendChild(ph);
     KEYS.forEach(function(k){ var g=exOf(TICKERS[k]); (groups[g]=groups[g]||[]).push(k); });
-    Object.keys(groups).sort().forEach(function(g){
+    // EGX first — it's the bulk of the coverage and what most readers come for.
+    // Alphabetical group order buried all 30 EGX names below 18 Gulf ones, which
+    // read as "the stock I want isn't in this list."
+    Object.keys(groups).sort(function(a,b){
+      if(a==='EGX') return -1; if(b==='EGX') return 1; return a.localeCompare(b);
+    }).forEach(function(g){
       var og=document.createElement('optgroup'); og.label=g;
       groups[g].sort(function(a,b){ return TICKERS[a].name.localeCompare(TICKERS[b].name); })
         .forEach(function(k){ var o=document.createElement('option'); o.value=k; o.textContent=TICKERS[k].name+' ('+k+')'; og.appendChild(o); });
@@ -477,7 +501,9 @@ window.addEventListener('error', function(e){
   // depends on a reader noticing a separate button), and the Add button still
   // works too — harmless if both fire, since addName() ignores repeats.
   $('p-add').addEventListener('click', function(){ addName($('p-sel').value); });
-  $('p-sel').addEventListener('change', function(){ addName(this.value); });
+  // after each add, snap back to the placeholder so the box invites the next pick
+  // and the SAME name can be picked again later (a change event needs a change).
+  $('p-sel').addEventListener('change', function(){ addName(this.value); this.selectedIndex=0; });
   $('p-start').addEventListener('click', function(){
     // score = typical return / downside risk taken (median% divided by the worst-1-in-20
     // case, floored at 1pp of downside so a near-zero-downside name can't post an absurd
@@ -521,6 +547,162 @@ window.addEventListener('error', function(e){
     });
   });
   ['p-target','p-amt'].forEach(function(id){ $(id).addEventListener('input', renderResults); });
+
+  /* ---------- minimum-risk mix for a target return (EGX only) ----------
+     Finds up to 5 EGX names + weights minimising the simulated plausible bad
+     case (worst 1-in-20) subject to the mix's typical (median) outcome reaching
+     the target. Scoring uses common random numbers: one cached set of correlated
+     draws per horizon, so every candidate weight vector is scored on the SAME
+     scenarios — a difference between candidates is a real difference, not
+     simulation noise. Correlation model identical to the rest of the page
+     (EGX pairs ~0.55), so the "combination is less risky than its parts"
+     effect is part of the score, not bolted on. */
+  var OPT_N = 4000, optCache = {};
+  function optMatrix(which){
+    if(optCache[which]) return optCache[which];
+    var names = KEYS.filter(function(k){ return exOf(TICKERS[k])==='EGX'; });
+    var A = Math.sqrt(RHO_SAME), C = Math.sqrt(1-RHO_SAME);
+    var ret = names.map(function(k){
+      var t=TICKERS[k];
+      return { k:k, f:invCDF(t.dist[which]), s:t.spot, r:new Float64Array(OPT_N) };
+    });
+    for(var n=0;n<OPT_N;n++){
+      var F = gaussianRandom();
+      for(var i=0;i<ret.length;i++){
+        var u = Math.min(0.999, Math.max(0.001, normCdf(A*F + C*gaussianRandom())));
+        ret[i].r[n] = ret[i].f(u)/ret[i].s - 1;
+      }
+    }
+    optCache[which] = { names:names, ret:ret };
+    return optCache[which];
+  }
+  function optStats(m, w){
+    var R = new Float64Array(OPT_N);
+    for(var i=0;i<w.length;i++){
+      var wi=w[i]; if(!wi) continue;
+      var ri=m.ret[i].r;
+      for(var n=0;n<OPT_N;n++) R[n]+=wi*ri[n];
+    }
+    var S = Array.prototype.slice.call(R).sort(function(a,b){ return a-b; });
+    return { p5:S[Math.floor(0.05*OPT_N)], med:S[Math.floor(0.5*OPT_N)] };
+  }
+  function optObjective(st, target){
+    // maximise the bad case (make it least bad); missing the target dominates everything
+    return st.p5 - 100*Math.max(0, target - st.med);
+  }
+  function optimize(which, target){
+    var m = optMatrix(which), N = m.names.length;
+    var single = m.names.map(function(k,i){
+      var w1=new Float64Array(N); w1[i]=1;
+      var st1=optStats(m,w1);
+      return { i:i, med:st1.med, p5:st1.p5, score: st1.med/Math.max(0.01,-st1.p5) };
+    });
+    var mMax = Math.max.apply(null, single.map(function(s){ return s.med; }));
+    var clamped = null;
+    if(target > mMax - 0.002) clamped = mMax - 0.002;
+    var tgt = clamped!=null ? clamped : target;
+
+    // seed: equal weights on the six best return-for-risk names
+    var w = new Float64Array(N);
+    single.slice().sort(function(a,b){ return b.score-a.score; }).slice(0,6)
+      .forEach(function(s){ w[s.i]=1/6; });
+    var st = optStats(m,w), best = optObjective(st,tgt);
+
+    // if the seed's median misses the target, tilt weight toward the highest-median name
+    var hiMed = single.slice().sort(function(a,b){ return b.med-a.med; })[0].i;
+    var guard=0;
+    while(st.med < tgt && guard++ < 60){
+      var lo=-1, loMed=Infinity;
+      for(var i2=0;i2<N;i2++) if(w[i2]>0.001 && single[i2].med<loMed){ loMed=single[i2].med; lo=i2; }
+      if(lo<0 || lo===hiMed) break;
+      var d=Math.min(0.10, w[lo]); w[lo]-=d; w[hiMed]+=d;
+      st=optStats(m,w); best=optObjective(st,tgt);
+    }
+
+    // pairwise exchange search over the whole EGX universe
+    for(var it=0; it<1400; it++){
+      var support=[]; for(var i3=0;i3<N;i3++) if(w[i3]>0.001) support.push(i3);
+      var a = support[Math.floor(Math.random()*support.length)];
+      var b = Math.floor(Math.random()*N);
+      if(a===b) continue;
+      var d2 = Math.min([0.10,0.04,0.015][Math.floor(Math.random()*3)], w[a]);
+      if(d2<=0) continue;
+      w[a]-=d2; w[b]+=d2;
+      var st2=optStats(m,w), o2=optObjective(st2,tgt);
+      if(o2 > best + 1e-9){ best=o2; st=st2; } else { w[a]+=d2; w[b]-=d2; }
+    }
+
+    // cap at five names, renormalise, polish within the five
+    var idx=[]; for(var i4=0;i4<N;i4++) if(w[i4]>0.004) idx.push(i4);
+    idx.sort(function(x,y){ return w[y]-w[x]; });
+    idx = idx.slice(0,5);
+    var w2=new Float64Array(N), sum=0;
+    idx.forEach(function(i5){ sum+=w[i5]; });
+    idx.forEach(function(i5){ w2[i5]=w[i5]/sum; });
+    w=w2; st=optStats(m,w); best=optObjective(st,tgt);
+    for(var it2=0; it2<700; it2++){
+      var a2=idx[Math.floor(Math.random()*idx.length)], b2=idx[Math.floor(Math.random()*idx.length)];
+      if(a2===b2) continue;
+      var d3=Math.min([0.05,0.02,0.01][Math.floor(Math.random()*3)], w[a2]);
+      if(d3<=0) continue;
+      w[a2]-=d3; w[b2]+=d3;
+      var st3=optStats(m,w), o3=optObjective(st3,tgt);
+      if(o3 > best + 1e-9){ best=o3; st=st3; } else { w[a2]+=d3; w[b2]-=d3; }
+    }
+
+    // integer weights summing to exactly 100 (largest remainder)
+    var picks = idx.filter(function(i6){ return w[i6]>0.004; })
+      .map(function(i6){ return { k:m.names[i6], raw:w[i6]*100 }; })
+      .sort(function(x,y){ return y.raw-x.raw; });
+    var floors = picks.map(function(p){ return Math.floor(p.raw); });
+    var rem = 100 - floors.reduce(function(s,v){ return s+v; },0);
+    var order = picks.map(function(p,j){ return { j:j, fr:p.raw-Math.floor(p.raw) }; })
+      .sort(function(x,y){ return y.fr-x.fr; });
+    for(var r2=0;r2<rem;r2++) floors[order[r2%order.length].j]++;
+    var mix = picks.map(function(p,j){ return { k:p.k, w:floors[j] }; }).filter(function(p){ return p.w>0; });
+    return { mix:mix, clamped:clamped, mMax:mMax };
+  }
+  function renderMinRisk(res, originalTarget, which){
+    var sel = res.mix.map(function(p){ return { k:p.k, w:p.w/100 }; });
+    var sims = simMix(sel, which);   // displayed numbers use the page's standard 20k-path sim
+    var med = simQuantile(sims, 0.5), p5v = simQuantile(sims, 0.05);
+    var loss = 1 - simChanceAtLeast(sims, 0);
+    var chanceOrig = simChanceAtLeast(sims, originalTarget);
+    $('m-note').innerHTML = res.clamped==null ? '' :
+      '<div class="warnbox" style="margin-top:12px"><b>'+pct(originalTarget*100,0)+' has no typical path.</b> The highest typical (median) outcome of any covered EGX name over '+hzLabel(which)+' is '+pct(res.mMax*100)+', and no weighting can average medians above the best one. Built instead: the least-risky mix for the highest reachable typical outcome. The chance this mix still delivers your '+pct(originalTarget*100,0)+' is about '+Math.round(chanceOrig*100)+'% — an above-typical run, and a plan that needs it should be sized like one.</div>';
+    var rows = res.mix.map(function(p){
+      var t=TICKERS[p.k];
+      var m50=(t.dist[which].p50/t.spot-1)*100, m5=(t.dist[which].p5/t.spot-1)*100;
+      return '<div class="crow"><div class="cn"><b>'+t.name+'</b><span class="cc">'+(t.code||p.k)+'</span></div>'+
+        '<span class="cmed">median '+pct(m50)+' &middot; bad case '+pct(m5)+'</span>'+
+        '<span style="font-family:\'IBM Plex Mono\',monospace;font-weight:600;white-space:nowrap">'+p.w+'%</span></div>';
+    }).join('');
+    $('m-out').innerHTML =
+      '<div class="chip-rows">'+rows+'</div>'+
+      '<div class="outgrid" style="margin-top:14px">'+
+        '<div class="outbox"><div class="ol">Typical outcome of this mix</div><div class="bigpct '+(med>=0?'g':'r')+'">'+pct(med*100)+'</div></div>'+
+        '<div class="outbox"><div class="ol">Plausible bad case (worst 1-in-20)</div><div class="bigpct r">'+pct(p5v*100)+'</div></div>'+
+        '<div class="outbox"><div class="ol">Chance of losing money</div><div class="bigpct r">'+Math.round(loss*100)+'%</div></div>'+
+        '<div class="outbox"><div class="ol">Chance of reaching '+pct(originalTarget*100,0)+'</div><div class="bigpct g">'+Math.round(chanceOrig*100)+'%</div></div>'+
+      '</div>'+
+      '<button type="button" class="btn ghost2" id="m-load" style="margin-top:12px">Load this mix into the tool above</button>';
+    $('m-load').addEventListener('click', function(){
+      state.mix = res.mix.map(function(p){ return { k:p.k, w:p.w }; });
+      $('p-target').value = Math.round(originalTarget*100);
+      renderAll();
+      document.getElementById('sec-target').scrollIntoView({ behavior:'smooth' });
+    });
+  }
+  $('m-go').addEventListener('click', function(){
+    var btn=$('m-go'), t=(parseFloat($('m-target').value)||0)/100;
+    if(t<=0){ $('m-note').innerHTML='<div class="warnbox">Type a positive target return first.</div>'; $('m-out').innerHTML=''; return; }
+    btn.disabled=true; btn.textContent='Optimising…';
+    setTimeout(function(){
+      var res = optimize(state.h, t);
+      renderMinRisk(res, t, state.h);
+      btn.disabled=false; btn.textContent='Build the mix';
+    }, 30);
+  });
 
   /* ---------- boot: start with the starting mix so the page answers immediately ---------- */
   $('p-start').click();
