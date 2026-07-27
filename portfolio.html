@@ -121,13 +121,14 @@
       <div class="field" style="margin-bottom:0;max-width:200px"><label for="p-amt">Amount to invest</label><input id="p-amt" type="number" value="100000" min="1" step="1000" class="num"></div>
     </div>
     <div class="addrow">
-      <div class="field"><label for="p-sel">Add a name</label><select id="p-sel" class="num"></select></div>
-      <button type="button" class="btn" id="p-add">Add</button>
+      <div class="field"><label for="p-sel">Add a name — picking one from this list adds it below</label><select id="p-sel" class="num"></select></div>
+      <button type="button" class="btn" id="p-add">+ Add</button>
       <button type="button" class="btn ghost2" id="p-start">Load a starting mix</button>
       <button type="button" class="btn ghost2" id="p-eq">Equal weights</button>
     </div>
     <div class="chip-rows" id="p-chips"></div>
     <div class="wsum" id="p-wsum"></div>
+    <p id="p-diag" class="muted" style="margin:6px 0 0;font-size:10px;opacity:.5">build a338c6c+addfix</p>
     <p class="muted" style="margin:10px 0 0;font-size:var(--fs-small)">"Load a starting mix" picks the five EGX names with the best typical return for the downside risk they carry (median outcome divided by the worst-1-in-20 case) at the chosen horizon, equally weighted — not just the highest headline number. Each name below shows its own bad case too, so a weak trade-off is visible before you swap anything. Nothing on this page is stored or sent anywhere.</p>
   </section>
 
@@ -182,11 +183,30 @@
 
 <footer><div class="wrap"><div class="foot-studies"><b>Studies:</b> <a href="phdc.html">Palm Hills</a> &middot; <a href="tmgh.html">Talaat Moustafa</a> &middot; <a href="ocdi.html">SODIC</a> &middot; <a href="orhd.html">Orascom Dev</a> &middot; <a href="oras.html">Orascom Const</a> &middot; <a href="comi.html">CIB</a> &middot; <a href="emfd.html">Emaar Misr</a> &middot; <a href="gold.html">Gold</a> &middot; <a href="stocks.html">all &rarr;</a></div><b>Disclaimer:</b> Educational valuation studies and personal analytical opinion — not investment advice, not recommendations. The preparer is not licensed by Egypt's FRA, manages no money, accepts no clients, and may hold positions in instruments mentioned. <a href="method.html#disclaimer">Full text</a>.<br><br><span class="social" style="font-size:var(--fs-lead);font-weight:700">Follow Testahil &mdash; <a href="https://t.me/testahil_markets" target="_blank" rel="noopener">Telegram</a> &middot; <a href="https://www.facebook.com/testahil.markets" target="_blank" rel="noopener">Facebook</a> &middot; <a href="https://www.linkedin.com/company/testahil" target="_blank" rel="noopener">LinkedIn</a></span></div></footer>
 
+<script>
+// Diagnostic only: if anything on this page throws, show it instead of failing silently,
+// so a broken interaction can be screenshotted and fixed instead of guessed at.
+window.addEventListener('error', function(e){
+  try{
+    var b=document.createElement('div');
+    b.setAttribute('id','js-error-banner');
+    b.style.cssText='position:fixed;bottom:0;left:0;right:0;background:#b00020;color:#fff;padding:10px 14px;font:12px/1.4 monospace;z-index:99999;white-space:pre-wrap';
+    b.textContent='Page script error — please screenshot this and send it: ' + e.message + ' (' + (e.filename||'').split('/').pop() + ':' + e.lineno + ')';
+    document.body.appendChild(b);
+  }catch(_){}
+});
+</script>
 <script src="assets/data.js?v=20260727t"></script>
 <script>
 (function(){
   'use strict';
-  if (typeof TICKERS === 'undefined') return;
+  if (typeof TICKERS === 'undefined'){
+    var b=document.createElement('div');
+    b.style.cssText='position:fixed;bottom:0;left:0;right:0;background:#b00020;color:#fff;padding:10px 14px;font:12px/1.4 monospace;z-index:99999';
+    b.textContent='Page script error — market data failed to load (assets/data.js). Please screenshot this and send it.';
+    document.body.appendChild(b);
+    return;
+  }
 
   var $ = function(id){ return document.getElementById(id); };
   var state = { h:'t60', mix:[] };   // mix: [{k, w}] w in % as typed
