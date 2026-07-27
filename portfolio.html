@@ -134,7 +134,7 @@
     </div>
     <div class="chip-rows" id="p-chips"></div>
     <div class="wsum" id="p-wsum"></div>
-    <p id="p-diag" class="muted" style="margin:6px 0 0;font-size:10px;opacity:.5">build note-full-width-v8</p>
+    <p id="p-diag" class="muted" style="margin:6px 0 0;font-size:10px;opacity:.5">build fix-nonbinding-claim-v9</p>
     <p class="muted" style="margin:10px 0 0;font-size:var(--fs-small)">"Load a starting mix" picks the five EGX names with the best typical return for the downside risk they carry (median outcome divided by the worst-1-in-20 case) at the chosen horizon, equally weighted — not just the highest headline number. Each name below shows its own bad case too, so a weak trade-off is visible before you swap anything. Nothing on this page is stored or sent anywhere.</p>
   </section>
 
@@ -796,7 +796,7 @@ window.addEventListener('error', function(e){
     var safest = pts[0], best = pts[pts.length-1];
     if(!chosen){
       // even the single safest available mix breaches the stated tolerance
-      return { mix:safest.mix, infeasible:true, nonBinding:false, gap:false, safestBigLoss:safest.bigLoss, bestMed:best.med };
+      return { mix:safest.mix, infeasible:true, nonBinding:false, gap:false, safestBigLoss:safest.bigLoss };
     }
     var nonBinding = sameFrontierMix(chosen, best);
     return {
@@ -808,8 +808,7 @@ window.addEventListener('error', function(e){
       // different reason than infeasibility, so it needs its own honest note
       // rather than silently looking identical with no explanation.
       gap: (!nonBinding && sameFrontierMix(chosen, safest)),
-      safestBigLoss: safest.bigLoss,
-      bestMed: best.med
+      safestBigLoss: safest.bigLoss
     };
   }
   // Same deterministic scenario matrix the frontier search was scored on, so
@@ -874,7 +873,12 @@ window.addEventListener('error', function(e){
     if(res.infeasible){
       note = '<div class="warnbox"><b>Even the safest available mix has about a '+Math.round(res.safestBigLoss*100)+'% chance of a big loss, beyond your '+tolPct+'% tolerance.</b> No covered EGX combination gets safer than that, so this mix matches the minimum-risk one exactly rather than pretending a tighter option exists.</div>';
     } else if(res.nonBinding){
-      note = '<div class="warnbox"><b>Your '+tolPct+'% tolerance comfortably covers the highest-returning available mix.</b> A looser tolerance would not find something with even higher return — '+pct(res.bestMed*100)+' is already the best typical outcome any covered EGX name offers.</div>';
+      // Deliberately doesn't compare this figure to any single covered name's
+      // own median: the highest-median single name isn't always the mix
+      // shown here, because a slightly lower median can come with a
+      // meaningfully better chance-of-a-big-loss — the same trade-off this
+      // whole section is built around, not a shortfall to explain away.
+      note = '<div class="warnbox"><b>Your '+tolPct+'% tolerance comfortably covers the best mix this tool finds.</b> A looser tolerance would not change the result.</div>';
     } else if(res.gap){
       note = '<div class="warnbox"><b>Your '+tolPct+'% tolerance sits just below what it takes to reach a higher-return mix.</b> The safest mix is the closest match within it for now, which is why this matches the minimum-risk mix — a slightly looser number may unlock a different combination.</div>';
     }
