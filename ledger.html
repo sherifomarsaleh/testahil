@@ -121,6 +121,14 @@
   </section>
 
   <section id="sec-bystock" class="anchor" data-nav="By stock">
+    <details class="card" id="hz-note" open style="margin-bottom:14px;background:var(--tint2)">
+      <summary style="cursor:pointer;font-weight:700">Why some rows say “1 month” and older ones say “T+20”</summary>
+      <p class="muted" style="margin:10px 0 0">From <b>27 July 2026</b> every new forecast is checked at <b>1 month</b> and <b>3 months</b> from the day it was published — real calendar dates. If that date is a weekend or a public holiday on that exchange, we check on the next day it actually trades. Nothing else moves it.</p>
+      <p class="muted" style="margin:10px 0 0">Before that date we counted <b>trading sessions</b> instead: “T+20” meant the 20th day the market was open, “T+60” the 60th. That is roughly a month and roughly three months — but only roughly, and it drifted with every public holiday, which made the check date hard to predict and hard to explain.</p>
+      <p class="muted" style="margin:10px 0 0"><b>We did not go back and change the old forecasts.</b> Every cohort published before 27 July 2026 keeps the horizon it was issued on, is graded on that horizon, and still counts in the score exactly as it always did. Rows labelled <b>T+20 / T+60</b> are on the old session count; rows labelled <b>1 month / 3 months</b> are on the calendar. Both are live, and the difference is small — a calendar month is about 21 trading sessions and a calendar quarter about 63, against the old 20 and 60.</p>
+      <p class="muted" style="margin:10px 0 0">The engine was re-calibrated to match: the five-year test that validates each cone now measures the same calendar window we publish, instead of a fixed 60 sessions. <a href="method.html">Full methodology →</a></p>
+    </details>
+
     <div class="tab-bar" id="tab-bar"></div>
 
     <div id="tab-panels"></div>
@@ -128,14 +136,6 @@
     <div class="card" style="margin-top:24px">
       <p class="muted">How we check: each forecast gives a likely range. When its date comes, we see whether the real price landed inside that range, and keep a running tally. If our "9 times out of 10" ranges are honest, the price should land inside them about 9 times out of 10 — more often means we're being too cautious, less often means we're too confident.</p>
     </div>
-
-    <details class="card" id="hz-note" style="margin-top:14px">
-      <summary style="cursor:pointer;font-weight:700">Why some rows say “1 month” and older ones say “T+20”</summary>
-      <p class="muted" style="margin:10px 0 0">From <b>27 July 2026</b> every new forecast is checked at <b>1 month</b> and <b>3 months</b> from the day it was published — real calendar dates. If that date is a weekend or a public holiday on that exchange, we check on the next day it actually trades. Nothing else moves it.</p>
-      <p class="muted" style="margin:10px 0 0">Before that date we counted <b>trading sessions</b> instead: “T+20” meant the 20th day the market was open, “T+60” the 60th. That is roughly a month and roughly three months — but only roughly, and it drifted with every public holiday, which made the check date hard to predict and hard to explain.</p>
-      <p class="muted" style="margin:10px 0 0"><b>We did not go back and change the old forecasts.</b> Every cohort published before 27 July 2026 keeps the horizon it was issued on, is graded on that horizon, and still counts in the score exactly as it always did. Rows labelled <b>T+20 / T+60</b> are on the old session count; rows labelled <b>1 month / 3 months</b> are on the calendar. Both are live, and the difference is small — a calendar month is about 21 trading sessions and a calendar quarter about 63, against the old 20 and 60.</p>
-      <p class="muted" style="margin:10px 0 0">The engine was re-calibrated to match: the five-year test that validates each cone now measures the same calendar window we publish, instead of a fixed 60 sessions. <a href="method.html">Full methodology →</a></p>
-    </details>
   </section>
 
 
