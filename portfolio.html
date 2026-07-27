@@ -128,15 +128,14 @@
     </div>
     <div class="chip-rows" id="p-chips"></div>
     <div class="wsum" id="p-wsum"></div>
-    <p class="muted" style="margin:10px 0 0;font-size:var(--fs-small)">"Load a starting mix" picks the five EGX names with the highest middle-of-the-road (median) outcome at the chosen horizon, equally weighted. That is a sort by one number, not a recommendation — swap anything you like. Nothing on this page is stored or sent anywhere.</p>
+    <p class="muted" style="margin:10px 0 0;font-size:var(--fs-small)">"Load a starting mix" picks the five EGX names with the best typical return for the downside risk they carry (median outcome divided by the worst-1-in-20 case) at the chosen horizon, equally weighted — not just the highest headline number. Each name below shows its own bad case too, so a weak trade-off is visible before you swap anything. Nothing on this page is stored or sent anywhere.</p>
   </section>
 
   <section id="sec-target" class="card anchor" data-nav="Chance of the target">
     <p class="qhead" style="margin-top:0">The chance of reaching <span id="o-tgt">+25%</span> in <span id="o-hz">3 months</span></p>
     <div class="outgrid">
-      <div class="outbox"><div class="ol">If these names move together (they usually do)</div><div class="bigpct g" id="o-ct">—</div><div class="rangefine" id="o-ctf"></div></div>
-      <div class="outbox"><div class="ol">If they moved independently</div><div class="bigpct g" id="o-ci">—</div><div class="rangefine">The optimistic bound — spreading across names only smooths outcomes if they don't all fall together. Same-market names mostly do.</div></div>
-      <div class="outbox"><div class="ol">Middle-of-the-road outcome for this mix</div><div class="bigpct" id="o-med">—</div><div class="rangefine" id="o-medf"></div></div>
+      <div class="outbox"><div class="ol">Chance of reaching your target</div><div class="bigpct g" id="o-ct">—</div><div class="rangefine" id="o-ctf"></div></div>
+      <div class="outbox"><div class="ol">Middle-of-the-road (typical) outcome for this mix</div><div class="bigpct" id="o-med">—</div><div class="rangefine" id="o-medf"></div></div>
     </div>
     <div id="o-reality"></div>
   </section>
@@ -148,17 +147,18 @@
       <div class="outbox"><div class="ol">Plausible bad case (worst 1-in-20)</div><div class="bigpct r" id="o-p5">—</div><div class="rangefine" id="o-p5f"></div></div>
       <div class="outbox"><div class="ol">Chance of a big loss (−10% or more)</div><div class="bigpct r" id="o-bl">—</div><div class="rangefine" id="o-blf"></div></div>
     </div>
+    <div id="o-div"></div>
   </section>
 
   <section id="sec-buckets" class="anchor" data-nav="The four outcomes">
     <p class="qhead">The four outcomes, side by side</p>
-    <p class="muted">Same four buckets as the <a href="trade.html">single-stock odds page</a> — a move of <b>10% or more</b> is "big" — applied to the whole mix, under both co-movement assumptions. Each column adds to 100%.</p>
+    <p class="muted">Same four buckets as the <a href="trade.html">single-stock odds page</a> — a move of <b>10% or more</b> is "big" — applied to the whole mix under the one co-movement assumption above. Adds to 100%.</p>
     <div class="odds-table" id="o-odds"></div>
   </section>
 
   <section id="sec-contrib" class="anchor" data-nav="Who carries what">
     <p class="qhead">Where the gain would come from — and where the risk sits</p>
-    <p class="muted">Each name's weight times its own published outcome, in percentage points of the whole portfolio. These add up exactly to the mix's middle-of-the-road outcome and its plausible bad case (when names move together, contributions are exactly additive).</p>
+    <p class="muted">Each name's weight times its own published outcome, in percentage points of the whole portfolio. The gain side adds up exactly to the mix's middle-of-the-road outcome — that's always true, it's just arithmetic on an average. The risk side isn't: summing each name's own bad case assumes every name has its worst day at once, which overstates the mix's real bad case. The true, correlated figure is smaller — see the note under the risk list.</p>
     <div class="grid g2">
       <div class="card">
         <p class="qhead" style="margin-top:0;font-size:var(--fs-body)">Contribution to the middle outcome</p>
@@ -173,7 +173,7 @@
 
   <section id="sec-caveats" class="card anchor" style="background:var(--tint2)" data-nav="What this can't tell you">
     <p class="qhead" style="margin-top:0">What this can't tell you</p>
-    <p class="muted"><b>How much these names move together is the biggest unknown on this page.</b> Each study publishes its own stock's distribution, but not how the stocks move jointly. So the portfolio numbers are shown as a range between two bookends: everything moving in lockstep (the conservative read — one bad market day hits every name at once) and everything moving independently (the optimistic read — one name's bad day is another's ordinary one). The truth sits between, and for names on the same exchange, in the same rate cycle and the same currency, it sits much closer to the lockstep end. When in doubt, read the lockstep column.</p>
+    <p class="muted"><b>How much these names actually move together day to day is the biggest unknown on this page.</b> Each study publishes its own stock's distribution, but not how the stocks move jointly, so some assumption is unavoidable. Rather than asking you to guess, this page uses one stated assumption: pairs on the same exchange are modelled at about 0.55 correlation, pairs on different exchanges at about 0.25 — both on the high side of typically measured equity correlations, because EGX and Gulf names share FX, rate-cycle and foreign-flow exposure. That is a modelling choice, not a live measurement and not a view on any stock — it only shapes how the odds of whatever mix you build combine, the same role a covariance matrix plays in any risk model.</p>
     <p class="muted">Mixing currencies adds a risk these numbers don't carry at all: each name's odds are in its own currency, so a mix of EGX and Gulf names also bets on the exchange rates between them. Percentile figures come from each study's date (shown on its page), not live prices. And a target is just a number you typed — setting 25% doesn't make 25% likely, and no mix of covered names has a <i>typical</i> outcome anywhere near it over these horizons; the page will tell you when your target lives in the tail.</p>
     <p style="margin-bottom:0">Educational tooling and personal analytical opinion — not investment advice, not a recommendation, and not an invitation to build any particular portfolio. <a href="method.html#disclaimer">Full disclaimer</a>.</p>
   </section>
@@ -219,33 +219,55 @@
     if(!sum) return [];
     return live.map(function(m){ return { k:m.k, w:m.w/sum }; });
   }
-  /* Comonotonic ("move together"): all names share one quantile draw, so the
-     portfolio's quantile function is the weighted sum of the names' quantile
-     functions — additive, no simulation needed, and per-name contributions
-     decompose exactly. This is the conservative bookend. */
+  /* Fully-comonotonic reference point ONLY — every name sharing one quantile
+     draw is not shown to the reader as an option; it exists purely so we can
+     state, with a real number, how much softer the correlated simulation's
+     bad case is than "every name's worst day landing on the same day." */
   function portQ(sel, which, p){
     return sel.reduce(function(a,m){ return a + m.w * retQ(TICKERS[m.k], which, p); }, 0);
   }
-  function chanceAtLeastTogether(sel, which, target){
-    if(portQ(sel, which, 0.001) >= target) return 0.99;
-    for(var p=0.002; p<=0.999; p+=0.001){
-      if(portQ(sel, which, p) >= target) return Math.min(0.99, Math.max(0.01, 1-p));
-    }
-    return 0.01;
+
+  /* ---------- one co-movement assumption, not a reader's choice ----------
+     Names publish their own distributions but not how they move jointly, so
+     SOME assumption is unavoidable. Rather than making the reader pick between
+     two extremes, we assume a level of co-movement typical of this market and
+     compute one number: same-exchange pairs ~0.55 correlation, cross-exchange
+     pairs ~0.25 — both on the high side of what's typically measured for
+     same-market / cross-market equity pairs, because EGX and Gulf names share
+     FX, rate-cycle and foreign-flow exposure that shows up as correlation.
+     This is a stated modelling assumption, not a live measurement, and it
+     is NOT a view on any stock — it only shapes how the odds of a chosen mix
+     combine, the same role a covariance matrix plays in any risk model. */
+  var RHO_SAME = 0.55, RHO_CROSS = 0.25;
+  var CF_A = Math.sqrt(RHO_CROSS), CF_B = Math.sqrt(RHO_SAME - RHO_CROSS), CF_C = Math.sqrt(1 - RHO_SAME);
+  function gaussianRandom(){
+    var u=0, v=0;
+    while(u===0) u=Math.random();
+    while(v===0) v=Math.random();
+    return Math.sqrt(-2*Math.log(u)) * Math.cos(2*Math.PI*v);
   }
-  /* Independent bookend: each name gets its own uniform draw. Simulated in the
-     browser; 20,000 draws keeps every readout stable to well under 1pp. */
+  function normCdf(x){ // Abramowitz-Stegun approximation, ~7 decimal digits
+    var t = 1/(1+0.2316419*Math.abs(x));
+    var d = 0.3989423*Math.exp(-x*x/2);
+    var p = d*t*(0.3193815+t*(-0.3565638+t*(1.781478+t*(-1.821256+t*1.330274))));
+    return x>0 ? 1-p : p;
+  }
   var SIM_N = 20000;
-  function simIndependent(sel, which){
-    var fs = sel.map(function(m){ var t=TICKERS[m.k]; var f=invCDF(t.dist[which]); var s=t.spot; return {w:m.w, f:f, s:s}; });
+  function simMix(sel, which){
+    var names = sel.map(function(m){ var t=TICKERS[m.k]; return { w:m.w, f:invCDF(t.dist[which]), s:t.spot, c:exOf(t) }; });
     var out = new Array(SIM_N);
     for(var i=0;i<SIM_N;i++){
-      var r=0;
-      for(var j=0;j<fs.length;j++){
-        var u = 0.001 + Math.random()*0.998;
-        r += fs[j].w * (fs[j].f(u)/fs[j].s - 1);
+      var F0 = gaussianRandom();
+      var Fc = {};
+      var r = 0;
+      for(var j=0;j<names.length;j++){
+        var nm = names[j];
+        if(Fc[nm.c] === undefined) Fc[nm.c] = gaussianRandom();
+        var z = CF_A*F0 + CF_B*Fc[nm.c] + CF_C*gaussianRandom();
+        var u = Math.min(0.999, Math.max(0.001, normCdf(z)));
+        r += nm.w * (nm.f(u)/nm.s - 1);
       }
-      out[i]=r;
+      out[i] = r;
     }
     out.sort(function(a,b){ return a-b; });
     return out;
@@ -294,9 +316,10 @@
     box.innerHTML = state.mix.map(function(m,i){
       var t=TICKERS[m.k];
       var med=(t.dist[state.h].p50/t.spot-1)*100;
+      var p5own=(t.dist[state.h].p5/t.spot-1)*100;
       return '<div class="crow">'+
         '<div class="cn"><b>'+t.name+'</b><span class="cc">'+(t.code||m.k)+'</span></div>'+
-        '<span class="cmed">median '+pct(med)+'</span>'+
+        '<span class="cmed">median '+pct(med)+' &middot; bad case '+pct(p5own)+'</span>'+
         '<input class="wt num" type="number" min="0" max="100" step="1" value="'+m.w+'" data-i="'+i+'" aria-label="weight of '+m.k+'">'+
         '<span class="wl">%</span>'+
         '<button type="button" class="rm" data-i="'+i+'" aria-label="remove '+m.k+'">&#10005;</button>'+
@@ -317,12 +340,13 @@
     $('o-tgt').textContent = pct(target*100,0);
     $('o-hz').textContent = hzLabel(which);
 
-    var ids=['o-ct','o-ci','o-med','o-cl','o-p5','o-bl'];
+    var ids=['o-ct','o-med','o-cl','o-p5','o-bl'];
     if(!sel.length){
       ids.forEach(function(id){ $(id).textContent='—'; });
       $('o-odds').innerHTML=''; $('o-cg').innerHTML=''; $('o-cr').innerHTML='';
       $('o-reality').innerHTML=''; $('o-ctf').textContent=''; $('o-medf').textContent='';
       $('o-clf').textContent=''; $('o-p5f').textContent=''; $('o-blf').textContent='';
+      $('o-div').innerHTML='';
       return;
     }
 
@@ -330,26 +354,25 @@
     var oneCcy = Object.keys(ccys).length===1 ? Object.keys(ccys)[0] : null;
     var moneyLbl = function(v){ return (oneCcy? oneCcy+' ' : '') + money(v); };
 
-    // together (comonotonic) bookend
-    var cTogether = chanceAtLeastTogether(sel, which, target);
-    var medT = portQ(sel, which, 0.5);
-    var p5T  = portQ(sel, which, 0.05);
-    var lossT = 1 - chanceAtLeastTogether(sel, which, 0);
-    var bT = buckets(function(x){ return chanceAtLeastTogether(sel, which, x); });
+    // one correlated simulation — the assumption is fixed (RHO_SAME/RHO_CROSS above),
+    // not offered to the reader as a choice between bookends.
+    var sims = simMix(sel, which);
+    var chance = simChanceAtLeast(sims, target);
+    var medSim = simQuantile(sims, 0.5);
+    var p5Sim  = simQuantile(sims, 0.05);
+    var loss   = 1 - simChanceAtLeast(sims, 0);
+    var b = buckets(function(x){ return simChanceAtLeast(sims, x); });
 
-    // independent bookend
-    var sims = simIndependent(sel, which);
-    var cIndep = simChanceAtLeast(sims, target);
-    var p5I = simQuantile(sims, 0.05);
-    var lossI = 1 - simChanceAtLeast(sims, 0);
-    var bI = buckets(function(x){ return simChanceAtLeast(sims, x); });
+    // reference-only: every name's worst day landing on the same day — used
+    // solely to state the diversification benefit in plain language below,
+    // never shown as a selectable alternative.
+    var p5Lockstep = portQ(sel, which, 0.05);
 
-    $('o-ct').textContent = Math.round(cTogether*100)+'%';
-    $('o-ctf').textContent = 'The conservative read: one shared market mood moves every name at once.';
-    $('o-ci').textContent = Math.round(cIndep*100)+'%';
-    $('o-med').textContent = pct(medT*100);
-    $('o-med').className = 'bigpct ' + (medT>=0?'g':'r');
-    $('o-medf').textContent = 'On the amount above: ' + moneyLbl(amt*medT) + '. Half of outcomes land below this, half above.';
+    $('o-ct').textContent = Math.round(chance*100)+'%';
+    $('o-ctf').textContent = 'Assumes these names move together about as much as EGX/Gulf equities typically do (same-exchange pairs ~0.55 correlation, cross-exchange ~0.25) — a stated modelling assumption, not a live measurement.';
+    $('o-med').textContent = pct(medSim*100);
+    $('o-med').className = 'bigpct ' + (medSim>=0?'g':'r');
+    $('o-medf').textContent = 'On the amount above: ' + moneyLbl(amt*medSim) + '. Half of outcomes land below this, half above.';
 
     // reality check vs the best available typical outcome
     var bestK=null, bestM=-Infinity;
@@ -360,36 +383,49 @@
       $('o-reality').innerHTML = '';
     }
 
-    $('o-cl').textContent = Math.round(lossT*100)+'%';
-    $('o-clf').textContent = 'If independent: ' + Math.round(lossI*100) + '%. Chance the mix ends below zero over ' + hzLabel(which) + '.';
-    $('o-p5').textContent = pct(p5T*100);
-    $('o-p5f').textContent = 'About ' + moneyLbl(amt*p5T) + ' on the amount above. If independent: ' + pct(p5I*100) + ' (' + moneyLbl(amt*p5I) + '). One time in twenty, the outcome is this bad or worse.';
-    $('o-bl').textContent = Math.round(bT.bigLoss*100)+'%';
-    $('o-blf').textContent = 'If independent: ' + Math.round(bI.bigLoss*100) + '%.';
+    $('o-cl').textContent = Math.round(loss*100)+'%';
+    $('o-clf').textContent = 'Chance the mix ends below zero over ' + hzLabel(which) + '.';
+    $('o-p5').textContent = pct(p5Sim*100);
+    $('o-p5f').textContent = 'About ' + moneyLbl(amt*p5Sim) + ' on the amount above. One time in twenty, the outcome is this bad or worse.';
+    $('o-bl').textContent = Math.round(b.bigLoss*100)+'%';
+    $('o-blf').textContent = 'A move of −10% or worse for the mix as a whole.';
 
-    // buckets table
+    // diversification benefit, stated in plain language with real numbers
+    var divPP = (p5Sim - p5Lockstep) * 100; // how much softer (less negative) the correlated bad case is than lockstep
+    var divBox = $('o-div');
+    if(sel.length > 1 && divPP > 0.3){
+      divBox.innerHTML = '<div class="warnbox" style="border-color:var(--teal);background:var(--tint)"><b>Spreading across '+sel.length+' names softens the downside.</b> If every name in this mix had its worst day on the same day, the bad case would be '+pct(p5Lockstep*100)+'. Because names rarely all move in perfect lockstep, this mix’s actual plausible bad case is '+pct(p5Sim*100)+' — about '+divPP.toFixed(1)+' percentage points softer. The single riskiest stock in this mix (see below) is worse than either figure on its own.</div>';
+    } else {
+      divBox.innerHTML = '';
+    }
+
+    // buckets table — single column now: one assumption, one number
     var rows=[['Big win','+10% or more','bigGain','gain'],['Small win','0% to +10%','smallGain','gain'],['Small loss','0% to −10%','smallLoss','loss'],['Big loss','−10% or more','bigLoss','loss']];
-    var html='<div class="oh"></div><div class="oh">If they move together</div><div class="oh">If independent</div>';
+    var html='<div class="oh"></div><div class="oh">Chance</div>';
     rows.forEach(function(r){
       html+='<div class="rowlabel">'+r[0]+'<span class="rr">'+r[1]+'</span></div>'+
-        '<div class="odds-cell '+r[3]+'"><div class="pctnum">'+Math.round(bT[r[2]]*100)+'%</div></div>'+
-        '<div class="odds-cell '+r[3]+'"><div class="pctnum">'+Math.round(bI[r[2]]*100)+'%</div></div>';
+        '<div class="odds-cell '+r[3]+'"><div class="pctnum">'+Math.round(b[r[2]]*100)+'%</div></div>';
     });
     $('o-odds').innerHTML=html;
 
-    // contributions (exact under the together bookend)
+    // contributions to the median: exact regardless of correlation, since
+    // expectation of a weighted sum is always the weighted sum of expectations.
     var cg = sel.map(function(m){ var t=TICKERS[m.k]; return { k:m.k, name:t.name, v: m.w*(t.dist[which].p50/t.spot-1)*100 }; })
                 .sort(function(a,b){ return b.v-a.v; });
+    // "risk contribution": each name's own weighted worst-1-in-20 case. These do
+    // NOT sum to the mix's simulated bad case once correlation is below 1 — the
+    // total row below states that explicitly instead of implying exact additivity.
     var cr = sel.map(function(m){ var t=TICKERS[m.k]; return { k:m.k, name:t.name, v: m.w*(t.dist[which].p5/t.spot-1)*100 }; })
                 .sort(function(a,b){ return a.v-b.v; });
     var maxg = Math.max.apply(null, cg.map(function(c){ return Math.abs(c.v); }).concat([0.0001]));
     var maxr = Math.max.apply(null, cr.map(function(c){ return Math.abs(c.v); }).concat([0.0001]));
     $('o-cg').innerHTML = cg.map(function(c){
       return '<div class="cline '+(c.v>=0?'g':'r')+'"><span class="nm">'+c.name+'</span><span class="bar"><i style="width:'+(Math.abs(c.v)/maxg*100)+'%"></i></span><span class="val">'+pp(c.v)+' · '+moneyLbl(amt*c.v/100)+'</span></div>';
-    }).join('') + '<div class="cline"><span class="nm" style="color:var(--muted)">Total (the mix\'s median)</span><span class="bar" style="visibility:hidden"></span><span class="val">'+pp(medT*100)+'</span></div>';
+    }).join('') + '<div class="cline"><span class="nm" style="color:var(--muted)">Total (the mix\'s median — exact)</span><span class="bar" style="visibility:hidden"></span><span class="val">'+pp(medSim*100)+'</span></div>';
     $('o-cr').innerHTML = cr.map(function(c){
       return '<div class="cline '+(c.v>=0?'g':'r')+'"><span class="nm">'+c.name+'</span><span class="bar"><i style="width:'+(Math.abs(c.v)/maxr*100)+'%"></i></span><span class="val">'+pp(c.v)+' · '+moneyLbl(amt*c.v/100)+'</span></div>';
-    }).join('') + '<div class="cline"><span class="nm" style="color:var(--muted)">Total (the mix\'s bad case)</span><span class="bar" style="visibility:hidden"></span><span class="val">'+pp(p5T*100)+'</span></div>';
+    }).join('') + '<div class="cline"><span class="nm" style="color:var(--muted)">Sum of each name\'s own bad case</span><span class="bar" style="visibility:hidden"></span><span class="val">'+pp(p5Lockstep*100)+'</span></div>'
+      + '<p class="muted" style="font-size:var(--fs-caption);margin:8px 0 0">These add to '+pct(p5Lockstep*100)+' — what the mix\'s bad case would be if every name fell at once. The mix\'s actual bad case above ('+pct(p5Sim*100)+') is softer, because that\'s unlikely.</p>';
 
     // FX caveat when currencies mix
     var fxNote = $('fx-note');
@@ -413,11 +449,17 @@
     renderAll();
   });
   $('p-start').addEventListener('click', function(){
+    // score = typical return / downside risk taken (median% divided by the worst-1-in-20
+    // case, floored at 1pp of downside so a near-zero-downside name can't post an absurd
+    // score). Favours a good return-for-risk trade-off, not just the highest headline number.
+    function score(k){
+      var t=TICKERS[k], d=t.dist[state.h];
+      var med=(d.p50/t.spot-1)*100, p5v=(d.p5/t.spot-1)*100;
+      return med / Math.max(1, -p5v);
+    }
     var egx = KEYS.filter(function(k){ return exOf(TICKERS[k])==='EGX'; })
-      .sort(function(a,b){
-        var ta=TICKERS[a], tb=TICKERS[b];
-        return (tb.dist[state.h].p50/tb.spot) - (ta.dist[state.h].p50/ta.spot);
-      }).slice(0,5);
+      .sort(function(a,b){ return score(b) - score(a); })
+      .slice(0,5);
     state.mix = egx.map(function(k){ return { k:k, w:20 }; });
     renderAll();
   });
