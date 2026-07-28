@@ -131,6 +131,13 @@ def clean_ohlc(df, ticker="", verbose=True, market=None):
     # raw CSV. Hand-editing does not scale and is not reproducible: the 15-year Kakao
     # file carries 230 such rows against Samsung's 41.
     #
+    # GENERALISED 28-Jul-2026 on the QA 15-year ingest: the same artifact appears in
+    # Qatar WITHOUT the flat-bar signature. Every QE name carries a single 2013-11-19
+    # row printed on the pre-10:1-split scale — IQCD 16.89 -> 168.00 -> 16.85, with a
+    # full intraday range (H 169.50 / L 167.90) and inflated volume — so the original
+    # flat-bar test missed all three. A +894% session on an exchange with a +/-10%
+    # daily limit is 22x the limit: it is not trading, whatever the bar looks like.
+    #
     # DROPPED, not rescaled — consistent with the 27-Jul decision. Rescaling a print
     # from a session the market never held would synthesise a trade that never happened.
     p = df['Price'].values.astype(float)
@@ -142,16 +149,27 @@ def clean_ohlc(df, ticker="", verbose=True, market=None):
         thr0 = jump_threshold(market)
         into, outof = lr[:-1], lr[1:]
         spike = (np.abs(into) > thr0) & (np.abs(outof) > thr0) & (np.sign(into) != np.sign(outof))
-        # ...and it must look like a non-trade: no intraday range at all.
+        # The round trip must very nearly cancel: a one-row excursion returns to
+        # where it started. This is what separates a scale artifact from two
+        # unrelated large moves that happen to be adjacent.
+        round_trip = np.abs(into + outof) < thr0
+        # In a market WITH a statutory daily price limit, an excursion this large
+        # cannot be trading in either direction, whatever the row looks like — so
+        # the intraday-range test is not required. Where there is NO limit
+        # (US equities, spot metals) a violent crash-and-rebound is at least
+        # conceivable, so there we still demand the tell-tale non-trade signature
+        # of a completely flat bar.
+        has_limit = DAILY_LIMIT.get(market) is not None
         flat_row = (df['High'].values == df['Low'].values)[1:-1]
         drop = np.zeros(len(df), dtype=bool)
-        drop[1:-1] = spike & flat_row
+        drop[1:-1] = spike & round_trip & (True if has_limit else flat_row)
         if drop.any():
             dts = df['Date'][drop]
             log.append(f"dropped {int(drop.sum())} isolated one-row price spikes "
                        f"({dts.iloc[0].date()}"
                        f"{'..' + str(dts.iloc[-1].date()) if drop.sum() > 1 else ''}) "
-                       f"— flat O=H=L=C rows whose move reverses immediately: vendor "
+                       f"— excursions beyond the {market or '?'} artifact threshold "
+                       f"{thr0:.3f} that reverse on the very next session: vendor "
                        f"phantom prints, not corporate actions (dropped, not rescaled)")
             df = df[~drop].reset_index(drop=True)
 
