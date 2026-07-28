@@ -3051,12 +3051,13 @@ const LEDGER = [
   {
     instrument:"COMI", asset_class:"equity",
     anchor_date:"2026-06-29", anchor_price:129.25, ccy:"EGP",
-    horizon_label:"T+20", grade_date:"2026-07-27", cycle_no:1, reanchor_from:null,
+    horizon_label:"T+20", grade_date:"2026-07-28", grade_basis:"actual", cycle_no:1, reanchor_from:null,
+    grade_date_projected:"2026-07-27", grade_note:"Graded as of 2026-07-28, the latest available close, at the owner's direction. This is session 19 from the 29-Jun anchor; the full T+20 session and the 1-month calendar target both fall on 2026-07-29. Recorded on 19 of 20 sessions -- the band verdict is unaffected (142.00 sits well inside 103.44-159.92) but realized_quantile, median_err and the +10%/+15% touch outcomes are measured one session early.",
     p5:103.44, p25:117.89, p50:128.87, p75:140.85, p95:159.92,
     touch:{ "+5":61, "+10":40, "+15":23, "+20":13, "-5":62, "-10":38 },
-    realized_close:null, realized_high:null, realized_low:null,
-    in_90:null, in_50:null, realized_quantile:null, median_err:null,
-    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+    realized_close:142.00, realized_high:142.55, realized_low:126.89,
+    in_90:true, in_50:false, realized_quantile:0.762, median_err:0.1019,
+    touch_hit:{ "+5":true, "+10":true, "+15":false, "+20":false, "-5":false, "-10":false }
   },
   {
     instrument:"COMI", asset_class:"equity",
