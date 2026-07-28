@@ -35,6 +35,24 @@ CI to sit entirely below zero ROBUSTLY across block sizes {2,3,4} (10k draws,
 recorded as PARITY with a flag, reviewed at the name's next live grade.
 (ALINMA is the current boundary case.)
 """
+
+# TESTAHIL OVERRIDING AIM (user, standing — supersedes every mechanic in this file)
+#
+#     BETTER DRIFT PREDICTION AND SMALLER CONE SIZE WITHOUT COMPROMISING THE
+#     ACCURACY. IF THE ACCURACY IS COMPROMISED THEN STICK TO THE TIME SPAN THAT
+#     OFFERS THE BEST RESULTS.
+#
+# Every parameter, span, fit and gate in this engine exists to serve that sentence.
+# Where a mechanic and the aim disagree, the AIM WINS and the mechanic is fixed.
+#
+# The aim carries its own guard: "smaller cone" and "without compromising accuracy"
+# are a PAIR. A narrower cone bought with coverage is not progress — it is the same
+# forecast with the uncertainty hidden. So every candidate is tested on both halves
+# at once: does it narrow the cone, AND does calibration hold (CRPS, 80/90%
+# coverage, PIT centring, std_u toward 1.0)? Narrower with coverage intact ->
+# adopt. Narrower with coverage slipping -> REJECT. Neither -> keep whatever span
+# performs best.
+
 from dataclasses import dataclass, field
 from typing import Optional, List, Tuple
 import pandas as pd

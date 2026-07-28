@@ -1,3 +1,23 @@
+# THE OVERRIDING AIM (user, standing — supersedes every mechanic below)
+
+> **Better drift prediction and smaller cone size, without compromising accuracy.
+> If accuracy is compromised, stick to the time span that offers the best results.**
+
+Everything else in this document is machinery for serving that sentence. Where a
+mechanic and the aim disagree, the aim wins and the mechanic gets fixed.
+
+Read carefully, the aim contains its own guard. "Smaller cone" and "without
+compromising accuracy" are a PAIR, and the second half is not decoration — a
+narrower cone bought with coverage is not progress, it is the same forecast with
+the uncertainty hidden. So the test for any candidate is both halves at once:
+
+  does it narrow the cone?   AND   does coverage / calibration hold?
+
+If yes to both, adopt (subject to the 0.5% floor). If it narrows the cone but
+coverage slips, REJECT — that is the compromise the aim forbids. If it neither
+narrows nor improves, keep whatever span performs best, which is usually simply
+the one already in production.
+
 # History-span rule — history is instrumental, and must earn its place
 
 **Adopted 28-Jul-2026 (user directive).** Amends the Standing Research Protocol.
