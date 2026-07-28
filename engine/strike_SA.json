@@ -1,0 +1,646 @@
+{
+ "ACWA": {
+  "market": "SA",
+  "ticker": "ACWA",
+  "anchor_date": "2026-07-26",
+  "spot": 191.2,
+  "rows_in": 1192,
+  "repairs": [],
+  "rows_out": 1192,
+  "nu": 12.0,
+  "width_cal": 1.07,
+  "rf_live": 0.0425,
+  "q_annual": 0.0,
+  "signal_active": false,
+  "horizons": {
+   "1M": {
+    "label": "1 month",
+    "h": 22,
+    "target_date": "2026-08-26",
+    "grade_date": "2026-08-26",
+    "basis": "projected",
+    "h_density": 22,
+    "h_seasonal": 22,
+    "anchor_vol_ann": 0.34339208334458377,
+    "sigma_h": 0.10856382250018572,
+    "drift_log_h": 0.003268392762773441,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 161.063004373148,
+     "p25": 179.25320092499015,
+     "p50": 191.74853680400471,
+     "p75": 205.33433877073682,
+     "p95": 228.7550875191712
+    }
+   },
+   "3M": {
+    "label": "3 months",
+    "h": 62,
+    "target_date": "2026-10-26",
+    "grade_date": "2026-10-26",
+    "basis": "projected",
+    "h_density": 63,
+    "h_seasonal": 60,
+    "anchor_vol_ann": 0.3573365144399854,
+    "sigma_h": 0.1896517038952185,
+    "drift_log_h": 0.009805178288320324,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 142.0888814347867,
+     "p25": 171.5021585015652,
+     "p50": 193.38135015426155,
+     "p75": 217.80118531123532,
+     "p95": 262.95493676402765
+    }
+   }
+  }
+ },
+ "ALINMA": {
+  "market": "SA",
+  "ticker": "ALINMA",
+  "anchor_date": "2026-07-26",
+  "spot": 23.8,
+  "rows_in": 3881,
+  "repairs": [],
+  "rows_out": 3881,
+  "nu": 12.0,
+  "width_cal": 1.07,
+  "rf_live": 0.0425,
+  "q_annual": 0.0,
+  "signal_active": false,
+  "horizons": {
+   "1M": {
+    "label": "1 month",
+    "h": 22,
+    "target_date": "2026-08-26",
+    "grade_date": "2026-08-26",
+    "basis": "projected",
+    "h_density": 22,
+    "h_seasonal": 22,
+    "anchor_vol_ann": 0.17245067789147742,
+    "sigma_h": 0.05452049040356058,
+    "drift_log_h": 0.003268392762773441,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 21.87126037292596,
+     "p25": 23.07870826330138,
+     "p50": 23.873075948421402,
+     "p75": 24.708050243161384,
+     "p95": 26.08531898522542
+    }
+   },
+   "3M": {
+    "label": "3 months",
+    "h": 62,
+    "target_date": "2026-10-26",
+    "grade_date": "2026-10-26",
+    "basis": "projected",
+    "h_density": 63,
+    "h_seasonal": 60,
+    "anchor_vol_ann": 0.195064198808092,
+    "sigma_h": 0.10352778453354358,
+    "drift_log_h": 0.009805178288320324,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 20.329708352960687,
+     "p25": 22.528643071307723,
+     "p50": 24.054710895336505,
+     "p75": 25.668037407335028,
+     "p95": 28.448375216471756
+    }
+   }
+  }
+ },
+ "ARAMCO": {
+  "market": "SA",
+  "ticker": "ARAMCO",
+  "anchor_date": "2026-07-26",
+  "spot": 26.6,
+  "rows_in": 1649,
+  "repairs": [],
+  "rows_out": 1649,
+  "nu": 12.0,
+  "width_cal": 1.07,
+  "rf_live": 0.0425,
+  "q_annual": 0.0,
+  "signal_active": false,
+  "horizons": {
+   "1M": {
+    "label": "1 month",
+    "h": 22,
+    "target_date": "2026-08-26",
+    "grade_date": "2026-08-26",
+    "basis": "projected",
+    "h_density": 22,
+    "h_seasonal": 22,
+    "anchor_vol_ann": 0.15361324143488886,
+    "sigma_h": 0.04856501208293941,
+    "drift_log_h": 0.003268392762773441,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 24.67986413096624,
+     "p25": 25.889948565919383,
+     "p50": 26.682263840942092,
+     "p75": 27.511983338268614,
+     "p95": 28.87395546447149
+    }
+   },
+   "3M": {
+    "label": "3 months",
+    "h": 62,
+    "target_date": "2026-10-26",
+    "grade_date": "2026-10-26",
+    "basis": "projected",
+    "h_density": 63,
+    "h_seasonal": 60,
+    "anchor_vol_ann": 0.15478723229798375,
+    "sigma_h": 0.08215130880913064,
+    "drift_log_h": 0.009805178288320324,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 23.520568835098285,
+     "p25": 25.517720198604767,
+     "p50": 26.88001376830045,
+     "p75": 28.300936102296898,
+     "p95": 30.707410208866623
+    }
+   }
+  }
+ },
+ "ELM": {
+  "market": "SA",
+  "ticker": "ELM",
+  "anchor_date": "2026-07-26",
+  "spot": 666.0,
+  "rows_in": 1100,
+  "repairs": [],
+  "rows_out": 1100,
+  "nu": 12.0,
+  "width_cal": 1.07,
+  "rf_live": 0.0425,
+  "q_annual": 0.0,
+  "signal_active": false,
+  "horizons": {
+   "1M": {
+    "label": "1 month",
+    "h": 22,
+    "target_date": "2026-08-26",
+    "grade_date": "2026-08-26",
+    "basis": "projected",
+    "h_density": 22,
+    "h_seasonal": 22,
+    "anchor_vol_ann": 0.3554975288293086,
+    "sigma_h": 0.1123909737323548,
+    "drift_log_h": 0.003268392762773441,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 557.5785551155286,
+     "p25": 622.895812513421,
+     "p50": 667.901195742942,
+     "p75": 716.9515167565103,
+     "p95": 801.7752269397037
+    }
+   },
+   "3M": {
+    "label": "3 months",
+    "h": 62,
+    "target_date": "2026-10-26",
+    "grade_date": "2026-10-26",
+    "basis": "projected",
+    "h_density": 63,
+    "h_seasonal": 60,
+    "anchor_vol_ann": 0.3435856765949326,
+    "sigma_h": 0.18235362569185284,
+    "drift_log_h": 0.009805178288320324,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 500.80843602180363,
+     "p25": 600.1182423175176,
+     "p50": 673.5583270925731,
+     "p75": 755.1504045768891,
+     "p95": 905.119564875853
+    }
+   }
+  }
+ },
+ "EXTRA": {
+  "market": "SA",
+  "ticker": "EXTRA",
+  "anchor_date": "2026-07-26",
+  "spot": 68.5,
+  "rows_in": 3638,
+  "repairs": [],
+  "rows_out": 3638,
+  "nu": 12.0,
+  "width_cal": 1.07,
+  "rf_live": 0.0425,
+  "q_annual": 0.0,
+  "signal_active": false,
+  "horizons": {
+   "1M": {
+    "label": "1 month",
+    "h": 22,
+    "target_date": "2026-08-26",
+    "grade_date": "2026-08-26",
+    "basis": "projected",
+    "h_density": 22,
+    "h_seasonal": 22,
+    "anchor_vol_ann": 0.21009627059610075,
+    "sigma_h": 0.0664221900714527,
+    "drift_log_h": 0.003268392762773441,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 61.75403645880037,
+     "p25": 65.93220503184739,
+     "p50": 68.70728365751012,
+     "p75": 71.64602187888354,
+     "p95": 76.54068503297039
+    }
+   },
+   "3M": {
+    "label": "3 months",
+    "h": 62,
+    "target_date": "2026-10-26",
+    "grade_date": "2026-10-26",
+    "basis": "projected",
+    "h_density": 63,
+    "h_seasonal": 60,
+    "anchor_vol_ann": 0.24020144732714865,
+    "sigma_h": 0.12748379167207163,
+    "drift_log_h": 0.009805178288320324,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 56.28870409644874,
+     "p25": 63.87726850385738,
+     "p50": 69.24655642818438,
+     "p75": 75.00917086617066,
+     "p95": 85.13623990348982
+    }
+   }
+  }
+ },
+ "MAADEN": {
+  "market": "SA",
+  "ticker": "MAADEN",
+  "anchor_date": "2026-07-26",
+  "spot": 58.2,
+  "rows_in": 3881,
+  "repairs": [],
+  "rows_out": 3881,
+  "nu": 12.0,
+  "width_cal": 1.07,
+  "rf_live": 0.0425,
+  "q_annual": 0.0,
+  "signal_active": false,
+  "horizons": {
+   "1M": {
+    "label": "1 month",
+    "h": 22,
+    "target_date": "2026-08-26",
+    "grade_date": "2026-08-26",
+    "basis": "projected",
+    "h_density": 22,
+    "h_seasonal": 22,
+    "anchor_vol_ann": 0.2754369180723843,
+    "sigma_h": 0.08707971480403136,
+    "drift_log_h": 0.003268392762773441,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 50.75201800222394,
+     "p25": 55.30037695205481,
+     "p50": 58.37163269763279,
+     "p75": 61.66632643703423,
+     "p95": 67.24720208098013
+    }
+   },
+   "3M": {
+    "label": "3 months",
+    "h": 62,
+    "target_date": "2026-10-26",
+    "grade_date": "2026-10-26",
+    "basis": "projected",
+    "h_density": 63,
+    "h_seasonal": 60,
+    "anchor_vol_ann": 0.2888897979436491,
+    "sigma_h": 0.153324500027159,
+    "drift_log_h": 0.009805178288320324,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 45.867660304034175,
+     "p25": 53.40290453857336,
+     "p50": 58.846638742957765,
+     "p75": 64.78504217614072,
+     "p95": 75.44374806610199
+    }
+   }
+  }
+ },
+ "RAJHI": {
+  "market": "SA",
+  "ticker": "RAJHI",
+  "anchor_date": "2026-07-26",
+  "spot": 64.5,
+  "rows_in": 3881,
+  "repairs": [],
+  "rows_out": 3881,
+  "nu": 12.0,
+  "width_cal": 1.07,
+  "rf_live": 0.0425,
+  "q_annual": 0.0,
+  "signal_active": false,
+  "horizons": {
+   "1M": {
+    "label": "1 month",
+    "h": 22,
+    "target_date": "2026-08-26",
+    "grade_date": "2026-08-26",
+    "basis": "projected",
+    "h_density": 22,
+    "h_seasonal": 22,
+    "anchor_vol_ann": 0.19563432720144006,
+    "sigma_h": 0.06185002917474913,
+    "drift_log_h": 0.003268392762773441,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 58.57759057722747,
+     "p25": 62.25964290590977,
+     "p50": 64.69627913044238,
+     "p75": 67.26924423240065,
+     "p95": 71.53873128408782
+    }
+   },
+   "3M": {
+    "label": "3 months",
+    "h": 62,
+    "target_date": "2026-10-26",
+    "grade_date": "2026-10-26",
+    "basis": "projected",
+    "h_density": 63,
+    "h_seasonal": 60,
+    "anchor_vol_ann": 0.20984893644154026,
+    "sigma_h": 0.1113745915922108,
+    "drift_log_h": 0.009805178288320324,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 54.400557766292515,
+     "p25": 60.75582955424248,
+     "p50": 65.19443902437467,
+     "p75": 69.91009699128884,
+     "p95": 78.08903252574625
+    }
+   }
+  }
+ },
+ "RIBL": {
+  "market": "SA",
+  "ticker": "RIBL",
+  "anchor_date": "2026-07-26",
+  "spot": 20.92,
+  "rows_in": 3881,
+  "repairs": [],
+  "rows_out": 3881,
+  "nu": 12.0,
+  "width_cal": 1.07,
+  "rf_live": 0.0425,
+  "q_annual": 0.0,
+  "signal_active": false,
+  "horizons": {
+   "1M": {
+    "label": "1 month",
+    "h": 22,
+    "target_date": "2026-08-26",
+    "grade_date": "2026-08-26",
+    "basis": "projected",
+    "h_density": 22,
+    "h_seasonal": 22,
+    "anchor_vol_ann": 0.18745427507425788,
+    "sigma_h": 0.05926389580053697,
+    "drift_log_h": 0.003268392762773441,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 19.078392649408524,
+     "p25": 20.22599522831422,
+     "p50": 20.983863121992353,
+     "p75": 21.782839562021756,
+     "p95": 23.105838830570995
+    }
+   },
+   "3M": {
+    "label": "3 months",
+    "h": 62,
+    "target_date": "2026-10-26",
+    "grade_date": "2026-10-26",
+    "basis": "projected",
+    "h_density": 63,
+    "h_seasonal": 60,
+    "anchor_vol_ann": 0.19680869730046044,
+    "sigma_h": 0.1044536544017232,
+    "drift_log_h": 0.009805178288320324,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 17.842909127788733,
+     "p25": 19.791032467657306,
+     "p50": 21.14404759464488,
+     "p75": 22.575261050919345,
+     "p95": 25.043615724064406
+    }
+   }
+  }
+ },
+ "SABIC": {
+  "market": "SA",
+  "ticker": "SABIC",
+  "anchor_date": "2026-07-26",
+  "spot": 52.25,
+  "rows_in": 3881,
+  "repairs": [
+   "dropped 1 rows carrying a non-positive or non-finite OHLC value (2014-04-01) \u2014 vendor fills, not tradeable prices"
+  ],
+  "rows_out": 3880,
+  "nu": 12.0,
+  "width_cal": 1.07,
+  "rf_live": 0.0425,
+  "q_annual": 0.0,
+  "signal_active": false,
+  "horizons": {
+   "1M": {
+    "label": "1 month",
+    "h": 22,
+    "target_date": "2026-08-26",
+    "grade_date": "2026-08-26",
+    "basis": "projected",
+    "h_density": 22,
+    "h_seasonal": 22,
+    "anchor_vol_ann": 0.1844137039942425,
+    "sigma_h": 0.058302615575859376,
+    "drift_log_h": 0.003268392762773441,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 47.72418903595407,
+     "p25": 50.54697796397181,
+     "p50": 52.40969245628735,
+     "p75": 54.37226422731423,
+     "p95": 57.619476414161
+    }
+   },
+   "3M": {
+    "label": "3 months",
+    "h": 62,
+    "target_date": "2026-10-26",
+    "grade_date": "2026-10-26",
+    "basis": "projected",
+    "h_density": 63,
+    "h_seasonal": 60,
+    "anchor_vol_ann": 0.20013128747314382,
+    "sigma_h": 0.1062170758885602,
+    "drift_log_h": 0.009805178288320324,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 44.437732015757234,
+     "p25": 49.37583183849851,
+     "p50": 52.81033919199763,
+     "p75": 56.447384335131424,
+     "p95": 62.72907193639426
+    }
+   }
+  }
+ },
+ "SNB": {
+  "market": "SA",
+  "ticker": "SNB",
+  "anchor_date": "2026-07-26",
+  "spot": 39.92,
+  "rows_in": 2919,
+  "repairs": [
+   "dropped 1 interior stale/no-trade rows"
+  ],
+  "rows_out": 2918,
+  "nu": 12.0,
+  "width_cal": 1.07,
+  "rf_live": 0.0425,
+  "q_annual": 0.0,
+  "signal_active": false,
+  "horizons": {
+   "1M": {
+    "label": "1 month",
+    "h": 22,
+    "target_date": "2026-08-26",
+    "grade_date": "2026-08-26",
+    "basis": "projected",
+    "h_density": 22,
+    "h_seasonal": 22,
+    "anchor_vol_ann": 0.24675327945839265,
+    "sigma_h": 0.07801134776184755,
+    "drift_log_h": 0.003268392762773441,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 35.323341143396554,
+     "p25": 38.14650955705104,
+     "p50": 40.03907444936373,
+     "p75": 42.05783864613001,
+     "p95": 45.45218394062891
+    }
+   },
+   "3M": {
+    "label": "3 months",
+    "h": 62,
+    "target_date": "2026-10-26",
+    "grade_date": "2026-10-26",
+    "basis": "projected",
+    "h_density": 63,
+    "h_seasonal": 60,
+    "anchor_vol_ann": 0.25996840784707675,
+    "sigma_h": 0.13797484867840365,
+    "drift_log_h": 0.009805178288320324,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 32.251779992093084,
+     "p25": 36.98271064247287,
+     "p50": 40.35850911723821,
+     "p75": 44.00562629320254,
+     "p95": 50.47013244530582
+    }
+   }
+  }
+ },
+ "STC": {
+  "market": "SA",
+  "ticker": "STC",
+  "anchor_date": "2026-07-26",
+  "spot": 43.1,
+  "rows_in": 3881,
+  "repairs": [
+   "dropped 1 interior stale/no-trade rows"
+  ],
+  "rows_out": 3880,
+  "nu": 12.0,
+  "width_cal": 1.07,
+  "rf_live": 0.0425,
+  "q_annual": 0.0,
+  "signal_active": false,
+  "horizons": {
+   "1M": {
+    "label": "1 month",
+    "h": 22,
+    "target_date": "2026-08-26",
+    "grade_date": "2026-08-26",
+    "basis": "projected",
+    "h_density": 22,
+    "h_seasonal": 22,
+    "anchor_vol_ann": 0.1353007299339037,
+    "sigma_h": 0.04277548942195661,
+    "drift_log_h": 0.003268392762773441,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 40.36329669022141,
+     "p25": 42.10142814105552,
+     "p50": 43.23422265921637,
+     "p75": 44.41620570028241,
+     "p95": 46.34728005620971
+    }
+   },
+   "3M": {
+    "label": "3 months",
+    "h": 62,
+    "target_date": "2026-10-26",
+    "grade_date": "2026-10-26",
+    "basis": "projected",
+    "h_density": 63,
+    "h_seasonal": 60,
+    "anchor_vol_ann": 0.15235165161573289,
+    "sigma_h": 0.08085865606389676,
+    "drift_log_h": 0.009805178288320324,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 38.190139223936534,
+     "p25": 41.379797949250374,
+     "p50": 43.55324966518454,
+     "p75": 45.81839433518179,
+     "p95": 49.65060772461719
+    }
+   }
+  }
+ }
+}

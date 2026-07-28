@@ -320,8 +320,22 @@ def block_bootstrap_ci(r, B=3000, seed=0, block='6M', level=90):
     """Calendar-block bootstrap of pooled CRPS skill: resample half-year blocks
     jointly across names (preserves cross-sectional dependence)."""
     rng = np.random.default_rng(seed)
-    blk = pd.PeriodIndex(pd.DatetimeIndex(r['origin']), freq=block.replace('M', 'M'))
-    r = r.assign(_blk=pd.DatetimeIndex(r['origin']).to_period('2Q').astype(str))
+    # BUG FIX 28-Jul-2026: `block` was accepted, used to build `blk`, and then
+    # DISCARDED — the grouping below was hard-coded to to_period('2Q'). Every
+    # "robust across bootstrap block sizes {2,3,4}" claim in this repo therefore
+    # ran the identical computation three times and compared it with itself.
+    # Worse, to_period('2Q') returns a distinct label per quarter, so with
+    # non-overlapping quarterly origins EVERY OBSERVATION WAS ITS OWN BLOCK and
+    # this was an iid bootstrap, not a block bootstrap.
+    #
+    # Measured impact is small — CI width changes ~1% against true 2-quarter or
+    # 1-year blocks — because the origins are already NON-OVERLAPPING, so most
+    # of the serial dependence blocking exists to capture is absent by design.
+    # Verdicts were not materially over-confident. But the guard was decorative,
+    # and a guard that cannot fail is not a guard.
+    months = int(str(block).rstrip('Mm') or 6)
+    d = pd.DatetimeIndex(r['origin'])
+    r = r.assign(_blk=((d.year * 12 + d.month - 1) // months).astype(str))
     blocks = r['_blk'].unique()
     nb = len(blocks)
     g = {b: r[r['_blk'] == b] for b in blocks}

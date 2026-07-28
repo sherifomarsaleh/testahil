@@ -1,0 +1,1788 @@
+{
+ "ABUK": {
+  "market": "EG",
+  "ticker": "ABUK",
+  "anchor_date": "2026-07-22",
+  "spot": 72.3,
+  "rows_in": 3549,
+  "repairs": [
+   "dropped 1 interior stale/no-trade rows",
+   "dropped 13 rows carrying a non-positive or non-finite OHLC value (2011-03-29..2011-07-20) \u2014 vendor fills, not tradeable prices"
+  ],
+  "rows_out": 3535,
+  "nu": 6.0,
+  "width_cal": 0.951,
+  "rf_live": 0.195,
+  "q_annual": 0.0,
+  "signal_active": false,
+  "horizons": {
+   "1M": {
+    "label": "1 month",
+    "h": 20,
+    "target_date": "2026-08-22",
+    "grade_date": "2026-08-23",
+    "basis": "projected",
+    "h_density": 20,
+    "h_seasonal": 21,
+    "anchor_vol_ann": 0.3824486147515556,
+    "sigma_h": 0.10246329944922053,
+    "drift_log_h": 0.014845515448622832,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 62.47851246278951,
+     "p25": 69.12810682589814,
+     "p50": 73.37754332062684,
+     "p75": 77.92187896431061,
+     "p95": 86.20869396644413
+    }
+   },
+   "3M": {
+    "label": "3 months",
+    "h": 61,
+    "target_date": "2026-10-22",
+    "grade_date": "2026-10-22",
+    "basis": "projected",
+    "h_density": 61,
+    "h_seasonal": 61,
+    "anchor_vol_ann": 0.40188840960215844,
+    "sigma_h": 0.1880401744576247,
+    "drift_log_h": 0.0445365463458685,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 56.17067268714747,
+     "p25": 67.80075609171749,
+     "p50": 75.69958564880073,
+     "p75": 84.35569325738682,
+     "p95": 101.75502955556686
+    }
+   }
+  }
+ },
+ "ADIB": {
+  "market": "EG",
+  "ticker": "ADIB",
+  "anchor_date": "2026-07-22",
+  "spot": 49.3,
+  "rows_in": 3741,
+  "repairs": [],
+  "rows_out": 3741,
+  "nu": 6.0,
+  "width_cal": 0.951,
+  "rf_live": 0.195,
+  "q_annual": 0.0,
+  "signal_active": false,
+  "horizons": {
+   "1M": {
+    "label": "1 month",
+    "h": 20,
+    "target_date": "2026-08-22",
+    "grade_date": "2026-08-23",
+    "basis": "projected",
+    "h_density": 20,
+    "h_seasonal": 21,
+    "anchor_vol_ann": 0.39199596000030495,
+    "sigma_h": 0.10502116593751513,
+    "drift_log_h": 0.014845515448622832,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 42.4321915402118,
+     "p25": 47.06693865457946,
+     "p50": 50.03469178970087,
+     "p75": 53.21314625158181,
+     "p95": 59.02096233369333
+    }
+   },
+   "3M": {
+    "label": "3 months",
+    "h": 61,
+    "target_date": "2026-10-22",
+    "grade_date": "2026-10-22",
+    "basis": "projected",
+    "h_density": 61,
+    "h_seasonal": 61,
+    "anchor_vol_ann": 0.4299652460142244,
+    "sigma_h": 0.20117708781715524,
+    "drift_log_h": 0.0445365463458685,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 37.51526898324984,
+     "p25": 45.882013102973104,
+     "p50": 51.62320522359764,
+     "p75": 57.962999169693084,
+     "p95": 70.84056591099638
+    }
+   }
+  }
+ },
+ "BTFH": {
+  "market": "EG",
+  "ticker": "BTFH",
+  "anchor_date": "2026-07-22",
+  "spot": 3.09,
+  "rows_in": 3457,
+  "repairs": [
+   "dropped 3 interior stale/no-trade rows",
+   "dropped 1 rows carrying a non-positive or non-finite OHLC value (2016-05-22) \u2014 vendor fills, not tradeable prices",
+   "back-adjusted 952 rows before 2016-03-24 by x3.5339 (raw 1-day log move +1.262 exceeds the EG artifact threshold 0.290 \u2014 not reachable by trading)",
+   "back-adjusted 953 rows before 2016-03-27 by x0.3054 (raw 1-day log move -1.186 exceeds the EG artifact threshold 0.290 \u2014 not reachable by trading)",
+   "back-adjusted 989 rows before 2016-05-23 by x3.3432 (raw 1-day log move +1.207 exceeds the EG artifact threshold 0.290 \u2014 not reachable by trading)",
+   "back-adjusted 991 rows before 2016-05-25 by x0.2971 (raw 1-day log move -1.214 exceeds the EG artifact threshold 0.290 \u2014 not reachable by trading)"
+  ],
+  "rows_out": 3453,
+  "nu": 6.0,
+  "width_cal": 0.951,
+  "rf_live": 0.195,
+  "q_annual": 0.0,
+  "signal_active": false,
+  "horizons": {
+   "1M": {
+    "label": "1 month",
+    "h": 20,
+    "target_date": "2026-08-22",
+    "grade_date": "2026-08-23",
+    "basis": "projected",
+    "h_density": 20,
+    "h_seasonal": 21,
+    "anchor_vol_ann": 0.3518581475126983,
+    "sigma_h": 0.09426768810670655,
+    "drift_log_h": 0.014845515448622832,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 2.7048193714691893,
+     "p25": 2.9685813489076627,
+     "p50": 3.1360656510631966,
+     "p75": 3.314317153932127,
+     "p95": 3.63726550865136
+    }
+   },
+   "3M": {
+    "label": "3 months",
+    "h": 61,
+    "target_date": "2026-10-22",
+    "grade_date": "2026-10-22",
+    "basis": "projected",
+    "h_density": 61,
+    "h_seasonal": 61,
+    "anchor_vol_ann": 0.3828481506419937,
+    "sigma_h": 0.1791313989591424,
+    "drift_log_h": 0.0445365463458685,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 2.43466967725901,
+     "p25": 2.9126820502932618,
+     "p50": 3.235077070889007,
+     "p75": 3.586557683310078,
+     "p95": 4.288060007733407
+    }
+   }
+  }
+ },
+ "CCAP": {
+  "market": "EG",
+  "ticker": "CCAP",
+  "anchor_date": "2026-07-22",
+  "spot": 5.51,
+  "rows_in": 3739,
+  "repairs": [
+   "dropped 1 rows carrying a non-positive or non-finite OHLC value (2013-05-07) \u2014 vendor fills, not tradeable prices"
+  ],
+  "rows_out": 3738,
+  "nu": 6.0,
+  "width_cal": 0.951,
+  "rf_live": 0.195,
+  "q_annual": 0.0,
+  "signal_active": false,
+  "horizons": {
+   "1M": {
+    "label": "1 month",
+    "h": 20,
+    "target_date": "2026-08-22",
+    "grade_date": "2026-08-23",
+    "basis": "projected",
+    "h_density": 20,
+    "h_seasonal": 21,
+    "anchor_vol_ann": 0.4872330696791952,
+    "sigma_h": 0.13053651129716703,
+    "drift_log_h": 0.014845515448622832,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 4.556222342885631,
+     "p25": 5.182786517169356,
+     "p50": 5.592040610590007,
+     "p75": 6.036934954575699,
+     "p95": 6.866472986857436
+    }
+   },
+   "3M": {
+    "label": "3 months",
+    "h": 61,
+    "target_date": "2026-10-22",
+    "grade_date": "2026-10-22",
+    "basis": "projected",
+    "h_density": 61,
+    "h_seasonal": 61,
+    "anchor_vol_ann": 0.4979112574577295,
+    "sigma_h": 0.2329684496486258,
+    "drift_log_h": 0.0445365463458685,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 3.9875678117894298,
+     "p25": 5.034536059886216,
+     "p50": 5.771029869273494,
+     "p75": 6.5994672889481105,
+     "p95": 8.325476700839204
+    }
+   }
+  }
+ },
+ "CLHO": {
+  "market": "EG",
+  "ticker": "CLHO",
+  "anchor_date": "2026-07-22",
+  "spot": 16.9,
+  "rows_in": 2478,
+  "repairs": [
+   "dropped 32 leading pre-listing placeholder rows (flat price, no volume) before 2016-06-02"
+  ],
+  "rows_out": 2446,
+  "nu": 6.0,
+  "width_cal": 0.951,
+  "rf_live": 0.195,
+  "q_annual": 0.0,
+  "signal_active": false,
+  "horizons": {
+   "1M": {
+    "label": "1 month",
+    "h": 20,
+    "target_date": "2026-08-22",
+    "grade_date": "2026-08-23",
+    "basis": "projected",
+    "h_density": 20,
+    "h_seasonal": 21,
+    "anchor_vol_ann": 0.5258720290775699,
+    "sigma_h": 0.14088842555318756,
+    "drift_log_h": 0.014845515448622832,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 13.749361742400282,
+     "p25": 15.800783020440797,
+     "p50": 17.151541314573727,
+     "p75": 18.628841587921762,
+     "p95": 21.406095690229552
+    }
+   },
+   "3M": {
+    "label": "3 months",
+    "h": 61,
+    "target_date": "2026-10-22",
+    "grade_date": "2026-10-22",
+    "basis": "projected",
+    "h_density": 61,
+    "h_seasonal": 61,
+    "anchor_vol_ann": 0.5316815447458496,
+    "sigma_h": 0.24876928033052687,
+    "drift_log_h": 0.0445365463458685,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 11.929051425653183,
+     "p25": 15.301166779021809,
+     "p50": 17.70271823086665,
+     "p75": 20.4289777289252,
+     "p95": 26.181246040578507
+    }
+   }
+  }
+ },
+ "COMI": {
+  "market": "EG",
+  "ticker": "COMI",
+  "anchor_date": "2026-07-22",
+  "spot": 140.0,
+  "rows_in": 3745,
+  "repairs": [],
+  "rows_out": 3745,
+  "nu": 6.0,
+  "width_cal": 0.951,
+  "rf_live": 0.195,
+  "q_annual": 0.0,
+  "signal_active": false,
+  "horizons": {
+   "1M": {
+    "label": "1 month",
+    "h": 20,
+    "target_date": "2026-08-22",
+    "grade_date": "2026-08-23",
+    "basis": "projected",
+    "h_density": 20,
+    "h_seasonal": 21,
+    "anchor_vol_ann": 0.25932619799847756,
+    "sigma_h": 0.06947709275351162,
+    "drift_log_h": 0.014845515448622832,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 127.41159570628021,
+     "p25": 136.45592734335,
+     "p50": 142.08889437639635,
+     "p75": 147.9977688760512,
+     "p95": 158.49541185643574
+    }
+   },
+   "3M": {
+    "label": "3 months",
+    "h": 61,
+    "target_date": "2026-10-22",
+    "grade_date": "2026-10-22",
+    "basis": "projected",
+    "h_density": 61,
+    "h_seasonal": 61,
+    "anchor_vol_ann": 0.2760379746257871,
+    "sigma_h": 0.12915582451592958,
+    "drift_log_h": 0.0445365463458685,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 119.36753527155217,
+     "p25": 135.83734033537644,
+     "p50": 146.51807682847675,
+     "p75": 157.82929626270564,
+     "p95": 179.52539507663326
+    }
+   }
+  }
+ },
+ "DSCW": {
+  "market": "EG",
+  "ticker": "DSCW",
+  "anchor_date": "2026-07-22",
+  "spot": 1.96,
+  "rows_in": 2048,
+  "repairs": [
+   "dropped 2 interior stale/no-trade rows",
+   "back-adjusted 25 rows before 2017-11-14 by x3.3060 (raw 1-day log move +1.196 exceeds the EG artifact threshold 0.290 \u2014 not reachable by trading)",
+   "back-adjusted 1101 rows before 2022-08-29 by x1.4427 (raw 1-day log move +0.367 exceeds the EG artifact threshold 0.290 \u2014 not reachable by trading)",
+   "back-adjusted 1102 rows before 2022-08-30 by x0.6767 (raw 1-day log move -0.391 exceeds the EG artifact threshold 0.290 \u2014 not reachable by trading)"
+  ],
+  "rows_out": 2046,
+  "nu": 6.0,
+  "width_cal": 0.951,
+  "rf_live": 0.195,
+  "q_annual": 0.0,
+  "signal_active": false,
+  "horizons": {
+   "1M": {
+    "label": "1 month",
+    "h": 20,
+    "target_date": "2026-08-22",
+    "grade_date": "2026-08-23",
+    "basis": "projected",
+    "h_density": 20,
+    "h_seasonal": 21,
+    "anchor_vol_ann": 0.37885823125447743,
+    "sigma_h": 0.10150138580851446,
+    "drift_log_h": 0.014845515448622832,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 1.696306183346401,
+     "p25": 1.8750630434486433,
+     "p50": 1.9892123750885848,
+     "p75": 2.111214755847647,
+     "p95": 2.3335226049495272
+    }
+   },
+   "3M": {
+    "label": "3 months",
+    "h": 61,
+    "target_date": "2026-10-22",
+    "grade_date": "2026-10-22",
+    "basis": "projected",
+    "h_density": 61,
+    "h_seasonal": 61,
+    "anchor_vol_ann": 0.41819464009263824,
+    "sigma_h": 0.19566972124951007,
+    "drift_log_h": 0.0445365463458685,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 1.504508135941071,
+     "p25": 1.8299337260552018,
+     "p50": 2.0522778484974724,
+     "p75": 2.2970205532508663,
+     "p95": 2.7919701832605743
+    }
+   }
+  }
+ },
+ "EFID": {
+  "market": "EG",
+  "ticker": "EFID",
+  "anchor_date": "2026-07-22",
+  "spot": 27.7,
+  "rows_in": 2535,
+  "repairs": [],
+  "rows_out": 2535,
+  "nu": 6.0,
+  "width_cal": 0.951,
+  "rf_live": 0.195,
+  "q_annual": 0.0,
+  "signal_active": false,
+  "horizons": {
+   "1M": {
+    "label": "1 month",
+    "h": 20,
+    "target_date": "2026-08-22",
+    "grade_date": "2026-08-23",
+    "basis": "projected",
+    "h_density": 20,
+    "h_seasonal": 21,
+    "anchor_vol_ann": 0.4039462278288398,
+    "sigma_h": 0.10822280878255194,
+    "drift_log_h": 0.014845515448622832,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 23.721687164050376,
+     "p25": 26.396025778919515,
+     "p50": 28.112753010066598,
+     "p75": 29.95480577968063,
+     "p95": 33.329233605672506
+    }
+   },
+   "3M": {
+    "label": "3 months",
+    "h": 61,
+    "target_date": "2026-10-22",
+    "grade_date": "2026-10-22",
+    "basis": "projected",
+    "h_density": 61,
+    "h_seasonal": 61,
+    "anchor_vol_ann": 0.4473906966008572,
+    "sigma_h": 0.2093303081888421,
+    "drift_log_h": 0.0445365463458685,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 20.80888860863819,
+     "p25": 25.658235675901665,
+     "p50": 29.007106174648822,
+     "p75": 32.72269492317541,
+     "p95": 40.31915779705218
+    }
+   }
+  }
+ },
+ "EFIH": {
+  "market": "EG",
+  "ticker": "EFIH",
+  "anchor_date": "2026-07-22",
+  "spot": 23.39,
+  "rows_in": 1160,
+  "repairs": [
+   "dropped 8 leading pre-listing placeholder rows (flat price, no volume) before 2021-10-20",
+   "back-adjusted 872 rows before 2025-05-26 by x0.6621 (raw 1-day log move -0.412 exceeds the EG artifact threshold 0.290 \u2014 not reachable by trading)"
+  ],
+  "rows_out": 1152,
+  "nu": 6.0,
+  "width_cal": 0.951,
+  "rf_live": 0.195,
+  "q_annual": 0.0,
+  "signal_active": false,
+  "horizons": {
+   "1M": {
+    "label": "1 month",
+    "h": 20,
+    "target_date": "2026-08-22",
+    "grade_date": "2026-08-23",
+    "basis": "projected",
+    "h_density": 20,
+    "h_seasonal": 21,
+    "anchor_vol_ann": 0.4000509749880656,
+    "sigma_h": 0.10717921640736723,
+    "drift_log_h": 0.014845515448622832,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 20.063537225318278,
+     "p25": 22.302477213783973,
+     "p50": 23.738542930951272,
+     "p75": 25.27850573322504,
+     "p95": 28.09720884203001
+    }
+   },
+   "3M": {
+    "label": "3 months",
+    "h": 61,
+    "target_date": "2026-10-22",
+    "grade_date": "2026-10-22",
+    "basis": "projected",
+    "h_density": 61,
+    "h_seasonal": 61,
+    "anchor_vol_ann": 0.428315470504068,
+    "sigma_h": 0.20040517186403575,
+    "drift_log_h": 0.0445365463458685,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 17.820537511287906,
+     "p25": 21.77808625985794,
+     "p50": 24.492084609588172,
+     "p75": 27.48771318764259,
+     "p95": 33.568772550986345
+    }
+   }
+  }
+ },
+ "EGAL": {
+  "market": "EG",
+  "ticker": "EGAL",
+  "anchor_date": "2026-07-22",
+  "spot": 301.12,
+  "rows_in": 3517,
+  "repairs": [],
+  "rows_out": 3517,
+  "nu": 6.0,
+  "width_cal": 0.951,
+  "rf_live": 0.195,
+  "q_annual": 0.0,
+  "signal_active": false,
+  "horizons": {
+   "1M": {
+    "label": "1 month",
+    "h": 20,
+    "target_date": "2026-08-22",
+    "grade_date": "2026-08-23",
+    "basis": "projected",
+    "h_density": 20,
+    "h_seasonal": 21,
+    "anchor_vol_ann": 0.35566931083182246,
+    "sigma_h": 0.09528875173030207,
+    "drift_log_h": 0.014845515448622832,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 263.16205825245436,
+     "p25": 289.1156963671464,
+     "p50": 305.6089327770852,
+     "p75": 323.17296039872167,
+     "p95": 355.0204284424109
+    }
+   },
+   "3M": {
+    "label": "3 months",
+    "h": 61,
+    "target_date": "2026-10-22",
+    "grade_date": "2026-10-22",
+    "basis": "projected",
+    "h_density": 61,
+    "h_seasonal": 61,
+    "anchor_vol_ann": 0.42026469334239824,
+    "sigma_h": 0.19663828158845287,
+    "drift_log_h": 0.0445365463458685,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 230.7882887338502,
+     "p25": 280.98008377264875,
+     "p50": 315.29918384938753,
+     "p75": 353.09678738109824,
+     "p95": 429.59493375891486
+    }
+   }
+  }
+ },
+ "EMFD": {
+  "market": "EG",
+  "ticker": "EMFD",
+  "anchor_date": "2026-07-22",
+  "spot": 11.75,
+  "rows_in": 2683,
+  "repairs": [],
+  "rows_out": 2683,
+  "nu": 6.0,
+  "width_cal": 0.951,
+  "rf_live": 0.195,
+  "q_annual": 0.0,
+  "signal_active": false,
+  "horizons": {
+   "1M": {
+    "label": "1 month",
+    "h": 20,
+    "target_date": "2026-08-22",
+    "grade_date": "2026-08-23",
+    "basis": "projected",
+    "h_density": 20,
+    "h_seasonal": 21,
+    "anchor_vol_ann": 0.33575485032707547,
+    "sigma_h": 0.08995339097499351,
+    "drift_log_h": 0.014845515448622832,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 10.355210988100474,
+     "p25": 11.31670995054696,
+     "p50": 11.925194699986282,
+     "p75": 12.571166960397598,
+     "p95": 13.73752329739452
+    }
+   },
+   "3M": {
+    "label": "3 months",
+    "h": 61,
+    "target_date": "2026-10-22",
+    "grade_date": "2026-10-22",
+    "basis": "projected",
+    "h_density": 61,
+    "h_seasonal": 61,
+    "anchor_vol_ann": 0.3680555530024057,
+    "sigma_h": 0.17221006812608064,
+    "drift_log_h": 0.0445365463458685,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 9.359799595033717,
+     "p25": 11.12017123045662,
+     "p50": 12.301029136391447,
+     "p75": 13.58325655413868,
+     "p95": 16.128324842256305
+    }
+   }
+  }
+ },
+ "ETEL": {
+  "market": "EG",
+  "ticker": "ETEL",
+  "anchor_date": "2026-07-22",
+  "spot": 103.28,
+  "rows_in": 3746,
+  "repairs": [],
+  "rows_out": 3746,
+  "nu": 6.0,
+  "width_cal": 0.951,
+  "rf_live": 0.195,
+  "q_annual": 0.0,
+  "signal_active": false,
+  "horizons": {
+   "1M": {
+    "label": "1 month",
+    "h": 20,
+    "target_date": "2026-08-22",
+    "grade_date": "2026-08-23",
+    "basis": "projected",
+    "h_density": 20,
+    "h_seasonal": 21,
+    "anchor_vol_ann": 0.4019431264906216,
+    "sigma_h": 0.10768615009344067,
+    "drift_log_h": 0.014845515448622832,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 88.52132473117624,
+     "p25": 98.44888894732169,
+     "p50": 104.8189861794271,
+     "p75": 111.6519737865793,
+     "p95": 124.16389807332278
+    }
+   },
+   "3M": {
+    "label": "3 months",
+    "h": 61,
+    "target_date": "2026-10-22",
+    "grade_date": "2026-10-22",
+    "basis": "projected",
+    "h_density": 61,
+    "h_seasonal": 61,
+    "anchor_vol_ann": 0.4040055297836457,
+    "sigma_h": 0.18903075701428196,
+    "drift_log_h": 0.0445365463458685,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 80.11395063153002,
+     "p25": 96.79737537045763,
+     "p50": 108.13708659948091,
+     "p75": 120.57111139284936,
+     "p95": 145.584043708247
+    }
+   }
+  }
+ },
+ "FWRY": {
+  "market": "EG",
+  "ticker": "FWRY",
+  "anchor_date": "2026-07-22",
+  "spot": 19.3,
+  "rows_in": 1688,
+  "repairs": [
+   "dropped 1 leading pre-listing placeholder rows (flat price, no volume) before 2019-08-08"
+  ],
+  "rows_out": 1687,
+  "nu": 6.0,
+  "width_cal": 0.951,
+  "rf_live": 0.195,
+  "q_annual": 0.0,
+  "signal_active": false,
+  "horizons": {
+   "1M": {
+    "label": "1 month",
+    "h": 20,
+    "target_date": "2026-08-22",
+    "grade_date": "2026-08-23",
+    "basis": "projected",
+    "h_density": 20,
+    "h_seasonal": 21,
+    "anchor_vol_ann": 0.34316912248060877,
+    "sigma_h": 0.09193977753403232,
+    "drift_log_h": 0.014845515448622832,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 16.956029523222366,
+     "p25": 18.566794108137408,
+     "p50": 19.587746979374927,
+     "p75": 20.672857535500338,
+     "p95": 22.635195872156082
+    }
+   },
+   "3M": {
+    "label": "3 months",
+    "h": 61,
+    "target_date": "2026-10-22",
+    "grade_date": "2026-10-22",
+    "basis": "projected",
+    "h_density": 61,
+    "h_seasonal": 61,
+    "anchor_vol_ann": 0.39275186908902315,
+    "sigma_h": 0.18376526472900168,
+    "drift_log_h": 0.0445365463458685,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 15.09595728795925,
+     "p25": 18.143774282075185,
+     "p50": 20.206847919638093,
+     "p75": 22.46210718641901,
+     "p95": 26.979909496982405
+    }
+   }
+  }
+ },
+ "GBCO": {
+  "market": "EG",
+  "ticker": "GBCO",
+  "anchor_date": "2026-07-22",
+  "spot": 31.31,
+  "rows_in": 3617,
+  "repairs": [],
+  "rows_out": 3617,
+  "nu": 6.0,
+  "width_cal": 0.951,
+  "rf_live": 0.195,
+  "q_annual": 0.0,
+  "signal_active": false,
+  "horizons": {
+   "1M": {
+    "label": "1 month",
+    "h": 20,
+    "target_date": "2026-08-22",
+    "grade_date": "2026-08-23",
+    "basis": "projected",
+    "h_density": 20,
+    "h_seasonal": 21,
+    "anchor_vol_ann": 0.5186476733575874,
+    "sigma_h": 0.13895292024629785,
+    "drift_log_h": 0.014845515448622832,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 25.5504435116423,
+     "p25": 29.30655712777683,
+     "p50": 31.77605225206397,
+     "p75": 34.47384188716072,
+     "p95": 39.53777233282365
+    }
+   },
+   "3M": {
+    "label": "3 months",
+    "h": 61,
+    "target_date": "2026-10-22",
+    "grade_date": "2026-10-22",
+    "basis": "projected",
+    "h_density": 61,
+    "h_seasonal": 61,
+    "anchor_vol_ann": 0.5326694000863188,
+    "sigma_h": 0.24923148945654924,
+    "drift_log_h": 0.0445365463458685,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 22.084382454445628,
+     "p25": 28.340321994124448,
+     "p50": 32.79727997418519,
+     "p75": 37.858210726509945,
+     "p95": 48.54046666095281
+    }
+   }
+  }
+ },
+ "HELI": {
+  "market": "EG",
+  "ticker": "HELI",
+  "anchor_date": "2026-07-22",
+  "spot": 8.27,
+  "rows_in": 3743,
+  "repairs": [
+   "back-adjusted 228 rows before 2012-02-07 by x36.6061 (raw 1-day log move +3.600 exceeds the EG artifact threshold 0.290 \u2014 not reachable by trading)",
+   "back-adjusted 229 rows before 2012-02-08 by x0.0281 (raw 1-day log move -3.570 exceeds the EG artifact threshold 0.290 \u2014 not reachable by trading)"
+  ],
+  "rows_out": 3743,
+  "nu": 6.0,
+  "width_cal": 0.951,
+  "rf_live": 0.195,
+  "q_annual": 0.0,
+  "signal_active": false,
+  "horizons": {
+   "1M": {
+    "label": "1 month",
+    "h": 20,
+    "target_date": "2026-08-22",
+    "grade_date": "2026-08-23",
+    "basis": "projected",
+    "h_density": 20,
+    "h_seasonal": 21,
+    "anchor_vol_ann": 0.39053316182787595,
+    "sigma_h": 0.10462926197605685,
+    "drift_log_h": 0.014845515448622832,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 7.122315958899558,
+     "p25": 7.8972106636949135,
+     "p50": 8.393245089909382,
+     "p75": 8.924374778865745,
+     "p95": 9.894577881149825
+    }
+   },
+   "3M": {
+    "label": "3 months",
+    "h": 61,
+    "target_date": "2026-10-22",
+    "grade_date": "2026-10-22",
+    "basis": "projected",
+    "h_density": 61,
+    "h_seasonal": 61,
+    "anchor_vol_ann": 0.41311289268067697,
+    "sigma_h": 0.19329201478407423,
+    "drift_log_h": 0.0445365463458685,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 6.371985376822625,
+     "p25": 7.731828394371202,
+     "p50": 8.65920141760903,
+     "p75": 9.67858796294578,
+     "p95": 11.736216036964665
+    }
+   }
+  }
+ },
+ "HRHO": {
+  "market": "EG",
+  "ticker": "HRHO",
+  "anchor_date": "2026-07-22",
+  "spot": 26.95,
+  "rows_in": 3745,
+  "repairs": [
+   "dropped 1 rows carrying a non-positive or non-finite OHLC value (2013-05-07) \u2014 vendor fills, not tradeable prices"
+  ],
+  "rows_out": 3744,
+  "nu": 6.0,
+  "width_cal": 0.951,
+  "rf_live": 0.195,
+  "q_annual": 0.0,
+  "signal_active": false,
+  "horizons": {
+   "1M": {
+    "label": "1 month",
+    "h": 20,
+    "target_date": "2026-08-22",
+    "grade_date": "2026-08-23",
+    "basis": "projected",
+    "h_density": 20,
+    "h_seasonal": 21,
+    "anchor_vol_ann": 0.30969484359549715,
+    "sigma_h": 0.08297155297011276,
+    "drift_log_h": 0.014845515448622832,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 24.012631881482026,
+     "p25": 26.06201681385446,
+     "p50": 27.351925911538597,
+     "p75": 28.715728058759858,
+     "p95": 31.164625128584365
+    }
+   },
+   "3M": {
+    "label": "3 months",
+    "h": 61,
+    "target_date": "2026-10-22",
+    "grade_date": "2026-10-22",
+    "basis": "projected",
+    "h_density": 61,
+    "h_seasonal": 61,
+    "anchor_vol_ann": 0.3213731661181984,
+    "sigma_h": 0.15036777567854662,
+    "drift_log_h": 0.0445365463458685,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 22.22124419574963,
+     "p25": 25.829757460557406,
+     "p50": 28.209222668081907,
+     "p75": 30.7603832055253,
+     "p95": 35.73691455086614
+    }
+   }
+  }
+ },
+ "ISPH": {
+  "market": "EG",
+  "ticker": "ISPH",
+  "anchor_date": "2026-07-22",
+  "spot": 11.73,
+  "rows_in": 2089,
+  "repairs": [],
+  "rows_out": 2089,
+  "nu": 6.0,
+  "width_cal": 0.951,
+  "rf_live": 0.195,
+  "q_annual": 0.0,
+  "signal_active": false,
+  "horizons": {
+   "1M": {
+    "label": "1 month",
+    "h": 20,
+    "target_date": "2026-08-22",
+    "grade_date": "2026-08-23",
+    "basis": "projected",
+    "h_density": 20,
+    "h_seasonal": 21,
+    "anchor_vol_ann": 0.41224260593492895,
+    "sigma_h": 0.11044552378644962,
+    "drift_log_h": 0.014845515448622832,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 10.01033170447038,
+     "p25": 11.16334307951336,
+     "p50": 11.904773391235997,
+     "p75": 12.701364062180097,
+     "p95": 14.163197659693813
+    }
+   },
+   "3M": {
+    "label": "3 months",
+    "h": 61,
+    "target_date": "2026-10-22",
+    "grade_date": "2026-10-22",
+    "basis": "projected",
+    "h_density": 61,
+    "h_seasonal": 61,
+    "anchor_vol_ann": 0.4347686577407927,
+    "sigma_h": 0.20342456337871684,
+    "drift_log_h": 0.0445365463458685,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 8.894421101130895,
+     "p25": 10.902569693104605,
+     "p50": 12.282969914020065,
+     "p75": 13.809287449118298,
+     "p95": 16.915149469716077
+    }
+   }
+  }
+ },
+ "JUFO": {
+  "market": "EG",
+  "ticker": "JUFO",
+  "anchor_date": "2026-07-22",
+  "spot": 28.9,
+  "rows_in": 3686,
+  "repairs": [],
+  "rows_out": 3686,
+  "nu": 6.0,
+  "width_cal": 0.951,
+  "rf_live": 0.195,
+  "q_annual": 0.0,
+  "signal_active": false,
+  "horizons": {
+   "1M": {
+    "label": "1 month",
+    "h": 20,
+    "target_date": "2026-08-22",
+    "grade_date": "2026-08-23",
+    "basis": "projected",
+    "h_density": 20,
+    "h_seasonal": 21,
+    "anchor_vol_ann": 0.4107576484509439,
+    "sigma_h": 0.1100476830374388,
+    "drift_log_h": 0.014845515448622832,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 24.67854377845712,
+     "p25": 27.510265794069362,
+     "p50": 29.330606997217075,
+     "p75": 31.285921895104092,
+     "p95": 34.873014272007794
+    }
+   },
+   "3M": {
+    "label": "3 months",
+    "h": 61,
+    "target_date": "2026-10-22",
+    "grade_date": "2026-10-22",
+    "basis": "projected",
+    "h_density": 61,
+    "h_seasonal": 61,
+    "anchor_vol_ann": 0.43425346242624085,
+    "sigma_h": 0.20318350786551112,
+    "drift_log_h": 0.0445365463458685,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 21.92213509734792,
+     "p25": 26.865149901797036,
+     "p50": 30.262334865079346,
+     "p75": 34.01809867501578,
+     "p95": 41.659130738540526
+    }
+   }
+  }
+ },
+ "KABO": {
+  "market": "EG",
+  "ticker": "KABO",
+  "anchor_date": "2026-07-22",
+  "spot": 8.8,
+  "rows_in": 3728,
+  "repairs": [
+   "dropped 1 rows carrying a non-positive or non-finite OHLC value (2013-05-07) \u2014 vendor fills, not tradeable prices"
+  ],
+  "rows_out": 3727,
+  "nu": 6.0,
+  "width_cal": 0.951,
+  "rf_live": 0.195,
+  "q_annual": 0.0,
+  "signal_active": false,
+  "horizons": {
+   "1M": {
+    "label": "1 month",
+    "h": 20,
+    "target_date": "2026-08-22",
+    "grade_date": "2026-08-23",
+    "basis": "projected",
+    "h_density": 20,
+    "h_seasonal": 21,
+    "anchor_vol_ann": 0.48351746682488717,
+    "sigma_h": 0.12954104965026664,
+    "drift_log_h": 0.014845515448622832,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 7.2881053943284355,
+     "p25": 8.282211574281385,
+     "p50": 8.9310312328257,
+     "p75": 9.635943727605733,
+     "p95": 10.949267193206143
+    }
+   },
+   "3M": {
+    "label": "3 months",
+    "h": 61,
+    "target_date": "2026-10-22",
+    "grade_date": "2026-10-22",
+    "basis": "projected",
+    "h_density": 61,
+    "h_seasonal": 61,
+    "anchor_vol_ann": 0.51482182342341,
+    "sigma_h": 0.24088075987800406,
+    "drift_log_h": 0.0445365463458685,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 6.2894455022394045,
+     "p25": 8.003916221515487,
+     "p50": 9.217437440509132,
+     "p75": 10.588740165487405,
+     "p95": 13.463916087133452
+    }
+   }
+  }
+ },
+ "LCSW": {
+  "market": "EG",
+  "ticker": "LCSW",
+  "anchor_date": "2026-07-21",
+  "spot": 33.83,
+  "rows_in": 3400,
+  "repairs": [
+   "dropped 1 interior stale/no-trade rows",
+   "dropped 1 rows carrying a non-positive or non-finite OHLC value (2013-05-07) \u2014 vendor fills, not tradeable prices"
+  ],
+  "rows_out": 3398,
+  "nu": 6.0,
+  "width_cal": 0.951,
+  "rf_live": 0.195,
+  "q_annual": 0.0,
+  "signal_active": false,
+  "horizons": {
+   "1M": {
+    "label": "1 month",
+    "h": 21,
+    "target_date": "2026-08-21",
+    "grade_date": "2026-08-23",
+    "basis": "projected",
+    "h_density": 21,
+    "h_seasonal": 21,
+    "anchor_vol_ann": 0.5833510320361344,
+    "sigma_h": 0.16014738974229042,
+    "drift_log_h": 0.014845515448622832,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 26.691825991603785,
+     "p25": 31.260311820217808,
+     "p50": 34.33342411952645,
+     "p75": 37.739300324926795,
+     "p95": 44.210898787530326
+    }
+   },
+   "3M": {
+    "label": "3 months",
+    "h": 61,
+    "target_date": "2026-10-21",
+    "grade_date": "2026-10-21",
+    "basis": "projected",
+    "h_density": 61,
+    "h_seasonal": 61,
+    "anchor_vol_ann": 0.5827064272949926,
+    "sigma_h": 0.2726433896279778,
+    "drift_log_h": 0.0445365463458685,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 22.995704952736478,
+     "p25": 30.209350668900548,
+     "p50": 35.44321484472465,
+     "p75": 41.4676754310428,
+     "p95": 54.42436965858043
+    }
+   }
+  }
+ },
+ "OCDI": {
+  "market": "EG",
+  "ticker": "OCDI",
+  "anchor_date": "2026-07-27",
+  "spot": 27.48,
+  "rows_in": 3746,
+  "repairs": [
+   "dropped 1 interior stale/no-trade rows",
+   "dropped 1 rows carrying a non-positive or non-finite OHLC value (2013-05-07) \u2014 vendor fills, not tradeable prices",
+   "back-adjusted 3513 rows before 2025-08-14 by x0.2666 (raw 1-day log move -1.322 exceeds the EG artifact threshold 0.290 \u2014 not reachable by trading)"
+  ],
+  "rows_out": 3744,
+  "nu": 6.0,
+  "width_cal": 0.951,
+  "rf_live": 0.195,
+  "q_annual": 0.0,
+  "signal_active": false,
+  "horizons": {
+   "1M": {
+    "label": "1 month",
+    "h": 21,
+    "target_date": "2026-08-27",
+    "grade_date": "2026-08-27",
+    "basis": "projected",
+    "h_density": 21,
+    "h_seasonal": 21,
+    "anchor_vol_ann": 0.46685133198550927,
+    "sigma_h": 0.128164720912947,
+    "drift_log_h": 0.014845515448622832,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 22.80002143984391,
+     "p25": 25.873032102880785,
+     "p50": 27.889342806324482,
+     "p75": 30.082343598042637,
+     "p95": 34.14445285582227
+    }
+   },
+   "3M": {
+    "label": "3 months",
+    "h": 62,
+    "target_date": "2026-10-27",
+    "grade_date": "2026-10-27",
+    "basis": "projected",
+    "h_density": 61,
+    "h_seasonal": 62,
+    "anchor_vol_ann": 0.4796160604641928,
+    "sigma_h": 0.2262402170595025,
+    "drift_log_h": 0.0445365463458685,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 20.1144031480825,
+     "p25": 25.204837595150526,
+     "p50": 28.780242293456055,
+     "p75": 32.819391810943344,
+     "p95": 41.154031759656135
+    }
+   }
+  }
+ },
+ "OIH": {
+  "market": "EG",
+  "ticker": "OIH",
+  "anchor_date": "2026-07-22",
+  "spot": 1.47,
+  "rows_in": 3518,
+  "repairs": [
+   "dropped 1 rows carrying a non-positive or non-finite OHLC value (2013-05-07) \u2014 vendor fills, not tradeable prices"
+  ],
+  "rows_out": 3517,
+  "nu": 6.0,
+  "width_cal": 0.951,
+  "rf_live": 0.195,
+  "q_annual": 0.0,
+  "signal_active": false,
+  "horizons": {
+   "1M": {
+    "label": "1 month",
+    "h": 20,
+    "target_date": "2026-08-22",
+    "grade_date": "2026-08-23",
+    "basis": "projected",
+    "h_density": 20,
+    "h_seasonal": 21,
+    "anchor_vol_ann": 0.3618579757383136,
+    "sigma_h": 0.09694678107345084,
+    "drift_log_h": 0.014845515448622832,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 1.2813584477156141,
+     "p25": 1.4100346881398722,
+     "p50": 1.4919127102477086,
+     "p75": 1.579191026867572,
+     "p95": 1.7376537257616742
+    }
+   },
+   "3M": {
+    "label": "3 months",
+    "h": 61,
+    "target_date": "2026-10-22",
+    "grade_date": "2026-10-22",
+    "basis": "projected",
+    "h_density": 61,
+    "h_seasonal": 61,
+    "anchor_vol_ann": 0.39294931343719913,
+    "sigma_h": 0.18385764726303253,
+    "drift_log_h": 0.0445365463458685,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 1.1496279712432291,
+     "p25": 1.3818612822910032,
+     "p50": 1.539071867764609,
+     "p75": 1.710936625814324,
+     "p95": 2.0552465506846267
+    }
+   }
+  }
+ },
+ "ORAS": {
+  "market": "EG",
+  "ticker": "ORAS",
+  "anchor_date": "2026-07-22",
+  "spot": 713.5,
+  "rows_in": 2752,
+  "repairs": [],
+  "rows_out": 2752,
+  "nu": 6.0,
+  "width_cal": 0.951,
+  "rf_live": 0.195,
+  "q_annual": 0.0,
+  "signal_active": false,
+  "horizons": {
+   "1M": {
+    "label": "1 month",
+    "h": 20,
+    "target_date": "2026-08-22",
+    "grade_date": "2026-08-23",
+    "basis": "projected",
+    "h_density": 20,
+    "h_seasonal": 21,
+    "anchor_vol_ann": 0.34622777275538863,
+    "sigma_h": 0.09275923245405811,
+    "drift_log_h": 0.014845515448622832,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 626.0401177112909,
+     "p25": 686.0664876874918,
+     "p50": 724.1373932938959,
+     "p75": 764.6200932715445,
+     "p95": 837.8774016749463
+    }
+   },
+   "3M": {
+    "label": "3 months",
+    "h": 61,
+    "target_date": "2026-10-22",
+    "grade_date": "2026-10-22",
+    "basis": "projected",
+    "h_density": 61,
+    "h_seasonal": 61,
+    "anchor_vol_ann": 0.38030648399081207,
+    "sigma_h": 0.17794217471409776,
+    "drift_log_h": 0.0445365463458685,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 563.237024031786,
+     "p25": 673.0190761638725,
+     "p50": 746.9925170575862,
+     "p75": 827.5839608541046,
+     "p95": 988.280072072366
+    }
+   }
+  }
+ },
+ "ORHD": {
+  "market": "EG",
+  "ticker": "ORHD",
+  "anchor_date": "2026-07-27",
+  "spot": 40.16,
+  "rows_in": 2759,
+  "repairs": [],
+  "rows_out": 2759,
+  "nu": 6.0,
+  "width_cal": 0.951,
+  "rf_live": 0.195,
+  "q_annual": 0.0,
+  "signal_active": false,
+  "horizons": {
+   "1M": {
+    "label": "1 month",
+    "h": 21,
+    "target_date": "2026-08-27",
+    "grade_date": "2026-08-27",
+    "basis": "projected",
+    "h_density": 21,
+    "h_seasonal": 21,
+    "anchor_vol_ann": 0.3648339831900708,
+    "sigma_h": 0.10015789274124977,
+    "drift_log_h": 0.014845515448622832,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 34.820837374216815,
+     "p25": 38.437203209854,
+     "p50": 40.75875298742876,
+     "p75": 43.24249188537246,
+     "p95": 47.74178254604925
+    }
+   },
+   "3M": {
+    "label": "3 months",
+    "h": 62,
+    "target_date": "2026-10-27",
+    "grade_date": "2026-10-27",
+    "basis": "projected",
+    "h_density": 61,
+    "h_seasonal": 62,
+    "anchor_vol_ann": 0.403842623371962,
+    "sigma_h": 0.19049704607707302,
+    "drift_log_h": 0.0445365463458685,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 31.099167725733658,
+     "p25": 37.605069711243395,
+     "p50": 42.04895270970974,
+     "p75": 46.965642397017476,
+     "p95": 56.824392565523105
+    }
+   }
+  }
+ },
+ "ORWE": {
+  "market": "EG",
+  "ticker": "ORWE",
+  "anchor_date": "2026-07-22",
+  "spot": 23.12,
+  "rows_in": 3716,
+  "repairs": [
+   "dropped 1 rows carrying a non-positive or non-finite OHLC value (2011-06-07) \u2014 vendor fills, not tradeable prices"
+  ],
+  "rows_out": 3715,
+  "nu": 6.0,
+  "width_cal": 0.951,
+  "rf_live": 0.195,
+  "q_annual": 0.0,
+  "signal_active": false,
+  "horizons": {
+   "1M": {
+    "label": "1 month",
+    "h": 20,
+    "target_date": "2026-08-22",
+    "grade_date": "2026-08-23",
+    "basis": "projected",
+    "h_density": 20,
+    "h_seasonal": 21,
+    "anchor_vol_ann": 0.2627212207919756,
+    "sigma_h": 0.07038666654645918,
+    "drift_log_h": 0.014845515448622832,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 21.0110928417857,
+     "p25": 22.522780707642347,
+     "p50": 23.464955215408253,
+     "p75": 24.453803676774346,
+     "p95": 26.211844138134428
+    }
+   },
+   "3M": {
+    "label": "3 months",
+    "h": 61,
+    "target_date": "2026-10-22",
+    "grade_date": "2026-10-22",
+    "basis": "projected",
+    "h_density": 61,
+    "h_seasonal": 61,
+    "anchor_vol_ann": 0.29729318721129816,
+    "sigma_h": 0.13910095800875652,
+    "drift_log_h": 0.0445365463458685,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 19.405506225926654,
+     "p25": 22.30386947494495,
+     "p50": 24.198220860564867,
+     "p75": 26.216016647546603,
+     "p95": 30.1170396405861
+    }
+   }
+  }
+ },
+ "PHDC": {
+  "market": "EG",
+  "ticker": "PHDC",
+  "anchor_date": "2026-07-22",
+  "spot": 15.01,
+  "rows_in": 3745,
+  "repairs": [],
+  "rows_out": 3745,
+  "nu": 6.0,
+  "width_cal": 0.951,
+  "rf_live": 0.195,
+  "q_annual": 0.0,
+  "signal_active": false,
+  "horizons": {
+   "1M": {
+    "label": "1 month",
+    "h": 20,
+    "target_date": "2026-08-22",
+    "grade_date": "2026-08-23",
+    "basis": "projected",
+    "h_density": 20,
+    "h_seasonal": 21,
+    "anchor_vol_ann": 0.39764286519564374,
+    "sigma_h": 0.10653405032426398,
+    "drift_log_h": 0.014845515448622832,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 12.888364742372483,
+     "p25": 14.317488750262038,
+     "p50": 15.233674450499917,
+     "p75": 16.215774396959944,
+     "p95": 18.012463281239743
+    }
+   },
+   "3M": {
+    "label": "3 months",
+    "h": 61,
+    "target_date": "2026-10-22",
+    "grade_date": "2026-10-22",
+    "basis": "projected",
+    "h_density": 61,
+    "h_seasonal": 61,
+    "anchor_vol_ann": 0.41884419372386916,
+    "sigma_h": 0.1959736418782666,
+    "drift_log_h": 0.0445365463458685,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 11.516240136884333,
+     "p25": 14.011467415004063,
+     "p50": 15.716714697715618,
+     "p75": 17.59407710486004,
+     "p95": 21.391636775229664
+    }
+   }
+  }
+ },
+ "PRDC": {
+  "market": "EG",
+  "ticker": "PRDC",
+  "anchor_date": "2026-07-22",
+  "spot": 9.8,
+  "rows_in": 1159,
+  "repairs": [],
+  "rows_out": 1159,
+  "nu": 6.0,
+  "width_cal": 0.951,
+  "rf_live": 0.195,
+  "q_annual": 0.0,
+  "signal_active": false,
+  "horizons": {
+   "1M": {
+    "label": "1 month",
+    "h": 20,
+    "target_date": "2026-08-22",
+    "grade_date": "2026-08-23",
+    "basis": "projected",
+    "h_density": 20,
+    "h_seasonal": 21,
+    "anchor_vol_ann": 0.5651456364242216,
+    "sigma_h": 0.15141037081536401,
+    "drift_log_h": 0.014845515448622832,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 7.842391390917704,
+     "p25": 9.106576346446833,
+     "p50": 9.945811385901957,
+     "p75": 10.869329033708958,
+     "p95": 12.620064583582206
+    }
+   },
+   "3M": {
+    "label": "3 months",
+    "h": 61,
+    "target_date": "2026-10-22",
+    "grade_date": "2026-10-22",
+    "basis": "projected",
+    "h_density": 61,
+    "h_seasonal": 61,
+    "anchor_vol_ann": 0.5108328697048962,
+    "sigma_h": 0.2390143623029278,
+    "drift_log_h": 0.0445365463458685,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 7.02483072020669,
+     "p25": 8.923081844691136,
+     "p50": 10.264729652566032,
+     "p75": 11.779175737020271,
+     "p95": 14.949740580792383
+    }
+   }
+  }
+ },
+ "RAYA": {
+  "market": "EG",
+  "ticker": "RAYA",
+  "anchor_date": "2026-07-22",
+  "spot": 7.76,
+  "rows_in": 3680,
+  "repairs": [],
+  "rows_out": 3680,
+  "nu": 6.0,
+  "width_cal": 0.951,
+  "rf_live": 0.195,
+  "q_annual": 0.0,
+  "signal_active": false,
+  "horizons": {
+   "1M": {
+    "label": "1 month",
+    "h": 20,
+    "target_date": "2026-08-22",
+    "grade_date": "2026-08-23",
+    "basis": "projected",
+    "h_density": 20,
+    "h_seasonal": 21,
+    "anchor_vol_ann": 0.4468015889630752,
+    "sigma_h": 0.11970435566631873,
+    "drift_log_h": 0.014845515448622832,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 6.52679415634104,
+     "p25": 7.345388941724181,
+     "p50": 7.875584816227815,
+     "p75": 8.448316291064273,
+     "p95": 9.507082708810428
+    }
+   },
+   "3M": {
+    "label": "3 months",
+    "h": 61,
+    "target_date": "2026-10-22",
+    "grade_date": "2026-10-22",
+    "basis": "projected",
+    "h_density": 61,
+    "h_seasonal": 61,
+    "anchor_vol_ann": 0.4707286589452728,
+    "sigma_h": 0.2202499426094358,
+    "drift_log_h": 0.0445365463458685,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 5.729825752144541,
+     "p25": 7.142745012679386,
+     "p50": 8.126844826695692,
+     "p75": 9.225654049820367,
+     "p95": 11.491822831112435
+    }
+   }
+  }
+ },
+ "RMDA": {
+  "market": "EG",
+  "ticker": "RMDA",
+  "anchor_date": "2026-07-22",
+  "spot": 4.98,
+  "rows_in": 1612,
+  "repairs": [
+   "dropped 10 leading pre-listing placeholder rows (flat price, no volume) before 2019-12-11"
+  ],
+  "rows_out": 1602,
+  "nu": 6.0,
+  "width_cal": 0.951,
+  "rf_live": 0.195,
+  "q_annual": 0.0,
+  "signal_active": false,
+  "horizons": {
+   "1M": {
+    "label": "1 month",
+    "h": 20,
+    "target_date": "2026-08-22",
+    "grade_date": "2026-08-23",
+    "basis": "projected",
+    "h_density": 20,
+    "h_seasonal": 21,
+    "anchor_vol_ann": 0.3364328601505758,
+    "sigma_h": 0.09013503923019757,
+    "drift_log_h": 0.014845515448622832,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 4.387595561831819,
+     "p25": 4.795851095450507,
+     "p50": 5.05425226912928,
+     "p75": 5.328602135530407,
+     "p95": 5.8240346982570514
+    }
+   },
+   "3M": {
+    "label": "3 months",
+    "h": 61,
+    "target_date": "2026-10-22",
+    "grade_date": "2026-10-22",
+    "basis": "projected",
+    "h_density": 61,
+    "h_seasonal": 61,
+    "anchor_vol_ann": 0.39548252777463994,
+    "sigma_h": 0.18504291674224563,
+    "drift_log_h": 0.0445365463458685,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 3.887374594982187,
+     "p25": 4.678198590065722,
+     "p50": 5.214044978783951,
+     "p75": 5.800242917364326,
+     "p95": 6.97572795775511
+    }
+   }
+  }
+ },
+ "TMGH": {
+  "market": "EG",
+  "ticker": "TMGH",
+  "anchor_date": "2026-07-22",
+  "spot": 100.5,
+  "rows_in": 3746,
+  "repairs": [
+   "dropped 1 rows carrying a non-positive or non-finite OHLC value (2013-05-07) \u2014 vendor fills, not tradeable prices"
+  ],
+  "rows_out": 3745,
+  "nu": 6.0,
+  "width_cal": 0.951,
+  "rf_live": 0.195,
+  "q_annual": 0.0,
+  "signal_active": false,
+  "horizons": {
+   "1M": {
+    "label": "1 month",
+    "h": 20,
+    "target_date": "2026-08-22",
+    "grade_date": "2026-08-23",
+    "basis": "projected",
+    "h_density": 20,
+    "h_seasonal": 21,
+    "anchor_vol_ann": 0.3441376892739382,
+    "sigma_h": 0.09219927003983196,
+    "drift_log_h": 0.014845515448622832,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 88.2583911155898,
+     "p25": 96.66739224391749,
+     "p50": 101.99835822032897,
+     "p75": 107.66518660580562,
+     "p95": 117.91531081217438
+    }
+   },
+   "3M": {
+    "label": "3 months",
+    "h": 61,
+    "target_date": "2026-10-22",
+    "grade_date": "2026-10-22",
+    "basis": "projected",
+    "h_density": 61,
+    "h_seasonal": 61,
+    "anchor_vol_ann": 0.3578885397146489,
+    "sigma_h": 0.16745300893585585,
+    "drift_log_h": 0.0445365463458685,
+    "signal_alpha": 0.0,
+    "signal_z": 0.0,
+    "pct": {
+     "p5": 80.65985883554075,
+     "p25": 95.37507603151076,
+     "p50": 105.20929944979703,
+     "p75": 115.85827172837898,
+     "p95": 136.91533375324443
+    }
+   }
+  }
+ }
+}

@@ -111,6 +111,50 @@ def clean_ohlc(df, ticker="", verbose=True, market=None):
                    f"— vendor fills, not tradeable prices")
         df = df[~bad].reset_index(drop=True)
 
+    # --- 1c. drop ISOLATED one-row price spikes (vendor phantom split prints) ---
+    # A corporate action moves the price to a NEW LEVEL and it STAYS there. A vendor
+    # phantom print spikes for exactly one row and reverts on the next. That single
+    # distinction separates them, and it needs no exchange calendar to apply.
+    #
+    # Why this exists (28-Jul-2026, KR 15-year Kakao/Samsung ingest): investing.com's
+    # Korean exports carry rows whose "Change %" is literally the split ratio
+    # ("4,900.00%" = 50x-1; "400.00%" = 5x-1), with O=H=L=C and volume "0.00K".."0.09K".
+    # They survive step 1 ONLY because that volume string is non-NaN, so `novol` is
+    # False. Step 2 then back-adjusts the whole history INTO the spike, and on the next
+    # iteration back-adjusts it OUT again — an oscillation that cannot converge. It
+    # burns all 6 iterations and leaves the series on an arbitrary scale, silently:
+    # the fresh Samsung export disagreed with the correctly-cleaned library on 1,195 of
+    # 3,709 shared sessions, max abs diff 1,574,782 KRW.
+    #
+    # This was patched BY HAND twice before it was understood as a class — the 10-Jul
+    # KAKAO 5:1 finding and the 27-Jul SAMSUNG 50:1 finding, both fixed by editing the
+    # raw CSV. Hand-editing does not scale and is not reproducible: the 15-year Kakao
+    # file carries 230 such rows against Samsung's 41.
+    #
+    # DROPPED, not rescaled — consistent with the 27-Jul decision. Rescaling a print
+    # from a session the market never held would synthesise a trade that never happened.
+    p = df['Price'].values.astype(float)
+    if len(p) >= 3:
+        lr = np.diff(np.log(p))
+        # row i+1 is a spike if the move INTO it and OUT of it both exceed the
+        # artifact threshold and have OPPOSITE signs (it goes up then straight back
+        # down, or vice versa). A real split has one move and no reversal.
+        thr0 = jump_threshold(market)
+        into, outof = lr[:-1], lr[1:]
+        spike = (np.abs(into) > thr0) & (np.abs(outof) > thr0) & (np.sign(into) != np.sign(outof))
+        # ...and it must look like a non-trade: no intraday range at all.
+        flat_row = (df['High'].values == df['Low'].values)[1:-1]
+        drop = np.zeros(len(df), dtype=bool)
+        drop[1:-1] = spike & flat_row
+        if drop.any():
+            dts = df['Date'][drop]
+            log.append(f"dropped {int(drop.sum())} isolated one-row price spikes "
+                       f"({dts.iloc[0].date()}"
+                       f"{'..' + str(dts.iloc[-1].date()) if drop.sum() > 1 else ''}) "
+                       f"— flat O=H=L=C rows whose move reverses immediately: vendor "
+                       f"phantom prints, not corporate actions (dropped, not rescaled)")
+            df = df[~drop].reset_index(drop=True)
+
     # --- 2. detect + back-adjust unadjusted corporate actions ---
     thr = jump_threshold(market)
     for _ in range(6):  # iterate: repairing one can reveal another
