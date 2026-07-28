@@ -523,7 +523,7 @@ QATAR = MarketProfile("QA", "Qatar (QE)",
                     "construction). FLAG per no-UST-shortcut rule: source a real QAR "
                     "sovereign/T-bill yield before any Qatar publish."),
     signal_type="rev_1m", signal_sign=-1, ic=0.06, signal_active=False,
-    nu=10.0, width_cal=0.937,
+    nu=6.0, width_cal=0.951,
     fit_meta=("Fitted 10-Jul-2026 on the 3-name QA panel (QGTS/QNB/IQCD, 54 windows, "
               "2021-2026) - REPLACES the provisional QGTS-only self-fit (Gaussian/"
               "0.916). nu=12, cal=0.972: thin-tailed pegged market, cone near-"
@@ -558,8 +558,32 @@ METALS = MarketProfile("XAU", "Metals (Gold/Silver, USD)", FED_SCHEDULE, 0.0363,
     "value is spot x exp(rf) — the futures-contango-consistent center; gate-neutral "
     "(same anchor both sides).",
     None, +1, 0.0, False,
-    nu=12.0, width_cal=1.0,
-    fit_meta=("PROVISIONAL single-instrument self-fit 10-Jul-2026 (GOLD, 67 windows "
+    nu=12.0, width_cal=0.958,
+    fit_meta=("REFIT 28-Jul-2026 on the 15-year metals libraries: SILVER goes 1,432 -> "
+              "4,052 sessions (2011-01-03 onward, was 2021+), so XAU is a genuine "
+              "2-name panel with deep history for the first time. Windows 86 -> 120. "
+              "nu UNCHANGED at 12; width_cal 1.0 -> 0.958, a -4.20% move in the "
+              "published 90% cone -- above the 0.5% adoption floor, below the 5% "
+              "review threshold, so applied automatically. Both names remain PARITY "
+              "(GOLD, SILVER). PER-MARKET FIT RULE RE-VALIDATED ON EVIDENCE, not just "
+              "principle: scoring each metal under a config it did NOT train gives "
+              "std_u (target 1.00) GOLD self 0.986 / cross 1.087 / pooled 1.046; "
+              "SILVER 0.980 / 0.980 / 0.980; PLATINUM 0.800 / 0.718 / 0.740. For "
+              "platinum BOTH the cross-metal and the pooled-3 configs are WORSE than "
+              "its own -- gold and silver are more volatile, so borrowing their width "
+              "over-widens an already over-wide cone. The pooled 3-metal fit is "
+              "therefore CLOSED as an option, not merely deferred. HISTORY-SPAN TEST "
+              "(HISTORY_SPAN_RULE.md): unlimited wins on CRPS (-0.0046) over 5yr "
+              "(-0.0058) and 7yr (-0.0086); shorter spans do give a marginally "
+              "narrower cone (39.3% vs 40.2%) and std_u closer to 1, but lose the "
+              "proper score -- CRPS decides, width is a diagnostic. NO span change. "
+              "NO FURTHER METALS DATA EXISTS (user, 28-Jul-2026): no copper, and the "
+              "2001-2010 tail is deliberately not used -- the library is 2011+ by "
+              "decision. Gold's extra 2010 year was TESTED and moves the cone 0.05%, "
+              "i.e. noise. METALS REMAINS THE WEAKEST CALIBRATION IN THE SYSTEM and "
+              "always will at 2 names -- deeper history made it better, not strong. "
+              "SUPERSEDED TEXT FOLLOWS. "
+              "PROVISIONAL single-instrument self-fit 10-Jul-2026 (GOLD, 67 windows "
               "2009-2026): nu=12, cal=1.014 - near-Gaussian, tails far thinner than "
               "EGX (nu=4); the old borrowed t5 was too fat for metals. Verdict "
               "PARITY +0.009 CI[-0.003,+0.028] (near-PASS). Silver shares this fit, "

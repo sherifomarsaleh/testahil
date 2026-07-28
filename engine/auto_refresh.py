@@ -73,7 +73,33 @@ RAW_DIR = os.path.join(HERE, 'raw_ohlc')
 REGISTRY_PATH = os.path.join(HERE, 'fitted_configs.json')
 PENDING_DIR = os.path.join(HERE, 'PENDING_REVIEW')
 
-BAND_TOL = 0.05           # the published 90% cone half-width may drift this much silently
+BAND_TOL = 0.05           # above this the refit STOPS for human review (PR, never auto-merged)
+
+# ADOPTION FLOOR (user, 28-Jul-2026). Two different thresholds, easily confused:
+#
+#   ADOPT_TOL (0.5%)  BELOW this a change is NOISE and the live cone is left alone.
+#                     ABOVE it the change is APPLIED. This replaces the previous
+#                     habit of dismissing a real-but-small result as "immaterial"
+#                     and leaving the incumbent in place.
+#   BAND_TOL  (5%)    ABOVE this the change still applies, but a human reviews it
+#                     first via PR. A big move deserves eyes; it is not a veto.
+#
+# So: <0.5% ignore | 0.5-5% auto-apply | >5% apply via PR.
+#
+# NOTE THIS DOES NOT LOOSEN THE STATISTICAL GUARD, and lowering it resurrects
+# nothing that failed on robustness. Every history-span candidate rejected on
+# 28-Jul-2026 failed on out-of-sample robustness (block-dependent CI, jackknife
+# flip, or losing outright), which sits UPSTREAM of materiality. Materiality
+# decides whether a change worth making is worth shipping; it never rescues a
+# change that is not established.
+#
+# It DOES re-open one prior decision: the EG 15-year calibration sample
+# (26-Jul-2026) was measured at -0.65%, passed both robustness checks, and was
+# declined solely for being immaterial. Under a 0.5% floor that reasoning no
+# longer holds. Re-opening it still requires re-running the devaluation-window
+# coverage column on patched data -- skill did not decide the break cut
+# originally and must not decide it now.
+ADOPT_TOL = 0.005
 NU_GAUSSIAN_CUTOFF = 200  # nu above this is "effectively Gaussian"
 
 # Which horizon set the unattended pipeline calibrates on (panel_refresh.HORIZON_SETS).

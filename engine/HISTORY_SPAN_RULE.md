@@ -129,3 +129,34 @@ The levers that do control it, in the order they mattered on 28-Jul-2026:
 The rule stays in force regardless. It is cheap to run, it is the only way to know
 rather than assume, and a null is a real result: it says the data we hold is not
 costing us anything. Re-run it at every ingest, and record the nulls too.
+
+
+---
+
+# Adoption floor — 0.5% (user, 28-Jul-2026)
+
+Amends the materiality rule. Two thresholds, and they do different jobs:
+
+| move in the published 90% cone (or the drift) | action |
+|---|---|
+| **< 0.5%** | noise — leave the live cone alone |
+| **0.5% – 5%** | **apply it** |
+| **> 5%** | apply it, but via PR so a human sees it first |
+
+The 0.5% floor replaces the previous habit of recording a real result and then
+declining to act on it because it was "immaterial". If a change is established
+and moves the cone by more than half a percent, it ships.
+
+**This does not loosen the statistical guard.** Materiality decides whether a
+change worth making is worth shipping. It never rescues a change that was never
+established. Every history-span candidate rejected on 28-Jul-2026 failed
+*upstream* of materiality — on a block-dependent CI, a jackknife flip, or simply
+losing to the full history — so lowering the floor from 5% to 0.5% resurrects
+none of them.
+
+It does re-open exactly one prior decision: the **EG 15-year calibration sample**
+(26-Jul-2026). It was measured at −0.65%, it cleared bootstrap-block robustness
+AND a 30-name jackknife, and it was declined *solely* on immateriality. Under a
+0.5% floor that reasoning no longer stands. Re-opening it still requires
+re-running the devaluation-window coverage column on patched data first — skill
+did not decide that break cut originally and must not decide it now.
