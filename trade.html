@@ -309,12 +309,18 @@
     function renderPanel(){
       var showAll = input.value === labelFor(selected);
       var gs = matches(showAll ? '' : input.value);
-      flat = []; var html = '';
+      // decide the active (highlighted) row BEFORE building the HTML below — otherwise
+      // the freshly auto-highlighted top match wouldn't get its ".active" class until
+      // a second render, one keystroke late (Enter/choose() would still work off the
+      // variable, but nothing would visibly show as highlighted until an arrow key).
+      flat = [];
+      gs.forEach(function(g){ g[1].forEach(function(k){ flat.push(k); }); });
+      if(flat.indexOf(activeKey) < 0) activeKey = flat[0] || null;
+      var html = '';
       if(!gs.length) html = '<div class="t-combo-empty">No match — try a name or a ticker like DSCW</div>';
       gs.forEach(function(g){
         html += '<div class="t-combo-group">' + g[0] + '</div>';
         g[1].forEach(function(k){
-          flat.push(k);
           var t = TICKERS[k];
           html += '<div class="t-combo-opt' + (k===selected?' sel':'') + (k===activeKey?' active':'') +
                   '" role="option" data-key="' + k + '" aria-selected="' + (k===selected) + '">' +
@@ -322,7 +328,6 @@
         });
       });
       panel.innerHTML = html;
-      if(flat.indexOf(activeKey) < 0) activeKey = flat[0] || null;
     }
     function scrollActive(){ var a = panel.querySelector('.t-combo-opt.active'); if(a && a.scrollIntoView) a.scrollIntoView({block:'nearest'}); }
     function openPanel(){ open = true; panel.hidden = false; input.setAttribute('aria-expanded','true'); activeKey = selected; renderPanel(); scrollActive(); }
