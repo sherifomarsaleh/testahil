@@ -89,12 +89,12 @@ ax.text(1, cb + 0.4, f'fundamental central ≈ {cb:.0f}', color=BRASS, fontsize=
 ax.text(1, spot - 1.3, f'spot {spot:.2f}', color=GREY, fontsize=8.6)
 ax.set_xlabel('trading sessions ahead'); ax.set_ylabel('EGP / share')
 ax.legend(frameon=False, fontsize=8.5, labelcolor=INK, loc='upper left')
-ax.set_title('Forward price cone to T+60 — 50,000 YZ-HAR paths, Student-t(5), secular drift (Step 0-passed)',
+ax.set_title('Forward price cone to 3 months — 50,000 YZ-HAR paths, Student-t(5), secular drift (Step 0-passed)',
              fontsize=10, pad=8)
 style(ax); fig.tight_layout(); fig.savefig('fig4_fan.png'); plt.close(fig)
 
 # ---- F5/F6 distributions -----------------------------------------------------
-for tag, fn in [('T+20', 'pT20.npy'), ('T+60', 'pT60.npy')]:
+for tag, fn in [('1 month', 'pT20.npy'), ('3 months', 'pT60.npy')]:
     x = np.load(fn)
     fig, ax = plt.subplots(figsize=(7.6, 3.8), dpi=110)
     ax.hist(x, bins=90, color=GOLD, alpha=0.9, edgecolor='#FFFFFF', linewidth=0.2)
@@ -106,7 +106,7 @@ for tag, fn in [('T+20', 'pT20.npy'), ('T+60', 'pT60.npy')]:
     ax.set_xlabel('EGP / share'); ax.set_yticks([])
     ax.set_title(f'Price distribution at {tag}', fontsize=10, pad=8)
     style(ax); fig.tight_layout()
-    fig.savefig(f"fig{'5' if tag=='T+20' else '6'}_dist.png"); plt.close(fig)
+    fig.savefig(f"fig{'5' if tag=='1 month' else '6'}_dist.png"); plt.close(fig)
 
 # ---- FB1 calibration 3-panel --------------------------------------------------
 bt = pd.read_csv('backtest_rows.csv', parse_dates=['origin'])

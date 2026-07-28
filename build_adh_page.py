@@ -155,7 +155,7 @@ rep('''        <tr><td>Split-legs sum-of-the-parts — primary</td><td class="nu
         <tr><td>&nbsp;&nbsp;· Retail operating-co DCF (net-cash)</td><td class="num">65</td><td class="num">—</td></tr>
         <tr><td>&nbsp;&nbsp;· Tasheel — captive finance (68.75%)</td><td class="num">25</td><td class="num">—</td></tr>
         <tr><td>Relative multiples (P/E 12×)</td><td class="num">75</td><td class="num">25%</td></tr>
-        <tr><td>Monte-Carlo — T+60 median</td><td class="num">68</td><td class="num">25%</td></tr>
+        <tr><td>Monte-Carlo — 3-month median</td><td class="num">68</td><td class="num">25%</td></tr>
         <tr style="font-weight:700"><td>Weighted central fair value</td><td class="num">81</td><td class="num">+19% vs spot</td></tr>''',
     '''        <tr><td>Sum-of-the-parts NAV — primary (15% holdco discount)</td><td class="num">6.32</td><td class="num">45%</td></tr>
         <tr><td>&nbsp;&nbsp;· Marked NAV at par (0% discount)</td><td class="num">7.44</td><td class="num">—</td></tr>

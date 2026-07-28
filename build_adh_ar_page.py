@@ -50,7 +50,7 @@ rep('<text x="694" y="132" font-family="sans-serif" font-size="15" fill="#C0A45F
 rep('<text x="363" y="176" font-family="\'IBM Plex Mono\',monospace" font-size="14" fill="#FFFFFF" text-anchor="middle">9 يوليو · 68.1 (آخر سعر)</text>',
     '<text x="361" y="176" font-family="\'IBM Plex Mono\',monospace" font-size="14" fill="#FFFFFF" text-anchor="middle">3 يوليو · 8.22 (آخر سعر)</text>')
 
-# probability read (T+60): up 52% · 30%/25% ≈1.2:1 · AED 8.29 (+1%) · 7.42–9.27 · touch 54%/46%
+# probability read (3 months): up 52% · 30%/25% ≈1.2:1 · AED 8.29 (+1%) · 7.42–9.27 · touch 54%/46%
 rep('>48%</td>', '>52%</td>')
 rep('>22% / 22% · ≈1.0:1</td>', '>30% / 25% · ≈1.2:1</td>')
 rep('>SAR 67.6 (−1%)</td>', '>AED 8.29 (+1%)</td>')

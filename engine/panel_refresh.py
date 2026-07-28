@@ -84,7 +84,7 @@ def apply_breaks(r, profile):
 
 # ---------------------------------------------------------------- horizon set
 # HORIZON SETS (27-Jul-2026). '60d' is the retired session-counted gate that
-# calibrated every T+20/T+60 cohort; it stays here, untouched and re-runnable,
+# calibrated every session-counted cohort; it stays here, untouched and re-runnable,
 # because those cohorts are grandfathered and must keep grading under the fit
 # they were published on. '3m' is the calendar-anchored gate: a per-origin
 # window running to the first session on or after origin + 3 calendar months,
@@ -93,7 +93,7 @@ def apply_breaks(r, profile):
 # other and can be compared side by side.
 HORIZON_SETS = {
     '60d': dict(months=None, horizon=60,
-                label='T+60 (retired, session-counted)'),
+                label='3 months (retired, session-counted)'),
     '3m':  dict(months=3, horizon=None,
                 label='3 months (calendar-anchored)'),
 }
@@ -284,7 +284,7 @@ def refresh_market(market, new_csvs, raw_csv_lookup, update_registry=True,
               registry even when production (market_profiles.py) is correctly
               protected. Caught 11-Jul-2026 while building auto_refresh.py.
     tag:      horizon set (see HORIZON_SETS). '60d' is the retired
-              session-counted gate kept for the grandfathered T+20/T+60
+              session-counted gate kept for the grandfathered session-counted
               cohorts; '3m' is the live calendar-anchored gate. Panels and
               content hashes are namespaced per tag, so refreshing one horizon
               set never invalidates the other's cache.

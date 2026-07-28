@@ -10,7 +10,7 @@ H1('3  Monte Carlo — a probabilistic price map')
 P('The probability read below opens the section, per house presentation: computed from the same 50,000 paths as everything '
   'that follows, it is a summary of the distribution, not an input to it.', size=9.8, space_after=4)
 rows = [
- ['The probability read (T+60)', ''],
+ ['The probability read (3 months)', ''],
  ['P(price above spot)', f"{pr['p_above']*100:.0f}%"],
  ['P(+10%) vs P(−10%) — the odds', f"{pr['p_up10']*100:.0f}% vs {pr['p_dn10']*100:.0f}%  ·  {pr['odds']:.1f} : 1"],
  ['Median level, and its move', f"EGP {pr['median']:.2f}  ({pr['med_move']*100:+.1f}%)"],
@@ -48,20 +48,20 @@ rows = [
 table(rows, [2.15, 0.5, 2.2, 0.7, 0.95], size=8.7)
 H2('Percentile map (EGP/share)')
 rows = [['Horizon', 'p5', 'p25', 'p50', 'p75', 'p95'],
- ['T+20 sessions', f"{q20['5']:.1f}", f"{q20['25']:.1f}", f"{q20['50']:.1f}", f"{q20['75']:.1f}", f"{q20['95']:.1f}"],
- ['T+60 sessions', f"{q60['5']:.1f}", f"{q60['25']:.1f}", f"{q60['50']:.1f}", f"{q60['75']:.1f}", f"{q60['95']:.1f}"]]
+ ['1 month', f"{q20['5']:.1f}", f"{q20['25']:.1f}", f"{q20['50']:.1f}", f"{q20['75']:.1f}", f"{q20['95']:.1f}"],
+ ['3 months', f"{q60['5']:.1f}", f"{q60['25']:.1f}", f"{q60['50']:.1f}", f"{q60['75']:.1f}", f"{q60['95']:.1f}"]]
 table(rows, [1.9, 1.0, 1.0, 1.0, 1.0, 1.0], first_col_bold=True)
 P('Lead with the 50% band, not the tails: a quarter ahead, half of all paths finish between roughly EGP '
   f"{q60['25']:.0f} and {q60['75']:.0f}; at one month the band is ~EGP {q20['25']:.0f}–{q20['75']:.0f} (width ≈ ÷√3). "
   'The 5–95% cone is context, not a forecast.', size=9.8)
-figure('fig4_fan.png', 6.4, 'Figure 4 — Forward price cone to T+60. The median drifts up with the calibrated secular term; '
+figure('fig4_fan.png', 6.4, 'Figure 4 — Forward price cone to 3 months. The median drifts up with the calibrated secular term; '
        'the gold dashed line marks the EGP 30 fundamental central, deliberately below the median path.')
-figure('fig5_dist.png', 5.2, 'Figure 5 — Price distribution at T+20.')
-figure('fig6_dist.png', 5.2, 'Figure 6 — Price distribution at T+60.')
+figure('fig5_dist.png', 5.2, 'Figure 5 — Price distribution at 1 month.')
+figure('fig6_dist.png', 5.2, 'Figure 6 — Price distribution at 3 months.')
 H2('Level-touch ladder')
 P('The probability that price touches a level at any point by the horizon (running max for upside, running min for '
   'downside):', size=9.8)
-rows = [['Level (EGP)', 'T+20 touch', 'T+60 touch', 'Note']]
+rows = [['Level (EGP)', '1-month touch', '3-month touch', 'Note']]
 notes = {40: 'Blue-sky; +28%', 38: 'Upper zone gateway', 36: 'Above the Feb high zone', 34: 'New-high territory',
          32: 'Just above spot', 30: 'The 20-day / round number', 28: 'The 50/100-day shelf', 26: 'April-low zone'}
 for lv in [40, 38, 36, 34, 32, 30, 28, 26]:
@@ -131,7 +131,7 @@ for head, body in [
 H1('6  Reading the probability zones')
 P('Translating the three-month distribution into plain zones, anchored on spot EGP 31.25 and the fair-value cluster:')
 rows = [
- ['Zone (T+60)', 'Range', 'Approx. probability', 'What it would mean'],
+ ['Zone (3 months)', 'Range', 'Approx. probability', 'What it would mean'],
  ['Deep downside', '< EGP 26', f'~{zones[0]*100:.0f}%', 'Regional escalation / devaluation; tests the April shelf'],
  ['Lower band', 'EGP 26–30', f'~{zones[1]*100:.0f}%', 'Margin proof delayed; relative-multiple lens dominates'],
  ['Around spot', 'EGP 30–34', f'~{zones[2]*100:.0f}%', 'Status quo; fair value and price coexist'],

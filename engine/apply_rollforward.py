@@ -180,7 +180,7 @@ def build(write: bool = False):
                 "reanchor_from equals this row's own anchor_date. Nothing was "
                 "re-anchored — the cycle exists only because the cone itself "
                 f"changed: cycle {prior[1]} was struck on the retired "
-                "session-counted T+20/T+60 convention under the then-live fit, and "
+                "retired session-counted convention under the then-live fit, and "
                 "this row re-issues the same anchor on the calendar 1M/3M "
                 f"convention under the current fit. Cycle {prior[1]} keeps its "
                 "published percentiles and grades exactly as issued.")

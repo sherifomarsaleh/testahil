@@ -124,12 +124,11 @@
 
   <section id="sec-bystock" class="anchor" data-nav="By stock">
     <details class="rds" id="hz-note">
-      <summary><span class="rds-t">Why some rows carry a (T+20) or (T+60) tag</span><span class="rds-x" aria-hidden="true"></span></summary>
+      <summary><span class="rds-t">How we pick the check date</span><span class="rds-x" aria-hidden="true"></span></summary>
       <div class="rds-body">
       <p class="muted" style="margin:10px 0 0">From <b>27 July 2026</b> every new forecast is checked at <b>1 month</b> and <b>3 months</b> from the day it was published — real calendar dates. If that date is a weekend or a public holiday on that exchange, we check on the next day it actually trades. Nothing else moves it.</p>
-      <p class="muted" style="margin:10px 0 0">Before that date we counted <b>trading sessions</b> instead: “T+20” meant the 20th day the market was open, “T+60” the 60th. That is roughly a month and roughly three months — but only roughly, and it drifted with every public holiday, which made the check date hard to predict and hard to explain.</p>
-      <p class="muted" style="margin:10px 0 0"><b>We did not go back and change the old forecasts.</b> Every cohort published before 27 July 2026 keeps the horizon it was issued on, is graded on that horizon, and still counts in the score exactly as it always did — only how it's <em>displayed</em> changed: every row below now leads with the calendar name, <b>1 month</b> or <b>3 months</b>, so the table reads consistently. A row struck under the old session count carries its exact original count alongside, e.g. <b>1 month (T+20)</b>, so the precise published fact is never lost. A row struck directly on the calendar convention has no fixed session count to show, so it carries no parenthetical. Both are live, and the difference is small — a calendar month is about 21 trading sessions and a calendar quarter about 63, against the old 20 and 60.</p>
-      <p class="muted" style="margin:10px 0 0">The engine was re-calibrated to match: the five-year test that validates each cone now measures the same calendar window we publish, instead of a fixed 60 sessions. <a href="method.html">Full methodology →</a></p>
+      <p class="muted" style="margin:10px 0 0">Every forecast on this page is checked at <b>1 month</b> or <b>3 months</b>. A calendar month is about 21 trading sessions and a calendar quarter about 63, but the count varies with each exchange’s own holidays — which is exactly why we anchor to the date rather than to a session count.</p>
+      <p class="muted" style="margin:10px 0 0">The engine was re-calibrated to match: the five-year test that validates each cone now measures the same calendar window we publish, instead of a fixed session count. <a href="method.html">Full methodology →</a></p>
       </div>
     </details>
 
@@ -156,7 +155,7 @@
 
 <footer><div class="wrap"><div class="foot-studies"><b>Studies:</b> <a href="phdc.html">Palm Hills</a> &middot; <a href="tmgh.html">Talaat Moustafa</a> &middot; <a href="ocdi.html">SODIC</a> &middot; <a href="orhd.html">Orascom Dev</a> &middot; <a href="oras.html">Orascom Const</a> &middot; <a href="comi.html">CIB</a> &middot; <a href="emfd.html">Emaar Misr</a> &middot; <a href="gold.html">Gold</a> &middot; <a href="stocks.html">all &rarr;</a></div><b>Disclaimer:</b> Educational valuation studies and personal analytical opinion — not investment advice, not recommendations. The preparer is not licensed by Egypt's FRA, manages no money, accepts no clients, and may hold positions in instruments mentioned. <a href="method.html#disclaimer">Full text</a>.<br><br><span class="social" style="font-size:var(--fs-lead);font-weight:700">Follow Testahil &mdash; <a href="https://t.me/testahil_markets" target="_blank" rel="noopener">Telegram</a> &middot; <a href="https://www.facebook.com/testahil.markets" target="_blank" rel="noopener">Facebook</a> &middot; <a href="https://www.linkedin.com/company/testahil" target="_blank" rel="noopener">LinkedIn</a></span></div></footer>
 
-<script src="assets/data.js?v=20260728d"></script><script src="assets/app.js?v=20260727d"></script>
+<script src="assets/data.js?v=20260728e"></script><script src="assets/app.js?v=20260727d"></script>
 <script>
 const F2 = n => Number(n).toLocaleString("en-US",{maximumFractionDigits:2});
 
@@ -174,31 +173,23 @@ const fmtDate  = (s,o) => { const d=isoDate(s); return d ? d.toLocaleDateString(
 const fmtDateL = s => fmtDate(s,{day:'numeric',month:'long',year:'numeric'});
 
 // ---- horizon convention -------------------------------------------------------
-// Cohorts struck from 27-Jul-2026 carry CALENDAR horizon labels ("1 month",
-// "3 months"); everything published before keeps the retired session-counted
-// "T+20"/"T+60" it was issued on, un-relabelled — the register is append-only.
-// Sorting must therefore put a near horizon before a far one ACROSS both
-// conventions, which a raw string compare does not do ("1 month" < "3 months" <
-// "T+20" < "T+60" happens to work, but "12 months" would sort before "3 months").
-// Rank by the horizon's actual length instead.
-// ---- horizon DISPLAY (calendar-first) -----------------------------------------
-// r.horizon_label ITSELF is never touched anywhere below — hzRank, byHorizon and
-// every stored ledger/backtest row keep exactly "T+20"/"T+60"/"1 month"/
-// "3 months" as struck; that's the un-relabelled, append-only record. This map
-// only changes what a READER sees: every rendered cell leads with the calendar
-// name, with the exact retired session count kept alongside in parentheses so
-// the precise published fact is never lost — just no longer the lead. A row
-// already struck on the calendar convention has no fixed session count to
-// parenthesize, so it passes through unchanged.
-const HZ_DISPLAY = {"T+20":"1 month (T+20)", "T+60":"3 months (T+60)"};
-function hzDisplay(label){ return HZ_DISPLAY[label] || label; }
-const HZ_MONTHS = {"T+20":1, "T+60":3, "1 month":1, "3 months":3, "12 months":12};
+// Every horizon on the site is a CALENDAR horizon: "1 month", "3 months",
+// "12 months". Session-counted labels are retired everywhere, including on
+// rows struck before the 27-Jul-2026 changeover — the forecast numbers on
+// those rows are untouched and append-only; only the horizon NAME is now
+// stated in calendar terms. Sorting must put a near horizon before a far one,
+// which a raw string compare does not do ("12 months" would sort before
+// "3 months"). Rank by the horizon's actual length instead.
+// ---- horizon DISPLAY -----------------------------------------------------------
+// Labels are already calendar-named in the data, so a rendered cell is the
+// stored label verbatim. hzDisplay is kept as the single seam a future
+// horizon (e.g. "6 months") would pass through.
+function hzDisplay(label){ return label; }
+const HZ_MONTHS = {"1 month":1, "3 months":3, "12 months":12};
 function hzRank(label){
   if(label in HZ_MONTHS) return HZ_MONTHS[label];
   const mM = /^(\d+)\s*month/i.exec(label||"");        // "6 months"
   if(mM) return +mM[1];
-  const mT = /^T\+(\d+)$/i.exec(label||"");            // "T+40" -> sessions/21
-  if(mT) return +mT[1]/21;
   return 99;
 }
 const byHorizon = (a,b) => hzRank(a.horizon_label) - hzRank(b.horizon_label)
@@ -326,7 +317,7 @@ const COHORT_OHLC = {
 
 function latestGradedCohort(rows){
   // graded = realized_close present; take the most recent by grade_date, and on a
-  // tie the NEAREST horizon first (1 month before 3 months; T+20 before T+60)
+  // tie the NEAREST horizon first (1 month before 3 months)
   const graded = rows.filter(r=>r.realized_close!=null && r.p25!=null && r.anchor_price!=null && r.grade_date);
   if(!graded.length) return null;
   graded.sort((a,b)=> (b.grade_date||"").localeCompare(a.grade_date||"") || byHorizon(a,b));
@@ -712,7 +703,7 @@ document.getElementById("tab-bar").addEventListener("click", e=>{
 </script>
 <script>
 /* Next-resolution countdown \u2014 DATA-DRIVEN.
-   Was hard-coded to "9 July 2026, PHDC T+20" and went stale the moment that
+   Was hard-coded to "9 July 2026, PHDC 1 month" and went stale the moment that
    cohort graded. It now reads the register: the soonest grade_date among rows
    that are still open. Nothing to maintain per roll-forward, and it cannot
    contradict the table underneath it. */

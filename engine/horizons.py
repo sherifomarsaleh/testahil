@@ -1,10 +1,11 @@
 """horizons.py — calendar-anchored forecast horizons (1 month / 3 months).
 
-ADOPTED 27-Jul-2026 (user decision), superseding the session-counted T+20 /
-T+60 convention for every cohort struck on or after that date. Cohorts struck
-BEFORE the changeover keep their published T+20 / T+60 horizons and grade
-exactly as issued — the Calibration Ledger is append-only and no published
-forecast is retro-edited.
+ADOPTED 27-Jul-2026 (user decision), retiring the session-counted convention.
+Every horizon Testahil publishes is a CALENDAR horizon: one month and three
+months. Cohorts struck before the changeover are graded on the window they
+were issued for and their published numbers are never retro-edited — the
+Calibration Ledger is append-only — but their horizons are NAMED in calendar
+terms like every other row. Session-counted labels appear nowhere.
 
 WHY THIS MODULE EXISTS
 ----------------------
@@ -15,7 +16,7 @@ mapping is not a constant: a calendar month is 18-23 sessions on the EGX and
 across the markets Testahil covers. Hard-coding "1 month = 21 sessions" would
 reproduce, with a calendar label, exactly the session-counting the change was
 meant to remove — which is the mismatch the metals rows already carried
-("1 month" labels sitting on 28-calendar-day, T+20-derived grade dates).
+("1 month" labels sitting on 28-calendar-day, session-derived grade dates).
 
 THE CONVENTION (single definition, used by publish AND by grading)
 ------------------------------------------------------------------
@@ -66,7 +67,7 @@ uncertainty. It touches the PUBLISHED cone only — grading never uses it.
 
 At GRADE time the projection is irrelevant. Grading reads the real calendar
 and grades on the actual first session on or after target_date. Unlike the
-retired T+20 rule, a holiday no longer moves the horizon — it only moves
+retired session rule, a holiday no longer moves the horizon — it only moves
 which session the horizon lands on, by at most a few days. That is the whole
 point of the change: the grade date is now determined by the calendar, not by
 counting sessions the projection did not know about.
@@ -109,7 +110,6 @@ SHORT = {1: "1M", 3: "3M"}
 
 # Cohorts struck on or after this date use the calendar convention.
 CONVENTION_CHANGEOVER = pd.Timestamp("2026-07-27")
-LEGACY_LABEL = {1: "T+20", 3: "T+60"}
 
 # Density is measured over a trailing window so a market that changed its
 # trading week (ADX/DFM moved Sun-Thu -> Mon-Fri in Jan-2022) is described by

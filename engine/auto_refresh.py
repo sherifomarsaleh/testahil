@@ -79,7 +79,7 @@ NU_GAUSSIAN_CUTOFF = 200  # nu above this is "effectively Gaussian"
 # Which horizon set the unattended pipeline calibrates on (panel_refresh.HORIZON_SETS).
 # '3m' = the calendar 3-month gate adopted 27-Jul-2026, matching what is published.
 # '60d' = the retired fixed-60-session gate, kept re-runnable for the grandfathered
-# T+20/T+60 cohorts. Flipping this constant is the whole adoption switch — and it is
+# session-counted cohorts. Flipping this constant is the whole adoption switch — and it is
 # deliberately loud: the first run after the flip compares a calendar-3M fit against a
 # 60d incumbent in market_profiles.py, so the materiality gate fires and opens a PR
 # instead of auto-committing. That is the intended behaviour, not a fault.

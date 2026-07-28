@@ -180,7 +180,7 @@ title(ws, 'Monte Carlo — engine outputs (YZ-HAR v2)',
       '50,000 paths · 16 factors · seed 42 · computed by the Testahil MC engine (values, not a sheet simulation). No KVOL — the retired multiplier is replaced by the HAR width.', 8)
 pr = D['mc']['prob_read']; q20, q60 = D['mc']['q20'], D['mc']['q60']
 r = 5
-put(ws, f'A{r}', 'The probability read (T+60)', BLACK, None, True, FILL_G); r += 1
+put(ws, f'A{r}', 'The probability read (3 months)', BLACK, None, True, FILL_G); r += 1
 prr = [
  ('P(price above spot)', pr['p_above'], PCT),
  ('P(+10%) vs P(−10%) — odds', f"{pr['p_up10']*100:.0f}% vs {pr['p_dn10']*100:.0f}% · {pr['odds']:.1f}:1", '@'),
@@ -195,7 +195,7 @@ put(ws, f'A{r}', 'Percentile map (EGP/share)', BLACK, None, True, FILL_H); r += 
 for j, h in enumerate(['Horizon', 'p5', 'p25', 'p50', 'p75', 'p95']):
     put(ws, f'{get_column_letter(1+j)}{r}', h, BLACK, None, True, FILL_H)
 r += 1
-for tag, q in [('T+20 sessions', q20), ('T+60 sessions', q60)]:
+for tag, q in [('1 month', q20), ('3 months', q60)]:
     put(ws, f'A{r}', tag)
     for j, p in enumerate(['5', '25', '50', '75', '95']):
         put(ws, f'{get_column_letter(2+j)}{r}', round(q[p], 1), BLACK, PX)
@@ -208,7 +208,7 @@ for nm, ref in [('Anchor volatility (HAR, annualized)', '=Assumptions!B37'),
     put(ws, f'A{r}', nm); put(ws, f'B{r}', ref, GREEN, PCT); r += 1
 r += 1
 put(ws, f'A{r}', 'Level-touch ladder (probability of touching by horizon)', BLACK, None, True, FILL_H); r += 1
-for j, h in enumerate(['Level (EGP)', 'T+20', 'T+60']):
+for j, h in enumerate(['Level (EGP)', '1 month', '3 months']):
     put(ws, f'{get_column_letter(1+j)}{r}', h, BLACK, None, True, FILL_H)
 r += 1
 for L_, tv in D['mc']['touch'].items():

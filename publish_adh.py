@@ -20,8 +20,8 @@ TICKER = '''  ALPHADHABI: {
     ccy: "AED",
     fair: { bear: 6.08, base: 7.30, full: 8.82 },      // 10 Jul 2026 — weighted central 7.30 (−11% vs spot 8.22). Holdco SOTP/NAV primary: four listed stakes at ADX marks (Aldar 31.63% = AED 20.5bn, NMDC 76.68% = 14.4bn, PureHealth 35.06% = 8.6bn, NCTH 73.73% = 2.4bn) + Trojan 51% at the ADQ transaction mark (5.2bn) + residual audited book → NAV 7.44/sh at par, 6.32 at a 15% holdco discount (45% weight). Consolidated FCFF DCF 11.72 = a multi-year ceiling (80% TV, ΔWC absorption) at 15%; look-through relative 8.07 at 25%; dividend-policy DDM 4.55 at 15%. The crux: spot pays ~+10% ABOVE undiscounted NAV — the premium is the trade. bear/full = weighted bear/bull.
     dist: {
-      t20: { label:"1 month (T+20)",  p5:7.04, p25:7.73, p50:8.24, p75:8.79, p95:9.67, resolve:"2026-07-31" },
-      t60: { label:"3 months (T+60)", p5:6.30, p25:7.42, p50:8.29, p75:9.27, p95:10.93, resolve:"2026-09-25" }
+      t20: { label:"1 month",          p5:7.04, p25:7.73, p50:8.24, p75:8.79, p95:9.67, resolve:"2026-07-31" },
+      t60: { label:"3 months",         p5:6.30, p25:7.42, p50:8.29, p75:9.27, p95:10.93, resolve:"2026-09-25" }
     },
     touch: [ /* descending high -> low */
       [9.50, 11, 36], [8.84, 39, 63], [8.50, 64, 80], [7.44, 23, 48], [7.00, 7, 28], [6.58, 1, 14]
@@ -54,7 +54,7 @@ NOTE = ("PARITY under the v3 carry-anchored gate. Name-level CRPS skill +0.006 v
 L20 = f'''  {{
     instrument:"ALPHADHABI", asset_class:"other", cal:"matches",
     anchor_date:"2026-07-03", anchor_price:8.22, ccy:"AED",
-    horizon_label:"T+20", grade_date:"2026-07-31", cycle_no:1, reanchor_from:null,
+    horizon_label:"1 month", grade_date:"2026-07-31", cycle_no:1, reanchor_from:null,
     anchor_vol:0.341, horizon_days:20,
     note:"{NOTE}",
     p5:7.04, p25:7.73, p50:8.24, p75:8.79, p95:9.67,
@@ -66,7 +66,7 @@ L20 = f'''  {{
   {{
     instrument:"ALPHADHABI", asset_class:"other", cal:"matches",
     anchor_date:"2026-07-03", anchor_price:8.22, ccy:"AED",
-    horizon_label:"T+60", grade_date:"2026-09-25", cycle_no:1, reanchor_from:null,
+    horizon_label:"3 months", grade_date:"2026-09-25", cycle_no:1, reanchor_from:null,
     anchor_vol:0.341, horizon_days:60,
     note:"{NOTE}",
     p5:6.30, p25:7.42, p50:8.29, p75:9.27, p95:10.93,

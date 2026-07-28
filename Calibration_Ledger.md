@@ -31,7 +31,7 @@ rolled forward to the first real trading session on that exchange if the target 
 month), projected at publish time by `engine/horizons.py` and re-resolved against the real
 calendar at grade time.
 
-Cohorts struck **before** that date keep **T+20 / T+60** — a fixed 20 or 60 sessions, with a
+Cohorts struck **before** that date keep **session-counted** — a fixed 20 or 60 sessions, with a
 `grade_date` projected on a naive Sun–Thu calendar. **They are not re-labelled and not
 re-struck.** They grade on the horizon they were issued on and count in the score exactly as
 before; append-only governs. `horizon_label` is the field that says which convention a row
@@ -40,7 +40,7 @@ convention*.
 
 The change was made because the old convention's error landed in the check DATE: the projected
 Sun–Thu `grade_date` had no holiday awareness, so it routinely fell ~2 sessions short of a true
-T+20 — every graded row so far (PHDC, TMGH, EMFD) carries a `grade_note` recording exactly that
+1 month — every graded row so far (PHDC, TMGH, EMFD) carries a `grade_note` recording exactly that
 correction. A calendar target cannot drift.
 
 ---
@@ -50,10 +50,10 @@ correction. A calendar target cannot drift.
 > **Stale — this snapshot predates both the first three grades and the 27-Jul-2026 horizon
 > change. Kept as the dated record it is; `assets/data.js` is the source of truth.**
 
-- **112 anchor rows** logged (T+20 and T+60 per instrument), across **55 covered instruments**
+- **112 anchor rows** logged (1 month and 3 months per instrument), across **55 covered instruments**
   (EGX, GCC/international equities, and metals).
 - **0 rows graded so far.** Every row is still `pending` — no horizon has matured yet. The first
-  scheduled grading event is **PHDC's T+60 cohort on 2 September 2026**, per the Business Plan's
+  scheduled grading event is **PHDC's 3 months cohort on 2 September 2026**, per the Business Plan's
   Phase 0 schedule and the Operating Manual's hard-date flag.
 - Schema (per row): `instrument`, `asset_class` (equity | metal | other), `anchor_date`,
   `anchor_price`, `ccy`, `horizon_label`, `grade_date`, `cycle_no`, `p5..p95`, `touch` bands. Grade-time

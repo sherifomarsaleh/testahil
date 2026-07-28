@@ -526,7 +526,7 @@ function renderComparePair(elId, codeA, codeB){
 
 /* ---------- top movers (compare.html): biggest fundamental gap & biggest simulated 3-mo move ----------
    Ranks the whole TICKERS panel two ways: fair.base vs spot (fundamental), and dist.t60.p50 vs spot
-   (simulation, T+60 ≈ 3 months). Both are re-uses of numbers already published per-ticker elsewhere
+   (simulation, the 3-month cone). Both are re-uses of numbers already published per-ticker elsewhere
    on this page — this just sorts them; it is not a new estimate or a recommendation. */
 function _tmRowHTML(rank, code, t, pct){
   const cls = pct>=0 ? "up" : "down";
@@ -704,25 +704,23 @@ function initShare(){
 
 /* ============ static MC fan (Fundamental/Technical/MC redesign) ============ */
 /* HORIZON CONVENTION (27-Jul-2026). Cohorts struck from 27-Jul-2026 are anchored
-   to CALENDAR horizons — 1 month and 3 months — instead of the retired T+20 /
-   T+60 session counts. A calendar month is not a fixed number of sessions
+   to CALENDAR horizons — 1 month and 3 months — instead of the retired
+   session counts. A calendar month is not a fixed number of sessions
    (18-24, depending on the market and the month), so the two anchor points of
    this fan are no longer constants: they come from the ticker's own cohort.
 
-   Every ticker still carrying legacy data keeps T+20 / T+60 EXACTLY as
-   published — the register is append-only and nothing here is retro-relabelled.
    A ticker restruck under the new convention carries `hz` in data.js:
        hz:{ h1:21, h3:63, l1:"1 month", l3:"3 months", cal:true }
-   and this code follows it. Absent `hz`, the legacy 20/60 anchors apply. */
+   and this code follows it. Absent `hz`, the fallback session anchors below
+   apply — they only size the fan's two fit points; every LABEL is calendar. */
 const HZ_LEGACY = { h1:20, h3:60, l1:"1 month", l3:"3 months",
-                     l1Long:"1 month (T+20)", l3Long:"3 months (T+60)", cal:false };
+                     l1Long:"1 month", l3Long:"3 months", cal:false };
 function hzOf(T){
   const z = (T && T.hz) || {};
-  // l1/l3 lead with the calendar name EVERYWHERE now (axis, tooltip, aria-label,
-  // prose) — a legacy cohort's h1/h3 anchors stay EXACTLY 20/60 sessions (the fan
-  // still fits through the two published percentile points, untouched), only the
-  // TEXT describing them changed. l1Long/l3Long add the exact session count back
-  // in parentheses for spots with room (table headers, the explainer prose) so
+  // l1/l3 carry the calendar name EVERYWHERE (axis, tooltip, aria-label, prose).
+  // A legacy cohort's h1/h3 fit anchors are unchanged — the fan still passes
+  // through the two published percentile points exactly — only the TEXT
+  // describing them is calendar-named. l1Long/l3Long are kept as the seam for
   // the precise published fact is never lost, just no longer the lead. A
   // calendar-hz ticker has no fixed session count to parenthesize, so its long
   // form is the same as its short form.

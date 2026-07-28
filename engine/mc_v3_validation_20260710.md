@@ -23,8 +23,8 @@
 5. **Alinma is PARITY, permanently and honestly.** Carry ≈ 0 because rf (~4.25%) ≈ dividend yield (~4.2%): the bank pays its carry out as cash. Committed statement: total return ≈ +1.0%/quarter, ~all of it dividend, price ≈ flat ± band. Signal stays off until the Saudi panel reaches ~5 names.
 
 ## Live cards (v3 final config)
-- **ALINMA** spot 24.00 (7 Jul): T+60 median 23.98 (−0.1%), IQR 22.80–25.23, 90% 20.73–27.81, P(up) 50%. Carry −0.04% (rf 4.25% est − q 4.17%).
-- **PHDC** spot 16.19 (17 Jun data): T+60 median 16.55 (+2.2%) = carry +4.24% − reversal alpha 1.93% (z=+1.12 after the April rally), IQR 14.79–18.53, 90% 11.96–23.03 (≈10% narrower than v2's), P(up) 55%. v2 would have said +11.7%.
+- **ALINMA** spot 24.00 (7 Jul): 3 months median 23.98 (−0.1%), IQR 22.80–25.23, 90% 20.73–27.81, P(up) 50%. Carry −0.04% (rf 4.25% est − q 4.17%).
+- **PHDC** spot 16.19 (17 Jun data): 3 months median 16.55 (+2.2%) = carry +4.24% − reversal alpha 1.93% (z=+1.12 after the April rally), IQR 14.79–18.53, 90% 11.96–23.03 (≈10% narrower than v2's), P(up) 55%. v2 would have said +11.7%.
 
 ## Flags (unresolved, need decisions/actions)
 - **SAR risk-free not directly sourced** — live anchor is a SAMA-repo-derived estimate (4.25%); replace with FTSE SAGBI / iBoxx Tadawul SAR sukuk yield before any Saudi publish (±50bp = ±0.12% on the median — immaterial but the sourcing rule stands). Egypt live anchor set at the CBE main-op rate 19.50% (sourced); fresh 3M T-bill quote flagged for first EGX publish.

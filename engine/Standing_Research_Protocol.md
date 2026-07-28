@@ -24,7 +24,7 @@ and width and can never harvest the time-value of money.
 ### [CHANGED 27-Jul-2026] Horizon convention — calendar, not session count
 
 **The two published horizons are 1 MONTH and 3 MONTHS, as calendar objects.** This replaces the
-retired T+20 / T+60 session counts for every cohort struck on or after 27-Jul-2026.
+retired session-counted session counts for every cohort struck on or after 27-Jul-2026.
 
     target_date = anchor_date + 1 (or 3) calendar months, month-end clamped
                   (31-Jan + 1M -> 28/29-Feb)
@@ -33,7 +33,7 @@ retired T+20 / T+60 session counts for every cohort struck on or after 27-Jul-20
     h           = the session count spanning that calendar window — NOT a constant
                   (18-24 for a month, 55-67 for a quarter, by market and anchor)
 
-Why: "T+20" is roughly a month and "T+60" roughly a quarter, but the drift landed in the check
+Why: "1 month" is roughly a month and "3 months" roughly a quarter, but the drift landed in the check
 DATE. Every public holiday pushed it, so a published `grade_date` was routinely 2 sessions wrong
 and needed a manual `grade_note` correction at grade time (PHDC, TMGH and EMFD each carry one). A
 calendar target cannot drift; only which session it lands on can, and by at most a few days.
