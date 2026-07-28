@@ -123,12 +123,14 @@
   </section>
 
   <section id="sec-bystock" class="anchor" data-nav="By stock">
-    <details class="card" id="hz-note" open style="margin-bottom:14px;background:var(--tint2)">
-      <summary style="cursor:pointer;font-weight:700">Why some rows carry a (T+20) or (T+60) tag</summary>
+    <details class="rds" id="hz-note">
+      <summary><span class="rds-t">Why some rows carry a (T+20) or (T+60) tag</span><span class="rds-x" aria-hidden="true"></span></summary>
+      <div class="rds-body">
       <p class="muted" style="margin:10px 0 0">From <b>27 July 2026</b> every new forecast is checked at <b>1 month</b> and <b>3 months</b> from the day it was published — real calendar dates. If that date is a weekend or a public holiday on that exchange, we check on the next day it actually trades. Nothing else moves it.</p>
       <p class="muted" style="margin:10px 0 0">Before that date we counted <b>trading sessions</b> instead: “T+20” meant the 20th day the market was open, “T+60” the 60th. That is roughly a month and roughly three months — but only roughly, and it drifted with every public holiday, which made the check date hard to predict and hard to explain.</p>
       <p class="muted" style="margin:10px 0 0"><b>We did not go back and change the old forecasts.</b> Every cohort published before 27 July 2026 keeps the horizon it was issued on, is graded on that horizon, and still counts in the score exactly as it always did — only how it's <em>displayed</em> changed: every row below now leads with the calendar name, <b>1 month</b> or <b>3 months</b>, so the table reads consistently. A row struck under the old session count carries its exact original count alongside, e.g. <b>1 month (T+20)</b>, so the precise published fact is never lost. A row struck directly on the calendar convention has no fixed session count to show, so it carries no parenthetical. Both are live, and the difference is small — a calendar month is about 21 trading sessions and a calendar quarter about 63, against the old 20 and 60.</p>
       <p class="muted" style="margin:10px 0 0">The engine was re-calibrated to match: the five-year test that validates each cone now measures the same calendar window we publish, instead of a fixed 60 sessions. <a href="method.html">Full methodology →</a></p>
+      </div>
     </details>
 
     <div class="tab-bar" id="tab-bar"></div>
