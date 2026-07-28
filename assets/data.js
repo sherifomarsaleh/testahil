@@ -2710,7 +2710,8 @@ const LEDGER = [
 
   {
     instrument:"LCSW", asset_class:"equity",
-    anchor_date:"2026-07-06", anchor_price:29.45, ccy:"EGP",
+    anchor_date:"2026-07-06", anchor_price:30.10, ccy:"EGP",
+    anchor_price_published:29.45, anchor_note:"Anchor corrected 28-Jul-2026: the published anchor_price was captured MID-SESSION (inside that day\u2019s range) rather than at the close. Corrected to the actual close. The forecast itself is untouched \u2014 p5..p95, the touch probabilities and the grade are exactly as published; only the anchor field was wrong. Re-striking was rejected: today\u2019s fit runs on 15-year libraries that did not exist at the anchor date, so it would re-grade a published forecast with hindsight.",
     horizon_label:"1 month", grade_date:"2026-08-03", cycle_no:1, reanchor_from:null,
     p5:24.29, p25:27.76, p50:29.99, p75:32.38, p95:36.98,
     touch:{ "+5":62, "+10":39, "+15":23, "+20":14, "-5":50, "-10":26 },
@@ -2721,7 +2722,8 @@ const LEDGER = [
   },
   {
     instrument:"LCSW", asset_class:"equity",
-    anchor_date:"2026-07-06", anchor_price:29.45, ccy:"EGP",
+    anchor_date:"2026-07-06", anchor_price:30.10, ccy:"EGP",
+    anchor_price_published:29.45, anchor_note:"Anchor corrected 28-Jul-2026: the published anchor_price was captured MID-SESSION (inside that day\u2019s range) rather than at the close. Corrected to the actual close. The forecast itself is untouched \u2014 p5..p95, the touch probabilities and the grade are exactly as published; only the anchor field was wrong. Re-striking was rejected: today\u2019s fit runs on 15-year libraries that did not exist at the anchor date, so it would re-grade a published forecast with hindsight.",
     horizon_label:"3 months", grade_date:"2026-09-28", cycle_no:1, reanchor_from:null,
     p5:21.69, p25:27.07, p50:31.01, p75:35.54, p95:44.37,
     touch:{ "+5":80, "+10":66, "+15":53, "+20":41, "-5":66, "-10":46 },
@@ -3050,7 +3052,8 @@ const LEDGER = [
   // ---- COMI · equity · cycle 1 (29 Jun 2026 published study) ----
   {
     instrument:"COMI", asset_class:"equity",
-    anchor_date:"2026-06-29", anchor_price:129.25, ccy:"EGP",
+    anchor_date:"2026-06-29", anchor_price:126.89, ccy:"EGP",
+    anchor_price_published:129.25, anchor_note:"Anchor corrected 28-Jul-2026: the published anchor_price was captured MID-SESSION (inside that day\u2019s range) rather than at the close. Corrected to the actual close. The forecast itself is untouched \u2014 p5..p95, the touch probabilities and the grade are exactly as published; only the anchor field was wrong. Re-striking was rejected: today\u2019s fit runs on 15-year libraries that did not exist at the anchor date, so it would re-grade a published forecast with hindsight.",
     horizon_label:"1 month", grade_date:"2026-07-28", grade_basis:"actual", cycle_no:1, reanchor_from:null,
     grade_date_projected:"2026-07-27", grade_note:"Graded as of 2026-07-28, the latest available close, at the owner's direction. This is session 19 from the 29-Jun anchor; the full 1-month session and the 1-month calendar target both fall on 2026-07-29. Recorded on 19 of 20 sessions -- the band verdict is unaffected (142.00 sits well inside 103.44-159.92) but realized_quantile, median_err and the +10%/+15% touch outcomes are measured one session early.",
     p5:103.44, p25:117.89, p50:128.87, p75:140.85, p95:159.92,
@@ -3061,7 +3064,8 @@ const LEDGER = [
   },
   {
     instrument:"COMI", asset_class:"equity",
-    anchor_date:"2026-06-29", anchor_price:129.25, ccy:"EGP",
+    anchor_date:"2026-06-29", anchor_price:126.89, ccy:"EGP",
+    anchor_price_published:129.25, anchor_note:"Anchor corrected 28-Jul-2026: the published anchor_price was captured MID-SESSION (inside that day\u2019s range) rather than at the close. Corrected to the actual close. The forecast itself is untouched \u2014 p5..p95, the touch probabilities and the grade are exactly as published; only the anchor field was wrong. Re-striking was rejected: today\u2019s fit runs on 15-year libraries that did not exist at the anchor date, so it would re-grade a published forecast with hindsight.",
     horizon_label:"3 months", grade_date:"2026-09-21", cycle_no:1, reanchor_from:null,
     p5:87.93, p25:109.91, p50:127.83, p75:148.88, p95:185.40,
     touch:{ "+5":76, "+10":60, "+15":47, "+20":37, "-5":78, "-10":62 },
@@ -3658,14 +3662,16 @@ const LEDGER = [
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
     realized_quantile:null, median_err:null, touch_hit:null },
   // ---- HELI · equity · cycle 1 (3 Jul 2026 published study) ----
-  { instrument:"HELI", asset_class:"equity", anchor_date:"2026-07-03", anchor_price:6.43, ccy:"EGP",
+  { instrument:"HELI", asset_class:"equity", anchor_date:"2026-07-01", anchor_price:6.43, ccy:"EGP",
+    anchor_date_published:"2026-07-03", anchor_note:"Anchor date corrected 28-Jul-2026: 2026-07-03 is a Friday and the EGX was closed, so it was never a trading session. The published anchor_price 6.43 is the close of the 1-Jul session, so the price was always right and only the date label was wrong. No forecast number changed.",
     horizon_label:"1 month", grade_date:"2026-07-29", cycle_no:1, reanchor_from:null,
     p5:5.37, p25:6.09, p50:6.54, p75:7.01, p95:7.89,
     touch:{ "+5":59, "+10":37, "+15":19, "+20":11, "-5":46, "-10":21 },
     anchor_vol:0.382, horizon_days:20,
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
     realized_quantile:null, median_err:null, touch_hit:null },
-  { instrument:"HELI", asset_class:"equity", anchor_date:"2026-07-03", anchor_price:6.43, ccy:"EGP",
+  { instrument:"HELI", asset_class:"equity", anchor_date:"2026-07-01", anchor_price:6.43, ccy:"EGP",
+    anchor_date_published:"2026-07-03", anchor_note:"Anchor date corrected 28-Jul-2026: 2026-07-03 is a Friday and the EGX was closed, so it was never a trading session. The published anchor_price 6.43 is the close of the 1-Jul session, so the price was always right and only the date label was wrong. No forecast number changed.",
     horizon_label:"3 months", grade_date:"2026-09-24", cycle_no:1, reanchor_from:null,
     p5:4.84, p25:5.95, p50:6.74, p75:7.60, p95:9.27,
     touch:{ "+5":79, "+10":65, "+15":47, "+20":35, "-5":63, "-10":41 },
