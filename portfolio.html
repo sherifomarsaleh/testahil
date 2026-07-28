@@ -135,7 +135,7 @@
     </div>
     <div class="chip-rows" id="p-chips"></div>
     <div class="wsum" id="p-wsum"></div>
-    <p id="p-diag" class="muted" style="margin:6px 0 0;font-size:10px;opacity:.5">build single-mix-card-v13</p>
+    <p id="p-diag" class="muted" style="margin:6px 0 0;font-size:10px;opacity:.5">build return-first-v14</p>
     <p class="muted" style="margin:10px 0 0;font-size:var(--fs-small)">"Load a starting mix" picks the five EGX names with the best typical return for the downside risk they carry (median outcome divided by the worst-1-in-20 case) at the chosen horizon, equally weighted — not just the highest headline number. Each name below shows its own bad case too, so a weak trade-off is visible before you swap anything. Nothing on this page is stored or sent anywhere.</p>
   </section>
 
@@ -178,9 +178,9 @@
     </div>
   </section>
 
-  <section id="sec-min" class="card anchor" data-nav="Best mixes for my risk (EGX)">
-    <p class="qhead" style="margin-top:0">Build me EGX mixes for the risk I can live with</p>
-    <p class="muted">Type a number for the <b>same "chance of a big loss" measure used everywhere on this page</b> — the chance the mix moves −10% or worse over the horizon below, not how large a loss might be — and this builds the best available mix from all covered EGX names, weights included, using the same correlated simulation as everything above. The card below shows both loss figures used elsewhere on this page (chance of any loss and chance of a big loss). EGX names only for now.</p>
+  <section id="sec-min" class="card anchor" data-nav="Best mixes for my target (EGX)">
+    <p class="qhead" style="margin-top:0">Build me the safest EGX mix for my target return</p>
+    <p class="muted">Type the <b>typical (median) outcome</b> you'd like this slice of your portfolio to aim for — the same "Typical outcome" figure the card below reports back — and this finds the least-risky available combination of covered EGX names that gets there, weights included, using the same correlated simulation as everything above. Reaching further up the return scale always costs more risk, never less, and often means holding fewer names — concentrating in just one or two carries more risk than the probabilities below fully capture. EGX names only for now.</p>
     <div class="hrow">
       <div class="field" style="margin-bottom:0"><label>Horizon <span class="muted" style="font-weight:400">(set above)</span></label>
         <div class="hbtns">
@@ -188,13 +188,13 @@
           <span class="hbtn hbtn-ro on" id="m-hb60">3 months</span>
         </div>
       </div>
-      <div class="field" style="margin-bottom:0;max-width:280px"><label for="m-risk">Chance of a big loss (−10% or more) you can live with (%)</label><input id="m-risk" type="number" value="15" step="1" class="num"></div>
+      <div class="field" style="margin-bottom:0;max-width:280px"><label for="m-target">Typical (median) return you're aiming for (%)</label><input id="m-target" type="number" value="10" step="1" class="num"></div>
       <button type="button" class="btn" id="m-go">Find my mixes</button>
     </div>
-    <p class="muted" style="font-size:var(--fs-caption);margin:6px 0 0">This is the exact same measure as "Chance of a big loss (−10% or more)" above: the <i>chance</i> of a big loss, not its size — specifically, the chance the mix moves −10% or worse over the horizon. Type 15 to mean "I could live with about a 15% chance of a −10%-or-worse run."</p>
+    <p class="muted" style="font-size:var(--fs-caption);margin:6px 0 0">This is the same kind of number as "Target return" above, just used differently here: instead of asking your chance of reaching it with a mix you built, this searches for the least-risky mix that reaches it for you. Type 10 to mean "I'd like this slice to typically land around +10%."</p>
     <div id="m-note"></div>
     <div id="m-out" style="margin-top:14px"></div>
-    <p class="muted" style="font-size:var(--fs-caption);margin:12px 0 0">This is an optimisation over published simulations — arithmetic, not a recommendation. It searches for the best available typical outcome that still respects your stated tolerance; if no covered combination fits that tolerance, it falls back to the single safest mix available and says so plainly in the note above.</p>
+    <p class="muted" style="font-size:var(--fs-caption);margin:12px 0 0">This is an optimisation over published simulations — arithmetic, not a recommendation. It searches for the least risky available mix that still reaches your stated target; if no covered combination gets there, it falls back to the single highest-return mix available and says so plainly in the note above. Reaching for more return only ever costs more risk, and often means holding fewer names — the note above will flag it when the mix shown is concentrated.</p>
   </section>
 
   <section id="sec-caveats" class="card anchor" style="background:var(--tint2)" data-nav="What this can't tell you">
@@ -869,17 +869,18 @@ window.addEventListener('error', function(e){
      makes the frontier non-decreasing in risk as target rises by construction,
      not by chance, on all three tracked measures at once.
 
-     Below the return of the single best-available mix (the point where the
-     ">= target" floor stops being the binding constraint), every target on this
-     frontier resolves to that SAME mix — and that's not a bug to search harder
+     Below the safest mix's own return (the point where the ">= target" floor
+     stops being the binding constraint), every target on this frontier
+     resolves to that SAME safest mix — and that's not a bug to search harder
      against. Forcing the median down toward a low target there would mean
      giving up return AND taking on more risk at once, which is never the
-     lowest-risk choice for ANY target at or below that point. That's exactly
-     why the section below asks for a risk tolerance instead of a target
-     return: points[0] on this frontier is always the single safest mix
-     regardless of input, and optimizeByRisk below just walks in from the
-     other end (scanning by chance of a big loss, the tolerance the UI asks
-     for) to find the best-return point that still respects it. */
+     lowest-risk choice for ANY target at or below that point. The section
+     below asks directly for that target return and walks this SAME frontier
+     from the low end up (scanning by median outcome, the target the UI asks
+     for) to find the least-risky point that still reaches it; when the typed
+     target sits at or below the safest mix's own return, optimizeByReturn
+     below reports that flat region as "comfortably reached" rather than
+     silently repeating the same mix with no explanation. */
   var frontierCache = {};
   function buildFrontier(which){
     if(frontierCache[which]) return frontierCache[which];
@@ -959,49 +960,50 @@ window.addEventListener('error', function(e){
     frontierCache[which] = out;
     return out;
   }
-  // Finds the best-return mix that still respects a stated chance-of-a-big-loss
-  // tolerance. Reuses the SAME frontier built above rather than searching
-  // again: bigLoss is already proven non-decreasing as target rises along it
-  // (buildFrontier's repair mechanism guarantees this, the same way it does
-  // for p5 and lossProb), so walking in from the highest-target end for the
-  // first point whose bigLoss still clears maxChance finds the best-return
-  // mix inside budget in one pass.
+  // Finds the least-risky mix that still reaches a stated target return.
+  // Reuses the SAME frontier built above rather than searching again: med is
+  // already proven non-decreasing as target rises along it (buildFrontier's
+  // repair mechanism guarantees this the same way it does for p5 and
+  // lossProb), so walking in from the lowest-target end for the first point
+  // whose own median already clears minReturn finds the least-risky mix
+  // inside budget in one pass.
   // The repair mechanism in buildFrontier reuses an earlier point's mix by
   // copying its p5/med/mix into a NEW point object (a different target), so
   // two points can be the same mix in every way that matters while failing a
   // reference check (===). Compare by value instead.
   function sameFrontierMix(a, b){ return Math.abs(a.p5-b.p5) < 1e-9 && Math.abs(a.med-b.med) < 1e-9; }
-  function optimizeByRisk(which, maxChance){
+  function optimizeByReturn(which, minReturn){
     var frontier = buildFrontier(which);
     var pts = frontier.points;
     var chosen = null;
-    for(var i=pts.length-1;i>=0;i--){
-      if(pts[i].bigLoss <= maxChance + 1e-9){ chosen = pts[i]; break; }
+    for(var i=0;i<pts.length;i++){
+      if(pts[i].med >= minReturn - 1e-9){ chosen = pts[i]; break; }
     }
     var safest = pts[0], best = pts[pts.length-1];
     // Frontier points carry stats from the search's raw (pre-rounding)
     // weights; the card that ends up on screen always shows riskMixStats on
-    // the rounded integer-percent mix instead (see renderRiskMixes). Those
-    // two can round to different displayed figures (e.g. 8.1% vs 8.0%), so
-    // any number quoted in a note — as opposed to used for an internal
-    // threshold comparison below — must come from the same rounded-mix path
-    // the card itself uses, or the note and the card can visibly disagree.
-    var safestBigLoss = riskMixStats(safest.mix, which).bigLoss;
+    // the rounded integer-percent mix instead (see renderReturnMixes). Those
+    // two can round to different displayed figures, so any number quoted in
+    // a note — as opposed to used for an internal threshold comparison below
+    // — must come from the same rounded-mix path the card itself uses, or
+    // the note and the card can visibly disagree.
+    var bestMed = riskMixStats(best.mix, which).med;
     if(!chosen){
-      // even the single safest available mix breaches the stated tolerance
-      return { mix:safest.mix, infeasible:true, nonBinding:false, gap:false, safestBigLoss:safestBigLoss };
+      // even the single highest-return available mix falls short of the target
+      return { mix:best.mix, infeasible:true, nonBinding:false, gap:false, bestMed:bestMed };
     }
-    var nonBinding = sameFrontierMix(chosen, best);
+    var nonBinding = sameFrontierMix(chosen, safest);
     return {
       mix: chosen.mix,
       infeasible: false,
       nonBinding: nonBinding,
-      // the tolerance clears the safest mix but not the next step up this
-      // 21-point grid actually sampled — same mix on both cards, but for a
-      // different reason than infeasibility, so it needs its own honest note
-      // rather than silently looking identical with no explanation.
-      gap: (!nonBinding && sameFrontierMix(chosen, safest)),
-      safestBigLoss: safestBigLoss
+      // the target sits above what the next tier down this 21-point grid
+      // actually reaches but at or below what this (the single highest-
+      // return) mix reaches — same mix the infeasible case would also show,
+      // but for a different reason, so it needs its own honest note rather
+      // than silently looking identical with no explanation.
+      gap: (!nonBinding && sameFrontierMix(chosen, best)),
+      bestMed: bestMed
     };
   }
   // Same deterministic scenario matrix the frontier search was scored on, so
@@ -1054,45 +1056,50 @@ window.addEventListener('error', function(e){
     renderAll();
     document.getElementById('sec-target').scrollIntoView({ behavior:'smooth' });
   }
-  function renderRiskMixes(which, maxChance){
-    var res = optimizeByRisk(which, maxChance);
-    var maxStats = riskMixStats(res.mix, which);
-    var tolPct = Math.round(maxChance*100);
+  function renderReturnMixes(which, minReturn){
+    var res = optimizeByReturn(which, minReturn);
+    var stats = riskMixStats(res.mix, which);
+    var tgtPct = Math.round(minReturn*100);
 
-    // Only one card is shown (see git history for the two-card version this
-    // replaced): showing a "minimum-risk" mix alongside the tolerance-driven
-    // one made the section look broken whenever their numbers landed close
-    // together, which is most of the time. The card below always speaks for
-    // itself; the note here only fires for the cases where it needs extra
-    // context beyond its own title and subtitle.
-    var note = '';
+    // Only one card is shown (see git history: this section used to show two
+    // mixes side by side, then a single risk-tolerance-driven mix; both
+    // either looked broken whenever the two mixes' numbers landed close
+    // together, or asked users to pre-commit to a probability they had no
+    // real way to estimate). The card below always speaks for itself; the
+    // notes here only fire for the cases that need extra context beyond its
+    // own title and subtitle.
+    var notes = [];
     if(res.infeasible){
-      note = '<div class="warnbox"><b>Even the safest available mix has about a '+pctU(res.safestBigLoss)+' chance of a big loss, beyond your '+tolPct+'% tolerance.</b> No covered EGX combination gets safer than that, so this shows the single safest mix available rather than pretending a tighter option exists.</div>';
+      notes.push('<div class="warnbox"><b>Even the single highest-return available mix only typically reaches about '+pct(res.bestMed*100)+', short of your '+tgtPct+'% target.</b> No covered EGX combination gets you there, so this shows that highest-return mix instead of pretending a better one exists.</div>');
     } else if(res.nonBinding){
-      // Deliberately doesn't compare this figure to any single covered name's
-      // own median: the highest-median single name isn't always the mix
-      // shown here, because a slightly lower median can come with a
-      // meaningfully better chance-of-a-big-loss — the same trade-off this
-      // whole section is built around, not a shortfall to explain away.
-      note = '<div class="warnbox"><b>Your '+tolPct+'% tolerance comfortably covers the best mix this tool finds.</b> A looser tolerance would not change the result.</div>';
+      notes.push('<div class="warnbox"><b>Your '+tgtPct+'% target is comfortably reached by the single safest mix this tool finds.</b> A lower target would not change the result.</div>');
     } else if(res.gap){
-      note = '<div class="warnbox"><b>Your '+tolPct+'% tolerance sits just below what it takes to reach a higher-return mix.</b> The safest available mix is the closest match within it for now — a slightly looser number may unlock a different, higher-return combination.</div>';
+      notes.push('<div class="warnbox"><b>Your '+tgtPct+'% target sits just above what the next safer tier reaches.</b> The highest-return mix is the closest match for now — a slightly lower target may unlock a less concentrated, lower-risk combination.</div>');
     }
+    // Fires regardless of which case above (or none) fired, since
+    // concentration is a property of the mix that ends up on screen, not of
+    // why it was chosen. This is exactly the gap a user once had to point
+    // out by hand: a 2-name mix beat the search on return AND on the loss
+    // figures shown, but nothing on the page said it was also concentrated
+    // in a way those figures don't fully price in.
+    if(res.mix.length <= 2){
+      notes.push('<div class="warnbox"><b>This mix holds just '+res.mix.length+' name'+(res.mix.length===1?'':'s')+'.</b> Fewer holdings means more risk than the probabilities below fully capture — a single company-specific shock can hit the whole mix at once, not just a slice of it.</div>');
+    }
+    $('m-note').innerHTML = notes.join('');
 
-    $('m-note').innerHTML = note;
-    var title = res.infeasible ? 'Safest available mix' : 'Best mix within your risk tolerance';
+    var title = res.infeasible ? 'Highest-return mix available' : 'Safest mix reaching your target';
     var sub = res.infeasible
-      ? 'No covered combination fits your stated tolerance, so this is the single safest mix available instead.'
-      : 'The best available typical outcome without exceeding your stated worst case.';
-    $('m-out').innerHTML = mixCardHtml(title, sub, res.mix, maxStats, which, 'm-load-max');
-    $('m-load-max').addEventListener('click', function(){ loadMixIntoTool(res.mix, maxStats.med); });
+      ? 'No covered combination reaches your stated target, so this is the single highest-return mix available instead.'
+      : 'The lowest-risk available combination that still reaches your stated typical outcome.';
+    $('m-out').innerHTML = mixCardHtml(title, sub, res.mix, stats, which, 'm-load-mix');
+    $('m-load-mix').addEventListener('click', function(){ loadMixIntoTool(res.mix, stats.med); });
   }
   $('m-go').addEventListener('click', function(){
-    var btn=$('m-go'), r=(parseFloat($('m-risk').value)||0)/100;
-    if(r<=0){ $('m-note').innerHTML='<div class="warnbox">Type a positive risk tolerance first.</div>'; $('m-out').innerHTML=''; return; }
+    var btn=$('m-go'), raw=$('m-target').value.trim(), r=parseFloat(raw)/100;
+    if(raw===''||isNaN(r)){ $('m-note').innerHTML='<div class="warnbox">Type a target return first.</div>'; $('m-out').innerHTML=''; return; }
     btn.disabled=true; btn.textContent='Optimising…';
     setTimeout(function(){
-      renderRiskMixes(state.h, r);
+      renderReturnMixes(state.h, r);
       btn.disabled=false; btn.textContent='Find my mixes';
     }, 30);
   });
