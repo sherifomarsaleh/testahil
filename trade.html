@@ -279,7 +279,11 @@
     });
     var groups = {};
     keys.forEach(function(k){ var g = exOf(TICKERS[k]); (groups[g] = groups[g] || []).push(k); });
-    var groupNames = Object.keys(groups).sort();
+    // EGX first — same reasoning as portfolio.html's picker: it's the bulk of the
+    // coverage and what most readers come for, so it shouldn't sort below Gulf groups.
+    var groupNames = Object.keys(groups).sort(function(a,b){
+      if(a==='EGX') return -1; if(b==='EGX') return 1; return a.localeCompare(b);
+    });
     groupNames.forEach(function(g){
       groups[g].sort(function(a,b){ return TICKERS[a].name.localeCompare(TICKERS[b].name); });
     });
