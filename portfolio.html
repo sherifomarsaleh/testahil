@@ -136,7 +136,7 @@
     </div>
     <div class="chip-rows" id="p-chips"></div>
     <div class="wsum" id="p-wsum"></div>
-    <p id="p-diag" class="muted" style="margin:6px 0 0;font-size:10px;opacity:.5">build frontier-pool-v11</p>
+    <p id="p-diag" class="muted" style="margin:6px 0 0;font-size:10px;opacity:.5">build loss-precision-v12</p>
     <p class="muted" style="margin:10px 0 0;font-size:var(--fs-small)">"Load a starting mix" picks the five EGX names with the best typical return for the downside risk they carry (median outcome divided by the worst-1-in-20 case) at the chosen horizon, equally weighted — not just the highest headline number. Each name below shows its own bad case too, so a weak trade-off is visible before you swap anything. Nothing on this page is stored or sent anywhere.</p>
   </section>
 
@@ -242,6 +242,15 @@ window.addEventListener('error', function(e){
   function sgn(v,s){ return v>0 ? '+'+s : (v<0 ? '−'+s : s); }
   function pct(v,d){ if(v==null||isNaN(v)) return '—'; return sgn(v, Math.abs(v).toFixed(d==null?1:d)) + '%'; }
   function pp(v,d){ if(v==null||isNaN(v)) return '—'; return sgn(v, Math.abs(v).toFixed(d==null?1:d)) + ' pp'; }
+  // Unsigned percent for chance/probability figures (never negative), 1
+  // decimal by default -- matches pct()'s precision so a return figure and a
+  // chance figure sitting side by side never look more/less precise than
+  // each other. Whole-percent rounding used to hide real differences: the
+  // minimum-risk and maximum-return mixes can have different true chances of
+  // a big loss (e.g. 8.025% vs 8.1%) that both round to a displayed "8%",
+  // making the safer mix look pointless to show at all. v is a fraction
+  // (0.081, not 8.1).
+  function pctU(v,d){ if(v==null||isNaN(v)) return '—'; return (v*100).toFixed(d==null?1:d)+'%'; }
   function money(v){ if(v==null||isNaN(v)) return '—'; var s=Math.round(Math.abs(v)).toLocaleString('en-US'); return (v<0?'−':'')+ s; }
 
   /* ---------- odds math: same invCDF as assets/app.js and trade.html ---------- */
@@ -471,7 +480,7 @@ window.addEventListener('error', function(e){
     // never shown as a selectable alternative.
     var p5Lockstep = portQ(sel, which, 0.05);
 
-    $('o-ct').textContent = Math.round(chance*100)+'%';
+    $('o-ct').textContent = pctU(chance);
     $('o-ctf').textContent = 'Assumes these names move together about as much as EGX/Gulf equities typically do (same-exchange pairs ~0.55 correlation, cross-exchange ~0.25) — a stated modelling assumption, not a live measurement.';
     $('o-med').textContent = pct(medSim*100);
     $('o-med').className = 'bigpct ' + (medSim>=0?'g':'r');
@@ -486,9 +495,9 @@ window.addEventListener('error', function(e){
       $('o-reality').innerHTML = '';
     }
 
-    $('o-cl').textContent = Math.round(loss*100)+'%';
+    $('o-cl').textContent = pctU(loss);
     $('o-clf').textContent = 'Chance the mix ends below zero over ' + hzLabel(which) + '.';
-    $('o-bl').textContent = Math.round(b.bigLoss*100)+'%';
+    $('o-bl').textContent = pctU(b.bigLoss);
     $('o-blf').textContent = 'A move of −10% or worse for the mix as a whole.';
 
     // diversification benefit, stated in plain language with real numbers
@@ -1024,9 +1033,9 @@ window.addEventListener('error', function(e){
       '<div class="outgrid" style="margin-top:12px">'+
         '<div class="outbox"><div class="ol">Typical outcome</div><div class="bigpct '+(stats.med>=0?'g':'r')+'">'+pct(stats.med*100)+'</div>'+
           '<div class="rangefine">On '+moneyLbl(amt)+': '+moneyLbl(amt*stats.med)+'. Half of outcomes land below this, half above.</div></div>'+
-        '<div class="outbox"><div class="ol">Chance of losing money</div><div class="bigpct r">'+Math.round(stats.loss*100)+'%</div>'+
+        '<div class="outbox"><div class="ol">Chance of losing money</div><div class="bigpct r">'+pctU(stats.loss)+'</div>'+
           '<div class="rangefine">Chance the mix ends below zero over '+hzLabel(which)+'.</div></div>'+
-        '<div class="outbox"><div class="ol">Chance of a big loss (&minus;10% or more)</div><div class="bigpct r">'+Math.round(stats.bigLoss*100)+'%</div>'+
+        '<div class="outbox"><div class="ol">Chance of a big loss (&minus;10% or more)</div><div class="bigpct r">'+pctU(stats.bigLoss)+'</div>'+
           '<div class="rangefine">A move of &minus;10% or worse for the mix as a whole.</div></div>'+
       '</div>'+
       '<button type="button" class="btn ghost2" id="'+loadId+'" style="margin-top:12px">Load this mix into the tool above</button>'+
@@ -1048,7 +1057,7 @@ window.addEventListener('error', function(e){
 
     var note = '';
     if(res.infeasible){
-      note = '<div class="warnbox"><b>Even the safest available mix has about a '+Math.round(res.safestBigLoss*100)+'% chance of a big loss, beyond your '+tolPct+'% tolerance.</b> No covered EGX combination gets safer than that, so this mix matches the minimum-risk one exactly rather than pretending a tighter option exists.</div>';
+      note = '<div class="warnbox"><b>Even the safest available mix has about a '+pctU(res.safestBigLoss)+' chance of a big loss, beyond your '+tolPct+'% tolerance.</b> No covered EGX combination gets safer than that, so this mix matches the minimum-risk one exactly rather than pretending a tighter option exists.</div>';
     } else if(res.nonBinding){
       // Deliberately doesn't compare this figure to any single covered name's
       // own median: the highest-median single name isn't always the mix
