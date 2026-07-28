@@ -80,3 +80,52 @@ published cone by 0.65%, and was correctly not adopted).
 Run the span test on **every market, at every library ingest**, and record the
 verdict — including the nulls. A null is a result: it says the current span is
 already the best available and the extra history costs nothing.
+
+---
+
+# First application — all six markets, 28-Jul-2026
+
+Run at the 15-year ingest of KR, IN, QA, US and metals, on the 3-month horizon,
+every candidate scored on identical origins against the same carry-anchored
+benchmark.
+
+| market | names | best candidate | paired vs unlimited, blocks {2,3,4} | jackknife flips | width move | decision |
+|---|---|---|---|---|---|---|
+| EG | 30 | 7 yr | PASS / PASS / **PARITY** — block-dependent | 0/30 | −0.43% | **no change** |
+| AE | 18 | 3 yr | ROBUST PARITY | 1/18 | −1.79% | **no change** |
+| SA | 11 | 5 yr | ROBUST PARITY | 0/11 | +0.72% | **no change** |
+| KR | 3 | 3 yr | ROBUST PARITY | 1/3 (SAMSUNG) | −0.50% | **no change** |
+| IN | 3 | *unlimited* | 7 yr is a ROBUST **FAIL** vs unlimited | 3/3 | −0.54% | **no change** |
+| US | 3 | *unlimited* | ROBUST PARITY | 1/3 | +1.12% | **no change** |
+
+**Six markets, six nulls. In none of them does a shorter span clear the guard.**
+
+EG is the closest call and is instructive: 7 years leads on point skill and the
+paired CI clears zero at two of three block sizes — but not the third. Under the
+standing robustness rule that is BOUNDARY, not a pass, and it is exactly the
+block-dependent sign flip the rule exists to catch. It would also have moved the
+cone by 0.43%, an order of magnitude inside the materiality gate.
+
+India is the clearest result in the other direction: truncation is *monotonically*
+worse on both skill and `std_u` (1.039 unlimited → 1.078 at 3 years, further from
+the ideal 1.0), and a 7-year window is a **robust FAIL** against the full history.
+There, the extra decade is actively earning its place.
+
+## What this says about the original question
+
+The premise behind the rule — that a longer library widens the cone or degrades
+the forecast — **is not supported in any market tested.** Every span-driven width
+move above is under 2%, in both directions. History length is simply not the
+lever that controls cone width.
+
+The levers that do control it, in the order they mattered on 28-Jul-2026:
+
+1. **which engine vintage struck the published cone** — legacy cones implied
+   1.6–2.1× the volatility the current chain estimates;
+2. **the fitted (ν, width_cal)** for the market;
+3. **the volatility state at the anchor date**;
+4. history length — a rounding error by comparison.
+
+The rule stays in force regardless. It is cheap to run, it is the only way to know
+rather than assume, and a null is a real result: it says the data we hold is not
+costing us anything. Re-run it at every ingest, and record the nulls too.
