@@ -155,7 +155,7 @@
 
 <footer><div class="wrap"><div class="foot-studies"><b>Studies:</b> <a href="phdc.html">Palm Hills</a> &middot; <a href="tmgh.html">Talaat Moustafa</a> &middot; <a href="ocdi.html">SODIC</a> &middot; <a href="orhd.html">Orascom Dev</a> &middot; <a href="oras.html">Orascom Const</a> &middot; <a href="comi.html">CIB</a> &middot; <a href="emfd.html">Emaar Misr</a> &middot; <a href="gold.html">Gold</a> &middot; <a href="stocks.html">all &rarr;</a></div><b>Disclaimer:</b> Educational valuation studies and personal analytical opinion — not investment advice, not recommendations. The preparer is not licensed by Egypt's FRA, manages no money, accepts no clients, and may hold positions in instruments mentioned. <a href="method.html#disclaimer">Full text</a>.<br><br><span class="social" style="font-size:var(--fs-lead);font-weight:700">Follow Testahil &mdash; <a href="https://t.me/testahil_markets" target="_blank" rel="noopener">Telegram</a> &middot; <a href="https://www.facebook.com/testahil.markets" target="_blank" rel="noopener">Facebook</a> &middot; <a href="https://www.linkedin.com/company/testahil" target="_blank" rel="noopener">LinkedIn</a></span></div></footer>
 
-<script src="assets/data.js?v=20260728e"></script><script src="assets/app.js?v=20260727d"></script>
+<script src="assets/data.js?v=20260728f"></script><script src="assets/app.js?v=20260727d"></script>
 <script>
 const F2 = n => Number(n).toLocaleString("en-US",{maximumFractionDigits:2});
 
@@ -305,15 +305,92 @@ function chEl(t,a){const e=document.createElementNS(CH_NS,t);for(const k in a)e.
 // an entry get the real daily line; the rest render the anchor+realized dots only, no
 // broken fetch. raw.githubusercontent serves Access-Control-Allow-Origin:* so the browser
 // can fetch it cross-origin. Add a name here when its cohort chart should show the path.
-const COHORT_OHLC = {
-  PHDC: "https://raw.githubusercontent.com/sherifomarsaleh/testahil/main/engine/raw_ohlc/EG/PHDC.csv",
-  TMGH: "https://raw.githubusercontent.com/sherifomarsaleh/testahil/main/engine/raw_ohlc/EG/TMGH.csv",
-  EMFD: "https://raw.githubusercontent.com/sherifomarsaleh/testahil/main/engine/raw_ohlc/EG/EMFD.csv",
-  OCDI: "https://raw.githubusercontent.com/sherifomarsaleh/testahil/main/engine/raw_ohlc/EG/OCDI.csv",
-  ORHD: "https://raw.githubusercontent.com/sherifomarsaleh/testahil/main/engine/raw_ohlc/EG/ORHD.csv",
-  Gold: "https://raw.githubusercontent.com/sherifomarsaleh/testahil/main/engine/raw_ohlc/XAU/GOLD.csv",
-  Samsung: "https://raw.githubusercontent.com/sherifomarsaleh/testahil/main/engine/raw_ohlc/KR/SAMSUNG.csv"
+// Every ledger instrument that has an OHLC library, so the "predicted vs actual"
+// chart can draw the REAL daily close path inside the cone instead of just the two
+// endpoints. Paths are relative to OHLC_BASE and are MARKET-QUALIFIED: the market
+// directory is part of the value, never inferred from the instrument name. That is
+// what keeps ADIB (EGX, EGP) and ADIBUAE (ADX, AED) apart — they share a filename
+// and differ only by directory. Each entry below was verified by matching its
+// market directory's currency against the ccy on that instrument's ledger rows.
+const OHLC_BASE = "https://raw.githubusercontent.com/sherifomarsaleh/testahil/main/engine/raw_ohlc/";
+const COHORT_OHLC_PATH = {
+  "2POINTZERO": "AE/TWOPOINTZERO.csv",
+  AAPL: "US/AAPL.csv",
+  ABUK: "EG/ABUK.csv",
+  ACWA: "SA/ACWA.csv",
+  ADCB: "AE/ADCB.csv",
+  ADIB: "EG/ADIB.csv",
+  ADIBUAE: "AE/ADIB.csv",
+  ADNOCGAS: "AE/ADNOCGAS.csv",
+  AGTHIA: "AE/AGTHIA.csv",
+  ALDAR: "AE/ALDAR.csv",
+  ALINMA: "SA/ALINMA.csv",
+  ALPHADHABI: "AE/ALPHADHABI.csv",
+  ALRAJHI: "SA/RAJHI.csv",
+  ARAMCO: "SA/ARAMCO.csv",
+  BTFH: "EG/BTFH.csv",
+  BURJEEL: "AE/BURJEEL.csv",
+  CCAP: "EG/CCAP.csv",
+  CLHO: "EG/CLHO.csv",
+  COMI: "EG/COMI.csv",
+  DEWA: "AE/DEWA.csv",
+  DIB: "AE/DIB.csv",
+  DSCW: "EG/DSCW.csv",
+  EAND: "AE/EAND.csv",
+  EFID: "EG/EFID.csv",
+  EFIH: "EG/EFIH.csv",
+  EGAL: "EG/EGAL.csv",
+  ELM: "SA/ELM.csv",
+  EMAAR: "AE/EMAAR.csv",
+  EMAARDEV: "AE/EMAARDEV.csv",
+  EMFD: "EG/EMFD.csv",
+  ENBD: "AE/ENBD.csv",
+  ETEL: "EG/ETEL.csv",
+  EXTRA: "SA/EXTRA.csv",
+  FAB: "AE/FAB.csv",
+  FWRY: "EG/FWRY.csv",
+  GBCO: "EG/GBCO.csv",
+  Gold: "XAU/GOLD.csv",
+  HELI: "EG/HELI.csv",
+  HRHO: "EG/HRHO.csv",
+  IHC: "AE/IHC.csv",
+  INFY: "IN/INFY.csv",
+  IQCD: "QA/IQCD.csv",
+  ISPH: "EG/ISPH.csv",
+  JUFO: "EG/JUFO.csv",
+  KABO: "EG/KABO.csv",
+  Kakao: "KR/KAKAO.csv",
+  LCSW: "EG/LCSW.csv",
+  LGES: "KR/LGES.csv",
+  LULU: "AE/LULU.csv",
+  MAADEN: "SA/MAADEN.csv",
+  NVDA: "US/NVDA.csv",
+  OCDI: "EG/OCDI.csv",
+  OIH: "EG/OIH.csv",
+  ORAS: "EG/ORAS.csv",
+  ORHD: "EG/ORHD.csv",
+  ORWE: "EG/ORWE.csv",
+  PHDC: "EG/PHDC.csv",
+  PRDC: "EG/PRDC.csv",
+  QGTS: "QA/QGTS.csv",
+  QNB: "QA/QNB.csv",
+  RAYA: "EG/RAYA.csv",
+  RELIANCE: "IN/RELIANCE.csv",
+  RIBL: "SA/RIBL.csv",
+  RMDA: "EG/RMDA.csv",
+  SABIC: "SA/SABIC.csv",
+  SALIK: "AE/SALIK.csv",
+  SNB: "SA/SNB.csv",
+  STC: "SA/STC.csv",
+  Samsung: "KR/SAMSUNG.csv",
+  Silver: "XAU/SILVER.csv",
+  TMGH: "EG/TMGH.csv",
+  TMPV: "IN/TMPV.csv",
+  TSLA: "US/TSLA.csv",
+  XPTUSD: "XPT/PLATINUM.csv"
 };
+const COHORT_OHLC = Object.fromEntries(
+  Object.entries(COHORT_OHLC_PATH).map(([k, v]) => [k, OHLC_BASE + v]));
 
 function latestGradedCohort(rows){
   // graded = realized_close present; take the most recent by grade_date, and on a
