@@ -93,7 +93,13 @@
 
   /* ---- searchable name/ticker combobox (replaces the old plain <select id="p-sel">) ---- */
   .t-combo{position:relative}
-  .t-combo-input{width:100%;padding-right:30px;cursor:text}
+  /* The magnifier + hint are load-bearing, not decoration: without them this control
+     renders pixel-identically to the native <select> it replaced (same .num monospace,
+     same box, same right-hand caret) and readers kept reporting "it's still a dropdown,
+     I can't type" — six times — because nothing on screen said otherwise. */
+  .t-combo-input{width:100%;padding-left:36px;padding-right:30px;cursor:text}
+  .t-combo-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--muted)}
+  .t-combo-hint{display:block;margin-top:7px;font-size:var(--fs-small);color:var(--muted);line-height:1.45}
   .t-combo-caret{position:absolute;right:11px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--muted);font-size:var(--fs-caption);transition:transform .15s}
   .t-combo-input[aria-expanded="true"] ~ .t-combo-caret{transform:translateY(-50%) rotate(180deg)}
   .t-combo-panel{position:absolute;z-index:30;top:calc(100% + 4px);left:0;right:0;max-height:320px;overflow-y:auto;background:var(--card,var(--paper));border:1px solid var(--line);border-radius:10px;box-shadow:0 10px 28px rgba(0,0,0,.14);padding:5px}
@@ -141,7 +147,7 @@
       <div class="field" style="margin-bottom:0;max-width:200px"><label for="p-amt">Amount to invest</label><input id="p-amt" type="number" value="100000" min="1" step="1000" class="num"></div>
     </div>
     <div class="addrow">
-      <div class="field"><label for="p-sel">Add a name — picking one from this list adds it below</label><div id="p-sel-mount" class="t-combo"></div></div>
+      <div class="field"><label for="p-sel">Add a name — type to search</label><div id="p-sel-mount" class="t-combo"></div><small class="t-combo-hint">Type any part of a company name or ticker — try <b>orascom</b> or <b>DSCW</b> — or click the box to browse the whole list. Picking one adds it below.</small></div>
       <button type="button" class="btn" id="p-add" onclick="if(window.__addPendingPick) window.__addPendingPick()">+ Add</button>
       <button type="button" class="btn ghost2" id="p-start">Load a starting mix</button>
       <button type="button" class="btn ghost2" id="p-eq">Equal weights</button>
@@ -439,6 +445,9 @@ window.addEventListener('error', function(e){
     var open = false, activeKey = null, flat = [];
 
     mount.innerHTML =
+      '<svg class="t-combo-icon" viewBox="0 0 16 16" width="15" height="15" aria-hidden="true" ' +
+      'fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="6.8" cy="6.8" r="4.6"></circle>' +
+      '<path d="M10.3 10.3 L14 14" stroke-linecap="round"></path></svg>' +
       '<input id="p-sel" class="num t-combo-input" type="text" role="combobox" aria-expanded="false" ' +
       'aria-autocomplete="list" autocomplete="off" placeholder="Search a name or ticker to add…">' +
       '<span class="t-combo-caret" aria-hidden="true">▾</span>' +
