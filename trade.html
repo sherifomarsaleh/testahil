@@ -73,6 +73,19 @@
     .odds-table>div{padding:9px 8px}
     .odds-cell .pctnum{font-size:var(--fs-h3)}
   }
+
+  /* ---- searchable name/ticker combobox (replaces the old plain <select id="t-sym">) ---- */
+  .t-combo{position:relative}
+  .t-combo-input{width:100%;padding-right:30px;cursor:text}
+  .t-combo-caret{position:absolute;right:11px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--muted);font-size:var(--fs-caption);transition:transform .15s}
+  .t-combo-input[aria-expanded="true"] ~ .t-combo-caret{transform:translateY(-50%) rotate(180deg)}
+  .t-combo-panel{position:absolute;z-index:30;top:calc(100% + 4px);left:0;right:0;max-height:320px;overflow-y:auto;background:var(--card,var(--paper));border:1px solid var(--line);border-radius:10px;box-shadow:0 10px 28px rgba(0,0,0,.14);padding:5px}
+  .t-combo-group{font-size:var(--fs-caption);font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);padding:8px 10px 4px}
+  .t-combo-opt{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:8px 10px;border-radius:7px;cursor:pointer}
+  .t-combo-opt:hover,.t-combo-opt.active{background:rgba(42,143,143,.13)}
+  .t-combo-opt.sel .t-combo-name::after{content:" \2713";color:var(--teal)}
+  .t-combo-code{font-size:var(--fs-small);white-space:nowrap}
+  .t-combo-empty{padding:10px;color:var(--muted);font-size:var(--fs-small)}
 </style>
 </head>
 <body>
@@ -100,7 +113,7 @@
   </section>
 
   <section id="sec-pick" class="card anchor" data-nav="Pick a name">
-    <div class="field" style="margin-bottom:0"><label for="t-sym">Name</label><select id="t-sym" class="num"></select></div>
+    <div class="field" style="margin-bottom:0"><label for="t-sym">Name</label><div id="t-sym-mount" class="t-combo"></div></div>
   </section>
 
   <section id="sec-odds" class="card anchor" data-nav="What are the odds">
@@ -250,27 +263,100 @@
 
   /* ---------- ticker list, grouped by exchange ---------- */
   function exOf(t){ var c=(t.code||''); var i=c.indexOf(':'); return i>0 ? c.slice(0,i) : 'Other'; }
-  function buildSymbols(){
-    var sel = $('t-sym');
+
+  /* ---------- searchable name/ticker combobox ----------
+     Replaces the old plain <select id="t-sym">: type any part of the company name or
+     the ticker (e.g. "dice" or "dscw") to filter, or click to browse the full list
+     grouped by exchange exactly as before. Self-contained (no assets/app.js dependency
+     — same "data.js only" convention as the rest of this page — modeled on the
+     makeCompareCombo pattern already live on compare.html). Same inclusion filter as
+     the old buildSymbols(): only names with published spot + t20/t60 distributions. */
+  function buildSymbolPicker(onChange){
+    var mount = $('t-sym-mount');
     var keys = Object.keys(TICKERS).filter(function(k){
       var t = TICKERS[k];
       return t && t.spot && t.dist && t.dist.t20 && t.dist.t60;
     });
     var groups = {};
     keys.forEach(function(k){ var g = exOf(TICKERS[k]); (groups[g] = groups[g] || []).push(k); });
-    Object.keys(groups).sort().forEach(function(g){
-      var og = document.createElement('optgroup'); og.label = g;
-      groups[g].sort(function(a,b){ return TICKERS[a].name.localeCompare(TICKERS[b].name); })
-        .forEach(function(k){
-          var o = document.createElement('option');
-          o.value = k; o.textContent = TICKERS[k].name + ' (' + k + ')';
-          og.appendChild(o);
-        });
-      sel.appendChild(og);
+    // EGX first — same reasoning as portfolio.html's picker: it's the bulk of the
+    // coverage and what most readers come for, so it shouldn't sort below Gulf groups.
+    var groupNames = Object.keys(groups).sort(function(a,b){
+      if(a==='EGX') return -1; if(b==='EGX') return 1; return a.localeCompare(b);
     });
-    var pref = (typeof SITE !== 'undefined' && SITE.latest && TICKERS[SITE.latest]) ? SITE.latest : keys[0];
-    sel.value = pref;
-    return pref;
+    groupNames.forEach(function(g){
+      groups[g].sort(function(a,b){ return TICKERS[a].name.localeCompare(TICKERS[b].name); });
+    });
+
+    var selected = (typeof SITE !== 'undefined' && SITE.latest && TICKERS[SITE.latest]) ? SITE.latest : keys[0];
+    var open = false, activeKey = null, flat = [];
+    function labelFor(k){ var t = TICKERS[k]; return t ? (t.name + ' (' + k + ')') : ''; }
+
+    mount.innerHTML =
+      '<input id="t-sym" class="num t-combo-input" type="text" role="combobox" aria-expanded="false" ' +
+      'aria-autocomplete="list" autocomplete="off" placeholder="Search by name or ticker…">' +
+      '<span class="t-combo-caret" aria-hidden="true">▾</span>' +
+      '<div class="t-combo-panel" role="listbox" hidden></div>';
+    var input = mount.querySelector('.t-combo-input');
+    var panel = mount.querySelector('.t-combo-panel');
+
+    function matches(q){
+      q = (q||'').trim().toLowerCase();
+      if(!q) return groupNames.map(function(g){ return [g, groups[g].slice()]; });
+      return groupNames.map(function(g){
+        return [g, groups[g].filter(function(k){
+          var t = TICKERS[k];
+          return t.name.toLowerCase().indexOf(q) >= 0 || k.toLowerCase().indexOf(q) >= 0 || (t.code||'').toLowerCase().indexOf(q) >= 0;
+        })];
+      }).filter(function(g){ return g[1].length; });
+    }
+    function renderPanel(){
+      var showAll = input.value === labelFor(selected);
+      var gs = matches(showAll ? '' : input.value);
+      // decide the active (highlighted) row BEFORE building the HTML below — otherwise
+      // the freshly auto-highlighted top match wouldn't get its ".active" class until
+      // a second render, one keystroke late (Enter/choose() would still work off the
+      // variable, but nothing would visibly show as highlighted until an arrow key).
+      flat = [];
+      gs.forEach(function(g){ g[1].forEach(function(k){ flat.push(k); }); });
+      if(flat.indexOf(activeKey) < 0) activeKey = flat[0] || null;
+      var html = '';
+      if(!gs.length) html = '<div class="t-combo-empty">No match — try a name or a ticker like DSCW</div>';
+      gs.forEach(function(g){
+        html += '<div class="t-combo-group">' + g[0] + '</div>';
+        g[1].forEach(function(k){
+          var t = TICKERS[k];
+          html += '<div class="t-combo-opt' + (k===selected?' sel':'') + (k===activeKey?' active':'') +
+                  '" role="option" data-key="' + k + '" aria-selected="' + (k===selected) + '">' +
+                  '<span class="t-combo-name">' + t.name + '</span><span class="muted num t-combo-code">' + k + '</span></div>';
+        });
+      });
+      panel.innerHTML = html;
+    }
+    function scrollActive(){ var a = panel.querySelector('.t-combo-opt.active'); if(a && a.scrollIntoView) a.scrollIntoView({block:'nearest'}); }
+    function openPanel(){ open = true; panel.hidden = false; input.setAttribute('aria-expanded','true'); activeKey = selected; renderPanel(); scrollActive(); }
+    function closePanel(restore){ open = false; panel.hidden = true; input.setAttribute('aria-expanded','false'); if(restore!==false) input.value = labelFor(selected); }
+    function choose(k){ if(!TICKERS[k]) return; selected = k; input.value = labelFor(k); closePanel(false); onChange(k); }
+    function move(dir){ if(!flat.length) return; var i = flat.indexOf(activeKey); i = i<0 ? 0 : i+dir; i = Math.max(0, Math.min(flat.length-1, i)); activeKey = flat[i]; renderPanel(); scrollActive(); }
+
+    input.value = labelFor(selected);
+    input.addEventListener('focus', function(){ input.select(); openPanel(); });
+    input.addEventListener('click', function(){ if(!open) openPanel(); });
+    input.addEventListener('input', function(){ open = true; panel.hidden = false; input.setAttribute('aria-expanded','true'); activeKey = null; renderPanel(); scrollActive(); });
+    input.addEventListener('keydown', function(e){
+      if(e.key === 'ArrowDown'){ e.preventDefault(); if(!open) openPanel(); else move(1); }
+      else if(e.key === 'ArrowUp'){ e.preventDefault(); if(open) move(-1); }
+      else if(e.key === 'Enter'){ if(open && activeKey){ e.preventDefault(); choose(activeKey); } }
+      else if(e.key === 'Escape'){ if(open){ e.preventDefault(); closePanel(true); input.blur && input.blur(); } }
+    });
+    panel.addEventListener('mousedown', function(e){ var o = e.target.closest && e.target.closest('.t-combo-opt'); if(o){ e.preventDefault(); choose(o.getAttribute('data-key')); } });
+    document.addEventListener('click', function(e){ if(!mount.contains(e.target)) closePanel(true); });
+
+    renderPanel();
+    return {
+      get value(){ return selected; },
+      set: function(k){ if(TICKERS[k]){ selected = k; input.value = labelFor(k); } }
+    };
   }
 
   /* ---------- candidate levels, all from published data ---------- */
@@ -508,13 +594,12 @@
   }
 
   /* ---------- events ---------- */
-  $('t-sym').addEventListener('change', function(e){
-    state.sym = e.target.value; state.stop = null; state.target = null;
-    var t = TICKERS[state.sym];
-    if(t && t.ccy) { /* portfolio figure is left as typed; the label changes currency */ }
+  function onSymChange(k){
+    // portfolio figure is left as typed; renderAll() below updates the currency label off t.ccy
+    state.sym = k; state.stop = null; state.target = null;
     renderAll();
     if(history.replaceState) history.replaceState(null,'', '?n=' + state.sym);
-  });
+  }
   ['t-port','t-risk'].forEach(function(id){
     $(id).addEventListener('input', function(){ renderSize(TICKERS[state.sym]); });
   });
@@ -541,9 +626,10 @@
   });
 
   /* ---------- boot ---------- */
-  var initial = buildSymbols();
+  var picker = buildSymbolPicker(onSymChange);
+  var initial = picker.value;
   var q = (location.search.match(/[?&]n=([A-Za-z0-9_]+)/) || [])[1];
-  if(q && TICKERS[q.toUpperCase()]) { initial = q.toUpperCase(); $('t-sym').value = initial; }
+  if(q && TICKERS[q.toUpperCase()]) { initial = q.toUpperCase(); picker.set(initial); }
   state.sym = initial;
   renderAll();
 })();
