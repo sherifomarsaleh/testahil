@@ -104,7 +104,7 @@
   </section>
 
   <section id="sec-odds" class="card anchor" data-nav="What are the odds">
-    <p class="qhead" style="margin-top:0">The odds for <span id="o-oname">this name</span></p>
+    <p class="qhead" style="margin-top:0">The odds for <span id="o-oname">this name</span> <span class="tagk">Simulation</span></p>
     <p class="muted">We call a move of <b>10% or more</b> "big" and anything smaller "small" — the same round cut-off used in the odds box on our homepage. The four chances in each column always add to 100%: between them they cover every place the 50,000 simulated paths could end up.</p>
     <div class="odds-table" id="o-odds"></div>
     <p class="muted" style="font-size:var(--fs-small);margin-top:10px">"How much" for the big-win and big-loss rows is the study's own rare-case figure (95th / 5th percentile). The two middle rows are ranges; where the single most likely outcome (median) falls inside one, we say so.</p>
@@ -148,7 +148,7 @@
   </section>
 
   <section id="sec-touch" class="anchor" data-nav="The published odds">
-    <p class="qhead">What the simulation says about getting there</p>
+    <p class="qhead">What the simulation says about getting there <span class="tagk">Simulation</span></p>
     <p class="muted">Out of 50,000 simulated paths, the share that <b>touch</b> each price at any point before the horizon — not where the price ends up, but whether it gets there along the way. These are the published ladders from this name's study, unedited. Levels you selected above are highlighted where they line up with a published rung.</p>
     <div class="card" style="padding:0;overflow:hidden">
       <table class="tt" id="o-touch"><thead><tr><th>Price</th><th id="o-th1">1 month</th><th id="o-th3">3 months</th></tr></thead><tbody></tbody></table>
@@ -358,15 +358,16 @@
     $('o-spotline').textContent = 'Last close ' + t.ccy + ' ' + px(t.spot) + (t.spotDate ? ' · ' + t.spotDate : '');
     var f = t.fair || {}, d = t.dist || {};
     var cells = [
-      ['Bear-case fair value', f.bear!=null ? t.ccy + ' ' + px(f.bear) : '—'],
-      ['Central fair value',   f.base!=null ? t.ccy + ' ' + px(f.base) : '—'],
-      ['Bull-case fair value', f.full!=null ? t.ccy + ' ' + px(f.full) : '—'],
-      [hz(t,'t20') + ' range (25th–75th)', d.t20 ? px(d.t20.p25) + ' – ' + px(d.t20.p75) : '—'],
-      [hz(t,'t60') + ' range (25th–75th)', d.t60 ? px(d.t60.p25) + ' – ' + px(d.t60.p75) : '—'],
-      ['Checked on', d.t60 && d.t60.resolve ? d.t60.resolve : '—']
+      ['Bear-case fair value', f.bear!=null ? t.ccy + ' ' + px(f.bear) : '—', 'Fundamental'],
+      ['Central fair value',   f.base!=null ? t.ccy + ' ' + px(f.base) : '—', 'Fundamental'],
+      ['Bull-case fair value', f.full!=null ? t.ccy + ' ' + px(f.full) : '—', 'Fundamental'],
+      [hz(t,'t20') + ' range (25th–75th)', d.t20 ? px(d.t20.p25) + ' – ' + px(d.t20.p75) : '—', 'Simulation'],
+      [hz(t,'t60') + ' range (25th–75th)', d.t60 ? px(d.t60.p25) + ' – ' + px(d.t60.p75) : '—', 'Simulation'],
+      ['Checked on', d.t60 && d.t60.resolve ? d.t60.resolve : '—', null]
     ];
     $('o-pub').innerHTML = cells.map(function(c){
-      return '<div class="outbox"><div class="ol">' + c[0] + '</div><div class="ov">' + c[1] + '</div></div>';
+      var tag = c[2] ? ' <span class="tagk">' + c[2] + '</span>' : '';
+      return '<div class="outbox"><div class="ol">' + c[0] + tag + '</div><div class="ov">' + c[1] + '</div></div>';
     }).join('');
     var a = $('o-study'); a.setAttribute('href', state.sym.toLowerCase() + '.html');
     a.textContent = 'Open the full ' + t.name + ' study →';
