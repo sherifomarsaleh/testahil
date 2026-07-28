@@ -524,6 +524,35 @@ function renderComparePair(elId, codeA, codeB){
   </tr></thead><tbody>${rows.join("")}</tbody></table>${same}`;
 }
 
+/* ---------- top movers (compare.html): biggest fundamental gap & biggest simulated 3-mo move ----------
+   Ranks the whole TICKERS panel two ways: fair.base vs spot (fundamental), and dist.t60.p50 vs spot
+   (simulation, T+60 ≈ 3 months). Both are re-uses of numbers already published per-ticker elsewhere
+   on this page — this just sorts them; it is not a new estimate or a recommendation. */
+function _tmRowHTML(rank, code, t, pct){
+  const cls = pct>=0 ? "up" : "down";
+  const sign = pct>=0 ? "+" : "−";
+  const dateStr = (t.spotDate||"").replace(/^close\s+/i,"");
+  return `<li class="tm-row">
+    <span class="tm-rank">${rank}</span>
+    <span class="tm-name"><a href="${code.toLowerCase()}.html"><b>${t.name}</b></a><span class="tm-sub">${t.code} &middot; latest ${F(t.spot)} ${t.ccy} as of ${dateStr}</span></span>
+    <span class="tm-pct ${cls}">${sign}${Math.abs(pct).toFixed(0)}%</span>
+  </li>`;
+}
+function renderTopMovers(fundId, simId){
+  const fundEl=document.getElementById(fundId), simEl=document.getElementById(simId);
+  if(!fundEl && !simEl) return;
+  const entries = Object.entries(TICKERS).filter(([,t])=> t && t.spot && t.fair && t.dist && t.dist.t60);
+  const topBy = keyFn => entries.map(([code,t])=> [code,t,keyFn(t)]).sort((a,b)=> b[2]-a[2]).slice(0,3);
+  if(fundEl){
+    const rows = topBy(t=> (t.fair.base - t.spot)/t.spot*100).map(([code,t,pct],i)=> _tmRowHTML(i+1,code,t,pct)).join("");
+    fundEl.innerHTML = rows || `<li class="muted">Not enough data yet.</li>`;
+  }
+  if(simEl){
+    const rows = topBy(t=> (t.dist.t60.p50 - t.spot)/t.spot*100).map(([code,t,pct],i)=> _tmRowHTML(i+1,code,t,pct)).join("");
+    simEl.innerHTML = rows || `<li class="muted">Not enough data yet.</li>`;
+  }
+}
+
 /* ---------- searchable combobox for the compare picker (type to search OR open full list) ---------- */
 function initCompareCombo(opts){
   const input  = document.getElementById(opts.input);

@@ -40,9 +40,9 @@
     <a href="index.html">Home</a>
     <a href="stocks.html">Stocks</a>
     <a href="metals.html">Metals</a>
+    <a href="compare.html" class="on">Compare</a>
     <a href="trade.html">Trade</a>
     <a href="portfolio.html">Portfolio</a>
-    <a href="compare.html" class="on">Compare</a>
     <a href="calculator.html">Calculator</a>
     <a href="ledger.html">Ledger</a>
     <a href="method.html">Methodology</a>
@@ -86,6 +86,37 @@
     <p class="muted" style="margin-top:12px">"Cheap / expensive" compares the latest price to our own fair-value estimate. "Odds up" is the share of 50,000 simulated 3-month outcomes that finish above the latest price. None of this is advice — it's a map of estimates and probabilities. <a href="method.html">How we build these →</a></p>
   </section>
 
+  <section id="sec-top3" style="padding-top:0" class="anchor" data-nav="Where the upside is">
+    <style>
+      .tm-list{list-style:none;margin:8px 0 0;padding:0}
+      .tm-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-top:1px solid var(--line)}
+      .tm-row:first-child{border-top:none}
+      .tm-rank{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:var(--tint2);color:var(--teal);font-family:"IBM Plex Mono",monospace;font-weight:700;font-size:var(--fs-caption)}
+      .tm-name{flex:1 1 auto;min-width:0}
+      .tm-name b{display:block}
+      .tm-sub{display:block;font-size:var(--fs-caption);color:var(--muted);margin-top:1px}
+      .tm-pct{flex:0 0 auto;font-family:"IBM Plex Mono",monospace;font-weight:700;font-size:var(--fs-lead)}
+      .tm-pct.up{color:var(--green)}
+      .tm-pct.down{color:var(--red)}
+    </style>
+    <p class="qhead">Where the upside is</p>
+    <p class="muted" style="max-width:640px">The same coverage list, ranked two different ways — they don't always agree, and neither is a pick. <a href="method.html">How we build these →</a></p>
+    <div class="grid g2" style="margin-top:10px">
+      <div class="card">
+        <span class="kicker">Fundamental</span>
+        <h3 style="margin-bottom:2px">Biggest gap to our fair value</h3>
+        <p class="muted" style="margin:0 0 4px">Latest price vs. our own fair-value estimate (base case).</p>
+        <ol id="top-fundamental" class="tm-list"></ol>
+      </div>
+      <div class="card">
+        <span class="kicker">Simulation</span>
+        <h3 style="margin-bottom:2px">Biggest simulated 3-month move</h3>
+        <p class="muted" style="margin:0 0 4px">Latest price vs. the median of 50,000 simulated 3-month outcomes.</p>
+        <ol id="top-simulation" class="tm-list"></ol>
+      </div>
+    </div>
+  </section>
+
 
   <section class="anchor" id="sec-read" data-nav="How to read it">
     <p class="qhead">How to read it</p>
@@ -98,7 +129,7 @@
 
   <section class="card anchor" id="sec-not" data-nav="What this isn’t" style="background:#FBF8F1;border:1px solid #EAD9B5">
     <p class="qhead" style="margin-top:0">What this is not</p>
-    <p class="muted" style="margin-bottom:0">This page ranks nothing and tells you to buy nothing. Fair value is an estimate that can be wrong; the odds are model output, not a promise; and a cheap-looking name can stay cheap or get cheaper. It’s a map of estimates and probabilities to think with — the decision is always yours.</p>
+    <p class="muted" style="margin-bottom:0">The lists on this page rank estimates, not stocks — none of it is telling you what to buy. Fair value is an estimate that can be wrong; the simulated median is model output, not a promise; and a name at the top of either list today can fall off it, or turn out wrong, tomorrow. It’s a map of estimates and probabilities to think with — the decision is always yours.</p>
   </section>
 
   <section class="card anchor" id="sec-deeper" data-nav="Go deeper" style="background:var(--tint2)">
@@ -127,6 +158,7 @@
       var comboA = makeCompareCombo(ma, {selected:defA, label:"Stock 1", onChange:draw});
       var comboB = makeCompareCombo(mb, {selected:defB, label:"Stock 2", onChange:draw});
       draw();
+      try{ renderTopMovers("top-fundamental","top-simulation"); }catch(e){ console.error(e); }
       if(intl){
         document.title="Compare stocks — side by side | testahil?";
         var d=document.getElementById("cmp-deeplink"); if(d){ d.setAttribute("href","other-markets.html"); d.textContent="See all international coverage →"; }
