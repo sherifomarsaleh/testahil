@@ -519,8 +519,8 @@ function renderComparePair(elId, codeA, codeB){
   if(b) rows.push(_compareRowHTML(codeB, b));
   const same = codeA===codeB ? `<p class="muted" style="margin:10px 0 0">Both rows show the same stock — pick a different one in either box to compare.</p>` : "";
   el.innerHTML = `<table class="compare-table"><thead><tr>
-    <th>Stock</th><th class="num">Latest</th><th class="num">Our value</th><th>Price view</th>
-    <th class="num">3-mo middle</th><th class="num">Odds up (3-mo)</th><th>Chart trend</th>
+    <th>Stock</th><th class="num">Latest</th><th class="num">Our value <span class="tagk">Fundamental</span></th><th>Price view <span class="tagk">Fundamental</span></th>
+    <th class="num">3-mo middle <span class="tagk">Simulation</span></th><th class="num">Odds up (3-mo) <span class="tagk">Simulation</span></th><th>Chart trend <span class="tagk">Chart</span></th>
   </tr></thead><tbody>${rows.join("")}</tbody></table>${same}`;
 }
 

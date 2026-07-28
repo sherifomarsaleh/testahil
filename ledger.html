@@ -596,7 +596,7 @@ tabBar.innerHTML = _tb;
 tabPanels.innerHTML = `<div class="tab-panel active" id="panel-all">
   <div class="card">
     <table>
-      <thead><tr><th class="num">Published</th><th>Instrument</th><th class="num">Horizon</th><th class="num">What we said</th><th class="num">Likely range</th><th>What happened</th></tr></thead>
+      <thead><tr><th class="num">Published</th><th>Instrument</th><th class="num">Horizon</th><th class="num">What we said <span class="tagk">Simulation</span></th><th class="num">Likely range <span class="tagk">Simulation</span></th><th>What happened</th></tr></thead>
       <tbody id="tbody-all"></tbody>
     </table>
   </div>
@@ -606,7 +606,7 @@ tabPanels.innerHTML = `<div class="tab-panel active" id="panel-all">
 + tickerOrder.map(t=>`<div class="tab-panel" id="panel-${t}">
   <div class="card">
     <table>
-      <thead><tr><th class="num">Published</th><th>Instrument</th><th class="num">Horizon</th><th class="num">What we said</th><th class="num">Likely range</th><th>What happened</th></tr></thead>
+      <thead><tr><th class="num">Published</th><th>Instrument</th><th class="num">Horizon</th><th class="num">What we said <span class="tagk">Simulation</span></th><th class="num">Likely range <span class="tagk">Simulation</span></th><th>What happened</th></tr></thead>
       <tbody id="tbody-${t}"></tbody>
     </table>
   </div>

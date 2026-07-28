@@ -271,6 +271,12 @@ details.more .more-body table{margin-top:8px}
 .pill.rich{background:#F7E4E1; color:var(--red)}
 .pill.fair{background:#FBF3E4; color:#8A5E16}
 
+/* source-of-number tag: Fundamental / Simulation / Chart — a small neutral pill
+   naming which methodology produced the figure it sits next to. Shared globally
+   (originally a trade.html-only rule for the level pickers; promoted here so
+   every page that publishes a number can carry the same tag). */
+.tagk{font-size:var(--fs-caption);text-transform:uppercase;letter-spacing:.04em;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:1px 7px;white-space:nowrap}
+
 /* follow by email */
 .follow-row{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
 .follow-row input{flex:1; min-width:200px; padding:12px 16px; border:1.5px solid var(--line); border-radius:10px; font:inherit}
