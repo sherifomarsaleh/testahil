@@ -134,7 +134,7 @@
     </div>
     <div class="chip-rows" id="p-chips"></div>
     <div class="wsum" id="p-wsum"></div>
-    <p id="p-diag" class="muted" style="margin:6px 0 0;font-size:10px;opacity:.5">build unified-sim-v10</p>
+    <p id="p-diag" class="muted" style="margin:6px 0 0;font-size:10px;opacity:.5">build frontier-pool-v11</p>
     <p class="muted" style="margin:10px 0 0;font-size:var(--fs-small)">"Load a starting mix" picks the five EGX names with the best typical return for the downside risk they carry (median outcome divided by the worst-1-in-20 case) at the chosen horizon, equally weighted — not just the highest headline number. Each name below shows its own bad case too, so a weak trade-off is visible before you swap anything. Nothing on this page is stored or sent anywhere.</p>
   </section>
 
@@ -750,6 +750,99 @@ window.addEventListener('error', function(e){
     var bigLoss = 1 - optChanceAtLeast(finalSt.sorted, -BIG);
     return { mix:mix, wRaw:wRawFinal, p5:finalSt.p5, med:finalSt.med, lossProb:lossProb, bigLoss:bigLoss };
   }
+  /* ---------- brute-force low-cardinality floor (singles + pairs) ----------
+     optRunSearch above is a stochastic hill-climb over the full N-dimensional
+     weight simplex, seeded from a diversified 6-name start; nothing guarantees
+     it reaches the true optimum, and verifiably it sometimes doesn't -- at the
+     top of the achievable-return range it settled on Telecom Egypt 82% /
+     Egypt Aluminum 14% / ADIB-Egypt 4%, while a plain Telecom Egypt / Egypt
+     Aluminum split scores meaningfully better on this search's OWN objective
+     (optObjective) -- a real gap the random-move search left on the table,
+     not a rounding artefact or a modelling choice.
+     Rather than trying to fix a stochastic search by tuning iteration counts
+     or step sizes until it happens not to get stuck, score every single name
+     and every pair among the top-15-scoring names directly (10%-granularity
+     weight split) and let buildFrontier below take whichever of "local
+     search" or "brute force" wins -- see the dominance check there, which is
+     stricter than a plain objective comparison. That's under 1,000
+     evaluations; quickselect (only p5/med are needed to screen -- bigLoss/lossProb are
+     computed once, lazily, only for whichever candidate a grid point actually
+     picks) keeps that comfortably fast, and it's computed once per horizon and
+     cached like optMatrix, not repeated per grid point. */
+  function quickselect(arr, k){
+    var lo=0, hi=arr.length-1;
+    while(lo<hi){
+      var pivot=arr[(lo+hi)>>1], i=lo, j=hi;
+      while(i<=j){
+        while(arr[i]<pivot) i++;
+        while(arr[j]>pivot) j--;
+        if(i<=j){ var t=arr[i]; arr[i]=arr[j]; arr[j]=t; i++; j--; }
+      }
+      if(k<=j) hi=j; else if(k>=i) lo=i; else break;
+    }
+    return arr[k];
+  }
+  function fastP5Med(m, w){
+    var R = new Float64Array(OPT_N);
+    for(var i=0;i<w.length;i++){ var wi=w[i]; if(!wi) continue; var ri=m.ret[i].r; for(var n=0;n<OPT_N;n++) R[n]+=wi*ri[n]; }
+    return { p5: quickselect(R.slice(), Math.floor(0.05*OPT_N)), med: quickselect(R.slice(), Math.floor(0.5*OPT_N)) };
+  }
+  var candPoolCache = {};
+  function candidatePool(which){
+    if(candPoolCache[which]) return candPoolCache[which];
+    var m = optMatrix(which), N = m.names.length, out = [];
+    var single = [];
+    for(var i=0;i<N;i++){
+      var w=new Float64Array(N); w[i]=1;
+      var st=fastP5Med(m,w);
+      single.push({ i:i, p5:st.p5, med:st.med, score: st.med/Math.max(0.01,-st.p5) });
+      out.push({ p5:st.p5, med:st.med, wRaw:w });
+    }
+    // Pairs are the expensive dimension (~30x more of them than singles), so
+    // restrict them to the top-scoring names rather than all 30 -- a good pair
+    // is overwhelmingly likely to involve at least one strong individual name,
+    // and this keeps the first frontier build comfortably under budget (see
+    // the 15s check in verify_portfolio.js) without giving up the coverage
+    // that actually matters. TOPK=12 -> C(12,2)=66 pairs, cheap enough to run
+    // at every horizon build with real margin to spare.
+    var TOPK = 12;
+    var top = single.slice().sort(function(x,y){ return y.score-x.score; }).slice(0, Math.min(TOPK, N)).map(function(s){ return s.i; });
+    for(var ai=0;ai<top.length;ai++){
+      for(var bi=ai+1;bi<top.length;bi++){
+        var a=top[ai], b=top[bi];
+        for(var pct=10; pct<=90; pct+=10){
+          var w2=new Float64Array(N); w2[a]=pct/100; w2[b]=1-pct/100;
+          var st2=fastP5Med(m,w2);
+          out.push({ p5:st2.p5, med:st2.med, wRaw:w2 });
+        }
+      }
+    }
+    candPoolCache[which] = out;
+    return out;
+  }
+  // Turns a raw (here, at most a couple of nonzero entries) weight vector into
+  // the same shape optRunSearch returns: largest-remainder rounding to whole
+  // percent, then the real optStats/optChanceAtLeast pass for bigLoss/lossProb,
+  // so a pool-sourced point is exactly as accurate and reproducible as a
+  // search-sourced one -- the fast quickselect path above is only ever used to
+  // pick a winner, never to report a number that reaches the page.
+  function finalizeRawMix(m, w){
+    var picks = [];
+    for(var i=0;i<w.length;i++) if(w[i]>0.004) picks.push({ k:m.names[i], raw:w[i]*100 });
+    picks.sort(function(x,y){ return y.raw-x.raw; });
+    var floors = picks.map(function(p){ return Math.floor(p.raw); });
+    var rem = 100 - floors.reduce(function(s,v){ return s+v; },0);
+    var order = picks.map(function(p,j){ return { j:j, fr:p.raw-Math.floor(p.raw) }; }).sort(function(x,y){ return y.fr-x.fr; });
+    for(var r2=0;r2<rem;r2++) floors[order[r2%order.length].j]++;
+    var mix = picks.map(function(p,j){ return { k:p.k, w:floors[j] }; }).filter(function(p){ return p.w>0; });
+    var finalSt = optStats(m, w);
+    return {
+      mix: mix, wRaw: w.slice(),
+      p5: finalSt.p5, med: finalSt.med,
+      lossProb: 1 - optChanceAtLeast(finalSt.sorted, 0),
+      bigLoss: 1 - optChanceAtLeast(finalSt.sorted, -BIG)
+    };
+  }
   /* ---------- efficient frontier (EGX) ----------
      A target's feasible set (mixes with median >= target) can only SHRINK as the
      target rises — every mix that clears a higher bar clears every lower one too.
@@ -786,7 +879,11 @@ window.addEventListener('error', function(e){
     }));
     var gridMax = Math.max(0, mMax - 0.002);
     var GRID = 20;
-    var points = [], prevRawW = null, prevPoint = null;
+    // Sorted once, worst-p5-last: dominance (below) needs p5 at least as good
+    // as the search's own result, so once a candidate's p5 stops clearing
+    // cand.p5 nothing further down this order can dominate either.
+    var pool = candidatePool(which).slice().sort(function(a,b){ return b.p5-a.p5; });
+    var points = [], prevRawW = null, prevOrganicPoint = null, prevDisplayPoint = null;
     for(var g=GRID; g>=0; g--){
       var tgt = gridMax * (g/GRID);
       var rng = mulberry32((which==='t20'?0x3A1:0x3B2)*1000003 + g);
@@ -797,18 +894,55 @@ window.addEventListener('error', function(e){
       // iteration count much further than this made the search too weak to
       // tell neighbouring grid points apart — the whole frontier collapsed to
       // one mix, which is a quality regression, not a speedup worth having.
-      var cand = prevRawW
+      var searchCand = prevRawW
         ? optRunSearch(m, tgt, rng, prevRawW, 150, 75)
         : optRunSearch(m, tgt, rng, null, 1400, 700);
-      var point;
-      if(prevPoint && (cand.p5 < prevPoint.p5 - 1e-9 || cand.lossProb > prevPoint.lossProb + 1e-9 || cand.bigLoss > prevPoint.bigLoss + 1e-9)){
-        point = { target:tgt, mix:prevPoint.mix, p5:prevPoint.p5, med:prevPoint.med, lossProb:prevPoint.lossProb, bigLoss:prevPoint.bigLoss, wRaw:prevPoint.wRaw };
+      // The "organic" point: repaired against the previous ORGANIC point only,
+      // exactly as this frontier worked before the brute-force pool below
+      // existed. Warm-starting and the monotonicity repair both run on this
+      // chain alone, never on a pool pick -- an earlier version of this fix
+      // let a pool win at one target become the seed AND the repair baseline
+      // for the next, and that collapsed the entire 21-point frontier to one
+      // mix: once the pool beat the search at the top target, every lower
+      // target's genuinely-diversified result looked like a "regression" to
+      // the repair check (better p5, worse chance-of-any-loss is a real
+      // trade-off, not a regression) and kept reusing the same pair. Keeping
+      // this chain pool-blind is what lets the frontier vary by target again.
+      var organicPoint;
+      if(prevOrganicPoint && (searchCand.p5 < prevOrganicPoint.p5 - 1e-9 || searchCand.lossProb > prevOrganicPoint.lossProb + 1e-9 || searchCand.bigLoss > prevOrganicPoint.bigLoss + 1e-9)){
+        organicPoint = { p5:prevOrganicPoint.p5, med:prevOrganicPoint.med, lossProb:prevOrganicPoint.lossProb, bigLoss:prevOrganicPoint.bigLoss, mix:prevOrganicPoint.mix, wRaw:prevOrganicPoint.wRaw };
       } else {
-        point = { target:tgt, mix:cand.mix, p5:cand.p5, med:cand.med, lossProb:cand.lossProb, bigLoss:cand.bigLoss, wRaw:cand.wRaw };
+        organicPoint = { p5:searchCand.p5, med:searchCand.med, lossProb:searchCand.lossProb, bigLoss:searchCand.bigLoss, mix:searchCand.mix, wRaw:searchCand.wRaw };
       }
+      // The local search optimises p5 alone and can settle short of the true
+      // p5 optimum (see the brute-force pool doc comment) -- but p5 isn't the
+      // whole risk picture this page shows, and a candidate that only wins on
+      // p5 can easily lose on chance-of-any-loss or chance-of-a-big-loss
+      // (verified: the best ETEL/EGAL pair beats the search's diversified
+      // result on p5 and on return, but is *worse* on both loss-probability
+      // measures -- a genuine trade-off, not a free lunch). Only override the
+      // DISPLAYED point -- never the organic chain above -- and only with a
+      // pool candidate that's at least as good on every measure this frontier
+      // tracks (p5, lossProb, bigLoss) versus BOTH this target's own organic
+      // result and whatever the next-higher target is already showing, so a
+      // pool win can never look riskier than the point right above it either.
+      var cand = organicPoint;
+      for(var pi=0; pi<pool.length; pi++){
+        var pc = pool[pi];
+        if(pc.p5 <= cand.p5 + 1e-9) break;
+        if(pc.med < tgt - 1e-9) continue;
+        var pcFull = finalizeRawMix(m, pc.wRaw);
+        var clearsAbove = !prevDisplayPoint || (pcFull.bigLoss <= prevDisplayPoint.bigLoss + 1e-9 && pcFull.lossProb <= prevDisplayPoint.lossProb + 1e-9);
+        if(clearsAbove && pcFull.bigLoss <= cand.bigLoss + 1e-9 && pcFull.lossProb <= cand.lossProb + 1e-9){
+          cand = pcFull;
+          break;
+        }
+      }
+      var point = { target:tgt, mix:cand.mix, p5:cand.p5, med:cand.med, lossProb:cand.lossProb, bigLoss:cand.bigLoss };
       points.push(point);
-      prevRawW = point.wRaw;
-      prevPoint = point;
+      prevRawW = organicPoint.wRaw;
+      prevOrganicPoint = organicPoint;
+      prevDisplayPoint = point;
     }
     points.reverse();   // ascending target order
     var out = { points:points, mMax:mMax };
