@@ -340,7 +340,12 @@
     function move(dir){ if(!flat.length) return; var i = flat.indexOf(activeKey); i = i<0 ? 0 : i+dir; i = Math.max(0, Math.min(flat.length-1, i)); activeKey = flat[i]; renderPanel(); scrollActive(); }
 
     input.value = labelFor(selected);
-    input.addEventListener('focus', function(){ input.select(); openPanel(); });
+    // Clear (not select-all) on focus: the placeholder hint and the full list are the
+    // point of opening this box, same as portfolio's — the current pick still shows as
+    // the checked ✓ row in the open panel, and blur restores the label if nothing new
+    // was actually chosen (mirrors closePanel's restore-on-Escape/click-outside logic).
+    input.addEventListener('focus', function(){ input.value = ''; openPanel(); });
+    input.addEventListener('blur', function(){ closePanel(true); });
     input.addEventListener('click', function(){ if(!open) openPanel(); });
     input.addEventListener('input', function(){ open = true; panel.hidden = false; input.setAttribute('aria-expanded','true'); activeKey = null; renderPanel(); scrollActive(); });
     input.addEventListener('keydown', function(e){
