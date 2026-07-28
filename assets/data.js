@@ -1113,17 +1113,17 @@ const TICKERS = {
     name: "Emaar Misr for Development",
     nameAr: "إعمار مصر للتنمية",
     code: "EGX:EMFD",
-    spot: 11.59,
+    spot: 11.53,
     spotDate: "close 28 Jul 2026",
     ccy: "EGP",
     fair: { bear: 13.71, base: 19.84, full: 23.43 },          // 17 Jun 2026 valuation — unchanged; separate clock, not touched by the 28 Jul roll-forward
     dist: {
-      t20: { label:"1 month",   p5:10.21, p25:11.16, p50:11.76, p75:12.40, p95:13.55, resolve:"2026-08-30" },
-      t60: { label:"3 months",  p5:9.27, p25:10.98, p50:12.13, p75:13.39, p95:15.87, resolve:"2026-10-28" }
+      t20: { label:"1 month",   p5:10.12, p25:11.09, p50:11.70, p75:12.36, p95:13.54, resolve:"2026-08-30" },
+      t60: { label:"3 months",  p5:9.19, p25:10.91, p50:12.07, p75:13.34, p95:15.85, resolve:"2026-10-28" }
     },
     hz: { h1:21, h3:62, l1:"1 month", l3:"3 months", cal:true },
     touch: [ /* descending high → low — same absolute levels, reprobabilised on the 28-Jul cycle-4 paths; ladder still sits entirely above spot and wants a human re-pick */
-      [17.00, 0, 4], [16.00, 0, 7], [15.00, 1, 14], [14.00, 4, 27], [13.00, 17, 50]
+      [17.00, 0, 4], [16.00, 0, 7], [15.00, 1, 14], [14.00, 4, 26], [13.00, 16, 49]
     ],
     levels: { res:[15.00, 13.00, 12.50], sup:[11.40, 10.62, 9.82] },
     tech: {
@@ -1200,17 +1200,17 @@ const TICKERS = {
     name: "Commercial International Bank",
     nameAr: "البنك التجاري الدولي",
     code: "EGX:COMI",
-    spot: 141.50,
+    spot: 142.00,
     spotDate: "close 28 Jul 2026",
     ccy: "EGP",
     fair: { bear: 90.86, base: 123.30, full: 169.70 },          // 29 Jun 2026 — justified-P/B / residual-income primary; weighted central 123.3 (-5% vs spot); bear = excess-return DCF (spread fades without capital return) 90.9; full = RI bull 169.7. Deeper RI-bear ~53.5 (ROE≈CoE) covered in the study text.
     dist: {
-      t20: { label:"1 month",   p5:128.28, p25:137.70, p50:143.61, p75:149.83, p95:160.86, resolve:"2026-08-30" },
-      t60: { label:"3 months",  p5:120.35, p25:137.14, p50:148.09, p75:159.79, p95:182.15, resolve:"2026-10-28" }
+      t20: { label:"1 month",   p5:128.40, p25:138.05, p50:144.12, p75:150.51, p95:161.84, resolve:"2026-08-30" },
+      t60: { label:"3 months",  p5:120.37, p25:137.46, p50:148.62, p75:160.56, p95:183.42, resolve:"2026-10-28" }
     },
     hz: { h1:21, h3:62, l1:"1 month", l3:"3 months", cal:true },
     touch: [ /* descending high -> low — same absolute levels, reprobabilised on the 28-Jul cycle-3 paths */
-      [150.00, 37, 69], [140.00, 70, 80], [135.00, 31, 50], [120.00, 2, 10], [110.00, 0, 3], [100.00, 0, 1]
+      [150.00, 41, 71], [140.00, 66, 77], [135.00, 30, 48], [120.00, 2, 10], [110.00, 0, 3], [100.00, 0, 1]
     ],
     levels: { res:[135.15, 132.82, 129.50], sup:[120.00, 116.04, 110.00] },
     tech: {
@@ -5293,48 +5293,48 @@ const LEDGER = [
   //      Kakao/LGES first roll-forward since their 28-Jun studies. ----
   {
     instrument:"COMI", asset_class:"equity",
-    anchor_date:"2026-07-28", anchor_price:141.5, ccy:"EGP",
+    anchor_date:"2026-07-28", anchor_price:142.0, ccy:"EGP",
     horizon_label:"1 month", grade_date:"2026-08-30", grade_basis:"projected", horizon_days:21,
-    cycle_no:3, reanchor_from:"2026-07-22", anchor_vol:0.2616,
-    note:"Cycle 3 roll-forward, 28-Jul-2026 — struck on the 28-Jul close from freshly-posted OHLC. Supersedes the same-day market-wide re-strike anchored 22-Jul, which predated this data by 3 EGX sessions; that cohort stays open and graded on its own terms (append-only ledger). Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
-    p5:128.28, p25:137.7, p50:143.61, p75:149.83, p95:160.86,
-    touch:{ "+5":45, "+10":17, "+15":6, "+20":2, "-5":28, "-10":7 },
+    cycle_no:3, reanchor_from:"2026-07-22", anchor_vol:0.2676,
+    note:"Cycle 3 roll-forward, 28-Jul-2026 — struck on the 28-Jul close from freshly-posted OHLC. CORRECTION 28-Jul-2026: originally struck the same day off an INTRADAY 28-Jul bar (COMI 141.50 / EMFD 11.59); re-struck here at the true session closes (COMI 142.00 / EMFD 11.53) and replaced in place before any resolution. Percentiles and touch ladder below are the corrected ones. Supersedes the same-day market-wide re-strike anchored 22-Jul, which predated this data by 3 EGX sessions; that cohort stays open and graded on its own terms (append-only ledger). Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
+    p5:128.4, p25:138.05, p50:144.12, p75:150.51, p95:161.84,
+    touch:{ "+5":46, "+10":17, "+15":6, "+20":2, "-5":29, "-10":8 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   },
   {
     instrument:"COMI", asset_class:"equity",
-    anchor_date:"2026-07-28", anchor_price:141.5, ccy:"EGP",
+    anchor_date:"2026-07-28", anchor_price:142.0, ccy:"EGP",
     horizon_label:"3 months", grade_date:"2026-10-28", grade_basis:"projected", horizon_days:62,
-    cycle_no:3, reanchor_from:"2026-07-22", anchor_vol:0.2776,
-    note:"Cycle 3 roll-forward, 28-Jul-2026 — struck on the 28-Jul close from freshly-posted OHLC. Supersedes the same-day market-wide re-strike anchored 22-Jul, which predated this data by 3 EGX sessions; that cohort stays open and graded on its own terms (append-only ledger). Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
-    p5:120.35, p25:137.14, p50:148.09, p75:159.79, p95:182.15,
-    touch:{ "+5":73, "+10":50, "+15":32, "+20":19, "-5":47, "-10":22 },
+    cycle_no:3, reanchor_from:"2026-07-22", anchor_vol:0.2822,
+    note:"Cycle 3 roll-forward, 28-Jul-2026 — struck on the 28-Jul close from freshly-posted OHLC. CORRECTION 28-Jul-2026: originally struck the same day off an INTRADAY 28-Jul bar (COMI 141.50 / EMFD 11.59); re-struck here at the true session closes (COMI 142.00 / EMFD 11.53) and replaced in place before any resolution. Percentiles and touch ladder below are the corrected ones. Supersedes the same-day market-wide re-strike anchored 22-Jul, which predated this data by 3 EGX sessions; that cohort stays open and graded on its own terms (append-only ledger). Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
+    p5:120.37, p25:137.46, p50:148.62, p75:160.56, p95:183.42,
+    touch:{ "+5":74, "+10":51, "+15":32, "+20":19, "-5":48, "-10":23 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   },
   {
     instrument:"EMFD", asset_class:"equity",
-    anchor_date:"2026-07-28", anchor_price:11.59, ccy:"EGP",
+    anchor_date:"2026-07-28", anchor_price:11.53, ccy:"EGP",
     horizon_label:"1 month", grade_date:"2026-08-30", grade_basis:"projected", horizon_days:21,
-    cycle_no:4, reanchor_from:"2026-07-22", anchor_vol:0.3271,
-    note:"Cycle 4 roll-forward, 28-Jul-2026 — struck on the 28-Jul close from freshly-posted OHLC. Supersedes the same-day market-wide re-strike anchored 22-Jul, which predated this data by 3 EGX sessions; that cohort stays open and graded on its own terms (append-only ledger). Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
-    p5:10.21, p25:11.16, p50:11.76, p75:12.4, p95:13.55,
-    touch:{ "+5":52, "+10":24, "+15":10, "+20":5, "-5":38, "-10":13 },
+    cycle_no:4, reanchor_from:"2026-07-22", anchor_vol:0.3367,
+    note:"Cycle 4 roll-forward, 28-Jul-2026 — struck on the 28-Jul close from freshly-posted OHLC. CORRECTION 28-Jul-2026: originally struck the same day off an INTRADAY 28-Jul bar (COMI 141.50 / EMFD 11.59); re-struck here at the true session closes (COMI 142.00 / EMFD 11.53) and replaced in place before any resolution. Percentiles and touch ladder below are the corrected ones. Supersedes the same-day market-wide re-strike anchored 22-Jul, which predated this data by 3 EGX sessions; that cohort stays open and graded on its own terms (append-only ledger). Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
+    p5:10.12, p25:11.09, p50:11.7, p75:12.36, p95:13.54,
+    touch:{ "+5":53, "+10":25, "+15":11, "+20":5, "-5":39, "-10":14 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   },
   {
     instrument:"EMFD", asset_class:"equity",
-    anchor_date:"2026-07-28", anchor_price:11.59, ccy:"EGP",
+    anchor_date:"2026-07-28", anchor_price:11.53, ccy:"EGP",
     horizon_label:"3 months", grade_date:"2026-10-28", grade_basis:"projected", horizon_days:62,
-    cycle_no:4, reanchor_from:"2026-07-22", anchor_vol:0.3599,
-    note:"Cycle 4 roll-forward, 28-Jul-2026 — struck on the 28-Jul close from freshly-posted OHLC. Supersedes the same-day market-wide re-strike anchored 22-Jul, which predated this data by 3 EGX sessions; that cohort stays open and graded on its own terms (append-only ledger). Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
-    p5:9.27, p25:10.98, p50:12.13, p75:13.39, p95:15.87,
-    touch:{ "+5":77, "+10":58, "+15":41, "+20":29, "-5":58, "-10":34 },
+    cycle_no:4, reanchor_from:"2026-07-22", anchor_vol:0.3653,
+    note:"Cycle 4 roll-forward, 28-Jul-2026 — struck on the 28-Jul close from freshly-posted OHLC. CORRECTION 28-Jul-2026: originally struck the same day off an INTRADAY 28-Jul bar (COMI 141.50 / EMFD 11.59); re-struck here at the true session closes (COMI 142.00 / EMFD 11.53) and replaced in place before any resolution. Percentiles and touch ladder below are the corrected ones. Supersedes the same-day market-wide re-strike anchored 22-Jul, which predated this data by 3 EGX sessions; that cohort stays open and graded on its own terms (append-only ledger). Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
+    p5:9.19, p25:10.91, p50:12.07, p75:13.34, p95:15.85,
+    touch:{ "+5":77, "+10":58, "+15":42, "+20":29, "-5":58, "-10":34 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
