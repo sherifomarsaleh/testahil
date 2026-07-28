@@ -1085,16 +1085,16 @@ const TICKERS = {
     name: "Emaar Misr for Development",
     nameAr: "إعمار مصر للتنمية",
     code: "EGX:EMFD",
-    spot: 11.70,
-    spotDate: "close 19 Jul 2026",
+    spot: 11.59,
+    spotDate: "close 28 Jul 2026",
     ccy: "EGP",
-    fair: { bear: 13.71, base: 19.84, full: 23.43 },          // 17 Jun 2026 valuation — unchanged; separate clock, not touched by the 19 Jul roll-forward
+    fair: { bear: 13.71, base: 19.84, full: 23.43 },          // 17 Jun 2026 valuation — unchanged; separate clock, not touched by the 28 Jul roll-forward
     dist: {
-      t20: { label:"1 month (T+20)",  p5:10.21, p25:11.27, p50:11.87, p75:12.51, p95:13.81, resolve:"2026-08-16" },
-      t60: { label:"3 months (T+60)", p5:9.42,  p25:11.16, p50:12.21, p75:13.37, p95:15.81, resolve:"2026-10-11" }
+      t20: { label:"1 month",  p5:10.21, p25:11.16, p50:11.76, p75:12.40, p95:13.55, resolve:"2026-08-30" },
+      t60: { label:"3 months", p5:9.27,  p25:10.98, p50:12.13, p75:13.39, p95:15.87, resolve:"2026-10-28" }
     },
-    touch: [ /* descending high → low — same absolute levels, reprobabilised on the 19 Jul cycle-2 paths */
-      [17.00, 1, 4], [16.00, 1, 7], [15.00, 2, 14], [14.00, 6, 26], [13.00, 21, 50]
+    touch: [ /* descending high → low — same absolute levels, reprobabilised on the 28 Jul cycle-3 paths */
+      [17.00, 0, 4], [16.00, 0, 7], [15.00, 1, 14], [14.00, 4, 27], [13.00, 17, 50]
     ],
     levels: { res:[15.00, 13.00, 12.50], sup:[11.40, 10.62, 9.82] },
     tech: {
@@ -1169,16 +1169,16 @@ const TICKERS = {
     name: "Commercial International Bank",
     nameAr: "البنك التجاري الدولي",
     code: "EGX:COMI",
-    spot: 129.25,
-    spotDate: "close 29 Jun 2026",
+    spot: 141.50,
+    spotDate: "close 28 Jul 2026",
     ccy: "EGP",
-    fair: { bear: 90.86, base: 123.30, full: 169.70 },          // 29 Jun 2026 — justified-P/B / residual-income primary; weighted central 123.3 (-5% vs spot); bear = excess-return DCF (spread fades without capital return) 90.9; full = RI bull 169.7. Deeper RI-bear ~53.5 (ROE≈CoE) covered in the study text.
+    fair: { bear: 90.86, base: 123.30, full: 169.70 },          // 29 Jun 2026 valuation — unchanged; separate clock, not touched by the 28 Jul roll-forward
     dist: {
-      t20: { label:"1 month (T+20)",  p5:103.44, p25:117.89, p50:128.87, p75:140.85, p95:159.92, resolve:"2026-07-27" },
-      t60: { label:"3 months (T+60)", p5:87.93,  p25:109.91, p50:127.83, p75:148.88, p95:185.40, resolve:"2026-09-21" }
+      t20: { label:"1 month",  p5:128.28, p25:137.70, p50:143.61, p75:149.83, p95:160.86, resolve:"2026-08-30" },
+      t60: { label:"3 months", p5:120.35, p25:137.14, p50:148.09, p75:159.79, p95:182.15, resolve:"2026-10-28" }
     },
-    touch: [ /* descending high -> low */
-      [150.00, 20, 45], [140.00, 45, 65], [135.00, 63, 78], [120.00, 49, 70], [110.00, 18, 45], [100.00, 5, 24]
+    touch: [ /* descending high -> low — same absolute levels, reprobabilised on the 28 Jul cycle-2 paths */
+      [150.00, 37, 69], [140.00, 70, 80], [135.00, 31, 50], [120.00, 2, 10], [110.00, 0, 3], [100.00, 0, 1]
     ],
     levels: { res:[135.15, 132.82, 129.50], sup:[120.00, 116.04, 110.00] },
     tech: {
@@ -1225,16 +1225,16 @@ const TICKERS = {
     name: "Kakao Corp.",
     nameAr: "كاكاو",
     code: "KRX:035720",
-    spot: 33150,
-    spotDate: "close 26 Jun 2026",
+    spot: 35650,
+    spotDate: "close 28 Jul 2026",
     ccy: "KRW",
-    fair: { bear: 24517, base: 34258, full: 46401 },      // 28 Jun 2026 — weighted central 34,258 (+3% vs spot); bear = consolidated DCF 24,517 (excludes stakes, conservative floor); full = discount-compression / SOTP bull 46,401. Gross net-asset value ~51,788 at no discount; deeper SOTP bear ~21,745 at a wide discount, covered in the study text.
+    fair: { bear: 24517, base: 34258, full: 46401 },      // 28 Jun 2026 valuation — unchanged; separate clock, not touched by the 28 Jul roll-forward
     dist: {
-      t20: { label:"1 month (T+20)",  p5:25404, p25:29799, p50:33294, p75:37199, p95:43634, resolve:"2026-07-24" },
-      t60: { label:"3 months (T+60)", p5:21022, p25:27714, p50:33584, p75:40697, p95:53651, resolve:"2026-09-18" }
+      t20: { label:"1 month",  p5:28157, p25:32591, p50:35717, p75:39201, p95:45373, resolve:"2026-08-28" },
+      t60: { label:"3 months", p5:24230, p25:30920, p50:35984, p75:41848, p95:53204, resolve:"2026-10-28" }
     },
-    touch: [ /* descending high -> low */
-      [44000, 7, 30], [40000, 21, 48], [37000, 43, 66], [32000, 72, 83], [28000, 24, 49], [24000, 3, 21]
+    touch: [ /* descending high -> low — same absolute levels, reprobabilised on the 28 Jul cycle-2 paths */
+      [44000, 12, 33], [40000, 35, 57], [37000, 70, 82], [32000, 36, 57], [28000, 8, 25], [24000, 1, 8]
     ],
     levels: { res:[42949, 38888, 37000], sup:[32250, 30000, 28000] },
     tech: {
@@ -1253,16 +1253,16 @@ const TICKERS = {
     name: "LG Energy Solution, Ltd.",
     nameAr: "إل جي إنرجي سوليوشن",
     code: "KRX:373220",
-    spot: 331500,
-    spotDate: "close 26 Jun 2026",
+    spot: 314000,
+    spotDate: "close 28 Jul 2026",
     ccy: "KRW",
-    fair: { bear: 150000, base: 248000, full: 415000 },      // 28 Jun 2026 — weighted central 248,000 (-25% vs spot); bear = AMPC-cut / EV-weak 150,000; full = recovery / ESS-AI supercycle 415,000. Going-concern DCF parent floor ~146,000 covered in the study text.
+    fair: { bear: 150000, base: 248000, full: 415000 },      // 28 Jun 2026 valuation — unchanged; separate clock, not touched by the 28 Jul roll-forward
     dist: {
-      t20: { label:"1 month (T+20)",  p5:268200, p25:304400, p50:332400, p75:363000, p95:411900, resolve:"2026-07-24" },
-      t60: { label:"3 months (T+60)", p5:230500, p25:286900, p50:334200, p75:389200, p95:484500, resolve:"2026-09-18" }
+      t20: { label:"1 month",  p5:240911, p25:283851, p50:314565, p75:349180, p95:411415, resolve:"2026-08-28" },
+      t60: { label:"3 months", p5:203248, p25:267332, p50:317022, p75:375649, p95:492019, resolve:"2026-10-28" }
     },
-    touch: [ /* descending high -> low */
-      [450000, 2, 16], [410000, 8, 32], [370000, 33, 59], [300000, 35, 59], [270000, 9, 31], [240000, 1, 13]
+    touch: [ /* descending high -> low — same absolute levels, reprobabilised on the 28 Jul cycle-2 paths */
+      [450000, 3, 16], [410000, 8, 27], [370000, 25, 48], [300000, 67, 79], [270000, 28, 49], [240000, 8, 25]
     ],
     levels: { res:[423510, 407345, 399725], sup:[300000, 288000, 270000] },
     tech: {
@@ -2900,6 +2900,27 @@ const LEDGER = [
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   },
 
+  {
+    instrument:"EMFD", asset_class:"equity",
+    anchor_date:"2026-07-28", anchor_price:11.59, ccy:"EGP",
+    horizon_label:"1 month", grade_date:"2026-08-30", cycle_no:3, reanchor_from:"2026-07-19",
+    p5:10.21, p25:11.16, p50:11.76, p75:12.40, p95:13.55,
+    touch:{ "+5":52, "+10":24, "+15":10, "+20":5, "-5":38, "-10":13 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"EMFD", asset_class:"equity",
+    anchor_date:"2026-07-28", anchor_price:11.59, ccy:"EGP",
+    horizon_label:"3 months", grade_date:"2026-10-28", cycle_no:3, reanchor_from:"2026-07-19",
+    p5:9.27, p25:10.98, p50:12.13, p75:13.39, p95:15.87,
+    touch:{ "+5":77, "+10":58, "+15":41, "+20":29, "-5":58, "-10":34 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+
   // ---- OCDI · equity · cycle 1 (24 Jun 2026 published study) ----
   {
     instrument:"OCDI", asset_class:"equity",
@@ -3010,6 +3031,26 @@ const LEDGER = [
     horizon_label:"T+60", grade_date:"2026-09-21", cycle_no:1, reanchor_from:null,
     p5:87.93, p25:109.91, p50:127.83, p75:148.88, p95:185.40,
     touch:{ "+5":76, "+10":60, "+15":47, "+20":37, "-5":78, "-10":62 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"COMI", asset_class:"equity",
+    anchor_date:"2026-07-28", anchor_price:141.50, ccy:"EGP",
+    horizon_label:"1 month", grade_date:"2026-08-30", cycle_no:2, reanchor_from:"2026-06-29",
+    p5:128.28, p25:137.70, p50:143.61, p75:149.83, p95:160.86,
+    touch:{ "+5":45, "+10":17, "+15":6, "+20":2, "-5":28, "-10":7 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"COMI", asset_class:"equity",
+    anchor_date:"2026-07-28", anchor_price:141.50, ccy:"EGP",
+    horizon_label:"3 months", grade_date:"2026-10-28", cycle_no:2, reanchor_from:"2026-06-29",
+    p5:120.35, p25:137.14, p50:148.09, p75:159.79, p95:182.15,
+    touch:{ "+5":73, "+10":50, "+15":32, "+20":19, "-5":47, "-10":22 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
@@ -3146,12 +3187,13 @@ const LEDGER = [
   {
     instrument:"Kakao", asset_class:"other",
     anchor_date:"2026-06-26", anchor_price:33150, ccy:"KRW",
-    horizon_label:"T+20", grade_date:"2026-07-24", cycle_no:1, reanchor_from:null,
+    horizon_label:"T+20", grade_date:"2026-07-27", cycle_no:1, reanchor_from:null,
+    grade_date_projected:"2026-07-24", grade_note:"Projected grade_date (weekday calendar target, no holiday awareness) fell 3 sessions short of a true T+20; graded on the actual 20th session close.",
     p5:25404, p25:29799, p50:33294, p75:37199, p95:43634,
     touch:{ "+5":68, "+10":49, "+15":34, "+20":22, "-5":65, "-10":43 },   // relative barrier-hit probabilities from the published model (reflection principle, discrete-monitoring correction)
-    realized_close:null, realized_high:null, realized_low:null,
-    in_90:null, in_50:null, realized_quantile:null, median_err:null,
-    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+    realized_close:37050, realized_high:37500, realized_low:32600,
+    in_90:true, in_50:true, realized_quantile:0.74, median_err:0.1128,
+    touch_hit:{ "+5":true, "+10":true, "+15":false, "+20":false, "-5":false, "-10":false }
   },
   {
     instrument:"Kakao", asset_class:"other",
@@ -3163,16 +3205,37 @@ const LEDGER = [
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   },
+  {
+    instrument:"Kakao", asset_class:"other",
+    anchor_date:"2026-07-28", anchor_price:35650, ccy:"KRW",
+    horizon_label:"1 month", grade_date:"2026-08-28", cycle_no:2, reanchor_from:"2026-06-26",
+    p5:28157, p25:32591, p50:35717, p75:39201, p95:45373,
+    touch:{ "+5":64, "+10":43, "+15":27, "+20":17, "-5":61, "-10":37 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"Kakao", asset_class:"other",
+    anchor_date:"2026-07-28", anchor_price:35650, ccy:"KRW",
+    horizon_label:"3 months", grade_date:"2026-10-28", cycle_no:2, reanchor_from:"2026-06-26",
+    p5:24230, p25:30920, p50:35984, p75:41848, p95:53204,
+    touch:{ "+5":78, "+10":63, "+15":50, "+20":39, "-5":75, "-10":57 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
   // ---- LG Energy Solution (KRX:373220) · other / international · cycle 1 (28 Jun 2026 published study; anchored 26 Jun close) ----
   {
     instrument:"LGES", asset_class:"other",
     anchor_date:"2026-06-26", anchor_price:331500, ccy:"KRW",
-    horizon_label:"T+20", grade_date:"2026-07-24", cycle_no:1, reanchor_from:null,
+    horizon_label:"T+20", grade_date:"2026-07-27", cycle_no:1, reanchor_from:null,
+    grade_date_projected:"2026-07-24", grade_note:"Projected grade_date (weekday calendar target, no holiday awareness) fell 3 sessions short of a true T+20; graded on the actual 20th session close.",
     p5:268200, p25:304400, p50:332400, p75:363000, p95:411900,
     touch:{ "+5":62, "+10":40, "+15":24, "+20":13, "-5":60, "-10":34 },   // relative barrier-hit probabilities from the published 50,000-path model (reflection principle, discrete-monitoring correction)
-    realized_close:null, realized_high:null, realized_low:null,
-    in_90:null, in_50:null, realized_quantile:null, median_err:null,
-    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+    realized_close:333000, realized_high:400500, realized_low:309500,
+    in_90:true, in_50:true, realized_quantile:0.505, median_err:0.0018,
+    touch_hit:{ "+5":true, "+10":true, "+15":true, "+20":true, "-5":true, "-10":false }
   },
   {
     instrument:"LGES", asset_class:"other",
@@ -3180,6 +3243,26 @@ const LEDGER = [
     horizon_label:"T+60", grade_date:"2026-09-18", cycle_no:1, reanchor_from:null,
     p5:230500, p25:286900, p50:334200, p75:389200, p95:484500,
     touch:{ "+5":78, "+10":63, "+15":50, "+20":39, "-5":75, "-10":58 },   // relative barrier-hit probabilities from the published 50,000-path model (reflection principle, discrete-monitoring correction)
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"LGES", asset_class:"other",
+    anchor_date:"2026-07-28", anchor_price:314000, ccy:"KRW",
+    horizon_label:"1 month", grade_date:"2026-08-28", cycle_no:2, reanchor_from:"2026-06-26",
+    p5:240911, p25:283851, p50:314565, p75:349180, p95:411415,
+    touch:{ "+5":67, "+10":47, "+15":32, "+20":21, "-5":64, "-10":42 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"LGES", asset_class:"other",
+    anchor_date:"2026-07-28", anchor_price:314000, ccy:"KRW",
+    horizon_label:"3 months", grade_date:"2026-10-28", cycle_no:2, reanchor_from:"2026-06-26",
+    p5:203248, p25:267332, p50:317022, p75:375649, p95:492019,
+    touch:{ "+5":80, "+10":66, "+15":54, "+20":44, "-5":77, "-10":61 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
