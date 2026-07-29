@@ -41,6 +41,25 @@ N_PATHS = 50_000
 SEED = 42
 PCTS = (5, 25, 50, 75, 95)
 
+_FIT_OVERRIDES_PATH = os.path.join(HERE, 'fit_overrides.json')
+
+
+def _fit_override(market, ticker):
+    """Per-name (nu, width_cal) override -- see engine/per_name_fit.py. A
+    market's shared fit is a single number and cannot literally help one
+    name while sparing another, so where a proposed re-fit genuinely
+    regresses a specific name's own LONO verdict, that name keeps its prior
+    config explicitly here rather than inheriting the market average.
+    Returns (nu, width_cal) or None."""
+    if not os.path.exists(_FIT_OVERRIDES_PATH):
+        return None
+    with open(_FIT_OVERRIDES_PATH) as f:
+        overrides = json.load(f)
+    entry = overrides.get(market, {}).get(ticker)
+    if entry is None:
+        return None
+    return float(entry['nu']), float(entry['width_cal'])
+
 
 def load_clean(market: str, ticker: str):
     """Step 0.0 gate applied. Returns (df, report)."""
@@ -64,11 +83,14 @@ def strike(market: str, ticker: str, q_annual: float = 0.0,
     v = yz_variance_proxy(df)
     plan = HZ.cohort_plan(market, anchor_date)
     width_mult = AW.live_width_mult(df, prof)   # 1.0 unless market flagged AND name past MIN_WINDOWS
+    override = _fit_override(market, ticker)
+    eff_nu, eff_base_cal = override if override else (prof.nu, prof.width_cal)
 
     out = {'market': market, 'ticker': ticker, 'anchor_date':
            anchor_date.date().isoformat(), 'spot': spot,
            'rows_in': int(rep['rows_in']), 'repairs': rep['repairs'],
-           'rows_out': len(df), 'nu': prof.nu, 'width_cal': prof.width_cal,
+           'rows_out': len(df), 'nu': eff_nu, 'width_cal': eff_base_cal,
+           'fit_override_applied': override is not None,
            'width_overlay_mult': width_mult,
            'rf_live': prof.rf_live, 'q_annual': q_annual,
            'signal_active': prof.signal_active, 'horizons': {}}
@@ -78,14 +100,14 @@ def strike(market: str, ticker: str, q_annual: float = 0.0,
         months = 1 if short == '1M' else 3
         beta, s2 = fit_har_v3(v, i, horizon=h)
         dvar = har_forecast_v3(v, i, beta, s2, horizon=h)
-        cal_eff = prof.width_cal * width_mult
+        cal_eff = eff_base_cal * width_mult
         sigma_h = float(np.sqrt(dvar * h) * cal_eff)
         # exact calendar year fraction — "3 months" IS 0.25 of a year
         yearfrac = months / 12.0
         drift = carry_log_h(prof, anchor_date, q_annual, h, yearfrac=yearfrac)
         alpha, z = signal_alpha(prof, close, i, sigma_h)
         paths = simulate_paths_v3(spot, dvar, h, drift + alpha,
-                                  nu=prof.nu, n_paths=n_paths, seed=seed,
+                                  nu=eff_nu, n_paths=n_paths, seed=seed,
                                   width_cal=cal_eff)
         term = paths[:, -1]
         out['horizons'][short] = {

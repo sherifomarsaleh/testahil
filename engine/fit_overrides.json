@@ -1,0 +1,55 @@
+{
+ "IN": {
+  "RELIANCE": {
+   "nu": 6.0,
+   "width_cal": 1.077,
+   "reason": "LONO verdict old=PARITY -> new=PARITY, not a regression, adopted 29-Jul-2026"
+  },
+  "TMPV": {
+   "nu": 10.0,
+   "width_cal": 0.93,
+   "reason": "LONO verdict old=PARITY -> new=PARITY, not a regression, adopted 29-Jul-2026"
+  }
+ },
+ "KR": {
+  "KAKAO": {
+   "nu": 8.0,
+   "width_cal": 1.035,
+   "reason": "LONO verdict old=PARITY -> new=PARITY, not a regression, adopted 29-Jul-2026"
+  },
+  "LGES": {
+   "nu": 8.0,
+   "width_cal": 1.084,
+   "reason": "LONO verdict old=PARITY -> new=PARITY, not a regression, adopted 29-Jul-2026"
+  },
+  "SAMSUNG": {
+   "nu": 6.0,
+   "width_cal": 1.084,
+   "reason": "LONO verdict old=PARITY -> new=PARITY, not a regression, adopted 29-Jul-2026"
+  }
+ },
+ "QA": {
+  "QGTS": {
+   "nu": 6.0,
+   "width_cal": 0.979,
+   "reason": "LONO verdict old=PARITY -> new=PARITY, not a regression, adopted 29-Jul-2026"
+  },
+  "IQCD": {
+   "nu": 10.0,
+   "width_cal": 0.895,
+   "reason": "LONO verdict old=PARITY -> new=PARITY, not a regression, adopted 29-Jul-2026"
+  }
+ },
+ "US": {
+  "AAPL": {
+   "nu": 8.0,
+   "width_cal": 1.091,
+   "reason": "LONO verdict old=PARITY -> new=PARITY, not a regression, adopted 29-Jul-2026"
+  },
+  "TSLA": {
+   "nu": 250.0,
+   "width_cal": 1.056,
+   "reason": "LONO verdict old=PARITY -> new=PARITY, not a regression, adopted 29-Jul-2026"
+  }
+ }
+}
