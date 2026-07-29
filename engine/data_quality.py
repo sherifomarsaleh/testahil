@@ -111,51 +111,67 @@ def clean_ohlc(df, ticker="", verbose=True, market=None):
                    f"— vendor fills, not tradeable prices")
         df = df[~bad].reset_index(drop=True)
 
-    # --- 1c. drop single-session artifacts that CANCEL the next session --------
-    # A session beyond the market's own daily limit cannot be genuine trading —
-    # that much is already step 2's premise below. The question step 2 gets
-    # wrong is WHICH such jumps are a real, PERMANENT corporate action (back-
-    # adjust everything before it) versus a TEMPORARY data error (drop it, adjust
-    # nothing). A genuine split does not reverse itself the next session; a data
-    # error does. That cancellation -- jump_out =~ -jump_in -- is the actual
-    # diagnostic, not whether the row happens to be flat.
+    # --- 1c. drop ISOLATED one-row price spikes (vendor phantom split prints) ---
+    # A corporate action moves the price to a NEW LEVEL and it STAYS there. A vendor
+    # phantom print spikes for exactly one row and reverts on the next. That single
+    # distinction separates them, and it needs no exchange calendar to apply.
     #
-    # Found 29-Jul-2026, two different shapes of the same underlying bug:
-    #   - Kakao/Samsung/NVDA: FLAT rows (O=H=L=Price), tiny non-empty volume,
-    #     recurring roughly weekly across years of history (230/31/1 rows).
-    #     novol & flat (step 1) misses these because volume is non-empty.
-    #   - Qatar (QGTS/IQCD/QNB): NOT flat -- real intraday range, real volume
-    #     (tens of millions), ~10x/~9x/~13x the true level for exactly one
-    #     session, on the SAME calendar date (19-Nov-2013) across three
-    #     unrelated names -- a one-day vendor feed error, not three
-    #     independent corporate actions.
-    # Either way, step 2's repair loop (below) treats the first few it meets as
-    # genuine splits and back-adjusts all prior history by a bogus factor; with
-    # Kakao's ~230 repeats it exhausts its 6-iteration cap and leaves most of
-    # them to silently corrupt every HAR fit trained across that history.
-    thr_pre = jump_threshold(market)
-    p = df['Price'].values
-    n = len(df)
-    phantom = np.zeros(n, dtype=bool)
-    if n > 2:
-        with np.errstate(divide='ignore', invalid='ignore'):
-            jump_in = np.log(p[1:-1] / p[:-2])     # signed, into row i, i=1..n-2
-            jump_out = np.log(p[2:] / p[1:-1])     # signed, out of row i
-        # a genuine multi-day rally has jump_in and jump_out the SAME sign (keeps
-        # moving); a data error cancels (jump_out =~ -jump_in) -- normal next-day
-        # drift is allowed for (0.15 log-unit slack), it just can't be a second
-        # jump in the same direction.
-        cand = (np.abs(jump_in) > thr_pre) & (np.abs(jump_in + jump_out) < 0.15)
-        phantom[1:-1] = cand
-    if phantom.any():
-        dates = df['Date'][phantom]
-        log.append(f"dropped {int(phantom.sum())} single-session rows that cancel "
-                   f"the very next session ({dates.iloc[0].date()}.."
-                   f"{dates.iloc[-1].date()}) — each exceeds the {market or '?'} "
-                   f"artifact threshold then reverses almost exactly the next close "
-                   f"(jump_out =~ -jump_in); a genuine corporate action does not "
-                   f"cancel like this, so these are dropped rather than back-adjusted")
-        df = df[~phantom].reset_index(drop=True)
+    # Why this exists (28-Jul-2026, KR 15-year Kakao/Samsung ingest): investing.com's
+    # Korean exports carry rows whose "Change %" is literally the split ratio
+    # ("4,900.00%" = 50x-1; "400.00%" = 5x-1), with O=H=L=C and volume "0.00K".."0.09K".
+    # They survive step 1 ONLY because that volume string is non-NaN, so `novol` is
+    # False. Step 2 then back-adjusts the whole history INTO the spike, and on the next
+    # iteration back-adjusts it OUT again — an oscillation that cannot converge. It
+    # burns all 6 iterations and leaves the series on an arbitrary scale, silently:
+    # the fresh Samsung export disagreed with the correctly-cleaned library on 1,195 of
+    # 3,709 shared sessions, max abs diff 1,574,782 KRW.
+    #
+    # This was patched BY HAND twice before it was understood as a class — the 10-Jul
+    # KAKAO 5:1 finding and the 27-Jul SAMSUNG 50:1 finding, both fixed by editing the
+    # raw CSV. Hand-editing does not scale and is not reproducible: the 15-year Kakao
+    # file carries 230 such rows against Samsung's 41.
+    #
+    # GENERALISED 28-Jul-2026 on the QA 15-year ingest: the same artifact appears in
+    # Qatar WITHOUT the flat-bar signature. Every QE name carries a single 2013-11-19
+    # row printed on the pre-10:1-split scale — IQCD 16.89 -> 168.00 -> 16.85, with a
+    # full intraday range (H 169.50 / L 167.90) and inflated volume — so the original
+    # flat-bar test missed all three. A +894% session on an exchange with a +/-10%
+    # daily limit is 22x the limit: it is not trading, whatever the bar looks like.
+    #
+    # DROPPED, not rescaled — consistent with the 27-Jul decision. Rescaling a print
+    # from a session the market never held would synthesise a trade that never happened.
+    p = df['Price'].values.astype(float)
+    if len(p) >= 3:
+        lr = np.diff(np.log(p))
+        # row i+1 is a spike if the move INTO it and OUT of it both exceed the
+        # artifact threshold and have OPPOSITE signs (it goes up then straight back
+        # down, or vice versa). A real split has one move and no reversal.
+        thr0 = jump_threshold(market)
+        into, outof = lr[:-1], lr[1:]
+        spike = (np.abs(into) > thr0) & (np.abs(outof) > thr0) & (np.sign(into) != np.sign(outof))
+        # The round trip must very nearly cancel: a one-row excursion returns to
+        # where it started. This is what separates a scale artifact from two
+        # unrelated large moves that happen to be adjacent.
+        round_trip = np.abs(into + outof) < thr0
+        # In a market WITH a statutory daily price limit, an excursion this large
+        # cannot be trading in either direction, whatever the row looks like — so
+        # the intraday-range test is not required. Where there is NO limit
+        # (US equities, spot metals) a violent crash-and-rebound is at least
+        # conceivable, so there we still demand the tell-tale non-trade signature
+        # of a completely flat bar.
+        has_limit = DAILY_LIMIT.get(market) is not None
+        flat_row = (df['High'].values == df['Low'].values)[1:-1]
+        drop = np.zeros(len(df), dtype=bool)
+        drop[1:-1] = spike & round_trip & (True if has_limit else flat_row)
+        if drop.any():
+            dts = df['Date'][drop]
+            log.append(f"dropped {int(drop.sum())} isolated one-row price spikes "
+                       f"({dts.iloc[0].date()}"
+                       f"{'..' + str(dts.iloc[-1].date()) if drop.sum() > 1 else ''}) "
+                       f"— excursions beyond the {market or '?'} artifact threshold "
+                       f"{thr0:.3f} that reverse on the very next session: vendor "
+                       f"phantom prints, not corporate actions (dropped, not rescaled)")
+            df = df[~drop].reset_index(drop=True)
 
     # --- 2. detect + back-adjust unadjusted corporate actions ---
     thr = jump_threshold(market)

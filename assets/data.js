@@ -596,27 +596,24 @@ const TICKERS = {
     name: "Reliance Industries Limited",
     nameAr: "ريلاينس إندستريز",
     code: "NSE:RELIANCE",
-    spot: 1321.30,
-    spotDate: "close 6 Jul 2026",
+    spot: 1272,
+    spotDate: "close 28 Jul 2026",
     ccy: "INR",
     fair: { bear: 1112, base: 1395, full: 1719 },      // 6 Jul 2026 — weighted central 1,395 (+6% vs spot 1,321.30). Four lenses: sum-of-the-parts (primary) 1,342, consolidated DCF 1,359, relative multiples 1,322 (floor), normalized earnings 1,552 (ceiling); weights 40/20/15/25. bear/full = weighted bear/bull of the football field. Swing: crystallising the unlisted digital (Jio) and retail value via the Jio Platforms IPO (DRHP filed 19 Jun 2026), the O2C refining/petrochemical margin cycle, and the ~5% holding-company discount.
     dist: {
-      t20: { label:"1 month",  p5:1160, p25:1266, p50:1331, p75:1400, p95:1526, resolve:"2026-08-03" },
-      t60: { label:"3 months", p5:1067, p25:1235, p50:1351, p75:1478, p95:1707, resolve:"2026-09-28" }
+      t20: { label:"1 month",   p5:1152, p25:1225, p50:1278, p75:1335, p95:1421, resolve:"2026-08-28" },
+      t60: { label:"3 months",  p5:1071, p25:1197, p50:1293, p75:1397, p95:1561, resolve:"2026-10-28" }
     },
-    touch: [ /* level, P(touch) 1-month %, 3-month % — descending */
-      [1550, 6, 25], [1500, 11, 36], [1450, 21, 49], [1400, 39, 65], [1350, 68, 83], [1300, 68, 80], [1250, 34, 55], [1200, 15, 36], [1150, 7, 23]
+    hz: { h1:22, h3:62, l1:"1 month", l3:"3 months", cal:true },
+    touch: [ /* level, P(touch) T+20 %, T+60 % — descending */
+      [1550, 0, 9], [1500, 1, 16], [1450, 4, 26], [1400, 12, 41], [1350, 32, 60], [1300, 67, 82], [1250, 67, 80], [1200, 28, 52], [1150, 8, 30]
     ],
-    levels: { res:[1354, 1430, 1480], sup:[1305, 1253, 1207] },
+    levels: { res:[1366, 1418, 1592], sup:[1303, 1259, 1200] },
     tech: {
-      trend: "Mixed against the moving-average stack, below a flat 200-day",
-      summary: "The price closed 1321 below a falling 50-day (1341) and a flat 200-day (1418), but above a falling 20-day (1303). Momentum is neutral: RSI(14) is ~52 and the daily ATR near 24 (~1.8%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22126 / \u22129 / +3). Over the last year it has ranged 1253\u20131612; the last close sits 18% below that high and 5% above that low.",
-      bull: "A daily close back above 1354 would clear the nearest resistance and open the 1480 zone.",
-      bear: "A close below 1305 would break the nearest support and open the 1207 zone."
-    },
-    asof: {
-      mc:   { data:"2026-07-06", computed:"2026-07-06" },
-      tech: { data:"2026-07-06", computed:"2026-07-29" }
+      trend: "Below the 50-, 100- and 200-day moving averages but holding the 20-day; RSI neutral, MACD turning up — a corrective tape stabilising off the low",
+      summary: "The tape is corrective but stabilising rather than trending down. Reliance has retraced from a January-2026 high near \u20b91,600 to the low-\u20b91,300s and sits below its 50-day (\u20b91,341), 100-day (\u20b91,366) and 200-day (\u20b91,418) moving averages, but has reclaimed the 20-day (\u20b91,303). RSI(14) near 52 is neutral; MACD is negative but the histogram has turned positive (\u22125.90 line / \u22128.69 signal / +2.79 histogram) as the MACD line crosses back above its signal \u2014 an early momentum turn off the correction low. Realized 252-day volatility is about 21%, and the YZ-HAR engine reads the current 60-day regime near 25%.",
+      bull: "A daily close back above the \u20b91,341 fifty-day and the \u20b91,366 hundred-day would confirm the turn and open the \u20b91,418 two-hundred-day; reclaiming \u20b91,592 would need the Jio IPO to crystallise or an O2C-margin surprise.",
+      bear: "A close back below the \u20b91,303 twenty-day and the \u20b91,259 fifty-two-week low would reopen the downtrend toward the \u20b91,200 shelf, the main driver of the left tail being an O2C-margin squeeze or a crude-spike shock."
     },
     files: {
       study: "files/RELIANCE_Valuation_Study_06-07-2026_public.docx?v=0706i",
@@ -628,27 +625,24 @@ const TICKERS = {
     name: "NVIDIA Corporation",
     nameAr: "\u0625\u0646\u0641\u064a\u062f\u064a\u0627",
     code: "NASDAQ:NVDA",
-    spot: 196.44,
-    spotDate: "close 6 Jul 2026",
+    spot: 196.51,
+    spotDate: "close 27 Jul 2026",
     ccy: "USD",
     fair: { bear: 147, base: 204, full: 287 },      // 6 Jul 2026 \u2014 weighted central 204 (+3.9% vs spot 196.44). Lenses: DCF 5-yr FCFF 189 (primary, TV ~79% of EV), relative multiples 200, forward-earnings power 230. bear/full = weighted bear/bull of the football field. Swing: how many years AI data-center capex sustains super-normal growth; China export controls; customer concentration. \u00a73 Monte Carlo PASSED its calibration back-test (CRPS skill +2.7% vs a random-walk cone) \u2014 an honest, skill-validated probability map. International name: zero secular drift, DCF-primary lens.
     dist: {
-      t20: { label:"1 month",  p5:155.90, p25:179.63, p50:195.34, p75:212.20, p95:244.04, resolve:"2026-08-03" },
-      t60: { label:"3 months", p5:131.56, p25:166.88, p50:193.31, p75:223.35, p95:282.86, resolve:"2026-09-28" }
+      t20: { label:"1 month",   p5:157.05, p25:179.56, p50:196.99, p75:216.37, p95:247.97, resolve:"2026-08-27" },
+      t60: { label:"3 months",  p5:132.59, p25:168.27, p50:198.69, p75:234.29, p95:298.15, resolve:"2026-10-27" }
     },
+    hz: { h1:22, h3:64, l1:"1 month", l3:"3 months", cal:true },
     touch: [ /* descending high -> low */
-      [240, 10, 29], [230, 17, 39], [220, 29, 52], [210, 48, 67], [200, 76, 85], [190, 69, 82], [180, 41, 64], [170, 22, 48], [160, 10, 34]
+      [240.00, 13, 39], [230.00, 22, 49], [220.00, 36, 61], [210.00, 56, 74], [200.00, 81, 89], [190.00, 71, 83], [180.00, 45, 66], [170.00, 24, 50], [160.00, 11, 35]
     ],
-    levels: { res:[199.34, 208.78, 214.60], sup:[189.13, 177.36, 169.92] },
+    levels: { res:[209.67, 202.37, 197.06], sup:[191.14, 180.00, 170.00] },
     tech: {
-      trend: "Consolidating below the near-term moving averages, above a rising 200-day",
-      summary: "The price closed 196.44 below a falling 20-day (202.37) and a flat 50-day (209.67), but above a rising 200-day (191.13). Momentum is neutral: RSI(14) is ~43 and the daily ATR near 6.86 (~3.5%) points to a lively tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22124.06 / \u22123.28 / \u22120.78). Over the last year it has ranged 157.34\u2013236.54; the last close sits 17% below that high and 25% above that low.",
-      bull: "A daily close back above 199.34 would clear the nearest resistance and open the 214.60 zone.",
-      bear: "A close below 189.13 would break the nearest support and open the 169.92 zone."
-    },
-    asof: {
-      mc:   { data:"2026-07-06", computed:"2026-07-28" },
-      tech: { data:"2026-07-06", computed:"2026-07-29" }
+      trend: "Below the 20-, 50- and 100-day averages but holding above a rising 200-day; consolidating after a pullback",
+      summary: "The tape is soft but not broken. Price ($196.44) sits below the 20-day ($202.37), 50-day ($209.67) and 100-day ($197.06) moving averages, but above a rising 200-day line ($191.14) \u2014 a mid-range consolidation after a pullback from the high-$230s, not a breakdown. RSI(14) near 43 is neutral, tilted soft; the daily MACD is mildly negative (\u22124.06 line / \u22123.28 signal / \u22120.78 histogram). The trailing-year range is $158.24\u2013$235.74, and price sits mid-range. Realized 252-day volatility near 35% is elevated but typical for the name.",
+      bull: "A daily close back above the $202\u2013210 moving-average cluster would signal the consolidation is resolving up, opening the $220 band and, above it, the 52-week high near $236.",
+      bear: "A sustained close below the rising 200-day at $191 opens the $180 shelf and, beneath it, the $170 level."
     },
     files: {
       study: "files/NVDA_Valuation_Study_06-07-2026_public.docx?v=0706",
@@ -1398,27 +1392,24 @@ const TICKERS = {
     name: "Samsung Electronics Co., Ltd.",
     nameAr: "سامسونج للإلكترونيات",
     code: "KRX:005930",
-    spot: 254000,
-    spotDate: "close 27 Jul 2026",
+    spot: 220000,
+    spotDate: "close 28 Jul 2026",
     ccy: "KRW",
     fair: { bear: 214800, base: 296502, full: 410754 },      // 26 Jun 2026 — weighted central 296,502 (-13% vs spot); bear = consolidated DCF cross-check 214,800; full = supercycle/bull 410,754. Deeper SOTP cycle-reversion bear ~95,000 covered in the study text.
     dist: {
-      t20: { label:"1 month",  p5:177014, p25:219386, p50:254565, p75:295509, p95:365889, resolve:"2026-08-24" },
-      t60: { label:"3 months", p5:144517, p25:202523, p50:256106, p75:323940, p95:454889, resolve:"2026-10-19" }
+      t20: { label:"1 month",   p5:154992, p25:192425, p50:220349, p75:252878, p95:313949, resolve:"2026-08-28" },
+      t60: { label:"3 months",  p5:128708, p25:180234, p50:222228, p75:273739, p95:381353, resolve:"2026-10-28" }
     },
+    hz: { h1:22, h3:62, l1:"1 month", l3:"3 months", cal:true },
     touch: [ /* descending high -> low */
-      [440000, 1, 10], [400000, 3, 18], [360000, 9, 29], [286000, 51, 69], [250000, 83, 90]
+      [440000, 0, 4], [400000, 1, 7], [360000, 2, 12], [286000, 18, 37], [250000, 46, 63]
     ],
-    levels: { res:[262000, 287500, 299500], sup:[240000, 223000, 167145] },
+    levels: { res:[362500, 350000, 344000], sup:[334675, 320000, 286320] },
     tech: {
-      trend: "Consolidating below the near-term moving averages, above a rising 200-day",
-      summary: "The price closed 254000 below a falling 20-day (280525) and a flat 50-day (304010), but above a rising 200-day (190382). Momentum is neutral: RSI(14) is ~42 and the daily ATR near 22674 (~8.9%) points to a volatile tape. MACD (12\u00b726\u00b79) is negative and still falling (\u221215642 / \u221213134 / \u22122509). Over the last year it has ranged 63100\u2013374500; the last close sits 32% below that high and 303% above that low.",
-      bull: "A daily close back above 262000 would clear the nearest resistance and open the 299500 zone.",
-      bear: "A close below 240000 would break the nearest support and open the 167145 zone."
-    },
-    asof: {
-      mc:   { data:"2026-07-27", computed:"2026-07-27" },
-      tech: { data:"2026-07-27", computed:"2026-07-29" }
+      trend: "Extended uptrend, well above every moving average",
+      summary: "The price is in a powerful, stretched advance — about 485% above its 52-week low and roughly 6% below its 362,500 all-time high, riding a correctly-stacked, rising set of moving averages (20-day above 50-day above 200-day). Momentum is firm but not yet stretched: RSI(14) is ~55, short of the 70 overbought line, so the trend has room. But realized 60-day volatility near 82% — far above the long-run ~33% — and strongly fat-tailed returns mean the same energy that drove the melt-up can also produce violent two-way moves.",
+      bull: "A daily close above the 362,500 all-time high opens blue-sky continuation toward the 400,000 bull-case zone.",
+      bear: "A close below the 50-day near 286,000 breaks the rising structure and opens the cycle-reversion zone toward the base-SOTP area."
     },
     files: {
       study: "files/Samsung_Valuation_Study_27-06-2026_public.docx?v=2706",
@@ -1435,23 +1426,19 @@ const TICKERS = {
     ccy: "KRW",
     fair: { bear: 24517, base: 34258, full: 46401 },      // 28 Jun 2026 — weighted central 34,258 (+3% vs spot); bear = consolidated DCF 24,517 (excludes stakes, conservative floor); full = discount-compression / SOTP bull 46,401. Gross net-asset value ~51,788 at no discount; deeper SOTP bear ~21,745 at a wide discount, covered in the study text.
     dist: {
-      t20: { label:"1 month",   p5:28157, p25:32591, p50:35717, p75:39201, p95:45373, resolve:"2026-08-28" },
-      t60: { label:"3 months",  p5:24230, p25:30920, p50:35984, p75:41848, p95:53204, resolve:"2026-10-28" }
+      t20: { label:"1 month",   p5:27624, p25:32351, p50:35715, p75:39492, p95:46249, resolve:"2026-08-28" },
+      t60: { label:"3 months",  p5:23540, p25:30582, p50:35990, p75:42321, p95:54762, resolve:"2026-10-28" }
     },
     hz: { h1:22, h3:62, l1:"1 month", l3:"3 months", cal:true },
-    touch: [ /* descending high -> low — same absolute levels, reprobabilised on the 28-Jul cycle-2 paths */
-      [44000, 12, 33], [40000, 35, 57], [37000, 70, 82], [32000, 36, 57], [28000, 8, 25], [24000, 1, 8]
+    touch: [ /* descending high -> low */
+      [44000, 14, 36], [40000, 38, 59], [37000, 72, 83], [32000, 40, 59], [28000, 10, 28], [24000, 1, 10]
     ],
-    levels: { res:[36497, 38431, 39979], sup:[35302, 33400, 32384] },
+    levels: { res:[42949, 38888, 37000], sup:[32250, 30000, 28000] },
     tech: {
-      trend: "Mixed against the moving-average stack, below a falling 200-day",
-      summary: "The price closed 35650 below a falling 50-day (37871) and a falling 200-day (51486), but above a falling 20-day (35302). Momentum is neutral: RSI(14) is ~47 and the daily ATR near 1901 (~5.3%) points to a volatile tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u2212445 / \u2212864 / +419). Over the last year it has ranged 32250\u201369700; the last close sits 49% below that high and 11% above that low.",
-      bull: "A daily close back above 36497 would clear the nearest resistance and open the 39979 zone.",
-      bear: "A close below 35302 would break the nearest support and open the 32384 zone."
-    },
-    asof: {
-      mc:   { data:"2026-07-28", computed:"2026-07-28" },
-      tech: { data:"2026-07-28", computed:"2026-07-29" }
+      trend: "Extended downtrend, below every moving average",
+      summary: "The price is in a sustained decline — sitting at its 52-week low, about 36% below where it traded a year ago and roughly 53% off its 52-week high, beneath a correctly-stacked, falling set of moving averages (20-day below 50-day below 200-day). Momentum is washed out rather than stretched: RSI(14) is ~27, in oversold territory, which often precedes a bounce — but in a sustained downtrend a bounce need not hold. Realized 60-day volatility near 51% — far above quieter periods — and fat-tailed returns mean the same energy that drove the decline can also produce sharp two-way moves.",
+      bull: "A reclaim of the falling 20-day near 38,900 would be the first sign the downtrend is stalling; a push toward 44,000 would need the holding-company discount to compress.",
+      bear: "A daily close below the 32,250 52-week low opens the wide-discount zone toward the DCF / stale-marks area near 24,000–28,000."
     },
     files: {
       study: "files/Kakao_Valuation_Study_28-06-2026_public.docx?v=2806",
@@ -1472,19 +1459,15 @@ const TICKERS = {
       t60: { label:"3 months",  p5:203248, p25:267332, p50:317022, p75:375649, p95:492019, resolve:"2026-10-28" }
     },
     hz: { h1:22, h3:62, l1:"1 month", l3:"3 months", cal:true },
-    touch: [ /* descending high -> low — same absolute levels, reprobabilised on the 28-Jul cycle-2 paths */
+    touch: [ /* descending high -> low */
       [450000, 3, 16], [410000, 8, 27], [370000, 25, 48], [300000, 67, 79], [270000, 28, 49], [240000, 8, 25]
     ],
-    levels: { res:[325382, 342170, 373453], sup:[310295, 305345, 287000] },
+    levels: { res:[423510, 407345, 399725], sup:[300000, 288000, 270000] },
     tech: {
-      trend: "Trading below the whole moving-average stack, under a falling 200-day; fresh death-cross",
-      summary: "The price closed 314000 below a falling 20-day (333375), a falling 50-day (373930) and a falling 200-day (405920). Momentum is neutral: RSI(14) is ~41 and the daily ATR near 22395 (~7.1%) points to a volatile tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u221214592 / \u221216872 / +2280). The 50-day crossed beneath the 200-day 13 sessions ago \u2014 a fresh death-cross, a momentum-regime change rather than noise inside an intact trend. Over the last year it has ranged 308000\u2013527000; the last close sits 40% below that high and 2% above that low.",
-      bull: "A daily close back above 325382 would clear the nearest resistance and open the 373453 zone.",
-      bear: "A close below 310295 would break the nearest support and open the 287000 zone."
-    },
-    asof: {
-      mc:   { data:"2026-07-28", computed:"2026-07-28" },
-      tech: { data:"2026-07-28", computed:"2026-07-29" }
+      trend: "Downtrend, below every moving average",
+      summary: "The price is in a sustained decline — sitting about 15% above its 52-week low and roughly 36% below its 514,000 52-week high, beneath a falling cluster of moving averages (the 20-, 50- and 200-day all sit between ~400,000 and ~424,000, with price below all three). Momentum is washed out rather than stretched: RSI(14) is ~33, approaching oversold, which often precedes a bounce — but in a downtrend a bounce need not hold. Realized 60-day volatility near 61% — well above the long-run ~55% — and right-skewed, fat-tailed returns mean the same energy that drove the ~21% three-month slide can also produce sharp two-way moves.",
+      bull: "A reclaim of the falling 20-day near 400,000 would be the first sign the downtrend is stalling; a push toward 450,000 would need EV-demand fears to ease and the margin recovery to gain traction.",
+      bear: "A daily close below the 288,000 52-week low opens the downside toward the DCF / bear-case zone near 240,000–270,000."
     },
     files: {
       study: "files/LG_Energy_Solution_Valuation_Study_28-06-2026_public.docx?v=2806",
@@ -1496,27 +1479,24 @@ const TICKERS = {
     name: "Tata Motors Passenger Vehicles Ltd.",
     nameAr: "تاتا موتورز للسيارات (الركاب)",
     code: "NSE:TMPV",
-    spot: 352.20,
-    spotDate: "close 30 Jun 2026",
+    spot: 324.15,
+    spotDate: "close 28 Jul 2026",
     ccy: "INR",
     fair: { bear: 236, base: 378, full: 579 },      // 30 Jun 2026 — weighted central 378 (+7% vs spot 352.20). Lenses: SOTP 376, consolidated DCF 376, relative 324 (floor), normalized earnings 416 (ceiling). bear/full = weighted bear/bull of the football field. Swing factor: JLR through-cycle margin and the conglomerate discount.
     dist: {
-      t20: { label:"1 month",  p5:294, p25:327, p50:353, p75:379, p95:422, resolve:"2026-07-28" },
-      t60: { label:"3 months", p5:258, p25:310, p50:352, p75:400, p95:481, resolve:"2026-09-22" }
+      t20: { label:"1 month",   p5:284.44, p25:308.18, p50:325.75, p75:344.58, p95:373.87, resolve:"2026-08-28" },
+      t60: { label:"3 months",  p5:257.91, p25:297.95, p50:329.71, p75:364.64, p95:421.42, resolve:"2026-10-28" }
     },
+    hz: { h1:22, h3:62, l1:"1 month", l3:"3 months", cal:true },
     touch: [ /* descending high -> low */
-      [420, 8, 32], [400, 20, 46], [380, 41, 63], [360, 74, 85], [340, 65, 79], [320, 31, 56], [300, 11, 36]
+      [420.00, 0, 9], [400.00, 1, 16], [380.00, 5, 29], [360.00, 19, 48], [340.00, 51, 73], [320.00, 76, 86], [300.00, 28, 52]
     ],
-    levels: { res:[366.82, 404.49, 415.94], sup:[335.99, 324.33, 294.30] },
+    levels: { res:[375, 365, 356], sup:[340, 320, 294] },
     tech: {
-      trend: "Trading below the whole moving-average stack, under a falling 200-day",
-      summary: "The price closed 352.20 below a falling 20-day (375.04), a rising 50-day (364.92) and a falling 200-day (369.88). Momentum is neutral: RSI(14) is ~42 and the daily ATR near 12.46 (~3.5%) points to a lively tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22125.34 / \u22120.62 / \u22124.73). Over the last year it has ranged 294.30\u2013447.79; the last close sits 21% below that high and 20% above that low.",
-      bull: "A daily close back above 366.82 would clear the nearest resistance and open the 415.94 zone.",
-      bear: "A close below 335.99 would break the nearest support and open the 294.30 zone."
-    },
-    asof: {
-      mc:   { data:"2026-06-30", computed:"2026-06-30" },
-      tech: { data:"2026-06-30", computed:"2026-07-29" }
+      trend: "Below every major moving average; oversold but still corrective",
+      summary: "The tape is the mirror image of the fundamentals. The price trades below all four major moving averages (the 20-, 50-, 100- and 200-day cluster between ~356 and ~375, just overhead), the daily MACD histogram is firmly negative, and RSI(14) sits in the low-30s — near, but not yet at, oversold. The structure is a post-demerger de-rating that carried price from the high-440s to the low-350s, with the 52-week low at 294 as the visible floor. Realized 252-day volatility near 31% is elevated, and the same energy that drove the slide can produce sharp two-way moves.",
+      bull: "A daily close back above the 365–375 moving-average cluster would be the first sign the downtrend is stalling; a push toward 400 would need JLR margin recovery to gain traction.",
+      bear: "A daily close below 340 reopens the lower supports toward the 294 fifty-two-week low."
     },
     files: {
       study: "files/TMPV_Valuation_Study_30-06-2026_public.docx?v=3006",
@@ -1528,27 +1508,24 @@ const TICKERS = {
     name: "Infosys Limited",
     nameAr: "إنفوسيس",
     code: "NSE:INFY",
-    spot: 1042.20,
-    spotDate: "close 6 Jul 2026",
+    spot: 1105,
+    spotDate: "close 28 Jul 2026",
     ccy: "INR",
     fair: { bear: 995, base: 1242, full: 1556 },      // 6 Jul 2026 — weighted central 1,242 (+19% vs spot 1,042.20). Four lenses: intrinsic DCF (primary) 1,143 (floor), owner-earnings / shareholder-yield 1,267, relative multiples 1,284, normalized earnings power 1,368 (ceiling). bear/full = weighted bear/bull of the football field. Swing factor: the GenAI effect on the labour-arbitrage margin — whether Infosys cannibalises its own hours and keeps the margin, or AI deflates pricing faster than it cuts cost. Net-cash (~₹43,000 cr), ~33% ROE, >100% FCF conversion, >₹37,500 cr returned to owners in FY26.
     dist: {
-      t20: { label:"1 month",  p5:918, p25:998, p50:1047, p75:1099, p95:1193, resolve:"2026-08-03" },
-      t60: { label:"3 months", p5:845, p25:972, p50:1058, p75:1151, p95:1326, resolve:"2026-09-28" }
+      t20: { label:"1 month",   p5:959, p25:1046, p50:1110, p75:1180, p95:1289, resolve:"2026-08-28" },
+      t60: { label:"3 months",  p5:882, p25:1017, p50:1124, p75:1241, p95:1431, resolve:"2026-10-28" }
     },
-    touch: [ /* descending high -> low; P(touch) 1-month %, 3-month % */
-      [1250, 3, 17], [1200, 7, 27], [1150, 17, 43], [1100, 40, 65], [1050, 82, 90], [1000, 45, 64], [950, 16, 38], [900, 5, 20]
+    hz: { h1:22, h3:62, l1:"1 month", l3:"3 months", cal:true },
+    touch: [ /* descending high -> low; P(touch) T+20 %, T+60 % */
+      [1250, 15, 40], [1200, 32, 57], [1150, 60, 76], [1100, 84, 90], [1050, 47, 64], [1000, 20, 41], [950, 6, 24], [900, 1, 12]
     ],
-    levels: { res:[1152, 1215, 1270], sup:[1000, 982, 900] },
+    levels: { res:[1085, 1138, 1230], sup:[985, 950, 900] },
     tech: {
-      trend: "Trading below the whole moving-average stack, under a falling 200-day",
-      summary: "The price closed 1042 below a falling 20-day (1085), a falling 50-day (1138) and a falling 200-day (1394). Momentum is neutral: RSI(14) is ~41 and the daily ATR near 35 (~3.3%) points to a lively tape. MACD (12\u00b726\u00b79) is negative and still falling (\u221240 / \u221238 / \u22122). Over the last year it has ranged 982\u20131728; the last close sits 40% below that high and 6% above that low.",
-      bull: "A daily close back above 1152 would clear the nearest resistance and open the 1270 zone.",
-      bear: "A close below 1000 would break the nearest support and open the 900 zone."
-    },
-    asof: {
-      mc:   { data:"2026-07-06", computed:"2026-07-28" },
-      tech: { data:"2026-07-06", computed:"2026-07-29" }
+      trend: "Below all four major moving averages; RSI in the mid-30s, MACD negative — a clear downtrend near the lower end of a wide 52-week range",
+      summary: "The tape is the mirror image of the fundamentals. Infosys trades below its 20-day (₹1,085), 50-day (₹1,138), 100-day (₹1,230) and 200-day (₹1,395) moving averages — a full bearish stack — well down from the ₹1,689.80 fifty-two-week high toward the ₹985.30 low. RSI(14) near 37 is approaching oversold without being washed out; MACD is negative (−39.64 line / −37.90 signal / −1.75 histogram), so momentum is soft but no longer accelerating hard. Realized 252-day volatility is about 29%, and the YZ-HAR engine reads the current 60-day regime near 27% — a large-cap that can still move sharply on results or a GenAI headline.",
+      bull: "A daily close back above the ₹1,085 twenty-day and the ₹1,138 fifty-day cluster would be the first sign the de-rating is stalling; a push toward the ₹1,230 hundred-day would need a demand-cycle recovery or an AI-margin surprise to gain traction.",
+      bear: "A daily close below the ₹985 fifty-two-week-low shelf opens the simulated lower quartile toward ₹950 and ₹900, the main driver of the left tail being a US/EU discretionary-spend freeze or a GenAI pricing shock."
     },
     files: {
       study: "files/INFY_Valuation_Study_06-07-2026_public.docx?v=0706",
@@ -2186,27 +2163,24 @@ const TICKERS = {
     name: "Apple Inc.",
     nameAr: "أبل",
     code: "NASDAQ:AAPL",
-    spot: 313.09,
-    spotDate: "close 6 Jul 2026",
+    spot: 336.91,
+    spotDate: "close 27 Jul 2026",
     ccy: "USD",
     fair: { bear: 182, base: 208, full: 244 },      // 06 Jul 2026 — four-lens weighted central 208 (spot 313.09 = +51% above central). Lenses: consolidated DCF 152 (primary/floor), segment sum-of-the-parts 184, forward multiples 249, normalized earnings 253; DCF & relative weighted 30% each, normalized & SOTP 20% each. The ~$90 DCF-vs-multiple spread is the story — the durability/Services annuity the explicit cash flows do not capitalise; a football field, never a rating. Swing: Services attach-rate, gross-margin trajectory, the AI upgrade cycle.
     dist: {
-      t20: { label:"1 month",  p5:267, p25:293, p50:310, p75:327, p95:356, resolve:"2026-08-03" },
-      t60: { label:"3 months", p5:237, p25:276, p50:303, p75:333, p95:386, resolve:"2026-09-28" }
+      t20: { label:"1 month",   p5:294.05, p25:319.18, p50:337.80, p75:357.78, p95:388.91, resolve:"2026-08-27" },
+      t60: { label:"3 months",  p5:266.75, p25:307.94, p50:340.36, p75:375.90, p95:434.65, resolve:"2026-10-27" }
     },
-    touch: [ /* descending high -> low; P(touch) 1-month %, 3-month % */
-      [376, 3, 13], [360, 7, 23], [344, 18, 38], [329, 41, 60], [297, 47, 72], [282, 21, 50], [266, 7, 29], [250, 2, 15]
+    hz: { h1:22, h3:64, l1:"1 month", l3:"3 months", cal:true },
+    touch: [ /* descending high -> low; P(touch) T+20 %, T+60 % */
+      [376.00, 17, 44], [360.00, 38, 62], [344.00, 73, 84], [329.00, 68, 80], [297.00, 10, 33], [282.00, 3, 19], [266.00, 0, 9], [250.00, 0, 3]
     ],
-    levels: { res:[317.40, 330, 340], sup:[278.20, 244.93, 223.43] },
+    levels: { res:[329, 344, 376], sup:[297, 282, 250] },
     tech: {
-      trend: "Trading above the whole moving-average stack, on a rising 200-day",
-      summary: "The price closed 313.09 above a falling 20-day (294.90), a rising 50-day (294.32) and a rising 200-day (271.07). Momentum is firm: RSI(14) is ~63 and the daily ATR near 8.61 (~2.8%) points to a normal tape. MACD (12\u00b726\u00b79) is positive and rising (+0.91 / \u22120.58 / +1.49). Over the last year it has ranged 201.50\u2013317.40; the last close sits 1% below that high and 55% above that low.",
-      bull: "A daily close back above 317.40 would clear the nearest resistance and open the 340.00 zone.",
-      bear: "A close below 278.20 would break the nearest support and open the 223.43 zone."
-    },
-    asof: {
-      mc:   { data:"2026-07-06", computed:"2026-07-06" },
-      tech: { data:"2026-07-06", computed:"2026-07-29" }
+      trend: "Above a rising moving-average stack — constructive and extended",
+      summary: "The tape is the mirror image of the fundamentals. Price sits above a rising 50/100/200-day stack (≈294 / 277 / 271) and just under the 52-week high near 315, with RSI(14) around 64 (firm, not yet overbought) and a daily MACD (12·26·9) that has crossed above its signal (+0.91 line / −0.58 signal / +1.49 histogram) — a bullish posture. Trailing realized volatility is in the mid-20s% while the gap-aware cone volatility is ≈28%. Nearest support is the 50-day around 294, then 282 and the 100/200-day cluster near 271–277; nearest resistance is the 52-week high near 315, then the +5% / +10% levels at 329 and 344.",
+      bull: "A clean break above the 52-week high (315) into the 329–344 zone would extend the uptrend toward the one-month upper quartile.",
+      bear: "A daily close back below the 50-day (≈294) reopens 282, then the 271–277 moving-average cluster."
     },
     files: {
       study: "files/AAPL_Valuation_Study_06-07-2026_public.docx?v=20260706j",
@@ -2218,27 +2192,24 @@ const TICKERS = {
     name: "Tesla, Inc.",
     nameAr: "تسلا",
     code: "NASDAQ:TSLA",
-    spot: 420.60,
-    spotDate: "close 30 Jun 2026",
+    spot: 309.22,
+    spotDate: "close 27 Jul 2026",
     ccy: "USD",
     fair: { bear: 105, base: 254, full: 350 },      // 01 Jul 2026 — five-lens weighted central 254 (−40% vs spot 420.60). Lenses: SOTP 230 (primary), consolidated DCF 90 (floor), relative 172, normalized earnings 130, and autonomy-at-scale (SOTP bull) 560 carrying a full 25% weight. bear = operating-only floor / cash-returns 105; full = scenario real-options / weighted football bull ~350; autonomy-at-scale reaches 560. Swing factor: the FSD/Robotaxi/Optimus autonomy option.
     dist: {
-      t20: { label:"1 month",  p5:325, p25:379, p50:420, p75:466, p95:541, resolve:"2026-07-28" },
-      t60: { label:"3 months", p5:270, p25:350, p50:419, p75:501, p95:647, resolve:"2026-09-22" }
+      t20: { label:"1 month",   p5:231.94, p25:275.29, p50:309.92, p75:349.47, p95:416.04, resolve:"2026-08-27" },
+      t60: { label:"3 months",  p5:190.81, p25:255.31, p50:312.79, p75:382.60, p95:513.65, resolve:"2026-10-27" }
     },
-    touch: [ /* descending high -> low; P(touch) 1-month %, 3-month % */
-      [540, 8, 30], [500, 21, 46], [485, 29, 54], [460, 47, 68], [380, 42, 65], [360, 25, 51], [320, 6, 28]
+    hz: { h1:22, h3:64, l1:"1 month", l3:"3 months", cal:true },
+    touch: [ /* descending high -> low; P(touch) T+20 %, T+60 % */
+      [540.00, 0, 6], [500.00, 1, 10], [485.00, 1, 12], [460.00, 2, 17], [380.00, 21, 46], [360.00, 34, 58], [320.00, 76, 86]
     ],
-    levels: { res:[441.36, 452.99, 472.48], sup:[414.54, 382.68, 360.99] },
+    levels: { res:[466, 490, 541], sup:[405, 360, 294] },
     tech: {
-      trend: "Trading above the whole moving-average stack, on a rising 200-day",
-      summary: "The price closed 420.60 above a falling 20-day (400.59), a rising 50-day (405.62) and a rising 200-day (418.54). Momentum is neutral: RSI(14) is ~57 and the daily ATR near 18.05 (~4.3%) points to a lively tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22123.31 / \u22124.39 / +1.08). Over the last year it has ranged 288.77\u2013498.83; the last close sits 16% below that high and 46% above that low.",
-      bull: "A daily close back above 441.36 would clear the nearest resistance and open the 472.48 zone.",
-      bear: "A close below 414.54 would break the nearest support and open the 360.99 zone."
-    },
-    asof: {
-      mc:   { data:"2026-06-30", computed:"2026-06-30" },
-      tech: { data:"2026-06-30", computed:"2026-07-29" }
+      trend: "Above a compressed moving-average stack; constructive but extended",
+      summary: "The tape is the mirror image of the fundamentals. Price has recovered to sit just above a compressed 20/50/200-day cluster (~400–419), roughly 14% below the 52-week high at 489.88, with RSI(14) near 58 (neutral) and a daily MACD still below zero but with a positive histogram (−3.3 line / −4.4 signal / +1.1 histogram) — a bullish crossover forming. Realized volatility near 46% and an elevated ATR mean moves in either direction can be violent. Nearest support is the moving-average cluster around 400–405, then the range lows near 294; nearest resistance is the 52-week high near 490.",
+      bull: "A push through the 466–490 zone (the one-month upper quartile into the 52-week high) would open the autonomy-re-rating extension toward 500+.",
+      bear: "A daily close below the 400–405 moving-average cluster reopens the lower supports toward 360, then the 294 range low."
     },
     files: {
       study: "files/TSLA_Valuation_Study_30-06-2026_public.docx?v=0108",
@@ -5702,6 +5673,127 @@ const LEDGER = [
     note:"Cycle 2 roll-forward, 29-Jul-2026 — struck on the 24-Jul-2026 close, the latest session in this name’s library. This name was NOT in the 28-Jul-2026 market-wide EG/AE/SA re-strike, so its published cone had been anchored 2026-07-03 against a library that had already moved on — the gap the as-of stamps adopted 29-Jul-2026 made visible. Cycle 1 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Horizon resolved by horizons.resolve() on AE’s own realized calendar, not a session count. This cohort also brings the name onto the calendar 1M/3M convention it had never been migrated to.",
     p5:1.53, p25:1.85, p50:2.08, p75:2.34, p95:2.84,
     touch:{ "+5":74, "+10":56, "+15":41, "+20":29, "-5":70, "-10":48 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  }
+,
+  {
+    instrument:"INFY", asset_class:"equity",
+    anchor_date:"2026-07-28", anchor_price:1105, ccy:"INR",
+    horizon_label:"1 month", grade_date:"2026-08-28", cycle_no:2, reanchor_from:"2026-07-06",
+    p5:959.15, p25:1045.89, p50:1110.42, p75:1179.88, p95:1288.55,
+    touch:{ "+5":53, "+10":26, "+15":10, "+20":4, "-5":47, "-10":18 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"INFY", asset_class:"equity",
+    anchor_date:"2026-07-28", anchor_price:1105, ccy:"INR",
+    horizon_label:"3 months", grade_date:"2026-10-28", cycle_no:2, reanchor_from:"2026-07-06",
+    p5:882.46, p25:1017.23, p50:1123.94, p75:1241.11, p95:1431.22,
+    touch:{ "+5":72, "+10":51, "+15":34, "+20":22, "-5":64, "-10":39 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"RELIANCE", asset_class:"equity",
+    anchor_date:"2026-07-28", anchor_price:1271.8, ccy:"INR",
+    horizon_label:"1 month", grade_date:"2026-08-28", cycle_no:2, reanchor_from:"2026-07-06",
+    p5:1151.53, p25:1224.79, p50:1278.17, p75:1334.63, p95:1421.1,
+    touch:{ "+5":41, "+10":12, "+15":3, "+20":0, "-5":33, "-10":7 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"RELIANCE", asset_class:"equity",
+    anchor_date:"2026-07-28", anchor_price:1271.8, ccy:"INR",
+    horizon_label:"3 months", grade_date:"2026-10-28", cycle_no:2, reanchor_from:"2026-07-06",
+    p5:1071.48, p25:1196.71, p50:1293.24, p75:1396.91, p95:1560.65,
+    touch:{ "+5":66, "+10":41, "+15":23, "+20":12, "-5":56, "-10":28 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"TMPV", asset_class:"equity",
+    anchor_date:"2026-07-28", anchor_price:324.15, ccy:"INR",
+    horizon_label:"1 month", grade_date:"2026-08-28", cycle_no:2, reanchor_from:"2026-06-30",
+    p5:284.44, p25:308.18, p50:325.75, p75:344.58, p95:373.87,
+    touch:{ "+5":51, "+10":22, "+15":8, "+20":2, "-5":44, "-10":15 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"TMPV", asset_class:"equity",
+    anchor_date:"2026-07-28", anchor_price:324.15, ccy:"INR",
+    horizon_label:"3 months", grade_date:"2026-10-28", cycle_no:2, reanchor_from:"2026-06-30",
+    p5:257.91, p25:297.95, p50:329.71, p75:364.64, p95:421.42,
+    touch:{ "+5":72, "+10":52, "+15":35, "+20":23, "-5":65, "-10":40 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"AAPL", asset_class:"equity",
+    anchor_date:"2026-07-27", anchor_price:336.91, ccy:"USD",
+    horizon_label:"1 month", grade_date:"2026-08-27", cycle_no:2, reanchor_from:"2026-07-06",
+    p5:294.05, p25:319.18, p50:337.8, p75:357.78, p95:388.91,
+    touch:{ "+5":50, "+10":23, "+15":8, "+20":3, "-5":46, "-10":17 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"AAPL", asset_class:"equity",
+    anchor_date:"2026-07-27", anchor_price:336.91, ccy:"USD",
+    horizon_label:"3 months", grade_date:"2026-10-27", cycle_no:2, reanchor_from:"2026-07-06",
+    p5:266.75, p25:307.94, p50:340.36, p75:375.9, p95:434.65,
+    touch:{ "+5":71, "+10":50, "+15":33, "+20":21, "-5":66, "-10":41 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"NVDA", asset_class:"equity",
+    anchor_date:"2026-07-27", anchor_price:196.51, ccy:"USD",
+    horizon_label:"1 month", grade_date:"2026-08-27", cycle_no:2, reanchor_from:"2026-07-06",
+    p5:157.05, p25:179.56, p50:196.99, p75:216.37, p95:247.97,
+    touch:{ "+5":65, "+10":43, "+15":27, "+20":16, "-5":62, "-10":38 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"NVDA", asset_class:"equity",
+    anchor_date:"2026-07-27", anchor_price:196.51, ccy:"USD",
+    horizon_label:"3 months", grade_date:"2026-10-27", cycle_no:2, reanchor_from:"2026-07-06",
+    p5:132.59, p25:168.27, p50:198.69, p75:234.29, p95:298.15,
+    touch:{ "+5":79, "+10":66, "+15":54, "+20":43, "-5":77, "-10":61 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"TSLA", asset_class:"equity",
+    anchor_date:"2026-07-27", anchor_price:309.22, ccy:"USD",
+    horizon_label:"1 month", grade_date:"2026-08-27", cycle_no:2, reanchor_from:"2026-06-30",
+    p5:231.94, p25:275.29, p50:309.92, p75:349.47, p95:416.04,
+    touch:{ "+5":70, "+10":52, "+15":37, "+20":26, "-5":68, "-10":47 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"TSLA", asset_class:"equity",
+    anchor_date:"2026-07-27", anchor_price:309.22, ccy:"USD",
+    horizon_label:"3 months", grade_date:"2026-10-27", cycle_no:2, reanchor_from:"2026-06-30",
+    p5:190.81, p25:255.31, p50:312.79, p75:382.6, p95:513.65,
+    touch:{ "+5":82, "+10":71, "+15":60, "+20":51, "-5":80, "-10":66 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
