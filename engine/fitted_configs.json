@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_updated": "2026-07-20",
+    "last_updated": "2026-07-29",
     "SOURCE_OF_TRUTH": "engine/market_profiles.py \u2014 this JSON is a DERIVED MIRROR, do not hand-edit",
     "gate_basis": "scale-normalized CRPS (crps/spot); primary since 11-Jul-2026",
     "data_quality_gate": "data_quality.clean_ohlc \u2014 PER-MARKET thresholds derived from each exchange daily price limit (a move beyond the limit is not reachable by trading). A single global threshold was WRONG: KOSPI allows \u00b130%, so a legitimate limit-down (log -0.357) would have been falsely \"repaired\" by the EGX-calibrated 0.35. Also drops non-trading placeholder rows.",
@@ -1053,37 +1053,49 @@
   "XAU": {
     "code": "XAU",
     "name": "Metals (Gold/Silver, USD)",
-    "nu": 250.0,
-    "width_cal": 1.0,
+    "nu": 12.0,
+    "width_cal": 0.958,
     "signal_active": false,
     "signal_type": null,
     "ic": 0.0,
     "breaks": [],
     "fit_meta": "PROVISIONAL single-instrument self-fit 10-Jul-2026 (GOLD, 67 windows 2009-2026): nu=12, cal=1.014 - near-Gaussian, tails far thinner than EGX (nu=4); the old borrowed t5 was too fat for metals. Verdict PARITY +0.009 CI[-0.003,+0.028] (near-PASS). Silver shares this fit, flagged, until its own OHLC panel exists.",
     "panel_names": [
-      "GOLD"
+      "GOLD",
+      "SILVER"
     ],
-    "windows": 67,
-    "market_skill": 0.0035,
+    "windows": 120,
+    "market_skill": 0.0024,
     "market_verdict": "PARITY",
     "market_ci90": [
-      -0.005,
+      -0.01,
       0.012
     ],
     "per_name": {
       "GOLD": {
-        "nu": "Gaussian",
-        "width_cal": 1.0,
-        "skill": 0.0035,
-        "skill_raw_basis": 0.0016,
+        "nu": 8.0,
+        "width_cal": 0.93,
+        "skill": -0.005,
+        "skill_raw_basis": -0.0126,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.005,
-          0.013
+          -0.017,
+          0.009
+        ]
+      },
+      "SILVER": {
+        "nu": 20.0,
+        "width_cal": 0.986,
+        "skill": 0.002,
+        "skill_raw_basis": 0.0043,
+        "verdict": "PARITY",
+        "ci_block2": [
+          -0.018,
+          0.017
         ]
       }
     },
-    "auto_refreshed": "2026-07-19"
+    "auto_refreshed": "2026-07-29"
   },
   "XPT": {
     "market": "XPT",
@@ -1092,19 +1104,19 @@
     "panel_names": [
       "PLATINUM"
     ],
-    "windows": 62,
+    "windows": 58,
     "rebuilt_this_run": [
       "PLATINUM"
     ],
-    "nu": "Gaussian",
-    "width_cal": 0.853,
+    "nu": 8.0,
+    "width_cal": 0.86,
     "mle_scale": 0.79,
     "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
-    "market_skill": -0.0004,
+    "market_skill": 0.0078,
     "market_skill_raw_basis": 0.0003,
     "market_ci90": [
-      -0.012,
-      0.006
+      -0.003,
+      0.02
     ],
     "market_verdict": "PARITY",
     "top_name_weight_share": 1.0,
@@ -1112,16 +1124,17 @@
     "signal_active": false,
     "per_name": {
       "PLATINUM": {
-        "nu": "Gaussian",
-        "width_cal": 0.853,
-        "skill": -0.0004,
-        "skill_raw_basis": 0.0003,
+        "nu": 8.0,
+        "width_cal": 0.86,
+        "skill": 0.0078,
+        "skill_raw_basis": 0.0086,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.009,
-          0.009
+          -0.003,
+          0.019
         ]
       }
-    }
+    },
+    "auto_refreshed": "2026-07-29"
   }
 }

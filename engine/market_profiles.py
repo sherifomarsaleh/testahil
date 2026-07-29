@@ -558,7 +558,7 @@ METALS = MarketProfile("XAU", "Metals (Gold/Silver, USD)", FED_SCHEDULE, 0.0363,
     "value is spot x exp(rf) — the futures-contango-consistent center; gate-neutral "
     "(same anchor both sides).",
     None, +1, 0.0, False,
-    nu=12.0, width_cal=1.0,
+    nu=12.0, width_cal=0.958,
     fit_meta=("PROVISIONAL single-instrument self-fit 10-Jul-2026 (GOLD, 67 windows "
               "2009-2026): nu=12, cal=1.014 - near-Gaussian, tails far thinner than "
               "EGX (nu=4); the old borrowed t5 was too fat for metals. Verdict "
