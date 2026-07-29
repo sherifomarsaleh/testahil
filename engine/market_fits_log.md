@@ -360,3 +360,89 @@ Market panel verdict: skill=-0.0004 CI90=[-0.012, 0.006] **PARITY**
 | Name | nu | width_cal | skill | verdict |
 |---|---|---|---|---|
 | PLATINUM | Gaussian | 0.853 | -0.0004 | PARITY |
+
+## EG (Egypt (EGX)) — refit 2026-07-29
+Gate basis: scale-normalized (crps/spot) — primary since 11-Jul-2026
+Panel: 30 names (ABUK, ADIB, BTFH, CCAP, CLHO, COMI, DSCW, EFID, EFIH, EGAL, EMFD, ETEL, FWRY, GBCO, HELI, HRHO, ISPH, JUFO, KABO, LCSW, OCDI, OIH, ORAS, ORHD, ORWE, PHDC, PRDC, RAYA, RMDA, TMGH), 494 pooled windows.
+Production fit: nu=6.0, width_cal=0.951 (mle_scale=0.93).
+Market panel verdict: skill=+0.0158 CI90=[0.009, 0.022] **PASS**
+
+| Name | nu | width_cal | skill | verdict |
+|---|---|---|---|---|
+| ABUK | 6.0 | 0.944 | +0.0446 | PASS |
+| ADIB | 6.0 | 0.951 | +0.0218 | BOUNDARY(PARITY-flagged) |
+| BTFH | 6.0 | 0.944 | +0.0245 | PARITY |
+| CCAP | 6.0 | 0.944 | +0.0219 | PARITY |
+| CLHO | 6.0 | 0.951 | -0.0117 | PARITY |
+| COMI | 6.0 | 0.944 | +0.0207 | PARITY |
+| DSCW | 6.0 | 0.958 | -0.0046 | PARITY |
+| EFID | 6.0 | 0.951 | +0.0250 | PARITY |
+| EFIH | 6.0 | 0.951 | +0.0215 | PARITY |
+| EGAL | 6.0 | 0.951 | +0.0322 | PASS |
+| EMFD | 6.0 | 0.951 | -0.0080 | PARITY |
+| ETEL | 6.0 | 0.944 | +0.0565 | PASS |
+| FWRY | 6.0 | 0.958 | +0.0092 | PARITY |
+| GBCO | 6.0 | 0.951 | +0.0086 | PARITY |
+| HELI | 6.0 | 0.951 | +0.0067 | PARITY |
+| HRHO | 6.0 | 0.951 | +0.0016 | PARITY |
+| ISPH | 6.0 | 0.937 | -0.0186 | BOUNDARY(PARITY-flagged) |
+| JUFO | 6.0 | 0.958 | -0.0163 | PARITY |
+| KABO | 6.0 | 0.951 | +0.0117 | BOUNDARY(PARITY-flagged) |
+| LCSW | 6.0 | 0.951 | +0.0406 | PARITY |
+| OCDI | 6.0 | 0.951 | +0.0321 | BOUNDARY(PARITY-flagged) |
+| OIH | 6.0 | 0.951 | -0.0185 | PARITY |
+| ORAS | 6.0 | 0.944 | +0.0390 | PASS |
+| ORHD | 6.0 | 0.951 | +0.0147 | PARITY |
+| ORWE | 6.0 | 0.951 | +0.0283 | PASS |
+| PHDC | 6.0 | 0.944 | +0.0094 | PARITY |
+| PRDC | 6.0 | 0.958 | +0.0172 | PARITY |
+| RAYA | 6.0 | 0.944 | -0.0232 | BOUNDARY(PARITY-flagged) |
+| RMDA | 6.0 | 0.951 | -0.0067 | PARITY |
+| TMGH | 6.0 | 0.944 | +0.0390 | PASS |
+
+## AE (UAE (ADX/DFM)) — refit 2026-07-29
+Gate basis: scale-normalized (crps/spot) — primary since 11-Jul-2026
+Panel: 18 names (ADCB, ADIB, ADNOCGAS, AGTHIA, ALDAR, ALPHADHABI, BURJEEL, DEWA, DIB, EAND, EMAAR, EMAARDEV, ENBD, FAB, IHC, LULU, SALIK, TWOPOINTZERO), 261 pooled windows.
+Production fit: nu=10.0, width_cal=0.979 (mle_scale=0.97).
+Market panel verdict: skill=+0.0068 CI90=[-0.001, 0.014] **PARITY**
+
+| Name | nu | width_cal | skill | verdict |
+|---|---|---|---|---|
+| ADCB | 10.0 | 0.979 | +0.0345 | PASS |
+| ADIB | 8.0 | 0.972 | +0.0177 | PASS |
+| ADNOCGAS | 10.0 | 0.979 | +0.0016 | PARITY |
+| AGTHIA | 10.0 | 0.979 | -0.0369 | BOUNDARY(PARITY-flagged) |
+| ALDAR | 10.0 | 0.972 | +0.0273 | PASS |
+| ALPHADHABI | 8.0 | 0.986 | +0.0005 | PARITY |
+| BURJEEL | 10.0 | 0.979 | +0.0137 | PARITY |
+| DEWA | 10.0 | 0.986 | +0.0046 | PARITY |
+| DIB | 12.0 | 0.965 | +0.0269 | PASS |
+| EAND | 10.0 | 0.979 | +0.0221 | BOUNDARY(PARITY-flagged) |
+| EMAAR | 12.0 | 0.965 | +0.0182 | PASS |
+| EMAARDEV | 10.0 | 0.972 | -0.0111 | PARITY |
+| ENBD | 10.0 | 0.979 | -0.0128 | BOUNDARY(PARITY-flagged) |
+| FAB | 10.0 | 0.979 | -0.0117 | PARITY |
+| IHC | 12.0 | 0.972 | +0.0236 | PARITY |
+| LULU | 10.0 | 0.979 | -0.0876 | PROVISIONAL(insufficient-windows) |
+| SALIK | 8.0 | 0.986 | +0.0069 | PARITY |
+| TWOPOINTZERO | 8.0 | 0.972 | -0.0068 | PARITY |
+
+## SA (Saudi Arabia (Tadawul)) — refit 2026-07-29
+Gate basis: scale-normalized (crps/spot) — primary since 11-Jul-2026
+Panel: 11 names (ACWA, ALINMA, ARAMCO, ELM, EXTRA, MAADEN, RAJHI, RIBL, SABIC, SNB, STC), 392 pooled windows.
+Production fit: nu=12.0, width_cal=1.07 (mle_scale=1.1).
+Market panel verdict: skill=-0.0020 CI90=[-0.009, 0.004] **PARITY**
+
+| Name | nu | width_cal | skill | verdict |
+|---|---|---|---|---|
+| ACWA | 12.0 | 1.07 | +0.0032 | PARITY |
+| ALINMA | 15.0 | 1.063 | +0.0061 | PARITY |
+| ARAMCO | 12.0 | 1.07 | -0.0011 | PARITY |
+| ELM | 12.0 | 1.063 | +0.0056 | PARITY |
+| EXTRA | 15.0 | 1.07 | -0.0372 | FAIL |
+| MAADEN | 12.0 | 1.077 | +0.0073 | PARITY |
+| RAJHI | 12.0 | 1.056 | +0.0135 | PARITY |
+| RIBL | 15.0 | 1.049 | -0.0011 | PARITY |
+| SABIC | 12.0 | 1.077 | -0.0003 | PARITY |
+| SNB | 15.0 | 1.084 | -0.0103 | PARITY |
+| STC | 15.0 | 1.084 | -0.0011 | PARITY |
