@@ -446,3 +446,51 @@ Market panel verdict: skill=-0.0020 CI90=[-0.009, 0.004] **PARITY**
 | SABIC | 12.0 | 1.077 | -0.0003 | PARITY |
 | SNB | 15.0 | 1.084 | -0.0103 | PARITY |
 | STC | 15.0 | 1.084 | -0.0011 | PARITY |
+
+## KR (South Korea) — refit 2026-07-29
+Gate basis: scale-normalized (crps/spot) — primary since 11-Jul-2026
+Panel: 3 names (KAKAO, LGES, SAMSUNG), 125 pooled windows.
+Production fit: nu=8.0, width_cal=1.07 (mle_scale=1.1).
+Market panel verdict: skill=+0.0025 CI90=[-0.002, 0.011] **PARITY**
+
+| Name | nu | width_cal | skill | verdict |
+|---|---|---|---|---|
+| KAKAO | 8.0 | 1.035 | +0.0031 | PARITY |
+| LGES | 8.0 | 1.084 | +0.0118 | PARITY |
+| SAMSUNG | 6.0 | 1.084 | -0.0037 | PARITY |
+
+## QA (Qatar (QE)) — refit 2026-07-29
+Gate basis: scale-normalized (crps/spot) — primary since 11-Jul-2026
+Panel: 3 names (IQCD, QGTS, QNB), 174 pooled windows.
+Production fit: nu=6.0, width_cal=0.951 (mle_scale=0.93).
+Market panel verdict: skill=+0.0075 CI90=[-0.002, 0.018] **PARITY**
+
+| Name | nu | width_cal | skill | verdict |
+|---|---|---|---|---|
+| IQCD | 10.0 | 0.895 | -0.0046 | PARITY |
+| QGTS | 6.0 | 0.979 | +0.0081 | PARITY |
+| QNB | 6.0 | 0.965 | +0.0190 | BOUNDARY(PARITY-flagged) |
+
+## IN (India (NSE)) — refit 2026-07-29
+Gate basis: scale-normalized (crps/spot) — primary since 11-Jul-2026
+Panel: 3 names (INFY, RELIANCE, TMPV), 171 pooled windows.
+Production fit: nu=6.0, width_cal=1.021 (mle_scale=1.03).
+Market panel verdict: skill=-0.0080 CI90=[-0.021, 0.005] **PARITY**
+
+| Name | nu | width_cal | skill | verdict |
+|---|---|---|---|---|
+| INFY | 5.0 | 1.049 | -0.0114 | BOUNDARY(PARITY-flagged) |
+| RELIANCE | 6.0 | 1.077 | +0.0060 | PARITY |
+| TMPV | 10.0 | 0.93 | -0.0206 | PARITY |
+
+## US (United States) — refit 2026-07-29
+Gate basis: scale-normalized (crps/spot) — primary since 11-Jul-2026
+Panel: 3 names (AAPL, NVDA, TSLA), 174 pooled windows.
+Production fit: nu=12.0, width_cal=1.084 (mle_scale=1.12).
+Market panel verdict: skill=-0.0063 CI90=[-0.02, 0.003] **PARITY**
+
+| Name | nu | width_cal | skill | verdict |
+|---|---|---|---|---|
+| AAPL | 8.0 | 1.091 | +0.0073 | PARITY |
+| NVDA | 12.0 | 1.105 | -0.0234 | BOUNDARY(PARITY-flagged) |
+| TSLA | Gaussian | 1.056 | -0.0002 | PARITY |

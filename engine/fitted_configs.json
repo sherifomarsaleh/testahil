@@ -555,63 +555,65 @@
     }
   },
   "US": {
-    "code": "US",
-    "name": "United States",
-    "nu": 12.0,
-    "width_cal": 1.014,
-    "signal_active": false,
-    "signal_type": "mom_12_1",
-    "ic": 0.05,
-    "breaks": [],
-    "fit_meta": "Fitted 10-Jul-2026 on the 3-name US panel (AAPL/NVDA/TSLA, 54 windows, 2021-2026): nu=12, cal=1.014 - thin tails like metals, far from EGX. SIGNAL ABLATION on this panel: carry-only (+0.012 CI[-0.006,+0.017]) marginally beats the mom_12_1 prior ON (+0.010 CI[-0.013,+0.019]) -> fallback rule applies, signal_active=False; the JT prior is retained for re-estimation at ~5 names. Panel verdict PARITY. Per-name (carry-only LONO, robust blocks): AAPL PARITY -0.002 (was BOUNDARY with the signal ON - the momentum prior was hurting it), NVDA PARITY +0.002, TSLA PARITY +0.015.",
+    "market": "US",
+    "market_name": "United States",
+    "fit_date": "2026-07-29",
     "panel_names": [
       "AAPL",
       "NVDA",
       "TSLA"
     ],
-    "windows": 54,
-    "market_skill": -0.0056,
+    "windows": 174,
+    "rebuilt_this_run": [],
+    "nu": 12.0,
+    "width_cal": 1.084,
+    "mle_scale": 1.12,
+    "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
+    "market_skill": -0.0063,
+    "market_skill_raw_basis": 0.0068,
     "market_ci90": [
-      -0.021,
-      0.006
+      -0.02,
+      0.003
     ],
     "market_verdict": "PARITY",
+    "top_name_weight_share": 0.469,
+    "top_name": "TSLA",
+    "signal_active": false,
     "per_name": {
       "AAPL": {
-        "nu": 4.0,
-        "width_cal": 1.098,
-        "skill": -0.0064,
-        "skill_raw_basis": -0.0004,
+        "nu": 8.0,
+        "width_cal": 1.091,
+        "skill": 0.0073,
+        "skill_raw_basis": 0.0139,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.036,
-          0.02
+          -0.009,
+          0.021
         ]
       },
       "NVDA": {
-        "nu": 30.0,
-        "width_cal": 0.972,
-        "skill": -0.0233,
-        "skill_raw_basis": -0.0057,
-        "verdict": "PARITY",
+        "nu": 12.0,
+        "width_cal": 1.105,
+        "skill": -0.0234,
+        "skill_raw_basis": 0.0039,
+        "verdict": "BOUNDARY(PARITY-flagged)",
         "ci_block2": [
-          -0.046,
-          0.003
+          -0.047,
+          -0.002
         ]
       },
       "TSLA": {
         "nu": "Gaussian",
-        "width_cal": 1.014,
-        "skill": 0.0077,
-        "skill_raw_basis": 0.0165,
+        "width_cal": 1.056,
+        "skill": -0.0002,
+        "skill_raw_basis": 0.0052,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.008,
-          0.024
+          -0.014,
+          0.01
         ]
       }
-    },
-    "auto_refreshed": "2026-07-19"
+    }
   },
   "GB": {
     "code": "GB",
@@ -639,64 +641,63 @@
   "KR": {
     "market": "KR",
     "market_name": "South Korea",
-    "fit_date": "2026-07-11",
+    "fit_date": "2026-07-29",
     "panel_names": [
       "KAKAO",
       "LGES",
       "SAMSUNG"
     ],
-    "windows": 49,
-    "nu": 250.0,
-    "width_cal": 1.154,
-    "mle_scale": 1.22,
+    "windows": 125,
+    "rebuilt_this_run": [],
+    "nu": 8.0,
+    "width_cal": 1.07,
+    "mle_scale": 1.1,
     "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
-    "market_skill": 0.0144,
-    "market_skill_raw_basis": 0.013,
+    "market_skill": 0.0025,
+    "market_skill_raw_basis": 0.0078,
     "market_ci90": [
-      -0.005,
-      0.017
+      -0.002,
+      0.011
     ],
     "market_verdict": "PARITY",
-    "top_name_weight_share": 0.449,
-    "top_name": "SAMSUNG",
+    "top_name_weight_share": 0.537,
+    "top_name": "KAKAO",
     "signal_active": false,
     "per_name": {
       "KAKAO": {
-        "nu": 20.0,
-        "width_cal": 1.168,
-        "skill": 0.0022,
-        "skill_raw_basis": 0.0019,
+        "nu": 8.0,
+        "width_cal": 1.035,
+        "skill": 0.0031,
+        "skill_raw_basis": 0.0021,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.011,
-          0.015
+          -0.005,
+          0.013
         ]
       },
       "LGES": {
-        "nu": "Gaussian",
-        "width_cal": 1.245,
-        "skill": -0.0268,
-        "skill_raw_basis": -0.0294,
-        "verdict": "FAIL",
+        "nu": 8.0,
+        "width_cal": 1.084,
+        "skill": 0.0118,
+        "skill_raw_basis": 0.0152,
+        "verdict": "PARITY",
         "ci_block2": [
-          -0.053,
-          -0.007
+          -0.022,
+          0.059
         ]
       },
       "SAMSUNG": {
-        "nu": "Gaussian",
-        "width_cal": 1.021,
-        "skill": 0.0094,
-        "skill_raw_basis": 0.0223,
+        "nu": 6.0,
+        "width_cal": 1.084,
+        "skill": -0.0037,
+        "skill_raw_basis": -0.0024,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.02,
-          0.022
+          -0.013,
+          0.006
         ]
       }
-    },
-    "fit_meta": "REFIT 11-Jul-2026 on the 3-name KR panel after a MAJOR DATA REPAIR - supersedes nu=6/cal=1.070. THE INVESTING.COM KOREAN EXPORT CONTAINS PHANTOM NON-TRADING ROWS: ~160 rows per name carrying NaN volume and O=H=L=C, of which 144 of SAMSUNG's 170 fall on a SUNDAY (KOSPI is closed). Raw density is 276.8 rows/yr; after removing them it is 245.8/yr - exactly the KOSPI calendar. These phantom rows inject fake zero-return, zero-intraday-range days straight into the Yang-Zhang variance proxy, DEPRESSING the volatility estimate. The 10-Jul repair caught only the 13 pre/post-split price-scale rows (fixed by dividing by 5, which SYNTHESIZES a price on a day the market never opened); it never saw the ~160 phantom rows. They are now DROPPED, not rescaled. EFFECT: the tail goes 6 -> Gaussian and the cone WIDENS 1.070 -> 1.154 - the old fit was simultaneously too narrow AND falsely fat-tailed, an artifact of the depressed vol. Skill nevertheless IMPROVES: panel PARITY +0.0144 CI[-0.005,+0.017] (was +0.006). Per-name (LONO, robust blocks): SAMSUNG PARITY +0.0094, KAKAO PARITY +0.0022, LGES robust FAIL -0.0268 across blocks {2,3,4} - and its signature is OVER-COVERAGE: cov80=1.00 and cov90=1.00 (every outcome inside the 80% band), cone 1.112x the benchmark, PIT 0.471 (well centred). LGES is not mis-centred, it is simply too wide: it IPO'd Jan-2022, has the shortest history and only 13 windows, and the market-level width_cal over-widens a name whose own vol is below the panel average. This is the clearest case in the whole system for a NAME-LEVEL width_cal shrunk toward the market fit - proposed, NOT implemented, pending an out-of-sample test.",
-    "auto_refreshed": "2026-07-19"
+    }
   },
   "AE": {
     "market": "AE",
@@ -942,123 +943,124 @@
   "IN": {
     "market": "IN",
     "market_name": "India (NSE)",
-    "fit_date": "2026-07-11",
+    "fit_date": "2026-07-29",
     "panel_names": [
       "INFY",
       "RELIANCE",
       "TMPV"
     ],
-    "windows": 54,
-    "nu": 250.0,
-    "width_cal": 0.93,
-    "mle_scale": 0.9,
+    "windows": 171,
+    "rebuilt_this_run": [],
+    "nu": 6.0,
+    "width_cal": 1.021,
+    "mle_scale": 1.03,
     "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
-    "market_skill": 0.0046,
-    "market_skill_raw_basis": 0.0033,
+    "market_skill": -0.008,
+    "market_skill_raw_basis": 0.0005,
     "market_ci90": [
-      -0.006,
-      0.016
+      -0.021,
+      0.005
     ],
     "market_verdict": "PARITY",
-    "top_name_weight_share": 0.437,
+    "top_name_weight_share": 0.474,
     "top_name": "TMPV",
     "signal_active": false,
     "per_name": {
       "INFY": {
-        "nu": "Gaussian",
-        "width_cal": 0.93,
-        "skill": 0.007,
-        "skill_raw_basis": 0.0047,
-        "verdict": "PARITY",
+        "nu": 5.0,
+        "width_cal": 1.049,
+        "skill": -0.0114,
+        "skill_raw_basis": -0.0079,
+        "verdict": "BOUNDARY(PARITY-flagged)",
         "ci_block2": [
-          -0.007,
-          0.026
+          -0.026,
+          0.001
         ]
       },
       "RELIANCE": {
-        "nu": "Gaussian",
-        "width_cal": 0.951,
-        "skill": 0.009,
-        "skill_raw_basis": 0.0063,
+        "nu": 6.0,
+        "width_cal": 1.077,
+        "skill": 0.006,
+        "skill_raw_basis": 0.0083,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.006,
-          0.022
+          -0.013,
+          0.028
         ]
       },
       "TMPV": {
-        "nu": "Gaussian",
-        "width_cal": 0.909,
-        "skill": -0.0001,
-        "skill_raw_basis": -0.0081,
+        "nu": 10.0,
+        "width_cal": 0.93,
+        "skill": -0.0206,
+        "skill_raw_basis": 0.0017,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.018,
-          0.023
+          -0.039,
+          0.005
         ]
       }
-    },
-    "fit_meta": "REFIT 11-Jul-2026 on the 3-name IN panel (TMPV/RELIANCE/INFY, 51 windows, 2021-2026), RE-RUN through the market-aware data-quality gate and the scale-normalized gate - EXACT REPRODUCTION of the 10-Jul fit: nu stays at the Gaussian limit, cal stays 0.930. Screened for the same phantom-row corruption found in the Korean export (144/170 of one Korean name's dropped rows fell on a Sunday, when the KOSPI is closed): India's export is CLEAN - 247.6 rows/yr across all three names, exactly the NSE calendar, zero phantom rows, no price-limit artifacts. Panel PARITY +0.0046 CI[-0.006,+0.016] on the corrected gate (was +0.002 on the old price-weighted one); top-name weight TMPV 43.7% (no single name dominates as badly as UAE's old IHC problem, but still the largest share of any 3-name panel in the system - worth a 4th name). All three PARITY, zero FAILs: INFY +0.0070, RELIANCE +0.0090, TMPV -0.0001. SIGNAL RE-CONFIRMED OFF: empirical IC of mom_12_1 is -0.0933 against the house prior's sign=+1 - WRONG SIGN, same pattern as Egypt's now-retired rev_1m signal. LONO ablation shows ZERO difference between signal-ON and carry-only at this panel size (the dead-zone/cap machinery absorbs it either way) - not enough data to safely re-estimate the sign, so the mom_12_1/IC-0.07 prior is RETAINED unchanged for later re-estimation, signal_active stays False. The backtest carry schedule is still a flat 6.50% placeholder (RBI repo actually ranged 4.00->6.50->~5.50 over the window) - gate-neutral for skill scoring but MUST be sourced properly (live G-Sec / real RBI schedule) before any IN publish.",
-    "auto_refreshed": "2026-07-19"
+    }
   },
   "QA": {
-    "code": "QA",
-    "name": "Qatar (QE)",
-    "nu": 12.0,
-    "width_cal": 0.972,
-    "signal_active": false,
-    "signal_type": "rev_1m",
-    "ic": 0.06,
-    "breaks": [],
-    "fit_meta": "Fitted 10-Jul-2026 on the 3-name QA panel (QGTS/QNB/IQCD, 54 windows, 2021-2026) - REPLACES the provisional QGTS-only self-fit (Gaussian/0.916). nu=12, cal=0.972: thin-tailed pegged market, cone near-unbiased. Panel verdict PARITY -0.010 CI[-0.017,+0.001] - on low-vol Qatari mega-caps the HAR cascade adds ~nothing over trailing vol. Per-name (LONO, robust-verdict blocks {2,3,4}): QGTS PARITY -0.012 (robust; its old FAIL confirmed as the borrowed-config artifact), QNB PARITY -0.005 (robust), IQCD FAIL -0.018 (ROBUST across all blocks - a genuine name-level FAIL under own-market config, the first; HAR width underperforms plain trailing vol on this name; banner decision = separately-initiated publish step).",
+    "market": "QA",
+    "market_name": "Qatar (QE)",
+    "fit_date": "2026-07-29",
     "panel_names": [
       "IQCD",
       "QGTS",
       "QNB"
     ],
-    "windows": 54,
-    "market_skill": -0.0091,
+    "windows": 174,
+    "rebuilt_this_run": [],
+    "nu": 6.0,
+    "width_cal": 0.951,
+    "mle_scale": 0.93,
+    "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
+    "market_skill": 0.0075,
+    "market_skill_raw_basis": 0.0101,
     "market_ci90": [
-      -0.022,
-      0.002
+      -0.002,
+      0.018
     ],
     "market_verdict": "PARITY",
+    "top_name_weight_share": 0.366,
+    "top_name": "IQCD",
+    "signal_active": false,
     "per_name": {
       "IQCD": {
-        "nu": 12.0,
-        "width_cal": 0.951,
-        "skill": -0.0179,
-        "skill_raw_basis": -0.0174,
-        "verdict": "FAIL",
+        "nu": 10.0,
+        "width_cal": 0.895,
+        "skill": -0.0046,
+        "skill_raw_basis": -0.0031,
+        "verdict": "PARITY",
         "ci_block2": [
-          -0.032,
-          -0.004
+          -0.021,
+          0.012
         ]
       },
       "QGTS": {
         "nu": 6.0,
-        "width_cal": 1.014,
-        "skill": -0.0119,
-        "skill_raw_basis": -0.0145,
+        "width_cal": 0.979,
+        "skill": 0.0081,
+        "skill_raw_basis": 0.0057,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.036,
-          0.002
+          -0.004,
+          0.021
         ]
       },
       "QNB": {
-        "nu": "Gaussian",
+        "nu": 6.0,
         "width_cal": 0.965,
-        "skill": -0.0011,
-        "skill_raw_basis": -0.004,
-        "verdict": "PARITY",
+        "skill": 0.019,
+        "skill_raw_basis": 0.0227,
+        "verdict": "BOUNDARY(PARITY-flagged)",
         "ci_block2": [
-          -0.022,
-          0.018
+          0.0,
+          0.041
         ]
       }
-    },
-    "auto_refreshed": "2026-07-19"
+    }
   },
   "XAU": {
     "code": "XAU",
