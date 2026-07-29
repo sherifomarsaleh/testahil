@@ -359,6 +359,34 @@ def main() -> int:
                 fail(key, f'published spot {sp.group(1)} != library close '
                           f'{close} on {anchor}')
 
+    # 6b. the chart CAPTION must name the same session the chart is drawn to.
+    #     ta_chart regenerates the <svg>, but the caption lives in the
+    #     <figcaption> outside it and is a separate substitution -- one that
+    #     required the HTML entity "&middot;" while 8 pages use a literal
+    #     U+00B7. On those the caption froze: phdc.html labelled a 22-Jul chart
+    #     "last 500 sessions to 17 Jun 2026", 35 days out, and the page still
+    #     reported success. check_ta_chart_overlay cannot see this -- it only
+    #     tests that level lines land inside the viewBox.
+    pages = [f for f in sorted(os.listdir(ROOT)) if f.endswith('.html')]
+    key_re = re.compile(r'(?:TICKERS|METALS)(?:\.([A-Za-z_][A-Za-z0-9_]*)'
+                        r'|\[["\']([A-Za-z0-9_]+)["\']\])')
+    for f in pages:
+        html = open(os.path.join(ROOT, f), encoding='utf-8',
+                    errors='replace').read()
+        cap = re.search(r'last 500 sessions to (\d{1,2}) (\w{3}) (\d{4})', html)
+        if not cap:
+            continue
+        keys = {(a or b) for a, b in key_re.findall(html)} & set(entries)
+        if len(keys) != 1:
+            continue
+        key = keys.pop()
+        cap_iso = (f'{cap.group(3)}-{MONTHS[cap.group(2)]:02d}-'
+                   f'{int(cap.group(1)):02d}')
+        st = re.search(r'tech:\s*\{\s*data:"([\d-]+)"', entries[key][0])
+        if st and cap_iso != st.group(1):
+            fail(key, f'{f} chart caption says {cap_iso} but the chart and read '
+                      f'are on {st.group(1)} -- re-run ta_chart.py')
+
     # 7. every ledger row: sourced run_date, calendar grade_date.
     for r in rows:
         tag = f'{r["instrument"]}/{r["horizon"]}@{r["anchor"]}'

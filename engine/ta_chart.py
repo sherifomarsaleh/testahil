@@ -220,10 +220,28 @@ def apply(write: bool = False, only=None):
         src = open(page, encoding='utf-8').read()
         new = re.sub(r'<svg id="ta-chart-svg".*?</svg>', lambda _: svg, src,
                      count=1, flags=re.S)
-        new, ncap = re.subn(r'(Daily close &middot; last )\d+( sessions to )'
-                            r'[^<]*', lambda _: cap, new, count=1)
+        # The caption sits in the <figcaption>, OUTSIDE the <svg> block above,
+        # so it is a SEPARATE substitution -- and it used to require the HTML
+        # entity "&middot;". 8 pages write that separator as a literal U+00B7,
+        # so on those the pattern never matched and the caption froze while the
+        # chart above it kept being regenerated: phdc.html labelled a 22-Jul
+        # chart "last 500 sessions to 17 Jun 2026", 35 days out. Nothing caught
+        # it -- check_ta_chart_overlay only tests that level lines land inside
+        # the viewBox, and the page reported "chart block not replaced".
+        # Accept either separator, and keep whichever the page already uses.
+        _c = re.match(r'.*?last (\d+) sessions to (.+)$', cap)
+        new, ncap = re.subn(
+            r'(Daily close\s*(?:&middot;|\u00b7)\s*last )\d+( sessions to )[^<]*',
+            lambda mm: mm.group(1) + _c.group(1) + mm.group(2) + _c.group(2),
+            new, count=1)
+        if not ncap and 'sessions to' in src:
+            # a caption is present but the pattern could not reach it -- that is
+            # a defect in this tool, not a page that happens to be current.
+            skipped.append((key, 'CAPTION PATTERN DID NOT MATCH -- caption left '
+                                 'stale next to a regenerated chart'))
+            continue
         if new == src:
-            skipped.append((key, 'chart block not replaced'))
+            skipped.append((key, 'already current (chart and caption both match)'))
             continue
         if write:
             open(page, 'w', encoding='utf-8').write(new)
