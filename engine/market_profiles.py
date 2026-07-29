@@ -58,6 +58,7 @@ class MarketProfile:
     fit_meta: str = ""               # provenance of the (nu, width_cal) fit
     breaks: List[str] = field(default_factory=list)
     notes: str = ""
+    width_overlay_active: bool = False   # EG-only per-name adaptive width overlay (adaptive_width.py)
 
     def carry_rate(self, date) -> float:
         d = pd.Timestamp(date)
@@ -232,6 +233,7 @@ EGYPT = MarketProfile(
     notes=("Literature: no EGX momentum; overreaction/short-term reversal supported "
            "(EGX event studies; Kuwait 1m reversal ~3.1%/mo t≈4.4 as GCC analogue). "
            "Signal sign/IC re-estimated on the 6-name pooled panel each cycle."),
+    width_overlay_active=True,  # EG-only, MIN_WINDOWS=28 history-gated (adaptive_width.py)
 )
 
 SAUDI = MarketProfile(
