@@ -2390,49 +2390,57 @@ const COMING = [
 const LEDGER = [
   // ---- XPTUSD · metal (spot platinum, USD) · cycle 1 (20 Jul 2026 published study; PARITY — own provisional self-fit, first metals name with a de-circularized cross-check) ----
   { instrument:"XPTUSD", asset_class:"metal", anchor_date:"2026-07-20", anchor_price:1608.37, ccy:"USD",
-    horizon_label:"1 month", grade_date:"2026-08-17", cycle_no:1, reanchor_from:null,
-    anchor_vol:0.3356, horizon_days:20,
+    horizon_label:"1 month", grade_date:"2026-08-20", grade_basis:"projected", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.3356, horizon_days:23,
     note:"PARITY single-instrument Step-0, own OHLC, under platinum\u2019s own PROVISIONAL self-fit (mc_v3 carry-anchored YZ-HAR-t: nu=Gaussian, cone width 0.853 \u2014 the MLE scale was 0.790 and the house clip floor bound it at 0.853; single-name fit, flagged circular exactly as gold\u2019s first fit was). 62 non-overlapping 60-session windows, origins 05-Jan-2012 \u2192 13-Feb-2026, after the Step-0.0 data-quality gate (4,041 \u2192 4,032 rows; 260.0 rows/yr = the metals Mon\u2013Fri calendar; zero corporate-action repairs). Scale-normalized CRPS skill \u22120.04% vs a CARRY-ANCHORED lognormal random-walk benchmark, robust verdict PARITY across bootstrap blocks {2,3,4} (block-2 CI [\u22120.9%, +0.9%]). De-circularized cross-check \u2014 fit trained on gold+silver only, platinum fully out-of-sample: \u22121.14%, CI [\u22123.2%, +0.9%], PARITY. Borrowed live METALS config (Gaussian/1.0): \u22120.94%, PARITY. Platinum does NOT arrive failing (materiality-gate criterion). Coverage 50/80/90% = 48/81/93.5% (mildly over-covered at the tails); PIT mean 0.489 \u2014 centred. Reproduction check: this session\u2019s chain reproduced the live gold registry EXACTLY (67 windows, +0.35%, CI[\u22120.5%,+1.3%], PARITY). Carry = Fed funds midpoint 3.63% (held, statement 17-Jun-2026), q = 0 (zero-yield store of value; the lease rate is a user\u2019s borrow cost, not a holder yield) \u2014 metals run CARRY-ONLY, no signal, no factor drift. METALS REMAIN THE WEAKEST CALIBRATION IN THE SYSTEM (gold self-fit; silver borrows gold\u2019s; platinum provisional until the metals panel pools \u2014 the pooled 3-metal fit, nu\u224820/width 0.965 on 148 windows, is the likely future config, not adopted). The cone is a 1/3-month object and is NEVER blended with the undated fair-value zone. See study \u00a73, Appendix B, and the Calibration Ledger.",
     p5:1381.97, p25:1514.01, p50:1612.84, p75:1718.44, p95:1881.84,
     touch:{ "+5":53, "+10":26, "+15":11, "+20":4, "-5":49, "-10":21 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-08-17) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   { instrument:"XPTUSD", asset_class:"metal", anchor_date:"2026-07-20", anchor_price:1608.37, ccy:"USD",
-    horizon_label:"3 months", grade_date:"2026-10-12", cycle_no:1, reanchor_from:null,
-    anchor_vol:0.3395, horizon_days:60,
+    horizon_label:"3 months", grade_date:"2026-10-20", grade_basis:"projected", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.3395, horizon_days:66,
     note:"PARITY single-instrument Step-0, own OHLC, under platinum\u2019s own PROVISIONAL self-fit (mc_v3 carry-anchored YZ-HAR-t: nu=Gaussian, cone width 0.853 \u2014 the MLE scale was 0.790 and the house clip floor bound it at 0.853; single-name fit, flagged circular exactly as gold\u2019s first fit was). 62 non-overlapping 60-session windows, origins 05-Jan-2012 \u2192 13-Feb-2026, after the Step-0.0 data-quality gate (4,041 \u2192 4,032 rows; 260.0 rows/yr = the metals Mon\u2013Fri calendar; zero corporate-action repairs). Scale-normalized CRPS skill \u22120.04% vs a CARRY-ANCHORED lognormal random-walk benchmark, robust verdict PARITY across bootstrap blocks {2,3,4} (block-2 CI [\u22120.9%, +0.9%]). De-circularized cross-check \u2014 fit trained on gold+silver only, platinum fully out-of-sample: \u22121.14%, CI [\u22123.2%, +0.9%], PARITY. Borrowed live METALS config (Gaussian/1.0): \u22120.94%, PARITY. Platinum does NOT arrive failing (materiality-gate criterion). Coverage 50/80/90% = 48/81/93.5% (mildly over-covered at the tails); PIT mean 0.489 \u2014 centred. Reproduction check: this session\u2019s chain reproduced the live gold registry EXACTLY (67 windows, +0.35%, CI[\u22120.5%,+1.3%], PARITY). Carry = Fed funds midpoint 3.63% (held, statement 17-Jun-2026), q = 0 (zero-yield store of value; the lease rate is a user\u2019s borrow cost, not a holder yield) \u2014 metals run CARRY-ONLY, no signal, no factor drift. METALS REMAIN THE WEAKEST CALIBRATION IN THE SYSTEM (gold self-fit; silver borrows gold\u2019s; platinum provisional until the metals panel pools \u2014 the pooled 3-metal fit, nu\u224820/width 0.965 on 148 windows, is the likely future config, not adopted). The cone is a 1/3-month object and is NEVER blended with the undated fair-value zone. See study \u00a73, Appendix B, and the Calibration Ledger.",
     p5:1238.91, p25:1452.81, p50:1623.02, p75:1813.36, p95:2128.49,
     touch:{ "+5":73, "+10":53, "+15":38, "+20":26, "-5":69, "-10":46 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-10-12) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   // ---- DSCW · equity (EGX Egypt) · cycle 1 (19 Jul 2026 published study; BOUNDARY(PARITY-flagged) — own fitted verdict, first-coverage name) ----
   { instrument:"DSCW", asset_class:"equity", anchor_date:"2026-07-19", anchor_price:1.94, ccy:"EGP",
-    horizon_label:"1 month", grade_date:"2026-08-16", cycle_no:1, reanchor_from:null,
-    anchor_vol:0.324, horizon_days:20,
+    horizon_label:"1 month", grade_date:"2026-08-19", grade_basis:"projected", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.324, horizon_days:21,
     note:"BOUNDARY (PARITY-flagged) single-name Step-0, own OHLC, using the live 29-name Egypt panel\u2019s pooled fit (nu=4.0, cone width 0.972; panel-level verdict PASS, scale-normalized CRPS skill +2.59%%, 90%% CI [+1.7%%, +3.6%%], as of the 13-Jul-2026 CLHO merge). DSCW itself is a first-coverage name and is not yet folded into a panel-inclusive refit (its own OHLC posting queues behind Egypt\u2019s unattended calibration loop; see engine/raw_ohlc/EG/DSCW.csv). Name-level Step-0: 16 non-overlapping 60-session windows from 2022-05-26 forward (post-break, per the adopted 2022-03-21 devaluation-regime cutoff). Scale-normalized CRPS skill +1.17%% against a CARRY-ANCHORED random-walk benchmark (raw basis +1.76%%). Moving-block bootstrap CI: block 2 [-0.70%%, +2.66%%] PARITY, block 3 [-0.12%%, +2.73%%] PARITY, block 4 [+0.12%%, +2.80%%] PASS - a block-dependent sign flip, recorded PARITY-flagged per the robustness rule rather than a silent PASS. Coverage 50/80/90%% = 62.5/87.5/93.75%%; mean PIT 0.616. Carry = CBE main rate 19.50%% less DSCW\u2019s zero dividend yield (no common dividend paid FY25); the Egypt profile runs CARRY-ONLY (no signal, ablated off on evidence). The cone is a 3-month object and is NEVER blended with the 12-month fundamental anchor. See study section 3 and the Calibration Ledger.",
     p5:1.65, p25:1.85, p50:1.97, p75:2.09, p95:2.35,
     touch:{ "+5":55, "+10":29, "+15":15, "+20":8, "-5":43, "-10":18 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-08-16) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   { instrument:"DSCW", asset_class:"equity", anchor_date:"2026-07-19", anchor_price:1.94, ccy:"EGP",
-    horizon_label:"3 months", grade_date:"2026-10-11", cycle_no:1, reanchor_from:null,
-    anchor_vol:0.324, horizon_days:60,
+    horizon_label:"3 months", grade_date:"2026-10-19", grade_basis:"projected", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.324, horizon_days:61,
     note:"BOUNDARY (PARITY-flagged) single-name Step-0, own OHLC, using the live 29-name Egypt panel\u2019s pooled fit (nu=4.0, cone width 0.972; panel-level verdict PASS, scale-normalized CRPS skill +2.59%%, 90%% CI [+1.7%%, +3.6%%], as of the 13-Jul-2026 CLHO merge). DSCW itself is a first-coverage name and is not yet folded into a panel-inclusive refit (its own OHLC posting queues behind Egypt\u2019s unattended calibration loop; see engine/raw_ohlc/EG/DSCW.csv). Name-level Step-0: 16 non-overlapping 60-session windows from 2022-05-26 forward (post-break, per the adopted 2022-03-21 devaluation-regime cutoff). Scale-normalized CRPS skill +1.17%% against a CARRY-ANCHORED random-walk benchmark (raw basis +1.76%%). Moving-block bootstrap CI: block 2 [-0.70%%, +2.66%%] PARITY, block 3 [-0.12%%, +2.73%%] PARITY, block 4 [+0.12%%, +2.80%%] PASS - a block-dependent sign flip, recorded PARITY-flagged per the robustness rule rather than a silent PASS. Coverage 50/80/90%% = 62.5/87.5/93.75%%; mean PIT 0.616. Carry = CBE main rate 19.50%% less DSCW\u2019s zero dividend yield (no common dividend paid FY25); the Egypt profile runs CARRY-ONLY (no signal, ablated off on evidence). The cone is a 3-month object and is NEVER blended with the 12-month fundamental anchor. See study section 3 and the Calibration Ledger.",
     p5:1.50, p25:1.82, p50:2.02, p75:2.25, p95:2.73,
     touch:{ "+5":77, "+10":58, "+15":42, "+20":30, "-5":60, "-10":37 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-10-11) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   // ---- CLHO \u00b7 equity (EGX Egypt) \u00b7 cycle 1 (13 Jul 2026 published study; PARITY \u2014 own fitted verdict, 29-name EG panel) ----
   { instrument:"CLHO", asset_class:"equity", anchor_date:"2026-07-12", anchor_price:16.31, ccy:"EGP",
-    horizon_label:"1 month", grade_date:"2026-08-09", cycle_no:1, reanchor_from:null,
+    horizon_label:"1 month", grade_date:"2026-08-12", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     anchor_vol:0.3548, horizon_days:20,
     note:"BOUNDARY (PARITY-flagged) on the name\u2019s own fitted verdict, committed to engine/fitted_configs.json 13-Jul-2026 (PR #4): CLHO is a constituent of the 29-name Egypt panel (fitted nu=4.0, cone width 0.972; panel-level verdict PASS, scale-normalized CRPS skill +2.0%%, 90%% CI [+1.4%%, +2.7%%]). Name-level Step-0: 20 non-overlapping 60-session windows, scored from the start of Egypt\u2019s serial-devaluation regime (2022-03-21) forward \u2014 16 pre-regime origins dropped, because Egypt devalued in Jan-2023 and calibrating on post-break windows only beats using all history out-of-sample, which is the adopted production rule. Scale-normalized CRPS skill -2.2%% against a CARRY-ANCHORED random-walk benchmark \u2014 PARITY, meaning the cone is calibrated and market-panel validated, but this specific name shows no demonstrated single-name edge over the carry-anchored benchmark; this is the modal EGX verdict (15 of 29 panel names are PARITY, including names with skill as low as -4.4%%), not a failure. Coverage 50/80/90%% = 0.54/0.92/1.00; mean PIT 0.59. The 90%% band contained every outcome, so the cone runs WIDE on this name \u2014 over-coverage, not mis-centring, which is exactly why it scores PARITY rather than PASS. Carry = CBE main rate 19.50%% less CLHO\u2019s trailing dividend yield; the Egypt profile runs CARRY-ONLY (no signal, ablated off on evidence). Adding CLHO to the panel also moved CCAP\u2019s own verdict from PASS to BOUNDARY(PARITY-flagged) \u2014 disclosed for transparency, reviewed and merged by the analyst before this fit was committed. The cone is a 3-month object and is NEVER blended with the 12-month fundamental anchor. See study \u00a73 and the Calibration Ledger.",
     p5:13.59, p25:15.46, p50:16.54, p75:17.71, p95:20.17,
@@ -2440,20 +2448,24 @@ const LEDGER = [
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-08-09) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   { instrument:"CLHO", asset_class:"equity", anchor_date:"2026-07-12", anchor_price:16.31, ccy:"EGP",
-    horizon_label:"3 months", grade_date:"2026-10-04", cycle_no:1, reanchor_from:null,
-    anchor_vol:0.3548, horizon_days:60,
+    horizon_label:"3 months", grade_date:"2026-10-12", grade_basis:"projected", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.3548, horizon_days:61,
     note:"BOUNDARY (PARITY-flagged) on the name\u2019s own fitted verdict, committed to engine/fitted_configs.json 13-Jul-2026 (PR #4): CLHO is a constituent of the 29-name Egypt panel (fitted nu=4.0, cone width 0.972; panel-level verdict PASS, scale-normalized CRPS skill +2.0%%, 90%% CI [+1.4%%, +2.7%%]). Name-level Step-0: 20 non-overlapping 60-session windows, scored from the start of Egypt\u2019s serial-devaluation regime (2022-03-21) forward \u2014 16 pre-regime origins dropped, because Egypt devalued in Jan-2023 and calibrating on post-break windows only beats using all history out-of-sample, which is the adopted production rule. Scale-normalized CRPS skill -2.2%% against a CARRY-ANCHORED random-walk benchmark \u2014 PARITY, meaning the cone is calibrated and market-panel validated, but this specific name shows no demonstrated single-name edge over the carry-anchored benchmark; this is the modal EGX verdict (15 of 29 panel names are PARITY, including names with skill as low as -4.4%%), not a failure. Coverage 50/80/90%% = 0.54/0.92/1.00; mean PIT 0.59. The 90%% band contained every outcome, so the cone runs WIDE on this name \u2014 over-coverage, not mis-centring, which is exactly why it scores PARITY rather than PASS. Carry = CBE main rate 19.50%% less CLHO\u2019s trailing dividend yield; the Egypt profile runs CARRY-ONLY (no signal, ablated off on evidence). Adding CLHO to the panel also moved CCAP\u2019s own verdict from PASS to BOUNDARY(PARITY-flagged) \u2014 disclosed for transparency, reviewed and merged by the analyst before this fit was committed. The cone is a 3-month object and is NEVER blended with the 12-month fundamental anchor. See study \u00a73 and the Calibration Ledger.",
     p5:12.12, p25:15.13, p50:17.02, p75:19.15, p95:23.83,
     touch:{ "+5":79, "+10":62, "+15":47, "+20":36, "-5":65, "-10":43 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-10-04) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   // ---- RMDA \u00b7 equity (EGX Egypt) \u00b7 cycle 1 (13 Jul 2026 published study; MC PASS \u2014 own fitted verdict, 28-name EG panel) ----
   { instrument:"RMDA", asset_class:"equity", anchor_date:"2026-07-12", anchor_price:5.00, ccy:"EGP",
-    horizon_label:"1 month", grade_date:"2026-08-09", cycle_no:1, reanchor_from:null,
+    horizon_label:"1 month", grade_date:"2026-08-12", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     anchor_vol:0.3022, horizon_days:20,
     note:"PASS on the name\u2019s own fitted verdict, committed to engine/fitted_configs.json: RMDA is a constituent of the 28-name Egypt panel (fitted nu=4.0, cone width 0.972; panel-level verdict PASS, scale-normalized CRPS skill +2.7%%, 90%% CI [+1.8%%, +3.7%%]). Name-level Step-0: 13 non-overlapping 60-session windows scored from the market\u2019s last structural break (2023-01-11) forward \u2014 9 pre-break origins dropped, because break filtering beats scoring all windows out-of-sample and is the adopted production rule. Scale-normalized CRPS skill +2.8%% against a CARRY-ANCHORED random-walk benchmark (raw basis +2.5%%, reported so older-basis figures stay reconcilable); moving-block bootstrap 90%% CI [+0.4%%, +5.1%%] at block 2, and the CI sits entirely above zero at EVERY block size tested (2/3/4) \u2014 a robust PASS, not a boundary case. Coverage 50/80/90%% = 0.54/0.85/0.85; mean PIT 0.61. Carry = CBE main rate 19.50%% less the forward dividend yield on the committed EGP 120mn (two 60mn tranches); the Egypt profile runs CARRY-ONLY (no signal). The cone is a 3-month object and is NEVER blended with the 12-month fundamental anchor. See study \u00a73 and the Calibration Ledger.",
     p5:4.321, p25:4.797, p50:5.067, p75:5.356, p95:5.951,
@@ -2461,124 +2473,144 @@ const LEDGER = [
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-08-09) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   { instrument:"RMDA", asset_class:"equity", anchor_date:"2026-07-12", anchor_price:5.00, ccy:"EGP",
-    horizon_label:"3 months", grade_date:"2026-10-04", cycle_no:1, reanchor_from:null,
-    anchor_vol:0.3022, horizon_days:60,
+    horizon_label:"3 months", grade_date:"2026-10-12", grade_basis:"projected", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.3022, horizon_days:61,
     note:"PASS on the name\u2019s own fitted verdict, committed to engine/fitted_configs.json: RMDA is a constituent of the 28-name Egypt panel (fitted nu=4.0, cone width 0.972; panel-level verdict PASS, scale-normalized CRPS skill +2.7%%, 90%% CI [+1.8%%, +3.7%%]). Name-level Step-0: 13 non-overlapping 60-session windows scored from the market\u2019s last structural break (2023-01-11) forward \u2014 9 pre-break origins dropped, because break filtering beats scoring all windows out-of-sample and is the adopted production rule. Scale-normalized CRPS skill +2.8%% against a CARRY-ANCHORED random-walk benchmark (raw basis +2.5%%, reported so older-basis figures stay reconcilable); moving-block bootstrap 90%% CI [+0.4%%, +5.1%%] at block 2, and the CI sits entirely above zero at EVERY block size tested (2/3/4) \u2014 a robust PASS, not a boundary case. Coverage 50/80/90%% = 0.54/0.85/0.85; mean PIT 0.61. Carry = CBE main rate 19.50%% less the forward dividend yield on the committed EGP 120mn (two 60mn tranches); the Egypt profile runs CARRY-ONLY (no signal). The cone is a 3-month object and is NEVER blended with the 12-month fundamental anchor. See study \u00a73 and the Calibration Ledger.",
     p5:3.952, p25:4.731, p50:5.205, p75:5.728, p95:6.840,
     touch:{ "+5":75, "+10":55, "+15":39, "+20":27, "-5":57, "-10":34 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-10-04) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   // ---- DEWA · other (DFM UAE) · cycle 1 (12 Jul 2026 published study; MC BOUNDARY, PARITY-flagged -- calibrated, no single-name edge) ----
   {
     instrument:"DEWA", asset_class:"other",
     anchor_date:"2026-07-10", anchor_price:2.79, ccy:"AED",
-    horizon_label:"1 month", grade_date:"2026-08-07", cycle_no:1, reanchor_from:null,
-    anchor_vol:0.227, horizon_days:20,
+    horizon_label:"1 month", grade_date:"2026-08-10", grade_basis:"projected", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.227, horizon_days:21,
     note:"BOUNDARY (PARITY-flagged) under the production UAE market profile (14-name ADX/DFM panel, fitted 11-Jul-2026: nu=10, cone width 1.049; panel-level CRPS skill +0.49%, bootstrap 90% CI robust across block sizes 2/3/4). A diagnostic replay of DEWA's own five-year tape under these production parameters gives CRPS skill -0.70% (n=13 non-overlapping 60-day windows, after routine data-quality checks): robust across block sizes {2,3,4} at 90%% CI but with a block-dependent sign flip (PARITY/PARITY/FAIL) -- recorded BOUNDARY, PARITY-flagged, never a silent proceed. Coverage 50/80/90%% = 0.46/0.85/1.00 (0 of 13 outside the 90%% band) -- DEWA is not mis-centred, it is over-covered, the same signature as the standing name-level cone-width open item. DEWA is not yet a panel constituent (first publish) -- carry = CBUAE Base Rate 3.65%% less the forward dividend yield. See study S1/S3 and the Calibration Ledger.",
     p5:2.508, p25:2.681, p50:2.795, p75:2.914, p95:3.109,
     touch:{ "+5":38, "+10":12, "+15":3, "+20":1, "-5":34, "-10":8 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-08-07) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"DEWA", asset_class:"other",
     anchor_date:"2026-07-10", anchor_price:2.79, ccy:"AED",
-    horizon_label:"3 months", grade_date:"2026-10-02", cycle_no:1, reanchor_from:null,
-    anchor_vol:0.227, horizon_days:60,
+    horizon_label:"3 months", grade_date:"2026-10-12", grade_basis:"projected", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.227, horizon_days:63,
     note:"BOUNDARY (PARITY-flagged) under the production UAE market profile (14-name ADX/DFM panel, fitted 11-Jul-2026: nu=10, cone width 1.049; panel-level CRPS skill +0.49%, bootstrap 90% CI robust across block sizes 2/3/4). A diagnostic replay of DEWA's own five-year tape under these production parameters gives CRPS skill -0.70% (n=13 non-overlapping 60-day windows, after routine data-quality checks): robust across block sizes {2,3,4} at 90%% CI but with a block-dependent sign flip (PARITY/PARITY/FAIL) -- recorded BOUNDARY, PARITY-flagged, never a silent proceed. Coverage 50/80/90%% = 0.46/0.85/1.00 (0 of 13 outside the 90%% band) -- DEWA is not mis-centred, it is over-covered, the same signature as the standing name-level cone-width open item. DEWA is not yet a panel constituent (first publish) -- carry = CBUAE Base Rate 3.65%% less the forward dividend yield. See study S1/S3 and the Calibration Ledger.",
     p5:2.330, p25:2.611, p50:2.806, p75:3.015, p95:3.388,
     touch:{ "+5":61, "+10":36, "+15":19, "+20":10, "-5":57, "-10":28 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-10-02) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   // ---- LULU · other (ADX UAE) · cycle 1 (12 Jul 2026 published study v3; NO NAME-LEVEL CALIBRATION — market-panel validated only) ----
   {
     instrument:"LULU", asset_class:"other", cal:"untested",
     anchor_date:"2026-07-10", anchor_price:0.94, ccy:"AED",
-    horizon_label:"1 month", grade_date:"2026-08-07", cycle_no:1, reanchor_from:null,
-    anchor_vol:0.223, horizon_days:20,
+    horizon_label:"1 month", grade_date:"2026-08-10", grade_basis:"projected", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.223, horizon_days:21,
     note:"NO NAME-LEVEL CALIBRATION EXISTS FOR THIS STOCK, AND NONE IS CLAIMED. Lulu listed on 14-Nov-2024. Its 410 sessions of price history yield exactly TWO non-overlapping 60-day test windows against the eighteen or so a meaningful test needs — so the five-year walk-forward that every other name on this ledger carries simply cannot be run. The cone below is therefore the UAE MARKET cone applied to Lulu's own volatility: the production UAE profile (14-name ADX/DFM panel, tail parameter 10, cone width 1.049, signal OFF) scores a pooled forecast skill of +0.49% against a carry-anchored random-walk benchmark across 237 non-overlapping windows, with a 90% bootstrap interval of [-0.40%, +1.50%] — a statistical dead heat. Honestly calibrated at the market level; NO single-name edge demonstrated or claimed for LULU. Read the bands as a probability map, not a forecast. Carry = CBUAE base rate 3.65% less the declared dividend yield 7.45%; the yield EXCEEDS the cash rate, so the forward-consistent price centre must drift DOWN by the excess (-0.86% over 60 sessions) — the holder is not losing money in that world, the total return is simply delivered as dividend instead of price. The event ledger then pushes back UP by +0.23%, because at the anchor the Islamabad MOU has been signed (17-Jun), the naval blockade is lifted and the Strait of Hormuz is reopening — none of which the Q1 print reflects. Net: an EXPLAINED near-flat centre. When these two cohorts mature they are graded against the frozen percentiles above and become two more windows in the UAE panel — which is how a name with no history earns one.",
     p5:0.80, p25:0.88, p50:0.94, p75:1.00, p95:1.10,
     touch:{ "+5":49, "+10":23, "+15":10, "+20":4, "-5":49, "-10":20 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-08-07) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"LULU", asset_class:"other", cal:"untested",
     anchor_date:"2026-07-10", anchor_price:0.94, ccy:"AED",
-    horizon_label:"3 months", grade_date:"2026-10-02", cycle_no:1, reanchor_from:null,
-    anchor_vol:0.223, horizon_days:60,
+    horizon_label:"3 months", grade_date:"2026-10-12", grade_basis:"projected", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.223, horizon_days:63,
     note:"NO NAME-LEVEL CALIBRATION EXISTS FOR THIS STOCK, AND NONE IS CLAIMED. Lulu listed on 14-Nov-2024. Its 410 sessions of price history yield exactly TWO non-overlapping 60-day test windows against the eighteen or so a meaningful test needs — so the five-year walk-forward that every other name on this ledger carries simply cannot be run. The cone below is therefore the UAE MARKET cone applied to Lulu's own volatility: the production UAE profile (14-name ADX/DFM panel, tail parameter 10, cone width 1.049, signal OFF) scores a pooled forecast skill of +0.49% against a carry-anchored random-walk benchmark across 237 non-overlapping windows, with a 90% bootstrap interval of [-0.40%, +1.50%] — a statistical dead heat. Honestly calibrated at the market level; NO single-name edge demonstrated or claimed for LULU. Read the bands as a probability map, not a forecast. Carry = CBUAE base rate 3.65% less the declared dividend yield 7.45%; the yield EXCEEDS the cash rate, so the forward-consistent price centre must drift DOWN by the excess (-0.86% over 60 sessions) — the holder is not losing money in that world, the total return is simply delivered as dividend instead of price. The event ledger then pushes back UP by +0.23%, because at the anchor the Islamabad MOU has been signed (17-Jun), the naval blockade is lifted and the Strait of Hormuz is reopening — none of which the Q1 print reflects. Net: an EXPLAINED near-flat centre. When these two cohorts mature they are graded against the frozen percentiles above and become two more windows in the UAE panel — which is how a name with no history earns one.",
     p5:0.71, p25:0.84, p50:0.93, p75:1.04, p95:1.22,
     touch:{ "+5":68, "+10":47, "+15":32, "+20":21, "-5":69, "-10":46 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-10-02) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
 
   // ---- BURJEEL \u00b7 other (ADX UAE) \u00b7 cycle 1 (11 Jul 2026 published study, v4 reissued 12 Jul 2026; MC PARITY -- calibrated, no single-name edge) ----
   {
     instrument:"BURJEEL", asset_class:"other", cal:"matches",
     anchor_date:"2026-07-10", anchor_price:1.11, ccy:"AED",
-    horizon_label:"1 month", grade_date:"2026-08-07", cycle_no:1, reanchor_from:null,
-    anchor_vol:0.308, horizon_days:20,
+    horizon_label:"1 month", grade_date:"2026-08-10", grade_basis:"projected", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.308, horizon_days:21,
     note:"MATCHES BENCHMARK (PARITY) under the production UAE market profile (live panel: production nu/width_cal, signal OFF). BURJEEL's own tape replayed under production parameters gives CRPS skill +0.85% over 11 non-overlapping 60-day windows, with a 90% bootstrap CI [-1.69%, +2.53%] and ROBUST across bootstrap block sizes 2/3/4 -- a calibrated, market-panel-validated distribution with no single-name edge demonstrated or claimed. Coverage 46/91/91% against 50/80/90 targets. Carry is the AED risk-free anchor less a trailing dividend-yield proxy. This is the v4 reissue (12-Jul-2026): the underlying study rebuilt the tax path on Pillar-Two SBIE mechanics and recalibrated relative multiples to verified peer marks -- the MC engine, this calibration verdict, and the grading dates are UNCHANGED from the original 11-Jul-2026 anchor. See study S1.7/B.4.",
     p5:0.94, p25:1.04, p50:1.11, p75:1.18, p95:1.31,
     touch:{ "+5":52, "+10":26, "+15":12, "+20":5, "-5":49, "-10":21 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-08-07) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"BURJEEL", asset_class:"other", cal:"matches",
     anchor_date:"2026-07-10", anchor_price:1.11, ccy:"AED",
-    horizon_label:"3 months", grade_date:"2026-10-02", cycle_no:1, reanchor_from:null,
-    anchor_vol:0.308, horizon_days:60,
+    horizon_label:"3 months", grade_date:"2026-10-12", grade_basis:"projected", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.308, horizon_days:63,
     note:"MATCHES BENCHMARK (PARITY) under the production UAE market profile (live panel: production nu/width_cal, signal OFF). BURJEEL's own tape replayed under production parameters gives CRPS skill +0.85% over 11 non-overlapping 60-day windows, with a 90% bootstrap CI [-1.69%, +2.53%] and ROBUST across bootstrap block sizes 2/3/4 -- a calibrated, market-panel-validated distribution with no single-name edge demonstrated or claimed. Coverage 46/91/91% against 50/80/90 targets. Carry is the AED risk-free anchor less a trailing dividend-yield proxy. This is the v4 reissue (12-Jul-2026): the underlying study rebuilt the tax path on Pillar-Two SBIE mechanics and recalibrated relative multiples to verified peer marks -- the MC engine, this calibration verdict, and the grading dates are UNCHANGED from the original 11-Jul-2026 anchor. See study S1.7/B.4.",
     p5:0.84, p25:1.00, p50:1.11, p75:1.24, p95:1.49,
     touch:{ "+5":71, "+10":52, "+15":36, "+20":25, "-5":69, "-10":46 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-10-02) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
 
   // ---- SALIK · other (DFM UAE) · cycle 1 (12 Jul 2026 published study v3; MC PARITY -- calibrated, no single-name edge) ----
   {
     instrument:"SALIK", asset_class:"other", cal:"matches",
     anchor_date:"2026-07-10", anchor_price:5.70, ccy:"AED",
-    horizon_label:"1 month", grade_date:"2026-08-07", cycle_no:1, reanchor_from:null,
-    anchor_vol:0.285, horizon_days:20,
+    horizon_label:"1 month", grade_date:"2026-08-10", grade_basis:"projected", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.285, horizon_days:21,
     note:"MATCHES BENCHMARK (PARITY) under the production UAE market profile (14-name ADX/DFM panel: tail parameter 10, cone width 1.049, signal OFF). SALIK's own tape replayed under these production parameters gives CRPS skill -1.82% over 11 non-overlapping 60-day windows, with a 90% bootstrap CI straddling zero [-7.72%, +1.67%] and ROBUST across bootstrap block sizes 2/3/4 -- a calibrated, market-panel-validated distribution with no single-name edge demonstrated or claimed. TWO HONESTY FLAGS. (1) Only 11 windows: SALIK listed 29-Sep-2022, so the five-year walk-forward truncates to 3.8 years. (2) The cone is OVER-COVERED -- coverage 55/91/100% against 50/80/90 targets, and it runs 1.26x as wide as the benchmark. Read the bands, and ESPECIALLY the touch probabilities, as UPPER BOUNDS: an over-wide cone lets a path graze a level it would not otherwise reach. Carry = CBUAE Base Rate 3.63% less the trailing declared dividend yield 3.886%; they nearly cancel, which is why the median is an EXPLAINED flat. NOTE: the 7-8 Jul Hormuz re-escalation sits three days before the anchor and INSIDE the 3-month window. See study S3.",
     p5:4.94, p25:5.40, p50:5.70, p75:6.02, p95:6.57,
     touch:{ "+5":48, "+10":22, "+15":9, "+20":3, "-5":46, "-10":17 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-08-07) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"SALIK", asset_class:"other", cal:"matches",
     anchor_date:"2026-07-10", anchor_price:5.70, ccy:"AED",
-    horizon_label:"3 months", grade_date:"2026-10-02", cycle_no:1, reanchor_from:null,
-    anchor_vol:0.285, horizon_days:60,
+    horizon_label:"3 months", grade_date:"2026-10-12", grade_basis:"projected", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.285, horizon_days:63,
     note:"MATCHES BENCHMARK (PARITY) under the production UAE market profile (14-name ADX/DFM panel: tail parameter 10, cone width 1.049, signal OFF). SALIK's own tape replayed under these production parameters gives CRPS skill -1.82% over 11 non-overlapping 60-day windows, with a 90% bootstrap CI straddling zero [-7.72%, +1.67%] and ROBUST across bootstrap block sizes 2/3/4 -- a calibrated, market-panel-validated distribution with no single-name edge demonstrated or claimed. TWO HONESTY FLAGS. (1) Only 11 windows: SALIK listed 29-Sep-2022, so the five-year walk-forward truncates to 3.8 years. (2) The cone is OVER-COVERED -- coverage 55/91/100% against 50/80/90 targets, and it runs 1.26x as wide as the benchmark. Read the bands, and ESPECIALLY the touch probabilities, as UPPER BOUNDS: an over-wide cone lets a path graze a level it would not otherwise reach. Carry = CBUAE Base Rate 3.63% less the trailing declared dividend yield 3.886%; they nearly cancel, which is why the median is an EXPLAINED flat. NOTE: the 7-8 Jul Hormuz re-escalation sits three days before the anchor and INSIDE the 3-month window. See study S3.",
     p5:4.42, p25:5.17, p50:5.69, p75:6.28, p95:7.34,
     touch:{ "+5":68, "+10":46, "+15":30, "+20":19, "-5":67, "-10":42 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-10-02) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   // ---- DIB · other (DFM UAE) · cycle 1 (11 Jul 2026 published study; MC FAILED calibration — indicative only) ----
   {
     instrument:"DIB", asset_class:"other",
     anchor_date:"2026-07-03", anchor_price:7.72, ccy:"AED",
-    horizon_label:"1 month", grade_date:"2026-08-05", cycle_no:1, reanchor_from:null,
+    horizon_label:"1 month", grade_date:"2026-08-03", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     p5:6.97, p25:7.45, p50:7.72, p75:7.99, p95:8.55,
     touch:{ "+5":38, "+10":15, "+15":5, "+20":2, "-5":36, "-10":13 },
     anchor_vol:0.225, horizon_days:20,
@@ -2586,25 +2618,29 @@ const LEDGER = [
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
     realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-08-05) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"DIB", asset_class:"other",
     anchor_date:"2026-07-03", anchor_price:7.72, ccy:"AED",
-    horizon_label:"3 months", grade_date:"2026-10-02", cycle_no:1, reanchor_from:null,
+    horizon_label:"3 months", grade_date:"2026-10-05", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     p5:6.46, p25:7.25, p50:7.71, p75:8.19, p95:9.18,
     touch:{ "+5":58, "+10":33, "+15":18, "+20":9, "-5":54, "-10":29 },
-    anchor_vol:0.225, horizon_days:60,
+    anchor_vol:0.225, horizon_days:63,
     note:"No CRPS skill vs random-walk benchmark (indicative only) — see study §3.1. \u2014\u2014 CORRECTION (13-Jul-2026, engine-reconciliation sweep): under the LIVE production UAE fit (14-name panel, nu=10, cone width 1.049) DIB classifies as PARITY, not FAIL \u2014 the bootstrap 90% CI straddles zero at every block size (2/3/4). The FAIL label was correct under the fit in force at publication and is now superseded. THE CAUTION STANDS: the point estimate is still NEGATIVE (scale-normalized CRPS skill \u22120.15%), so the cone is not demonstrably BETTER than a carry-anchored random walk on this name \u2014 merely not provably worse. The illustrative-only reading is RETAINED as the conservative one and no skill is claimed. THE REGISTERED FORECAST IS UNCHANGED.",
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
     realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-10-02) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
 
   // ---- 2POINTZERO · other (ADX UAE) · cycle 1 (11 Jul 2026 published study; production UAE panel constituent, PARITY / matches benchmark) ----
   {
     instrument:"2POINTZERO", asset_class:"other", cal:"matches",
     anchor_date:"2026-07-03", anchor_price:2.16, ccy:"AED",
-    horizon_label:"1 month", grade_date:"2026-07-31", cycle_no:1, reanchor_from:null,
+    horizon_label:"1 month", grade_date:"2026-08-03", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     anchor_vol:0.383, horizon_days:20,
     note:"MATCHES BENCHMARK under the production UAE market profile (14-name ADX/DFM panel, refit 11-Jul-2026: nu=10, cone width 1.049; 2POINTZERO is a panel constituent and scores PARITY). A replay of its own tape under these production parameters gives CRPS skill +0.18% over 14 non-overlapping 60-day windows, with a 90% bootstrap CI straddling zero and coverage of 50/79/93% against 50/80/90 targets -- a calibrated, market-panel-validated distribution with no single-name edge demonstrated or claimed. Carry = CBUAE Base Rate 3.65%; no dividend declared, so q=0. NOTE: the price history ends 3-Jul-2026 and the 7-8 Jul US-Iran ceasefire collapse post-dates it -- read the downside percentiles as floors. See study S3.",
     p5:1.80, p25:2.02, p50:2.17, p75:2.33, p95:2.59,
@@ -2612,49 +2648,57 @@ const LEDGER = [
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-07-31) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"2POINTZERO", asset_class:"other", cal:"matches",
     anchor_date:"2026-07-03", anchor_price:2.16, ccy:"AED",
-    horizon_label:"3 months", grade_date:"2026-09-25", cycle_no:1, reanchor_from:null,
-    anchor_vol:0.383, horizon_days:60,
+    horizon_label:"3 months", grade_date:"2026-10-05", grade_basis:"projected", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.383, horizon_days:63,
     note:"MATCHES BENCHMARK under the production UAE market profile (14-name ADX/DFM panel, refit 11-Jul-2026: nu=10, cone width 1.049; 2POINTZERO is a panel constituent and scores PARITY). A replay of its own tape under these production parameters gives CRPS skill +0.18% over 14 non-overlapping 60-day windows, with a 90% bootstrap CI straddling zero and coverage of 50/79/93% against 50/80/90 targets -- a calibrated, market-panel-validated distribution with no single-name edge demonstrated or claimed. Carry = CBUAE Base Rate 3.65%; no dividend declared, so q=0. NOTE: the price history ends 3-Jul-2026 and the 7-8 Jul US-Iran ceasefire collapse post-dates it -- read the downside percentiles as floors. See study S3.",
     p5:1.59, p25:1.93, p50:2.18, p75:2.46, p95:3.00,
     touch:{ "+5":74, "+10":57, "+15":42, "+20":30, "-5":71, "-10":50 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-25) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   // ---- EAND · other (ADX UAE) · cycle 1 (11 Jul 2026 published study; production UAE panel fit, PARITY) ----
   {
     instrument:"EAND", asset_class:"other",
     anchor_date:"2026-07-09", anchor_price:19.66, ccy:"AED",
-    horizon_label:"1 month", grade_date:"2026-08-06", cycle_no:1, reanchor_from:null,
-    anchor_vol:0.233, horizon_days:20,
+    horizon_label:"1 month", grade_date:"2026-08-10", grade_basis:"projected", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.233, horizon_days:22,
     note:"PARITY under the production UAE market profile (10-name ADX/DFM panel, fitted 10-Jul-2026: nu=4, cone width 1.070; panel-level CRPS skill -2.1%, bootstrap 90% CI robust across block sizes 2/3/4). A diagnostic replay of e&'s own five-year tape under these production parameters gives CRPS skill -2.2% (n=18 non-overlapping 60-day windows), closely tracking the panel: a calibrated, market-panel-validated distribution, no single-name edge demonstrated or claimed. e& is not yet a panel constituent (first publish) -- carry = CBUAE Base Rate 3.65% less the forward dividend yield. See study S3.",
     p5:17.84, p25:19.05, p50:19.72, p75:20.43, p95:21.81,
     touch:{ "+5":32, "+10":10, "+15":3, "+20":1, "-5":27, "-10":7 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-08-06) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"EAND", asset_class:"other",
     anchor_date:"2026-07-09", anchor_price:19.66, ccy:"AED",
-    horizon_label:"3 months", grade_date:"2026-10-02", cycle_no:1, reanchor_from:null,
-    anchor_vol:0.233, horizon_days:60,
+    horizon_label:"3 months", grade_date:"2026-10-09", grade_basis:"projected", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.233, horizon_days:63,
     note:"PARITY under the production UAE market profile (10-name ADX/DFM panel, fitted 10-Jul-2026: nu=4, cone width 1.070; panel-level CRPS skill -2.1%, bootstrap 90% CI robust across block sizes 2/3/4). A diagnostic replay of e&'s own five-year tape under these production parameters gives CRPS skill -2.2% (n=18 non-overlapping 60-day windows), closely tracking the panel: a calibrated, market-panel-validated distribution, no single-name edge demonstrated or claimed. e& is not yet a panel constituent (first publish) -- carry = CBUAE Base Rate 3.65% less the forward dividend yield. See study S3.",
     p5:16.70, p25:18.68, p50:19.86, p75:21.09, p95:23.59,
     touch:{ "+5":57, "+10":31, "+15":16, "+20":9, "-5":49, "-10":22 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-10-02) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   // ---- ADCB · other (ADX UAE) · cycle 1 (10 Jul 2026 published study; MC PASSES benchmark robustly, carry drift) ----
   {
     instrument:"ADCB", asset_class:"other",
     anchor_date:"2026-07-03", anchor_price:15.10, ccy:"AED",
-    horizon_label:"1 month", grade_date:"2026-08-05", cycle_no:1, reanchor_from:null,
+    horizon_label:"1 month", grade_date:"2026-08-03", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     anchor_vol:0.275, horizon_days:20,
     note:"Beats the naive carry-anchored random-walk benchmark on CRPS skill (+2.3%, n=14 non-overlapping 60-day windows) with PIT mean 0.54 and coverage near nominal — passes calibration robustly: the 90% bootstrap CI sits above zero across block sizes 2/3/4 ([+0.4%,+3.5%] / [+0.2%,+4.0%] / [+0.3%,+3.2%]). Fitted under the UAE market profile (fat-tailed t, 4 d.o.f.; width calibration 1.07) estimated on a 9-name ADX/DFM panel — ADCB is the first UAE name with a demonstrated single-name edge. See study §3.",
     p5:13.28, p25:14.43, p50:15.09, p75:15.79, p95:17.2,
@@ -2662,25 +2706,29 @@ const LEDGER = [
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-08-05) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"ADCB", asset_class:"other",
     anchor_date:"2026-07-03", anchor_price:15.10, ccy:"AED",
-    horizon_label:"3 months", grade_date:"2026-10-02", cycle_no:1, reanchor_from:null,
-    anchor_vol:0.275, horizon_days:60,
+    horizon_label:"3 months", grade_date:"2026-10-05", grade_basis:"projected", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.275, horizon_days:63,
     note:"Beats the naive carry-anchored random-walk benchmark on CRPS skill (+2.3%, n=14 non-overlapping 60-day windows) with PIT mean 0.54 and coverage near nominal — passes calibration robustly: the 90% bootstrap CI sits above zero across block sizes 2/3/4 ([+0.4%,+3.5%] / [+0.2%,+4.0%] / [+0.3%,+3.2%]). Fitted under the UAE market profile (fat-tailed t, 4 d.o.f.; width calibration 1.07) estimated on a 9-name ADX/DFM panel — ADCB is the first UAE name with a demonstrated single-name edge. See study §3.",
     p5:12.04, p25:13.95, p50:15.09, p75:16.32, p95:18.87,
     touch:{ "+5":66, "+10":43, "+15":26, "+20":15, "-5":65, "-10":39 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-10-02) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   // ---- AGTHIA · other (ADX UAE) · cycle 1 (8 Jul 2026 published study; MC FAILS the calibration back-test — indicative only) ----
   {
     instrument:"AGTHIA", asset_class:"other",
     anchor_date:"2026-07-06", anchor_price:3.51, ccy:"AED",
-    horizon_label:"1 month", grade_date:"2026-08-03", cycle_no:1, reanchor_from:null,
-    anchor_vol:0.223, horizon_days:20,
+    horizon_label:"1 month", grade_date:"2026-08-06", grade_basis:"projected", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.223, horizon_days:22,
     cal:"matches",
     note:"Ties the naive carry-anchored random-walk benchmark on CRPS skill (−0.4%, n=14 non-overlapping 60-day windows) with the 90% bootstrap CI spanning zero (robust across block sizes 2/3/4) and a well-calibrated PIT — PARITY, not a failed calibration: an honest, market-panel-validated probability map with no demonstrated single-name edge. Re-scored under the fitted UAE market profile (9-name ADX/DFM panel, fat-tailed t/4 d.o.f., width 1.07); the earlier FAILED banner used the superseded skill<0 rule. See study §3.",
     p5:3.11, p25:3.36, p50:3.51, p75:3.67, p95:3.95,
@@ -2688,12 +2736,14 @@ const LEDGER = [
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-08-03) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"AGTHIA", asset_class:"other",
     anchor_date:"2026-07-06", anchor_price:3.51, ccy:"AED",
-    horizon_label:"3 months", grade_date:"2026-09-28", cycle_no:1, reanchor_from:null,
-    anchor_vol:0.223, horizon_days:60,
+    horizon_label:"3 months", grade_date:"2026-10-06", grade_basis:"projected", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.223, horizon_days:63,
     cal:"matches",
     note:"Ties the naive carry-anchored random-walk benchmark on CRPS skill (−0.4%, n=14 non-overlapping 60-day windows) with the 90% bootstrap CI spanning zero (robust across block sizes 2/3/4) and a well-calibrated PIT — PARITY, not a failed calibration: an honest, market-panel-validated probability map with no demonstrated single-name edge. Re-scored under the fitted UAE market profile (9-name ADX/DFM panel, fat-tailed t/4 d.o.f., width 1.07); the earlier FAILED banner used the superseded skill<0 rule. See study §3.",
     p5:2.85, p25:3.26, p50:3.52, p75:3.79, p95:4.31,
@@ -2701,12 +2751,14 @@ const LEDGER = [
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-28) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   // ---- GBCO · equity (EGX Egypt) · cycle 1 (8 Jul 2026 published study; MC PASSES benchmark, secular drift ON) ----
   {
     instrument:"GBCO", asset_class:"equity",
     anchor_date:"2026-07-07", anchor_price:31.25, ccy:"EGP",
-    horizon_label:"1 month", grade_date:"2026-08-04", cycle_no:1, reanchor_from:null,
+    horizon_label:"1 month", grade_date:"2026-08-09", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     anchor_vol:0.50, horizon_days:20,
     note:"Beats the zero-drift random-walk benchmark on CRPS skill (+0.032 non-overlapping, +0.096 monthly origins) with a roughly uniform PIT — passes calibration with the EGX secular drift ON (zero drift failed; first EGX non-developer with the drift, adopted empirically). See study Appendix B.",
     p5:26.09, p25:29.96, p50:32.47, p75:35.12, p95:40.53,
@@ -2714,74 +2766,86 @@ const LEDGER = [
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-08-04) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"GBCO", asset_class:"equity",
     anchor_date:"2026-07-07", anchor_price:31.25, ccy:"EGP",
-    horizon_label:"3 months", grade_date:"2026-09-29", cycle_no:1, reanchor_from:null,
-    anchor_vol:0.50, horizon_days:60,
+    horizon_label:"3 months", grade_date:"2026-10-07", grade_basis:"projected", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.50, horizon_days:61,
     note:"Beats the zero-drift random-walk benchmark on CRPS skill (+0.032 non-overlapping, +0.096 monthly origins) with a roughly uniform PIT — passes calibration with the EGX secular drift ON (zero drift failed; first EGX non-developer with the drift, adopted empirically). See study Appendix B.",
     p5:23.97, p25:30.62, p50:34.98, p75:40.13, p95:51.08,
     touch:{ "+5":87, "+10":76, "+15":64, "+20":53, "-5":59, "-10":38 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-29) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   // ---- RIBL · other (TADAWUL Saudi Arabia) · cycle 1 (09 Jul 2026 published study; MC PASSES benchmark marginally, zero drift) ----
   {
     instrument:"RIBL", asset_class:"other",
     anchor_date:"2026-07-07", anchor_price:20.23, ccy:"SAR",
-    horizon_label:"1 month", grade_date:"2026-08-04", cycle_no:1, reanchor_from:null,
-    anchor_vol:0.233, horizon_days:20,
+    horizon_label:"1 month", grade_date:"2026-08-09", grade_basis:"projected", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.233, horizon_days:22,
     note:"Beats the zero-drift random-walk benchmark on CRPS skill (+0.36%, n=18 non-overlapping 60-day windows) with PIT mean 0.464 — passes calibration, but marginally on a thin sample (below the ~20-window 'decent validation' bar), a property of RIBL's ~5-year listed history. Zero drift (GCC-pegged bank, per our standing rule).",
     p5:18.27, p25:19.49, p50:20.22, p75:20.99, p95:22.43,
     touch:{ "+5":32, "+10":10, "+15":3, "+20":1, "-5":30, "-10":8 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-08-04) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"RIBL", asset_class:"other",
     anchor_date:"2026-07-07", anchor_price:20.23, ccy:"SAR",
-    horizon_label:"3 months", grade_date:"2026-09-29", cycle_no:1, reanchor_from:null,
-    anchor_vol:0.233, horizon_days:60,
+    horizon_label:"3 months", grade_date:"2026-10-07", grade_basis:"projected", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.233, horizon_days:62,
     note:"Beats the zero-drift random-walk benchmark on CRPS skill (+0.36%, n=18 non-overlapping 60-day windows) with PIT mean 0.464 — passes calibration, but marginally on a thin sample (below the ~20-window 'decent validation' bar), a property of RIBL's ~5-year listed history. Zero drift (GCC-pegged bank, per our standing rule).",
     p5:16.95, p25:18.97, p50:20.22, p75:21.57, p95:24.19,
     touch:{ "+5":55, "+10":29, "+15":15, "+20":7, "-5":54, "-10":25 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-29) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   // ---- STC · equity (TADAWUL Saudi Arabia) · cycle 1 (09 Jul 2026 published study; MC PASSES benchmark, zero drift) ----
   {
     instrument:"STC", asset_class:"other",
     anchor_date:"2026-07-07", anchor_price:43.58, ccy:"SAR",
-    horizon_label:"1 month", grade_date:"2026-08-04", cycle_no:1, reanchor_from:null,
-    anchor_vol:0.151, horizon_days:20,
+    horizon_label:"1 month", grade_date:"2026-08-09", grade_basis:"projected", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.151, horizon_days:22,
     note:"Beats the zero-drift random-walk benchmark on CRPS skill (+0.63%, n=18 non-overlapping 60-day windows) with PIT mean 0.499 — passes calibration (bootstrap 90% CI [-1.1%, +2.8%], P(skill>0)~71%). Zero drift (non-EGX international name, per our standing rule); the EGX-style secular-drift scheme was tested and failed (CRPS skill -4.8%), confirming zero drift is the right adopted scheme for this name.",
     p5:40.79, p25:42.61, p50:43.69, p75:44.80, p95:46.81,
     touch:{ "+5":19, "+10":3, "+15":1, "+20":0, "-5":15, "-10":2 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-08-04) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"STC", asset_class:"other",
     anchor_date:"2026-07-07", anchor_price:43.58, ccy:"SAR",
-    horizon_label:"3 months", grade_date:"2026-09-29", cycle_no:1, reanchor_from:null,
-    anchor_vol:0.151, horizon_days:60,
+    horizon_label:"3 months", grade_date:"2026-10-07", grade_basis:"projected", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.151, horizon_days:62,
     note:"Beats the zero-drift random-walk benchmark on CRPS skill (+0.63%, n=18 non-overlapping 60-day windows) with PIT mean 0.499 — passes calibration (bootstrap 90% CI [-1.1%, +2.8%], P(skill>0)~71%). Zero drift (non-EGX international name, per our standing rule); the EGX-style secular-drift scheme was tested and failed (CRPS skill -4.8%), confirming zero drift is the right adopted scheme for this name.",
     p5:39.00, p25:42.03, p50:43.91, p75:45.85, p95:49.51,
     touch:{ "+5":44, "+10":17, "+15":6, "+20":2, "-5":35, "-10":11 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-29) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   // ---- ALDAR · other (ADX UAE) · cycle 1 (8 Jul 2026 published study; MC PASSES benchmark) ----
   {
     instrument:"ALDAR", asset_class:"other",
     anchor_date:"2026-07-03", anchor_price:8.30, ccy:"AED",
-    horizon_label:"1 month", grade_date:"2026-07-31", cycle_no:1, reanchor_from:null,
+    horizon_label:"1 month", grade_date:"2026-08-03", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     anchor_vol:0.34, horizon_days:20,
     cal:"matches",
     note:"Ties the naive carry-anchored random-walk benchmark on CRPS skill (−0.4%, n=14 non-overlapping 60-day windows) with the 90% bootstrap CI spanning zero (robust across block sizes 2/3/4) and a roughly uniform PIT — PARITY, not a demonstrated edge: an honest, well-calibrated map. Re-scored under the fitted UAE market profile (9-name ADX/DFM panel, fat-tailed t/4 d.o.f., width 1.07); the earlier +1.8% 'beats' reading was against the superseded zero-drift benchmark. See study §3.",
@@ -2790,12 +2854,14 @@ const LEDGER = [
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-07-31) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"ALDAR", asset_class:"other",
     anchor_date:"2026-07-03", anchor_price:8.30, ccy:"AED",
-    horizon_label:"3 months", grade_date:"2026-09-25", cycle_no:1, reanchor_from:null,
-    anchor_vol:0.34, horizon_days:60,
+    horizon_label:"3 months", grade_date:"2026-10-05", grade_basis:"projected", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.34, horizon_days:63,
     cal:"matches",
     note:"Ties the naive carry-anchored random-walk benchmark on CRPS skill (−0.4%, n=14 non-overlapping 60-day windows) with the 90% bootstrap CI spanning zero (robust across block sizes 2/3/4) and a roughly uniform PIT — PARITY, not a demonstrated edge: an honest, well-calibrated map. Re-scored under the fitted UAE market profile (9-name ADX/DFM panel, fat-tailed t/4 d.o.f., width 1.07); the earlier +1.8% 'beats' reading was against the superseded zero-drift benchmark. See study §3.",
     p5:6.36, p25:7.60, p50:8.50, p75:9.48, p95:11.29,
@@ -2803,12 +2869,14 @@ const LEDGER = [
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-25) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   // ---- EMAARDEV · other (DFM UAE) · cycle 1 (8 Jul 2026 published study; MC matches benchmark, indicative) ----
   {
     instrument:"EMAARDEV", asset_class:"other",
     anchor_date:"2026-07-03", anchor_price:14.26, ccy:"AED",
-    horizon_label:"1 month", grade_date:"2026-07-31", cycle_no:1, reanchor_from:null,
+    horizon_label:"1 month", grade_date:"2026-08-03", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     anchor_vol:0.369, horizon_days:20, cal:"matches",
     note:"Matches (ties) the zero-drift random-walk benchmark — no demonstrated CRPS edge; distribution well-calibrated (indicative). See study Appendix B.",
     p5:12.42, p25:13.78, p50:14.60, p75:15.49, p95:17.18,
@@ -2816,24 +2884,28 @@ const LEDGER = [
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-07-31) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"EMAARDEV", asset_class:"other",
     anchor_date:"2026-07-03", anchor_price:14.26, ccy:"AED",
-    horizon_label:"3 months", grade_date:"2026-09-25", cycle_no:1, reanchor_from:null,
-    anchor_vol:0.369, horizon_days:60, cal:"matches",
+    horizon_label:"3 months", grade_date:"2026-10-05", grade_basis:"projected", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.369, horizon_days:63, cal:"matches",
     note:"Matches (ties) the zero-drift random-walk benchmark — no demonstrated CRPS edge; distribution well-calibrated (indicative). See study Appendix B.",
     p5:11.59, p25:13.87, p50:15.34, p75:16.97, p95:20.33,
     touch:{ "+5":81, "+10":64, "+15":49, "+20":37, "-5":53, "-10":30 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-25) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   // ---- ISPH \u00b7 equity (EGX Egypt) \u00b7 cycle 1 (7 Jul 2026 published study; MC FAILED benchmark, indicative) ----
   {
     instrument:"ISPH", asset_class:"equity",
     anchor_date:"2026-07-07", anchor_price:11.67, ccy:"EGP",
-    horizon_label:"1 month", grade_date:"2026-08-04", cycle_no:1, reanchor_from:null,
+    horizon_label:"1 month", grade_date:"2026-08-09", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     anchor_vol:0.29, horizon_days:20,
     note:"No CRPS skill vs random-walk benchmark (indicative only) \u2014 see study \u00a73. \u2014\u2014 CORRECTION (13-Jul-2026, engine-reconciliation sweep): under the LIVE production Egypt fit (28-name panel, nu=4.0, cone width 0.972) ISPH classifies as PARITY, not FAIL \u2014 the bootstrap 90% CI straddles zero at every block size (2/3/4). But the point estimate remains clearly NEGATIVE (scale-normalized CRPS skill \u22124.2%), so the substantive caution is UNCHANGED and deliberately retained: the cone is NOT better than a random walk on this name. The verdict LABEL is corrected; the illustrative-only framing STAYS. We are not using a classification technicality to upgrade a weak name. THE REGISTERED FORECAST IS UNCHANGED.",
     p5:10.16, p25:11.14, p50:11.75, p75:12.39, p95:13.52,
@@ -2841,140 +2913,164 @@ const LEDGER = [
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-08-04) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"ISPH", asset_class:"equity",
     anchor_date:"2026-07-07", anchor_price:11.67, ccy:"EGP",
-    horizon_label:"3 months", grade_date:"2026-09-29", cycle_no:1, reanchor_from:null,
-    anchor_vol:0.29, horizon_days:60,
+    horizon_label:"3 months", grade_date:"2026-10-07", grade_basis:"projected", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.29, horizon_days:61,
     note:"No CRPS skill vs random-walk benchmark (indicative only) \u2014 see study \u00a73. \u2014\u2014 CORRECTION (13-Jul-2026, engine-reconciliation sweep): under the LIVE production Egypt fit (28-name panel, nu=4.0, cone width 0.972) ISPH classifies as PARITY, not FAIL \u2014 the bootstrap 90% CI straddles zero at every block size (2/3/4). But the point estimate remains clearly NEGATIVE (scale-normalized CRPS skill \u22124.2%), so the substantive caution is UNCHANGED and deliberately retained: the cone is NOT better than a random walk on this name. The verdict LABEL is corrected; the illustrative-only framing STAYS. We are not using a classification technicality to upgrade a weak name. THE REGISTERED FORECAST IS UNCHANGED.",
     p5:9.29, p25:10.85, p50:11.91, p75:13.06, p95:15.18,
     touch:{ "+5":70, "+10":49, "+15":32, "+20":21, "-5":60, "-10":36 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-29) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"SABIC", asset_class:"other",
     anchor_date:"2026-07-07", anchor_price:51.80, ccy:"SAR",
-    horizon_label:"1 month", grade_date:"2026-08-04", cycle_no:1, reanchor_from:null,
+    horizon_label:"1 month", grade_date:"2026-08-09", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     p5:45.16, p25:49.46, p50:51.85, p75:54.26, p95:58.79,
     touch:{ "+5":37, "+10":15, "+15":6, "+20":2, "-5":35, "-10":13 },
-    anchor_vol:0.1927, horizon_days:20,
+    anchor_vol:0.1927, horizon_days:22,
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
     realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-08-04) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"SABIC", asset_class:"other",
     anchor_date:"2026-07-07", anchor_price:51.80, ccy:"SAR",
-    horizon_label:"3 months", grade_date:"2026-09-29", cycle_no:1, reanchor_from:null,
+    horizon_label:"3 months", grade_date:"2026-10-07", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     p5:41.26, p25:47.42, p50:51.74, p75:56.35, p95:64.22,
     touch:{ "+5":61, "+10":39, "+15":23, "+20":13, "-5":60, "-10":36 },
-    anchor_vol:0.1927, horizon_days:60,
+    anchor_vol:0.1927, horizon_days:62,
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
     realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-29) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
 
   {
     instrument:"RELIANCE", asset_class:"other",
     anchor_date:"2026-07-06", anchor_price:1321.30, ccy:"INR",
-    horizon_label:"1 month", grade_date:"2026-08-03", cycle_no:1, reanchor_from:null,
+    horizon_label:"1 month", grade_date:"2026-08-06", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     p5:1160, p25:1266, p50:1331, p75:1400, p95:1526,
     touch:{ "+5":45, "+10":20, "+15":8, "+20":4, "-5":37, "-10":13 },
-    anchor_vol:0.2073, horizon_days:20,
+    anchor_vol:0.2073, horizon_days:22,
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
     realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-08-03) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"RELIANCE", asset_class:"other",
     anchor_date:"2026-07-06", anchor_price:1321.30, ccy:"INR",
-    horizon_label:"3 months", grade_date:"2026-09-28", cycle_no:1, reanchor_from:null,
+    horizon_label:"3 months", grade_date:"2026-10-06", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     p5:1067, p25:1235, p50:1351, p75:1478, p95:1707,
     touch:{ "+5":69, "+10":48, "+15":31, "+20":20, "-5":57, "-10":33 },
-    anchor_vol:0.2073, horizon_days:60,
+    anchor_vol:0.2073, horizon_days:63,
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
     realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-28) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
 
   // ---- INFY · other (NSE India) · cycle 1 (6 Jul 2026 published study) ----
   {
     instrument:"INFY", asset_class:"other",
     anchor_date:"2026-07-06", anchor_price:1042.20, ccy:"INR",
-    horizon_label:"1 month", grade_date:"2026-08-03", cycle_no:1, reanchor_from:null,
+    horizon_label:"1 month", grade_date:"2026-08-06", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     p5:918, p25:998, p50:1047, p75:1099, p95:1193,
     touch:{ "+5":44, "+10":18, "+15":7, "+20":3, "-5":37, "-10":12 },
-    anchor_vol:0.2702, horizon_days:20,
+    anchor_vol:0.2702, horizon_days:22,
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
     realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-08-03) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"INFY", asset_class:"other",
     anchor_date:"2026-07-06", anchor_price:1042.20, ccy:"INR",
-    horizon_label:"3 months", grade_date:"2026-09-28", cycle_no:1, reanchor_from:null,
+    horizon_label:"3 months", grade_date:"2026-10-06", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     p5:845, p25:972, p50:1058, p75:1151, p95:1326,
     touch:{ "+5":67, "+10":44, "+15":28, "+20":17, "-5":58, "-10":33 },
-    anchor_vol:0.2702, horizon_days:60,
+    anchor_vol:0.2702, horizon_days:63,
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
     realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-28) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"NVDA", asset_class:"other",
     anchor_date:"2026-07-06", anchor_price:196.44, ccy:"USD",
-    horizon_label:"1 month", grade_date:"2026-08-03", cycle_no:1, reanchor_from:null,
+    horizon_label:"1 month", grade_date:"2026-08-06", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     p5:155.90, p25:179.63, p50:195.34, p75:212.20, p95:244.04,
     touch:{ "+5":76, "+10":48, "+15":29, "+20":17, "-5":50, "-10":41 },
-    anchor_vol:0.3512, horizon_days:20,
+    anchor_vol:0.3512, horizon_days:22,
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
     realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-08-03) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"NVDA", asset_class:"other",
     anchor_date:"2026-07-06", anchor_price:196.44, ccy:"USD",
-    horizon_label:"3 months", grade_date:"2026-09-28", cycle_no:1, reanchor_from:null,
+    horizon_label:"3 months", grade_date:"2026-10-06", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     p5:131.56, p25:166.88, p50:193.31, p75:223.35, p95:282.86,
     touch:{ "+5":85, "+10":67, "+15":52, "+20":39, "-5":64, "-10":59 },
-    anchor_vol:0.3512, horizon_days:60,
+    anchor_vol:0.3512, horizon_days:64,
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
     realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-28) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
 
   {
     instrument:"LCSW", asset_class:"equity",
     anchor_date:"2026-07-06", anchor_price:30.10, ccy:"EGP",
     anchor_price_published:29.45, anchor_note:"Anchor corrected 28-Jul-2026: the published anchor_price was captured MID-SESSION (inside that day\u2019s range) rather than at the close. Corrected to the actual close. The forecast itself is untouched \u2014 p5..p95, the touch probabilities and the grade are exactly as published; only the anchor field was wrong. Re-striking was rejected: today\u2019s fit runs on 15-year libraries that did not exist at the anchor date, so it would re-grade a published forecast with hindsight.",
-    horizon_label:"1 month", grade_date:"2026-08-03", cycle_no:1, reanchor_from:null,
+    horizon_label:"1 month", grade_date:"2026-08-06", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     p5:24.29, p25:27.76, p50:29.99, p75:32.38, p95:36.98,
     touch:{ "+5":62, "+10":39, "+15":23, "+20":14, "-5":50, "-10":26 },
     anchor_vol:0.4191, horizon_days:20,
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
     realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-08-03) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"LCSW", asset_class:"equity",
     anchor_date:"2026-07-06", anchor_price:30.10, ccy:"EGP",
     anchor_price_published:29.45, anchor_note:"Anchor corrected 28-Jul-2026: the published anchor_price was captured MID-SESSION (inside that day\u2019s range) rather than at the close. Corrected to the actual close. The forecast itself is untouched \u2014 p5..p95, the touch probabilities and the grade are exactly as published; only the anchor field was wrong. Re-striking was rejected: today\u2019s fit runs on 15-year libraries that did not exist at the anchor date, so it would re-grade a published forecast with hindsight.",
-    horizon_label:"3 months", grade_date:"2026-09-28", cycle_no:1, reanchor_from:null,
+    horizon_label:"3 months", grade_date:"2026-10-06", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     p5:21.69, p25:27.07, p50:31.01, p75:35.54, p95:44.37,
     touch:{ "+5":80, "+10":66, "+15":53, "+20":41, "-5":66, "-10":46 },
-    anchor_vol:0.4191, horizon_days:60,
+    anchor_vol:0.4191, horizon_days:61,
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
     realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-28) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
 
   {
     instrument:"KABO", asset_class:"equity",
     anchor_date:"2026-07-06", anchor_price:7.00, ccy:"EGP",
-    horizon_label:"1 month", grade_date:"2026-08-03", cycle_no:1, reanchor_from:null,
+    horizon_label:"1 month", grade_date:"2026-08-06", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     p5:5.58, p25:6.46, p50:7.03, p75:7.67, p95:8.92,
     touch:{ "+5":60, "+10":39, "+15":24, "+20":15, "-5":57, "-10":33 },
     anchor_vol:0.345, horizon_days:20,
@@ -2982,90 +3078,110 @@ const LEDGER = [
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
     realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-08-03) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"KABO", asset_class:"equity",
     anchor_date:"2026-07-06", anchor_price:7.00, ccy:"EGP",
-    horizon_label:"3 months", grade_date:"2026-09-28", cycle_no:1, reanchor_from:null,
+    horizon_label:"3 months", grade_date:"2026-10-06", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     p5:4.79, p25:6.12, p50:7.12, p75:8.28, p95:10.68,
     touch:{ "+5":77, "+10":63, "+15":50, "+20":40, "-5":73, "-10":55 },
-    anchor_vol:0.345, horizon_days:60,
+    anchor_vol:0.345, horizon_days:61,
     note:"No CRPS skill vs random-walk benchmark (indicative only) — see study Appendix B. \u2014\u2014 CORRECTION (13-Jul-2026, engine-reconciliation sweep): under the LIVE production Egypt fit (28-name panel, nu=4.0, cone width 0.972) KABO classifies as PARITY, not FAIL \u2014 the bootstrap 90% CI straddles zero at every block size (2/3/4) and the point estimate is now essentially zero (scale-normalized CRPS skill \u22120.02%). No single-name edge is claimed in either direction; the illustrative-only reading is retained as the conservative one. THE REGISTERED FORECAST IS UNCHANGED.",
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
     realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-28) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
 
   {
     instrument:"IQCD", asset_class:"equity",
     anchor_date:"2026-07-05", anchor_price:11.07, ccy:"QAR",
-    horizon_label:"1 month", grade_date:"2026-08-02", cycle_no:1, reanchor_from:null,
+    horizon_label:"1 month", grade_date:"2026-08-05", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     p5:9.62, p25:10.60, p50:11.13, p75:11.68, p95:12.73,
     touch:{ "+5":30, "+10":13, "+15":6, "+20":3, "-5":50, "-10":29 },
-    anchor_vol:0.2178, horizon_days:20,
+    anchor_vol:0.2178, horizon_days:22,
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
     realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-08-02) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"IQCD", asset_class:"equity",
     anchor_date:"2026-07-05", anchor_price:11.07, ccy:"QAR",
-    horizon_label:"3 months", grade_date:"2026-09-27", cycle_no:1, reanchor_from:null,
+    horizon_label:"3 months", grade_date:"2026-10-05", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     p5:8.84, p25:10.24, p50:11.21, p75:12.25, p95:14.08,
     touch:{ "+5":58, "+10":42, "+15":29, "+20":20, "-5":77, "-10":50 },
-    anchor_vol:0.2178, horizon_days:60,
+    anchor_vol:0.2178, horizon_days:63,
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
     realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-27) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"EFIH", asset_class:"equity",
     anchor_date:"2026-07-01", anchor_price:20.74, ccy:"EGP",
-    horizon_label:"1 month", grade_date:"2026-07-29", cycle_no:1, reanchor_from:null,
+    horizon_label:"1 month", grade_date:"2026-08-02", grade_basis:"projected", horizon_days:20, cycle_no:1, reanchor_from:null,
     p5:16.58, p25:19.13, p50:20.74, p75:22.48, p95:25.94,
     touch:{ "+5":59, "+10":37, "+15":22, "+20":13, "-5":57, "-10":32 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-07-29) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"EFIH", asset_class:"equity",
     anchor_date:"2026-07-01", anchor_price:20.74, ccy:"EGP",
-    horizon_label:"3 months", grade_date:"2026-09-23", cycle_no:1, reanchor_from:null,
+    horizon_label:"3 months", grade_date:"2026-10-01", grade_basis:"projected", horizon_days:61, cycle_no:1, reanchor_from:null,
     p5:14.08, p25:18.04, p50:20.74, p75:23.85, p95:30.56,
     touch:{ "+5":76, "+10":59, "+15":46, "+20":35, "-5":74, "-10":56 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-23) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   { instrument:"JUFO", asset_class:"equity", anchor_date:"2026-07-01", anchor_price:29.99, ccy:"EGP",
-    horizon_label:"1 month", grade_date:"2026-07-29", cycle_no:1, reanchor_from:null,
+    horizon_label:"1 month", grade_date:"2026-08-02", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     p5:26.04, p25:28.92, p50:30.67, p75:32.54, p95:36.15,
     touch:{ "+5":58, "+10":31, "+15":16, "+20":8, "-5":40, "-10":16 },
     anchor_vol:0.3735, horizon_days:20,
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
-    realized_quantile:null, median_err:null, touch_hit:null },
+    realized_quantile:null, median_err:null, touch_hit:null ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-07-29) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
+  },
   { instrument:"JUFO", asset_class:"equity", anchor_date:"2026-07-01", anchor_price:29.99, ccy:"EGP",
-    horizon_label:"3 months", grade_date:"2026-09-23", cycle_no:1, reanchor_from:null,
+    horizon_label:"3 months", grade_date:"2026-10-01", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     p5:24.17, p25:28.96, p50:32.07, p75:35.46, p95:42.63,
     touch:{ "+5":80, "+10":63, "+15":47, "+20":34, "-5":55, "-10":32 },
-    anchor_vol:0.3735, horizon_days:60,
+    anchor_vol:0.3735, horizon_days:61,
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
-    realized_quantile:null, median_err:null, touch_hit:null },
+    realized_quantile:null, median_err:null, touch_hit:null ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-23) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
+  },
   { instrument:"EFID", asset_class:"equity", anchor_date:"2026-07-01", anchor_price:27.34, ccy:"EGP",
-    horizon_label:"1 month", grade_date:"2026-07-29", cycle_no:1, reanchor_from:null,
+    horizon_label:"1 month", grade_date:"2026-08-02", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     p5:22.35, p25:25.48, p50:27.48, p75:29.62, p95:33.56,
     touch:{ "+5":76, "+10":60, "+15":46, "+20":34, "-5":70, "-10":50 },
     anchor_vol:0.4127, horizon_days:20,
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
-    realized_quantile:null, median_err:null, touch_hit:null },
+    realized_quantile:null, median_err:null, touch_hit:null ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-07-29) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
+  },
   { instrument:"EFID", asset_class:"equity", anchor_date:"2026-07-01", anchor_price:27.34, ccy:"EGP",
-    horizon_label:"3 months", grade_date:"2026-09-23", cycle_no:1, reanchor_from:null,
+    horizon_label:"3 months", grade_date:"2026-10-01", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     p5:19.4, p25:24.4, p50:27.82, p75:31.65, p95:38.98,
     touch:{ "+5":76, "+10":60, "+15":46, "+20":34, "-5":70, "-10":50 },
-    anchor_vol:0.4127, horizon_days:60,
+    anchor_vol:0.4127, horizon_days:61,
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
-    realized_quantile:null, median_err:null, touch_hit:null },
+    realized_quantile:null, median_err:null, touch_hit:null ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-23) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
+  },
   // ---- PHDC · equity · cycle 2 (11 Jun 2026 published study) ----
   {
     instrument:"PHDC", asset_class:"equity",
@@ -3081,32 +3197,38 @@ const LEDGER = [
   {
     instrument:"PHDC", asset_class:"equity",
     anchor_date:"2026-06-11", anchor_price:14.50, ccy:"EGP",
-    horizon_label:"3 months", grade_date:"2026-09-03", cycle_no:2, reanchor_from:"2026-06-09",
+    horizon_label:"3 months", grade_date:"2026-09-13", grade_basis:"projected", horizon_days:60, cycle_no:2, reanchor_from:"2026-06-09",
     p5:10.18, p25:13.10, p50:15.83, p75:19.40, p95:24.50,
     touch:{ "+5":72, "+10":55, "+15":41, "+20":30, "-5":61, "-10":44 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-03) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"PHDC", asset_class:"equity",
     anchor_date:"2026-07-19", anchor_price:14.84, ccy:"EGP",
-    horizon_label:"1 month", grade_date:"2026-08-16", cycle_no:3, reanchor_from:"2026-06-11",
+    horizon_label:"1 month", grade_date:"2026-08-19", grade_basis:"projected", horizon_days:21, cycle_no:3, reanchor_from:"2026-06-11",
     p5:12.94, p25:14.29, p50:15.05, p75:15.87, p95:17.53,
     touch:{ "+5":52, "+10":25, "+15":12, "+20":6, "-5":38, "-10":15 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-08-16) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"PHDC", asset_class:"equity",
     anchor_date:"2026-07-19", anchor_price:14.84, ccy:"EGP",
-    horizon_label:"3 months", grade_date:"2026-10-11", cycle_no:3, reanchor_from:"2026-06-11",
+    horizon_label:"3 months", grade_date:"2026-10-19", grade_basis:"projected", horizon_days:61, cycle_no:3, reanchor_from:"2026-06-11",
     p5:11.93, p25:14.15, p50:15.49, p75:16.96, p95:20.07,
     touch:{ "+5":75, "+10":55, "+15":38, "+20":26, "-5":55, "-10":31 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-10-11) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   // ---- TMGH · equity · cycle 1 (15 Jun 2026 published study) ----
   {
@@ -3123,32 +3245,38 @@ const LEDGER = [
   {
     instrument:"TMGH", asset_class:"equity",
     anchor_date:"2026-06-15", anchor_price:95.68, ccy:"EGP",
-    horizon_label:"3 months", grade_date:"2026-09-08", cycle_no:1, reanchor_from:null,
+    horizon_label:"3 months", grade_date:"2026-09-15", grade_basis:"projected", horizon_days:60, cycle_no:1, reanchor_from:null,
     p5:75.58, p25:91.20, p50:103.93, p75:118.41, p95:142.75,
     touch:{ "+5":85, "+10":58, "+15":39, "+20":24, "-5":48, "-10":29 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-08) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   }  ,
   {
     instrument:"TMGH", asset_class:"equity",
     anchor_date:"2026-07-19", anchor_price:99.88, ccy:"EGP",
-    horizon_label:"1 month", grade_date:"2026-08-16", cycle_no:2, reanchor_from:"2026-06-15",
+    horizon_label:"1 month", grade_date:"2026-08-19", grade_basis:"projected", horizon_days:21, cycle_no:2, reanchor_from:"2026-06-15",
     p5:88.50, p25:96.71, p50:101.32, p75:106.20, p95:116.12,
     touch:{ "+5":48, "+10":21, "+15":9, "+20":5, "-5":33, "-10":11 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-08-16) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"TMGH", asset_class:"equity",
     anchor_date:"2026-07-19", anchor_price:99.88, ccy:"EGP",
-    horizon_label:"3 months", grade_date:"2026-10-11", cycle_no:2, reanchor_from:"2026-06-15",
+    horizon_label:"3 months", grade_date:"2026-10-19", grade_basis:"projected", horizon_days:61, cycle_no:2, reanchor_from:"2026-06-15",
     p5:82.52, p25:96.14, p50:104.25, p75:113.08, p95:131.46,
     touch:{ "+5":74, "+10":51, "+15":34, "+20":22, "-5":50, "-10":26 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-10-11) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   }
 ,
   // ---- EMFD · equity · cycle 1 (17 Jun 2026 published study) ----
@@ -3166,32 +3294,38 @@ const LEDGER = [
   {
     instrument:"EMFD", asset_class:"equity",
     anchor_date:"2026-06-17", anchor_price:12.44, ccy:"EGP",
-    horizon_label:"3 months", grade_date:"2026-09-13", cycle_no:1, reanchor_from:null,
+    horizon_label:"3 months", grade_date:"2026-09-17", grade_basis:"projected", horizon_days:60, cycle_no:1, reanchor_from:null,
     p5:9.64, p25:11.71, p50:13.39, p75:15.29, p95:18.47,
     touch:{ "+5":83, "+10":70, "+15":57, "+20":45, "-5":64, "-10":43 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-13) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"EMFD", asset_class:"equity",
     anchor_date:"2026-07-19", anchor_price:11.70, ccy:"EGP",
-    horizon_label:"1 month", grade_date:"2026-08-16", cycle_no:2, reanchor_from:"2026-06-17",
+    horizon_label:"1 month", grade_date:"2026-08-19", grade_basis:"projected", horizon_days:21, cycle_no:2, reanchor_from:"2026-06-17",
     p5:10.21, p25:11.27, p50:11.87, p75:12.51, p95:13.81,
     touch:{ "+5":52, "+10":25, "+15":12, "+20":6, "-5":38, "-10":14 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-08-16) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"EMFD", asset_class:"equity",
     anchor_date:"2026-07-19", anchor_price:11.70, ccy:"EGP",
-    horizon_label:"3 months", grade_date:"2026-10-11", cycle_no:2, reanchor_from:"2026-06-17",
+    horizon_label:"3 months", grade_date:"2026-10-19", grade_basis:"projected", horizon_days:61, cycle_no:2, reanchor_from:"2026-06-17",
     p5:9.42, p25:11.16, p50:12.21, p75:13.37, p95:15.81,
     touch:{ "+5":75, "+10":54, "+15":38, "+20":25, "-5":55, "-10":31 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-10-11) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
 
   // ---- OCDI · equity · cycle 1 (24 Jun 2026 published study) ----
@@ -3211,7 +3345,7 @@ const LEDGER = [
   {
     instrument:"OCDI", asset_class:"equity",
     anchor_date:"2026-06-23", anchor_price:22.80, ccy:"EGP",
-    horizon_label:"3 months", grade_date:"2026-09-22", cycle_no:1, reanchor_from:null,
+    horizon_label:"3 months", grade_date:"2026-09-23", grade_basis:"projected", horizon_days:60, cycle_no:1, reanchor_from:null,
     anchor_date_stated:"2026-06-24",
     anchor_note:"anchor_date corrected by one session — see the 1-month cohort of this cycle for the full note. Same anchor_price (22.80, EGX's 23-Jun close), p5–p95 unchanged.",
     p5:16.08, p25:20.38, p50:24.03, p75:28.30, p95:35.79,
@@ -3219,28 +3353,34 @@ const LEDGER = [
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-22) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"OCDI", asset_class:"equity",
     anchor_date:"2026-07-27", anchor_price:27.48, ccy:"EGP",
-    horizon_label:"1 month", grade_date:"2026-08-24", cycle_no:2, reanchor_from:"2026-06-23",
+    horizon_label:"1 month", grade_date:"2026-08-27", grade_basis:"projected", horizon_days:21, cycle_no:2, reanchor_from:"2026-06-23",
     note:"Cycle 2 roll-forward, 27-Jul-2026. Production chain, no approximation: Step 0.0 data-quality gate \u2192 YZ variance proxy \u2192 fit_har_v3 \u2192 har_forecast_v3 \u2192 carry drift ln(1+rf_live)\u2212ln(1+q) \u2192 simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED \u2014 house convention; drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=5, width_cal=0.93; rf_live 19.50% (CBE main operation rate). reanchor_from corrected to 2026-06-23 to match the cycle-1 anchor_date fix (see that cohort's anchor_note).",
     p5:23.06, p25:26.03, p50:27.87, p75:29.84, p95:33.67,
     touch:{ "+5":59, "+10":34, "+15":19, "+20":10, "-5":48, "-10":23 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-08-24) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"OCDI", asset_class:"equity",
     anchor_date:"2026-07-27", anchor_price:27.48, ccy:"EGP",
-    horizon_label:"3 months", grade_date:"2026-10-19", cycle_no:2, reanchor_from:"2026-06-23",
+    horizon_label:"3 months", grade_date:"2026-10-27", grade_basis:"projected", horizon_days:62, cycle_no:2, reanchor_from:"2026-06-23",
     note:"Cycle 2 roll-forward, 27-Jul-2026. Production chain, no approximation: Step 0.0 data-quality gate \u2192 YZ variance proxy \u2192 fit_har_v3 \u2192 har_forecast_v3 \u2192 carry drift ln(1+rf_live)\u2212ln(1+q) \u2192 simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED \u2014 house convention; drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=5, width_cal=0.93; rf_live 19.50% (CBE main operation rate). reanchor_from corrected to 2026-06-23 to match the cycle-1 anchor_date fix (see that cohort's anchor_note).",
     p5:20.45, p25:25.39, p50:28.69, p75:32.35, p95:40.33,
     touch:{ "+5":79, "+10":63, "+15":48, "+20":36, "-5":65, "-10":44 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-10-19) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   // ---- ORHD · equity · cycle 1 (25 Jun 2026 published study; anchored 24 Jun) ----
   {
@@ -3258,34 +3398,40 @@ const LEDGER = [
   {
     instrument:"ORHD", asset_class:"equity",
     anchor_date:"2026-06-24", anchor_price:39.30, ccy:"EGP",
-    horizon_label:"3 months", grade_date:"2026-09-22", cycle_no:1, reanchor_from:null,
+    horizon_label:"3 months", grade_date:"2026-09-24", grade_basis:"projected", horizon_days:60, cycle_no:1, reanchor_from:null,
     p5:29.42, p25:36.38, p50:42.10, p75:48.74, p95:59.97,
     touch:{ "+5":80, "+10":70, "+15":58, "+20":47, "-5":62, "-10":46 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-22) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"ORHD", asset_class:"equity",
     anchor_date:"2026-07-27", anchor_price:40.16, ccy:"EGP",
-    horizon_label:"1 month", grade_date:"2026-08-24", cycle_no:2, reanchor_from:"2026-06-24",
+    horizon_label:"1 month", grade_date:"2026-08-27", grade_basis:"projected", horizon_days:21, cycle_no:2, reanchor_from:"2026-06-24",
     note:"Cycle 2 roll-forward, 27-Jul-2026. Production chain, no approximation: Step 0.0 data-quality gate \u2192 YZ variance proxy \u2192 fit_har_v3 \u2192 har_forecast_v3 \u2192 carry drift ln(1+rf_live)\u2212ln(1+q) \u2192 simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED \u2014 house convention; drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=5, width_cal=0.93; rf_live 19.50% (CBE main operation rate).",
     p5:35.15, p25:38.63, p50:40.73, p75:42.95, p95:47.19,
     touch:{ "+5":52, "+10":25, "+15":11, "+20":5, "-5":38, "-10":14 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-08-24) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"ORHD", asset_class:"equity",
     anchor_date:"2026-07-27", anchor_price:40.16, ccy:"EGP",
-    horizon_label:"3 months", grade_date:"2026-10-19", cycle_no:2, reanchor_from:"2026-06-24",
+    horizon_label:"3 months", grade_date:"2026-10-27", grade_basis:"projected", horizon_days:62, cycle_no:2, reanchor_from:"2026-06-24",
     note:"Cycle 2 roll-forward, 27-Jul-2026. Production chain, no approximation: Step 0.0 data-quality gate \u2192 YZ variance proxy \u2192 fit_har_v3 \u2192 har_forecast_v3 \u2192 carry drift ln(1+rf_live)\u2212ln(1+q) \u2192 simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED \u2014 house convention; drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=5, width_cal=0.93; rf_live 19.50% (CBE main operation rate).",
     p5:31.54, p25:37.84, p50:41.92, p75:46.38, p95:55.82,
     touch:{ "+5":77, "+10":58, "+15":42, "+20":30, "-5":59, "-10":36 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-10-19) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   // ---- COMI · equity · cycle 1 (29 Jun 2026 published study) ----
   {
@@ -3304,12 +3450,14 @@ const LEDGER = [
     instrument:"COMI", asset_class:"equity",
     anchor_date:"2026-06-29", anchor_price:126.89, ccy:"EGP",
     anchor_price_published:129.25, anchor_note:"Anchor corrected 28-Jul-2026: the published anchor_price was captured MID-SESSION (inside that day\u2019s range) rather than at the close. Corrected to the actual close. The forecast itself is untouched \u2014 p5..p95, the touch probabilities and the grade are exactly as published; only the anchor field was wrong. Re-striking was rejected: today\u2019s fit runs on 15-year libraries that did not exist at the anchor date, so it would re-grade a published forecast with hindsight.",
-    horizon_label:"3 months", grade_date:"2026-09-21", cycle_no:1, reanchor_from:null,
+    horizon_label:"3 months", grade_date:"2026-09-29", grade_basis:"projected", horizon_days:61, cycle_no:1, reanchor_from:null,
     p5:87.93, p25:109.91, p50:127.83, p75:148.88, p95:185.40,
     touch:{ "+5":76, "+10":60, "+15":47, "+20":37, "-5":78, "-10":62 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-21) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"Gold", asset_class:"metal",
@@ -3324,12 +3472,14 @@ const LEDGER = [
   {
     instrument:"Gold", asset_class:"metal",
     anchor_date:"2026-06-25", anchor_price:3989.85, ccy:"USD",
-    horizon_label:"3 months", grade_date:"2026-09-17", cycle_no:1, reanchor_from:null,
+    horizon_label:"3 months", grade_date:"2026-09-25", grade_basis:"projected", horizon_days:66, cycle_no:1, reanchor_from:null,
     p5:3064, p25:3560, p50:3944, p75:4369, p95:5074,
     touch:{ "+5":68, "+10":47, "+15":31, "+20":19, "-5":71, "-10":48 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-17) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"Gold", asset_class:"metal",
@@ -3344,55 +3494,65 @@ const LEDGER = [
   {
     instrument:"Gold", asset_class:"metal",
     anchor_date:"2026-07-27", anchor_price:4090.87, ccy:"USD",
-    horizon_label:"1 month", grade_date:"2026-08-24", cycle_no:2, reanchor_from:"2026-06-25",
+    horizon_label:"1 month", grade_date:"2026-08-27", grade_basis:"projected", horizon_days:23, cycle_no:2, reanchor_from:"2026-06-25",
     note:"Cycle 2 roll-forward, 27-Jul-2026. Production chain, no approximation: Step 0.0 data-quality gate \u2192 YZ variance proxy \u2192 fit_har_v3 \u2192 har_forecast_v3 \u2192 carry drift ln(1+rf_live)\u2212ln(1+q) \u2192 simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED \u2014 house convention; drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). Metals live fit nu=20, width_cal=1.035; rf_live 3.63% (USD carry, q=0 by construction for a zero-yield metal). METALS REMAINS THE WEAKEST CALIBRATION IN THE SYSTEM \u2014 a 2-name panel, read the cone accordingly.",
     p5:3725, p25:3948, p50:4102, p75:4263, p95:4516,
     touch:{ "+5":34, "+10":9, "+15":2, "+20":0, "-5":30, "-10":5 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-08-24) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"Gold", asset_class:"metal",
     anchor_date:"2026-07-27", anchor_price:4090.87, ccy:"USD",
-    horizon_label:"3 months", grade_date:"2026-10-19", cycle_no:2, reanchor_from:"2026-06-25",
+    horizon_label:"3 months", grade_date:"2026-10-27", grade_basis:"projected", horizon_days:66, cycle_no:2, reanchor_from:"2026-06-25",
     note:"Cycle 2 roll-forward, 27-Jul-2026. Production chain, no approximation: Step 0.0 data-quality gate \u2192 YZ variance proxy \u2192 fit_har_v3 \u2192 har_forecast_v3 \u2192 carry drift ln(1+rf_live)\u2212ln(1+q) \u2192 simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED \u2014 house convention; drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). Metals live fit nu=20, width_cal=1.035; rf_live 3.63% (USD carry, q=0 by construction for a zero-yield metal). METALS REMAINS THE WEAKEST CALIBRATION IN THE SYSTEM \u2014 a 2-name panel, read the cone accordingly.",
     p5:3493, p25:3862, p50:4127, p75:4410, p95:4880,
     touch:{ "+5":60, "+10":33, "+15":16, "+20":7, "-5":53, "-10":23 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-10-19) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   // ---- Silver (XAG/USD) · metal · cycle 1 (05 Jul 2026 published study; anchored 03 Jul close) ----
   {
     instrument:"Silver", asset_class:"metal",
     anchor_date:"2026-07-03", anchor_price:62.43, ccy:"USD",
-    horizon_label:"1 month", grade_date:"2026-07-31", cycle_no:1, reanchor_from:null,
+    horizon_label:"1 month", grade_date:"2026-08-03", grade_basis:"projected", horizon_days:22, cycle_no:1, reanchor_from:null,
     p5:50, p25:58, p50:63, p75:68, p95:78,
     touch:{ "+5":61, "+10":38, "+15":23, "+20":14, "-5":56, "-10":31 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-07-31) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"Silver", asset_class:"metal",
     anchor_date:"2026-07-03", anchor_price:62.43, ccy:"USD",
-    horizon_label:"3 months", grade_date:"2026-09-25", cycle_no:1, reanchor_from:null,
+    horizon_label:"3 months", grade_date:"2026-10-05", grade_basis:"projected", horizon_days:66, cycle_no:1, reanchor_from:null,
     p5:44, p25:56, p50:63, p75:72, p95:91,
     touch:{ "+5":76, "+10":60, "+15":46, "+20":35, "-5":71, "-10":51 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-25) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"Silver", asset_class:"metal",
     anchor_date:"2026-07-03", anchor_price:62.43, ccy:"USD",
-    horizon_label:"12 months", grade_date:"2027-07-02", cycle_no:1, reanchor_from:null,
+    horizon_label:"12 months", grade_date:"2027-07-05", grade_basis:"projected", horizon_days:260, cycle_no:1, reanchor_from:null,
     p5:34, p25:52, p50:67, p75:86, p95:135,
     touch:{ "+5":89, "+10":80, "+15":72, "+20":65, "-5":83, "-10":70 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2027-07-02) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   // ---- Samsung Electronics (KRX:005930) · other / international · cycle 1 (27 Jun 2026 published study; anchored 26 Jun close) ----
   {
@@ -3410,17 +3570,19 @@ const LEDGER = [
   {
     instrument:"Samsung", asset_class:"other",
     anchor_date:"2026-06-26", anchor_price:339500, ccy:"KRW",
-    horizon_label:"3 months", grade_date:"2026-09-18", cycle_no:1, reanchor_from:null,
+    horizon_label:"3 months", grade_date:"2026-09-28", grade_basis:"projected", horizon_days:62, cycle_no:1, reanchor_from:null,
     p5:246827, p25:308298, p50:359482, p75:418176, p95:520627,
     touch:{ "+5":83, "+10":70, "+15":58, "+20":47, "-5":79, "-10":58 },   // interpolated from the study's absolute touch ladder — replace with the model's exact relative barrier-hit probabilities before these bands are graded
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-18) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"Samsung", asset_class:"other",
     anchor_date:"2026-07-27", anchor_price:254000, ccy:"KRW",
-    horizon_label:"1 month", grade_date:"2026-08-24", cycle_no:2, reanchor_from:"2026-06-26",
+    horizon_label:"1 month", grade_date:"2026-08-27", grade_basis:"projected", horizon_days:22, cycle_no:2, reanchor_from:"2026-06-26",
     config_note:"Corrected 29-Jul-2026: this cycle was originally struck with the prior market-default fit; the per-name override decided the same day (see engine/fit_overrides.json) genuinely improves this specific name's own LONO verdict, so the anchor/grade dates are unchanged but the distribution was recomputed under the correct config.",
     note:"Cycle 2 roll-forward, 27-Jul-2026. Production chain, no approximation: Step 0.0 data-quality gate \u2192 YZ variance proxy \u2192 fit_har_v3 \u2192 har_forecast_v3 \u2192 carry drift ln(1+rf_live)\u2212ln(1+q) \u2192 simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED \u2014 house convention; drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). KR live fit nu=Gaussian, width_cal=1.154; rf_live 3.00% (placeholder KTB anchor). STRUCK ON THE INCUMBENT FIT BY DESIGN: the 15-year Samsung history ingested this session refits KR to nu=12/width_cal=1.105 (published 90% cone \u22125.3%), which trips the materiality gate and is therefore held on a feature branch pending PR review, not applied to production.",
     p5:154820.6, p25:193612.78, p50:220362.84, p75:251038.64, p95:313821.44,
@@ -3428,11 +3590,13 @@ const LEDGER = [
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-08-24) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"Samsung", asset_class:"other",
     anchor_date:"2026-07-27", anchor_price:254000, ccy:"KRW",
-    horizon_label:"3 months", grade_date:"2026-10-19", cycle_no:2, reanchor_from:"2026-06-26",
+    horizon_label:"3 months", grade_date:"2026-10-27", grade_basis:"projected", horizon_days:62, cycle_no:2, reanchor_from:"2026-06-26",
     config_note:"Corrected 29-Jul-2026: this cycle was originally struck with the prior market-default fit; the per-name override decided the same day (see engine/fit_overrides.json) genuinely improves this specific name's own LONO verdict, so the anchor/grade dates are unchanged but the distribution was recomputed under the correct config.",
     note:"Cycle 2 roll-forward, 27-Jul-2026. Production chain, no approximation: Step 0.0 data-quality gate \u2192 YZ variance proxy \u2192 fit_har_v3 \u2192 har_forecast_v3 \u2192 carry drift ln(1+rf_live)\u2212ln(1+q) \u2192 simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED \u2014 house convention; drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). KR live fit nu=Gaussian, width_cal=1.154; rf_live 3.00% (placeholder KTB anchor). STRUCK ON THE INCUMBENT FIT BY DESIGN: the 15-year Samsung history ingested this session refits KR to nu=12/width_cal=1.105 (published 90% cone \u22125.3%), which trips the materiality gate and is therefore held on a feature branch pending PR review, not applied to production.",
     p5:129392.31, p25:181881.54, p50:222199.19, p75:270912.64, p95:381214.94,
@@ -3440,6 +3604,8 @@ const LEDGER = [
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-10-19) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   // ---- Kakao Corp. (KRX:035720) · other / international · cycle 1 (28 Jun 2026 published study; anchored 26 Jun close) ----
   {
@@ -3456,12 +3622,14 @@ const LEDGER = [
   {
     instrument:"Kakao", asset_class:"other",
     anchor_date:"2026-06-26", anchor_price:33150, ccy:"KRW",
-    horizon_label:"3 months", grade_date:"2026-09-18", cycle_no:1, reanchor_from:null,
+    horizon_label:"3 months", grade_date:"2026-09-28", grade_basis:"projected", horizon_days:62, cycle_no:1, reanchor_from:null,
     p5:21022, p25:27714, p50:33584, p75:40697, p95:53651,
     touch:{ "+5":81, "+10":69, "+15":59, "+20":49, "-5":79, "-10":64 },   // relative barrier-hit probabilities from the published model (reflection principle, discrete-monitoring correction)
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-18) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   // ---- LG Energy Solution (KRX:373220) · other / international · cycle 1 (28 Jun 2026 published study; anchored 26 Jun close) ----
   {
@@ -3478,72 +3646,86 @@ const LEDGER = [
   {
     instrument:"LGES", asset_class:"other",
     anchor_date:"2026-06-26", anchor_price:331500, ccy:"KRW",
-    horizon_label:"3 months", grade_date:"2026-09-18", cycle_no:1, reanchor_from:null,
+    horizon_label:"3 months", grade_date:"2026-09-28", grade_basis:"projected", horizon_days:62, cycle_no:1, reanchor_from:null,
     p5:230500, p25:286900, p50:334200, p75:389200, p95:484500,
     touch:{ "+5":78, "+10":63, "+15":50, "+20":39, "-5":75, "-10":58 },   // relative barrier-hit probabilities from the published 50,000-path model (reflection principle, discrete-monitoring correction)
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-18) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"CCAP", asset_class:"equity", anchor_date:"2026-06-30", anchor_price:4.77, ccy:"EGP",
-    horizon_label:"1 month", grade_date:"2026-07-28", cycle_no:1, reanchor_from:null,
+    horizon_label:"1 month", grade_date:"2026-07-30", grade_basis:"projected", horizon_days:20, cycle_no:1, reanchor_from:null,
     p5:3.771, p25:4.36, p50:4.809, p75:5.312, p95:6.126,
     touch:{ "+5":66, "+10":45, "+15":30, "+20":19, "-5":61, "-10":38 },   // barrier-hit probabilities from the published 50,000-path model (reflection principle, discrete-monitoring correction)
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-07-28) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"CCAP", asset_class:"equity", anchor_date:"2026-06-30", anchor_price:4.77, ccy:"EGP",
-    horizon_label:"3 months", grade_date:"2026-09-22", cycle_no:1, reanchor_from:null,
+    horizon_label:"3 months", grade_date:"2026-09-30", grade_basis:"projected", horizon_days:61, cycle_no:1, reanchor_from:null,
     p5:3.224, p25:4.126, p50:4.889, p75:5.789, p95:7.391,
     touch:{ "+5":81, "+10":68, "+15":56, "+20":46, "-5":76, "-10":60 },   // barrier-hit probabilities from the published 50,000-path model (reflection principle, discrete-monitoring correction)
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-22) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   // ---- OIH · equity · cycle 1 (03 Jul 2026 published study) ----
   {
     instrument:"OIH", asset_class:"equity",
     anchor_date:"2026-07-01", anchor_price:1.41, ccy:"EGP", anchor_vol:0.383, horizon_days:20,
-    horizon_label:"1 month", grade_date:"2026-07-29", cycle_no:1, reanchor_from:null,
+    horizon_label:"1 month", grade_date:"2026-08-02", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     p5:1.18, p25:1.35, p50:1.46, p75:1.58, p95:1.80,
     touch:{ "+5":68, "+10":46, "+15":29, "+20":16, "-5":49, "-10":24 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-07-29) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"OIH", asset_class:"equity",
-    anchor_date:"2026-07-01", anchor_price:1.41, ccy:"EGP", anchor_vol:0.383, horizon_days:60,
-    horizon_label:"3 months", grade_date:"2026-09-23", cycle_no:1, reanchor_from:null,
+    anchor_date:"2026-07-01", anchor_price:1.41, ccy:"EGP", anchor_vol:0.383, horizon_days:61,
+    horizon_label:"3 months", grade_date:"2026-10-01", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     p5:1.09, p25:1.36, p50:1.57, p75:1.80, p95:2.23,
     touch:{ "+5":86, "+10":75, "+15":63, "+20":52, "-5":63, "-10":41 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-23) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   // ---- ORAS · equity · cycle 1 (30 Jun 2026 published study) ----
   {
     instrument:"ORAS", asset_class:"equity",
     anchor_date:"2026-06-30", anchor_price:720.00, ccy:"EGP",
-    horizon_label:"1 month", grade_date:"2026-07-28", cycle_no:1, reanchor_from:null,
+    horizon_label:"1 month", grade_date:"2026-07-30", grade_basis:"projected", horizon_days:20, cycle_no:1, reanchor_from:null,
     p5:575, p25:658, p50:719, p75:785, p95:893,
     touch:{ "+5":61, "+10":39, "+15":23, "+20":13, "-5":60, "-10":35 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-07-28) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"ORAS", asset_class:"equity",
     anchor_date:"2026-06-30", anchor_price:720.00, ccy:"EGP",
-    horizon_label:"3 months", grade_date:"2026-09-22", cycle_no:1, reanchor_from:null,
+    horizon_label:"3 months", grade_date:"2026-09-30", grade_basis:"projected", horizon_days:61, cycle_no:1, reanchor_from:null,
     p5:488, p25:611, p50:714, p75:834, p95:1040,
     touch:{ "+5":77, "+10":61, "+15":48, "+20":37, "-5":77, "-10":60 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-22) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   // ---- TMPV · other (NSE India) · cycle 1 (30 Jun 2026 published study) ----
   {
@@ -3559,538 +3741,648 @@ const LEDGER = [
   {
     instrument:"TMPV", asset_class:"other",
     anchor_date:"2026-06-30", anchor_price:352.20, ccy:"INR",
-    horizon_label:"3 months", grade_date:"2026-09-22", cycle_no:1, reanchor_from:null,
+    horizon_label:"3 months", grade_date:"2026-09-30", grade_basis:"projected", horizon_days:63, cycle_no:1, reanchor_from:null,
     p5:258, p25:310, p50:352, p75:400, p95:481,
     touch:{ "+5":74, "+10":57, "+15":42, "+20":31, "-5":73, "-10":55 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-22) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   // ---- ARAMCO · other (TADAWUL Saudi Arabia) · cycle 1 (1 Jul 2026 published study) ----
   {
     instrument:"ARAMCO", asset_class:"other",
     anchor_date:"2026-07-01", anchor_price:26.24, ccy:"SAR",
-    horizon_label:"1 month", grade_date:"2026-07-29", cycle_no:1, reanchor_from:null,
+    horizon_label:"1 month", grade_date:"2026-08-02", grade_basis:"projected", horizon_days:22, cycle_no:1, reanchor_from:null,
     p5:23.80, p25:25.33, p50:26.23, p75:27.13, p95:28.57,
     touch:{ "+5":26, "+10":5, "+15":1, "+20":0, "-5":25, "-10":6 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-07-29) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"ARAMCO", asset_class:"other",
     anchor_date:"2026-07-01", anchor_price:26.24, ccy:"SAR",
-    horizon_label:"3 months", grade_date:"2026-09-23", cycle_no:1, reanchor_from:null,
+    horizon_label:"3 months", grade_date:"2026-10-01", grade_basis:"projected", horizon_days:62, cycle_no:1, reanchor_from:null,
     p5:21.99, p25:24.47, p50:26.12, p75:27.78, p95:30.35,
     touch:{ "+5":51, "+10":24, "+15":10, "+20":3, "-5":52, "-10":25 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-23) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"MAADEN", asset_class:"other",
     anchor_date:"2026-07-05", anchor_price:58.80, ccy:"SAR",
-    horizon_label:"1 month", grade_date:"2026-08-02", cycle_no:1, reanchor_from:null,
+    horizon_label:"1 month", grade_date:"2026-08-05", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     p5:50.7, p25:55.6, p50:59.2, p75:63.1, p95:69.1,
     touch:{ "+5":54, "+10":34, "+15":18, "+20":9, "-5":45, "-10":22 },
-    anchor_vol:0.324, horizon_days:20,
+    anchor_vol:0.324, horizon_days:22,
     note:"No CRPS skill vs random-walk benchmark (indicative only) — see study Appendix B.",
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-08-02) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"MAADEN", asset_class:"other",
     anchor_date:"2026-07-05", anchor_price:58.80, ccy:"SAR",
-    horizon_label:"3 months", grade_date:"2026-09-27", cycle_no:1, reanchor_from:null,
+    horizon_label:"3 months", grade_date:"2026-10-05", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     p5:46.1, p25:53.9, p50:60.1, p75:67.1, p95:78.4,
     touch:{ "+5":73, "+10":55, "+15":40, "+20":28, "-5":62, "-10":40 },
-    anchor_vol:0.324, horizon_days:60,
+    anchor_vol:0.324, horizon_days:62,
     note:"No CRPS skill vs random-walk benchmark (indicative only) — see study Appendix B.",
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-27) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   // ---- ADNOCGAS · other (ADX Abu Dhabi) · cycle 1 (4 Jul 2026 published study) ----
   {
     instrument:"ADNOCGAS", asset_class:"other",
     anchor_date:"2026-07-03", anchor_price:3.44, ccy:"AED",
-    horizon_label:"1 month", grade_date:"2026-07-31", cycle_no:1, reanchor_from:null,
+    horizon_label:"1 month", grade_date:"2026-08-03", grade_basis:"projected", horizon_days:20, cycle_no:1, reanchor_from:null,
     p5:3.05, p25:3.32, p50:3.45, p75:3.59, p95:3.86,
     touch:{ "+5":34, "+10":12, "+15":4, "+20":1, "-5":28, "-10":9 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-07-31) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"ADNOCGAS", asset_class:"other",
     anchor_date:"2026-07-03", anchor_price:3.44, ccy:"AED",
-    horizon_label:"3 months", grade_date:"2026-09-25", cycle_no:1, reanchor_from:null,
+    horizon_label:"3 months", grade_date:"2026-10-05", grade_basis:"projected", horizon_days:63, cycle_no:1, reanchor_from:null,
     p5:2.83, p25:3.22, p50:3.48, p75:3.75, p95:4.21,
     touch:{ "+5":61, "+10":36, "+15":20, "+20":11, "-5":52, "-10":28 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-25) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   // ---- ALRAJHI · other (TADAWUL Saudi Arabia) · cycle 1 (2 Jul 2026 published study) ----
   {
     instrument:"ALRAJHI", asset_class:"other",
     anchor_date:"2026-07-02", anchor_price:66.00, ccy:"SAR",
-    horizon_label:"1 month", grade_date:"2026-07-30", cycle_no:1, reanchor_from:null,
-    anchor_vol:0.1781, horizon_days:20,
+    horizon_label:"1 month", grade_date:"2026-08-02", grade_basis:"projected", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.1781, horizon_days:21,
     p5:58.70, p25:63.53, p50:66.08, p75:68.62, p95:73.15,
     touch:{ "+5":32, "+10":9, "+15":3, "+20":1, "-5":29, "-10":9 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-07-30) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"ALRAJHI", asset_class:"other",
     anchor_date:"2026-07-02", anchor_price:66.00, ccy:"SAR",
-    horizon_label:"3 months", grade_date:"2026-09-24", cycle_no:1, reanchor_from:null,
-    anchor_vol:0.1781, horizon_days:60,
+    horizon_label:"3 months", grade_date:"2026-10-04", grade_basis:"projected", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.1781, horizon_days:62,
     p5:54.27, p25:61.32, p50:65.95, p75:70.75, p95:78.70,
     touch:{ "+5":57, "+10":31, "+15":16, "+20":8, "-5":54, "-10":29 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-24) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   // ---- SNB · other (TADAWUL Saudi Arabia) · cycle 1 (2 Jul 2026 published study) ----
   {
     instrument:"SNB", asset_class:"other",
     anchor_date:"2026-07-02", anchor_price:38.96, ccy:"SAR",
-    horizon_label:"1 month", grade_date:"2026-07-30", cycle_no:1, reanchor_from:null,
-    anchor_vol:0.2118, horizon_days:20,
+    horizon_label:"1 month", grade_date:"2026-08-02", grade_basis:"projected", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.2118, horizon_days:21,
     p5:33.75, p25:37.10, p50:39.03, p75:40.93, p95:44.44,
     touch:{ "+5":40, "+10":16, "+15":6, "+20":2, "-5":37, "-10":15 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-07-30) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"SNB", asset_class:"other",
     anchor_date:"2026-07-02", anchor_price:38.96, ccy:"SAR",
-    horizon_label:"3 months", grade_date:"2026-09-24", cycle_no:1, reanchor_from:null,
-    anchor_vol:0.2118, horizon_days:60,
+    horizon_label:"3 months", grade_date:"2026-10-04", grade_basis:"projected", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.2118, horizon_days:62,
     p5:30.81, p25:35.62, p50:39.00, p75:42.56, p95:48.66,
     touch:{ "+5":63, "+10":41, "+15":25, "+20":15, "-5":60, "-10":37 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-24) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   // ---- ENBD · other (DFM UAE) · cycle 1 (3 Jul 2026 published study) ----
   {
     instrument:"ENBD", asset_class:"other",
     anchor_date:"2026-07-03", anchor_price:30.64, ccy:"AED",
-    horizon_label:"1 month", grade_date:"2026-07-31", cycle_no:1, reanchor_from:null,
+    horizon_label:"1 month", grade_date:"2026-08-03", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     anchor_vol:0.45, horizon_days:20,
     p5:23.69, p25:28.14, p50:31.04, p75:34.23, p95:40.59,
     touch:{ "+5":66, "+10":46, "+15":31, "+20":21, "-5":59, "-10":38 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-07-31) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"ENBD", asset_class:"other",
     anchor_date:"2026-07-03", anchor_price:30.64, ccy:"AED",
-    horizon_label:"3 months", grade_date:"2026-09-25", cycle_no:1, reanchor_from:null,
-    anchor_vol:0.45, horizon_days:60,
+    horizon_label:"3 months", grade_date:"2026-10-05", grade_basis:"projected", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.45, horizon_days:63,
     p5:22.31, p25:27.97, p50:31.81, p75:36.15, p95:45.24,
     touch:{ "+5":76, "+10":61, "+15":47, "+20":36, "-5":67, "-10":48 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-25) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   // ---- ACWA · other (TADAWUL Saudi Arabia) · cycle 1 (5 Jul 2026 published study) ----
   {
     instrument:"ACWA", asset_class:"other",
     anchor_date:"2026-07-05", anchor_price:193.90, ccy:"SAR",
-    horizon_label:"1 month", grade_date:"2026-08-02", cycle_no:1, reanchor_from:null,
-    anchor_vol:0.4116, horizon_days:20,
+    horizon_label:"1 month", grade_date:"2026-08-05", grade_basis:"projected", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.4116, horizon_days:22,
     p5:158.5, p25:180.4, p50:194.1, p75:208.7, p95:235.2,
     touch:{ "+5":56, "+10":32, "+15":17, "+20":9, "-5":54, "-10":28 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-08-02) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"ACWA", asset_class:"other",
     anchor_date:"2026-07-05", anchor_price:193.90, ccy:"SAR",
-    horizon_label:"3 months", grade_date:"2026-09-27", cycle_no:1, reanchor_from:null,
-    anchor_vol:0.4116, horizon_days:60,
+    horizon_label:"3 months", grade_date:"2026-10-05", grade_basis:"projected", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.4116, horizon_days:62,
     p5:136.9, p25:171.0, p50:194.2, p75:220.0, p95:268.4,
     touch:{ "+5":73, "+10":56, "+15":42, "+20":30, "-5":72, "-10":52 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-27) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   // ---- FAB · other (ADX Abu Dhabi) · cycle 1 (3 Jul 2026 published study) ----
   {
     instrument:"FAB", asset_class:"other",
     anchor_date:"2026-07-03", anchor_price:17.40, ccy:"AED",
-    horizon_label:"1 month", grade_date:"2026-07-31", cycle_no:1, reanchor_from:null,
+    horizon_label:"1 month", grade_date:"2026-08-03", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     anchor_vol:0.2404, horizon_days:20,
     p5:14.97, p25:16.44, p50:17.32, p75:18.18, p95:19.75,
     touch:{ "+5":37, "+10":14, "+15":5, "+20":2, "-5":40, "-10":16 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-07-31) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"FAB", asset_class:"other",
     anchor_date:"2026-07-03", anchor_price:17.40, ccy:"AED",
-    horizon_label:"3 months", grade_date:"2026-09-25", cycle_no:1, reanchor_from:null,
-    anchor_vol:0.2404, horizon_days:60,
+    horizon_label:"3 months", grade_date:"2026-10-05", grade_basis:"projected", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.2404, horizon_days:63,
     p5:13.37, p25:15.53, p50:17.05, p75:18.59, p95:21.45,
     touch:{ "+5":59, "+10":36, "+15":21, "+20":12, "-5":66, "-10":43 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-25) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   // ---- EMAAR · other (DFM Dubai) · cycle 1 (01 Jul 2026 published study) ----
   {
     instrument:"EMAAR", asset_class:"other",
     anchor_date:"2026-06-29", anchor_price:12.14, ccy:"AED",
-    horizon_label:"1 month", grade_date:"2026-07-27", cycle_no:1, reanchor_from:null,
+    horizon_label:"1 month", grade_date:"2026-07-29", grade_basis:"projected", horizon_days:21, cycle_no:1, reanchor_from:null,
     p5:9.98, p25:11.22, p50:12.18, p75:13.22, p95:14.86,
     touch:{ "+5":60, "+10":36, "+15":20, "+20":11, "-5":56, "-10":30 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-07-27) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"EMAAR", asset_class:"other",
     anchor_date:"2026-06-29", anchor_price:12.14, ccy:"AED",
-    horizon_label:"3 months", grade_date:"2026-09-21", cycle_no:1, reanchor_from:null,
+    horizon_label:"3 months", grade_date:"2026-09-29", grade_basis:"projected", horizon_days:63, cycle_no:1, reanchor_from:null,
     p5:8.64, p25:10.62, p50:12.24, p75:14.11, p95:17.32,
     touch:{ "+5":77, "+10":61, "+15":48, "+20":37, "-5":74, "-10":56 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-21) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   // ---- TSLA · other (NASDAQ US) · cycle 1 (01 Jul 2026 published study) ----
   {
     instrument:"TSLA", asset_class:"other",
     anchor_date:"2026-06-30", anchor_price:420.60, ccy:"USD",
-    horizon_label:"1 month", grade_date:"2026-07-28", cycle_no:1, reanchor_from:null,
+    horizon_label:"1 month", grade_date:"2026-07-30", grade_basis:"projected", horizon_days:21, cycle_no:1, reanchor_from:null,
     p5:325, p25:379, p50:420, p75:466, p95:541,
     touch:{ "+5":60, "+10":46, "+15":30, "+20":20, "-5":58, "-10":43 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-07-28) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"TSLA", asset_class:"other",
     anchor_date:"2026-06-30", anchor_price:420.60, ccy:"USD",
-    horizon_label:"3 months", grade_date:"2026-09-22", cycle_no:1, reanchor_from:null,
+    horizon_label:"3 months", grade_date:"2026-09-30", grade_basis:"projected", horizon_days:64, cycle_no:1, reanchor_from:null,
     p5:270, p25:350, p50:419, p75:501, p95:647,
     touch:{ "+5":74, "+10":67, "+15":55, "+20":46, "-5":72, "-10":65 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-22) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   { instrument:"FWRY", asset_class:"equity", anchor_date:"2026-07-01", anchor_price:18.4, ccy:"EGP",
-    horizon_label:"1 month", grade_date:"2026-07-29", cycle_no:1, reanchor_from:null,
+    horizon_label:"1 month", grade_date:"2026-08-02", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     p5:15.45, p25:17.37, p50:18.76, p75:20.22, p95:22.56,
     touch:{ "+5":80, "+10":65, "+15":52, "+20":40, "-5":65, "-10":44 },
     anchor_vol:0.3332, horizon_days:20,
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
-    realized_quantile:null, median_err:null, touch_hit:null },
+    realized_quantile:null, median_err:null, touch_hit:null ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-07-29) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
+  },
   { instrument:"FWRY", asset_class:"equity", anchor_date:"2026-07-01", anchor_price:18.4, ccy:"EGP",
-    horizon_label:"3 months", grade_date:"2026-09-23", cycle_no:1, reanchor_from:null,
+    horizon_label:"3 months", grade_date:"2026-10-01", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     p5:14.05, p25:16.97, p50:19.38, p75:22.09, p95:26.64,
     touch:{ "+5":80, "+10":65, "+15":52, "+20":40, "-5":65, "-10":44 },
-    anchor_vol:0.3332, horizon_days:60,
+    anchor_vol:0.3332, horizon_days:61,
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
-    realized_quantile:null, median_err:null, touch_hit:null },
+    realized_quantile:null, median_err:null, touch_hit:null ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-23) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
+  },
   { instrument:"ABUK", asset_class:"equity", anchor_date:"2026-07-01", anchor_price:67.97, ccy:"EGP",
-    horizon_label:"1 month", grade_date:"2026-07-29", cycle_no:1, reanchor_from:null,
+    horizon_label:"1 month", grade_date:"2026-08-02", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     p5:51.67, p25:60.72, p50:67.7, p75:75.45, p95:88.03,
     touch:{ "+5":79, "+10":66, "+15":55, "+20":45, "-5":80, "-10":67 },
     anchor_vol:0.3624, horizon_days:20,
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
-    realized_quantile:null, median_err:null, touch_hit:null },
+    realized_quantile:null, median_err:null, touch_hit:null ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-07-29) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
+  },
   { instrument:"ADIB", asset_class:"equity", anchor_date:"2026-07-01", anchor_price:46.64, ccy:"EGP",
-    horizon_label:"1 month", grade_date:"2026-07-29", cycle_no:1, reanchor_from:null,
+    horizon_label:"1 month", grade_date:"2026-08-02", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     p5:38.5, p25:44.5, p50:48.2, p75:52.2, p95:59.7,
     touch:{ "+5":67, "+10":45, "+15":28, "+20":17, "-5":47, "-10":25 },
     anchor_vol:0.4040, horizon_days:20,
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
-    realized_quantile:null, median_err:null, touch_hit:null },
+    realized_quantile:null, median_err:null, touch_hit:null ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-07-29) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
+  },
   { instrument:"ADIB", asset_class:"equity", anchor_date:"2026-07-01", anchor_price:46.64, ccy:"EGP",
-    horizon_label:"3 months", grade_date:"2026-09-23", cycle_no:1, reanchor_from:null,
+    horizon_label:"3 months", grade_date:"2026-10-01", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     p5:35.3, p25:44.7, p50:51.5, p75:59.3, p95:74.4,
     touch:{ "+5":86, "+10":74, "+15":62, "+20":51, "-5":61, "-10":41 },
-    anchor_vol:0.4040, horizon_days:60,
+    anchor_vol:0.4040, horizon_days:61,
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
-    realized_quantile:null, median_err:null, touch_hit:null },
+    realized_quantile:null, median_err:null, touch_hit:null ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-23) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
+  },
   { instrument:"ABUK", asset_class:"equity", anchor_date:"2026-07-01", anchor_price:67.97, ccy:"EGP",
-    horizon_label:"3 months", grade_date:"2026-09-23", cycle_no:1, reanchor_from:null,
+    horizon_label:"3 months", grade_date:"2026-10-01", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     p5:42.38, p25:55.61, p50:66.96, p75:80.83, p95:105.78,
     touch:{ "+5":79, "+10":66, "+15":55, "+20":45, "-5":80, "-10":67 },
-    anchor_vol:0.3624, horizon_days:60,
+    anchor_vol:0.3624, horizon_days:61,
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
-    realized_quantile:null, median_err:null, touch_hit:null },
+    realized_quantile:null, median_err:null, touch_hit:null ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-23) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
+  },
   { instrument:"HRHO", asset_class:"equity", anchor_date:"2026-07-01", anchor_price:26.83, ccy:"EGP",
-    horizon_label:"1 month", grade_date:"2026-07-29", cycle_no:1, reanchor_from:null,
+    horizon_label:"1 month", grade_date:"2026-08-02", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     p5:21.22, p25:24.36, p50:26.65, p75:29.06, p95:32.99,
     touch:{ "+5":74, "+10":58, "+15":44, "+20":34, "-5":78, "-10":62 },
     anchor_vol:0.2955, horizon_days:20,
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
-    realized_quantile:null, median_err:null, touch_hit:null },
+    realized_quantile:null, median_err:null, touch_hit:null ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-07-29) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
+  },
   { instrument:"HRHO", asset_class:"equity", anchor_date:"2026-07-01", anchor_price:26.83, ccy:"EGP",
-    horizon_label:"3 months", grade_date:"2026-09-23", cycle_no:1, reanchor_from:null,
+    horizon_label:"3 months", grade_date:"2026-10-01", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     p5:17.87, p25:22.4, p50:26.1, p75:30.33, p95:37.71,
     touch:{ "+5":74, "+10":58, "+15":44, "+20":34, "-5":78, "-10":62 },
-    anchor_vol:0.2955, horizon_days:60,
+    anchor_vol:0.2955, horizon_days:61,
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
-    realized_quantile:null, median_err:null, touch_hit:null },
+    realized_quantile:null, median_err:null, touch_hit:null ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-23) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
+  },
   { instrument:"ORWE", asset_class:"equity", anchor_date:"2026-07-01", anchor_price:22.34, ccy:"EGP",
-    horizon_label:"1 month", grade_date:"2026-07-29", cycle_no:1, reanchor_from:null,
+    horizon_label:"1 month", grade_date:"2026-08-02", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     p5:19.84, p25:21.46, p50:22.53, p75:23.66, p95:25.6,
     touch:{ "+5":69, "+10":47, "+15":30, "+20":18, "-5":55, "-10":30 },
     anchor_vol:0.2248, horizon_days:20,
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
-    realized_quantile:null, median_err:null, touch_hit:null },
+    realized_quantile:null, median_err:null, touch_hit:null ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-07-29) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
+  },
   { instrument:"ORWE", asset_class:"equity", anchor_date:"2026-07-01", anchor_price:22.34, ccy:"EGP",
-    horizon_label:"3 months", grade_date:"2026-09-23", cycle_no:1, reanchor_from:null,
+    horizon_label:"3 months", grade_date:"2026-10-01", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     p5:18.42, p25:21.01, p50:22.91, p75:25.01, p95:28.48,
     touch:{ "+5":69, "+10":47, "+15":30, "+20":18, "-5":55, "-10":30 },
-    anchor_vol:0.2248, horizon_days:60,
+    anchor_vol:0.2248, horizon_days:61,
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
-    realized_quantile:null, median_err:null, touch_hit:null },
+    realized_quantile:null, median_err:null, touch_hit:null ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-23) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
+  },
   { instrument:"EGAL", asset_class:"equity", anchor_date:"2026-07-01", anchor_price:285.88, ccy:"EGP",
-    horizon_label:"1 month", grade_date:"2026-07-29", cycle_no:1, reanchor_from:null,
+    horizon_label:"1 month", grade_date:"2026-08-02", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     p5:244.5, p25:277.8, p50:298.8, p75:321.2, p95:362.0,
     touch:{ "+5":69, "+10":45, "+15":27, "+20":15, "-5":41, "-10":19 },
     anchor_vol:0.4236, horizon_days:20,
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
-    realized_quantile:null, median_err:null, touch_hit:null },
+    realized_quantile:null, median_err:null, touch_hit:null ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-07-29) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
+  },
   { instrument:"EGAL", asset_class:"equity", anchor_date:"2026-07-01", anchor_price:285.88, ccy:"EGP",
-    horizon_label:"3 months", grade_date:"2026-09-23", cycle_no:1, reanchor_from:null,
+    horizon_label:"3 months", grade_date:"2026-10-01", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     p5:231.5, p25:287.5, p50:326.3, p75:369.4, p95:451.7,
     touch:{ "+5":89, "+10":78, "+15":66, "+20":54, "-5":53, "-10":32 },
-    anchor_vol:0.4236, horizon_days:60,
+    anchor_vol:0.4236, horizon_days:61,
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
-    realized_quantile:null, median_err:null, touch_hit:null },
+    realized_quantile:null, median_err:null, touch_hit:null ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-23) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
+  },
   { instrument:"BTFH", asset_class:"equity", anchor_date:"2026-07-01", anchor_price:2.97, ccy:"EGP",
-    horizon_label:"1 month", grade_date:"2026-07-29", cycle_no:1, reanchor_from:null,
+    horizon_label:"1 month", grade_date:"2026-08-02", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     p5:2.39, p25:2.74, p50:2.95, p75:3.17, p95:3.58,
     touch:{ "+5":70, "+10":51, "+15":37, "+20":27, "-5":75, "-10":57 },
     anchor_vol:0.3448, horizon_days:20,
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
-    realized_quantile:null, median_err:null, touch_hit:null },
+    realized_quantile:null, median_err:null, touch_hit:null ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-07-29) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
+  },
   { instrument:"BTFH", asset_class:"equity", anchor_date:"2026-07-01", anchor_price:2.97, ccy:"EGP",
-    horizon_label:"3 months", grade_date:"2026-09-23", cycle_no:1, reanchor_from:null,
+    horizon_label:"3 months", grade_date:"2026-10-01", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     p5:2.04, p25:2.53, p50:2.89, p75:3.29, p95:4.04,
     touch:{ "+5":70, "+10":51, "+15":37, "+20":27, "-5":75, "-10":57 },
-    anchor_vol:0.3448, horizon_days:60,
+    anchor_vol:0.3448, horizon_days:61,
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
-    realized_quantile:null, median_err:null, touch_hit:null },
+    realized_quantile:null, median_err:null, touch_hit:null ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-23) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
+  },
   { instrument:"ETEL", asset_class:"equity", anchor_date:"2026-07-01", anchor_price:92.61, ccy:"EGP",
-    horizon_label:"1 month", grade_date:"2026-07-29", cycle_no:1, reanchor_from:null,
+    horizon_label:"1 month", grade_date:"2026-08-02", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     p5:80.7, p25:90.5, p50:96.9, p75:103.7, p95:116.5,
     touch:{"+5": 89, "+10": 78, "+15": 66, "+20": 54, "-5": 49, "-10": 28},
     anchor_vol:0.3830, horizon_days:20,
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
-    realized_quantile:null, median_err:null, touch_hit:null },
+    realized_quantile:null, median_err:null, touch_hit:null ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-07-29) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
+  },
   { instrument:"ETEL", asset_class:"equity", anchor_date:"2026-07-01", anchor_price:92.61, ccy:"EGP",
-    horizon_label:"3 months", grade_date:"2026-09-23", cycle_no:1, reanchor_from:null,
+    horizon_label:"3 months", grade_date:"2026-10-01", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     p5:77.5, p25:94.3, p50:106.3, p75:119.4, p95:145.3,
     touch:{"+5": 89, "+10": 78, "+15": 66, "+20": 54, "-5": 49, "-10": 28},
-    anchor_vol:0.3830, horizon_days:60,
+    anchor_vol:0.3830, horizon_days:61,
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
-    realized_quantile:null, median_err:null, touch_hit:null },
+    realized_quantile:null, median_err:null, touch_hit:null ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-23) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
+  },
   // ---- HELI · equity · cycle 1 (3 Jul 2026 published study) ----
   { instrument:"HELI", asset_class:"equity", anchor_date:"2026-07-01", anchor_price:6.43, ccy:"EGP",
     anchor_date_published:"2026-07-03", anchor_note:"Anchor date corrected 28-Jul-2026: 2026-07-03 is a Friday and the EGX was closed, so it was never a trading session. The published anchor_price 6.43 is the close of the 1-Jul session, so the price was always right and only the date label was wrong. No forecast number changed.",
-    horizon_label:"1 month", grade_date:"2026-07-29", cycle_no:1, reanchor_from:null,
+    horizon_label:"1 month", grade_date:"2026-08-02", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     p5:5.37, p25:6.09, p50:6.54, p75:7.01, p95:7.89,
     touch:{ "+5":59, "+10":37, "+15":19, "+20":11, "-5":46, "-10":21 },
     anchor_vol:0.382, horizon_days:20,
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
-    realized_quantile:null, median_err:null, touch_hit:null },
+    realized_quantile:null, median_err:null, touch_hit:null ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-07-29) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
+  },
   { instrument:"HELI", asset_class:"equity", anchor_date:"2026-07-01", anchor_price:6.43, ccy:"EGP",
     anchor_date_published:"2026-07-03", anchor_note:"Anchor date corrected 28-Jul-2026: 2026-07-03 is a Friday and the EGX was closed, so it was never a trading session. The published anchor_price 6.43 is the close of the 1-Jul session, so the price was always right and only the date label was wrong. No forecast number changed.",
-    horizon_label:"3 months", grade_date:"2026-09-24", cycle_no:1, reanchor_from:null,
+    horizon_label:"3 months", grade_date:"2026-10-01", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     p5:4.84, p25:5.95, p50:6.74, p75:7.60, p95:9.27,
     touch:{ "+5":79, "+10":65, "+15":47, "+20":35, "-5":63, "-10":41 },
-    anchor_vol:0.382, horizon_days:60,
+    anchor_vol:0.382, horizon_days:61,
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
-    realized_quantile:null, median_err:null, touch_hit:null },
+    realized_quantile:null, median_err:null, touch_hit:null ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-24) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
+  },
   { instrument:"RAYA", asset_class:"equity", anchor_date:"2026-07-01", anchor_price:7.70, ccy:"EGP",
-    horizon_label:"1 month", grade_date:"2026-07-29", cycle_no:1, reanchor_from:null,
+    horizon_label:"1 month", grade_date:"2026-08-02", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     p5:5.68, p25:6.90, p50:7.74, p75:8.66, p95:10.48,
     touch:{ "+5":70, "+10":53, "+15":38, "+20":27, "-5":68, "-10":48 },
     anchor_vol:0.6310, horizon_days:20,
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
-    realized_quantile:null, median_err:null, touch_hit:null },
+    realized_quantile:null, median_err:null, touch_hit:null ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-07-29) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
+  },
   { instrument:"RAYA", asset_class:"equity", anchor_date:"2026-07-01", anchor_price:7.70, ccy:"EGP",
-    horizon_label:"3 months", grade_date:"2026-09-23", cycle_no:1, reanchor_from:null,
+    horizon_label:"3 months", grade_date:"2026-10-01", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     p5:4.60, p25:6.40, p50:7.79, p75:9.45, p95:13.06,
     touch:{ "+5":83, "+10":72, "+15":62, "+20":53, "-5":81, "-10":68 },
-    anchor_vol:0.6310, horizon_days:60,
+    anchor_vol:0.6310, horizon_days:61,
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
-    realized_quantile:null, median_err:null, touch_hit:null },
+    realized_quantile:null, median_err:null, touch_hit:null ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-23) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
+  },
   // ---- IHC · other (ADX Abu Dhabi) · cycle 1 (4 Jul 2026 published study) ----
   {
     instrument:"IHC", asset_class:"other",
     anchor_date:"2026-07-03", anchor_price:382.30, ccy:"AED",
-    horizon_label:"1 month", grade_date:"2026-07-31", cycle_no:1, reanchor_from:null,
+    horizon_label:"1 month", grade_date:"2026-08-03", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     anchor_vol:0.061, horizon_days:20,
     p5:340.6, p25:376.0, p50:384.4, p75:397.1, p95:427.9,
     touch:{ "+5":27, "+10":10, "+15":3, "+20":1, "-5":19, "-10":8 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-07-31) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"IHC", asset_class:"other",
     anchor_date:"2026-07-03", anchor_price:382.30, ccy:"AED",
-    horizon_label:"3 months", grade_date:"2026-09-25", cycle_no:1, reanchor_from:null,
-    anchor_vol:0.061, horizon_days:60,
+    horizon_label:"3 months", grade_date:"2026-10-05", grade_basis:"projected", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.061, horizon_days:63,
     p5:322.6, p25:364.8, p50:391.3, p75:418.2, p95:462.3,
     touch:{ "+5":58, "+10":33, "+15":17, "+20":8, "-5":42, "-10":20 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-25) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   // ---- QNB \u00b7 other (QSE Qatar) \u00b7 cycle 1 (5 Jul 2026 published study) ----
   {
     instrument:"QNB", asset_class:"other",
     anchor_date:"2026-07-05", anchor_price:17.54, ccy:"QAR",
-    horizon_label:"1 month", grade_date:"2026-08-02", cycle_no:1, reanchor_from:null,
-    anchor_vol:0.18, horizon_days:20,
+    horizon_label:"1 month", grade_date:"2026-08-05", grade_basis:"projected", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.18, horizon_days:22,
     p5:15.35, p25:16.74, p50:17.48, p75:18.19, p95:19.55,
     touch:{ "+5":30, "+10":11, "+15":4, "+20":1, "-5":34, "-10":12 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-08-02) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"QNB", asset_class:"other",
     anchor_date:"2026-07-05", anchor_price:17.54, ccy:"QAR",
-    horizon_label:"3 months", grade_date:"2026-09-27", cycle_no:1, reanchor_from:null,
-    anchor_vol:0.18, horizon_days:60,
+    horizon_label:"3 months", grade_date:"2026-10-05", grade_basis:"projected", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.18, horizon_days:63,
     p5:13.96, p25:15.91, p50:17.24, p75:18.60, p95:20.91,
     touch:{ "+5":54, "+10":31, "+15":17, "+20":8, "-5":61, "-10":36 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-27) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   // ---- QGTS \u00b7 other (QSE Qatar) \u00b7 cycle 1 (5 Jul 2026 published study; MC ties benchmark, illustrative) ----
   {
     instrument:"QGTS", asset_class:"other",
     anchor_date:"2026-07-05", anchor_price:4.319, ccy:"QAR",
-    horizon_label:"1 month", grade_date:"2026-08-02", cycle_no:1, reanchor_from:null,
-    anchor_vol:0.23, horizon_days:20,
+    horizon_label:"1 month", grade_date:"2026-08-05", grade_basis:"projected", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.23, horizon_days:22,
     note:"No CRPS skill vs random-walk benchmark (indicative only) — see study Appendix B.",
     p5:3.86, p25:4.16, p50:4.34, p75:4.54, p95:4.88,
     touch:{ "+5":42, "+10":17, "+15":7, "+20":3, "-5":39, "-10":13 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-08-02) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"QGTS", asset_class:"other",
     anchor_date:"2026-07-05", anchor_price:4.319, ccy:"QAR",
-    horizon_label:"3 months", grade_date:"2026-09-27", cycle_no:1, reanchor_from:null,
-    anchor_vol:0.23, horizon_days:60,
+    horizon_label:"3 months", grade_date:"2026-10-05", grade_basis:"projected", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.23, horizon_days:63,
     note:"No CRPS skill vs random-walk benchmark (indicative only) — see study Appendix B.",
     p5:3.60, p25:4.08, p50:4.40, p75:4.74, p95:5.36,
     touch:{ "+5":65, "+10":41, "+15":25, "+20":16, "-5":60, "-10":34 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-27) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"PRDC", asset_class:"equity",
     anchor_date:"2026-07-06", anchor_price:8.28, ccy:"EGP",
-    horizon_label:"1 month", grade_date:"2026-08-03", cycle_no:1, reanchor_from:null,
+    horizon_label:"1 month", grade_date:"2026-08-06", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     p5:6.63, p25:7.74, p50:8.45, p75:9.24, p95:10.68,
     touch:{ "+5":65, "+10":44, "+15":28, "+20":18, "-5":54, "-10":30 },
     anchor_vol:0.4463, horizon_days:20,
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
     realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-08-03) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"PRDC", asset_class:"equity",
     anchor_date:"2026-07-06", anchor_price:8.28, ccy:"EGP",
-    horizon_label:"3 months", grade_date:"2026-09-28", cycle_no:1, reanchor_from:null,
+    horizon_label:"3 months", grade_date:"2026-10-06", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     p5:5.86, p25:7.55, p50:8.81, p75:10.25, p95:13.17,
     touch:{ "+5":83, "+10":70, "+15":58, "+20":47, "-5":68, "-10":50 },
-    anchor_vol:0.4463, horizon_days:60,
+    anchor_vol:0.4463, horizon_days:61,
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
     realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-28) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   { instrument:"AAPL", asset_class:"other", anchor_date:"2026-07-06", anchor_price:313.09, ccy:"USD",
-    horizon_label:"1 month", grade_date:"2026-08-03", cycle_no:1, reanchor_from:null,
+    horizon_label:"1 month", grade_date:"2026-08-06", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     p5:267, p25:293, p50:310, p75:327, p95:356,
     touch:{ "+5":41, "+10":18, "+15":7, "+20":3, "-5":47, "-10":21 },
-    anchor_vol:0.2843, horizon_days:20,
+    anchor_vol:0.2843, horizon_days:22,
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
-    realized_quantile:null, median_err:null, touch_hit:null },
+    realized_quantile:null, median_err:null, touch_hit:null ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-08-03) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
+  },
   { instrument:"AAPL", asset_class:"other", anchor_date:"2026-07-06", anchor_price:313.09, ccy:"USD",
-    horizon_label:"3 months", grade_date:"2026-09-28", cycle_no:1, reanchor_from:null,
+    horizon_label:"3 months", grade_date:"2026-10-06", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     p5:237, p25:276, p50:303, p75:333, p95:386,
     touch:{ "+5":60, "+10":38, "+15":23, "+20":13, "-5":72, "-10":50 },
-    anchor_vol:0.2843, horizon_days:60,
+    anchor_vol:0.2843, horizon_days:64,
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
-    realized_quantile:null, median_err:null, touch_hit:null },
+    realized_quantile:null, median_err:null, touch_hit:null ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-28) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
+  },
   {
     instrument:"ALINMA", asset_class:"other", cal:"matches",
     anchor_date:"2026-07-07", anchor_price:24.00, ccy:"SAR",
-    horizon_label:"1 month", grade_date:"2026-08-04", cycle_no:1, reanchor_from:null,
-    anchor_vol:0.196, horizon_days:20,
+    horizon_label:"1 month", grade_date:"2026-08-09", grade_basis:"projected", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.196, horizon_days:22,
     note:"PARITY under the v3 carry-anchored gate: CRPS skill \u22120.009 vs a carry-anchored random-walk benchmark, bootstrap 90% CI [\u22120.026, +0.018] spans zero, PIT mean 0.485 (n=18 non-overlapping 60-day windows). A calibrated, market-panel-validated distribution \u2014 no single-name edge demonstrated, and none claimed. Carry-anchored drift: rf \u2248 dividend yield, so the expected total return arrives as dividend and the price path is an explained flat. Saudi names run carry-only until the Tadawul panel reaches ~5 names.",
     p5:22.1, p25:23.31, p50:24.00, p75:24.7, p95:26.09,
     touch:{ "+5":23, "+10":6, "+15":2, "+20":1, "-5":22, "-10":4 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-08-04) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"ALINMA", asset_class:"other", cal:"matches",
     anchor_date:"2026-07-07", anchor_price:24.00, ccy:"SAR",
-    horizon_label:"3 months", grade_date:"2026-09-29", cycle_no:1, reanchor_from:null,
-    anchor_vol:0.196, horizon_days:60,
+    horizon_label:"3 months", grade_date:"2026-10-07", grade_basis:"projected", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.196, horizon_days:62,
     note:"PARITY under the v3 carry-anchored gate: CRPS skill \u22120.009 vs a carry-anchored random-walk benchmark, bootstrap 90% CI [\u22120.026, +0.018] spans zero, PIT mean 0.485 (n=18 non-overlapping 60-day windows). A calibrated, market-panel-validated distribution \u2014 no single-name edge demonstrated, and none claimed. Carry-anchored drift: rf \u2248 dividend yield, so the expected total return arrives as dividend and the price path is an explained flat. Saudi names run carry-only until the Tadawul panel reaches ~5 names.",
     p5:20.76, p25:22.82, p50:24.00, p75:25.24, p95:27.7,
     touch:{ "+5":47, "+10":21, "+15":10, "+20":5, "-5":45, "-10":18 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-29) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"ELM", asset_class:"other", cal:"matches",
     anchor_date:"2026-07-07", anchor_price:658.50, ccy:"SAR",
-    horizon_label:"1 month", grade_date:"2026-08-04", cycle_no:1, reanchor_from:null,
-    anchor_vol:0.3338, horizon_days:20,
+    horizon_label:"1 month", grade_date:"2026-08-09", grade_basis:"projected", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.3338, horizon_days:22,
     note:"PARITY under the v3 carry-anchored gate on Saudi-fitted shape/width (ν=5, cone width 1.28): CRPS skill \u22120.003 vs a carry-anchored random-walk benchmark, bootstrap 90% CI [\u22120.028, +0.016] spans zero, 0.77 band-90 coverage on n=13 non-overlapping 60-day windows. A calibrated, market-panel-validated distribution \u2014 no single-name edge demonstrated, and none claimed. Saudi shape/width was FITTED on the Tadawul panel (Alinma+Ma\u0027aden), not borrowed from another market \u2014 the borrowed-Egypt archetype had manufactured a false FAIL. Carry-anchored drift (rf 4.60% 1yr Sah govt sukuk \u2212 1.3% dividend yield); Saudi names run carry-only until the Tadawul panel reaches ~5 names.",
     p5:543, p25:610, p50:660, p75:715, p95:803,
     touch:{ "+5":58, "+10":35, "+15":19, "+20":10, "-5":55, "-10":29 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-08-04) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"ELM", asset_class:"other", cal:"matches",
     anchor_date:"2026-07-07", anchor_price:658.50, ccy:"SAR",
-    horizon_label:"3 months", grade_date:"2026-09-29", cycle_no:1, reanchor_from:null,
-    anchor_vol:0.3338, horizon_days:60,
+    horizon_label:"3 months", grade_date:"2026-10-07", grade_basis:"projected", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.3338, horizon_days:62,
     note:"PARITY under the v3 carry-anchored gate on Saudi-fitted shape/width (ν=5, cone width 1.28): CRPS skill \u22120.003 vs a carry-anchored random-walk benchmark, bootstrap 90% CI [\u22120.028, +0.016] spans zero, 0.77 band-90 coverage on n=13 non-overlapping 60-day windows. A calibrated, market-panel-validated distribution \u2014 no single-name edge demonstrated, and none claimed. Saudi shape/width was FITTED on the Tadawul panel (Alinma+Ma\u0027aden), not borrowed from another market \u2014 the borrowed-Egypt archetype had manufactured a false FAIL. Carry-anchored drift (rf 4.60% 1yr Sah govt sukuk \u2212 1.3% dividend yield); Saudi names run carry-only until the Tadawul panel reaches ~5 names.",
     p5:471, p25:577, p50:664, p75:763, p95:934,
     touch:{ "+5":76, "+10":60, "+15":46, "+20":35, "-5":73, "-10":54 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-29) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"ALPHADHABI", asset_class:"other", cal:"matches",
     anchor_date:"2026-07-03", anchor_price:8.22, ccy:"AED",
-    horizon_label:"1 month", grade_date:"2026-07-31", cycle_no:1, reanchor_from:null,
+    horizon_label:"1 month", grade_date:"2026-08-03", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     anchor_vol:0.341, horizon_days:20,
     cal:"matches",
     note:"PARITY under the fitted UAE market profile (9-name ADX/DFM panel, fat-tailed t/4 d.o.f., cone width 1.07). Name-level CRPS skill roughly +0.7\u20130.9% vs a carry-anchored random-walk benchmark with the bootstrap 90% CI spanning zero, robust across block sizes {2,3,4} \u2014 a calibrated distribution, no single-name edge demonstrated or claimed. This name was folded in as the 10th panel member (its OHLC supplied 10-Jul), which CONFIRMS the fit at nu=4/cal=1.077; it supersedes the provisional 1-name Gaussian self-fit (cone width 1.042) the study was published under. Carry-anchored drift: 3M EIBOR 3.93%, no ex-dividend date in the window (q=0). TIMING FLAG: the anchor pre-dates the 7\u20138 Jul ceasefire collapse \u2014 this cohort will be graded inside the war-regime window; outlier-triggered out-of-cycle review applies if structurally surprising. \u2014\u2014 CORRECTION (13-Jul-2026, engine-reconciliation sweep). THE DESCRIPTION ABOVE IS SUPERSEDED AND IS NOW WRONG. It describes a 9-name UAE panel at nu=4 / cone width 1.07 \u2014 a fit that NO LONGER EXISTS. Under the LIVE production UAE fit (14-name ADX/DFM panel, nu=10, cone width 1.049) ALPHADHABI is a ROBUST FAIL: scale-normalized CRPS skill \u22121.2% against the carry-anchored random-walk benchmark, with the bootstrap 90% CI ENTIRELY BELOW ZERO at every block size tested (2/3/4). It is NOT a calibrated distribution and must not be described as one. Per the standing FAIL rule the 1-month/3-month map on this name is ILLUSTRATIVE ONLY \u2014 a volatility map, not a skill-validated forecast \u2014 and NO skill is claimed. Diagnosis, stated rather than buried: the failure is OVER-COVERAGE, not mis-centring (coverage 50/80/90 = 0.69/0.81/0.94 against nominal \u2014 the cone is too WIDE for this name), which is exactly the standing name-level width_cal open item. THE REGISTERED FORECAST ABOVE IS UNCHANGED: the percentiles and touch probabilities are frozen as published and will be graded against precisely those numbers. Only this calibration DESCRIPTION is corrected \u2014 the append-only rule stands.",
@@ -4099,12 +4391,14 @@ const LEDGER = [
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-07-31) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"ALPHADHABI", asset_class:"other", cal:"matches",
     anchor_date:"2026-07-03", anchor_price:8.22, ccy:"AED",
-    horizon_label:"3 months", grade_date:"2026-09-25", cycle_no:1, reanchor_from:null,
-    anchor_vol:0.341, horizon_days:60,
+    horizon_label:"3 months", grade_date:"2026-10-05", grade_basis:"projected", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.341, horizon_days:63,
     cal:"matches",
     note:"PARITY under the fitted UAE market profile (9-name ADX/DFM panel, fat-tailed t/4 d.o.f., cone width 1.07). Name-level CRPS skill roughly +0.7\u20130.9% vs a carry-anchored random-walk benchmark with the bootstrap 90% CI spanning zero, robust across block sizes {2,3,4} \u2014 a calibrated distribution, no single-name edge demonstrated or claimed. This name was folded in as the 10th panel member (its OHLC supplied 10-Jul), which CONFIRMS the fit at nu=4/cal=1.077; it supersedes the provisional 1-name Gaussian self-fit (cone width 1.042) the study was published under. Carry-anchored drift: 3M EIBOR 3.93%, no ex-dividend date in the window (q=0). TIMING FLAG: the anchor pre-dates the 7\u20138 Jul ceasefire collapse \u2014 this cohort will be graded inside the war-regime window; outlier-triggered out-of-cycle review applies if structurally surprising. \u2014\u2014 CORRECTION (13-Jul-2026, engine-reconciliation sweep). THE DESCRIPTION ABOVE IS SUPERSEDED AND IS NOW WRONG. It describes a 9-name UAE panel at nu=4 / cone width 1.07 \u2014 a fit that NO LONGER EXISTS. Under the LIVE production UAE fit (14-name ADX/DFM panel, nu=10, cone width 1.049) ALPHADHABI is a ROBUST FAIL: scale-normalized CRPS skill \u22121.2% against the carry-anchored random-walk benchmark, with the bootstrap 90% CI ENTIRELY BELOW ZERO at every block size tested (2/3/4). It is NOT a calibrated distribution and must not be described as one. Per the standing FAIL rule the 1-month/3-month map on this name is ILLUSTRATIVE ONLY \u2014 a volatility map, not a skill-validated forecast \u2014 and NO skill is claimed. Diagnosis, stated rather than buried: the failure is OVER-COVERAGE, not mis-centring (coverage 50/80/90 = 0.69/0.81/0.94 against nominal \u2014 the cone is too WIDE for this name), which is exactly the standing name-level width_cal open item. THE REGISTERED FORECAST ABOVE IS UNCHANGED: the percentiles and touch probabilities are frozen as published and will be graded against precisely those numbers. Only this calibration DESCRIPTION is corrected \u2014 the append-only rule stands.",
     p5:6.30, p25:7.42, p50:8.29, p75:9.27, p95:10.93,
@@ -4112,30 +4406,36 @@ const LEDGER = [
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-09-25) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"EXTRA", asset_class:"other", cal:"matches",
     anchor_date:"2026-07-09", anchor_price:68.10, ccy:"SAR",
-    horizon_label:"1 month", grade_date:"2026-08-06", cycle_no:1, reanchor_from:null,
-    anchor_vol:0.316, horizon_days:20,
+    horizon_label:"1 month", grade_date:"2026-08-09", grade_basis:"projected", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.316, horizon_days:21,
     note:"PARITY under the v3 carry-anchored gate. Name-level CRPS skill −0.050 vs a carry-anchored random-walk benchmark, bootstrap 90% CI [−0.140, +0.007] spans zero; the Saudi market panel (Alinma + Ma'aden + eXtra, n=54) is PARITY at −0.021, CI [−0.050, +0.005], PIT 0.500. A calibrated, market-panel-validated distribution — no single-name edge demonstrated, and none claimed. Carry-anchored drift: the ~6.9% dividend yield exceeds the ~4.25% risk-free, so the price median is an explained flat (slightly below spot), with the return delivered as dividend. Saudi shape/width fitted on the Tadawul panel (ν=5, cone width=1.28); carry-only until ~5 names.",
     p5:59.2, p25:64.6, p50:67.9, p75:71.4, p95:78.2,
     touch:{ "+5":42, "+10":18, "+15":7, "+20":3, "-5":42, "-10":16 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-08-06) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"EXTRA", asset_class:"other", cal:"matches",
     anchor_date:"2026-07-09", anchor_price:68.10, ccy:"SAR",
-    horizon_label:"3 months", grade_date:"2026-10-04", cycle_no:1, reanchor_from:null,
-    anchor_vol:0.316, horizon_days:60,
+    horizon_label:"3 months", grade_date:"2026-10-11", grade_basis:"projected", cycle_no:1, reanchor_from:null,
+    anchor_vol:0.316, horizon_days:62,
     note:"PARITY under the v3 carry-anchored gate. Name-level CRPS skill −0.050 vs a carry-anchored random-walk benchmark, bootstrap 90% CI [−0.140, +0.007] spans zero; the Saudi market panel (Alinma + Ma'aden + eXtra, n=54) is PARITY at −0.021, CI [−0.050, +0.005], PIT 0.500. A calibrated, market-panel-validated distribution — no single-name edge demonstrated, and none claimed. Carry-anchored drift: the ~6.9% dividend yield exceeds the ~4.25% risk-free, so the price median is an explained flat (slightly below spot), with the return delivered as dividend. Saudi shape/width fitted on the Tadawul panel (ν=5, cone width=1.28); carry-only until ~5 names.",
     p5:53.3, p25:62.0, p50:67.6, p75:73.8, p95:86.2,
     touch:{ "+5":63, "+10":40, "+15":25, "+20":16, "-5":65, "-10":39 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-10-04) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
 
   // ---- 28-Jul-2026 MARKET-WIDE RE-STRIKE — EG/AE/SA onto the
