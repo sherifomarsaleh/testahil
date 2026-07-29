@@ -47,6 +47,13 @@
   .crow .cn b{font-size:var(--fs-small)}
   .crow .cn .cc{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-caption);color:var(--muted);margin-left:6px}
   .crow .cmed{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-caption);color:var(--muted);white-space:nowrap}
+  /* Each name in a mix is anchored to its OWN close on its OWN day — this row is where
+     that becomes visible instead of being averaged away silently. */
+  .crow .cdate{display:block;font-family:'IBM Plex Mono',monospace;font-size:var(--fs-caption);color:var(--muted);margin-top:2px}
+  .crow .cdate.old{color:var(--amber)}
+  .crow .cdate .dot{opacity:.5;margin:0 5px}
+  .asof{font-size:var(--fs-small);margin:0 0 12px}
+  .asof b{font-family:'IBM Plex Mono',monospace;font-weight:500}
   .crow input.wt{width:74px;min-width:74px;padding:5px 8px;text-align:right;font-family:'IBM Plex Mono',monospace}
   .crow .wl{font-size:var(--fs-caption);color:var(--muted)}
   .crow .rm{border:none;background:transparent;color:var(--muted);font-size:16px;cursor:pointer;padding:2px 6px;line-height:1}
@@ -154,12 +161,14 @@
     </div>
     <div class="chip-rows" id="p-chips"></div>
     <div class="wsum" id="p-wsum"></div>
-    <p id="p-diag" class="muted" style="margin:6px 0 0;font-size:10px;opacity:.5">build return-first-v14</p>
+    <div id="p-dates"></div>
+    <p id="p-diag" class="muted" style="margin:6px 0 0;font-size:10px;opacity:.5">build return-first-v15-dated</p>
     <p class="muted" style="margin:10px 0 0;font-size:var(--fs-small)">"Load a starting mix" picks the five EGX names with the best typical return for the downside risk they carry (median outcome divided by the worst-1-in-20 case) at the chosen horizon, equally weighted — not just the highest headline number. Each name below shows its own bad case too, so a weak trade-off is visible before you swap anything. Nothing on this page is stored or sent anywhere.</p>
   </section>
 
   <section id="sec-target" class="card anchor" data-nav="Chance of the target">
     <p class="qhead" style="margin-top:0">The chance of reaching <span id="o-tgt">+25%</span> in <span id="o-hz">3 months</span> <span class="tagk">Simulation</span></p>
+    <p class="asof muted" id="o-window">—</p>
     <div class="outgrid">
       <div class="outbox"><div class="ol">Chance of reaching your target</div><div class="bigpct g" id="o-ct">—</div><div class="rangefine" id="o-ctf"></div></div>
       <div class="outbox"><div class="ol">Middle-of-the-road (typical) outcome for this mix</div><div class="bigpct" id="o-med">—</div><div class="rangefine" id="o-medf"></div></div>
@@ -219,7 +228,7 @@
   <section id="sec-caveats" class="card anchor" style="background:var(--tint2)" data-nav="What this can't tell you">
     <p class="qhead" style="margin-top:0">What this can't tell you</p>
     <p class="muted"><b>How much these names actually move together day to day is the biggest unknown on this page.</b> Each study publishes its own stock's distribution, but not how the stocks move jointly, so some assumption is unavoidable. Rather than asking you to guess, this page uses one stated assumption: pairs on the same exchange are modelled at about 0.55 correlation, pairs on different exchanges at about 0.25 — both on the high side of typically measured equity correlations, because EGX and Gulf names share FX, rate-cycle and foreign-flow exposure. That is a modelling choice, not a live measurement and not a view on any stock — it only shapes how the odds of whatever mix you build combine, the same role a covariance matrix plays in any risk model.</p>
-    <p class="muted">Mixing currencies adds a risk these numbers don't carry at all: each name's odds are in its own currency, so a mix of EGX and Gulf names also bets on the exchange rates between them. Percentile figures come from each study's date (shown on its page), not live prices. And a target is just a number you typed — setting 25% doesn't make 25% likely, and no mix of covered names has a <i>typical</i> outcome anywhere near it over these horizons; the page will tell you when your target lives in the tail.</p>
+    <p class="muted">Mixing currencies adds a risk these numbers don't carry at all: each name's odds are in its own currency, so a mix of EGX and Gulf names also bets on the exchange rates between them. Dates are the other thing a mix quietly blurs: each name's odds are struck from that name's own last close, on its own day, and run to its own end date — all of which are printed on its row above and summarised under the headline chance. The arithmetic combines them as if they shared one window, because published data supports nothing else; where the anchors are far apart, the page says so rather than averaging the gap away. These are last closes, never live prices. And a target is just a number you typed — setting 25% doesn't make 25% likely, and no mix of covered names has a <i>typical</i> outcome anywhere near it over these horizons; the page will tell you when your target lives in the tail.</p>
     <p style="margin-bottom:0">Educational tooling and personal analytical opinion — not investment advice, not a recommendation, and not an invitation to build any particular portfolio. <a href="method.html#disclaimer">Full disclaimer</a>.</p>
   </section>
 
@@ -270,6 +279,78 @@ window.addEventListener('error', function(e){
   // (0.081, not 8.1).
   function pctU(v,d){ if(v==null||isNaN(v)) return '—'; return (v*100).toFixed(d==null?1:d)+'%'; }
   function money(v){ if(v==null||isNaN(v)) return '—'; var s=Math.round(Math.abs(v)).toLocaleString('en-US'); return (v<0?'−':'')+ s; }
+
+  /* ---------- dates ----------
+     Same normalisation as trade.html: `spotDate` is prose ("close 22 Jul 2026",
+     zero-padding inconsistent), `dist.*.resolve` is ISO ("2026-08-23"), both render as
+     the site's en-GB "d MMM yyyy". ISO is parsed from parts, not handed to
+     `new Date(str)`, because a bare ISO date is UTC midnight by spec and renders as the
+     previous day west of Greenwich.
+
+     This page needs dates more than any other on the site, and for a reason specific to
+     it: a mix is NOT one forecast. Each name carries its own anchor close, struck on
+     its own day, and its own resolve date. The arithmetic below combines those
+     distributions as if they were contemporaneous, because that is the only thing
+     published data supports — so the honest move is to show the spread rather than
+     hide it. Nothing here is re-simulated or re-anchored; a stale name is labelled,
+     never silently adjusted. */
+  /* parseDate/fmtD accept either a stored string or an already-parsed Date. Passing a
+     Date back through ISO to re-format it would be a real bug east of Greenwich: a
+     LOCAL midnight Date serialises to the previous calendar day in UTC, so Cairo would
+     read every range endpoint one day early. Dates are formatted directly. */
+  function parseDate(s){
+    if(!s) return null;
+    if(s instanceof Date) return isNaN(s.getTime()) ? null : s;
+    var str = String(s).replace(/^\s*close\s+/i,'').trim();
+    var iso = str.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
+    var d = iso ? new Date(+iso[1], +iso[2]-1, +iso[3]) : new Date(str);
+    return (d && !isNaN(d.getTime())) ? d : null;
+  }
+  function fmtD(s){
+    var d = parseDate(s);
+    return d ? d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}) : (s || '—');
+  }
+  function fmtDShort(s){  // "22 Jul" — for range endpoints that share a year
+    var d = parseDate(s);
+    return d ? d.toLocaleDateString('en-GB',{day:'numeric',month:'short'}) : (s || '—');
+  }
+  function today0(){ var n=new Date(); return new Date(n.getFullYear(), n.getMonth(), n.getDate()); }
+  function isPast(s){ var d=parseDate(s); return !!d && d < today0(); }
+  function daysAgo(s){ var d=parseDate(s); return d ? Math.round((today0()-d)/86400000) : null; }
+  var STALE_DAYS = 21;   // an anchor older than this gets flagged on its own row
+  var SPREAD_DAYS = 10;  // a wider gap between the oldest and newest anchor gets called out
+
+  /* The window every published number in the mix actually spans, for the chosen
+     horizon: when each name's clock started, and when each one stops. Returns nulls
+     rather than guesses when a name is missing a date. */
+  function mixWindow(sel, which){
+    var anchors = [], ends = [], matured = [], oldest = null;
+    sel.forEach(function(m){
+      var t = TICKERS[m.k]; if(!t) return;
+      var a = parseDate(t.spotDate), e = parseDate(t.dist && t.dist[which] && t.dist[which].resolve);
+      if(a){ anchors.push(a); if(oldest===null || a<oldest) oldest = a; }
+      if(e) ends.push(e);
+      if(t.dist && t.dist[which] && t.dist[which].resolve && isPast(t.dist[which].resolve)) matured.push(t.name);
+    });
+    var mn = function(a){ return a.length ? new Date(Math.min.apply(null, a)) : null; };
+    var mx = function(a){ return a.length ? new Date(Math.max.apply(null, a)) : null; };
+    var a0 = mn(anchors), a1 = mx(anchors);
+    return {
+      anchorFrom: a0, anchorTo: a1, endFrom: mn(ends), endTo: mx(ends),
+      spread: (a0 && a1) ? Math.round((a1-a0)/86400000) : 0,
+      oldestAge: oldest ? Math.round((today0()-oldest)/86400000) : null,
+      matured: matured, n: anchors.length
+    };
+  }
+  /* "22 Jul 2026" for a single date, "30 Jun–28 Jul 2026" for a span — the year stated
+     once, on the endpoint, since every span here sits inside one year. */
+  function rangeText(from, to){
+    if(!from && !to) return '';
+    if(!from) from = to;
+    if(!to) to = from;
+    if(+from === +to) return fmtD(from);
+    return fmtDShort(from) + '–' + fmtD(to);
+  }
 
   /* ---------- odds math: same invCDF as assets/app.js and trade.html ---------- */
   function invCDF(d){
@@ -520,8 +601,19 @@ window.addEventListener('error', function(e){
       var t=TICKERS[m.k];
       var med=(t.dist[state.h].p50/t.spot-1)*100;
       var p5own=(t.dist[state.h].p5/t.spot-1)*100;
+      /* This name's own clock, on this name's own row: the close it was struck from,
+         and the day its window ends. Two names in the same mix routinely differ by
+         weeks on both. */
+      var age = daysAgo(t.spotDate);
+      var end = t.dist[state.h].resolve;
+      var stale = (age != null && age > STALE_DAYS) || (end && isPast(end));
+      var dline = '<span class="cdate' + (stale ? ' old' : '') + '">' +
+        'from ' + fmtD(t.spotDate) + ' close' +
+        (end ? '<span class="dot">&rarr;</span>' + (isPast(end) ? 'closed ' : 'to ') + fmtD(end) : '') +
+        (age != null && age > STALE_DAYS ? ' <span class="dot">&middot;</span> ' + age + ' days old' : '') +
+        '</span>';
       return '<div class="crow">'+
-        '<div class="cn"><b>'+t.name+'</b><span class="cc">'+(t.code||m.k)+'</span></div>'+
+        '<div class="cn"><b>'+t.name+'</b><span class="cc">'+(t.code||m.k)+'</span>'+dline+'</div>'+
         '<span class="cmed">median '+pct(med)+' &middot; bad case '+pct(p5own)+'</span>'+
         '<input class="wt num" type="number" min="0" max="100" step="1" value="'+m.w+'" data-i="'+i+'" aria-label="weight of '+m.k+'">'+
         '<span class="wl">%</span>'+
@@ -532,6 +624,61 @@ window.addEventListener('error', function(e){
     $('p-wsum').innerHTML = state.mix.length
       ? 'Weights add to <b class="'+(Math.abs(sum-100)>0.5?'bad2':'')+'">'+sum.toFixed(0)+'%</b>'+(Math.abs(sum-100)>0.5?' — the odds below use each weight as a share of that total.':'.')
       : '';
+    renderDateNote();
+  }
+
+  /* ---------- the mixed-anchor warning ----------
+     The single genuinely new problem this page has that trade.html does not: the mix is
+     assembled from forecasts struck on different days. Small spreads are noise and get
+     no banner. A wide spread, or a name whose window has already closed, is a real
+     limitation on how the combined figure should be read, and gets said out loud. */
+  function renderDateNote(){
+    var box = $('p-dates');
+    if(!box) return;
+    var sel = state.mix.filter(function(m){ return m.w > 0 && TICKERS[m.k]; });
+    if(!sel.length){ box.innerHTML = ''; return; }
+    var w = mixWindow(sel, state.h);
+    var bits = [];
+    if(w.matured.length){
+      bits.push('<b>' + w.matured.slice(0,3).join(', ') +
+        (w.matured.length>3 ? ' and ' + (w.matured.length-3) + ' more' : '') +
+        (w.matured.length===1 ? ' is' : ' are') + ' already past the end of ' +
+        (w.matured.length===1 ? 'its' : 'their') + ' ' + hzLabel(state.h) + ' window.</b> ' +
+        'Those forecasts are finished — how they turned out is graded in the ' +
+        '<a href="ledger.html">public ledger</a>. Kept in the mix they describe a window ' +
+        'that has closed, not one ahead of you.');
+    }
+    if(w.spread > SPREAD_DAYS){
+      bits.push('These names were struck <b>' + w.spread + ' days</b> apart — ' +
+        rangeText(w.anchorFrom, w.anchorTo) + '. The arithmetic below lines their ' +
+        'distributions up as if they shared one start date, because that is what published ' +
+        'data allows; a name anchored weeks ago has already used part of its window. Read ' +
+        'the combined figure as an approximation, and the individual dates on each row as the truth.');
+    } else if(w.oldestAge != null && w.oldestAge > STALE_DAYS){
+      bits.push('The oldest close in this mix is <b>' + w.oldestAge + ' days</b> old. ' +
+        'Nothing the price has done since is in these numbers.');
+    }
+    box.innerHTML = bits.map(function(s){ return '<div class="warnbox">' + s + '</div>'; }).join('');
+  }
+
+  /* One line, directly under the headline chance, saying what window the chance is
+     actually about. A single date when the mix happens to share one anchor; a span when
+     it doesn't — which is the normal case. */
+  function renderWindowLine(sel, which){
+    var el = $('o-window');
+    if(!el) return;
+    if(!sel || !sel.length){ el.innerHTML = ''; el.style.display = 'none'; return; }
+    el.style.display = '';
+    var w = mixWindow(sel, which);
+    if(!w.n){ el.innerHTML = ''; el.style.display = 'none'; return; }
+    var one = w.spread === 0;
+    var s = one
+      ? 'Every name here is struck from its <b>' + rangeText(w.anchorFrom, w.anchorTo) +
+        '</b> close, and the window runs to <b>' + rangeText(w.endFrom, w.endTo) + '</b>.'
+      : 'Each name runs its own ' + hzLabel(which) + ' from its own last close: struck <b>' +
+        rangeText(w.anchorFrom, w.anchorTo) + '</b>, ending <b>' +
+        rangeText(w.endFrom, w.endTo) + '</b>.';
+    el.innerHTML = s;
   }
 
   /* ---------- results ---------- */
@@ -542,6 +689,7 @@ window.addEventListener('error', function(e){
     var amt = parseFloat($('p-amt').value)||0;
     $('o-tgt').textContent = pct(target*100,0);
     $('o-hz').textContent = hzLabel(which);
+    renderWindowLine(sel, which);
     // the optimizer section mirrors the horizon toggle above — same pill look,
     // but not clickable here, so there's only one place to actually change it
     $('m-hb20').classList.toggle('on', which==='t20');
@@ -554,6 +702,7 @@ window.addEventListener('error', function(e){
       $('o-reality').innerHTML=''; $('o-ctf').textContent=''; $('o-medf').textContent='';
       $('o-clf').textContent=''; $('o-blf').textContent='';
       $('o-div').innerHTML='';
+      renderWindowLine([], which);
       return;
     }
 
@@ -1129,14 +1278,27 @@ window.addEventListener('error', function(e){
     var rows = mix.map(function(p){
       var t=TICKERS[p.k];
       var m50=(t.dist[which].p50/t.spot-1)*100, m5=(t.dist[which].p5/t.spot-1)*100;
-      return '<div class="crow"><div class="cn"><b>'+t.name+'</b><span class="cc">'+(t.code||p.k)+'</span></div>'+
+      // same per-name dateline as the hand-built mix above — an optimised mix is
+      // assembled from exactly the same differently-dated forecasts and has no more
+      // claim to a single shared window than one the reader picked themselves.
+      var age = daysAgo(t.spotDate), end = t.dist[which].resolve;
+      var stale = (age != null && age > STALE_DAYS) || (end && isPast(end));
+      var dline = '<span class="cdate' + (stale ? ' old' : '') + '">from ' + fmtD(t.spotDate) + ' close' +
+        (end ? '<span class="dot">&rarr;</span>' + (isPast(end) ? 'closed ' : 'to ') + fmtD(end) : '') + '</span>';
+      return '<div class="crow"><div class="cn"><b>'+t.name+'</b><span class="cc">'+(t.code||p.k)+'</span>'+dline+'</div>'+
         '<span class="cmed">median '+pct(m50)+' &middot; bad case '+pct(m5)+'</span>'+
         '<span style="font-family:\'IBM Plex Mono\',monospace;font-weight:600;white-space:nowrap">'+p.w+'%</span></div>';
     }).join('');
     var amt = parseFloat($('p-amt').value)||0;
     var moneyLbl = function(v){ return 'EGP ' + money(v); };
+    var w = mixWindow(mix, which);
+    var wline = w.n ? '<p class="asof muted" style="margin:10px 0 0">' +
+      (w.spread === 0
+        ? 'All struck from the <b>' + rangeText(w.anchorFrom, w.anchorTo) + '</b> close, running to <b>' + rangeText(w.endFrom, w.endTo) + '</b>.'
+        : 'Struck <b>' + rangeText(w.anchorFrom, w.anchorTo) + '</b> (' + w.spread + ' days apart), ending <b>' + rangeText(w.endFrom, w.endTo) + '</b>.') +
+      '</p>' : '';
     return '<div class="mix-card"><h4>'+title+'</h4><p class="sub">'+sub+'</p>'+
-      '<div class="chip-rows">'+rows+'</div>'+
+      '<div class="chip-rows">'+rows+'</div>'+ wline +
       '<div class="outgrid" style="margin-top:12px">'+
         '<div class="outbox"><div class="ol">Typical outcome</div><div class="bigpct '+(stats.med>=0?'g':'r')+'">'+pct(stats.med*100)+'</div>'+
           '<div class="rangefine">On '+moneyLbl(amt)+': '+moneyLbl(amt*stats.med)+'. Half of outcomes land below this, half above.</div></div>'+

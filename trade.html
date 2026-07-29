@@ -62,6 +62,15 @@
   .odds-table{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
   .odds-table>div{background:var(--card,var(--paper));padding:12px 14px}
   .odds-table .oh{font-weight:700;font-size:var(--fs-small);background:var(--tint2)}
+  /* dated column header: the horizon name on line 1, the calendar date it resolves on
+     line 2 — the whole point of this page is that a probability without a date is not
+     a statement about anything. */
+  .odds-table .oh .ohd{display:block;font-weight:400;color:var(--muted);font-size:var(--fs-caption);margin-top:2px;font-family:'IBM Plex Mono',monospace}
+  .odds-table .oh .ohd.done{color:var(--amber)}
+  table.tt th .ohd{display:block;font-weight:400;color:var(--muted);font-size:var(--fs-caption);margin-top:2px;font-family:'IBM Plex Mono',monospace}
+  table.tt th .ohd.done{color:var(--amber)}
+  .asof{font-size:var(--fs-small);margin:0 0 12px}
+  .asof b{font-family:'IBM Plex Mono',monospace;font-weight:500}
   .odds-table .rowlabel{font-weight:600;font-size:var(--fs-small);display:flex;flex-direction:column;justify-content:center;gap:2px}
   .odds-table .rowlabel .rr{font-weight:400;color:var(--muted);font-size:var(--fs-caption)}
   .odds-cell .pctnum{font-family:'IBM Plex Mono',monospace;font-size:var(--fs-h2);font-weight:600;line-height:1.1}
@@ -124,7 +133,9 @@
 
   <section id="sec-odds" class="card anchor" data-nav="What are the odds">
     <p class="qhead" style="margin-top:0">The odds for <span id="o-oname">this name</span> <span class="tagk">Simulation</span></p>
+    <p class="asof muted" id="o-asof">—</p>
     <p class="muted">We call a move of <b>10% or more</b> "big" and anything smaller "small" — the same round cut-off used in the odds box on our homepage. The four chances in each column always add to 100%: between them they cover every place the 50,000 simulated paths could end up.</p>
+    <div id="o-matured"></div>
     <div class="odds-table" id="o-odds"></div>
     <p class="muted" style="font-size:var(--fs-small);margin-top:10px">"How much" for the big-win and big-loss rows is the study's own rare-case figure (95th / 5th percentile). The two middle rows are ranges; where the single most likely outcome (median) falls inside one, we say so.</p>
     <p style="margin:14px 0 0"><a href="portfolio.html">Thinking about a mix of names rather than one? See the odds for a whole portfolio →</a></p>
@@ -224,6 +235,30 @@
   }
   function pct(v, d){ if(v==null||isNaN(v)) return '—'; return (v>0?'+':'') + v.toFixed(d==null?1:d) + '%'; }
   function ints(v){ return Number(v).toLocaleString('en-US'); }
+
+  /* ---------- dates ----------
+     Two different stored shapes have to land on one display convention: `spotDate` is
+     prose ("close 22 Jul 2026", and zero-padding is not consistent across names) while
+     `dist.*.resolve` is ISO ("2026-08-23"). Both normalise to the site's en-GB
+     "d MMM yyyy" — the same format ledger.html already renders grade dates in, so a
+     reader moving between the two pages sees one convention, not two.
+     Parsing is explicit rather than left to `new Date(str)` for the ISO case: bare
+     "2026-08-23" is parsed as UTC midnight by spec, which renders as the PREVIOUS day
+     for any reader west of Greenwich. Building it from parts keeps it local. */
+  function parseDate(s){
+    if(!s) return null;
+    var str = String(s).replace(/^\s*close\s+/i,'').trim();
+    var iso = str.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
+    var d = iso ? new Date(+iso[1], +iso[2]-1, +iso[3]) : new Date(str);
+    return (d && !isNaN(d.getTime())) ? d : null;
+  }
+  function fmtD(s){
+    var d = parseDate(s);
+    return d ? d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}) : (s || '—');
+  }
+  function today0(){ var n = new Date(); return new Date(n.getFullYear(), n.getMonth(), n.getDate()); }
+  function isPast(s){ var d = parseDate(s); return !!d && d < today0(); }
+  function daysAgo(s){ var d = parseDate(s); return d ? Math.round((today0()-d)/86400000) : null; }
 
   /* ---------- odds math: ported from assets/app.js (invCDF/probAbove) so this page
      stays self-contained (data.js only) and uses the exact same methodology already
@@ -407,6 +442,27 @@
     if(d.label) return d.label.replace(/\s*\(T\+\d+\)\s*/,'').trim();
     return which === 't20' ? '1 month' : '3 months';
   }
+  /* the horizon's own calendar end-date — "1 month" is meaningless without the date it
+     lands on, and the date is already stored per name (dist.*.resolve), so nothing is
+     inferred or recomputed here. Returns '' when a name has no resolve date rather
+     than fabricating one. */
+  function hzDate(t, which){
+    var d = t.dist && t.dist[which];
+    return (d && d.resolve) ? fmtD(d.resolve) : '';
+  }
+  function hzDone(t, which){
+    var d = t.dist && t.dist[which];
+    return !!(d && d.resolve && isPast(d.resolve));
+  }
+  /* column header: name on line 1, date on line 2, amber + "closed" once the window
+     has already run its course. */
+  function hzHead(t, which){
+    var dt = hzDate(t, which);
+    if(!dt) return hz(t, which);
+    var done = hzDone(t, which);
+    return hz(t, which) + '<span class="ohd' + (done ? ' done' : '') + '">' +
+           (done ? 'closed ' : 'by ') + dt + '</span>';
+  }
 
   /* ---------- published touch ladder ---------- */
   function nearestRung(t, price){
@@ -447,8 +503,48 @@
       bigLoss:   oddsCell('bigLoss',   b.bigLoss,   'rare-low case: ' + pct(bigLossPct) + ', ' + t.ccy + ' ' + px(bigLossAmt))
     };
   }
+  /* ---------- the dateline ----------
+     Every number on this page is anchored to one close on one day and resolves on two
+     specific later days. Stating that once, in words, above the table is the difference
+     between "there is upside" (a claim about nothing) and "from this price, on this
+     date, by this date". */
+  function renderAsOf(t){
+    var el = $('o-asof');
+    var d1 = hzDate(t,'t20'), d3 = hzDate(t,'t60');
+    var anchor = t.spotDate ? fmtD(t.spotDate) : null;
+    if(!anchor && !d1 && !d3){ el.innerHTML = ''; el.style.display = 'none'; return; }
+    el.style.display = '';
+    var s = 'Struck from the last close, <b>' + t.ccy + ' ' + px(t.spot) + '</b>' +
+            (anchor ? ' on <b>' + anchor + '</b>' : '') + '. ';
+    if(d1 && d3){
+      s += 'The first column is where the simulation puts the price on <b>' + d1 + '</b>' +
+           (hzDone(t,'t20') ? ' (already passed)' : '') + ', the second on <b>' + d3 + '</b>' +
+           (hzDone(t,'t60') ? ' (already passed)' : '') + '.';
+    }
+    var age = daysAgo(t.spotDate);
+    if(age != null && age > 21){
+      s += ' That close is <b>' + age + ' days</b> old — anything the price has done since is not in these numbers.';
+    }
+    el.innerHTML = s;
+  }
+  function renderMatured(t){
+    var box = $('o-matured');
+    var done = [];
+    if(hzDone(t,'t20')) done.push([hz(t,'t20'), hzDate(t,'t20')]);
+    if(hzDone(t,'t60')) done.push([hz(t,'t60'), hzDate(t,'t60')]);
+    if(!done.length){ box.innerHTML = ''; return; }
+    /* phrased as "3 months: that window closed on …" rather than "the 3 months window",
+       which the plural label makes ungrammatical. */
+    box.innerHTML = '<div class="warnbox" style="margin-top:0;margin-bottom:14px">' +
+      '<b>' + done.map(function(d){ return d[0] + ': that window closed on ' + d[1]; }).join('. ') + '.</b> ' +
+      'What follows is the forecast as it was published at the time, left standing rather than quietly refreshed. ' +
+      'How it actually turned out is graded in the <a href="ledger.html">public ledger</a>, right or wrong. ' +
+      'Read it as a record, not as a live view — a fresh one is struck when this name is next rolled forward.</div>';
+  }
   function renderOdds(t){
     $('o-oname').textContent = t.name;
+    renderAsOf(t);
+    renderMatured(t);
     var h1 = horizonOdds(t, 't20'), h3 = horizonOdds(t, 't60');
     if(!h1 || !h3){ $('o-odds').innerHTML = '<div style="padding:14px" class="muted">No simulated distribution published for this name.</div>'; return; }
     var rows = [
@@ -457,7 +553,7 @@
       ['Small loss', '0% to −' + BIG_PCT + '%', 'smallLoss'],
       ['Big loss', '−' + BIG_PCT + '% or more', 'bigLoss']
     ];
-    var html = '<div class="oh"></div><div class="oh">' + hz(t,'t20') + '</div><div class="oh">' + hz(t,'t60') + '</div>';
+    var html = '<div class="oh"></div><div class="oh">' + hzHead(t,'t20') + '</div><div class="oh">' + hzHead(t,'t60') + '</div>';
     rows.forEach(function(r){
       html += '<div class="rowlabel">' + r[0] + '<span class="rr">' + r[1] + '</span></div>' + h1[r[2]] + h3[r[2]];
     });
@@ -468,15 +564,21 @@
   function renderPublished(t){
     $('o-name').textContent = t.name;
     $('o-code').textContent = t.code || '';
-    $('o-spotline').textContent = 'Last close ' + t.ccy + ' ' + px(t.spot) + (t.spotDate ? ' · ' + t.spotDate : '');
+    $('o-spotline').innerHTML = 'Last close ' + t.ccy + ' ' + px(t.spot) +
+      (t.spotDate ? ' · ' + fmtD(t.spotDate) : '') +
+      (daysAgo(t.spotDate) != null ? ' <span class="muted">(' + daysAgo(t.spotDate) + ' days ago)</span>' : '');
     var f = t.fair || {}, d = t.dist || {};
+    /* Both horizons carry their own check date now. The old single "Checked on" cell
+       showed only t60's, in raw ISO — which left the 1-month column on this page with
+       no date at all, the exact gap this change exists to close. */
     var cells = [
       ['Bear-case fair value', f.bear!=null ? t.ccy + ' ' + px(f.bear) : '—', 'Fundamental'],
       ['Central fair value',   f.base!=null ? t.ccy + ' ' + px(f.base) : '—', 'Fundamental'],
       ['Bull-case fair value', f.full!=null ? t.ccy + ' ' + px(f.full) : '—', 'Fundamental'],
       [hz(t,'t20') + ' range (25th–75th)', d.t20 ? px(d.t20.p25) + ' – ' + px(d.t20.p75) : '—', 'Simulation'],
       [hz(t,'t60') + ' range (25th–75th)', d.t60 ? px(d.t60.p25) + ' – ' + px(d.t60.p75) : '—', 'Simulation'],
-      ['Checked on', d.t60 && d.t60.resolve ? d.t60.resolve : '—', null]
+      ['Checked on — ' + hz(t,'t20'), hzDate(t,'t20') || '—', null],
+      ['Checked on — ' + hz(t,'t60'), hzDate(t,'t60') || '—', null]
     ];
     $('o-pub').innerHTML = cells.map(function(c){
       var tag = c[2] ? ' <span class="tagk">' + c[2] + '</span>' : '';
@@ -514,8 +616,8 @@
 
   function renderTouch(t){
     var tb = $('o-touch').querySelector('tbody');
-    $('o-th1').textContent = hz(t,'t20');
-    $('o-th3').textContent = hz(t,'t60');
+    $('o-th1').innerHTML = hzHead(t,'t20');
+    $('o-th3').innerHTML = hzHead(t,'t60');
     if(!t.touch || !t.touch.length){
       tb.innerHTML = '<tr><td colspan="3" class="muted">No touch ladder published for this name.</td></tr>';
       return;
