@@ -4,7 +4,7 @@
 ## What the final product is
 
 A ranked stock list for testahil.com — "of the 59 covered names in EG/AE/SA, the ones
-most likely to beat their market over the next 60 sessions" — refreshed quarterly,
+most likely to beat their market over the next 3 months" — refreshed quarterly,
 with a public forward-scored ledger. **Nothing ships until a factor passes the signed
 pre-registration's §6 five-rule adoption gate.** No factor has passed yet.
 
@@ -33,7 +33,7 @@ A monthly scheduled task runs a fresh session that must:
 
 1. Read this file first. Clone `github.com/sherifomarsaleh/testahil`.
 2. **Shadow cohorts:** for any PENDING cohort in `claude/Shadow_Selection_Cohorts.md`
-   whose three markets have ≥60 sessions past their anchors (use repo data,
+   whose three markets have reached the 3-month calendar mark past their anchors (use repo data,
    Step 0.0-gated), grade per the ledger's fixed spec, APPEND results (never edit
    existing entries), and file the next cohort at the then-latest anchors.
 3. **Backtest re-run:** count EG majority-quorum sessions after 2026-04-20 (the last
@@ -62,3 +62,6 @@ first maturity — grade it if its files are reachable, else tell Sherif it is d
    only.
 2. **Adoption sign-off and publication**, if and when a factor clears the gate.
 3. Optional: value-traded data sourcing if F5 is ever to be revived.
+
+
+> NAMING MIGRATION (29-Jul-2026): horizon wording updated from the retired session-count form to the calendar form ('3 months', per the 27/28-Jul calendar-only adoption). The horizon's DEFINITION is unchanged — the pre-registered test itself is not altered, only its name.

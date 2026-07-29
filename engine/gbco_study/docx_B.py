@@ -20,7 +20,7 @@ rows = [
 table(rows, [3.3, 3.3], first_col_bold=True, band_rows=[0], header=False)
 P('We simulate 50,000 three-month price paths (seed 42) with the house YZ-HAR v2 engine: width from a pooled log-HAR '
   'cascade (variance lags 1/5/22) on a gap-aware Yang-Zhang variance proxy, projecting the average daily variance over the '
-  'next 60 sessions (annualized ≈ ' + f"{eng['anchor_vol']*100:.1f}%" + ' at this origin — regime-conditional by construction, '
+  '3-month window (annualized ≈ ' + f"{eng['anchor_vol']*100:.1f}%" + ' at this origin — regime-conditional by construction, '
   'with no calibration multiplier: the retired KVOL floor is replaced by the HAR width itself); shape from unit-variance '
   'Student-t(5) innovations via a per-path chi-square mixture (tighter interquartile body, honest tails); and drift that is '
   'asset-class-conditional — here the secular expanding-window drift (+' + f"{eng['drift_daily']*60*100:.1f}%" + ' per '

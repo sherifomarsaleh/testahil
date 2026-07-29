@@ -3,7 +3,7 @@ Record (items a, c, d) of the SIGNED pre-registration, 27-Jul-2026.
 
 - Anchors: EG reference-calendar grid (identical walkback to the EG pass: 58
   anchors for 252d factors, 41 for F3). Each other market's anchor = its own
-  last session at or before the EG anchor date; horizon = 60 sessions on its
+  last session at or before the EG anchor date; horizon = the 3-month calendar window on its
   own calendar; resolved-outcome and trailing-history inclusion per name.
 - A market joins a cohort only with >=6 admissible names (min-6 per market).
 - Pooled cohort IC = Spearman of within-market percentile ranks (rank/(n-1),

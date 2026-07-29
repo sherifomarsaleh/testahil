@@ -80,7 +80,7 @@ caption('Forecast-vs-actual scorecard (device A-3) and new-vs-old reconciliation
 # ================= Appendix B ================================================
 H1('Appendix B  Step 0 — calibration backtest')
 P('Before any forecast we test the Monte Carlo lens on GBCO\u2019s own five years of history: at seventeen non-overlapping '
-  'origins (h = 60 trading days), using only data available at each origin, the YZ-HAR engine generates the three-month-ahead '
+  'origins (the 3-month calendar window), using only data available at each origin, the YZ-HAR engine generates the three-month-ahead '
   'distribution and the realized close is scored against it. The grade is skill versus a naïve benchmark — a zero-drift '
   'random-walk lognormal cone on trailing realized vol — measured by CRPS skill (must be > 0) and the Winkler interval '
   'score; the PIT histogram and coverage table are diagnostics only, since band-containment rewards width.')

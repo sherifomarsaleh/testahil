@@ -5,7 +5,7 @@ fixed a-priori constants); it holds no per-market fit and never goes stale.
 
 WHAT IT DOES
     A per-name multiplier on the market cone width, learned ONLINE from that name's OWN
-    resolved 60-day residuals. It corrects the single thing the pooled (nu, width_cal)
+    resolved 3-month-window residuals. It corrects the single thing the pooled (nu, width_cal)
     structurally cannot: a name whose OWN volatility sits below (or above) the panel
     average is given a market-level cone that is too WIDE (or too narrow) for it. The
     dominant failure this fixes is OVER-COVERAGE — the system's robust FAILs (LGES, Korea;
