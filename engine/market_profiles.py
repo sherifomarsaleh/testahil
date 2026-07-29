@@ -306,7 +306,7 @@ SAUDI = MarketProfile(
 USA = MarketProfile("US", "United States", FED_SCHEDULE, 0.0363,
     "UST 10Y 4.58% (tradingeconomics 8-Jul-2026, cached CoC-Reference); use 3M bill 3.71% "
     "(investing.com 10-Jul-2026) for the 60d carry at publish.",
-    "mom_12_1", +1, 0.05, False, nu=250.0, width_cal=1.077,
+    "mom_12_1", +1, 0.05, False, nu=12.0, width_cal=1.084,
     fit_meta=("Fitted 10-Jul-2026 on the 3-name US panel (AAPL/NVDA/TSLA, 54 windows, "
               "2021-2026): nu=12, cal=1.014 - thin tails like metals, far from EGX. "
               "SIGNAL ABLATION on this panel: carry-only (+0.012 CI[-0.006,+0.017]) "
@@ -337,7 +337,7 @@ BRAZIL = MarketProfile("BR", "Brazil", [("2020-01-01", 0.1300)], 0.1300,
     notes="EM momentum prior (Rouwenhorst).")
 KOREA = MarketProfile("KR", "South Korea", [("2020-01-01", 0.0300)], 0.0300,
     "PLACEHOLDER — source KTB at first KR study.", None, +1, 0.03, False,
-    nu=10.0, width_cal=1.063,
+    nu=8.0, width_cal=1.07,
     fit_meta=(
         "REFIT 27-Jul-2026 on the 3-name KR panel after a 15-YEAR SAMSUNG INGEST - "
         "supersedes nu=Gaussian/cal=1.154. Samsung's library goes 1,515 -> 3,709 "
@@ -472,7 +472,7 @@ UAE = MarketProfile("AE", "UAE (ADX/DFM)", FED_SCHEDULE, 0.0365,
     "but the fit now conforms to the house cleaning gate."))
 INDIA = MarketProfile("IN", "India (NSE)", [("2020-01-01", 0.0650)], 0.0650,
     "PLACEHOLDER — source 10Y G-Sec at first IN study.", "mom_12_1", +1, 0.07, False,
-    nu=250.0, width_cal=0.986,
+    nu=6.0, width_cal=1.021,
     fit_meta=(
         "REFIT 11-Jul-2026 on the 3-name IN panel (TMPV/RELIANCE/INFY, 51 windows, "
         "2021-2026), RE-RUN through the market-aware data-quality gate and the "
@@ -525,7 +525,7 @@ QATAR = MarketProfile("QA", "Qatar (QE)",
                     "construction). FLAG per no-UST-shortcut rule: source a real QAR "
                     "sovereign/T-bill yield before any Qatar publish."),
     signal_type="rev_1m", signal_sign=-1, ic=0.06, signal_active=False,
-    nu=10.0, width_cal=0.937,
+    nu=6.0, width_cal=0.951,
     fit_meta=("Fitted 10-Jul-2026 on the 3-name QA panel (QGTS/QNB/IQCD, 54 windows, "
               "2021-2026) - REPLACES the provisional QGTS-only self-fit (Gaussian/"
               "0.916). nu=12, cal=0.972: thin-tailed pegged market, cone near-"
