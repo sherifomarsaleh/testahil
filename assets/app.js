@@ -901,6 +901,55 @@ function renderStaticFan(elId, T){
     hit.addEventListener('touchstart', function(e){ if(e.touches[0]) moveTo(e.touches[0].clientX); }, {passive:true});
     hit.addEventListener('touchmove', function(e){ if(e.touches[0]) moveTo(e.touches[0].clientX); }, {passive:true});
   }
+
+  // Every ticker page calls renderStaticFan, and none of them call a stamp
+  // function of their own, so this is the one universal hook that reaches all
+  // 74 pages without editing 74 files. Deferred to DOMContentLoaded because the
+  // technical read is written by each page's own inline script, and on some
+  // pages that runs after this call.
+  stampAsOfWhenReady(T);
+}
+
+/* ============ as-of stamps: data vintage vs. computation date ============ */
+/* Two dates, not one. A single "as of" cannot distinguish a block recomputed
+   today on last week's prices from one recomputed last week — and that is
+   exactly the failure this exists to prevent: on 28-Jul-2026 COMI's technical
+   narrative still described a 129.25 close under a 142.00 published spot, with
+   nothing on the page to say so. */
+const _ASOF_MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+function _asOfFmt(iso){
+  if (!iso) return null;
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso);
+  if (!m) return iso;
+  return parseInt(m[3],10) + ' ' + _ASOF_MONTHS[parseInt(m[2],10)-1] + ' ' + m[1];
+}
+function asOfStampHTML(a, label){
+  if (!a || !a.data) return '';
+  const d = _asOfFmt(a.data), c = _asOfFmt(a.computed);
+  const tail = (c && c !== d) ? ' \u00b7 ' + label + ' computed ' + c
+                              : ' \u00b7 ' + label + ' computed same day';
+  return '<p class="asof-stamp" style="margin:0 0 10px;font-family:\'IBM Plex Mono\',monospace;' +
+         'font-size:11px;letter-spacing:.2px;color:var(--muted,#6b7c78)">' +
+         'price data through <b style="color:var(--ink,#12211e)">' + d + '</b>' + tail + '</p>';
+}
+function stampAsOf(T){
+  const A = T && T.asof; if (!A) return;
+  const mc = document.getElementById('mc-fan-static');
+  if (mc && A.mc && !(mc.previousElementSibling &&
+      mc.previousElementSibling.classList.contains('asof-stamp'))) {
+    mc.insertAdjacentHTML('beforebegin', asOfStampHTML(A.mc, 'simulation'));
+  }
+  const tr = document.getElementById('techread');
+  if (tr && A.tech && !tr.querySelector('.asof-stamp')) {
+    tr.insertAdjacentHTML('afterbegin', asOfStampHTML(A.tech, 'read'));
+  }
+}
+function stampAsOfWhenReady(T){
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function(){ stampAsOf(T); }, {once:true});
+  } else {
+    stampAsOf(T);
+  }
 }
 
 /* ============ fair-value sensitivity (Lens 2) ============ */

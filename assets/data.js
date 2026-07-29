@@ -1212,12 +1212,16 @@ const TICKERS = {
     touch: [ /* descending high -> low — same absolute levels, reprobabilised on the 28-Jul cycle-3 paths */
       [150.00, 41, 71], [140.00, 66, 77], [135.00, 30, 48], [120.00, 2, 10], [110.00, 0, 3], [100.00, 0, 1]
     ],
-    levels: { res:[135.15, 132.82, 129.50], sup:[120.00, 116.04, 110.00] },
+    levels: { res:[144.63, 150, 160], sup:[137.30, 132.25, 126.58] },
     tech: {
-      trend: "Consolidating below the moving-average stack, above a rising 200-day",
-      summary: "The price closed 129.25 below a falling 20-day (132.8) and 50-day (135.2) but well above a rising 200-day (116.0) — a pullback inside a longer uptrend rather than a breakdown. Momentum is neutral: RSI(14) is ~48 and the daily ATR near 2.2 (~1.7%) points to an orderly tape. The whole equity case rests on the spread between a ~30% return on equity and a ~24% cost of equity, not on the chart.",
-      bull: "A daily close back above the 132.8\u2013135.2 moving-average cluster would say the pullback is over and reopen the highs.",
-      bear: "A close below the 120 round level and the rising 200-day near 116 would break the structure and open the 110 zone."
+      trend: "Trading above the whole moving-average stack, on a rising 200-day",
+      summary: "The price closed 142.00 above a rising 20-day (134.94), a flat 50-day (134.21) and a rising 200-day (120.53). Momentum is firm: RSI(14) is ~64 and the daily ATR near 2.62 (~1.8%) points to a normal tape. MACD (12\u00b726\u00b79) is positive and rising (+1.91 / +1.16 / +0.76). Over the last year it has ranged 79.59\u2013145.01; the last close sits 2% below that high and 78% above that low.",
+      bull: "A daily close back above 144.63 would clear the nearest resistance and open the 160.00 zone.",
+      bear: "A close below 137.30 would break the nearest support and open the 126.58 zone."
+    },
+    asof: {
+      mc:   { data:"2026-07-28", computed:"2026-07-28" },
+      tech: { data:"2026-07-28", computed:"2026-07-29" }
     },
     files: {
       study: "files/COMI_Valuation_Study_29-06-2026_public.docx?v=2906",
