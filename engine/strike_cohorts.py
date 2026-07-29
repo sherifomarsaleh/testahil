@@ -34,6 +34,7 @@ from mc_v3 import (fit_har_v3, har_forecast_v3, carry_log_h,  # noqa: E402
                    signal_alpha, simulate_paths_v3)
 import horizons as HZ                                    # noqa: E402
 import market_profiles as MP                             # noqa: E402
+import adaptive_width as AW                              # noqa: E402
 
 RAW = os.path.join(HERE, 'raw_ohlc')
 N_PATHS = 50_000
@@ -62,11 +63,13 @@ def strike(market: str, ticker: str, q_annual: float = 0.0,
 
     v = yz_variance_proxy(df)
     plan = HZ.cohort_plan(market, anchor_date)
+    width_mult = AW.live_width_mult(df, prof)   # 1.0 unless market flagged AND name past MIN_WINDOWS
 
     out = {'market': market, 'ticker': ticker, 'anchor_date':
            anchor_date.date().isoformat(), 'spot': spot,
            'rows_in': int(rep['rows_in']), 'repairs': rep['repairs'],
            'rows_out': len(df), 'nu': prof.nu, 'width_cal': prof.width_cal,
+           'width_overlay_mult': width_mult,
            'rf_live': prof.rf_live, 'q_annual': q_annual,
            'signal_active': prof.signal_active, 'horizons': {}}
 
@@ -75,14 +78,15 @@ def strike(market: str, ticker: str, q_annual: float = 0.0,
         months = 1 if short == '1M' else 3
         beta, s2 = fit_har_v3(v, i, horizon=h)
         dvar = har_forecast_v3(v, i, beta, s2, horizon=h)
-        sigma_h = float(np.sqrt(dvar * h) * prof.width_cal)
+        cal_eff = prof.width_cal * width_mult
+        sigma_h = float(np.sqrt(dvar * h) * cal_eff)
         # exact calendar year fraction — "3 months" IS 0.25 of a year
         yearfrac = months / 12.0
         drift = carry_log_h(prof, anchor_date, q_annual, h, yearfrac=yearfrac)
         alpha, z = signal_alpha(prof, close, i, sigma_h)
         paths = simulate_paths_v3(spot, dvar, h, drift + alpha,
                                   nu=prof.nu, n_paths=n_paths, seed=seed,
-                                  width_cal=prof.width_cal)
+                                  width_cal=cal_eff)
         term = paths[:, -1]
         out['horizons'][short] = {
             'label': hz['horizon_label'], 'h': h,
