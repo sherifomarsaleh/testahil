@@ -155,7 +155,7 @@
 
 <footer><div class="wrap"><div class="foot-studies"><b>Studies:</b> <a href="phdc.html">Palm Hills</a> &middot; <a href="tmgh.html">Talaat Moustafa</a> &middot; <a href="ocdi.html">SODIC</a> &middot; <a href="orhd.html">Orascom Dev</a> &middot; <a href="oras.html">Orascom Const</a> &middot; <a href="comi.html">CIB</a> &middot; <a href="emfd.html">Emaar Misr</a> &middot; <a href="gold.html">Gold</a> &middot; <a href="stocks.html">all &rarr;</a></div><b>Disclaimer:</b> Educational valuation studies and personal analytical opinion — not investment advice, not recommendations. The preparer is not licensed by Egypt's FRA, manages no money, accepts no clients, and may hold positions in instruments mentioned. <a href="method.html#disclaimer">Full text</a>.<br><br><span class="social" style="font-size:var(--fs-lead);font-weight:700">Follow Testahil &mdash; <a href="https://t.me/testahil_markets" target="_blank" rel="noopener">Telegram</a> &middot; <a href="https://www.facebook.com/testahil.markets" target="_blank" rel="noopener">Facebook</a> &middot; <a href="https://www.linkedin.com/company/testahil" target="_blank" rel="noopener">LinkedIn</a></span></div></footer>
 
-<script src="assets/data.js?v=20260729c"></script><script src="assets/app.js?v=20260729b"></script>
+<script src="assets/markets.js?v=20260729d"></script><script src="assets/data.js?v=20260729c"></script><script src="assets/app.js?v=20260729b"></script>
 <script>
 const F2 = n => Number(n).toLocaleString("en-US",{maximumFractionDigits:2});
 
@@ -238,8 +238,22 @@ function renderRow(r){
 
 const ledgerPage = {};
 function buildPanel(rows, tbodyId, summaryId){
-  // soonest calibration first: nearest check (grade) date at the top, overdue ahead of upcoming
-  const sorted = [...rows].sort((a,b) => (a.grade_date||"").localeCompare(b.grade_date||"") || byHorizon(a,b));
+  // ACTION QUEUE ORDER — the ledger answers "what do I have to deal with next".
+  // 1. Still-open rows first, soonest CHECK DATE at the top: anything overdue or
+  //    due today leads, then tomorrow, then the day after. Each stock therefore
+  //    surfaces at the point its data actually has to be refreshed.
+  // 2. Already-graded rows fall to the BOTTOM — they need nothing done to them —
+  //    most recently resolved first, so the record reads newest-back.
+  // The retired key sorted open and graded rows together on grade_date, which put
+  // the oldest finished rows — the ones needing no action at all — at the very top.
+  // Ties: same check date -> instrument A-Z, then near horizon before far.
+  const sorted = [...rows].sort((a,b) =>
+       (isOpen(a) === isOpen(b)
+          ? (isOpen(a) ? String(a.grade_date||"").localeCompare(String(b.grade_date||""))   // open: soonest first
+                       : String(b.grade_date||"").localeCompare(String(a.grade_date||"")))  // graded: newest first
+          : (isOpen(a) ? -1 : 1))                                                           // open before graded
+    || String(a.instrument||"").localeCompare(String(b.instrument||""))
+    || byHorizon(a,b));
   const PER=10, pages=Math.max(1,Math.ceil(sorted.length/PER));
   let __pg = ledgerPage[tbodyId]||0; if(__pg>=pages)__pg=pages-1; if(__pg<0)__pg=0; ledgerPage[tbodyId]=__pg;
   document.getElementById(tbodyId).innerHTML = sorted.slice(__pg*PER,__pg*PER+PER).map(renderRow).join("");
@@ -662,17 +676,41 @@ function cohortChartBlock(t, rows){
   <div class="card bt-fig">${cohortChartSVG(r, chartId)}</div>`;
 }
 
-// "All" tab first
-const classOf = {};
-LEDGER.forEach(r=>{ if(!(r.instrument in classOf)) classOf[r.instrument]=r.asset_class; });
-const egxList    = tickerOrder.filter(t=>classOf[t]==="equity");
-const metalsList = tickerOrder.filter(t=>classOf[t]==="metal");
-const otherList  = tickerOrder.filter(t=>classOf[t]==="other");
+// ---- tab groups: MARKET comes from the library registry, never from asset_class ----
+// A stock's market is decided by FILE PLACEMENT — engine/raw_ohlc/{MARKET}/{TICKER}.csv —
+// and baked into assets/markets.js by scripts/build_market_registry.py.
+//
+// The retired code read `asset_class` off the first LEDGER row per name and treated
+// equity->EGX, other->International. That overloaded a real asset-class field to also
+// carry a market flag, and it only ever worked while every non-Egyptian equity sat
+// mislabelled as "other". When the 28-Jul re-strike wrote the correct value (Aramco
+// IS an equity) and the 29-Jul cleanup removed the older "other"-tagged rows, 34
+// international names — all 18 UAE, all 11 Tadawul, AAPL/NVDA/TSLA, INFY/RELIANCE,
+// QGTS — silently rendered under the EGX heading. Nothing threw; the page just lied.
+// asset_class now means asset class and nothing else.
+const marketOf = t => (typeof MARKET_OF !== "undefined" && MARKET_OF[t]) || null;
 const mkBtns = arr => arr.map(t=>`<button class="tab-btn" data-tab="${t}">${t}</button>`).join("");
+
 let _tb = `<div class="tab-row"><button class="tab-btn active" data-tab="all">All</button></div>`;
-if(egxList.length)    _tb += `<div class="tab-group"><div class="tab-group-title">EGX</div><div class="tab-row">${mkBtns(egxList)}</div></div>`;
-if(otherList.length)  _tb += `<div class="tab-group"><div class="tab-group-title">International markets</div><div class="tab-row">${mkBtns(otherList)}</div></div>`;
-if(metalsList.length) _tb += `<div class="tab-group"><div class="tab-group-title">Metals</div><div class="tab-row">${mkBtns(metalsList)}</div></div>`;
+const _seen = new Set();
+(typeof MARKET_ORDER !== "undefined" ? MARKET_ORDER : []).forEach(code=>{
+  const meta = MARKET_META[code]; if(!meta) return;
+  // XAU and XPT share the group "METALS" — render the block once, on first sight.
+  if(_seen.has(meta.group)) return;
+  _seen.add(meta.group);
+  const codes = MARKET_ORDER.filter(c => MARKET_META[c] && MARKET_META[c].group === meta.group);
+  const names = tickerOrder.filter(t => codes.includes(marketOf(t)));
+  if(!names.length) return;
+  _tb += `<div class="tab-group"><div class="tab-group-title">${meta.label}</div><div class="tab-row">${mkBtns(names)}</div></div>`;
+});
+// FAIL LOUD, NOT INTO EGX: a name with no library placement gets its own visible
+// block instead of defaulting into someone else's market. This is the check that
+// would have caught the 29-Jul mislabelling on the page itself.
+const _unplaced = tickerOrder.filter(t=>!marketOf(t));
+if(_unplaced.length){
+  _tb += `<div class="tab-group"><div class="tab-group-title">⚠ Unplaced — no market library</div><div class="tab-row">${mkBtns(_unplaced)}</div></div>`;
+  console.warn("[ledger] no market registry entry for:", _unplaced.join(", "));
+}
 tabBar.innerHTML = _tb;
 
 // All panel
