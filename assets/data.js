@@ -5966,14 +5966,14 @@ const METALS = {
     unit: "دولار للأونصة",   // Arabic unit (AR feed)
     unitEn: "USD/oz",         // English unit (EN feed)
     nameAr: "الذهب",          // Arabic display name (AR feed)
- name:"Gold", code:"XAU/USD", spot:4090.87, spotDate:"close 27 Jul 2026", ccy:"USD",
+ name:"Gold", code:"XAU/USD", spot:4090.87, spotDate:"close 28 Jul 2026", ccy:"USD",
  fair:{ bear:4200, base:4600, full:5000 },
  dist:{
-   t20:{ label:"1 month",  p5:3725, p25:3948, p50:4102, p75:4263, p95:4516, resolve:"2026-08-24" },
-   t60:{ label:"3 months", p5:3493, p25:3862, p50:4127, p75:4410, p95:4880, resolve:"2026-10-19" },
-   t252:{ label:"12 months", p5:2624, p25:3515, p50:4295, p75:5246, p95:7026, resolve:"2027-06-25" }
+   t20:{ label:"1 month",  p5:3731.05, p25:3954.13, p50:4103.08, p75:4258.48, p95:4514.88, resolve:"2026-08-27" },
+   t60:{ label:"3 months", p5:3516.74, p25:3876.91, p50:4129.38, p75:4397.44, p95:4852.47, resolve:"2026-10-27" },
+   t252:{ label:"12 months", p5:3139.64, p25:3778.26, p50:4241.75, p75:4761.14, p95:5721.35, resolve:"2027-06-25" }
  },
- touch:[ [4800,1,11], [4600,4,24], [4500,9,33], [4300,34,59], [4200,57,75], [3800,15,39], [3700,6,25], [3600,2,16], [3500,1,9] ],
+ touch:[[4800,1,11],[4600,4,22],[4500,9,31],[4300,33,58],[4200,57,75],[3800,15,36],[3700,6,23],[3600,2,14],[3500,1,8]],
  levels: { res:[4230, 4382, 4577], sup:[3967, 3420, 3270] },
  tech: {
    trend: "Mixed against the moving-average stack, below a flat 200-day; fresh death-cross",
@@ -5982,7 +5982,7 @@ const METALS = {
    bear: "A close below 3967 would break the nearest support and open the 3270 zone."
  },
  asof: {
-   mc:   { data:"2026-07-27", computed:"2026-07-27" },
+   mc:   { data:"2026-07-27", computed:"2026-07-29" },
    tech: { data:"2026-07-27", computed:"2026-07-29" }
  },
  files:{
@@ -5996,14 +5996,14 @@ const METALS = {
     unit: "دولار للأونصة",   // Arabic unit (AR feed)
     unitEn: "USD/oz",         // English unit (EN feed)
     nameAr: "الفضة",          // Arabic display name (AR feed)
- name:"Silver", code:"XAG/USD", spot:62.43, spotDate:"close 03 Jul 2026", ccy:"USD",
+ name:"Silver", code:"XAG/USD", spot:57.207, spotDate:"close 28 Jul 2026", ccy:"USD",
  fair:{ bear:58, base:68, full:78 },
  dist:{
-   t20:{ label:"1 month",  p5:50, p25:58, p50:63, p75:68, p95:78, resolve:"2026-07-31" },
-   t60:{ label:"3 months", p5:44, p25:56, p50:63, p75:72, p95:91, resolve:"2026-09-25" },
-   t252:{ label:"12 months", p5:34, p25:52, p50:67, p75:86, p95:135, resolve:"2027-07-02" }
+   t20:{ label:"1 month",  p5:46.19, p25:52.73, p50:57.38, p75:62.46, p95:71.38, resolve:"2026-08-28" },
+   t60:{ label:"3 months", p5:40.19, p25:50.1, p50:57.78, p75:66.6, p95:83.21, resolve:"2026-10-28" },
+   t252:{ label:"12 months", p5:30.8, p25:46.12, p50:59.36, p75:76.36, p95:113.99, resolve:"2027-07-02" }
  },
- touch:[ [85,3,14], [78,9,26], [72,22,45], [68,42,63], [58,45,62], [55,25,44], [50,8,22], [45,2,10] ],
+ touch:[[85,1,7],[78,2,15],[72,7,27],[68,15,39],[58,82,89],[55,66,78],[50,24,46],[45,5,22]],
  levels: { res:[64.06, 71.23, 83.31], sup:[61.27, 55.62, 54.45] },
  tech: {
    trend: "Trading below the whole moving-average stack, under a rising 200-day",
@@ -6012,8 +6012,8 @@ const METALS = {
    bear: "A close below 61.27 would break the nearest support and open the 54.45 zone."
  },
  asof: {
-   mc:   { data:"2026-07-03", computed:"2026-07-03" },
-   tech: { data:"2026-07-03", computed:"2026-07-29" }
+   mc:   { data:"2026-07-28", computed:"2026-07-29" },
+   tech: { data:"2026-07-28", computed:"2026-07-29" }
  },
  files:{
    study:"files/XAGUSD_Combined_1-3-12M_Valuation_Study_05-07-2026_public.docx?v=2607",
