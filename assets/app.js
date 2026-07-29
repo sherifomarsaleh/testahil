@@ -809,7 +809,12 @@ function renderStaticFan(elId, T){
     const lab = t === 0 ? "latest"
               : t === HZ.h1 ? HZ.l1
               : t === HZ.h3 ? HZ.l3
-              : (HZ.cal ? t + "d" : "T+" + t);
+              : t + " sess";   // a SESSION index, not calendar days:
+    // the x-axis is session-indexed, and only 0/h1/h3 carry a committed
+    // calendar meaning (they get the horizon name above). Labelling an
+    // intermediate tick "32d" read as 32 calendar days when 32 sessions is
+    // nearer 1.5 calendar months -- two units on one axis. Matches the hover
+    // read-out, which already says "N sessions".
     xt += '<text x="' + xpx(t).toFixed(1) + '" y="' + (Y0 + 18) + '" text-anchor="middle" font-size="10" fill="var(--muted,#6b7c78)" font-family="IBM Plex Mono,monospace">' + lab + '</text>';
   });
   const cols = {p95:"var(--teal2,#2A8F8F)",p75:"var(--teal,#12796B)",p50:"var(--gold,#C0A45F)",p25:"var(--teal,#12796B)",p5:"var(--teal2,#2A8F8F)"};
@@ -851,9 +856,7 @@ function renderStaticFan(elId, T){
     '</div>' +
     '<table class="mc-ladder" style="margin-top:14px"><thead><tr><th>Level</th><th>P(touch) ' + HZ.l1Long + '</th><th>P(touch) ' + HZ.l3Long + '</th></tr></thead><tbody>' + touchRows + '</tbody></table>' +
     '<p class="muted" style="font-size:var(--fs-small);margin-top:12px">The ' + HZ.l1Long + ' and ' + HZ.l3Long + ' columns are the published calibration exactly as saved. The curve between them is a smooth fit using the real Student-t shape for this market through those two points \u2014 not a fresh simulation at every day, and not adjustable \u2014 so it always agrees with the published numbers at the two horizons that matter.' +
-    (HZ.cal
-      ? ' Horizons are calendar-anchored: ' + HZ.l1 + ' and ' + HZ.l3 + ' from the anchor date, which on this market works out to about ' + HZ.h1 + ' and ' + HZ.h3 + ' trading sessions.'
-      : ' Horizons on this cohort are the retired session count \u2014 20 and 60 trading sessions from the anchor \u2014 kept exactly as published. Cohorts struck from 27 July 2026 are anchored to calendar months instead.') +
+    ' Horizons are calendar-anchored: ' + HZ.l1 + ' and ' + HZ.l3 + ' from the anchor date, which on this market works out to about ' + HZ.h1 + ' and ' + HZ.h3 + ' trading sessions.' +
     '</p>';
 
   // ---- hover read-out: move over the cone to read the bands at that horizon ----
@@ -885,7 +888,7 @@ function renderStaticFan(elId, T){
       var head = (t === 0) ? 'latest'
                : (t === HZ.h1) ? HZ.l1
                : (t === HZ.h3) ? HZ.l3
-               : (HZ.cal ? t + ' sessions' : 'T+' + t);
+               : t + ' sessions';
       var pctMove = ((vp50 / spot - 1) * 100);
       var sign = pctMove >= 0 ? '+' : '';
       tip.style.display = '';
@@ -1112,7 +1115,9 @@ function renderZoomChart(sourceSvgId, targetElId, res, sup, defaultSessions){
   let sessions = OPTIONS.indexOf(defaultSessions) >= 0 ? defaultSessions : OPTIONS[Math.min(2, OPTIONS.length-1)];
 
   const btns = OPTIONS.map(function(s){
-    const lbl = (s >= totalSessions) ? "All" : s + "d";
+    // s is a count of SESSIONS, not calendar days -- same unit slip the fan
+    // axis carried. 90 sessions is roughly 4.3 calendar months, not 3.
+    const lbl = (s >= totalSessions) ? "All" : s + " sess";
     return '<button type="button" class="zoom-win-btn" data-s="'+s+'" style="'+
       'font-family:\'IBM Plex Mono\',monospace;font-size:12px;padding:4px 12px;border:1px solid var(--line);'+
       'background:transparent;color:var(--muted);border-radius:6px;cursor:pointer">'+lbl+'</button>';
