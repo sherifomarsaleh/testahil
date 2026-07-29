@@ -320,6 +320,31 @@ def main() -> int:
                 fail(key, f'{field} resolve {m.group(1)} != calendar '
                           f'{want} (anchor {anchor} + {months}m)')
 
+        # 5b. the fan's session anchors must be this name's OWN projected
+        #     spans. Six entries (IQCD/QNB/QGTS, gold, silver, platinum) shipped
+        #     with no hz block at all and silently fell back to app.js's
+        #     HZ_LEGACY {h1:20, h3:60, cal:false} -- so their published
+        #     percentiles were pinned at 20/60 sessions when the real spans are
+        #     22/63 and 23/66, and their axis and prose rendered the retired
+        #     session naming. A missing hz is invisible on the page; it just
+        #     draws the wrong cone.
+        hz = re.search(r'hz:\s*\{([^}]*)\}', blk)
+        if not hz:
+            fail(key, 'no hz block -- falls back to the retired 20/60 session '
+                      'grid in app.js and mislabels its own axis')
+        else:
+            body = hz.group(1)
+            if 'cal:true' not in body.replace(' ', ''):
+                fail(key, 'hz.cal is not true -- renders the retired session naming')
+            for field, months in (('h1', 1), ('h3', 3)):
+                m = re.search(field + r'\s*:\s*(\d+)', body)
+                want = horizons.resolve(mkt, anchor, months)['h']
+                if not m:
+                    fail(key, f'hz.{field} missing')
+                elif int(m.group(1)) != want:
+                    fail(key, f'hz.{field} is {m.group(1)} but this name\'s own '
+                              f'{months}-month span projects to {want} sessions')
+
         # 6. published spot must be a real close in the library on the date
         #    the page claims. Gold published the 27-Jul close as "28 Jul".
         sp = re.search(r'spot:\s*([\d.]+)', blk)

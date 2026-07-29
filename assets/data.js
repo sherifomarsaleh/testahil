@@ -702,6 +702,7 @@ const TICKERS = {
     t20: { label: "1 month", p5: 9.8144, p25: 10.37, p50: 10.73, p75: 11.11, p95: 11.74, resolve: "2026-08-30" },
     t60: { label: "3 months", p5: 9.237, p25: 10.18, p50: 10.81, p75: 11.48, p95: 12.67, resolve: "2026-10-28" }
   },
+    hz: { h1:22, h3:63, l1:"1 month", l3:"3 months", cal:true },
     touch: [[12.5,1,11],[12,4,22],[11.5,16,43],[11,54,73],[10.5,61,75],[10,15,37],[9.5,3,15]],
     levels: { res:[11.37, 11.94, 12.76], sup:[10.46, 10, 9] },
     tech: {
@@ -2024,6 +2025,7 @@ const TICKERS = {
       t20: { label:"1 month",  p5:15.35, p25:16.74, p50:17.48, p75:18.19, p95:19.55, resolve:"2026-08-05" },
       t60: { label:"3 months", p5:13.96, p25:15.91, p50:17.24, p75:18.60, p95:20.91, resolve:"2026-10-05" }
     },
+    hz: { h1:22, h3:63, l1:"1 month", l3:"3 months", cal:true },
     touch: [ /* descending high -> low; P(touch) 1-month %, 3-month % */
       [19.5, 8, 26], [19.0, 15, 36], [18.5, 28, 50], [18.0, 51, 69], [17.0, 49, 72], [16.5, 28, 56], [15.5, 8, 30]
     ],
@@ -2056,6 +2058,7 @@ const TICKERS = {
     t20: { label: "1 month", p5: 3.6712, p25: 3.9842, p50: 4.1774, p75: 4.3814, p95: 4.7543, resolve: "2026-08-30" },
     t60: { label: "3 months", p5: 3.3721, p25: 3.881, p50: 4.2096, p75: 4.5655, p95: 5.2533, resolve: "2026-10-28" }
   },
+    hz: { h1:22, h3:63, l1:"1 month", l3:"3 months", cal:true },
     touch: [[4.9,4,20],[4.7,10,32],[4.55,21,46],[4.4,39,63],[4.2,81,89],[4.05,59,74],[3.9,29,51]],
     levels: { res:[4.31, 4.51, 4.94], sup:[4.10, 4, 3.80] },
     tech: {
@@ -2556,13 +2559,14 @@ const LEDGER = [
   {
     instrument:"Gold", asset_class:"metal",
     anchor_date:"2026-06-25", run_date:"2026-06-27", anchor_price:3989.85, ccy:"USD",
-    horizon_label:"1 month", grade_date:"2026-07-23", cycle_no:1, reanchor_from:null,
+    horizon_label:"1 month", grade_date:"2026-07-26", cycle_no:1, reanchor_from:null,
     p5:3431, p25:3754, p50:3975, p75:4214, p95:4598,
     touch:{ "+5":49, "+10":22, "+15":9, "+20":3, "-5":50, "-10":20 },
-    realized_close:4048.78, realized_high:4202.67, realized_low:3944.23,
-    in_90:true, in_50:true, realized_quantile:0.577, median_err:0.0186,
+    realized_close:4094.18, realized_high:4202.67, realized_low:3944.23,
+    in_90:true, in_50:true, realized_quantile:0.625, median_err:0.0300,
     touch_hit:{ "+5":true, "+10":false, "+15":false, "+20":false, "-5":false, "-10":false }
-  },
+  ,
+    grade_note:"Re-graded on 2026-07-29 under the calendar rule. The original grade used the close on 2026-07-23 -- the T+20 SESSION from the anchor, the retired method. The calendar maturity is anchor + 1 month = 2026-07-25 (Saturday), rolled forward to the first real session, 2026-07-26. Window 2026-06-26..2026-07-26 = 22 sessions, not 20. realized_close 4048.78 -> 4094.18; realized_high/low unchanged (the two added sessions set no new extreme); realized_quantile 0.577 -> 0.625; median_err 0.0186 -> 0.0300 (FRACTION, the convention 10 of the 11 graded rows use). touch_hit unchanged. The forecast itself (p5-p95, touch) is untouched."},
   {
     instrument:"Gold", asset_class:"metal",
     anchor_date:"2026-06-25", run_date:"2026-06-27", anchor_price:3989.85, ccy:"USD",
@@ -2707,13 +2711,14 @@ const LEDGER = [
   {
     instrument:"TMPV", asset_class:"other",
     anchor_date:"2026-06-30", run_date:"2026-06-30", anchor_price:352.20, ccy:"INR",
-    horizon_label:"1 month", grade_date:"2026-07-28", cycle_no:1, reanchor_from:null,
+    horizon_label:"1 month", grade_date:"2026-07-30", cycle_no:1, reanchor_from:null,
     p5:294, p25:327, p50:353, p75:379, p95:422,
     touch:{ "+5":57, "+10":33, "+15":17, "+20":7, "-5":56, "-10":30 },
-    realized_close:324.15, realized_high:354.6, realized_low:318.25,
-    in_90:true, in_50:false, realized_quantile:0.233, median_err:-8.17,
-    touch_hit:{ "+5":false, "+10":false, "+15":false, "+20":false, "-5":true, "-10":false }
-  },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  ,
+    grade_note:"Re-opened on 2026-07-29. This cohort was graded on 2026-07-28 -- the T+20 SESSION from the anchor, the retired method -- but its calendar maturity is anchor + 1 month = 2026-07-30, which has not yet arrived. Grading by session count closed the window two days early against a close the commitment never named. All realized_* and score fields are nulled and the row returns to open until 2026-07-30. The forecast itself (p5-p95, touch) is untouched. Cycle 2 (anchor 2026-07-28) is unaffected and stays open alongside this row as an aging 1-month tail."},
   // ---- ARAMCO · other (TADAWUL Saudi Arabia) · cycle 1 (1 Jul 2026 published study) ----
   // ---- ADNOCGAS · other (ADX Abu Dhabi) · cycle 1 (4 Jul 2026 published study) ----
   // ---- ALRAJHI · other (TADAWUL Saudi Arabia) · cycle 1 (2 Jul 2026 published study) ----
@@ -4541,6 +4546,7 @@ const METALS = {
    t60:{ label:"3 months", p5:3516.74, p25:3876.91, p50:4129.38, p75:4397.44, p95:4852.47, resolve:"2026-10-27" },
    t252:{ label:"12 months", p5:3139.64, p25:3778.26, p50:4241.75, p75:4761.14, p95:5721.35, resolve:"2027-06-25" }
  },
+ hz: { h1:23, h3:66, l1:"1 month", l3:"3 months", cal:true },
  touch:[[4800,1,11],[4600,4,22],[4500,9,31],[4300,33,58],[4200,57,75],[3800,15,36],[3700,6,23],[3600,2,14],[3500,1,8]],
  levels: { res:[4230, 4382, 4577], sup:[3967, 3420, 3270] },
  tech: {
@@ -4571,6 +4577,7 @@ const METALS = {
    t60:{ label:"3 months", p5:40.19, p25:50.1, p50:57.78, p75:66.6, p95:83.21, resolve:"2026-10-28" },
    t252:{ label:"12 months", p5:30.8, p25:46.12, p50:59.36, p75:76.36, p95:113.99, resolve:"2027-07-02" }
  },
+ hz: { h1:23, h3:66, l1:"1 month", l3:"3 months", cal:true },
  touch:[[85,1,7],[78,2,15],[72,7,27],[68,15,39],[58,82,89],[55,66,78],[50,24,46],[45,5,22]],
  levels: { res:[61.27, 63.28, 71.23], sup:[55.62, 54.45, 39.15] },
  tech: {
@@ -4601,6 +4608,7 @@ const METALS = {
    t60:{ label:"3 months", p5:1239, p25:1453, p50:1623, p75:1813, p95:2128, resolve:"2026-10-20" },
    t252:{ label:"12 months", p5:961, p25:1333, p50:1669, p75:2086, p95:2897, resolve:"2027-07-07" }
  },
+ hz: { h1:23, h3:66, l1:"1 month", l3:"3 months", cal:true },
  touch:[ [2400,0,1], [2222,0,5], [1990,2,19], [1750,32,58], [1700,49,70], [1540,55,72], [1500,38,61], [1348,4,24], [1200,0,6] ],
  levels: { res:[1640, 1670, 1726], sup:[1513, 1440, 1350] },
  tech: {
