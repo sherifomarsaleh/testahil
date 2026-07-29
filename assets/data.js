@@ -1505,7 +1505,7 @@ const TICKERS = {
       t60: { label:"3 months",  p5:882, p25:1017, p50:1124, p75:1241, p95:1431, resolve:"2026-10-28" }
     },
     hz: { h1:22, h3:62, l1:"1 month", l3:"3 months", cal:true },
-    touch: [ /* descending high -> low; P(touch) T+20 %, T+60 % */
+    touch: [ /* descending high -> low; P(touch) 1M %, 3M % */
       [1250, 15, 40], [1200, 32, 57], [1150, 60, 76], [1100, 84, 90], [1050, 47, 64], [1000, 20, 41], [950, 6, 24], [900, 1, 12]
     ],
     levels: { res:[1085, 1138, 1230], sup:[985, 950, 900] },
