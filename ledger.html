@@ -238,22 +238,8 @@ function renderRow(r){
 
 const ledgerPage = {};
 function buildPanel(rows, tbodyId, summaryId){
-  // ACTION QUEUE ORDER — the ledger answers "what do I have to deal with next".
-  // 1. Still-open rows first, soonest CHECK DATE at the top: anything overdue or
-  //    due today leads, then tomorrow, then the day after. Each stock therefore
-  //    surfaces at the point its data actually has to be refreshed.
-  // 2. Already-graded rows fall to the BOTTOM — they need nothing done to them —
-  //    most recently resolved first, so the record reads newest-back.
-  // The retired key sorted open and graded rows together on grade_date, which put
-  // the oldest finished rows — the ones needing no action at all — at the very top.
-  // Ties: same check date -> instrument A-Z, then near horizon before far.
-  const sorted = [...rows].sort((a,b) =>
-       (isOpen(a) === isOpen(b)
-          ? (isOpen(a) ? String(a.grade_date||"").localeCompare(String(b.grade_date||""))   // open: soonest first
-                       : String(b.grade_date||"").localeCompare(String(a.grade_date||"")))  // graded: newest first
-          : (isOpen(a) ? -1 : 1))                                                           // open before graded
-    || String(a.instrument||"").localeCompare(String(b.instrument||""))
-    || byHorizon(a,b));
+  // soonest calibration first: nearest check (grade) date at the top, overdue ahead of upcoming
+  const sorted = [...rows].sort((a,b) => (a.grade_date||"").localeCompare(b.grade_date||"") || byHorizon(a,b));
   const PER=10, pages=Math.max(1,Math.ceil(sorted.length/PER));
   let __pg = ledgerPage[tbodyId]||0; if(__pg>=pages)__pg=pages-1; if(__pg<0)__pg=0; ledgerPage[tbodyId]=__pg;
   document.getElementById(tbodyId).innerHTML = sorted.slice(__pg*PER,__pg*PER+PER).map(renderRow).join("");
