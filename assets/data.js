@@ -601,13 +601,11 @@ const TICKERS = {
     ccy: "INR",
     fair: { bear: 1112, base: 1395, full: 1719 },      // 6 Jul 2026 — weighted central 1,395 (+6% vs spot 1,321.30). Four lenses: sum-of-the-parts (primary) 1,342, consolidated DCF 1,359, relative multiples 1,322 (floor), normalized earnings 1,552 (ceiling); weights 40/20/15/25. bear/full = weighted bear/bull of the football field. Swing: crystallising the unlisted digital (Jio) and retail value via the Jio Platforms IPO (DRHP filed 19 Jun 2026), the O2C refining/petrochemical margin cycle, and the ~5% holding-company discount.
     dist: {
-      t20: { label:"1 month",   p5:1152, p25:1225, p50:1278, p75:1335, p95:1421, resolve:"2026-08-28" },
-      t60: { label:"3 months",  p5:1071, p25:1197, p50:1293, p75:1397, p95:1561, resolve:"2026-10-28" }
-    },
+    t20: { label: "1 month", p5: 1144.56, p25: 1227.46, p50: 1278.17, p75: 1331.34, p95: 1427.61, resolve: "2026-08-28" },
+    t60: { label: "3 months", p5: 1060.54, p25: 1201.62, p50: 1293.19, p75: 1390.72, p95: 1576.35, resolve: "2026-10-28" }
+  },
     hz: { h1:22, h3:62, l1:"1 month", l3:"3 months", cal:true },
-    touch: [ /* level, P(touch) T+20 %, T+60 % — descending */
-      [1550, 0, 9], [1500, 1, 16], [1450, 4, 26], [1400, 12, 41], [1350, 32, 60], [1300, 67, 82], [1250, 67, 80], [1200, 28, 52], [1150, 8, 30]
-    ],
+    touch: [[1550,1,10],[1500,2,16],[1450,5,25],[1400,13,39],[1350,31,58],[1300,66,82],[1250,66,78],[1200,27,49],[1150,9,28]],
     levels: { res:[1366, 1418, 1592], sup:[1303, 1259, 1200] },
     tech: {
       trend: "Below the 50-, 100- and 200-day moving averages but holding the 20-day; RSI neutral, MACD turning up — a corrective tape stabilising off the low",
@@ -688,17 +686,15 @@ const TICKERS = {
     name: "Industries Qatar",
     nameAr: "صناعات قطر",
     code: "QSE:IQCD",
-    spot: 11.07,
-    spotDate: "close 5 Jul 2026",
+    spot: 10.7,
+    spotDate: "close 28 Jul 2026",
     ccy: "QAR",
     fair: { bear: 6.9, base: 10.9, full: 15.0 },      // 5 Jul 2026 — weighted central 10.9 (−2% vs spot 11.07). Five lenses: holdco SOTP (primary) 10.38, consolidated DCF 11.0-11.4, relative multiples 11.02, normalized earnings 11.02, dividend-discount 11.07. bear/full = weighted bear/bull of the football field. Swing factor: petrochemical (QAPCO/QAFAC) margin normalisation from its early-2026 trough (Q1-26 segment NI just QR4mn) plus the Ammonia-7 (Q2-26) and Ras Laffan pipeline; QAFCO fertilizers are the cash anchor, steel a restart option. ~6% dividend yield, debt-free, ~QR8.5bn net cash, QatarEnergy ~51%.
     dist: {
-      t20: { label:"1 month",  p5:9.62, p25:10.60, p50:11.13, p75:11.68, p95:12.73, resolve:"2026-08-02" },
-      t60: { label:"3 months", p5:8.84, p25:10.24, p50:11.21, p75:12.25, p95:14.08, resolve:"2026-09-27" }
-    },
-    touch: [ /* descending high -> low; P(touch) 1-month %, 3-month % */
-      [12.5, 13, 42], [12.0, 27, 58], [11.5, 53, 77], [11.0, 77, 84], [10.5, 30, 50], [10.0, 12, 29], [9.5, 5, 16]
-    ],
+    t20: { label: "1 month", p5: 9.8144, p25: 10.37, p50: 10.73, p75: 11.11, p95: 11.74, resolve: "2026-08-30" },
+    t60: { label: "3 months", p5: 9.237, p25: 10.18, p50: 10.81, p75: 11.48, p95: 12.67, resolve: "2026-10-28" }
+  },
+    touch: [[12.5,1,11],[12,4,22],[11.5,16,43],[11,54,73],[10.5,61,75],[10,15,37],[9.5,3,15]],
     levels: { res:[11.37, 11.94, 12.77], sup:[10.46, 10, 9] },
     tech: {
       trend: "Trading below the whole moving-average stack, under a falling 200-day",
@@ -1397,13 +1393,11 @@ const TICKERS = {
     ccy: "KRW",
     fair: { bear: 214800, base: 296502, full: 410754 },      // 26 Jun 2026 — weighted central 296,502 (-13% vs spot); bear = consolidated DCF cross-check 214,800; full = supercycle/bull 410,754. Deeper SOTP cycle-reversion bear ~95,000 covered in the study text.
     dist: {
-      t20: { label:"1 month",   p5:154992, p25:192425, p50:220349, p75:252878, p95:313949, resolve:"2026-08-28" },
-      t60: { label:"3 months",  p5:128708, p25:180234, p50:222228, p75:273739, p95:381353, resolve:"2026-10-28" }
-    },
+    t20: { label: "1 month", p5: 154820.6, p25: 193612.78, p50: 220362.84, p75: 251038.64, p95: 313821.44, resolve: "2026-08-28" },
+    t60: { label: "3 months", p5: 129392.31, p25: 181881.54, p50: 222199.19, p75: 270912.64, p95: 381214.94, resolve: "2026-10-28" }
+  },
     hz: { h1:22, h3:62, l1:"1 month", l3:"3 months", cal:true },
-    touch: [ /* descending high -> low */
-      [440000, 0, 4], [400000, 1, 7], [360000, 2, 12], [286000, 18, 37], [250000, 46, 63]
-    ],
+    touch: [[440000,1,4],[400000,1,7],[360000,3,11],[286000,17,35],[250000,44,62]],
     levels: { res:[362500, 350000, 344000], sup:[334675, 320000, 286320] },
     tech: {
       trend: "Extended uptrend, well above every moving average",
@@ -1426,13 +1420,11 @@ const TICKERS = {
     ccy: "KRW",
     fair: { bear: 24517, base: 34258, full: 46401 },      // 28 Jun 2026 — weighted central 34,258 (+3% vs spot); bear = consolidated DCF 24,517 (excludes stakes, conservative floor); full = discount-compression / SOTP bull 46,401. Gross net-asset value ~51,788 at no discount; deeper SOTP bear ~21,745 at a wide discount, covered in the study text.
     dist: {
-      t20: { label:"1 month",   p5:27624, p25:32351, p50:35715, p75:39492, p95:46249, resolve:"2026-08-28" },
-      t60: { label:"3 months",  p5:23540, p25:30582, p50:35990, p75:42321, p95:54762, resolve:"2026-10-28" }
-    },
+    t20: { label: "1 month", p5: 27814.21, p25: 32498.94, p50: 35717.27, p75: 39311.86, p95: 45869.23, resolve: "2026-08-28" },
+    t60: { label: "3 months", p5: 23978.91, p25: 30817.91, p50: 35986.62, p75: 41993.13, p95: 53885.8, resolve: "2026-10-28" }
+  },
     hz: { h1:22, h3:62, l1:"1 month", l3:"3 months", cal:true },
-    touch: [ /* descending high -> low */
-      [44000, 14, 36], [40000, 38, 59], [37000, 72, 83], [32000, 40, 59], [28000, 10, 28], [24000, 1, 10]
-    ],
+    touch: [[44000,13,34],[40000,36,58],[37000,71,82],[32000,38,57],[28000,9,26],[24000,1,9]],
     levels: { res:[42949, 38888, 37000], sup:[32250, 30000, 28000] },
     tech: {
       trend: "Extended downtrend, below every moving average",
@@ -1455,13 +1447,11 @@ const TICKERS = {
     ccy: "KRW",
     fair: { bear: 150000, base: 248000, full: 415000 },      // 28 Jun 2026 — weighted central 248,000 (-25% vs spot); bear = AMPC-cut / EV-weak 150,000; full = recovery / ESS-AI supercycle 415,000. Going-concern DCF parent floor ~146,000 covered in the study text.
     dist: {
-      t20: { label:"1 month",   p5:240911, p25:283851, p50:314565, p75:349180, p95:411415, resolve:"2026-08-28" },
-      t60: { label:"3 months",  p5:203248, p25:267332, p50:317022, p75:375649, p95:492019, resolve:"2026-10-28" }
-    },
+    t20: { label: "1 month", p5: 239661.03, p25: 283872.78, p50: 314576.54, p75: 349157.25, p95: 412942.73, resolve: "2026-08-28" },
+    t60: { label: "3 months", p5: 203112.53, p25: 267452.66, p50: 317026.47, p75: 375503.78, p95: 493606.95, resolve: "2026-10-28" }
+  },
     hz: { h1:22, h3:62, l1:"1 month", l3:"3 months", cal:true },
-    touch: [ /* descending high -> low */
-      [450000, 3, 16], [410000, 8, 27], [370000, 25, 48], [300000, 67, 79], [270000, 28, 49], [240000, 8, 25]
-    ],
+    touch: [[450000,3,16],[410000,9,28],[370000,25,48],[300000,67,79],[270000,28,49],[240000,8,26]],
     levels: { res:[423510, 407345, 399725], sup:[300000, 288000, 270000] },
     tech: {
       trend: "Downtrend, below every moving average",
@@ -1484,13 +1474,11 @@ const TICKERS = {
     ccy: "INR",
     fair: { bear: 236, base: 378, full: 579 },      // 30 Jun 2026 — weighted central 378 (+7% vs spot 352.20). Lenses: SOTP 376, consolidated DCF 376, relative 324 (floor), normalized earnings 416 (ceiling). bear/full = weighted bear/bull of the football field. Swing factor: JLR through-cycle margin and the conglomerate discount.
     dist: {
-      t20: { label:"1 month",   p5:284.44, p25:308.18, p50:325.75, p75:344.58, p95:373.87, resolve:"2026-08-28" },
-      t60: { label:"3 months",  p5:257.91, p25:297.95, p50:329.71, p75:364.64, p95:421.42, resolve:"2026-10-28" }
-    },
+    t20: { label: "1 month", p5: 287.2, p25: 310.33, p50: 325.75, p75: 342.21, p95: 369.77, resolve: "2026-08-28" },
+    t60: { label: "3 months", p5: 261.85, p25: 301.8, p50: 329.67, p75: 359.96, p95: 413.98, resolve: "2026-10-28" }
+  },
     hz: { h1:22, h3:62, l1:"1 month", l3:"3 months", cal:true },
-    touch: [ /* descending high -> low */
-      [420.00, 0, 9], [400.00, 1, 16], [380.00, 5, 29], [360.00, 19, 48], [340.00, 51, 73], [320.00, 76, 86], [300.00, 28, 52]
-    ],
+    touch: [[420,0,7],[400,1,13],[380,4,24],[360,15,43],[340,47,70],[320,74,84],[300,23,46]],
     levels: { res:[375, 365, 356], sup:[340, 320, 294] },
     tech: {
       trend: "Below every major moving average; oversold but still corrective",
@@ -2032,17 +2020,15 @@ const TICKERS = {
     name: "Nakilat",
     nameAr: "\u0646\u0627\u0642\u0644\u0627\u062a",
     code: "QSE:QGTS",
-    spot: 4.319,
-    spotDate: "close 5 Jul 2026",
+    spot: 4.165,
+    spotDate: "close 28 Jul 2026",
     ccy: "QAR",
     fair: { bear: 2.71, base: 4.29, full: 6.40 },      // 5 Jul 2026 \u2014 weighted central 4.29 (\u22120.7% vs spot 4.319). Four lenses: DCF on the contracted fleet (primary) 4.90, two-stage dividend-discount 3.56, relative EV/EBITDA & P/E 4.00, fleet-replacement NAV 4.06; blend 40/20/15/25. bear/full = weighted bear/bull of the football field. Swing factor: the discount rate on a bond-like ~20-year QatarEnergy charter stream (\u22487.5% base) and how much credit the newbuild programme (69\u2192112 vessels, first delivery end-2026) earns above its cost of capital. Note: the \u00a73 Monte-Carlo engine ties \u2014 does not beat \u2014 its random-walk benchmark for this unusually stable name (Appendix B), so the price map is illustrative only.
     dist: {
-      t20: { label:"1 month",  p5:3.86, p25:4.16, p50:4.34, p75:4.54, p95:4.88, resolve:"2026-08-02" },
-      t60: { label:"3 months", p5:3.60, p25:4.08, p50:4.40, p75:4.74, p95:5.36, resolve:"2026-09-27" }
-    },
-    touch: [ /* descending high -> low; P(touch) 1-month %, 3-month % */
-      [4.90, 7, 28], [4.70, 18, 45], [4.55, 37, 63], [4.40, 68, 83], [4.20, 52, 69], [4.05, 24, 45], [3.90, 10, 28]
-    ],
+    t20: { label: "1 month", p5: 3.6712, p25: 3.9842, p50: 4.1774, p75: 4.3814, p95: 4.7543, resolve: "2026-08-30" },
+    t60: { label: "3 months", p5: 3.3721, p25: 3.881, p50: 4.2096, p75: 4.5655, p95: 5.2533, resolve: "2026-10-28" }
+  },
+    touch: [[4.9,4,20],[4.7,10,32],[4.55,21,46],[4.4,39,63],[4.2,81,89],[4.05,59,74],[3.9,29,51]],
     levels: { res:[4.56, 4.74, 4.94], sup:[4.23, 4.12, 3.80] },
     tech: {
       trend: "Trading below the whole moving-average stack, under a falling 200-day",
@@ -2168,13 +2154,11 @@ const TICKERS = {
     ccy: "USD",
     fair: { bear: 182, base: 208, full: 244 },      // 06 Jul 2026 — four-lens weighted central 208 (spot 313.09 = +51% above central). Lenses: consolidated DCF 152 (primary/floor), segment sum-of-the-parts 184, forward multiples 249, normalized earnings 253; DCF & relative weighted 30% each, normalized & SOTP 20% each. The ~$90 DCF-vs-multiple spread is the story — the durability/Services annuity the explicit cash flows do not capitalise; a football field, never a rating. Swing: Services attach-rate, gross-margin trajectory, the AI upgrade cycle.
     dist: {
-      t20: { label:"1 month",   p5:294.05, p25:319.18, p50:337.80, p75:357.78, p95:388.91, resolve:"2026-08-27" },
-      t60: { label:"3 months",  p5:266.75, p25:307.94, p50:340.36, p75:375.90, p95:434.65, resolve:"2026-10-27" }
-    },
+    t20: { label: "1 month", p5: 294.17, p25: 320.62, p50: 337.8, p75: 356.2, p95: 387.93, resolve: "2026-08-27" },
+    t60: { label: "3 months", p5: 267.37, p25: 310.49, p50: 340.32, p75: 372.83, p95: 434.07, resolve: "2026-10-27" }
+  },
     hz: { h1:22, h3:64, l1:"1 month", l3:"3 months", cal:true },
-    touch: [ /* descending high -> low; P(touch) T+20 %, T+60 % */
-      [376.00, 17, 44], [360.00, 38, 62], [344.00, 73, 84], [329.00, 68, 80], [297.00, 10, 33], [282.00, 3, 19], [266.00, 0, 9], [250.00, 0, 3]
-    ],
+    touch: [[376,15,41],[360,35,60],[344,71,83],[329,66,79],[297,10,31],[282,3,17],[266,1,9],[250,0,4]],
     levels: { res:[329, 344, 376], sup:[297, 282, 250] },
     tech: {
       trend: "Above a rising moving-average stack — constructive and extended",
@@ -2197,13 +2181,11 @@ const TICKERS = {
     ccy: "USD",
     fair: { bear: 105, base: 254, full: 350 },      // 01 Jul 2026 — five-lens weighted central 254 (−40% vs spot 420.60). Lenses: SOTP 230 (primary), consolidated DCF 90 (floor), relative 172, normalized earnings 130, and autonomy-at-scale (SOTP bull) 560 carrying a full 25% weight. bear = operating-only floor / cash-returns 105; full = scenario real-options / weighted football bull ~350; autonomy-at-scale reaches 560. Swing factor: the FSD/Robotaxi/Optimus autonomy option.
     dist: {
-      t20: { label:"1 month",   p5:231.94, p25:275.29, p50:309.92, p75:349.47, p95:416.04, resolve:"2026-08-27" },
-      t60: { label:"3 months",  p5:190.81, p25:255.31, p50:312.79, p75:382.60, p95:513.65, resolve:"2026-10-27" }
-    },
+    t20: { label: "1 month", p5: 233.26, p25: 275.93, p50: 309.92, p75: 348.65, p95: 413.66, resolve: "2026-08-27" },
+    t60: { label: "3 months", p5: 192.65, p25: 256.31, p50: 312.78, p75: 381.08, p95: 508.68, resolve: "2026-10-27" }
+  },
     hz: { h1:22, h3:64, l1:"1 month", l3:"3 months", cal:true },
-    touch: [ /* descending high -> low; P(touch) T+20 %, T+60 % */
-      [540.00, 0, 6], [500.00, 1, 10], [485.00, 1, 12], [460.00, 2, 17], [380.00, 21, 46], [360.00, 34, 58], [320.00, 76, 86]
-    ],
+    touch: [[540,0,5],[500,0,9],[485,1,12],[460,2,16],[380,20,45],[360,33,57],[320,76,85]],
     levels: { res:[466, 490, 541], sup:[405, 360, 294] },
     tech: {
       trend: "Above a compressed moving-average stack; constructive but extended",
@@ -3439,9 +3421,10 @@ const LEDGER = [
     instrument:"Samsung", asset_class:"other",
     anchor_date:"2026-07-27", anchor_price:254000, ccy:"KRW",
     horizon_label:"1 month", grade_date:"2026-08-24", cycle_no:2, reanchor_from:"2026-06-26",
+    config_note:"Corrected 29-Jul-2026: this cycle was originally struck with the prior market-default fit; the per-name override decided the same day (see engine/fit_overrides.json) genuinely improves this specific name's own LONO verdict, so the anchor/grade dates are unchanged but the distribution was recomputed under the correct config.",
     note:"Cycle 2 roll-forward, 27-Jul-2026. Production chain, no approximation: Step 0.0 data-quality gate \u2192 YZ variance proxy \u2192 fit_har_v3 \u2192 har_forecast_v3 \u2192 carry drift ln(1+rf_live)\u2212ln(1+q) \u2192 simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED \u2014 house convention; drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). KR live fit nu=Gaussian, width_cal=1.154; rf_live 3.00% (placeholder KTB anchor). STRUCK ON THE INCUMBENT FIT BY DESIGN: the 15-year Samsung history ingested this session refits KR to nu=12/width_cal=1.105 (published 90% cone \u22125.3%), which trips the materiality gate and is therefore held on a feature branch pending PR review, not applied to production.",
-    p5:177014, p25:219386, p50:254565, p75:295509, p95:365889,
-    touch:{ "+5":73, "+10":58, "+15":45, "+20":35, "-5":72, "-10":55 },
+    p5:154820.6, p25:193612.78, p50:220362.84, p75:251038.64, p95:313821.44,
+    touch:{ "+5":71, "+10":55, "+15":41, "+20":30, "-5":69, "-10":50 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
@@ -3450,9 +3433,10 @@ const LEDGER = [
     instrument:"Samsung", asset_class:"other",
     anchor_date:"2026-07-27", anchor_price:254000, ccy:"KRW",
     horizon_label:"3 months", grade_date:"2026-10-19", cycle_no:2, reanchor_from:"2026-06-26",
+    config_note:"Corrected 29-Jul-2026: this cycle was originally struck with the prior market-default fit; the per-name override decided the same day (see engine/fit_overrides.json) genuinely improves this specific name's own LONO verdict, so the anchor/grade dates are unchanged but the distribution was recomputed under the correct config.",
     note:"Cycle 2 roll-forward, 27-Jul-2026. Production chain, no approximation: Step 0.0 data-quality gate \u2192 YZ variance proxy \u2192 fit_har_v3 \u2192 har_forecast_v3 \u2192 carry drift ln(1+rf_live)\u2212ln(1+q) \u2192 simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED \u2014 house convention; drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). KR live fit nu=Gaussian, width_cal=1.154; rf_live 3.00% (placeholder KTB anchor). STRUCK ON THE INCUMBENT FIT BY DESIGN: the 15-year Samsung history ingested this session refits KR to nu=12/width_cal=1.105 (published 90% cone \u22125.3%), which trips the materiality gate and is therefore held on a feature branch pending PR review, not applied to production.",
-    p5:144517, p25:202523, p50:256106, p75:323940, p95:454889,
-    touch:{ "+5":84, "+10":73, "+15":64, "+20":56, "-5":82, "-10":70 },
+    p5:129392.31, p25:181881.54, p50:222199.19, p75:270912.64, p95:381214.94,
+    touch:{ "+5":82, "+10":70, "+15":59, "+20":50, "-5":80, "-10":66 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
@@ -5606,10 +5590,11 @@ const LEDGER = [
     instrument:"Kakao", asset_class:"other",
     anchor_date:"2026-07-28", anchor_price:35650, ccy:"KRW",
     horizon_label:"1 month", grade_date:"2026-08-28", grade_basis:"projected", horizon_days:22,
-    cycle_no:2, reanchor_from:"2026-06-26", anchor_vol:0.4749,
+    cycle_no:2, reanchor_from:"2026-06-26",
+    config_note:"Corrected 29-Jul-2026: this cycle was originally struck with the prior market-default fit; the per-name override decided the same day (see engine/fit_overrides.json) genuinely improves this specific name's own LONO verdict, so the anchor/grade dates are unchanged but the distribution was recomputed under the correct config.", anchor_vol:0.4749,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — first roll-forward since the 28-Jun published study, struck on the 28-Jul close from freshly-posted OHLC. The 26-Jun cycle-1 1-month matured and is graded in this same update. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). KR live fit nu=10.0, width_cal=1.063; rf_live 3.00% BOK base rate. Horizon resolved by horizons.resolve() on KRX's own realized calendar, not a session count.",
-    p5:28157, p25:32591, p50:35717, p75:39201, p95:45373,
-    touch:{ "+5":64, "+10":43, "+15":27, "+20":17, "-5":61, "-10":37 },
+    p5:27814.21, p25:32498.94, p50:35717.27, p75:39311.86, p95:45869.23,
+    touch:{ "+5":65, "+10":44, "+15":28, "+20":18, "-5":62, "-10":39 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
@@ -5618,10 +5603,11 @@ const LEDGER = [
     instrument:"Kakao", asset_class:"other",
     anchor_date:"2026-07-28", anchor_price:35650, ccy:"KRW",
     horizon_label:"3 months", grade_date:"2026-10-28", grade_basis:"projected", horizon_days:62,
-    cycle_no:2, reanchor_from:"2026-06-26", anchor_vol:0.4599,
+    cycle_no:2, reanchor_from:"2026-06-26",
+    config_note:"Corrected 29-Jul-2026: this cycle was originally struck with the prior market-default fit; the per-name override decided the same day (see engine/fit_overrides.json) genuinely improves this specific name's own LONO verdict, so the anchor/grade dates are unchanged but the distribution was recomputed under the correct config.", anchor_vol:0.4599,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — first roll-forward since the 28-Jun published study, struck on the 28-Jul close from freshly-posted OHLC. The 26-Jun cycle-1 1-month matured and is graded in this same update. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). KR live fit nu=10.0, width_cal=1.063; rf_live 3.00% BOK base rate. Horizon resolved by horizons.resolve() on KRX's own realized calendar, not a session count.",
-    p5:24230, p25:30920, p50:35984, p75:41848, p95:53204,
-    touch:{ "+5":78, "+10":63, "+15":50, "+20":39, "-5":75, "-10":57 },
+    p5:23978.91, p25:30817.91, p50:35986.62, p75:41993.13, p95:53885.8,
+    touch:{ "+5":78, "+10":64, "+15":51, "+20":40, "-5":76, "-10":58 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
@@ -5630,9 +5616,10 @@ const LEDGER = [
     instrument:"LGES", asset_class:"other",
     anchor_date:"2026-07-28", anchor_price:314000, ccy:"KRW",
     horizon_label:"1 month", grade_date:"2026-08-28", grade_basis:"projected", horizon_days:22,
-    cycle_no:2, reanchor_from:"2026-06-26", anchor_vol:0.5327,
+    cycle_no:2, reanchor_from:"2026-06-26",
+    config_note:"Corrected 29-Jul-2026: this cycle was originally struck with the prior market-default fit; the per-name override decided the same day (see engine/fit_overrides.json) genuinely improves this specific name's own LONO verdict, so the anchor/grade dates are unchanged but the distribution was recomputed under the correct config.", anchor_vol:0.5327,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — first roll-forward since the 28-Jun published study, struck on the 28-Jul close from freshly-posted OHLC. The 26-Jun cycle-1 1-month matured and is graded in this same update. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). KR live fit nu=10.0, width_cal=1.063; rf_live 3.00% BOK base rate. Horizon resolved by horizons.resolve() on KRX's own realized calendar, not a session count.",
-    p5:240911, p25:283851, p50:314565, p75:349180, p95:411415,
+    p5:239661.03, p25:283872.78, p50:314576.54, p75:349157.25, p95:412942.73,
     touch:{ "+5":67, "+10":47, "+15":32, "+20":21, "-5":64, "-10":42 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
@@ -5642,9 +5629,10 @@ const LEDGER = [
     instrument:"LGES", asset_class:"other",
     anchor_date:"2026-07-28", anchor_price:314000, ccy:"KRW",
     horizon_label:"3 months", grade_date:"2026-10-28", grade_basis:"projected", horizon_days:62,
-    cycle_no:2, reanchor_from:"2026-06-26", anchor_vol:0.5169,
+    cycle_no:2, reanchor_from:"2026-06-26",
+    config_note:"Corrected 29-Jul-2026: this cycle was originally struck with the prior market-default fit; the per-name override decided the same day (see engine/fit_overrides.json) genuinely improves this specific name's own LONO verdict, so the anchor/grade dates are unchanged but the distribution was recomputed under the correct config.", anchor_vol:0.5169,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — first roll-forward since the 28-Jun published study, struck on the 28-Jul close from freshly-posted OHLC. The 26-Jun cycle-1 1-month matured and is graded in this same update. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). KR live fit nu=10.0, width_cal=1.063; rf_live 3.00% BOK base rate. Horizon resolved by horizons.resolve() on KRX's own realized calendar, not a session count.",
-    p5:203248, p25:267332, p50:317022, p75:375649, p95:492019,
+    p5:203112.53, p25:267452.66, p50:317026.47, p75:375503.78, p95:493606.95,
     touch:{ "+5":80, "+10":66, "+15":54, "+20":44, "-5":77, "-10":61 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
@@ -5702,8 +5690,9 @@ const LEDGER = [
     instrument:"RELIANCE", asset_class:"equity",
     anchor_date:"2026-07-28", anchor_price:1271.8, ccy:"INR",
     horizon_label:"1 month", grade_date:"2026-08-28", cycle_no:2, reanchor_from:"2026-07-06",
-    p5:1151.53, p25:1224.79, p50:1278.17, p75:1334.63, p95:1421.1,
-    touch:{ "+5":41, "+10":12, "+15":3, "+20":0, "-5":33, "-10":7 },
+    config_note:"Corrected 29-Jul-2026: this cycle was originally struck with the prior market-default fit; the per-name override decided the same day (see engine/fit_overrides.json) genuinely improves this specific name's own LONO verdict, so the anchor/grade dates are unchanged but the distribution was recomputed under the correct config.",
+    p5:1144.56, p25:1227.46, p50:1278.17, p75:1331.34, p95:1427.61,
+    touch:{ "+5":39, "+10":13, "+15":4, "+20":2, "-5":32, "-10":8 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
@@ -5712,8 +5701,9 @@ const LEDGER = [
     instrument:"RELIANCE", asset_class:"equity",
     anchor_date:"2026-07-28", anchor_price:1271.8, ccy:"INR",
     horizon_label:"3 months", grade_date:"2026-10-28", cycle_no:2, reanchor_from:"2026-07-06",
-    p5:1071.48, p25:1196.71, p50:1293.24, p75:1396.91, p95:1560.65,
-    touch:{ "+5":66, "+10":41, "+15":23, "+20":12, "-5":56, "-10":28 },
+    config_note:"Corrected 29-Jul-2026: this cycle was originally struck with the prior market-default fit; the per-name override decided the same day (see engine/fit_overrides.json) genuinely improves this specific name's own LONO verdict, so the anchor/grade dates are unchanged but the distribution was recomputed under the correct config.",
+    p5:1060.54, p25:1201.62, p50:1293.19, p75:1390.72, p95:1576.35,
+    touch:{ "+5":65, "+10":40, "+15":23, "+20":13, "-5":53, "-10":27 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
@@ -5722,8 +5712,9 @@ const LEDGER = [
     instrument:"TMPV", asset_class:"equity",
     anchor_date:"2026-07-28", anchor_price:324.15, ccy:"INR",
     horizon_label:"1 month", grade_date:"2026-08-28", cycle_no:2, reanchor_from:"2026-06-30",
-    p5:284.44, p25:308.18, p50:325.75, p75:344.58, p95:373.87,
-    touch:{ "+5":51, "+10":22, "+15":8, "+20":2, "-5":44, "-10":15 },
+    config_note:"Corrected 29-Jul-2026: this cycle was originally struck with the prior market-default fit; the per-name override decided the same day (see engine/fit_overrides.json) genuinely improves this specific name's own LONO verdict, so the anchor/grade dates are unchanged but the distribution was recomputed under the correct config.",
+    p5:287.2, p25:310.33, p50:325.75, p75:342.21, p95:369.77,
+    touch:{ "+5":46, "+10":18, "+15":6, "+20":2, "-5":39, "-10":12 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
@@ -5732,8 +5723,9 @@ const LEDGER = [
     instrument:"TMPV", asset_class:"equity",
     anchor_date:"2026-07-28", anchor_price:324.15, ccy:"INR",
     horizon_label:"3 months", grade_date:"2026-10-28", cycle_no:2, reanchor_from:"2026-06-30",
-    p5:257.91, p25:297.95, p50:329.71, p75:364.64, p95:421.42,
-    touch:{ "+5":72, "+10":52, "+15":35, "+20":23, "-5":65, "-10":40 },
+    config_note:"Corrected 29-Jul-2026: this cycle was originally struck with the prior market-default fit; the per-name override decided the same day (see engine/fit_overrides.json) genuinely improves this specific name's own LONO verdict, so the anchor/grade dates are unchanged but the distribution was recomputed under the correct config.",
+    p5:261.85, p25:301.8, p50:329.67, p75:359.96, p95:413.98,
+    touch:{ "+5":69, "+10":47, "+15":30, "+20":18, "-5":60, "-10":34 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
@@ -5742,8 +5734,9 @@ const LEDGER = [
     instrument:"AAPL", asset_class:"equity",
     anchor_date:"2026-07-27", anchor_price:336.91, ccy:"USD",
     horizon_label:"1 month", grade_date:"2026-08-27", cycle_no:2, reanchor_from:"2026-07-06",
-    p5:294.05, p25:319.18, p50:337.8, p75:357.78, p95:388.91,
-    touch:{ "+5":50, "+10":23, "+15":8, "+20":3, "-5":46, "-10":17 },
+    config_note:"Corrected 29-Jul-2026: this cycle was originally struck with the prior market-default fit; the per-name override decided the same day (see engine/fit_overrides.json) genuinely improves this specific name's own LONO verdict, so the anchor/grade dates are unchanged but the distribution was recomputed under the correct config.",
+    p5:294.17, p25:320.62, p50:337.8, p75:356.2, p95:387.93,
+    touch:{ "+5":47, "+10":20, "+15":8, "+20":3, "-5":43, "-10":15 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
@@ -5752,8 +5745,9 @@ const LEDGER = [
     instrument:"AAPL", asset_class:"equity",
     anchor_date:"2026-07-27", anchor_price:336.91, ccy:"USD",
     horizon_label:"3 months", grade_date:"2026-10-27", cycle_no:2, reanchor_from:"2026-07-06",
-    p5:266.75, p25:307.94, p50:340.36, p75:375.9, p95:434.65,
-    touch:{ "+5":71, "+10":50, "+15":33, "+20":21, "-5":66, "-10":41 },
+    config_note:"Corrected 29-Jul-2026: this cycle was originally struck with the prior market-default fit; the per-name override decided the same day (see engine/fit_overrides.json) genuinely improves this specific name's own LONO verdict, so the anchor/grade dates are unchanged but the distribution was recomputed under the correct config.",
+    p5:267.37, p25:310.49, p50:340.32, p75:372.83, p95:434.07,
+    touch:{ "+5":69, "+10":47, "+15":30, "+20":19, "-5":63, "-10":38 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
@@ -5782,8 +5776,9 @@ const LEDGER = [
     instrument:"TSLA", asset_class:"equity",
     anchor_date:"2026-07-27", anchor_price:309.22, ccy:"USD",
     horizon_label:"1 month", grade_date:"2026-08-27", cycle_no:2, reanchor_from:"2026-06-30",
-    p5:231.94, p25:275.29, p50:309.92, p75:349.47, p95:416.04,
-    touch:{ "+5":70, "+10":52, "+15":37, "+20":26, "-5":68, "-10":47 },
+    config_note:"Corrected 29-Jul-2026: this cycle was originally struck with the prior market-default fit; the per-name override decided the same day (see engine/fit_overrides.json) genuinely improves this specific name's own LONO verdict, so the anchor/grade dates are unchanged but the distribution was recomputed under the correct config.",
+    p5:233.26, p25:275.93, p50:309.92, p75:348.65, p95:413.66,
+    touch:{ "+5":70, "+10":51, "+15":37, "+20":25, "-5":67, "-10":47 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
@@ -5792,8 +5787,54 @@ const LEDGER = [
     instrument:"TSLA", asset_class:"equity",
     anchor_date:"2026-07-27", anchor_price:309.22, ccy:"USD",
     horizon_label:"3 months", grade_date:"2026-10-27", cycle_no:2, reanchor_from:"2026-06-30",
-    p5:190.81, p25:255.31, p50:312.79, p75:382.6, p95:513.65,
-    touch:{ "+5":82, "+10":71, "+15":60, "+20":51, "-5":80, "-10":66 },
+    config_note:"Corrected 29-Jul-2026: this cycle was originally struck with the prior market-default fit; the per-name override decided the same day (see engine/fit_overrides.json) genuinely improves this specific name's own LONO verdict, so the anchor/grade dates are unchanged but the distribution was recomputed under the correct config.",
+    p5:192.65, p25:256.31, p50:312.78, p75:381.08, p95:508.68,
+    touch:{ "+5":82, "+10":70, "+15":60, "+20":50, "-5":80, "-10":66 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  }
+,
+  {
+    instrument:"QGTS", asset_class:"equity",
+    anchor_date:"2026-07-28", anchor_price:4.165, ccy:"QAR",
+    horizon_label:"1 month", grade_date:"2026-08-30", cycle_no:2, reanchor_from:"2026-07-05",
+    config_note:"First roll-forward since the per-name fit override adopted this name's improved (nu, width_cal) on 29-Jul-2026 (see engine/fit_overrides.json); struck via the standard production chain, no shortcut.",
+    p5:3.671, p25:3.984, p50:4.177, p75:4.381, p95:4.754,
+    touch:{ "+5":44, "+10":18, "+15":7, "+20":3, "-5":39, "-10":13 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"QGTS", asset_class:"equity",
+    anchor_date:"2026-07-28", anchor_price:4.165, ccy:"QAR",
+    horizon_label:"3 months", grade_date:"2026-10-28", cycle_no:2, reanchor_from:"2026-07-05",
+    config_note:"First roll-forward since the per-name fit override adopted this name's improved (nu, width_cal) on 29-Jul-2026 (see engine/fit_overrides.json); struck via the standard production chain, no shortcut.",
+    p5:3.372, p25:3.881, p50:4.21, p75:4.566, p95:5.253,
+    touch:{ "+5":66, "+10":43, "+15":26, "+20":16, "-5":59, "-10":33 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"IQCD", asset_class:"equity",
+    anchor_date:"2026-07-28", anchor_price:10.7, ccy:"QAR",
+    horizon_label:"1 month", grade_date:"2026-08-30", cycle_no:2, reanchor_from:"2026-07-05",
+    config_note:"First roll-forward since the per-name fit override adopted this name's improved (nu, width_cal) on 29-Jul-2026 (see engine/fit_overrides.json); struck via the standard production chain, no shortcut.",
+    p5:9.814, p25:10.369, p50:10.733, p75:11.115, p95:11.743,
+    touch:{ "+5":32, "+10":7, "+15":2, "+20":0, "-5":26, "-10":4 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"IQCD", asset_class:"equity",
+    anchor_date:"2026-07-28", anchor_price:10.7, ccy:"QAR",
+    horizon_label:"3 months", grade_date:"2026-10-28", cycle_no:2, reanchor_from:"2026-07-05",
+    config_note:"First roll-forward since the per-name fit override adopted this name's improved (nu, width_cal) on 29-Jul-2026 (see engine/fit_overrides.json); struck via the standard production chain, no shortcut.",
+    p5:9.237, p25:10.178, p50:10.812, p75:11.483, p95:12.666,
+    touch:{ "+5":58, "+10":30, "+15":14, "+20":6, "-5":48, "-10":20 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
