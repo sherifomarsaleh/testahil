@@ -13,7 +13,9 @@ every data update minted new ledger cycles on top of still-open old ones — whi
 135 of 150 (instrument, horizon) pairs carrying two or more simultaneously-open, overlapping
 forecasts, and meant no 3-month forecast ever survived to grading (all 11 grades earned to
 date are 1-month windows). A one-time cleanup deleted the 143 superseded-and-never-graded
-legacy rows (304 → 161: 150 live + 11 graded, permanent). **v2/v2.1 changes** (technical
+legacy rows (304 → 161: 150 live + 11 graded, permanent). Grading and striking are
+CALENDAR-NATIVE throughout, per the 28-Jul horizon standing amendment: the check date is a
+calendar date, never a session count. **v2/v2.1 changes** (technical
 read computed in-pass; chart part of the read; two-part as-of stamps; overlay gate) stand.
 
 ---
@@ -75,22 +77,26 @@ this is a PR-gated event, not an auto-apply one.
 
 ## STEP 3 — GRADE EVERY NOW-MATURED COHORT
 Under the lifecycle this means: the matured current 1M, PLUS any aging 3M tail (and any
-metals 12M) whose true session has arrived. **Never grade on the stored `grade_date`
-alone.** That field is a PROJECTED calendar target (Sun–Thu weekmask, zero holiday
-awareness) set at publish time for scheduling/display only. For every open LEDGER row
-(`realized_close == null`) whose anchor is old enough that the persisted library now covers
-it:
+metals 12M) whose grade date has arrived. **The forecast is a DATE, not a session count.**
+The check date is the calendar grade date resolved at strike by `horizons.resolve()` —
+anchor + 1 (or 3) calendar months, month-end clamped, rolled FORWARD to the first real
+trading session on or after the target on that exchange's own calendar. Whether the window
+contained 18 sessions or 24 is irrelevant to grading; sessions matter only at strike time,
+to size the cone. Never re-derive the target by counting rows. For every open LEDGER row
+(`realized_close == null`) whose grade date the persisted library now covers:
 
-1. Count forward the ACTUAL number of trading rows from `anchor_date` in the library —
-   this is the true T+20 / T+60 session, independent of what was projected.
-2. Grade against THAT close (realized_close/high/low over the true window, in_90/in_50 via
-   the frozen p5/p25/p50/p75/p95, realized_quantile via linear interpolation on those
-   percentiles, median_err = realized/p50 − 1, touch_hit at the same ±5/10/15/20%/±5/10%
-   relative levels used at publish, using running max/min over the true window).
-3. If the true session date differs from the stored `grade_date`, do NOT silently overwrite
-   history: keep `grade_date` as the corrected/actual date, add `grade_date_projected` (the
-   original stored value) and a one-line `grade_note` stating the session gap and likely
-   cause (holiday/closure). This is an append/annotate, never a silent retro-edit of the
+1. Verify the stored `grade_date` against the library: it must be a real traded session. If
+   an unscheduled closure or suspension pushed the first real session past it, the grade
+   session is the next actual session in the library.
+2. Grade against the close ON that date (realized_close/high/low over the calendar window's
+   actual sessions, in_90/in_50 via the frozen p5/p25/p50/p75/p95, realized_quantile via
+   linear interpolation on those percentiles, median_err = realized/p50 − 1, touch_hit at
+   the same ±5/10/15/20%/±5/10% relative levels used at publish, using running max/min over
+   the window).
+3. If the graded session differs from the stored `grade_date`, do NOT silently overwrite
+   history: set `grade_date` to the actual session graded, add `grade_date_projected` (the
+   original stored value) and a one-line `grade_note` stating the gap and likely cause
+   (closure/suspension). This is an append/annotate, never a silent retro-edit of the
    frozen percentiles themselves — those stay exactly as published.
 4. The ledger page's existing JS needs NO template change for this — once `realized_close`
    is non-null it already renders the real close + "we got it right ✓ / we were off ✗" from
@@ -109,22 +115,25 @@ Anchor the new cycle (`cycle_no` = prior max + 1, `reanchor_from` = prior cycle'
 `anchor_date`), run the actual production engine — not an approximation:
 
 ```
+h1, h3 = projected SESSION counts spanning the 1M / 3M calendar windows
+         (engine/horizons.py blend projection — never a hardcoded 20/60)
 v = yz_variance_proxy(df)
-beta, s2 = fit_har_v3(v, origin=last_row, horizon=60)
-dv       = har_forecast_v3(v, origin, beta, s2, horizon=60)
-drift    = carry_log_h(profile, anchor_date, q_annual, horizon=60)   # rf_live from the profile;
+beta, s2 = fit_har_v3(v, origin=last_row, horizon=h3)
+dv       = har_forecast_v3(v, origin, beta, s2, horizon=h3)
+drift    = carry_log_h(profile, anchor_date, q_annual, horizon=h3)   # exact calendar year-
+                                                                       # fraction; rf_live from the profile;
                                                                        # q_annual must be SOURCED —
                                                                        # if genuinely disputed/unclear
                                                                        # across sources, default 0 and
                                                                        # flag it, never split the
                                                                        # difference or invent a number
-paths = simulate_paths_v3(spot, dv, 60, drift, nu=profile.nu,
+paths = simulate_paths_v3(spot, dv, h3, drift, nu=profile.nu,
                            n_paths=50000, seed=42, width_cal=profile.width_cal)
 ```
 `signal_alpha` is already gated on `profile.signal_active` internally — do not hand-add a
 discretionary drift on top of this. This is the SAME single call used for both horizons:
-`pT20, pT60 = paths[:,20], paths[:,60]`; percentiles via `np.percentile(...,[5,25,50,75,95])`;
-touch via running max/min (`paths[:,:21]` for T+20, full `paths` for T+60) against both the
+`p1M, p3M = paths[:,h1], paths[:,h3]`; percentiles via `np.percentile(...,[5,25,50,75,95])`;
+touch via running max/min (`paths[:,:h1+1]` for 1M, full `paths` for 3M) against both the
 existing relative ladder (±5/10/15/20% / ±5/10%) for the LEDGER row and the site's existing
 absolute price levels for the ticker-page touch table (Step 5).
 
@@ -134,10 +143,10 @@ DD-Mon-YYYY --write`.** It runs exactly the chain above via `strike_cohorts.stri
 comment and per-row note are hardcoded to that pass, so re-running it for one name stamps
 today's cohort with last week's story.
 
-Projected `grade_date` for the new cycle: anchor + N sessions on the Sun–Thu EGX weekmask
-(same convention as existing entries, for consistency) — but this is a DISPLAY target only;
-Step 3 governs how it actually gets graded next time. Round percentiles to 2dp, touch to
-whole %, matching existing row formatting exactly.
+`grade_date` for the new cycle comes from `horizons.resolve()` — anchor + 1/3 calendar
+months, month-end clamped, rolled forward to the exchange's first real session. It is the
+calendar commitment Step 3 grades, regardless of how many sessions the window turns out to
+hold. Round percentiles to 2dp, touch to whole %, matching existing row formatting exactly.
 
 ## STEP 5 — TICKER PAGE (the "financial instrument page")
 Runs on EVERY data update, mid-cycle included (STEP 0 decision (a)): the displayed cone is
@@ -276,7 +285,7 @@ Confirm (don't assume) the grade you wrote in Step 3 renders correctly — the e
 `renderRow()` logic already turns a populated `realized_close` into the pass/fail line with
 no template change. Separately assess the five-year quarterly calibration backtest PNG
 (`assets/calibration_{TICKER}.png`): this is a coarser, ~quarterly-cadence construct spanning
-years, not something a single new T+20/T+60 cohort or a few weeks of tail data usually moves.
+years, not something a single new 1M/3M cohort or a few weeks of tail data usually moves.
 State plainly whether a regeneration pass is actually warranted this cycle, rather than
 regenerating by default — and if it is warranted, that's its own step (via `ledger_scorer.py`
 + `viz.py`), reported separately, not bundled silently into a data-only roll-forward.
