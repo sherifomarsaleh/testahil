@@ -171,7 +171,12 @@ def emit_asof(a: dict, ind: str) -> str:
 
 # -------------------------------------------------------------- MC provenance
 SPOTDATE_RE = re.compile(r'spotDate\s*:\s*"[^"]*?(\d{1,2})\s+([A-Za-z]{3})\s+(\d{4})')
-NOTE_RUN_RE = re.compile(r'(\d{1,2})-([A-Za-z]{3})-(\d{4})')
+# The strike date is READ FROM A FIELD, never scraped out of the note prose.
+# Scraping was the 29-Jul defect: NOTE_RUN_RE took the first dd-Mon-yyyy
+# anywhere in the note, so platinum's "origins 05-Jan-2012 -> 13-Feb-2026"
+# (the calibration SAMPLE START) was stamped as the day the cone was run.
+# Every LEDGER row now carries run_date:"YYYY-MM-DD"; no fallback to prose.
+RUN_DATE_RE = re.compile(r'run_date\s*:\s*"(\d{4}-\d{2}-\d{2})"')
 MONTHS = {m: i + 1 for i, m in enumerate(
     ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'])}
@@ -198,13 +203,8 @@ def ledger_index(src: str):
         if not ad:
             continue
         nm = m.group(1)
-        note = re.search(r'note:"(.*?)(?<!\\)"', seg, re.S)
-        run = None
-        if note:
-            r = NOTE_RUN_RE.search(note.group(1))
-            if r and r.group(2).title() in MONTHS:
-                run = (f'{int(r.group(3)):04d}-{MONTHS[r.group(2).title()]:02d}'
-                       f'-{int(r.group(1)):02d}')
+        rd = RUN_DATE_RE.search(seg[:ad.end() + 40])
+        run = rd.group(1) if rd else None
         cur = out.get(nm)
         if cur is None or ad.group(1) > cur[0]:
             out[nm] = (ad.group(1), run)

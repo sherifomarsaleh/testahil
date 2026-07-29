@@ -606,12 +606,16 @@ const TICKERS = {
   },
     hz: { h1:22, h3:62, l1:"1 month", l3:"3 months", cal:true },
     touch: [[1550,1,10],[1500,2,16],[1450,5,25],[1400,13,39],[1350,31,58],[1300,66,82],[1250,66,78],[1200,27,49],[1150,9,28]],
-    levels: { res:[1366, 1418, 1592], sup:[1303, 1259, 1200] },
+    levels: { res:[1289, 1333, 1354], sup:[1250, 1207, 1156] },
     tech: {
-      trend: "Below the 50-, 100- and 200-day moving averages but holding the 20-day; RSI neutral, MACD turning up — a corrective tape stabilising off the low",
-      summary: "The tape is corrective but stabilising rather than trending down. Reliance has retraced from a January-2026 high near \u20b91,600 to the low-\u20b91,300s and sits below its 50-day (\u20b91,341), 100-day (\u20b91,366) and 200-day (\u20b91,418) moving averages, but has reclaimed the 20-day (\u20b91,303). RSI(14) near 52 is neutral; MACD is negative but the histogram has turned positive (\u22125.90 line / \u22128.69 signal / +2.79 histogram) as the MACD line crosses back above its signal \u2014 an early momentum turn off the correction low. Realized 252-day volatility is about 21%, and the YZ-HAR engine reads the current 60-day regime near 25%.",
-      bull: "A daily close back above the \u20b91,341 fifty-day and the \u20b91,366 hundred-day would confirm the turn and open the \u20b91,418 two-hundred-day; reclaiming \u20b91,592 would need the Jio IPO to crystallise or an O2C-margin surprise.",
-      bear: "A close back below the \u20b91,303 twenty-day and the \u20b91,259 fifty-two-week low would reopen the downtrend toward the \u20b91,200 shelf, the main driver of the left tail being an O2C-margin squeeze or a crude-spike shock."
+      trend: "Trading below the whole moving-average stack, under a falling 200-day",
+      summary: "The price closed 1272 below a falling 20-day (1297), a falling 50-day (1308) and a falling 200-day (1411). Momentum is neutral: RSI(14) is ~41 and the daily ATR near 23 (~1.8%) points to a normal tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22129 / \u22127 / \u22122). Over the last year it has ranged 1250\u20131612; the last close sits 21% below that high and 2% above that low.",
+      bull: "A daily close back above 1289 would clear the nearest resistance and open the 1354 zone.",
+      bear: "A close below 1250 would break the nearest support and open the 1156 zone."
+    },
+    asof: {
+      mc:   { data:"2026-07-28", computed:"2026-07-29" },
+      tech: { data:"2026-07-28", computed:"2026-07-29" }
     },
     files: {
       study: "files/RELIANCE_Valuation_Study_06-07-2026_public.docx?v=0706i",
@@ -635,12 +639,16 @@ const TICKERS = {
     touch: [ /* descending high -> low */
       [240.00, 13, 39], [230.00, 22, 49], [220.00, 36, 61], [210.00, 56, 74], [200.00, 81, 89], [190.00, 71, 83], [180.00, 45, 66], [170.00, 24, 50], [160.00, 11, 35]
     ],
-    levels: { res:[209.67, 202.37, 197.06], sup:[191.14, 180.00, 170.00] },
+    levels: { res:[198.62, 208.78, 214.60], sup:[189.13, 177.36, 169.92] },
     tech: {
-      trend: "Below the 20-, 50- and 100-day averages but holding above a rising 200-day; consolidating after a pullback",
-      summary: "The tape is soft but not broken. Price ($196.44) sits below the 20-day ($202.37), 50-day ($209.67) and 100-day ($197.06) moving averages, but above a rising 200-day line ($191.14) \u2014 a mid-range consolidation after a pullback from the high-$230s, not a breakdown. RSI(14) near 43 is neutral, tilted soft; the daily MACD is mildly negative (\u22124.06 line / \u22123.28 signal / \u22120.78 histogram). The trailing-year range is $158.24\u2013$235.74, and price sits mid-range. Realized 252-day volatility near 35% is elevated but typical for the name.",
-      bull: "A daily close back above the $202\u2013210 moving-average cluster would signal the consolidation is resolving up, opening the $220 band and, above it, the 52-week high near $236.",
-      bear: "A sustained close below the rising 200-day at $191 opens the $180 shelf and, beneath it, the $170 level."
+      trend: "Consolidating below the near-term moving averages, above a rising 200-day",
+      summary: "The price closed 196.51 below a rising 20-day (203.57) and a flat 50-day (208.62), but above a rising 200-day (192.97). Momentum is neutral: RSI(14) is ~42 and the daily ATR near 7.68 (~3.9%) points to a lively tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.03 / +0.05 / \u22120.09). Over the last year it has ranged 164.07\u2013236.54; the last close sits 17% below that high and 20% above that low.",
+      bull: "A daily close back above 198.62 would clear the nearest resistance and open the 214.60 zone.",
+      bear: "A close below 189.13 would break the nearest support and open the 169.92 zone."
+    },
+    asof: {
+      mc:   { data:"2026-07-27", computed:"2026-07-29" },
+      tech: { data:"2026-07-27", computed:"2026-07-29" }
     },
     files: {
       study: "files/NVDA_Valuation_Study_06-07-2026_public.docx?v=0706",
@@ -695,16 +703,16 @@ const TICKERS = {
     t60: { label: "3 months", p5: 9.237, p25: 10.18, p50: 10.81, p75: 11.48, p95: 12.67, resolve: "2026-10-28" }
   },
     touch: [[12.5,1,11],[12,4,22],[11.5,16,43],[11,54,73],[10.5,61,75],[10,15,37],[9.5,3,15]],
-    levels: { res:[11.37, 11.94, 12.77], sup:[10.46, 10, 9] },
+    levels: { res:[11.37, 11.94, 12.76], sup:[10.46, 10, 9] },
     tech: {
       trend: "Trading below the whole moving-average stack, under a falling 200-day",
-      summary: "The price closed 11.07 below a falling 20-day (11.37), a falling 50-day (11.85) and a falling 200-day (12.07). Momentum is soft: RSI(14) is ~36 and the daily ATR near 0.21 (~1.9%) points to a normal tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.24 / \u22120.22 / \u22120.02). Over the last year it has ranged 10.46\u201313.48; the last close sits 18% below that high and 6% above that low.",
-      bull: "A daily close back above 11.37 would clear the nearest resistance and open the 12.77 zone.",
+      summary: "The price closed 10.70 below a falling 20-day (10.96), a falling 50-day (11.52) and a falling 200-day (11.96). Momentum is soft: RSI(14) is ~35 and the daily ATR near 0.19 (~1.8%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22120.18 / \u22120.20 / +0.02). Over the last year it has ranged 10.46\u201313.48; the last close sits 21% below that high and 2% above that low.",
+      bull: "A daily close back above 11.37 would clear the nearest resistance and open the 12.76 zone.",
       bear: "A close below 10.46 would break the nearest support and open the 9.00 zone."
     },
     asof: {
-      mc:   { data:"2026-07-05", computed:"2026-07-05" },
-      tech: { data:"2026-07-05", computed:"2026-07-29" }
+      mc:   { data:"2026-07-28", computed:"2026-07-29" },
+      tech: { data:"2026-07-28", computed:"2026-07-29" }
     },
     files: {
       study: "files/IQCD_Valuation_Study_05-07-2026_public.docx?v=0705g",
@@ -1398,12 +1406,16 @@ const TICKERS = {
   },
     hz: { h1:22, h3:62, l1:"1 month", l3:"3 months", cal:true },
     touch: [[440000,1,4],[400000,1,7],[360000,3,11],[286000,17,35],[250000,44,62]],
-    levels: { res:[362500, 350000, 344000], sup:[334675, 320000, 286320] },
+    levels: { res:[223000, 240000, 262000], sup:[209000, 191062, 167145] },
     tech: {
-      trend: "Extended uptrend, well above every moving average",
-      summary: "The price is in a powerful, stretched advance — about 485% above its 52-week low and roughly 6% below its 362,500 all-time high, riding a correctly-stacked, rising set of moving averages (20-day above 50-day above 200-day). Momentum is firm but not yet stretched: RSI(14) is ~55, short of the 70 overbought line, so the trend has room. But realized 60-day volatility near 82% — far above the long-run ~33% — and strongly fat-tailed returns mean the same energy that drove the melt-up can also produce violent two-way moves.",
-      bull: "A daily close above the 362,500 all-time high opens blue-sky continuation toward the 400,000 bull-case zone.",
-      bear: "A close below the 50-day near 286,000 breaks the rising structure and opens the cycle-reversion zone toward the base-SOTP area."
+      trend: "Consolidating below the near-term moving averages, above a rising 200-day",
+      summary: "The price closed 220000 below a falling 20-day (275375) and a falling 50-day (302490), but above a rising 200-day (191062). Momentum is soft: RSI(14) is ~36 and the daily ATR near 23590 (~10.7%) points to a volatile tape. MACD (12\u00b726\u00b79) is negative and still falling (\u221218188 / \u221214144 / \u22124043). Over the last year it has ranged 64400\u2013374500; the last close sits 41% below that high and 242% above that low.",
+      bull: "A daily close back above 223000 would clear the nearest resistance and open the 262000 zone.",
+      bear: "A close below 209000 would break the nearest support and open the 167145 zone."
+    },
+    asof: {
+      mc:   { data:"2026-07-27", computed:"2026-07-27" },
+      tech: { data:"2026-07-28", computed:"2026-07-29" }
     },
     files: {
       study: "files/Samsung_Valuation_Study_27-06-2026_public.docx?v=2706",
@@ -1425,12 +1437,16 @@ const TICKERS = {
   },
     hz: { h1:22, h3:62, l1:"1 month", l3:"3 months", cal:true },
     touch: [[44000,13,34],[40000,36,58],[37000,71,82],[32000,38,57],[28000,9,26],[24000,1,9]],
-    levels: { res:[42949, 38888, 37000], sup:[32250, 30000, 28000] },
+    levels: { res:[36497, 38431, 39979], sup:[35302, 33400, 32384] },
     tech: {
-      trend: "Extended downtrend, below every moving average",
-      summary: "The price is in a sustained decline — sitting at its 52-week low, about 36% below where it traded a year ago and roughly 53% off its 52-week high, beneath a correctly-stacked, falling set of moving averages (20-day below 50-day below 200-day). Momentum is washed out rather than stretched: RSI(14) is ~27, in oversold territory, which often precedes a bounce — but in a sustained downtrend a bounce need not hold. Realized 60-day volatility near 51% — far above quieter periods — and fat-tailed returns mean the same energy that drove the decline can also produce sharp two-way moves.",
-      bull: "A reclaim of the falling 20-day near 38,900 would be the first sign the downtrend is stalling; a push toward 44,000 would need the holding-company discount to compress.",
-      bear: "A daily close below the 32,250 52-week low opens the wide-discount zone toward the DCF / stale-marks area near 24,000–28,000."
+      trend: "Mixed against the moving-average stack, below a falling 200-day",
+      summary: "The price closed 35650 below a falling 50-day (37871) and a falling 200-day (51486), but above a falling 20-day (35302). Momentum is neutral: RSI(14) is ~47 and the daily ATR near 1901 (~5.3%) points to a volatile tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u2212445 / \u2212864 / +419). Over the last year it has ranged 32250\u201369700; the last close sits 49% below that high and 11% above that low.",
+      bull: "A daily close back above 36497 would clear the nearest resistance and open the 39979 zone.",
+      bear: "A close below 35302 would break the nearest support and open the 32384 zone."
+    },
+    asof: {
+      mc:   { data:"2026-07-28", computed:"2026-07-28" },
+      tech: { data:"2026-07-28", computed:"2026-07-29" }
     },
     files: {
       study: "files/Kakao_Valuation_Study_28-06-2026_public.docx?v=2806",
@@ -1452,12 +1468,16 @@ const TICKERS = {
   },
     hz: { h1:22, h3:62, l1:"1 month", l3:"3 months", cal:true },
     touch: [[450000,3,16],[410000,9,28],[370000,25,48],[300000,67,79],[270000,28,49],[240000,8,26]],
-    levels: { res:[423510, 407345, 399725], sup:[300000, 288000, 270000] },
+    levels: { res:[325382, 342170, 373453], sup:[310295, 305345, 287000] },
     tech: {
-      trend: "Downtrend, below every moving average",
-      summary: "The price is in a sustained decline — sitting about 15% above its 52-week low and roughly 36% below its 514,000 52-week high, beneath a falling cluster of moving averages (the 20-, 50- and 200-day all sit between ~400,000 and ~424,000, with price below all three). Momentum is washed out rather than stretched: RSI(14) is ~33, approaching oversold, which often precedes a bounce — but in a downtrend a bounce need not hold. Realized 60-day volatility near 61% — well above the long-run ~55% — and right-skewed, fat-tailed returns mean the same energy that drove the ~21% three-month slide can also produce sharp two-way moves.",
-      bull: "A reclaim of the falling 20-day near 400,000 would be the first sign the downtrend is stalling; a push toward 450,000 would need EV-demand fears to ease and the margin recovery to gain traction.",
-      bear: "A daily close below the 288,000 52-week low opens the downside toward the DCF / bear-case zone near 240,000–270,000."
+      trend: "Trading below the whole moving-average stack, under a falling 200-day; fresh death-cross",
+      summary: "The price closed 314000 below a falling 20-day (333375), a falling 50-day (373930) and a falling 200-day (405920). Momentum is neutral: RSI(14) is ~41 and the daily ATR near 22395 (~7.1%) points to a volatile tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u221214592 / \u221216872 / +2280). The 50-day crossed beneath the 200-day 13 sessions ago \u2014 a fresh death-cross, a momentum-regime change rather than noise inside an intact trend. Over the last year it has ranged 308000\u2013527000; the last close sits 40% below that high and 2% above that low.",
+      bull: "A daily close back above 325382 would clear the nearest resistance and open the 373453 zone.",
+      bear: "A close below 310295 would break the nearest support and open the 287000 zone."
+    },
+    asof: {
+      mc:   { data:"2026-07-28", computed:"2026-07-28" },
+      tech: { data:"2026-07-28", computed:"2026-07-29" }
     },
     files: {
       study: "files/LG_Energy_Solution_Valuation_Study_28-06-2026_public.docx?v=2806",
@@ -1479,12 +1499,16 @@ const TICKERS = {
   },
     hz: { h1:22, h3:62, l1:"1 month", l3:"3 months", cal:true },
     touch: [[420,0,7],[400,1,13],[380,4,24],[360,15,43],[340,47,70],[320,74,84],[300,23,46]],
-    levels: { res:[375, 365, 356], sup:[340, 320, 294] },
+    levels: { res:[334.47, 366.82, 415.94], sup:[320, 310, 294.30] },
     tech: {
-      trend: "Below every major moving average; oversold but still corrective",
-      summary: "The tape is the mirror image of the fundamentals. The price trades below all four major moving averages (the 20-, 50-, 100- and 200-day cluster between ~356 and ~375, just overhead), the daily MACD histogram is firmly negative, and RSI(14) sits in the low-30s — near, but not yet at, oversold. The structure is a post-demerger de-rating that carried price from the high-440s to the low-350s, with the 52-week low at 294 as the visible floor. Realized 252-day volatility near 31% is elevated, and the same energy that drove the slide can produce sharp two-way moves.",
-      bull: "A daily close back above the 365–375 moving-average cluster would be the first sign the downtrend is stalling; a push toward 400 would need JLR margin recovery to gain traction.",
-      bear: "A daily close below 340 reopens the lower supports toward the 294 fifty-two-week low."
+      trend: "Trading below the whole moving-average stack, under a falling 200-day",
+      summary: "The price closed 324.15 below a falling 20-day (335.13), a falling 50-day (358.85) and a falling 200-day (360.94). Momentum is soft: RSI(14) is ~35 and the daily ATR near 7.94 (~2.4%) points to a normal tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22128.80 / \u22128.71 / \u22120.09). Over the last year it has ranged 294.30\u2013447.79; the last close sits 28% below that high and 10% above that low.",
+      bull: "A daily close back above 334.47 would clear the nearest resistance and open the 415.94 zone.",
+      bear: "A close below 320.00 would break the nearest support and open the 294.30 zone."
+    },
+    asof: {
+      mc:   { data:"2026-07-28", computed:"2026-07-29" },
+      tech: { data:"2026-07-28", computed:"2026-07-29" }
     },
     files: {
       study: "files/TMPV_Valuation_Study_30-06-2026_public.docx?v=3006",
@@ -1508,12 +1532,16 @@ const TICKERS = {
     touch: [ /* descending high -> low; P(touch) 1M %, 3M % */
       [1250, 15, 40], [1200, 32, 57], [1150, 60, 76], [1100, 84, 90], [1050, 47, 64], [1000, 20, 41], [950, 6, 24], [900, 1, 12]
     ],
-    levels: { res:[1085, 1138, 1230], sup:[985, 950, 900] },
+    levels: { res:[1152, 1270, 1431], sup:[1089, 1066, 982] },
     tech: {
-      trend: "Below all four major moving averages; RSI in the mid-30s, MACD negative — a clear downtrend near the lower end of a wide 52-week range",
-      summary: "The tape is the mirror image of the fundamentals. Infosys trades below its 20-day (₹1,085), 50-day (₹1,138), 100-day (₹1,230) and 200-day (₹1,395) moving averages — a full bearish stack — well down from the ₹1,689.80 fifty-two-week high toward the ₹985.30 low. RSI(14) near 37 is approaching oversold without being washed out; MACD is negative (−39.64 line / −37.90 signal / −1.75 histogram), so momentum is soft but no longer accelerating hard. Realized 252-day volatility is about 29%, and the YZ-HAR engine reads the current 60-day regime near 27% — a large-cap that can still move sharply on results or a GenAI headline.",
-      bull: "A daily close back above the ₹1,085 twenty-day and the ₹1,138 fifty-day cluster would be the first sign the de-rating is stalling; a push toward the ₹1,230 hundred-day would need a demand-cycle recovery or an AI-margin surprise to gain traction.",
-      bear: "A daily close below the ₹985 fifty-two-week-low shelf opens the simulated lower quartile toward ₹950 and ₹900, the main driver of the left tail being a US/EU discretionary-spend freeze or a GenAI pricing shock."
+      trend: "Mixed against the moving-average stack, below a falling 200-day",
+      summary: "The price closed 1105 below a falling 50-day (1111) and a falling 200-day (1361), but above a flat 20-day (1066). Momentum is neutral: RSI(14) is ~55 and the daily ATR near 33 (~2.9%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22127 / \u221212 / +5). Over the last year it has ranged 982\u20131728; the last close sits 36% below that high and 12% above that low.",
+      bull: "A daily close back above 1152 would clear the nearest resistance and open the 1431 zone.",
+      bear: "A close below 1089 would break the nearest support and open the 982 zone."
+    },
+    asof: {
+      mc:   { data:"2026-07-28", computed:"2026-07-29" },
+      tech: { data:"2026-07-28", computed:"2026-07-29" }
     },
     files: {
       study: "files/INFY_Valuation_Study_06-07-2026_public.docx?v=0706",
@@ -1670,16 +1698,16 @@ const TICKERS = {
     touch: [ /* descending high → low; P(touch) 1-month %, 3-month % */
       [850.00, 6, 32], [800.00, 18, 52], [760.00, 43, 72], [680.00, 41, 61], [640.00, 13, 35], [600.00, 4, 19]
     ],
-    levels: { res:[725, 762, 812.50], sup:[680, 535.12, 503.13] },
+    levels: { res:[724.05, 762, 812.50], sup:[710.01, 680, 503.13] },
     tech: {
       trend: "Mixed against the moving-average stack, above a rising 200-day",
-      summary: "The price closed 713.50 above a falling 20-day (708.47) and a rising 200-day (535.12), but below a rising 50-day (719.30). Momentum is neutral: RSI(14) is ~51 and the daily ATR near 17.75 (~2.5%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22123.43 / \u22123.93 / +0.50). Over the last year it has ranged 357.00\u2013812.50; the last close sits 12% below that high and 100% above that low.",
-      bull: "A daily close back above 725.00 would clear the nearest resistance and open the 812.50 zone.",
-      bear: "A close below 680.00 would break the nearest support and open the 503.13 zone."
+      summary: "The price closed 717.90 above a falling 20-day (704.73) and a rising 200-day (540.81), but below a rising 50-day (724.05). Momentum is neutral: RSI(14) is ~53 and the daily ATR near 15.37 (~2.1%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22121.65 / \u22123.11 / +1.46). Over the last year it has ranged 371.01\u2013812.50; the last close sits 12% below that high and 93% above that low.",
+      bull: "A daily close back above 724.05 would clear the nearest resistance and open the 812.50 zone.",
+      bear: "A close below 710.01 would break the nearest support and open the 503.13 zone."
     },
     asof: {
       mc:   { data:"2026-07-22", computed:"2026-07-28" },
-      tech: { data:"2026-07-22", computed:"2026-07-29" }
+      tech: { data:"2026-07-29", computed:"2026-07-29" }
     },
     files: {
       study: "files/ORAS_Valuation_Study_30-06-2026_public.docx?v=3006",
@@ -1993,22 +2021,22 @@ const TICKERS = {
     ccy: "QAR",
     fair: { bear: 14.0, base: 18.76, full: 28.5 },      // 5 Jul 2026 — weighted central 18.76 (+7.0% vs spot 17.54). Lenses: two-stage DDM on actual policy (primary) 18.7, FCFE/distributable-capital 20.2 (full-capacity ceiling 22.0), relative P/B-RoTE + peer 18.2, normalized through-cycle 17.6. bear/full = weighted bear/bull of the football field. Swing factors: the permanent Pillar-Two tax step (FY25 net profit +1.7% on ~+10% pre-tax), the 2026 rate-cut path through NIM (the pegged riyal), and how much of a 19.3%-capitalised balance sheet is returned rather than retained.
     dist: {
-      t20: { label:"1 month",  p5:15.35, p25:16.74, p50:17.48, p75:18.19, p95:19.55, resolve:"2026-08-02" },
-      t60: { label:"3 months", p5:13.96, p25:15.91, p50:17.24, p75:18.60, p95:20.91, resolve:"2026-09-27" }
+      t20: { label:"1 month",  p5:15.35, p25:16.74, p50:17.48, p75:18.19, p95:19.55, resolve:"2026-08-05" },
+      t60: { label:"3 months", p5:13.96, p25:15.91, p50:17.24, p75:18.60, p95:20.91, resolve:"2026-10-05" }
     },
     touch: [ /* descending high -> low; P(touch) 1-month %, 3-month % */
       [19.5, 8, 26], [19.0, 15, 36], [18.5, 28, 50], [18.0, 51, 69], [17.0, 49, 72], [16.5, 28, 56], [15.5, 8, 30]
     ],
-    levels: { res:[18.05, 18.60, 20.43], sup:[16.78, 15.98, 14.80] },
+    levels: { res:[17.54, 18.05, 18.60], sup:[16.78, 15.98, 15.54] },
     tech: {
-      trend: "Trading below the whole moving-average stack, under a flat 200-day",
-      summary: "The price closed 17.54 below a rising 20-day (17.67), a falling 50-day (17.62) and a flat 200-day (18.43). Momentum is neutral: RSI(14) is ~48 and the daily ATR near 0.34 (~1.9%) points to a normal tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.01 / +0.03 / \u22120.04). Over the last year it has ranged 16.34\u201320.49; the last close sits 14% below that high and 7% above that low.",
-      bull: "A daily close back above 18.05 would clear the nearest resistance and open the 20.43 zone.",
-      bear: "A close below 16.78 would break the nearest support and open the 14.80 zone."
+      trend: "Trading below the whole moving-average stack, under a falling 200-day",
+      summary: "The price closed 16.95 below a falling 20-day (17.19), a falling 50-day (17.42) and a falling 200-day (18.32). Momentum is neutral: RSI(14) is ~44 and the daily ATR near 0.29 (~1.7%) points to a normal tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.24 / \u22120.20 / \u22120.04). Over the last year it has ranged 16.34\u201320.49; the last close sits 17% below that high and 4% above that low.",
+      bull: "A daily close back above 17.54 would clear the nearest resistance and open the 18.60 zone.",
+      bear: "A close below 16.78 would break the nearest support and open the 15.54 zone."
     },
     asof: {
       mc:   { data:"2026-07-05", computed:"2026-07-05" },
-      tech: { data:"2026-07-05", computed:"2026-07-29" }
+      tech: { data:"2026-07-28", computed:"2026-07-29" }
     },
     files: {
       study: "files/QNB_Valuation_Study_05-07-2026_public.docx?v=0705a",
@@ -2029,16 +2057,16 @@ const TICKERS = {
     t60: { label: "3 months", p5: 3.3721, p25: 3.881, p50: 4.2096, p75: 4.5655, p95: 5.2533, resolve: "2026-10-28" }
   },
     touch: [[4.9,4,20],[4.7,10,32],[4.55,21,46],[4.4,39,63],[4.2,81,89],[4.05,59,74],[3.9,29,51]],
-    levels: { res:[4.56, 4.74, 4.94], sup:[4.23, 4.12, 3.80] },
+    levels: { res:[4.31, 4.51, 4.94], sup:[4.10, 4, 3.80] },
     tech: {
       trend: "Trading below the whole moving-average stack, under a falling 200-day",
-      summary: "The price closed 4.32 below a rising 20-day (4.32), a flat 50-day (4.33) and a falling 200-day (4.50). Momentum is neutral: RSI(14) is ~49 and the daily ATR near 0.10 (~2.3%) points to a normal tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.00 / +0.01 / \u22120.01). Over the last year it has ranged 3.80\u20135.00; the last close sits 14% below that high and 14% above that low.",
-      bull: "A daily close back above 4.56 would clear the nearest resistance and open the 4.94 zone.",
-      bear: "A close below 4.23 would break the nearest support and open the 3.80 zone."
+      summary: "The price closed 4.17 below a falling 20-day (4.25), a falling 50-day (4.30) and a falling 200-day (4.47). Momentum is neutral: RSI(14) is ~41 and the daily ATR near 0.09 (~2.3%) points to a normal tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.05 / \u22120.03 / \u22120.01). Over the last year it has ranged 3.80\u20135.00; the last close sits 17% below that high and 10% above that low.",
+      bull: "A daily close back above 4.31 would clear the nearest resistance and open the 4.94 zone.",
+      bear: "A close below 4.10 would break the nearest support and open the 3.80 zone."
     },
     asof: {
-      mc:   { data:"2026-07-05", computed:"2026-07-05" },
-      tech: { data:"2026-07-05", computed:"2026-07-29" }
+      mc:   { data:"2026-07-28", computed:"2026-07-29" },
+      tech: { data:"2026-07-28", computed:"2026-07-29" }
     },
     files: {
       study: "files/Nakilat_QGTS_Valuation_Study_05-07-2026_public.docx?v=0705a",
@@ -2159,12 +2187,16 @@ const TICKERS = {
   },
     hz: { h1:22, h3:64, l1:"1 month", l3:"3 months", cal:true },
     touch: [[376,15,41],[360,35,60],[344,71,83],[329,66,79],[297,10,31],[282,3,17],[266,1,9],[250,0,4]],
-    levels: { res:[329, 344, 376], sup:[297, 282, 250] },
+    levels: { res:[340, 350, 360], sup:[278.20, 244.93, 223.43] },
     tech: {
-      trend: "Above a rising moving-average stack — constructive and extended",
-      summary: "The tape is the mirror image of the fundamentals. Price sits above a rising 50/100/200-day stack (≈294 / 277 / 271) and just under the 52-week high near 315, with RSI(14) around 64 (firm, not yet overbought) and a daily MACD (12·26·9) that has crossed above its signal (+0.91 line / −0.58 signal / +1.49 histogram) — a bullish posture. Trailing realized volatility is in the mid-20s% while the gap-aware cone volatility is ≈28%. Nearest support is the 50-day around 294, then 282 and the 100/200-day cluster near 271–277; nearest resistance is the 52-week high near 315, then the +5% / +10% levels at 329 and 344.",
-      bull: "A clean break above the 52-week high (315) into the 329–344 zone would extend the uptrend toward the one-month upper quartile.",
-      bear: "A daily close back below the 50-day (≈294) reopens 282, then the 271–277 moving-average cluster."
+      trend: "Trading above the whole moving-average stack, on a rising 200-day",
+      summary: "The price closed 336.91 above a rising 20-day (317.06), a rising 50-day (307.00) and a rising 200-day (276.38). Momentum is firm: RSI(14) is ~67 and the daily ATR near 8.14 (~2.4%) points to a normal tape. MACD (12\u00b726\u00b79) is positive and rising (+8.92 / +7.81 / +1.11). Over the last year it has ranged 201.50\u2013339.57; the last close sits 1% below that high and 67% above that low.",
+      bull: "A daily close back above 340.00 would clear the nearest resistance and open the 360.00 zone.",
+      bear: "A close below 278.20 would break the nearest support and open the 223.43 zone."
+    },
+    asof: {
+      mc:   { data:"2026-07-27", computed:"2026-07-29" },
+      tech: { data:"2026-07-27", computed:"2026-07-29" }
     },
     files: {
       study: "files/AAPL_Valuation_Study_06-07-2026_public.docx?v=20260706j",
@@ -2186,12 +2218,16 @@ const TICKERS = {
   },
     hz: { h1:22, h3:64, l1:"1 month", l3:"3 months", cal:true },
     touch: [[540,0,5],[500,0,9],[485,1,12],[460,2,16],[380,20,45],[360,33,57],[320,76,85]],
-    levels: { res:[466, 490, 541], sup:[405, 360, 294] },
+    levels: { res:[327.23, 360.99, 382.68], sup:[299.10, 293.42, 214.52] },
     tech: {
-      trend: "Above a compressed moving-average stack; constructive but extended",
-      summary: "The tape is the mirror image of the fundamentals. Price has recovered to sit just above a compressed 20/50/200-day cluster (~400–419), roughly 14% below the 52-week high at 489.88, with RSI(14) near 58 (neutral) and a daily MACD still below zero but with a positive histogram (−3.3 line / −4.4 signal / +1.1 histogram) — a bullish crossover forming. Realized volatility near 46% and an elevated ATR mean moves in either direction can be violent. Nearest support is the moving-average cluster around 400–405, then the range lows near 294; nearest resistance is the 52-week high near 490.",
-      bull: "A push through the 466–490 zone (the one-month upper quartile into the 52-week high) would open the autonomy-re-rating extension toward 500+.",
-      bear: "A daily close below the 400–405 moving-average cluster reopens the lower supports toward 360, then the 294 range low."
+      trend: "Trading below the whole moving-average stack, under a falling 200-day",
+      summary: "The price closed 309.22 below a falling 20-day (385.20), a falling 50-day (399.84) and a falling 200-day (414.09). Momentum is washed out: RSI(14) is ~27 and the daily ATR near 18.44 (~6.0%) points to a volatile tape. MACD (12\u00b726\u00b79) is negative and still falling (\u221219.54 / \u221210.10 / \u22129.44). Over the last year it has ranged 297.82\u2013498.83; the last close sits 38% below that high and 4% above that low.",
+      bull: "A daily close back above 327.23 would clear the nearest resistance and open the 382.68 zone.",
+      bear: "A close below 299.10 would break the nearest support and open the 214.52 zone."
+    },
+    asof: {
+      mc:   { data:"2026-07-27", computed:"2026-07-29" },
+      tech: { data:"2026-07-27", computed:"2026-07-29" }
     },
     files: {
       study: "files/TSLA_Valuation_Study_30-06-2026_public.docx?v=0108",
@@ -2389,7 +2425,7 @@ const COMING = [
    ========================================================================== */
 const LEDGER = [
   // ---- XPTUSD · metal (spot platinum, USD) · cycle 1 (20 Jul 2026 published study; PARITY — own provisional self-fit, first metals name with a de-circularized cross-check) ----
-  { instrument:"XPTUSD", asset_class:"metal", anchor_date:"2026-07-20", anchor_price:1608.37, ccy:"USD",
+  { instrument:"XPTUSD", asset_class:"metal", anchor_date:"2026-07-20", run_date:"2026-07-20", anchor_price:1608.37, ccy:"USD",
     horizon_label:"1 month", grade_date:"2026-08-20", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     anchor_vol:0.3356, horizon_days:23,
     note:"PARITY single-instrument Step-0, own OHLC, under platinum\u2019s own PROVISIONAL self-fit (mc_v3 carry-anchored YZ-HAR-t: nu=Gaussian, cone width 0.853 \u2014 the MLE scale was 0.790 and the house clip floor bound it at 0.853; single-name fit, flagged circular exactly as gold\u2019s first fit was). 62 non-overlapping 60-session windows, origins 05-Jan-2012 \u2192 13-Feb-2026, after the Step-0.0 data-quality gate (4,041 \u2192 4,032 rows; 260.0 rows/yr = the metals Mon\u2013Fri calendar; zero corporate-action repairs). Scale-normalized CRPS skill \u22120.04% vs a CARRY-ANCHORED lognormal random-walk benchmark, robust verdict PARITY across bootstrap blocks {2,3,4} (block-2 CI [\u22120.9%, +0.9%]). De-circularized cross-check \u2014 fit trained on gold+silver only, platinum fully out-of-sample: \u22121.14%, CI [\u22123.2%, +0.9%], PARITY. Borrowed live METALS config (Gaussian/1.0): \u22120.94%, PARITY. Platinum does NOT arrive failing (materiality-gate criterion). Coverage 50/80/90% = 48/81/93.5% (mildly over-covered at the tails); PIT mean 0.489 \u2014 centred. Reproduction check: this session\u2019s chain reproduced the live gold registry EXACTLY (67 windows, +0.35%, CI[\u22120.5%,+1.3%], PARITY). Carry = Fed funds midpoint 3.63% (held, statement 17-Jun-2026), q = 0 (zero-yield store of value; the lease rate is a user\u2019s borrow cost, not a holder yield) \u2014 metals run CARRY-ONLY, no signal, no factor drift. METALS REMAIN THE WEAKEST CALIBRATION IN THE SYSTEM (gold self-fit; silver borrows gold\u2019s; platinum provisional until the metals panel pools \u2014 the pooled 3-metal fit, nu\u224820/width 0.965 on 148 windows, is the likely future config, not adopted). The cone is a 1/3-month object and is NEVER blended with the undated fair-value zone. See study \u00a73, Appendix B, and the Calibration Ledger.",
@@ -2401,7 +2437,7 @@ const LEDGER = [
   ,
     grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-08-17) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
-  { instrument:"XPTUSD", asset_class:"metal", anchor_date:"2026-07-20", anchor_price:1608.37, ccy:"USD",
+  { instrument:"XPTUSD", asset_class:"metal", anchor_date:"2026-07-20", run_date:"2026-07-20", anchor_price:1608.37, ccy:"USD",
     horizon_label:"3 months", grade_date:"2026-10-20", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     anchor_vol:0.3395, horizon_days:66,
     note:"PARITY single-instrument Step-0, own OHLC, under platinum\u2019s own PROVISIONAL self-fit (mc_v3 carry-anchored YZ-HAR-t: nu=Gaussian, cone width 0.853 \u2014 the MLE scale was 0.790 and the house clip floor bound it at 0.853; single-name fit, flagged circular exactly as gold\u2019s first fit was). 62 non-overlapping 60-session windows, origins 05-Jan-2012 \u2192 13-Feb-2026, after the Step-0.0 data-quality gate (4,041 \u2192 4,032 rows; 260.0 rows/yr = the metals Mon\u2013Fri calendar; zero corporate-action repairs). Scale-normalized CRPS skill \u22120.04% vs a CARRY-ANCHORED lognormal random-walk benchmark, robust verdict PARITY across bootstrap blocks {2,3,4} (block-2 CI [\u22120.9%, +0.9%]). De-circularized cross-check \u2014 fit trained on gold+silver only, platinum fully out-of-sample: \u22121.14%, CI [\u22123.2%, +0.9%], PARITY. Borrowed live METALS config (Gaussian/1.0): \u22120.94%, PARITY. Platinum does NOT arrive failing (materiality-gate criterion). Coverage 50/80/90% = 48/81/93.5% (mildly over-covered at the tails); PIT mean 0.489 \u2014 centred. Reproduction check: this session\u2019s chain reproduced the live gold registry EXACTLY (67 windows, +0.35%, CI[\u22120.5%,+1.3%], PARITY). Carry = Fed funds midpoint 3.63% (held, statement 17-Jun-2026), q = 0 (zero-yield store of value; the lease rate is a user\u2019s borrow cost, not a holder yield) \u2014 metals run CARRY-ONLY, no signal, no factor drift. METALS REMAIN THE WEAKEST CALIBRATION IN THE SYSTEM (gold self-fit; silver borrows gold\u2019s; platinum provisional until the metals panel pools \u2014 the pooled 3-metal fit, nu\u224820/width 0.965 on 148 windows, is the likely future config, not adopted). The cone is a 1/3-month object and is NEVER blended with the undated fair-value zone. See study \u00a73, Appendix B, and the Calibration Ledger.",
@@ -2443,7 +2479,7 @@ const LEDGER = [
   // ---- PHDC · equity · cycle 2 (11 Jun 2026 published study) ----
   {
     instrument:"PHDC", asset_class:"equity",
-    anchor_date:"2026-06-11", anchor_price:14.50, ccy:"EGP",
+    anchor_date:"2026-06-11", run_date:"2026-06-17", anchor_price:14.50, ccy:"EGP",
     horizon_label:"1 month", grade_date:"2026-07-13", cycle_no:2, reanchor_from:"2026-06-09",
     grade_date_projected:"2026-07-09", grade_note:"Projected grade_date (Sun\u2013Thu calendar, no holiday awareness) landed on only the 18th real trading session, 2 short of a true 1-month; graded instead on the actual 20th session close.",
     p5:11.53, p25:13.42, p50:14.92, p75:16.56, p95:19.32,
@@ -2455,7 +2491,7 @@ const LEDGER = [
   // ---- TMGH · equity · cycle 1 (15 Jun 2026 published study) ----
   {
     instrument:"TMGH", asset_class:"equity",
-    anchor_date:"2026-06-15", anchor_price:95.68, ccy:"EGP",
+    anchor_date:"2026-06-15", run_date:"2026-06-17", anchor_price:95.68, ccy:"EGP",
     horizon_label:"1 month", grade_date:"2026-07-15", cycle_no:1, reanchor_from:null,
     grade_date_projected:"2026-07-13", grade_note:"Projected grade_date (Sun\u2013Thu calendar, no holiday awareness) fell 2 sessions short of a true 1-month; graded on the actual 20th session close.",
     p5:81.42, p25:91.17, p50:98.31, p75:106.10, p95:119.24,
@@ -2467,7 +2503,7 @@ const LEDGER = [
   // ---- EMFD · equity · cycle 1 (17 Jun 2026 published study) ----
   {
     instrument:"EMFD", asset_class:"equity",
-    anchor_date:"2026-06-17", anchor_price:12.44, ccy:"EGP",
+    anchor_date:"2026-06-17", run_date:"2026-06-19", anchor_price:12.44, ccy:"EGP",
     horizon_label:"1 month", grade_date:"2026-07-19", cycle_no:1, reanchor_from:null,
     grade_date_projected:"2026-07-15", grade_note:"Projected grade_date (Sun\u2013Thu calendar, no holiday awareness) fell 2 sessions short of a true 1-month; graded on the actual 20th session close.",
     p5:10.50, p25:11.80, p50:12.75, p75:13.78, p95:15.46,
@@ -2480,7 +2516,7 @@ const LEDGER = [
   // ---- OCDI · equity · cycle 1 (24 Jun 2026 published study) ----
   {
     instrument:"OCDI", asset_class:"equity",
-    anchor_date:"2026-06-23", anchor_price:22.80, ccy:"EGP",
+    anchor_date:"2026-06-23", run_date:"2026-07-27", anchor_price:22.80, ccy:"EGP",
     horizon_label:"1 month", grade_date:"2026-07-22", cycle_no:1, reanchor_from:null,
     anchor_date_stated:"2026-06-24",
     grade_date_projected:"2026-07-21",
@@ -2494,7 +2530,7 @@ const LEDGER = [
   // ---- ORHD · equity · cycle 1 (25 Jun 2026 published study; anchored 24 Jun) ----
   {
     instrument:"ORHD", asset_class:"equity",
-    anchor_date:"2026-06-24", anchor_price:39.30, ccy:"EGP",
+    anchor_date:"2026-06-24", run_date:"2026-06-25", anchor_price:39.30, ccy:"EGP",
     horizon_label:"1 month", grade_date:"2026-07-26", cycle_no:1, reanchor_from:null,
     grade_date_projected:"2026-07-21",
     grade_note:"Projected grade_date (Sun–Thu calendar, no holiday awareness) fell 3 sessions short of a true 1-month — EGX was closed 2 Jul and 23 Jul (Revolution Day); graded on the actual 20th session close.",
@@ -2507,7 +2543,7 @@ const LEDGER = [
   // ---- COMI · equity · cycle 1 (29 Jun 2026 published study) ----
   {
     instrument:"COMI", asset_class:"equity",
-    anchor_date:"2026-06-29", anchor_price:126.89, ccy:"EGP",
+    anchor_date:"2026-06-29", run_date:"2026-06-29", anchor_price:126.89, ccy:"EGP",
     anchor_price_published:129.25, anchor_note:"Anchor corrected 28-Jul-2026: the published anchor_price was captured MID-SESSION (inside that day\u2019s range) rather than at the close. Corrected to the actual close. The forecast itself is untouched \u2014 p5..p95, the touch probabilities and the grade are exactly as published; only the anchor field was wrong. Re-striking was rejected: today\u2019s fit runs on 15-year libraries that did not exist at the anchor date, so it would re-grade a published forecast with hindsight.",
     horizon_label:"1 month", grade_date:"2026-07-28", grade_basis:"actual", cycle_no:1, reanchor_from:null,
     grade_date_projected:"2026-07-27", grade_note:"Graded as of 2026-07-28, the latest available close, at the owner's direction. This is session 19 from the 29-Jun anchor; the full 1-month session and the 1-month calendar target both fall on 2026-07-29. Recorded on 19 of 20 sessions -- the band verdict is unaffected (142.00 sits well inside 103.44-159.92) but realized_quantile, median_err and the +10%/+15% touch outcomes are measured one session early.",
@@ -2519,7 +2555,7 @@ const LEDGER = [
   },
   {
     instrument:"Gold", asset_class:"metal",
-    anchor_date:"2026-06-25", anchor_price:3989.85, ccy:"USD",
+    anchor_date:"2026-06-25", run_date:"2026-06-27", anchor_price:3989.85, ccy:"USD",
     horizon_label:"1 month", grade_date:"2026-07-23", cycle_no:1, reanchor_from:null,
     p5:3431, p25:3754, p50:3975, p75:4214, p95:4598,
     touch:{ "+5":49, "+10":22, "+15":9, "+20":3, "-5":50, "-10":20 },
@@ -2529,7 +2565,7 @@ const LEDGER = [
   },
   {
     instrument:"Gold", asset_class:"metal",
-    anchor_date:"2026-06-25", anchor_price:3989.85, ccy:"USD",
+    anchor_date:"2026-06-25", run_date:"2026-06-27", anchor_price:3989.85, ccy:"USD",
     horizon_label:"12 months", grade_date:"2027-06-25", cycle_no:1, reanchor_from:null,
     p5:2624, p25:3515, p50:4295, p75:5246, p95:7026,
     touch:{ "+5":88, "+10":77, "+15":67, "+20":57, "-5":76, "-10":59 },
@@ -2539,7 +2575,7 @@ const LEDGER = [
   },
   {
     instrument:"Gold", asset_class:"metal",
-    anchor_date:"2026-07-27", anchor_price:4090.87, ccy:"USD",
+    anchor_date:"2026-07-27", run_date:"2026-07-27", anchor_price:4090.87, ccy:"USD",
     horizon_label:"1 month", grade_date:"2026-08-27", grade_basis:"projected", horizon_days:23, cycle_no:2, reanchor_from:"2026-06-25",
     note:"Cycle 2 roll-forward, 27-Jul-2026. Production chain, no approximation: Step 0.0 data-quality gate \u2192 YZ variance proxy \u2192 fit_har_v3 \u2192 har_forecast_v3 \u2192 carry drift ln(1+rf_live)\u2212ln(1+q) \u2192 simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED \u2014 house convention; drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). Metals live fit nu=20, width_cal=1.035; rf_live 3.63% (USD carry, q=0 by construction for a zero-yield metal). METALS REMAINS THE WEAKEST CALIBRATION IN THE SYSTEM \u2014 a 2-name panel, read the cone accordingly.",
     p5:3725, p25:3948, p50:4102, p75:4263, p95:4516,
@@ -2552,7 +2588,7 @@ const LEDGER = [
   },
   {
     instrument:"Gold", asset_class:"metal",
-    anchor_date:"2026-07-27", anchor_price:4090.87, ccy:"USD",
+    anchor_date:"2026-07-27", run_date:"2026-07-27", anchor_price:4090.87, ccy:"USD",
     horizon_label:"3 months", grade_date:"2026-10-27", grade_basis:"projected", horizon_days:66, cycle_no:2, reanchor_from:"2026-06-25",
     note:"Cycle 2 roll-forward, 27-Jul-2026. Production chain, no approximation: Step 0.0 data-quality gate \u2192 YZ variance proxy \u2192 fit_har_v3 \u2192 har_forecast_v3 \u2192 carry drift ln(1+rf_live)\u2212ln(1+q) \u2192 simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED \u2014 house convention; drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). Metals live fit nu=20, width_cal=1.035; rf_live 3.63% (USD carry, q=0 by construction for a zero-yield metal). METALS REMAINS THE WEAKEST CALIBRATION IN THE SYSTEM \u2014 a 2-name panel, read the cone accordingly.",
     p5:3493, p25:3862, p50:4127, p75:4410, p95:4880,
@@ -2566,7 +2602,7 @@ const LEDGER = [
   // ---- Silver (XAG/USD) · metal · cycle 1 (05 Jul 2026 published study; anchored 03 Jul close) ----
   {
     instrument:"Silver", asset_class:"metal",
-    anchor_date:"2026-07-03", anchor_price:62.43, ccy:"USD",
+    anchor_date:"2026-07-03", run_date:"2026-07-05", anchor_price:62.43, ccy:"USD",
     horizon_label:"1 month", grade_date:"2026-08-03", grade_basis:"projected", horizon_days:22, cycle_no:1, reanchor_from:null,
     p5:50, p25:58, p50:63, p75:68, p95:78,
     touch:{ "+5":61, "+10":38, "+15":23, "+20":14, "-5":56, "-10":31 },
@@ -2578,7 +2614,7 @@ const LEDGER = [
   },
   {
     instrument:"Silver", asset_class:"metal",
-    anchor_date:"2026-07-03", anchor_price:62.43, ccy:"USD",
+    anchor_date:"2026-07-03", run_date:"2026-07-05", anchor_price:62.43, ccy:"USD",
     horizon_label:"3 months", grade_date:"2026-10-05", grade_basis:"projected", horizon_days:66, cycle_no:1, reanchor_from:null,
     p5:44, p25:56, p50:63, p75:72, p95:91,
     touch:{ "+5":76, "+10":60, "+15":46, "+20":35, "-5":71, "-10":51 },
@@ -2590,7 +2626,7 @@ const LEDGER = [
   },
   {
     instrument:"Silver", asset_class:"metal",
-    anchor_date:"2026-07-03", anchor_price:62.43, ccy:"USD",
+    anchor_date:"2026-07-03", run_date:"2026-07-05", anchor_price:62.43, ccy:"USD",
     horizon_label:"12 months", grade_date:"2027-07-05", grade_basis:"projected", horizon_days:260, cycle_no:1, reanchor_from:null,
     p5:34, p25:52, p50:67, p75:86, p95:135,
     touch:{ "+5":89, "+10":80, "+15":72, "+20":65, "-5":83, "-10":70 },
@@ -2603,7 +2639,7 @@ const LEDGER = [
   // ---- Samsung Electronics (KRX:005930) · other / international · cycle 1 (27 Jun 2026 published study; anchored 26 Jun close) ----
   {
     instrument:"Samsung", asset_class:"other",
-    anchor_date:"2026-06-26", anchor_price:339500, ccy:"KRW",
+    anchor_date:"2026-06-26", run_date:"2026-06-27", anchor_price:339500, ccy:"KRW",
     horizon_label:"1 month", grade_date:"2026-07-27", cycle_no:1, reanchor_from:null,
     grade_date_projected:"2026-07-24",
     grade_note:"Projected grade_date (Mon–Fri calendar, no holiday awareness) fell 1 session short of a true 1-month — KRX was closed 17 Jul (reinstated Constitution Day); graded on the actual 20th session close. Closed BELOW the published p5, so realized_quantile is left-censored (<0.05) and recorded null rather than extrapolated.",
@@ -2615,7 +2651,7 @@ const LEDGER = [
   },
   {
     instrument:"Samsung", asset_class:"other",
-    anchor_date:"2026-07-27", anchor_price:254000, ccy:"KRW",
+    anchor_date:"2026-07-27", run_date:"2026-07-27", anchor_price:254000, ccy:"KRW",
     horizon_label:"1 month", grade_date:"2026-08-27", grade_basis:"projected", horizon_days:22, cycle_no:2, reanchor_from:"2026-06-26",
     config_note:"Corrected 29-Jul-2026: this cycle was originally struck with the prior market-default fit; the per-name override decided the same day (see engine/fit_overrides.json) genuinely improves this specific name's own LONO verdict, so the anchor/grade dates are unchanged but the distribution was recomputed under the correct config.",
     note:"Cycle 2 roll-forward, 27-Jul-2026. Production chain, no approximation: Step 0.0 data-quality gate \u2192 YZ variance proxy \u2192 fit_har_v3 \u2192 har_forecast_v3 \u2192 carry drift ln(1+rf_live)\u2212ln(1+q) \u2192 simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED \u2014 house convention; drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). KR live fit nu=Gaussian, width_cal=1.154; rf_live 3.00% (placeholder KTB anchor). STRUCK ON THE INCUMBENT FIT BY DESIGN: the 15-year Samsung history ingested this session refits KR to nu=12/width_cal=1.105 (published 90% cone \u22125.3%), which trips the materiality gate and is therefore held on a feature branch pending PR review, not applied to production.",
@@ -2629,7 +2665,7 @@ const LEDGER = [
   },
   {
     instrument:"Samsung", asset_class:"other",
-    anchor_date:"2026-07-27", anchor_price:254000, ccy:"KRW",
+    anchor_date:"2026-07-27", run_date:"2026-07-27", anchor_price:254000, ccy:"KRW",
     horizon_label:"3 months", grade_date:"2026-10-27", grade_basis:"projected", horizon_days:62, cycle_no:2, reanchor_from:"2026-06-26",
     config_note:"Corrected 29-Jul-2026: this cycle was originally struck with the prior market-default fit; the per-name override decided the same day (see engine/fit_overrides.json) genuinely improves this specific name's own LONO verdict, so the anchor/grade dates are unchanged but the distribution was recomputed under the correct config.",
     note:"Cycle 2 roll-forward, 27-Jul-2026. Production chain, no approximation: Step 0.0 data-quality gate \u2192 YZ variance proxy \u2192 fit_har_v3 \u2192 har_forecast_v3 \u2192 carry drift ln(1+rf_live)\u2212ln(1+q) \u2192 simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED \u2014 house convention; drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). KR live fit nu=Gaussian, width_cal=1.154; rf_live 3.00% (placeholder KTB anchor). STRUCK ON THE INCUMBENT FIT BY DESIGN: the 15-year Samsung history ingested this session refits KR to nu=12/width_cal=1.105 (published 90% cone \u22125.3%), which trips the materiality gate and is therefore held on a feature branch pending PR review, not applied to production.",
@@ -2644,7 +2680,7 @@ const LEDGER = [
   // ---- Kakao Corp. (KRX:035720) · other / international · cycle 1 (28 Jun 2026 published study; anchored 26 Jun close) ----
   {
     instrument:"Kakao", asset_class:"other",
-    anchor_date:"2026-06-26", anchor_price:33150, ccy:"KRW",
+    anchor_date:"2026-06-26", run_date:"2026-06-28", anchor_price:33150, ccy:"KRW",
     horizon_label:"1 month", grade_date:"2026-07-27", grade_basis:"actual", cycle_no:1, reanchor_from:null,
     grade_date_projected:"2026-07-24", grade_note:"Projected grade_date (weekday calendar target, no holiday awareness) fell 3 sessions short of a true 1-month; graded on the actual 20th session close.",
     p5:25404, p25:29799, p50:33294, p75:37199, p95:43634,
@@ -2656,7 +2692,7 @@ const LEDGER = [
   // ---- LG Energy Solution (KRX:373220) · other / international · cycle 1 (28 Jun 2026 published study; anchored 26 Jun close) ----
   {
     instrument:"LGES", asset_class:"other",
-    anchor_date:"2026-06-26", anchor_price:331500, ccy:"KRW",
+    anchor_date:"2026-06-26", run_date:"2026-06-28", anchor_price:331500, ccy:"KRW",
     horizon_label:"1 month", grade_date:"2026-07-27", grade_basis:"actual", cycle_no:1, reanchor_from:null,
     grade_date_projected:"2026-07-24", grade_note:"Projected grade_date (weekday calendar target, no holiday awareness) fell 3 sessions short of a true 1-month; graded on the actual 20th session close.",
     p5:268200, p25:304400, p50:332400, p75:363000, p95:411900,
@@ -2670,7 +2706,7 @@ const LEDGER = [
   // ---- TMPV · other (NSE India) · cycle 1 (30 Jun 2026 published study) ----
   {
     instrument:"TMPV", asset_class:"other",
-    anchor_date:"2026-06-30", anchor_price:352.20, ccy:"INR",
+    anchor_date:"2026-06-30", run_date:"2026-06-30", anchor_price:352.20, ccy:"INR",
     horizon_label:"1 month", grade_date:"2026-07-28", cycle_no:1, reanchor_from:null,
     p5:294, p25:327, p50:353, p75:379, p95:422,
     touch:{ "+5":57, "+10":33, "+15":17, "+20":7, "-5":56, "-10":30 },
@@ -2692,7 +2728,7 @@ const LEDGER = [
   // ---- QNB \u00b7 other (QSE Qatar) \u00b7 cycle 1 (5 Jul 2026 published study) ----
   {
     instrument:"QNB", asset_class:"other",
-    anchor_date:"2026-07-05", anchor_price:17.54, ccy:"QAR",
+    anchor_date:"2026-07-05", run_date:"2026-07-05", anchor_price:17.54, ccy:"QAR",
     horizon_label:"1 month", grade_date:"2026-08-05", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     anchor_vol:0.18, horizon_days:22,
     p5:15.35, p25:16.74, p50:17.48, p75:18.19, p95:19.55,
@@ -2705,7 +2741,7 @@ const LEDGER = [
   },
   {
     instrument:"QNB", asset_class:"other",
-    anchor_date:"2026-07-05", anchor_price:17.54, ccy:"QAR",
+    anchor_date:"2026-07-05", run_date:"2026-07-05", anchor_price:17.54, ccy:"QAR",
     horizon_label:"3 months", grade_date:"2026-10-05", grade_basis:"projected", cycle_no:1, reanchor_from:null,
     anchor_vol:0.18, horizon_days:63,
     p5:13.96, p25:15.91, p50:17.24, p75:18.60, p95:20.91,
@@ -2724,7 +2760,7 @@ const LEDGER = [
   //      horizon and percentiles it was published with.
   {
     instrument:"ABUK", asset_class:"equity",
-    anchor_date:"2026-07-22", anchor_price:72.3, ccy:"EGP",
+    anchor_date:"2026-07-22", run_date:"2026-07-28", anchor_price:72.3, ccy:"EGP",
     horizon_label:"1 month", grade_date:"2026-08-23", grade_basis:"projected", horizon_days:20,
     cycle_no:2, reanchor_from:"2026-07-01", anchor_vol:0.3824,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -2736,7 +2772,7 @@ const LEDGER = [
   },
   {
     instrument:"ABUK", asset_class:"equity",
-    anchor_date:"2026-07-22", anchor_price:72.3, ccy:"EGP",
+    anchor_date:"2026-07-22", run_date:"2026-07-28", anchor_price:72.3, ccy:"EGP",
     horizon_label:"3 months", grade_date:"2026-10-22", grade_basis:"projected", horizon_days:61,
     cycle_no:2, reanchor_from:"2026-07-01", anchor_vol:0.4019,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -2748,7 +2784,7 @@ const LEDGER = [
   },
   {
     instrument:"ACWA", asset_class:"equity",
-    anchor_date:"2026-07-26", anchor_price:191.2, ccy:"SAR",
+    anchor_date:"2026-07-26", run_date:"2026-07-28", anchor_price:191.2, ccy:"SAR",
     horizon_label:"1 month", grade_date:"2026-08-26", grade_basis:"projected", horizon_days:22,
     cycle_no:2, reanchor_from:"2026-07-05", anchor_vol:0.3434,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). SA live fit nu=12.0, width_cal=1.07; rf_live 4.25% SAMA repo-anchored estimate. Horizon resolved by horizons.resolve() on SA's own realized calendar, not a session count.",
@@ -2760,7 +2796,7 @@ const LEDGER = [
   },
   {
     instrument:"ACWA", asset_class:"equity",
-    anchor_date:"2026-07-26", anchor_price:191.2, ccy:"SAR",
+    anchor_date:"2026-07-26", run_date:"2026-07-28", anchor_price:191.2, ccy:"SAR",
     horizon_label:"3 months", grade_date:"2026-10-26", grade_basis:"projected", horizon_days:62,
     cycle_no:2, reanchor_from:"2026-07-05", anchor_vol:0.3573,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). SA live fit nu=12.0, width_cal=1.07; rf_live 4.25% SAMA repo-anchored estimate. Horizon resolved by horizons.resolve() on SA's own realized calendar, not a session count.",
@@ -2772,7 +2808,7 @@ const LEDGER = [
   },
   {
     instrument:"ADCB", asset_class:"equity",
-    anchor_date:"2026-07-24", anchor_price:14.42, ccy:"AED",
+    anchor_date:"2026-07-24", run_date:"2026-07-28", anchor_price:14.42, ccy:"AED",
     horizon_label:"1 month", grade_date:"2026-08-24", grade_basis:"projected", horizon_days:20,
     cycle_no:2, reanchor_from:"2026-07-03", anchor_vol:0.3177,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Horizon resolved by horizons.resolve() on AE's own realized calendar, not a session count.",
@@ -2784,7 +2820,7 @@ const LEDGER = [
   },
   {
     instrument:"ADCB", asset_class:"equity",
-    anchor_date:"2026-07-24", anchor_price:14.42, ccy:"AED",
+    anchor_date:"2026-07-24", run_date:"2026-07-28", anchor_price:14.42, ccy:"AED",
     horizon_label:"3 months", grade_date:"2026-10-26", grade_basis:"projected", horizon_days:63,
     cycle_no:2, reanchor_from:"2026-07-03", anchor_vol:0.3143,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Horizon resolved by horizons.resolve() on AE's own realized calendar, not a session count.",
@@ -2796,7 +2832,7 @@ const LEDGER = [
   },
   {
     instrument:"ADIB", asset_class:"equity",
-    anchor_date:"2026-07-22", anchor_price:49.3, ccy:"EGP",
+    anchor_date:"2026-07-22", run_date:"2026-07-28", anchor_price:49.3, ccy:"EGP",
     horizon_label:"1 month", grade_date:"2026-08-23", grade_basis:"projected", horizon_days:20,
     cycle_no:2, reanchor_from:"2026-07-01", anchor_vol:0.392,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -2808,7 +2844,7 @@ const LEDGER = [
   },
   {
     instrument:"ADIB", asset_class:"equity",
-    anchor_date:"2026-07-22", anchor_price:49.3, ccy:"EGP",
+    anchor_date:"2026-07-22", run_date:"2026-07-28", anchor_price:49.3, ccy:"EGP",
     horizon_label:"3 months", grade_date:"2026-10-22", grade_basis:"projected", horizon_days:61,
     cycle_no:2, reanchor_from:"2026-07-01", anchor_vol:0.43,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -2820,7 +2856,7 @@ const LEDGER = [
   },
   {
     instrument:"ADIBUAE", asset_class:"equity",
-    anchor_date:"2026-07-24", anchor_price:21.24, ccy:"AED",
+    anchor_date:"2026-07-24", run_date:"2026-07-28", anchor_price:21.24, ccy:"AED",
     horizon_label:"1 month", grade_date:"2026-08-24", grade_basis:"projected", horizon_days:20,
     cycle_no:2, reanchor_from:null, anchor_vol:0.3158,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Horizon resolved by horizons.resolve() on AE's own realized calendar, not a session count.",
@@ -2832,7 +2868,7 @@ const LEDGER = [
   },
   {
     instrument:"ADIBUAE", asset_class:"equity",
-    anchor_date:"2026-07-24", anchor_price:21.24, ccy:"AED",
+    anchor_date:"2026-07-24", run_date:"2026-07-28", anchor_price:21.24, ccy:"AED",
     horizon_label:"3 months", grade_date:"2026-10-26", grade_basis:"projected", horizon_days:63,
     cycle_no:2, reanchor_from:null, anchor_vol:0.3143,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Horizon resolved by horizons.resolve() on AE's own realized calendar, not a session count.",
@@ -2844,7 +2880,7 @@ const LEDGER = [
   },
   {
     instrument:"ADNOCGAS", asset_class:"equity",
-    anchor_date:"2026-07-24", anchor_price:3.34, ccy:"AED",
+    anchor_date:"2026-07-24", run_date:"2026-07-28", anchor_price:3.34, ccy:"AED",
     horizon_label:"1 month", grade_date:"2026-08-24", grade_basis:"projected", horizon_days:20,
     cycle_no:2, reanchor_from:"2026-07-03", anchor_vol:0.1913,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Horizon resolved by horizons.resolve() on AE's own realized calendar, not a session count.",
@@ -2856,7 +2892,7 @@ const LEDGER = [
   },
   {
     instrument:"ADNOCGAS", asset_class:"equity",
-    anchor_date:"2026-07-24", anchor_price:3.34, ccy:"AED",
+    anchor_date:"2026-07-24", run_date:"2026-07-28", anchor_price:3.34, ccy:"AED",
     horizon_label:"3 months", grade_date:"2026-10-26", grade_basis:"projected", horizon_days:63,
     cycle_no:2, reanchor_from:"2026-07-03", anchor_vol:0.2009,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Horizon resolved by horizons.resolve() on AE's own realized calendar, not a session count.",
@@ -2868,7 +2904,7 @@ const LEDGER = [
   },
   {
     instrument:"AGTHIA", asset_class:"equity",
-    anchor_date:"2026-07-24", anchor_price:3.2, ccy:"AED",
+    anchor_date:"2026-07-24", run_date:"2026-07-28", anchor_price:3.2, ccy:"AED",
     horizon_label:"1 month", grade_date:"2026-08-24", grade_basis:"projected", horizon_days:20,
     cycle_no:2, reanchor_from:"2026-07-06", anchor_vol:0.2585,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Horizon resolved by horizons.resolve() on AE's own realized calendar, not a session count.",
@@ -2880,7 +2916,7 @@ const LEDGER = [
   },
   {
     instrument:"AGTHIA", asset_class:"equity",
-    anchor_date:"2026-07-24", anchor_price:3.2, ccy:"AED",
+    anchor_date:"2026-07-24", run_date:"2026-07-28", anchor_price:3.2, ccy:"AED",
     horizon_label:"3 months", grade_date:"2026-10-26", grade_basis:"projected", horizon_days:63,
     cycle_no:2, reanchor_from:"2026-07-06", anchor_vol:0.2743,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Horizon resolved by horizons.resolve() on AE's own realized calendar, not a session count.",
@@ -2892,7 +2928,7 @@ const LEDGER = [
   },
   {
     instrument:"ALDAR", asset_class:"equity",
-    anchor_date:"2026-07-24", anchor_price:7.61, ccy:"AED",
+    anchor_date:"2026-07-24", run_date:"2026-07-28", anchor_price:7.61, ccy:"AED",
     horizon_label:"1 month", grade_date:"2026-08-24", grade_basis:"projected", horizon_days:20,
     cycle_no:2, reanchor_from:"2026-07-03", anchor_vol:0.3119,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Horizon resolved by horizons.resolve() on AE's own realized calendar, not a session count.",
@@ -2904,7 +2940,7 @@ const LEDGER = [
   },
   {
     instrument:"ALDAR", asset_class:"equity",
-    anchor_date:"2026-07-24", anchor_price:7.61, ccy:"AED",
+    anchor_date:"2026-07-24", run_date:"2026-07-28", anchor_price:7.61, ccy:"AED",
     horizon_label:"3 months", grade_date:"2026-10-26", grade_basis:"projected", horizon_days:63,
     cycle_no:2, reanchor_from:"2026-07-03", anchor_vol:0.3246,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Horizon resolved by horizons.resolve() on AE's own realized calendar, not a session count.",
@@ -2916,7 +2952,7 @@ const LEDGER = [
   },
   {
     instrument:"ALINMA", asset_class:"equity",
-    anchor_date:"2026-07-26", anchor_price:23.8, ccy:"SAR",
+    anchor_date:"2026-07-26", run_date:"2026-07-28", anchor_price:23.8, ccy:"SAR",
     horizon_label:"1 month", grade_date:"2026-08-26", grade_basis:"projected", horizon_days:22,
     cycle_no:2, reanchor_from:"2026-07-07", anchor_vol:0.1725,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). SA live fit nu=12.0, width_cal=1.07; rf_live 4.25% SAMA repo-anchored estimate. Horizon resolved by horizons.resolve() on SA's own realized calendar, not a session count.",
@@ -2928,7 +2964,7 @@ const LEDGER = [
   },
   {
     instrument:"ALINMA", asset_class:"equity",
-    anchor_date:"2026-07-26", anchor_price:23.8, ccy:"SAR",
+    anchor_date:"2026-07-26", run_date:"2026-07-28", anchor_price:23.8, ccy:"SAR",
     horizon_label:"3 months", grade_date:"2026-10-26", grade_basis:"projected", horizon_days:62,
     cycle_no:2, reanchor_from:"2026-07-07", anchor_vol:0.1951,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). SA live fit nu=12.0, width_cal=1.07; rf_live 4.25% SAMA repo-anchored estimate. Horizon resolved by horizons.resolve() on SA's own realized calendar, not a session count.",
@@ -2940,7 +2976,7 @@ const LEDGER = [
   },
   {
     instrument:"ALPHADHABI", asset_class:"equity",
-    anchor_date:"2026-07-24", anchor_price:7.3, ccy:"AED",
+    anchor_date:"2026-07-24", run_date:"2026-07-28", anchor_price:7.3, ccy:"AED",
     horizon_label:"1 month", grade_date:"2026-08-24", grade_basis:"projected", horizon_days:20,
     cycle_no:2, reanchor_from:"2026-07-03", anchor_vol:0.3188,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Horizon resolved by horizons.resolve() on AE's own realized calendar, not a session count.",
@@ -2952,7 +2988,7 @@ const LEDGER = [
   },
   {
     instrument:"ALPHADHABI", asset_class:"equity",
-    anchor_date:"2026-07-24", anchor_price:7.3, ccy:"AED",
+    anchor_date:"2026-07-24", run_date:"2026-07-28", anchor_price:7.3, ccy:"AED",
     horizon_label:"3 months", grade_date:"2026-10-26", grade_basis:"projected", horizon_days:63,
     cycle_no:2, reanchor_from:"2026-07-03", anchor_vol:0.3289,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Horizon resolved by horizons.resolve() on AE's own realized calendar, not a session count.",
@@ -2964,7 +3000,7 @@ const LEDGER = [
   },
   {
     instrument:"ALRAJHI", asset_class:"equity",
-    anchor_date:"2026-07-26", anchor_price:64.5, ccy:"SAR",
+    anchor_date:"2026-07-26", run_date:"2026-07-28", anchor_price:64.5, ccy:"SAR",
     horizon_label:"1 month", grade_date:"2026-08-26", grade_basis:"projected", horizon_days:22,
     cycle_no:2, reanchor_from:"2026-07-02", anchor_vol:0.1956,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). SA live fit nu=12.0, width_cal=1.07; rf_live 4.25% SAMA repo-anchored estimate. Horizon resolved by horizons.resolve() on SA's own realized calendar, not a session count.",
@@ -2976,7 +3012,7 @@ const LEDGER = [
   },
   {
     instrument:"ALRAJHI", asset_class:"equity",
-    anchor_date:"2026-07-26", anchor_price:64.5, ccy:"SAR",
+    anchor_date:"2026-07-26", run_date:"2026-07-28", anchor_price:64.5, ccy:"SAR",
     horizon_label:"3 months", grade_date:"2026-10-26", grade_basis:"projected", horizon_days:62,
     cycle_no:2, reanchor_from:"2026-07-02", anchor_vol:0.2098,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). SA live fit nu=12.0, width_cal=1.07; rf_live 4.25% SAMA repo-anchored estimate. Horizon resolved by horizons.resolve() on SA's own realized calendar, not a session count.",
@@ -2988,7 +3024,7 @@ const LEDGER = [
   },
   {
     instrument:"ARAMCO", asset_class:"equity",
-    anchor_date:"2026-07-26", anchor_price:26.6, ccy:"SAR",
+    anchor_date:"2026-07-26", run_date:"2026-07-28", anchor_price:26.6, ccy:"SAR",
     horizon_label:"1 month", grade_date:"2026-08-26", grade_basis:"projected", horizon_days:22,
     cycle_no:2, reanchor_from:"2026-07-01", anchor_vol:0.1536,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). SA live fit nu=12.0, width_cal=1.07; rf_live 4.25% SAMA repo-anchored estimate. Horizon resolved by horizons.resolve() on SA's own realized calendar, not a session count.",
@@ -3000,7 +3036,7 @@ const LEDGER = [
   },
   {
     instrument:"ARAMCO", asset_class:"equity",
-    anchor_date:"2026-07-26", anchor_price:26.6, ccy:"SAR",
+    anchor_date:"2026-07-26", run_date:"2026-07-28", anchor_price:26.6, ccy:"SAR",
     horizon_label:"3 months", grade_date:"2026-10-26", grade_basis:"projected", horizon_days:62,
     cycle_no:2, reanchor_from:"2026-07-01", anchor_vol:0.1548,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). SA live fit nu=12.0, width_cal=1.07; rf_live 4.25% SAMA repo-anchored estimate. Horizon resolved by horizons.resolve() on SA's own realized calendar, not a session count.",
@@ -3012,7 +3048,7 @@ const LEDGER = [
   },
   {
     instrument:"BTFH", asset_class:"equity",
-    anchor_date:"2026-07-22", anchor_price:3.09, ccy:"EGP",
+    anchor_date:"2026-07-22", run_date:"2026-07-28", anchor_price:3.09, ccy:"EGP",
     horizon_label:"1 month", grade_date:"2026-08-23", grade_basis:"projected", horizon_days:20,
     cycle_no:2, reanchor_from:"2026-07-01", anchor_vol:0.3519,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -3024,7 +3060,7 @@ const LEDGER = [
   },
   {
     instrument:"BTFH", asset_class:"equity",
-    anchor_date:"2026-07-22", anchor_price:3.09, ccy:"EGP",
+    anchor_date:"2026-07-22", run_date:"2026-07-28", anchor_price:3.09, ccy:"EGP",
     horizon_label:"3 months", grade_date:"2026-10-22", grade_basis:"projected", horizon_days:61,
     cycle_no:2, reanchor_from:"2026-07-01", anchor_vol:0.3828,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -3036,7 +3072,7 @@ const LEDGER = [
   },
   {
     instrument:"BURJEEL", asset_class:"equity",
-    anchor_date:"2026-07-24", anchor_price:1.2, ccy:"AED",
+    anchor_date:"2026-07-24", run_date:"2026-07-28", anchor_price:1.2, ccy:"AED",
     horizon_label:"1 month", grade_date:"2026-08-24", grade_basis:"projected", horizon_days:20,
     cycle_no:2, reanchor_from:"2026-07-10", anchor_vol:0.3584,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Horizon resolved by horizons.resolve() on AE's own realized calendar, not a session count.",
@@ -3048,7 +3084,7 @@ const LEDGER = [
   },
   {
     instrument:"BURJEEL", asset_class:"equity",
-    anchor_date:"2026-07-24", anchor_price:1.2, ccy:"AED",
+    anchor_date:"2026-07-24", run_date:"2026-07-28", anchor_price:1.2, ccy:"AED",
     horizon_label:"3 months", grade_date:"2026-10-26", grade_basis:"projected", horizon_days:63,
     cycle_no:2, reanchor_from:"2026-07-10", anchor_vol:0.3558,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Horizon resolved by horizons.resolve() on AE's own realized calendar, not a session count.",
@@ -3060,7 +3096,7 @@ const LEDGER = [
   },
   {
     instrument:"CCAP", asset_class:"equity",
-    anchor_date:"2026-07-22", anchor_price:5.51, ccy:"EGP",
+    anchor_date:"2026-07-22", run_date:"2026-07-28", anchor_price:5.51, ccy:"EGP",
     horizon_label:"1 month", grade_date:"2026-08-23", grade_basis:"projected", horizon_days:20,
     cycle_no:2, reanchor_from:"2026-06-30", anchor_vol:0.4872,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -3072,7 +3108,7 @@ const LEDGER = [
   },
   {
     instrument:"CCAP", asset_class:"equity",
-    anchor_date:"2026-07-22", anchor_price:5.51, ccy:"EGP",
+    anchor_date:"2026-07-22", run_date:"2026-07-28", anchor_price:5.51, ccy:"EGP",
     horizon_label:"3 months", grade_date:"2026-10-22", grade_basis:"projected", horizon_days:61,
     cycle_no:2, reanchor_from:"2026-06-30", anchor_vol:0.4979,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -3084,7 +3120,7 @@ const LEDGER = [
   },
   {
     instrument:"CLHO", asset_class:"equity",
-    anchor_date:"2026-07-22", anchor_price:16.9, ccy:"EGP",
+    anchor_date:"2026-07-22", run_date:"2026-07-28", anchor_price:16.9, ccy:"EGP",
     horizon_label:"1 month", grade_date:"2026-08-23", grade_basis:"projected", horizon_days:20,
     cycle_no:2, reanchor_from:"2026-07-12", anchor_vol:0.5259,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -3096,7 +3132,7 @@ const LEDGER = [
   },
   {
     instrument:"CLHO", asset_class:"equity",
-    anchor_date:"2026-07-22", anchor_price:16.9, ccy:"EGP",
+    anchor_date:"2026-07-22", run_date:"2026-07-28", anchor_price:16.9, ccy:"EGP",
     horizon_label:"3 months", grade_date:"2026-10-22", grade_basis:"projected", horizon_days:61,
     cycle_no:2, reanchor_from:"2026-07-12", anchor_vol:0.5317,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -3108,7 +3144,7 @@ const LEDGER = [
   },
   {
     instrument:"DEWA", asset_class:"equity",
-    anchor_date:"2026-07-24", anchor_price:2.67, ccy:"AED",
+    anchor_date:"2026-07-24", run_date:"2026-07-28", anchor_price:2.67, ccy:"AED",
     horizon_label:"1 month", grade_date:"2026-08-24", grade_basis:"projected", horizon_days:20,
     cycle_no:2, reanchor_from:"2026-07-10", anchor_vol:0.2332,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Horizon resolved by horizons.resolve() on AE's own realized calendar, not a session count.",
@@ -3120,7 +3156,7 @@ const LEDGER = [
   },
   {
     instrument:"DEWA", asset_class:"equity",
-    anchor_date:"2026-07-24", anchor_price:2.67, ccy:"AED",
+    anchor_date:"2026-07-24", run_date:"2026-07-28", anchor_price:2.67, ccy:"AED",
     horizon_label:"3 months", grade_date:"2026-10-26", grade_basis:"projected", horizon_days:63,
     cycle_no:2, reanchor_from:"2026-07-10", anchor_vol:0.2357,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Horizon resolved by horizons.resolve() on AE's own realized calendar, not a session count.",
@@ -3132,7 +3168,7 @@ const LEDGER = [
   },
   {
     instrument:"DIB", asset_class:"equity",
-    anchor_date:"2026-07-24", anchor_price:7.35, ccy:"AED",
+    anchor_date:"2026-07-24", run_date:"2026-07-28", anchor_price:7.35, ccy:"AED",
     horizon_label:"1 month", grade_date:"2026-08-24", grade_basis:"projected", horizon_days:20,
     cycle_no:2, reanchor_from:"2026-07-03", anchor_vol:0.2307,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Horizon resolved by horizons.resolve() on AE's own realized calendar, not a session count.",
@@ -3144,7 +3180,7 @@ const LEDGER = [
   },
   {
     instrument:"DIB", asset_class:"equity",
-    anchor_date:"2026-07-24", anchor_price:7.35, ccy:"AED",
+    anchor_date:"2026-07-24", run_date:"2026-07-28", anchor_price:7.35, ccy:"AED",
     horizon_label:"3 months", grade_date:"2026-10-26", grade_basis:"projected", horizon_days:63,
     cycle_no:2, reanchor_from:"2026-07-03", anchor_vol:0.241,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Horizon resolved by horizons.resolve() on AE's own realized calendar, not a session count.",
@@ -3156,7 +3192,7 @@ const LEDGER = [
   },
   {
     instrument:"DSCW", asset_class:"equity",
-    anchor_date:"2026-07-22", anchor_price:1.96, ccy:"EGP",
+    anchor_date:"2026-07-22", run_date:"2026-07-28", anchor_price:1.96, ccy:"EGP",
     horizon_label:"1 month", grade_date:"2026-08-23", grade_basis:"projected", horizon_days:20,
     cycle_no:2, reanchor_from:"2026-07-19", anchor_vol:0.3789,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -3168,7 +3204,7 @@ const LEDGER = [
   },
   {
     instrument:"DSCW", asset_class:"equity",
-    anchor_date:"2026-07-22", anchor_price:1.96, ccy:"EGP",
+    anchor_date:"2026-07-22", run_date:"2026-07-28", anchor_price:1.96, ccy:"EGP",
     horizon_label:"3 months", grade_date:"2026-10-22", grade_basis:"projected", horizon_days:61,
     cycle_no:2, reanchor_from:"2026-07-19", anchor_vol:0.4182,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -3180,7 +3216,7 @@ const LEDGER = [
   },
   {
     instrument:"EAND", asset_class:"equity",
-    anchor_date:"2026-07-24", anchor_price:20.08, ccy:"AED",
+    anchor_date:"2026-07-24", run_date:"2026-07-28", anchor_price:20.08, ccy:"AED",
     horizon_label:"1 month", grade_date:"2026-08-24", grade_basis:"projected", horizon_days:20,
     cycle_no:2, reanchor_from:"2026-07-09", anchor_vol:0.2271,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Horizon resolved by horizons.resolve() on AE's own realized calendar, not a session count.",
@@ -3192,7 +3228,7 @@ const LEDGER = [
   },
   {
     instrument:"EAND", asset_class:"equity",
-    anchor_date:"2026-07-24", anchor_price:20.08, ccy:"AED",
+    anchor_date:"2026-07-24", run_date:"2026-07-28", anchor_price:20.08, ccy:"AED",
     horizon_label:"3 months", grade_date:"2026-10-26", grade_basis:"projected", horizon_days:63,
     cycle_no:2, reanchor_from:"2026-07-09", anchor_vol:0.2242,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Horizon resolved by horizons.resolve() on AE's own realized calendar, not a session count.",
@@ -3204,7 +3240,7 @@ const LEDGER = [
   },
   {
     instrument:"EFID", asset_class:"equity",
-    anchor_date:"2026-07-22", anchor_price:27.7, ccy:"EGP",
+    anchor_date:"2026-07-22", run_date:"2026-07-28", anchor_price:27.7, ccy:"EGP",
     horizon_label:"1 month", grade_date:"2026-08-23", grade_basis:"projected", horizon_days:20,
     cycle_no:2, reanchor_from:"2026-07-01", anchor_vol:0.4039,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -3216,7 +3252,7 @@ const LEDGER = [
   },
   {
     instrument:"EFID", asset_class:"equity",
-    anchor_date:"2026-07-22", anchor_price:27.7, ccy:"EGP",
+    anchor_date:"2026-07-22", run_date:"2026-07-28", anchor_price:27.7, ccy:"EGP",
     horizon_label:"3 months", grade_date:"2026-10-22", grade_basis:"projected", horizon_days:61,
     cycle_no:2, reanchor_from:"2026-07-01", anchor_vol:0.4474,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -3228,7 +3264,7 @@ const LEDGER = [
   },
   {
     instrument:"EFIH", asset_class:"equity",
-    anchor_date:"2026-07-22", anchor_price:23.39, ccy:"EGP",
+    anchor_date:"2026-07-22", run_date:"2026-07-28", anchor_price:23.39, ccy:"EGP",
     horizon_label:"1 month", grade_date:"2026-08-23", grade_basis:"projected", horizon_days:20,
     cycle_no:2, reanchor_from:"2026-07-01", anchor_vol:0.4001,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -3240,7 +3276,7 @@ const LEDGER = [
   },
   {
     instrument:"EFIH", asset_class:"equity",
-    anchor_date:"2026-07-22", anchor_price:23.39, ccy:"EGP",
+    anchor_date:"2026-07-22", run_date:"2026-07-28", anchor_price:23.39, ccy:"EGP",
     horizon_label:"3 months", grade_date:"2026-10-22", grade_basis:"projected", horizon_days:61,
     cycle_no:2, reanchor_from:"2026-07-01", anchor_vol:0.4283,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -3252,7 +3288,7 @@ const LEDGER = [
   },
   {
     instrument:"EGAL", asset_class:"equity",
-    anchor_date:"2026-07-22", anchor_price:301.12, ccy:"EGP",
+    anchor_date:"2026-07-22", run_date:"2026-07-28", anchor_price:301.12, ccy:"EGP",
     horizon_label:"1 month", grade_date:"2026-08-23", grade_basis:"projected", horizon_days:20,
     cycle_no:2, reanchor_from:"2026-07-01", anchor_vol:0.3557,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -3264,7 +3300,7 @@ const LEDGER = [
   },
   {
     instrument:"EGAL", asset_class:"equity",
-    anchor_date:"2026-07-22", anchor_price:301.12, ccy:"EGP",
+    anchor_date:"2026-07-22", run_date:"2026-07-28", anchor_price:301.12, ccy:"EGP",
     horizon_label:"3 months", grade_date:"2026-10-22", grade_basis:"projected", horizon_days:61,
     cycle_no:2, reanchor_from:"2026-07-01", anchor_vol:0.4203,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -3276,7 +3312,7 @@ const LEDGER = [
   },
   {
     instrument:"ELM", asset_class:"equity",
-    anchor_date:"2026-07-26", anchor_price:666.0, ccy:"SAR",
+    anchor_date:"2026-07-26", run_date:"2026-07-28", anchor_price:666.0, ccy:"SAR",
     horizon_label:"1 month", grade_date:"2026-08-26", grade_basis:"projected", horizon_days:22,
     cycle_no:2, reanchor_from:"2026-07-07", anchor_vol:0.3555,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). SA live fit nu=12.0, width_cal=1.07; rf_live 4.25% SAMA repo-anchored estimate. Horizon resolved by horizons.resolve() on SA's own realized calendar, not a session count.",
@@ -3288,7 +3324,7 @@ const LEDGER = [
   },
   {
     instrument:"ELM", asset_class:"equity",
-    anchor_date:"2026-07-26", anchor_price:666.0, ccy:"SAR",
+    anchor_date:"2026-07-26", run_date:"2026-07-28", anchor_price:666.0, ccy:"SAR",
     horizon_label:"3 months", grade_date:"2026-10-26", grade_basis:"projected", horizon_days:62,
     cycle_no:2, reanchor_from:"2026-07-07", anchor_vol:0.3436,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). SA live fit nu=12.0, width_cal=1.07; rf_live 4.25% SAMA repo-anchored estimate. Horizon resolved by horizons.resolve() on SA's own realized calendar, not a session count.",
@@ -3300,7 +3336,7 @@ const LEDGER = [
   },
   {
     instrument:"EMAAR", asset_class:"equity",
-    anchor_date:"2026-07-24", anchor_price:11.08, ccy:"AED",
+    anchor_date:"2026-07-24", run_date:"2026-07-28", anchor_price:11.08, ccy:"AED",
     horizon_label:"1 month", grade_date:"2026-08-24", grade_basis:"projected", horizon_days:20,
     cycle_no:2, reanchor_from:"2026-06-29", anchor_vol:0.2784,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Horizon resolved by horizons.resolve() on AE's own realized calendar, not a session count.",
@@ -3312,7 +3348,7 @@ const LEDGER = [
   },
   {
     instrument:"EMAAR", asset_class:"equity",
-    anchor_date:"2026-07-24", anchor_price:11.08, ccy:"AED",
+    anchor_date:"2026-07-24", run_date:"2026-07-28", anchor_price:11.08, ccy:"AED",
     horizon_label:"3 months", grade_date:"2026-10-26", grade_basis:"projected", horizon_days:63,
     cycle_no:2, reanchor_from:"2026-06-29", anchor_vol:0.2973,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Horizon resolved by horizons.resolve() on AE's own realized calendar, not a session count.",
@@ -3324,7 +3360,7 @@ const LEDGER = [
   },
   {
     instrument:"EMAARDEV", asset_class:"equity",
-    anchor_date:"2026-07-24", anchor_price:13.16, ccy:"AED",
+    anchor_date:"2026-07-24", run_date:"2026-07-28", anchor_price:13.16, ccy:"AED",
     horizon_label:"1 month", grade_date:"2026-08-24", grade_basis:"projected", horizon_days:20,
     cycle_no:2, reanchor_from:"2026-07-03", anchor_vol:0.316,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Horizon resolved by horizons.resolve() on AE's own realized calendar, not a session count.",
@@ -3336,7 +3372,7 @@ const LEDGER = [
   },
   {
     instrument:"EMAARDEV", asset_class:"equity",
-    anchor_date:"2026-07-24", anchor_price:13.16, ccy:"AED",
+    anchor_date:"2026-07-24", run_date:"2026-07-28", anchor_price:13.16, ccy:"AED",
     horizon_label:"3 months", grade_date:"2026-10-26", grade_basis:"projected", horizon_days:63,
     cycle_no:2, reanchor_from:"2026-07-03", anchor_vol:0.3395,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Horizon resolved by horizons.resolve() on AE's own realized calendar, not a session count.",
@@ -3348,7 +3384,7 @@ const LEDGER = [
   },
   {
     instrument:"ENBD", asset_class:"equity",
-    anchor_date:"2026-07-24", anchor_price:30.22, ccy:"AED",
+    anchor_date:"2026-07-24", run_date:"2026-07-28", anchor_price:30.22, ccy:"AED",
     horizon_label:"1 month", grade_date:"2026-08-24", grade_basis:"projected", horizon_days:20,
     cycle_no:2, reanchor_from:"2026-07-03", anchor_vol:0.3498,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Horizon resolved by horizons.resolve() on AE's own realized calendar, not a session count.",
@@ -3360,7 +3396,7 @@ const LEDGER = [
   },
   {
     instrument:"ENBD", asset_class:"equity",
-    anchor_date:"2026-07-24", anchor_price:30.22, ccy:"AED",
+    anchor_date:"2026-07-24", run_date:"2026-07-28", anchor_price:30.22, ccy:"AED",
     horizon_label:"3 months", grade_date:"2026-10-26", grade_basis:"projected", horizon_days:63,
     cycle_no:2, reanchor_from:"2026-07-03", anchor_vol:0.3542,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Horizon resolved by horizons.resolve() on AE's own realized calendar, not a session count.",
@@ -3372,7 +3408,7 @@ const LEDGER = [
   },
   {
     instrument:"ETEL", asset_class:"equity",
-    anchor_date:"2026-07-22", anchor_price:103.28, ccy:"EGP",
+    anchor_date:"2026-07-22", run_date:"2026-07-28", anchor_price:103.28, ccy:"EGP",
     horizon_label:"1 month", grade_date:"2026-08-23", grade_basis:"projected", horizon_days:20,
     cycle_no:2, reanchor_from:"2026-07-01", anchor_vol:0.4019,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -3384,7 +3420,7 @@ const LEDGER = [
   },
   {
     instrument:"ETEL", asset_class:"equity",
-    anchor_date:"2026-07-22", anchor_price:103.28, ccy:"EGP",
+    anchor_date:"2026-07-22", run_date:"2026-07-28", anchor_price:103.28, ccy:"EGP",
     horizon_label:"3 months", grade_date:"2026-10-22", grade_basis:"projected", horizon_days:61,
     cycle_no:2, reanchor_from:"2026-07-01", anchor_vol:0.404,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -3396,7 +3432,7 @@ const LEDGER = [
   },
   {
     instrument:"EXTRA", asset_class:"equity",
-    anchor_date:"2026-07-26", anchor_price:68.5, ccy:"SAR",
+    anchor_date:"2026-07-26", run_date:"2026-07-28", anchor_price:68.5, ccy:"SAR",
     horizon_label:"1 month", grade_date:"2026-08-26", grade_basis:"projected", horizon_days:22,
     cycle_no:2, reanchor_from:"2026-07-09", anchor_vol:0.2101,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). SA live fit nu=12.0, width_cal=1.07; rf_live 4.25% SAMA repo-anchored estimate. Horizon resolved by horizons.resolve() on SA's own realized calendar, not a session count.",
@@ -3408,7 +3444,7 @@ const LEDGER = [
   },
   {
     instrument:"EXTRA", asset_class:"equity",
-    anchor_date:"2026-07-26", anchor_price:68.5, ccy:"SAR",
+    anchor_date:"2026-07-26", run_date:"2026-07-28", anchor_price:68.5, ccy:"SAR",
     horizon_label:"3 months", grade_date:"2026-10-26", grade_basis:"projected", horizon_days:62,
     cycle_no:2, reanchor_from:"2026-07-09", anchor_vol:0.2402,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). SA live fit nu=12.0, width_cal=1.07; rf_live 4.25% SAMA repo-anchored estimate. Horizon resolved by horizons.resolve() on SA's own realized calendar, not a session count.",
@@ -3420,7 +3456,7 @@ const LEDGER = [
   },
   {
     instrument:"FAB", asset_class:"equity",
-    anchor_date:"2026-07-24", anchor_price:18.66, ccy:"AED",
+    anchor_date:"2026-07-24", run_date:"2026-07-28", anchor_price:18.66, ccy:"AED",
     horizon_label:"1 month", grade_date:"2026-08-24", grade_basis:"projected", horizon_days:20,
     cycle_no:2, reanchor_from:"2026-07-03", anchor_vol:0.2846,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Horizon resolved by horizons.resolve() on AE's own realized calendar, not a session count.",
@@ -3432,7 +3468,7 @@ const LEDGER = [
   },
   {
     instrument:"FAB", asset_class:"equity",
-    anchor_date:"2026-07-24", anchor_price:18.66, ccy:"AED",
+    anchor_date:"2026-07-24", run_date:"2026-07-28", anchor_price:18.66, ccy:"AED",
     horizon_label:"3 months", grade_date:"2026-10-26", grade_basis:"projected", horizon_days:63,
     cycle_no:2, reanchor_from:"2026-07-03", anchor_vol:0.2838,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Horizon resolved by horizons.resolve() on AE's own realized calendar, not a session count.",
@@ -3444,7 +3480,7 @@ const LEDGER = [
   },
   {
     instrument:"FWRY", asset_class:"equity",
-    anchor_date:"2026-07-22", anchor_price:19.3, ccy:"EGP",
+    anchor_date:"2026-07-22", run_date:"2026-07-28", anchor_price:19.3, ccy:"EGP",
     horizon_label:"1 month", grade_date:"2026-08-23", grade_basis:"projected", horizon_days:20,
     cycle_no:2, reanchor_from:"2026-07-01", anchor_vol:0.3432,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -3456,7 +3492,7 @@ const LEDGER = [
   },
   {
     instrument:"FWRY", asset_class:"equity",
-    anchor_date:"2026-07-22", anchor_price:19.3, ccy:"EGP",
+    anchor_date:"2026-07-22", run_date:"2026-07-28", anchor_price:19.3, ccy:"EGP",
     horizon_label:"3 months", grade_date:"2026-10-22", grade_basis:"projected", horizon_days:61,
     cycle_no:2, reanchor_from:"2026-07-01", anchor_vol:0.3928,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -3468,7 +3504,7 @@ const LEDGER = [
   },
   {
     instrument:"GBCO", asset_class:"equity",
-    anchor_date:"2026-07-22", anchor_price:31.31, ccy:"EGP",
+    anchor_date:"2026-07-22", run_date:"2026-07-28", anchor_price:31.31, ccy:"EGP",
     horizon_label:"1 month", grade_date:"2026-08-23", grade_basis:"projected", horizon_days:20,
     cycle_no:2, reanchor_from:"2026-07-07", anchor_vol:0.5186,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -3480,7 +3516,7 @@ const LEDGER = [
   },
   {
     instrument:"GBCO", asset_class:"equity",
-    anchor_date:"2026-07-22", anchor_price:31.31, ccy:"EGP",
+    anchor_date:"2026-07-22", run_date:"2026-07-28", anchor_price:31.31, ccy:"EGP",
     horizon_label:"3 months", grade_date:"2026-10-22", grade_basis:"projected", horizon_days:61,
     cycle_no:2, reanchor_from:"2026-07-07", anchor_vol:0.5327,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -3492,7 +3528,7 @@ const LEDGER = [
   },
   {
     instrument:"HELI", asset_class:"equity",
-    anchor_date:"2026-07-22", anchor_price:8.27, ccy:"EGP",
+    anchor_date:"2026-07-22", run_date:"2026-07-28", anchor_price:8.27, ccy:"EGP",
     horizon_label:"1 month", grade_date:"2026-08-23", grade_basis:"projected", horizon_days:20,
     cycle_no:2, reanchor_from:"2026-07-03", anchor_vol:0.3905,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -3504,7 +3540,7 @@ const LEDGER = [
   },
   {
     instrument:"HELI", asset_class:"equity",
-    anchor_date:"2026-07-22", anchor_price:8.27, ccy:"EGP",
+    anchor_date:"2026-07-22", run_date:"2026-07-28", anchor_price:8.27, ccy:"EGP",
     horizon_label:"3 months", grade_date:"2026-10-22", grade_basis:"projected", horizon_days:61,
     cycle_no:2, reanchor_from:"2026-07-03", anchor_vol:0.4131,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -3516,7 +3552,7 @@ const LEDGER = [
   },
   {
     instrument:"HRHO", asset_class:"equity",
-    anchor_date:"2026-07-22", anchor_price:26.95, ccy:"EGP",
+    anchor_date:"2026-07-22", run_date:"2026-07-28", anchor_price:26.95, ccy:"EGP",
     horizon_label:"1 month", grade_date:"2026-08-23", grade_basis:"projected", horizon_days:20,
     cycle_no:2, reanchor_from:"2026-07-01", anchor_vol:0.3097,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -3528,7 +3564,7 @@ const LEDGER = [
   },
   {
     instrument:"HRHO", asset_class:"equity",
-    anchor_date:"2026-07-22", anchor_price:26.95, ccy:"EGP",
+    anchor_date:"2026-07-22", run_date:"2026-07-28", anchor_price:26.95, ccy:"EGP",
     horizon_label:"3 months", grade_date:"2026-10-22", grade_basis:"projected", horizon_days:61,
     cycle_no:2, reanchor_from:"2026-07-01", anchor_vol:0.3214,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -3540,7 +3576,7 @@ const LEDGER = [
   },
   {
     instrument:"IHC", asset_class:"equity",
-    anchor_date:"2026-07-24", anchor_price:380.0, ccy:"AED",
+    anchor_date:"2026-07-24", run_date:"2026-07-28", anchor_price:380.0, ccy:"AED",
     horizon_label:"1 month", grade_date:"2026-08-24", grade_basis:"projected", horizon_days:20,
     cycle_no:2, reanchor_from:"2026-07-03", anchor_vol:0.0962,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Horizon resolved by horizons.resolve() on AE's own realized calendar, not a session count.",
@@ -3552,7 +3588,7 @@ const LEDGER = [
   },
   {
     instrument:"IHC", asset_class:"equity",
-    anchor_date:"2026-07-24", anchor_price:380.0, ccy:"AED",
+    anchor_date:"2026-07-24", run_date:"2026-07-28", anchor_price:380.0, ccy:"AED",
     horizon_label:"3 months", grade_date:"2026-10-26", grade_basis:"projected", horizon_days:63,
     cycle_no:2, reanchor_from:"2026-07-03", anchor_vol:0.1197,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Horizon resolved by horizons.resolve() on AE's own realized calendar, not a session count.",
@@ -3564,7 +3600,7 @@ const LEDGER = [
   },
   {
     instrument:"ISPH", asset_class:"equity",
-    anchor_date:"2026-07-22", anchor_price:11.73, ccy:"EGP",
+    anchor_date:"2026-07-22", run_date:"2026-07-28", anchor_price:11.73, ccy:"EGP",
     horizon_label:"1 month", grade_date:"2026-08-23", grade_basis:"projected", horizon_days:20,
     cycle_no:2, reanchor_from:"2026-07-07", anchor_vol:0.4122,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -3576,7 +3612,7 @@ const LEDGER = [
   },
   {
     instrument:"ISPH", asset_class:"equity",
-    anchor_date:"2026-07-22", anchor_price:11.73, ccy:"EGP",
+    anchor_date:"2026-07-22", run_date:"2026-07-28", anchor_price:11.73, ccy:"EGP",
     horizon_label:"3 months", grade_date:"2026-10-22", grade_basis:"projected", horizon_days:61,
     cycle_no:2, reanchor_from:"2026-07-07", anchor_vol:0.4348,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -3588,7 +3624,7 @@ const LEDGER = [
   },
   {
     instrument:"JUFO", asset_class:"equity",
-    anchor_date:"2026-07-22", anchor_price:28.9, ccy:"EGP",
+    anchor_date:"2026-07-22", run_date:"2026-07-28", anchor_price:28.9, ccy:"EGP",
     horizon_label:"1 month", grade_date:"2026-08-23", grade_basis:"projected", horizon_days:20,
     cycle_no:2, reanchor_from:"2026-07-01", anchor_vol:0.4108,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -3600,7 +3636,7 @@ const LEDGER = [
   },
   {
     instrument:"JUFO", asset_class:"equity",
-    anchor_date:"2026-07-22", anchor_price:28.9, ccy:"EGP",
+    anchor_date:"2026-07-22", run_date:"2026-07-28", anchor_price:28.9, ccy:"EGP",
     horizon_label:"3 months", grade_date:"2026-10-22", grade_basis:"projected", horizon_days:61,
     cycle_no:2, reanchor_from:"2026-07-01", anchor_vol:0.4343,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -3612,7 +3648,7 @@ const LEDGER = [
   },
   {
     instrument:"KABO", asset_class:"equity",
-    anchor_date:"2026-07-22", anchor_price:8.8, ccy:"EGP",
+    anchor_date:"2026-07-22", run_date:"2026-07-28", anchor_price:8.8, ccy:"EGP",
     horizon_label:"1 month", grade_date:"2026-08-23", grade_basis:"projected", horizon_days:20,
     cycle_no:2, reanchor_from:"2026-07-06", anchor_vol:0.4835,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -3624,7 +3660,7 @@ const LEDGER = [
   },
   {
     instrument:"KABO", asset_class:"equity",
-    anchor_date:"2026-07-22", anchor_price:8.8, ccy:"EGP",
+    anchor_date:"2026-07-22", run_date:"2026-07-28", anchor_price:8.8, ccy:"EGP",
     horizon_label:"3 months", grade_date:"2026-10-22", grade_basis:"projected", horizon_days:61,
     cycle_no:2, reanchor_from:"2026-07-06", anchor_vol:0.5148,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -3636,7 +3672,7 @@ const LEDGER = [
   },
   {
     instrument:"LCSW", asset_class:"equity",
-    anchor_date:"2026-07-21", anchor_price:33.83, ccy:"EGP",
+    anchor_date:"2026-07-21", run_date:"2026-07-28", anchor_price:33.83, ccy:"EGP",
     horizon_label:"1 month", grade_date:"2026-08-23", grade_basis:"projected", horizon_days:21,
     cycle_no:2, reanchor_from:"2026-07-06", anchor_vol:0.5834,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -3648,7 +3684,7 @@ const LEDGER = [
   },
   {
     instrument:"LCSW", asset_class:"equity",
-    anchor_date:"2026-07-21", anchor_price:33.83, ccy:"EGP",
+    anchor_date:"2026-07-21", run_date:"2026-07-28", anchor_price:33.83, ccy:"EGP",
     horizon_label:"3 months", grade_date:"2026-10-21", grade_basis:"projected", horizon_days:61,
     cycle_no:2, reanchor_from:"2026-07-06", anchor_vol:0.5827,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -3660,7 +3696,7 @@ const LEDGER = [
   },
   {
     instrument:"LULU", asset_class:"equity",
-    anchor_date:"2026-07-24", anchor_price:0.96, ccy:"AED",
+    anchor_date:"2026-07-24", run_date:"2026-07-28", anchor_price:0.96, ccy:"AED",
     horizon_label:"1 month", grade_date:"2026-08-24", grade_basis:"projected", horizon_days:20,
     cycle_no:2, reanchor_from:"2026-07-10", anchor_vol:0.3107,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Horizon resolved by horizons.resolve() on AE's own realized calendar, not a session count.",
@@ -3672,7 +3708,7 @@ const LEDGER = [
   },
   {
     instrument:"LULU", asset_class:"equity",
-    anchor_date:"2026-07-24", anchor_price:0.96, ccy:"AED",
+    anchor_date:"2026-07-24", run_date:"2026-07-28", anchor_price:0.96, ccy:"AED",
     horizon_label:"3 months", grade_date:"2026-10-26", grade_basis:"projected", horizon_days:63,
     cycle_no:2, reanchor_from:"2026-07-10", anchor_vol:0.3272,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Horizon resolved by horizons.resolve() on AE's own realized calendar, not a session count.",
@@ -3684,7 +3720,7 @@ const LEDGER = [
   },
   {
     instrument:"MAADEN", asset_class:"equity",
-    anchor_date:"2026-07-26", anchor_price:58.2, ccy:"SAR",
+    anchor_date:"2026-07-26", run_date:"2026-07-28", anchor_price:58.2, ccy:"SAR",
     horizon_label:"1 month", grade_date:"2026-08-26", grade_basis:"projected", horizon_days:22,
     cycle_no:2, reanchor_from:"2026-07-05", anchor_vol:0.2754,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). SA live fit nu=12.0, width_cal=1.07; rf_live 4.25% SAMA repo-anchored estimate. Horizon resolved by horizons.resolve() on SA's own realized calendar, not a session count.",
@@ -3696,7 +3732,7 @@ const LEDGER = [
   },
   {
     instrument:"MAADEN", asset_class:"equity",
-    anchor_date:"2026-07-26", anchor_price:58.2, ccy:"SAR",
+    anchor_date:"2026-07-26", run_date:"2026-07-28", anchor_price:58.2, ccy:"SAR",
     horizon_label:"3 months", grade_date:"2026-10-26", grade_basis:"projected", horizon_days:62,
     cycle_no:2, reanchor_from:"2026-07-05", anchor_vol:0.2889,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). SA live fit nu=12.0, width_cal=1.07; rf_live 4.25% SAMA repo-anchored estimate. Horizon resolved by horizons.resolve() on SA's own realized calendar, not a session count.",
@@ -3708,7 +3744,7 @@ const LEDGER = [
   },
   {
     instrument:"OCDI", asset_class:"equity",
-    anchor_date:"2026-07-27", anchor_price:27.48, ccy:"EGP",
+    anchor_date:"2026-07-27", run_date:"2026-07-27", anchor_price:27.48, ccy:"EGP",
     horizon_label:"1 month", grade_date:"2026-08-27", grade_basis:"projected", horizon_days:21,
     cycle_no:3, reanchor_from:"2026-07-27", anchor_vol:0.4669,
     note:"Cycle 3 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count. RE-ISSUE AT AN UNCHANGED ANCHOR: this name was already re-struck at this same 2026-07-27 close (cycle 2), so reanchor_from equals this row's own anchor_date. Nothing was re-anchored — the cycle exists only because the cone itself changed: cycle 2 was struck on the retired session-counted 1-month/3-month convention under the then-live fit, and this row re-issues the same anchor on the calendar 1M/3M convention under the current fit. Cycle 2 keeps its published percentiles and grades exactly as issued.",
@@ -3720,7 +3756,7 @@ const LEDGER = [
   },
   {
     instrument:"OCDI", asset_class:"equity",
-    anchor_date:"2026-07-27", anchor_price:27.48, ccy:"EGP",
+    anchor_date:"2026-07-27", run_date:"2026-07-27", anchor_price:27.48, ccy:"EGP",
     horizon_label:"3 months", grade_date:"2026-10-27", grade_basis:"projected", horizon_days:62,
     cycle_no:3, reanchor_from:"2026-07-27", anchor_vol:0.4796,
     note:"Cycle 3 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count. RE-ISSUE AT AN UNCHANGED ANCHOR: this name was already re-struck at this same 2026-07-27 close (cycle 2), so reanchor_from equals this row's own anchor_date. Nothing was re-anchored — the cycle exists only because the cone itself changed: cycle 2 was struck on the retired session-counted 1-month/3-month convention under the then-live fit, and this row re-issues the same anchor on the calendar 1M/3M convention under the current fit. Cycle 2 keeps its published percentiles and grades exactly as issued.",
@@ -3732,7 +3768,7 @@ const LEDGER = [
   },
   {
     instrument:"OIH", asset_class:"equity",
-    anchor_date:"2026-07-22", anchor_price:1.47, ccy:"EGP",
+    anchor_date:"2026-07-22", run_date:"2026-07-28", anchor_price:1.47, ccy:"EGP",
     horizon_label:"1 month", grade_date:"2026-08-23", grade_basis:"projected", horizon_days:20,
     cycle_no:2, reanchor_from:"2026-07-01", anchor_vol:0.3619,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -3744,7 +3780,7 @@ const LEDGER = [
   },
   {
     instrument:"OIH", asset_class:"equity",
-    anchor_date:"2026-07-22", anchor_price:1.47, ccy:"EGP",
+    anchor_date:"2026-07-22", run_date:"2026-07-28", anchor_price:1.47, ccy:"EGP",
     horizon_label:"3 months", grade_date:"2026-10-22", grade_basis:"projected", horizon_days:61,
     cycle_no:2, reanchor_from:"2026-07-01", anchor_vol:0.3929,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -3756,7 +3792,7 @@ const LEDGER = [
   },
   {
     instrument:"ORAS", asset_class:"equity",
-    anchor_date:"2026-07-22", anchor_price:713.5, ccy:"EGP",
+    anchor_date:"2026-07-22", run_date:"2026-07-28", anchor_price:713.5, ccy:"EGP",
     horizon_label:"1 month", grade_date:"2026-08-23", grade_basis:"projected", horizon_days:20,
     cycle_no:2, reanchor_from:"2026-06-30", anchor_vol:0.3462,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -3768,7 +3804,7 @@ const LEDGER = [
   },
   {
     instrument:"ORAS", asset_class:"equity",
-    anchor_date:"2026-07-22", anchor_price:713.5, ccy:"EGP",
+    anchor_date:"2026-07-22", run_date:"2026-07-28", anchor_price:713.5, ccy:"EGP",
     horizon_label:"3 months", grade_date:"2026-10-22", grade_basis:"projected", horizon_days:61,
     cycle_no:2, reanchor_from:"2026-06-30", anchor_vol:0.3803,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -3780,7 +3816,7 @@ const LEDGER = [
   },
   {
     instrument:"ORHD", asset_class:"equity",
-    anchor_date:"2026-07-27", anchor_price:40.16, ccy:"EGP",
+    anchor_date:"2026-07-27", run_date:"2026-07-27", anchor_price:40.16, ccy:"EGP",
     horizon_label:"1 month", grade_date:"2026-08-27", grade_basis:"projected", horizon_days:21,
     cycle_no:3, reanchor_from:"2026-07-27", anchor_vol:0.3648,
     note:"Cycle 3 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count. RE-ISSUE AT AN UNCHANGED ANCHOR: this name was already re-struck at this same 2026-07-27 close (cycle 2), so reanchor_from equals this row's own anchor_date. Nothing was re-anchored — the cycle exists only because the cone itself changed: cycle 2 was struck on the retired session-counted 1-month/3-month convention under the then-live fit, and this row re-issues the same anchor on the calendar 1M/3M convention under the current fit. Cycle 2 keeps its published percentiles and grades exactly as issued.",
@@ -3792,7 +3828,7 @@ const LEDGER = [
   },
   {
     instrument:"ORHD", asset_class:"equity",
-    anchor_date:"2026-07-27", anchor_price:40.16, ccy:"EGP",
+    anchor_date:"2026-07-27", run_date:"2026-07-27", anchor_price:40.16, ccy:"EGP",
     horizon_label:"3 months", grade_date:"2026-10-27", grade_basis:"projected", horizon_days:62,
     cycle_no:3, reanchor_from:"2026-07-27", anchor_vol:0.4038,
     note:"Cycle 3 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count. RE-ISSUE AT AN UNCHANGED ANCHOR: this name was already re-struck at this same 2026-07-27 close (cycle 2), so reanchor_from equals this row's own anchor_date. Nothing was re-anchored — the cycle exists only because the cone itself changed: cycle 2 was struck on the retired session-counted 1-month/3-month convention under the then-live fit, and this row re-issues the same anchor on the calendar 1M/3M convention under the current fit. Cycle 2 keeps its published percentiles and grades exactly as issued.",
@@ -3804,7 +3840,7 @@ const LEDGER = [
   },
   {
     instrument:"ORWE", asset_class:"equity",
-    anchor_date:"2026-07-22", anchor_price:23.12, ccy:"EGP",
+    anchor_date:"2026-07-22", run_date:"2026-07-28", anchor_price:23.12, ccy:"EGP",
     horizon_label:"1 month", grade_date:"2026-08-23", grade_basis:"projected", horizon_days:20,
     cycle_no:2, reanchor_from:"2026-07-01", anchor_vol:0.2627,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -3816,7 +3852,7 @@ const LEDGER = [
   },
   {
     instrument:"ORWE", asset_class:"equity",
-    anchor_date:"2026-07-22", anchor_price:23.12, ccy:"EGP",
+    anchor_date:"2026-07-22", run_date:"2026-07-28", anchor_price:23.12, ccy:"EGP",
     horizon_label:"3 months", grade_date:"2026-10-22", grade_basis:"projected", horizon_days:61,
     cycle_no:2, reanchor_from:"2026-07-01", anchor_vol:0.2973,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -3828,7 +3864,7 @@ const LEDGER = [
   },
   {
     instrument:"PHDC", asset_class:"equity",
-    anchor_date:"2026-07-22", anchor_price:15.01, ccy:"EGP",
+    anchor_date:"2026-07-22", run_date:"2026-07-28", anchor_price:15.01, ccy:"EGP",
     horizon_label:"1 month", grade_date:"2026-08-23", grade_basis:"projected", horizon_days:20,
     cycle_no:4, reanchor_from:"2026-07-19", anchor_vol:0.3976,
     note:"Cycle 4 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -3840,7 +3876,7 @@ const LEDGER = [
   },
   {
     instrument:"PHDC", asset_class:"equity",
-    anchor_date:"2026-07-22", anchor_price:15.01, ccy:"EGP",
+    anchor_date:"2026-07-22", run_date:"2026-07-28", anchor_price:15.01, ccy:"EGP",
     horizon_label:"3 months", grade_date:"2026-10-22", grade_basis:"projected", horizon_days:61,
     cycle_no:4, reanchor_from:"2026-07-19", anchor_vol:0.4188,
     note:"Cycle 4 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -3852,7 +3888,7 @@ const LEDGER = [
   },
   {
     instrument:"PRDC", asset_class:"equity",
-    anchor_date:"2026-07-22", anchor_price:9.8, ccy:"EGP",
+    anchor_date:"2026-07-22", run_date:"2026-07-28", anchor_price:9.8, ccy:"EGP",
     horizon_label:"1 month", grade_date:"2026-08-23", grade_basis:"projected", horizon_days:20,
     cycle_no:2, reanchor_from:"2026-07-06", anchor_vol:0.5651,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -3864,7 +3900,7 @@ const LEDGER = [
   },
   {
     instrument:"PRDC", asset_class:"equity",
-    anchor_date:"2026-07-22", anchor_price:9.8, ccy:"EGP",
+    anchor_date:"2026-07-22", run_date:"2026-07-28", anchor_price:9.8, ccy:"EGP",
     horizon_label:"3 months", grade_date:"2026-10-22", grade_basis:"projected", horizon_days:61,
     cycle_no:2, reanchor_from:"2026-07-06", anchor_vol:0.5108,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -3876,7 +3912,7 @@ const LEDGER = [
   },
   {
     instrument:"RAYA", asset_class:"equity",
-    anchor_date:"2026-07-22", anchor_price:7.76, ccy:"EGP",
+    anchor_date:"2026-07-22", run_date:"2026-07-28", anchor_price:7.76, ccy:"EGP",
     horizon_label:"1 month", grade_date:"2026-08-23", grade_basis:"projected", horizon_days:20,
     cycle_no:2, reanchor_from:"2026-07-01", anchor_vol:0.4468,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -3888,7 +3924,7 @@ const LEDGER = [
   },
   {
     instrument:"RAYA", asset_class:"equity",
-    anchor_date:"2026-07-22", anchor_price:7.76, ccy:"EGP",
+    anchor_date:"2026-07-22", run_date:"2026-07-28", anchor_price:7.76, ccy:"EGP",
     horizon_label:"3 months", grade_date:"2026-10-22", grade_basis:"projected", horizon_days:61,
     cycle_no:2, reanchor_from:"2026-07-01", anchor_vol:0.4707,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -3900,7 +3936,7 @@ const LEDGER = [
   },
   {
     instrument:"RIBL", asset_class:"equity",
-    anchor_date:"2026-07-26", anchor_price:20.92, ccy:"SAR",
+    anchor_date:"2026-07-26", run_date:"2026-07-28", anchor_price:20.92, ccy:"SAR",
     horizon_label:"1 month", grade_date:"2026-08-26", grade_basis:"projected", horizon_days:22,
     cycle_no:2, reanchor_from:"2026-07-07", anchor_vol:0.1875,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). SA live fit nu=12.0, width_cal=1.07; rf_live 4.25% SAMA repo-anchored estimate. Horizon resolved by horizons.resolve() on SA's own realized calendar, not a session count.",
@@ -3912,7 +3948,7 @@ const LEDGER = [
   },
   {
     instrument:"RIBL", asset_class:"equity",
-    anchor_date:"2026-07-26", anchor_price:20.92, ccy:"SAR",
+    anchor_date:"2026-07-26", run_date:"2026-07-28", anchor_price:20.92, ccy:"SAR",
     horizon_label:"3 months", grade_date:"2026-10-26", grade_basis:"projected", horizon_days:62,
     cycle_no:2, reanchor_from:"2026-07-07", anchor_vol:0.1968,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). SA live fit nu=12.0, width_cal=1.07; rf_live 4.25% SAMA repo-anchored estimate. Horizon resolved by horizons.resolve() on SA's own realized calendar, not a session count.",
@@ -3924,7 +3960,7 @@ const LEDGER = [
   },
   {
     instrument:"RMDA", asset_class:"equity",
-    anchor_date:"2026-07-22", anchor_price:4.98, ccy:"EGP",
+    anchor_date:"2026-07-22", run_date:"2026-07-28", anchor_price:4.98, ccy:"EGP",
     horizon_label:"1 month", grade_date:"2026-08-23", grade_basis:"projected", horizon_days:20,
     cycle_no:2, reanchor_from:"2026-07-12", anchor_vol:0.3364,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -3936,7 +3972,7 @@ const LEDGER = [
   },
   {
     instrument:"RMDA", asset_class:"equity",
-    anchor_date:"2026-07-22", anchor_price:4.98, ccy:"EGP",
+    anchor_date:"2026-07-22", run_date:"2026-07-28", anchor_price:4.98, ccy:"EGP",
     horizon_label:"3 months", grade_date:"2026-10-22", grade_basis:"projected", horizon_days:61,
     cycle_no:2, reanchor_from:"2026-07-12", anchor_vol:0.3955,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -3948,7 +3984,7 @@ const LEDGER = [
   },
   {
     instrument:"SABIC", asset_class:"equity",
-    anchor_date:"2026-07-26", anchor_price:52.25, ccy:"SAR",
+    anchor_date:"2026-07-26", run_date:"2026-07-28", anchor_price:52.25, ccy:"SAR",
     horizon_label:"1 month", grade_date:"2026-08-26", grade_basis:"projected", horizon_days:22,
     cycle_no:2, reanchor_from:"2026-07-07", anchor_vol:0.1844,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). SA live fit nu=12.0, width_cal=1.07; rf_live 4.25% SAMA repo-anchored estimate. Horizon resolved by horizons.resolve() on SA's own realized calendar, not a session count.",
@@ -3960,7 +3996,7 @@ const LEDGER = [
   },
   {
     instrument:"SABIC", asset_class:"equity",
-    anchor_date:"2026-07-26", anchor_price:52.25, ccy:"SAR",
+    anchor_date:"2026-07-26", run_date:"2026-07-28", anchor_price:52.25, ccy:"SAR",
     horizon_label:"3 months", grade_date:"2026-10-26", grade_basis:"projected", horizon_days:62,
     cycle_no:2, reanchor_from:"2026-07-07", anchor_vol:0.2001,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). SA live fit nu=12.0, width_cal=1.07; rf_live 4.25% SAMA repo-anchored estimate. Horizon resolved by horizons.resolve() on SA's own realized calendar, not a session count.",
@@ -3972,7 +4008,7 @@ const LEDGER = [
   },
   {
     instrument:"SALIK", asset_class:"equity",
-    anchor_date:"2026-07-24", anchor_price:5.47, ccy:"AED",
+    anchor_date:"2026-07-24", run_date:"2026-07-28", anchor_price:5.47, ccy:"AED",
     horizon_label:"1 month", grade_date:"2026-08-24", grade_basis:"projected", horizon_days:20,
     cycle_no:2, reanchor_from:"2026-07-10", anchor_vol:0.2878,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Horizon resolved by horizons.resolve() on AE's own realized calendar, not a session count.",
@@ -3984,7 +4020,7 @@ const LEDGER = [
   },
   {
     instrument:"SALIK", asset_class:"equity",
-    anchor_date:"2026-07-24", anchor_price:5.47, ccy:"AED",
+    anchor_date:"2026-07-24", run_date:"2026-07-28", anchor_price:5.47, ccy:"AED",
     horizon_label:"3 months", grade_date:"2026-10-26", grade_basis:"projected", horizon_days:63,
     cycle_no:2, reanchor_from:"2026-07-10", anchor_vol:0.3043,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Horizon resolved by horizons.resolve() on AE's own realized calendar, not a session count.",
@@ -3996,7 +4032,7 @@ const LEDGER = [
   },
   {
     instrument:"SNB", asset_class:"equity",
-    anchor_date:"2026-07-26", anchor_price:39.92, ccy:"SAR",
+    anchor_date:"2026-07-26", run_date:"2026-07-28", anchor_price:39.92, ccy:"SAR",
     horizon_label:"1 month", grade_date:"2026-08-26", grade_basis:"projected", horizon_days:22,
     cycle_no:2, reanchor_from:"2026-07-02", anchor_vol:0.2468,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). SA live fit nu=12.0, width_cal=1.07; rf_live 4.25% SAMA repo-anchored estimate. Horizon resolved by horizons.resolve() on SA's own realized calendar, not a session count.",
@@ -4008,7 +4044,7 @@ const LEDGER = [
   },
   {
     instrument:"SNB", asset_class:"equity",
-    anchor_date:"2026-07-26", anchor_price:39.92, ccy:"SAR",
+    anchor_date:"2026-07-26", run_date:"2026-07-28", anchor_price:39.92, ccy:"SAR",
     horizon_label:"3 months", grade_date:"2026-10-26", grade_basis:"projected", horizon_days:62,
     cycle_no:2, reanchor_from:"2026-07-02", anchor_vol:0.26,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). SA live fit nu=12.0, width_cal=1.07; rf_live 4.25% SAMA repo-anchored estimate. Horizon resolved by horizons.resolve() on SA's own realized calendar, not a session count.",
@@ -4020,7 +4056,7 @@ const LEDGER = [
   },
   {
     instrument:"STC", asset_class:"equity",
-    anchor_date:"2026-07-26", anchor_price:43.1, ccy:"SAR",
+    anchor_date:"2026-07-26", run_date:"2026-07-28", anchor_price:43.1, ccy:"SAR",
     horizon_label:"1 month", grade_date:"2026-08-26", grade_basis:"projected", horizon_days:22,
     cycle_no:2, reanchor_from:"2026-07-07", anchor_vol:0.1353,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). SA live fit nu=12.0, width_cal=1.07; rf_live 4.25% SAMA repo-anchored estimate. Horizon resolved by horizons.resolve() on SA's own realized calendar, not a session count.",
@@ -4032,7 +4068,7 @@ const LEDGER = [
   },
   {
     instrument:"STC", asset_class:"equity",
-    anchor_date:"2026-07-26", anchor_price:43.1, ccy:"SAR",
+    anchor_date:"2026-07-26", run_date:"2026-07-28", anchor_price:43.1, ccy:"SAR",
     horizon_label:"3 months", grade_date:"2026-10-26", grade_basis:"projected", horizon_days:62,
     cycle_no:2, reanchor_from:"2026-07-07", anchor_vol:0.1524,
     note:"Cycle 2 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). SA live fit nu=12.0, width_cal=1.07; rf_live 4.25% SAMA repo-anchored estimate. Horizon resolved by horizons.resolve() on SA's own realized calendar, not a session count.",
@@ -4044,7 +4080,7 @@ const LEDGER = [
   },
   {
     instrument:"TMGH", asset_class:"equity",
-    anchor_date:"2026-07-22", anchor_price:100.5, ccy:"EGP",
+    anchor_date:"2026-07-22", run_date:"2026-07-28", anchor_price:100.5, ccy:"EGP",
     horizon_label:"1 month", grade_date:"2026-08-23", grade_basis:"projected", horizon_days:20,
     cycle_no:3, reanchor_from:"2026-07-19", anchor_vol:0.3441,
     note:"Cycle 3 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -4056,7 +4092,7 @@ const LEDGER = [
   },
   {
     instrument:"TMGH", asset_class:"equity",
-    anchor_date:"2026-07-22", anchor_price:100.5, ccy:"EGP",
+    anchor_date:"2026-07-22", run_date:"2026-07-28", anchor_price:100.5, ccy:"EGP",
     horizon_label:"3 months", grade_date:"2026-10-22", grade_basis:"projected", horizon_days:61,
     cycle_no:3, reanchor_from:"2026-07-19", anchor_vol:0.3579,
     note:"Cycle 3 roll-forward, 28-Jul-2026 — market-wide re-strike of EG/AE/SA onto the 15-year calibration libraries and the calendar horizon convention. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -4072,7 +4108,7 @@ const LEDGER = [
   //      Kakao/LGES first roll-forward since their 28-Jun studies. ----
   {
     instrument:"COMI", asset_class:"equity",
-    anchor_date:"2026-07-28", anchor_price:142.0, ccy:"EGP",
+    anchor_date:"2026-07-28", run_date:"2026-07-28", anchor_price:142.0, ccy:"EGP",
     horizon_label:"1 month", grade_date:"2026-08-30", grade_basis:"projected", horizon_days:21,
     cycle_no:3, reanchor_from:"2026-07-22", anchor_vol:0.2676,
     note:"Cycle 3 roll-forward, 28-Jul-2026 — struck on the 28-Jul close from freshly-posted OHLC. CORRECTION 28-Jul-2026: originally struck the same day off an INTRADAY 28-Jul bar (COMI 141.50 / EMFD 11.59); re-struck here at the true session closes (COMI 142.00 / EMFD 11.53) and replaced in place before any resolution. Percentiles and touch ladder below are the corrected ones. Supersedes the same-day market-wide re-strike anchored 22-Jul, which predated this data by 3 EGX sessions; that cohort stays open and graded on its own terms (append-only ledger). Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -4084,7 +4120,7 @@ const LEDGER = [
   },
   {
     instrument:"COMI", asset_class:"equity",
-    anchor_date:"2026-07-28", anchor_price:142.0, ccy:"EGP",
+    anchor_date:"2026-07-28", run_date:"2026-07-28", anchor_price:142.0, ccy:"EGP",
     horizon_label:"3 months", grade_date:"2026-10-28", grade_basis:"projected", horizon_days:62,
     cycle_no:3, reanchor_from:"2026-07-22", anchor_vol:0.2822,
     note:"Cycle 3 roll-forward, 28-Jul-2026 — struck on the 28-Jul close from freshly-posted OHLC. CORRECTION 28-Jul-2026: originally struck the same day off an INTRADAY 28-Jul bar (COMI 141.50 / EMFD 11.59); re-struck here at the true session closes (COMI 142.00 / EMFD 11.53) and replaced in place before any resolution. Percentiles and touch ladder below are the corrected ones. Supersedes the same-day market-wide re-strike anchored 22-Jul, which predated this data by 3 EGX sessions; that cohort stays open and graded on its own terms (append-only ledger). Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -4096,7 +4132,7 @@ const LEDGER = [
   },
   {
     instrument:"EMFD", asset_class:"equity",
-    anchor_date:"2026-07-28", anchor_price:11.53, ccy:"EGP",
+    anchor_date:"2026-07-28", run_date:"2026-07-28", anchor_price:11.53, ccy:"EGP",
     horizon_label:"1 month", grade_date:"2026-08-30", grade_basis:"projected", horizon_days:21,
     cycle_no:4, reanchor_from:"2026-07-22", anchor_vol:0.3367,
     note:"Cycle 4 roll-forward, 28-Jul-2026 — struck on the 28-Jul close from freshly-posted OHLC. CORRECTION 28-Jul-2026: originally struck the same day off an INTRADAY 28-Jul bar (COMI 141.50 / EMFD 11.59); re-struck here at the true session closes (COMI 142.00 / EMFD 11.53) and replaced in place before any resolution. Percentiles and touch ladder below are the corrected ones. Supersedes the same-day market-wide re-strike anchored 22-Jul, which predated this data by 3 EGX sessions; that cohort stays open and graded on its own terms (append-only ledger). Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -4108,7 +4144,7 @@ const LEDGER = [
   },
   {
     instrument:"EMFD", asset_class:"equity",
-    anchor_date:"2026-07-28", anchor_price:11.53, ccy:"EGP",
+    anchor_date:"2026-07-28", run_date:"2026-07-28", anchor_price:11.53, ccy:"EGP",
     horizon_label:"3 months", grade_date:"2026-10-28", grade_basis:"projected", horizon_days:62,
     cycle_no:4, reanchor_from:"2026-07-22", anchor_vol:0.3653,
     note:"Cycle 4 roll-forward, 28-Jul-2026 — struck on the 28-Jul close from freshly-posted OHLC. CORRECTION 28-Jul-2026: originally struck the same day off an INTRADAY 28-Jul bar (COMI 141.50 / EMFD 11.59); re-struck here at the true session closes (COMI 142.00 / EMFD 11.53) and replaced in place before any resolution. Percentiles and touch ladder below are the corrected ones. Supersedes the same-day market-wide re-strike anchored 22-Jul, which predated this data by 3 EGX sessions; that cohort stays open and graded on its own terms (append-only ledger). Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count.",
@@ -4120,7 +4156,7 @@ const LEDGER = [
   },
   {
     instrument:"Kakao", asset_class:"other",
-    anchor_date:"2026-07-28", anchor_price:35650, ccy:"KRW",
+    anchor_date:"2026-07-28", run_date:"2026-07-28", anchor_price:35650, ccy:"KRW",
     horizon_label:"1 month", grade_date:"2026-08-28", grade_basis:"projected", horizon_days:22,
     cycle_no:2, reanchor_from:"2026-06-26",
     config_note:"Corrected 29-Jul-2026: this cycle was originally struck with the prior market-default fit; the per-name override decided the same day (see engine/fit_overrides.json) genuinely improves this specific name's own LONO verdict, so the anchor/grade dates are unchanged but the distribution was recomputed under the correct config.", anchor_vol:0.4749,
@@ -4133,7 +4169,7 @@ const LEDGER = [
   },
   {
     instrument:"Kakao", asset_class:"other",
-    anchor_date:"2026-07-28", anchor_price:35650, ccy:"KRW",
+    anchor_date:"2026-07-28", run_date:"2026-07-28", anchor_price:35650, ccy:"KRW",
     horizon_label:"3 months", grade_date:"2026-10-28", grade_basis:"projected", horizon_days:62,
     cycle_no:2, reanchor_from:"2026-06-26",
     config_note:"Corrected 29-Jul-2026: this cycle was originally struck with the prior market-default fit; the per-name override decided the same day (see engine/fit_overrides.json) genuinely improves this specific name's own LONO verdict, so the anchor/grade dates are unchanged but the distribution was recomputed under the correct config.", anchor_vol:0.4599,
@@ -4146,7 +4182,7 @@ const LEDGER = [
   },
   {
     instrument:"LGES", asset_class:"other",
-    anchor_date:"2026-07-28", anchor_price:314000, ccy:"KRW",
+    anchor_date:"2026-07-28", run_date:"2026-07-28", anchor_price:314000, ccy:"KRW",
     horizon_label:"1 month", grade_date:"2026-08-28", grade_basis:"projected", horizon_days:22,
     cycle_no:2, reanchor_from:"2026-06-26",
     config_note:"Corrected 29-Jul-2026: this cycle was originally struck with the prior market-default fit; the per-name override decided the same day (see engine/fit_overrides.json) genuinely improves this specific name's own LONO verdict, so the anchor/grade dates are unchanged but the distribution was recomputed under the correct config.", anchor_vol:0.5327,
@@ -4159,7 +4195,7 @@ const LEDGER = [
   },
   {
     instrument:"LGES", asset_class:"other",
-    anchor_date:"2026-07-28", anchor_price:314000, ccy:"KRW",
+    anchor_date:"2026-07-28", run_date:"2026-07-28", anchor_price:314000, ccy:"KRW",
     horizon_label:"3 months", grade_date:"2026-10-28", grade_basis:"projected", horizon_days:62,
     cycle_no:2, reanchor_from:"2026-06-26",
     config_note:"Corrected 29-Jul-2026: this cycle was originally struck with the prior market-default fit; the per-name override decided the same day (see engine/fit_overrides.json) genuinely improves this specific name's own LONO verdict, so the anchor/grade dates are unchanged but the distribution was recomputed under the correct config.", anchor_vol:0.5169,
@@ -4175,7 +4211,7 @@ const LEDGER = [
   //      latest library close. Append-only.
   {
     instrument:"2POINTZERO", asset_class:"equity",
-    anchor_date:"2026-07-24", anchor_price:2.06, ccy:"AED",
+    anchor_date:"2026-07-24", run_date:"2026-07-29", anchor_price:2.06, ccy:"AED",
     horizon_label:"1 month", grade_date:"2026-08-24", grade_basis:"projected", horizon_days:20,
     cycle_no:2, reanchor_from:"2026-07-03", anchor_vol:0.3682,
     note:"Cycle 2 roll-forward, 29-Jul-2026 — struck on the 24-Jul-2026 close, the latest session in this name’s library. This name was NOT in the 28-Jul-2026 market-wide EG/AE/SA re-strike, so its published cone had been anchored 2026-07-03 against a library that had already moved on — the gap the as-of stamps adopted 29-Jul-2026 made visible. Cycle 1 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Horizon resolved by horizons.resolve() on AE’s own realized calendar, not a session count. This cohort also brings the name onto the calendar 1M/3M convention it had never been migrated to.",
@@ -4187,7 +4223,7 @@ const LEDGER = [
   },
   {
     instrument:"2POINTZERO", asset_class:"equity",
-    anchor_date:"2026-07-24", anchor_price:2.06, ccy:"AED",
+    anchor_date:"2026-07-24", run_date:"2026-07-29", anchor_price:2.06, ccy:"AED",
     horizon_label:"3 months", grade_date:"2026-10-26", grade_basis:"projected", horizon_days:63,
     cycle_no:2, reanchor_from:"2026-07-03", anchor_vol:0.3892,
     note:"Cycle 2 roll-forward, 29-Jul-2026 — struck on the 24-Jul-2026 close, the latest session in this name’s library. This name was NOT in the 28-Jul-2026 market-wide EG/AE/SA re-strike, so its published cone had been anchored 2026-07-03 against a library that had already moved on — the gap the as-of stamps adopted 29-Jul-2026 made visible. Cycle 1 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Horizon resolved by horizons.resolve() on AE’s own realized calendar, not a session count. This cohort also brings the name onto the calendar 1M/3M convention it had never been migrated to.",
@@ -4200,7 +4236,7 @@ const LEDGER = [
 ,
   {
     instrument:"INFY", asset_class:"equity",
-    anchor_date:"2026-07-28", anchor_price:1105, ccy:"INR",
+    anchor_date:"2026-07-28", run_date:"2026-07-29", anchor_price:1105, ccy:"INR",
     horizon_label:"1 month", grade_date:"2026-08-28", cycle_no:2, reanchor_from:"2026-07-06",
     p5:959.15, p25:1045.89, p50:1110.42, p75:1179.88, p95:1288.55,
     touch:{ "+5":53, "+10":26, "+15":10, "+20":4, "-5":47, "-10":18 },
@@ -4210,7 +4246,7 @@ const LEDGER = [
   },
   {
     instrument:"INFY", asset_class:"equity",
-    anchor_date:"2026-07-28", anchor_price:1105, ccy:"INR",
+    anchor_date:"2026-07-28", run_date:"2026-07-29", anchor_price:1105, ccy:"INR",
     horizon_label:"3 months", grade_date:"2026-10-28", cycle_no:2, reanchor_from:"2026-07-06",
     p5:882.46, p25:1017.23, p50:1123.94, p75:1241.11, p95:1431.22,
     touch:{ "+5":72, "+10":51, "+15":34, "+20":22, "-5":64, "-10":39 },
@@ -4220,7 +4256,7 @@ const LEDGER = [
   },
   {
     instrument:"RELIANCE", asset_class:"equity",
-    anchor_date:"2026-07-28", anchor_price:1271.8, ccy:"INR",
+    anchor_date:"2026-07-28", run_date:"2026-07-29", anchor_price:1271.8, ccy:"INR",
     horizon_label:"1 month", grade_date:"2026-08-28", cycle_no:2, reanchor_from:"2026-07-06",
     config_note:"Corrected 29-Jul-2026: this cycle was originally struck with the prior market-default fit; the per-name override decided the same day (see engine/fit_overrides.json) genuinely improves this specific name's own LONO verdict, so the anchor/grade dates are unchanged but the distribution was recomputed under the correct config.",
     p5:1144.56, p25:1227.46, p50:1278.17, p75:1331.34, p95:1427.61,
@@ -4231,7 +4267,7 @@ const LEDGER = [
   },
   {
     instrument:"RELIANCE", asset_class:"equity",
-    anchor_date:"2026-07-28", anchor_price:1271.8, ccy:"INR",
+    anchor_date:"2026-07-28", run_date:"2026-07-29", anchor_price:1271.8, ccy:"INR",
     horizon_label:"3 months", grade_date:"2026-10-28", cycle_no:2, reanchor_from:"2026-07-06",
     config_note:"Corrected 29-Jul-2026: this cycle was originally struck with the prior market-default fit; the per-name override decided the same day (see engine/fit_overrides.json) genuinely improves this specific name's own LONO verdict, so the anchor/grade dates are unchanged but the distribution was recomputed under the correct config.",
     p5:1060.54, p25:1201.62, p50:1293.19, p75:1390.72, p95:1576.35,
@@ -4242,7 +4278,7 @@ const LEDGER = [
   },
   {
     instrument:"TMPV", asset_class:"equity",
-    anchor_date:"2026-07-28", anchor_price:324.15, ccy:"INR",
+    anchor_date:"2026-07-28", run_date:"2026-07-29", anchor_price:324.15, ccy:"INR",
     horizon_label:"1 month", grade_date:"2026-08-28", cycle_no:2, reanchor_from:"2026-06-30",
     config_note:"Corrected 29-Jul-2026: this cycle was originally struck with the prior market-default fit; the per-name override decided the same day (see engine/fit_overrides.json) genuinely improves this specific name's own LONO verdict, so the anchor/grade dates are unchanged but the distribution was recomputed under the correct config.",
     p5:287.2, p25:310.33, p50:325.75, p75:342.21, p95:369.77,
@@ -4253,7 +4289,7 @@ const LEDGER = [
   },
   {
     instrument:"TMPV", asset_class:"equity",
-    anchor_date:"2026-07-28", anchor_price:324.15, ccy:"INR",
+    anchor_date:"2026-07-28", run_date:"2026-07-29", anchor_price:324.15, ccy:"INR",
     horizon_label:"3 months", grade_date:"2026-10-28", cycle_no:2, reanchor_from:"2026-06-30",
     config_note:"Corrected 29-Jul-2026: this cycle was originally struck with the prior market-default fit; the per-name override decided the same day (see engine/fit_overrides.json) genuinely improves this specific name's own LONO verdict, so the anchor/grade dates are unchanged but the distribution was recomputed under the correct config.",
     p5:261.85, p25:301.8, p50:329.67, p75:359.96, p95:413.98,
@@ -4264,7 +4300,7 @@ const LEDGER = [
   },
   {
     instrument:"AAPL", asset_class:"equity",
-    anchor_date:"2026-07-27", anchor_price:336.91, ccy:"USD",
+    anchor_date:"2026-07-27", run_date:"2026-07-29", anchor_price:336.91, ccy:"USD",
     horizon_label:"1 month", grade_date:"2026-08-27", cycle_no:2, reanchor_from:"2026-07-06",
     config_note:"Corrected 29-Jul-2026: this cycle was originally struck with the prior market-default fit; the per-name override decided the same day (see engine/fit_overrides.json) genuinely improves this specific name's own LONO verdict, so the anchor/grade dates are unchanged but the distribution was recomputed under the correct config.",
     p5:294.17, p25:320.62, p50:337.8, p75:356.2, p95:387.93,
@@ -4275,7 +4311,7 @@ const LEDGER = [
   },
   {
     instrument:"AAPL", asset_class:"equity",
-    anchor_date:"2026-07-27", anchor_price:336.91, ccy:"USD",
+    anchor_date:"2026-07-27", run_date:"2026-07-29", anchor_price:336.91, ccy:"USD",
     horizon_label:"3 months", grade_date:"2026-10-27", cycle_no:2, reanchor_from:"2026-07-06",
     config_note:"Corrected 29-Jul-2026: this cycle was originally struck with the prior market-default fit; the per-name override decided the same day (see engine/fit_overrides.json) genuinely improves this specific name's own LONO verdict, so the anchor/grade dates are unchanged but the distribution was recomputed under the correct config.",
     p5:267.37, p25:310.49, p50:340.32, p75:372.83, p95:434.07,
@@ -4286,7 +4322,7 @@ const LEDGER = [
   },
   {
     instrument:"NVDA", asset_class:"equity",
-    anchor_date:"2026-07-27", anchor_price:196.51, ccy:"USD",
+    anchor_date:"2026-07-27", run_date:"2026-07-29", anchor_price:196.51, ccy:"USD",
     horizon_label:"1 month", grade_date:"2026-08-27", cycle_no:2, reanchor_from:"2026-07-06",
     p5:157.05, p25:179.56, p50:196.99, p75:216.37, p95:247.97,
     touch:{ "+5":65, "+10":43, "+15":27, "+20":16, "-5":62, "-10":38 },
@@ -4296,7 +4332,7 @@ const LEDGER = [
   },
   {
     instrument:"NVDA", asset_class:"equity",
-    anchor_date:"2026-07-27", anchor_price:196.51, ccy:"USD",
+    anchor_date:"2026-07-27", run_date:"2026-07-29", anchor_price:196.51, ccy:"USD",
     horizon_label:"3 months", grade_date:"2026-10-27", cycle_no:2, reanchor_from:"2026-07-06",
     p5:132.59, p25:168.27, p50:198.69, p75:234.29, p95:298.15,
     touch:{ "+5":79, "+10":66, "+15":54, "+20":43, "-5":77, "-10":61 },
@@ -4306,7 +4342,7 @@ const LEDGER = [
   },
   {
     instrument:"TSLA", asset_class:"equity",
-    anchor_date:"2026-07-27", anchor_price:309.22, ccy:"USD",
+    anchor_date:"2026-07-27", run_date:"2026-07-29", anchor_price:309.22, ccy:"USD",
     horizon_label:"1 month", grade_date:"2026-08-27", cycle_no:2, reanchor_from:"2026-06-30",
     config_note:"Corrected 29-Jul-2026: this cycle was originally struck with the prior market-default fit; the per-name override decided the same day (see engine/fit_overrides.json) genuinely improves this specific name's own LONO verdict, so the anchor/grade dates are unchanged but the distribution was recomputed under the correct config.",
     p5:233.26, p25:275.93, p50:309.92, p75:348.65, p95:413.66,
@@ -4317,7 +4353,7 @@ const LEDGER = [
   },
   {
     instrument:"TSLA", asset_class:"equity",
-    anchor_date:"2026-07-27", anchor_price:309.22, ccy:"USD",
+    anchor_date:"2026-07-27", run_date:"2026-07-29", anchor_price:309.22, ccy:"USD",
     horizon_label:"3 months", grade_date:"2026-10-27", cycle_no:2, reanchor_from:"2026-06-30",
     config_note:"Corrected 29-Jul-2026: this cycle was originally struck with the prior market-default fit; the per-name override decided the same day (see engine/fit_overrides.json) genuinely improves this specific name's own LONO verdict, so the anchor/grade dates are unchanged but the distribution was recomputed under the correct config.",
     p5:192.65, p25:256.31, p50:312.78, p75:381.08, p95:508.68,
@@ -4329,7 +4365,7 @@ const LEDGER = [
 ,
   {
     instrument:"QGTS", asset_class:"equity",
-    anchor_date:"2026-07-28", anchor_price:4.165, ccy:"QAR",
+    anchor_date:"2026-07-28", run_date:"2026-07-29", anchor_price:4.165, ccy:"QAR",
     horizon_label:"1 month", grade_date:"2026-08-30", cycle_no:2, reanchor_from:"2026-07-05",
     config_note:"First roll-forward since the per-name fit override adopted this name's improved (nu, width_cal) on 29-Jul-2026 (see engine/fit_overrides.json); struck via the standard production chain, no shortcut.",
     p5:3.671, p25:3.984, p50:4.177, p75:4.381, p95:4.754,
@@ -4340,7 +4376,7 @@ const LEDGER = [
   },
   {
     instrument:"QGTS", asset_class:"equity",
-    anchor_date:"2026-07-28", anchor_price:4.165, ccy:"QAR",
+    anchor_date:"2026-07-28", run_date:"2026-07-29", anchor_price:4.165, ccy:"QAR",
     horizon_label:"3 months", grade_date:"2026-10-28", cycle_no:2, reanchor_from:"2026-07-05",
     config_note:"First roll-forward since the per-name fit override adopted this name's improved (nu, width_cal) on 29-Jul-2026 (see engine/fit_overrides.json); struck via the standard production chain, no shortcut.",
     p5:3.372, p25:3.881, p50:4.21, p75:4.566, p95:5.253,
@@ -4351,7 +4387,7 @@ const LEDGER = [
   },
   {
     instrument:"IQCD", asset_class:"equity",
-    anchor_date:"2026-07-28", anchor_price:10.7, ccy:"QAR",
+    anchor_date:"2026-07-28", run_date:"2026-07-29", anchor_price:10.7, ccy:"QAR",
     horizon_label:"1 month", grade_date:"2026-08-30", cycle_no:2, reanchor_from:"2026-07-05",
     config_note:"First roll-forward since the per-name fit override adopted this name's improved (nu, width_cal) on 29-Jul-2026 (see engine/fit_overrides.json); struck via the standard production chain, no shortcut.",
     p5:9.814, p25:10.369, p50:10.733, p75:11.115, p95:11.743,
@@ -4362,7 +4398,7 @@ const LEDGER = [
   },
   {
     instrument:"IQCD", asset_class:"equity",
-    anchor_date:"2026-07-28", anchor_price:10.7, ccy:"QAR",
+    anchor_date:"2026-07-28", run_date:"2026-07-29", anchor_price:10.7, ccy:"QAR",
     horizon_label:"3 months", grade_date:"2026-10-28", cycle_no:2, reanchor_from:"2026-07-05",
     config_note:"First roll-forward since the per-name fit override adopted this name's improved (nu, width_cal) on 29-Jul-2026 (see engine/fit_overrides.json); struck via the standard production chain, no shortcut.",
     p5:9.237, p25:10.178, p50:10.812, p75:11.483, p95:12.666,
@@ -4498,7 +4534,7 @@ const METALS = {
     unit: "دولار للأونصة",   // Arabic unit (AR feed)
     unitEn: "USD/oz",         // English unit (EN feed)
     nameAr: "الذهب",          // Arabic display name (AR feed)
- name:"Gold", code:"XAU/USD", spot:4090.87, spotDate:"close 28 Jul 2026", ccy:"USD",
+ name:"Gold", code:"XAU/USD", spot:4090.87, spotDate:"close 27 Jul 2026", ccy:"USD",
  fair:{ bear:4200, base:4600, full:5000 },
  dist:{
    t20:{ label:"1 month",  p5:3731.05, p25:3954.13, p50:4103.08, p75:4258.48, p95:4514.88, resolve:"2026-08-27" },
@@ -4514,7 +4550,7 @@ const METALS = {
    bear: "A close below 3967 would break the nearest support and open the 3270 zone."
  },
  asof: {
-   mc:   { data:"2026-07-27", computed:"2026-07-29" },
+   mc:   { data:"2026-07-27", computed:"2026-07-27" },
    tech: { data:"2026-07-27", computed:"2026-07-29" }
  },
  files:{
@@ -4536,15 +4572,15 @@ const METALS = {
    t252:{ label:"12 months", p5:30.8, p25:46.12, p50:59.36, p75:76.36, p95:113.99, resolve:"2027-07-02" }
  },
  touch:[[85,1,7],[78,2,15],[72,7,27],[68,15,39],[58,82,89],[55,66,78],[50,24,46],[45,5,22]],
- levels: { res:[64.06, 71.23, 83.31], sup:[61.27, 55.62, 54.45] },
+ levels: { res:[61.27, 63.28, 71.23], sup:[55.62, 54.45, 39.15] },
  tech: {
-   trend: "Trading below the whole moving-average stack, under a rising 200-day",
-   summary: "The price closed 62.42 below a falling 20-day (63.15), a falling 50-day (71.04) and a rising 200-day (70.20). Momentum is neutral: RSI(14) is ~44 and the daily ATR near 3.49 (~5.6%) points to a volatile tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22123.37 / \u22123.67 / +0.30). Over the last year it has ranged 36.21\u2013121.67; the last close sits 49% below that high and 72% above that low.",
-   bull: "A daily close back above 64.06 would clear the nearest resistance and open the 83.31 zone.",
-   bear: "A close below 61.27 would break the nearest support and open the 54.45 zone."
+   trend: "Trading below the whole moving-average stack, under a rising 200-day; fresh death-cross",
+   summary: "The price closed 57.21 below a falling 20-day (58.75), a falling 50-day (64.42) and a rising 200-day (70.94). Momentum is neutral: RSI(14) is ~41 and the daily ATR near 2.69 (~4.7%) points to a lively tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22121.74 / \u22122.17 / +0.42). The 50-day crossed beneath the 200-day 15 sessions ago \u2014 a fresh death-cross, a momentum-regime change rather than noise inside an intact trend. Over the last year it has ranged 36.96\u2013121.67; the last close sits 53% below that high and 55% above that low.",
+   bull: "A daily close back above 61.27 would clear the nearest resistance and open the 71.23 zone.",
+   bear: "A close below 55.62 would break the nearest support and open the 39.15 zone."
  },
  asof: {
-   mc:   { data:"2026-07-28", computed:"2026-07-29" },
+   mc:   { data:"2026-07-03", computed:"2026-07-05" },
    tech: { data:"2026-07-28", computed:"2026-07-29" }
  },
  files:{
@@ -4561,8 +4597,8 @@ const METALS = {
  name:"Platinum", code:"XPT/USD", spot:1608.37, spotDate:"close 20 Jul 2026", ccy:"USD",
  fair:{ bear:1310, base:1634, full:2139 },
  dist:{
-   t20:{ label:"1 month",  p5:1382, p25:1514, p50:1613, p75:1718, p95:1882, resolve:"2026-08-17" },
-   t60:{ label:"3 months", p5:1239, p25:1453, p50:1623, p75:1813, p95:2128, resolve:"2026-10-12" },
+   t20:{ label:"1 month",  p5:1382, p25:1514, p50:1613, p75:1718, p95:1882, resolve:"2026-08-20" },
+   t60:{ label:"3 months", p5:1239, p25:1453, p50:1623, p75:1813, p95:2128, resolve:"2026-10-20" },
    t252:{ label:"12 months", p5:961, p25:1333, p50:1669, p75:2086, p95:2897, resolve:"2027-07-07" }
  },
  touch:[ [2400,0,1], [2222,0,5], [1990,2,19], [1750,32,58], [1700,49,70], [1540,55,72], [1500,38,61], [1348,4,24], [1200,0,6] ],
@@ -4574,7 +4610,7 @@ const METALS = {
    bear: "A close below 1513 would break the nearest support and open the 1350 zone."
  },
  asof: {
-   mc:   { data:"2026-07-20", computed:"2012-01-05" },
+   mc:   { data:"2026-07-20", computed:"2026-07-20" },
    tech: { data:"2026-07-20", computed:"2026-07-29" }
  },
  files:{
