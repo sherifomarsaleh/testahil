@@ -3597,9 +3597,9 @@ const LEDGER = [
     horizon_label:"1 month", grade_date:"2026-07-28", cycle_no:1, reanchor_from:null,
     p5:294, p25:327, p50:353, p75:379, p95:422,
     touch:{ "+5":57, "+10":33, "+15":17, "+20":7, "-5":56, "-10":30 },
-    realized_close:null, realized_high:null, realized_low:null,
-    in_90:null, in_50:null, realized_quantile:null, median_err:null,
-    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+    realized_close:324.15, realized_high:354.6, realized_low:318.25,
+    in_90:true, in_50:false, realized_quantile:0.233, median_err:-8.17,
+    touch_hit:{ "+5":false, "+10":false, "+15":false, "+20":false, "-5":true, "-10":false }
   },
   {
     instrument:"TMPV", asset_class:"other",
