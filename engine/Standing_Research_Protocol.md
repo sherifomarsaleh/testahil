@@ -1,5 +1,6 @@
 # TESTAHIL — Standing Research Protocol
-### Updated 13 July 2026 (rev. 3) — terminal growth · beta · Ke/Kd/WACC · engine-reconciliation · maximum-history calibration
+### Updated 29 July 2026 (rev. 4) — computed technical read · as-of stamps
+### (rev. 3, 13 July 2026 — terminal growth · beta · Ke/Kd/WACC · engine-reconciliation · maximum-history calibration)
 
 This supersedes the 12-July text and the first 13-July revision. Changes new in **rev. 2** are marked
 **[NEW 13-Jul r2]**; the same-day **[NEW 13-Jul]**, **[NEW 12-Jul]** and **[NEW 11-Jul]** markers are
@@ -266,6 +267,63 @@ reached `main` on 11-Jul and left the engine unloadable while a digit-only regex
 - `engine/panel_hashes.json` — a rebuild cache. Never hand-edit.
 
 ---
+
+## [NEW 29-Jul] THE TECHNICAL READ IS COMPUTED, AND EVERY BLOCK IS STAMPED
+
+**Retires the roll-forward carve-out that said `levels` and `tech` "need an actual fresh
+chart read" and must be left alone.** That rule was written to protect a hand-authored
+judgement and in practice protected staleness: on 28-Jul-2026 COMI's live page carried a
+142.00 spot beside a narrative reading "the price closed 129.25 below a falling 20-day", with
+all three published resistances *below* spot; SAMSUNG's three published *supports* all sat
+*above* its spot. A block that is never refreshed is not a preserved judgement — it is an
+unmarked expiry date.
+
+**Standing rule: when the library moves, the technical read moves with it, in the same pass.**
+
+    python3 engine/apply_technicals.py --write         # all names
+    python3 engine/apply_technicals.py --only COMI     # one name
+
+`engine/technicals.py` computes the read from the same cleaned series `mc_v3` runs on, through
+the same Step 0.0 gate — SMA 20/50/200 with slope state, Wilder RSI(14), Wilder ATR(14) on the
+true range, MACD(12,26,9), 50/200 cross recency, 52-week range, and S/R from fractal pivots
+clustered with a recency weight. Moving averages, the 52-week extremes and round numbers are
+admitted as level candidates but score strictly below real swing structure. Prose is templated:
+every clause is selected by a computed number. Nothing is fitted or forecast, so the PROMOTION
+RULE's out-of-sample test does not apply — there is no free parameter to overfit. Re-running on
+an unchanged library is a no-op; the pass is idempotent by construction.
+
+Binding conventions:
+
+- **R1/S1 always mean NEAREST to the close.** The retired hand-authored levels were
+  inconsistent about this (TSLA ascending, COMI descending), so R1 meant different things on
+  different pages.
+- **No fundamental assertions in the technical block.** Some retired narratives closed with a
+  valuation sentence ("the equity case rests on a ~30% ROE against a ~24% cost of equity"). A
+  deterministic module cannot source that, so it does not say it. Fundamental context belongs
+  to the study, the fair-value gauge and the driver stack.
+- **`apply_technicals.py` never re-strikes a cone.** It reads the published cone's anchor date
+  off the newest LEDGER row for that instrument and its run date off that row's own note, and
+  stamps them. Re-striking is a roll-forward decision, never a side effect of a technicals pass.
+- **VERIFY BY IMPORT, NOT BY PARSE applies to both new modules**, exactly as it does to
+  `market_profiles.py`, `wacc_builder.py`, `research_protocol.py` and `adaptive_width.py`.
+
+### As-of stamps — two dates, never one
+
+Every `TICKERS`/`METALS` entry carries:
+
+    asof: { mc:   { data:"YYYY-MM-DD", computed:"YYYY-MM-DD" },
+            tech: { data:"YYYY-MM-DD", computed:"YYYY-MM-DD" } }
+
+`data` = the last session the block was built on. `computed` = the day it was run. A single
+"as of" cannot distinguish a block recomputed today on last week's prices from one recomputed
+last week — which is exactly the failure being closed. `assets/app.js` renders both stamps off
+this field, hooked into `renderStaticFan` (the one function every ticker page already calls),
+so no page template needs editing and a new page inherits the stamps automatically.
+
+**Read the stamps as a diagnostic.** When `asof.mc.data` is older than `asof.tech.data`, the
+published cone is stale relative to its own library. Report it; never reconcile it silently
+inside a technicals pass. The 29-Jul-2026 fan-out surfaced exactly one — 2POINTZERO, cone
+anchored 03 Jul against a library running to 24 Jul, page spot 2.16 vs a 2.06 library close.
 
 ## [NEW 12-Jul] THE CODE-FIRST RULE — QC gate v2.2 (items n, o, p)
 
@@ -611,3 +669,19 @@ harmless staleness.
    a name IS next rebuilt for its own reasons, Egypt-market names apply the sliding schedule as a
    matter of course; GCC names apply only the double-count fix. Each rebuild is a full pipeline run
    through the QC gate — none move silently.
+
+---
+
+### [ADDED 29-Jul-2026] Open items surfaced by the as-of stamps
+
+The stamp pass did not create these; it made latent staleness legible on the live pages.
+
+1. **2POINTZERO's published cone is stale relative to its own library.** Anchored 03 Jul at a
+   2.16 spot, on a library running to 24 Jul with a 2.06 close — a 4.6% gap. Its two stamps now
+   disagree in public. This wants a roll-forward (Step 4), **not** a silent reconciliation.
+2. **Stale libraries, now self-reporting on every page.** TMPV and TSLA end 30 Jun; QSE (IQCD,
+   QNB, QGTS) 05 Jul; US (AAPL, NVDA) and IN (RELIANCE, INFY) 06 Jul; SILVER 03 Jul; PLATINUM
+   20 Jul. Only COMI, EMFD, KAKAO and LGES reach 28 Jul.
+3. **The fundamental sentence retired from the technical block** is recoverable if wanted, via
+   an optional human `tech_note` that survives refreshes and carries its own date. Considered
+   and not taken on 29-Jul — noted here so the choice is visible rather than forgotten.
