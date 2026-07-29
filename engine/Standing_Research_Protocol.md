@@ -307,6 +307,31 @@ Binding conventions:
 - **VERIFY BY IMPORT, NOT BY PARSE applies to both new modules**, exactly as it does to
   `market_profiles.py`, `wacc_builder.py`, `research_protocol.py` and `adaptive_width.py`.
 
+### The chart is part of the technical read, not scenery
+
+`engine/ta_chart.py` regenerates the static `<svg id="ta-chart-svg">` on every
+ticker page from the same cleaned library. Run it in the SAME pass as
+`apply_technicals.py` — refreshing the levels onto a frozen chart is worse than
+leaving both stale, which is exactly what 29-Jul-2026 proved: COMI's axis topped
+out at 148 against a freshly computed resistance of 160, and `injectLevels` drew
+a line at y=-21, outside the viewBox, silently.
+
+    python3 engine/apply_technicals.py --write     # levels, tech, asof
+    python3 engine/ta_chart.py --write             # the chart underneath them
+    node scripts/check_ta_chart_overlay.js         # the gate below
+
+**The SVG is a contract.** `injectLevels()` recovers price->y by regressing over
+the chart's own muted axis labels, and `renderZoomChart()` re-reads the same
+element. Change the label markup and both mis-scale without throwing. The
+y-range is fitted to the union of the price window, both moving averages AND the
+published S/R ladder, so an overlay cannot fall outside the plot by construction.
+
+**MANDATORY GATE — `scripts/check_ta_chart_overlay.js`.** Renders every page with
+a chart and fails if any injected level line escapes the viewBox. Nothing else
+catches this: no exception is raised, the page looks fine, a level is just gone.
+Negative-controlled on the 29-Jul defect — it reports `comi.html … y=-21.2` on
+the pre-fix chart and exits 1, and passes on the fix.
+
 ### As-of stamps — two dates, never one
 
 Every `TICKERS`/`METALS` entry carries:
