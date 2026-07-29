@@ -467,7 +467,7 @@ def compute(market: str, series: str, computed_on: str | None = None) -> dict:
     }
     st['tech'] = build_narrative(st)
     if cross and cross['ago'] <= CROSS_FRESH:
-        st['tech']['trend'] += f", on a fresh {cross['kind']}-cross"
+        st['tech']['trend'] += f"; fresh {cross['kind']}-cross"
     return st
 
 

@@ -101,7 +101,9 @@ def top_level_blocks(src: str, decl: str):
     end = match_brace(src, o)
     body, out, j = src[o + 1:end - 1], {}, 0
     while True:
-        m = re.compile(r'\n\s*([A-Z0-9_]+)\s*:\s*\{').search(body, j)
+        # keys may be quoted — "2POINTZERO" must be, because a JS identifier
+        # cannot start with a digit. An unquoted-only pattern silently skipped it.
+        m = re.compile(r'\n\s*"?([A-Z0-9_]+)"?\s*:\s*\{').search(body, j)
         if not m:
             break
         a = o + 1 + m.start(0)
