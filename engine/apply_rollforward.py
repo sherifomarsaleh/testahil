@@ -49,8 +49,12 @@ RF_SRC = {'EG': '19.50% CBE main operation rate',
 # ------------------------------------------------------------------ parsing
 def ticker_blocks(src: str):
     st = src.find('const TICKERS = {')
+    # Keys may be QUOTED — "2POINTZERO" must be, since a JS identifier cannot
+    # start with a digit. The unquoted-only pattern silently dropped it, which is
+    # why the 28-Jul-2026 market-wide pass re-struck 58 cones instead of 59 and
+    # left 2POINTZERO's cone anchored 03-Jul against a library already at 24-Jul.
     idx = [(m.start() + st, m.group(1))
-           for m in re.finditer(r'\n  ([A-Z0-9]+): \{', src[st:])]
+           for m in re.finditer(r'\n  "?([A-Z0-9]+)"?: \{', src[st:])]
     out = {}
     for i, (p, k) in enumerate(idx):
         end = idx[i + 1][0] if i + 1 < len(idx) else src.find('\n};', p)

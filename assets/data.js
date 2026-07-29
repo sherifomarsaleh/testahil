@@ -2,7 +2,7 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-07-28", latest: "DSCW" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
+const SITE = { updated: "2026-07-29", latest: "DSCW" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
 /* ---------- covered tickers ----------
    HORIZON FIELDS (see the HORIZON CONVENTION block above the LEDGER):
@@ -264,16 +264,17 @@ const TICKERS = {
     name: "Two Point Zero Group",
     nameAr: "مجموعة تو بوينت زيرو",
     code: "ADX:2POINTZERO",
-    spot: 2.16,
-    spotDate: "close 03 Jul 2026",
+    spot: 2.06,
+    spotDate: "close 24 Jul 2026",
     ccy: "AED",
     fair: { bear: 1.55, base: 1.91, full: 2.27 },      // 11 Jul 2026 — four-lens weighted central 1.91 (-11.7% vs spot 2.16). Lenses: sum-of-the-parts (primary, 45%) 1.95 — operating businesses marked on their own earnings, investment portfolio at management's mark less a 25% opacity discount, cash at par, less a 7.5% structural discount; DCF on the operating legs + portfolio (ceiling, 15%) 2.39 (TV 81% of operating EV, disclosed); relative on reported earnings with a normalised mark contribution (25%) 1.85; underlying earnings, no marks at all (floor, 15%) 1.39. THE CRUX: the AED 58.7bn investment portfolio is carried against AED 48.0bn invested — a AED 10.7bn gain. But the 7.29% TAQA stake sold on 11-Jun-2026 (9,095,702,934 shares at AED 2.37) was worth ~AED 21.6bn against AED 10bn paid. Strip it out and the REST of the portfolio — now entirely unlisted — is carried AED 0.9bn BELOW cost. The entire mark-up was one listed stake, and it has been sold, with ~AED 14.4bn of the proceeds redeployed into unlisted assets (Traverse, Mopani, Alphamin, ISEM). Operating economics are disclosed and modest: gross margin 30%, G&A 18% of revenue → ~12% operating margin — NOT the 25% that a blended adjusted-EBITDA figure implies, because that figure has AED 1.2bn/qtr of portfolio income inside it. Tax modelled at the statutory 15% DMTT floor (no phase-in exists). Attributable ratio 84.2%, derived from the PUBLISHED Q1-26 EPS of AED 0.056. Beta assumed 1.0 (regression failed our usability test; no downloadable ADX index series), sensitised 0.8–1.3.
     dist: {
-      t20: { label:"1 month",  p5:1.80, p25:2.02, p50:2.17, p75:2.33, p95:2.59, resolve:"2026-07-31" },
-      t60: { label:"3 months", p5:1.59, p25:1.93, p50:2.18, p75:2.46, p95:3.00, resolve:"2026-09-25" }
+      t20: { label:"1 month",   p5:1.75, p25:1.94, p50:2.07, p75:2.20, p95:2.43, resolve:"2026-08-24" },
+      t60: { label:"3 months",  p5:1.53, p25:1.85, p50:2.08, p75:2.34, p95:2.84, resolve:"2026-10-26" }
     },
+    hz: { h1:20, h3:63, l1:"1 month", l3:"3 months", cal:true },
     touch: [ /* descending high -> low; P(touch) 1-month %, 3-month % */
-      [2.60, 8, 29], [2.40, 28, 53], [2.20, 76, 87], [2.00, 38, 60], [1.90, 18, 42], [1.80, 8, 27]
+      [2.60, 2, 19], [2.40, 10, 37], [2.20, 42, 67], [2.00, 65, 80], [1.90, 32, 58], [1.80, 13, 38]
     ],
     levels: { res:[2.09, 2.15, 2.26], sup:[1.95, 1.92, 1.87] },
     tech: {
@@ -283,7 +284,7 @@ const TICKERS = {
       bear: "A close below 1.95 would break the nearest support and open the 1.87 zone."
     },
     asof: {
-      mc:   { data:"2026-07-03", computed:"2026-07-11" },
+      mc:   { data:"2026-07-24", computed:"2026-07-29" },
       tech: { data:"2026-07-24", computed:"2026-07-29" }
     },
     files: {
@@ -5674,6 +5675,33 @@ const LEDGER = [
     note:"Cycle 2 roll-forward, 28-Jul-2026 — first roll-forward since the 28-Jun published study, struck on the 28-Jul close from freshly-posted OHLC. The 26-Jun cycle-1 1-month matured and is graded in this same update. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). KR live fit nu=10.0, width_cal=1.063; rf_live 3.00% BOK base rate. Horizon resolved by horizons.resolve() on KRX's own realized calendar, not a session count.",
     p5:203248, p25:267332, p50:317022, p75:375649, p95:492019,
     touch:{ "+5":80, "+10":66, "+15":54, "+20":44, "-5":77, "-10":61 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+
+  // ---- 29-Jul-2026 single-name roll-forward: 2POINTZERO, struck on its own
+  //      latest library close. Append-only.
+  {
+    instrument:"2POINTZERO", asset_class:"equity",
+    anchor_date:"2026-07-24", anchor_price:2.06, ccy:"AED",
+    horizon_label:"1 month", grade_date:"2026-08-24", grade_basis:"projected", horizon_days:20,
+    cycle_no:2, reanchor_from:"2026-07-03", anchor_vol:0.3682,
+    note:"Cycle 2 roll-forward, 29-Jul-2026 — struck on the 24-Jul-2026 close, the latest session in this name’s library. This name was NOT in the 28-Jul-2026 market-wide EG/AE/SA re-strike, so its published cone had been anchored 2026-07-03 against a library that had already moved on — the gap the as-of stamps adopted 29-Jul-2026 made visible. Cycle 1 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Horizon resolved by horizons.resolve() on AE’s own realized calendar, not a session count. This cohort also brings the name onto the calendar 1M/3M convention it had never been migrated to.",
+    p5:1.75, p25:1.94, p50:2.07, p75:2.2, p95:2.43,
+    touch:{ "+5":53, "+10":27, "+15":13, "+20":6, "-5":49, "-10":22 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"2POINTZERO", asset_class:"equity",
+    anchor_date:"2026-07-24", anchor_price:2.06, ccy:"AED",
+    horizon_label:"3 months", grade_date:"2026-10-26", grade_basis:"projected", horizon_days:63,
+    cycle_no:2, reanchor_from:"2026-07-03", anchor_vol:0.3892,
+    note:"Cycle 2 roll-forward, 29-Jul-2026 — struck on the 24-Jul-2026 close, the latest session in this name’s library. This name was NOT in the 28-Jul-2026 market-wide EG/AE/SA re-strike, so its published cone had been anchored 2026-07-03 against a library that had already moved on — the gap the as-of stamps adopted 29-Jul-2026 made visible. Cycle 1 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Horizon resolved by horizons.resolve() on AE’s own realized calendar, not a session count. This cohort also brings the name onto the calendar 1M/3M convention it had never been migrated to.",
+    p5:1.53, p25:1.85, p50:2.08, p75:2.34, p95:2.84,
+    touch:{ "+5":74, "+10":56, "+15":41, "+20":29, "-5":70, "-10":48 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
