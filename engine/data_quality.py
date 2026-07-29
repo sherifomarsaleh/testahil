@@ -111,6 +111,52 @@ def clean_ohlc(df, ticker="", verbose=True, market=None):
                    f"— vendor fills, not tradeable prices")
         df = df[~bad].reset_index(drop=True)
 
+    # --- 1c. drop single-session artifacts that CANCEL the next session --------
+    # A session beyond the market's own daily limit cannot be genuine trading —
+    # that much is already step 2's premise below. The question step 2 gets
+    # wrong is WHICH such jumps are a real, PERMANENT corporate action (back-
+    # adjust everything before it) versus a TEMPORARY data error (drop it, adjust
+    # nothing). A genuine split does not reverse itself the next session; a data
+    # error does. That cancellation -- jump_out =~ -jump_in -- is the actual
+    # diagnostic, not whether the row happens to be flat.
+    #
+    # Found 29-Jul-2026, two different shapes of the same underlying bug:
+    #   - Kakao/Samsung/NVDA: FLAT rows (O=H=L=Price), tiny non-empty volume,
+    #     recurring roughly weekly across years of history (230/31/1 rows).
+    #     novol & flat (step 1) misses these because volume is non-empty.
+    #   - Qatar (QGTS/IQCD/QNB): NOT flat -- real intraday range, real volume
+    #     (tens of millions), ~10x/~9x/~13x the true level for exactly one
+    #     session, on the SAME calendar date (19-Nov-2013) across three
+    #     unrelated names -- a one-day vendor feed error, not three
+    #     independent corporate actions.
+    # Either way, step 2's repair loop (below) treats the first few it meets as
+    # genuine splits and back-adjusts all prior history by a bogus factor; with
+    # Kakao's ~230 repeats it exhausts its 6-iteration cap and leaves most of
+    # them to silently corrupt every HAR fit trained across that history.
+    thr_pre = jump_threshold(market)
+    p = df['Price'].values
+    n = len(df)
+    phantom = np.zeros(n, dtype=bool)
+    if n > 2:
+        with np.errstate(divide='ignore', invalid='ignore'):
+            jump_in = np.log(p[1:-1] / p[:-2])     # signed, into row i, i=1..n-2
+            jump_out = np.log(p[2:] / p[1:-1])     # signed, out of row i
+        # a genuine multi-day rally has jump_in and jump_out the SAME sign (keeps
+        # moving); a data error cancels (jump_out =~ -jump_in) -- normal next-day
+        # drift is allowed for (0.15 log-unit slack), it just can't be a second
+        # jump in the same direction.
+        cand = (np.abs(jump_in) > thr_pre) & (np.abs(jump_in + jump_out) < 0.15)
+        phantom[1:-1] = cand
+    if phantom.any():
+        dates = df['Date'][phantom]
+        log.append(f"dropped {int(phantom.sum())} single-session rows that cancel "
+                   f"the very next session ({dates.iloc[0].date()}.."
+                   f"{dates.iloc[-1].date()}) — each exceeds the {market or '?'} "
+                   f"artifact threshold then reverses almost exactly the next close "
+                   f"(jump_out =~ -jump_in); a genuine corporate action does not "
+                   f"cancel like this, so these are dropped rather than back-adjusted")
+        df = df[~phantom].reset_index(drop=True)
+
     # --- 2. detect + back-adjust unadjusted corporate actions ---
     thr = jump_threshold(market)
     for _ in range(6):  # iterate: repairing one can reveal another
