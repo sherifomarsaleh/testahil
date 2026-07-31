@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_updated": "2026-07-30",
+    "last_updated": "2026-07-31",
     "SOURCE_OF_TRUTH": "engine/market_profiles.py \u2014 this JSON is a DERIVED MIRROR, do not hand-edit",
     "gate_basis": "scale-normalized CRPS (crps/spot); primary since 11-Jul-2026",
     "data_quality_gate": "data_quality.clean_ohlc \u2014 PER-MARKET thresholds derived from each exchange daily price limit (a move beyond the limit is not reachable by trading). A single global threshold was WRONG: KOSPI allows \u00b130%, so a legitimate limit-down (log -0.357) would have been falsely \"repaired\" by the EGX-calibrated 0.35. Also drops non-trading placeholder rows.",
@@ -396,7 +396,7 @@
         ]
       }
     },
-    "auto_refreshed": "2026-07-30"
+    "auto_refreshed": "2026-07-31"
   },
   "SA": {
     "market": "SA",
@@ -554,7 +554,7 @@
         ]
       }
     },
-    "auto_refreshed": "2026-07-30"
+    "auto_refreshed": "2026-07-31"
   },
   "US": {
     "market": "US",
@@ -616,7 +616,7 @@
         ]
       }
     },
-    "auto_refreshed": "2026-07-30"
+    "auto_refreshed": "2026-07-31"
   },
   "GB": {
     "code": "GB",
@@ -701,7 +701,7 @@
         ]
       }
     },
-    "auto_refreshed": "2026-07-30"
+    "auto_refreshed": "2026-07-31"
   },
   "AE": {
     "market": "AE",
@@ -943,7 +943,7 @@
         ]
       }
     },
-    "auto_refreshed": "2026-07-30"
+    "auto_refreshed": "2026-07-31"
   },
   "IN": {
     "market": "IN",
@@ -1005,7 +1005,7 @@
         ]
       }
     },
-    "auto_refreshed": "2026-07-30"
+    "auto_refreshed": "2026-07-31"
   },
   "QA": {
     "market": "QA",
@@ -1067,7 +1067,7 @@
         ]
       }
     },
-    "auto_refreshed": "2026-07-30"
+    "auto_refreshed": "2026-07-31"
   },
   "XAU": {
     "code": "XAU",
@@ -1114,7 +1114,7 @@
         ]
       }
     },
-    "auto_refreshed": "2026-07-30"
+    "auto_refreshed": "2026-07-31"
   },
   "XPT": {
     "market": "XPT",
@@ -1154,6 +1154,6 @@
         ]
       }
     },
-    "auto_refreshed": "2026-07-30"
+    "auto_refreshed": "2026-07-31"
   }
 }
