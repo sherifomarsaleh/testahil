@@ -4,7 +4,7 @@ import pandas as pd
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
-import mc_v2 as m
+import primitives as m
 
 CANVAS, CREAM, GOLD, BRASS, SAGE = '#1C3A36', '#F6F1E6', '#C0A45F', '#896F36', '#9FB0AC'
 INK, GRID, GREY = '#1C3A36', '#D5DDDB', '#6E7B77'

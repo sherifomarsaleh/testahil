@@ -42,8 +42,8 @@ import hashlib
 import numpy as np
 import pandas as pd
 from mc_v3 import fit_nu_scale, shrink_cal, backtest_v3, simulate_terminal_v3
-from mc_v2 import crps_sample
-from mc_v2 import load_ohlc as _raw_load_ohlc
+from primitives import crps_sample
+from primitives import load_ohlc as _raw_load_ohlc
 from market_profiles import PROFILES
 from data_quality import clean_ohlc
 
@@ -70,7 +70,7 @@ def apply_breaks(r, profile):
     Closes a documented-but-unimplemented gap (found 11-Jul-2026): the Standing
     Research Protocol says "volatility pools use post-break windows only where a
     MarketProfile lists a structural break", and every profile declares `breaks`,
-    but grep shows NEITHER mc_v2.py NOR mc_v3.py ever reads the field. Break
+    but grep shows NEITHER primitives.py NOR mc_v3.py ever reads the field. Break
     filtering was therefore never applied — it only *appeared* to be, because
     min_history=260 happens to push most markets' first origin past their break
     anyway. It bites for real when a name carries history from before the break

@@ -15,7 +15,7 @@ sys.path.insert(0, '/home/claude/repo/engine')
 import numpy as np
 import pandas as pd
 from data_quality import clean_ohlc
-from mc_v2 import yz_variance_proxy
+from primitives import yz_variance_proxy
 
 RAW_BASE = '/home/claude/repo/engine/raw_ohlc'
 OUT = '/home/claude/selection'

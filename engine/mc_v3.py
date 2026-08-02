@@ -19,14 +19,14 @@ Gate  : pooled panel CRPS skill with a calendar-block bootstrap 90% CI ->
 """
 import numpy as np
 import pandas as pd
-from mc_v2 import load_ohlc, yz_variance_proxy, crps_sample, winkler, trailing_cc_vol
+from primitives import load_ohlc, yz_variance_proxy, crps_sample, winkler, trailing_cc_vol
 
 
 # ---------------------------------------------------------------- width (HAR+)
 def fit_har_v3(v, end_idx, horizon=60, min_obs=60):
     """log-HAR fit as in v2 but also returns residual variance s2 for the
     lognormal bias correction. Walk-forward safe (data up to end_idx only)."""
-    from mc_v2 import har_features
+    from primitives import har_features
     X, y = [], []
     vv = v.ffill()
     for t in range(22, end_idx - horizon):
@@ -50,7 +50,7 @@ def fit_har_v3(v, end_idx, horizon=60, min_obs=60):
 def har_forecast_v3(v, origin_idx, beta, s2, horizon=60,
                     shrink=0.8, bias_correct=True):
     """Bias-corrected, shrunk forecast of mean forward daily variance."""
-    from mc_v2 import har_features
+    from primitives import har_features
     w = v.ffill().iloc[max(0, origin_idx - 251):origin_idx + 1]
     v_trail = float(w.mean())
     f = har_features(v, origin_idx)
@@ -249,7 +249,7 @@ def backtest_v3(df, profile, horizon=60, q_annual=0.0, use_signal=True,
 
         # --- engine drift & width per rung ---
         if legacy_mode is not None:
-            from mc_v2 import fit_har, har_forecast_daily_var
+            from primitives import fit_har, har_forecast_daily_var
             beta = fit_har(v, origin, horizon=horizon)
             dv = har_forecast_daily_var(v, origin, beta, horizon=horizon)
             sigma_h = np.sqrt(dv * horizon)

@@ -65,7 +65,7 @@ GOING-FORWARD ONLY
 """
 import numpy as np
 
-from mc_v2 import yz_variance_proxy
+from primitives import yz_variance_proxy
 from mc_v3 import (fit_har_v3, har_forecast_v3, carry_log_h,
                    signal_alpha, simulate_paths_v3)
 

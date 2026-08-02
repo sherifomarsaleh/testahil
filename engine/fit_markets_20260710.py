@@ -6,7 +6,7 @@ import sys, glob, os
 import numpy as np, pandas as pd
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from mc_v3 import fit_nu_scale, shrink_cal, backtest_v3
-from mc_v2 import load_ohlc
+from primitives import load_ohlc
 from market_profiles import PROFILES
 
 P = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'panels')

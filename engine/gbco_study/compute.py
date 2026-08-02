@@ -2,7 +2,7 @@
 import json
 import numpy as np
 import pandas as pd
-import mc_v2 as m
+import primitives as m
 
 df = m.load_ohlc('GB_AUTO_Stock_Price_History.csv')
 close = df['Price'].values

@@ -10,9 +10,14 @@ module, both reconciled against the delivered `.docx`/`.xlsx` line by line.
 
 ## What's here now
 
-- **`mc_v2.py`** — the "YZ-HAR" Monte Carlo engine (gap-aware Yang-Zhang width, pooled
-  log-HAR cascade, unit-variance Student-t(5), asset-class-conditional drift). The version
-  actually used to produce GBCO's Step 0 backtest and §3 Monte Carlo section.
+- **`primitives.py`** (renamed from `mc_v2.py` on 02-Aug-2026) — shared engine primitives:
+  data loading, gap-aware Yang-Zhang variance proxy, HAR features, and scoring functions
+  (CRPS/Winkler), plus the retired v2 forecast path (unit-variance Student-t(5),
+  asset-class-conditional drift) kept only for `mc_v3.py`'s `legacy_mode` backtest ladder.
+  Imported directly by `mc_v3.py` (the production engine) and 8 other engine scripts —
+  not legacy/dead code, despite the retired name. The version originally used to produce
+  GBCO's Step 0 backtest and §3 Monte Carlo section, before mc_v3 superseded it as the
+  production default.
 - **`wacc_builder.py`** — the standing bottom-up WACC engine (house rule §3.5-G). Arithmetic
   only — every input (rf, ERP, beta, Kd, weights) must be sourced by the analyst before
   calling it; raises rather than defaulting on anything missing. Includes
