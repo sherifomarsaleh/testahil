@@ -98,7 +98,7 @@ import pandas as pd
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from data_quality import clean_ohlc          # noqa: E402
-from mc_v2 import load_ohlc as _raw_load_ohlc  # noqa: E402
+from primitives import load_ohlc as _raw_load_ohlc  # noqa: E402
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 RAW_DIR = os.path.join(HERE, 'raw_ohlc')

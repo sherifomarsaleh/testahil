@@ -12,7 +12,7 @@ This commit does three things:
    → `significance_pooled.py`), the F5 forensic scripts, and the shadow-cohort
    scorer. Path constants (`RAW_BASE`, `OUT`) sit at the top of each script — the
    only edit needed to re-run anywhere. Requires numpy/pandas/scipy plus this repo's
-   `engine/` on `sys.path` (`data_quality.clean_ohlc`, `mc_v2.yz_variance_proxy`).
+   `engine/` on `sys.path` (`data_quality.clean_ohlc`, `primitives.yz_variance_proxy`).
 3. **Snapshots the key records** in `docs/`: the full-power pre-registered test
    result (no adoption; F6 one rule short), the F5 forensic determination
    (UNTESTABLE — retired), the shadow-cohort ledger as filed, and `STATE.md`

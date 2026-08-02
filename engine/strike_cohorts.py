@@ -29,7 +29,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 
 from data_quality import clean_ohlc                      # noqa: E402
-from mc_v2 import load_ohlc, yz_variance_proxy           # noqa: E402
+from primitives import load_ohlc, yz_variance_proxy      # noqa: E402
 from mc_v3 import (fit_har_v3, har_forecast_v3, carry_log_h,  # noqa: E402
                    signal_alpha, simulate_paths_v3)
 import horizons as HZ                                    # noqa: E402

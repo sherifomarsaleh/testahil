@@ -50,15 +50,16 @@ these files unmodified against a new ticker.
 ## Data files also included
 - `study_numbers.json` — the actual computed output `compute.py` produced for the
   delivered study (saved directly, not just left to be regenerated, in case any future
-  library-version drift in numpy/mc_v2 ever produces a slightly different result on rerun).
+  library-version drift in numpy/primitives ever produces a slightly different result on rerun).
 - `backtest_rows.csv` — the 17 Step 0 non-overlapping backtest origins/results.
 - `GBCO_Valuation_Model_08072026_public.xlsx` — the verified, delivered model, included
   here alongside its source so the two can be diffed against each other directly if the
   scripts are ever modified again.
 
 ## Dependency on the parent `engine/` folder
-`compute.py` imports `mc_v2` and `wacc_builder` as sibling modules — both actually live
-one level up, at `engine/mc_v2.py` and `engine/wacc_builder.py`, not inside this folder.
+`compute.py` imports `primitives` and `wacc_builder` as sibling modules — both actually live
+one level up, at `engine/primitives.py` (renamed from `mc_v2.py` 02-Aug-2026) and
+`engine/wacc_builder.py`, not inside this folder.
 To run `compute.py` as-is: copy (or symlink) those two files into this directory first,
 or add the parent `engine/` directory to `PYTHONPATH` before running. They were kept
 canonical in `engine/` rather than duplicated here so there is exactly one copy of each

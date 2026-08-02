@@ -122,7 +122,7 @@ def evaluate_span(df, nu, width_cal, carry_fn, years, horizon=60,
     candidate in a comparison -- origins never depend on which span is being
     tested, only the training window at each origin does. Returns a dict of
     skill/width/coverage, or None if there isn't enough data at all."""
-    from mc_v2 import yz_variance_proxy, crps_sample, trailing_cc_vol
+    from primitives import yz_variance_proxy, crps_sample, trailing_cc_vol
     from mc_v3 import simulate_terminal_v3
 
     dates = pd.to_datetime(df["Date"])

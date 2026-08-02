@@ -1,4 +1,16 @@
-"""mc_v2.py — Testahil YZ-HAR Monte Carlo engine (v2).
+"""primitives.py — Testahil shared engine primitives (formerly mc_v2.py).
+
+Renamed 02-Aug-2026: this module is NOT legacy/dead code — engine/mc_v3.py
+(the production engine) and 8 other engine scripts import its data loading,
+Yang-Zhang variance proxy, HAR features, and scoring functions directly. The
+"legacy reference only, never the production default" language in the
+Standing Research Protocol refers to the v2 forecast PATH below (fit_har /
+har_forecast_daily_var), kept only for mc_v3.backtest_v3's legacy_mode
+comparison ladder — not to this file as a whole. See engine/mc_v3.py for the
+production forecast engine.
+
+Legacy v2 forecast path (width/shape/drift below is the RETIRED v2 method,
+reachable only via mc_v3's legacy_mode ladder):
 Width : pooled log-HAR cascade (variance lags 1/5/22) on a gap-aware
         Yang-Zhang variance proxy (overnight^2 + Rogers-Satchell),
         projecting the average daily variance over the next H sessions.
