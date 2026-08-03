@@ -261,8 +261,35 @@ def run(write=False, only=None, computed_on=None):
 
         inst = LEDGER_ALIAS.get(key, key)
         anchor, runday = led.get(inst, (None, None))
-        mc_data = anchor or spotdate_iso(block) or st['data_date']
-        mc_run = runday or mc_data
+        page_anchor = spotdate_iso(block)
+        if page_anchor and (not anchor or page_anchor > anchor):
+            # MID-CYCLE cone refresh — STEP 0 decision (a). Data arriving
+            # between monthly events re-strikes the displayed cone WITHOUT
+            # minting a LEDGER row, so the newest ledger anchor is no longer
+            # the cone's anchor and stamping from it would publish a fresh
+            # cone under a week-old date -- the exact gap the two-part stamp
+            # exists to expose. `spot`/`spotDate` and `dist` are always
+            # written as one unit by rollforward_one.restrike_entry, so the
+            # page's own spotDate IS the anchor the displayed cone was struck
+            # on. A genuinely stale cone still warns: there spotDate and the
+            # ledger anchor agree and both trail the technical read.
+            mc_data = page_anchor
+            # A mid-cycle strike mints no LEDGER row, so there is no sourced
+            # run_date to read. Keep the recorded compute day when the stamp
+            # is not moving (this pass must stay idempotent on an unchanged
+            # library); otherwise fall back to the anchor itself, the same
+            # convention this module already uses for an unsourced run date.
+            # NOT `computed_on` — a technicals pass does not re-strike a cone,
+            # so stamping it with today would claim a cone was computed on a
+            # day it was not, which is precisely the false-freshness the
+            # two-part stamp exists to expose.
+            prior = re.search(r'mc:\s*\{\s*data:\s*"([\d-]+)"\s*,\s*'
+                              r'computed:\s*"([\d-]+)"', block)
+            mc_run = (prior.group(2) if prior and prior.group(1) == mc_data
+                      else mc_data)
+        else:
+            mc_data = anchor or page_anchor or st['data_date']
+            mc_run = runday or mc_data
         asof = {'mc': {'data': mc_data, 'computed': mc_run},
                 'tech': {'data': st['data_date'], 'computed': computed_on}}
 

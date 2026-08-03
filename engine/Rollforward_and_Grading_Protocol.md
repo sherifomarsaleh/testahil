@@ -53,6 +53,14 @@ in the cone, the ledger takes the monthly sample and grades every one of them.
 - **(a) Mid-cycle OHLC updates** (data arriving between monthly events): refresh the
   displayed cone + technical read (STEPs 5/5B) ONLY. No new ledger rows — ledger strikes
   stay on the monthly metronome. (Otherwise 1M tails accumulate and the rhythm breaks.)
+  **Tool: `engine/refresh_cone_one.py {MARKET} {SERIES} {SITE_KEY} --today DD-Mon-YYYY
+  --write`** (added 03-Aug-2026). Until then this decision had no executable form and the
+  only single-name tool was `rollforward_one.py`, which always appends two ledger rows —
+  so running the obvious thing mid-cycle struck a cohort the metronome never called for
+  and broke the lifecycle invariant. Both tools rewrite the ticker entry through the same
+  `rollforward_one.restrike_entry`, so they cannot publish differently-shaped cones; the
+  only difference is whether a LEDGER row is struck, and the mid-cycle tool ASSERTS the
+  LEDGER came out byte-identical rather than trusting that it did.
 - **(b) Metals 12-month horizon stays on its own annual clock** — one open 12M per metal,
   graded at maturity then re-struck. It does NOT join the monthly strike (that would leave
   11 overlapping year-long tails per metal, clutter without calibration value).
@@ -139,6 +147,7 @@ absolute price levels for the ticker-page touch table (Step 5).
 
 **For a single name, use `engine/rollforward_one.py {MARKET} {SERIES} {SITE_KEY} --today
 DD-Mon-YYYY --write`.** It runs exactly the chain above via `strike_cohorts.strike()`.
+(Mid-cycle — NOT the monthly event — use `refresh_cone_one.py` instead; STEP 0 decision (a).)
 `apply_rollforward.py` is the RECORD of the 28-Jul-2026 market-wide re-strike — its header
 comment and per-row note are hardcoded to that pass, so re-running it for one name stamps
 today's cohort with last week's story.
@@ -267,6 +276,23 @@ oversight — `apply_rollforward.ticker_blocks` matched unquoted object keys onl
 `"2POINTZERO"` (which MUST be quoted; a JS identifier cannot start with a digit) was silently
 dropped from the 28-Jul market-wide pass. It reported "58 cones" where EG 30 + AE 18 + SA 11 =
 59, and nobody counted.
+
+**A LAYOUT MUST NEVER DECIDE WHETHER A FIELD GETS REFRESHED (earned 03-Aug-2026).** Both
+single-name tools rewrote the ticker entry with hand-rolled regexes that keyed off
+INDENTATION, and both were silently wrong on a subset of entries:
+  - `dist` was matched as `\n    dist: \{.*?\n    \},`, which closes on the first
+    4-space-indented `},`. Nine entries (RELIANCE, IQCD, SAMSUNG, KAKAO, LGES, TMPV, QGTS,
+    AAPL, TSLA — the IN/US/KR/QA cluster) close `dist` at TWO spaces, so on those the match
+    ran past `dist` and stopped at `tech`'s closer: a roll-forward DELETED `touch`, `levels`
+    and `tech` outright. The result was valid JavaScript and a page that still rendered.
+  - `touch` was matched only in its multi-line form, so on the 19 entries that write it on
+    one line the ladder was left exactly as it was while `spot` and `dist` moved — a stale
+    probability table under a fresh cone, with nothing on the page to say so.
+Both are now brace/bracket-matched (`_span_of_key`, `_touch_ladder`). The fix was verified
+the only way that means anything: replayed across all 71 entries, BYTE-IDENTICAL on the 62
+the old code got right, and field-preserving on exactly the 9 it did not. Same family as the
+unquoted-key regex that dropped 2POINTZERO from the 28-Jul pass — when a pattern stands in
+for a parser, the entries that happen to be formatted differently are the ones that rot.
 
 **STANDING VERIFICATION RULES earned here — apply to every data.js write:**
   1. `node --check` on `data.js` and `app.js`, then **LOAD** `data.js` in node and assert on
