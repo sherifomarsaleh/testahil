@@ -38,8 +38,8 @@ import pandas as pd                                        # noqa: E402
 
 from strike_cohorts import strike, touch_probs, rel_touch   # noqa: E402
 import market_profiles as MP                                # noqa: E402
-from apply_rollforward import (ticker_blocks, parse_touch_levels,  # noqa: E402
-                               fmt_price, prior_anchor, js_row,
+from apply_rollforward import (ticker_blocks, fmt_price,  # noqa: E402
+                               prior_anchor, js_row,
                                bump_site_updated, MONTHS, RF_SRC)
 
 DATA_JS = os.path.join(ROOT, 'assets', 'data.js')
@@ -62,34 +62,101 @@ def insert_rows(src: str, rows, header: str) -> str:
     return src[:j] + sep + header + body + src[j:]
 
 
-def run(market: str, series: str, key: str, today: str,
-        q_annual: float = 0.0, write: bool = False):
-    src = open(DATA_JS, encoding='utf-8').read()
-    blocks = ticker_blocks(src)
-    if key not in blocks:
-        raise SystemExit(f'{key} not found in TICKERS')
-    a, b = blocks[key]
-    blk = src[a:b]
+def _span_of_key(blk: str, key: str):
+    """(start, end) of `\\n    {key}: {...},` by BRACE MATCHING, not indentation.
 
-    r = strike(market, series, q_annual=q_annual)
-    prof = MP.PROFILES[market]
+    The pattern this replaces — `\\n    dist: \\{.*?\\n    \\},` — closed on the
+    first 4-space-indented `},` it could find. Nine entries (RELIANCE, IQCD,
+    SAMSUNG, KAKAO, LGES, TMPV, QGTS, AAPL, TSLA — the IN/US/KR/QA cluster)
+    close their dist block at TWO spaces, so on those the non-greedy match ran
+    past dist and stopped at the `tech` block's closer instead, and a
+    roll-forward silently DELETED touch, levels and tech from the entry. It
+    left valid JavaScript and a page that still rendered, which is why nothing
+    caught it: the levels and narrative simply vanished. Same family of defect
+    as the unquoted-key regex that dropped 2POINTZERO from the 28-Jul pass —
+    a hand-rolled pattern standing in for a parser.
+    """
+    m = re.search(r'\n    ' + key + r':\s*\{', blk)
+    if not m:
+        return None
+    i = blk.index('{', m.start())
+    depth, in_s, esc = 0, None, False
+    while i < len(blk):
+        c = blk[i]
+        if in_s:
+            if esc:
+                esc = False
+            elif c == '\\':
+                esc = True
+            elif c == in_s:
+                in_s = None
+        elif c in '"\'':
+            in_s = c
+        elif c == '{':
+            depth += 1
+        elif c == '}':
+            depth -= 1
+            if depth == 0:
+                end = i + 1
+                if blk[end:end + 1] == ',':
+                    end += 1
+                return m.start(), end
+        i += 1
+    raise ValueError(f'unbalanced braces in {key}')
+
+
+def _touch_ladder(blk: str):
+    """(span, levels, comment) for the entry's `touch: [...]` array.
+
+    `apply_rollforward.parse_touch_levels` requires the MULTI-LINE form
+    (`\\n    touch: [` ... `\\n    ]`) and returns None for the single-line one.
+    19 of the 71 entries — RELIANCE, IQCD, RAYA, JUFO, EGAL, BTFH, ETEL, FWRY,
+    ABUK, ADIB, HRHO, ORWE, SAMSUNG, KAKAO, LGES, TMPV, QGTS, AAPL, TSLA —
+    write it on one line, so a roll-forward on any of them moved spot and the
+    cone while leaving the touch table exactly as it was: a stale probability
+    ladder sitting under a fresh forecast, with nothing to show it had not been
+    recomputed. Bracket-matched here so the layout stops deciding whether the
+    numbers get refreshed. The ladder is rewritten in the canonical multi-line
+    form; the LEVELS themselves are never re-picked (STEP 5 — comparability
+    across cycles beats re-centring on the new spot).
+    """
+    m = re.search(r'\n    touch:\s*\[', blk)
+    if not m:
+        return None, None, None
+    i = blk.index('[', m.start())
+    depth = 0
+    for j in range(i, len(blk)):
+        if blk[j] == '[':
+            depth += 1
+        elif blk[j] == ']':
+            depth -= 1
+            if depth == 0:
+                inner = blk[i + 1:j]
+                lv = [float(x) for x in re.findall(r'\[\s*(-?[\d.]+)\s*,', inner)]
+                c = re.search(r'/\*.*?\*/', inner, re.S)
+                return (m.start(), j + 1), lv, (c.group(0) if c else
+                                                '/* descending high -> low */')
+    raise ValueError('unbalanced brackets in touch')
+
+
+def restrike_entry(blk: str, r: dict, verbose: bool = True) -> str:
+    """Rewrite ONLY spot / spotDate / dist+hz / touch on one TICKERS entry.
+
+    Shared by the monthly roll-forward below and by the mid-cycle cone refresh
+    (refresh_cone_one.py) — STEP 0 decision (a) of the Roll-Forward & Grading
+    Protocol, under which a data arrival that is not the current 1M's maturity
+    refreshes the displayed cone and nothing else. Kept in ONE place so the two
+    paths cannot drift into publishing differently-shaped cones; the difference
+    between them is whether a LEDGER row is struck, never how the entry is written.
+
+    fair{}, the slider's factor-stack constants, levels/tech/asof and files are
+    untouched here by construction.
+    """
     spot = r['spot']
     anchor = pd.Timestamp(r['anchor_date'])
     sd = f'close {anchor.day:02d} {MONTHS[anchor.month - 1]} {anchor.year}'
     h1, h3 = r['horizons']['1M'], r['horizons']['3M']
-    ccy = (re.search(r'ccy:\s*"([^"]+)"', blk) or [None, '?'])[1]
-    prior = prior_anchor(src, key)
-    cyc = prior[1] + 1 if prior else 2
 
-    print(f'{key} ({market}/{series})')
-    print(f'  prior cycle {prior} -> new cycle {cyc}')
-    print(f'  anchor {r["anchor_date"]} @ {spot}  ({r["rows_out"]} clean rows)')
-    for tag, h in (('1M', h1), ('3M', h3)):
-        print(f'  {tag}: {h["label"]:9s} h={h["h"]:3d} grade {h["grade_date"]} '
-              f'p5..p95 ' + ' '.join(f'{h["pct"][q]:.2f}'
-                                     for q in ('p5', 'p25', 'p50', 'p75', 'p95')))
-
-    # ---- ticker entry: spot / spotDate / dist+hz / touch, nothing else
     new = blk
     new = re.sub(r'\n    spot: [\d.,]+,', f'\n    spot: {fmt_price(spot, spot)},',
                  new, count=1)
@@ -106,19 +173,68 @@ def run(market: str, series: str, key: str, today: str,
             + row('t60', h3, '  ') + '\n    },\n'
             + f'    hz: {{ h1:{h1["h"]}, h3:{h3["h"]}, '
               f'l1:"{h1["label"]}", l3:"{h3["label"]}", cal:true }},')
-    new = re.sub(r'\n    dist: \{.*?\n    \},(?:\n    hz: \{[^}]*\},)?',
-                 '\n' + dist, new, count=1, flags=re.S)
+    span = _span_of_key(new, 'dist')
+    if not span:
+        raise ValueError('no dist block on this entry')
+    s0, e0 = span
+    # `dist` and `hz` are emitted as one unit, so hz must be the field that
+    # immediately follows. That holds on all 71 ticker entries; if a future
+    # entry breaks it, say so rather than silently leaving a stale hz behind
+    # the fresh cone — a wrong hz draws the wrong fan with no visible tell.
+    hz_span = _span_of_key(new, 'hz')
+    if not hz_span or new[e0:hz_span[0]].strip() != '':
+        raise ValueError('hz does not immediately follow dist on this entry')
+    new = new[:s0] + '\n' + dist + new[hz_span[1]:]
 
-    levels, comment = parse_touch_levels(blk)
+    span, levels, comment = _touch_ladder(new)
     if levels:
         t1 = touch_probs(h1['_paths'], spot, levels)
         t3 = touch_probs(h3['_paths'], spot, levels)
         cells = ', '.join(f'[{fmt_price(lv, spot)}, {t1[float(lv)]}, {t3[float(lv)]}]'
                           for lv in levels)
-        new = re.sub(r'\n    touch: \[.*?\n    \]',
-                     f'\n    touch: [ {comment}\n      {cells}\n    ]',
-                     new, count=1, flags=re.S)
-        print(f'  touch recomputed at the SAME {len(levels)} absolute levels: {levels}')
+        new = (new[:span[0]] + f'\n    touch: [ {comment}\n      {cells}\n    ]'
+               + new[span[1]:])
+        if verbose:
+            print(f'  touch recomputed at the SAME {len(levels)} absolute '
+                  f'levels: {levels}')
+    elif verbose:
+        print('  NO touch ladder on this entry — nothing to recompute')
+    return new
+
+
+def report_strike(key: str, market: str, series: str, r: dict) -> None:
+    print(f'{key} ({market}/{series})')
+    print(f'  anchor {r["anchor_date"]} @ {r["spot"]}  ({r["rows_out"]} clean rows)')
+    for tag in ('1M', '3M'):
+        h = r['horizons'][tag]
+        print(f'  {tag}: {h["label"]:9s} h={h["h"]:3d} grade {h["grade_date"]} '
+              f'p5..p95 ' + ' '.join(f'{h["pct"][q]:.2f}'
+                                     for q in ('p5', 'p25', 'p50', 'p75', 'p95')))
+
+
+def run(market: str, series: str, key: str, today: str,
+        q_annual: float = 0.0, write: bool = False):
+    src = open(DATA_JS, encoding='utf-8').read()
+    blocks = ticker_blocks(src)
+    if key not in blocks:
+        raise SystemExit(f'{key} not found in TICKERS')
+    a, b = blocks[key]
+    blk = src[a:b]
+
+    r = strike(market, series, q_annual=q_annual)
+    prof = MP.PROFILES[market]
+    spot = r['spot']
+    anchor = pd.Timestamp(r['anchor_date'])
+    h1, h3 = r['horizons']['1M'], r['horizons']['3M']
+    ccy = (re.search(r'ccy:\s*"([^"]+)"', blk) or [None, '?'])[1]
+    prior = prior_anchor(src, key)
+    cyc = prior[1] + 1 if prior else 2
+
+    report_strike(key, market, series, r)
+    print(f'  prior cycle {prior} -> new cycle {cyc}')
+
+    # ---- ticker entry: spot / spotDate / dist+hz / touch, nothing else
+    new = restrike_entry(blk, r)
 
     d = anchor
     note = (

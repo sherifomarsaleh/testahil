@@ -2,7 +2,7 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-07-29", latest: "DSCW" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
+const SITE = { updated: "2026-08-03", latest: "DSCW" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
 /* ---------- covered tickers ----------
    HORIZON FIELDS (see the HORIZON CONVENTION block above the LEDGER):
@@ -1490,26 +1490,28 @@ const TICKERS = {
     name: "Tata Motors Passenger Vehicles Ltd.",
     nameAr: "تاتا موتورز للسيارات (الركاب)",
     code: "NSE:TMPV",
-    spot: 324.15,
-    spotDate: "close 28 Jul 2026",
+    spot: 349.30,
+    spotDate: "close 03 Aug 2026",
     ccy: "INR",
     fair: { bear: 236, base: 378, full: 579 },      // 30 Jun 2026 — weighted central 378 (+7% vs spot 352.20). Lenses: SOTP 376, consolidated DCF 376, relative 324 (floor), normalized earnings 416 (ceiling). bear/full = weighted bear/bull of the football field. Swing factor: JLR through-cycle margin and the conglomerate discount.
     dist: {
-    t20: { label: "1 month", p5: 287.2, p25: 310.33, p50: 325.75, p75: 342.21, p95: 369.77, resolve: "2026-08-28" },
-    t60: { label: "3 months", p5: 261.85, p25: 301.8, p50: 329.67, p75: 359.96, p95: 413.98, resolve: "2026-10-28" }
-  },
+      t20: { label:"1 month",   p5:307.58, p25:333.61, p50:351.02, p75:369.65, p95:400.93, resolve:"2026-09-03" },
+      t60: { label:"3 months",  p5:280.07, p25:324.29, p50:355.26, p75:389.01, p95:449.43, resolve:"2026-11-03" }
+    },
     hz: { h1:22, h3:62, l1:"1 month", l3:"3 months", cal:true },
-    touch: [[420,0,7],[400,1,13],[380,4,24],[360,15,43],[340,47,70],[320,74,84],[300,23,46]],
-    levels: { res:[334.47, 366.82, 415.94], sup:[320, 310, 294.30] },
+    touch: [ /* descending high -> low */
+      [420.00, 3, 19], [400.00, 8, 33], [380.00, 25, 53], [360.00, 63, 80], [340.00, 61, 76], [320.00, 20, 43], [300.00, 5, 21]
+    ],
+    levels: { res:[366.82, 404.49, 415.94], sup:[334.47, 318.25, 294.30] },
     tech: {
-      trend: "Trading below the whole moving-average stack, under a falling 200-day",
-      summary: "The price closed 324.15 below a falling 20-day (335.13), a falling 50-day (358.85) and a falling 200-day (360.94). Momentum is soft: RSI(14) is ~35 and the daily ATR near 7.94 (~2.4%) points to a normal tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22128.80 / \u22128.71 / \u22120.09). Over the last year it has ranged 294.30\u2013447.79; the last close sits 28% below that high and 10% above that low.",
-      bull: "A daily close back above 334.47 would clear the nearest resistance and open the 415.94 zone.",
-      bear: "A close below 320.00 would break the nearest support and open the 294.30 zone."
+      trend: "Mixed against the moving-average stack, below a falling 200-day",
+      summary: "The price closed 349.30 below a falling 50-day (357.17) and a falling 200-day (359.31), but above a falling 20-day (333.53). Momentum is neutral: RSI(14) is ~58 and the daily ATR near 7.97 (~2.3%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22124.33 / \u22127.20 / +2.86). Over the last year it has ranged 294.30\u2013447.79; the last close sits 22% below that high and 19% above that low.",
+      bull: "A daily close back above 366.82 would clear the nearest resistance and open the 415.94 zone.",
+      bear: "A close below 334.47 would break the nearest support and open the 294.30 zone."
     },
     asof: {
-      mc:   { data:"2026-07-28", computed:"2026-07-29" },
-      tech: { data:"2026-07-28", computed:"2026-07-29" }
+      mc:   { data:"2026-08-03", computed:"2026-08-03" },
+      tech: { data:"2026-08-03", computed:"2026-08-03" }
     },
     files: {
       study: "files/TMPV_Valuation_Study_30-06-2026_public.docx?v=3006",
@@ -2714,11 +2716,11 @@ const LEDGER = [
     horizon_label:"1 month", grade_date:"2026-07-30", cycle_no:1, reanchor_from:null,
     p5:294, p25:327, p50:353, p75:379, p95:422,
     touch:{ "+5":57, "+10":33, "+15":17, "+20":7, "-5":56, "-10":30 },
-    realized_close:null, realized_high:null, realized_low:null,
-    in_90:null, in_50:null, realized_quantile:null, median_err:null,
-    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+    realized_close:334.20, realized_high:354.60, realized_low:318.25,
+    in_90:true, in_50:true, realized_quantile:0.319, median_err:-0.0533,
+    touch_hit:{ "+5":false, "+10":false, "+15":false, "+20":false, "-5":true, "-10":false }
   ,
-    grade_note:"Re-opened on 2026-07-29. This cohort was graded on 2026-07-28 -- the T+20 SESSION from the anchor, the retired method -- but its calendar maturity is anchor + 1 month = 2026-07-30, which has not yet arrived. Grading by session count closed the window two days early against a close the commitment never named. All realized_* and score fields are nulled and the row returns to open until 2026-07-30. The forecast itself (p5-p95, touch) is untouched. Cycle 2 (anchor 2026-07-28) is unaffected and stays open alongside this row as an aging 1-month tail."},
+    grade_note:"GRADED 2026-08-03 on the 2026-07-30 close of 334.20 -- the calendar maturity this row was re-opened to wait for, and a real NSE session in the library, so there is no date gap to annotate. Window 2026-07-01..2026-07-30, 22 sessions, realized high 354.60 / low 318.25 (intraday extremes, anchor bar excluded -- the house convention, verified by replaying all 10 previously graded rows). Inside the 90% band (294-422) and inside the 50% band (327-379); realized_quantile 0.319, median_err -5.33%. Of the touch ladder only -5% (334.59) was reached; +5% (369.81) was not, the window topping out at 354.60. The frozen p5-p95 and touch probabilities are exactly as published. PRIOR NOTE: Re-opened on 2026-07-29. This cohort was graded on 2026-07-28 -- the T+20 SESSION from the anchor, the retired method -- but its calendar maturity is anchor + 1 month = 2026-07-30, which has not yet arrived. Grading by session count closed the window two days early against a close the commitment never named. All realized_* and score fields are nulled and the row returns to open until 2026-07-30. The forecast itself (p5-p95, touch) is untouched. Cycle 2 (anchor 2026-07-28) is unaffected and stays open alongside this row as an aging 1-month tail."},
   // ---- ARAMCO · other (TADAWUL Saudi Arabia) · cycle 1 (1 Jul 2026 published study) ----
   // ---- ADNOCGAS · other (ADX Abu Dhabi) · cycle 1 (4 Jul 2026 published study) ----
   // ---- ALRAJHI · other (TADAWUL Saudi Arabia) · cycle 1 (2 Jul 2026 published study) ----
