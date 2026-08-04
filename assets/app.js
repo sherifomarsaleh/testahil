@@ -548,7 +548,10 @@ function renderTopMovers(fundId, simId){
     fundEl.innerHTML = rows || `<li class="muted">Not enough data yet.</li>`;
   }
   if(simEl){
-    const rows = topBy(t=> (t.dist.t60.p50 - t.spot)/t.spot*100).map(([code,t,pct],i)=> _tmRowHTML(i+1,code,t,pct)).join("");
+    // Ranked on p95, not p50: every covered name's median is the same carry
+    // anchor, so a p50 ranking sorted on calendar day-count rounding and printed
+    // the identical figure three times. p95 is fitted per name and does differ.
+    const rows = topBy(t=> (t.dist.t60.p95 - t.spot)/t.spot*100).map(([code,t,pct],i)=> _tmRowHTML(i+1,code,t,pct)).join("");
     simEl.innerHTML = rows || `<li class="muted">Not enough data yet.</li>`;
   }
 }
