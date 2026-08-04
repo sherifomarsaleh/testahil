@@ -309,11 +309,14 @@ for a parser, the entries that happen to be formatted differently are the ones t
 ## STEP 6 — LEDGER PAGE
 Confirm (don't assume) the grade you wrote in Step 3 renders correctly — the existing
 `renderRow()` logic already turns a populated `realized_close` into the pass/fail line with
-no template change. Separately assess the five-year quarterly calibration backtest PNG
+no template change. Separately assess the quarterly calibration backtest PNG
 (`assets/calibration_{TICKER}.png`): this is a coarser, ~quarterly-cadence construct spanning
 years, not something a single new 1M/3M cohort or a few weeks of tail data usually moves.
 State plainly whether a regeneration pass is actually warranted this cycle, rather than
-regenerating by default — and if it is warranted, that's its own step (via `ledger_scorer.py`
+regenerating by default. **Regenerate with `python3 engine/metal_backtest.py {SITE_KEY}`** —
+one command per name, since 04-Aug-2026. Its window rule is every non-overlapping quarter
+back to the market's last structural break (NOT a fixed five years — see that module's
+docstring), so a panel only moves when its own library or fit moves — and if it is warranted, that's its own step (via `ledger_scorer.py`
 + `viz.py`), reported separately, not bundled silently into a data-only roll-forward.
 
 ## STEP 7 — PUBLISH

@@ -1,54 +1,78 @@
-"""metal_backtest.py — the five-year calibration backtest PNG generator.
+"""metal_backtest.py — the calibration backtest PNG generator.
+
+Renders assets/calibration_{PanelKey}.png for every published instrument:
+quarterly-replay price chart with 90%/50% cone boxes and realized dots, PIT
+histogram, band coverage vs target, and the honesty footer.
 
 Started metals-only (04-Aug-2026); generalized the same day to every covered
 name, because the 29-Jul library extension left 12 panels standing on
-libraries that had since changed and there was no committed way to rebuild
-one. Two window rules, matching what is already published:
+libraries that had since changed and there was no committed way to rebuild one.
 
-  spacing='quarterly'  EQUITIES — the last 17 non-overlapping quarterly
-                       3-month windows, i.e. a genuine rolling FIVE YEARS,
-                       which is what the section heading claims and what
-                       every equity panel already shows.
-  spacing='yearly'     METALS — one window per calendar year across the full
-                       library, which is what the committed Gold panel shows
-                       (2010-2026) and what Silver/Platinum shipped with.
+THE WINDOW RULE (04-Aug-2026): every non-overlapping 3-month window from the
+market's last STRUCTURAL BREAK to today. One rule for every market; the break
+date is what makes it market-specific.
 
-They are NOT unified here on purpose: unifying would change what 60
-untouched panels claim without regenerating them, and a mixed fleet is worse
-than two documented conventions. Owner decision, 04-Aug-2026.
+    This REPLACES two rules that were both wrong: "the last 17 quarters" for
+    equities and "one window per calendar year" for metals.
 
-Renders assets/calibration_{PanelKey}.png in the exact format of the committed
-Gold panel (the one live on ledger.html since 13-Jul-2026): quarterly-replay
-price chart with 90%/50% cone boxes and realized dots, PIT histogram, band
-coverage vs target, and the honesty footer. The original generator lived in a
-session outside this repo (publish_adh.py records only a copy step), so this
-module reconstructs it — and calibrates the reconstruction by replaying GOLD
-under its build-time config (nu=250, width 1.000) against the committed
-panel's own printed numbers (17 windows, PIT mean 0.482, coverage 29.4% /
-88.2%). The replay reproduces the window count exactly and the PIT mean to
-within 0.02; the coverage bars land within 1-2 windows (of 17). Exact
-reproduction is not attainable: the 13-Jul build predates the 27-Jul
-calendar-horizon amendment (it counted sessions) and its generator was never
-committed, so the residual gap is the retired convention, not a defect in the
-chain. New panels deliberately use the LIVE calendar rule — anchor + 3
-calendar months, first session on/after — because the replay should mirror
-how forecasts are actually graded today. Run `--validate-gold` to repeat.
+    17 quarters was never a considered global choice. It is EGYPT's post-break
+    history -- the Mar-2022 devaluation leaves 4.4 years, which is exactly 17
+    quarters -- generalised to markets that never had Egypt's break. Korea,
+    India, the US and Qatar carry no break at all and were each discarding 45
+    of 62 valid windows; Saudi 27 of 44. Nothing happened to those markets that
+    invalidates the earlier data.
 
-Method, per window (one per calendar year, anchored the first session on/after
-1 April — 17 windows is what the committed Gold panel shows for 2010-2026):
-the ACTUAL production chain at that historical origin — Step 0.0 clean ->
-yz_variance_proxy -> fit_har_v3(origin) -> har_forecast_v3 -> carry_log_h ->
-simulate_paths_v3 (50k paths, seed 42) — then the realized close on the first
-session on/after anchor + 3 calendar months. PIT = fraction of simulated
-terminal paths at or below the realized close. No look-ahead in the variance
-fit (it sees only data up to the origin); the (nu, width_cal) pair and carry
-are the LIVE market config applied across history, which is why the footer
-calls this a reconstruction, not a stored figure.
+    Crucially this is NOT a new policy: the CALIBRATION GATE has always scored
+    full post-break history (primitives walks every non-overlapping window from
+    min_history; panel_refresh.apply_breaks then drops pre-break origins).
+    Measured on the live fits -- EG 16.5 scored windows/name against a 2022
+    break, IN 57.3/name with no break, XAU 60/name -- the gate and this rule
+    agree. Only the PICTURE was frozen at 17. The docs describing Step 0 as a
+    "5-year walk-forward" were describing Egypt, not the engine.
+
+    The grid walks BACK from the last session rather than forward from the
+    break, so the most recent window always ends on current data. Stepping
+    forward leaves a dangling sub-quarter and shifts every window off today's
+    alignment -- which matters because the recent-regime readout is this grid's
+    tail.
+
+RECENT-REGIME READOUT (04-Aug-2026): each panel reports the last RECENT_N
+windows alongside the full record, and says so in red above the chart when the
+recent slice trails the record by DIVERGE_PP or more. A single whole-period
+number cannot show a trend, and that is not hypothetical -- GOLD reads 84.6%
+across 65 windows and 64.7% over the last 17, with every breach on the UPSIDE
+(mean z +0.52, sd z 1.41: the cone is both ~40% too narrow for this regime and
+centred too low). The upside half is BY DESIGN -- the engine is carry-anchored
+and raw/unshrunk trend drift stays retired, so a hard-trending asset finishes
+above the cone; what was wrong was that nobody could see it happening. On the
+04-Aug fleet pass the flag fires on 3 of 74 panels (GOLD, INFY, SAMSUNG),
+which is the point: a warning that fired everywhere would be noise.
+
+METHOD, per window: the ACTUAL production chain at that historical origin --
+Step 0.0 clean -> yz_variance_proxy -> fit_har_v3(origin) -> har_forecast_v3
+-> carry_log_h -> simulate_paths_v3 (50k paths, seed 42) -- then the realized
+close on the first session on/after anchor + 3 calendar months. PIT = fraction
+of simulated terminal paths at or below the realized close. No look-ahead in
+the variance fit (it sees only data up to the origin) and carry is the dated
+historical rate from the profile's own schedule, not today's. The (nu,
+width_cal) pair IS the live config applied across history -- they are fitted
+LONO (leave-one-name-out) so they never saw the name being scored, but they
+did see the period; that, and only that, is what the footer's "reconstruction,
+not a stored figure" discloses.
+
+REPRODUCTION CHECK: the original generator lived in a session outside this
+repo (publish_adh.py records only a copy step), so this module reconstructs it
+and proves the reconstruction against the committed Gold panel's own printed
+numbers -- 17 windows, PIT mean 0.482, coverage 29.4% / 88.2%. It reproduces
+the window count exactly and the PIT mean to within 0.02; coverage lands
+within 1-2 windows of 17. Exact reproduction is not attainable: the 13-Jul
+build predates the 27-Jul calendar-horizon amendment (it counted sessions).
+`--validate-gold` is PINNED to that legacy yearly/session grid on purpose --
+it is a like-for-like check and must not follow the current rule.
 
 Usage:
     python3 metal_backtest.py --validate-gold
-    python3 metal_backtest.py SILVER          # writes assets/calibration_Silver.png
-    python3 metal_backtest.py PLATINUM       # writes assets/calibration_XPTUSD.png
+    python3 metal_backtest.py AAPL TMPV GOLD      # published site keys
 """
 from __future__ import annotations
 

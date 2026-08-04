@@ -17,10 +17,23 @@ study script was found silently scoring windows production excludes).
 
 ## STEP 0 — The calibration gate (before anything else)
 
-5-year walk-forward backtest, **h = the calendar 3-month horizon** (see *Horizon convention*
-immediately below), non-overlapping windows, scored against a **carry-anchored** lognormal
-random-walk benchmark (spot × exp(carry); carry = ln(1+rf) − ln(1+q)), so skill isolates signal
-and width and can never harvest the time-value of money.
+Walk-forward backtest over **every non-overlapping window from the market's last structural
+break to today**, **h = the calendar 3-month horizon** (see *Horizon convention* immediately
+below), scored against a **carry-anchored** lognormal random-walk benchmark (spot × exp(carry);
+carry = ln(1+rf) − ln(1+q)), so skill isolates signal and width and can never harvest the
+time-value of money.
+
+> **[CORRECTED 04-Aug-2026] This step was described here as a "5-year walk-forward" and never
+> was one.** The gate has always scored full post-break history — `primitives` walks every
+> non-overlapping window from `min_history`, and `panel_refresh.apply_breaks` then drops
+> pre-break origins. Measured on the live fits: EG 16.5 scored windows/name against its
+> 2022-03-21 break, IN 57.3/name with no break, XAU 60/name. "Five years" was EGYPT's number
+> — its post-break history is 4.4 years, i.e. 17 quarters — mistaken for the engine's. The
+> published calibration PANEL *did* wrongly freeze at 17 windows for every market, discarding
+> 45 of 62 valid windows for Korea, India, the US and Qatar and 27 of 44 for Saudi; that was
+> corrected the same day (`engine/metal_backtest.py`), and the picture now matches the gate.
+> This is consistent with, not a change to, MAXIMUM AVAILABLE HISTORY below: the break removes
+> structurally invalid data, and everything after it is used.
 
 ### [CHANGED 27-Jul-2026] Horizon convention — calendar, not session count
 
