@@ -162,8 +162,9 @@
     <div class="chip-rows" id="p-chips"></div>
     <div class="wsum" id="p-wsum"></div>
     <div id="p-dates"></div>
-    <p id="p-diag" class="muted" style="margin:6px 0 0;font-size:10px;opacity:.5">build return-first-v15-dated</p>
-    <p class="muted" style="margin:10px 0 0;font-size:var(--fs-small)">"Load a starting mix" picks the five EGX names with the best typical return for the downside risk they carry (median outcome divided by the worst-1-in-20 case) at the chosen horizon, equally weighted — not just the highest headline number. Each name below shows its own bad case too, so a weak trade-off is visible before you swap anything. Nothing on this page is stored or sent anywhere.</p>
+    <p id="p-diag" class="muted" style="margin:6px 0 0;font-size:10px;opacity:.5">build return-first-v16-goodbad</p>
+    <p class="muted" style="margin:10px 0 0;font-size:var(--fs-small)">On each row, <b>good case</b> is that name's best-1-in-20 simulated outcome and <b>bad case</b> its worst-1-in-20 — the 95th and 5th percentiles of its own published simulation. The centre of every covered name's range is anchored to the same policy-rate carry by design (see the <a href="method.html">methodology</a>), so what tells names apart is how wide and how lopsided that range is, not its middle.</p>
+    <p class="muted" style="margin:10px 0 0;font-size:var(--fs-small)">"Load a starting mix" picks the five EGX names with the best typical return for the downside risk they carry (median outcome divided by the worst-1-in-20 case) at the chosen horizon, equally weighted — not just the highest headline number. Each name below shows its own good and bad case, so a weak trade-off is visible before you swap anything. Nothing on this page is stored or sent anywhere.</p>
   </section>
 
   <section id="sec-target" class="card anchor" data-nav="Chance of the target">
@@ -599,7 +600,7 @@ window.addEventListener('error', function(e){
     var box=$('p-chips');
     box.innerHTML = state.mix.map(function(m,i){
       var t=TICKERS[m.k];
-      var med=(t.dist[state.h].p50/t.spot-1)*100;
+      var p95own=(t.dist[state.h].p95/t.spot-1)*100;
       var p5own=(t.dist[state.h].p5/t.spot-1)*100;
       /* This name's own clock, on this name's own row: the close it was struck from,
          and the day its window ends. Two names in the same mix routinely differ by
@@ -614,7 +615,7 @@ window.addEventListener('error', function(e){
         '</span>';
       return '<div class="crow">'+
         '<div class="cn"><b>'+t.name+'</b><span class="cc">'+(t.code||m.k)+'</span>'+dline+'</div>'+
-        '<span class="cmed">median '+pct(med)+' &middot; bad case '+pct(p5own)+'</span>'+
+        '<span class="cmed">good case '+pct(p95own)+' &middot; bad case '+pct(p5own)+'</span>'+
         '<input class="wt num" type="number" min="0" max="100" step="1" value="'+m.w+'" data-i="'+i+'" aria-label="weight of '+m.k+'">'+
         '<span class="wl">%</span>'+
         '<button type="button" class="rm" data-i="'+i+'" aria-label="remove '+m.k+'">&#10005;</button>'+
@@ -1277,7 +1278,7 @@ window.addEventListener('error', function(e){
   function mixCardHtml(title, sub, mix, stats, which, loadId){
     var rows = mix.map(function(p){
       var t=TICKERS[p.k];
-      var m50=(t.dist[which].p50/t.spot-1)*100, m5=(t.dist[which].p5/t.spot-1)*100;
+      var m95=(t.dist[which].p95/t.spot-1)*100, m5=(t.dist[which].p5/t.spot-1)*100;
       // same per-name dateline as the hand-built mix above — an optimised mix is
       // assembled from exactly the same differently-dated forecasts and has no more
       // claim to a single shared window than one the reader picked themselves.
@@ -1286,7 +1287,7 @@ window.addEventListener('error', function(e){
       var dline = '<span class="cdate' + (stale ? ' old' : '') + '">from ' + fmtD(t.spotDate) + ' close' +
         (end ? '<span class="dot">&rarr;</span>' + (isPast(end) ? 'closed ' : 'to ') + fmtD(end) : '') + '</span>';
       return '<div class="crow"><div class="cn"><b>'+t.name+'</b><span class="cc">'+(t.code||p.k)+'</span>'+dline+'</div>'+
-        '<span class="cmed">median '+pct(m50)+' &middot; bad case '+pct(m5)+'</span>'+
+        '<span class="cmed">good case '+pct(m95)+' &middot; bad case '+pct(m5)+'</span>'+
         '<span style="font-family:\'IBM Plex Mono\',monospace;font-weight:600;white-space:nowrap">'+p.w+'%</span></div>';
     }).join('');
     var amt = parseFloat($('p-amt').value)||0;
