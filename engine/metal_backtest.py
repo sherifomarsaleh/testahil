@@ -48,6 +48,22 @@ above the cone; what was wrong was that nobody could see it happening. On the
 04-Aug fleet pass the flag fires on 3 of 74 panels (GOLD, INFY, SAMSUNG),
 which is the point: a warning that fired everywhere would be noise.
 
+COHERENCE — ONE NUMBER, ONE SOURCE (04-Aug-2026): the panel computes its OWN
+CRPS skill, on exactly the windows it draws, against the same carry-anchored
+lognormal RW benchmark the gate uses and scale-normalized (crps/spot) the same
+way. The header prints BOTH it and the market-gate figure, each labelled by
+source, because they answer different questions: the gate's number is LONO
+(fitted leave-one-name-out, the authoritative verdict), this one is the summary
+of the picture underneath it. Before this, the header quoted a figure from a
+different machine entirely -- different window set, and the replay computed no
+skill at all -- while every reader reasonably assumed the chart was its
+evidence. Measured on adoption they agree closely (TMPV -2.11% gate vs -2.05%
+chart, COMI +2.07 vs +1.98, GOLD -0.50 vs +0.52); the point is not that they
+diverge but that a divergence is now VISIBLE instead of unknowable. An earlier
+ad-hoc probe did read a sign flip on TMPV (+1.63%), which turned out to be the
+retired 17-window Egypt-shaped grid, not a real disagreement -- exactly the
+class of thing this makes checkable.
+
 METHOD, per window: the ACTUAL production chain at that historical origin --
 Step 0.0 clean -> yz_variance_proxy -> fit_har_v3(origin) -> har_forecast_v3
 -> carry_log_h -> simulate_paths_v3 (50k paths, seed 42) -- then the realized
@@ -94,7 +110,8 @@ import matplotlib.pyplot as plt                              # noqa: E402
 from matplotlib.patches import Rectangle                     # noqa: E402
 
 from strike_cohorts import load_clean                        # noqa: E402
-from primitives import yz_variance_proxy                     # noqa: E402
+from primitives import (yz_variance_proxy, trailing_cc_vol,   # noqa: E402
+                        crps_sample)
 from mc_v3 import (fit_har_v3, har_forecast_v3, carry_log_h,  # noqa: E402
                    simulate_paths_v3)
 import market_profiles as MP                                 # noqa: E402
@@ -223,11 +240,24 @@ def windows(market, series, nu, width_cal, rf_live, min_warmup=55,
         term = paths[:, -1]
         realized = float(close[gpos])
         p = {q: float(np.percentile(term, q)) for q in (5, 25, 50, 75, 95)}
+        # Same-source skill: CRPS of THIS window's engine sample against the
+        # house carry-anchored lognormal RW benchmark, scale-normalized
+        # (crps/spot) exactly as the market gate normalizes. Computed here so
+        # the number in the header is the summary of the picture below it
+        # rather than a figure from a different machine -- see COHERENCE in
+        # the module docstring.
+        sig_b = trailing_cc_vol(close, i)
+        rngb = np.random.default_rng(SEED + i + 1)
+        bench = spot * np.exp(drift + sig_b * np.sqrt(h)
+                              * rngb.standard_normal(len(term)))
+        crps_e = crps_sample(term, realized) / spot
+        crps_b = crps_sample(bench, realized) / spot
         out.append({
             'anchor_date': anchor_date, 'grade_date': dates.iloc[gpos],
             'spot': spot, 'realized': realized, 'h': h,
             'p5': p[5], 'p25': p[25], 'p50': p[50], 'p75': p[75], 'p95': p[95],
             'pit': float((term <= realized).mean()),
+            'crps': crps_e, 'crps_b': crps_b,
             'in90': p[5] <= realized <= p[95],
             'in50': p[25] <= realized <= p[75],
         })
@@ -251,6 +281,10 @@ def render(market, series, disp, nu, width_cal, header2, header3, out_path,
     # windows read 64.7%, with every one of six breaches on the upside. The long
     # average is real and stays the headline; this is the second number that
     # stops a live deterioration being averaged into invisibility.
+    ce = np.array([w['crps'] for w in wins])
+    cb = np.array([w['crps_b'] for w in wins])
+    chart_skill = float(1 - ce.sum() / cb.sum()) if cb.sum() > 0 else float('nan')
+
     rec = wins[-RECENT_N:] if len(wins) > RECENT_N else []
     rec_cov90 = (100.0 * sum(w['in90'] for w in rec) / len(rec)) if rec else None
     rec_from = rec[0]['anchor_date'].year if rec else None
@@ -266,7 +300,8 @@ def render(market, series, disp, nu, width_cal, header2, header3, out_path,
     fig.text(0.062, 0.965, f'{disp} — calibration backtest  ({span_lbl})',
              fontsize=27, fontweight='bold', color=TEAL_DARK, ha='left')
     fig.text(0.062, 0.928,
-             header2.replace('{n}', str(n)),
+             header2.replace('{n}', str(n)).replace('{chart_skill}',
+                                                    f'{chart_skill*100:+.2f}%'),
              fontsize=15.5, color=INK, ha='left')
     fig.text(0.062, 0.899, header3, fontsize=12.5, color=TEAL_MID, ha='left')
     if rec_cov90 is not None and (cov90 - rec_cov90) >= DIVERGE_PP:
@@ -393,7 +428,8 @@ def render(market, series, disp, nu, width_cal, header2, header3, out_path,
 
     fig.savefig(out_path, facecolor='white')
     plt.close(fig)
-    return {'windows': n, 'cov50': round(cov50, 1), 'cov90': round(cov90, 1),
+    return {'windows': n, 'chart_skill': round(chart_skill * 100, 2),
+            'cov50': round(cov50, 1), 'cov90': round(cov90, 1),
             'pit_mean': round(pit_mean, 3),
             'recent_cov90': None if rec_cov90 is None else round(rec_cov90, 1),
             'span': span_lbl, 'out': out_path}
@@ -469,8 +505,9 @@ def build(site_key):
     # ONE rule for every market now -- see windows(spacing='postbreak').
     verdict = pn.get('verdict', fc.get(mkt, {}).get('market_verdict', 'PARITY'))
     skill = pn.get('skill', fc.get(mkt, {}).get('market_skill', 0.0))
-    h2 = (f"{verdict}  \u00b7  CRPS skill {skill*100:+.2f}% vs a carry-anchored "
-          f"random walk  \u00b7  name-level ({{n}} windows shown)")
+    h2 = (f"{verdict}  \u00b7  market-gate skill {skill*100:+.2f}% (LONO, pooled panel)"
+          f"  \u00b7  these {{n}} windows: {{chart_skill}}"
+          f"  \u00b7  vs a carry-anchored random walk")
     h3 = (f"{prof.name} panel fit: \u03bd={nu:g}, cone width {wc:.3f}  \u00b7  "
           f"carry = {prof.rf_live*100:.2f}% live anchor")
     if ov:
