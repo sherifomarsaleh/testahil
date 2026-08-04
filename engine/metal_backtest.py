@@ -1,54 +1,78 @@
-"""metal_backtest.py — the five-year calibration backtest PNG generator.
+"""metal_backtest.py — the calibration backtest PNG generator.
+
+Renders assets/calibration_{PanelKey}.png for every published instrument:
+quarterly-replay price chart with 90%/50% cone boxes and realized dots, PIT
+histogram, band coverage vs target, and the honesty footer.
 
 Started metals-only (04-Aug-2026); generalized the same day to every covered
 name, because the 29-Jul library extension left 12 panels standing on
-libraries that had since changed and there was no committed way to rebuild
-one. Two window rules, matching what is already published:
+libraries that had since changed and there was no committed way to rebuild one.
 
-  spacing='quarterly'  EQUITIES — the last 17 non-overlapping quarterly
-                       3-month windows, i.e. a genuine rolling FIVE YEARS,
-                       which is what the section heading claims and what
-                       every equity panel already shows.
-  spacing='yearly'     METALS — one window per calendar year across the full
-                       library, which is what the committed Gold panel shows
-                       (2010-2026) and what Silver/Platinum shipped with.
+THE WINDOW RULE (04-Aug-2026): every non-overlapping 3-month window from the
+market's last STRUCTURAL BREAK to today. One rule for every market; the break
+date is what makes it market-specific.
 
-They are NOT unified here on purpose: unifying would change what 60
-untouched panels claim without regenerating them, and a mixed fleet is worse
-than two documented conventions. Owner decision, 04-Aug-2026.
+    This REPLACES two rules that were both wrong: "the last 17 quarters" for
+    equities and "one window per calendar year" for metals.
 
-Renders assets/calibration_{PanelKey}.png in the exact format of the committed
-Gold panel (the one live on ledger.html since 13-Jul-2026): quarterly-replay
-price chart with 90%/50% cone boxes and realized dots, PIT histogram, band
-coverage vs target, and the honesty footer. The original generator lived in a
-session outside this repo (publish_adh.py records only a copy step), so this
-module reconstructs it — and calibrates the reconstruction by replaying GOLD
-under its build-time config (nu=250, width 1.000) against the committed
-panel's own printed numbers (17 windows, PIT mean 0.482, coverage 29.4% /
-88.2%). The replay reproduces the window count exactly and the PIT mean to
-within 0.02; the coverage bars land within 1-2 windows (of 17). Exact
-reproduction is not attainable: the 13-Jul build predates the 27-Jul
-calendar-horizon amendment (it counted sessions) and its generator was never
-committed, so the residual gap is the retired convention, not a defect in the
-chain. New panels deliberately use the LIVE calendar rule — anchor + 3
-calendar months, first session on/after — because the replay should mirror
-how forecasts are actually graded today. Run `--validate-gold` to repeat.
+    17 quarters was never a considered global choice. It is EGYPT's post-break
+    history -- the Mar-2022 devaluation leaves 4.4 years, which is exactly 17
+    quarters -- generalised to markets that never had Egypt's break. Korea,
+    India, the US and Qatar carry no break at all and were each discarding 45
+    of 62 valid windows; Saudi 27 of 44. Nothing happened to those markets that
+    invalidates the earlier data.
 
-Method, per window (one per calendar year, anchored the first session on/after
-1 April — 17 windows is what the committed Gold panel shows for 2010-2026):
-the ACTUAL production chain at that historical origin — Step 0.0 clean ->
-yz_variance_proxy -> fit_har_v3(origin) -> har_forecast_v3 -> carry_log_h ->
-simulate_paths_v3 (50k paths, seed 42) — then the realized close on the first
-session on/after anchor + 3 calendar months. PIT = fraction of simulated
-terminal paths at or below the realized close. No look-ahead in the variance
-fit (it sees only data up to the origin); the (nu, width_cal) pair and carry
-are the LIVE market config applied across history, which is why the footer
-calls this a reconstruction, not a stored figure.
+    Crucially this is NOT a new policy: the CALIBRATION GATE has always scored
+    full post-break history (primitives walks every non-overlapping window from
+    min_history; panel_refresh.apply_breaks then drops pre-break origins).
+    Measured on the live fits -- EG 16.5 scored windows/name against a 2022
+    break, IN 57.3/name with no break, XAU 60/name -- the gate and this rule
+    agree. Only the PICTURE was frozen at 17. The docs describing Step 0 as a
+    "5-year walk-forward" were describing Egypt, not the engine.
+
+    The grid walks BACK from the last session rather than forward from the
+    break, so the most recent window always ends on current data. Stepping
+    forward leaves a dangling sub-quarter and shifts every window off today's
+    alignment -- which matters because the recent-regime readout is this grid's
+    tail.
+
+RECENT-REGIME READOUT (04-Aug-2026): each panel reports the last RECENT_N
+windows alongside the full record, and says so in red above the chart when the
+recent slice trails the record by DIVERGE_PP or more. A single whole-period
+number cannot show a trend, and that is not hypothetical -- GOLD reads 84.6%
+across 65 windows and 64.7% over the last 17, with every breach on the UPSIDE
+(mean z +0.52, sd z 1.41: the cone is both ~40% too narrow for this regime and
+centred too low). The upside half is BY DESIGN -- the engine is carry-anchored
+and raw/unshrunk trend drift stays retired, so a hard-trending asset finishes
+above the cone; what was wrong was that nobody could see it happening. On the
+04-Aug fleet pass the flag fires on 3 of 74 panels (GOLD, INFY, SAMSUNG),
+which is the point: a warning that fired everywhere would be noise.
+
+METHOD, per window: the ACTUAL production chain at that historical origin --
+Step 0.0 clean -> yz_variance_proxy -> fit_har_v3(origin) -> har_forecast_v3
+-> carry_log_h -> simulate_paths_v3 (50k paths, seed 42) -- then the realized
+close on the first session on/after anchor + 3 calendar months. PIT = fraction
+of simulated terminal paths at or below the realized close. No look-ahead in
+the variance fit (it sees only data up to the origin) and carry is the dated
+historical rate from the profile's own schedule, not today's. The (nu,
+width_cal) pair IS the live config applied across history -- they are fitted
+LONO (leave-one-name-out) so they never saw the name being scored, but they
+did see the period; that, and only that, is what the footer's "reconstruction,
+not a stored figure" discloses.
+
+REPRODUCTION CHECK: the original generator lived in a session outside this
+repo (publish_adh.py records only a copy step), so this module reconstructs it
+and proves the reconstruction against the committed Gold panel's own printed
+numbers -- 17 windows, PIT mean 0.482, coverage 29.4% / 88.2%. It reproduces
+the window count exactly and the PIT mean to within 0.02; coverage lands
+within 1-2 windows of 17. Exact reproduction is not attainable: the 13-Jul
+build predates the 27-Jul calendar-horizon amendment (it counted sessions).
+`--validate-gold` is PINNED to that legacy yearly/session grid on purpose --
+it is a like-for-like check and must not follow the current rule.
 
 Usage:
     python3 metal_backtest.py --validate-gold
-    python3 metal_backtest.py SILVER          # writes assets/calibration_Silver.png
-    python3 metal_backtest.py PLATINUM       # writes assets/calibration_XPTUSD.png
+    python3 metal_backtest.py AAPL TMPV GOLD      # published site keys
 """
 from __future__ import annotations
 
@@ -77,6 +101,8 @@ import market_profiles as MP                                 # noqa: E402
 
 N_PATHS = 50_000
 SEED = 42
+RECENT_N = 17          # windows in the recent-regime readout (~4 years)
+DIVERGE_PP = 10.0      # flag the recent slice when it trails the record by this much
 
 TEAL_DARK = '#0f6b64'
 TEAL_MID = '#3d7f7a'
@@ -97,7 +123,7 @@ PANELS = {
 
 
 def windows(market, series, nu, width_cal, rf_live, min_warmup=55,
-            h_sessions=None, spacing='yearly', n_windows=17):
+            h_sessions=None, spacing='postbreak', n_windows=17):
     """One 3-month replay window per calendar year, anchor = first session
     on/after 1 April (grading ~1 July). Returns the list of scored windows.
 
@@ -112,7 +138,42 @@ def windows(market, series, nu, width_cal, rf_live, min_warmup=55,
     v = yz_variance_proxy(df)
     prof = MP.PROFILES[market]
 
-    if spacing == 'quarterly':
+    if spacing == 'postbreak':
+        # THE RULE (adopted 04-Aug-2026): every non-overlapping 3-month window
+        # from the market's last STRUCTURAL BREAK to today. One rule for every
+        # market; the break date is what makes it market-specific.
+        #
+        # It replaces a flat "last 17 quarters" for equities and "one per year"
+        # for metals. That 17 was never a considered global choice -- it is
+        # EGYPT's post-break history (Mar-2022 devaluation -> 4.4yr -> exactly
+        # 17 quarters) generalised to markets that never had Egypt's break.
+        # Korea, India, the US and Qatar carry no break at all and were each
+        # discarding 45 of 62 valid windows; Saudi 27 of 44. Nothing happened to
+        # those markets that invalidates the earlier data, so nothing justified
+        # throwing it away. Egypt and the UAE are unchanged BECAUSE the rule is
+        # break-driven -- 17 and 18 windows really is all the valid history they
+        # have. This is also the rule the calibration gate already applies
+        # (panel_refresh.apply_breaks); the picture simply never followed it.
+        brks = getattr(prof, 'breaks', None) or []
+        floor_i = min_warmup
+        if brks:
+            last_break = max(pd.Timestamp(b) for b in brks)
+            floor_i = max(floor_i, int(dates.searchsorted(last_break)))
+        # Walk BACK from the last session, not forward from the break: the most
+        # recent window must always end on current data, because the recent-
+        # regime readout is computed from the tail of this grid. Stepping
+        # forward instead leaves a dangling sub-quarter at the end and silently
+        # shifts every window off today's alignment.
+        origins, t = [], dates.iloc[-1]
+        while True:
+            g = min(int(dates.searchsorted(t)), len(df) - 1)
+            i = int(dates.searchsorted(t - pd.DateOffset(months=3)))
+            if i < floor_i:
+                break
+            origins.append((i, g))
+            t = dates.iloc[i]
+        origins = sorted(set(origins))
+    elif spacing == 'quarterly':
         # Walk BACK from the last session in 3-month steps, take n_windows.
         # Anchored to the library's own end so the panel is a rolling five
         # years, not a fixed calendar grid that drifts as data arrives.
@@ -174,7 +235,7 @@ def windows(market, series, nu, width_cal, rf_live, min_warmup=55,
 
 
 def render(market, series, disp, nu, width_cal, header2, header3, out_path,
-           spacing='yearly'):
+           spacing='postbreak'):
     df, wins = windows(market, series, nu, width_cal,
                        MP.PROFILES[market].rf_live, spacing=spacing)
     dates = pd.to_datetime(df['Date'])
@@ -184,6 +245,16 @@ def render(market, series, disp, nu, width_cal, header2, header3, out_path,
     cov90 = 100.0 * sum(w['in90'] for w in wins) / n
     pit_mean = float(np.mean([w['pit'] for w in wins]))
 
+    # RECENT-REGIME READOUT (adopted 04-Aug-2026). A single whole-period number
+    # cannot show a trend, and that is not hypothetical: GOLD's 16-year record
+    # reads 89.2% against a 90% target -- healthy -- while its most recent 17
+    # windows read 64.7%, with every one of six breaches on the upside. The long
+    # average is real and stays the headline; this is the second number that
+    # stops a live deterioration being averaged into invisibility.
+    rec = wins[-RECENT_N:] if len(wins) > RECENT_N else []
+    rec_cov90 = (100.0 * sum(w['in90'] for w in rec) / len(rec)) if rec else None
+    rec_from = rec[0]['anchor_date'].year if rec else None
+
     fig = plt.figure(figsize=(20.6, 11.9), dpi=144)
     fig.patch.set_facecolor('white')
     gs = fig.add_gridspec(2, 2, height_ratios=[1.55, 1.0],
@@ -191,13 +262,23 @@ def render(market, series, disp, nu, width_cal, header2, header3, out_path,
                           hspace=0.52, wspace=0.28)
 
     # ---- headers
-    fig.text(0.062, 0.965, f'{disp} — five-year calibration backtest',
+    span_lbl = (f"{wins[0]['anchor_date'].year}–{wins[-1]['grade_date'].year}")
+    fig.text(0.062, 0.965, f'{disp} — calibration backtest  ({span_lbl})',
              fontsize=27, fontweight='bold', color=TEAL_DARK, ha='left')
     fig.text(0.062, 0.928,
              header2.replace('{n}', str(n)),
              fontsize=15.5, color=INK, ha='left')
     fig.text(0.062, 0.899, header3, fontsize=12.5, color=TEAL_MID, ha='left')
-    fig.text(0.062, 0.868,
+    if rec_cov90 is not None and (cov90 - rec_cov90) >= DIVERGE_PP:
+        fig.text(0.062, 0.868,
+                 f'\u26a0  90% band: {cov90:.1f}% across the full record, but '
+                 f'{rec_cov90:.1f}% over the last {len(rec)} windows '
+                 f'(since {rec_from}) — running narrow in the current regime',
+                 fontsize=13.5, fontweight='bold', color=RED_X, ha='left')
+        head_y = 0.840
+    else:
+        head_y = 0.868
+    fig.text(0.062, head_y,
              'Quarterly replay — each 3-month forecast cone vs the price '
              'that actually printed',
              fontsize=15.5, fontweight='bold', color=TEAL_DARK, ha='left')
@@ -282,6 +363,16 @@ def render(market, series, disp, nu, width_cal, header2, header3, out_path,
     for b, v in zip(bars, (cov50, cov90)):
         axc.text(b.get_x() + b.get_width() / 2, v + 3, f'{v:.1f}%',
                  ha='center', fontsize=14, fontweight='bold', color=INK)
+    if rec_cov90 is not None:
+        gap = cov90 - rec_cov90
+        col = RED_X if gap >= DIVERGE_PP else TEAL_MID
+        axc.plot([1 - 0.34, 1 + 0.34], [rec_cov90, rec_cov90],
+                 color=col, ls='-', lw=2.6, zorder=6)
+        axc.plot([1], [rec_cov90], marker='v', ms=11, color=col, zorder=6)
+        axc.text(1, rec_cov90 - 9, f'last {len(rec)} → {rec_cov90:.1f}%',
+                 ha='center', fontsize=12.5, fontweight='bold', color=col,
+                 zorder=7, bbox=dict(boxstyle='round,pad=0.28', fc='white',
+                                     ec=col, lw=1.2))
     axc.set_xticks([0, 1])
     axc.set_xticklabels(['50% band\n(P25–P75)', '90% band\n(P5–P95)'],
                         fontsize=12.5)
@@ -302,15 +393,21 @@ def render(market, series, disp, nu, width_cal, header2, header3, out_path,
 
     fig.savefig(out_path, facecolor='white')
     plt.close(fig)
-    return {'windows': n, 'cov50': cov50, 'cov90': cov90,
-            'pit_mean': pit_mean, 'out': out_path}
+    return {'windows': n, 'cov50': round(cov50, 1), 'cov90': round(cov90, 1),
+            'pit_mean': round(pit_mean, 3),
+            'recent_cov90': None if rec_cov90 is None else round(rec_cov90, 1),
+            'span': span_lbl, 'out': out_path}
 
 
 def validate_gold():
     """Replay GOLD under its build-time config and compare the committed
     panel's own printed numbers: 17 windows, PIT mean 0.482, 29.4% / 88.2%."""
+    # Pinned to the LEGACY grid on purpose: this is a like-for-like check
+    # against the committed 13-Jul panel, which was built one-window-per-year
+    # under the retired session-count horizon. It must NOT follow the new
+    # post-break rule or it stops testing what it claims to test.
     _, wins = windows('XAU', 'GOLD', nu=250.0, width_cal=1.0, rf_live=0.0363,
-                      h_sessions=63)
+                      h_sessions=63, spacing='yearly')
     n = len(wins)
     cov50 = 100.0 * sum(w['in50'] for w in wins) / n
     cov90 = 100.0 * sum(w['in90'] for w in wins) / n
@@ -369,8 +466,7 @@ def build(site_key):
     # config the site does not publish.
     ov = _fit_override_pair(mkt, ser)
     nu, wc = ov if ov else (prof.nu, prof.width_cal)
-    metal = site_key in PANELS
-    spacing = 'yearly' if metal else 'quarterly'
+    # ONE rule for every market now -- see windows(spacing='postbreak').
     verdict = pn.get('verdict', fc.get(mkt, {}).get('market_verdict', 'PARITY'))
     skill = pn.get('skill', fc.get(mkt, {}).get('market_skill', 0.0))
     h2 = (f"{verdict}  \u00b7  CRPS skill {skill*100:+.2f}% vs a carry-anchored "
@@ -380,7 +476,7 @@ def build(site_key):
     if ov:
         h3 += "  \u00b7  per-name fit override in force"
     out = os.path.join(ROOT, 'assets', f'calibration_{panel_key}.png')
-    r = render(mkt, ser, disp, nu, wc, h2, h3, out, spacing=spacing)
+    r = render(mkt, ser, disp, nu, wc, h2, h3, out, spacing='postbreak')
     return r
 
 
