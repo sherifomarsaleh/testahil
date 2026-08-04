@@ -2,7 +2,7 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-08-03", latest: "DSCW" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
+const SITE = { updated: "2026-08-04", latest: "DSCW" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
 /* ---------- covered tickers ----------
    HORIZON FIELDS (see the HORIZON CONVENTION block above the LEDGER):
@@ -2612,11 +2612,10 @@ const LEDGER = [
     horizon_label:"1 month", grade_date:"2026-08-03", grade_basis:"projected", horizon_days:22, cycle_no:1, reanchor_from:null,
     p5:50, p25:58, p50:63, p75:68, p95:78,
     touch:{ "+5":61, "+10":38, "+15":23, "+20":14, "-5":56, "-10":31 },
-    realized_close:null, realized_high:null, realized_low:null,
-    in_90:null, in_50:null, realized_quantile:null, median_err:null,
-    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
-  ,
-    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-07-31) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
+    realized_close:58.266, realized_high:63.2786, realized_low:54.7667,
+    in_90:true, in_50:true, realized_quantile:0.263, median_err:-0.0751,
+    touch_hit:{ "+5":false, "+10":false, "+15":false, "+20":false, "-5":true, "-10":true },
+    grade_note:"GRADED 2026-08-04 on the 2026-08-03 close of 58.266 -- the calendar grade date, a real session in the library, no date gap. Window 2026-07-06..2026-08-03, 21 sessions on the CLEANED series, realized high 63.2786 / low 54.7667 (intraday extremes, anchor bar excluded -- the house convention, verified by replaying all 10 previously graded rows before TMPV and re-validated on TMPV). Inside the 90% band (50-78) and inside the 50% band (58-68); realized_quantile 0.263, median_err -7.51%. Touch: -5% (59.31) and -10% (56.19) both hit; no upside level reached, the window topping out at 63.2786 vs +5% at 65.55. Frozen p5-p95 and touch probabilities exactly as published. Reminder that this cohort's verdict inherits gold's fit -- silver still has NO fit of its own. PRIOR NOTE: Grade-date corrected on 2026-07-29: stored value (2026-07-31) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"Silver", asset_class:"metal",
@@ -4413,6 +4412,30 @@ const LEDGER = [
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+
+  // ---- 2026-08-04 Silver monthly roll-forward: cycle-1 1M graded, cycle 2 struck ----
+  {
+    instrument:"Silver", asset_class:"metal",
+    anchor_date:"2026-08-03", run_date:"2026-08-04", anchor_price:58.266, ccy:"USD",
+    horizon_label:"1 month", grade_date:"2026-09-03", grade_basis:"projected", horizon_days:23, cycle_no:2, reanchor_from:"2026-07-03",
+    p5:46.91, p25:53.65, p50:58.44, p75:63.69, p95:72.9,
+    touch:{ "+5":62, "+10":40, "+15":24, "+20":14, "-5":59, "-10":34 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null },
+    note:"Cycle 2 strike, 2026-08-04 -- struck on the 03-Aug-2026 close of 58.266, the latest completed session in the library, at the monthly metronome: cycle 1\u2019s 1-month matured 03-Aug and was graded in this same pass. The cycle-1 3-month (grades 2026-10-05) is demoted to an aging calibration tail and runs untouched to its own date; the 12-month stays on its own annual clock (grades 2027-07-05), per the metals carve-out. Production chain, no approximation: Step 0.0 data-quality gate (3 interior stale/no-trade rows dropped) -> YZ variance proxy -> fit_har_v3 -> har_forecast_v3 -> carry drift -> simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (metal, no yield). XAU live fit nu=12.0, width_cal=0.958 -- SILVER STILL HAS NO FIT OF ITS OWN, it borrows gold\u2019s, the standing weakest-calibration caveat. Horizons by horizons.resolve() on the metals calendar: 1M h=23 grading 2026-09-03, 3M h=66 grading 2026-11-03. The upload\u2019s 04-Aug row (an in-progress session dated the day of the post) and its 02-Aug Sunday print (the library\u2019s 15-year convention is Mon-Fri) were excluded from the library; its revised 27/28-Jul bars were NOT taken -- published bars stay frozen, merge-never-overwrite."
+  },
+  {
+    instrument:"Silver", asset_class:"metal",
+    anchor_date:"2026-08-03", run_date:"2026-08-04", anchor_price:58.266, ccy:"USD",
+    horizon_label:"3 months", grade_date:"2026-11-03", grade_basis:"projected", horizon_days:66, cycle_no:2, reanchor_from:"2026-07-03",
+    p5:40.8, p25:50.96, p50:58.85, p75:67.93, p95:85.03,
+    touch:{ "+5":77, "+10":62, "+15":48, "+20":37, "-5":74, "-10":56 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null },
+    note:"Cycle 2 strike, 2026-08-04 -- struck on the 03-Aug-2026 close of 58.266, the latest completed session in the library, at the monthly metronome: cycle 1\u2019s 1-month matured 03-Aug and was graded in this same pass. The cycle-1 3-month (grades 2026-10-05) is demoted to an aging calibration tail and runs untouched to its own date; the 12-month stays on its own annual clock (grades 2027-07-05), per the metals carve-out. Production chain, no approximation: Step 0.0 data-quality gate (3 interior stale/no-trade rows dropped) -> YZ variance proxy -> fit_har_v3 -> har_forecast_v3 -> carry drift -> simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (metal, no yield). XAU live fit nu=12.0, width_cal=0.958 -- SILVER STILL HAS NO FIT OF ITS OWN, it borrows gold\u2019s, the standing weakest-calibration caveat. Horizons by horizons.resolve() on the metals calendar: 1M h=23 grading 2026-09-03, 3M h=66 grading 2026-11-03. The upload\u2019s 04-Aug row (an in-progress session dated the day of the post) and its 02-Aug Sunday print (the library\u2019s 15-year convention is Mon-Fri) were excluded from the library; its revised 27/28-Jul bars were NOT taken -- published bars stay frozen, merge-never-overwrite."
   }
 ];
 
@@ -4572,25 +4595,25 @@ const METALS = {
     unit: "دولار للأونصة",   // Arabic unit (AR feed)
     unitEn: "USD/oz",         // English unit (EN feed)
     nameAr: "الفضة",          // Arabic display name (AR feed)
- name:"Silver", code:"XAG/USD", spot:57.207, spotDate:"close 28 Jul 2026", ccy:"USD",
+ name:"Silver", code:"XAG/USD", spot:58.266, spotDate:"close 03 Aug 2026", ccy:"USD",
  fair:{ bear:58, base:68, full:78 },
  dist:{
-   t20:{ label:"1 month",  p5:46.19, p25:52.73, p50:57.38, p75:62.46, p95:71.38, resolve:"2026-08-28" },
-   t60:{ label:"3 months", p5:40.19, p25:50.1, p50:57.78, p75:66.6, p95:83.21, resolve:"2026-10-28" },
+   t20:{ label:"1 month",  p5:46.91, p25:53.65, p50:58.44, p75:63.69, p95:72.90, resolve:"2026-09-03" },
+   t60:{ label:"3 months", p5:40.80, p25:50.96, p50:58.85, p75:67.93, p95:85.03, resolve:"2026-11-03" },
    t252:{ label:"12 months", p5:30.8, p25:46.12, p50:59.36, p75:76.36, p95:113.99, resolve:"2027-07-02" }
  },
  hz: { h1:23, h3:66, l1:"1 month", l3:"3 months", cal:true },
- touch:[[85,1,7],[78,2,15],[72,7,27],[68,15,39],[58,82,89],[55,66,78],[50,24,46],[45,5,22]],
+ touch:[[85,1,9],[78,3,17],[72,9,31],[68,20,44],[58,86,91],[55,56,72],[50,19,42],[45,4,20]],
  levels: { res:[61.27, 63.28, 71.23], sup:[55.62, 54.45, 39.15] },
  tech: {
-   trend: "Trading below the whole moving-average stack, under a rising 200-day; fresh death-cross",
-   summary: "The price closed 57.21 below a falling 20-day (58.75), a falling 50-day (64.42) and a rising 200-day (70.94). Momentum is neutral: RSI(14) is ~41 and the daily ATR near 2.69 (~4.7%) points to a lively tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22121.74 / \u22122.17 / +0.42). The 50-day crossed beneath the 200-day 15 sessions ago \u2014 a fresh death-cross, a momentum-regime change rather than noise inside an intact trend. Over the last year it has ranged 36.96\u2013121.67; the last close sits 53% below that high and 55% above that low.",
+   trend: "Mixed against the moving-average stack, below a rising 200-day; fresh death-cross",
+   summary: "The price closed 58.27 below a falling 50-day (62.93) and a rising 200-day (71.14), but above a falling 20-day (58.15). Momentum is neutral: RSI(14) is ~46 and the daily ATR near 2.60 (~4.5%) points to a lively tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22121.28 / \u22121.72 / +0.44). The 50-day crossed beneath the 200-day 19 sessions ago \u2014 a fresh death-cross, a momentum-regime change rather than noise inside an intact trend. Over the last year it has ranged 36.96\u2013121.67; the last close sits 52% below that high and 58% above that low.",
    bull: "A daily close back above 61.27 would clear the nearest resistance and open the 71.23 zone.",
    bear: "A close below 55.62 would break the nearest support and open the 39.15 zone."
  },
  asof: {
-   mc:   { data:"2026-07-03", computed:"2026-07-05" },
-   tech: { data:"2026-07-28", computed:"2026-07-29" }
+   mc:   { data:"2026-08-03", computed:"2026-08-04" },
+   tech: { data:"2026-08-03", computed:"2026-08-04" }
  },
  files:{
    study:"files/XAGUSD_Combined_1-3-12M_Valuation_Study_05-07-2026_public.docx?v=2607",
