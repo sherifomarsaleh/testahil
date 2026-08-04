@@ -1,4 +1,21 @@
-"""metal_backtest.py — the five-year calibration backtest PNG, metals edition.
+"""metal_backtest.py — the five-year calibration backtest PNG generator.
+
+Started metals-only (04-Aug-2026); generalized the same day to every covered
+name, because the 29-Jul library extension left 12 panels standing on
+libraries that had since changed and there was no committed way to rebuild
+one. Two window rules, matching what is already published:
+
+  spacing='quarterly'  EQUITIES — the last 17 non-overlapping quarterly
+                       3-month windows, i.e. a genuine rolling FIVE YEARS,
+                       which is what the section heading claims and what
+                       every equity panel already shows.
+  spacing='yearly'     METALS — one window per calendar year across the full
+                       library, which is what the committed Gold panel shows
+                       (2010-2026) and what Silver/Platinum shipped with.
+
+They are NOT unified here on purpose: unifying would change what 60
+untouched panels claim without regenerating them, and a mixed fleet is worse
+than two documented conventions. Owner decision, 04-Aug-2026.
 
 Renders assets/calibration_{PanelKey}.png in the exact format of the committed
 Gold panel (the one live on ledger.html since 13-Jul-2026): quarterly-replay
@@ -37,6 +54,7 @@ from __future__ import annotations
 
 import argparse
 import os
+import re
 import sys
 
 import numpy as np
@@ -79,7 +97,7 @@ PANELS = {
 
 
 def windows(market, series, nu, width_cal, rf_live, min_warmup=55,
-            h_sessions=None):
+            h_sessions=None, spacing='yearly', n_windows=17):
     """One 3-month replay window per calendar year, anchor = first session
     on/after 1 April (grading ~1 July). Returns the list of scored windows.
 
@@ -94,18 +112,34 @@ def windows(market, series, nu, width_cal, rf_live, min_warmup=55,
     v = yz_variance_proxy(df)
     prof = MP.PROFILES[market]
 
+    if spacing == 'quarterly':
+        # Walk BACK from the last session in 3-month steps, take n_windows.
+        # Anchored to the library's own end so the panel is a rolling five
+        # years, not a fixed calendar grid that drifts as data arrives.
+        origins, t = [], dates.iloc[-1]
+        while len(origins) < n_windows:
+            g = min(int(dates.searchsorted(t)), len(df) - 1)
+            i = int(dates.searchsorted(t - pd.DateOffset(months=3)))
+            if i < min_warmup:
+                break
+            origins.append((i, g))
+            t = t - pd.DateOffset(months=3)
+        origins = sorted(set(origins))
+    else:
+        origins = []
+        for year in range(int(dates.iloc[0].year), int(dates.iloc[-1].year) + 1):
+            pos = int(dates.searchsorted(pd.Timestamp(year=year, month=4, day=1)))
+            if pos >= len(df) or pos < min_warmup:
+                continue
+            origins.append((pos, None))
+
     out = []
-    for year in range(int(dates.iloc[0].year), int(dates.iloc[-1].year) + 1):
-        target = pd.Timestamp(year=year, month=4, day=1)
-        pos = dates.searchsorted(target)
-        if pos >= len(df):
-            continue
-        i = int(pos)
-        if i < min_warmup:
-            continue
+    for i, gfixed in origins:
         anchor_date = dates.iloc[i]
         spot = float(close[i])
-        if h_sessions is not None:
+        if gfixed is not None:
+            gpos = gfixed
+        elif h_sessions is not None:
             gpos = i + h_sessions
         else:
             # grade at anchor + 3 calendar months, first session on/after
@@ -139,10 +173,10 @@ def windows(market, series, nu, width_cal, rf_live, min_warmup=55,
     return df, out
 
 
-def render(series_key, nu, width_cal, header2, header3, out_path):
-    market, series, disp, panel_key = PANELS[series_key]
+def render(market, series, disp, nu, width_cal, header2, header3, out_path,
+           spacing='yearly'):
     df, wins = windows(market, series, nu, width_cal,
-                       MP.PROFILES[market].rf_live)
+                       MP.PROFILES[market].rf_live, spacing=spacing)
     dates = pd.to_datetime(df['Date'])
     close = df['Price'].to_numpy(dtype=float)
     n = len(wins)
@@ -159,7 +193,9 @@ def render(series_key, nu, width_cal, header2, header3, out_path):
     # ---- headers
     fig.text(0.062, 0.965, f'{disp} — five-year calibration backtest',
              fontsize=27, fontweight='bold', color=TEAL_DARK, ha='left')
-    fig.text(0.062, 0.928, header2, fontsize=15.5, color=INK, ha='left')
+    fig.text(0.062, 0.928,
+             header2.replace('{n}', str(n)),
+             fontsize=15.5, color=INK, ha='left')
     fig.text(0.062, 0.899, header3, fontsize=12.5, color=TEAL_MID, ha='left')
     fig.text(0.062, 0.868,
              'Quarterly replay — each 3-month forecast cone vs the price '
@@ -193,6 +229,24 @@ def render(series_key, nu, width_cal, header2, header3, out_path):
             label='Realized — inside 90%')
     ax.plot([], [], 'X', ms=10, mfc=RED_X, mec='white', mew=1.0,
             label='Realized — outside 90%')
+    # Clip the view to the tested span (with a short lead-in) when the library
+    # runs far deeper than the window grid. The 29-Jul extension pushed several
+    # libraries back to 2011 while the equity grid stays a rolling five years,
+    # which would otherwise squeeze every cone into the right-hand quarter of a
+    # 15-year axis and make the panel unreadable. The FIT still sees the full
+    # history -- this bounds the drawing, not the evidence.
+    if spacing == 'quarterly' and wins:
+        lo = wins[0]['anchor_date'] - pd.DateOffset(months=4)
+        hi = wins[-1]['grade_date'] + pd.DateOffset(months=4)
+        if lo > dates.iloc[0]:
+            ax.set_xlim(lo, hi)
+            vis = (dates >= lo) & (dates <= hi)
+            seg = close[vis.to_numpy()]
+            if len(seg):
+                pad = 0.06
+                ymin = min(seg.min(), min(w['p5'] for w in wins))
+                ymax = max(seg.max(), max(w['p95'] for w in wins))
+                ax.set_ylim(ymin * (1 - pad), ymax * (1 + pad))
     ax.legend(loc='upper left', frameon=False, fontsize=12.5)
     ax.set_ylabel('Price (USD, log)', fontsize=12.5)
     ax.grid(True, which='major', color='#e3ecea', lw=0.8)
@@ -272,41 +326,81 @@ def validate_gold():
     return ok
 
 
+EX = {'EGX': 'EG', 'ADX': 'AE', 'DFM': 'AE', 'TADAWUL': 'SA', 'KRX': 'KR',
+      'NASDAQ': 'US', 'NYSE': 'US', 'NSE': 'IN', 'BSE': 'IN',
+      'QSE': 'QA', 'QE': 'QA'}
+SERIES_OVERRIDE = {'ALRAJHI': 'RAJHI', 'ADIBUAE': 'ADIB',
+                   '2POINTZERO': 'TWOPOINTZERO'}
+LEDGER_ALIAS = {'GOLD': 'Gold', 'SILVER': 'Silver', 'PLATINUM': 'XPTUSD',
+                'SAMSUNG': 'Samsung', 'KAKAO': 'Kakao'}
+
+
+def resolve(site_key):
+    """(market, series, panel_key, display) for a published site key.
+
+    Market comes from the entry's own `code:` prefix in data.js -- the same
+    rule check_data_freshness uses -- never inferred from the name.
+    """
+    if site_key in PANELS:
+        mkt, ser, disp, panel = PANELS[site_key]
+        return mkt, ser, panel, disp
+    src = open(os.path.join(ROOT, 'assets', 'data.js'), encoding='utf-8').read()
+    m = re.search(r'\n  "?' + re.escape(site_key) + r'"?: \{(.*?)\n  \},',
+                  src, re.S)
+    if not m:
+        raise SystemExit(f'{site_key}: not found in data.js')
+    pre = re.search(r'code:\s*"([A-Z0-9]+):', m.group(1))
+    if not pre or pre.group(1) not in EX:
+        raise SystemExit(f'{site_key}: no market resolved from its code: prefix')
+    mkt = EX[pre.group(1)]
+    ser = SERIES_OVERRIDE.get(site_key, site_key)
+    return mkt, ser, LEDGER_ALIAS.get(site_key, site_key), site_key
+
+
+def build(site_key):
+    """Regenerate one published panel using the LIVE config production runs."""
+    import json
+    mkt, ser, panel_key, disp = resolve(site_key)
+    prof = MP.PROFILES[mkt]
+    fc = json.load(open(os.path.join(HERE, 'fitted_configs.json')))
+    pn = fc.get(mkt, {}).get('per_name', {}).get(ser, {})
+    # Per-name (nu, width) overrides are what the PRODUCTION cone uses for this
+    # name, so the backtest must replay them -- otherwise the panel validates a
+    # config the site does not publish.
+    ov = _fit_override_pair(mkt, ser)
+    nu, wc = ov if ov else (prof.nu, prof.width_cal)
+    metal = site_key in PANELS
+    spacing = 'yearly' if metal else 'quarterly'
+    verdict = pn.get('verdict', fc.get(mkt, {}).get('market_verdict', 'PARITY'))
+    skill = pn.get('skill', fc.get(mkt, {}).get('market_skill', 0.0))
+    h2 = (f"{verdict}  \u00b7  CRPS skill {skill*100:+.2f}% vs a carry-anchored "
+          f"random walk  \u00b7  name-level ({{n}} windows shown)")
+    h3 = (f"{prof.name} panel fit: \u03bd={nu:g}, cone width {wc:.3f}  \u00b7  "
+          f"carry = {prof.rf_live*100:.2f}% live anchor")
+    if ov:
+        h3 += "  \u00b7  per-name fit override in force"
+    out = os.path.join(ROOT, 'assets', f'calibration_{panel_key}.png')
+    r = render(mkt, ser, disp, nu, wc, h2, h3, out, spacing=spacing)
+    return r
+
+
+def _fit_override_pair(market, ticker):
+    import json
+    p = os.path.join(HERE, 'fit_overrides.json')
+    if not os.path.exists(p):
+        return None
+    e = json.load(open(p)).get(market, {}).get(ticker)
+    return (float(e['nu']), float(e['width_cal'])) if e else None
+
+
 if __name__ == '__main__':
     ap = argparse.ArgumentParser()
-    ap.add_argument('series', nargs='?', choices=['SILVER', 'PLATINUM'])
+    ap.add_argument('keys', nargs='*', help='published site keys, e.g. AAPL TMPV')
     ap.add_argument('--validate-gold', action='store_true')
     a = ap.parse_args()
     if a.validate_gold:
         sys.exit(0 if validate_gold() else 1)
-    if not a.series:
-        ap.error('give SILVER or PLATINUM, or --validate-gold')
-
-    cfg = json_path = os.path.join(HERE, 'fitted_configs.json')
-    import json
-    fc = json.load(open(cfg))
-    if a.series == 'SILVER':
-        prof = MP.PROFILES['XAU']
-        pn = fc['XAU']['per_name']['SILVER']
-        h2 = (f"{pn['verdict']}  ·  CRPS skill {pn['skill']*100:+.2f}% vs a "
-              f"carry-anchored random walk  ·  Metals (Gold/Silver, USD) "
-              f"market panel ({fc['XAU']['windows']} windows; this replay shows "
-              f"one per year)")
-        h3 = (f"Market fit ν={prof.nu:g}, cone width {prof.width_cal:.3f} "
-              f"· carry = {prof.rf_live*100:.2f}% live anchor · "
-              f"BORROWED FIT — silver has no independent (ν, width) of "
-              f"its own; the production cone runs on the shared Gold/Silver "
-              f"panel fit")
-        out = os.path.join(ROOT, 'assets', 'calibration_Silver.png')
-        r = render('SILVER', prof.nu, prof.width_cal, h2, h3, out)
-    else:
-        prof = MP.PROFILES['XPT']
-        pn = fc['XPT']['per_name']['PLATINUM']
-        h2 = (f"{pn['verdict']}  ·  CRPS skill {pn['skill']*100:+.2f}% vs a "
-              f"carry-anchored random walk  ·  Platinum (USD) panel "
-              f"({fc['XPT']['windows']} windows; this replay shows one per year)")
-        h3 = (f"Panel fit ν={prof.nu:g}, cone width {prof.width_cal:.3f} "
-              f"· carry = {prof.rf_live*100:.2f}% live anchor")
-        out = os.path.join(ROOT, 'assets', 'calibration_XPTUSD.png')
-        r = render('PLATINUM', prof.nu, prof.width_cal, h2, h3, out)
-    print(r)
+    if not a.keys:
+        ap.error('give one or more published site keys, or --validate-gold')
+    for k in a.keys:
+        print(k, build(k))
