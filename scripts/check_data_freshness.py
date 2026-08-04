@@ -428,6 +428,41 @@ def main() -> int:
             fail(f'{inst}/{hz}', f'{n} open rows at the latest anchor {latest} '
                                  '-- lifecycle invariant is one')
 
+    # 9. the calibration-backtest panel and its image must agree, BOTH ways.
+    #    ledger.html renders that section only for instruments listed in its
+    #    hand-maintained HAS_BACKTEST set, and builds the path from the LEDGER
+    #    instrument key: assets/calibration_{key}.png. Two silent failures had
+    #    already shipped by 04-Aug-2026 and neither was visible on the page --
+    #    a missing section looks exactly like a section that was never meant
+    #    to be there:
+    #      * PLATINUM: image committed as calibration_Platinum.png while the
+    #        instrument key is XPTUSD, and the key was never added to the set.
+    #        The image was an orphan from the day it landed and the panel
+    #        silently omitted the whole block.
+    #      * ADIBUAE and LULU: images present and correctly named, keys simply
+    #        never added -- two panels' backtests invisible for weeks.
+    #    A listed key with no file is the mirror defect: a broken <img>.
+    #    Counting one side alone cannot see either, which is the same lesson
+    #    check 1 encodes for published-vs-ledger names.
+    ledger_html = os.path.join(ROOT, 'ledger.html')
+    if os.path.exists(ledger_html):
+        html = open(ledger_html, encoding='utf-8').read()
+        m = re.search(r'const HAS_BACKTEST = new Set\(\[(.*?)\]\);', html, re.S)
+        if not m:
+            fail('ledger.html', 'no HAS_BACKTEST set found')
+        else:
+            listed = set(re.findall(r'"([^"]+)"', m.group(1)))
+            have = {f[len('calibration_'):-len('.png')]
+                    for f in os.listdir(os.path.join(ROOT, 'assets'))
+                    if f.startswith('calibration_') and f.endswith('.png')}
+            for k in sorted(listed - have):
+                fail(f'HAS_BACKTEST/{k}', 'listed but assets/calibration_'
+                                         f'{k}.png does not exist -- broken image')
+            for k in sorted(have - listed):
+                fail(f'HAS_BACKTEST/{k}', f'assets/calibration_{k}.png exists but '
+                                          'the key is not in HAS_BACKTEST -- the '
+                                          'panel silently omits its backtest')
+
     for w in warns:
         print(f'WARN  {w}')
     for f in fails:
