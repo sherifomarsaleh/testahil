@@ -893,7 +893,9 @@ function renderStaticFan(elId, T){
       var vp5 = fanVal(fit, spot, 'p5', t), vp25 = fanVal(fit, spot, 'p25', t),
           vp50 = fanVal(fit, spot, 'p50', t), vp75 = fanVal(fit, spot, 'p75', t),
           vp95 = fanVal(fit, spot, 'p95', t);
-      var when = (t === 0) ? 'now' : 'in ' + t + ' trading day' + (t===1?'':'s');
+      // t=0 is the anchor close, which is NOT "now" — it can be weeks old. Name the day.
+      var when = (t === 0) ? ((T.spotDate || '').replace(/^close\s+/i, '') || 'the anchor close')
+                           : 'in ' + t + ' trading day' + (t===1?'':'s');
       var head = (t === 0) ? 'latest'
                : (t === HZ.h1) ? HZ.l1
                : (t === HZ.h3) ? HZ.l3
