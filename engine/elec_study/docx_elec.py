@@ -377,7 +377,9 @@ table(rows, [2.6, 1.3, 3.0], first_col_bold=True, size=8.6)
 P('The forward schedule, year by year — the glide shape is the forward cost-of-debt path’s own cumulative '
   'progress, so the discount rate and the interest forecast normalise on one easing calendar:', size=9.8, space_after=4)
 rows = [['', 'FY26E', 'FY27E', 'FY28E', 'FY29E', 'FY30E']]
-rows.append(['Forward Kd path'] + [f"{k*100:.1f}%" for k in coc['kd_path']])
+rows.append(['Forward Kd path (pre-tax)'] + [f"{k*100:.1f}%" for k in coc['kd_path']])
+rows.append(['Forward Ke (same easing calendar)'] +
+            [f"{(coc['ke_cds'] - (coc['ke_cds'] - coc['ke_term']) * f_)*100:.1f}%" for f_ in coc['glide_frac']])
 rows.append(['Glide fraction'] + [f"{f*100:.0f}%" for f in coc['glide_frac']])
 rows.append(['Forward WACC'] + [f"{w*100:.1f}%" for w in coc['fwd_wacc']])
 rows.append(['Cumulative discount factor'] + [f"{d_:.3f}" for d_ in coc['df']])
