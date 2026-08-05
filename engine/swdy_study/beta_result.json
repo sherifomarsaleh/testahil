@@ -1,0 +1,17 @@
+{
+ "beta": 1.0087131974394166,
+ "r2": 0.29126939836703036,
+ "n": 258,
+ "se": 0.09834241826281419,
+ "ci90": [
+  0.8469399193970872,
+  1.170486475481746
+ ],
+ "usable": true,
+ "gate_msg": "passes minimum usability gate",
+ "composite_names": 31,
+ "window_years": 5,
+ "frequency": "weekly",
+ "weak": false,
+ "warnings": []
+}

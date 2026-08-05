@@ -1,0 +1,1775 @@
+{
+ "meta": {
+  "ticker": "SWDY",
+  "company": "Elsewedy Electric Company S.A.E.",
+  "market": "EGX",
+  "currency": "EGP",
+  "asof": "2026-08-05",
+  "spot": 105.2,
+  "shares_mn": 2140.777876,
+  "mktcap": 225209.83255520003,
+  "ev_trailing": 244998.83255520003,
+  "klass": "diversified industrial operating company"
+ },
+ "inputs": {
+  "spot": {
+   "value": 105.2,
+   "source": "Uploaded EGX daily price history, last close",
+   "date": "2026-08-05",
+   "ring": "Market"
+  },
+  "shares_mn": {
+   "value": 2140.777876,
+   "source": "Number of shares 2,140,777,876 \u2014 company earnings release, Share Information panel (unchanged across FY2024 and Q1-2025 releases). An EGM-approved capital cut writes off 1.422mn expired ESOP shares, taking issued capital to EGP 2.139bn; immaterial (0.07%) and not yet listed, so the disclosed count is used",
+   "date": "2025-05-26",
+   "ring": "Company"
+  },
+  "tax_stat": {
+   "value": 0.225,
+   "source": "Egypt corporate income tax 22.5% (PwC Worldwide Tax Summaries, unchanged 2025-26)",
+   "date": "2026",
+   "ring": "Country"
+  },
+  "tax_eff": {
+   "value": 0.25,
+   "source": "Group effective tax rate used for NOPAT. Reported effective rates: FY2023 31.3%, FY2024 30.1%, FY2025 25.2% (derived, see P&L closure). The group pays tax in 15 countries; 25% is struck between the FY25 derived rate and the Egyptian statutory 22.5%, above the statutory rate because foreign profits are taxed in higher-rate jurisdictions and withholding leaks on repatriation",
+   "date": "2026-08-05",
+   "ring": "House"
+  },
+  "fx": {
+   "value": 49.8,
+   "source": "USD/EGP mid-market ~49.8 (house cost-of-capital reference, re-verified 05-Aug-2026). The pound was not range-bound over the last year: ~46.8 (Feb-26) to ~54.7 (Apr-26 regional war spike) and back to ~49.8",
+   "date": "2026-08-05",
+   "ring": "Country"
+  },
+  "rev_fy23": {
+   "value": 152186.2,
+   "source": "Consolidated Income Statement, FY2024 earnings release (FY-2023 comparative)",
+   "date": "2025-03-13",
+   "ring": "Company"
+  },
+  "rev_fy24": {
+   "value": 231981.8,
+   "source": "Consolidated Income Statement, FY2024 earnings release",
+   "date": "2025-03-13",
+   "ring": "Company"
+  },
+  "rev_fy25": {
+   "value": 281049.0,
+   "source": "FY2025 consolidated revenues EGP 281.04bn (EGX filing, reported by Arab Finance / Mubasher; +21.15% on FY2024)",
+   "date": "2026-03",
+   "ring": "Company"
+  },
+  "gp_fy23": {
+   "value": 29077.3,
+   "source": "Consolidated Income Statement, FY2024 earnings release (comparative)",
+   "date": "2025-03-13",
+   "ring": "Company"
+  },
+  "gp_fy24": {
+   "value": 43898.5,
+   "source": "Consolidated Income Statement, FY2024 earnings release",
+   "date": "2025-03-13",
+   "ring": "Company"
+  },
+  "gp_fy25": {
+   "value": 40720.0,
+   "source": "DERIVED: 9M-2025 gross profit ~EGP 30.0bn (15.0% of the 199.71bn 9M revenue, press coverage of the 9M filing) + Q4-2025 gross profit 10.77bn (Q4-2025 release: -0.7% y/y on Q4-2024's 10,841, 13.2% margin). Blends to a 14.5% FY margin",
+   "date": "2026-03",
+   "ring": "House"
+  },
+  "op_fy23": {
+   "value": 17739.1,
+   "source": "Operating profit, FY2024 earnings release (comparative)",
+   "date": "2025-03-13",
+   "ring": "Company"
+  },
+  "op_fy24": {
+   "value": 29341.7,
+   "source": "Operating profit, FY2024 earnings release",
+   "date": "2025-03-13",
+   "ring": "Company"
+  },
+  "dna_fy23": {
+   "value": 2296.0,
+   "source": "Audited consolidated statement of cash flows FY2024 (2023 column): PP&E depreciation 2,120.8 + investment property 6.4 + intangibles amortisation 53.9 + right-of-use 114.9",
+   "date": "2025-03-12",
+   "ring": "Company"
+  },
+  "dna_fy24": {
+   "value": 2259.9,
+   "source": "Audited consolidated statement of cash flows FY2024: PP&E depreciation 2,019.6 + investment property 1.5 + intangibles amortisation 80.7 + right-of-use 157.9",
+   "date": "2025-03-12",
+   "ring": "Company"
+  },
+  "netfin_fy23": {
+   "value": -2124.4,
+   "source": "Net finance costs, FY2024 earnings release (comparative)",
+   "date": "2025-03-13",
+   "ring": "Company"
+  },
+  "netfin_fy24": {
+   "value": -3515.4,
+   "source": "Net finance costs, FY2024 earnings release",
+   "date": "2025-03-13",
+   "ring": "Company"
+  },
+  "assoc_fy23": {
+   "value": 603.6,
+   "source": "Share of profit of equity-accounted investees, FY2024 release (comparative)",
+   "date": "2025-03-13",
+   "ring": "Company"
+  },
+  "assoc_fy24": {
+   "value": 1132.4,
+   "source": "Share of profit of equity-accounted investees, FY2024 release",
+   "date": "2025-03-13",
+   "ring": "Company"
+  },
+  "tax_fy23": {
+   "value": -5080.4,
+   "source": "Income tax expense, FY2024 earnings release (comparative)",
+   "date": "2025-03-13",
+   "ring": "Company"
+  },
+  "tax_fy24": {
+   "value": -8121.5,
+   "source": "Income tax expense, FY2024 earnings release",
+   "date": "2025-03-13",
+   "ring": "Company"
+  },
+  "pat_fy23": {
+   "value": 11138.0,
+   "source": "Profit for the period, FY2024 earnings release (comparative)",
+   "date": "2025-03-13",
+   "ring": "Company"
+  },
+  "pat_fy24": {
+   "value": 18837.2,
+   "source": "Profit for the period, FY2024 earnings release",
+   "date": "2025-03-13",
+   "ring": "Company"
+  },
+  "pat_fy25": {
+   "value": 19180.0,
+   "source": "FY2025 consolidated net profit after tax EGP 19.18bn vs EGP 18.83bn FY2024 (EGX filing via Mubasher). The FY2024 comparative reconciles exactly to the audited 'Profit for the period' of 18,837.2, confirming this is the pre-minority line",
+   "date": "2026-03",
+   "ring": "Company"
+  },
+  "npa_fy23": {
+   "value": 10115.7,
+   "source": "Profit attributable to owners of the company, FY2024 release (comparative)",
+   "date": "2025-03-13",
+   "ring": "Company"
+  },
+  "npa_fy24": {
+   "value": 17461.4,
+   "source": "Profit attributable to owners of the company, FY2024 release",
+   "date": "2025-03-13",
+   "ring": "Company"
+  },
+  "npa_fy25": {
+   "value": 17330.0,
+   "source": "FY2025 net profit after minority: FY2024's 17,461.4 less the disclosed -0.75% y/y move (Arab Finance headline on the FY2025 filing). Cross-checks to the quarterly build: 9M-2025 12,670 + Q4-2025 4,660 (Q4 release: +10.6% y/y on Q4-2024's 4,209)",
+   "date": "2026-03",
+   "ring": "Company"
+  },
+  "ppe_fy23": {
+   "value": 18009.2,
+   "source": "Consolidated Balance Sheet 31/12/2023, FY2024 earnings release",
+   "date": "2025-03-13",
+   "ring": "Company"
+  },
+  "ppe_fy24": {
+   "value": 27543.8,
+   "source": "Consolidated Balance Sheet 31/12/2024, FY2024 earnings release",
+   "date": "2025-03-13",
+   "ring": "Company"
+  },
+  "inv_fy23": {
+   "value": 30881.8,
+   "source": "Inventories 31/12/2023",
+   "date": "2025-03-13",
+   "ring": "Company"
+  },
+  "inv_fy24": {
+   "value": 56795.9,
+   "source": "Inventories 31/12/2024",
+   "date": "2025-03-13",
+   "ring": "Company"
+  },
+  "ca_fy23": {
+   "value": 16179.6,
+   "source": "Contract assets 31/12/2023",
+   "date": "2025-03-13",
+   "ring": "Company"
+  },
+  "ca_fy24": {
+   "value": 18052.0,
+   "source": "Contract assets 31/12/2024",
+   "date": "2025-03-13",
+   "ring": "Company"
+  },
+  "recv_fy23": {
+   "value": 46591.9,
+   "source": "Trade, notes and other receivables (current) 31/12/2023",
+   "date": "2025-03-13",
+   "ring": "Company"
+  },
+  "recv_fy24": {
+   "value": 86736.3,
+   "source": "Trade, notes and other receivables (current) 31/12/2024",
+   "date": "2025-03-13",
+   "ring": "Company"
+  },
+  "pay_fy23": {
+   "value": 31938.1,
+   "source": "Trade, notes and other payables 31/12/2023",
+   "date": "2025-03-13",
+   "ring": "Company"
+  },
+  "pay_fy24": {
+   "value": 54808.2,
+   "source": "Trade, notes and other payables 31/12/2024",
+   "date": "2025-03-13",
+   "ring": "Company"
+  },
+  "cl_fy23": {
+   "value": 25060.3,
+   "source": "Contract liabilities 31/12/2023",
+   "date": "2025-03-13",
+   "ring": "Company"
+  },
+  "cl_fy24": {
+   "value": 53281.1,
+   "source": "Contract liabilities 31/12/2024",
+   "date": "2025-03-13",
+   "ring": "Company"
+  },
+  "cash_fy23": {
+   "value": 25552.0,
+   "source": "Cash and cash equivalents 31/12/2023",
+   "date": "2025-03-13",
+   "ring": "Company"
+  },
+  "cash_fy24": {
+   "value": 38180.0,
+   "source": "Cash and cash equivalents 31/12/2024",
+   "date": "2025-03-13",
+   "ring": "Company"
+  },
+  "assets_fy23": {
+   "value": 151448.7,
+   "source": "Total assets 31/12/2023",
+   "date": "2025-03-13",
+   "ring": "Company"
+  },
+  "assets_fy24": {
+   "value": 249527.1,
+   "source": "Total assets 31/12/2024",
+   "date": "2025-03-13",
+   "ring": "Company"
+  },
+  "assets_fy25": {
+   "value": 311090.0,
+   "source": "Total assets EGP 311.09bn at 31 December 2025 (EGX filing coverage)",
+   "date": "2026-03",
+   "ring": "Company"
+  },
+  "debt_fy23": {
+   "value": 41766.5,
+   "source": "Loans and borrowings, current 34,950.8 + non-current 6,815.7 (31/12/2023)",
+   "date": "2025-03-13",
+   "ring": "Company"
+  },
+  "debt_fy24": {
+   "value": 59082.9,
+   "source": "Loans and borrowings, current 52,733.9 + non-current 6,349.0 (31/12/2024). Note 32 splits this into loans 18,747.3, bank credit facilities 40,049.5 and lease liabilities 286.1",
+   "date": "2025-03-12",
+   "ring": "Company"
+  },
+  "nd_fy23": {
+   "value": 14768.0,
+   "source": "Net debt at 31 December 2023, stated in the FY2024 earnings release",
+   "date": "2025-03-13",
+   "ring": "Company"
+  },
+  "nd_fy24": {
+   "value": 20028.0,
+   "source": "Net debt at 31 December 2024, stated in the FY2024 earnings release. The Q1-2025 release restates the same date as net BANK debt of 19,727 (leases excluded); the 301 difference is immaterial and the larger figure is carried",
+   "date": "2025-03-13",
+   "ring": "Company"
+  },
+  "nd_fy25": {
+   "value": 19789.0,
+   "source": "Net bank debt EGP 19,789mn at 31 December 2025, stated in the Q4-2025 earnings release ('remained almost flat')",
+   "date": "2026-03",
+   "ring": "Company"
+  },
+  "eqp_fy23": {
+   "value": 35724.5,
+   "source": "Equity attributable to owners of the parent 31/12/2023",
+   "date": "2025-03-13",
+   "ring": "Company"
+  },
+  "eqp_fy24": {
+   "value": 55274.9,
+   "source": "Equity attributable to owners of the parent 31/12/2024",
+   "date": "2025-03-13",
+   "ring": "Company"
+  },
+  "nci_fy23": {
+   "value": 2384.0,
+   "source": "Non-controlling interests 31/12/2023",
+   "date": "2025-03-13",
+   "ring": "Company"
+  },
+  "nci_fy24": {
+   "value": 4251.8,
+   "source": "Non-controlling interests 31/12/2024",
+   "date": "2025-03-13",
+   "ring": "Company"
+  },
+  "assoc_bv_fy24": {
+   "value": 6474.0,
+   "source": "Equity-accounted investees (carrying value) 31/12/2024",
+   "date": "2025-03-13",
+   "ring": "Company"
+  },
+  "intang_fy24": {
+   "value": 1459.2,
+   "source": "Intangible assets and goodwill 31/12/2024",
+   "date": "2025-03-13",
+   "ring": "Company"
+  },
+  "dps_fy24": {
+   "value": 1.0,
+   "source": "Board proposed a dividend of EGP 1.00 per share on the FY2024 result (CEO statement, FY2024 earnings release); shareholder dividends of 2,176.0 were paid in the FY2024 cash flow statement for the prior year",
+   "date": "2025-03-13",
+   "ring": "Company"
+  },
+  "capex_fy23": {
+   "value": 4830.0,
+   "source": "Audited FY2024 cash flow (2023 column): PP&E and projects under construction 4,748.6 + intangibles 81.4",
+   "date": "2025-03-12",
+   "ring": "Company"
+  },
+  "capex_fy24": {
+   "value": 8765.7,
+   "source": "Audited FY2024 cash flow: PP&E and projects under construction 8,489.8 + intangibles 275.9",
+   "date": "2025-03-12",
+   "ring": "Company"
+  },
+  "int_paid_fy24": {
+   "value": 7706.9,
+   "source": "Interest paid, audited FY2024 consolidated statement of cash flows",
+   "date": "2025-03-12",
+   "ring": "Company"
+  },
+  "tax_paid_fy24": {
+   "value": 4891.0,
+   "source": "Income tax paid, audited FY2024 consolidated statement of cash flows",
+   "date": "2025-03-12",
+   "ring": "Company"
+  },
+  "ocf_fy24": {
+   "value": 3979.4,
+   "source": "Net cash flows from operating activities FY2024 (after interest and tax) \u2014 only 3,979 against EBITDA of 31,602, the working-capital absorption in one number",
+   "date": "2025-03-12",
+   "ring": "Company"
+  },
+  "q1_25_rev": {
+   "value": 59391.5,
+   "source": "Condensed consolidated interim statement of profit or loss, 3M to 31-Mar-2025",
+   "date": "2025-05-26",
+   "ring": "Company"
+  },
+  "q1_25_gp": {
+   "value": 9973.7,
+   "source": "Gross profit, Q1-2025 interim statements",
+   "date": "2025-05-26",
+   "ring": "Company"
+  },
+  "q1_25_op": {
+   "value": 6503.9,
+   "source": "Operating profit, Q1-2025 interim statements",
+   "date": "2025-05-26",
+   "ring": "Company"
+  },
+  "q1_25_ebitda": {
+   "value": 7488.8,
+   "source": "EBITDA, Q1-2025 earnings release (12.6% margin)",
+   "date": "2025-05-26",
+   "ring": "Company"
+  },
+  "q1_25_npa": {
+   "value": 4146.4,
+   "source": "Profit attributable to owners of the parent, Q1-2025",
+   "date": "2025-05-26",
+   "ring": "Company"
+  },
+  "q1_25_fincost": {
+   "value": 1745.6,
+   "source": "Finance costs (gross), Q1-2025 interim statements",
+   "date": "2025-05-26",
+   "ring": "Company"
+  },
+  "q1_25_netfin": {
+   "value": -755.7,
+   "source": "NET finance costs Q1-2025: finance costs 1,745.6 less finance income 989.9. The group carries very large cash and short-term deposits, so gross interest expense materially overstates the net charge",
+   "date": "2025-05-26",
+   "ring": "Company"
+  },
+  "netfin_fy25": {
+   "value": -3400.0,
+   "source": "DERIVED FY2025 net finance cost. The Q1-2025 net run-rate annualises to -3,023 and FY2024 printed -3,515 on a smaller debt book; -3,400 is struck between them, allowing for a larger balance sheet against a falling policy rate. This is the one materially estimated line in the FY2025 income statement and it is what the implied tax rate is most sensitive to",
+   "date": "2026-08-05",
+   "ring": "House"
+  },
+  "q1_25_dna": {
+   "value": 681.0,
+   "source": "Q1-2025 interim cash flow: PP&E depreciation 637.5 + investment property 0.4 + intangibles 2.0 + right-of-use 41.2",
+   "date": "2025-05-26",
+   "ring": "Company"
+  },
+  "q1_26_rev": {
+   "value": 75298.0,
+   "source": "Q1-2026 consolidated revenues EGP 75.298bn (EGX filing 13-May-2026, via Arab Finance)",
+   "date": "2026-05-13",
+   "ring": "Company"
+  },
+  "q1_26_npa": {
+   "value": 4845.0,
+   "source": "Q1-2026 consolidated net profit attributable to the parent EGP 4.845bn, +16.86% y/y (EGX filing 13-May-2026)",
+   "date": "2026-05-13",
+   "ring": "Company"
+  },
+  "seg_share_fy25": {
+   "value": {
+    "wc": 0.59,
+    "ec": 0.27,
+    "ep": 0.06,
+    "ds": 0.06,
+    "ii": 0.02
+   },
+   "source": "Wires, Cables & Accessories ~59% of group revenue and Engineering & Construction ~27% (company commentary on the 2025 results); the residual is split across Electrical Products, Digital Solutions and Infrastructure Investment in line with the disclosed Q1-2025 segment table (6.0% / 6.1% / 1.2% of revenue)",
+   "date": "2026-03",
+   "ring": "Company"
+  },
+  "seg_gp_margin_fy25": {
+   "value": {
+    "wc": 0.1245,
+    "ec": 0.09,
+    "ep": 0.38,
+    "ds": 0.21,
+    "ii": 0.6
+   },
+   "source": "Segment gross margins set from the disclosed Q1-2025 segment table (W&C 16.6%, E&C 8.6%, Electrical Products 39.4%, Digital Solutions 21.9%, Infrastructure 63.2%) stepped down for the further H2-2025 normalisation, and solved so the weighted blend reproduces the FY2025 group gross margin of 14.5%",
+   "date": "2026-08-05",
+   "ring": "House"
+  },
+  "opex_pct_fy25": {
+   "value": 0.035,
+   "source": "Operating cost load between gross profit and EBITDA, as a share of revenue: FY2024 SG&A was 5.2% of revenue and Q1-2025 5.4%, against which other income runs 1.5-1.7%. The FY2025 net load solves to 3.5% (14.5% gross margin less the 11.0% EBITDA margin)",
+   "date": "2026-08-05",
+   "ring": "House"
+  },
+  "ebitda_margin_fy25": {
+   "value": 0.11,
+   "source": "FY2025 group EBITDA margin. Anchored on the last-twelve-month aggregator print (USD 663mn EBITDA on USD 6.0bn revenue = 11.0%) and cross-checked against the disclosed quarterly path: Q1 12.6%, Q2 11.1%, Q4 9.5%",
+   "date": "2026-08-05",
+   "ring": "House"
+  },
+  "foreign_share_fy25": {
+   "value": 0.7,
+   "source": "'Over 70% of revenues generated abroad' (company 2025 commentary). The single most important structural fact about this company: the revenue base is majority hard-currency while the listing, the reporting currency and the cost of capital are Egyptian",
+   "date": "2026-03",
+   "ring": "Company"
+  },
+  "dom_growth": {
+   "value": [
+    0.14,
+    0.12,
+    0.1,
+    0.09,
+    0.08
+   ],
+   "source": "Domestic (EGP) revenue growth FY26E-FY30E. Egypt nominal GDP growth is running ~16-18% with inflation guided down toward the CBE's 7% (2026) and 5% (2028) targets; the domestic leg is set to grow slightly below nominal GDP as disinflation proceeds, with no domestic share gain assumed",
+   "date": "2026-08-05",
+   "ring": "House"
+  },
+  "fgn_growth_usd": {
+   "value": [
+    0.1,
+    0.08,
+    0.07,
+    0.06,
+    0.06
+   ],
+   "source": "Foreign revenue growth in USD. Supported by a USD 6.5bn project backlog (~4.3x the E&C segment's annual revenue and above the group's historical range), regional grid build-out and data-centre driven cable demand; tapering to a mature single-digit rate by FY30E",
+   "date": "2026-08-05",
+   "ring": "House"
+  },
+  "fx_path": {
+   "value": [
+    51.0,
+    54.0,
+    57.5,
+    61.0,
+    64.5
+   ],
+   "source": "USD/EGP average-rate path FY26E-FY30E, ~6%/yr depreciation from the FY2025 average of 49.5. DELIBERATELY BELOW covered-interest parity, which on the 22.31% EGP vs ~4.3% USD rate gap implies ~17%/yr \u2014 the base case assumes the CBE's disinflation path largely closes that gap rather than the pound absorbing it. The parity path is carried as an explicit sensitivity because it moves the valuation more than any operating driver",
+   "date": "2026-08-05",
+   "ring": "House"
+  },
+  "fx_fy25_avg": {
+   "value": 49.5,
+   "source": "FY2025 average USD/EGP. The audited FY2024 note discloses closing 50.91 / average 43.96 for 2024 and closing 30.96 / average 30.59 for 2023; 49.5 is the 2025 average consistent with the observed path",
+   "date": "2026-08-05",
+   "ring": "House"
+  },
+  "seg_share_fy30": {
+   "value": {
+    "wc": 0.56,
+    "ec": 0.28,
+    "ep": 0.065,
+    "ds": 0.07,
+    "ii": 0.025
+   },
+   "source": "FY30E segment mix: a modest drift out of wires & cables into the higher-margin digital, electrical-products and infrastructure lines, consistent with the company's stated three-year plan to broaden the portfolio. Interpolated linearly from the FY2025 mix",
+   "date": "2026-08-05",
+   "ring": "House"
+  },
+  "seg_ebitda_margin_path": {
+   "value": {
+    "wc": [
+     0.091,
+     0.0925,
+     0.095,
+     0.098,
+     0.1
+    ],
+    "ec": [
+     0.056,
+     0.058,
+     0.061,
+     0.063,
+     0.065
+    ],
+    "ep": [
+     0.345,
+     0.345,
+     0.345,
+     0.345,
+     0.345
+    ],
+    "ds": [
+     0.177,
+     0.18,
+     0.182,
+     0.1835,
+     0.185
+    ],
+    "ii": [
+     0.565,
+     0.565,
+     0.565,
+     0.565,
+     0.565
+    ]
+   },
+   "source": "Segment EBITDA margins FY26E-FY30E = segment gross margin less the 3.5%-of-revenue operating load, then allowed to recover gently as the copper-driven revenue inflation of 2024-25 washes out of the denominator and the mix shifts. The wires & cables terminal margin of 10.0% sits well below the FY2024 windfall (14.3%, struck on devaluation inventory gains) and marginally above the FY2025 trough",
+   "date": "2026-08-05",
+   "ring": "House"
+  },
+  "nwc_pct": {
+   "value": 0.23,
+   "source": "Net working capital as a share of revenue, held flat at the historical level. Computed from the audited balance sheets: FY2023 24.1% and FY2024 23.1% (inventories + contract assets + receivables less payables less contract liabilities). This is the single largest cash-flow driver in the model",
+   "date": "2026-08-05",
+   "ring": "House"
+  },
+  "capex_pct": {
+   "value": [
+    0.03,
+    0.029,
+    0.028,
+    0.026,
+    0.024
+   ],
+   "source": "Capex as a share of revenue, tapering. History: FY2023 3.2%, FY2024 3.8% (a capacity burst \u2014 property, plant and equipment rose 53% in one year), Q1-2025 4.7% annualised. The taper assumes the current expansion cycle completes and spending settles toward maintenance plus modest capacity addition",
+   "date": "2026-08-05",
+   "ring": "House"
+  },
+  "dna_pct": {
+   "value": 0.0105,
+   "source": "Depreciation and amortisation as a share of revenue. History: FY2024 0.97%, Q1-2025 1.15%; set at 1.05% rising with the enlarged asset base",
+   "date": "2026-08-05",
+   "ring": "House"
+  },
+  "rf": {
+   "value": 0.2231,
+   "source": "Egypt 10-year local-currency government bond yield, 22.31% (house cost-of-capital reference, cached 21-Jul-2026 print, re-verified 05-Aug-2026)",
+   "date": "2026-07-21",
+   "ring": "Country"
+  },
+  "sov_spread_cds": {
+   "value": 0.034,
+   "source": "Egypt CDS-implied sovereign default spread, Damodaran January-2026 country-premium file, CDS column. Netted out of the local-currency risk-free rate so sovereign default risk is not charged twice",
+   "date": "2026-01-05",
+   "ring": "Country"
+  },
+  "sov_spread_rating": {
+   "value": 0.0637,
+   "source": "Damodaran adjusted default spread on the rating basis (Caa1), January-2026 \u2014 the alternative construction, disclosed for the audit trail",
+   "date": "2026-01-05",
+   "ring": "Country"
+  },
+  "erp_cds": {
+   "value": 0.0941,
+   "source": "Damodaran original country-premium file, Egypt row, CDS column, last updated 5 January 2026 \u2014 total equity risk premium",
+   "date": "2026-01-05",
+   "ring": "Country"
+  },
+  "erp_rating": {
+   "value": 0.1394,
+   "source": "Damodaran original country-premium file, Egypt row, rating basis, January-2026 \u2014 the alternative",
+   "date": "2026-01-05",
+   "ring": "Country"
+  },
+  "erp_ops_weighted": {
+   "value": 0.0737,
+   "source": "Operations-weighted equity risk premium: 30% Egypt at 9.41% and 70% rest-of-world at a 6.5% blended emerging/frontier premium, reflecting where the revenue is actually earned. Shown as an explicit alternative, not the primary, because the standing house rule takes the country premium of the listing and reporting currency",
+   "date": "2026-08-05",
+   "ring": "House"
+  },
+  "beta": {
+   "value": 1.009,
+   "source": "Own-stock tier-1 regression: SWDY weekly log-returns against a 31-name equal-weight EGX composite built from the full covered library, 5-year window. R-squared 0.291, n = 258, standard error 0.098, 90% confidence interval [0.85, 1.17]. Comfortably clears the usability gate and is NOT weak-instrument flagged (R-squared well above 10%, interval span 0.32 against a 1.009 point estimate)",
+   "date": "2026-08-05",
+   "ring": "House"
+  },
+  "kd": {
+   "value": 0.13,
+   "source": "Marginal cost of debt, CURRENCY-BLENDED. The audited FY2024 interest-rate note discloses average rates on financial liabilities of 28.68% in Egyptian pounds, 6.49% in US dollars and 3.92% in euros, and Note 32 confirms 28.6% / 6.45% / 7.45%. The blended rate the company actually pays is far below the Egyptian rate because a majority of the book is hard currency. Set at 13.0% against the independently computed effective rates below, allowing for the CBE's easing since the FY2024 note",
+   "date": "2026-08-05",
+   "ring": "House"
+  },
+  "kd_egp_note": {
+   "value": 0.2868,
+   "source": "Average interest rate on Egyptian-pound financial liabilities, audited FY2024 interest-rate-risk note",
+   "date": "2025-03-12",
+   "ring": "Company"
+  },
+  "kd_usd_note": {
+   "value": 0.0649,
+   "source": "Average interest rate on US-dollar financial liabilities, audited FY2024 interest-rate-risk note",
+   "date": "2025-03-12",
+   "ring": "Company"
+  },
+  "kd_eur_note": {
+   "value": 0.0392,
+   "source": "Average interest rate on euro financial liabilities, audited FY2024 interest-rate-risk note",
+   "date": "2025-03-12",
+   "ring": "Company"
+  },
+  "debt_open_fy24": {
+   "value": 41167.5,
+   "source": "Loans and credit facilities at 1 January 2024, financing-liability reconciliation, audited FY2024 note 32",
+   "date": "2025-03-12",
+   "ring": "Company"
+  },
+  "debt_close_fy24": {
+   "value": 58796.8,
+   "source": "Loans and credit facilities at 31 December 2024, financing-liability reconciliation, audited FY2024 note 32 (excludes 286.1 of lease liabilities)",
+   "date": "2025-03-12",
+   "ring": "Company"
+  },
+  "int_exp_fy24": {
+   "value": 7706.9,
+   "source": "Interest expense on loans and credit facilities, audited FY2024 note 32 financing-liability reconciliation",
+   "date": "2025-03-12",
+   "ring": "Company"
+  },
+  "debt_q1_25": {
+   "value": 55149.9,
+   "source": "Loans and credit facilities at 31 March 2025: the FY2024 closing balance of 58,796.8 less the 3,646.9 net repayment shown in the Q1-2025 interim cash flow statement",
+   "date": "2025-05-26",
+   "ring": "Company"
+  },
+  "kd_path": {
+   "value": [
+    0.13,
+    0.122,
+    0.115,
+    0.11,
+    0.106
+   ],
+   "source": "Forward cost-of-debt path FY26E-FY30E on the blended book. The Egyptian leg follows the CBE easing cycle (main operation rate 19.50%, held since April 2026 after three consecutive pauses) toward the 7% (2026) and 5% (2028) inflation targets; the hard-currency leg is broadly flat. The discount-rate glide takes its shape from this path by construction rather than being invented separately",
+   "date": "2026-08-05",
+   "ring": "House"
+  },
+  "kd_term": {
+   "value": 0.105,
+   "source": "Terminal blended cost of debt: ~45% Egyptian pound at the 15% long-run Egyptian corporate-borrowing norm and ~55% hard currency at ~6.5%",
+   "date": "2026-08-05",
+   "ring": "House"
+  },
+  "rf_term": {
+   "value": 0.105,
+   "source": "Terminal risk-free rate, norm-built: the CBE's own stated medium-term inflation target of 5% plus the standard ~5.5pp emerging-market real-rate convention. Never a raw historical average and never reverse-engineered from a price",
+   "date": "2026-08-05",
+   "ring": "House"
+  },
+  "erp_term": {
+   "value": 0.07,
+   "source": "Terminal equity risk premium, normalised below the currently elevated crisis-era level toward the rating-class norm; never held flat into perpetuity",
+   "date": "2026-08-05",
+   "ring": "House"
+  },
+  "wd_term": {
+   "value": 0.25,
+   "source": "Terminal debt weight D/(D+E), NORMALISED rather than today's weights. The company runs a gross debt book sized to fund working capital but carries very large offsetting cash, so its net leverage is light; 25% is the steady-state structure for a diversified industrial of this scale",
+   "date": "2026-08-05",
+   "ring": "House"
+  },
+  "g_term": {
+   "value": 0.05,
+   "source": "Terminal growth, 5% \u2014 the standing centre for established names in this market post-disinflation, sensitised 3-7%. Note this is an EGP-NOMINAL rate struck against a terminal risk-free rate that itself embeds 5% inflation, so the base case assumes approximately zero real terminal growth: a deliberate conservatism for a company whose revenue is majority hard-currency",
+   "date": "2026-08-05",
+   "ring": "House"
+  },
+  "ev_ebitda_just": {
+   "value": 6.5,
+   "source": "Justified EV/EBITDA on mid-cycle FY27E EBITDA. The company's own trailing multiple is ~7.9x; listed cable and electrical-equipment peers trade 8-11x and Riyadh Cables ~14x on earnings. 6.5x applies an Egyptian-market discount for sovereign, currency-convertibility and disclosure risk. Bear 5.5x / bull 8.0x",
+   "date": "2026-08-05",
+   "ring": "House"
+  },
+  "pe_just": {
+   "value": 9.0,
+   "source": "Justified through-cycle P/E on normalised earnings. Trailing is ~13.0x. 9.0x reflects a high-quality franchise held back by an Egyptian cost of equity near 28%. Bear 7.0x / bull 11.5x",
+   "date": "2026-08-05",
+   "ring": "House"
+  },
+  "roe_sust": {
+   "value": 0.235,
+   "source": "Sustainable return on equity for the book lens. Trailing ROE is ~27.5% on average parent equity; the FY2023-24 prints were flattered by devaluation inventory gains, so the sustainable rate is struck below them",
+   "date": "2026-08-05",
+   "ring": "House"
+  },
+  "lens_weights": {
+   "value": {
+    "dcf": 0.45,
+    "relative": 0.2,
+    "normalized": 0.2,
+    "book": 0.15
+   },
+   "source": "DCF primary for an operating manufacturer with a long, contracted order book; the relative and normalised-earnings lenses carry equal secondary weight and the book lens least, because reported book value is distorted by three years of currency translation",
+   "date": "2026-08-05",
+   "ring": "House"
+  },
+  "backlog_usd_bn": {
+   "value": 6.5,
+   "source": "Group project backlog approximately USD 6.5bn, above the group's typical historical range (company 2025 commentary)",
+   "date": "2026-03",
+   "ring": "Company"
+  },
+  "ownership": {
+   "value": {
+    "family": 0.7818,
+    "float": 0.2037,
+    "electra": 0.0145
+   },
+   "source": "Shareholder structure at 31 December 2024 and unchanged at 31 March 2025: El Sewedy family 78.18%, free float 20.37%, Electra Investment Holding 1.45%",
+   "date": "2025-05-26",
+   "ring": "Company"
+  }
+ },
+ "hist_is": {
+  "FY23": {
+   "rev": 152186.2,
+   "gp": 29077.3,
+   "ebitda": 20035.1,
+   "dna": 2296.0,
+   "ebit": 17739.1,
+   "fin": -2124.4,
+   "assoc": 603.6,
+   "ebt": 16218.3,
+   "tax": -5080.4,
+   "pat": 11138.0,
+   "nci": 1022.2999999999993,
+   "npa": 10115.7
+  },
+  "FY24": {
+   "rev": 231981.8,
+   "gp": 43898.5,
+   "ebitda": 31601.600000000002,
+   "dna": 2259.9,
+   "ebit": 29341.7,
+   "fin": -3515.4,
+   "assoc": 1132.4,
+   "ebt": 26958.7,
+   "tax": -8121.5,
+   "pat": 18837.2,
+   "nci": 1375.7999999999993,
+   "npa": 17461.4
+  },
+  "FY25": {
+   "rev": 281049.0,
+   "gp": 40720.0,
+   "ebitda": 30915.39,
+   "dna": 2951.0145,
+   "ebit": 27964.3755,
+   "fin": -3400.0,
+   "assoc": 1302.26,
+   "ebt": 25866.635499999997,
+   "tax": -6686.635499999997,
+   "pat": 19180.0,
+   "nci": 1850.0,
+   "npa": 17330.0
+  }
+ },
+ "hist_bs": {
+  "FY23": {
+   "ppe": 18009.2,
+   "inv": 30881.8,
+   "ca": 16179.6,
+   "recv": 46591.9,
+   "cash": 25552.0,
+   "assets": 151448.7,
+   "debt": 41766.5,
+   "pay": 31938.1,
+   "cl": 25060.3,
+   "eqp": 35724.5,
+   "nci": 2384.0,
+   "nd": 14768.0,
+   "nwc": 36654.90000000001
+  },
+  "FY24": {
+   "ppe": 27543.8,
+   "inv": 56795.9,
+   "ca": 18052.0,
+   "recv": 86736.3,
+   "cash": 38180.0,
+   "assets": 249527.1,
+   "debt": 59082.9,
+   "pay": 54808.2,
+   "cl": 53281.1,
+   "eqp": 55274.9,
+   "nci": 4251.8,
+   "nd": 20028.0,
+   "nwc": 53494.90000000002
+  },
+  "FY25": {
+   "ppe": 33024.2555,
+   "assets": 311090.0,
+   "debt": 71616.72053413192,
+   "cash": 51827.72053413192,
+   "eqp": 70464.12212399999,
+   "nci": 5851.8,
+   "nd": 19789.0,
+   "nwc": 64641.270000000004,
+   "debt_methods": {
+    "residual": 76165.80577232633,
+    "revenue_scaled": 71579.70996905792,
+    "cash_implied": 67104.64586101151
+   }
+  }
+ },
+ "fcst": {
+  "years": [
+   "FY26E",
+   "FY27E",
+   "FY28E",
+   "FY29E",
+   "FY30E"
+  ],
+  "rev": [
+   319084.298,
+   362620.66176000005,
+   408916.1772360001,
+   455747.12478288007,
+   505541.5046987762
+  ],
+  "dom": [
+   96118.75800000003,
+   107653.00896000005,
+   118418.30985600007,
+   129075.95774304008,
+   139402.0343624833
+  ],
+  "fgn_usd": [
+   4371.873333333333,
+   4721.6232,
+   5052.136824,
+   5355.2650334400005,
+   5676.580935446401
+  ],
+  "fgn_egp": [
+   222965.53999999998,
+   254967.6528,
+   290497.86738,
+   326671.16703984,
+   366139.47033629287
+  ],
+  "ebitda": [
+   35820.40329348,
+   41591.50204188672,
+   48218.577787314665,
+   55190.97681120677,
+   62535.48413123862
+  ],
+  "ebitda_margin": [
+   0.11225999999999998,
+   0.114697,
+   0.11791800000000002,
+   0.12109999999999999,
+   0.12370000000000002
+  ],
+  "dna": [
+   3350.3851290000002,
+   3807.516948480001,
+   4293.619860978001,
+   4785.344810220241,
+   5308.1857993371505
+  ],
+  "ebit": [
+   32470.018164479996,
+   37783.98509340672,
+   43924.95792633666,
+   50405.63200098653,
+   57227.29833190147
+  ],
+  "nopat": [
+   24352.51362336,
+   28337.98882005504,
+   32943.71844475249,
+   37804.224000739894,
+   42920.4737489261
+  ],
+  "capex": [
+   9572.52894,
+   10515.999191040002,
+   11449.652962608003,
+   11849.425244354881,
+   12132.996112770628
+  ],
+  "nwc": [
+   73389.38854,
+   83402.75220480001,
+   94050.72076428002,
+   104821.83870006242,
+   116274.54608071853
+  ],
+  "dnwc": [
+   8748.118539999996,
+   10013.36366480001,
+   10647.96855948001,
+   10771.1179357824,
+   11452.70738065611
+  ],
+  "fcff": [
+   9382.251272360005,
+   11616.142912695028,
+   15139.716783642485,
+   19969.02563082285,
+   24642.95605483652
+  ],
+  "df": [
+   0.7880350006920778,
+   0.6407885540320136,
+   0.536001163652651,
+   0.4577275306928695,
+   0.39753652538441514
+  ],
+  "pv": [
+   7393.542387907464,
+   7443.49142045507,
+   8114.905813403943,
+   9140.372792339163,
+   9796.475125240544
+  ],
+  "fwd_wacc": [
+   0.2689791685924707,
+   0.22978944572831378,
+   0.19549843822217655,
+   0.17100486143207846,
+   0.15141000000000002
+  ],
+  "ppe": [
+   39246.399311,
+   45954.88155356,
+   53110.914655190005,
+   60174.99508932464,
+   66999.80540275812
+  ],
+  "ic": [
+   114094.987851,
+   130816.83375836001,
+   148620.83541947004,
+   166456.0337893871,
+   184733.55148347665
+  ],
+  "roic": [
+   0.213440696055489,
+   0.2166234115740786,
+   0.22166285333931524,
+   0.22711236799365705,
+   0.23233718728546768
+  ],
+  "np_attr": [
+   20159.717043094755,
+   24225.275380097057,
+   28808.829769427128,
+   33532.11007534728,
+   38445.04990129814
+  ],
+  "equity": [
+   85583.90990632106,
+   103752.86644139385,
+   125359.4887684642,
+   150508.57132497465,
+   179342.35875094825
+  ],
+  "net_debt": [
+   18542.22920043165,
+   15648.256021574063,
+   10000.609786297344,
+   435.9120783173039,
+   -12789.33125879109
+  ],
+  "seg_rev": [
+   {
+    "wc": 186345.230032,
+    "ec": 86790.92905600001,
+    "ep": 19464.142178000002,
+    "ds": 19783.226476,
+    "ii": 6700.7702580000005
+   },
+   {
+    "wc": 209594.74249728,
+    "ec": 99358.06132224001,
+    "ep": 22482.48102912,
+    "ds": 23207.722352640005,
+    "ii": 7977.654558720002
+   },
+   {
+    "wc": 233900.05337899207,
+    "ec": 112860.86491713603,
+    "ep": 25761.719165868006,
+    "ds": 26988.467697576005,
+    "ii": 9405.072076428001
+   },
+   {
+    "wc": 257952.8726271101,
+    "ec": 126697.70068964064,
+    "ep": 29167.81598610432,
+    "ds": 30990.80448523584,
+    "ii": 10937.930994789118
+   },
+   {
+    "wc": 283103.2426313147,
+    "ec": 141551.62131565734,
+    "ep": 32860.19780542045,
+    "ds": 35387.905328914334,
+    "ii": 12638.537617469405
+   }
+  ],
+  "seg_ebitda": [
+   {
+    "wc": 16957.415932911998,
+    "ec": 4860.292027136001,
+    "ep": 6715.12905141,
+    "ds": 3501.631086252,
+    "ii": 3785.93519577
+   },
+   {
+    "wc": 19387.5136809984,
+    "ec": 5762.767556689921,
+    "ep": 7756.4559550464,
+    "ds": 4177.390023475201,
+    "ii": 4507.3748256768
+   },
+   {
+    "wc": 22220.50507100425,
+    "ec": 6884.512759945298,
+    "ep": 8887.79311222446,
+    "ds": 4911.9011209588325,
+    "ii": 5313.865723181821
+   },
+   {
+    "wc": 25279.38151745679,
+    "ec": 7981.955143447361,
+    "ep": 10062.89651520599,
+    "ds": 5686.812623040776,
+    "ii": 6179.931012055851
+   },
+   {
+    "wc": 28310.324263131468,
+    "ec": 9200.855385517727,
+    "ep": 11336.768242870055,
+    "ds": 6546.762485849152,
+    "ii": 7140.773753870213
+   }
+  ],
+  "seg_shares": [
+   {
+    "wc": 0.584,
+    "ec": 0.272,
+    "ep": 0.061,
+    "ds": 0.062,
+    "ii": 0.021
+   },
+   {
+    "wc": 0.578,
+    "ec": 0.274,
+    "ep": 0.062,
+    "ds": 0.064,
+    "ii": 0.022000000000000002
+   },
+   {
+    "wc": 0.5720000000000001,
+    "ec": 0.276,
+    "ep": 0.063,
+    "ds": 0.066,
+    "ii": 0.023
+   },
+   {
+    "wc": 0.566,
+    "ec": 0.27799999999999997,
+    "ep": 0.06399999999999999,
+    "ds": 0.06799999999999999,
+    "ii": 0.023999999999999994
+   },
+   {
+    "wc": 0.56,
+    "ec": 0.28,
+    "ep": 0.065,
+    "ds": 0.07,
+    "ii": 0.025
+   }
+  ]
+ },
+ "seg_fy25": {
+  "rev": {
+   "wc": 165818.91,
+   "ec": 75883.23000000001,
+   "ep": 16862.94,
+   "ds": 16862.94,
+   "ii": 5620.9800000000005
+  },
+  "gp": {
+   "wc": 20644.454295,
+   "ec": 6829.4907,
+   "ep": 6407.9172,
+   "ds": 3541.2173999999995,
+   "ii": 3372.588
+  },
+  "names": {
+   "wc": "Wires, Cables & Accessories",
+   "ec": "Engineering & Construction",
+   "ep": "Electrical Products",
+   "ds": "Digital Solutions",
+   "ii": "Infrastructure Investment"
+  },
+  "gp_margin": {
+   "wc": 0.1245,
+   "ec": 0.09,
+   "ep": 0.38,
+   "ds": 0.21,
+   "ii": 0.6
+  }
+ },
+ "wacc": {
+  "rf": 0.2231,
+  "rf_star": 0.1891,
+  "ke_exp": 0.2840469,
+  "ke_rating_alt": 0.30005459999999995,
+  "ke_ops_alt": 0.26346329999999996,
+  "ke_raw_retired": 0.31804689999999997,
+  "kd": 0.13,
+  "kd_at": 0.0975,
+  "we_exp": 0.9192281865443527,
+  "wd_exp": 0.08077181345564736,
+  "wacc_exp": 0.2689791685924707,
+  "wacc_exp_gross": 0.23903786335971022,
+  "wd_gross": 0.24127464267854226,
+  "ke_term": 0.17563,
+  "kd_term": 0.105,
+  "kd_term_at": 0.07875,
+  "wacc_term": 0.15141000000000002,
+  "glide_frac": [
+   0.0,
+   0.33333333333333354,
+   0.6249999999999998,
+   0.8333333333333333,
+   1.0
+  ],
+  "kd_path": [
+   0.13,
+   0.122,
+   0.115,
+   0.11,
+   0.106
+  ],
+  "kd_eff_fy24": 0.15419304691774963,
+  "kd_eff_q1_25": 0.12255554570689628,
+  "w_egp_implied": 0.4351141508743328,
+  "wacc_usd_alt": 0.10119375,
+  "beta": {
+   "beta": 1.0087131974394166,
+   "r2": 0.29126939836703036,
+   "n": 258,
+   "se": 0.09834241826281419,
+   "ci90": [
+    0.8469399193970872,
+    1.170486475481746
+   ],
+   "usable": true,
+   "gate_msg": "passes minimum usability gate",
+   "composite_names": 31,
+   "window_years": 5,
+   "frequency": "weekly",
+   "weak": false,
+   "warnings": []
+  }
+ },
+ "dcf": {
+  "pv_explicit": 41888.78753934619,
+  "tv": 348762.31124632567,
+  "pv_tv": 138645.75739790223,
+  "ev": 180534.5449372484,
+  "tv_share": 0.7679735612156321,
+  "nd": 19789.0,
+  "assoc": 7445.099999999999,
+  "nci_share": 0.09645464025026068,
+  "nci_val": 16222.768150881622,
+  "eq_attr": 151967.87678636677,
+  "ps": 70.98722314447478,
+  "roic_term": 0.23233718728546768,
+  "rr_term": 0.21520446461532688,
+  "g": 0.05,
+  "bear": 40.56529733053896,
+  "bull": 129.36575519444284,
+  "ccy_alt_ps": 134.40437588587668
+ },
+ "terminal_recon": {
+  "roic": {
+   "FY23": 0.2229390349424942,
+   "FY24": 0.24861055008672941,
+   "FY25": 0.20918560093346755
+  },
+  "rr": {
+   "FY23": 0.20793054483046142,
+   "FY24": 0.3172037113507076,
+   "FY25": 0.2643034737032398
+  },
+  "implied_g": {
+   "FY23": 0.04635583499957009,
+   "FY24": 0.07886018916845154,
+   "FY25": 0.05528848097541516
+  },
+  "nopat": {
+   "FY23": 12186.7617,
+   "FY24": 20509.8483,
+   "FY25": 20735.465271082514
+  },
+  "capex": {
+   "FY23": 4830.0,
+   "FY24": 8765.7,
+   "FY25": 8431.47
+  },
+  "ebitda": {
+   "FY23": 20035.1,
+   "FY24": 31601.600000000002,
+   "FY25": 30915.39
+  },
+  "nopat_cagr": 0.304405834905183,
+  "stable_g": 0.05082215798749262,
+  "ceiling": 0.09568109636896358,
+  "crossover_years": 39.418169096299444
+ },
+ "lenses": {
+  "dcf": {
+   "name": "Discounted cash flow (primary)",
+   "bear": 40.56529733053896,
+   "base": 70.98722314447478,
+   "bull": 129.36575519444284,
+   "w": 0.45
+  },
+  "relative": {
+   "name": "Relative multiples",
+   "bear": 91.33860936168992,
+   "base": 108.89288675602924,
+   "bull": 135.22430284753824,
+   "w": 0.2
+  },
+  "normalized": {
+   "name": "Normalised earnings power",
+   "bear": 82.45205242479992,
+   "base": 106.00978168902847,
+   "bull": 135.45694326931417,
+   "w": 0.2
+  },
+  "book": {
+   "name": "Book value and sustainable return",
+   "bear": 26.560509337566597,
+   "base": 33.85989565286666,
+   "bull": 48.47019940598007,
+   "w": 0.15
+  },
+  "central": {
+   "name": "Weighted central",
+   "bear": 26.560509337566597,
+   "base": 80.00376845195521,
+   "bull": 135.45694326931417,
+   "w": 1.0
+  }
+ },
+ "central": 80.00376845195521,
+ "span": [
+  26.560509337566597,
+  135.45694326931417
+ ],
+ "spot": 105.2,
+ "experts": {
+  "e1": {
+   "method_short": "earnings power",
+   "base": 126.9269548097662,
+   "rng": [
+    93.52512459666983,
+    160.32878502286258
+   ],
+   "eps": 13.360732085238547,
+   "margin": 0.118,
+   "rev": 408916.1772360001,
+   "ebit": 43958.489052870005,
+   "interest": 3053.1508080119793,
+   "pe": 9.5
+  },
+  "e2": {
+   "method_short": "owner cash earnings",
+   "base": 44.10008548785977,
+   "rng": [
+    30.62358339411352,
+    63.12895820269197
+   ],
+   "fcff": 19917.232823100618,
+   "fcfe": 16169.786695667879,
+   "ke": 0.22983845,
+   "int_at": 2021.3004040059893
+  },
+  "e3": {
+   "method_short": "cash returns vs cost of capital",
+   "base": 65.21797762845104,
+   "rng": [
+    52.48301668482841,
+    134.40437588587668
+   ],
+   "ic0": 99124.7255,
+   "pv_ep": 6205.189369785807,
+   "pv_ep_term": 61535.50651030472,
+   "ev": 166865.42138009053,
+   "ep": [
+    -6336.661349370024,
+    -1722.3389012114712,
+    3888.5772329709616,
+    9339.433008052383,
+    14949.966718812899
+   ],
+   "spread": [
+    -0.05553847253698169,
+    -0.013166034154235173,
+    0.026164415117138684,
+    0.05610750656157859,
+    0.08092718728546766
+   ]
+  }
+ },
+ "panel_centre": 65.21797762845104,
+ "sens_wg": {
+  "g_grid": [
+   0.03,
+   0.04,
+   0.05,
+   0.06,
+   0.07
+  ],
+  "wacc_grid": [
+   0.13141000000000003,
+   0.14141,
+   0.15141000000000002,
+   0.16141000000000003,
+   0.17141
+  ],
+  "table": [
+   [
+    79.68123670415163,
+    84.01149521077141,
+    89.32569292537724,
+    96.03719178942801,
+    104.82860106010253
+   ],
+   [
+    72.04339267486468,
+    75.27674949702067,
+    79.14809516564586,
+    83.8925318229104,
+    89.87685305037411
+   ],
+   [
+    65.67571614885223,
+    68.12091433767503,
+    70.9872231444748,
+    74.41284756366471,
+    78.60389824960801
+   ],
+   [
+    60.2877965249138,
+    62.15344207203882,
+    64.2996613922935,
+    66.80945629214551,
+    69.80214924602792
+   ],
+   [
+    55.671388675900964,
+    57.10268104309385,
+    58.72104435657906,
+    60.57685226673597,
+    62.740347726923794
+   ]
+  ]
+ },
+ "rel": {
+  "ebitda_mid": 41591.50204188672,
+  "ev_rel": 270344.7632722637,
+  "ev_ebitda_trailing": 7.924817786713997,
+  "pe_trailing": 12.995374065504905,
+  "just_mult": 6.5
+ },
+ "norm": {
+  "margin": 0.12090600000000001,
+  "rev": 362620.66176000005,
+  "ebitda": 43843.013730754574,
+  "ebit": 40035.496782274575,
+  "interest": 4127.401616023958,
+  "np": 25215.93280882912,
+  "eps": 11.778864632114274,
+  "pe": 9.0
+ },
+ "book": {
+  "bvps": 32.915195412828524,
+  "pb_just": 1.0287010369584482,
+  "roe_sust": 0.235,
+  "roe_trailing": 0.2756503065994848,
+  "ke_blend": 0.22983845
+ },
+ "sens": {
+  "g_grid": [
+   0.03,
+   0.04,
+   0.05,
+   0.06,
+   0.07
+  ],
+  "wt_grid": [
+   0.13141000000000003,
+   0.14141,
+   0.15141000000000002,
+   0.16141000000000003,
+   0.17141
+  ],
+  "we_grid": [
+   0.23897916859247068,
+   0.25397916859247066,
+   0.2689791685924707,
+   0.2839791685924707,
+   0.29897916859247065
+  ],
+  "grid_wacc_g": [
+   [
+    79.68123670415163,
+    84.01149521077141,
+    89.32569292537724,
+    96.03719178942801,
+    104.82860106010253
+   ],
+   [
+    72.04339267486468,
+    75.27674949702067,
+    79.14809516564586,
+    83.8925318229104,
+    89.87685305037411
+   ],
+   [
+    65.67571614885223,
+    68.12091433767503,
+    70.9872231444748,
+    74.41284756366471,
+    78.60389824960801
+   ],
+   [
+    60.2877965249138,
+    62.15344207203882,
+    64.2996613922935,
+    66.80945629214551,
+    69.80214924602792
+   ],
+   [
+    55.671388675900964,
+    57.10268104309385,
+    58.72104435657906,
+    60.57685226673597,
+    62.740347726923794
+   ]
+  ],
+  "grid_exp_term": [
+   [
+    94.4411516960047,
+    83.6853102993899,
+    75.06101753174484,
+    67.9939109689225,
+    62.09887513361004
+   ],
+   [
+    91.83793386263895,
+    81.3764819233737,
+    72.98811919556634,
+    66.11423924782518,
+    60.38029098876037
+   ],
+   [
+    89.32569292537724,
+    79.14809516564586,
+    70.9872231444748,
+    64.2996613922935,
+    58.72104435657906
+   ],
+   [
+    86.90043531192872,
+    76.99662618872641,
+    69.05518167214285,
+    62.54733746305856,
+    57.118551623349695
+   ],
+   [
+    84.55837936054179,
+    74.91873786045032,
+    67.18901360200252,
+    60.854577548232044,
+    55.57036546404807
+   ]
+  ],
+  "beta_grid": [
+   0.6,
+   0.8,
+   1.0,
+   1.009,
+   1.15,
+   1.3
+  ],
+  "grid_beta": [
+   97.22796869406002,
+   82.76416632907222,
+   71.43883974103514,
+   70.9872231444748,
+   64.45290812234732,
+   58.46543295327148
+  ],
+  "fx_grid": [
+   0.9,
+   0.95,
+   1.0,
+   1.08,
+   1.2
+  ],
+  "grid_fx": [
+   65.21795282222483,
+   68.10258798334984,
+   70.9872231444748,
+   75.60263940227475,
+   82.52576378897464
+  ],
+  "mg_grid": [
+   -0.02,
+   -0.01,
+   0.0,
+   0.01,
+   0.02
+  ],
+  "grid_margin": [
+   50.76974883395968,
+   60.87848598921724,
+   70.9872231444748,
+   81.09596029973233,
+   91.20469745498988
+  ],
+  "nwc_grid": [
+   0.2,
+   0.215,
+   0.23,
+   0.245,
+   0.26
+  ],
+  "grid_nwc": [
+   72.55623902138905,
+   71.77173108293192,
+   70.9872231444748,
+   70.20271520601769,
+   69.41820726756056
+  ],
+  "roic_grid": [
+   0.15,
+   0.18,
+   0.23233718728546768,
+   0.26,
+   0.3
+  ],
+  "grid_roic": [
+   62.17907809677004,
+   66.32151505438871,
+   70.9872231444748,
+   72.69449498918665,
+   74.60638896962602
+  ]
+ },
+ "step0": {
+  "windows_scored": 17,
+  "windows_prebreak_dropped": 40,
+  "first_origin": "2022-04-05",
+  "last_origin": "2026-04-12",
+  "nu": 6.0,
+  "width_cal": 0.951,
+  "skill_norm": 0.013244249493445825,
+  "skill_raw": 0.01953083919731824,
+  "verdict": "PARITY",
+  "ci_blocks": {
+   "2": [
+    -0.02964205618564476,
+    0.07012911641784238,
+    "PARITY"
+   ],
+   "3": [
+    -0.03168551602325363,
+    0.07002686350215039,
+    "PARITY"
+   ],
+   "4": [
+    -0.03397695849806015,
+    0.07139134467644166,
+    "PARITY"
+   ]
+  },
+  "cov50": 0.5294117647058824,
+  "cov80": 0.6470588235294118,
+  "cov90": 0.8235294117647058,
+  "pit_mean": 0.6080823529411764,
+  "pit_hist": [
+   1,
+   1,
+   1,
+   0,
+   4,
+   1,
+   2,
+   1,
+   1,
+   5
+  ],
+  "w90_ratio": 0.9850905876128455,
+  "market_gate": {
+   "verdict": "PASS",
+   "skill": 0.0158,
+   "ci90": [
+    0.009,
+    0.022
+   ],
+   "fit_date": "2026-07-29",
+   "panel_names": 30,
+   "windows": 494
+  },
+  "dq_log": [
+   "dropped 1 interior stale/no-trade rows"
+  ],
+  "clean_rows": 3735,
+  "density_rows_per_yr": 239.58706533192836,
+  "span_years": 15.589322381930184
+ },
+ "strike": {
+  "anchor_date": "2026-08-05",
+  "spot": 105.2,
+  "nu": 6.0,
+  "width_cal": 0.951,
+  "width_overlay_mult": 0.9384862148825863,
+  "rf_live": 0.195,
+  "q_annual": 0.0095,
+  "horizons": {
+   "1M": {
+    "h": 20,
+    "target_date": "2026-09-05",
+    "grade_date": "2026-09-06",
+    "anchor_vol_ann": 0.5031475481612988,
+    "sigma_h": 0.12650814942864322,
+    "drift_log_h": 0.014057585551059903,
+    "pct": {
+     "p5": 87.47283768142248,
+     "p25": 99.10709529417855,
+     "p50": 106.68249078236488,
+     "p75": 114.89823260667573,
+     "p95": 130.16821819043466
+    },
+    "p_above": 0.55144,
+    "p_up10": 0.23044,
+    "p_dn10": 0.14414,
+    "touch_up10": 0.36882,
+    "touch_dn10": 0.2549
+   },
+   "3M": {
+    "h": 62,
+    "target_date": "2026-11-05",
+    "grade_date": "2026-11-05",
+    "anchor_vol_ann": 0.48380943095587436,
+    "sigma_h": 0.21417970642870274,
+    "drift_log_h": 0.04217275665317971,
+    "pct": {
+     "p5": 78.29508034182929,
+     "p25": 96.93670208976819,
+     "p50": 109.90758247421941,
+     "p75": 124.45811932668164,
+     "p95": 154.19342037630216
+    },
+    "p_above": 0.59456,
+    "p_up10": 0.3878,
+    "p_dn10": 0.21232,
+    "touch_up10": 0.6306,
+    "touch_dn10": 0.446
+   }
+  }
+ },
+ "assert_log": [
+  "==============================================================================",
+  "SWDY \u2014 ASSERT / derivation log",
+  "==============================================================================",
+  "[P&L closure FY2025] EBITDA 30,915 - D&A 2,951 = EBIT 27,964; net finance -3,400; associates 1,302 -> PBT 25,867; implied tax 6,687 = 25.9% (FY24 30.1%, FY23 31.3%) -> PAT 19,180 as disclosed; NCI 1,850",
+  "[EBITDA basis] House EBITDA = operating profit + depreciation and amortisation: FY23 20,035, FY24 31,602. The company's own reported EBITDA (20,668 / 32,772) is higher because it also adds back impairments and certain other charges; the house basis is used throughout so the DCF waterfall reconciles line by line.",
+  "[Working capital] FY23 36,655 (24.1% of revenue), FY24 53,495 (23.1%), FY25 64,641 (23.0%, held at the historical level)",
+  "[FY2025 balance sheet triangulation] equity attributable 70,464 (FY24 55,275 + profit 17,330 - dividend 2,141); total equity 76,316; liabilities 234,774. Gross debt: (A) balance-sheet residual 76,166, (B) revenue-scaled 71,580, (C) implied by revenue-scaled cash 67,105 -> adopted 71,617, cash 51,828. NET debt is NOT triangulated \u2014 it is the disclosed 19,789, and the valuation bridge uses only that.",
+  "[Kd integrity] (i) CURRENCY COMPOSITION \u2014 audited note rates: EGP 28.68%, USD 6.49%, EUR 3.92%. The blended effective rate implies an Egyptian-pound share of 43.5% and a hard-currency share of 56.5%. A single-currency Kd would overstate the cost of debt by roughly 1,326bp.",
+  "[Kd integrity] (ii) INDEPENDENT EFFECTIVE RATES \u2014 FY2024 interest expense 7,707 / average loans and facilities 49,982 = 15.42%; Q1-2025 finance costs annualised / average balance = 12.26%.",
+  "[Kd integrity] (iii) BOUNDS \u2014 adopted Kd 13.00%: within 150bp of the most recent effective rate (74bp) and does not exceed the peak-year effective rate 15.42% by more than 50bp.",
+  "[Cost of equity] rf 22.31% less sovereign CDS spread 3.40% = 18.91%; + beta 1.009 x ERP 9.41% -> Ke 28.40%. Alternatives disclosed: rating basis 30.01%; operations-weighted premium 26.35%; the RETIRED un-netted construction 31.80% (audit trail only).",
+  "[WACC explicit] weights on NET debt 8.1% / equity 91.9% -> 26.90%. On gross debt the weights would be 24.1% / 75.9% -> 23.90%; the net-debt basis is used because it is the same quantity the enterprise-to-equity bridge subtracts, and it is the more conservative of the two.",
+  "[WACC terminal] Ke 17.56% (rf 10.50% + beta x ERP 7.00%); Kd after tax 7.88%; weights 75%/25% -> 15.14%",
+  "[Glide] forward WACC 26.90% -> 22.98% -> 19.55% -> 17.10% -> 15.14%; cumulative discount factors 0.7880, 0.6408, 0.5360, 0.4577, 0.3975. The glide fractions are the cost-of-debt path's own cumulative progress, so the shape is inherited rather than being a second free parameter.",
+  "[Revenue build] FY2025 splits 84,315 domestic + 196,734 foreign (USD 3,974mn at 49.5). Forecast total revenue 319,084 -> 362,621 -> 408,916 -> 455,747 -> 505,542 (growth +13.5%, +13.6%, +12.8%, +11.5%, +10.9%)",
+  "[Segment mix] FY2025 segment gross margins blend to 14.52% against the derived group gross margin of 14.49%. Forecast group EBITDA margin 11.23% -> 11.47% -> 11.79% -> 12.11% -> 12.37%",
+  "[Terminal growth reconciliation] historical ROIC 22.3% / 24.9% / 20.9%; reinvestment rate 20.8% / 31.7% / 26.4%; implied g 4.6% / 7.9% / 5.5%. Check (a): actual NOPAT CAGR FY23-FY25 = +30.4%. Check (b): implied g from STABLE years only (FY24 excluded as a debt-funded capacity burst, reinvestment 32%) = 5.1%. Adopted terminal g 5.0%.",
+  "[Terminal value] terminal ROIC 23.2%; required reinvestment rate g/ROIC = 21.5%; terminal NOPAT 45,066; TV 348,762 capitalised at the terminal WACC and discounted at the YEAR-5 factor 0.3975 (one date, one price of time) -> PV 138,646. Terminal value is 77% of enterprise value.",
+  "[Terminal ceiling] the domestic leg is 28% of FY30E revenue; a blended long-run nominal ceiling is 9.6% (15% Egyptian nominal on the domestic leg, 7.5% world nominal on the export leg). Adopted g of 5% sits below it. If the recent NOPAT CAGR of 30% were floated as a TERMINAL rate, the domestic revenue leg alone would overtake Egypt's entire nominal GDP in about 39 years \u2014 arithmetic necessity, not a modelling opinion.",
+  "[Bridge] EV 180,535 - net debt 19,789 + associates at carrying value 7,445 = 168,191; less minority interests at their 9.6% share of group profit = 16,223 -> equity attributable 151,968 = EGP 70.99/share against a spot of 105.20 (-33%).",
+  "[Currency-of-discounting alternative] discounting the ~72% hard-currency cash flow leg at a USD WACC of 10.12% with 3.5% terminal growth, and the domestic leg unchanged, gives EGP 134.40/share (+28% vs spot). This is disclosed as the alternative the market appears to be applying, not as the primary read.",
+  "[DCF scenarios] bear 40.57 / base 70.99 / bull 129.37 EGP per share",
+  "[Synthesis] weighted central EGP 80.00; full span across lenses and scenarios 26.56 - 135.46; spot 105.20 (-24% to the central).",
+  "[Forecast equity] attributable profit 20,160, 24,225, 28,809, 33,532, 38,445; net debt path 18,542, 15,648, 10,001, 436, -12,789 (25% payout assumed). Net debt / EBITDA falls from 0.64x to -0.20x.",
+  "[Expert panel] Expert 1 126.93 [93.53-160.33]; Expert 2 44.10 [30.62-63.13]; Expert 3 65.22 [52.48-134.40]; panel median 65.22 (-38% vs spot)"
+ ]
+}
