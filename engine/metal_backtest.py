@@ -512,6 +512,18 @@ def build(site_key):
           f"carry = {prof.rf_live*100:.2f}% live anchor")
     if ov:
         h3 += "  \u00b7  per-name fit override in force"
+    # SELF-GRADED DISCLOSURE (04-Aug-2026). A market with one covered name has
+    # nothing to leave out, so panel_refresh's LONO branch falls back to the
+    # pooled -- i.e. this name's own -- fit, and the verdict grades itself.
+    # XPT/PLATINUM is the live case. Merging it into XAU was tested and NOT
+    # adopted (it narrows gold's cone 3.3% and trips the materiality gate on
+    # platinum at 8.9%), so the circularity is stated on the panel instead of
+    # being traded for a worse cone -- the same disclose-don't-force call made
+    # for gold's recent regime. Reads the live panel, so it disappears by
+    # itself the day a second name joins that market.
+    if len(fc.get(mkt, {}).get('panel_names', [])) < 2:
+        h3 += ("  \u00b7  \u26a0 SELF-GRADED: single-name panel, no "
+               "leave-one-out possible \u2014 this verdict is circular")
     out = os.path.join(ROOT, 'assets', f'calibration_{panel_key}.png')
     r = render(mkt, ser, disp, nu, wc, h2, h3, out, spacing='postbreak')
     return r
