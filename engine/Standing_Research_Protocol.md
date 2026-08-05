@@ -452,6 +452,15 @@ terminal g.
 historical reconciliation table + the two stated check numbers shown as receipts is a **QC FAIL**
 going forward.
 
+**6. [NEW 05-Aug, per instruction — ELEC study] TV-share disclosure in the study DOCUMENT.**
+The code-first rule already requires terminal value as a % of EV to be computed and printed in
+the ASSERT log (engine-side). This clause extends it to the reader-facing deliverables: **every
+study presenting a DCF valuation must state the percentage of the valuation coming from the
+terminal value in the study document itself** — at minimum (i) as a labelled row in the DCF
+EV→equity bridge table, and (ii) in the summary valuation table alongside the DCF lens (both
+Word and Excel; the Excel cell links live to the DCF sheet, never typed). A DCF presented
+anywhere without its TV share visible to the reader is a QC FAIL (extends gate item (g)).
+
 ---
 
 ## [NEW 13-Jul] BETA — standing procedure

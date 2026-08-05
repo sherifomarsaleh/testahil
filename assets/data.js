@@ -2,7 +2,7 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-08-05", latest: "DSCW" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
+const SITE = { updated: "2026-08-05", latest: "ELEC" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
 /* ---------- covered tickers ----------
    HORIZON FIELDS (see the HORIZON CONVENTION block above the LEDGER):
@@ -24,6 +24,40 @@ const SITE = { updated: "2026-08-05", latest: "DSCW" };  // latest = the LAST-PU
                            label would then misstate what was simulated.
    ------------------------------------- */
 const TICKERS = {
+  ELEC: {
+    name: "Electro Cable Egypt",
+    nameAr: "\u0627\u0644\u0643\u0627\u0628\u0644\u0627\u062a \u0627\u0644\u0643\u0647\u0631\u0628\u0627\u0626\u064a\u0629 \u0627\u0644\u0645\u0635\u0631\u064a\u0629",
+    code: "EGX:ELEC",
+    spot: 2.19,
+    spotDate: "close 5 Aug 2026",
+    ccy: "EGP",
+    fair: { bear: 0.18, base: 0.34, full: 0.95 },          // 5 Aug 2026 \u2014 four-lens weighted central EGP 0.34 (\u221285% vs spot 2.19). Weights 40/20/20/20: FCFF DCF (floored at 0.01 \u2014 base EV 3,813 does NOT cover net debt 9,805, so intrinsic equity is \u22124.0bn, i.e. \u22121.81/share unfloored, disclosed in the bridge and floored only by limited liability) / relative EV\u2044EBITDA (also floored \u2014 debt exceeds EV at any peer multiple) / normalized earnings power 0.70 / justified P\u2044B on sustainable ROE 0.91. Forecast is BOTTOM-UP ON TONNAGE: revenue = volume \u00d7 (LME copper \u00d7 EGP\u2044USD \u00d7 1.387 fabrication uplift), EBITDA = volume \u00d7 conversion-EBITDA per tonne \u2014 margins are OUTPUTS. Implied volumes fell 24.0kt (96% of the parent plant\u2019s stated capacity, FY23\u201324) \u2192 15.8kt (63%) \u2192 ~9.3kt annualized in 1Q26 (~37%); the collapse is VOLUME, masked by record copper. Discount rate is a sliding schedule: WACC 21.53% explicit \u2192 15.00% terminal (terminal capital structure NORMALIZED to 40% debt, not today\u2019s ~59% distress weight, which would be circular), sovereign CDS netted out of the risk-free rate, own-stock beta 0.964 (R\u00b2 0.222, n 257). Terminal value is ROIC-consistent (g = ROIC \u00d7 RR exactly) and carries 82% of EV \u2014 high, and stated: the explicit years are working-capital-suppressed. Terminal ROIC 9.2% sits BELOW the 15.0% terminal WACC, so the growth gradient inverts (more growth subtracts value) \u2014 construction, not error. NET DEBT IS TRIANGULATED, NOT DISCLOSED: 9,805 = drawn debt 10,465 (FY25 total liabilities 12,360 less non-debt liabilities ~1,890) less cash ~665, cross-checked by a cash-flow roll-forward (9,803) and against the disclosed \u201cEGP 10.9bn facilities\u201d read as fully drawn (10,235); range 9,120\u201310,360 is worth ~\u00b10.19/share and the residual risk is SKEWED ADVERSE. Copper is held FLAT AT THE MARKET (~$14,000/t LME cash, 3\u20134 Aug) \u2014 a \u201cno house view\u201d forecast must anchor on the tape. Modelled book equity breaches solvency by FY29E on the base case. full = weighted bull central; even that sits 57% below spot.
+    dist: {
+      t20: { label:"1 month",   p5:1.91, p25:2.10, p50:2.22, p75:2.35, p95:2.59, resolve:"2026-09-06" },
+      t60: { label:"3 months",  p5:1.71, p25:2.06, p50:2.29, p75:2.55, p95:3.07, resolve:"2026-11-05" }
+    },
+    hz: { h1:20, h3:62, l1:"1 month", l3:"3 months", cal:true },
+    touch: [ /* level, P(touch) 1-month %, 3-month % \u2014 descending */
+      [2.75, 3, 22], [2.50, 14, 47], [2.35, 40, 70], [2.05, 31, 54], [1.90, 8, 27], [1.70, 1, 9]
+    ],
+    levels: { res:[2.31, 2.42, 2.67], sup:[2.15, 2.05, 1.90] },
+    tech: {
+      trend: "Mixed against the moving-average stack, below a falling 200-day",
+      summary: "The price closed 2.19 above a rising 20-day (2.18) and a flat 50-day (2.14), but below a falling 200-day (2.40). Momentum is neutral: RSI(14) is ~54 and the daily ATR near 0.05 (~2.3%) points to a normal tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+0.01 / +0.01 / \u22120.00). Over the last year it has ranged 1.90\u20133.36; the last close sits 35% below that high and 15% above that low.",
+      bull: "A daily close back above 2.31 would clear the nearest resistance and open the 2.67 zone.",
+      bear: "A close below 2.15 would break the nearest support and open the 1.90 zone."
+    },
+    asof: {
+      mc:   { data:"2026-08-05", computed:"2026-08-05" },
+      tech: { data:"2026-08-05", computed:"2026-08-05" }
+    },
+    files: {
+      study: "files/ELEC_Valuation_Study_05-08-2026_public.docx?v=0508",
+      model: "files/ELEC_Valuation_Study_05-08-2026_public.xlsx?v=0508",
+      pdf:   "files/ELEC_Valuation_Study_05-08-2026_public.pdf?v=0508",
+      biblio:"files/ELEC_Source_Register_05-08-2026.pdf?v=0508"
+    }
+  },
   CLHO: {
     name: "Cleopatra Hospitals Group",
     nameAr: "\u0645\u062c\u0645\u0648\u0639\u0629 \u0645\u0633\u062a\u0634\u0641\u064a\u0627\u062a \u0643\u0644\u064a\u0648\u0628\u0627\u062a\u0631\u0627",
@@ -2453,6 +2487,31 @@ const LEDGER = [
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   ,
     grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-10-12) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
+  },
+  // ---- ELEC · equity (EGX Egypt) · cycle 1 (5 Aug 2026 published study; MC robust PASS — own fitted verdict, scale-normalized skill +0.0875, CI90 positive across bootstrap blocks {2,3,4}) ----
+  {
+    instrument:"ELEC", asset_class:"equity",
+    anchor_date:"2026-08-05", run_date:"2026-08-05", anchor_price:2.19, ccy:"EGP",
+    horizon_label:"1 month", grade_date:"2026-09-06", grade_basis:"projected", horizon_days:20,
+    cycle_no:1, anchor_vol:0.3605,
+    note:"First coverage, 5-Aug-2026 — struck on the production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry, immaterial here — ELEC has never distributed in the disclosed record). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count. Name-level calibration: robust PASS — 17 non-overlapping post-break quarterly origins, scale-normalized CRPS skill +8.8% vs the carry-anchored random walk, bootstrap CI90 entirely above zero at block sizes {2,3,4}; PIT mean 0.555, chi2(9)=9.5 p~0.40.",
+    p5:1.91, p25:2.1, p50:2.22, p75:2.35, p95:2.59,
+    touch:{ "+5":54, "+10":27, "+15":12, "+20":6, "-5":40, "-10":15 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"ELEC", asset_class:"equity",
+    anchor_date:"2026-08-05", run_date:"2026-08-05", anchor_price:2.19, ccy:"EGP",
+    horizon_label:"3 months", grade_date:"2026-11-05", grade_basis:"projected", horizon_days:62,
+    cycle_no:1, anchor_vol:0.398,
+    note:"First coverage, 5-Aug-2026 — struck on the production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry, immaterial here — ELEC has never distributed in the disclosed record). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count. Name-level calibration: robust PASS — 17 non-overlapping post-break quarterly origins, scale-normalized CRPS skill +8.8% vs the carry-anchored random walk, bootstrap CI90 entirely above zero at block sizes {2,3,4}; PIT mean 0.555, chi2(9)=9.5 p~0.40.",
+    p5:1.71, p25:2.06, p50:2.29, p75:2.55, p95:3.07,
+    touch:{ "+5":79, "+10":60, "+15":45, "+20":32, "-5":62, "-10":39 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   },
   // ---- DSCW · equity (EGX Egypt) · cycle 1 (19 Jul 2026 published study; BOUNDARY(PARITY-flagged) — own fitted verdict, first-coverage name) ----
   // ---- CLHO \u00b7 equity (EGX Egypt) \u00b7 cycle 1 (13 Jul 2026 published study; PARITY \u2014 own fitted verdict, 29-name EG panel) ----

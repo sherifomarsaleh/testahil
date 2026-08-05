@@ -6,7 +6,15 @@
     <atom:link href="https://testahil.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>دراسات تقييم تعليمية مستقلة لأسهم البورصة المصرية — توزيعات احتمالية، وليست توصيات. Educational EGX valuation studies — distributions, not tips.</description>
     <language>ar</language>
-    <lastBuildDate>Mon, 20 Jul 2026 08:30:00 +0300</lastBuildDate>
+    <lastBuildDate>Wed, 05 Aug 2026 08:30:00 +0300</lastBuildDate>
+
+    <item>
+      <title>Electro Cable Egypt (ELEC): Valuation Study — is it worth it?</title>
+      <link>https://testahil.com/elec.html</link>
+      <guid isPermaLink="true">https://testahil.com/elec.html</guid>
+      <description>Latest 2.19 · 3-month median 2.29 · range 1.71–3.07 EGP — educational analysis, a distribution not a recommendation.</description>
+      <pubDate>Wed, 05 Aug 2026 08:30:00 +0300</pubDate>
+    </item>
 
     <item>
       <title>Platinum (XPT/USD): Valuation Study — is it worth it?</title>
