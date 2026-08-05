@@ -29,6 +29,7 @@ const MARKET_OF = {
  "EFID": "EG",
  "EFIH": "EG",
  "EGAL": "EG",
+ "ELEC": "EG",
  "ELM": "SA",
  "EMAAR": "AE",
  "EMAARDEV": "AE",
