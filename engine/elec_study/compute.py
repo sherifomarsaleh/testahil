@@ -49,12 +49,19 @@ INP = dict(
     liab_fy24=I(11300.0, "Simply Wall St health page (total liabilities)", "2025-05-22", "Company"),
     assets_fy23_est=I(10000.0, "House estimate — bounded by 9M-23 disclosed 8,060 and FY24 14,970; "
                       "no FY23 year-end print found (flagged)", "2026-08-05", "House"),
-    debt_fy25=I(10900.0, "Bank credit facilities held at end-2025: 'obtained credit facilities of EGP 10.9bn "
-                "during 2025 vs 8.96bn in 2024, from several local banks' (almalnews/amwalalghad FY25 "
-                "results coverage of the EGX filing). Read as the drawn year-end balance because the 2024 "
-                "comparative (8.96bn) matches the FY24 balance-sheet debt print (~9.0bn, SWS) almost "
-                "exactly; interpretation flagged and the FY24-vintage alternative shown in sensitivity",
+    facilities_fy25=I(10900.0, "Disclosed: 'obtained credit facilities of EGP 10.9bn during 2025 vs "
+                "8.96bn in 2024, from several local banks' (almalnews/amwalalghad FY25 results coverage "
+                "of the EGX filing). AMBIGUOUS between drawn balance and limits granted — no longer used "
+                "directly as the debt anchor; retained as the disclosure record and upper cross-check "
+                "(the triangulated drawn debt below implies ~96% drawn if these are limits)",
                 "2026-03-18", "Company"),
+    debt_fy25=I(10465.0, "TRIANGULATED drawn debt (rollforward_fy25.py): total liabilities 12,360 "
+                "(disclosed assets 16,460 - rolled equity 4,100) less non-debt liabilities ~1,890 "
+                "(FY24's 2,410 scaled with purchase value, -21.5%). Independent of the ambiguous "
+                "facilities sentence; sits at 96% of the disclosed 10.9bn facilities",
+                "2026-08-05", "House"),
+    cash_fy25_est=I(665.0, "House: midpoint of [500 stress floor, 830 FY24-flat] — a no-dividend, "
+                    "liquidity-conserving year argues below the FY24 print (827.6)", "2026-08-05", "House"),
     q1_26_cogs=I(1975.0, "Q1-2026 cost of sales (almalnews/alborsaanews/hapijournal, 30-Jun-2026, of the "
                  "EGX interim filing)", "2026-06-30", "Company"),
     q1_26_gp=I(119.066, "Q1-2026 gross profit — 5.7% margin vs 33.1% in Q1-25 (same sources)", "2026-06-30", "Company"),
@@ -73,16 +80,24 @@ INP = dict(
                         "SWS) x ~22% 2023 corridor-linked rate", "2026-08-05", "House"),
     dna_pct=I(0.013, "House: FY24 EBITDA 3,490 - EBIT 3,400 = ~90mn D&A on 13.8bn revenue (~0.7%); "
               "forecast set at 1.3% of revenue to fund modest PP&E renewal", "2026-08-05", "House"),
-    payables_fy25_est=I(1460.0, "Rebalanced on the disclosed FY25 debt: liabilities (16,460 assets - "
-                        "4,100 equity) = 12,360; less debt 10,900 => non-debt liabilities 1,460. Thin "
-                        "payables are consistent with LC/bank-financed copper imports", "2026-08-05", "House"),
-    nwc_fy25_est=I(12640.0, "House derivation on the disclosed debt: FY25 assets 16,460 - cash ~700 - "
-                   "PP&E ~680 - other ~980 = gross WC ~14,100; less non-debt liabilities ~1,460 => "
-                   "~12,640 (117% of FY25 revenue; FY24 was ~76%)", "2026-08-05", "House"),
-    net_debt_fy25_est=I(10200.0, "Disclosed FY25 bank facilities 10,900 less estimated cash ~700. The "
-                        "prior derivation (~8,800) understated debt by ~1.4bn; the FY24-vintage sourced "
-                        "alternative (9,000 - 827.6 = 8,172) is shown in sensitivity — the ND anchor is "
-                        "worth ~±EGP 0.6/share and is the single largest input risk", "2026-08-05", "House"),
+    payables_fy25_est=I(1890.0, "Non-debt liabilities rolled from FY24's 2,410 on purchase value "
+                        "(volume -34%, copper-in-EGP +20% => x0.785); thin payables consistent with "
+                        "LC/bank-financed copper imports (rollforward_fy25.py)", "2026-08-05", "House"),
+    nwc_fy25_est=I(12245.0, "House derivation on the triangulated balance sheet: FY25 assets 16,460 - "
+                   "cash 665 - PP&E ~680 - other ~980 = gross WC ~14,135; less non-debt liabilities "
+                   "~1,890 => ~12,245 (113% of FY25 revenue; FY24 was ~76%)", "2026-08-05", "House"),
+    net_debt_fy25_est=I(9805.0, "TRIANGULATED (rollforward_fy25.py, replacing the facilities-sentence "
+                        "reading 10,200): (A) balance-sheet residual — disclosed assets 16,460 less "
+                        "rolled equity 4,100 (FY24 3,600 + NP 500.3, no dividend) gives liabilities "
+                        "12,360; less non-debt liabilities ~1,890 => drawn debt 10,465; less cash 665 "
+                        "=> 9,802. (B) cash-flow roll-forward from FY24 ND 8,132 + interest 2,150 + "
+                        "tax 145 + capex 210 + dNWC ~2,036 - EBITDA 2,871 => 9,803 (shares the "
+                        "balance-sheet WC decomposition with A — agreement is consistency, not full "
+                        "independence). (C) facilities-as-drawn 10,235 = the upper cross-check. Range "
+                        "9,120-10,360 carried in sensitivity (~±EGP 0.19/sh); the FY24-vintage low "
+                        "alternative 8,172 is REJECTED by the reverse test (needs non-debt liabilities "
+                        "+41% while purchases fell 21%). Falsifier: audited FY25 borrowings note",
+                        "2026-08-05", "House"),
     equity_fy25_est=I(4100.0, "House derivation: FY24 equity 3,600 + FY25 NP 500.3, no dividends "
                       "(company has never paid one)", "2026-08-05", "House"),
 
@@ -130,7 +145,7 @@ INP = dict(
                "disclosed capex any year (flagged gap); FY24 D&A ~0.7% of revenue corroborates a "
                "light fixed-asset base", "2026-08-05", "House"),
     nwc_pct=I([1.12, 1.06, 1.00, 0.94, 0.88],
-              "House: FY25 intensity ~117% of revenue (derived on disclosed debt) gliding to 88% as "
+              "House: FY25 intensity ~113% of revenue (triangulated balance sheet) gliding to 88% as "
               "receivables collect and copper-inflated inventory normalises; FY24 was ~76% — full "
               "reversion NOT assumed; sensitized in the grid", "2026-08-05", "House"),
 
@@ -154,15 +169,15 @@ INP = dict(
            "2026-08-05", "House"),
     kd=I(0.220, "Marginal EGP rate for a levered EGX mid-cap: CBE corridor 19.5-20.0% (held 09-Jul-26) "
          "+ ~2.5pp credit margin; consistent with avg bank lending 21.3% (Jan-26). Cross-checked "
-         "against the two effective-rate computations below (23.5% FY24, 21.7% FY25 on the disclosed "
+         "against the two effective-rate computations below (23.5% FY24, 22.1% FY25 on the triangulated "
          "debt path). NB the Q1-26 P&L implies a much smaller net finance line (~243/qtr) than Q1-25 "
          "(~542/qtr) — unexplained without the statements (possible FX/interest income offset or "
          "capitalised financing); flagged, does not change the marginal rate", "2026-08-05", "House"),
     kd_eff_fy24=I(0.235, "Effective-rate check #1: FY24 interest ~1,700 (EBIT 3,400 / coverage 2.0x, "
                   "SWS) / avg debt ~(5,500e+8,960)/2 = 7,230 => 23.5%", "2026-08-05", "House"),
-    kd_eff_fy25=I(0.217, "Effective-rate check #2: FY25 finance cost ~2,150 (derived, closes P&L to "
-                  "reported NP; independently corroborated by Q1-25's implied ~542/qtr) / avg disclosed "
-                  "debt (8,960+10,900)/2 = 9,930 => 21.7%", "2026-08-05", "House"),
+    kd_eff_fy25=I(0.221, "Effective-rate check #2: FY25 finance cost ~2,150 (derived, closes P&L to "
+                  "reported NP; independently corroborated by Q1-25's implied ~542/qtr) / avg debt "
+                  "(8,960 + triangulated 10,465)/2 = 9,713 => 22.1%", "2026-08-05", "House"),
     debt_ccy_evidence=I("No facility-level disclosure reachable (FS notes on Mubasher/company site "
                         "403-blocked). PRESUMPTION, flagged: predominantly EGP working-capital "
                         "facilities (import LCs settled spot; post-2016 Egyptian cable-sector norm); "
@@ -397,7 +412,7 @@ dcf_bull = run_dcf(ept_shift=+0.30, vol_shift=+0.15, cu_shift=-0.10, nwc_end=0.7
 # Tax only on positive EBT; FY27's small profit is sheltered by the FY26 loss
 # carryforward (Egyptian tax law allows 5-year carryforward) — modelled simply.
 is_fcst = []
-nd_path, cash_path, eq_path = [net_debt], [700.0], [V['equity_fy25_est']]
+nd_path, cash_path, eq_path = [net_debt], [V['cash_fy25_est']], [V['equity_fy25_est']]
 loss_cf = 0.0
 for i, r in enumerate(rows):
     nd_open = nd_path[-1]
@@ -476,7 +491,7 @@ sens_mn = [[run_dcf(ept_shift=m, nwc_end=n) for n in nwc_grid] for m in margin_g
 tg_recon = []
 ic_hist = {'FY23': 0.60 * V['assets_fy23_est'] + 3600 - 2300,   # rough IC = NWC + PP&E ≈ equity+debt
            'FY24': V['equity_fy24'] + V['debt_fy24'] - V['cash_fy24'],
-           'FY25': V['equity_fy25_est'] + 9500 - 700}
+           'FY25': V['equity_fy25_est'] + V['debt_fy25'] - V['cash_fy25_est']}
 nopat_hist = {y: hist_is[y]['ebit'] * (1 - TAX) for y in ('FY23', 'FY24', 'FY25')}
 for y in ('FY23', 'FY24', 'FY25'):
     noph = nopat_hist[y]
@@ -571,7 +586,7 @@ if rr_T >= 1.0 or rr_T <= 0:
 if abs(roic_T * rr_T - V['g_term']) > 1e-9:
     err.append('terminal g != ROIC x RR')
 # plausibility band
-# Band floor 0.10 (was 0.25): with disclosed FY25 debt ~10.9bn against a ~10.5bn EV, the
+# Band floor 0.10 (was 0.25): with triangulated FY25 net debt ~9.8bn against an EV below it, the
 # equity is a thin residual — a deep-distress read is the honest arithmetic for a 2.5x-levered
 # name whose EV barely clears its net debt, not an implausible model output.
 if not (0.10 <= (central['base'] / SPOT) <= 2.5):
@@ -606,7 +621,10 @@ out = dict(
                  debt_fy24=V['debt_fy24'], cash_fy24=V['cash_fy24'],
                  equity_fy24=V['equity_fy24'], liab_fy24=V['liab_fy24'],
                  equity_fy25e=V['equity_fy25_est'], net_debt_fy25e=V['net_debt_fy25_est'],
+                 debt_fy25e=V['debt_fy25'], cash_fy25e=V['cash_fy25_est'],
+                 facilities_fy25=V['facilities_fy25'],
                  nwc_fy25e=V['nwc_fy25_est'], payables_fy25e=V['payables_fy25_est']),
+    rollforward=json.load(open(os.path.join(HERE, 'rollforward_result.json'))),
     interims=dict(q1_26_rev=V['q1_26_rev'], q1_26_np=V['q1_26_np'],
                   q1_25_rev=V['q1_25_rev'], q1_25_np=V['q1_25_np']),
     tonnage=dict(hist_vol=hist_vol, hist_ebitda_per_t=hist_ebitda_per_t,

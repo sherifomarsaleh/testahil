@@ -63,15 +63,16 @@ rich([("The model's read: meaningfully overvalued — the price still pays for d
        "pound-denominated cost base and inventory. FY2025 took the windfall back — revenue −21.5%, net "
        "profit −62% to EGP 500 mn — and 1Q2026 swung to a consolidated net LOSS of EGP 242 mn on sales down "
        "44%. The disclosed 1Q26 lines are blunt: gross margin 5.7% (vs 33.1% a year earlier) and operating profit "
-       "of EGP 1.4 mn — effectively zero. Meanwhile the balance sheet carries EGP 10.9 bn of drawn bank facilities "
-       "(disclosed; up from 8.96 bn a year earlier) against EGP ~4 bn of equity, working capital has swollen to "
-       "~117% of annual revenue (receivables and copper-inflated inventory), and operating cash flow has been "
+       "of EGP 1.4 mn — effectively zero. Meanwhile the balance sheet carries ~EGP 10.5 bn of bank debt "
+       "(triangulated from the disclosed FY25 totals; facilities disclosed at 10.9 bn, up from 8.96 bn a year "
+       "earlier) against EGP ~4 bn of equity, working capital has swollen to "
+       "~113% of annual revenue (receivables and copper-inflated inventory), and operating cash flow has been "
        "negative — at ~22% funding costs, finance expense alone consumes the entire operating line in a soft year. "
        "The valuation is built bottom-up from tonnage: implied volumes fell from ~24,000 t (96% of capacity, "
        "FY23–24) to ~9,500 t annualized in 1Q26 (~38%), and conversion EBITDA collapsed from ~146,000 to "
        "~11,000 EGP per tonne. On that build, discounted at a rate schedule following the central bank's own "
-       "easing path (21.4% gliding to 15.0% terminal, normalized capital structure), the enterprise is worth "
-       "LESS than its disclosed EGP 10.9 bn of bank debt — the intrinsic equity is negative and is floored at "
+       "easing path (21.5% gliding to 15.0% terminal, normalized capital structure), the enterprise is worth "
+       "LESS than its ~EGP 9.8 bn net debt — the intrinsic equity is negative and is floored at "
        f"zero only by limited liability. The normalized-earnings and book lenses ({L['normalized']['base']:.2f} "
        f"and {L['book']['base']:.2f}) assume the balance sheet gets fixed first; even the bull scenario "
        f"({L['central']['bull']:.2f} central) sits {abs(L['central']['bull']/spot-1)*100:.0f}% below today's price. "
@@ -131,7 +132,7 @@ rows = [
  ['Shares · market cap', f"3,313.5 mn (par EGP 0.20) · ~EGP {D2['mktcap']/1000:.1f} bn"],
  ['FY25 revenue / net profit', 'EGP 10,819 mn (−21.5% YoY) · EGP 500.3 mn (−62%; 4.6% margin)'],
  ['1Q26 revenue / net profit', 'EGP 2,094 mn (−43.8%) · gross margin 5.7% (vs 33.1%) · net LOSS EGP 241.7 mn (vs +451.4 mn)'],
- ['Balance sheet', 'FY25: assets EGP 16.5 bn · drawn bank facilities EGP 10.9 bn (disclosed; 8.96 bn FY24) · equity ~EGP 4.1 bn · ND/E >240%'],
+ ['Balance sheet', 'FY25: assets EGP 16.5 bn · bank debt ~EGP 10.5 bn triangulated (facilities disclosed 10.9 bn; 8.96 bn FY24) · equity ~EGP 4.1 bn · ND/E ~240%'],
  ['52-week range', 'EGP 1.90 – 3.36 (all-time high 4.84, 31-Jan-2024)'],
  ['Ownership', 'Gadwa for Industrial Development + Pioneers-group related parties ~78–81%, distributing down via 2026 block sales; free float ~20% ±3pp'],
  ['Dividends', 'None — the company has never paid a dividend'],
@@ -187,7 +188,7 @@ rows = [
  ['PV of terminal value (at the year-5 factor)', f"{dcf['pv_tv']:,.0f}"],
  ['Enterprise value', f"{dcf['ev']:,.0f}"],
  ['Terminal value as % of EV', f"{dcf['tv_pct']*100:.0f}%"],
- ['less: net debt (FY25: disclosed facilities − est. cash)', f"({dcf['net_debt']:,.0f})"],
+ ['less: net debt (FY25: triangulated — see §1.6 roll-forward)', f"({dcf['net_debt']:,.0f})"],
  ['less: non-controlling interests', f"({dcf['nci']:,.0f})"],
  ['Equity value — INTRINSIC (EV does not cover the debt)', f"({-dcf['eq_unfloored']:,.0f})"],
  ['Equity value — floored at zero (limited liability)', f"{dcf['eq']:,.0f}"],
@@ -197,7 +198,7 @@ table(rows, [4.0, 1.6], first_col_bold=True)
 P(f"Four honesty notes, and they carry the study. First, the base-case DCF says the enterprise is worth EGP "
   f"{abs(dcf['eq_unfloored'])/1000:.1f} bn LESS than its net debt: at record copper (which inflates the working "
   "capital the business must carry) and pre-windfall conversion economics, the discounted cash flows do not cover "
-  "the disclosed EGP 10.9 bn facilities. A share cannot be worth less than zero — limited liability floors the "
+  "the ~EGP 9.8 bn triangulated net debt. A share cannot be worth less than zero — limited liability floors the "
   "equity — so what a holder owns at the base case is an option on the bull scenario, not a claim on current cash "
   f"flows. Second, {dcf['tv_pct']*100:.0f}% of the EV sits in the terminal value, which is why §1.9 grids the "
   f"terminal rate and the this-year rate independently. Third, the terminal is ROIC-consistent and the arithmetic "
@@ -332,10 +333,36 @@ caption('Volume recovery to 64% utilization by FY30E (EETC’s EGP 45 bn plan, t
         '25%. Working capital stays on its intensity glide (112% → 88% of revenue) — copper strength therefore '
         'inflates the working capital the model must fund, which is exactly the mechanism the tonnage build '
         'exists to price. Every driver above is a stated, sensitized house judgment (§1.9).')
+
+P('The net-debt anchor — triangulated, not read off one sentence. The FY25 filing coverage says the company '
+  '“obtained credit facilities of EGP 10.9 bn during 2025” — ambiguous between the drawn balance and limits '
+  'granted. Rather than lean on that sentence, the anchor is rolled forward from the FY24 audited comparatives '
+  '(assets 14,970 · debt 8,960 · cash 828 · equity 3,600) through the four hard disclosed FY25 points: total '
+  'assets 16,460, net profit 500.3, revenue 10,819, and no dividend.', size=10.5)
+rows = [
+ ['Step', 'EGP mn'],
+ ['FY25 equity, rolled (3,600 + 500.3, no dividend, no revaluation history)', '≈ 4,100'],
+ ['FY25 total liabilities (disclosed assets 16,460 − equity)', '12,360'],
+ ['less non-debt liabilities (FY24’s 2,410 scaled with purchase value, −21.5%)', '(≈ 1,890)'],
+ ['= drawn debt, balance-sheet residual', '≈ 10,465'],
+ ['less cash (estimated: 500 stress floor – 830 FY24-flat, midpoint)', '(≈ 665)'],
+ ['= net debt, method A', '≈ 9,800'],
+ ['Cross-check B — cash-flow roll-forward: FY24 net debt 8,132 + interest 2,150 + tax 145 + capex 210 '
+  '+ working-capital build ~2,036 − EBITDA 2,871', '≈ 9,800'],
+ ['Cross-check C — the facilities sentence read as fully drawn, less cash', '≈ 10,235'],
+ ['Anchor carried in the model (A/B central; range 9,120–10,360 in sensitivity)', '9,805'],
+]
+table(rows, [5.0, 1.4], first_col_bold=False, size=8.6)
+caption('Methods A and B share the balance-sheet decomposition of the working-capital build, so their agreement '
+        'is consistency, not full independence; C is the upper cross-check — the triangulated drawn debt sits at '
+        '96% of the disclosed facilities, consistent with the 10.9 bn being near-fully-drawn limits. The reverse '
+        'test rejects holding debt at the FY24 level (net debt ~8.2 bn): that would force non-debt liabilities '
+        'up 41% in a year when purchase value fell 21%. The range is worth ~±EGP 0.19/share; the audited FY2025 '
+        'borrowings note is the named falsifier.')
 H2('1.7  The crux — working capital first, margins second, rates third')
 P('Three judgments drive this valuation, in order of size. FIRST, collection. Working capital stands near '
-  '~EGP 12.6 bn — 117% of a full year’s revenue — against ~76% a year earlier: copper-inflated inventory plus '
-  'receivables that grew as revenue shrank, funded by EGP 10.9 bn of disclosed bank facilities. The DCF’s '
+  '~EGP 12.2 bn — 113% of a full year’s revenue — against ~76% a year earlier: copper-inflated inventory plus '
+  'receivables that grew as revenue shrank, funded by ~EGP 10.5 bn of bank debt (facilities disclosed at 10.9 bn). The DCF’s '
   'FY26E cash flow is dominated by a ~EGP 2.9 bn assumed release as sales contract; if those receivables do not '
   'collect (state-linked customers, dealer credit), the release never happens, debt stays ~EGP 11 bn at 22% '
   'money, and the equity rounds to nothing — that is the bear case’s mechanism, not rhetoric. Each 5 points '
@@ -364,9 +391,9 @@ rows = [
  ['Equity risk premium — Egypt (CDS-based, primary)', f"{coc['erp_cds']*100:.2f}%", 'Damodaran original country-risk file, Jan-2026 (rating-based 13.94% shown in sensitivity)'],
  ['Beta (own regression, weekly, 5yr)', f"{coc['beta']:.3f}", 'vs 30-name equal-weight EGX composite: R² 0.222, n=257, SE 0.113, CI90 [0.78, 1.15] — passes the usability gate; not weak-flagged'],
  ['Cost of equity Ke', f"{coc['ke_cds']*100:.2f}%", '= 18.91 + 0.964 × 9.41'],
- ['Cost of debt Kd (pre-tax, marginal EGP)', f"{coc['kd']*100:.1f}%", 'Corridor + credit margin; checked against effective rates 23.5% (FY24) and 21.7% (FY25, on the disclosed debt path) — inside 150bp'],
+ ['Cost of debt Kd (pre-tax, marginal EGP)', f"{coc['kd']*100:.1f}%", 'Corridor + credit margin; checked against effective rates 23.5% (FY24) and 22.1% (FY25, on the triangulated debt path) — inside 150bp'],
  ['Debt currency', '~100% EGP (presumption, flagged)', 'No facility disclosure reachable; no USD facility found in any search — the gap is stated, not assumed away'],
- ['Weights E / D — explicit window', f"{coc['we']*100:.0f}% / {coc['wd']*100:.0f}%", 'Market cap 7.26 bn vs disclosed FY25 bank facilities 10.9 bn'],
+ ['Weights E / D — explicit window', f"{coc['we']*100:.0f}% / {coc['wd']*100:.0f}%", 'Market cap 7.26 bn vs triangulated FY25 drawn debt 10.5 bn'],
  ['WACC — explicit window (this year)', f"{coc['wacc_exp']*100:.2f}%", 'CDS-primary (rating alternative 23.20%)'],
  ['Terminal rf (norm-built)', f"{coc['rf_term']*100:.1f}%", 'CBE’s own Q4-2028 inflation target 5% + 5.5pp real-rate convention'],
  ['Terminal ERP · terminal Kd', f"{coc['erp_term']*100:.1f}% · {coc['kd_term']*100:.1f}%", 'Normalised below crisis level · Egyptian long-run corporate norm 14–16%'],
@@ -534,11 +561,11 @@ table(rows, [1.9, 1.9, 3.1], first_col_bold=True)
 rich([('Verdict (a fair-value read, not a recommendation). ', dict(bold=True)),
       (f"ELEC reads severely overvalued on fundamentals ({(cb/spot-1)*100:+.0f}% to the central estimate), and the "
        "bottom-up build sharpens the statement: at record copper and pre-windfall conversion economics, the "
-       "enterprise is worth less than its disclosed EGP 10.9 bn of bank debt — the base-case equity is an option, "
+       "enterprise is worth less than its ~EGP 9.8 bn net debt — the base-case equity is an option, "
        "not a claim — and the modelled equity P&L path breaches book solvency by FY29E unless margins or volumes "
        "outrun the base case. Three checkable legs carry the read: the earnings the market capitalises were "
        "devaluation-era windfalls the company has stopped printing (1Q26: gross margin 5.7%, operating profit "
-       "zero); implied volumes have fallen to ~38% of capacity while working capital of ~117% of revenue is "
+       "zero); implied volumes have fallen to ~38% of capacity while working capital of ~113% of revenue is "
        "funded at 22% money; and the controlling group has been selling at EGP 2.00–2.21 throughout 2026. What "
        "would change the read is equally specific: an H1-2026 print showing conversion EBITDA per tonne back "
        "above ~100,000 EGP without currency help, receivables actually collecting (operating cash flow positive, "
@@ -593,13 +620,16 @@ P('Note what the zone table cannot say: nothing in a three-month price map adjud
 # ================= §7 caveats ================================================
 H1('7  Caveats and what would change our mind')
 for head, body in [
- ('The statements gap is narrower than at first build, but still real. ', 'The Q1-2026 income-statement lines and the '
-  'FY25/FY24 bank-facilities balances ARE disclosed (recovered from press coverage of the EGX filings); interest '
-  'expense, capex, the working-capital split and facility-level terms remain DERIVED. The FY24 triangulation closing within 0.8% earns the derivations a place in the model, but a single '
-  'audited disclosure could move the net-debt anchor by ±1 bn — worth ±EGP 0.30/share. Every derived '
+ ('The statements gap is narrower than at first build, but still real. ', 'The Q1-2026 income-statement lines, the '
+  'FY25 totals (assets, profit, no dividend) and the FY25/FY24 facilities figures ARE disclosed (recovered from '
+  'press coverage of the EGX filings); interest expense, capex, the working-capital split and facility-level terms '
+  'remain DERIVED. The FY24 triangulation closing within 0.8% earns the derivations a place in the model, and the '
+  'net-debt anchor is now triangulated three ways off the FY24 audited comparatives rather than read from the '
+  'ambiguous facilities sentence (§1.6) — but the honest range is still EGP 9.1–10.4 bn, worth ~±EGP 0.19/share. '
+  'The audited FY2025 borrowings note is the one document that would settle it. Every derived '
   'line is flagged in §1.6 and the Source Register.'),
  ('The base-case equity P&L path raises a genuine solvency question. ', 'Charging 22%-gliding-to-15% money on '
-  'the disclosed debt against recovering-but-thin conversion economics, the modelled book equity erodes from '
+  'the triangulated debt against recovering-but-thin conversion economics, the modelled book equity erodes from '
   '~EGP 4.1 bn to below zero by FY29E, with net debt rising toward EGP 17 bn. This is a modelled path on derived '
   'lines, not an audit opinion — but it is what the disclosed numbers imply if nothing improves, and it explains '
   'why the DCF equity is an option rather than a claim. The exits are named in §4: collection, conversion '
@@ -675,6 +705,7 @@ rows = [
 table(rows, [2.3, 0.85, 0.85, 0.85, 0.85, 0.85, 0.85], first_col_bold=True, size=8.4)
 caption('(e) = estimate bounded by disclosed prints; (d) = derived from disclosed totals (construction in '
         '§1.6). FY22/FY24/FY25 total assets, the FY24 debt/cash/equity set and the FY25 facilities are sourced; '
+        'the FY25 debt/cash/net-debt set is triangulated from them (roll-forward table, §1.6); '
         'the FY23 year-end balance sheet was never found (flagged gap). Forecast columns are the model’s '
         'clean-surplus roll-forward — and they are the honest bad news: on the base case, book equity erodes '
         'toward zero by FY29–30E while net debt compounds. See §7, first two caveats.')
@@ -682,7 +713,7 @@ H2('A.3  Cash flow markers and the working-capital story')
 rows = [
  ['Marker', 'FY23', 'FY24', 'FY25', 'FY26E'],
  ['Operating cash flow', 'negative (agg.)', 'negative (agg.)', '~breakeven (d)', f"+{fr[0]['nopat']+fr[0]['dna']-fr[0]['dwc']:,.0f} (release)"],
- ['NWC as % of revenue', '~81% (e)', '~76% (d)', '~117% (d)', f"{fr[0]['nwc']/fr[0]['rev']*100:.0f}%"],
+ ['NWC as % of revenue', '~81% (e)', '~76% (d)', '~113% (d)', f"{fr[0]['nwc']/fr[0]['rev']*100:.0f}%"],
  ['Capex (derived through D&A)', '~104 (d)', '~165 (d)', '~130 (d)', f"{fr[0]['capex']:,.0f}"],
  ['Dividends paid', '0', '0', '0', '0 — never paid'],
 ]
@@ -783,7 +814,7 @@ rows = [
  ['Expert 2’s ledger', 'Value'],
  ['Reported cumulative NP FY23–FY25', f"{H['FY23']['np']+H['FY24']['np']+H['FY25']['np']:,.0f}"],
  ['Of which converted to operating cash', '≈ nil (OCF negative in FY23/24; ~breakeven FY25)'],
- ['Where it went', 'Receivables + inventory, funded by EGP 10.9bn of disclosed bank facilities at 20%+ money'],
+ ['Where it went', 'Receivables + inventory, funded by ~EGP 10.5bn of bank debt at 20%+ money'],
  ['Cash-earnings basis he will pay for (FY27E, actual funding cost)', f"~{(dcf['rows'][1]['ebit']-coc['kd_path'][1]*dcf['nd_fy26'])*(1-0.225):,.0f}/yr + partial credit for normalisation"],
  ['Multiple on cash earnings', '6×'],
  ['Fair value', f"→ {pegp(E['e2']['base'])}"],

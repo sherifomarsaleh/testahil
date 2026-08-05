@@ -156,11 +156,23 @@
    "date": "2026-08-05",
    "ring": "House"
   },
-  "debt_fy25": {
+  "facilities_fy25": {
    "value": 10900.0,
-   "source": "Bank credit facilities held at end-2025: 'obtained credit facilities of EGP 10.9bn during 2025 vs 8.96bn in 2024, from several local banks' (almalnews/amwalalghad FY25 results coverage of the EGX filing). Read as the drawn year-end balance because the 2024 comparative (8.96bn) matches the FY24 balance-sheet debt print (~9.0bn, SWS) almost exactly; interpretation flagged and the FY24-vintage alternative shown in sensitivity",
+   "source": "Disclosed: 'obtained credit facilities of EGP 10.9bn during 2025 vs 8.96bn in 2024, from several local banks' (almalnews/amwalalghad FY25 results coverage of the EGX filing). AMBIGUOUS between drawn balance and limits granted \u2014 no longer used directly as the debt anchor; retained as the disclosure record and upper cross-check (the triangulated drawn debt below implies ~96% drawn if these are limits)",
    "date": "2026-03-18",
    "ring": "Company"
+  },
+  "debt_fy25": {
+   "value": 10465.0,
+   "source": "TRIANGULATED drawn debt (rollforward_fy25.py): total liabilities 12,360 (disclosed assets 16,460 - rolled equity 4,100) less non-debt liabilities ~1,890 (FY24's 2,410 scaled with purchase value, -21.5%). Independent of the ambiguous facilities sentence; sits at 96% of the disclosed 10.9bn facilities",
+   "date": "2026-08-05",
+   "ring": "House"
+  },
+  "cash_fy25_est": {
+   "value": 665.0,
+   "source": "House: midpoint of [500 stress floor, 830 FY24-flat] \u2014 a no-dividend, liquidity-conserving year argues below the FY24 print (827.6)",
+   "date": "2026-08-05",
+   "ring": "House"
   },
   "q1_26_cogs": {
    "value": 1975.0,
@@ -223,20 +235,20 @@
    "ring": "House"
   },
   "payables_fy25_est": {
-   "value": 1460.0,
-   "source": "Rebalanced on the disclosed FY25 debt: liabilities (16,460 assets - 4,100 equity) = 12,360; less debt 10,900 => non-debt liabilities 1,460. Thin payables are consistent with LC/bank-financed copper imports",
+   "value": 1890.0,
+   "source": "Non-debt liabilities rolled from FY24's 2,410 on purchase value (volume -34%, copper-in-EGP +20% => x0.785); thin payables consistent with LC/bank-financed copper imports (rollforward_fy25.py)",
    "date": "2026-08-05",
    "ring": "House"
   },
   "nwc_fy25_est": {
-   "value": 12640.0,
-   "source": "House derivation on the disclosed debt: FY25 assets 16,460 - cash ~700 - PP&E ~680 - other ~980 = gross WC ~14,100; less non-debt liabilities ~1,460 => ~12,640 (117% of FY25 revenue; FY24 was ~76%)",
+   "value": 12245.0,
+   "source": "House derivation on the triangulated balance sheet: FY25 assets 16,460 - cash 665 - PP&E ~680 - other ~980 = gross WC ~14,135; less non-debt liabilities ~1,890 => ~12,245 (113% of FY25 revenue; FY24 was ~76%)",
    "date": "2026-08-05",
    "ring": "House"
   },
   "net_debt_fy25_est": {
-   "value": 10200.0,
-   "source": "Disclosed FY25 bank facilities 10,900 less estimated cash ~700. The prior derivation (~8,800) understated debt by ~1.4bn; the FY24-vintage sourced alternative (9,000 - 827.6 = 8,172) is shown in sensitivity \u2014 the ND anchor is worth ~\u00b1EGP 0.6/share and is the single largest input risk",
+   "value": 9805.0,
+   "source": "TRIANGULATED (rollforward_fy25.py, replacing the facilities-sentence reading 10,200): (A) balance-sheet residual \u2014 disclosed assets 16,460 less rolled equity 4,100 (FY24 3,600 + NP 500.3, no dividend) gives liabilities 12,360; less non-debt liabilities ~1,890 => drawn debt 10,465; less cash 665 => 9,802. (B) cash-flow roll-forward from FY24 ND 8,132 + interest 2,150 + tax 145 + capex 210 + dNWC ~2,036 - EBITDA 2,871 => 9,803 (shares the balance-sheet WC decomposition with A \u2014 agreement is consistency, not full independence). (C) facilities-as-drawn 10,235 = the upper cross-check. Range 9,120-10,360 carried in sensitivity (~\u00b1EGP 0.19/sh); the FY24-vintage low alternative 8,172 is REJECTED by the reverse test (needs non-debt liabilities +41% while purchases fell 21%). Falsifier: audited FY25 borrowings note",
    "date": "2026-08-05",
    "ring": "House"
   },
@@ -346,7 +358,7 @@
     0.94,
     0.88
    ],
-   "source": "House: FY25 intensity ~117% of revenue (derived on disclosed debt) gliding to 88% as receivables collect and copper-inflated inventory normalises; FY24 was ~76% \u2014 full reversion NOT assumed; sensitized in the grid",
+   "source": "House: FY25 intensity ~113% of revenue (triangulated balance sheet) gliding to 88% as receivables collect and copper-inflated inventory normalises; FY24 was ~76% \u2014 full reversion NOT assumed; sensitized in the grid",
    "date": "2026-08-05",
    "ring": "House"
   },
@@ -388,7 +400,7 @@
   },
   "kd": {
    "value": 0.22,
-   "source": "Marginal EGP rate for a levered EGX mid-cap: CBE corridor 19.5-20.0% (held 09-Jul-26) + ~2.5pp credit margin; consistent with avg bank lending 21.3% (Jan-26). Cross-checked against the two effective-rate computations below (23.5% FY24, 21.7% FY25 on the disclosed debt path). NB the Q1-26 P&L implies a much smaller net finance line (~243/qtr) than Q1-25 (~542/qtr) \u2014 unexplained without the statements (possible FX/interest income offset or capitalised financing); flagged, does not change the marginal rate",
+   "source": "Marginal EGP rate for a levered EGX mid-cap: CBE corridor 19.5-20.0% (held 09-Jul-26) + ~2.5pp credit margin; consistent with avg bank lending 21.3% (Jan-26). Cross-checked against the two effective-rate computations below (23.5% FY24, 22.1% FY25 on the triangulated debt path). NB the Q1-26 P&L implies a much smaller net finance line (~243/qtr) than Q1-25 (~542/qtr) \u2014 unexplained without the statements (possible FX/interest income offset or capitalised financing); flagged, does not change the marginal rate",
    "date": "2026-08-05",
    "ring": "House"
   },
@@ -399,8 +411,8 @@
    "ring": "House"
   },
   "kd_eff_fy25": {
-   "value": 0.217,
-   "source": "Effective-rate check #2: FY25 finance cost ~2,150 (derived, closes P&L to reported NP; independently corroborated by Q1-25's implied ~542/qtr) / avg disclosed debt (8,960+10,900)/2 = 9,930 => 21.7%",
+   "value": 0.221,
+   "source": "Effective-rate check #2: FY25 finance cost ~2,150 (derived, closes P&L to reported NP; independently corroborated by Q1-25's implied ~542/qtr) / avg debt (8,960 + triangulated 10,465)/2 = 9,713 => 22.1%",
    "date": "2026-08-05",
    "ring": "House"
   },
@@ -526,9 +538,168 @@
   "equity_fy24": 3600.0,
   "liab_fy24": 11300.0,
   "equity_fy25e": 4100.0,
-  "net_debt_fy25e": 10200.0,
-  "nwc_fy25e": 12640.0,
-  "payables_fy25e": 1460.0
+  "net_debt_fy25e": 9805.0,
+  "debt_fy25e": 10465.0,
+  "cash_fy25e": 665.0,
+  "facilities_fy25": 10900.0,
+  "nwc_fy25e": 12245.0,
+  "payables_fy25e": 1890.0
+ },
+ "rollforward": {
+  "inputs": {
+   "assets_fy24": {
+    "value": 14970.0,
+    "source": "Zawya/Decypha FY2025 note (comparative) + SWS (15.0bn) \u2014 twice-sourced",
+    "date": "2026-03",
+    "ring": "Company"
+   },
+   "debt_fy24": {
+    "value": 8960.0,
+    "source": "Company's own FY25-filing comparative ('vs 8.96bn in 2024'); SWS independent print ~9.0bn",
+    "date": "2026-03-18",
+    "ring": "Company"
+   },
+   "cash_fy24": {
+    "value": 827.6,
+    "source": "Simply Wall St health page (cash & ST investments)",
+    "date": "2025-05-22",
+    "ring": "Company"
+   },
+   "equity_fy24": {
+    "value": 3600.0,
+    "source": "Simply Wall St health page (total shareholder equity)",
+    "date": "2025-05-22",
+    "ring": "Company"
+   },
+   "assets_fy25": {
+    "value": 16460.0,
+    "source": "Zawya/Decypha FY2025 results (total assets, +9.9%)",
+    "date": "2026-03",
+    "ring": "Company"
+   },
+   "np_fy25": {
+    "value": 500.31,
+    "source": "Arab Finance FY2025 (attributable)",
+    "date": "2026-03",
+    "ring": "Company"
+   },
+   "rev_fy25": {
+    "value": 10819.0,
+    "source": "Arab Finance/Zawya FY2025 (net sales)",
+    "date": "2026-03",
+    "ring": "Company"
+   },
+   "rev_fy24": {
+    "value": 13778.2,
+    "source": "MarketScreener/Mubasher FY2024 consolidated results",
+    "date": "2025-03",
+    "ring": "Company"
+   },
+   "dividends_fy25": {
+    "value": 0.0,
+    "source": "AGM: FY25 profits carried forward, no distribution; no dividend record any year",
+    "date": "2026-05-06",
+    "ring": "Company"
+   },
+   "facilities_fy25": {
+    "value": 10900.0,
+    "source": "'obtained credit facilities of EGP 10.9bn during 2025' \u2014 the ambiguous sentence under test",
+    "date": "2026-03-18",
+    "ring": "Company"
+   },
+   "ebitda_fy25": {
+    "value": 2871.0,
+    "source": "P&L closure: EBT 645.6 (=NP/(1-22.5%)) + fin cost 2,150 + D&A ~76 \u2014 corroborated by Q1-25 implied ~542/qtr finance",
+    "date": "2026-08-05",
+    "ring": "House"
+   },
+   "fin_cost_fy25": {
+    "value": 2150.0,
+    "source": "House derivation closing FY25 P&L to reported NP (see compute.py)",
+    "date": "2026-08-05",
+    "ring": "House"
+   },
+   "tax_paid_fy25": {
+    "value": 145.3,
+    "source": "EBT 645.6 - NP 500.3 (cash tax ~ current charge assumed)",
+    "date": "2026-08-05",
+    "ring": "House"
+   },
+   "capex_fy25": {
+    "value": 210.0,
+    "source": "Maintenance norm ~EGP 8-9k/t of 25kt capacity (no disclosed capex \u2014 flagged)",
+    "date": "2026-08-05",
+    "ring": "House"
+   },
+   "dna_fy25": {
+    "value": 76.0,
+    "source": "0.7% of revenue (FY24 EBITDA-EBIT gap norm)",
+    "date": "2026-08-05",
+    "ring": "House"
+   },
+   "ppe_other_fy25": {
+    "value": 1660.0,
+    "source": "PP&E ~680 + other non-current ~980 (light fixed base, D&A-corroborated)",
+    "date": "2026-08-05",
+    "ring": "House"
+   },
+   "cash_fy25_lo": {
+    "value": 500.0,
+    "source": "Stress floor \u2014 minimal operating cash for a name conserving liquidity (no dividend)",
+    "date": "2026-08-05",
+    "ring": "House"
+   },
+   "cash_fy25_hi": {
+    "value": 830.0,
+    "source": "FY24 level held flat",
+    "date": "2026-08-05",
+    "ring": "House"
+   }
+  },
+  "equity_fy25": 4100.31,
+  "liab_fy25": 12359.689999999999,
+  "non_debt_fy24": 2410.0,
+  "method_A": {
+   "scenarios": {
+    "flat (2,410)": 9949.689999999999,
+    "scaled with purchases (~1,890)": 10467.295492734898,
+    "supplier-credit squeeze (1,500)": 10859.689999999999
+   },
+   "debt_central": 10467.295492734898,
+   "cash_mid": 665.0,
+   "nd": 9802.295492734898,
+   "nd_range": [
+    9119.689999999999,
+    10359.689999999999
+   ]
+  },
+  "method_B": {
+   "nd_open": 8132.4,
+   "d_assets": 1490.0,
+   "d_gross_wc": 1518.6,
+   "d_nwc": 2036.2054927349,
+   "d_nd": 1670.5054927349001,
+   "nd": 9802.905492734899
+  },
+  "method_C": {
+   "nd": 10235.0,
+   "note": "facilities sentence read as drawn balance \u2014 comparison only"
+  },
+  "reverse_test": {
+   "non_debt_required": 3399.6899999999987,
+   "growth_required": 0.41065975103734376,
+   "verdict": "FY24-vintage alternative (ND 8,172) rejected: requires non-debt liabilities +41% while purchase value fell 21%"
+  },
+  "triangulated": {
+   "net_debt": 9805,
+   "debt": 10465,
+   "cash": 665.0,
+   "non_debt_liab": 1890,
+   "nd_range": [
+    9120,
+    10360
+   ]
+  }
  },
  "interims": {
   "q1_26_rev": 2094.0,
@@ -643,11 +814,11 @@
   "kd": 0.22,
   "kd_at": 0.1705,
   "kd_eff_fy24": 0.235,
-  "kd_eff_fy25": 0.217,
-  "we": 0.3996691047771822,
-  "wd": 0.6003308952228178,
-  "wacc_exp": 0.21418878904904526,
-  "wacc_exp_rating": 0.21977184670749866,
+  "kd_eff_fy25": 0.221,
+  "we": 0.40947947949157393,
+  "wd": 0.5905205205084261,
+  "wacc_exp": 0.2152611846539747,
+  "wacc_exp_rating": 0.2209812853988884,
   "rf_term": 0.105,
   "erp_term": 0.07,
   "ke_term": 0.17248,
@@ -670,18 +841,18 @@
    1.0
   ],
   "fwd_wacc": [
-   0.21418878904904526,
-   0.1944347001108775,
-   0.17961913340725166,
-   0.16282815780980908,
+   0.2152611846539747,
+   0.19517712783736713,
+   0.1801140852249114,
+   0.16304263693079496,
    0.149988
   ],
   "df": [
-   0.8235951517747102,
-   0.6895271476107125,
-   0.5845337092990847,
-   0.5026827957108091,
-   0.43712003578368563
+   0.822868378113083,
+   0.6884907340906329,
+   0.5834103182993678,
+   0.5016241879480492,
+   0.4361994976887143
   ]
  },
  "dcf": {
@@ -695,16 +866,16 @@
     "nopat": 230.1097257056,
     "capex": 225.0,
     "nwc": 10259.56399104,
-    "dwc": -2380.4360089599995,
-    "fcff": 2504.6299595615997,
+    "dwc": -1985.4360089599995,
+    "fcff": 2109.6299595615997,
     "vol_kt": 10.4,
     "price_per_t": 0.88080048,
     "util": 0.41600000000000004,
     "ebitda_per_t": 40.0,
     "margin": 0.04541323592375881,
-    "fwd_wacc": 0.21418878904904526,
-    "df": 0.8235951517747102,
-    "pv": 2062.801091684622
+    "fwd_wacc": 0.2152611846539747,
+    "df": 0.822868378113083,
+    "pv": 1735.9477832432224
    },
    {
     "year": "FY27E",
@@ -722,9 +893,9 @@
     "util": 0.47600000000000003,
     "ebitda_per_t": 90.0,
     "margin": 0.0990357875721971,
-    "fwd_wacc": 0.1944347001108775,
-    "df": 0.6895271476107125,
-    "pv": -403.3100657439646
+    "fwd_wacc": 0.19517712783736713,
+    "df": 0.6884907340906329,
+    "pv": -402.70385900305575
    },
    {
     "year": "FY28E",
@@ -742,9 +913,9 @@
     "util": 0.536,
     "ebitda_per_t": 115.0,
     "margin": 0.12299771748322712,
-    "fwd_wacc": 0.17961913340725166,
-    "df": 0.5845337092990847,
-    "pv": -56.487849819987474
+    "fwd_wacc": 0.1801140852249114,
+    "df": 0.5834103182993678,
+    "pv": -56.379288173205424
    },
    {
     "year": "FY29E",
@@ -762,9 +933,9 @@
     "util": 0.5920000000000001,
     "ebitda_per_t": 128.0,
     "margin": 0.1331681216324331,
-    "fwd_wacc": 0.16282815780980908,
-    "df": 0.5026827957108091,
-    "pv": 192.7127726869146
+    "fwd_wacc": 0.16304263693079496,
+    "df": 0.5016241879480492,
+    "pv": 192.30693576770818
    },
    {
     "year": "FY30E",
@@ -783,26 +954,26 @@
     "ebitda_per_t": 135.0,
     "margin": 0.1367219722235641,
     "fwd_wacc": 0.149988,
-    "df": 0.43712003578368563,
-    "pv": 386.25374804545515
+    "df": 0.4361994976887143,
+    "pv": 385.4403300817513
    }
   ],
-  "pv_sum": 2181.9696968530397,
+  "pv_sum": 1854.6119019164207,
   "tv": 8193.090756510783,
-  "pv_tv": 3581.364124664977,
-  "ev": 5763.333821518017,
-  "tv_pct": 0.6214049429678313,
+  "pv_tv": 3573.822072508052,
+  "ev": 5428.433974424473,
+  "tv_pct": 0.6583523147459763,
   "fcff_T1": 819.2107585620001,
   "roic_T": 0.10310164351963678,
   "rr_T": 0.48495832164379593,
   "ic_T": 14692.590864,
-  "net_debt": 10200.0,
+  "net_debt": 9805.0,
   "nci": 0.0,
   "eq": 0.0,
   "ps": 0.01,
-  "eq_unfloored": -4436.666178481983,
-  "ps_unfloored": -1.3389503911386273,
-  "nd_fy26": 9872.56399104
+  "eq_unfloored": -4376.566025575527,
+  "ps_unfloored": -1.320812645361882,
+  "nd_fy26": 9785.66399104
  },
  "is_fcst": [
   {
@@ -811,14 +982,14 @@
    "ebitda": 416.0,
    "dna": 119.084224896,
    "ebit": 296.915775104,
-   "fin": -2244.0,
-   "ebt": -1947.084224896,
+   "fin": -2157.1,
+   "ebt": -1860.184224896,
    "tax": -0.0,
-   "np": -1947.084224896,
-   "eps": -0.5876144563565878,
-   "nd_open": 10200.0,
-   "nd_close": 9872.56399104,
-   "fcf_eq": 327.4360089599995
+   "np": -1860.184224896,
+   "eps": -0.5613887309336852,
+   "nd_open": 9805.0,
+   "nd_close": 9785.66399104,
+   "fcf_eq": 19.336008959999617
   },
   {
    "year": "FY27E",
@@ -826,14 +997,14 @@
    "ebitda": 1071.0,
    "dna": 140.58554328,
    "ebit": 930.41445672,
-   "fin": -1974.5127982080003,
-   "ebt": -1044.0983414880002,
+   "fin": -1957.1327982080002,
+   "ebt": -1026.718341488,
    "tax": -0.0,
-   "np": -1044.0983414880002,
-   "eps": -0.3151005341584834,
-   "nd_open": 9872.56399104,
-   "nd_close": 12222.641711807999,
-   "fcf_eq": -2350.0777207679994
+   "np": -1026.718341488,
+   "eps": -0.30985538907390286,
+   "nd_open": 9785.66399104,
+   "nd_close": 12118.361711808,
+   "fcf_eq": -2332.6977207679993
   },
   {
    "year": "FY28E",
@@ -841,14 +1012,14 @@
    "ebitda": 1541.0,
    "dna": 162.87294114,
    "ebit": 1378.12705886,
-   "fin": -2261.18871668448,
-   "ebt": -883.0616578244799,
+   "fin": -2241.89691668448,
+   "ebt": -863.7698578244799,
    "tax": -0.0,
-   "np": -883.0616578244799,
-   "eps": -0.26650095016798514,
-   "nd_open": 12222.641711807999,
-   "nd_close": 14270.38929489248,
-   "fcf_eq": -2047.7475830844805
+   "np": -863.7698578244799,
+   "eps": -0.2606788391241008,
+   "nd_open": 12118.361711808,
+   "nd_close": 14146.81749489248,
+   "fcf_eq": -2028.4557830844806
   },
   {
    "year": "FY29E",
@@ -856,14 +1027,14 @@
    "ebitda": 1894.4,
    "dna": 184.9331484,
    "ebit": 1709.4668516000002,
-   "fin": -2397.425401541937,
-   "ebt": -687.9585499419368,
+   "fin": -2376.665339141937,
+   "ebt": -667.1984875419366,
    "tax": -0.0,
-   "np": -687.9585499419368,
-   "eps": -0.20762039163539017,
-   "nd_open": 14270.38929489248,
-   "nd_close": 15899.816108434417,
-   "fcf_eq": -1629.426813541936
+   "np": -667.1984875419366,
+   "eps": -0.2013551707347604,
+   "nd_open": 14146.81749489248,
+   "nd_close": 15755.484246034417,
+   "fcf_eq": -1608.666751141936
   },
   {
    "year": "FY30E",
@@ -871,32 +1042,32 @@
    "ebitda": 2160.0,
    "dna": 205.3803024,
    "ebit": 1954.6196976,
-   "fin": -2464.4714968073345,
-   "ebt": -509.85179920733435,
+   "fin": -2442.1000581353346,
+   "ebt": -487.4803605353345,
    "tax": -0.0,
-   "np": -509.85179920733435,
-   "eps": -0.15386919784101705,
-   "nd_open": 15899.816108434417,
-   "nd_close": 17040.86503724175,
-   "fcf_eq": -1141.0489288073345
+   "np": -487.4803605353345,
+   "eps": -0.14711767646095752,
+   "nd_open": 15755.484246034417,
+   "nd_close": 16874.16173616975,
+   "fcf_eq": -1118.6774901353347
   }
  ],
  "debt_schedule": {
   "nd_path": [
-   10200.0,
-   9872.56399104,
-   12222.641711807999,
-   14270.38929489248,
-   15899.816108434417,
-   17040.86503724175
+   9805.0,
+   9785.66399104,
+   12118.361711808,
+   14146.81749489248,
+   15755.484246034417,
+   16874.16173616975
   ],
   "eq_path": [
    4100.0,
-   2152.915775104,
-   1108.817433616,
-   225.75577579152014,
-   -462.20277415041664,
-   -972.054573357751
+   2239.815775104,
+   1213.0974336159998,
+   349.32757579151985,
+   -317.8709117504168,
+   -805.3512722857513
   ],
   "note": "interest charged on OPENING net debt at that year's forward Kd; tax 22.5% on positive EBT net of the FY26E loss carryforward"
  },
@@ -904,7 +1075,7 @@
   "dcf": {
    "bear": 0.01,
    "base": 0.01,
-   "bull": 1.5313265792727102
+   "bull": 1.544089714605016
   },
   "relative": {
    "bear": 0.05,
@@ -924,7 +1095,7 @@
   "central": {
    "bear": 0.18676573028105428,
    "base": 0.341221112290217,
-   "bull": 1.187693308878717
+   "bull": 1.1927985630116391
   }
  },
  "weights": {
@@ -957,7 +1128,7 @@
     "capex_ebitda": 0.045215845842612755,
     "character": "contraction (WC release beginning)",
     "nopat": 2166.56,
-    "roic": 0.16795038759689923
+    "roic": 0.15586762589928058
    }
   ],
   "nopat_cagr_23_25": 0.03686184999171527,
@@ -980,49 +1151,49 @@
   ],
   "table": [
    [
-    -0.8856659620972125,
-    -0.9338848288692592,
-    -0.9992333396320101,
-    -1.0890540291017181,
-    -1.2155854343392742
+    -0.8684991761905142,
+    -0.916616033552852,
+    -0.9818262962924845,
+    -1.0714569656284607,
+    -1.1977206873881179
    ],
    [
-    -1.0592521859105313,
-    -1.1152419867660166,
-    -1.1880827014246533,
-    -1.2840943705687253,
-    -1.4132091059111411
+    -1.041710780757884,
+    -1.0975824033241286,
+    -1.1702693722841935,
+    -1.2660783885408957,
+    -1.394920599989577
    ],
    [
-    -1.2034979686399832,
-    -1.2633043541707274,
-    -1.3389503911386273,
-    -1.4357166674344533,
-    -1.5615244609978685
+    -1.1856454742924993,
+    -1.2453259125966314,
+    -1.320812645361882,
+    -1.4173751400042796,
+    -1.5429179929172123
    ],
    [
-    -1.3251841446077333,
-    -1.3864024488182827,
-    -1.4621981175206635,
-    -1.5569448849105283,
-    -1.6769606262670758
+    -1.3070694015761737,
+    -1.3681590760819495,
+    -1.4437954856442086,
+    -1.538343174525206,
+    -1.6581067431112406
    ],
    [
-    -1.4291536998619678,
-    -1.490303153180313,
-    -1.5647333436102269,
-    -1.6560666855364343,
-    -1.7693747329943073
+    -1.4108150574114695,
+    -1.4718363136758634,
+    -1.5461104645891453,
+    -1.637252330308665,
+    -1.7503228325869038
    ]
   ]
  },
  "sens_expl": {
   "expl_grid": [
-   0.19418878904904527,
-   0.20418878904904525,
-   0.21418878904904526,
-   0.22418878904904527,
-   0.23418878904904525
+   0.1952611846539747,
+   0.2052611846539747,
+   0.2152611846539747,
+   0.2252611846539747,
+   0.2352611846539747
   ],
   "term_grid": [
    0.12998800000000002,
@@ -1033,39 +1204,39 @@
   ],
   "table": [
    [
-    -0.9282326503951189,
-    -1.1248731038987605,
-    -1.2819618471409149,
-    -1.410288988264699,
-    -1.517047573780645
+    -0.9126560414464175,
+    -1.1088682068850173,
+    -1.2656149735257431,
+    -1.3936628985122583,
+    -1.5001893285788102
    ],
    [
-    -0.9641744929256478,
-    -1.1568680233639623,
-    -1.31080523581753,
-    -1.4365592077292886,
-    -1.5411783066628877
+    -0.9476743488314989,
+    -1.1399507731298888,
+    -1.2935549331896379,
+    -1.419036971622037,
+    -1.5234299669660893
    ],
    [
-    -0.9992333396320101,
-    -1.1880827014246533,
-    -1.3389503911386273,
-    -1.4621981175206635,
-    -1.5647333436102269
+    -0.9818262962924845,
+    -1.1702693722841935,
+    -1.320812645361882,
+    -1.4437954856442086,
+    -1.5461104645891453
    ],
    [
-    -1.0334368475903994,
-    -1.2185414822281333,
-    -1.3664190143914856,
-    -1.4872252632243066,
-    -1.5877304397333603
+    -1.0151390925773083,
+    -1.199847914180498,
+    -1.3474093881895823,
+    -1.4679575721348,
+    -1.568248170092803
    ],
    [
-    -1.0668116241457497,
-    -1.248267788195831,
-    -1.3932319872113557,
-    -1.5116594539960575,
-    -1.6101866828039093
+    -1.0476389126436323,
+    -1.228709402231418,
+    -1.3733656349675027,
+    -1.4915416406073048,
+    -1.5898597788275424
    ]
   ]
  },
@@ -1073,51 +1244,51 @@
   {
    "beta": 0.6,
    "ke": 0.24556,
-   "wacc_exp": 0.20049916300457532,
+   "wacc_exp": 0.20123552973063755,
    "wacc_term": 0.1347,
-   "dcf": -1.0938053746510443
+   "dcf": -1.0761948480625794
   },
   {
    "beta": 0.78,
    "ke": 0.262498,
-   "wacc_exp": 0.2072687583012912,
+   "wacc_exp": 0.20817129315426583,
    "wacc_term": 0.14226,
-   "dcf": -1.2252506431629697
+   "dcf": -1.2073573756383995
   },
   {
    "beta": 0.8,
    "ke": 0.26438,
-   "wacc_exp": 0.20802093555648188,
+   "wacc_exp": 0.20894193353466894,
    "wacc_term": 0.1431,
-   "dcf": -1.2385300728107822
+   "dcf": -1.2206082469403312
   },
   {
    "beta": 0.964,
    "ke": 0.27981239999999996,
-   "wacc_exp": 0.21418878904904526,
+   "wacc_exp": 0.2152611846539747,
    "wacc_term": 0.149988,
-   "dcf": -1.3389503911386273
+   "dcf": -1.320812645361882
   },
   {
    "beta": 1.0,
    "ke": 0.2832,
-   "wacc_exp": 0.21554270810838844,
+   "wacc_exp": 0.21664833733870037,
    "wacc_term": 0.1515,
-   "dcf": -1.3591567306634227
+   "dcf": -1.3409755475582121
   },
   {
    "beta": 1.15,
    "ke": 0.297315,
-   "wacc_exp": 0.22118403752231836,
+   "wacc_exp": 0.22242814019172397,
    "wacc_term": 0.1578,
-   "dcf": -1.4372018783334528
+   "dcf": -1.4188529569298383
   },
   {
    "beta": 1.3,
    "ke": 0.31143,
-   "wacc_exp": 0.22682536693624827,
+   "wacc_exp": 0.2282079430447475,
    "wacc_term": 0.1641,
-   "dcf": -1.506557777140347
+   "dcf": -1.4880598445668156
   }
  ],
  "sens_mn": {
@@ -1137,39 +1308,39 @@
   ],
   "table": [
    [
-    -2.742379062387363,
-    -2.5245829829435387,
-    -2.306786903499714,
-    -2.088990824055889,
-    -1.8711947446120654
+    -2.721412668852409,
+    -2.5040479635144632,
+    -2.286683258176518,
+    -2.069318552838572,
+    -1.8519538475006267
    ],
    [
-    -2.2584608062068194,
-    -2.040664726762995,
-    -1.8228686473191706,
-    -1.605072567875346,
-    -1.3872764884315218
+    -2.238477362445091,
+    -2.021112657107145,
+    -1.8037479517691994,
+    -1.586383246431254,
+    -1.3690185410933087
    ],
    [
-    -1.7745425500262764,
-    -1.5567464705824523,
-    -1.3389503911386273,
-    -1.1211543116948033,
-    -0.903358232250979
+    -1.7555420560377735,
+    -1.5381773506998282,
+    -1.320812645361882,
+    -1.1034479400239368,
+    -0.8860832346859916
    ],
    [
-    -1.2906242938457333,
-    -1.072828214401909,
-    -0.8550321349580842,
-    -0.6372360555142602,
-    -0.41943997607043565
+    -1.272606749630456,
+    -1.0552420442925106,
+    -0.8378773389545645,
+    -0.6205126336166198,
+    -0.40314792827867335
    ],
    [
-    -0.8067060376651902,
-    -0.5889099582213657,
-    -0.3711138787775417,
-    -0.15331779933371714,
-    0.06447828011010742
+    -0.7896714432231384,
+    -0.5723067378851929,
+    -0.3549420325472471,
+    -0.1375773272093018,
+    0.07978737812864402
    ]
   ]
  },

@@ -57,7 +57,7 @@ for i, ln in enumerate([
  'the working-capital split, the FY25 net-debt anchor) are DERIVED — each is annotated where it appears and',
  'listed with source and date in the companion Source Register document. FY2024, the one fully-triangulated',
  'year, closes to the reported net profit within 0.8% using the derived lines.', '',
- 'Discount convention. Each explicit year is discounted at its own forward WACC, gliding 21.4% -> 15.0% on the',
+ 'Discount convention. Each explicit year is discounted at its own forward WACC, gliding 21.5% -> 15.0% on the',
  'same easing calendar as the interest forecast; the terminal value is capitalised at the terminal WACC and',
  'discounted at the year-5 cumulative factor. One date, one price of time.', '',
  'Currency. EGP million unless stated. Spot EGP 2.19 (5 Aug 2026 close). Sheets: Summary · Fundamental',
@@ -87,10 +87,10 @@ put(wa, f'A{r}', 'rf* for the equity build'); put(wa, f'B{r}', '=B9-B10', BLACK,
 r = inp(wa, r, 'ERP — Egypt, CDS-based (primary)', 0.0941, PCT, "Damodaran ORIGINAL ctryprem, Egypt row, Jan-2026 (rating basis 13.94% in sensitivity)")  # B12
 r = inp(wa, r, 'Beta (own weekly regression, 5yr)', 0.964, PX, 'vs 30-name equal-weight EGX composite: R2 0.222, n=257, SE 0.113, CI90 [0.78,1.15]')  # B13
 put(wa, f'A{r}', 'Ke = rf* + beta × ERP'); put(wa, f'B{r}', '=B11+B13*B12', BLACK, PCT); r += 1            # B14
-r = inp(wa, r, 'Kd pre-tax (marginal EGP)', 0.220, PCT, 'Corridor + credit margin; effective-rate checks 23.5% (FY24) / 21.7% (FY25, disclosed debt path) inside 150bp')  # B15
+r = inp(wa, r, 'Kd pre-tax (marginal EGP)', 0.220, PCT, 'Corridor + credit margin; effective-rate checks 23.5% (FY24) / 22.1% (FY25, triangulated debt path) inside 150bp')  # B15
 put(wa, f'A{r}', 'Kd after tax'); put(wa, f'B{r}', '=B15*(1-B7)', BLACK, PCT); r += 1                      # B16
 put(wa, f'A{r}', 'Market cap (spot × shares)'); put(wa, f'B{r}', '=B5*B6', BLACK, NUM0); r += 1            # B17
-r = inp(wa, r, 'Total debt for weights (FY25 disclosed facilities)', 10900.0, NUM0, 'FY25 results coverage: EGP 10.9bn bank facilities vs 8.96bn FY24 (matches the FY24 debt print — cross-validated)')  # B18
+r = inp(wa, r, 'Total debt for weights (FY25, triangulated)', 10465.0, NUM0, 'Balance-sheet residual: disclosed assets 16,460 − rolled equity 4,100 − non-debt liabilities ~1,890; = 96% of the disclosed 10.9bn facilities')  # B18
 put(wa, f'A{r}', 'Equity weight E/(D+E)'); put(wa, f'B{r}', '=B17/(B17+B18)', BLACK, PCT); r += 1          # B19
 put(wa, f'A{r}', 'WACC — explicit window', bold=True); put(wa, f'B{r}', '=B19*B14+(1-B19)*B16', BLACK, PCT, True); r += 1  # B20
 r = inp(wa, r, 'Terminal rf (norm-built)', 0.105, PCT, "CBE's Q4-2028 inflation target 5% + 5.5pp real-rate convention")  # B21
@@ -100,7 +100,7 @@ r = inp(wa, r, 'Terminal Kd', 0.150, PCT, 'Egyptian long-run corporate norm 14-1
 put(wa, f'A{r}', 'WACC — terminal (normalized structure)', bold=True); put(wa, f'B{r}', 0.15, BLACK, PCT, True); r += 1  # B25 — real formula written once wd_term row is known
 r = inp(wa, r, 'Terminal growth g', 0.05, PCT, 'Standing center 5%; grid 3-7% on Sensitivity')             # B26
 r = hdr(wa, r, 'BRIDGE')                                                                                   # 27
-r = inp(wa, r, 'Net debt (FY25, derived)', 10200.0, NUM0, 'Disclosed facilities 10,900 less estimated cash ~700; FY24-vintage sourced alt: 8,172 — worth ±EGP 0.6/sh, see Sensitivity')  # B28
+r = inp(wa, r, 'Net debt (FY25, triangulated)', 9805.0, NUM0, 'Roll-forward from FY24 audited comparatives: drawn debt 10,465 − cash ~665; two methods agree ~9,800, facilities-as-drawn 10,235 is the upper check; range 9,120-10,360 (~±EGP 0.19/sh) — see study §1.6')  # B28
 r = inp(wa, r, 'Non-controlling interests', 0.0, NUM0, 'Consolidated-vs-attributable gap ~1.1mn FY25 — immaterial')  # B29
 r = hdr(wa, r, 'LENS INPUTS')                                                                              # 30
 r = inp(wa, r, 'EV/EBITDA multiple (base)', 5.5, MULT, 'SWDY ~6.0x; discount for leverage/concentration')  # B31
@@ -134,7 +134,7 @@ r = drv(r, 'Capex (EGP mn)', [225.0, 243.0, 262.0, 283.0, 306.0], '#,##0',
         note='Maintenance ~EGP 9k per tonne of 25kt capacity, escalated ~8%/yr')                                     # 45
 r = drv(r, 'D&A (% of revenue)', [0.013] * 5)                                                                        # 46
 r = drv(r, 'Net working capital (% of revenue)', [1.12, 1.06, 1.00, 0.94, 0.88],
-        note='From ~117% FY25e; NOT full reversion to FY24 76%')                                                     # 47
+        note='From ~113% FY25e; NOT full reversion to FY24 76%')                                                     # 47
 r = drv(r, 'Forward Kd path', [0.220, 0.200, 0.185, 0.168, 0.155], note='CBE easing resumption; sets the WACC glide shape')  # 48
 put(wa, f'A{r}', 'Glide fraction (from the Kd path)')
 for j, c in enumerate(ACOLS):
@@ -150,7 +150,7 @@ for j, c in enumerate(ACOLS):
 DFR = r; r += 1                                                                                            # 49
 r = hdr(wa, r, 'BASE-YEAR ANCHORS (FY2025)')                                                               # 50
 r = inp(wa, r, 'Revenue FY25', 10819.0, NUM0, 'Arab Finance/Zawya FY2025 results'); R_REV25 = r - 1
-r = inp(wa, r, 'Net working capital FY25 (derived)', 12640.0, NUM0, '~117% of FY25 revenue — construction in study §1.6'); R_NWC25 = r - 1
+r = inp(wa, r, 'Net working capital FY25 (derived)', 12245.0, NUM0, '~113% of FY25 revenue — construction in study §1.6'); R_NWC25 = r - 1
 r = inp(wa, r, 'Fabrication uplift k (price/t ÷ copper cost/t)', 1.387, '0.000', 'Copper ~72% of cable price (industry norm); FY24 back-solves to 24.0kt = 96% of capacity — the validation'); R_K = r - 1
 r = inp(wa, r, 'Terminal debt weight D/(D+E)', 0.40, PCT, 'NORMALIZED structure — not today’s ~60% distress weight (circular into perpetuity); conservative direction'); R_WD = r - 1
 r = inp(wa, r, 'Capacity (kt/yr)', 25.0, '0.0', 'Company profile via IATF page — single-sourced, possibly parent-only; utilization indicative'); R_CAP = r - 1
@@ -371,7 +371,7 @@ for col, in zip(['B', 'C']):
     ws[f'{col}{IC}'] = f"=SUM({col}{BS['Net working capital']}:{col}{OTH})"
     ws[f'{col}{IC}'].font = Font(bold=True); ws[f'{col}{IC}'].number_format = NUM0
 r += 1
-r = brow(r, 'Net debt (schedule: opening − equity FCF)', 8172.4, '=Assumptions!B28',
+r = brow(r, 'Net debt (schedule: opening − equity FCF)', 9805.0, '=Assumptions!B28',
          lambda j, c: f"={'Assumptions!$B$28' if j==0 else BSCOLS[j-1]+str(r-1)}-'Cash Flow'!{get_column_letter(3+j)}12")
 ND = BS['Net debt (schedule: opening − equity FCF)']
 for j, c in enumerate(BSCOLS):
@@ -441,7 +441,7 @@ title(ws, 'EV → equity bridge', 'Single-business company: the bridge is the DC
 rows_ = [
  ('Core enterprise value (DCF)', f"=DCF!B{EVR}", NUM0, True),
  ('+ Surplus / non-core assets', 0.0, NUM0, False),
- ('− Net debt (FY25: disclosed facilities − est. cash)', "=-Assumptions!B28", NUM0, False),
+ ('− Net debt (FY25: triangulated — study §1.6)', "=-Assumptions!B28", NUM0, False),
  ('− Non-controlling interests', "=-Assumptions!B29", NUM0, False),
  ('Equity value — intrinsic (may be negative)', f"=B5+B6+B7+B8", NUM0, True),
  ('Equity value — floored (limited liability)', f"=MAX(B9,0)", NUM0, True),
