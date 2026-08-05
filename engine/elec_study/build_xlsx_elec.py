@@ -103,8 +103,8 @@ r = hdr(wa, r, 'BRIDGE')                                                        
 r = inp(wa, r, 'Net debt (FY25, triangulated)', 9805.0, NUM0, 'Roll-forward from FY24 audited comparatives: drawn debt 10,465 − cash ~665; two methods agree ~9,800, facilities-as-drawn 10,235 is the upper check; range 9,120-10,360 (~±EGP 0.19/sh) — see study §1.6')  # B28
 r = inp(wa, r, 'Non-controlling interests', 0.0, NUM0, 'Consolidated-vs-attributable gap ~1.1mn FY25 — immaterial')  # B29
 r = hdr(wa, r, 'LENS INPUTS')                                                                              # 30
-r = inp(wa, r, 'EV/EBITDA multiple (base)', 5.5, MULT, 'SWDY ~6.0x; discount for leverage/concentration')  # B31
-r = inp(wa, r, 'Normalized P/E (base)', 6.5, MULT, 'SWDY 10.4x trailing; deep discount')                   # B32
+r = inp(wa, r, 'EV/EBITDA multiple (base)', 5.5, MULT, 'SWDY ~7.1x COMPUTED from its FY25 filing (prior 6.0x aggregator print did not reproduce); discount for leverage/concentration')  # B31
+r = inp(wa, r, 'Normalized P/E (base)', 6.5, MULT, 'SWDY 11.3x COMPUTED (prior 10.4x did not reproduce); ~42% discount held deliberately deep')                   # B32
 r = inp(wa, r, 'Sustainable ROE (book lens)', 0.14, PCT, 'Normalized NP ~700 on ~4.6-5bn book')            # B33
 r = inp(wa, r, 'Equity FY25e (book, derived)', 4100.0, NUM0, 'FY24 equity 3,600 + FY25 NP 500.3, no dividends')  # B34
 r = inp(wa, r, 'Weight: DCF', 0.40, PCT); r = inp(wa, r, 'Weight: Relative', 0.20, PCT)                    # B35,B36
@@ -124,8 +124,8 @@ def drv(row, label, vals, fmt=PCT, note=None):
     return row + 1
 r = drv(r, 'Volume (kt)', [10.4, 11.9, 13.4, 14.8, 16.0], '0.0',
         note='Q1-26 implied ~2.4kt/qtr sets FY26E (~42% util.); recovery to 64% by FY30E on the grid-capex cycle')  # 41
-r = drv(r, 'LME copper (USD/t)', [12600.0] * 5, '#,##0',
-        note='Flat at the 2026 consensus avg — no house commodity view; bull/bear move it')                          # 42
+r = drv(r, 'LME copper (USD/t)', [14000.0] * 5, '#,##0',
+        note='Flat at the CURRENT market (~$14.0k LME cash 3-4 Aug-26); the -10% sensitivity (=12.6k) is the mean-reversion case')  # 42
 r = drv(r, 'EGP/USD (avg)', [50.4, 52.0, 53.5, 55.0, 56.5], '0.0',
         note='~3%/yr crawl; inflation differential narrows as CBE targets bite')                                     # 43
 r = drv(r, 'Conversion EBITDA per tonne (k EGP/t)', [40.0, 90.0, 115.0, 128.0, 135.0], '0',
@@ -433,7 +433,7 @@ r = crow(r, 'Equity free cash flow (repays / draws net debt)',
 r += 1
 r = crow(r, 'memo: FCFF (ties to DCF row)', lambda j, c: f"=DCF!{get_column_letter(2+j)}{DC['Free cash flow to firm']}")
 r = crow(r, 'memo: net debt, closing', lambda j, c: f"='Balance Sheet'!{BSCOLS[j]}{ND}")
-put(ws, f'A{r+1}', 'No dividends modelled — the company has never paid one and the balance sheet argues against a first.', SUB, None)
+put(ws, f'A{r+1}', 'No dividends modelled — none in the disclosed record and the balance sheet argues against a first.', SUB, None)
 
 # ============ SOTP Bridge ====================================================
 ws = sheet('SOTP Bridge')
@@ -636,6 +636,18 @@ for i, m in enumerate(S3['margin_grid']):
         put(ws, f'{get_column_letter(2+j)}{r}', round(S3['table'][i][j], 2), BLACK, PX)
     r += 1
 r += 1
+put(ws, f'A{r}', 'Terminal-ROIC grid (drives RR = g/ROIC and the inverted g-gradient)', BLACK, None, True, FILL_H); r += 1
+for j, h in enumerate(['Terminal ROIC', 'RR for g=5%', 'Terminal value', 'DCF (EGP/sh, unfloored)']):
+    put(ws, f'{get_column_letter(1+j)}{r}', h, BLACK, None, True, FILL_H)
+r += 1
+for rr_ in D['sens_roic']:
+    put(ws, f'A{r}', rr_['roic'], BLACK, PCT); put(ws, f'B{r}', rr_['rr'], BLACK, PCT)
+    put(ws, f'C{r}', round(rr_['tv']), BLACK, NUM0); put(ws, f'D{r}', round(rr_['ps'], 2), BLACK, PX)
+    r += 1
+r += 1
+put(ws, f'A{r}', 'Challenged net-debt reading (unverified aggregator 10,386): DCF unfloored', BLACK, None, True)
+put(ws, f'E{r}', round(D['nd_challenge']['ps'], 2), BLACK, PX); r += 1
+r += 1
 put(ws, f'A{r}', 'Beta grid (Ke / WACCs / DCF)', BLACK, None, True, FILL_H); r += 1
 for j, h in enumerate(['Beta', 'Ke', 'WACC explicit', 'WACC terminal', 'DCF (EGP/sh)']):
     put(ws, f'{get_column_letter(1+j)}{r}', h, BLACK, None, True, FILL_H)
@@ -683,8 +695,8 @@ for j, h in enumerate(['Name', 'Mkt cap', 'P/E', 'EV/EBITDA', 'D/E', 'Note']):
     put(ws, f'{get_column_letter(1+j)}{r}', h, BLACK, None, True, FILL_H)
 r += 1
 for row_ in [
- ('El Sewedy Electric (EGX: SWDY)', 'EGP 196bn', '10.4x', '~6.0x', 'moderate', 'FY25 rev EGP 281bn, NP 17.3bn; W&C segment +66% — the demand proof'),
- ('Riyadh Cables (Tadawul: 4142)', 'SAR 18.0bn', '18.0x', '15.0x', '0.27x', 'Same industry, clean balance sheet, different market'),
+ ('El Sewedy Electric (EGX: SWDY)', 'EGP 196bn (21-Jul; ~205bn 27-Jul)', '11.3x computed', '~7.1x computed', 'moderate', 'FY25 rev 281bn, NP 17.3bn, EBITDA 30.7bn, net bank debt 19.8bn (filed); W&C grew low-teens FY25 (+66% is FY2024)'),
+ ('Riyadh Cables (Tadawul: 4142)', 'SAR 15.4bn (30-Jul)', '14.3x', '~12.5x derived', '~0.5x', 'Same industry, clean balance sheet, different market; BS inputs unverified'),
  ('Electro Cable Egypt (ELEC)', 'EGP 7.3bn', '14.6x trailing', '~5.3x FY25e', '~2.5x', 'Loss-making 1Q26; ~5.5x on FY24 windfall EPS'),
  ('Giza Cables (private)', '—', '—', '—', '—', 'No public financials'),
 ]:
