@@ -90,7 +90,7 @@ P('One table for the four reads that follow — what the business is worth (fund
 rows = [
  ['Lens / read', 'What it measures', 'Output', 'Takeaway'],
  ['FUNDAMENTAL — what the business is worth (the anchor)', '', '', ''],
- ['FCFF DCF (primary)', 'Cash flow on the easing-cycle discount schedule', pegp(L['dcf']['base']), f"{(L['dcf']['base']/spot-1)*100:+.0f}% vs spot"],
+ ['FCFF DCF (primary)', f"Cash flow on the easing-cycle discount schedule — {dcf['tv_pct']*100:.0f}% of the EV comes from the terminal value (§1.1, §1.9)", pegp(L['dcf']['base']), f"{(L['dcf']['base']/spot-1)*100:+.0f}% vs spot"],
  ['Relative (EV/EBITDA)', 'Mid-cycle EBITDA × peer-anchored multiple', pegp(L['relative']['base']), f"{(L['relative']['base']/spot-1)*100:+.0f}%"],
  ['Normalized earnings', 'Mid-cycle EPS × through-cycle P/E', pegp(L['normalized']['base']), f"{(L['normalized']['base']/spot-1)*100:+.0f}%"],
  ['Book / replacement', 'Justified P/B on sustainable ROE', pegp(L['book']['base']), f"{(L['book']['base']/spot-1)*100:+.0f}%"],

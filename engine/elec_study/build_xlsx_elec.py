@@ -270,7 +270,7 @@ r = dline(r, 'Terminal FCFF = NOPAT × (1+g) × (1 − RR)',
 r = dline(r, 'Terminal value (at terminal WACC)', f"=B{FT}/(Assumptions!$B$25-Assumptions!$B$26)"); TVR = r - 1
 r = dline(r, 'PV of terminal value (year-5 factor)', f"=B{TVR}*F{DC['Cumulative discount factor']}"); PVT = r - 1
 r = dline(r, 'Enterprise value', f"=B{SPV}+B{PVT}", NUM0, True); EVR = r - 1
-r = dline(r, 'Terminal value as % of EV', f"=B{PVT}/B{EVR}", PCT)
+r = dline(r, 'Terminal value as % of EV', f"=B{PVT}/B{EVR}", PCT); TVPC = r - 1
 r = dline(r, 'less: net debt', "=-Assumptions!$B$28", NUM0, False, GREEN)
 r = dline(r, 'less: non-controlling interests', "=-Assumptions!$B$29", NUM0, False, GREEN)
 r = dline(r, 'Equity value — INTRINSIC (may be negative)', f"=B{EVR}-Assumptions!$B$28-Assumptions!$B$29", NUM0, True); AEQ = r - 1
@@ -504,7 +504,8 @@ for col in 'BCD':
     put(ws, f'{col}{r}', f"=SUMPRODUCT({col}{first}:{col}{r-1},$E${first}:$E${r-1})", BLACK, PX, True)
 WC = r; r += 2
 put(ws, f'A{r}', 'Spot price (EGP)'); put(ws, f'B{r}', '=Assumptions!B5', GREEN, PX); r += 1
-put(ws, f'A{r}', 'Upside / (downside) to central base'); put(ws, f'B{r}', f'=C{WC}/Assumptions!B5-1', BLACK, PCT); r += 2
+put(ws, f'A{r}', 'Upside / (downside) to central base'); put(ws, f'B{r}', f'=C{WC}/Assumptions!B5-1', BLACK, PCT); r += 1
+put(ws, f'A{r}', 'Terminal value share of DCF enterprise value'); put(ws, f'B{r}', f"=DCF!B{TVPC}", GREEN, PCT); r += 2
 put(ws, f'A{r}', 'Read: meaningfully overvalued — the price capitalises devaluation-era earnings; the swing factors are '
     'working-capital collection, margin normalisation, and the easing path.', SUB, None)
 
