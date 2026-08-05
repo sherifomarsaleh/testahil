@@ -26,6 +26,8 @@ pre-registration's §6 five-rule adoption gate.** No factor has passed yet.
 - Data: EG 15-yr on repo `main` (`cd68546`); AE 18 + SA 11 long exports gated clean
   (`claude/AE_Export_Gate_20260727.md`, `claude/SA_Export_Gate_20260727.md`); a
   one-action commit bundle was handed to Sherif to put them on `main`.
+  **UPDATE 28-Jul-2026: that bundle is now on `main` (commit `108ab4f`)** — the long
+  AE/SA libraries (2011→2026) and the pooled scripts are committed; step 3 is unblocked.
 
 ## Standing orders (autonomous cycle — Sherif wants minimal involvement)
 
@@ -57,11 +59,17 @@ first maturity — grade it if its files are reachable, else tell Sherif it is d
 
 ## What still needs Sherif (nothing else does)
 
-1. **One git push** of the prepared bundle (long AE/SA + scripts + docs) — until
-   then, monthly re-runs are blocked at step 3 and shadow grading runs on repo data
-   only.
+1. ~~**One git push** of the prepared bundle (long AE/SA + scripts + docs).~~
+   **DONE 28-Jul-2026 (`108ab4f`)** — the bundle is on `main`; monthly re-runs are no
+   longer blocked at step 3, and shadow grading now runs against the long libraries.
 2. **Adoption sign-off and publication**, if and when a factor clears the gate.
 3. Optional: value-traded data sourcing if F5 is ever to be revived.
 
 
 > NAMING MIGRATION (29-Jul-2026): horizon wording updated from the retired session-count form to the calendar form ('3 months', per the 27/28-Jul calendar-only adoption). The horizon's DEFINITION is unchanged — the pre-registered test itself is not altered, only its name.
+
+> CYCLE NOTE (02-Aug-2026): step 3 re-run reproduced for the 01-Aug firing — same 58
+> anchors (grid still ends 2026-04-20, libraries not yet rolled forward), no adoption,
+> F6 still one rule short (misses Bonf IC bar by 0.0037). Full repro:
+> `docs/Pooled_FullPower_Test_ReRun_20260802.md`. Next answer-changing run needs the
+> libraries rolled past ~mid-Oct 2026 to resolve a new anchor.
