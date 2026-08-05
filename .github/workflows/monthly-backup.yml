@@ -1,0 +1,93 @@
+name: Monthly pre-update backup
+
+# Zero-touch replacement for the fragile "pre-update backup" hand-off.
+#
+# Why this exists (05-Aug-2026): the backup was previously a scheduled Cowork
+# session that had to (a) write a zip into the "Selection engine" Claude project
+# and (b) deliver it to Sherif by message. On 01-Aug-2026 neither destination
+# received anything and the failure was silent. This workflow moves the REPO
+# half onto the same GitHub Actions substrate the daily calibration already runs
+# on: no human, no external session, no file hand-off. The dated snapshot lands
+# as a downloadable Actions artifact every month, and the run FAILS LOUDLY if it
+# cannot produce one.
+#
+# SCOPE — READ THIS:
+#   * The repo's real permanent backup is git history on GitHub. This artifact is
+#     a convenience point-in-time snapshot of HEAD (matches the original backup's
+#     "repo at HEAD" intent), retained 90 days (the maximum for a PUBLIC repo).
+#   * A GitHub Action CANNOT reach the "Selection engine" Claude project's living
+#     documents (signed pre-registration, export-gate docs, the append-only
+#     shadow ledger). Those are private and MUST NOT be published to this PUBLIC
+#     repo. Backing them up stays a project-side concern — see
+#     engine/selection/docs/STATE.md.
+
+on:
+  workflow_dispatch: {}          # manual "run it now" button in the Actions tab
+  schedule:
+    - cron: '30 2 1 * *'         # 02:30 UTC on the 1st — before the 03:00 calibration and the monthly cycle
+
+permissions:
+  contents: read
+
+concurrency:
+  group: monthly-backup
+  cancel-in-progress: false
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout at HEAD
+        uses: actions/checkout@v4
+
+      - name: Build the dated HEAD snapshot
+        id: build
+        run: |
+          set -euo pipefail
+          DATE="$(date -u +%Y-%m-%d)"
+          HEAD_SHA="$(git rev-parse HEAD)"
+          OUT="backup-out"
+          mkdir -p "$OUT"
+
+          # HEAD snapshot as a zip (the "repo at HEAD" the original backup wanted).
+          git archive --format=zip -o "$OUT/testahil-repo-${DATE}.zip" HEAD
+
+          # Manifest recording exactly what this backup pins.
+          {
+            echo "Testahil repo backup (HEAD snapshot)"
+            echo "date_utc:      ${DATE}"
+            echo "head_sha:      ${HEAD_SHA}"
+            echo "tracked_files: $(git ls-files | wc -l)"
+            echo "zip_sha256:    $(sha256sum "$OUT/testahil-repo-${DATE}.zip" | cut -d' ' -f1)"
+            echo
+            echo "Restore: unzip testahil-repo-${DATE}.zip"
+            echo "Full history is always available from GitHub (git clone) — this"
+            echo "snapshot is a convenience copy, not the sole backup."
+            echo
+            echo "NOTE: repo only. The 'Selection engine' Claude project docs are"
+            echo "NOT included (CI cannot reach them; this repo is public)."
+          } > "$OUT/MANIFEST-${DATE}.txt"
+
+          echo "date=${DATE}" >> "$GITHUB_OUTPUT"
+          {
+            echo "### Monthly backup — ${DATE}"
+            echo ""
+            echo "- HEAD: \`${HEAD_SHA}\`"
+            echo "- Artifact: \`testahil-backup-${DATE}\` (HEAD zip + manifest)"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Verify the snapshot is non-empty before trusting it
+        run: |
+          set -euo pipefail
+          Z="backup-out/testahil-repo-${{ steps.build.outputs.date }}.zip"
+          test -s "$Z" || { echo "::error::snapshot zip is empty/missing — backup NOT produced"; exit 1; }
+          unzip -t "$Z" >/dev/null || { echo "::error::snapshot zip is corrupt — backup NOT produced"; exit 1; }
+          echo "Backup verified: snapshot present and readable."
+
+      - name: Upload the dated backup artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: testahil-backup-${{ steps.build.outputs.date }}
+          path: backup-out/
+          retention-days: 90       # maximum for a public repo
+          if-no-files-found: error
