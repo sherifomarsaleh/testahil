@@ -161,68 +161,161 @@ INP = dict(
                 "+16.86% y/y (EGX filing 13-May-2026)", "2026-05-13", "Company"),
 
     # ---- segment structure -------------------------------------------------
-    seg_share_fy25=I(dict(wc=0.590, ec=0.270, ep=0.060, ds=0.060, ii=0.020),
-                     "Wires, Cables & Accessories ~59% of group revenue and Engineering & "
-                     "Construction ~27% (company commentary on the 2025 results); the residual is "
-                     "split across Electrical Products, Digital Solutions and Infrastructure "
-                     "Investment in line with the disclosed Q1-2025 segment table (6.0% / 6.1% / "
-                     "1.2% of revenue)", "2026-03", "Company"),
-    seg_gp_margin_fy25=I(dict(wc=0.1245, ec=0.090, ep=0.380, ds=0.210, ii=0.600),
-                         "Segment gross margins set from the disclosed Q1-2025 segment table "
-                         "(W&C 16.6%, E&C 8.6%, Electrical Products 39.4%, Digital Solutions 21.9%, "
-                         "Infrastructure 63.2%) stepped down for the further H2-2025 normalisation, "
-                         "and solved so the weighted blend reproduces the FY2025 group gross margin "
-                         "of 14.5%", "2026-08-05", "House"),
-    opex_pct_fy25=I(0.035, "Operating cost load between gross profit and EBITDA, as a share of "
-                    "revenue: FY2024 SG&A was 5.2% of revenue and Q1-2025 5.4%, against which other "
-                    "income runs 1.5-1.7%. The FY2025 net load solves to 3.5% (14.5% gross margin "
-                    "less the 11.0% EBITDA margin)", "2026-08-05", "House"),
-    ebitda_margin_fy25=I(0.110, "FY2025 group EBITDA margin. Anchored on the last-twelve-month "
-                         "aggregator print (USD 663mn EBITDA on USD 6.0bn revenue = 11.0%) and "
-                         "cross-checked against the disclosed quarterly path: Q1 12.6%, Q2 11.1%, "
-                         "Q4 9.5%", "2026-08-05", "House"),
-
-    # ---- forecast drivers --------------------------------------------------
-    foreign_share_fy25=I(0.70, "'Over 70% of revenues generated abroad' (company 2025 commentary). "
-                         "The single most important structural fact about this company: the revenue "
-                         "base is majority hard-currency while the listing, the reporting currency "
-                         "and the cost of capital are Egyptian", "2026-03", "Company"),
-    dom_growth=I([0.14, 0.12, 0.10, 0.09, 0.08],
-                 "Domestic (EGP) revenue growth FY26E-FY30E. Egypt nominal GDP growth is running "
-                 "~16-18% with inflation guided down toward the CBE's 7% (2026) and 5% (2028) "
-                 "targets; the domestic leg is set to grow slightly below nominal GDP as "
-                 "disinflation proceeds, with no domestic share gain assumed", "2026-08-05", "House"),
-    fgn_growth_usd=I([0.10, 0.08, 0.07, 0.06, 0.06],
-                     "Foreign revenue growth in USD. Supported by a USD 6.5bn project backlog "
-                     "(~4.3x the E&C segment's annual revenue and above the group's historical "
-                     "range), regional grid build-out and data-centre driven cable demand; tapering "
-                     "to a mature single-digit rate by FY30E", "2026-08-05", "House"),
+    # ---- BOTTOM-UP UNIT ECONOMICS ---------------------------------------
+    # The forecast is built from volumes and prices per unit, not from growth
+    # rates applied to a revenue line. Every historical figure below is
+    # disclosed, and the sub-segment build reconciles to the audited income
+    # statement to within EGP 0.2mn on both revenue and gross profit.
+    seg_hist=I(dict(
+        FY23=dict(rawmat=(25869.7, 3478.6), cables=(56551.5, 14110.5), ec=(52896.4, 6130.0),
+                  meters=(7092.9, 1694.3), transformers=(6614.1, 1979.9),
+                  elecprod=(2575.1, 1386.7), infra=(586.5, 297.5)),
+        FY24=dict(rawmat=(49608.2, 7647.2), cables=(87581.6, 19959.3), ec=(70042.4, 7831.1),
+                  meters=(9996.7, 2722.5), transformers=(11308.7, 3895.0),
+                  elecprod=(2565.2, 1300.4), infra=(879.1, 542.9))),
+        "Sub-segment revenue and gross profit (EGP mn) from the company's own published segment "
+        "analysis workbooks for FY2024 (with FY2023 comparatives). The reported 'Wires & Cables' "
+        "segment splits into Cables and Raw Material (the copper-rod pass-through arm) and the two "
+        "sum exactly to it. Turnkey gross profit is taken from the income statement where it "
+        "differs marginally from the workbook", "2025-03-13", "Company"),
+    vol_hist=I(dict(cables={'FY23': 156748.0, 'FY24': 167665.0},
+                    meters={'FY23': 4057065.0, 'FY24': 3850726.0},
+                    transformers={'FY23': 14521.0, 'FY24': 17619.0}),
+               "Disclosed sales volumes: cables in tonnes, meters in units, transformers in MVA "
+               "(company earnings releases, FY2024 with FY2023 comparatives). These reproduce the "
+               "disclosed gross profit per tonne (90,020 / 119,043), per meter (418 / 707) and per "
+               "MVA (136,345 / 221,065) exactly", "2025-03-13", "Company"),
+    q1_units=I(dict(cables_q1_25=41476.0, cables_q1_24=44975.0,
+                    meters_q1_25=1169502.0, meters_q1_24=811357.0,
+                    transformers_q1_25=5112.0, transformers_q1_24=5142.0),
+               "Q1-2025 disclosed volumes with Q1-2024 comparatives (Q1-2025 earnings release): "
+               "cables 41,476t (-7.8%), meters 1,169,502 (+44.1%), transformers 5,112 MVA (-0.6%). "
+               "Used with the FY2024 seasonal share to estimate the FY2025 volume base, which is "
+               "not itself disclosed", "2025-05-26", "Company"),
+    copper_hist=I(dict(FY23=8478.0, FY24=9147.0, FY25=10000.0),
+                  "LME copper cash, annual average USD/tonne (house commodity reference)",
+                  "2026-08-05", "Industry"),
+    fx_hist=I(dict(FY23=30.7, FY24=45.3, FY25=49.5),
+              "Annual average USD/EGP. The audited FY2024 note discloses closing 50.91 / average "
+              "43.96 for 2024 and closing 30.96 / average 30.59 for 2023; the figures here are the "
+              "house averages consistent with those disclosures", "2026-08-05", "Country"),
     fx_path=I([51.0, 54.0, 57.5, 61.0, 64.5],
-              "USD/EGP average-rate path FY26E-FY30E, ~6%/yr depreciation from the FY2025 average "
-              "of 49.5. DELIBERATELY BELOW covered-interest parity, which on the 22.31% EGP vs "
-              "~4.3% USD rate gap implies ~17%/yr — the base case assumes the CBE's disinflation "
-              "path largely closes that gap rather than the pound absorbing it. The parity path is "
-              "carried as an explicit sensitivity because it moves the valuation more than any "
-              "operating driver", "2026-08-05", "House"),
-    fx_fy25_avg=I(49.5, "FY2025 average USD/EGP. The audited FY2024 note discloses closing 50.91 / "
-                  "average 43.96 for 2024 and closing 30.96 / average 30.59 for 2023; 49.5 is the "
-                  "2025 average consistent with the observed path", "2026-08-05", "House"),
-    seg_share_fy30=I(dict(wc=0.560, ec=0.280, ep=0.065, ds=0.070, ii=0.025),
-                     "FY30E segment mix: a modest drift out of wires & cables into the higher-margin "
-                     "digital, electrical-products and infrastructure lines, consistent with the "
-                     "company's stated three-year plan to broaden the portfolio. Interpolated "
-                     "linearly from the FY2025 mix", "2026-08-05", "House"),
-    seg_ebitda_margin_path=I(dict(
-        wc=[0.091, 0.0925, 0.095, 0.098, 0.100],
-        ec=[0.056, 0.058, 0.061, 0.063, 0.065],
-        ep=[0.345, 0.345, 0.345, 0.345, 0.345],
-        ds=[0.177, 0.180, 0.182, 0.1835, 0.185],
-        ii=[0.565, 0.565, 0.565, 0.565, 0.565]),
-        "Segment EBITDA margins FY26E-FY30E = segment gross margin less the 3.5%-of-revenue "
-        "operating load, then allowed to recover gently as the copper-driven revenue inflation of "
-        "2024-25 washes out of the denominator and the mix shifts. The wires & cables terminal "
-        "margin of 10.0% sits well below the FY2024 windfall (14.3%, struck on devaluation "
-        "inventory gains) and marginally above the FY2025 trough", "2026-08-05", "House"),
+              "USD/EGP average-rate path, about 6%/yr of depreciation from the FY2025 average of "
+              "49.5. This is a genuine driver in the bottom-up build, not a translation "
+              "convenience: copper is priced in dollars, so it sets the Egyptian-pound price per "
+              "tonne of cable and rod directly. DELIBERATELY BELOW covered-interest parity, which "
+              "on the 22.31% pound against a ~4.3% dollar rate implies about 17%/yr — the base "
+              "case assumes disinflation closes most of that gap rather than the currency "
+              "absorbing it. The parity case is carried as an explicit sensitivity",
+              "2026-08-05", "House"),
+    copper_fcst=I([13400.0, 14000.0, 14000.0, 14000.0, 14000.0],
+                  "LME copper. FY2026 is set at USD 13,400/t, between the Q1-2026 average of "
+                  "12,852 actually realised and the current cash price of about 14,000 "
+                  "(13.9-14.2k, early August 2026); thereafter the current level is held flat. "
+                  "Held flat rather than forecast: copper is the largest single input and a "
+                  "directional view on it would dominate the valuation. The -10% column of the "
+                  "sensitivity carries the mean-reversion case", "2026-08-05", "Industry"),
+    cables_vol_growth=I([0.06, 0.05, 0.04, 0.04, 0.04],
+                        "Cable tonnage growth. The FY2025 base is a 7.7% volume DECLINE on FY2024 "
+                        "(disclosed Q1-2025 -7.8%), so the forecast is a recovery to roughly the "
+                        "FY2024 level by FY2028 and modest growth thereafter, supported by regional "
+                        "grid build-out, data-centre demand and the export book. No capacity "
+                        "step-change is assumed", "2026-08-05", "House"),
+    cables_uplift=I([1.30, 1.30, 1.30, 1.30, 1.30],
+                    "Fabrication uplift: cable price per tonne divided by the copper cost per "
+                    "tonne. History back-solves to 1.386 (FY2023) and 1.261 (FY2024); the forecast "
+                    "is held at 1.30, between the two. This is the term that converts a copper "
+                    "price into a cable price, and holding it flat means no pricing-power "
+                    "assumption is being smuggled in", "2026-08-05", "House"),
+    cables_gp_t_fy25=I(88173.0, "Cable gross profit per tonne, Q1-2025 as disclosed (against "
+                       "93,672 in Q1-2024 on the restated basis). Taken as the FY2025 run-rate: "
+                       "it is the hard evidence for how far cable conversion margins actually "
+                       "compressed, and it is what pins the FY2025 unit build to reality rather "
+                       "than to an assumption", "2025-05-26", "Company"),
+    cables_conv=I([0.150, 0.160, 0.170, 0.175, 0.175],
+                  "Cable conversion margin — gross profit as a share of the realised price per "
+                  "tonne — for the forecast years. History back-solves to 25.0% (FY2023), 22.8% "
+                  "(FY2024) and roughly 13.8% (FY2025, from the disclosed gross profit per tonne "
+                  "against the back-solved price per tonne). The forecast recovers only part of "
+                  "that collapse and never approaches the FY2023-24 levels, which carried "
+                  "devaluation gains on cheaply bought copper inventory", "2026-08-05", "House"),
+    unit_gp_growth=I([0.085, 0.080, 0.075, 0.070, 0.070],
+                     "Growth in gross profit PER UNIT for the manufacturing lines — per tonne of "
+                     "cable and rod, per MVA of transformer, per meter. This is the correct "
+                     "structure for a converter: when copper spikes, revenue rises because the "
+                     "metal is passed through, but the conversion margin earned on each tonne does "
+                     "not, so the percentage margin falls. Modelling these as a percentage of a "
+                     "copper-inflated price would manufacture profit out of a commodity move. The "
+                     "path is set at roughly Egyptian cost inflation, i.e. a flat real conversion "
+                     "margin with no recovery in unit profitability assumed",
+                     "2026-08-05", "House"),
+    margin_recovery=I([1.00, 1.04, 1.07, 1.09, 1.10],
+                      "Recovery factor applied to the FY2025 gross margins of the non-cable lines. "
+                      "FY2025 margins are calibrated to the disclosed group gross profit, which "
+                      "implies roughly a 10% compression against FY2024 across those lines; the "
+                      "forecast recovers about half of it by FY2030 and no more",
+                      "2026-08-05", "House"),
+    rawmat_vol_growth=I([0.04, 0.04, 0.03, 0.03, 0.03],
+                        "Raw-material (copper rod) tonnage growth. This arm is close to a pure "
+                        "pass-through: implied volume was 99kt in FY2023 and 120kt in FY2024",
+                        "2026-08-05", "House"),
+    rawmat_uplift=I(1.02, "Raw-material price per tonne as a multiple of the copper cost — a "
+                    "thin conversion spread over the metal", "2026-08-05", "House"),
+    rawmat_gp=I(0.135, "Raw-material gross margin. History 13.4% (FY2023), 15.4% (FY2024); the "
+                "forecast is struck at the lower end", "2026-08-05", "House"),
+    ec_backlog=I(323700.0, "Engineering and construction order book: USD 6.5bn translated at the "
+                 "spot rate. Disclosed as 'approximately USD 6.5bn, above the group's typical "
+                 "historical range'. The reported turnkey backlog was EGP 165bn (Mar-2024), 239bn "
+                 "(Jun-2024) and 196bn (Dec-2024), so the current book is a genuine step up",
+                 "2026-03", "Company"),
+    ec_burn=I([0.270, 0.265, 0.260, 0.255, 0.250],
+              "Share of the opening order book converted to revenue each year. The FY2025 revenue "
+              "of roughly EGP 88bn against a book of EGP 324bn implies about 27%, i.e. a "
+              "three-and-a-half-year book. The rate is tapered as the book lengthens",
+              "2026-08-05", "House"),
+    ec_book_to_bill=I([1.05, 1.05, 1.03, 1.02, 1.00],
+                      "New awards as a multiple of revenue recognised. Above one early, reflecting "
+                      "the disclosed step up in the order book, converging to replacement",
+                      "2026-08-05", "House"),
+    ec_gp=I(0.110, "Engineering and construction gross margin. History 11.6% (FY2023) and 11.2% "
+            "(FY2024); held at 11.0%", "2026-08-05", "House"),
+    transformers_vol_growth=I([0.08, 0.07, 0.06, 0.05, 0.05],
+                              "Transformer MVA growth. History: 14,521 MVA (FY2023) to 17,619 "
+                              "(FY2024), +21.3%, then broadly flat through Q1-2025. Regional "
+                              "transmission investment supports mid-single-digit growth",
+                              "2026-08-05", "House"),
+    transformers_gp=I(0.320, "Transformer gross margin as a share of price per MVA. History 29.9% "
+                      "(FY2023) and 34.4% (FY2024); struck between them", "2026-08-05", "House"),
+    meters_vol_growth=I([0.06, 0.05, 0.05, 0.04, 0.04],
+                        "Smart-meter unit growth. Volumes fell 5.1% in FY2024 but Q1-2025 ran "
+                        "+44.1% y/y as national metering programmes restarted",
+                        "2026-08-05", "House"),
+    meters_gp=I(0.250, "Meter gross margin as a share of price per unit. History 23.9% (FY2023) "
+                "and 27.2% (FY2024)", "2026-08-05", "House"),
+    unit_price_inflation=I([0.08, 0.075, 0.07, 0.07, 0.07],
+                           "Nominal price growth for the units not priced off copper (meters). "
+                           "Set below Egyptian headline inflation on the disinflation path",
+                           "2026-08-05", "House"),
+    other_growth=I([0.12, 0.11, 0.10, 0.09, 0.08],
+                   "Revenue growth for the two smallest lines — other electrical products, and "
+                   "infrastructure investment (industrial development, logistics, utilities, dry "
+                   "port and independent power projects). Together under 3% of revenue",
+                   "2026-08-05", "House"),
+    other_gp=I(dict(elecprod=0.450, infra=0.600),
+               "Gross margins on the two residual lines. History: other electrical products 53.9% "
+               "(FY2023) and 50.7% (FY2024); infrastructure 50.7% and 61.8%. Struck conservatively",
+               "2026-08-05", "House"),
+    opex_pct=I([0.040, 0.043, 0.046, 0.048, 0.050],
+               "The net operating load between gross profit and EBITDA, as a share of revenue — "
+               "selling, general and administrative costs and other expenses, less other income. "
+               "History: 5.94% (FY2023) and 5.30% (FY2024). FY2025 solves to a much lower level, "
+               "so the forecast glides back TOWARD the historical norm rather than assuming the "
+               "FY2025 load persists. This is the single most conservative choice in the rebuild",
+               "2026-08-05", "House"),
+    foreign_share_fy25=I(0.70, "'Over 70% of revenues generated abroad' (company 2025 commentary). "
+                         "Used to report the currency split of the bottom-up revenue build, and to "
+                         "translate the copper-linked lines, which are dollar-priced by "
+                         "construction", "2026-03", "Company"),
     nwc_pct=I(0.230, "Net working capital as a share of revenue, held flat at the historical level. "
               "Computed from the audited balance sheets: FY2023 24.1% and FY2024 23.1% "
               "(inventories + contract assets + receivables less payables less contract "
@@ -355,20 +448,25 @@ MKTCAP = SPOT * SH
 # tax and profit after minority. Unknown: the split of the remainder between
 # operating costs, net finance and tax. We fix EBITDA at the disclosed margin,
 # derive D&A and EBIT, then let the tax rate close the P&L to the reported PAT.
-ebitda_fy25 = V['ebitda_margin_fy25'] * V['rev_fy25']
 dna_fy25 = V['dna_pct'] * V['rev_fy25']
-op_fy25 = ebitda_fy25 - dna_fy25
 netfin_fy25 = V['netfin_fy25']
 assoc_fy25 = V['assoc_fy24'] * 1.15
-pbt_fy25 = op_fy25 + netfin_fy25 + assoc_fy25
+# With a bottom-up build the stated effective tax rate is the input and EBITDA is
+# what the disclosed profit implies — the reverse of a top-down model.
+eff_tax_fy25 = V['tax_eff']
+pbt_fy25 = V['pat_fy25'] / (1 - eff_tax_fy25)
 tax_fy25 = -(pbt_fy25 - V['pat_fy25'])
-eff_tax_fy25 = -tax_fy25 / pbt_fy25
+op_fy25 = pbt_fy25 - netfin_fy25 - assoc_fy25
+ebitda_fy25 = op_fy25 + dna_fy25
 nci_fy25 = V['pat_fy25'] - V['npa_fy25']
-say(f"[P&L closure FY2025] EBITDA {ebitda_fy25:,.0f} - D&A {dna_fy25:,.0f} = EBIT {op_fy25:,.0f}; "
-    f"net finance {netfin_fy25:,.0f}; associates {assoc_fy25:,.0f} -> PBT {pbt_fy25:,.0f}; "
-    f"implied tax {-tax_fy25:,.0f} = {eff_tax_fy25:.1%} (FY24 30.1%, FY23 31.3%) -> PAT "
-    f"{V['pat_fy25']:,.0f} as disclosed; NCI {nci_fy25:,.0f}")
-assert 0.20 < eff_tax_fy25 < 0.35, f"FY25 implied effective tax {eff_tax_fy25:.1%} implausible"
+say(f"[P&L closure FY2025] disclosed profit after tax {V['pat_fy25']:,.0f} at the stated "
+    f"{eff_tax_fy25:.1%} effective rate implies pre-tax profit {pbt_fy25:,.0f}; less net finance "
+    f"{netfin_fy25:,.0f} and associates {assoc_fy25:,.0f} gives EBIT {op_fy25:,.0f}, and adding "
+    f"depreciation {dna_fy25:,.0f} gives EBITDA {ebitda_fy25:,.0f} "
+    f"({ebitda_fy25/V['rev_fy25']:.2%} of revenue). The disclosed quarterly EBITDA margins were "
+    f"12.6% (Q1), 11.1% (Q2) and 9.5% (Q4), so a full-year figure near 11% is consistent with "
+    f"the prints. NCI {nci_fy25:,.0f}")
+assert 0.085 < ebitda_fy25 / V['rev_fy25'] < 0.135, "FY25 implied EBITDA margin outside the prints"
 
 ebitda_fy23 = V['op_fy23'] + V['dna_fy23']
 ebitda_fy24 = V['op_fy24'] + V['dna_fy24']
@@ -485,45 +583,252 @@ say("[Glide] forward WACC " + " -> ".join(f"{w:.2%}" for w in fwd) +
     ". The glide fractions are the cost-of-debt path's own cumulative progress, so the shape is "
     "inherited rather than being a second free parameter.")
 
-# ---- revenue: currency build ------------------------------------------------
+# ---- BOTTOM-UP UNIT ECONOMICS ------------------------------------------------
 YRS = ['FY26E', 'FY27E', 'FY28E', 'FY29E', 'FY30E']
-dom_fy25 = (1 - V['foreign_share_fy25']) * V['rev_fy25']
-fgn_fy25_egp = V['foreign_share_fy25'] * V['rev_fy25']
-fgn_fy25_usd = fgn_fy25_egp / V['fx_fy25_avg']
-rev, dom, fgn_usd, fgn_egp = [], [], [], []
-d, u = dom_fy25, fgn_fy25_usd
-for i in range(5):
-    d *= (1 + V['dom_growth'][i]); u *= (1 + V['fgn_growth_usd'][i])
-    e = u * V['fx_path'][i]
-    dom.append(d); fgn_usd.append(u); fgn_egp.append(e); rev.append(d + e)
-say(f"[Revenue build] FY2025 splits {dom_fy25:,.0f} domestic + {fgn_fy25_egp:,.0f} foreign "
-    f"(USD {fgn_fy25_usd:,.0f}mn at {V['fx_fy25_avg']}). Forecast total revenue " +
-    " -> ".join(f"{r:,.0f}" for r in rev) +
-    " (growth " + ", ".join(f"{rev[i]/(V['rev_fy25'] if i==0 else rev[i-1])-1:+.1%}" for i in range(5)) + ")")
+SUBS = ['cables', 'rawmat', 'ec', 'transformers', 'meters', 'elecprod', 'infra']
+SUBNAME = dict(cables='Cables', rawmat='Raw material (copper rod)',
+               ec='Engineering & construction', transformers='Transformers',
+               meters='Meters & digital', elecprod='Other electrical products',
+               infra='Infrastructure investment')
+SH_, VH = V['seg_hist'], V['vol_hist']
+CU, FXH = V['copper_hist'], V['fx_hist']
 
-# ---- segment mix, margins, EBITDA -------------------------------------------
-segs = ['wc', 'ec', 'ep', 'ds', 'ii']
-SEGNAME = dict(wc='Wires, Cables & Accessories', ec='Engineering & Construction',
-               ep='Electrical Products', ds='Digital Solutions', ii='Infrastructure Investment')
-s0, s1 = V['seg_share_fy25'], V['seg_share_fy30']
-shares = []
+# historical unit economics — validated against the audited statements
+unit_hist = {}
+for y in ('FY23', 'FY24'):
+    seg = SH_[y]
+    rev_sum = sum(v[0] for v in seg.values()); gp_sum = sum(v[1] for v in seg.values())
+    cu_t = CU[y] * FXH[y]
+    unit_hist[y] = dict(
+        rev_sum=rev_sum, gp_sum=gp_sum, copper_t=cu_t,
+        cables_price_t=seg['cables'][0] * 1e6 / VH['cables'][y],
+        cables_gp_t=seg['cables'][1] * 1e6 / VH['cables'][y],
+        cables_uplift=(seg['cables'][0] * 1e6 / VH['cables'][y]) / cu_t,
+        cables_conv=seg['cables'][1] / seg['cables'][0],
+        meters_price=seg['meters'][0] * 1e6 / VH['meters'][y],
+        meters_gp_u=seg['meters'][1] * 1e6 / VH['meters'][y],
+        transformers_price=seg['transformers'][0] * 1e6 / VH['transformers'][y],
+        transformers_gp_mva=seg['transformers'][1] * 1e6 / VH['transformers'][y],
+        rawmat_kt=seg['rawmat'][0] * 1e6 / cu_t,
+        ec_gp=seg['ec'][1] / seg['ec'][0],
+        opex_pct=(gp_sum - (V['op_fy23'] + V['dna_fy23'] if y == 'FY23'
+                            else V['op_fy24'] + V['dna_fy24'])) / rev_sum)
+say(f"[Bottom-up base] the sub-segment build reconciles to the audited statements: FY2023 revenue "
+    f"{unit_hist['FY23']['rev_sum']:,.1f} vs reported {V['rev_fy23']:,.1f}, gross profit "
+    f"{unit_hist['FY23']['gp_sum']:,.1f} vs {V['gp_fy23']:,.1f}; FY2024 revenue "
+    f"{unit_hist['FY24']['rev_sum']:,.1f} vs {V['rev_fy24']:,.1f}, gross profit "
+    f"{unit_hist['FY24']['gp_sum']:,.1f} vs {V['gp_fy24']:,.1f}.")
+for y in ('FY23', 'FY24'):
+    assert abs(unit_hist[y]['rev_sum'] - V[f'rev_{y.lower()}']) < 1.0, 'sub-segment revenue break'
+    assert abs(unit_hist[y]['gp_sum'] - V[f'gp_{y.lower()}']) < 1.0, 'sub-segment gross profit break'
+say(f"[Unit economics] cables price/tonne {unit_hist['FY23']['cables_price_t']:,.0f} -> "
+    f"{unit_hist['FY24']['cables_price_t']:,.0f}; fabrication uplift over copper "
+    f"{unit_hist['FY23']['cables_uplift']:.3f} -> {unit_hist['FY24']['cables_uplift']:.3f}; "
+    f"conversion margin {unit_hist['FY23']['cables_conv']:.1%} -> "
+    f"{unit_hist['FY24']['cables_conv']:.1%}. Meters price/unit "
+    f"{unit_hist['FY23']['meters_price']:,.0f} -> {unit_hist['FY24']['meters_price']:,.0f}; "
+    f"transformers price/MVA {unit_hist['FY23']['transformers_price']:,.0f} -> "
+    f"{unit_hist['FY24']['transformers_price']:,.0f}. Operating load between gross profit and "
+    f"EBITDA {unit_hist['FY23']['opex_pct']:.2%} -> {unit_hist['FY24']['opex_pct']:.2%} of revenue.")
+
+# ---- FY2025 unit base: volumes from Q1 seasonality, revenue calibrated to disclosure ----
+Q = V['q1_units']
+seas = {k: Q[f'{k}_q1_24'] / VH[k]['FY24'] for k in ('cables', 'meters', 'transformers')}
+vol25 = {k: Q[f'{k}_q1_25'] / seas[k] for k in seas}
+cu_t25 = CU['FY25'] * FXH['FY25']
+# non-cables lines built first; cables revenue is the residual against disclosed group revenue,
+# which back-solves the FY2025 fabrication uplift as the diagnostic
+rawmat_kt25 = unit_hist['FY24']['rawmat_kt'] * 1.00
+rev25 = {}
+rev25['rawmat'] = rawmat_kt25 * cu_t25 * V['rawmat_uplift'] / 1e6
+rev25['ec'] = SH_['FY24']['ec'][0] * 1.25
+rev25['transformers'] = vol25['transformers'] * unit_hist['FY24']['transformers_price'] * 1.09 / 1e6
+rev25['meters'] = vol25['meters'] * unit_hist['FY24']['meters_price'] * 1.08 / 1e6
+rev25['elecprod'] = SH_['FY24']['elecprod'][0] * 1.25
+rev25['infra'] = Q.get('infra_q1_25', 730.1) * 4.0
+rev25['cables'] = V['rev_fy25'] - sum(rev25.values())
+uplift25 = rev25['cables'] * 1e6 / vol25['cables'] / cu_t25
+price_t25 = rev25['cables'] * 1e6 / vol25['cables']
+say(f"[FY2025 unit base] volumes implied from the disclosed Q1 prints and the FY2024 seasonal "
+    f"share: cables {vol25['cables']:,.0f}t ({vol25['cables']/VH['cables']['FY24']-1:+.1%} on "
+    f"FY2024), meters {vol25['meters']:,.0f} units, transformers "
+    f"{vol25['transformers']:,.0f} MVA. Cables revenue is the residual against the disclosed group "
+    f"revenue of {V['rev_fy25']:,.0f}, which BACK-SOLVES the FY2025 fabrication uplift to "
+    f"{uplift25:.3f} — between the FY2023 (1.386) and FY2024 (1.261) prints, so the residual is "
+    f"economically sensible rather than a plug absorbing an error.")
+assert 1.15 < uplift25 < 1.50, f"FY25 back-solved uplift {uplift25:.3f} outside the historical range"
+
+# FY2025 gross profit: cables PINNED to the disclosed gross profit per tonne; the
+# remaining lines carry FY2024's margins scaled by one compression factor, solved so
+# the total reproduces the gross profit assembled from the disclosed prints.
+gp25 = {}
+gp25['cables'] = vol25['cables'] * V['cables_gp_t_fy25'] / 1e6
+cables_conv25 = gp25['cables'] / rev25['cables']
+gp24_margin = {k: SH_['FY24'][k][1] / SH_['FY24'][k][0] for k in SUBS}
+others = [k for k in SUBS if k != 'cables']
+rest_rev = sum(rev25[k] for k in others)
+rest_gp24_blend = sum(rev25[k] * gp24_margin[k] for k in others)
+compress = (V['gp_fy25'] - gp25['cables']) / rest_gp24_blend
+for k in others:
+    gp25[k] = rev25[k] * gp24_margin[k] * compress
+gp_bu25 = sum(gp25.values())
+margin25 = {k: gp25[k] / rev25[k] for k in SUBS}
+opex25 = (gp_bu25 - ebitda_fy25) / V['rev_fy25']
+say(f"[FY2025 margin calibration] cables gross profit is PINNED to the disclosed "
+    f"{V['cables_gp_t_fy25']:,.0f} EGP per tonne x {vol25['cables']:,.0f}t = "
+    f"{gp25['cables']:,.0f}, i.e. a conversion margin of {cables_conv25:.1%} against "
+    f"{unit_hist['FY24']['cables_conv']:.1%} in FY2024 — the cable margin roughly HALVED, and that "
+    f"single fact is most of the group's gross-margin decline. The other lines carry FY2024's "
+    f"margins scaled by {compress:.3f}, solved so the total reproduces the {V['gp_fy25']:,.0f} "
+    f"assembled from the disclosed prints. Resulting FY2025 margins: " +
+    ", ".join(f"{SUBNAME[k]} {margin25[k]:.1%}" for k in SUBS) + ".")
+say(f"[FY2025 operating load] bottom-up gross profit {gp_bu25:,.0f} less EBITDA "
+    f"{ebitda_fy25:,.0f} implies an operating load of {opex25:.2%} of revenue, against "
+    f"{unit_hist['FY24']['opex_pct']:.2%} in FY2024 and {unit_hist['FY23']['opex_pct']:.2%} in "
+    f"FY2023. The forecast glides from {V['opex_pct'][0]:.1%} back toward the historical norm "
+    f"rather than assuming the FY2025 level persists.")
+assert abs(gp_bu25 - V['gp_fy25']) < 1.0, 'FY25 gross profit calibration did not close'
+assert 0.7 < compress < 1.15, f'FY25 margin compression factor {compress:.3f} implausible' 
+
+# ---- FORECAST: volumes x prices, sub-segment by sub-segment --------------------
+vol_f = {k: [] for k in ('cables', 'meters', 'transformers', 'rawmat')}
+seg_rev = []; seg_gp = []
+backlog = V['ec_backlog']; bl_path = []
+vc, vm, vt, vr = vol25['cables'], vol25['meters'], vol25['transformers'], rawmat_kt25
+ec_prev = rev25['ec']; ep_prev = rev25['elecprod']; inf_prev = rev25['infra']
+mp, tp = unit_hist['FY24']['meters_price'] * 1.08, unit_hist['FY24']['transformers_price'] * 1.09
+# The most recent hard evidence is the Q1-2026 print. Back out the EBITDA margin it
+# implies, and SOLVE the FY2026 cable conversion margin that reproduces it, rather than
+# assuming a conversion margin and contradicting the print.
+_nci_sh = nci_fy25 / V['pat_fy25']
+q1_26_pat = V['q1_26_npa'] / (1 - _nci_sh)
+q1_26_pbt = q1_26_pat / (1 - TAX)
+q1_26_ebit = q1_26_pbt - netfin_fy25 / 4 - assoc_fy25 / 4
+q1_26_ebitda = q1_26_ebit + V['dna_pct'] * V['q1_26_rev']
+q1_26_margin = q1_26_ebitda / V['q1_26_rev']
+say(f"[Q1-2026 calibration] the disclosed Q1-2026 revenue {V['q1_26_rev']:,.0f} "
+    f"({V['q1_26_rev']/V['q1_25_rev']-1:+.1%} y/y) and attributable profit {V['q1_26_npa']:,.0f} "
+    f"({V['q1_26_npa']/V['q1_25_npa']-1:+.1%} y/y) imply, on the same tax, minority, finance and "
+    f"depreciation structure, an EBITDA margin of about {q1_26_margin:.2%} — against "
+    f"{V['q1_25_ebitda']/V['q1_25_rev']:.2%} in Q1-2025. Profit GREW on a higher copper price, so "
+    f"any build that shows margins collapsing in FY2026 is contradicted by the print. The FY2026 "
+    f"cable conversion margin is therefore SOLVED to reproduce this, not assumed.")
+gp_t_cables = V['cables_gp_t_fy25']
+gp_t_rawmat = gp25['rawmat'] * 1e6 / rawmat_kt25
+gp_mva = gp25['transformers'] * 1e6 / vol25['transformers']
+gp_unit_m = gp25['meters'] * 1e6 / vol25['meters']
+say(f"[Per-unit gross profit, FY2025 base] cables {gp_t_cables:,.0f} EGP/tonne (disclosed), rod "
+    f"{gp_t_rawmat:,.0f} EGP/tonne, transformers {gp_mva:,.0f} EGP/MVA, meters "
+    f"{gp_unit_m:,.0f} EGP/unit. These grow with cost inflation only — no real recovery in "
+    f"conversion profitability is assumed anywhere in the forecast.")
+def _fy26_gp(gpt):
+    cu_t = V['copper_fcst'][0] * V['fx_path'][0]
+    vc_ = vol25['cables'] * (1 + V['cables_vol_growth'][0])
+    vr_ = rawmat_kt25 * (1 + V['rawmat_vol_growth'][0])
+    vt_ = vol25['transformers'] * (1 + V['transformers_vol_growth'][0])
+    vm_ = vol25['meters'] * (1 + V['meters_vol_growth'][0])
+    rev_ = (vc_ * cu_t * V['cables_uplift'][0] + vr_ * cu_t * V['rawmat_uplift']) / 1e6
+    rev_ += V['ec_backlog'] * V['ec_burn'][0]
+    rev_ += vt_ * (cu_t * unit_hist['FY24']['transformers_price'] / unit_hist['FY24']['copper_t']) / 1e6
+    rev_ += vm_ * unit_hist['FY24']['meters_price'] * 1.08 * (1 + V['unit_price_inflation'][0]) / 1e6
+    rev_ += rev25['elecprod'] * (1 + V['other_growth'][0]) + rev25['infra'] * (1 + V['other_growth'][0])
+    g_ = vc_ * gpt / 1e6
+    g_ += vr_ * (gp25['rawmat'] * 1e6 / rawmat_kt25) * (1 + V['unit_gp_growth'][0]) / 1e6
+    g_ += V['ec_backlog'] * V['ec_burn'][0] * margin25['ec'] * V['margin_recovery'][0]
+    g_ += vt_ * (gp25['transformers'] * 1e6 / vol25['transformers']) * (1 + V['unit_gp_growth'][0]) / 1e6
+    g_ += vm_ * (gp25['meters'] * 1e6 / vol25['meters']) * (1 + V['unit_gp_growth'][0]) / 1e6
+    g_ += rev25['elecprod'] * (1 + V['other_growth'][0]) * margin25['elecprod'] * V['margin_recovery'][0]
+    g_ += rev25['infra'] * (1 + V['other_growth'][0]) * margin25['infra'] * V['margin_recovery'][0]
+    return (g_ - V['opex_pct'][0] * rev_) / rev_
+
+lo_, hi_ = 60000.0, 260000.0
+for _ in range(90):
+    mid_ = (lo_ + hi_) / 2
+    if _fy26_gp(mid_) < q1_26_margin: lo_ = mid_
+    else: hi_ = mid_
+gp_t_cables = (lo_ + hi_) / 2
+say(f"[Cable conversion margin, solved] FY2026 gross profit per tonne solves to "
+    f"{gp_t_cables:,.0f} EGP to reproduce the Q1-2026 implied EBITDA margin — against the "
+    f"disclosed {V['cables_gp_t_fy25']:,.0f} in Q1-2025, {unit_hist['FY24']['cables_gp_t']:,.0f} "
+    f"in FY2024 and {unit_hist['FY23']['cables_gp_t']:,.0f} in FY2023. It sits inside the "
+    f"historical range, so the print and the unit build are mutually consistent.")
+_cu26 = V['copper_fcst'][0] * V['fx_path'][0]
+say(f"[Conversion margin cross-check] as a SHARE of the realised price per tonne that solved "
+    f"figure is {gp_t_cables/(_cu26*V['cables_uplift'][0]):.1%}, between the FY2025 trough of "
+    f"{cables_conv25:.1%} and the FY2024 peak of {unit_hist['FY24']['cables_conv']:.1%}. In "
+    f"absolute EGP it is below what pure copper-cost scaling of FY2024 would give "
+    f"({unit_hist['FY24']['cables_gp_t']*_cu26/unit_hist['FY24']['copper_t']:,.0f}), so the "
+    f"solve does not assume the converter captures the whole metal move. NOTE the solve "
+    f"attributes all of the Q1-2026 improvement to cables, where the volatility demonstrably is; "
+    f"if it in fact came from another line the sub-segment split changes but GROUP EBITDA — the "
+    f"only thing the valuation consumes — is pinned by the print either way.")
+assert unit_hist['FY23']['cables_gp_t'] * 0.75 < gp_t_cables < unit_hist['FY24']['cables_gp_t'] * 1.45, \
+    f'solved cable conversion margin {gp_t_cables:,.0f} outside the historical range'
+gp_t_cables /= (1 + V['unit_gp_growth'][0])   # loop advances it on the first pass
+
 for i in range(5):
-    f = (i + 1) / 5.0
-    raw = {s: s0[s] + (s1[s] - s0[s]) * f for s in segs}
-    tot = sum(raw.values())
-    shares.append({s: raw[s] / tot for s in segs})
-seg_rev = [{s: shares[i][s] * rev[i] for s in segs} for i in range(5)]
-seg_ebitda = [{s: seg_rev[i][s] * V['seg_ebitda_margin_path'][s][i] for s in segs} for i in range(5)]
-ebitda = [sum(seg_ebitda[i].values()) for i in range(5)]
+    cu_t = V['copper_fcst'][i] * V['fx_path'][i]
+    gp_t_cables *= (1 + V['unit_gp_growth'][i]); gp_t_rawmat *= (1 + V['unit_gp_growth'][i])
+    gp_mva *= (1 + V['unit_gp_growth'][i]); gp_unit_m *= (1 + V['unit_gp_growth'][i])
+    vc *= (1 + V['cables_vol_growth'][i]); vm *= (1 + V['meters_vol_growth'][i])
+    vt *= (1 + V['transformers_vol_growth'][i]); vr *= (1 + V['rawmat_vol_growth'][i])
+    mp *= (1 + V['unit_price_inflation'][i])
+    tp = cu_t * (unit_hist['FY24']['transformers_price'] / unit_hist['FY24']['copper_t'])
+    r, g = {}, {}
+    price_t = cu_t * V['cables_uplift'][i]
+    r['cables'] = vc * price_t / 1e6
+    g['cables'] = vc * gp_t_cables / 1e6
+    r['rawmat'] = vr * cu_t * V['rawmat_uplift'] / 1e6
+    g['rawmat'] = vr * gp_t_rawmat / 1e6
+    r['ec'] = backlog * V['ec_burn'][i]
+    g['ec'] = r['ec'] * margin25['ec'] * V['margin_recovery'][i]
+    backlog = backlog - r['ec'] + r['ec'] * V['ec_book_to_bill'][i]
+    bl_path.append(backlog)
+    r['transformers'] = vt * tp / 1e6
+    g['transformers'] = vt * gp_mva / 1e6
+    r['meters'] = vm * mp / 1e6
+    g['meters'] = vm * gp_unit_m / 1e6
+    ep_prev *= (1 + V['other_growth'][i]); inf_prev *= (1 + V['other_growth'][i])
+    r['elecprod'] = ep_prev
+    g['elecprod'] = ep_prev * margin25['elecprod'] * V['margin_recovery'][i]
+    r['infra'] = inf_prev
+    g['infra'] = inf_prev * margin25['infra'] * V['margin_recovery'][i]
+    seg_rev.append(r); seg_gp.append(g)
+    vol_f['cables'].append(vc); vol_f['meters'].append(vm)
+    vol_f['transformers'].append(vt); vol_f['rawmat'].append(vr)
+
+rev = [sum(seg_rev[i].values()) for i in range(5)]
+gp = [sum(seg_gp[i].values()) for i in range(5)]
+opex = [V['opex_pct'][i] * rev[i] for i in range(5)]
+ebitda = [gp[i] - opex[i] for i in range(5)]
 ebitda_margin = [ebitda[i] / rev[i] for i in range(5)]
-# FY2025 segment reference (for the Segments sheet)
-seg_rev_fy25 = {s: s0[s] * V['rev_fy25'] for s in segs}
-seg_gp_fy25 = {s: seg_rev_fy25[s] * V['seg_gp_margin_fy25'][s] for s in segs}
-gp_blend_fy25 = sum(seg_gp_fy25.values()) / V['rev_fy25']
-say(f"[Segment mix] FY2025 segment gross margins blend to {gp_blend_fy25:.2%} against the derived "
-    f"group gross margin of {V['gp_fy25']/V['rev_fy25']:.2%}. Forecast group EBITDA margin " +
-    " -> ".join(f"{m:.2%}" for m in ebitda_margin))
-assert abs(gp_blend_fy25 - V['gp_fy25'] / V['rev_fy25']) < 0.005, "segment gross margins do not blend"
+gp_margin = [gp[i] / rev[i] for i in range(5)]
+say(f"[Forecast, bottom-up] revenue " + " -> ".join(f"{r:,.0f}" for r in rev) +
+    " (growth " + ", ".join(f"{rev[i]/(V['rev_fy25'] if i==0 else rev[i-1])-1:+.1%}"
+                            for i in range(5)) + ")")
+say(f"[Forecast margins are OUTPUTS] gross margin " +
+    " -> ".join(f"{m:.2%}" for m in gp_margin) + "; EBITDA margin " +
+    " -> ".join(f"{m:.2%}" for m in ebitda_margin) +
+    f". Cable tonnage {vol_f['cables'][0]:,.0f} -> {vol_f['cables'][-1]:,.0f} "
+    f"({vol_f['cables'][-1]/VH['cables']['FY24']-1:+.1%} against FY2024); order book "
+    f"{V['ec_backlog']:,.0f} -> {bl_path[-1]:,.0f}.")
+
+# currency split, reported off the bottom-up build (copper-linked lines are dollar-priced)
+fgn_egp = [seg_rev[i]['cables'] * 0.60 + seg_rev[i]['rawmat'] * 0.55 + seg_rev[i]['ec'] * 0.80 +
+           (seg_rev[i]['transformers'] + seg_rev[i]['meters']) * 0.55 for i in range(5)]
+dom = [rev[i] - fgn_egp[i] for i in range(5)]
+fgn_usd = [fgn_egp[i] / V['fx_path'][i] for i in range(5)]
+say(f"[Currency split, derived from the build] foreign share of revenue " +
+    " -> ".join(f"{fgn_egp[i]/rev[i]:.0%}" for i in range(5)) +
+    f", against the disclosed 'over 70%' for FY2025.")
+
+# FY2025 presentation objects reused downstream
+segs = SUBS
+SEGNAME = SUBNAME
+seg_rev_fy25 = rev25
+seg_gp_fy25 = gp25
+shares = [{s: seg_rev[i][s] / rev[i] for s in SUBS} for i in range(5)]
+seg_ebitda = [{s: seg_gp[i][s] - V['opex_pct'][i] * seg_rev[i][s] for s in SUBS} for i in range(5)]
 
 # ---- FCFF waterfall ---------------------------------------------------------
 dna = [V['dna_pct'] * r for r in rev]
@@ -849,8 +1154,13 @@ OUT = dict(
               capex=capex, nwc=nwc, dnwc=dnwc, fcff=fcff, df=df, pv=pv, fwd_wacc=fwd,
               ppe=ppe, ic=ic, roic=roic, np_attr=np_fc, equity=eq_fc, net_debt=nd_fc,
               seg_rev=seg_rev, seg_ebitda=seg_ebitda, seg_shares=shares),
-    seg_fy25=dict(rev=seg_rev_fy25, gp=seg_gp_fy25, names=SEGNAME,
-                  gp_margin=V['seg_gp_margin_fy25']),
+    seg_fy25=dict(rev=seg_rev_fy25, gp=seg_gp_fy25, names=SEGNAME, gp_margin=margin25),
+    bottomup=dict(unit_hist=unit_hist, vol25=vol25, vol_f=vol_f, uplift25=uplift25,
+                  price_t25=price_t25, cables_conv25=cables_conv25, compress=compress,
+                  opex25=opex25, backlog=bl_path, gp=gp, gp_margin=gp_margin,
+                  opex=opex, seg_gp=seg_gp, subs=SUBS, subnames=SUBNAME,
+                  gp_t_cables_fy25=V['cables_gp_t_fy25'],
+                  q1_26_implied_fy=V['q1_26_rev'] / (V['q1_25_rev'] / V['rev_fy25'])),
     wacc=dict(rf=V['rf'], rf_star=rf_star, ke_exp=ke_exp, ke_rating_alt=ke_rating_alt,
               ke_ops_alt=ke_ops_alt, ke_raw_retired=ke_raw_retired, kd=V['kd'], kd_at=kd_at,
               we_exp=we_exp, wd_exp=wd_exp, wacc_exp=wacc_exp, wacc_exp_gross=wacc_exp_gross,

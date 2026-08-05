@@ -444,71 +444,124 @@
    "date": "2026-05-13",
    "ring": "Company"
   },
-  "seg_share_fy25": {
+  "seg_hist": {
    "value": {
-    "wc": 0.59,
-    "ec": 0.27,
-    "ep": 0.06,
-    "ds": 0.06,
-    "ii": 0.02
+    "FY23": {
+     "rawmat": [
+      25869.7,
+      3478.6
+     ],
+     "cables": [
+      56551.5,
+      14110.5
+     ],
+     "ec": [
+      52896.4,
+      6130.0
+     ],
+     "meters": [
+      7092.9,
+      1694.3
+     ],
+     "transformers": [
+      6614.1,
+      1979.9
+     ],
+     "elecprod": [
+      2575.1,
+      1386.7
+     ],
+     "infra": [
+      586.5,
+      297.5
+     ]
+    },
+    "FY24": {
+     "rawmat": [
+      49608.2,
+      7647.2
+     ],
+     "cables": [
+      87581.6,
+      19959.3
+     ],
+     "ec": [
+      70042.4,
+      7831.1
+     ],
+     "meters": [
+      9996.7,
+      2722.5
+     ],
+     "transformers": [
+      11308.7,
+      3895.0
+     ],
+     "elecprod": [
+      2565.2,
+      1300.4
+     ],
+     "infra": [
+      879.1,
+      542.9
+     ]
+    }
    },
-   "source": "Wires, Cables & Accessories ~59% of group revenue and Engineering & Construction ~27% (company commentary on the 2025 results); the residual is split across Electrical Products, Digital Solutions and Infrastructure Investment in line with the disclosed Q1-2025 segment table (6.0% / 6.1% / 1.2% of revenue)",
-   "date": "2026-03",
+   "source": "Sub-segment revenue and gross profit (EGP mn) from the company's own published segment analysis workbooks for FY2024 (with FY2023 comparatives). The reported 'Wires & Cables' segment splits into Cables and Raw Material (the copper-rod pass-through arm) and the two sum exactly to it. Turnkey gross profit is taken from the income statement where it differs marginally from the workbook",
+   "date": "2025-03-13",
    "ring": "Company"
   },
-  "seg_gp_margin_fy25": {
+  "vol_hist": {
    "value": {
-    "wc": 0.1245,
-    "ec": 0.09,
-    "ep": 0.38,
-    "ds": 0.21,
-    "ii": 0.6
+    "cables": {
+     "FY23": 156748.0,
+     "FY24": 167665.0
+    },
+    "meters": {
+     "FY23": 4057065.0,
+     "FY24": 3850726.0
+    },
+    "transformers": {
+     "FY23": 14521.0,
+     "FY24": 17619.0
+    }
    },
-   "source": "Segment gross margins set from the disclosed Q1-2025 segment table (W&C 16.6%, E&C 8.6%, Electrical Products 39.4%, Digital Solutions 21.9%, Infrastructure 63.2%) stepped down for the further H2-2025 normalisation, and solved so the weighted blend reproduces the FY2025 group gross margin of 14.5%",
-   "date": "2026-08-05",
-   "ring": "House"
-  },
-  "opex_pct_fy25": {
-   "value": 0.035,
-   "source": "Operating cost load between gross profit and EBITDA, as a share of revenue: FY2024 SG&A was 5.2% of revenue and Q1-2025 5.4%, against which other income runs 1.5-1.7%. The FY2025 net load solves to 3.5% (14.5% gross margin less the 11.0% EBITDA margin)",
-   "date": "2026-08-05",
-   "ring": "House"
-  },
-  "ebitda_margin_fy25": {
-   "value": 0.11,
-   "source": "FY2025 group EBITDA margin. Anchored on the last-twelve-month aggregator print (USD 663mn EBITDA on USD 6.0bn revenue = 11.0%) and cross-checked against the disclosed quarterly path: Q1 12.6%, Q2 11.1%, Q4 9.5%",
-   "date": "2026-08-05",
-   "ring": "House"
-  },
-  "foreign_share_fy25": {
-   "value": 0.7,
-   "source": "'Over 70% of revenues generated abroad' (company 2025 commentary). The single most important structural fact about this company: the revenue base is majority hard-currency while the listing, the reporting currency and the cost of capital are Egyptian",
-   "date": "2026-03",
+   "source": "Disclosed sales volumes: cables in tonnes, meters in units, transformers in MVA (company earnings releases, FY2024 with FY2023 comparatives). These reproduce the disclosed gross profit per tonne (90,020 / 119,043), per meter (418 / 707) and per MVA (136,345 / 221,065) exactly",
+   "date": "2025-03-13",
    "ring": "Company"
   },
-  "dom_growth": {
-   "value": [
-    0.14,
-    0.12,
-    0.1,
-    0.09,
-    0.08
-   ],
-   "source": "Domestic (EGP) revenue growth FY26E-FY30E. Egypt nominal GDP growth is running ~16-18% with inflation guided down toward the CBE's 7% (2026) and 5% (2028) targets; the domestic leg is set to grow slightly below nominal GDP as disinflation proceeds, with no domestic share gain assumed",
-   "date": "2026-08-05",
-   "ring": "House"
+  "q1_units": {
+   "value": {
+    "cables_q1_25": 41476.0,
+    "cables_q1_24": 44975.0,
+    "meters_q1_25": 1169502.0,
+    "meters_q1_24": 811357.0,
+    "transformers_q1_25": 5112.0,
+    "transformers_q1_24": 5142.0
+   },
+   "source": "Q1-2025 disclosed volumes with Q1-2024 comparatives (Q1-2025 earnings release): cables 41,476t (-7.8%), meters 1,169,502 (+44.1%), transformers 5,112 MVA (-0.6%). Used with the FY2024 seasonal share to estimate the FY2025 volume base, which is not itself disclosed",
+   "date": "2025-05-26",
+   "ring": "Company"
   },
-  "fgn_growth_usd": {
-   "value": [
-    0.1,
-    0.08,
-    0.07,
-    0.06,
-    0.06
-   ],
-   "source": "Foreign revenue growth in USD. Supported by a USD 6.5bn project backlog (~4.3x the E&C segment's annual revenue and above the group's historical range), regional grid build-out and data-centre driven cable demand; tapering to a mature single-digit rate by FY30E",
+  "copper_hist": {
+   "value": {
+    "FY23": 8478.0,
+    "FY24": 9147.0,
+    "FY25": 10000.0
+   },
+   "source": "LME copper cash, annual average USD/tonne (house commodity reference)",
    "date": "2026-08-05",
-   "ring": "House"
+   "ring": "Industry"
+  },
+  "fx_hist": {
+   "value": {
+    "FY23": 30.7,
+    "FY24": 45.3,
+    "FY25": 49.5
+   },
+   "source": "Annual average USD/EGP. The audited FY2024 note discloses closing 50.91 / average 43.96 for 2024 and closing 30.96 / average 30.59 for 2023; the figures here are the house averages consistent with those disclosures",
+   "date": "2026-08-05",
+   "ring": "Country"
   },
   "fx_path": {
    "value": [
@@ -518,69 +571,234 @@
     61.0,
     64.5
    ],
-   "source": "USD/EGP average-rate path FY26E-FY30E, ~6%/yr depreciation from the FY2025 average of 49.5. DELIBERATELY BELOW covered-interest parity, which on the 22.31% EGP vs ~4.3% USD rate gap implies ~17%/yr \u2014 the base case assumes the CBE's disinflation path largely closes that gap rather than the pound absorbing it. The parity path is carried as an explicit sensitivity because it moves the valuation more than any operating driver",
+   "source": "USD/EGP average-rate path, about 6%/yr of depreciation from the FY2025 average of 49.5. This is a genuine driver in the bottom-up build, not a translation convenience: copper is priced in dollars, so it sets the Egyptian-pound price per tonne of cable and rod directly. DELIBERATELY BELOW covered-interest parity, which on the 22.31% pound against a ~4.3% dollar rate implies about 17%/yr \u2014 the base case assumes disinflation closes most of that gap rather than the currency absorbing it. The parity case is carried as an explicit sensitivity",
    "date": "2026-08-05",
    "ring": "House"
   },
-  "fx_fy25_avg": {
-   "value": 49.5,
-   "source": "FY2025 average USD/EGP. The audited FY2024 note discloses closing 50.91 / average 43.96 for 2024 and closing 30.96 / average 30.59 for 2023; 49.5 is the 2025 average consistent with the observed path",
+  "copper_fcst": {
+   "value": [
+    13400.0,
+    14000.0,
+    14000.0,
+    14000.0,
+    14000.0
+   ],
+   "source": "LME copper. FY2026 is set at USD 13,400/t, between the Q1-2026 average of 12,852 actually realised and the current cash price of about 14,000 (13.9-14.2k, early August 2026); thereafter the current level is held flat. Held flat rather than forecast: copper is the largest single input and a directional view on it would dominate the valuation. The -10% column of the sensitivity carries the mean-reversion case",
+   "date": "2026-08-05",
+   "ring": "Industry"
+  },
+  "cables_vol_growth": {
+   "value": [
+    0.06,
+    0.05,
+    0.04,
+    0.04,
+    0.04
+   ],
+   "source": "Cable tonnage growth. The FY2025 base is a 7.7% volume DECLINE on FY2024 (disclosed Q1-2025 -7.8%), so the forecast is a recovery to roughly the FY2024 level by FY2028 and modest growth thereafter, supported by regional grid build-out, data-centre demand and the export book. No capacity step-change is assumed",
    "date": "2026-08-05",
    "ring": "House"
   },
-  "seg_share_fy30": {
+  "cables_uplift": {
+   "value": [
+    1.3,
+    1.3,
+    1.3,
+    1.3,
+    1.3
+   ],
+   "source": "Fabrication uplift: cable price per tonne divided by the copper cost per tonne. History back-solves to 1.386 (FY2023) and 1.261 (FY2024); the forecast is held at 1.30, between the two. This is the term that converts a copper price into a cable price, and holding it flat means no pricing-power assumption is being smuggled in",
+   "date": "2026-08-05",
+   "ring": "House"
+  },
+  "cables_gp_t_fy25": {
+   "value": 88173.0,
+   "source": "Cable gross profit per tonne, Q1-2025 as disclosed (against 93,672 in Q1-2024 on the restated basis). Taken as the FY2025 run-rate: it is the hard evidence for how far cable conversion margins actually compressed, and it is what pins the FY2025 unit build to reality rather than to an assumption",
+   "date": "2025-05-26",
+   "ring": "Company"
+  },
+  "cables_conv": {
+   "value": [
+    0.15,
+    0.16,
+    0.17,
+    0.175,
+    0.175
+   ],
+   "source": "Cable conversion margin \u2014 gross profit as a share of the realised price per tonne \u2014 for the forecast years. History back-solves to 25.0% (FY2023), 22.8% (FY2024) and roughly 13.8% (FY2025, from the disclosed gross profit per tonne against the back-solved price per tonne). The forecast recovers only part of that collapse and never approaches the FY2023-24 levels, which carried devaluation gains on cheaply bought copper inventory",
+   "date": "2026-08-05",
+   "ring": "House"
+  },
+  "unit_gp_growth": {
+   "value": [
+    0.085,
+    0.08,
+    0.075,
+    0.07,
+    0.07
+   ],
+   "source": "Growth in gross profit PER UNIT for the manufacturing lines \u2014 per tonne of cable and rod, per MVA of transformer, per meter. This is the correct structure for a converter: when copper spikes, revenue rises because the metal is passed through, but the conversion margin earned on each tonne does not, so the percentage margin falls. Modelling these as a percentage of a copper-inflated price would manufacture profit out of a commodity move. The path is set at roughly Egyptian cost inflation, i.e. a flat real conversion margin with no recovery in unit profitability assumed",
+   "date": "2026-08-05",
+   "ring": "House"
+  },
+  "margin_recovery": {
+   "value": [
+    1.0,
+    1.04,
+    1.07,
+    1.09,
+    1.1
+   ],
+   "source": "Recovery factor applied to the FY2025 gross margins of the non-cable lines. FY2025 margins are calibrated to the disclosed group gross profit, which implies roughly a 10% compression against FY2024 across those lines; the forecast recovers about half of it by FY2030 and no more",
+   "date": "2026-08-05",
+   "ring": "House"
+  },
+  "rawmat_vol_growth": {
+   "value": [
+    0.04,
+    0.04,
+    0.03,
+    0.03,
+    0.03
+   ],
+   "source": "Raw-material (copper rod) tonnage growth. This arm is close to a pure pass-through: implied volume was 99kt in FY2023 and 120kt in FY2024",
+   "date": "2026-08-05",
+   "ring": "House"
+  },
+  "rawmat_uplift": {
+   "value": 1.02,
+   "source": "Raw-material price per tonne as a multiple of the copper cost \u2014 a thin conversion spread over the metal",
+   "date": "2026-08-05",
+   "ring": "House"
+  },
+  "rawmat_gp": {
+   "value": 0.135,
+   "source": "Raw-material gross margin. History 13.4% (FY2023), 15.4% (FY2024); the forecast is struck at the lower end",
+   "date": "2026-08-05",
+   "ring": "House"
+  },
+  "ec_backlog": {
+   "value": 323700.0,
+   "source": "Engineering and construction order book: USD 6.5bn translated at the spot rate. Disclosed as 'approximately USD 6.5bn, above the group's typical historical range'. The reported turnkey backlog was EGP 165bn (Mar-2024), 239bn (Jun-2024) and 196bn (Dec-2024), so the current book is a genuine step up",
+   "date": "2026-03",
+   "ring": "Company"
+  },
+  "ec_burn": {
+   "value": [
+    0.27,
+    0.265,
+    0.26,
+    0.255,
+    0.25
+   ],
+   "source": "Share of the opening order book converted to revenue each year. The FY2025 revenue of roughly EGP 88bn against a book of EGP 324bn implies about 27%, i.e. a three-and-a-half-year book. The rate is tapered as the book lengthens",
+   "date": "2026-08-05",
+   "ring": "House"
+  },
+  "ec_book_to_bill": {
+   "value": [
+    1.05,
+    1.05,
+    1.03,
+    1.02,
+    1.0
+   ],
+   "source": "New awards as a multiple of revenue recognised. Above one early, reflecting the disclosed step up in the order book, converging to replacement",
+   "date": "2026-08-05",
+   "ring": "House"
+  },
+  "ec_gp": {
+   "value": 0.11,
+   "source": "Engineering and construction gross margin. History 11.6% (FY2023) and 11.2% (FY2024); held at 11.0%",
+   "date": "2026-08-05",
+   "ring": "House"
+  },
+  "transformers_vol_growth": {
+   "value": [
+    0.08,
+    0.07,
+    0.06,
+    0.05,
+    0.05
+   ],
+   "source": "Transformer MVA growth. History: 14,521 MVA (FY2023) to 17,619 (FY2024), +21.3%, then broadly flat through Q1-2025. Regional transmission investment supports mid-single-digit growth",
+   "date": "2026-08-05",
+   "ring": "House"
+  },
+  "transformers_gp": {
+   "value": 0.32,
+   "source": "Transformer gross margin as a share of price per MVA. History 29.9% (FY2023) and 34.4% (FY2024); struck between them",
+   "date": "2026-08-05",
+   "ring": "House"
+  },
+  "meters_vol_growth": {
+   "value": [
+    0.06,
+    0.05,
+    0.05,
+    0.04,
+    0.04
+   ],
+   "source": "Smart-meter unit growth. Volumes fell 5.1% in FY2024 but Q1-2025 ran +44.1% y/y as national metering programmes restarted",
+   "date": "2026-08-05",
+   "ring": "House"
+  },
+  "meters_gp": {
+   "value": 0.25,
+   "source": "Meter gross margin as a share of price per unit. History 23.9% (FY2023) and 27.2% (FY2024)",
+   "date": "2026-08-05",
+   "ring": "House"
+  },
+  "unit_price_inflation": {
+   "value": [
+    0.08,
+    0.075,
+    0.07,
+    0.07,
+    0.07
+   ],
+   "source": "Nominal price growth for the units not priced off copper (meters). Set below Egyptian headline inflation on the disinflation path",
+   "date": "2026-08-05",
+   "ring": "House"
+  },
+  "other_growth": {
+   "value": [
+    0.12,
+    0.11,
+    0.1,
+    0.09,
+    0.08
+   ],
+   "source": "Revenue growth for the two smallest lines \u2014 other electrical products, and infrastructure investment (industrial development, logistics, utilities, dry port and independent power projects). Together under 3% of revenue",
+   "date": "2026-08-05",
+   "ring": "House"
+  },
+  "other_gp": {
    "value": {
-    "wc": 0.56,
-    "ec": 0.28,
-    "ep": 0.065,
-    "ds": 0.07,
-    "ii": 0.025
+    "elecprod": 0.45,
+    "infra": 0.6
    },
-   "source": "FY30E segment mix: a modest drift out of wires & cables into the higher-margin digital, electrical-products and infrastructure lines, consistent with the company's stated three-year plan to broaden the portfolio. Interpolated linearly from the FY2025 mix",
+   "source": "Gross margins on the two residual lines. History: other electrical products 53.9% (FY2023) and 50.7% (FY2024); infrastructure 50.7% and 61.8%. Struck conservatively",
    "date": "2026-08-05",
    "ring": "House"
   },
-  "seg_ebitda_margin_path": {
-   "value": {
-    "wc": [
-     0.091,
-     0.0925,
-     0.095,
-     0.098,
-     0.1
-    ],
-    "ec": [
-     0.056,
-     0.058,
-     0.061,
-     0.063,
-     0.065
-    ],
-    "ep": [
-     0.345,
-     0.345,
-     0.345,
-     0.345,
-     0.345
-    ],
-    "ds": [
-     0.177,
-     0.18,
-     0.182,
-     0.1835,
-     0.185
-    ],
-    "ii": [
-     0.565,
-     0.565,
-     0.565,
-     0.565,
-     0.565
-    ]
-   },
-   "source": "Segment EBITDA margins FY26E-FY30E = segment gross margin less the 3.5%-of-revenue operating load, then allowed to recover gently as the copper-driven revenue inflation of 2024-25 washes out of the denominator and the mix shifts. The wires & cables terminal margin of 10.0% sits well below the FY2024 windfall (14.3%, struck on devaluation inventory gains) and marginally above the FY2025 trough",
+  "opex_pct": {
+   "value": [
+    0.04,
+    0.043,
+    0.046,
+    0.048,
+    0.05
+   ],
+   "source": "The net operating load between gross profit and EBITDA, as a share of revenue \u2014 selling, general and administrative costs and other expenses, less other income. History: 5.94% (FY2023) and 5.30% (FY2024). FY2025 solves to a much lower level, so the forecast glides back TOWARD the historical norm rather than assuming the FY2025 load persists. This is the single most conservative choice in the rebuild",
    "date": "2026-08-05",
    "ring": "House"
+  },
+  "foreign_share_fy25": {
+   "value": 0.7,
+   "source": "'Over 70% of revenues generated abroad' (company 2025 commentary). Used to report the currency split of the bottom-up revenue build, and to translate the copper-linked lines, which are dollar-priced by construction",
+   "date": "2026-03",
+   "ring": "Company"
   },
   "nwc_pct": {
    "value": 0.23,
@@ -816,13 +1034,13 @@
   "FY25": {
    "rev": 281049.0,
    "gp": 40720.0,
-   "ebitda": 30915.39,
+   "ebitda": 30622.087833333335,
    "dna": 2951.0145,
-   "ebit": 27964.3755,
+   "ebit": 27671.073333333334,
    "fin": -3400.0,
    "assoc": 1302.26,
-   "ebt": 25866.635499999997,
-   "tax": -6686.635499999997,
+   "ebt": 25573.333333333332,
+   "tax": -6393.333333333332,
    "pat": 19180.0,
    "nci": 1850.0,
    "npa": 17330.0
@@ -884,95 +1102,95 @@
    "FY30E"
   ],
   "rev": [
-   319084.298,
-   362620.66176000005,
-   408916.1772360001,
-   455747.12478288007,
-   505541.5046987762
+   364506.0698042354,
+   407355.88701676094,
+   440969.67425187293,
+   475819.49985204515,
+   512682.9750719497
   ],
   "dom": [
-   96118.75800000003,
-   107653.00896000005,
-   118418.30985600007,
-   129075.95774304008,
-   139402.0343624833
+   138671.6334180524,
+   157308.1928102073,
+   172072.56018157682,
+   187452.51118179102,
+   203725.0410432663
   ],
   "fgn_usd": [
-   4371.873333333333,
-   4721.6232,
-   5052.136824,
-   5355.2650334400005,
-   5676.580935446401
+   4428.126203650648,
+   4630.512855676919,
+   4676.471549048628,
+   4727.3276831189205,
+   4790.045488816797
   ],
   "fgn_egp": [
-   222965.53999999998,
-   254967.6528,
-   290497.86738,
-   326671.16703984,
-   366139.47033629287
+   225834.43638618302,
+   250047.69420655363,
+   268897.1140702961,
+   288366.9886702541,
+   308957.9340286834
   ],
   "ebitda": [
-   35820.40329348,
-   41591.50204188672,
-   48218.577787314665,
-   55190.97681120677,
-   62535.48413123862
+   40976.20503287411,
+   44697.79828930313,
+   48531.38475177478,
+   52710.1452280135,
+   57182.60531240865
   ],
   "ebitda_margin": [
-   0.11225999999999998,
-   0.114697,
-   0.11791800000000002,
-   0.12109999999999999,
-   0.12370000000000002
+   0.11241570011407799,
+   0.10972665355751691,
+   0.11005605960117483,
+   0.11077760630744134,
+   0.11153599415776126
   ],
   "dna": [
-   3350.3851290000002,
-   3807.516948480001,
-   4293.619860978001,
-   4785.344810220241,
-   5308.1857993371505
+   3827.313732944472,
+   4277.236813675991,
+   4630.181579644666,
+   4996.104748446474,
+   5383.171238255472
   ],
   "ebit": [
-   32470.018164479996,
-   37783.98509340672,
-   43924.95792633666,
-   50405.63200098653,
-   57227.29833190147
+   37148.89129992964,
+   40420.56147562714,
+   43901.20317213011,
+   47714.040479567026,
+   51799.43407415318
   ],
   "nopat": [
-   24352.51362336,
-   28337.98882005504,
-   32943.71844475249,
-   37804.224000739894,
-   42920.4737489261
+   27861.668474947226,
+   30315.421106720354,
+   32925.902379097584,
+   35785.53035967527,
+   38849.57555561488
   ],
   "capex": [
-   9572.52894,
-   10515.999191040002,
-   11449.652962608003,
-   11849.425244354881,
-   12132.996112770628
+   10935.182094127062,
+   11813.320723486067,
+   12347.150879052442,
+   12371.306996153173,
+   12304.391401726793
   ],
   "nwc": [
-   73389.38854,
-   83402.75220480001,
-   94050.72076428002,
-   104821.83870006242,
-   116274.54608071853
+   83836.39605497415,
+   93691.85401385502,
+   101423.02507793078,
+   109438.48496597039,
+   117917.08426654844
   ],
   "dnwc": [
-   8748.118539999996,
-   10013.36366480001,
-   10647.96855948001,
-   10771.1179357824,
-   11452.70738065611
+   19195.126054974142,
+   9855.45795888087,
+   7731.1710640757665,
+   8015.459888039608,
+   8478.599300578047
   ],
   "fcff": [
-   9382.251272360005,
-   11616.142912695028,
-   15139.716783642485,
-   19969.02563082285,
-   24642.95605483652
+   1558.6740587904933,
+   12923.87923802941,
+   17477.762015614044,
+   20394.868223928963,
+   23449.75609156551
   ],
   "df": [
    0.7880350006920778,
@@ -982,11 +1200,11 @@
    0.39753652538441514
   ],
   "pv": [
-   7393.542387907464,
-   7443.49142045507,
-   8114.905813403943,
-   9140.372792339163,
-   9796.475125240544
+   1228.28971299769,
+   8281.473889421228,
+   9368.10077841323,
+   9335.292670945473,
+   9322.134557752976
   ],
   "fwd_wacc": [
    0.2689791685924707,
@@ -996,188 +1214,397 @@
    0.15141000000000002
   ],
   "ppe": [
-   39246.399311,
-   45954.88155356,
-   53110.914655190005,
-   60174.99508932464,
-   66999.80540275812
+   40132.12386118259,
+   47668.20777099267,
+   55385.177070400445,
+   62760.379318107145,
+   69681.59948157847
   ],
   "ic": [
-   114094.987851,
-   130816.83375836001,
-   148620.83541947004,
-   166456.0337893871,
-   184733.55148347665
+   125427.71991615674,
+   142819.2617848477,
+   158267.40214833122,
+   173658.06428407755,
+   189057.88374812691
   ],
   "roic": [
-   0.213440696055489,
-   0.2166234115740786,
-   0.22166285333931524,
-   0.22711236799365705,
-   0.23233718728546768
+   0.2221332612405902,
+   0.21226423332442013,
+   0.20803969694428168,
+   0.2060689234744418,
+   0.2054903756744277
   ],
   "np_attr": [
-   20159.717043094755,
-   24225.275380097057,
-   28808.829769427128,
-   33532.11007534728,
-   38445.04990129814
+   23330.39762588968,
+   26011.975146932815,
+   28792.73214597563,
+   31708.12880320703,
+   34766.808728718184
   ],
   "equity": [
-   85583.90990632106,
-   103752.86644139385,
-   125359.4887684642,
-   150508.57132497465,
-   179342.35875094825
+   87961.92034341724,
+   107470.90170361685,
+   129065.45081309858,
+   152846.54741550385,
+   178921.6539620425
   ],
   "net_debt": [
-   18542.22920043165,
-   15648.256021574063,
-   10000.609786297344,
-   435.9120783173039,
-   -12789.33125879109
+   27158.4765596999,
+   23403.44199721687,
+   15413.726124105717,
+   4967.190504984501,
+   -7984.413161997869
   ],
   "seg_rev": [
    {
-    "wc": 186345.230032,
-    "ec": 86790.92905600001,
-    "ep": 19464.142178000002,
-    "ds": 19783.226476,
-    "ii": 6700.7702580000005
+    "cables": 145610.36787706963,
+    "rawmat": 86793.07467340285,
+    "ec": 87399.0,
+    "transformers": 20025.958177603567,
+    "meters": 17815.54107615941,
+    "elecprod": 3591.28,
+    "infra": 3270.8480000000004
    },
    {
-    "wc": 209594.74249728,
-    "ec": 99358.06132224001,
-    "ep": 22482.48102912,
-    "ds": 23207.722352640005,
-    "ii": 7977.654558720002
+    "cables": 169133.02607670162,
+    "rawmat": 99853.94648992721,
+    "ec": 86938.53675000001,
+    "transformers": 23704.123630417147,
+    "meters": 20109.291989714933,
+    "elecprod": 3986.3208000000004,
+    "infra": 3630.6412800000007
    },
    {
-    "wc": 233900.05337899207,
-    "ec": 112860.86491713603,
-    "ep": 25761.719165868006,
-    "ds": 26988.467697576005,
-    "ii": 9405.072076428001
+    "cables": 187299.16591456957,
+    "rawmat": 109515.74038640631,
+    "ec": 86428.38797775001,
+    "transformers": 26754.93213470232,
+    "meters": 22592.78955044473,
+    "elecprod": 4384.952880000001,
+    "infra": 3993.705408000001
    },
    {
-    "wc": 257952.8726271101,
-    "ec": 126697.70068964064,
-    "ep": 29167.81598610432,
-    "ds": 30990.80448523584,
-    "ii": 10937.930994789118
+    "cables": 206647.98409774425,
+    "rawmat": 119667.37336483317,
+    "ec": 85427.48076159229,
+    "transformers": 29802.667882220583,
+    "meters": 25141.256211734893,
+    "elecprod": 4779.598639200001,
+    "infra": 4353.138894720001
    },
    {
-    "wc": 283103.2426313147,
-    "ec": 141551.62131565734,
-    "ep": 32860.19780542045,
-    "ds": 35387.905328914334,
-    "ii": 12638.537617469405
+    "cables": 227245.0290701096,
+    "rawmat": 130329.5401556179,
+    "ec": 84179.56952301609,
+    "transformers": 33088.28987415392,
+    "meters": 27977.189912418595,
+    "elecprod": 5161.966530336002,
+    "infra": 4701.390006297602
    }
   ],
   "seg_ebitda": [
    {
-    "wc": 16957.415932911998,
-    "ec": 4860.292027136001,
-    "ep": 6715.12905141,
-    "ds": 3501.631086252,
-    "ii": 3785.93519577
+    "cables": 20065.660696317733,
+    "rawmat": 5717.024411740862,
+    "ec": 5043.5020279017635,
+    "transformers": 3521.1981439018055,
+    "meters": 3547.0735708207785,
+    "elecprod": 1447.3382273721197,
+    "infra": 1634.4079548190484
    },
    {
-    "wc": 19387.5136809984,
-    "ec": 5762.767556689921,
-    "ep": 7756.4559550464,
-    "ds": 4177.390023475201,
-    "ii": 4507.3748256768
+    "cables": 22086.625395230025,
+    "rawmat": 6027.081379127109,
+    "ec": 5095.893502382363,
+    "transformers": 3975.499149786538,
+    "meters": 3965.794816967612,
+    "elecprod": 1665.226400558375,
+    "infra": 1881.6776452511097
    },
    {
-    "wc": 22220.50507100425,
-    "ec": 6884.512759945298,
-    "ep": 8887.79311222446,
-    "ds": 4911.9011209588325,
-    "ii": 5313.865723181821
+    "cables": 24207.98665540832,
+    "rawmat": 6389.982936055597,
+    "ec": 5060.044823827177,
+    "transformers": 4460.820904690448,
+    "meters": 4413.152203667537,
+    "elecprod": 1876.8721246988534,
+    "infra": 2122.5251034268426
    },
    {
-    "wc": 25279.38151745679,
-    "ec": 7981.955143447361,
-    "ep": 10062.89651520599,
-    "ds": 5686.812623040776,
-    "ii": 6179.931012055851
+    "cables": 26607.163857614378,
+    "rawmat": 6850.441956388367,
+    "ec": 4997.5272813216825,
+    "transformers": 4963.925875726681,
+    "meters": 4860.673259817765,
+    "elecprod": 2078.580057023256,
+    "infra": 2351.8329401213773
    },
    {
-    "wc": 28310.324263131468,
-    "ec": 9200.855385517727,
-    "ep": 11336.768242870055,
-    "ds": 6546.762485849152,
-    "ii": 7140.773753870213
+    "cables": 29284.17856903834,
+    "rawmat": 7363.89485725309,
+    "ec": 4838.414070830325,
+    "transformers": 5529.754501223622,
+    "meters": 5353.002823700373,
+    "elecprod": 2257.4107932495936,
+    "infra": 2555.949697113294
    }
   ],
   "seg_shares": [
    {
-    "wc": 0.584,
-    "ec": 0.272,
-    "ep": 0.061,
-    "ds": 0.062,
-    "ii": 0.021
+    "cables": 0.3994730950715644,
+    "rawmat": 0.2381114660724762,
+    "ec": 0.23977378496588334,
+    "transformers": 0.05493998546679585,
+    "meters": 0.04887584200100582,
+    "elecprod": 0.00985245596027732,
+    "infra": 0.008973370461997159
    },
    {
-    "wc": 0.578,
-    "ec": 0.274,
-    "ep": 0.062,
-    "ds": 0.064,
-    "ii": 0.022000000000000002
+    "cables": 0.4151972058519496,
+    "rawmat": 0.24512704903125324,
+    "ec": 0.21342157931406763,
+    "transformers": 0.05819020759467219,
+    "meters": 0.0493654139553101,
+    "elecprod": 0.00978584310931041,
+    "infra": 0.00891270114343681
    },
    {
-    "wc": 0.5720000000000001,
-    "ec": 0.276,
-    "ep": 0.063,
-    "ds": 0.066,
-    "ii": 0.023
+    "cables": 0.42474386981901185,
+    "rawmat": 0.24835209036132752,
+    "ec": 0.19599621702871084,
+    "transformers": 0.06067295257909379,
+    "meters": 0.051234338480927344,
+    "elecprod": 0.009943887609594224,
+    "infra": 0.00905664412133447
    },
    {
-    "wc": 0.566,
-    "ec": 0.27799999999999997,
-    "ep": 0.06399999999999999,
-    "ds": 0.06799999999999999,
-    "ii": 0.023999999999999994
+    "cables": 0.43429910745986855,
+    "rawmat": 0.25149741320404784,
+    "ec": 0.17953757840558393,
+    "transformers": 0.0626343978998079,
+    "meters": 0.05283780135020213,
+    "elecprod": 0.010044982689205057,
+    "infra": 0.009148718991284718
    },
    {
-    "wc": 0.56,
-    "ec": 0.28,
-    "ep": 0.065,
-    "ds": 0.07,
-    "ii": 0.025
+    "cables": 0.4432466848313388,
+    "rawmat": 0.25421078228183314,
+    "ec": 0.16419419722529768,
+    "transformers": 0.06453947465197245,
+    "meters": 0.0545701559691782,
+    "elecprod": 0.010068535101271061,
+    "infra": 0.009170169939108687
    }
   ]
  },
  "seg_fy25": {
   "rev": {
-   "wc": 165818.91,
-   "ec": 75883.23000000001,
-   "ep": 16862.94,
-   "ds": 16862.94,
-   "ii": 5620.9800000000005
+   "rawmat": 60448.00314509805,
+   "ec": 87553.0,
+   "transformers": 12254.566529754962,
+   "meters": 15562.142798881381,
+   "elecprod": 3206.5,
+   "infra": 2920.4,
+   "cables": 99104.38752626561
   },
   "gp": {
-   "wc": 20644.454295,
-   "ec": 6829.4907,
-   "ep": 6407.9172,
-   "ds": 3541.2173999999995,
-   "ii": 3372.588
+   "cables": 13633.38579749683,
+   "rawmat": 8143.165011234471,
+   "ec": 8554.508849401975,
+   "transformers": 3688.5445221078235,
+   "meters": 3703.7607285167855,
+   "elecprod": 1420.5262744393924,
+   "infra": 1576.1088168027218
   },
   "names": {
-   "wc": "Wires, Cables & Accessories",
-   "ec": "Engineering & Construction",
-   "ep": "Electrical Products",
-   "ds": "Digital Solutions",
-   "ii": "Infrastructure Investment"
+   "cables": "Cables",
+   "rawmat": "Raw material (copper rod)",
+   "ec": "Engineering & construction",
+   "transformers": "Transformers",
+   "meters": "Meters & digital",
+   "elecprod": "Other electrical products",
+   "infra": "Infrastructure investment"
   },
   "gp_margin": {
-   "wc": 0.1245,
-   "ec": 0.09,
-   "ep": 0.38,
-   "ds": 0.21,
-   "ii": 0.6
+   "cables": 0.1375659154735564,
+   "rawmat": 0.13471354862935336,
+   "ec": 0.09770663311824808,
+   "transformers": 0.30099347154807754,
+   "meters": 0.23799811994933082,
+   "elecprod": 0.4430145873816911,
+   "infra": 0.5396893633758121
   }
+ },
+ "bottomup": {
+  "unit_hist": {
+   "FY23": {
+    "rev_sum": 152186.2,
+    "gp_sum": 29077.5,
+    "copper_t": 260274.6,
+    "cables_price_t": 360779.7228672774,
+    "cables_gp_t": 90020.28734018934,
+    "cables_uplift": 1.3861503307171632,
+    "cables_conv": 0.24951592795947058,
+    "meters_price": 1748.2835498075578,
+    "meters_gp_u": 417.6171690618711,
+    "transformers_price": 455485.1594242821,
+    "transformers_gp_mva": 136347.35899731424,
+    "rawmat_kt": 99393.87093477427,
+    "ec_gp": 0.11588690345656794,
+    "opex_pct": 0.059416688241115165
+   },
+   "FY24": {
+    "rev_sum": 231981.90000000002,
+    "gp_sum": 43898.4,
+    "copper_t": 414359.1,
+    "cables_price_t": 522360.6596487043,
+    "cables_gp_t": 119042.73402320103,
+    "cables_uplift": 1.2606472493272245,
+    "cables_conv": 0.2278937585063529,
+    "meters_price": 2596.0559125733694,
+    "meters_gp_u": 707.0095353447635,
+    "transformers_price": 641846.8698564051,
+    "transformers_gp_mva": 221068.16504909474,
+    "rawmat_kt": 119722.72359892663,
+    "ec_gp": 0.11180513517526529,
+    "opex_pct": 0.05300758378132086
+   }
+  },
+  "vol25": {
+   "cables": 154620.86803779876,
+   "meters": 5550493.504649618,
+   "transformers": 17516.205367561262
+  },
+  "vol_f": {
+   "cables": [
+    163898.12012006668,
+    172093.02612607004,
+    178976.74717111283,
+    186135.81705795735,
+    193581.24974027564
+   ],
+   "meters": [
+    5883523.114928595,
+    6177699.270675025,
+    6486584.234208777,
+    6746047.603577128,
+    7015889.507720213
+   ],
+   "transformers": [
+    18917.501796966164,
+    20241.726922753798,
+    21456.230538119027,
+    22529.04206502498,
+    23655.49416827623
+   ],
+   "rawmat": [
+    124511.6325428837,
+    129492.09784459905,
+    133376.86077993704,
+    137378.16660333515,
+    141499.5116014352
+   ]
+  },
+  "uplift25": 1.294850342209319,
+  "price_t25": 640950.9193936129,
+  "cables_conv25": 0.1375659154735564,
+  "compress": 0.8739011223865841,
+  "opex25": 0.035929365223383344,
+  "backlog": [
+   328069.95,
+   332416.8768375,
+   335009.7284768325,
+   336718.27809206437,
+   336718.27809206437
+  ],
+  "gp": [
+   55556.44782504353,
+   62214.101431023846,
+   68815.98976736094,
+   75549.48122091166,
+   82816.75406600613
+  ],
+  "gp_margin": [
+   0.152415700114078,
+   0.1527266535575169,
+   0.15605605960117486,
+   0.15877760630744134,
+   0.16153599415776126
+  ],
+  "opex": [
+   14580.242792169418,
+   17516.30314172072,
+   20284.605015586156,
+   22839.335992898166,
+   25634.14875359749
+  ],
+  "seg_gp": [
+   {
+    "cables": 25890.075411400518,
+    "rawmat": 9188.747398676976,
+    "ec": 8539.462027901764,
+    "transformers": 4322.236471005948,
+    "meters": 4259.695213867155,
+    "elecprod": 1590.9894273721197,
+    "infra": 1765.2418748190485
+   },
+   {
+    "cables": 29359.345516528192,
+    "rawmat": 10320.80107819398,
+    "ec": 8834.250582632363,
+    "transformers": 4994.776465894475,
+    "meters": 4830.494372525354,
+    "elecprod": 1836.638194958375,
+    "infra": 2037.7952202911097
+   },
+   {
+    "cables": 32823.74828747852,
+    "rawmat": 11427.706993830287,
+    "ec": 9035.750670803678,
+    "transformers": 5691.547782886754,
+    "meters": 5452.420522987994,
+    "elecprod": 2078.5799571788534,
+    "infra": 2306.2355521948425
+   },
+   {
+    "cables": 36526.2670943061,
+    "rawmat": 12594.475877900359,
+    "ec": 9098.046357878113,
+    "transformers": 6394.453934073269,
+    "meters": 6067.45355798104,
+    "elecprod": 2308.000791704856,
+    "infra": 2560.7836070679373
+   },
+   {
+    "cables": 40646.43002254382,
+    "rawmat": 13880.371865033985,
+    "ec": 9047.39254698113,
+    "transformers": 7184.168994931319,
+    "meters": 6751.8623193213025,
+    "elecprod": 2515.5091197663937,
+    "infra": 2791.019197428174
+   }
+  ],
+  "subs": [
+   "cables",
+   "rawmat",
+   "ec",
+   "transformers",
+   "meters",
+   "elecprod",
+   "infra"
+  ],
+  "subnames": {
+   "cables": "Cables",
+   "rawmat": "Raw material (copper rod)",
+   "ec": "Engineering & construction",
+   "transformers": "Transformers",
+   "meters": "Meters & digital",
+   "elecprod": "Other electrical products",
+   "infra": "Infrastructure investment"
+  },
+  "gp_t_cables_fy25": 88173.0,
+  "q1_26_implied_fy": 356320.8136181103
  },
  "wacc": {
   "rf": 0.2231,
@@ -1234,44 +1661,44 @@
   }
  },
  "dcf": {
-  "pv_explicit": 41888.78753934619,
-  "tv": 348762.31124632567,
-  "pv_tv": 138645.75739790223,
-  "ev": 180534.5449372484,
-  "tv_share": 0.7679735612156321,
+  "pv_explicit": 37535.2916095306,
+  "tv": 304373.4881828119,
+  "pv_tv": 120999.57891132937,
+  "ev": 158534.87052085996,
+  "tv_share": 0.7632363688429562,
   "nd": 19789.0,
   "assoc": 7445.099999999999,
   "nci_share": 0.09645464025026068,
-  "nci_val": 16222.768150881622,
-  "eq_attr": 151967.87678636677,
-  "ps": 70.98722314447478,
-  "roic_term": 0.23233718728546768,
-  "rr_term": 0.21520446461532688,
+  "nci_val": 14100.797469426012,
+  "eq_attr": 132090.17305143396,
+  "ps": 61.70195167480045,
+  "roic_term": 0.2054903756744277,
+  "rr_term": 0.24332039802787836,
   "g": 0.05,
-  "bear": 40.56529733053896,
-  "bull": 129.36575519444284,
-  "ccy_alt_ps": 134.40437588587668
+  "bear": 33.91940897889238,
+  "bull": 115.42942060069899,
+  "ccy_alt_ps": 108.2656760498812
  },
  "terminal_recon": {
   "roic": {
    "FY23": 0.2229390349424942,
    "FY24": 0.24861055008672941,
-   "FY25": 0.20918560093346755
+   "FY25": 0.20936557347641785
   },
   "rr": {
    "FY23": 0.20793054483046142,
    "FY24": 0.3172037113507076,
-   "FY25": 0.2643034737032398
+   "FY25": 0.26407627604374334
   },
   "implied_g": {
    "FY23": 0.04635583499957009,
    "FY24": 0.07886018916845154,
-   "FY25": 0.05528848097541516
+   "FY25": 0.05528848097541515
   },
   "nopat": {
    "FY23": 12186.7617,
    "FY24": 20509.8483,
-   "FY25": 20735.465271082514
+   "FY25": 20753.305
   },
   "capex": {
    "FY23": 4830.0,
@@ -1281,33 +1708,33 @@
   "ebitda": {
    "FY23": 20035.1,
    "FY24": 31601.600000000002,
-   "FY25": 30915.39
+   "FY25": 30622.087833333335
   },
-  "nopat_cagr": 0.304405834905183,
+  "nopat_cagr": 0.30496683614652853,
   "stable_g": 0.05082215798749262,
-  "ceiling": 0.09568109636896358,
-  "crossover_years": 39.418169096299444
+  "ceiling": 0.1048027803168238,
+  "crossover_years": 36.282810159089664
  },
  "lenses": {
   "dcf": {
    "name": "Discounted cash flow (primary)",
-   "bear": 40.56529733053896,
-   "base": 70.98722314447478,
-   "bull": 129.36575519444284,
+   "bear": 33.91940897889238,
+   "base": 61.70195167480045,
+   "bull": 115.42942060069899,
    "w": 0.45
   },
   "relative": {
    "name": "Relative multiples",
-   "bear": 91.33860936168992,
-   "base": 108.89288675602924,
-   "bull": 135.22430284753824,
+   "bear": 98.54941705689527,
+   "base": 117.41475039581738,
+   "bull": 145.71275040420056,
    "w": 0.2
   },
   "normalized": {
    "name": "Normalised earnings power",
-   "bear": 82.45205242479992,
-   "base": 106.00978168902847,
-   "bull": 135.45694326931417,
+   "bear": 84.26500301112208,
+   "base": 108.34071815715697,
+   "bull": 138.43536208970056,
    "w": 0.2
   },
   "book": {
@@ -1320,72 +1747,72 @@
   "central": {
    "name": "Weighted central",
    "bear": 26.560509337566597,
-   "base": 80.00376845195521,
-   "bull": 135.45694326931417,
+   "base": 77.99595631218507,
+   "bull": 145.71275040420056,
    "w": 1.0
   }
  },
- "central": 80.00376845195521,
+ "central": 77.99595631218507,
  "span": [
   26.560509337566597,
-  135.45694326931417
+  145.71275040420056
  ],
  "spot": 105.2,
  "experts": {
   "e1": {
    "method_short": "earnings power",
-   "base": 126.9269548097662,
+   "base": 137.28903866821852,
    "rng": [
-    93.52512459666983,
-    160.32878502286258
+    101.16034428184523,
+    173.41773305459182
    ],
-   "eps": 13.360732085238547,
+   "eps": 14.451477754549318,
    "margin": 0.118,
-   "rev": 408916.1772360001,
-   "ebit": 43958.489052870005,
+   "rev": 440969.67425187293,
+   "ebit": 47404.23998207634,
    "interest": 3053.1508080119793,
    "pe": 9.5
   },
   "e2": {
    "method_short": "owner cash earnings",
-   "base": 44.10008548785977,
+   "base": 45.39027567108655,
    "rng": [
-    30.62358339411352,
-    63.12895820269197
+    31.519505618146145,
+    64.97585625854424
    ],
-   "fcff": 19917.232823100618,
-   "fcfe": 16169.786695667879,
+   "fcff": 20440.79544370284,
+   "fcfe": 16642.84927205143,
    "ke": 0.22983845,
    "int_at": 2021.3004040059893
   },
   "e3": {
    "method_short": "cash returns vs cost of capital",
-   "base": 65.21797762845104,
+   "base": 55.09900810054334,
    "rng": [
-    52.48301668482841,
-    134.40437588587668
+    46.82211783514564,
+    108.2656760498812
    ],
    "ic0": 99124.7255,
-   "pv_ep": 6205.189369785807,
-   "pv_ep_term": 61535.50651030472,
-   "ev": 166865.42138009053,
+   "pv_ep": 1681.4394069354698,
+   "pv_ep_term": 42084.293999480265,
+   "ev": 142890.45890641573,
    "ep": [
-    -6336.661349370024,
-    -1722.3389012114712,
-    3888.5772329709616,
-    9339.433008052383,
-    14949.966718812899
+    -5875.77534654989,
+    -2502.937898146749,
+    1984.8724376176797,
+    6089.157140213614,
+    10224.321377310982
    ],
    "spread": [
-    -0.05553847253698169,
-    -0.013166034154235173,
-    0.026164415117138684,
-    0.05610750656157859,
-    0.08092718728546766
+    -0.04684590735188046,
+    -0.017525212403893653,
+    0.012541258722105125,
+    0.03506406204236334,
+    0.054080375674427694
    ]
   }
  },
- "panel_centre": 65.21797762845104,
+ "panel_centre": 55.09900810054334,
  "sens_wg": {
   "g_grid": [
    0.03,
@@ -1403,57 +1830,57 @@
   ],
   "table": [
    [
-    79.68123670415163,
-    84.01149521077141,
-    89.32569292537724,
-    96.03719178942801,
-    104.82860106010253
+    70.33785026611987,
+    73.67916459076592,
+    77.75959437327495,
+    82.88964883834787,
+    89.58209041029527
    ],
    [
-    72.04339267486468,
-    75.27674949702067,
-    79.14809516564586,
-    83.8925318229104,
-    89.87685305037411
+    63.534446867884604,
+    65.96239254313653,
+    68.85048182392777,
+    72.36827997455242,
+    76.78033350243246
    ],
    [
-    65.67571614885223,
-    68.12091433767503,
-    70.9872231444748,
-    74.41284756366471,
-    78.60389824960801
+    57.858933831724286,
+    59.636443426221184,
+    61.70195167480045,
+    64.14997733495557,
+    67.12148002279349
    ],
    [
-    60.2877965249138,
-    62.15344207203882,
-    64.2996613922935,
-    66.80945629214551,
-    69.80214924602792
+    53.05352385509302,
+    54.35740254637418,
+    55.83973620233307,
+    57.55331694347389,
+    59.57403813546187
    ],
    [
-    55.671388675900964,
-    57.10268104309385,
-    58.72104435657906,
-    60.57685226673597,
-    62.740347726923794
+    48.93336177056653,
+    49.88605070421014,
+    50.94582955927424,
+    52.141535043797745,
+    53.513378171327425
    ]
   ]
  },
  "rel": {
-  "ebitda_mid": 41591.50204188672,
-  "ev_rel": 270344.7632722637,
-  "ev_ebitda_trailing": 7.924817786713997,
+  "ebitda_mid": 44697.79828930313,
+  "ev_rel": 290535.68888047035,
+  "ev_ebitda_trailing": 8.000722677325394,
   "pe_trailing": 12.995374065504905,
   "just_mult": 6.5
  },
  "norm": {
-  "margin": 0.12090600000000001,
-  "rev": 362620.66176000005,
-  "ebitda": 43843.013730754574,
-  "ebit": 40035.496782274575,
+  "margin": 0.11078988668879247,
+  "rev": 407355.88701676094,
+  "ebitda": 45130.91256459949,
+  "ebit": 40853.6757509235,
   "interest": 4127.401616023958,
-  "np": 25215.93280882912,
-  "eps": 11.778864632114274,
+  "np": 25770.379166754792,
+  "eps": 12.03785757301744,
   "pe": 9.0
  },
  "book": {
@@ -1487,76 +1914,76 @@
   ],
   "grid_wacc_g": [
    [
-    79.68123670415163,
-    84.01149521077141,
-    89.32569292537724,
-    96.03719178942801,
-    104.82860106010253
+    70.33785026611987,
+    73.67916459076592,
+    77.75959437327495,
+    82.88964883834787,
+    89.58209041029527
    ],
    [
-    72.04339267486468,
-    75.27674949702067,
-    79.14809516564586,
-    83.8925318229104,
-    89.87685305037411
+    63.534446867884604,
+    65.96239254313653,
+    68.85048182392777,
+    72.36827997455242,
+    76.78033350243246
    ],
    [
-    65.67571614885223,
-    68.12091433767503,
-    70.9872231444748,
-    74.41284756366471,
-    78.60389824960801
+    57.858933831724286,
+    59.636443426221184,
+    61.70195167480045,
+    64.14997733495557,
+    67.12148002279349
    ],
    [
-    60.2877965249138,
-    62.15344207203882,
-    64.2996613922935,
-    66.80945629214551,
-    69.80214924602792
+    53.05352385509302,
+    54.35740254637418,
+    55.83973620233307,
+    57.55331694347389,
+    59.57403813546187
    ],
    [
-    55.671388675900964,
-    57.10268104309385,
-    58.72104435657906,
-    60.57685226673597,
-    62.740347726923794
+    48.93336177056653,
+    49.88605070421014,
+    50.94582955927424,
+    52.141535043797745,
+    53.513378171327425
    ]
   ],
   "grid_exp_term": [
    [
-    94.4411516960047,
-    83.6853102993899,
-    75.06101753174484,
-    67.9939109689225,
-    62.09887513361004
+    82.30413193593803,
+    72.8886819346058,
+    65.33406077050365,
+    59.13899137370171,
+    53.96735779694362
    ],
    [
-    91.83793386263895,
-    81.3764819233737,
-    72.98811919556634,
-    66.11423924782518,
-    60.38029098876037
+    79.99134516193502,
+    70.83367768088289,
+    63.48580082611725,
+    57.46018877233019,
+    52.42994594952477
    ],
    [
-    89.32569292537724,
-    79.14809516564586,
-    70.9872231444748,
-    64.2996613922935,
-    58.72104435657906
+    77.75959437327495,
+    68.85048182392777,
+    61.70195167480045,
+    55.83973620233307,
+    50.94582955927424
    ],
    [
-    86.90043531192872,
-    76.99662618872641,
-    69.05518167214285,
-    62.54733746305856,
-    57.118551623349695
+    75.60531904976452,
+    66.9359453582495,
+    59.97969409530537,
+    54.27508452482181,
+    49.51268463786545
    ],
    [
-    84.55837936054179,
-    74.91873786045032,
-    67.18901360200252,
-    60.854577548232044,
-    55.57036546404807
+    73.52514768373331,
+    65.08708620594727,
+    58.31635810092311,
+    52.76381935034907,
+    48.12830987545653
    ]
   ],
   "beta_grid": [
@@ -1568,12 +1995,12 @@
    1.3
   ],
   "grid_beta": [
-   97.22796869406002,
-   82.76416632907222,
-   71.43883974103514,
-   70.9872231444748,
-   64.45290812234732,
-   58.46543295327148
+   84.75563520629989,
+   72.055512422107,
+   62.099237908612096,
+   61.70195167480045,
+   55.95111872909561,
+   50.676769828907254
   ],
   "fx_grid": [
    0.9,
@@ -1583,11 +2010,11 @@
    1.2
   ],
   "grid_fx": [
-   65.21795282222483,
-   68.10258798334984,
-   70.9872231444748,
-   75.60263940227475,
-   82.52576378897464
+   56.86120849951797,
+   59.28158008715921,
+   61.70195167480045,
+   65.57454621502646,
+   71.38343802536546
   ],
   "mg_grid": [
    -0.02,
@@ -1597,11 +2024,11 @@
    0.02
   ],
   "grid_margin": [
-   50.76974883395968,
-   60.87848598921724,
-   70.9872231444748,
-   81.09596029973233,
-   91.20469745498988
+   40.70537584468816,
+   51.20366375974433,
+   61.70195167480045,
+   72.20023958985661,
+   82.69852750491278
   ],
   "nwc_grid": [
    0.2,
@@ -1611,25 +2038,25 @@
    0.26
   ],
   "grid_nwc": [
-   72.55623902138905,
-   71.77173108293192,
-   70.9872231444748,
-   70.20271520601769,
-   69.41820726756056
+   63.498021090235056,
+   62.599986382517756,
+   61.70195167480045,
+   60.80391696708316,
+   59.90588225936586
   ],
   "roic_grid": [
    0.15,
    0.18,
-   0.23233718728546768,
+   0.2054903756744277,
    0.26,
    0.3
   ],
   "grid_roic": [
-   62.17907809677004,
-   66.32151505438871,
-   70.9872231444748,
-   72.69449498918665,
-   74.60638896962602
+   55.62682821155775,
+   59.37636551887614,
+   61.70195167480045,
+   65.14488445321211,
+   66.87544013351288
   ]
  },
  "step0": {
@@ -1749,7 +2176,7 @@
   "==============================================================================",
   "SWDY \u2014 ASSERT / derivation log",
   "==============================================================================",
-  "[P&L closure FY2025] EBITDA 30,915 - D&A 2,951 = EBIT 27,964; net finance -3,400; associates 1,302 -> PBT 25,867; implied tax 6,687 = 25.9% (FY24 30.1%, FY23 31.3%) -> PAT 19,180 as disclosed; NCI 1,850",
+  "[P&L closure FY2025] disclosed profit after tax 19,180 at the stated 25.0% effective rate implies pre-tax profit 25,573; less net finance -3,400 and associates 1,302 gives EBIT 27,671, and adding depreciation 2,951 gives EBITDA 30,622 (10.90% of revenue). The disclosed quarterly EBITDA margins were 12.6% (Q1), 11.1% (Q2) and 9.5% (Q4), so a full-year figure near 11% is consistent with the prints. NCI 1,850",
   "[EBITDA basis] House EBITDA = operating profit + depreciation and amortisation: FY23 20,035, FY24 31,602. The company's own reported EBITDA (20,668 / 32,772) is higher because it also adds back impairments and certain other charges; the house basis is used throughout so the DCF waterfall reconciles line by line.",
   "[Working capital] FY23 36,655 (24.1% of revenue), FY24 53,495 (23.1%), FY25 64,641 (23.0%, held at the historical level)",
   "[FY2025 balance sheet triangulation] equity attributable 70,464 (FY24 55,275 + profit 17,330 - dividend 2,141); total equity 76,316; liabilities 234,774. Gross debt: (A) balance-sheet residual 76,166, (B) revenue-scaled 71,580, (C) implied by revenue-scaled cash 67,105 -> adopted 71,617, cash 51,828. NET debt is NOT triangulated \u2014 it is the disclosed 19,789, and the valuation bridge uses only that.",
@@ -1760,16 +2187,26 @@
   "[WACC explicit] weights on NET debt 8.1% / equity 91.9% -> 26.90%. On gross debt the weights would be 24.1% / 75.9% -> 23.90%; the net-debt basis is used because it is the same quantity the enterprise-to-equity bridge subtracts, and it is the more conservative of the two.",
   "[WACC terminal] Ke 17.56% (rf 10.50% + beta x ERP 7.00%); Kd after tax 7.88%; weights 75%/25% -> 15.14%",
   "[Glide] forward WACC 26.90% -> 22.98% -> 19.55% -> 17.10% -> 15.14%; cumulative discount factors 0.7880, 0.6408, 0.5360, 0.4577, 0.3975. The glide fractions are the cost-of-debt path's own cumulative progress, so the shape is inherited rather than being a second free parameter.",
-  "[Revenue build] FY2025 splits 84,315 domestic + 196,734 foreign (USD 3,974mn at 49.5). Forecast total revenue 319,084 -> 362,621 -> 408,916 -> 455,747 -> 505,542 (growth +13.5%, +13.6%, +12.8%, +11.5%, +10.9%)",
-  "[Segment mix] FY2025 segment gross margins blend to 14.52% against the derived group gross margin of 14.49%. Forecast group EBITDA margin 11.23% -> 11.47% -> 11.79% -> 12.11% -> 12.37%",
-  "[Terminal growth reconciliation] historical ROIC 22.3% / 24.9% / 20.9%; reinvestment rate 20.8% / 31.7% / 26.4%; implied g 4.6% / 7.9% / 5.5%. Check (a): actual NOPAT CAGR FY23-FY25 = +30.4%. Check (b): implied g from STABLE years only (FY24 excluded as a debt-funded capacity burst, reinvestment 32%) = 5.1%. Adopted terminal g 5.0%.",
-  "[Terminal value] terminal ROIC 23.2%; required reinvestment rate g/ROIC = 21.5%; terminal NOPAT 45,066; TV 348,762 capitalised at the terminal WACC and discounted at the YEAR-5 factor 0.3975 (one date, one price of time) -> PV 138,646. Terminal value is 77% of enterprise value.",
-  "[Terminal ceiling] the domestic leg is 28% of FY30E revenue; a blended long-run nominal ceiling is 9.6% (15% Egyptian nominal on the domestic leg, 7.5% world nominal on the export leg). Adopted g of 5% sits below it. If the recent NOPAT CAGR of 30% were floated as a TERMINAL rate, the domestic revenue leg alone would overtake Egypt's entire nominal GDP in about 39 years \u2014 arithmetic necessity, not a modelling opinion.",
-  "[Bridge] EV 180,535 - net debt 19,789 + associates at carrying value 7,445 = 168,191; less minority interests at their 9.6% share of group profit = 16,223 -> equity attributable 151,968 = EGP 70.99/share against a spot of 105.20 (-33%).",
-  "[Currency-of-discounting alternative] discounting the ~72% hard-currency cash flow leg at a USD WACC of 10.12% with 3.5% terminal growth, and the domestic leg unchanged, gives EGP 134.40/share (+28% vs spot). This is disclosed as the alternative the market appears to be applying, not as the primary read.",
-  "[DCF scenarios] bear 40.57 / base 70.99 / bull 129.37 EGP per share",
-  "[Synthesis] weighted central EGP 80.00; full span across lenses and scenarios 26.56 - 135.46; spot 105.20 (-24% to the central).",
-  "[Forecast equity] attributable profit 20,160, 24,225, 28,809, 33,532, 38,445; net debt path 18,542, 15,648, 10,001, 436, -12,789 (25% payout assumed). Net debt / EBITDA falls from 0.64x to -0.20x.",
-  "[Expert panel] Expert 1 126.93 [93.53-160.33]; Expert 2 44.10 [30.62-63.13]; Expert 3 65.22 [52.48-134.40]; panel median 65.22 (-38% vs spot)"
+  "[Bottom-up base] the sub-segment build reconciles to the audited statements: FY2023 revenue 152,186.2 vs reported 152,186.2, gross profit 29,077.5 vs 29,077.3; FY2024 revenue 231,981.9 vs 231,981.8, gross profit 43,898.4 vs 43,898.5.",
+  "[Unit economics] cables price/tonne 360,780 -> 522,361; fabrication uplift over copper 1.386 -> 1.261; conversion margin 25.0% -> 22.8%. Meters price/unit 1,748 -> 2,596; transformers price/MVA 455,485 -> 641,847. Operating load between gross profit and EBITDA 5.94% -> 5.30% of revenue.",
+  "[FY2025 unit base] volumes implied from the disclosed Q1 prints and the FY2024 seasonal share: cables 154,621t (-7.8% on FY2024), meters 5,550,494 units, transformers 17,516 MVA. Cables revenue is the residual against the disclosed group revenue of 281,049, which BACK-SOLVES the FY2025 fabrication uplift to 1.295 \u2014 between the FY2023 (1.386) and FY2024 (1.261) prints, so the residual is economically sensible rather than a plug absorbing an error.",
+  "[FY2025 margin calibration] cables gross profit is PINNED to the disclosed 88,173 EGP per tonne x 154,621t = 13,633, i.e. a conversion margin of 13.8% against 22.8% in FY2024 \u2014 the cable margin roughly HALVED, and that single fact is most of the group's gross-margin decline. The other lines carry FY2024's margins scaled by 0.874, solved so the total reproduces the 40,720 assembled from the disclosed prints. Resulting FY2025 margins: Cables 13.8%, Raw material (copper rod) 13.5%, Engineering & construction 9.8%, Transformers 30.1%, Meters & digital 23.8%, Other electrical products 44.3%, Infrastructure investment 54.0%.",
+  "[FY2025 operating load] bottom-up gross profit 40,720 less EBITDA 30,622 implies an operating load of 3.59% of revenue, against 5.30% in FY2024 and 5.94% in FY2023. The forecast glides from 4.0% back toward the historical norm rather than assuming the FY2025 level persists.",
+  "[Q1-2026 calibration] the disclosed Q1-2026 revenue 75,298 (+26.8% y/y) and attributable profit 4,845 (+16.8% y/y) imply, on the same tax, minority, finance and depreciation structure, an EBITDA margin of about 11.24% \u2014 against 12.61% in Q1-2025. Profit GREW on a higher copper price, so any build that shows margins collapsing in FY2026 is contradicted by the print. The FY2026 cable conversion margin is therefore SOLVED to reproduce this, not assumed.",
+  "[Per-unit gross profit, FY2025 base] cables 88,173 EGP/tonne (disclosed), rod 68,017 EGP/tonne, transformers 210,579 EGP/MVA, meters 667 EGP/unit. These grow with cost inflation only \u2014 no real recovery in conversion profitability is assumed anywhere in the forecast.",
+  "[Cable conversion margin, solved] FY2026 gross profit per tonne solves to 157,964 EGP to reproduce the Q1-2026 implied EBITDA margin \u2014 against the disclosed 88,173 in Q1-2025, 119,043 in FY2024 and 90,020 in FY2023. It sits inside the historical range, so the print and the unit build are mutually consistent.",
+  "[Conversion margin cross-check] as a SHARE of the realised price per tonne that solved figure is 17.8%, between the FY2025 trough of 13.8% and the FY2024 peak of 22.8%. In absolute EGP it is below what pure copper-cost scaling of FY2024 would give (196,336), so the solve does not assume the converter captures the whole metal move. NOTE the solve attributes all of the Q1-2026 improvement to cables, where the volatility demonstrably is; if it in fact came from another line the sub-segment split changes but GROUP EBITDA \u2014 the only thing the valuation consumes \u2014 is pinned by the print either way.",
+  "[Forecast, bottom-up] revenue 364,506 -> 407,356 -> 440,970 -> 475,819 -> 512,683 (growth +29.7%, +11.8%, +8.3%, +7.9%, +7.7%)",
+  "[Forecast margins are OUTPUTS] gross margin 15.24% -> 15.27% -> 15.61% -> 15.88% -> 16.15%; EBITDA margin 11.24% -> 10.97% -> 11.01% -> 11.08% -> 11.15%. Cable tonnage 163,898 -> 193,581 (+15.5% against FY2024); order book 323,700 -> 336,718.",
+  "[Currency split, derived from the build] foreign share of revenue 62% -> 61% -> 61% -> 61% -> 60%, against the disclosed 'over 70%' for FY2025.",
+  "[Terminal growth reconciliation] historical ROIC 22.3% / 24.9% / 20.9%; reinvestment rate 20.8% / 31.7% / 26.4%; implied g 4.6% / 7.9% / 5.5%. Check (a): actual NOPAT CAGR FY23-FY25 = +30.5%. Check (b): implied g from STABLE years only (FY24 excluded as a debt-funded capacity burst, reinvestment 32%) = 5.1%. Adopted terminal g 5.0%.",
+  "[Terminal value] terminal ROIC 20.5%; required reinvestment rate g/ROIC = 24.3%; terminal NOPAT 40,792; TV 304,373 capitalised at the terminal WACC and discounted at the YEAR-5 factor 0.3975 (one date, one price of time) -> PV 121,000. Terminal value is 76% of enterprise value.",
+  "[Terminal ceiling] the domestic leg is 40% of FY30E revenue; a blended long-run nominal ceiling is 10.5% (15% Egyptian nominal on the domestic leg, 7.5% world nominal on the export leg). Adopted g of 5% sits below it. If the recent NOPAT CAGR of 30% were floated as a TERMINAL rate, the domestic revenue leg alone would overtake Egypt's entire nominal GDP in about 36 years \u2014 arithmetic necessity, not a modelling opinion.",
+  "[Bridge] EV 158,535 - net debt 19,789 + associates at carrying value 7,445 = 146,191; less minority interests at their 9.6% share of group profit = 14,101 -> equity attributable 132,090 = EGP 61.70/share against a spot of 105.20 (-41%).",
+  "[Currency-of-discounting alternative] discounting the ~60% hard-currency cash flow leg at a USD WACC of 10.12% with 3.5% terminal growth, and the domestic leg unchanged, gives EGP 108.27/share (+3% vs spot). This is disclosed as the alternative the market appears to be applying, not as the primary read.",
+  "[DCF scenarios] bear 33.92 / base 61.70 / bull 115.43 EGP per share",
+  "[Synthesis] weighted central EGP 78.00; full span across lenses and scenarios 26.56 - 145.71; spot 105.20 (-26% to the central).",
+  "[Forecast equity] attributable profit 23,330, 26,012, 28,793, 31,708, 34,767; net debt path 27,158, 23,403, 15,414, 4,967, -7,984 (25% payout assumed). Net debt / EBITDA falls from 0.65x to -0.14x.",
+  "[Expert panel] Expert 1 137.29 [101.16-173.42]; Expert 2 45.39 [31.52-64.98]; Expert 3 55.10 [46.82-108.27]; panel median 55.10 (-48% vs spot)"
  ]
 }

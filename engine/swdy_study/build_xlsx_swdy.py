@@ -23,7 +23,8 @@ SEG, S0, STK = D['seg_fy25'], D['step0'], D['strike']
 IN = {k: v['value'] for k, v in D['inputs'].items()}
 SPOT, SH = M['spot'], M['shares_mn']
 FC = ['B', 'C', 'D', 'E', 'F']          # forecast columns on most sheets
-SEGS = ['wc', 'ec', 'ep', 'ds', 'ii']
+SEGS = D['bottomup']['subs']
+BU = D['bottomup']
 
 wb = Workbook()
 
@@ -218,13 +219,25 @@ hdr(ws, 3, ['Input', YF[0], YF[1], YF[2], YF[3], YF[4]])
 block('Anchors', [('Spot price (EGP)', SPOT, PX), ('Shares outstanding (mn)', SH, NUM0),
                   ('Effective tax rate', IN['tax_eff'], PCT),
                   ('Statutory corporate tax rate', IN['tax_stat'], PCT),
-                  ('FY2025 average USD/EGP', IN['fx_fy25_avg'], NUM1)])
-block('Revenue drivers', [('Domestic revenue growth', IN['dom_growth'], PCT),
-                          ('Foreign revenue growth (USD)', IN['fgn_growth_usd'], PCT),
-                          ('USD/EGP path', IN['fx_path'], NUM1),
-                          ('Foreign share of FY2025 revenue', IN['foreign_share_fy25'], PCT)])
-block('Segment EBITDA margins', [(SEG['names'][s], IN['seg_ebitda_margin_path'][s], PCT)
-                                 for s in SEGS])
+                  ('FY2025 average USD/EGP', IN['fx_hist']['FY25'], NUM1)])
+block('Revenue drivers — the unit build', [
+    ('Copper (USD/tonne)', IN['copper_fcst'], NUM0),
+    ('USD/EGP path', IN['fx_path'], NUM1),
+    ('Cable volume growth', IN['cables_vol_growth'], PCT),
+    ('Cable fabrication uplift over copper', IN['cables_uplift'], MULT),
+    ('Raw-material volume growth', IN['rawmat_vol_growth'], PCT),
+    ('Transformer MVA growth', IN['transformers_vol_growth'], PCT),
+    ('Meter unit growth', IN['meters_vol_growth'], PCT),
+    ('Order-book conversion rate', IN['ec_burn'], PCT),
+    ('Order-book book-to-bill', IN['ec_book_to_bill'], MULT),
+    ('Other-lines revenue growth', IN['other_growth'], PCT),
+    ('Meter price inflation', IN['unit_price_inflation'], PCT)])
+block('Unit gross profit and cost load', [
+    ('Gross profit per unit — growth', IN['unit_gp_growth'], PCT),
+    ('Non-cable margin recovery factor', IN['margin_recovery'], MULT),
+    ('Operating load (% of revenue)', IN['opex_pct'], PCT),
+    ('Cable gross profit per tonne, FY2025 (EGP)', IN['cables_gp_t_fy25'], NUM0),
+    ('Order book at FY2025 (EGP mn)', IN['ec_backlog'], NUM0)])
 block('Capital intensity', [('Working capital / revenue', IN['nwc_pct'], PCT),
                             ('Capital expenditure / revenue', IN['capex_pct'], PCT),
                             ('Depreciation and amortisation / revenue', IN['dna_pct'], PCT)])
@@ -283,17 +296,18 @@ r = 5
 for s in SEGS:
     put(ws, f'A{r}', SEG['names'][s], fmt=None)
     put(ws, f'B{r}', SEG['rev'][s], BLACK, NUM0)
-    put(ws, f'C{r}', IN['seg_share_fy25'][s], BLUE, PCT)
+    put(ws, f'C{r}', SEG['rev'][s] / IN['rev_fy25'], BLACK, PCT)
     put(ws, f'D{r}', SEG['gp_margin'][s], BLUE, PCT)
     for i in range(5):
         put(ws, f'{get_column_letter(5+i)}{r}', F['seg_rev'][i][s], BLACK, NUM0)
     r += 1
+_last = r - 1
 band(ws, r, 9); put(ws, 'A%d' % r, 'Total revenue', bold=True, fmt=None)
-put(ws, f'B{r}', '=SUM(B5:B9)', BLACK, NUM0, bold=True)
-put(ws, f'C{r}', '=SUM(C5:C9)', BLACK, PCT, bold=True)
+put(ws, f'B{r}', f'=SUM(B5:B{_last})', BLACK, NUM0, bold=True)
+put(ws, f'C{r}', f'=SUM(C5:C{_last})', BLACK, PCT, bold=True)
 for i in range(5):
     col = get_column_letter(5 + i)
-    put(ws, f'{col}{r}', f'=SUM({col}5:{col}9)', BLACK, NUM0, bold=True)
+    put(ws, f'{col}{r}', f'=SUM({col}5:{col}{_last})', BLACK, NUM0, bold=True)
 r += 2
 hdr(ws, r, ['Segment EBITDA'] + YF); r += 1
 first_e = r

@@ -11,6 +11,7 @@ M, HI, HB, F = D['meta'], D['hist_is'], D['hist_bs'], D['fcst']
 W, DCF, LN, SN = D['wacc'], D['dcf'], D['lenses'], D['sens']
 EXP, TR, REL, NRM, BK = D['experts'], D['terminal_recon'], D['rel'], D['norm'], D['book']
 S0, STK, SEG = D['step0'], D['strike'], D['seg_fy25']
+BU = D['bottomup']
 _BT = json.load(open(os.path.join(HERE, 'backtest_5y.json')))
 BT5, BT5F = _BT['five_year'], _BT['full']
 IN = {k: v['value'] for k, v in D['inputs'].items()}
@@ -308,29 +309,93 @@ P(f"The four lenses do not agree, and the disagreement is informative rather tha
 
 # ---- 1.6 drivers -------------------------------------------------------------
 H2('1.6  The drivers — a two-currency revenue build and a segment margin build')
-P(f"Revenue is not forecast as a single growth rate. It is split into the leg that is earned and "
-  f"spent in Egyptian pounds and the leg that is effectively priced in hard currency, because "
-  f"those two legs behave completely differently when the pound moves.")
+P(f"Revenue is not forecast as a growth rate applied to a revenue line. It is built from volumes "
+  f"and prices, unit by unit, on the company's own disclosed segment data — and the historical "
+  f"build reconciles to the audited income statement to within EGP 1mn on both revenue and gross "
+  f"profit in each of FY2023 and FY2024. Margins are therefore outputs of the build, not inputs "
+  f"to it.")
+
+H2('The unit economics, as disclosed')
+rows = [['Unit measure', 'FY2023', 'FY2024', 'FY2025'],
+        ['Cable volume (tonnes)', n0(BU['unit_hist']['FY23']['rev_sum'] and 156748),
+         n0(167665), f"{n0(BU['vol25']['cables'])} (implied)"],
+        ['Cable price per tonne (EGP)', n0(BU['unit_hist']['FY23']['cables_price_t']),
+         n0(BU['unit_hist']['FY24']['cables_price_t']), n0(BU['price_t25'])],
+        ['Cable gross profit per tonne (EGP)', n0(BU['unit_hist']['FY23']['cables_gp_t']),
+         n0(BU['unit_hist']['FY24']['cables_gp_t']), n0(BU['gp_t_cables_fy25'])],
+        ['Copper cost per tonne (EGP)', n0(BU['unit_hist']['FY23']['copper_t']),
+         n0(BU['unit_hist']['FY24']['copper_t']), n0(IN['copper_hist']['FY25']*IN['fx_hist']['FY25'])],
+        ['Fabrication uplift over copper', f"{BU['unit_hist']['FY23']['cables_uplift']:.3f}×",
+         f"{BU['unit_hist']['FY24']['cables_uplift']:.3f}×", f"{BU['uplift25']:.3f}×"],
+        ['Cable conversion margin', pc(BU['unit_hist']['FY23']['cables_conv']),
+         pc(BU['unit_hist']['FY24']['cables_conv']), pc(BU['cables_conv25'])],
+        ['Transformer volume (MVA)', n0(14521), n0(17619), f"{n0(BU['vol25']['transformers'])} (implied)"],
+        ['Transformer gross profit per MVA (EGP)',
+         n0(BU['unit_hist']['FY23']['transformers_gp_mva']),
+         n0(BU['unit_hist']['FY24']['transformers_gp_mva']), '—'],
+        ['Meter volume (units)', n0(4057065), n0(3850726), f"{n0(BU['vol25']['meters'])} (implied)"],
+        ['Meter gross profit per unit (EGP)', n0(BU['unit_hist']['FY23']['meters_gp_u']),
+         n0(BU['unit_hist']['FY24']['meters_gp_u']), '—'],
+        ['Operating load between gross profit and EBITDA',
+         pc(BU['unit_hist']['FY23']['opex_pct']), pc(BU['unit_hist']['FY24']['opex_pct']),
+         pc(BU['opex25'])]]
+table(rows, [2.65, 1.45, 1.45, 1.45], size=8.4, band_rows={3, 6})
+caption(f"Volumes, prices per tonne and gross profit per tonne for FY2023 and FY2024 are the "
+        f"company's own disclosures — the per-unit gross profit figures reproduce the published "
+        f"90,020 and 119,043 per tonne, 418 and 707 per meter, and 136,345 and 221,065 per MVA "
+        f"exactly. FY2025 volumes are implied from the disclosed first-quarter prints and the "
+        f"prior-year seasonal share, and the FY2025 cable price per tonne is the residual against "
+        f"disclosed group revenue — which back-solves a fabrication uplift of {BU['uplift25']:.3f}, "
+        f"sitting between the two audited years. That the residual lands inside the historical "
+        f"range is the check that it is economics rather than a plug absorbing an error.")
+
+P(f"The single most important line in that table is the cable conversion margin. It ran at "
+  f"{pc(BU['unit_hist']['FY23']['cables_conv'])} in FY2023 and "
+  f"{pc(BU['unit_hist']['FY24']['cables_conv'])} in FY2024 — years when a collapsing pound turned "
+  f"cheaply bought copper inventory into windfall profit — and roughly halved to "
+  f"{pc(BU['cables_conv25'])} in FY2025. That one number is most of the group's gross-margin "
+  f"decline, and it is disclosed rather than inferred: it comes from the published gross profit "
+  f"per tonne.")
+
+H2('How the forecast is driven')
 rows = [['Driver', 'FY2025 base'] + YRS,
-        ['Domestic revenue growth', '—'] + [pc(x) for x in IN['dom_growth']],
-        ['Foreign revenue growth (USD)', '—'] + [pc(x) for x in IN['fgn_growth_usd']],
-        ['USD/EGP average rate', n1(IN['fx_fy25_avg'])] + [n1(x) for x in IN['fx_path']],
-        ['Domestic revenue (EGP mn)', n0(IN['rev_fy25']*(1-IN['foreign_share_fy25']))] +
-        [n0(x) for x in F['dom']],
-        ['Foreign revenue (USD mn)', n0(IN['rev_fy25']*IN['foreign_share_fy25']/IN['fx_fy25_avg'])] +
-        [n0(x) for x in F['fgn_usd']],
-        ['Foreign revenue (EGP mn)', n0(IN['rev_fy25']*IN['foreign_share_fy25'])] +
-        [n0(x) for x in F['fgn_egp']],
-        ['Total revenue (EGP mn)', n0(IN['rev_fy25'])] + [n0(x) for x in F['rev']],
-        ['Growth', '—'] + [sgn(F['rev'][i]/(IN['rev_fy25'] if i == 0 else F['rev'][i-1])-1)
-                           for i in range(5)]]
-table(rows, [1.72, 0.86, 0.88, 0.88, 0.88, 0.88, 0.88], size=8.3, band_rows={7})
-caption(f"The exchange-rate path assumes roughly 6% a year of depreciation. That is deliberately "
-        f"far below what interest-rate parity implies — the {pc(IN['rf'])} Egyptian pound rate "
-        f"against a dollar rate near 4.3% implies about 17% a year. The base case assumes the "
-        f"central bank's disinflation path closes most of that gap rather than the currency "
-        f"absorbing it. Because this single choice moves the answer more than any operating "
-        f"assumption, it is carried as an explicit sensitivity in section 1.9.")
+        ['Copper (USD/tonne)', n0(IN['copper_hist']['FY25'])] + [n0(x) for x in IN['copper_fcst']],
+        ['USD/EGP average rate', n1(IN['fx_hist']['FY25'])] + [n1(x) for x in IN['fx_path']],
+        ['Cable volume (tonnes)', n0(BU['vol25']['cables'])] + [n0(x) for x in BU['vol_f']['cables']],
+        ['Cable volume growth', '—'] + [pc(x) for x in IN['cables_vol_growth']],
+        ['Fabrication uplift', f"{BU['uplift25']:.3f}×"] + [f"{x:.3f}×" for x in IN['cables_uplift']],
+        ['Transformer volume (MVA)', n0(BU['vol25']['transformers'])] +
+        [n0(x) for x in BU['vol_f']['transformers']],
+        ['Meter volume (units, mn)', n1(BU['vol25']['meters']/1e6)] +
+        [n1(x/1e6) for x in BU['vol_f']['meters']],
+        ['Order book, year-end (EGP mn)', n0(IN['ec_backlog'])] + [n0(x) for x in BU['backlog']],
+        ['Order-book conversion rate', '—'] + [pc(x) for x in IN['ec_burn']],
+        ['Operating load (% of revenue)', pc(BU['opex25'])] + [pc(x) for x in IN['opex_pct']]]
+table(rows, [1.72, 0.86, 0.88, 0.88, 0.88, 0.88, 0.88], size=8.3)
+caption(f"Copper is held near the current market level rather than forecast — a directional view "
+        f"on the metal would dominate the valuation, and it is carried in the sensitivity instead. "
+        f"Because copper is passed through, a higher copper price raises revenue without raising "
+        f"profit per tonne, which is why the gross margin percentage falls as revenue rises. The "
+        f"operating load glides back toward the historical norm rather than assuming the unusually "
+        f"low FY2025 level persists — the single most conservative choice in the build.")
+
+H2('What the build produces — margins as outputs')
+rows = [['EGP mn'] + YRS,
+        ['Revenue'] + [n0(x) for x in F['rev']],
+        ['Gross profit'] + [n0(x) for x in BU['gp']],
+        ['Gross margin'] + [pc(x) for x in BU['gp_margin']],
+        ['Less operating costs, net'] + [f"({n0(x)})" for x in BU['opex']],
+        ['EBITDA'] + [n0(x) for x in F['ebitda']],
+        ['EBITDA margin'] + [pc(x) for x in F['ebitda_margin']]]
+table(rows, [2.05, 0.99, 0.99, 0.99, 0.99, 0.99], size=8.4, band_rows={5, 6})
+caption(f"The FY2026 conversion margin is not assumed — it is solved so that the build reproduces "
+        f"the EBITDA margin implied by the disclosed first-quarter 2026 result "
+        f"({pc(F['ebitda_margin'][0])}). That quarter reported revenue "
+        f"{sgn(IN['q1_26_rev']/IN['q1_25_rev']-1)} and attributable profit "
+        f"{sgn(IN['q1_26_npa']/IN['q1_25_npa']-1)} year on year, so any build showing margins "
+        f"collapsing in FY2026 would be contradicted by the company's own print. The solved cable "
+        f"gross profit per tonne sits inside the historical range and, as a share of the realised "
+        f"price, between the FY2025 trough and the FY2024 peak.")
 
 figure(os.path.join(HERE, 'fig7_mix.png'), 6.9,
        "Figure 2 — revenue by currency of origin with the EBITDA margin path. The hard-currency "
@@ -338,22 +403,22 @@ figure(os.path.join(HERE, 'fig7_mix.png'), 6.9,
        "washes out of the revenue denominator.")
 
 H2('The segment build behind the margin')
-rows = [['Segment', 'FY2025 revenue (EGP mn)', 'Share', 'Gross margin',
-         'EBITDA margin FY2026E', 'EBITDA margin FY2030E']]
-for s in ['wc', 'ec', 'ep', 'ds', 'ii']:
-    rows.append([SEG['names'][s], n0(SEG['rev'][s]), pc(IN['seg_share_fy25'][s]),
-                 pc(SEG['gp_margin'][s]), pc(IN['seg_ebitda_margin_path'][s][0]),
-                 pc(IN['seg_ebitda_margin_path'][s][-1])])
+rows = [['Segment', 'FY2025 revenue (EGP mn)', 'Share', 'FY2025 gross margin',
+         'FY2030E revenue (EGP mn)', 'FY2030E share']]
+for s_ in SEG['names']:
+    rows.append([SEG['names'][s_], n0(SEG['rev'][s_]), pc(SEG['rev'][s_]/IN['rev_fy25']),
+                 pc(SEG['gp_margin'][s_]), n0(F['seg_rev'][4][s_]),
+                 pc(F['seg_rev'][4][s_]/F['rev'][4])])
 rows.append(['Group', n0(IN['rev_fy25']), '100.0%', pc(IN['gp_fy25']/IN['rev_fy25']),
-             pc(F['ebitda_margin'][0]), pc(F['ebitda_margin'][-1])])
-table(rows, [1.85, 1.30, 0.68, 0.86, 1.15, 1.15], size=8.4, band_rows={6})
-caption("Segment gross margins are set from the company's own disclosed segment table for the "
-        "first quarter of 2025, stepped down for the further normalisation seen in the second "
-        "half, and solved so that the weighted blend reproduces the group gross margin. Segment "
-        "EBITDA margins deduct a uniform operating-cost load of "
-        f"{pc(IN['opex_pct_fy25'])} of revenue. Wires and cables is the largest segment and the "
-        "one whose margin matters most; its terminal margin of "
-        f"{pc(IN['seg_ebitda_margin_path']['wc'][-1])} sits far below the FY2024 windfall.")
+             n0(F['rev'][4]), '100.0%'])
+table(rows, [1.75, 1.30, 0.68, 1.15, 1.30, 0.82], size=8.3, band_rows={8})
+caption(f"FY2025 sub-segment revenue is built from the unit economics above, with cables as the "
+        f"residual against disclosed group revenue. FY2025 gross margins are calibrated so the "
+        f"total reproduces the gross profit assembled from the disclosed nine-month and "
+        f"fourth-quarter prints: cable gross profit is pinned to the published figure per tonne, "
+        f"and the remaining lines carry FY2024's margins scaled by a single solved factor of "
+        f"{BU['compress']:.3f} — a roughly {(1-BU['compress'])*100:.0f}% compression across the "
+        f"board, which is what the disclosed prints require.")
 
 # ---- 1.7 crux ----------------------------------------------------------------
 H2('1.7  The crux — working capital first, the currency second, margins third')
