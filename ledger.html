@@ -155,7 +155,7 @@
 
 <footer><div class="wrap"><div class="foot-studies"><b>Studies:</b> <a href="phdc.html">Palm Hills</a> &middot; <a href="tmgh.html">Talaat Moustafa</a> &middot; <a href="ocdi.html">SODIC</a> &middot; <a href="orhd.html">Orascom Dev</a> &middot; <a href="oras.html">Orascom Const</a> &middot; <a href="comi.html">CIB</a> &middot; <a href="emfd.html">Emaar Misr</a> &middot; <a href="gold.html">Gold</a> &middot; <a href="stocks.html">all &rarr;</a></div><b>Disclaimer:</b> Educational valuation studies and personal analytical opinion — not investment advice, not recommendations. The preparer is not licensed by Egypt's FRA, manages no money, accepts no clients, and may hold positions in instruments mentioned. <a href="method.html#disclaimer">Full text</a>.<br><br><span class="social" style="font-size:var(--fs-lead);font-weight:700">Follow Testahil &mdash; <a href="https://t.me/testahil_markets" target="_blank" rel="noopener">Telegram</a> &middot; <a href="https://www.facebook.com/testahil.markets" target="_blank" rel="noopener">Facebook</a> &middot; <a href="https://www.linkedin.com/company/testahil" target="_blank" rel="noopener">LinkedIn</a></span></div></footer>
 
-<script src="assets/markets.js?v=20260729d"></script><script src="assets/data.js?v=20260804a"></script><script src="assets/app.js?v=20260804c"></script>
+<script src="assets/markets.js?v=20260729d"></script><script src="assets/data.js?v=20260804a"></script><script src="assets/app.js?v=20260805a"></script>
 <script>
 const F2 = n => Number(n).toLocaleString("en-US",{maximumFractionDigits:2});
 
@@ -217,7 +217,9 @@ function renderRow(r){
     res = `<span class="chip lr-check">${due ? "due — grading" : "check on"} ${d}</span>`;
   } else {
     const inBand = isInBand(r);
-    res = `<span class="num">${F2(r.realized_close)}</span> ${inBand
+    // The realized close is an actual traded price, and it is NOT from the anchor date
+    // in the first column — it is the close on the grade date. Say so in the cell.
+    res = `<span class="num">${F2(r.realized_close)}</span> <span class="muted">close of ${fmtDate(r.grade_date)}</span> ${inBand
       ? '<span class="ok">we got it right ✓</span>'
       : '<span class="bad">we were off ✗</span>'}`;
   }
@@ -787,11 +789,11 @@ document.getElementById("tab-bar").addEventListener("click", e=>{
   const cov = rows.length ? Math.round(100*hit/rows.length) : 0;
   tbl.innerHTML = `<div class="card">
     <table>
-      <thead><tr><th class="num">Anchor</th><th>Instrument</th><th class="num">Horizon</th><th class="num">Said (mid)</th><th class="num">90% range</th><th>Real close</th><th>Tier</th></tr></thead>
+      <thead><tr><th class="num">Anchor</th><th>Instrument</th><th class="num">Horizon</th><th class="num">Said (mid)</th><th class="num">90% range</th><th>Real close <span class="muted" style="font-weight:400">(at horizon end)</span></th><th>Tier</th></tr></thead>
       <tbody>${body}</tbody>
     </table>
   </div>
-  <p class="muted" style="margin-top:8px"><b>Historical coverage: ${hit} of ${rows.length} inside the 90% range (${cov}%).</b> Separate from the live score — replays only, not a forward record.</p>`;
+  <p class="muted" style="margin-top:8px"><b>Historical coverage: ${hit} of ${rows.length} inside the 90% range (${cov}%).</b> Separate from the live score — replays only, not a forward record. Each "real close" is the price at the end of that row's horizon counted from its anchor date; these replays store the anchor and the horizon, not a separate resolve date.</p>`;
 })();
 </script>
 <script>

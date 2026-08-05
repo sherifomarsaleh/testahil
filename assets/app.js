@@ -65,7 +65,7 @@ function renderStrip(elId, d, spot, opts={}){
   const X = v=>40+(v-min)/(max-min)*(W-80);
 
   el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" role="img"
-      aria-label="Likely price range. The latest price is ${F(spot)}; the middle outcome is ${F(d.p50)}. Half of outcomes fall between ${F(d.p25)} and ${F(d.p75)}.">
+      aria-label="Likely price range. The latest price is ${F(spot)}${asof?`, from the close of ${String(asof).replace(/^close\s+/i,"")}`:``}; the middle outcome is ${F(d.p50)}. Half of outcomes fall between ${F(d.p25)} and ${F(d.p75)}.">
     <style>
       .lab{font:600 ${fLab}px 'IBM Plex Mono',monospace}
       .end{fill:#8A9A98}.mid{fill:#12796B}.tod{fill:#C0A45F}
@@ -255,7 +255,7 @@ function renderGauge(elId, spot, fair, asof){
   const valHalf = labHalf("our value "+F(base), fG);
   const baseX   = Math.max(valHalf, Math.min(W-valHalf, X(base)));
   el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" role="img"
-      aria-label="Latest price ${F(spot)} versus our fair value ${F(base)}.">
+      aria-label="Latest price ${F(spot)}${asof?`, from the close of ${String(asof).replace(/^close\s+/i,"")}`:``}, versus our fair value ${F(base)}.">
     <style>.g{font:600 ${fG}px 'IBM Plex Mono',monospace}.gsm{font:600 ${fGsm}px 'IBM Plex Mono',monospace}.gdt{font:500 ${fGdt}px 'IBM Plex Mono',monospace}.gmut{fill:#8A9A98}.gink{fill:var(--ink)}.gbase{fill:#12796B}</style>
     <defs><linearGradient id="vg" gradientUnits="userSpaceOnUse" x1="${X(min)}" y1="0" x2="${X(max)}" y2="0">
       <stop offset="0" stop-color="#2E7D5B"/><stop offset="0.25" stop-color="#6FA85C"/><stop offset="0.5" stop-color="#C0A45F"/><stop offset="0.75" stop-color="#D06A2C"/><stop offset="1" stop-color="#C0392B"/>
@@ -298,7 +298,7 @@ function renderPeers(elId, currentCode){
     const here = code===currentCode;
     return `<tr${here?' class="peer-here"':''}>
       <td>${here?'<b>':''}<a href="${code.toLowerCase()}.html">${t.name}</a>${here?'</b>':''} <span class="muted num">${t.code}</span></td>
-      <td class="num">${F(t.spot)}</td>
+      <td class="num">${F(t.spot)}<br><span class="muted" style="font-size:.8rem">${(t.spotDate||"").replace(/^close\s+/i,"")}</span></td>
       <td class="num">${F(t.fair.base)}</td>
       <td><span class="pill ${v.tone}">${v.tone==='cheap'?'Looks cheap':v.tone==='rich'?'Looks expensive':'About right'}</span></td>
       <td class="num">${up} in 10 up</td>
@@ -397,7 +397,7 @@ function renderCompare(elId, market){
     const trend = (t.tech&&t.tech.trend) ? t.tech.trend : "—";
     return `<tr>
       <td><a href="${code.toLowerCase()}.html"><b>${t.name}</b></a><br><span class="muted num" style="font-size:.8rem">${t.code} &middot; ${t.ccy}</span></td>
-      <td class="num">${F(t.spot)}</td>
+      <td class="num">${F(t.spot)}<br><span class="muted" style="font-size:.8rem">${(t.spotDate||"").replace(/^close\s+/i,"")}</span></td>
       <td class="num">${F(t.fair.base)}<br><span class="muted" style="font-size:.8rem">${fvGap>=0?'+':''}${fvGap}%</span></td>
       <td><span class="pill ${v.tone}">${v.tone==='cheap'?'Looks cheap':v.tone==='rich'?'Looks expensive':'About right'}</span></td>
       <td class="num">${F(t.dist.t60.p5)} &ndash; ${F(t.dist.t60.p95)}</td>
@@ -857,6 +857,12 @@ function renderStaticFan(elId, T){
       '<span><span style="display:inline-block;width:14px;height:10px;border-radius:2px;background:var(--teal,#12796B);opacity:.16;margin-right:5px"></span>90% band (5th\u201395th)</span>' +
       '<span><span style="display:inline-block;width:14px;height:2px;background:var(--gold,#C0A45F);margin-right:5px;vertical-align:middle"></span>median path</span>' +
     '</div>' +
+    // The whole cone is measured from one actual close. Say which close, and when it
+    // was, next to the chart — the "latest" tick on the axis is a position, not a date.
+    '<p class="muted" style="font-size:var(--fs-small);margin:2px 0 0">Anchored to the ' +
+      (T.ccy ? T.ccy + ' ' : '') + '<b>' + F(spot) + '</b> close of <b>' +
+      ((T.spotDate || '').replace(/^close\s+/i, '') || 'the anchor date') +
+      '</b>. Every band above is measured from that price.</p>' +
     '<table class="mc-ladder" style="margin-top:14px"><thead><tr><th>Level</th><th>P(touch) ' + HZ.l1Long + '</th><th>P(touch) ' + HZ.l3Long + '</th></tr></thead><tbody>' + touchRows + '</tbody></table>' +
     '<p class="muted" style="font-size:var(--fs-small);margin-top:12px">The ' + HZ.l1Long + ' and ' + HZ.l3Long + ' columns are the published calibration exactly as saved. The curve between them is a smooth fit using the real Student-t shape for this market through those two points \u2014 not a fresh simulation at every day, and not adjustable \u2014 so it always agrees with the published numbers at the two horizons that matter.' +
     ' Horizons are calendar-anchored: ' + HZ.l1 + ' and ' + HZ.l3 + ' from the anchor date, which on this market works out to about ' + HZ.h1 + ' and ' + HZ.h3 + ' trading sessions.' +
@@ -980,7 +986,8 @@ function renderFairLevers(elId, T, levers){
       '<div style="position:relative;height:6px;border-radius:3px;background:linear-gradient(90deg,#B5483A,#4A4A3A,#178A76)">' +
         '<div style="position:absolute;left:0%;top:-20px;transform:translateX(-50%);text-align:center;font-family:\'IBM Plex Mono\',monospace;font-size:11px;color:var(--muted)">' + F(bear) + '<span style="display:block;font-size:9.5px">bear</span></div>' +
         '<div style="position:absolute;left:100%;top:-20px;transform:translateX(-50%);text-align:center;font-family:\'IBM Plex Mono\',monospace;font-size:11px;color:var(--muted)">' + F(full) + '<span style="display:block;font-size:9.5px">full</span></div>' +
-        '<div style="position:absolute;left:' + pct(spot).toFixed(1) + '%;top:14px;transform:translateX(-50%);text-align:center;font-family:\'IBM Plex Mono\',monospace;font-size:10.5px;color:var(--muted)">\u25B2<span style="display:block;font-size:9.5px">spot ' + F(spot) + '</span></div>' +
+        '<div style="position:absolute;left:' + pct(spot).toFixed(1) + '%;top:14px;transform:translateX(-50%);text-align:center;font-family:\'IBM Plex Mono\',monospace;font-size:10.5px;color:var(--muted)">\u25B2<span style="display:block;font-size:9.5px">spot ' + F(spot) + '</span>' +
+          '<span style="display:block;font-size:9px;opacity:.85;white-space:nowrap">' + ((T.spotDate||'').replace(/^close\s+/i,'')) + '</span></div>' +
         '<div id="fl-marker" style="position:absolute;left:' + pct(base).toFixed(1) + '%;top:50%;width:13px;height:13px;transform:translate(-50%,-50%) rotate(45deg);background:var(--gold);border:2px solid var(--bg,#0d1f1d)"></div>' +
       '</div>' +
     '</div>' +

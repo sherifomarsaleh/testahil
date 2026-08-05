@@ -253,6 +253,9 @@ const DATA = Object.keys(METALS).filter(k=>METAL_META[k]).map(k=>{
   const m=METALS[k], x=METAL_META[k], fair=m.fair.base, gap=Math.round((fair/m.spot-1)*100);
   return { tk:m.name, code:m.code, name:m.name, metal:x.type, sub:x.type, sector:x.type, country:m.ccy, cur:m.ccy,
     fair:_fmt(fair), price:_fmt(m.spot), gap:(gap>=0?"+":"\u2212")+Math.abs(gap)+"%",
+    // The study's publish date and the price's own close date are different days \u2014
+    // Silver's study predates its quoted close by a month \u2014 so carry both, separately.
+    priceDate:(m.spotDate||"").replace(/^close\s+/i,""),
     date:x.pubDate, url:m.slug+".html", thesis:x.thesis };
 });
 
@@ -305,7 +308,7 @@ function render(){
           <span class="num" style="font-weight:400">${d.code}</span><i>·</i><span>${d.metal}</span>
           <span class="res-date">${d.date}</span>
         </div>
-        <div class="res-val"><span class="muted" style="font-weight:400">${d.cur}</span> Fair value now <b>${d.fair}</b> &nbsp;·&nbsp; Price <b>${d.price}</b> &nbsp;·&nbsp; <span class="muted">${d.gap} vs price</span></div>
+        <div class="res-val"><span class="muted" style="font-weight:400">${d.cur}</span> Fair value now <b>${d.fair}</b> &nbsp;·&nbsp; Price <b>${d.price}</b>${d.priceDate?` <span class="muted" style="font-weight:400">(close of ${d.priceDate})</span>`:``} &nbsp;·&nbsp; <span class="muted">${d.gap} vs price</span></div>
         <p class="res-thesis">${d.thesis}</p>
       </div>
     </a>`).join("") : `<div class="no-res">No studies match these filters. <a href="#" id="reset-link">Clear filters</a></div>`;
