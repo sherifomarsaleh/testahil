@@ -1093,6 +1093,8 @@
    }
   }
  },
+ "fgn_share_fy25_derived": 0.6335216434725378,
+ "fgn_egp_fy25": 178050.62437631327,
  "fcst": {
   "years": [
    "FY26E",
@@ -1236,24 +1238,24 @@
   ],
   "np_attr": [
    23330.39762588968,
-   26011.975146932815,
-   28792.73214597563,
-   31708.12880320703,
-   34766.808728718184
+   25512.575920735213,
+   28518.80184166357,
+   31959.724812324625,
+   35740.93093970522
   ],
   "equity": [
    87961.92034341724,
-   107470.90170361685,
-   129065.45081309858,
-   152846.54741550385,
-   178921.6539620425
+   107096.35228396865,
+   128485.45366521632,
+   152455.2472744598,
+   179260.94547923873
   ],
   "net_debt": [
    27158.4765596999,
-   23403.44199721687,
-   15413.726124105717,
-   4967.190504984501,
-   -7984.413161997869
+   23831.302932644958,
+   16076.277203404163,
+   5414.186376817659,
+   -8371.997759156626
   ],
   "seg_rev": [
    {
@@ -1675,8 +1677,8 @@
   "roic_term": 0.2054903756744277,
   "rr_term": 0.24332039802787836,
   "g": 0.05,
-  "bear": 33.91940897889238,
-  "bull": 115.42942060069899,
+  "bear": 35.09053831893958,
+  "bull": 107.09194225875792,
   "ccy_alt_ps": 108.2656760498812
  },
  "terminal_recon": {
@@ -1718,9 +1720,9 @@
  "lenses": {
   "dcf": {
    "name": "Discounted cash flow (primary)",
-   "bear": 33.91940897889238,
+   "bear": 35.09053831893958,
    "base": 61.70195167480045,
-   "bull": 115.42942060069899,
+   "bull": 107.09194225875792,
    "w": 0.45
   },
   "relative": {
@@ -2010,25 +2012,39 @@
    1.2
   ],
   "grid_fx": [
-   56.86120849951797,
-   59.28158008715921,
+   70.59325137430652,
+   66.1476015245535,
    61.70195167480045,
-   65.57454621502646,
-   71.38343802536546
+   54.58891191519561,
+   43.91935227578834
   ],
   "mg_grid": [
-   -0.02,
-   -0.01,
-   0.0,
-   0.01,
-   0.02
+   0.85,
+   0.925,
+   1.0,
+   1.075,
+   1.15
   ],
   "grid_margin": [
-   40.70537584468816,
-   51.20366375974433,
+   41.14097469461054,
+   51.421463184705495,
    61.70195167480045,
-   72.20023958985661,
-   82.69852750491278
+   71.98244016489542,
+   82.26292865499039
+  ],
+  "cu_grid": [
+   0.85,
+   0.925,
+   1.0,
+   1.075,
+   1.15
+  ],
+  "grid_copper": [
+   75.03890122405956,
+   68.37042644943001,
+   61.70195167480045,
+   55.03347690017092,
+   48.36500212554138
   ],
   "nwc_grid": [
    0.2,
@@ -2038,11 +2054,11 @@
    0.26
   ],
   "grid_nwc": [
-   63.498021090235056,
-   62.599986382517756,
+   64.83401371532563,
+   63.26798269506304,
    61.70195167480045,
-   60.80391696708316,
-   59.90588225936586
+   60.13592065453789,
+   58.56988963427531
   ],
   "roic_grid": [
    0.15,
@@ -2198,15 +2214,17 @@
   "[Conversion margin cross-check] as a SHARE of the realised price per tonne that solved figure is 17.8%, between the FY2025 trough of 13.8% and the FY2024 peak of 22.8%. In absolute EGP it is below what pure copper-cost scaling of FY2024 would give (196,336), so the solve does not assume the converter captures the whole metal move. NOTE the solve attributes all of the Q1-2026 improvement to cables, where the volatility demonstrably is; if it in fact came from another line the sub-segment split changes but GROUP EBITDA \u2014 the only thing the valuation consumes \u2014 is pinned by the print either way.",
   "[Forecast, bottom-up] revenue 364,506 -> 407,356 -> 440,970 -> 475,819 -> 512,683 (growth +29.7%, +11.8%, +8.3%, +7.9%, +7.7%)",
   "[Forecast margins are OUTPUTS] gross margin 15.24% -> 15.27% -> 15.61% -> 15.88% -> 16.15%; EBITDA margin 11.24% -> 10.97% -> 11.01% -> 11.08% -> 11.15%. Cable tonnage 163,898 -> 193,581 (+15.5% against FY2024); order book 323,700 -> 336,718.",
-  "[Currency split, derived from the build] foreign share of revenue 62% -> 61% -> 61% -> 61% -> 60%, against the disclosed 'over 70%' for FY2025.",
+  "[FY2026 cross-check against the print] the disclosed Q1-2026 revenue of 75,298, grossed up on the Q1-2025 seasonal share, implies a full year of 356,321. The build produces 364,506, +2.3% against it \u2014 an independent check that the unit build is not running ahead of the company's own trading.",
+  "[Currency split \u2014 two different questions] the company discloses that over 70% of revenue is earned ABROAD, which is a geographic statement about where the customer sits. The build derives the share that is HARD-CURRENCY LINKED \u2014 dollar-priced by construction \u2014 at 63% in FY2025 and 62% -> 61% -> 61% -> 61% -> 60% thereafter. The two are not in conflict: a project executed in a North African market for a local utility is foreign revenue but not necessarily dollar-priced. The LOWER figure is used everywhere the currency question is valued, because it is the conservative one.",
   "[Terminal growth reconciliation] historical ROIC 22.3% / 24.9% / 20.9%; reinvestment rate 20.8% / 31.7% / 26.4%; implied g 4.6% / 7.9% / 5.5%. Check (a): actual NOPAT CAGR FY23-FY25 = +30.5%. Check (b): implied g from STABLE years only (FY24 excluded as a debt-funded capacity burst, reinvestment 32%) = 5.1%. Adopted terminal g 5.0%.",
   "[Terminal value] terminal ROIC 20.5%; required reinvestment rate g/ROIC = 24.3%; terminal NOPAT 40,792; TV 304,373 capitalised at the terminal WACC and discounted at the YEAR-5 factor 0.3975 (one date, one price of time) -> PV 121,000. Terminal value is 76% of enterprise value.",
   "[Terminal ceiling] the domestic leg is 40% of FY30E revenue; a blended long-run nominal ceiling is 10.5% (15% Egyptian nominal on the domestic leg, 7.5% world nominal on the export leg). Adopted g of 5% sits below it. If the recent NOPAT CAGR of 30% were floated as a TERMINAL rate, the domestic revenue leg alone would overtake Egypt's entire nominal GDP in about 36 years \u2014 arithmetic necessity, not a modelling opinion.",
   "[Bridge] EV 158,535 - net debt 19,789 + associates at carrying value 7,445 = 146,191; less minority interests at their 9.6% share of group profit = 14,101 -> equity attributable 132,090 = EGP 61.70/share against a spot of 105.20 (-41%).",
   "[Currency-of-discounting alternative] discounting the ~60% hard-currency cash flow leg at a USD WACC of 10.12% with 3.5% terminal growth, and the domestic leg unchanged, gives EGP 108.27/share (+3% vs spot). This is disclosed as the alternative the market appears to be applying, not as the primary read.",
-  "[DCF scenarios] bear 33.92 / base 61.70 / bull 115.43 EGP per share",
+  "[DCF scenarios] bear 35.09 / base 61.70 / bull 107.09 EGP per share",
   "[Synthesis] weighted central EGP 78.00; full span across lenses and scenarios 26.56 - 145.71; spot 105.20 (-26% to the central).",
-  "[Forecast equity] attributable profit 23,330, 26,012, 28,793, 31,708, 34,767; net debt path 27,158, 23,403, 15,414, 4,967, -7,984 (25% payout assumed). Net debt / EBITDA falls from 0.65x to -0.14x.",
+  "[Forecast interest] net finance cost falls 4,127 -> 4,291 -> 3,457 -> 2,324 -> 971 as the cash pile builds against a broadly static gross debt book \u2014 the charge tracks the net debt path rather than being frozen at the FY2025 balance.",
+  "[Forecast equity] attributable profit 23,330, 25,513, 28,519, 31,960, 35,741; net debt path 27,158, 23,831, 16,076, 5,414, -8,372 (25% payout assumed). Net debt / EBITDA falls from 0.65x to -0.15x.",
   "[Expert panel] Expert 1 137.29 [101.16-173.42]; Expert 2 45.39 [31.52-64.98]; Expert 3 55.10 [46.82-108.27]; panel median 55.10 (-48% vs spot)"
  ]
 }

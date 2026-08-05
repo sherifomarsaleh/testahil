@@ -128,15 +128,17 @@ for tag, fn, out in [('one month', 'paths_1M.npy', 'fig5_dist.png'),
 
 # ---- F7 the currency split and the margin path ------------------------------------
 F = d['fcst']; yrs = ['FY25'] + [y.replace('E', '') for y in F['years']]
-dom = [d['inputs']['rev_fy25']['value'] * (1 - d['inputs']['foreign_share_fy25']['value'])] + F['dom']
-fgn = [d['inputs']['rev_fy25']['value'] * d['inputs']['foreign_share_fy25']['value']] + F['fgn_egp']
+# FY2025 uses the DERIVED hard-currency share, the same basis as the forecast years,
+# so the first bar is not on a different definition from the rest of the chart.
+fgn = [d['fgn_egp_fy25']] + F['fgn_egp']
+dom = [d['inputs']['rev_fy25']['value'] - d['fgn_egp_fy25']] + F['dom']
 mar = [d['hist_is']['FY25']['ebitda'] / d['hist_is']['FY25']['rev']] + F['ebitda_margin']
 fig, ax = plt.subplots(figsize=(9.7, 4.0), dpi=110)
 xs = np.arange(len(yrs))
 ax.bar(xs, np.array(dom) / 1000, width=0.56, color=SAGE, alpha=0.75, label='Domestic (EGP)',
        edgecolor='#FFFFFF', linewidth=0.6)
 ax.bar(xs, np.array(fgn) / 1000, width=0.56, bottom=np.array(dom) / 1000, color=GOLD, alpha=0.85,
-       label='Foreign / hard-currency linked', edgecolor='#FFFFFF', linewidth=0.6)
+       label='Hard-currency linked', edgecolor='#FFFFFF', linewidth=0.6)
 for i, (dd, ff) in enumerate(zip(dom, fgn)):
     ax.text(i, (dd + ff) / 1000 + 8, f'{(dd+ff)/1000:.0f}', ha='center', fontsize=8.4, color=INK)
 ax.set_ylabel('revenue (EGP bn)')

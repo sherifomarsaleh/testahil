@@ -766,41 +766,56 @@ assert unit_hist['FY23']['cables_gp_t'] * 0.75 < gp_t_cables < unit_hist['FY24']
     f'solved cable conversion margin {gp_t_cables:,.0f} outside the historical range'
 gp_t_cables /= (1 + V['unit_gp_growth'][0])   # loop advances it on the first pass
 
-for i in range(5):
-    cu_t = V['copper_fcst'][i] * V['fx_path'][i]
-    gp_t_cables *= (1 + V['unit_gp_growth'][i]); gp_t_rawmat *= (1 + V['unit_gp_growth'][i])
-    gp_mva *= (1 + V['unit_gp_growth'][i]); gp_unit_m *= (1 + V['unit_gp_growth'][i])
-    vc *= (1 + V['cables_vol_growth'][i]); vm *= (1 + V['meters_vol_growth'][i])
-    vt *= (1 + V['transformers_vol_growth'][i]); vr *= (1 + V['rawmat_vol_growth'][i])
-    mp *= (1 + V['unit_price_inflation'][i])
-    tp = cu_t * (unit_hist['FY24']['transformers_price'] / unit_hist['FY24']['copper_t'])
-    r, g = {}, {}
-    price_t = cu_t * V['cables_uplift'][i]
-    r['cables'] = vc * price_t / 1e6
-    g['cables'] = vc * gp_t_cables / 1e6
-    r['rawmat'] = vr * cu_t * V['rawmat_uplift'] / 1e6
-    g['rawmat'] = vr * gp_t_rawmat / 1e6
-    r['ec'] = backlog * V['ec_burn'][i]
-    g['ec'] = r['ec'] * margin25['ec'] * V['margin_recovery'][i]
-    backlog = backlog - r['ec'] + r['ec'] * V['ec_book_to_bill'][i]
-    bl_path.append(backlog)
-    r['transformers'] = vt * tp / 1e6
-    g['transformers'] = vt * gp_mva / 1e6
-    r['meters'] = vm * mp / 1e6
-    g['meters'] = vm * gp_unit_m / 1e6
-    ep_prev *= (1 + V['other_growth'][i]); inf_prev *= (1 + V['other_growth'][i])
-    r['elecprod'] = ep_prev
-    g['elecprod'] = ep_prev * margin25['elecprod'] * V['margin_recovery'][i]
-    r['infra'] = inf_prev
-    g['infra'] = inf_prev * margin25['infra'] * V['margin_recovery'][i]
-    seg_rev.append(r); seg_gp.append(g)
-    vol_f['cables'].append(vc); vol_f['meters'].append(vm)
-    vol_f['transformers'].append(vt); vol_f['rawmat'].append(vr)
+GP_T_CABLES_0 = gp_t_cables
 
-rev = [sum(seg_rev[i].values()) for i in range(5)]
-gp = [sum(seg_gp[i].values()) for i in range(5)]
-opex = [V['opex_pct'][i] * rev[i] for i in range(5)]
-ebitda = [gp[i] - opex[i] for i in range(5)]
+def build(fx_mult=1.0, gp_unit_mult=1.0, vol_mult=1.0, copper_mult=1.0, opex_shift=0.0):
+    """Re-run the whole unit build. Scenarios and sensitivity grids call THIS, so a
+    currency or copper move flows through the price per tonne, the working capital and
+    the gross profit exactly as it does in the base case — not as a flat multiplier on
+    a finished revenue line."""
+    vc, vm, vt, vr = (vol25['cables'], vol25['meters'], vol25['transformers'], rawmat_kt25)
+    ep_, if_ = rev25['elecprod'], rev25['infra']
+    mp_ = unit_hist['FY24']['meters_price'] * 1.08
+    gpc, gpr = GP_T_CABLES_0 * gp_unit_mult, (gp25['rawmat'] * 1e6 / rawmat_kt25) * gp_unit_mult
+    gpv, gpm = ((gp25['transformers'] * 1e6 / vol25['transformers']) * gp_unit_mult,
+                (gp25['meters'] * 1e6 / vol25['meters']) * gp_unit_mult)
+    bl = V['ec_backlog']
+    R, G_, BL, VOL = [], [], [], {k: [] for k in ('cables', 'meters', 'transformers', 'rawmat')}
+    for i in range(5):
+        cu_t = V['copper_fcst'][i] * copper_mult * V['fx_path'][i] * fx_mult
+        vc *= (1 + V['cables_vol_growth'][i]) * (vol_mult ** 0.2)
+        vm *= (1 + V['meters_vol_growth'][i]) * (vol_mult ** 0.2)
+        vt *= (1 + V['transformers_vol_growth'][i]) * (vol_mult ** 0.2)
+        vr *= (1 + V['rawmat_vol_growth'][i]) * (vol_mult ** 0.2)
+        mp_ *= (1 + V['unit_price_inflation'][i])
+        gpc *= (1 + V['unit_gp_growth'][i]); gpr *= (1 + V['unit_gp_growth'][i])
+        gpv *= (1 + V['unit_gp_growth'][i]); gpm *= (1 + V['unit_gp_growth'][i])
+        tp_ = cu_t * (unit_hist['FY24']['transformers_price'] / unit_hist['FY24']['copper_t'])
+        r, g = {}, {}
+        r['cables'] = vc * cu_t * V['cables_uplift'][i] / 1e6; g['cables'] = vc * gpc / 1e6
+        r['rawmat'] = vr * cu_t * V['rawmat_uplift'] / 1e6;    g['rawmat'] = vr * gpr / 1e6
+        r['ec'] = bl * V['ec_burn'][i]
+        g['ec'] = r['ec'] * margin25['ec'] * V['margin_recovery'][i]
+        bl = bl - r['ec'] + r['ec'] * V['ec_book_to_bill'][i]
+        r['transformers'] = vt * tp_ / 1e6; g['transformers'] = vt * gpv / 1e6
+        r['meters'] = vm * mp_ / 1e6;       g['meters'] = vm * gpm / 1e6
+        ep_ *= (1 + V['other_growth'][i]); if_ *= (1 + V['other_growth'][i])
+        r['elecprod'] = ep_; g['elecprod'] = ep_ * margin25['elecprod'] * V['margin_recovery'][i]
+        r['infra'] = if_;    g['infra'] = if_ * margin25['infra'] * V['margin_recovery'][i]
+        R.append(r); G_.append(g); BL.append(bl)
+        VOL['cables'].append(vc); VOL['meters'].append(vm)
+        VOL['transformers'].append(vt); VOL['rawmat'].append(vr)
+    rev_ = [sum(R[i].values()) for i in range(5)]
+    gp_ = [sum(G_[i].values()) for i in range(5)]
+    opex_ = [(V['opex_pct'][i] + opex_shift) * rev_[i] for i in range(5)]
+    ebitda_ = [gp_[i] - opex_[i] for i in range(5)]
+    return dict(rev=rev_, gp=gp_, opex=opex_, ebitda=ebitda_, seg_rev=R, seg_gp=G_,
+                backlog=BL, vol=VOL)
+
+_B = build()
+seg_rev, seg_gp, bl_path, vol_f = _B['seg_rev'], _B['seg_gp'], _B['backlog'], _B['vol']
+rev = _B['rev']; gp = _B['gp']; opex = _B['opex']
+ebitda = _B['ebitda']
 ebitda_margin = [ebitda[i] / rev[i] for i in range(5)]
 gp_margin = [gp[i] / rev[i] for i in range(5)]
 say(f"[Forecast, bottom-up] revenue " + " -> ".join(f"{r:,.0f}" for r in rev) +
@@ -812,15 +827,29 @@ say(f"[Forecast margins are OUTPUTS] gross margin " +
     f". Cable tonnage {vol_f['cables'][0]:,.0f} -> {vol_f['cables'][-1]:,.0f} "
     f"({vol_f['cables'][-1]/VH['cables']['FY24']-1:+.1%} against FY2024); order book "
     f"{V['ec_backlog']:,.0f} -> {bl_path[-1]:,.0f}.")
+_impl26 = V['q1_26_rev'] / (V['q1_25_rev'] / V['rev_fy25'])
+say(f"[FY2026 cross-check against the print] the disclosed Q1-2026 revenue of "
+    f"{V['q1_26_rev']:,.0f}, grossed up on the Q1-2025 seasonal share, implies a full year of "
+    f"{_impl26:,.0f}. The build produces {rev[0]:,.0f}, {rev[0]/_impl26-1:+.1%} against it — an "
+    f"independent check that the unit build is not running ahead of the company's own trading.")
+assert abs(rev[0] / _impl26 - 1) < 0.08, 'FY26 build diverges from the Q1-2026 print'
 
 # currency split, reported off the bottom-up build (copper-linked lines are dollar-priced)
 fgn_egp = [seg_rev[i]['cables'] * 0.60 + seg_rev[i]['rawmat'] * 0.55 + seg_rev[i]['ec'] * 0.80 +
            (seg_rev[i]['transformers'] + seg_rev[i]['meters']) * 0.55 for i in range(5)]
 dom = [rev[i] - fgn_egp[i] for i in range(5)]
 fgn_usd = [fgn_egp[i] / V['fx_path'][i] for i in range(5)]
-say(f"[Currency split, derived from the build] foreign share of revenue " +
+fgn25 = (rev25['cables'] * 0.60 + rev25['rawmat'] * 0.55 + rev25['ec'] * 0.80 +
+         (rev25['transformers'] + rev25['meters']) * 0.55)
+fgn_share_fy25_derived = fgn25 / V['rev_fy25']
+say(f"[Currency split — two different questions] the company discloses that over "
+    f"{V['foreign_share_fy25']:.0%} of revenue is earned ABROAD, which is a geographic statement "
+    f"about where the customer sits. The build derives the share that is HARD-CURRENCY LINKED — "
+    f"dollar-priced by construction — at {fgn25/V['rev_fy25']:.0%} in FY2025 and " +
     " -> ".join(f"{fgn_egp[i]/rev[i]:.0%}" for i in range(5)) +
-    f", against the disclosed 'over 70%' for FY2025.")
+    f" thereafter. The two are not in conflict: a project executed in a North African market for "
+    f"a local utility is foreign revenue but not necessarily dollar-priced. The LOWER figure is "
+    f"used everywhere the currency question is valued, because it is the conservative one.")
 
 # FY2025 presentation objects reused downstream
 segs = SUBS
@@ -967,15 +996,22 @@ book_bull = ((V['roe_sust'] - V['g_term']) / (ke_term - V['g_term'])) * bvps
 roe_trailing = V['npa_fy25'] / ((V['eqp_fy24'] + eqp_fy25) / 2)
 
 # ---- scenarios on the DCF -----------------------------------------------------
-def dcf_scenario(margin_shift, fx_mult, wacc_shift, g):
-    _ebitda = [(ebitda_margin[i] + margin_shift) * rev[i] * fx_mult for i in range(5)]
-    _rev = [rev[i] * fx_mult for i in range(5)]
+def dcf_scenario(gp_unit_mult=1.0, fx_mult=1.0, wacc_shift=0.0, g=None, opex_shift=0.0,
+                 copper_mult=1.0, nwc=None):
+    """Scenario valuation. Re-runs the FULL unit build, so a currency or copper move
+    flows through the price per tonne, the working capital and the gross profit exactly
+    as it does in the base case."""
+    g = V['g_term'] if g is None else g
+    nwc = V['nwc_pct'] if nwc is None else nwc
+    B = build(fx_mult=fx_mult, gp_unit_mult=gp_unit_mult, copper_mult=copper_mult,
+              opex_shift=opex_shift)
+    _rev, _ebitda = B['rev'], B['ebitda']
     _dna = [V['dna_pct'] * r for r in _rev]
     _ebit = [_ebitda[i] - _dna[i] for i in range(5)]
     _nopat = [e * (1 - TAX) for e in _ebit]
     _capex = [V['capex_pct'][i] * r for i, r in enumerate(_rev)]
-    _nwc = [V['nwc_pct'] * r for r in _rev]
-    _dnwc = [_nwc[0] - nwc_fy25] + [_nwc[i] - _nwc[i - 1] for i in range(1, 5)]
+    _nwc = [nwc * r for r in _rev]
+    _dnwc = [_nwc[0] - nwc * V['rev_fy25']] + [_nwc[i] - _nwc[i - 1] for i in range(1, 5)]
     _f = [_nopat[i] + _dna[i] - _capex[i] - _dnwc[i] for i in range(5)]
     _we, _wt = wacc_exp + wacc_shift, wacc_term + wacc_shift
     _fwd = [_we - (_we - _wt) * f for f in glide_frac]
@@ -991,8 +1027,13 @@ def dcf_scenario(margin_shift, fx_mult, wacc_shift, g):
     _ev = sum(_f[i] * _df[i] for i in range(5)) + _tv * _df[-1]
     return ((_ev - V['nd_fy25'] + assoc_val) * (1 - nci_share)) / SH
 
-dcf_bear = dcf_scenario(-0.015, 0.94, +0.02, 0.03)
-dcf_bull = dcf_scenario(+0.015, 1.08, -0.02, 0.06)
+_base_chk = dcf_scenario()
+assert abs(_base_chk - dcf_ps) < 0.02, f'scenario engine does not reproduce base: {_base_chk} vs {dcf_ps}'
+
+dcf_bear = dcf_scenario(gp_unit_mult=0.88, fx_mult=0.94, wacc_shift=+0.02, g=0.03,
+                        opex_shift=+0.005)
+dcf_bull = dcf_scenario(gp_unit_mult=1.12, fx_mult=1.08, wacc_shift=-0.02, g=0.06,
+                        opex_shift=-0.005)
 say(f"[DCF scenarios] bear {dcf_bear:.2f} / base {dcf_ps:.2f} / bull {dcf_bull:.2f} EGP per share")
 
 # ---- synthesis ----------------------------------------------------------------
@@ -1038,11 +1079,16 @@ def dcf_beta(b):
     return dcf_at(we_, wt_, V['g_term'])
 grid_beta = [dcf_beta(b) for b in beta_grid]
 fx_grid = [0.90, 0.95, 1.00, 1.08, 1.20]
-grid_fx = [dcf_scenario(0.0, m, 0.0, V['g_term']) for m in fx_grid]
-mg_grid = [-0.02, -0.01, 0.0, 0.01, 0.02]
-grid_margin = [dcf_scenario(m, 1.0, 0.0, V['g_term']) for m in mg_grid]
+grid_fx = [dcf_scenario(fx_mult=m) for m in fx_grid]
+mg_grid = [0.85, 0.925, 1.0, 1.075, 1.15]
+grid_margin = [dcf_scenario(gp_unit_mult=m) for m in mg_grid]
+cu_grid = [0.85, 0.925, 1.0, 1.075, 1.15]
+grid_copper = [dcf_scenario(copper_mult=m) for m in cu_grid]
 nwc_grid = [0.20, 0.215, 0.23, 0.245, 0.26]
 def dcf_nwc(pct):
+    return dcf_scenario(nwc=pct)
+
+def _dcf_nwc_unused(pct):
     _nwc = [pct * r for r in rev]
     _dnwc = [_nwc[0] - pct * V['rev_fy25']] + [_nwc[i] - _nwc[i - 1] for i in range(1, 5)]
     _f = [nopat[i] + dna[i] - capex[i] - _dnwc[i] for i in range(5)]
@@ -1063,8 +1109,13 @@ grid_roic = [dcf_roic(r) for r in roic_grid]
 eq_fc, e_ = [], eqp_fy25
 np_fc, nd_fc = [], []
 nd_ = V['nd_fy25']
+interest_path = []
 for i in range(5):
-    interest = V['kd_path'][i] * debt_fy25 - 0.10 * cash_fy25
+    # gross borrowings fund working capital and stay broadly in place; the cash pile
+    # builds as free cash flow accrues, so the NET charge falls with net debt.
+    cash_i = debt_fy25 - nd_
+    interest = V['kd_path'][i] * debt_fy25 - 0.10 * max(cash_i, 0.0)
+    interest_path.append(interest)
     pbt_i = ebit[i] - interest + assoc_fy25 * (1 + 0.08) ** (i + 1)
     pat_i = pbt_i * (1 - TAX)
     npa_i = pat_i * (1 - nci_share)
@@ -1073,6 +1124,9 @@ for i in range(5):
     eq_fc.append(e_); np_fc.append(npa_i)
     nd_ = nd_ - (fcff[i] - interest * (1 - TAX)) + div_i
     nd_fc.append(nd_)
+say(f"[Forecast interest] net finance cost falls " + " -> ".join(f"{x:,.0f}" for x in interest_path) +
+    f" as the cash pile builds against a broadly static gross debt book — the charge tracks the "
+    f"net debt path rather than being frozen at the FY2025 balance.")
 say(f"[Forecast equity] attributable profit " + ", ".join(f"{x:,.0f}" for x in np_fc) +
     f"; net debt path " + ", ".join(f"{x:,.0f}" for x in nd_fc) +
     f" (25% payout assumed). Net debt / EBITDA falls from "
@@ -1149,6 +1203,7 @@ OUT = dict(
                   debt_methods=dict(residual=debt_fy25_a, revenue_scaled=debt_fy25_b,
                                     cash_implied=debt_fy25_c)),
     ),
+    fgn_share_fy25_derived=fgn_share_fy25_derived, fgn_egp_fy25=fgn25,
     fcst=dict(years=YRS, rev=rev, dom=dom, fgn_usd=fgn_usd, fgn_egp=fgn_egp,
               ebitda=ebitda, ebitda_margin=ebitda_margin, dna=dna, ebit=ebit, nopat=nopat,
               capex=capex, nwc=nwc, dnwc=dnwc, fcff=fcff, df=df, pv=pv, fwd_wacc=fwd,
@@ -1191,6 +1246,7 @@ OUT = dict(
     sens=dict(g_grid=g_grid, wt_grid=wt_grid, we_grid=we_grid, grid_wacc_g=grid_wacc_g,
               grid_exp_term=grid_exp_term, beta_grid=beta_grid, grid_beta=grid_beta,
               fx_grid=fx_grid, grid_fx=grid_fx, mg_grid=mg_grid, grid_margin=grid_margin,
+              cu_grid=cu_grid, grid_copper=grid_copper,
               nwc_grid=nwc_grid, grid_nwc=grid_nwc, roic_grid=roic_grid, grid_roic=grid_roic),
     step0=step0, strike=strike,
     assert_log=LOG,

@@ -141,7 +141,11 @@ rows = [['Item', 'Detail'],
          'logistics, utilities and independent power projects'],
         ['Scale', f"More than 20,000 employees across 31 production facilities in 15 countries; "
          f"FY2025 revenue EGP {n0(HI['FY25']['rev'])}mn"],
-        ['Geographic mix', f"Over {pc(IN['foreign_share_fy25'],0)} of revenue earned outside Egypt"],
+        ['Geographic mix', f"Over {pc(IN['foreign_share_fy25'],0)} of revenue earned outside Egypt "
+         f"(the company's disclosure — a statement about where the customer is). Separately, this "
+         f"study derives the share that is hard-currency LINKED, i.e. dollar-priced, at about "
+         f"{pc(D['fgn_share_fy25_derived'],0)}; the lower figure is the one used wherever the "
+         f"currency question is valued"],
         ['Order book', f"Approximately USD {IN['backlog_usd_bn']}bn, above the group's typical "
          f"historical range"],
         ['Shares outstanding', f"{n0(SH)}mn"],
@@ -169,10 +173,15 @@ H1('1  Fundamental valuation')
 
 # ---- 1.1 DCF ----------------------------------------------------------------
 H2('1.1  The cash-flow model — the primary lens, with the full waterfall')
-P(f"The primary lens is a five-year free-cash-flow-to-the-firm model. Revenue is built from the "
-  f"two legs that actually drive it — a domestic Egyptian-pound leg and a foreign leg forecast in "
-  f"US dollars and translated at an explicit exchange-rate path. Margins come from a segment build. "
-  f"Cash flow is then taken all the way to present value, line by line, below.")
+P(f"The primary lens is a five-year free-cash-flow-to-the-firm model. Revenue is not forecast as a "
+  f"growth rate applied to a revenue line: it is built from volumes and prices, unit by unit — "
+  f"tonnes of cable at a copper-linked price per tonne, MVA of transformer, meters, and the "
+  f"engineering order book converted at a disclosed rate. Gross profit is built the same way, from "
+  f"profit per tonne, per MVA and per meter. Margins are therefore OUTPUTS of the build rather "
+  f"than assumptions fed into it, and the historical version of that build reconciles to the "
+  f"audited income statement to within EGP 1mn on both revenue and gross profit in FY2023 and "
+  f"FY2024. Section 1.6 sets out the units. Cash flow is then taken all the way to present value, "
+  f"line by line, below.")
 hdr = ['EGP mn'] + YRS
 rows = [hdr,
         ['Revenue'] + [n0(x) for x in F['rev']],
@@ -440,6 +449,14 @@ rows = [['Working capital', 'FY2023', 'FY2024', 'FY2025 (estimated)'],
         ['As a share of revenue', pc(HB['FY23']['nwc']/HI['FY23']['rev']),
          pc(HB['FY24']['nwc']/HI['FY24']['rev']), pc(IN['nwc_pct'])]]
 table(rows, [2.35, 1.55, 1.55, 1.55], size=8.6, band_rows={6, 7})
+P(f"The unit build makes a second point that a percentage-of-revenue model hides. Copper is "
+  f"passed through: a higher copper price raises revenue without raising the profit earned on each "
+  f"tonne. But working capital scales with revenue, so a copper spike CONSUMES cash while adding "
+  f"almost no profit. That is visible in FY2026E, where revenue rises "
+  f"{sgn(F['rev'][0]/HI['FY25']['rev']-1,0)} — most of it copper — and the resulting "
+  f"EGP {n0(F['dnwc'][0])}mn working-capital build cuts free cash flow to the firm to just EGP "
+  f"{n0(F['fcff'][0])}mn, against EGP {n0(F['fcff'][1])}mn the following year once the step-up is "
+  f"absorbed. A rising copper price is not good news for this business in the year it happens.")
 P(f"The model holds this ratio flat at {pc(IN['nwc_pct'])} of revenue, which is what the two "
   f"audited years show. That single assumption is worth a great deal: every percentage point of "
   f"revenue added to or removed from working-capital intensity is worth roughly EGP "
@@ -528,8 +545,10 @@ rows.append(['Beta', f"{SN['beta_grid'][0]} – {SN['beta_grid'][-1]}", span(SN[
              p2(max(SN['grid_beta'])-min(SN['grid_beta']))])
 rows.append(['Exchange-rate path', 'base −10% to +20%', span(SN['grid_fx']),
              p2(max(SN['grid_fx'])-min(SN['grid_fx']))])
-rows.append(['EBITDA margin', '−2pp to +2pp', span(SN['grid_margin']),
+rows.append(['Gross profit per unit', '−15% to +15%', span(SN['grid_margin']),
              p2(max(SN['grid_margin'])-min(SN['grid_margin']))])
+rows.append(['Copper price', '−15% to +15%', span(SN['grid_copper']),
+             p2(max(SN['grid_copper'])-min(SN['grid_copper']))])
 rows.append(['Working capital / revenue', f"{pc(SN['nwc_grid'][0])} – {pc(SN['nwc_grid'][-1])}",
              span(SN['grid_nwc']), p2(max(SN['grid_nwc'])-min(SN['grid_nwc']))])
 rows.append(['Terminal return on invested capital',
@@ -539,9 +558,12 @@ rows.append(['Terminal growth', f"{pc(SN['g_grid'][0],0)} – {pc(SN['g_grid'][-
              span([r[j] for r in [SN['grid_wacc_g'][2]] for j in range(5)]),
              p2(max(SN['grid_wacc_g'][2])-min(SN['grid_wacc_g'][2]))])
 table(rows, [2.20, 1.55, 1.90, 1.35], size=8.5)
-caption("Ranked by swing, the exchange-rate path and the terminal assumptions dominate every "
-        "operating driver. That is the honest shape of this valuation: it is a bet on the "
-        "cost of capital and the currency far more than on the company's execution.")
+caption("Every row is a full re-run of the unit build, not a multiplier applied to a finished "
+        "revenue line: a currency or copper move flows through the price per tonne, the working "
+        "capital and the gross profit exactly as it does in the base case. Note the copper row — "
+        "the swing is small and can even run the 'wrong' way, because a higher metal price raises "
+        "revenue and working capital without raising the profit earned per tonne. Ranked by swing, "
+        "the terminal assumptions and the cost of capital dominate every operating driver.")
 
 P(f"The beta deserves a note. At {IN['beta']:.3f} with an R-squared of {W['beta']['r2']:.3f} over "
   f"{W['beta']['n']} weekly observations and a standard error of {W['beta']['se']:.3f}, this is a "
@@ -681,8 +703,8 @@ rows = [['Catalyst', 'Why it matters', 'What to watch'],
          'operating cash flow against EBITDA in the interim statements; inventory and receivable '
          'days'],
         ['The exchange rate',
-         'more than 70% of revenue is hard-currency linked, so the translated result moves with '
-         'the pound',
+         f'about {pc(D["fgn_share_fy25_derived"],0)} of revenue is hard-currency linked, so both '
+         f'the translated result and the working capital move with the pound',
          'the pace of depreciation against the roughly 6% a year assumed here, and whether the '
          'gap to interest-rate parity closes through rates or through the currency'],
         ['Central bank policy',
@@ -749,6 +771,17 @@ for head, body in [
      f"discount rate applied to a business still growing fast — the explicit years are heavily "
      f"discounted, so the perpetuity carries the weight. The terminal assumptions are stressed "
      f"across cost of capital, growth and return on invested capital in section 1.9."),
+    ("The FY2026 margin rests on one inferred quarter. ",
+     f"The cable conversion margin for FY2026 is solved so the build reproduces the EBITDA margin "
+     f"implied by the disclosed first-quarter 2026 result. That implied margin is not itself "
+     f"disclosed — it is backed out of reported revenue and attributable profit using assumed tax, "
+     f"minority, finance and depreciation rates. The solved gross profit per tonne is a large step "
+     f"up on the FY2025 trough, and although it sits inside the historical range and below pure "
+     f"copper-cost scaling, the whole forecast margin path inherits that one calibration — and "
+     f"through it, THREE of the four lenses: the cash-flow model, the relative lens (which "
+     f"applies a multiple to FY2027 EBITDA) and the normalised-earnings lens all sit on the same "
+     f"foundation. Only the book lens is independent of it, and that is the lens that disagrees "
+     f"most. The half-year 2026 result is the near-term test."),
     ("The currency of discounting is unresolved, and it is the biggest single question. ",
      f"Our primary construction charges the full Egyptian equity risk premium to a company earning "
      f"most of its money elsewhere. The alternative construction gives EGP "
