@@ -62,11 +62,12 @@ rich([("The model's read: meaningfully overvalued — the price still pays for d
        "profit reached EGP 1.25–1.33 bn as devaluation repriced copper-linked cable prices through a "
        "pound-denominated cost base and inventory. FY2025 took the windfall back — revenue −21.5%, net "
        "profit −62% to EGP 500 mn — and 1Q2026 swung to a consolidated net LOSS of EGP 242 mn on sales down "
-       "44%. Meanwhile the balance sheet carries roughly EGP 9 bn of debt against EGP ~4 bn of equity, working "
-       "capital has swollen to ~111% of annual revenue (receivables and copper-inflated inventory), and operating "
-       "cash flow has been negative — at 23% funding costs, finance expense alone consumes the entire operating "
-       "line in a soft year. The DCF, run on a discount-rate schedule that follows the central bank's own easing "
-       f"path down (22.6% this year gliding to 14.1% terminal), values the equity near EGP {L['dcf']['base']:.2f}; "
+       "44%. The disclosed 1Q26 lines are blunt: gross margin 5.7% (vs 33.1% a year earlier) and operating profit "
+       "of EGP 1.4 mn — effectively zero. Meanwhile the balance sheet carries EGP 10.9 bn of drawn bank facilities "
+       "(disclosed; up from 8.96 bn a year earlier) against EGP ~4 bn of equity, working capital has swollen to "
+       "~117% of annual revenue (receivables and copper-inflated inventory), and operating cash flow has been "
+       "negative — at ~22% funding costs, finance expense alone consumes the entire operating line in a soft year. The DCF, run on a discount-rate schedule that follows the central bank's own easing "
+       f"path down (21.4% this year gliding to 13.9% terminal), values the equity near EGP {L['dcf']['base']:.2f}; "
        f"the relative and book lenses cluster at {L['relative']['base']:.2f}–{L['book']['base']:.2f}; only a "
        f"full margin-recovery-plus-collection scenario ({L['dcf']['bull']:.2f}) reaches today's price. "
        "Technically the tape is neutral-to-firm — above the short averages, below the falling 200-day, RSI mid-50s "
@@ -123,8 +124,8 @@ rows = [
  ['Spot / date', f'{pegp(spot)} · 5 Aug 2026 close'],
  ['Shares · market cap', f"3,313.5 mn (par EGP 0.20) · ~EGP {D2['mktcap']/1000:.1f} bn"],
  ['FY25 revenue / net profit', 'EGP 10,819 mn (−21.5% YoY) · EGP 500.3 mn (−62%; 4.6% margin)'],
- ['1Q26 revenue / net profit', 'EGP 2,094 mn (−43.8%) · net LOSS EGP 241.6 mn (vs +451.7 mn)'],
- ['Balance sheet (FY24 vintage)', 'Total assets EGP 15.0 bn · debt ~EGP 9.0 bn · equity ~EGP 3.6 bn · D/E ~248% (was 36% five years earlier)'],
+ ['1Q26 revenue / net profit', 'EGP 2,094 mn (−43.8%) · gross margin 5.7% (vs 33.1%) · net LOSS EGP 241.7 mn (vs +451.4 mn)'],
+ ['Balance sheet', 'FY25: assets EGP 16.5 bn · drawn bank facilities EGP 10.9 bn (disclosed; 8.96 bn FY24) · equity ~EGP 4.1 bn · ND/E >240%'],
  ['52-week range', 'EGP 1.90 – 3.36 (all-time high 4.84, 31-Jan-2024)'],
  ['Ownership', 'Gadwa for Industrial Development + Pioneers-group related parties ~78–81%, distributing down via 2026 block sales; free float ~20% ±3pp'],
  ['Dividends', 'None — the company has never paid a dividend'],
@@ -188,10 +189,11 @@ rows = [
 table(rows, [4.0, 1.6], first_col_bold=True)
 P(f"Three honesty notes. First, {dcf['tv_pct']*100:.0f}% of the EV sits in the terminal value — this is partly a "
   "bet on Egyptian normalisation, which is why §1.9 grids both the terminal rate and the this-year rate "
-  "independently. Second, the equity value is a thin residual between a ~EGP 10.6 bn EV and ~EGP 8.8 bn of net "
-  "debt — every 1 bn of EV moves the equity ~EGP 0.30/share, which is exactly why the bear–bull span "
+  f"independently. Second, the equity value is a razor-thin residual: the EGP {dcf['ev']/1000:.1f} bn EV barely "
+  f"clears the EGP {dcf['net_debt']/1000:.1f} bn of net debt, so the base equity rounds to almost nothing and every "
+  "1 bn of EV is worth ~EGP 0.30/share — which is exactly why the bear–bull span "
   f"({L['dcf']['bear']:.2f}–{L['dcf']['bull']:.2f}) is so wide. Third, the terminal growth rate is funded, "
-  "not asserted: 5% nominal growth at a ~14.8% terminal return on capital requires reinvesting ~34% of NOPAT, and "
+  "not asserted: 5% nominal growth at a ~13.9% terminal return on capital requires reinvesting ~36% of NOPAT, and "
   "the terminal cash flow pays for it. A 5% rate that kept the explicit years’ low reinvestment would have "
   "quietly manufactured value from nothing.", size=9.6)
 
@@ -227,15 +229,16 @@ rows = [
 ]
 table(rows, [2.6, 1.3, 1.3, 1.3], first_col_bold=True)
 rich([(f"Relative base ≈ {pegp(L['relative']['base'])}", dict(bold=True)),
-      (' — the sobering lens: at a peer-anchored multiple on realistic mid-cycle EBITDA, the debt absorbs most of '
-       'the enterprise value. For the equity to be worth spot on this lens, the market must apply Elsewedy’s '
-       'own multiple to EBITDA that has not been printed since the windfall years.', {})])
+      (' — the bluntest lens in the study: at ANY peer-anchored multiple (4.5–6.5×) on realistic mid-cycle EBITDA, '
+       'the disclosed debt exceeds the entire enterprise value and the equity is worth nothing; the lens is shown '
+       'floored at EGP 0.05. For the equity to be worth spot on this lens, the market must apply Elsewedy’s own '
+       'multiple to EBITDA that has not been printed since the windfall years.', {})])
 
 H2('1.4  Normalized earnings power — where this sits in the cycle')
 P('Cycle position first: FY2023–24 were the top — devaluation repriced the finished-goods book faster than '
   'the cost base, and net margin hit 14.4% then 9.6%. FY2025–26 is the washout: revenue −21.5% then '
   '−44% in 1Q26, a net loss, and margin compression as stable-pound competition returned. Mid-cycle is '
-  'neither: we take FY28E-scale operations (revenue ~EGP 11.1 bn, EBITDA ~17.5%) with a normalised funding cost '
+  'neither: we take FY28E-scale operations (revenue ~EGP 11.1 bn, EBITDA ~16%) with a normalised funding cost '
   f'(15% on a reduced ~EGP 6 bn net debt) → normalized net profit ≈ EGP {E["np_norm"]:,.0f} mn, EPS '
   f'≈ {E["eps_norm"]:.2f}. At a justified through-cycle 6.5× (a deep discount to Elsewedy’s 10.4× '
   'for leverage, concentration and float), the lens lands at '
@@ -277,11 +280,11 @@ rows = [
  ['Revenue FY23/24/25; NP FY23/24/25; 1Q26', 'Disclosed', 'Multiply-sourced bourse-disclosure reporting of the EGX filings'],
  ['FY24 EBIT 3,400 · interest ~1,700', 'Disclosed / derived', 'Aggregator EBIT + stated 2.0× coverage; closes to reported NP within 0.8%'],
  ['FY25 finance cost ~2,150; EBIT ~2,800', 'Derived', 'Back-solved from reported NP at 22.5% tax and the rate environment'],
- ['Total debt ~9,000 · cash 828 · equity 3,600 (FY24)', 'Aggregator', 'Single source; its assets figure matches the twice-sourced 14,970'],
- ['Net debt FY25 ~8,800 · NWC ~12,000 (111% of rev.)', 'Derived', 'From twice-sourced FY25 assets 16,460 and the FY24 anchor lines'],
+ ['Bank facilities 10,900 (FY25) vs 8,960 (FY24)', 'Disclosed', 'FY25 results coverage; the FY24 comparative matches the FY24 debt print (~9,000, aggregator) — cross-validated'],
+ ['Net debt FY25 ~10,200 · NWC ~12,640 (117% of rev.)', 'Derived', 'Disclosed facilities less estimated cash; NWC rebalanced on FY25 assets 16,460'],
  ['Revenue path: −19.6% then +14/12/10/8%', 'Judgment', '1Q26 −44% base effect; EETC EGP 45bn plan, EU €690mn, interconnector'],
- ['EBITDA margin: 13% → 19%', 'Judgment', 'Between the 1Q26 implied trough (~14%) and windfall prints (~25%)'],
- ['NWC intensity: 108% → 88% of revenue', 'Judgment', 'Partial collection; NOT full reversion to FY24’s 76%'],
+ ['EBITDA margin: 7.5% → 18%', 'Judgment', '1Q26 DISCLOSED gross margin 5.7% / operating ~0 sets the trough; windfall prints ~25% set the ceiling'],
+ ['NWC intensity: 112% → 88% of revenue', 'Judgment', 'Partial collection; NOT full reversion to FY24’s 76%'],
  ['Capex 1.6% of revenue', 'Judgment', 'No disclosed capex any year (gap); D&A ~0.7% corroborates a light base'],
 ]
 table(rows, [2.6, 1.1, 3.4], first_col_bold=True, size=8.7)
@@ -290,17 +293,18 @@ caption('Modes: Disclosed = company figure via bourse reporting; Derived = arith
 
 H2('1.7  The crux — working capital first, margins second, rates third')
 P('Three judgments drive this valuation, in order of size. FIRST, collection. Working capital stands near '
-  '~EGP 12 bn — 111% of a full year’s revenue — against ~76% a year earlier: copper-inflated inventory plus '
-  'receivables that grew as revenue shrank. The DCF’s FY26E cash flow is dominated by a ~EGP 2.6 bn assumed '
-  'release as sales contract; if those receivables do not collect (state-linked customers, dealer credit), the '
-  'release never happens, debt stays ~EGP 9 bn at 23%, and the equity is worth very little — that is the bear '
-  'case’s mechanism, not rhetoric. Each 5 points of terminal working-capital intensity is worth roughly '
-  'EGP 0.15–0.20/share. SECOND, the margin. FY24–25 EBITDA margins near 25% carried devaluation '
-  'inventory gains; 1Q26 implies ~14% underneath. The model’s 17.5–19% mid-cycle is a judgment between '
-  'those poles — each 1.5 points is worth ~EGP 0.35/share (§1.9 grid). THIRD, the rate path: at 23.5% money, '
-  'finance expense consumes the operating line; at the terminal 15%, the same business supports an EPS of '
-  '~0.21. The easing calendar is therefore load-bearing — which is exactly why it is built into the discount '
-  'schedule rather than averaged away.', size=10.5)
+  '~EGP 12.6 bn — 117% of a full year’s revenue — against ~76% a year earlier: copper-inflated inventory plus '
+  'receivables that grew as revenue shrank, funded by EGP 10.9 bn of disclosed bank facilities. The DCF’s '
+  'FY26E cash flow is dominated by a ~EGP 2.9 bn assumed release as sales contract; if those receivables do not '
+  'collect (state-linked customers, dealer credit), the release never happens, debt stays ~EGP 11 bn at 22% '
+  'money, and the equity rounds to nothing — that is the bear case’s mechanism, not rhetoric. Each 5 points '
+  'of terminal working-capital intensity is worth roughly EGP 0.15–0.20/share. SECOND, the margin. FY24–25 '
+  'EBITDA margins near 25% carried devaluation inventory gains; the DISCLOSED 1Q26 lines put the trough on the '
+  'table — gross margin 5.7%, operating profit zero. The model’s 16–18% mid-cycle is a judgment between the '
+  'proven trough and the windfall ceiling — each 1.5 points is worth ~EGP 0.35/share (§1.9 grid). THIRD, the '
+  'rate path: at 22% money, finance expense consumes the operating line; at the terminal 15%, the same business '
+  'supports a meaningful EPS again. The easing calendar is therefore load-bearing — which is exactly why it is '
+  'built into the discount schedule rather than averaged away.', size=10.5)
 
 H2('1.8  Macro and country — rates, the pound, copper, and the sourced cost of capital')
 P('Egypt held its policy corridor at 19.00/20.00% in July 2026 (third consecutive hold, after 825bp of cuts '
@@ -319,9 +323,9 @@ rows = [
  ['Equity risk premium — Egypt (CDS-based, primary)', f"{coc['erp_cds']*100:.2f}%", 'Damodaran original country-risk file, Jan-2026 (rating-based 13.94% shown in sensitivity)'],
  ['Beta (own regression, weekly, 5yr)', f"{coc['beta']:.3f}", 'vs 30-name equal-weight EGX composite: R² 0.222, n=257, SE 0.113, CI90 [0.78, 1.15] — passes the usability gate; not weak-flagged'],
  ['Cost of equity Ke', f"{coc['ke_cds']*100:.2f}%", '= 18.91 + 0.964 × 9.41'],
- ['Cost of debt Kd (pre-tax, marginal EGP)', f"{coc['kd']*100:.1f}%", 'Corridor + levered-credit margin; checked against effective rates 23.4% (FY24) and 23.2% (FY25) — inside 150bp'],
+ ['Cost of debt Kd (pre-tax, marginal EGP)', f"{coc['kd']*100:.1f}%", 'Corridor + credit margin; checked against effective rates 23.5% (FY24) and 21.7% (FY25, on the disclosed debt path) — inside 150bp'],
  ['Debt currency', '~100% EGP (presumption, flagged)', 'No facility disclosure reachable; no USD facility found in any search — the gap is stated, not assumed away'],
- ['Weights E / D', f"{coc['we']*100:.0f}% / {coc['wd']*100:.0f}%", 'Market cap 7.26 bn vs disclosed-vintage debt 9.0 bn'],
+ ['Weights E / D', f"{coc['we']*100:.0f}% / {coc['wd']*100:.0f}%", 'Market cap 7.26 bn vs disclosed FY25 bank facilities 10.9 bn'],
  ['WACC — explicit window (this year)', f"{coc['wacc_exp']*100:.2f}%", 'CDS-primary (rating alternative 23.20%)'],
  ['Terminal rf (norm-built)', f"{coc['rf_term']*100:.1f}%", 'CBE’s own Q4-2028 inflation target 5% + 5.5pp real-rate convention'],
  ['Terminal ERP · terminal Kd', f"{coc['erp_term']*100:.1f}% · {coc['kd_term']*100:.1f}%", 'Normalised below crisis level · Egyptian long-run corporate norm 14–16%'],
@@ -498,8 +502,8 @@ for head, body in [
  ('H1-2026 results (~mid-August 2026). ', 'The single most important print of the year: whether the 1Q26 loss '
   'was the trough. Watch three lines — gross margin (the ~14% implied trough vs any recovery), receivables '
   '(collection or further build), and finance cost (the first read on easing pass-through).'),
- ('CBE MPC meetings (20-Aug, 01-Oct, 12-Nov 2026). ', 'Each 100bp off the corridor cuts ~EGP 90 mn from annual '
-  'finance cost at the current debt load and compresses the discount schedule — the most mechanical catalyst.'),
+ ('CBE MPC meetings (20-Aug, 01-Oct, 12-Nov 2026). ', 'Each 100bp off the corridor cuts ~EGP 110 mn from annual '
+  'finance cost at the disclosed debt load and compresses the discount schedule — the most mechanical catalyst.'),
  ('EETC tender awards under the EGP 45 bn FY25/26 plan. ', 'Direct order-book demand; ELEC’s ~2/3 revenue '
   'exposure to the power sector makes tender flow the volume driver.'),
  ('Egypt–Saudi interconnector commissioning. ', 'In final testing since Feb-2026; commissioning validates the '
@@ -537,9 +541,9 @@ P('Note what the zone table cannot say: nothing in a three-month price map adjud
 # ================= §7 caveats ================================================
 H1('7  Caveats and what would change our mind')
 for head, body in [
- ('The statements gap is the study’s biggest limitation. ', 'Interest expense, capex, the working-capital '
-  'split and facility-level debt are DERIVED, not read from audited statements (unreachable through available '
-  'channels). The FY24 triangulation closing within 0.8% earns the derivations a place in the model, but a single '
+ ('The statements gap is narrower than at first build, but still real. ', 'The Q1-2026 income-statement lines and the '
+  'FY25/FY24 bank-facilities balances ARE disclosed (recovered from press coverage of the EGX filings); interest '
+  'expense, capex, the working-capital split and facility-level terms remain DERIVED. The FY24 triangulation closing within 0.8% earns the derivations a place in the model, but a single '
   'audited disclosure could move the net-debt anchor by ±1 bn — worth ±EGP 0.30/share. Every derived '
   'line is flagged in §1.6 and the Source Register.'),
  ('The working-capital release is an assumption, not a fact. ', 'FY26E’s cash flow leans on ~EGP 2.6 bn of '
@@ -618,7 +622,7 @@ H2('A.3  Cash flow markers and the working-capital story')
 rows = [
  ['Marker', 'FY23', 'FY24', 'FY25', 'FY26E'],
  ['Operating cash flow', 'negative (agg.)', 'negative (agg.)', '~breakeven (d)', f"+{fr[0]['nopat']+fr[0]['dna']-fr[0]['dwc']:,.0f} (release)"],
- ['NWC as % of revenue', '~81% (e)', '~76% (d)', '~111% (d)', f"{fr[0]['nwc']/fr[0]['rev']*100:.0f}%"],
+ ['NWC as % of revenue', '~81% (e)', '~76% (d)', '~117% (d)', f"{fr[0]['nwc']/fr[0]['rev']*100:.0f}%"],
  ['Capex (derived through D&A)', '~104 (d)', '~165 (d)', '~130 (d)', f"{fr[0]['capex']:,.0f}"],
  ['Dividends paid', '0', '0', '0', '0 — never paid'],
 ]
@@ -634,7 +638,7 @@ rows = [
  ['Name', 'Mkt cap', 'P/E', 'EV/EBITDA', 'D/E', 'Note'],
  ['El Sewedy Electric (EGX: SWDY)', 'EGP 196 bn', '10.4×', '~6.0×', 'moderate', 'FY25 revenue EGP 281 bn, NP 17.3 bn; W&C segment +66% — the sector’s demand proof'],
  ['Riyadh Cables (Tadawul: 4142)', 'SAR 18.0 bn', '18.0×', '15.0×', '0.27×', 'What the market pays for the same industry with a clean balance sheet'],
- ['Electro Cable Egypt (ELEC)', 'EGP 7.3 bn', '14.6× trailing', '~5.3× on FY25e', '~2.5×', 'On depressed, now loss-making earnings; ~5.5× on FY24 windfall EPS'],
+ ['Electro Cable Egypt (ELEC)', 'EGP 7.3 bn', '14.6× trailing', '~6.1× on FY25e', '~2.5×', 'On depressed, now loss-making earnings; ~5.5× on FY24 windfall EPS'],
  ['Giza Cables (private)', '—', '—', '—', '—', 'The other mid-tier player; no public financials'],
 ]
 table(rows, [2.0, 1.0, 0.85, 1.0, 0.75, 1.7], first_col_bold=True, size=8.5)
@@ -699,7 +703,7 @@ P('When it works / fails. Best with a long through-cycle record; vulnerable when
 rows = [
  ['Expert 1’s build', 'Value'],
  ['Mid-cycle revenue (FY28E-scale)', f"{dcf['rows'][2]['rev']:,.0f}"],
- ['Mid-cycle EBITDA margin', '17.5%'],
+ ['Mid-cycle EBITDA margin', '16%'],
  ['Normalized net profit (after 15% money on ~6bn net debt)', f"{E['np_norm']:,.0f}"],
  ['Normalized EPS', f"{E['eps_norm']:.2f}"],
  ['Justified through-cycle P/E', '6.5×'],
@@ -719,7 +723,7 @@ rows = [
  ['Expert 2’s ledger', 'Value'],
  ['Reported cumulative NP FY23–FY25', f"{H['FY23']['np']+H['FY24']['np']+H['FY25']['np']:,.0f}"],
  ['Of which converted to operating cash', '≈ nil (OCF negative in FY23/24; ~breakeven FY25)'],
- ['Where it went', 'Receivables + inventory, funded by ~EGP 9bn of 20%+ debt'],
+ ['Where it went', 'Receivables + inventory, funded by EGP 10.9bn of disclosed bank facilities at 20%+ money'],
  ['Cash-earnings basis he will pay for (FY27E, actual funding cost)', f"~{(dcf['rows'][1]['ebit']-coc['kd_path'][1]*dcf['nd_fy26'])*(1-0.225):,.0f}/yr + partial credit for normalisation"],
  ['Multiple on cash earnings', '6×'],
  ['Fair value', f"→ {pegp(E['e2']['base'])}"],
@@ -773,7 +777,7 @@ figure('figD1_experts.png', 6.0, 'Figure 7 — The three experts’ fair-value r
        'cases; the gold band is the panel centre; the dark line is spot — above every range shown.')
 rows = [
  ['Expert', 'Method', 'Single swing assumption', 'Base fair value'],
- ['Expert 1', 'Earnings power × justified multiple', 'Mid-cycle EBITDA margin 17.5%', pegp(E['e1']['base'])],
+ ['Expert 1', 'Earnings power × justified multiple', 'Mid-cycle EBITDA margin 16%', pegp(E['e1']['base'])],
  ['Expert 2', 'Owner cash earnings', 'Credit given to unproven collection', pegp(E['e2']['base'])],
  ['Expert 3', 'Cash returns (ROIC vs WACC)', 'The net-debt anchor ±1 bn', pegp(E['e3']['base'])],
 ]

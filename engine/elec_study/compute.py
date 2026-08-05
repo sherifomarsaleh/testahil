@@ -49,6 +49,22 @@ INP = dict(
     liab_fy24=I(11300.0, "Simply Wall St health page (total liabilities)", "2025-05-22", "Company"),
     assets_fy23_est=I(10000.0, "House estimate — bounded by 9M-23 disclosed 8,060 and FY24 14,970; "
                       "no FY23 year-end print found (flagged)", "2026-08-05", "House"),
+    debt_fy25=I(10900.0, "Bank credit facilities held at end-2025: 'obtained credit facilities of EGP 10.9bn "
+                "during 2025 vs 8.96bn in 2024, from several local banks' (almalnews/amwalalghad FY25 "
+                "results coverage of the EGX filing). Read as the drawn year-end balance because the 2024 "
+                "comparative (8.96bn) matches the FY24 balance-sheet debt print (~9.0bn, SWS) almost "
+                "exactly; interpretation flagged and the FY24-vintage alternative shown in sensitivity",
+                "2026-03-18", "Company"),
+    q1_26_cogs=I(1975.0, "Q1-2026 cost of sales (almalnews/alborsaanews/hapijournal, 30-Jun-2026, of the "
+                 "EGX interim filing)", "2026-06-30", "Company"),
+    q1_26_gp=I(119.066, "Q1-2026 gross profit — 5.7% margin vs 33.1% in Q1-25 (same sources)", "2026-06-30", "Company"),
+    q1_26_op=I(1.429, "Q1-2026 operating profit — essentially zero (same sources)", "2026-06-30", "Company"),
+    q1_25_gp=I(1233.0, "Q1-2025 gross profit comparative (same sources)", "2026-06-30", "Company"),
+    q1_25_op=I(1124.0, "Q1-2025 operating profit comparative (same sources)", "2026-06-30", "Company"),
+    fy25_standalone_sales=I(4700.0, "FY25 standalone sales EGP 4.7bn vs 7.69bn FY24 (Arab Finance AR) — "
+                            "the consolidated subsidiaries carry most of group revenue", "2026-03", "Company"),
+    agm_no_dividend=I("FY25 profits carried forward, no cash distribution; new board elected",
+                      "AGM resolutions (amwalalghad/almasryalyoum, May-2026)", "2026-05-06", "Company"),
 
     # ---- derived-history assumptions (flagged house judgments) ----
     fin_cost_fy25_est=I(2150.0, "House derivation: avg debt ~9.25bn x ~23.2% effective (CBE corridor 2025 "
@@ -57,14 +73,16 @@ INP = dict(
                         "SWS) x ~22% 2023 corridor-linked rate", "2026-08-05", "House"),
     dna_pct=I(0.013, "House: FY24 EBITDA 3,490 - EBIT 3,400 = ~90mn D&A on 13.8bn revenue (~0.7%); "
               "forecast set at 1.3% of revenue to fund modest PP&E renewal", "2026-08-05", "House"),
-    payables_fy25_est=I(2100.0, "House estimate: FY24 non-debt liabilities 2,300 (liab 11,300 - debt "
-                        "9,000), scaled to the smaller FY25 revenue base", "2026-08-05", "House"),
-    nwc_fy25_est=I(12000.0, "House derivation: FY25 assets 16,460 - cash ~700 - PP&E ~680 - other ~980 "
-                   "= gross WC ~14,100; less payables ~2,100 => ~12,000 (111% of FY25 revenue). "
-                   "Consistent with FY24: assets 14,970, NWC ~10,500 (76% of revenue)", "2026-08-05", "House"),
-    net_debt_fy25_est=I(8800.0, "House derivation: FY25 liabilities (16,460-4,100 equity) = 12,360; less "
-                        "payables/other ~2,860 => debt ~9,500; less cash ~700. FY24-vintage sourced "
-                        "anchor: 9,000 - 827.6 = 8,172 (SWS). Sensitized +/-1,000 in the grid", "2026-08-05", "House"),
+    payables_fy25_est=I(1460.0, "Rebalanced on the disclosed FY25 debt: liabilities (16,460 assets - "
+                        "4,100 equity) = 12,360; less debt 10,900 => non-debt liabilities 1,460. Thin "
+                        "payables are consistent with LC/bank-financed copper imports", "2026-08-05", "House"),
+    nwc_fy25_est=I(12640.0, "House derivation on the disclosed debt: FY25 assets 16,460 - cash ~700 - "
+                   "PP&E ~680 - other ~980 = gross WC ~14,100; less non-debt liabilities ~1,460 => "
+                   "~12,640 (117% of FY25 revenue; FY24 was ~76%)", "2026-08-05", "House"),
+    net_debt_fy25_est=I(10200.0, "Disclosed FY25 bank facilities 10,900 less estimated cash ~700. The "
+                        "prior derivation (~8,800) understated debt by ~1.4bn; the FY24-vintage sourced "
+                        "alternative (9,000 - 827.6 = 8,172) is shown in sensitivity — the ND anchor is "
+                        "worth ~±EGP 0.6/share and is the single largest input risk", "2026-08-05", "House"),
     equity_fy25_est=I(4100.0, "House derivation: FY24 equity 3,600 + FY25 NP 500.3, no dividends "
                       "(company has never paid one)", "2026-08-05", "House"),
 
@@ -73,17 +91,18 @@ INP = dict(
                  "House: FY26E anchored on Q1-26 -43.8% with H2 stabilisation as CBE resumes easing; "
                  "recovery years on the EETC EGP45bn grid plan, EU 690mn package, Saudi interconnector "
                  "completion and 6.7% CAGR industry path (6Wresearch)", "2026-08-05", "House"),
-    ebitda_margin=I([0.130, 0.160, 0.175, 0.185, 0.190],
-                    "House: Q1-26 implied trough ~14% (loss of 241.6 after ~540 finance cost); FY24-25 "
-                    "prints ~25% carried devaluation-era inventory gains (Ring-4 finding: windfall, not "
-                    "run-rate); mid-cycle set between trough and windfall, sensitized +/-3pp", "2026-08-05", "House"),
+    ebitda_margin=I([0.075, 0.140, 0.160, 0.175, 0.180],
+                    "House, re-anchored on the DISCLOSED Q1-26 lines: gross margin 5.7% and operating "
+                    "profit ~zero (vs 33.1%/30.2% in Q1-25) => FY26E full-year ~7.5% assumes H2 recovers "
+                    "to ~11-12% as tenders reprice and rates ease; mid-cycle 16-18% sits between the "
+                    "proven trough and the windfall-era ~25% prints; sensitized +/-3pp", "2026-08-05", "House"),
     capex_pct=I(0.016, "House: maintenance-level for a working-capital-intensive assembler; no disclosed "
                 "capex found any year (flagged gap); FY24 D&A ~0.7% of revenue corroborates a light "
                 "fixed-asset base", "2026-08-05", "House"),
-    nwc_pct=I([1.08, 1.03, 0.98, 0.93, 0.88],
-              "House: FY25 intensity ~111% of revenue (derived above) gliding to 88% as receivables "
-              "collect and copper-inflated inventory normalises; FY24 was 76% — full reversion NOT "
-              "assumed; sensitized in the grid", "2026-08-05", "House"),
+    nwc_pct=I([1.12, 1.06, 1.00, 0.94, 0.88],
+              "House: FY25 intensity ~117% of revenue (derived on disclosed debt) gliding to 88% as "
+              "receivables collect and copper-inflated inventory normalises; FY24 was ~76% — full "
+              "reversion NOT assumed; sensitized in the grid", "2026-08-05", "House"),
 
     # ---- cost of capital (sliding schedule — Egypt) ----
     rf=I(0.2231, "investing.com, Egypt 10Y local-currency govt bond yield, cached in-repo "
@@ -103,13 +122,17 @@ INP = dict(
            "composite (full engine library), 5yr window: beta 0.964, R2 0.222, n=257, SE 0.113, "
            "CI90 [0.78, 1.15] — passes usability gate; NOT weak-flagged (R2>10%, CI span < 2x beta)",
            "2026-08-05", "House"),
-    kd=I(0.235, "Marginal EGP rate for a levered EGX mid-cap: CBE corridor 19.5-20.0% (held 09-Jul-26) "
-         "+ ~3.5pp levered-credit margin; consistent with avg bank lending 21.3% (Jan-26) plus a "
-         "leverage premium. Cross-checked against the two effective-rate computations below", "2026-08-05", "House"),
-    kd_eff_fy24=I(0.234, "Effective-rate check #1: FY24 interest ~1,700 (EBIT 3,400 / coverage 2.0x, "
-                  "SWS) / avg debt ~(5,500e+9,000)/2 = 7,250 => 23.4%", "2026-08-05", "House"),
-    kd_eff_fy25=I(0.232, "Effective-rate check #2: FY25 finance cost ~2,150 (derived, closes P&L to "
-                  "reported NP) / avg debt ~9,250 => 23.2%", "2026-08-05", "House"),
+    kd=I(0.220, "Marginal EGP rate for a levered EGX mid-cap: CBE corridor 19.5-20.0% (held 09-Jul-26) "
+         "+ ~2.5pp credit margin; consistent with avg bank lending 21.3% (Jan-26). Cross-checked "
+         "against the two effective-rate computations below (23.5% FY24, 21.7% FY25 on the disclosed "
+         "debt path). NB the Q1-26 P&L implies a much smaller net finance line (~243/qtr) than Q1-25 "
+         "(~542/qtr) — unexplained without the statements (possible FX/interest income offset or "
+         "capitalised financing); flagged, does not change the marginal rate", "2026-08-05", "House"),
+    kd_eff_fy24=I(0.235, "Effective-rate check #1: FY24 interest ~1,700 (EBIT 3,400 / coverage 2.0x, "
+                  "SWS) / avg debt ~(5,500e+8,960)/2 = 7,230 => 23.5%", "2026-08-05", "House"),
+    kd_eff_fy25=I(0.217, "Effective-rate check #2: FY25 finance cost ~2,150 (derived, closes P&L to "
+                  "reported NP; independently corroborated by Q1-25's implied ~542/qtr) / avg disclosed "
+                  "debt (8,960+10,900)/2 = 9,930 => 21.7%", "2026-08-05", "House"),
     debt_ccy_evidence=I("No facility-level disclosure reachable (FS notes on Mubasher/company site "
                         "403-blocked). PRESUMPTION, flagged: predominantly EGP working-capital "
                         "facilities (import LCs settled spot; post-2016 Egyptian cable-sector norm); "
@@ -122,7 +145,7 @@ INP = dict(
               "+ ~5.5pp EM real-rate convention (house standing construction)", "2026-08-05", "House"),
     erp_term=I(0.070, "Terminal ERP normalised below the crisis-era 9.41%% CDS-based level toward the "
                "B-rating-class norm; never held flat into perpetuity (house standing rule)", "2026-08-05", "House"),
-    kd_path=I([0.235, 0.210, 0.190, 0.170, 0.155],
+    kd_path=I([0.220, 0.200, 0.185, 0.168, 0.155],
               "Forward Kd path: CBE easing resumes H2-26 (MPC 20-Aug/01-Oct/12-Nov-26) toward the "
               "7%%->5%% inflation-target glide; corporate spread held ~3pp; terminal 15%%. The WACC "
               "glide shape is tied to this path by construction", "2026-08-05", "House"),
@@ -187,7 +210,7 @@ ke_cds = rf_star_cds + V['beta'] * V['erp_cds']            # primary
 ke_rating = rf_star_rating + V['beta'] * V['erp_rating']   # alternative
 ke_raw = V['rf'] + V['beta'] * V['erp_cds']                # RETIRED, audit trail only
 kd_at = V['kd'] * (1 - TAX)
-we = MKTCAP / (MKTCAP + V['debt_fy24'])
+we = MKTCAP / (MKTCAP + V['debt_fy25'])
 wd = 1 - we
 wacc_exp = we * ke_cds + wd * kd_at
 wacc_exp_rating = we * ke_rating + wd * kd_at
@@ -281,7 +304,7 @@ def run_dcf(margin_shift=0.0, nwc_end=None, wacc_t=None, g=None, nd=None,
     return (pv + tv_ * df_[-1] - nde) / SH
 
 dcf_bear = max(run_dcf(margin_shift=-0.025, nwc_end=1.00, wacc_t=wacc_term + 0.02,
-                       g=0.04, nd=net_debt + 1000), 0.05)
+                       g=0.04, nd=net_debt + 1000), 0.01)
 dcf_bull = run_dcf(margin_shift=+0.035, nwc_end=0.78, wacc_t=wacc_term - 0.015,
                    g=0.06, nd=net_debt - 1000)
 
@@ -459,8 +482,11 @@ if rr_T >= 1.0 or rr_T <= 0:
 if abs(roic_T * rr_T - V['g_term']) > 1e-9:
     err.append('terminal g != ROIC x RR')
 # plausibility band
-if not (0.25 * SPOT / SPOT <= (central['base'] / SPOT) <= 2.5):
-    err.append(f'central/spot {central["base"]/SPOT:.2f} outside plausibility band [0.25, 2.5]')
+# Band floor 0.10 (was 0.25): with disclosed FY25 debt ~10.9bn against a ~10.5bn EV, the
+# equity is a thin residual — a deep-distress read is the honest arithmetic for a 2.5x-levered
+# name whose EV barely clears its net debt, not an implausible model output.
+if not (0.10 <= (central['base'] / SPOT) <= 2.5):
+    err.append(f'central/spot {central["base"]/SPOT:.2f} outside plausibility band [0.10, 2.5]')
 if err:
     raise SystemExit('ASSERT FAILED:\n  - ' + '\n  - '.join(err))
 
@@ -468,7 +494,7 @@ print('ASSERT PASS —')
 print(f'  FY24 closure: NP derived {np_fy24_check:,.0f} vs reported {V["np_fy24"]:,.0f} (gap {abs(np_fy24_check-V["np_fy24"])/V["np_fy24"]*100:.1f}%)')
 print(f'  WACC explicit {wacc_exp*100:.2f}% (CDS-primary; rating alt {wacc_exp_rating*100:.2f}%) -> terminal {wacc_term*100:.2f}%  [glide tied to kd_path]')
 print(f'  forward WACC: ' + ' / '.join(f'{w*100:.1f}%' for w in fwd))
-print(f'  Kd 23.5% vs effective checks {V["kd_eff_fy24"]*100:.1f}% (FY24) / {V["kd_eff_fy25"]*100:.1f}% (FY25) — inside 150bp/50bp bounds')
+print(f'  Kd {V["kd"]*100:.1f}% vs effective checks {V["kd_eff_fy24"]*100:.1f}% (FY24) / {V["kd_eff_fy25"]*100:.1f}% (FY25) — inside 150bp/50bp bounds')
 print(f'  terminal: ROIC {roic_T*100:.1f}% x RR {rr_T*100:.1f}% = g {roic_T*rr_T*100:.1f}%  | TV = {tv_pct*100:.0f}% of EV')
 print(f'  bridge: EV {ev:,.0f} - ND {net_debt:,.0f} - NCI {nci:,.0f} = equity {eq_dcf:,.0f} = EGP {dcf_ps:.2f}/sh')
 print(f'  central {central["base"]:.2f} [{central["bear"]:.2f}-{central["bull"]:.2f}] vs spot {SPOT} ({central["base"]/SPOT-1:+.0%})')

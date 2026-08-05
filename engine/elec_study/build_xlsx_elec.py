@@ -56,7 +56,7 @@ for i, ln in enumerate([
  'the working-capital split, the FY25 net-debt anchor) are DERIVED — each is annotated where it appears and',
  'listed with source and date in the companion Source Register document. FY2024, the one fully-triangulated',
  'year, closes to the reported net profit within 0.8% using the derived lines.', '',
- 'Discount convention. Each explicit year is discounted at its own forward WACC, gliding 22.6% -> 14.1% on the',
+ 'Discount convention. Each explicit year is discounted at its own forward WACC, gliding 21.4% -> 13.9% on the',
  'same easing calendar as the interest forecast; the terminal value is capitalised at the terminal WACC and',
  'discounted at the year-5 cumulative factor. One date, one price of time.', '',
  'Currency. EGP million unless stated. Spot EGP 2.19 (5 Aug 2026 close). Sheets: Summary · Fundamental',
@@ -86,10 +86,10 @@ put(wa, f'A{r}', 'rf* for the equity build'); put(wa, f'B{r}', '=B9-B10', BLACK,
 r = inp(wa, r, 'ERP — Egypt, CDS-based (primary)', 0.0941, PCT, "Damodaran ORIGINAL ctryprem, Egypt row, Jan-2026 (rating basis 13.94% in sensitivity)")  # B12
 r = inp(wa, r, 'Beta (own weekly regression, 5yr)', 0.964, PX, 'vs 30-name equal-weight EGX composite: R2 0.222, n=257, SE 0.113, CI90 [0.78,1.15]')  # B13
 put(wa, f'A{r}', 'Ke = rf* + beta × ERP'); put(wa, f'B{r}', '=B11+B13*B12', BLACK, PCT); r += 1            # B14
-r = inp(wa, r, 'Kd pre-tax (marginal EGP)', 0.235, PCT, 'Corridor + levered margin; effective-rate checks 23.4% (FY24) / 23.2% (FY25) inside 150bp')  # B15
+r = inp(wa, r, 'Kd pre-tax (marginal EGP)', 0.220, PCT, 'Corridor + credit margin; effective-rate checks 23.5% (FY24) / 21.7% (FY25, disclosed debt path) inside 150bp')  # B15
 put(wa, f'A{r}', 'Kd after tax'); put(wa, f'B{r}', '=B15*(1-B7)', BLACK, PCT); r += 1                      # B16
 put(wa, f'A{r}', 'Market cap (spot × shares)'); put(wa, f'B{r}', '=B5*B6', BLACK, NUM0); r += 1            # B17
-r = inp(wa, r, 'Total debt for weights (FY24 disclosed vintage)', 9000.0, NUM0, 'Simply Wall St, 22-May-2025 — the sourced debt print')  # B18
+r = inp(wa, r, 'Total debt for weights (FY25 disclosed facilities)', 10900.0, NUM0, 'FY25 results coverage: EGP 10.9bn bank facilities vs 8.96bn FY24 (matches the FY24 debt print — cross-validated)')  # B18
 put(wa, f'A{r}', 'Equity weight E/(D+E)'); put(wa, f'B{r}', '=B17/(B17+B18)', BLACK, PCT); r += 1          # B19
 put(wa, f'A{r}', 'WACC — explicit window', bold=True); put(wa, f'B{r}', '=B19*B14+(1-B19)*B16', BLACK, PCT, True); r += 1  # B20
 r = inp(wa, r, 'Terminal rf (norm-built)', 0.105, PCT, "CBE's Q4-2028 inflation target 5% + 5.5pp real-rate convention")  # B21
@@ -99,7 +99,7 @@ r = inp(wa, r, 'Terminal Kd', 0.150, PCT, 'Egyptian long-run corporate norm 14-1
 put(wa, f'A{r}', 'WACC — terminal', bold=True); put(wa, f'B{r}', '=B19*B23+(1-B19)*B24*(1-B7)', BLACK, PCT, True); r += 1  # B25
 r = inp(wa, r, 'Terminal growth g', 0.05, PCT, 'Standing center 5%; grid 3-7% on Sensitivity')             # B26
 r = hdr(wa, r, 'BRIDGE')                                                                                   # 27
-r = inp(wa, r, 'Net debt (FY25, derived)', 8800.0, NUM0, 'Derived from twice-sourced FY25 assets 16,460 + FY24 anchors; FY24-vintage sourced alt: 8,172')  # B28
+r = inp(wa, r, 'Net debt (FY25, derived)', 10200.0, NUM0, 'Disclosed facilities 10,900 less estimated cash ~700; FY24-vintage sourced alt: 8,172 — worth ±EGP 0.6/sh, see Sensitivity')  # B28
 r = inp(wa, r, 'Non-controlling interests', 0.0, NUM0, 'Consolidated-vs-attributable gap ~1.1mn FY25 — immaterial')  # B29
 r = hdr(wa, r, 'LENS INPUTS')                                                                              # 30
 r = inp(wa, r, 'EV/EBITDA multiple (base)', 5.5, MULT, 'SWDY ~6.0x; discount for leverage/concentration')  # B31
@@ -122,11 +122,11 @@ def drv(row, label, vals, fmt=PCT, note=None):
     DRV[label] = row
     return row + 1
 r = drv(r, 'Revenue growth', [-0.196, 0.14, 0.12, 0.10, 0.08], note='FY26E on Q1-26 -44%; recovery on the grid-capex cycle')     # 41
-r = drv(r, 'EBITDA margin', [0.130, 0.160, 0.175, 0.185, 0.190], note='Between the 1Q26 trough (~14%) and windfall prints (~25%)')  # 42
+r = drv(r, 'EBITDA margin', [0.075, 0.140, 0.160, 0.175, 0.180], note='1Q26 DISCLOSED: gross margin 5.7%, operating ~0 — the trough; windfall prints ~25% the ceiling')  # 42
 r = drv(r, 'D&A (% of revenue)', [0.013] * 5)                                                              # 43
 r = drv(r, 'Capex (% of revenue)', [0.016] * 5, note='No disclosed capex any year — flagged derivation')   # 44
-r = drv(r, 'Net working capital (% of revenue)', [1.08, 1.03, 0.98, 0.93, 0.88], note='From ~111% FY25e; NOT full reversion to FY24 76%')  # 45
-r = drv(r, 'Forward Kd path', [0.235, 0.210, 0.190, 0.170, 0.155], note='CBE easing resumption; sets the WACC glide shape')      # 46
+r = drv(r, 'Net working capital (% of revenue)', [1.12, 1.06, 1.00, 0.94, 0.88], note='From ~117% FY25e; NOT full reversion to FY24 76%')  # 45
+r = drv(r, 'Forward Kd path', [0.220, 0.200, 0.185, 0.168, 0.155], note='CBE easing resumption; sets the WACC glide shape')      # 46
 put(wa, f'A{r}', 'Glide fraction (from the Kd path)')
 for j, c in enumerate(ACOLS):
     put(wa, f'{c}{r}', f"=($C${DRV['Forward Kd path']}-{c}{DRV['Forward Kd path']})/($C${DRV['Forward Kd path']}-$G${DRV['Forward Kd path']})", BLACK, PCT)
@@ -141,7 +141,7 @@ for j, c in enumerate(ACOLS):
 DFR = r; r += 1                                                                                            # 49
 r = hdr(wa, r, 'BASE-YEAR ANCHORS (FY2025)')                                                               # 50
 r = inp(wa, r, 'Revenue FY25', 10819.0, NUM0, 'Arab Finance/Zawya FY2025 results')                         # B51
-r = inp(wa, r, 'Net working capital FY25 (derived)', 12000.0, NUM0, '~111% of FY25 revenue — construction in study §1.6')  # B52
+r = inp(wa, r, 'Net working capital FY25 (derived)', 12640.0, NUM0, '~117% of FY25 revenue — construction in study §1.6')  # B52
 wa.column_dimensions['C'].width = 11; wa.column_dimensions['H'].width = 60
 
 # ============ SEGMENTS =======================================================
@@ -328,7 +328,7 @@ for col, in zip(['B', 'C']):
     ws[f'{col}{IC}'] = f"=SUM({col}{BS['Net working capital']}:{col}{OTH})"
     ws[f'{col}{IC}'].font = Font(bold=True); ws[f'{col}{IC}'].number_format = NUM0
 r += 1
-r = brow(r, 'Net debt (schedule: opening − equity FCF)', 8172.0, '=Assumptions!B28',
+r = brow(r, 'Net debt (schedule: opening − equity FCF)', 8172.4, '=Assumptions!B28',
          lambda j, c: f"={'Assumptions!$B$28' if j==0 else BSCOLS[j-1]+str(r-1)}-'Cash Flow'!{get_column_letter(3+j)}12")
 ND = BS['Net debt (schedule: opening − equity FCF)']
 for j, c in enumerate(BSCOLS):
@@ -398,7 +398,7 @@ title(ws, 'EV → equity bridge', 'Single-business company: the bridge is the DC
 rows_ = [
  ('Core enterprise value (DCF)', f"=DCF!B{EVR}", NUM0, True),
  ('+ Surplus / non-core assets', 0.0, NUM0, False),
- ('− Net debt (FY25, derived; ±1,000 sensitized)', "=-Assumptions!B28", NUM0, False),
+ ('− Net debt (FY25: disclosed facilities − est. cash)', "=-Assumptions!B28", NUM0, False),
  ('− Non-controlling interests', "=-Assumptions!B29", NUM0, False),
  ('Equity value', f"=B5+B6+B7+B8", NUM0, True),
  ('per share (EGP)', f"=B9/Assumptions!B6", PX, True),
