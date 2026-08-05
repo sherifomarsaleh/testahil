@@ -2053,28 +2053,28 @@ const TICKERS = {
     name: "QNB Group",
     nameAr: "\u0645\u062c\u0645\u0648\u0639\u0629 QNB",
     code: "QSE:QNBK",
-    spot: 17.54,
-    spotDate: "close 5 Jul 2026",
+    spot: 17.15,
+    spotDate: "close 05 Aug 2026",
     ccy: "QAR",
     fair: { bear: 14.0, base: 18.76, full: 28.5 },      // 5 Jul 2026 — weighted central 18.76 (+7.0% vs spot 17.54). Lenses: two-stage DDM on actual policy (primary) 18.7, FCFE/distributable-capital 20.2 (full-capacity ceiling 22.0), relative P/B-RoTE + peer 18.2, normalized through-cycle 17.6. bear/full = weighted bear/bull of the football field. Swing factors: the permanent Pillar-Two tax step (FY25 net profit +1.7% on ~+10% pre-tax), the 2026 rate-cut path through NIM (the pegged riyal), and how much of a 19.3%-capitalised balance sheet is returned rather than retained.
     dist: {
-      t20: { label:"1 month",  p5:15.35, p25:16.74, p50:17.48, p75:18.19, p95:19.55, resolve:"2026-08-05" },
-      t60: { label:"3 months", p5:13.96, p25:15.91, p50:17.24, p75:18.60, p95:20.91, resolve:"2026-10-05" }
+      t20: { label:"1 month",   p5:15.66, p25:16.62, p50:17.20, p75:17.81, p95:18.90, resolve:"2026-09-06" },
+      t60: { label:"3 months",  p5:14.75, p25:16.33, p50:17.33, p75:18.39, p95:20.36, resolve:"2026-11-05" }
     },
-    hz: { h1:22, h3:63, l1:"1 month", l3:"3 months", cal:true },
+    hz: { h1:22, h3:62, l1:"1 month", l3:"3 months", cal:true },
     touch: [ /* descending high -> low; P(touch) 1-month %, 3-month % */
-      [19.5, 8, 26], [19.0, 15, 36], [18.5, 28, 50], [18.0, 51, 69], [17.0, 49, 72], [16.5, 28, 56], [15.5, 8, 30]
+      [19.50, 3, 17], [19.00, 7, 26], [18.50, 15, 40], [18.00, 32, 57], [17.00, 75, 84], [16.50, 37, 57], [15.50, 6, 21]
     ],
-    levels: { res:[17.54, 18.05, 18.60], sup:[16.78, 15.98, 15.54] },
+    levels: { res:[17.54, 18.05, 18.60], sup:[16.79, 15.98, 15.54] },
     tech: {
-      trend: "Trading below the whole moving-average stack, under a falling 200-day",
-      summary: "The price closed 16.95 below a falling 20-day (17.19), a falling 50-day (17.42) and a falling 200-day (18.32). Momentum is neutral: RSI(14) is ~44 and the daily ATR near 0.29 (~1.7%) points to a normal tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.24 / \u22120.20 / \u22120.04). Over the last year it has ranged 16.34\u201320.49; the last close sits 17% below that high and 4% above that low.",
+      trend: "Mixed against the moving-average stack, below a falling 200-day",
+      summary: "The price closed 17.15 below a falling 50-day (17.37) and a falling 200-day (18.28), but above a falling 20-day (17.02). Momentum is neutral: RSI(14) is ~50 and the daily ATR near 0.33 (~1.9%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22120.12 / \u22120.18 / +0.06). Over the last year it has ranged 16.34\u201320.49; the last close sits 16% below that high and 5% above that low.",
       bull: "A daily close back above 17.54 would clear the nearest resistance and open the 18.60 zone.",
-      bear: "A close below 16.78 would break the nearest support and open the 15.54 zone."
+      bear: "A close below 16.79 would break the nearest support and open the 15.54 zone."
     },
     asof: {
-      mc:   { data:"2026-07-05", computed:"2026-07-05" },
-      tech: { data:"2026-07-28", computed:"2026-07-29" }
+      mc:   { data:"2026-08-05", computed:"2026-08-05" },
+      tech: { data:"2026-08-05", computed:"2026-08-05" }
     },
     files: {
       study: "files/QNB_Valuation_Study_05-07-2026_public.docx?v=0705a",
@@ -2798,11 +2798,11 @@ const LEDGER = [
     anchor_vol:0.18, horizon_days:22,
     p5:15.35, p25:16.74, p50:17.48, p75:18.19, p95:19.55,
     touch:{ "+5":30, "+10":11, "+15":4, "+20":1, "-5":34, "-10":12 },
-    realized_close:null, realized_high:null, realized_low:null,
-    in_90:null, in_50:null, realized_quantile:null, median_err:null,
-    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+    realized_close:17.15, realized_high:17.76, realized_low:16.46,
+    in_90:true, in_50:true, realized_quantile:0.389, median_err:-0.0189,
+    touch_hit:{ "+5":false, "+10":false, "+15":false, "+20":false, "-5":true, "-10":false }
   ,
-    grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-08-02) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
+    grade_note:"GRADED 2026-08-05 on the 2026-08-05 close of 17.15 -- the calendar maturity (anchor + 1 month), and a real QSE session in the library, so there is no date gap to annotate: horizons.resolve returns target 2026-08-05 = grade_date 2026-08-05. Window 2026-07-06..2026-08-05, 19 sessions, realized high 17.76 / low 16.46 (intraday extremes, anchor bar excluded -- the house convention, re-verified this pass by replaying all 12 previously graded rows: 11 reproduce every field exactly and the 12th, EMFD, differs only because its 19-Jul bar was revised after grading). The window holds 19 sessions rather than the 22 projected at strike because the QSE was closed 13-16 July -- market-wide, absent from all three QA libraries, not a QNB suspension; under the calendar convention the session count is irrelevant to grading. Inside the 90% band (15.35-19.55) and inside the 50% band (16.74-18.19); realized_quantile 0.389, median_err -1.89%. Of the touch ladder only -5% (16.66) was reached, on the 23-Jul low of 16.46; -10% (15.79) and every upside level were not. The frozen p5-p95 and touch probabilities are exactly as published. PRIOR NOTE: Grade-date corrected on 2026-07-29: stored value (2026-08-02) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
   },
   {
     instrument:"QNB", asset_class:"other",
@@ -4495,6 +4495,33 @@ const LEDGER = [
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null },
     note:"Cycle 2 strike, 2026-08-04 -- struck on the 03-Aug-2026 close of 58.266, the latest completed session in the library, at the monthly metronome: cycle 1\u2019s 1-month matured 03-Aug and was graded in this same pass. The cycle-1 3-month (grades 2026-10-05) is demoted to an aging calibration tail and runs untouched to its own date; the 12-month stays on its own annual clock (grades 2027-07-05), per the metals carve-out. Production chain, no approximation: Step 0.0 data-quality gate (3 interior stale/no-trade rows dropped) -> YZ variance proxy -> fit_har_v3 -> har_forecast_v3 -> carry drift -> simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (metal, no yield). XAU live fit nu=12.0, width_cal=0.958 -- SILVER STILL HAS NO FIT OF ITS OWN, it borrows gold\u2019s, the standing weakest-calibration caveat. Horizons by horizons.resolve() on the metals calendar: 1M h=23 grading 2026-09-03, 3M h=66 grading 2026-11-03. The upload\u2019s 04-Aug row (an in-progress session dated the day of the post) and its 02-Aug Sunday print (the library\u2019s 15-year convention is Mon-Fri) were excluded from the library; its revised 27/28-Jul bars were NOT taken -- published bars stay frozen, merge-never-overwrite."
+  },
+
+  // ---- 05-Aug-2026 single-name roll-forward: QNB, struck on its own
+  //      latest library close. Append-only.
+  {
+    instrument:"QNB", asset_class:"equity",
+    anchor_date:"2026-08-05", run_date:"2026-08-05", anchor_price:17.15, ccy:"QAR",
+    horizon_label:"1 month", grade_date:"2026-09-06", grade_basis:"projected", horizon_days:22,
+    cycle_no:2, reanchor_from:"2026-07-05", anchor_vol:0.2128,
+    note:"Cycle 2 roll-forward, 05-Aug-2026 — struck on the 05-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-05 and is graded in this same pass. The previous cone was anchored 2026-07-05; every still-open cohort on cycle 1 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). QA live fit nu=6.0, width_cal=0.951; rf_live 4.25% profile rf_live. Horizons resolved by horizons.resolve() on QA’s own realized calendar — a calendar commitment, not a session count; the session counts (h=22 / 62) size the cone only.",
+    p5:15.66, p25:16.62, p50:17.2, p75:17.81, p95:18.9,
+    touch:{ "+5":32, "+10":8, "+15":2, "+20":1, "-5":26, "-10":5 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"QNB", asset_class:"equity",
+    anchor_date:"2026-08-05", run_date:"2026-08-05", anchor_price:17.15, ccy:"QAR",
+    horizon_label:"3 months", grade_date:"2026-11-05", grade_basis:"projected", horizon_days:62,
+    cycle_no:2, reanchor_from:"2026-07-05", anchor_vol:0.2158,
+    note:"Cycle 2 roll-forward, 05-Aug-2026 — struck on the 05-Aug-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-08-05 and is graded in this same pass. The previous cone was anchored 2026-07-05; every still-open cohort on cycle 1 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield). QA live fit nu=6.0, width_cal=0.951; rf_live 4.25% profile rf_live. Horizons resolved by horizons.resolve() on QA’s own realized calendar — a calendar commitment, not a session count; the session counts (h=22 / 62) size the cone only.",
+    p5:14.75, p25:16.33, p50:17.33, p75:18.39, p95:20.36,
+    touch:{ "+5":57, "+10":29, "+15":14, "+20":7, "-5":47, "-10":20 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   }
 ];
 

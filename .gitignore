@@ -10,3 +10,11 @@ engine/technicals_report.json
 # untracked noise on every run.
 __pycache__/
 *.pyc
+
+# scripts/check_ta_chart_overlay.js — the MANDATORY overlay gate — needs playwright,
+# and there is no package.json, so running it means `npm install --no-save playwright`
+# in the repo root. That leaves ~100MB of untracked noise in `git status` on every
+# pass that honours the gate. The browser binary itself is pre-provisioned at
+# /opt/pw-browsers/chromium (the script hardcodes that executablePath), so only the
+# node package is ever fetched.
+node_modules/
