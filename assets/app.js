@@ -400,14 +400,14 @@ function renderCompare(elId, market){
       <td class="num">${F(t.spot)}</td>
       <td class="num">${F(t.fair.base)}<br><span class="muted" style="font-size:.8rem">${fvGap>=0?'+':''}${fvGap}%</span></td>
       <td><span class="pill ${v.tone}">${v.tone==='cheap'?'Looks cheap':v.tone==='rich'?'Looks expensive':'About right'}</span></td>
-      <td class="num">${F(t.dist.t60.p50)}</td>
+      <td class="num">${F(t.dist.t60.p5)} &ndash; ${F(t.dist.t60.p95)}</td>
       <td class="num">${up60} in 10</td>
       <td style="font-size:.85rem">${trend}</td>
     </tr>`;
   }).join("");
   el.innerHTML = `<table class="compare-table"><thead><tr>
     <th>Stock</th><th class="num">Latest</th><th class="num">Our value</th><th>Price view</th>
-    <th class="num">3-mo middle</th><th class="num">Odds up (3-mo)</th><th>Chart trend</th>
+    <th class="num">3-mo range</th><th class="num">Odds up (3-mo)</th><th>Chart trend</th>
   </tr></thead><tbody>${rows}</tbody></table>`;
 }
 
@@ -423,7 +423,7 @@ function _compareRowHTML(code, t){
       <td class="num">${F(t.spot)}<br><span class="muted" style="font-size:.8rem">${(t.spotDate||"").replace(/^close\s+/i,"")}</span></td>
       <td class="num">${F(t.fair.base)}<br><span class="muted" style="font-size:.8rem">${fvGap>=0?'+':''}${fvGap}%</span></td>
       <td><span class="pill ${v.tone}">${v.tone==='cheap'?'Looks cheap':v.tone==='rich'?'Looks expensive':'About right'}</span></td>
-      <td class="num">${F(t.dist.t60.p50)}</td>
+      <td class="num">${F(t.dist.t60.p5)} &ndash; ${F(t.dist.t60.p95)}<br><span class="muted" style="font-size:.8rem">bad case &middot; good case</span></td>
       <td class="num">${up60} in 10</td>
       <td style="font-size:.85rem">${trend}</td>
     </tr>`;
@@ -520,12 +520,12 @@ function renderComparePair(elId, codeA, codeB){
   const same = codeA===codeB ? `<p class="muted" style="margin:10px 0 0">Both rows show the same stock — pick a different one in either box to compare.</p>` : "";
   el.innerHTML = `<table class="compare-table"><thead><tr>
     <th>Stock</th><th class="num">Latest</th><th class="num">Our value <span class="tagk">Fundamental</span></th><th>Price view <span class="tagk">Fundamental</span></th>
-    <th class="num">3-mo middle <span class="tagk">Simulation</span></th><th class="num">Odds up (3-mo) <span class="tagk">Simulation</span></th><th>Chart trend <span class="tagk">Chart</span></th>
+    <th class="num">3-mo range <span class="tagk">Simulation</span></th><th class="num">Odds up (3-mo) <span class="tagk">Simulation</span></th><th>Chart trend <span class="tagk">Chart</span></th>
   </tr></thead><tbody>${rows.join("")}</tbody></table>${same}`;
 }
 
 /* ---------- top movers (compare.html): biggest fundamental gap & biggest simulated 3-mo move ----------
-   Ranks the whole TICKERS panel two ways: fair.base vs spot (fundamental), and dist.t60.p50 vs spot
+   Ranks the whole TICKERS panel two ways: fair.base vs spot (fundamental), and dist.t60.p95 vs spot
    (simulation, the 3-month cone). Both are re-uses of numbers already published per-ticker elsewhere
    on this page — this just sorts them; it is not a new estimate or a recommendation. */
 function _tmRowHTML(rank, code, t, pct){

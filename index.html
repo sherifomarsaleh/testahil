@@ -169,7 +169,7 @@
       <table class="mc-readt">
         <tr><td>Chance the price is <b>higher than today</b></td><td id="hr-up">&mdash;</td></tr>
         <tr><td><b>+10% or better</b> vs <b>&minus;10% or worse</b></td><td id="hr-odds">&mdash;</td></tr>
-        <tr><td>Middle-of-the-road outcome (median)</td><td id="hr-med">&mdash;</td></tr>
+        <tr><td>Bad case &middot; good case (worst / best 1-in-20)</td><td id="hr-med">&mdash;</td></tr>
         <tr><td>Most likely zone (50% band)</td><td id="hr-band">&mdash;</td></tr>
       </table>
       <p class="mc-readnote">The drift and skew are already baked in &mdash; not a coin flip. <a id="hr-link" href="#">See the full read &rarr;</a></p>
@@ -266,7 +266,7 @@
 <div class="wrap"><div class="ctx-row"><a class="ctx-btn" href="stocks.html">Browse all coverage &rarr;</a><a class="ctx-btn ghost" href="compare.html">Compare stocks &rarr;</a><a class="ctx-btn ghost" href="calculator.html">What kept its value? &rarr;</a></div></div>
 
 <footer><div class="wrap"><div class="foot-studies"><b>Studies:</b> <!--STUDIES:START--><a href="dscw.html">Dice</a> &middot; <a href="clho.html">Cleopatra Hospitals</a> &middot; <a href="rmda.html">Rameda</a> &middot; <a href="dewa.html">DEWA</a> &middot; <a href="lulu.html">Lulu Retail</a> &middot; <a href="burjeel.html">Burjeel</a> &middot; <a href="salik.html">Salik</a> &middot; <a href="dib.html">Dubai Islamic Bank</a> &middot; <a href="2pointzero.html">2PointZero</a> &middot; <a href="eand.html">e&amp;</a><!--STUDIES:END--> &middot; <a href="stocks.html">all &rarr;</a></div><b>Disclaimer:</b> Educational valuation studies and personal analytical opinion — not investment advice, not recommendations. The preparer is not licensed by Egypt's FRA, manages no money, accepts no clients, and may hold positions in instruments mentioned. <a href="method.html#disclaimer">Full text</a>.<br><br><span class="social" style="font-size:var(--fs-lead);font-weight:700">Follow Testahil &mdash; <a href="https://t.me/testahil_markets" target="_blank" rel="noopener">Telegram</a> &middot; <a href="https://www.facebook.com/testahil.markets" target="_blank" rel="noopener">Facebook</a> &middot; <a href="https://www.linkedin.com/company/testahil" target="_blank" rel="noopener">LinkedIn</a></span></div></footer>
-<script src="assets/data.js?v=20260804a"></script><script src="assets/app.js?v=20260804b"></script>
+<script src="assets/data.js?v=20260804a"></script><script src="assets/app.js?v=20260804c"></script>
 <script>
 // Latest study = the explicitly-published pointer SITE.latest (the LAST-PUBLISHED study,
 // set on every publish), falling back to the most recent anchor_date across LEDGER. Note
@@ -307,11 +307,11 @@ document.getElementById("latest-link").href = latest[0].toLowerCase() + ".html";
   var odds;
   if(pW>=pL){ odds=Math.round(pW*100)+"% vs <span class=\"mc-down\">"+Math.round(pL*100)+"%</span> &mdash; odds &asymp; "+(pL>0.001?(pW/pL).toFixed(1):"&gt;99")+" : 1 up"; }
   else{       odds=Math.round(pW*100)+"% vs <span class=\"mc-down\">"+Math.round(pL*100)+"%</span> &mdash; odds &asymp; "+(pW>0.001?(pL/pW).toFixed(1):"&gt;99")+" : 1 down"; }
-  var mv=(d.p50/S-1)*100;
+  var mvLo=(d.p5/S-1)*100, mvHi=(d.p95/S-1)*100;
   document.getElementById("hr-hint").textContent=T.name+" \u00b7 at 3 months";
   document.getElementById("hr-up").textContent=Math.round(pUp*100)+"%";
   document.getElementById("hr-odds").innerHTML=odds;
-  document.getElementById("hr-med").textContent=(ccy?ccy+" ":"")+f2(d.p50)+" ("+(mv>=0?"+":"\u2212")+Math.abs(mv).toFixed(0)+"%)";
+  document.getElementById("hr-med").textContent=(ccy?ccy+" ":"")+f2(d.p5)+" \u00b7 "+f2(d.p95)+" ("+(mvLo>=0?"+":"\u2212")+Math.abs(mvLo).toFixed(0)+"% / "+(mvHi>=0?"+":"\u2212")+Math.abs(mvHi).toFixed(0)+"%)";
   document.getElementById("hr-band").textContent=f2(d.p25)+" \u2013 "+f2(d.p75);
   var lnk=document.getElementById("hr-link");
   if(lnk){ lnk.href=latest[0].toLowerCase()+".html#mc-lab"; lnk.innerHTML="See "+T.name+"\u2019s full read &rarr;"; }
