@@ -192,7 +192,8 @@ def build(write: bool = False):
             tp = rel_touch(h['_paths'], spot)
             ledger_rows.append(dict(
                 instrument=key, asset_class='equity',
-                anchor_date=r['anchor_date'], anchor_price=round(spot, 4),
+                anchor_date=r['anchor_date'], run_date='2026-07-28',
+                anchor_price=round(spot, 4),
                 ccy=ccy, horizon_label=h['label'], grade_date=h['grade_date'],
                 grade_basis=h['basis'], horizon_days=h['h'],
                 cycle_no=cyc, reanchor_from=(prior[0] if prior else None),
@@ -244,10 +245,17 @@ def js_row(d: dict) -> str:
             return repr(x)
         return json.dumps(x, ensure_ascii=False)
     t = ', '.join(f'"{k}":{n}' for k, n in d['touch'].items())
+    # run_date is a FIELD, never prose. scripts/check_data_freshness.py hard-fails a
+    # row without one ("the strike date must be a field, never scraped out of the note"),
+    # and this emitter silently omitted it — caught on the 05-Aug-2026 QNB strike, the
+    # first time a row it produced was run through that gate. anchor_date is the close
+    # the cone sits on; run_date is the day it was struck, and they are routinely
+    # different (a strike on Tuesday's close published Wednesday).
     return (
         '  {\n'
         f'    instrument:{v(d["instrument"])}, asset_class:{v(d["asset_class"])},\n'
-        f'    anchor_date:{v(d["anchor_date"])}, anchor_price:{d["anchor_price"]}, '
+        f'    anchor_date:{v(d["anchor_date"])}, run_date:{v(d["run_date"])}, '
+        f'anchor_price:{d["anchor_price"]}, '
         f'ccy:{v(d["ccy"])},\n'
         f'    horizon_label:{v(d["horizon_label"])}, grade_date:{v(d["grade_date"])}, '
         f'grade_basis:{v(d["grade_basis"])}, horizon_days:{d["horizon_days"]},\n'

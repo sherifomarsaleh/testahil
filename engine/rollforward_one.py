@@ -202,6 +202,30 @@ def restrike_entry(blk: str, r: dict, verbose: bool = True) -> str:
     return new
 
 
+def _prior_1m_matured(src: str, instrument: str, prior_cycle, anchor_date: str):
+    """The prior cycle's 1-month grade date, IF it has come due by this anchor.
+
+    Returns the grade date (str) when this strike lands on the monthly metronome —
+    STEP 0 rule 2, "the 1-month maturity is the metronome" — and None when it does
+    not. Read off the ledger rather than assumed, because the note that quotes it
+    is published and a wrong claim there is invisible to every other check.
+    """
+    if prior_cycle is None:
+        return None
+    i = src.find('const LEDGER')
+    led = src[i:src.find('\n];', i)]
+    for m in re.finditer(r'instrument:"' + re.escape(instrument) + r'"(.{0,900})',
+                         led, re.S):
+        e = m.group(1)
+        cy = re.search(r'cycle_no:(\d+)', e)
+        hl = re.search(r'horizon_label:"([^"]+)"', e)
+        gd = re.search(r'grade_date:"([^"]+)"', e)
+        if cy and hl and gd and int(cy.group(1)) == prior_cycle \
+                and hl.group(1) == '1 month' and gd.group(1) <= anchor_date:
+            return gd.group(1)
+    return None
+
+
 def report_strike(key: str, market: str, series: str, r: dict) -> None:
     print(f'{key} ({market}/{series})')
     print(f'  anchor {r["anchor_date"]} @ {r["spot"]}  ({r["rows_out"]} clean rows)')
@@ -237,14 +261,29 @@ def run(market: str, series: str, key: str, today: str,
     new = restrike_entry(blk, r)
 
     d = anchor
+    # EVERY CLAUSE BELOW IS DERIVED. The retired text hardcoded two claims about a
+    # specific historical pass — "this name was NOT in the 28-Jul-2026 market-wide
+    # EG/AE/SA re-strike" and "this cohort also brings the name onto the calendar
+    # 1M/3M convention it had never been migrated to". Both were true only of the
+    # 29-Jul gap-closing cohort this tool was first written for. On the 05-Aug-2026
+    # QNB strike the first was true by luck and the second was flatly FALSE (QNB's
+    # cycle 1 was already calendar-native — its grade dates were recomputed by
+    # horizons.resolve on 29-Jul). That is precisely the defect this module's own
+    # docstring says apply_rollforward.py has: re-running it for one name "stamps
+    # today's cohort with last week's story". A tool written to fix that bug must
+    # not carry it. Whether this strike sits on the monthly metronome is now READ
+    # from the ledger, not assumed.
+    metro = _prior_1m_matured(src, key, prior[1] if prior else None, r['anchor_date'])
+    event = ('at the monthly metronome — the prior cycle’s 1-month matured on '
+             f'{metro} and is graded in this same pass' if metro else
+             'off the monthly metronome — the prior cycle’s 1-month has not yet '
+             'matured, so no cohort of that horizon is graded here')
     note = (
         f'Cycle {cyc} roll-forward, {today} — struck on the {d.day:02d}-'
         f'{MONTHS[d.month - 1]}-{d.year} close, the latest session in this '
-        f'name’s library. This name was NOT in the 28-Jul-2026 market-wide '
-        f'EG/AE/SA re-strike, so its published cone had been anchored '
-        f'{prior[0] if prior else "?"} against a library that had already moved '
-        f'on — the gap the as-of stamps adopted 29-Jul-2026 made visible. '
-        f'Cycle {prior[1] if prior else 1} stays OPEN and grades on its own '
+        f'name’s library, {event}. The previous cone was anchored '
+        f'{prior[0] if prior else "?"}; every still-open cohort on cycle '
+        f'{prior[1] if prior else 1} stays OPEN and grades on its own '
         f'terms; nothing retro-edited. Production chain, no approximation: '
         f'Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 '
         f'→ har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) '
@@ -253,15 +292,16 @@ def run(market: str, series: str, key: str, today: str,
         f'(FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND '
         f'price carry and overstates the centre by roughly the yield). '
         f'{market} live fit nu={prof.nu}, width_cal={prof.width_cal}; rf_live '
-        f'{RF_SRC.get(market, f"{prof.rf_live:.2%} profile rf_live")}. Horizon '
-        f'resolved by horizons.resolve() on {market}’s own realized '
-        f'calendar, not a session count. This cohort also brings the name onto '
-        f'the calendar 1M/3M convention it had never been migrated to.')
+        f'{RF_SRC.get(market, f"{prof.rf_live:.2%} profile rf_live")}. Horizons '
+        f'resolved by horizons.resolve() on {market}’s own realized calendar — '
+        f'a calendar commitment, not a session count; the session counts '
+        f'(h={h1["h"]} / {h3["h"]}) size the cone only.')
 
     rows = []
     for tag, h in (('1M', h1), ('3M', h3)):
         rows.append(dict(
             instrument=key, asset_class='equity', anchor_date=r['anchor_date'],
+            run_date=pd.Timestamp(today.replace('-', ' ')).date().isoformat(),
             anchor_price=round(spot, 4), ccy=ccy, horizon_label=h['label'],
             grade_date=h['grade_date'], grade_basis=h['basis'],
             horizon_days=h['h'], cycle_no=cyc,
