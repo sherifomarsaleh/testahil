@@ -50,7 +50,7 @@ for i, k in enumerate(keys):
             va='center', fontsize=8.6, color=INK)
 ax.axvline(spot, color=INK, lw=1.6)
 # spot label BELOW the bars, not over the title (EAND fig-1 defect fixed)
-ax.text(spot, -0.62, f'spot {spot:.2f}', color=INK, fontsize=9, ha='center', va='top')
+ax.text(spot + 0.03, -0.62, f'spot {spot:.2f}', color=INK, fontsize=9, ha='left', va='top')
 cB = L['central']
 ax.axvspan(cB['base'] * 0.95, cB['base'] * 1.05, color=GOLD, alpha=0.13)
 ax.set_yticks(range(len(keys)), names[::-1], fontsize=8.6)
@@ -140,7 +140,7 @@ for i, (nm, ba, (lo, hi)) in enumerate(ex):
     ax.plot([ba, ba], [y - 0.21, y + 0.21], color=BRASS, lw=3.4)
     ax.text(hi + 0.02 * xr, y, f'{lo:.2f}–{hi:.2f} · base {ba:.2f}', va='center', fontsize=8.6)
 ax.axvline(spot, color=INK, lw=1.6)
-ax.text(spot, -0.58, f'spot {spot:.2f}', fontsize=9, color=INK, ha='center', va='top')
+ax.text(spot + 0.02, -0.58, f'spot {spot:.2f}', fontsize=9, color=INK, ha='left', va='top')
 pc = sorted([E['e1']['base'], E['e2']['base'], E['e3']['base']])[1]
 ax.axvspan(pc * 0.95, pc * 1.05, color=GOLD, alpha=0.13)
 ax.set_yticks(range(len(ex)), [e[0] for e in ex][::-1], fontsize=8.6)

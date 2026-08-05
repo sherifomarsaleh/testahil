@@ -90,6 +90,13 @@ def table(rows, widths, header=True, first_col_bold=False, size=9.3, header_fill
     t.alignment = WD_TABLE_ALIGNMENT.CENTER
     cell_margins(t); borders(t)
     t.autofit = False
+    # honour the widths in renderers that read the grid (LibreOffice), not just
+    # per-cell w — and pin the total layout as fixed
+    tblPr = t._tbl.tblPr
+    layout = OxmlElement('w:tblLayout'); layout.set(qn('w:type'), 'fixed')
+    tblPr.append(layout)
+    for j, w in enumerate(widths):
+        t.columns[j].width = Inches(w)
     for i, row in enumerate(rows):
         for j, val in enumerate(row):
             c = t.cell(i, j); c.width = Inches(widths[j])
