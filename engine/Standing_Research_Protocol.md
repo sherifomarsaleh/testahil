@@ -656,13 +656,21 @@ harmless staleness.
    Must clear the same LONO gate that killed the CRPS-selection idea.
 2. **Break-aware volatility estimation inside the engine** (currently only the calibration sample
    is filtered). Moves every published distribution — a deliberate decision, not a silent fix.
-3. **Metals is the weakest calibration in the system — say so plainly.** Gold is a **single-name
-   self-fit**: it is calibrated on its own data, so its PARITY verdict is **circular** in exactly the
-   way Qatar's was until IQCD and QNB de-circularised it. Worse, **silver is a PUBLISHED instrument
-   with no fit of its own — it borrows gold's.** Every other market has been pulled onto a real
-   panel; metals has not. Until silver/copper/platinum history arrives, the metals cone is the
-   least-evidenced thing Testahil publishes, and it should not be presented with the same confidence
-   as an EGX or GCC name.
+3. **Metals is the weakest calibration in the system — say so plainly.** **[CORRECTED
+   04-Aug-2026 — this item had inverted since it was written.]** It used to read "Gold is a
+   single-name self-fit, and silver is published with no fit of its own — it borrows gold's."
+   Both halves are now false: SILVER joined the XAU panel, so gold and silver each receive a
+   genuine leave-one-out fit from the other, exactly as IQCD/QNB de-circularised Qatar.
+   **PLATINUM is now the circular one** — XPT is a single-name panel, and `panel_refresh` falls
+   back to the pooled (i.e. self-) fit when there is no second name to leave out, so platinum's
+   verdict grades itself. Merging XPT into XAU was TESTED on 04-Aug and NOT adopted: every
+   verdict stays PARITY and platinum's honest skill is −0.13% rather than the self-graded
+   +0.78%, but the merged pooled fit narrows gold's published cone 3.3% — the wrong direction
+   for a name already covering only 64.7% in the current regime — and widens platinum's 8.9%,
+   which trips the materiality gate. The circularity is therefore DISCLOSED on platinum's panel
+   rather than traded for a worse cone. A genuine fourth metal (copper) would settle it properly.
+   Two names is still a thin panel: metals remains the least-evidenced thing Testahil publishes
+   and must not be presented with the confidence of an EGX or GCC name.
 4. **UK and Brazil have no covered names**; their profiles are stubs.
 5. **[DONE 13-Jul r2 — sweep executed; 4 contradictions found and corrected]** Every covered name's
    published calibration claim was run against the live production fit (65 names carry a fitted
