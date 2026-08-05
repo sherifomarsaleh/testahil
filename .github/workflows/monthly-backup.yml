@@ -15,11 +15,10 @@ name: Monthly pre-update backup
 #   * The repo's real permanent backup is git history on GitHub. This artifact is
 #     a convenience point-in-time snapshot of HEAD (matches the original backup's
 #     "repo at HEAD" intent), retained 90 days (the maximum for a PUBLIC repo).
-#   * A GitHub Action CANNOT reach the "Selection engine" Claude project's living
-#     documents (signed pre-registration, export-gate docs, the append-only
-#     shadow ledger). Those are private and MUST NOT be published to this PUBLIC
-#     repo. Backing them up stays a project-side concern — see
-#     engine/selection/docs/STATE.md.
+#   * This backs up the repo only. The Selection Engine R&D that used to live in
+#     engine/selection/ was removed on 05-Aug-2026 (unshipped research, not part
+#     of the live product); its record is archived privately in the
+#     sherifomarsaleh/testahil-selection-vault repo, not here.
 
 on:
   workflow_dispatch: {}          # manual "run it now" button in the Actions tab
