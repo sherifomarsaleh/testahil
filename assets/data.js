@@ -1449,8 +1449,8 @@ const TICKERS = {
       bear: "A close below 209000 would break the nearest support and open the 167145 zone."
     },
     asof: {
-      mc:   { data:"2026-07-27", computed:"2026-07-27" },
-      tech: { data:"2026-07-28", computed:"2026-07-29" }
+      mc:   { data:"2026-07-28", computed:"2026-07-28" },
+      tech: { data:"2026-07-28", computed:"2026-08-05" }
     },
     files: {
       study: "files/Samsung_Valuation_Study_27-06-2026_public.docx?v=2706",
@@ -1723,17 +1723,17 @@ const TICKERS = {
     name: "Orascom Construction",
     nameAr: "أوراسكوم للإنشاءات",
     code: "EGX:ORAS",
-    spot: 713.50,
-    spotDate: "close 22 Jul 2026",
+    spot: 717.90,
+    spotDate: "close 29 Jul 2026",
     ccy: "EGP",
     fair: { bear: 740, base: 928, full: 1272 },              // 30 Jun 2026 study — 5-lens weighted central 928 (+29% vs spot 720); bear = normalized-earnings low lens 740; full = SOTP bull 1272. USD fundamentals at USD/EGP 49.2.
     dist: {
-      t20: { label:"1 month",   p5:626.04, p25:686.07, p50:724.14, p75:764.62, p95:837.88, resolve:"2026-08-23" },
-      t60: { label:"3 months",  p5:563.24, p25:673.02, p50:746.99, p75:827.58, p95:988.28, resolve:"2026-10-22" }
+      t20: { label:"1 month",   p5:633.96, p25:691.94, p50:728.60, p75:767.49, p95:837.64, resolve:"2026-08-30" },
+      t60: { label:"3 months",  p5:565.77, p25:676.57, p50:751.60, p75:834.08, p95:997.99, resolve:"2026-10-29" }
     },
-    hz: { h1:20, h3:61, l1:"1 month", l3:"3 months", cal:true },
+    hz: { h1:20, h3:62, l1:"1 month", l3:"3 months", cal:true },
     touch: [ /* descending high → low; P(touch) 1-month %, 3-month % */
-      [850.00, 6, 32], [800.00, 18, 52], [760.00, 43, 72], [680.00, 41, 61], [640.00, 13, 35], [600.00, 4, 19]
+      [850.00, 6, 34], [800.00, 19, 54], [760.00, 45, 74], [680.00, 35, 58], [640.00, 10, 33], [600.00, 3, 17]
     ],
     levels: { res:[724.05, 762, 812.50], sup:[710.01, 680, 503.13] },
     tech: {
@@ -1743,8 +1743,8 @@ const TICKERS = {
       bear: "A close below 710.01 would break the nearest support and open the 503.13 zone."
     },
     asof: {
-      mc:   { data:"2026-07-22", computed:"2026-07-28" },
-      tech: { data:"2026-07-29", computed:"2026-07-29" }
+      mc:   { data:"2026-07-29", computed:"2026-07-29" },
+      tech: { data:"2026-07-29", computed:"2026-08-05" }
     },
     files: {
       study: "files/ORAS_Valuation_Study_30-06-2026_public.docx?v=3006",
