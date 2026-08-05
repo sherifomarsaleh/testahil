@@ -66,10 +66,15 @@ rich([("The model's read: meaningfully overvalued — the price still pays for d
        "of EGP 1.4 mn — effectively zero. Meanwhile the balance sheet carries EGP 10.9 bn of drawn bank facilities "
        "(disclosed; up from 8.96 bn a year earlier) against EGP ~4 bn of equity, working capital has swollen to "
        "~117% of annual revenue (receivables and copper-inflated inventory), and operating cash flow has been "
-       "negative — at ~22% funding costs, finance expense alone consumes the entire operating line in a soft year. The DCF, run on a discount-rate schedule that follows the central bank's own easing "
-       f"path down (21.4% this year gliding to 13.9% terminal), values the equity near EGP {L['dcf']['base']:.2f}; "
-       f"the relative and book lenses cluster at {L['relative']['base']:.2f}–{L['book']['base']:.2f}; only a "
-       f"full margin-recovery-plus-collection scenario ({L['dcf']['bull']:.2f}) reaches today's price. "
+       "negative — at ~22% funding costs, finance expense alone consumes the entire operating line in a soft year. "
+       "The valuation is built bottom-up from tonnage: implied volumes fell from ~24,000 t (96% of capacity, "
+       "FY23–24) to ~9,500 t annualized in 1Q26 (~38%), and conversion EBITDA collapsed from ~146,000 to "
+       "~11,000 EGP per tonne. On that build, discounted at a rate schedule following the central bank's own "
+       "easing path (21.4% gliding to 15.0% terminal, normalized capital structure), the enterprise is worth "
+       "LESS than its disclosed EGP 10.9 bn of bank debt — the intrinsic equity is negative and is floored at "
+       f"zero only by limited liability. The normalized-earnings and book lenses ({L['normalized']['base']:.2f} "
+       f"and {L['book']['base']:.2f}) assume the balance sheet gets fixed first; even the bull scenario "
+       f"({L['central']['bull']:.2f} central) sits {abs(L['central']['bull']/spot-1)*100:.0f}% below today's price. "
        "Technically the tape is neutral-to-firm — above the short averages, below the falling 200-day, RSI mid-50s "
        "— and the three-month simulation, which prices the stock's own path rather than its value, puts the "
        f"5th–95th percentile band at EGP {p3['5']:.2f}–{p3['95']:.2f} with a median near {p3['50']:.2f}. "
@@ -106,10 +111,11 @@ rich([('Bottom line. ', dict(bold=True)),
       (f"Every fundamental lens, and every one of the three expert methods, lands below the market price — the "
        f"most generous read ({L['normalized']['base']:.2f}, normalized earnings power) still sits "
        f"{abs(L['normalized']['base']/spot-1)*100:.0f}% under spot, and the cash-flow-based reads sit far lower. "
-       f"The only fundamental path to EGP {spot:.2f} is the bull scenario: gross margins recovering most of the "
-       "way back toward the devaluation-era prints AND the working-capital mountain collecting into cash AND the "
-       "easing cycle completing on schedule. The market may also simply be pricing ELEC as a small-cap trading "
-       "vehicle — the stock trades actively on the EGX70 rotation, and the controlling group has been a steady "
+       f"On the bottom-up tonnage build there is NO fundamental path to EGP {spot:.2f} inside the modelled "
+       f"scenario space: even the bull case — conversion economics recovering to ~175,000 EGP/tonne, volumes near "
+       f"70% utilization, full collection, an easing overshoot — centres at {L['central']['bull']:.2f}, still "
+       f"{abs(L['central']['bull']/spot-1)*100:.0f}% below the market. Reaching spot requires the devaluation "
+       "windfall itself to return. The market may also simply be pricing ELEC as a small-cap trading vehicle — the stock trades actively on the EGX70 rotation, and the controlling group has been a steady "
        "seller into that liquidity (block sales at EGP 2.00–2.21 through 2026). The probabilistic map's "
        f"median ({p3['50']:.2f}) is above spot only because it prices the stock's own path — the carry on Egyptian "
        "money is 19.5% a year and the simulation is anchored on it; it is not a statement about value.", {})],
@@ -177,25 +183,30 @@ caption('Δ working capital shown as (build) / release. FY26E’s large positive
 rows = [
  ['DCF bridge', 'EGP mn'],
  ['Σ PV of explicit FCFF (FY26–30E)', f"{dcf['pv_sum']:,.0f}"],
- [f"Terminal value (g = 5.0%, ROIC-consistent: 14.8% ROIC × 34% reinvestment)", f"{dcf['tv']:,.0f}"],
+ [f"Terminal value (g = 5.0%, ROIC-consistent: {dcf['roic_T']*100:.1f}% ROIC × {dcf['rr_T']*100:.0f}% reinvestment)", f"{dcf['tv']:,.0f}"],
  ['PV of terminal value (at the year-5 factor)', f"{dcf['pv_tv']:,.0f}"],
  ['Enterprise value', f"{dcf['ev']:,.0f}"],
  ['Terminal value as % of EV', f"{dcf['tv_pct']*100:.0f}%"],
- ['less: net debt (FY25, derived — see §1.6)', f"({dcf['net_debt']:,.0f})"],
+ ['less: net debt (FY25: disclosed facilities − est. cash)', f"({dcf['net_debt']:,.0f})"],
  ['less: non-controlling interests', f"({dcf['nci']:,.0f})"],
- ['Equity value', f"{dcf['eq']:,.0f}"],
- ['per share (3,313.5 mn shares)', pegp(dcf['ps'])],
+ ['Equity value — INTRINSIC (EV does not cover the debt)', f"({-dcf['eq_unfloored']:,.0f})"],
+ ['Equity value — floored at zero (limited liability)', f"{dcf['eq']:,.0f}"],
+ ['per share (3,313.5 mn shares) — nominal option-value placeholder', pegp(dcf['ps'])],
 ]
 table(rows, [4.0, 1.6], first_col_bold=True)
-P(f"Three honesty notes. First, {dcf['tv_pct']*100:.0f}% of the EV sits in the terminal value — this is partly a "
-  "bet on Egyptian normalisation, which is why §1.9 grids both the terminal rate and the this-year rate "
-  f"independently. Second, the equity value is a razor-thin residual: the EGP {dcf['ev']/1000:.1f} bn EV barely "
-  f"clears the EGP {dcf['net_debt']/1000:.1f} bn of net debt, so the base equity rounds to almost nothing and every "
-  "1 bn of EV is worth ~EGP 0.30/share — which is exactly why the bear–bull span "
-  f"({L['dcf']['bear']:.2f}–{L['dcf']['bull']:.2f}) is so wide. Third, the terminal growth rate is funded, "
-  "not asserted: 5% nominal growth at a ~13.9% terminal return on capital requires reinvesting ~36% of NOPAT, and "
-  "the terminal cash flow pays for it. A 5% rate that kept the explicit years’ low reinvestment would have "
-  "quietly manufactured value from nothing.", size=9.6)
+P(f"Four honesty notes, and they carry the study. First, the base-case DCF says the enterprise is worth EGP "
+  f"{abs(dcf['eq_unfloored'])/1000:.1f} bn LESS than its net debt: at record copper (which inflates the working "
+  "capital the business must carry) and pre-windfall conversion economics, the discounted cash flows do not cover "
+  "the disclosed EGP 10.9 bn facilities. A share cannot be worth less than zero — limited liability floors the "
+  "equity — so what a holder owns at the base case is an option on the bull scenario, not a claim on current cash "
+  f"flows. Second, {dcf['tv_pct']*100:.0f}% of the EV sits in the terminal value, which is why §1.9 grids the "
+  f"terminal rate and the this-year rate independently. Third, the terminal is ROIC-consistent and the arithmetic "
+  f"cuts AGAINST the company: at a terminal return on capital of {dcf['roic_T']*100:.1f}% versus a "
+  f"{coc['wacc_term']*100:.1f}% terminal cost of capital, growth SUBTRACTS value — funding 5% growth absorbs "
+  f"{dcf['rr_T']*100:.0f}% of NOPAT to earn less than the capital costs, so the g-sensitivity gradient runs the "
+  "unusual way (more growth, less value) by construction, not by error. Fourth, every 1 bn of EV is worth ~EGP "
+  f"0.30/share, which is why the bear–bull span ({L['dcf']['bear']:.2f}–{L['dcf']['bull']:.2f}) is so wide: the "
+  "bull case is not a tweak — it requires windfall conversion economics to partially return.", size=9.6)
 
 H2('1.2  Book value and replacement — the asset lens')
 P('ELEC has never paid a dividend, so a dividend lens is unavailable; the asset lens takes its place. Book equity '
@@ -238,8 +249,8 @@ H2('1.4  Normalized earnings power — where this sits in the cycle')
 P('Cycle position first: FY2023–24 were the top — devaluation repriced the finished-goods book faster than '
   'the cost base, and net margin hit 14.4% then 9.6%. FY2025–26 is the washout: revenue −21.5% then '
   '−44% in 1Q26, a net loss, and margin compression as stable-pound competition returned. Mid-cycle is '
-  'neither: we take FY28E-scale operations (revenue ~EGP 11.1 bn, EBITDA ~16%) with a normalised funding cost '
-  f'(15% on a reduced ~EGP 6 bn net debt) → normalized net profit ≈ EGP {E["np_norm"]:,.0f} mn, EPS '
+  'neither: we take FY28E-scale operations from the tonnage build (13.4 kt at 54% utilization, revenue ~EGP 12.5 bn, EBITDA ~12%) with a normalised funding cost '
+  f'(15% on net debt CONDITIONALLY reduced to ~EGP 6 bn — i.e. this lens assumes the balance sheet has already been fixed, which the base-case cash flows do not achieve) → normalized net profit ≈ EGP {E["np_norm"]:,.0f} mn, EPS '
   f'≈ {E["eps_norm"]:.2f}. At a justified through-cycle 6.5× (a deep discount to Elsewedy’s 10.4× '
   'for leverage, concentration and float), the lens lands at '
   f'{pegp(L["normalized"]["base"])}.', size=10.5)
@@ -271,26 +282,56 @@ rich([(f"Central fair value ≈ {pegp(cb)}/share", dict(bold=True)),
        "cluster, at the far edge of the bull span. The disagreement in this study is not between the lenses; it "
        "is between all of them and the price.", {})])
 
-H2('1.6  The drivers — sourcing gate first, then the build')
-P('Before any driver is set, its evidentiary status is stated. ELEC’s audited statements were unreachable '
-  'through available channels; the table lists each driver, its mode (disclosed / derived / judgment), and the '
-  'justification. Every input also appears, with source and date, in the companion Source Register.', size=9.8)
+H2('1.6  The drivers — a bottom-up tonnage build, calibrated on disclosed anchors')
+P('The forecast is built from physical volumes and unit economics, not top-line growth rates. Revenue = tonnes '
+  'shipped × price per tonne, where price per tonne = LME copper × EGP/USD × a fabrication uplift of 1.387× '
+  '(copper is ~72% of a power-cable price — industry norm, LME moves passed through quotations). EBITDA = tonnes '
+  '× conversion EBITDA per tonne. Margins are OUTPUTS of this build, not assumptions. The company discloses no '
+  'volumes, so the build is calibrated on what IS disclosed — revenue, copper, the currency — and validated '
+  'against the stated ~25,000 t/yr capacity:', size=9.8)
+TG = D2['tonnage']; HV = TG['hist_vol']; HE = TG['hist_ebitda_per_t']
 rows = [
- ['Driver', 'Mode', 'Justification'],
- ['Revenue FY23/24/25; NP FY23/24/25; 1Q26', 'Disclosed', 'Multiply-sourced bourse-disclosure reporting of the EGX filings'],
- ['FY24 EBIT 3,400 · interest ~1,700', 'Disclosed / derived', 'Aggregator EBIT + stated 2.0× coverage; closes to reported NP within 0.8%'],
- ['FY25 finance cost ~2,150; EBIT ~2,800', 'Derived', 'Back-solved from reported NP at 22.5% tax and the rate environment'],
- ['Bank facilities 10,900 (FY25) vs 8,960 (FY24)', 'Disclosed', 'FY25 results coverage; the FY24 comparative matches the FY24 debt print (~9,000, aggregator) — cross-validated'],
- ['Net debt FY25 ~10,200 · NWC ~12,640 (117% of rev.)', 'Derived', 'Disclosed facilities less estimated cash; NWC rebalanced on FY25 assets 16,460'],
- ['Revenue path: −19.6% then +14/12/10/8%', 'Judgment', '1Q26 −44% base effect; EETC EGP 45bn plan, EU €690mn, interconnector'],
- ['EBITDA margin: 7.5% → 18%', 'Judgment', '1Q26 DISCLOSED gross margin 5.7% / operating ~0 sets the trough; windfall prints ~25% set the ceiling'],
- ['NWC intensity: 112% → 88% of revenue', 'Judgment', 'Partial collection; NOT full reversion to FY24’s 76%'],
- ['Capex 1.6% of revenue', 'Judgment', 'No disclosed capex any year (gap); D&A ~0.7% corroborates a light base'],
+ ['Implied history', 'LME avg ($/t)', 'EGP avg', 'Price/t (k EGP)', 'Implied volume (kt)', 'Utilization', 'Conv. EBITDA/t (k)'],
+ ['FY23', f"{TG['copper_hist']['FY23']:,.0f}", f"{TG['egp_hist']['FY23']:.1f}", f"{HV['FY23']['price_per_t']*1000:,.0f}",
+  f"{HV['FY23']['vol_kt']:.1f}", f"{HV['FY23']['util']*100:.0f}%", f"{HE['FY23']:.0f}"],
+ ['  FY23 at the parallel rate (~38)', f"{TG['copper_hist']['FY23']:,.0f}", '38.0',
+  f"{HV['FY23_alt_parallel']['price_per_t']*1000:,.0f}", f"{HV['FY23_alt_parallel']['vol_kt']:.1f}",
+  f"{HV['FY23_alt_parallel']['util']*100:.0f}%", '—'],
+ ['FY24 (the validation year)', f"{TG['copper_hist']['FY24']:,.0f}", f"{TG['egp_hist']['FY24']:.1f}",
+  f"{HV['FY24']['price_per_t']*1000:,.0f}", f"{HV['FY24']['vol_kt']:.1f}", f"{HV['FY24']['util']*100:.0f}%", f"{HE['FY24']:.0f}"],
+ ['FY25', f"{TG['copper_hist']['FY25']:,.0f}", f"{TG['egp_hist']['FY25']:.1f}", f"{HV['FY25']['price_per_t']*1000:,.0f}",
+  f"{HV['FY25']['vol_kt']:.1f}", f"{HV['FY25']['util']*100:.0f}%", f"{HE['FY25']:.0f}"],
+ ['Q1-2026, annualized', '12,600', '50.4', f"{HV['Q1_26_annualized']['price_per_t']*1000:,.0f}",
+  f"{HV['Q1_26_annualized']['vol_kt']:.1f}", f"{HV['Q1_26_annualized']['util']*100:.0f}%", f"{HE['Q1_26']:.0f}"],
 ]
-table(rows, [2.6, 1.1, 3.4], first_col_bold=True, size=8.7)
-caption('Modes: Disclosed = company figure via bourse reporting; Derived = arithmetic on disclosed figures with a '
-        'stated assumption; Judgment = the house’s own forecast view, sensitized in §1.9.')
-
+table(rows, [1.95, 0.95, 0.7, 1.05, 1.15, 0.85, 1.0], first_col_bold=True, size=8.3)
+caption('The fabrication uplift (1.387×) is set from the industry copper-share norm, NOT fitted to this table — '
+        'that FY24 then back-solves to 24.0 kt, 96% of the stated capacity in the boom year, is the validation. '
+        'The decomposition’s central finding: the revenue collapse is a VOLUME collapse (utilization ~96% → '
+        '~38%), partly masked by record copper; and conversion EBITDA per tonne collapsed with it (146 → 11 k '
+        'EGP/t) as fixed costs lost their absorption. FY25’s 182 k/t is inflated by copper inventory gains. '
+        'Capacity figure is single-sourced and possibly parent-only — utilization is indicative.')
+P('The forecast drivers, on the same axes:', size=9.8, space_after=4)
+fr_ = dcf['rows']
+rows = [['Driver', 'FY26E', 'FY27E', 'FY28E', 'FY29E', 'FY30E'],
+ ['Volume (kt)'] + [f"{r['vol_kt']:.1f}" for r in fr_],
+ ['Utilization'] + [f"{r['util']*100:.0f}%" for r in fr_],
+ ['LME copper ($/t) — flat, no house view'] + [f"{c:,.0f}" for c in TG['copper_fcst']],
+ ['EGP/USD (~3%/yr crawl)'] + [f"{e:.1f}" for e in TG['egp_fcst']],
+ ['Price per tonne (k EGP)'] + [f"{r['price_per_t']*1000:,.0f}" for r in fr_],
+ ['Revenue (EGP mn)'] + [f"{r['rev']:,.0f}" for r in fr_],
+ ['Conversion EBITDA/t (k EGP)'] + [f"{r['ebitda_per_t']:.0f}" for r in fr_],
+ ['EBITDA (EGP mn) — output'] + [f"{r['ebitda']:,.0f}" for r in fr_],
+ ['EBITDA margin — output'] + [f"{r['margin']*100:.1f}%" for r in fr_],
+]
+table(rows, [2.15, 0.95, 0.95, 0.95, 0.95, 0.95], first_col_bold=True, size=8.5)
+caption('Volume recovery to 64% utilization by FY30E (EETC’s EGP 45 bn plan, the EU €690 mn package, '
+        'interconnector follow-on) — still below the FY23–24 near-full prints. Conversion EBITDA/t recovers to '
+        '135 k by FY30E: nominally below FY24’s 146 k despite five years of EGP inflation, and, as a share of '
+        'realized price (13.7%), matching the PRE-windfall 2022 norm (~12%) rather than the devaluation-era '
+        '25%. Working capital stays on its intensity glide (112% → 88% of revenue) — copper strength therefore '
+        'inflates the working capital the model must fund, which is exactly the mechanism the tonnage build '
+        'exists to price. Every driver above is a stated, sensitized house judgment (§1.9).')
 H2('1.7  The crux — working capital first, margins second, rates third')
 P('Three judgments drive this valuation, in order of size. FIRST, collection. Working capital stands near '
   '~EGP 12.6 bn — 117% of a full year’s revenue — against ~76% a year earlier: copper-inflated inventory plus '
@@ -301,7 +342,7 @@ P('Three judgments drive this valuation, in order of size. FIRST, collection. Wo
   'of terminal working-capital intensity is worth roughly EGP 0.15–0.20/share. SECOND, the margin. FY24–25 '
   'EBITDA margins near 25% carried devaluation inventory gains; the DISCLOSED 1Q26 lines put the trough on the '
   'table — gross margin 5.7%, operating profit zero. The model’s 16–18% mid-cycle is a judgment between the '
-  'proven trough and the windfall ceiling — each 1.5 points is worth ~EGP 0.35/share (§1.9 grid). THIRD, the '
+  'proven trough and the windfall ceiling — each 15% on conversion EBITDA/t is worth roughly EGP 0.25–0.35/share (§1.9 grid). THIRD, the '
   'rate path: at 22% money, finance expense consumes the operating line; at the terminal 15%, the same business '
   'supports a meaningful EPS again. The easing calendar is therefore load-bearing — which is exactly why it is '
   'built into the discount schedule rather than averaged away.', size=10.5)
@@ -325,10 +366,11 @@ rows = [
  ['Cost of equity Ke', f"{coc['ke_cds']*100:.2f}%", '= 18.91 + 0.964 × 9.41'],
  ['Cost of debt Kd (pre-tax, marginal EGP)', f"{coc['kd']*100:.1f}%", 'Corridor + credit margin; checked against effective rates 23.5% (FY24) and 21.7% (FY25, on the disclosed debt path) — inside 150bp'],
  ['Debt currency', '~100% EGP (presumption, flagged)', 'No facility disclosure reachable; no USD facility found in any search — the gap is stated, not assumed away'],
- ['Weights E / D', f"{coc['we']*100:.0f}% / {coc['wd']*100:.0f}%", 'Market cap 7.26 bn vs disclosed FY25 bank facilities 10.9 bn'],
+ ['Weights E / D — explicit window', f"{coc['we']*100:.0f}% / {coc['wd']*100:.0f}%", 'Market cap 7.26 bn vs disclosed FY25 bank facilities 10.9 bn'],
  ['WACC — explicit window (this year)', f"{coc['wacc_exp']*100:.2f}%", 'CDS-primary (rating alternative 23.20%)'],
  ['Terminal rf (norm-built)', f"{coc['rf_term']*100:.1f}%", 'CBE’s own Q4-2028 inflation target 5% + 5.5pp real-rate convention'],
  ['Terminal ERP · terminal Kd', f"{coc['erp_term']*100:.1f}% · {coc['kd_term']*100:.1f}%", 'Normalised below crisis level · Egyptian long-run corporate norm 14–16%'],
+ ['Weights E / D — terminal (normalized)', f"{coc['we_term']*100:.0f}% / {coc['wd_term']*100:.0f}%", 'The steady state presupposes deleveraging; today’s ~60% distress weight into perpetuity would be circular (the equity weight depends on the DCF’s own output). Conservative direction: more weight on the dearer equity leg'],
  ['WACC — terminal', f"{coc['wacc_term']*100:.2f}%", 'Capitalises the terminal value; reached via the glide below'],
 ]
 table(rows, [2.6, 1.3, 3.0], first_col_bold=True, size=8.6)
@@ -353,8 +395,10 @@ for i, w in enumerate(S['wacc_grid']):
     rows.append([f"{w*100:.1f}%"] + [f"{v:.2f}" for v in S['table'][i]])
 table(rows, [1.5, 1.0, 1.0, 1.0, 1.0, 1.0], first_col_bold=True, size=9.0)
 caption(f"DCF fair value (EGP/share) across terminal WACC × terminal growth. Base cell "
-        f"{coc['wacc_term']*100:.1f}% × 5% = {dcf['ps']:.2f}. Even the friendliest cell "
-        f"({(S['wacc_grid'][0])*100:.1f}% × 7%) stays below spot.")
+        f"{coc['wacc_term']*100:.1f}% × 5% = {dcf['ps']:.2f} (equity floored at zero — the base EV does not "
+        "cover the net debt). Note the g-gradient runs the UNUSUAL way — more growth, less value — because the "
+        "terminal return on capital (10.3%) sits below the terminal cost of capital (15.0%): growth that earns "
+        "less than it costs subtracts value. This is the construction working correctly, not an error.")
 S2 = D2['sens_expl']
 rows = [['Explicit \\ terminal WACC'] + [f"{w*100:.1f}%" for w in S2['term_grid']]]
 for i, w in enumerate(S2['expl_grid']):
@@ -363,12 +407,14 @@ table(rows, [1.7, 1.0, 1.0, 1.0, 1.0, 1.0], first_col_bold=True, size=9.0)
 caption('Explicit-window WACC × terminal WACC, each varied independently around its own base — what the '
         'valuation needs the ECONOMY to do, separate from what it needs the company to do.')
 S3 = D2['sens_mn']
-rows = [['EBITDA-margin shift \\ terminal NWC %'] + [f"{n*100:.0f}%" for n in S3['nwc_grid']]]
+rows = [['Conversion-EBITDA/t shift \\ terminal NWC %'] + [f"{n*100:.0f}%" for n in S3['nwc_grid']]]
 for i, m in enumerate(S3['margin_grid']):
-    rows.append([f"{m*100:+.1f}pp"] + [f"{v:.2f}" for v in S3['table'][i]])
+    rows.append([f"{m*100:+.0f}%"] + [f"{v:.2f}" for v in S3['table'][i]])
 table(rows, [2.1, 0.95, 0.95, 0.95, 0.95, 0.95], first_col_bold=True, size=8.9)
-caption('The company grid: margin recovery × working-capital collection. Spot (2.19) requires roughly the '
-        'top-right corner — +3pp margins AND collection back to ~76% intensity — simultaneously.')
+caption('The company grid: conversion economics × working-capital collection. +30% on conversion EBITDA/t '
+        '(≈175 k EGP/t — a partial return of the windfall) AND collection back toward FY24’s ~76% intensity '
+        'still does not reach spot on this lens alone; the market price needs the bull case on every axis at '
+        'once, including the cost of capital.')
 rows = [['Beta', 'Ke', 'WACC (explicit)', 'WACC (terminal)', 'DCF (EGP/sh)']]
 for b in D2['sens_beta']:
     rows.append([f"{b['beta']:.2f}" + (' ← CI low' if abs(b['beta']-0.78)<0.005 else
@@ -484,17 +530,21 @@ rows = [
 ]
 table(rows, [1.9, 1.9, 3.1], first_col_bold=True)
 rich([('Verdict (a fair-value read, not a recommendation). ', dict(bold=True)),
-      (f"ELEC reads meaningfully overvalued on fundamentals ({(cb/spot-1)*100:+.0f}% to the central estimate). "
-       "The read rests on three legs, each checkable: the earnings the market is capitalising were devaluation-era "
-       "windfalls the company itself has stopped printing (a loss in 1Q26); the balance sheet ties up more than a "
-       "full year's revenue in working capital funded at 23% money; and the owners with the best information — "
-       "the controlling group — have been sellers at EGP 2.00–2.21 throughout 2026. What would change the "
-       "read is equally specific: evidence of collection (receivables down, operating cash flow positive), an "
-       "H1-2026 print showing margins holding near 17%+ without devaluation help, or the easing cycle accelerating "
-       "past the modelled path. The bear–bull span (EGP "
-       f"{L['central']['bear']:.2f}–{L['central']['bull']:.2f}) is wide enough to demand humility — the bull "
-       "edge does reach the price — but a valuation that requires the best corner of every grid at once is a "
-       "description of hope, not of value. We publish the distribution, not a target.", {})])
+      (f"ELEC reads severely overvalued on fundamentals ({(cb/spot-1)*100:+.0f}% to the central estimate), and the "
+       "bottom-up build sharpens the statement: at record copper and pre-windfall conversion economics, the "
+       "enterprise is worth less than its disclosed EGP 10.9 bn of bank debt — the base-case equity is an option, "
+       "not a claim — and the modelled equity P&L path breaches book solvency by FY29E unless margins or volumes "
+       "outrun the base case. Three checkable legs carry the read: the earnings the market capitalises were "
+       "devaluation-era windfalls the company has stopped printing (1Q26: gross margin 5.7%, operating profit "
+       "zero); implied volumes have fallen to ~38% of capacity while working capital of ~117% of revenue is "
+       "funded at 22% money; and the controlling group has been selling at EGP 2.00–2.21 throughout 2026. What "
+       "would change the read is equally specific: an H1-2026 print showing conversion EBITDA per tonne back "
+       "above ~100,000 EGP without currency help, receivables actually collecting (operating cash flow positive, "
+       "debt falling), or a step-devaluation — the one event that genuinely reruns the windfall. Even then, note "
+       f"the ceiling: the modelled bull central is {L['central']['bull']:.2f}. The bear–bull span (EGP "
+       f"{L['central']['bear']:.2f}–{L['central']['bull']:.2f}) is wide, humility is warranted on the derived "
+       "lines, and the tonnage build rests on a single-sourced capacity figure — but no reading of the disclosed "
+       "numbers we can construct supports the current price. We publish the distribution, not a target.", {})])
 
 # ================= §5 catalysts ==============================================
 H1('5  Catalysts to watch')
@@ -546,6 +596,12 @@ for head, body in [
   'expense, capex, the working-capital split and facility-level terms remain DERIVED. The FY24 triangulation closing within 0.8% earns the derivations a place in the model, but a single '
   'audited disclosure could move the net-debt anchor by ±1 bn — worth ±EGP 0.30/share. Every derived '
   'line is flagged in §1.6 and the Source Register.'),
+ ('The base-case equity P&L path raises a genuine solvency question. ', 'Charging 22%-gliding-to-15% money on '
+  'the disclosed debt against recovering-but-thin conversion economics, the modelled book equity erodes from '
+  '~EGP 4.1 bn to below zero by FY29E, with net debt rising toward EGP 17 bn. This is a modelled path on derived '
+  'lines, not an audit opinion — but it is what the disclosed numbers imply if nothing improves, and it explains '
+  'why the DCF equity is an option rather than a claim. The exits are named in §4: collection, conversion '
+  'recovery above ~100k EGP/t, a step-devaluation, or a controlling-group recapitalisation.'),
  ('The working-capital release is an assumption, not a fact. ', 'FY26E’s cash flow leans on ~EGP 2.6 bn of '
   'collection as revenue contracts. Receivables from state-linked customers can age for years; if intensity stays '
   'above ~100% of revenue, the bear case is the base case.'),
@@ -616,8 +672,10 @@ rows = [
 ]
 table(rows, [2.3, 0.85, 0.85, 0.85, 0.85, 0.85, 0.85], first_col_bold=True, size=8.4)
 caption('(e) = estimate bounded by disclosed prints; (d) = derived from disclosed totals (construction in '
-        '§1.6). FY22/FY24/FY25 total assets and the FY24 debt/cash/equity set are sourced; the FY23 year-end '
-        'balance sheet was never found (flagged gap). Forecast columns are the model’s clean-surplus roll-forward.')
+        '§1.6). FY22/FY24/FY25 total assets, the FY24 debt/cash/equity set and the FY25 facilities are sourced; '
+        'the FY23 year-end balance sheet was never found (flagged gap). Forecast columns are the model’s '
+        'clean-surplus roll-forward — and they are the honest bad news: on the base case, book equity erodes '
+        'toward zero by FY29–30E while net debt compounds. See §7, first two caveats.')
 H2('A.3  Cash flow markers and the working-capital story')
 rows = [
  ['Marker', 'FY23', 'FY24', 'FY25', 'FY26E'],
@@ -761,7 +819,7 @@ P('Expert 2 to Expert 1: “Your normalized EPS pays out of profits that have ne
   'Show me one year of positive operating cash flow and I will move; until then a multiple on paper earnings is '
   'a multiple on paper.”', size=9.8)
 P('Expert 3 to both: “You are arguing about the numerator. The economics are simpler: this business earns '
-  '~15% on its capital and pays ~23% for it, and will for two more years. A negative spread at 2.5× leverage '
+  '~10% on its capital at the terminal and pays 22% for money today, 15% even in the normalized state. A negative spread at this leverage '
   'is value destruction on a schedule — the only question is whether the easing cycle arrives before the '
   'balance sheet does.”', size=9.8)
 

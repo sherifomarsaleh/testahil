@@ -86,19 +86,49 @@ INP = dict(
     equity_fy25_est=I(4100.0, "House derivation: FY24 equity 3,600 + FY25 NP 500.3, no dividends "
                       "(company has never paid one)", "2026-08-05", "House"),
 
-    # ---- forecast drivers (house judgments, sensitized) ----
-    rev_growth=I([-0.196, 0.14, 0.12, 0.10, 0.08],
-                 "House: FY26E anchored on Q1-26 -43.8% with H2 stabilisation as CBE resumes easing; "
-                 "recovery years on the EETC EGP45bn grid plan, EU 690mn package, Saudi interconnector "
-                 "completion and 6.7% CAGR industry path (6Wresearch)", "2026-08-05", "House"),
-    ebitda_margin=I([0.075, 0.140, 0.160, 0.175, 0.180],
-                    "House, re-anchored on the DISCLOSED Q1-26 lines: gross margin 5.7% and operating "
-                    "profit ~zero (vs 33.1%/30.2% in Q1-25) => FY26E full-year ~7.5% assumes H2 recovers "
-                    "to ~11-12% as tenders reprice and rates ease; mid-cycle 16-18% sits between the "
-                    "proven trough and the windfall-era ~25% prints; sensitized +/-3pp", "2026-08-05", "House"),
-    capex_pct=I(0.016, "House: maintenance-level for a working-capital-intensive assembler; no disclosed "
-                "capex found any year (flagged gap); FY24 D&A ~0.7% of revenue corroborates a light "
-                "fixed-asset base", "2026-08-05", "House"),
+    # ---- BOTTOM-UP TONNAGE BUILD (rev 3) ------------------------------------
+    # Revenue = volume (kt) x price-per-tonne, where price/t = LME copper x EGP x a
+    # fabrication uplift k. EBITDA = volume x conversion-EBITDA per tonne. Margins
+    # are OUTPUTS of this build, not inputs.
+    capacity_kt=I(25.0, "Annual production capacity ~25,000 t/yr — company profile via IATF exhibitor "
+                  "page; SINGLE-SOURCED and possibly parent-only (consolidated subsidiaries may add "
+                  "capacity), so utilization ratios are indicative, flagged", "2025", "Company"),
+    copper_hist=I(dict(FY23=8478.0, FY24=9147.0, FY25=10000.0),
+                  "LME cash annual averages: 2023 $8,478/t and 2024 $9,147/t (LME published averages); "
+                  "2025 ~$10,000/t derived from INN's dated statement that the 2026 consensus average "
+                  "$12,600 is '+26% vs the 2025 average'", "2026-08-05", "Global"),
+    copper_fcst=I([12600.0] * 5, "Flat at the 2026 consensus average $12,600/t (INN) — deliberately NO "
+                  "house commodity view; Goldman's >$14,000 scenario lives in the bull case, a "
+                  "mean-reversion lower in the bear case", "2026-08-05", "Global"),
+    egp_hist=I(dict(FY23=30.7, FY24=45.3, FY25=49.5),
+               "USD/EGP annual averages: 2023 official ~30.7 (parallel ~38 — the FY23 implied-volume "
+               "range below carries both); 2024 blended ~45.3 (float 06-Mar-24); 2025 ~49.5 "
+               "(range-bound 47-52, +6% appreciation year)", "2026-08-05", "Country"),
+    egp_fcst=I([50.4, 52.0, 53.5, 55.0, 56.5],
+               "~3%/yr nominal crawl — the inflation differential narrows as the CBE targets bite; "
+               "far below PPP catch-up, consistent with the post-float managed range", "2026-08-05", "House"),
+    k_uplift=I(1.387, "Fabrication uplift: cable price per tonne / copper cost per tonne. Set from the "
+               "industry norm that copper is ~70-75% of a power-cable price (IndexBox: LME 'directly "
+               "and rapidly reflected' in quotations) => k = 1/0.72 = 1.39. VALIDATION, not "
+               "calibration: FY24 revenue 13,778 at 9,147 x 45.3 x 1.387 = 574k EGP/t implies 24.0 kt "
+               "— 96% of the stated 25 kt capacity in the sector's boom year. Sensitized ±5%", "2026-08-05", "House"),
+    vols_fcst=I([10.4, 11.9, 13.4, 14.8, 16.0],
+                "Volumes (kt): Q1-26 implied ~2.4 kt/qtr sets the FY26E base (~42% utilization); "
+                "recovery on EETC's EGP 45bn plan, the EU package and interconnector follow-on to "
+                "~64% utilization by FY30E — still below the FY23-24 near-full prints; sensitized ±15%", "2026-08-05", "House"),
+    ebitda_per_t=I([40.0, 90.0, 115.0, 128.0, 135.0],
+                   "Conversion EBITDA per tonne (k EGP/t). Historical: FY23 ~111k, FY24 ~145k (both "
+                   "near-full utilization WITH devaluation inventory gains), FY25 ~183k (copper-gain "
+                   "inflated), Q1-26 ~11k (under-absorption at ~40% utilization). Forecast recovers "
+                   "with utilization to 135k by FY30E — BELOW FY24's 145k nominal despite five years "
+                   "of EGP inflation, i.e. a ~30% real discount to the windfall; sensitized ±30%. CROSS-CHECK: as a "
+                   "share of realized price/t, the terminal 135/987 = 13.7% matches the PRE-windfall 2022 norm "
+                   "(~12% of price at 24.4kt implied full utilization) — the forecast returns the company to its "
+                   "pre-devaluation conversion economics, not to the windfall", "2026-08-05", "House"),
+    capex_mn=I([225.0, 243.0, 262.0, 283.0, 306.0],
+               "Maintenance capex ~EGP 9k per tonne of capacity (25 kt), escalated ~8%/yr — no "
+               "disclosed capex any year (flagged gap); FY24 D&A ~0.7% of revenue corroborates a "
+               "light fixed-asset base", "2026-08-05", "House"),
     nwc_pct=I([1.12, 1.06, 1.00, 0.94, 0.88],
               "House: FY25 intensity ~117% of revenue (derived on disclosed debt) gliding to 88% as "
               "receivables collect and copper-inflated inventory normalises; FY24 was ~76% — full "
@@ -141,6 +171,11 @@ INP = dict(
                         "search sweep 05-Aug-2026, negative result", "2026-08-05", "Company"),
     kd_term=I(0.150, "Terminal Kd: Egyptian long-run corporate-borrowing norm 14-16%, midpoint "
               "(standing house norm; no name-specific reason to deviate)", "2026-08-05", "House"),
+    wd_term=I(0.40, "Terminal debt weight D/(D+E): NORMALIZED capital structure, not today's ~60% "
+              "distress weight — the steady state the terminal value describes presupposes "
+              "deleveraging, and current market-value weights are circular (the equity weight "
+              "depends on the DCF's own output). 40% is the industry-normal structure for a "
+              "working-capital-funded cable maker; sensitized via the terminal-WACC grid", "2026-08-05", "House"),
     rf_term=I(0.105, "Terminal rf norm-built: CBE's own stated Q4-2028 inflation target 5%% (+/-2pp) "
               "+ ~5.5pp EM real-rate convention (house standing construction)", "2026-08-05", "House"),
     erp_term=I(0.070, "Terminal ERP normalised below the crisis-era 9.41%% CDS-based level toward the "
@@ -216,9 +251,18 @@ wacc_exp = we * ke_cds + wd * kd_at
 wacc_exp_rating = we * ke_rating + wd * kd_at
 
 # ---- terminal (norm-built, never backed out of a price) ----
+# Terminal weights are NORMALIZED, not today's distress weights: using the current
+# 60% debt share into perpetuity would assert the near-insolvent capital structure
+# persists in the very steady state whose existence presupposes deleveraging — and
+# it is circular (the equity weight depends on the equity value the DCF outputs).
+# 40% debt / 60% equity is the industry-normal structure (Elsewedy-like), disclosed
+# as a house view and sensitized. NB this RAISES terminal WACC vs distress weights
+# (more weight on the dearer equity leg) — the conservative direction.
 ke_term = V['rf_term'] + V['beta'] * V['erp_term']
 kd_term_at = V['kd_term'] * (1 - TAX)
-wacc_term = we * ke_term + wd * kd_term_at
+wd_term = V['wd_term']
+we_term = 1 - wd_term
+wacc_term = we_term * ke_term + wd_term * kd_term_at
 
 # ---- glide: fractions from kd_path (never invented separately) ----
 kdp = V['kd_path']
@@ -230,23 +274,52 @@ for w in fwd:
     c /= (1 + w)
     df.append(c)
 
-# ---- forecast & FCFF waterfall ----
+# ---- BOTTOM-UP forecast & FCFF waterfall (tonnage build) -------------------
+# price/t (EGP mn per kt = k EGP/t / 1000): LME x EGP x k_uplift
 yrs = ['FY26E', 'FY27E', 'FY28E', 'FY29E', 'FY30E']
+
+def price_per_t(cu_usd, egp):
+    return cu_usd * egp * V['k_uplift'] / 1e6          # EGP mn per tonne
+
+# implied HISTORICAL volumes (the calibration evidence)
+hist_vol = {}
+for y in ('FY23', 'FY24', 'FY25'):
+    ppt = price_per_t(V['copper_hist'][y], V['egp_hist'][y])
+    hist_vol[y] = dict(price_per_t=ppt, vol_kt=V[f'rev_{y.lower()}'] / ppt / 1000.0,
+                       util=V[f'rev_{y.lower()}'] / ppt / 1000.0 / V['capacity_kt'])
+# FY23 alternative at the parallel rate (~38): the honest range
+_p23 = price_per_t(V['copper_hist']['FY23'], 38.0)
+hist_vol['FY23_alt_parallel'] = dict(price_per_t=_p23, vol_kt=V['rev_fy23'] / _p23 / 1000.0,
+                                     util=V['rev_fy23'] / _p23 / 1000.0 / V['capacity_kt'])
+q1_ppt = price_per_t(12600.0, 50.4)
+hist_vol['Q1_26_annualized'] = dict(price_per_t=q1_ppt,
+                                    vol_kt=4 * V['q1_26_rev'] / q1_ppt / 1000.0,
+                                    util=4 * V['q1_26_rev'] / q1_ppt / 1000.0 / V['capacity_kt'])
+# k EGP per tonne (EGP mn / kt); Q1-26 adds ~25mn quarterly D&A back to the
+# disclosed near-zero operating profit
+hist_ebitda_per_t = {'FY23': hist_is['FY23']['ebitda'] / hist_vol['FY23']['vol_kt'],
+                     'FY24': hist_is['FY24']['ebitda'] / hist_vol['FY24']['vol_kt'],
+                     'FY25': hist_is['FY25']['ebitda'] / hist_vol['FY25']['vol_kt'],
+                     'Q1_26': (V['q1_26_op'] + 25.0) / (hist_vol['Q1_26_annualized']['vol_kt'] / 4)}
+
 rows = []
-rev = V['rev_fy25']
 nwc_prev = V['nwc_fy25_est']
 for i, y in enumerate(yrs):
-    rev = rev * (1 + V['rev_growth'][i])
-    ebitda = rev * V['ebitda_margin'][i]
+    ppt = price_per_t(V['copper_fcst'][i], V['egp_fcst'][i])
+    vol = V['vols_fcst'][i]
+    rev = vol * ppt * 1000.0
+    ebitda = vol * V['ebitda_per_t'][i]                # kt x kEGP/t = EGP mn
     dna = rev * V['dna_pct']
     ebit = ebitda - dna
     nopat = ebit * (1 - TAX)
-    capex = rev * V['capex_pct']
+    capex = V['capex_mn'][i]
     nwc = rev * V['nwc_pct'][i]
     dwc = nwc - nwc_prev
     fcff = nopat + dna - capex - dwc
     rows.append(dict(year=y, rev=rev, ebitda=ebitda, dna=dna, ebit=ebit, nopat=nopat,
                      capex=capex, nwc=nwc, dwc=dwc, fcff=fcff,
+                     vol_kt=vol, price_per_t=ppt, util=vol / V['capacity_kt'],
+                     ebitda_per_t=V['ebitda_per_t'][i], margin=ebitda / rev,
                      fwd_wacc=fwd[i], df=df[i], pv=fcff * df[i]))
     nwc_prev = nwc
 
@@ -266,47 +339,59 @@ tv_pct = pv_tv / ev
 # ---- bridge ----
 net_debt = V['net_debt_fy25_est']
 nci = 0.0   # consolidated-attributable gap ~1.1mn FY25 — immaterial, carried at zero (flagged)
-eq_dcf = ev - net_debt - nci
-dcf_ps = eq_dcf / SH
+eq_dcf_unfloored = ev - net_debt - nci
+# LIMITED LIABILITY: the equity of a listed company cannot be worth less than zero.
+# The unfloored intrinsic (negative here — the EV does not cover the net debt) is
+# DISCLOSED in the bridge; the lens carries a nominal floor as pure option value.
+eq_dcf = max(eq_dcf_unfloored, 0.0)
+dcf_ps_unfloored = eq_dcf_unfloored / SH
+dcf_ps = max(eq_dcf / SH, 0.01)
 
-# ---- scenario engine for the other lens legs & bear/bull ------------------
-def run_dcf(margin_shift=0.0, nwc_end=None, wacc_t=None, g=None, nd=None,
-            rev_g=None):
+# ---- scenario engine (tonnage knobs) --------------------------------------
+def run_dcf(ept_shift=0.0, vol_shift=0.0, cu_shift=0.0, nwc_end=None,
+            wacc_t=None, g=None, nd=None):
+    """ept_shift/vol_shift/cu_shift are proportional (+0.30 = +30%). Copper moves
+    BOTH the price line and, via revenue, the working-capital need — the
+    double-edged pass-through the tonnage build exists to capture."""
     wt = wacc_term if wacc_t is None else wacc_t
     gg = V['g_term'] if g is None else g
     nde = net_debt if nd is None else nd
-    rg = V['rev_growth'] if rev_g is None else rev_g
     nwcp = list(V['nwc_pct'])
-    if nwc_end is not None:                      # linear re-glide to a different endpoint
+    if nwc_end is not None:
         nwcp = list(np.linspace(nwcp[0], nwc_end, 5))
     fwd_ = [wacc_exp - (wacc_exp - wt) * f for f in glide_frac]
     df_, c_ = [], 1.0
     for w in fwd_:
         c_ /= (1 + w)
         df_.append(c_)
-    rev_ = V['rev_fy25']; nwcprev = V['nwc_fy25_est']; pv = 0.0
+    nwcprev = V['nwc_fy25_est']; pv = 0.0
     for i in range(5):
-        rev_ *= (1 + rg[i])
-        ebitda_ = rev_ * (V['ebitda_margin'][i] + margin_shift)
+        ppt = price_per_t(V['copper_fcst'][i] * (1 + cu_shift), V['egp_fcst'][i])
+        vol = V['vols_fcst'][i] * (1 + vol_shift)
+        rev_ = vol * ppt * 1000.0
+        ebitda_ = vol * V['ebitda_per_t'][i] * (1 + ept_shift)
         dna_ = rev_ * V['dna_pct']
         nopat_ = (ebitda_ - dna_) * (1 - TAX)
-        capex_ = rev_ * V['capex_pct']
         nwc_ = rev_ * nwcp[i]
-        fcff_ = nopat_ + dna_ - capex_ - (nwc_ - nwcprev)
+        fcff_ = nopat_ + dna_ - V['capex_mn'][i] - (nwc_ - nwcprev)
         pv += fcff_ * df_[i]
         nwcprev = nwc_
     ic = nwc_ + 0.05 * rev_
     roic = nopat_ / ic
     if roic <= gg / 0.95:                        # growth unfundable — cap RR at 95%
-        return (0.0 - nde) / SH if pv <= nde else (pv - nde) / SH
+        return max((pv - nde) / SH, 0.0)
     rr = gg / roic
     tv_ = nopat_ * (1 + gg) * (1 - rr) / (wt - gg)
     return (pv + tv_ * df_[-1] - nde) / SH
 
-dcf_bear = max(run_dcf(margin_shift=-0.025, nwc_end=1.00, wacc_t=wacc_term + 0.02,
-                       g=0.04, nd=net_debt + 1000), 0.01)
-dcf_bull = run_dcf(margin_shift=+0.035, nwc_end=0.78, wacc_t=wacc_term - 0.015,
-                   g=0.06, nd=net_debt - 1000)
+# bear: volumes stall, conversion stays depressed, copper stays up (WC strain),
+#       collection fails, terminal costlier. bull: windfall partially returns
+#       (ept +30% ~ 175k/t), volumes toward full utilization, collection to the
+#       FY24 intensity, easing overshoots.
+dcf_bear = max(run_dcf(ept_shift=-0.30, vol_shift=-0.10, nwc_end=1.05,
+                       wacc_t=wacc_term + 0.02, g=0.04, nd=net_debt + 1000), 0.01)
+dcf_bull = run_dcf(ept_shift=+0.30, vol_shift=+0.15, cu_shift=-0.10, nwc_end=0.76,
+                   wacc_t=wacc_term - 0.015, g=0.06, nd=net_debt - 1000)
 
 # ---- equity P&L / debt schedule (interest on OPENING net debt, no circularity) ----
 # Tax only on positive EBT; FY27's small profit is sheltered by the FY26 loss
@@ -380,12 +465,12 @@ for b in beta_grid:
     ke_b = rf_star_cds + b * V['erp_cds']
     kt_b = V['rf_term'] + b * V['erp_term']
     wex_b = we * ke_b + wd * kd_at
-    wt_b = we * kt_b + wd * kd_term_at
+    wt_b = (1 - V['wd_term']) * kt_b + V['wd_term'] * kd_term_at
     sens_beta.append(dict(beta=b, ke=ke_b, wacc_exp=wex_b, wacc_term=wt_b,
                           dcf=run_dcf(wacc_t=wt_b) if wt_b > V['g_term'] + 0.02 else float('nan')))
-margin_grid = [-0.03, -0.015, 0.0, 0.015, 0.03]
+margin_grid = [-0.30, -0.15, 0.0, 0.15, 0.30]      # conversion-EBITDA/t shifts (proportional)
 nwc_grid = [1.00, 0.94, 0.88, 0.82, 0.76]
-sens_mn = [[run_dcf(margin_shift=m, nwc_end=n) for n in nwc_grid] for m in margin_grid]
+sens_mn = [[run_dcf(ept_shift=m, nwc_end=n) for n in nwc_grid] for m in margin_grid]
 
 # ---- terminal-growth reconciliation table (historical) ----
 tg_recon = []
@@ -440,8 +525,9 @@ e2 = dict(method_short='owner cash earnings (accountant)', base=e2_base,
           rng=(e2_base * 0.6, e2_base * 1.5))
 econ_profit_ps = dcf_ps  # Expert 3 anchors on the economic-profit DCF with own haircuts
 e3_base = (ev * 0.95 - net_debt) / SH
-e3 = dict(method_short='cash returns: ROIC vs the cost of capital', base=max(e3_base, 0.1),
-          rng=(max((ev * 0.85 - net_debt - 500) / SH, 0.05), (ev * 1.05 - net_debt + 500) / SH))
+e3 = dict(method_short='cash returns: ROIC vs the cost of capital', base=max(e3_base, 0.10),
+          rng=(max((ev * 0.85 - net_debt - 500) / SH, 0.05),
+               max((ev * 1.05 - net_debt + 500) / SH, 0.20)))
 
 # ============================ ASSERT =========================================
 err = []
@@ -453,8 +539,8 @@ if not (step0['skill_norm'] > 0 and all(step0['ci_blocks'][b][0] > 0 for b in ('
 # P&L closure on the one fully-triangulated year
 if abs(np_fy24_check - V['np_fy24']) / V['np_fy24'] > 0.03:
     err.append(f'FY24 P&L does not close: {np_fy24_check:.0f} vs {V["np_fy24"]:.0f}')
-# bridge closes exactly
-if abs((ev - net_debt - nci) - eq_dcf) > 1e-6:
+# bridge closes exactly (on the unfloored intrinsic)
+if abs((ev - net_debt - nci) - eq_dcf_unfloored) > 1e-6:
     err.append('EV->equity bridge does not close')
 # signs into the bridge
 if not (net_debt > 0 and nci >= 0):
@@ -474,6 +560,9 @@ if abs(V['kd'] - V['kd_eff_fy25']) > 0.015:
     err.append('Kd more than 150bp from the most recent effective-rate check')
 if V['kd'] > max(V['kd_eff_fy24'], V['kd_eff_fy25']) + 0.005:
     err.append('Kd exceeds peak-year effective rate by more than 50bp')
+# terminal capital structure: normalized, and lighter on debt than today's distress weights
+if not (V['wd_term'] < wd):
+    err.append('terminal debt weight not below the current distress weight')
 # terminal-growth procedure
 if V['g_term'] != 0.05:
     err.append('terminal g center is not the standing 5%')
@@ -496,7 +585,15 @@ print(f'  WACC explicit {wacc_exp*100:.2f}% (CDS-primary; rating alt {wacc_exp_r
 print(f'  forward WACC: ' + ' / '.join(f'{w*100:.1f}%' for w in fwd))
 print(f'  Kd {V["kd"]*100:.1f}% vs effective checks {V["kd_eff_fy24"]*100:.1f}% (FY24) / {V["kd_eff_fy25"]*100:.1f}% (FY25) — inside 150bp/50bp bounds')
 print(f'  terminal: ROIC {roic_T*100:.1f}% x RR {rr_T*100:.1f}% = g {roic_T*rr_T*100:.1f}%  | TV = {tv_pct*100:.0f}% of EV')
-print(f'  bridge: EV {ev:,.0f} - ND {net_debt:,.0f} - NCI {nci:,.0f} = equity {eq_dcf:,.0f} = EGP {dcf_ps:.2f}/sh')
+print(f'  bridge: EV {ev:,.0f} - ND {net_debt:,.0f} = intrinsic equity {eq_dcf_unfloored:,.0f} '
+      f'-> floored at 0 under limited liability (lens carries EGP {dcf_ps:.2f} option-value placeholder)')
+print('  COST-OF-CAPITAL VERIFICATION —')
+print(f'    Ke explicit = (rf {V["rf"]*100:.2f} - CDS {V["sov_spread_cds"]*100:.2f}) + beta {V["beta"]:.3f} x ERP {V["erp_cds"]*100:.2f} = {ke_cds*100:.2f}%  (rating alt {ke_rating*100:.2f}%; retired raw {ke_raw*100:.2f}%)')
+print(f'    beta triple: R2 {beta_reg["r2"]:.3f}, n {beta_reg["n"]}, SE {beta_reg["se"]:.3f}, CI90 [{beta_reg["ci90"][0]:.2f},{beta_reg["ci90"][1]:.2f}] — usable, not weak-flagged')
+print(f'    Kd marginal {V["kd"]*100:.1f}% (after-tax {kd_at*100:.2f}%) vs effective {V["kd_eff_fy24"]*100:.1f}/{V["kd_eff_fy25"]*100:.1f}%')
+print(f'    weights: explicit E/D {we*100:.0f}/{wd*100:.0f} (market values) -> TERMINAL {we_term*100:.0f}/{wd_term*100:.0f} (normalized structure, not distress weights)')
+print(f'    Ke_term = rf_term {V["rf_term"]*100:.1f} + beta x ERP_term {V["erp_term"]*100:.1f} = {ke_term*100:.2f}% | Kd_term {V["kd_term"]*100:.1f}%')
+print(f'    terminal ROIC {roic_T*100:.1f}% vs WACC_term {wacc_term*100:.2f}% — spread {"NEGATIVE: growth subtracts value; the g-grid gradient inverts by construction" if roic_T < wacc_term else "positive"}')
 print(f'  central {central["base"]:.2f} [{central["bear"]:.2f}-{central["bull"]:.2f}] vs spot {SPOT} ({central["base"]/SPOT-1:+.0%})')
 
 # ============================ EMIT ===========================================
@@ -512,6 +609,11 @@ out = dict(
                  nwc_fy25e=V['nwc_fy25_est'], payables_fy25e=V['payables_fy25_est']),
     interims=dict(q1_26_rev=V['q1_26_rev'], q1_26_np=V['q1_26_np'],
                   q1_25_rev=V['q1_25_rev'], q1_25_np=V['q1_25_np']),
+    tonnage=dict(hist_vol=hist_vol, hist_ebitda_per_t=hist_ebitda_per_t,
+                 capacity_kt=V['capacity_kt'], k_uplift=V['k_uplift'],
+                 copper_hist=V['copper_hist'], copper_fcst=V['copper_fcst'],
+                 egp_hist=V['egp_hist'], egp_fcst=V['egp_fcst'],
+                 vols_fcst=V['vols_fcst'], ebitda_per_t=V['ebitda_per_t']),
     coc=dict(rf=V['rf'], sov_cds=V['sov_spread_cds'], sov_rating=V['sov_spread_rating'],
              rf_star_cds=rf_star_cds, rf_star_rating=rf_star_rating,
              erp_cds=V['erp_cds'], erp_rating=V['erp_rating'], beta=V['beta'],
@@ -519,11 +621,12 @@ out = dict(
              kd=V['kd'], kd_at=kd_at, kd_eff_fy24=V['kd_eff_fy24'], kd_eff_fy25=V['kd_eff_fy25'],
              we=we, wd=wd, wacc_exp=wacc_exp, wacc_exp_rating=wacc_exp_rating,
              rf_term=V['rf_term'], erp_term=V['erp_term'], ke_term=ke_term,
-             kd_term=V['kd_term'], wacc_term=wacc_term,
+             kd_term=V['kd_term'], wd_term=wd_term, we_term=we_term, wacc_term=wacc_term,
              kd_path=kdp, glide_frac=glide_frac, fwd_wacc=fwd, df=df),
     dcf=dict(rows=rows, pv_sum=pv_sum, tv=tv, pv_tv=pv_tv, ev=ev, tv_pct=tv_pct,
              fcff_T1=fcff_T1, roic_T=roic_T, rr_T=rr_T, ic_T=ic_T,
              net_debt=net_debt, nci=nci, eq=eq_dcf, ps=dcf_ps,
+             eq_unfloored=eq_dcf_unfloored, ps_unfloored=dcf_ps_unfloored,
              nd_fy26=nd_fy26),
     is_fcst=is_fcst,
     debt_schedule=dict(nd_path=nd_path, eq_path=eq_path,

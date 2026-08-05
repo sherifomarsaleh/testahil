@@ -47,8 +47,9 @@ for i, ln in enumerate([
  'Companion model · Independent Valuation Study · Educational analysis · Not investment advice', '',
  'What this workbook is. A transparent companion to the ELEC valuation study. Every blue cell is an input; every',
  'black cell is a formula; green cells link across sheets. All inputs live on the Assumptions sheet — change one',
- '(the EBITDA margin path, the working-capital intensity, the terminal WACC, the net-debt anchor) and the whole',
- 'model reprices.', '',
+ '(volumes, copper, the EGP path, conversion EBITDA per tonne, the working-capital intensity, the net-debt',
+ 'anchor) and the whole model reprices. The forecast is a bottom-up TONNAGE build: revenue = volume x (LME x',
+ 'EGP x 1.387 fabrication uplift); EBITDA = volume x conversion EBITDA/t. Margins are outputs, not inputs.', '',
  'What it is not. It is not investment advice, a recommendation, or a price target. Values are model outputs',
  'shown as ranges. The preparer is not licensed by any securities regulator and may hold a position.', '',
  'Sourcing note, up front. ELEC\'s audited statements were unreachable through available channels. Headline',
@@ -56,7 +57,7 @@ for i, ln in enumerate([
  'the working-capital split, the FY25 net-debt anchor) are DERIVED — each is annotated where it appears and',
  'listed with source and date in the companion Source Register document. FY2024, the one fully-triangulated',
  'year, closes to the reported net profit within 0.8% using the derived lines.', '',
- 'Discount convention. Each explicit year is discounted at its own forward WACC, gliding 21.4% -> 13.9% on the',
+ 'Discount convention. Each explicit year is discounted at its own forward WACC, gliding 21.4% -> 15.0% on the',
  'same easing calendar as the interest forecast; the terminal value is capitalised at the terminal WACC and',
  'discounted at the year-5 cumulative factor. One date, one price of time.', '',
  'Currency. EGP million unless stated. Spot EGP 2.19 (5 Aug 2026 close). Sheets: Summary · Fundamental',
@@ -96,7 +97,7 @@ r = inp(wa, r, 'Terminal rf (norm-built)', 0.105, PCT, "CBE's Q4-2028 inflation 
 r = inp(wa, r, 'Terminal ERP (normalised)', 0.070, PCT, 'Below the crisis-era 9.41%, toward the B-rating norm')  # B22
 put(wa, f'A{r}', 'Terminal Ke'); put(wa, f'B{r}', '=B21+B13*B22', BLACK, PCT); r += 1                      # B23
 r = inp(wa, r, 'Terminal Kd', 0.150, PCT, 'Egyptian long-run corporate norm 14-16%, midpoint')             # B24
-put(wa, f'A{r}', 'WACC — terminal', bold=True); put(wa, f'B{r}', '=B19*B23+(1-B19)*B24*(1-B7)', BLACK, PCT, True); r += 1  # B25
+put(wa, f'A{r}', 'WACC — terminal (normalized structure)', bold=True); put(wa, f'B{r}', 0.15, BLACK, PCT, True); r += 1  # B25 — real formula written once wd_term row is known
 r = inp(wa, r, 'Terminal growth g', 0.05, PCT, 'Standing center 5%; grid 3-7% on Sensitivity')             # B26
 r = hdr(wa, r, 'BRIDGE')                                                                                   # 27
 r = inp(wa, r, 'Net debt (FY25, derived)', 10200.0, NUM0, 'Disclosed facilities 10,900 less estimated cash ~700; FY24-vintage sourced alt: 8,172 — worth ±EGP 0.6/sh, see Sensitivity')  # B28
@@ -121,12 +122,20 @@ def drv(row, label, vals, fmt=PCT, note=None):
     if note: put(wa, f'H{row}', note, SUB, None)
     DRV[label] = row
     return row + 1
-r = drv(r, 'Revenue growth', [-0.196, 0.14, 0.12, 0.10, 0.08], note='FY26E on Q1-26 -44%; recovery on the grid-capex cycle')     # 41
-r = drv(r, 'EBITDA margin', [0.075, 0.140, 0.160, 0.175, 0.180], note='1Q26 DISCLOSED: gross margin 5.7%, operating ~0 — the trough; windfall prints ~25% the ceiling')  # 42
-r = drv(r, 'D&A (% of revenue)', [0.013] * 5)                                                              # 43
-r = drv(r, 'Capex (% of revenue)', [0.016] * 5, note='No disclosed capex any year — flagged derivation')   # 44
-r = drv(r, 'Net working capital (% of revenue)', [1.12, 1.06, 1.00, 0.94, 0.88], note='From ~117% FY25e; NOT full reversion to FY24 76%')  # 45
-r = drv(r, 'Forward Kd path', [0.220, 0.200, 0.185, 0.168, 0.155], note='CBE easing resumption; sets the WACC glide shape')      # 46
+r = drv(r, 'Volume (kt)', [10.4, 11.9, 13.4, 14.8, 16.0], '0.0',
+        note='Q1-26 implied ~2.4kt/qtr sets FY26E (~42% util.); recovery to 64% by FY30E on the grid-capex cycle')  # 41
+r = drv(r, 'LME copper (USD/t)', [12600.0] * 5, '#,##0',
+        note='Flat at the 2026 consensus avg — no house commodity view; bull/bear move it')                          # 42
+r = drv(r, 'EGP/USD (avg)', [50.4, 52.0, 53.5, 55.0, 56.5], '0.0',
+        note='~3%/yr crawl; inflation differential narrows as CBE targets bite')                                     # 43
+r = drv(r, 'Conversion EBITDA per tonne (k EGP/t)', [40.0, 90.0, 115.0, 128.0, 135.0], '0',
+        note='Hist: 111 (FY23), 146 (FY24), 182 (FY25, copper-gain inflated), 11 (Q1-26). FY30E 13.7% of price = pre-windfall 2022 norm')  # 44
+r = drv(r, 'Capex (EGP mn)', [225.0, 243.0, 262.0, 283.0, 306.0], '#,##0',
+        note='Maintenance ~EGP 9k per tonne of 25kt capacity, escalated ~8%/yr')                                     # 45
+r = drv(r, 'D&A (% of revenue)', [0.013] * 5)                                                                        # 46
+r = drv(r, 'Net working capital (% of revenue)', [1.12, 1.06, 1.00, 0.94, 0.88],
+        note='From ~117% FY25e; NOT full reversion to FY24 76%')                                                     # 47
+r = drv(r, 'Forward Kd path', [0.220, 0.200, 0.185, 0.168, 0.155], note='CBE easing resumption; sets the WACC glide shape')  # 48
 put(wa, f'A{r}', 'Glide fraction (from the Kd path)')
 for j, c in enumerate(ACOLS):
     put(wa, f'{c}{r}', f"=($C${DRV['Forward Kd path']}-{c}{DRV['Forward Kd path']})/($C${DRV['Forward Kd path']}-$G${DRV['Forward Kd path']})", BLACK, PCT)
@@ -140,8 +149,14 @@ for j, c in enumerate(ACOLS):
     put(wa, f'{c}{r}', (f"=1/(1+{c}{FWD})" if j == 0 else f"={ACOLS[j-1]}{r}/(1+{c}{FWD})"), BLACK, '0.000')
 DFR = r; r += 1                                                                                            # 49
 r = hdr(wa, r, 'BASE-YEAR ANCHORS (FY2025)')                                                               # 50
-r = inp(wa, r, 'Revenue FY25', 10819.0, NUM0, 'Arab Finance/Zawya FY2025 results')                         # B51
-r = inp(wa, r, 'Net working capital FY25 (derived)', 12640.0, NUM0, '~117% of FY25 revenue — construction in study §1.6')  # B52
+r = inp(wa, r, 'Revenue FY25', 10819.0, NUM0, 'Arab Finance/Zawya FY2025 results'); R_REV25 = r - 1
+r = inp(wa, r, 'Net working capital FY25 (derived)', 12640.0, NUM0, '~117% of FY25 revenue — construction in study §1.6'); R_NWC25 = r - 1
+r = inp(wa, r, 'Fabrication uplift k (price/t ÷ copper cost/t)', 1.387, '0.000', 'Copper ~72% of cable price (industry norm); FY24 back-solves to 24.0kt = 96% of capacity — the validation'); R_K = r - 1
+r = inp(wa, r, 'Terminal debt weight D/(D+E)', 0.40, PCT, 'NORMALIZED structure — not today’s ~60% distress weight (circular into perpetuity); conservative direction'); R_WD = r - 1
+r = inp(wa, r, 'Capacity (kt/yr)', 25.0, '0.0', 'Company profile via IATF page — single-sourced, possibly parent-only; utilization indicative'); R_CAP = r - 1
+# WACC-terminal formula can only be written once the wd_term row is known
+wa['B25'] = f"=(1-$B${R_WD})*B23+$B${R_WD}*B24*(1-B7)"
+wa['A25'] = f'WACC — terminal (normalized structure, see B{R_WD})'
 wa.column_dimensions['C'].width = 11; wa.column_dimensions['H'].width = 60
 
 # ============ SEGMENTS =======================================================
@@ -163,16 +178,37 @@ def srow(rr, label, hist, ffml=None, fmt=NUM0, hfont=BLUE, bold=False):
                 put(ws, f'{c}{rr}', f, GREEN if 'Assumptions!' in str(f) else BLACK, fmt, bold=bold)
     return rr + 1
 r = 6
-r = srow(r, 'Revenue', [H['FY23']['rev'], H['FY24']['rev'], H['FY25']['rev']],
-         lambda j, c: (f"=Assumptions!$B$51*(1+Assumptions!{ACOLS[j]}{DRV['Revenue growth']})" if j == 0
-                       else f"={FCOLS[j-1]}{SR['Revenue']}*(1+Assumptions!{ACOLS[j]}{DRV['Revenue growth']})"), NUM0, BLUE, True)
-REV = SR['Revenue']
+TGX = D['tonnage']; HVX = TGX['hist_vol']; HEX = TGX['hist_ebitda_per_t']
+r = srow(r, 'Volume (kt) — implied hist / driver fwd',
+         [round(HVX['FY23']['vol_kt'], 1), round(HVX['FY24']['vol_kt'], 1), round(HVX['FY25']['vol_kt'], 1)],
+         lambda j, c: f"=Assumptions!{ACOLS[j]}{DRV['Volume (kt)']}", '0.0', BLACK)
+VOL = SR['Volume (kt) — implied hist / driver fwd']
+r = srow(r, 'Utilization (÷ 25 kt capacity)', [f'=B{VOL}/Assumptions!$B${R_CAP}', f'=C{VOL}/Assumptions!$B${R_CAP}', f'=D{VOL}/Assumptions!$B${R_CAP}'],
+         lambda j, c: f"={c}{VOL}/Assumptions!$B${R_CAP}", PCT, BLACK)
+r = srow(r, 'LME copper (USD/t, avg)',
+         [TGX['copper_hist']['FY23'], TGX['copper_hist']['FY24'], TGX['copper_hist']['FY25']],
+         lambda j, c: f"=Assumptions!{ACOLS[j]}{DRV['LME copper (USD/t)']}", '#,##0', BLUE)
+CU = SR['LME copper (USD/t, avg)']
+r = srow(r, 'EGP/USD (avg)', [TGX['egp_hist']['FY23'], TGX['egp_hist']['FY24'], TGX['egp_hist']['FY25']],
+         lambda j, c: f"=Assumptions!{ACOLS[j]}{DRV['EGP/USD (avg)']}", '0.0', BLUE)
+EGPR = SR['EGP/USD (avg)']
+r = srow(r, 'Price per tonne (EGP, = Cu × EGP × k)',
+         [f'=B{CU}*B{EGPR}*Assumptions!$B${R_K}', f'=C{CU}*C{EGPR}*Assumptions!$B${R_K}', f'=D{CU}*D{EGPR}*Assumptions!$B${R_K}'],
+         lambda j, c: f"={c}{CU}*{c}{EGPR}*Assumptions!$B${R_K}", '#,##0', BLACK)
+PPT = SR['Price per tonne (EGP, = Cu × EGP × k)']
+r = srow(r, 'Revenue (= volume × price/t)', [H['FY23']['rev'], H['FY24']['rev'], H['FY25']['rev']],
+         lambda j, c: f"={c}{VOL}*{c}{PPT}/1000", NUM0, BLUE, True)
+REV = SR['Revenue (= volume × price/t)']
 r = srow(r, '  memo: power cables (~2/3, est.)', [None]*3, lambda j, c: f"={c}{REV}*2/3")
 r = srow(r, '  memo: telecom & other (~1/3, est.)', [None]*3, lambda j, c: f"={c}{REV}/3")
-r = srow(r, 'EBITDA', [H['FY23']['ebitda'], H['FY24']['ebitda'], H['FY25']['ebitda']],
-         lambda j, c: f"={c}{REV}*Assumptions!{ACOLS[j]}{DRV['EBITDA margin']}")
-EBITDA = SR['EBITDA']
-r = srow(r, 'EBITDA margin', [f'=B{EBITDA}/B{REV}', f'=C{EBITDA}/C{REV}', f'=D{EBITDA}/D{REV}'],
+r = srow(r, 'Conversion EBITDA per tonne (k EGP/t)',
+         [round(HEX['FY23']), round(HEX['FY24']), round(HEX['FY25'])],
+         lambda j, c: f"=Assumptions!{ACOLS[j]}{DRV['Conversion EBITDA per tonne (k EGP/t)']}", '0', BLACK)
+EPT = SR['Conversion EBITDA per tonne (k EGP/t)']
+r = srow(r, 'EBITDA (= volume × EBITDA/t)', [H['FY23']['ebitda'], H['FY24']['ebitda'], H['FY25']['ebitda']],
+         lambda j, c: f"={c}{VOL}*{c}{EPT}", NUM0, BLUE, True)
+EBITDA = SR['EBITDA (= volume × EBITDA/t)']
+r = srow(r, 'EBITDA margin — OUTPUT', [f'=B{EBITDA}/B{REV}', f'=C{EBITDA}/C{REV}', f'=D{EBITDA}/D{REV}'],
          lambda j, c: f"={c}{EBITDA}/{c}{REV}", PCT, BLACK)
 r = srow(r, 'D&A', [H['FY23']['dna'], H['FY24']['dna'], H['FY25']['dna']],
          lambda j, c: f"={c}{REV}*Assumptions!{ACOLS[j]}{DRV['D&A (% of revenue)']}")
@@ -180,8 +216,13 @@ DNA = SR['D&A']
 r = srow(r, 'EBIT', [H['FY23']['ebit'], H['FY24']['ebit'], H['FY25']['ebit']],
          lambda j, c: f"={c}{EBITDA}-{c}{DNA}", NUM0, BLUE, True)
 EBIT = SR['EBIT']
-put(ws, f'A{r+1}', 'Historical EBITDA/D&A/EBIT: FY24 aggregator-sourced (EBIT 3,400, SWS; EBITDA 3,490, Investing.com); '
-    'FY23/FY25 derived by closing the P&L to the reported net profit — flagged (d) in the study.', SUB, None)
+put(ws, f'A{r+1}', 'BOTTOM-UP TONNAGE BUILD. Historical volumes are IMPLIED (revenue ÷ [LME × EGP × k]; k = 1.387 from the '
+    'industry copper-share norm; FY24 back-solves to 24.0kt = 96% of stated capacity — the validation). Historical '
+    'conversion EBITDA/t: 111 (FY23) / 146 (FY24) / 182 (FY25, copper-gain inflated) / 11 (Q1-26 annualized ~9.5kt, '
+    '38% utilization). Q1-26 disclosed: GM 5.7%, operating profit ~0. Forecast volumes/copper/EGP/EBITDA-per-t are '
+    'Assumptions drivers; margins are outputs. Capacity single-sourced, possibly parent-only — utilization indicative.', SUB, None)
+put(ws, f'A{r+2}', 'FY23 note: at the 2023 parallel rate (~38 vs official 30.7) implied volume is 19.4kt (78%) — the '
+    'honest range for that year.', SUB, None)
 
 # ============ DCF ============================================================
 ws = sheet('DCF')
@@ -205,10 +246,10 @@ r = drow(r, '− D&A', lambda j, c: f"=-Segments!{FCOLS[j]}{DNA}")
 r = drow(r, 'EBIT', lambda j, c: f"=Segments!{FCOLS[j]}{EBIT}")
 r = drow(r, 'NOPAT = EBIT × (1 − tax)', lambda j, c: f"={c}{DC['EBIT']}*(1-Assumptions!$B$7)")
 r = drow(r, '+ D&A', lambda j, c: f"=Segments!{FCOLS[j]}{DNA}")
-r = drow(r, '− Capex', lambda j, c: f"=-{c}{DC['Revenue']}*Assumptions!{ACOLS[j]}{DRV['Capex (% of revenue)']}")
+r = drow(r, '− Capex', lambda j, c: f"=-Assumptions!{ACOLS[j]}{DRV['Capex (EGP mn)']}")
 r = drow(r, 'Net working capital', lambda j, c: f"={c}{DC['Revenue']}*Assumptions!{ACOLS[j]}{DRV['Net working capital (% of revenue)']}")
 NWCR = DC['Net working capital']
-r = drow(r, '− Δ working capital', lambda j, c: (f"=-(B{NWCR}-Assumptions!$B$52)" if j == 0
+r = drow(r, '− Δ working capital', lambda j, c: (f"=-(B{NWCR}-Assumptions!$B${R_NWC25})" if j == 0
                                                  else f"=-({c}{NWCR}-{get_column_letter(2+j-1)}{NWCR})"))
 r = drow(r, 'Free cash flow to firm',
          lambda j, c: f"={c}{DC['NOPAT = EBIT × (1 − tax)']}+{c}{DC['+ D&A']}+{c}{DC['− Capex']}+{c}{DC['− Δ working capital']}", NUM0, True)
@@ -232,8 +273,10 @@ r = dline(r, 'Enterprise value', f"=B{SPV}+B{PVT}", NUM0, True); EVR = r - 1
 r = dline(r, 'Terminal value as % of EV', f"=B{PVT}/B{EVR}", PCT)
 r = dline(r, 'less: net debt', "=-Assumptions!$B$28", NUM0, False, GREEN)
 r = dline(r, 'less: non-controlling interests', "=-Assumptions!$B$29", NUM0, False, GREEN)
-r = dline(r, 'Equity value', f"=B{EVR}-Assumptions!$B$28-Assumptions!$B$29", NUM0, True); AEQ = r - 1
-r = dline(r, 'Fair value per share (EGP)', f"=B{AEQ}/Assumptions!$B$6", PX, True); DPS_ = r - 1
+r = dline(r, 'Equity value — INTRINSIC (may be negative)', f"=B{EVR}-Assumptions!$B$28-Assumptions!$B$29", NUM0, True); AEQ = r - 1
+r = dline(r, 'Equity value — floored at zero (limited liability)', f"=MAX(B{AEQ},0)", NUM0, True); AEQF = r - 1
+r = dline(r, 'Intrinsic per share (EGP, unfloored)', f"=B{AEQ}/Assumptions!$B$6", PX)
+r = dline(r, 'Fair value per share (EGP) — floored', f"=MAX(B{AEQF}/Assumptions!$B$6,0.01)", PX, True); DPS_ = r - 1
 r = dline(r, 'Upside / (downside) vs spot', f"=B{DPS_}/Assumptions!$B$5-1", PCT, True)
 put(ws, f'A{r+1}', 'The glide: each year at its own forward WACC (22.6% -> 14.1%), shape from the forward Kd path; '
     'the terminal is capitalised at the terminal WACC and discounted at the identical year-5 cumulative factor.', SUB, None)
@@ -308,7 +351,7 @@ def brow(rr, label, h24, h25, ffml=None, fmt=NUM0, hfont=BLUE, bold=False):
                 put(ws, f'{c}{rr}', f, GREEN if '!' in str(f) else BLACK, fmt, bold=bold)
     return rr + 1
 r = 6
-r = brow(r, 'Net working capital', 10500.0, '=Assumptions!B52',
+r = brow(r, 'Net working capital', 10500.0, f'=Assumptions!B{R_NWC25}',
          lambda j, c: f"=DCF!{get_column_letter(2+j)}{NWCR}")
 r = brow(r, 'PP&E (roll: + capex - D&A)', 650.0, 680.0, None)
 PPE = BS['PP&E (roll: + capex - D&A)']
@@ -400,9 +443,10 @@ rows_ = [
  ('+ Surplus / non-core assets', 0.0, NUM0, False),
  ('− Net debt (FY25: disclosed facilities − est. cash)', "=-Assumptions!B28", NUM0, False),
  ('− Non-controlling interests', "=-Assumptions!B29", NUM0, False),
- ('Equity value', f"=B5+B6+B7+B8", NUM0, True),
- ('per share (EGP)', f"=B9/Assumptions!B6", PX, True),
- ('Upside / (downside) vs spot', f"=B10/Assumptions!B5-1", PCT, True),
+ ('Equity value — intrinsic (may be negative)', f"=B5+B6+B7+B8", NUM0, True),
+ ('Equity value — floored (limited liability)', f"=MAX(B9,0)", NUM0, True),
+ ('per share (EGP) — floored', f"=MAX(B10/Assumptions!B6,0.01)", PX, True),
+ ('Upside / (downside) vs spot', f"=B11/Assumptions!B5-1", PCT, True),
 ]
 r = 5
 for a, b, fmt, bold in rows_:
