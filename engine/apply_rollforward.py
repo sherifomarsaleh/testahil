@@ -282,6 +282,23 @@ def insert_ledger(src: str, rows) -> str:
 
 
 def bump_site_updated(src: str, date: str) -> str:
+    """Move SITE.updated forward to `date` — never backward. [MONOTONIC 05-Aug-2026]
+
+    SITE.updated is the site-wide "last updated" shown on every page; it means
+    "the most recent thing that happened here", not "the anchor of whichever
+    name I just touched". A single-name refresh stamps it with THAT NAME's
+    library close, which is older than the site's last publish whenever the
+    name's own data lags. Refreshing ORAS (library to 29-Jul) the same day ELEC
+    published (05-Aug) rolled the whole site's date back a week — every page
+    quietly claiming to be staler than it was, and the next freshness pass
+    would have read that as truth.
+
+    Going forward is always right (something did just happen); going backward
+    never is, so it is clamped rather than trusted to the caller.
+    """
+    m = re.search(r'const SITE = \{ updated: "([^"]*)"', src)
+    if m and m.group(1) > date:          # ISO dates: lexicographic == chronological
+        return src
     return re.sub(r'(const SITE = \{ updated: ")[^"]*(")', rf'\g<1>{date}\g<2>',
                   src, count=1)
 
