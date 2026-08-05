@@ -463,6 +463,32 @@ def main() -> int:
                                           'the key is not in HAS_BACKTEST -- the '
                                           'panel silently omits its backtest')
 
+    # 9. every published equity/metal reaches assets/markets.js, so the ledger can
+    #    put it in a MARKET tab group. [ADDED 05-Aug-2026]
+    #    Why: the ELEC publish placed engine/raw_ohlc/EG/ELEC.csv and regenerated
+    #    the sitemap, the feed and the footer strip, but NOT the registry -- so
+    #    MARKET_OF['ELEC'] was undefined, marketOf() returned null, and ledger.html
+    #    rendered ELEC OUTSIDE the "EGX -- Egypt" group. Nothing threw; the markup
+    #    was well-formed; only a DOM read of the rendered tab groups showed it.
+    #    That is exactly the failure the registry itself was introduced to close
+    #    (29-Jul-2026: 34 international names rendered under the EGX heading), so
+    #    the rebuild is checked here rather than trusted to a checklist.
+    #    Compare on the LEDGER INSTRUMENT name, not the data.js key: ledger.html
+    #    calls marketOf() with the instrument ("Gold", "Samsung", "XPTUSD"), which
+    #    is what build_market_registry.py keys on. Comparing TICKERS keys instead
+    #    reports five phantom failures on exactly those differently-cased names.
+    markets_js = os.path.join(ROOT, 'assets', 'markets.js')
+    if not os.path.exists(markets_js):
+        fail('assets/markets.js', 'missing -- run scripts/build_market_registry.py --write')
+    else:
+        reg = set(re.findall(r'"([^"]+)"\s*:\s*"[A-Z]{2,3}"',
+                             open(markets_js, encoding='utf-8').read()))
+        for inst in sorted(set(by_inst) - reg):
+            fail(f'markets.js/{inst}', 'on the ledger but absent from the market '
+                                       'registry -- it renders OUTSIDE its exchange '
+                                       'tab group (run scripts/build_market_registry.py '
+                                       '--write after placing the OHLC file)')
+
     for w in warns:
         print(f'WARN  {w}')
     for f in fails:
