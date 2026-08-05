@@ -104,7 +104,7 @@ ax.text(1, cb + 0.012 * ymax, f'fundamental central ≈ {cb:.2f}', color=BRASS, 
 ax.text(days[-1] - 1, spot - 0.03 * ymax, f'spot {spot:.2f}', color=GREY, fontsize=8.6, ha='right')
 ax.set_xlabel('trading sessions ahead'); ax.set_ylabel('EGP / share')
 ax.legend(frameon=False, fontsize=8.5, labelcolor=INK, loc='upper left')
-ax.set_title('Forward price cone to 3 months — 50,000 paths, carry-anchored YZ-HAR-t (calibration-gate PASS)',
+ax.set_title('Forward price cone to 3 months — 50,000 paths, walk-forward-validated volatility engine',
              fontsize=10, pad=8)
 style(ax); fig.tight_layout(); fig.savefig(os.path.join(HERE, 'fig4_fan.png')); plt.close(fig)
 
