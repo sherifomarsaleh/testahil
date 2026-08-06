@@ -3,14 +3,18 @@
 **Status: PROPOSED — not adopted.** Awaiting Sherif's decision. Nothing in this document changes
 a published cone, a `LEDGER` row, or an engine config until it is adopted. Written 6-Aug-2026.
 
-**Phase A is implemented** in `engine/fv_overlay.py` and has been run over the live 31-name EGX
-panel (`fv_overlay_EG_20260806.{json,md}`). It reads published data only and writes nothing back.
-Two clauses of this document were amended by that implementation — the σ source (§2) and the
-already-converged rule (§4) — each marked in place.
+**All three phases are implemented.** Each reads published data only; none writes back to
+`assets/data.js`, and `mc_v3.py` / `market_profiles.py` are untouched.
 
 ```
-python3 engine/fv_overlay.py --market EG --json out.json --md out.md
+python3 engine/fv_overlay.py         --market EG --json out.json --md out.md   # Phase A
+python3 engine/direction_score.py                                              # Phase B self-check
+python3 engine/value_gap_backtest.py --market EG --json out.json --md out.md   # Phase C
 ```
+
+Three clauses of this document were amended by implementation, each marked in place: the σ source
+(§2), the already-converged rule (§4), and the Phase C engine hook (§8) — which stays deliberately
+unwired, because Phase C returns INSUFFICIENT-POWER and promotion must follow measurement.
 
 **Purpose.** Define the one honest way to read a ground-up fair value and a calibrated Monte-Carlo
 cone *together* at the two horizons Testahil publishes — 1 month and 3 months — without
@@ -272,8 +276,42 @@ would reproduce the `rev_1m` false negative exactly.
 | Phase | What | Depends on | Status |
 |---|---|---|---|
 | **A** | The overlay above. Ships on validated machinery; changes no cone. Output labelled PROVISIONAL. | — | **implemented** — `engine/fv_overlay.py` |
-| **B** | Direction-scoring axis added to the gate (§7 test 2). | — | proposed |
-| **C** | Backtest `value_gap` as an alpha signal: add `kind == "value_gap"` to `signal_z`, measure IC on the EG panel under LONO. | **B** | blocked on B |
+| **B** | Direction-scoring axis added to the gate (§7 test 2). | — | **implemented** — `engine/direction_score.py` |
+| **C** | Backtest `value_gap` as an alpha signal, measure IC on the EG panel under LONO. | **B** | **implemented, returns INSUFFICIENT-POWER** — `engine/value_gap_backtest.py` |
+
+### Phase C — first read, 6-Aug-2026
+
+Run: `value_gap_backtest_EG_20260806.{json,md}`. **Verdict: INSUFFICIENT-POWER at both horizons.**
+Not a negative result about the fair values — a statement that the evidence does not yet exist.
+
+| | 1M | 3M |
+|---|---|---|
+| observations with a realized outcome | **5** | **0** |
+| IC (Spearman) | −0.600 (descriptive only) | n/a |
+| sign balance | 5 positive / 0 negative — **one-sided** | n/a |
+| dropped for no realized outcome | 29 | 34 |
+
+Three separate things each independently block a verdict, and all three are data-availability
+facts rather than modelling choices:
+
+1. **n = 5.** Resolving a realistic value-signal IC of 0.10 at 80% power needs n ≈ 783; even
+   IC 0.20 needs n ≈ 194. The observed −0.600 is what a 5-point rank correlation does, not a finding.
+2. **The signal is one-sided.** All five names were undervalued at their origin, so the short
+   side is untested and the IC degenerates to a magnitude ordering within a single sign.
+3. **There is almost no signal history.** 30 of 31 EGX names carry exactly ONE fair value across
+   the entire git history of `assets/data.js`; only GBCO has revisions, and those are same-week
+   edits. A value-gap panel needs *vintages*, and the archive is effectively one cross-section.
+
+**What would unblock it.** Not time alone — re-studies. Each name needs repeated, dated fair-value
+strikes, which is what turns 31 points into a panel. The roll-forward cycle already mints a fresh
+cone monthly; Phase C becomes answerable when fair values are re-struck on a comparable cadence and
+the ledger's graded population grows. Until then the harness runs on every invocation and reports
+its own inadequacy, which is the intended behaviour.
+
+**The engine hook stays unwired.** `signal_active=False` is unchanged, `mc_v3.py` is untouched, and
+`profile.ic` keeps its retained prior. The adapter (`value_gap_backtest.grinold_alpha`) mirrors
+`signal_alpha` exactly and is ready to lift the day an IC clears the gate — promotion is a
+measurement result, never a decision made in advance of one.
 
 **How C closes the loop.** Phase A defines the signal — `G` *is* the standardized value gap that
 `signal_z` would return. Phase C measures its IC. That IC is then the `profile.ic` in the existing

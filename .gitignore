@@ -18,3 +18,7 @@ __pycache__/
 # /opt/pw-browsers/chromium (the script hardcodes that executablePath), so only the
 # node package is ever fetched.
 node_modules/
+
+# Phase C point-in-time fair-value cache (derived from git history; self-invalidating)
+engine/.pit_fair_values_*.json
+engine/.pit_tmp_data.js
