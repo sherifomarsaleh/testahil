@@ -189,9 +189,23 @@ CASES = [
      'and a bigger transport bill carries into the forecast cost stack'),
     ('FY2025 cost of sales — overheads', 'B', +100.0, 'ebitda26', -1, 'as do overheads'),
     # ---- COST OF CAPITAL --------------------------------------------------------
-    ('Terminal growth rate', 'B', +0.01, 'dcf', -1,
-     'terminal return on capital sits BELOW the terminal rate, so growth must be bought '
-     'with reinvestment that earns less than it costs'),
+    # The naive expectation here is that growth destroys value because terminal return on
+    # capital (14.50%) sits below the terminal rate (15.75%). That is the WRONG test, and
+    # revision 3 crossed the line that exposes it. Reinvestment is g/ROIC and ROIC is
+    # N*(1+g)/IC, so the reinvestment charge collapses to a fixed g*IC and the block is
+    #        TV(g) = [N*(1+g) - g*IC] / (W - g),   dTV/dg  prop.  N*(1+W) - IC*W
+    # which contains no g at all: the direction is a CONSTANT of the model and the hurdle
+    # is N/IC vs W/(1+W), not ROIC vs W — the two differ by (1+g)/(1+W) because ROIC is
+    # measured on terminal-YEAR profit against a valuation-DATE capital base. Revision 2
+    # sat at N/IC = 8.2% against the 13.61% hurdle and growth destroyed value; the
+    # corrected price path lifts terminal NOPAT to N/IC = 13.81%, 21bp past it, so growth
+    # now adds value. The magnitude is what matters and it is trivial: +0.10% of the DCF
+    # per point of terminal growth, +0.5% across the whole 3%-7% range.
+    ('Terminal growth rate', 'B', +0.01, 'dcf', +1,
+     'the growth lever moves in the direction the terminal algebra requires: its sign is '
+     'the constant N(1+W) - IC.W, and at N/IC 13.81% against a hurdle of W/(1+W) 13.61% '
+     'that is positive by 21bp — but worth only +0.1% of value per point, so nothing in '
+     'the answer rests on it'),
     ('Beta (own-stock weekly regression)', 'B', +0.20, 'dcf', -1,
      'a higher beta must lower the valuation'),
     ('Beta (own-stock weekly regression)', 'B', +0.20, 'beta_term', +1,

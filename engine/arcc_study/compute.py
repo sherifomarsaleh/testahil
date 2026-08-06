@@ -1,6 +1,34 @@
-"""ARCC (Arabian Cement Company S.A.E., EGX: ARCC) — master computation, REVISION 2.
+"""ARCC (Arabian Cement Company S.A.E., EGX: ARCC) — master computation, REVISION 3.
 
-REVISION 2 REBUILDS THE STUDY ON THE AUDITED CONSOLIDATED FINANCIAL STATEMENTS.
+REVISION 3 CORRECTS THE PRICE PATH, WHICH THE AUDITED RECORD DISPROVED.
+
+Revision 2 rebuilt every company figure on the statements but left one forecast driver
+where revision 1 had put it: local realised price growing 3.0% in FY2026 against 11.5%
+cost inflation, and about 4% a year thereafter — a cumulative real squeeze of 28%. That
+survived the rebuild only because it was never tested against the statements that had
+just been read. It does not survive the test.
+
+  * FY2024: revenue +44.5%, total cash cost +41.8%.
+  * FY2025: revenue +42.6%, total cash cost +12.5%. Gross margin 21.2% -> 23.9% -> 40.6%.
+  * Q1-2026 (reviewed): revenue +17.3% at a 42.9% gross margin against 40.6% for FY2025.
+
+In every period the accounts cover, price outran cost. The 3.0% assumption also implied a
+producer unable to raise price even at the central bank's own 7% medium-term target, while
+the same model had utilisation RISING from 69.7% to 78.2% — volume gained and real price
+lost at once, which is two conservatisms stacked, not one judgement made.
+
+The price path is recalibrated to 8.0% / 9.0% / 8.0% / 7.0% / 6.5%, which is still below
+the cost path in every year and still produces FY2026 group revenue growth of about 10.7%
+against the 17.3% the first quarter actually ran. The cost path is UNCHANGED at headline
+inflation: the company's realised cost inflation ran below the national rate, but crediting
+that here would double-count the alternative-fuel saving already carried in af_saving.
+
+The EBITDA margin therefore glides from the audited 39.3% to about 34.3% by FY2030 rather
+than to 24.5%. It is still an erosion story — the quota that supported price was abolished
+in May 2025 into a structurally over-supplied market — but it is now an erosion the record
+can support rather than one the model manufactured.
+
+REVISION 2 REBUILT THE STUDY ON THE AUDITED CONSOLIDATED FINANCIAL STATEMENTS.
 
 Revision 1 was built without opening a single source document: every outbound fetch was
 refused by the egress policy, so every company figure reached the model as relayed in a
@@ -308,13 +336,28 @@ INP = dict(
                     "disclosed split and sits just above the 30% statutory export cap; the "
                     "path drifts back to the cap as domestic demand absorbs more tonnes",
                     "2026-01-01", "Industry"),
-    price_local_path=I([1.000, 1.030, 1.075, 1.120, 1.165, 1.210],
-                       "Local realised price index on the FY2025 base. Growth of 3.0%, "
-                       "4.4%, 4.2%, 4.0% and 3.9% is set DELIBERATELY BELOW assumed cost "
-                       "inflation, because the decision that freed volume also removed the "
-                       "mechanism supporting price, and 12.6Mt of dormant national capacity "
+    price_local_path=I([1.0000, 1.0800, 1.1772, 1.2714, 1.3604, 1.4488],
+                       "Local realised price index on the FY2025 base: growth of 8.0%, "
+                       "9.0%, 8.0%, 7.0% and 6.5%, i.e. 3.5 points below assumed cost "
+                       "inflation in FY2026 and about 1 point below it thereafter. "
+                       "CALIBRATED TO THE AUDITED RECORD, not asserted. In both years the "
+                       "statements cover, price outran cost: FY2024 revenue +44.5% against "
+                       "total cash cost +41.8%, and FY2025 revenue +42.6% against cash cost "
+                       "+12.5%, which is why the audited gross margin went 21.2% -> 23.9% "
+                       "-> 40.6%. Q1-2026 then printed revenue +17.3% at a 42.9% gross "
+                       "margin against 40.6% for FY2025 — still WIDENING. Against that, "
+                       "the FY2026 step of 8.0% produces group revenue growth of about "
+                       "10.7%, well below the 17.3% the first quarter actually ran, and "
+                       "the erosion thereafter is real but modest. Revision 2 assumed 3.0% "
+                       "in FY2026 against 11.5% cost inflation — a company unable to raise "
+                       "price even at the central bank's own 7% medium-term target — which "
+                       "manufactured the margin collapse rather than deriving it, and sat "
+                       "incoherently beside a utilisation path that RISES across the same "
+                       "window. The erosion that remains is the genuine one: the production "
+                       "quota abolished in May 2025 removed the mechanism supporting price "
+                       "into a structural surplus, and 12.6Mt of dormant national capacity "
                        "is under revival from the second half of 2026",
-                       "2026-01-15", "Industry"),
+                       "2026-08-06", "Industry"),
     price_exp_path=I([1.000, 0.968, 0.944, 0.927, 0.911, 0.895],
                      "Export price index in US dollars on the FY2025 base, declining "
                      "because the EU carbon border mechanism raises the landed cost of "
@@ -328,7 +371,14 @@ INP = dict(
     cost_infl=I([1.000, 1.115, 1.226, 1.336, 1.443, 1.544],
                 "Cumulative local cost-inflation index from the FY2025 base. Steps of "
                 "11.5%, 10.0%, 9.0%, 8.0% and 7.0% track the disinflation path the central "
-                "bank's own reporting describes", "2026-07-10", "Country"),
+                "bank's own reporting describes, converging on its 7% medium-term target. "
+                "This is an INPUT-PRICE path and is deliberately left at headline "
+                "inflation even though the company's own audited cash cost grew only 12.5% "
+                "in FY2025 on volume that rose — i.e. its realised unit cost inflation ran "
+                "below the national rate. Crediting that outperformance here would "
+                "double-count it, because the company-specific efficiency is carried "
+                "separately and explicitly in af_saving, which is anchored to a funded, "
+                "under-construction asset rather than to a trend", "2026-07-10", "Country"),
     af_saving=I([0.000, 0.015, 0.030, 0.040, 0.048, 0.055],
                 "Cumulative saving on the materials-and-fuel line from the alternative-fuel "
                 "and hydrogen programmes, relative to the FY2025 cost base. Not an "
@@ -462,7 +512,7 @@ YRS = ['FY2026E', 'FY2027E', 'FY2028E', 'FY2029E', 'FY2030E']
 HIST = ['FY2023', 'FY2024', 'FY2025']
 
 say("=" * 78)
-say("ARCC — REVISION 2 — rebuilt on the AUDITED consolidated financial statements")
+say("ARCC — REVISION 3 — audited accounts, price path recalibrated to the record")
 say("=" * 78)
 
 # ==================== 1. SHARE COUNT ========================================
@@ -805,12 +855,40 @@ say(f"[Terminal growth ceiling] profit compounded {pat_cagr:.0%} a year over FY2
     f"at that rate against {V['egy_gdp_growth']:.0%} nominal economic growth this company "
     f"equals the whole Egyptian economy in {cross_yrs:.0f} years. Terminal growth is held "
     f"at {V['g_term']:.0%}")
+# --- terminal growth: the ANALYTIC sign condition, not the textbook shortcut ----------
+# The terminal block reinvests g/ROIC of terminal NOPAT, and ROIC is itself defined as
+# N*(1+g)/IC on replacement-cost capital. The reinvestment charge therefore collapses to a
+# FIXED g*IC and the whole block reduces to
+#         TV(g) = [ N*(1+g) - g*IC ] / (W - g)
+#         dTV/dg  proportional to  N*(1+W) - IC*W          <- no g in it at all
+# so the direction of the growth lever is a CONSTANT of the model, and the hurdle is
+#         N/IC  vs  W/(1+W)
+# NOT the familiar ROIC vs W. The two differ by exactly (1+g)/(1+W), because ROIC is
+# measured on TERMINAL-YEAR profit while the capital base is measured at the valuation
+# date. Revision 2 sat at N/IC = 8.2% against a 13.6% hurdle and growth destroyed value;
+# the corrected price path lifts terminal NOPAT enough to cross it by about 20bp, so
+# growth now ADDS value — marginally, and the check below verifies the model agrees with
+# its own algebra whichever side of the hurdle it lands on.
+gdv_lhs = nopat[-1] * (1.0 + wacc_term)
+gdv_rhs = ic_repl * wacc_term
 GDV = dict(fv_at_g3=reval(g=0.03), fv_at_g7=reval(g=0.07), roic_term=roic_t,
-           wacc_term=wacc_term)
-GDV['holds'] = bool(GDV['fv_at_g7'] < GDV['fv_at_g3'])
+           wacc_term=wacc_term, nopat_term=float(nopat[-1]), ic_replacement=float(ic_repl),
+           n_over_ic=float(nopat[-1] / ic_repl), hurdle=float(wacc_term / (1 + wacc_term)),
+           analytic_adds_value=bool(gdv_lhs > gdv_rhs))
+GDV['model_adds_value'] = bool(GDV['fv_at_g7'] > GDV['fv_at_g3'])
+GDV['spread_pct'] = float(GDV['fv_at_g7'] / GDV['fv_at_g3'] - 1.0)
+GDV['holds'] = bool(GDV['analytic_adds_value'] == GDV['model_adds_value'])
 say(f"[Growth and value] terminal return on capital {roic_t:.1%} against terminal rate "
     f"{wacc_term:.1%}: EGP {GDV['fv_at_g3']:.2f} at 3% growth against "
-    f"{GDV['fv_at_g7']:.2f} at 7%")
+    f"{GDV['fv_at_g7']:.2f} at 7% — a spread of {GDV['spread_pct']:+.1%} across four "
+    f"points of growth, i.e. the answer does NOT rest on the terminal growth rate")
+say(f"[Growth and value — the correct hurdle] the terminal block reduces to "
+    f"[N(1+g) - g.IC]/(W-g), so the sign of the growth lever is the constant "
+    f"N(1+W) - IC.W and the test is N/IC vs W/(1+W), not ROIC vs W. "
+    f"N/IC = {GDV['n_over_ic']:.3%} against a hurdle of {GDV['hurdle']:.3%} -> growth "
+    f"{'ADDS' if GDV['analytic_adds_value'] else 'DESTROYS'} value by "
+    f"{abs(GDV['n_over_ic']-GDV['hurdle'])*1e4:.0f}bp. Revision 2 sat at 8.2% against the "
+    f"same hurdle and growth destroyed value; the corrected price path crossed it")
 
 # ==================== 10. STATEMENTS ========================================
 pbt_f, tax_f, pat_f, cash_b, eq_b, ppe_b, wc_b, div_f, treas_f, ta_b = ([] for _ in range(10))
@@ -953,8 +1031,12 @@ chk(all(BU[i]['mgn'] > BU[i + 1]['mgn'] for i in range(1, 5)),
     "the forecast EBITDA margin glides DOWN every year from the FY2025 peak")
 chk(TAXE < TAX + 0.03, f"the effective tax rate used ({TAXE:.2%}) is within 3 points of "
                        f"the statutory rate ({TAX:.2%}), as the audited accounts show")
-chk(GDV['holds'], "growth destroys value at the terminal return on capital, and the model "
-                  "shows it")
+chk(GDV['holds'],
+    f"the terminal growth lever moves the model in the direction its own algebra requires: "
+    f"N/IC {GDV['n_over_ic']:.2%} against the hurdle W/(1+W) {GDV['hurdle']:.2%}, so growth "
+    f"{'adds' if GDV['analytic_adds_value'] else 'destroys'} value, and the model "
+    f"{'adds' if GDV['model_adds_value'] else 'destroys'} it — a spread of only "
+    f"{GDV['spread_pct']:+.1%} from 3% to 7%, so nothing rests on the rate")
 chk(abs(SHT['from_fy25_dividend'] - SH) / SH < 0.001,
     f"the share count is confirmed by the declared FY2025 dividend to "
     f"{abs(SHT['from_fy25_dividend']-SH)/SH:.4%}")
@@ -974,7 +1056,7 @@ say("=" * 78)
 OUT = dict(
     meta=dict(ticker='ARCC', company='Arabian Cement Company S.A.E.', market='EGX',
               market_code='EG', currency='EGP', asof='2026-08-06', spot=V['spot'],
-              shares_mn=SH, mktcap=MKTCAP, revision=2,
+              shares_mn=SH, mktcap=MKTCAP, revision=3,
               klass='single-asset cement operating company (net cash)',
               sector='Construction materials — cement',
               basis='audited consolidated financial statements FY2023-FY2025 and reviewed '

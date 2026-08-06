@@ -3,8 +3,10 @@
 16 headings: 7 top-level sections plus the 9 subsections of section 1, then three
 appendices. Reads study_numbers.json exclusively — no numeral is typed here.
 
-REVISION 2 — rebuilt on the audited consolidated financial statements for FY2023, FY2024
-and FY2025 and the reviewed Q1-2026 interim accounts.
+REVISION 3 — the forecast price path recalibrated to the audited record, which disproved
+the one revision 2 inherited. Revision 2 rebuilt every company figure on the audited
+consolidated financial statements for FY2023, FY2024 and FY2025 and the reviewed Q1-2026
+interim accounts.
 
 Written for an external reader: no internal procedure names, step numbers or house
 process references appear anywhere in the output.
@@ -386,14 +388,41 @@ P(f'The effective tax rate of {pc(TAXE)} is DISCLOSED, not inferred: income tax 
 P(f'The margin path is the central judgement in this forecast, and it deserves stating as '
   f'one number rather than left inside a table. Local prices are assumed to grow '
   f'{pc(IN["price_local_path"][5]-1)} in total across the five years while pound costs grow '
-  f'{pc(IN["cost_infl"][5]-1)} — a deliberate real squeeze of about '
+  f'{pc(IN["cost_infl"][5]-1)} — a real erosion of about '
   f'{pc(IN["cost_infl"][5]/IN["price_local_path"][5]-1, 0)}. The EBITDA margin therefore '
-  f'falls from the audited {pc(H["margin"][2])} to {pc(F["margin"][4])} by FY2030, which is '
-  f'roughly where it stood in FY2024 ({pc(H["margin"][1])}) before the quota was abolished. '
-  f'The claim is not that the business deteriorates; it is that the 2025 windfall reverses '
-  f'as dormant capacity returns and energy reform continues. A reader who thinks the '
-  f'industry passes cost through faster should read the margin sensitivity in section 7: '
-  f'two points of margin is worth about EGP {n2(SN["mgn"][3]-SN["mgn"][2])} a share.')
+  f'falls from the audited {pc(H["margin"][2])} to {pc(F["margin"][4])} by FY2030, still '
+  f'well above the {pc(H["margin"][1])} of FY2024 and far above the {pc(H["margin"][0])} of '
+  f'FY2023. The claim is not that the business deteriorates; it is that part of the 2025 '
+  f'step-change gives back as dormant capacity returns and energy reform continues. A '
+  f'reader who thinks the industry passes cost through faster should read the margin '
+  f'sensitivity in section 7: two points of margin is worth about EGP '
+  f'{n2(SN["mgn"][3]-SN["mgn"][2])} a share.')
+P(f'That path is CALIBRATED to the audited record rather than asserted against it, and it '
+  f'is the one thing this revision changes. The prior revision assumed local prices grew '
+  f'3.0% in FY2026 against 11.5% cost inflation, and about four points a year after that — '
+  f'a cumulative real squeeze near 28%. The statements contradict it. In FY2024 revenue '
+  f'grew {pc(H["revenue"][1]/H["revenue"][0]-1, 1)} against total cash cost of '
+  f'{pc((H["cogs"][1]+H["ga"][1]-IN["dna_fy24"])/(H["cogs"][0]+H["ga"][0]-IN["dna_fy23"])-1, 1)}; '
+  f'in FY2025 revenue grew {pc(H["revenue"][2]/H["revenue"][1]-1, 1)} against cash cost of '
+  f'{pc((H["cogs"][2]+H["ga"][2]-IN["dna_fy25"])/(H["cogs"][1]+H["ga"][1]-IN["dna_fy24"])-1, 1)}, '
+  f'which is why the gross margin moved {pc(H["gross_profit"][0]/H["revenue"][0])} to '
+  f'{pc(H["gross_profit"][1]/H["revenue"][1])} to {pc(H["gross_profit"][2]/H["revenue"][2])}. '
+  f'In every period the accounts cover, price outran cost. The old assumption also implied a '
+  f'producer unable to raise price even at the central bank\'s own medium-term target, while '
+  f'the same model had utilisation rising from {pc(IN["util"][0])} to {pc(IN["util"][5])} — '
+  f'volume gained and real price lost at once, which is two conservatisms stacked rather '
+  f'than one judgement made. The path carried here grows local price '
+  f'{pc(IN["price_local_path"][1]-1, 1)} in FY2026 and then '
+  f'{pc(IN["price_local_path"][2]/IN["price_local_path"][1]-1, 1)}, '
+  f'{pc(IN["price_local_path"][3]/IN["price_local_path"][2]-1, 1)}, '
+  f'{pc(IN["price_local_path"][4]/IN["price_local_path"][3]-1, 1)} and '
+  f'{pc(IN["price_local_path"][5]/IN["price_local_path"][4]-1, 1)} — below the cost path in '
+  f'every single year, and producing FY2026 group revenue growth of '
+  f'{pc(F["revenue"][0]/H["revenue"][2]-1, 1)} against the '
+  f'{pc(IN["rev_q1_26"]/IN["rev_q1_25"]-1, 1)} the first quarter actually ran. The cost path '
+  f'is deliberately left at headline inflation even though this company\'s own realised cost '
+  f'inflation ran below the national rate, because crediting that here would double-count '
+  f'the alternative-fuel saving already carried as a driver of its own.')
 P(f'One reconciliation belongs here too, because it is the sharpest challenge to the '
   f'forecast. The first quarter of 2026 — reviewed, not audited, but signed off in May — '
   f'earned attributable profit of EGP {n0(IN["pat_q1_26"])}mn on revenue of EGP '
@@ -434,12 +463,18 @@ P(f'Minority interests are deducted, and the audited figure is the reason this l
   f'immaterial: EGP {n0(IN["nci"]*1e6)} — one hundred and fifty-eight thousand pounds, or '
   f'{pc(IN["nci"]/DCF["equity"], 4)} of equity value. The subsidiaries are 99% to 99.99% '
   f'owned.')
-P(f'At {pc(DCF["tv_share"])} of enterprise value, the terminal value is a smaller share of '
-  f'this valuation than in most discounted cash-flow models, a consequence of the high '
-  f'explicit-window discount rate rather than a design choice. The answer depends more on '
-  f'the next five years and less on a perpetuity assumption than is usual — which, for a '
-  f'business whose next five years are forecastable from tonnes and disclosed costs, is the '
-  f'right place for the weight to sit.')
+P(f'At {pc(DCF["tv_share"])} of enterprise value, the terminal value carries less of this '
+  f'valuation than the two-thirds to four-fifths a long-horizon discounted cash-flow model '
+  f'usually ends up with, and that is a consequence of the {pc(W["wacc_exp"])} '
+  f'explicit-window discount rate rather than a design choice — at that rate the fifth '
+  f'forecast year is already discounted to {pc(F["df"][4], 0)} of its face value. The '
+  f'answer therefore depends more on the '
+  f'next five years and less on a perpetuity assumption than is usual, which for a business '
+  f'whose next five years are forecastable from tonnes and disclosed costs is the right '
+  f'place for the weight to sit. It is worth naming the direction of travel honestly: the '
+  f'prior revision put the terminal share at 45.5%, and correcting the price path lifted it '
+  f'because a higher terminal margin loads more value into the perpetuity than into a '
+  f'heavily discounted explicit window. More of the answer rests on the far end than it did.')
 
 H2('1.8  Terminal value, and what growth costs')
 P(f'Terminal growth is held at {pc(IN["g_term"], 0)}, against a terminal risk-free rate '
@@ -467,27 +502,49 @@ P(f'The terminal block is therefore struck on REPLACEMENT-COST invested capital 
   f'a tonne. On that basis the terminal return on capital is {pc(TR["roic_repl"])} and the '
   f'reinvestment rate that {pc(IN["g_term"], 0)} growth requires is {pc(TR["rr_repl"])} of '
   f'terminal profit.')
-P(f'The consequence inverts the usual intuition and the model shows it rather than hiding '
-  f'it: at a terminal return of {pc(TR["roic_repl"])} against a terminal rate of '
-  f'{pc(W["wacc_term"])}, GROWTH DESTROYS VALUE. The cash-flow lens is EGP '
-  f'{n2(GDV["fv_at_g3"])} at 3% terminal growth and EGP {n2(GDV["fv_at_g7"])} at 7%. A '
-  f'cement plant in a market carrying {n0(IN["egy_capacity_mt"])}Mt of capacity against '
-  f'{n0(IN["egy_cons_mt"])}Mt of consumption cannot earn its cost of capital on new tonnes, '
-  f'and a model that rewarded it for adding them would be wrong. A reader who prefers the '
-  f'book basis should know it lifts the valuation substantially and should say why a plant '
-  f'carried at a tenth of replacement cost is the right denominator.')
+P(f'That choice of denominator all but switches the terminal growth rate off, and the '
+  f'reason is worth setting out because the obvious reading of it is wrong. A terminal '
+  f'return of {pc(TR["roic_repl"])} against a terminal rate of {pc(W["wacc_term"])} looks '
+  f'like the textbook case in which growth destroys value. It is not the right test. '
+  f'Because reinvestment is growth divided by return on capital, and that return is itself '
+  f'terminal profit grown one year over a fixed capital base, the reinvestment charge '
+  f'collapses to a constant — growth multiplied by invested capital — and the whole '
+  f'terminal block reduces to terminal profit grown one year, less that charge, over the '
+  f'rate less growth. Differentiate it and the growth term vanishes: the DIRECTION of the '
+  f'lever is a constant of the model, and the hurdle is terminal profit over invested '
+  f'capital against the rate over one plus the rate, which is {pc(GDV["hurdle"], 2)}. This '
+  f'company sits at {pc(GDV["n_over_ic"], 2)} — {n0((GDV["n_over_ic"]-GDV["hurdle"])*1e4)} '
+  f'basis points above it. Growth therefore adds value, and adds almost none of it: the '
+  f'cash-flow lens is EGP {n2(GDV["fv_at_g3"])} at 3% terminal growth and EGP '
+  f'{n2(GDV["fv_at_g7"])} at 7%, a spread of {pc(GDV["spread_pct"], 1)} across four points '
+  f'of perpetual growth. The practical conclusion is the one that matters: on a '
+  f'replacement-cost denominator this plant roughly breaks even on new tonnes, in a market '
+  f'carrying {n0(IN["egy_capacity_mt"])}Mt of capacity against {n0(IN["egy_cons_mt"])}Mt of '
+  f'consumption, so nothing in this valuation is bought with an assumption about perpetual '
+  f'growth. A reader who prefers the book basis should know it lifts the valuation '
+  f'substantially, and should say why a plant carried at a tenth of replacement cost is the '
+  f'right denominator.')
 rows = [['Explicit-window rate'] + [pc(g, 0) for g in SN['g_grid']]]
 for i, wv in enumerate(SN['wacc_grid']):
     rows.append([pc(wv, 2)] + [n2(x) for x in SN['wacc_g'][i]])
 table(rows, [1.72, 1.02, 1.02, 1.02, 1.02, 1.02])
+# Both the strength and the SIGN of the growth lever are read off the grid, never
+# typed. They flipped between revisions and a hard-typed caption would now be false.
+_row = SN["wacc_g"][0][4] - SN["wacc_g"][0][0]     # 3% -> 7% growth, rate held
+_col = SN["wacc_g"][4][0] - SN["wacc_g"][0][0]     # low -> high rate, growth held
+_g_up = 'UP' if _row > 0 else 'DOWN'
+_g_str = 'STRONGER' if abs(_row) > abs(_col) else 'WEAKER'
 caption(f'Table 9 — Fair value per share across the explicit-window cost of capital and '
-        f'terminal growth. Growth is the STRONGER of the two levers here and it points '
-        f'DOWN: across a row the value moves EGP '
-        f'{n2(SN["wacc_g"][0][0]-SN["wacc_g"][0][4])}, against EGP '
-        f'{n2(SN["wacc_g"][0][0]-SN["wacc_g"][4][0])} down a column.')
+        f'terminal growth. Growth is the {_g_str} of the two levers here and it points '
+        f'{_g_up}: across a row the value moves EGP {n2(abs(_row))}, against EGP '
+        f'{n2(abs(_col))} down a column. The paragraphs above set out why the growth axis is '
+        f'nearly flat — on a replacement-cost denominator this plant sits within '
+        f'{n0((GDV["n_over_ic"]-GDV["hurdle"])*1e4)} basis points of breaking even on new '
+        f'tonnes, so perpetual growth neither creates nor destroys much of anything.')
 figure('fig2_sens.png', 6.6,
-       'Figure 3 — The same surface. Higher growth gives a lower value, which is the model '
-       'being consistent rather than a sign error.')
+       f'Figure 3 — The same surface. The growth axis is almost flat and the discount-rate '
+       f'axis is not; that is the model being consistent with its own terminal algebra '
+       f'rather than a sign error.')
 rows = [['Explicit-window rate'] + [pc(w, 1) for w in SN['wt_grid']]]
 for i, wv in enumerate(SN['wacc_grid']):
     rows.append([pc(wv, 2)] + [n2(x) for x in SN['exp_term'][i]])
@@ -590,14 +647,25 @@ for k in list(LN['weights']) + ['Weighted central']:
 table(rows, [2.00, 1.00, 1.00, 1.00, 0.72, 1.02], band_rows={5})
 caption('Table 14 — Each lens as a range. The disagreement between them is information, '
         'not noise.')
+_above = sorted([k for k in LN['values'] if LN['values'][k] > SPOT],
+                key=lambda k: -LN['values'][k])
+_below = sorted([k for k in LN['values'] if LN['values'][k] <= SPOT],
+                key=lambda k: LN['values'][k])
+_lens_l = lambda ks: ' and '.join([', '.join(ks[:-1]), ks[-1]] if len(ks) > 1 else ks)
 P(f'The four lenses do not agree, and the pattern of their disagreement is the most useful '
-  f'thing in this study. The three earnings-based lenses cluster between EGP '
-  f'{n2(min(LN["values"][k] for k in LN["values"] if "Asset" not in k))} and EGP '
-  f'{n2(max(LN["values"][k] for k in LN["values"] if "Asset" not in k))}, all below the '
-  f'market price. The asset lens sits at EGP {n2(LN["values"]["Asset / replacement cost"])}, '
-  f'well above it. That is the whole argument about this company in one line: the plant '
-  f'is worth more than the market is paying for it, and the earnings it can be expected to '
-  f'produce are worth less.')
+  f'thing in this study. Two of them sit ABOVE the market price — '
+  f'{_lens_l(_above)}, at EGP ' +
+  ' and EGP '.join(n2(LN['values'][k]) for k in _above) +
+  f' — and two sit below: {_lens_l(_below)}, at EGP ' +
+  ' and EGP '.join(n2(LN['values'][k]) for k in _below) +
+  f'. The split is not assets against earnings. It runs between what the plant can be '
+  f'expected to EARN or COST from here, which both land above the market, and what the '
+  f'market is currently willing to PAY for a pound of Egyptian cement earnings, which is '
+  f'what the two multiple-based lenses measure and which lands below. A cement peer group '
+  f'trading at {n1((PE["scem"]["pe"]+PE["mbsc"]["pe"])/2)} times earnings in a country '
+  f'whose policy rate has '
+  f'a two in front of it is not obviously mispricing anything; it is discounting the same '
+  f'restart programme this study discounts, only harder and sooner.')
 P(f'The weighting resolves that in favour of earnings, at '
   f'{pc(IN["w_dcf"], 0)}/{pc(IN["w_rel"], 0)}/{pc(IN["w_norm"], 0)}/{pc(IN["w_asset"], 0)}, '
   f'and gives a central EGP {n2(LN["central"])} against EGP {n2(SPOT)} — '
@@ -607,9 +675,11 @@ P(f'The weighting resolves that in favour of earnings, at '
   f'it is a testable one.')
 P(f'Against the technical picture, the two readings are in tension. The share is above its '
   f'entire moving-average stack on a rising 200-day and {pc(1-TECH["pct_off_high"], 0)} of '
-  f'the way to a 52-week high, while the earnings lenses put fair value below the current '
-  f'price. Momentum and value disagree here, and this study takes no view on which resolves '
-  f'first.')
+  f'the way to a 52-week high, while the two multiple-based lenses put fair value below the '
+  f'current price and the two forward-looking ones put it above. Momentum sits with the '
+  f'cash-flow case here rather than against it, and the disagreement that remains is '
+  f'between that case and the multiple the market is prepared to pay. This study takes no '
+  f'view on which resolves first.')
 
 # ============================== 5 ============================================
 H1('5  Catalysts to watch')
@@ -683,6 +753,18 @@ for head, body in [
      'EGP 150mn against an audited EGP 158,005; the effective tax rate was inferred at '
      '29.4% against a disclosed 23.8%; the cost of debt was assumed at 21.5% against a '
      'euro-denominated book paying about 7.5%; and kiln capacity was assumed 14% too low.'),
+    ('The forecast price path was corrected after the accounts were read, and that '
+     'changed the answer. ', f'Reading the statements fixed every historical figure but '
+     f'left the forecast price path where it had been set: local prices growing 3.0% in '
+     f'FY2026 against 11.5% cost inflation. The record contradicts it — in FY2024 and '
+     f'FY2025 alike, revenue outran total cash cost, and Q1-2026 was still widening its '
+     f'margin. The path now runs {pc(IN["price_local_path"][1]-1, 1)} then '
+     f'{pc(IN["price_local_path"][2]/IN["price_local_path"][1]-1, 1)} and easing, below '
+     f'cost inflation in every year but not by the margin previously assumed. It moves the '
+     f'central fair value from EGP 44.89 to EGP {n2(LN["central"])} and the terminal share '
+     f'of enterprise value from 45.5% to {pc(DCF["tv_share"])}. A reader comparing this '
+     f'against the earlier edition should know the change is one driver, deliberately '
+     f'made, and not a re-cut of the whole model.'),
     ('Only two numbers in the operating build are not disclosed. ', f'The local realised '
      f'price of EGP {n0(IN["price_local_egp_t"])} a tonne and the export price of USD '
      f'{n1(IN["price_exp_usd_t"])} a tonne are external estimates; every other input to the '
@@ -706,10 +788,13 @@ for head, body in [
      f'valuation is too cautious, and the margin sensitivity below is where to look.'),
     ('The terminal denominator is a choice. ', f'Return on capital is '
      f'{pc(TR["history"][2]["roic_book"])} on the audited book and {pc(TR["roic_repl"])} on '
-     f'replacement cost. The terminal block uses replacement cost, which makes growth '
-     f'value-destroying and lowers the valuation. On the book basis growth would be free. '
-     f'The case for replacement cost is that the book carries a 2010-vintage plant at a '
-     f'tenth of what one would cost to build today, but a reader is entitled to disagree.'),
+     f'replacement cost. The terminal block uses replacement cost, which leaves the plant '
+     f'roughly breaking even on new tonnes — {pc(GDV["n_over_ic"], 2)} against a hurdle of '
+     f'{pc(GDV["hurdle"], 2)}, so four points of terminal growth are worth '
+     f'{pc(GDV["spread_pct"], 1)} of value and the answer does not rest on the rate. On the '
+     f'book basis growth would be close to free and the valuation materially higher. The '
+     f'case for replacement cost is that the book carries a 2010-vintage plant at a tenth of '
+     f'what one would cost to build today, but a reader is entitled to disagree.'),
     ('The beta is weak. ', f'R-squared of {pc(BETA["r2"], 1)} and a 90% interval of '
      f'[{n2(BETA["ci90"][0])}, {n2(BETA["ci90"][1])}]. The valuation is shown across a beta '
      f'range for exactly this reason, and the lead-lag correction is published as a value.'),

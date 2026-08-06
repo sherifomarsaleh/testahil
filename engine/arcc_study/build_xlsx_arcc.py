@@ -110,10 +110,25 @@ def note(ws, row, text, w=10):
 
 # ============ 1 READ FIRST ====================================================
 ws = sheet('READ FIRST')
-title(ws, 'Testahil — Arabian Cement Company S.A.E. (EGX: ARCC) — revision 2', None, 9)
+title(ws, 'Testahil — Arabian Cement Company S.A.E. (EGX: ARCC) — revision 3', None, 9)
 LINES = [
  'Companion model · Independent Valuation Study · Educational analysis · Not investment advice', '',
- 'REVISION 2 IS BUILT ON THE AUDITED ACCOUNTS. Revision 1 of this model was built without opening a single',
+ 'REVISION 3 CORRECTS THE PRICE PATH, WHICH THE AUDITED RECORD DISPROVED. Revision 2 rebuilt every company',
+ 'figure on the statements but left one forecast driver where revision 1 had put it: local realised price',
+ 'growing 3.0% in FY2026 against 11.5% cost inflation, and about 4% a year after that. The statements that had',
+ 'just been read contradict it. FY2024: revenue +44.5% against total cash cost +41.8%. FY2025: revenue +42.6%',
+ 'against cash cost +12.5%, which is why the audited gross margin went 21.2% to 23.9% to 40.6%. Q1-2026 then',
+ 'printed revenue +17.3% at a 42.9% gross margin against 40.6% for the full prior year — still WIDENING. In',
+ 'every period the accounts cover, price outran cost. The old path also implied a producer unable to raise',
+ 'price even at the central bank\'s own 7% medium-term target, while the same model had utilisation RISING',
+ 'from 69.7% to 78.2% — volume gained and real price lost at once, two conservatisms stacked rather than one',
+ 'judgement made. The path is recalibrated to 8.0% / 9.0% / 8.0% / 7.0% / 6.5%, still below the cost path in',
+ 'every year, and still producing FY2026 group revenue growth of about 10.7% against the 17.3% the first',
+ 'quarter actually ran. The cost path is UNCHANGED at headline inflation: the company\'s realised cost',
+ 'inflation ran below the national rate, but crediting that here would double-count the alternative-fuel',
+ 'saving already carried as its own driver. The EBITDA margin now glides from the audited 39.3% to about',
+ '34.3% by FY2030 rather than to 24.5% — still erosion, but erosion the record can support.', '',
+ 'REVISION 2 BUILT THE STUDY ON THE AUDITED ACCOUNTS. Revision 1 was built without opening a single',
  'source document: every outbound request was refused by the network policy in force, so every company figure',
  'reached it as relayed in a web-search summary. The audited consolidated financial statements for FY2023,',
  'FY2024 and FY2025 — Deloitte, signed 25 February 2026 — and the reviewed Q1-2026 interim accounts are now in',

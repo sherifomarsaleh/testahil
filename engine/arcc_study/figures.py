@@ -102,7 +102,19 @@ for i in range(5):
         lum = 0.2126 * r + 0.7152 * g_ + 0.0722 * b
         ax.text(j, i, f'{G[i, j]:.1f}', ha='center', va='center', fontsize=9.5,
                 color=('#FFFFFF' if lum < 0.55 else '#12211F'), fontweight='bold')
-ax.set_title('Fair value per share (EGP) — note that HIGHER growth gives a LOWER value',
+# The direction of the growth axis is READ OFF THE GRID, never asserted. It flipped
+# between revisions when the corrected price path lifted terminal profit past the
+# N/IC vs W/(1+W) hurdle, and a hard-typed title would have contradicted the cells
+# beneath it.
+_g_lo, _g_hi = float(G[:, 0].mean()), float(G[:, -1].mean())
+_g_span = abs(_g_hi - _g_lo) / _g_lo
+if _g_span < 0.01:
+    _g_note = 'growth barely moves it — %.1f%% across the whole range' % (_g_span * 100)
+elif _g_hi > _g_lo:
+    _g_note = 'higher growth gives a HIGHER value'
+else:
+    _g_note = 'higher growth gives a LOWER value'
+ax.set_title('Fair value per share (EGP) — ' + _g_note,
              fontsize=11, fontweight='bold', loc='left', pad=12)
 ax.grid(False)
 save(fig, 'fig2_sens.png')
