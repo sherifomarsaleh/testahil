@@ -37,8 +37,21 @@
   .hbtns{display:flex;gap:6px}
   .hbtn{border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:999px;padding:7px 16px;font:inherit;font-size:var(--fs-small);font-weight:600;cursor:pointer}
   .hbtn.on{background:var(--teal);border-color:var(--teal);color:#fff}
-  .pk-controls{display:flex;gap:18px;flex-wrap:wrap;align-items:center;margin-top:10px}
-  .pk-controls label.ck{display:flex;align-items:center;gap:7px;font-size:var(--fs-small);cursor:pointer;white-space:nowrap}
+  /* fixed 3-column grid so the three filters always sit on ONE row -- flex-wrap was
+     dropping the third checkbox to its own row once the labels were forced nowrap.
+     Text is allowed to wrap inside each column instead; the checkbox stays pinned to
+     the first line via align-items:flex-start rather than centering against a
+     variable-height wrapped block. */
+  /* flex-basis:100% forces this to claim the whole row inside the parent .hrow (flex-wrap)
+     -- without it the grid's 1fr columns had no concrete width to divide and collapsed to
+     content-minimum, which is what caused every word to fall onto its own line. */
+  .pk-controls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 18px;margin-top:10px;flex:1 1 100%;width:100%}
+  .pk-controls label.ck{display:flex;align-items:flex-start;gap:7px;font-size:var(--fs-small);cursor:pointer;white-space:normal}
+  /* assets/style.css sets a site-wide input{width:100%} meant for text fields; it was
+     silently stretching this checkbox to the full column width (255px), squeezing the
+     label text into a sliver that then wrapped one word per line. */
+  .pk-controls label.ck input{margin-top:3px;flex:none;width:auto}
+  @media(max-width:640px){ .pk-controls{grid-template-columns:1fr} }
   .pk-table{width:100%;min-width:680px;border-collapse:collapse;font-size:var(--fs-small);table-layout:auto}
   /* header labels are allowed to wrap onto 2 lines -- most of them (e.g. "Reachability
      (3 months)", "P(touch fair value)") are wider as one line than the data underneath
@@ -132,7 +145,7 @@
       <table class="pk-table" id="pk-table"></table>
     </div>
     <p class="muted pk-note" id="pk-count"></p>
-    <p class="muted pk-note">Click any column heading to sort by it — click again to reverse. <b>Reachability</b> is the default (best-reachability first, ties broken by higher P(touch)); that default is what made the ranking earlier, nothing else is applied unless you click a heading. <b>P(touch)</b> is the simulated chance the price trades <i>through</i> the fair value at any point before the horizon, from the same 50,000-path simulation published on each ticker page — rows with no meaningful probability (beyond 4&sigma;, a dash) always sort to the bottom regardless of direction. A dagger (&dagger;) means the price is already at fair value — the high probability is true but tells you nothing. <b>Stale</b> flags a fair value older than 6 months, due for re-study.</p>
+    <p class="muted pk-note">Click any column heading to sort by it — click again to reverse. <b>Reachability</b> is the default (best-reachability first, ties broken by higher P(touch)); that default is what made the ranking earlier, nothing else is applied unless you click a heading. <b>P(touch)</b> is the simulated chance the price trades <i>through</i> the fair value at any point before the horizon, from the same 50,000-path simulation published on each ticker page — rows with no meaningful probability (beyond 4&sigma;, a dash) always sort to the bottom regardless of direction. <b>"already there"</b> means spot is already within this stock's own noise of fair value, so touching it is essentially guaranteed by definition — the simulation's exact number for those rows can land below 100% for a real but uninteresting reason (it only checks daily closes, not every instant in between), so we don't show a number that would just invite "why not 100%?" for no informational gain. <b>Stale</b> flags a fair value older than 6 months, due for re-study.</p>
   </section>
 
   <section id="sec-bands" class="card anchor" data-nav="What the bands mean">
@@ -256,8 +269,14 @@ window.addEventListener('error', function(e){
       var o = r[h];
       var t = (typeof TICKERS !== 'undefined') && TICKERS[r.ticker];
       var nm = (t && t.name) || r.name || r.ticker;
+      // already-converged rows: a bare "90%†" reads as a normal, notable number and
+      // invites "why not 100%?" -- the true answer is a real but unhelpful modelling
+      // detail (daily-close monitoring vs. a continuous barrier), not a signal about
+      // this stock. Replacing the percentage with a plain label removes the question
+      // at its source instead of relying on a tiny dagger to carry all the context.
       var p = o.p_touch === null ? '—'
-            : pct(o.p_touch.base) + (o.already_converged ? '<span class="pk-flag">†</span>' : '');
+            : o.already_converged ? '<span class="pk-flag" title="Spot is already within this stock’s own noise of fair value — a touch probability here would just restate that, not tell you anything new.">already there</span>'
+            : pct(o.p_touch.base);
       var gapCls = r.gap_base_pct > 0 ? 'up' : 'dn';
       var stale = r.fv_stale ? ' <span class="pk-flag">(stale)</span>' : '';
       return '<tr>'
