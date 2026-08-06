@@ -290,6 +290,9 @@ INP['dps'] = I((736_577_469.0 + 602_957_265.0) / 1_291_500_000.0,
                "Dividend per share, cash actually paid in the audited nine months over shares "
                "outstanding. Annualising is left to the reader; the study uses the paid figure",
                "2026-03-31", "Company")
+INP['e1_pe'] = I(7.0, "Expert 1's justified price/earnings multiple. Struck below the main "
+                      "normalised lens deliberately: it is an independent opinion, not a "
+                      "re-run of the house view", "2026-08-06", "House")
 INP['raw_pass'] = I(1.0, "Pass-through factor on the raw-material line: 1.0 means the feedstock "
                          "charge moves one-for-one with realisation and volume, so the gross "
                          "SPREAD per tonne is held flat in real terms and the margin neither "
@@ -535,6 +538,7 @@ say(f"[Base year — nine AUDITED months, annualised] the transition period 1-Ju
     f"estimated. The previous edition CONSTRUCTED a calendar-2025 base from two reported halves "
     f"and got {39_996:,.0f}; the audited nine months annualise to {BASE_REV:,.0f}, "
     f"{BASE_REV/39_996-1:+.1%} away.")
+TAX = TAX_EFF          # the audited rate supersedes the assumption everywhere downstream
 say(f"[Effective tax rate, computed not assumed] nine-month pre-tax profit {pbt9/M:,.0f} against "
     f"a total tax charge of {tax9/M:,.0f} (current less deferred, both periods) = {TAX_EFF:.2%}. "
     f"The statutory rate is {V['tax_stat']:.1%}. The previous edition assumed {TAX:.1%}.")
@@ -1078,7 +1082,11 @@ NORM_I = 2                                   # every component from the SAME yea
 norm_rev = rev[NORM_I]
 norm_ebitda = ebitda[NORM_I]
 norm_ebit = norm_ebitda - dna[NORM_I]
-norm_interest = interest_path[NORM_I]
+# Use the AUDITED credit interest, annualised, rather than a modelled interest path. It is a
+# disclosed figure (note 14-B and both cash-flow statements) and the normalised lens is meant to
+# be a statement about earnings POWER, which a filed interest line supports better than a
+# projected cash balance does.
+norm_interest = credint9 / M * A
 norm_np = (norm_ebit + norm_interest) * (1 - TAX) * (1 - NCI_SHARE)
 norm_eps = norm_np / SH
 norm_ps = V['pe_just'] * norm_eps

@@ -133,18 +133,27 @@ P('Three things are worth knowing before reading the tables. First, inputs marke
   'rate. Third, where a source could not be reached, that is recorded as a negative result at the '
   'end of this document rather than quietly filled in.')
 
-H2('An unusual limitation of this edition, stated up front')
-P('Primary filings were NOT reachable from the environment in which this study was built. The '
+H2('What changed in this edition')
+P('The first edition of this study was built WITHOUT the audited financial statements. The '
   'company\'s investor-relations site, the exchange\'s disclosure pages and the commercial '
-  'financial-data terminals all refused connections under the network policy in force. Every '
-  'company figure in this study therefore comes from published reporting of the company\'s '
-  'releases and from financial-data aggregators, not from the audited statements themselves.')
-P('The response to that constraint was not to proceed quietly. It was to (a) triangulate every '
-  'material figure across independent sources and show the triangulation on the face of the '
-  'model, (b) reconstruct the base year from two separately disclosed halves rather than accept '
-  'any single reported twelve-month figure, and (c) mark every reconstructed line as '
-  'reconstructed wherever it appears. A reader with access to the audited statements should treat '
-  'this register as the list of things to check first.')
+  'financial-data terminals all refused connections under the network policy in force, so every '
+  'company figure came from published reporting of the company\'s releases and from aggregators. '
+  'That edition triangulated each material figure across independent sources, reconstructed the '
+  'base year from two reported halves, and marked every reconstructed line as reconstructed.')
+P('THE FILINGS ARE NOW IN HAND AND THIS EDITION IS BUILT ON THEM. The audited consolidated '
+  'statements for the transition period 1 July 2025 to 31 December 2025 (Crowe — Dr A. M. Hegazy '
+  '& Co, UNQUALIFIED opinion, signed at Giza on 18 February 2026), the limited-review statements '
+  'for the six months to 31 December 2024, and the reviewed statements for the three months to '
+  '31 March 2026. Every figure in the company layer below carries one of those three as its '
+  'source, with the note number where the filing gives one. No company figure in this edition is '
+  'triangulated, reconstructed or inferred.')
+P('The change was not cosmetic. Twelve published assumptions were overturned by the filings, '
+  'including a capital-expenditure line modelled at roughly five times the actual cash spend, a '
+  'depreciation charge modelled at three times the actual, an operating-expense base understated '
+  'by a factor of three, a property-plant-and-equipment balance reconstructed at nearly twice the '
+  'filed figure, a minority interest inferred at 3.0% against a disclosed 4.645%, and a '
+  'tax-disputes provision of EGP 904.6mn that was never carried at all. The fair-value estimate '
+  'moved from EGP 9.38 to EGP 7.10 as a result.')
 
 H2('The research layers')
 table([['Layer', 'What it covers'],
@@ -223,42 +232,60 @@ table([['Source', 'Publisher', 'Date', 'What was taken from it'],
         'the volatility estimate and the simulated price distribution']],
       [1.85, 1.30, 0.80, 3.10], size=7.9)
 
-# ---- the triangulations -----------------------------------------------------
+# ---- what the filings replaced ----------------------------------------------
+H1('Triangulated figures — RETIRED')
+P('The first edition carried a table here of figures disclosed only through growth rates, each '
+  'derived by two or three independent routes and averaged, with every route shown. That table is '
+  'REMOVED rather than updated: the figures it triangulated are now read straight off the audited '
+  'statements. Keeping it would imply a corroboration exercise that no longer has anything to '
+  'corroborate.')
+P('One derivation remains, and the study states it on its face. There is no clean audited '
+  'twelve-month period — the year-end moved from 30 June to 31 December and the April-to-June '
+  '2025 quarter is not separately filed — so the base year is the NINE contiguous audited months '
+  'from 1 July 2025 to 31 March 2026, annualised by four thirds. That scaling is the only step '
+  'between the filings and the base year, and nothing inside it is estimated.')
+table([['What the first edition triangulated', 'What the filing says'],
+       ['Base-year revenue, reconstructed from two reported halves at EGP 39,996mn',
+        f"Audited nine months annualised: EGP {D['unit']['base_gm'] and D['audited']['base_rev']:,.0f}mn"],
+       ['Gross margin, built from a per-tonne cost stack at 6.06%',
+        f"As filed across the nine audited months: {D['audited']['base_gm']:.2%}"],
+       ['Cost of sales, built from house yields, energy intensity and a solved feedstock '
+        'differential',
+        'Note 15-A as filed: raw materials ' + f"{D['unit']['cost_share']['raw']:.1%}" +
+        ', salaries ' + f"{D['unit']['cost_share']['salaries']:.1%}" + ', other ' +
+        f"{D['unit']['cost_share']['other']:.1%}" + ', supporting materials ' +
+        f"{D['unit']['cost_share']['support']:.1%}" + ', depreciation ' +
+        f"{D['unit']['cost_share']['dep']:.1%}"],
+       ['Three product lines from a reviewer-sourced table',
+        f"Note 14-A: eight lines, {D['unit']['tot_t']:,.0f} tonnes and EGP "
+        f"{D['unit']['tot_v']:,.0f}mn, tonnage and value both disclosed"],
+       ['Property, plant and equipment reconstructed as a residual at EGP 2,403mn',
+        f"Note 6 as filed: EGP {D['audited']['ppe']:,.0f}mn including projects under construction"],
+       ['Depreciation modelled at 1.1% of revenue',
+        f"Actual, annualised from two filings: EGP {D['audited']['dep_ann']:,.0f}mn"],
+       ['Capital expenditure modelled at 1.45% of revenue',
+        f"Actual cash paid, annualised: EGP {D['audited']['capex_ann']:,.0f}mn"],
+       ['Operating expense modelled at 1.25% of revenue',
+        f"Actual, annualised: EGP {D['audited']['opex_ann']:,.0f}mn, "
+        f"{D['audited']['opex_ann']/D['audited']['base_rev']:.2%} of revenue"],
+       ['Minority interest inferred at 3.0% of group profit',
+        f"Disclosed: {D['audited']['nci_share']:.3%}; AMOC owns 86.45% of Alexandria Wax Products"],
+       ['Effective tax rate assumed at 23.5%',
+        f"Computed from both filed periods: {D['audited']['tax_eff']:.2%}"],
+       ['No tax-disputes provision carried',
+        f"Note 10-1: EGP {D['audited']['provisions']:,.0f}mn"]],
+      [3.05, 4.00], size=7.9)
+
 H1('Triangulated figures — every route shown')
 P('Where a figure was disclosed only through a growth rate, it is derived by more than one '
   'independent route and the AVERAGE is carried. The routes are on the face of the companion '
   'model as live formulas, not asserted here.')
-table([['Figure', 'Route', 'Value (EGP mn)', 'Adopted'],
-       ['FY2023/24 revenue', 'A: prior-year comparative in the FY2024/25 summary',
-        f"{INP['rev_fy24_a']['value']:,.0f}", f"{BASE['rev_fy24']:,.0f}"],
-       ['', 'B: back-solved from the company\'s own "+10.8% on 2023/24" statement',
-        f"{INP['rev_fy24_b']['value']:,.0f}", ''],
-       ['FY2024/25 revenue', 'A: company release — 1.26mn tonnes valued at EGP 36.9bn',
-        f"{INP['rev_fy25_a']['value']:,.0f}", f"{BASE['rev_fy25']:,.0f}"],
-       ['', 'B: aggregator fiscal-2025 revenue line',
-        f"{INP['rev_fy25_b']['value']:,.0f}", ''],
-       ['', 'C: the same release\'s separate "revenues" figure',
-        f"{INP['rev_fy25_c']['value']:,.0f}", ''],
-       ['Shares outstanding (mn)', 'A: reported shares outstanding', '1,291.56', '1,291.56'],
-       ['', 'B: FY2024/25 standalone profit over this count gives EGP 1.154 a share, and the '
-        'declared EGP 0.80 dividend over that is a 69.3% payout against a 69.4% reported ratio',
-        'confirms', ''],
-       ['', 'C: reported market capitalisation of EGP 11.51bn implies EGP 8.91 a share against '
-        'a 6 August close of EGP 9.10', 'confirms', '']],
-      [1.35, 3.45, 1.00, 0.95], size=8.0)
+P('The residual triangulation table and the period-identification check that followed it have '
+  'both been removed. The first edition had to identify which period a press release covered by '
+  'matching two reported growth rates against a constructed comparative; the filings state the '
+  'period on their face, so the exercise is redundant. The audited transition period runs 1 July '
+  '2025 to 31 December 2025 and says so in the auditor\'s report.')
 
-H2('The period-identification check')
-P('One reported figure required its PERIOD to be established before it could be used. A release '
-  'labelled "FY 2025/26" reports revenue of EGP 26.2bn (+35%) and profit after tax of EGP 1.90bn '
-  '(+109%). Those cannot describe a twelve-month period, because the July–December 2025 half '
-  'alone was EGP 20.735bn. Against the January–June 2025 half constructed from disclosed figures '
-  f"— revenue EGP {BASE['rev_h1cy25']:,.0f}mn and profit EGP {BASE['pat_h1cy25']:,.0f}mn — the "
-  f"same two figures are {BASE['implied_growth_rev']*100:+.1f}% and "
-  f"{BASE['implied_growth_pat']*100:+.1f}%, reproducing BOTH reported growth rates "
-  'independently. Two independent exact matches identify the period as the six months to 30 June '
-  '2026. It is carried as corroboration and not as the forecast base.')
-
-# ---- the full input register ------------------------------------------------
 H1('The full input register')
 P('Every hardcoded figure the compute script consumes, in the order it is declared. A bare '
   'numeral anywhere in the inputs block fails the build, so this table is complete by '
@@ -290,22 +317,35 @@ table([['What was sought', 'Why it matters', 'Outcome'],
         'Would confirm the transition-period filing and the year-end change directly rather than '
         'through reporting of them',
         'NOT REACHED. Same cause'],
-       ['An AUDITED segmental or product-line revenue note',
-        'The three-line build used here rests on a reported product table — tonnes and value for '
-        'base oils, paraffin wax and the total — rather than on an audited segment note',
-        'PARTIALLY REACHED. The product table was obtained in reported form, not from the filing '
-        'itself, and is flagged as such at its input. It was validated three ways before '
-        'adoption: the two disclosed shares are internally coherent '
-        f"({D['unit']['spec_share_t']*100:.2f}% of tonnes against "
-        f"{D['unit']['spec_share_v']*100:.2f}% of value); the implied dollar realisations of "
-        f"USD {D['unit']['px_usd']['oil']:,.0f}, {D['unit']['px_usd']['wax']:,.0f} and "
-        f"{D['unit']['px_usd']['fuel']:,.0f} a tonne are the right levels and the right ORDER "
-        'for SN-grade base oil, fully refined paraffin and a gas-oil blend; and rolling the '
-        'three lines forward reproduces the independently built calendar-2025 revenue to within '
-        f"{abs(D['unit']['recon_px']-1)*100:.1f}% once the implied crude equivalent is carried "
-        'across. No price in the model is calibrated, none is a residual, and the crack '
-        'multiples the table implies — base oil near 1.9x crude parity, wax near 1.7x, the fuel '
-        'slate at parity — are the textbook shape for this configuration'],
+       ['THE AUDITED FINANCIAL STATEMENTS THEMSELVES',
+        'The whole of the historical record: statement of financial position, profit or loss, '
+        'cash flows, changes in equity, and every explanatory note',
+        'REACHED. This edition is built on the audited consolidated statements for the '
+        'transition period 1-Jul-2025 to 31-Dec-2025 (Crowe, Dr A. M. Hegazy & Co, UNQUALIFIED '
+        'opinion, signed Giza 18-Feb-2026), the limited-review statements for the six months to '
+        '31-Dec-2024, and the reviewed statements for the three months to 31-Mar-2026. The '
+        'previous edition of this study was built on triangulated press reporting because the '
+        'filings could not be reached from the build environment. Everything that triangulation '
+        'stood in for has been replaced by the filing'],
+       ['A segmental or product-line revenue note',
+        'The revenue build',
+        'REACHED — note 14-A gives EIGHT product lines with tonnes AND value for the transition '
+        f"half: {D['unit']['tot_t']:,.0f} tonnes for EGP {D['unit']['tot_v']:,.0f}mn. Realisations "
+        'per tonne are that note divided by itself; nothing is reconstructed and no crack '
+        'multiple, crude parity or feedstock differential is needed or used. The specialty slate '
+        f"is {D['unit']['spec_share_t']*100:.2f}% of tonnage and {D['unit']['spec_share_v']*100:.2f}% "
+        'of value'],
+       ['A cost-of-sales breakdown',
+        'The margin, which on a processor at this gross margin IS the valuation',
+        'REACHED — note 15-A splits cost of sales five ways: raw materials '
+        f"{D['unit']['cost_share']['raw']*100:.1f}%, salaries {D['unit']['cost_share']['salaries']*100:.1f}%, "
+        f"other (natural gas, electricity, water, spare parts, maintenance and the EPROM "
+        f"operating contract) {D['unit']['cost_share']['other']*100:.1f}%, supporting materials "
+        f"{D['unit']['cost_share']['support']*100:.1f}% and depreciation "
+        f"{D['unit']['cost_share']['dep']*100:.1f}%. The previous edition BUILT this stack from "
+        'house estimates of yields, energy intensity and a solved feedstock differential, carried '
+        'no salaries line inside cost of sales at all, and estimated chemicals at roughly five '
+        'times the disclosed figure'],
        ['A disclosed non-controlling-interest balance or profit share',
         'The minority deduction in the bridge is inferred from the gap between consolidated and '
         'standalone profit',
