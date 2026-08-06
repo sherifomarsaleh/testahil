@@ -8,10 +8,10 @@ each figure back to the drivers on the Assumptions sheet and change one to see t
 reprice. Only three classes of cell are pasted values:
 
   1. audited and disclosed historical figures (the primary record);
-  2. the sub-segment unit build — tonnes, MVA, meter units, order-book burn — which is a
-     seven-line volume-and-price model that would not survive being flattened into a
-     spreadsheet grid without becoming unreadable; its OUTPUT (segment revenue and gross
-     profit) is pasted and everything from there down is formula;
+  2. the three-segment revenue-and-margin build (Cables, Constructions and infrastructure,
+     Electrical products and digital solutions — the company's own disclosed segments) — its
+     OUTPUT (segment revenue and gross profit) is pasted and everything from there down is
+     formula;
   3. engine outputs that are whole-model re-runs by construction: the Monte Carlo price
      map and the sensitivity grids, each cell of which is a complete revaluation.
 
@@ -109,33 +109,34 @@ for i, ln in enumerate([
  'the risk-free rate, beta and the premium rather than pasted; the discount factors compound from the glide;',
  'and the income statement, balance sheet, cash flow, ratios and all four lenses chain off the same cells.', '',
  'THREE THINGS ARE PASTED VALUES, and it is worth knowing which. First, audited and disclosed history — the',
- 'primary record, not a calculation. Second, the sub-segment unit build: revenue and gross profit per segment',
- 'come from a seven-line tonnage, megavolt-ampere, meter-unit and order-book model, and only its OUTPUT is',
- 'carried here; everything downstream of it is formula. Third, the Monte Carlo price map and the sensitivity',
- 'grids, where each individual cell is a complete re-run of the whole valuation and so cannot be a formula in',
- 'a grid. Changing a driver reprices the model but does NOT redraw those two grids.', '',
- 'How revenue is built. Not as one growth rate. Revenue splits into a domestic Egyptian-pound leg and a',
- 'foreign leg forecast in US dollars and translated at an explicit exchange-rate path, because more than 70%',
- 'of this company\'s revenue is earned outside Egypt. Margins come from a segment build; group EBITDA margin',
- 'is an output of that build, not an input.', '',
+ 'primary record, not a calculation. Second, the segment build: revenue and profit for the three segments the',
+ 'company itself discloses (Cables and its accessories, Constructions and infrastructure, Electrical products',
+ 'and digital solutions) are pasted for FY2025 and grown on their own drivers; only its OUTPUT is carried here',
+ 'and everything downstream of it is formula. Third, the Monte Carlo price map and the sensitivity grids,',
+ 'where each individual cell is a complete re-run of the whole valuation and so cannot be a formula in a grid.',
+ 'Changing a driver reprices the model but does NOT redraw those two grids.', '',
+ 'How revenue is built. Not as one growth rate. Each of the three disclosed segments is grown on its own',
+ 'driver — Cables on copper-price growth times FX-translation growth times a modest real-volume assumption,',
+ 'Constructions and Electrical products on a taper of their own recent revenue CAGR — because none of the',
+ 'audited filings discloses a tonnage, order-book or backlog figure to build a literal unit model from.',
+ 'Margins come from the same segment build; group EBITDA margin is an OUTPUT of it, not an input.', '',
  'What it is not. It is not investment advice, a recommendation, or a price target. Values are model outputs',
  'shown as ranges.', '',
- 'Sourcing note, up front. FY2023 and FY2024 come from the company\'s audited consolidated statements and',
- 'earnings releases and are not estimated. For FY2025, revenue, profit after tax, profit after minority',
- 'interests, total assets and net bank debt are disclosed; the intermediate income-statement lines are',
- 'derived by closing the profit-and-loss account to the reported profit, and the balance sheet beyond total',
- 'assets and net debt is triangulated by three methods, which are shown and averaged on the Balance Sheet',
- 'sheet rather than asserted. Every derived line is annotated where it appears and listed with source and',
- 'date in the companion bibliography document.', '',
+ 'Sourcing note, up front. FY2023, FY2024 and FY2025 all come from the company\'s own audited consolidated',
+ 'financial statements — every income-statement, balance-sheet and segment line is the audited figure, not a',
+ 'derivation or a triangulation. Segment revenue ties EXACTLY to consolidated revenue in every year (Note',
+ '5-3); segment profit reconciles to consolidated operating profit through an explicit, exactly-reconciling',
+ 'corporate cost load (Note 16 less G&A, net impairment, other expenses and other income). Every input is',
+ 'annotated where it appears and listed with source and date in the companion bibliography document.', '',
  'Discount convention. Each explicit year is discounted at its own forward cost of capital, gliding',
  f"{W['wacc_exp']*100:.1f}% -> {W['wacc_term']*100:.1f}% on the same easing calendar as the interest forecast; the terminal value is",
  'capitalised at the terminal rate and discounted at the year-5 cumulative factor. One date, one price of time.',
  'The glide fractions are not a free parameter: they are the cost-of-debt path\'s own cumulative progress, and',
  'the DCF sheet computes them in front of you.', '',
- 'The open question. This company earns most of its revenue in hard currency but reports, lists and borrows',
- 'in Egyptian pounds. The primary model charges the full Egyptian cost of capital. The Fundamental Valuation',
- 'sheet also shows what the same cash flows are worth if the hard-currency leg is discounted at a',
- 'hard-currency rate. Both are shown; they are not averaged.', '',
+ 'The open question. This company earns just over half its revenue on a hard-currency-linked basis but',
+ 'reports, lists and borrows in Egyptian pounds. The primary model charges the full Egyptian cost of capital.',
+ 'The Fundamental Valuation sheet also shows what the same cash flows are worth if the hard-currency leg is',
+ 'discounted at a hard-currency rate. Both are shown; they are not averaged.', '',
  f"Currency. EGP million unless stated. Spot EGP {SPOT:.2f} ({M['asof']} close). Sheets: READ FIRST · Summary ·",
  'Fundamental Valuation · Assumptions · SOTP Bridge · Segments · Relative & Normalized · DCF · Income',
  'Statement · Balance Sheet · Cash Flow · Summary Financials · Monte Carlo · Sensitivity · Per-Share &',
@@ -283,24 +284,20 @@ block('Anchors', [
     ('tax_eff', 'Effective tax rate', IN['tax_eff'], PCT),
     ('tax_stat', 'Statutory corporate tax rate', IN['tax_stat'], PCT),
     ('fx_fy25', 'FY2025 average USD/EGP', IN['fx_hist']['FY25'], NUM1)])
-block('Revenue drivers — the unit build', [
+block('Revenue drivers — the three disclosed segments', [
     ('copper', 'Copper (USD/tonne)', IN['copper_fcst'], NUM0),
     ('fx_path', 'USD/EGP path', IN['fx_path'], NUM1),
-    ('cab_vol', 'Cable volume growth', IN['cables_vol_growth'], PCT),
-    ('cab_uplift', 'Cable fabrication uplift over copper', IN['cables_uplift'], MULT),
-    ('raw_vol', 'Raw-material volume growth', IN['rawmat_vol_growth'], PCT),
-    ('trf_vol', 'Transformer MVA growth', IN['transformers_vol_growth'], PCT),
-    ('mtr_vol', 'Meter unit growth', IN['meters_vol_growth'], PCT),
-    ('ec_burn', 'Order-book conversion rate', IN['ec_burn'], PCT),
-    ('ec_btb', 'Order-book book-to-bill', IN['ec_book_to_bill'], MULT),
-    ('other_g', 'Other-lines revenue growth', IN['other_growth'], PCT),
-    ('unit_infl', 'Meter price inflation', IN['unit_price_inflation'], PCT)])
-block('Unit gross profit and cost load', [
-    ('unit_gp_g', 'Gross profit per unit — growth', IN['unit_gp_growth'], PCT),
-    ('mgn_rec', 'Non-cable margin recovery factor', IN['margin_recovery'], MULT),
-    ('opex_pct', 'Operating load (% of revenue)', IN['opex_pct'], PCT),
-    ('cab_gp_t', 'Cable gross profit per tonne, FY2025 (EGP)', IN['cables_gp_t_fy25'], NUM0),
-    ('backlog', 'Order book at FY2025 (EGP mn)', IN['ec_backlog'], NUM0)])
+    ('cab_real_g', 'Cables — real (volume) growth over copper x FX', IN['cables_real_growth'], PCT),
+    ('con_g', 'Constructions and infrastructure — revenue growth', IN['construct_growth'], PCT),
+    ('ele_g', 'Electrical products and digital solutions — revenue growth', IN['elecprod_growth'],
+     PCT)])
+block('Segment gross margins and corporate cost load', [
+    ('cab_mgn', 'Cables — gross/segment margin', IN['cables_margin'], PCT),
+    ('con_mgn', 'Constructions and infrastructure — segment margin', IN['construct_margin'], PCT),
+    ('ele_mgn', 'Electrical products and digital solutions — segment margin', IN['elecprod_margin'],
+     PCT),
+    ('opex_pct', 'Corporate cost load (% of revenue) — the bridge from segment profit to EBIT',
+     IN['opex_pct'], PCT)])
 block('Capital intensity', [
     ('nwc_pct', 'Working capital / revenue', IN['nwc_pct'], PCT),
     ('capex_pct', 'Capital expenditure / revenue', IN['capex_pct'], PCT),
@@ -319,8 +316,8 @@ block('Cost of capital', [
     ('g_term', 'Terminal growth', IN['g_term'], PCT)])
 block('Balance-sheet and bridge anchors', [
     ('nd_fy25', 'Net bank debt at FY2025 (EGP mn, disclosed)', IN['nd_fy25'], NUM0),
-    ('assoc_bv', 'Equity-accounted investees at carrying value (EGP mn)', IN['assoc_bv_fy24'], NUM0),
-    ('intang', 'Intangible assets and goodwill (EGP mn)', IN['intang_fy24'], NUM0),
+    ('assoc_bv', 'Equity-accounted investees at carrying value (EGP mn)', IN['assoc_bv_fy25'], NUM0),
+    ('intang', 'Intangible assets and goodwill (EGP mn)', IN['intang_fy25'], NUM0),
     ('pat_fy25', 'FY2025 profit after tax (EGP mn, disclosed)', IN['pat_fy25'], NUM0),
     ('npa_fy25', 'FY2025 profit after minority interests (EGP mn, disclosed)', IN['npa_fy25'], NUM0),
     ('dps_fy24', 'FY2024 dividend per share (EGP)', IN['dps_fy24'], PX),
@@ -386,10 +383,11 @@ title(ws, 'Segments — the margin build', 'FY2025 disclosed shares and gross ma
       awidth=34, cwidth=13)
 hdr(ws, 4, ['Segment', 'FY2025 revenue', 'Share', 'Gross margin'] + YF)
 r = 5
+_seg_rev_tot_row = r + len(SEGS)
 for s in SEGS:
     put(ws, f'A{r}', SEG['names'][s], fmt=None)
     put(ws, f'B{r}', SEG['rev'][s], BLUE, NUM0)
-    putf(ws, f'C{r}', f'=B{r}/$B$12', SEG['rev'][s] / IN['rev_fy25'], PCT)
+    putf(ws, f'C{r}', f'=B{r}/$B${_seg_rev_tot_row}', SEG['rev'][s] / IN['rev_fy25'], PCT)
     put(ws, f'D{r}', SEG['gp_margin'][s], BLUE, PCT)
     for i in range(5):
         put(ws, f'{get_column_letter(5+i)}{r}', F['seg_rev'][i][s], BLUE, NUM0)
@@ -535,7 +533,7 @@ wf(11, 'Add back depreciation and amortisation', lambda i: f'=-{CD[i]}8', F['dna
 wf(12, 'Less capital expenditure', lambda i: f'=-{CD[i]}5*{a("capex_pct", i)}',
    [-x for x in F['capex']])
 wf(13, 'Less change in working capital',
-   lambda i: (f"=-({CD[i]}5-'Income Statement'!D5)*{a('nwc_pct')}" if i == 0
+   lambda i: (f"=-({CD[i]}5*{a('nwc_pct')}-'Balance Sheet'!D16)" if i == 0
               else f'=-({CD[i]}5-{CD[i-1]}5)*{a("nwc_pct")}'), [-x for x in F['dnwc']])
 wf(14, 'Free cash flow to the firm',
    lambda i: f'={CD[i]}10+{CD[i]}11+{CD[i]}12+{CD[i]}13', F['fcff'], bd=True)
@@ -675,9 +673,9 @@ put(ws, 'A20', 'Note: FY2023 and FY2024 are audited. FY2025 revenue, profit afte
 
 # ============ 10 BALANCE SHEET ====================================================
 ws = sheet('Balance Sheet')
-title(ws, 'Balance sheet — condensed', 'EGP mn, consolidated. The FY2025 debt and cash lines are '
-      'triangulated by three methods, shown and averaged below rather than asserted', 9,
-      awidth=40, cwidth=12)
+title(ws, 'Balance sheet — condensed', 'EGP mn, consolidated. Every FY2023-25 line is the audited '
+      'closing figure — no triangulation is needed for any year, including FY2025, because the full '
+      'filing is in hand', 9, awidth=40, cwidth=12)
 hdr(ws, 4, ['EGP mn'] + YH + YF)
 
 def bsline(r, lab, key, fc_f=None, fc_v=None, bd=False, fmt=NUM0, d_f=None, d_v=None):
@@ -695,26 +693,23 @@ def bsline(r, lab, key, fc_f=None, fc_v=None, bd=False, fmt=NUM0, d_f=None, d_v=
             putf(ws, f'{FCOL[i]}{r}', fc_f(i), fc_v[i], fmt, bold=bd)
     if bd: band(ws, r, 9)
 
-dm = HB['FY25']['debt_methods']
 bsline(5, 'Property, plant and equipment', 'ppe',
-       fc_f=lambda i: f'={"D" if i == 0 else FCOL[i-1]}5-DCF!{CD[i]}12+DCF!{CD[i]}8', fc_v=F['ppe'],
-       d_f=f"=C5+'Income Statement'!D5*({a('capex_pct', 0)}-{a('dna_pct')})", d_v=F['ppe_fy25'])
+       fc_f=lambda i: f'={"D" if i == 0 else FCOL[i-1]}5-DCF!{CD[i]}12+DCF!{CD[i]}8', fc_v=F['ppe'])
 bsline(6, 'Inventories', 'inv')
 bsline(7, 'Contract assets', 'ca')
 bsline(8, 'Trade and other receivables', 'recv')
 bsline(9, 'Cash and cash equivalents', 'cash', d_f='=D11-D17', d_v=HB['FY25']['cash'])
 bsline(10, 'Total assets', 'assets', bd=True)
-bsline(11, 'Loans and borrowings', 'debt', d_f='=AVERAGE(B23:B25)', d_v=HB['FY25']['debt'])
+bsline(11, 'Loans and borrowings', 'debt')
 bsline(12, 'Trade and other payables', 'pay')
 bsline(13, 'Contract liabilities', 'cl')
 bsline(14, 'Equity attributable to shareholders', 'eqp',
        fc_f=lambda i: (f'={"D" if i == 0 else FCOL[i-1]}14+'
                        f"'Income Statement'!{FCOL[i]}17*(1-{a('payout')})"), fc_v=F['equity'],
-       d_f=f"=C14+'Income Statement'!D17-{a('dps_fy24')}*{a('shares')}", d_v=F['eqp_fy25'], bd=True)
+       bd=True)
 bsline(15, 'Non-controlling interests', 'nci')
 bsline(16, 'Net working capital', 'nwc',
-       fc_f=lambda i: f"='Income Statement'!{FCOL[i]}5*{a('nwc_pct')}", fc_v=F['nwc'],
-       d_f=f"='Income Statement'!D5*{a('nwc_pct')}", d_v=F['nwc_fy25'])
+       fc_f=lambda i: f"='Income Statement'!{FCOL[i]}5*{a('nwc_pct')}", fc_v=F['nwc'])
 bsline(17, 'Net bank debt', 'nd',
        fc_f=lambda i: (f'={"D" if i == 0 else FCOL[i-1]}17-DCF!{CD[i]}14'
                        f"-'Income Statement'!{FCOL[i]}11*(1-{a('tax_eff')})"
@@ -727,42 +722,30 @@ for i in range(8):
     putf(ws, f'{ALL[i]}18', f"={ALL[i]}17/'Income Statement'!{ALL[i]}7", nd_all[i] / eb_all[i], MULT)
 put(ws, 'A19', 'Residual: other liabilities, provisions and deferred tax not shown separately '
     '(total assets less the lines above)', fmt=None)
-for i in range(2):   # FY2023/FY2024 only: FY2025 lacks the payables and contract-liability lines
+for i in range(3):
     col, y = HC[i], H3[i]
     resid = HB[y]['assets'] - (HB[y]['debt'] + HB[y]['pay'] + HB[y]['cl'] + HB[y]['eqp'] + HB[y]['nci'])
     putf(ws, f'{col}19', f'={col}10-({col}11+{col}12+{col}13+{col}14+{col}15)', resid, NUM0)
-put(ws, 'D19', 'n/a', BLACK, None)
 put(ws, 'A21', 'Note: this is a CONDENSED layout, so it does not foot to zero — the residual row '
     'above is the block of other liabilities, provisions, deferred tax and related-party balances that '
     'is not shown separately. For FY2024 that residual is 22,828, which reconciles to the audited '
     'statements (provisions 13,440 + 943, deferred tax 3,670, related parties 2,050 + 95, other '
-    'liabilities 2,631 = 22,829). FY2025 shows only the disclosed lines (total assets, net bank debt) '
-    'plus rolled-forward equity and triangulated debt and cash; the valuation bridge uses only the '
-    'disclosed net bank debt.', fmt=None).font = SUB
-hdr(ws, 22, ['FY2025 gross debt — three independent triangulations', 'EGP mn'])
-for i, (lab, k) in enumerate([
-        ('Balance-sheet residual (assets less equity and non-debt liabilities)', 'residual'),
-        ('FY2024 debt scaled with revenue growth', 'revenue_scaled'),
-        ('Implied from the cash balance and the disclosed net debt', 'cash_implied')]):
-    put(ws, f'A{23+i}', lab, fmt=None)
-    put(ws, f'B{23+i}', dm[k], BLUE, NUM0)
-put(ws, 'A26', 'Average — the figure carried on row 11', fmt=None)
-putf(ws, 'B26', '=AVERAGE(B23:B25)', HB['FY25']['debt'], NUM0, bold=True)
-band(ws, 26, 2)
+    'liabilities 2,631 = 22,829). Every line, including FY2025, is now the audited closing figure — '
+    'no triangulation or roll-forward is used for any historical year.', fmt=None).font = SUB
 
 # ============ 11 CASH FLOW =========================================================
 ws = sheet('Cash Flow')
 title(ws, 'Cash flow — historical markers and the forecast waterfall', 'EGP mn', 9,
       awidth=44, cwidth=12)
-hdr(ws, 4, ['EGP mn', 'FY2023', 'FY2024'] + YF)
+hdr(ws, 4, ['EGP mn', 'FY2024', 'FY2025'] + YF)
 put(ws, 'A5', 'EBITDA', fmt=None)
-putf(ws, 'B5', "='Income Statement'!B7", HI['FY23']['ebitda'], NUM0, green=True)
-putf(ws, 'C5', "='Income Statement'!C7", HI['FY24']['ebitda'], NUM0, green=True)
+putf(ws, 'B5', "='Income Statement'!C7", HI['FY24']['ebitda'], NUM0, green=True)
+putf(ws, 'C5', "='Income Statement'!D7", HI['FY25']['ebitda'], NUM0, green=True)
 for i in range(5):
     putf(ws, f'{CFF[i]}5', f"='Income Statement'!{FCOL[i]}7", F['ebitda'][i], NUM0, green=True)
-for r, lab, v in [(6, 'Interest paid', -IN['int_paid_fy24']),
-                  (7, 'Income tax paid', -IN['tax_paid_fy24']),
-                  (8, 'Operating cash flow after interest and tax', IN['ocf_fy24'])]:
+for r, lab, v in [(6, 'Interest paid', -IN['int_paid_fy25']),
+                  (7, 'Income tax paid', -IN['tax_paid_fy25']),
+                  (8, 'Operating cash flow after interest and tax', IN['ocf_fy25'])]:
     put(ws, f'A{r}', lab, fmt=None)
     put(ws, f'B{r}', '-', BLACK, NUM0)
     put(ws, f'C{r}', v, BLUE, NUM0)
@@ -775,13 +758,13 @@ put(ws, 'B10', '-', BLACK, NUM0); put(ws, 'C10', '-', BLACK, NUM0)
 for i in range(5):
     putf(ws, f'{CFF[i]}10', f'=DCF!{CD[i]}11', F['dna'][i], NUM0, green=True)
 put(ws, 'A11', 'Capital expenditure', fmt=None)
-put(ws, 'B11', -IN['capex_fy23'], BLUE, NUM0); put(ws, 'C11', -IN['capex_fy24'], BLUE, NUM0)
+put(ws, 'B11', -IN['capex_fy24'], BLUE, NUM0); put(ws, 'C11', -IN['capex_fy25'], BLUE, NUM0)
 for i in range(5):
     putf(ws, f'{CFF[i]}11', f'=DCF!{CD[i]}12', -F['capex'][i], NUM0, green=True)
 put(ws, 'A12', 'Change in working capital', fmt=None)
 put(ws, 'B12', '-', BLACK, NUM0)
-putf(ws, 'C12', "=-('Balance Sheet'!C16-'Balance Sheet'!B16)",
-     -(HB['FY24']['nwc'] - HB['FY23']['nwc']), NUM0)
+putf(ws, 'C12', "=-('Balance Sheet'!D16-'Balance Sheet'!C16)",
+     -(HB['FY25']['nwc'] - HB['FY24']['nwc']), NUM0)
 for i in range(5):
     putf(ws, f'{CFF[i]}12', f'=DCF!{CD[i]}13', -F['dnwc'][i], NUM0, green=True)
 put(ws, 'A13', 'Free cash flow to the firm', bold=True, fmt=None)
@@ -790,8 +773,8 @@ for i in range(5):
     putf(ws, f'{CFF[i]}13', f'={CFF[i]}9+{CFF[i]}10+{CFF[i]}11+{CFF[i]}12', F['fcff'][i], NUM0,
          bold=True)
 band(ws, 13, 9)
-put(ws, 'A15', 'Cash conversion — operating cash flow as a share of EBITDA, FY2024', fmt=None)
-putf(ws, 'C15', '=C8/C5', IN['ocf_fy24'] / HI['FY24']['ebitda'], PCT)
+put(ws, 'A15', 'Cash conversion — operating cash flow as a share of EBITDA, FY2025', fmt=None)
+putf(ws, 'C15', '=C8/C5', IN['ocf_fy25'] / HI['FY25']['ebitda'], PCT)
 put(ws, 'A16', 'This single ratio is the crux of the valuation: the company earned far more '
     'EBITDA than it converted to cash, because growth was funded through working capital.',
     fmt=None).font = SUB
@@ -962,10 +945,11 @@ ratio('Interest cover (EBIT / net interest)',
 ratio('Working capital / revenue',
       lambda i: f"='Balance Sheet'!{ALL[i]}16/'Income Statement'!{ALL[i]}5",
       [HB[y]['nwc'] / HI[y]['rev'] for y in H3] + [F['nwc'][i] / F['rev'][i] for i in range(5)], PCT)
+_CFCAPCOL = [None, 'B', 'C'] + CFF   # Cash Flow sheet's historical columns are now FY2024/FY2025
 ratio('Capital expenditure / revenue',
-      lambda i: f"=-'Cash Flow'!{(['B', 'C', 'D'] + CFF)[i]}11/'Income Statement'!{ALL[i]}5",
-      [IN['capex_fy23'] / HI['FY23']['rev'], IN['capex_fy24'] / HI['FY24']['rev'], None]
-      + [F['capex'][i] / F['rev'][i] for i in range(5)], PCT, skip=(2,))
+      lambda i: f"=-'Cash Flow'!{_CFCAPCOL[i]}11/'Income Statement'!{ALL[i]}5",
+      [None, IN['capex_fy24'] / HI['FY24']['rev'], IN['capex_fy25'] / HI['FY25']['rev']]
+      + [F['capex'][i] / F['rev'][i] for i in range(5)], PCT, skip=(0,))
 # the last two rows are historical reconciliation constants from the terminal-growth check
 put(ws, f'A{r}', 'Reinvestment rate', fmt=None)
 for i, y in enumerate(H3):
@@ -999,7 +983,7 @@ for a1, a2, a3, a4 in [
     ('European cable majors', 'Europe', 'closest match on business model — cables plus projects',
      'developed-market cost of capital; no convertibility risk'),
     ('Regional engineering and construction contractors', 'Gulf and North Africa',
-     'the right frame for the roughly 27% that is turnkey project work',
+     'the right frame for the roughly 32% that is the Constructions and infrastructure segment',
      'project accounting and backlog quality are not comparable'),
 ]:
     put(ws, f'A{r}', a1, fmt=None); put(ws, f'B{r}', a2, fmt=None)

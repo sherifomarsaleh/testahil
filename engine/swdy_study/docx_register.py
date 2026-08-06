@@ -132,38 +132,36 @@ table([['Layer', 'What it covers'],
 
 H2('Primary documents relied upon')
 table([['Document', 'Publisher', 'Date', 'What was taken from it'],
+       ['Consolidated financial statements for the year ended 31 December 2023 (audited, '
+        'translated from Arabic), KPMG Hazem Hassan, unqualified opinion', 'Elsewedy Electric '
+        'Company', '13 March 2024',
+        'Full consolidated income statement, balance sheet and cash flow statement for FY2023 '
+        'with FY2022 comparatives; three-segment revenue and profit note; loans and borrowings '
+        'note with average rates by currency; shareholder structure; exchange-rate disclosure '
+        'note and the March-2024 devaluation subsequent event'],
        ['Consolidated financial statements for the year ended 31 December 2024 (audited, '
-        'translated from Arabic)', 'Elsewedy Electric Company', '12 March 2025',
-        'Full consolidated statement of cash flows; loans and borrowings note including the '
-        'financing-liability reconciliation; interest-rate risk note with average rates by '
-        'currency; currency risk note; goodwill impairment note'],
-       ['Q4 2024 earnings release (FY 2024 results)', 'Elsewedy Electric Company', '13 March 2025',
-        'Consolidated income statement FY2024 with FY2023 comparatives; consolidated balance sheet '
-        'at 31 December 2024 and 2023; segment revenue and gross profit table; net debt; share '
-        'count; shareholder structure; proposed dividend'],
-       ['Q2 2024 earnings release (H1 2024 results)', 'Elsewedy Electric Company', '15 August 2024',
-        'Segment operating detail including cable sales volumes and gross profit per tonne; '
-        'turnkey backlog and awards by sector and region; balance sheet at 31 December 2023'],
-       ['Q1 2025 earnings release', 'Elsewedy Electric Company', '26 May 2025',
-        'Q1-2025 income statement, EBITDA and net bank debt; the restated five-segment reporting '
-        'structure; shareholder structure at 31 March 2025'],
-       ['Condensed consolidated interim financial statements, three months ended 31 March 2025',
-        'Elsewedy Electric Company', '26 May 2025',
-        'Q1-2025 statement of profit or loss; interim statement of cash flows including '
-        'depreciation, capital expenditure, interest paid and net movement in borrowings'],
-       ['Segment analysis workbooks, Q4 2024 and Q1 2025', 'Elsewedy Electric Company',
-        '13 March 2025 / 26 May 2025',
-        'Segment revenue, gross profit, selling expense and depreciation by segment on both the '
-        'old and the restated segment taxonomy'],
-       ['Q4 2025 earnings release (FY 2025 results) — reported figures',
-        'Elsewedy Electric Company, via financial press covering the exchange filing',
-        'March 2026',
-        'FY2025 revenue, profit after tax, profit after minority interests, total assets, net bank '
-        'debt, fourth-quarter gross profit and EBITDA. The release itself was not directly '
-        'reachable — see the negative results below'],
-       ['Q1 2026 exchange filing — reported figures',
-        'Elsewedy Electric Company, via financial press covering the exchange filing',
-        '13 May 2026', 'Q1-2026 revenue and profit attributable to the parent'],
+        'translated from Arabic), KPMG Hazem Hassan, unqualified opinion', 'Elsewedy Electric '
+        'Company', '13 March 2025',
+        'Full consolidated income statement, balance sheet and cash flow statement for FY2024 '
+        'with FY2023 comparatives; three-segment revenue and profit note; loans and borrowings '
+        'note including the financing-liability reconciliation; interest-rate risk note with '
+        'average rates by currency; currency risk note; shareholder structure'],
+       ['Consolidated financial statements for the year ended 31 December 2025 (audited, '
+        'translated from Arabic), KPMG Hazem Hassan, unqualified opinion', 'Elsewedy Electric '
+        'Company', '15 March 2026',
+        'Full consolidated income statement, balance sheet and cash flow statement for FY2025 '
+        'with FY2024 comparatives; three-segment revenue (Note 5-3) and profit (Note 16) note, '
+        'each reconciling exactly to consolidated revenue and to operating profit through the '
+        'corporate cost load; capital-management note (Note 29-1) with the company\'s own '
+        '"net debt" definition; loans and borrowings note including the financing-liability '
+        'reconciliation and average rates by currency; equity-accounted investees note; '
+        'shareholder structure'],
+       ['Condensed interim consolidated financial statements for the three months ended 31 March '
+        '2026 (limited review), KPMG Hazem Hassan', 'Elsewedy Electric Company', '13 May 2026',
+        'Q1-2026 income statement with Q1-2025 comparatives; balance sheet at 31 March 2026; '
+        'three-segment revenue note reconciling exactly to Q1-2026 revenue; loans and borrowings '
+        'note with average rates by currency; cash-flow statement; confirmation that no FY2025 '
+        'dividend had been declared, proposed or approved as at the report date'],
        ['Country risk premium and default spread file', 'Damodaran, NYU Stern',
         '5 January 2026', 'Egypt equity risk premium and sovereign default spread, credit-default-'
         'swap basis and rating basis'],
@@ -212,10 +210,11 @@ table([['Judgement', 'What was chosen', 'Why', 'What would overturn it'],
         'The base case assumes the central bank\'s disinflation path closes most of the gap rather '
         'than the currency absorbing it',
         'A disorderly move in the pound; the sensitivity table carries the parity case'],
-       ['Working capital held flat at the historical share of revenue',
-        'Net working capital stays near the level the two audited years show',
-        'Two audited years show it rising with revenue rather than converting',
-        'Two consecutive halves of operating cash flow above 60% of EBITDA'],
+       ['Working capital held near the FY2025 share of revenue',
+        'Net working capital stays near 19.9% of revenue, the FY2025 audited level',
+        'All three audited years show working capital absorbing cash rather than converting, '
+        'though FY2025 improved (24.1% -> 23.1% -> 19.9% of revenue)',
+        'Two consecutive years of operating cash flow above 60% of EBITDA'],
        ['Terminal growth of 5%',
         'The standing centre for established names in this market, sensitised 3–7%',
         'It is below the blended long-run nominal growth ceiling of the economies the company '
@@ -232,55 +231,63 @@ table([['Judgement', 'What was chosen', 'Why', 'What would overturn it'],
         'conservative charge',
         'A reader preferring the book convention can add the difference back; the amount is stated '
         'in the study'],
-       ['Effective tax rate of 25% for NOPAT',
-        'Above the Egyptian statutory rate',
-        'Reported effective rates ran above statutory in every historical year because foreign '
-        'profits are taxed elsewhere',
-        'The audited FY2025 tax note'],
-       ['FY2025 income statement closed to reported profit',
-        'EBITDA set at the disclosed margin; the tax rate closes the account',
-        'Only the top and bottom lines were disclosed for FY2025',
-        'The audited FY2025 consolidated statements']],
+       ['Effective tax rate of 24.5% for NOPAT',
+        'Above the Egyptian statutory rate, between the FY2025 print and the historical average',
+        'Audited effective rates ran 31.3% (FY2023), 30.1% (FY2024) and 22.6% (FY2025); no '
+        'statutory-vs-effective reconciliation is disclosed, and the group pays tax in 15+ '
+        'jurisdictions plus Free-Zone entities on a revenue basis',
+        'A sustained repeat of the FY2025 low or the Q1-2026 print (25.75%) in either direction'],
+       ['Segment margins compressed rather than held at their FY2025 level',
+        'Cables and Constructions margins recover PARTIALLY over the forecast; Electrical '
+        'products holds closest to its FY2025 level',
+        'All three disclosed segments compressed in FY2025 versus FY2023; the causes (copper '
+        'pass-through, competitive pricing) are not disclosed as transitory or structural',
+        'Two consecutive years of segment margin at or above the FY2023-24 average']],
       [1.35, 1.75, 2.05, 1.85], size=7.8)
 
 # ---- negative results ---------------------------------------------------------
 H1('Negative results — what could not be sourced')
-P('Recorded because an unsourced gap that is not disclosed becomes an invisible assumption.')
+P('This study was rebuilt once the company\'s own audited FY2023, FY2024 and FY2025 consolidated '
+  'financial statements and its Q1-2026 condensed interim statements became available. An earlier '
+  'version of this study, built before those filings were in hand, had to triangulate and derive '
+  'several FY2025 figures from press coverage and company commentary; every one of those '
+  'derivations has now been replaced by the audited figure itself, and the items below record what '
+  'is still not disclosed anywhere in the four primary filings, rather than what could not be '
+  'reached.')
 table([['What was sought', 'Outcome', 'How the study handled it'],
-       ['Audited consolidated financial statements for FY2025',
-        'Not reachable. The company\'s investor-relations site and the exchange\'s filing archive '
-        'were both unreachable from the research environment; the company\'s document repository '
-        'was reachable but its contents stop at the first quarter of 2025',
-        'FY2025 was built from the disclosed headline figures reported by financial press covering '
-        'the exchange filing, cross-checked against each other and against the quarterly path. '
-        'Every derived line is labelled in the study and in the register above'],
-       ['The Q4 2025 and Q1 2026 earnings releases in full',
-        'Located but not retrievable; the hosting domains were unreachable',
-        'Headline figures were taken from press coverage of the filings. Segment detail for FY2025 '
-        'and Q1 2026 does not exist in the study as a result — segment shares are apportioned from '
-        'company commentary and the last fully disclosed segment table'],
-       ['FY2025 balance sheet beyond total assets and net bank debt',
-        'Not disclosed in any reachable source',
-        'Triangulated by three independent methods; the spread is shown in the study and only the '
-        'disclosed net debt enters the valuation bridge'],
-       ['A facility-by-facility currency split of the debt book',
-        'Not disclosed at that granularity',
-        'The split was inferred from the disclosed average rates by currency and the independently '
-        'computed blended effective rate, and is labelled as inferred'],
+       ['An order book, backlog or unit-volume (tonnage, MVA, meter-count) disclosure for any '
+        'segment, in any of the four filings including the Q1-2026 interim',
+        'Not disclosed. The company reports only segment revenue (Note 5-3) and segment profit '
+        '(Note 16) — no volumes, prices or backlog',
+        'The forecast is built as a taper on each segment\'s own recent revenue CAGR and, for '
+        'Cables, a copper-price and FX-translation driver, rather than a reconstructed unit model'],
+       ['A facility-by-facility or currency-by-currency breakdown of the debt book finer than the '
+        'two-way EGP / hard-currency split disclosed in the FY2025 and Q1-2026 borrowings notes',
+        'Not disclosed at finer granularity; the FY2024 filing\'s own three-way EGP/USD/EUR split '
+        'was itself replaced by the simpler two-way format in FY2025',
+        'The Egyptian-pound share of the book is back-solved from the independently computed '
+        'effective interest rate against the two disclosed currency-bucket rates, and is labelled '
+        'as inferred'],
+       ['A declared, proposed or approved FY2025 dividend',
+        'Not disclosed in either the FY2025 annual filing (board-approved 12 March 2026) or the '
+        'Q1-2026 interim (board-approved 12 May 2026, the most recent primary source available)',
+        'No FY2025 dividend per share is carried in the model; the forecast payout ratio is struck '
+        'near the FY2025 disclosed cash-dividend rate relative to FY2024 profit instead'],
        ['An explanation for the sharp single-session price move on 4 August 2026',
         'No corresponding company disclosure or news item was found',
         'Not used. The study\'s anchor is the closing price on 5 August 2026 and no narrative is '
         'attached to the move']],
       [1.55, 2.35, 3.10], size=7.8)
 
-H1('A note on aggregator data')
-P('Aggregator and data-vendor figures were used only where a company source was unavailable, and '
-  'they were checked against the company\'s own disclosures wherever both existed. One material '
-  'discrepancy was found and is recorded here: a widely syndicated "FY2025" balance sheet — total '
-  'assets, total equity, total debt and cash — reproduces the company\'s audited 31 December 2024 '
-  'figures exactly, one year stale. It was discarded. The FY2025 balance-sheet figures used in '
-  'this study are the disclosed total assets and net bank debt, plus the triangulation described '
-  'above.')
+H1('A note on aggregator and press data')
+P('An earlier version of this study relied on press coverage and company commentary for FY2025, '
+  'because the audited filings were not reachable from the research environment at the time. One '
+  'material discrepancy was found in that process and is recorded here for the audit trail: a '
+  'widely syndicated "FY2025" balance sheet — total assets, total equity, total debt and cash — '
+  'reproduced the company\'s audited 31 December 2024 figures exactly, one year stale, and was '
+  'discarded. All balance-sheet, income-statement and segment figures in the current study are '
+  'taken directly from the audited FY2023-25 consolidated statements and the Q1-2026 condensed '
+  'interim statements; no aggregator or press figure remains in the model.')
 
 H1('Disclosure')
 P('This document accompanies an educational valuation study. It is not investment advice and '

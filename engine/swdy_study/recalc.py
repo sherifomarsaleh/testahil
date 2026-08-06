@@ -108,7 +108,7 @@ checks = [
     ('Income statement FY2030E attributable profit', g('Income Statement', 'I17'), F['np_attr'][4], 1.0),
     ('Income statement FY2024 EBITDA margin', g('Income Statement', 'C8'),
      HI['FY24']['ebitda'] / HI['FY24']['rev'], 0.001),
-    ('Balance sheet FY2025 gross debt (three-way average)', g('Balance Sheet', 'D11'),
+    ('Balance sheet FY2025 gross debt (audited)', g('Balance Sheet', 'D11'),
      HB['FY25']['debt'], 1.0),
     ('Balance sheet FY2030E net debt', g('Balance Sheet', 'I17'), F['net_debt'][4], 1.0),
     ('Balance sheet FY2024 net debt / EBITDA', g('Balance Sheet', 'C18'),

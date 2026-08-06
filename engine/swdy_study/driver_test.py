@@ -51,8 +51,8 @@ CASES = [
      'a higher terminal risk-free rate must lower the valuation'),
     ('Working capital / revenue', 'C', +0.02, 'dcf', -1,
      'more working capital absorbs cash and must lower the valuation'),
-    ('Operating load (% of revenue)', 'B', +0.01, 'ebitda26', -1,
-     'a heavier operating load must cut FY2026 EBITDA'),
+    ('Corporate cost load (% of revenue) — the bridge from segment profit to EBIT', 'B', +0.01,
+     'ebitda26', -1, 'a heavier operating load must cut FY2026 EBITDA'),
     # Depreciation pulls the two halves of the DCF in OPPOSITE directions, and both legs
     # are asserted so the workbook cannot quietly lose either one. In the explicit window a
     # higher charge is a pure tax shield and lifts cash flow. In the terminal state it is
@@ -80,8 +80,6 @@ CASES = [
      'a higher cost of debt must raise the explicit-window cost of capital'),
     ('Terminal debt weight', 'C', +0.10, 'wacc_term', -1,
      'more of the cheaper after-tax debt must lower the terminal cost of capital'),
-    ('FY2024 dividend per share (EGP)', 'C', +1.0, 'bvps', -1,
-     'a larger dividend paid out of FY2024 must reduce FY2025 book value per share'),
 ]
 
 fails, moved = [], []
@@ -102,12 +100,12 @@ for label, col, bump, key, sign, why in CASES:
 # a driver that moves NOTHING anywhere is a dead input: catch those too
 DEAD_OK = {          # inputs the valuation legitimately does not consume directly
     'Spot price (EGP)', 'Statutory corporate tax rate', 'FY2025 average USD/EGP',
-    'Copper (USD/tonne)', 'USD/EGP path', 'Cable volume growth',
-    'Cable fabrication uplift over copper', 'Raw-material volume growth',
-    'Transformer MVA growth', 'Meter unit growth', 'Order-book conversion rate',
-    'Order-book book-to-bill', 'Other-lines revenue growth', 'Meter price inflation',
-    'Gross profit per unit — growth', 'Non-cable margin recovery factor',
-    'Cable gross profit per tonne, FY2025 (EGP)', 'Order book at FY2025 (EGP mn)',
+    'Copper (USD/tonne)', 'USD/EGP path',
+    'Cables — real (volume) growth over copper x FX',
+    'Constructions and infrastructure — revenue growth',
+    'Electrical products and digital solutions — revenue growth',
+    'Cables — gross/segment margin', 'Constructions and infrastructure — segment margin',
+    'Electrical products and digital solutions — segment margin',
     'Weight — discounted cash flow', 'Weight — relative', 'Weight — normalised',
     'Weight — book', 'Yield assumed on surplus cash',
     'FY2025 profit after tax (EGP mn, disclosed)',
@@ -119,6 +117,10 @@ DEAD_OK = {          # inputs the valuation legitimately does not consume direct
     'Equity risk premium', 'Risk-free rate (10-year local currency)',
     'Terminal equity risk premium', 'Terminal cost of debt', 'Cost of debt path',
     'Capital expenditure / revenue',
+    # FY2025 equity is now the audited closing balance (no triangulation), so the FY2024
+    # dividend per share no longer chains into it live — it is retained on the Assumptions
+    # sheet purely as the disclosed historical fact that informed the forecast payout ratio.
+    'FY2024 dividend per share (EGP)',
 }
 print('\nDEAD-INPUT SWEEP — every driver not covered above is bumped and must move something')
 dead = []
