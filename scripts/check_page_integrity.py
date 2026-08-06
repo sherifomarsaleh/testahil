@@ -71,7 +71,7 @@ NON_TICKER_PAGES = {
     "404.html", "googlef90107a488de289e.html", "thanks.html", "archive.html",
     "news.html", "calculator.html", "compare.html", "egypt.html", "index.html",
     "ledger.html", "metals.html", "method.html", "other-markets.html",
-    "stocks.html", "trade.html", "portfolio.html",
+    "stocks.html", "trade.html", "portfolio.html", "picker.html",
 }
 # Deliberate "coming soon" stubs — correctly minimal, not a bug.
 STUB_PAGES = {"copper.html", "mfpc.html"}
