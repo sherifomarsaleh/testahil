@@ -14,28 +14,16 @@ Run a full valuation study for **{COMPANY NAME}**, listed on **{EXCHANGE}**. Thi
 **Work out the rest yourself. Do not ask me for it.** Derive each of the following, state what you derived and on what evidence in your first response, then proceed without waiting for confirmation:
 
 > **Two things — and only two — override that.** If there is no OHLC price history, say so and stop.
-> **If you cannot reach the company's own financial statements, stop work and ask me what to do** —
-> see *Primary sources* below. Everything else you derive and proceed on.
+> **If you cannot reach the company's own financial statements, stop work and ask me what to do.**
+> Everything else you derive and proceed on.
 
 - **Ticker and market code** — the exchange gives the market code (EGX→EG, Tadawul→SA, ADX/DFM→AE, QE→QA, LSE→GB, NSE/BSE→IN, KRX→KR, B3→BR, NYSE/Nasdaq→US).
 - **Reporting and valuation currency** — from the market (EG→EGP, SA→SAR, AE→AED, QA→QAR, GB→GBP, IN→INR, KR→KRW, BR→BRL, US→USD). If the company reports in a currency other than its listing currency, say so and state which one the valuation runs in and why.
 - **OHLC price history** — repo convention is `engine/raw_ohlc/{MARKET}/{TICKER}.csv`. Use it if it is there. If it is not, and I have not attached one, **say so immediately and stop** — do not proceed on a partial or reconstructed price series, and do not substitute an index.
+- **Financial statements — primary sources only, and this one you DO ask me about.** Build the historical income statement, balance sheet and cash flow **only** from the company's own issued statements and full disclosures, read from an official home: its website / investor-relations page, the exchange's disclosure portal, or the regulator's filing archive. Aggregators, broker notes, press coverage and search-result extracts are cross-checks, never build sources. **If you cannot reach those statements — the site is blocked or down, the filings are not published for the periods the forecast needs, the documents will not parse, or the full statements plus notes for the 3 required historical years (including the forecast base year) cannot be assembled — STOP WORK AND ASK ME WHAT TO DO.** Do not reconstruct them, do not substitute unofficial data, and do not deliver a model on a "best available data, labelled as such" caveat. Try properly before you stop: work all three official homes, and treat a 403/407 or TLS failure as an egress-proxy fault until you have checked it, not as a company-website failure. When you stop, tell me the ticker, what you needed, every official source you tried with its URL and how it failed, what that blocks downstream, and the options as you see them — then wait for my answer. No partial model, no provisional build, nothing delivered until I have answered.
 - **Company class, and therefore the valuation lens** — developer, recurring-income real estate, bank, holding company, contractor, operating company with a captive lender, aggregator, or something else. Derive it from the filings, not from the sector label: state the revenue mix and balance-sheet shape you based it on. **If the company genuinely straddles two classes, do not pick one — value the legs separately with the lens each needs and sum them.** The lens decision is the one that invalidates the whole study if it is wrong, so show your evidence for it.
 - **Reference study to match** — follows from the class: EAND (operating company), ADCB (bank), Alpha Dhabi (holding company).
 - **Sector** — for gate item (c) below.
-
-**Primary sources — the one thing you must ask me about.** Build the historical income statement,
-balance sheet and cash flow **only** from the company's own issued financial statements and full
-disclosures: its website / investor-relations page, the exchange's disclosure portal, or the
-regulator's filing archive. Aggregators, broker notes, press coverage and search-result extracts are
-cross-checks, never build sources. **If you cannot reach those statements — the site is blocked or
-down, the filings are not published for the periods the forecast needs, the documents will not parse,
-or the full statements plus notes for the 3 required historical years cannot be assembled — STOP
-WORK AND ASK ME WHAT TO DO.** Do not reconstruct them, do not substitute unofficial data, and do not
-deliver a model on a "best available data, labelled as such" caveat. Try properly first: a 403/407 or
-TLS failure is an egress-proxy fault until you have checked it, not a company-website failure. When
-you stop, tell me the ticker, what you needed, every official source you tried with its URL and how
-it failed, what that blocks downstream, and the options as you see them — then wait for my answer.
 
 Then follow the TESTAHIL Standing Research Protocol end-to-end without asking: read live state first (market_profiles.py + fitted_configs.json from the repo), then Step 0.0 data-quality gate → Step 0 calibration gate (scale-normalized, carry-anchored) → Step 2A four-ring Information Sweep → financials → build the 16-section Word + 16-sheet Excel matching TMPV_Valuation_Study_30-06-2026 → unprompted QC gate as a filled evidence table.
 
