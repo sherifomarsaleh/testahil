@@ -911,14 +911,37 @@ fcff = [nopat[i] + dna[i] - capex[i] - dnwc[i] for i in range(5)]
 pv = [fcff[i] * df[i] for i in range(5)]
 pv_explicit = float(sum(pv))
 
-# ---- forward net-finance path (needed by the lenses below, recomputed identically
-# in the forecast-equity block) --------------------------------------------------
-interest_path_pre, _nd = [], V['nd_fy25']
+# ---- forward net-finance, profit, dividend, equity and net-debt paths ----------
+# ONE roll-forward, computed once and used everywhere: by the normalised-earnings lens,
+# by the forecast income statement, and by the forecast balance sheet. A previous build
+# ran a second, slightly different version of this loop earlier in the file (because the
+# minority share had not been computed yet at that point) and the two disagreed by up to
+# EGP 117mn of interest. The minority share depends only on the FY2025 prints, so it is
+# computed here and the duplicate loop is gone.
+nci_share = nci_fy25 / V['pat_fy25']
+PAYOUT = 0.25
+ASSOC_G = 0.08
+interest_path, np_fc, div_fc, eq_fc, nd_fc, assoc_fc = [], [], [], [], [], []
+_nd, _eq = V['nd_fy25'], eqp_fy25
 for i in range(5):
+    # gross borrowings fund working capital and stay broadly in place; the cash pile
+    # builds as free cash flow accrues, so the NET charge falls with net debt.
     _cash = debt_fy25 - _nd
     _int = V['kd_path'][i] * debt_fy25 - 0.10 * max(_cash, 0.0)
-    interest_path_pre.append(_int)
-    _nd = _nd - (fcff[i] - _int * (1 - TAX)) + 0.25 * max(ebit[i] - _int, 0.0) * (1 - TAX) * (1 - nci_share_pre if False else 0.9035)
+    _assoc = assoc_fy25 * (1 + ASSOC_G) ** (i + 1)
+    _pbt = ebit[i] - _int + _assoc
+    _npa = _pbt * (1 - TAX) * (1 - nci_share)
+    _div = PAYOUT * _npa
+    _eq += _npa - _div
+    _nd = _nd - (fcff[i] - _int * (1 - TAX)) + _div
+    interest_path.append(_int); assoc_fc.append(_assoc); np_fc.append(_npa)
+    div_fc.append(_div); eq_fc.append(_eq); nd_fc.append(_nd)
+say(f"[Forecast interest] net finance cost falls " + " -> ".join(f"{x:,.0f}" for x in interest_path) +
+    f" as the cash pile builds against a broadly static gross debt book — the charge tracks the "
+    f"net debt path rather than being frozen at the FY2025 balance.")
+say(f"[Forecast equity] attributable profit " + ", ".join(f"{x:,.0f}" for x in np_fc) +
+    f"; net debt path " + ", ".join(f"{x:,.0f}" for x in nd_fc) +
+    f" ({PAYOUT:.0%} payout assumed).")
 
 # ---- invested capital, terminal ROIC ----------------------------------------
 ic_fy23 = nwc_fy23 + V['ppe_fy23']
@@ -985,7 +1008,6 @@ assoc_val = V['assoc_bv_fy24']   # carrying value, no uplift
 say(f"[Associates] carried at the audited FY2024 carrying value of {assoc_val:,.0f} with NO "
     f"uplift. The previous version applied an undisclosed 1.15x, which an external audit "
     f"correctly flagged as an unsourced adjustment; it is removed.")
-nci_share = nci_fy25 / V['pat_fy25']
 eq_pre_nci = ev - V['nd_fy25'] + assoc_val
 nci_val = nci_share * eq_pre_nci
 eq_attr = eq_pre_nci - nci_val
@@ -1103,7 +1125,7 @@ norm_margin = ebitda_margin[NORM_I]
 norm_rev = rev[NORM_I]
 norm_ebitda = norm_margin * norm_rev
 norm_ebit = norm_ebitda - V['dna_pct'] * norm_rev
-norm_interest = interest_path_pre[NORM_I]
+norm_interest = interest_path[NORM_I]
 norm_assoc = assoc_fy25 * (1.08 ** (NORM_I + 1))
 norm_np = (norm_ebit - norm_interest + norm_assoc) * (1 - TAX) * (1 - nci_share)
 norm_eps = norm_np / SH
@@ -1240,31 +1262,10 @@ def dcf_roic(r):
 grid_roic = [dcf_roic(r) for r in roic_grid]
 
 # ---- forecast balance sheet & cash-flow markers ---------------------------------
-eq_fc, e_ = [], eqp_fy25
-np_fc, nd_fc = [], []
-nd_ = V['nd_fy25']
-interest_path = []
-for i in range(5):
-    # gross borrowings fund working capital and stay broadly in place; the cash pile
-    # builds as free cash flow accrues, so the NET charge falls with net debt.
-    cash_i = debt_fy25 - nd_
-    interest = V['kd_path'][i] * debt_fy25 - 0.10 * max(cash_i, 0.0)
-    interest_path.append(interest)
-    pbt_i = ebit[i] - interest + assoc_fy25 * (1 + 0.08) ** (i + 1)
-    pat_i = pbt_i * (1 - TAX)
-    npa_i = pat_i * (1 - nci_share)
-    div_i = 0.25 * npa_i
-    e_ += npa_i - div_i
-    eq_fc.append(e_); np_fc.append(npa_i)
-    nd_ = nd_ - (fcff[i] - interest * (1 - TAX)) + div_i
-    nd_fc.append(nd_)
-say(f"[Forecast interest] net finance cost falls " + " -> ".join(f"{x:,.0f}" for x in interest_path) +
-    f" as the cash pile builds against a broadly static gross debt book — the charge tracks the "
-    f"net debt path rather than being frozen at the FY2025 balance.")
-say(f"[Forecast equity] attributable profit " + ", ".join(f"{x:,.0f}" for x in np_fc) +
-    f"; net debt path " + ", ".join(f"{x:,.0f}" for x in nd_fc) +
-    f" (25% payout assumed). Net debt / EBITDA falls from "
-    f"{V['nd_fy25']/ebitda_fy25:.2f}x to {nd_fc[-1]/ebitda[-1]:.2f}x.")
+# The equity, dividend, interest and net-debt paths are the single roll-forward computed
+# with the FCFF waterfall above; nothing is recomputed here.
+say(f"[Leverage] net debt / EBITDA falls from {V['nd_fy25']/ebitda_fy25:.2f}x to "
+    f"{nd_fc[-1]/ebitda[-1]:.2f}x over the forecast.")
 
 # ---- expert panel: three genuinely different methods ---------------------------
 # Cast by METHOD from the persona library; presented to the reader as Expert 1/2/3.
@@ -1350,7 +1351,12 @@ OUT = dict(
               ebitda=ebitda, ebitda_margin=ebitda_margin, dna=dna, ebit=ebit, nopat=nopat,
               capex=capex, nwc=nwc, dnwc=dnwc, fcff=fcff, df=df, pv=pv, fwd_wacc=fwd,
               ppe=ppe, ic=ic, roic=roic, np_attr=np_fc, equity=eq_fc, net_debt=nd_fc,
-              seg_rev=seg_rev, seg_ebitda=seg_ebitda, seg_shares=shares),
+              interest=interest_path, assoc=assoc_fc, div=div_fc, seg_gp=seg_gp,
+              seg_rev=seg_rev, seg_ebitda=seg_ebitda, seg_shares=shares,
+              payout=PAYOUT, assoc_g=ASSOC_G, glide_frac=glide_frac,
+              ppe_fy25=ppe_fy25, eqp_fy25=eqp_fy25, assoc_fy25=assoc_fy25,
+              debt_fy25=debt_fy25, nwc_fy25=nwc_fy25, dna_fy25=dna_fy25,
+              nopat_fy25=nopat_fy25, ic_fy25=ic_fy25),
     seg_fy25=dict(rev=seg_rev_fy25, gp=seg_gp_fy25, names=SEGNAME, gp_margin=margin25),
     bottomup=dict(unit_hist=unit_hist, vol25=vol25, vol_f=vol_f, uplift25=uplift25,
                   price_t25=price_t25, cables_conv25=cables_conv25, compress=compress,

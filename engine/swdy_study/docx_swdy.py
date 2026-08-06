@@ -117,16 +117,26 @@ rows = [['Read', 'Basis', 'Range (EGP/share)', 'Central', 'vs spot'],
          f"DCF {pc(IN['lens_weights']['dcf'],0)} · relative {pc(IN['lens_weights']['relative'],0)} · "
          f"normalised {pc(IN['lens_weights']['normalized'],0)} · book {pc(IN['lens_weights']['book'],0)}",
          f"{p2(D['span'][0])} – {p2(D['span'][1])}", p2(D['central']), sgn(D['central']/SPOT-1,0)],
-        ['Memo — currency-of-discounting alternative',
-         f"hard-currency cash-flow leg discounted at {pc(W['wacc_usd_alt'])} rather than the "
-         f"Egyptian rate; the reading the market appears to apply",
+        ['Market price', 'closing price on the anchor date', '—', p2(SPOT), '—'],
+        ['ALTERNATIVE READINGS — not included in the weighted central above', '', '', '', ''],
+        ['Currency of discounting',
+         f"the same cash flows with the hard-currency leg discounted at {pc(W['wacc_usd_alt'])} "
+         f"instead of the Egyptian rate — a different view of country risk, not a fifth lens",
          '—', p2(DCF['ccy_alt_ps']), sgn(DCF['ccy_alt_ps']/SPOT-1,0)],
-        ['Memo — market price', 'closing price on the anchor date', '—', p2(SPOT), '—']]
-table(rows, [1.30, 2.75, 1.15, 0.72, 0.63], band_rows={5}, size=8.6)
-caption(f"Rows marked \u201cMemo\u201d are shown for information and are deliberately NOT included in "
-        f"the weighted central: they are alternative readings of the same company under a different "
-        f"convention, shown so the reader can see what each contested choice is worth rather than "
-        f"having it averaged silently into the headline. Ranges are bear-to-bull within each lens; "
+        ['Rating-basis cost of capital',
+         f"the same model on the rating column of the published country-risk table rather than "
+         f"the market-spread column (see section 1.8)",
+         '—', p2(DCF['ps_rating_basis']), sgn(DCF['ps_rating_basis']/SPOT-1,0)],
+        ['Minority interests charged before net debt',
+         'an alternative sequencing of one line of the bridge (see section 1.8)',
+         '—', p2(DCF['ps_nci_alt']), sgn(DCF['ps_nci_alt']/SPOT-1,0)]]
+table(rows, [1.30, 2.75, 1.15, 0.72, 0.63], band_rows={5, 7}, size=8.6)
+caption(f"The alternative readings are shown so that each genuinely contested choice carries a "
+        f"number the reader can see, rather than being averaged silently into the headline. They "
+        f"are deliberately excluded from the weighted central because each answers a different "
+        f"question — which currency's cost of capital applies, which column of a risk table to "
+        f"use, how to sequence one line of the bridge — and blending them would hide the "
+        f"disagreement instead of showing it. Ranges are bear-to-bull within each lens; "
         f"the central is the weighted base. Terminal "
         f"value is {pc(DCF['tv_share'],0)} of the discounted-cash-flow enterprise value — a high "
         f"share, disclosed here and again in the bridge, and the reason the terminal assumptions "

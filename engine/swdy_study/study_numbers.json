@@ -1286,6 +1286,74 @@
    5128.832060029791,
    -9024.949133257413
   ],
+  "interest": [
+   4127.401616023958,
+   4311.400078789779,
+   3469.943043041273,
+   2320.553696508063,
+   942.58352920777
+  ],
+  "assoc": [
+   1406.4408,
+   1518.9560640000002,
+   1640.4725491200002,
+   1771.7103530496004,
+   1913.4471812935687
+  ],
+  "div": [
+   5850.728731001153,
+   6413.84659402282,
+   7190.183031259253,
+   8077.804047682998,
+   9055.945842665658
+  ],
+  "seg_gp": [
+   {
+    "cables": 25866.09381390937,
+    "rawmat": 8455.914930776953,
+    "ec": 7858.412178457996,
+    "transformers": 5746.110816863308,
+    "meters": 4179.911870032181,
+    "elecprod": 1464.1028499228548,
+    "infra": 2145.9378502006507
+   },
+   {
+    "cables": 29332.15038497323,
+    "rawmat": 9497.683650248677,
+    "ec": 8129.690387904425,
+    "transformers": 6640.205659967241,
+    "meters": 4740.020060616494,
+    "elecprod": 1690.1603299509438,
+    "infra": 2477.2706542716314
+   },
+   {
+    "cables": 32793.34413040007,
+    "rawmat": 10516.310221737845,
+    "ec": 8315.120189181367,
+    "transformers": 7566.514349532672,
+    "meters": 5350.297643420868,
+    "elecprod": 1912.8064503387127,
+    "infra": 2803.6034231516446
+   },
+   {
+    "cables": 36492.433348309205,
+    "rawmat": 11590.025495377282,
+    "ec": 8372.447592754523,
+    "transformers": 8500.978871699957,
+    "meters": 5953.811217598743,
+    "elecprod": 2123.9302277078737,
+    "infra": 3113.0478757443634
+   },
+   {
+    "cables": 40608.77982999848,
+    "rawmat": 12773.367098455301,
+    "ec": 8325.833587898298,
+    "transformers": 9550.849762354903,
+    "meters": 6625.401122943882,
+    "elecprod": 2314.8890922173887,
+    "infra": 3392.936583838811
+   }
+  ],
   "seg_rev": [
    {
     "cables": 145610.36787706963,
@@ -1426,7 +1494,24 @@
     "elecprod": 0.010038982479406794,
     "infra": 0.012078400282957579
    }
-  ]
+  ],
+  "payout": 0.25,
+  "assoc_g": 0.08,
+  "glide_frac": [
+   0.0,
+   0.33333333333333354,
+   0.6249999999999998,
+   0.8333333333333333,
+   1.0
+  ],
+  "ppe_fy25": 33024.2555,
+  "eqp_fy25": 70464.12212399999,
+  "assoc_fy25": 1302.26,
+  "debt_fy25": 71616.72053413192,
+  "nwc_fy25": 64641.270000000004,
+  "dna_fy25": 2951.0145,
+  "nopat_fy25": 20753.305,
+  "ic_fy25": 99124.7255
  },
  "seg_fy25": {
   "rev": {
@@ -1768,9 +1853,9 @@
   },
   "normalized": {
    "name": "Normalised earnings power",
-   "bear": 94.15599509791565,
-   "base": 121.05770798303442,
-   "bull": 154.68484908943287,
+   "bear": 94.04297714970363,
+   "base": 120.9123991924761,
+   "bull": 154.4991767459417,
    "w": 0.2
   },
   "book": {
@@ -1783,15 +1868,15 @@
   "central": {
    "name": "Weighted central",
    "bear": 33.765349259013206,
-   "base": 74.5522113478001,
-   "bull": 154.68484908943287,
+   "base": 74.52314958968843,
+   "bull": 154.4991767459417,
    "w": 1.0
   }
  },
- "central": 74.5522113478001,
+ "central": 74.52314958968843,
  "span": [
   33.765349259013206,
-  154.68484908943287
+  154.4991767459417
  ],
  "spot": 105.2,
  "experts": {
@@ -1914,9 +1999,9 @@
   "rev": 442251.724251873,
   "ebitda": 48914.41709217701,
   "ebit": 44270.773987532346,
-  "interest": 3418.938394042807,
-  "np": 28795.295885483185,
-  "eps": 13.45085644255938,
+  "interest": 3469.943043041273,
+  "np": 28760.73212503701,
+  "eps": 13.434711021386233,
   "pe": 9.0,
   "year": "FY28E",
   "assoc": 1640.4725491200002
@@ -2250,6 +2335,8 @@
   "[Forecast margins are OUTPUTS] gross margin 15.24% -> 15.30% -> 15.66% -> 15.96% -> 16.26%; EBITDA margin 11.24% -> 11.00% -> 11.06% -> 11.16% -> 11.26%. Cable tonnage 163,898 -> 193,581 (+15.5% against FY2024); order book 323,700 -> 336,718.",
   "[FY2026 cross-check against the print] the disclosed Q1-2026 revenue of 75,298, grossed up on the Q1-2025 seasonal share, implies a full year of 356,321. The build produces 365,556, +2.6% against it \u2014 an independent check that the unit build is not running ahead of the company's own trading.",
   "[Currency split \u2014 two different questions] the company discloses that over 70% of revenue is earned ABROAD, which is a geographic statement about where the customer sits. The build derives the share that is HARD-CURRENCY LINKED \u2014 dollar-priced by construction \u2014 at 63% in FY2025 and 62% -> 61% -> 61% -> 60% -> 60% thereafter. The two are not in conflict: a project executed in a North African market for a local utility is foreign revenue but not necessarily dollar-priced. The LOWER figure is used everywhere the currency question is valued, because it is the conservative one.",
+  "[Forecast interest] net finance cost falls 4,127 -> 4,311 -> 3,470 -> 2,321 -> 943 as the cash pile builds against a broadly static gross debt book \u2014 the charge tracks the net debt path rather than being frozen at the FY2025 balance.",
+  "[Forecast equity] attributable profit 23,403, 25,655, 28,761, 32,311, 36,224; net debt path 27,358, 23,957, 16,044, 5,129, -9,025 (25% payout assumed).",
   "[Terminal return on capital] taken as next year's NOPAT over the closing invested capital (21.8%), the standard convention, rather than the same year's NOPAT over closing capital (20.8%).",
   "[Terminal growth reconciliation] historical ROIC 22.3% / 24.9% / 20.9%; reinvestment rate 20.8% / 31.7% / 26.4%; implied g 4.6% / 7.9% / 5.5%. Check (a): actual NOPAT CAGR FY23-FY25 = +30.5%. Check (b): implied g from STABLE years only (FY24 excluded as a debt-funded capacity burst, reinvestment 32%) = 5.1%. Adopted terminal g 5.0%.",
   "[Terminal value] terminal ROIC 21.8%; required reinvestment rate g/ROIC = 22.9%; terminal NOPAT 41,331; TV 314,122 capitalised at the terminal WACC and discounted at the YEAR-5 factor 0.3975 (one date, one price of time) -> PV 124,875. Terminal value is 77% of enterprise value.",
@@ -2262,9 +2349,8 @@
   "[Relative lens \u2014 forward EV discounted] 6.5x on FY2027E EBITDA 44,941 gives an enterprise value of 292,115 AS AT end-FY2027; discounted back at the year-2 factor 0.6408 that is 187,184 today -> EGP 73.38/share. Not discounting it would have given 117.67.",
   "[Book lens] justified price-to-book 1.47x = (sustainable return 23.5% - growth 5%) / (PERPETUAL cost of equity 17.56% - growth). Using a blended cost of equity inside a perpetuity formula, as the previous version did, is inconsistent and understated this lens by roughly 14.61/share.",
   "[DCF scenarios] bear 35.37 / base 63.10 / bull 110.39 EGP per share",
-  "[Synthesis] weighted central EGP 74.55; full span across lenses and scenarios 33.77 - 154.68; spot 105.20 (-29% to the central).",
-  "[Forecast interest] net finance cost falls 4,127 -> 4,311 -> 3,470 -> 2,321 -> 943 as the cash pile builds against a broadly static gross debt book \u2014 the charge tracks the net debt path rather than being frozen at the FY2025 balance.",
-  "[Forecast equity] attributable profit 23,403, 25,655, 28,761, 32,311, 36,224; net debt path 27,358, 23,957, 16,044, 5,129, -9,025 (25% payout assumed). Net debt / EBITDA falls from 0.65x to -0.16x.",
+  "[Synthesis] weighted central EGP 74.52; full span across lenses and scenarios 33.77 - 154.50; spot 105.20 (-29% to the central).",
+  "[Leverage] net debt / EBITDA falls from 0.65x to -0.16x over the forecast.",
   "[Economic profit convention] the capital charge is taken on BEGINNING-of-year invested capital, not ending. Charging ending capital understates economic profit by roughly 3,832mn a year and pushes the year in which the return spread turns positive one year later than it should. Corrected here.",
   "[Expert panel] Expert 1 137.70 [101.47-173.94]; Expert 2 66.19 [40.82-72.60]; Expert 3 60.72 [49.99-91.15]; panel median 66.19 (-37% vs spot)"
  ]
