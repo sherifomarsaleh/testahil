@@ -52,10 +52,10 @@ const TICKERS = {
       tech: { data:"2026-08-05", computed:"2026-08-06" }
     },
     files: {
-      study: "files/SWDY_Valuation_Study_05-08-2026_public.docx?v=0806",
-      model: "files/SWDY_Valuation_Model_05082026_public.xlsx?v=0806",
-      pdf:   "files/SWDY_Valuation_Study_05-08-2026_public.pdf?v=0806",
-      biblio:"files/SWDY_Bibliography_05-08-2026.pdf?v=0806"
+      study: "files/SWDY_Valuation_Study_05-08-2026_public.docx?v=0806b",
+      model: "files/SWDY_Valuation_Model_05082026_public.xlsx?v=0806b",
+      pdf:   "files/SWDY_Valuation_Study_05-08-2026_public.pdf?v=0806b",
+      biblio:"files/SWDY_Bibliography_05-08-2026.pdf?v=0806b"
     }
   },
   ELEC: {

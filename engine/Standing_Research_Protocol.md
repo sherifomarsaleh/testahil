@@ -684,6 +684,44 @@ glide-shape disclosure, and **(d)** the explicit × terminal WACC grid, is a **Q
 
 ---
 
+## [NEW 06-Aug, per instruction — SWDY study] MULTI-CURRENCY COST OF DEBT — standing procedure
+
+Adopted when SWDY's cost of debt was challenged: its blended Kd of 13.0% is a currency-composition
+average across pound, dollar and euro liabilities (28.68% / 6.49% / 3.92% per the audited note),
+and an external critique argued the hard-currency legs should instead be loaded with the pound's
+own expected depreciation before blending — pushing Kd toward ~19.6%. **Applies to every future
+study where a name's debt spans more than one currency.**
+
+**The rule, in two parts, both mandatory whenever the currency-composition basis is used as
+primary:**
+
+1. **Always compute and publish the local-currency-equivalent alternative as a VALUE**, never
+   merely described. Load the hard-currency debt legs with the local currency's own forecast
+   depreciation path under uncovered interest parity — the identical convention already used for
+   the currency-of-discounting alternative (never a separately invented depreciation assumption) —
+   reblend, and run the DCF at the resulting WACC. Publish the resulting fair value alongside the
+   primary, in the same contested-choices table as the other computed alternatives (rating basis,
+   NCI sequencing, gross-vs-net debt weights).
+2. **Always attach an explicit devaluation-risk caution** next to the currency-composition figure:
+   adopting it as primary means the hard-currency debt is carried at its coupon rate and is NOT
+   compensated for devaluation beyond what the study's own exchange-rate path already assumes. If
+   the currency depreciates faster than that path, the true local-currency cost of servicing that
+   debt is understated by construction.
+
+**Compute the effect before calling it material.** SWDY's own case is the cautionary example: the
+critique's approximation ("lifts Kd from 13% to roughly 19.6%, genuine and material") was recorded
+as material without being run through the model. Computed properly, EGP-equivalent Kd is 18.65%
+and the fair-value effect is **−0.65%** (EGP 62.69 vs 63.10) — because net debt carries only 8.08%
+of the capital structure, so even a 660-basis-point swing in Kd barely moves the blended WACC
+(26.90% → 27.24%). **A currency-composition critique's materiality depends entirely on the debt
+weight in the capital structure, which is a company-specific fact, not something to assume from
+the size of the rate swing.** State the computed effect plainly, including when — as here — it
+turns out to be small: disclosure does not require drama, and a footnote-sized effect dressed up
+as material is as much a QC defect as an unpriced one dismissed as immaterial (see
+`Critique_Response_Prompt.md`, step 3).
+
+---
+
 ## [NEW 13-Jul r2] ENGINE RECONCILIATION — a study may not disagree with production
 
 Adopted after the RMDA publish, where a study script and the production engine were found to be

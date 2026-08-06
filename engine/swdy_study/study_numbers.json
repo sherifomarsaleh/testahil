@@ -1798,7 +1798,11 @@
   "g": 0.05,
   "bear": 35.37439268305282,
   "bull": 110.38697683559606,
-  "ccy_alt_ps": 91.14622861923802
+  "ccy_alt_ps": 91.14622861923802,
+  "ps_kd_egp_equiv": 62.686957383587384,
+  "kd_egp_equiv": 0.18650141035814438,
+  "wacc_exp_kd_egp_equiv": 0.2724019596255424,
+  "fx_dep_avg": 0.05436481112522373
  },
  "terminal_recon": {
   "roic": {
@@ -2345,6 +2349,7 @@
   "[Bridge] EV 162,810 - net debt 19,789 + associates at carrying value 6,474 = 149,495; less minority interests at their 9.6% share of group profit = 14,419 -> equity attributable 135,075 = EGP 63.10/share against a spot of 105.20 (-40%).",
   "[Currency-of-discounting alternative \u2014 UIP-corrected] the hard-currency leg (60% of cash flow) is first DEFLATED to dollars at each year's exchange rate, discounted at a USD cost of capital of 10.12% with 3.5% terminal growth, and only then translated back. Discounting the EGP-denominated leg \u2014 already inflated by the assumed depreciation path \u2014 directly at a dollar rate would count the currency benefit twice, which is what the previous version did. Corrected result EGP 91.15/share (-13% vs spot), against 108.27 before the correction.",
   "[Rating-basis alternative, published] on Damodaran's RATING column (sovereign spread 6.37%, equity risk premium 13.94%) the cost of equity is 30.01% and the cost of capital 28.37% -> 18.55%, giving EGP 44.88/share against the CDS-basis 63.10. Both columns are published by the same source; the CDS basis is the house primary because it is market-observed rather than agency-lagged. The rating basis is now shown as a VALUE, not merely as a rate.",
+  "[EGP-equivalent cost of debt alternative, published] the pound has depreciated (and this forecast assumes it keeps depreciating) at 5.4% a year on average over the explicit window; loading that onto the hard-currency legs (56% of the book, coupon blend 5.21%) under uncovered interest parity gives an EGP-equivalent cost of 10.92% for that share, and a blended Kd of 18.65% against the currency-composition 13.00%. Cost of capital rises to 27.24% from 26.90%, giving EGP 62.69/share against 63.10. CAUTION: adopting the currency-composition Kd as primary \u2014 as this study does \u2014 means the hard-currency share of the debt book is carried at its coupon rate and NOT compensated for devaluation risk beyond what the forecast's own FX path already assumes; if the pound depreciates faster than that path, the true cost of servicing that debt in pounds is understated by this study's primary construction.",
   "[Minority-interest sequencing, alternative published] charging minorities 9.6% of UNLEVERED enterprise value plus associates (16,328) and deducting net debt afterwards gives EGP 62.20/share, against 63.10 on the adopted sequencing \u2014 a difference of -0.89. The adopted method is retained because the audited borrowings note records facilities granted to 'the Company AND ITS SUBSIDIARIES ... guaranteed by promissory notes FROM SUBSIDIARIES', i.e. debt does sit at subsidiary level, so minorities do bear a share of it. The alternative assumes all borrowing is at the parent, which the note contradicts.",
   "[Relative lens \u2014 forward EV discounted] 6.5x on FY2027E EBITDA 44,941 gives an enterprise value of 292,115 AS AT end-FY2027; discounted back at the year-2 factor 0.6408 that is 187,184 today -> EGP 73.38/share. Not discounting it would have given 117.67.",
   "[Book lens] justified price-to-book 1.47x = (sustainable return 23.5% - growth 5%) / (PERPETUAL cost of equity 17.56% - growth). Using a blended cost of equity inside a perpetuity formula, as the previous version did, is inconsistent and understated this lens by roughly 14.61/share.",

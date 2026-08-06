@@ -1079,6 +1079,35 @@ say(f"[Rating-basis alternative, published] on Damodaran's RATING column (sovere
     f"primary because it is market-observed rather than agency-lagged. The rating basis is now "
     f"shown as a VALUE, not merely as a rate.")
 
+# (c) EGP-equivalent cost of debt: load the hard-currency legs with the pound's own
+# expected depreciation (uncovered interest parity — the same convention already used for
+# the currency-of-discounting alternative above), rather than carrying their disclosed
+# coupon rate unadjusted. Genuinely contestable: over 70% of revenue is hard-currency, so a
+# case exists that the coupon is the right cost for a naturally-hedged position; this
+# alternative is the other side of that argument, computed rather than merely asserted.
+# Standing decision (06-Aug-2026, per instruction): the currency-composition basis (13.0%)
+# stays primary, but from this study onward every multi-currency name (i) publishes this
+# alternative as a value and (ii) carries the devaluation-risk caution below when the
+# currency-composition basis is adopted — see Standing_Research_Protocol.md.
+fx_dep_avg = (V['fx_path'][-1] / V['fx_hist']['FY25']) ** (1 / 5) - 1
+kd_hard_egp_equiv = (1 + fx_blend) * (1 + fx_dep_avg) - 1
+kd_egp_equiv = w_egp * V['kd_egp_note'] + (1 - w_egp) * kd_hard_egp_equiv
+kd_egp_equiv_at = kd_egp_equiv * (1 - TAX)
+wacc_exp_egp_equiv = we_exp * ke_exp + wd_exp * kd_egp_equiv_at
+dcf_egp_equiv_ps = _val_at(wacc_exp_egp_equiv, wacc_term)
+say(f"[EGP-equivalent cost of debt alternative, published] the pound has depreciated (and this "
+    f"forecast assumes it keeps depreciating) at {fx_dep_avg:.1%} a year on average over the "
+    f"explicit window; loading that onto the hard-currency legs ({1-w_egp:.0%} of the book, "
+    f"coupon blend {fx_blend:.2%}) under uncovered interest parity gives an EGP-equivalent cost "
+    f"of {kd_hard_egp_equiv:.2%} for that share, and a blended Kd of {kd_egp_equiv:.2%} against "
+    f"the currency-composition {V['kd']:.2%}. Cost of capital rises to {wacc_exp_egp_equiv:.2%} "
+    f"from {wacc_exp:.2%}, giving EGP {dcf_egp_equiv_ps:.2f}/share against {dcf_ps:.2f}. "
+    f"CAUTION: adopting the currency-composition Kd as primary — as this study does — means the "
+    f"hard-currency share of the debt book is carried at its coupon rate and NOT compensated for "
+    f"devaluation risk beyond what the forecast's own FX path already assumes; if the pound "
+    f"depreciates faster than that path, the true cost of servicing that debt in pounds is "
+    f"understated by this study's primary construction.")
+
 # (b) Alternative NCI sequencing: charge minorities against unlevered enterprise value
 # before net debt, rather than against consolidated equity after it.
 nci_alt = nci_share * (ev + assoc_val)
@@ -1376,7 +1405,9 @@ OUT = dict(
              eq_attr=eq_attr, ps=dcf_ps, roic_term=roic_term, rr_term=rr_term,
              ps_rating_basis=dcf_rating_ps, wacc_exp_rating=wacc_exp_rating,
              wacc_term_rating=wacc_term_rating, ps_nci_alt=nci_alt_ps, nci_alt=nci_alt,
-             g=V['g_term'], bear=dcf_bear, bull=dcf_bull, ccy_alt_ps=ccy_ps),
+             g=V['g_term'], bear=dcf_bear, bull=dcf_bull, ccy_alt_ps=ccy_ps,
+             ps_kd_egp_equiv=dcf_egp_equiv_ps, kd_egp_equiv=kd_egp_equiv,
+             wacc_exp_kd_egp_equiv=wacc_exp_egp_equiv, fx_dep_avg=fx_dep_avg),
     terminal_recon=dict(roic=hist_roic, rr=hist_rr, implied_g=hist_impl_g,
                         nopat=dict(FY23=nopat_fy23, FY24=nopat_fy24, FY25=nopat_fy25),
                         capex=dict(FY23=V['capex_fy23'], FY24=V['capex_fy24'],

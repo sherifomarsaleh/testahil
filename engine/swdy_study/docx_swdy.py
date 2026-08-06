@@ -572,7 +572,7 @@ P(f"This is not a technicality. A cheap, majority-hard-currency debt book is one
   f"roughly {pc(W['kd_eff_q1_25'])} and is more than two-thirds offset by cash.")
 
 H2('Where this construction is contested, and what the alternatives are worth')
-P("Four choices in the cost of capital above are legitimately arguable, and external reviewers "
+P("Five choices in the cost of capital above are legitimately arguable, and external reviewers "
   "have argued them. Rather than defend each in prose, each alternative is computed and its value "
   "published here, so a reader who prefers a different convention can take the number directly.")
 rows = [['Choice made', 'The alternative', 'Fair value on the alternative', 'Why we keep ours'],
@@ -597,6 +597,17 @@ rows = [['Choice made', 'The alternative', 'Fair value on the alternative', 'Why
          'raises the value',
          'Net debt is the quantity the bridge subtracts; using it in both places keeps the two '
          'consistent, and it is the more conservative of the two'],
+        [f"Cost of debt on currency composition ({pc(IN['kd'])}): the disclosed coupon on each "
+         f"currency leg, unadjusted",
+         f"EGP-equivalent ({pc(DCF['kd_egp_equiv'])}): the hard-currency legs loaded with the "
+         f"pound's own {pc(DCF['fx_dep_avg'])}/year forecast depreciation, under uncovered "
+         f"interest parity",
+         f"EGP {p2(DCF['ps_kd_egp_equiv'])} ({p2(DCF['ps_kd_egp_equiv'] - DCF['ps'])})",
+         "Net debt carries only " + pc(W['wd_exp']) + " of the capital structure, so even this "
+         "660-basis-point swing in Kd moves the fair value by well under 1% — smaller than it "
+         "looks. CAUTION: keeping the currency-composition basis as primary means the "
+         "hard-currency debt is carried at its coupon rate, not compensated for devaluation "
+         "risk beyond what this forecast's own exchange-rate path already assumes"],
         ['Risk-free rate ' + pc(IN['rf']),
          'External readings of the same instrument on the same date range from about 21.3% to '
          '23.0%, and disagree with each other',
