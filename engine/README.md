@@ -28,6 +28,11 @@ module, both reconciled against the delivered `.docx`/`.xlsx` line by line.
   GCC-pegged / other floating EM / metals-excluded — see the module docstring and the
   companion project file `Cost_of_Capital_Reference.md` for the full guidance). Reproduces
   GBCO's WACC exactly: 22.94% (CDS-based ERP, primary) / 25.08% (rating-based, alternative).
+- **`research_protocol.py`** — the machine-readable form of the Source-Integrity & Ground-Up
+  Construction Mandate (SIGCM): nine binding clauses, a per-study attestation checklist, and
+  `assert_primary_source_access()`, the **stop-and-ask gate** that raises `PrimarySourceUnavailable`
+  when the company's own issued statements cannot be read. Rules only, no numbers — it never goes
+  stale. The prose lives in `Standing_Research_Protocol.md` (§ Primary-source access gate).
 - **`gbco_study/`** — the exact source that produced `GBCO_Valuation_Study_08-07-2026_public.docx`
   and `GBCO_Valuation_Model_08072026_public.xlsx` (see that folder's own README). A worked
   example / template for the next study, not a generic plug-and-play pipeline — every file
@@ -38,7 +43,10 @@ There is no generic `study_runner.py`-style orchestrator here anymore — buildi
 study means following the pattern in `gbco_study/` (Step 0 → §1 fundamental build → DCF →
 SOTP → Monte Carlo → docx/xlsx render → QC gate) adapted to the new ticker's own numbers,
 not running unmodified code against a new CSV. Step 2 (pulling historical financials) and
-the Step 4 expert-appendix authoring happen as research/writing in conversation, not as code.
+the Step 4 expert-appendix authoring happen as research/writing in conversation, not as code —
+which is exactly why the primary-source access gate is written down rather than left to judgement:
+if the company's own statements cannot be reached, the run **stops and asks**, and no aggregator
+stands in for them.
 
 ## Prior state (for the record, not for reuse)
 The removed generic-engine attempt (`model_builder.py`, `report_builder.py`,

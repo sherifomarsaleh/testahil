@@ -18,8 +18,19 @@ SIGCM_CLAUSES = {
     "historicals_official_only": (
         "Build the past IS/BS/CF using ONLY the company's own issued financial statements and full "
         "disclosures. No vendors, brokers, press-as-source, or third-party estimates. If required "
-        "official data is inaccessible, STOP and inform — never substitute unofficial data. Never "
+        "official data is inaccessible, STOP and ASK — never substitute unofficial data. Never "
         "issue a report based on unofficial company information."
+    ),
+    "primary_source_access": (
+        "[ADDED 06-Aug-2026, per instruction] PRIMARY-SOURCE ACCESS GATE. The company's own issued "
+        "statements must actually be READ, from an official home: the company website / IR page, the "
+        "exchange disclosure portal (EGX, Tadawul, ADX, DFM, QE, KRX/DART, NSE/BSE, EDGAR, LSE RNS), "
+        "or the regulator's filing archive. IF THEY CANNOT BE REACHED, STOP WORK AND ASK SHERIF WHAT "
+        "TO DO — do not reconstruct, do not substitute an aggregator, and do not ship a model behind a "
+        "'best available data, labelled as such' caveat. Partial access counts as unreachable: full "
+        "IS/BS/CF plus notes for the 3 required historical years, including the forecast base year. A "
+        "403/405/407 or TLS failure is an EGRESS-PROXY fault until checked, not a company-website "
+        "failure. This gate OUTRANKS the run-end-to-end-without-asking default."
     ),
     "forecast_ground_up": (
         "Construct the forecast from the ground up: product-by-product / service-by-service wherever "
@@ -50,16 +61,75 @@ SIGCM_CLAUSES = {
     ),
     "flag_before_issue_and_stop": (
         "Flag any missing input BEFORE issuing. If the website or disclosed statements cannot be read and "
-        "that blocks a detailed ground-up build, STOP and inform — do not proceed on assumptions or "
+        "that blocks a detailed ground-up build, STOP and ASK — do not proceed on assumptions or "
         "unofficial substitutes."
     ),
 }
+
+# Sources that are official for BUILDING historicals. Anything not on this list is a cross-check only.
+OFFICIAL_SOURCE_CLASSES = (
+    "company_website_ir",      # the company's own IR page / annual & interim report PDFs
+    "exchange_disclosure",     # EGX, Tadawul, ADX, DFM, QE, KRX/DART, NSE/BSE, EDGAR, LSE RNS
+    "regulator_archive",       # FRA, CMA and equivalents where separate from the exchange
+)
+
+# Named here so a build can never quietly treat one as a source. Cross-check use is fine and must be labelled.
+NEVER_A_BUILD_SOURCE = (
+    "stockanalysis.com", "investing.com", "simplywall.st", "tradingview", "mubasher", "zawya",
+    "arabfinance", "wsj", "broker_note", "press", "search_result_extract", "third_party_estimate",
+)
+
+
+class PrimarySourceUnavailable(RuntimeError):
+    """Raised when the company's own statements cannot be read. The correct handling is to STOP AND ASK."""
+
+
+def assert_primary_source_access(
+    ticker: str,
+    statements_obtained: bool,
+    sources_tried: Optional[list] = None,
+    missing: Optional[list] = None,
+    proxy_checked: bool = False,
+) -> None:
+    """Gate the financials build on having actually read the company's own statements.
+
+    Call this BEFORE any forecast driver is set. It deliberately raises rather than returning a
+    degraded build: there is no 'proceed with a caveat' path. The caller's job on catching it is to
+    STOP and put the question to Sherif — never to fall back to an aggregator.
+
+    `sources_tried` is a list of (source_class_or_url, failure_mode) pairs; `missing` names what could
+    not be assembled (statements and periods). `proxy_checked` records that a 403/405/407 or TLS
+    failure was diagnosed against the egress proxy before the source was called unreachable.
+    """
+    if statements_obtained:
+        return
+    tried = sources_tried or []
+    lines = [
+        f"PRIMARY-SOURCE ACCESS GATE — STOP AND ASK ({ticker or 'ticker not stated'}).",
+        "The company's own issued financial statements could not be read, so the forecast cannot be built.",
+        "Missing: " + (", ".join(missing) if missing else "not itemised — itemise before asking."),
+        "Official sources attempted: "
+        + ("; ".join(f"{s} -> {f}" for s, f in tried) if tried else "NONE RECORDED — attempt them before stopping."),
+    ]
+    if not proxy_checked:
+        lines.append(
+            "Egress proxy NOT yet ruled out — a 403/405/407 or TLS failure is an environment fault until "
+            "checked (/root/.ccr/README.md). Check it before declaring the source unreachable."
+        )
+    lines.append(
+        "Do NOT substitute an aggregator, reconstruct the statements, or deliver behind a disclosed caveat. "
+        "Report ticker, what was needed, every source tried with its failure mode, what is blocked downstream, "
+        "and the options (Sherif supplies the filings / Sherif authorises a named unofficial source as a "
+        "disclosed SIGCM breach / coverage deferred) — then WAIT for the answer."
+    )
+    raise PrimarySourceUnavailable("\n".join(lines))
 
 
 @dataclass
 class SIGCMChecklist:
     """One-per-study attestation. Every field must be True (or documented N/A with a reason) before issue."""
     historicals_official_only: bool = False
+    primary_source_access_confirmed: bool = False  # the official statements were actually read (QC item (s))
     forecast_ground_up: bool = False
     debt_lc_fx_split: bool = False
     asset_conversion_cycle: bool = False
@@ -95,7 +165,8 @@ def assert_sigcm(checklist: SIGCMChecklist) -> None:
             "SIGCM HARD FAIL — study must not be issued. Unmet clauses: "
             + ", ".join(fails)
             + ". See Source_Integrity_and_Ground_Up_Mandate.md. "
-            + "If a clause was blocked by inaccessible official data, STOP and inform Sherif rather than proceeding."
+            + "If a clause was blocked by inaccessible official data, STOP AND ASK Sherif what to do rather "
+            + "than proceeding — see assert_primary_source_access()."
         )
 
 
@@ -103,4 +174,19 @@ if __name__ == "__main__":
     # self-check
     c = SIGCMChecklist()
     assert not c.passed(), "empty checklist should fail"
+    assert "primary_source_access_confirmed" in c.failures(), "access gate must be an unmet clause by default"
+
+    assert_primary_source_access("TEST", statements_obtained=True)  # reachable -> no-op
+    try:
+        assert_primary_source_access(
+            "TEST",
+            statements_obtained=False,
+            sources_tried=[("company_website_ir", "egress blocked (403)")],
+            missing=["FY2025 IS/BS/CF + notes"],
+        )
+    except PrimarySourceUnavailable as e:
+        assert "STOP AND ASK" in str(e)
+    else:
+        raise AssertionError("blocked access must raise PrimarySourceUnavailable")
+
     print("SIGCM module loaded; clauses:", len(SIGCM_CLAUSES))

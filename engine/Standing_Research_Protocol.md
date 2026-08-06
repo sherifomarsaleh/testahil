@@ -15,6 +15,102 @@ study script was found silently scoring windows production excludes).
 
 ---
 
+## [NEW 06-Aug-2026, per instruction] THE PRIMARY-SOURCE ACCESS GATE — STOP AND ASK
+
+**If the company's own financial statements cannot be reached, STOP WORK AND ASK. Do not build the
+forecast on anything else.**
+
+This is a standing hard gate on every study, every update and every re-forecast, for every ticker
+in every market. It outranks the default "run the whole study end-to-end without asking": the
+unattended run has exactly **two** stopping conditions, and this is the second of them.
+
+| Blocking condition | Behaviour |
+|---|---|
+| No OHLC price history in `engine/raw_ohlc/{MARKET}/{TICKER}.csv` and none attached | Say so immediately and **stop** — never reconstruct a series, never substitute an index |
+| The company's own issued financial statements cannot be reached | **Stop and ask Sherif what to do** — never substitute unofficial data |
+
+### What counts as the primary source
+
+The company's own issued statements — full IS / BS / CF plus the notes — obtained from a source the
+company or its regulator publishes. In descending order, and **all of them are official**:
+
+1. The company's own website / investor-relations page (annual and interim report PDFs, financial
+   statement downloads).
+2. The exchange's own disclosure portal — EGX, Tadawul, ADX, DFM, QE, KRX/DART, NSE/BSE, SEC EDGAR,
+   LSE RNS.
+3. The regulator's filing archive where it is separate from the exchange (e.g. FRA, CMA).
+
+Anything else — aggregators (stockanalysis.com, Investing.com, simplywall.st, TradingView, Mubasher,
+Zawya), broker notes, press coverage, search-result extracts of any of the above — is a **cross-check
+only**, never a build source. That distinction is SIGCM clause #1 and it does not bend.
+
+### Try before you stop
+
+A stop is only honest after a real attempt. Work the list above in order and record each attempt
+(URL + failure mode). **A proxy or TLS failure is not a company-website failure until it has been
+checked** — a 403/405/407 from the egress proxy, or a CA-bundle rejection, is an environment fault
+first: follow `/root/.ccr/README.md` and `curl -sS "$HTTPS_PROXY/__agentproxy/status"` before
+concluding the source is unreachable. Never disable TLS verification or unset the proxy to get
+around it.
+
+### What "cannot be reached" means
+
+Any of these, and partial access counts:
+
+- The site, IR page or filing portal will not load, or egress to it is blocked and the block survives
+  the proxy check above.
+- The filings are simply not published there for the periods the forecast needs.
+- The documents load but are unreadable (scanned images that will not parse, corrupt or truncated
+  PDFs).
+- The statements are reachable but **incomplete for the build**: the full IS/BS/CF plus notes for the
+  required 3 historical years — including the base year the forecast starts from — cannot be
+  assembled from official sources. A ground-up forecast that is missing gross profit, SG&A, D&A,
+  interest expense or the debt schedule is not a forecast, it is a guess with a caveat attached.
+
+### What the stop looks like
+
+Halt the build at that point — no model, no partial deliverable, no "provisional" study. Report, in
+this shape, and then **wait for an answer**:
+
+- the ticker and what was needed (which statements, which periods, why);
+- every official source attempted, with the URL and the exact failure mode for each;
+- what is still missing and what it blocks downstream (which drivers, which lens, which sheets);
+- the options as you see them — Sherif supplies the statements or the PDFs; Sherif explicitly
+  authorises a named non-official source **with the disclosure that this breaches SIGCM #1 and that
+  the study carries the breach on its face**; or coverage is deferred.
+
+**Do not pick one of those yourself.** A sourcing caveat in the front matter is not a substitute for
+a source, and "best available data, labelled as such" is not the standard this engine publishes to.
+
+### Precedent — the failure this closes
+
+**ELEC (El Sewedy Electric, 05-Aug-2026).** The egress proxy blocked direct fetches of EGX, Mubasher,
+Zawya, Arab Finance, stockanalysis.com, simplywall.st, Investing.com, TradingView, WSJ **and the
+company website (ececables.com)**. The research file
+(`engine/elec_study/research/elec_company_financials.md`) says so openly in its first line: every
+figure was collected from web-search extracts of those same sources, and *"exact financial-statement
+line items (gross profit, SG&A, D&A, interest expense, facility-level debt) were not obtainable
+line-by-line; best-available aggregator figures and derived approximations are given and labelled as
+such."* The study was built and published anyway, on a disclosed caveat.
+
+Under this rule that run stops at the sweep and asks. Honest labelling is not the remedy — the whole
+point of SIGCM is that a forecast built on aggregator approximations is not a Testahil study
+regardless of how clearly the approximation is flagged. **Existing studies are not retroactively
+withdrawn** (append-only governs, as with the Ke/Kd/WACC scope clause); the gate binds prospectively,
+and any name rebuilt for its own reasons rebuilds under it.
+
+### Where it is enforced
+
+- `engine/research_protocol.py` — clause `primary_source_access`, checklist field
+  `primary_source_access_confirmed`, and `assert_primary_source_access()`, which raises
+  `PrimarySourceUnavailable` rather than returning a degraded build.
+- QC gate item **(s)** — evidence is the list of official sources actually read, per statement and
+  per period; an aggregator appearing as a *build* source is a hard fail.
+- The condensed project-instruction block and `Study_Initiation_Prompt.md` both carry the carve-out,
+  so the "do not ask me, derive it yourself" default cannot be read as overriding it.
+
+---
+
 ## STEP 0 — The calibration gate (before anything else)
 
 Walk-forward backtest over **every non-overlapping window from the market's last structural
@@ -761,6 +857,9 @@ harmless staleness.
   ADCB (bank, primary), Alpha Dhabi (holdco).
 - **Step 2A Information Sweep** — four mandatory rings (Global/Country/Industry/Company),
   classified B/S/D/C — runs BEFORE any forecast driver is set, on every study and every update.
+- **Primary-source access gate** — historicals come only from the company's own issued statements
+  (its website/IR, the exchange disclosure portal, or the regulator's archive). If they cannot be
+  reached, **STOP AND ASK** — never build on aggregators, search extracts or a disclosed caveat.
 - **WACC** bottom-up, market-adapted; local govt bond rf even for pegged currencies; ERP from
   Damodaran's *original* file only; genuine beta regression with a real usability gate.
 - **Lens by instrument class**; never blend legs that need different methods.

@@ -101,6 +101,12 @@ from the primary sources, whatever your first read of it was, and its own paragr
 The cost of over-examining a small finding is a few minutes. The cost of under-examining a large one
 is the study.
 
+**Primary sources means the company's own issued statements** — its website/IR page, the exchange
+disclosure portal, or the regulator's archive. If a re-derivation needs them and they cannot be
+reached, the primary-source access gate applies here exactly as it does to a new study: **stop and
+ask**, rather than re-deriving off an aggregator. Answering a critique with unofficial data is the
+one response worse than not answering it.
+
 ### 7. Then, and only then, sort into four buckets
 
 1. **ACCEPT AND IMPLEMENT** — the finding is right and the fix is clear.
