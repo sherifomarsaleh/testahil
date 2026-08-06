@@ -58,5 +58,11 @@
  ],
  "clean_rows": 3754,
  "density_rows_per_yr": 240.76356453028973,
- "span_years": 15.592060232717317
+ "span_years": 15.592060232717317,
+ "raw_rows": 3755,
+ "series_first": "2011-01-02",
+ "series_last": "2026-08-06",
+ "max_abs_log": 0.1813464226357484,
+ "jump_threshold": 0.29008661670847263,
+ "flat_frac": 0.09618971489475087
 }

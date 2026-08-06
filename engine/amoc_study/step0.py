@@ -73,6 +73,10 @@ summ = dict(
                      panel_names=len(reg['panel_names']), windows=reg['windows']),
     dq_log=dq_log, clean_rows=int(len(df)), density_rows_per_yr=float(density),
     span_years=float(span_yr),
+    raw_rows=int(len(df_raw)),
+    series_first=str(df['Date'].iloc[0].date()), series_last=str(df['Date'].iloc[-1].date()),
+    max_abs_log=float(scr['max_abs_log']), jump_threshold=float(jump_threshold('EG')),
+    flat_frac=float(scr['flat_frac']),
 )
 r.to_csv(os.path.join(HERE, 'backtest_rows.csv'), index=False)
 with open(os.path.join(HERE, 'step0_result.json'), 'w') as f:

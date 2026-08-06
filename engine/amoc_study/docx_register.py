@@ -290,12 +290,20 @@ table([['What was sought', 'Why it matters', 'Outcome'],
         'Would confirm the transition-period filing and the year-end change directly rather than '
         'through reporting of them',
         'NOT REACHED. Same cause'],
-       ['A segmental or product-line revenue disclosure',
-        'The two-leg split used here is built from a disclosed tonnage figure and a calibrated '
-        'specialty price, not from a segment note',
-        'NOT FOUND. The split is therefore checked against a plausible implied fuel realisation '
-        f"of about USD {D['unit']['fuel_price_usd25']:,.0f} a tonne rather than against a "
-        'disclosure'],
+       ['An AUDITED segmental or product-line revenue note',
+        'The three-line build used here rests on a reported product table — tonnes and value for '
+        'base oils, paraffin wax and the total — rather than on an audited segment note',
+        'PARTIALLY REACHED. The product table was obtained in reported form, not from the filing '
+        'itself, and is flagged as such at its input. It was validated three ways before '
+        'adoption: the two disclosed shares are internally coherent '
+        f"({D['unit']['spec_share_t']*100:.2f}% of tonnes against "
+        f"{D['unit']['spec_share_v']*100:.2f}% of value); the implied dollar realisations of "
+        f"USD {D['unit']['px_usd']['oil']:,.0f}, {D['unit']['px_usd']['wax']:,.0f} and "
+        f"{D['unit']['px_usd']['fuel']:,.0f} a tonne are the right levels and the right ORDER "
+        'for SN-grade base oil, fully refined paraffin and a gas-oil blend; and rolling the '
+        'three lines forward reproduces the independently built calendar-2025 revenue to within '
+        f"{abs(D['unit']['recon']-1)*100:.1f}%. No price in the model is calibrated and none is "
+        'a residual'],
        ['A disclosed non-controlling-interest balance or profit share',
         'The minority deduction in the bridge is inferred from the gap between consolidated and '
         'standalone profit',

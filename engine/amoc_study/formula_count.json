@@ -1,71 +1,12 @@
 {
- "formulas": 901,
- "numeric_values": 279,
- "text": 643,
- "per_sheet": {
-  "READ FIRST": [
-   7,
-   0
-  ],
-  "Summary": [
-   34,
-   0
-  ],
-  "Fundamental Valuation": [
-   19,
-   12
-  ],
-  "Assumptions": [
-   1,
-   109
-  ],
-  "EV Bridge": [
-   15,
-   0
-  ],
-  "Product Legs": [
-   73,
-   0
-  ],
-  "Relative & Normalized": [
-   24,
-   0
-  ],
-  "DCF": [
-   145,
-   0
-  ],
-  "Income Statement": [
-   140,
-   4
-  ],
-  "Balance Sheet": [
-   166,
-   0
-  ],
-  "Cash Flow": [
-   95,
-   0
-  ],
-  "Summary Financials": [
-   78,
-   0
-  ],
-  "Monte Carlo": [
-   0,
-   30
-  ],
-  "Sensitivity": [
-   0,
-   120
-  ],
-  "Per-Share & Ratios": [
-   71,
-   0
-  ],
-  "Peer & Sector": [
-   33,
-   4
-  ]
- }
+ "formulas": 1114,
+ "numeric_values": 224,
+ "text": 782,
+ "numeric_by_sheet": {
+  "Assumptions": 126,
+  "Sensitivity": 55,
+  "Monte Carlo": 30,
+  "Fundamental Valuation": 13
+ },
+ "formula_share": 0.8325859491778774
 }

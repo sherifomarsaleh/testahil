@@ -137,15 +137,15 @@ for tag, fn, out in [('one month', 'paths_1M.npy', 'fig5_dist.png'),
 
 # ---- F7 revenue by product leg, and the margin path -------------------------
 yrs = ['CY2025'] + [y.replace('E', '') for y in F['years']]
-spec = [U['spec_rev25']] + U['spec_rev']
-fuel = [U['fuel_rev25']] + U['fuel_rev']
+spec = [U['rev25_lines']['oil']+U['rev25_lines']['wax']] + U['spec_rev']
+fuel = [U['rev25_lines']['fuel']] + U['fuel_rev']
 mar = [d['hist_is']['CY25']['ebitda'] / BASE['rev_cy25']] + F['ebitda_margin']
 fig, ax = plt.subplots(figsize=(9.9, 4.2), dpi=110)
 xs = np.arange(len(yrs))
 ax.bar(xs, np.array(fuel) / 1000, width=0.56, color=SAGE, alpha=0.75,
        label='Fuel and by-products', edgecolor='#FFFFFF', linewidth=0.6)
 ax.bar(xs, np.array(spec) / 1000, width=0.56, bottom=np.array(fuel) / 1000, color=GOLD,
-       alpha=0.88, label='Specialty oils and waxes', edgecolor='#FFFFFF', linewidth=0.6)
+       alpha=0.88, label='Base oils and paraffin wax', edgecolor='#FFFFFF', linewidth=0.6)
 tot = (np.array(spec) + np.array(fuel)) / 1000
 for i, t in enumerate(tot):
     ax.text(i, t + tot.max() * 0.028, f'{t:.1f}', ha='center', fontsize=8.4, color=INK)
@@ -167,7 +167,7 @@ ax2.set_ylim(min(mar) * 100 - 1.95, max(mar) * 100 + 0.22)
 ax2.grid(False)
 h1, l1 = ax.get_legend_handles_labels(); h2, l2 = ax2.get_legend_handles_labels()
 ax.legend(h1 + h2, l1 + l2, frameon=False, fontsize=8.4, loc='upper left', labelcolor=INK, ncol=3)
-ax.set_title('Revenue by product leg, and the EBITDA margin path', fontsize=10, pad=9)
+ax.set_title('Revenue by product line, and the EBITDA margin path', fontsize=10, pad=9)
 style(ax)
 ax2.spines['top'].set_visible(False)
 fig.tight_layout(); fig.savefig(os.path.join(HERE, 'fig7_mix.png')); plt.close(fig)

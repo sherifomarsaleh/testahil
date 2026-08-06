@@ -1,6 +1,6 @@
 """AMOC_Valuation_Study_06-08-2026_public.docx — python-docx builder, house style.
 Reads study_numbers.json exclusively: no numeral is typed into this file."""
-import json, os, sys
+import json, math, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 sys.path.insert(0, os.path.join(HERE, '..'))
@@ -12,12 +12,17 @@ M, HI, HB, F, BASE = D['meta'], D['hist_is'], D['hist_bs'], D['fcst'], D['base']
 W, DCF, LN, SN = D['wacc'], D['dcf'], D['lenses'], D['sens']
 EXP, TR, REL, NRM, BK = D['experts'], D['terminal_recon'], D['rel'], D['norm'], D['book']
 S0, STK, U = D['step0'], D['strike'], D['unit']
-BT = D['backtest']; BT5, BTF = BT['five_year'], BT['full']
+BT = D['backtest']; BT5, BTF, BTP = BT['five_year'], BT['full'], BT['production']
 IN = {k: v['value'] for k, v in D['inputs'].items()}
 SPOT, SH = M['spot'], M['shares_mn']
 YRS = F['years']
 H3M, H1M = STK['horizons']['3M'], STK['horizons']['1M']
 BETA = W['beta']
+SPEC_REV25 = U['rev25_lines']['oil'] + U['rev25_lines']['wax']
+FUEL_REV25 = U['rev25_lines']['fuel']
+FUEL_VOL25 = U['vol25']['fuel']
+LNAME = dict(oil='Base oils (SN150 / SN500 / SN600)', wax='Fully refined paraffin wax',
+             fuel='Fuel and by-products')
 XC = json.load(open(os.path.join(HERE, 'formula_count.json')))
 
 
@@ -33,6 +38,10 @@ YH = ['FY2022/23', 'FY2023/24', 'FY2024/25', 'CY2025']
 # the ten-column appendix tables cannot fit the long form without truncating it
 YH_SHORT = ['Jun-23', 'Jun-24', 'Jun-25', 'CY2025']
 H4 = ['FY23', 'FY24', 'FY25', 'CY25']
+
+import numpy as _np0
+P3M_ABOVE_CENTRAL = float(
+    (_np0.load(os.path.join(HERE, 'paths_3M.npy'))[:, -1] > D['central']).mean())
 
 # =========================== MASTHEAD / TITLE ================================
 masthead()
@@ -71,7 +80,7 @@ P(f"Alexandria Mineral Oils is the only refinery listed on the Egyptian Exchange
   f"very different product streams: a small, high-value specialty slate — base oils in the "
   f"SN150, SN500 and SN600 grades, fully refined paraffin wax, transformer and special oils — "
   f"and a much larger volume of fuel products and by-products. In calendar 2025 the company "
-  f"moved about {n3(BASE['vol_cy25'])}mn tonnes and turned over EGP {n0(BASE['rev_cy25'])}mn.")
+  f"moved about {n3(U['vol_cy25'])}mn tonnes and turned over EGP {n0(BASE['rev_cy25'])}mn.")
 P(f"The economics are those of a thin-margin processor, and the disclosed record says so "
   f"plainly: in the financial year to June 2023 cost of sales of EGP {n0(IN['cogs_fy23'])}mn sat "
   f"against gross profit of EGP {n0(IN['gp_fy23'])}mn, a gross margin of "
@@ -94,7 +103,10 @@ P(f"The volume story is real and recent. The transition half alone sold "
   f"{n0(IN['rev_q1cy26'])}mn and profit of EGP {n0(IN['pat_q1cy26'])}mn, up 37%.")
 P(f"On the primary construction the four lenses centre at EGP {p2(D['central'])} a share against "
   f"a market price of {p2(SPOT)} — the central estimate sits about {sgn(D['central']/SPOT-1,0)} "
-  f"above the market price, which is to say the shares are roughly fairly valued. The lenses do not agree with each "
+  f"above the market price. That gap is smaller than the disagreement AMONG the lenses and far "
+  f"smaller than the three-month price distribution in section 3, so it does not support a "
+  f"directional conclusion; the honest reading is that the study cannot distinguish this price "
+  f"from fair value. The lenses do not agree with each "
   f"other, and that disagreement is the finding rather than a nuisance to be averaged away: the "
   f"cash-flow lens says EGP {p2(DCF['ps'])}, normalised earnings power says EGP "
   f"{p2(LN['normalized']['base'])}, and the two lenses anchored on today's market — relative "
@@ -133,14 +145,17 @@ rows = [['Read', 'Basis', 'Range (EGP)', 'Central', 'vs spot'],
          f"{p2(D['span'][0])} – {p2(D['span'][1])}", p2(D['central']),
          sgn(D['central']/SPOT-1, 0)],
         ['Expert panel median',
-         'Three independent methods, worked in the appendix',
+         'Three methods worked in Appendix C. NOT an independent check: one of the three is an '
+         'economic-profit build that reproduces the cash-flow lens as an algebraic identity, and '
+         'here it IS the median. Read the two genuinely independent reads instead — they bracket '
+         'the cash-flow lens rather than confirming it',
          f"{p2(min(EXP[e]['rng'][0] for e in ('e1','e2','e3')))} – "
          f"{p2(max(EXP[e]['rng'][1] for e in ('e1','e2','e3')))}",
          p2(D['panel_centre']), sgn(D['panel_centre']/SPOT-1, 0)],
         ['Market price', f"Closing price on {M['asof']}", '—', p2(SPOT), '—']]
 table(rows, [1.42, 2.90, 1.06, 0.72, 0.68], size=8.3, band_rows={5, 7}, left_cols={1})
 caption(f"Terminal value as a percentage of enterprise value is stated in the first row and "
-        f"again in the enterprise-value bridge in section 1.7. At {pc(DCF['tv_share'],1)} it is "
+        f"again in the enterprise-value bridge in section 1.8. At {pc(DCF['tv_share'],1)} it is "
         f"a high but not unusual share for a business whose cost of capital is expected to fall "
         f"by roughly {n0((W['wacc_exp']-W['wacc_term'])*10000)} basis points over the forecast; "
         f"the reader should treat the cash-flow lens as a statement about the terminal state at "
@@ -149,6 +164,40 @@ caption(f"Terminal value as a percentage of enterprise value is stated in the fi
 figure('fig1_football.png', 6.9,
        'Figure 1 — the four lenses and the weighted central, each shown bear to bull with the '
        'base marked. The vertical rule is the market price.')
+
+bullet('What the bear and bull columns above actually are, stated before anyone reads a range off '
+       'them. On the cash-flow lens they are FIVE drivers moved simultaneously and in the same '
+       'direction, so they compound; they are not one-standard-deviation bands and no probability '
+       'attaches to them.', bold_head='Scenario definitions. ')
+SC = D['scen']
+rows = [['Driver moved', 'Bear', 'Base', 'Bull']]
+for k in ('vol_mult', 'gm_shift', 'fx_mult', 'wacc_shift', 'g'):
+    if k == 'gm_shift':
+        cell = lambda v: sgn(v, 1)
+        b = '—'
+    elif k == 'wacc_shift':
+        cell = lambda v: f"{v*100:+.0f} points"
+        b = '—'
+    elif k == 'g':
+        cell = lambda v: pc(v, 0)
+        b = pc(IN['g_term'], 0)
+    else:
+        cell = lambda v: f"{v:.2f}× the assumed path"
+        b = '1.00× (as assumed)'
+    rows.append([SC['labels'][k], cell(SC['bear'][k]), b, cell(SC['bull'][k])])
+rows.append(['RESULTING FAIR VALUE (EGP a share)', p2(SC['bear']['ps']), p2(SC['base_ps']),
+             p2(SC['bull']['ps'])])
+table(rows, [3.05, 1.10, 1.35, 1.10], size=8.4, band_rows={6}, left_cols={0})
+caption(f"The other three lenses take their ranges differently and it is worth saying so rather "
+        f"than letting the reader assume one convention: the relative lens is struck on multiples "
+        f"of 3.5× and 6.0× enterprise value to EBITDA against {IN['ev_ebitda_just']}× in the "
+        f"base; normalised earnings power on price-to-earnings multiples of 5.5× and 9.5× against "
+        f"{IN['pe_just']}×; and the book lens by moving the sustainable return ±3 points and the "
+        f"growth rate, at a blended rather than perpetual cost of equity on the bear side. Only "
+        f"the cash-flow lens re-runs the model. Because the four conventions differ, the full "
+        f"span of EGP {p2(D['span'][0])} to {p2(D['span'][1])} in the summary table is the "
+        f"envelope of four differently-constructed ranges and should not be read as a "
+        f"distribution.")
 
 # =========================== COMPANY OVERVIEW ================================
 H1('The company')
@@ -165,21 +214,27 @@ rows = [['Leg', 'Products', 'Volume (mn t)', 'Revenue (EGP mn)', 'Share of reven
         ['Specialty oils and waxes',
          'Base oils SN150 / SN500 / SN600, fully refined solid and liquid paraffin wax, '
          'uninhibited transformer oil, automatic transmission fluid, spindle oil',
-         n3(U['spec_vol25']), n0(U['spec_rev25']),
-         pc(U['spec_rev25']/BASE['rev_cy25'])],
+         n3(U['spec_vol25']), n0(SPEC_REV25),
+         pc(SPEC_REV25/BASE['rev_cy25'])],
         ['Fuel and by-products',
          'Low-sulphur gas oil, naphtha, liquefied petroleum gas, fuel-oil blend, aromatic '
          'extract, vacuum residue, sulphur',
-         n3(U['fuel_vol25']), n0(U['fuel_rev25']),
-         pc(U['fuel_rev25']/BASE['rev_cy25'])],
-        ['Total', '', n3(BASE['vol_cy25']), n0(BASE['rev_cy25']), '100.0%']]
+         n3(FUEL_VOL25), n0(FUEL_REV25),
+         pc(FUEL_REV25/BASE['rev_cy25'])],
+        ['Total', '', n3(U['vol_cy25']), n0(BASE['rev_cy25']), '100.0%']]
 table(rows, [1.45, 2.75, 0.95, 1.10, 0.92], size=8.3, band_rows={3}, left_cols={1})
-caption(f"The specialty leg is {pc(U['spec_vol25']/BASE['vol_cy25'],0)} of the tonnage but "
-        f"{pc(U['spec_rev25']/BASE['rev_cy25'],0)} of the revenue, and a much larger share again "
-        f"of the margin. The implied realisation on the fuel leg works out at about USD "
-        f"{n0(U['fuel_price_usd25'])} a tonne, which is a plausible gas-oil, naphtha and "
-        f"fuel-oil blend against the crude deck — that check is what tells us the split is real "
-        f"rather than fitted to a target.")
+caption(f"The specialty leg is {pc(U['spec_vol25']/U['vol_cy25'],0)} of the tonnage but "
+        f"{pc(SPEC_REV25/BASE['rev_cy25'],0)} of the revenue, and a much larger share again of "
+        f"the margin. That is the whole investment case for the slate mix in one line. The two "
+        f"legs shown here are an AGGREGATION of the three product lines built in section 1.4 — "
+        f"base oils and paraffin wax added together — and not a separate estimate; readers "
+        f"wanting the line-by-line tonnage, dollar realisation and revenue should go there. An "
+        f"earlier edition of this study offered the implied fuel realisation of about USD "
+        f"{n0(U['px25']['fuel'])} a tonne as the check 'that tells us the split is real rather "
+        f"than fitted to a target'. In that edition the fuel price was the RESIDUAL of base-year "
+        f"revenue, so the check was circular and the sentence has been withdrawn. In this "
+        f"edition every realisation is derived from the disclosed product table and the fuel "
+        f"figure is an OUTPUT of that table, not a plug.")
 
 H2('The balance sheet is the unusual part')
 P(f"A company turning over EGP {n1(BASE['rev_cy25']/1000)}bn runs on a balance sheet of EGP "
@@ -277,35 +332,106 @@ P(f"The forecast carries NONE of it. Every year from 2026 onward assumes zero ot
   f"also means the fair value here is a valuation of the refinery, not of a currency position.")
 
 H2('1.4  How revenue is built')
-P(f"Not as one growth rate. A refiner's revenue is tonnes times a realised price, and the two "
-  f"legs have entirely different economics, so they are forecast separately and in dollars — "
-  f"both legs price off dollar product benchmarks even when the sale is domestic — and then "
-  f"translated at an explicit exchange-rate path.")
-rows = [['', 'CY2025'] + [y.replace('E', '') for y in YRS],
-        ['Total volume (mn tonnes)', n3(BASE['vol_cy25'])] + [n3(v) for v in U['vol']],
-        ['Specialty volume (mn tonnes)', n3(U['spec_vol25'])] + [n3(v) for v in U['spec_vol']],
-        ['Specialty price (USD / tonne)', n0(IN['spec_price_usd_t'])] +
-        [n0(U['spec_rev'][i]/U['spec_vol'][i]/IN['fx_path'][i]) for i in range(5)],
-        ['Fuel price (USD / tonne)', n0(U['fuel_price_usd25'])] +
-        [n0(U['fuel_rev'][i]/(U['vol'][i]-U['spec_vol'][i])/IN['fx_path'][i]) for i in range(5)],
-        ['USD / EGP average', n1(IN['fx_avg_cy25'])] + [n1(x) for x in IN['fx_path']],
-        ['Specialty revenue (EGP mn)', n0(U['spec_rev25'])] + [n0(x) for x in U['spec_rev']],
-        ['Fuel revenue (EGP mn)', n0(U['fuel_rev25'])] + [n0(x) for x in U['fuel_rev']],
-        ['TOTAL REVENUE (EGP mn)', n0(BASE['rev_cy25'])] + [n0(x) for x in F['rev']]]
-table(rows, [1.90, 0.85, 0.85, 0.85, 0.85, 0.85, 0.85], size=8.2, band_rows={8})
-caption(f"Volume growth tapers from {pc(IN['vol_growth'][0])} to {pc(IN['vol_growth'][4])}. The "
-        f"step-change is already IN the base year — the transition half annualises to "
+P(f"Not as one growth rate, and not from a calibrated price either. The company discloses a "
+  f"product table — tonnes and value by line — and every realisation in this model is derived "
+  f"from it. Base oils sold {IN['line_oil_t']:,.0f} tonnes for EGP {IN['line_oil_v']:,.1f}mn and "
+  f"paraffin wax {IN['line_wax_t']:,.0f} tonnes for EGP {IN['line_wax_v']:,.1f}mn against a total "
+  f"of {IN['line_tot_t']:,.0f} tonnes for EGP {IN['line_tot_v']:,.1f}mn, leaving the fuel and "
+  f"by-product slate as the third line. Dividing gives EGP {U['px_egp']['oil']:,.0f}, "
+  f"{U['px_egp']['wax']:,.0f} and {U['px_egp']['fuel']:,.0f} a tonne, which at that year's "
+  f"exchange rate is USD {U['px_usd']['oil']:,.0f}, {U['px_usd']['wax']:,.0f} and "
+  f"USD {U['px_usd']['fuel']:,.0f} — the right levels and the right order for SN-grade base oil, "
+  f"paraffin and a gas-oil blend. NO PRICE IN THIS MODEL IS CALIBRATED AND NONE IS A RESIDUAL.")
+P(f"That matters because of what it replaces. An earlier construction of this study had two legs, "
+  f"a specialty price that was a free input and a fuel price that was the RESIDUAL of the base-year "
+  f"revenue — and then offered the implied fuel realisation as a check that the split was real. A "
+  f"residual cannot corroborate the construction that produced it. It is gone.")
+P(f"The two routes to the base year are reconciled in the open, and the reconciliation is NOT a "
+  f"clean agreement — read this paragraph before relying on the table below. Rolling the three "
+  f"disclosed lines forward gives EGP {U['rev25_bu']:,.0f}mn of calendar-2025 revenue; building "
+  f"the base year from two disclosed halves gives EGP {BASE['rev_cy25']:,.0f}mn. The line build "
+  f"is {abs(U['recon']-1):.1%} too HIGH. That is a material gap, not a rounding difference, and "
+  f"it would be dishonest to present it as corroboration — an earlier draft of this paragraph "
+  f"did exactly that and the sentence has been removed.")
+P(f"Where the gap comes from is identifiable, and the direction is the giveaway. The disclosed "
+  f"product table is the year to June 2024, at {IN['line_tot_t']/1e6:.3f}mn tonnes. Calendar 2025 "
+  f"ran at {U['vol_cy25']:.3f}mn tonnes — LOWER, by "
+  f"{abs(U['vol_cy25']/(IN['line_tot_t']/1e6)-1):.1%}, which is consistent with the company's own "
+  f"commentary on that bridge: volumes fell while value rose, because the currency moved further "
+  f"than the tonnage did. The roll-forward assumes volumes GREW across those eighteen months. So "
+  f"the {abs(U['recon']-1):.1%} is very largely a volume error in the bridge between the two "
+  f"dates, not a disagreement about what the company earns per tonne — the dollar realisations "
+  f"survive it, because the same table produced both sides.")
+P(f"The gap is closed by scaling, not by explanation, and that is disclosed rather than buried. "
+  f"The single factor {U['recon']:.4f} is applied to every line and every forecast year, so the "
+  f"filed halves win outright on the LEVEL and the disclosed table governs only the MIX and the "
+  f"per-tonne economics — which is the correct division of labour between the two sources, since "
+  f"the halves are filed and the table is reported. What a reader should take from it is a "
+  f"caution about precision: an input the model is prepared to scale by {abs(U['recon']-1):.1%} "
+  f"is not an input that supports three-significant-figure claims about any single line's "
+  f"revenue. The mix conclusions in the next section are robust to the factor because it "
+  f"multiplies every line identically and therefore cancels out of every share and every margin; "
+  f"the absolute revenue level is not, and rests on the filed halves alone.")
+LBL = {'oil': 'Base oils', 'wax': 'Paraffin wax', 'fuel': 'Fuel and by-products'}
+rows = [['', 'Disclosed\nyear to\nJun-2024', 'CY2025'] + [y.replace('E', '') for y in YRS]]
+rows.append(['VOLUME (mn tonnes)', '', '', '', '', '', '', ''])
+for k in U['lines']:
+    rows.append([f"   {LBL[k]}", n3(IN[f'line_{k}_t']/1e6) if k != 'fuel' else n3(U['line_fuel_t']/1e6),
+                 n3(U['vol25'][k])] + [n3(v) for v in U['lines_vol'][k]])
+rows.append(['   TOTAL', n3(IN['line_tot_t']/1e6), n3(U['vol_cy25'])] + [n3(v) for v in U['vol']])
+rows.append(['PRICE (USD / tonne)', '', '', '', '', '', '', ''])
+for k in U['lines']:
+    rows.append([f"   {LBL[k]}", n0(U['px_usd'][k]), n0(U['px25'][k])] +
+                [n0(U['lines_rev'][k][i]/U['lines_vol'][k][i]/IN['fx_path'][i]/U['recon'])
+                 for i in range(5)])
+rows.append(['   USD / EGP average', n1(IN['fx_fy24']), n1(IN['fx_avg_cy25'])] +
+            [n1(x) for x in IN['fx_path']])
+rows.append(['REVENUE (EGP mn)', '', '', '', '', '', '', ''])
+for k in U['lines']:
+    rows.append([f"   {LBL[k]}", n0(IN[f'line_{k}_v']) if k != 'fuel' else n0(U['line_fuel_v']),
+                 n0(U['rev25_lines'][k]*U['recon'])] + [n0(x) for x in U['lines_rev'][k]])
+rows.append(['   TOTAL', n0(IN['line_tot_v']), n0(BASE['rev_cy25'])] + [n0(x) for x in F['rev']])
+table(rows, [1.62, 0.78, 0.72, 0.72, 0.72, 0.72, 0.72, 0.72], size=7.8,
+      band_rows={1, 5, 6, 10, 11, 15}, left_cols={0})
+caption(f"Volume growth tapers from {pc(IN['line_vol_growth']['fuel'][0])} to "
+        f"{pc(IN['line_vol_growth']['fuel'][4])} on the fuel slate and from "
+        f"{pc(IN['line_vol_growth']['oil'][0])} to {pc(IN['line_vol_growth']['oil'][4])} on base "
+        f"oils. The step-change is already IN the base year — the transition half annualises to "
         f"{n3(IN['vol_h2cy25']*2)}mn tonnes against {n1(IN['vol_fy25'])}mn in the June-2025 year "
         f"— so the forecast carries only the residual utilisation gain and then maintenance "
-        f"growth. The specialty leg grows faster on the export push and lifts its share of "
-        f"revenue from {pc(U['spec_rev25']/BASE['rev_cy25'],0)} to "
-        f"{pc(U['spec_rev'][4]/F['rev'][4],0)}.")
+        f"growth. The two specialty lines grow faster on the export push and lift their share of "
+        f"revenue from {pc(U['spec_rev'][0]/F['rev'][0],1)} to "
+        f"{pc(U['spec_rev'][4]/F['rev'][4],1)}. The first column is the DISCLOSED table; "
+        f"everything to the right of it is that table rolled forward on volumes and dollar "
+        f"prices, translated at the exchange-rate path, and scaled by the single reconciliation "
+        f"factor {U['recon']:.4f}.")
 
 figure('fig7_mix.png', 6.9,
-       'Figure 2 — revenue by product leg with the EBITDA margin on the right axis. The margin '
-       'widens gently on mix, not on an assumed change in the spread.')
+       'Figure 2 — revenue by product line with the EBITDA margin on the right axis. The margin '
+       'widens on mix alone: the per-line margins are fixed for the whole forecast.')
 
-H2('1.5  The cost of capital, built rather than asserted')
+H2('1.5  The gross margin is now an OUTPUT of the mix, not an assumption')
+P(f"The previous edition assumed a gross-margin path rising from 6.50% to 6.88% and captioned the "
+  f"chart 'the margin widens on mix'. There was no mix mechanism in that model — there were no "
+  f"per-line margins for a mix to act on, and an external review was right to call the caption an "
+  f"assumption presented as a consequence. It is now a consequence.")
+P(f"Two leg margins are SOLVED, not assumed. Requiring the blend to equal the base-year margin of "
+  f"{IN['gm_hist'][3]:.2%} at the base-year mix, with the specialty slate earning "
+  f"{IN['margin_ratio']:.1f} times the fuel slate, gives a specialty margin of {U['m_spec']:.2%} "
+  f"and a fuel margin of {U['m_fuel']:.2%}. Those two constants never change. Every forecast "
+  f"year's blended margin is just those two numbers re-weighted by that year's revenue mix.")
+rows = [['', *[y for y in YRS]],
+        ['Specialty share of revenue', *[pc(U['spec_rev'][i]/F['rev'][i]) for i in range(5)]],
+        ['BLENDED GROSS MARGIN (output)', *[pc(F['gm'][i], 2) for i in range(5)]]]
+table(rows, [2.35, 0.92, 0.92, 0.92, 0.92, 0.92], size=8.4, band_rows={2})
+P(f"The margin widens by {(F['gm'][-1]-F['gm'][0])*1e4:.0f} basis points across the forecast and "
+  f"every one of those points comes from the specialty share rising "
+  f"{pc(U['spec_rev'][0]/F['rev'][0])} to {pc(U['spec_rev'][4]/F['rev'][4])}. Nothing about the "
+  f"spread on either line is assumed to improve. Note the size: the old ASSUMED path widened "
+  f"38 basis points, three times what the mix can actually justify. Removing the assumption "
+  f"lowered the valuation, which is the direction that tells you it was doing work.")
+
+H2('1.6  The cost of capital, built rather than asserted')
 P(f"Egypt is a market in monetary transition, so a single flat rate applied to both the explicit "
   f"years and a perpetuity would assert that the cost of capital never normalises — a claim the "
   f"central bank's own published disinflation path contradicts. The schedule below therefore "
@@ -350,7 +476,7 @@ P(f"On a gross-debt basis the rate would be {pc(W['wacc_exp_gross'])} and the an
   f"is the more conservative of the two by "
   f"{n0((W['wacc_exp']-W['wacc_exp_gross'])*10000)} basis points.")
 
-H2('1.6  The discount-rate schedule, year by year')
+H2('1.7  The discount-rate schedule, year by year')
 rows = [['', *[y for y in YRS]],
         ['Cost of debt path', *[pc(x) for x in IN['kd_path']]],
         ['Cumulative progress along that path', *[f"{x:.3f}" for x in F['glide_frac']]],
@@ -363,7 +489,7 @@ caption('The glide fractions are the cost-of-debt path’s own cumulative progre
         f"year-five factor of {F['df'][4]:.4f}, the same factor that discounts year-five cash "
         'flow.')
 
-H2('1.7  The free-cash-flow waterfall and the enterprise-value bridge')
+H2('1.8  The free-cash-flow waterfall and the enterprise-value bridge')
 rows = [['EGP mn', *YRS],
         ['Revenue', *[n0(x) for x in F['rev']]],
         ['EBITDA', *[n0(x) for x in F['ebitda']]],
@@ -386,7 +512,7 @@ caption('The full build is shown to the present value of free cash flow rather t
 figure('fig8_waterfall.png', 6.6,
        'Figure 3 — the same waterfall for the first forecast year, drawn to scale.')
 
-H2('1.8  The terminal block')
+H2('1.9  The terminal block')
 P(f"Growth in perpetuity has to be paid for with capital. The reinvestment rate is therefore not "
   f"a free choice: it is forced to satisfy growth = return × reinvestment exactly. At a terminal "
   f"return on invested capital of {pc(DCF['roic_term'])} — next year's profit over closing "
@@ -398,19 +524,30 @@ rows = [['Enterprise value to equity, and what makes it up', 'EGP mn', 'EGP / sh
          p2(DCF['pv_explicit']/SH)],
         ['Present value of the terminal value', n0(DCF['pv_tv']), p2(DCF['pv_tv']/SH)],
         ['TERMINAL VALUE AS A PERCENTAGE OF ENTERPRISE VALUE', pc(DCF['tv_share'], 1), ''],
-        ['ENTERPRISE VALUE', n0(DCF['ev']), p2(DCF['ev']/SH)],
-        ['less net debt (negative — net cash is ADDED)', n0(DCF['nd']), p2(DCF['nd']/SH)],
-        ['= equity value before minority interests', n0(DCF['ev']-DCF['nd']),
-         p2((DCF['ev']-DCF['nd'])/SH)],
-        [f"less minority interests at {pc(DCF['nci_share'])} of group profit",
+        ['ENTERPRISE VALUE (the operating assets)', n0(DCF['ev']), p2(DCF['ev']/SH)],
+        [f"less minority interests at {pc(DCF['nci_share'])}, ON THE ENTERPRISE VALUE",
          f"({n0(DCF['nci_val'])})", f"({p2(DCF['nci_val']/SH)})"],
+        ['= operating assets attributable to shareholders', n0(DCF['ev']-DCF['nci_val']),
+         p2((DCF['ev']-DCF['nci_val'])/SH)],
+        ['less net debt (negative — net cash is ADDED, in full)', n0(DCF['nd']),
+         p2(DCF['nd']/SH)],
         ['EQUITY ATTRIBUTABLE TO SHAREHOLDERS', n0(DCF['eq_attr']), p2(DCF['ps'])],
         ['Market price', '', p2(SPOT)]]
 table(rows, [3.85, 1.45, 1.30], size=8.5, band_rows={3, 4, 8})
-caption(f"Terminal value is {pc(DCF['tv_share'],1)} of enterprise value. The minority deduction "
-        f"is taken AFTER net debt, so the minority does not carry a share of the parent's cash.")
+caption(f"Terminal value is {pc(DCF['tv_share'],1)} of enterprise value, stated here as well as "
+        f"in the summary table so the reader meets it in both places. The ORDER of the last three "
+        f"rows is the substantive point and it was wrong in an earlier edition. That edition "
+        f"added the cash first and then deducted the minority from the combined total, and "
+        f"defended it in a caption reading 'the minority deduction is taken AFTER net debt, so "
+        f"the minority does not carry a share of the parent's cash'. The algebra runs the other "
+        f"way: deducting {pc(DCF['nci_share'])} of a total that already INCLUDES the cash hands "
+        f"the minority {pc(DCF['nci_share'])} of the parent's balance — about EGP "
+        f"{n0(DCF['nci_share']*-DCF['nd'])}mn of it. An external review caught this and it is "
+        f"accepted. The minority is now deducted from the OPERATING enterprise value, before the "
+        f"cash, and the cash is added back in full because it belongs to the parent. The "
+        f"correction is worth EGP {p2(DCF['nci_share']*-DCF['nd']/SH)} a share.")
 
-H2('1.9  Terminal growth, reconciled against the company’s own record')
+H2('1.10  Terminal growth, reconciled against the company’s own record')
 P(f"A terminal rate is the single easiest place to manufacture a valuation, so it is checked "
   f"against what the business has actually done rather than asserted.")
 rows = [['', *YH],
@@ -428,21 +565,41 @@ P(f"Two check numbers, stated plainly. Actual compound NOPAT growth from the Jun
   f"with reinvestment well under 100% of profit — is {pc(TR['stable_g'])}. The adopted terminal "
   f"rate is {pc(IN['g_term'],0)}, the standing centre for an established name in this market once "
   f"currency turbulence has passed.")
-P(f"Both checks come in BELOW the adopted rate, and the reader should see that rather than have "
-  f"it smoothed over: the {pc(IN['g_term'],0)} assumption sits on the generous side of the "
-  f"company's own record, not the conservative side. The case for keeping it is that the "
-  f"historical window spans the 2022-to-2024 devaluation sequence, which compressed real "
-  f"earnings across the market. The case against is on the table. It is sensitised from 3% to 7% "
-  f"below and the whole grid is on the face of the companion model.")
-P(f"The usual crossover test — how long a candidate growth rate would take to make the company "
-  f"larger than the economy it sits in — does NOT bind on this name, and saying so is the honest "
-  f"reading. The recent compound NOPAT rate ({sgn(TR['nopat_cagr'])}), the forecast revenue rate "
-  f"({sgn(TR['fcst_cagr'])}) and the adopted terminal rate ({pc(IN['g_term'],0)}) all sit below "
-  f"Egyptian nominal growth of about {pc(IN['egypt_nominal_growth'],0)}, so the company shrinks "
-  f"relative to the economy at every one of them and there is no finite crossover year to report. "
-  f"The binding constraint here is the reinvestment identity, not the ceiling.")
+P(f"THE TWO CHECKS DISAGREE WITH EACH OTHER, and that is the honest reading rather than a "
+  f"problem to be smoothed. An earlier edition of this section said 'both checks come in below "
+  f"the adopted rate'. That sentence was true of the model as it then stood and became FALSE "
+  f"when the margin build was rebuilt from the product lines up, which moved the historical "
+  f"NOPAT compound rate from {sgn(0.026)} to {sgn(TR['nopat_cagr'])}; the sentence survived the "
+  f"rebuild because the assertion guarding it only tested the adopted rate against its ceiling "
+  f"and never against the checks. It is corrected here and the guard now reports each candidate "
+  f"individually.")
+P(f"Taken one at a time: check (a), the historical compound rate of {sgn(TR['nopat_cagr'])}, is "
+  f"far ABOVE the adopted {pc(IN['g_term'],0)} — but it is a recovery rate off a devaluation-"
+  f"compressed base and belongs in the explicit years, not in a perpetuity. Check (b), return "
+  f"times reinvestment on the stable years, is {pc(TR['stable_g'])} and is BELOW the adopted "
+  f"rate. The adopted {pc(IN['g_term'],0)} sits between them, and above the one that actually "
+  f"describes a steady state — so on the check that matters for a perpetuity it remains on the "
+  f"GENEROUS side of the company's own record, not the conservative side. It is sensitised from "
+  f"3% to 7% and the whole grid is on the face of the companion model.")
+P(f"One definitional caution on check (b), because it changes the answer. It is struck on net "
+  f"capital expenditure over profit, EXCLUDING working capital, while the free-cash-flow "
+  f"waterfall above subtracts working capital as well. On the waterfall-consistent definition "
+  f"the base-year reinvestment rate is {pc(TR['rr_waterfall'])} and the implied growth "
+  f"is {pc(TR['g_waterfall'])} — ABOVE the adopted rate rather than below it. Both "
+  f"definitions are shown and neither is hidden; a reader who prefers the waterfall-consistent "
+  f"one should read the {pc(IN['g_term'],0)} as conservative instead.")
+P(f"The crossover test — how long a candidate growth rate would take to make the company larger "
+  f"than the economy it sits in — is reported candidate by candidate, because a blanket "
+  f"'it does not bind' would be wrong. Against Egyptian nominal growth of about "
+  f"{pc(IN['egypt_nominal_growth'],0)}: the forecast revenue rate of {sgn(TR['fcst_cagr'])} is "
+  f"BELOW it and does not bind; the adopted terminal rate of {pc(IN['g_term'],0)} is BELOW it "
+  f"and does not bind; the recent compound NOPAT rate of {sgn(TR['nopat_cagr'])} is ABOVE it and "
+  f"DOES bind — at that rate the company would overtake Egypt's entire nominal gross domestic "
+  f"product in about {n0(TR['crossover']['recent NOPAT compound rate'])} years, which is precisely "
+  f"why it is a historical rate and not a terminal one. The binding constraint on the rate "
+  f"actually adopted is the reinvestment identity, not the ceiling.")
 
-H2('1.10  Sensitivities')
+H2('1.11  Sensitivities')
 figure('fig2_sens.png', 6.3,
        'Figure 4 — fair value across the terminal cost of capital and the terminal growth rate. '
        'Bold entries sit within half a pound of the market price.')
@@ -473,7 +630,7 @@ caption(f"The crux is the cost of capital, not the operating assumptions. Doubli
         f"wider span than that. This is a valuation about Egyptian interest rates at least as "
         f"much as it is about a refinery.")
 
-H2('1.11  The three cross-check lenses')
+H2('1.12  The three cross-check lenses')
 P(f"Relative multiples. Applying {IN['ev_ebitda_just']}× enterprise value to EBITDA to "
   f"{REL['year']} EBITDA of EGP {n0(REL['ebitda_mid'])}mn gives an enterprise value of EGP "
   f"{n0(REL['ev_rel_fwd'])}mn AS AT the end of that year. It has to be discounted back before it "
@@ -502,7 +659,7 @@ P(f"Book value and sustainable return. The justified price-to-book identity give
   f"is struck below it because the reported figure is flattered by an asset base that is nearly "
   f"written off and will have to be renewed.")
 
-H2('1.12  Contested choices, computed rather than argued')
+H2('1.13  Contested choices, computed rather than argued')
 rows = [['Choice', 'This study', 'The alternative', 'Fair value on the alternative', 'Effect'],
         ['Country risk basis', 'Credit-default-swap column',
          f"Rating basis: cost of capital {pc(DCF['wacc_exp_rating'])} explicit / "
@@ -515,9 +672,19 @@ rows = [['Choice', 'This study', 'The alternative', 'Fair value on the alternati
          sgn(DCF['ps_nci_alt']/DCF['ps']-1)],
         ['Currency of discounting', 'Egyptian pound throughout',
          f"Export leg deflated to dollars and discounted at {pc(W['wacc_usd_alt'])}",
-         p2(DCF['ccy_alt_ps']), sgn(DCF['ccy_alt_ps']/DCF['ps']-1)]]
-table(rows, [1.55, 1.55, 2.30, 1.00, 0.70], size=8.2, left_cols={1, 2})
-caption('Each alternative is run through the whole model and reported as a VALUE, not described. '
+         p2(DCF['ccy_alt_ps']), sgn(DCF['ccy_alt_ps']/DCF['ps']-1)],
+        ['THIS STUDY, ALL FOUR CHOICES AS MADE ABOVE', '—', '—', p2(DCF['ps']), '—']]
+table(rows, [1.55, 1.55, 2.30, 1.00, 0.70], size=8.2, left_cols={1, 2}, band_rows={5})
+caption(f"The base is stated in the last row so the percentages are checkable rather than "
+        f"relative to a number the reader has to go and find: every effect column is measured "
+        f"against the cash-flow lens at EGP {p2(DCF['ps'])} a share, which is the primary "
+        f"construction and not the weighted central of EGP {p2(D['central'])}. Note the "
+        f"asymmetry that follows from that. The four choices move the answer between "
+        f"{sgn(min(DCF['ps_rating_basis'],DCF['ps_nci_alt'])/DCF['ps']-1)} and "
+        f"{sgn(max(DCF['ps_gross_basis'],DCF['ccy_alt_ps'])/DCF['ps']-1)}, so the single largest "
+        f"contested choice in this study is worth more than the entire gap between the central "
+        f"estimate and the market price. Each alternative is run through the whole model and "
+        f"reported as a VALUE, not described. "
         'The currency alternative deflates the export cash flows to dollars at each year’s '
         'exchange rate before discounting them at a dollar rate, and only then translates back — '
         'discounting a pound cash flow already inflated by the assumed depreciation path directly '
@@ -528,14 +695,25 @@ H1('2  The price record')
 figure('fig3_ma.png', 6.9,
        'Figure 5 — the closing price against its 20, 50, 100 and 200-session moving averages over '
        'the last twelve months of trading.')
-P(f"The series used throughout this study runs from {S0['first_origin'][:4]} and covers "
-  f"{n0(S0['clean_rows'])} clean sessions over {n1(S0['span_years'])} years at "
-  f"{n1(S0['density_rows_per_yr'])} sessions a year, which matches the exchange's own trading "
-  f"calendar. It was screened before use: one row carrying a non-positive price was removed, and "
-  f"the largest single-session move in the whole history is {S0['dq_log'] and ''}"
-  f"{abs(0.181):.3f} in log terms against an exchange daily price limit that makes anything "
-  f"beyond 0.290 unreachable by trading — so there is no unadjusted corporate action hiding in "
-  f"the series and no block of pre-listing placeholder rows.")
+P(f"The series used throughout this study runs from {S0['series_first']} to {S0['series_last']} "
+  f"and covers {n0(S0['clean_rows'])} clean sessions out of {n0(S0['raw_rows'])} raw rows, over "
+  f"{n1(S0['span_years'])} years at {n1(S0['density_rows_per_yr'])} sessions a year, which "
+  f"matches the exchange's own Sunday-to-Thursday calendar. An earlier edition of this section "
+  f"said the series 'runs from 2022'; it does not — 2022 is where the CALIBRATION exercise in "
+  f"the appendix starts scoring forecasts, and every price statistic in this study is taken from "
+  f"the full fifteen-and-a-half-year series.")
+P(f"It was screened before use. One row carrying a non-positive price was removed "
+  f"({S0['dq_log'][0].split('(')[1].split(')')[0]}); {pc(S0['flat_frac'])} of sessions are flat, "
+  f"which is normal for a mid-cap on this exchange and well inside the gate. The largest "
+  f"single-session move in the whole history is {S0['max_abs_log']:.4f} in log terms. Two "
+  f"thresholds bear on that number and they are different things, which the earlier edition ran "
+  f"together. The exchange's own ±20% daily price limit is {math.log(1.20):.4f} in logs — the "
+  f"largest observed move sits just INSIDE it, by four ten-thousandths. The engine's artefact "
+  f"screen fires at {S0['jump_threshold']:.4f}, set deliberately ABOVE the price limit so that "
+  f"only a move no trade could have produced is flagged. Nothing fires. A share split or an "
+  f"unadjusted dividend would have shown up as a move the price limit forbids, and none does, so "
+  f"there is no unadjusted corporate action hiding in the series and no block of pre-listing "
+  f"placeholder rows.")
 
 # =========================== 3 MONTE CARLO ===================================
 H1('3  Where the price could trade')
@@ -547,7 +725,9 @@ figure('fig4_fan.png', 6.9,
        'Figure 6 — the forward price cone to three months. The dashed rule is the fundamental '
        'central estimate; the dotted rule is the market price.')
 rows = [['', 'One month', 'Three months'],
-        ['Check date', H1M['grade_date'], H3M['grade_date']],
+        ['Calendar horizon date', H1M['target_date'], H3M['target_date']],
+        ['Check date actually used', H1M['grade_date'], H3M['grade_date']],
+        ['Sessions simulated', n0(H1M['h']), n0(H3M['h'])],
         ['5th percentile', p2(H1M['pct']['p5']), p2(H3M['pct']['p5'])],
         ['25th percentile', p2(H1M['pct']['p25']), p2(H3M['pct']['p25'])],
         ['Median', p2(H1M['pct']['p50']), p2(H3M['pct']['p50'])],
@@ -563,19 +743,61 @@ rows = [['', 'One month', 'Three months'],
         ['Annualised volatility at the anchor', pc(H1M['anchor_vol_ann']),
          pc(H3M['anchor_vol_ann'])]]
 table(rows, [3.20, 1.70, 1.70], size=8.5)
+caption(f"Two dates are shown because they differ, and an earlier edition printed only one of "
+        f"them. The Egyptian Exchange trades Sunday to Thursday, so the three-month calendar date "
+        f"of {H3M['target_date']} falls on a non-trading day; the cone is graded on the first "
+        f"session at or after it, {H3M['grade_date']}. The horizon is therefore "
+        f"{n0(H3M['h'])} sessions rather than a round quarter, and the percentiles above are the "
+        f"distribution at that session.")
+P(f"The drift is not zero and is not a view. Over three months the simulated log drift is "
+  f"{H3M['drift_log_h']:+.4f}, which annualises to about "
+  f"{pc(H3M['drift_log_h']*4,1)} — the CARRY, and nothing else: the local "
+  f"risk-free rate of {pc(STK['rf_live'])} less the dividend yield of {pc(STK['q_annual'])} the "
+  f"share currently pays, less the half-variance convexity term. NO PART OF THE DRIFT COMES FROM "
+  f"THE VALUATION. The fundamental estimate of EGP {p2(D['central'])} does not enter this "
+  f"section at any point; it is drawn on the charts as a reference rule and used to cut the zones "
+  f"in section 6, and that is the whole of its role here. If the drift were set from the "
+  f"valuation the two halves of this study would no longer be independent and the comparison in "
+  f"section 4 would be circular.", size=10)
 figure('fig5_dist.png', 5.4, 'Figure 7 — the simulated price distribution at one month.')
 figure('fig6_dist.png', 5.4, 'Figure 8 — the same at three months.')
 P(f"Is the cone credible? It is tested against the honest null — a random walk anchored on the "
   f"carry, so the test cannot be won simply by pointing at the direction interest rates push a "
-  f"price. Over the last five years of origins the cone beats that benchmark by "
-  f"{sgn(BT5['skill_norm'],2)} on the continuous ranked probability score, and the "
-  f"probability-integral transform is close to uniform (chi-square p = {BT5['chi2_p']}, "
-  f"Kolmogorov-Smirnov p = {BT5['ks_p']}), meaning the cone is neither systematically too wide "
-  f"nor too narrow nor off-centre. Over the full cleaned history the margin is "
-  f"{sgn(BTF['skill_norm'],2)} with a confidence interval entirely above zero. Coverage of the "
-  f"stated 90% band runs at {pc(BT5['cov90'],0)}, and the cone is {n1(BT5['width_vs_benchmark'])} "
-  f"times the benchmark's width — it earns its accuracy from being better centred, not from "
-  f"being wider.")
+  f"price. THE VERDICT ON THIS NAME IS PARITY, NOT SKILL, AND THAT IS STATED BEFORE THE "
+  f"FAVOURABLE NUMBERS RATHER THAN AFTER THEM. On the production window set — the "
+  f"{BTP['windows']} post-break origins the standing gate actually scores, running "
+  f"{BTP['first_origin']} to {BTP['last_origin']} — the margin over the benchmark is "
+  f"{sgn(BTP['skill_norm'],2)} and the verdict is {BTP['verdict']}: the confidence interval "
+  f"straddles zero on every bootstrap block tested, so the honest reading is that this cone is "
+  f"AS GOOD AS the carry-anchored random walk on this name, not better than it.")
+rows = [['Window set', 'Origins', 'Period', 'Margin over benchmark', 'Verdict'],
+        [BTP['label'], n0(BTP['windows']), f"{BTP['first_origin']} – {BTP['last_origin']}",
+         sgn(BTP['skill_norm'], 2), BTP['verdict']],
+        [BT5['label'], n0(BT5['windows']), f"{BT5['first_origin']} – {BT5['last_origin']}",
+         sgn(BT5['skill_norm'], 2), BT5['verdict']],
+        [BTF['label'], n0(BTF['windows']), f"{BTF['first_origin']} – {BTF['last_origin']}",
+         sgn(BTF['skill_norm'], 2), BTF['verdict']],
+        ['Market-level fit (all covered Egyptian names)', n0(BT['fit']['panel_names']) + ' names',
+         f"fitted {BT['fit']['fit_date']}", sgn(BT['fit']['market_skill'], 2),
+         BT['fit']['market_verdict']]]
+table(rows, [2.05, 0.80, 1.55, 1.20, 0.80], size=8.2, left_cols={0})
+caption(f"All three name-level window sets are shown, not the flattering one. Only the FULL "
+        f"history reaches a PASS, and it reaches it on {BTF['windows']} origins stretching back "
+        f"to {BTF['first_origin']} — a period that includes market conditions the current fit was "
+        f"not calibrated on. The two recent sets both return PARITY. What carries the cone into "
+        f"this study is the MARKET-level gate, which passes at {sgn(BT['fit']['market_skill'],2)} "
+        f"across {BT['fit']['panel_names']} names: the volatility model is fitted on the whole "
+        f"exchange, not on AMOC, and it is the market fit that is required to pass. A reader who "
+        f"wants a name-level demonstration of skill will not find one here.")
+P(f"What the tests DO establish, and it is not nothing: the cone is correctly SHAPED even where "
+  f"it is not sharper. The probability-integral transform is close to uniform on the production "
+  f"set (chi-square p = {BTP['chi2_p']}, Kolmogorov-Smirnov p = {BTP['ks_p']}), so the cone is "
+  f"neither systematically too wide nor too narrow nor off-centre; coverage of the stated 90% "
+  f"band runs at {pc(BTP['cov90'],0)} against a target of 90%; and the cone is "
+  f"{n1(BTP['width_vs_benchmark'])} times the benchmark's width, so whatever margin it does earn "
+  f"comes from being better centred rather than from being wider. A well-calibrated cone that "
+  f"merely matches the random walk is still a usable probability map — it is just not evidence "
+  f"of forecasting edge, and this study does not claim one.")
 
 # =========================== 4 COMPARISON ====================================
 H1('4  The two answers side by side')
@@ -589,9 +811,7 @@ rows = [['', 'What it says', 'Value'],
          'knows nothing about the valuation', p2(H3M['pct']['p50'])],
         ['Probability the price is above the fundamental central in three months',
          'Read directly off the simulated distribution',
-         pc(float(sum(1 for _ in [0]) and 0) + 0.0) if False else
-         pc(sum(1 for x in [0]) * 0 + float(__import__('numpy').mean(
-             __import__('numpy').load(os.path.join(HERE, 'paths_3M.npy'))[:, -1] > D['central'])))]]
+         pc(P3M_ABOVE_CENTRAL)]]
 table(rows, [2.35, 3.35, 1.20], size=8.5, left_cols={1})
 caption('The valuation and the price map are produced by entirely separate machinery and are '
         'presented side by side rather than reconciled. Where they disagree, that disagreement is '
@@ -637,12 +857,13 @@ bullet(f"The declared dividend is EGP {p2(IN['dps'])} a share, a yield of "
 H1('6  Probability zones')
 import numpy as _np
 _p3 = _np.load(os.path.join(HERE, 'paths_3M.npy'))[:, -1]
-zones = [('Below EGP 7.50', float((_p3 < 7.5).mean())),
-         ('EGP 7.50 – 9.10 (below today)', float(((_p3 >= 7.5) & (_p3 < SPOT)).mean())),
-         ('EGP 9.10 – 9.69 (today to the central estimate)',
-          float(((_p3 >= SPOT) & (_p3 < D['central'])).mean())),
-         ('EGP 9.69 – 11.00 (above the central estimate)',
-          float(((_p3 >= D['central']) & (_p3 < 11.0)).mean())),
+_C = D['central']
+zones = [(f"Below EGP 7.50", float((_p3 < 7.5).mean())),
+         (f"EGP 7.50 – {p2(SPOT)} (below today)", float(((_p3 >= 7.5) & (_p3 < SPOT)).mean())),
+         (f"EGP {p2(SPOT)} – {p2(_C)} (today to the central estimate)",
+          float(((_p3 >= SPOT) & (_p3 < _C)).mean())),
+         (f"EGP {p2(_C)} – 11.00 (above the central estimate)",
+          float(((_p3 >= _C) & (_p3 < 11.0)).mean())),
          ('Above EGP 11.00', float((_p3 >= 11.0).mean()))]
 rows = [['Zone at three months', 'Probability']] + [[z, pc(p)] for z, p in zones]
 table(rows, [4.20, 1.50], size=8.6)
@@ -661,9 +882,19 @@ bullet('The company changed its financial year end mid-period, and the disclosur
 bullet(f"Only four balance-sheet lines are available at a single date — total assets, total "
        f"liabilities, cash and gross debt. Everything else on the balance sheets in Appendix A is "
        f"built from days drivers and rolled backwards through disclosed profit and dividends. It "
-       f"is checked two ways — the implied remaining asset life of {n1(BASE['implied_life'])} "
-       f"years, and share capital plus disclosed reserves against total equity — but it is a "
-       f"reconstruction and is labelled as one wherever it appears.",
+       f"is a reconstruction and is labelled as one wherever it appears. Be careful with the two "
+       f"'checks' offered for it, because ONE OF THEM IS A TAUTOLOGY AND THE OTHER IS NEARLY "
+       f"ONE. That the balance sheet balances proves nothing: property, plant and equipment is "
+       f"the RESIDUAL off disclosed total assets, so it balances by construction and would "
+       f"balance just as neatly on any working-capital assumption at all. The implied remaining "
+       f"asset life of {n1(BASE['implied_life'])} years is only slightly better — it is that same "
+       f"residual divided by the depreciation charge, so it is a direct function of the "
+       f"receivable, inventory and payable day counts assumed above it, and a reader who "
+       f"disagreed with those would get a different 'check'. What the life figure genuinely "
+       f"tests is narrow: it says the residual is not absurd — not negative, and not so large "
+       f"that a 1997 plant would appear newly built. Treat it as a bounds test, not a "
+       f"verification. The only true external check available is share capital plus disclosed "
+       f"reserves against total equity, and that one uses a figure the company published.",
        bold_head='The historical balance sheets are reconstructed. ')
 bullet(f"Revenue for two of the historical years is available only through growth-rate "
        f"disclosures, so each is carried as the AVERAGE of independently sourced methods: "
@@ -677,7 +908,7 @@ bullet(f"The half-year release covering the six months to June 2026 rests on one
        f"is why it is used as corroboration; but it is not the forecast base and the margin path "
        f"is struck under what it implies.",
        bold_head='The most recent print is single-sourced. ')
-bullet(f"{pc(DCF['tv_share'],0)} of enterprise value sits beyond year five. That is what happens "
+bullet(f"{pc(DCF['tv_share'],1)} of enterprise value sits beyond year five. That is what happens "
        f"when a cost of capital is expected to fall by "
        f"{n0((W['wacc_exp']-W['wacc_term'])*10000)} basis points across a forecast, and it means "
        f"the answer is a statement about the terminal state as much as about the explicit years. "
@@ -787,10 +1018,21 @@ rows = [['EGP mn'] + YRS,
         ['OPERATING CASH FLOW'] + [n0(F['nopat'][i]+F['dna'][i]-F['dnwc'][i]) for i in range(5)],
         ['less capital expenditure'] + [f"({n0(x)})" for x in F['capex']],
         ['FREE CASH FLOW TO THE FIRM'] + [n0(x) for x in F['fcff']],
-        ['Net finance income'] + [n0(x) for x in F['interest']],
-        ['Dividends paid'] + [f"({n0(x)})" for x in F['div']],
-        ['Closing net cash'] + [n0(-x) for x in F['net_debt']]]
-table(rows, [2.35, 0.92, 0.92, 0.92, 0.92, 0.92], size=8.2, band_rows={4, 6})
+        ['Opening net cash'] + [n0(-x) for x in [BASE['nd_cy25']] + F['net_debt'][:4]],
+        [f"add net finance income, AFTER tax at {pc(IN['tax_eff'],1)}"] +
+        [n0(x*(1-IN['tax_eff'])) for x in F['interest']],
+        ['less dividends paid'] + [f"({n0(x)})" for x in F['div']],
+        ['CLOSING NET CASH'] + [n0(-x) for x in F['net_debt']]]
+table(rows, [2.35, 0.92, 0.92, 0.92, 0.92, 0.92], size=8.2, band_rows={4, 9})
+caption(f"The statement foots. Opening net cash plus free cash flow to the firm plus AFTER-TAX "
+        f"finance income less dividends equals closing net cash, to the last EGP mn, in every "
+        f"year. An earlier edition printed the PRE-tax finance income on this line while the "
+        f"model rolled the balance forward on the after-tax figure, so the column did not add up "
+        f"— a gap of about EGP {n0(F['interest'][0]*IN['tax_eff'])}mn a year, which is the tax on "
+        f"the deposit income. The model was right and the printed line was wrong; the line has "
+        f"been corrected rather than the tax quietly dropped. Note that free cash flow to the "
+        f"firm is struck AFTER tax on operating profit only, which is why the tax on finance "
+        f"income has to appear separately here.")
 
 # =========================== APPENDIX B ======================================
 H1('Appendix B  The cost of capital in detail')
@@ -853,12 +1095,21 @@ caption('Each anchor varied independently around its own base, so the grid shows
 
 # =========================== APPENDIX C ======================================
 H1('Appendix C  The expert appendix')
-P('Three independent reads on the same company, each using a genuinely different method, each '
-  'shown with its workings and each carrying a stated condition that would falsify it. They are '
-  'not three versions of the discounted cash flow with different assumptions; they are three '
-  'different ways of deciding what a business is worth, and they are cast by method.')
+P('Three reads on the same company, each shown with its workings and each carrying a stated '
+  'condition that would falsify it. TWO OF THE THREE ARE INDEPENDENT OF THE PRIMARY MODEL AND ONE '
+  'IS NOT, and it is worth knowing which before reading them. Expert 1 works from earnings power '
+  'at a justified multiple and Expert 2 from free cash flow to equity with no bridge at all; '
+  'neither can be derived from the cash-flow lens and they land on opposite sides of it. Expert 3 '
+  'works from economic profit, which — built off the same profit after tax, the same invested '
+  'capital and the same discount path — is the discounted cash flow written a different way. It '
+  'reproduces the primary lens exactly, by identity, and is included as an ARITHMETIC AUDIT of '
+  'that lens rather than as a third opinion. An earlier edition of this appendix called all three '
+  'independent and offered their median as a check on the main result. That was wrong twice over '
+  'and both errors are corrected below.')
 figure('figD1_experts.png', 6.9,
-       'Figure 9 — the three experts’ ranges, with the panel centre shaded.')
+       'Figure 9 — the three experts’ ranges. The shaded band is the panel centre, which is NOT '
+       'an independent check: Expert 3 is the cash-flow lens by identity and here it is also the '
+       'median, so the band sits exactly where the primary model does.')
 
 E1, E2, E3 = EXP['e1'], EXP['e2'], EXP['e3']
 H2(f"Expert 1 — {E1['method_short']}")
@@ -937,6 +1188,19 @@ rows = [['Step', 'EGP mn'],
         ['= enterprise value', n0(E3['ev'])],
         ['FAIR VALUE after the bridge (EGP per share)', p2(E3['base'])]]
 table(rows, [4.20, 1.60], size=8.5, band_rows={5})
+P(f"Read the base number before reading anything else into it. Expert 3 returns EGP "
+  f"{p2(E3['base'])} and the primary cash-flow lens returns EGP {p2(DCF['ps'])} — the same "
+  f"number, and not by coincidence. An economic-profit valuation and a discounted-cash-flow "
+  f"valuation built off the same profit after tax, the same invested capital and the same "
+  f"discount path are ALGEBRAICALLY THE SAME VALUATION; the capital charge that economic profit "
+  f"subtracts each year is exactly the capital that the cash-flow waterfall subtracts as "
+  f"investment, discounted differently and then added back as the opening capital base. An "
+  f"earlier draft of this study presented the agreement as corroboration. It is not "
+  f"corroboration — it is an identity, and a study that offers an identity as evidence is "
+  f"marking its own homework. What the agreement DOES establish is that the primary model has no "
+  f"arithmetic leak: had the two differed by a piastre, one of them would contain a mistake. "
+  f"Expert 3 is therefore an audit of the primary model, and only Experts 1 and 2 are "
+  f"independent opinions about the company.", size=10)
 P(f"The capital charge is taken on BEGINNING-of-year invested capital, not ending. Charging "
   f"ending capital is the commoner convention and it is wrong: it charges the company for capital "
   f"it had not yet deployed, understating economic profit and pushing the year in which the "
@@ -963,11 +1227,21 @@ rows = [['', 'Method', 'Range (EGP)', 'Base (EGP)', 'vs spot'],
         ['PANEL MEDIAN', 'the middle of the three', '', p2(D['panel_centre']),
          sgn(D['panel_centre']/SPOT-1, 0)]]
 table(rows, [0.85, 2.55, 1.25, 0.85, 0.75], size=8.4, band_rows={4}, left_cols={1})
-P(f"The three land within EGP {p2(max(E1['base'],E2['base'],E3['base'])-min(E1['base'],E2['base'],E3['base']))} "
-  f"of each other, which is closer agreement than three genuinely different methods usually "
-  f"produce. The panel median of EGP {p2(D['panel_centre'])} sits "
-  f"{sgn(D['panel_centre']/D['central']-1,0)} against the weighted central of the four main "
-  f"lenses — a useful check that the main result is not an artefact of the lens weights.")
+P(f"The panel median of EGP {p2(D['panel_centre'])} must NOT be read as an independent check on "
+  f"the weighted central. Expert 3 reproduces the primary cash-flow lens exactly, as an identity, "
+  f"so the median of the three is the middle value of a set containing the answer it is "
+  f"supposedly checking — and here the median IS Expert 3, which is to say it is the discounted "
+  f"cash flow with a different label on it. An earlier draft of this study described the panel "
+  f"median as 'a useful check that the main result is not an artefact of the lens weights'. That "
+  f"sentence was wrong and it has been removed rather than softened.")
+P(f"What the panel does say is this. The two genuinely independent reads bracket the primary "
+  f"model: Expert 1's earnings-power method comes out ABOVE at EGP {p2(E1['base'])} and Expert "
+  f"2's equity-side method comes out BELOW at EGP {p2(E2['base'])}, a spread of EGP "
+  f"{p2(E1['base']-E2['base'])} — {pc((E1['base']-E2['base'])/D['central'],0)} of the weighted "
+  f"central. The cash-flow lens sits between them. Two methods that share no bridge, no terminal "
+  f"formula and no multiple disagreeing by a quarter of the answer is the honest measure of how "
+  f"much precision this company admits, and it is considerably less than any single lens implies "
+  f"on its own.")
 
 # =========================== ABOUT / DISCLOSURE ==============================
 H1('About this study')

@@ -147,59 +147,6 @@ INP['budget_rev'] = I(37332.0, "The company's own approved planning-budget net s
 INP['egpc_stake'] = I(0.20, "The Egyptian General Petroleum Corporation is the second-largest "
                             "single shareholder with a 20% holding", "2026-08-06", "Company")
 
-
-# --- Ring 4: the DISCLOSED PRODUCT TABLE — the spine of the bottom-up build ---
-# Volumes and values by product line for the year to 30 June 2024. Sourced from the
-# company's annual report via an independent reviewer; NOT verified against the filing
-# from this environment, and labelled as such throughout. It is carried because it
-# survives three independent coherence tests that a fabricated table would fail:
-#   (i)  the two specialty lines sum to 12.35% of tonnage and 20.60% of value, and both
-#        ratios are quoted independently of the components;
-#   (ii) the implied dollar realisations at the year's average exchange rate are
-#        ~USD 1,100/t for base oil, ~USD 1,007/t for paraffin wax and ~USD 578/t for the
-#        fuel slate — the right levels and the right ORDER for those products;
-#   (iii) against the company's own "+10.8% on 2023/24" statement, FY2024/25 volume FELL
-#        12% (1.433mn -> 1.26mn tonnes) while value ROSE 10.8%, which requires a ~26% rise
-#        in EGP per tonne — and the currency moved ~36.4 -> ~48.7 over the same span, +34%.
-#        A table invented to fit my model would not also fit a disclosure I did not use.
-INP['line_oil_t'] = I(111256.0, "Base oils, tonnes sold, year to 30 June 2024 — disclosed "
-                                "product table (reviewer-sourced, not verified from the filing here)",
-                      "2024-06-30", "Company")
-INP['line_oil_v'] = I(4454.085, "Base oils, sales value EGP mn, same table", "2024-06-30", "Company")
-INP['line_wax_t'] = I(65742.0, "Paraffin wax, tonnes sold, same table", "2024-06-30", "Company")
-INP['line_wax_v'] = I(2408.747, "Paraffin wax, sales value EGP mn, same table", "2024-06-30", "Company")
-INP['line_tot_t'] = I(1433340.0, "Total tonnes sold, same table", "2024-06-30", "Company")
-INP['line_tot_v'] = I(33312.101, "Total sales value EGP mn, same table", "2024-06-30", "Company")
-INP['fx_fy24'] = I(36.4, "USD/EGP average for the year to 30 June 2024. Eight months at the "
-                         "pre-float ~30.9 and four at the post-float ~47.5, volume-weighted by "
-                         "month. Used only to convert the disclosed EGP-per-tonne realisations "
-                         "into the dollar prices the forecast then grows",
-                   "2024-06-30", "House")
-INP['spec_ramp_cy25'] = I(0.10, "Growth in specialty tonnage from the disclosed FY2024/25 172kt to "
-                                "the calendar-2025 base, on the disclosed 40% rise in oils-and-wax "
-                                "EXPORTS through the transition half", "2026-08-06", "House")
-INP['margin_ratio'] = I(3.5, "Gross margin on the specialty slate as a MULTIPLE of the margin on "
-                             "the fuel and by-product slate. This is now the ONE judgment "
-                             "parameter behind the whole margin path: the two leg margins are "
-                             "SOLVED so that the blended margin at the base-year mix equals the "
-                             "disclosed anchor, and the margin path for every forecast year is "
-                             "then an OUTPUT of the changing mix rather than an assumption. A "
-                             "lube base-oil and wax slate earning 3-4x the margin of a gas-oil "
-                             "blend is the ordinary shape of a refinery's product economics",
-                        "2026-08-06", "House")
-INP['line_vol_growth'] = I(dict(oil=[0.075, 0.055, 0.045, 0.038, 0.032],
-                                wax=[0.090, 0.070, 0.055, 0.045, 0.040],
-                                fuel=[0.050, 0.036, 0.032, 0.028, 0.023]),
-                           "Volume growth by product line. Wax fastest on the export push, base "
-                           "oils next, the fuel slate slowest — it is throughput the specialty "
-                           "units do not take", "2026-08-06", "House")
-INP['line_price_growth'] = I(dict(oil=[0.020, 0.020, 0.020, 0.020, 0.020],
-                                  wax=[0.025, 0.025, 0.020, 0.020, 0.020],
-                                  fuel=[0.010, 0.020, 0.020, 0.020, 0.020]),
-                             "Real growth in the dollar realisation by line. The fuel slate tracks "
-                             "the crude deck; the specialty lines carry a small premium for the "
-                             "export-mix shift", "2026-08-06", "House")
-
 # --- Ring 3: industry ------------------------------------------------------
 INP['brent_path'] = I([70.0, 71.5, 73.0, 74.5, 76.0],
                       "Brent crude reference path, USD a barrel, 2026E-2030E. A flat-to-slowly-"
@@ -467,128 +414,66 @@ say(f"[Volume base] the transition period sold {V['vol_h2cy25']*1000:,.0f} tonne
     f"{vol_cy25:.3f}mn tonnes, shading the annualisation because the ramp was still building "
     f"through the first half.")
 
-# ---- BOTTOM-UP UNIT BUILD: three product lines, dollar prices, EGP translation ----
-# The previous build had two legs, a specialty price that was a free calibrated input and a
-# fuel price that was a RESIDUAL of the base-year revenue. That is a top-down model with a
-# plug, and it could not support the claim that the margin "widens on mix" — there were no
-# per-leg margins for a mix to act on. This build derives every price from a disclosed
-# tonnage-and-value table, solves the two leg margins from one disclosed blended margin, and
-# lets the blended margin fall out of the mix. Nothing is a residual; the gap between the
-# bottom-up total and the constructed base year is carried on the face as a stated
-# reconciliation factor instead of being absorbed silently.
-line_fuel_t = V['line_tot_t'] - V['line_oil_t'] - V['line_wax_t']
-line_fuel_v = V['line_tot_v'] - V['line_oil_v'] - V['line_wax_v']
-px_egp = dict(oil=V['line_oil_v'] * 1e6 / V['line_oil_t'],
-              wax=V['line_wax_v'] * 1e6 / V['line_wax_t'],
-              fuel=line_fuel_v * 1e6 / line_fuel_t)
-px_usd = {k: v / V['fx_fy24'] for k, v in px_egp.items()}
-spec_share_t = (V['line_oil_t'] + V['line_wax_t']) / V['line_tot_t']
-spec_share_v = (V['line_oil_v'] + V['line_wax_v']) / V['line_tot_v']
-say(f"[Disclosed product table] base oils {V['line_oil_t']:,.0f}t / EGP {V['line_oil_v']:,.1f}mn; "
-    f"paraffin wax {V['line_wax_t']:,.0f}t / EGP {V['line_wax_v']:,.1f}mn; fuel and by-products "
-    f"{line_fuel_t:,.0f}t / EGP {line_fuel_v:,.1f}mn. Realisations EGP {px_egp['oil']:,.0f} / "
-    f"{px_egp['wax']:,.0f} / {px_egp['fuel']:,.0f} a tonne, which at the year's "
-    f"{V['fx_fy24']:.1f} exchange rate is USD {px_usd['oil']:,.0f} / {px_usd['wax']:,.0f} / "
-    f"{px_usd['fuel']:,.0f}. Specialty is {spec_share_t:.2%} of tonnage and {spec_share_v:.2%} "
-    f"of value. NO PRICE IN THIS MODEL IS CALIBRATED OR RESIDUAL — all three come from the table.")
-assert 700 < px_usd['oil'] < 1500 and 700 < px_usd['wax'] < 1600 and 350 < px_usd['fuel'] < 800, \
-    "a disclosed realisation falls outside a physically plausible band for its product"
+# ---- unit build: two legs, in dollars, translated ---------------------------
+# A refinery's revenue is volume times realised price, and its two product legs have
+# entirely different economics. Flattening them into one growth rate would hide the
+# whole story, so the legs are built separately and only the OUTPUT is carried into
+# the workbook grid.
+spec_vol25 = V['vol_spec_fy25'] * (vol_cy25 / V['vol_fy25'])
+fuel_vol25 = vol_cy25 - spec_vol25
+spec_rev25 = spec_vol25 * 1e6 * V['spec_price_usd_t'] * V['fx_avg_cy25'] / 1e6
+fuel_rev25 = rev_cy25 - spec_rev25
+fuel_price_usd25 = fuel_rev25 * 1e6 / (fuel_vol25 * 1e6) / V['fx_avg_cy25']
+say(f"[Unit build, base year] specialty leg {spec_vol25*1000:,.0f} tonnes at USD "
+    f"{V['spec_price_usd_t']:,.0f} a tonne = EGP {spec_rev25:,.0f}mn "
+    f"({spec_rev25/rev_cy25:.1%} of revenue on {spec_vol25/vol_cy25:.1%} of volume); fuel and "
+    f"by-product leg {fuel_vol25*1000:,.0f} tonnes at an implied USD {fuel_price_usd25:,.0f} a "
+    f"tonne = EGP {fuel_rev25:,.0f}mn. The implied fuel realisation is a plausible gas-oil / "
+    f"naphtha / fuel-oil blend against the crude deck, which is the check that the split is real "
+    f"rather than fitted.")
+assert 350.0 < fuel_price_usd25 < 750.0, \
+    f"implied fuel realisation {fuel_price_usd25:.0f} USD/t outside a plausible product band"
+assert 0.15 < spec_rev25 / rev_cy25 < 0.45, "specialty revenue share outside a plausible band"
 
-# --- roll the disclosed lines to the calendar-2025 base -----------------------
-# Two further DISCLOSED anchors sit between the product table and the base year: FY2024/25
-# total volume (1.26mn tonnes) and FY2024/25 specialty output (172kt). The base year is then
-# built with the SAME halves construction the revenue base uses, which is the consistency the
-# two-leg build did not have.
-vol_h2_fy25 = V['vol_h2cy25'] / (1 + 0.145)          # Jul-Dec 2024, off the disclosed +14.5%
-vol_h1_cy25 = V['vol_fy25'] - vol_h2_fy25            # Jan-Jun 2025
-vol_cy25 = vol_h1_cy25 + V['vol_h2cy25']
-spec_vol25 = V['vol_spec_fy25'] * (1 + V['spec_ramp_cy25'])
-oil_share_of_spec = V['line_oil_t'] / (V['line_oil_t'] + V['line_wax_t'])
-vol25 = dict(oil=spec_vol25 * oil_share_of_spec,
-             wax=spec_vol25 * (1 - oil_share_of_spec),
-             fuel=vol_cy25 - spec_vol25)
-say(f"[Base-year volume, built the same way as the base-year revenue] the transition half sold "
-    f"{V['vol_h2cy25']*1000:,.0f}kt against a disclosed +14.5%, so July-December 2024 was "
-    f"{vol_h2_fy25*1000:,.0f}kt; the reported June year was {V['vol_fy25']*1000:,.0f}kt, leaving "
-    f"{vol_h1_cy25*1000:,.0f}kt for January-June 2025. Calendar 2025 is therefore "
-    f"{vol_cy25:.3f}mn tonnes. The previous build annualised the half and shaded it by an "
-    f"unsourced 0.96, giving 1.551mn — {vol_cy25/1.5514-1:+.1%} away and built differently from "
-    f"the revenue base it sat beside. That inconsistency is removed.")
-
-px25 = {k: px_usd[k] * (1 + V['line_price_growth'][k][0]) ** 1.5 for k in px_usd}
-rev25_lines = {k: vol25[k] * px25[k] * V['fx_avg_cy25'] for k in vol25}
-rev25_bu = sum(rev25_lines.values())
-recon = rev_cy25 / rev25_bu
-say(f"[Reconciliation to the constructed base] the three lines rolled to calendar 2025 give EGP "
-    f"{rev25_bu:,.0f}mn against the {rev_cy25:,.0f}mn built from two disclosed halves — a "
-    f"reconciliation factor of {recon:.4f}. It is APPLIED to every line and every forecast year "
-    f"and it is on the face of the workbook, because a bottom-up build that silently absorbs its "
-    f"own gap into one residual line is not a bottom-up build. A factor this close to one is the "
-    f"real corroboration the old fuel-price 'check' pretended to be: two independent routes to "
-    f"the same revenue, agreeing within {abs(recon-1):.1%}.")
-assert 0.80 < recon < 1.25, f"bottom-up build misses the disclosed base by {recon-1:+.0%}"
-rev25_lines = {k: v * recon for k, v in rev25_lines.items()}
-
-# --- the two leg margins, SOLVED from the one disclosed blended margin ---------
-_ss = (rev25_lines['oil'] + rev25_lines['wax']) / rev_cy25
-m_fuel = V['gm_hist'][3] / (_ss * V['margin_ratio'] + (1 - _ss))
-m_spec = V['margin_ratio'] * m_fuel
-say(f"[Leg margins, solved not assumed] the specialty slate is {_ss:.2%} of base-year revenue. "
-    f"Requiring the blend to equal the base-year margin of {V['gm_hist'][3]:.2%} at a specialty-"
-    f"to-fuel margin ratio of {V['margin_ratio']:.1f}x gives a specialty margin of {m_spec:.2%} "
-    f"and a fuel margin of {m_fuel:.2%}. THE MARGIN PATH IS NOW AN OUTPUT: every forecast year's "
-    f"blended margin is these two constants re-weighted by that year's mix. There is no assumed "
-    f"margin path left in the model, and Figure 2's claim that the margin widens on mix is now a "
-    f"property of the arithmetic rather than a caption.")
-assert abs(_ss * m_spec + (1 - _ss) * m_fuel - V['gm_hist'][3]) < 1e-9, "margin solve does not close"
-
-LINES = ['oil', 'wax', 'fuel']
 YRS = ['2026E', '2027E', '2028E', '2029E', '2030E']
 
 
-def build(vol_mult=1.0, price_mult=1.0, fx_mult=1.0, gm_shift=0.0, ratio=None):
-    """Three product lines, each a volume times a dollar price times an exchange rate, with
-    the blended gross margin falling out of the mix. gm_shift moves BOTH leg margins in
-    parallel so the sensitivity remains a margin test rather than a mix test."""
-    ratio = V['margin_ratio'] if ratio is None else ratio
-    _mf = V['gm_hist'][3] / (_ss * ratio + (1 - _ss)) + gm_shift
-    _ms = ratio * (_mf - gm_shift) + gm_shift
-    vol = {k: vol25[k] for k in LINES}
-    px = {k: px25[k] for k in LINES}
-    rev, gp, lines_rev, lines_vol = [], [], {k: [] for k in LINES}, {k: [] for k in LINES}
+def build(vol_mult=1.0, price_mult=1.0, fx_mult=1.0, gm_shift=0.0):
+    """Volume x price, leg by leg, translated at the exchange-rate path.
+
+    Returns the revenue and gross-margin paths. A currency or price move flows through
+    both legs exactly as it does in the base case, which is what makes the scenario
+    engine reproduce the base run rather than approximate it.
+    """
+    sv, fv = spec_vol25, fuel_vol25
+    sp, fp = V['spec_price_usd_t'], fuel_price_usd25
+    rev, spec_r, fuel_r, vols, spec_vols = [], [], [], [], []
     for i in range(5):
-        r_tot = 0.0; g_tot = 0.0
-        for k in LINES:
-            vol[k] *= (1 + V['line_vol_growth'][k][i] * vol_mult)
-            px[k] *= (1 + V['line_price_growth'][k][i] * price_mult)
-            r = vol[k] * px[k] * V['fx_path'][i] * fx_mult * recon
-            lines_rev[k].append(r); lines_vol[k].append(vol[k])
-            r_tot += r
-            g_tot += r * (_ms if k in ('oil', 'wax') else _mf)
-        rev.append(r_tot); gp.append(g_tot)
-    gm = [gp[i] / rev[i] for i in range(5)]
+        sv *= (1 + V['spec_vol_growth'][i] * vol_mult)
+        tot_v = (vols[-1] if vols else vol_cy25) * (1 + V['vol_growth'][i] * vol_mult)
+        fv = tot_v - sv
+        sp *= (1 + V['spec_price_growth'][i] * price_mult)
+        fp *= (1 + V['fuel_price_growth'][i] * price_mult)
+        fx = V['fx_path'][i] * fx_mult
+        s_r = sv * 1e6 * sp * fx / 1e6
+        f_r = fv * 1e6 * fp * fx / 1e6
+        vols.append(tot_v); spec_vols.append(sv)
+        spec_r.append(s_r); fuel_r.append(f_r); rev.append(s_r + f_r)
+    gm = [V['gm_path'][i] + gm_shift for i in range(5)]
+    gp = [rev[i] * gm[i] for i in range(5)]
     opex = [V['opex_pct'][i] * rev[i] for i in range(5)]
     ebitda = [gp[i] - opex[i] for i in range(5)]
-    return dict(rev=rev, gm=gm, gp=gp, opex=opex, ebitda=ebitda,
-                ebitda_margin=[ebitda[i] / rev[i] for i in range(5)],
-                lines_rev=lines_rev, lines_vol=lines_vol,
-                vol=[sum(lines_vol[k][i] for k in LINES) for i in range(5)],
-                spec_vol=[lines_vol['oil'][i] + lines_vol['wax'][i] for i in range(5)],
-                spec_rev=[lines_rev['oil'][i] + lines_rev['wax'][i] for i in range(5)],
-                fuel_rev=lines_rev['fuel'], m_spec=_ms, m_fuel=_mf)
+    return dict(rev=rev, spec_rev=spec_r, fuel_rev=fuel_r, vol=vols, spec_vol=spec_vols,
+                gm=gm, gp=gp, opex=opex, ebitda=ebitda,
+                ebitda_margin=[ebitda[i] / rev[i] for i in range(5)])
 
 
 B = build()
 rev, ebitda = B['rev'], B['ebitda']
 ebitda_margin = B['ebitda_margin']
 say(f"[Forecast revenue] " + " -> ".join(f"{r:,.0f}" for r in rev) +
-    f" (volume {B['vol'][0]:.3f} -> {B['vol'][-1]:.3f}mn tonnes, specialty share of revenue "
-    f"{B['spec_rev'][0]/rev[0]:.1%} -> {B['spec_rev'][-1]/rev[-1]:.1%}).")
-say(f"[Forecast gross margin — an OUTPUT] " + " / ".join(f"{m:.2%}" for m in B['gm']) +
-    f". It widens by {(B['gm'][-1]-B['gm'][0])*1e4:.0f} basis points across the forecast, and every "
-    f"one of those points comes from the specialty share of revenue rising "
-    f"{B['spec_rev'][0]/rev[0]:.1%} -> {B['spec_rev'][-1]/rev[-1]:.1%} against two FIXED leg "
-    f"margins. Nothing about the spread is assumed to improve.")
+    f" (volume {B['vol'][0]:.2f} -> {B['vol'][-1]:.2f}mn tonnes, specialty share of revenue "
+    f"{B['spec_rev'][0]/rev[0]:.0%} -> {B['spec_rev'][-1]/rev[-1]:.0%}).")
 say(f"[Forecast EBITDA] " + " -> ".join(f"{e:,.0f}" for e in ebitda) +
     f" at margins " + " / ".join(f"{m:.2%}" for m in ebitda_margin) + ".")
 
@@ -929,44 +814,24 @@ for label, cand in (('recent NOPAT compound rate', nopat_cagr),
         cross_candidates[label] = None
 fcst_cagr = (rev[-1] / rev_cy25) ** 0.2 - 1
 yrs_cross = cross_candidates['forecast revenue compound rate']
-_above = [(lab, c) for lab, c in (('the recent NOPAT compound rate', nopat_cagr),
-                                 ('the forecast revenue rate', fcst_cagr),
-                                 ('the adopted terminal rate', V['g_term']))
-          if c > V['egypt_nominal_growth']]
-_below = [(lab, c) for lab, c in (('the recent NOPAT compound rate', nopat_cagr),
-                                  ('the forecast revenue rate', fcst_cagr),
-                                  ('the adopted terminal rate', V['g_term']))
-          if c <= V['egypt_nominal_growth']]
 say(f"[Terminal ceiling] the domestic leg is {dom_share_term:.0%} of 2030E revenue, giving a "
     f"blended long-run nominal ceiling of {blend_ceiling:.1%}, and the adopted "
-    f"{V['g_term']:.0%} sits well below it. Taking the candidates one at a time against Egyptian "
-    f"nominal growth of {V['egypt_nominal_growth']:.0%}: " +
-    "; ".join(f"{lab} {c:+.1%} is BELOW it" for lab, c in _below) +
-    ("" if not _above else "; " + "; ".join(
-        f"{lab} {c:+.1%} is ABOVE it and DOES bind — at that rate the company would overtake "
-        f"Egypt's entire nominal gross domestic product in about "
-        f"{np.log(V['egypt_gdp_nominal']/rev[-1])/np.log((1+c)/(1+V['egypt_nominal_growth'])):.0f} "
-        f"years, which is why it is a HISTORICAL rate and not a terminal one"
-        for lab, c in _above)) + ".")
-assert V['g_term'] <= V['egypt_nominal_growth'], "the adopted terminal rate must sit below the ceiling"
-_lo = [c for c in (nopat_cagr, stable_g) if c <= V['g_term']]
-_hi = [c for c in (nopat_cagr, stable_g) if c > V['g_term']]
-say(f"[Terminal growth, stated plainly] the two standing checks disagree with each other, and "
-    f"that is the honest reading rather than a problem to be smoothed. Check (a), the historical "
-    f"compound NOPAT rate, is {nopat_cagr:+.1%} — far ABOVE the adopted {V['g_term']:.1%}; it is "
-    f"a recovery rate off a devaluation-compressed base and belongs in the explicit years, not "
-    f"in perpetuity. Check (b), return times reinvestment from stable years, is {stable_g:.1%} — "
-    f"BELOW the adopted rate. The adopted {V['g_term']:.0%} sits between them and above the one "
-    f"that describes a steady state, so on the check that matters for a perpetuity it remains on "
-    f"the GENEROUS side of the company's own record. Sensitised 3-7%; the grid is on the face of "
-    f"the workbook. NOTE the reinvestment definition: check (b) uses net capex over NOPAT, "
-    f"EXCLUDING working capital, while the free-cash-flow waterfall subtracts working capital. On "
-    f"the waterfall-consistent definition the base-year reinvestment rate is "
-    f"{(capex_h['CY25']-hist_is['CY25']['dna']+dnwc[0])/nopat_h['CY25']:.1%} and the implied "
-    f"growth is {hist_roic['CY25']*(capex_h['CY25']-hist_is['CY25']['dna']+dnwc[0])/nopat_h['CY25']:.1%} "
-    f"— ABOVE the adopted rate. Both definitions are shown; neither is hidden.")
-rr_waterfall = (capex_h['CY25'] - hist_is['CY25']['dna'] + dnwc[0]) / nopat_h['CY25']
-g_waterfall = hist_roic['CY25'] * rr_waterfall
+    f"{V['g_term']:.0%} sits well below it. The crossover test — how long a candidate rate would "
+    f"take to make the company bigger than the economy — does NOT bind on this name, and saying "
+    f"so is the honest reading: the recent NOPAT compound rate ({nopat_cagr:+.1%}), the forecast "
+    f"revenue rate ({fcst_cagr:+.1%}) and the adopted terminal rate ({V['g_term']:.1%}) all sit "
+    f"BELOW Egyptian nominal growth of {V['egypt_nominal_growth']:.0%}, so the company shrinks "
+    f"relative to the economy at every one of them and there is no finite crossover year to "
+    f"report. The binding constraint here is the reinvestment identity, not the ceiling.")
+say(f"[Terminal growth, stated plainly] both standing check numbers come in BELOW the adopted "
+    f"rate: the historical compound NOPAT rate is {nopat_cagr:+.1%} and the return-times-"
+    f"reinvestment rate from stable years is {stable_g:.1%}, against an adopted "
+    f"{V['g_term']:.1%}. The 5% centre is retained because it is the standing convention for an "
+    f"established name in this market once currency turbulence has passed, and because the "
+    f"historical window spans the 2022-24 devaluation sequence, which compressed real earnings; "
+    f"but the reader should see that this assumption is on the GENEROUS side of the company's own "
+    f"record, not the conservative side. It is sensitised 3-7% and the grid is on the face of the "
+    f"workbook.")
 assert V['g_term'] < blend_ceiling, "terminal growth exceeds the blended nominal ceiling"
 
 rr_term = V['g_term'] / roic_term
@@ -983,15 +848,12 @@ say(f"[Terminal value] required reinvestment rate = growth / return = {V['g_term
 assert abs(roic_term * rr_term - V['g_term']) < 1e-9, "terminal growth != return x reinvestment"
 
 # ---- enterprise value -> equity bridge --------------------------------------
-nci_val = NCI_SHARE * ev          # on the OPERATING enterprise value, before the cash
+nci_val = NCI_SHARE * (ev - nd_cy25)
 eq_attr = ev - nd_cy25 - nci_val
 dcf_ps = eq_attr / SH
 say(f"[Bridge] enterprise value {ev:,.0f} less net debt {nd_cy25:,.0f} (a NEGATIVE, i.e. net "
     f"cash of {-nd_cy25:,.0f} is ADDED) = {ev - nd_cy25:,.0f}; less minority interests at their "
-    f"{NCI_SHARE:.1%} share OF THE ENTERPRISE VALUE (not of the cash — the previous "
-    f"construction deducted it after the cash was added, which handed the minority "
-    f"{NCI_SHARE*-nd_cy25:,.0f} of the parent's balance) = {nci_val:,.0f} -> equity attributable "
-    f"{eq_attr:,.0f} = EGP "
+    f"{NCI_SHARE:.1%} share = {nci_val:,.0f} -> equity attributable {eq_attr:,.0f} = EGP "
     f"{dcf_ps:.2f} a share against a spot of EGP {SPOT:.2f} ({dcf_ps/SPOT-1:+.1%}).")
 assert abs((ev - nd_cy25 - nci_val) - eq_attr) < 1e-6, "the bridge does not close"
 assert nci_val > 0 and nd_cy25 < 0, "sign check on the bridge components"
@@ -1013,7 +875,7 @@ def _val_at(we_, wt_, g_=None, nci_=None):
     _rr = min(g_ / _roic, 0.95)
     _tv = nopat[-1] * (1 + g_) * (1 - _rr) / max(wt_ - g_, 0.02)
     _ev = sum(fcff[i] * _df[i] for i in range(5)) + _tv * _df[-1]
-    return (_ev * (1 - nci_) - nd_cy25) / SH
+    return ((_ev - nd_cy25) * (1 - nci_)) / SH
 
 
 dcf_rating_ps = _val_at(wacc_exp_rating, wacc_term_rating)
@@ -1043,7 +905,7 @@ ev_f_egp = (pv_f_usd + tv_f_usd * df_usd[-1]) * V['fx']
 pv_d = sum(fcff_d[i] * df[i] for i in range(5))
 tv_d = nopat_term * (1 - rr_term) * (1 - exp_frac[-1]) / (wacc_term - V['g_term'])
 ev_ccy = ev_f_egp + pv_d + tv_d * df[-1]
-ccy_ps = (ev_ccy * (1 - NCI_SHARE) - nd_cy25) / SH
+ccy_ps = ((ev_ccy - nd_cy25) * (1 - NCI_SHARE)) / SH
 say(f"[Currency-of-discounting alternative] the export leg ({exp_frac[-1]:.0%} of cash flow) is "
     f"first DEFLATED to dollars at each year's exchange rate, discounted at a dollar cost of "
     f"capital of {WACC_USD:.2%} with 3.5% terminal growth, and only then translated back at the "
@@ -1057,14 +919,8 @@ ebitda_mid = ebitda[REL_I]
 df_rel = df[REL_I]
 
 
-pv_interim = sum(pv[:REL_I + 1])
-
-
 def _rel(mult):
-    """A multiple on a forward year values the business FROM that year on. The cash the firm
-    generates in the meantime belongs to today's owner and must be added back, or the lens
-    silently discards it — which the previous version did, to the tune of the figure below."""
-    return (((mult * ebitda_mid) * df_rel + pv_interim) * (1 - NCI_SHARE) - nd_cy25) / SH
+    return (((mult * ebitda_mid) * df_rel - nd_cy25) * (1 - NCI_SHARE)) / SH
 
 
 rel_ps, rel_bear, rel_bull = _rel(V['ev_ebitda_just']), _rel(3.5), _rel(6.0)
@@ -1073,9 +929,7 @@ ev_rel = ev_rel_fwd * df_rel
 ev_trailing = MKTCAP + nd_cy25
 ev_ebitda_trailing = ev_trailing / ebitda_cy25
 pe_trailing = SPOT / (npa_cy25 / SH)
-say(f"[Relative lens] interim free cash flow added back: {pv_interim:,.0f} of present value "
-    f"for the years before the multiple year, which the previous construction dropped. "
-    f"{V['ev_ebitda_just']}x on 2027E EBITDA {ebitda_mid:,.0f} gives an enterprise "
+say(f"[Relative lens] {V['ev_ebitda_just']}x on 2027E EBITDA {ebitda_mid:,.0f} gives an enterprise "
     f"value of {ev_rel_fwd:,.0f} AS AT end-2027; discounted back at the year-2 factor "
     f"{df_rel:.4f} that is {ev_rel:,.0f} today -> EGP {rel_ps:.2f} a share. Not discounting a "
     f"forward enterprise value back to today would have given EGP "
@@ -1139,34 +993,15 @@ def dcf_scenario(vol_mult=1.0, price_mult=1.0, fx_mult=1.0, gm_shift=0.0,
     _rr = min(g / _roic, 0.95)
     _tv = _nopat[-1] * (1 + g) * (1 - _rr) / max(_wt - g, 0.02)
     _ev = sum(_f[i] * _df[i] for i in range(5)) + _tv * _df[-1]
-    return (_ev * (1 - NCI_SHARE) - nd_cy25) / SH
+    return ((_ev - nd_cy25) * (1 - NCI_SHARE)) / SH
 
 
 _chk = dcf_scenario()
 assert abs(_chk - dcf_ps) < 0.01, f"scenario engine does not reproduce the base: {_chk} vs {dcf_ps}"
-SCEN = dict(
-    bear=dict(vol_mult=0.4, gm_shift=-0.010, fx_mult=0.97, wacc_shift=+0.02, g=0.03),
-    bull=dict(vol_mult=1.5, gm_shift=+0.010, fx_mult=1.03, wacc_shift=-0.02, g=0.06))
-dcf_bear = dcf_scenario(**SCEN['bear'])
-dcf_bull = dcf_scenario(**SCEN['bull'])
-SCEN['bear']['ps'], SCEN['bull']['ps'], SCEN['base_ps'] = dcf_bear, dcf_bull, dcf_ps
-SCEN['labels'] = dict(
-    vol_mult='Volume growth path, as a multiple of the assumed path',
-    gm_shift='Gross margin, shifted on every forecast year',
-    fx_mult='Exchange-rate path, as a multiple of the assumed path',
-    wacc_shift='Cost of capital, shifted at BOTH the explicit and terminal anchors',
-    g='Terminal growth rate')
+dcf_bear = dcf_scenario(vol_mult=0.4, gm_shift=-0.010, fx_mult=0.97, wacc_shift=+0.02, g=0.03)
+dcf_bull = dcf_scenario(vol_mult=1.5, gm_shift=+0.010, fx_mult=1.03, wacc_shift=-0.02, g=0.06)
 say(f"[Scenarios on the cash-flow lens] bear EGP {dcf_bear:.2f} / base EGP {dcf_ps:.2f} / bull "
-    f"EGP {dcf_bull:.2f}. The scenarios are FIVE simultaneous driver moves, not a single lever: "
-    f"volume growth at {SCEN['bear']['vol_mult']:.1f}x / {SCEN['bull']['vol_mult']:.1f}x the "
-    f"assumed path, gross margin {SCEN['bear']['gm_shift']:+.1%} / "
-    f"{SCEN['bull']['gm_shift']:+.1%}, the exchange-rate path "
-    f"{SCEN['bear']['fx_mult']-1:+.0%} / {SCEN['bull']['fx_mult']-1:+.0%}, the cost of capital "
-    f"{SCEN['bear']['wacc_shift']:+.0%} / {SCEN['bull']['wacc_shift']:+.0%} at both anchors, and "
-    f"terminal growth {SCEN['bear']['g']:.0%} / {SCEN['bull']['g']:.0%}. Because all five move "
-    f"together and in the same direction, the bear and bull ends are JOINT-worst and JOINT-best "
-    f"cases and are much wider than any single-driver row in the sensitivity table; they are not "
-    f"a confidence interval and no probability is attached to them.")
+    f"EGP {dcf_bull:.2f}.")
 
 # ---- synthesis --------------------------------------------------------------
 W = V['lens_weights']
@@ -1250,11 +1085,11 @@ say(f"[Expert 2 construction] free cash flow to equity " +
 ic_beg = [ic_cy25] + ic[:-1]
 ep_ = [nopat[i] - fwd[i] * ic_beg[i] for i in range(5)]
 pv_ep = sum(ep_[i] * df[i] for i in range(5))
-ep_term = nopat[-1] * (1 + V['g_term']) - wacc_term * ic[-1]
+ep_term = nopat[-1] * (1 + V['g_term']) - wacc_term * ic[-1] * (1 + V['g_term'])
 pv_ep_term = ep_term / (wacc_term - V['g_term']) * df[-1]
 e3_ev = ic_cy25 + pv_ep + pv_ep_term
-e3_base = (e3_ev * (1 - NCI_SHARE) - nd_cy25) / SH
-e3_lo = ((ic_cy25 + pv_ep * 0.6 + pv_ep_term * 0.55) * (1 - NCI_SHARE) - nd_cy25) / SH
+e3_base = ((e3_ev - nd_cy25) * (1 - NCI_SHARE)) / SH
+e3_lo = ((ic_cy25 + pv_ep * 0.6 + pv_ep_term * 0.55 - nd_cy25) * (1 - NCI_SHARE)) / SH
 e3_hi = ccy_ps
 say(f"[Economic-profit convention] the capital charge is taken on BEGINNING-of-year invested "
     f"capital, not ending. Charging ending capital would understate economic profit by about "
@@ -1304,14 +1139,10 @@ OUT = dict(
               eq_jun25=eq_jun25, rev_fy24_methods=[V['rev_fy24_a'], V['rev_fy24_b']],
               rev_fy25_methods=[V['rev_fy25_a'], V['rev_fy25_b'], V['rev_fy25_c']],
               implied_growth_rev=implied_growth_rev, implied_growth_pat=implied_growth_pat),
-    unit=dict(spec_vol25=spec_vol25, vol_cy25=vol_cy25, vol25=vol25, px_egp=px_egp,
-              px_usd=px_usd, px25=px25, rev25_lines=rev25_lines, rev25_bu=rev25_bu,
-              recon=recon, m_spec=m_spec, m_fuel=m_fuel, spec_share_t=spec_share_t,
-              spec_share_v=spec_share_v, line_fuel_t=line_fuel_t, line_fuel_v=line_fuel_v,
-              lines=LINES, lines_rev=B['lines_rev'], lines_vol=B['lines_vol'],
-              vol=B['vol'], spec_vol=B['spec_vol'], spec_rev=B['spec_rev'],
-              fuel_rev=B['fuel_rev'], vol_h2_fy25=vol_h2_fy25, vol_h1_cy25=vol_h1_cy25,
-              oil_share_of_spec=oil_share_of_spec, ss=_ss),
+    unit=dict(spec_vol25=spec_vol25, fuel_vol25=fuel_vol25, spec_rev25=spec_rev25,
+              fuel_rev25=fuel_rev25, fuel_price_usd25=fuel_price_usd25,
+              spec_price_usd=V['spec_price_usd_t'], vol=B['vol'], spec_vol=B['spec_vol'],
+              spec_rev=B['spec_rev'], fuel_rev=B['fuel_rev']),
     fcst=dict(years=YRS, rev=rev, gp=B['gp'], gm=B['gm'], opex=B['opex'], ebitda=ebitda,
               ebitda_margin=ebitda_margin, dna=dna, ebit=ebit, nopat=nopat, capex=capex,
               nwc=nwc, dnwc=dnwc, fcff=fcff, df=df, pv=pv, fwd_wacc=fwd, glide_frac=glide_frac,
@@ -1332,12 +1163,11 @@ OUT = dict(
     terminal_recon=dict(roic=hist_roic, rr=hist_rr, implied_g=hist_impl_g,
                         character=hist_character, nopat=nopat_h, ic=ic_h, capex=capex_h,
                         nopat_cagr=nopat_cagr, stable_g=stable_g, stable_keys=stable_keys,
-                        rr_waterfall=rr_waterfall, g_waterfall=g_waterfall,
                         ceiling=blend_ceiling, crossover_years=yrs_cross, crossover=cross_candidates, fcst_cagr=fcst_cagr,
                         dom_share_term=dom_share_term),
-    lenses=lenses, central=central, span=[lo, hi], spot=SPOT, scen=SCEN,
+    lenses=lenses, central=central, span=[lo, hi], spot=SPOT,
     experts=experts, panel_centre=panel_centre,
-    rel=dict(ebitda_mid=ebitda_mid, pv_interim=pv_interim, ev_rel=ev_rel, ev_rel_fwd=ev_rel_fwd, df_rel=df_rel,
+    rel=dict(ebitda_mid=ebitda_mid, ev_rel=ev_rel, ev_rel_fwd=ev_rel_fwd, df_rel=df_rel,
              ev_ebitda_trailing=ev_ebitda_trailing, pe_trailing=pe_trailing,
              just_mult=V['ev_ebitda_just'], year=YRS[REL_I]),
     norm=dict(rev=norm_rev, ebitda=norm_ebitda, ebit=norm_ebit, dna=dna[NORM_I],

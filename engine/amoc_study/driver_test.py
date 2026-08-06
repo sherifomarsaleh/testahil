@@ -54,7 +54,7 @@ def read(overrides=None):
         central=bk.cell_value('Summary', f"C{SU['central']}"),
         pv_expl=bk.cell_value('DCF', f"B{DC['pv_explicit']}"),
         tv=bk.cell_value('DCF', f"B{DC['tv']}"),
-        pat_cy25=bk.cell_value('Product Legs', f"B{AN['legs']['pat_cy25']}"),
+        pat_cy25=bk.cell_value('Product Lines', f"B{AN['legs']['pat_cy25']}"),
         ppe25=bk.cell_value('Balance Sheet', f"E{BS_['ppe']}"),
         ev=bk.cell_value('DCF', f"B{DC['ev']}"),
         rev26=bk.cell_value('DCF', f"B{DC['rev']}"),
@@ -67,7 +67,12 @@ def read(overrides=None):
         eq23=bk.cell_value('Balance Sheet', f"B{BS_['eq']}"),
         hist_ebitda=bk.cell_value('Income Statement', f"E{AN['is']['ebitda']}"),
         hist_other=bk.cell_value('Income Statement', f"E{AN['is']['other']}"),
+        gm30=bk.cell_value('Product Lines', f"{AN['cols']['uc'][4]}{AN['legs']['gm']}"),
+        recon=bk.cell_value('Product Lines', f"E{AN['legs']['recon']}"),
         divyield=bk.cell_value('Summary', f"C{SU['central'] + 11}"),
+        expert1=bk.cell_value('Fundamental Valuation', f"C{AN['fv']['e1']}"),
+        expert2=bk.cell_value('Fundamental Valuation', f"C{AN['fv']['e2']}"),
+        panel=bk.cell_value('Fundamental Valuation', f"C{AN['fv']['panel']}"),
     )
 
 
@@ -96,8 +101,24 @@ CASES = [
      'more inventory must raise net working capital'),
     ('Payable days on cost of sales', 'C', +5.0, 'dcf', +1,
      'longer payment terms fund the cycle and must raise the value'),
-    ('Gross margin (forecast)', 'B', +0.005, 'ebitda26', +1,
-     'a wider forecast gross margin must lift 2026E EBITDA'),
+    ('Specialty margin as a multiple of the fuel margin', 'C', +0.5, 'gm30', +1,
+     'a wider specialty premium raises the blended margin, because specialty is a RISING share '
+     'of the mix — the margin path is now an output of that mix, not an input'),
+    ('Paraffin-wax volume growth', 'B', +0.02, 'gm30', +1,
+     'THE MIX TEST: growing the high-margin leg faster must widen the BLENDED gross margin with '
+     'no leg margin changing. This is the assertion the previous build could not make, because '
+     'it had no per-leg margins for a mix to act on'),
+    ('Fuel-slate volume growth', 'B', +0.02, 'gm30', -1,
+     'and growing the low-margin leg faster must narrow it'),
+    ('Base oils, sales value', 'C', +500.0, 'gm30', +1,
+     'DECOMPOSED: it is the disclosed VALUE, not the tonnage, that moves the mix. Raising the '
+     'base-oil TONNAGE at a fixed disclosed value just reallocates the same revenue between '
+     'price and volume and moves nothing — an invariance worth having, not a dead input'),
+    ('USD/EGP average, year to Jun-2024', 'C', +2.0, 'rev26', 0,
+     'DECOMPOSED: this input is PROVABLY immaterial. It divides all three disclosed realisations '
+     'to get dollar prices, and the reconciliation factor — the disclosed base year over the '
+     'bottom-up total — multiplies by exactly the same amount. The two cancel. The one input in '
+     'the product build I could not source turns out to be one the answer cannot depend on'),
     ('Gross margin (historical)', 'E', +0.005, 'hist_ebitda', +1,
      'the base-year gross margin drives the base-year operating result'),
     ('Gross margin (historical)', 'E', +0.005, 'hist_other', -1,
@@ -106,8 +127,7 @@ CASES = [
      'reconstruction honest'),
     ('Operating cost load, % of revenue', 'B', +0.005, 'ebitda26', -1,
      'a heavier operating load must cut 2026E EBITDA'),
-    ('Total volume growth', 'B', +0.02, 'rev26', +1,
-     'faster throughput growth must lift 2026E revenue'),
+
     ('USD/EGP average rate path', 'B', +3.0, 'rev26', +1,
      'a weaker pound raises the pound value of dollar-benchmarked product and must lift revenue'),
     ('Depreciation, % of revenue', 'C', +0.005, 'pv_expl', +1,
@@ -144,11 +164,7 @@ CASES = [
     ('Share price', 'C', +1.0, 'wacc', -1,
      'a higher market capitalisation shrinks the NEGATIVE net-debt weight toward zero, pulling '
      'the blended rate back down toward the cost of equity'),
-    ('Specialty realised price', 'C', +100.0, 'rev26', +1,
-     'a higher specialty realisation shifts mix into the faster-growing leg and must lift '
-     'forecast revenue, even though the base year is held at the constructed total'),
-    ('Specialty volume growth', 'B', +0.02, 'rev26', +1,
-     'faster specialty growth must lift 2026E revenue'),
+
     ('Jul-Dec 2025 profit after tax', 'C', +100.0, 'pat_cy25', +1,
      'the transition half is one of the two legs of the constructed calendar-2025 base'),
     ('FY2024/25 profit after tax', 'C', +100.0, 'pat_cy25', +1,
@@ -161,6 +177,18 @@ CASES = [
      'and therefore book value per share and the book lens'),
     ('Total liabilities', 'C', +200.0, 'central', -1,
      'and through the book lens, the weighted central'),
+    ('Expert 1 justified price / earnings', 'C', +1.0, 'expert1', +1,
+     'THE PANEL IS LIVE. Expert 1 is an independent opinion with its own multiple, so raising it '
+     'must raise Expert 1 and NOTHING in the primary model'),
+    ('Expert 1 justified price / earnings', 'C', +1.0, 'dcf', 0,
+     'and the cash-flow lens must not move by a piastre, because the panel reads FROM the model '
+     'and never back into it'),
+    ('Expert 1 justified price / earnings', 'C', +1.0, 'panel', 0,
+     'DECOMPOSED: the panel MEDIAN does not move either, and that is the finding rather than a '
+     'defect. Expert 1 already sits ABOVE the median, so pushing it further up leaves the middle '
+     'value where it was — Expert 3, which is the cash-flow lens by identity. This assertion is '
+     'the workbook proving in one bump that the panel median is not an independent check on the '
+     'model it contains'),
     ('Dividend per share', 'C', +0.20, 'eq23', +1,
      'DECOMPOSED: closing equity is disclosed, so the dividend drives the roll-BACK, not the '
      'roll-forward. A larger dividend means more was paid out of each historical year, so opening '
@@ -190,6 +218,10 @@ for label, col, bump, key, sign, why in CASES:
 
 # A driver that moves NOTHING anywhere is a dead input.
 DEAD_OK = {
+    # display-scope by design: the two house bounds sit on the peer sheet, which is context and
+    # is deliberately NOT in the valuation chain. Naming them here is the fix the reachability
+    # finding asked for — publish the set rather than force history into the chain.
+    'House low bound on the multiple', 'House high bound on the multiple',
     # disclosed history that the CURRENT-year model does not consume downstream
     'FY2022/23 revenue', 'FY2022/23 gross profit', 'FY2022/23 cost of sales',
     'FY2022/23 profit after tax', 'FY2023/24 revenue — method A',

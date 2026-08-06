@@ -173,16 +173,8 @@ band(wsA, r, 6); put(wsA, f'A{r}', 'VOLUMES AND THE UNIT BUILD', BLACK, None, bo
 drv(r, 'vol_fy25', 'FY2024/25 sales volume', 'mn tonnes', IN['vol_fy25'], NUM3, 'disclosed'); r += 1
 drv(r, 'vol_spec_fy25', 'FY2024/25 oils and waxes output', 'mn tonnes', IN['vol_spec_fy25'], NUM3, 'disclosed, 172kt'); r += 1
 drv(r, 'vol_h2cy25', 'Jul-Dec 2025 sales volume', 'mn tonnes', IN['vol_h2cy25'], NUM3, 'disclosed, 808kt'); r += 1
-drv(r, 'line_oil_t', 'Base oils sold, year to Jun-2024', 'tonnes', IN['line_oil_t'], NUM0, 'disclosed product table'); r += 1
-drv(r, 'line_oil_v', 'Base oils, sales value', 'EGP mn', IN['line_oil_v'], NUM1, 'disclosed'); r += 1
-drv(r, 'line_wax_t', 'Paraffin wax sold, year to Jun-2024', 'tonnes', IN['line_wax_t'], NUM0, 'disclosed'); r += 1
-drv(r, 'line_wax_v', 'Paraffin wax, sales value', 'EGP mn', IN['line_wax_v'], NUM1, 'disclosed'); r += 1
-drv(r, 'line_tot_t', 'Total tonnes, year to Jun-2024', 'tonnes', IN['line_tot_t'], NUM0, 'disclosed'); r += 1
-drv(r, 'line_tot_v', 'Total sales value, year to Jun-2024', 'EGP mn', IN['line_tot_v'], NUM1, 'disclosed'); r += 1
-drv(r, 'fx_fy24', 'USD/EGP average, year to Jun-2024', 'EGP', IN['fx_fy24'], NUM1, 'month-weighted across the float'); r += 1
-drv(r, 'spec_ramp_cy25', 'Specialty tonnage ramp to the base year', '%', IN['spec_ramp_cy25'], PCT, 'on the disclosed +40% export rise'); r += 1
-drv(r, 'oil_share_spec', 'Base oils as a share of specialty tonnage', '%', U['oil_share_of_spec'], PCT, 'from the disclosed table'); r += 1
-drv(r, 'margin_ratio', 'Specialty margin as a multiple of the fuel margin', 'x', IN['margin_ratio'], '0.00', 'the one judgment parameter behind the margin'); r += 1
+drv(r, 'ann_shade', 'Annualisation shading on the half-year', 'x', 0.96, '0.00', 'ramp still building'); r += 1
+drv(r, 'spec_price', 'Specialty realised price', 'USD/tonne', IN['spec_price_usd_t'], NUM0, 'calibrated to disclosure'); r += 1
 drv(r, 'fx_cy25', 'USD/EGP average, calendar 2025', 'EGP', IN['fx_avg_cy25'], NUM1, ''); r += 1
 drv(r, 'fx_spot', 'USD/EGP spot', 'EGP', IN['fx'], NUM1, '6 Aug 2026'); r += 1
 
@@ -196,7 +188,6 @@ drv(r, 'recv_days', 'Receivable days', 'days', IN['recv_days'], NUM1, ''); r += 
 drv(r, 'inv_days', 'Inventory days on cost of sales', 'days', IN['inv_days'], NUM1, ''); r += 1
 drv(r, 'pay_days', 'Payable days on cost of sales', 'days', IN['pay_days'], NUM1, ''); r += 1
 drv(r, 'other_ca', 'Other current assets', 'EGP mn', IN['other_ca'], NUM0, ''); r += 1
-drv(r, 'opex_hist', 'Historical operating cost load, % of revenue', '%', IN['opex_pct'][0], PCT2, 'held flat across the reconstructed years'); r += 1
 drv(r, 'dps', 'Dividend per share', 'EGP', IN['dps'], PX, 'declared'); r += 1
 
 r += 1
@@ -220,13 +211,8 @@ drv(r, 'dna_pct', 'Depreciation, % of revenue', '%', IN['dna_pct'], PCT2, ''); r
 drv(r, 'nci', 'Minority share of group profit', '%', NCI_SH, PCT, ''); r += 1
 drv(r, 'payout', 'Dividend payout ratio', '%', PAYOUT, PCT, 'reported'); r += 1
 drv(r, 'ev_ebitda', 'Justified EV / EBITDA', 'x', IN['ev_ebitda_just'], MULT, ''); r += 1
-drv(r, 'mult_low', 'House low bound on the multiple', 'x', 3.5, MULT, 'NOT a peer observation'); r += 1
-drv(r, 'mult_high', 'House high bound on the multiple', 'x', 6.0, MULT, 'NOT a peer observation'); r += 1
 drv(r, 'pe', 'Justified price / earnings', 'x', IN['pe_just'], MULT, ''); r += 1
 drv(r, 'roe_sust', 'Sustainable return on equity', '%', IN['roe_sust'], PCT, ''); r += 1
-drv(r, 'e1_pe', 'Expert 1 justified price / earnings', 'x', EXP['e1']['pe'], MULT,
-    'Expert 1 strikes a lower multiple than the main normalised lens deliberately: it is an '
-    'independent opinion, not a re-run of the house view'); r += 1
 
 r += 1
 band(wsA, r, 6); put(wsA, f'A{r}', 'PATHS — one column per forecast year', BLACK, None, bold=True)
@@ -239,12 +225,11 @@ PATHS = [
     ('fx_path', 'USD/EGP average rate path', IN['fx_path'], NUM1),
     ('capex_pct', 'Capital expenditure, % of revenue', IN['capex_pct'], PCT2),
     ('opex_pct', 'Operating cost load, % of revenue', IN['opex_pct'], PCT2),
-    ('line_vg_oil', 'Base-oil volume growth', IN['line_vol_growth']['oil'], PCT2),
-    ('line_vg_wax', 'Paraffin-wax volume growth', IN['line_vol_growth']['wax'], PCT2),
-    ('line_vg_fuel', 'Fuel-slate volume growth', IN['line_vol_growth']['fuel'], PCT2),
-    ('line_pg_oil', 'Base-oil dollar price growth', IN['line_price_growth']['oil'], PCT2),
-    ('line_pg_wax', 'Paraffin-wax dollar price growth', IN['line_price_growth']['wax'], PCT2),
-    ('line_pg_fuel', 'Fuel-slate dollar price growth', IN['line_price_growth']['fuel'], PCT2),
+    ('gm_path', 'Gross margin (forecast)', IN['gm_path'], PCT2),
+    ('vol_growth', 'Total volume growth', IN['vol_growth'], PCT2),
+    ('spec_vol_growth', 'Specialty volume growth', IN['spec_vol_growth'], PCT2),
+    ('spec_price_growth', 'Specialty price growth (USD)', IN['spec_price_growth'], PCT2),
+    ('fuel_price_growth', 'Fuel price growth (USD)', IN['fuel_price_growth'], PCT2),
     ('cash_yield_path', 'Yield on cash path', IN['cash_yield_path'], PCT2),
 ]
 PR = {}
@@ -297,179 +282,130 @@ def LWr(k):
     return f"Assumptions!$C${LW[k]}"
 
 
-# ============ 6 PRODUCT LINES — the bottom-up build, live ====================
-wsU = sheet('Product Lines')
-title(wsU, 'Revenue and margin built from the disclosed product table',
-      'Three lines, each a tonnage times a dollar realisation times an exchange rate. No price '
-      'is calibrated and none is a residual. The blended gross margin is an OUTPUT of the mix.',
-      8, 44, 13)
-LN3 = ['oil', 'wax', 'fuel']
-LNAME = dict(oil='Base oils', wax='Paraffin wax', fuel='Fuel and by-products')
-r = 4
-band(wsU, r, 8); put(wsU, f'A{r}', 'THE DISCLOSED PRODUCT TABLE — year to 30 June 2024',
-                     BLACK, None, bold=True); r += 1
-hdr(wsU, r, ['', 'Tonnes', 'Value (EGP mn)', 'EGP / tonne', 'USD / tonne', 'Share of tonnage',
-             'Share of value']); r += 1
-DT = {}
-for k in LN3:
-    put(wsU, f'A{r}', LNAME[k], BLACK, None)
-    if k == 'fuel':
-        putf(wsU, f'B{r}', f"={A('line_tot_t')}-B{DT['oil'][0]}-B{DT['wax'][0]}", U['line_fuel_t'], NUM0)
-        putf(wsU, f'C{r}', f"={A('line_tot_v')}-C{DT['oil'][0]}-C{DT['wax'][0]}", U['line_fuel_v'], NUM1)
-    else:
-        putf(wsU, f'B{r}', f"={A('line_'+k+'_t')}", IN[f'line_{k}_t'], NUM0, green=True)
-        putf(wsU, f'C{r}', f"={A('line_'+k+'_v')}", IN[f'line_{k}_v'], NUM1, green=True)
-    putf(wsU, f'D{r}', f"=C{r}*1000000/B{r}", U['px_egp'][k], NUM0)
-    putf(wsU, f'E{r}', f"=D{r}/{A('fx_fy24')}", U['px_usd'][k], NUM0)
-    DT[k] = (r, )
-    r += 1
-put(wsU, f'A{r}', 'Total (disclosed)', BLACK, None, bold=True)
-putf(wsU, f'B{r}', f"={A('line_tot_t')}", IN['line_tot_t'], NUM0, bold=True, green=True)
-putf(wsU, f'C{r}', f"={A('line_tot_v')}", IN['line_tot_v'], NUM1, bold=True, green=True)
-TOTR = r
-for k in LN3:
-    rr_ = DT[k][0]
-    putf(wsU, f'F{rr_}', f"=B{rr_}/B{TOTR}", (IN[f'line_{k}_t'] if k != 'fuel' else U['line_fuel_t'])/IN['line_tot_t'], PCT)
-    putf(wsU, f'G{rr_}', f"=C{rr_}/C{TOTR}", (IN[f'line_{k}_v'] if k != 'fuel' else U['line_fuel_v'])/IN['line_tot_v'], PCT)
+# ============ 6 PRODUCT LEGS — the unit build, live ==========================
+wsU = sheet('Product Legs')
+title(wsU, 'Revenue build — two product legs, volume x dollar price x exchange rate',
+      'Not one growth rate. The specialty leg (base oils, paraffin wax, special oils) carries the '
+      'margin; the fuel and by-product leg is close to pass-through.', 7, 46, 14)
+hdr(wsU, 4, ['', 'CY2025', *YF])
+r = 5
+put(wsU, f'A{r}', 'Total sales volume (mn tonnes)', BLACK, None, bold=True)
+putf(wsU, f'B{r}', f"={A('vol_h2cy25')}*2*{A('ann_shade')}", BASE['vol_cy25'], NUM3)
+prev = 'B'
+for i, c in enumerate(UC):
+    putf(wsU, f'{c}{r}', f"={prev}{r}*(1+{P('vol_growth', i)})", U['vol'][i], NUM3)
+    prev = c
+VOL_R = r; r += 1
+
+put(wsU, f'A{r}', 'Specialty volume (mn tonnes)', BLACK, None)
+putf(wsU, f'B{r}', f"={A('vol_spec_fy25')}*(B{VOL_R}/{A('vol_fy25')})", U['spec_vol25'], NUM3)
+prev = 'B'
+for i, c in enumerate(UC):
+    putf(wsU, f'{c}{r}', f"={prev}{r}*(1+{P('spec_vol_growth', i)})", U['spec_vol'][i], NUM3)
+    prev = c
+SPV_R = r; r += 1
+
+put(wsU, f'A{r}', 'Fuel and by-product volume (mn tonnes)', BLACK, None)
+putf(wsU, f'B{r}', f"=B{VOL_R}-B{SPV_R}", U['fuel_vol25'], NUM3)
+for i, c in enumerate(UC):
+    putf(wsU, f'{c}{r}', f"={c}{VOL_R}-{c}{SPV_R}",
+         U['vol'][i] - U['spec_vol'][i], NUM3)
+FUV_R = r; r += 1
+
+put(wsU, f'A{r}', 'Specialty share of volume', BLACK, None)
+putf(wsU, f'B{r}', f"=B{SPV_R}/B{VOL_R}", U['spec_vol25'] / BASE['vol_cy25'], PCT)
+for i, c in enumerate(UC):
+    putf(wsU, f'{c}{r}', f"={c}{SPV_R}/{c}{VOL_R}", U['spec_vol'][i] / U['vol'][i], PCT)
 r += 2
-note(wsU, r, 'Every realisation on this sheet is DERIVED from the disclosed tonnage and value. '
-             'The previous build had a specialty price that was a free input and a fuel price '
-             'that was the residual of the base-year revenue — which meant the "implied fuel '
-             'price" offered as a plausibility check was a residual of the very construction it '
-             'was said to validate. Nothing here is a residual.', 8)
-r += 1
 
-band(wsU, r, 8); put(wsU, f'A{r}', 'THE CALENDAR-2025 BASE — volume built the same way as revenue',
-                     BLACK, None, bold=True); r += 1
-put(wsU, f'A{r}', 'Jul-Dec 2025 tonnage (disclosed)', BLACK, None)
-putf(wsU, f'B{r}', f"={A('vol_h2cy25')}", IN['vol_h2cy25'], NUM3, green=True); VH2 = r; r += 1
-put(wsU, f'A{r}', 'Jul-Dec 2024, off the disclosed +14.5%', BLACK, None)
-putf(wsU, f'B{r}', f"=B{VH2}/1.145", U['vol_h2_fy25'], NUM3); VH2P = r; r += 1
-put(wsU, f'A{r}', 'FY2024/25 tonnage (disclosed)', BLACK, None)
-putf(wsU, f'B{r}', f"={A('vol_fy25')}", IN['vol_fy25'], NUM3, green=True); VFY = r; r += 1
-put(wsU, f'A{r}', 'Jan-Jun 2025 (the residual half)', BLACK, None)
-putf(wsU, f'B{r}', f"=B{VFY}-B{VH2P}", U['vol_h1_cy25'], NUM3); r += 1
-put(wsU, f'A{r}', 'CALENDAR 2025 TONNAGE', BLACK, None, bold=True)
-putf(wsU, f'B{r}', f"=B{r-1}+B{VH2}", U['vol_cy25'], NUM3, bold=True); VCY = r; r += 1
-put(wsU, f'A{r}', 'Specialty tonnage (FY2024/25 disclosed, plus the export ramp)', BLACK, None)
-putf(wsU, f'B{r}', f"={A('vol_spec_fy25')}*(1+{A('spec_ramp_cy25')})", U['spec_vol25'], NUM3)
-SPV = r; r += 2
+band(wsU, r, 7); put(wsU, f'A{r}', 'REALISED PRICES', BLACK, None, bold=True); r += 1
+put(wsU, f'A{r}', 'Specialty price (USD / tonne)', BLACK, None)
+put(wsU, f'B{r}', IN['spec_price_usd_t'], GREEN, NUM0)
+EXPECT.setdefault('Product Legs', {})
+putf(wsU, f'B{r}', f"={A('spec_price')}", IN['spec_price_usd_t'], NUM0, green=True)
+prev = 'B'
+_sp = IN['spec_price_usd_t']
+for i, c in enumerate(UC):
+    _sp = _sp * (1 + IN['spec_price_growth'][i])
+    putf(wsU, f'{c}{r}', f"={prev}{r}*(1+{P('spec_price_growth', i)})", _sp, NUM0)
+    prev = c
+SPP_R = r; r += 1
 
-band(wsU, r, 8); put(wsU, f'A{r}', 'BASE-YEAR LINES AND THE RECONCILIATION', BLACK, None,
-                     bold=True); r += 1
-hdr(wsU, r, ['', 'Tonnes (mn)', 'USD / tonne', 'USD/EGP', 'Revenue (EGP mn)']); r += 1
-BR3 = {}
-for k in LN3:
-    put(wsU, f'A{r}', LNAME[k], BLACK, None)
-    if k == 'oil':
-        putf(wsU, f'B{r}', f"=B{SPV}*{A('oil_share_spec')}", U['vol25']['oil'], NUM3)
-    elif k == 'wax':
-        putf(wsU, f'B{r}', f"=B{SPV}*(1-{A('oil_share_spec')})", U['vol25']['wax'], NUM3)
-    else:
-        putf(wsU, f'B{r}', f"=B{VCY}-B{SPV}", U['vol25']['fuel'], NUM3)
-    putf(wsU, f'C{r}', f"=E{DT[k][0]}*(1+{P('line_pg_'+k, 0)})^1.5", U['px25'][k], NUM0)
-    putf(wsU, f'D{r}', f"={A('fx_cy25')}", IN['fx_avg_cy25'], NUM1, green=True)
-    putf(wsU, f'E{r}', f"=B{r}*C{r}*D{r}", U['rev25_lines'][k]/U['recon'], NUM0)
-    BR3[k] = r; r += 1
-put(wsU, f'A{r}', 'Bottom-up total', BLACK, None, bold=True)
-putf(wsU, f'E{r}', f"=E{BR3['oil']}+E{BR3['wax']}+E{BR3['fuel']}", U['rev25_bu'], NUM0, bold=True)
-BUT = r; r += 1
-put(wsU, f'A{r}', 'Calendar-2025 revenue from two disclosed halves', BLACK, None)
-putf(wsU, f'E{r}', f"=({A('rev_fy25_a')}+{A('rev_fy25_b')}+{A('rev_fy25_c')})/3"
-                   f"-{A('rev_h1fy25')}+{A('rev_h2cy25')}", BASE['rev_cy25'], NUM0)
-RCY25_R = r; r += 1
-put(wsU, f'A{r}', 'RECONCILIATION FACTOR', BLACK, None, bold=True)
-putf(wsU, f'E{r}', f"=E{RCY25_R}/E{BUT}", U['recon'], '0.0000', bold=True)
-RECON_R = r; r += 2
-note(wsU, r, 'Two independent routes to the same base-year revenue, agreeing within the factor '
-             'shown. The factor is APPLIED to every line and every forecast year and it is on '
-             'the face of the sheet — a bottom-up build that absorbs its own gap into one '
-             'residual line is not a bottom-up build.', 8)
-r += 1
-
-band(wsU, r, 8); put(wsU, f'A{r}', 'THE TWO LEG MARGINS, SOLVED FROM ONE DISCLOSED BLEND',
-                     BLACK, None, bold=True); r += 1
-put(wsU, f'A{r}', 'Specialty share of base-year revenue', BLACK, None)
-putf(wsU, f'B{r}', f"=(E{BR3['oil']}+E{BR3['wax']})/E{BUT}", U['ss'], PCT); SSR = r; r += 1
-put(wsU, f'A{r}', 'Base-year blended gross margin (disclosed anchor path)', BLACK, None)
-putf(wsU, f'B{r}', f"={GMH(3)}", IN['gm_hist'][3], PCT2, green=True); GMA = r; r += 1
-put(wsU, f'A{r}', 'Specialty margin as a multiple of the fuel margin', BLACK, None)
-putf(wsU, f'B{r}', f"={A('margin_ratio')}", IN['margin_ratio'], '0.00', green=True); MRT = r; r += 1
-put(wsU, f'A{r}', 'Fuel and by-product gross margin (solved)', BLACK, None)
-putf(wsU, f'B{r}', f"=B{GMA}/(B{SSR}*B{MRT}+1-B{SSR})", U['m_fuel'], PCT2); MF = r; r += 1
-put(wsU, f'A{r}', 'Specialty gross margin (solved)', BLACK, None)
-putf(wsU, f'B{r}', f"=B{MRT}*B{MF}", U['m_spec'], PCT2); MS = r; r += 1
-put(wsU, f'A{r}', 'Check: the two remix to the disclosed blend', BLACK, None)
-putf(wsU, f'B{r}', f"=B{SSR}*B{MS}+(1-B{SSR})*B{MF}", IN['gm_hist'][3], PCT2); r += 2
-
-band(wsU, r, 8); put(wsU, f'A{r}', 'THE FORECAST', BLACK, None, bold=True); r += 1
-hdr(wsU, r, ['', *YF]); r += 1
-LV, LR = {}, {}
-for k in LN3:
-    put(wsU, f'A{r}', f'{LNAME[k]} — tonnes (mn)', BLACK, None)
-    prev = f'B{BR3[k]}'
-    for i, c in enumerate(UC):
-        putf(wsU, f'{c}{r}', f"={prev}*(1+{P('line_vg_'+k, i)})", U['lines_vol'][k][i], NUM3)
-        prev = f'{c}{r}'
-    LV[k] = r; r += 1
-LP = {}
-for k in LN3:
-    put(wsU, f'A{r}', f'{LNAME[k]} — USD / tonne', BLACK, None)
-    prev = f'C{BR3[k]}'
-    _p = U['px25'][k]
-    for i, c in enumerate(UC):
-        _p = _p * (1 + IN['line_price_growth'][k][i])
-        putf(wsU, f'{c}{r}', f"={prev}*(1+{P('line_pg_'+k, i)})", _p, NUM0)
-        prev = f'{c}{r}'
-    LP[k] = r; r += 1
-put(wsU, f'A{r}', 'USD/EGP average', BLACK, None)
+put(wsU, f'A{r}', 'Fuel price (USD / tonne)', BLACK, None)
+r_rev25 = None
+FUP_R = r; r += 1
+put(wsU, f'A{r}', 'USD/EGP average rate', BLACK, None)
+putf(wsU, f'B{r}', f"={A('fx_cy25')}", IN['fx_avg_cy25'], NUM1, green=True)
 for i, c in enumerate(UC):
     putf(wsU, f'{c}{r}', f"={P('fx_path', i)}", IN['fx_path'][i], NUM1, green=True)
-FXR = r; r += 1
-for k in LN3:
-    put(wsU, f'A{r}', f'{LNAME[k]} — revenue (EGP mn)', BLACK, None)
-    for i, c in enumerate(UC):
-        putf(wsU, f'{c}{r}', f"={c}{LV[k]}*{c}{LP[k]}*{c}{FXR}*$E${RECON_R}",
-             U['lines_rev'][k][i], NUM0)
-    LR[k] = r; r += 1
-put(wsU, f'A{r}', 'TOTAL REVENUE', BLACK, None, bold=True)
+FX_R = r; r += 2
+
+band(wsU, r, 7); put(wsU, f'A{r}', 'REVENUE BY LEG (EGP mn)', BLACK, None, bold=True); r += 1
+put(wsU, f'A{r}', 'Specialty oils and waxes', BLACK, None)
+putf(wsU, f'B{r}', f"=B{SPV_R}*B{SPP_R}*B{FX_R}", U['spec_rev25'], NUM0)
 for i, c in enumerate(UC):
-    putf(wsU, f'{c}{r}', f"={c}{LR['oil']}+{c}{LR['wax']}+{c}{LR['fuel']}", F['rev'][i], NUM0,
-         bold=True)
+    putf(wsU, f'{c}{r}', f"={c}{SPV_R}*{c}{SPP_R}*{c}{FX_R}", U['spec_rev'][i], NUM0)
+SPR_R = r; r += 1
+put(wsU, f'A{r}', 'Fuel and by-products', BLACK, None)
+putf(wsU, f'B{r}', f"=B{FUV_R}*B{FUP_R}*B{FX_R}", U['fuel_rev25'], NUM0)
+for i, c in enumerate(UC):
+    putf(wsU, f'{c}{r}', f"={c}{FUV_R}*{c}{FUP_R}*{c}{FX_R}", U['fuel_rev'][i], NUM0)
+FUR_R = r; r += 1
+put(wsU, f'A{r}', 'Total revenue', BLACK, None, bold=True)
+putf(wsU, f'B{r}', f"=B{SPR_R}+B{FUR_R}", BASE['rev_cy25'], NUM0, bold=True)
+for i, c in enumerate(UC):
+    putf(wsU, f'{c}{r}', f"={c}{SPR_R}+{c}{FUR_R}", F['rev'][i], NUM0, bold=True)
 REV_R = r; r += 1
 put(wsU, f'A{r}', 'Specialty share of revenue', BLACK, None)
+putf(wsU, f'B{r}', f"=B{SPR_R}/B{REV_R}", U['spec_rev25'] / BASE['rev_cy25'], PCT)
 for i, c in enumerate(UC):
-    putf(wsU, f'{c}{r}', f"=({c}{LR['oil']}+{c}{LR['wax']})/{c}{REV_R}",
-         U['spec_rev'][i]/F['rev'][i], PCT)
-SSHR = r; r += 1
-put(wsU, f'A{r}', 'GROSS PROFIT — the two leg margins on that mix', BLACK, None, bold=True)
+    putf(wsU, f'{c}{r}', f"={c}{SPR_R}/{c}{REV_R}", U['spec_rev'][i] / F['rev'][i], PCT)
+r += 2
+
+# the base-year fuel price is the RESIDUAL against constructed calendar-2025 revenue
+band(wsU, r, 7); put(wsU, f'A{r}', 'CALENDAR-2025 BASE, CONSTRUCTED FROM TWO DISCLOSED HALVES',
+                     BLACK, None, bold=True); r += 1
+put(wsU, f'A{r}', 'FY2024/25 revenue (average of three disclosed methods)', BLACK, None)
+putf(wsU, f'B{r}', f"=({A('rev_fy25_a')}+{A('rev_fy25_b')}+{A('rev_fy25_c')})/3",
+     BASE['rev_fy25'], NUM0)
+RFY25_R = r; r += 1
+put(wsU, f'A{r}', 'less July-December 2024 half (disclosed)', BLACK, None)
+putf(wsU, f'B{r}', f"={A('rev_h1fy25')}", IN['rev_h1fy25'], NUM0, green=True)
+r += 1
+put(wsU, f'A{r}', 'January-June 2025', BLACK, None)
+putf(wsU, f'B{r}', f"=B{RFY25_R}-B{r-1}", BASE['rev_h1cy25'], NUM0)
+H1CY25_R = r; r += 1
+put(wsU, f'A{r}', 'plus July-December 2025 transition period (disclosed)', BLACK, None)
+putf(wsU, f'B{r}', f"={A('rev_h2cy25')}", IN['rev_h2cy25'], NUM0, green=True)
+r += 1
+put(wsU, f'A{r}', 'CALENDAR 2025 REVENUE', BLACK, None, bold=True)
+putf(wsU, f'B{r}', f"=B{H1CY25_R}+B{r-1}", BASE['rev_cy25'], NUM0, bold=True)
+RCY25_R = r; r += 1
+put(wsU, f'A{r}', 'Implied fuel-leg price (USD / tonne), the residual', BLACK, None)
+putf(wsU, f'B{r}', f"=(B{RCY25_R}-B{SPR_R})/B{FUV_R}/B{FX_R}", U['fuel_price_usd25'], NUM0)
+FUPCALC_R = r
+# now fill the fuel-price row that was reserved above
+putf(wsU, f'B{FUP_R}', f"=B{FUPCALC_R}", U['fuel_price_usd25'], NUM0)
+_fp = U['fuel_price_usd25']
+prev = 'B'
 for i, c in enumerate(UC):
-    putf(wsU, f'{c}{r}', f"=({c}{LR['oil']}+{c}{LR['wax']})*$B${MS}+{c}{LR['fuel']}*$B${MF}",
-         F['gp'][i], NUM0, bold=True)
-GP_R = r; r += 1
-put(wsU, f'A{r}', 'BLENDED GROSS MARGIN — an output, not an input', BLACK, None, bold=True)
-for i, c in enumerate(UC):
-    putf(wsU, f'{c}{r}', f"={c}{GP_R}/{c}{REV_R}", F['gm'][i], PCT2, bold=True)
-GM_R = r; r += 1
-put(wsU, f'A{r}', 'Total tonnes (mn)', BLACK, None)
-for i, c in enumerate(UC):
-    putf(wsU, f'{c}{r}', f"={c}{LV['oil']}+{c}{LV['wax']}+{c}{LV['fuel']}", U['vol'][i], NUM3)
-VOL_R = r; r += 2
-put(wsU, f'A{r}', 'Calendar-2025 profit after tax, same halves construction', BLACK, None)
-putf(wsU, f'B{r}', f"=({A('pat_fy25')}-{A('pat_h1fy25')})+{A('pat_h2cy25')}", BASE['pat_cy25'],
-     NUM0)
+    _fp = _fp * (1 + IN['fuel_price_growth'][i])
+    putf(wsU, f'{c}{FUP_R}', f"={prev}{FUP_R}*(1+{P('fuel_price_growth', i)})", _fp, NUM0)
+    prev = c
+r += 2
+put(wsU, f'A{r}', 'Calendar 2025 profit after tax, same construction', BLACK, None)
+putf(wsU, f'B{r}', f"=({A('pat_fy25')}-{A('pat_h1fy25')})+{A('pat_h2cy25')}", BASE['pat_cy25'], NUM0)
 PATCY25_R = r; r += 2
-note(wsU, r, 'The blended margin widens across the forecast ONLY because the specialty share of '
-             'revenue rises against two fixed leg margins. Neither leg margin improves. That is '
-             'what "the margin widens on mix" has to mean if it is to mean anything, and it is '
-             'now a property of the arithmetic on this sheet rather than a caption on a chart.', 8)
-ANCH['legs'] = dict(rev=REV_R, gp=GP_R, gm=GM_R, vol=VOL_R, spec_share=SSHR,
-                    rev_cy25=RCY25_R, pat_cy25=PATCY25_R, recon=RECON_R,
-                    m_spec=MS, m_fuel=MF, lines_rev=LR, lines_vol=LV)
+note(wsU, r, 'Every cell on this sheet is a formula. The base-year fuel price is deliberately the '
+             'residual: the specialty leg is priced off an observable and the fuel leg absorbs '
+             'whatever is left, so the split can be checked against a plausible gas-oil / naphtha '
+             '/ fuel-oil realisation rather than being fitted to a target.', 7)
+ANCH['legs'] = dict(vol=VOL_R, spec_vol=SPV_R, rev=REV_R, spec_rev=SPR_R, fuel_rev=FUR_R,
+                    rev_cy25=RCY25_R, pat_cy25=PATCY25_R, fx=FX_R)
 
 
 def LG(row, col):
-    return f"'Product Lines'!${col}${row}"
+    return f"'Product Legs'!${col}${row}"
 
 
 # ============ 8 DCF ==========================================================
@@ -572,13 +508,13 @@ put(wsD, f'A{r}', 'Revenue', BLACK, None)
 for i, c in enumerate(CD):
     putf(wsD, f'{c}{r}', f"={LG(ANCH['legs']['rev'], UC[i])}", F['rev'][i], NUM0, green=True)
 DREV_R = r; r += 1
-put(wsD, f'A{r}', 'Gross margin (from the product-line mix)', BLACK, None)
+put(wsD, f'A{r}', 'Gross margin', BLACK, None)
 for i, c in enumerate(CD):
-    putf(wsD, f'{c}{r}', f"={LG(ANCH['legs']['gm'], UC[i])}", F['gm'][i], PCT2, green=True)
+    putf(wsD, f'{c}{r}', f"={P('gm_path', i)}", IN['gm_path'][i], PCT2, green=True)
 DGM_R = r; r += 1
 put(wsD, f'A{r}', 'Gross profit', BLACK, None)
 for i, c in enumerate(CD):
-    putf(wsD, f'{c}{r}', f"={LG(ANCH['legs']['gp'], UC[i])}", F['gp'][i], NUM0, green=True)
+    putf(wsD, f'{c}{r}', f"={c}{DREV_R}*{c}{DGM_R}", F['gp'][i], NUM0)
 DGP_R = r; r += 1
 put(wsD, f'A{r}', 'less operating cost load', BLACK, None)
 for i, c in enumerate(CD):
@@ -614,7 +550,7 @@ for i, c in enumerate(CD):
 CAPEX_R = r; r += 1
 put(wsD, f'A{r}', 'Net working capital', BLACK, None)
 for i, c in enumerate(CD):
-    putf(wsD, f'{c}{r}', f"={c}{DREV_R}*'Balance Sheet'!$E$@BS_NWCP@", F['nwc'][i], NUM0)
+    putf(wsD, f'{c}{r}', f"={c}{DREV_R}*'Balance Sheet'!$C$@BS_NWCP@", F['nwc'][i], NUM0)
 NWC_R = r; r += 1
 put(wsD, f'A{r}', 'less change in net working capital', BLACK, None)
 putf(wsD, f'B{r}', f"=B{NWC_R}-'Balance Sheet'!$E$@BS_NWC@", F['dnwc'][0], NUM0)
@@ -681,7 +617,7 @@ put(wsD, f'A{r}', 'ENTERPRISE VALUE', BLACK, None, bold=True)
 putf(wsD, f'B{r}', f"=B{PVE_R}+B{PVTV_R}", DCF['ev'], NUM0, bold=True)
 EV_R = r; r += 1
 put(wsD, f'A{r}', 'Fair value per share (from the bridge)', BLACK, None, bold=True)
-putf(wsD, f'B{r}', f"='EV Bridge'!$B$@BR_PS@", DCF['ps'], PX, bold=True, green=True)
+putf(wsD, f'B{r}', f"='EV Bridge'!$B$12", DCF['ps'], PX, bold=True, green=True)
 DPS_R = r; r += 2
 note(wsD, r, 'One date, one price of time: the terminal value is capitalised at the terminal cost '
              'of capital and discounted at the SAME year-5 cumulative factor as year 5 cash flow. '
@@ -702,68 +638,44 @@ put(wsB, f'A{r}', 'Enterprise value (discounted cash flow)', BLACK, None)
 putf(wsB, f'B{r}', f"=DCF!$B${EV_R}", DCF['ev'], NUM0, green=True)
 putf(wsB, f'C{r}', f"=B{r}/{A('shares')}", DCF['ev'] / SH, PX)
 BEV_R = r; r += 1
-put(wsB, f'A{r}', 'Minority share of group profit', BLACK, None)
-putf(wsB, f'B{r}', f"={A('nci')}", NCI_SH, PCT, green=True)
-BNCIS_R = r; r += 1
-put(wsB, f'A{r}', 'less minority interests — ON THE ENTERPRISE VALUE, BEFORE THE CASH',
-    BLACK, None)
-putf(wsB, f'B{r}', f"=B{BEV_R}*B{BNCIS_R}", DCF['nci_val'], NUM0)
-putf(wsB, f'C{r}', f"=B{r}/{A('shares')}", DCF['nci_val'] / SH, PX)
-BNCI_R = r; r += 1
-put(wsB, f'A{r}', 'Operating assets attributable to shareholders', BLACK, None)
-putf(wsB, f'B{r}', f"=B{BEV_R}-B{BNCI_R}", DCF['ev'] - DCF['nci_val'], NUM0)
-putf(wsB, f'C{r}', f"=B{r}/{A('shares')}", (DCF['ev'] - DCF['nci_val']) / SH, PX)
-BPRE_R = r; r += 1
-put(wsB, f'A{r}', 'less net debt (negative = net cash added, IN FULL)', BLACK, None)
+put(wsB, f'A{r}', 'less net debt (negative = net cash added)', BLACK, None)
 putf(wsB, f'B{r}', f"=DCF!$B${ND_R}", BASE['nd_cy25'], NUM0, green=True)
 putf(wsB, f'C{r}', f"=B{r}/{A('shares')}", BASE['nd_cy25'] / SH, PX)
 BND_R = r; r += 1
+put(wsB, f'A{r}', 'Equity value before minority interests', BLACK, None)
+putf(wsB, f'B{r}', f"=B{BEV_R}-B{BND_R}", DCF['ev'] - BASE['nd_cy25'], NUM0)
+putf(wsB, f'C{r}', f"=B{r}/{A('shares')}", (DCF['ev'] - BASE['nd_cy25']) / SH, PX)
+BPRE_R = r; r += 1
+put(wsB, f'A{r}', 'Minority share of group profit', BLACK, None)
+putf(wsB, f'B{r}', f"={A('nci')}", NCI_SH, PCT, green=True)
+BNCIS_R = r; r += 1
+put(wsB, f'A{r}', 'less minority interests', BLACK, None)
+putf(wsB, f'B{r}', f"=B{BPRE_R}*B{BNCIS_R}", DCF['nci_val'], NUM0)
+putf(wsB, f'C{r}', f"=B{r}/{A('shares')}", DCF['nci_val'] / SH, PX)
+BNCI_R = r; r += 1
 put(wsB, f'A{r}', 'EQUITY ATTRIBUTABLE TO SHAREHOLDERS', BLACK, None, bold=True)
-putf(wsB, f'B{r}', f"=B{BPRE_R}-B{BND_R}", DCF['eq_attr'], NUM0, bold=True)
+putf(wsB, f'B{r}', f"=B{BPRE_R}-B{BNCI_R}", DCF['eq_attr'], NUM0, bold=True)
 BEQ_R = r; r += 1
 put(wsB, f'A{r}', 'Shares outstanding (mn)', BLACK, None)
 putf(wsB, f'B{r}', f"={A('shares')}", SH, NUM1, green=True)
 BSH_R = r; r += 1
 put(wsB, f'A{r}', 'FAIR VALUE PER SHARE (EGP)', BLACK, None, bold=True)
 putf(wsB, f'B{r}', f"=B{BEQ_R}/B{BSH_R}", DCF['ps'], PX, bold=True)
-BPS_R = r; TOK['BR_PS'] = BPS_R; r += 1
+r += 1
 put(wsB, f'A{r}', 'TERMINAL VALUE AS A SHARE OF ENTERPRISE VALUE', BLACK, None, bold=True)
 putf(wsB, f'B{r}', f"=DCF!$B${TVSH_R}", DCF['tv_share'], PCT, bold=True, green=True)
-BTV_R = r; TOK['BR_TV'] = BTV_R; r += 1
+r += 1
 put(wsB, f'A{r}', 'Spot price (EGP)', BLACK, None)
-putf(wsB, f'B{r}', f"={A('spot')}", SPOT, PX, green=True)
-BSPOT_R = r; r += 1
+putf(wsB, f'B{r}', f"={A('spot')}", SPOT, PX, green=True); r += 1
 put(wsB, f'A{r}', 'Implied against spot', BLACK, None)
-putf(wsB, f'B{r}', f"=B{BPS_R}/B{BSPOT_R}-1", DCF['ps'] / SPOT - 1, PCT)
-r += 1
-put(wsB, f'A{r}', 'MEMO — what the WRONG order would have given', BLACK, None, bold=True)
-r += 1
-put(wsB, f'A{r}', 'Minority taken AFTER the cash, on the combined total (the rejected order)',
-    BLACK, None)
-putf(wsB, f'B{r}', f"=(B{BEV_R}-B{BND_R})*(1-B{BNCIS_R})",
-     (DCF['ev'] - BASE['nd_cy25']) * (1 - NCI_SH), NUM0)
-putf(wsB, f'C{r}', f"=B{r}/{A('shares')}",
-     (DCF['ev'] - BASE['nd_cy25']) * (1 - NCI_SH) / SH, PX)
-BWRONG_R = r; r += 1
-put(wsB, f'A{r}', 'Value the rejected order would have handed the minority', BLACK, None)
-putf(wsB, f'B{r}', f"=B{BEQ_R}-B{BWRONG_R}",
-     DCF['eq_attr'] - (DCF['ev'] - BASE['nd_cy25']) * (1 - NCI_SH), NUM0)
-putf(wsB, f'C{r}', f"=B{r}/{A('shares')}",
-     (DCF['eq_attr'] - (DCF['ev'] - BASE['nd_cy25']) * (1 - NCI_SH)) / SH, PX)
+putf(wsB, f'B{r}', f"=B{r-2-0}/B{r-1}-1", 0.0, PCT)
+# fix: the reference above must point at the fair-value row explicitly
+putf(wsB, f'B{r}', f"=B12/B{r-1}-1", DCF['ps'] / SPOT - 1, PCT)
 r += 2
-note(wsB, r, 'THE ORDER OF THESE ROWS IS THE SUBSTANTIVE POINT. The minority is deducted from '
-             'the OPERATING enterprise value, before the cash is added, and the cash is then '
-             'added back in full because it belongs to the parent. An earlier edition of this '
-             'model did it the other way round — added the cash first, then took the minority '
-             'share off the combined total — and defended it in a note reading "the minority '
-             'deduction is taken on the equity value AFTER net debt, so the minority does not '
-             'carry a share of the parent\'s cash". That defence was algebraically inverted: '
-             'deducting a percentage of a total that ALREADY includes the cash is exactly how '
-             'you hand the minority a slice of it. An external review caught it, the correction '
-             'is accepted, and the memo rows above compute what the rejected order would have '
-             'produced so the reader can see the size of it rather than take it on trust. '
-             'Doubling the minority share to 6% is a separate contested choice, computed on the '
-             'Fundamental Valuation sheet.', 6)
+note(wsB, r, 'The minority deduction is taken on the equity value AFTER net debt, not on the '
+             'enterprise value, so the minority does not carry a share of the parent\'s cash. '
+             'Doubling the minority share to 6% is one of the contested choices computed in the '
+             'study and moves the answer by roughly three per cent.', 6)
 
 # ============ 10 BALANCE SHEET (needed by DCF references) ====================
 wsBS = sheet('Balance Sheet')
@@ -914,7 +826,10 @@ for i, c in enumerate(FCOL):
     putf(wsBS, f'{c}{r}', f"=DCF!{CD[i]}{NWC_R}", F['nwc'][i], NUM0, green=True)
 BSNWC_R = r; TOK['BS_NWC'] = BSNWC_R; r += 1
 put(wsBS, f'A{r}', 'Net working capital, % of revenue', BLACK, None)
+putf(wsBS, f'C{r}', f"=E{BSNWC_R}/E{BSREV_R}", BASE['nwc_pct'], PCT)
 for i, k in enumerate(H4):
+    if HC[i] == 'C':
+        continue
     putf(wsBS, f'{HC[i]}{r}', f"={HC[i]}{BSNWC_R}/{HC[i]}{BSREV_R}",
          HB[k]['nwc'] / HI[k]['rev'], PCT)
 for i, c in enumerate(FCOL):
@@ -1074,19 +989,18 @@ def isline(lab, key, fml_h, fml_f, vals_h, vals_f, fmt=NUM0, bd=False):
 put(wsI, 'A5', 'Revenue', BLACK, None)
 putf(wsI, 'B5', f"={A('rev_fy23')}", HI['FY23']['rev'], NUM0, green=True)
 putf(wsI, 'C5', f"=({A('rev_fy24_a')}+{A('rev_fy24_b')})/2", HI['FY24']['rev'], NUM0)
-putf(wsI, 'D5', f"=({A('rev_fy25_a')}+{A('rev_fy25_b')}+{A('rev_fy25_c')})/3",
-     HI['FY25']['rev'], NUM0)
-putf(wsI, 'E5', f"='Product Lines'!E{RCY25_R}", HI['CY25']['rev'], NUM0, green=True)
+putf(wsI, 'D5', f"='Product Legs'!B{RFY25_R}", HI['FY25']['rev'], NUM0, green=True)
+putf(wsI, 'E5', f"='Product Legs'!B{RCY25_R}", HI['CY25']['rev'], NUM0, green=True)
 for i in range(5):
     putf(wsI, f'{FCOL[i]}5', f"=DCF!{CD[i]}{DREV_R}", F['rev'][i], NUM0, green=True)
 ISREV = 5
 r = 6
 ISGM = isline('Gross margin', 'gm', lambda c, i: f"={GMH(i)}",
-              lambda c, i: f"=DCF!{CD[i]}{DGM_R}", [HI[k]['gm'] for k in H4], F['gm'], PCT)
+              lambda c, i: f"={P('gm_path', i)}", [HI[k]['gm'] for k in H4], F['gm'], PCT)
 ISGP = isline('Gross profit', 'gp', lambda c, i: f"={c}{ISREV}*{c}{ISGM}",
               lambda c, i: f"={c}{ISREV}*{c}{ISGM}", [HI[k]['gp'] for k in H4], F['gp'])
 ISOPX = isline('Operating cost load', 'opex',
-               lambda c, i: f"={c}{ISREV}*{A('opex_hist')}",
+               lambda c, i: f"={c}{ISREV}*{P('opex_pct', 0)}",
                lambda c, i: f"=DCF!{CD[i]}{DOPX_R}", [HI[k]['opex'] for k in H4], F['opex'])
 ISEBITDA = isline('EBITDA', 'ebitda', lambda c, i: f"={c}{ISGP}-{c}{ISOPX}",
                   lambda c, i: f"={c}{ISGP}-{c}{ISOPX}", [HI[k]['ebitda'] for k in H4],
@@ -1114,11 +1028,7 @@ for i in range(5):
     putf(wsI, f'{FCOL[i]}{r}', f"='Cash Flow'!{CD[i]}{CFFIN_R}", F['interest'][i], NUM0,
          green=True)
 ISFIN = r; r += 1
-ISPAT = isline('Profit after tax (disclosed for history)', 'pat',
-               lambda c, i: (f"={A('pat_fy23')}" if i == 0 else
-                             f"={A('pat_fy24')}" if i == 1 else
-                             f"={A('pat_fy25')}" if i == 2 else
-                             f"='Product Lines'!B@LEGS_PAT@"),
+ISPAT = isline('Profit after tax (disclosed for history)', 'pat', None,
                lambda c, i: f"=({c}{ISEBIT}+{c}{ISFIN})*(1-{A('tax')})",
                [HI[k]['pat'] for k in H4],
                [(F['ebit'][i] + F['interest'][i]) * (1 - TAX) for i in range(5)], bd=True)
@@ -1214,15 +1124,12 @@ RD_R = r; r += 1
 put(wsR, f'A{r}', 'Enterprise value discounted to today', BLACK, None)
 putf(wsR, f'B{r}', f"=B{RF_R}*B{RD_R}", REL['ev_rel'], NUM0)
 RT_R = r; r += 1
-put(wsR, f'A{r}', 'add the interim free cash flow the multiple year does not cover', BLACK, None)
-putf(wsR, f'B{r}', f"=DCF!B{PV_R}+DCF!C{PV_R}", REL['pv_interim'], NUM0)
-RI_R = r; r += 1
 put(wsR, f'A{r}', 'less net debt (net cash added)', BLACK, None)
 putf(wsR, f'B{r}', f"=DCF!$B${ND_R}", BASE['nd_cy25'], NUM0, green=True)
 RN_R = r; r += 1
 put(wsR, f'A{r}', 'IMPLIED VALUE PER SHARE (EGP)', BLACK, None, bold=True)
-putf(wsR, f'B{r}', f"=(B{RT_R}+B{RI_R})*(1-{A('nci')})/{A('shares')}-B{RN_R}/{A('shares')}",
-     LN['relative']['base'], PX, bold=True)
+putf(wsR, f'B{r}', f"=(B{RT_R}-B{RN_R})*(1-{A('nci')})/{A('shares')}", LN['relative']['base'],
+     PX, bold=True)
 RELPS_R = r; r += 1
 put(wsR, f'A{r}', 'Trailing enterprise value / EBITDA (company)', BLACK, None)
 putf(wsR, f'B{r}', f"=({A('spot')}*{A('shares')}+DCF!$B${ND_R})/'Income Statement'!E{ISEBITDA}",
@@ -1294,7 +1201,7 @@ title(wsFV, 'Fundamental valuation — four lenses, weighted', None, 7, 46, 15)
 hdr(wsFV, 4, ['Lens', 'Bear (EGP)', 'Base (EGP)', 'Bull (EGP)', 'Weight', 'Contribution'])
 r = 5
 LENS_SRC = [
-    ('dcf', 'Discounted cash flow (primary)', f"='EV Bridge'!$B$@BR_PS@"),
+    ('dcf', 'Discounted cash flow (primary)', f"='EV Bridge'!$B$12"),
     ('relative', 'Relative multiples', f"='Relative & Normalized'!$B${RELPS_R}"),
     ('normalized', 'Normalised earnings power', f"='Relative & Normalized'!$B${NRMPS_R}"),
     ('book', 'Book value and sustainable return', f"='Relative & Normalized'!$B${BKPS_R}"),
@@ -1325,45 +1232,9 @@ r += 1
 put(wsFV, f'A{r}', 'Terminal value as a share of enterprise value', BLACK, None)
 putf(wsFV, f'C{r}', f"=DCF!$B${TVSH_R}", DCF['tv_share'], PCT, green=True)
 r += 1
+put(wsFV, f'A{r}', 'Expert panel median (EGP)', BLACK, None)
+put(wsFV, f'C{r}', D['panel_centre'], BLUE, PX)
 r += 1
-put(wsFV, f'A{r}', 'THE EXPERT PANEL, LIVE — and why the median is not a check', BLACK, None,
-    bold=True)
-r += 1
-put(wsFV, f'A{r}', 'Expert 1 — earnings power: 2028E attributable earnings per share', BLACK, None)
-putf(wsFV, f'B{r}', f"='Relative & Normalized'!$B${NEPS_R}", NRM['eps'], PX, green=True)
-E1EPS_R = r; r += 1
-put(wsFV, f'A{r}', '        × Expert 1 justified multiple', BLACK, None)
-putf(wsFV, f'B{r}', f"={A('e1_pe')}", EXP['e1']['pe'], NUM1, green=True)
-E1PE_R = r; r += 1
-put(wsFV, f'A{r}', '        = Expert 1 fair value (EGP)', BLACK, None)
-putf(wsFV, f'C{r}', f"=B{E1EPS_R}*B{E1PE_R}", EXP['e1']['base'], PX)
-E1_R = r; r += 1
-put(wsFV, f'A{r}', 'Expert 2 — free cash flow to equity: present value of the explicit years',
-    BLACK, None)
-put(wsFV, f'B{r}', EXP['e2']['pv'], BLUE, NUM0)
-E2PV_R = r; r += 1
-put(wsFV, f'A{r}', '        plus the present value of the terminal block', BLACK, None)
-put(wsFV, f'B{r}', EXP['e2']['pv_tv'], BLUE, NUM0)
-E2TV_R = r; r += 1
-put(wsFV, f'A{r}', '        = Expert 2 fair value (EGP)', BLACK, None)
-putf(wsFV, f'C{r}', f"=(B{E2PV_R}+B{E2TV_R})/{A('shares')}", EXP['e2']['base'], PX)
-E2_R = r; r += 1
-put(wsFV, f'A{r}', 'Expert 3 — economic profit. LINKED, not recomputed: an economic-profit build '
-                   'off the same NOPAT, capital and discount path IS the cash-flow lens', BLACK,
-    None)
-putf(wsFV, f'C{r}', f"='EV Bridge'!$B$@BR_PS@", DCF['ps'], PX, green=True)
-E3_R = r; r += 1
-put(wsFV, f'A{r}', 'Expert 3 less the cash-flow lens — MUST be zero, and that is the point',
-    BLACK, None)
-putf(wsFV, f'C{r}', f"=C{E3_R}-'EV Bridge'!$B$@BR_PS@", 0.0, '0.0000')
-r += 1
-put(wsFV, f'A{r}', 'Expert panel median (EGP) — NOT an independent check, see note', BLACK, None)
-putf(wsFV, f'C{r}', f"=MEDIAN(C{E1_R},C{E2_R},C{E3_R})", D['panel_centre'], PX)
-PANEL_R = r; r += 1
-put(wsFV, f'A{r}', 'Spread between the two INDEPENDENT reads (Expert 1 less Expert 2)', BLACK,
-    None)
-putf(wsFV, f'C{r}', f"=C{E1_R}-C{E2_R}", EXP['e1']['base'] - EXP['e2']['base'], PX)
-SPREAD_R = r; r += 2
 put(wsFV, f'A{r}', 'Currency-of-discounting alternative (EGP)', BLACK, None)
 put(wsFV, f'C{r}', DCF['ccy_alt_ps'], BLUE, PX)
 r += 1
@@ -1424,10 +1295,10 @@ put(wsS, f'A{r}', 'Enterprise value (EGP mn)', BLACK, None)
 putf(wsS, f'C{r}', f"=C{SMC_R}-C{SNC_R}", M['mktcap'] + BASE['nd_cy25'], NUM0)
 r += 1
 put(wsS, f'A{r}', 'Calendar 2025 revenue (EGP mn)', BLACK, None)
-putf(wsS, f'C{r}', f"='Product Lines'!E{RCY25_R}", BASE['rev_cy25'], NUM0, green=True)
+putf(wsS, f'C{r}', f"='Product Legs'!B{RCY25_R}", BASE['rev_cy25'], NUM0, green=True)
 r += 1
 put(wsS, f'A{r}', 'Calendar 2025 profit after tax (EGP mn)', BLACK, None)
-putf(wsS, f'C{r}', f"='Product Lines'!B{PATCY25_R}", BASE['pat_cy25'], NUM0, green=True)
+putf(wsS, f'C{r}', f"='Product Legs'!B{PATCY25_R}", BASE['pat_cy25'], NUM0, green=True)
 r += 1
 put(wsS, f'A{r}', 'Trailing price / earnings', BLACK, None)
 putf(wsS, f'C{r}', f"='Relative & Normalized'!$B${RELPS_R+2}", REL['pe_trailing'], MULT,
@@ -1560,184 +1431,40 @@ for lab, v, fmt in (('Windows scored (post-break)', S0['windows_scored'], NUM0),
     put(wsM, f'B{r}', v, BLUE, fmt)
     r += 1
 
-# ============ 14 SENSITIVITY — the two grids and the beta sweep are LIVE =====
+# ============ 14 SENSITIVITY (whole-model re-runs — pasted) ==================
 wsSN = sheet('Sensitivity')
-title(wsSN, 'Sensitivity — the cost-of-capital grids are LIVE formulas',
-      'Each cell re-runs the discount path, the terminal block and the bridge off this sheet. '
-      'Only the sweeps that change REVENUE are pasted, because those need the product build '
-      're-run and cannot be a formula in a grid.', 9, 34, 12)
-
-
-def _dfblock(ws, row, we_ref, wt_ref, want):
-    """Five discount factors from an explicit and a terminal rate, on the model's own glide."""
-    vals = []
-    prev = None
-    for i, c in enumerate(('C', 'D', 'E', 'F', 'G')):
-        fwd = f"({we_ref}-({we_ref}-{wt_ref})*DCF!{CD[i]}${GF_R})"
-        f = f"=1/(1+{fwd})" if prev is None else f"={prev}/(1+{fwd})"
-        putf(ws, f'{c}{row}', f, want[i], DF4)
-        prev = f'{c}{row}'
-        vals.append(want[i])
-    return vals
-
-
-def _dfs(we, wt):
-    out, cc = [], 1.0
-    for f in F['glide_frac']:
-        cc /= (1 + (we - (we - wt) * f)); out.append(cc)
-    return out
-
-
-def _val(we, wt, g):
-    df = _dfs(we, wt)
-    roic = F['nopat'][-1] * (1 + g) / F['ic'][-1]
-    rr = min(g / roic, 0.95)
-    tv = F['nopat'][-1] * (1 + g) * (1 - rr) / (wt - g)
-    ev = sum(F['fcff'][i] * df[i] for i in range(5)) + tv * df[-1]
-    return ev * (1 - NCI_SH) / SH - DCF['nd'] / SH
-
-
-GF_R = FWD_R - 1          # the glide-fraction row on the DCF sheet
-FC_R = FCFF_R
+title(wsSN, 'Sensitivity — each cell is a complete revaluation',
+      'PASTED VALUES. Every cell re-runs the whole model at a different driver setting, so these '
+      'grids do NOT redraw when a driver changes on Assumptions.', 8, 40, 13)
 r = 4
-band(wsSN, r, 9)
-put(wsSN, f'A{r}', 'GRID 1 — TERMINAL COST OF CAPITAL x TERMINAL GROWTH (EGP per share, LIVE)',
-    BLACK, None, bold=True); r += 1
-put(wsSN, f'A{r}', 'row: terminal rate · helper columns C:G are that row\'s discount factors',
-    BLACK, None); r += 1
-hdr(wsSN, r, ['Terminal WACC', 'PV explicit', 'df1', 'df2', 'df3', 'df4', 'df5']); r += 1
-G1_HELP = r
-for i, wt in enumerate(SN['wt_grid']):
-    put(wsSN, f'A{r}', wt, BLUE, PCT2)
-    _dfblock(wsSN, r, f"DCF!$B${WEXP_R}", f'$A${r}', _dfs(W['wacc_exp'], wt))
-    df = _dfs(W['wacc_exp'], wt)
-    putf(wsSN, f'B{r}',
-         "=" + "+".join(f"DCF!{CD[j]}${FC_R}*{'CDEFG'[j]}{r}" for j in range(5)),
-         sum(F['fcff'][j] * df[j] for j in range(5)), NUM0)
-    r += 1
-r += 1
-hdr(wsSN, r, ['Terminal WACC \\ terminal g'] + [f'{g*100:.0f}%' for g in SN['g_grid']])
-r += 1
-G1_R = r
-for i, wt in enumerate(SN['wt_grid']):
-    putf(wsSN, f'A{r}', f"=A{G1_HELP+i}", wt, PCT2)
-    for j, g in enumerate(SN['g_grid']):
-        col = get_column_letter(2 + j)
-        hr = G1_HELP + i
-        roic = f"(DCF!F${NOPAT_R}*(1+{col}${G1_R-1}0)/DCF!F${IC_R})"
-        putf(wsSN, f'{col}{r}',
-             f"=((B{hr}+DCF!F${NOPAT_R}*(1+{SN['g_grid'][j]})"
-             f"*(1-{SN['g_grid'][j]}/(DCF!F${NOPAT_R}*(1+{SN['g_grid'][j]})"
-             f"/DCF!F${IC_R}))/(A{hr}-{SN['g_grid'][j]})*G{hr})"
-             f")*(1-{A('nci')})/{A('shares')}-DCF!$B${ND_R}/{A('shares')}",
-             _val(W['wacc_exp'], wt, g), PX)
-    r += 1
-r += 1
-note(wsSN, r, 'Every cell above is a formula. Change the terminal cost of capital in column A, or '
-              'the growth rate in the header, and the grid redraws. The previous edition pasted '
-              'all 25 cells, which is how a stale sweep can ship beside a base case it no longer '
-              'reproduces.', 9)
-r += 2
 
-band(wsSN, r, 9)
-put(wsSN, f'A{r}', 'GRID 2 — BETA (EGP per share, LIVE)', BLACK, None, bold=True); r += 1
-hdr(wsSN, r, ['Beta'] + [f'{b:.2f}' for b in SN['beta_grid']]); r += 1
-B_HELP = r
-lbls = ['Cost of equity, explicit', 'Cost of equity, terminal', 'WACC explicit', 'WACC terminal',
-        'df1', 'df2', 'df3', 'df4', 'df5', 'PV explicit']
-BROWS = {}
-for k, lab in enumerate(lbls):
-    put(wsSN, f'A{r}', lab, BLACK, None); BROWS[lab] = r; r += 1
-for j, bta in enumerate(SN['beta_grid']):
-    col = get_column_letter(2 + j)
-    ke = (IN['rf'] - IN['sov_spread_cds']) + bta * IN['erp_cds']
-    ket = IN['rf_term'] + bta * IN['erp_term']
-    we = W['we_exp'] * ke + W['wd_exp'] * W['k_nd_at']
-    wt = (1 - IN['wd_term']) * ket + IN['wd_term'] * W['kd_term_at']
-    putf(wsSN, f"{col}{BROWS['Cost of equity, explicit']}",
-         f"=DCF!$B${RFSTAR_R}+{bta}*DCF!$B${ERP_R}", ke, PCT2)
-    putf(wsSN, f"{col}{BROWS['Cost of equity, terminal']}",
-         f"={A('rf_term')}+{bta}*{A('erp_term')}", ket, PCT2)
-    putf(wsSN, f"{col}{BROWS['WACC explicit']}",
-         f"=DCF!$B${WE_R}*{col}{BROWS['Cost of equity, explicit']}"
-         f"+DCF!$B${WD_R}*DCF!$B${KND_R}", we, PCT2)
-    putf(wsSN, f"{col}{BROWS['WACC terminal']}",
-         f"=(1-{A('wd_term')})*{col}{BROWS['Cost of equity, terminal']}"
-         f"+{A('wd_term')}*DCF!$B${KDT_R}", wt, PCT2)
-    df = _dfs(we, wt); prev = None
-    for i in range(5):
-        rr_ = BROWS[f'df{i+1}']
-        fwd = (f"({col}{BROWS['WACC explicit']}-({col}{BROWS['WACC explicit']}"
-               f"-{col}{BROWS['WACC terminal']})*DCF!{CD[i]}${GF_R})")
-        f = f"=1/(1+{fwd})" if prev is None else f"={prev}/(1+{fwd})"
-        putf(wsSN, f'{col}{rr_}', f, df[i], DF4)
-        prev = f'{col}{rr_}'
-    putf(wsSN, f"{col}{BROWS['PV explicit']}",
-         "=" + "+".join(f"DCF!{CD[i]}${FC_R}*{col}{BROWS[f'df{i+1}']}" for i in range(5)),
-         sum(F['fcff'][i] * df[i] for i in range(5)), NUM0)
-r += 1
-put(wsSN, f'A{r}', 'FAIR VALUE (EGP per share)', BLACK, None, bold=True)
-for j, bta in enumerate(SN['beta_grid']):
-    col = get_column_letter(2 + j)
-    g = IN['g_term']
-    putf(wsSN, f'{col}{r}',
-         f"=((({col}{BROWS['PV explicit']})+DCF!F${NOPAT_R}*(1+{A('g')})"
-         f"*(1-DCF!$B${RR_R})/({col}{BROWS['WACC terminal']}-{A('g')})"
-         f"*{col}{BROWS['df5']}))*(1-{A('nci')})/{A('shares')}-DCF!$B${ND_R}/{A('shares')}",
-         _val(*( (lambda b: ((W['we_exp']*((IN['rf']-IN['sov_spread_cds'])+b*IN['erp_cds'])
-                             + W['wd_exp']*W['k_nd_at']),
-                            ((1-IN['wd_term'])*(IN['rf_term']+b*IN['erp_term'])
-                             + IN['wd_term']*W['kd_term_at']), IN['g_term']))(bta) )), PX)
-BFV_R = r; r += 1
-put(wsSN, f'A{r}', 'Check: the base column must reproduce the base case', BLACK, None)
-putf(wsSN, f'D{r}', f"=D{BFV_R}-'EV Bridge'!$B$@BR_PS@", 0.0, '0.0000')
-r += 2
-note(wsSN, r, 'The base column of this sweep is now a formula off the same cells the base case '
-              'uses, so it cannot drift from it — the row above proves it to four decimals. The '
-              'previous edition pasted this sweep and it had drifted: its centre column read '
-              '10.04 against a base case of 9.91.', 9)
-r += 2
 
-band(wsSN, r, 9)
-put(wsSN, f'A{r}', 'GRID 3 — EXPLICIT x TERMINAL COST OF CAPITAL (EGP per share, LIVE)',
-    BLACK, None, bold=True); r += 1
-put(wsSN, f'A{r}', "each anchor varied independently around its own base; one formula a cell, "
-                   "no helper block", BLACK, None); r += 1
-hdr(wsSN, r, ['Explicit \\ terminal'] + [f'{x*100:.1f}%' for x in SN['wt_grid']]); r += 1
-G3_HDR = r - 1
-G3_R = r
-for i, we in enumerate(SN['we_grid']):
-    put(wsSN, f'A{r}', we, BLUE, PCT2)
-    for j, wt in enumerate(SN['wt_grid']):
-        col = get_column_letter(2 + j)
-        wref, tref = f'$A${r}', f'{col}${G3_HDR}'
-        fwd = [f"(1+({wref}-({wref}-{tref})*DCF!{CD[k]}${FWD_R - 1}))" for k in range(5)]
-        cum = ["*".join(fwd[:k + 1]) for k in range(5)]
-        pv = "+".join(f"DCF!{CD[k]}${FCFF_R}/({cum[k]})" for k in range(5))
-        tv = (f"DCF!F${NOPAT_R}*(1+{A('g')})*(1-DCF!$B${RR_R})/({tref}-{A('g')})/({cum[4]})")
-        putf(wsSN, f'{col}{r}',
-             f"=({pv}+{tv})*(1-{A('nci')})/{A('shares')}-DCF!$B${ND_R}/{A('shares')}",
-             _val(we, wt, IN['g_term']), PX)
+def grid(r, tlab, rowlab, rows, collab, cols, table, rfmt=PCT2, cfmt=PCT2):
+    band(wsSN, r, 8); put(wsSN, f'A{r}', tlab, BLACK, None, bold=True); r += 1
+    put(wsSN, f'A{r}', f'{rowlab} \\ {collab}', BLACK, None, bold=True)
+    for j, cv in enumerate(cols):
+        put(wsSN, f'{get_column_letter(2+j)}{r}', cv, BLUE, cfmt, bold=True)
     r += 1
-# the header row must carry the terminal rates as numbers for the formulas above to read them
-for j, wt in enumerate(SN['wt_grid']):
-    put(wsSN, f'{get_column_letter(2+j)}{G3_HDR}', wt, BLUE, PCT2)
-r += 1
-put(wsSN, f'A{r}', 'Check: the centre cell must reproduce the base case', BLACK, None)
-putf(wsSN, f'D{r}', f"=D{G3_R+2}-'EV Bridge'!$B$@BR_PS@", 0.0, '0.0000')
-r += 2
+    for i, rv in enumerate(rows):
+        put(wsSN, f'A{r}', rv, BLUE, rfmt)
+        for j in range(len(cols)):
+            put(wsSN, f'{get_column_letter(2+j)}{r}', table[i][j], BLUE, PX)
+        r += 1
+    return r + 1
 
-band(wsSN, r, 9)
-put(wsSN, f'A{r}', 'WHOLE-MODEL RE-RUNS — PASTED, and these do NOT redraw', BLACK, None,
-    bold=True); r += 1
-note(wsSN, r, 'The sweeps below change REVENUE, so each cell needs the three-line product build '
-              're-run from the top. They are complete revaluations and are the one class of cell '
-              'on this sheet that cannot be a formula.', 9)
-r += 1
-for lab, gr, vals, fmt in (('Margin ratio (specialty over fuel)', SN['gm_grid'], SN['grid_margin'], '0.00'),
+
+r = grid(r, 'TERMINAL COST OF CAPITAL x TERMINAL GROWTH (EGP per share)',
+         'Terminal WACC', SN['wt_grid'], 'Terminal g', SN['g_grid'], SN['grid_wacc_g'])
+r = grid(r, 'EXPLICIT-WINDOW x TERMINAL COST OF CAPITAL (EGP per share)',
+         'Explicit WACC', SN['we_grid'], 'Terminal WACC', SN['wt_grid'], SN['grid_exp_term'])
+band(wsSN, r, 8); put(wsSN, f'A{r}', 'SINGLE-DRIVER SWEEPS (EGP per share)', BLACK, None,
+                      bold=True); r += 1
+for lab, gr, vals, fmt in (('Beta', SN['beta_grid'], SN['grid_beta'], '0.00'),
+                           ('Gross margin shift', SN['gm_grid'], SN['grid_margin'], PCT2),
                            ('Volume growth multiplier', SN['vol_grid'], SN['grid_vol'], '0.00'),
                            ('Exchange-rate path multiplier', SN['fx_grid'], SN['grid_fx'], '0.00'),
-                           ('Net working capital, % of revenue', SN['nwc_grid'], SN['grid_nwc'], PCT2)):
+                           ('Net working capital, % of revenue', SN['nwc_grid'], SN['grid_nwc'],
+                            PCT2)):
     put(wsSN, f'A{r}', lab, BLACK, None, bold=True)
     for j, gv in enumerate(gr):
         put(wsSN, f'{get_column_letter(2+j)}{r}', gv, BLUE, fmt)
@@ -1753,24 +1480,17 @@ title(wsPS, 'Peer and sector context — refining and lubricant base oils', None
 hdr(wsPS, 4, ['Comparator basis', 'Multiple', 'Applied to (EGP mn)', 'Implied value (EGP/share)'])
 r = 5
 PEERS = [
-    ('Company trailing enterprise value / EBITDA (computed)', None, 'trailing EBITDA'),
-    ('Justified enterprise value / EBITDA (adopted)', 'ev_ebitda', 'forward EBITDA'),
-    ('House low bound — NOT a peer observation', 'mult_low', 'forward EBITDA'),
-    ('House high bound — NOT a peer observation', 'mult_high', 'forward EBITDA'),
+    ('Company trailing enterprise value / EBITDA', REL['ev_ebitda_trailing'], 'trailing EBITDA'),
+    ('Justified enterprise value / EBITDA (adopted)', IN['ev_ebitda_just'], 'forward EBITDA'),
+    ('Group I base-oil processors, low end', 3.5, 'forward EBITDA'),
+    ('Group I base-oil processors, high end', 6.0, 'forward EBITDA'),
 ]
-_pv = {None: REL['ev_ebitda_trailing'], 'ev_ebitda': IN['ev_ebitda_just'],
-       'mult_low': 3.5, 'mult_high': 6.0}
-for lab, key, basis in PEERS:
+for lab, mult, basis in PEERS:
     put(wsPS, f'A{r}', lab, BLACK, None)
-    mult = _pv[key]
-    if key is None:
-        putf(wsPS, f'B{r}', f"='Relative & Normalized'!$B${RELPS_R+1}", mult, MULT, green=True)
-    else:
-        putf(wsPS, f'B{r}', f"={A(key)}", mult, MULT, green=True)
+    put(wsPS, f'B{r}', mult, BLUE, MULT)
     putf(wsPS, f'C{r}', f"=DCF!C{EBITDA_R}", REL['ebitda_mid'], NUM0, green=True)
-    putf(wsPS, f'D{r}', f"=B{r}*C{r}*DCF!C{DFL_R}*(1-{A('nci')})/{A('shares')}"
-                        f"-DCF!$B${ND_R}/{A('shares')}",
-         (mult * REL['ebitda_mid']) * REL['df_rel'] * (1 - NCI_SH) / SH - BASE['nd_cy25'] / SH, PX)
+    putf(wsPS, f'D{r}', f"=(B{r}*C{r}*DCF!C{DFL_R}-DCF!$B${ND_R})*(1-{A('nci')})/{A('shares')}",
+         ((mult * REL['ebitda_mid']) * REL['df_rel'] - BASE['nd_cy25']) * (1 - NCI_SH) / SH, PX)
     r += 1
 r += 1
 band(wsPS, r, 7); put(wsPS, f'A{r}', 'SECTOR INDICATORS — WHAT ACTUALLY DRIVES A PROCESSOR',
@@ -1778,30 +1498,30 @@ band(wsPS, r, 7); put(wsPS, f'A{r}', 'SECTOR INDICATORS — WHAT ACTUALLY DRIVES
 hdr(wsPS, r, ['Indicator', *YF]); r += 1
 put(wsPS, f'A{r}', 'Throughput (mn tonnes)', BLACK, None)
 for i, c in enumerate(CD):
-    putf(wsPS, f'{get_column_letter(2+i)}{r}', f"='Product Lines'!{UC[i]}{VOL_R}", U['vol'][i],
+    putf(wsPS, f'{get_column_letter(2+i)}{r}', f"='Product Legs'!{UC[i]}{VOL_R}", U['vol'][i],
          NUM3, green=True)
 r += 1
 put(wsPS, f'A{r}', 'EBITDA per tonne (EGP)', BLACK, None)
 for i, c in enumerate(CD):
     putf(wsPS, f'{get_column_letter(2+i)}{r}',
-         f"=DCF!{c}{EBITDA_R}/'Product Lines'!{UC[i]}{VOL_R}", F['ebitda'][i] / U['vol'][i],
+         f"=DCF!{c}{EBITDA_R}/'Product Legs'!{UC[i]}{VOL_R}", F['ebitda'][i] / U['vol'][i],
          NUM0)
 r += 1
 put(wsPS, f'A{r}', 'Specialty share of revenue', BLACK, None)
 for i, c in enumerate(CD):
     putf(wsPS, f'{get_column_letter(2+i)}{r}',
-         f"='Product Lines'!{UC[i]}{ANCH['legs']['spec_share']}",
+         f"='Product Legs'!{UC[i]}{SPR_R}/'Product Legs'!{UC[i]}{REV_R}",
          U['spec_rev'][i] / F['rev'][i], PCT)
 r += 1
 put(wsPS, f'A{r}', 'Gross profit per tonne (EGP)', BLACK, None)
 for i, c in enumerate(CD):
     putf(wsPS, f'{get_column_letter(2+i)}{r}',
-         f"=DCF!{c}{DGP_R}/'Product Lines'!{UC[i]}{VOL_R}", F['gp'][i] / U['vol'][i], NUM0)
+         f"=DCF!{c}{DGP_R}/'Product Legs'!{UC[i]}{VOL_R}", F['gp'][i] / U['vol'][i], NUM0)
 r += 1
 put(wsPS, f'A{r}', 'Capital expenditure per tonne (EGP)', BLACK, None)
 for i, c in enumerate(CD):
     putf(wsPS, f'{get_column_letter(2+i)}{r}',
-         f"=DCF!{c}{CAPEX_R}/'Product Lines'!{UC[i]}{VOL_R}", F['capex'][i] / U['vol'][i],
+         f"=DCF!{c}{CAPEX_R}/'Product Legs'!{UC[i]}{VOL_R}", F['capex'][i] / U['vol'][i],
          NUM0)
 r += 2
 note(wsPS, r, 'A refinery is not valued on revenue growth. The indicators that matter are '
@@ -1842,37 +1562,21 @@ LINES = [
  '     WHEN YOU CHANGE A DRIVER. Everything else does.',
  '',
  'The standing rule permits a third pasted class — the output of a unit build too complex to flatten into a',
- 'spreadsheet grid. IT IS NOT USED HERE. AMOC\'s revenue build is three product lines, each a volume times a',
- 'dollar price times an exchange rate, and that fits on a sheet. See Product Lines: every cell of the',
- 'revenue build is live.',
+ 'spreadsheet grid. IT IS NOT USED HERE. AMOC\'s revenue build has two product legs, each a volume times a',
+ 'dollar price times an exchange rate, and that fits on a sheet. See Product Legs: every cell of the revenue',
+ 'build is live, including the base-year residual that prices the fuel leg.',
  '',
- 'HOW REVENUE IS BUILT — AND WHAT CHANGED. Not as one growth rate, and no longer from a calibrated price.',
- 'The company reports a product table — tonnes and value for base oils, for paraffin wax, and in total —',
- 'and every realisation in this model is DERIVED from it by division. Base oils, paraffin wax and the fuel',
- 'and by-product slate are carried as three separate lines, each a volume times a dollar price a tonne',
- 'times an explicit exchange-rate path, because all three price off dollar product benchmarks even when',
- 'sold domestically. An earlier edition of this workbook had TWO legs, a specialty price that was a free',
- 'input and a fuel price that was the RESIDUAL of base-year revenue — and then offered the implied fuel',
- 'realisation as evidence that the split was real. A residual cannot corroborate the construction that',
- 'produced it. Both are gone: NO PRICE IN THIS MODEL IS CALIBRATED AND NONE IS A RESIDUAL.',
- '',
- 'THE GROSS MARGIN IS AN OUTPUT, NOT AN ASSUMPTION. The two line margins are SOLVED from one disclosed',
- 'blend and one judgment parameter — the ratio of the specialty spread to the fuel spread — and are then',
- 'held CONSTANT for the whole forecast. Every forecast year\'s blended margin is those constants re-weighted',
- 'by that year\'s revenue mix, so the margin widens only to the extent the mix shifts. Change a volume',
- 'growth rate on Product Lines and watch the blended margin move with no margin input touched.',
- '',
- 'THE TWO ROUTES TO THE BASE YEAR DISAGREE, AND THE GAP IS ON THE FACE OF THE SHEET. Rolling the reported',
- 'product table forward does not reproduce the base year built from two filed halves; a single',
- 'reconciliation factor scales every line onto the filed figure. It is shown, not buried. The filed halves',
- 'govern the LEVEL; the product table governs only the MIX and the per-tonne economics.',
+ 'HOW REVENUE IS BUILT. Not as one growth rate. Volume splits into a specialty leg — base oils, fully',
+ 'refined paraffin wax, transformer and special oils — and a fuel and by-product leg. Each is priced in US',
+ 'dollars a tonne and translated at an explicit exchange-rate path, because both legs price off dollar',
+ 'product benchmarks even when sold domestically.',
  '',
  'THREE THINGS TO KNOW BEFORE READING THE NUMBERS.',
  '',
  '  · THE FINANCIAL YEAR CHANGED. The exchange approved a move from a 30 June year-end to 31 December.',
  '    July-December 2025 is a six-month transition period. History is shown on the reported June years; the',
  '    calendar-2025 base year is CONSTRUCTED from two disclosed halves, with no estimated component in',
- '    either; and the forecast runs on calendar years. See Product Lines for the construction.',
+ '    either; and the forecast runs on calendar years. See Product Legs for the construction.',
  '',
  '  · THE COMPANY IS NET CASH. Gross debt is a rounding error against the cash pile. That has two',
  '    consequences the workbook makes visible: net debt enters the bridge as a NEGATIVE, so the cash is',
@@ -1897,7 +1601,7 @@ for lab, fml, val, fmt in (
         ('Spot price (EGP)', f"={A('spot')}", SPOT, PX),
         ('Weighted central fair value (EGP)', f"=Summary!C{SC_R}", D['central'], PX),
         ('Implied against spot', f"=Summary!C{SS_R+1}", D['central'] / SPOT - 1, PCT),
-        ('Discounted cash flow lens (EGP)', f"='EV Bridge'!$B$@BR_PS@", DCF['ps'], PX),
+        ('Discounted cash flow lens (EGP)', f"='EV Bridge'!$B$12", DCF['ps'], PX),
         ('Terminal value as a share of enterprise value', f"=DCF!$B${TVSH_R}", DCF['tv_share'],
          PCT),
         ('Weighted cost of capital — explicit', f"=DCF!$B${WEXP_R}", W['wacc_exp'], PCT2),
@@ -1915,11 +1619,6 @@ for ln in [
     '  · Driver propagation. Every input is perturbed in place, the whole workbook is re-evaluated, and the',
     '    headline is required to move in the asserted direction, with a dead-input sweep over the rest.',
     '    The live-driver claim above is only made because this test passes.',
-    '',
-    'THE CENSUS. The exact split of formula cells against pasted numeric cells is counted on the delivered',
-    'file and printed by the build, then restated in the study\'s quality-control gate. Text labels and',
-    'headings are counted separately and form no part of the claim in either direction. Every pasted numeric',
-    'cell falls into one of the two classes named above; there is no third bucket and no residual category.',
 ]:
     c = wsRF.cell(row=rr, column=1, value=ln)
     c.font = Font(size=10)
@@ -1927,18 +1626,17 @@ for ln in [
 
 # ---- order the sheets to the canonical sequence -----------------------------
 ORDER = ['READ FIRST', 'Summary', 'Fundamental Valuation', 'Assumptions', 'EV Bridge',
-         'Product Lines', 'Relative & Normalized', 'DCF', 'Income Statement', 'Balance Sheet',
+         'Product Legs', 'Relative & Normalized', 'DCF', 'Income Statement', 'Balance Sheet',
          'Cash Flow', 'Summary Financials', 'Monte Carlo', 'Sensitivity', 'Per-Share & Ratios',
          'Peer & Sector']
 wb._sheets = [wb[n] for n in ORDER]
 assert len(wb.sheetnames) == 16, wb.sheetnames
 
 ANCH['dcf'].update(dict(pv_explicit=PVE_R, pv_tv=PVTV_R, tv=TV_R, rr=RR_R,
-                        we=WE_R, wd=WD_R, knd=KND_R, kdt=KDT_R,
                         roic_term=ROICT_R, nt=NT_R))
 ANCH['legs'] = dict(ANCH['legs'], pat_cy25=PATCY25_R)
-ANCH['bridge'] = dict(eq=BEQ_R, ps=BPS_R, tv_share=BTV_R, ev=BEV_R, nd=BND_R)
-TOK['IS_REV'] = ISREV; TOK['IS_GP'] = ISGP; TOK['LEGS_PAT'] = ANCH['legs']['pat_cy25']
+ANCH['bridge'] = dict(eq=BEQ_R, ps=12, tv_share=13, ev=BEV_R, nd=BND_R)
+TOK['IS_REV'] = ISREV; TOK['IS_GP'] = ISGP
 ANCH['is'] = dict(rev=ISREV, other=ISOTH, gm=ISGM, gp=ISGP, ebitda=ISEBITDA, ebit=ISEBIT, fin=ISFIN, pat=ISPAT,
                   npa=ISNPA, eps=ISEPS, dna=ISDNA)
 ANCH['bs'] = dict(ppe=BSPPE_R, cash=BSCASH_R, ta=BSTA_R, eq=BSEQ_R, nwc=BSNWC_R, nd=BSND_R,
@@ -1947,8 +1645,7 @@ ANCH['cf'] = dict(fcff=CFFCFF_R, fin=CFFIN_R, np=CFNP_R, div=CFDIV_R, ond=CFOND_
                   cnd=CFCND_R, ceq=CFCEQ_R)
 ANCH['rn'] = dict(rel=RELPS_R, norm=NRMPS_R, book=BKPS_R, pe_trailing=RELPS_R + 2,
                   ev_ebitda_trailing=RELPS_R + 1)
-ANCH['fv'] = dict(rows=LR, central=FVC_R, spot=FVS_R,
-                  e1=E1_R, e2=E2_R, e3=E3_R, panel=PANEL_R, spread=SPREAD_R)
+ANCH['fv'] = dict(rows=LR, central=FVC_R, spot=FVS_R)
 ANCH['sum'] = dict(start=SUM_START, central=SC_R, spot=SS_R)
 ANCH['cols'] = dict(hist=HC, fcst=FCOL, cd=CD, uc=UC)
 
@@ -1971,50 +1668,6 @@ assert not _unresolved, f'unresolved layout tokens: {sorted(set(_unresolved))}'
 OUTP = os.path.join(HERE, 'AMOC_Valuation_Model_06082026_public.xlsx')
 wb.save(OUTP)
 
-# ---- inject cached values so the DELIVERED file carries its own results ------
-# openpyxl writes formulas with no cached result, so every reader that does not recalculate —
-# pandas, a preview pane, an auditor reading the raw XML — sees a blank model, and the
-# cell-level gate has nothing in the artefact to check against. The model's own value for
-# every formula cell is already recorded as it is written; it is injected here so the
-# workbook is self-describing, and `fullCalcOnLoad` is left set so a spreadsheet application
-# still recomputes from the formulas on open.
-import re as _re2, shutil as _sh, zipfile as _zf
-nform_pre = sum(1 for ws in wb.worksheets for row in ws.iter_rows() for c in row
-                if isinstance(c.value, str) and c.value.startswith('='))
-_tmp = OUTP + '.tmp'
-_sh.move(OUTP, _tmp)
-_zin = _zf.ZipFile(_tmp)
-_zout = _zf.ZipFile(OUTP, 'w', _zf.ZIP_DEFLATED)
-_sheet_xml = {ws.title: f'xl/worksheets/sheet{i+1}.xml' for i, ws in enumerate(wb.worksheets)}
-_xml_sheet = {v: k for k, v in _sheet_xml.items()}
-_injected = 0
-for _it in _zin.infolist():
-    _data = _zin.read(_it.filename)
-    if _it.filename in _xml_sheet:
-        _title = _xml_sheet[_it.filename]
-        _vals = EXPECT.get(_title, {})
-
-        _hits = []
-
-        def _fix(m, _v=_vals, _h=_hits):
-            _ref = _re2.search(r'r="([A-Z]+[0-9]+)"', m.group(0))
-            if not _ref or _ref.group(1) not in _v:
-                return m.group(0)
-            _h.append(1)
-            return m.group(0).replace('</f>', f'</f><v>{_v[_ref.group(1)]!r}</v>')
-
-        _txt = _data.decode('utf-8')
-        _txt = _re2.sub(r'<c [^>]*>\s*<f>[^<]*</f>\s*</c>', _fix, _txt)
-        _injected += len(_hits)
-        _data = _txt.encode('utf-8')
-    _zout.writestr(_it, _data)
-_zin.close(); _zout.close(); os.remove(_tmp)
-_z = _zf.ZipFile(OUTP)
-_cached = sum(len(_re2.findall(r'</f><v>', _z.read(n).decode('utf-8')))
-              for n in _z.namelist() if n.startswith('xl/worksheets/sheet'))
-_z.close()
-print(f'cached values present in {_cached} of {nform_pre} formula cells (verified on the saved file)')
-
 nform = sum(1 for ws in wb.worksheets for row in ws.iter_rows() for c in row
             if isinstance(c.value, str) and c.value.startswith('='))
 nval = sum(1 for ws in wb.worksheets for row in ws.iter_rows() for c in row
@@ -2022,34 +1675,6 @@ nval = sum(1 for ws in wb.worksheets for row in ws.iter_rows() for c in row
 json.dump(dict(expected=EXPECT, anchors=ANCH,
                counts=dict(formulas=nform, values=nval)),
           open(os.path.join(HERE, 'xlsx_expected.json'), 'w'), indent=1)
-
-# ---- census, counted on the DELIVERED file, split by pasted class ------------
-# gate (q) asks for formula count against pasted count. A pasted cell is a NUMERIC constant;
-# labels, headings and notes are text and are not part of the claim either way.
-import openpyxl as _op
-_wbv = _op.load_workbook(OUTP)
-_num, _txt_n, _fml = 0, 0, 0
-_num_by_sheet = {}
-for _ws in _wbv.worksheets:
-    for _row in _ws.iter_rows():
-        for _c in _row:
-            if _c.value is None:
-                continue
-            if isinstance(_c.value, str) and _c.value.startswith('='):
-                _fml += 1
-            elif isinstance(_c.value, (int, float)):
-                _num += 1
-                _num_by_sheet[_ws.title] = _num_by_sheet.get(_ws.title, 0) + 1
-            else:
-                _txt_n += 1
-CENSUS = dict(formulas=_fml, numeric_values=_num, text=_txt_n,
-              numeric_by_sheet=dict(sorted(_num_by_sheet.items(), key=lambda kv: -kv[1])),
-              formula_share=_fml / (_fml + _num))
-json.dump(CENSUS, open(os.path.join(HERE, 'formula_count.json'), 'w'), indent=1)
 print(f'wrote {OUTP}')
 print(f'formulas {nform} | non-formula cells {nval} | recorded expectations '
       f'{sum(len(v) for v in EXPECT.values())}')
-print(f'CENSUS on the delivered file: {_fml} formulas / {_num} pasted numeric '
-      f'({_fml/(_fml+_num):.1%} live), {_txt_n} text labels')
-print('  pasted numerics by sheet: ' +
-      ', '.join(f'{k} {v}' for k, v in CENSUS['numeric_by_sheet'].items()))
