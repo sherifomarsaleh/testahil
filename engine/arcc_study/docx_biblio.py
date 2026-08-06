@@ -106,36 +106,39 @@ P('Where every number came from. This register accompanies the valuation study a
   'companion model. Each input carries the source it was taken from, the type of that '
   'source, and the date the source itself bears — not the date it was read.', size=10)
 
-# ---------------------------------------------------- sourcing limitation
-H2('A limitation to state at the top')
-P('No source document was opened. That is a stronger statement than the usual caveat and '
-  'it is the accurate one. The audited consolidated financial statements were not read; '
-  'neither was the annual report, the FY2025 investor presentation, the exchange filing, '
-  'nor even the press articles reporting them. Every attempt to retrieve a page — the '
-  'company\'s own website, the exchange\'s disclosure portal, and eleven financial data '
-  'and press hosts — was refused by the egress policy governing this environment, which '
-  'returns a refusal at the connection stage rather than serving a page.', size=9.5)
-P('What WAS available was a web search tool returning synthesised summaries that quote '
-  'figures from those pages, together with the daily price series supplied with the '
-  'engagement. Every company figure in this register therefore reaches the model at one '
-  'further remove than a citation normally implies: it is a figure as RELAYED in a search '
-  'result about the reporting, not a figure read in the reporting, and certainly not one '
-  'read in the audited print. The source names below identify where each figure '
-  'ORIGINATES, which is genuine and worth recording; they do not claim the page was '
-  'retrieved.', size=9.5)
-P('The consequence is stated rather than hidden. Revenue, attributable profit, operating '
-  'income, the balance-sheet totals and both dividend distributions are carried as relayed '
-  'from coverage of the company\'s exchange filings and from aggregations of commercial '
-  'financial data — two steps removed from the audited print. Every line between them is '
-  'DERIVED by closing the disclosed profit, and is labelled as derived wherever it appears. Section 3 lists each derivation and its method. A reader with access to the '
-  'audited statements should re-run the model against them; the workbook is built so that '
-  'changing an input reprices everything downstream, and that property is tested rather '
-  'than asserted.', size=9.5)
-P('One disagreement between sources is carried openly rather than resolved. Total assets '
-  'of EGP 8,783.72mn less reported equity of EGP 4,642.73mn implies total liabilities of '
-  'EGP 4,140.99mn; a separate aggregation prints EGP 2,894.13mn for the same line. The '
-  'figure that closes against total assets is the one carried, and the gap is shown on the '
-  'balance sheet of the model rather than averaged away.', size=9.5)
+# ---------------------------------------------------- sourcing statement
+H2('What this study is built on')
+P('The audited consolidated financial statements. That is a change from the first edition '
+  'of this work, and the change is worth stating at the top rather than buried.', size=9.5)
+P('The first edition was written without opening a source document: every outbound request '
+  'was refused by the network policy in force, so every company figure reached the model as '
+  'relayed in a web-search summary of reporting about the accounts — two steps from the '
+  'audited print, not one. Four documents were subsequently supplied and this edition is '
+  'rebuilt on them line by line:', size=9.5)
+for t in ['Consolidated financial statements for the year ended 31 December 2025, audited by '
+          'Deloitte (Wafik, Ramy & Partners), unqualified opinion signed in Cairo on 25 '
+          'February 2026. 47 pages including 33 notes.',
+          'Consolidated financial statements for the year ended 31 December 2024, same '
+          'auditor, unqualified opinion signed 23 March 2025, carrying the FY2023 '
+          'comparatives.',
+          'Consolidated financial statements for the year ended 31 December 2023.',
+          'Condensed consolidated interim financial statements for the three months ended 31 '
+          'March 2026, limited review by the same auditor, concluded 25 May 2026.']:
+    P('   •  ' + t, size=9.5)
+P('Every figure in the input register below that carries a Company ring is now read from one '
+  'of those four documents, with the note number given. Nothing historical is reconstructed. '
+  'What remains estimated is named in section 3 and is short: two prices, a set of forecast '
+  'paths, and the cost-of-capital parameters.', size=9.5)
+P('Four things the reconstructed edition got materially wrong, recorded because they show '
+  'where reconstruction fails rather than to dwell on it: non-controlling interests were '
+  'deducted at EGP 150mn against an audited EGP 158,005; the effective tax rate was inferred '
+  'at 29.43% against a disclosed 23.82%; the cost of debt was assumed at 21.5% against a '
+  '91%-euro-denominated book contracted at about 7.5%; and kiln capacity was assumed at '
+  '3.6Mt against a disclosed 4.2Mt. Three things it got right and are now confirmed: the '
+  'share count of 374,867,445, FY2025 operating income of EGP 4,595.82mn to the pound, and '
+  'total liabilities of EGP 4,140.99mn — which it DERIVED as assets less equity after '
+  'rejecting an aggregator print of EGP 2,894.13mn that would not close. That print turns '
+  'out to be total CURRENT liabilities.', size=9.5)
 
 # ---------------------------------------------------- input register
 doc.add_page_break()
@@ -161,71 +164,62 @@ table(rows, [0.30, 1.70, 0.92, 0.74, 4.98, 0.84], size=7.4)
 doc.add_page_break()
 H1('2  Source catalogue — the publications and institutions relied on')
 CAT = [
- ('Arabian Cement Company S.A.E. — exchange filings', 'Company filing',
-  'FY2022 to FY2025 consolidated results; 9M-2025 and Q1-2026 results; general-meeting '
-  'resolutions on the FY2024 and FY2025 cash distributions.',
-  'Figures relayed through search summaries of the outlets below. The primary documents '
-  'were NOT retrieved from the company website or the exchange portal.'),
- ('Arabian Cement Company — corporate and sustainability disclosure', 'Company disclosure',
-  'Plant configuration: two lines in Suez governorate, on average about five million tonnes '
-  'a year of first-quality clinker and cement, roughly 6% of Egypt\'s nominal capacity. The '
-  'alternative-fuel programme, the 7.2 MWh solar installation, baghouse filters and '
-  'hydrogen injection, the 120,000-tonne annual emissions reduction target, and the '
-  'supplementary-cementitious-materials, calcined-clay and CEM III product plans.',
-  'arabiancementcompany.com'),
- ('Mubasher Info', 'Financial press',
-  'FY2024 and FY2025 consolidated results; 9M-2025 results; the EGP 1.10bn FY2024 '
-  'distribution at EGP 2.94 per share and the EGP 2.00bn FY2025 distribution.',
-  'english.mubasher.info'),
- ('Arab Finance', 'Financial press',
-  'FY2025 consolidated profit of EGP 3.599bn on net sales of EGP 12.447bn; Q1-2026 '
-  'consolidated profit of EGP 943.068mn on net sales of EGP 2.995bn; Egyptian building-'
-  'materials market indicators for 2025.', 'arabfinance.com'),
- ('Zawya / Refinitiv', 'Financial press',
-  'Q1-2026 results and the 59.7% year-on-year profit increase; comparative Q1-2025 figures.',
-  'zawya.com'),
- ('International Cement Review / cemnet', 'Trade press',
-  'Egyptian sector production and pricing commentary; the industry ministry\'s position on '
-  'capacity and price stabilisation.', 'cemnet.com'),
- ('Global Cement', 'Trade press',
-  'Egyptian nameplate capacity, production, consumption and export volumes for 2025; the '
-  'dormant-capacity revival programme of 12.6Mt from the second half of 2026.',
-  'globalcement.com'),
- ('EnterpriseAM Egypt', 'Financial press',
-  'The 2025 review of the Egyptian cement industry and the 2026 outlook: consumption of '
-  '54Mt, the EGP 3,600 per tonne price expectation for 2026, demand-growth forecasts of 1% '
-  'to 8%, and the abolition of the production-quota system in May 2025 with exports capped '
-  'at 30% of output.', 'enterpriseam.com'),
- ('S&P Global Market Intelligence, via independent aggregations', 'Data aggregator',
-  'FY2025 operating income of EGP 4,595.82mn; Q4-2025 revenue of EGP 3,645.60mn and EBITDA '
-  'of EGP 1,393.01mn; the trailing gross margin of 40.77%; total assets, total equity, '
-  'total debt and cash; the share count of 374.87mn.',
-  'Relayed through search summaries of stockanalysis.com, simplywall.st and '
-  'investing.com; the three summaries were cross-checked against each other, but none of '
-  'the three pages was retrieved'),
+ ('Arabian Cement Company S.A.E. — consolidated financial statements, FY2025',
+  'AUDITED FINANCIAL STATEMENTS',
+  'The statement of financial position, statement of profit or loss, statement of '
+  'comprehensive income, statement of changes in equity and statement of cash flows, with '
+  'the FY2024 comparatives. Notes relied on: 1 (capacity and group structure), 2.5 (currency '
+  'table), 4 (revenue split), 5 (cost of sales), 6 (administrative expenses), 8 (finance '
+  'costs), 10 (income taxes), 11 (earnings per share and weighted share count), 12 (property '
+  'and depreciation), 13 (assets under construction), 16 (inventories), 17 (receivables), 19 '
+  '(cash), 20 (issued capital), 21 (treasury shares), 24 (non-controlling interests), 25 '
+  '(borrowings), 28 (dividends), 30 (financial instruments and currency exposure).',
+  'Deloitte — Wafik, Ramy & Partners; unqualified opinion, Cairo, 25 February 2026'),
+ ('Arabian Cement Company S.A.E. — consolidated financial statements, FY2024',
+  'AUDITED FINANCIAL STATEMENTS',
+  'FY2023 comparatives for the income statement, balance sheet and cash flow statement, '
+  'including FY2023 depreciation and capital expenditure.',
+  'Deloitte — Wafik, Ramy & Partners; unqualified opinion, Cairo, 23 March 2025'),
+ ('Arabian Cement Company S.A.E. — consolidated financial statements, FY2023',
+  'AUDITED FINANCIAL STATEMENTS',
+  'Cross-check on the FY2023 position.', 'Deloitte — Wafik, Ramy & Partners'),
+ ('Arabian Cement Company S.A.E. — interim financial statements, Q1-2026',
+  'REVIEWED INTERIM STATEMENTS',
+  'First-quarter revenue, gross profit, profit and the 31 March 2026 balance sheet, '
+  'including the dividends payable that the valuation deducts from cash.',
+  'Deloitte — Wafik, Ramy & Partners; limited review concluded 25 May 2026'),
  ('Central Bank of Egypt', 'Central bank',
-  'Main operation rate of 19.50% held at the April and May 2026 meetings, with the '
-  'overnight deposit and lending rates at 19.00% and 20.00%; the Q1-2026 Monetary Policy '
-  'Report; the medium-term inflation target of 7% used to build the terminal risk-free '
-  'rate; the headline urban inflation series easing to 14.3% in June 2026.', 'cbe.org.eg'),
- ('Egyptian Tax Authority', 'Tax reference',
-  'Statutory corporate income tax rate of 22.5%.', 'Statutory rate'),
+  'Main operation rate of 19.50% held at the April and May 2026 meetings; the Q1-2026 '
+  'Monetary Policy Report; the medium-term inflation target of 7% used to build the terminal '
+  'risk-free rate; headline urban inflation easing to 14.3% in June 2026.', 'cbe.org.eg'),
  ('Aswath Damodaran — country risk premium file', 'Reference dataset',
   'Egypt equity risk premium and sovereign default spread on the credit-default-swap basis, '
   'January 2026 edition. The original file only.', 'Used for the cost-of-equity build'),
- ('Amwal Al Ghad — bank exchange-rate surveys', 'Financial press',
-  'The Egyptian pound at 50.30/50.40 against the dollar at the close of 4 August 2026, and '
-  'an average bank buying rate of 51.01 on 1 August 2026.', 'en.amwalalghad.com'),
+ ('Egyptian Tax Authority', 'Tax reference',
+  'Statutory corporate income tax rate of 22.5%. The rate actually used is the effective '
+  'rate disclosed in the audited accounts.', 'Statutory rate'),
+ ('Enterprise, Global Cement and International Cement Review', 'Trade and financial press',
+  'Egyptian sector context only: nameplate capacity of about 76Mt, production of about 65Mt, '
+  'domestic consumption of about 54Mt, exports of about 18.5Mt, the abolition of the '
+  'production quota in May 2025 with exports capped at 30% of output, and the 12.6Mt of '
+  'dormant capacity under revival from the second half of 2026. No company figure is taken '
+  'from these sources in this edition.',
+  'enterpriseam.com, globalcement.com, cemnet.com'),
+ ('Egyptian cement market pricing commentary', 'Trade press',
+  'The local realised price of about EGP 3,500 a tonne and the export price of about USD 62 '
+  'a tonne. These are the only two operating inputs in the FY2025 build that are not audited, '
+  'and volume is derived from them.', 'Industry commentary, 2026'),
  ('Egyptian Exchange daily price history', 'Market data',
-  '2,957 daily open, high, low, close and volume records from 18 May 2014 — the listing '
-  'date — to 6 August 2026, supplied with the engagement. This series is the basis of the '
-  'price chart, the volatility estimate, the beta regression and the price map.',
-  'Supplied as a file'),
+  '2,957 daily open, high, low, close and volume records from 18 May 2014 — the listing date '
+  '— to 6 August 2026. The basis of the price chart, the volatility estimate, the beta '
+  'regression and the price map.', 'Supplied as a file'),
  ('Standard cement engineering benchmarks', 'Industry reference',
-  'Specific thermal energy of 3.2 to 3.6 GJ per tonne of clinker for a dry '
-  'preheater/precalciner kiln; 90 to 110 kWh per tonne of cement; replacement cost of USD '
-  '120 to 150 per annual tonne; fixed cash cost of USD 10 to 20 per tonne of capacity.',
-  'Used for the unit cost stack and the asset lens'),
+  'Replacement cost of USD 120-150 per annual tonne, used in the asset lens and as the '
+  'terminal invested-capital base.', 'Used for the asset lens'),
+ ('Peer market data', 'Data aggregator',
+  'Sinai Cement and Misr Beni Suef Cement revenue, profit and market capitalisation. Every '
+  'multiple in the study is RECOMPUTED from these three rather than quoted.',
+  'Peer disclosures as reported'),
 ]
 rows = [['Source', 'Type', 'What it was used for', 'Reference']]
 for a, b, c_, d_ in CAT:
@@ -237,79 +231,72 @@ doc.add_page_break()
 H1('3  Figures that are DERIVED rather than sourced')
 P('These do not appear in any source. They are computed, and the method is given so a '
   'reader can reproduce or reject each one.', size=9.5)
-SHT = D['share_triangulation']; DNAT = D['dna_triangulation']; TR = D['terminal_reconciliation']
+BR = json.load(open('beta_result.json'))
+SHT = D['share_triangulation']; TR = D['terminal_reconciliation']; UC = D['unit_calibration']
+KDG = D['kd_gate']
 BR = json.load(open('beta_result.json'))
 DER = [
- (f'Share count — {SHT["adopted"]:,.2f} million',
-  f'Triangulated three ways. The FY2024 distribution of EGP 1,100mn at EGP 2.94 per share '
-  f'implies {SHT["from_fy24_distribution"]:,.2f}mn; the FY2025 distribution of EGP 2,000mn '
-  f'at EGP 5.34 per share implies {SHT["from_fy25_distribution"]:,.2f}mn; and the quoted '
-  f'count is {SHT["quoted"]:,.2f}mn. The three agree to within '
-  f'{SHT["spread"]*100:.2f}%, which is why the count is treated as known rather than '
-  f'estimated. The reconciliation is on the model\'s Per-Share and Ratios sheet.'),
- (f'FY2025 depreciation — EGP {DNAT["adopted"]:,.0f}mn',
-  f'No depreciation line is separately retrievable. Three independent methods are computed '
-  f'and averaged ON THE SHEET rather than asserted: the Q4-2025 EBITDA margin applied to '
-  f'full-year revenue less the disclosed operating profit gives EGP '
-  f'{DNAT["m1_q4_margin_closure"]:,.0f}mn; a peer depreciation charge per tonne of despatch '
-  f'applied to this volume gives EGP {DNAT["m2_peer_per_tonne"]:,.0f}mn; and the net '
-  f'property base implied by total assets less cash and working capital, times a composite '
-  f'rate, gives EGP {DNAT["m3_property_base"]:,.0f}mn. The highest is 3.5 times the lowest '
-  f'and that spread is published.'),
- (f'The effective tax rate — {D["history"]["tax_eff"]*100:.2f}%',
-  f'Not chosen and not the statutory rate. Disclosed FY2025 operating income of EGP '
-  f'4,595.82mn plus modelled net finance income of EGP '
-  f'{D["history"]["netfin_fy25"]:,.0f}mn — treasury on the disclosed cash balance less '
-  f'interest on the disclosed debt — gives pre-tax profit of EGP '
-  f'{D["history"]["pbt_fy25"]:,.0f}mn. Against the disclosed attributable profit of EGP '
-  f'3,599mn that leaves this rate and no other. It is above the statutory 22.5% and is used '
-  f'in preference to it.'),
- ('Sales volume and realised price, FY2023 to FY2025',
-  'Volume is kiln capacity times a utilisation path, divided by the clinker factor. '
-  'Realised price is then disclosed revenue divided by that volume, so the build reproduces '
-  'the reported top line. The FY2024-to-FY2025 pair is a genuine cross-check rather than an '
-  'identity: it decomposes the disclosed +42.6% revenue step into a +5.3% volume step on a '
-  '+35.5% price step, which is what the removal of the production quota should look like.'),
- ('FY2023 and FY2024 EBIT and EBITDA',
-  'Disclosed attributable profit is grossed up at the effective rate derived above to give '
-  'operating profit, with net finance income set to zero in those years because the cash '
-  'balance that produces it was built during FY2025. Depreciation at the derived charge per '
-  'tonne is added back to give EBITDA.'),
- ('Net property and working capital at FY2025',
-  'No breakdown of total assets is retrievable. Inventory is estimated at 60 days of the '
-  'cost of sales implied by the disclosed gross margin, receivables at 30 days of revenue, '
-  'and net property is the residual against disclosed total assets and cash. These estimates '
-  'exist to size the third depreciation method and to open the balance-sheet roll-forward; '
-  'they are not load-bearing for the valuation.'),
- (f'Terminal return on invested capital — {TR["roic_repl"]*100:.1f}%',
-  f'Struck on REPLACEMENT COST — {D["inputs"]["cap_cement_mt"]["value"]}Mt at USD '
-  f'{D["inputs"]["repl_usd_t"]["value"]:.0f} per annual tonne, or EGP '
-  f'{D["dcf"]["ic_repl"]:,.0f}mn — rather than on book invested capital, which would flatter '
-  f'it several times over because the plant is carried at pre-devaluation historic cost. The '
-  f'consequence is that terminal growth is value-destroying in this model, and that is shown '
-  f'rather than hidden.'),
+ ('Sales volume and realised price — the only material estimate in the operating build',
+  f'No volume is disclosed. Volume is DERIVED from the audited revenue note: export sales of '
+  f'goods of EGP 3,356.42mn divided by an assumed USD 62 a tonne at the audited average '
+  f'exchange rate of 49.26 gives {UC["vol_export"]:.3f}Mt, and local sales of goods of EGP '
+  f'8,350.45mn divided by an assumed EGP 3,500 a tonne gives {UC["vol_local"]:.3f}Mt. Total '
+  f'{UC["vol_fy25"]:.3f}Mt, which is {UC["util_fy25"]:.1%} of the audited 5.0Mt nameplate. '
+  f'The check is that this utilisation is an OUTPUT and could have disagreed with the sector; '
+  f'national production is 85.5% of national capacity. The two prices are the estimate; '
+  f'everything else in this derivation is audited.'),
+ ('The cost stack per tonne',
+  f'From the audited cost-of-sales note and administrative-expenses note, divided by the '
+  f'derived volume: materials and fuel EGP {UC["cc_mat_t"]:,.0f} a tonne, transportation EGP '
+  f'{UC["cc_tra_t"]:,.0f}, overheads and cash administration EGP {UC["cc_ovh_t"]:,.0f}, total '
+  f'EGP {UC["cash_cost_t"]:,.0f}. Nothing here is an invented physical build; the five-line '
+  f'fuel/power/raw-material/packaging/distribution stack of the first edition is retired.'),
+ ('EBITDA',
+  'Operating profit — gross profit less administrative expenses, provisions and expected '
+  'credit losses, all audited — plus the depreciation and amortisation reported in the '
+  'audited cash flow statement. FY2023 EGP 1,329.53mn, FY2024 EGP 2,020.87mn, FY2025 EGP '
+  '4,885.59mn.'),
+ (f'The blended cost of debt — {KDG["kd_blended"]:.2%}',
+  f'Built facility by facility from the audited borrowings note: the CIB pound facility at '
+  f'the corridor rate plus 0.6% ({KDG["kd_cib"]:.2%}), the NBE/KfW euro facility at Euribor '
+  f'plus 3% ({KDG["kd_nbe"]:.2%}) and the EBRD euro facility at Euribor plus 4.35% '
+  f'({KDG["kd_ebrd"]:.2%}), weighted by their audited balances. {KDG["eur_share"]:.1%} of the '
+  f'book is euro-denominated. Cross-checked against interest expense over average debt: '
+  f'{KDG["eff_fy24"]:.2%} in FY2024, {KDG["eff_fy25"]:.2%} in FY2025 and '
+  f'{KDG["eff_q126_annualised"]:.2%} annualising Q1-2026. The contractual rate exceeds all '
+  f'three and the reason is stated in the study rather than smoothed. The pound-equivalent '
+  f'alternative under interest parity is {KDG["kd_egp_equivalent"]:.2%} and its effect on the '
+  f'valuation is published.'),
+ (f'Terminal return on invested capital — {TR["roic_repl"]:.1%}',
+  f'Struck on REPLACEMENT cost — 5.0Mt at USD 130 per annual tonne — rather than on the '
+  f'audited book, on which the FY2025 return is {TR["roic_book_fy25"]:.1%}. The book carries a '
+  f'2010-vintage plant at historical cost through several devaluations: audited net property '
+  f'and construction of EGP 2,913.87mn is about USD 12 per annual tonne, against a '
+  f'replacement cost of USD 130 — roughly a tenth. A return computed on that base measures '
+  f'the devaluation rather than the economics of adding a tonne. The choice makes terminal '
+  f'growth value-destroying and is the single most consequential judgement in the model.'),
  (f'Beta — {BR["beta"]:.3f} adopted',
-  f'A five-year weekly regression of the shares against a {BR["composite_names"]}-name '
-  f'equal-weight Egyptian composite, with the subject excluded from its own index, returns '
-  f'{BR["beta"]:.3f} on {BR["n"]} observations with an R-squared of {BR["r2"]:.3f} and a '
-  f'standard error of {BR["se"]:.3f}. That clears the usability gate, so the regression is '
-  f'adopted rather than a default — and it is flagged statistically weak, with the '
-  f'valuation shown across a beta range. A lead-and-lag estimator correcting for the '
-  f'{BR["thin_trading"]["flat_frac"]*100:.1f}% of sessions that close unchanged gives '
-  f'{BR["dimson"]["sum_beta"]:.3f}, an uplift not statistically distinguishable from zero; '
-  f'its effect on the valuation is published as a value in the study.'),
- ('Capital expenditure',
-  'No capital-expenditure guidance is obtainable. It is set at the economic maintenance '
-  'level of USD 4.00 per tonne of installed capacity rather than at book depreciation, '
-  'because a historic-cost asset base in a currency that has devalued several times '
-  'understates what it costs to keep a plant running. This is deliberately conservative and '
-  'the cost of the conservatism is computed in the study.'),
- ('Non-controlling interests — EGP 150mn',
-  'No minority-interest balance is separately retrievable. The size is inferred from the '
-  'profit statements: disclosed FY2025 earnings per share of EGP 9.49 on 374.87mn shares '
-  'gives EGP 3,557mn against a stated attributable profit of EGP 3,599mn, a gap of about '
-  '1.2% consistent with the statutory employees\' and directors\' profit share rather than '
-  'with a large minority. A deliberately non-trivial figure is deducted and sensitised.'),
+  f'A five-year weekly regression against a {BR["composite_names"]}-name equal-weight '
+  f'Egyptian composite, subject excluded from its own index: {BR["beta"]:.3f} on {BR["n"]} '
+  f'observations, R-squared {BR["r2"]:.3f}, standard error {BR["se"]:.3f}. Clears the '
+  f'usability gate so it is adopted rather than defaulted, and is flagged statistically weak. '
+  f'The lead-lag correction for thin trading gives {BR["dimson"]["sum_beta"]:.3f}; its effect '
+  f'is published as a value.'),
+ ('Capital expenditure in the forecast',
+  'Set at the economic maintenance level of USD 4.00 per tonne of installed capacity rather '
+  'than at book depreciation, because a historic-cost base understates what it costs to keep '
+  'a plant running. Bracketed by the audited outturns: FY2024 EGP 912.02mn and FY2025 EGP '
+  '796.47mn, both of which also carried growth projects.'),
+ ('Net cash at the valuation date',
+  'Audited cash of EGP 3,459.39mn less audited interest-bearing debt of EGP 1,135.11mn, '
+  'rolled forward on the elapsed part of FY2026 and LESS the EGP 2,001.79mn FY2025 dividend '
+  'shown as payable in the March 2026 accounts. Cross-checked against the reviewed 31 March '
+  '2026 position.'),
+ ('The forecast paths',
+  'Utilisation, the price indices, the currency path, cost inflation, the alternative-fuel '
+  'saving, depreciation as a share of revenue, the cash yield and the payout are house '
+  'forecasts. Each is stated as an input in the register above with its reasoning, and each '
+  'is perturbed in the driver test on the delivered model.'),
 ]
 rows = [['Figure', 'How it was derived']]
 for a, b in DER:

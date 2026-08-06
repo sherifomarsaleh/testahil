@@ -183,11 +183,10 @@ for tag, fname in (('1M', 'fig5_dist.png'), ('3M', 'fig6_dist.png')):
     style(ax)
     save(fig, fname)
 
-# ---- F7 per-tonne economics: where the margin comes from and where it goes ----
+# ---- F7 per-tonne economics: the DISCLOSED cost stack ------------------------
 BU = D['bottom_up']
-cap = D['inputs']['cap_cement_mt']['value']
-cols_ = [('c_fuel', 'Fuel', RUST), ('c_pow', 'Power', GOLD), ('c_raw', 'Raw materials', SAGE),
-         ('c_pack', 'Packaging', BRASS), ('c_dist', 'Distribution', GREY)]
+cols_ = [('c_mat', 'Materials and fuel', RUST), ('c_tra', 'Transportation', GOLD),
+         ('c_ovh', 'Overheads and administration', SAGE)]
 idx = [0, 1, 5]
 names = ['FY2025 actual', 'FY2026 forecast', 'FY2030 forecast']
 fig, ax = plt.subplots(figsize=(9.6, 4.3), dpi=110)
@@ -199,30 +198,22 @@ for j, k in enumerate(idx):
         v = b[key]
         ax.bar(j - w / 2, v, bottom=bottom, width=w, color=col, alpha=0.85,
                edgecolor=BG, linewidth=0.8, label=lab if j == 0 else None)
-        if v > 90:
-            ax.text(j - w / 2, bottom + v / 2, f'{v:,.0f}', ha='center', va='center',
-                    fontsize=8.4, color='#FFFFFF' if col in (RUST, GREY) else INK,
-                    fontweight='bold')
+        ax.text(j - w / 2, bottom + v / 2, f'{v:,.0f}', ha='center', va='center',
+                fontsize=8.6, color='#FFFFFF' if col == RUST else INK, fontweight='bold')
         bottom += v
-    fixed_t = b['fixed'] / b['cement']
-    ax.bar(j - w / 2, fixed_t, bottom=bottom, width=w, color=CANVAS, alpha=0.85,
-           edgecolor=BG, linewidth=0.8, label='Fixed cash cost' if j == 0 else None)
-    ax.text(j - w / 2, bottom + fixed_t / 2, f'{fixed_t:,.0f}', ha='center', va='center',
-            fontsize=8.4, color='#FFFFFF', fontweight='bold')
-    tot = bottom + fixed_t
-    ax.text(j - w / 2, tot + 60, f'cash cost {tot:,.0f}', ha='center', va='bottom',
+    ax.text(j - w / 2, bottom + 70, f'cash cost {bottom:,.0f}', ha='center', va='bottom',
             fontsize=8.8, color=INK)
     ax.bar(j + w / 2, b['price'], width=w, color=GOLD, alpha=0.32, edgecolor=GOLD,
            linewidth=1.3, label='Realised price' if j == 0 else None)
-    ax.text(j + w / 2, b['price'] + 60, f'{b["price"]:,.0f}', ha='center', va='bottom',
+    ax.text(j + w / 2, b['price'] + 70, f'{b["price"]:,.0f}', ha='center', va='bottom',
             fontsize=8.8, fontweight='bold', color=INK)
     ax.text(j + w / 2, b['price'] / 2, f'margin\n{b["mgn"]:.0%}', ha='center', va='center',
             fontsize=9.2, fontweight='bold', color=INK)
 ax.set_xticks(range(3))
 ax.set_xticklabels(names, fontsize=9.5)
 ax.set_ylabel('EGP per tonne of cement')
-ax.set_ylim(0, max(BU[k]['price'] for k in idx) * 1.24)
-ax.set_title('The unit economics: cash cost per tonne against realised price per tonne',
+ax.set_ylim(0, max(BU[k]['price'] for k in idx) * 1.26)
+ax.set_title('The unit economics: DISCLOSED cash cost per tonne against realised price',
              fontsize=11.5, fontweight='bold', loc='left', pad=12)
 ax.legend(frameon=False, fontsize=8.6, ncol=4, loc='upper center',
           bbox_to_anchor=(0.5, 1.005))

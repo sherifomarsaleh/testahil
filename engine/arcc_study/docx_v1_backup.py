@@ -3,9 +3,6 @@
 16 headings: 7 top-level sections plus the 9 subsections of section 1, then three
 appendices. Reads study_numbers.json exclusively — no numeral is typed here.
 
-REVISION 2 — rebuilt on the audited consolidated financial statements for FY2023, FY2024
-and FY2025 and the reviewed Q1-2026 interim accounts.
-
 Written for an external reader: no internal procedure names, step numbers or house
 process references appear anywhere in the output.
 """
@@ -26,7 +23,7 @@ M, H, F = D['meta'], D['history'], D['forecast']
 W, DCF, LN, SN = D['wacc'], D['dcf'], D['lenses'], D['sensitivity']
 TR, PE, SHT = D['terminal_reconciliation'], D['peers'], D['share_triangulation']
 EXP, LR, GDV = D['experts'], D['lens_ranges'], D['growth_destroys_value']
-BU, UC, KDG, CON = D['bottom_up'], D['unit_calibration'], D['kd_gate'], D['contested']
+BU, DNAT, EQG, CON = D['bottom_up'], D['dna_triangulation'], D['equity_gap'], D['contested']
 IN = {k: v['value'] for k, v in D['inputs'].items()}
 SPOT, SH = M['spot'], M['shares_mn']
 YH, YF = H['years'], F['years']
@@ -47,11 +44,11 @@ P('Arabian Cement Company S.A.E.', size=22, bold=True, space_after=1)
 P('Egyptian Exchange · ARCC · Egyptian pounds · 6 August 2026', size=11, color=GREY,
   space_after=10)
 rich([(f'Egypt\'s second-largest cement plant, at the top of the best year the industry '
-       f'has had in more than a decade — audited profit up '
-       f'{pc(IN["pat_fy25"]/IN["pat_fy24"]-1, 0)} in a single year on a '
-       f'{pc(IN["rev_fy25"]/IN["rev_fy24"]-1)} revenue step — and facing '
-       f'{n1(IN["egy_revival_mt"])} million tonnes of dormant national capacity queuing to '
-       f'restart inside the forecast window.', {'size': 12})], space_after=10)
+       f'has had in more than a decade, holding net cash worth '
+       f'{pc(-DCF["net_debt_bs"]/M["mktcap"], 0)} of its market value on the last reported '
+       f'balance sheet — and facing {n1(IN["egy_revival_mt"])} million tonnes of dormant '
+       f'national capacity queuing to restart inside the forecast window.',
+       {'size': 12})], space_after=10)
 
 box([('What this is. ', 'An independent valuation of Arabian Cement Company, an '
       'educational analysis and not investment advice. It carries no rating and no price '
@@ -60,9 +57,7 @@ box([('What this is. ', 'An independent valuation of Arabian Cement Company, an 
       f'{n1(IN["cap_cement_mt"])} million tonnes of cement a year and roughly '
       f'{pc(PE["sector"]["share_of_capacity"], 0)} of Egypt\'s nominal capacity, listed on '
       f'the Egyptian Exchange since May 2014, with cash of EGP '
-      f'{n0(IN["cash_fy25"])}mn against interest-bearing debt of EGP '
-      f'{n0(W["debt_total"])}mn. Every figure in this study is read from the audited '
-      f'consolidated accounts.'),
+      f'{n0(IN["cash_fy25"])}mn against debt of EGP {n0(IN["debt_fy25"])}mn.'),
      ('Where the value lands. ', f'Four lenses put the shares between EGP {n2(LN["low"])} '
       f'and EGP {n2(LN["high"])}, weighting to a central EGP {n2(LN["central"])} against a '
       f'market price of EGP {n2(SPOT)} — {sg(LN["central"]/SPOT-1)}.')])
@@ -116,185 +111,111 @@ P(f'The FY2025 accounts show revenue of EGP {n0(IN["rev_fy25"])}mn and attributa
   f'a price event, and the whole of this valuation turns on how much of it lasts.')
 rows = [['', 'FY2023', 'FY2024', 'FY2025']]
 rows.append(['Revenue (EGP mn)'] + [n0(x) for x in H['revenue']])
-rows.append(['Gross profit (EGP mn)'] + [n0(x) for x in H['gross_profit']])
-rows.append(['Operating profit (EGP mn)'] + [n0(x) for x in H['ebit']])
 rows.append(['EBITDA (EGP mn)'] + [n0(x) for x in H['ebitda']])
 rows.append(['EBITDA margin'] + [pc(x) for x in H['margin']])
 rows.append(['Attributable profit (EGP mn)'] + [n0(x) for x in H['pat']])
-rows.append(['Earnings per share (EGP)'] + [n2(x) for x in H['eps']])
-rows.append(['Effective tax rate'] + [pc(x) for x in H['tax_eff_hist']])
-rows.append(['Capital expenditure (EGP mn)'] + [n0(x) for x in H['capex']])
+rows.append(['Despatched volume (Mt)'] + [n3(x) for x in H['volume_mt']])
+rows.append(['Realised price (EGP/t)'] + [n0(x) for x in H['price_t']])
+rows.append(['Kiln utilisation'] + [pc(x) for x in H['utilisation']])
 table(rows, [2.60, 1.30, 1.30, 1.30])
-caption('Table 1 — Three audited years. Every line is a disclosed figure or a formula over '
-        'disclosed figures: operating profit is gross profit less administrative expenses, '
-        'provisions and credit losses, and EBITDA adds back the depreciation and '
-        'amortisation reported in the cash flow statement.')
-P(f'Two things stand out. The revenue note splits local from export: local sales rose '
-  f'{pc(IN["rev_local_goods_fy25"]/IN["rev_local_fy24"]-1, 0)} while export sales were '
-  f'{sg((IN["rev_exp_goods_fy25"]+IN["rev_exp_svc_fy25"])/IN["rev_exp_fy24"]-1)} — the '
-  f'abolition of Egypt\'s cement production quota in May 2025 was a DOMESTIC event, and '
-  f'exports sat against a statutory 30% cap throughout. And the '
+caption('Table 1 — Three years of history. Revenue and attributable profit are as '
+        'disclosed. EBITDA and the operating lines are derived by closing the disclosed '
+        'profit; volume and realised price are the output of the unit build in section 1.2.')
+P(f'Two things stand out. Volume grew only {pc(H["volume_mt"][2]/H["volume_mt"][1]-1)} '
+  f'between FY2024 and FY2025 while realised price grew '
+  f'{pc(H["price_t"][2]/H["price_t"][1]-1)}. The abolition of Egypt\'s cement production '
+  f'quota in May 2025 worked overwhelmingly through price, not through tonnes. And the '
   f'margin moved from {pc(H["margin"][1])} to {pc(H["margin"][2])} in a single year, '
   f'because almost the entire price increase fell to the bottom line on a cost base that '
   f'is largely fixed.')
 
 # ---- 1.2 --------------------------------------------------------------------
 H2('1.2  The unit economics — where EBITDA actually comes from')
-P('The operating model is built from the audited notes rather than from an invented '
-  'physical stack. The revenue note splits local from export and goods from services; the '
-  'cost-of-sales note splits materials and fuel, transportation and overheads. Volume is '
-  'DERIVED — disclosed revenue divided by an observed price — so the utilisation it implies '
-  'is an output that can disagree with the sector. It does not.')
-rows = [['', 'Value']]
-rows.append(['Export sales of goods (audited)', f'EGP {n0(IN["rev_exp_goods_fy25"])}mn'])
-rows.append(['Export price assumed (USD/t)', n1(IN['price_exp_usd_t'])])
-rows.append(['Average USD/EGP in 2025 (audited note)', n2(IN['fx_avg_fy25'])])
-rows.append(['Export volume derived (Mt)', n3(UC['vol_export'])])
-rows.append(['Local sales of goods (audited)', f'EGP {n0(IN["rev_local_goods_fy25"])}mn'])
-rows.append(['Local price assumed (EGP/t)', n0(IN['price_local_egp_t'])])
-rows.append(['Local volume derived (Mt)', n3(UC['vol_local'])])
-rows.append(['TOTAL VOLUME (Mt)', n3(UC['vol_fy25'])])
-rows.append(['Implied capacity utilisation', pc(UC['util_fy25'])])
-rows.append(['National sector utilisation, for comparison', pc(PE['sector']['utilisation'])])
-rows.append(['Export share of volume', pc(UC['vol_export'] / UC['vol_fy25'])])
-table(rows, [4.10, 2.00], band_rows={8, 9})
-caption('Table 2 — The volume build. Nothing here is asserted: the two revenue lines are '
-        'audited, the exchange rate is from the currency note, and only the two prices are '
-        'external estimates. The utilisation that falls out is the test, and 69.7% against '
-        'a national 85.5% is a plant running below the country average, which is what a '
-        '30%-export producer at a statutory export cap should look like.')
-P(f'The cost stack is the printed one. Cost of sales of EGP {n0(H["cogs"][2])}mn splits into '
-  f'materials and fuel of EGP {n0(IN["cos_materials_fy25"])}mn — the note confirms this is '
-  f'the cost of inventories charged to cost of sales, so it carries fuel, packing and spares '
-  f'as well as raw meal — transportation of EGP {n0(IN["cos_transport_fy25"])}mn, overheads '
-  f'of EGP {n0(IN["cos_overhead_fy25"])}mn, and depreciation and amortisation of EGP '
-  f'{n0(IN["cos_mfg_dep_fy25"] + 30.681613)}mn. Adding cash administrative expenses, '
-  f'provisions and credit losses gives a total cash cost of EGP {n0(UC["cash_cost_fy25"])}mn, '
-  f'or EGP {n0(UC["cash_cost_t"])} a tonne.')
-rows = [['EGP per tonne of cement', 'FY2025A', 'FY2026E', 'FY2030E']]
-for lab, key in [('Materials and fuel', 'c_mat'), ('Transportation', 'c_tra'),
-                 ('Overheads and administration', 'c_ovh'), ('Total cash cost', 'cc_t'),
-                 ('Blended realised price', 'price')]:
-    rows.append([lab] + [n0(BU[i][key]) for i in (0, 1, 5)])
-rows.append(['Volume (Mt)'] + [n3(BU[i]['vol']) for i in (0, 1, 5)])
+P('EBITDA in this model is an output, not an assumption. It is built from physical '
+  'quantities: kiln capacity times a utilisation rate gives clinker; clinker divided by '
+  'the clinker factor gives cement; cement split between domestic and export at their own '
+  'prices gives revenue; and a per-tonne cost stack — fuel, power, raw materials, '
+  'packaging, distribution — plus a fixed block gives cost. What is left is EBITDA. If the '
+  'cost stack is wrong, the FY2025 reconstruction misses the disclosed operating profit, '
+  'and that residual is published rather than solved away.')
+rows = [['', 'FY2025A', 'FY2026E', 'FY2030E']]
+for lab, key, fmt in [('Cement produced (Mt)', 'cement', n3),
+                      ('Kiln utilisation', 'util', pc),
+                      ('Blended realised price (EGP/t)', 'price', n0),
+                      ('Thermal fuel (EGP/t)', 'c_fuel', n0),
+                      ('Electrical power (EGP/t)', 'c_pow', n0),
+                      ('Raw materials (EGP/t)', 'c_raw', n0),
+                      ('Packaging (EGP/t)', 'c_pack', n0),
+                      ('Distribution (EGP/t)', 'c_dist', n0),
+                      ('Total variable (EGP/t)', 'var_t', n0)]:
+    rows.append([lab] + [fmt(BU[i][key]) for i in (0, 1, 5)])
+rows.append(['Fixed cash cost (EGP/t)'] +
+            [n0(BU[i]['fixed'] / BU[i]['cement']) for i in (0, 1, 5)])
 rows.append(['EBITDA (EGP mn)'] + [n0(BU[i]['ebitda']) for i in (0, 1, 5)])
 rows.append(['EBITDA margin'] + [pc(BU[i]['mgn']) for i in (0, 1, 5)])
-table(rows, [2.60, 1.30, 1.30, 1.30], band_rows={4, 7, 8})
-caption('Table 3 — The cost stack per tonne and the margin it produces. EBITDA is an OUTPUT '
-        'of this build, not an input to it.')
+table(rows, [2.60, 1.30, 1.30, 1.30], band_rows={11, 12})
+caption('Table 2 — The cost stack per tonne of cement, and the margin it produces.')
 figure('fig7_stack.png', 6.9,
        'Figure 2 — Cash cost per tonne against realised price per tonne. The margin is the '
        'gap, and the gap narrows across the forecast.')
-P(f'The reconstruction reproduces audited FY2025 revenue to '
-  f'{sg(BU[0]["rev"]/IN["rev_fy25"]-1, 3)} and audited FY2025 EBITDA to '
-  f'{sg(BU[0]["ebitda"]/H["ebitda"][2]-1, 3)}. It is not forced to: the volume is derived '
-  f'from the revenue note and the cost lines are the printed ones, so a wrong price '
-  f'assumption would show up as a non-zero residual.')
-P(f'One physical constraint is worth checking, because the volume forecast is built off '
-  f'CEMENT capacity while the kiln is what could bind first. At a clinker factor of '
-  f'{n2(IN["clinker_factor"])} — observed from the audited capacity pair of '
-  f'{n1(IN["cap_clinker_mt"])}Mt of clinker against {n1(IN["cap_cement_mt"])}Mt of cement — '
-  f'the FY2030 volume needs {n3(BU[5]["vol"]*IN["clinker_factor"])}Mt of clinker against '
-  f'{n1(IN["cap_clinker_mt"])}Mt of kiln capacity, or {pc(BU[5]["vol"]*IN["clinker_factor"]/IN["cap_clinker_mt"])} '
-  f'of it. The forecast fits the plant, with '
-  f'{n3(IN["cap_clinker_mt"]-BU[5]["vol"]*IN["clinker_factor"])}Mt of headroom, and more '
-  f'blending would widen that.')
-P(f'The company-specific lever is fuel, and it is now visible in the accounts rather than '
-  f'assumed. Assets under construction of EGP {n0(IN["auc_fy25"])}mn include EGP '
-  f'{n0(240.235369)}mn of alternative-fuel capacity for production line 2 and EGP '
-  f'{n0(146.238521)}mn of a new cement silo for line 1, and a EUR 25mn European Bank for '
-  f'Reconstruction and Development facility is drawn against exactly that programme — '
-  f'tranche one for alternative-fuel capacity and hydrogen injection on kiln 1, tranche two '
-  f'for hydrogen injection on kiln 2. The model carries a saving on the materials-and-fuel '
-  f'line rising to {pc(IN["af_saving"][5], 1)} by FY2030 as a result. That is a funded and '
-  f'part-built programme, not an intention.')
+P(f'The reconstruction reproduces the disclosed FY2025 revenue to '
+  f'{sg(BU[0]["rev"]/IN["rev_fy25"]-1, 3)} and the DISCLOSED FY2025 operating income to '
+  f'{sg((BU[0]["ebitda"]-DNAT["adopted"])/IN["ebit_fy25"]-1, 3)}. Neither residual is '
+  f'forced: the physical coefficients are industry norms and the price path is the '
+  f'published domestic level. The one calibrated figure is the fixed cash block, at USD '
+  f'{n2(IN["fixed_usd_t_capacity"])} per tonne of installed capacity, inside the USD 10–20 '
+  f'industry band, and it is labelled as a calibration rather than presented as an '
+  f'observation.')
+P(f'The company-specific line is fuel. Arabian Cement is Egypt\'s alternative-fuel leader: '
+  f'{pc(IN["af_share"][0], 0)} of its thermal requirement is met from refuse-derived fuel '
+  f'and biomass rather than imported petcoke, rising to {pc(IN["af_share"][5], 0)} by '
+  f'FY2030 on the company\'s own programme. That blend is why the fuel bill per tonne is '
+  f'EGP {n0(BU[0]["c_fuel"])} rather than the EGP '
+  f'{n0(BU[0]["c_fuel"]*IN["fuel_fossil_usd_gj"]/BU[0]["fuel_usd_gj"])} a fossil-only '
+  f'stack would cost — a saving of about {pc(1-BU[0]["fuel_usd_gj"]/IN["fuel_fossil_usd_gj"])} '
+  f'on the largest variable line in the business. It is modelled as its own driver, not '
+  f'folded into a margin, because it is the one cost advantage that is genuinely this '
+  f'company\'s rather than the sector\'s.')
 
-H2('1.3  Depreciation, capital spending, and what the book hides')
-P(f'Depreciation and amortisation is disclosed in the cash flow statement: EGP '
-  f'{n0(H["dna"][2])}mn in FY2025, EGP {n0(H["dna"][1])}mn in FY2024 and EGP '
-  f'{n0(H["dna"][0])}mn in FY2023 — property depreciation, licence amortisation and '
-  f'right-of-use amortisation. That is {pc(H["dna"][2]/H["revenue"][2], 2)} of FY2025 '
-  f'revenue, and it is small for a cement plant.')
-P(f'It is small for a reason that matters to the valuation. The plant dates from around '
-  f'2010 and the accounts are prepared on a historical-cost basis; the pound has devalued '
-  f'several times since. Net property, plant and equipment is EGP {n0(IN["ppe_fy25"])}mn, '
-  f'which on {n1(IN["cap_cement_mt"])}Mt of capacity is about USD '
-  f'{n0((IN["ppe_fy25"]+IN["auc_fy25"])/IN["cap_cement_mt"]/IN["fx"])} per annual tonne '
-  f'including construction in progress — against a replacement cost of USD '
-  f'{n0(IN["repl_usd_t"])}. The book is carrying the plant at roughly a tenth of what one '
-  f'would cost to build.')
-rows = [['EGP mn', 'FY2023', 'FY2024', 'FY2025']]
-rows.append(['Depreciation and amortisation'] + [n0(x) for x in H['dna']])
-rows.append(['Capital expenditure'] + [n0(x) for x in H['capex']])
-rows.append(['Capex as a share of EBITDA'] +
-            [pc(TR['history'][i]['capex_over_ebitda']) for i in range(3)])
-rows.append(['Net reinvestment (capex less depreciation)'] +
-            [n0(TR['history'][i]['reinvestment']) for i in range(3)])
-rows.append(['Reinvestment rate (net reinvestment / NOPAT)'] +
-            [pc(TR['history'][i]['rr']) for i in range(3)])
-rows.append(['Return on BOOK invested capital'] +
-            [pc(TR['history'][i]['roic_book']) for i in range(3)])
-rows.append(['Character'] + [TR['history'][i]['character'].split(' — ')[0] for i in range(3)])
-table(rows, [2.60, 1.30, 1.30, 1.30])
-caption('Table 4 — The reinvestment record, buildable because capital expenditure is '
-        'disclosed for all three years. FY2023 spent less than it depreciated; FY2024 and '
-        'FY2025 carried the alternative-fuel and silo programmes on top of maintenance.')
-P(f'That has a direct consequence for the forecast, and it is treated as one. Capital '
-  f'expenditure is NOT set at book depreciation. It is set at the economic maintenance '
+H2('1.3  Depreciation, and the honest admission behind it')
+P('No depreciation line is separately retrievable for this company from any source at the '
+  'evidentiary standard used elsewhere in this study. Rather than assume one, three '
+  'independent methods are computed and averaged, and the spread between them is '
+  'published.')
+rows = [['Method', 'FY2025 charge (EGP mn)']]
+rows.append(['Fourth-quarter EBITDA margin applied to full-year revenue, less the '
+             'disclosed operating profit', n0(DNAT['m1_q4_margin_closure'])])
+rows.append(['Peer depreciation per tonne of despatch, applied to this volume',
+             n0(DNAT['m2_peer_per_tonne'])])
+rows.append(['Net property base implied by total assets, times a composite rate',
+             n0(DNAT['m3_property_base'])])
+rows.append(['Average of the three — adopted', n0(DNAT['adopted'])])
+rows.append(['As a share of revenue', pc(DNAT['pct_of_revenue'], 2)])
+rows.append(['Per tonne of despatch (EGP)', n0(DNAT['per_tonne'])])
+table(rows, [4.20, 1.90], band_rows={4})
+caption('Table 3 — Three routes to the same number, averaged rather than asserted. The '
+        'highest is 3.5 times the lowest, and that uncertainty is real.')
+P('The spread matters, and it is worth saying why it is so wide. This plant was built '
+  'around 2010, in a currency that has since devalued several times. Its book asset base '
+  'is therefore small in today\'s pounds and its accounting depreciation charge is '
+  'correspondingly small — which is exactly what the first and third methods find, and '
+  'exactly what a peer benchmark drawn from a revalued balance sheet does not.')
+P(f'This has a direct valuation consequence, and it is treated as one. Capital expenditure '
+  f'in the forecast is NOT set at book depreciation. It is set at the economic maintenance '
   f'level of USD {n2(IN["capex_usd_t_cap"])} per tonne of installed capacity — about EGP '
   f'{n0(F["capex"][0])}mn in FY2026 against a book charge of EGP {n0(F["dna"][0])}mn. '
-  f'Setting capex equal to book depreciation would flatter free cash flow by construction; '
-  f'the cost of refusing to do so is computed in section 1.9 and is worth '
-  f'{sg(CON[2]["effect"])} of the cash-flow lens. The audited FY2024 and FY2025 outturns of '
-  f'EGP {n0(H["capex"][1])}mn and EGP {n0(H["capex"][2])}mn — USD {n1(H["capex"][1]/IN["cap_cement_mt"]/IN["fx_avg_fy24"])} '
-  f'and USD {n1(H["capex"][2]/IN["cap_cement_mt"]/IN["fx_avg_fy25"])} a tonne — bracket the '
-  f'assumption, and both of those years carried growth projects as well as maintenance.')
+  f'Setting capex equal to book depreciation would have flattered free cash flow by '
+  f'construction; the cost of refusing to do so is computed in section 1.9 and is worth '
+  f'{sg(CON[3]["effect"])} of the cash-flow lens.')
 
-H2('1.4  The cost of capital, and a debt book that changed currency')
+# ---- 1.4 --------------------------------------------------------------------
+H2('1.4  The cost of capital')
 P(f'The discount rate is a schedule, not a number. Egypt is in monetary transition: the '
   f'central bank held its main operation rate at 19.50% through the first half of 2026 '
   f'while headline inflation eased to 14.3%, and its own published medium-term target is '
-  f'7%. A single flat rate applied to both the explicit years and a perpetuity would assert '
-  f'that Egypt\'s cost of capital never normalises.')
-P(f'The cost of DEBT is the line the audited accounts changed most. During 2025 the company '
-  f'refinanced out of pound working-capital facilities and into euro term debt: a EUR 25mn '
-  f'facility from the European Bank for Reconstruction and Development at three-month '
-  f'Euribor plus 4.35%, drawn to EUR 18.5mn to fund alternative-fuel capacity and hydrogen '
-  f'injection, and a EUR 3.09mn National Bank of Egypt facility under a KfW '
-  f'industrial-pollution programme at six-month Euribor plus 3%. '
-  f'{pc(KDG["eur_share"])} of the interest-bearing book is now euro-denominated.')
-rows = [['Facility', 'Balance (EGP mn)', 'Currency', 'Contractual rate']]
-rows.append(['CIB credit facilities', n0(IN['debt_cib_fy25']), 'EGP',
-             f'corridor + 0.6% = {pc(KDG["kd_cib"], 2)}'])
-rows.append(['National Bank of Egypt / KfW', n0(IN['debt_nbe_fy25']), 'EUR',
-             f'Euribor + 3.00% = {pc(KDG["kd_nbe"], 2)}'])
-rows.append(['European Bank for Reconstruction and Development', n0(IN['debt_ebrd_fy25']),
-             'EUR', f'Euribor + 4.35% = {pc(KDG["kd_ebrd"], 2)}'])
-rows.append(['Lease liabilities', n1(IN['lease_fy25']), 'EGP', '—'])
-rows.append(['Blended cost of debt, adopted', n0(W['debt_total']),
-             f'{pc(KDG["eur_share"], 0)} EUR', pc(KDG['kd_blended'], 2)])
-table(rows, [2.60, 1.20, 1.00, 1.60], band_rows={5})
-caption('Table 5 — The debt book, facility by facility, from the audited borrowings note. '
-        'The blended rate is built in the model from these four lines, not pasted.')
-P(f'Three checks are published rather than asserted, because a contractual rate is not the '
-  f'same thing as a rate paid. Interest expense over average interest-bearing debt gives '
-  f'{pc(KDG["eff_fy24"], 2)} in FY2024, {pc(KDG["eff_fy25"], 2)} in FY2025 and '
-  f'{pc(KDG["eff_q126_annualised"], 2)} annualising the first quarter of 2026. The '
-  f'contractual {pc(KDG["kd_blended"], 2)} sits ABOVE all three, and the gap is not a '
-  f'reconciling item to be smoothed: the book re-based mid-year, so the trailing average '
-  f'balance is not what carried the interest, and the borrowing that funds an asset still '
-  f'under construction has its interest capitalised into that asset rather than expensed. '
-  f'The marginal contractual rate is the right one for a forward-looking discount rate, and '
-  f'the gap is disclosed so the reader can disagree.')
-P(f'One caution belongs next to that number. Adopting the contracted euro rate means the '
-  f'euro debt is NOT compensated for pound depreciation beyond what this study\'s own '
-  f'currency path already assumes. Loading the euro legs with '
-  f'{pc(IN["egp_dep_vs_eur"], 0)} annual pound depreciation under interest parity gives a '
-  f'pound-equivalent cost of debt of {pc(KDG["kd_egp_equivalent"], 2)} — nearly twice the '
-  f'adopted figure. The alternative is computed as a VALUE and not merely described: it is '
-  f'worth {sg(CON[0]["effect"])} of the cash-flow lens, because debt is only '
-  f'{pc(W["wd_gross"])} of the capital structure. A large swing in a small weight is still '
-  f'a small effect, and saying so is not the same as dismissing it.')
+  f'7%. A single flat rate applied to both the explicit years and a perpetuity would '
+  f'assert that Egypt\'s cost of capital never normalises — a claim this model\'s own '
+  f'cost-of-debt path contradicts.')
 rows = [['', 'Explicit window', 'Terminal']]
 rows.append(['Risk-free rate', pc(IN['rf'], 2), pc(IN['rf_term'], 2)])
 rows.append(['Less sovereign default spread', f'({pc(IN["sov_spread_cds"], 2)})', '—'])
@@ -302,26 +223,30 @@ rows.append(['Normalised risk-free rate', pc(W['rf_star'], 2), pc(IN['rf_term'],
 rows.append(['Beta', n3(W['beta']), n3(W['beta_term'])])
 rows.append(['Equity risk premium', pc(IN['erp_cds'], 2), pc(IN['erp_term'], 2)])
 rows.append(['Cost of equity', pc(W['ke_exp'], 2), pc(W['ke_term'], 2)])
-rows.append(['Cost of debt after tax', pc(W['kd_at'], 2),
-             pc(IN['kd_term'] * (1 - IN['tax_stat']), 2)])
+rows.append(['Cost of debt after tax', pc(W['kd_at'], 2), pc(IN['kd_term'] * (1 - IN['tax_stat']), 2)])
 rows.append(['Debt weight', pc(W['wd_gross'], 2), pc(IN['wd_term'], 1)])
 rows.append(['Blended cost of capital', pc(W['wacc_exp'], 2), pc(W['wacc_term'], 2)])
 table(rows, [2.90, 1.80, 1.80], band_rows={9})
-caption('Table 6 — The two anchors. The sovereign default spread is netted OUT of the local '
-        'risk-free rate before a country equity premium is added, so Egypt\'s default risk '
-        'is charged once rather than twice; leaving it in would have put the cost of equity '
-        f'at {pc(W["ke_raw_retired"], 2)} instead of {pc(W["ke_exp"], 2)}.')
+caption('Table 4 — The two anchors. The sovereign default spread is netted OUT of the '
+        'local risk-free rate before a country equity premium is added, so Egypt\'s '
+        'default risk is charged once rather than twice; leaving it in would have put the '
+        f'cost of equity at {pc(W["ke_raw_retired"], 2)} instead of {pc(W["ke_exp"], 2)}.')
+P('The terminal anchors are house macro views, and are disclosed as such rather than '
+  'presented as observations. The terminal risk-free rate is the central bank\'s own '
+  'stated medium-term inflation target plus a standard emerging-market real-rate '
+  'convention. The terminal cost of debt is the Egyptian long-run corporate borrowing '
+  'norm. Neither is reverse-engineered from a price, and no terminal input is backed out '
+  'of a target.')
 rows = [['Year'] + YF]
 rows.append(['Glide fraction'] + [n3(x) for x in F['glide']])
 rows.append(['Forward cost of capital'] + [pc(x, 2) for x in F['fwd_wacc']])
 rows.append(['Cumulative discount factor'] + [f'{x:.4f}' for x in F['df']])
 table(rows, [1.62, 1.06, 1.06, 1.06, 1.06, 1.06])
-caption('Table 7 — The schedule. The glide fractions are the cumulative progress of the '
-        'POUND cost-of-debt path: the discount rate is a pound rate applied to pound cash '
-        'flows, so the Egyptian easing calendar sets its slope while the euro debt book sets '
-        'the level of the cost of debt. The terminal value is capitalised at the terminal '
-        'rate and brought home on year five\'s own cumulative factor — one date, one price '
-        'of time.')
+caption('Table 5 — The schedule. The glide fractions are not chosen: they are the '
+        'cumulative progress of the cost-of-debt path, so the shape of the discount '
+        'schedule is inherited from the assumed easing calendar rather than invented '
+        'beside it. The terminal value is capitalised at the terminal rate and brought '
+        'home on year five\'s own cumulative factor — one date, one price of time.')
 
 H2('1.5  Beta, and how weak it is')
 P(f'The beta is a genuine regression, not a default. Weekly returns over five years '
@@ -348,7 +273,7 @@ P(f'Two cross-checks are run rather than asserted. The share closes unchanged on
   f'regression lands. There is a real reason for that: the company carries no net '
   f'financial leverage, and unlevered equity genuinely moves less than levered equity. '
   f'The regression is adopted, the correction is published as a value, and the difference '
-  f'is worth {sg(CON[1]["effect"])} of the cash-flow lens.')
+  f'is worth {sg(CON[0]["effect"])} of the cash-flow lens.')
 rows = [['Beta'] + [n2(b) for b in SN['beta_grid']]]
 rows.append(['Fair value per share (EGP)'] + [n2(x) for x in SN['beta']])
 table(rows, [2.20, 0.98, 0.98, 0.98, 0.98, 0.98])
@@ -376,34 +301,30 @@ caption('Table 7 — The full build from revenue to present value. FY2026 carrie
         'five months not yet earned at the valuation date; the seven already earned are '
         'rolled into the opening cash balance instead, so the period is counted exactly '
         'once rather than twice or not at all.')
-P(f'The effective tax rate of {pc(TAXE)} is DISCLOSED, not inferred: income tax of EGP '
-  f'{n0(H["tax"][2])}mn against pre-tax profit of EGP {n0(H["pbt"][2])}mn. The company '
-  f'separately states an average effective rate of 23.33% for 2025 and 22.96% for 2024, and '
-  f'the first quarter of 2026 ran at 25.9%. It sits close to the statutory '
-  f'{pc(IN["tax_stat"], 1)} because the deferred-tax movement is small.')
+P(f'The effective tax rate of {pc(TAXE)} is above the statutory {pc(IN["tax_stat"], 1)}, '
+  f'and it is not chosen. It is what the disclosed accounts imply: operating income of EGP '
+  f'{n0(IN["ebit_fy25"])}mn plus net finance income of EGP {n0(H["netfin_fy25"])}mn against '
+  f'a disclosed profit after tax of EGP {n0(IN["pat_fy25"])}mn leaves that rate and no '
+  f'other. Using the statutory rate instead would have raised every forecast year\'s '
+  f'after-tax profit by about {pc((TAXE-IN["tax_stat"])/(1-TAXE))} on evidence that points '
+  f'the other way.')
+
+P(f'One reconciliation belongs here rather than in a footnote, because it is the largest '
+  f'single judgement in the model. First-quarter 2026 attributable profit was EGP '
+  f'{n0(IN["pat_q1_26"])}mn on revenue of EGP {n0(IN["rev_q1_26"])}mn — a net margin of '
+  f'{pc(IN["pat_q1_26"]/IN["rev_q1_26"])}. Four times that quarter is EGP '
+  f'{n0(4*IN["pat_q1_26"])}mn, and holding its margin across the full year would give about '
+  f'EGP {n0(F["revenue"][0]*IN["pat_q1_26"]/IN["rev_q1_26"])}mn. This model forecasts EGP '
+  f'{n0(F["pat"][0])}mn — {sg(F["pat"][0]/(4*IN["pat_q1_26"])-1)} against the simple '
+  f'annualisation and well below the margin-held figure. The forecast is deliberately the '
+  f'conservative one: the first quarter of 2026 still carries the post-quota price spike at '
+  f'close to its peak, and the model assumes it fades as restart capacity arrives and pound '
+  f'cost inflation runs ahead of price. A reader who thinks the current margin holds should '
+  f'read the +2% and +4% columns of the margin sensitivity in section 7, which are worth '
+  f'EGP {n2(SN["mgn"][3])} and EGP {n2(SN["mgn"][4])} a share against the base EGP '
+  f'{n2(DCF["fv"])}.')
 
 # ---- 1.7 --------------------------------------------------------------------
-P(f'The margin path is the central judgement in this forecast, and it deserves stating as '
-  f'one number rather than left inside a table. Local prices are assumed to grow '
-  f'{pc(IN["price_local_path"][5]-1)} in total across the five years while pound costs grow '
-  f'{pc(IN["cost_infl"][5]-1)} — a deliberate real squeeze of about '
-  f'{pc(IN["cost_infl"][5]/IN["price_local_path"][5]-1, 0)}. The EBITDA margin therefore '
-  f'falls from the audited {pc(H["margin"][2])} to {pc(F["margin"][4])} by FY2030, which is '
-  f'roughly where it stood in FY2024 ({pc(H["margin"][1])}) before the quota was abolished. '
-  f'The claim is not that the business deteriorates; it is that the 2025 windfall reverses '
-  f'as dormant capacity returns and energy reform continues. A reader who thinks the '
-  f'industry passes cost through faster should read the margin sensitivity in section 7: '
-  f'two points of margin is worth about EGP {n2(SN["mgn"][3]-SN["mgn"][2])} a share.')
-P(f'One reconciliation belongs here too, because it is the sharpest challenge to the '
-  f'forecast. The first quarter of 2026 — reviewed, not audited, but signed off in May — '
-  f'earned attributable profit of EGP {n0(IN["pat_q1_26"])}mn on revenue of EGP '
-  f'{n0(IN["rev_q1_26"])}mn, a gross margin of {pc(IN["gp_q1_26"]/IN["rev_q1_26"])} against '
-  f'{pc(H["gross_profit"][2]/H["revenue"][2])} for FY2025 as a whole. Four times that '
-  f'quarter is EGP {n0(4*IN["pat_q1_26"])}mn. This model forecasts EGP {n0(F["pat"][0])}mn '
-  f'for FY2026, {sg(F["pat"][0]/(4*IN["pat_q1_26"])-1)} below the simple annualisation. '
-  f'Margins were still EXPANDING in the first quarter; the forecast assumes they turn. That '
-  f'is the assumption to attack.')
-
 H2('1.7  The enterprise-to-equity bridge')
 rows = [['', 'EGP mn', 'Per share (EGP)']]
 for lab, v in [('Present value of explicit free cash flow', DCF['sum_pv']),
@@ -419,63 +340,50 @@ rows.append(['Upside / (downside) to this lens', '—', sg(DCF['fv'] / SPOT - 1)
 table(rows, [3.30, 1.50, 1.50], band_rows={3, 6, 7})
 caption('Table 8 — The bridge. Terminal value as a share of enterprise value is stated '
         'here and again in the summary table on page 1.')
-P(f'Cash is added at face and is not in the discount rate. The audited balance sheet shows '
-  f'EGP {n0(IN["cash_fy25"])}mn of cash against EGP {n0(W["debt_total"])}mn of '
-  f'interest-bearing debt at 31 December 2025. Rolling that forward on the elapsed part of '
-  f'FY2026 and DEDUCTING the EGP {n0(IN["div_fy25_declared"])}mn FY2025 dividend — declared '
-  f'and still shown as payable in the March 2026 accounts, so a buyer at today\'s price does '
-  f'not receive it — puts net cash at EGP {n0(DCF["net_cash"])}mn at the valuation date, or '
-  f'EGP {n2(DCF["net_cash"]/SH)} a share. The March 2026 balance sheet is the independent '
-  f'check on that: cash of EGP {n0(IN["cash_q1_26"])}mn less debt of EGP '
-  f'{n0(IN["debt_q1_26"])}mn less the dividend payable of EGP {n0(IN["divpay_q1_26"])}mn is '
-  f'EGP {n0(IN["cash_q1_26"]-IN["debt_q1_26"]-IN["divpay_q1_26"])}mn at 31 March, four '
-  f'months before the valuation date.')
-P(f'Minority interests are deducted, and the audited figure is the reason this line is now '
-  f'immaterial: EGP {n0(IN["nci"]*1e6)} — one hundred and fifty-eight thousand pounds, or '
-  f'{pc(IN["nci"]/DCF["equity"], 4)} of equity value. The subsidiaries are 99% to 99.99% '
-  f'owned.')
-P(f'At {pc(DCF["tv_share"])} of enterprise value, the terminal value is a smaller share of '
-  f'this valuation than in most discounted cash-flow models, a consequence of the high '
-  f'explicit-window discount rate rather than a design choice. The answer depends more on '
-  f'the next five years and less on a perpetuity assumption than is usual — which, for a '
-  f'business whose next five years are forecastable from tonnes and disclosed costs, is the '
-  f'right place for the weight to sit.')
+P(f'Cash is added at face and is not in the discount rate. The company held EGP '
+  f'{n0(IN["cash_fy25"])}mn of cash against EGP {n0(IN["debt_fy25"])}mn of debt on the '
+  f'latest reported balance sheet; rolling that forward on the elapsed part of FY2026 puts '
+  f'net cash at EGP {n0(DCF["net_cash"])}mn at the valuation date, or EGP '
+  f'{n2(DCF["net_cash"]/SH)} a share — about {pc(DCF["net_cash"]/M["mktcap"])} of the '
+  f'market capitalisation. Minority interests are deducted rather than ignored, at a '
+  f'deliberately non-trivial EGP {n0(IN["nci"])}mn; no minority balance is separately '
+  f'retrievable, and the disclosed profit statements imply a small one.')
+P(f'At {pc(DCF["tv_share"])} of enterprise value, the terminal value is a smaller share '
+  f'of this valuation than in most discounted cash-flow models, and that is a consequence '
+  f'of the high explicit-window discount rate rather than a design choice. It means the '
+  f'answer depends more on the next five years and less on a perpetuity assumption than is '
+  f'usual — which, for a business whose next five years are genuinely forecastable from '
+  f'tonnes and prices, is the right place for the weight to sit.')
 
+# ---- 1.8 --------------------------------------------------------------------
 H2('1.8  Terminal value, and what growth costs')
 P(f'Terminal growth is held at {pc(IN["g_term"], 0)}, against a terminal risk-free rate '
   f'that already embeds disinflation — so approximately zero in real terms. It is not '
   f'derived from recent performance, and the reason is arithmetic rather than a matter of '
   f'judgement.')
-P(f'Attributable profit compounded {pc(TR["pat_cagr_fy23_fy25"], 0)} a year across the two '
-  f'audited steps from FY2023 to FY2025. Compounded against nominal economic growth of about '
-  f'{pc(IN["egy_gdp_growth"], 0)}, a company at {pc(TR["share_of_gdp"], 3)} of Egyptian '
-  f'output today would equal the entire Egyptian economy in roughly '
-  f'{n0(TR["crossover_years"])} years. That is not a forecast anyone would defend; it is the '
-  f'reason recent growth belongs in the explicit window, describing a specific dated event — '
-  f'the removal of the production quota — and not in the perpetuity.')
-P(f'Growth in the terminal state has to be paid for, and the choice of what capital it is '
-  f'paid on is the single most consequential judgement in this model. On the audited BOOK, '
-  f'return on invested capital was {pc(TR["history"][2]["roic_book"])} in FY2025 — well '
-  f'above any plausible cost of capital, which would make terminal growth free. But that '
-  f'book carries a plant built around 2010 at historical cost through several devaluations: '
-  f'net property and construction of EGP {n0(IN["ppe_fy25"]+IN["auc_fy25"])}mn is about USD '
-  f'{n0((IN["ppe_fy25"]+IN["auc_fy25"])/IN["cap_cement_mt"]/IN["fx"])} per annual tonne '
-  f'against a replacement cost of USD {n0(IN["repl_usd_t"])}. A return computed on that base '
-  f'measures the devaluation, not the economics of adding a tonne.')
-P(f'The terminal block is therefore struck on REPLACEMENT-COST invested capital — EGP '
-  f'{n0(DCF["ic_repl"])}mn, being {n1(IN["cap_cement_mt"])}Mt at USD {n0(IN["repl_usd_t"])} '
-  f'a tonne. On that basis the terminal return on capital is {pc(TR["roic_repl"])} and the '
-  f'reinvestment rate that {pc(IN["g_term"], 0)} growth requires is {pc(TR["rr_repl"])} of '
-  f'terminal profit.')
-P(f'The consequence inverts the usual intuition and the model shows it rather than hiding '
-  f'it: at a terminal return of {pc(TR["roic_repl"])} against a terminal rate of '
-  f'{pc(W["wacc_term"])}, GROWTH DESTROYS VALUE. The cash-flow lens is EGP '
-  f'{n2(GDV["fv_at_g3"])} at 3% terminal growth and EGP {n2(GDV["fv_at_g7"])} at 7%. A '
-  f'cement plant in a market carrying {n0(IN["egy_capacity_mt"])}Mt of capacity against '
-  f'{n0(IN["egy_cons_mt"])}Mt of consumption cannot earn its cost of capital on new tonnes, '
-  f'and a model that rewarded it for adding them would be wrong. A reader who prefers the '
-  f'book basis should know it lifts the valuation substantially and should say why a plant '
-  f'carried at a tenth of replacement cost is the right denominator.')
+P(f'Attributable profit has compounded at about {pc(TR["pat_cagr_since_fy22"], 0)} a year '
+  f'since FY2022. Compounded against nominal economic growth of about '
+  f'{pc(IN["egy_gdp_growth"], 0)}, a company at '
+  f'{pc(TR["share_of_gdp"], 3)} of Egyptian output today would equal the entire Egyptian '
+  f'economy in roughly {n0(TR["crossover_years"])} years. That is not a forecast anyone '
+  f'would defend; it is the reason recent growth belongs in the explicit window, '
+  f'describing a specific dated event — the removal of the production quota — and not in '
+  f'the perpetuity.')
+P(f'Growth in the terminal state has to be paid for. The reinvestment rate is terminal '
+  f'growth divided by the return on capital that funds it: {pc(IN["g_term"], 0)} over '
+  f'{pc(TR["roic_repl"])} gives {pc(TR["rr_repl"])} of terminal profit reinvested. That '
+  f'return is struck on REPLACEMENT-COST invested capital — EGP {n0(DCF["ic_repl"])}mn, '
+  f'being {n1(IN["cap_cement_mt"])}Mt at USD {n0(IN["repl_usd_t"])} a tonne — rather than '
+  f'on the pre-devaluation book, which would flatter it several times over and let growth '
+  f'through unpaid for.')
+P(f'The consequence is worth stating plainly because it inverts the usual intuition: at a '
+  f'terminal return on capital of {pc(TR["roic_repl"])} against a terminal rate of '
+  f'{pc(W["wacc_term"])}, GROWTH DESTROYS VALUE. The model shows it rather than hiding it '
+  f'— the cash-flow lens is EGP {n2(GDV["fv_at_g3"])} at 3% terminal growth and EGP '
+  f'{n2(GDV["fv_at_g7"])} at 7%. A cement plant in a market carrying '
+  f'{n0(IN["egy_capacity_mt"])}Mt of capacity against {n0(IN["egy_cons_mt"])}Mt of '
+  f'consumption cannot earn its cost of capital on new tonnes, and a model that rewarded '
+  f'it for adding them would be wrong.')
 rows = [['Explicit-window rate'] + [pc(g, 0) for g in SN['g_grid']]]
 for i, wv in enumerate(SN['wacc_grid']):
     rows.append([pc(wv, 2)] + [n2(x) for x in SN['wacc_g'][i]])
@@ -620,13 +528,11 @@ for head, body in [
      f'consumption. Whether those lines actually restart, and how fast, is the single '
      f'largest swing factor in the price path this model assumes.'),
     ('The realised price, quarter by quarter. ', f'The model assumes a domestic price of '
-     f'EGP {n0(BU[1]["price_loc"])} a tonne in FY2026 and growth below cost '
+     f'EGP {n0(IN["price_dom_egp_t"][1])} a tonne in FY2026 and growth below cost '
      f'inflation thereafter. Two consecutive quarters of realised prices above EGP 4,200 '
      f'would break that assumption upward; a return toward EGP 3,000 would break it down.'),
     ('The alternative-fuel programme. ', f'The substitution rate is assumed to rise from '
-     f'a cumulative {pc(IN["af_saving"][5], 1)} saving on the materials and fuel line by '
-     f'FY2030, against a EUR 25mn facility already drawn and EGP 240mn of capacity already '
-     f'under construction. Progress on it is '
+     f'{pc(IN["af_share"][0], 0)} to {pc(IN["af_share"][5], 0)}. Progress on it is '
      f'reported in the company\'s own sustainability disclosure and is directly visible in '
      f'the fuel cost per tonne. A stall would cost roughly the difference between the '
      f'blended and fossil-only fuel bills.'),
@@ -638,9 +544,9 @@ for head, body in [
      'production, and the EU carbon border mechanism raises the landed cost of Egyptian '
      'cement in Europe. A low-clinker, high-alternative-fuel producer suffers less from the '
      'second than a conventional peer, and the export price path assumes exactly that.'),
-    ('Distribution policy. ', f'The company declared EGP {n0(IN["div_fy25_declared"])}mn for '
+    ('Distribution policy. ', f'The company paid EGP {n0(IN["div_fy25_total"])}mn for '
      f'FY2025, about {pc(IN["payout"], 0)} of attributable profit, on top of EGP '
-     f'{n0(IN["div_fy24_paid"])}mn for FY2024. A change in that policy changes the cash '
+     f'{n0(IN["div_fy24_total"])}mn for FY2024. A change in that policy changes the cash '
      f'roll-forward and, through it, the balance sheet the bridge relies on.'),
 ]:
     bullet(body, bold_head=head)
@@ -673,57 +579,53 @@ caption('Table 15 — Zones, not forecasts. The four are exclusive and sum to 10
 # ============================== 7 ============================================
 H1('7  Caveats and what would change our mind')
 for head, body in [
-    ('The accounts are audited, and this study is built on them. ', 'An earlier edition of '
-     'this work was written without access to a source document and reconstructed the '
-     'history by closing disclosed profit against modelled assumptions. That edition is '
-     'superseded. Every historical figure here is read from the consolidated financial '
-     'statements signed by Deloitte on 25 February 2026, or from the reviewed interim '
-     'accounts of 25 May 2026. Four things it got materially wrong are worth naming, '
-     'because they show where reconstruction fails: minority interests were deducted at '
-     'EGP 150mn against an audited EGP 158,005; the effective tax rate was inferred at '
-     '29.4% against a disclosed 23.8%; the cost of debt was assumed at 21.5% against a '
-     'euro-denominated book paying about 7.5%; and kiln capacity was assumed 14% too low.'),
-    ('Only two numbers in the operating build are not disclosed. ', f'The local realised '
-     f'price of EGP {n0(IN["price_local_egp_t"])} a tonne and the export price of USD '
-     f'{n1(IN["price_exp_usd_t"])} a tonne are external estimates; every other input to the '
-     f'FY2025 build is audited. They matter because volume is derived from them — a 10% '
-     f'error in price is a 10% error in volume, in the opposite direction, and the two '
-     f'largely offset in revenue but not in cost per tonne. The check on them is the '
-     f'utilisation that falls out: {pc(UC["util_fy25"])} against a national '
-     f'{pc(PE["sector"]["utilisation"])}.'),
-    ('The cost of debt is contractual, not paid. ', f'The blended '
-     f'{pc(KDG["kd_blended"], 2)} sits above the {pc(KDG["eff_fy25"], 2)} that FY2025 '
-     f'interest over average debt gives and the {pc(KDG["eff_q126_annualised"], 2)} the '
-     f'first quarter of 2026 annualises to, because the book re-based mid-year and interest '
-     f'on assets still under construction is capitalised. Adopting the contracted euro rate '
-     f'also means the euro debt is not compensated for pound depreciation beyond the '
-     f'currency path assumed here; the pound-equivalent alternative is '
-     f'{pc(KDG["kd_egp_equivalent"], 2)} and is worth {sg(CON[0]["effect"])}.'),
-    ('The forecast is well below the first-quarter run rate. ', f'This is the largest '
-     f'judgement in the model and section 1.6 states it with the numbers. The first quarter '
-     f'of 2026 ran a {pc(IN["gp_q1_26"]/IN["rev_q1_26"])} gross margin against '
-     f'{pc(H["gross_profit"][2]/H["revenue"][2])} for FY2025 as a whole. If that holds, this '
-     f'valuation is too cautious, and the margin sensitivity below is where to look.'),
-    ('The terminal denominator is a choice. ', f'Return on capital is '
-     f'{pc(TR["history"][2]["roic_book"])} on the audited book and {pc(TR["roic_repl"])} on '
-     f'replacement cost. The terminal block uses replacement cost, which makes growth '
-     f'value-destroying and lowers the valuation. On the book basis growth would be free. '
-     f'The case for replacement cost is that the book carries a 2010-vintage plant at a '
-     f'tenth of what one would cost to build today, but a reader is entitled to disagree.'),
+    ('No source document was opened. ', 'This is the first thing a reader should know. The '
+     'audited statements were not read, and neither were the annual report, the investor '
+     'presentation, the exchange filing or the press articles reporting them: every '
+     'attempt to retrieve a page was refused at the connection stage by the network policy '
+     'governing the environment this was built in. Revenue, attributable profit, operating '
+     'income, the balance-sheet totals and both dividend distributions are carried as '
+     'RELAYED in search summaries of that reporting — two steps from the audited print, '
+     'not one. Every line between them is derived and labelled as derived. What makes the '
+     'headline figures usable despite that is corroboration rather than authority: the '
+     'share count triangulates three independent ways to within 0.2%, the disclosed +42.6% '
+     'revenue step decomposes cleanly into volume and price, and published earnings per '
+     'share reconciles to attributable profit within the statutory profit share. The '
+     'balance sheet does not survive the same test, which is the next caveat. A reader '
+     'with the audited accounts should reconcile depreciation and working capital first.'),
+    ('The balance sheet does not close across sources. ', f'Total assets of EGP '
+     f'{n0(IN["ta_fy25"])}mn less reported equity of EGP {n0(IN["eq_fy25_rep"])}mn implies '
+     f'liabilities of EGP {n0(EQG["derived_liabilities"])}mn; a separate aggregation prints '
+     f'EGP {n0(IN["tl_alt"])}mn, a gap of EGP {n0(EQG["derived_liabilities"]-IN["tl_alt"])}mn '
+     f'or {pc((EQG["derived_liabilities"]-IN["tl_alt"])/IN["ta_fy25"])} of total assets. '
+     f'The figure that closes against total assets is carried and the disagreement is '
+     f'shown rather than averaged away.'),
+    ('Depreciation is a triangulation, not a disclosure. ', f'The three methods span EGP '
+     f'{n0(min(DNAT["m1_q4_margin_closure"], DNAT["m3_property_base"]))}mn to EGP '
+     f'{n0(DNAT["m2_peer_per_tonne"])}mn. The average is adopted. Anyone with the real '
+     f'number should substitute it — but note that raising it in the terminal year LOWERS '
+     f'this valuation rather than raising it, because capital spending here is set at '
+     f'economic replacement and does not follow the book charge.'),
+    ('Cash and debt are not clean one-way levers. ', 'Because the effective tax rate is '
+     'inferred from the disclosed FY2025 closure, changing the cash balance changes the '
+     'imputed finance income and therefore the imputed tax rate on the operating business. '
+     'Adding EGP 1bn of cash adds to net cash and subtracts almost exactly as much from '
+     'enterprise value. The clean net-cash sensitivity — the tax rate held and the balance '
+     'varied — is shown below.'),
     ('The beta is weak. ', f'R-squared of {pc(BETA["r2"], 1)} and a 90% interval of '
-     f'[{n2(BETA["ci90"][0])}, {n2(BETA["ci90"][1])}]. The valuation is shown across a beta '
-     f'range for exactly this reason, and the lead-lag correction is published as a value.'),
+     f'[{n2(BETA["ci90"][0])}, {n2(BETA["ci90"][1])}]. The valuation is shown across a '
+     f'beta range for exactly this reason, and the lead-lag correction is published as a '
+     f'value.'),
     ('The price map is over-wide. ', f'Its bands cover {pc(S0["cov80"], 0)} and '
      f'{pc(S0["cov90"], 0)} of outcomes against nominal 80% and 90%, and its skill against '
      f'a random walk is {sg(S0["skill_norm"], 1)}. It is carried as illustrative only.'),
-    ('A minority position under a 60% shareholder. ', 'Aridos Jativa of Spain owns 60% of '
-     'the capital. No control premium or discount is applied anywhere in this valuation, in '
-     'either direction. The company also holds 1% of its own capital in treasury, acquired '
-     'during 2025, which is excluded from the share count throughout.'),
-    ('Currency, on both sides now. ', 'Revenue is 69% local and 31% export; costs are '
-     'largely in pounds but fuel and spares are not; and the debt is 91% euro. A weaker '
-     'pound raises export revenue in pounds and raises the pound cost of servicing the euro '
-     'debt. The model carries one currency path acting on all three legs.'),
+    ('A minority position. ', f'The float sits under a long-standing controlling '
+     f'shareholder. No control premium or discount is applied anywhere in this valuation, '
+     f'in either direction.'),
+    ('Currency. ', 'Revenue and most costs are in Egyptian pounds, but fuel, spares and any '
+     'future capacity are priced in hard currency. The model carries one currency path and '
+     'lets it act on both the import cost and the export revenue, because the two legs '
+     'partly offset.'),
 ]:
     bullet(body, bold_head=head)
 rows = [['Net cash at the valuation date (EGP mn)'] + [n0(x) for x in SN['nc_grid']]]
@@ -741,62 +643,46 @@ doc.add_page_break()
 H1('Appendix A  Financial statements')
 H2('Income statement')
 rows = [['EGP mn'] + YH + YF]
-rows.append(['Revenue'] + [n0(x) for x in H['revenue']] + [n0(x) for x in F['revenue']])
-rows.append(['Cost of sales'] + [f'({n0(x)})' for x in H['cogs']] + ['—'] * 5)
-rows.append(['Gross profit'] + [n0(x) for x in H['gross_profit']] + ['—'] * 5)
-rows.append(['Operating profit'] + [n0(x) for x in H['ebit']] + [n0(x) for x in F['ebit']])
-rows.append(['Depreciation and amortisation'] + [n0(x) for x in H['dna']] +
-            [n0(x) for x in F['dna']])
-rows.append(['EBITDA'] + [n0(x) for x in H['ebitda']] + [n0(x) for x in F['ebitda']])
-rows.append(['EBITDA margin'] + [pc(x) for x in H['margin']] + [pc(x) for x in F['margin']])
-rows.append(['Net finance and other income'] +
-            [n0(H['pbt'][i] - H['ebit'][i]) for i in range(3)] +
+for lab, key, fmt in [('Revenue', 'revenue', n0), ('EBITDA', 'ebitda', n0),
+                      ('EBITDA margin', 'margin', pc),
+                      ('Depreciation and amortisation', 'dna', n0),
+                      ('EBIT', 'ebit', n0)]:
+    rows.append([lab] + [fmt(x) for x in H[key]] + [fmt(x) for x in F[key]])
+rows.append(['Net finance income'] + ['—', '—', n0(H['netfin_fy25'])] +
             [n0(x) for x in F['treasury']])
-rows.append(['Profit before tax'] + [n0(x) for x in H['pbt']] + [n0(x) for x in F['pbt']])
-rows.append(['Income tax'] + [f'({n0(x)})' for x in H['tax']] +
-            [f'({n0(x)})' for x in F['tax']])
+rows.append(['Profit before tax'] + ['—', '—', n0(H['pbt_fy25'])] + [n0(x) for x in F['pbt']])
 rows.append(['Attributable profit'] + [n0(x) for x in H['pat']] + [n0(x) for x in F['pat']])
-rows.append(['Earnings per share (EGP)'] + [n2(x) for x in H['eps']] +
-            [n2(x) for x in F['eps']])
+rows.append(['Earnings per share (EGP)'] + [n2(x) for x in H['eps']] + [n2(x) for x in F['eps']])
+rows.append(['Despatched volume (Mt)'] + [n3(x) for x in H['volume_mt']] +
+            [n3(x) for x in F['volume_mt']])
+rows.append(['Realised price (EGP/t)'] + [n0(x) for x in H['price_t']] +
+            [n0(x) for x in F['price_t']])
 table(rows, [1.52, 0.72, 0.72, 0.72, 0.72, 0.72, 0.72, 0.72, 0.72], size=8.0,
-      band_rows={11})
-caption('Table A1 — Three AUDITED years and five forecast. FY2023-FY2025 revenue, cost of '
-        'sales, administrative expenses, provisions, pre-tax profit, tax, attributable '
-        'profit, earnings per share and depreciation are disclosed figures; operating '
-        'profit, EBITDA and the margins are formulas over them. The published earnings per '
-        'share is struck on distributable profit after the statutory employees\' and '
-        'directors\' share, which is why it differs slightly from profit over the share '
-        'count.')
+      band_rows={8})
+caption(f'Table A1 — Three years historical and five forecast. Revenue and attributable '
+        f'profit for FY2023-FY2025 and FY2025 operating income are as disclosed; every '
+        f'other historical line is derived by closing the disclosed profit. Earnings per '
+        f'share here is attributable profit over the current share count and so reads EGP '
+        f'{n2(H["eps"][2])} for FY2025; the company\'s own published figure is EGP '
+        f'{n2(IN["eps_fy25"])}, the difference of about '
+        f'{pc((H["eps"][2]-IN["eps_fy25"])/H["eps"][2])} being the statutory '
+        f'employees\' and directors\' share of profit.')
 H2('Balance sheet')
-rows = [['EGP mn'] + YH + YF]
-rows.append(['Total assets'] + [n0(x) for x in
-                                [IN['ta_fy23'], IN['ta_fy24'], IN['ta_fy25']]] +
-            [n0(x) for x in F['total_assets']])
-rows.append(['Cash and bank balances'] +
-            [n0(x) for x in [IN['cash_fy23'], IN['cash_fy24'], IN['cash_fy25']]] +
-            [n0(x) for x in F['cash']])
-rows.append(['Interest-bearing debt'] +
-            [n0(x) for x in [IN['debt_fy23'], IN['debt_fy24'], W['debt_total']]] +
-            [n0(W['debt_total']) for _ in YF])
-rows.append(['Net (cash) / debt'] +
-            [n0(IN['debt_fy23'] - IN['cash_fy23']), n0(IN['debt_fy24'] - IN['cash_fy24']),
-             n0(W['debt_total'] - IN['cash_fy25'])] +
-            [n0(W['debt_total'] - x) for x in F['cash']])
-rows.append(['Equity attributable to owners'] +
-            [n0(x) for x in [IN['eq_fy23'], IN['eq_fy24'], IN['eq_fy25']]] +
-            [n0(x) for x in F['equity']])
-rows.append(['Book value per share (EGP)'] +
-            [n2(x / SH) for x in [IN['eq_fy23'], IN['eq_fy24'], IN['eq_fy25']]] +
-            [n2(x / SH) for x in F['equity']])
-rows.append(['Return on equity'] +
-            [pc(H['pat'][0] / IN['eq_fy23']), pc(H['pat'][1] / IN['eq_fy24']),
-             pc(LN['roe_fy25'])] +
-            [pc(F['pat'][i] / F['equity'][i]) for i in range(5)])
-table(rows, [1.52, 0.72, 0.72, 0.72, 0.72, 0.72, 0.72, 0.72, 0.72], size=8.0,
-      band_rows={1})
-caption('Table A2 — All three historical years are AUDITED. The FY2025 balance sheet closes '
-        f'exactly: total assets of EGP {n0(IN["ta_fy25"])}mn less total liabilities of EGP '
-        f'{n0(IN["tl_fy25"])}mn equals equity of EGP {n0(IN["eq_fy25"] + IN["nci"])}mn.')
+rows = [['EGP mn', 'FY2025'] + YF]
+for lab, key in [('Net property, plant and equipment', 'ppe'),
+                 ('Working capital', 'wc'), ('Cash and equivalents', 'cash')]:
+    base = {'ppe': DNAT['ppe_estimate'], 'wc': DNAT['inventory'] + DNAT['receivables'],
+            'cash': IN['cash_fy25']}[key]
+    rows.append([lab, n0(base)] + [n0(x) for x in F[key]])
+rows.append(['Total assets', n0(IN['ta_fy25'])] + [n0(x) for x in F['total_assets']])
+rows.append(['Total debt', n0(IN['debt_fy25'])] + [n0(IN['debt_fy25']) for _ in YF])
+rows.append(['Total equity', n0(IN['eq_fy25_rep'])] + [n0(x) for x in F['equity']])
+rows.append(['Net (cash) / debt', n0(DCF['net_debt_bs'])] +
+            [n0(IN['debt_fy25'] - x) for x in F['cash']])
+rows.append(['Book value per share (EGP)', n2(LN['bvps'])] + [n2(x / SH) for x in F['equity']])
+table(rows, [1.90, 0.90, 0.90, 0.90, 0.90, 0.90, 0.90], size=8.3, band_rows={4})
+caption('Table A2 — FY2023 and FY2024 balance sheets are not retrievable at the '
+        'evidentiary standard used elsewhere and are left blank rather than reconstructed.')
 H2('Cash flow')
 rows = [['EGP mn'] + YF]
 for lab, vals in [('Attributable profit', F['pat']),

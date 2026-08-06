@@ -14,7 +14,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 REG = "REGULATOR_OFFICIAL"
 PRESS = "REPUTABLE_PRESS"
 AGG = "DATA_AGGREGATOR"
-FILING = "COMPANY_FILING_REPORTED"
+FILING = "AUDITED_FINANCIAL_STATEMENTS"
 IND = "INDUSTRY_BODY"
 HOUSE = "HOUSE_ENGINE"
 
@@ -154,34 +154,33 @@ FINDINGS = [
 
     # ------------------------------- COMPANY --------------------------------
     F('F17', 'COMPANY', 'asset base', 'STRUCTURAL',
-      'Two production lines in Suez governorate producing on average about five million '
-      'tonnes of first-quality clinker and cement a year, roughly 6% of Egypt\'s nominal '
-      'capacity — the second largest cement plant in the country',
-      'Company corporate disclosure (About Us) and industry profiles', FILING, '2026-01-01',
+      'A cement producer with a clinker capacity of 4.2 million tonnes a year that can produce '
+      '5 million tonnes a year of cement, on two lines in Suez governorate',
+      'Audited FY2025 statements note 1', FILING, '2025-12-31',
       'Nameplate capacity, the base of the volume build, the denominator of the '
       'enterprise-value-per-tonne lens and the base of the fixed-cost line.'),
     F('F18', 'COMPANY', 'financial history', 'DRIVER_UNLOCK',
       'Net sales EGP 4.67bn (2022), 6.04bn (2023), 8.729bn (2024) and 12.447bn (2025, '
       '+42.6%); attributable profit EGP 358.98mn, 697.49mn, 1.160bn and 3.599bn; earnings '
       'per share EGP 3.02 (2024) and 9.49 (2025)',
-      'EGX filings reported by Mubasher, Arab Finance, Zawya and cemnet', FILING,
-      '2026-03-01',
+      'Audited consolidated financial statements FY2023-FY2025, Deloitte (Wafik, Ramy & '
+      'Partners), signed 25 February 2026', FILING, '2025-12-31',
       'The disclosed history the whole model closes against, and the base year of the '
       'forecast.', is_fs=True),
     F('F19', 'COMPANY', 'financial history', 'DRIVER_UNLOCK',
       'Full-year 2025 operating income of EGP 4,595.82mn and a fourth-quarter EBITDA of '
       'EGP 1,393.01mn on fourth-quarter sales of EGP 3,645.60mn; trailing gross margin '
       '40.77%',
-      'Aggregated income-statement data from S&P Global Market Intelligence as carried by '
-      'independent aggregations', AGG, '2026-03-01',
+      'Audited consolidated financial statements FY2025 — statement of profit or loss, and '
+      'notes 5 and 6', FILING, '2025-12-31',
       'The disclosed operating-profit anchor the bottom-up cost stack is calibrated to, and '
       'one of the three legs of the depreciation triangulation.', is_fs=True),
     F('F20', 'COMPANY', 'balance sheet', 'DRIVER_UNLOCK',
       'Total assets about EGP 8,783.72mn, total equity about EGP 4,642.73mn, total debt '
       'about EGP 1,035.19mn and cash about EGP 3,459.39mn on the latest reported balance '
       'sheet — a NET CASH position of roughly EGP 2.42bn',
-      'Aggregated balance-sheet data from S&P Global Market Intelligence as carried by '
-      'independent aggregations', AGG, '2026-03-01',
+      'Audited consolidated statement of financial position at 31 December 2025 and notes 19, '
+      '20, 21, 24 and 25', FILING, '2025-12-31',
       'The enterprise-to-equity bridge, the capital-structure weights in the cost of '
       'capital, and the treasury-income line. Carried with an explicit caution: a separate '
       'aggregation prints total liabilities of EGP 2,894.13mn, which does not close against '
@@ -190,22 +189,26 @@ FINDINGS = [
     F('F21', 'COMPANY', 'recent trading', 'DRIVER_UNLOCK',
       'First-quarter 2026 net sales EGP 2.995bn (from 2.554bn) and attributable profit EGP '
       '943.068mn (from 590.347mn), +59.7% year on year, earnings per share EGP 2.50',
-      'EGX filing reported by Arab Finance, Zawya and MarketScreener', FILING, '2026-05-12',
+      'Reviewed condensed consolidated interim financial statements, three months to 31 March '
+      '2026, Deloitte, 25 May 2026', FILING, '2026-03-31',
       'The reality check on the first forecast year: revenue growth has decelerated to '
       '+17.3% while profit growth remains strong, which is precisely the price-flat, '
       'margin-holding pattern the forecast assumes.', is_fs=True),
     F('F22', 'COMPANY', 'distributions', 'STRUCTURAL',
       'Cash dividends of EGP 1.10bn for 2024 (EGP 2.94 per share) and EGP 2.0bn for 2025 '
       '(EGP 5.34 per share), a payout of about 56% of attributable profit',
-      'Company general-meeting resolutions reported by Mubasher and Arab Finance', FILING,
-      '2026-04-01',
+      'Audited FY2025 statements note 28 (general assembly resolution of 2 December 2025) and '
+      'the Q1-2026 dividends-payable balance', FILING, '2026-03-31',
       'Sets the forecast payout ratio and, through it, the cash roll-forward on the balance '
       'sheet. Also the sharpest cross-check on the share count: both distributions divide to '
       'the same count to within 0.2%.', is_fs=True),
     F('F23', 'COMPANY', 'ownership', 'COLOR',
-      'Cementos La Union of Spain acquired majority control in 2004 and the company listed '
-      'on the EGX in May 2014; the price history supplied begins on the listing date',
-      'Company history disclosure; the supplied EGX daily series', FILING, '2014-05-18',
+      'Aridos Jativa, a Spanish company, owns 60% of the capital. The group also consolidates '
+      'Andalus Concrete (99.99%), ACC Management and Trading (99%), Evolve for Investment '
+      'and Project Management — the alternative-fuel arm — and Egypt Green for environmental '
+      'services, both 99.99%. The company holds 1% of its own capital in treasury, acquired '
+      'during 2025 under a board approval of 21 July 2025',
+      'Audited FY2025 statements notes 1, 21 and 24', FILING, '2025-12-31',
       'Context for the minority-position risk paragraph. No control premium or discount is '
       'applied anywhere in the valuation.'),
     F('F24', 'COMPANY', 'decarbonisation and cost position', 'DRIVER_UNLOCK',
