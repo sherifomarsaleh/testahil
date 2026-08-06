@@ -123,7 +123,11 @@ rows = [['Read', 'Basis', 'Range (EGP/share)', 'Central', 'vs spot'],
          '—', p2(DCF['ccy_alt_ps']), sgn(DCF['ccy_alt_ps']/SPOT-1,0)],
         ['Memo — market price', 'closing price on the anchor date', '—', p2(SPOT), '—']]
 table(rows, [1.30, 2.75, 1.15, 0.72, 0.63], band_rows={5}, size=8.6)
-caption(f"Ranges are bear-to-bull within each lens; the central is the weighted base. Terminal "
+caption(f"Rows marked \u201cMemo\u201d are shown for information and are deliberately NOT included in "
+        f"the weighted central: they are alternative readings of the same company under a different "
+        f"convention, shown so the reader can see what each contested choice is worth rather than "
+        f"having it averaged silently into the headline. Ranges are bear-to-bull within each lens; "
+        f"the central is the weighted base. Terminal "
         f"value is {pc(DCF['tv_share'],0)} of the discounted-cash-flow enterprise value — a high "
         f"share, disclosed here and again in the bridge, and the reason the terminal assumptions "
         f"are stress-tested in section 1.9.")
