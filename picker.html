@@ -39,17 +39,29 @@
   .hbtn.on{background:var(--teal);border-color:var(--teal);color:#fff}
   .pk-controls{display:flex;gap:18px;flex-wrap:wrap;align-items:center;margin-top:10px}
   .pk-controls label.ck{display:flex;align-items:center;gap:7px;font-size:var(--fs-small);cursor:pointer;white-space:nowrap}
-  .pk-table{width:100%;min-width:880px;border-collapse:collapse;font-size:var(--fs-small)}
-  .pk-table th{text-align:left;padding:8px 10px;border-bottom:2px solid var(--line);font-weight:600;white-space:nowrap}
-  .pk-table td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:middle;white-space:nowrap}
-  .pk-table td.pk-stock{white-space:normal;min-width:150px}
+  .pk-table{width:100%;min-width:680px;border-collapse:collapse;font-size:var(--fs-small);table-layout:auto}
+  /* header labels are allowed to wrap onto 2 lines -- most of them (e.g. "Reachability
+     (3 months)", "P(touch fair value)") are wider as one line than the data underneath
+     ever needs, and were forcing the whole table wider than the card. Data cells stay
+     single-line: a wrapped NUMBER or DATE is much harder to read than a wrapped label. */
+  .pk-table th{text-align:left;padding:8px 6px;border-bottom:2px solid var(--line);font-weight:600;white-space:normal;vertical-align:bottom;line-height:1.25;max-width:110px}
+  /* short-data columns (Price, Gap, P(touch), Beats cash?) would otherwise shrink to fit
+     their own short values and force the header into 3+ single-word lines; a min-width
+     keeps each header to a clean 2 lines without needing to shorten the label text. */
+  .pk-table th:nth-child(2){min-width:58px}
+  .pk-table th:nth-child(3){min-width:76px}
+  .pk-table th:nth-child(4){min-width:56px}
+  .pk-table th:nth-child(6){min-width:128px}
+  .pk-table th:nth-child(7){min-width:118px}
+  .pk-table td{padding:8px 8px;border-bottom:1px solid var(--line);vertical-align:middle;white-space:nowrap}
+  .pk-table td.pk-stock{white-space:normal;min-width:132px}
   .pk-table td.num,.pk-table th.num{text-align:right;font-family:'IBM Plex Mono',monospace}
   .pk-wrap{overflow-x:auto}
-  .pk-sortbtn{font:inherit;font-weight:600;background:none;border:0;padding:0;margin:0;cursor:pointer;color:var(--ink);display:inline-flex;align-items:center;gap:6px}
+  .pk-sortbtn{font:inherit;font-weight:600;background:none;border:0;padding:0;margin:0;cursor:pointer;color:var(--ink);display:block;width:100%;text-align:left}
+  .pk-table th.num .pk-sortbtn{text-align:right}
   .pk-sortbtn:hover{color:var(--teal)}
   .pk-sortbtn:hover .pk-care{color:var(--teal);opacity:1}
-  .pk-table th.num .pk-sortbtn{flex-direction:row-reverse}
-  .pk-care{font-size:15px;opacity:.55;line-height:1;color:var(--muted)}
+  .pk-care{font-size:15px;opacity:.55;color:var(--muted);margin-inline-start:3px}
   .pk-sortbtn[aria-sort] .pk-care{opacity:1;color:var(--teal);font-size:16px;font-weight:700}
   .pk-table th[aria-sort]:not([aria-sort="none"]){background:var(--tint)}
   [data-theme="dark"] .pk-table th[aria-sort]:not([aria-sort="none"]){background:rgba(23,138,118,.16)}
