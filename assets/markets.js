@@ -70,6 +70,7 @@ const MARKET_OF = {
  "RMDA": "EG",
  "SABIC": "SA",
  "SALIK": "AE",
+ "SCEM": "EG",
  "SNB": "SA",
  "STC": "SA",
  "SWDY": "EG",
