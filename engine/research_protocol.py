@@ -27,8 +27,9 @@ SIGCM_CLAUSES = {
         "exchange disclosure portal (EGX, Tadawul, ADX, DFM, QE, KRX/DART, NSE/BSE, EDGAR, LSE RNS), "
         "or the regulator's filing archive. IF THEY CANNOT BE REACHED, STOP WORK AND ASK SHERIF WHAT "
         "TO DO — do not reconstruct, do not substitute an aggregator, and do not ship a model behind a "
-        "'best available data, labelled as such' caveat. Partial access counts as unreachable: full "
-        "IS/BS/CF plus notes for the 3 required historical years, including the forecast base year. A "
+        "'best available data, labelled as such' caveat. THE FLOOR IS TWO COMPLETE FINANCIAL YEARS "
+        "(full IS+BS+CF plus notes per year, officially sourced): 0-1 = STOP AND ASK; exactly 2 = build "
+        "and DISCLOSE the shortfall against QC items (e) and (s); 3+ = normal run. A "
         "403/405/407 or TLS failure is an EGRESS-PROXY fault until checked, not a company-website "
         "failure. This gate OUTRANKS the run-end-to-end-without-asking default."
     ),
@@ -80,6 +81,12 @@ NEVER_A_BUILD_SOURCE = (
 )
 
 
+# A "complete financial year" = full IS + BS + CF PLUS the notes for that year, from an official
+# source. A summary income statement with no cash flow, or no notes behind debt/D&A, does not count.
+MIN_COMPLETE_FINANCIAL_YEARS = 2   # below this: STOP AND ASK
+TARGET_COMPLETE_FINANCIAL_YEARS = 3  # QC item (e); between floor and target: build and DISCLOSE
+
+
 class PrimarySourceUnavailable(RuntimeError):
     """Raised when the company's own statements cannot be read. The correct handling is to STOP AND ASK."""
 
@@ -87,31 +94,68 @@ class PrimarySourceUnavailable(RuntimeError):
 def assert_primary_source_access(
     ticker: str,
     statements_obtained: bool,
+    complete_years_obtained: Optional[int] = None,
     sources_tried: Optional[list] = None,
     missing: Optional[list] = None,
     proxy_checked: bool = False,
-) -> None:
+) -> Optional[str]:
     """Gate the financials build on having actually read the company's own statements.
 
-    Call this BEFORE any forecast driver is set. It deliberately raises rather than returning a
-    degraded build: there is no 'proceed with a caveat' path. The caller's job on catching it is to
-    STOP and put the question to Sherif — never to fall back to an aggregator.
+    Call this BEFORE any forecast driver is set.
 
-    `sources_tried` is a list of (source_class_or_url, failure_mode) pairs; `missing` names what could
-    not be assembled (statements and periods). `proxy_checked` records that a 403/405/407 or TLS
-    failure was diagnosed against the egress proxy before the source was called unreachable.
+    Raises `PrimarySourceUnavailable` when the statements cannot be reached at all, or when fewer
+    than MIN_COMPLETE_FINANCIAL_YEARS (2) complete years can be assembled from official sources.
+    There is no 'proceed with a caveat' path below the floor: the caller's job on catching it is to
+    STOP and put the question to Sherif, never to fall back to an aggregator.
+
+    Between the floor and TARGET_COMPLETE_FINANCIAL_YEARS (3) the build proceeds and this returns the
+    disclosure string that MUST be carried on delivery and against QC items (e) and (s). At or above
+    the target it returns None.
+
+    `complete_years_obtained` must be stated once `statements_obtained` is True — the count is the
+    evidence for item (s), so it is never inferred. `sources_tried` is a list of
+    (source_class_or_url, failure_mode) pairs; `missing` names what could not be assembled.
+    `proxy_checked` records that a 403/405/407 or TLS failure was diagnosed against the egress proxy
+    before the source was called unreachable.
     """
     if statements_obtained:
-        return
+        if complete_years_obtained is None:
+            raise ValueError(
+                "State complete_years_obtained — the count of complete financial years (full IS+BS+CF "
+                "plus notes, officially sourced) is the evidence for QC item (s) and is never inferred."
+            )
+        if complete_years_obtained >= TARGET_COMPLETE_FINANCIAL_YEARS:
+            return None
+        if complete_years_obtained >= MIN_COMPLETE_FINANCIAL_YEARS:
+            note = (
+                f"SHORT OF THE HOUSE STANDARD — {complete_years_obtained} complete financial years "
+                f"obtained, {TARGET_COMPLETE_FINANCIAL_YEARS} wanted by QC item (e). At or above the "
+                f"{MIN_COMPLETE_FINANCIAL_YEARS}-year floor, so the build proceeds. DISCLOSE ON DELIVERY: "
+                "which year is missing, where it was looked for, and what it costs the forecast. Record "
+                "against items (e) and (s) — never a silent pass."
+            )
+            print("WARNING: " + note)
+            return note
+        # below the floor -> fall through to the stop-and-ask raise
+        missing = list(missing or []) + [
+            f"only {complete_years_obtained} complete financial year(s) — below the "
+            f"{MIN_COMPLETE_FINANCIAL_YEARS}-year floor"
+        ]
     tried = sources_tried or []
     lines = [
         f"PRIMARY-SOURCE ACCESS GATE — STOP AND ASK ({ticker or 'ticker not stated'}).",
-        "The company's own issued financial statements could not be read, so the forecast cannot be built.",
+        (
+            "The company's own issued financial statements could not be read, so the forecast cannot be built."
+            if not statements_obtained
+            else f"Fewer than {MIN_COMPLETE_FINANCIAL_YEARS} complete financial years could be assembled from "
+                 "official sources, so there is nothing to observe a growth rate, a working-capital movement "
+                 "or a capex relationship from — the forecast cannot be built."
+        ),
         "Missing: " + (", ".join(missing) if missing else "not itemised — itemise before asking."),
         "Official sources attempted: "
         + ("; ".join(f"{s} -> {f}" for s, f in tried) if tried else "NONE RECORDED — attempt them before stopping."),
     ]
-    if not proxy_checked:
+    if not proxy_checked and not statements_obtained:
         lines.append(
             "Egress proxy NOT yet ruled out — a 403/405/407 or TLS failure is an environment fault until "
             "checked (/root/.ccr/README.md). Check it before declaring the source unreachable."
@@ -176,7 +220,26 @@ if __name__ == "__main__":
     assert not c.passed(), "empty checklist should fail"
     assert "primary_source_access_confirmed" in c.failures(), "access gate must be an unmet clause by default"
 
-    assert_primary_source_access("TEST", statements_obtained=True)  # reachable -> no-op
+    # 3+ complete years -> clean pass
+    assert assert_primary_source_access("TEST", True, complete_years_obtained=3) is None
+    # exactly the floor -> proceeds, but returns the disclosure the delivery must carry
+    note = assert_primary_source_access("TEST", True, complete_years_obtained=2)
+    assert note and "DISCLOSE ON DELIVERY" in note
+    # reachable but the year count was never stated -> caller error, not a silent pass
+    try:
+        assert_primary_source_access("TEST", True)
+    except ValueError:
+        pass
+    else:
+        raise AssertionError("complete_years_obtained must be stated")
+    # below the floor -> stop and ask, even though the statements were partly readable
+    try:
+        assert_primary_source_access("TEST", True, complete_years_obtained=1)
+    except PrimarySourceUnavailable as e:
+        assert "STOP AND ASK" in str(e) and "below the 2-year floor" in str(e)
+    else:
+        raise AssertionError("below-floor year count must raise PrimarySourceUnavailable")
+    # unreachable -> stop and ask
     try:
         assert_primary_source_access(
             "TEST",

@@ -62,10 +62,26 @@ Any of these, and partial access counts:
 - The filings are simply not published there for the periods the forecast needs.
 - The documents load but are unreadable (scanned images that will not parse, corrupt or truncated
   PDFs).
-- The statements are reachable but **incomplete for the build**: the full IS/BS/CF plus notes for the
-  required 3 historical years — including the base year the forecast starts from — cannot be
-  assembled from official sources. A ground-up forecast that is missing gross profit, SG&A, D&A,
-  interest expense or the debt schedule is not a forecast, it is a guess with a caveat attached.
+- The statements are reachable but **fall below the two-year floor** (see immediately below).
+
+### The floor is TWO COMPLETE FINANCIAL YEARS
+
+**A complete financial year means the full IS, BS and CF *plus the notes* for that year, from an
+official source.** A year with a summary income statement and no cash flow, or with no notes behind
+the debt and D&A lines, is not complete and does not count toward the floor.
+
+| Complete years obtainable officially | Behaviour |
+|---|---|
+| **0 or 1** | **STOP AND ASK.** One year gives no growth rate, no working-capital delta, no roll-forward — there is nothing to build a ground-up forecast on |
+| **2** | **Build, and say so.** State on delivery which year is missing, where it was looked for, and what it costs the forecast; record the shortfall against QC items (e) and (s) rather than passing them silently |
+| **3 or more** | Normal run — item (e) is satisfied on its own terms |
+
+The distinction is real, not bureaucratic: two years is the minimum from which a growth rate, a
+working-capital movement and a capex-to-revenue relationship can be *observed* rather than assumed,
+which is what separates a ground-up forecast from a guess. It is nonetheless thinner than the house
+standard, so it is disclosed on the face of the study, never absorbed quietly. A ground-up forecast
+still missing gross profit, SG&A, D&A, interest expense or the debt schedule within those years is
+not a forecast at all — that is a stop regardless of the year count.
 
 ### What the stop looks like
 
@@ -105,7 +121,8 @@ and any name rebuilt for its own reasons rebuilds under it.
   `primary_source_access_confirmed`, and `assert_primary_source_access()`, which raises
   `PrimarySourceUnavailable` rather than returning a degraded build.
 - QC gate item **(s)** — evidence is the list of official sources actually read, per statement and
-  per period; an aggregator appearing as a *build* source is a hard fail.
+  per period, plus the count of complete financial years obtained against the two-year floor; an
+  aggregator appearing as a *build* source is a hard fail.
 - The condensed project-instruction block and `Study_Initiation_Prompt.md` both carry the carve-out,
   so the "do not ask me, derive it yourself" default cannot be read as overriding it.
 
