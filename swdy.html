@@ -138,7 +138,7 @@
           "name": "Is the Elsewedy Electric Company S.A.E. model free to download?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. The full SWDY valuation study (Word) and the open Excel model are free to download, with every assumption editable."
+            "text": "Yes. The full SWDY valuation study (PDF/Word) and the open Excel model are free to download, with every assumption editable."
           }
         }
       ]
@@ -356,9 +356,9 @@
           <p class="attack-note">Sent straight to info@testahil.com — we fix confirmed flaws in public.</p>
         </form>
       </details>
-      <a class="btn dlfile" id="dl-pdf" href="#" rel="noopener" download>Open the study (Word)</a>
+      <a class="btn dlfile" id="dl-pdf" href="#" rel="noopener" download>Open the study (PDF)</a>
       <a class="btn ghost dlfile" id="dl-model" href="#" rel="noopener">Open the model (Excel)</a><a class="btn ghost dlfile" id="dl-biblio" href="#" rel="noopener" style="display:none">Open the source register</a>
-      <p class="muted mobileonly" style="margin-top:8px">The full study (Word) and Excel model are available on a computer.</p>
+      <p class="muted mobileonly" style="margin-top:8px">The full study (PDF) and Excel model are available on a computer.</p>
       <button class="share-btn" data-share="See the odds on Elsewedy Electric — testahil" type="button" style="margin-left:8px">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"/><line x1="15.4" y1="6.5" x2="8.6" y2="10.5"/></svg>
         Share
@@ -371,7 +371,7 @@
 
   <!-- FOLLOW BY EMAIL -->
   </div>
-<aside class="study-side"><div class="ss-card ss-get"><p class="ss-h">Get the study</p><a class="btn dlfile" id="dl-pdf-side" href="#" rel="noopener" download style="display:block;text-align:center;box-sizing:border-box;margin-bottom:8px">Open the study (Word)</a><a class="btn ghost dlfile" id="dl-model-side" href="#" rel="noopener" style="display:block;text-align:center;box-sizing:border-box">Open the model (Excel)</a><a class="btn ghost dlfile" id="dl-biblio-side" href="#" rel="noopener" style="display:none;text-align:center;box-sizing:border-box;margin-top:8px">Open the source register</a></div><div class="ss-card ss-notify"><p class="ss-h">Get the next Elsewedy Electric update</p><p class="ss-sub">New edition on a fixed schedule. Your email, nothing else — no spam.</p><a class="ss-copy" href="https://testahil.substack.com/subscribe" target="_blank" rel="noopener" style="display:block;text-align:center;text-decoration:none;box-sizing:border-box">Subscribe by email &rarr;</a></div></aside>
+<aside class="study-side"><div class="ss-card ss-get"><p class="ss-h">Get the study</p><a class="btn dlfile" id="dl-pdf-side" href="#" rel="noopener" download style="display:block;text-align:center;box-sizing:border-box;margin-bottom:8px">Open the study (PDF)</a><a class="btn ghost dlfile" id="dl-model-side" href="#" rel="noopener" style="display:block;text-align:center;box-sizing:border-box">Open the model (Excel)</a><a class="btn ghost dlfile" id="dl-biblio-side" href="#" rel="noopener" style="display:none;text-align:center;box-sizing:border-box;margin-top:8px">Open the source register</a></div><div class="ss-card ss-notify"><p class="ss-h">Get the next Elsewedy Electric update</p><p class="ss-sub">New edition on a fixed schedule. Your email, nothing else — no spam.</p><a class="ss-copy" href="https://testahil.substack.com/subscribe" target="_blank" rel="noopener" style="display:block;text-align:center;text-decoration:none;box-sizing:border-box">Subscribe by email &rarr;</a></div></aside>
 </main>
 
 
@@ -418,8 +418,8 @@ function show(h){
 }
 show("t20");
 
-// No PDF is produced for this edition (the build environment cannot convert), so the study
-// button serves the Word file and is labelled as such. Falls back to the PDF when one exists.
+// The PDF is the deliverable; the Word file is only a fallback if an edition ever ships
+// without one, so the button can never resolve to "undefined".
 var _study = T.files.pdf || T.files.study;
 document.getElementById("dl-pdf").href=_study;
 document.getElementById("dl-model").href=T.files.model;

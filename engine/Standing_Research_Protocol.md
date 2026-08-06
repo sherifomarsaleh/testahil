@@ -467,11 +467,18 @@ that disagreed by up to EGP 117mn, because one was computed before a dependency 
 quantity is computed once and consumed everywhere.** Building the workbook formula-first is a
 structural audit of the engine, and defects it surfaces are engine defects, not workbook defects.
 
-**Tooling note.** LibreOffice cannot load spreadsheets in the current environment, so recalculation
-runs through a purpose-built evaluator (`xlcalc.py`). Keep the evaluator strict: anything it cannot
-parse is a FAILURE, never a skip. Its own sheet-name pattern once allowed hyphens, so
+**Tooling note.** Recalculation runs through a purpose-built evaluator (`xlcalc.py`) rather than
+through the spreadsheet application. Keep the evaluator strict: anything it cannot parse is a
+FAILURE, never a skip. Its own sheet-name pattern once allowed hyphens, so
 `C34-Assumptions!$C$45` parsed as a reference to a sheet named "C34-Assumptions" and silently
 swallowed the subtraction — **a permissive verifier is worse than no verifier.**
+
+The evaluator began as a workaround for LibreOffice failing to load ANY document here. That
+diagnosis was wrong and stood for several editions: LibreOffice was installed, but only
+`libreoffice-core` — the Writer and Calc import filters were never present, so every conversion
+died with "source file could not be loaded". **A tool that fails on every input, including a
+trivial CSV, is incomplete, not fussy.** Installing `libreoffice-writer` and `libreoffice-calc`
+fixed it, PDFs are now built by `engine/make_pdf.py`, and the evaluator is kept on merit.
 
 ---
 

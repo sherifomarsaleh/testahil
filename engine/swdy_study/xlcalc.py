@@ -1,10 +1,16 @@
 """A small, explicit spreadsheet evaluator.
 
-LibreOffice cannot load any spreadsheet in this environment (it fails on a trivial CSV and
-on the previous study's own workbook), so the delivered model is verified by evaluating it
-here instead: arithmetic, SUM/MIN/MAX/MEDIAN/AVERAGE over ranges or over comma-separated
-scalars, absolute and relative cell references, and cross-sheet references. Anything the
-evaluator does not understand raises rather than being silently skipped.
+The delivered model is verified by evaluating it here rather than by handing it back to the
+application that wrote it: arithmetic, SUM/MIN/MAX/MEDIAN/AVERAGE over ranges or over
+comma-separated scalars, absolute and relative cell references, and cross-sheet references.
+Anything the evaluator does not understand raises rather than being silently skipped.
+
+This started as a workaround — LibreOffice could not load any document here, because only
+libreoffice-core was installed and the Writer/Calc import filters were absent. That is fixed
+(see engine/make_pdf.py), but the evaluator is KEPT deliberately: an independent
+reimplementation that has to agree with the model cell-for-cell is a stronger check than
+asking a spreadsheet engine to confirm its own arithmetic, and it is what carries the
+expected-value gate in recalc.py.
 
 Used by recalc.py — does the workbook reproduce the model? — and by driver_test.py — does
 changing a driver on the Assumptions sheet actually reprice the workbook?
