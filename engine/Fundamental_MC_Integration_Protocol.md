@@ -72,6 +72,32 @@ These are binding. A run that breaks any of them is a HARD FAIL and must not be 
    See §7.
 6. **The cash hurdle is always shown.** EGP risk-free is `rf_live = 19.50%`
    (`market_profiles.py:95`). Any read that does not compare against it is incomplete.
+7. **Freshness floor (adopted 6-Aug-2026).** Invariant 3 caps a fair value's date from above
+   (no look-ahead); this caps it from below. A fair value older than **183 days (6 months)** at the
+   anchor date is **STALE**: the overlay still computes but carries `fv_stale: true` on every
+   surface, and the observation is **excluded from the Phase C panel** — a frozen numerator turns
+   the value signal into a mean-reversion signal against an arbitrary old number, which is a
+   different (and unwanted) experiment. The 6-month cap is calibrated to Egypt's own input decay:
+   the CBE cut 5.5pp in twelve months (25.00% → 19.50%, Apr 2025 → Apr 2026), and the ISPH
+   correction moved a published fair value 20.86 → 18.16 from a single WACC fix.
+
+---
+
+## 1b. Data cadence commitments
+
+These are the operating commitments the timeline in §10 is computed from. They are cadence
+**floors**, not targets:
+
+| Commitment | Cadence | Enforced by |
+|---|---|---|
+| **Price update, every covered name** | **at least monthly** | the roll-forward cycle (`Rollforward_and_Grading_Protocol.md` Step 0 — the 1-month maturity is the metronome); every update strikes a cone and mints a Phase C measurement |
+| **Fair-value re-strike, every covered name** | **at least every 6 months** | invariant 7 — a name that misses the window goes STALE, drops out of the Phase C panel, and its overlay is flagged on every surface until re-valued |
+| **Coverage** | **expanding toward 100 tickers** | current: 72 covered names (31 EGX); each addition raises the accrual rate in §10.3 — at 100 names measured monthly, the n=783 decision point arrives in ~8 months instead of ~11 |
+
+Two consequences worth stating. Quarterly fair-value refresh buys nothing over six-monthly — both
+keep the panel 100% fresh, so six months is the efficient floor. And an *annual* refresh would
+silently halve the accrual rate (half the names stale at any time), pushing the decision point out
+by roughly a year — which is why the floor is binding and not advisory.
 
 ---
 
@@ -411,18 +437,26 @@ From n=5 on 6-Aug-2026, to n=783:
 | **EGX 31 names, monthly re-measurement** | 31 | **25 months** | **~Sep 2028** |
 | EGX 31 names, quarterly | 10.3 | 75 months | ~Nov 2032 |
 | EGX 31 names, semi-annual | 5.2 | 151 months | ~Feb 2039 |
-| **All 72 covered names, monthly** | 72 | **11 months** | **~Jun 2027** |
+| **All 72 covered names, monthly — the committed cadence (§1b)** | 72 | **11 months** | **~Jun 2027** |
 | All 72 covered names, quarterly | 24 | 32 months | ~Apr 2029 |
+| **100 tickers (the §1b coverage target), monthly** | 100 | **8 months** | **~Mar 2027** |
+| 100 tickers, ramping 72→100 over 12 months, monthly | 72→100 | 10 months | ~Jun 2027 |
 | Only when a new study is published | ~0 | — | **never** |
 
-**Milestones on the recommended path** (EGX monthly, 31/month):
+Under the §1b commitments (monthly prices, ≤6-month fair values, coverage growing toward 100),
+the fair-value refresh cadence does **not** enter the arithmetic — six-monthly re-strikes keep the
+panel 100% fresh under invariant 7, so accrual is coverage × 1/month, full stop. Only a breach of
+the 6-month floor would slow the clock.
+
+**Milestones on the committed path** (all covered names, monthly; dates bracket the 72-name
+steady state and the 72→100 ramp):
 
 | Milestone | n | When |
 |---|---|---|
-| First descriptive read — `MIN_N`, still not promotable | 100 | **~Nov 2026** |
-| Resolves IC ≥ 0.20 if one exists | 194 | ~Feb 2027 |
-| Resolves IC ≥ 0.15 | 347 | ~Jul 2027 |
-| **Verdict on IC 0.10 — the decision point** | **783** | **~Sep 2028** |
+| First descriptive read — `MIN_N`, still not promotable | 100 | **~Sep–Oct 2026** |
+| Resolves IC ≥ 0.20 if one exists | 194 | ~Oct–Nov 2026 |
+| Resolves IC ≥ 0.15 | 347 | ~Nov 2026–Jan 2027 |
+| **Verdict on IC 0.10 — the decision point** | **783** | **~Mar–Jun 2027** |
 
 Pooling all 72 covered names reaches the decision point in **~11 months (mid-2027)** instead of 25.
 That is the single highest-leverage change available, and it carries one condition: each market has

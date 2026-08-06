@@ -19,7 +19,7 @@ Observations needed to resolve an IC at 80% power: 0.05→3138, 0.10→783, 0.15
 
 - distinct origin dates: 5 (2026-06-11 → 2026-06-25)
 - sign balance: 5 positive / 0 negative  **— ONE-SIDED: the short side is untested, so the IC is a magnitude ordering within a single sign**
-- observations dropped for lack of a realized outcome: 29
+- observations dropped for lack of a realized outcome: 0
 
 ### 3M horizon
 

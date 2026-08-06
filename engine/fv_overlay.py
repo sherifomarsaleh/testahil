@@ -72,6 +72,11 @@ N_PATHS = 50_000        # production config
 SEED = 42               # production seed
 SELFTEST_TOL = 0.02     # 2% max relative deviation on reconstructed quantiles
 
+# Invariant 7 (protocol §1): a fair value older than this at the anchor is STALE.
+# The overlay still computes — a stale read is better than none on a site surface
+# — but the row is flagged everywhere and excluded from the Phase C panel.
+FV_STALE_DAYS = 183
+
 # Below this |G| the fair value is inside the horizon's own noise: spot and fair
 # value are not distinguishable, so P(touch) approaches 1 for the trivial reason
 # that the level is already where the price is. Found in the first full EG run —
@@ -261,6 +266,7 @@ def overlay_for_ticker(tkr, t, profile, n_paths=N_PATHS, seed=SEED):
         "ccy": t.get("ccy"), "spot": spot,
         "anchor_date": anchor.isoformat(), "fv_asof": fv_asof.isoformat(),
         "fv_lag_days": (anchor - fv_asof).days,
+        "fv_stale": (anchor - fv_asof).days > FV_STALE_DAYS,
         "fv_bear": fair["bear"], "fv_base": fair["base"], "fv_full": fair["full"],
         "gap_base_pct": round((fair["base"] / spot - 1) * 100, 1),
         "sigma_src": "quantile_inversion",
@@ -337,6 +343,10 @@ def to_markdown(res: dict) -> str:
         n3 = sum(1 for r in rows if r["3M"]["band"] == band)
         L.append("") if band == "IN-REACH" else None
         L.append(f"- **{band}** — 1M: {n1}/{len(rows)}, 3M: {n3}/{len(rows)}")
+    stale = [r["ticker"] for r in rows if r.get("fv_stale")]
+    if stale:
+        L += ["", f"⚠ **STALE fair values** (older than {FV_STALE_DAYS} days at anchor — "
+              f"invariant 7 breach, re-study due): {', '.join(stale)}"]
     inf1 = sum(1 for r in rows if r["1M"]["informative"])
     inf3 = sum(1 for r in rows if r["3M"]["informative"])
     L += ["",

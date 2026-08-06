@@ -53,7 +53,7 @@
     "0.15": 347,
     "0.20": 194
    },
-   "skipped": 29,
+   "skipped": 0,
    "sign_balance": {
     "positive": 5,
     "negative": 0,
@@ -69,128 +69,11 @@
    "n": 0,
    "verdict": "INSUFFICIENT-POWER",
    "note": "no observation has a realized outcome yet",
-   "skipped": 34
+   "skipped": 0
   }
  },
  "skipped_detail": {
-  "1M": [
-   [
-    "ABUK",
-    "2026-07-02: +1M beyond OHLC coverage"
-   ],
-   [
-    "ADIB",
-    "2026-07-03: +1M beyond OHLC coverage"
-   ],
-   [
-    "BTFH",
-    "2026-07-03: +1M beyond OHLC coverage"
-   ],
-   [
-    "CCAP",
-    "2026-06-30: +1M beyond OHLC coverage"
-   ],
-   [
-    "CLHO",
-    "2026-07-13: +1M beyond OHLC coverage"
-   ],
-   [
-    "COMI",
-    "2026-06-29: +1M beyond OHLC coverage"
-   ],
-   [
-    "DSCW",
-    "2026-07-19: +1M beyond OHLC coverage"
-   ],
-   [
-    "EFID",
-    "2026-07-03: +1M beyond OHLC coverage"
-   ],
-   [
-    "EFIH",
-    "2026-07-03: +1M beyond OHLC coverage"
-   ],
-   [
-    "EGAL",
-    "2026-07-03: +1M beyond OHLC coverage"
-   ],
-   [
-    "ELEC",
-    "2026-08-05: +1M beyond OHLC coverage"
-   ],
-   [
-    "ETEL",
-    "2026-07-03: +1M beyond OHLC coverage"
-   ],
-   [
-    "FWRY",
-    "2026-07-02: +1M beyond OHLC coverage"
-   ],
-   [
-    "GBCO",
-    "2026-07-08: +1M beyond OHLC coverage"
-   ],
-   [
-    "GBCO",
-    "2026-07-08: +1M beyond OHLC coverage"
-   ],
-   [
-    "GBCO",
-    "2026-07-08: +1M beyond OHLC coverage"
-   ],
-   [
-    "GBCO",
-    "2026-07-09: +1M beyond OHLC coverage"
-   ],
-   [
-    "HELI",
-    "2026-07-03: +1M beyond OHLC coverage"
-   ],
-   [
-    "HRHO",
-    "2026-07-02: +1M beyond OHLC coverage"
-   ],
-   [
-    "ISPH",
-    "2026-07-07: +1M beyond OHLC coverage"
-   ],
-   [
-    "JUFO",
-    "2026-07-03: +1M beyond OHLC coverage"
-   ],
-   [
-    "KABO",
-    "2026-07-06: +1M beyond OHLC coverage"
-   ],
-   [
-    "LCSW",
-    "2026-07-06: +1M beyond OHLC coverage"
-   ],
-   [
-    "OIH",
-    "2026-07-03: +1M beyond OHLC coverage"
-   ],
-   [
-    "ORAS",
-    "2026-06-30: +1M beyond OHLC coverage"
-   ],
-   [
-    "ORWE",
-    "2026-07-02: +1M beyond OHLC coverage"
-   ],
-   [
-    "PRDC",
-    "2026-07-06: +1M beyond OHLC coverage"
-   ],
-   [
-    "RAYA",
-    "2026-07-03: +1M beyond OHLC coverage"
-   ],
-   [
-    "RMDA",
-    "2026-07-13: +1M beyond OHLC coverage"
-   ]
-  ]
+  "1M": []
  },
  "engine_hook": {
   "wired": false,
@@ -202,10 +85,12 @@
    {
     "ticker": "EMFD",
     "fv_date": "2026-06-19",
+    "vintage_id": "EMFD@2026-06-19",
     "origin": "2026-06-21",
     "grade": "2026-07-21",
     "h_grade": 21,
     "h_size": 20,
+    "fv_age_days": 2,
     "spot": 12.16,
     "fair_base": 19.84,
     "realized": 11.89,
@@ -218,10 +103,12 @@
    {
     "ticker": "OCDI",
     "fv_date": "2026-06-24",
+    "vintage_id": "OCDI@2026-06-24",
     "origin": "2026-06-24",
     "grade": "2026-07-26",
     "h_grade": 20,
     "h_size": 20,
+    "fv_age_days": 0,
     "spot": 24.23,
     "fair_base": 26.43,
     "realized": 27.1,
@@ -234,10 +121,12 @@
    {
     "ticker": "ORHD",
     "fv_date": "2026-06-25",
+    "vintage_id": "ORHD@2026-06-25",
     "origin": "2026-06-25",
     "grade": "2026-07-26",
     "h_grade": 19,
     "h_size": 20,
+    "fv_age_days": 0,
     "spot": 38.82,
     "fair_base": 53.79,
     "realized": 39.9,
@@ -250,10 +139,12 @@
    {
     "ticker": "PHDC",
     "fv_date": "2026-06-11",
+    "vintage_id": "PHDC@2026-06-11",
     "origin": "2026-06-11",
     "grade": "2026-07-12",
     "h_grade": 19,
     "h_size": 20,
+    "fv_age_days": 0,
     "spot": 14.5,
     "fair_base": 15.89,
     "realized": 14.9,
@@ -266,10 +157,12 @@
    {
     "ticker": "TMGH",
     "fv_date": "2026-06-15",
+    "vintage_id": "TMGH@2026-06-15",
     "origin": "2026-06-15",
     "grade": "2026-07-15",
     "h_grade": 20,
     "h_size": 20,
+    "fv_age_days": 0,
     "spot": 95.3,
     "fair_base": 147.12,
     "realized": 101.01,

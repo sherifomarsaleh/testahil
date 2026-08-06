@@ -155,9 +155,25 @@ def grinold_alpha(ic, sigma_h, g, dead=0.5, clipz=2.0):
     return float(np.clip(a, -0.5 * sigma_h, 0.5 * sigma_h))
 
 
+# Invariant 7 / §1b: a vintage stops minting observations once it is older than
+# this at the origin. Past the cap the numerator of G is frozen history and the
+# experiment silently changes from "does the valuation predict" to "does price
+# mean-revert to an old number".
+FV_STALE_DAYS = 183
+
+# §10.2: observations accrue on MEASUREMENT dates, not study dates. Each vintage
+# mints a fresh observation every ~month (21 sessions) while it stays fresh —
+# the mechanism that makes the committed monthly price update actually build the
+# Phase C sample. Same-vintage observations share a numerator, so they carry a
+# vintage id for the honesty of any later autocorrelation adjustment.
+REMEASURE_STEP_SESSIONS = 21
+
+
 # ------------------------------------------------------------- panel assembly
 def build_panel(market="EG", months=1, cache=None, verbose=True):
-    """One observation per (name, fair-value vintage) that has a realized outcome."""
+    """Observations for every (name, vintage, measurement date) with a realized
+    outcome: origins step every REMEASURE_STEP_SESSIONS from the vintage date
+    until the vintage goes stale, a newer vintage supersedes it, or OHLC ends."""
     profile = PROFILES[market]
     fvs = pit_fair_values(market, cache=cache, verbose=verbose)
     rows, skipped = [], []
@@ -172,43 +188,51 @@ def build_panel(market="EG", months=1, cache=None, verbose=True):
         dates = dates_s.values
         close = df["Price"].values
 
-        for fv_date, fair in vintages:
-            # origin = first session on or after the fair value became visible
-            idx = int(np.searchsorted(dates, np.datetime64(fv_date), side="left"))
-            if idx >= len(dates) or idx < 260:
+        for vi, (fv_date, fair) in enumerate(vintages):
+            # a vintage is live until the next vintage's date supersedes it
+            succ = (np.datetime64(vintages[vi + 1][0])
+                    if vi + 1 < len(vintages) else None)
+            start = int(np.searchsorted(dates, np.datetime64(fv_date), side="left"))
+            if start >= len(dates) or start < 260:
                 skipped.append((tkr, f"{fv_date}: no origin / <260 history"))
                 continue
-            hz = calendar_horizons(dates_s, idx, months)
-            if hz is None:
-                skipped.append((tkr, f"{fv_date}: +{months}M beyond OHLC coverage"))
-                continue
-            h_grade, h_size = hz
-            s0, sT = float(close[idx]), float(close[idx + h_grade])
-            if not (s0 > 0 and sT > 0):
-                skipped.append((tkr, f"{fv_date}: bad price"))
-                continue
 
-            sigma_d = trailing_cc_vol(close, idx)
-            sigma_h = sigma_d * math.sqrt(h_size)
-            if not (sigma_h > 0):
-                skipped.append((tkr, f"{fv_date}: zero vol"))
-                continue
-
-            yearfrac = months / 12.0
-            carry = carry_log_h(profile, str(dates[idx])[:10], 0.0, h_size,
-                                yearfrac=yearfrac)
-            rows.append({
-                "ticker": tkr, "fv_date": fv_date,
-                "origin": str(dates[idx])[:10],
-                "grade": str(dates[idx + h_grade])[:10],
-                "h_grade": int(h_grade), "h_size": int(h_size),
-                "spot": s0, "fair_base": fair, "realized": sT,
-                "sigma_h": sigma_h,
-                "G": math.log(fair / s0) / sigma_h,
-                "fwd_log": math.log(sT / s0),
-                "carry_log": float(carry),
-                "fwd_excess": math.log(sT / s0) - float(carry),
-            })
+            idx = start
+            while idx < len(dates):
+                d64 = dates[idx]
+                if succ is not None and d64 >= succ:
+                    break                                     # superseded — newer FV rules
+                age = int((d64 - np.datetime64(fv_date))
+                          / np.timedelta64(1, "D"))
+                if age > FV_STALE_DAYS:
+                    skipped.append((tkr, f"{fv_date}: stale at {str(d64)[:10]}"))
+                    break                                     # invariant 7
+                hz = calendar_horizons(dates_s, idx, months)
+                if hz is None:
+                    break                                     # +N months beyond OHLC
+                h_grade, h_size = hz
+                s0, sT = float(close[idx]), float(close[idx + h_grade])
+                sigma_d = trailing_cc_vol(close, idx)
+                sigma_h = sigma_d * math.sqrt(h_size)
+                if s0 > 0 and sT > 0 and sigma_h > 0:
+                    yearfrac = months / 12.0
+                    carry = carry_log_h(profile, str(d64)[:10], 0.0, h_size,
+                                        yearfrac=yearfrac)
+                    rows.append({
+                        "ticker": tkr, "fv_date": fv_date,
+                        "vintage_id": f"{tkr}@{fv_date}",
+                        "origin": str(d64)[:10],
+                        "grade": str(dates[idx + h_grade])[:10],
+                        "h_grade": int(h_grade), "h_size": int(h_size),
+                        "fv_age_days": age,
+                        "spot": s0, "fair_base": fair, "realized": sT,
+                        "sigma_h": sigma_h,
+                        "G": math.log(fair / s0) / sigma_h,
+                        "fwd_log": math.log(sT / s0),
+                        "carry_log": float(carry),
+                        "fwd_excess": math.log(sT / s0) - float(carry),
+                    })
+                idx += REMEASURE_STEP_SESSIONS
     return rows, skipped, profile
 
 
