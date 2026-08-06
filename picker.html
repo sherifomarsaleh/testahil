@@ -37,21 +37,8 @@
   .hbtns{display:flex;gap:6px}
   .hbtn{border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:999px;padding:7px 16px;font:inherit;font-size:var(--fs-small);font-weight:600;cursor:pointer}
   .hbtn.on{background:var(--teal);border-color:var(--teal);color:#fff}
-  /* fixed 3-column grid so the three filters always sit on ONE row -- flex-wrap was
-     dropping the third checkbox to its own row once the labels were forced nowrap.
-     Text is allowed to wrap inside each column instead; the checkbox stays pinned to
-     the first line via align-items:flex-start rather than centering against a
-     variable-height wrapped block. */
-  /* flex-basis:100% forces this to claim the whole row inside the parent .hrow (flex-wrap)
-     -- without it the grid's 1fr columns had no concrete width to divide and collapsed to
-     content-minimum, which is what caused every word to fall onto its own line. */
-  .pk-controls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 18px;margin-top:10px;flex:1 1 100%;width:100%}
-  .pk-controls label.ck{display:flex;align-items:flex-start;gap:7px;font-size:var(--fs-small);cursor:pointer;white-space:normal}
-  /* assets/style.css sets a site-wide input{width:100%} meant for text fields; it was
-     silently stretching this checkbox to the full column width (255px), squeezing the
-     label text into a sliver that then wrapped one word per line. */
-  .pk-controls label.ck input{margin-top:3px;flex:none;width:auto}
-  @media(max-width:640px){ .pk-controls{grid-template-columns:1fr} }
+  .pk-controls{display:flex;gap:18px;flex-wrap:wrap;align-items:center;margin-top:10px}
+  .pk-controls label.ck{display:flex;align-items:center;gap:7px;font-size:var(--fs-small);cursor:pointer;white-space:nowrap}
   .pk-table{width:100%;min-width:680px;border-collapse:collapse;font-size:var(--fs-small);table-layout:auto}
   /* header labels are allowed to wrap onto 2 lines -- most of them (e.g. "Reachability
      (3 months)", "P(touch fair value)") are wider as one line than the data underneath
