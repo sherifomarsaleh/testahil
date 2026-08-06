@@ -1,0 +1,67 @@
+{
+ "self_inclusion_bias": {
+  "beta_index_including_subject": 0.6833773214990904,
+  "r2_including": 0.07333768717544153,
+  "beta_index_excluding_subject": 0.4852332891907656,
+  "r2_excluding": 0.03832686932796281,
+  "note": "Leaving the subject inside its own equal-weight index injects a self-covariance term w*Var(SCEM) into the numerator. At w = 1/33 that is normally negligible, but SCEM's own variance dominates the panel (the stock ran 6 -> 87 over the window), so the contamination is large: beta reads 0.683 including the subject against 0.485 excluding it. The EXCLUDING figure is the correct one and is what is reported; the including figure is disclosed so the difference is visible."
+ },
+ "adopted": {
+  "beta_used": 1.0,
+  "basis": "tier-3 default on a GENUINE usability-gate failure, disclosed with diagnostics",
+  "why": "The tier-1 own-stock regression FAILS the usability gate: R^2 = 0.038 is below the 0.05 floor (n = 256 and SE = 0.153 both pass). The protocol forbids a silent default to 1.0 and permits it only on a genuine gate failure shown with the diagnostics that triggered it \u2014 which is this case. Tier-2 (re-levered same-country peer beta) is unavailable: no Egyptian listed cement peer (MBSC, ARCC, SUCE, SVCE) carries an OHLC series in the engine library, so no peer regression can be run here.",
+  "corroboration": "1.0 is not arbitrary. It sits inside the Dimson sum-beta 90% CI [0.35, 1.32], at the bottom edge of the 1.0-1.5 cyclical/capital-intensive materials prior \u2014 the discount from the middle of that band being explained by SCEM carrying NO financial leverage (net cash), which genuinely damps equity beta relative to a levered sector peer.",
+  "sensitivity_required": [
+   0.6,
+   0.8,
+   1.0,
+   1.15,
+   1.3
+  ]
+ },
+ "beta": 0.4852332891907656,
+ "r2": 0.03832686932796281,
+ "n": 256,
+ "se": 0.15250911378056836,
+ "ci90": [
+  0.23435579702173065,
+  0.7361107813598005
+ ],
+ "usable": false,
+ "gate_msg": "R^2=0.038 < minimum 0.05 \u2014 index barely explains the stock's returns",
+ "composite_names": 32,
+ "window_years": 5,
+ "frequency": "weekly",
+ "weak": true,
+ "weak_reason": "R^2 = 3.8% is below the 10% weak-instrument threshold (and within 2x the 5% usability floor); the 90% CI [0.23, 0.74] spans 3.1x the point estimate",
+ "warnings": [],
+ "dimson": {
+  "sum_beta": 0.8365175907267175,
+  "se_sum": 0.2956983117780077,
+  "r2": 0.05015138016486698,
+  "n": 253,
+  "ci90": [
+   0.35009386785189484,
+   1.3229413136015402
+  ],
+  "coefficients": {
+   "lead": 0.1986756242729219,
+   "contemporaneous": 0.4867723889859051,
+   "lag1": 0.17508217037065393,
+   "lag2": -0.02401259290276347
+  },
+  "uplift_vs_ols": 0.3512843015359519,
+  "note": "Dimson (1979) sum-beta over 1 lead + contemporaneous + 2 lags. The uplift over the OLS beta measures how much co-movement is booked late because the stock does not trade every session."
+ },
+ "thin_trading": {
+  "flat_frac": 0.293,
+  "eg_panel_median": 0.085,
+  "ratio": 3.4,
+  "note": "SCEM prints an unchanged close on 29.3% of sessions against an EG panel median of 8.5% \u2014 2nd thinnest of 33 names. This is the documented mechanism for a downward-biased OLS beta on an otherwise cyclical business."
+ },
+ "plausibility": {
+  "sector_prior": "cyclical / capital-intensive materials: 1.0-1.5",
+  "defensive_prior": "defensive or staple: 0.6-0.9",
+  "verdict": "The OLS beta of 0.485 sits in the DEFENSIVE band, which is not where a single-plant cement producer belongs on fundamentals. Two named reasons, both evidenced rather than asserted: (i) thin trading \u2014 29.3% flat sessions \u2014 biases the contemporaneous estimate down, and the Dimson sum-beta of 0.837 recovers +0.351 of that; (ii) the company is NET CASH, so it carries no financial leverage to amplify its operating cyclicality, which genuinely lowers equity beta relative to a levered sector peer. The valuation therefore does NOT use the raw regression point estimate as though it were precise; it is carried with the full CI and a mandatory beta sensitivity table spanning 0.6/0.8/1.0/1.15/1.3."
+ }
+}
