@@ -1,0 +1,71 @@
+{
+ "formulas": 901,
+ "numeric_values": 279,
+ "text": 643,
+ "per_sheet": {
+  "READ FIRST": [
+   7,
+   0
+  ],
+  "Summary": [
+   34,
+   0
+  ],
+  "Fundamental Valuation": [
+   19,
+   12
+  ],
+  "Assumptions": [
+   1,
+   109
+  ],
+  "EV Bridge": [
+   15,
+   0
+  ],
+  "Product Legs": [
+   73,
+   0
+  ],
+  "Relative & Normalized": [
+   24,
+   0
+  ],
+  "DCF": [
+   145,
+   0
+  ],
+  "Income Statement": [
+   140,
+   4
+  ],
+  "Balance Sheet": [
+   166,
+   0
+  ],
+  "Cash Flow": [
+   95,
+   0
+  ],
+  "Summary Financials": [
+   78,
+   0
+  ],
+  "Monte Carlo": [
+   0,
+   30
+  ],
+  "Sensitivity": [
+   0,
+   120
+  ],
+  "Per-Share & Ratios": [
+   71,
+   0
+  ],
+  "Peer & Sector": [
+   33,
+   4
+  ]
+ }
+}
