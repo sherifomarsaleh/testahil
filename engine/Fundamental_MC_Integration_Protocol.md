@@ -3,6 +3,15 @@
 **Status: PROPOSED — not adopted.** Awaiting Sherif's decision. Nothing in this document changes
 a published cone, a `LEDGER` row, or an engine config until it is adopted. Written 6-Aug-2026.
 
+**Phase A is implemented** in `engine/fv_overlay.py` and has been run over the live 31-name EGX
+panel (`fv_overlay_EG_20260806.{json,md}`). It reads published data only and writes nothing back.
+Two clauses of this document were amended by that implementation — the σ source (§2) and the
+already-converged rule (§4) — each marked in place.
+
+```
+python3 engine/fv_overlay.py --market EG --json out.json --md out.md
+```
+
 **Purpose.** Define the one honest way to read a ground-up fair value and a calibrated Monte-Carlo
 cone *together* at the two horizons Testahil publishes — 1 month and 3 months — without
 contaminating either.
@@ -48,14 +57,26 @@ These are binding. A run that breaks any of them is a HARD FAIL and must not be 
 |---|---|---|
 | `S0` anchor price | `TICKERS[t].spot` | must equal the last row of the cleaned OHLC |
 | `anchor_date` | `TICKERS[t].spotDate` | the cone's anchor, not today |
-| `sigma_h` (1M, 3M) | **engine panel** (`panel_refresh`, the stored `sigma_h`) | primary source |
+| `sigma_h` (1M, 3M) | **inversion from the published p5/p95** | primary — see the amendment below |
 | `nu`, `width_cal` | `market_profiles` for the market | EG: `nu=6.0`, `width_cal=0.951` |
 | `h1`, `h3` sessions | `horizons.resolve()` | calendar-anchored, blend projection |
 | `FV_bear/base/full` | the published study | point-in-time, per invariant 3 |
 | `rf` | `profile.rf_live` | the hurdle |
 
-**σ back-out (fallback only).** When the panel is not at hand, σ can be inverted from the published
-quantiles. Under the engine's unit-variance Student-t
+> **AMENDED 6-Aug-2026 during Phase A implementation — σ source reversed.**
+> This section originally named the engine panel as primary and quantile inversion as fallback.
+> That is backwards for a *live* overlay, on three counts found while building `fv_overlay.py`:
+> (1) `engine/panels/EG_*.csv` hold **backtest origins** — the last EG origin is 2026-04-12, while
+> the live ELEC anchor is 2026-08-05, so the panel does not contain the live strike at all;
+> (2) EG runs `width_overlay_active=True`, so the published quantiles carry the per-name adaptive
+> width overlay, and inverting them recovers the **effective** σ that actually shaped the published
+> cone; (3) an overlay annotates a specific ledger row, so it must be consistent with *that row*
+> rather than with a fresh re-fit of the same name, which could legitimately disagree.
+> Inversion is therefore primary. `sigma_src` records the path taken on every row, and a self-test
+> reproduces the published quantiles from the reconstruction (worst deviation on the live EG panel:
+> **0.32% at 1M, 0.48% at 3M**, tolerance 2%).
+
+**σ back-out (primary).** Under the engine's unit-variance Student-t
 (`simulate_terminal_v3`, `mix = sqrt((nu-2)/chi2_nu)`):
 
 ```
@@ -64,8 +85,8 @@ sigma_h = (ln p95 - ln p5) / (2 * q(0.95))
 mu_h    = ln p50                                  # = carry, alpha is 0
 ```
 
-Use the panel `sigma_h` when available; the inversion is exact only if no width overlay
-(`width_overlay_active`) has reshaped the published quantiles. Record which path was used.
+Record which path was used in `sigma_src`, and always emit the self-test deviation alongside it —
+a reconstruction that cannot reproduce the published cone invalidates every measure built on it.
 
 ---
 
@@ -144,6 +165,16 @@ Panel medians: `|G|` = **1.94σ at 1M**, **1.00σ at 3M**.
 the reader to treat a modelling artefact as a forecast. Publish the band label and `G`; suppress the
 probability. ELEC at 1M is `G = −19.4σ` — a number with no meaningful probability attached.
 
+**The already-converged rule (added 6-Aug-2026, first full EG run).** The mirror failure sits at the
+opposite end of the range. EFID has a gap of −0.4% and reported `P(touch) = 85% / 90%` — which reads
+as a strong result and is in fact the *absence* of one: the fair value is inside the horizon's own
+noise, so the level is already where the price is. Where `|G| ≤ 0.25σ`, set `already_converged` and
+flag the probability. It is not suppressed — "spot is at fair value" is a genuine, useful state —
+but it is not evidence for a thesis, and an unflagged 90% will be read as though it were.
+
+A row is **informative** only when it is neither suppressed nor already converged. On the live EG
+panel that is **20/31 at 1M and 24/31 at 3M** — the honest denominator for anything built on top.
+
 **The structural finding this taxonomy encodes:** the largest fundamental gaps sit on the *least*
 reachable names. EMFD (+72%) is `G = +5.9σ` at 1M; HELI (+2%) is `G = +0.15σ`. Ranking by upside
 and ranking by reachability are close to inverses. Any procedure that does not surface this will
@@ -195,6 +226,9 @@ Added to the `LEDGER` row at strike; every field nullable so pre-adoption rows s
   "sigma_src":      "panel",          // "panel" | "quantile_inversion"
   "G":        { "bear": -2.9, "base": -19.4, "full": -8.1 },
   "band":           "NOT-EXPRESSIBLE",
+  "informative":     false,           // neither suppressed nor already converged
+  "already_converged": false,         // |G| <= 0.25 sigma
+  "selftest_max_dev": 0.0032,         // reconstructed vs published quantiles
   "p_term":   { "bear": null, "base": null, "full": null },   // suppressed in this band
   "p_touch":  { "bear": null, "base": null, "full": null },
   "required_cagr":  { "base": -0.9999 },
@@ -237,7 +271,7 @@ would reproduce the `rev_1m` false negative exactly.
 
 | Phase | What | Depends on | Status |
 |---|---|---|---|
-| **A** | The overlay above. Ships on validated machinery; changes no cone. Output labelled PROVISIONAL. | — | proposed |
+| **A** | The overlay above. Ships on validated machinery; changes no cone. Output labelled PROVISIONAL. | — | **implemented** — `engine/fv_overlay.py` |
 | **B** | Direction-scoring axis added to the gate (§7 test 2). | — | proposed |
 | **C** | Backtest `value_gap` as an alpha signal: add `kind == "value_gap"` to `signal_z`, measure IC on the EG panel under LONO. | **B** | blocked on B |
 
