@@ -6,9 +6,9 @@
   "currency": "EGP",
   "asof": "2026-08-06",
   "spot": 9.1,
-  "shares_mn": 1291.56,
-  "mktcap": 11753.196,
-  "ev_trailing": 9314.936,
+  "shares_mn": 1291.5,
+  "mktcap": 11752.65,
+  "ev_trailing": 9310.105072,
   "klass": "downstream petroleum operating company",
   "sector": "Oil & gas refining and marketing \u2014 lubricant base oils and waxes",
   "fy_note": "financial year moved from 30 June to 31 December"
@@ -16,300 +16,680 @@
  "inputs": {
   "spot": {
    "value": 9.1,
-   "source": "AMOC closing price on the Egyptian Exchange, 6 August 2026, from the screened daily price history used throughout this study (engine/raw_ohlc/EG/AMOC.csv)",
+   "source": "AMOC closing price on the Egyptian Exchange, 6 August 2026",
    "date": "2026-08-06",
    "ring": "Company"
   },
   "shares_mn": {
-   "value": 1291.56,
-   "source": "Shares outstanding 1,291.56mn. Cross-checked three ways: (a) the reported figure; (b) FY2024/25 standalone profit of EGP 1,490mn over this count gives earnings per share of EGP 1.154, and the declared EGP 0.80 annual dividend over that is a 69.3% payout against the 69.4% reported payout ratio; (c) the reported market capitalisation of EGP 11.51bn implies EGP 8.91 a share against a 6 August close of EGP 9.10",
-   "date": "2026-08-06",
-   "ring": "Company"
-  },
-  "rev_fy23": {
-   "value": 22515.65,
-   "source": "FY2022/23 (12 months to 30 June 2023) revenue, computed from the two disclosed components: cost of sales EGP 21,218.64mn plus gross profit EGP 1,297.01mn. This is the one historical year where both the cost line and the margin line are separately disclosed",
-   "date": "2023-06-30",
-   "ring": "Company"
-  },
-  "gp_fy23": {
-   "value": 1297.01,
-   "source": "FY2022/23 gross profit, disclosed (5.76% of revenue)",
-   "date": "2023-06-30",
-   "ring": "Company"
-  },
-  "cogs_fy23": {
-   "value": 21218.64,
-   "source": "FY2022/23 cost of sales, disclosed",
-   "date": "2023-06-30",
-   "ring": "Company"
-  },
-  "pat_fy23": {
-   "value": 1320.0,
-   "source": "FY2022/23 consolidated net profit after tax, EGP 1.32bn, up 11%",
-   "date": "2023-06-30",
-   "ring": "Company"
-  },
-  "rev_fy24_a": {
-   "value": 33770.0,
-   "source": "FY2023/24 revenue, method A: the aggregator's prior-year comparative to the FY2024/25 figure",
-   "date": "2024-06-30",
-   "ring": "Company"
-  },
-  "rev_fy24_b": {
-   "value": 33303.0,
-   "source": "FY2023/24 revenue, method B: backed out of the company's own statement that FY2024/25 sales of EGP 36.9bn were 10.8% above 2023/24 (36,900 / 1.108)",
-   "date": "2024-06-30",
-   "ring": "Company"
-  },
-  "pat_fy24": {
-   "value": 1500.0,
-   "source": "FY2023/24 consolidated net profit after tax, EGP 1.50bn \u2014 the comparative in the FY2024/25 release, which reported consolidated profit of EGP 1.55bn, an annual growth of 3%",
-   "date": "2024-06-30",
-   "ring": "Company"
-  },
-  "rev_fy25_a": {
-   "value": 36900.0,
-   "source": "FY2024/25 revenue, method A: the company's own release \u2014 total sales of 1.26mn tonnes valued at EGP 36.9bn, an 11% increase",
-   "date": "2025-06-30",
-   "ring": "Company"
-  },
-  "rev_fy25_b": {
-   "value": 37620.0,
-   "source": "FY2024/25 revenue, method B: the aggregator's fiscal-2025 figure, EGP 37.62bn, +11.42%",
-   "date": "2025-06-30",
-   "ring": "Company"
-  },
-  "rev_fy25_c": {
-   "value": 38000.0,
-   "source": "FY2024/25 revenue, method C: the same release's separate statement that revenues stood at EGP 38bn",
-   "date": "2025-06-30",
-   "ring": "Company"
-  },
-  "pat_fy25": {
-   "value": 1550.0,
-   "source": "FY2024/25 consolidated net profit after tax, EGP 1.55bn, +3%",
-   "date": "2025-06-30",
-   "ring": "Company"
-  },
-  "pat_fy25_standalone": {
-   "value": 1490.0,
-   "source": "FY2024/25 STANDALONE net profit after tax, EGP 1.49bn, +17.3%. The 4% gap to the consolidated figure is the whole contribution of everything outside the parent refinery \u2014 the evidence that rules out a holding-company lens",
-   "date": "2025-06-30",
-   "ring": "Company"
-  },
-  "vol_fy25": {
-   "value": 1.26,
-   "source": "FY2024/25 total sales volume, 1.26mn tonnes",
-   "date": "2025-06-30",
-   "ring": "Company"
-  },
-  "vol_spec_fy25": {
-   "value": 0.172,
-   "source": "FY2024/25 output of oils and waxes, 172,000 tonnes \u2014 108% of the year's target. This is the specialty leg; the balance of the 1.26mn tonnes is fuel products and by-products",
-   "date": "2025-06-30",
-   "ring": "Company"
-  },
-  "rev_h1fy25": {
-   "value": 18246.0,
-   "source": "Consolidated sales for July-December 2024, EGP 18.246bn \u2014 the comparative disclosed alongside the transition period",
-   "date": "2024-12-31",
-   "ring": "Company"
-  },
-  "pat_h1fy25": {
-   "value": 643.6,
-   "source": "Consolidated net profit after tax for July-December 2024, derived from the disclosed statement that the transition period's EGP 656.428mn was a 2% year-on-year increase (656.428 / 1.02)",
-   "date": "2024-12-31",
-   "ring": "Company"
-  },
-  "rev_h2cy25": {
-   "value": 20735.0,
-   "source": "Consolidated sales for the July-December 2025 transition period, EGP 20.735bn, up 14% year on year",
+   "value": 1291.5,
+   "source": "Issued and paid-up capital EGP 1,291,500,000 at EGP 1 par = 1,291,500,000 shares (note 18-L, share split to EGP 1 par recorded in the Commercial Register 24-Jan-2018)",
    "date": "2025-12-31",
    "ring": "Company"
   },
-  "pat_h2cy25": {
-   "value": 656.428,
-   "source": "Consolidated net profit after tax for the July-December 2025 transition period, EGP 656.428mn, +2%",
+  "rev_h2_25": {
+   "value": 20735725812.0,
+   "source": "Net sales, six months to 31-Dec-2025. Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
    "date": "2025-12-31",
    "ring": "Company"
   },
-  "vol_h2cy25": {
-   "value": 0.808,
-   "source": "Transition-period sales volume, 808,000 tonnes, +14.5%",
+  "cogs_h2_25": {
+   "value": 19461550746.0,
+   "source": "Cost of sales, six months to 31-Dec-2025. Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
    "date": "2025-12-31",
    "ring": "Company"
   },
-  "exp_h2cy25": {
-   "value": 0.042,
-   "source": "Transition-period exports of oils and waxes, ~42,000 tonnes, +40% year on year on entry into new export markets",
+  "ga_h2_25": {
+   "value": 585636101.0,
+   "source": "General and administrative expenses, six months to 31-Dec-2025 (note 15-B). Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
    "date": "2025-12-31",
    "ring": "Company"
   },
-  "rev_q1cy26": {
-   "value": 10510.0,
-   "source": "Consolidated net sales for the quarter to 31 March 2026, EGP 10.51bn, against EGP 10.07bn a year earlier",
+  "mkt_h2_25": {
+   "value": 93729199.0,
+   "source": "Marketing and selling expenses, six months to 31-Dec-2025 (note 15-C). Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "othexp_h2_25": {
+   "value": 108781309.0,
+   "source": "Other operating expenses, six months to 31-Dec-2025 (note 15-D): compensation and fines 101,393,395, donations 5,162,500, board transport and attendance 2,225,414. Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2025-12-25",
+   "ring": "Company"
+  },
+  "othrev_h2_25": {
+   "value": 345744052.0,
+   "source": "Other revenue, six months to 31-Dec-2025 (note 14-B): credit interest 173,216,413, provision no longer required 154,301,640, reversed expected credit loss 1,870,481, compensations and fines 1,241,123, capital gains 326,000, miscellaneous 14,788,395. NOTE the foreign-exchange gain line is ZERO in this period, against 104,572,235 in the comparative half. Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "invinc_h2_25": {
+   "value": 13520000.0,
+   "source": "Revenue from investments \u2014 dividend from Alexandria Specialized Petroleum Products Co (note 14-C). Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "prov_h2_25": {
+   "value": 2467769.0,
+   "source": "Formed provisions charged in the six months to 31-Dec-2025. Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "fin_h2_25": {
+   "value": 1892108.0,
+   "source": "Finance expenses, six months to 31-Dec-2025 (note 15-E): loan interest and charges 1,130,556, lease interest 761,552. Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "tax_h2_25": {
+   "value": 203945433.0,
+   "source": "Current income tax, six months to 31-Dec-2025. Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "dtax_h2_25": {
+   "value": 19441512.0,
+   "source": "Deferred tax CREDIT, six months to 31-Dec-2025. Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "pat_h2_25": {
+   "value": 656428711.0,
+   "source": "Net profit after tax, six months to 31-Dec-2025. Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "nci_h2_25": {
+   "value": 30488250.0,
+   "source": "Non-controlling interest share of profit, six months to 31-Dec-2025. Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "emp_h2_25": {
+   "value": 67467871.0,
+   "source": "Employees' profit share and board bonuses deducted in arriving at earnings per share (note 16). A real distribution out of profit that the previous edition of this study did not model at all. Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "rev_q1_26": {
+   "value": 10510779160.0,
+   "source": "Net sales, three months to 31-Mar-2026. Reviewed consolidated FS, three months to 31-Mar-2026",
    "date": "2026-03-31",
    "ring": "Company"
   },
-  "pat_q1cy26": {
-   "value": 635.12,
-   "source": "Consolidated net profit for the quarter to 31 March 2026, EGP 635.12mn, +37%",
+  "cogs_q1_26": {
+   "value": 9439744195.0,
+   "source": "Cost of sales, three months to 31-Mar-2026. Reviewed consolidated FS, three months to 31-Mar-2026",
    "date": "2026-03-31",
    "ring": "Company"
   },
-  "rev_h1cy26_rep": {
-   "value": 26200.0,
-   "source": "Consolidated revenue reported for the six months to 30 June 2026, EGP 26.2bn, +35%. Carried as a CORROBORATING data point only, not as the forecast base \u2014 see the period-labelling note",
-   "date": "2026-06-30",
+  "ga_q1_26": {
+   "value": 365952237.0,
+   "source": "General and administrative expenses, three months to 31-Mar-2026. Reviewed consolidated FS, three months to 31-Mar-2026",
+   "date": "2026-03-31",
    "ring": "Company"
   },
-  "pat_h1cy26_rep": {
-   "value": 1900.0,
-   "source": "Consolidated net profit after tax reported for the six months to 30 June 2026, EGP 1.90bn, +109%. Corroborating only",
-   "date": "2026-06-30",
+  "mkt_q1_26": {
+   "value": 60830975.0,
+   "source": "Marketing and selling expenses, three months to 31-Mar-2026. Reviewed consolidated FS, three months to 31-Mar-2026",
+   "date": "2026-03-31",
+   "ring": "Company"
+  },
+  "othexp_q1_26": {
+   "value": 1080000.0,
+   "source": "Other operating expenses, three months to 31-Mar-2026. Reviewed consolidated FS, three months to 31-Mar-2026",
+   "date": "2026-03-31",
+   "ring": "Company"
+  },
+  "othrev_q1_26": {
+   "value": 225556509.0,
+   "source": "Other revenue, three months to 31-Mar-2026. Reviewed consolidated FS, three months to 31-Mar-2026",
+   "date": "2026-03-31",
+   "ring": "Company"
+  },
+  "prov_q1_26": {
+   "value": 30000000.0,
+   "source": "Formed provisions, three months to 31-Mar-2026. Reviewed consolidated FS, three months to 31-Mar-2026",
+   "date": "2026-03-31",
+   "ring": "Company"
+  },
+  "ecl_q1_26": {
+   "value": 20323123.0,
+   "source": "Expected credit losses formed, three months to 31-Mar-2026. Reviewed consolidated FS, three months to 31-Mar-2026",
+   "date": "2026-03-31",
+   "ring": "Company"
+  },
+  "fin_q1_26": {
+   "value": 982219.0,
+   "source": "Finance cost, three months to 31-Mar-2026. Reviewed consolidated FS, three months to 31-Mar-2026",
+   "date": "2026-03-31",
+   "ring": "Company"
+  },
+  "tax_q1_26": {
+   "value": 175094101.0,
+   "source": "Current income tax, three months to 31-Mar-2026. Reviewed consolidated FS, three months to 31-Mar-2026",
+   "date": "2026-03-31",
+   "ring": "Company"
+  },
+  "dtax_q1_26": {
+   "value": -7209684.0,
+   "source": "Deferred tax EXPENSE (negative = charge), three months to 31-Mar-2026. Reviewed consolidated FS, three months to 31-Mar-2026",
+   "date": "2026-03-31",
+   "ring": "Company"
+  },
+  "pat_q1_26": {
+   "value": 635119535.0,
+   "source": "Net profit after tax, three months to 31-Mar-2026. Reviewed consolidated FS, three months to 31-Mar-2026",
+   "date": "2026-03-31",
+   "ring": "Company"
+  },
+  "nci_q1_26": {
+   "value": 22627676.0,
+   "source": "Non-controlling interest share of profit, three months to 31-Mar-2026. Reviewed consolidated FS, three months to 31-Mar-2026",
+   "date": "2026-03-31",
+   "ring": "Company"
+  },
+  "rev_h2_24": {
+   "value": 18246078901.0,
+   "source": "Net sales, six months to 31-Dec-2024 (comparative column). Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "cogs_h2_24": {
+   "value": 16995436456.0,
+   "source": "Cost of sales, six months to 31-Dec-2024 (comparative column). Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "pat_h2_24": {
+   "value": 641640411.0,
+   "source": "Net profit after tax, six months to 31-Dec-2024. Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "rev_q1_25": {
+   "value": 10068471935.0,
+   "source": "Net sales, three months to 31-Mar-2025 (comparative column). Reviewed consolidated FS, three months to 31-Mar-2026",
+   "date": "2025-03-31",
+   "ring": "Company"
+  },
+  "cogs_q1_25": {
+   "value": 9559699263.0,
+   "source": "Cost of sales, three months to 31-Mar-2025 (comparative column). Reviewed consolidated FS, three months to 31-Mar-2026",
+   "date": "2025-03-31",
+   "ring": "Company"
+  },
+  "pat_fy25_full": {
+   "value": 1488520098.0,
+   "source": "Majority profit for the financial year to 30-June-2025, read off the opening column of the consolidated statement of changes in equity at 1-July-2025. Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2025-06-30",
+   "ring": "Company"
+  },
+  "prod_t": {
+   "value": {
+    "oils": 54968.98,
+    "wax": 41774.2,
+    "gasoil": 171684.881,
+    "naphtha": 41430.857,
+    "lpg": 23735.778,
+    "fueloil": 460153.6,
+    "hfo": 14327.52,
+    "waste": 7.82
+   },
+   "source": "Tonnes sold by product line, six months to 31-Dec-2025 (note 14-A). Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "prod_v": {
+   "value": {
+    "oils": 2597280264.0,
+    "wax": 2041969329.0,
+    "gasoil": 5121703599.0,
+    "naphtha": 958746631.0,
+    "lpg": 816258520.0,
+    "fueloil": 8975569716.0,
+    "hfo": 224110353.0,
+    "waste": 87400.0
+   },
+   "source": "Sales value by product line, EGP, six months to 31-Dec-2025 (note 14-A). Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "prod_v_prior": {
+   "value": {
+    "oils": 2526857239.0,
+    "wax": 1683792907.0,
+    "gasoil": 5219594878.0,
+    "naphtha": 1034502087.0,
+    "lpg": 687509617.0,
+    "fueloil": 6954252764.0,
+    "hfo": 139454409.0,
+    "waste": 115000.0
+   },
+   "source": "Sales value by product line, six months to 31-Dec-2024 (note 14-A comparative). Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "cos_salaries": {
+   "value": 881019497.0,
+   "source": "Cost of sales \u2014 salaries, six months to 31-Dec-2025 (note 15-A). Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "cos_raw": {
+   "value": 17650102725.0,
+   "source": "Cost of sales \u2014 RAW MATERIALS, six months to 31-Dec-2025 (note 15-A). 90.7% of cost of sales and 85.1% of revenue: this single line is what the company is. Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "cos_support": {
+   "value": 64533723.0,
+   "source": "Cost of sales \u2014 supporting materials (chemicals and additives), six months to 31-Dec-2025 (note 15-A). The previous edition estimated this charge at roughly five times the disclosed figure",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "cos_dep": {
+   "value": 58748046.0,
+   "source": "Cost of sales \u2014 depreciation, six months to 31-Dec-2025 (note 15-A). Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "cos_other": {
+   "value": 807146755.0,
+   "source": "Cost of sales \u2014 other expenses, six months to 31-Dec-2025 (note 15-A): natural gas, operating electricity, operating water, spare parts, maintenance, and the operating management and technical support contract with the Egyptian Projects Operations & Maintenance Company (EPROM). Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "cos_salaries_24": {
+   "value": 634571733.0,
+   "source": "Cost of sales \u2014 salaries, six months to 31-Dec-2024 (note 15-A comparative). Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "cos_raw_24": {
+   "value": 15597464119.0,
+   "source": "Cost of sales \u2014 raw materials, six months to 31-Dec-2024 (note 15-A comparative). Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "cos_support_24": {
+   "value": 68294446.0,
+   "source": "Cost of sales \u2014 supporting materials, six months to 31-Dec-2024. Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "cos_dep_24": {
+   "value": 53507611.0,
+   "source": "Cost of sales \u2014 depreciation, six months to 31-Dec-2024. Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "cos_other_24": {
+   "value": 641598547.0,
+   "source": "Cost of sales \u2014 other expenses, six months to 31-Dec-2024. Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "ppe_net": {
+   "value": 893016274.0,
+   "source": "Fixed assets net of accumulated depreciation at 31-Dec-2025 (note 6). Cost 2,740,810,692 less accumulated depreciation 1,847,794,418 \u2014 the plant is 67% written down, and 273,466,121 of it is fully depreciated and still in use. Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "puc": {
+   "value": 407323203.0,
+   "source": "Projects under construction at 31-Dec-2025 (note 7): assets in development 376,746,526 (administrative building, warehouses, civil projects, ERP system) plus investment expenditure 30,576,677. Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "inventory": {
+   "value": 2847392506.0,
+   "source": "Inventory net of impairment at 31-Dec-2025 (note 9-A): work in process 792,134,042, finished goods 1,166,168,582, spare parts 309,298,239, supporting materials 283,470,554, raw materials 118,754,225, goods for resale 155,793,361. Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "recv": {
+   "value": 573136185.0,
+   "source": "Accounts receivable net at 31-Dec-2025 (note 9-B). 100% undue and unimpaired on the ageing analysis. Counterparties include Shell, ExxonMobil, Chevron, Total, TAQA/Castrol, Emarat Misr, OLA Energy and Petromine alongside the state companies. Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "debtors": {
+   "value": 366012664.0,
+   "source": "Debtors and other debit balances net at 31-Dec-2025 (notes 9-C, 9-D). Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "cash": {
+   "value": 2463522365.0,
+   "source": "Cash at banks and on hand at 31-Dec-2025 (note 9-E): time deposits 883,351,250 plus current accounts 2,127,100,720 plus cash on hand 166,405, less expected credit losses 38,345,960, less PLEDGED deposits 508,750,050 which sit in other financial investments. Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "fin_inv": {
+   "value": 508750050.0,
+   "source": "Other financial investments at 31-Dec-2025 \u2014 deposits PLEDGED against credit facilities, so not free cash (note 9-E). Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "fvoci": {
+   "value": 69608696.0,
+   "source": "Financial asset through OCI at 31-Dec-2025 \u2014 104,000 shares, 5.20% of ASCPC, fair value 69,608,696 (note 8-1). Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2025-12-31",
    "ring": "Company"
   },
   "assets_snap": {
-   "value": 8136.42,
-   "source": "Total assets, EGP 8,136.42mn, most recent reported quarter",
-   "date": "2026-03-31",
-   "ring": "Company"
-  },
-  "liab_snap": {
-   "value": 3189.56,
-   "source": "Total liabilities, EGP 3,189.56mn, same reporting date",
-   "date": "2026-03-31",
-   "ring": "Company"
-  },
-  "cash_snap": {
-   "value": 2463.52,
-   "source": "Cash and cash equivalents, EGP 2,463.52mn, same reporting date",
-   "date": "2026-03-31",
-   "ring": "Company"
-  },
-  "debt_snap": {
-   "value": 25.26,
-   "source": "Total debt, EGP 25.26mn, same reporting date. A gross debt book of 0.06% of revenue is the defining balance-sheet fact about this name",
-   "date": "2026-03-31",
-   "ring": "Company"
-  },
-  "reserves_dec25": {
-   "value": 2390.0,
-   "source": "Total reserves increased to EGP 2.39bn at the transition-period balance date",
+   "value": 8136418030.0,
+   "source": "Total assets at 31-Dec-2025. Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
    "date": "2025-12-31",
    "ring": "Company"
   },
-  "dps": {
-   "value": 0.8,
-   "source": "Declared dividend of EGP 0.80 a share a year; EGP 0.40 a share was approved for the July-December 2025 transition period at the general assembly of 28 March 2026",
-   "date": "2026-03-28",
+  "liab_snap": {
+   "value": 3311643082.0,
+   "source": "Total liabilities at 31-Dec-2025. Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2025-12-31",
    "ring": "Company"
   },
-  "payout_reported": {
-   "value": 0.694,
-   "source": "Reported dividend payout ratio, 69.4%",
-   "date": "2026-08-06",
+  "eq_parent": {
+   "value": 4790695948.0,
+   "source": "Total AMOC (parent) equity at 31-Dec-2025. Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2025-12-31",
    "ring": "Company"
   },
-  "capex_budget": {
-   "value": 580.19,
-   "source": "Approved capital budget of EGP 580.19mn for the July 2025-June 2026 planning year",
+  "eq_nci": {
+   "value": 34079000.0,
+   "source": "Non-controlling interest carrying amount at 31-Dec-2025. Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "debt_lt": {
+   "value": 11805265.0,
+   "source": "Long-term loans at 31-Dec-2025 (note 20). Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "debt_st": {
+   "value": 9172172.0,
+   "source": "Short-term loans and facilities at 31-Dec-2025 (note 20). Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "leases": {
+   "value": 4278324.0,
+   "source": "Total lease liabilities at 31-Dec-2025 (note 8-2-2). Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "payables": {
+   "value": 7942650.0,
+   "source": "Accounts and notes payable at 31-Dec-2025 (note 10-3). The previous edition modelled a trade payable of about 2.5bn funding the working capital cycle; the actual trade payable is under 8mn and the funding sits in the EGPC current account instead. Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "creditors": {
+   "value": 2044446416.0,
+   "source": "Creditors and other credit balances at 31-Dec-2025 (note 11): EGPC current account 1,132,353,505, deposits 70,891,867, miscellaneous taxes 47,021,719, dividends payable 517,250,000, miscellaneous creditors 148,226,091, customer advances 60,028,880. Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "provisions": {
+   "value": 921440353.0,
+   "source": "Provisions at 31-Dec-2025 (note 10-1): tax disputes 904,609,345 and claims and disputes 16,831,008. A contingent liability worth EGP 0.71 a share that the previous edition never carried at all",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "dtax_liab": {
+   "value": 108612469.0,
+   "source": "Deferred tax liability at 31-Dec-2025 (note 13-A). Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "tax_due": {
+   "value": 203945433.0,
+   "source": "Due to the tax authority at 31-Dec-2025 (note 10-2). Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "assets_jun25": {
+   "value": 10327865642.0,
+   "source": "Total assets at 30-Jun-2025 (comparative column). Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
    "date": "2025-06-30",
    "ring": "Company"
   },
-  "budget_rev": {
-   "value": 37332.0,
-   "source": "The company's own approved planning-budget net sales of EGP 37.332bn for July 2025-June 2026, against a budgeted net profit of about EGP 1.02bn \u2014 later revised upward to about EGP 2.1bn",
+  "eq_parent_jun25": {
+   "value": 5353528855.0,
+   "source": "Total AMOC equity at 30-Jun-2025 (comparative column). Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
    "date": "2025-06-30",
    "ring": "Company"
   },
-  "egpc_stake": {
-   "value": 0.2,
-   "source": "The Egyptian General Petroleum Corporation is the second-largest single shareholder with a 20% holding",
-   "date": "2026-08-06",
+  "assets_dec24": {
+   "value": 7747725648.0,
+   "source": "Total assets at 31-Dec-2024. Limited-review consolidated FS, six months to 31-Dec-2024",
+   "date": "2024-12-31",
    "ring": "Company"
   },
-  "line_oil_t": {
-   "value": 111256.0,
-   "source": "Base oils, tonnes sold, year to 30 June 2024 \u2014 disclosed product table (reviewer-sourced, not verified from the filing here)",
+  "eq_parent_dec24": {
+   "value": 4430087458.0,
+   "source": "Total AMOC equity at 31-Dec-2024. Limited-review consolidated FS, six months to 31-Dec-2024",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "assets_jun24": {
+   "value": 8386961675.0,
+   "source": "Total assets at 30-Jun-2024 (comparative column). Limited-review consolidated FS, six months to 31-Dec-2024",
    "date": "2024-06-30",
    "ring": "Company"
   },
-  "line_oil_v": {
-   "value": 4454.085,
-   "source": "Base oils, sales value EGP mn, same table",
+  "eq_parent_jun24": {
+   "value": 4922226388.0,
+   "source": "Total AMOC equity at 30-Jun-2024 (comparative column). Limited-review consolidated FS, six months to 31-Dec-2024",
    "date": "2024-06-30",
    "ring": "Company"
   },
-  "line_wax_t": {
-   "value": 65742.0,
-   "source": "Paraffin wax, tonnes sold, same table",
-   "date": "2024-06-30",
+  "ppe_jun25": {
+   "value": 937851261.0,
+   "source": "Fixed assets net at 30-Jun-2025. Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2025-06-30",
    "ring": "Company"
   },
-  "line_wax_v": {
-   "value": 2408.747,
-   "source": "Paraffin wax, sales value EGP mn, same table",
-   "date": "2024-06-30",
+  "inv_jun25": {
+   "value": 3735009103.0,
+   "source": "Inventory at 30-Jun-2025. Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2025-06-30",
    "ring": "Company"
   },
-  "line_tot_t": {
-   "value": 1433340.0,
-   "source": "Total tonnes sold, same table",
-   "date": "2024-06-30",
+  "recv_jun25": {
+   "value": 894888039.0,
+   "source": "Accounts receivable at 30-Jun-2025. Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2025-06-30",
    "ring": "Company"
   },
-  "line_tot_v": {
-   "value": 33312.101,
-   "source": "Total sales value EGP mn, same table",
-   "date": "2024-06-30",
+  "debtors_jun25": {
+   "value": 611842230.0,
+   "source": "Debtors and other debit balances at 30-Jun-2025. Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2025-06-30",
    "ring": "Company"
   },
-  "fx_fy24": {
-   "value": 36.4,
-   "source": "USD/EGP average for the year to 30 June 2024. Eight months at the pre-float ~30.9 and four at the post-float ~47.5, volume-weighted by month. Used only to convert the disclosed EGP-per-tonne realisations into the dollar prices the forecast then grows",
-   "date": "2024-06-30",
-   "ring": "House"
+  "creditors_jun25": {
+   "value": 3102041816.0,
+   "source": "Creditors and other credit balances at 30-Jun-2025. Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2025-06-30",
+   "ring": "Company"
   },
-  "spec_ramp_cy25": {
-   "value": 0.1,
-   "source": "Growth in specialty tonnage from the disclosed FY2024/25 172kt to the calendar-2025 base, on the disclosed 40% rise in oils-and-wax EXPORTS through the transition half",
-   "date": "2026-08-06",
-   "ring": "House"
+  "payables_jun25": {
+   "value": 15486636.0,
+   "source": "Accounts and notes payable at 30-Jun-2025. Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2025-06-30",
+   "ring": "Company"
   },
-  "loss_frac": {
-   "value": 0.03,
-   "source": "Process loss and internal fuel burn, as a share of feedstock intake \u2014 the gap between tonnes of feed drawn and tonnes of saleable product out. 2-4% is the ordinary range for a lube refinery of this configuration; 3.0% is taken. HOUSE ESTIMATE, not disclosed",
-   "date": "2026-08-06",
-   "ring": "House"
+  "cash_jun25": {
+   "value": 3141779939.0,
+   "source": "Cash at banks and on hand at 30-Jun-2025. Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2025-06-30",
+   "ring": "Company"
   },
-  "bbl_per_t_feed": {
-   "value": 6.9,
-   "source": "Barrels per tonne of feedstock, used to convert a dollar-a-barrel crude reference into a dollar-a-tonne feedstock parity. 7.33 is the figure for light crude; a heavier vacuum-gas-oil and long-residue feed of the kind a lube plant draws runs nearer 6.8-7.0. HOUSE ESTIMATE",
-   "date": "2026-08-06",
-   "ring": "Industry"
+  "cash_mar26": {
+   "value": 2204898542.0,
+   "source": "Cash and cash equivalents at 31-Mar-2026. Reviewed consolidated FS, three months to 31-Mar-2026",
+   "date": "2026-03-31",
+   "ring": "Company"
   },
-  "energy_usd_t": {
-   "value": 22.0,
-   "source": "Energy and utilities \u2014 fuel gas, steam, power \u2014 in US dollars per tonne of feedstock intake. Solvent extraction, dewaxing and hydrofinishing make a lube plant materially more energy-intensive than simple fractionation. HOUSE ESTIMATE",
-   "date": "2026-08-06",
-   "ring": "Industry"
+  "eq_parent_mar26": {
+   "value": 4800890542.0,
+   "source": "Total parent equity at 31-Mar-2026. Reviewed consolidated FS, three months to 31-Mar-2026",
+   "date": "2026-03-31",
+   "ring": "Company"
   },
-  "chem_usd_t": {
+  "dep_h2_25": {
+   "value": 70125269.0,
+   "source": "Fixed-asset depreciation and right-of-use amortisation charged in the six months to 31-Dec-2025, per the cash-flow statement. The previous edition modelled depreciation at 1.1% of revenue, about 440mn a year against an actual near 150mn. Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "dep_q1_26": {
+   "value": 40597611.0,
+   "source": "Fixed-asset depreciation and right-of-use amortisation, Q1-2026. Reviewed consolidated FS, three months to 31-Mar-2026",
+   "date": "2026-03-31",
+   "ring": "Company"
+  },
+  "capex_h2_25": {
+   "value": 30357299.0,
+   "source": "CASH PAID for projects under construction and fixed assets in the six months to 31-Dec-2025. The previous edition modelled capital expenditure at 1.45% of revenue \u2014 about 649mn in the first forecast year \u2014 against an actual of roughly a tenth of that. Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "capex_q1_26": {
+   "value": 64984482.0,
+   "source": "Cash paid for projects under construction and fixed assets, Q1-2026. Reviewed consolidated FS, three months to 31-Mar-2026",
+   "date": "2026-03-31",
+   "ring": "Company"
+  },
+  "div_h2_25": {
+   "value": 736577469.0,
+   "source": "Cash dividends PAID in the six months to 31-Dec-2025. Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "div_q1_26": {
+   "value": 602957265.0,
+   "source": "Cash dividends paid in Q1-2026. Reviewed consolidated FS, three months to 31-Mar-2026",
+   "date": "2026-03-31",
+   "ring": "Company"
+  },
+  "credint_h2_25": {
+   "value": 173216413.0,
+   "source": "Credit interest earned in the six months to 31-Dec-2025, per note 14-B and the cash-flow statement. Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "credint_q1_26": {
+   "value": 64104178.0,
+   "source": "Credit interest earned in Q1-2026. Reviewed consolidated FS, three months to 31-Mar-2026",
+   "date": "2026-03-31",
+   "ring": "Company"
+  },
+  "div_declared": {
+   "value": 517250000.0,
+   "source": "Dividends payable at 31-Dec-2025 (note 11, other credit balances) \u2014 declared and not yet paid at the reporting date. Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "nci_share": {
+   "value": 0.04644563756748903,
+   "source": "Non-controlling interest as a share of group profit after tax, six months to 31-Dec-2025 \u2014 DISCLOSED, not inferred. AMOC holds 86.45% of Alexandria Wax Products S.A.E. (note 1-2). The previous edition inferred 3.0% from the gap between consolidated and standalone profit; the filing says 4.645%",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "alexpet_stake": {
+   "value": 0.2077,
+   "source": "Alexandria Petroleum Company holds 20.77% of AMOC (note 18, capital structure). The previous edition named the Egyptian General Petroleum Corporation as the 20% shareholder; EGPC is NOT a direct shareholder. Free float (public offering, individuals and other institutions) is 28.77%",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "egpc_sales": {
+   "value": 15872300000.0,
+   "source": "Sales of products to the Egyptian General Petroleum Corporation in the six months to 31-Dec-2025 (note 19-3-B) \u2014 76.5% of net sales. EGPC is also the dominant supplier, with 16.3bn of purchases in the same half. That two-sided relationship is the real governance fact, and it is disclosed. Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "egpc_balance": {
+   "value": 1132353505.0,
+   "source": "EGPC current account balance owed at 31-Dec-2025 (note 11). Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "line_vol_growth": {
    "value": {
-    "oil": 45.0,
-    "wax": 60.0,
-    "fuel": 3.0
+    "oils": [
+     0.045,
+     0.04,
+     0.035,
+     0.03,
+     0.028
+    ],
+    "wax": [
+     0.07,
+     0.055,
+     0.045,
+     0.038,
+     0.032
+    ],
+    "gasoil": [
+     0.02,
+     0.02,
+     0.018,
+     0.016,
+     0.015
+    ],
+    "naphtha": [
+     0.015,
+     0.018,
+     0.018,
+     0.016,
+     0.015
+    ],
+    "lpg": [
+     0.025,
+     0.022,
+     0.02,
+     0.018,
+     0.016
+    ],
+    "fueloil": [
+     0.03,
+     0.026,
+     0.022,
+     0.02,
+     0.018
+    ],
+    "hfo": [
+     0.02,
+     0.018,
+     0.016,
+     0.015,
+     0.014
+    ],
+    "waste": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ]
    },
-   "source": "Chemicals, solvent make-up and catalyst, US dollars per tonne of PRODUCT, by line. The specialty lines carry solvent losses and catalyst that the fuel slate does not \u2014 wax highest because it passes through dewaxing as well. The fuel and by-product slate is essentially fractionation and carries almost none. HOUSE ESTIMATE",
+   "source": "Volume growth by AUDITED product line. The RANKING is taken from the line-level value growth actually printed between the two disclosed halves \u2014 wax +21.3%, fuel oil +29.1%, LPG +18.7%, while gas oil (-1.9%) and naphtha (-7.3%) FELL \u2014 rather than from a view about the business. Levels are struck well below those half-on-half rates because a single half is not a trend. This is one of only two free operating parameters left and it is sensitised end to end",
    "date": "2026-08-06",
-   "ring": "Industry"
+   "ring": "House"
   },
-  "fixed_cost_fy23": {
-   "value": 700.0,
-   "source": "Fixed conversion cost inside cost of sales \u2014 plant labour, maintenance, plant overhead \u2014 EGP mn in the year to June 2023. This is the EGP-denominated leg of the cost base, and its presence is why devaluation WIDENS the reported margin: revenue and feedstock are both dollar-linked and this is not. HOUSE ESTIMATE",
-   "date": "2026-06-30",
+  "line_price_growth": {
+   "value": [
+    0.09,
+    0.075,
+    0.065,
+    0.058,
+    0.052
+   ],
+   "source": "Growth in the realised price per tonne, all lines, in EGP. The realisation ITSELF is disclosed \u2014 note 14-A value divided by note 14-A tonnes \u2014 so only its growth is forecast. Struck below the assumed exchange-rate path on the view that a pass-through processor recovers currency in price with a lag. The second and last free operating parameter",
+   "date": "2026-08-06",
    "ring": "House"
   },
   "fixed_cost_infl": {
@@ -323,41 +703,25 @@
     1.1,
     1.095
    ],
-   "source": "Cumulative-year inflation factors applied to the fixed conversion leg, FY2023/24 through 2030E: Egyptian headline inflation as printed for the historical years and easing toward the central bank's target thereafter",
+   "source": "Cumulative-year Egyptian inflation factors applied to the pound-denominated cost legs \u2014 salaries inside cost of sales, the other line, administrative and marketing expense, and capital expenditure. Historical years as printed, easing toward the central bank's published target thereafter",
    "date": "2026-08-06",
    "ring": "Country"
   },
-  "complexity_weight": {
-   "value": 3.0,
-   "source": "Fixed conversion cost per tonne on the specialty lines as a multiple of the fuel slate. A tonne of base oil occupies the extraction, dewaxing and finishing trains; a tonne of gas-oil blend leaves at the fractionator. This allocates the fixed leg and is the ONLY judgment parameter left inside the margin \u2014 and it moves the SPLIT between lines, not the blended margin, which is pinned by the solved feedstock differential",
-   "date": "2026-08-06",
-   "ring": "House"
+  "payout_reported": {
+   "value": 1.0371542357388637,
+   "source": "Dividend payout ratio COMPUTED from the filings: cash dividends actually PAID in the audited nine months (736,577,469 in the transition half plus 602,957,265 in Q1-2026) over group profit after tax for the same nine months. Not a reported ratio and not an assumption \u2014 the two cash-flow statements divided by the two profit lines",
+   "date": "2026-03-31",
+   "ring": "Company"
   },
-  "line_vol_growth": {
-   "value": {
-    "oil": [
-     0.075,
-     0.055,
-     0.045,
-     0.038,
-     0.032
-    ],
-    "wax": [
-     0.09,
-     0.07,
-     0.055,
-     0.045,
-     0.04
-    ],
-    "fuel": [
-     0.05,
-     0.036,
-     0.032,
-     0.028,
-     0.023
-    ]
-   },
-   "source": "Volume growth by product line. Wax fastest on the export push, base oils next, the fuel slate slowest \u2014 it is throughput the specialty units do not take",
+  "dps": {
+   "value": 1.0371929802555169,
+   "source": "Dividend per share, cash actually paid in the audited nine months over shares outstanding. Annualising is left to the reader; the study uses the paid figure",
+   "date": "2026-03-31",
+   "ring": "Company"
+  },
+  "raw_pass": {
+   "value": 1.0,
+   "source": "Pass-through factor on the raw-material line: 1.0 means the feedstock charge moves one-for-one with realisation and volume, so the gross SPREAD per tonne is held flat in real terms and the margin neither widens nor narrows by assumption. Setting it below 1.0 is the way to express spread widening; the study leaves it at parity and sensitises it",
    "date": "2026-08-06",
    "ring": "House"
   },
@@ -515,12 +879,6 @@
    "date": "2026-08-06",
    "ring": "House"
   },
-  "nci_share": {
-   "value": 0.03,
-   "source": "Minority interests' share of group profit. Consolidated FY2024/25 profit of EGP 1,550mn against standalone EGP 1,490mn means non-parent entities contribute EGP 60mn, about 3.9% of the group; the minority slice of that is smaller again. Held at 3.0% and sensitised",
-   "date": "2026-08-06",
-   "ring": "House"
-  },
   "recv_days": {
    "value": 14.0,
    "source": "Trade receivable days. The offtake is dominated by the state petroleum complex on short settlement, which is why a company turning over EGP 40bn of revenue runs a balance sheet of only EGP 8.1bn",
@@ -672,416 +1030,559 @@
   }
  },
  "hist_is": {
-  "FY23": {
-   "rev": 22515.65,
-   "gp": 1297.0100000000061,
-   "gm": 0.05760482153524353,
-   "opex": 281.445625,
-   "ebitda": 1015.5643750000061,
-   "dna": 247.67215,
-   "ebit": 767.8922250000061,
-   "other": 759.8581719902824,
-   "fin": 197.73979908814292,
-   "ebt": 1725.4901960784314,
-   "tax": -405.4901960784314,
-   "pat": 1320.0,
-   "nci": 39.6,
-   "npa": 1280.3999999999999
+  "6M Dec-2024": {
+   "rev": 18246.078901,
+   "gp": 1250.642445,
+   "gm": 0.06854307995628896,
+   "ebit": 743.62065
   },
-  "FY24": {
-   "rev": 33536.5,
-   "gp": 2017.7261637540864,
-   "gm": 0.06016507875759505,
-   "opex": 419.20625,
-   "ebitda": 1598.5199137540865,
-   "dna": 368.9015,
-   "ebit": 1229.6184137540865,
-   "other": 436.63739326076,
-   "fin": 294.5285067106436,
-   "ebt": 1960.7843137254902,
-   "tax": -460.78431372549016,
-   "pat": 1500.0,
-   "nci": 45.0,
-   "npa": 1455.0
+  "3M Mar-2025": {
+   "rev": 10068.471935,
+   "gp": 508.772672,
+   "gm": 0.05053126981775711,
+   "ebit": 247.222032
   },
-  "FY25": {
-   "rev": 37506.666666666664,
-   "gp": 2022.5504654346023,
-   "gm": 0.05392509239516359,
-   "opex": 468.8333333333333,
-   "ebitda": 1553.717132101269,
-   "dna": 412.57333333333327,
-   "ebit": 1141.1437987679358,
-   "other": 555.6041837825051,
-   "fin": 329.39580829923244,
-   "ebt": 2026.1437908496732,
-   "tax": -476.1437908496732,
-   "pat": 1550.0,
-   "nci": 46.5,
-   "npa": 1503.5
+  "6M Dec-2025": {
+   "rev": 20735.725812,
+   "gp": 1274.175066,
+   "gm": 0.06144829834037545,
+   "ebit": 486.028457
   },
-  "CY25": {
-   "rev": 39995.666666666664,
-   "gp": 2424.1906363798175,
-   "gm": 0.060611332137143634,
-   "opex": 499.9458333333333,
-   "ebitda": 1924.2448030464843,
-   "dna": 439.9523333333333,
-   "ebit": 1484.2924697131511,
-   "other": 145.37874858750246,
-   "fin": 413.2412,
-   "ebt": 2042.9124183006536,
-   "tax": -480.0844183006536,
-   "pat": 1562.828,
-   "nci": 46.88484,
-   "npa": 1515.94316
+  "3M Mar-2026": {
+   "rev": 10510.77916,
+   "gp": 1071.034965,
+   "gm": 0.10189872213051045,
+   "ebit": 643.172153
   }
  },
  "hist_bs": {
-  "FY23": {
-   "ppe": 1799.014189294109,
-   "inv": 813.8656438356163,
-   "recv": 863.6139726027399,
-   "other_ca": 300.0,
-   "pay": 1395.1982465753422,
-   "other_liab": 390.60259746790786,
-   "cash": 1858.1190383107846,
-   "debt": 25.26,
-   "nd": -1832.8590383107846,
-   "eq": 3823.552,
-   "eqp": 3708.84544,
-   "nci": 114.70656,
-   "nwc": 582.2813698630139,
-   "assets": 5634.612844043249
+  "6M Dec-2024": {
+   "ic": 4115.455116,
+   "roic": 0.28144686657901496,
+   "rr": -0.06866716710019831
   },
-  "FY24": {
-   "ppe": 2195.5898388885084,
-   "inv": 1208.9392704313502,
-   "recv": 1286.331506849315,
-   "other_ca": 300.0,
-   "pay": 2072.4673207394576,
-   "other_liab": 581.7928423111254,
-   "cash": 1978.9635468814095,
-   "debt": 25.26,
-   "nd": -1953.7035468814095,
-   "eq": 4290.304,
-   "eqp": 4161.59488,
-   "nci": 128.70911999999998,
-   "nwc": 722.8034565412077,
-   "assets": 6969.824163050583
+  "3M Mar-2025": {
+   "ic": 3465.252392,
+   "roic": 0.22225172551724345,
+   "rr": 0.12665900117769416
   },
-  "FY25": {
-   "ppe": 2321.9163978294496,
-   "inv": 1361.03459401986,
-   "recv": 1438.6118721461185,
-   "other_ca": 300.0,
-   "pay": 2333.202161176903,
-   "other_liab": 650.6674878301534,
-   "cash": 2394.622785011629,
-   "debt": 25.26,
-   "nd": -2369.3627850116286,
-   "eq": 4807.0560000000005,
-   "eqp": 4662.84432,
-   "nci": 144.21168,
-   "nwc": 766.4443049890756,
-   "assets": 7816.185649007057
+  "6M Dec-2025": {
+   "ic": 3034.491766,
+   "roic": 0.24948163445528293,
+   "rr": -0.1050603574693736
   },
-  "CY25": {
-   "ppe": 2397.7219239524684,
-   "inv": 1441.097710750728,
-   "recv": 1534.0803652968034,
-   "other_ca": 300.0,
-   "pay": 2470.45321842982,
-   "other_liab": 693.8467815701797,
-   "cash": 2463.52,
-   "debt": 25.26,
-   "nd": -2438.2599999999998,
-   "eq": 4946.860000000001,
-   "eqp": 4798.4542,
-   "nci": 148.4058,
-   "nwc": 804.7248576177112,
-   "assets": 8136.42
+  "3M Mar-2026": {
+   "ic": 3034.491766,
+   "roic": 0.6602890742529641,
+   "rr": 0.048685092313441536
   }
  },
+ "audited": {
+  "periods": [
+   "6M Dec-2024",
+   "3M Mar-2025",
+   "6M Dec-2025",
+   "3M Mar-2026"
+  ],
+  "rev": {
+   "6M Dec-2024": 18246.078901,
+   "3M Mar-2025": 10068.471935,
+   "6M Dec-2025": 20735.725812,
+   "3M Mar-2026": 10510.77916
+  },
+  "gp": {
+   "6M Dec-2024": 1250.642445,
+   "3M Mar-2025": 508.772672,
+   "6M Dec-2025": 1274.175066,
+   "3M Mar-2026": 1071.034965
+  },
+  "gm": {
+   "6M Dec-2024": 0.06854307995628896,
+   "3M Mar-2025": 0.05053126981775711,
+   "6M Dec-2025": 0.06144829834037545,
+   "3M Mar-2026": 0.10189872213051045
+  },
+  "ebit": {
+   "6M Dec-2025": 486.028457,
+   "3M Mar-2026": 643.172153,
+   "6M Dec-2024": 743.62065,
+   "3M Mar-2025": 247.222032
+  },
+  "cost_stack": {
+   "salaries": 881.019497,
+   "raw": 17650.102725,
+   "support": 64.533723,
+   "dep": 58.748046,
+   "other": 807.146755
+  },
+  "cost_share": {
+   "salaries": 0.04526974795063949,
+   "raw": 0.9069217019423638,
+   "support": 0.0033159599582918047,
+   "dep": 0.0030186723949567427,
+   "other": 0.04147391775374815
+  },
+  "prod_t": {
+   "oils": 54968.98,
+   "wax": 41774.2,
+   "gasoil": 171684.881,
+   "naphtha": 41430.857,
+   "lpg": 23735.778,
+   "fueloil": 460153.6,
+   "hfo": 14327.52,
+   "waste": 7.82
+  },
+  "prod_v": {
+   "oils": 2597280264.0,
+   "wax": 2041969329.0,
+   "gasoil": 5121703599.0,
+   "naphtha": 958746631.0,
+   "lpg": 816258520.0,
+   "fueloil": 8975569716.0,
+   "hfo": 224110353.0,
+   "waste": 87400.0
+  },
+  "px": {
+   "oils": 47249.92648581072,
+   "wax": 48881.11152338047,
+   "gasoil": 29832.001333885655,
+   "naphtha": 23140.883400022354,
+   "lpg": 34389.372869935,
+   "fueloil": 19505.594905701055,
+   "hfo": 15641.95010720627,
+   "waste": 11176.470588235294
+  },
+  "mix_t": {
+   "oils": 0.06802387469704932,
+   "wax": 0.05169539158939236,
+   "gasoil": 0.21245929672556815,
+   "naphtha": 0.05127050611380034,
+   "lpg": 0.029372922482989124,
+   "fueloil": 0.5694380872229419,
+   "hfo": 0.017730243952124778,
+   "waste": 9.677216134098278e-06
+  },
+  "mix_v": {
+   "oils": 0.12525629860021223,
+   "wax": 0.09847590325573698,
+   "gasoil": 0.24699900285313436,
+   "naphtha": 0.046236463564982254,
+   "lpg": 0.03936483957207912,
+   "fueloil": 0.4328553433517015,
+   "hfo": 0.010807933854444816,
+   "waste": 4.214947708723108e-06
+  },
+  "growth_v": {
+   "oils": 0.027869807566916593,
+   "wax": 0.21271999692537014,
+   "gasoil": -0.01875457411696846,
+   "naphtha": -0.07322890591713227,
+   "lpg": 0.18726851205631934,
+   "fueloil": 0.2906591147310216,
+   "hfo": 0.6070510398850135,
+   "waste": -0.24
+  },
+  "base_rev": 41662.00662933333,
+  "base_gm": 0.07505511522333597,
+  "tax_eff": 0.22118761296853667,
+  "dep_ann": 147.63050666666666,
+  "capex_ann": 127.12237466666666,
+  "opex_ann": 1621.346428,
+  "ic": 3034.491766,
+  "ppe": 1300.339477,
+  "nwc": 1734.152289,
+  "cash": 2463.522365,
+  "debt": 20.977437,
+  "provisions": 921.440353,
+  "pledged": 508.75005,
+  "nci_share": 0.04644563756748903,
+  "spec_t": 0.11971926628644168,
+  "spec_v": 0.22373220185594922,
+  "raw_of_rev": 0.8511929066300484,
+  "rev9": 31246.504972,
+  "gp9": 2345.210031,
+  "pat9": 1291.548246
+ },
  "base": {
-  "rev_cy25": 39995.666666666664,
-  "pat_cy25": 1562.828,
-  "rev_h1cy25": 19260.666666666664,
-  "pat_h1cy25": 906.4,
-  "vol_cy25": 1.3623231441048036,
-  "rev_fy24": 33536.5,
-  "rev_fy25": 37506.666666666664,
-  "nwc_pct": 0.02012030113973292,
-  "nwc_cy25": 804.7248576177112,
-  "ppe_cy25": 2397.7219239524684,
-  "ic_cy25": 3202.4467815701796,
-  "eqp_cy25": 4798.4542,
-  "eq_cy25": 4946.860000000001,
-  "nd_cy25": -2438.2599999999998,
-  "cogs_cy25": 37571.476030286845,
-  "npa_cy25": 1515.94316,
-  "nci_cy25": 46.88484,
-  "gm_cy25": 0.060611332137143634,
-  "dna_cy25": 439.9523333333333,
-  "other_cy25": 145.37874858750246,
-  "netfin_cy25": 413.2412,
-  "div_annual": 1033.248,
-  "other_liab": 693.8467815701797,
-  "implied_life": 5.449958421145174,
-  "eq_jun23": 3823.552,
-  "eq_jun24": 4290.304,
-  "eq_jun25": 4807.0560000000005,
-  "rev_fy24_methods": [
-   33770.0,
-   33303.0
-  ],
-  "rev_fy25_methods": [
-   36900.0,
-   37620.0,
-   38000.0
-  ],
-  "implied_growth_rev": 0.3602852099269671,
-  "implied_growth_pat": 1.0962047661076788
+  "rev_cy25": 41662.00662933333,
+  "pat_cy25": 1722.064328,
+  "gm_cy25": 0.07505511522333597,
+  "gp_cy25": 3126.946708,
+  "ebitda_cy25": 1653.2307866666665,
+  "dna_cy25": 147.63050666666666,
+  "opex_cy25": 1621.346428,
+  "npa_cy25": 1651.243093333333,
+  "np_cy25": 1722.064328,
+  "nd_cy25": -2442.544928,
+  "eqp_cy25": 4790.695948,
+  "ppe_cy25": 1300.339477,
+  "nwc_cy25": 1734.152289,
+  "ic_cy25": 3034.491766,
+  "bvps": 3.7094045280681374,
+  "cash": 2463.522365,
+  "debt": 20.977437,
+  "netfin_cy25": 316.4274546666667,
+  "inv": 2847.392506,
+  "recv": 939.148849,
+  "pay": 2052.389066,
+  "roe_trailing": 0.32555333214717463,
+  "implied_life": 8.808067562458636,
+  "eq_jun25": 5353.528855,
+  "eq_jun24": 4922.226388,
+  "eq_dec24": 4430.087458,
+  "assets": 8136.41803,
+  "liab": 3311.643082
  },
  "unit": {
-  "spec_vol25": 0.1892,
-  "vol_cy25": 1.3623231441048036,
+  "lines": [
+   "oils",
+   "wax",
+   "gasoil",
+   "naphtha",
+   "lpg",
+   "fueloil",
+   "hfo",
+   "waste"
+  ],
+  "labels": {
+   "oils": "Base and special oils",
+   "wax": "Paraffin wax",
+   "gasoil": "Gas oil",
+   "naphtha": "Naphtha",
+   "lpg": "Liquefied petroleum gas",
+   "fueloil": "Fuel oil (mix)",
+   "hfo": "Heavy fuel oil",
+   "waste": "Waste"
+  },
+  "spec": [
+   "oils",
+   "wax"
+  ],
+  "prod_t": {
+   "oils": 54968.98,
+   "wax": 41774.2,
+   "gasoil": 171684.881,
+   "naphtha": 41430.857,
+   "lpg": 23735.778,
+   "fueloil": 460153.6,
+   "hfo": 14327.52,
+   "waste": 7.82
+  },
+  "prod_v": {
+   "oils": 2597280264.0,
+   "wax": 2041969329.0,
+   "gasoil": 5121703599.0,
+   "naphtha": 958746631.0,
+   "lpg": 816258520.0,
+   "fueloil": 8975569716.0,
+   "hfo": 224110353.0,
+   "waste": 87400.0
+  },
+  "prod_v_prior": {
+   "oils": 2526857239.0,
+   "wax": 1683792907.0,
+   "gasoil": 5219594878.0,
+   "naphtha": 1034502087.0,
+   "lpg": 687509617.0,
+   "fueloil": 6954252764.0,
+   "hfo": 139454409.0,
+   "waste": 115000.0
+  },
+  "px": {
+   "oils": 47249.92648581072,
+   "wax": 48881.11152338047,
+   "gasoil": 29832.001333885655,
+   "naphtha": 23140.883400022354,
+   "lpg": 34389.372869935,
+   "fueloil": 19505.594905701055,
+   "hfo": 15641.95010720627,
+   "waste": 11176.470588235294
+  },
+  "mix_t": {
+   "oils": 0.06802387469704932,
+   "wax": 0.05169539158939236,
+   "gasoil": 0.21245929672556815,
+   "naphtha": 0.05127050611380034,
+   "lpg": 0.029372922482989124,
+   "fueloil": 0.5694380872229419,
+   "hfo": 0.017730243952124778,
+   "waste": 9.677216134098278e-06
+  },
+  "mix_v": {
+   "oils": 0.12525629860021223,
+   "wax": 0.09847590325573698,
+   "gasoil": 0.24699900285313436,
+   "naphtha": 0.046236463564982254,
+   "lpg": 0.03936483957207912,
+   "fueloil": 0.4328553433517015,
+   "hfo": 0.010807933854444816,
+   "waste": 4.214947708723108e-06
+  },
+  "growth_v": {
+   "oils": 0.027869807566916593,
+   "wax": 0.21271999692537014,
+   "gasoil": -0.01875457411696846,
+   "naphtha": -0.07322890591713227,
+   "lpg": 0.18726851205631934,
+   "fueloil": 0.2906591147310216,
+   "hfo": 0.6070510398850135,
+   "waste": -0.24
+  },
+  "spec_share_t": 0.11971926628644168,
+  "spec_share_v": 0.22373220185594922,
+  "tot_t": 808083.6359999999,
+  "tot_v": 20735.725812,
+  "vol_cy25": 1.616167272,
   "vol25": {
-   "oil": 0.11892583645012939,
-   "wax": 0.07027416354987062,
-   "fuel": 1.1731231441048036
-  },
-  "px_egp": {
-   "oil": 40034.55993384626,
-   "wax": 36639.39338626753,
-   "fuel": 21052.60271486586
-  },
-  "px_usd": {
-   "oil": 1099.850547633139,
-   "wax": 1006.5767413809763,
-   "fuel": 578.3682064523589
-  },
-  "crack": {
-   "oil": 1.8976027391876105,
-   "wax": 1.7366748471031337,
-   "fuel": 0.9978747523332624
+   "oils": 0.10993796,
+   "wax": 0.0835484,
+   "gasoil": 0.34336976199999997,
+   "naphtha": 0.082861714,
+   "lpg": 0.047471556,
+   "fueloil": 0.9203072,
+   "hfo": 0.02865504,
+   "waste": 1.564e-05
   },
   "rev25_lines": {
-   "oil": 5944.60938462733,
-   "wax": 3214.8151688602557,
-   "fuel": 30836.242113179076
+   "oils": 5194.560528,
+   "wax": 4083.938658,
+   "gasoil": 10243.407198,
+   "naphtha": 1917.493262,
+   "lpg": 1632.51704,
+   "fueloil": 17951.139432,
+   "hfo": 448.220706,
+   "waste": 0.1748
   },
-  "feed_diff": 0.9215876592378073,
-  "ton_fy23": 1.2227806829461,
-  "parity_fy24": 579.6,
-  "recon_px": 1.119865118686094,
-  "gm_built": [
-   0.05760482153524353,
-   0.06016507875759505,
-   0.05392509239516359,
-   0.060611332137143634
-  ],
-  "gm_assumed_old": [
-   0.0576,
-   0.06,
-   0.062,
-   0.064
-  ],
-  "hist_margin": {
-   "fy23": {
-    "gm": 0.05760482153524353,
-    "brent": 85.0,
-    "parity": 586.5,
-    "feed_pt": 557.2280022092515,
-    "line_margin": {
-     "oil": 0.39508809148144686,
-     "wax": 0.32430763070028057,
-     "fuel": -0.023516466235930403
-    },
-    "cogs": {
-     "feed": 19418.977657296415,
-     "energy": 790.3953486672216,
-     "chem": 309.266994036366,
-     "fixed": 700.0,
-     "total": 21218.640000000003,
-     "feed_t": 1.2605986422124746
-    }
-   },
-   "fy24": {
-    "gm": 0.06016507875759505,
-    "brent": 83.99999999999999,
-    "parity": 579.5999999999999,
-    "feed_pt": 550.6723786538485,
-    "line_margin": {
-     "oil": 0.3987519161693527,
-     "wax": 0.32813564384898847,
-     "fuel": -0.021257506058089112
-    },
-    "cogs": {
-     "feed": 28730.54719879734,
-     "energy": 1183.3182185567011,
-     "chem": 463.0104024,
-     "fixed": 931.0,
-     "total": 31307.87581975404,
-     "feed_t": 1.4776701030927837
-    }
-   },
-   "fy25": {
-    "gm": 0.05392509239516359,
-    "brent": 80.08606042772657,
-    "parity": 552.5938169513133,
-    "feed_pt": 525.0140641994291,
-    "line_margin": {
-     "oil": 0.390402873643156,
-     "wax": 0.31828465718558563,
-     "fuel": -0.02681346967625691
-    },
-    "cogs": {
-     "feed": 32348.216551583628,
-     "energy": 1397.4309278350518,
-     "chem": 546.7887218133869,
-     "fixed": 1191.68,
-     "total": 35484.116201232064,
-     "feed_t": 1.2989690721649487
-    }
-   },
-   "cy25": {
-    "gm": 0.060611332137143634,
-    "brent": 78.39055830802657,
-    "parity": 540.8948523253833,
-    "feed_pt": 513.8989905652882,
-    "line_margin": {
-     "oil": 0.3873639388801537,
-     "wax": 0.31462605557667633,
-     "fuel": -0.02886218374707672
-    },
-    "cogs": {
-     "feed": 34094.698993806465,
-     "energy": 1504.7350686534915,
-     "chem": 637.3603678268923,
-     "fixed": 1334.6816000000001,
-     "total": 37571.47603028685,
-     "feed_t": 1.404456849592581
-    }
-   }
+  "cost_stack": {
+   "salaries": 881.019497,
+   "raw": 17650.102725,
+   "support": 64.533723,
+   "dep": 58.748046,
+   "other": 807.146755
   },
-  "line_margin": {
-   "oil": [
-    0.3858209059397504,
-    0.38673433129845186,
-    0.38771589949354573,
-    0.38877119558989365,
-    0.38958077084604775
-   ],
-   "wax": [
-    0.3129400384507589,
-    0.3142731060374752,
-    0.31566686374102915,
-    0.31712824573462856,
-    0.3183089676797278
-   ],
-   "fuel": [
-    -0.029840283629692065,
-    -0.029140000281680352,
-    -0.028401506566698074,
-    -0.027620961162400242,
-    -0.027000579398466944
-   ]
+  "cost_share": {
+   "salaries": 0.04526974795063949,
+   "raw": 0.9069217019423638,
+   "support": 0.0033159599582918047,
+   "dep": 0.0030186723949567427,
+   "other": 0.04147391775374815
   },
-  "elast": {
-   "base": 0.060611332137143634,
-   "up": 0.06851395424653971,
-   "dn": 0.05095257178121506
-  },
-  "m_spec": 0.3858209059397504,
-  "m_fuel": -0.029840283629692065,
-  "spec_share_t": 0.1234864023888261,
-  "spec_share_v": 0.20601618613007927,
-  "line_fuel_t": 1256342.0,
-  "line_fuel_v": 26449.269000000004,
-  "lines": [
-   "oil",
-   "wax",
-   "fuel"
-  ],
   "lines_rev": {
-   "oil": [
-    6679.1409446272255,
-    7551.0012862527865,
-    8418.420111625177,
-    9269.475388574905,
-    10112.037021515875
+   "oils": [
+    5916.8641694184,
+    6615.054141409771,
+    7291.6088037224545,
+    7945.957777768507,
+    8593.20371451442
    ],
    "wax": [
-    3662.446825123939,
-    4199.393600509715,
-    4726.599469996509,
-    5239.529617469038,
-    5760.092224017969
+    4763.097656825401,
+    5401.948130047107,
+    6011.9631226326765,
+    6602.361949127695,
+    7167.94668313777
    ],
-   "fuel": [
-    33840.717859114084,
-    37569.100665946484,
-    41363.78351576745,
-    45106.65046684265,
-    48777.55307007973
+   "gasoil": [
+    11388.6201227364,
+    12487.621964580463,
+    13538.705105339197,
+    14553.133201472054,
+    15539.54456986783
+   ],
+   "naphtha": [
+    2121.4186704137,
+    2321.5745219672326,
+    2516.981449481214,
+    2705.5738355279423,
+    2888.9576301000266
+   ],
+   "lpg": [
+    1823.9296629399998,
+    2003.8603241890314,
+    2176.7934701665445,
+    2344.5023462820554,
+    2505.879131781342
+   ],
+   "fueloil": [
+    20153.7442403064,
+    22228.57220984595,
+    24194.244850362622,
+    26109.461272717326,
+    27961.562017558805
+   ],
+   "hfo": [
+    498.33178093080005,
+    545.349384461621,
+    590.0898479628522,
+    633.679785031868,
+    675.9639697274747
+   ],
+   "waste": [
+    0.19053199999999998,
+    0.2048219,
+    0.21813532349999998,
+    0.23078717226299997,
+    0.242788105220676
    ]
   },
   "lines_vol": {
-   "oil": [
-    0.12784527418388908,
-    0.13487676426400297,
-    0.14094621865588308,
-    0.14630217496480663,
-    0.15098384456368044
+   "oils": [
+    0.1148851682,
+    0.119480574928,
+    0.12366239505048,
+    0.1273722669019944,
+    0.13093869037525024
    ],
    "wax": [
-    0.07659883826935898,
-    0.08196075694821411,
-    0.08646859858036589,
-    0.09035968551648235,
-    0.09397407293714165
+    0.089396788,
+    0.09431361133999999,
+    0.09855772385029998,
+    0.10230291735661139,
+    0.10557661071202294
    ],
-   "fuel": [
-    1.2317793013100438,
-    1.2761233561572054,
-    1.316959303554236,
-    1.3538341640537546,
-    1.3849723498269908
+   "gasoil": [
+    0.35023715724,
+    0.35724190038479997,
+    0.36367225459172636,
+    0.36949101066519396,
+    0.3750333758251719
+   ],
+   "naphtha": [
+    0.08410463971,
+    0.08561852322478,
+    0.08715965664282603,
+    0.08855421114911124,
+    0.08988252431634791
+   ],
+   "lpg": [
+    0.04865834489999999,
+    0.0497288284878,
+    0.050723405057555994,
+    0.051636426348592,
+    0.05246260917016947
+   ],
+   "fueloil": [
+    0.947916416,
+    0.972562242816,
+    0.993958612157952,
+    1.013837784401111,
+    1.032086864520331
+   ],
+   "hfo": [
+    0.0292281408,
+    0.0297542473344,
+    0.0302303152917504,
+    0.03068377002112665,
+    0.031113342801422427
+   ],
+   "waste": [
+    1.564e-05,
+    1.564e-05,
+    1.564e-05,
+    1.564e-05,
+    1.564e-05
+   ]
+  },
+  "line_margin": {
+   "oils": [
+    0.07173467089486295,
+    0.07187388235213525,
+    0.07173416137023093,
+    0.07155355920471035,
+    0.07090364598851324
+   ],
+   "wax": [
+    0.07173467089486295,
+    0.07187388235213525,
+    0.07173416137023093,
+    0.07155355920471035,
+    0.07090364598851324
+   ],
+   "gasoil": [
+    0.07173467089486295,
+    0.07187388235213525,
+    0.07173416137023093,
+    0.07155355920471035,
+    0.07090364598851324
+   ],
+   "naphtha": [
+    0.07173467089486295,
+    0.07187388235213525,
+    0.07173416137023093,
+    0.07155355920471035,
+    0.07090364598851324
+   ],
+   "lpg": [
+    0.07173467089486295,
+    0.07187388235213525,
+    0.07173416137023093,
+    0.07155355920471035,
+    0.07090364598851324
+   ],
+   "fueloil": [
+    0.07173467089486295,
+    0.07187388235213525,
+    0.07173416137023093,
+    0.07155355920471035,
+    0.07090364598851324
+   ],
+   "hfo": [
+    0.07173467089486295,
+    0.07187388235213525,
+    0.07173416137023093,
+    0.07155355920471035,
+    0.07090364598851324
+   ],
+   "waste": [
+    0.07173467089486295,
+    0.07187388235213525,
+    0.07173416137023093,
+    0.07155355920471035,
+    0.07090364598851324
    ]
   },
   "vol": [
-   1.4362234137632919,
-   1.4929608773694225,
-   1.5443741207904849,
-   1.5904960245350435,
-   1.6299302673278129
+   1.66444229485,
+   1.7087155685157798,
+   1.7479800026425907,
+   1.7838940268437407,
+   1.8171096577207158
   ],
   "spec_vol": [
-   0.20444411245324806,
-   0.21683752121221708,
-   0.22741481723624896,
-   0.23666186048128898,
-   0.24495791750082208
+   0.2042819562,
+   0.213794186268,
+   0.22222011890077997,
+   0.22967518425860578,
+   0.2365153010872732
   ],
   "spec_rev": [
-   10341.587769751164,
-   11750.3948867625,
-   13145.019581621686,
-   14509.005006043943,
-   15872.129245533844
+   10679.961826243802,
+   12017.002271456877,
+   13303.571926355131,
+   14548.319726896203,
+   15761.15039765219
   ],
   "fuel_rev": [
-   33840.717859114084,
-   37569.100665946484,
-   41363.78351576745,
-   45106.65046684265,
-   48777.55307007973
+   35986.2350093273,
+   39587.1832269443,
+   43017.03285863593,
+   46346.58122820351,
+   49572.1501071407
   ],
-  "vol_h2_fy25": 0.7056768558951966,
-  "vol_h1_cy25": 0.5543231441048034,
-  "oil_share_of_spec": 0.6285720742607261,
-  "ss": 0.22901042329971377
+  "cogs": [
+   43318.61256365651,
+   47895.19234101132,
+   52280.49343287551,
+   56537.65405434402,
+   60700.93129453991
+  ],
+  "m_spec": 0.07173467089486295,
+  "m_fuel": 0.07173467089486295,
+  "raw_of_rev": 0.8511929066300484,
+  "dep_ann": 147.63050666666666,
+  "capex_ann": 127.12237466666666,
+  "base_gm": 0.07505511522333597,
+  "tax_eff": 0.22118761296853667
  },
  "fcst": {
   "years": [
@@ -1092,115 +1593,115 @@
    "2030E"
   ],
   "rev": [
-   44182.305628865244,
-   49319.495552708984,
-   54508.80309738914,
-   59615.65547288659,
-   64649.68231561358
+   46666.1968355711,
+   51604.18549840117,
+   56320.60478499106,
+   60894.90095509972,
+   65333.3005047929
   ],
   "gp": [
-   2713.2618412851516,
-   3145.2242993906475,
-   3581.192387600573,
-   4019.418824659323,
-   4455.921992701491
+   3347.5842719145876,
+   3708.9931573898502,
+   4040.1113521155494,
+   4357.246900755701,
+   4632.369210252989
   ],
   "gm": [
-   0.06141059871516799,
-   0.06377243449356182,
-   0.06569933999838835,
-   0.06742220298973932,
-   0.06892411274270623
+   0.07173467089486295,
+   0.07187388235213525,
+   0.07173416137023093,
+   0.07155355920471035,
+   0.07090364598851324
   ],
   "opex": [
-   552.2788203608155,
-   616.4936944088623,
-   686.8109190271031,
-   757.1188245056596,
-   827.5159336398539
+   1856.44166006,
+   2097.7790758678,
+   2339.023669592597,
+   2572.9260365518567,
+   2817.354010024283
   ],
   "ebitda": [
-   2160.983020924336,
-   2528.7306049817853,
-   2894.38146857347,
-   3262.3000001536634,
-   3628.4060590616373
+   1638.7731185212542,
+   1758.8445881887167,
+   1848.7181891896191,
+   1931.951370870511,
+   1962.645706895373
   ],
   "ebitda_margin": [
-   0.048910598715167994,
-   0.05127243449356183,
-   0.053099339998388354,
-   0.054722202989739316,
-   0.05612411274270622
+   0.03511692037590916,
+   0.034083370780907105,
+   0.03282489945282487,
+   0.03172599578238935,
+   0.030040510608390157
   ],
   "dna": [
-   486.00536191751763,
-   542.5144510797988,
-   599.5968340712805,
-   655.7722102017524,
-   711.1465054717494
+   147.63050666666666,
+   147.63050666666666,
+   147.63050666666666,
+   147.63050666666666,
+   147.63050666666666
   ],
   "ebit": [
-   1674.9776590068184,
-   1986.2161539019864,
-   2294.78463450219,
-   2606.527789951911,
-   2917.259553589888
+   1491.1426118545876,
+   1611.21408152205,
+   1701.0876825229525,
+   1784.3208642038444,
+   1815.0152002287064
   ],
   "nopat": [
-   1281.3579091402162,
-   1519.4553577350196,
-   1755.5102453941752,
-   1993.993759313212,
-   2231.7035584962646
+   1161.3203369428022,
+   1254.8334848488946,
+   1324.8281585755208,
+   1389.6511914806397,
+   1413.5563205885082
   ],
   "capex": [
-   640.6434316185461,
-   690.4729377379258,
-   735.8688418147533,
-   775.0035211475256,
-   808.1210289451698
+   145.55511899333334,
+   164.47728446246666,
+   183.39217217565033,
+   201.73138939321538,
+   220.89587138557084
   ],
   "nwc": [
-   888.9612943004855,
-   992.3231025802232,
-   1096.733533085876,
-   1199.484940757045,
-   1300.7710767782112
+   1942.4482546251554,
+   2147.988626669397,
+   2344.306326258186,
+   2534.7082491548317,
+   2719.4535689632585
   ],
   "dnwc": [
-   84.2364366827743,
-   103.36180827973772,
-   104.4104305056527,
-   102.75140767116909,
-   101.28613602116616
+   208.2959656251553,
+   205.54037204424162,
+   196.31769958878886,
+   190.40192289664583,
+   184.74531980842676
   ],
   "fcff": [
-   1042.4834027564134,
-   1268.135062797155,
-   1514.8278071450495,
-   1772.0110406962694,
-   2033.4428990016784
+   955.0997589909803,
+   1032.4463350088529,
+   1092.7487934777482,
+   1145.1483858574452,
+   1155.5456360611772
   ],
   "df": [
-   0.7596893868782246,
-   0.6017995527776395,
-   0.49360558727088644,
-   0.41590870431739124,
-   0.3569337843907526
+   0.7596487536214225,
+   0.6017457882669386,
+   0.493551309056269,
+   0.4158594453498053,
+   0.35689151023410925
   ],
   "pv": [
-   791.963577070745,
-   763.1631136529717,
-   747.7274693601013,
-   736.9948159720975,
-   725.8044692831719
+   725.5403415016192,
+   621.2702337032139,
+   539.3275974906012,
+   476.22077258590195,
+   412.4044271983079
   ],
   "fwd_wacc": [
-   0.3163274586594906,
-   0.26236283056681536,
-   0.21919112809267519,
-   0.1868123512370701,
+   0.316397868400056,
+   0.2624080939714646,
+   0.21921627442859143,
+   0.1868224097714366,
    0.1652265
   ],
   "glide_frac": [
@@ -1211,69 +1712,69 @@
    1.0
   ],
   "ppe": [
-   2552.359993653497,
-   2700.3184803116237,
-   2836.5904880550966,
-   2955.8217990008698,
-   3052.7963224742903
+   1298.2640893266666,
+   1315.1108671224665,
+   1350.8725326314502,
+   1404.9734153579989,
+   1478.2387800769031
   ],
   "ic": [
-   3441.3212879539824,
-   3692.641582891847,
-   3933.3240211409725,
-   4155.306739757914,
-   4353.567399252502
+   3240.712343951822,
+   3463.0994937918636,
+   3695.178858889636,
+   3939.6816645128306,
+   4197.692349040161
   ],
   "roic": [
-   0.3723447484039016,
-   0.41148194960884255,
-   0.44631722074220054,
-   0.4798668026681902,
-   0.5126149095290091
+   0.35835341544897914,
+   0.3623440467414742,
+   0.35852883153093656,
+   0.35273184734647334,
+   0.33674605069895847
   ],
   "np_attr": [
-   1549.5628043260097,
-   1775.9489358763562,
-   2009.4897990685486,
-   2258.618657343922,
-   2518.244385222945
+   1389.876693721995,
+   1423.3524198713103,
+   1446.0286925630803,
+   1474.084520989006,
+   1469.3735347531601
   ],
   "equity": [
-   5272.620418123759,
-   5816.060792501924,
-   6430.9646710169,
-   7122.1019801641405,
-   7892.684762042361
+   4739.0561416735,
+   4686.172570326119,
+   4632.446479397469,
+   4577.677995605634,
+   4523.0845449069675
   ],
   "net_debt": [
-   -2721.4763345541623,
-   -3068.5226697432163,
-   -3504.893279052424,
-   -4043.9020548614,
-   -4694.108024210694
+   -2272.9787678636358,
+   -2089.2912769974246,
+   -1897.414934043152,
+   -1694.588947311957,
+   -1478.6246145373984
   ],
   "cash": [
-   2746.7363345541626,
-   3093.7826697432165,
-   3530.1532790524243,
-   4069.1620548614,
-   4719.368024210694
+   2293.956204863636,
+   2110.2687139974246,
+   1918.392371043152,
+   1715.566384311957,
+   1499.6020515373984
   ],
   "interest": [
-   413.2412,
-   407.08475018312436,
-   413.24016041533423,
-   437.227559881553,
-   476.3721224736452
+   414.18376591000003,
+   340.00283051454534,
+   281.2152249146523,
+   236.442656460394,
+   199.29021779881091
   ],
   "div": [
-   1075.3965862022505,
-   1232.508561498191,
-   1394.5859205535726,
-   1567.481348196682,
-   1747.6616033447235
+   1441.5165000484944,
+   1476.235991218691,
+   1499.7547834917298,
+   1528.8530047808415,
+   1523.9669854518265
   ],
-  "payout": 0.694
+  "payout": 1.0371542357388637
  },
  "wacc": {
   "rf": 0.2231,
@@ -1283,12 +1784,12 @@
   "ke_raw_retired": 0.31160105,
   "kd": 0.22,
   "kd_at": 0.1683,
-  "we_exp": 1.2617581054770532,
-  "wd_exp": -0.2617581054770532,
-  "wacc_exp": 0.3163274586594906,
-  "wacc_exp_gross": 0.27736664368027525,
-  "wd_gross": 0.002144593484918567,
-  "k_nd_at": 0.1296537358608188,
+  "we_exp": 1.2623541742129116,
+  "wd_exp": -0.2623541742129116,
+  "wacc_exp": 0.316397868400056,
+  "wacc_exp_gross": 0.27740630493076135,
+  "wd_gross": 0.0017817310011081166,
+  "k_nd_at": 0.1297214955143499,
   "ke_term": 0.17083500000000001,
   "kd_term": 0.15,
   "kd_term_at": 0.11474999999999999,
@@ -1307,7 +1808,7 @@
    0.16,
    0.15
   ],
-  "kd_swing_effect": 8.203070079813519e-05,
+  "kd_swing_effect": 6.815121079238546e-05,
   "wacc_usd_alt": 0.10715625000000001,
   "beta": {
    "beta": 0.9404669016938088,
@@ -1328,133 +1829,131 @@
   }
  },
  "dcf": {
-  "pv_explicit": 3765.6534453390873,
-  "tv": 18447.2353708431,
-  "pv_tv": 6584.441532461976,
-  "ev": 10350.094977801064,
-  "tv_share": 0.6361720879455038,
-  "nd": -2438.2599999999998,
-  "nci_share": 0.03,
-  "nci_val": 310.5028493340319,
-  "eq_attr": 12477.852128467031,
-  "ps": 9.661070433016686,
-  "roic_term": 0.5382456550054595,
-  "rr_term": 0.09289438667088329,
+  "pv_explicit": 2774.763372479644,
+  "tv": 11059.517725227492,
+  "pv_tv": 3947.04798341734,
+  "ev": 6721.811355896984,
+  "tv_share": 0.5872000528480512,
+  "nd": -2442.544928,
+  "nci_share": 0.04644563756748903,
+  "nci_val": 312.1988140330234,
+  "eq_attr": 8852.157469863962,
+  "ps": 6.854167611199351,
+  "roic_term": 0.3535833532339064,
+  "rr_term": 0.1414093721966697,
   "g": 0.05,
-  "bear": 4.870019380904797,
-  "bull": 18.123909320936942,
-  "ps_rating_basis": 7.95450637434835,
-  "wacc_exp_rating": 0.32249403251049713,
+  "bear": 2.3655785103538594,
+  "bull": 14.673045996877065,
+  "ps_rating_basis": 5.842652800195232,
+  "wacc_exp_rating": 0.3225668755076108,
   "wacc_term_rating": 0.20331675,
-  "ps_nci_alt": 9.420661277163275,
+  "ps_nci_alt": 6.78362183704465,
   "nci_alt": 0.06,
-  "ps_gross_basis": 10.158359518691768,
-  "ccy_alt_ps": 10.26691216453544
+  "ps_gross_basis": 7.164193859840991,
+  "ccy_alt_ps": 7.212427066046198
  },
  "terminal_recon": {
   "roic": {
-   "FY23": 0.24668821552454942,
-   "FY24": 0.32232053438272784,
-   "FY25": 0.28266614235207993,
-   "CY25": 0.35456755936279005
+   "6M Dec-2024": 0.28144686657901496,
+   "3M Mar-2025": 0.22225172551724345,
+   "6M Dec-2025": 0.24948163445528293,
+   "3M Mar-2026": 0.6602890742529641
   },
   "rr": {
-   "FY23": 0.1341500466133474,
-   "FY24": 0.1247825875116955,
-   "FY25": 0.1503746755891557,
-   "CY25": 0.12350477757554303
+   "6M Dec-2024": -0.06866716710019831,
+   "3M Mar-2025": 0.12665900117769416,
+   "6M Dec-2025": -0.1050603574693736,
+   "3M Mar-2026": 0.048685092313441536
   },
   "implied_g": {
-   "FY23": 0.03309323561158179,
-   "FY24": 0.040219990288429194,
-   "FY25": 0.04250582945623212,
-   "CY25": 0.043790787554604534
+   "6M Dec-2024": -0.01932615901720844,
+   "3M Mar-2025": 0.028150181564033098,
+   "6M Dec-2025": -0.02621062969791562,
+   "3M Mar-2026": 0.03214623453356241
   },
   "character": {
-   "FY23": "stable",
-   "FY24": "stable",
-   "FY25": "stable",
-   "CY25": "stable"
+   "6M Dec-2024": "stable",
+   "3M Mar-2025": "stable",
+   "6M Dec-2025": "stable",
+   "3M Mar-2026": "stable"
   },
   "nopat": {
-   "FY23": 587.4375521250047,
-   "FY24": 940.6580865218762,
-   "FY25": 872.9750060574709,
-   "CY25": 1135.4837393305606
+   "6M Dec-2024": 1158.2819469447766,
+   "3M Mar-2025": 770.1583234747553,
+   "6M Dec-2025": 757.0499655227779,
+   "3M Mar-2026": 2003.6417590003823
   },
   "ic": {
-   "FY23": 2381.2955591571226,
-   "FY24": 2918.393295429716,
-   "FY25": 3088.360702818525,
-   "CY25": 3202.4467815701796
+   "6M Dec-2025": 3034.491766,
+   "3M Mar-2026": 3034.491766,
+   "6M Dec-2024": 4115.455116,
+   "3M Mar-2025": 3465.252392
   },
   "capex": {
-   "FY23": 326.47692500000005,
-   "FY24": 486.27925000000005,
-   "FY25": 543.8466666666667,
-   "CY25": 580.19
+   "6M Dec-2025": 60.714598,
+   "3M Mar-2026": 259.937928,
+   "6M Dec-2024": 60.714598,
+   "3M Mar-2025": 259.937928
   },
-  "nopat_cagr": 0.3016304071631746,
-  "stable_g": 0.03990246072771191,
+  "nopat_cagr": 0.5502603147084684,
+  "stable_g": 0.003689906845617863,
   "stable_keys": [
-   "FY23",
-   "FY24",
-   "FY25",
-   "CY25"
+   "6M Dec-2024",
+   "3M Mar-2025",
+   "6M Dec-2025",
+   "3M Mar-2026"
   ],
-  "rr_waterfall": 0.19769028439084713,
-  "g_waterfall": 0.07009456164619854,
-  "ceiling": 0.14355536828995927,
+  "rr_waterfall": 0.1700812779725055,
+  "g_waterfall": 0.04243215521882398,
+  "ceiling": 0.15,
   "crossover_years": null,
   "crossover": {
-   "recent NOPAT compound rate": 46.299884161585105,
-   "forecast revenue compound rate": null,
-   "adopted terminal rate": null
+   "recent NOPAT compound rate": null
   },
-  "fcst_cagr": 0.10080575398411584,
-  "dom_share_term": 0.9140715771994568
+  "fcst_cagr": 0.08775990714394921,
+  "dom_share_term": 1.0
  },
  "lenses": {
   "dcf": {
    "name": "Discounted cash flow (primary)",
-   "bear": 4.870019380904797,
-   "base": 9.661070433016686,
-   "bull": 18.123909320936942,
+   "bear": 2.3655785103538594,
+   "base": 6.854167611199351,
+   "bull": 14.673045996877065,
    "w": 0.45
   },
   "relative": {
    "name": "Relative multiples",
-   "bear": 7.0559682598213875,
-   "base": 8.198877051327763,
-   "bull": 9.913240238587324,
+   "bear": 5.620652826131123,
+   "base": 6.402085511843536,
+   "bull": 7.5742345404121565,
    "w": 0.2
   },
   "normalized": {
    "name": "Normalised earnings power",
-   "bear": 8.55724387165677,
-   "base": 11.668968915895595,
-   "bull": 14.780693960134421,
+   "bear": 6.15807805582419,
+   "base": 8.397379167032987,
+   "bull": 10.636680278241784,
    "w": 0.2
   },
   "book": {
    "name": "Book value and sustainable return",
-   "bear": 3.825843755451646,
-   "base": 7.071667901384217,
-   "bull": 7.9940593667821584,
+   "bear": 3.819835494741683,
+   "base": 7.060562266360505,
+   "bull": 7.981505170668397,
    "w": 0.15
   },
   "central": {
    "name": "Weighted central",
-   "bear": 3.825843755451646,
-   "base": 9.381801073509813,
-   "bull": 18.123909320936942,
+   "bear": 2.3655785103538594,
+   "base": 7.103352700769088,
+   "bull": 14.673045996877065,
    "w": 1.0
   }
  },
- "central": 9.381801073509813,
+ "central": 7.103352700769088,
  "span": [
-  3.825843755451646,
-  18.123909320936942
+  2.3655785103538594,
+  14.673045996877065
  ],
  "spot": 9.1,
  "scen": {
@@ -1464,7 +1963,7 @@
    "fx_mult": 0.97,
    "wacc_shift": 0.02,
    "g": 0.03,
-   "ps": 4.870019380904797
+   "ps": 2.3655785103538594
   },
   "bull": {
    "vol_mult": 1.5,
@@ -1472,9 +1971,9 @@
    "fx_mult": 1.03,
    "wacc_shift": -0.02,
    "g": 0.06,
-   "ps": 18.123909320936942
+   "ps": 14.673045996877065
   },
-  "base_ps": 9.661070433016686,
+  "base_ps": 6.854167611199351,
   "labels": {
    "vol_mult": "Volume growth path, as a multiple of the assumed path",
    "gm_shift": "Gross margin, shifted on every forecast year",
@@ -1486,34 +1985,34 @@
  "experts": {
   "e1": {
    "method_short": "earnings power at a justified multiple",
-   "base": 10.89103765483589,
+   "base": 7.837553889230788,
    "rng": [
-    7.779312610597064,
-    14.780693960134421
+    5.598252778021991,
+    10.636680278241784
    ],
-   "eps": 1.5558625221194127,
-   "ebit": 2294.78463450219,
-   "interest": 413.24016041533423,
+   "eps": 1.1196505556043983,
+   "ebit": 1701.0876825229525,
+   "interest": 281.2152249146523,
    "pe": 7.0,
    "year": "2028E"
   },
   "e2": {
    "method_short": "free cash flow to equity, discounted",
-   "base": 8.979377865567669,
+   "base": 5.346620414495554,
    "rng": [
-    7.3447560183946825,
-    9.516543832910356
+    4.516916923868502,
+    5.619275817285554
    ],
-   "fcff": 1773.427248947666,
+   "fcff": 1131.1476051321235,
    "fcfe": [
-    1317.854533133721,
-    1532.1682497866277,
-    1776.0278339668967,
-    2043.2954202854876,
-    2325.9315455131964
+    1212.8737954207272,
+    1232.5152611667072,
+    1247.1331925059217,
+    1264.4388477646146,
+    1247.251635533705
    ],
    "ke": 0.17083500000000001,
-   "fin_at": 334.47908330938805,
+   "fin_at": 180.87863219220142,
    "ke_path": [
     0.27760105,
     0.2394703178571429,
@@ -1528,64 +2027,64 @@
     0.44039052319910416,
     0.37613371926796185
    ],
-   "pv": 4701.463208721381,
-   "pv_tv": 6895.942067331197
+   "pv": 3405.0715962398,
+   "pv_tv": 3500.088669081209
   },
   "e3": {
    "method_short": "cash returns against the cost of capital",
-   "base": 9.661070433016688,
+   "base": 6.854167611199351,
    "rng": [
-    7.324928826724807,
-    10.26691216453544
+    5.674776876381478,
+    7.212427066046198
    ],
-   "ic0": 3202.4467815701796,
-   "pv_ep": 2117.1419511843096,
-   "pv_ep_term": 5030.506245046576,
-   "ev": 10350.094977801065,
+   "ic0": 3034.491766,
+   "pv_ep": 1238.3923684267538,
+   "pv_ep_term": 2448.9272214702314,
+   "ev": 6721.811355896985,
    "ep": [
-    268.33605723385654,
-    616.580563737574,
-    946.1159711981894,
-    1259.2002507466195,
-    1545.1367694596536
+    201.21361050288056,
+    404.44433556269973,
+    565.6603895709276,
+    699.3089725264106,
+    762.6165080468791
    ],
    "spread": [
-    0.056017289744411,
-    0.14911911904202718,
-    0.22712609264952535,
-    0.2930544514311201,
-    0.3473884095290091
+    0.041955547048923125,
+    0.0999359527700096,
+    0.13931255710234514,
+    0.16590943757503673,
+    0.17151955069895847
    ]
   }
  },
- "panel_centre": 9.661070433016688,
+ "panel_centre": 6.854167611199351,
  "rel": {
-  "ebitda_mid": 2528.7306049817853,
-  "pv_interim": 1555.1266907237168,
-  "ev_rel": 6848.050262279257,
-  "ev_rel_fwd": 11379.287722418034,
-  "df_rel": 0.6017995527776395,
-  "ev_ebitda_trailing": 4.840826897519742,
-  "pe_trailing": 7.753058498578534,
+  "ebitda_mid": 1758.8445881887167,
+  "pv_interim": 1346.8105752048332,
+  "ev_rel": 4762.6979542139625,
+  "ev_rel_fwd": 7914.800646849225,
+  "df_rel": 0.6017457882669386,
+  "ev_ebitda_trailing": 5.631461225550692,
+  "pe_trailing": 7.117455962389613,
   "just_mult": 4.5,
   "year": "2027E"
  },
  "norm": {
-  "rev": 54508.80309738914,
-  "ebitda": 2894.38146857347,
-  "ebit": 2294.78463450219,
-  "dna": 599.5968340712805,
-  "interest": 413.24016041533423,
-  "np": 2009.4897990685486,
-  "eps": 1.5558625221194127,
+  "rev": 56320.60478499106,
+  "ebitda": 1848.7181891896191,
+  "ebit": 1701.0876825229525,
+  "dna": 147.63050666666666,
+  "interest": 281.2152249146523,
+  "np": 1446.0286925630803,
+  "eps": 1.1196505556043983,
   "pe": 7.5,
   "year": "2028E"
  },
  "book": {
-  "bvps": 3.7152390907120076,
+  "bvps": 3.7094045280681374,
   "pb_just": 1.9034220217652171,
   "roe_sust": 0.28,
-  "roe_trailing": 0.3204513961366901,
+  "roe_trailing": 0.32555333214717463,
   "ke_term": 0.17083500000000001
  },
  "sens_wg": {
@@ -1605,39 +2104,39 @@
   ],
   "table": [
    [
-    10.06522891774403,
-    10.511478522102879,
-    11.05145195425312,
-    11.718140300696506,
-    12.562076916418242
+    7.166669581261471,
+    7.396816095865396,
+    7.6752992635236525,
+    8.019133740377583,
+    8.454381343418145
    ],
    [
-    9.497704574816822,
-    9.859697918757915,
-    10.290493958586657,
-    10.811768182498348,
-    11.45536920005091
+    6.823949066303512,
+    7.0075163974210515,
+    7.225973671873687,
+    7.4903125600478475,
+    7.816683536404477
    ],
    [
-    9.013814460832434,
-    9.311599036297247,
-    9.661070433016686,
-    10.076964526817079,
-    10.58020701498257
+    6.531657387518833,
+    6.680035423673015,
+    6.854167611199351,
+    7.061396440261104,
+    7.312148622394065
    ],
    [
-    8.596285070441645,
-    8.844186226513383,
-    9.131679826049039,
-    9.469074029965746,
-    9.870595464934844
+    6.279378623900842,
+    6.400662605103161,
+    6.5413169242455025,
+    6.706384780055596,
+    6.9028264544019144
    ],
    [
-    8.232294060922026,
-    8.440797454388152,
-    8.68013850075014,
-    8.9577048502807,
-    9.283448719657926
+    6.059380986894266,
+    6.1594636828740335,
+    6.27434861007028,
+    6.40758187842375,
+    6.56394060287516
    ]
   ]
  },
@@ -1657,84 +2156,84 @@
    0.1852265
   ],
   "we_grid": [
-   0.2863274586594906,
-   0.30132745865949057,
-   0.3163274586594906,
-   0.3313274586594906,
-   0.34632745865949055
+   0.286397868400056,
+   0.301397868400056,
+   0.316397868400056,
+   0.33139786840005603,
+   0.34639786840005604
   ],
   "grid_wacc_g": [
    [
-    10.06522891774403,
-    10.511478522102879,
-    11.05145195425312,
-    11.718140300696506,
-    12.562076916418242
+    7.166669581261471,
+    7.396816095865396,
+    7.6752992635236525,
+    8.019133740377583,
+    8.454381343418145
    ],
    [
-    9.497704574816822,
-    9.859697918757915,
-    10.290493958586657,
-    10.811768182498348,
-    11.45536920005091
+    6.823949066303512,
+    7.0075163974210515,
+    7.225973671873687,
+    7.4903125600478475,
+    7.816683536404477
    ],
    [
-    9.013814460832434,
-    9.311599036297247,
-    9.661070433016686,
-    10.076964526817079,
-    10.58020701498257
+    6.531657387518833,
+    6.680035423673015,
+    6.854167611199351,
+    7.061396440261104,
+    7.312148622394065
    ],
    [
-    8.596285070441645,
-    8.844186226513383,
-    9.131679826049039,
-    9.469074029965746,
-    9.870595464934844
+    6.279378623900842,
+    6.400662605103161,
+    6.5413169242455025,
+    6.706384780055596,
+    6.9028264544019144
    ],
    [
-    8.232294060922026,
-    8.440797454388152,
-    8.68013850075014,
-    8.9577048502807,
-    9.283448719657926
+    6.059380986894266,
+    6.1594636828740335,
+    6.27434861007028,
+    6.40758187842375,
+    6.56394060287516
    ]
   ],
   "grid_exp_term": [
    [
-    11.5050511783445,
-    10.703300282106818,
-    10.040148260616466,
-    9.482401533078729,
-    9.00668492472734
+    7.955473618506053,
+    7.482056395071049,
+    7.090322094658174,
+    6.760709469328243,
+    6.479443360861597
    ],
    [
-    11.274468384166873,
-    10.493466655335316,
-    9.84747040951111,
-    9.304146738124006,
-    8.840726557241036
+    7.813066280129098,
+    7.351903215094894,
+    6.970305315302273,
+    6.649218515334059,
+    6.375224817948966
    ],
    [
-    11.05145195425312,
-    10.290493958586657,
-    9.661070433016686,
-    9.131679826049039,
-    8.68013850075014
+    7.6752992635236525,
+    7.225973671873687,
+    6.854167611199351,
+    6.5413169242455025,
+    6.27434861007028
    ],
    [
-    10.835687195083178,
-    10.09409748710138,
-    9.480688404558363,
-    8.964761686220786,
-    8.524699377396724
+    7.541980208055888,
+    7.1040931207671365,
+    6.741748982889995,
+    6.436857006539921,
+    6.176677540384219
    ],
    [
-    10.626875318998284,
-    9.904006903412661,
-    9.306077493980073,
-    8.80316523710353,
-    8.374198929482432
+    7.412926458233872,
+    6.986095713271244,
+    6.632897475807464,
+    6.335698486311972,
+    6.082081287745364
    ]
   ],
   "beta_grid": [
@@ -1745,11 +2244,11 @@
    1.3
   ],
   "grid_beta": [
-   11.969093708199813,
-   10.575905346212908,
-   9.78610186063633,
-   8.819189387405215,
-   8.246102591157035
+   8.238571200509183,
+   7.4055862717061745,
+   6.932113653263784,
+   6.350851775187265,
+   6.005291323277716
   ],
   "gm_grid": [
    -0.01,
@@ -1759,11 +2258,11 @@
    0.01
   ],
   "grid_margin": [
-   7.659966468071677,
-   8.660518450544181,
-   9.661070433016686,
-   10.661622415489195,
-   11.662174397961698
+   4.8104546613742585,
+   5.832311136286805,
+   6.854167611199351,
+   7.876024086111898,
+   8.897880561024444
   ],
   "vol_grid": [
    0.0,
@@ -1773,11 +2272,11 @@
    2.0
   ],
   "grid_vol": [
-   6.4827760245754105,
-   7.996417820922662,
-   9.661070433016686,
-   11.487915127415754,
-   13.488672162644038
+   2.764146365576899,
+   4.638511377000647,
+   6.854167611199351,
+   9.226580184580882,
+   11.764684077736808
   ],
   "fx_grid": [
    0.9,
@@ -1787,25 +2286,25 @@
    1.1
   ],
   "grid_fx": [
-   8.1891856098146,
-   8.92512802141564,
-   9.661070433016686,
-   10.397012844617725,
-   11.132955256218771
+   6.0243171026644635,
+   6.436896373464511,
+   6.854167611199351,
+   7.2761724410272155,
+   7.702952737159954
   ],
   "nwc_grid": [
    0.0,
    0.01,
-   0.02012030113973292,
+   0.0416243102361522,
    0.03,
    0.05
   ],
   "grid_nwc": [
-   10.005109565149306,
-   9.834118519963992,
-   9.661070433016686,
-   9.492136429593366,
-   9.15015433922274
+   8.524580379647716,
+   8.123273364835597,
+   6.854167611199351,
+   7.320659335211367,
+   6.518045305587134
   ]
  },
  "step0": {
@@ -2089,51 +2588,43 @@
   "==============================================================================",
   "AMOC \u2014 ASSERT / derivation log",
   "==============================================================================",
-  "[Revenue triangulation] FY2023/24: aggregator comparative 33,770 and the company's own +10.8% statement implying 33,303 -> adopted 33,536. FY2024/25: company release 36,900, aggregator 37,620, the same release's 'revenues' figure 38,000 -> adopted 37,507. Both averages are carried on the workbook face with the methods beside them, not asserted.",
-  "[Base year construction] the financial year moved from 30 June to 31 December. January-June 2025 = the reported June year 37,507 less the disclosed July-December 2024 half 18,246 = 19,261 revenue and 906 profit. Adding the July-December 2025 transition period (20,735 / 656) gives calendar 2025: revenue 39,996, consolidated profit after tax 1,563, a net margin of 3.91%. Neither leg is estimated \u2014 both are filed figures.",
-  "[Period-label check] the release covering the six months to 30 June 2026 reports revenue 26,200 (+35%) and profit 1,900 (+109%). Against the January-June 2025 half constructed above those are +36.0% and +109.6% \u2014 both reproduce the reported growth rates independently, which is what identifies the period. It is NOT a twelve-month figure: the July-December 2025 half alone was 20,735. The print is carried as corroboration; the forecast is struck on the constructed calendar-2025 base and a margin path deliberately below what this half-year implies, because it rests on a single source.",
-  "[Volume base] the transition period sold 808 tonnes in six months, an annualised 1.616mn tonnes against 1.26mn in FY2024/25 \u2014 a +28% step. Calendar 2025 is taken at 1.551mn tonnes, shading the annualisation because the ramp was still building through the first half.",
-  "[Disclosed product table] base oils 111,256t / EGP 4,454.1mn; paraffin wax 65,742t / EGP 2,408.7mn; fuel and by-products 1,256,342t / EGP 26,449.3mn. Realisations EGP 40,035 / 36,639 / 21,053 a tonne, which at the year's 36.4 exchange rate is USD 1,100 / 1,007 / 578. Specialty is 12.35% of tonnage and 20.60% of value. NO PRICE IN THIS MODEL IS CALIBRATED OR RESIDUAL \u2014 all three come from the table.",
-  "[Base-year volume, built the same way as the base-year revenue] the transition half sold 808kt against a disclosed +14.5%, so July-December 2024 was 706kt; the reported June year was 1,260kt, leaving 554kt for January-June 2025. Calendar 2025 is therefore 1.362mn tonnes. The previous build annualised the half and shaded it by an unsourced 0.96, giving 1.551mn \u2014 -12.2% away and built differently from the revenue base it sat beside. That inconsistency is removed.",
-  "[Crack multiples, solved from disclosure] at a June-2024 Brent average of $84 a barrel, crude parity is $580 a tonne. The disclosed realisations divide into it as base oils 1.898x, paraffin wax 1.737x and the fuel slate 0.998x. THESE ARE NOT ASSUMPTIONS AND THEY ARE NOT FITTED TO ANY MARGIN \u2014 they are the disclosed table divided by the crude price. That base oil prints near 1.9x crude, wax near 1.7x and a gas-oil blend within a per cent of parity is the textbook shape of a lube refinery's slate, and it is the strongest single piece of evidence that the product table is genuine.",
-  "[Feedstock differential, solved on the one disclosed cost of sales] the June-2023 year discloses revenue 22,516, cost of sales 21,219 and gross profit 1,297. At crack-linked realisations that revenue implies a throughput of 1.223mn tonnes \u2014 a DERIVED number, and a plausible one, sitting below the 1.433mn tonnes the product table discloses for the following year. Energy, chemicals and the fixed leg account for EGP 1,800mn of the disclosed cost of sales, leaving EGP 19,419mn for feedstock. That is 0.9216 of crude parity. A lube plant drawing vacuum gas oil and long residue from the adjacent state complex at a small discount to crude is exactly what that number describes, and it was SOLVED, not chosen.",
-  "[The margin is now a prediction] the build is calibrated on ONE year and one cost line, and the other three fall out: FY23 5.76% / FY24 6.02% / FY25 5.39% / CY25 6.06%. The previous edition ASSUMED 5.76% / 6.00% / 6.20% / 6.40% \u2014 the first disclosed and the other three a house path. The built figures land +0.02%, -0.81%, -0.34% against them. Nothing in the cost build was tuned to reproduce that path; the agreement is the check, and where it disagrees the built number is the one carried.",
-  "[Where the margin actually comes from] per tonne of product in the base year, a realisation of $603 carries a feedstock charge of $514, energy of $23, chemicals and a fixed conversion leg. The blended margin is 6.06% \u2014 but the LINES are nothing like each other: base oils 38.7%, paraffin wax 31.5%, and the fuel and by-product slate -2.9%. THAT IS THE FINDING THE OLD MODEL COULD NOT PRODUCE. Its assumed 3.5x ratio implied 14.2% against 4.1%; the build says the specialty lines earn multiples of that and the fuel slate runs at or below break-even, which means essentially the whole gross profit of this company is made on 13.9% of its tonnage.",
-  "[Identifiability] this is the test that decides whether a cost build for a thin-margin processor is worth anything, and it is reported whichever way it comes out. Moving the crude reference plus and minus 10%, with realisations AND feedstock both following it as they physically must, moves the built margin 5.10% <- 6.06% -> 6.85%. That is an elasticity of about 1.4 times: a 1% error in the crude deck is worth roughly 1.4% on the margin. The crude level enters on BOTH sides \u2014 it prices the product and it prices the feed \u2014 and most of it cancels; what does not cancel is the EGP-denominated fixed leg, whose share of revenue moves when the dollar side moves. So the build is neither knife-edged nor crude-proof, and the honest reading is that the crude deck is a real but second-order driver of the margin, while the SPREAD structure \u2014 the solved feedstock differential and the crack multiples, both taken from disclosure \u2014 is the first-order one.",
-  "[Forecast revenue] 44,182 -> 49,319 -> 54,509 -> 59,616 -> 64,650 (volume 1.436 -> 1.630mn tonnes, specialty share of revenue 23.4% -> 24.6%).",
-  "[Forecast gross margin \u2014 an OUTPUT] 6.14% / 6.38% / 6.57% / 6.74% / 6.89%. It widens by 75 basis points across the forecast, and every one of those points comes from the specialty share of revenue rising 23.4% -> 24.6% against two FIXED leg margins. Nothing about the spread is assumed to improve.",
-  "[Forecast EBITDA] 2,161 -> 2,529 -> 2,894 -> 3,262 -> 3,628 at margins 4.89% / 5.13% / 5.31% / 5.47% / 5.61%.",
-  "[Base-year build] revenue 39,996 at a 6.06% gross margin (the FY2022/23 DISCLOSED margin was 5.76%; the path rises gently on the specialty mix) gives gross profit 2,424; less operating costs 500 gives EBITDA 1,924, a 4.81% margin; less depreciation 440 gives EBIT 1,484. Disclosed profit after tax 1,563 at the 23.5% effective rate implies pre-tax profit 2,043, so after net finance INCOME of 413 there is 145 of OTHER income left over. That residual is not capitalised: the forecast carries no other income at all.",
-  "[Other income, isolated] pre-tax profit less the operating result and net finance income: FY23 760 / FY24 437 / FY25 556 / CY25 145. These are exchange gains on dollar export receivables through the devaluation sequence and other non-operating items. They are REAL and they are in the reported profit, but they are not an operating margin and the forecast carries none of them \u2014 which is why forecast attributable profit sits below what a naive extrapolation of reported profit would give.",
-  "[Balance sheet] on 14-day receivables, 14-day inventory and 24-day payables: inventory 1,441, receivables 1,534, payables 2,470. Property, plant and equipment is the residual against disclosed total assets 8,136: 2,398, which at the 440 depreciation charge is 5.4 years of remaining book life \u2014 consistent with a complex commissioned between 1997 and 2000. Net working capital 805 is 2.0% of revenue: a company turning EGP 40.0bn through EGP 8.1bn of assets, because the feedstock payable to the state petroleum corporation funds the cycle.",
-  "[Net cash] gross debt 25 against cash 2,464 -> NET CASH 2,438, which is EGP 1.89 a share, 21% of the market capitalisation. Net debt enters the bridge as a NEGATIVE, i.e. it is added.",
-  "[Equity roll-back] closing equity 4,947 (assets 8,136 less liabilities 3,190) rolled backwards through disclosed profit and the EGP 0.80 dividend: June-2025 4,807, June-2024 4,290, June-2023 3,824. The capital-plus-reserves cross-check: share capital at EGP 1 par 1,292 plus disclosed reserves 2,390 = 3,682, leaving 1,265 of retained and period earnings \u2014 a coherent decomposition, which is the test of the roll-back.",
-  "[Cost of debt, limb (i) currency composition] the entire book is EGP 25.26mn of short-dated Egyptian-pound bank facilities. There is no foreign-currency leg, so no currency blend is available and none is claimed. The company's dollar exposure sits in export receivables, not in debt.",
-  "[Cost of debt, limb (ii) independent effective rate] an interest-expense-over-average-balance computation on a book this small is not a usable estimator \u2014 the denominator is 0.06% of revenue and rounds in the disclosure. The rate is therefore built from an observable: the central bank's overnight LENDING rate of 20.00% plus a 200bp corporate spread = 22.00%. Stating that plainly is the honest alternative to computing a precise-looking number from a rounding residual.",
-  "[Cost of debt, limb (iii) bounds and MATERIALITY] gross debt is 0.214% of the capital structure. A 500bp error in the cost of debt \u2014 larger than any plausible mis-estimate \u2014 moves the weighted cost of capital by 0.82 basis points. The standing 150bp bound is satisfied vacuously; what the gate actually establishes here is that this input cannot move the answer, and the study says so rather than dressing an immaterial input as a precise one.",
+  "[Base year \u2014 nine AUDITED months, annualised] the transition period 1-Jul-2025 to 31-Dec-2025 (audited, Crowe, unqualified) and the three months to 31-Mar-2026 (reviewed) are contiguous and cover nine months: net sales 31,247, cost of sales 28,901, GROSS PROFIT 2,345, a margin of 7.506%. Annualised at 4/3 the base year is 41,662 of revenue. There is no clean audited twelve-month period to use instead \u2014 the year-end moved to December and April-June 2025 is not separately filed \u2014 so this scaling is the only step between the filings and the base year, and no part of it is estimated. The previous edition CONSTRUCTED a calendar-2025 base from two reported halves and got 39,996; the audited nine months annualise to 41,662, +4.2% away.",
+  "[Effective tax rate, computed not assumed] nine-month pre-tax profit 1,658 against a total tax charge of 367 (current less deferred, both periods) = 22.12%. The statutory rate is 22.5%. The previous edition assumed 23.5%.",
+  "[The margin record, as filed] 6M to Dec-2024 6.85% \u00b7 3M to Mar-2025 5.05% \u00b7 6M to Dec-2025 6.14% \u00b7 3M to Mar-2026 10.19%. This is not a modelled path and not a house assumption \u2014 it is gross profit over net sales in four consecutively filed periods. Note the shape: the margin was 6.85% in the half to December 2024, collapsed to 5.05% in the March-2025 quarter, recovered to 6.15% in the half to December 2025 and then printed 10.19% in the March-2026 quarter. The March-2026 print is the highest in the disclosed record by a wide margin and it is a SINGLE QUARTER; the base year above blends it with the half that precedes it rather than annualising it on its own.",
+  "[The cost stack, DISCLOSED not built] note 15-A splits the 19,462 of cost of sales in the transition half: raw materials 17,650 (90.7%), salaries 881 (4.5%), other \u2014 natural gas, electricity, water, spare parts, maintenance and the EPROM operating contract \u2014 807 (4.1%), supporting materials 65 (0.3%) and depreciation 59 (0.3%). The previous edition BUILT a stack from house estimates of yields, energy intensity and a solved feedstock differential, carried NO salaries line at all inside cost of sales, and estimated chemicals at roughly five times the disclosed figure. None of that construction survives: the filing states the stack and the model uses it as stated.",
+  "[What this company actually is] raw materials are 85.1% of net sales. Every other cost line together is 7.4%. A business whose single largest line is 85% of revenue and whose gross margin is 7.5% is a PASS-THROUGH PROCESSOR: the value is not in the revenue line, and it is not in cost control either \u2014 it is in the spread between what the feedstock costs and what the slate fetches, and in the tonnage that spread is earned on.",
+  "[The product table, AUDITED] note 14-A gives eight lines with tonnes AND value for the transition half: 808,084 tonnes for 20,736. Realisations per tonne fall straight out of the division and nothing is reconstructed: Base and special oils 47,250 \u00b7 Paraffin wax 48,881 \u00b7 Gas oil 29,832 \u00b7 Fuel oil (mix) 19,506 EGP a tonne. The specialty slate \u2014 oils and wax \u2014 is 11.97% of the tonnage and 22.37% of the value. The previous edition used a THREE-line table obtained from a reviewer rather than the filing, and had to reconstruct realisations through a crude-parity crack multiple. The filing makes all of that unnecessary: fuel oil (mix) alone is 56.9% of tonnage and 43.3% of value, and it is not the same product as gas oil, naphtha or LPG, which the old build had merged into one slate.",
+  "[Line-level value growth, half on half] Base and special oils +2.8% \u00b7 Paraffin wax +21.3% \u00b7 Gas oil -1.9% \u00b7 Naphtha -7.3% \u00b7 Liquefied petroleum gas +18.7% \u00b7 Fuel oil (mix) +29.1% \u00b7 Heavy fuel oil +60.7%. Wax is the standout at +21.3% and fuel oil at +29.1%; gas oil and naphtha both FELL. That is the mix shift the forecast has to carry, and it is measured rather than assumed.",
+  "[Balance sheet, AUDITED] property plant and equipment 893 plus projects under construction 407 = 1,300. Inventory 2,847, receivables and debtors 939, payables and creditors 2,052 -> NET WORKING CAPITAL 1,734. INVESTED CAPITAL 3,034. The previous edition reconstructed property plant and equipment as the residual against disclosed total assets and got 2,403 \u2014 1.8 times the filed figure \u2014 and put net working capital at 2.0% of revenue against an actual 4.2%. Total assets matched only because the reconstruction was anchored on them; the composition was wrong in both directions.",
+  "[Net cash, AUDITED] cash 2,464 against long-term loans 11.8 and short-term loans 9.2: NET CASH 2,443 = EGP 1.89 a share, 20.8% of market capitalisation. A further 509 of deposits is PLEDGED against credit facilities and is deliberately NOT counted as free cash. Against it sits a tax-disputes provision of 921 \u2014 EGP 0.71 a share \u2014 which the previous edition never carried at all.",
+  "[Minority interest, DISCLOSED] the non-controlling share of group profit after tax is 4.645% in the audited half \u2014 AMOC owns 86.45% of Alexandria Wax Products. The previous edition INFERRED 3.0% from a gap between consolidated and standalone profit. It is now read off the filing.",
+  "[Cost of debt \u2014 MATERIALITY] gross debt is 0.1782% of the capital structure. A 500bp error in the cost of debt moves the weighted cost of capital by 0.68 basis points. The input cannot move the answer and the study says so rather than dressing an immaterial input as a precise one.",
+  "[Depreciation and capital expenditure, ACTUAL] the nine audited months charged 111 of depreciation and right-of-use amortisation and paid 95 in cash for fixed assets and projects under construction. Annualised: 148 and 127. The previous edition modelled depreciation at 1.1% of revenue (458) and capital expenditure at 1.45% (604) \u2014 3.1x and 4.8x the actual. Capital expenditure is running at 0.86 times depreciation, which is BELOW replacement: this plant is being run, not renewed, and that is the most important thing the filings say about its cash flow. It also means the free cash flow the previous edition reported was understated by roughly 477 a year on the capital line alone.",
   "[Cost of equity] risk-free 22.31% less the sovereign default spread 3.40% = 18.91%; plus beta 0.941 times the equity risk premium 9.41% -> cost of equity 27.76%. Alternatives disclosed: on the rating basis 29.05%; the RETIRED un-netted construction 31.16%, kept only for the audit trail \u2014 it charges Egypt's sovereign default risk twice, once inside the pound yield and again in the country premium.",
-  "[Weighted cost of capital, explicit window] net debt is NEGATIVE, so the debt weight is -26.2% and the equity weight 126.2%. The cost of that negative debt is the blend of what the EGP 25mn borrowing costs and what the EGP 2,464mn cash pile EARNS: 12.97% after tax, i.e. essentially the after-tax deposit yield. Result 31.63% \u2014 ABOVE the 27.76% cost of equity, not below it. That direction is the point: a company holding 21% of its market capitalisation in near-riskless cash has an observed equity cost that UNDERSTATES the risk of its operating assets, so unlevering for the cash raises the operating rate. On a gross-debt basis the rate would be 27.74%; that construction discounts the operating cash flows at a rate the cash has already depressed AND then adds the cash back in the bridge, counting the cash twice and overstating the valuation. The net basis is primary and is the more conservative of the two by 390 basis points.",
-  "[Unlevering identity] enterprise value over market capitalisation (0.7925) times the operating rate, plus cash over market capitalisation (0.2075) times the cash cost, recombines to 27.7601% against a cost of equity of 27.7601% \u2014 exact. This is the check that the net-cash weighting is a decomposition rather than an adjustment.",
+  "[Weighted cost of capital, explicit window] net debt is NEGATIVE, so the debt weight is -26.2% and the equity weight 126.2%. The cost of that negative debt is the blend of what the EGP 21mn borrowing costs and what the EGP 2,464mn cash pile EARNS: 12.97% after tax, i.e. essentially the after-tax deposit yield. Result 31.64% \u2014 ABOVE the 27.76% cost of equity, not below it. That direction is the point: a company holding 21% of its market capitalisation in near-riskless cash has an observed equity cost that UNDERSTATES the risk of its operating assets, so unlevering for the cash raises the operating rate. On a gross-debt basis the rate would be 27.74%; that construction discounts the operating cash flows at a rate the cash has already depressed AND then adds the cash back in the bridge, counting the cash twice and overstating the valuation. The net basis is primary and is the more conservative of the two by 390 basis points.",
+  "[Unlevering identity] enterprise value over market capitalisation (0.7922) times the operating rate, plus cash over market capitalisation (0.2078) times the cash cost, recombines to 27.7601% against a cost of equity of 27.7601% \u2014 exact. This is the check that the net-cash weighting is a decomposition rather than an adjustment.",
   "[Weighted cost of capital, terminal] cost of equity 17.08% (norm-built risk-free 10.50% = the central bank's own 5% medium-term inflation target plus a 5.5pp emerging-market real-rate convention, plus beta times a normalised premium 7.00%); cost of debt after tax 11.47%; weights 90%/10% -> 16.52%. No terminal input is an observable quote and none is reverse-engineered from a price.",
-  "[Glide] forward cost of capital 31.63% -> 26.24% -> 21.92% -> 18.68% -> 16.52%; cumulative discount factors 0.7597, 0.6018, 0.4936, 0.4159, 0.3569. The glide fractions are the cost-of-debt path's own cumulative progress (0.000, 0.357, 0.643, 0.857, 1.000), so the front-loaded shape is inherited from the assumed easing calendar rather than being a second free parameter.",
-  "[Free cash flow to the firm] 1,042 -> 1,268 -> 1,515 -> 1,772 -> 2,033; present value of the explicit window 3,766.",
-  "[Forecast finance income] 413 -> 407 -> 413 -> 437 -> 476 \u2014 the charge is a CREDIT throughout and it falls even as the cash pile builds, because the deposit yield eases with the policy rate faster than the balance grows. Attributable profit 1,550, 1,776, 2,009, 2,259, 2,518; net cash 2,721, 3,069, 3,505, 4,044, 4,694 on a 69.4% payout.",
-  "[Return on invested capital] 37.2% / 41.1% / 44.6% / 48.0% / 51.3%; terminal return taken as next year's NOPAT over closing invested capital, 53.8%. The level is high because the plant is substantially written down and the working capital is negative-to-negligible \u2014 a real feature of the business, and the reason the required terminal reinvestment rate comes out low.",
-  "[Terminal growth reconciliation] returns on invested capital FY23 24.7% / FY24 32.2% / FY25 28.3% / CY25 35.5%; reinvestment rates 13.4% / 12.5% / 15.0% / 12.4%; implied growth 3.3% / 4.0% / 4.3% / 4.4%.",
-  "[Terminal growth, check (a)] actual NOPAT compound growth from FY2022/23 to calendar 2025 (2.5 years) = +30.2%. [Check (b)] growth implied by return times reinvestment from STABLE years only (FY23, FY24, FY25, CY25; reinvestment below 100% of NOPAT, so self-funded rather than debt-financed) = 4.0%. Adopted terminal growth 5.0%, the standing centre, sensitised 3-7%.",
-  "[Terminal ceiling] the domestic leg is 91% of 2030E revenue, giving a blended long-run nominal ceiling of 14.4%, and the adopted 5% sits well below it. Taking the candidates one at a time against Egyptian nominal growth of 15%: the forecast revenue rate +10.1% is BELOW it; the adopted terminal rate +5.0% is BELOW it; the recent NOPAT compound rate +30.2% is ABOVE it and DOES bind \u2014 at that rate the company would overtake Egypt's entire nominal gross domestic product in about 46 years, which is why it is a HISTORICAL rate and not a terminal one.",
-  "[Terminal growth, stated plainly] the two standing checks disagree with each other, and that is the honest reading rather than a problem to be smoothed. Check (a), the historical compound NOPAT rate, is +30.2% \u2014 far ABOVE the adopted 5.0%; it is a recovery rate off a devaluation-compressed base and belongs in the explicit years, not in perpetuity. Check (b), return times reinvestment from stable years, is 4.0% \u2014 BELOW the adopted rate. The adopted 5% sits between them and above the one that describes a steady state, so on the check that matters for a perpetuity it remains on the GENEROUS side of the company's own record. Sensitised 3-7%; the grid is on the face of the workbook. NOTE the reinvestment definition: check (b) uses net capex over NOPAT, EXCLUDING working capital, while the free-cash-flow waterfall subtracts working capital. On the waterfall-consistent definition the base-year reinvestment rate is 19.8% and the implied growth is 7.0% \u2014 ABOVE the adopted rate. Both definitions are shown; neither is hidden.",
-  "[Terminal value] required reinvestment rate = growth / return = 5.0% / 53.8% = 9.3%; terminal NOPAT 2,343; terminal value 18,447 capitalised at the terminal cost of capital 16.52% and discounted at the YEAR-5 cumulative factor 0.3569 \u2014 one date, one price of time \u2014 giving a present value of 6,584. TERMINAL VALUE IS 63.6% OF ENTERPRISE VALUE.",
-  "[Bridge] enterprise value 10,350 less net debt -2,438 (a NEGATIVE, i.e. net cash of 2,438 is ADDED) = 12,788; less minority interests at their 3.0% share OF THE ENTERPRISE VALUE (not of the cash \u2014 the previous construction deducted it after the cash was added, which handed the minority 73 of the parent's balance) = 311 -> equity attributable 12,478 = EGP 9.66 a share against a spot of EGP 9.10 (+6.2%).",
-  "[Contested choices, computed] (1) rating-basis cost of capital instead of the CDS basis: explicit 32.25% / terminal 20.33% -> EGP 7.95 (-17.7%). (2) minority share doubled to 6% -> EGP 9.42 (-2.5%). (3) GROSS-debt rather than net-debt weights, the construction this study rejects because it counts the cash pile twice -> EGP 10.16 (+5.1%).",
-  "[Currency-of-discounting alternative] the export leg (9% of cash flow) is first DEFLATED to dollars at each year's exchange rate, discounted at a dollar cost of capital of 10.72% with 3.5% terminal growth, and only then translated back at the spot rate. Discounting a pound-denominated cash flow already inflated by the assumed depreciation path directly at a dollar rate would count the currency benefit twice. Result EGP 10.27 a share (+12.8% against spot).",
-  "[Relative lens] interim free cash flow added back: 1,555 of present value for the years before the multiple year, which the previous construction dropped. 4.5x on 2027E EBITDA 2,529 gives an enterprise value of 11,379 AS AT end-2027; discounted back at the year-2 factor 0.6018 that is 6,848 today -> EGP 8.20 a share. Not discounting a forward enterprise value back to today would have given EGP 10.38. The company's own trailing multiple is 4.8x enterprise value to EBITDA and 7.8x earnings.",
-  "[Normalised earnings lens] every component is taken from 2028E: revenue 54,509, EBITDA 2,894, depreciation 600, finance income 413 -> attributable earnings 2,009, EGP 1.56 a share; at 7.5x -> EGP 11.67.",
-  "[Book lens] justified price-to-book 1.90x = (sustainable return 28.0% less growth 5%) / (PERPETUAL cost of equity 17.08% less growth), applied to book value of EGP 3.72 a share -> EGP 7.07. The perpetual rate is the right one inside a perpetuity identity; using a blend of the explicit and terminal rates would be internally inconsistent. Trailing return on average parent equity is 32.0%.",
-  "[Scenarios on the cash-flow lens] bear EGP 4.87 / base EGP 9.66 / bull EGP 18.12. The scenarios are FIVE simultaneous driver moves, not a single lever: volume growth at 0.4x / 1.5x the assumed path, gross margin -1.0% / +1.0%, the exchange-rate path -3% / +3%, the cost of capital +2% / -2% at both anchors, and terminal growth 3% / 6%. Because all five move together and in the same direction, the bear and bull ends are JOINT-worst and JOINT-best cases and are much wider than any single-driver row in the sensitivity table; they are not a confidence interval and no probability is attached to them.",
-  "[Synthesis] weighted central EGP 9.38; full span across lenses and scenarios EGP 3.83 - 18.12; spot EGP 9.10 (+3.1% to the central).",
-  "[Expert 2 construction] free cash flow to equity 1,318 -> 1,532 -> 1,776 -> 2,043 -> 2,326; discounted on the cost of EQUITY's own glide (27.8% -> 23.9% -> 20.9% -> 18.6% -> 17.1%) for a present value of 4,701, plus a terminal block of 6,896. No bridge is used: the cash pile reaches the shareholder through the finance income line rather than as a balance-sheet add-back, which is what makes this a genuinely independent second read rather than a re-arrangement of the first.",
-  "[Economic-profit convention] the capital charge is taken on BEGINNING-of-year invested capital, not ending. Charging ending capital would understate economic profit by about 54mn a year.",
-  "[Expert panel] Expert 1 EGP 10.89 [7.78-14.78]; Expert 2 EGP 8.98 [7.34-9.52]; Expert 3 EGP 9.66 [7.32-10.27]; panel median EGP 9.66 (+6.2% against spot)."
+  "[Glide] forward cost of capital 31.64% -> 26.24% -> 21.92% -> 18.68% -> 16.52%; cumulative discount factors 0.7596, 0.6017, 0.4936, 0.4159, 0.3569. The glide fractions are the cost-of-debt path's own cumulative progress (0.000, 0.357, 0.643, 0.857, 1.000), so the front-loaded shape is inherited from the assumed easing calendar rather than being a second free parameter.",
+  "[Forecast revenue] 46,666 -> 51,604 -> 56,321 -> 60,895 -> 65,333 (volume 1.664 -> 1.817mn tonnes; specialty share of revenue 22.9% -> 24.1%). Base-year revenue is the audited nine months annualised, 41,662.",
+  "[Forecast gross margin] 7.17% -> 7.19% -> 7.17% -> 7.16% -> 7.09%. The margin is an OUTPUT of the audited cost composition, not a path: raw materials and supporting materials are pass-through and move with realisation and volume; salaries and the other line are pound-denominated and move with local inflation; depreciation is the asset-register charge. The margin therefore widens only to the extent that the pound-denominated cost leg grows more slowly than revenue \u2014 which is a mechanical consequence of the disclosed stack, not a view.",
+  "[Capital expenditure, forecast] held at the ACTUAL run rate 127 grown with local inflation: 146 -> 164 -> 183 -> 202 -> 221. That is 0.99 times depreciation in the first forecast year. A reader who believes the plant must eventually be renewed should raise this line \u2014 it is the single sharpest criticism available of this valuation and section 7 says so.",
+  "[Free cash flow to the firm] 955 -> 1,032 -> 1,093 -> 1,145 -> 1,156; present value of the explicit window 2,775.",
+  "[Forecast finance income] 414 -> 340 -> 281 -> 236 -> 199 \u2014 the charge is a CREDIT throughout and it falls even as the cash pile builds, because the deposit yield eases with the policy rate faster than the balance grows. Attributable profit 1,390, 1,423, 1,446, 1,474, 1,469; net cash 2,273, 2,089, 1,897, 1,695, 1,479 on a 103.7% payout.",
+  "[Return on invested capital] 35.8% / 36.2% / 35.9% / 35.3% / 33.7%; terminal return taken as next year's NOPAT over closing invested capital, 35.4%. The level is high because the plant is substantially written down and the working capital is negative-to-negligible \u2014 a real feature of the business, and the reason the required terminal reinvestment rate comes out low.",
+  "[Terminal growth, reconciled against the AUDITED record] gross margin as filed 6M Dec-2024 6.85% / 3M Mar-2025 5.05% / 6M Dec-2025 6.14% / 3M Mar-2026 10.19%. Annualised returns on invested capital 28.1% / 22.2% / 24.9% / 66.0%; reinvestment rates -6.9% / +12.7% / -10.5% / +4.9%; implied growth -1.9% / +2.8% / -2.6% / +3.2%.",
+  "[Terminal growth, the check that now BINDS] reinvestment is NEGATIVE in every audited period, because cash capital expenditure is running below the depreciation charge. Growth = return x reinvestment therefore implies a NEGATIVE steady-state growth rate of about 0.4%: on its own recent record this company is shrinking its capital base, not compounding it. The adopted terminal rate of 5.0% is NOT supported by the reinvestment identity and the study says so on its face rather than burying it. Two readings are defensible and both are published: either the under-investment is temporary and capital expenditure must rise toward depreciation \u2014 in which case free cash flow in the explicit window is overstated by roughly 2 a year \u2014 or it is durable and the terminal growth rate should be at or below zero. The sensitivity grid runs terminal growth down to 3% and the reader can go lower.",
+  "[Terminal growth, stated plainly] the two standing checks disagree with each other, and that is the honest reading rather than a problem to be smoothed. Check (a), the historical compound NOPAT rate, is +55.0% \u2014 far ABOVE the adopted 5.0%; it is a recovery rate off a devaluation-compressed base and belongs in the explicit years, not in perpetuity. Check (b), return times reinvestment from stable years, is 0.4% \u2014 BELOW the adopted rate. The adopted 5% sits between them and above the one that describes a steady state, so on the check that matters for a perpetuity it remains on the GENEROUS side of the company's own record. Sensitised 3-7%; the grid is on the face of the workbook. NOTE the reinvestment definition: check (b) uses net capex over NOPAT, EXCLUDING working capital, while the free-cash-flow waterfall subtracts working capital. On the waterfall-consistent definition the base-year reinvestment rate is 17.0% and the implied growth is 4.2% \u2014 ABOVE the adopted rate. Both definitions are shown; neither is hidden.",
+  "[Terminal value] required reinvestment rate = growth / return = 5.0% / 35.4% = 14.1%; terminal NOPAT 1,484; terminal value 11,060 capitalised at the terminal cost of capital 16.52% and discounted at the YEAR-5 cumulative factor 0.3569 \u2014 one date, one price of time \u2014 giving a present value of 3,947. TERMINAL VALUE IS 58.7% OF ENTERPRISE VALUE.",
+  "[Bridge] enterprise value 6,722 less net debt -2,443 (a NEGATIVE, i.e. net cash of 2,443 is ADDED) = 9,164; less minority interests at their 4.6% share OF THE ENTERPRISE VALUE (not of the cash \u2014 the previous construction deducted it after the cash was added, which handed the minority 113 of the parent's balance) = 312 -> equity attributable 8,852 = EGP 6.85 a share against a spot of EGP 9.10 (-24.7%).",
+  "[Contested choices, computed] (1) rating-basis cost of capital instead of the CDS basis: explicit 32.26% / terminal 20.33% -> EGP 5.84 (-14.8%). (2) minority share doubled to 6% -> EGP 6.78 (-1.0%). (3) GROSS-debt rather than net-debt weights, the construction this study rejects because it counts the cash pile twice -> EGP 7.16 (+4.5%).",
+  "[Currency-of-discounting alternative] the export leg (8% of cash flow) is first DEFLATED to dollars at each year's exchange rate, discounted at a dollar cost of capital of 10.72% with 3.5% terminal growth, and only then translated back at the spot rate. Discounting a pound-denominated cash flow already inflated by the assumed depreciation path directly at a dollar rate would count the currency benefit twice. Result EGP 7.21 a share (-20.7% against spot).",
+  "[Relative lens] interim free cash flow added back: 1,347 of present value for the years before the multiple year, which the previous construction dropped. 4.5x on 2027E EBITDA 1,759 gives an enterprise value of 7,915 AS AT end-2027; discounted back at the year-2 factor 0.6017 that is 4,763 today -> EGP 6.40 a share. Not discounting a forward enterprise value back to today would have given EGP 7.65. The company's own trailing multiple is 5.6x enterprise value to EBITDA and 7.1x earnings.",
+  "[Normalised earnings lens] every component is taken from 2028E: revenue 56,321, EBITDA 1,849, depreciation 148, finance income 281 -> attributable earnings 1,446, EGP 1.12 a share; at 7.5x -> EGP 8.40.",
+  "[Book lens] justified price-to-book 1.90x = (sustainable return 28.0% less growth 5%) / (PERPETUAL cost of equity 17.08% less growth), applied to book value of EGP 3.71 a share -> EGP 7.06. The perpetual rate is the right one inside a perpetuity identity; using a blend of the explicit and terminal rates would be internally inconsistent. Trailing return on average parent equity is 32.6%.",
+  "[Scenarios on the cash-flow lens] bear EGP 2.37 / base EGP 6.85 / bull EGP 14.67. The scenarios are FIVE simultaneous driver moves, not a single lever: volume growth at 0.4x / 1.5x the assumed path, gross margin -1.0% / +1.0%, the exchange-rate path -3% / +3%, the cost of capital +2% / -2% at both anchors, and terminal growth 3% / 6%. Because all five move together and in the same direction, the bear and bull ends are JOINT-worst and JOINT-best cases and are much wider than any single-driver row in the sensitivity table; they are not a confidence interval and no probability is attached to them.",
+  "[Synthesis] weighted central EGP 7.10; full span across lenses and scenarios EGP 2.37 - 14.67; spot EGP 9.10 (-21.9% to the central).",
+  "[Expert 2 construction] free cash flow to equity 1,213 -> 1,233 -> 1,247 -> 1,264 -> 1,247; discounted on the cost of EQUITY's own glide (27.8% -> 23.9% -> 20.9% -> 18.6% -> 17.1%) for a present value of 3,405, plus a terminal block of 3,500. No bridge is used: the cash pile reaches the shareholder through the finance income line rather than as a balance-sheet add-back, which is what makes this a genuinely independent second read rather than a re-arrangement of the first.",
+  "[Economic-profit convention] the capital charge is taken on BEGINNING-of-year invested capital, not ending. Charging ending capital would understate economic profit by about 53mn a year.",
+  "[Expert panel] Expert 1 EGP 7.84 [5.60-10.64]; Expert 2 EGP 5.35 [4.52-5.62]; Expert 3 EGP 6.85 [5.67-7.21]; panel median EGP 6.85 (-24.7% against spot)."
  ]
 }

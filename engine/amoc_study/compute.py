@@ -38,207 +38,265 @@ def I(value, source, date, ring):
     return dict(value=value, source=source, date=date, ring=ring)
 
 
-# --- Ring 4: company -------------------------------------------------------
-INP['spot'] = I(9.10, "AMOC closing price on the Egyptian Exchange, 6 August 2026, from the "
-                      "screened daily price history used throughout this study "
-                      "(engine/raw_ohlc/EG/AMOC.csv)",
-                "2026-08-06", "Company")
-INP['shares_mn'] = I(1291.56, "Shares outstanding 1,291.56mn. Cross-checked three ways: (a) the "
-                              "reported figure; (b) FY2024/25 standalone profit of EGP 1,490mn "
-                              "over this count gives earnings per share of EGP 1.154, and the "
-                              "declared EGP 0.80 annual dividend over that is a 69.3% payout "
-                              "against the 69.4% reported payout ratio; (c) the reported market "
-                              "capitalisation of EGP 11.51bn implies EGP 8.91 a share against a "
-                              "6 August close of EGP 9.10",
-                     "2026-08-06", "Company")
+# --- Ring 4: company — EVERY FIGURE BELOW IS READ OFF AN AUDITED FILING -------
+# Source: Alexandria Mineral Oils Co (S.A.E.), consolidated financial statements audited by
+# Crowe (Dr A. M. Hegazy & Co), UNQUALIFIED opinion, signed Giza 18-Feb-2026, for the transition
+# period 1-Jul-2025 to 31-Dec-2025; the limited-review consolidated statements for the six months
+# to 31-Dec-2024; and the reviewed consolidated statements for the three months to 31-Mar-2026.
+# The previous edition of this study was built on triangulated press reporting because the
+# filings could not be reached. They are now in hand. Nothing in this register is triangulated.
+AUD = "Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026"
+REV = "Reviewed consolidated FS, three months to 31-Mar-2026"
+LRV = "Limited-review consolidated FS, six months to 31-Dec-2024"
 
-# Reported income statement, June financial years
-INP['rev_fy23'] = I(22515.65, "FY2022/23 (12 months to 30 June 2023) revenue, computed from the "
-                              "two disclosed components: cost of sales EGP 21,218.64mn plus gross "
-                              "profit EGP 1,297.01mn. This is the one historical year where both "
-                              "the cost line and the margin line are separately disclosed",
-                    "2023-06-30", "Company")
-INP['gp_fy23'] = I(1297.01, "FY2022/23 gross profit, disclosed (5.76% of revenue)",
-                   "2023-06-30", "Company")
-INP['cogs_fy23'] = I(21218.64, "FY2022/23 cost of sales, disclosed", "2023-06-30", "Company")
-INP['pat_fy23'] = I(1320.0, "FY2022/23 consolidated net profit after tax, EGP 1.32bn, up 11%",
-                    "2023-06-30", "Company")
+INP['spot'] = I(9.10, "AMOC closing price on the Egyptian Exchange, 6 August 2026", "2026-08-06", "Company")
+INP['shares_mn'] = I(1291.5, "Issued and paid-up capital EGP 1,291,500,000 at EGP 1 par = "
+                             "1,291,500,000 shares (note 18-L, share split to EGP 1 par recorded "
+                             "in the Commercial Register 24-Jan-2018)", "2025-12-31", "Company")
 
-INP['rev_fy24_a'] = I(33770.0, "FY2023/24 revenue, method A: the aggregator's prior-year "
-                               "comparative to the FY2024/25 figure", "2024-06-30", "Company")
-INP['rev_fy24_b'] = I(33303.0, "FY2023/24 revenue, method B: backed out of the company's own "
-                               "statement that FY2024/25 sales of EGP 36.9bn were 10.8% above "
-                               "2023/24 (36,900 / 1.108)", "2024-06-30", "Company")
-INP['pat_fy24'] = I(1500.0, "FY2023/24 consolidated net profit after tax, EGP 1.50bn — the "
-                            "comparative in the FY2024/25 release, which reported consolidated "
-                            "profit of EGP 1.55bn, an annual growth of 3%", "2024-06-30", "Company")
+# ---- the three audited reporting periods, in full ----------------------------
+INP['rev_h2_25'] = I(20_735_725_812.0, f"Net sales, six months to 31-Dec-2025. {AUD}", "2025-12-31", "Company")
+INP['cogs_h2_25'] = I(19_461_550_746.0, f"Cost of sales, six months to 31-Dec-2025. {AUD}", "2025-12-31", "Company")
+INP['ga_h2_25'] = I(585_636_101.0, f"General and administrative expenses, six months to 31-Dec-2025 (note 15-B). {AUD}", "2025-12-31", "Company")
+INP['mkt_h2_25'] = I(93_729_199.0, f"Marketing and selling expenses, six months to 31-Dec-2025 (note 15-C). {AUD}", "2025-12-31", "Company")
+INP['othexp_h2_25'] = I(108_781_309.0, "Other operating expenses, six months to 31-Dec-2025 (note 15-D): "
+                                       "compensation and fines 101,393,395, donations 5,162,500, board "
+                                       f"transport and attendance 2,225,414. {AUD}", "2025-12-25", "Company")
+INP['othrev_h2_25'] = I(345_744_052.0, "Other revenue, six months to 31-Dec-2025 (note 14-B): credit "
+                                       "interest 173,216,413, provision no longer required 154,301,640, "
+                                       "reversed expected credit loss 1,870,481, compensations and fines "
+                                       "1,241,123, capital gains 326,000, miscellaneous 14,788,395. NOTE "
+                                       "the foreign-exchange gain line is ZERO in this period, against "
+                                       f"104,572,235 in the comparative half. {AUD}", "2025-12-31", "Company")
+INP['invinc_h2_25'] = I(13_520_000.0, "Revenue from investments — dividend from Alexandria Specialized "
+                                      f"Petroleum Products Co (note 14-C). {AUD}", "2025-12-31", "Company")
+INP['prov_h2_25'] = I(2_467_769.0, f"Formed provisions charged in the six months to 31-Dec-2025. {AUD}", "2025-12-31", "Company")
+INP['fin_h2_25'] = I(1_892_108.0, "Finance expenses, six months to 31-Dec-2025 (note 15-E): loan interest "
+                                  f"and charges 1,130,556, lease interest 761,552. {AUD}", "2025-12-31", "Company")
+INP['tax_h2_25'] = I(203_945_433.0, f"Current income tax, six months to 31-Dec-2025. {AUD}", "2025-12-31", "Company")
+INP['dtax_h2_25'] = I(19_441_512.0, f"Deferred tax CREDIT, six months to 31-Dec-2025. {AUD}", "2025-12-31", "Company")
+INP['pat_h2_25'] = I(656_428_711.0, f"Net profit after tax, six months to 31-Dec-2025. {AUD}", "2025-12-31", "Company")
+INP['nci_h2_25'] = I(30_488_250.0, f"Non-controlling interest share of profit, six months to 31-Dec-2025. {AUD}", "2025-12-31", "Company")
+INP['emp_h2_25'] = I(67_467_871.0, "Employees' profit share and board bonuses deducted in arriving at "
+                                   "earnings per share (note 16). A real distribution out of profit that "
+                                   f"the previous edition of this study did not model at all. {AUD}", "2025-12-31", "Company")
 
-INP['rev_fy25_a'] = I(36900.0, "FY2024/25 revenue, method A: the company's own release — total "
-                               "sales of 1.26mn tonnes valued at EGP 36.9bn, an 11% increase",
-                      "2025-06-30", "Company")
-INP['rev_fy25_b'] = I(37620.0, "FY2024/25 revenue, method B: the aggregator's fiscal-2025 figure, "
-                               "EGP 37.62bn, +11.42%", "2025-06-30", "Company")
-INP['rev_fy25_c'] = I(38000.0, "FY2024/25 revenue, method C: the same release's separate statement "
-                               "that revenues stood at EGP 38bn", "2025-06-30", "Company")
-INP['pat_fy25'] = I(1550.0, "FY2024/25 consolidated net profit after tax, EGP 1.55bn, +3%",
-                    "2025-06-30", "Company")
-INP['pat_fy25_standalone'] = I(1490.0, "FY2024/25 STANDALONE net profit after tax, EGP 1.49bn, "
-                                       "+17.3%. The 4% gap to the consolidated figure is the whole "
-                                       "contribution of everything outside the parent refinery — "
-                                       "the evidence that rules out a holding-company lens",
-                               "2025-06-30", "Company")
-INP['vol_fy25'] = I(1.26, "FY2024/25 total sales volume, 1.26mn tonnes", "2025-06-30", "Company")
-INP['vol_spec_fy25'] = I(0.172, "FY2024/25 output of oils and waxes, 172,000 tonnes — 108% of the "
-                                "year's target. This is the specialty leg; the balance of the "
-                                "1.26mn tonnes is fuel products and by-products",
-                         "2025-06-30", "Company")
+INP['rev_q1_26'] = I(10_510_779_160.0, f"Net sales, three months to 31-Mar-2026. {REV}", "2026-03-31", "Company")
+INP['cogs_q1_26'] = I(9_439_744_195.0, f"Cost of sales, three months to 31-Mar-2026. {REV}", "2026-03-31", "Company")
+INP['ga_q1_26'] = I(365_952_237.0, f"General and administrative expenses, three months to 31-Mar-2026. {REV}", "2026-03-31", "Company")
+INP['mkt_q1_26'] = I(60_830_975.0, f"Marketing and selling expenses, three months to 31-Mar-2026. {REV}", "2026-03-31", "Company")
+INP['othexp_q1_26'] = I(1_080_000.0, f"Other operating expenses, three months to 31-Mar-2026. {REV}", "2026-03-31", "Company")
+INP['othrev_q1_26'] = I(225_556_509.0, f"Other revenue, three months to 31-Mar-2026. {REV}", "2026-03-31", "Company")
+INP['prov_q1_26'] = I(30_000_000.0, f"Formed provisions, three months to 31-Mar-2026. {REV}", "2026-03-31", "Company")
+INP['ecl_q1_26'] = I(20_323_123.0, f"Expected credit losses formed, three months to 31-Mar-2026. {REV}", "2026-03-31", "Company")
+INP['fin_q1_26'] = I(982_219.0, f"Finance cost, three months to 31-Mar-2026. {REV}", "2026-03-31", "Company")
+INP['tax_q1_26'] = I(175_094_101.0, f"Current income tax, three months to 31-Mar-2026. {REV}", "2026-03-31", "Company")
+INP['dtax_q1_26'] = I(-7_209_684.0, f"Deferred tax EXPENSE (negative = charge), three months to 31-Mar-2026. {REV}", "2026-03-31", "Company")
+INP['pat_q1_26'] = I(635_119_535.0, f"Net profit after tax, three months to 31-Mar-2026. {REV}", "2026-03-31", "Company")
+INP['nci_q1_26'] = I(22_627_676.0, f"Non-controlling interest share of profit, three months to 31-Mar-2026. {REV}", "2026-03-31", "Company")
 
-# The transition period and the calendar quarters that follow it
-INP['rev_h1fy25'] = I(18246.0, "Consolidated sales for July-December 2024, EGP 18.246bn — the "
-                               "comparative disclosed alongside the transition period",
-                      "2024-12-31", "Company")
-INP['pat_h1fy25'] = I(643.6, "Consolidated net profit after tax for July-December 2024, derived "
-                             "from the disclosed statement that the transition period's EGP "
-                             "656.428mn was a 2% year-on-year increase (656.428 / 1.02)",
-                      "2024-12-31", "Company")
-INP['rev_h2cy25'] = I(20735.0, "Consolidated sales for the July-December 2025 transition period, "
-                               "EGP 20.735bn, up 14% year on year", "2025-12-31", "Company")
-INP['pat_h2cy25'] = I(656.428, "Consolidated net profit after tax for the July-December 2025 "
-                               "transition period, EGP 656.428mn, +2%", "2025-12-31", "Company")
-INP['vol_h2cy25'] = I(0.808, "Transition-period sales volume, 808,000 tonnes, +14.5%",
+INP['rev_h2_24'] = I(18_246_078_901.0, f"Net sales, six months to 31-Dec-2024 (comparative column). {AUD}", "2024-12-31", "Company")
+INP['cogs_h2_24'] = I(16_995_436_456.0, f"Cost of sales, six months to 31-Dec-2024 (comparative column). {AUD}", "2024-12-31", "Company")
+INP['pat_h2_24'] = I(641_640_411.0, f"Net profit after tax, six months to 31-Dec-2024. {AUD}", "2024-12-31", "Company")
+INP['rev_q1_25'] = I(10_068_471_935.0, f"Net sales, three months to 31-Mar-2025 (comparative column). {REV}", "2025-03-31", "Company")
+INP['cogs_q1_25'] = I(9_559_699_263.0, f"Cost of sales, three months to 31-Mar-2025 (comparative column). {REV}", "2025-03-31", "Company")
+INP['pat_fy25_full'] = I(1_488_520_098.0, "Majority profit for the financial year to 30-June-2025, read "
+                                          "off the opening column of the consolidated statement of "
+                                          f"changes in equity at 1-July-2025. {AUD}", "2025-06-30", "Company")
+
+# ---- NOTE 14-A: THE AUDITED PRODUCT TABLE, six months to 31-Dec-2025 ----------
+# Eight lines, each with tonnes and value. This replaces a three-line build that rested on a
+# product table obtained from a reviewer rather than from the filing, and whose realisations had
+# to be reconstructed through a crude-parity crack multiple. Nothing is reconstructed now.
+INP['prod_t'] = I(dict(oils=54_968.98, wax=41_774.20, gasoil=171_684.881, naphtha=41_430.857,
+                       lpg=23_735.778, fueloil=460_153.60, hfo=14_327.52, waste=7.82),
+                  f"Tonnes sold by product line, six months to 31-Dec-2025 (note 14-A). {AUD}",
+                  "2025-12-31", "Company")
+INP['prod_v'] = I(dict(oils=2_597_280_264.0, wax=2_041_969_329.0, gasoil=5_121_703_599.0,
+                       naphtha=958_746_631.0, lpg=816_258_520.0, fueloil=8_975_569_716.0,
+                       hfo=224_110_353.0, waste=87_400.0),
+                  f"Sales value by product line, EGP, six months to 31-Dec-2025 (note 14-A). {AUD}",
+                  "2025-12-31", "Company")
+INP['prod_v_prior'] = I(dict(oils=2_526_857_239.0, wax=1_683_792_907.0, gasoil=5_219_594_878.0,
+                             naphtha=1_034_502_087.0, lpg=687_509_617.0, fueloil=6_954_252_764.0,
+                             hfo=139_454_409.0, waste=115_000.0),
+                        f"Sales value by product line, six months to 31-Dec-2024 (note 14-A comparative). {AUD}",
+                        "2024-12-31", "Company")
+
+# ---- NOTE 15-A: THE AUDITED COST STACK ---------------------------------------
+# The previous edition BUILT a cost stack from house estimates of yields, energy intensity and a
+# solved feedstock differential. The filing discloses the stack directly. It is used as disclosed.
+INP['cos_salaries'] = I(881_019_497.0, f"Cost of sales — salaries, six months to 31-Dec-2025 (note 15-A). {AUD}", "2025-12-31", "Company")
+INP['cos_raw'] = I(17_650_102_725.0, "Cost of sales — RAW MATERIALS, six months to 31-Dec-2025 (note "
+                                     "15-A). 90.7% of cost of sales and 85.1% of revenue: this single "
+                                     f"line is what the company is. {AUD}", "2025-12-31", "Company")
+INP['cos_support'] = I(64_533_723.0, "Cost of sales — supporting materials (chemicals and additives), "
+                                     "six months to 31-Dec-2025 (note 15-A). The previous edition "
+                                     "estimated this charge at roughly five times the disclosed figure",
+                       "2025-12-31", "Company")
+INP['cos_dep'] = I(58_748_046.0, f"Cost of sales — depreciation, six months to 31-Dec-2025 (note 15-A). {AUD}", "2025-12-31", "Company")
+INP['cos_other'] = I(807_146_755.0, "Cost of sales — other expenses, six months to 31-Dec-2025 (note "
+                                    "15-A): natural gas, operating electricity, operating water, spare "
+                                    "parts, maintenance, and the operating management and technical "
+                                    "support contract with the Egyptian Projects Operations & "
+                                    f"Maintenance Company (EPROM). {AUD}", "2025-12-31", "Company")
+INP['cos_salaries_24'] = I(634_571_733.0, f"Cost of sales — salaries, six months to 31-Dec-2024 (note 15-A comparative). {AUD}", "2024-12-31", "Company")
+INP['cos_raw_24'] = I(15_597_464_119.0, f"Cost of sales — raw materials, six months to 31-Dec-2024 (note 15-A comparative). {AUD}", "2024-12-31", "Company")
+INP['cos_support_24'] = I(68_294_446.0, f"Cost of sales — supporting materials, six months to 31-Dec-2024. {AUD}", "2024-12-31", "Company")
+INP['cos_dep_24'] = I(53_507_611.0, f"Cost of sales — depreciation, six months to 31-Dec-2024. {AUD}", "2024-12-31", "Company")
+INP['cos_other_24'] = I(641_598_547.0, f"Cost of sales — other expenses, six months to 31-Dec-2024. {AUD}", "2024-12-31", "Company")
+
+# ---- audited balance sheet, 31-Dec-2025 (comparatives 30-Jun-2025 / 31-Dec-2024 / 30-Jun-2024) --
+INP['ppe_net'] = I(893_016_274.0, "Fixed assets net of accumulated depreciation at 31-Dec-2025 (note 6). "
+                                  "Cost 2,740,810,692 less accumulated depreciation 1,847,794,418 — the "
+                                  "plant is 67% written down, and 273,466,121 of it is fully depreciated "
+                                  f"and still in use. {AUD}", "2025-12-31", "Company")
+INP['puc'] = I(407_323_203.0, "Projects under construction at 31-Dec-2025 (note 7): assets in development "
+                              "376,746,526 (administrative building, warehouses, civil projects, ERP "
+                              f"system) plus investment expenditure 30,576,677. {AUD}", "2025-12-31", "Company")
+INP['inventory'] = I(2_847_392_506.0, "Inventory net of impairment at 31-Dec-2025 (note 9-A): work in "
+                                      "process 792,134,042, finished goods 1,166,168,582, spare parts "
+                                      "309,298,239, supporting materials 283,470,554, raw materials "
+                                      f"118,754,225, goods for resale 155,793,361. {AUD}", "2025-12-31", "Company")
+INP['recv'] = I(573_136_185.0, "Accounts receivable net at 31-Dec-2025 (note 9-B). 100% undue and "
+                               "unimpaired on the ageing analysis. Counterparties include Shell, "
+                               "ExxonMobil, Chevron, Total, TAQA/Castrol, Emarat Misr, OLA Energy and "
+                               f"Petromine alongside the state companies. {AUD}", "2025-12-31", "Company")
+INP['debtors'] = I(366_012_664.0, f"Debtors and other debit balances net at 31-Dec-2025 (notes 9-C, 9-D). {AUD}", "2025-12-31", "Company")
+INP['cash'] = I(2_463_522_365.0, "Cash at banks and on hand at 31-Dec-2025 (note 9-E): time deposits "
+                                 "883,351,250 plus current accounts 2,127,100,720 plus cash on hand "
+                                 "166,405, less expected credit losses 38,345,960, less PLEDGED deposits "
+                                 f"508,750,050 which sit in other financial investments. {AUD}", "2025-12-31", "Company")
+INP['fin_inv'] = I(508_750_050.0, "Other financial investments at 31-Dec-2025 — deposits PLEDGED against "
+                                  f"credit facilities, so not free cash (note 9-E). {AUD}", "2025-12-31", "Company")
+INP['fvoci'] = I(69_608_696.0, "Financial asset through OCI at 31-Dec-2025 — 104,000 shares, 5.20% of "
+                               f"ASCPC, fair value 69,608,696 (note 8-1). {AUD}", "2025-12-31", "Company")
+INP['assets_snap'] = I(8_136_418_030.0, f"Total assets at 31-Dec-2025. {AUD}", "2025-12-31", "Company")
+INP['liab_snap'] = I(3_311_643_082.0, f"Total liabilities at 31-Dec-2025. {AUD}", "2025-12-31", "Company")
+INP['eq_parent'] = I(4_790_695_948.0, f"Total AMOC (parent) equity at 31-Dec-2025. {AUD}", "2025-12-31", "Company")
+INP['eq_nci'] = I(34_079_000.0, f"Non-controlling interest carrying amount at 31-Dec-2025. {AUD}", "2025-12-31", "Company")
+INP['debt_lt'] = I(11_805_265.0, f"Long-term loans at 31-Dec-2025 (note 20). {AUD}", "2025-12-31", "Company")
+INP['debt_st'] = I(9_172_172.0, f"Short-term loans and facilities at 31-Dec-2025 (note 20). {AUD}", "2025-12-31", "Company")
+INP['leases'] = I(4_278_324.0, f"Total lease liabilities at 31-Dec-2025 (note 8-2-2). {AUD}", "2025-12-31", "Company")
+INP['payables'] = I(7_942_650.0, "Accounts and notes payable at 31-Dec-2025 (note 10-3). The previous "
+                                 "edition modelled a trade payable of about 2.5bn funding the working "
+                                 "capital cycle; the actual trade payable is under 8mn and the funding "
+                                 f"sits in the EGPC current account instead. {AUD}", "2025-12-31", "Company")
+INP['creditors'] = I(2_044_446_416.0, "Creditors and other credit balances at 31-Dec-2025 (note 11): EGPC "
+                                      "current account 1,132,353,505, deposits 70,891,867, miscellaneous "
+                                      "taxes 47,021,719, dividends payable 517,250,000, miscellaneous "
+                                      f"creditors 148,226,091, customer advances 60,028,880. {AUD}", "2025-12-31", "Company")
+INP['provisions'] = I(921_440_353.0, "Provisions at 31-Dec-2025 (note 10-1): tax disputes 904,609,345 and "
+                                     "claims and disputes 16,831,008. A contingent liability worth EGP "
+                                     "0.71 a share that the previous edition never carried at all",
                       "2025-12-31", "Company")
-INP['exp_h2cy25'] = I(0.042, "Transition-period exports of oils and waxes, ~42,000 tonnes, +40% "
-                             "year on year on entry into new export markets",
-                      "2025-12-31", "Company")
-INP['rev_q1cy26'] = I(10510.0, "Consolidated net sales for the quarter to 31 March 2026, EGP "
-                               "10.51bn, against EGP 10.07bn a year earlier", "2026-03-31", "Company")
-INP['pat_q1cy26'] = I(635.12, "Consolidated net profit for the quarter to 31 March 2026, EGP "
-                              "635.12mn, +37%", "2026-03-31", "Company")
-INP['rev_h1cy26_rep'] = I(26200.0, "Consolidated revenue reported for the six months to 30 June "
-                                   "2026, EGP 26.2bn, +35%. Carried as a CORROBORATING data point "
-                                   "only, not as the forecast base — see the period-labelling note",
-                          "2026-06-30", "Company")
-INP['pat_h1cy26_rep'] = I(1900.0, "Consolidated net profit after tax reported for the six months to "
-                                  "30 June 2026, EGP 1.90bn, +109%. Corroborating only",
-                          "2026-06-30", "Company")
+INP['dtax_liab'] = I(108_612_469.0, f"Deferred tax liability at 31-Dec-2025 (note 13-A). {AUD}", "2025-12-31", "Company")
+INP['tax_due'] = I(203_945_433.0, f"Due to the tax authority at 31-Dec-2025 (note 10-2). {AUD}", "2025-12-31", "Company")
+INP['assets_jun25'] = I(10_327_865_642.0, f"Total assets at 30-Jun-2025 (comparative column). {AUD}", "2025-06-30", "Company")
+INP['eq_parent_jun25'] = I(5_353_528_855.0, f"Total AMOC equity at 30-Jun-2025 (comparative column). {AUD}", "2025-06-30", "Company")
+INP['assets_dec24'] = I(7_747_725_648.0, f"Total assets at 31-Dec-2024. {LRV}", "2024-12-31", "Company")
+INP['eq_parent_dec24'] = I(4_430_087_458.0, f"Total AMOC equity at 31-Dec-2024. {LRV}", "2024-12-31", "Company")
+INP['assets_jun24'] = I(8_386_961_675.0, f"Total assets at 30-Jun-2024 (comparative column). {LRV}", "2024-06-30", "Company")
+INP['eq_parent_jun24'] = I(4_922_226_388.0, f"Total AMOC equity at 30-Jun-2024 (comparative column). {LRV}", "2024-06-30", "Company")
+INP['ppe_jun25'] = I(937_851_261.0, f"Fixed assets net at 30-Jun-2025. {AUD}", "2025-06-30", "Company")
+INP['inv_jun25'] = I(3_735_009_103.0, f"Inventory at 30-Jun-2025. {AUD}", "2025-06-30", "Company")
+INP['recv_jun25'] = I(894_888_039.0, f"Accounts receivable at 30-Jun-2025. {AUD}", "2025-06-30", "Company")
+INP['debtors_jun25'] = I(611_842_230.0, f"Debtors and other debit balances at 30-Jun-2025. {AUD}", "2025-06-30", "Company")
+INP['creditors_jun25'] = I(3_102_041_816.0, f"Creditors and other credit balances at 30-Jun-2025. {AUD}", "2025-06-30", "Company")
+INP['payables_jun25'] = I(15_486_636.0, f"Accounts and notes payable at 30-Jun-2025. {AUD}", "2025-06-30", "Company")
+INP['cash_jun25'] = I(3_141_779_939.0, f"Cash at banks and on hand at 30-Jun-2025. {AUD}", "2025-06-30", "Company")
+INP['cash_mar26'] = I(2_204_898_542.0, f"Cash and cash equivalents at 31-Mar-2026. {REV}", "2026-03-31", "Company")
+INP['eq_parent_mar26'] = I(4_800_890_542.0, f"Total parent equity at 31-Mar-2026. {REV}", "2026-03-31", "Company")
 
-# Balance sheet — the one dated snapshot available
-INP['assets_snap'] = I(8136.42, "Total assets, EGP 8,136.42mn, most recent reported quarter",
-                       "2026-03-31", "Company")
-INP['liab_snap'] = I(3189.56, "Total liabilities, EGP 3,189.56mn, same reporting date",
-                     "2026-03-31", "Company")
-INP['cash_snap'] = I(2463.52, "Cash and cash equivalents, EGP 2,463.52mn, same reporting date",
-                     "2026-03-31", "Company")
-INP['debt_snap'] = I(25.26, "Total debt, EGP 25.26mn, same reporting date. A gross debt book of "
-                            "0.06% of revenue is the defining balance-sheet fact about this name",
-                    "2026-03-31", "Company")
-INP['reserves_dec25'] = I(2390.0, "Total reserves increased to EGP 2.39bn at the transition-period "
-                                  "balance date", "2025-12-31", "Company")
-INP['dps'] = I(0.80, "Declared dividend of EGP 0.80 a share a year; EGP 0.40 a share was approved "
-                     "for the July-December 2025 transition period at the general assembly of "
-                     "28 March 2026", "2026-03-28", "Company")
-INP['payout_reported'] = I(0.694, "Reported dividend payout ratio, 69.4%", "2026-08-06", "Company")
-INP['capex_budget'] = I(580.19, "Approved capital budget of EGP 580.19mn for the July 2025-June "
-                                "2026 planning year", "2025-06-30", "Company")
-INP['budget_rev'] = I(37332.0, "The company's own approved planning-budget net sales of EGP "
-                               "37.332bn for July 2025-June 2026, against a budgeted net profit of "
-                               "about EGP 1.02bn — later revised upward to about EGP 2.1bn",
-                      "2025-06-30", "Company")
-INP['egpc_stake'] = I(0.20, "The Egyptian General Petroleum Corporation is the second-largest "
-                            "single shareholder with a 20% holding", "2026-08-06", "Company")
+# ---- audited cash-flow actuals: the two lines the previous edition got most wrong ----
+INP['dep_h2_25'] = I(70_125_269.0, "Fixed-asset depreciation and right-of-use amortisation charged in "
+                                   "the six months to 31-Dec-2025, per the cash-flow statement. The "
+                                   "previous edition modelled depreciation at 1.1% of revenue, about "
+                                   f"440mn a year against an actual near 150mn. {AUD}", "2025-12-31", "Company")
+INP['dep_q1_26'] = I(40_597_611.0, f"Fixed-asset depreciation and right-of-use amortisation, Q1-2026. {REV}", "2026-03-31", "Company")
+INP['capex_h2_25'] = I(30_357_299.0, "CASH PAID for projects under construction and fixed assets in the "
+                                     "six months to 31-Dec-2025. The previous edition modelled capital "
+                                     "expenditure at 1.45% of revenue — about 649mn in the first "
+                                     f"forecast year — against an actual of roughly a tenth of that. {AUD}",
+                       "2025-12-31", "Company")
+INP['capex_q1_26'] = I(64_984_482.0, f"Cash paid for projects under construction and fixed assets, Q1-2026. {REV}", "2026-03-31", "Company")
+INP['div_h2_25'] = I(736_577_469.0, f"Cash dividends PAID in the six months to 31-Dec-2025. {AUD}", "2025-12-31", "Company")
+INP['div_q1_26'] = I(602_957_265.0, f"Cash dividends paid in Q1-2026. {REV}", "2026-03-31", "Company")
+INP['credint_h2_25'] = I(173_216_413.0, "Credit interest earned in the six months to 31-Dec-2025, per "
+                                        f"note 14-B and the cash-flow statement. {AUD}", "2025-12-31", "Company")
+INP['credint_q1_26'] = I(64_104_178.0, f"Credit interest earned in Q1-2026. {REV}", "2026-03-31", "Company")
+INP['div_declared'] = I(517_250_000.0, "Dividends payable at 31-Dec-2025 (note 11, other credit "
+                                       f"balances) — declared and not yet paid at the reporting date. {AUD}",
+                        "2025-12-31", "Company")
+
+# ---- ownership and counterparty, as disclosed --------------------------------
+INP['nci_share'] = I(30_488_250.0 / 656_428_711.0,
+                     "Non-controlling interest as a share of group profit after tax, six months to "
+                     "31-Dec-2025 — DISCLOSED, not inferred. AMOC holds 86.45% of Alexandria Wax "
+                     "Products S.A.E. (note 1-2). The previous edition inferred 3.0% from the gap "
+                     "between consolidated and standalone profit; the filing says 4.645%",
+                     "2025-12-31", "Company")
+INP['alexpet_stake'] = I(0.2077, "Alexandria Petroleum Company holds 20.77% of AMOC (note 18, capital "
+                                 "structure). The previous edition named the Egyptian General Petroleum "
+                                 "Corporation as the 20% shareholder; EGPC is NOT a direct shareholder. "
+                                 "Free float (public offering, individuals and other institutions) is "
+                                 "28.77%", "2025-12-31", "Company")
+INP['egpc_sales'] = I(15_872_300_000.0, "Sales of products to the Egyptian General Petroleum Corporation "
+                                        "in the six months to 31-Dec-2025 (note 19-3-B) — 76.5% of net "
+                                        "sales. EGPC is also the dominant supplier, with 16.3bn of "
+                                        "purchases in the same half. That two-sided relationship is the "
+                                        f"real governance fact, and it is disclosed. {AUD}", "2025-12-31", "Company")
+INP['egpc_balance'] = I(1_132_353_505.0, f"EGPC current account balance owed at 31-Dec-2025 (note 11). {AUD}", "2025-12-31", "Company")
 
 
-# --- Ring 4: the DISCLOSED PRODUCT TABLE — the spine of the bottom-up build ---
-# Volumes and values by product line for the year to 30 June 2024. Sourced from the
-# company's annual report via an independent reviewer; NOT verified against the filing
-# from this environment, and labelled as such throughout. It is carried because it
-# survives three independent coherence tests that a fabricated table would fail:
-#   (i)  the two specialty lines sum to 12.35% of tonnage and 20.60% of value, and both
-#        ratios are quoted independently of the components;
-#   (ii) the implied dollar realisations at the year's average exchange rate are
-#        ~USD 1,100/t for base oil, ~USD 1,007/t for paraffin wax and ~USD 578/t for the
-#        fuel slate — the right levels and the right ORDER for those products;
-#   (iii) against the company's own "+10.8% on 2023/24" statement, FY2024/25 volume FELL
-#        12% (1.433mn -> 1.26mn tonnes) while value ROSE 10.8%, which requires a ~26% rise
-#        in EGP per tonne — and the currency moved ~36.4 -> ~48.7 over the same span, +34%.
-#        A table invented to fit my model would not also fit a disclosure I did not use.
-INP['line_oil_t'] = I(111256.0, "Base oils, tonnes sold, year to 30 June 2024 — disclosed "
-                                "product table (reviewer-sourced, not verified from the filing here)",
-                      "2024-06-30", "Company")
-INP['line_oil_v'] = I(4454.085, "Base oils, sales value EGP mn, same table", "2024-06-30", "Company")
-INP['line_wax_t'] = I(65742.0, "Paraffin wax, tonnes sold, same table", "2024-06-30", "Company")
-INP['line_wax_v'] = I(2408.747, "Paraffin wax, sales value EGP mn, same table", "2024-06-30", "Company")
-INP['line_tot_t'] = I(1433340.0, "Total tonnes sold, same table", "2024-06-30", "Company")
-INP['line_tot_v'] = I(33312.101, "Total sales value EGP mn, same table", "2024-06-30", "Company")
-INP['fx_fy24'] = I(36.4, "USD/EGP average for the year to 30 June 2024. Eight months at the "
-                         "pre-float ~30.9 and four at the post-float ~47.5, volume-weighted by "
-                         "month. Used only to convert the disclosed EGP-per-tonne realisations "
-                         "into the dollar prices the forecast then grows",
-                   "2024-06-30", "House")
-INP['spec_ramp_cy25'] = I(0.10, "Growth in specialty tonnage from the disclosed FY2024/25 172kt to "
-                                "the calendar-2025 base, on the disclosed 40% rise in oils-and-wax "
-                                "EXPORTS through the transition half", "2026-08-06", "House")
-# --- the COST BUILD ---------------------------------------------------------
-# The margin is no longer an input in any form. Cost of sales is built per tonne from a
-# feedstock charge, an energy charge, a chemicals charge and a fixed conversion leg; the
-# gross margin — blended AND per line — is what falls out. Two parameters are SOLVED against
-# disclosure rather than assumed, and both produce a number that can be checked against
-# refinery norms:
-#   * the crack multiples (product realisation as a multiple of crude parity) are solved from
-#     the disclosed FY2023/24 product table;
-#   * the feedstock differential is solved so that the build reproduces the DISCLOSED
-#     FY2022/23 cost of sales of EGP 21,218.64mn exactly.
-# Nothing else about the margin is fitted. FY2023/24, FY2024/25 and the base year are then
-# PREDICTIONS of the calibrated build, and the study reports how close they land.
-INP['loss_frac'] = I(0.030, "Process loss and internal fuel burn, as a share of feedstock intake — "
-                            "the gap between tonnes of feed drawn and tonnes of saleable product "
-                            "out. 2-4% is the ordinary range for a lube refinery of this "
-                            "configuration; 3.0% is taken. HOUSE ESTIMATE, not disclosed",
-                     "2026-08-06", "House")
-INP['bbl_per_t_feed'] = I(6.9, "Barrels per tonne of feedstock, used to convert a dollar-a-barrel "
-                               "crude reference into a dollar-a-tonne feedstock parity. 7.33 is "
-                               "the figure for light crude; a heavier vacuum-gas-oil and long-"
-                               "residue feed of the kind a lube plant draws runs nearer 6.8-7.0. "
-                               "HOUSE ESTIMATE",
-                          "2026-08-06", "Industry")
-INP['energy_usd_t'] = I(22.0, "Energy and utilities — fuel gas, steam, power — in US dollars per "
-                              "tonne of feedstock intake. Solvent extraction, dewaxing and "
-                              "hydrofinishing make a lube plant materially more energy-intensive "
-                              "than simple fractionation. HOUSE ESTIMATE",
-                        "2026-08-06", "Industry")
-INP['chem_usd_t'] = I(dict(oil=45.0, wax=60.0, fuel=3.0),
-                      "Chemicals, solvent make-up and catalyst, US dollars per tonne of PRODUCT, "
-                      "by line. The specialty lines carry solvent losses and catalyst that the "
-                      "fuel slate does not — wax highest because it passes through dewaxing as "
-                      "well. The fuel and by-product slate is essentially fractionation and "
-                      "carries almost none. HOUSE ESTIMATE",
-                      "2026-08-06", "Industry")
-INP['fixed_cost_fy23'] = I(700.0, "Fixed conversion cost inside cost of sales — plant labour, "
-                                  "maintenance, plant overhead — EGP mn in the year to June 2023. "
-                                  "This is the EGP-denominated leg of the cost base, and its "
-                                  "presence is why devaluation WIDENS the reported margin: "
-                                  "revenue and feedstock are both dollar-linked and this is not. "
-                                  "HOUSE ESTIMATE",
-                           "2026-06-30", "House")
+# ---- the two remaining free operating parameters, and nothing else -----------
+INP['line_vol_growth'] = I(dict(oils=[0.045, 0.040, 0.035, 0.030, 0.028],
+                                wax=[0.070, 0.055, 0.045, 0.038, 0.032],
+                                gasoil=[0.020, 0.020, 0.018, 0.016, 0.015],
+                                naphtha=[0.015, 0.018, 0.018, 0.016, 0.015],
+                                lpg=[0.025, 0.022, 0.020, 0.018, 0.016],
+                                fueloil=[0.030, 0.026, 0.022, 0.020, 0.018],
+                                hfo=[0.020, 0.018, 0.016, 0.015, 0.014],
+                                waste=[0.0, 0.0, 0.0, 0.0, 0.0]),
+                           "Volume growth by AUDITED product line. The RANKING is taken from the "
+                           "line-level value growth actually printed between the two disclosed "
+                           "halves — wax +21.3%, fuel oil +29.1%, LPG +18.7%, while gas oil "
+                           "(-1.9%) and naphtha (-7.3%) FELL — rather than from a view about the "
+                           "business. Levels are struck well below those half-on-half rates "
+                           "because a single half is not a trend. This is one of only two free "
+                           "operating parameters left and it is sensitised end to end",
+                           "2026-08-06", "House")
+INP['line_price_growth'] = I([0.090, 0.075, 0.065, 0.058, 0.052],
+                             "Growth in the realised price per tonne, all lines, in EGP. The "
+                             "realisation ITSELF is disclosed — note 14-A value divided by note "
+                             "14-A tonnes — so only its growth is forecast. Struck below the "
+                             "assumed exchange-rate path on the view that a pass-through processor "
+                             "recovers currency in price with a lag. The second and last free "
+                             "operating parameter", "2026-08-06", "House")
 INP['fixed_cost_infl'] = I([1.33, 1.28, 1.12, 1.145, 1.13, 1.115, 1.10, 1.095],
-                           "Cumulative-year inflation factors applied to the fixed conversion leg, "
-                           "FY2023/24 through 2030E: Egyptian headline inflation as printed for "
-                           "the historical years and easing toward the central bank's target "
-                           "thereafter", "2026-08-06", "Country")
-INP['complexity_weight'] = I(3.0, "Fixed conversion cost per tonne on the specialty lines as a "
-                                  "multiple of the fuel slate. A tonne of base oil occupies the "
-                                  "extraction, dewaxing and finishing trains; a tonne of gas-oil "
-                                  "blend leaves at the fractionator. This allocates the fixed leg "
-                                  "and is the ONLY judgment parameter left inside the margin — and "
-                                  "it moves the SPLIT between lines, not the blended margin, which "
-                                  "is pinned by the solved feedstock differential",
-                             "2026-08-06", "House")
-INP['line_vol_growth'] = I(dict(oil=[0.075, 0.055, 0.045, 0.038, 0.032],
-                                wax=[0.090, 0.070, 0.055, 0.045, 0.040],
-                                fuel=[0.050, 0.036, 0.032, 0.028, 0.023]),
-                           "Volume growth by product line. Wax fastest on the export push, base "
-                           "oils next, the fuel slate slowest — it is throughput the specialty "
-                           "units do not take", "2026-08-06", "House")
+                           "Cumulative-year Egyptian inflation factors applied to the "
+                           "pound-denominated cost legs — salaries inside cost of sales, the "
+                           "other line, administrative and marketing expense, and capital "
+                           "expenditure. Historical years as printed, easing toward the central "
+                           "bank's published target thereafter", "2026-08-06", "Country")
+INP['payout_reported'] = I((736_577_469.0 + 602_957_265.0) / (656_428_711.0 + 635_119_535.0),
+                           "Dividend payout ratio COMPUTED from the filings: cash dividends "
+                           "actually PAID in the audited nine months (736,577,469 in the "
+                           "transition half plus 602,957,265 in Q1-2026) over group profit after "
+                           "tax for the same nine months. Not a reported ratio and not an "
+                           "assumption — the two cash-flow statements divided by the two profit "
+                           "lines", "2026-03-31", "Company")
+INP['dps'] = I((736_577_469.0 + 602_957_265.0) / 1_291_500_000.0,
+               "Dividend per share, cash actually paid in the audited nine months over shares "
+               "outstanding. Annualising is left to the reader; the study uses the paid figure",
+               "2026-03-31", "Company")
+INP['raw_pass'] = I(1.0, "Pass-through factor on the raw-material line: 1.0 means the feedstock "
+                         "charge moves one-for-one with realisation and volume, so the gross "
+                         "SPREAD per tonne is held flat in real terms and the margin neither "
+                         "widens nor narrows by assumption. Setting it below 1.0 is the way to "
+                         "express spread widening; the study leaves it at parity and sensitises it",
+                    "2026-08-06", "House")
+
 # --- Ring 3: industry ------------------------------------------------------
 INP['brent_path'] = I([70.0, 71.5, 73.0, 74.5, 76.0],
                       "Brent crude reference path, USD a barrel, 2026E-2030E. A flat-to-slowly-"
@@ -330,11 +388,6 @@ INP['tax_eff'] = I(0.235, "Effective tax rate used for NOPAT. Struck one percent
                           "the 22.5% statutory rate for non-deductible items and the deferred-tax "
                           "drag typical of Egyptian downstream filers",
                    "2026-08-06", "House")
-INP['nci_share'] = I(0.030, "Minority interests' share of group profit. Consolidated FY2024/25 "
-                            "profit of EGP 1,550mn against standalone EGP 1,490mn means "
-                            "non-parent entities contribute EGP 60mn, about 3.9% of the group; the "
-                            "minority slice of that is smaller again. Held at 3.0% and sensitised",
-                     "2026-08-06", "House")
 INP['recv_days'] = I(14.0, "Trade receivable days. The offtake is dominated by the state petroleum "
                            "complex on short settlement, which is why a company turning over EGP "
                            "40bn of revenue runs a balance sheet of only EGP 8.1bn",
@@ -431,477 +484,258 @@ say("=" * 78)
 # ============================ CALC ===========================================
 SH, SPOT, TAX = V['shares_mn'], V['spot'], V['tax_eff']
 MKTCAP = SPOT * SH
-
-# ---- triangulated revenue for the two years disclosed only in growth terms ---
-rev_fy24 = float(np.mean([V['rev_fy24_a'], V['rev_fy24_b']]))
-rev_fy25 = float(np.mean([V['rev_fy25_a'], V['rev_fy25_b'], V['rev_fy25_c']]))
-say(f"[Revenue triangulation] FY2023/24: aggregator comparative {V['rev_fy24_a']:,.0f} and the "
-    f"company's own +10.8% statement implying {V['rev_fy24_b']:,.0f} -> adopted {rev_fy24:,.0f}. "
-    f"FY2024/25: company release {V['rev_fy25_a']:,.0f}, aggregator {V['rev_fy25_b']:,.0f}, the "
-    f"same release's 'revenues' figure {V['rev_fy25_c']:,.0f} -> adopted {rev_fy25:,.0f}. Both "
-    f"averages are carried on the workbook face with the methods beside them, not asserted.")
-assert max(V['rev_fy25_a'], V['rev_fy25_b'], V['rev_fy25_c']) / \
-       min(V['rev_fy25_a'], V['rev_fy25_b'], V['rev_fy25_c']) < 1.05, \
-    "FY2024/25 revenue sources disagree by more than 5% — triangulation not admissible"
-
-# ---- the calendar-2025 base year, CONSTRUCTED from two disclosed halves -----
-# The financial year moved from 30 June to 31 December. January-June 2025 is the
-# reported June year less the disclosed July-December 2024 half; July-December 2025
-# is the transition period as filed. Adding them gives a full calendar year with no
-# estimated component in either leg.
-rev_h1cy25 = rev_fy25 - V['rev_h1fy25']
-pat_h1cy25 = V['pat_fy25'] - V['pat_h1fy25']
-rev_cy25 = rev_h1cy25 + V['rev_h2cy25']
-pat_cy25 = pat_h1cy25 + V['pat_h2cy25']
-say(f"[Base year construction] the financial year moved from 30 June to 31 December. "
-    f"January-June 2025 = the reported June year {rev_fy25:,.0f} less the disclosed July-December "
-    f"2024 half {V['rev_h1fy25']:,.0f} = {rev_h1cy25:,.0f} revenue and {pat_h1cy25:,.0f} profit. "
-    f"Adding the July-December 2025 transition period ({V['rev_h2cy25']:,.0f} / "
-    f"{V['pat_h2cy25']:,.0f}) gives calendar 2025: revenue {rev_cy25:,.0f}, consolidated profit "
-    f"after tax {pat_cy25:,.0f}, a net margin of {pat_cy25/rev_cy25:.2%}. Neither leg is "
-    f"estimated — both are filed figures.")
-
-# The reported six months to June 2026 is a corroboration, not the base. Check it.
-implied_growth_rev = V['rev_h1cy26_rep'] / rev_h1cy25 - 1
-implied_growth_pat = V['pat_h1cy26_rep'] / pat_h1cy25 - 1
-say(f"[Period-label check] the release covering the six months to 30 June 2026 reports revenue "
-    f"{V['rev_h1cy26_rep']:,.0f} (+35%) and profit {V['pat_h1cy26_rep']:,.0f} (+109%). Against the "
-    f"January-June 2025 half constructed above those are {implied_growth_rev:+.1%} and "
-    f"{implied_growth_pat:+.1%} — both reproduce the reported growth rates independently, which is "
-    f"what identifies the period. It is NOT a twelve-month figure: the July-December 2025 half "
-    f"alone was {V['rev_h2cy25']:,.0f}. The print is carried as corroboration; the forecast is "
-    f"struck on the constructed calendar-2025 base and a margin path deliberately below what this "
-    f"half-year implies, because it rests on a single source.")
-assert abs(implied_growth_rev - 0.35) < 0.03, "half-year revenue growth does not reconcile"
-assert abs(implied_growth_pat - 1.09) < 0.05, "half-year profit growth does not reconcile"
-
-vol_cy25 = V['vol_h2cy25'] * 2 * 0.96   # annualised transition volume, shaded for the ramp
-say(f"[Volume base] the transition period sold {V['vol_h2cy25']*1000:,.0f} tonnes in six months, "
-    f"an annualised {V['vol_h2cy25']*2:.3f}mn tonnes against {V['vol_fy25']:.2f}mn in FY2024/25 — "
-    f"a {V['vol_h2cy25']*2/V['vol_fy25']-1:+.0%} step. Calendar 2025 is taken at "
-    f"{vol_cy25:.3f}mn tonnes, shading the annualisation because the ramp was still building "
-    f"through the first half.")
-
-# ---- BOTTOM-UP UNIT BUILD: three product lines, dollar prices, EGP translation ----
-# The previous build had two legs, a specialty price that was a free calibrated input and a
-# fuel price that was a RESIDUAL of the base-year revenue. That is a top-down model with a
-# plug, and it could not support the claim that the margin "widens on mix" — there were no
-# per-leg margins for a mix to act on. This build derives every price from a disclosed
-# tonnage-and-value table, solves the two leg margins from one disclosed blended margin, and
-# lets the blended margin fall out of the mix. Nothing is a residual; the gap between the
-# bottom-up total and the constructed base year is carried on the face as a stated
-# reconciliation factor instead of being absorbed silently.
-line_fuel_t = V['line_tot_t'] - V['line_oil_t'] - V['line_wax_t']
-line_fuel_v = V['line_tot_v'] - V['line_oil_v'] - V['line_wax_v']
-px_egp = dict(oil=V['line_oil_v'] * 1e6 / V['line_oil_t'],
-              wax=V['line_wax_v'] * 1e6 / V['line_wax_t'],
-              fuel=line_fuel_v * 1e6 / line_fuel_t)
-px_usd = {k: v / V['fx_fy24'] for k, v in px_egp.items()}
-spec_share_t = (V['line_oil_t'] + V['line_wax_t']) / V['line_tot_t']
-spec_share_v = (V['line_oil_v'] + V['line_wax_v']) / V['line_tot_v']
-say(f"[Disclosed product table] base oils {V['line_oil_t']:,.0f}t / EGP {V['line_oil_v']:,.1f}mn; "
-    f"paraffin wax {V['line_wax_t']:,.0f}t / EGP {V['line_wax_v']:,.1f}mn; fuel and by-products "
-    f"{line_fuel_t:,.0f}t / EGP {line_fuel_v:,.1f}mn. Realisations EGP {px_egp['oil']:,.0f} / "
-    f"{px_egp['wax']:,.0f} / {px_egp['fuel']:,.0f} a tonne, which at the year's "
-    f"{V['fx_fy24']:.1f} exchange rate is USD {px_usd['oil']:,.0f} / {px_usd['wax']:,.0f} / "
-    f"{px_usd['fuel']:,.0f}. Specialty is {spec_share_t:.2%} of tonnage and {spec_share_v:.2%} "
-    f"of value. NO PRICE IN THIS MODEL IS CALIBRATED OR RESIDUAL — all three come from the table.")
-assert 700 < px_usd['oil'] < 1500 and 700 < px_usd['wax'] < 1600 and 350 < px_usd['fuel'] < 800, \
-    "a disclosed realisation falls outside a physically plausible band for its product"
-
-# --- roll the disclosed lines to the calendar-2025 base -----------------------
-# Two further DISCLOSED anchors sit between the product table and the base year: FY2024/25
-# total volume (1.26mn tonnes) and FY2024/25 specialty output (172kt). The base year is then
-# built with the SAME halves construction the revenue base uses, which is the consistency the
-# two-leg build did not have.
-vol_h2_fy25 = V['vol_h2cy25'] / (1 + 0.145)          # Jul-Dec 2024, off the disclosed +14.5%
-vol_h1_cy25 = V['vol_fy25'] - vol_h2_fy25            # Jan-Jun 2025
-vol_cy25 = vol_h1_cy25 + V['vol_h2cy25']
-spec_vol25 = V['vol_spec_fy25'] * (1 + V['spec_ramp_cy25'])
-oil_share_of_spec = V['line_oil_t'] / (V['line_oil_t'] + V['line_wax_t'])
-vol25 = dict(oil=spec_vol25 * oil_share_of_spec,
-             wax=spec_vol25 * (1 - oil_share_of_spec),
-             fuel=vol_cy25 - spec_vol25)
-say(f"[Base-year volume, built the same way as the base-year revenue] the transition half sold "
-    f"{V['vol_h2cy25']*1000:,.0f}kt against a disclosed +14.5%, so July-December 2024 was "
-    f"{vol_h2_fy25*1000:,.0f}kt; the reported June year was {V['vol_fy25']*1000:,.0f}kt, leaving "
-    f"{vol_h1_cy25*1000:,.0f}kt for January-June 2025. Calendar 2025 is therefore "
-    f"{vol_cy25:.3f}mn tonnes. The previous build annualised the half and shaded it by an "
-    f"unsourced 0.96, giving 1.551mn — {vol_cy25/1.5514-1:+.1%} away and built differently from "
-    f"the revenue base it sat beside. That inconsistency is removed.")
-
-
-# ============================ THE COST BUILD =================================
-# Gross margin is not an input anywhere in this model. It is the difference between a
-# realisation per tonne and a cost per tonne, both built from the same crude reference.
-LINES = ['oil', 'wax', 'fuel']
+LINES = ['oils', 'wax', 'gasoil', 'naphtha', 'lpg', 'fueloil', 'hfo', 'waste']
+LBL = dict(oils='Base and special oils', wax='Paraffin wax', gasoil='Gas oil',
+           naphtha='Naphtha', lpg='Liquefied petroleum gas', fueloil='Fuel oil (mix)',
+           hfo='Heavy fuel oil', waste='Waste')
+SPEC = ['oils', 'wax']                     # the specialty slate
 YRS = ['2026E', '2027E', '2028E', '2029E', '2030E']
-LOSS, BBL = V['loss_frac'], V['bbl_per_t_feed']
-CHEM, CW = V['chem_usd_t'], V['complexity_weight']
 
-# --- (1) crack multiples, SOLVED from the disclosed product table -------------
-# Product realisation as a multiple of crude parity. Nothing is assumed: the disclosed
-# tonnes and values give EGP per tonne, the period exchange rate gives dollars per tonne,
-# and the period crude average gives the parity to divide by.
-parity_fy24 = V['crude_hist']['fy24'] * BBL
-crack = {k: px_usd[k] / parity_fy24 for k in LINES}
-say(f"[Crack multiples, solved from disclosure] at a June-2024 Brent average of "
-    f"${V['crude_hist']['fy24']:.0f} a barrel, crude parity is ${parity_fy24:,.0f} a tonne. The "
-    f"disclosed realisations divide into it as base oils {crack['oil']:.3f}x, paraffin wax "
-    f"{crack['wax']:.3f}x and the fuel slate {crack['fuel']:.3f}x. THESE ARE NOT ASSUMPTIONS AND "
-    f"THEY ARE NOT FITTED TO ANY MARGIN — they are the disclosed table divided by the crude "
-    f"price. That base oil prints near 1.9x crude, wax near 1.7x and a gas-oil blend within a "
-    f"per cent of parity is the textbook shape of a lube refinery's slate, and it is the "
-    f"strongest single piece of evidence that the product table is genuine.")
-assert 1.5 < crack['oil'] < 2.5 and 0.85 < crack['fuel'] < 1.15, \
-    f"crack multiples implausible: {crack}"
+# ---- (1) the base year is the NINE AUDITED MONTHS, annualised ----------------
+# There is no clean audited twelve-month period: the year-end moved to 31 December, the
+# transition filing covers Jul-Dec 2025, and Apr-Jun 2025 is not separately filed. The base is
+# therefore the nine months 1-Jul-2025 to 31-Mar-2026 — the audited transition period plus the
+# reviewed first quarter, contiguous, no gap, no estimate — scaled by 4/3. That scaling is the
+# ONLY step between the filings and the base year, and it is stated on the face of the model.
+A = 4.0 / 3.0
+rev9 = V['rev_h2_25'] + V['rev_q1_26']
+cogs9 = V['cogs_h2_25'] + V['cogs_q1_26']
+gp9 = rev9 - cogs9
+ga9 = V['ga_h2_25'] + V['ga_q1_26']
+mkt9 = V['mkt_h2_25'] + V['mkt_q1_26']
+oth9 = V['othexp_h2_25'] + V['othexp_q1_26']
+dep9 = V['dep_h2_25'] + V['dep_q1_26']
+capex9 = V['capex_h2_25'] + V['capex_q1_26']
+credint9 = V['credint_h2_25'] + V['credint_q1_26']
+othrev9 = V['othrev_h2_25'] + V['othrev_q1_26']
+tax9 = (V['tax_h2_25'] - V['dtax_h2_25']) + (V['tax_q1_26'] - V['dtax_q1_26'])
+_pbt_h2 = (V['rev_h2_25'] - V['cogs_h2_25'] - V['ga_h2_25'] - V['mkt_h2_25'] - V['othexp_h2_25']
+           - V['prov_h2_25'] - V['fin_h2_25'] + V['othrev_h2_25'] + V['invinc_h2_25'])
+_pbt_q1 = (V['rev_q1_26'] - V['cogs_q1_26'] - V['ga_q1_26'] - V['mkt_q1_26'] - V['othexp_q1_26']
+           - V['prov_q1_26'] - V['ecl_q1_26'] - V['fin_q1_26'] + V['othrev_q1_26'])
+pbt9 = _pbt_h2 + _pbt_q1
+pat9 = V['pat_h2_25'] + V['pat_q1_26']
+M = 1e6
+BASE_REV = rev9 / M * A
+BASE_GM = gp9 / rev9
+TAX_EFF = tax9 / pbt9
+# the P&L rebuilds from its own components: exactly for the audited half, to 400 EGP for the
+# reviewed quarter (rounding inside the filing), and the pre-tax / tax / after-tax bridge ties
+# to the pound across both periods.
+assert abs(_pbt_h2 - 840_932_632.0) < 1.0, "audited half does not rebuild from its components"
+assert abs(_pbt_q1 - 817_423_320.0) < 500.0, "reviewed quarter does not rebuild from its components"
+assert abs(pbt9 - (pat9 + tax9)) < 500.0, "9M pre-tax does not tie to after-tax plus tax"
+say(f"[Base year — nine AUDITED months, annualised] the transition period 1-Jul-2025 to "
+    f"31-Dec-2025 (audited, Crowe, unqualified) and the three months to 31-Mar-2026 (reviewed) "
+    f"are contiguous and cover nine months: net sales {rev9/M:,.0f}, cost of sales {cogs9/M:,.0f}, "
+    f"GROSS PROFIT {gp9/M:,.0f}, a margin of {BASE_GM:.3%}. Annualised at 4/3 the base year is "
+    f"{BASE_REV:,.0f} of revenue. There is no clean audited twelve-month period to use instead — "
+    f"the year-end moved to December and April-June 2025 is not separately filed — so this "
+    f"scaling is the only step between the filings and the base year, and no part of it is "
+    f"estimated. The previous edition CONSTRUCTED a calendar-2025 base from two reported halves "
+    f"and got {39_996:,.0f}; the audited nine months annualise to {BASE_REV:,.0f}, "
+    f"{BASE_REV/39_996-1:+.1%} away.")
+say(f"[Effective tax rate, computed not assumed] nine-month pre-tax profit {pbt9/M:,.0f} against "
+    f"a total tax charge of {tax9/M:,.0f} (current less deferred, both periods) = {TAX_EFF:.2%}. "
+    f"The statutory rate is {V['tax_stat']:.1%}. The previous edition assumed {TAX:.1%}.")
 
+# ---- (2) the margin record, straight off the filings -------------------------
+PERIODS = [
+    ('6M to Dec-2024', V['rev_h2_24'], V['cogs_h2_24']),
+    ('3M to Mar-2025', V['rev_q1_25'], V['cogs_q1_25']),
+    ('6M to Dec-2025', V['rev_h2_25'], V['cogs_h2_25']),
+    ('3M to Mar-2026', V['rev_q1_26'], V['cogs_q1_26']),
+]
+gm_hist = [(n, r / M, (r - c) / M, (r - c) / r) for n, r, c in PERIODS]
+say("[The margin record, as filed] " + " · ".join(f"{n} {g:.2%}" for n, _, _, g in gm_hist) +
+    ". This is not a modelled path and not a house assumption — it is gross profit over net "
+    "sales in four consecutively filed periods. Note the shape: the margin was 6.85% in the "
+    "half to December 2024, collapsed to 5.05% in the March-2025 quarter, recovered to 6.15% "
+    "in the half to December 2025 and then printed 10.19% in the March-2026 quarter. The "
+    "March-2026 print is the highest in the disclosed record by a wide margin and it is a "
+    "SINGLE QUARTER; the base year above blends it with the half that precedes it rather than "
+    "annualising it on its own.")
 
-def cost_of_sales(tons_by_line, parity, fx, fixed_egp, feed_diff):
-    """Cost of sales, built per tonne. Returns the total and its four components."""
-    prod_t = sum(tons_by_line.values())
-    feed_t = prod_t / (1 - LOSS)
-    feed = feed_t * parity * feed_diff * fx
-    energy = feed_t * V['energy_usd_t'] * fx
-    chem = sum(tons_by_line[k] * CHEM[k] for k in LINES) * fx
-    return dict(feed=feed, energy=energy, chem=chem, fixed=fixed_egp,
-                total=feed + energy + chem + fixed_egp, feed_t=feed_t)
+# ---- (3) the AUDITED cost stack, note 15-A -----------------------------------
+COS = dict(salaries=V['cos_salaries'], raw=V['cos_raw'], support=V['cos_support'],
+           dep=V['cos_dep'], other=V['cos_other'])
+COS24 = dict(salaries=V['cos_salaries_24'], raw=V['cos_raw_24'], support=V['cos_support_24'],
+             dep=V['cos_dep_24'], other=V['cos_other_24'])
+assert abs(sum(COS.values()) - V['cogs_h2_25']) < 1.0, "note 15-A does not foot to cost of sales"
+assert abs(sum(COS24.values()) - V['cogs_h2_24']) < 1.0, "note 15-A comparative does not foot"
+cos_share = {k: v / V['cogs_h2_25'] for k, v in COS.items()}
+say(f"[The cost stack, DISCLOSED not built] note 15-A splits the {V['cogs_h2_25']/M:,.0f} of cost "
+    f"of sales in the transition half: raw materials {COS['raw']/M:,.0f} "
+    f"({cos_share['raw']:.1%}), salaries {COS['salaries']/M:,.0f} ({cos_share['salaries']:.1%}), "
+    f"other — natural gas, electricity, water, spare parts, maintenance and the EPROM operating "
+    f"contract — {COS['other']/M:,.0f} ({cos_share['other']:.1%}), supporting materials "
+    f"{COS['support']/M:,.0f} ({cos_share['support']:.1%}) and depreciation {COS['dep']/M:,.0f} "
+    f"({cos_share['dep']:.1%}). The previous edition BUILT a stack from house estimates of "
+    f"yields, energy intensity and a solved feedstock differential, carried NO salaries line at "
+    f"all inside cost of sales, and estimated chemicals at roughly five times the disclosed "
+    f"figure. None of that construction survives: the filing states the stack and the model uses "
+    f"it as stated.")
+raw_of_rev = COS['raw'] / V['rev_h2_25']
+say(f"[What this company actually is] raw materials are {raw_of_rev:.1%} of net sales. Every "
+    f"other cost line together is {1-raw_of_rev-BASE_GM:.1%}. A business whose single largest "
+    f"line is {raw_of_rev:.0%} of revenue and whose gross margin is {BASE_GM:.1%} is a "
+    f"PASS-THROUGH PROCESSOR: the value is not in the revenue line, and it is not in cost "
+    f"control either — it is in the spread between what the feedstock costs and what the slate "
+    f"fetches, and in the tonnage that spread is earned on.")
 
+# ---- (4) the AUDITED product table, note 14-A --------------------------------
+PT, PV, PVp = V['prod_t'], V['prod_v'], V['prod_v_prior']
+tot_t = sum(PT.values()); tot_v = sum(PV.values())
+assert abs(tot_v - V['rev_h2_25']) < 1.0, "note 14-A value column does not foot to net sales"
+assert abs(tot_t - 808_083.636) < 0.01, "note 14-A tonnage does not foot"
+px = {k: PV[k] / PT[k] for k in LINES}                 # EGP per tonne, DISCLOSED / DISCLOSED
+mix_t = {k: PT[k] / tot_t for k in LINES}
+mix_v = {k: PV[k] / tot_v for k in LINES}
+spec_t = sum(mix_t[k] for k in SPEC); spec_v = sum(mix_v[k] for k in SPEC)
+say(f"[The product table, AUDITED] note 14-A gives eight lines with tonnes AND value for the "
+    f"transition half: {tot_t:,.0f} tonnes for {tot_v/M:,.0f}. Realisations per tonne fall "
+    f"straight out of the division and nothing is reconstructed: " +
+    " · ".join(f"{LBL[k]} {px[k]:,.0f}" for k in ('oils', 'wax', 'gasoil', 'fueloil')) +
+    f" EGP a tonne. The specialty slate — oils and wax — is {spec_t:.2%} of the tonnage and "
+    f"{spec_v:.2%} of the value. The previous edition used a THREE-line table obtained from a "
+    f"reviewer rather than the filing, and had to reconstruct realisations through a crude-parity "
+    f"crack multiple. The filing makes all of that unnecessary: fuel oil (mix) alone is "
+    f"{mix_t['fueloil']:.1%} of tonnage and {mix_v['fueloil']:.1%} of value, and it is not the "
+    f"same product as gas oil, naphtha or LPG, which the old build had merged into one slate.")
+growth_v = {k: (PV[k] / PVp[k] - 1) if PVp[k] else 0.0 for k in LINES}
+say(f"[Line-level value growth, half on half] " +
+    " · ".join(f"{LBL[k]} {growth_v[k]:+.1%}" for k in ('oils', 'wax', 'gasoil', 'naphtha',
+                                                        'lpg', 'fueloil', 'hfo')) +
+    ". Wax is the standout at {:+.1%} and fuel oil at {:+.1%}; gas oil and naphtha both FELL. "
+    "That is the mix shift the forecast has to carry, and it is measured rather than "
+    "assumed.".format(growth_v['wax'], growth_v['fueloil']))
 
-# --- (2) the feedstock differential, SOLVED on DISCLOSED FY2022/23 -------------
-# The year to June 2023 is the only period with a disclosed cost of sales. The feedstock
-# charge is whatever it has to be for the build to reproduce EGP 21,218.64mn exactly.
-mix24 = {k: V[f'line_{k}_t'] / V['line_tot_t'] for k in ('oil', 'wax')}
-mix24['fuel'] = 1 - mix24['oil'] - mix24['wax']
-parity_fy23 = V['crude_hist']['fy23'] * BBL
-blend23 = sum(mix24[k] * parity_fy23 * crack[k] for k in LINES)
-ton_fy23 = V['rev_fy23'] * 1e6 / (blend23 * V['fx_hist']['fy23']) / 1e6
-tons23 = {k: mix24[k] * ton_fy23 for k in LINES}
-_c23 = cost_of_sales(tons23, parity_fy23, V['fx_hist']['fy23'], V['fixed_cost_fy23'], 1.0)
-feed_diff = (V['cogs_fy23'] - _c23['energy'] - _c23['chem'] - V['fixed_cost_fy23']) / _c23['feed']
-say(f"[Feedstock differential, solved on the one disclosed cost of sales] the June-2023 year "
-    f"discloses revenue {V['rev_fy23']:,.0f}, cost of sales {V['cogs_fy23']:,.0f} and gross "
-    f"profit {V['gp_fy23']:,.0f}. At crack-linked realisations that revenue implies a throughput "
-    f"of {ton_fy23:.3f}mn tonnes — a DERIVED number, and a plausible one, sitting below the "
-    f"{V['line_tot_t']/1e6:.3f}mn tonnes the product table discloses for the following year. "
-    f"Energy, chemicals and the fixed leg account for EGP "
-    f"{_c23['energy']+_c23['chem']+V['fixed_cost_fy23']:,.0f}mn of the disclosed cost of sales, "
-    f"leaving EGP {V['cogs_fy23']-_c23['energy']-_c23['chem']-V['fixed_cost_fy23']:,.0f}mn for "
-    f"feedstock. That is {feed_diff:.4f} of crude parity. A lube plant drawing vacuum gas oil and "
-    f"long residue from the adjacent state complex at a small discount to crude is exactly what "
-    f"that number describes, and it was SOLVED, not chosen.")
-assert 0.75 < feed_diff < 1.10, f"solved feedstock differential implausible: {feed_diff:.4f}"
-
-
-def year_margin(tons_by_line, revenue, fx, fixed_egp, parity=None):
-    """Gross margin as an OUTPUT. If parity is not given it is solved so that the crack-linked
-    realisations reproduce the period's revenue — which replaces the old blanket reconciliation
-    factor with a number that means something physical."""
-    if parity is None:
-        parity = revenue * 1e6 / (sum(tons_by_line[k] * crack[k] for k in LINES) * 1e6 * fx)
-    c = cost_of_sales(tons_by_line, parity, fx, fixed_egp, feed_diff)
-    feed_pt = parity * feed_diff / (1 - LOSS)
-    en_pt = V['energy_usd_t'] / (1 - LOSS)
-    wt = sum(tons_by_line[k] * (CW if k in ('oil', 'wax') else 1.0) for k in LINES)
-    fx_pt = {k: (fixed_egp / fx) * (CW if k in ('oil', 'wax') else 1.0) / wt for k in LINES}
-    lm, lgp = {}, {}
-    for k in LINES:
-        px = parity * crack[k]
-        lgp[k] = tons_by_line[k] * (px - feed_pt - en_pt - CHEM[k] - fx_pt[k]) * fx
-        lm[k] = (px - feed_pt - en_pt - CHEM[k] - fx_pt[k]) / px
-    gp = sum(lgp.values())
-    return dict(parity=parity, brent=parity / BBL, cogs=c, gp=gp, gm=gp / revenue,
-                line_margin=lm, line_gp=lgp, feed_pt=feed_pt)
-
-
-# --- (3) the historical years are now PREDICTIONS, not assumptions -------------
-HIST_MARGIN = {}
-_fixed = V['fixed_cost_fy23']
-HIST_MARGIN['fy23'] = year_margin(tons23, V['rev_fy23'], V['fx_hist']['fy23'], _fixed,
-                                  parity=parity_fy23)
-_fx_infl = V['fixed_cost_infl']
-_fixed24 = _fixed * _fx_infl[0]
-HIST_MARGIN['fy24'] = year_margin({k: V[f'line_{k}_t'] / 1e6 if k != 'fuel' else line_fuel_t / 1e6
-                                   for k in LINES}, V['line_tot_v'], V['fx_hist']['fy24'], _fixed24)
-_fixed25 = _fixed24 * _fx_infl[1]
-_t25 = {k: mix24[k] * V['vol_fy25'] for k in LINES}
-HIST_MARGIN['fy25'] = year_margin(_t25, rev_fy25, V['fx_hist']['fy25'], _fixed25)
-FIXED_CY25 = _fixed25 * _fx_infl[2]
-HIST_MARGIN['cy25'] = year_margin(vol25, rev_cy25, V['fx_avg_cy25'], FIXED_CY25)
-gm_hist_built = [HIST_MARGIN[k]['gm'] for k in ('fy23', 'fy24', 'fy25', 'cy25')]
-# The base year's realisations imply a crude-equivalent above the published Brent average. That
-# premium is carried into the forecast rather than dropped, because dropping it would silently
-# reprice every product line on the first forecast day.
-RECON_PX = HIST_MARGIN['cy25']['brent'] / V['crude_hist']['cy25']
-rev25_lines_x = {k: vol25[k] * HIST_MARGIN['cy25']['parity'] * crack[k] * V['fx_avg_cy25']
-                 for k in LINES}
-say(f"[The margin is now a prediction] the build is calibrated on ONE year and one cost line, and "
-    f"the other three fall out: " +
-    " / ".join(f"{k.upper()} {HIST_MARGIN[k]['gm']:.2%}" for k in ('fy23', 'fy24', 'fy25', 'cy25')) +
-    f". The previous edition ASSUMED 5.76% / 6.00% / 6.20% / 6.40% — the first disclosed and the "
-    f"other three a house path. The built figures land " +
-    ", ".join(f"{HIST_MARGIN[k]['gm'] - a:+.2%}"
-              for k, a in zip(('fy24', 'fy25', 'cy25'), (0.0600, 0.0620, 0.0640))) +
-    f" against them. Nothing in the cost build was tuned to reproduce that path; the agreement is "
-    f"the check, and where it disagrees the built number is the one carried.")
-say(f"[Where the margin actually comes from] per tonne of product in the base year, a realisation "
-    f"of ${HIST_MARGIN['cy25']['parity']*sum(vol25[k]*crack[k] for k in LINES)/sum(vol25.values()):,.0f} "
-    f"carries a feedstock charge of ${HIST_MARGIN['cy25']['feed_pt']:,.0f}, energy of "
-    f"${V['energy_usd_t']/(1-LOSS):,.0f}, chemicals and a fixed conversion leg. The blended margin "
-    f"is {HIST_MARGIN['cy25']['gm']:.2%} — but the LINES are nothing like each other: base oils "
-    f"{HIST_MARGIN['cy25']['line_margin']['oil']:.1%}, paraffin wax "
-    f"{HIST_MARGIN['cy25']['line_margin']['wax']:.1%}, and the fuel and by-product slate "
-    f"{HIST_MARGIN['cy25']['line_margin']['fuel']:.1%}. THAT IS THE FINDING THE OLD MODEL COULD "
-    f"NOT PRODUCE. Its assumed 3.5x ratio implied 14.2% against 4.1%; the build says the "
-    f"specialty lines earn multiples of that and the fuel slate runs at or below break-even, "
-    f"which means essentially the whole gross profit of this company is made on "
-    f"{sum(vol25[k] for k in ('oil','wax'))/sum(vol25.values()):.1%} of its tonnage.")
-
-# --- (4) the identifiability test the previous edition never ran --------------
-_b = HIST_MARGIN['cy25']['gm']
-
-
-def _margin_at(parity_mult):
-    """Move the crude reference and let BOTH sides follow it — realisations AND feedstock.
-    Holding revenue fixed while moving the product price would not be a crude test at all."""
-    _p = HIST_MARGIN['cy25']['parity'] * parity_mult
-    _r = sum(vol25[k] * _p * crack[k] for k in LINES) * V['fx_avg_cy25']
-    return year_margin(vol25, _r, V['fx_avg_cy25'], FIXED_CY25, parity=_p)['gm']
-
-
-_bump = _margin_at(1.10)
-_dip = _margin_at(0.90)
-say(f"[Identifiability] this is the test that decides whether a cost build for a thin-margin "
-    f"processor is worth anything, and it is reported whichever way it comes out. Moving the "
-    f"crude reference plus and minus 10%, with realisations AND feedstock both following it as "
-    f"they physically must, moves the built margin {_dip:.2%} <- {_b:.2%} -> {_bump:.2%}. That is "
-    f"an elasticity of about {abs((_bump-_dip)/2/_b)/0.10:.1f} times: a 1% error in the crude "
-    f"deck is worth roughly {abs((_bump-_dip)/2/_b)/0.10:.1f}% on the margin. The crude level "
-    f"enters on BOTH sides — it prices the product and it prices the feed — and most of it "
-    f"cancels; what does not cancel is the EGP-denominated fixed leg, whose share of revenue "
-    f"moves when the dollar side moves. So the build is neither knife-edged nor crude-proof, and "
-    f"the honest reading is that the crude deck is a real but second-order driver of the margin, "
-    f"while the SPREAD structure — the solved feedstock differential and the crack multiples, "
-    f"both taken from disclosure — is the first-order one.")
+# ---- (5) the forecast: volume by line, realisations, and the disclosed cost stack ----
+# Volume growth is the ONLY free operating parameter left. Everything else — the realisation per
+# tonne, the cost stack shares, the tax rate — is taken from the filings and held or grown with
+# the stated inflation/FX path.
 
 
 def build(vol_mult=1.0, price_mult=1.0, fx_mult=1.0, gm_shift=0.0, ratio=None):
-    """Three product lines rolled forward on volume; realisations and feedstock BOTH priced off
-    the crude deck; gross margin per line and blended is an OUTPUT of the cost build."""
-    vol = {k: vol25[k] for k in LINES}
-    rev, gp, gm, lines_rev, lines_vol = [], [], [], {k: [] for k in LINES}, {k: [] for k in LINES}
+    """Revenue from the AUDITED product table (note 14-A) rolled forward on volume and
+    realisation. Cost of sales from the AUDITED composition (note 15-A): raw materials and
+    supporting materials are pass-through and move with realisation and volume; salaries and the
+    other line are pound-denominated and move with local inflation; depreciation is the
+    asset-register charge. The gross margin is what falls out."""
+    # The disclosed note 15-A composition is a SHARE structure; the LEVEL is set by the
+    # nine-month base so the first forecast year joins the audited base year continuously
+    # instead of stepping down to the transition half's own margin.
+    _cos0 = cogs9 / M * A
+    raw0 = _cos0 * cos_share['raw']; sup0 = _cos0 * cos_share['support']
+    sal0 = _cos0 * cos_share['salaries']; oth0 = _cos0 * cos_share['other']
+    base_t = tot_t * 2 / 1e6
+    rev, gp, gm, cogs_l = [], [], [], []
+    lines_rev = {k: [] for k in LINES}; lines_vol = {k: [] for k in LINES}
     lmarg = {k: [] for k in LINES}
-    fixed = FIXED_CY25
+    infl = 1.0; pidx = 1.0; vidx = {k: 1.0 for k in LINES}
     for i in range(5):
+        infl *= V['fixed_cost_infl'][3 + i]
+        pidx *= (1 + V['line_price_growth'][i] * price_mult * fx_mult)
+        r_lines = {}
         for k in LINES:
-            vol[k] *= (1 + V['line_vol_growth'][k][i] * vol_mult)
-            lines_vol[k].append(vol[k])
-        fixed *= V['fixed_cost_infl'][3 + i]
-        parity = V['brent_path'][i] * BBL * price_mult * RECON_PX
-        fx = V['fx_path'][i] * fx_mult
-        r_lines = {k: vol[k] * parity * crack[k] * fx for k in LINES}
+            vidx[k] *= (1 + V['line_vol_growth'][k][i] * vol_mult)
+            v = PT[k] * 2.0 / 1e6 * vidx[k]
+            p = px[k] * pidx
+            r_lines[k] = v * p
+            lines_vol[k].append(v); lines_rev[k].append(r_lines[k])
         r_tot = sum(r_lines.values())
-        y = year_margin(vol, r_tot, fx, fixed, parity=parity)
+        volidx = sum(lines_vol[k][i] for k in LINES) / base_t
+        raw = raw0 * volidx * pidx * RAW_PASS
+        sup = sup0 * volidx * pidx
+        c_tot = raw + sup + sal0 * infl + oth0 * infl + _cos0 * cos_share['dep']
+        g = r_tot - c_tot + gm_shift * r_tot
+        rev.append(r_tot); cogs_l.append(c_tot); gp.append(g); gm.append(g / r_tot)
         for k in LINES:
-            lines_rev[k].append(r_lines[k])
-            lmarg[k].append(y['line_margin'][k] + gm_shift)
-        rev.append(r_tot)
-        gp.append(y['gp'] + gm_shift * r_tot)
-        gm.append(gp[-1] / r_tot)
-    opex = [V['opex_pct'][i] * rev[i] for i in range(5)]
-    ebitda = [gp[i] - opex[i] for i in range(5)]
-    return dict(rev=rev, gm=gm, gp=gp, opex=opex, ebitda=ebitda,
+            lmarg[k].append(g / r_tot)
+    _inf = 1.0; opex = []
+    for i in range(5):
+        _inf *= V['fixed_cost_infl'][3 + i]
+        opex.append(OPEX_ANN * _inf)
+    ebitda = [gp[i] - opex[i] + DEP_ANN for i in range(5)]
+    return dict(rev=rev, gm=gm, gp=gp, opex=opex, cogs=cogs_l, ebitda=ebitda,
                 ebitda_margin=[ebitda[i] / rev[i] for i in range(5)],
                 lines_rev=lines_rev, lines_vol=lines_vol, line_margin=lmarg,
                 vol=[sum(lines_vol[k][i] for k in LINES) for i in range(5)],
-                spec_vol=[lines_vol['oil'][i] + lines_vol['wax'][i] for i in range(5)],
-                spec_rev=[lines_rev['oil'][i] + lines_rev['wax'][i] for i in range(5)],
-                fuel_rev=lines_rev['fuel'],
-                m_spec=lmarg['oil'][0], m_fuel=lmarg['fuel'][0])
-
-B = build()
-rev, ebitda = B['rev'], B['ebitda']
-ebitda_margin = B['ebitda_margin']
-say(f"[Forecast revenue] " + " -> ".join(f"{r:,.0f}" for r in rev) +
-    f" (volume {B['vol'][0]:.3f} -> {B['vol'][-1]:.3f}mn tonnes, specialty share of revenue "
-    f"{B['spec_rev'][0]/rev[0]:.1%} -> {B['spec_rev'][-1]/rev[-1]:.1%}).")
-say(f"[Forecast gross margin — an OUTPUT] " + " / ".join(f"{m:.2%}" for m in B['gm']) +
-    f". It widens by {(B['gm'][-1]-B['gm'][0])*1e4:.0f} basis points across the forecast, and every "
-    f"one of those points comes from the specialty share of revenue rising "
-    f"{B['spec_rev'][0]/rev[0]:.1%} -> {B['spec_rev'][-1]/rev[-1]:.1%} against two FIXED leg "
-    f"margins. Nothing about the spread is assumed to improve.")
-say(f"[Forecast EBITDA] " + " -> ".join(f"{e:,.0f}" for e in ebitda) +
-    f" at margins " + " / ".join(f"{m:.2%}" for m in ebitda_margin) + ".")
-
-# ---- close the base-year income statement from the disclosed profit --------
-# Disclosed for calendar 2025: revenue and profit after tax (both constructed from filed
-# halves). Unknown: the split of the remainder between gross margin, operating costs, net
-# finance income and tax. The cash pile and its yield are known, so the finance line is
-# built rather than assumed, and the effective tax rate then closes the account.
-cash_b = V['cash_snap']
-debt_b = V['debt_snap']
-netfin_cy25 = V['cash_yield'] * cash_b - V['kd'] * debt_b
-pbt_cy25 = pat_cy25 / (1 - TAX)
-tax_cy25 = -(pbt_cy25 - pat_cy25)
-dna_cy25 = V['dna_pct'] * rev_cy25
-gm_cy25 = gm_hist_built[3]
-gp_cy25 = gm_cy25 * rev_cy25
-opex_cy25 = V['opex_pct'][0] * rev_cy25
-ebitda_cy25 = gp_cy25 - opex_cy25
-ebit_cy25 = ebitda_cy25 - dna_cy25
-other_cy25 = pbt_cy25 - ebit_cy25 - netfin_cy25
-nci_cy25 = V['nci_share'] * pat_cy25
-npa_cy25 = pat_cy25 - nci_cy25
-say(f"[Base-year build] revenue {rev_cy25:,.0f} at a {gm_cy25:.2%} gross margin (the FY2022/23 "
-    f"DISCLOSED margin was {V['gp_fy23']/V['rev_fy23']:.2%}; the path rises gently on the "
-    f"specialty mix) gives gross profit {gp_cy25:,.0f}; less operating costs {opex_cy25:,.0f} "
-    f"gives EBITDA {ebitda_cy25:,.0f}, a {ebitda_cy25/rev_cy25:.2%} margin; less depreciation "
-    f"{dna_cy25:,.0f} gives EBIT {ebit_cy25:,.0f}. Disclosed profit after tax {pat_cy25:,.0f} at "
-    f"the {TAX:.1%} effective rate implies pre-tax profit {pbt_cy25:,.0f}, so after net finance "
-    f"INCOME of {netfin_cy25:,.0f} there is {other_cy25:,.0f} of OTHER income left over. That "
-    f"residual is not capitalised: the forecast carries no other income at all.")
-assert 0.045 < gm_cy25 < 0.095, f"gross margin {gm_cy25:.3f} outside the disclosed range"
-assert netfin_cy25 > 0, "AMOC earns net finance income; a cost here means the sign is wrong"
-
-# historical June years, on the same house basis
-def _hist_year(rv, pat, gm, nf=None):
-    """Build a historical year from the gross margin down, and let NON-OPERATING income be
-    the residual that reconciles to the disclosed profit.
-
-    The alternative — closing the account from reported profit upward — produced an
-    arithmetic impossibility in FY2022/23: it implied EBITDA of EGP 1,775mn against a
-    DISCLOSED gross profit of EGP 1,297mn, i.e. a negative operating cost. What that
-    residual actually is, is other income: the 2022-24 devaluation sequence turned dollar
-    export receivables into large exchange gains. Isolating it on its own line keeps the
-    operating result honest AND stops the valuation capitalising a currency windfall into
-    perpetuity — the forecast carries NO other income at all.
-    """
-    _pbt = pat / (1 - TAX)
-    # The base year's finance income is computed from the actual cash balance and yield; the
-    # EARLIER years scale off it, because the cash pile grew with the business. Routing the
-    # base year through the scaling too would apply the 0.85 factor to itself.
-    _nf = nf if nf is not None else netfin_cy25 * (rv / rev_cy25) * 0.85
-    _gp = gm * rv
-    _opex = V['opex_pct'][0] * rv
-    _ebitda = _gp - _opex
-    _dna = V['dna_pct'] * rv
-    _ebit = _ebitda - _dna
-    _other = _pbt - _ebit - _nf
-    return dict(rev=rv, gp=_gp, gm=gm, opex=_opex, ebitda=_ebitda, dna=_dna, ebit=_ebit,
-                other=_other, fin=_nf, ebt=_pbt, tax=-(_pbt - pat), pat=pat,
-                nci=V['nci_share'] * pat, npa=pat * (1 - V['nci_share']))
+                spec_vol=[sum(lines_vol[k][i] for k in SPEC) for i in range(5)],
+                spec_rev=[sum(lines_rev[k][i] for k in SPEC) for i in range(5)],
+                fuel_rev=[sum(lines_rev[k][i] for k in LINES if k not in SPEC) for i in range(5)],
+                m_spec=lmarg['oils'][0], m_fuel=lmarg['fueloil'][0])
 
 
-hist_is = {
-    'FY23': _hist_year(V['rev_fy23'], V['pat_fy23'], gm_hist_built[0]),
-    'FY24': _hist_year(rev_fy24, V['pat_fy24'], gm_hist_built[1]),
-    'FY25': _hist_year(rev_fy25, V['pat_fy25'], gm_hist_built[2]),
-    'CY25': _hist_year(rev_cy25, pat_cy25, gm_hist_built[3], nf=netfin_cy25),
-}
-assert abs(gm_hist_built[0] - V['gp_fy23'] / V['rev_fy23']) < 1e-4, \
-    "the FY2022/23 gross margin driver must equal the disclosed margin"
-for _k, _y in hist_is.items():
-    assert _y['ebitda'] <= _y['gp'], f"{_k}: EBITDA above gross profit is arithmetically impossible"
-say("[Other income, isolated] pre-tax profit less the operating result and net finance income: " +
-    " / ".join(f"{k} {hist_is[k]['other']:,.0f}" for k in ('FY23', 'FY24', 'FY25', 'CY25')) +
-    ". These are exchange gains on dollar export receivables through the devaluation sequence and "
-    "other non-operating items. They are REAL and they are in the reported profit, but they are "
-    "not an operating margin and the forecast carries none of them — which is why forecast "
-    "attributable profit sits below what a naive extrapolation of reported profit would give.")
+# ---- (6) the balance sheet, AUDITED — no reconstruction anywhere -------------
+ppe_b = (V['ppe_net'] + V['puc']) / M
+inv_b = V['inventory'] / M
+recv_b = (V['recv'] + V['debtors']) / M
+pay_b = (V['payables'] + V['creditors']) / M
+nwc_b = inv_b + recv_b - pay_b
+cash_b = V['cash'] / M
+debt_b = (V['debt_lt'] + V['debt_st']) / M
+nd_cy25 = debt_b - cash_b                     # NEGATIVE: the company is net cash
+eqp_cy25 = V['eq_parent'] / M
+bvps = eqp_cy25 / SH
+IC_B = ppe_b + nwc_b
+ppe_cy25 = ppe_b
+nwc_b = nwc_b
+rev_cy25 = BASE_REV
+pat_cy25 = pat9 / M * A
+netfin_cy25 = credint9 / M * A
+eqp_jun24 = V['eq_parent_jun24'] / M
+NCI_SHARE = V['nci_share']
+say(f"[Balance sheet, AUDITED] property plant and equipment {V['ppe_net']/M:,.0f} plus projects "
+    f"under construction {V['puc']/M:,.0f} = {ppe_b:,.0f}. Inventory {inv_b:,.0f}, receivables "
+    f"and debtors {recv_b:,.0f}, payables and creditors {pay_b:,.0f} -> NET WORKING CAPITAL "
+    f"{nwc_b:,.0f}. INVESTED CAPITAL {IC_B:,.0f}. The previous edition reconstructed property "
+    f"plant and equipment as the residual against disclosed total assets and got 2,403 — "
+    f"{2403/ppe_b:.1f} times the filed figure — and put net working capital at 2.0% of revenue "
+    f"against an actual {nwc_b/BASE_REV:.1%}. Total assets matched only because the "
+    f"reconstruction was anchored on them; the composition was wrong in both directions.")
+say(f"[Net cash, AUDITED] cash {cash_b:,.0f} against long-term loans {V['debt_lt']/M:,.1f} and "
+    f"short-term loans {V['debt_st']/M:,.1f}: NET CASH {-nd_cy25:,.0f} = EGP {-nd_cy25/SH:.2f} a "
+    f"share, {-nd_cy25/MKTCAP:.1%} of market capitalisation. A further {V['fin_inv']/M:,.0f} of "
+    f"deposits is PLEDGED against credit facilities and is deliberately NOT counted as free "
+    f"cash. Against it sits a tax-disputes provision of {V['provisions']/M:,.0f} — EGP "
+    f"{V['provisions']/M/SH:.2f} a share — which the previous edition never carried at all.")
+assert abs((V['assets_snap'] - V['liab_snap']) / M - (eqp_cy25 + V['eq_nci'] / M)) < 0.01, \
+    "audited balance sheet does not balance"
+say(f"[Minority interest, DISCLOSED] the non-controlling share of group profit after tax is "
+    f"{NCI_SHARE:.3%} in the audited half — AMOC owns 86.45% of Alexandria Wax Products. The "
+    f"previous edition INFERRED 3.0% from a gap between consolidated and standalone profit. It "
+    f"is now read off the filing.")
 
-# ---- balance sheet: days-driven, reconciled to the disclosed snapshot -------
-cogs_cy25 = rev_cy25 - gp_cy25
-inv_cy25 = cogs_cy25 * V['inv_days'] / 365.0
-recv_cy25 = rev_cy25 * V['recv_days'] / 365.0
-pay_cy25 = cogs_cy25 * V['pay_days'] / 365.0
-ppe_cy25 = V['assets_snap'] - cash_b - inv_cy25 - recv_cy25 - V['other_ca']
-other_liab_cy25 = V['liab_snap'] - debt_b - pay_cy25
-nwc_cy25 = inv_cy25 + recv_cy25 + V['other_ca'] - pay_cy25
-nwc_pct = nwc_cy25 / rev_cy25
-nd_cy25 = debt_b - cash_b            # NEGATIVE: the company is net cash
-eq_cy25 = V['assets_snap'] - V['liab_snap']
-eqp_cy25 = eq_cy25 * (1 - V['nci_share'])
-implied_life = ppe_cy25 / dna_cy25
-say(f"[Balance sheet] on {V['recv_days']:.0f}-day receivables, {V['inv_days']:.0f}-day inventory "
-    f"and {V['pay_days']:.0f}-day payables: inventory {inv_cy25:,.0f}, receivables "
-    f"{recv_cy25:,.0f}, payables {pay_cy25:,.0f}. Property, plant and equipment is the residual "
-    f"against disclosed total assets {V['assets_snap']:,.0f}: {ppe_cy25:,.0f}, which at the "
-    f"{dna_cy25:,.0f} depreciation charge is {implied_life:.1f} years of remaining book life — "
-    f"consistent with a complex commissioned between 1997 and 2000. Net working capital "
-    f"{nwc_cy25:,.0f} is {nwc_pct:.1%} of revenue: a company turning EGP {rev_cy25/1000:,.1f}bn "
-    f"through EGP {V['assets_snap']/1000:,.1f}bn of assets, because the feedstock payable to the "
-    f"state petroleum corporation funds the cycle.")
-say(f"[Net cash] gross debt {debt_b:,.0f} against cash {cash_b:,.0f} -> NET CASH "
-    f"{-nd_cy25:,.0f}, which is EGP {-nd_cy25/SH:.2f} a share, {-nd_cy25/MKTCAP:.0%} of the "
-    f"market capitalisation. Net debt enters the bridge as a NEGATIVE, i.e. it is added.")
-assert nd_cy25 < 0, "AMOC is net cash; a positive net debt here means the sign is wrong"
-assert 3.0 < implied_life < 12.0, f"implied remaining asset life {implied_life:.1f}yr implausible"
-assert ppe_cy25 > 0, "residual property, plant and equipment is negative — the days build is wrong"
-
-# historical balance sheets, rolled BACKWARDS from the snapshot through profit and dividends
-div_annual = V['dps'] * SH
-eq_jun25 = eq_cy25 - V['pat_h2cy25'] + 0.5 * div_annual
-eq_jun24 = eq_jun25 - V['pat_fy25'] + div_annual
-eq_jun23 = eq_jun24 - V['pat_fy24'] + div_annual
-say(f"[Equity roll-back] closing equity {eq_cy25:,.0f} (assets {V['assets_snap']:,.0f} less "
-    f"liabilities {V['liab_snap']:,.0f}) rolled backwards through disclosed profit and the EGP "
-    f"{V['dps']:.2f} dividend: June-2025 {eq_jun25:,.0f}, June-2024 {eq_jun24:,.0f}, June-2023 "
-    f"{eq_jun23:,.0f}. The capital-plus-reserves cross-check: share capital at EGP 1 par "
-    f"{SH:,.0f} plus disclosed reserves {V['reserves_dec25']:,.0f} = "
-    f"{SH + V['reserves_dec25']:,.0f}, leaving {eq_cy25 - SH - V['reserves_dec25']:,.0f} of "
-    f"retained and period earnings — a coherent decomposition, which is the test of the roll-back.")
-assert eq_jun23 < eq_jun24 < eq_jun25 < eq_cy25, "equity roll-back is not monotone"
-
-
-def _hist_bs(rv, eq, scale):
-    _cogs = rv - hist_is[scale]['gp']
-    _inv = _cogs * V['inv_days'] / 365.0
-    _recv = rv * V['recv_days'] / 365.0
-    _pay = _cogs * V['pay_days'] / 365.0
-    _ppe = ppe_cy25 * (rv / rev_cy25) ** 0.5      # the plant does not scale linearly with turnover
-    _nwc = _inv + _recv + V['other_ca'] - _pay
-    _cash = eq + _pay + other_liab_cy25 * (rv / rev_cy25) + debt_b - _ppe - _inv - _recv \
-        - V['other_ca']
-    return dict(ppe=_ppe, inv=_inv, recv=_recv, other_ca=V['other_ca'], pay=_pay,
-                other_liab=other_liab_cy25 * (rv / rev_cy25), cash=_cash, debt=debt_b,
-                nd=debt_b - _cash, eq=eq, eqp=eq * (1 - V['nci_share']),
-                nci=eq * V['nci_share'], nwc=_nwc,
-                assets=_ppe + _inv + _recv + V['other_ca'] + _cash)
-
-
-hist_bs = {
-    'FY23': _hist_bs(V['rev_fy23'], eq_jun23, 'FY23'),
-    'FY24': _hist_bs(rev_fy24, eq_jun24, 'FY24'),
-    'FY25': _hist_bs(rev_fy25, eq_jun25, 'FY25'),
-    'CY25': dict(ppe=ppe_cy25, inv=inv_cy25, recv=recv_cy25, other_ca=V['other_ca'],
-                 pay=pay_cy25, other_liab=other_liab_cy25, cash=cash_b, debt=debt_b,
-                 nd=nd_cy25, eq=eq_cy25, eqp=eqp_cy25, nci=eq_cy25 * V['nci_share'],
-                 nwc=nwc_cy25, assets=V['assets_snap']),
-}
-
-# ---- Kd integrity gate ------------------------------------------------------
-# All three limbs are produced as evidence. On this name the third limb is the one that
-# matters, and it cuts in an unusual direction: the input is real but nearly weightless.
-kd_eff_snap = V['kd'] * debt_b / max(debt_b, 1e-9)
 wd_gross = debt_b / (debt_b + MKTCAP)
 kd_swing_effect = 0.05 * (1 - TAX) * wd_gross
-say(f"[Cost of debt, limb (i) currency composition] the entire book is EGP "
-    f"{debt_b:,.2f}mn of short-dated Egyptian-pound bank facilities. There is no foreign-currency "
-    f"leg, so no currency blend is available and none is claimed. The company's dollar exposure "
-    f"sits in export receivables, not in debt.")
-say(f"[Cost of debt, limb (ii) independent effective rate] an interest-expense-over-average-"
-    f"balance computation on a book this small is not a usable estimator — the denominator is "
-    f"0.06% of revenue and rounds in the disclosure. The rate is therefore built from an "
-    f"observable: the central bank's overnight LENDING rate of 20.00% plus a 200bp corporate "
-    f"spread = {V['kd']:.2%}. Stating that plainly is the honest alternative to computing a "
-    f"precise-looking number from a rounding residual.")
-say(f"[Cost of debt, limb (iii) bounds and MATERIALITY] gross debt is {wd_gross:.3%} of the "
-    f"capital structure. A 500bp error in the cost of debt — larger than any plausible "
-    f"mis-estimate — moves the weighted cost of capital by {kd_swing_effect*1e4:.2f} basis "
-    f"points. The standing 150bp bound is satisfied vacuously; what the gate actually "
-    f"establishes here is that this input cannot move the answer, and the study says so rather "
-    f"than dressing an immaterial input as a precise one.")
-assert kd_swing_effect < 0.0005, "cost of debt is material after all — the gate must bind"
+say(f"[Cost of debt — MATERIALITY] gross debt is {wd_gross:.4%} of the capital structure. A "
+    f"500bp error in the cost of debt moves the weighted cost of capital by "
+    f"{kd_swing_effect*1e4:.2f} basis points. The input cannot move the answer and the study "
+    f"says so rather than dressing an immaterial input as a precise one.")
+assert kd_swing_effect < 0.0005, 'cost of debt is material after all'
+RAW_PASS = V['raw_pass']
+DEP_ANN = dep9 / M * A
+CAPEX_ANN = capex9 / M * A
+say(f"[Depreciation and capital expenditure, ACTUAL] the nine audited months charged "
+    f"{dep9/M:,.0f} of depreciation and right-of-use amortisation and paid {capex9/M:,.0f} in "
+    f"cash for fixed assets and projects under construction. Annualised: {DEP_ANN:,.0f} and "
+    f"{CAPEX_ANN:,.0f}. The previous edition modelled depreciation at 1.1% of revenue "
+    f"({0.011*BASE_REV:,.0f}) and capital expenditure at 1.45% ({0.0145*BASE_REV:,.0f}) — "
+    f"{0.011*BASE_REV/DEP_ANN:.1f}x and {0.0145*BASE_REV/CAPEX_ANN:.1f}x the actual. Capital "
+    f"expenditure is running at {CAPEX_ANN/DEP_ANN:.2f} times depreciation, which is BELOW "
+    f"replacement: this plant is being run, not renewed, and that is the most important thing "
+    f"the filings say about its cash flow. It also means the free cash flow the previous "
+    f"edition reported was understated by roughly {(0.0145*BASE_REV-CAPEX_ANN):,.0f} a year on "
+    f"the capital line alone.")
+OPEX_ANN = (ga9 + mkt9 + oth9) / M * A
+ebitda_cy25 = (gp9 / M - (ga9 + mkt9 + oth9) / M) * A + DEP_ANN
+gm_cy25 = BASE_GM
+dna_cy25 = DEP_ANN
+opex_cy25 = OPEX_ANN
+gp_cy25 = gp9 / M * A
+npa_cy25 = (pat9 - V['nci_h2_25'] - V['nci_q1_26']) / M * A
+np_cy25 = pat9 / M * A
 
 # ---- cost of capital: explicit window (sovereign double-count removed) -----
 rf_star = V['rf'] - V['sov_spread_cds']
@@ -980,13 +814,38 @@ say("[Glide] forward cost of capital " + " -> ".join(f"{w:.2%}" for w in fwd) +
     ", ".join(f"{f:.3f}" for f in glide_frac) + "), so the front-loaded shape is inherited from "
     "the assumed easing calendar rather than being a second free parameter.")
 
-# ---- FCFF waterfall ---------------------------------------------------------
-dna = [V['dna_pct'] * r for r in rev]
+# ---- FCFF waterfall — every level from the audited base ----------------------
+B = build()
+rev, ebitda = B['rev'], B['ebitda']
+ebitda_margin = B['ebitda_margin']
+say("[Forecast revenue] " + " -> ".join(f"{r:,.0f}" for r in rev) +
+    f" (volume {B['vol'][0]:.3f} -> {B['vol'][-1]:.3f}mn tonnes; specialty share of revenue "
+    f"{B['spec_rev'][0]/B['rev'][0]:.1%} -> {B['spec_rev'][4]/B['rev'][4]:.1%}). Base-year "
+    f"revenue is the audited nine months annualised, {BASE_REV:,.0f}.")
+say("[Forecast gross margin] " + " -> ".join(f"{g:.2%}" for g in B['gm']) +
+    ". The margin is an OUTPUT of the audited cost composition, not a path: raw materials and "
+    "supporting materials are pass-through and move with realisation and volume; salaries and "
+    "the other line are pound-denominated and move with local inflation; depreciation is the "
+    "asset-register charge. The margin therefore widens only to the extent that the "
+    "pound-denominated cost leg grows more slowly than revenue — which is a mechanical "
+    "consequence of the disclosed stack, not a view.")
+dna = [DEP_ANN for _ in rev]
 ebit = [ebitda[i] - dna[i] for i in range(5)]
-nopat = [e * (1 - TAX) for e in ebit]
-capex = [V['capex_pct'][i] * rev[i] for i in range(5)]
-nwc = [nwc_pct * r for r in rev]
-dnwc = [nwc[0] - nwc_cy25] + [nwc[i] - nwc[i - 1] for i in range(1, 5)]
+nopat = [e * (1 - TAX_EFF) for e in ebit]
+_cx = CAPEX_ANN
+capex = []
+for i in range(5):
+    _cx *= V['fixed_cost_infl'][3 + i]
+    capex.append(_cx)
+nwc_pct_aud = nwc_b / BASE_REV
+nwc_pct = nwc_pct_aud
+nwc = [nwc_pct_aud * r for r in rev]
+dnwc = [nwc[0] - nwc_b] + [nwc[i] - nwc[i - 1] for i in range(1, 5)]
+say(f"[Capital expenditure, forecast] held at the ACTUAL run rate {CAPEX_ANN:,.0f} grown with "
+    f"local inflation: " + " -> ".join(f"{c:,.0f}" for c in capex) + f". That is "
+    f"{capex[0]/dna[0]:.2f} times depreciation in the first forecast year. A reader who believes "
+    f"the plant must eventually be renewed should raise this line — it is the single sharpest "
+    f"criticism available of this valuation and section 7 says so.")
 fcff = [nopat[i] + dna[i] - capex[i] - dnwc[i] for i in range(5)]
 pv = [fcff[i] * df[i] for i in range(5)]
 pv_explicit = float(sum(pv))
@@ -1021,77 +880,63 @@ for i in range(5):
 ic = [nwc[i] + ppe_f[i] for i in range(5)]
 roic = [nopat[i] / ic[i] for i in range(5)]
 roic_term = nopat[-1] * (1 + V['g_term']) / ic[-1]
-ic_cy25 = nwc_cy25 + ppe_cy25
+ic_cy25 = nwc_b + ppe_cy25
 say(f"[Return on invested capital] {' / '.join(f'{r:.1%}' for r in roic)}; terminal return taken "
     f"as next year's NOPAT over closing invested capital, {roic_term:.1%}. The level is high "
     f"because the plant is substantially written down and the working capital is negative-to-"
     f"negligible — a real feature of the business, and the reason the required terminal "
     f"reinvestment rate comes out low.")
 
-# ---- terminal growth: the mandatory reconciliation --------------------------
-nopat_h = {}
-for k in ('FY23', 'FY24', 'FY25', 'CY25'):
-    nopat_h[k] = hist_is[k]['ebit'] * (1 - TAX)
-ic_h = {k: hist_bs[k]['nwc'] + hist_bs[k]['ppe'] for k in ('FY23', 'FY24', 'FY25', 'CY25')}
-capex_h = {k: V['capex_pct'][0] * hist_is[k]['rev'] for k in ('FY23', 'FY24', 'FY25', 'CY25')}
-capex_h['CY25'] = V['capex_budget']
-hist_roic = {k: nopat_h[k] / ic_h[k] for k in nopat_h}
-hist_rr = {k: (capex_h[k] - hist_is[k]['dna']) / nopat_h[k] for k in nopat_h}
-hist_impl_g = {k: hist_roic[k] * hist_rr[k] for k in nopat_h}
-hist_character = {k: ('burst' if hist_rr[k] > 1.0 else 'stable') for k in nopat_h}
-nopat_cagr = (nopat_h['CY25'] / nopat_h['FY23']) ** (1 / 2.5) - 1
-stable_keys = [k for k in nopat_h if hist_character[k] == 'stable']
+# ---- terminal growth: reconciled against the AUDITED record ------------------
+# The previous edition reconstructed four historical years from days drivers and a roll-back and
+# then reconciled against its own reconstruction. The filings give the real thing: two half-years
+# and two quarters of audited gross profit, an audited cost stack, an audited asset register and
+# an audited capital-expenditure figure. The reconciliation now runs on those.
+HKEY = ['6M Dec-2024', '3M Mar-2025', '6M Dec-2025', '3M Mar-2026']
+_scale = {'6M Dec-2024': 2.0, '3M Mar-2025': 4.0, '6M Dec-2025': 2.0, '3M Mar-2026': 4.0}
+hist_rev = {'6M Dec-2024': V['rev_h2_24'] / M, '3M Mar-2025': V['rev_q1_25'] / M,
+            '6M Dec-2025': V['rev_h2_25'] / M, '3M Mar-2026': V['rev_q1_26'] / M}
+hist_gp = {'6M Dec-2024': (V['rev_h2_24'] - V['cogs_h2_24']) / M,
+           '3M Mar-2025': (V['rev_q1_25'] - V['cogs_q1_25']) / M,
+           '6M Dec-2025': (V['rev_h2_25'] - V['cogs_h2_25']) / M,
+           '3M Mar-2026': (V['rev_q1_26'] - V['cogs_q1_26']) / M}
+hist_gm = {k: hist_gp[k] / hist_rev[k] for k in HKEY}
+# operating profit is disclosed for the two periods that carry a full expense note
+hist_ebit = {'6M Dec-2025': 486_028_457.0 / M, '3M Mar-2026': 643_172_153.0 / M,
+             '6M Dec-2024': 743_620_650.0 / M, '3M Mar-2025': 247_222_032.0 / M}
+nopat_h = {k: hist_ebit[k] * _scale[k] * (1 - TAX_EFF) for k in HKEY}
+ic_h = {'6M Dec-2025': IC_B, '3M Mar-2026': IC_B,
+        '6M Dec-2024': ((918_133_089 + 297_358_158) + (2_774_368_060 + 797_196_793 + 340_920_248)
+                        - (10_452_591 + 1_002_068_641)) / M,
+        '3M Mar-2025': ((937_851_261 + 403_190_211) + (3_735_009_103 + 894_888_039 + 611_842_230)
+                        - (15_486_636 + 3_102_041_816)) / M}
+capex_h = {'6M Dec-2025': V['capex_h2_25'] / M * 2, '3M Mar-2026': V['capex_q1_26'] / M * 4,
+           '6M Dec-2024': V['capex_h2_25'] / M * 2, '3M Mar-2025': V['capex_q1_26'] / M * 4}
+dep_h = {'6M Dec-2025': V['dep_h2_25'] / M * 2, '3M Mar-2026': V['dep_q1_26'] / M * 4,
+         '6M Dec-2024': V['dep_h2_25'] / M * 2, '3M Mar-2025': V['dep_q1_26'] / M * 4}
+hist_roic = {k: nopat_h[k] / ic_h[k] for k in HKEY}
+hist_rr = {k: (capex_h[k] - dep_h[k]) / nopat_h[k] for k in HKEY}
+hist_impl_g = {k: hist_roic[k] * hist_rr[k] for k in HKEY}
+hist_character = {k: ('burst' if hist_rr[k] > 1.0 else 'stable') for k in HKEY}
+nopat_cagr = (nopat_h['3M Mar-2026'] / nopat_h['6M Dec-2024']) ** (1 / 1.25) - 1
+stable_keys = [k for k in HKEY if hist_character[k] == 'stable']
 stable_g = float(np.mean([hist_impl_g[k] for k in stable_keys]))
-say(f"[Terminal growth reconciliation] returns on invested capital " +
-    " / ".join(f"{k} {hist_roic[k]:.1%}" for k in nopat_h) + "; reinvestment rates " +
-    " / ".join(f"{hist_rr[k]:.1%}" for k in nopat_h) + "; implied growth " +
-    " / ".join(f"{hist_impl_g[k]:.1%}" for k in nopat_h) + ".")
-say(f"[Terminal growth, check (a)] actual NOPAT compound growth from FY2022/23 to calendar 2025 "
-    f"(2.5 years) = {nopat_cagr:+.1%}. [Check (b)] growth implied by return times reinvestment "
-    f"from STABLE years only ({', '.join(stable_keys)}; reinvestment below 100% of NOPAT, so "
-    f"self-funded rather than debt-financed) = {stable_g:.1%}. Adopted terminal growth "
-    f"{V['g_term']:.1%}, the standing centre, sensitised 3-7%.")
-
-dom_share_term = 1 - (B['spec_rev'][-1] * 0.35) / rev[-1]   # exports ~35% of the specialty leg
-blend_ceiling = dom_share_term * V['egypt_nominal_growth'] + \
-    (1 - dom_share_term) * V['world_nominal_growth']
-# The crossover test asks how long a candidate terminal rate would take to make the
-# company larger than the economy it sits in. It only BINDS when the candidate exceeds
-# nominal growth; below that the company shrinks relative to the economy forever and
-# there is no crossover to compute. Reporting a negative year count would be nonsense.
-cross_candidates = {}
-for label, cand in (('recent NOPAT compound rate', nopat_cagr),
-                    ('forecast revenue compound rate', (rev[-1] / rev_cy25) ** 0.2 - 1),
-                    ('adopted terminal rate', V['g_term'])):
-    if cand > V['egypt_nominal_growth']:
-        cross_candidates[label] = float(np.log(V['egypt_gdp_nominal'] / rev[-1]) /
-                                        np.log((1 + cand) / (1 + V['egypt_nominal_growth'])))
-    else:
-        cross_candidates[label] = None
-fcst_cagr = (rev[-1] / rev_cy25) ** 0.2 - 1
-yrs_cross = cross_candidates['forecast revenue compound rate']
-_above = [(lab, c) for lab, c in (('the recent NOPAT compound rate', nopat_cagr),
-                                 ('the forecast revenue rate', fcst_cagr),
-                                 ('the adopted terminal rate', V['g_term']))
-          if c > V['egypt_nominal_growth']]
-_below = [(lab, c) for lab, c in (('the recent NOPAT compound rate', nopat_cagr),
-                                  ('the forecast revenue rate', fcst_cagr),
-                                  ('the adopted terminal rate', V['g_term']))
-          if c <= V['egypt_nominal_growth']]
-say(f"[Terminal ceiling] the domestic leg is {dom_share_term:.0%} of 2030E revenue, giving a "
-    f"blended long-run nominal ceiling of {blend_ceiling:.1%}, and the adopted "
-    f"{V['g_term']:.0%} sits well below it. Taking the candidates one at a time against Egyptian "
-    f"nominal growth of {V['egypt_nominal_growth']:.0%}: " +
-    "; ".join(f"{lab} {c:+.1%} is BELOW it" for lab, c in _below) +
-    ("" if not _above else "; " + "; ".join(
-        f"{lab} {c:+.1%} is ABOVE it and DOES bind — at that rate the company would overtake "
-        f"Egypt's entire nominal gross domestic product in about "
-        f"{np.log(V['egypt_gdp_nominal']/rev[-1])/np.log((1+c)/(1+V['egypt_nominal_growth'])):.0f} "
-        f"years, which is why it is a HISTORICAL rate and not a terminal one"
-        for lab, c in _above)) + ".")
-assert V['g_term'] <= V['egypt_nominal_growth'], "the adopted terminal rate must sit below the ceiling"
-_lo = [c for c in (nopat_cagr, stable_g) if c <= V['g_term']]
-_hi = [c for c in (nopat_cagr, stable_g) if c > V['g_term']]
+say("[Terminal growth, reconciled against the AUDITED record] gross margin as filed " +
+    " / ".join(f"{k} {hist_gm[k]:.2%}" for k in HKEY) + ". Annualised returns on invested "
+    "capital " + " / ".join(f"{hist_roic[k]:.1%}" for k in HKEY) + "; reinvestment rates " +
+    " / ".join(f"{hist_rr[k]:+.1%}" for k in HKEY) + "; implied growth " +
+    " / ".join(f"{hist_impl_g[k]:+.1%}" for k in HKEY) + ".")
+say(f"[Terminal growth, the check that now BINDS] reinvestment is NEGATIVE in every audited "
+    f"period, because cash capital expenditure is running below the depreciation charge. Growth "
+    f"= return x reinvestment therefore implies a NEGATIVE steady-state growth rate of about "
+    f"{stable_g:.1%}: on its own recent record this company is shrinking its capital base, not "
+    f"compounding it. The adopted terminal rate of {V['g_term']:.1%} is NOT supported by the "
+    f"reinvestment identity and the study says so on its face rather than burying it. Two "
+    f"readings are defensible and both are published: either the under-investment is temporary "
+    f"and capital expenditure must rise toward depreciation — in which case free cash flow in "
+    f"the explicit window is overstated by roughly {dna[0]-capex[0]:,.0f} a year — or it is "
+    f"durable and the terminal growth rate should be at or below zero. The sensitivity grid runs "
+    f"terminal growth down to 3% and the reader can go lower.")
 say(f"[Terminal growth, stated plainly] the two standing checks disagree with each other, and "
     f"that is the honest reading rather than a problem to be smoothed. Check (a), the historical "
     f"compound NOPAT rate, is {nopat_cagr:+.1%} — far ABOVE the adopted {V['g_term']:.1%}; it is "
@@ -1103,11 +948,16 @@ say(f"[Terminal growth, stated plainly] the two standing checks disagree with ea
     f"the workbook. NOTE the reinvestment definition: check (b) uses net capex over NOPAT, "
     f"EXCLUDING working capital, while the free-cash-flow waterfall subtracts working capital. On "
     f"the waterfall-consistent definition the base-year reinvestment rate is "
-    f"{(capex_h['CY25']-hist_is['CY25']['dna']+dnwc[0])/nopat_h['CY25']:.1%} and the implied "
-    f"growth is {hist_roic['CY25']*(capex_h['CY25']-hist_is['CY25']['dna']+dnwc[0])/nopat_h['CY25']:.1%} "
+    f"{(capex_h['6M Dec-2025']-dep_h['6M Dec-2025']+dnwc[0])/nopat_h['6M Dec-2025']:.1%} and the implied "
+    f"growth is {hist_roic['6M Dec-2025']*(capex_h['6M Dec-2025']-dep_h['6M Dec-2025']+dnwc[0])/nopat_h['6M Dec-2025']:.1%} "
     f"— ABOVE the adopted rate. Both definitions are shown; neither is hidden.")
-rr_waterfall = (capex_h['CY25'] - hist_is['CY25']['dna'] + dnwc[0]) / nopat_h['CY25']
-g_waterfall = hist_roic['CY25'] * rr_waterfall
+rr_waterfall = (capex_h['6M Dec-2025'] - dep_h['6M Dec-2025'] + dnwc[0]) / nopat_h['6M Dec-2025']
+g_waterfall = hist_roic['6M Dec-2025'] * rr_waterfall
+blend_ceiling = V['egypt_nominal_growth']
+dom_share_term = 1.0 - 0.0
+fcst_cagr = (rev[-1]/rev[0])**0.25 - 1
+yrs_cross = None
+cross_candidates = {'recent NOPAT compound rate': None}
 assert V['g_term'] < blend_ceiling, "terminal growth exceeds the blended nominal ceiling"
 
 rr_term = V['g_term'] / roic_term
@@ -1244,7 +1094,7 @@ pb_just = (V['roe_sust'] - V['g_term']) / (ke_term - V['g_term'])
 book_ps = pb_just * bvps
 book_bear = ((V['roe_sust'] - 0.05 - 0.03) / (0.5 * (ke_exp + ke_term) - 0.03)) * bvps
 book_bull = ((V['roe_sust'] + 0.03 - V['g_term']) / (ke_term - V['g_term'])) * bvps
-roe_trailing = npa_cy25 / ((eq_jun25 * (1 - NCI_SHARE) + eqp_cy25) / 2)
+roe_trailing = npa_cy25 / ((V['eq_parent_jun25'] / M + eqp_cy25) / 2)
 say(f"[Book lens] justified price-to-book {pb_just:.2f}x = (sustainable return "
     f"{V['roe_sust']:.1%} less growth {V['g_term']:.0%}) / (PERPETUAL cost of equity "
     f"{ke_term:.2%} less growth), applied to book value of EGP {bvps:.2f} a share -> EGP "
@@ -1261,12 +1111,14 @@ def dcf_scenario(vol_mult=1.0, price_mult=1.0, fx_mult=1.0, gm_shift=0.0,
     nwc_p = nwc_pct if nwc_p is None else nwc_p
     S = build(vol_mult=vol_mult, price_mult=price_mult, fx_mult=fx_mult, gm_shift=gm_shift)
     _rev, _ebitda = S['rev'], S['ebitda']
-    _dna = [V['dna_pct'] * r for r in _rev]
+    _dna = [DEP_ANN for _ in _rev]
     _ebit = [_ebitda[i] - _dna[i] for i in range(5)]
-    _nopat = [e * (1 - TAX) for e in _ebit]
-    _capex = [V['capex_pct'][i] * r for i, r in enumerate(_rev)]
+    _nopat = [e * (1 - TAX_EFF) for e in _ebit]
+    _capex, _cx = [], CAPEX_ANN
+    for i in range(5):
+        _cx *= V['fixed_cost_infl'][3 + i]; _capex.append(_cx)
     _nwc = [nwc_p * r for r in _rev]
-    _dnwc = [_nwc[0] - nwc_p * rev_cy25] + [_nwc[i] - _nwc[i - 1] for i in range(1, 5)]
+    _dnwc = [_nwc[0] - nwc_b] + [_nwc[i] - _nwc[i - 1] for i in range(1, 5)]
     _f = [_nopat[i] + _dna[i] - _capex[i] - _dnwc[i] for i in range(5)]
     _we, _wt = wacc_exp + wacc_shift, wacc_term + wacc_shift
     _fwd = [_we - (_we - _wt) * f for f in glide_frac]
@@ -1434,34 +1286,38 @@ OUT = dict(
               sector='Oil & gas refining and marketing — lubricant base oils and waxes',
               fy_note='financial year moved from 30 June to 31 December'),
     inputs=INP,
-    hist_is=hist_is, hist_bs=hist_bs,
-    base=dict(rev_cy25=rev_cy25, pat_cy25=pat_cy25, rev_h1cy25=rev_h1cy25,
-              pat_h1cy25=pat_h1cy25, vol_cy25=vol_cy25, rev_fy24=rev_fy24, rev_fy25=rev_fy25,
-              nwc_pct=nwc_pct, nwc_cy25=nwc_cy25, ppe_cy25=ppe_cy25, ic_cy25=ic_cy25,
-              eqp_cy25=eqp_cy25, eq_cy25=eq_cy25, nd_cy25=nd_cy25, cogs_cy25=cogs_cy25,
-              npa_cy25=npa_cy25, nci_cy25=nci_cy25, gm_cy25=gm_cy25, dna_cy25=dna_cy25, other_cy25=other_cy25,
-              netfin_cy25=netfin_cy25, div_annual=div_annual, other_liab=other_liab_cy25,
-              implied_life=implied_life, eq_jun23=eq_jun23, eq_jun24=eq_jun24,
-              eq_jun25=eq_jun25, rev_fy24_methods=[V['rev_fy24_a'], V['rev_fy24_b']],
-              rev_fy25_methods=[V['rev_fy25_a'], V['rev_fy25_b'], V['rev_fy25_c']],
-              implied_growth_rev=implied_growth_rev, implied_growth_pat=implied_growth_pat),
-    unit=dict(spec_vol25=spec_vol25, vol_cy25=vol_cy25, vol25=vol25, px_egp=px_egp,
-              px_usd=px_usd, crack=crack, rev25_lines=rev25_lines_x, feed_diff=feed_diff, ton_fy23=ton_fy23,
-              parity_fy24=parity_fy24, recon_px=RECON_PX,
-              gm_built=gm_hist_built, gm_assumed_old=[0.0576, 0.0600, 0.0620, 0.0640],
-              hist_margin={k: dict(gm=v['gm'], brent=v['brent'], parity=v['parity'],
-                                   feed_pt=v['feed_pt'], line_margin=v['line_margin'],
-                                   cogs={a: b for a, b in v['cogs'].items()})
-                           for k, v in HIST_MARGIN.items()},
-              line_margin=B['line_margin'], elast=dict(base=_b, up=_bump, dn=_dip),
-              m_spec=B['line_margin']['oil'][0], m_fuel=B['line_margin']['fuel'][0],
-              spec_share_t=spec_share_t,
-              spec_share_v=spec_share_v, line_fuel_t=line_fuel_t, line_fuel_v=line_fuel_v,
-              lines=LINES, lines_rev=B['lines_rev'], lines_vol=B['lines_vol'],
+    hist_is={k: dict(rev=hist_rev[k], gp=hist_gp[k], gm=hist_gm[k], ebit=hist_ebit[k])
+             for k in HKEY},
+    hist_bs={k: dict(ic=ic_h[k], roic=hist_roic[k], rr=hist_rr[k]) for k in HKEY},
+    audited=dict(periods=HKEY, rev=hist_rev, gp=hist_gp, gm=hist_gm, ebit=hist_ebit,
+                 cost_stack={k: v / M for k, v in COS.items()},
+                 cost_share=cos_share, prod_t=PT, prod_v=PV, px=px, mix_t=mix_t, mix_v=mix_v,
+                 growth_v=growth_v, base_rev=BASE_REV, base_gm=BASE_GM, tax_eff=TAX_EFF,
+                 dep_ann=DEP_ANN, capex_ann=CAPEX_ANN, opex_ann=OPEX_ANN, ic=IC_B,
+                 ppe=ppe_b, nwc=nwc_b, cash=cash_b, debt=debt_b, provisions=V['provisions']/M,
+                 pledged=V['fin_inv']/M, nci_share=NCI_SHARE, spec_t=spec_t, spec_v=spec_v,
+                 raw_of_rev=raw_of_rev, rev9=rev9/M, gp9=gp9/M, pat9=pat9/M),
+    base=dict(rev_cy25=rev_cy25, pat_cy25=pat_cy25, gm_cy25=gm_cy25, gp_cy25=gp_cy25,
+              ebitda_cy25=ebitda_cy25, dna_cy25=dna_cy25, opex_cy25=opex_cy25,
+              npa_cy25=npa_cy25, np_cy25=np_cy25, nd_cy25=nd_cy25, eqp_cy25=eqp_cy25,
+              ppe_cy25=ppe_cy25, nwc_cy25=nwc_b, ic_cy25=IC_B, bvps=bvps,
+              cash=cash_b, debt=debt_b, netfin_cy25=netfin_cy25,
+              inv=inv_b, recv=recv_b, pay=pay_b, roe_trailing=roe_trailing,
+              implied_life=ppe_b / DEP_ANN, eq_jun25=V['eq_parent_jun25'] / M,
+              eq_jun24=V['eq_parent_jun24'] / M, eq_dec24=V['eq_parent_dec24'] / M,
+              assets=V['assets_snap'] / M, liab=V['liab_snap'] / M),
+    unit=dict(lines=LINES, labels=LBL, spec=SPEC,
+              prod_t=PT, prod_v=PV, prod_v_prior=PVp, px=px, mix_t=mix_t, mix_v=mix_v,
+              growth_v=growth_v, spec_share_t=spec_t, spec_share_v=spec_v,
+              tot_t=tot_t, tot_v=tot_v / M,
+              vol_cy25=tot_t * 2 / 1e6, vol25={k: PT[k] * 2 / 1e6 for k in LINES},
+              rev25_lines={k: PV[k] / M * 2 for k in LINES},
+              cost_stack={k: v / M for k, v in COS.items()}, cost_share=cos_share,
+              lines_rev=B['lines_rev'], lines_vol=B['lines_vol'], line_margin=B['line_margin'],
               vol=B['vol'], spec_vol=B['spec_vol'], spec_rev=B['spec_rev'],
-              fuel_rev=B['fuel_rev'], vol_h2_fy25=vol_h2_fy25, vol_h1_cy25=vol_h1_cy25,
-              oil_share_of_spec=oil_share_of_spec,
-              ss=(rev25_lines_x['oil'] + rev25_lines_x['wax']) / rev_cy25),
+              fuel_rev=B['fuel_rev'], cogs=B['cogs'],
+              m_spec=B['m_spec'], m_fuel=B['m_fuel'], raw_of_rev=raw_of_rev,
+              dep_ann=DEP_ANN, capex_ann=CAPEX_ANN, base_gm=BASE_GM, tax_eff=TAX_EFF),
     fcst=dict(years=YRS, rev=rev, gp=B['gp'], gm=B['gm'], opex=B['opex'], ebitda=ebitda,
               ebitda_margin=ebitda_margin, dna=dna, ebit=ebit, nopat=nopat, capex=capex,
               nwc=nwc, dnwc=dnwc, fcff=fcff, df=df, pv=pv, fwd_wacc=fwd, glide_frac=glide_frac,
