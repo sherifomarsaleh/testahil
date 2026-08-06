@@ -72,6 +72,7 @@ const MARKET_OF = {
  "SALIK": "AE",
  "SNB": "SA",
  "STC": "SA",
+ "SWDY": "EG",
  "Samsung": "KR",
  "Silver": "XAU",
  "TMGH": "EG",
