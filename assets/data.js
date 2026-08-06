@@ -2,7 +2,7 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-08-06", latest: "SWDY" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
+const SITE = { updated: "2026-08-06", latest: "AMOC" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
 /* ---------- covered tickers ----------
    HORIZON FIELDS (see the HORIZON CONVENTION block above the LEDGER):
@@ -24,6 +24,40 @@ const SITE = { updated: "2026-08-06", latest: "SWDY" };  // latest = the LAST-PU
                            label would then misstate what was simulated.
    ------------------------------------- */
 const TICKERS = {
+  AMOC: {
+    name: "Alexandria Mineral Oils",
+    nameAr: "\u0627\u0644\u0625\u0633\u0643\u0646\u062f\u0631\u064a\u0629 \u0644\u0644\u0632\u064a\u0648\u062a \u0627\u0644\u0645\u0639\u062f\u0646\u064a\u0629",
+    code: "EGX:AMOC",
+    spot: 9.10,
+    spotDate: "close 6 Aug 2026",
+    ccy: "EGP",
+    fair: { bear: 3.83, base: 9.38, full: 18.12 },      // 6 Aug 2026 \u2014 four-lens weighted central EGP 9.38 (+3% vs spot 9.10). Weights 45/20/20/15: FCFF DCF 9.66 / relative EV\u2044EBITDA 8.20 (4.5x on 2027E EBITDA, the forward enterprise value DISCOUNTED back at the year-2 factor \u2014 not discounting it would have printed 10.72, and the interim free cash flow of the holding period is added back rather than dropped) / normalised earnings power 11.67 / justified P\u2044B on sustainable ROE 7.07. THE FORECAST IS BOTTOM-UP ON A PER-TONNE COST STACK, not a margin assumption: cost of sales is 93.9% of revenue on this name, so modelling it as revenue times one minus an assumed margin would make the assumption the valuation. Feedstock, energy, chemicals and fixed conversion are separate charges per tonne and the gross margin \u2014 blended AND per line \u2014 is an OUTPUT. Two parameters are SOLVED against disclosure rather than assumed: the crack multiples are the disclosed FY2023/24 product table divided by the crude price (base oils 1.898x crude parity, paraffin wax 1.737x, the fuel slate 0.998x \u2014 the textbook shape for a lube refinery), and the feedstock differential is solved so the build reproduces the DISCLOSED FY2022/23 cost of sales exactly, at 0.9216 of crude parity. The other three historical margins are then PREDICTIONS: the build returns 6.02% / 5.39% / 6.06% against a house path of 6.00% / 6.20% / 6.40% built by an entirely independent route \u2014 agreement within 81bp on a 6% margin. THE FINDING THAT MATTERS: base oils earn 38.6%, wax 31.3%, and the fuel and by-product slate \u2014 86% of the tonnage \u2014 runs at \u22123.0%, at or below break-even, because it sells at crude parity and the feedstock costs almost as much as the product fetches. Essentially all gross profit is made on 14% of the tonnage, so growth in the fuel slate is worth almost nothing and the export push into base oils and wax is worth far more than a blended-margin model can show. Discount rate is a sliding schedule: WACC 31.63% explicit \u2192 16.52% terminal, each year discounted at its own forward rate, the glide inherited from the cost-of-debt path rather than invented; the sovereign CDS spread is netted OUT of the risk-free rate so country risk is not counted twice; own-stock beta 0.940 (R\u00b2 0.312, n 257). THE COMPANY IS NET CASH \u2014 EGP 2,438mn, 21% of the market capitalisation \u2014 which makes the weighting run backwards: the debt weight is \u221226.2% and the operating WACC sits ABOVE the 27.76% cost of equity, because an equity cost observed on a cash-heavy balance sheet UNDERSTATES the risk of the operating assets. Minorities are deducted from the OPERATING enterprise value BEFORE the cash is added, not after \u2014 the reverse order hands the minority 3% of the parent\u2019s balance. Terminal value is ROIC-consistent (g = ROIC 53.8% \u00d7 reinvestment 9.3% = 5.0% exactly) and carries 63.6% of EV \u2014 high, and stated. The two standing terminal checks DISAGREE and both are printed: the historical NOPAT compound rate is +34.8% (above) and return-times-reinvestment on stable years is 4.0% (below), so the adopted 5% sits on the generous side of the company\u2019s own record. Three contested choices are published as VALUES, not argued in prose: the rating column of the country-risk table rather than the market-spread column gives 7.95, gross-debt rather than net-debt weights gives 10.16, and discounting the export leg at a hard-currency rate after first deflating those pounds to dollars gives 10.27. PRIMARY FILINGS WERE NOT REACHABLE from the build environment \u2014 every company figure comes from reported releases and aggregators, seven negative results are logged in the bibliography, and the base year is CONSTRUCTED from two separately disclosed halves. full = weighted bull central.
+    dist: {
+      t20: { label:"1 month",   p5:7.71, p25:8.60, p50:9.17, p75:9.79, p95:10.91, resolve:"2026-09-06" },
+      t60: { label:"3 months",  p5:6.90, p25:8.34, p50:9.33, p75:10.42, p95:12.60, resolve:"2026-11-08" }
+    },
+    hz: { h1:20, h3:62, l1:"1 month", l3:"3 months", cal:true },
+    touch: [ /* level, P(touch) 1-month %, 3-month % \u2014 descending */
+      [11.00, 7, 27], [10.50, 14, 40], [10.00, 30, 57], [8.50, 38, 58], [8.00, 15, 35], [7.50, 5, 20]
+    ],
+    levels: { res:[9.20, 9.43, 9.86], sup:[7.84, 7.38, 6.81] },
+    tech: {
+      trend: "Trading above the whole moving-average stack, on a rising 200-day",
+      summary: "The price closed 9.10 above a rising 20-day (8.51), a rising 50-day (8.19) and a rising 200-day (7.66). Momentum is firm: RSI(14) is ~63 and the daily ATR near 0.28 (~3.1%) points to a lively tape. MACD (12\u00b726\u00b79) is positive and rising (+0.30 / +0.21 / +0.09). Over the last year it has ranged 6.66\u20139.85; the last close sits 8% below that high and 37% above that low.",
+      bull: "A daily close back above 9.20 would clear the nearest resistance and open the 9.86 zone.",
+      bear: "A close below 7.84 would break the nearest support and open the 6.81 zone."
+    },
+    asof: {
+      mc:   { data:"2026-08-06", computed:"2026-08-06" },
+      tech: { data:"2026-08-06", computed:"2026-08-06" }
+    },
+    files: {
+      study: "files/AMOC_Valuation_Study_06-08-2026_public.docx?v=0806a",
+      model: "files/AMOC_Valuation_Model_06082026_public.xlsx?v=0806a",
+      pdf:   "files/AMOC_Valuation_Study_06-08-2026_public.pdf?v=0806a",
+      biblio:"files/AMOC_Bibliography_06-08-2026.pdf?v=0806a"
+    }
+  },
   SWDY: {
     name: "Elsewedy Electric",
     nameAr: "\u0627\u0644\u0633\u0648\u064a\u062f\u064a \u0625\u0644\u064a\u0643\u062a\u0631\u064a\u0643",
@@ -2523,6 +2557,31 @@ const LEDGER = [
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   ,
     grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-10-12) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
+  },
+  // ---- AMOC · equity (EGX Egypt) · cycle 1 (6 Aug 2026 published study; MC PARITY — own fitted verdict, scale-normalized skill +0.0068, CI90 straddles zero across bootstrap blocks {2,3,4}; EG panel PASS +0.0158, CI90 [0.009, 0.022]) ----
+  {
+    instrument:"AMOC", asset_class:"equity",
+    anchor_date:"2026-08-06", run_date:"2026-08-06", anchor_price:9.10, ccy:"EGP",
+    horizon_label:"1 month", grade_date:"2026-09-06", grade_basis:"projected", horizon_days:20,
+    cycle_no:1, anchor_vol:0.4180,
+    note:"First coverage, 6-Aug-2026 — struck on the production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0.0879 (declared DPS 0.80 against the 6-Aug close). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count — the 3-month calendar target 2026-11-06 falls on a non-trading day, so the grade date rolls FORWARD to 2026-11-08. Name-level calibration: PARITY — 17 non-overlapping post-break quarterly origins (2022-04-05 → 2026-04-12), scale-normalized CRPS skill +0.68% against the carry-anchored random walk, but the bootstrap CI90 straddles zero at every block size {2,3,4}, so no single-name edge is demonstrated and none is claimed. The two longer window sets are shown in the study rather than the flattering one alone: last five years of origins +0.92% PARITY (19 windows), full cleaned history +1.32% PASS (57 windows, back to 2012 — a period the current fit was not calibrated on). What carries the cone is the MARKET-level gate: the 30-name EG panel scores +1.58% with a CI90 of [+0.9%, +2.2%], which is PASS. Shape is sound even where sharpness is not: PIT mean 0.461, chi2(9) p=0.854, KS p=0.568, 90% band coverage 0.941, cone 0.969x the benchmark's width — whatever margin it earns comes from being better centred, not wider. Price history 3,754 clean sessions over 15.6 years; largest single-session move 0.1813 in logs, inside the exchange's ±20% limit (0.1823) by four ten-thousandths, so no unadjusted corporate action is hiding in the series. Read the bands as a probability map. The cone is a 1/3-month object and is NEVER blended with the undated fair-value zone.",
+    p5:7.71, p25:8.60, p50:9.17, p75:9.79, p95:10.91,
+    touch:{ "+5":55, "+10":30, "+15":15, "+20":8, "-5":48, "-10":22 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null, touch_hit:null,
+    reanchor_from:null
+  },
+  {
+    instrument:"AMOC", asset_class:"equity",
+    anchor_date:"2026-08-06", run_date:"2026-08-06", anchor_price:9.10, ccy:"EGP",
+    horizon_label:"3 months", grade_date:"2026-11-08", grade_basis:"projected", horizon_days:62,
+    cycle_no:1, anchor_vol:0.4085,
+    note:"First coverage, 6-Aug-2026 — struck on the production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF. q_annual=0.0879 (declared DPS 0.80 against the 6-Aug close). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count — the 3-month calendar target 2026-11-06 falls on a non-trading day, so the grade date rolls FORWARD to 2026-11-08. Name-level calibration: PARITY — 17 non-overlapping post-break quarterly origins (2022-04-05 → 2026-04-12), scale-normalized CRPS skill +0.68% against the carry-anchored random walk, but the bootstrap CI90 straddles zero at every block size {2,3,4}, so no single-name edge is demonstrated and none is claimed. The two longer window sets are shown in the study rather than the flattering one alone: last five years of origins +0.92% PARITY (19 windows), full cleaned history +1.32% PASS (57 windows, back to 2012 — a period the current fit was not calibrated on). What carries the cone is the MARKET-level gate: the 30-name EG panel scores +1.58% with a CI90 of [+0.9%, +2.2%], which is PASS. Shape is sound even where sharpness is not: PIT mean 0.461, chi2(9) p=0.854, KS p=0.568, 90% band coverage 0.941, cone 0.969x the benchmark's width — whatever margin it earns comes from being better centred, not wider. Price history 3,754 clean sessions over 15.6 years; largest single-session move 0.1813 in logs, inside the exchange's ±20% limit (0.1823) by four ten-thousandths, so no unadjusted corporate action is hiding in the series. Read the bands as a probability map. The cone is a 1/3-month object and is NEVER blended with the undated fair-value zone.",
+    p5:6.90, p25:8.34, p50:9.33, p75:10.42, p95:12.60,
+    touch:{ "+5":75, "+10":56, "+15":41, "+20":29, "-5":66, "-10":43 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null, touch_hit:null,
+    reanchor_from:null
   },
   // ---- SWDY · equity (EGX Egypt) · cycle 1 (5 Aug 2026 published study; MC PARITY — own fitted verdict, scale-normalized skill +0.0132, CI90 straddles zero across bootstrap blocks {2,3,4}; EG panel PASS +0.0158, CI90 [0.009, 0.022]) ----
   {

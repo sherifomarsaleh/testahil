@@ -1,0 +1,68 @@
+{
+ "windows_scored": 17,
+ "windows_prebreak_dropped": 40,
+ "first_origin": "2022-04-05",
+ "last_origin": "2026-04-12",
+ "nu": 6.0,
+ "width_cal": 0.951,
+ "skill_norm": 0.006758984690108827,
+ "skill_raw": 0.011116519456702667,
+ "verdict": "PARITY",
+ "ci_blocks": {
+  "2": [
+   -0.017856218736088114,
+   0.058153044586203,
+   "PARITY"
+  ],
+  "3": [
+   -0.014957108053153756,
+   0.05302846878387417,
+   "PARITY"
+  ],
+  "4": [
+   -0.012748621112737812,
+   0.0601849011193813,
+   "PARITY"
+  ]
+ },
+ "cov50": 0.5294117647058824,
+ "cov80": 0.8823529411764706,
+ "cov90": 0.9411764705882353,
+ "pit_mean": 0.46120000000000005,
+ "pit_hist": [
+  1,
+  2,
+  2,
+  4,
+  1,
+  1,
+  2,
+  1,
+  2,
+  1
+ ],
+ "w90_ratio": 0.9693809251589353,
+ "market_gate": {
+  "verdict": "PASS",
+  "skill": 0.0158,
+  "ci90": [
+   0.009,
+   0.022
+  ],
+  "fit_date": "2026-07-29",
+  "panel_names": 30,
+  "windows": 494
+ },
+ "dq_log": [
+  "dropped 1 rows carrying a non-positive or non-finite OHLC value (2013-05-07) \u2014 vendor fills, not tradeable prices"
+ ],
+ "clean_rows": 3754,
+ "density_rows_per_yr": 240.76356453028973,
+ "span_years": 15.592060232717317,
+ "raw_rows": 3755,
+ "series_first": "2011-01-02",
+ "series_last": "2026-08-06",
+ "max_abs_log": 0.1813464226357484,
+ "jump_threshold": 0.29008661670847263,
+ "flat_frac": 0.09618971489475087
+}
