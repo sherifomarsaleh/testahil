@@ -446,6 +446,15 @@ INP = dict(
                 "the family near 68%, leaving a free float of roughly 11.6% — about half what a "
                 "legend-order reading implies. Material to governance and to liquidity",
                 "2026-08-06", "Company"),
+    electra_mto=I(dict(price_usd=1.05, shares_mn=427.7, value_usdmn=449.1, date='2024-07',
+                       stake=0.1998),
+                  "Electra Investment Holding's mandatory tender offer, concluded July 2024: "
+                  "~427.7mn shares (19.98%) at USD 1.05/share, ~USD 449mn, advised by EFG Hermes. "
+                  "Roughly EGP 50/share at the exchange rate then prevailing. Recorded as the "
+                  "last known price at which a strategic buyer cleared a fifth of the company. "
+                  "NOT used as a valuation anchor: it is two years stale, struck before the "
+                  "earnings base grew by roughly half, and at less than half today's price",
+                  "2024-07", "Market"),
     dps_fy25=I(1.85, "FY2025 dividend of EGP 1.85 per share (+85% on the FY2024 EGP 1.00), "
                "approved at the 6-May-2026 general meeting and paid from 4 June 2026 — i.e. "
                "BEFORE the anchor date. Roughly EGP 3.96bn. The study previously reported only "
@@ -1019,6 +1028,49 @@ say(f"[Currency-of-discounting alternative — UIP-corrected] the hard-currency 
     f"twice, which is what the previous version did. Corrected result EGP {ccy_ps:.2f}/share "
     f"({ccy_ps/SPOT-1:+.0%} vs spot), against {108.27:.2f} before the correction.")
 
+# ---- responses to external challenge, computed rather than asserted ----------
+# (a) Rating-basis cost of capital. Three separate external audits have read the
+# study's CDS-basis equity risk premium against Damodaran's RATING-basis column and
+# called the difference an error. They are different columns of the same published
+# table, and both are already in the input register — but the fair response is to
+# publish what the rating basis does to the VALUE, not just to the cost of equity.
+wacc_exp_rating = we_exp * ke_rating_alt + wd_exp * kd_at
+wacc_term_rating = (1 - V['wd_term']) * (V['rf_term'] + V['beta'] * (V['erp_term'] + 0.045)) \
+    + V['wd_term'] * kd_term_at
+def _val_at(we_, wt_, g_=None):
+    g_ = V['g_term'] if g_ is None else g_
+    _fwd = [we_ - (we_ - wt_) * f for f in glide_frac]
+    _df, cc = [], 1.0
+    for w in _fwd:
+        cc /= (1 + w); _df.append(cc)
+    _rr = min(g_ / roic_term, 0.95)
+    _tv = nopat[-1] * (1 + g_) * (1 - _rr) / max(wt_ - g_, 0.02)
+    _ev = sum(fcff[i] * _df[i] for i in range(5)) + _tv * _df[-1]
+    return ((_ev - V['nd_fy25'] + assoc_val) * (1 - nci_share)) / SH
+assert abs(_val_at(wacc_exp, wacc_term) - dcf_ps) < 0.01, 'rating-basis helper does not reproduce base'
+dcf_rating_ps = _val_at(wacc_exp_rating, wacc_term_rating)
+say(f"[Rating-basis alternative, published] on Damodaran's RATING column (sovereign spread "
+    f"{V['sov_spread_rating']:.2%}, equity risk premium {V['erp_rating']:.2%}) the cost of equity "
+    f"is {ke_rating_alt:.2%} and the cost of capital {wacc_exp_rating:.2%} -> "
+    f"{wacc_term_rating:.2%}, giving EGP {dcf_rating_ps:.2f}/share against the CDS-basis "
+    f"{dcf_ps:.2f}. Both columns are published by the same source; the CDS basis is the house "
+    f"primary because it is market-observed rather than agency-lagged. The rating basis is now "
+    f"shown as a VALUE, not merely as a rate.")
+
+# (b) Alternative NCI sequencing: charge minorities against unlevered enterprise value
+# before net debt, rather than against consolidated equity after it.
+nci_alt = nci_share * (ev + assoc_val)
+eq_alt = ev + assoc_val - nci_alt - V['nd_fy25']
+nci_alt_ps = eq_alt / SH
+say(f"[Minority-interest sequencing, alternative published] charging minorities "
+    f"{nci_share:.1%} of UNLEVERED enterprise value plus associates ({nci_alt:,.0f}) and "
+    f"deducting net debt afterwards gives EGP {nci_alt_ps:.2f}/share, against {dcf_ps:.2f} on the "
+    f"adopted sequencing — a difference of {nci_alt_ps - dcf_ps:+.2f}. The adopted method is "
+    f"retained because the audited borrowings note records facilities granted to 'the Company AND "
+    f"ITS SUBSIDIARIES ... guaranteed by promissory notes FROM SUBSIDIARIES', i.e. debt does sit "
+    f"at subsidiary level, so minorities do bear a share of it. The alternative assumes all "
+    f"borrowing is at the parent, which the note contradicts.")
+
 # ---- lens 2: relative --------------------------------------------------------
 # A multiple applied to FY2027 EBITDA produces an enterprise value AS AT end-FY2027.
 # It has to be discounted back to today before the bridge. The previous version treated
@@ -1316,6 +1368,8 @@ OUT = dict(
     dcf=dict(pv_explicit=pv_explicit, tv=tv, pv_tv=pv_tv, ev=ev, tv_share=tv_share,
              nd=V['nd_fy25'], assoc=assoc_val, nci_share=nci_share, nci_val=nci_val,
              eq_attr=eq_attr, ps=dcf_ps, roic_term=roic_term, rr_term=rr_term,
+             ps_rating_basis=dcf_rating_ps, wacc_exp_rating=wacc_exp_rating,
+             wacc_term_rating=wacc_term_rating, ps_nci_alt=nci_alt_ps, nci_alt=nci_alt,
              g=V['g_term'], bear=dcf_bear, bull=dcf_bull, ccy_alt_ps=ccy_ps),
     terminal_recon=dict(roic=hist_roic, rr=hist_rr, implied_g=hist_impl_g,
                         nopat=dict(FY23=nopat_fy23, FY24=nopat_fy24, FY25=nopat_fy25),

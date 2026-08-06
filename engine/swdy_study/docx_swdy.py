@@ -158,6 +158,14 @@ rows = [['Item', 'Detail'],
          f"float is roughly half that"],
         ['Net bank debt', f"EGP {n0(IN['nd_fy25'])}mn at 31 December 2025 "
          f"({n1(IN['nd_fy25']/HI['FY25']['ebitda'])}× EBITDA)"],
+        ['Last strategic transaction', f"Electra Investment Holding's tender offer concluded "
+         f"July 2024: {n0(IN['electra_mto']['shares_mn'])}mn shares "
+         f"({pc(IN['electra_mto']['stake'])}) at USD {IN['electra_mto']['price_usd']}, about USD "
+         f"{n0(IN['electra_mto']['value_usdmn'])}mn — roughly EGP 50 per share at the rate then "
+         f"prevailing. Recorded because it is the last price at which a strategic buyer cleared a "
+         f"fifth of the company, but NOT used as a valuation anchor: it is two years stale, "
+         f"struck before the earnings base grew by about half, and sits at under half today's "
+         f"price"],
         ['Dividend record', f"EGP {p2(IN['dps_fy24'])} per share on the FY2024 result; EGP "
          f"{p2(IN['dps_fy25'])} on FY2025 (+{(IN['dps_fy25']/IN['dps_fy24']-1)*100:.0f}%), "
          f"approved 6 May 2026 and paid from 4 June 2026 — about EGP "
@@ -548,6 +556,46 @@ P(f"This is not a technicality. A cheap, majority-hard-currency debt book is one
   f"being that its revenue is hard-currency too. It is also why the balance sheet looks more "
   f"leveraged than it is: the gross book is large because working capital is large, but it costs "
   f"roughly {pc(W['kd_eff_q1_25'])} and is more than two-thirds offset by cash.")
+
+H2('Where this construction is contested, and what the alternatives are worth')
+P("Four choices in the cost of capital above are legitimately arguable, and external reviewers "
+  "have argued them. Rather than defend each in prose, each alternative is computed and its value "
+  "published here, so a reader who prefers a different convention can take the number directly.")
+rows = [['Choice made', 'The alternative', 'Fair value on the alternative', 'Why we keep ours'],
+        [f"Equity risk premium on the credit-default-swap basis ({pc(IN['erp_cds'])}), with the "
+         f"sovereign spread netted at {pc(IN['sov_spread_cds'])}",
+         f"The rating basis from the same published table: spread {pc(IN['sov_spread_rating'])}, "
+         f"premium {pc(IN['erp_rating'])}, cost of equity {pc(W['ke_rating_alt'])}",
+         f"EGP {p2(DCF['ps_rating_basis'])} (against {p2(DCF['ps'])})",
+         'Both are columns of the same published source. The market-observed basis is preferred to '
+         'the agency-rating basis, which lags. This is the single largest open question in the '
+         'cost of capital and the alternative is worth roughly '
+         f"{p2(DCF['ps'] - DCF['ps_rating_basis'])} per share"],
+        ['Minority interests charged against consolidated equity, after net debt',
+         'Charged against unlevered enterprise value, before net debt',
+         f"EGP {p2(DCF['ps_nci_alt'])} ({p2(DCF['ps_nci_alt'] - DCF['ps'])})",
+         'The audited borrowings note records facilities granted to the company AND its '
+         'subsidiaries, guaranteed by promissory notes from subsidiaries — so minorities do bear '
+         'a share of the debt. The alternative assumes all borrowing sits at the parent, which '
+         'the note contradicts'],
+        ['Capital weights on net debt',
+         f"On gross debt ({pc(W['wd_gross'])} weight, cost of capital {pc(W['wacc_exp_gross'])})",
+         'raises the value',
+         'Net debt is the quantity the bridge subtracts; using it in both places keeps the two '
+         'consistent, and it is the more conservative of the two'],
+        ['Risk-free rate ' + pc(IN['rf']),
+         'External readings of the same instrument on the same date range from about 21.3% to '
+         '23.0%, and disagree with each other',
+         'roughly ±1% of value per 100bp',
+         'The adopted figure sits inside the range of external readings rather than at either '
+         'end. Because the readings conflict, the rate is carried in the sensitivity grid rather '
+         'than presented as precise']]
+table(rows, [1.72, 1.85, 1.28, 2.15], size=8.0)
+caption(f"The rating-basis column is the one most often raised against this study. It is not a "
+        f"correction to an error — both bases are published by the same source and both appear in "
+        f"this study's input register — but it is a material choice, and at EGP "
+        f"{p2(DCF['ps_rating_basis'])} the alternative sits well below the primary. A reader who "
+        f"prefers agency ratings to market spreads should use that number.")
 
 # ---- 1.9 sensitivity -----------------------------------------------------------
 H2('1.9  Sensitivity — the discount rate, the growth, the currency, the margin and the collection')

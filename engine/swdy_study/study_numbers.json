@@ -1012,6 +1012,18 @@
    "date": "2026-08-06",
    "ring": "Company"
   },
+  "electra_mto": {
+   "value": {
+    "price_usd": 1.05,
+    "shares_mn": 427.7,
+    "value_usdmn": 449.1,
+    "date": "2024-07",
+    "stake": 0.1998
+   },
+   "source": "Electra Investment Holding's mandatory tender offer, concluded July 2024: ~427.7mn shares (19.98%) at USD 1.05/share, ~USD 449mn, advised by EFG Hermes. Roughly EGP 50/share at the exchange rate then prevailing. Recorded as the last known price at which a strategic buyer cleared a fifth of the company. NOT used as a valuation anchor: it is two years stale, struck before the earnings base grew by roughly half, and at less than half today's price",
+   "date": "2024-07",
+   "ring": "Market"
+  },
   "dps_fy25": {
    "value": 1.85,
    "source": "FY2025 dividend of EGP 1.85 per share (+85% on the FY2024 EGP 1.00), approved at the 6-May-2026 general meeting and paid from 4 June 2026 \u2014 i.e. BEFORE the anchor date. Roughly EGP 3.96bn. The study previously reported only the FY2024 distribution",
@@ -1693,6 +1705,11 @@
   "ps": 63.09639197519306,
   "roic_term": 0.21809070729198193,
   "rr_term": 0.22926240471612355,
+  "ps_rating_basis": 44.880334849473094,
+  "wacc_exp_rating": 0.2836938976342167,
+  "wacc_term_rating": 0.18546374999999998,
+  "ps_nci_alt": 62.20478108117594,
+  "nci_alt": 16328.210927409631,
   "g": 0.05,
   "bear": 35.37439268305282,
   "bull": 110.38697683559606,
@@ -2240,6 +2257,8 @@
   "[Associates] carried at the audited FY2024 carrying value of 6,474 with NO uplift. The previous version applied an undisclosed 1.15x, which an external audit correctly flagged as an unsourced adjustment; it is removed.",
   "[Bridge] EV 162,810 - net debt 19,789 + associates at carrying value 6,474 = 149,495; less minority interests at their 9.6% share of group profit = 14,419 -> equity attributable 135,075 = EGP 63.10/share against a spot of 105.20 (-40%).",
   "[Currency-of-discounting alternative \u2014 UIP-corrected] the hard-currency leg (60% of cash flow) is first DEFLATED to dollars at each year's exchange rate, discounted at a USD cost of capital of 10.12% with 3.5% terminal growth, and only then translated back. Discounting the EGP-denominated leg \u2014 already inflated by the assumed depreciation path \u2014 directly at a dollar rate would count the currency benefit twice, which is what the previous version did. Corrected result EGP 91.15/share (-13% vs spot), against 108.27 before the correction.",
+  "[Rating-basis alternative, published] on Damodaran's RATING column (sovereign spread 6.37%, equity risk premium 13.94%) the cost of equity is 30.01% and the cost of capital 28.37% -> 18.55%, giving EGP 44.88/share against the CDS-basis 63.10. Both columns are published by the same source; the CDS basis is the house primary because it is market-observed rather than agency-lagged. The rating basis is now shown as a VALUE, not merely as a rate.",
+  "[Minority-interest sequencing, alternative published] charging minorities 9.6% of UNLEVERED enterprise value plus associates (16,328) and deducting net debt afterwards gives EGP 62.20/share, against 63.10 on the adopted sequencing \u2014 a difference of -0.89. The adopted method is retained because the audited borrowings note records facilities granted to 'the Company AND ITS SUBSIDIARIES ... guaranteed by promissory notes FROM SUBSIDIARIES', i.e. debt does sit at subsidiary level, so minorities do bear a share of it. The alternative assumes all borrowing is at the parent, which the note contradicts.",
   "[Relative lens \u2014 forward EV discounted] 6.5x on FY2027E EBITDA 44,941 gives an enterprise value of 292,115 AS AT end-FY2027; discounted back at the year-2 factor 0.6408 that is 187,184 today -> EGP 73.38/share. Not discounting it would have given 117.67.",
   "[Book lens] justified price-to-book 1.47x = (sustainable return 23.5% - growth 5%) / (PERPETUAL cost of equity 17.56% - growth). Using a blended cost of equity inside a perpetuity formula, as the previous version did, is inconsistent and understated this lens by roughly 14.61/share.",
   "[DCF scenarios] bear 35.37 / base 63.10 / bull 110.39 EGP per share",
