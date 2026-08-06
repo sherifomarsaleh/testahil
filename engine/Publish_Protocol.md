@@ -55,6 +55,8 @@ Publish [TICKER] to the website and update the ledger — standard workflow, no 
 	4. page chart + technical read       python3 engine/ta_chart.py --only {TICKER} --write
 	                                     python3 engine/apply_technicals.py --only {TICKER} --write
 	(4 runs last — it rewrites the ticker's own data.js block, so the entry and page must exist first.)
+•	Render every deliverable to PDF first (python3 engine/make_pdf.py files/…) and point files.pdf at it.
+	The page surfaces ONLY the PDF — a missing pdf key leaves the download button pointing at "undefined".
 •	Verify by render, not by grep: load the ticker page and ledger.html headless and confirm the ticker
 	appears under its own exchange group. Then scripts/check_data_freshness.py and
 	scripts/check_page_integrity.py — both clean before you commit.
@@ -104,6 +106,18 @@ Two registrations, both silent-failure-prone:
 `check_data_freshness.py` gates `HAS_BACKTEST` in BOTH directions (listed-without-image
 = broken `<img>`; image-without-key = invisible backtest); two names sat mis-registered
 for weeks before that check existed.
+
+### 4b. The deliverables in `files/` — PDF is mandatory
+
+`TICKERS.{KEY}.files` carries `study` (.docx source), `model` (.xlsx), `pdf` and `biblio`. **The
+page surfaces the PDF and nothing else** — `T.files.study` is wired on no page in the site, so a
+missing `pdf` key does not degrade gracefully: `dl-pdf.href` resolves to the string `"undefined"`
+and the primary download button on the page is silently dead. Two names shipped that way (CLHO,
+ADIBUAE) before it was noticed.
+
+Render every deliverable with `python3 engine/make_pdf.py files/…` before writing the entry, and
+check the page count it reports. The model stays an .xlsx — an Excel model rendered to PDF is 50+
+pages of unusable grid; the point of the model is that it recalculates.
 
 ### 5. The calibration artifacts
 - `assets/calibration_{KEY}.png` — `cd engine && python3 metal_backtest.py {KEY}`.

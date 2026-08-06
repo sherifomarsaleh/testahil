@@ -59,6 +59,10 @@ Build the workbook formula-first:
 
 (l) I also want a bibliography table in a separate document stating where did you get the information from
 
+(l2) **Every deliverable ships as a PDF.** The Word file is the build artifact; the PDF is what the reader gets, and no study is delivered without one. Render with `python3 engine/make_pdf.py <files>` and report the page and figure count of each. If a conversion fails, fix the toolchain — do not record it as an environment limitation until you have checked that the converter is actually installed COMPLETE (LibreOffice without libreoffice-writer/calc fails on every input, including a two-line CSV).
+
+(l3) **Read the rendered PDF before delivering.** Open it and look at it — the rendered document is where layout breaks, table overflow and copy errors become visible. On the SWDY edition this step caught published site copy that stated the wrong lens weights.
+
 (m) Remove any reference to the procedure like references to step 2A for example
 
 (n) Review text on all graph to check that it is readable and there are no problems of contrast or over-writing one another

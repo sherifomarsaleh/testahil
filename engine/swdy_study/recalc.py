@@ -1,11 +1,12 @@
 """Recalculate the delivered xlsx and reconcile it cell-by-cell against
 study_numbers.json. Fails loudly on any unresolvable formula or mismatch.
 
-LibreOffice is not usable in this environment (it cannot load any spreadsheet,
-including a trivial CSV and the previous study's own workbook), so the
-recalculation is done by the explicit evaluator in xlcalc.py over the formula set
-this builder actually emits. Anything the evaluator does not understand is reported
-as a failure rather than skipped.
+Recalculation is done by the explicit evaluator in xlcalc.py over the formula set
+this builder actually emits, independently of the library that wrote the file.
+Anything the evaluator does not understand is reported as a failure rather than
+skipped. (It began as a workaround for a LibreOffice install whose import filters
+were missing; that is fixed, and the evaluator is kept because an independent
+reimplementation is the stronger check.)
 
 Three gates run here, in increasing strength:
 

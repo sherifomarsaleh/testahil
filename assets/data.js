@@ -31,7 +31,7 @@ const TICKERS = {
     spot: 105.2,
     spotDate: "close 5 Aug 2026",
     ccy: "EGP",
-    fair: { bear: 33.77, base: 74.52, full: 154.50 },      // 5 Aug 2026 \u2014 four-lens weighted central EGP 74.52 (\u221229% vs spot 105.20). Weights 40/20/20/20: FCFF DCF 63.10 / relative EV\u2044EBITDA 73.38 (6.5x on FY2027E EBITDA, the forward enterprise value DISCOUNTED back at the year-2 factor \u2014 not discounting it would have printed 117.67) / normalized earnings power 120.91 / justified P\u2044B on sustainable ROE 48.47. Forecast is BOTTOM-UP ON UNIT ECONOMICS across seven sub-segments: cable tonnage, transformer MVA, meter units and order-book burn, each with its own gross profit per unit \u2014 margins are OUTPUTS, and the historical sub-segment build reconciles to the audited statements within EGP 0.2mn. This matters because SWDY is a COPPER CONVERTER: it earns a conversion margin per tonne, so modelling gross profit as a percentage of a copper-inflated price manufactures profit out of a metal move. Fabrication uplift (cable price per tonne \u00f7 copper cost per tonne) runs 1.386 \u2192 1.261 \u2192 1.204 and is used as an internal coherence test on every disputed segment figure. FY2026 conversion margin is SOLVED to reproduce the Q1-2026 print rather than assumed. Discount rate is a sliding schedule: WACC 26.90% explicit \u2192 15.14% terminal, each year discounted at its own forward rate, the glide inherited from the cost-of-debt path (13.0% \u2192 10.6%) rather than invented; the sovereign CDS spread is netted OUT of the risk-free rate so country risk is not counted twice; own-stock beta 1.009 (R\u00b2 0.291, n 258). Terminal value is ROIC-consistent (g = ROIC 21.8% \u00d7 reinvestment 22.9% = 5.0% exactly) and carries 77% of EV \u2014 high, and stated. Net bank debt 19,789 is DISCLOSED, not triangulated. THE OPEN QUESTION IS CURRENCY: over 70% of revenue is earned abroad and ~60% is hard-currency-linked, yet the company reports, lists and borrows in pounds. The primary model charges the full Egyptian cost of capital; discounting the foreign leg at a hard-currency rate instead \u2014 after first deflating those pounds to dollars at the exchange-rate path, or the depreciation is counted twice \u2014 gives 91.15. Two further contested choices are published as VALUES, not argued in prose: the rating column of the country-risk table rather than the market-spread column gives 44.88, and charging minorities against unlevered enterprise value before net debt gives 62.20. Ownership is 68.0% family, 20.4% Electra, 11.6% free float \u2014 the float is the smaller number. full = weighted bull central; the market sits between the base and the bull.
+    fair: { bear: 33.77, base: 74.52, full: 154.50 },      // 5 Aug 2026 \u2014 four-lens weighted central EGP 74.52 (\u221229% vs spot 105.20). Weights 45/20/20/15: FCFF DCF 63.10 / relative EV\u2044EBITDA 73.38 (6.5x on FY2027E EBITDA, the forward enterprise value DISCOUNTED back at the year-2 factor \u2014 not discounting it would have printed 117.67) / normalized earnings power 120.91 / justified P\u2044B on sustainable ROE 48.47. Forecast is BOTTOM-UP ON UNIT ECONOMICS across seven sub-segments: cable tonnage, transformer MVA, meter units and order-book burn, each with its own gross profit per unit \u2014 margins are OUTPUTS, and the historical sub-segment build reconciles to the audited statements within EGP 0.2mn. This matters because SWDY is a COPPER CONVERTER: it earns a conversion margin per tonne, so modelling gross profit as a percentage of a copper-inflated price manufactures profit out of a metal move. Fabrication uplift (cable price per tonne \u00f7 copper cost per tonne) runs 1.386 \u2192 1.261 \u2192 1.204 and is used as an internal coherence test on every disputed segment figure. FY2026 conversion margin is SOLVED to reproduce the Q1-2026 print rather than assumed. Discount rate is a sliding schedule: WACC 26.90% explicit \u2192 15.14% terminal, each year discounted at its own forward rate, the glide inherited from the cost-of-debt path (13.0% \u2192 10.6%) rather than invented; the sovereign CDS spread is netted OUT of the risk-free rate so country risk is not counted twice; own-stock beta 1.009 (R\u00b2 0.291, n 258). Terminal value is ROIC-consistent (g = ROIC 21.8% \u00d7 reinvestment 22.9% = 5.0% exactly) and carries 77% of EV \u2014 high, and stated. Net bank debt 19,789 is DISCLOSED, not triangulated. THE OPEN QUESTION IS CURRENCY: over 70% of revenue is earned abroad and ~60% is hard-currency-linked, yet the company reports, lists and borrows in pounds. The primary model charges the full Egyptian cost of capital; discounting the foreign leg at a hard-currency rate instead \u2014 after first deflating those pounds to dollars at the exchange-rate path, or the depreciation is counted twice \u2014 gives 91.15. Two further contested choices are published as VALUES, not argued in prose: the rating column of the country-risk table rather than the market-spread column gives 44.88, and charging minorities against unlevered enterprise value before net debt gives 62.20. Ownership is 68.0% family, 20.4% Electra, 11.6% free float \u2014 the float is the smaller number. full = weighted bull central; the market sits between the base and the bull.
     dist: {
       t20: { label:"1 month",   p5:87.47, p25:99.11, p50:106.68, p75:114.90, p95:130.17, resolve:"2026-09-06" },
       t60: { label:"3 months",  p5:78.30, p25:96.94, p50:109.91, p75:124.46, p95:154.19, resolve:"2026-11-05" }
@@ -54,7 +54,8 @@ const TICKERS = {
     files: {
       study: "files/SWDY_Valuation_Study_05-08-2026_public.docx?v=0806",
       model: "files/SWDY_Valuation_Model_05082026_public.xlsx?v=0806",
-      biblio:"files/SWDY_Bibliography_05-08-2026.docx?v=0806"
+      pdf:   "files/SWDY_Valuation_Study_05-08-2026_public.pdf?v=0806",
+      biblio:"files/SWDY_Bibliography_05-08-2026.pdf?v=0806"
     }
   },
   ELEC: {
@@ -121,7 +122,8 @@ const TICKERS = {
     },
     files: {
       study: "files/CLHO_Valuation_Study_13-07-2026_public.docx?v=20260713d",
-      model: "files/CLHO_Valuation_Model_13072026_public.xlsx?v=20260713d"
+      model: "files/CLHO_Valuation_Model_13072026_public.xlsx?v=20260713d",
+      pdf:   "files/CLHO_Valuation_Study_13-07-2026_public.pdf?v=20260713d"
     }
   },
   RMDA: {
@@ -1131,7 +1133,8 @@ const TICKERS = {
     },
     files: {
       study: "files/ADIB_Valuation_Study_11-07-2026_public.docx?v=0719a",
-      model: "files/ADIB_Valuation_Model_11072026_public.xlsx?v=0719a"
+      model: "files/ADIB_Valuation_Model_11072026_public.xlsx?v=0719a",
+      pdf:   "files/ADIB_Valuation_Study_11-07-2026_public.pdf?v=20260713b"
     }
   },
   HRHO: {
