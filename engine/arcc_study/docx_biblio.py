@@ -108,17 +108,26 @@ P('Where every number came from. This register accompanies the valuation study a
 
 # ---------------------------------------------------- sourcing limitation
 H2('A limitation to state at the top')
-P('The company\'s audited consolidated financial statements could not be retrieved while '
-  'this work was carried out. The company publishes investor material on its own website, '
-  'and every attempt to reach that address — along with the exchange\'s disclosure portal '
-  'and every commercial financial data provider tried — was refused by the network policy '
-  'governing this environment.', size=9.5)
+P('No source document was opened. That is a stronger statement than the usual caveat and '
+  'it is the accurate one. The audited consolidated financial statements were not read; '
+  'neither was the annual report, the FY2025 investor presentation, the exchange filing, '
+  'nor even the press articles reporting them. Every attempt to retrieve a page — the '
+  'company\'s own website, the exchange\'s disclosure portal, and eleven financial data '
+  'and press hosts — was refused by the egress policy governing this environment, which '
+  'returns a refusal at the connection stage rather than serving a page.', size=9.5)
+P('What WAS available was a web search tool returning synthesised summaries that quote '
+  'figures from those pages, together with the daily price series supplied with the '
+  'engagement. Every company figure in this register therefore reaches the model at one '
+  'further remove than a citation normally implies: it is a figure as RELAYED in a search '
+  'result about the reporting, not a figure read in the reporting, and certainly not one '
+  'read in the audited print. The source names below identify where each figure '
+  'ORIGINATES, which is genuine and worth recording; they do not claim the page was '
+  'retrieved.', size=9.5)
 P('The consequence is stated rather than hidden. Revenue, attributable profit, operating '
-  'income, the balance-sheet totals and both dividend distributions are carried as reported '
-  'through coverage of the company\'s exchange filings and through aggregations of '
-  'commercial financial data — one step removed from the audited print. Every line between '
-  'them is DERIVED by closing the disclosed profit, and is labelled as derived wherever it '
-  'appears. Section 3 lists each derivation and its method. A reader with access to the '
+  'income, the balance-sheet totals and both dividend distributions are carried as relayed '
+  'from coverage of the company\'s exchange filings and from aggregations of commercial '
+  'financial data — two steps removed from the audited print. Every line between them is '
+  'DERIVED by closing the disclosed profit, and is labelled as derived wherever it appears. Section 3 lists each derivation and its method. A reader with access to the '
   'audited statements should re-run the model against them; the workbook is built so that '
   'changing an input reprices everything downstream, and that property is tested rather '
   'than asserted.', size=9.5)
@@ -155,8 +164,8 @@ CAT = [
  ('Arabian Cement Company S.A.E. — exchange filings', 'Company filing',
   'FY2022 to FY2025 consolidated results; 9M-2025 and Q1-2026 results; general-meeting '
   'resolutions on the FY2024 and FY2025 cash distributions.',
-  'Accessed indirectly through the outlets below; the primary documents could not be '
-  'retrieved from the company website or the exchange portal.'),
+  'Figures relayed through search summaries of the outlets below. The primary documents '
+  'were NOT retrieved from the company website or the exchange portal.'),
  ('Arabian Cement Company — corporate and sustainability disclosure', 'Company disclosure',
   'Plant configuration: two lines in Suez governorate, on average about five million tonnes '
   'a year of first-quality clinker and cement, roughly 6% of Egypt\'s nominal capacity. The '
@@ -191,8 +200,9 @@ CAT = [
   'FY2025 operating income of EGP 4,595.82mn; Q4-2025 revenue of EGP 3,645.60mn and EBITDA '
   'of EGP 1,393.01mn; the trailing gross margin of 40.77%; total assets, total equity, '
   'total debt and cash; the share count of 374.87mn.',
-  'Read through stockanalysis.com, simplywall.st and investing.com, cross-checked against '
-  'each other'),
+  'Relayed through search summaries of stockanalysis.com, simplywall.st and '
+  'investing.com; the three summaries were cross-checked against each other, but none of '
+  'the three pages was retrieved'),
  ('Central Bank of Egypt', 'Central bank',
   'Main operation rate of 19.50% held at the April and May 2026 meetings, with the '
   'overnight deposit and lending rates at 19.00% and 20.00%; the Q1-2026 Monetary Policy '

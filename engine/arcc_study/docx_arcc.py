@@ -579,12 +579,20 @@ caption('Table 15 — Zones, not forecasts. The four are exclusive and sum to 10
 # ============================== 7 ============================================
 H1('7  Caveats and what would change our mind')
 for head, body in [
-    ('The audited statements were not obtainable. ', 'Revenue, attributable profit, '
-     'operating income, the balance-sheet totals and both dividend distributions are '
-     'carried as disclosed via reporting of the exchange filings and via aggregations of '
-     'commercial financial data. Every line between them is derived and labelled as '
-     'derived. A reader with the audited accounts should reconcile the depreciation and '
-     'working-capital lines first, since those are the weakest.'),
+    ('No source document was opened. ', 'This is the first thing a reader should know. The '
+     'audited statements were not read, and neither were the annual report, the investor '
+     'presentation, the exchange filing or the press articles reporting them: every '
+     'attempt to retrieve a page was refused at the connection stage by the network policy '
+     'governing the environment this was built in. Revenue, attributable profit, operating '
+     'income, the balance-sheet totals and both dividend distributions are carried as '
+     'RELAYED in search summaries of that reporting — two steps from the audited print, '
+     'not one. Every line between them is derived and labelled as derived. What makes the '
+     'headline figures usable despite that is corroboration rather than authority: the '
+     'share count triangulates three independent ways to within 0.2%, the disclosed +42.6% '
+     'revenue step decomposes cleanly into volume and price, and published earnings per '
+     'share reconciles to attributable profit within the statutory profit share. The '
+     'balance sheet does not survive the same test, which is the next caveat. A reader '
+     'with the audited accounts should reconcile depreciation and working capital first.'),
     ('The balance sheet does not close across sources. ', f'Total assets of EGP '
      f'{n0(IN["ta_fy25"])}mn less reported equity of EGP {n0(IN["eq_fy25_rep"])}mn implies '
      f'liabilities of EGP {n0(EQG["derived_liabilities"])}mn; a separate aggregation prints '
