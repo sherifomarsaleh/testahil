@@ -707,6 +707,17 @@
    "date": "2026-08-05",
    "ring": "House"
   },
+  "seg_rev_fy25_disclosed": {
+   "value": {
+    "ec": 87100.7,
+    "transformers": 17703.5,
+    "meters": 16594.1,
+    "infra": 3857.9
+   },
+   "source": "FY2025 segment revenue on the restated five-segment taxonomy: engineering & construction 87,100.7, electrical products 17,703.5, digital solutions 16,594.1, infrastructure investment 3,857.9, with wires, cables & accessories 155,792.9 - summing to the reported 281,049. REPLACES the earlier assumption that the FY2024 mix carried forward, which an external audit correctly identified as the prior year's mix relabelled. TWO competing external claims were tested against each other: press coverage of the release reports E&C growth of +51%, which would put the segment at 105,764. That figure is REJECTED because it fails an independent coherence test - it leaves so little revenue for cables that the implied fabrication uplift over copper falls to 1.077, below anything in the company's own history (1.386 in FY2023, 1.261 in FY2024). The 87,100.7 figure (+24.4%) passes that test, and is adopted on that basis rather than on the authority of either source",
+   "date": "2026-03",
+   "ring": "Company"
+  },
   "ec_gp": {
    "value": 0.11,
    "source": "Engineering and construction gross margin. History 11.6% (FY2023) and 11.2% (FY2024); held at 11.0%",
@@ -993,12 +1004,18 @@
   },
   "ownership": {
    "value": {
-    "family": 0.7818,
-    "float": 0.2037,
-    "electra": 0.0145
+    "family": 0.68,
+    "electra": 0.2037,
+    "float": 0.116
    },
-   "source": "Shareholder structure at 31 December 2024 and unchanged at 31 March 2025: El Sewedy family 78.18%, free float 20.37%, Electra Investment Holding 1.45%",
-   "date": "2025-05-26",
+   "source": "CORRECTED. The company's own shareholder pie chart carries 78.18% / 20.37% / 1.45% against the legend 'El Sewedy Family / Free Float / Electra Investment Holding'. Reading that in legend order gives a 20.37% free float \u2014 which is wrong. Electra Investment Holding (Abu Dhabi, IHC-linked) acquired ~427.7mn shares, about 20%, in a July-2024 mandatory tender offer at USD 1.05/share (~USD 449mn), confirmed by multiple independent reports of the exchange filing. The 20.37% slice is therefore ELECTRA, not the float. Independent sources put the family near 68%, leaving a free float of roughly 11.6% \u2014 about half what a legend-order reading implies. Material to governance and to liquidity",
+   "date": "2026-08-06",
+   "ring": "Company"
+  },
+  "dps_fy25": {
+   "value": 1.85,
+   "source": "FY2025 dividend of EGP 1.85 per share (+85% on the FY2024 EGP 1.00), approved at the 6-May-2026 general meeting and paid from 4 June 2026 \u2014 i.e. BEFORE the anchor date. Roughly EGP 3.96bn. The study previously reported only the FY2024 distribution",
+   "date": "2026-05-10",
    "ring": "Company"
   }
  },
@@ -1093,8 +1110,8 @@
    }
   }
  },
- "fgn_share_fy25_derived": 0.6335216434725378,
- "fgn_egp_fy25": 178050.62437631327,
+ "fgn_share_fy25_derived": 0.6300453651951975,
+ "fgn_egp_fy25": 177073.61984274507,
  "fcst": {
   "years": [
    "FY26E",
@@ -1104,18 +1121,18 @@
    "FY30E"
   ],
   "rev": [
-   364506.0698042354,
-   407355.88701676094,
-   440969.67425187293,
-   475819.49985204515,
-   512682.9750719497
+   365556.0698042354,
+   408521.38701676094,
+   442251.724251873,
+   477216.9343520451,
+   514192.2043319497
   ],
   "dom": [
-   138671.6334180524,
-   157308.1928102073,
-   172072.56018157682,
-   187452.51118179102,
-   203725.0410432663
+   139721.6334180524,
+   158473.6928102073,
+   173354.61018157686,
+   188849.945681791,
+   205234.2703032663
   ],
   "fgn_usd": [
    4428.126203650648,
@@ -1132,67 +1149,67 @@
    308957.9340286834
   ],
   "ebitda": [
-   40976.20503287411,
-   44697.79828930313,
-   48531.38475177478,
-   52710.1452280135,
-   57182.60531240865
+   41094.2415179939,
+   44940.76148621193,
+   48914.41709217701,
+   53240.261780293775,
+   57882.446861109565
   ],
   "ebitda_margin": [
-   0.11241570011407799,
-   0.10972665355751691,
-   0.11005605960117483,
-   0.11077760630744134,
-   0.11153599415776126
+   0.11241570011407802,
+   0.1100083445187365,
+   0.11060311223189054,
+   0.11156406646084815,
+   0.11256967020009914
   ],
   "dna": [
-   3827.313732944472,
-   4277.236813675991,
-   4630.181579644666,
-   4996.104748446474,
-   5383.171238255472
+   3838.338732944472,
+   4289.47456367599,
+   4643.643104644667,
+   5010.777810696474,
+   5399.018145485472
   ],
   "ebit": [
-   37148.89129992964,
-   40420.56147562714,
-   43901.20317213011,
-   47714.040479567026,
-   51799.43407415318
+   37255.902785049424,
+   40651.28692253594,
+   44270.773987532346,
+   48229.4839695973,
+   52483.42871562409
   ],
   "nopat": [
-   27861.668474947226,
-   30315.421106720354,
-   32925.902379097584,
-   35785.53035967527,
-   38849.57555561488
+   27941.927088787066,
+   30488.465191901952,
+   33203.080490649256,
+   36172.112977197976,
+   39362.57153671807
   ],
   "capex": [
-   10935.182094127062,
-   11813.320723486067,
-   12347.150879052442,
-   12371.306996153173,
-   12304.391401726793
+   10966.682094127062,
+   11847.120223486068,
+   12383.048279052444,
+   12407.640293153172,
+   12340.612903966794
   ],
   "nwc": [
-   83836.39605497415,
-   93691.85401385502,
-   101423.02507793078,
-   109438.48496597039,
-   117917.08426654844
+   84077.89605497415,
+   93959.91901385502,
+   101717.89657793079,
+   109759.89490097038,
+   118264.20699634844
   ],
   "dnwc": [
-   19195.126054974142,
-   9855.45795888087,
-   7731.1710640757665,
-   8015.459888039608,
-   8478.599300578047
+   19436.626054974142,
+   9882.022958880872,
+   7757.9775640757725,
+   8041.998323039588,
+   8504.31209537806
   ],
   "fcff": [
-   1558.6740587904933,
-   12923.87923802941,
-   17477.762015614044,
-   20394.868223928963,
-   23449.75609156551
+   1376.9576726303349,
+   13048.796573211002,
+   17705.697752165706,
+   20733.252171701693,
+   23916.66468285869
   ],
   "df": [
    0.7880350006920778,
@@ -1202,11 +1219,11 @@
    0.39753652538441514
   ],
   "pv": [
-   1228.28971299769,
-   8281.473889421228,
-   9368.10077841323,
-   9335.292670945473,
-   9322.134557752976
+   1085.0908405042078,
+   8361.519488005773,
+   9490.274598442946,
+   9490.18031978559,
+   9507.747776807799
   ],
   "fwd_wacc": [
    0.2689791685924707,
@@ -1216,46 +1233,46 @@
    0.15141000000000002
   ],
   "ppe": [
-   40132.12386118259,
-   47668.20777099267,
-   55385.177070400445,
-   62760.379318107145,
-   69681.59948157847
+   40152.59886118259,
+   47710.24452099267,
+   55449.64969540044,
+   62846.512177857134,
+   69788.10693633846
   ],
   "ic": [
-   125427.71991615674,
-   142819.2617848477,
-   158267.40214833122,
-   173658.06428407755,
-   189057.88374812691
+   125689.69491615673,
+   143129.36353484768,
+   158626.74627333123,
+   174065.6070788275,
+   189511.5139326869
   ],
   "roic": [
-   0.2221332612405902,
-   0.21226423332442013,
-   0.20803969694428168,
-   0.2060689234744418,
-   0.2054903756744277
+   0.22230881463612562,
+   0.2130133498740734,
+   0.20931577600057885,
+   0.2078073525507945,
+   0.20770543551617324
   ],
   "np_attr": [
-   23330.39762588968,
-   25512.575920735213,
-   28518.80184166357,
-   31959.724812324625,
-   35740.93093970522
+   23402.914924004614,
+   25655.38637609128,
+   28760.73212503701,
+   32311.216190731993,
+   36223.78337066263
   ],
   "equity": [
-   87961.92034341724,
-   107096.35228396865,
-   128485.45366521632,
-   152455.2472744598,
-   179260.94547923873
+   88016.30831700345,
+   107257.84809907191,
+   128828.39719284966,
+   153061.80933589867,
+   180229.64686389564
   ],
   "net_debt": [
-   27158.4765596999,
-   23831.302932644958,
-   16076.277203404163,
-   5414.186376817659,
-   -8371.997759156626
+   27358.322270388788,
+   23956.922350292938,
+   16043.864911667439,
+   5128.832060029791,
+   -9024.949133257413
   ],
   "seg_rev": [
    {
@@ -1265,7 +1282,7 @@
     "transformers": 20025.958177603567,
     "meters": 17815.54107615941,
     "elecprod": 3591.28,
-    "infra": 3270.8480000000004
+    "infra": 4320.848000000001
    },
    {
     "cables": 169133.02607670162,
@@ -1274,7 +1291,7 @@
     "transformers": 23704.123630417147,
     "meters": 20109.291989714933,
     "elecprod": 3986.3208000000004,
-    "infra": 3630.6412800000007
+    "infra": 4796.141280000002
    },
    {
     "cables": 187299.16591456957,
@@ -1283,7 +1300,7 @@
     "transformers": 26754.93213470232,
     "meters": 22592.78955044473,
     "elecprod": 4384.952880000001,
-    "infra": 3993.705408000001
+    "infra": 5275.755408000002
    },
    {
     "cables": 206647.98409774425,
@@ -1292,7 +1309,7 @@
     "transformers": 29802.667882220583,
     "meters": 25141.256211734893,
     "elecprod": 4779.598639200001,
-    "infra": 4353.138894720001
+    "infra": 5750.573394720002
    },
    {
     "cables": 227245.0290701096,
@@ -1301,122 +1318,122 @@
     "transformers": 33088.28987415392,
     "meters": 27977.189912418595,
     "elecprod": 5161.966530336002,
-    "infra": 4701.390006297602
+    "infra": 6210.619266297603
    }
   ],
   "seg_ebitda": [
    {
-    "cables": 20065.660696317733,
-    "rawmat": 5717.024411740862,
-    "ec": 5043.5020279017635,
-    "transformers": 3521.1981439018055,
-    "meters": 3547.0735708207785,
-    "elecprod": 1447.3382273721197,
-    "infra": 1634.4079548190484
+    "cables": 20041.679098826586,
+    "rawmat": 4984.191943840839,
+    "ec": 4362.452178457996,
+    "transformers": 4945.072489759165,
+    "meters": 3467.290226985804,
+    "elecprod": 1320.4516499228548,
+    "infra": 1973.1039302006507
    },
    {
-    "cables": 22086.625395230025,
-    "rawmat": 6027.081379127109,
-    "ec": 5095.893502382363,
-    "transformers": 3975.499149786538,
-    "meters": 3965.794816967612,
-    "elecprod": 1665.226400558375,
-    "infra": 1881.6776452511097
+    "cables": 22059.430263675058,
+    "rawmat": 5203.963951181807,
+    "ec": 4391.333307654424,
+    "transformers": 5620.928343859304,
+    "meters": 3875.320505058752,
+    "elecprod": 1518.7485355509439,
+    "infra": 2271.0365792316315
    },
    {
-    "cables": 24207.98665540832,
-    "rawmat": 6389.982936055597,
-    "ec": 5060.044823827177,
-    "transformers": 4460.820904690448,
-    "meters": 4413.152203667537,
-    "elecprod": 1876.8721246988534,
-    "infra": 2122.5251034268426
+    "cables": 24177.582498329873,
+    "rawmat": 5478.586163963156,
+    "ec": 4339.414342204866,
+    "transformers": 6335.787471336365,
+    "meters": 4311.02932410041,
+    "elecprod": 1711.0986178587127,
+    "infra": 2560.9186743836444
    },
    {
-    "cables": 26607.163857614378,
-    "rawmat": 6850.441956388367,
-    "ec": 4997.5272813216825,
-    "transformers": 4963.925875726681,
-    "meters": 4860.673259817765,
-    "elecprod": 2078.580057023256,
-    "infra": 2351.8329401213773
+    "cables": 26573.33011161748,
+    "rawmat": 5845.99157386529,
+    "ec": 4271.928516198092,
+    "transformers": 7070.450813353369,
+    "meters": 4747.030919435468,
+    "elecprod": 1894.5094930262735,
+    "infra": 2837.0203527978033
    },
    {
-    "cables": 29284.17856903834,
-    "rawmat": 7363.89485725309,
-    "ec": 4838.414070830325,
-    "transformers": 5529.754501223622,
-    "meters": 5353.002823700373,
-    "elecprod": 2257.4107932495936,
-    "infra": 2555.949697113294
+    "cables": 29246.528376493,
+    "rawmat": 6256.890090674406,
+    "ec": 4116.8551117474935,
+    "transformers": 7896.435268647207,
+    "meters": 5226.541627322952,
+    "elecprod": 2056.7907657005885,
+    "infra": 3082.4056205239312
    }
   ],
   "seg_shares": [
    {
-    "cables": 0.3994730950715644,
-    "rawmat": 0.2381114660724762,
-    "ec": 0.23977378496588334,
-    "transformers": 0.05493998546679585,
-    "meters": 0.04887584200100582,
-    "elecprod": 0.00985245596027732,
-    "infra": 0.008973370461997159
+    "cables": 0.3983256739658233,
+    "rawmat": 0.23742752984482723,
+    "ec": 0.23908507399919357,
+    "transformers": 0.05478217934755666,
+    "meters": 0.048735454141686355,
+    "elecprod": 0.009824156392542523,
+    "infra": 0.011819932308370437
    },
    {
-    "cables": 0.4151972058519496,
-    "rawmat": 0.24512704903125324,
-    "ec": 0.21342157931406763,
-    "transformers": 0.05819020759467219,
-    "meters": 0.0493654139553101,
-    "elecprod": 0.00978584310931041,
-    "infra": 0.00891270114343681
+    "cables": 0.41401265992901953,
+    "rawmat": 0.24442770847106315,
+    "ec": 0.21281269356513047,
+    "transformers": 0.05802419257292056,
+    "meters": 0.049224575821020314,
+    "elecprod": 0.009757924374805004,
+    "infra": 0.011740245266040929
    },
    {
-    "cables": 0.42474386981901185,
-    "rawmat": 0.24835209036132752,
-    "ec": 0.19599621702871084,
-    "transformers": 0.06067295257909379,
-    "meters": 0.051234338480927344,
-    "elecprod": 0.009943887609594224,
-    "infra": 0.00905664412133447
+    "cables": 0.4235125735946214,
+    "rawmat": 0.24763213884958074,
+    "ec": 0.19542804072489486,
+    "transformers": 0.060497066868335704,
+    "meters": 0.05108581450680245,
+    "elecprod": 0.009915061128179265,
+    "infra": 0.011929304327585464
    },
    {
-    "cables": 0.43429910745986855,
-    "rawmat": 0.25149741320404784,
-    "ec": 0.17953757840558393,
-    "transformers": 0.0626343978998079,
-    "meters": 0.05283780135020213,
-    "elecprod": 0.010044982689205057,
-    "infra": 0.009148718991284718
+    "cables": 0.4330273492459492,
+    "rawmat": 0.25076095324931197,
+    "ec": 0.17901183845787846,
+    "transformers": 0.06245098557260128,
+    "meters": 0.05268307639977435,
+    "elecprod": 0.010015567963214964,
+    "infra": 0.012050229111269925
    },
    {
-    "cables": 0.4432466848313388,
-    "rawmat": 0.25421078228183314,
-    "ec": 0.16419419722529768,
-    "transformers": 0.06453947465197245,
-    "meters": 0.0545701559691782,
-    "elecprod": 0.010068535101271061,
-    "infra": 0.009170169939108687
+    "cables": 0.4419456910385321,
+    "rawmat": 0.25346463648733264,
+    "ec": 0.1637122632623031,
+    "transformers": 0.0643500418625424,
+    "meters": 0.05440998458692543,
+    "elecprod": 0.010038982479406794,
+    "infra": 0.012078400282957579
    }
   ]
  },
  "seg_fy25": {
   "rev": {
    "rawmat": 60448.00314509805,
-   "ec": 87553.0,
-   "transformers": 12254.566529754962,
-   "meters": 15562.142798881381,
+   "ec": 87100.7,
+   "transformers": 17703.5,
+   "meters": 16594.1,
+   "infra": 3857.9,
    "elecprod": 3206.5,
-   "infra": 2920.4,
-   "cables": 99104.38752626561
+   "cables": 92138.29685490194
   },
   "gp": {
    "cables": 13633.38579749683,
-   "rawmat": 8143.165011234471,
-   "ec": 8554.508849401975,
-   "transformers": 3688.5445221078235,
-   "meters": 3703.7607285167855,
-   "elecprod": 1420.5262744393924,
-   "infra": 1576.1088168027218
+   "rawmat": 7493.721136810487,
+   "ec": 7831.59076914171,
+   "transformers": 4903.6617314075,
+   "meters": 3634.389940033198,
+   "elecprod": 1307.2346874311204,
+   "infra": 1916.0159376791519
   },
   "names": {
    "cables": "Cables",
@@ -1428,13 +1445,13 @@
    "infra": "Infrastructure investment"
   },
   "gp_margin": {
-   "cables": 0.1375659154735564,
-   "rawmat": 0.13471354862935336,
-   "ec": 0.09770663311824808,
-   "transformers": 0.30099347154807754,
-   "meters": 0.23799811994933082,
-   "elecprod": 0.4430145873816911,
-   "infra": 0.5396893633758121
+   "cables": 0.14796654879530158,
+   "rawmat": 0.12396970531553746,
+   "ec": 0.08991421158660849,
+   "transformers": 0.2769882639821222,
+   "meters": 0.2190169964043364,
+   "elecprod": 0.40768273426824275,
+   "infra": 0.4966473826898447
   }
  },
  "bottomup": {
@@ -1507,11 +1524,11 @@
     141499.5116014352
    ]
   },
-  "uplift25": 1.294850342209319,
-  "price_t25": 640950.9193936129,
-  "cables_conv25": 0.1375659154735564,
-  "compress": 0.8739011223865841,
-  "opex25": 0.035929365223383344,
+  "uplift25": 1.20383474628239,
+  "price_t25": 595898.199409783,
+  "cables_conv25": 0.14796654879530158,
+  "compress": 0.8042046677521504,
+  "opex25": 0.03592936522338332,
   "backlog": [
    328069.95,
    332416.8768375,
@@ -1520,71 +1537,71 @@
    336718.27809206437
   ],
   "gp": [
-   55556.44782504353,
-   62214.101431023846,
-   68815.98976736094,
-   75549.48122091166,
-   82816.75406600613
+   55716.484310163316,
+   62507.18112793265,
+   69257.99640776317,
+   76146.67462919194,
+   83592.05707770705
   ],
   "gp_margin": [
    0.152415700114078,
-   0.1527266535575169,
-   0.15605605960117486,
-   0.15877760630744134,
-   0.16153599415776126
+   0.15300834451873652,
+   0.15660311223189055,
+   0.15956406646084817,
+   0.16256967020009913
   ],
   "opex": [
-   14580.242792169418,
-   17516.30314172072,
-   20284.605015586156,
-   22839.335992898166,
-   25634.14875359749
+   14622.242792169418,
+   17566.41964172072,
+   20343.579315586157,
+   22906.412848898166,
+   25709.610216597488
   ],
   "seg_gp": [
    {
-    "cables": 25890.075411400518,
-    "rawmat": 9188.747398676976,
-    "ec": 8539.462027901764,
-    "transformers": 4322.236471005948,
-    "meters": 4259.695213867155,
-    "elecprod": 1590.9894273721197,
-    "infra": 1765.2418748190485
+    "cables": 25866.09381390937,
+    "rawmat": 8455.914930776953,
+    "ec": 7858.412178457996,
+    "transformers": 5746.110816863308,
+    "meters": 4179.911870032181,
+    "elecprod": 1464.1028499228548,
+    "infra": 2145.9378502006507
    },
    {
-    "cables": 29359.345516528192,
-    "rawmat": 10320.80107819398,
-    "ec": 8834.250582632363,
-    "transformers": 4994.776465894475,
-    "meters": 4830.494372525354,
-    "elecprod": 1836.638194958375,
-    "infra": 2037.7952202911097
+    "cables": 29332.15038497323,
+    "rawmat": 9497.683650248677,
+    "ec": 8129.690387904425,
+    "transformers": 6640.205659967241,
+    "meters": 4740.020060616494,
+    "elecprod": 1690.1603299509438,
+    "infra": 2477.2706542716314
    },
    {
-    "cables": 32823.74828747852,
-    "rawmat": 11427.706993830287,
-    "ec": 9035.750670803678,
-    "transformers": 5691.547782886754,
-    "meters": 5452.420522987994,
-    "elecprod": 2078.5799571788534,
-    "infra": 2306.2355521948425
+    "cables": 32793.34413040007,
+    "rawmat": 10516.310221737845,
+    "ec": 8315.120189181367,
+    "transformers": 7566.514349532672,
+    "meters": 5350.297643420868,
+    "elecprod": 1912.8064503387127,
+    "infra": 2803.6034231516446
    },
    {
-    "cables": 36526.2670943061,
-    "rawmat": 12594.475877900359,
-    "ec": 9098.046357878113,
-    "transformers": 6394.453934073269,
-    "meters": 6067.45355798104,
-    "elecprod": 2308.000791704856,
-    "infra": 2560.7836070679373
+    "cables": 36492.433348309205,
+    "rawmat": 11590.025495377282,
+    "ec": 8372.447592754523,
+    "transformers": 8500.978871699957,
+    "meters": 5953.811217598743,
+    "elecprod": 2123.9302277078737,
+    "infra": 3113.0478757443634
    },
    {
-    "cables": 40646.43002254382,
-    "rawmat": 13880.371865033985,
-    "ec": 9047.39254698113,
-    "transformers": 7184.168994931319,
-    "meters": 6751.8623193213025,
-    "elecprod": 2515.5091197663937,
-    "infra": 2791.019197428174
+    "cables": 40608.77982999848,
+    "rawmat": 12773.367098455301,
+    "ec": 8325.833587898298,
+    "transformers": 9550.849762354903,
+    "meters": 6625.401122943882,
+    "elecprod": 2314.8890922173887,
+    "infra": 3392.936583838811
    }
   ],
   "subs": [
@@ -1663,23 +1680,23 @@
   }
  },
  "dcf": {
-  "pv_explicit": 37535.2916095306,
-  "tv": 304373.4881828119,
-  "pv_tv": 120999.57891132937,
-  "ev": 158534.87052085996,
-  "tv_share": 0.7632363688429562,
+  "pv_explicit": 37934.81302354632,
+  "tv": 309450.2083826832,
+  "pv_tv": 123017.7606199351,
+  "ev": 160952.57364348142,
+  "tv_share": 0.764310615451394,
   "nd": 19789.0,
   "assoc": 7445.099999999999,
   "nci_share": 0.09645464025026068,
-  "nci_val": 14100.797469426012,
-  "eq_attr": 132090.17305143396,
-  "ps": 61.70195167480045,
-  "roic_term": 0.2054903756744277,
-  "rr_term": 0.24332039802787836,
+  "nci_val": 14333.996154350398,
+  "eq_attr": 134274.67748913102,
+  "ps": 62.72237722300294,
+  "roic_term": 0.20770543551617324,
+  "rr_term": 0.24072552495192978,
   "g": 0.05,
-  "bear": 35.09053831893958,
-  "bull": 107.09194225875792,
-  "ccy_alt_ps": 108.2656760498812
+  "bear": 35.60479630603451,
+  "bull": 108.96769747182456,
+  "ccy_alt_ps": 90.38294164821865
  },
  "terminal_recon": {
   "roic": {
@@ -1714,29 +1731,29 @@
   },
   "nopat_cagr": 0.30496683614652853,
   "stable_g": 0.05082215798749262,
-  "ceiling": 0.1048027803168238,
-  "crossover_years": 36.282810159089664
+  "ceiling": 0.10493544076138485,
+  "crossover_years": 36.224424509021745
  },
  "lenses": {
   "dcf": {
    "name": "Discounted cash flow (primary)",
-   "bear": 35.09053831893958,
-   "base": 61.70195167480045,
-   "bull": 107.09194225875792,
+   "bear": 35.60479630603451,
+   "base": 62.72237722300294,
+   "bull": 108.96769747182456,
    "w": 0.45
   },
   "relative": {
    "name": "Relative multiples",
-   "bear": 98.54941705689527,
-   "base": 117.41475039581738,
-   "bull": 145.71275040420056,
+   "bear": 99.11342021383139,
+   "base": 118.08129958128733,
+   "bull": 146.5331186324713,
    "w": 0.2
   },
   "normalized": {
    "name": "Normalised earnings power",
-   "bear": 84.26500301112208,
-   "base": 108.34071815715697,
-   "bull": 138.43536208970056,
+   "bear": 94.15599509791565,
+   "base": 121.05770798303442,
+   "bull": 154.68484908943287,
    "w": 0.2
   },
   "book": {
@@ -1749,72 +1766,72 @@
   "central": {
    "name": "Weighted central",
    "bear": 26.560509337566597,
-   "base": 77.99595631218507,
-   "bull": 145.71275040420056,
+   "base": 81.13185561114568,
+   "bull": 154.68484908943287,
    "w": 1.0
   }
  },
- "central": 77.99595631218507,
+ "central": 81.13185561114568,
  "span": [
   26.560509337566597,
-  145.71275040420056
+  154.68484908943287
  ],
  "spot": 105.2,
  "experts": {
   "e1": {
    "method_short": "earnings power",
-   "base": 137.28903866821852,
+   "base": 137.70349296642348,
    "rng": [
-    101.16034428184523,
-    173.41773305459182
+    101.46573165946994,
+    173.94125427337704
    ],
-   "eps": 14.451477754549318,
+   "eps": 14.49510452278142,
    "margin": 0.118,
-   "rev": 440969.67425187293,
-   "ebit": 47404.23998207634,
+   "rev": 442251.724251873,
+   "ebit": 47542.06035707634,
    "interest": 3053.1508080119793,
    "pe": 9.5
   },
   "e2": {
    "method_short": "owner cash earnings",
-   "base": 45.39027567108655,
+   "base": 46.2389872519482,
    "rng": [
-    31.519505618146145,
-    64.97585625854424
+    32.10886025513935,
+    66.19078084024615
    ],
-   "fcff": 20440.79544370284,
-   "fcfe": 16642.84927205143,
+   "fcff": 20785.2048689087,
+   "fcfe": 16954.03881005026,
    "ke": 0.22983845,
    "int_at": 2021.3004040059893
   },
   "e3": {
    "method_short": "cash returns vs cost of capital",
-   "base": 55.09900810054334,
+   "base": 56.084259058160164,
    "rng": [
-    46.82211783514564,
-    108.2656760498812
+    47.37467423206117,
+    90.38294164821865
    ],
    "ic0": 99124.7255,
-   "pv_ep": 1681.4394069354698,
-   "pv_ep_term": 42084.293999480265,
-   "ev": 142890.45890641573,
+   "pv_ep": 2186.9726534279753,
+   "pv_ep_term": 43913.12441233754,
+   "ev": 145224.82256576553,
    "ep": [
-    -5875.77534654989,
-    -2502.937898146749,
-    1984.8724376176797,
-    6089.157140213614,
-    10224.321377310982
+    -5865.982550402063,
+    -2401.1519222170245,
+    2191.799333947536,
+    6406.047958592462,
+    10668.633212169938
    ],
    "spread": [
-    -0.04684590735188046,
-    -0.017525212403893653,
-    0.012541258722105125,
-    0.03506406204236334,
-    0.054080375674427694
+    -0.046670353956345056,
+    -0.01677609585424039,
+    0.0138173377784023,
+    0.03680249111871603,
+    0.05629543551617322
    ]
   }
  },
- "panel_centre": 55.09900810054334,
+ "panel_centre": 56.084259058160164,
  "sens_wg": {
   "g_grid": [
    0.03,
@@ -1832,58 +1849,60 @@
   ],
   "table": [
    [
-    70.33785026611987,
-    73.67916459076592,
-    77.75959437327495,
-    82.88964883834787,
-    89.58209041029527
+    71.40604255139132,
+    74.8455484835976,
+    79.04809647022493,
+    84.3342475199925,
+    91.23336316838652
    ],
    [
-    63.534446867884604,
-    65.96239254313653,
-    68.85048182392777,
-    72.36827997455242,
-    76.78033350243246
+    64.49978173034609,
+    67.00642468255586,
+    69.99025922223638,
+    73.62713288192815,
+    78.19139342245379
    ],
    [
-    57.858933831724286,
-    59.636443426221184,
-    61.70195167480045,
-    64.14997733495557,
-    67.12148002279349
+    58.73840333856804,
+    60.5801332665243,
+    62.72237722300294,
+    65.26376140705965,
+    68.35137102723559
    ],
    [
-    53.05352385509302,
-    54.35740254637418,
-    55.83973620233307,
-    57.55331694347389,
-    59.57403813546187
+    53.860239336361126,
+    55.21731960809319,
+    56.762271997340946,
+    58.550674489761356,
+    60.66242537979906
    ],
    [
-    48.93336177056653,
-    49.88605070421014,
-    50.94582955927424,
-    52.141535043797745,
-    53.513378171327425
+    49.67765160561232,
+    50.67498049644503,
+    51.78663329144614,
+    53.04339463405028,
+    54.488191813756444
    ]
   ]
  },
  "rel": {
-  "ebitda_mid": 44697.79828930313,
-  "ev_rel": 290535.68888047035,
+  "ebitda_mid": 44940.76148621193,
+  "ev_rel": 292114.9496603775,
   "ev_ebitda_trailing": 8.000722677325394,
   "pe_trailing": 12.995374065504905,
   "just_mult": 6.5
  },
  "norm": {
-  "margin": 0.11078988668879247,
-  "rev": 407355.88701676094,
-  "ebitda": 45130.91256459949,
-  "ebit": 40853.6757509235,
-  "interest": 4127.401616023958,
-  "np": 25770.379166754792,
-  "eps": 12.03785757301744,
-  "pe": 9.0
+  "margin": 0.11060311223189054,
+  "rev": 442251.724251873,
+  "ebitda": 48914.41709217701,
+  "ebit": 44270.773987532346,
+  "interest": 3418.938394042807,
+  "np": 28795.295885483185,
+  "eps": 13.45085644255938,
+  "pe": 9.0,
+  "year": "FY28E",
+  "assoc": 1640.4725491200002
  },
  "book": {
   "bvps": 32.915195412828524,
@@ -1916,76 +1935,76 @@
   ],
   "grid_wacc_g": [
    [
-    70.33785026611987,
-    73.67916459076592,
-    77.75959437327495,
-    82.88964883834787,
-    89.58209041029527
+    71.40604255139132,
+    74.8455484835976,
+    79.04809647022493,
+    84.3342475199925,
+    91.23336316838652
    ],
    [
-    63.534446867884604,
-    65.96239254313653,
-    68.85048182392777,
-    72.36827997455242,
-    76.78033350243246
+    64.49978173034609,
+    67.00642468255586,
+    69.99025922223638,
+    73.62713288192815,
+    78.19139342245379
    ],
    [
-    57.858933831724286,
-    59.636443426221184,
-    61.70195167480045,
-    64.14997733495557,
-    67.12148002279349
+    58.73840333856804,
+    60.5801332665243,
+    62.72237722300294,
+    65.26376140705965,
+    68.35137102723559
    ],
    [
-    53.05352385509302,
-    54.35740254637418,
-    55.83973620233307,
-    57.55331694347389,
-    59.57403813546187
+    53.860239336361126,
+    55.21731960809319,
+    56.762271997340946,
+    58.550674489761356,
+    60.66242537979906
    ],
    [
-    48.93336177056653,
-    49.88605070421014,
-    50.94582955927424,
-    52.141535043797745,
-    53.513378171327425
+    49.67765160561232,
+    50.67498049644503,
+    51.78663329144614,
+    53.04339463405028,
+    54.488191813756444
    ]
   ],
   "grid_exp_term": [
    [
-    82.30413193593803,
-    72.8886819346058,
-    65.33406077050365,
-    59.13899137370171,
-    53.96735779694362
+    83.66571992603276,
+    74.09309219727253,
+    66.41233867790525,
+    60.11382102859078,
+    54.85581681153326
    ],
    [
-    79.99134516193502,
-    70.83367768088289,
-    63.48580082611725,
-    57.46018877233019,
-    52.42994594952477
+    81.31573210887528,
+    72.00519044120513,
+    64.53463324396715,
+    58.40840279419519,
+    53.29415083110127
    ],
    [
-    77.75959437327495,
-    68.85048182392777,
-    61.70195167480045,
-    55.83973620233307,
-    50.94582955927424
+    79.04809647022493,
+    69.99025922223638,
+    62.72237722300294,
+    56.762271997340946,
+    51.78663329144614
    ],
    [
-    75.60531904976452,
-    66.9359453582495,
-    59.97969409530537,
-    54.27508452482181,
-    49.51268463786545
+    76.8591944099261,
+    68.04509832510135,
+    60.97270569052243,
+    55.17283830621533,
+    50.33090277179734
    ],
    [
-    73.52514768373331,
-    65.08708620594727,
-    58.31635810092311,
-    52.76381935034907,
-    48.12830987545653
+    74.74559943059796,
+    66.16667718367351,
+    59.28290538269756,
+    53.63764832267511,
+    48.92472251249137
    ]
   ],
   "beta_grid": [
@@ -1997,12 +2016,12 @@
    1.3
   ],
   "grid_beta": [
-   84.75563520629989,
-   72.055512422107,
-   62.099237908612096,
-   61.70195167480045,
-   55.95111872909561,
-   50.676769828907254
+   86.15763153561919,
+   73.2471370057358,
+   63.12622637075465,
+   62.72237722300294,
+   56.87661209559251,
+   51.515325440211086
   ],
   "fx_grid": [
    0.9,
@@ -2012,11 +2031,11 @@
    1.2
   ],
   "grid_fx": [
-   70.59325137430652,
-   66.1476015245535,
-   61.70195167480045,
-   54.58891191519561,
-   43.91935227578834
+   71.61367692250901,
+   67.16802707275598,
+   62.72237722300294,
+   55.609337463398106,
+   44.93977782399083
   ],
   "mg_grid": [
    0.85,
@@ -2026,11 +2045,11 @@
    1.15
   ],
   "grid_margin": [
-   41.14097469461054,
-   51.421463184705495,
-   61.70195167480045,
-   71.98244016489542,
-   82.26292865499039
+   41.84129022062721,
+   52.28183372181507,
+   62.72237722300294,
+   73.16292072419081,
+   83.60346422537874
   ],
   "cu_grid": [
    0.85,
@@ -2040,11 +2059,11 @@
    1.15
   ],
   "grid_copper": [
-   75.03890122405956,
-   68.37042644943001,
-   61.70195167480045,
-   55.03347690017092,
-   48.36500212554138
+   76.05932677226207,
+   69.3908519976325,
+   62.72237722300294,
+   56.053902448373414,
+   49.38542767374386
   ],
   "nwc_grid": [
    0.2,
@@ -2054,25 +2073,25 @@
    0.26
   ],
   "grid_nwc": [
-   64.83401371532563,
-   63.26798269506304,
-   61.70195167480045,
-   60.13592065453789,
-   58.56988963427531
+   65.87180866666164,
+   64.2970929448323,
+   62.72237722300294,
+   61.1476615011736,
+   59.57294577934427
   ],
   "roic_grid": [
    0.15,
    0.18,
-   0.2054903756744277,
+   0.20770543551617324,
    0.26,
    0.3
   ],
   "grid_roic": [
-   55.62682821155775,
-   59.37636551887614,
-   61.70195167480045,
-   65.14488445321211,
-   66.87544013351288
+   56.38958884826296,
+   60.18863757345764,
+   62.72237722300294,
+   66.03332791991097,
+   67.78673502384697
   ]
  },
  "step0": {
@@ -2205,26 +2224,26 @@
   "[Glide] forward WACC 26.90% -> 22.98% -> 19.55% -> 17.10% -> 15.14%; cumulative discount factors 0.7880, 0.6408, 0.5360, 0.4577, 0.3975. The glide fractions are the cost-of-debt path's own cumulative progress, so the shape is inherited rather than being a second free parameter.",
   "[Bottom-up base] the sub-segment build reconciles to the audited statements: FY2023 revenue 152,186.2 vs reported 152,186.2, gross profit 29,077.5 vs 29,077.3; FY2024 revenue 231,981.9 vs 231,981.8, gross profit 43,898.4 vs 43,898.5.",
   "[Unit economics] cables price/tonne 360,780 -> 522,361; fabrication uplift over copper 1.386 -> 1.261; conversion margin 25.0% -> 22.8%. Meters price/unit 1,748 -> 2,596; transformers price/MVA 455,485 -> 641,847. Operating load between gross profit and EBITDA 5.94% -> 5.30% of revenue.",
-  "[FY2025 unit base] volumes implied from the disclosed Q1 prints and the FY2024 seasonal share: cables 154,621t (-7.8% on FY2024), meters 5,550,494 units, transformers 17,516 MVA. Cables revenue is the residual against the disclosed group revenue of 281,049, which BACK-SOLVES the FY2025 fabrication uplift to 1.295 \u2014 between the FY2023 (1.386) and FY2024 (1.261) prints, so the residual is economically sensible rather than a plug absorbing an error.",
-  "[FY2025 margin calibration] cables gross profit is PINNED to the disclosed 88,173 EGP per tonne x 154,621t = 13,633, i.e. a conversion margin of 13.8% against 22.8% in FY2024 \u2014 the cable margin roughly HALVED, and that single fact is most of the group's gross-margin decline. The other lines carry FY2024's margins scaled by 0.874, solved so the total reproduces the 40,720 assembled from the disclosed prints. Resulting FY2025 margins: Cables 13.8%, Raw material (copper rod) 13.5%, Engineering & construction 9.8%, Transformers 30.1%, Meters & digital 23.8%, Other electrical products 44.3%, Infrastructure investment 54.0%.",
+  "[FY2025 unit base] volumes implied from the disclosed Q1 prints and the FY2024 seasonal share: cables 154,621t (-7.8% on FY2024), meters 5,550,494 units, transformers 17,516 MVA. Cables revenue is the residual against the disclosed group revenue of 281,049, which BACK-SOLVES the FY2025 fabrication uplift to 1.204, against 1.386 in FY2023 and 1.261 in FY2024. That this residual lands in the historical neighbourhood is the check that the segment split is economics rather than a plug \u2014 and it is the test that rejected the competing '+51% E&C' reading, which forces the uplift to 1.077.",
+  "[FY2025 margin calibration] cables gross profit is PINNED to the disclosed 88,173 EGP per tonne x 154,621t = 13,633, i.e. a conversion margin of 14.8% against 22.8% in FY2024 \u2014 the cable margin roughly HALVED, and that single fact is most of the group's gross-margin decline. The other lines carry FY2024's margins scaled by 0.804, solved so the total reproduces the 40,720 assembled from the disclosed prints. Resulting FY2025 margins: Cables 14.8%, Raw material (copper rod) 12.4%, Engineering & construction 9.0%, Transformers 27.7%, Meters & digital 21.9%, Other electrical products 40.8%, Infrastructure investment 49.7%.",
   "[FY2025 operating load] bottom-up gross profit 40,720 less EBITDA 30,622 implies an operating load of 3.59% of revenue, against 5.30% in FY2024 and 5.94% in FY2023. The forecast glides from 4.0% back toward the historical norm rather than assuming the FY2025 level persists.",
   "[Q1-2026 calibration] the disclosed Q1-2026 revenue 75,298 (+26.8% y/y) and attributable profit 4,845 (+16.8% y/y) imply, on the same tax, minority, finance and depreciation structure, an EBITDA margin of about 11.24% \u2014 against 12.61% in Q1-2025. Profit GREW on a higher copper price, so any build that shows margins collapsing in FY2026 is contradicted by the print. The FY2026 cable conversion margin is therefore SOLVED to reproduce this, not assumed.",
-  "[Per-unit gross profit, FY2025 base] cables 88,173 EGP/tonne (disclosed), rod 68,017 EGP/tonne, transformers 210,579 EGP/MVA, meters 667 EGP/unit. These grow with cost inflation only \u2014 no real recovery in conversion profitability is assumed anywhere in the forecast.",
-  "[Cable conversion margin, solved] FY2026 gross profit per tonne solves to 157,964 EGP to reproduce the Q1-2026 implied EBITDA margin \u2014 against the disclosed 88,173 in Q1-2025, 119,043 in FY2024 and 90,020 in FY2023. It sits inside the historical range, so the print and the unit build are mutually consistent.",
-  "[Conversion margin cross-check] as a SHARE of the realised price per tonne that solved figure is 17.8%, between the FY2025 trough of 13.8% and the FY2024 peak of 22.8%. In absolute EGP it is below what pure copper-cost scaling of FY2024 would give (196,336), so the solve does not assume the converter captures the whole metal move. NOTE the solve attributes all of the Q1-2026 improvement to cables, where the volatility demonstrably is; if it in fact came from another line the sub-segment split changes but GROUP EBITDA \u2014 the only thing the valuation consumes \u2014 is pinned by the print either way.",
-  "[Forecast, bottom-up] revenue 364,506 -> 407,356 -> 440,970 -> 475,819 -> 512,683 (growth +29.7%, +11.8%, +8.3%, +7.9%, +7.7%)",
-  "[Forecast margins are OUTPUTS] gross margin 15.24% -> 15.27% -> 15.61% -> 15.88% -> 16.15%; EBITDA margin 11.24% -> 10.97% -> 11.01% -> 11.08% -> 11.15%. Cable tonnage 163,898 -> 193,581 (+15.5% against FY2024); order book 323,700 -> 336,718.",
-  "[FY2026 cross-check against the print] the disclosed Q1-2026 revenue of 75,298, grossed up on the Q1-2025 seasonal share, implies a full year of 356,321. The build produces 364,506, +2.3% against it \u2014 an independent check that the unit build is not running ahead of the company's own trading.",
-  "[Currency split \u2014 two different questions] the company discloses that over 70% of revenue is earned ABROAD, which is a geographic statement about where the customer sits. The build derives the share that is HARD-CURRENCY LINKED \u2014 dollar-priced by construction \u2014 at 63% in FY2025 and 62% -> 61% -> 61% -> 61% -> 60% thereafter. The two are not in conflict: a project executed in a North African market for a local utility is foreign revenue but not necessarily dollar-priced. The LOWER figure is used everywhere the currency question is valued, because it is the conservative one.",
+  "[Per-unit gross profit, FY2025 base] cables 88,173 EGP/tonne (disclosed), rod 62,592 EGP/tonne, transformers 279,950 EGP/MVA, meters 655 EGP/unit. These grow with cost inflation only \u2014 no real recovery in conversion profitability is assumed anywhere in the forecast.",
+  "[Cable conversion margin, solved] FY2026 gross profit per tonne solves to 157,818 EGP to reproduce the Q1-2026 implied EBITDA margin \u2014 against the disclosed 88,173 in Q1-2025, 119,043 in FY2024 and 90,020 in FY2023. It sits inside the historical range, so the print and the unit build are mutually consistent.",
+  "[Conversion margin cross-check] as a SHARE of the realised price per tonne that solved figure is 17.8%, between the FY2025 trough of 14.8% and the FY2024 peak of 22.8%. In absolute EGP it is below what pure copper-cost scaling of FY2024 would give (196,336), so the solve does not assume the converter captures the whole metal move. NOTE the solve attributes all of the Q1-2026 improvement to cables, where the volatility demonstrably is; if it in fact came from another line the sub-segment split changes but GROUP EBITDA \u2014 the only thing the valuation consumes \u2014 is pinned by the print either way.",
+  "[Forecast, bottom-up] revenue 365,556 -> 408,521 -> 442,252 -> 477,217 -> 514,192 (growth +30.1%, +11.8%, +8.3%, +7.9%, +7.7%)",
+  "[Forecast margins are OUTPUTS] gross margin 15.24% -> 15.30% -> 15.66% -> 15.96% -> 16.26%; EBITDA margin 11.24% -> 11.00% -> 11.06% -> 11.16% -> 11.26%. Cable tonnage 163,898 -> 193,581 (+15.5% against FY2024); order book 323,700 -> 336,718.",
+  "[FY2026 cross-check against the print] the disclosed Q1-2026 revenue of 75,298, grossed up on the Q1-2025 seasonal share, implies a full year of 356,321. The build produces 365,556, +2.6% against it \u2014 an independent check that the unit build is not running ahead of the company's own trading.",
+  "[Currency split \u2014 two different questions] the company discloses that over 70% of revenue is earned ABROAD, which is a geographic statement about where the customer sits. The build derives the share that is HARD-CURRENCY LINKED \u2014 dollar-priced by construction \u2014 at 63% in FY2025 and 62% -> 61% -> 61% -> 60% -> 60% thereafter. The two are not in conflict: a project executed in a North African market for a local utility is foreign revenue but not necessarily dollar-priced. The LOWER figure is used everywhere the currency question is valued, because it is the conservative one.",
   "[Terminal growth reconciliation] historical ROIC 22.3% / 24.9% / 20.9%; reinvestment rate 20.8% / 31.7% / 26.4%; implied g 4.6% / 7.9% / 5.5%. Check (a): actual NOPAT CAGR FY23-FY25 = +30.5%. Check (b): implied g from STABLE years only (FY24 excluded as a debt-funded capacity burst, reinvestment 32%) = 5.1%. Adopted terminal g 5.0%.",
-  "[Terminal value] terminal ROIC 20.5%; required reinvestment rate g/ROIC = 24.3%; terminal NOPAT 40,792; TV 304,373 capitalised at the terminal WACC and discounted at the YEAR-5 factor 0.3975 (one date, one price of time) -> PV 121,000. Terminal value is 76% of enterprise value.",
+  "[Terminal value] terminal ROIC 20.8%; required reinvestment rate g/ROIC = 24.1%; terminal NOPAT 41,331; TV 309,450 capitalised at the terminal WACC and discounted at the YEAR-5 factor 0.3975 (one date, one price of time) -> PV 123,018. Terminal value is 76% of enterprise value.",
   "[Terminal ceiling] the domestic leg is 40% of FY30E revenue; a blended long-run nominal ceiling is 10.5% (15% Egyptian nominal on the domestic leg, 7.5% world nominal on the export leg). Adopted g of 5% sits below it. If the recent NOPAT CAGR of 30% were floated as a TERMINAL rate, the domestic revenue leg alone would overtake Egypt's entire nominal GDP in about 36 years \u2014 arithmetic necessity, not a modelling opinion.",
-  "[Bridge] EV 158,535 - net debt 19,789 + associates at carrying value 7,445 = 146,191; less minority interests at their 9.6% share of group profit = 14,101 -> equity attributable 132,090 = EGP 61.70/share against a spot of 105.20 (-41%).",
-  "[Currency-of-discounting alternative] discounting the ~60% hard-currency cash flow leg at a USD WACC of 10.12% with 3.5% terminal growth, and the domestic leg unchanged, gives EGP 108.27/share (+3% vs spot). This is disclosed as the alternative the market appears to be applying, not as the primary read.",
-  "[DCF scenarios] bear 35.09 / base 61.70 / bull 107.09 EGP per share",
-  "[Synthesis] weighted central EGP 78.00; full span across lenses and scenarios 26.56 - 145.71; spot 105.20 (-26% to the central).",
-  "[Forecast interest] net finance cost falls 4,127 -> 4,291 -> 3,457 -> 2,324 -> 971 as the cash pile builds against a broadly static gross debt book \u2014 the charge tracks the net debt path rather than being frozen at the FY2025 balance.",
-  "[Forecast equity] attributable profit 23,330, 25,513, 28,519, 31,960, 35,741; net debt path 27,158, 23,831, 16,076, 5,414, -8,372 (25% payout assumed). Net debt / EBITDA falls from 0.65x to -0.15x.",
-  "[Expert panel] Expert 1 137.29 [101.16-173.42]; Expert 2 45.39 [31.52-64.98]; Expert 3 55.10 [46.82-108.27]; panel median 55.10 (-48% vs spot)"
+  "[Bridge] EV 160,953 - net debt 19,789 + associates at carrying value 7,445 = 148,609; less minority interests at their 9.6% share of group profit = 14,334 -> equity attributable 134,275 = EGP 62.72/share against a spot of 105.20 (-40%).",
+  "[Currency-of-discounting alternative \u2014 UIP-corrected] the hard-currency leg (60% of cash flow) is first DEFLATED to dollars at each year's exchange rate, discounted at a USD cost of capital of 10.12% with 3.5% terminal growth, and only then translated back. Discounting the EGP-denominated leg \u2014 already inflated by the assumed depreciation path \u2014 directly at a dollar rate would count the currency benefit twice, which is what the previous version did. Corrected result EGP 90.38/share (-14% vs spot), against 108.27 before the correction.",
+  "[DCF scenarios] bear 35.60 / base 62.72 / bull 108.97 EGP per share",
+  "[Synthesis] weighted central EGP 81.13; full span across lenses and scenarios 26.56 - 154.68; spot 105.20 (-23% to the central).",
+  "[Forecast interest] net finance cost falls 4,127 -> 4,311 -> 3,470 -> 2,321 -> 943 as the cash pile builds against a broadly static gross debt book \u2014 the charge tracks the net debt path rather than being frozen at the FY2025 balance.",
+  "[Forecast equity] attributable profit 23,403, 25,655, 28,761, 32,311, 36,224; net debt path 27,358, 23,957, 16,044, 5,129, -9,025 (25% payout assumed). Net debt / EBITDA falls from 0.65x to -0.16x.",
+  "[Expert panel] Expert 1 137.70 [101.47-173.94]; Expert 2 46.24 [32.11-66.19]; Expert 3 56.08 [47.37-90.38]; panel median 56.08 (-47% vs spot)"
  ]
 }

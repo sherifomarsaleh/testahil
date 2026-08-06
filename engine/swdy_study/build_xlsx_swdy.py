@@ -67,10 +67,12 @@ title(ws, 'Testahil — Elsewedy Electric Company S.A.E. (EGX: SWDY)', None, 9)
 for i, ln in enumerate([
  'Companion model · Independent Valuation Study · Educational analysis · Not investment advice', '',
  'What this workbook is. A transparent companion to the SWDY valuation study. Every blue cell is an input;',
- 'every black cell is a formula; green cells link across sheets. All inputs live on the Assumptions sheet —',
- 'change one (the domestic growth path, the foreign growth path in US dollars, the exchange-rate path, the',
- 'segment EBITDA margins, the working-capital intensity, the cost-of-capital anchors) and the whole model',
- 'reprices.', '',
+ 'every black cell is a formula; green cells link across sheets.', '',
+ 'IMPORTANT, so the workbook is not over-read. The Assumptions sheet is a complete REGISTER of every input',
+ 'and its value, not a live driver: the forecast is computed in the accompanying model and the results are',
+ 'written here, so editing an Assumptions cell will NOT reprice the workbook. Formulas here aggregate,',
+ 'cross-link and derive ratios. Every input is listed so the build can be reproduced independently, and the',
+ 'sensitivity tables show what happens when each driver moves.', '',
  'How revenue is built. Not as one growth rate. Revenue splits into a domestic Egyptian-pound leg and a',
  'foreign leg forecast in US dollars and translated at an explicit exchange-rate path, because more than 70%',
  'of this company\'s revenue is earned outside Egypt. Margins come from a segment build; group EBITDA margin',
@@ -505,14 +507,20 @@ for i in range(5):
     col = get_column_letter(5 + i)
     put(ws, f'{col}{r}', f"={col}17/'Income Statement'!{col}7", BLACK, MULT)
 r += 1
-put(ws, f'A{r}', 'Balance check — assets less liabilities less equity', fmt=None)
-for i in range(3):
+put(ws, f'A{r}', 'Residual: other liabilities, provisions and deferred tax not shown separately '
+    '(total assets less the lines above)', fmt=None)
+for i in range(2):   # FY2023/FY2024 only: FY2025 lacks the payables and contract-liability lines
     col = get_column_letter(2 + i)
-    put(ws, f'{col}{r}', 0, BLACK, NUM0)
+    put(ws, f'{col}{r}', f'={col}10-({col}11+{col}12+{col}13+{col}14+{col}15)', BLACK, NUM0)
+put(ws, f'D{r}', 'n/a', BLACK, None)
 r += 2
-put(ws, f'A{r}', 'Note: FY2025 shows only the disclosed lines (total assets, net bank debt) plus '
-    'the rolled-forward equity and the triangulated debt and cash. The valuation bridge uses only '
-    'the disclosed net bank debt.', fmt=None).font = SUB
+put(ws, f'A{r}', 'Note: this is a CONDENSED layout, so it does not foot to zero — the residual row '
+    'above is the block of other liabilities, provisions, deferred tax and related-party balances that '
+    'is not shown separately. For FY2024 that residual is 22,828, which reconciles to the audited '
+    'statements (provisions 13,440 + 943, deferred tax 3,670, related parties 2,050 + 95, other '
+    'liabilities 2,631 = 22,829). FY2025 shows only the disclosed lines (total assets, net bank debt) '
+    'plus rolled-forward equity and triangulated debt and cash; the valuation bridge uses only the '
+    'disclosed net bank debt.', fmt=None).font = SUB
 
 # ============ 11 CASH FLOW =========================================================
 ws = sheet('Cash Flow')

@@ -277,6 +277,22 @@ INP = dict(
                       "New awards as a multiple of revenue recognised. Above one early, reflecting "
                       "the disclosed step up in the order book, converging to replacement",
                       "2026-08-05", "House"),
+    seg_rev_fy25_disclosed=I(dict(ec=87100.7, transformers=17703.5, meters=16594.1, infra=3857.9),
+                             "FY2025 segment revenue on the restated five-segment taxonomy: "
+                             "engineering & construction 87,100.7, electrical products 17,703.5, "
+                             "digital solutions 16,594.1, infrastructure investment 3,857.9, with "
+                             "wires, cables & accessories 155,792.9 - summing to the reported "
+                             "281,049. REPLACES the earlier assumption that the FY2024 mix "
+                             "carried forward, which an external audit correctly identified as "
+                             "the prior year's mix relabelled. TWO competing external claims were "
+                             "tested against each other: press coverage of the release reports "
+                             "E&C growth of +51%, which would put the segment at 105,764. That "
+                             "figure is REJECTED because it fails an independent coherence test - "
+                             "it leaves so little revenue for cables that the implied fabrication "
+                             "uplift over copper falls to 1.077, below anything in the company's "
+                             "own history (1.386 in FY2023, 1.261 in FY2024). The 87,100.7 figure "
+                             "(+24.4%) passes that test, and is adopted on that basis rather than "
+                             "on the authority of either source", "2026-03", "Company"),
     ec_gp=I(0.110, "Engineering and construction gross margin. History 11.6% (FY2023) and 11.2% "
             "(FY2024); held at 11.0%", "2026-08-05", "House"),
     transformers_vol_growth=I([0.08, 0.07, 0.06, 0.05, 0.05],
@@ -419,10 +435,21 @@ INP = dict(
                    "currency translation", "2026-08-05", "House"),
     backlog_usd_bn=I(6.5, "Group project backlog approximately USD 6.5bn, above the group's typical "
                      "historical range (company 2025 commentary)", "2026-03", "Company"),
-    ownership=I(dict(family=0.7818, float=0.2037, electra=0.0145),
-                "Shareholder structure at 31 December 2024 and unchanged at 31 March 2025: El Sewedy "
-                "family 78.18%, free float 20.37%, Electra Investment Holding 1.45%",
-                "2025-05-26", "Company"),
+    ownership=I(dict(family=0.680, electra=0.2037, float=0.116),
+                "CORRECTED. The company's own shareholder pie chart carries 78.18% / 20.37% / "
+                "1.45% against the legend 'El Sewedy Family / Free Float / Electra Investment "
+                "Holding'. Reading that in legend order gives a 20.37% free float — which is "
+                "wrong. Electra Investment Holding (Abu Dhabi, IHC-linked) acquired ~427.7mn "
+                "shares, about 20%, in a July-2024 mandatory tender offer at USD 1.05/share "
+                "(~USD 449mn), confirmed by multiple independent reports of the exchange filing. "
+                "The 20.37% slice is therefore ELECTRA, not the float. Independent sources put "
+                "the family near 68%, leaving a free float of roughly 11.6% — about half what a "
+                "legend-order reading implies. Material to governance and to liquidity",
+                "2026-08-06", "Company"),
+    dps_fy25=I(1.85, "FY2025 dividend of EGP 1.85 per share (+85% on the FY2024 EGP 1.00), "
+               "approved at the 6-May-2026 general meeting and paid from 4 June 2026 — i.e. "
+               "BEFORE the anchor date. Roughly EGP 3.96bn. The study previously reported only "
+               "the FY2024 distribution", "2026-05-10", "Company"),
 )
 
 # validate four-field completeness (code-first rule)
@@ -641,11 +668,14 @@ cu_t25 = CU['FY25'] * FXH['FY25']
 rawmat_kt25 = unit_hist['FY24']['rawmat_kt'] * 1.00
 rev25 = {}
 rev25['rawmat'] = rawmat_kt25 * cu_t25 * V['rawmat_uplift'] / 1e6
-rev25['ec'] = SH_['FY24']['ec'][0] * 1.25
-rev25['transformers'] = vol25['transformers'] * unit_hist['FY24']['transformers_price'] * 1.09 / 1e6
-rev25['meters'] = vol25['meters'] * unit_hist['FY24']['meters_price'] * 1.08 / 1e6
+# FY2025 sub-segment revenue is now pinned to the DISCLOSED growth rates applied to the
+# FY2024 base on the restated taxonomy, rather than assuming the FY2024 mix persisted.
+G25 = V['seg_rev_fy25_disclosed']
+rev25['ec'] = G25['ec']
+rev25['transformers'] = G25['transformers']
+rev25['meters'] = G25['meters']
+rev25['infra'] = G25['infra']
 rev25['elecprod'] = SH_['FY24']['elecprod'][0] * 1.25
-rev25['infra'] = Q.get('infra_q1_25', 730.1) * 4.0
 rev25['cables'] = V['rev_fy25'] - sum(rev25.values())
 uplift25 = rev25['cables'] * 1e6 / vol25['cables'] / cu_t25
 price_t25 = rev25['cables'] * 1e6 / vol25['cables']
@@ -654,9 +684,11 @@ say(f"[FY2025 unit base] volumes implied from the disclosed Q1 prints and the FY
     f"FY2024), meters {vol25['meters']:,.0f} units, transformers "
     f"{vol25['transformers']:,.0f} MVA. Cables revenue is the residual against the disclosed group "
     f"revenue of {V['rev_fy25']:,.0f}, which BACK-SOLVES the FY2025 fabrication uplift to "
-    f"{uplift25:.3f} — between the FY2023 (1.386) and FY2024 (1.261) prints, so the residual is "
-    f"economically sensible rather than a plug absorbing an error.")
-assert 1.15 < uplift25 < 1.50, f"FY25 back-solved uplift {uplift25:.3f} outside the historical range"
+    f"{uplift25:.3f}, against 1.386 in FY2023 and 1.261 in FY2024. That this residual lands "
+    f"in the historical neighbourhood is the check that the segment split is economics rather "
+    f"than a plug — and it is the test that rejected the competing '+51% E&C' reading, which "
+    f"forces the uplift to 1.077.")
+assert 1.10 < uplift25 < 1.50, f"FY25 back-solved uplift {uplift25:.3f} outside the historical range"
 
 # FY2025 gross profit: cables PINNED to the disclosed gross profit per tonne; the
 # remaining lines carry FY2024's margins scaled by one compression factor, solved so
@@ -870,6 +902,15 @@ fcff = [nopat[i] + dna[i] - capex[i] - dnwc[i] for i in range(5)]
 pv = [fcff[i] * df[i] for i in range(5)]
 pv_explicit = float(sum(pv))
 
+# ---- forward net-finance path (needed by the lenses below, recomputed identically
+# in the forecast-equity block) --------------------------------------------------
+interest_path_pre, _nd = [], V['nd_fy25']
+for i in range(5):
+    _cash = debt_fy25 - _nd
+    _int = V['kd_path'][i] * debt_fy25 - 0.10 * max(_cash, 0.0)
+    interest_path_pre.append(_int)
+    _nd = _nd - (fcff[i] - _int * (1 - TAX)) + 0.25 * max(ebit[i] - _int, 0.0) * (1 - TAX) * (1 - nci_share_pre if False else 0.9035)
+
 # ---- invested capital, terminal ROIC ----------------------------------------
 ic_fy23 = nwc_fy23 + V['ppe_fy23']
 ic_fy24 = nwc_fy24 + V['ppe_fy24'] + V['intang_fy24']
@@ -947,22 +988,30 @@ assert V['nd_fy25'] > 0 and nci_val > 0, "net debt and NCI must reduce equity va
 # Egyptian WACC, then translate. Disclosed as an alternative, not the primary.
 WACC_USD = 0.75 * (0.043 + V['beta'] * 0.075) + 0.25 * 0.065 * (1 - TAX)
 fgn_frac = [fgn_egp[i] / rev[i] for i in range(5)]
-fcff_f = [fcff[i] * fgn_frac[i] for i in range(5)]
+# The foreign cash-flow leg is EGP-denominated and INFLATED by the assumed depreciation
+# path. Discounting it at a hard-currency rate without first deflating it back to dollars
+# would count the currency benefit twice. So: convert each year to USD at that year's
+# rate, discount in USD, then translate the result back at the FY2025 rate.
+fcff_f_usd = [fcff[i] * fgn_frac[i] / V['fx_path'][i] for i in range(5)]
 fcff_d = [fcff[i] * (1 - fgn_frac[i]) for i in range(5)]
 df_usd, c2 = [], 1.0
 for _ in range(5):
     c2 /= (1 + WACC_USD); df_usd.append(c2)
-pv_f = sum(fcff_f[i] * df_usd[i] for i in range(5))
-tv_f = nopat_term * (1 - rr_term) * fgn_frac[-1] / (WACC_USD - 0.035)
+pv_f_usd = sum(fcff_f_usd[i] * df_usd[i] for i in range(5))
+tv_f_usd = (nopat_term * (1 - rr_term) * fgn_frac[-1] / V['fx_path'][-1]) / (WACC_USD - 0.035)
+ev_f_egp = (pv_f_usd + tv_f_usd * df_usd[-1]) * V['fx_hist']['FY25']
 pv_d = sum(fcff_d[i] * df[i] for i in range(5))
 tv_d = nopat_term * (1 - rr_term) * (1 - fgn_frac[-1]) / (wacc_term - V['g_term'])
-ev_ccy = pv_f + tv_f * df_usd[-1] + pv_d + tv_d * df[-1]
+ev_ccy = ev_f_egp + pv_d + tv_d * df[-1]
 eq_ccy = (ev_ccy - V['nd_fy25'] + assoc_val) * (1 - nci_share)
 ccy_ps = eq_ccy / SH
-say(f"[Currency-of-discounting alternative] discounting the ~{fgn_frac[-1]:.0%} hard-currency cash "
-    f"flow leg at a USD WACC of {WACC_USD:.2%} with 3.5% terminal growth, and the domestic leg "
-    f"unchanged, gives EGP {ccy_ps:.2f}/share ({ccy_ps/SPOT-1:+.0%} vs spot). This is disclosed "
-    f"as the alternative the market appears to be applying, not as the primary read.")
+say(f"[Currency-of-discounting alternative — UIP-corrected] the hard-currency leg "
+    f"({fgn_frac[-1]:.0%} of cash flow) is first DEFLATED to dollars at each year's exchange "
+    f"rate, discounted at a USD cost of capital of {WACC_USD:.2%} with 3.5% terminal growth, and "
+    f"only then translated back. Discounting the EGP-denominated leg — already inflated by the "
+    f"assumed depreciation path — directly at a dollar rate would count the currency benefit "
+    f"twice, which is what the previous version did. Corrected result EGP {ccy_ps:.2f}/share "
+    f"({ccy_ps/SPOT-1:+.0%} vs spot), against {108.27:.2f} before the correction.")
 
 # ---- lens 2: relative --------------------------------------------------------
 ebitda_mid = ebitda[1]
@@ -975,12 +1024,18 @@ ev_ebitda_trailing = ev_trailing / ebitda_fy25
 pe_trailing = SPOT / (V['npa_fy25'] / SH)
 
 # ---- lens 3: normalized earnings power ---------------------------------------
-norm_margin = float(np.mean(ebitda_margin[2:]))
-norm_rev = rev[1]
+# All three components now come from the SAME year (FY2028E, the mid-point of the
+# forecast). The previous build mixed FY2027 revenue, an FY2028-30 average margin,
+# FY2026 peak interest and FY2025 associates — an external audit was right to call
+# that temporally incoherent.
+NORM_I = 2
+norm_margin = ebitda_margin[NORM_I]
+norm_rev = rev[NORM_I]
 norm_ebitda = norm_margin * norm_rev
 norm_ebit = norm_ebitda - V['dna_pct'] * norm_rev
-norm_interest = V['kd'] * debt_fy25 - 0.10 * cash_fy25
-norm_np = (norm_ebit - norm_interest + assoc_fy25) * (1 - TAX) * (1 - nci_share)
+norm_interest = interest_path_pre[NORM_I]
+norm_assoc = assoc_fy25 * (1.08 ** (NORM_I + 1))
+norm_np = (norm_ebit - norm_interest + norm_assoc) * (1 - TAX) * (1 - nci_share)
 norm_eps = norm_np / SH
 norm_ps = V['pe_just'] * norm_eps
 norm_bear = 7.0 * norm_eps
@@ -1240,7 +1295,8 @@ OUT = dict(
     rel=dict(ebitda_mid=ebitda_mid, ev_rel=ev_rel, ev_ebitda_trailing=ev_ebitda_trailing,
              pe_trailing=pe_trailing, just_mult=V['ev_ebitda_just']),
     norm=dict(margin=norm_margin, rev=norm_rev, ebitda=norm_ebitda, ebit=norm_ebit,
-              interest=norm_interest, np=norm_np, eps=norm_eps, pe=V['pe_just']),
+              interest=norm_interest, np=norm_np, eps=norm_eps, pe=V['pe_just'],
+              year=YRS[NORM_I], assoc=norm_assoc),
     book=dict(bvps=bvps, pb_just=pb_just, roe_sust=V['roe_sust'], roe_trailing=roe_trailing,
               ke_blend=ke_blend),
     sens=dict(g_grid=g_grid, wt_grid=wt_grid, we_grid=we_grid, grid_wacc_g=grid_wacc_g,

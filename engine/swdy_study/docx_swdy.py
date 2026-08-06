@@ -150,11 +150,19 @@ rows = [['Item', 'Detail'],
          f"historical range"],
         ['Shares outstanding', f"{n0(SH)}mn"],
         ['Market capitalisation', f"EGP {n0(M['mktcap'])}mn at the anchor price"],
-        ['Ownership', f"El Sewedy family {pc(own['family'])} · free float {pc(own['float'])} · "
-         f"Electra Investment Holding {pc(own['electra'])}"],
+        ['Ownership', f"El Sewedy family ~{pc(own['family'])} · Electra Investment Holding "
+         f"{pc(own['electra'])} · free float ~{pc(own['float'])}. Electra, an Abu Dhabi holding "
+         f"vehicle, acquired about 20% in a July-2024 tender offer at USD 1.05 per share "
+         f"(~USD 449mn). Note the company's own shareholder chart is easy to misread: taken in "
+         f"legend order it implies a 20.37% free float, but that slice is Electra's. The genuine "
+         f"float is roughly half that"],
         ['Net bank debt', f"EGP {n0(IN['nd_fy25'])}mn at 31 December 2025 "
          f"({n1(IN['nd_fy25']/HI['FY25']['ebitda'])}× EBITDA)"],
-        ['Dividend record', f"EGP {p2(IN['dps_fy24'])} per share proposed on the FY2024 result"]]
+        ['Dividend record', f"EGP {p2(IN['dps_fy24'])} per share on the FY2024 result; EGP "
+         f"{p2(IN['dps_fy25'])} on FY2025 (+{(IN['dps_fy25']/IN['dps_fy24']-1)*100:.0f}%), "
+         f"approved 6 May 2026 and paid from 4 June 2026 — about EGP "
+         f"{n0(IN['dps_fy25']*SH)}mn, or {pc(IN['dps_fy25']*SH/HI['FY25']['npa'])} of "
+         f"attributable profit, which is close to the 25% payout the forecast assumes"]]
 table(rows, [1.55, 5.45], size=8.8, align_right_from=9)
 
 P(f"Two structural facts govern everything that follows. First, the revenue base is majority hard "
@@ -250,9 +258,13 @@ H2('1.3  Relative multiples')
 rows = [['Measure', 'Value', 'Comment'],
         ['Enterprise value / EBITDA (trailing)', f"{n1(REL['ev_ebitda_trailing'])}×",
          f"enterprise value {n0(M['ev_trailing'])} over FY2025 EBITDA {n0(HI['FY25']['ebitda'])}"],
-        ['Price / earnings (trailing)', f"{n1(REL['pe_trailing'])}×",
+        ['Price / earnings (trailing, attributable basis)', f"{n1(REL['pe_trailing'])}×",
          f"price {p2(SPOT)} over attributable earnings per share of "
          f"{p2(HI['FY25']['npa']/SH)}"],
+        ['Price / earnings (trailing, as-reported basis)', f"{n1(SPOT/7.13)}×",
+         "the company's own reported earnings per share is struck after the Egyptian employee and "
+         "board profit-share appropriation, so screens and data vendors show this higher multiple. "
+         "Both are given because a reader comparing against a screen will see the second"],
         ['Price / book', f"{n1(SPOT/BK['bvps'])}×", f"book value {p2(BK['bvps'])} per share"],
         ['Net bank debt / EBITDA', f"{n1(IN['nd_fy25']/HI['FY25']['ebitda'])}×",
          'light net leverage against a large gross book'],
@@ -593,7 +605,10 @@ rows = [['Marker', 'Level (EGP)', 'Reading'],
         ['50-session average', p2(sma[50]), f"price is {sgn(SPOT/sma[50]-1)} against it"],
         ['100-session average', p2(sma[100]), f"price is {sgn(SPOT/sma[100]-1)} against it"],
         ['200-session average', p2(sma[200]), f"price is {sgn(SPOT/sma[200]-1)} against it"],
-        ['52-week high', p2(hi52), f"{sgn(SPOT/hi52-1)} from the high"],
+        ['52-week high (closing basis)', p2(hi52), f"{sgn(SPOT/hi52-1)} from the high"],
+        ['52-week high (intraday)', p2(float(np.max(_df['High'].to_numpy()[-252:]))),
+         f"{sgn(SPOT/float(np.max(_df['High'].to_numpy()[-252:]))-1)} from the high — the "
+         f"conventional basis, and the wider of the two"],
         ['52-week low', p2(lo52), f"{sgn(SPOT/lo52-1)} from the low"],
         ['Annualised volatility', pc(H3M['anchor_vol_ann']),
          'estimated from the daily range, the input to the price cone in section 3']]
@@ -604,7 +619,15 @@ P(f"The share is above every moving average in the stack, and the stack itself i
   f"52-week high. Realised volatility of about {pc(H3M['anchor_vol_ann'],0)} a year is high in "
   f"absolute terms and unremarkable for this market. None of this is a valuation argument; it is "
   f"the price context the valuation has to be read against, and the gap between a strongly trending "
-  f"price and a fundamental central below it is precisely what section 4 addresses.", space_after=10)
+  f"price and a fundamental central below it is precisely what section 4 addresses.")
+_r = np.diff(np.log(px)); _v50 = float(np.std(_r[-50:]) * np.sqrt(252))
+_rx = np.delete(_r, -2); _v50x = float(np.std(_rx[-50:]) * np.sqrt(252))
+P(f"One caveat on the volatility that sets the width of the price cone in section 3. The "
+  f"{pc(H3M['anchor_vol_ann'])} annualised figure is dominated by a single session: the shares "
+  f"rose 14.1% on 4 August 2026 on roughly eleven times normal volume. Realised volatility over "
+  f"the last 50 sessions is {pc(_v50)}; strip out that one session and it falls to {pc(_v50x)}. "
+  f"The cone in section 3 is therefore wide because of one day's move, and a reader who regards "
+  f"that session as a one-off should treat the bands as correspondingly generous.", space_after=10)
 
 # =========================== 3 MONTE CARLO ====================================
 H1('3  A probabilistic price map')
