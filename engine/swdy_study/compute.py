@@ -921,7 +921,10 @@ for i in range(5):
     p += capex[i] - dna[i]; ppe.append(p)
 ic = [nwc[i] + ppe[i] + V['intang_fy24'] for i in range(5)]
 roic = [nopat[i] / ic[i] for i in range(5)]
-roic_term = roic[-1]
+roic_term = nopat[-1] * (1 + V['g_term']) / ic[-1]   # NOPAT(n+1) / IC(n), the standard convention
+say(f"[Terminal return on capital] taken as next year's NOPAT over the closing invested capital "
+    f"({roic_term:.1%}), the standard convention, rather than the same year's NOPAT over closing "
+    f"capital ({roic[-1]:.1%}).")
 nopat_fy23 = V['op_fy23'] * (1 - 0.313)
 nopat_fy24 = V['op_fy24'] * (1 - 0.301)
 nopat_fy25 = op_fy25 * (1 - eff_tax_fy25)
@@ -969,7 +972,10 @@ say(f"[Terminal ceiling] the domestic leg is {dom_share_term:.0%} of FY30E reven
 assert V['g_term'] < blend_ceiling, "terminal g exceeds the blended nominal growth ceiling"
 
 # ---- EV -> equity bridge ----------------------------------------------------
-assoc_val = V['assoc_bv_fy24'] * 1.15
+assoc_val = V['assoc_bv_fy24']   # carrying value, no uplift
+say(f"[Associates] carried at the audited FY2024 carrying value of {assoc_val:,.0f} with NO "
+    f"uplift. The previous version applied an undisclosed 1.15x, which an external audit "
+    f"correctly flagged as an unsourced adjustment; it is removed.")
 nci_share = nci_fy25 / V['pat_fy25']
 eq_pre_nci = ev - V['nd_fy25'] + assoc_val
 nci_val = nci_share * eq_pre_nci
@@ -1014,11 +1020,23 @@ say(f"[Currency-of-discounting alternative — UIP-corrected] the hard-currency 
     f"({ccy_ps/SPOT-1:+.0%} vs spot), against {108.27:.2f} before the correction.")
 
 # ---- lens 2: relative --------------------------------------------------------
-ebitda_mid = ebitda[1]
-ev_rel = V['ev_ebitda_just'] * ebitda_mid
-rel_ps = ((ev_rel - V['nd_fy25'] + assoc_val) * (1 - nci_share)) / SH
-rel_bear = ((5.5 * ebitda_mid - V['nd_fy25'] + assoc_val) * (1 - nci_share)) / SH
-rel_bull = ((8.0 * ebitda_mid - V['nd_fy25'] + assoc_val) * (1 - nci_share)) / SH
+# A multiple applied to FY2027 EBITDA produces an enterprise value AS AT end-FY2027.
+# It has to be discounted back to today before the bridge. The previous version treated
+# a two-year-forward enterprise value as today's — an external audit was right to call
+# this out, and it was worth roughly EGP 29/share on this lens.
+REL_I = 1
+ebitda_mid = ebitda[REL_I]
+df_rel = df[REL_I]
+ev_rel_fwd = V['ev_ebitda_just'] * ebitda_mid
+ev_rel = ev_rel_fwd * df_rel
+def _rel(mult):
+    return (((mult * ebitda_mid) * df_rel - V['nd_fy25'] + assoc_val) * (1 - nci_share)) / SH
+rel_ps, rel_bear, rel_bull = _rel(V['ev_ebitda_just']), _rel(5.5), _rel(8.0)
+say(f"[Relative lens — forward EV discounted] {V['ev_ebitda_just']}x on FY2027E EBITDA "
+    f"{ebitda_mid:,.0f} gives an enterprise value of {ev_rel_fwd:,.0f} AS AT end-FY2027; "
+    f"discounted back at the year-2 factor {df_rel:.4f} that is {ev_rel:,.0f} today -> "
+    f"EGP {rel_ps:.2f}/share. Not discounting it would have given "
+    f"{((ev_rel_fwd - V['nd_fy25'] + assoc_val) * (1 - nci_share)) / SH:.2f}.")
 ev_trailing = MKTCAP + V['nd_fy25']
 ev_ebitda_trailing = ev_trailing / ebitda_fy25
 pe_trailing = SPOT / (V['npa_fy25'] / SH)
@@ -1043,11 +1061,20 @@ norm_bull = 11.5 * norm_eps
 
 # ---- lens 4: book / justified P/B --------------------------------------------
 bvps = eqp_fy25 / SH
-ke_blend = 0.5 * (ke_exp + ke_term)
-pb_just = (V['roe_sust'] - V['g_term']) / (ke_blend - V['g_term'])
+# The justified price-to-book identity (ROE - g)/(Ke - g) is a perpetuity, so it takes the
+# PERPETUAL cost of equity. The previous version used an average of the explicit-window and
+# terminal rates inside a perpetual formula — internally inconsistent, and an external audit
+# was right about it. Correcting it RAISES this lens.
+ke_blend = ke_term
+pb_just = (V['roe_sust'] - V['g_term']) / (ke_term - V['g_term'])
 book_ps = pb_just * bvps
-book_bear = ((V['roe_sust'] - 0.03) / (ke_exp - 0.03)) * bvps
-book_bull = ((V['roe_sust'] - V['g_term']) / (ke_term - V['g_term'])) * bvps
+book_bear = ((V['roe_sust'] - 0.03) / (0.5 * (ke_exp + ke_term) - 0.03)) * bvps
+book_bull = ((V['roe_sust'] + 0.02 - V['g_term']) / (ke_term - V['g_term'])) * bvps
+say(f"[Book lens] justified price-to-book {pb_just:.2f}x = (sustainable return {V['roe_sust']:.1%} "
+    f"- growth {V['g_term']:.0%}) / (PERPETUAL cost of equity {ke_term:.2%} - growth). Using a "
+    f"blended cost of equity inside a perpetuity formula, as the previous version did, is "
+    f"inconsistent and understated this lens by roughly "
+    f"{(pb_just - (V['roe_sust']-V['g_term'])/(0.5*(ke_exp+ke_term)-V['g_term']))*bvps:.2f}/share.")
 roe_trailing = V['npa_fy25'] / ((V['eqp_fy24'] + eqp_fy25) / 2)
 
 # ---- scenarios on the DCF -----------------------------------------------------
@@ -1076,7 +1103,7 @@ def dcf_scenario(gp_unit_mult=1.0, fx_mult=1.0, wacc_shift=0.0, g=None, opex_shi
     _ppe, pp = [], ppe_fy25
     for i in range(5):
         pp += _capex[i] - _dna[i]; _ppe.append(pp)
-    _roic = _nopat[-1] / (_nwc[-1] + _ppe[-1] + V['intang_fy24'])
+    _roic = _nopat[-1] * (1 + g) / (_nwc[-1] + _ppe[-1] + V['intang_fy24'])
     _rr = min(g / _roic, 0.95)
     _tv = _nopat[-1] * (1 + g) * (1 - _rr) / max(_wt - g, 0.02)
     _ev = sum(_f[i] * _df[i] for i in range(5)) + _tv * _df[-1]
@@ -1126,14 +1153,14 @@ def dcf_at(we_, wt_, g_):
 
 grid_wacc_g = [[dcf_at(wacc_exp, wt, g) for g in g_grid] for wt in wt_grid]
 grid_exp_term = [[dcf_at(we, wt, V['g_term']) for wt in wt_grid] for we in we_grid]
-beta_grid = [0.6, 0.8, 1.0, 1.009, 1.15, 1.3]
+beta_grid = [0.60, 0.80, round(V['beta'], 3), 1.15, 1.30]
 def dcf_beta(b):
     ke = rf_star + b * V['erp_cds']
     we_ = we_exp * ke + wd_exp * kd_at
     wt_ = (1 - V['wd_term']) * (V['rf_term'] + b * V['erp_term']) + V['wd_term'] * kd_term_at
     return dcf_at(we_, wt_, V['g_term'])
 grid_beta = [dcf_beta(b) for b in beta_grid]
-fx_grid = [0.90, 0.95, 1.00, 1.08, 1.20]
+fx_grid = [0.90, 1.00, 1.20, 1.45, 1.70]   # top of range reaches the parity path
 grid_fx = [dcf_scenario(fx_mult=m) for m in fx_grid]
 mg_grid = [0.85, 0.925, 1.0, 1.075, 1.15]
 grid_margin = [dcf_scenario(gp_unit_mult=m) for m in mg_grid]
@@ -1201,12 +1228,20 @@ e1_base, e1_lo, e1_hi = 9.5 * e1_eps, 7.0 * e1_eps, 12.0 * e1_eps
 e2_fcff = float(np.mean(fcff[2:]))
 e2_int_at = (V['kd_path'][3] * debt_fy25 - 0.10 * cash_fy25) * (1 - TAX)
 e2_fcfe = (e2_fcff - e2_int_at) * (1 - nci_share)
-e2_ke = ke_blend
+# Expert 2 capitalises owner cash earnings in perpetuity, so — on the same logic that
+# corrects the book lens — the PERPETUAL cost of equity is the right rate. The range is
+# taken on the discount rate and the growth rate, not by re-using the same rate twice.
+e2_ke = ke_term
 e2_base = e2_fcfe * (1 + V['g_term']) / (e2_ke - V['g_term']) / SH
-e2_lo = e2_fcfe * 1.03 / (ke_exp - 0.03) / SH
-e2_hi = e2_fcfe * 1.05 / (ke_term - V['g_term']) / SH
+e2_lo = e2_fcfe * 1.03 / (0.5 * (ke_exp + ke_term) - 0.03) / SH
+e2_hi = e2_fcfe * 1.06 / (e2_ke - 0.06) / SH
 # E3 — cash returns: economic profit on invested capital through the rate cycle.
-ep_ = [nopat[i] - fwd[i] * ic[i] for i in range(5)]
+ic_beg = [ic_fy25] + ic[:-1]
+ep_ = [nopat[i] - fwd[i] * ic_beg[i] for i in range(5)]
+say(f"[Economic profit convention] the capital charge is taken on BEGINNING-of-year invested "
+    f"capital, not ending. Charging ending capital understates economic profit by roughly "
+    f"{sum((ic[i]-ic_beg[i])*fwd[i] for i in range(5))/5:,.0f}mn a year and pushes the year in "
+    f"which the return spread turns positive one year later than it should. Corrected here.")
 pv_ep = sum(ep_[i] * df[i] for i in range(5))
 ep_term = nopat[-1] * (1 + V['g_term']) - wacc_term * ic[-1] * (1 + V['g_term'])
 pv_ep_term = ep_term / (wacc_term - V['g_term']) * df[-1]

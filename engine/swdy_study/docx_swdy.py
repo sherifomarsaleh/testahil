@@ -269,11 +269,24 @@ rows = [['Measure', 'Value', 'Comment'],
         ['Net bank debt / EBITDA', f"{n1(IN['nd_fy25']/HI['FY25']['ebitda'])}×",
          'light net leverage against a large gross book'],
         ['Justified enterprise value / EBITDA', f"{IN['ev_ebitda_just']}×",
-         'applied to mid-cycle FY2027 EBITDA; an Egyptian-market discount to listed cable and '
-         'electrical-equipment peers, which trade in the 8–11× region'],
+         'applied to FY2027E EBITDA and then DISCOUNTED BACK two years, because a forward '
+         'multiple produces a forward enterprise value. The multiple is set below the '
+         "company's own trailing multiple as an Egyptian-market discount. NOTE: no peer "
+         'multiple is computed anywhere in this study, so this is a judgement anchored on '
+         "SWDY's own trading history, not a peer-derived figure — an earlier draft asserted a "
+         '"peers trade at 8–11×" range that was not supported by any calculation, and it has '
+         'been withdrawn'],
         ['Implied value per share', p2(LN['relative']['base']),
          f"bear {p2(LN['relative']['bear'])} at 5.5× / bull {p2(LN['relative']['bull'])} at 8.0×"]]
 table(rows, [2.15, 0.90, 3.95], size=8.5, band_rows={6})
+P(f"Two things about this lens should be read before its number is. First, applying a multiple to "
+  f"a forecast year gives an enterprise value AS AT that year; it has to be discounted back before "
+  f"it can be compared with today's price. Not doing so would have produced EGP "
+  f"{p2(((REL['ev_rel']/F['df'][1] - IN['nd_fy25'] + DCF['assoc'])*(1-DCF['nci_share']))/SH)} "
+  f"per share instead of {p2(LN['relative']['base'])} — a EGP "
+  f"{p2(((REL['ev_rel']/F['df'][1] - IN['nd_fy25'] + DCF['assoc'])*(1-DCF['nci_share']))/SH - LN['relative']['base'])} "
+  f"overstatement, which an earlier draft of this study contained. Second, the justified multiple "
+  f"is a judgement, not a peer-derived figure.")
 P(f"The honest difficulty with this lens is that there is no clean comparable. The nearest listed "
   f"regional peer in cables is a Saudi manufacturer with a fraction of the revenue, no turnkey "
   f"contracting arm and a very different balance sheet; the global cable majors are European and "
@@ -677,7 +690,7 @@ caption("Touch probabilities exceed finish probabilities because a path can visi
         "back. This distinction matters for anyone thinking about a level rather than a date.")
 
 # =========================== 4 COMPARISON =====================================
-H1('4  Comparison of the lenses, and a verdict')
+H1('4  Comparison of the lenses')
 rows = [['Read', 'What it says', 'What it assumes'],
         ['Fundamental (weighted)', f"EGP {p2(D['central'])} central, "
          f"{sgn(D['central']/SPOT-1,0)} against the market",
@@ -694,7 +707,7 @@ rows = [['Read', 'What it says', 'What it assumes'],
          f"{pc(H3M['p_above'],0)} chance of finishing above spot",
          'volatility persists as it has; no view on value']]
 table(rows, [1.85, 2.20, 2.95], size=8.5)
-P(f"The verdict is that the disagreement between the market and the cash-flow model is almost "
+P(f"The reading we take from this is that the disagreement between the market and the cash-flow model is almost "
   f"entirely a disagreement about the discount rate, and that this is a genuinely open question "
   f"rather than a mistake by one side. A company that earns more than 70% of its money in hard "
   f"currency, borrows more than half its book in hard currency at "
@@ -916,6 +929,7 @@ H2('A.3  Forecast balance sheet and cash-flow markers')
 rows = [['EGP mn'] + YRS,
         ['Net working capital'] + [n0(x) for x in F['nwc']],
         ['Property, plant and equipment'] + [n0(x) for x in F['ppe']],
+        ['Intangible assets and goodwill'] + [n0(IN['intang_fy24'])] * 5,
         ['Invested capital'] + [n0(x) for x in F['ic']],
         ['Return on invested capital'] + [pc(x) for x in F['roic']],
         ['Capital expenditure'] + [f"({n0(x)})" for x in F['capex']],
@@ -1134,8 +1148,8 @@ P(f"The panel spans EGP {p2(min(E1['base'],E2['base'],E3['base']))} to "
   f"{p2(max(E1['base'],E2['base'],E3['base']))} — a factor of "
   f"{max(E1['base'],E2['base'],E3['base'])/min(E1['base'],E2['base'],E3['base']):.1f} between the "
   f"most and least generous reading. That is a wide disagreement and it is not noise. Expert 1 "
-  f"values earnings and finds the company reasonably priced. Expert 2 values cash and finds it "
-  f"expensive by a wide margin. Expert 3 values the spread between returns and the cost of capital "
+  f"values earnings and lands near the market price. Expert 2 values cash and lands well below "
+  f"it. Expert 3 values the spread between returns and the cost of capital "
   f"and finds that the answer depends entirely on which cost of capital applies. The panel median "
   f"of {p2(D['panel_centre'])} sits {sgn(D['panel_centre']/SPOT-1,0)} against the market price and "
   f"close to the study's own weighted central of {p2(D['central'])}.")

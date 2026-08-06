@@ -163,11 +163,11 @@ rows = [
     ('Discounted cash flow', 'links to the DCF sheet', "=DCF!C31"),
     ('  bear', 'margin −1.5pp, weaker currency path, +2pp cost of capital, g 3%', LN['dcf']['bear']),
     ('  bull', 'margin +1.5pp, stronger currency path, −2pp cost of capital, g 6%', LN['dcf']['bull']),
-    ('Relative multiples', f"{IN['ev_ebitda_just']}x mid-cycle EV/EBITDA", "='Relative & Normalized'!C9"),
+    ('Relative multiples', f"{IN['ev_ebitda_just']}x mid-cycle EV/EBITDA", "='Relative & Normalized'!C11"),
     ('Normalised earnings power', f"{IN['pe_just']}x normalised earnings per share",
-     "='Relative & Normalized'!C24"),
+     "='Relative & Normalized'!C26"),
     ('Book value and sustainable return', 'justified price-to-book on sustainable return on equity',
-     "='Relative & Normalized'!C32"),
+     "='Relative & Normalized'!C34"),
 ]
 r = 5
 for a, b, c in rows:
@@ -332,18 +332,20 @@ ws = sheet('Relative & Normalized')
 title(ws, 'Relative multiples and normalised earnings power', None, 5, awidth=52, cwidth=16)
 hdr(ws, 4, ['Relative lens', 'Value'])
 r = 5
-for lab, v, fmt in [('Mid-cycle EBITDA (FY2027E, EGP mn)', "=DCF!C6", NUM0),
+for lab, v, fmt in [('FY2027E EBITDA (EGP mn)', "=DCF!C6", NUM0),
                     ('Justified enterprise value / EBITDA', IN['ev_ebitda_just'], MULT),
-                    ('Implied enterprise value (EGP mn)', '=C5*C6', NUM0),
-                    ('Less net bank debt, plus associates, less minority share (EGP mn)',
-                     f"=(-{IN['nd_fy25']}+{DCF['assoc']})*1", NUM0),
+                    ('Implied enterprise value AS AT end-FY2027 (EGP mn)', '=C5*C6', NUM0),
+                    ('Discount factor back to today (year-2)', F['df'][1], DF4),
+                    ('Implied enterprise value TODAY (EGP mn)', '=C7*C8', NUM0),
+                    ('Less net bank debt, plus associates (EGP mn)',
+                     f"=-{IN['nd_fy25']}+{DCF['assoc']}", NUM0),
                     ('Implied value per share (EGP)',
-                     f"=(C7+C8)*(1-{DCF['nci_share']})/{SH}", PX)]:
+                     f"=(C9+C10)*(1-{DCF['nci_share']})/{SH}", PX)]:
     put(ws, f'A{r}', lab, fmt=None)
     put(ws, f'C{r}', v, GREEN if isinstance(v, str) and 'DCF' in str(v) else (BLUE if not isinstance(v, str) else BLACK), fmt)
     r += 1
-band(ws, 9, 3)
-r = 11
+band(ws, 11, 3)
+r = 13
 for lab, v, fmt in [('Trailing enterprise value / EBITDA', REL['ev_ebitda_trailing'], MULT),
                     ('Trailing price / earnings', REL['pe_trailing'], MULT),
                     ('Trailing price / book', SPOT / BK['bvps'], MULT),
@@ -361,18 +363,18 @@ for lab, v, fmt in [('Mid-cycle revenue (EGP mn)', NRM['rev'], NUM0),
                     ('Implied value per share (EGP)', f"=C{r+5}*C{r+6}", PX)]:
     put(ws, f'A{r}', lab, fmt=None)
     put(ws, f'C{r}', v, BLACK if isinstance(v, str) else BLUE, fmt); r += 1
-band(ws, r - 1, 3)      # row 20 = implied normalised value
+band(ws, r - 1, 3)
 r += 1
 hdr(ws, r, ['Book lens', 'Value']); r += 1
 for lab, v, fmt in [('Book value per share (EGP)', BK['bvps'], PX),
                     ('Sustainable return on equity', BK['roe_sust'], PCT),
                     ('Trailing return on equity', BK['roe_trailing'], PCT),
-                    ('Blended cost of equity', BK['ke_blend'], PCT),
+                    ('Perpetual cost of equity', BK['ke_blend'], PCT),
                     ('Justified price / book', BK['pb_just'], MULT),
                     ('Implied value per share (EGP)', f"=C{r}*C{r+4}", PX)]:
     put(ws, f'A{r}', lab, fmt=None)
     put(ws, f'C{r}', v, BLACK if isinstance(v, str) else BLUE, fmt); r += 1
-band(ws, r - 1, 3)      # row 28 = implied book value
+band(ws, r - 1, 3)
 
 # ============ 8 DCF =============================================================
 ws = sheet('DCF')
