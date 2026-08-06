@@ -64,6 +64,41 @@ def required_n(ic: float, power: float = 0.80, alpha: float = 0.05) -> int:
     return int(math.ceil(((za + zb) / math.atanh(ic)) ** 2 + 3))
 
 
+def required_periods(ic: float, n_per_period: int, power: float = 0.80,
+                     alpha: float = 0.05) -> int:
+    """Cross-sections needed, via the Fundamental Law framing.
+
+    The pooled `required_n` treats every name-date as one observation. The
+    standard equity-factor alternative computes a CROSS-SECTIONAL IC each period
+    and tests the mean of that series, where the sampling SD of a per-period IC
+    on N names is ~1/sqrt(N-1). The two must agree, and they do: at N=31 this
+    returns 26 periods = 810 name-observations against required_n(0.10)=783.
+    Kept as an independent check on the headline number, not a replacement.
+    """
+    if ic <= 0 or n_per_period < 3:
+        return -1
+    t = stats.norm.ppf(1 - alpha / 2) + stats.norm.ppf(power)
+    sd = 1.0 / math.sqrt(n_per_period - 1)
+    return int(math.ceil((t * sd / ic) ** 2))
+
+
+def accrual_eta(n_have: int, n_per_month: float, ic_target: float = 0.10):
+    """Months until the sample can resolve `ic_target`, at a given accrual rate.
+
+    A new observation needs a new MEASUREMENT DATE, not a new study: the gap
+    moves whenever the price moves, so carrying the latest fair value forward and
+    re-measuring monthly is a valid (and standard) way to accrue. Counting only
+    dates when a fresh study lands gives an accrual rate near zero on the
+    observed cadence, and an ETA of never.
+    """
+    need = required_n(ic_target)
+    if n_per_month <= 0:
+        return {"required_n": need, "months": None, "note": "never at this rate"}
+    return {"required_n": need,
+            "months": max(0.0, (need - n_have) / n_per_month),
+            "months_to_min_n": max(0.0, (MIN_N - n_have) / n_per_month)}
+
+
 def wilson(k: int, n: int, z: float = 1.96) -> tuple[float, float]:
     """Wilson score interval for a proportion — behaves at small n, unlike normal."""
     if n == 0:

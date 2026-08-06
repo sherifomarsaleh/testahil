@@ -3,6 +3,26 @@
 **Status: PROPOSED — not adopted.** Awaiting Sherif's decision. Nothing in this document changes
 a published cone, a `LEDGER` row, or an engine config until it is adopted. Written 6-Aug-2026.
 
+> ## ⚠️ STANDING DATA-ADEQUACY NOTICE
+>
+> **This system cannot yet tell you whether the fair values predict returns. We do not have
+> enough data, we know exactly how much is missing, and accrual is in progress.**
+>
+> | | |
+> |---|---|
+> | Observations available today | **5** |
+> | Observations needed to resolve an IC of 0.10 at 80% power | **783** |
+> | Shortfall | **778** |
+>
+> Everything Phase A publishes is therefore a **distance and timing measure**, valid on its own
+> terms, resting on the assumption that the fair value is correct. That assumption is untested and
+> must be labelled as such on every surface this feeds. No output of this protocol may be presented
+> as evidence that a valuation predicts anything until Phase C returns a verdict other than
+> INSUFFICIENT-POWER.
+>
+> The shortfall is a data-accrual problem with a known clock, not a defect in the method — see
+> **§10** for the arithmetic, the accrual rate required, and the dates.
+
 **All three phases are implemented.** Each reads published data only; none writes back to
 `assets/data.js`, and `mc_v3.py` / `market_profiles.py` are untouched.
 
@@ -302,11 +322,10 @@ facts rather than modelling choices:
    the entire git history of `assets/data.js`; only GBCO has revisions, and those are same-week
    edits. A value-gap panel needs *vintages*, and the archive is effectively one cross-section.
 
-**What would unblock it.** Not time alone — re-studies. Each name needs repeated, dated fair-value
-strikes, which is what turns 31 points into a panel. The roll-forward cycle already mints a fresh
-cone monthly; Phase C becomes answerable when fair values are re-struck on a comparable cadence and
-the ledger's graded population grows. Until then the harness runs on every invocation and reports
-its own inadequacy, which is the intended behaviour.
+**What would unblock it.** Regular re-measurement, on a schedule. §10 sets out the arithmetic, the
+required cadence and the dates. Until the sample arrives the harness runs on every invocation and
+reports its own inadequacy, which is the intended behaviour — a tool that cannot answer should say
+so on every run rather than once in a document.
 
 **The engine hook stays unwired.** `signal_active=False` is unchanged, `mc_v3.py` is untouched, and
 `profile.ic` keeps its retained prior. The adapter (`value_gap_backtest.grinold_alpha`) mirrors
@@ -340,6 +359,86 @@ anything.
 **The honest summary at these horizons:** for most EGX names the fundamental gap is 2–10σ away at
 1M and 1–5σ at 3M. The overlay's main output is therefore usually a *negative* one — "not at this
 horizon" — and that is a useful, decision-relevant answer, not a failure of the method.
+
+---
+
+## 10. Data adequacy — how short we are, and when that ends
+
+### 10.1 The target, and why it is 783
+
+Detecting a Spearman IC of 0.10 at 80% power, 5% two-sided (Fisher-z) needs **n = 783**. The
+threshold scales hard with the effect being chased:
+
+| Target IC | Observations needed | Reading |
+|---|---|---|
+| 0.05 | 3,138 | a weak-but-real signal; out of reach for years |
+| **0.10** | **783** | **the working target — a normal equity value signal** |
+| 0.15 | 347 | a strong signal |
+| 0.20 | 194 | implausibly strong; do not plan around it |
+
+**Cross-checked two ways.** The pooled figure treats each name-date as one observation. The
+standard equity-factor alternative (Fundamental Law) computes a cross-sectional IC each period and
+tests the mean of that series, where a per-period IC on N names has sampling SD ≈ `1/sqrt(N-1)`.
+At N=31 that needs **26.2 periods → 810 name-observations**; at N=72, **11.1 periods → 795**. Both
+land within 4% of 783 before rounding, so the target does not depend on which framing is used.
+(`required_periods()` returns the ceiling — 27 and 12 — since you cannot observe a fraction of a
+period; the unrounded figures are what make the cross-check exact.) Reproduce with
+`direction_score.required_n()` and `required_periods()`.
+
+### 10.2 What counts as an observation — the point that sets the clock
+
+**A new observation requires a new MEASUREMENT DATE, not a new study.** The gap
+`G = ln(FV/S0)/sigma_h` moves whenever the *price* moves, so carrying the most recent fair value
+forward and re-measuring on a schedule is a valid observation — and is exactly how every published
+value factor is built (book value updates annually; the factor is rebalanced monthly).
+
+This distinction decides whether the project ever finishes:
+
+- Counting only dates when a **fresh study lands**: the observed re-study rate across the whole
+  archive is ~0/month (30 of 31 names have never been re-valued). ETA: **never**.
+- Counting **monthly re-measurement** against the latest available fair value: 31 observations a
+  month, starting immediately. ETA below.
+
+The roll-forward cycle already runs monthly per name, so the second path adds a measurement step to
+an existing cadence rather than a new research burden.
+
+### 10.3 When we get there
+
+From n=5 on 6-Aug-2026, to n=783:
+
+| Accrual scenario | Obs/month | Time to n=783 | Date |
+|---|---|---|---|
+| **EGX 31 names, monthly re-measurement** | 31 | **25 months** | **~Sep 2028** |
+| EGX 31 names, quarterly | 10.3 | 75 months | ~Nov 2032 |
+| EGX 31 names, semi-annual | 5.2 | 151 months | ~Feb 2039 |
+| **All 72 covered names, monthly** | 72 | **11 months** | **~Jun 2027** |
+| All 72 covered names, quarterly | 24 | 32 months | ~Apr 2029 |
+| Only when a new study is published | ~0 | — | **never** |
+
+**Milestones on the recommended path** (EGX monthly, 31/month):
+
+| Milestone | n | When |
+|---|---|---|
+| First descriptive read — `MIN_N`, still not promotable | 100 | **~Nov 2026** |
+| Resolves IC ≥ 0.20 if one exists | 194 | ~Feb 2027 |
+| Resolves IC ≥ 0.15 | 347 | ~Jul 2027 |
+| **Verdict on IC 0.10 — the decision point** | **783** | **~Sep 2028** |
+
+Pooling all 72 covered names reaches the decision point in **~11 months (mid-2027)** instead of 25.
+That is the single highest-leverage change available, and it carries one condition: each market has
+its own profile, `nu` and `width_cal`, so `G` is only comparable across markets *because* it is
+already normalized by each name's own `sigma_h`. Pool the standardized gap, never the raw
+percentage gap — and report per-market ICs alongside the pooled one, so a single market cannot
+carry the verdict (the same discipline LONO applies to names).
+
+### 10.4 What must not happen while we wait
+
+- **No promotion on an interim read.** `MIN_N` exists to stop a promising n=150 result from being
+  wired into `profile.ic`. The gate is the gate.
+- **No silent re-labelling.** Until the verdict lands, every Phase A surface says PROVISIONAL.
+- **No back-filling.** Observations accrue forward from a dated measurement. Retro-fitting today's
+  fair values onto past origins would manufacture the sample and destroy the result — the one
+  failure that cannot be undone, because the contamination is invisible afterwards.
 
 ---
 
