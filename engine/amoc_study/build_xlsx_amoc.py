@@ -182,7 +182,24 @@ drv(r, 'line_tot_v', 'Total sales value, year to Jun-2024', 'EGP mn', IN['line_t
 drv(r, 'fx_fy24', 'USD/EGP average, year to Jun-2024', 'EGP', IN['fx_fy24'], NUM1, 'month-weighted across the float'); r += 1
 drv(r, 'spec_ramp_cy25', 'Specialty tonnage ramp to the base year', '%', IN['spec_ramp_cy25'], PCT, 'on the disclosed +40% export rise'); r += 1
 drv(r, 'oil_share_spec', 'Base oils as a share of specialty tonnage', '%', U['oil_share_of_spec'], PCT, 'from the disclosed table'); r += 1
-drv(r, 'margin_ratio', 'Specialty margin as a multiple of the fuel margin', 'x', IN['margin_ratio'], '0.00', 'the one judgment parameter behind the margin'); r += 1
+drv(r, 'loss_frac', 'Process loss and internal fuel burn', '%', IN['loss_frac'], PCT, 'share of feedstock intake'); r += 1
+drv(r, 'bbl_per_t', 'Barrels per tonne of feedstock', 'bbl', IN['bbl_per_t_feed'], '0.00', 'heavier than light crude at 7.33'); r += 1
+drv(r, 'energy_usd_t', 'Energy and utilities', 'USD/t feed', IN['energy_usd_t'], NUM1, 'lube trains are energy-intensive'); r += 1
+for _k in ('oil', 'wax', 'fuel'):
+    drv(r, 'chem_' + _k, f'Chemicals and catalyst — {_k}', 'USD/t', IN['chem_usd_t'][_k], NUM1,
+        'solvent and catalyst; near nil on the fuel slate'); r += 1
+drv(r, 'fixed_fy23', 'Fixed conversion cost, year to Jun-2023', 'EGP mn', IN['fixed_cost_fy23'], NUM0, 'labour, maintenance, plant overhead'); r += 1
+for _i, _v in enumerate(IN['fixed_cost_infl']):
+    drv(r, 'finf_' + str(_i), f'Fixed-cost inflation factor, year {_i + 1}', 'x', _v, '0.000',
+        'Egyptian headline inflation easing to target'); r += 1
+drv(r, 'cplx', 'Specialty fixed-cost intensity vs the fuel slate', 'x', IN['complexity_weight'], '0.00', 'allocates the fixed leg between lines'); r += 1
+drv(r, 'crude_fy23', 'Brent average, year to Jun-2023', 'USD/bbl', IN['crude_hist']['fy23'], NUM1, 'house estimate'); r += 1
+drv(r, 'crude_fy24', 'Brent average, year to Jun-2024', 'USD/bbl', IN['crude_hist']['fy24'], NUM1, 'house estimate'); r += 1
+drv(r, 'fx_fy23', 'USD/EGP average, year to Jun-2023', 'EGP', IN['fx_hist']['fy23'], NUM1, 'house estimate'); r += 1
+drv(r, 'fx_fy25', 'USD/EGP average, year to Jun-2025', 'EGP', IN['fx_hist']['fy25'], NUM1, 'house estimate'); r += 1
+drv(r, 'recon_px', 'Base-year realisation premium over the Brent deck', 'x', U['recon_px'], '0.0000', 'carried forward rather than dropped'); r += 1
+for _i, _v in enumerate(IN['brent_path']):
+    drv(r, 'brent_' + str(_i), f'Brent deck, {2026 + _i}E', 'USD/bbl', _v, NUM1, 'now drives BOTH sides of the margin'); r += 1
 drv(r, 'fx_cy25', 'USD/EGP average, calendar 2025', 'EGP', IN['fx_avg_cy25'], NUM1, ''); r += 1
 drv(r, 'fx_spot', 'USD/EGP spot', 'EGP', IN['fx'], NUM1, '6 Aug 2026'); r += 1
 
@@ -242,9 +259,6 @@ PATHS = [
     ('line_vg_oil', 'Base-oil volume growth', IN['line_vol_growth']['oil'], PCT2),
     ('line_vg_wax', 'Paraffin-wax volume growth', IN['line_vol_growth']['wax'], PCT2),
     ('line_vg_fuel', 'Fuel-slate volume growth', IN['line_vol_growth']['fuel'], PCT2),
-    ('line_pg_oil', 'Base-oil dollar price growth', IN['line_price_growth']['oil'], PCT2),
-    ('line_pg_wax', 'Paraffin-wax dollar price growth', IN['line_price_growth']['wax'], PCT2),
-    ('line_pg_fuel', 'Fuel-slate dollar price growth', IN['line_price_growth']['fuel'], PCT2),
     ('cash_yield_path', 'Yield on cash path', IN['cash_yield_path'], PCT2),
 ]
 PR = {}
@@ -269,12 +283,14 @@ rr += 1
 band(wsA, rr, 6); put(wsA, f'A{rr}', 'HISTORICAL GROSS MARGIN — one column per period', BLACK,
                       None, bold=True); rr += 1
 hdr(wsA, rr, ['Period'] + YH, 1); rr += 1
-put(wsA, f'A{rr}', 'Gross margin (historical)', BLACK, None)
-for c, v in enumerate(IN['gm_hist']):
-    put(wsA, f'{get_column_letter(2+c)}{rr}', v, BLUE, PCT2)
+put(wsA, f'A{rr}', 'Gross margin (historical) — BUILT, see Product Lines', BLACK, None)
+for c, v in enumerate(U['gm_built']):
+    putf(wsA, f'{get_column_letter(2+c)}{rr}',
+         f"='Product Lines'!{get_column_letter(2+c)}@PL_HGM@", v, PCT2)
 GMH_R = rr; rr += 1
-put(wsA, f'A{rr}', 'FY2022/23 is the DISCLOSED margin: gross profit over cost of sales plus '
-                   'gross profit', BLACK, None)
+put(wsA, f'A{rr}', 'NOT an input. FY2022/23 is the DISCLOSED margin and the other three are '
+                   'PREDICTIONS of the cost build, which is calibrated on that one year alone',
+    BLACK, None)
 rr += 2
 band(wsA, rr, 6); put(wsA, f'A{rr}', 'LENS WEIGHTS', BLACK, None, bold=True); rr += 1
 LW = {}
@@ -355,9 +371,9 @@ put(wsU, f'A{r}', 'Specialty tonnage (FY2024/25 disclosed, plus the export ramp)
 putf(wsU, f'B{r}', f"={A('vol_spec_fy25')}*(1+{A('spec_ramp_cy25')})", U['spec_vol25'], NUM3)
 SPV = r; r += 2
 
-band(wsU, r, 8); put(wsU, f'A{r}', 'BASE-YEAR LINES AND THE RECONCILIATION', BLACK, None,
+band(wsU, r, 8); put(wsU, f'A{r}', 'THE CALENDAR-2025 BASE LINES', BLACK, None,
                      bold=True); r += 1
-hdr(wsU, r, ['', 'Tonnes (mn)', 'USD / tonne', 'USD/EGP', 'Revenue (EGP mn)']); r += 1
+hdr(wsU, r, ['', 'Tonnes (mn)', '', '', '']); r += 1
 BR3 = {}
 for k in LN3:
     put(wsU, f'A{r}', LNAME[k], BLACK, None)
@@ -367,44 +383,181 @@ for k in LN3:
         putf(wsU, f'B{r}', f"=B{SPV}*(1-{A('oil_share_spec')})", U['vol25']['wax'], NUM3)
     else:
         putf(wsU, f'B{r}', f"=B{VCY}-B{SPV}", U['vol25']['fuel'], NUM3)
-    putf(wsU, f'C{r}', f"=E{DT[k][0]}*(1+{P('line_pg_'+k, 0)})^1.5", U['px25'][k], NUM0)
-    putf(wsU, f'D{r}', f"={A('fx_cy25')}", IN['fx_avg_cy25'], NUM1, green=True)
-    putf(wsU, f'E{r}', f"=B{r}*C{r}*D{r}", U['rev25_lines'][k]/U['recon'], NUM0)
     BR3[k] = r; r += 1
-put(wsU, f'A{r}', 'Bottom-up total', BLACK, None, bold=True)
-putf(wsU, f'E{r}', f"=E{BR3['oil']}+E{BR3['wax']}+E{BR3['fuel']}", U['rev25_bu'], NUM0, bold=True)
-BUT = r; r += 1
-put(wsU, f'A{r}', 'Calendar-2025 revenue from two disclosed halves', BLACK, None)
+put(wsU, f'A{r}', 'Calendar-2025 revenue from two disclosed halves (EGP mn)', BLACK, None)
 putf(wsU, f'E{r}', f"=({A('rev_fy25_a')}+{A('rev_fy25_b')}+{A('rev_fy25_c')})/3"
                    f"-{A('rev_h1fy25')}+{A('rev_h2cy25')}", BASE['rev_cy25'], NUM0)
-RCY25_R = r; r += 1
-put(wsU, f'A{r}', 'RECONCILIATION FACTOR', BLACK, None, bold=True)
-putf(wsU, f'E{r}', f"=E{RCY25_R}/E{BUT}", U['recon'], '0.0000', bold=True)
-RECON_R = r; r += 2
-note(wsU, r, 'Two independent routes to the same base-year revenue, agreeing within the factor '
-             'shown. The factor is APPLIED to every line and every forecast year and it is on '
-             'the face of the sheet — a bottom-up build that absorbs its own gap into one '
-             'residual line is not a bottom-up build.', 8)
-r += 1
+RCY25_R = r; r += 2
 
-band(wsU, r, 8); put(wsU, f'A{r}', 'THE TWO LEG MARGINS, SOLVED FROM ONE DISCLOSED BLEND',
+band(wsU, r, 8); put(wsU, f'A{r}', 'THE CRACK STRUCTURE — solved from the disclosed table',
                      BLACK, None, bold=True); r += 1
-put(wsU, f'A{r}', 'Specialty share of base-year revenue', BLACK, None)
-putf(wsU, f'B{r}', f"=(E{BR3['oil']}+E{BR3['wax']})/E{BUT}", U['ss'], PCT); SSR = r; r += 1
-put(wsU, f'A{r}', 'Base-year blended gross margin (disclosed anchor path)', BLACK, None)
-putf(wsU, f'B{r}', f"={GMH(3)}", IN['gm_hist'][3], PCT2, green=True); GMA = r; r += 1
-put(wsU, f'A{r}', 'Specialty margin as a multiple of the fuel margin', BLACK, None)
-putf(wsU, f'B{r}', f"={A('margin_ratio')}", IN['margin_ratio'], '0.00', green=True); MRT = r; r += 1
-put(wsU, f'A{r}', 'Fuel and by-product gross margin (solved)', BLACK, None)
-putf(wsU, f'B{r}', f"=B{GMA}/(B{SSR}*B{MRT}+1-B{SSR})", U['m_fuel'], PCT2); MF = r; r += 1
-put(wsU, f'A{r}', 'Specialty gross margin (solved)', BLACK, None)
-putf(wsU, f'B{r}', f"=B{MRT}*B{MF}", U['m_spec'], PCT2); MS = r; r += 1
-put(wsU, f'A{r}', 'Check: the two remix to the disclosed blend', BLACK, None)
-putf(wsU, f'B{r}', f"=B{SSR}*B{MS}+(1-B{SSR})*B{MF}", IN['gm_hist'][3], PCT2); r += 2
+put(wsU, f'A{r}', 'Brent average, year to June 2024 (USD / bbl)', BLACK, None)
+putf(wsU, f'B{r}', f"={A('crude_fy24')}", IN['crude_hist']['fy24'], NUM1, green=True)
+CB24 = r; r += 1
+put(wsU, f'A{r}', 'Crude parity (USD / tonne) = Brent x barrels per tonne', BLACK, None)
+putf(wsU, f'B{r}', f"=B{CB24}*{A('bbl_per_t')}", U['parity_fy24'], NUM0); PAR24 = r; r += 1
+CRK = {}
+for k in LN3:
+    put(wsU, f'A{r}', f'{LNAME[k]} — realisation as a multiple of crude parity', BLACK, None)
+    putf(wsU, f'B{r}', f"=E{DT[k][0]}/B{PAR24}", U['crack'][k], '0.000')
+    CRK[k] = r; r += 1
+r += 1
+note(wsU, r, 'These are the disclosed product table divided by the crude price. They are not '
+             'assumptions and they are not fitted to any margin. Base oil near 1.9x crude, wax '
+             'near 1.7x and a gas-oil blend within a per cent of parity is the textbook shape of '
+             'a lube refinery slate — the strongest single check that the product table is real.',
+     8)
+r += 2
 
-band(wsU, r, 8); put(wsU, f'A{r}', 'THE FORECAST', BLACK, None, bold=True); r += 1
+band(wsU, r, 8); put(wsU, f'A{r}',
+                     'THE FEEDSTOCK DIFFERENTIAL — solved on the ONE disclosed cost of sales',
+                     BLACK, None, bold=True); r += 1
+HM = U['hist_margin']
+put(wsU, f'A{r}', 'Brent average, year to June 2023 (USD / bbl)', BLACK, None)
+putf(wsU, f'B{r}', f"={A('crude_fy23')}", IN['crude_hist']['fy23'], NUM1, green=True)
+CB23 = r; r += 1
+put(wsU, f'A{r}', 'Crude parity, year to June 2023 (USD / tonne)', BLACK, None)
+putf(wsU, f'B{r}', f"=B{CB23}*{A('bbl_per_t')}", HM['fy23']['parity'], NUM0); PAR23 = r; r += 1
+put(wsU, f'A{r}', 'Blended realisation at the disclosed mix (USD / tonne)', BLACK, None)
+putf(wsU, f'B{r}', "=" + "+".join(f"F{DT[k][0]}*B{PAR23}*B{CRK[k]}" for k in LN3),
+     sum((IN[f'line_{k}_t'] if k != 'fuel' else U['line_fuel_t']) / IN['line_tot_t']
+         * HM['fy23']['parity'] * U['crack'][k] for k in LN3), NUM0)
+BL23 = r; r += 1
+put(wsU, f'A{r}', 'IMPLIED FY2022/23 THROUGHPUT (mn tonnes) — derived, not assumed', BLACK, None)
+putf(wsU, f'B{r}', f"={A('rev_fy23')}/(B{BL23}*{A('fx_fy23')})*1000000/1000000",
+     U['ton_fy23'], NUM3); T23 = r; r += 1
+put(wsU, f'A{r}', 'Feedstock intake (mn tonnes) = product / (1 - process loss)', BLACK, None)
+putf(wsU, f'B{r}', f"=B{T23}/(1-{A('loss_frac')})", U['ton_fy23']/(1-IN['loss_frac']), NUM3)
+FT23 = r; r += 1
+put(wsU, f'A{r}', 'Energy and utilities (EGP mn)', BLACK, None)
+putf(wsU, f'B{r}', f"=B{FT23}*{A('energy_usd_t')}*{A('fx_fy23')}", HM['fy23']['cogs']['energy'],
+     NUM0); r += 1
+put(wsU, f'A{r}', 'Chemicals, solvent and catalyst (EGP mn)', BLACK, None)
+putf(wsU, f'B{r}', "=(" + "+".join(f"B{T23}*F{DT[k][0]}*{A('chem_'+k)}" for k in LN3) +
+     f")*{A('fx_fy23')}", HM['fy23']['cogs']['chem'], NUM0); r += 1
+put(wsU, f'A{r}', 'Fixed conversion — labour, maintenance, plant overhead (EGP mn)', BLACK, None)
+putf(wsU, f'B{r}', f"={A('fixed_fy23')}", IN['fixed_cost_fy23'], NUM0, green=True); r += 1
+put(wsU, f'A{r}', 'DISCLOSED cost of sales, year to June 2023 (EGP mn)', BLACK, None)
+putf(wsU, f'B{r}', f"={A('cogs_fy23')}", IN['cogs_fy23'], NUM0, green=True); CG23 = r; r += 1
+put(wsU, f'A{r}', 'Residual available for feedstock (EGP mn)', BLACK, None)
+putf(wsU, f'B{r}', f"=B{CG23}-B{CG23-3}-B{CG23-2}-B{CG23-1}",
+     IN['cogs_fy23'] - HM['fy23']['cogs']['energy'] - HM['fy23']['cogs']['chem']
+     - IN['fixed_cost_fy23'], NUM0); FRES = r; r += 1
+put(wsU, f'A{r}', 'FEEDSTOCK DIFFERENTIAL vs crude parity — SOLVED', BLACK, None, bold=True)
+putf(wsU, f'B{r}', f"=B{FRES}/(B{FT23}*B{PAR23}*{A('fx_fy23')})", U['feed_diff'], '0.0000',
+     bold=True)
+FD = r; r += 2
+note(wsU, r, 'Nothing about the margin is assumed anywhere on this sheet. The year to June 2023 '
+             'is the only period with a disclosed cost of sales; the feedstock charge is whatever '
+             'it has to be for the build to reproduce it exactly. The answer — a small discount '
+             'to crude parity — is what a lube plant drawing vacuum gas oil from the adjacent '
+             'state complex should show. Change the crude deck, the loss rate or the energy '
+             'assumption and this cell resolves; it is a solve, not an input.', 8)
+r += 2
+
+band(wsU, r, 8); put(wsU, f'A{r}',
+                     'THE HISTORICAL MARGIN — calibrated on ONE year, the other three PREDICTED',
+                     BLACK, None, bold=True); r += 1
+hdr(wsU, r, ['', *YH]); r += 1
+HC4 = ['B', 'C', 'D', 'E']
+HKEY = ['fy23', 'fy24', 'fy25', 'cy25']
+HFX = [A('fx_fy23'), A('fx_fy24'), A('fx_fy25'), A('fx_cy25')]
+HREV = [A('rev_fy23'), A('line_tot_v'),
+        f"({A('rev_fy25_a')}+{A('rev_fy25_b')}+{A('rev_fy25_c')})/3", f"E{RCY25_R}"]
+_hrevv = [IN['rev_fy23'], IN['line_tot_v'], BASE['rev_fy25'], BASE['rev_cy25']]
+put(wsU, f'A{r}', 'Revenue (EGP mn)', BLACK, None)
+for i, c in enumerate(HC4):
+    putf(wsU, f'{c}{r}', f"={HREV[i]}", _hrevv[i], NUM0)
+HREV_R = r; r += 1
+HLV = {}
+for k in LN3:
+    put(wsU, f'A{r}', f'{LNAME[k]} — tonnes (mn)', BLACK, None)
+    _t = [U['ton_fy23'], IN['line_tot_t'] / 1e6, IN['vol_fy25'], None]
+    for i, c in enumerate(HC4):
+        if i == 3:
+            putf(wsU, f'{c}{r}', f"=B{BR3[k]}", U['vol25'][k], NUM3)
+        elif i == 1:
+            putf(wsU, f'{c}{r}', f"=B{DT[k][0]}/1000000",
+                 (IN[f'line_{k}_t'] if k != 'fuel' else U['line_fuel_t']) / 1e6, NUM3)
+        else:
+            putf(wsU, f'{c}{r}', f"={'B' + str(T23) if i == 0 else A('vol_fy25')}*F{DT[k][0]}",
+                 _t[i] * ((IN[f'line_{k}_t'] if k != 'fuel' else U['line_fuel_t'])
+                          / IN['line_tot_t']), NUM3)
+    HLV[k] = r; r += 1
+put(wsU, f'A{r}', 'Total product tonnes (mn)', BLACK, None)
+for i, c in enumerate(HC4):
+    putf(wsU, f'{c}{r}', f"={c}{HLV['oil']}+{c}{HLV['wax']}+{c}{HLV['fuel']}",
+         sum(U['hist_margin'][HKEY[i]]['cogs']['feed_t'] for _ in [0]) * (1 - IN['loss_frac']),
+         NUM3)
+HVOL_R = r; r += 1
+put(wsU, f'A{r}', 'Feedstock intake (mn tonnes)', BLACK, None)
+for i, c in enumerate(HC4):
+    putf(wsU, f'{c}{r}', f"={c}{HVOL_R}/(1-{A('loss_frac')})",
+         U['hist_margin'][HKEY[i]]['cogs']['feed_t'], NUM3)
+HFEED_R = r; r += 1
+put(wsU, f'A{r}', 'Crude parity implied by that revenue (USD / tonne)', BLACK, None)
+for i, c in enumerate(HC4):
+    putf(wsU, f'{c}{r}', "=" + f"{c}{HREV_R}*1000000/((" +
+         "+".join(f"{c}{HLV[k]}*$B${CRK[k]}" for k in LN3) + f")*1000000*{HFX[i]})",
+         U['hist_margin'][HKEY[i]]['parity'], NUM0)
+HPAR_R = r; r += 1
+put(wsU, f'A{r}', 'Implied Brent equivalent (USD / bbl)', BLACK, None)
+for i, c in enumerate(HC4):
+    putf(wsU, f'{c}{r}', f"={c}{HPAR_R}/{A('bbl_per_t')}", U['hist_margin'][HKEY[i]]['brent'],
+         NUM1)
+r += 1
+put(wsU, f'A{r}', 'Feedstock cost (EGP mn)', BLACK, None)
+for i, c in enumerate(HC4):
+    putf(wsU, f'{c}{r}', f"={c}{HFEED_R}*{c}{HPAR_R}*$B${FD}*{HFX[i]}",
+         U['hist_margin'][HKEY[i]]['cogs']['feed'], NUM0)
+HCF_R = r; r += 1
+put(wsU, f'A{r}', 'Energy and utilities (EGP mn)', BLACK, None)
+for i, c in enumerate(HC4):
+    putf(wsU, f'{c}{r}', f"={c}{HFEED_R}*{A('energy_usd_t')}*{HFX[i]}",
+         U['hist_margin'][HKEY[i]]['cogs']['energy'], NUM0)
+HCE_R = r; r += 1
+put(wsU, f'A{r}', 'Chemicals, solvent and catalyst (EGP mn)', BLACK, None)
+for i, c in enumerate(HC4):
+    putf(wsU, f'{c}{r}', "=(" + "+".join(f"{c}{HLV[k]}*{A('chem_'+k)}" for k in LN3) +
+         f")*{HFX[i]}", U['hist_margin'][HKEY[i]]['cogs']['chem'], NUM0)
+HCC_R = r; r += 1
+put(wsU, f'A{r}', 'Fixed conversion (EGP mn)', BLACK, None)
+for i, c in enumerate(HC4):
+    _f = A('fixed_fy23') if i == 0 else f"{HC4[i-1]}{r}*{A('finf_' + str(i - 1))}"
+    putf(wsU, f'{c}{r}', f"={_f}", U['hist_margin'][HKEY[i]]['cogs']['fixed'], NUM0)
+HCX_R = r; r += 1
+put(wsU, f'A{r}', 'COST OF SALES (EGP mn)', BLACK, None, bold=True)
+for i, c in enumerate(HC4):
+    putf(wsU, f'{c}{r}', f"={c}{HCF_R}+{c}{HCE_R}+{c}{HCC_R}+{c}{HCX_R}",
+         U['hist_margin'][HKEY[i]]['cogs']['total'], NUM0, bold=True)
+HCOGS_R = r; r += 1
+put(wsU, f'A{r}', 'HISTORICAL GROSS MARGIN — an OUTPUT', BLACK, None, bold=True)
+for i, c in enumerate(HC4):
+    putf(wsU, f'{c}{r}', f"=({c}{HREV_R}-{c}{HCOGS_R})/{c}{HREV_R}", U['gm_built'][i], PCT2,
+         bold=True)
+HGM_R = r; TOK['PL_HGM'] = HGM_R; r += 1
+put(wsU, f'A{r}', 'What the PREVIOUS edition assumed', BLACK, None)
+for i, c in enumerate(HC4):
+    put(wsU, f'{c}{r}', U['gm_assumed_old'][i], BLUE, PCT2)
+r += 1
+put(wsU, f'A{r}', 'Difference (built less assumed)', BLACK, None)
+for i, c in enumerate(HC4):
+    putf(wsU, f'{c}{r}', f"={c}{HGM_R}-{c}{r-1}", U['gm_built'][i] - U['gm_assumed_old'][i],
+         PCT2)
+r += 2
+note(wsU, r, 'The June-2023 column is the CALIBRATION: the feedstock differential above was '
+             'solved so that this column reproduces the disclosed cost of sales exactly, so a '
+             'zero difference there is arithmetic, not evidence. The other three columns are '
+             'PREDICTIONS — nothing in the cost build was tuned to them — and they land within '
+             'a point of a house margin path that was built by an entirely different route. '
+             'That is the check. Where the two disagree, the BUILT number is the one this model '
+             'carries.', 8)
+r += 2
+
+band(wsU, r, 8); put(wsU, f'A{r}', 'THE FORECAST — margin falls out of the cost build',
+                     BLACK, None, bold=True); r += 1
 hdr(wsU, r, ['', *YF]); r += 1
-LV, LR = {}, {}
+LV = {}
 for k in LN3:
     put(wsU, f'A{r}', f'{LNAME[k]} — tonnes (mn)', BLACK, None)
     prev = f'B{BR3[k]}'
@@ -412,27 +565,37 @@ for k in LN3:
         putf(wsU, f'{c}{r}', f"={prev}*(1+{P('line_vg_'+k, i)})", U['lines_vol'][k][i], NUM3)
         prev = f'{c}{r}'
     LV[k] = r; r += 1
-LP = {}
-for k in LN3:
-    put(wsU, f'A{r}', f'{LNAME[k]} — USD / tonne', BLACK, None)
-    prev = f'C{BR3[k]}'
-    _p = U['px25'][k]
-    for i, c in enumerate(UC):
-        _p = _p * (1 + IN['line_price_growth'][k][i])
-        putf(wsU, f'{c}{r}', f"={prev}*(1+{P('line_pg_'+k, i)})", _p, NUM0)
-        prev = f'{c}{r}'
-    LP[k] = r; r += 1
+put(wsU, f'A{r}', 'Total tonnes (mn)', BLACK, None)
+for i, c in enumerate(UC):
+    putf(wsU, f'{c}{r}', f"={c}{LV['oil']}+{c}{LV['wax']}+{c}{LV['fuel']}", U['vol'][i], NUM3)
+VOL_R = r; r += 1
+put(wsU, f'A{r}', 'Feedstock intake (mn tonnes)', BLACK, None)
+for i, c in enumerate(UC):
+    putf(wsU, f'{c}{r}', f"={c}{VOL_R}/(1-{A('loss_frac')})", U['vol'][i]/(1-IN['loss_frac']),
+         NUM3)
+FEED_R = r; r += 1
+put(wsU, f'A{r}', 'Brent deck (USD / bbl)', BLACK, None)
+for i, c in enumerate(UC):
+    putf(wsU, f'{c}{r}', f"={A('brent_'+str(i))}", IN['brent_path'][i], NUM1, green=True)
+BRT_R = r; r += 1
+put(wsU, f'A{r}', 'Crude parity, carrying the base-year realisation premium (USD / tonne)',
+    BLACK, None)
+for i, c in enumerate(UC):
+    putf(wsU, f'{c}{r}', f"={c}{BRT_R}*{A('bbl_per_t')}*{A('recon_px')}",
+         IN['brent_path'][i]*IN['bbl_per_t_feed']*U['recon_px'], NUM0)
+PAR_R = r; r += 1
 put(wsU, f'A{r}', 'USD/EGP average', BLACK, None)
 for i, c in enumerate(UC):
     putf(wsU, f'{c}{r}', f"={P('fx_path', i)}", IN['fx_path'][i], NUM1, green=True)
 FXR = r; r += 1
+LR = {}
 for k in LN3:
     put(wsU, f'A{r}', f'{LNAME[k]} — revenue (EGP mn)', BLACK, None)
     for i, c in enumerate(UC):
-        putf(wsU, f'{c}{r}', f"={c}{LV[k]}*{c}{LP[k]}*{c}{FXR}*$E${RECON_R}",
+        putf(wsU, f'{c}{r}', f"={c}{LV[k]}*{c}{PAR_R}*$B${CRK[k]}*{c}{FXR}",
              U['lines_rev'][k][i], NUM0)
     LR[k] = r; r += 1
-put(wsU, f'A{r}', 'TOTAL REVENUE', BLACK, None, bold=True)
+put(wsU, f'A{r}', 'TOTAL REVENUE (EGP mn)', BLACK, None, bold=True)
 for i, c in enumerate(UC):
     putf(wsU, f'{c}{r}', f"={c}{LR['oil']}+{c}{LR['wax']}+{c}{LR['fuel']}", F['rev'][i], NUM0,
          bold=True)
@@ -442,30 +605,102 @@ for i, c in enumerate(UC):
     putf(wsU, f'{c}{r}', f"=({c}{LR['oil']}+{c}{LR['wax']})/{c}{REV_R}",
          U['spec_rev'][i]/F['rev'][i], PCT)
 SSHR = r; r += 1
-put(wsU, f'A{r}', 'GROSS PROFIT — the two leg margins on that mix', BLACK, None, bold=True)
+_fx = IN['fixed_cost_infl']
+_ff = IN['fixed_cost_fy23']*_fx[0]*_fx[1]*_fx[2]
+_fixv = []
+for i in range(5):
+    _ff = _ff*_fx[3+i]; _fixv.append(_ff)
+put(wsU, f'A{r}', 'Feedstock cost (EGP mn)', BLACK, None)
+_feedv = []
 for i, c in enumerate(UC):
-    putf(wsU, f'{c}{r}', f"=({c}{LR['oil']}+{c}{LR['wax']})*$B${MS}+{c}{LR['fuel']}*$B${MF}",
-         F['gp'][i], NUM0, bold=True)
+    _v = U['vol'][i]/(1-IN['loss_frac'])*IN['brent_path'][i]*IN['bbl_per_t_feed']*U['recon_px'] \
+        * U['feed_diff']*IN['fx_path'][i]
+    _feedv.append(_v)
+    putf(wsU, f'{c}{r}', f"={c}{FEED_R}*{c}{PAR_R}*$B${FD}*{c}{FXR}", _v, NUM0)
+CFD_R = r; r += 1
+put(wsU, f'A{r}', 'Energy and utilities (EGP mn)', BLACK, None)
+_env = []
+for i, c in enumerate(UC):
+    _v = U['vol'][i]/(1-IN['loss_frac'])*IN['energy_usd_t']*IN['fx_path'][i]
+    _env.append(_v)
+    putf(wsU, f'{c}{r}', f"={c}{FEED_R}*{A('energy_usd_t')}*{c}{FXR}", _v, NUM0)
+CEN_R = r; r += 1
+put(wsU, f'A{r}', 'Chemicals, solvent and catalyst (EGP mn)', BLACK, None)
+_chv = []
+for i, c in enumerate(UC):
+    _v = sum(U['lines_vol'][k][i]*IN['chem_usd_t'][k] for k in LN3)*IN['fx_path'][i]
+    _chv.append(_v)
+    putf(wsU, f'{c}{r}', "=(" + "+".join(f"{c}{LV[k]}*{A('chem_'+k)}" for k in LN3) +
+         f")*{c}{FXR}", _v, NUM0)
+CCH_R = r; r += 1
+put(wsU, f'A{r}', 'Fixed conversion (EGP mn)', BLACK, None)
+prev = None
+for i, c in enumerate(UC):
+    if i == 0:
+        putf(wsU, f'{c}{r}', f"={A('fixed_fy23')}*{A('finf_0')}*{A('finf_1')}*{A('finf_2')}"
+                             f"*{A('finf_3')}", _fixv[0], NUM0)
+    else:
+        putf(wsU, f'{c}{r}', f"={UC[i-1]}{r}*{A('finf_'+str(3+i))}", _fixv[i], NUM0)
+CFX_R = r; r += 1
+put(wsU, f'A{r}', 'COST OF SALES (EGP mn)', BLACK, None, bold=True)
+for i, c in enumerate(UC):
+    putf(wsU, f'{c}{r}', f"={c}{CFD_R}+{c}{CEN_R}+{c}{CCH_R}+{c}{CFX_R}",
+         _feedv[i]+_env[i]+_chv[i]+_fixv[i], NUM0, bold=True)
+COGS_R = r; r += 1
+put(wsU, f'A{r}', 'GROSS PROFIT (EGP mn) — revenue less the built cost', BLACK, None, bold=True)
+for i, c in enumerate(UC):
+    putf(wsU, f'{c}{r}', f"={c}{REV_R}-{c}{COGS_R}", F['gp'][i], NUM0, bold=True)
 GP_R = r; r += 1
-put(wsU, f'A{r}', 'BLENDED GROSS MARGIN — an output, not an input', BLACK, None, bold=True)
+put(wsU, f'A{r}', 'BLENDED GROSS MARGIN — an OUTPUT of the cost build', BLACK, None, bold=True)
 for i, c in enumerate(UC):
     putf(wsU, f'{c}{r}', f"={c}{GP_R}/{c}{REV_R}", F['gm'][i], PCT2, bold=True)
-GM_R = r; r += 1
-put(wsU, f'A{r}', 'Total tonnes (mn)', BLACK, None)
+GM_R = r; r += 2
+
+band(wsU, r, 8); put(wsU, f'A{r}', 'MARGIN BY LINE — the finding the old model could not produce',
+                     BLACK, None, bold=True); r += 1
+hdr(wsU, r, ['', *YF]); r += 1
+put(wsU, f'A{r}', 'Feedstock + energy per tonne of PRODUCT (USD)', BLACK, None)
 for i, c in enumerate(UC):
-    putf(wsU, f'{c}{r}', f"={c}{LV['oil']}+{c}{LV['wax']}+{c}{LV['fuel']}", U['vol'][i], NUM3)
-VOL_R = r; r += 2
+    putf(wsU, f'{c}{r}', f"=({c}{CFD_R}+{c}{CEN_R})/{c}{FXR}/{c}{VOL_R}",
+         (_feedv[i]+_env[i])/IN['fx_path'][i]/U['vol'][i], NUM0)
+FPT_R = r; r += 1
+put(wsU, f'A{r}', 'Fixed conversion per WEIGHTED tonne (USD)', BLACK, None)
+_wt = [U['lines_vol']['oil'][i]*IN['complexity_weight'] +
+       U['lines_vol']['wax'][i]*IN['complexity_weight'] + U['lines_vol']['fuel'][i]
+       for i in range(5)]
+for i, c in enumerate(UC):
+    putf(wsU, f'{c}{r}', f"={c}{CFX_R}/{c}{FXR}/({c}{LV['oil']}*{A('cplx')}"
+                         f"+{c}{LV['wax']}*{A('cplx')}+{c}{LV['fuel']})",
+         _fixv[i]/IN['fx_path'][i]/_wt[i], NUM1)
+FXPT_R = r; r += 1
+LM = {}
+for k in LN3:
+    put(wsU, f'A{r}', f'{LNAME[k]} — GROSS MARGIN (output)', BLACK, None, bold=True)
+    _w = A('cplx') if k != 'fuel' else '1'
+    for i, c in enumerate(UC):
+        putf(wsU, f'{c}{r}',
+             f"=({c}{PAR_R}*$B${CRK[k]}-{c}{FPT_R}-{A('chem_'+k)}-{c}{FXPT_R}*{_w})"
+             f"/({c}{PAR_R}*$B${CRK[k]})", U['line_margin'][k][i], PCT2, bold=True)
+    LM[k] = r; r += 1
+r += 1
+note(wsU, r, 'Read the fuel row before anything else on this sheet. The specialty lines earn '
+             'tens of per cent and the fuel and by-product slate runs at or below break-even, '
+             'because it sells at crude parity and the feedstock costs almost as much as the '
+             'product fetches. The previous edition ASSUMED the specialty slate earned 3.5x the '
+             'fuel slate, which put them at roughly 14% against 4%. The build says the gap is far '
+             'wider than that and that essentially all of this company\'s gross profit is made on '
+             'about a seventh of its tonnage. Nothing here was fitted to produce that result.', 8)
+r += 2
 put(wsU, f'A{r}', 'Calendar-2025 profit after tax, same halves construction', BLACK, None)
 putf(wsU, f'B{r}', f"=({A('pat_fy25')}-{A('pat_h1fy25')})+{A('pat_h2cy25')}", BASE['pat_cy25'],
      NUM0)
-PATCY25_R = r; r += 2
-note(wsU, r, 'The blended margin widens across the forecast ONLY because the specialty share of '
-             'revenue rises against two fixed leg margins. Neither leg margin improves. That is '
-             'what "the margin widens on mix" has to mean if it is to mean anything, and it is '
-             'now a property of the arithmetic on this sheet rather than a caption on a chart.', 8)
+PATCY25_R = r; r += 1
 ANCH['legs'] = dict(rev=REV_R, gp=GP_R, gm=GM_R, vol=VOL_R, spec_share=SSHR,
-                    rev_cy25=RCY25_R, pat_cy25=PATCY25_R, recon=RECON_R,
-                    m_spec=MS, m_fuel=MF, lines_rev=LR, lines_vol=LV)
+                    rev_cy25=RCY25_R, pat_cy25=PATCY25_R, recon=FD,
+                    m_spec=LM['oil'], m_fuel=LM['fuel'], lines_rev=LR, lines_vol=LV,
+                    cogs=COGS_R, feed=CFD_R, crack=CRK, feed_diff=FD, hist_gm=HGM_R,
+                    hist_cogs=HCOGS_R, hist_par=HPAR_R)
+
 
 
 def LG(row, col):

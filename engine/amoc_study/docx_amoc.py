@@ -98,7 +98,9 @@ P(f"Two structural facts shape everything that follows. The first is the year-en
 P(f"The volume story is real and recent. The transition half alone sold "
   f"{n0(IN['vol_h2cy25']*1000)} thousand tonnes, {sgn(0.145,1)} on the same period a year "
   f"earlier and an annualised {n3(IN['vol_h2cy25']*2)}mn tonnes against {n1(IN['vol_fy25'])}mn in "
-  f"the June-2025 year. Exports of oils and waxes rose about 40% on entry into new markets. The "
+  f"the June-2025 year. Exports of oils and waxes reached about "
+  f"{n0(IN['exp_h2cy25']*1000)} thousand tonnes in that half, up about 40% on entry into new "
+  f"markets. The "
   f"first calendar quarter of 2026 carried it on: consolidated sales of EGP "
   f"{n0(IN['rev_q1cy26'])}mn and profit of EGP {n0(IN['pat_q1cy26'])}mn, up 37%.")
 P(f"On the primary construction the four lenses centre at EGP {p2(D['central'])} a share against "
@@ -229,12 +231,12 @@ caption(f"The specialty leg is {pc(U['spec_vol25']/U['vol_cy25'],0)} of the tonn
         f"legs shown here are an AGGREGATION of the three product lines built in section 1.4 — "
         f"base oils and paraffin wax added together — and not a separate estimate; readers "
         f"wanting the line-by-line tonnage, dollar realisation and revenue should go there. An "
-        f"earlier edition of this study offered the implied fuel realisation of about USD "
-        f"{n0(U['px25']['fuel'])} a tonne as the check 'that tells us the split is real rather "
-        f"than fitted to a target'. In that edition the fuel price was the RESIDUAL of base-year "
-        f"revenue, so the check was circular and the sentence has been withdrawn. In this "
-        f"edition every realisation is derived from the disclosed product table and the fuel "
-        f"figure is an OUTPUT of that table, not a plug.")
+        f"earlier edition offered the implied fuel realisation as the check 'that tells us the "
+        f"split is real rather than fitted to a target'. In that edition the fuel price was the "
+        f"RESIDUAL of base-year revenue, so the check was circular and the sentence has been "
+        f"withdrawn. Section 1.5 now shows something the aggregation above conceals entirely: "
+        f"almost all of this company's gross profit is made on the specialty leg, and the fuel "
+        f"slate runs at or below break-even.")
 
 H2('The balance sheet is the unusual part')
 P(f"A company turning over EGP {n1(BASE['rev_cy25']/1000)}bn runs on a balance sheet of EGP "
@@ -346,90 +348,146 @@ P(f"That matters because of what it replaces. An earlier construction of this st
   f"a specialty price that was a free input and a fuel price that was the RESIDUAL of the base-year "
   f"revenue — and then offered the implied fuel realisation as a check that the split was real. A "
   f"residual cannot corroborate the construction that produced it. It is gone.")
-P(f"The two routes to the base year are reconciled in the open, and the reconciliation is NOT a "
-  f"clean agreement — read this paragraph before relying on the table below. Rolling the three "
-  f"disclosed lines forward gives EGP {U['rev25_bu']:,.0f}mn of calendar-2025 revenue; building "
-  f"the base year from two disclosed halves gives EGP {BASE['rev_cy25']:,.0f}mn. The line build "
-  f"is {abs(U['recon']-1):.1%} too HIGH. That is a material gap, not a rounding difference, and "
-  f"it would be dishonest to present it as corroboration — an earlier draft of this paragraph "
-  f"did exactly that and the sentence has been removed.")
-P(f"Where the gap comes from is identifiable, and the direction is the giveaway. The disclosed "
-  f"product table is the year to June 2024, at {IN['line_tot_t']/1e6:.3f}mn tonnes. Calendar 2025 "
-  f"ran at {U['vol_cy25']:.3f}mn tonnes — LOWER, by "
-  f"{abs(U['vol_cy25']/(IN['line_tot_t']/1e6)-1):.1%}, which is consistent with the company's own "
-  f"commentary on that bridge: volumes fell while value rose, because the currency moved further "
-  f"than the tonnage did. The roll-forward assumes volumes GREW across those eighteen months. So "
-  f"the {abs(U['recon']-1):.1%} is very largely a volume error in the bridge between the two "
-  f"dates, not a disagreement about what the company earns per tonne — the dollar realisations "
-  f"survive it, because the same table produced both sides.")
-P(f"The gap is closed by scaling, not by explanation, and that is disclosed rather than buried. "
-  f"The single factor {U['recon']:.4f} is applied to every line and every forecast year, so the "
-  f"filed halves win outright on the LEVEL and the disclosed table governs only the MIX and the "
-  f"per-tonne economics — which is the correct division of labour between the two sources, since "
-  f"the halves are filed and the table is reported. What a reader should take from it is a "
-  f"caution about precision: an input the model is prepared to scale by {abs(U['recon']-1):.1%} "
-  f"is not an input that supports three-significant-figure claims about any single line's "
-  f"revenue. The mix conclusions in the next section are robust to the factor because it "
-  f"multiplies every line identically and therefore cancels out of every share and every margin; "
-  f"the absolute revenue level is not, and rests on the filed halves alone.")
 LBL = {'oil': 'Base oils', 'wax': 'Paraffin wax', 'fuel': 'Fuel and by-products'}
+P(f"There is no reconciliation factor in this edition, and no assumed price growth either. Both "
+  f"are replaced by something the earlier build did not have: a crude reference that prices the "
+  f"product AND the feedstock. Every realisation is the Brent deck times a CRACK MULTIPLE solved "
+  f"from the disclosed table — base oils {U['crack']['oil']:.3f} times crude parity, paraffin wax "
+  f"{U['crack']['wax']:.3f} times, and the fuel and by-product slate "
+  f"{U['crack']['fuel']:.3f} times, which is to say at parity. Those three numbers are the "
+  f"disclosed product table divided by the crude price. They are not fitted to anything, and "
+  f"that base oil prints near 1.9 times crude, wax near 1.7 and a gas-oil blend within a per cent "
+  f"of parity is the textbook shape of a lube refinery's slate — the strongest single piece of "
+  f"evidence available here that the product table is genuine.")
 rows = [['', 'Disclosed\nyear to\nJun-2024', 'CY2025'] + [y.replace('E', '') for y in YRS]]
 rows.append(['VOLUME (mn tonnes)', '', '', '', '', '', '', ''])
 for k in U['lines']:
     rows.append([f"   {LBL[k]}", n3(IN[f'line_{k}_t']/1e6) if k != 'fuel' else n3(U['line_fuel_t']/1e6),
                  n3(U['vol25'][k])] + [n3(v) for v in U['lines_vol'][k]])
 rows.append(['   TOTAL', n3(IN['line_tot_t']/1e6), n3(U['vol_cy25'])] + [n3(v) for v in U['vol']])
-rows.append(['PRICE (USD / tonne)', '', '', '', '', '', '', ''])
+rows.append(['CRUDE AND REALISATIONS (USD)', '', '', '', '', '', '', ''])
+rows.append(['   Brent equivalent, per barrel', n1(IN['crude_hist']['fy24']),
+             n1(U['hist_margin']['cy25']['brent'])] +
+            [n1(x*U['recon_px']) for x in IN['brent_path']])
 for k in U['lines']:
-    rows.append([f"   {LBL[k]}", n0(U['px_usd'][k]), n0(U['px25'][k])] +
-                [n0(U['lines_rev'][k][i]/U['lines_vol'][k][i]/IN['fx_path'][i]/U['recon'])
+    rows.append([f"   {LBL[k]} — per tonne", n0(U['px_usd'][k]),
+                 n0(U['hist_margin']['cy25']['parity']*U['crack'][k])] +
+                [n0(IN['brent_path'][i]*IN['bbl_per_t_feed']*U['recon_px']*U['crack'][k])
                  for i in range(5)])
 rows.append(['   USD / EGP average', n1(IN['fx_fy24']), n1(IN['fx_avg_cy25'])] +
             [n1(x) for x in IN['fx_path']])
 rows.append(['REVENUE (EGP mn)', '', '', '', '', '', '', ''])
 for k in U['lines']:
     rows.append([f"   {LBL[k]}", n0(IN[f'line_{k}_v']) if k != 'fuel' else n0(U['line_fuel_v']),
-                 n0(U['rev25_lines'][k]*U['recon'])] + [n0(x) for x in U['lines_rev'][k]])
+                 n0(U['rev25_lines'][k])] + [n0(x) for x in U['lines_rev'][k]])
 rows.append(['   TOTAL', n0(IN['line_tot_v']), n0(BASE['rev_cy25'])] + [n0(x) for x in F['rev']])
-table(rows, [1.62, 0.78, 0.72, 0.72, 0.72, 0.72, 0.72, 0.72], size=7.8,
-      band_rows={1, 5, 6, 10, 11, 15}, left_cols={0})
-caption(f"Volume growth tapers from {pc(IN['line_vol_growth']['fuel'][0])} to "
-        f"{pc(IN['line_vol_growth']['fuel'][4])} on the fuel slate and from "
-        f"{pc(IN['line_vol_growth']['oil'][0])} to {pc(IN['line_vol_growth']['oil'][4])} on base "
-        f"oils. The step-change is already IN the base year — the transition half annualises to "
-        f"{n3(IN['vol_h2cy25']*2)}mn tonnes against {n1(IN['vol_fy25'])}mn in the June-2025 year "
-        f"— so the forecast carries only the residual utilisation gain and then maintenance "
-        f"growth. The two specialty lines grow faster on the export push and lift their share of "
-        f"revenue from {pc(U['spec_rev'][0]/F['rev'][0],1)} to "
-        f"{pc(U['spec_rev'][4]/F['rev'][4],1)}. The first column is the DISCLOSED table; "
-        f"everything to the right of it is that table rolled forward on volumes and dollar "
-        f"prices, translated at the exchange-rate path, and scaled by the single reconciliation "
-        f"factor {U['recon']:.4f}.")
+table(rows, [1.62, 0.78, 0.72, 0.72, 0.72, 0.72, 0.72, 0.72], size=7.6,
+      band_rows={1, 5, 6, 11, 12, 16}, left_cols={0})
+caption(f"The base-year column carries a crude EQUIVALENT of ${U['hist_margin']['cy25']['brent']:,.1f} "
+        f"a barrel against a published 2025 Brent average nearer "
+        f"${IN['crude_hist']['cy25']:,.0f} — a premium of {U['recon_px']-1:+.1%}, which is what "
+        f"the disclosed revenue requires at the disclosed tonnage and the solved crack "
+        f"multiples. That premium is CARRIED into the forecast rather than dropped, because "
+        f"dropping it would silently reprice every product line on the first forecast day. It is "
+        f"the honest successor to the blanket reconciliation factor the previous edition "
+        f"applied: same job, but a number that means something physical and that a reader can "
+        f"disagree with.")
 
 figure('fig7_mix.png', 6.9,
-       'Figure 2 — revenue by product line with the EBITDA margin on the right axis. The margin '
-       'widens on mix alone: the per-line margins are fixed for the whole forecast.')
+       'Figure 2 — revenue by product line with the EBITDA margin on the right axis.')
 
-H2('1.5  The gross margin is now an OUTPUT of the mix, not an assumption')
-P(f"The previous edition assumed a gross-margin path rising from 6.50% to 6.88% and captioned the "
-  f"chart 'the margin widens on mix'. There was no mix mechanism in that model — there were no "
-  f"per-line margins for a mix to act on, and an external review was right to call the caption an "
-  f"assumption presented as a consequence. It is now a consequence.")
-P(f"Two leg margins are SOLVED, not assumed. Requiring the blend to equal the base-year margin of "
-  f"{IN['gm_hist'][3]:.2%} at the base-year mix, with the specialty slate earning "
-  f"{IN['margin_ratio']:.1f} times the fuel slate, gives a specialty margin of {U['m_spec']:.2%} "
-  f"and a fuel margin of {U['m_fuel']:.2%}. Those two constants never change. Every forecast "
-  f"year's blended margin is just those two numbers re-weighted by that year's revenue mix.")
-rows = [['', *[y for y in YRS]],
-        ['Specialty share of revenue', *[pc(U['spec_rev'][i]/F['rev'][i]) for i in range(5)]],
-        ['BLENDED GROSS MARGIN (output)', *[pc(F['gm'][i], 2) for i in range(5)]]]
-table(rows, [2.35, 0.92, 0.92, 0.92, 0.92, 0.92], size=8.4, band_rows={2})
-P(f"The margin widens by {(F['gm'][-1]-F['gm'][0])*1e4:.0f} basis points across the forecast and "
-  f"every one of those points comes from the specialty share rising "
-  f"{pc(U['spec_rev'][0]/F['rev'][0])} to {pc(U['spec_rev'][4]/F['rev'][4])}. Nothing about the "
-  f"spread on either line is assumed to improve. Note the size: the old ASSUMED path widened "
-  f"38 basis points, three times what the mix can actually justify. Removing the assumption "
-  f"lowered the valuation, which is the direction that tells you it was doing work.")
+H2('1.5  The cost side, built per tonne — and what it says about the fuel slate')
+P(f"This is the section the previous edition did not have, and its absence was the single "
+  f"largest weakness in that model. Cost of sales is {1-F['gm'][0]:.1%} of revenue on this "
+  f"company. Modelling it as revenue times one minus an assumed margin means the assumption IS "
+  f"the valuation. It is now built.")
+rows = [['Component', 'Basis', f"CY2025 (EGP mn)", 'Per tonne of product'],
+        ['Feedstock', 'Crude parity × a differential SOLVED on disclosed cost of sales',
+         n0(U['hist_margin']['cy25']['cogs']['feed']),
+         f"USD {U['hist_margin']['cy25']['feed_pt']:,.0f}"],
+        ['Energy and utilities', 'Per tonne of feedstock intake',
+         n0(U['hist_margin']['cy25']['cogs']['energy']),
+         f"USD {IN['energy_usd_t']/(1-IN['loss_frac']):,.0f}"],
+        ['Chemicals, solvent, catalyst', 'Per tonne of product, by line',
+         n0(U['hist_margin']['cy25']['cogs']['chem']), 'USD 3 – 60 by line'],
+        ['Fixed conversion', 'Labour, maintenance, plant overhead — EGP-denominated',
+         n0(U['hist_margin']['cy25']['cogs']['fixed']), '—'],
+        ['COST OF SALES', '', n0(U['hist_margin']['cy25']['cogs']['total']), ''],
+        ['REVENUE', '', n0(BASE['rev_cy25']), ''],
+        ['GROSS MARGIN (output)', '', pc(U['gm_built'][3], 2), '']]
+table(rows, [1.55, 2.75, 1.15, 1.25], size=8.2, band_rows={5, 7}, left_cols={0, 1})
+P(f"Only ONE parameter in that table is fitted, and it is fitted to disclosure rather than to a "
+  f"margin. The year to June 2023 is the only period with a disclosed cost of sales — EGP "
+  f"{n0(IN['cogs_fy23'])}mn against revenue of {n0(IN['rev_fy23'])}mn. Energy, chemicals and the "
+  f"fixed leg account for part of it; the feedstock charge is whatever is left. That works out "
+  f"at {U['feed_diff']:.4f} of crude parity, which is a small discount to crude — exactly what a "
+  f"lube plant drawing vacuum gas oil and long residue from the adjacent state complex should "
+  f"show. It was solved, not chosen, and if it had come out at 1.3 or at 0.5 this whole section "
+  f"would have had to be abandoned.")
+P(f"Everything after that is a PREDICTION. The build is calibrated on one year and one cost "
+  f"line; the other three historical margins are outputs, and the previous edition's assumed "
+  f"path is the thing they can be checked against.")
+rows = [['', *YH],
+        ['Gross margin — BUILT (this edition)', *[pc(x, 2) for x in U['gm_built']]],
+        ['Gross margin — ASSUMED (previous edition)',
+         *[pc(x, 2) for x in U['gm_assumed_old']]],
+        ['Difference', *[f"{(a-b)*1e4:+.0f} bp" for a, b in zip(U['gm_built'],
+                                                                U['gm_assumed_old'])]]]
+table(rows, [2.42, 1.09, 1.09, 1.09, 1.09], size=8.4, band_rows={1})
+caption(f"The June-2023 column is the calibration, so a zero difference there is arithmetic and "
+        f"not evidence. The other three are the test, and they land within "
+        f"{max(abs(a-b) for a, b in zip(U['gm_built'][1:], U['gm_assumed_old'][1:]))*1e4:.0f} "
+        f"basis points of a path that was built by a completely different route — from the "
+        f"disclosed FY2022/23 margin drifting up on an assumed mix shift. Two independent "
+        f"constructions agreeing to within a point on a 6% margin is a real check, and it is the "
+        f"one the earlier edition's 'reconciliation factor' was reaching for and missing. Where "
+        f"they disagree the BUILT number is carried, which is why the forecast margin here is "
+        f"slightly below the previous edition's.")
+P(f"Now the finding that matters, and it is not a small one. Because the cost build prices every "
+  f"line off the same feedstock, the per-line margins are OUTPUTS, and they are nothing like "
+  f"each other.", size=10)
+rows = [['Line', 'Realisation (USD/t)', 'Gross margin 2026E', 'Share of tonnage',
+         'Share of gross profit'],
+        *[[LBL[k],
+           n0(IN['brent_path'][0]*IN['bbl_per_t_feed']*U['recon_px']*U['crack'][k]),
+           pc(U['line_margin'][k][0], 1),
+           pc(U['lines_vol'][k][0]/U['vol'][0], 1),
+           pc(U['lines_rev'][k][0]*U['line_margin'][k][0]/F['gp'][0], 1)] for k in U['lines']]]
+table(rows, [1.60, 1.35, 1.20, 1.15, 1.40], size=8.3, left_cols={0})
+caption(f"Read the bottom row first. The fuel and by-product slate is "
+        f"{U['lines_vol']['fuel'][0]/U['vol'][0]:.0%} of the tonnage and it runs at "
+        f"{pc(U['line_margin']['fuel'][0],1)} — at or below break-even — because it sells at "
+        f"crude parity and the feedstock costs almost as much as the product fetches. Essentially "
+        f"the whole gross profit of this company is made on the "
+        f"{(U['lines_vol']['oil'][0]+U['lines_vol']['wax'][0])/U['vol'][0]:.0%} of tonnage that "
+        f"is base oil and wax. The previous edition ASSUMED the specialty slate earned 3.5 times "
+        f"the fuel slate, which put them at roughly 14% against 4%. That was not a small error of "
+        f"degree — it described a different business.")
+P(f"Three consequences follow, and they change how the rest of this study should be read. First, "
+  f"growth in the fuel slate is worth almost nothing: tonnage there converts to revenue and to "
+  f"very little else. Second, the export push into base oils and wax is worth far more than the "
+  f"earlier model could show, because it is the only leg that carries margin. Third, this "
+  f"company is far more exposed to the base-oil crack than to crude, to volume, or to the "
+  f"exchange rate — and the sensitivity table in section 1.11 should be read with that in mind.")
+P(f"One honest caution on all of it. The yields, the energy intensity and the chemicals charges "
+  f"are HOUSE ESTIMATES; this environment could not reach the notes to the accounts that would "
+  f"replace them. What protects the conclusion is that the two parameters doing the real work — "
+  f"the crack multiples and the feedstock differential — are both solved against disclosure, and "
+  f"that the estimated ones are demonstrably weak levers. The process-loss rate, the one yield "
+  f"parameter with no source at all, moves the blended margin by less than a hundred-thousandth "
+  f"of itself, because it scales feedstock intake and the solved differential in opposite "
+  f"directions and they cancel. That is asserted in the companion model as a live test, not "
+  f"claimed here.")
+P(f"And the crude deck, which was the obvious worry: moving it 10% either way moves the built "
+  f"margin from {pc(U['elast']['dn'],2)} to {pc(U['elast']['up'],2)} against a base of "
+  f"{pc(U['elast']['base'],2)} — an elasticity near "
+  f"{abs((U['elast']['up']-U['elast']['dn'])/2/U['elast']['base'])/0.10:.1f} times rather than "
+  f"the fifteen a naive reading would fear. Crude prices the product and the feedstock, so most "
+  f"of it cancels; what does not cancel is the EGP-denominated fixed leg, whose share of revenue "
+  f"moves when the dollar side moves. That is also the mechanism behind something the earlier "
+  f"model could not explain — why this company's reported margin WIDENED through the devaluation "
+  f"sequence while its dollar economics did not improve at all.")
+
 
 H2('1.6  The cost of capital, built rather than asserted')
 P(f"Egypt is a market in monetary transition, so a single flat rate applied to both the explicit "
@@ -440,7 +498,9 @@ P(f"Egypt is a market in monetary transition, so a single flat rate applied to b
 rows = [['Component', 'Explicit window', 'Terminal', 'Note'],
         ['Risk-free rate', pc(IN['rf']), pc(IN['rf_term']),
          "10-year local-currency government bond today; the terminal rate is norm-built from the "
-         "central bank's own 5% medium-term inflation target plus a 5.5-point emerging-market "
+         f"central bank's own published inflation target — {pc(IN['cbe_target'],0)} for late 2026, "
+         f"falling to 5% thereafter — plus an emerging-market real-rate convention"
+         " "
          "real-rate convention"],
         ['less sovereign default spread', f"({pc(IN['sov_spread_cds'])})", '—',
          'netted out so Egypt’s default risk is not charged twice — once inside the pound '
@@ -505,6 +565,16 @@ rows = [['EGP mn', *YRS],
         ['Discount factor', *[f"{x:.4f}" for x in F['df']]],
         ['PRESENT VALUE OF FREE CASH FLOW', *[n0(x) for x in F['pv']]]]
 table(rows, [2.35, 0.92, 0.92, 0.92, 0.92, 0.92], size=8.2, band_rows={10, 12})
+P(f"Two disclosed figures belong beside this table, neither of which the model otherwise "
+  f"consumes. The rate applied above is an EFFECTIVE {pc(IN['tax_eff'],1)} against Egypt's "
+  f"statutory corporate rate of {pc(IN['tax_stat'],1)} — AMOC is taxed at the ordinary rate, not "
+  f"the ~40.55% that applies to exploration and production — and the study deliberately carries "
+  f"the higher effective figure. Separately, the company's own approved planning budget put net "
+  f"sales at EGP {n0(IN['budget_rev'])}mn for the year to June 2026 against a budgeted net "
+  f"profit near EGP 1.02bn. The forecast here runs above the revenue line of that budget, on "
+  f"calendar years and on the disclosed volume ramp; a reader who prefers management's own plan "
+  f"should treat the first forecast year as the more aggressive of the two and discount "
+  f"accordingly.", size=10)
 caption('The full build is shown to the present value of free cash flow rather than stopping at '
         'the cash-flow line, so every step between the margin and the discounted number is '
         'visible and checkable.')
@@ -1074,7 +1144,8 @@ bullet(f"The entire book is EGP {n1(IN['debt_snap'])}mn of short-dated Egyptian-
 bullet(f"An interest-expense-over-average-balance computation on a book this small is not a "
        f"usable estimator — the denominator is {pc(IN['debt_snap']/BASE['rev_cy25'],3)} of "
        f"revenue and rounds away in the disclosure. The rate is therefore built from an "
-       f"observable instead: the central bank's overnight lending rate of 20.00% plus a "
+       f"observable instead: the central bank's main operation rate of {pc(IN['policy_rate'])}, "
+    f"held at the third meeting of 2026 against headline inflation of {pc(IN['cpi'])}, plus a "
        f"200-basis-point corporate spread, giving {pc(IN['kd'])}. Saying that plainly is the "
        f"honest alternative to computing a precise-looking number out of a rounding residual.",
        bold_head='Independent effective rate. ')

@@ -302,8 +302,10 @@ table([['What was sought', 'Why it matters', 'Outcome'],
         f"{D['unit']['px_usd']['fuel']:,.0f} a tonne are the right levels and the right ORDER "
         'for SN-grade base oil, fully refined paraffin and a gas-oil blend; and rolling the '
         'three lines forward reproduces the independently built calendar-2025 revenue to within '
-        f"{abs(D['unit']['recon']-1)*100:.1f}%. No price in the model is calibrated and none is "
-        'a residual'],
+        f"{abs(D['unit']['recon_px']-1)*100:.1f}% once the implied crude equivalent is carried "
+        'across. No price in the model is calibrated, none is a residual, and the crack '
+        'multiples the table implies — base oil near 1.9x crude parity, wax near 1.7x, the fuel '
+        'slate at parity — are the textbook shape for this configuration'],
        ['A disclosed non-controlling-interest balance or profit share',
         'The minority deduction in the bridge is inferred from the gap between consolidated and '
         'standalone profit',

@@ -178,90 +178,50 @@ INP['fx_fy24'] = I(36.4, "USD/EGP average for the year to 30 June 2024. Eight mo
 INP['spec_ramp_cy25'] = I(0.10, "Growth in specialty tonnage from the disclosed FY2024/25 172kt to "
                                 "the calendar-2025 base, on the disclosed 40% rise in oils-and-wax "
                                 "EXPORTS through the transition half", "2026-08-06", "House")
-# --- the COST BUILD ---------------------------------------------------------
-# The margin is no longer an input in any form. Cost of sales is built per tonne from a
-# feedstock charge, an energy charge, a chemicals charge and a fixed conversion leg; the
-# gross margin — blended AND per line — is what falls out. Two parameters are SOLVED against
-# disclosure rather than assumed, and both produce a number that can be checked against
-# refinery norms:
-#   * the crack multiples (product realisation as a multiple of crude parity) are solved from
-#     the disclosed FY2023/24 product table;
-#   * the feedstock differential is solved so that the build reproduces the DISCLOSED
-#     FY2022/23 cost of sales of EGP 21,218.64mn exactly.
-# Nothing else about the margin is fitted. FY2023/24, FY2024/25 and the base year are then
-# PREDICTIONS of the calibrated build, and the study reports how close they land.
-INP['loss_frac'] = I(0.030, "Process loss and internal fuel burn, as a share of feedstock intake — "
-                            "the gap between tonnes of feed drawn and tonnes of saleable product "
-                            "out. 2-4% is the ordinary range for a lube refinery of this "
-                            "configuration; 3.0% is taken. HOUSE ESTIMATE, not disclosed",
-                     "2026-08-06", "House")
-INP['bbl_per_t_feed'] = I(6.9, "Barrels per tonne of feedstock, used to convert a dollar-a-barrel "
-                               "crude reference into a dollar-a-tonne feedstock parity. 7.33 is "
-                               "the figure for light crude; a heavier vacuum-gas-oil and long-"
-                               "residue feed of the kind a lube plant draws runs nearer 6.8-7.0. "
-                               "HOUSE ESTIMATE",
-                          "2026-08-06", "Industry")
-INP['energy_usd_t'] = I(22.0, "Energy and utilities — fuel gas, steam, power — in US dollars per "
-                              "tonne of feedstock intake. Solvent extraction, dewaxing and "
-                              "hydrofinishing make a lube plant materially more energy-intensive "
-                              "than simple fractionation. HOUSE ESTIMATE",
-                        "2026-08-06", "Industry")
-INP['chem_usd_t'] = I(dict(oil=45.0, wax=60.0, fuel=3.0),
-                      "Chemicals, solvent make-up and catalyst, US dollars per tonne of PRODUCT, "
-                      "by line. The specialty lines carry solvent losses and catalyst that the "
-                      "fuel slate does not — wax highest because it passes through dewaxing as "
-                      "well. The fuel and by-product slate is essentially fractionation and "
-                      "carries almost none. HOUSE ESTIMATE",
-                      "2026-08-06", "Industry")
-INP['fixed_cost_fy23'] = I(700.0, "Fixed conversion cost inside cost of sales — plant labour, "
-                                  "maintenance, plant overhead — EGP mn in the year to June 2023. "
-                                  "This is the EGP-denominated leg of the cost base, and its "
-                                  "presence is why devaluation WIDENS the reported margin: "
-                                  "revenue and feedstock are both dollar-linked and this is not. "
-                                  "HOUSE ESTIMATE",
-                           "2026-06-30", "House")
-INP['fixed_cost_infl'] = I([1.33, 1.28, 1.12, 1.145, 1.13, 1.115, 1.10, 1.095],
-                           "Cumulative-year inflation factors applied to the fixed conversion leg, "
-                           "FY2023/24 through 2030E: Egyptian headline inflation as printed for "
-                           "the historical years and easing toward the central bank's target "
-                           "thereafter", "2026-08-06", "Country")
-INP['complexity_weight'] = I(3.0, "Fixed conversion cost per tonne on the specialty lines as a "
-                                  "multiple of the fuel slate. A tonne of base oil occupies the "
-                                  "extraction, dewaxing and finishing trains; a tonne of gas-oil "
-                                  "blend leaves at the fractionator. This allocates the fixed leg "
-                                  "and is the ONLY judgment parameter left inside the margin — and "
-                                  "it moves the SPLIT between lines, not the blended margin, which "
-                                  "is pinned by the solved feedstock differential",
-                             "2026-08-06", "House")
+INP['margin_ratio'] = I(3.5, "Gross margin on the specialty slate as a MULTIPLE of the margin on "
+                             "the fuel and by-product slate. This is now the ONE judgment "
+                             "parameter behind the whole margin path: the two leg margins are "
+                             "SOLVED so that the blended margin at the base-year mix equals the "
+                             "disclosed anchor, and the margin path for every forecast year is "
+                             "then an OUTPUT of the changing mix rather than an assumption. A "
+                             "lube base-oil and wax slate earning 3-4x the margin of a gas-oil "
+                             "blend is the ordinary shape of a refinery's product economics",
+                        "2026-08-06", "House")
 INP['line_vol_growth'] = I(dict(oil=[0.075, 0.055, 0.045, 0.038, 0.032],
                                 wax=[0.090, 0.070, 0.055, 0.045, 0.040],
                                 fuel=[0.050, 0.036, 0.032, 0.028, 0.023]),
                            "Volume growth by product line. Wax fastest on the export push, base "
                            "oils next, the fuel slate slowest — it is throughput the specialty "
                            "units do not take", "2026-08-06", "House")
+INP['line_price_growth'] = I(dict(oil=[0.020, 0.020, 0.020, 0.020, 0.020],
+                                  wax=[0.025, 0.025, 0.020, 0.020, 0.020],
+                                  fuel=[0.010, 0.020, 0.020, 0.020, 0.020]),
+                             "Real growth in the dollar realisation by line. The fuel slate tracks "
+                             "the crude deck; the specialty lines carry a small premium for the "
+                             "export-mix shift", "2026-08-06", "House")
+
 # --- Ring 3: industry ------------------------------------------------------
 INP['brent_path'] = I([70.0, 71.5, 73.0, 74.5, 76.0],
                       "Brent crude reference path, USD a barrel, 2026E-2030E. A flat-to-slowly-"
-                      "rising deck. In the previous edition this input drove NOTHING — it was "
-                      "registered, published in the source register and read by no line of the "
-                      "model. It is now the spine of both sides of the margin: every product "
-                      "realisation is this deck times a crack multiple solved from the disclosed "
-                      "product table, and the feedstock charge is this deck times a differential "
-                      "solved from disclosed cost of sales",
+                      "rising deck: AMOC's realisations track product cracks rather than flat "
+                      "price, and the transition-period commentary attributed the volume-led "
+                      "revenue growth to offsetting the impact of FALLING global oil prices",
                       "2026-08-06", "Industry")
-INP['crude_hist'] = I(dict(fy23=85.0, fy24=84.0, fy25=74.0, cy25=70.0),
-                      "Brent averages for the four historical periods, USD a barrel. HOUSE "
-                      "ESTIMATES read off the published price record for each window, not "
-                      "company disclosure. They matter less than they look: the crude level "
-                      "enters the margin on BOTH sides and very largely cancels, which the "
-                      "study demonstrates rather than asserts",
-                      "2026-08-06", "Industry")
-INP['fx_hist'] = I(dict(fy23=28.5, fy24=36.4, fy25=48.9, cy25=48.7),
-                   "USD/EGP averages for the four historical periods. The June-2024 figure is "
-                   "built month by month across the March-2024 float (eight months near 30.9, "
-                   "four near 47.5); the others are period averages of the published rate. "
-                   "HOUSE ESTIMATES",
-                   "2026-08-06", "Country")
+INP['spec_price_usd_t'] = I(1105.0, "Blended realised price for the specialty leg (base oils SN150/"
+                                    "SN500/SN600, fully refined paraffin wax, transformer and "
+                                    "special oils), USD a tonne, calibrated so that the specialty "
+                                    "and fuel legs together reproduce disclosed FY2024/25 revenue "
+                                    "at the disclosed 1.26mn-tonne volume and 172kt specialty split",
+                            "2026-08-06", "Industry")
+INP['spec_price_growth'] = I([0.02, 0.02, 0.02, 0.02, 0.02],
+                             "Real growth in the specialty realised price, 2% a year in dollars, "
+                             "reflecting the export-mix shift toward higher-value waxes rather than "
+                             "an assumed tightening of the Group I base-oil market",
+                             "2026-08-06", "Industry")
+INP['fuel_price_growth'] = I([0.01, 0.02, 0.02, 0.02, 0.02],
+                             "Growth in the fuel-leg realised price in dollars, tracking the crude "
+                             "deck", "2026-08-06", "Industry")
+
 # --- Ring 2: country -------------------------------------------------------
 INP['rf'] = I(0.2231, "Egypt 10-year local-currency government bond yield, 22.31% (house cost-of-"
                       "capital reference, cached 21-Jul-2026 print, re-verified 06-Aug-2026)",
@@ -359,6 +319,31 @@ INP['opex_pct'] = I([0.0125, 0.0125, 0.0126, 0.0127, 0.0128],
                     "The net operating load between gross profit and EBITDA, as a share of "
                     "revenue — selling, general and administrative costs and other expenses, less "
                     "other operating income", "2026-08-06", "House")
+INP['vol_growth'] = I([0.055, 0.040, 0.035, 0.030, 0.025],
+                      "Total throughput growth. The transition period ran 808kt in six months, an "
+                      "annualised 1.616mn tonnes against 1.26mn in FY2024/25 — the step-change is "
+                      "already IN the base year, so the forecast carries only the residual "
+                      "utilisation gain, tapering to maintenance growth",
+                      "2026-08-06", "House")
+INP['spec_vol_growth'] = I([0.090, 0.070, 0.055, 0.045, 0.040],
+                           "Specialty-leg volume growth, faster than the total on the export push: "
+                           "exports of oils and waxes rose 40% year on year in the transition "
+                           "period on entry into new markets", "2026-08-06", "House")
+INP['gm_hist'] = I([0.0576, 0.0600, 0.0620, 0.0640],
+                   "Gross margin for the four historical periods. The FY2022/23 figure is "
+                   "DISCLOSED (cost of sales EGP 21,218.64mn against gross profit EGP "
+                   "1,297.01mn); the later three are a house path rising gently on the specialty "
+                   "mix shift. They cannot be closed from reported profit, because reported "
+                   "pre-tax profit in these years contains substantial NON-OPERATING income — "
+                   "chiefly exchange gains on export receivables through the 2022-24 devaluation "
+                   "sequence — which is isolated on its own line rather than buried in the "
+                   "operating result", "2026-08-06", "House")
+INP['gm_path'] = I([0.0650, 0.0665, 0.0675, 0.0682, 0.0688],
+                   "Gross margin path. FY2022/23 printed 5.76% on disclosed cost of sales and gross "
+                   "profit; the 2025 base year closes at a higher level on mix. The path widens "
+                   "gently on the specialty share and then flattens — deliberately BELOW what the "
+                   "six months to June 2026 would imply, because that print has not been "
+                   "corroborated by a second source", "2026-08-06", "House")
 INP['cash_yield'] = I(0.170, "Yield earned on the cash pile. Egyptian treasury bills and corporate "
                              "deposits price a few points under the 19.50% policy rate net of the "
                              "20% withholding on interest", "2026-08-06", "House")
@@ -530,194 +515,68 @@ say(f"[Base-year volume, built the same way as the base-year revenue] the transi
     f"unsourced 0.96, giving 1.551mn — {vol_cy25/1.5514-1:+.1%} away and built differently from "
     f"the revenue base it sat beside. That inconsistency is removed.")
 
+px25 = {k: px_usd[k] * (1 + V['line_price_growth'][k][0]) ** 1.5 for k in px_usd}
+rev25_lines = {k: vol25[k] * px25[k] * V['fx_avg_cy25'] for k in vol25}
+rev25_bu = sum(rev25_lines.values())
+recon = rev_cy25 / rev25_bu
+say(f"[Reconciliation to the constructed base] the three lines rolled to calendar 2025 give EGP "
+    f"{rev25_bu:,.0f}mn against the {rev_cy25:,.0f}mn built from two disclosed halves — a "
+    f"reconciliation factor of {recon:.4f}. It is APPLIED to every line and every forecast year "
+    f"and it is on the face of the workbook, because a bottom-up build that silently absorbs its "
+    f"own gap into one residual line is not a bottom-up build. A factor this close to one is the "
+    f"real corroboration the old fuel-price 'check' pretended to be: two independent routes to "
+    f"the same revenue, agreeing within {abs(recon-1):.1%}.")
+assert 0.80 < recon < 1.25, f"bottom-up build misses the disclosed base by {recon-1:+.0%}"
+rev25_lines = {k: v * recon for k, v in rev25_lines.items()}
 
-# ============================ THE COST BUILD =================================
-# Gross margin is not an input anywhere in this model. It is the difference between a
-# realisation per tonne and a cost per tonne, both built from the same crude reference.
+# --- the two leg margins, SOLVED from the one disclosed blended margin ---------
+_ss = (rev25_lines['oil'] + rev25_lines['wax']) / rev_cy25
+m_fuel = V['gm_hist'][3] / (_ss * V['margin_ratio'] + (1 - _ss))
+m_spec = V['margin_ratio'] * m_fuel
+say(f"[Leg margins, solved not assumed] the specialty slate is {_ss:.2%} of base-year revenue. "
+    f"Requiring the blend to equal the base-year margin of {V['gm_hist'][3]:.2%} at a specialty-"
+    f"to-fuel margin ratio of {V['margin_ratio']:.1f}x gives a specialty margin of {m_spec:.2%} "
+    f"and a fuel margin of {m_fuel:.2%}. THE MARGIN PATH IS NOW AN OUTPUT: every forecast year's "
+    f"blended margin is these two constants re-weighted by that year's mix. There is no assumed "
+    f"margin path left in the model, and Figure 2's claim that the margin widens on mix is now a "
+    f"property of the arithmetic rather than a caption.")
+assert abs(_ss * m_spec + (1 - _ss) * m_fuel - V['gm_hist'][3]) < 1e-9, "margin solve does not close"
+
 LINES = ['oil', 'wax', 'fuel']
 YRS = ['2026E', '2027E', '2028E', '2029E', '2030E']
-LOSS, BBL = V['loss_frac'], V['bbl_per_t_feed']
-CHEM, CW = V['chem_usd_t'], V['complexity_weight']
-
-# --- (1) crack multiples, SOLVED from the disclosed product table -------------
-# Product realisation as a multiple of crude parity. Nothing is assumed: the disclosed
-# tonnes and values give EGP per tonne, the period exchange rate gives dollars per tonne,
-# and the period crude average gives the parity to divide by.
-parity_fy24 = V['crude_hist']['fy24'] * BBL
-crack = {k: px_usd[k] / parity_fy24 for k in LINES}
-say(f"[Crack multiples, solved from disclosure] at a June-2024 Brent average of "
-    f"${V['crude_hist']['fy24']:.0f} a barrel, crude parity is ${parity_fy24:,.0f} a tonne. The "
-    f"disclosed realisations divide into it as base oils {crack['oil']:.3f}x, paraffin wax "
-    f"{crack['wax']:.3f}x and the fuel slate {crack['fuel']:.3f}x. THESE ARE NOT ASSUMPTIONS AND "
-    f"THEY ARE NOT FITTED TO ANY MARGIN — they are the disclosed table divided by the crude "
-    f"price. That base oil prints near 1.9x crude, wax near 1.7x and a gas-oil blend within a "
-    f"per cent of parity is the textbook shape of a lube refinery's slate, and it is the "
-    f"strongest single piece of evidence that the product table is genuine.")
-assert 1.5 < crack['oil'] < 2.5 and 0.85 < crack['fuel'] < 1.15, \
-    f"crack multiples implausible: {crack}"
-
-
-def cost_of_sales(tons_by_line, parity, fx, fixed_egp, feed_diff):
-    """Cost of sales, built per tonne. Returns the total and its four components."""
-    prod_t = sum(tons_by_line.values())
-    feed_t = prod_t / (1 - LOSS)
-    feed = feed_t * parity * feed_diff * fx
-    energy = feed_t * V['energy_usd_t'] * fx
-    chem = sum(tons_by_line[k] * CHEM[k] for k in LINES) * fx
-    return dict(feed=feed, energy=energy, chem=chem, fixed=fixed_egp,
-                total=feed + energy + chem + fixed_egp, feed_t=feed_t)
-
-
-# --- (2) the feedstock differential, SOLVED on DISCLOSED FY2022/23 -------------
-# The year to June 2023 is the only period with a disclosed cost of sales. The feedstock
-# charge is whatever it has to be for the build to reproduce EGP 21,218.64mn exactly.
-mix24 = {k: V[f'line_{k}_t'] / V['line_tot_t'] for k in ('oil', 'wax')}
-mix24['fuel'] = 1 - mix24['oil'] - mix24['wax']
-parity_fy23 = V['crude_hist']['fy23'] * BBL
-blend23 = sum(mix24[k] * parity_fy23 * crack[k] for k in LINES)
-ton_fy23 = V['rev_fy23'] * 1e6 / (blend23 * V['fx_hist']['fy23']) / 1e6
-tons23 = {k: mix24[k] * ton_fy23 for k in LINES}
-_c23 = cost_of_sales(tons23, parity_fy23, V['fx_hist']['fy23'], V['fixed_cost_fy23'], 1.0)
-feed_diff = (V['cogs_fy23'] - _c23['energy'] - _c23['chem'] - V['fixed_cost_fy23']) / _c23['feed']
-say(f"[Feedstock differential, solved on the one disclosed cost of sales] the June-2023 year "
-    f"discloses revenue {V['rev_fy23']:,.0f}, cost of sales {V['cogs_fy23']:,.0f} and gross "
-    f"profit {V['gp_fy23']:,.0f}. At crack-linked realisations that revenue implies a throughput "
-    f"of {ton_fy23:.3f}mn tonnes — a DERIVED number, and a plausible one, sitting below the "
-    f"{V['line_tot_t']/1e6:.3f}mn tonnes the product table discloses for the following year. "
-    f"Energy, chemicals and the fixed leg account for EGP "
-    f"{_c23['energy']+_c23['chem']+V['fixed_cost_fy23']:,.0f}mn of the disclosed cost of sales, "
-    f"leaving EGP {V['cogs_fy23']-_c23['energy']-_c23['chem']-V['fixed_cost_fy23']:,.0f}mn for "
-    f"feedstock. That is {feed_diff:.4f} of crude parity. A lube plant drawing vacuum gas oil and "
-    f"long residue from the adjacent state complex at a small discount to crude is exactly what "
-    f"that number describes, and it was SOLVED, not chosen.")
-assert 0.75 < feed_diff < 1.10, f"solved feedstock differential implausible: {feed_diff:.4f}"
-
-
-def year_margin(tons_by_line, revenue, fx, fixed_egp, parity=None):
-    """Gross margin as an OUTPUT. If parity is not given it is solved so that the crack-linked
-    realisations reproduce the period's revenue — which replaces the old blanket reconciliation
-    factor with a number that means something physical."""
-    if parity is None:
-        parity = revenue * 1e6 / (sum(tons_by_line[k] * crack[k] for k in LINES) * 1e6 * fx)
-    c = cost_of_sales(tons_by_line, parity, fx, fixed_egp, feed_diff)
-    feed_pt = parity * feed_diff / (1 - LOSS)
-    en_pt = V['energy_usd_t'] / (1 - LOSS)
-    wt = sum(tons_by_line[k] * (CW if k in ('oil', 'wax') else 1.0) for k in LINES)
-    fx_pt = {k: (fixed_egp / fx) * (CW if k in ('oil', 'wax') else 1.0) / wt for k in LINES}
-    lm, lgp = {}, {}
-    for k in LINES:
-        px = parity * crack[k]
-        lgp[k] = tons_by_line[k] * (px - feed_pt - en_pt - CHEM[k] - fx_pt[k]) * fx
-        lm[k] = (px - feed_pt - en_pt - CHEM[k] - fx_pt[k]) / px
-    gp = sum(lgp.values())
-    return dict(parity=parity, brent=parity / BBL, cogs=c, gp=gp, gm=gp / revenue,
-                line_margin=lm, line_gp=lgp, feed_pt=feed_pt)
-
-
-# --- (3) the historical years are now PREDICTIONS, not assumptions -------------
-HIST_MARGIN = {}
-_fixed = V['fixed_cost_fy23']
-HIST_MARGIN['fy23'] = year_margin(tons23, V['rev_fy23'], V['fx_hist']['fy23'], _fixed,
-                                  parity=parity_fy23)
-_fx_infl = V['fixed_cost_infl']
-_fixed24 = _fixed * _fx_infl[0]
-HIST_MARGIN['fy24'] = year_margin({k: V[f'line_{k}_t'] / 1e6 if k != 'fuel' else line_fuel_t / 1e6
-                                   for k in LINES}, V['line_tot_v'], V['fx_hist']['fy24'], _fixed24)
-_fixed25 = _fixed24 * _fx_infl[1]
-_t25 = {k: mix24[k] * V['vol_fy25'] for k in LINES}
-HIST_MARGIN['fy25'] = year_margin(_t25, rev_fy25, V['fx_hist']['fy25'], _fixed25)
-FIXED_CY25 = _fixed25 * _fx_infl[2]
-HIST_MARGIN['cy25'] = year_margin(vol25, rev_cy25, V['fx_avg_cy25'], FIXED_CY25)
-gm_hist_built = [HIST_MARGIN[k]['gm'] for k in ('fy23', 'fy24', 'fy25', 'cy25')]
-# The base year's realisations imply a crude-equivalent above the published Brent average. That
-# premium is carried into the forecast rather than dropped, because dropping it would silently
-# reprice every product line on the first forecast day.
-RECON_PX = HIST_MARGIN['cy25']['brent'] / V['crude_hist']['cy25']
-rev25_lines_x = {k: vol25[k] * HIST_MARGIN['cy25']['parity'] * crack[k] * V['fx_avg_cy25']
-                 for k in LINES}
-say(f"[The margin is now a prediction] the build is calibrated on ONE year and one cost line, and "
-    f"the other three fall out: " +
-    " / ".join(f"{k.upper()} {HIST_MARGIN[k]['gm']:.2%}" for k in ('fy23', 'fy24', 'fy25', 'cy25')) +
-    f". The previous edition ASSUMED 5.76% / 6.00% / 6.20% / 6.40% — the first disclosed and the "
-    f"other three a house path. The built figures land " +
-    ", ".join(f"{HIST_MARGIN[k]['gm'] - a:+.2%}"
-              for k, a in zip(('fy24', 'fy25', 'cy25'), (0.0600, 0.0620, 0.0640))) +
-    f" against them. Nothing in the cost build was tuned to reproduce that path; the agreement is "
-    f"the check, and where it disagrees the built number is the one carried.")
-say(f"[Where the margin actually comes from] per tonne of product in the base year, a realisation "
-    f"of ${HIST_MARGIN['cy25']['parity']*sum(vol25[k]*crack[k] for k in LINES)/sum(vol25.values()):,.0f} "
-    f"carries a feedstock charge of ${HIST_MARGIN['cy25']['feed_pt']:,.0f}, energy of "
-    f"${V['energy_usd_t']/(1-LOSS):,.0f}, chemicals and a fixed conversion leg. The blended margin "
-    f"is {HIST_MARGIN['cy25']['gm']:.2%} — but the LINES are nothing like each other: base oils "
-    f"{HIST_MARGIN['cy25']['line_margin']['oil']:.1%}, paraffin wax "
-    f"{HIST_MARGIN['cy25']['line_margin']['wax']:.1%}, and the fuel and by-product slate "
-    f"{HIST_MARGIN['cy25']['line_margin']['fuel']:.1%}. THAT IS THE FINDING THE OLD MODEL COULD "
-    f"NOT PRODUCE. Its assumed 3.5x ratio implied 14.2% against 4.1%; the build says the "
-    f"specialty lines earn multiples of that and the fuel slate runs at or below break-even, "
-    f"which means essentially the whole gross profit of this company is made on "
-    f"{sum(vol25[k] for k in ('oil','wax'))/sum(vol25.values()):.1%} of its tonnage.")
-
-# --- (4) the identifiability test the previous edition never ran --------------
-_b = HIST_MARGIN['cy25']['gm']
-
-
-def _margin_at(parity_mult):
-    """Move the crude reference and let BOTH sides follow it — realisations AND feedstock.
-    Holding revenue fixed while moving the product price would not be a crude test at all."""
-    _p = HIST_MARGIN['cy25']['parity'] * parity_mult
-    _r = sum(vol25[k] * _p * crack[k] for k in LINES) * V['fx_avg_cy25']
-    return year_margin(vol25, _r, V['fx_avg_cy25'], FIXED_CY25, parity=_p)['gm']
-
-
-_bump = _margin_at(1.10)
-_dip = _margin_at(0.90)
-say(f"[Identifiability] this is the test that decides whether a cost build for a thin-margin "
-    f"processor is worth anything, and it is reported whichever way it comes out. Moving the "
-    f"crude reference plus and minus 10%, with realisations AND feedstock both following it as "
-    f"they physically must, moves the built margin {_dip:.2%} <- {_b:.2%} -> {_bump:.2%}. That is "
-    f"an elasticity of about {abs((_bump-_dip)/2/_b)/0.10:.1f} times: a 1% error in the crude "
-    f"deck is worth roughly {abs((_bump-_dip)/2/_b)/0.10:.1f}% on the margin. The crude level "
-    f"enters on BOTH sides — it prices the product and it prices the feed — and most of it "
-    f"cancels; what does not cancel is the EGP-denominated fixed leg, whose share of revenue "
-    f"moves when the dollar side moves. So the build is neither knife-edged nor crude-proof, and "
-    f"the honest reading is that the crude deck is a real but second-order driver of the margin, "
-    f"while the SPREAD structure — the solved feedstock differential and the crack multiples, "
-    f"both taken from disclosure — is the first-order one.")
 
 
 def build(vol_mult=1.0, price_mult=1.0, fx_mult=1.0, gm_shift=0.0, ratio=None):
-    """Three product lines rolled forward on volume; realisations and feedstock BOTH priced off
-    the crude deck; gross margin per line and blended is an OUTPUT of the cost build."""
+    """Three product lines, each a volume times a dollar price times an exchange rate, with
+    the blended gross margin falling out of the mix. gm_shift moves BOTH leg margins in
+    parallel so the sensitivity remains a margin test rather than a mix test."""
+    ratio = V['margin_ratio'] if ratio is None else ratio
+    _mf = V['gm_hist'][3] / (_ss * ratio + (1 - _ss)) + gm_shift
+    _ms = ratio * (_mf - gm_shift) + gm_shift
     vol = {k: vol25[k] for k in LINES}
-    rev, gp, gm, lines_rev, lines_vol = [], [], [], {k: [] for k in LINES}, {k: [] for k in LINES}
-    lmarg = {k: [] for k in LINES}
-    fixed = FIXED_CY25
+    px = {k: px25[k] for k in LINES}
+    rev, gp, lines_rev, lines_vol = [], [], {k: [] for k in LINES}, {k: [] for k in LINES}
     for i in range(5):
+        r_tot = 0.0; g_tot = 0.0
         for k in LINES:
             vol[k] *= (1 + V['line_vol_growth'][k][i] * vol_mult)
-            lines_vol[k].append(vol[k])
-        fixed *= V['fixed_cost_infl'][3 + i]
-        parity = V['brent_path'][i] * BBL * price_mult * RECON_PX
-        fx = V['fx_path'][i] * fx_mult
-        r_lines = {k: vol[k] * parity * crack[k] * fx for k in LINES}
-        r_tot = sum(r_lines.values())
-        y = year_margin(vol, r_tot, fx, fixed, parity=parity)
-        for k in LINES:
-            lines_rev[k].append(r_lines[k])
-            lmarg[k].append(y['line_margin'][k] + gm_shift)
-        rev.append(r_tot)
-        gp.append(y['gp'] + gm_shift * r_tot)
-        gm.append(gp[-1] / r_tot)
+            px[k] *= (1 + V['line_price_growth'][k][i] * price_mult)
+            r = vol[k] * px[k] * V['fx_path'][i] * fx_mult * recon
+            lines_rev[k].append(r); lines_vol[k].append(vol[k])
+            r_tot += r
+            g_tot += r * (_ms if k in ('oil', 'wax') else _mf)
+        rev.append(r_tot); gp.append(g_tot)
+    gm = [gp[i] / rev[i] for i in range(5)]
     opex = [V['opex_pct'][i] * rev[i] for i in range(5)]
     ebitda = [gp[i] - opex[i] for i in range(5)]
     return dict(rev=rev, gm=gm, gp=gp, opex=opex, ebitda=ebitda,
                 ebitda_margin=[ebitda[i] / rev[i] for i in range(5)],
-                lines_rev=lines_rev, lines_vol=lines_vol, line_margin=lmarg,
+                lines_rev=lines_rev, lines_vol=lines_vol,
                 vol=[sum(lines_vol[k][i] for k in LINES) for i in range(5)],
                 spec_vol=[lines_vol['oil'][i] + lines_vol['wax'][i] for i in range(5)],
                 spec_rev=[lines_rev['oil'][i] + lines_rev['wax'][i] for i in range(5)],
-                fuel_rev=lines_rev['fuel'],
-                m_spec=lmarg['oil'][0], m_fuel=lmarg['fuel'][0])
+                fuel_rev=lines_rev['fuel'], m_spec=_ms, m_fuel=_mf)
+
 
 B = build()
 rev, ebitda = B['rev'], B['ebitda']
@@ -744,7 +603,7 @@ netfin_cy25 = V['cash_yield'] * cash_b - V['kd'] * debt_b
 pbt_cy25 = pat_cy25 / (1 - TAX)
 tax_cy25 = -(pbt_cy25 - pat_cy25)
 dna_cy25 = V['dna_pct'] * rev_cy25
-gm_cy25 = gm_hist_built[3]
+gm_cy25 = V['gm_hist'][3]
 gp_cy25 = gm_cy25 * rev_cy25
 opex_cy25 = V['opex_pct'][0] * rev_cy25
 ebitda_cy25 = gp_cy25 - opex_cy25
@@ -793,12 +652,12 @@ def _hist_year(rv, pat, gm, nf=None):
 
 
 hist_is = {
-    'FY23': _hist_year(V['rev_fy23'], V['pat_fy23'], gm_hist_built[0]),
-    'FY24': _hist_year(rev_fy24, V['pat_fy24'], gm_hist_built[1]),
-    'FY25': _hist_year(rev_fy25, V['pat_fy25'], gm_hist_built[2]),
-    'CY25': _hist_year(rev_cy25, pat_cy25, gm_hist_built[3], nf=netfin_cy25),
+    'FY23': _hist_year(V['rev_fy23'], V['pat_fy23'], V['gm_hist'][0]),
+    'FY24': _hist_year(rev_fy24, V['pat_fy24'], V['gm_hist'][1]),
+    'FY25': _hist_year(rev_fy25, V['pat_fy25'], V['gm_hist'][2]),
+    'CY25': _hist_year(rev_cy25, pat_cy25, V['gm_hist'][3], nf=netfin_cy25),
 }
-assert abs(gm_hist_built[0] - V['gp_fy23'] / V['rev_fy23']) < 1e-4, \
+assert abs(V['gm_hist'][0] - V['gp_fy23'] / V['rev_fy23']) < 1e-4, \
     "the FY2022/23 gross margin driver must equal the disclosed margin"
 for _k, _y in hist_is.items():
     assert _y['ebitda'] <= _y['gp'], f"{_k}: EBITDA above gross profit is arithmetically impossible"
@@ -1446,22 +1305,13 @@ OUT = dict(
               rev_fy25_methods=[V['rev_fy25_a'], V['rev_fy25_b'], V['rev_fy25_c']],
               implied_growth_rev=implied_growth_rev, implied_growth_pat=implied_growth_pat),
     unit=dict(spec_vol25=spec_vol25, vol_cy25=vol_cy25, vol25=vol25, px_egp=px_egp,
-              px_usd=px_usd, crack=crack, rev25_lines=rev25_lines_x, feed_diff=feed_diff, ton_fy23=ton_fy23,
-              parity_fy24=parity_fy24, recon_px=RECON_PX,
-              gm_built=gm_hist_built, gm_assumed_old=[0.0576, 0.0600, 0.0620, 0.0640],
-              hist_margin={k: dict(gm=v['gm'], brent=v['brent'], parity=v['parity'],
-                                   feed_pt=v['feed_pt'], line_margin=v['line_margin'],
-                                   cogs={a: b for a, b in v['cogs'].items()})
-                           for k, v in HIST_MARGIN.items()},
-              line_margin=B['line_margin'], elast=dict(base=_b, up=_bump, dn=_dip),
-              m_spec=B['line_margin']['oil'][0], m_fuel=B['line_margin']['fuel'][0],
-              spec_share_t=spec_share_t,
+              px_usd=px_usd, px25=px25, rev25_lines=rev25_lines, rev25_bu=rev25_bu,
+              recon=recon, m_spec=m_spec, m_fuel=m_fuel, spec_share_t=spec_share_t,
               spec_share_v=spec_share_v, line_fuel_t=line_fuel_t, line_fuel_v=line_fuel_v,
               lines=LINES, lines_rev=B['lines_rev'], lines_vol=B['lines_vol'],
               vol=B['vol'], spec_vol=B['spec_vol'], spec_rev=B['spec_rev'],
               fuel_rev=B['fuel_rev'], vol_h2_fy25=vol_h2_fy25, vol_h1_cy25=vol_h1_cy25,
-              oil_share_of_spec=oil_share_of_spec,
-              ss=(rev25_lines_x['oil'] + rev25_lines_x['wax']) / rev_cy25),
+              oil_share_of_spec=oil_share_of_spec, ss=_ss),
     fcst=dict(years=YRS, rev=rev, gp=B['gp'], gm=B['gm'], opex=B['opex'], ebitda=ebitda,
               ebitda_margin=ebitda_margin, dna=dna, ebit=ebit, nopat=nopat, capex=capex,
               nwc=nwc, dnwc=dnwc, fcff=fcff, df=df, pv=pv, fwd_wacc=fwd, glide_frac=glide_frac,

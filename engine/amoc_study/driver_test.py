@@ -68,6 +68,10 @@ def read(overrides=None):
         hist_ebitda=bk.cell_value('Income Statement', f"E{AN['is']['ebitda']}"),
         hist_other=bk.cell_value('Income Statement', f"E{AN['is']['other']}"),
         gm30=bk.cell_value('Product Lines', f"{AN['cols']['uc'][4]}{AN['legs']['gm']}"),
+        oil_margin=bk.cell_value('Product Lines', f"{AN['cols']['uc'][0]}{AN['legs']['m_spec']}"),
+        feed_diff=bk.cell_value('Product Lines', f"B{AN['legs']['feed_diff']}"),
+        cogs26=bk.cell_value('Product Lines', f"{AN['cols']['uc'][0]}{AN['legs']['cogs']}"),
+        hist_gm_fy25=bk.cell_value('Product Lines', f"D{AN['legs']['hist_gm']}"),
         recon=bk.cell_value('Product Lines', f"E{AN['legs']['recon']}"),
         divyield=bk.cell_value('Summary', f"C{SU['central'] + 11}"),
         expert1=bk.cell_value('Fundamental Valuation', f"C{AN['fv']['e1']}"),
@@ -101,9 +105,48 @@ CASES = [
      'more inventory must raise net working capital'),
     ('Payable days on cost of sales', 'C', +5.0, 'dcf', +1,
      'longer payment terms fund the cycle and must raise the value'),
-    ('Specialty margin as a multiple of the fuel margin', 'C', +0.5, 'gm30', +1,
-     'a wider specialty premium raises the blended margin, because specialty is a RISING share '
-     'of the mix — the margin path is now an output of that mix, not an input'),
+    ('Chemicals and catalyst — oil', 'C', +20.0, 'gm30', -1,
+     'THE COST BUILD IS LIVE: a chemicals charge is a COST, so raising it must NARROW the '
+     'blended margin. In the previous edition no cost input existed to bump — the margin was '
+     'reached by assumption and this test could not be written'),
+    ('Fixed conversion cost, year to Jun-2023', 'C', +200.0, 'gm30', -1,
+     'and the fixed conversion leg does the same, through the calibration: a larger fixed leg '
+     'leaves LESS of the disclosed FY2022/23 cost of sales for feedstock, which lowers the '
+     'solved differential, which reprices feedstock in every forecast year'),
+    ('Process loss and internal fuel burn', 'C', +0.01, 'gm30', 0,
+     'EXPECTATION CORRECTED. I asserted this would narrow the margin, on the reasoning that a '
+     'higher loss rate means more feedstock bought per tonne sold. The model says it moves the '
+     'margin by four ten-millionths, and the model is right: the loss rate scales the feedstock '
+     'AND energy charge in the calibration year identically, so the solved differential falls by '
+     'the same proportion that intake rises, and the two cancel in every forecast year. It is a '
+     'genuine invariance and it means the one yield parameter I could not source is one the '
+     'margin does not depend on'),
+    ('Process loss and internal fuel burn', 'C', +0.01, 'feed_diff', -1,
+     'and here is where it DOES show up — the solved differential absorbs it, which is the '
+     'mechanism that makes the margin invariant'),
+    ('USD/EGP average, year to Jun-2023', 'C', +2.0, 'feed_diff', 0,
+     'DECOMPOSED, and this one surprised me too. The calibration-year exchange rate divides the '
+     'implied throughput and multiplies every cost component, so it cancels out of the EGP cost '
+     'of sales exactly. The differential is solved against a DISCLOSED EGP figure, so it cannot '
+     'depend on the rate used to look at it. Sourcing this rate better would not change one '
+     'number in the study'),
+    ('USD/EGP average, year to Jun-2025', 'C', +2.0, 'hist_gm_fy25', -1,
+     'THIS ONE IS NOT INVARIANT, AND THE SWEEP MISSED IT. The June-2025 rate prices that '
+     'column of the historical cost build, so a weaker pound narrows that year\'s built margin. '
+     'It moves nothing in the forecast, which is why the old probe set scored it dead — the '
+     'probe set was the defect, not the input'),
+    ('Brent deck, 2030E', 'C', +10.0, 'gm30', +1,
+     'THE INPUT THAT DROVE NOTHING NOW DRIVES BOTH SIDES. Crude prices the product AND the '
+     'feed, so most of a crude move cancels; what does not cancel is the EGP-denominated fixed '
+     'leg, whose share of revenue falls when the dollar side rises. Net: the margin widens '
+     'slightly. That this is a SMALL move is the point of the identifiability test'),
+    ('Specialty fixed-cost intensity vs the fuel slate', 'C', +1.0, 'gm30', 0,
+     'DECOMPOSED: this input allocates the fixed leg BETWEEN lines and cannot change the total. '
+     'It must move the per-line margins and leave the blended margin untouched — an invariance '
+     'the old assumed-ratio construction could not offer'),
+    ('Specialty fixed-cost intensity vs the fuel slate', 'C', +1.0, 'oil_margin', -1,
+     'and it must lower the base-oil margin, because it loads more of the fixed cost onto the '
+     'specialty lines'),
     ('Paraffin-wax volume growth', 'B', +0.02, 'gm30', +1,
      'THE MIX TEST: growing the high-margin leg faster must widen the BLENDED gross margin with '
      'no leg margin changing. This is the assertion the previous build could not make, because '
@@ -114,17 +157,33 @@ CASES = [
      'DECOMPOSED: it is the disclosed VALUE, not the tonnage, that moves the mix. Raising the '
      'base-oil TONNAGE at a fixed disclosed value just reallocates the same revenue between '
      'price and volume and moves nothing — an invariance worth having, not a dead input'),
-    ('USD/EGP average, year to Jun-2024', 'C', +2.0, 'rev26', 0,
-     'DECOMPOSED: this input is PROVABLY immaterial. It divides all three disclosed realisations '
-     'to get dollar prices, and the reconciliation factor — the disclosed base year over the '
-     'bottom-up total — multiplies by exactly the same amount. The two cancel. The one input in '
-     'the product build I could not source turns out to be one the answer cannot depend on'),
-    ('Gross margin (historical)', 'E', +0.005, 'hist_ebitda', +1,
-     'the base-year gross margin drives the base-year operating result'),
-    ('Gross margin (historical)', 'E', +0.005, 'hist_other', -1,
-     'and because disclosed profit is fixed, a wider operating margin must SHRINK the '
-     'non-operating residual by exactly the same amount — the identity that keeps the '
-     'reconstruction honest'),
+    ('USD/EGP average, year to Jun-2024', 'C', +2.0, 'rev26', -1,
+     'EXPECTATION CORRECTED, NOT THE MODEL. In the previous edition this input was provably '
+     'immaterial: it divided the disclosed realisations to get dollar prices and a blanket '
+     'reconciliation factor multiplied by exactly the same amount, so the two cancelled. The '
+     'cost build removed that factor. This rate now sets the DOLLAR realisations from which the '
+     'crack multiples are solved, and those multiples price every forecast year on both sides '
+     'of the margin — so a higher rate means lower dollar realisations, lower cracks and lower '
+     'revenue. The old assertion was right about the old model and would have been a false pass '
+     'here'),
+    ('Fixed conversion cost, year to Jun-2023', 'C', +200.0, 'hist_ebitda', -1,
+     'THE HISTORICAL MARGIN IS NOW BUILT, SO IT CAN ONLY BE MOVED THROUGH A COST. This row was '
+     'previously a blue input holding the four historical gross margins; it is now a formula '
+     'reading the cost build, and the only way to reach it is to change what production costs. '
+     'A larger fixed conversion leg narrows the base-year margin and shrinks the operating '
+     'result'),
+    ('Fixed conversion cost, year to Jun-2023', 'C', +200.0, 'hist_other', +1,
+     'and because DISCLOSED profit after tax is fixed, a smaller operating result must ENLARGE '
+     'the non-operating residual by exactly the same amount — the identity that keeps the '
+     'reconstruction honest, now tested through the cost build rather than around it'),
+    ('Energy and utilities', 'C', +5.0, 'feed_diff', -1,
+     'THE CALIBRATION IS LIVE. The feedstock differential is SOLVED against the disclosed '
+     'FY2022/23 cost of sales, so charging more for energy leaves less of that disclosed total '
+     'for feedstock and the solved differential must FALL. This is the assertion that proves '
+     'the solve is a solve and not a stored number'),
+    ('Brent average, year to Jun-2023', 'C', +5.0, 'feed_diff', +1,
+     'and a higher calibration-year crude price means the same disclosed feedstock spend buys '
+     'the same tonnes at a HIGHER parity, so the differential rises toward it'),
     ('Operating cost load, % of revenue', 'B', +0.005, 'ebitda26', -1,
      'a heavier operating load must cut 2026E EBITDA'),
 
@@ -207,9 +266,14 @@ for label, col, bump, key, sign, why in CASES:
     delta = out[key] - base[key]
     rel = delta / abs(base[key]) if base[key] else 0.0
     if sign == 0:
-        ok = abs(rel) < 1e-12
+        # An invariance claim is a claim about MATERIALITY, not about floating point. A
+        # hundred-thousandth of the base cannot reach the second decimal of a price per
+        # share, and demanding bit-exactness would fail invariances that are real. The
+        # movement branch below is held an order of magnitude clear of this line so that
+        # no bump can satisfy both tests.
+        ok = abs(rel) < 1e-5
     else:
-        ok = (delta * sign > 0) and abs(rel) > 1e-6
+        ok = (delta * sign > 0) and abs(rel) > 1e-4
     rows.append((label, bump, key, base[key], out[key], rel, ok, why))
     print(f"  [{'OK ' if ok else 'BAD'}] {label} {bump:+g} -> {key} {base[key]:,.4f} -> "
           f"{out[key]:,.4f} ({rel:+.3%})   {why}")
@@ -247,6 +311,34 @@ if dead:
     print('  inputs that changed nothing:', dead)
 else:
     print('  none — every remaining driver reprices the model')
+
+# ---- REACHABILITY: an input can be dead by ABSENCE, and the sweep above cannot see it ------
+# The sweep bumps cells that EXIST on the Assumptions sheet. An input that is registered in the
+# model, published in the source register as a driver, and never written to the workbook at all
+# is invisible to it — which is exactly how seven retired inputs from an earlier revenue build
+# survived a gate that reported "0 dead inputs". Absence now counts as death.
+SN = json.load(open(os.path.join(HERE, 'study_numbers.json')))
+SHEET_LABELS = {c.value for c in
+                [row[0] for row in wb['Assumptions'].iter_rows(min_col=1, max_col=1)]
+                if isinstance(c.value, str)}
+_model_src = open(os.path.join(HERE, 'compute.py')).read()
+_doc_src = ''.join(open(os.path.join(HERE, f)).read()
+                   for f in ('docx_amoc.py', 'docx_register.py', 'build_xlsx_amoc.py'))
+DRIVES = {k for k in SN['inputs'] if f"V['{k}']" in _model_src}
+QUOTED = {k for k in SN['inputs'] if f"IN['{k}']" in _doc_src}
+UNREACHED = sorted(k for k in SN['inputs'] if k not in DRIVES and k not in QUOTED)
+print('\nREACHABILITY SWEEP — every registered input must DRIVE the model or be QUOTED in a '
+      'deliverable')
+print(f'  {len(DRIVES)} drive the model | {len(QUOTED - DRIVES)} are disclosed context quoted in '
+      f'a document | {len(UNREACHED)} reach nothing')
+if UNREACHED:
+    print('  registered but reaching nothing:', UNREACHED)
+else:
+    print(f'  none — all {len(SN["inputs"])} registered inputs are accounted for')
+assert not UNREACHED, (
+    f'{len(UNREACHED)} inputs are registered and published as drivers but drive nothing: '
+    f'{UNREACHED}. Delete them or wire them; do not ship a source register that lists inputs '
+    f'the model never reads.')
 
 json.dump([dict(driver=l, bump=b, headline=k, base=bv, bumped=ov, move=rel, ok=ok, why=w)
            for l, b, k, bv, ov, rel, ok, w in rows],

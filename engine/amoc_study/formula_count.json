@@ -1,12 +1,13 @@
 {
- "formulas": 1114,
- "numeric_values": 224,
- "text": 782,
+ "formulas": 1227,
+ "numeric_values": 234,
+ "text": 899,
  "numeric_by_sheet": {
-  "Assumptions": 126,
+  "Assumptions": 132,
   "Sensitivity": 55,
   "Monte Carlo": 30,
-  "Fundamental Valuation": 13
+  "Fundamental Valuation": 13,
+  "Product Lines": 4
  },
- "formula_share": 0.8325859491778774
+ "formula_share": 0.839835728952772
 }
