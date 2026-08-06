@@ -1,0 +1,562 @@
+[
+ {
+  "driver": "Terminal growth",
+  "bump": 0.01,
+  "headline": "dcf",
+  "base": 9.661070433016716,
+  "bumped": 10.076964526817111,
+  "move": 0.04304844858382114,
+  "ok": true,
+  "why": "a higher terminal growth rate must raise the discounted cash flow value"
+ },
+ {
+  "driver": "Beta",
+  "bump": 0.2,
+  "headline": "dcf",
+  "base": 9.661070433016716,
+  "bumped": 8.750700709147724,
+  "move": -0.0942307304538225,
+  "ok": true,
+  "why": "a higher beta raises the cost of equity in both windows and must lower the value"
+ },
+ {
+  "driver": "Terminal risk-free rate",
+  "bump": 0.02,
+  "headline": "dcf",
+  "base": 9.661070433016716,
+  "bumped": 8.765059855593911,
+  "move": -0.09274444106738816,
+  "ok": true,
+  "why": "a higher terminal risk-free rate must lower the value"
+ },
+ {
+  "driver": "Risk-free rate \u2014 Egypt 10-year",
+  "bump": 0.02,
+  "headline": "wacc",
+  "base": 0.3163274586594906,
+  "bumped": 0.3415626207690316,
+  "move": 0.07977543971832464,
+  "ok": true,
+  "why": "a higher local risk-free rate must raise the explicit-window cost of capital"
+ },
+ {
+  "driver": "Equity risk premium \u2014 Egypt",
+  "bump": 0.02,
+  "headline": "dcf",
+  "base": 9.661070433016716,
+  "bumped": 9.378335575926984,
+  "move": -0.029265375824555167,
+  "ok": true,
+  "why": "a wider equity risk premium must lower the value"
+ },
+ {
+  "driver": "Sovereign default spread",
+  "bump": 0.01,
+  "headline": "wacc",
+  "base": 0.3163274586594906,
+  "bumped": 0.30370987760472,
+  "move": -0.03988771985916249,
+  "ok": true,
+  "why": "a wider sovereign spread is NETTED OUT of the risk-free rate, so it lowers the rate"
+ },
+ {
+  "driver": "Effective tax rate",
+  "bump": 0.05,
+  "headline": "dcf",
+  "base": 9.661070433016716,
+  "bumped": 9.10480407258459,
+  "move": -0.05757812907885291,
+  "ok": true,
+  "why": "a higher tax rate must lower NOPAT and the value"
+ },
+ {
+  "driver": "Receivable days",
+  "bump": 5.0,
+  "headline": "dcf",
+  "base": 9.661070433016716,
+  "bumped": 9.490567386566205,
+  "move": -0.01764846324562719,
+  "ok": true,
+  "why": "slower collection absorbs cash into working capital and must lower the value"
+ },
+ {
+  "driver": "Inventory days on cost of sales",
+  "bump": 5.0,
+  "headline": "nwc",
+  "base": 804.7248576177117,
+  "bumped": 1319.4026114572575,
+  "move": 0.6395698467215063,
+  "ok": true,
+  "why": "more inventory must raise net working capital"
+ },
+ {
+  "driver": "Payable days on cost of sales",
+  "bump": 5.0,
+  "headline": "dcf",
+  "base": 9.661070433016716,
+  "bumped": 9.881107488020973,
+  "move": 0.0227756392554887,
+  "ok": true,
+  "why": "longer payment terms fund the cycle and must raise the value"
+ },
+ {
+  "driver": "Chemicals and catalyst \u2014 oil",
+  "bump": 20.0,
+  "headline": "gm30",
+  "base": 0.06892411274270648,
+  "bumped": 0.06847221921976891,
+  "move": -0.006556392312578334,
+  "ok": true,
+  "why": "THE COST BUILD IS LIVE: a chemicals charge is a COST, so raising it must NARROW the blended margin. In the previous edition no cost input existed to bump \u2014 the margin was reached by assumption and this test could not be written"
+ },
+ {
+  "driver": "Fixed conversion cost, year to Jun-2023",
+  "bump": 200.0,
+  "headline": "gm30",
+  "base": 0.06892411274270648,
+  "bumped": 0.06738157787732914,
+  "move": -0.022380191837007984,
+  "ok": true,
+  "why": "and the fixed conversion leg does the same, through the calibration: a larger fixed leg leaves LESS of the disclosed FY2022/23 cost of sales for feedstock, which lowers the solved differential, which reprices feedstock in every forecast year"
+ },
+ {
+  "driver": "Process loss and internal fuel burn",
+  "bump": 0.01,
+  "headline": "gm30",
+  "base": 0.06892411274270648,
+  "bumped": 0.06892457495185869,
+  "move": 6.706058791666856e-06,
+  "ok": true,
+  "why": "EXPECTATION CORRECTED. I asserted this would narrow the margin, on the reasoning that a higher loss rate means more feedstock bought per tonne sold. The model says it moves the margin by four ten-millionths, and the model is right: the loss rate scales the feedstock AND energy charge in the calibration year identically, so the solved differential falls by the same proportion that intake rises, and the two cancel in every forecast year. It is a genuine invariance and it means the one yield parameter I could not source is one the margin does not depend on"
+ },
+ {
+  "driver": "Process loss and internal fuel burn",
+  "bump": 0.01,
+  "headline": "feed_diff",
+  "base": 0.9215876592378073,
+  "bumped": 0.9117000477360103,
+  "move": -0.010728888785223574,
+  "ok": true,
+  "why": "and here is where it DOES show up \u2014 the solved differential absorbs it, which is the mechanism that makes the margin invariant"
+ },
+ {
+  "driver": "USD/EGP average, year to Jun-2023",
+  "bump": 2.0,
+  "headline": "feed_diff",
+  "base": 0.9215876592378073,
+  "bumped": 0.9215876592378073,
+  "move": 0.0,
+  "ok": true,
+  "why": "DECOMPOSED, and this one surprised me too. The calibration-year exchange rate divides the implied throughput and multiplies every cost component, so it cancels out of the EGP cost of sales exactly. The differential is solved against a DISCLOSED EGP figure, so it cannot depend on the rate used to look at it. Sourcing this rate better would not change one number in the study"
+ },
+ {
+  "driver": "USD/EGP average, year to Jun-2025",
+  "bump": 2.0,
+  "headline": "hist_gm_fy25",
+  "base": 0.05392509239516354,
+  "bumped": 0.05180498434113665,
+  "move": -0.03931579826494722,
+  "ok": true,
+  "why": "THIS ONE IS NOT INVARIANT, AND THE SWEEP MISSED IT. The June-2025 rate prices that column of the historical cost build, so a weaker pound narrows that year's built margin. It moves nothing in the forecast, which is why the old probe set scored it dead \u2014 the probe set was the defect, not the input"
+ },
+ {
+  "driver": "Brent deck, 2030E",
+  "bump": 10.0,
+  "headline": "gm30",
+  "base": 0.06892411274270648,
+  "bumped": 0.07888457483198005,
+  "move": 0.1445134611519187,
+  "ok": true,
+  "why": "THE INPUT THAT DROVE NOTHING NOW DRIVES BOTH SIDES. Crude prices the product AND the feed, so most of a crude move cancels; what does not cancel is the EGP-denominated fixed leg, whose share of revenue falls when the dollar side rises. Net: the margin widens slightly. That this is a SMALL move is the point of the identifiability test"
+ },
+ {
+  "driver": "Specialty fixed-cost intensity vs the fuel slate",
+  "bump": 1.0,
+  "headline": "gm30",
+  "base": 0.06892411274270648,
+  "bumped": 0.06892411274270648,
+  "move": 0.0,
+  "ok": true,
+  "why": "DECOMPOSED: this input allocates the fixed leg BETWEEN lines and cannot change the total. It must move the per-line margins and leave the blended margin untouched \u2014 an invariance the old assumed-ratio construction could not offer"
+ },
+ {
+  "driver": "Specialty fixed-cost intensity vs the fuel slate",
+  "bump": 1.0,
+  "headline": "oil_margin",
+  "base": 0.3858209059397504,
+  "bumped": 0.3762929937036152,
+  "move": -0.024695168378519823,
+  "ok": true,
+  "why": "and it must lower the base-oil margin, because it loads more of the fixed cost onto the specialty lines"
+ },
+ {
+  "driver": "Paraffin-wax volume growth",
+  "bump": 0.02,
+  "headline": "gm30",
+  "base": 0.06892411274270648,
+  "bumped": 0.06941854036277727,
+  "move": 0.007173507215341153,
+  "ok": true,
+  "why": "THE MIX TEST: growing the high-margin leg faster must widen the BLENDED gross margin with no leg margin changing. This is the assertion the previous build could not make, because it had no per-leg margins for a mix to act on"
+ },
+ {
+  "driver": "Fuel-slate volume growth",
+  "bump": 0.02,
+  "headline": "gm30",
+  "base": 0.06892411274270648,
+  "bumped": 0.06800519277384776,
+  "move": -0.013332343824127927,
+  "ok": true,
+  "why": "and growing the low-margin leg faster must narrow it"
+ },
+ {
+  "driver": "Base oils, sales value",
+  "bump": 500.0,
+  "headline": "gm30",
+  "base": 0.06892411274270648,
+  "bumped": 0.07198228662028668,
+  "move": 0.0443701595259754,
+  "ok": true,
+  "why": "DECOMPOSED: it is the disclosed VALUE, not the tonnage, that moves the mix. Raising the base-oil TONNAGE at a fixed disclosed value just reallocates the same revenue between price and volume and moves nothing \u2014 an invariance worth having, not a dead input"
+ },
+ {
+  "driver": "USD/EGP average, year to Jun-2024",
+  "bump": 2.0,
+  "headline": "rev26",
+  "base": 44182.305628865244,
+  "bumped": 41881.14387736184,
+  "move": -0.052083333333333405,
+  "ok": true,
+  "why": "EXPECTATION CORRECTED, NOT THE MODEL. In the previous edition this input was provably immaterial: it divided the disclosed realisations to get dollar prices and a blanket reconciliation factor multiplied by exactly the same amount, so the two cancelled. The cost build removed that factor. This rate now sets the DOLLAR realisations from which the crack multiples are solved, and those multiples price every forecast year on both sides of the margin \u2014 so a higher rate means lower dollar realisations, lower cracks and lower revenue. The old assertion was right about the old model and would have been a false pass here"
+ },
+ {
+  "driver": "Fixed conversion cost, year to Jun-2023",
+  "bump": 200.0,
+  "headline": "hist_ebitda",
+  "base": 1924.2448030464784,
+  "bumped": 1894.0554415944116,
+  "move": -0.01568894009965405,
+  "ok": true,
+  "why": "THE HISTORICAL MARGIN IS NOW BUILT, SO IT CAN ONLY BE MOVED THROUGH A COST. This row was previously a blue input holding the four historical gross margins; it is now a formula reading the cost build, and the only way to reach it is to change what production costs. A larger fixed conversion leg narrows the base-year margin and shrinks the operating result"
+ },
+ {
+  "driver": "Fixed conversion cost, year to Jun-2023",
+  "bump": 200.0,
+  "headline": "hist_other",
+  "base": 145.37874858750837,
+  "bumped": 175.56811003957517,
+  "move": 0.20766007236535547,
+  "ok": true,
+  "why": "and because DISCLOSED profit after tax is fixed, a smaller operating result must ENLARGE the non-operating residual by exactly the same amount \u2014 the identity that keeps the reconstruction honest, now tested through the cost build rather than around it"
+ },
+ {
+  "driver": "Energy and utilities",
+  "bump": 5.0,
+  "headline": "feed_diff",
+  "base": 0.9215876592378073,
+  "bumped": 0.9130625100476966,
+  "move": -0.00925050276515354,
+  "ok": true,
+  "why": "THE CALIBRATION IS LIVE. The feedstock differential is SOLVED against the disclosed FY2022/23 cost of sales, so charging more for energy leaves less of that disclosed total for feedstock and the solved differential must FALL. This is the assertion that proves the solve is a solve and not a stored number"
+ },
+ {
+  "driver": "Brent average, year to Jun-2023",
+  "bump": 5.0,
+  "headline": "feed_diff",
+  "base": 0.9215876592378073,
+  "bumped": 0.924486985814821,
+  "move": 0.0031460128051319807,
+  "ok": true,
+  "why": "and a higher calibration-year crude price means the same disclosed feedstock spend buys the same tonnes at a HIGHER parity, so the differential rises toward it"
+ },
+ {
+  "driver": "Operating cost load, % of revenue",
+  "bump": 0.005,
+  "headline": "ebitda26",
+  "base": 2160.9830209243287,
+  "bumped": 1940.0714927800025,
+  "move": -0.10222733173064662,
+  "ok": true,
+  "why": "a heavier operating load must cut 2026E EBITDA"
+ },
+ {
+  "driver": "USD/EGP average rate path",
+  "bump": 3.0,
+  "headline": "rev26",
+  "base": 44182.305628865244,
+  "bumped": 46786.37079363137,
+  "move": 0.05893909626719067,
+  "ok": true,
+  "why": "a weaker pound raises the pound value of dollar-benchmarked product and must lift revenue"
+ },
+ {
+  "driver": "Depreciation, % of revenue",
+  "bump": 0.005,
+  "headline": "pv_expl",
+  "base": 3765.653445339084,
+  "bumped": 3927.8286544923803,
+  "move": 0.04306695013425297,
+  "ok": true,
+  "why": "in the explicit window a higher charge is a tax shield and must lift the present value"
+ },
+ {
+  "driver": "Depreciation, % of revenue",
+  "bump": 0.005,
+  "headline": "tv",
+  "base": 18447.23537084322,
+  "bumped": 16784.59438909668,
+  "move": -0.09012954777898191,
+  "ok": true,
+  "why": "in the terminal state, against unchanged capex, it must lower the terminal value"
+ },
+ {
+  "driver": "Capital expenditure, % of revenue",
+  "bump": 0.005,
+  "headline": "dcf",
+  "base": 9.661070433016716,
+  "bumped": 9.509332601522038,
+  "move": -0.015706109643514665,
+  "ok": true,
+  "why": "heavier capital spending must lower free cash flow and the value"
+ },
+ {
+  "driver": "Justified EV / EBITDA",
+  "bump": 1.0,
+  "headline": "central",
+  "base": 9.381801073509822,
+  "bumped": 9.610382831811098,
+  "move": 0.024364379132562605,
+  "ok": true,
+  "why": "a higher justified multiple must raise the weighted central"
+ },
+ {
+  "driver": "Justified price / earnings",
+  "bump": 1.0,
+  "headline": "central",
+  "base": 9.381801073509822,
+  "bumped": 9.692973577933705,
+  "move": 0.033167672388887105,
+  "ok": true,
+  "why": "a higher justified price-to-earnings must raise the weighted central"
+ },
+ {
+  "driver": "Sustainable return on equity",
+  "bump": 0.03,
+  "headline": "central",
+  "base": 9.381801073509822,
+  "bumped": 9.520159793319513,
+  "move": 0.014747564857280633,
+  "ok": true,
+  "why": "a higher sustainable return must raise the book lens and the central"
+ },
+ {
+  "driver": "Cash and equivalents",
+  "bump": 1000.0,
+  "headline": "dcf",
+  "base": 9.661070433016716,
+  "bumped": 10.280112064965056,
+  "move": 0.06407588436916521,
+  "ok": true,
+  "why": "more cash reaches the shareholder through the bridge and must raise the value"
+ },
+ {
+  "driver": "Cost of debt",
+  "bump": 0.03,
+  "headline": "wacc",
+  "base": 0.3163274586594906,
+  "bumped": 0.3163896938696949,
+  "move": 0.00019674299053283525,
+  "ok": true,
+  "why": "COUNTER-INTUITIVE: a negative debt weight on a lower cost of net debt raises the blend"
+ },
+ {
+  "driver": "Yield on cash",
+  "bump": 0.02,
+  "headline": "wacc",
+  "base": 0.3163274586594906,
+  "bumped": 0.31228106950555545,
+  "move": -0.012791773344883238,
+  "ok": true,
+  "why": "COUNTER-INTUITIVE: the same mechanism in reverse lowers the blended rate"
+ },
+ {
+  "driver": "Yield on cash",
+  "bump": 0.02,
+  "headline": "dcf",
+  "base": 9.661070433016716,
+  "bumped": 9.710750227419037,
+  "move": 0.005142266040473147,
+  "ok": true,
+  "why": "and a lower cost of capital must raise the value"
+ },
+ {
+  "driver": "Terminal debt weight",
+  "bump": 0.1,
+  "headline": "wacc_term",
+  "base": 0.1652265,
+  "bumped": 0.159618,
+  "move": -0.033944312806964916,
+  "ok": true,
+  "why": "more of the cheaper after-tax debt must lower the terminal cost of capital"
+ },
+ {
+  "driver": "Terminal cost of debt",
+  "bump": 0.03,
+  "headline": "wacc_term",
+  "base": 0.1652265,
+  "bumped": 0.16752150000000002,
+  "move": 0.01389002369474642,
+  "ok": true,
+  "why": "a higher terminal borrowing rate must raise the terminal cost of capital"
+ },
+ {
+  "driver": "Dividend payout ratio",
+  "bump": 0.15,
+  "headline": "nd30",
+  "base": -4694.108024210693,
+  "bumped": -3129.829728331236,
+  "move": 0.33324292662448646,
+  "ok": true,
+  "why": "paying more out must leave less net cash (higher net debt) at the end of the forecast"
+ },
+ {
+  "driver": "Total assets",
+  "bump": 500.0,
+  "headline": "dcf",
+  "base": 9.661070433016716,
+  "bumped": 9.60290935563778,
+  "move": -0.006020148365772351,
+  "ok": true,
+  "why": "a larger residual asset base raises invested capital, lowers the terminal return and so raises the reinvestment the terminal growth requires"
+ },
+ {
+  "driver": "Shares outstanding",
+  "bump": 100.0,
+  "headline": "dcf",
+  "base": 9.661070433016716,
+  "bumped": 9.006057424553067,
+  "move": -0.0677992167643393,
+  "ok": true,
+  "why": "the same equity spread over more shares must be worth less per share"
+ },
+ {
+  "driver": "Share price",
+  "bump": 1.0,
+  "headline": "wacc",
+  "base": 0.3163274586594906,
+  "bumped": 0.31161171838407337,
+  "move": -0.014907780359635022,
+  "ok": true,
+  "why": "a higher market capitalisation shrinks the NEGATIVE net-debt weight toward zero, pulling the blended rate back down toward the cost of equity"
+ },
+ {
+  "driver": "Jul-Dec 2025 profit after tax",
+  "bump": 100.0,
+  "headline": "pat_cy25",
+  "base": 1562.828,
+  "bumped": 1662.828,
+  "move": 0.06398656793965811,
+  "ok": true,
+  "why": "the transition half is one of the two legs of the constructed calendar-2025 base"
+ },
+ {
+  "driver": "FY2024/25 profit after tax",
+  "bump": 100.0,
+  "headline": "pat_cy25",
+  "base": 1562.828,
+  "bumped": 1662.828,
+  "move": 0.06398656793965811,
+  "ok": true,
+  "why": "the June year is the other leg of that construction"
+ },
+ {
+  "driver": "Jul-Dec 2024 profit after tax",
+  "bump": 100.0,
+  "headline": "pat_cy25",
+  "base": 1562.828,
+  "bumped": 1462.828,
+  "move": -0.06398656793965811,
+  "ok": true,
+  "why": "the prior-year half is SUBTRACTED to isolate January-June 2025, so it moves the base down"
+ },
+ {
+  "driver": "Total liabilities",
+  "bump": 200.0,
+  "headline": "bvps",
+  "base": 3.7152390907120076,
+  "bumped": 3.5650331382204468,
+  "move": -0.04042968671035775,
+  "ok": true,
+  "why": "DECOMPOSED: total liabilities does NOT touch the cash-flow lens \u2014 net working capital comes from days drivers and the asset base from total assets. What it drives is disclosed equity, and therefore book value per share and the book lens"
+ },
+ {
+  "driver": "Total liabilities",
+  "bump": 200.0,
+  "headline": "central",
+  "base": 9.381801073509822,
+  "bumped": 9.338915275843922,
+  "move": -0.004571168939724239,
+  "ok": true,
+  "why": "and through the book lens, the weighted central"
+ },
+ {
+  "driver": "Expert 1 justified price / earnings",
+  "bump": 1.0,
+  "headline": "expert1",
+  "base": 10.891037654835868,
+  "bumped": 12.446900176955278,
+  "move": 0.1428571428571429,
+  "ok": true,
+  "why": "THE PANEL IS LIVE. Expert 1 is an independent opinion with its own multiple, so raising it must raise Expert 1 and NOTHING in the primary model"
+ },
+ {
+  "driver": "Expert 1 justified price / earnings",
+  "bump": 1.0,
+  "headline": "dcf",
+  "base": 9.661070433016716,
+  "bumped": 9.661070433016716,
+  "move": 0.0,
+  "ok": true,
+  "why": "and the cash-flow lens must not move by a piastre, because the panel reads FROM the model and never back into it"
+ },
+ {
+  "driver": "Expert 1 justified price / earnings",
+  "bump": 1.0,
+  "headline": "panel",
+  "base": 9.661070433016716,
+  "bumped": 9.661070433016716,
+  "move": 0.0,
+  "ok": true,
+  "why": "DECOMPOSED: the panel MEDIAN does not move either, and that is the finding rather than a defect. Expert 1 already sits ABOVE the median, so pushing it further up leaves the middle value where it was \u2014 Expert 3, which is the cash-flow lens by identity. This assertion is the workbook proving in one bump that the panel median is not an independent check on the model it contains"
+ },
+ {
+  "driver": "Dividend per share",
+  "bump": 0.2,
+  "headline": "eq23",
+  "base": 3708.845440000001,
+  "bumped": 4335.25204,
+  "move": 0.1688953099107843,
+  "ok": true,
+  "why": "DECOMPOSED: closing equity is disclosed, so the dividend drives the roll-BACK, not the roll-forward. A larger dividend means more was paid out of each historical year, so opening equity three years ago must have been HIGHER, not lower"
+ },
+ {
+  "driver": "Dividend per share",
+  "bump": 0.2,
+  "headline": "divyield",
+  "base": 0.08791208791208792,
+  "bumped": 0.10989010989010989,
+  "move": 0.2499999999999999,
+  "ok": true,
+  "why": "and it raises the disclosed dividend yield"
+ },
+ {
+  "driver": "USD/EGP spot",
+  "bump": 2.0,
+  "headline": "central",
+  "base": 9.381801073509822,
+  "bumped": 9.381801073509822,
+  "move": 0.0,
+  "ok": true,
+  "why": "the spot exchange rate translates the answer into dollars and must not move the pound answer"
+ }
+]

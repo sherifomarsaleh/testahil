@@ -16,6 +16,7 @@ const MARKET_OF = {
  "ALINMA": "SA",
  "ALPHADHABI": "AE",
  "ALRAJHI": "SA",
+ "AMOC": "EG",
  "ARAMCO": "SA",
  "BTFH": "EG",
  "BURJEEL": "AE",
