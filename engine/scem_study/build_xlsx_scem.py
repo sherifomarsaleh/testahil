@@ -194,6 +194,7 @@ inp(9, 'USD/EGP (spot)', 'fx', IN['fx'], NUM1, '')
 band(wsA, 11, 9); wsA['A11'] = 'PLANT — PHYSICAL'
 inp(12, 'Cement grinding capacity', 'capcem', IN['cap_cement_mt'], NUM2, 'Mt/yr')
 inp(13, 'Kiln clinker capacity', 'capclk', IN['cap_clinker_mt'], NUM2, 'Mt/yr')
+inp(14, 'Clinker factor', 'cfac', IN['clinker_factor'], NUM3, 't clinker / t cement')
 
 band(wsA, 15, 9); wsA['A15'] = 'COST STACK — PHYSICAL AND MARKET DRIVERS'
 inp(16, 'Specific thermal energy', 'thermal', IN['thermal_gj_t_clinker'], NUM2, 'GJ/t clinker')
@@ -310,7 +311,7 @@ for i in range(6):
     putf(wsU, f'{c}6', f"={A[f'util{i}']}", IN['kiln_util'][i], PCT, green=True)
     putf(wsU, f'{c}7', f"={c}5*{c}6", BU[i]['clinker'], NUM3)
     putf(wsU, f'{c}8', f"={A['capcem']}", IN['cap_cement_mt'], NUM2, green=True)
-    putf(wsU, f'{c}9', f"={c}5/{c}8", D['clinker_factor'], NUM3)
+    putf(wsU, f'{c}9', f"={A['cfac']}", D['clinker_factor'], NUM3, green=True)
     putf(wsU, f'{c}10', f"={c}7/{c}9", BU[i]['cement'], NUM3)
     putf(wsU, f'{c}11', f"={A[f'dom{i}']}", IN['domestic_share'][i], PCT, green=True)
     putf(wsU, f'{c}12', f"={c}10*{c}11", BU[i]['dom'], NUM3)
@@ -394,7 +395,7 @@ for i in range(5):
     putf(wsD, f'{c}10', f"={A['tax']}", TAX, PCT, green=True)
     putf(wsD, f'{c}11', f"={c}9*(1-{c}10)", F['nopat'][i], NUM0)
     putf(wsD, f'{c}12', f"={c}5*{A[f'cxp{i}']}", F['capex'][i], NUM0)
-    prev = "'Unit Build'!B31" if i == 0 else f"{DC[i-1]}5"
+    prev = A['rev25'] if i == 0 else f"{DC[i-1]}5"
     putf(wsD, f'{c}13', f"=({c}5-{prev})*{A['wcp']}", F['dwc'][i], NUM0)
     pn = "$B$23" if i == 0 else f"{DC[i-1]}11"
     putf(wsD, f'{c}14', f"=MAX({c}11-{pn},0)/$B$24", F['reinvestment'][i], NUM0)
@@ -436,7 +437,8 @@ BR = [('Present value of explicit years (FY2026E-FY2030E)', 'B30', "=SUM(B19:F19
       ('Present value of terminal value', 'B31', "=B27", DCF['pv_tv'], NUM0),
       ('Enterprise value', 'B32', "=B30+B31", DCF['ev'], NUM0),
       ('Terminal value as % of enterprise value', 'B33', "=B31/B32", DCF['tv_share'], PCT),
-      ('Cash at the valuation date', 'B34', "='Balance Sheet'!D7", DCF['cash_fy25'], NUM0),
+      ('Cash at the valuation date', 'B34',
+       f"='Balance Sheet'!D7+B15/(1-{A['stub']})*{A['stub']}", DCF['cash_fy25'], NUM0),
       ('Less gross debt', 'B35', f"=-{A['debt']}", -IN['debt_fy25'], NUM0),
       ('Net cash (ADDED — the company is net cash)', 'B36', "=B34+B35", DCF['net_cash'], NUM0),
       ('Less non-controlling interests', 'B40', f"={A['nci']}", IN['nci'], NUM0),
@@ -514,7 +516,7 @@ for j, l in enumerate(IL):
 gain_hist = [0.0, DISP['gain'], 0.0]
 for i in range(3):
     c = HC[i]
-    putf(wsI, f'{c}5', f"='Unit Build'!{c}11", H['revenue'][i], NUM0, green=True)
+    putf(wsI, f'{c}5', f"={REVK[i]}", H['revenue'][i], NUM0, green=True)
     putf(wsI, f'{c}6', f"={c}9+{c}8", H['ebitda'][i], NUM0)
     putf(wsI, f'{c}7', f"={c}6/{c}5", H['ebitda'][i] / H['revenue'][i], PCT)
     putf(wsI, f'{c}8', f"={c}5*{DNAK[i]}", H['dna'][i], NUM0)
@@ -571,7 +573,7 @@ cash23 = IN['cash_fy25']/1.25*0.35
 eq23 = (IN['ta_fy24'] - IN['tl_fy24']) - IN['pat_fy24']
 ta23 = ppe24 * 0.95 + 850.0 + cash23
 TL_EXP = [ta23 - eq23, IN['tl_fy24'],
-          (ppe24 + 900.0 + DCF['cash_fy25']) - IN['eq_fy25_rep']]
+          (ppe24 + 900.0 + IN['cash_fy25']) - IN['eq_fy25_rep']]
 hist_bs = dict(
     ppe=[ppe24 * 0.95, ppe24, F['ppe'][0] - F['capex'][0] + F['dna'][0]],
     wc=[850.0, 900.0, 900.0 + 0.0],
@@ -597,20 +599,20 @@ for i in range(3):
     else:
         putf(wsBS, f'{c}5', f"=C5", ppe24, NUM0)
         putf(wsBS, f'{c}6', f"=C6", 900.0, NUM0)
-        putf(wsBS, f'{c}7', f"={A['cash25']}+DCF!B15*{A['stub']}/(1-{A['stub']})",
-             DCF['cash_fy25'], NUM0, green=True)
-        putf(wsBS, f'{c}8', f"=SUM({c}5:{c}7)", ppe24 + 900.0 + DCF['cash_fy25'], NUM0, bold=True)
-        putf(wsBS, f'{c}11', f"={c}8-{c}12", (ppe24 + 900.0 + DCF['cash_fy25']) - IN['eq_fy25_rep'], NUM0)
+        putf(wsBS, f'{c}7', f"={A['cash25']}", IN['cash_fy25'], NUM0, green=True)
+        putf(wsBS, f'{c}8', f"=SUM({c}5:{c}7)", ppe24 + 900.0 + IN['cash_fy25'], NUM0, bold=True)
+        putf(wsBS, f'{c}11', f"={c}8-{c}12", (ppe24 + 900.0 + IN['cash_fy25']) - IN['eq_fy25_rep'], NUM0)
         putf(wsBS, f'{c}12', f"={A['eq25']}", IN['eq_fy25_rep'], NUM0, green=True, bold=True)
     putf(wsBS, f'{c}9', f"={A['debt']}", IN['debt_fy25'], NUM1)
     putf(wsBS, f'{c}10', f"={c}11-{c}9", TL_EXP[i] - IN['debt_fy25'], NUM0)
-    putf(wsBS, f'{c}14', f"={c}7-{c}9", hist_bs['cash'][i] - IN['debt_fy25'], NUM0)
+    bs_cash = [IN['cash_fy25'] / 1.25 * 0.35, IN['cash_fy25'] / 1.25, IN['cash_fy25']][i]
+    putf(wsBS, f'{c}14', f"={c}7-{c}9", bs_cash - IN['debt_fy25'], NUM0)
 putf(wsBS, 'D13', f"=C12+{PATK[2]}", (IN['ta_fy24']-IN['tl_fy24'])+IN['pat_fy25'], NUM0)
 putf(wsBS, 'D15', f"={PATK[2]}/D12", IN['pat_fy25'] / IN['eq_fy25_rep'], PCT)
 for i in range(5):
     c, p = FC[i], (HC[2] if i == 0 else FC[i - 1])
-    putf(wsBS, f'{c}5', f"={p}5+DCF!{DC[i]}13-DCF!{DC[i]}8", F['ppe'][i], NUM0)
-    putf(wsBS, f'{c}6', f"={p}6+DCF!{DC[i]}14", F['wc'][i], NUM0)
+    putf(wsBS, f'{c}5', f"={p}5+DCF!{DC[i]}12-DCF!{DC[i]}8", F['ppe'][i], NUM0)
+    putf(wsBS, f'{c}6', f"={p}6+DCF!{DC[i]}13", F['wc'][i], NUM0)
     putf(wsBS, f'{c}7', f"={p}7+'Cash Flow'!{c}12", F['cash'][i], NUM0)
     putf(wsBS, f'{c}8', f"=SUM({c}5:{c}7)", F['ppe'][i] + F['wc'][i] + F['cash'][i], NUM0, bold=True)
     putf(wsBS, f'{c}9', f"={A['debt']}", IN['debt_fy25'], NUM1)
@@ -629,30 +631,32 @@ note(wsBS, 21, 'plugged. Row 11 is the residual liability block, not an independ
 # ============ 11 CASH FLOW ====================================================
 wsC = sheet('Cash Flow')
 title(wsC, 'Cash flow — linked to the DCF waterfall', 'EGP mn', 10, 44, 13)
-hdr(wsC, 4, [''] + YF, start=1)
-for j, l in enumerate(['EBITDA', '− Change in working capital', '− Capital expenditure',
-                       'Operating free cash flow', 'NOPAT', '+ D&A', '− Capex',
-                       '− Change in working capital', 'Free cash flow to the firm',
-                       'Treasury income after tax', 'Dividends paid', 'Net change in cash']):
+hdr(wsC, 4, [''] + YF, start=4)
+for j, l in enumerate(['EBITDA', 'Less change in working capital',
+                       'Less capital expenditure', 'Operating free cash flow',
+                       'NOPAT', 'Less net reinvestment (growth at terminal ROIC)',
+                       'Free cash flow to the firm', 'Treasury income after tax',
+                       'Dividends paid', 'Net change in cash']):
     wsC.cell(row=5 + j, column=1, value=l)
 for i in range(5):
     c = FC[i]
     putf(wsC, f'{c}5', f"=DCF!{DC[i]}7", F['ebitda'][i], NUM0, green=True)
-    putf(wsC, f'{c}6', f"=-DCF!{DC[i]}14", -F['dwc'][i], NUM0)
-    putf(wsC, f'{c}7', f"=-DCF!{DC[i]}13", -F['capex'][i], NUM0)
-    putf(wsC, f'{c}8', f"=SUM({c}5:{c}7)", F['ebitda'][i] - F['dwc'][i] - F['capex'][i], NUM0, bold=True)
+    putf(wsC, f'{c}6', f"=-DCF!{DC[i]}13", -F['dwc'][i], NUM0)
+    putf(wsC, f'{c}7', f"=-DCF!{DC[i]}12", -F['capex'][i], NUM0)
+    putf(wsC, f'{c}8', f"=SUM({c}5:{c}7)",
+         F['ebitda'][i] - F['dwc'][i] - F['capex'][i], NUM0, bold=True)
     putf(wsC, f'{c}9', f"=DCF!{DC[i]}11", F['nopat'][i], NUM0, green=True)
-    putf(wsC, f'{c}10', f"=DCF!{DC[i]}12", F['dna'][i], NUM0, green=True)
-    putf(wsC, f'{c}11', f"=-DCF!{DC[i]}13", -F['capex'][i], NUM0)
-    putf(wsC, f'{c}12', f"=-DCF!{DC[i]}14", -F['dwc'][i], NUM0)
-    putf(wsC, f'{c}13', f"=SUM({c}9:{c}12)", F['fcff'][i], NUM0, bold=True)
-    putf(wsC, f'{c}14', f"='Income Statement'!{c}10*(1-{A['tax']})", F['treasury'][i] * (1 - TAX), NUM0)
-    putf(wsC, f'{c}15', f"='Income Statement'!{c}14*{A['pay']}", F['dividends'][i], NUM0)
+    putf(wsC, f'{c}10', f"=-DCF!{DC[i]}14", -F['reinvestment'][i], NUM0)
+    putf(wsC, f'{c}11', f"=DCF!{DC[i]}15", F['fcff'][i], NUM0, bold=True)
+    putf(wsC, f'{c}12', f"='Income Statement'!{c}10*(1-{A['tax']})",
+         F['treasury'][i] * (1 - TAX), NUM0)
+    putf(wsC, f'{c}13', f"='Income Statement'!{c}14*{A['pay']}", F['dividends'][i], NUM0)
     exp_dc = F['pat'][i] + F['dna'][i] - F['capex'][i] - F['dwc'][i] - F['dividends'][i]
-    putf(wsC, f'{c}16', f"='Income Statement'!{c}14+DCF!{DC[i]}12-DCF!{DC[i]}13-DCF!{DC[i]}14-{c}15",
+    putf(wsC, f'{c}14',
+         f"='Income Statement'!{c}14+DCF!{DC[i]}8-DCF!{DC[i]}12-DCF!{DC[i]}13-{c}13",
          exp_dc, NUM0, bold=True)
-ANCH['cf_div_row'] = 15
-ANCH['cf_dcash_row'] = 16
+ANCH['cf_div_row'] = 13
+ANCH['cf_dcash_row'] = 14
 note(wsC, 18, 'Two presentations of the same year. Rows 5-8 build operating free cash flow from EBITDA; rows 9-13')
 note(wsC, 19, 'are the DCF waterfall\'s own free cash flow to the firm, linked cell-for-cell to the DCF sheet so the')
 note(wsC, 20, 'two can never drift. Treasury income is shown separately and is NOT in free cash flow to the firm.')
@@ -660,8 +664,8 @@ note(wsC, 20, 'two can never drift. Treasury income is shown separately and is N
 # fix the balance-sheet references to the cash-flow rows now that they are known
 for i in range(5):
     c, p = FC[i], (HC[2] if i == 0 else FC[i - 1])
-    putf(wsBS, f'{c}7', f"={p}7+'Cash Flow'!{c}16", F['cash'][i], NUM0)
-    putf(wsBS, f'{c}12', f"={p}12+'Income Statement'!{c}14-'Cash Flow'!{c}15", F['equity'][i], NUM0, bold=True)
+    putf(wsBS, f'{c}7', f"={p}7+'Cash Flow'!{c}14", F['cash'][i], NUM0)
+    putf(wsBS, f'{c}12', f"={p}12+'Income Statement'!{c}14-'Cash Flow'!{c}13", F['equity'][i], NUM0, bold=True)
 
 # ============ 12 SUMMARY FINANCIALS ===========================================
 wsSF = sheet('Summary Financials')
@@ -671,15 +675,20 @@ SFL = [('Revenue', "='Income Statement'!{c}5", H['revenue'] + F['revenue']),
        ('EBITDA', "='Income Statement'!{c}6", H['ebitda'] + F['ebitda']),
        ('EBIT', "='Income Statement'!{c}9", H['ebit'] + F['ebit']),
        ('Profit after tax', "='Income Statement'!{c}14", D['history']['pat'] + F['pat']),
-       ('Sales volume (Mt)', "='Unit Build'!{c}10", H['volume_mt'] + F['volume_mt']),
-       ('Realised price (EGP/t)', "='Unit Build'!{c}20", H['price_t'] + F['price_t']),
-       ('Capacity utilisation', "='Unit Build'!{c}6",
-        H['utilisation'] + [v / IN['cap_cement_mt'] for v in F['volume_mt']])]
+       ]
 for j, (lab, fm, vals) in enumerate(SFL):
     wsSF.cell(row=5 + j, column=1, value=lab)
     for i, c in enumerate(HC + FC):
-        ft = NUM2 if 'Mt' in lab else (PCT if 'utilisation' in lab else NUM0)
-        putf(wsSF, f'{c}{5+j}', fm.format(c=c), vals[i], ft, green=True)
+        putf(wsSF, f'{c}{5+j}', fm.format(c=c), vals[i], NUM0, green=True)
+# The bottom-up build starts at FY2025A, so the physical rows carry FY2025 onward only.
+for j, (lab, key, ft) in enumerate([('Sales volume (Mt)', 10, NUM3),
+                                    ('Realised price (EGP/t)', 20, NUM0),
+                                    ('Kiln utilisation', 6, PCT)]):
+    rr = 9 + j
+    wsSF.cell(row=rr, column=1, value=lab)
+    for i in range(6):
+        putf(wsSF, f'{(HC+FC)[i+2]}{rr}', f"='Unit Build'!{BUC[i]}{key}",
+             [BUD[i]['cement'], BUD[i]['price'], BUD[i]['util']][j], ft, green=True)
 wsSF['A13'] = 'EBITDA margin'
 wsSF['A14'] = 'Revenue growth'
 for i, c in enumerate(HC + FC):
@@ -703,7 +712,7 @@ for j, l in enumerate(['Earnings per share (EGP)', 'Dividend per share (EGP)',
 allpat = D['history']['pat'] + F['pat']
 alleq = [(IN['ta_fy24'] - IN['tl_fy24']) - IN['pat_fy24'], IN['ta_fy24'] - IN['tl_fy24'],
          IN['eq_fy25_rep']] + F['equity']
-allcash = [IN['cash_fy25']/1.25*0.35, IN['cash_fy25']/1.25, DCF['cash_fy25']] + F['cash']
+allcash = [IN['cash_fy25']/1.25*0.35, IN['cash_fy25']/1.25, IN['cash_fy25']] + F['cash']
 alleb = H['ebitda'] + F['ebitda']
 allvol = H['volume_mt'] + F['volume_mt']
 for i, c in enumerate(HC + FC):
@@ -712,13 +721,15 @@ for i, c in enumerate(HC + FC):
     putf(wsR, f'{c}9', f"=('Balance Sheet'!{c}7-'Balance Sheet'!{c}9)/{A['shares']}",
          (allcash[i] - IN['debt_fy25']) / SH, PX)
     putf(wsR, f'{c}10', f"='Income Statement'!{c}14/'Balance Sheet'!{c}12", allpat[i] / alleq[i], PCT)
-    putf(wsR, f'{c}11', f"='Income Statement'!{c}6/'Unit Build'!{c}10", alleb[i] / allvol[i], NUM0)
+    if i >= 2:
+        putf(wsR, f'{c}11', f"='Income Statement'!{c}6/'Summary Financials'!{c}9",
+             alleb[i] / BUD[i - 2]['cement'], NUM0)
     putf(wsR, f'{c}12', f"={A['spot']}/{c}5", SPOT / (allpat[i] / SH), MULT)
     putf(wsR, f'{c}13', f"=({A['spot']}*{A['shares']}-('Balance Sheet'!{c}7-'Balance Sheet'!{c}9))"
                         f"/'Income Statement'!{c}6",
          (SPOT * SH - (allcash[i] - IN['debt_fy25'])) / alleb[i], MULT)
 for i, c in enumerate(FC):
-    putf(wsR, f'{c}6', f"='Cash Flow'!{c}15/{A['shares']}", F['dividends'][i] / SH, PX)
+    putf(wsR, f'{c}6', f"='Cash Flow'!{c}13/{A['shares']}", F['dividends'][i] / SH, PX)
     putf(wsR, f'{c}8', f"=DCF!{DC[i]}15/{A['shares']}", F['fcff'][i] / SH, PX)
 note(wsR, 15, 'Price/earnings and EV/EBITDA are struck at the current spot against each year\'s earnings, so the')
 note(wsR, 16, 'forecast columns show what the reader is paying today for a future year — not a forecast of the multiple.')
@@ -727,55 +738,61 @@ note(wsR, 16, 'forecast columns show what the reader is paying today for a futur
 wsN = sheet('Relative & Normalized')
 title(wsN, 'Relative multiples, normalised earnings and the asset lens', None, 6, 52, 16)
 band(wsN, 4, 6); wsN['A4'] = 'RELATIVE — EV/EBITDA ON MID-CYCLE EARNINGS'
-RL = [('FY2025 revenue', f"='Unit Build'!D10", H['revenue'][2], NUM0),
+RL = [('FY2025 revenue (disclosed)', f"={A['rev25']}", IN['rev_fy25'], NUM0),
+      ('Normalised revenue haircut', f"={A['nhair']}", IN['norm_rev_haircut'], PCT),
+      ('Normalised revenue base', "=B5*B6", IN['rev_fy25'] * IN['norm_rev_haircut'], NUM0),
       ('Mid-cycle EBITDA margin', f"={A['nmgn']}", IN['norm_mgn'], PCT),
-      ('Normalised EBITDA', "=B5*B6", LN['ebitda_norm'], NUM0),
+      ('Normalised EBITDA', "=B7*B8", LN['ebitda_norm'], NUM0),
       ('Justified EV/EBITDA', f"={A['evb']}", IN['ev_ebitda_just'], MULT),
-      ('Implied enterprise value', "=B7*B8", LN['ebitda_norm'] * IN['ev_ebitda_just'], NUM0),
+      ('Implied enterprise value', "=B9*B10", LN['ebitda_norm'] * IN['ev_ebitda_just'], NUM0),
       ('Plus net cash', "=DCF!B36", DCF['net_cash'], NUM0),
-      ('Implied equity value', "=B9+B10", LN['ebitda_norm'] * IN['ev_ebitda_just'] + DCF['net_cash'], NUM0),
-      ('Implied value per share (EGP)', f"=B11/{A['shares']}", LN['values']['Relative multiples'], PX)]
+      ('Less non-controlling interests', f"=-{A['nci']}", -IN['nci'], NUM0),
+      ('Implied equity value', "=B11+B12+B13",
+       LN['ebitda_norm'] * IN['ev_ebitda_just'] + DCF['net_cash'] - IN['nci'], NUM0),
+      ('Implied value per share (EGP)', f"=B14/{A['shares']}",
+       LN['values']['Relative multiples'], PX)]
 for j, (lab, fm, ex, ft) in enumerate(RL):
     wsN.cell(row=5 + j, column=1, value=lab)
-    putf(wsN, f'B{5+j}', fm, ex, ft, bold=(j == 7))
-band(wsN, 14, 6); wsN['A14'] = 'NORMALISED EARNINGS POWER'
-NL = [('Normalised EBITDA', "=B7", LN['ebitda_norm'], NUM0),
+    putf(wsN, f'B{5+j}', fm, ex, ft, bold=(j == 10))
+band(wsN, 17, 6); wsN['A17'] = 'NORMALISED EARNINGS POWER'
+NL = [('Normalised EBITDA', "=B9", LN['ebitda_norm'], NUM0),
       ('Less D&A (FY2025)', "=-'Income Statement'!D8", -H['dna'][2], NUM0),
-      ('Normalised EBIT', "=B15+B16", LN['ebitda_norm'] - H['dna'][2], NUM0),
-      ('Normalised NOPAT', f"=B17*(1-{A['tax']})", LN['nopat_norm'], NUM0),
-      ('Plus after-tax treasury income', f"=DCF!B36*{A['cy2']}*(1-{A['tax']})",
-       DCF['net_cash'] * IN['cash_yield'][2] * (1 - TAX), NUM0),
-      ('Normalised earnings', "=B18+B19", LN['earn_norm'], NUM0),
+      ('Normalised EBIT', "=B18+B19", LN['ebitda_norm'] - H['dna'][2], NUM0),
+      ('Normalised NOPAT', f"=B20*(1-{A['tax']})", LN['nopat_norm'], NUM0),
       ('Justified price/earnings', f"={A['pej']}", IN['pe_just'], MULT),
-      ('Implied value per share (EGP)', f"=B20*B21/{A['shares']}",
+      ('Operating equity value', "=B21*B22", LN['nopat_norm'] * IN['pe_just'], NUM0),
+      ('Plus net cash AT FACE (not capitalised)', "=DCF!B36", DCF['net_cash'], NUM0),
+      ('Less non-controlling interests', f"=-{A['nci']}", -IN['nci'], NUM0),
+      ('Implied value per share (EGP)', f"=(B23+B24+B25)/{A['shares']}",
        LN['values']['Normalised earnings'], PX)]
 for j, (lab, fm, ex, ft) in enumerate(NL):
-    wsN.cell(row=15 + j, column=1, value=lab)
-    putf(wsN, f'B{15+j}', fm, ex, ft, bold=(j == 7))
-band(wsN, 24, 6); wsN['A24'] = 'ASSET LENS — EV PER TONNE OF CAPACITY (the cement sector yardstick)'
+    wsN.cell(row=18 + j, column=1, value=lab)
+    putf(wsN, f'B{18+j}', fm, ex, ft, bold=(j == 8))
+band(wsN, 28, 6); wsN['A28'] = 'ASSET LENS — EV PER TONNE OF CAPACITY (the cement sector yardstick)'
 AL = [('Enterprise value at spot (EGP mn)', f"={A['spot']}*{A['shares']}-DCF!B36",
        SPOT * SH - DCF['net_cash'], NUM0),
       ('Capacity (annual tonnes)', f"={A['capcem']}*1000000", IN['cap_cement_mt'] * 1e6, NUM0),
-      ('EV per tonne at spot (USD/t)', f"=B25*1000000/B26/{A['fx']}", LN['ev_per_t_spot'], NUM1),
+      ('EV per tonne at spot (USD/t)', f"=B29*1000000/B30/{A['fx']}", LN['ev_per_t_spot'], NUM1),
       ('Replacement cost (USD/t)', f"={A['repl']}", IN['repl_usd_t'], NUM0),
-      ('Discount to replacement cost', "=B27/B28-1", LN['ev_per_t_spot'] / IN['repl_usd_t'] - 1, PCT),
+      ('Discount to replacement cost', "=B31/B32-1", LN['ev_per_t_spot'] / IN['repl_usd_t'] - 1, PCT),
       ('Justified EV per tonne (USD/t)', f"={A['evt']}", IN['ev_t_just'], NUM0),
-      ('Implied enterprise value (EGP mn)', f"=B30*B26*{A['fx']}/1000000", LN['ev_asset'], NUM0),
+      ('Implied enterprise value (EGP mn)', f"=B34*B30*{A['fx']}/1000000", LN['ev_asset'], NUM0),
       ('Plus net cash', "=DCF!B36", DCF['net_cash'], NUM0),
-      ('Implied value per share (EGP)', f"=(B31+B32)/{A['shares']}",
+      ('Less non-controlling interests', f"=-{A['nci']}", -IN['nci'], NUM0),
+      ('Implied value per share (EGP)', f"=(B35+B36+B37)/{A['shares']}",
        LN['values']['Asset / replacement cost'], PX)]
 for j, (lab, fm, ex, ft) in enumerate(AL):
-    wsN.cell(row=25 + j, column=1, value=lab)
-    putf(wsN, f'B{25+j}', fm, ex, ft, bold=(j == 8))
-band(wsN, 35, 6); wsN['A35'] = 'MEMO — BOOK, SHOWN BUT NOT USED AS A LENS'
-wsN['A36'] = 'Book value per share (EGP)'
-putf(wsN, 'B36', f"='Balance Sheet'!D12/{A['shares']}", LN['bvps'], PX)
-wsN['A37'] = 'Sustainable return on equity'
-putf(wsN, 'B37', f"=B18/'Balance Sheet'!D12", LN['roe_sust'], PCT)
-note(wsN, 39, 'A book/return lens is deliberately NOT one of the four. The El Hassana plant commissioned in 1997 and')
-note(wsN, 40, 'is carried at historic cost through a five-fold devaluation, so book value measures the accounting')
-note(wsN, 41, 'rather than the asset. The cement sector\'s own yardstick — enterprise value per annual tonne of')
-note(wsN, 42, 'capacity against replacement cost — is used in its place.')
+    wsN.cell(row=29 + j, column=1, value=lab)
+    putf(wsN, f'B{29+j}', fm, ex, ft, bold=(j == 8))
+band(wsN, 40, 6); wsN['A40'] = 'MEMO — BOOK, SHOWN BUT NOT USED AS A LENS'
+wsN['A41'] = 'Book value per share (EGP)'
+putf(wsN, 'B41', f"='Balance Sheet'!D12/{A['sh25']}", LN['bvps'], PX)
+wsN['A42'] = 'Sustainable return on equity'
+putf(wsN, 'B42', f"=B21/'Balance Sheet'!D12", LN['roe_sust'], PCT)
+note(wsN, 44, 'A book/return lens is deliberately NOT one of the four. The El Hassana plant commissioned in 1997 and')
+note(wsN, 45, 'is carried at historic cost through a five-fold devaluation, so book value measures the accounting')
+note(wsN, 46, 'rather than the asset. The cement sector\'s own yardstick — enterprise value per annual tonne of')
+note(wsN, 47, 'capacity against replacement cost — is used in its place.')
 
 # ============ 3 FUNDAMENTAL VALUATION =========================================
 wsFV = sheet('Fundamental Valuation')
@@ -783,9 +800,9 @@ title(wsFV, 'Fundamental valuation — four lenses', None, 6, 52, 16)
 hdr(wsFV, 4, ['Lens', 'Value per share (EGP)', 'Weight', 'Weighted'])
 LKEYS = list(LN['weights'].keys())
 LSRC = {'DCF (cash flow)': "=DCF!B39",
-        'Relative multiples': "='Relative & Normalized'!B12",
-        'Normalised earnings': "='Relative & Normalized'!B22",
-        'Asset / replacement cost': "='Relative & Normalized'!B33"}
+        'Relative multiples': "='Relative & Normalized'!B15",
+        'Normalised earnings': "='Relative & Normalized'!B26",
+        'Asset / replacement cost': "='Relative & Normalized'!B38"}
 for j, k in enumerate(LKEYS):
     wsFV.cell(row=5 + j, column=1, value=k)
     putf(wsFV, f'B{5+j}', LSRC[k], LN['values'][k], PX, green=True)
@@ -967,6 +984,12 @@ ORDER = ['READ FIRST', 'Summary', 'Fundamental Valuation', 'Assumptions', 'EV Br
          'Cash Flow', 'Summary Financials', 'Monte Carlo', 'Sensitivity',
          'Per-Share & Ratios', 'Peer & Sector']
 wb._sheets = [wb[n] for n in ORDER]
+
+# openpyxl cannot write cached values. Set fullCalcOnLoad so Excel, LibreOffice and
+# Sheets all recompute the whole book the moment it opens — which is what the reader
+# needs, and closes the "delivered file reads blank" finding.
+wb.calculation.fullCalcOnLoad = True
+wb.calculation.calcCompleted = False
 
 OUT = os.path.join(HERE, 'SCEM_Valuation_Model_06082026_public.xlsx')
 wb.save(OUT)

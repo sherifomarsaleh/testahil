@@ -156,38 +156,25 @@ caption('Table 3 — The bridge. Net cash is ADDED, because this company holds m
         'deliberately so; the next section explains why.')
 
 H2('The terminal value, and the judgement that decides it')
-P('The single most consequential judgement in this valuation is what return the company '
-  'earns on capital in perpetuity, because that sets how much of its profit growth must '
-  'be paid for. Measured on the books, the answer is absurd. The El Hassana plant was '
-  'commissioned from 1997 and is carried at historic cost in pre-devaluation pounds, so '
-  f'book invested capital at the end of the forecast is only EGP {n0(TR["ic_book"])} '
-  f'million and the implied return on it is {pc(TR["roic_book"], 0)}. Taken at face value '
-  f'that would mean 5% perpetual growth could be bought for {pc(TR["rr_book"])} of profit '
-  '— growth for almost nothing.')
-P('So the terminal return is struck on replacement cost instead. Building 3.8 million '
-  f'tonnes of grey-cement capacity costs about USD {n0(IN["repl_usd_t"])} per annual '
-  f'tonne, which is EGP {n0(TR["ic_repl"])} million at today\'s exchange rate. On that '
-  f'basis the terminal return on capital is {pc(TR["roic_repl"])} and the reinvestment '
-  f'rate is {pc(TR["rr_repl"])} of profit. Growth is only real if someone pays today\'s '
-  'price for the capacity that delivers it.')
-rows = [['Year', 'Capex (EGP mn)', 'Capex / EBITDA', 'Character', 'NOPAT (EGP mn)',
-         'Return on capital', 'Reinvestment rate']]
-for r in TR['history']:
-    rows.append([r['year'], n0(r['capex']),
-                 f"{r['capex_ebitda']:.2f}x" if r['capex_ebitda'] else '—',
-                 r['character'], n0(r['nopat']), pc(r['roic']),
-                 pc(r['rr']) if r['rr'] == r['rr'] else '—'])
-table(rows, [0.72, 1.06, 0.98, 0.84, 1.06, 1.10, 1.06], size=8.8)
-caption('Table 4 — Historical reinvestment and returns, on the book basis, showing exactly '
-        'the distortion the replacement-cost measure corrects.')
-
+P('The single most consequential judgement here is what return the company earns on '
+  'capital in perpetuity, because that sets how much of its growth must be paid for. '
+  'Measured on the books the answer is meaningless: the El Hassana plant was commissioned '
+  'from 1997 and is carried at historic cost in pre-devaluation pounds, so dividing '
+  "today's profit by that asset base returns a return no cement plant has ever earned.")
+P(f'The terminal return is therefore struck on REPLACEMENT cost. Building 3.80 million '
+  f'tonnes of grinding capacity costs about USD {n0(IN["repl_usd_t"])} per annual tonne, '
+  f'or EGP {n0(DCF["ic_repl"])} million at today\'s exchange rate. On that basis the '
+  f'terminal return on capital is {pc(DCF["roic_term"])} and the reinvestment rate is '
+  f'{pc(DCF["rr_term"])} of profit. Growth is only real if someone pays today\'s price for '
+  f'the capacity that delivers it — and the same rule now governs the explicit forecast '
+  f'years, so both windows price growth identically.')
 box([('And this is why growth does not help. ',
-      f'Terminal return on capital of {pc(TR["roic_repl"])} sits BELOW the terminal cost of '
-      f'capital of {pc(W["wacc_term"])}. Every extra point of perpetual growth must be '
-      'bought with reinvestment that earns less than it costs. Raising the terminal growth '
-      f'rate from 3% to 7% therefore LOWERS the value, from EGP {n2(GDV["fv_at_g3"])} to '
-      f'EGP {n2(GDV["fv_at_g7"])}. That is not a modelling artefact; it is the correct '
-      'reading of a mature plant in an oversupplied market. This company creates value by '
+      f'Terminal return on capital of {pc(DCF["roic_term"])} sits BELOW the terminal cost '
+      f'of capital of {pc(W["wacc_term"])}. Every extra point of perpetual growth must be '
+      f'bought with reinvestment that earns less than it costs, so raising terminal growth '
+      f'from 3% to 7% LOWERS fair value, from EGP {n2(GDV["fv_at_g3"])} to EGP '
+      f'{n2(GDV["fv_at_g7"])}. That is not a modelling artefact; it is the correct reading '
+      'of a mature plant in an oversupplied market. This company creates value by '
       'harvesting and distributing, not by growing.')])
 
 # ---- 1.2 --------------------------------------------------------------------
@@ -282,29 +269,63 @@ caption('Table 8 — The four lenses side by side. Weighting is applied to the b
         'the ranges are shown so the reader can weight them differently.')
 
 # ---- 1.6 --------------------------------------------------------------------
-H2('1.6  The drivers — a volume-and-price build on one plant')
-P('Revenue is built from tonnes and price per tonne rather than from a growth rate. For '
-  'the historical years, volume is the Egyptian market multiplied by the company\'s share '
-  'of it, and realised price is then solved as disclosed revenue divided by that volume, '
-  'so the build reproduces the reported top line exactly. The forecast compounds both legs '
-  'forward.')
-rows = [['', 'FY2023', 'FY2024', 'FY2025'] + YF]
-rows.append(['Sales volume (Mt)'] + [n2(v) for v in H['volume_mt']] +
-            [n2(v) for v in F['volume_mt']])
-rows.append(['Capacity utilisation'] + [pc(u) for u in H['utilisation']] +
-            [pc(v / IN['capacity_mt']) for v in F['volume_mt']])
-rows.append(['Realised price (EGP/t)'] + [n0(p) for p in H['price_t']] +
-            [n0(p) for p in F['price_t']])
-rows.append(['Revenue (EGP mn)'] + [n0(r) for r in H['revenue']] +
-            [n0(r) for r in F['revenue']])
-table(rows, [1.48, 0.68, 0.68, 0.68, 0.68, 0.68, 0.68, 0.68, 0.68], size=8.6)
-caption('Table 9 — The unit build. Utilisation of about 71% against a market running at '
-        '98% reflects a plant in North Sinai serving a market centred elsewhere.')
-P('The price path is the part that deserves scrutiny. Nominal realised prices rise 4.5% to '
-  '6.0% a year across the forecast. Against Egyptian inflation running near 16% in 2026 '
-  'and easing toward the central bank\'s 7% and then 5% targets, that is a real price '
-  'decline in every single year. That is not pessimism for its own sake; it is what a '
-  'supply glut does to pricing power, and the next section names the specific mechanism.')
+H2('1.6  The drivers — a bottom-up build from kilns and tonnes')
+P('Revenue and EBITDA are not assumed here. They are built from physical units, and the '
+  'margin is what falls out at the bottom rather than what is typed in at the top.')
+rows = [['', 'FY2025A'] + YF]
+BUD = D['bottom_up']
+for lab, k, f in [('Kiln utilisation', 'util', lambda x: pc(x)),
+                  ('Clinker produced (Mt)', 'clinker', lambda x: f'{x:.3f}'),
+                  ('Cement produced (Mt)', 'cement', lambda x: f'{x:.3f}'),
+                  ('Domestic volume (Mt)', 'dom', lambda x: f'{x:.3f}'),
+                  ('Export volume (Mt)', 'exp', lambda x: f'{x:.3f}'),
+                  ('Realised price (EGP/t)', 'price', n0),
+                  ('Revenue (EGP mn)', 'rev', n0)]:
+    rows.append([lab] + [f(b[k]) for b in BUD])
+table(rows, [1.70, 0.84, 0.84, 0.84, 0.84, 0.84, 0.84], size=8.8)
+caption('Table 9 — The volume and price chain. The clinker factor of '
+        f'{D["clinker_factor"]:.3f} tonnes of clinker per tonne of cement is anchored on '
+        'the plant register, which publishes both capacities — 2.57Mt of kiln clinker '
+        'against 3.80Mt of grinding — so it is observed rather than assumed.')
+rows = [['EGP per tonne of cement', 'FY2025A'] + YF]
+for lab, k in [('Thermal fuel', 'c_fuel'), ('Electrical power', 'c_pow'),
+               ('Raw materials & quarrying', 'c_raw'), ('Packaging', 'c_pack'),
+               ('Distribution & selling', 'c_dist'), ('Total variable cost', 'var_t')]:
+    rows.append([lab] + [n0(b[k]) for b in BUD])
+table(rows, [1.70, 0.84, 0.84, 0.84, 0.84, 0.84, 0.84], size=8.8, band_rows={6})
+caption('Table 10 — The cost stack. Every line is a physical or market quantity: heat per '
+        'tonne of clinker times the delivered fuel price; kilowatt-hours per tonne times '
+        'the industrial tariff; and so on.')
+rows = [['EGP million', 'FY2025A'] + YF]
+for lab, k in [('Revenue', 'rev'), ('Variable cost', 'var'), ('Fixed cost', 'fixed'),
+               ('EBITDA — an OUTPUT', 'ebitda')]:
+    rows.append([lab] + [n0(b[k]) for b in BUD])
+rows.append(['EBITDA margin'] + [pc(b['mgn']) for b in BUD])
+table(rows, [1.70, 0.84, 0.84, 0.84, 0.84, 0.84, 0.84], size=8.8, band_rows={4})
+caption('Table 11 — And the result. The FY2026 margin is not chosen; it emerges from the '
+        'cost stack meeting the price path.')
+
+H2('Does the build reproduce the company? A test that can fail')
+P('A driver build is only worth having if it can be wrong. Nothing above was solved to '
+  'match the accounts — every cost driver is an independent physical or market norm — so '
+  'the comparison below is a genuine test rather than a restatement.')
+rows = [['', 'Bottom-up build', 'The company', 'Difference']]
+rows.append(['FY2025 revenue (EGP mn)', n0(BUD[0]['rev']), n0(IN['rev_fy25']),
+             sg(BUD[0]['rev'] / IN['rev_fy25'] - 1, 2)])
+rows.append(['FY2025 EBITDA (EGP mn)', n0(BUD[0]['ebitda']), n0(H['ebitda'][2]),
+             sg(BUD[0]['ebitda'] / H['ebitda'][2] - 1, 2)])
+table(rows, [2.40, 1.55, 1.55, 1.30])
+caption('Table 12 — The validation. The right-hand column is EBITDA implied by closing the '
+        'disclosed profit at the effective tax rate on the reported cash balance.')
+P('It is worth being explicit about why this matters. A build that solved realised price '
+  'as revenue divided by volume would reproduce revenue exactly — for any volume '
+  'assumption whatsoever — because price would be the plug. That is an identity, not a '
+  'check. Here volume comes from capacity and utilisation, price comes from the market, '
+  'and revenue is the product; if either were wrong the difference above would show it.')
+P('The price path deserves scrutiny. Nominal realised prices rise 4.5% to 6.0% a year '
+  'across the forecast. Against Egyptian inflation running near 14% in 2026 and easing '
+  "toward the central bank's 7% and then 5% targets, that is a REAL price decline in "
+  'every single year — which is what a supply glut does to pricing power.')
 
 # ---- 1.7 --------------------------------------------------------------------
 H2('1.7  The crux — the cycle first, the capacity revival second, the cash third')
@@ -388,13 +409,13 @@ for i, we in enumerate(SN['wacc_grid']):
     rows.append([pc(we, 2)] + [n2(v) for v in SN['wacc_g'][i]])
 table(rows, [1.90, 0.98, 0.98, 0.98, 0.98, 0.98])
 caption('Table 12 — The same grid in figures.')
-rows = [['Explicit cost of capital'] + [pc(t, 1) for t in SN['term_grid']]]
-for i, we in enumerate(SN['wacc_grid']):
-    rows.append([pc(we, 2)] + [n2(v) for v in SN['exp_term'][i]])
+rows = [['Net cash (EGP mn)'] + [n0(x) for x in SN['nc_grid']]]
+rows.append(['Fair value per share (EGP)'] + [n2(v) for v in SN['net_cash']])
 table(rows, [1.90, 0.98, 0.98, 0.98, 0.98, 0.98])
-caption('Table 13 — Explicit-window against terminal cost of capital, each varied '
-        'independently. This shows what the valuation needs the economy to do, not merely '
-        'what growth rate the model needs.')
+caption('Table 13 — Net cash. This is the largest single uncertainty in the valuation and '
+        'it is now sensitised: the balance is taken from the reported accounts rather than '
+        'inferred from the income it earns, and the grid shows what a EGP 1.5bn error in '
+        'either direction is worth.')
 rows = [['EBITDA margin shift'] + [f'{m:+.0%}' for m in SN['mgn_grid']]]
 rows.append(['Fair value per share (EGP)'] + [n2(v) for v in SN['mgn']])
 table(rows, [1.90, 0.98, 0.98, 0.98, 0.98, 0.98])
@@ -515,7 +536,7 @@ for head, body in [
      'operating profit and treasury income — is DERIVED by closing the disclosed profit, '
      'and is labelled as derived in the financial statements appendix. The margin '
      'structure rests on a single disclosed EBITDA figure for FY2024.'),
-    ('The balance sheet does not reconcile, and the gap is large. ',
+    ('The balance sheet still does not fully reconcile. ',
      f'Rolling FY2024 equity of EGP {n0(D["equity_gap"]["rolled"] - IN["pat_fy25"])} million '
      f'forward by FY2025 profit with no distribution gives EGP '
      f'{n0(D["equity_gap"]["rolled"])} million, against a reported figure of about EGP '
@@ -523,11 +544,25 @@ for head, body in [
      'million difference implies a FY2025 distribution that no obtainable source reports. '
      'It is carried as a disclosed uncertainty rather than plugged, and it bears directly '
      'on the cash balance the valuation adds back.'),
-    ('The cash balance is derived, not disclosed. ',
-     'No cash figure is separately obtainable. The balance used here is inferred from the '
-     'treasury income implied by the FY2024 profit bridge divided by the prevailing deposit '
-     'yield. Net cash is 37% of the equity value, so an error here matters more than an '
-     'error in almost any operating assumption.'),
+    ('The cash balance is now reported, and sensitised. ',
+     f'An earlier draft inferred it from the treasury income the profit bridge implied, '
+     f'divided by a deposit yield, and then grew it by an undisclosed multiplier. It is now '
+     f'the reported FY2025 balance of EGP {n0(IN["cash_fy25"])} million, rolled forward to '
+     f'the valuation date on the elapsed share of FY2026 free cash flow. It is '
+     f'{pc(DCF["net_cash"]/DCF["equity"], 0)} of fair equity value, so it carries its own '
+     'sensitivity grid in section 1.9 rather than being asserted.'),
+    ('The EBITDA margin is an output, and that changed the answer. ',
+     'An earlier draft set the FY2026 EBITDA margin at 30.5% — above the FY2025 outturn it '
+     'simultaneously described as a cyclical peak. Rebuilding the operating line from the '
+     f'cost stack puts FY2026 at {pc(D["forecast"]["margin"][0])} falling to '
+     f'{pc(D["forecast"]["margin"][4])}, and moved the weighted central materially lower.'),
+    ('The fixed cost block is calibrated, not observed. ',
+     f'Variable costs are built from independent physical norms, but the fixed block — '
+     f'labour, maintenance, insurance, security and administration — is set at USD '
+     f'{n1(IN["fixed_usd_t_capacity"])} per tonne of installed capacity, the level the '
+     'FY2025 reconciliation implies against that variable stack. It sits inside the USD '
+     '10-20 industry band, but it is the one cost line the build does not independently '
+     'evidence.'),
     ('Capital expenditure is a top-down assumption. ',
      'The company publishes no capital-expenditure figure, guidance or investment plan that '
      'could be retrieved. Capex is set at 4.5% to 5.0% of revenue as maintenance for a '

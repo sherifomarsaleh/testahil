@@ -106,6 +106,13 @@ INP = dict(
     cap_clinker_mt=I(2.57, "Kiln clinker capacity. The PAIR with cement capacity OBSERVES "
                      "the clinker factor rather than assuming it, and settles which base "
                      "a USD-per-tonne benchmark is quoted on", "2025-03-23", "Company"),
+    clinker_factor=I(0.6763, "Tonnes of clinker per tonne of cement. ANCHORED on the "
+                     "plant register's two capacities (2.57/3.80 = 0.676) but carried as "
+                     "an independent input, because blending is a real operating lever: a "
+                     "lower factor means more cement per tonne of clinker and less fuel "
+                     "per tonne of cement. Deriving it from the capacity pair made kiln "
+                     "capacity cancel out of cement output algebraically — the driver test "
+                     "caught that", "2025-03-23", "Company"),
     kiln_util=I([0.710, 0.717, 0.735, 0.753, 0.772, 0.791],
                 "Kiln utilisation FY2025A then FY2026E-FY2030E", "2026-08-06", "House"),
     thermal_gj_t_clinker=I(3.40, "Specific thermal energy, 3.2-3.6 GJ/t clinker for a dry "
@@ -270,9 +277,10 @@ say("SCEM — REVISION 2 — bottom-up operating model + 69 accepted corrections
 say("=" * 80)
 
 # ============ 1. BOTTOM-UP OPERATING BUILD (EBITDA is an OUTPUT) ============
-cf = V['cap_clinker_mt'] / V['cap_cement_mt']
-say(f"\n[Clinker factor] OBSERVED: {V['cap_clinker_mt']:.2f} / {V['cap_cement_mt']:.2f} "
-    f"= {cf:.3f} t clinker per t cement")
+cf = V['clinker_factor']
+say(f"\n[Clinker factor] {cf:.4f} t clinker per t cement, anchored on the register pair "
+    f"{V['cap_clinker_mt']:.2f}/{V['cap_cement_mt']:.2f} = "
+    f"{V['cap_clinker_mt']/V['cap_cement_mt']:.4f} but carried as an INDEPENDENT lever")
 BU = []
 for i in range(6):
     clk = V['cap_clinker_mt'] * V['kiln_util'][i]
@@ -597,6 +605,47 @@ OUT = dict(
     sensitivity=dict(nc_grid=nc_grid, net_cash=sens_nc, wacc_grid=wacc_grid,
                      g_grid=g_grid, wacc_g=sens_wg, beta_grid=beta_grid, beta=sens_beta,
                      mgn_grid=mgn_grid, mgn=sens_mgn),
+    lens_ranges={
+        'DCF (cash flow)': dict(bear=float(np.min(sens_wg)), base=fv_dcf,
+                                bull=float(np.max(sens_wg))),
+        'Relative multiples': dict(
+            bear=(eb_norm * (V['ev_ebitda_just'] - 1) + net_cash - V['nci']) / V['shares_mn'],
+            base=fv_rel,
+            bull=(eb_norm * (V['ev_ebitda_just'] + 1) + net_cash - V['nci']) / V['shares_mn']),
+        'Normalised earnings': dict(
+            bear=(nopat_norm * (V['pe_just'] - 1) + net_cash - V['nci']) / V['shares_mn'],
+            base=fv_norm,
+            bull=(nopat_norm * (V['pe_just'] + 1) + net_cash - V['nci']) / V['shares_mn']),
+        'Asset / replacement cost': dict(
+            bear=((V['ev_t_just'] - 15) * V['cap_cement_mt'] * 1e6 * V['fx'] / 1e6
+                  + net_cash - V['nci']) / V['shares_mn'],
+            base=fv_asset,
+            bull=((V['ev_t_just'] + 15) * V['cap_cement_mt'] * 1e6 * V['fx'] / 1e6
+                  + net_cash - V['nci']) / V['shares_mn']),
+        'Weighted central': dict(
+            bear=float(sum(dict(zip(lenses, [min(sens_wg[i]) for i in range(5)] and
+                 [0]*4)).values())) if False else
+                 (V['w_dcf'] * float(np.min(sens_wg))
+                  + V['w_rel'] * ((eb_norm * (V['ev_ebitda_just'] - 1) + net_cash - V['nci'])
+                                  / V['shares_mn'])
+                  + V['w_norm'] * ((nopat_norm * (V['pe_just'] - 1) + net_cash - V['nci'])
+                                   / V['shares_mn'])
+                  + V['w_asset'] * (((V['ev_t_just'] - 15) * V['cap_cement_mt'] * 1e6
+                                     * V['fx'] / 1e6 + net_cash - V['nci']) / V['shares_mn'])),
+            base=fv_central,
+            bull=(V['w_dcf'] * float(np.max(sens_wg))
+                  + V['w_rel'] * ((eb_norm * (V['ev_ebitda_just'] + 1) + net_cash - V['nci'])
+                                  / V['shares_mn'])
+                  + V['w_norm'] * ((nopat_norm * (V['pe_just'] + 1) + net_cash - V['nci'])
+                                   / V['shares_mn'])
+                  + V['w_asset'] * (((V['ev_t_just'] + 15) * V['cap_cement_mt'] * 1e6
+                                     * V['fx'] / 1e6 + net_cash - V['nci']) / V['shares_mn'])))},
+    growth_destroys_value=dict(fv_at_g3=reval(g=0.03), fv_at_g7=reval(g=0.07),
+                               holds=bool(reval(g=0.07) < reval(g=0.03)),
+                               roic_term=roic_t, wacc_term=wacc_term),
+    equity_gap=dict(rolled=(V['ta_fy24'] - V['tl_fy24']) + V['pat_fy25'],
+                    reported=V['eq_fy25_rep'],
+                    gap=(V['ta_fy24'] - V['tl_fy24']) + V['pat_fy25'] - V['eq_fy25_rep']),
     experts=EXPERTS, assert_log=LOG,
     share_triangulation=dict(issued_capital=2608124770/10/1e6, tender_offer=58416664/0.224/1e6,
                              market_cap=21150.0/81.10, pre_issue=133.07, subscribed=127.74,

@@ -140,7 +140,7 @@ def fmt(v):
 items = sorted(INP.items(), key=lambda kv: (RING_ORDER.get(kv[1]['ring'], 9), kv[0]))
 for i, (k, v) in enumerate(items, 1):
     rows.append([str(i), k, fmt(v['value']), v['ring'], v['source'], v['date']])
-table(rows, [0.30, 1.52, 0.98, 0.70, 5.14, 0.84], size=7.4)
+table(rows, [0.30, 1.70, 0.92, 0.74, 4.98, 0.84], size=7.4)
 
 # ---------------------------------------------------- source catalogue
 doc.add_page_break()
