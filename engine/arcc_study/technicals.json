@@ -1,0 +1,104 @@
+{
+ "state": {
+  "market": "EG",
+  "series": "ARCC",
+  "close": 59.0,
+  "data_date": "2026-08-06",
+  "computed_on": "2026-08-06",
+  "sessions": 2957,
+  "rows_in": 2957,
+  "repairs": [],
+  "ma": {
+   "20": 56.27049999999999,
+   "50": 56.2492,
+   "200": 51.7327
+  },
+  "ma_slope": {
+   "20": "rising",
+   "50": "rising",
+   "200": "rising"
+  },
+  "rsi": 64.77245707326767,
+  "atr": 1.2837986162483719,
+  "macd": {
+   "macd": 0.4578422012436505,
+   "signal": 0.2546533022481752,
+   "hist": 0.20318889899547532
+  },
+  "ma_cross": {
+   "ago": 438,
+   "kind": "golden"
+  },
+  "atr_pct": 0.02175929858048088,
+  "hi_52w": 60.4,
+  "lo_52w": 35.01,
+  "pct_off_high": 0.023178807947019844,
+  "pct_off_low": 0.6852327906312483,
+  "levels": {
+   "res": [
+    60.34,
+    62.0,
+    63.0
+   ],
+   "sup": [
+    54.25,
+    52.99,
+    48.1
+   ]
+  },
+  "level_detail": {
+   "res": [
+    {
+     "level": 60.337468760062485,
+     "score": 3.454654918817384,
+     "kind": "swing",
+     "touches": 2
+    },
+    {
+     "level": 62.0,
+     "score": 0.24879518072289156,
+     "kind": "round",
+     "touches": 0
+    },
+    {
+     "level": 63.0,
+     "score": 0.22692307692307692,
+     "kind": "round",
+     "touches": 0
+    }
+   ],
+   "sup": [
+    {
+     "level": 54.252671647718635,
+     "score": 3.3054807218038134,
+     "kind": "swing",
+     "touches": 2
+    },
+    {
+     "level": 52.98760097525669,
+     "score": 5.529519165928271,
+     "kind": "swing",
+     "touches": 3
+    },
+    {
+     "level": 48.0994314250555,
+     "score": 2.9974993924291784,
+     "kind": "swing",
+     "touches": 3
+    }
+   ]
+  },
+  "tech": {
+   "trend": "Trading above the whole moving-average stack, on a rising 200-day",
+   "summary": "The price closed 59.00 above a rising 20-day (56.27), a rising 50-day (56.25) and a rising 200-day (51.73). Momentum is firm: RSI(14) is ~65 and the daily ATR near 1.28 (~2.2%) points to a normal tape. MACD (12\u00b726\u00b79) is positive and rising (+0.46 / +0.25 / +0.20). Over the last year it has ranged 35.01\u201360.40; the last close sits 2% below that high and 69% above that low.",
+   "bull": "A daily close back above 60.34 would clear the nearest resistance and open the 63.00 zone.",
+   "bear": "A close below 54.25 would break the nearest support and open the 48.10 zone."
+  }
+ },
+ "narrative": {
+  "trend": "Trading above the whole moving-average stack, on a rising 200-day",
+  "summary": "The price closed 59.00 above a rising 20-day (56.27), a rising 50-day (56.25) and a rising 200-day (51.73). Momentum is firm: RSI(14) is ~65 and the daily ATR near 1.28 (~2.2%) points to a normal tape. MACD (12\u00b726\u00b79) is positive and rising (+0.46 / +0.25 / +0.20). Over the last year it has ranged 35.01\u201360.40; the last close sits 2% below that high and 69% above that low.",
+  "bull": "A daily close back above 60.34 would clear the nearest resistance and open the 63.00 zone.",
+  "bear": "A close below 54.25 would break the nearest support and open the 48.10 zone."
+ }
+}
