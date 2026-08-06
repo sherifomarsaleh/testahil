@@ -113,8 +113,11 @@ label{font-size:var(--fs-small); font-weight:600; display:block; margin-bottom:3
   table{font-size:var(--fs-small)}
   th,td{padding:6px 5px}
   .card{padding:12px}
-  /* wide tables scroll inside their own box instead of pushing the page past the screen edge */
-  table:not(.compare-table){display:block; width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch}
+  /* wide tables scroll inside their own box instead of pushing the page past the screen edge.
+     .compare-table and .pk-table opt out: both already sit inside their own overflow-x:auto
+     wrapper with an explicit min-width, so the table itself must stay display:table — forcing
+     display:block here breaks column alignment and wraps cell text mid-word instead. */
+  table:not(.compare-table):not(.pk-table){display:block; width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch}
 }
 @media(max-width:400px){
   .nav nav{gap:6px 7px; font-size:.92rem}

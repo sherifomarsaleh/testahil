@@ -39,11 +39,18 @@
   .hbtn.on{background:var(--teal);border-color:var(--teal);color:#fff}
   .pk-controls{display:flex;gap:18px;flex-wrap:wrap;align-items:center;margin-top:10px}
   .pk-controls label.ck{display:flex;align-items:center;gap:7px;font-size:var(--fs-small);cursor:pointer}
-  .pk-table{width:100%;border-collapse:collapse;font-size:var(--fs-small)}
+  .pk-table{width:100%;min-width:880px;border-collapse:collapse;font-size:var(--fs-small)}
   .pk-table th{text-align:left;padding:8px 10px;border-bottom:2px solid var(--line);font-weight:600;white-space:nowrap}
-  .pk-table td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
+  .pk-table td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:middle;white-space:nowrap}
+  .pk-table td.pk-stock{white-space:normal;min-width:150px}
   .pk-table td.num,.pk-table th.num{text-align:right;font-family:'IBM Plex Mono',monospace}
   .pk-wrap{overflow-x:auto}
+  .pk-sortbtn{font:inherit;font-weight:600;background:none;border:0;padding:0;margin:0;cursor:pointer;color:var(--ink);display:inline-flex;align-items:center;gap:4px}
+  .pk-sortbtn:hover{color:var(--teal)}
+  .pk-table th.num .pk-sortbtn{flex-direction:row-reverse}
+  .pk-care{font-size:9px;opacity:.35;line-height:1}
+  .pk-sortbtn[aria-sort]  .pk-care{opacity:1;color:var(--teal)}
+  .pk-table th{cursor:default}
   .band{display:inline-block;border-radius:999px;padding:2px 10px;font-size:11px;font-weight:600;white-space:nowrap}
   .band.b0{background:rgba(23,138,118,.16);color:var(--teal,#12796B)}
   .band.b1{background:rgba(192,164,95,.20);color:#8a7433}
@@ -101,7 +108,7 @@
       </div>
       <div class="pk-controls">
         <label class="ck"><input type="checkbox" id="pk-reach"> only names whose fair value is in reach</label>
-        <label class="ck"><input type="checkbox" id="pk-cash"> only names whose case beats 19.5% EGP cash</label>
+        <label class="ck"><input type="checkbox" id="pk-cash"> only names whose case beats <span id="pk-rf-label">19.5%</span> EGP cash</label>
         <label class="ck"><input type="checkbox" id="pk-up"> only undervalued (fair value above price)</label>
       </div>
     </div>
@@ -109,7 +116,7 @@
       <table class="pk-table" id="pk-table"></table>
     </div>
     <p class="muted pk-note" id="pk-count"></p>
-    <p class="muted pk-note"><b>P(touch)</b> is the simulated chance the price trades <i>through</i> the fair value at any point before the horizon, from the same 50,000-path simulation published on each ticker page. A dash means the gap is so large relative to this stock's volatility that no meaningful probability exists at this horizon (beyond 4&sigma;). A dagger (&dagger;) means the price is already at fair value — the high probability is true but tells you nothing. <b>Stale</b> flags a fair value older than 6 months, due for re-study.</p>
+    <p class="muted pk-note">Click any column heading to sort by it — click again to reverse. <b>Reachability</b> is the default (best-reachability first, ties broken by higher P(touch)); that default is what made the ranking earlier, nothing else is applied unless you click a heading. <b>P(touch)</b> is the simulated chance the price trades <i>through</i> the fair value at any point before the horizon, from the same 50,000-path simulation published on each ticker page — rows with no meaningful probability (beyond 4&sigma;, a dash) always sort to the bottom regardless of direction. A dagger (&dagger;) means the price is already at fair value — the high probability is true but tells you nothing. <b>Stale</b> flags a fair value older than 6 months, due for re-study.</p>
   </section>
 
   <section id="sec-bands" class="card anchor" data-nav="What the bands mean">
@@ -150,9 +157,24 @@ window.addEventListener('error', function(e){
   'use strict';
   if (typeof FV_OVERLAY === 'undefined' || !FV_OVERLAY.rows){ return; }
 
-  var state = { h: '3M', reach:false, cash:false, up:false };
+  var state = { h: '3M', reach:false, cash:false, up:false, sortKey:'reach', sortDir:'asc' };
   var BANDCLS = { 'IN-REACH':'b0', 'STRETCH':'b1', 'OUT-OF-REACH':'b2', 'NOT-EXPRESSIBLE':'b3' };
   var BANDTXT = { 'IN-REACH':'IN-REACH', 'STRETCH':'STRETCH', 'OUT-OF-REACH':'OUT-OF-REACH', 'NOT-EXPRESSIBLE':'NOT EXPRESSIBLE' };
+  var BANDORDER = { 'IN-REACH':0, 'STRETCH':1, 'OUT-OF-REACH':2, 'NOT-EXPRESSIBLE':3 };
+  // one row per sortable column: how to read it, and which direction "most interesting first" means
+  var COLS = [
+    { key:'stock', label:'Stock',       num:false, defDir:'asc'  },
+    { key:'price', label:'Price',       num:true,  defDir:'desc' },
+    { key:'fair',  label:'Fair value',  num:true,  defDir:'desc' },
+    { key:'gap',   label:'Gap',         num:true,  defDir:'desc' },
+    { key:'reach', label:null,          num:false, defDir:'asc'  }, // label set per-horizon at render time
+    { key:'touch', label:'P(touch fair value)', num:true, defDir:'desc' },
+    { key:'cash',  label:null,          num:false, defDir:'desc' }, // label carries the live rf%
+    { key:'asof',  label:'As of',       num:false, defDir:'desc' }
+  ];
+  var rfPct = Math.round((FV_OVERLAY.engine_config && FV_OVERLAY.engine_config.rf_live || 0.195) * 1000) / 10;
+  var rfLabelEl = document.getElementById('pk-rf-label');
+  if (rfLabelEl) rfLabelEl.textContent = rfPct + '%';
 
   function pageFor(t){ return t.toLowerCase() + '.html'; }
   function pct(x, signed){
@@ -161,17 +183,38 @@ window.addEventListener('error', function(e){
     return (signed && v>0 ? '+' : '') + v + '%';
   }
 
+  function fieldFor(key, r, h){
+    var o = r[h];
+    switch(key){
+      case 'stock': return ((typeof TICKERS !== 'undefined' && TICKERS[r.ticker] && TICKERS[r.ticker].name) || r.name || r.ticker).toLowerCase();
+      case 'price': return r.spot;
+      case 'fair':  return r.fv_base;
+      case 'gap':   return r.gap_base_pct;
+      case 'reach': return BANDORDER[o.band] - (o.p_touch ? o.p_touch.base : 0); // composite: band first, then touch
+      case 'touch': return o.p_touch ? o.p_touch.base : null;                    // null = "no meaningful probability"
+      case 'cash':  return o.beats_cash ? 1 : 0;
+      case 'asof':  return r.anchor_date || '';
+    }
+  }
+
+  function cmp(a, b, key, dir, h){
+    var av = fieldFor(key, a, h), bv = fieldFor(key, b, h);
+    // nulls (suppressed P(touch)) always sort last, whichever direction is active
+    if (av === null || bv === null){
+      if (av === null && bv === null) return 0;
+      return av === null ? 1 : -1;
+    }
+    var d = (typeof av === 'string') ? av.localeCompare(bv) : (av - bv);
+    return dir === 'asc' ? d : -d;
+  }
+
   function render(){
     var h = state.h;
     var rows = FV_OVERLAY.rows.filter(function(r){ return r[h]; });
-    // sort: band order, then touch probability descending inside each band
-    var order = { 'IN-REACH':0, 'STRETCH':1, 'OUT-OF-REACH':2, 'NOT-EXPRESSIBLE':3 };
-    rows = rows.slice().sort(function(a,b){
-      var d = order[a[h].band] - order[b[h].band];
-      if (d) return d;
-      var pa = a[h].p_touch ? a[h].p_touch.base : -1, pb = b[h].p_touch ? b[h].p_touch.base : -1;
-      return pb - pa;
-    });
+    // stable alphabetical base so equal-value ties resolve the same way every time
+    rows = rows.slice().sort(function(a,b){ return fieldFor('stock',a,h) < fieldFor('stock',b,h) ? -1 : 1; });
+    rows.sort(function(a,b){ return cmp(a, b, state.sortKey, state.sortDir, h); });
+
     var shown = rows.filter(function(r){
       var o = r[h];
       if (state.reach && o.band !== 'IN-REACH') return false;
@@ -180,13 +223,20 @@ window.addEventListener('error', function(e){
       return true;
     });
 
-    var html = '<thead><tr>'
-      + '<th>Stock</th><th class="num">Price</th><th class="num">Fair value</th>'
-      + '<th class="num">Gap</th><th>Reachability ('+ (h==='1M'?'1 month':'3 months') +')</th>'
-      + '<th class="num">P(touch fair value)</th><th>Beats 19.5% cash?</th><th>As of</th>'
-      + '</tr></thead><tbody>';
+    var reachLabel = 'Reachability (' + (h==='1M'?'1 month':'3 months') + ')';
+    var cashLabel = 'Beats ' + rfPct + '% cash?';
+    var thHtml = '<tr>' + COLS.map(function(c){
+      var label = c.key==='reach' ? reachLabel : (c.key==='cash' ? cashLabel : c.label);
+      var active = state.sortKey === c.key;
+      var dir = active ? state.sortDir : c.defDir;
+      var caret = active ? (state.sortDir === 'asc' ? '▲' : '▼') : '↕';
+      var ariaSort = active ? (state.sortDir === 'asc' ? 'ascending' : 'descending') : 'none';
+      return '<th class="'+(c.num?'num':'')+'" aria-sort="'+ariaSort+'">'
+           + '<button type="button" class="pk-sortbtn" data-key="'+c.key+'"'+(active?' aria-sort="'+ariaSort+'"':'')+'>'
+           + label + '<span class="pk-care">'+caret+'</span></button></th>';
+    }).join('') + '</tr>';
 
-    shown.forEach(function(r){
+    var rowsHtml = shown.map(function(r){
       var o = r[h];
       var t = (typeof TICKERS !== 'undefined') && TICKERS[r.ticker];
       var nm = (t && t.name) || r.name || r.ticker;
@@ -194,8 +244,8 @@ window.addEventListener('error', function(e){
             : pct(o.p_touch.base) + (o.already_converged ? '<span class="pk-flag">†</span>' : '');
       var gapCls = r.gap_base_pct > 0 ? 'up' : 'dn';
       var stale = r.fv_stale ? ' <span class="pk-flag">(stale)</span>' : '';
-      html += '<tr>'
-        + '<td><a href="'+pageFor(r.ticker)+'"><b>'+nm+'</b></a> <span class="pk-flag">'+(r.code||'')+'</span>'+stale+'</td>'
+      return '<tr>'
+        + '<td class="pk-stock"><a href="'+pageFor(r.ticker)+'"><b>'+nm+'</b></a> <span class="pk-flag">'+(r.code||'')+'</span>'+stale+'</td>'
         + '<td class="num">'+r.spot+'</td>'
         + '<td class="num">'+r.fv_base+'</td>'
         + '<td class="num pk-dir '+gapCls+'">'+pct(r.gap_base_pct/100, true)+'</td>'
@@ -204,11 +254,21 @@ window.addEventListener('error', function(e){
         + '<td>'+(o.beats_cash ? 'yes' : 'no')+'</td>'
         + '<td class="pk-flag">'+(r.anchor_date||'')+'</td>'
         + '</tr>';
-    });
-    html += '</tbody>';
-    document.getElementById('pk-table').innerHTML = html;
+    }).join('');
+
+    document.getElementById('pk-table').innerHTML = '<thead>'+thHtml+'</thead><tbody>'+rowsHtml+'</tbody>';
     document.getElementById('pk-count').textContent =
       'Showing ' + shown.length + ' of ' + rows.length + ' covered EGX names · fair values as published, prices as of each name’s own anchor date.';
+
+    document.querySelectorAll('.pk-sortbtn').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var key = btn.getAttribute('data-key');
+        var col = COLS.filter(function(c){ return c.key===key; })[0];
+        if (state.sortKey === key){ state.sortDir = state.sortDir === 'asc' ? 'desc' : 'asc'; }
+        else { state.sortKey = key; state.sortDir = col.defDir; }
+        render();
+      });
+    });
   }
 
   document.getElementById('pk-h1').addEventListener('click', function(){ state.h='1M'; this.classList.add('on'); document.getElementById('pk-h3').classList.remove('on'); render(); });
