@@ -2,7 +2,7 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-08-05", latest: "ELEC" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
+const SITE = { updated: "2026-08-06", latest: "SWDY" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
 /* ---------- covered tickers ----------
    HORIZON FIELDS (see the HORIZON CONVENTION block above the LEDGER):
@@ -24,6 +24,39 @@ const SITE = { updated: "2026-08-05", latest: "ELEC" };  // latest = the LAST-PU
                            label would then misstate what was simulated.
    ------------------------------------- */
 const TICKERS = {
+  SWDY: {
+    name: "Elsewedy Electric",
+    nameAr: "\u0627\u0644\u0633\u0648\u064a\u062f\u064a \u0625\u0644\u064a\u0643\u062a\u0631\u064a\u0643",
+    code: "EGX:SWDY",
+    spot: 105.2,
+    spotDate: "close 5 Aug 2026",
+    ccy: "EGP",
+    fair: { bear: 33.77, base: 74.52, full: 154.50 },      // 5 Aug 2026 \u2014 four-lens weighted central EGP 74.52 (\u221229% vs spot 105.20). Weights 40/20/20/20: FCFF DCF 63.10 / relative EV\u2044EBITDA 73.38 (6.5x on FY2027E EBITDA, the forward enterprise value DISCOUNTED back at the year-2 factor \u2014 not discounting it would have printed 117.67) / normalized earnings power 120.91 / justified P\u2044B on sustainable ROE 48.47. Forecast is BOTTOM-UP ON UNIT ECONOMICS across seven sub-segments: cable tonnage, transformer MVA, meter units and order-book burn, each with its own gross profit per unit \u2014 margins are OUTPUTS, and the historical sub-segment build reconciles to the audited statements within EGP 0.2mn. This matters because SWDY is a COPPER CONVERTER: it earns a conversion margin per tonne, so modelling gross profit as a percentage of a copper-inflated price manufactures profit out of a metal move. Fabrication uplift (cable price per tonne \u00f7 copper cost per tonne) runs 1.386 \u2192 1.261 \u2192 1.204 and is used as an internal coherence test on every disputed segment figure. FY2026 conversion margin is SOLVED to reproduce the Q1-2026 print rather than assumed. Discount rate is a sliding schedule: WACC 26.90% explicit \u2192 15.14% terminal, each year discounted at its own forward rate, the glide inherited from the cost-of-debt path (13.0% \u2192 10.6%) rather than invented; the sovereign CDS spread is netted OUT of the risk-free rate so country risk is not counted twice; own-stock beta 1.009 (R\u00b2 0.291, n 258). Terminal value is ROIC-consistent (g = ROIC 21.8% \u00d7 reinvestment 22.9% = 5.0% exactly) and carries 77% of EV \u2014 high, and stated. Net bank debt 19,789 is DISCLOSED, not triangulated. THE OPEN QUESTION IS CURRENCY: over 70% of revenue is earned abroad and ~60% is hard-currency-linked, yet the company reports, lists and borrows in pounds. The primary model charges the full Egyptian cost of capital; discounting the foreign leg at a hard-currency rate instead \u2014 after first deflating those pounds to dollars at the exchange-rate path, or the depreciation is counted twice \u2014 gives 91.15. Two further contested choices are published as VALUES, not argued in prose: the rating column of the country-risk table rather than the market-spread column gives 44.88, and charging minorities against unlevered enterprise value before net debt gives 62.20. Ownership is 68.0% family, 20.4% Electra, 11.6% free float \u2014 the float is the smaller number. full = weighted bull central; the market sits between the base and the bull.
+    dist: {
+      t20: { label:"1 month",   p5:87.47, p25:99.11, p50:106.68, p75:114.90, p95:130.17, resolve:"2026-09-06" },
+      t60: { label:"3 months",  p5:78.30, p25:96.94, p50:109.91, p75:124.46, p95:154.19, resolve:"2026-11-05" }
+    },
+    hz: { h1:20, h3:62, l1:"1 month", l3:"3 months", cal:true },
+    touch: [ /* level, P(touch) 1-month %, 3-month % \u2014 descending */
+      [132, 6, 27], [120, 23, 51], [112, 53, 75], [98, 40, 58], [90, 13, 30], [80, 3, 11]
+    ],
+    levels: { res:[110, 114.50, 120], sup:[90.98, 82.61, 76.36] },
+    tech: {
+      trend: "Trading above the whole moving-average stack, on a rising 200-day",
+      summary: "The price closed 105.20 above a rising 20-day (93.77), a rising 50-day (90.04) and a rising 200-day (81.88). Momentum is stretched: RSI(14) is ~72 and the daily ATR near 3.50 (~3.3%) points to a lively tape. MACD (12\u00b726\u00b79) is positive and rising (+3.59 / +2.35 / +1.24). Over the last year it has ranged 62.03\u2013114.50; the last close sits 8% below that high and 70% above that low.",
+      bull: "A daily close back above 110.00 would clear the nearest resistance and open the 120.00 zone.",
+      bear: "A close below 90.98 would break the nearest support and open the 76.36 zone."
+    },
+    asof: {
+      mc:   { data:"2026-08-05", computed:"2026-08-05" },
+      tech: { data:"2026-08-05", computed:"2026-08-06" }
+    },
+    files: {
+      study: "files/SWDY_Valuation_Study_05-08-2026_public.docx?v=0806",
+      model: "files/SWDY_Valuation_Model_05082026_public.xlsx?v=0806",
+      biblio:"files/SWDY_Bibliography_05-08-2026.docx?v=0806"
+    }
+  },
   ELEC: {
     name: "Electro Cable Egypt",
     nameAr: "\u0627\u0644\u0643\u0627\u0628\u0644\u0627\u062a \u0627\u0644\u0643\u0647\u0631\u0628\u0627\u0626\u064a\u0629 \u0627\u0644\u0645\u0635\u0631\u064a\u0629",
@@ -2487,6 +2520,31 @@ const LEDGER = [
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   ,
     grade_note:"Grade-date corrected on 2026-07-29: stored value (2026-10-12) was computed by the retired session-projection method at publish time; recomputed via the live calendar-target rule (horizons.resolve, anchor + calendar month(s), first real session on/after). Cohort not yet matured -- forecast (p5-p95, touch) unchanged."
+  },
+  // ---- SWDY · equity (EGX Egypt) · cycle 1 (5 Aug 2026 published study; MC PARITY — own fitted verdict, scale-normalized skill +0.0132, CI90 straddles zero across bootstrap blocks {2,3,4}; EG panel PASS +0.0158, CI90 [0.009, 0.022]) ----
+  {
+    instrument:"SWDY", asset_class:"equity",
+    anchor_date:"2026-08-05", run_date:"2026-08-05", anchor_price:105.2, ccy:"EGP",
+    horizon_label:"1 month", grade_date:"2026-09-06", grade_basis:"projected", horizon_days:20,
+    cycle_no:1, anchor_vol:0.5031,
+    note:"First coverage, 5-Aug-2026 — struck on the production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF (the touch ladder below is read off the stored first-20,000-path subset; the percentiles are from the full 50,000). q_annual=0.0095 (FY2024 dividend 1.00/share against the 5-Aug close). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count. Name-level calibration: PARITY — 17 non-overlapping post-break quarterly origins, scale-normalized CRPS skill +1.3% against the carry-anchored random walk, but the bootstrap CI90 straddles zero at every block size {2,3,4} ([−3.0%,+7.0%] / [−3.2%,+7.0%] / [−3.4%,+7.1%]), so no single-name edge is demonstrated and none is claimed — the cone is not provably better than a random walk, merely not provably worse. PIT mean 0.608 and 90% band coverage 0.824 both point mildly LOW: the band has been slightly too narrow over the replay. The 30-name EG panel it is drawn from scores +1.58% with a CI90 of [+0.9%,+2.2%] across 494 windows — market-level calibration is PASS. Read the bands as a probability map.",
+    p5:87.47, p25:99.11, p50:106.68, p75:114.9, p95:130.17,
+    touch:{ "+5":60, "+10":37, "+15":21, "+20":12, "-5":51, "-10":25 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null, touch_hit:null,
+    reanchor_from:null
+  },
+  {
+    instrument:"SWDY", asset_class:"equity",
+    anchor_date:"2026-08-05", run_date:"2026-08-05", anchor_price:105.2, ccy:"EGP",
+    horizon_label:"3 months", grade_date:"2026-11-05", grade_basis:"projected", horizon_days:62,
+    cycle_no:1, anchor_vol:0.4838,
+    note:"First coverage, 5-Aug-2026 — struck on the production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF (the touch ladder below is read off the stored first-20,000-path subset; the percentiles are from the full 50,000). q_annual=0.0095 (FY2024 dividend 1.00/share against the 5-Aug close). EG live fit nu=6.0, width_cal=0.951; rf_live 19.50% CBE main operation rate. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count. Name-level calibration: PARITY — 17 non-overlapping post-break quarterly origins, scale-normalized CRPS skill +1.3% against the carry-anchored random walk, but the bootstrap CI90 straddles zero at every block size {2,3,4} ([−3.0%,+7.0%] / [−3.2%,+7.0%] / [−3.4%,+7.1%]), so no single-name edge is demonstrated and none is claimed — the cone is not provably better than a random walk, merely not provably worse. PIT mean 0.608 and 90% band coverage 0.824 both point mildly LOW: the band has been slightly too narrow over the replay. The 30-name EG panel it is drawn from scores +1.58% with a CI90 of [+0.9%,+2.2%] across 494 windows — market-level calibration is PASS. Read the bands as a probability map.",
+    p5:78.3, p25:96.94, p50:109.91, p75:124.46, p95:154.19,
+    touch:{ "+5":80, "+10":63, "+15":49, "+20":37, "-5":66, "-10":45 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null, touch_hit:null,
+    reanchor_from:null
   },
   // ---- ELEC · equity (EGX Egypt) · cycle 1 (5 Aug 2026 published study; MC robust PASS — own fitted verdict, scale-normalized skill +0.0875, CI90 positive across bootstrap blocks {2,3,4}) ----
   {
