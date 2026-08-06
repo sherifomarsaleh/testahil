@@ -40,6 +40,7 @@ const STATIC = [
   ['ledger.html',     '0.9', 'weekly'],
   ['method.html',     '0.6', 'monthly'],
   ['compare.html',    '0.8', 'weekly'],
+  ['picker.html',     '0.8', 'weekly'],
   ['calculator.html', '0.6', 'monthly'],
   ['archive.html',    '0.5', 'monthly'],
   ['ar/',             '0.9', 'weekly'],
