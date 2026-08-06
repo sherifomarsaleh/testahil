@@ -403,6 +403,78 @@ standing corrections pattern.
 
 ---
 
+## [NEW 06-Aug, per instruction — SWDY study] THE WORKBOOK IS A MODEL, NOT A PRINTOUT
+
+**The delivered Excel must CALCULATE. A number that could be derived from a driver and is instead
+pasted is a defect, not a formatting choice.** The code-first rule above governs where numbers
+come from (executed, asserting code). This clause governs what the *reader* receives: a workbook
+they can trace, interrogate and re-drive — not a screenshot of one.
+
+**What triggered this.** The SWDY workbook shipped with 92 formulas against 764 pasted values, and
+its READ FIRST sheet claimed that changing an input repriced the model. It did not: no formula
+referenced the Assumptions sheet. The claim was withdrawn and the sheet re-labelled a "register,
+not a live driver" — an honest patch to a workbook that should not have needed it. Rebuilt
+formula-first the same file carries 589 formulas against 395 values, and the claim is now true and
+tested. **A workbook that has to disclaim its own Assumptions sheet has failed.**
+
+**The rule.** Everything arithmetically derivable from an input is a live formula:
+- the **cost of capital is built in the workbook** — Ke from the risk-free rate net of the
+  sovereign spread, beta and the premium; Kd after tax; weights from net debt and market
+  capitalisation; the terminal rate from its own components. Never a pasted rate;
+- the **glide and the discount factors are computed**, and the glide fractions are visibly derived
+  from the cost-of-debt path so the reader can see the shape is inherited, not invented;
+- the **DCF waterfall** chains: margin from EBITDA over revenue, EBIT from EBITDA less D&A, NOPAT
+  from EBIT and the tax rate, FCFF from its four components, PV from FCFF and the factor;
+- the **terminal block** chains: RR = g / ROIC, TV from terminal NOPAT, RR, the terminal rate and g;
+- the **statements chain**: EBIT, PBT, tax, PAT, minorities and attributable profit are formulas in
+  the forecast; the balance sheet rolls PPE, working capital, equity and net debt forward; the cash
+  flow links to the waterfall; **every ratio and per-share figure on every sheet is a formula.**
+
+**Only three classes of cell may be pasted, and READ FIRST must name them:**
+1. **audited and disclosed history** — the primary record, not a calculation. Where a disclosed
+   line can also be derived, the DISCLOSED figure is carried (closing SWDY's audited FY2023 account
+   arithmetically landed EGP 0.1mn under the printed profit after tax; the print wins);
+2. **the unit build's output** — a multi-line volume-and-price model does not survive being
+   flattened into a spreadsheet grid. Paste its OUTPUT; everything downstream of it is formula;
+3. **whole-model re-runs** — Monte Carlo maps and sensitivity grids, where each individual cell is
+   a complete revaluation. These do NOT redraw when a driver changes, and the workbook must say so.
+
+Anything else pasted is a fail. Triangulated figures are shown and averaged **on the sheet** rather
+than asserted (SWDY's FY2025 gross debt carries its three methods and an AVERAGE over them).
+
+**Two verification gates, both run on the DELIVERED file:**
+- **(q) Cell-level agreement.** The builder records the model's own value for every formula cell as
+  it writes them. The recalculation script evaluates the workbook independently and asserts every
+  formula cell reproduces it, AND that no formula cell is left unchecked. This is what makes a
+  formula-driven workbook safe: a formula that computes the right thing the wrong way, or points
+  one row off, fails here instead of shipping a different number from the study. Evidence: "N of N
+  formula cells reproduce the model, 0 unchecked."
+- **(r) Driver propagation.** A driver test perturbs each input in place, re-evaluates the whole
+  workbook from scratch, and asserts the headline moves in the asserted DIRECTION. A dead-input
+  sweep bumps every remaining driver and requires it to move something. Evidence: the per-driver
+  table. **The live-driver claim on READ FIRST is only permitted once this test passes.**
+
+Both gates earn their keep. On SWDY (q) caught a market-capitalisation formula pointing one row off
+its share count — it returned revenue — and (r) forced the depreciation question to be understood
+rather than assumed: raising D&A *lowers* the fair value here, because in the terminal state capex
+is unchanged, so a permanently higher charge is a business consuming its asset base, and with the
+terminal value at 77% of EV that beats the explicit-window tax shield. **When a driver test fails,
+the first hypothesis is that the expectation is wrong, not the model — decompose before "fixing".**
+
+**Corollary — one roll-forward per quantity.** Unifying the workbook exposed that the study's
+normalised-earnings lens and its financial statements were consuming two different interest paths
+that disagreed by up to EGP 117mn, because one was computed before a dependency existed. **A
+quantity is computed once and consumed everywhere.** Building the workbook formula-first is a
+structural audit of the engine, and defects it surfaces are engine defects, not workbook defects.
+
+**Tooling note.** LibreOffice cannot load spreadsheets in the current environment, so recalculation
+runs through a purpose-built evaluator (`xlcalc.py`). Keep the evaluator strict: anything it cannot
+parse is a FAILURE, never a skip. Its own sheet-name pattern once allowed hyphens, so
+`C34-Assumptions!$C$45` parsed as a reference to a sheet named "C34-Assumptions" and silently
+swallowed the subtraction — **a permissive verifier is worse than no verifier.**
+
+---
+
 ## [NEW 13-Jul] TERMINAL GROWTH — standing procedure
 
 Adopted from the CLHO (Cleopatra Hospitals Group) terminal-value stress test. Extends QC gate
@@ -648,6 +720,9 @@ harmless staleness.
   Damodaran's *original* file only; genuine beta regression with a real usability gate.
 - **Lens by instrument class**; never blend legs that need different methods.
 - **DCF waterfall rule** — full build to PV of FCFF shown inline; stopping at FCFF is a hard QC fail.
+- **The workbook calculates.** Every derivable figure is a live formula; only audited history, the
+  unit build's output and whole-model re-run grids may be pasted, and READ FIRST must name them.
+  Gates (q) cell-level agreement and (r) driver propagation both run on the delivered file.
 - **Expert appendix** — three experts, genuinely different methods, a falsifier each.
 - **Ledgers are append-only.** No published forecast is ever retro-edited.
 - **Never a rating or a price target.** Fair-value ranges and distributions only.
