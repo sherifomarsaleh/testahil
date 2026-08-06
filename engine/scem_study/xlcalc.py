@@ -117,7 +117,10 @@ class Book:
                 break
             v = self.cell_value(sheet, f'{m.group(2)}{m.group(4)}')
             e = e[:m.start()] + repr(float(v or 0)) + e[m.end():]
-        if not re.fullmatch(r'[-+*/(). 0-9eE]+', e):
+        # Excel's caret is exponentiation. Translate AFTER all references have been
+        # substituted, so a '^' inside a sheet name can never be caught by this.
+        e = e.replace('^', '**')
+        if not re.fullmatch(r'[-+*/(). 0-9eE]+|[-+*/(). 0-9eE*]+', e.replace('**', '*')):
             raise ValueError(f'unparsed formula fragment: {expr!r} -> {e!r}')
         return eval(e)
 
