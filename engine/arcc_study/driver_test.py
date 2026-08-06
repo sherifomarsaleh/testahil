@@ -47,6 +47,9 @@ import json, os
 import openpyxl
 import xlcalc
 
+GDV = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                  'study_numbers.json')))['growth_destroys_value']
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 wb = openpyxl.load_workbook(os.path.join(HERE, 'ARCC_Valuation_Model_06082026_public.xlsx'))
 A = {}
@@ -81,17 +84,17 @@ def read(overrides=None):
         roic_book=bk.cell_value('DCF', 'B25'),
         kd_eff25=bk.cell_value('DCF', 'B61'),
         kd_egp=bk.cell_value('DCF', 'B63'),
-        vol25=bk.cell_value('Unit Build', 'B12'),
+        vol25=bk.cell_value('Unit Build', 'B18'),
         util25=bk.cell_value('Unit Build', 'B14'),
-        ccost25=bk.cell_value('Unit Build', 'B27'),
-        cmat25=bk.cell_value('Unit Build', 'B24'),
-        rev26=bk.cell_value('Unit Build', 'C42'),
-        vol26=bk.cell_value('Unit Build', 'C32'),
-        cc26=bk.cell_value('Unit Build', 'C47'),
-        cmat26=bk.cell_value('Unit Build', 'C44'),
-        ebitda25=bk.cell_value('Unit Build', 'B49'),
-        ebitda26=bk.cell_value('Unit Build', 'C49'),
-        resid_rev=bk.cell_value('Unit Build', 'B56'),
+        ccost25=bk.cell_value('Unit Build', 'B38'),
+        cmat25=bk.cell_value('Unit Build', 'B35'),
+        rev26=bk.cell_value('Unit Build', 'C63'),
+        vol26=bk.cell_value('Unit Build', 'C55'),
+        cc26=bk.cell_value('Unit Build', 'C69'),
+        cmat26=bk.cell_value('Unit Build', 'C65'),
+        ebitda25=bk.cell_value('Unit Build', 'B71'),
+        ebitda26=bk.cell_value('Unit Build', 'C71'),
+        resid_rev=bk.cell_value('Unit Build', 'B78'),
         gp23=bk.cell_value('Income Statement', 'B7'),
         gp25=bk.cell_value('Income Statement', 'D7'),
         ebit25=bk.cell_value('Income Statement', 'D11'),
@@ -133,8 +136,17 @@ def read(overrides=None):
         growth25=bk.cell_value('Summary Financials', 'D13'),
         # The sweep is only as strong as the span of what it watches. These reach the
         # corners of the workbook that no headline touches.
-        klinker=bk.cell_value('Unit Build', 'B70'),
-        klinker30=bk.cell_value('Unit Build', 'B72'),
+        # the corners of the physical build: both capacity constraints, all three
+        # DERIVED prices, and the product split. None of these existed in revision 3.
+        kiln_pk=bk.cell_value('Unit Build', 'B94'),
+        mill_pk=bk.cell_value('Unit Build', 'B98'),
+        mill26=bk.cell_value('Unit Build', 'C51'),
+        p_loc=bk.cell_value('Unit Build', 'B22'),
+        p_ecem=bk.cell_value('Unit Build', 'B26'),
+        p_eclk=bk.cell_value('Unit Build', 'B27'),
+        clk_prod=bk.cell_value('Unit Build', 'B7'),
+        cem_prod=bk.cell_value('Unit Build', 'B12'),
+        cap_chk=bk.cell_value('Unit Build', 'B28'),
         nonop25=bk.cell_value('Income Statement', 'D16'),
         nonop_chk=bk.cell_value('Income Statement', 'B24'),
         roe24=bk.cell_value('Balance Sheet', 'C18'),
@@ -142,45 +154,76 @@ def read(overrides=None):
         ta23=bk.cell_value('Balance Sheet', 'B11'),
         nca25=bk.cell_value('Balance Sheet', 'D8'),
         wc25=bk.cell_value('Balance Sheet', 'D10'),
+        cash25=bk.cell_value('Balance Sheet', 'D9'),
         nd24=bk.cell_value('Balance Sheet', 'C16'),
         kd_eff24=bk.cell_value('DCF', 'B60'),
     )
 
 
 base = read()
-print('base: ' + ' · '.join(f'{k} {v:,.4f}' for k, v in base.items()))
+print('base: ' + ' · '.join(
+    f'{k} {v:,.4f}' if isinstance(v, (int, float)) else f'{k} {v}'
+    for k, v in base.items()))
 
 CASES = [
     # ---- THE UNIT BUILD, now anchored on the audited notes ---------------------
-    ('Local realised price', 'B', +200.0, 'vol25', -1,
-     'volume is DERIVED from disclosed revenue divided by price, so a higher price implies '
-     'FEWER tonnes behind the same audited revenue'),
-    ('Export price', 'B', +5.0, 'vol25', -1, 'the same mechanism on the export leg'),
-    ('Local realised price', 'B', +200.0, 'ccost25', +1,
-     'and fewer tonnes behind the same audited cost is a HIGHER cost per tonne'),
-    ('Average USD/EGP FY2025', 'B', +2.0, 'vol25', -1,
-     'a weaker pound means the same export revenue represents fewer dollars, so fewer tonnes'),
-    ('Capacity utilisation', 'C', +0.03, 'vol26', +1,
+    # The build now runs the OTHER way round: the plant sets the tonnes and the prices
+    # fall out of the audited revenue. Every one of these directions is the reverse of
+    # revision 3's, and that is the whole point of the rebuild.
+    ('Kiln utilisation  (THE volume driver)', 'B', +0.02, 'clk_prod', +1,
+     'running the kiln harder must make more clinker — the driver revision 3 did not have'),
+    ('Kiln utilisation  (THE volume driver)', 'B', +0.02, 'vol25', +1,
+     'and more clinker must mean more tonnes despatched'),
+    ('Kiln utilisation  (THE volume driver)', 'B', +0.02, 'p_loc', -1,
+     'prices are DERIVED, so more tonnes behind the same audited revenue is a LOWER '
+     'realised price. This is the test revision 3 could not run: its price was an input '
+     'and its FY2025 residual was an identity that could not fail'),
+    ('Clinker sold as clinker, share of clinker made', 'B', +0.05, 'cem_prod', -1,
+     'every tonne shipped as clinker is a tonne that is not ground into cement'),
+    ('Clinker sold as clinker, share of clinker made', 'B', +0.05, 'p_loc', +1,
+     'and fewer local cement tonnes behind the same audited local revenue is a HIGHER '
+     'derived cement price'),
+    ('Clinker factor', 'B', +0.05, 'cem_prod', -1,
+     'more clinker per tonne of cement means less cement from the same kiln'),
+    ('Export clinker price as a fraction of export cement', 'B', +0.10, 'p_ecem', -1,
+     'lifting the clinker leg must lower the cement leg — the audited export revenue is '
+     'fixed and the two prices split it between them'),
+    ('Export clinker price as a fraction of export cement', 'B', +0.10, 'p_eclk', +1,
+     'and the clinker price itself must rise'),
+    ('Cement exported, share of cement made', 'B', +0.03, 'p_loc', +1,
+     'exporting more cement leaves fewer local tonnes behind the same local revenue'),
+    ('Kiln utilisation  (THE volume driver)', 'C', +0.03, 'vol26', +1,
      'running the plant harder must make more cement'),
-    ('Capacity utilisation', 'C', +0.03, 'rev26', +1, 'and more cement must raise revenue'),
+    ('Kiln utilisation  (THE volume driver)', 'C', +0.03, 'rev26', +1,
+     'and more cement must raise revenue'),
+    ('Kiln utilisation  (THE volume driver)', 'C', +0.03, 'kiln_pk', +1,
+     'and the capacity check must SEE it — revision 3 ran a kiln test on a volume base '
+     'that ignored clinker exports, so it could never bind'),
+    ('Clinker sold as clinker, share of clinker made', 'C', +0.05, 'mill26', -1,
+     'shipping more clinker leaves the mill with less to grind. Asserted on the FY2026 '
+     'column, not the peak: the peak is a MAX across the window and sits in FY2030'),
     ('Local price index', 'C', +0.05, 'rev26', +1, 'a higher local price must raise revenue'),
     ('Export price index (USD)', 'C', +0.05, 'rev26', +1,
      'a higher export price must raise revenue'),
     ('USD/EGP path', 'C', +5.0, 'rev26', +1,
      'a weaker pound raises the pound value of export revenue'),
-    ('Export share of volume', 'C', +0.05, 'rev26', -1,
-     'export realises less per tonne than local, so a heavier export mix LOWERS revenue'),
+    ('Cement exported, share of cement made', 'C', +0.05, 'rev26', -1,
+     'export cement realises less per tonne than local, so a heavier export mix LOWERS '
+     'revenue'),
     ('Local cost-inflation index', 'C', +0.10, 'cc26', +1,
      'inflating the pound cost lines must raise cost per tonne'),
     ('Local cost-inflation index', 'C', +0.10, 'ebitda26', -1, 'and must cut EBITDA'),
     ('Alternative-fuel saving on materials', 'C', +0.05, 'cmat26', -1,
-     'the substitution programme must cut the materials and fuel bill per tonne'),
+     'the substitution programme must cut the materials and fuel bill'),
     ('Alternative-fuel saving on materials', 'C', +0.05, 'ebitda26', +1,
      'and the saving must reach EBITDA — this is the company-specific lever, and the EBRD '
      'facility funding it is on the audited balance sheet'),
     ('Services revenue as a share of goods revenue', 'B', +0.02, 'rev26', +1,
      'more transportation revenue on the same tonnes'),
-    ('Cement capacity', 'B', +0.30, 'vol26', +1, 'more capacity at the same utilisation'),
+    ('Cement capacity', 'B', +0.30, 'mill26', -1,
+     'the mill is now a CONSTRAINT, not a volume driver: tonnes come off the kiln, so more '
+     'mill capacity lowers mill utilisation and does not create cement. Revision 3 drove '
+     'volume off cement capacity, which is why its kiln check could never bind'),
     ('Cement capacity', 'B', +0.30, 'asset_lens', +1,
      'and more capacity at the same value per tonne must raise the asset lens'),
     ('FY2025 cost of sales — materials and fuel', 'B', +200.0, 'ccost25', +1,
@@ -201,11 +244,12 @@ CASES = [
     # corrected price path lifts terminal NOPAT to N/IC = 13.81%, 21bp past it, so growth
     # now adds value. The magnitude is what matters and it is trivial: +0.10% of the DCF
     # per point of terminal growth, +0.5% across the whole 3%-7% range.
-    ('Terminal growth rate', 'B', +0.01, 'dcf', +1,
-     'the growth lever moves in the direction the terminal algebra requires: its sign is '
-     'the constant N(1+W) - IC.W, and at N/IC 13.81% against a hurdle of W/(1+W) 13.61% '
-     'that is positive by 21bp — but worth only +0.1% of value per point, so nothing in '
-     'the answer rests on it'),
+    ('Terminal growth rate', 'B', +0.01, 'dcf', (1 if GDV['analytic_adds_value'] else -1),
+     f"the growth lever moves in the direction the terminal algebra requires. Its sign is "
+     f"the constant N(1+W) - IC.W, so THE DIRECTION IS READ FROM THE MODEL rather than "
+     f"typed: N/IC {GDV['n_over_ic']:.2%} against a hurdle of W/(1+W) {GDV['hurdle']:.2%}. "
+     f"Revision 3 hard-typed it, and when the terminal capital was restated into "
+     f"terminal-year pounds the sign reversed and the assertion went stale"),
     ('Beta (own-stock weekly regression)', 'B', +0.20, 'dcf', -1,
      'a higher beta must lower the valuation'),
     ('Beta (own-stock weekly regression)', 'B', +0.20, 'beta_term', +1,
@@ -265,8 +309,11 @@ CASES = [
      'more audited cash flows straight through the bridge. Unlike revision 1 this is now a '
      'CLEAN one-way lever, because the effective tax rate is a disclosed figure rather than '
      'one inferred by closing a modelled finance income'),
-    ('CIB credit facilities — EGP', 'B', +500.0, 'dcf', -1,
-     'more debt leaves less for shareholders'),
+    ('CIB credit facilities — EGP', 'B', +500.0, 'dcf', +1,
+     'more debt RAISES the value, and that is a structural consequence of a correction '
+     'made this revision rather than a defect. The bridge now deducts the FRESHER reviewed '
+     '31-March-2026 debt, so a change to the FY2025 facility no longer moves net cash; it '
+     'moves only the WACC weight, and after-tax debt is far cheaper than equity'),
     ('Non-controlling interests FY2025', 'B', +500.0, 'dcf', -1,
      'minorities own part of the enterprise and must be deducted'),
     ('Ordinary shares issued', 'B', +20.0, 'dcf', -1,
@@ -368,9 +415,10 @@ CASES = [
     ('FY2024 dividend approved and paid', 'B', +100.0, 'dcf', 0,
      'the FY2024 distribution is history and is deliberately consumed nowhere downstream'),
     # ---- REVENUE AND SHARE NOTES ------------------------------------------------
-    ('FY2025 local sales of goods', 'B', +200.0, 'vol25', +1,
+    ('FY2025 local sales of goods', 'B', +200.0, 'p_loc', +1,
      'more disclosed local revenue at the same price is more tonnes'),
-    ('FY2025 export sales of goods', 'B', +200.0, 'vol25', +1, 'the same on the export leg'),
+    ('FY2025 export sales of goods', 'B', +200.0, 'p_ecem', +1,
+     'the same on the export leg: revenue sets the price, the plant sets the tonnes'),
     ('FY2025 local services', 'B', +50.0, 'resid_rev', 0,
      'the services line does not enter the volume build; it is carried as a share'),
     ('FY2025 export services', 'B', +50.0, 'ebitda26', 0, 'nor does the export services line'),

@@ -48,7 +48,7 @@ masthead()
 P('Arabian Cement Company S.A.E.', size=22, bold=True, space_after=1)
 P('Egyptian Exchange · ARCC · Egyptian pounds · 6 August 2026', size=11, color=GREY,
   space_after=10)
-rich([(f'Egypt\'s second-largest cement plant, at the top of the best year the industry '
+rich([(f'One of Egypt\'s largest cement plants, at the top of the best year the industry '
        f'has had in more than a decade — audited profit up '
        f'{pc(IN["pat_fy25"]/IN["pat_fy24"]-1, 0)} in a single year on a '
        f'{pc(IN["rev_fy25"]/IN["rev_fy24"]-1)} revenue step — and facing '
@@ -60,7 +60,7 @@ box([('What this is. ', 'An independent valuation of Arabian Cement Company, an 
       'target — fair-value ranges and distributions only.'),
      ('The company in one line. ', f'Two production lines in Suez governorate, about '
       f'{n1(IN["cap_cement_mt"])} million tonnes of cement a year and roughly '
-      f'{pc(PE["sector"]["share_of_capacity"], 0)} of Egypt\'s nominal capacity, listed on '
+      f'{pc(PE["sector"]["share_of_capacity"], 1)} of Egypt\'s nominal capacity, listed on '
       f'the Egyptian Exchange since May 2014, with cash of EGP '
       f'{n0(IN["cash_fy25"])}mn against interest-bearing debt of EGP '
       f'{n0(W["debt_total"])}mn. Every figure in this study is read from the audited '
@@ -105,8 +105,10 @@ P('Four lenses are used. A discounted cash-flow model built up from tonnes and c
 H2('1.1  The business, and why the lens follows from it')
 P(f'The plant runs two lines in Suez governorate producing on average about '
   f'{n1(IN["cap_cement_mt"])} million tonnes of clinker and cement a year. That is roughly '
-  f'{pc(PE["sector"]["share_of_capacity"], 0)} of Egypt\'s nominal capacity and makes it '
-  f'the second-largest cement plant in the country. The balance sheet is what that '
+  f'{pc(PE["sector"]["share_of_capacity"], 1)} of Egypt\'s nominal capacity. Larger single '
+  f'sites exist — National Cement Beni Suef and Lafarge Ain Sokhna are both materially '
+  f'bigger — so the earlier edition\'s claim that this is the country\'s second-largest '
+  f'plant is withdrawn. The balance sheet is what that '
   f'description implies: property-dominated, with working capital in inventory and '
   f'receivables, no investment property, no equity-accounted portfolio of any size, and no '
   f'financing arm.')
@@ -142,29 +144,49 @@ P(f'Two things stand out. The revenue note splits local from export: local sales
 
 # ---- 1.2 --------------------------------------------------------------------
 H2('1.2  The unit economics — where EBITDA actually comes from')
-P('The operating model is built from the audited notes rather than from an invented '
-  'physical stack. The revenue note splits local from export and goods from services; the '
-  'cost-of-sales note splits materials and fuel, transportation and overheads. Volume is '
-  'DERIVED — disclosed revenue divided by an observed price — so the utilisation it implies '
-  'is an output that can disagree with the sector. It does not.')
+P('The operating model starts at the PLANT, and this is the one thing that changed most '
+  'in this revision. The previous edition assumed a cement price, divided the audited '
+  'revenue by it to get tonnes, and presented the utilisation that fell out as an '
+  'independent corroboration. It was neither independent nor a corroboration: it was the '
+  'same assumption written twice, and the FY2025 check it produced was an accounting '
+  'identity that reproduces the audited revenue for ANY price, because volume moves by '
+  'exactly the reciprocal. Here the drivers are physical — kiln utilisation, the clinker '
+  'factor and the two export shares — and the tonnes, the mill utilisation and all three '
+  'realised prices come out of them. The prices are therefore outputs that can be held '
+  'against the market and disagree with it.')
+P('It also carries three products where the previous edition carried one. This company '
+  'sells local cement, export cement and export CLINKER, and clinker is the unground '
+  'intermediate, worth a fraction of the cement it could have become. Pricing every tonne '
+  'at a cement price made the plant look far smaller than it is.')
 rows = [['', 'Value']]
-rows.append(['Export sales of goods (audited)', f'EGP {n0(IN["rev_exp_goods_fy25"])}mn'])
-rows.append(['Export price assumed (USD/t)', n1(IN['price_exp_usd_t'])])
-rows.append(['Average USD/EGP in 2025 (audited note)', n2(IN['fx_avg_fy25'])])
-rows.append(['Export volume derived (Mt)', n3(UC['vol_export'])])
-rows.append(['Local sales of goods (audited)', f'EGP {n0(IN["rev_local_goods_fy25"])}mn'])
-rows.append(['Local price assumed (EGP/t)', n0(IN['price_local_egp_t'])])
-rows.append(['Local volume derived (Mt)', n3(UC['vol_local'])])
-rows.append(['TOTAL VOLUME (Mt)', n3(UC['vol_fy25'])])
-rows.append(['Implied capacity utilisation', pc(UC['util_fy25'])])
-rows.append(['National sector utilisation, for comparison', pc(PE['sector']['utilisation'])])
-rows.append(['Export share of volume', pc(UC['vol_export'] / UC['vol_fy25'])])
-table(rows, [4.10, 2.00], band_rows={8, 9})
-caption('Table 2 — The volume build. Nothing here is asserted: the two revenue lines are '
-        'audited, the exchange rate is from the currency note, and only the two prices are '
-        'external estimates. The utilisation that falls out is the test, and 69.7% against '
-        'a national 85.5% is a plant running below the country average, which is what a '
-        '30%-export producer at a statutory export cap should look like.')
+rows.append(['Kiln clinker capacity (audited note 1)', f'{n2(IN["cap_clinker_mt"])}Mt'])
+rows.append(['Kiln utilisation  (DRIVER)', pc(IN['kiln_util'][0])])
+rows.append(['Clinker produced', f'{n3(UC["clk_prod"])}Mt'])
+rows.append(['Sold as clinker  (DRIVER)', pc(IN['clk_export_share'][0])])
+rows.append(['Clinker exported', f'{n3(UC["vol_clk_exp"])}Mt'])
+rows.append(['Clinker factor  (DRIVER)', n3(IN['clinker_factor'])])
+rows.append(['Cement produced', f'{n3(UC["cem_prod"])}Mt'])
+rows.append(['Mill utilisation', pc(UC['util_fy25'])])
+rows.append(['Cement exported  (DRIVER)', pc(IN['cem_export_share'][0])])
+rows.append(['Local cement', f'{n3(UC["vol_local"])}Mt'])
+rows.append(['TOTAL DESPATCHES', f'{n3(UC["vol_fy25"])}Mt'])
+rows.append(['Local cement price — DERIVED', f'EGP {n0(UC["price_loc_derived"])}/t'])
+rows.append(['Export cement price — DERIVED', f'USD {n1(UC["price_exp_cem_usd"])}/t'])
+rows.append(['Export clinker price — DERIVED', f'USD {n1(UC["price_exp_clk_usd"])}/t'])
+table(rows, [4.10, 2.00], band_rows={12, 13, 14, 15})
+caption('Table 2 — The plant in tonnes, and the prices that fall out of it. The four '
+        'drivers are physical; everything below them is derived. Cement exports of '
+        f'{pc(IN["cem_export_share"][0])} of cement made sit inside the 30% statutory cap — '
+        'the previous edition\'s single-product build put exports at 31.5% of volume and '
+        'breached the cap its own text called binding.')
+P(f'The three derived prices are the test, and it is a test this study does not pass '
+  f'cleanly. Local cement at EGP {n0(UC["price_loc_derived"])} a tonne is credible against '
+  f'Egyptian ex-works commentary. Export cement at USD {n1(UC["price_exp_cem_usd"])} and '
+  f'export clinker at USD {n1(UC["price_exp_clk_usd"])} sit roughly a third BELOW the USD '
+  f'44-48 the trade press quotes for Egyptian clinker free on board. Either the physical '
+  f'volumes behind this build are too high, or realisations run well under the published '
+  f'indices. The gap is published rather than tuned away, and it is the reason the volume '
+  f'base carries its own sensitivity rather than being presented as settled.')
 P(f'The cost stack is the printed one. Cost of sales of EGP {n0(H["cogs"][2])}mn splits into '
   f'materials and fuel of EGP {n0(IN["cos_materials_fy25"])}mn — the note confirms this is '
   f'the cost of inventories charged to cost of sales, so it carries fuel, packing and spares '
@@ -397,32 +419,29 @@ P(f'The margin path is the central judgement in this forecast, and it deserves s
   f'reader who thinks the industry passes cost through faster should read the margin '
   f'sensitivity in section 7: two points of margin is worth about EGP '
   f'{n2(SN["mgn"][3]-SN["mgn"][2])} a share.')
-P(f'That path is CALIBRATED to the audited record rather than asserted against it, and it '
-  f'is the one thing this revision changes. The prior revision assumed local prices grew '
-  f'3.0% in FY2026 against 11.5% cost inflation, and about four points a year after that — '
-  f'a cumulative real squeeze near 28%. The statements contradict it. In FY2024 revenue '
-  f'grew {pc(H["revenue"][1]/H["revenue"][0]-1, 1)} against total cash cost of '
+P(f'That path is set below the cost path in every year, and this revision changed how it '
+  f'is judged rather than only where it sits. The prior edition justified it against '
+  f'headline inflation of {pc(IN["cost_infl"][5]-1)} — but that is the input-price index, '
+  f'not the cost the model actually charges. Netting the alternative-fuel saving off the '
+  f'materials line, the cash cost per tonne the model charges grows '
+  f'{pc(BU[5]["cc_t"]/BU[0]["cc_t"]-1)}, so the real erosion is '
+  f'{pc(BU[5]["cc_t"]/BU[0]["cc_t"]/(IN["price_local_path"][5])-1)} rather than the figure '
+  f'previously printed. The comparison is now made against the cost the model charges.')
+P(f'The audited record still frames it. In FY2024 revenue grew '
+  f'{pc(H["revenue"][1]/H["revenue"][0]-1, 1)} against total cash cost of '
   f'{pc((H["cogs"][1]+H["ga"][1]-IN["dna_fy24"])/(H["cogs"][0]+H["ga"][0]-IN["dna_fy23"])-1, 1)}; '
   f'in FY2025 revenue grew {pc(H["revenue"][2]/H["revenue"][1]-1, 1)} against cash cost of '
   f'{pc((H["cogs"][2]+H["ga"][2]-IN["dna_fy25"])/(H["cogs"][1]+H["ga"][1]-IN["dna_fy24"])-1, 1)}, '
   f'which is why the gross margin moved {pc(H["gross_profit"][0]/H["revenue"][0])} to '
   f'{pc(H["gross_profit"][1]/H["revenue"][1])} to {pc(H["gross_profit"][2]/H["revenue"][2])}. '
-  f'In every period the accounts cover, price outran cost. The old assumption also implied a '
-  f'producer unable to raise price even at the central bank\'s own medium-term target, while '
-  f'the same model had utilisation rising from {pc(IN["util"][0])} to {pc(IN["util"][5])} — '
-  f'volume gained and real price lost at once, which is two conservatisms stacked rather '
-  f'than one judgement made. The path carried here grows local price '
-  f'{pc(IN["price_local_path"][1]-1, 1)} in FY2026 and then '
-  f'{pc(IN["price_local_path"][2]/IN["price_local_path"][1]-1, 1)}, '
-  f'{pc(IN["price_local_path"][3]/IN["price_local_path"][2]-1, 1)}, '
-  f'{pc(IN["price_local_path"][4]/IN["price_local_path"][3]-1, 1)} and '
-  f'{pc(IN["price_local_path"][5]/IN["price_local_path"][4]-1, 1)} — below the cost path in '
-  f'every single year, and producing FY2026 group revenue growth of '
-  f'{pc(F["revenue"][0]/H["revenue"][2]-1, 1)} against the '
-  f'{pc(IN["rev_q1_26"]/IN["rev_q1_25"]-1, 1)} the first quarter actually ran. The cost path '
-  f'is deliberately left at headline inflation even though this company\'s own realised cost '
-  f'inflation ran below the national rate, because crediting that here would double-count '
-  f'the alternative-fuel saving already carried as a driver of its own.')
+  f'In every period the accounts cover, price outran cost. But the first quarter of 2026 is '
+  f'the sharper evidence and it cuts the other way: revenue grew '
+  f'{pc(IN["rev_q1_26"]/IN["rev_q1_25"]-1, 1)} while the gross margin EXPANDED to '
+  f'{pc(IN["gp_q1_26"]/IN["rev_q1_26"])} from {pc(H["gross_profit"][2]/H["revenue"][2])}. A '
+  f'margin that widens on a 17% revenue step is the signature of VOLUME spread over fixed '
+  f'cost, not of price. This study does not hold the quarterly volume and price split, so '
+  f'it cannot settle which it was — and that is stated here rather than resolved by '
+  f'assertion, because the answer changes the forecast materially.')
 P(f'One reconciliation belongs here too, because it is the sharpest challenge to the '
   f'forecast. The first quarter of 2026 — reviewed, not audited, but signed off in May — '
   f'earned attributable profit of EGP {n0(IN["pat_q1_26"])}mn on revenue of EGP '
@@ -675,7 +694,10 @@ P(f'The weighting resolves that in favour of earnings, at '
   f'it is a testable one.')
 P(f'Against the technical picture, the two readings are in tension. The share is above its '
   f'entire moving-average stack on a rising 200-day and {pc(1-TECH["pct_off_high"], 0)} of '
-  f'the way to a 52-week high, while the two multiple-based lenses put fair value below the '
+  f'of its 52-week intraday high — 98% OF that high, and '
+  f'{pc((SPOT-35.01)/(60.40-35.01), 0)} of the way UP the range, which are different '
+  f'statistics and the earlier edition ran them together — while the two multiple-based '
+  f'lenses put fair value below the '
   f'current price and the two forward-looking ones put it above. Momentum sits with the '
   f'cash-flow case here rather than against it, and the disagreement that remains is '
   f'between that case and the multiple the market is prepared to pay. This study takes no '
@@ -753,26 +775,27 @@ for head, body in [
      'EGP 150mn against an audited EGP 158,005; the effective tax rate was inferred at '
      '29.4% against a disclosed 23.8%; the cost of debt was assumed at 21.5% against a '
      'euro-denominated book paying about 7.5%; and kiln capacity was assumed 14% too low.'),
-    ('The forecast price path was corrected after the accounts were read, and that '
-     'changed the answer. ', f'Reading the statements fixed every historical figure but '
-     f'left the forecast price path where it had been set: local prices growing 3.0% in '
-     f'FY2026 against 11.5% cost inflation. The record contradicts it — in FY2024 and '
-     f'FY2025 alike, revenue outran total cash cost, and Q1-2026 was still widening its '
-     f'margin. The path now runs {pc(IN["price_local_path"][1]-1, 1)} then '
-     f'{pc(IN["price_local_path"][2]/IN["price_local_path"][1]-1, 1)} and easing, below '
-     f'cost inflation in every year but not by the margin previously assumed. It moves the '
-     f'central fair value from EGP 44.89 to EGP {n2(LN["central"])} and the terminal share '
-     f'of enterprise value from 45.5% to {pc(DCF["tv_share"])}. A reader comparing this '
-     f'against the earlier edition should know the change is one driver, deliberately '
-     f'made, and not a re-cut of the whole model.'),
-    ('Only two numbers in the operating build are not disclosed. ', f'The local realised '
-     f'price of EGP {n0(IN["price_local_egp_t"])} a tonne and the export price of USD '
-     f'{n1(IN["price_exp_usd_t"])} a tonne are external estimates; every other input to the '
-     f'FY2025 build is audited. They matter because volume is derived from them — a 10% '
-     f'error in price is a 10% error in volume, in the opposite direction, and the two '
-     f'largely offset in revenue but not in cost per tonne. The check on them is the '
-     f'utilisation that falls out: {pc(UC["util_fy25"])} against a national '
-     f'{pc(PE["sector"]["utilisation"])}.'),
+    ('The model was rebuilt bottom up, and the answer moved a long way. ', f'Four '
+     f'reviewers tested the previous edition. Between them they showed that its volume '
+     f'came from an assumed price rather than from the plant, that its FY2025 validation '
+     f'was an identity that could not fail, that its terminal capital was measured in '
+     f'valuation-date pounds against a terminal-year cash flow, that its terminal cost of '
+     f'debt sat 250 basis points below its own terminal risk-free rate, that its terminal '
+     f'risk-free rate used the central bank\'s near-dated inflation target rather than its '
+     f'medium-term one, that its discount factors applied each year\'s rate one period '
+     f'late, that its beta was levered twice, and that ten rows of its income statement '
+     f'were labelled one row above their contents. All of that is corrected here. The '
+     f'central fair value moves from EGP 61.30 to EGP {n2(LN["central"])}, and the '
+     f'conclusion moves from a premium over the market to a small discount.'),
+    ('Volume is now physical, and it is the largest open question in the study. ', f'The '
+     f'build runs on kiln utilisation, the clinker factor and two export shares, and the '
+     f'three realised prices are derived from the audited revenue note. That makes the '
+     f'prices testable, and they do not fully pass: export clinker derives to USD '
+     f'{n1(UC["price_exp_clk_usd"])} a tonne against a trade-press range of USD 44-48. '
+     f'Either the physical assumptions are too generous or realisations run below the '
+     f'published indices. The company discloses despatch volumes in its investor material, '
+     f'which would settle it; that material could not be reached from here, and the '
+     f'audited statements are image-only scans that carry no volume table.'),
     ('The cost of debt is contractual, not paid. ', f'The blended '
      f'{pc(KDG["kd_blended"], 2)} sits above the {pc(KDG["eff_fy25"], 2)} that FY2025 '
      f'interest over average debt gives and the {pc(KDG["eff_q126_annualised"], 2)} the '
@@ -913,8 +936,10 @@ figure('fig8_sector.png', 6.6,
        'Figure B1 — The Egyptian cement balance. The surplus is the whole sector case.')
 P(f'Egypt carries about {n0(IN["egy_capacity_mt"])}Mt of nameplate capacity against roughly '
   f'{n0(IN["egy_cons_mt"])}Mt of domestic consumption and {n0(IN["egy_prod_mt"])}Mt of '
-  f'production — a utilisation rate near {pc(PE["sector"]["utilisation"], 0)}. Exports of '
-  f'about {n1(IN["egy_exports_mt"])}Mt absorb part of the difference. The abolition of the '
+  f'production — a utilisation rate near {pc(PE["sector"]["utilisation"], 0)}. Production '
+  f'less consumption is {n0(IN["egy_prod_mt"]-IN["egy_cons_mt"])}Mt; the '
+  f'{n1(IN["egy_exports_mt"])}Mt figure usually quoted is cement AND clinker together, and '
+  f'the earlier edition set the two against each other as though they reconciled. The abolition of the '
   f'production quota in May 2025 removed the mechanism that had been supporting price into '
   f'that surplus, and the {n1(IN["egy_revival_mt"])}Mt restart programme would add to it.')
 for head, body in [
@@ -925,9 +950,12 @@ for head, body in [
      'reform path. Both raise cost independently of what happens to price.'),
     ('Concentration. ', 'One site, one product, one country. There is no diversification '
      'anywhere in this business to absorb a shock to Egyptian construction demand.'),
-    ('Carbon. ', 'The EU carbon border mechanism raises the landed cost of exports into '
-     'Europe. This producer is better placed than most Egyptian peers, but better placed '
-     'is not unaffected.'),
+    ('Carbon. ', f'The EU carbon border mechanism raises the landed cost of exports into '
+     f'Europe. At a clinker factor of {n3(IN["clinker_factor"])} — a PRODUCTION ratio, not '
+     f'the ratio of two nameplate capacities the earlier edition mistook for one — this '
+     f'producer is better placed than most Egyptian peers, but better placed is not '
+     f'unaffected. It also ships {pc(UC["vol_clk_exp"]/UC["vol_fy25"])} of its tonnes as '
+     f'raw clinker, which carries the highest embedded carbon of anything it sells.'),
     ('Disclosure. ', 'The depth of published financial detail is thin by the standards of '
      'the other markets covered, which is why so much of this study is a triangulation '
      'shown rather than a figure asserted.'),

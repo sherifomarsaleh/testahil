@@ -231,16 +231,16 @@ inp('Cement capacity', 'capcem', IN['cap_cement_mt'], NUM2, 'Mt/yr')
 inp('Kiln clinker capacity', 'capclk', IN['cap_clinker_mt'], NUM2, 'Mt/yr')
 inp('Clinker factor', 'cfac', IN['clinker_factor'], NUM3, 't clinker / t cement')
 
-sect('PRICE CALIBRATION — the volume build is anchored on these')
-inp('Local realised price', 'ploc', IN['price_local_egp_t'], NUM0, 'EGP/t')
-inp('Export price', 'pexp', IN['price_exp_usd_t'], NUM1, 'USD/t')
+sect('EXPORT SPLIT — the one ratio the export leg needs; both prices come OUT')
+inp('Export clinker price as a fraction of export cement', 'ckr', IN['clk_price_ratio'], NUM3, '')
 inp('Average USD/EGP FY2025', 'fx25', IN['fx_avg_fy25'], NUM2, 'audited note 2.5')
 inp('Services revenue as a share of goods revenue', 'svc', IN['svc_share'], PCT2, '')
 
 sect('PATHS — FY2025A then FY2026E to FY2030E')
 hdr(wsA, R[0], [''] + BUY); R[0] += 1
-inprow('Capacity utilisation', 'util', IN['util'], BUC, PCT)
-inprow('Export share of volume', 'esh', IN['exp_share_vol'], BUC, PCT)
+inprow('Kiln utilisation  (THE volume driver)', 'kutl', IN['kiln_util'], BUC, PCT)
+inprow('Clinker sold as clinker, share of clinker made', 'cksh', IN['clk_export_share'], BUC, PCT)
+inprow('Cement exported, share of cement made', 'cesh', IN['cem_export_share'], BUC, PCT)
 inprow('Local price index', 'pli', IN['price_local_path'], BUC, NUM3)
 inprow('Export price index (USD)', 'pei', IN['price_exp_path'], BUC, NUM3)
 inprow('USD/EGP path', 'fxp', IN['fx_path'], BUC, NUM1)
@@ -383,120 +383,160 @@ note(wsA, R[0] + 2, 'Everything on every other sheet that can be derived from th
 
 # ============ 3 UNIT BUILD ====================================================
 wsU = sheet('Unit Build')
-title(wsU, 'Unit build — volume DERIVED from the audited revenue split',
-      'EBITDA is a RESULT of this sheet, never an input.', 10, 50, 13)
-band(wsU, 4, 10); wsU['A4'] = 'FY2025 CALIBRATION — FROM THE AUDITED NOTES'
-CAL = [('Export sales of goods (audited note 4)', 'B5', f"={A['reg']}", IN['rev_exp_goods_fy25'], NUM0),
-       ('Export price (USD/t)', 'B6', f"={A['pexp']}", IN['price_exp_usd_t'], NUM1),
-       ('Average USD/EGP FY2025 (audited note 2.5)', 'B7', f"={A['fx25']}", IN['fx_avg_fy25'], NUM2),
-       ('Export volume (Mt) — DERIVED', 'B8', "=B5/(B6*B7)", UC['vol_export'], NUM3),
-       ('Local sales of goods (audited note 4)', 'B9', f"={A['rlg']}", IN['rev_local_goods_fy25'], NUM0),
-       ('Local price (EGP/t)', 'B10', f"={A['ploc']}", IN['price_local_egp_t'], NUM0),
-       ('Local volume (Mt) — DERIVED', 'B11', "=B9/B10", UC['vol_local'], NUM3),
-       ('TOTAL VOLUME FY2025 (Mt)', 'B12', "=B8+B11", UC['vol_fy25'], NUM3),
-       ('Cement capacity (Mt)', 'B13', f"={A['capcem']}", IN['cap_cement_mt'], NUM2),
-       ('Implied utilisation — the cross-check', 'B14', "=B12/B13", UC['util_fy25'], PCT),
-       ('National sector utilisation, for comparison', 'B15',
-        f"={A['egprod']}/{A['egcap']}", PE['sector']['utilisation'], PCT),
-       ('Export share of volume', 'B16', "=B8/B12", UC['vol_export'] / UC['vol_fy25'], PCT),
-       ('Export share of revenue', 'B17',
-        f"=({A['reg']}+{A['res']})/{A['rev25']}",
-        (IN['rev_exp_goods_fy25'] + IN['rev_exp_svc_fy25']) / IN['rev_fy25'], PCT)]
+title(wsU, 'Unit build — the PLANT drives the tonnes, and the prices come OUT',
+      'Revision 3 assumed a price and divided revenue by it. That made the FY2025 check an '
+      'identity that could not fail. Here the drivers are physical and all three realised '
+      'prices are derived, so they can be tested against the market and disagree.', 10, 50, 13)
+band(wsU, 4, 10); wsU['A4'] = 'FY2025 — THE PLANT IN TONNES (drivers in green, everything else derived)'
+CAL = [('Kiln clinker capacity (Mt, audited note 1)', 'B5', f"={A['capclk']}", IN['cap_clinker_mt'], NUM2),
+       ('Kiln utilisation', 'B6', f"={A['kutl0']}", IN['kiln_util'][0], PCT),
+       ('Clinker produced (Mt)', 'B7', "=B5*B6", UC['clk_prod'], NUM3),
+       ('Share sold as clinker', 'B8', f"={A['cksh0']}", IN['clk_export_share'][0], PCT),
+       ('Clinker EXPORTED (Mt)', 'B9', "=B7*B8", UC['vol_clk_exp'], NUM3),
+       ('Clinker ground into cement (Mt)', 'B10', "=B7-B9", UC['clk_prod'] - UC['vol_clk_exp'], NUM3),
+       ('Clinker factor (t clinker / t cement)', 'B11', f"={A['cfac']}", IN['clinker_factor'], NUM3),
+       ('Cement produced (Mt)', 'B12', "=B10/B11", UC['cem_prod'], NUM3),
+       ('Cement mill capacity (Mt, audited note 1)', 'B13', f"={A['capcem']}", IN['cap_cement_mt'], NUM2),
+       ('Mill utilisation', 'B14', "=B12/B13", UC['util_fy25'], PCT),
+       ('Cement exported, share of cement made', 'B15', f"={A['cesh0']}", IN['cem_export_share'][0], PCT),
+       ('Cement EXPORTED (Mt)', 'B16', "=B12*B15", UC['vol_cem_exp'], NUM3),
+       ('Cement sold LOCALLY (Mt)', 'B17', "=B12-B16", UC['vol_local'], NUM3),
+       ('TOTAL DESPATCHES FY2025 (Mt)', 'B18', "=B12+B9", UC['vol_fy25'], NUM3)]
 for lab, ad, fm, ex, ft in CAL:
     wsU.cell(row=int(ad[1:]), column=1, value=lab)
-    putf(wsU, ad, fm, ex, ft, bold=(ad in ('B12', 'B14')),
-         green=(ad in ('B5', 'B6', 'B7', 'B9', 'B10', 'B13')))
+    putf(wsU, ad, fm, ex, ft, bold=(ad in ('B18', 'B12')),
+         green=(ad in ('B5', 'B6', 'B8', 'B11', 'B13', 'B15')))
+band(wsU, 20, 10); wsU['A20'] = 'FY2025 PRICES — DERIVED FROM THE AUDITED REVENUE NOTE, AND TESTABLE'
+PRC = [('Local sales of goods (audited note 4)', 'B21', f"={A['rlg']}", IN['rev_local_goods_fy25'], NUM0),
+       ('LOCAL CEMENT PRICE (EGP/t) — DERIVED', 'B22', "=B21/B17", UC['price_loc_derived'], NUM0),
+       ('Export sales of goods (audited note 4)', 'B23', f"={A['reg']}", IN['rev_exp_goods_fy25'], NUM0),
+       ('Clinker price as a fraction of cement', 'B24', f"={A['ckr']}", IN['clk_price_ratio'], NUM3),
+       ('Export cement-equivalent tonnes', 'B25', "=B16+B9*B24",
+        UC['vol_cem_exp'] + UC['vol_clk_exp'] * IN['clk_price_ratio'], NUM3),
+       ('EXPORT CEMENT PRICE (USD/t) — DERIVED', 'B26', f"=B23/B25/{A['fx25']}",
+        UC['price_exp_cem_usd'], NUM1),
+       ('EXPORT CLINKER PRICE (USD/t) — DERIVED', 'B27', "=B26*B24",
+        UC['price_exp_clk_usd'], NUM1),
+       ('Cement exports as a share of cement made — against a 30% statutory cap', 'B28',
+        "=B16/B12", IN['cem_export_share'][0], PCT)]
+for lab, ad, fm, ex, ft in PRC:
+    wsU.cell(row=int(ad[1:]), column=1, value=lab)
+    putf(wsU, ad, fm, ex, ft, bold=(ad in ('B22', 'B26', 'B27')),
+         green=(ad in ('B21', 'B23')))
 
-band(wsU, 19, 10); wsU['A19'] = 'FY2025 CASH COST PER TONNE — FROM THE AUDITED COST NOTES'
-CC = [('Materials and fuel (note 5)', 'B20', f"={A['cmat']}", IN['cos_materials_fy25'], NUM0),
-      ('Transportation (note 5)', 'B21', f"={A['ctra']}", IN['cos_transport_fy25'], NUM0),
-      ('Overheads (note 5) plus cash administration (note 6)', 'B22',
-       f"={A['covh']}+{A['ga25']}-{A['adep']}+{A['prov25']}+{A['ecl25']}",
-       IN['cos_overhead_fy25'] + IN['ga_fy25'] - IN['ga_admin_dep_fy25'] + IN['prov_fy25']
-       + IN['ecl_fy25'], NUM0),
-      ('Total cash cost (EGP mn)', 'B23', "=SUM(B20:B22)", UC['cash_cost_fy25'], NUM0),
-      ('Materials and fuel per tonne', 'B24', "=B20/B12", UC['cc_mat_t'], NUM0),
-      ('Transportation per tonne', 'B25', "=B21/B12", UC['cc_tra_t'], NUM0),
-      ('Overheads and administration per tonne', 'B26', "=B22/B12", UC['cc_ovh_t'], NUM0),
-      ('TOTAL CASH COST PER TONNE', 'B27', "=B23/B12", UC['cash_cost_t'], NUM0)]
+band(wsU, 30, 10); wsU['A30'] = 'FY2025 CASH COST — DISCLOSED, AND ALLOCATED TO ITS OWN DRIVER'
+CC = [('Materials and fuel (note 5)', 'B31', f"={A['cmat']}", IN['cos_materials_fy25'], NUM0),
+      ('Transportation (note 5)', 'B32', f"={A['ctra']}", IN['cos_transport_fy25'], NUM0),
+      ('Overheads (note 5) plus cash administration (note 6)', 'B33',
+       f"={A['covh']}+{A['ga25']}-{A['adep']}",
+       IN['cos_overhead_fy25'] + IN['ga_fy25'] - IN['ga_admin_dep_fy25'], NUM0),
+      ('Total cash cost (EGP mn)', 'B34', "=SUM(B31:B33)", UC['cash_cost_fy25'], NUM0),
+      ('Materials and fuel per tonne of CLINKER — the kiln burns it', 'B35', "=B31/B7",
+       UC['cc_mat_t'], NUM0),
+      ('Transportation per tonne DESPATCHED', 'B36', "=B32/B18", UC['cc_tra_t'], NUM0),
+      ('Overheads and administration per tonne DESPATCHED', 'B37', "=B33/B18",
+       UC['cc_ovh_t'], NUM0),
+      ('TOTAL CASH COST PER TONNE SOLD', 'B38', "=B34/B18", UC['cash_cost_t'], NUM0)]
 for lab, ad, fm, ex, ft in CC:
     wsU.cell(row=int(ad[1:]), column=1, value=lab)
-    putf(wsU, ad, fm, ex, ft, bold=(ad == 'B27'),
-         green=(ad in ('B20', 'B21')))
+    putf(wsU, ad, fm, ex, ft, bold=(ad == 'B38'), green=(ad in ('B31', 'B32')))
+note(wsU, 40, 'Provisions and expected credit losses are NOT in this stack. They are operating charges that')
+note(wsU, 41, 'belong in the EBITDA bridge, but they are not cash cost per tonne. Revision 3 carried them here.')
 
-band(wsU, 29, 10); wsU['A29'] = 'THE BUILD — FY2025A THEN FY2026E TO FY2030E'
-hdr(wsU, 30, [''] + BUY)
-LBL = ['Capacity utilisation', 'Volume (Mt)', 'Export share of volume',
-       'Export volume (Mt)', 'Local volume (Mt)', 'Local price (EGP/t)',
-       'Export price (USD/t)', 'USD/EGP', 'Local revenue (EGP mn)',
-       'Export revenue (EGP mn)', 'Goods revenue (EGP mn)', 'REVENUE (EGP mn)',
-       'Blended realised price (EGP/t)', 'Materials and fuel (EGP/t)',
-       'Transportation (EGP/t)', 'Overheads and administration (EGP/t)',
-       'Cash cost (EGP/t)', 'Cash cost (EGP mn)', 'EBITDA  (AN OUTPUT)', 'EBITDA margin',
+band(wsU, 43, 10); wsU['A43'] = 'THE BUILD — FY2025A THEN FY2026E TO FY2030E'
+hdr(wsU, 44, [''] + BUY)
+LBL = ['Kiln utilisation  (DRIVER)', 'Clinker produced (Mt)',
+       'Clinker sold as clinker, share  (DRIVER)', 'Clinker exported (Mt)',
+       'Clinker ground (Mt)', 'Cement produced (Mt)', 'Mill utilisation',
+       'Cement exported, share  (DRIVER)', 'Cement exported (Mt)', 'Cement local (Mt)',
+       'TOTAL DESPATCHES (Mt)', 'Local cement price (EGP/t)',
+       'Export cement price (EGP/t)', 'Export clinker price (EGP/t)',
+       'Local revenue (EGP mn)', 'Export cement revenue (EGP mn)',
+       'Export clinker revenue (EGP mn)', 'Goods revenue (EGP mn)', 'REVENUE (EGP mn)',
+       'Revenue per tonne despatched (EGP)', 'Materials and fuel (EGP mn)',
+       'Transportation (EGP mn)', 'Overheads and administration (EGP mn)',
+       'Cash cost (EGP mn)', 'Cash cost per tonne sold (EGP)',
+       'Provisions and credit losses (EGP mn)', 'EBITDA  (AN OUTPUT)', 'EBITDA margin',
        'EBITDA per tonne (EGP)']
 for j, l in enumerate(LBL):
-    wsU.cell(row=31 + j, column=1, value=l)
+    wsU.cell(row=45 + j, column=1, value=l)
 for i in range(6):
     c = BUC[i]
     b = BU[i]
-    putf(wsU, f'{c}31', f"={A[f'util{i}']}", IN['util'][i], PCT, green=True)
-    putf(wsU, f'{c}32', f"=$B$13*{c}31", b['vol'], NUM3)
-    putf(wsU, f'{c}33', f"={A[f'esh{i}']}", IN['exp_share_vol'][i], PCT, green=True)
-    putf(wsU, f'{c}34', f"={c}32*{c}33", b['vol_exp'], NUM3)
-    putf(wsU, f'{c}35', f"={c}32-{c}34", b['vol_loc'], NUM3)
-    putf(wsU, f'{c}36', f"=$B$10*{A[f'pli{i}']}", b['price_loc'], NUM0)
-    putf(wsU, f'{c}37', f"=$B$6*{A[f'pei{i}']}", b['price_exp'], NUM1)
-    putf(wsU, f'{c}38', f"={A[f'fxp{i}']}", IN['fx_path'][i], NUM1, green=True)
-    putf(wsU, f'{c}39', f"={c}35*{c}36", b['vol_loc'] * b['price_loc'], NUM0)
-    putf(wsU, f'{c}40', f"={c}34*{c}37*{c}38", b['vol_exp'] * b['price_exp'] * IN['fx_path'][i], NUM0)
-    putf(wsU, f'{c}41', f"={c}39+{c}40", b['rev_goods'], NUM0)
-    putf(wsU, f'{c}42', f"={c}41*(1+{A['svc']})", b['rev'], NUM0, bold=True)
-    putf(wsU, f'{c}43', f"={c}42/{c}32", b['price'], NUM0)
-    putf(wsU, f'{c}44', f"=$B$24*{A[f'infl{i}']}*(1-{A[f'afs{i}']})", b['c_mat'], NUM0)
-    putf(wsU, f'{c}45', f"=$B$25*{A[f'infl{i}']}", b['c_tra'], NUM0)
-    putf(wsU, f'{c}46', f"=$B$26*{A[f'infl{i}']}", b['c_ovh'], NUM0)
-    putf(wsU, f'{c}47', f"=SUM({c}44:{c}46)", b['cc_t'], NUM0)
-    putf(wsU, f'{c}48', f"={c}47*{c}32", b['cc'], NUM0)
-    putf(wsU, f'{c}49', f"={c}42-{c}48", b['ebitda'], NUM0, bold=True)
-    putf(wsU, f'{c}50', f"={c}49/{c}42", b['mgn'], PCT)
-    putf(wsU, f'{c}51', f"={c}49/{c}32", b['ebitda'] / b['vol'], NUM0)
+    putf(wsU, f'{c}45', f"={A[f'kutl{i}']}", IN['kiln_util'][i], PCT, green=True)
+    putf(wsU, f'{c}46', f"=$B$5*{c}45", b['clk_prod'], NUM3)
+    putf(wsU, f'{c}47', f"={A[f'cksh{i}']}", IN['clk_export_share'][i], PCT, green=True)
+    putf(wsU, f'{c}48', f"={c}46*{c}47", b['clk_exp'], NUM3)
+    putf(wsU, f'{c}49', f"={c}46-{c}48", b['clk_ground'], NUM3)
+    putf(wsU, f'{c}50', f"={c}49/$B$11", b['cem_prod'], NUM3)
+    putf(wsU, f'{c}51', f"={c}50/$B$13", b['mill_util'], PCT)
+    putf(wsU, f'{c}52', f"={A[f'cesh{i}']}", IN['cem_export_share'][i], PCT, green=True)
+    putf(wsU, f'{c}53', f"={c}50*{c}52", b['cem_exp'], NUM3)
+    putf(wsU, f'{c}54', f"={c}50-{c}53", b['cem_loc'], NUM3)
+    putf(wsU, f'{c}55', f"={c}50+{c}48", b['sold'], NUM3, bold=True)
+    putf(wsU, f'{c}56', f"=$B$22*{A[f'pli{i}']}", b['price_loc'], NUM0)
+    putf(wsU, f'{c}57', f"=$B$26*{A[f'pei{i}']}*{A[f'fxp{i}']}", b['price_exp_cem'], NUM0)
+    putf(wsU, f'{c}58', f"={c}57*$B$24", b['price_exp_clk'], NUM0)
+    putf(wsU, f'{c}59', f"={c}54*{c}56", b['cem_loc'] * b['price_loc'], NUM0)
+    putf(wsU, f'{c}60', f"={c}53*{c}57", b['cem_exp'] * b['price_exp_cem'], NUM0)
+    putf(wsU, f'{c}61', f"={c}48*{c}58", b['clk_exp'] * b['price_exp_clk'], NUM0)
+    putf(wsU, f'{c}62', f"=SUM({c}59:{c}61)", b['rev_goods'], NUM0)
+    putf(wsU, f'{c}63', f"={c}62*(1+{A['svc']})", b['rev'], NUM0, bold=True)
+    putf(wsU, f'{c}64', f"={c}63/{c}55", b['price'], NUM0)
+    putf(wsU, f'{c}65', f"=$B$35*{A[f'infl{i}']}*(1-{A[f'afs{i}']})*{c}46", b['c_mat'], NUM0)
+    putf(wsU, f'{c}66', f"=$B$36*{A[f'infl{i}']}*{c}55", b['c_tra'], NUM0)
+    putf(wsU, f'{c}67', f"=$B$37*{A[f'infl{i}']}*{c}55", b['c_ovh'], NUM0)
+    putf(wsU, f'{c}68', f"=SUM({c}65:{c}67)", b['cc'], NUM0)
+    putf(wsU, f'{c}69', f"={c}68/{c}55", b['cc_t'], NUM0)
+    putf(wsU, f'{c}70', f"=({A['prov25']}+{A['ecl25']})/{A['rev25']}*{c}63", b['c_prv'], NUM0)
+    putf(wsU, f'{c}71', f"={c}63-{c}68-{c}70", b['ebitda'], NUM0, bold=True)
+    putf(wsU, f'{c}72', f"={c}71/{c}63", b['mgn'], PCT)
+    putf(wsU, f'{c}73', f"={c}71/{c}55", b['ebitda'] / b['sold'], NUM0)
 
-band(wsU, 53, 10); wsU['A53'] = 'VALIDATION — A TEST THAT CAN FAIL'
-VAL = [('Reconstructed FY2025 revenue', 'B54', "=B42", BU[0]['rev'], NUM0),
-       ('AUDITED FY2025 revenue', 'B55', f"={A['rev25']}", IN['rev_fy25'], NUM0),
-       ('Difference', 'B56', "=B54/B55-1", BU[0]['rev'] / IN['rev_fy25'] - 1, PCT),
-       ('Reconstructed FY2025 EBITDA', 'B57', "=B49", BU[0]['ebitda'], NUM0),
-       ('AUDITED FY2025 EBITDA (operating profit plus D&A)', 'B58',
+band(wsU, 75, 10); wsU['A75'] = 'VALIDATION — AND A PRICE TEST THAT CAN ACTUALLY FAIL'
+VAL = [('Reconstructed FY2025 revenue', 'B76', "=B63", BU[0]['rev'], NUM0),
+       ('AUDITED FY2025 revenue', 'B77', f"={A['rev25']}", IN['rev_fy25'], NUM0),
+       ('Difference', 'B78', "=B76/B77-1", BU[0]['rev'] / IN['rev_fy25'] - 1, PCT),
+       ('Reconstructed FY2025 EBITDA', 'B79', "=B71", BU[0]['ebitda'], NUM0),
+       ('AUDITED FY2025 EBITDA (operating profit plus D&A)', 'B80',
         "='Income Statement'!D14", H['ebitda'][2], NUM0),
-       ('Difference', 'B59', "=B57/B58-1", BU[0]['ebitda'] / H['ebitda'][2] - 1, PCT)]
+       ('Difference', 'B81', "=B79/B80-1", BU[0]['ebitda'] / H['ebitda'][2] - 1, PCT)]
 for lab, ad, fm, ex, ft in VAL:
     wsU.cell(row=int(ad[1:]), column=1, value=lab)
-    putf(wsU, ad, fm, ex, ft, green=(ad in ('B55', 'B58')))
-note(wsU, 61, 'Volume is DERIVED from the audited revenue split divided by the two price inputs, so the')
-note(wsU, 62, 'utilisation on row 14 is an OUTPUT that can disagree with the sector. It does not: 69.7%')
-note(wsU, 63, 'against a national 85.5% of nameplate production, on a plant running below the country average.')
-note(wsU, 64, 'The cost stack is the DISCLOSED one from notes 5 and 6, not an invented physical build.')
-band(wsU, 66, 10); wsU['A66'] = 'DOES THE VOLUME FIT THE KILN? — THE PHYSICAL CONSTRAINT'
-KLN = [('Clinker factor (t clinker / t cement)', 'B67', f"={A['cfac']}", IN['clinker_factor'], NUM3),
-       ('Kiln clinker capacity (Mt, audited note 1)', 'B68', f"={A['capclk']}",
+    putf(wsU, ad, fm, ex, ft, green=(ad in ('B77', 'B80')))
+note(wsU, 83, 'Rows 76-81 are a TIE, not a test: with prices derived from revenue, revenue reconstructs by')
+note(wsU, 84, 'construction. Revision 3 presented exactly this identity as "a test that can fail". It cannot.')
+note(wsU, 85, 'The real test is rows 22, 26 and 27 — three DERIVED prices, which can be held against the market:')
+note(wsU, 86, f'local EGP {UC["price_loc_derived"]:,.0f}/t, export cement USD {UC["price_exp_cem_usd"]:.1f}/t, export clinker USD {UC["price_exp_clk_usd"]:.1f}/t.')
+note(wsU, 87, 'The clinker figure sits roughly 30% BELOW the USD 44-48 the trade press quotes for Egyptian FOB')
+note(wsU, 88, 'clinker. That gap is a live disagreement between the physical disclosure and the price indices, and')
+note(wsU, 89, 'it is published rather than tuned away. It is the reason the volume base carries a sensitivity.')
+
+band(wsU, 91, 10); wsU['A91'] = 'THE TWO CAPACITY CONSTRAINTS — BOTH LIVE, BOTH CHECKED EVERY YEAR'
+KLN = [('Kiln clinker capacity (Mt, audited note 1)', 'B92', f"={A['capclk']}",
         IN['cap_clinker_mt'], NUM2),
-       ('Clinker required for FY2025 volume (Mt)', 'B69', "=B12*B67",
-        UC['vol_fy25'] * IN['clinker_factor'], NUM3),
-       ('Kiln utilisation implied, FY2025', 'B70', "=B69/B68",
-        UC['vol_fy25'] * IN['clinker_factor'] / IN['cap_clinker_mt'], PCT),
-       ('Clinker required for FY2030 volume (Mt)', 'B71', "=G32*B67",
-        BU[5]['vol'] * IN['clinker_factor'], NUM3),
-       ('Kiln utilisation implied, FY2030 — must stay below 100%', 'B72', "=B71/B68",
-        BU[5]['vol'] * IN['clinker_factor'] / IN['cap_clinker_mt'], PCT),
-       ('Headroom at the kiln in FY2030 (Mt of clinker)', 'B73', "=B68-B71",
-        IN['cap_clinker_mt'] - BU[5]['vol'] * IN['clinker_factor'], NUM3)]
+       ('Peak clinker required across the forecast (Mt)', 'B93', "=MAX(C46:G46)",
+        max(b['clk_prod'] for b in BU[1:]), NUM3),
+       ('Peak kiln utilisation — must stay below 100%', 'B94', "=B93/B92",
+        max(b['kiln_util'] for b in BU[1:]), PCT),
+       ('Headroom at the kiln (Mt of clinker)', 'B95', "=B92-B93",
+        IN['cap_clinker_mt'] - max(b['clk_prod'] for b in BU[1:]), NUM3),
+       ('Cement mill capacity (Mt, audited note 1)', 'B96', f"={A['capcem']}",
+        IN['cap_cement_mt'], NUM2),
+       ('Peak cement produced across the forecast (Mt)', 'B97', "=MAX(C50:G50)",
+        max(b['cem_prod'] for b in BU[1:]), NUM3),
+       ('Peak mill utilisation — must stay below 100%', 'B98', "=B97/B96",
+        max(b['mill_util'] for b in BU[1:]), PCT),
+       ('Headroom at the mill (Mt of cement)', 'B99', "=B96-B97",
+        IN['cap_cement_mt'] - max(b['cem_prod'] for b in BU[1:]), NUM3)]
 for lab, ad, fm, ex, ft in KLN:
     wsU.cell(row=int(ad[1:]), column=1, value=lab)
-    putf(wsU, ad, fm, ex, ft, bold=(ad in ('B72', 'B73')), green=(ad in ('B67', 'B68')))
-note(wsU, 75, 'The volume forecast is built from cement capacity, so the KILN is the constraint that could')
-note(wsU, 76, 'bind first. Row 72 shows it does not: the FY2030 volume needs less clinker than the audited 4.2Mt')
-note(wsU, 77, 'kiln capacity, and row 73 states the headroom. A lower clinker factor — more blending, which is')
-note(wsU, 78, 'what the alternative-fuel and supplementary-materials programmes are for — widens it further.')
+    putf(wsU, ad, fm, ex, ft, bold=(ad in ('B94', 'B98')), green=(ad in ('B92', 'B96')))
+note(wsU, 101, 'Both constraints are now REAL. Clinker exports and domestic cement compete for the same kiln:')
+note(wsU, 102, 'every tonne shipped as clinker is a tonne that could have been ground into cement worth several')
+note(wsU, 103, 'times as much. Revision 3 could not see this at all — it carried one product, ignored clinker')
+note(wsU, 104, 'exports, and its kiln check therefore ran on a volume base 28% too small. On the physical')
+note(wsU, 105, 'disclosure its FY2030 forecast needed 103% of the kiln, not the 78% it published.')
 
 # ============ 4 DCF ===========================================================
 wsD = sheet('DCF')
@@ -512,8 +552,8 @@ for j, lab in enumerate(ROWS):
     wsD.cell(row=5 + j, column=1, value=lab)
 for i in range(5):
     c = DC[i]
-    putf(wsD, f'{c}5', f"='Unit Build'!{BUC[i+1]}42", F['revenue'][i], NUM0, green=True)
-    putf(wsD, f'{c}7', f"='Unit Build'!{BUC[i+1]}49", F['ebitda'][i], NUM0, green=True)
+    putf(wsD, f'{c}5', f"='Unit Build'!{BUC[i+1]}63", F['revenue'][i], NUM0, green=True)
+    putf(wsD, f'{c}7', f"='Unit Build'!{BUC[i+1]}71", F['ebitda'][i], NUM0, green=True)
     putf(wsD, f'{c}6', f"={c}7/{c}5", F['margin'][i], PCT)
     putf(wsD, f'{c}8', f"={c}5*{A[f'dnap{i}']}", F['dna'][i], NUM0)
     putf(wsD, f'{c}9', f"={c}7-{c}8", F['ebit'][i], NUM0)
@@ -531,19 +571,22 @@ for i in range(5):
     putf(wsD, f'{c}16', f"=({A['kdp0']}-{A[f'kdp{i}']})/({A['kdp0']}-{A['kdp4']})",
          F['glide'][i], DF4)
     putf(wsD, f'{c}17', f"=$C$40-($C$40-$C$50)*{c}16", F['fwd_wacc'][i], PCT2)
+    # Each year's forward rate discounts only the calendar it owns. Revision 3 walked
+    # the rates in whole-year steps from t=0, so FY2027 was discounted entirely at the
+    # FY2026 rate and the FY2030 rate never entered any factor at all.
     if i == 0:
         fm = f"=1/(1+B17)^((1-{A['stub']})/2)"
-    elif i == 1:
-        fm = f"=1/(1+B17)^(1-{A['stub']}+0.5)"
     else:
-        pre = "*".join(f"(1+{DC[k]}17)" for k in range(i - 1))
-        fm = f"=1/({pre}*(1+{DC[i-1]}17)^(1-{A['stub']}+0.5))"
+        parts = [f"(1+B17)^(1-{A['stub']})"]
+        parts += [f"(1+{DC[k]}17)" for k in range(1, i)]
+        parts.append(f"(1+{DC[i]}17)^0.5")
+        fm = "=1/(" + "*".join(parts) + ")"
     putf(wsD, f'{c}18', fm, F['df'][i], DF4)
     putf(wsD, f'{c}19', f"={c}15*{c}18", F['pv'][i], NUM0)
 
 band(wsD, 21, 8); wsD['A21'] = 'TERMINAL BLOCK'
-TB = [('Replacement-cost invested capital (EGP mn)', 'B22',
-       f"={A['capcem']}*{A['repl']}*{A['fx']}", DCF['ic_repl'], NUM0),
+TB = [('Replacement-cost invested capital, in TERMINAL-year pounds (EGP mn)', 'B22',
+       f"={A['capcem']}*{A['repl']}*{A['fx']}*{A['infl5']}", DCF['ic_repl'], NUM0),
       ('Terminal NOPAT  (year 5 NOPAT grown at g)', 'B23', f"=F11*(1+{A['g']})",
        DCF['nopat_term'], NUM0),
       ('Terminal return on invested capital', 'B24', "=B23/B22", DCF['roic_term'], PCT),
@@ -553,7 +596,10 @@ TB = [('Replacement-cost invested capital (EGP mn)', 'B22',
       ('Reinvestment rate  (g ÷ return on capital)', 'B26', f"={A['g']}/B24",
        DCF['rr_term'], PCT),
       ('Terminal value', 'B27', f"=B23*(1-B26)/($C$50-{A['g']})", DCF['tv'], NUM0),
-      ('Present value of terminal value', 'B28', "=B27*F18", DCF['pv_tv'], NUM0)]
+      ('End-of-window discount factor  (t = 4.417y, not the year-5 mid-point)', 'B29',
+       f"=1/((1+B17)^(1-{A['stub']})*(1+C17)*(1+D17)*(1+E17)*(1+F17))",
+       DCF['df_tv'], DF4),
+      ('Present value of terminal value', 'B28', "=B27*B29", DCF['pv_tv'], NUM0)]
 for lab, ad, fm, ex, ft in TB:
     wsD.cell(row=int(ad[1:]), column=1, value=lab)
     putf(wsD, ad, fm, ex, ft)
@@ -565,13 +611,15 @@ BR = [('Present value of explicit years (FY2026E-FY2030E)', 'B31', "=SUM(B19:F19
       ('Enterprise value', 'B33', "=B31+B32", DCF['ev'], NUM0),
       ('TERMINAL VALUE AS % OF ENTERPRISE VALUE', 'B34', "=B32/B33", DCF['tv_share'], PCT),
       ('Audited cash at 31 December 2025', 'B35', f"={A['cash25']}", IN['cash_fy25'], NUM0),
-      ('Plus free cash flow earned to the valuation date', 'B36',
-       f"=B15/(1-{A['stub']})*{A['stub']}",
+      ('Plus free cash flow AND treasury income earned to the valuation date', 'B36',
+       f"=B15/(1-{A['stub']})*{A['stub']}"
+       f"+{A['cash25']}*{A['cy0']}*{A['stub']}*(1-{A['taxe']})",
        DCF['cash_at_val'] - IN['cash_fy25'] + IN['div_fy25_declared'], NUM0),
       ('Less the FY2025 dividend declared and unpaid', 'B37', f"=-{A['div25']}",
        -IN['div_fy25_declared'], NUM0),
       ('Cash at the valuation date', 'B38', "=SUM(B35:B37)", DCF['cash_at_val'], NUM0),
-      ('Less interest-bearing debt', 'B39', "=-$C$44", -W['debt_total'], NUM0),
+      ('Less interest-bearing debt (reviewed 31 March 2026, the FRESHER disclosure)',
+       'B39', f"=-{A['q1debt']}", -IN['debt_q1_26'], NUM0),
       ('Net cash (ADDED — the company is net cash)', 'B40', "=B38+B39", DCF['net_cash'], NUM0),
       ('Less non-controlling interests (audited note 24)', 'B41', f"=-{A['nci']}",
        -IN['nci'], NUM4),
@@ -582,7 +630,8 @@ for lab, ad, fm, ex, ft in BR:
     wsD.cell(row=int(ad[1:]), column=1, value=lab)
     putf(wsD, ad, fm, ex, ft, bold=(ad in ('B33', 'B34', 'B42', 'B44')))
 
-band(wsD, 46, 8); wsD['A46'] = 'COST OF CAPITAL — BUILT HERE, FACILITY BY FACILITY'
+wsD['E35'] = 'COST OF CAPITAL — BUILT HERE, FACILITY BY FACILITY (labels in column E:'
+wsD['E36'] = 'this block shares rows with the bridge above, whose labels are in column A)'
 CC2 = [('Risk-free rate (observed EGP 10-year)', 'C36', f"={A['rf']}", IN['rf'], PCT2),
        ('Less sovereign default spread', 'C37', f"=-{A['sov']}", -IN['sov_spread_cds'], PCT2),
        ('Normalised risk-free rate', 'C38', "=C36+C37", W['rf_star'], PCT2),
@@ -601,8 +650,9 @@ CC2 = [('Risk-free rate (observed EGP 10-year)', 'C36', f"={A['rf']}", IN['rf'],
         M['mktcap'], NUM0),
        ('Euro share of the debt book', 'C46', f"=({A['dnbe']}+{A['debrd']})/C44",
         W['eur_share'], PCT),
-       ('Terminal beta, RE-LEVERED to the terminal structure', 'C47',
-        f"={A['beta']}*(1+(1-{A['tax']})*{A['wdt']}/(1-{A['wdt']}))", W['beta_term'], NUM3),
+       ('Terminal beta, UNLEVERED at the observed structure then re-levered', 'C47',
+        f"={A['beta']}/(1+(1-{A['tax']})*C43/(1-C43))"
+        f"*(1+(1-{A['tax']})*{A['wdt']}/(1-{A['wdt']}))", W['beta_term'], NUM3),
        ('Terminal cost of equity', 'C48', f"={A['rft']}+C47*{A['erpt']}", W['ke_term'], PCT2),
        ('Terminal cost of debt after tax', 'C49', f"={A['kdt']}*(1-{A['tax']})",
         W['kd_term_at'], PCT2),
@@ -612,7 +662,7 @@ CC2 = [('Risk-free rate (observed EGP 10-year)', 'C36', f"={A['rf']}", IN['rf'],
        ('Memo: sovereign double-count removed (basis points)', 'C52', "=(C51-C39)*10000",
         (W['ke_raw_retired'] - W['ke_exp']) * 10000, NUM0)]
 for lab, ad, fm, ex, ft in CC2:
-    wsD.cell(row=int(ad[1:]), column=1, value=lab)
+    wsD.cell(row=int(ad[1:]), column=5, value=lab)
     putf(wsD, ad, fm, ex, ft, bold=(ad in ('C40', 'C50', 'C41')))
 
 band(wsD, 54, 8); wsD['A54'] = 'COST-OF-DEBT INTEGRITY — THE EVIDENCE, NOT THE ASSERTION'
@@ -673,12 +723,16 @@ note(wsB, 20, 'unpaid at 31 March 2026 is removed from cash: a buyer at today\'s
 wsI = sheet('Income Statement')
 title(wsI, 'Income statement — 3 AUDITED years + 5-year forecast', 'EGP mn', 10, 48, 13)
 hdr(wsI, 4, [''] + YH + YF)
+# Row 12 restates operating profit to open the EBITDA bridge. Revision 3's label list
+# had no entry for it, so every label from row 12 to row 21 sat one row above its own
+# contents — row 12 read 'Depreciation and amortisation' over operating profit, and row
+# 20 read 'Earnings per share' over attributable profit.
 IL = ['Revenue', 'Cost of sales', 'Gross profit', 'Gross margin',
       'General and administrative expenses', 'Provisions and credit losses',
-      'OPERATING PROFIT', 'Depreciation and amortisation', 'EBITDA', 'EBITDA margin',
+      'OPERATING PROFIT', 'Operating profit, opening the EBITDA bridge',
+      'Depreciation and amortisation', 'EBITDA', 'EBITDA margin',
       'Net finance and other income', 'Profit before tax', 'Income tax',
-      'Effective tax rate', 'Attributable profit', 'Earnings per share (EGP)',
-      'Dividends declared', 'Dividend per share (EGP)']
+      'Effective tax rate', 'Attributable profit', 'Earnings per share (EGP)']
 for j, l in enumerate(IL):
     wsI.cell(row=5 + j, column=1, value=l)
 HK = ['23', '24', '25']
@@ -760,8 +814,8 @@ wsBS = sheet('Balance Sheet')
 title(wsBS, 'Balance sheet — 3 AUDITED years + 5-year forecast', 'EGP mn', 10, 48, 13)
 hdr(wsBS, 4, [''] + YH + YF)
 BL = ['Property, plant and equipment', 'Assets under construction', 'Intangible assets',
-      'Total non-current assets', 'Inventories, receivables and debtors',
-      'Cash and bank balances', 'TOTAL ASSETS', 'Interest-bearing debt',
+      'Total non-current assets', 'Cash and bank balances',
+      'Inventories, receivables and debtors', 'TOTAL ASSETS', 'Interest-bearing debt',
       'Other liabilities', 'Total liabilities', 'Equity attributable to owners',
       'Net (cash) / debt', 'Book value per share (EGP)', 'Return on equity']
 for j, l in enumerate(BL):
@@ -928,9 +982,9 @@ for i, c in enumerate(allc):
          nd_all[i] / eb_all[i], MULT)
 for i in range(3, 8):
     c = allc[i]
-    putf(wsR, f'{c}9', f"='Income Statement'!{c}14/'Unit Build'!{BUC[i-2]}32",
+    putf(wsR, f'{c}9', f"='Income Statement'!{c}14/'Unit Build'!{BUC[i-2]}55",
          eb_all[i] / F['volume_mt'][i - 3], NUM0)
-putf(wsR, 'D9', "='Income Statement'!D14/'Unit Build'!B32", H['ebitda'][2] / BU[0]['vol'], NUM0)
+putf(wsR, 'D9', "='Income Statement'!D14/'Unit Build'!B55", H['ebitda'][2] / BU[0]['vol'], NUM0)
 
 band(wsR, 13, 10); wsR['A13'] = 'RECONCILIATIONS AGAINST THE AUDITED ACCOUNTS'
 REC = [('Shares issued (audited note 20)', 'B14', f"={A['shiss']}", IN['shares_issued'], NUM4),
@@ -1224,8 +1278,11 @@ for tag, row, grid, vals, ft in (('beta', 20, SN['beta_grid'], SN['beta'], '0.00
     wsX[f'A{row+2}'] = 'Fair value'
     for j in range(5):
         put(wsX, f'{DC[j]}{row+2}', vals[j], BLUE, PX)
-note(wsX, 32, 'Note the growth column of the first grid: HIGHER terminal growth gives a LOWER value, because the')
-note(wsX, 33, 'terminal return on capital sits below the terminal rate. That is the model being consistent.')
+_gdir = 'a LOWER' if SN['wacc_g'][2][4] < SN['wacc_g'][2][0] else 'a HIGHER'
+_gwhy = ('sits below' if SN['wacc_g'][2][4] < SN['wacc_g'][2][0] else 'sits above')
+note(wsX, 32, f'Note the growth column of the first grid: HIGHER terminal growth gives {_gdir} value, because the')
+note(wsX, 33, f'terminal return on replacement-cost capital {_gwhy} the hurdle. Read off the grid, never typed:')
+note(wsX, 34, f'revision 3 carried this note unchanged after its own grid had reversed, and it contradicted itself.')
 
 # ============ 16 PEER & SECTOR ================================================
 wsP = sheet('Peer & Sector')
@@ -1261,7 +1318,7 @@ SEC = [('Nameplate capacity (Mt)', 'B13', f"={A['egcap']}", PE['sector']['capaci
        ('Revival capacity as a share of consumption', 'B20', "=B17/B15",
         PE['sector']['revival_pct_of_consumption'], PCT),
        ('The subject\'s own volume as a share of national production', 'B21',
-        "='Unit Build'!B12/B14", UC['vol_fy25'] / IN['egy_prod_mt'], PCT)]
+        "='Unit Build'!B18/B14", UC['vol_fy25'] / IN['egy_prod_mt'], PCT)]
 for lab, ad, fm, ex, ft in SEC:
     wsP.cell(row=int(ad[1:]), column=1, value=lab)
     putf(wsP, ad, fm, ex, ft, green=(int(ad[1:]) <= 17))

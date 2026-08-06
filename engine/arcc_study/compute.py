@@ -303,20 +303,43 @@ INP = dict(
                      "of 4.2 million tons per annum'", "2025-12-31", "Company"),
     cap_cement_mt=I(5.00, AFS25 + " — note 1: '...that can produce 5 million tons per annum "
                     "of cement'", "2025-12-31", "Company"),
-    clinker_factor=I(0.8400, "Tonnes of clinker per tonne of cement, observed from the "
-                     "disclosed capacity pair (4.2/5.0). Carried as an independent lever "
-                     "because blending is a real operating decision and the company is "
-                     "pursuing it", "2025-12-31", "Company"),
+    clinker_factor=I(0.7330, "Tonnes of clinker per tonne of cement PRODUCED. Revision 3 "
+                     "used 0.84, taken from the ratio of the two nameplate capacities in "
+                     "note 1 and described as 'observed'. It is not observed and it is not "
+                     "a clinker factor: 4.2/5.0 is a ratio of two DESIGN capacities, and a "
+                     "clinker factor is a production-composition ratio. 0.84 also sits "
+                     "above the 0.65-0.80 band typical of blended cement, and the study "
+                     "then called this producer 'low-clinker' three sections later. The "
+                     "figure carried here is the production ratio implied by the FY2025 "
+                     "physical disclosure: clinker produced less clinker exported, over "
+                     "cement produced", "2025-12-31", "Industry"),
 
-    # ---- prices, the one genuinely external estimate in the build ---------
-    price_local_egp_t=I(3500.0, "Local realised price per tonne of cement, ex-works. The "
-                        "Egyptian industry traded around EGP 3.6k a tonne through 2025-26 "
-                        "on published market commentary; 3,500 is set marginally below "
-                        "that for an ex-works realisation. Volume is DERIVED from this and "
-                        "the disclosed local revenue, so this input and the utilisation "
-                        "cross-check each other", "2026-01-15", "Industry"),
-    price_exp_usd_t=I(62.0, "Export price per tonne free on board. Volume is DERIVED from "
-                      "this and the disclosed export revenue", "2026-01-15", "Industry"),
+    # ---- PHYSICAL drivers. The build runs on these, and prices come OUT ----
+    kiln_util=I([0.9170, 0.9200, 0.9250, 0.9300, 0.9330, 0.9350],
+                "Clinker-kiln utilisation, FY2025A then FY2026E-FY2030E. This is now the "
+                "primary volume driver: revision 3 drove volume off an ASSUMED cement "
+                "price, which made the plant a residual of a guess. FY2025 is the ratio "
+                "implied by the physical disclosure. The path rises modestly because the "
+                "kiln is already the binding asset; it cannot rise much",
+                "2026-08-06", "House"),
+    clk_export_share=I([0.3377, 0.3300, 0.3200, 0.3100, 0.3050, 0.3000],
+                       "Share of clinker production sold AS CLINKER rather than ground into "
+                       "cement. This is the central operating lever and revision 3 could "
+                       "not see it at all: clinker exports and domestic cement compete for "
+                       "the same kiln, and a tonne of clinker sells for a fraction of the "
+                       "tonne of cement it could have become. The path retains clinker as "
+                       "domestic demand absorbs it", "2026-08-06", "House"),
+    cem_export_share=I([0.1772, 0.1800, 0.1800, 0.1750, 0.1700, 0.1650],
+                       "Share of CEMENT production exported. On this split, cement exports "
+                       "sit well inside the 30% statutory cap; revision 3's single-product "
+                       "build put exports at 31.5% of volume, BREACHING the cap its own "
+                       "text cited as binding", "2026-01-01", "Industry"),
+    clk_price_ratio=I(0.6500, "Export clinker price as a fraction of the export cement "
+                      "price. Clinker is the unground intermediate and trades at a "
+                      "discount; 0.65 sits in the middle of the range the trade press "
+                      "reports. This is the one splitting assumption the export leg needs, "
+                      "and the two export prices are DERIVED from it and the audited "
+                      "export revenue, not asserted", "2026-01-15", "Industry"),
     fx_avg_fy25=I(49.26, AFS25 + " — note 2.5 currency table: average USD/EGP for 2025",
                   "2025-12-31", "Company"),
     fx_ye_fy25=I(47.66, AFS25 + " — note 2.5: year-end USD/EGP 2025", "2025-12-31", "Company"),
@@ -324,18 +347,6 @@ INP = dict(
     fx=I(50.30, "USD/EGP at the valuation date", "2026-08-06", "Country"),
 
     # ---- forecast drivers -------------------------------------------------
-    util=I([0.6970, 0.7300, 0.7500, 0.7650, 0.7750, 0.7820],
-           "Cement capacity utilisation, FY2025A then FY2026E-FY2030E. FY2025 is DERIVED "
-           "from disclosed revenue and the price inputs, and lands at 69.7% against a "
-           "national sector utilisation near 70% — an independent corroboration. The step "
-           "into FY2026 is the first full year without the production quota abolished in "
-           "May 2025, corroborated by first-quarter 2026 revenue growth of 17.3%",
-           "2026-08-06", "House"),
-    exp_share_vol=I([0.3153, 0.3100, 0.3000, 0.2950, 0.2900, 0.2850],
-                    "Export share of despatched volume. FY2025 is derived from the "
-                    "disclosed split and sits just above the 30% statutory export cap; the "
-                    "path drifts back to the cap as domestic demand absorbs more tonnes",
-                    "2026-01-01", "Industry"),
     price_local_path=I([1.0000, 1.0800, 1.1772, 1.2714, 1.3604, 1.4488],
                        "Local realised price index on the FY2025 base: growth of 8.0%, "
                        "9.0%, 8.0%, 7.0% and 6.5%, i.e. 3.5 points below assumed cost "
@@ -417,14 +428,22 @@ INP = dict(
               "over-taxed every forecast year by 5.6 points", "2025-12-31", "Company"),
 
     # ---- cost of capital ---------------------------------------------------
-    rf=I(0.2231, "Egypt 10-year local-currency government bond yield", "2026-07-21", "Country"),
+    rf=I(0.2295, "Egypt 10-year local-currency government bond yield. Revision 3 carried "
+         "22.31% dated 21 July; three independent reviewers put the 10-year at 22.88-22.98% "
+         "on 3-5 August, and the curve is inverted above it (1-year near 25.6%). 22.95% is "
+         "the midpoint of the three, at the valuation date rather than sixteen days before "
+         "it", "2026-08-05", "Country"),
     sov_spread_cds=I(0.0340, "Egypt CDS-implied sovereign default spread, Damodaran "
                      "January-2026 country risk file, CDS column. NETTED OUT of the local "
                      "risk-free rate so sovereign default risk is charged once, not twice",
                      "2026-01-05", "Country"),
     erp_cds=I(0.0941, "Egypt equity risk premium, CDS-based, Damodaran January-2026",
               "2026-01-05", "Country"),
-    euribor=I(0.0210, "Three-month Euribor, the reference rate on the EBRD facility",
+    euribor=I(0.0249, "Three-month Euribor, the reference rate on the EBRD facility. "
+              "Revision 3 carried 2.10%, which sits BELOW the ECB deposit facility rate of "
+              "2.25% and is therefore impossible as a term rate. It also applied one "
+              "reference to both a 3-month and a 6-month facility; 6-month Euribor is "
+              "nearer 2.72%, and the difference is carried as a known simplification",
               "2026-08-06", "Country"),
     kd_egp_marginal=I(0.2060, "Marginal EGP borrowing rate: the Central Bank corridor offer "
                       "rate of 20.0% plus the 0.6% margin disclosed on the CIB facility",
@@ -439,14 +458,20 @@ INP = dict(
               "but the discount rate is a POUND rate applied to pound cash flows, so the "
               "pound path is the right shape anchor and the euro book sets the LEVEL of the "
               "cost of debt, not its slope", "2026-08-06", "House"),
-    kd_term=I(0.1000, "Terminal cost of debt. Between the Egyptian long-run corporate norm "
-              "of 14-16% and the euro cost the company pays today, on the view that the "
-              "book partially re-denominates as the concessional decarbonisation facilities "
-              "amortise", "2026-08-06", "House"),
-    rf_term=I(0.1250, "Terminal risk-free rate, NORM-BUILT from the central bank's own "
-              "stated medium-term inflation target of 7% plus a standard emerging-market "
-              "real-rate convention of about 5.5 percentage points. Never a historical "
-              "average and never reverse-engineered from a price", "2026-08-06", "House"),
+    kd_term=I(0.1350, "Terminal cost of debt = the terminal risk-free rate plus a 300bp "
+              "corporate credit spread. Revision 3 carried 10.00% against a terminal "
+              "risk-free rate of 12.50% — a corporate borrower funding 250bp BELOW its own "
+              "sovereign in the same currency, printed one row above it in the same table. "
+              "It is now built from the risk-free rate rather than asserted beside it, so "
+              "the impossibility cannot recur", "2026-08-06", "House"),
+    rf_term=I(0.1050, "Terminal risk-free rate, NORM-BUILT from the central bank's "
+              "longest-dated published inflation target of 5% (Q4-2028) plus a standard "
+              "emerging-market real-rate convention of about 5.5 percentage points. "
+              "Revision 3 used the 7% target, which is the NEAR-dated one (Q4-2026) and not "
+              "the medium-term target at all. The correction also repairs a second defect: "
+              "against 7% the model's 5% terminal growth was -1.9% real while the text "
+              "called it 'approximately zero'. Against the 5% target it genuinely is zero",
+              "2026-08-06", "House"),
     erp_term=I(0.0700, "Terminal equity risk premium, normalised below the currently "
                "elevated level", "2026-08-06", "House"),
     wd_term=I(0.2000, "Terminal debt weight", "2026-08-06", "House"),
@@ -551,49 +576,104 @@ say(f"\n[Audited history] EBITDA " + "  ".join(f"{x:,.0f}" for x in ebitda_h) +
 say(f"[Audited history] operating profit " + "  ".join(f"{x:,.0f}" for x in ebit_h) +
     f"; effective tax " + "  ".join(f"{t:.2%}" for t in taxe_h))
 
-# ==================== 3. UNIT BUILD, ANCHORED ON THE DISCLOSED SPLIT =======
-vol_exp25 = V['rev_exp_goods_fy25'] / (V['price_exp_usd_t'] * V['fx_avg_fy25'])
-vol_loc25 = V['rev_local_goods_fy25'] / V['price_local_egp_t']
-vol25 = vol_exp25 + vol_loc25
-util25 = vol25 / V['cap_cement_mt']
-say(f"\n[Volume, DERIVED from the disclosed revenue split] local "
-    f"{vol_loc25:.3f}Mt at EGP {V['price_local_egp_t']:,.0f}/t plus export "
-    f"{vol_exp25:.3f}Mt at USD {V['price_exp_usd_t']:.0f}/t = {vol25:.3f}Mt, i.e. "
-    f"{util25:.1%} of the {V['cap_cement_mt']:.1f}Mt nameplate. National sector "
-    f"utilisation is {V['egy_prod_mt']/V['egy_capacity_mt']:.0%}, so the two agree")
-say(f"[Export share] {vol_exp25/vol25:.1%} of volume and "
-    f"{(V['rev_exp_goods_fy25']+V['rev_exp_svc_fy25'])/V['rev_fy25']:.1%} of revenue — "
-    f"the statutory export cap is 30% of production")
+# ==================== 3. UNIT BUILD — PHYSICAL, BOTTOM UP ==================
+# REVISION 4 INVERTS THE BUILD. Revision 3 assumed a cement price, divided the audited
+# revenue by it to get volume, and called the resulting utilisation "an independent
+# corroboration". It was neither independent nor a corroboration: it was the same
+# assumption written twice, and the FY2025 "validation" it produced was an accounting
+# IDENTITY that reproduces the audited revenue for ANY price, because the volume moves
+# by exactly the reciprocal. The residual only appeared to respond to price because two
+# cells on the Assumptions sheet held stale rounded copies of the derived figures.
+#
+# The build now starts at the PLANT. The drivers are physical — kiln utilisation, the
+# clinker factor, and the two export shares. Tonnes by product, mill utilisation and all
+# THREE realised prices are derived from them and from the audited revenue note. The
+# prices are therefore OUTPUTS that can be checked against published Egyptian ranges: a
+# test that can actually fail.
+#
+# It also carries three products where revision 3 carried one. The company sells local
+# cement, export cement and export CLINKER, and clinker is an unground intermediate worth
+# a fraction of the cement it could have become. Pricing 1.3Mt of clinker at a cement
+# price was the error that made the plant look 28% smaller than it is and manufactured
+# 0.9Mt of kiln headroom that does not exist.
 
+
+def physical(kiln_u, cf, clk_sh, cem_sh):
+    """Everything downstream of the kiln, in tonnes. No prices enter here."""
+    clk_prod = V['cap_clinker_mt'] * kiln_u
+    clk_exp = clk_prod * clk_sh
+    clk_ground = clk_prod - clk_exp
+    cem_prod = clk_ground / cf
+    cem_exp = cem_prod * cem_sh
+    return dict(clk_prod=clk_prod, clk_exp=clk_exp, clk_ground=clk_ground,
+                cem_prod=cem_prod, mill_util=cem_prod / V['cap_cement_mt'],
+                cem_exp=cem_exp, cem_loc=cem_prod - cem_exp,
+                sold=cem_prod + clk_exp, kiln_util=kiln_u)
+
+
+PH = [physical(V['kiln_util'][i], V['clinker_factor'],
+               V['clk_export_share'][i], V['cem_export_share'][i]) for i in range(6)]
+p0 = PH[0]
+
+# ---- prices are DERIVED, and they are the test ----------------------------
+price_loc25 = V['rev_local_goods_fy25'] / p0['cem_loc']
+_den = p0['cem_exp'] + p0['clk_exp'] * V['clk_price_ratio']
+price_exp_cem25 = V['rev_exp_goods_fy25'] / _den
+price_exp_clk25 = price_exp_cem25 * V['clk_price_ratio']
+vol25 = p0['sold']
+say(f"\n[The plant, in tonnes — DRIVERS, not outputs] kiln {p0['kiln_util']:.1%} of "
+    f"{V['cap_clinker_mt']:.1f}Mt = {p0['clk_prod']:.3f}Mt of clinker; "
+    f"{p0['clk_exp']:.3f}Mt sold as clinker, {p0['clk_ground']:.3f}Mt ground at a clinker "
+    f"factor of {V['clinker_factor']:.3f} into {p0['cem_prod']:.3f}Mt of cement "
+    f"({p0['mill_util']:.1%} of the {V['cap_cement_mt']:.1f}Mt mill)")
+say(f"[Despatches] local cement {p0['cem_loc']:.3f}Mt, export cement {p0['cem_exp']:.3f}Mt, "
+    f"export clinker {p0['clk_exp']:.3f}Mt = {vol25:.3f}Mt total")
+say(f"[Prices — DERIVED from the audited revenue note, not assumed] local cement EGP "
+    f"{price_loc25:,.0f}/t; export cement USD {price_exp_cem25/V['fx_avg_fy25']:.1f}/t; "
+    f"export clinker USD {price_exp_clk25/V['fx_avg_fy25']:.1f}/t at the "
+    f"{V['clk_price_ratio']:.2f} clinker ratio. Revision 3 ASSUMED EGP 3,500 and USD 62 "
+    f"and derived tonnes from them — the reverse, and untestable")
+say(f"[Export cap] cement exports are {V['cem_export_share'][0]:.1%} of cement production "
+    f"against a 30% statutory cap. Revision 3's single-product build put exports at 31.5% "
+    f"of volume and BREACHED the cap its own text called binding")
+
+# ---- cost, allocated to the physical driver that actually causes it -------
 cash_cost25 = (V['cos_materials_fy25'] + V['cos_transport_fy25'] + V['cos_overhead_fy25']
-               + (V['ga_fy25'] - V['ga_admin_dep_fy25']) + V['prov_fy25'] + V['ecl_fy25'])
-cc_mat_t = V['cos_materials_fy25'] / vol25
-cc_tra_t = V['cos_transport_fy25'] / vol25
-cc_ovh_t = (V['cos_overhead_fy25'] + V['ga_fy25'] - V['ga_admin_dep_fy25']
-            + V['prov_fy25'] + V['ecl_fy25']) / vol25
-say(f"[Cost stack, DISCLOSED — note 5 and note 6] materials and fuel EGP {cc_mat_t:,.0f}/t, "
-    f"transportation EGP {cc_tra_t:,.0f}/t, overheads and administration EGP "
-    f"{cc_ovh_t:,.0f}/t; total cash cost EGP {cash_cost25/vol25:,.0f}/t")
+               + (V['ga_fy25'] - V['ga_admin_dep_fy25']))
+cc_mat_clk = V['cos_materials_fy25'] / p0['clk_prod']       # kiln-driven: fuel and raw meal
+cc_tra_t = V['cos_transport_fy25'] / p0['sold']             # despatch-driven
+cc_ovh_t = (V['cos_overhead_fy25'] + V['ga_fy25'] - V['ga_admin_dep_fy25']) / p0['sold']
+say(f"[Cost stack, DISCLOSED — notes 5 and 6, allocated to their own driver] materials and "
+    f"fuel EGP {cc_mat_clk:,.0f} per tonne of CLINKER (the kiln burns it, not the mill); "
+    f"transportation EGP {cc_tra_t:,.0f} and overheads EGP {cc_ovh_t:,.0f} per tonne "
+    f"DESPATCHED; total cash cost EGP {cash_cost25/vol25:,.0f}/t sold. Provisions and "
+    f"expected credit losses are EXCLUDED — revision 3 carried them inside 'cash cost', "
+    f"and they are not cash")
 
 BU = []
 for i in range(6):
-    vol = V['cap_cement_mt'] * V['util'][i]
-    ve = vol * V['exp_share_vol'][i]
-    vl = vol - ve
-    pl = V['price_local_egp_t'] * V['price_local_path'][i]
-    pe = V['price_exp_usd_t'] * V['price_exp_path'][i]
-    rev_goods = vl * pl + ve * pe * V['fx_path'][i]
-    rev = rev_goods * (1 + V['svc_share'])
+    ph = PH[i]
     infl = V['cost_infl'][i]
-    c_mat = cc_mat_t * infl * (1 - V['af_saving'][i])
-    c_tra = cc_tra_t * infl
-    c_ovh = cc_ovh_t * infl
-    cc_t = c_mat + c_tra + c_ovh
-    eb = rev - cc_t * vol
-    BU.append(dict(vol=vol, vol_loc=vl, vol_exp=ve, price_loc=pl, price_exp=pe,
-                   util=V['util'][i], rev_goods=rev_goods, rev=rev, price=rev / vol,
-                   c_mat=c_mat, c_tra=c_tra, c_ovh=c_ovh, cc_t=cc_t, cc=cc_t * vol,
-                   ebitda=eb, mgn=eb / rev))
+    pl = price_loc25 * V['price_local_path'][i]
+    pec = price_exp_cem25 / V['fx_avg_fy25'] * V['price_exp_path'][i] * V['fx_path'][i]
+    pek = pec * V['clk_price_ratio']
+    rev_goods = ph['cem_loc'] * pl + ph['cem_exp'] * pec + ph['clk_exp'] * pek
+    rev = rev_goods * (1 + V['svc_share'])
+    c_mat = cc_mat_clk * infl * (1 - V['af_saving'][i]) * ph['clk_prod']
+    c_tra = cc_tra_t * infl * ph['sold']
+    c_ovh = cc_ovh_t * infl * ph['sold']
+    cc = c_mat + c_tra + c_ovh
+    # Provisions and expected credit losses are operating charges that sit above operating
+    # profit in the audited statements, so they belong in the EBITDA bridge. They are NOT
+    # cash cost per tonne, which is why they are carried on their own line here and kept
+    # out of the per-tonne stack. Held flat on revenue at the FY2025 relationship.
+    c_prv = (V['prov_fy25'] + V['ecl_fy25']) / V['rev_fy25'] * rev
+    eb = rev - cc - c_prv
+    BU.append(dict(**ph, vol=ph['sold'], price_loc=pl, price_exp_cem=pec,
+                   price_exp_clk=pek, rev_goods=rev_goods, rev=rev,
+                   price=rev / ph['sold'], c_mat=c_mat, c_tra=c_tra, c_ovh=c_ovh,
+                   cc=cc, cc_t=cc / ph['sold'], c_prv=c_prv, ebitda=eb, mgn=eb / rev,
+                   util=ph['mill_util']))
 rev_f = [b['rev'] for b in BU[1:]]
 ebitda_f = [b['ebitda'] for b in BU[1:]]
 recon_rev = BU[0]['rev'] / V['rev_fy25'] - 1
@@ -601,6 +681,14 @@ recon_eb = BU[0]['ebitda'] / ebitda_h[2] - 1
 say(f"[Reconstruction] FY2025 revenue {BU[0]['rev']:,.0f} vs AUDITED {V['rev_fy25']:,.0f} "
     f"({recon_rev:+.3%}); EBITDA {BU[0]['ebitda']:,.0f} vs AUDITED {ebitda_h[2]:,.0f} "
     f"({recon_eb:+.3%})")
+say(f"[Capacity, and it BINDS] kiln " + " ".join(f"{b['kiln_util']:.0%}" for b in BU[1:])
+    + "; mill " + " ".join(f"{b['mill_util']:.0%}" for b in BU[1:])
+    + f". Both are checked in every year against nameplate. Revision 3's kiln test could "
+      f"not bind because it ignored clinker exports altogether")
+say(f"[Volume] {BU[0]['sold']:.3f}Mt -> {BU[5]['sold']:.3f}Mt "
+    f"({BU[5]['sold']/BU[0]['sold']-1:+.1%}), and it comes from RETAINING clinker "
+    f"({BU[0]['clk_exp']:.3f}Mt -> {BU[5]['clk_exp']:.3f}Mt) and grinding it into cement "
+    f"({BU[0]['cem_prod']:.3f}Mt -> {BU[5]['cem_prod']:.3f}Mt), not from a price assumption")
 say(f"[Forecast margins] " + "  ".join(f"{b['mgn']:.1%}" for b in BU[1:]))
 
 # ==================== 4. COST OF CAPITAL ====================================
@@ -647,7 +735,10 @@ net_cash_bs = V['cash_fy25'] - debt_tot
 wd_gross = debt_tot / (debt_tot + MKTCAP)
 wd_net = -net_cash_bs / (-net_cash_bs + MKTCAP)
 wacc_exp = (1 - wd_gross) * ke_exp + wd_gross * kd_at
-beta_t = beta_used * (1 + (1 - TAX) * V['wd_term'] / (1 - V['wd_term']))
+# Hamada must start from an ASSET beta. Revision 3 re-levered an already-levered
+# observed beta, levering it twice. Unlever at the observed structure first.
+beta_u = beta_used / (1 + (1 - TAX) * wd_gross / (1 - wd_gross))
+beta_t = beta_u * (1 + (1 - TAX) * V['wd_term'] / (1 - V['wd_term']))
 ke_term = V['rf_term'] + beta_t * V['erp_term']
 wacc_term = (1 - V['wd_term']) * ke_term + V['wd_term'] * V['kd_term'] * (1 - TAX)
 assert wacc_term < wacc_exp, (wacc_term, wacc_exp)
@@ -658,17 +749,27 @@ REM = 1.0 - V['stub_years']
 t_mid = [REM / 2] + [REM + (k - 0.5) for k in range(1, 5)]
 
 
+EDGES = [0.0, REM] + [REM + k for k in range(1, 5)]
+
+
+def chain(f_, t):
+    """Compound the forward rates over the slice of calendar each one actually owns.
+
+    Revision 3 walked the rates in whole-year steps from t=0, so the FY2027 factor was
+    built entirely from the FY2026 rate and the FY2030 rate of 15.75% never entered any
+    discount factor at all. With a rate path that FALLS from 23.89% to 15.75%, that
+    over-discounted every year after the first."""
+    fa = 1.0
+    for j in range(5):
+        lo, hi = EDGES[j], EDGES[j + 1]
+        span = max(0.0, min(t, hi) - lo)
+        if span > 0:
+            fa *= (1 + f_[j]) ** span
+    return 1.0 / fa
+
+
 def factors(f_):
-    out = []
-    for i in range(5):
-        yl, fa, j = t_mid[i], 1.0, 0
-        while yl > 1e-12 and j < 5:
-            st = min(1.0, yl)
-            fa *= (1 + f_[j]) ** st
-            yl -= st
-            j += 1
-        out.append(1.0 / fa)
-    return out
+    return [chain(f_, t) for t in t_mid]
 
 
 df_ = factors(fwd)
@@ -685,7 +786,14 @@ nopat = [ebit_f[i] * (1 - TAXE) for i in range(5)]
 capex = [V['cap_cement_mt'] * V['capex_usd_t_cap'] * V['fx_path'][i + 1] for i in range(5)]
 prev_rev = [V['rev_fy25']] + rev_f[:-1]
 dwc = [(rev_f[i] - prev_rev[i]) * V['wc_pct_drev'] for i in range(5)]
-ic_repl = V['cap_cement_mt'] * V['repl_usd_t'] * V['fx']
+# The terminal numerator is FY2031-nominal EGP; revision 3's denominator was Aug-2026
+# EGP, so the 21bp margin the whole growth argument turned on was smaller than the
+# currency-vintage error inside it. Three reviewers caught this independently and all
+# three rolled it at the FX path — but the model's own FX path (+4.5%/yr) sits BELOW its
+# own EGP cost inflation (+9.1%/yr), i.e. it embeds a real appreciation of the pound that
+# is nowhere defended. The cost of building a plant in pounds tracks the pound cost of
+# building it. Rolled at the model's own cost index.
+ic_repl = V['cap_cement_mt'] * V['repl_usd_t'] * V['fx'] * V['cost_infl'][5]
 roic_t = nopat[-1] * (1 + V['g_term']) / ic_repl
 fcff = [nopat[i] + dna_f[i] - capex[i] - dwc[i] for i in range(5)]
 fcff[0] *= REM
@@ -693,11 +801,19 @@ pv = [fcff[i] * df_[i] for i in range(5)]
 sum_pv = float(np.sum(pv))
 rr_t = V['g_term'] / roic_t
 tv = nopat[-1] * (1 + V['g_term']) * (1 - rr_t) / (wacc_term - V['g_term'])
-pv_tv = tv * df_[-1]
+# TV is the value at the END of FY2030 of everything from FY2031 on, so it discounts
+# at the end-of-window factor, not at the mid-year factor of the last explicit year.
+df_tv = chain(fwd, REM + 4.0)
+pv_tv = tv * df_tv
 ev = sum_pv + pv_tv
 tv_share = pv_tv / ev
-cash_at_val = V['cash_fy25'] + fcff[0] / REM * V['stub_years'] - V['div_fy25_declared']
-net_cash = cash_at_val - debt_tot
+# The bridge adds the cash BALANCE but revision 3 rolled the stub on FCFF, which
+# excludes the treasury income actually earned on that balance over the seven months.
+stub_interest = V['cash_fy25'] * V['cash_yield'][0] * V['stub_years'] * (1 - TAXE)
+cash_at_val = (V['cash_fy25'] + fcff[0] / REM * V['stub_years'] + stub_interest
+               - V['div_fy25_declared'])
+# and the fresher disclosed debt is in the model already, used only as a check
+net_cash = cash_at_val - V['debt_q1_26']
 eq_dcf = ev + net_cash - V['nci']
 fv_dcf = eq_dcf / SH
 say(f"\n[Free cash flow] " + " ".join(f"{x:,.0f}" for x in fcff))
@@ -881,14 +997,18 @@ GDV['holds'] = bool(GDV['analytic_adds_value'] == GDV['model_adds_value'])
 say(f"[Growth and value] terminal return on capital {roic_t:.1%} against terminal rate "
     f"{wacc_term:.1%}: EGP {GDV['fv_at_g3']:.2f} at 3% growth against "
     f"{GDV['fv_at_g7']:.2f} at 7% — a spread of {GDV['spread_pct']:+.1%} across four "
-    f"points of growth, i.e. the answer does NOT rest on the terminal growth rate")
+    f"points of growth, so the answer "
+    f"{'is BARELY sensitive to' if abs(GDV['spread_pct']) < 0.02 else 'DOES rest partly on'}"
+    f" the terminal growth rate")
 say(f"[Growth and value — the correct hurdle] the terminal block reduces to "
     f"[N(1+g) - g.IC]/(W-g), so the sign of the growth lever is the constant "
     f"N(1+W) - IC.W and the test is N/IC vs W/(1+W), not ROIC vs W. "
     f"N/IC = {GDV['n_over_ic']:.3%} against a hurdle of {GDV['hurdle']:.3%} -> growth "
     f"{'ADDS' if GDV['analytic_adds_value'] else 'DESTROYS'} value by "
-    f"{abs(GDV['n_over_ic']-GDV['hurdle'])*1e4:.0f}bp. Revision 2 sat at 8.2% against the "
-    f"same hurdle and growth destroyed value; the corrected price path crossed it")
+    f"{abs(GDV['n_over_ic']-GDV['hurdle'])*1e4:.0f}bp. Revision 3 read 13.81% against a "
+    f"13.61% hurdle and concluded growth added value by 21bp — but its denominator was in "
+    f"Aug-2026 pounds against a FY2031 numerator, and the currency-vintage error was "
+    f"larger than the margin it was measuring")
 
 # ==================== 10. STATEMENTS ========================================
 pbt_f, tax_f, pat_f, cash_b, eq_b, ppe_b, wc_b, div_f, treas_f, ta_b = ([] for _ in range(10))
@@ -1018,6 +1138,15 @@ chk(0.35 < fv_central / V['spot'] < 3.0,
     f"implied fair value to spot {fv_central/V['spot']:.2f}x is inside the plausibility band")
 chk(wacc_term < wacc_exp, f"terminal rate {wacc_term:.2%} is BELOW the explicit-window "
                           f"rate {wacc_exp:.2%}")
+chk(all(b['kiln_util'] <= 1.0 for b in BU),
+    f"no forecast year asks the kiln for more than nameplate: peak "
+    f"{max(b['kiln_util'] for b in BU):.1%} of {V['cap_clinker_mt']:.1f}Mt")
+chk(all(b['mill_util'] <= 1.0 for b in BU),
+    f"no forecast year asks the mill for more than nameplate: peak "
+    f"{max(b['mill_util'] for b in BU):.1%} of {V['cap_cement_mt']:.1f}Mt")
+chk(V['cem_export_share'][0] <= 0.30,
+    f"cement exports ({V['cem_export_share'][0]:.1%}) sit INSIDE the 30% statutory cap the "
+    f"study cites — revision 3's single-product build breached it at 31.5%")
 chk(abs(recon_rev) < 0.005, f"the unit build reproduces AUDITED FY2025 revenue to "
                             f"{recon_rev:+.3%}")
 chk(abs(recon_eb) < 0.010, f"the unit build reproduces AUDITED FY2025 EBITDA to "
@@ -1035,8 +1164,9 @@ chk(GDV['holds'],
     f"the terminal growth lever moves the model in the direction its own algebra requires: "
     f"N/IC {GDV['n_over_ic']:.2%} against the hurdle W/(1+W) {GDV['hurdle']:.2%}, so growth "
     f"{'adds' if GDV['analytic_adds_value'] else 'destroys'} value, and the model "
-    f"{'adds' if GDV['model_adds_value'] else 'destroys'} it — a spread of only "
-    f"{GDV['spread_pct']:+.1%} from 3% to 7%, so nothing rests on the rate")
+    f"{'adds' if GDV['model_adds_value'] else 'destroys'} it — a spread of "
+    f"{GDV['spread_pct']:+.1%} from 3% to 7%, which is "
+    f"{'immaterial' if abs(GDV['spread_pct']) < 0.02 else 'MATERIAL and is published'}")
 chk(abs(SHT['from_fy25_dividend'] - SH) / SH < 0.001,
     f"the share count is confirmed by the declared FY2025 dividend to "
     f"{abs(SHT['from_fy25_dividend']-SH)/SH:.4%}")
@@ -1064,8 +1194,15 @@ OUT = dict(
     inputs=INP,
     bottom_up=BU, clinker_factor=V['clinker_factor'],
     share_triangulation=SHT, kd_gate=KDG,
-    unit_calibration=dict(vol_fy25=vol25, vol_local=vol_loc25, vol_export=vol_exp25,
-                          util_fy25=util25, cc_mat_t=cc_mat_t, cc_tra_t=cc_tra_t,
+    unit_calibration=dict(vol_fy25=vol25, vol_local=p0['cem_loc'],
+                          vol_export=p0['cem_exp'] + p0['clk_exp'],
+                          vol_cem_exp=p0['cem_exp'], vol_clk_exp=p0['clk_exp'],
+                          cem_prod=p0['cem_prod'], clk_prod=p0['clk_prod'],
+                          kiln_util_fy25=p0['kiln_util'], util_fy25=p0['mill_util'],
+                          price_loc_derived=price_loc25,
+                          price_exp_cem_usd=price_exp_cem25 / V['fx_avg_fy25'],
+                          price_exp_clk_usd=price_exp_clk25 / V['fx_avg_fy25'],
+                          cc_mat_t=cc_mat_clk, cc_tra_t=cc_tra_t,
                           cc_ovh_t=cc_ovh_t, cash_cost_fy25=cash_cost25,
                           cash_cost_t=cash_cost25 / vol25),
     history=dict(years=HIST, revenue=rev_h, cogs=cogs_h, gross_profit=gp_h, ga=ga_h,
@@ -1073,7 +1210,7 @@ OUT = dict(
                  pat=pat_h, eps=eps_h, capex=capex_h, margin=mgn_h, tax_eff_hist=taxe_h,
                  nopat=nopat_h, tax_eff=TAXE,
                  volume_mt=[None, None, vol25], price_t=[None, None, BU[0]['price']],
-                 utilisation=[None, None, util25]),
+                 utilisation=[None, None, p0['mill_util']]),
     forecast=dict(years=YRS, revenue=rev_f, ebitda=ebitda_f, dna=dna_f, ebit=ebit_f,
                   nopat=nopat, capex=capex, dwc=dwc, fcff=fcff, df=df_, pv=pv,
                   fwd_wacc=fwd, glide=glide, t_mid=t_mid, treasury=treas_f, pbt=pbt_f,
@@ -1088,7 +1225,7 @@ OUT = dict(
               beta_term=beta_t, ke_term=ke_term, kd_term_at=V['kd_term'] * (1 - TAX),
               wacc_term=wacc_term, ke_raw_retired=V['rf'] + beta_used * V['erp_cds'],
               mktcap=MKTCAP, debt_total=debt_tot, eur_share=eur_share),
-    dcf=dict(sum_pv=sum_pv, tv=tv, pv_tv=pv_tv, ev=ev, tv_share=tv_share,
+    dcf=dict(sum_pv=sum_pv, tv=tv, pv_tv=pv_tv, ev=ev, tv_share=tv_share, df_tv=df_tv,
              cash_at_val=cash_at_val, net_cash=net_cash, nci=V['nci'], equity=eq_dcf,
              fv=fv_dcf, roic_term=roic_t, rr_term=rr_t, ic_repl=ic_repl,
              nopat_term=nopat[-1] * (1 + V['g_term']), net_debt_bs=-net_cash_bs, rem=REM),
