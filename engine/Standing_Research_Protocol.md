@@ -1,5 +1,6 @@
 # TESTAHIL — Standing Research Protocol
-### Updated 29 July 2026 (rev. 4) — computed technical read · as-of stamps
+### Updated 07 August 2026 (rev. 5) — cost-stack escalation
+### (rev. 4, 29 July 2026 — computed technical read · as-of stamps)
 ### (rev. 3, 13 July 2026 — terminal growth · beta · Ke/Kd/WACC · engine-reconciliation · maximum-history calibration)
 
 This supersedes the 12-July text and the first 13-July revision. Changes new in **rev. 2** are marked
@@ -719,6 +720,51 @@ the size of the rate swing.** State the computed effect plainly, including when 
 turns out to be small: disclosure does not require drama, and a footnote-sized effect dressed up
 as material is as much a QC defect as an unpriced one dismissed as immaterial (see
 `Critique_Response_Prompt.md`, step 3).
+
+---
+
+## [NEW 07-Aug, per instruction — ARCC study] COST-STACK ESCALATION — standing procedure
+
+Adopted when a reconciliation against an EFG Hermes report on ARCC surfaced that the model's
+entire margin decline was manufactured by one input choice rather than forecast: the local price
+path (8.0/9.0/8.0/7.0/6.5%) was set below the cost-inflation path (11.5/10.0/9.0/8.0/7.0%) in
+every single year, by construction. The direction wasn't the defect — a realised Q1-2026 margin of
+42.9%, above the FY2025 full-year average and still widening, had already contradicted it. The
+defect was structural: a single blended domestic-CPI-convergence index was escalating a cost line
+that is dominantly a globally-traded USD commodity. **Applies to every future study with a
+per-unit cost stack (materials/fuel, transport, overhead, or equivalent).**
+
+**1. One escalator per driver class, never one blended index across all of them.** A cost stack
+allocated to its own physical driver (materials/fuel per tonne of throughput, transport per tonne
+despatched, overhead per tonne sold — see ARCC's `compute.py` for the pattern) must inflate each
+line with the index that actually governs *that* input:
+   - **Globally-traded commodity inputs** (coal, gas, other imported energy or raw materials) —
+     a commodity-price path in its OWN currency, converted through the model's own FX path. Never
+     a domestic CPI-convergence assumption; the commodity does not know the central bank's
+     inflation target.
+   - **Genuinely domestic inputs** (local wages, local services, local transport) — the domestic
+     disinflation/CPI path remains the right tool here.
+   A single `cost_infl`-style index applied to every line is a QC FAIL once the cost stack is
+   granular enough to name its own drivers — the granularity is what makes the blending
+   indefensible, not a new fact about the company.
+
+**2. The cost side needs the same source-discipline already required of the price side.** Every
+study anchors its price path to a disclosed price history and, where available, a recent exit rate
+(see `price_local_path` in ARCC's `compute.py` for the standard this sets). The cost path must
+clear the same bar: seek a disclosed, dated, near-term cost figure — a peer broker's per-unit cash
+cost, the company's own disclosed input-cost commentary, a published commodity index — before
+defaulting to a house-asserted macro proxy. A cost path resting only on "converges to the central
+bank's target" while the price path carries a disclosed exit rate is an asymmetry of evidence
+between the two sides of the same margin, and is itself a finding to price, not wave through.
+
+**3. The first realised quarter is a standing check, not a discovery the user makes.** Extend Step
+0's calibration discipline to the operating build: the first actual quarter or half-year disclosed
+after a study's publication must be checked against that study's own forecast for the equivalent
+period, and the result — met, beat, or missed — stated in the next revision or ledger entry
+without being prompted. A miss above the study's own >5%-of-central escalation threshold (see
+`Critique_Response_Prompt.md`) triggers the same full-finding treatment as an external critique. In
+ARCC's case this check would have caught the Q1-2026 miss at the moment the presentation was
+published, not several exchanges into a user challenge.
 
 ---
 
