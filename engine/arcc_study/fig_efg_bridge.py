@@ -31,20 +31,13 @@ STEPS = [
     ("EFG date\ninconsistency", -2.12, "flows at 1-Jan,\nbalance sheet at Aug"),
     ("Maintenance\ncapex",            -7.63, "5-yr 1.5 → 5.6bn\ntheirs below D&A"),
     ("Operating\nbuild",              +2.44, "our volume up,\nmargin down"),
-    ("Terminal\nblock",               -2.38, "reinvestment takes\n56.8% of terminal profit"),
-    ("Valuation date\nJan → Aug",     -4.68, "broken out\nbelow"),
+    ("Terminal\nblock",               -2.38, "reinvestment takes\n56.8% of profit"),
+    ("Valuation date\nJan → Aug",     +0.99, "−3.62 out, +4.61\nback as cash"),
+    ("Dividend paid,\ndebt refreshed", -5.67, "ex 12 Apr 2026\n(−2,002mn)"),
     ("Other three\nlenses",           -0.73, "50/20/22/8\nand share count"),
 ]
-INSIDE_5 = [
-    ("7 months of FY2026 taken OUT of the discounted window,\nand our glide replaces their flat 20.06%", -3.62),
-    ("the same 7 months added back as CASH at face,\nplus treasury income   (+1,729mn)", +4.61),
-    ("FY2025 dividend, declared and PAID\nex-date 12 Apr 2026   (−2,002mn)", -5.34),
-    ("debt at the reviewed 31-Mar-2026 vintage\nrather than 31-Dec-2025", -0.33),
-]
 
-fig = plt.figure(figsize=(14.2, 9.4), dpi=150)
-gs = fig.add_gridspec(2, 1, height_ratios=[2.35, 1.0], hspace=0.72)
-ax, bx = fig.add_subplot(gs[0]), fig.add_subplot(gs[1])
+fig, ax = plt.subplots(figsize=(15.4, 7.6), dpi=150)
 TR = ax.get_xaxis_transform()
 
 
@@ -82,26 +75,11 @@ ax.tick_params(axis='x', length=0)
 for sp in ('top', 'right', 'bottom'):
     ax.spines[sp].set_visible(False)
 ax.set_title('From the EFG Hermes target price to the Testahil central',
-             fontsize=14, fontweight='bold', loc='left', pad=48)
-ax.text(0.0, 1.015, 'Both reproduce FY2025 to the pound — the whole EGP 15.11 gap is forward-looking. Each bar substitutes\n'
-        'one DRIVER and flows it through the discounted window AND the cash bridge, so nothing is counted twice.',
+             fontsize=14, fontweight='bold', loc='left', pad=62)
+ax.text(0.0, 1.008, 'Both reproduce FY2025 to the pound — the whole EGP 15.11 gap is forward-looking. Each bar substitutes\n'
+        'one DRIVER and flows it through the discounted window AND the cash bridge, so nothing is counted twice.\n'
+        'Valuing to today ADDS value; what costs it is a dividend the buyer no longer receives.',
         transform=ax.transAxes, fontsize=9.2, color=GREY, ha='left', va='bottom', linespacing=1.6)
 
-# ---- inset: what is inside the date move -----------------------------------
-ys = range(len(INSIDE_5))[::-1]
-for y, (lab, v) in zip(ys, INSIDE_5):
-    bx.barh(y, v, height=0.46, color=(TEAL if v > 0 else RUST), edgecolor=INK, lw=0.7, alpha=.92)
-    bx.text(v + (0.16 if v > 0 else -0.16), y, f'{v:+.2f}', va='center',
-            ha='left' if v > 0 else 'right', fontsize=9.2, fontweight='bold',
-            color=(TEAL if v > 0 else RUST))
-    bx.text(-13.6, y, lab, va='center', ha='left', fontsize=8.4, color=INK, linespacing=1.45)
-bx.axvline(0, color=INK, lw=1.0)
-bx.set_xlim(-13.7, 5.6); bx.set_ylim(-0.72, len(INSIDE_5) - 0.28)
-bx.set_yticks([]); bx.set_xlabel('EGP per share'); bx.set_xticks([-6,-4,-2,0,2,4])
-bx.grid(axis='y', visible=False)
-for sp in ('top', 'right', 'left'):
-    bx.spines[sp].set_visible(False)
-bx.set_title('Inside the date move (−4.68) — the two halves of one adjustment, and the dividend',
-             fontsize=10.5, fontweight='bold', loc='left', pad=10)
 out = os.path.join(HERE, 'fig_efg_bridge.png')
 fig.savefig(out, bbox_inches='tight'); print('wrote', out)
