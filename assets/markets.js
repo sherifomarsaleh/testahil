@@ -18,6 +18,7 @@ const MARKET_OF = {
  "ALRAJHI": "SA",
  "AMOC": "EG",
  "ARAMCO": "SA",
+ "ARCC": "EG",
  "BTFH": "EG",
  "BURJEEL": "AE",
  "CCAP": "EG",
