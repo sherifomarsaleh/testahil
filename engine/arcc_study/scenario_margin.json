@@ -1,0 +1,113 @@
+[
+ {
+  "name": "Testahil base \u2014 margin glides 39.3% -> 35.0%",
+  "mgn_path": [
+   0.3603,
+   0.3564,
+   0.3543,
+   0.3506,
+   0.3502
+  ],
+  "norm_mgn": 0.312,
+  "rev_mult": null,
+  "dcf": 55.4,
+  "central": 54.65,
+  "reinvest": 0.5676,
+  "lenses": {
+   "DCF (cash flow)": 55.4,
+   "Relative multiples": 48.96,
+   "Normalised earnings": 52.95,
+   "Asset / replacement cost": 68.87
+  }
+ },
+ {
+  "name": "Half way \u2014 glide only half as far",
+  "mgn_path": [
+   0.3764,
+   0.3744,
+   0.3734,
+   0.3715,
+   0.3714
+  ],
+  "norm_mgn": 0.312,
+  "rev_mult": null,
+  "dcf": 61.24,
+  "central": 57.57,
+  "reinvest": 0.5322,
+  "lenses": {
+   "DCF (cash flow)": 61.24,
+   "Relative multiples": 48.96,
+   "Normalised earnings": 52.95,
+   "Asset / replacement cost": 68.87
+  }
+ },
+ {
+  "name": "EFG margin \u2014 HELD at the FY2025 39.25%",
+  "mgn_path": [
+   0.3925,
+   0.3925,
+   0.3925,
+   0.3925,
+   0.3925
+  ],
+  "norm_mgn": 0.312,
+  "rev_mult": null,
+  "dcf": 67.07,
+  "central": 60.49,
+  "reinvest": 0.5009,
+  "lenses": {
+   "DCF (cash flow)": 67.07,
+   "Relative multiples": 48.96,
+   "Normalised earnings": 52.95,
+   "Asset / replacement cost": 68.87
+  }
+ },
+ {
+  "name": "EFG margin AND a 39.25% mid-cycle margin",
+  "mgn_path": [
+   0.3925,
+   0.3925,
+   0.3925,
+   0.3925,
+   0.3925
+  ],
+  "norm_mgn": 0.39250174537228566,
+  "rev_mult": null,
+  "dcf": 67.07,
+  "central": 65.7,
+  "reinvest": 0.5009,
+  "lenses": {
+   "DCF (cash flow)": 67.07,
+   "Relative multiples": 60.27,
+   "Normalised earnings": 66.35,
+   "Asset / replacement cost": 68.87
+  }
+ },
+ {
+  "name": "EFG margin AND EFG volumes (PROXY)",
+  "mgn_path": [
+   0.3925,
+   0.3925,
+   0.3925,
+   0.3925,
+   0.3925
+  ],
+  "norm_mgn": 0.312,
+  "rev_mult": [
+   0.9662,
+   0.9323,
+   0.8985,
+   0.8647,
+   0.8309
+  ],
+  "dcf": 50.66,
+  "central": 52.28,
+  "reinvest": 0.6143,
+  "lenses": {
+   "DCF (cash flow)": 50.66,
+   "Relative multiples": 48.96,
+   "Normalised earnings": 52.95,
+   "Asset / replacement cost": 68.87
+  }
+ }
+]
