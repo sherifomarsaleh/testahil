@@ -122,7 +122,7 @@
           "name": "How is the SWDY valuation calculated?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "The study uses an instrument-appropriate lens — a three-statement FCFF DCF built bottom-up from unit economics across seven sub-segments \u2014 cable tonnage, transformer MVA, meter units and order-book burn \u2014 so margins are outputs rather than inputs, cross-checked against normalized earnings power, relative EV/EBITDA and a justified price-to-book — combined with a 50,000-path Monte Carlo simulation that expresses the result as a probability distribution. Every assumption is visible and editable in the free Excel model."
+            "text": "The study uses an instrument-appropriate lens — a three-statement FCFF DCF built on the three segments the company itself discloses \u2014 Cables, Constructions & infrastructure, Electrical products & digital, whose audited revenue and profit reconcile exactly to the consolidated statements \u2014 so margins are outputs rather than inputs, cross-checked against normalized earnings power, relative EV/EBITDA and a justified price-to-book — combined with a 50,000-path Monte Carlo simulation that expresses the result as a probability distribution. Every assumption is visible and editable in the free Excel model."
           }
         },
         {
@@ -217,7 +217,7 @@
   <!-- FAIR-VALUE SENSITIVITY LEVERS -->
   <section style="padding-top:8px">
     <div id="fl-lever-card"></div>
-    <p class="muted" style="font-size:var(--fs-caption);max-width:760px;margin:10px 2px 0">A weighted what-if off the published fair value &mdash; not a re-run DCF, and it never touches the Monte Carlo section below. The sizes come from the study’s own sensitivity grids, each of which re-runs the whole unit build, scaled down for the fact that only the cash-flow lenses move. Note which lever dominates: the cost of capital, not the operations. Three points of easing is worth more than a fifteen-percent swing in conversion margin, because 77% of the enterprise value sits in the terminal year and the Egyptian discount rate is what compresses it. That is the study’s central claim in one control.</p>
+    <p class="muted" style="font-size:var(--fs-caption);max-width:760px;margin:10px 2px 0">A weighted what-if off the published fair value &mdash; not a re-run DCF, and it never touches the Monte Carlo section below. The sizes come from the study’s own sensitivity grids, each of which re-runs the whole segment build, scaled down for the fact that only the cash-flow lenses move. Note which lever dominates: the cost of capital, not the operations. Three points of easing is worth more than a fifteen-percent swing in segment margins, because 85% of the enterprise value sits in the terminal year and the Egyptian discount rate is what compresses it. That is the study’s central claim in one control.</p>
   </section>
 
 </div>
@@ -258,7 +258,7 @@
   <!-- ONE-LINE WHAT-IT-MEANS -->
   <section style="padding-top:8px">
     <div class="card" style="background:var(--tint2)">
-      <p style="margin:0"><b>In plain terms:</b> at today’s 21.5% cost of capital the discounted cash flows are worth about EGP 3.8bn while the net debt against them is about EGP 9.8bn — so on the base case the equity is worth nothing, and is floored at zero only because a shareholder cannot owe more than the stake. What EGP 2.19 buys is an option on three things going right together: the receivables collecting, conversion margins recovering from the 1Q26 trough, and the CBE resuming its easing cycle. That’s the bet.</p>
+      <p style="margin:0"><b>In plain terms:</b> the business is excellent and the disagreement is about the price of Egyptian money. Discounted at a 26.6% pound cost of capital the shares are worth about EGP 70 against a 105 price; discount the hard-currency half of the cash flows at a dollar rate and the same model prints 86. What 105.20 buys is the market applying something even more generous than the dollar view — a bet that convertibility never binds and Egyptian easing arrives on schedule. That’s the gap.</p>
     </div>
   </section>
 
@@ -436,21 +436,21 @@ renderTrackBadge("track-badge");
 
 renderStaticFan("mc-fan-static", T);
 renderFairLevers("fl-lever-card", T, [
-  { name:"Working capital / revenue", min:20, max:26, step:0.5, def:23, impact:-0.98,
-    lo:"collects to 20% of revenue", hi:"slips to 26%",
-    fmt:v=>v.toFixed(1)+"% of revenue \u2014 the cash the growth has to fund before any of it reaches an owner" },
-  { name:"Conversion margin per unit", min:-15, max:15, step:1, def:0, impact:1.32,
-    lo:"trough persists (\u221215%)", hi:"pricing power returns (+15%)",
-    fmt:v=>(v>=0?"+":"\u2212")+Math.abs(v).toFixed(0)+"% on gross profit per tonne / MVA / meter" },
-  { name:"CBE easing \u2014 cost of capital", min:0, max:3, step:0.25, def:0, impact:5.60,
-    lo:"today\u2019s money (26.90% WACC)", hi:"3pp of easing (23.90%)",
-    fmt:v=>(26.90-v).toFixed(2)+"% explicit WACC \u2014 easing "+v.toFixed(2)+"pp" },
-  { name:"LME copper", min:-15, max:15, step:1, def:0, impact:-0.84,
-    lo:"copper falls (frees working capital)", hi:"copper rises (traps it)",
-    fmt:v=>(v>=0?"+":"\u2212")+Math.abs(v).toFixed(0)+"% vs the build\u2019s forward curve \u2014 double-edged: a converter earns per tonne, so a metal rally inflates the capital it must fund faster than the margin it earns" },
-  { name:"EGP / USD path", min:-10, max:30, step:2, def:0, impact:-0.84,
+  { name:"Working capital / revenue", min:17, max:23, step:0.5, def:19.9, impact:-1.07,
+    lo:"collects to 17% of revenue", hi:"slips back to 23%",
+    fmt:v=>v.toFixed(1)+"% of revenue \u2014 the cash the growth has to fund before any of it reaches an owner; 19.9% is the audited FY2025 level" },
+  { name:"Segment margins", min:-15, max:15, step:1, def:0, impact:0.78,
+    lo:"compression persists (\u221215%)", hi:"pricing power returns (+15%)",
+    fmt:v=>(v>=0?"+":"\u2212")+Math.abs(v).toFixed(0)+"% on all three disclosed segment margins together" },
+  { name:"CBE easing \u2014 cost of capital", min:0, max:3, step:0.25, def:0, impact:4.00,
+    lo:"today\u2019s money (26.63% WACC)", hi:"3pp of easing (23.63%)",
+    fmt:v=>(26.63-v).toFixed(2)+"% explicit WACC \u2014 easing "+v.toFixed(2)+"pp across both windows" },
+  { name:"LME copper", min:-15, max:15, step:1, def:0, impact:0.17,
+    lo:"copper falls 15%", hi:"copper rises 15%",
+    fmt:v=>(v>=0?"+":"\u2212")+Math.abs(v).toFixed(0)+"% vs the held-flat curve \u2014 nearly a wash: Cables earns more pounds but the working capital that funds them grows with it" },
+  { name:"EGP / USD path", min:-10, max:30, step:2, def:0, impact:0.17,
     lo:"pound holds (\u221210%)", hi:"pound weakens 30% faster",
-    fmt:v=>(v>=0?"+":"\u2212")+Math.abs(v).toFixed(0)+"% on the assumed depreciation path \u2014 it lifts reported pounds but the discount rate rises with it, and the study\u2019s currency alternative is the honest version of this question" }
+    fmt:v=>(v>=0?"+":"\u2212")+Math.abs(v).toFixed(0)+"% on the assumed depreciation path \u2014 it lifts the copper-linked pound revenue, and the honest version of the currency question is the study\u2019s dollar-discounting alternative" }
 ]);
 if (T.levels) {
   injectLevels("ta-chart-svg", T.levels.res, T.levels.sup);
