@@ -9,6 +9,19 @@ publishes it; a study is delivered as files and sits until publication is asked
 for by name. (The one carve-out is the matured-cohort auto-publish in the
 roll-forward protocol.)
 
+**"PUBLISH" MEANS LIVE ON testahil.com — NOT "PREPARED FOR PUBLISHING."** The word
+is the authorisation. Once it is said, go all the way: build, verify, commit,
+push, PR, MERGE TO `main`, and confirm the Pages deploy went green on the merge
+SHA. Do not stop to ask for a token, and do not report "shipped" on the strength
+of a push to a working branch — `deploy-pages.yml` fires on `push: branches:
+[main]`, so nothing is live until the merge lands. [CHANGED 07-Aug-2026: this
+protocol used to end "ask me for the token once, right before the push", which
+meant every publish reliably stopped one step short of being published and the
+requester had to notice and say "merge". The gate was removed, not relaxed.]
+
+The mechanical half of that sequence is now a script — `scripts/publish_site.py`
+(see MECHANISED PUBLISH below). Run it instead of doing steps 5–7 by hand.
+
 ---
 
 ## THE STANDING PROMPT
@@ -17,12 +30,19 @@ This is the canonical instruction. Keep this file and the prompt in sync — if 
 edit one, edit the other in the same commit.
 
 ```
-Publish [TICKER] to the website and update the ledger — standard workflow, no exploration:
+Publish [TICKER] to the website and update the ledger — standard workflow, no exploration.
+PUBLISH MEANS LIVE: this prompt is the authorisation. Go all the way to merged-and-deployed
+without stopping to ask.
 •	Clone the most recently published ticker's page + data.js/coverage.js/ledger.html entries as the
 	template. Adapt the numbers; don't rebuild structure from scratch.
 •	Reuse every figure already sitting in study_numbers.json / docx_ctx.json (percentiles, touch ladder,
 	drivers). Don't re-run the engine or re-derive stats that already exist.
-•	Publish the calibration record too, not just the forecast:
+•	IS THIS A FIRST PUBLISH OR A REPUBLISH? Check whether the ticker is already in HAS_BACKTEST.
+	If it is, this is a REPUBLISH: the calibration artifacts, both ledger.html registrations and the
+	frozen cycle-1 LEDGER rows ALREADY EXIST and must NOT be redone — the cone the study struck is
+	frozen and re-striking it would publish a forecast the study never made. Skip the whole calibration
+	block below, refresh data.js/coverage.js/the page/files/ only, and still run the ledger sweep.
+•	Publish the calibration record too, not just the forecast (FIRST PUBLISH ONLY):
 	– place engine/raw_ohlc/{MKT}/{TICKER}.csv, then generate assets/calibration_{TICKER}.png
 	  (cd engine && python3 metal_backtest.py {TICKER})
 	– register the ticker in BOTH ledger.html sets: HAS_BACKTEST and the raw-CSV map
@@ -47,6 +67,11 @@ Publish [TICKER] to the website and update the ledger — standard workflow, no 
 	  count; do not fix it in a publish
 	– the new name's cycle-1 rows join the ledger but NOT the "Were we right?" denominator. It enters
 	  that score when its first cohort grades, not when it is published
+•	SYNC MAIN BEFORE REGENERATING. Other publishes land while a branch is open; they always collide
+	in assets/data.js and assets/coverage.js. Merge origin/main FIRST, resolve additively (their new
+	rows + your ticker's row), keep SITE.latest as main has it unless this is a genuine first publish
+	— a republish must not hijack the homepage hero — and only then regenerate the surfaces. Resolving
+	afterwards ships a feed and a market registry built against the wrong ticker set.
 •	Regenerate all four generated surfaces — none of them are hand-edited, and a missed one fails
 	silently rather than loudly:
 	1. sitemap + homepage footer strip   node scripts/generate_seo.js
@@ -55,6 +80,9 @@ Publish [TICKER] to the website and update the ledger — standard workflow, no 
 	4. page chart + technical read       python3 engine/ta_chart.py --only {TICKER} --write
 	                                     python3 engine/apply_technicals.py --only {TICKER} --write
 	(4 runs last — it rewrites the ticker's own data.js block, so the entry and page must exist first.)
+	OR JUST RUN THE SCRIPT, which does the sync, all four surfaces, both gates and the render check
+	in the right order and fails loudly on any of them:
+	    python3 scripts/publish_site.py --ticker {TICKER} [--republish]
 •	Render every deliverable to PDF first (python3 engine/make_pdf.py files/…) and point files.pdf at it.
 	The page surfaces ONLY the PDF — a missing pdf key leaves the download button pointing at "undefined".
 •	Verify by render, not by grep: load the ticker page and ledger.html headless and confirm the ticker
@@ -66,9 +94,15 @@ Publish [TICKER] to the website and update the ledger — standard workflow, no 
 	run so a material change can't be mistaken for a clean one), not a break.
 •	Size any illustrative/interactive values (slider impacts, etc.) with a quick reasonable estimate.
 	Don't build a fresh financial model to calibrate them precisely.
-•	Build everything, commit, then ask me for the token once, right before the push. Don't ask twice,
-	don't re-litigate after I give it.
-•	Report back in a short list of what shipped — no narration of the process.
+•	SHIP IT — do not stop at the push. Run:
+	    python3 scripts/publish_site.py --ticker {TICKER} --ship [--republish]
+	which commits, pushes, opens the PR, MERGES to main and then waits for the deploy-pages run to
+	go green on the merge SHA. No token prompt: this instruction is the authorisation. If the script
+	cannot merge (no GITHUB_TOKEN in the environment), merge the PR yourself via the GitHub tools —
+	the job is not done until main has it and the deploy is green.
+•	Report back in a short list of what shipped — no narration of the process. Include the merge SHA
+	and the deploy result. "Pushed the branch" is NOT a publish; if the deploy did not run green,
+	say so plainly instead of reporting success.
 ```
 
 ---
@@ -252,13 +286,45 @@ as superseded.
 
 ## ORDER OF OPERATIONS
 
+Steps 1–4 are judgment and stay manual. Steps 5–9 are mechanical and are what
+`scripts/publish_site.py` does — run it rather than repeating them by hand.
+
 1. Place `engine/raw_ohlc/{MKT}/{TICKER}.csv`; copy the deliverables into `files/`.
+   (Republish: the CSV is already there; just refresh `files/`.)
 2. Write the `TICKERS` entry, `SITE.latest`/`updated`, and the LEDGER header + rows. In the same
    pass, sweep the ledger for matured open rows and grade them (see THE LEDGER SWEEP below).
+   (Republish: no new LEDGER rows — the cycle-1 cone is frozen. Sweep anyway.)
 3. Clone the page; adapt the per-ticker slots.
-4. `build_market_registry.py --write`; `metal_backtest.py {KEY}`; register both
-   `ledger.html` sets; add the `coverage.js` rows.
-5. `ta_chart.py` then `apply_technicals.py` (both `--only {TICKER} --write`) — these
-   rewrite the ticker's own block, so they run after step 2/3.
-6. `generate_seo.js`, `generate_feed.js`.
-7. Render-verify; run both gates; commit; ask for the token once; push.
+4. `metal_backtest.py {KEY}`; register both `ledger.html` sets; add the `coverage.js` rows.
+   (Republish: registrations already exist; only the `coverage.js` numbers change.)
+5. **Merge `origin/main`** and resolve additively — before anything is regenerated.
+6. `build_market_registry.py --write`; `generate_seo.js`; `generate_feed.js`;
+   then `ta_chart.py` and `apply_technicals.py` (both `--only {TICKER} --write`) last,
+   because they rewrite the ticker's own block.
+7. Render-verify headless; run both gates.
+8. Commit; push; open the PR; **merge to `main`**.
+9. **Confirm the `deploy-pages` run went green on the merge SHA.** Until that is true, the
+   study is not published — it is only prepared.
+
+    python3 scripts/publish_site.py --ticker {TICKER} --ship [--republish]     # = 5 through 9
+
+---
+
+## MECHANISED PUBLISH — `scripts/publish_site.py`
+
+Owns the mechanical half so it cannot be half-done. Sequence:
+`sync main -> four surfaces -> both gates -> headless render check -> commit -> push
+-> PR -> squash-merge -> wait for the Pages deploy and assert it went green.`
+
+- `--ticker {KEY}` — required; refuses to run if `{key}.html` does not exist yet.
+- `--ship` — without it the script builds and verifies but changes nothing remotely.
+- `--republish` — labels the commit/PR and is a reminder that the calibration record
+  and cycle-1 rows are frozen; it does not itself skip those steps (they are manual).
+- Needs `GITHUB_TOKEN`/`GH_TOKEN` to merge. Without one it stops after the push and says
+  so explicitly — it never reports a publish it did not make.
+- Refuses to commit on `main`. Fails loudly on a dirty gate, a failed render, an
+  unresolved conflict, or a red deploy.
+
+It deliberately does NOT write the `TICKERS` entry, the page, the coverage rows or the
+LEDGER cohort. Those are decisions, and a script that guesses them would be a script that
+publishes a number nobody chose.
