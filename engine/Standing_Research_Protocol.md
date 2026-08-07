@@ -1,5 +1,5 @@
 # TESTAHIL — Standing Research Protocol
-### Updated 07 August 2026 (rev. 5) — cost-stack escalation
+### Updated 07 August 2026 (rev. 5) — cost-stack escalation · primary-source financial research
 ### (rev. 4, 29 July 2026 — computed technical read · as-of stamps)
 ### (rev. 3, 13 July 2026 — terminal growth · beta · Ke/Kd/WACC · engine-reconciliation · maximum-history calibration)
 
@@ -765,6 +765,57 @@ without being prompted. A miss above the study's own >5%-of-central escalation t
 `Critique_Response_Prompt.md`) triggers the same full-finding treatment as an external critique. In
 ARCC's case this check would have caught the Q1-2026 miss at the moment the presentation was
 published, not several exchanges into a user challenge.
+
+---
+
+## [NEW 07-Aug, per instruction — ARCC study] PRIMARY-SOURCE FINANCIAL RESEARCH — standing procedure
+
+Adopted from the same ARCC exchange as cost-stack escalation, from a direct instruction: the
+company's own investor-relations page was reachable and had not been the first place looked. The
+FY2025 investor presentation, once supplied, proved the point — it confirmed the physical unit
+build (kiln utilisation, clinker factor, three product volumes) to **0.02%** and gave the Q4 exit
+price rate that anchors the local price path, neither of which exists anywhere in the audited
+financial statements alone. **Extends the Company ring of Step 2A's Information Sweep, applies to
+every future study.**
+
+**1. The company's own official website / investor-relations page is the FIRST channel attempted**
+for every Company-ring figure, before any aggregator or third-party data provider. Record the
+attempt and its outcome in the Sweep Register regardless of result. **If the site is unreachable,
+say so plainly and ask the user to attach the primary documents directly** — do not silently fall
+back to a weaker secondary source. This is not hypothetical: `arabiancementcompany.com` returned
+`connect_rejected` at the build environment's proxy this session. The user then attaching the
+FY2025 presentation is this fallback working as designed, not evidence the rule failed.
+
+**2. Audited financial statements: minimum TWO, target FOUR complete past fiscal years**, sourced
+from the filing itself — the company's own published annual report or its regulator — never an
+aggregator's restated summary. This makes concrete what the TERMINAL GROWTH procedure's historical
+reconciliation table already asks for ("as far back as reliable financials allow"): **two years is
+the floor** below which that table and its two check numbers may not be built at all — state the
+shortfall explicitly instead of thinning the table — **four years is the target.**
+
+**3. The study year itself: every quarter already disclosed, pulled into the sweep BEFORE the
+build, not discovered after.** If a study is built partway through a fiscal year, every quarter of
+that year already on the public record belongs in the Company ring from the start. This closes the
+gap from the other side of cost-stack escalation's rule 3, which checks the first quarter released
+*after* publication — this rule requires every quarter released *before* it to already be in. ARCC's
+own Q1-2026 actual (42.9% gross margin) was on the public record before the study's own base date
+and was not swept in; it only entered the analysis because the user asked about margins. Together,
+no disclosed quarter on either side of the study date is allowed to sit outside the sweep or the
+check.
+
+**4. Investor-relations presentations and investor/earnings-call materials — decks, transcripts,
+webcast notes — are a MANDATORY sweep source, not optional colour**, specifically for the volumes,
+per-unit prices, utilisation rates, capacity and segment splits that never appear in a financial
+statement at all. Pull every IR presentation and call transcript covering the sourced fiscal years,
+not only the most recent one. **Tag these distinctly in the Sweep Register** — a
+`COMPANY_INVESTOR_RELATIONS` source type, kept separate from `AUDITED_FINANCIAL_STATEMENTS` — so a
+reviewer can see how much of the Company ring rests on the company's own primary channel rather
+than a filing or a secondary source. ARCC's `sweep.py` currently has no such tag; add it going
+forward rather than overloading `FILING`.
+
+**5. QC consequence.** A Sweep Register showing no attempt at the company's own site, fewer than
+two audited fiscal years, a gap in the study-year's disclosed quarters, or zero investor-relations
+sources in the Company ring is a **QC FAIL** going forward.
 
 ---
 
