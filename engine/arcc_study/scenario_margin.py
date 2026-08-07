@@ -1,16 +1,32 @@
-"""What is ARCC worth if EFG's margin view is right?
+"""ARCC margin: our path against EFG Hermes', year by year — and what theirs is worth.
 
-Our EBITDA margin is an OUTPUT of the bottom-up build — derived prices minus a per-tonne
-cost stack — and it glides DOWN from the audited FY2025 peak of 39.25% to 35.02% by FY2030,
-because the cost stack inflates faster than the price path. EFG holds margin essentially
-flat at the FY2025 level. That is the single largest open item between the two models.
+Our EBITDA margin is an OUTPUT of the bottom-up build (derived prices less a per-tonne cost
+stack). It glides DOWN from the audited FY2025 peak because the cost stack inflates faster
+than the price path. EFG hold c40%. That is the one item in the reconciliation bridge
+marked "open — no referee".
 
-This file does not argue the question. It overrides the margin path, re-runs the DCF and
-the two earnings-based lenses, and prints what falls out.
+THE TRAP THIS FILE EXISTS TO AVOID. EFG's FY2025a EBITDA is 5,017; the audited figure we
+use is 4,886. The EGP 131 difference is DEFINITIONAL, not a forecast disagreement:
 
-GATE: scenario 0 rebuilds the published 55.40 / 54.65 from study_numbers.json before any
-override is applied. If the harness cannot reproduce the base case it is not entitled to
-report a scenario, so it exits instead.
+    provisions 74.506 + expected credit losses 3.604 + other operating income 53.340
+        = 131.449  =  1.0560% of FY2025 revenue
+
+We charge provisions and ECL above EBITDA (they are operating charges in the audited
+statements) and we exclude other operating income. EFG do the reverse. Comparing their
+40.3% to our 39.25% therefore overstates the disagreement by a full point in every year.
+Restating their published margins onto our definition MUST reproduce our audited 39.25% in
+FY2025a, and that is asserted below before any forecast year is quoted.
+
+GATES
+  G1  the definitional bridge reconciles FY2025a to within 0.1 of EFG's printed EBITDA
+  G2  restating EFG's FY2025a onto our definition reproduces our audited margin
+  G3  the harness rebuilds the published 55.40 / 54.65 before any override is applied
+
+SOURCES. EFG Hermes, "Arabian Cement (Egypt)", 6 August 2026, page 2 "Data Miner" —
+revenue, EBITDA, EBIT, capex and margins for FY2025a to FY2028e. FY2029e and FY2030e are
+NOT tabulated in that report; they are extended here from the report's own text ("we expect
+the company to sustain an EBITDA margin of c40% on average") and its decelerating revenue
+growth. Every extended figure is flagged EXT in the output and in the JSON.
 """
 import json, os, sys
 
@@ -21,15 +37,44 @@ IN = {k: v['value'] for k, v in D['inputs'].items()}
 SH, REM = D['meta']['shares_mn'], DCF['rem']
 TAXE = 1 - F['nopat'][0] / F['ebit'][0]
 G, WT_ = IN['g_term'], W['wacc_term']
-MGN_FY25 = H['margin'][2]                       # 39.25% audited
-BASE = list(F['margin'])                        # 36.03 -> 35.02, derived not assumed
+YRS = ['FY2026e', 'FY2027e', 'FY2028e', 'FY2029e', 'FY2030e']
+
+# ---- EFG, page 2 "Data Miner" -----------------------------------------------
+E_REV_PUB = [12447.0, 13144.0, 13528.0, 13792.0]        # FY2025a .. FY2028e
+E_EBITDA_PUB = [5017.0, 5132.0, 5485.0, 5620.0]
+E_EBIT_PUB = [4727.0, 4814.0, 5138.0, 5242.0]
+E_GROWTH_EXT = 0.02                                     # EXT: their own 5.6/2.9/2.0 trend
+
+# ---- G1: the definitional bridge --------------------------------------------
+WEDGE = IN['prov_fy25'] + IN['ecl_fy25'] + IN['othinc_fy25']
+WEDGE_PCT = WEDGE / IN['rev_fy25']
+g1 = abs((H['ebitda'][2] + WEDGE) - E_EBITDA_PUB[0]) < 0.1
+print(f"G1  definitional bridge: our {H['ebitda'][2]:,.0f} + prov {IN['prov_fy25']:.1f} "
+      f"+ ECL {IN['ecl_fy25']:.1f} + other income {IN['othinc_fy25']:.1f} = "
+      f"{H['ebitda'][2] + WEDGE:,.0f} vs EFG {E_EBITDA_PUB[0]:,.0f}   "
+      f"{'PASS' if g1 else 'FAIL'}   wedge = {WEDGE_PCT:.4%} of revenue")
+
+# EFG margins as published, and restated onto our definition
+E_MGN_PUB = [E_EBITDA_PUB[i] / E_REV_PUB[i] for i in range(4)]
+E_MGN_OURS = [m - WEDGE_PCT for m in E_MGN_PUB]
+g2 = abs(E_MGN_OURS[0] - H['margin'][2]) < 0.0001
+print(f"G2  EFG FY2025a restated onto our definition: {E_MGN_OURS[0]:.4%} vs our audited "
+      f"{H['margin'][2]:.4%}   {'PASS' if g2 else 'FAIL'}")
+
+# extend FY2029e / FY2030e — flagged, not published
+E_REV = list(E_REV_PUB) + [E_REV_PUB[-1] * (1 + E_GROWTH_EXT),
+                           E_REV_PUB[-1] * (1 + E_GROWTH_EXT) ** 2]
+E_MGN_PUB = E_MGN_PUB + [E_MGN_PUB[-1], E_MGN_PUB[-1]]
+E_MGN_OURS = E_MGN_OURS + [E_MGN_OURS[-1], E_MGN_OURS[-1]]
+EXT = [False, False, False, False, True, True]          # index 0 = FY2025a
+
+BASE = list(F['margin'])
 
 
 def dcf(mgn, rev_mult=None):
-    """Revalue on an EBITDA-margin PATH. Capex, working capital, the discount schedule and
-    the terminal algebra are untouched. rev_mult optionally scales the revenue path, which
-    matters because a margin-only run keeps OUR volume build — the more optimistic of the
-    two volume views — and would otherwise read as neutral when it is not."""
+    """Revalue on an EBITDA-margin PATH. Capex, the discount schedule and the terminal
+    algebra are untouched. rev_mult scales the revenue path — a margin-only run keeps OUR
+    volume build, the more optimistic of the two, and would read as neutral when it is not."""
     rm = rev_mult or [1.0] * 5
     rev = [F['revenue'][i] * rm[i] for i in range(5)]
     eb = [rev[i] * mgn[i] for i in range(5)]
@@ -44,71 +89,72 @@ def dcf(mgn, rev_mult=None):
 
 
 def lenses(fv_dcf, norm_mgn):
-    """The two earnings lenses run off a MID-CYCLE margin, not the forecast path. They only
-    move if you also accept that the through-cycle level is higher, so norm_mgn is passed
-    in explicitly rather than inherited."""
+    """The two earnings lenses run off a MID-CYCLE margin, not the forecast path. They move
+    only if you also accept a higher through-cycle level, so norm_mgn is passed explicitly."""
     ebn = IN['rev_fy25'] * IN['norm_rev_haircut'] * norm_mgn
     rel = (ebn * IN['ev_ebitda_just'] + DCF['net_cash'] - DCF['nci']) / SH
     nopn = (ebn - IN['dna_fy25']) * (1 - TAXE)
     nrm = (nopn * IN['pe_just'] + DCF['net_cash'] - DCF['nci']) / SH
-    ast = L['values']['Asset / replacement cost']
-    wts = L['weights']
-    v = {'DCF (cash flow)': fv_dcf, 'Relative multiples': rel,
-         'Normalised earnings': nrm, 'Asset / replacement cost': ast}
-    return v, sum(v[k] * wts[k] for k in v)
+    v = {'DCF (cash flow)': fv_dcf, 'Relative multiples': rel, 'Normalised earnings': nrm,
+         'Asset / replacement cost': L['values']['Asset / replacement cost']}
+    return v, sum(v[k] * L['weights'][k] for k in v)
 
 
-# ---- GATE: reproduce the published base case --------------------------------
+# ---- G3: reproduce the published base case ----------------------------------
 b_dcf, b_rr = dcf(BASE)
 b_v, b_c = lenses(b_dcf, IN['norm_mgn'])
-bad = [f"DCF {b_dcf:.4f} vs {L['values']['DCF (cash flow)']:.4f}"] if abs(
-    b_dcf - L['values']['DCF (cash flow)']) > 0.01 else []
-bad += [f"central {b_c:.4f} vs {L['central']:.4f}"] if abs(b_c - L['central']) > 0.01 else []
-for k in ('Relative multiples', 'Normalised earnings'):
-    if abs(b_v[k] - L['values'][k]) > 0.01:
-        bad.append(f"{k} {b_v[k]:.4f} vs {L['values'][k]:.4f}")
-print('GATE — harness reproduces the published base case:', 'PASS' if not bad else 'FAIL')
-if bad:
-    sys.exit('  ' + '; '.join(bad))
+g3 = abs(b_dcf - L['values']['DCF (cash flow)']) < 0.01 and abs(b_c - L['central']) < 0.01
+print(f"G3  harness rebuilds the published base case: DCF {b_dcf:.2f} / central {b_c:.2f}"
+      f"   {'PASS' if g3 else 'FAIL'}")
+if not (g1 and g2 and g3):
+    sys.exit('GATES FAILED — not entitled to report a scenario')
+
+# ---- the table --------------------------------------------------------------
+print(f"\n  EBITDA MARGIN, YEAR BY YEAR  (EFG wedge removed: {WEDGE_PCT:.2%} of revenue)\n")
+print(f"  {'':10s} {'Testahil':>10s} {'EFG pub':>10s} {'EFG on our':>11s} {'gap':>8s}   "
+      f"{'Testahil rev':>13s} {'EFG rev':>9s}")
+print(f"  {'FY2025a':10s} {H['margin'][2]:9.2%} {E_MGN_PUB[0]:10.2%} {E_MGN_OURS[0]:11.2%} "
+      f"{'audited':>8s}   {IN['rev_fy25']:13,.0f} {E_REV[0]:9,.0f}")
+tbl = []
+for i, y in enumerate(YRS):
+    gap = E_MGN_OURS[i + 1] - BASE[i]
+    tag = ' EXT' if EXT[i + 1] else ''
+    tbl.append(dict(year=y, testahil=round(BASE[i], 4), efg_published=round(E_MGN_PUB[i + 1], 4),
+                    efg_our_definition=round(E_MGN_OURS[i + 1], 4), gap_pt=round(gap * 100, 2),
+                    testahil_revenue=round(F['revenue'][i], 1), efg_revenue=round(E_REV[i + 1], 1),
+                    extended=EXT[i + 1]))
+    print(f"  {y:10s} {BASE[i]:9.2%} {E_MGN_PUB[i+1]:10.2%} {E_MGN_OURS[i+1]:11.2%} "
+          f"{gap*100:+7.2f}pt   {F['revenue'][i]:13,.0f} {E_REV[i+1]:9,.0f}{tag}")
 
 # ---- the scenarios ----------------------------------------------------------
-FLAT = [MGN_FY25] * 5                                  # EFG: FY2025 margin is durable
-HALF = [(BASE[i] + FLAT[i]) / 2 for i in range(5)]     # split the difference
+E_MGN_F = E_MGN_OURS[1:]                                 # their margin, our definition
+E_REV_MULT = [E_REV[i + 1] / F['revenue'][i] for i in range(5)]
+HALF = [(BASE[i] + E_MGN_F[i]) / 2 for i in range(5)]
 
-# EFG's FY2028 revenue is 13,792 against our 15,350 — their volumes FALL 3% over the five
-# years where ours rise 3.1%. Read off their Figure 1; the intermediate years are not
-# tabulated here, so the gap is ramped linearly to that FY2028 anchor and held widening at
-# the same annual rate. Labelled a PROXY wherever it is reported.
-EFG_FY28 = 13792.0
-step = (1.0 - EFG_FY28 / F['revenue'][2]) / 3.0        # per-year erosion to hit FY2028
-EFG_REV = [1.0 - step * (i + 1) for i in range(5)]
+SC = [("Testahil base — our margin, our volumes", BASE, IN['norm_mgn'], None),
+      ("Half way between the two margin paths", HALF, IN['norm_mgn'], None),
+      ("EFG margin, OUR volumes", E_MGN_F, IN['norm_mgn'], None),
+      ("EFG margin, EFG volumes — their view whole", E_MGN_F, IN['norm_mgn'], E_REV_MULT),
+      ("EFG margin, our volumes, mid-cycle lifted too", E_MGN_F, H['margin'][2], None)]
 
-SC = [('Testahil base — margin glides 39.3% -> 35.0%', BASE, IN['norm_mgn'], None),
-      ('Half way — glide only half as far', HALF, IN['norm_mgn'], None),
-      ("EFG margin — HELD at the FY2025 39.25%", FLAT, IN['norm_mgn'], None),
-      ("EFG margin AND a 39.25% mid-cycle margin", FLAT, MGN_FY25, None),
-      ("EFG margin AND EFG volumes (PROXY)", FLAT, IN['norm_mgn'], EFG_REV)]
-
-print(f"\n  effective tax {TAXE:.2%}   terminal rate {WT_:.2%}   g {G:.1%}   "
-      f"market {IN['spot']:.2f}\n")
-print(f"  {'scenario':44s} {'FY30 mgn':>9s} {'DCF':>8s} {'central':>9s} {'vs mkt':>8s} {'reinv':>7s}")
+print(f"\n  {'scenario':46s} {'DCF':>8s} {'central':>9s} {'vs mkt':>8s} {'reinv':>7s}")
 rows = []
 for name, mgn, nm, rm in SC:
     fv, rr = dcf(mgn, rm)
     v, c = lenses(fv, nm)
-    rows.append(dict(name=name, mgn_path=[round(m, 4) for m in mgn], norm_mgn=nm,
-                     rev_mult=rm and [round(x, 4) for x in rm], dcf=round(fv, 2),
-                     central=round(c, 2), reinvest=round(rr, 4),
-                     lenses={k: round(x, 2) for k, x in v.items()}))
-    print(f"  {name:44s} {mgn[-1]:8.1%} {fv:8.2f} {c:9.2f} {c/IN['spot']-1:+8.1%} {rr:7.1%}")
+    rows.append(dict(name=name, dcf=round(fv, 2), central=round(c, 2), reinvest=round(rr, 4),
+                     mgn_path=[round(m, 4) for m in mgn],
+                     rev_mult=rm and [round(x, 4) for x in rm], norm_mgn=round(nm, 4)))
+    print(f"  {name:46s} {fv:8.2f} {c:9.2f} {c/IN['spot']-1:+8.1%} {rr:7.1%}")
 
-print(f"\n  sensitivities off the base case:")
 up, _ = dcf([m + 0.01 for m in BASE])
 dn, _ = dcf(BASE, [0.95] * 5)
-print(f"    +1.00pt of EBITDA margin, every year  ->  DCF {up - b_dcf:+.2f}   "
-      f"central {lenses(up, IN['norm_mgn'])[1] - b_c:+.2f}")
-print(f"    -5.0% on the revenue path, every year ->  DCF {dn - b_dcf:+.2f}   "
-      f"central {lenses(dn, IN['norm_mgn'])[1] - b_c:+.2f}")
+print(f"\n  sensitivities off the base case:")
+print(f"    +1.00pt of EBITDA margin, every year   DCF {up-b_dcf:+.2f}   "
+      f"central {lenses(up, IN['norm_mgn'])[1]-b_c:+.2f}")
+print(f"    -5.0% on the revenue path, every year  DCF {dn-b_dcf:+.2f}   "
+      f"central {lenses(dn, IN['norm_mgn'])[1]-b_c:+.2f}")
 
-json.dump(rows, open(os.path.join(HERE, 'scenario_margin.json'), 'w'), indent=1)
+json.dump(dict(wedge_pct=WEDGE_PCT, wedge_egp=WEDGE, margin_table=tbl, scenarios=rows),
+          open(os.path.join(HERE, 'scenario_margin.json'), 'w'), indent=1)
 print('\n  wrote scenario_margin.json')

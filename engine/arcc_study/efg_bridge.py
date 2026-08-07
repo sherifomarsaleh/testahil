@@ -47,7 +47,9 @@ REM = 1.0 - IN['stub_years']
 # ---- EFG, read off their Figure 1 (6 August 2026) ---------------------------
 E_FCF = [2975, 3489, 3653, 3715, 3790]
 E_CAPEX = [308, 300, 248, 261, 416]
-E_DNA = [318, 332, 349, 366, 384]
+# D&A backed out of their page-2 Data Miner as EBITDA less EBIT, FY2026e-FY2028e only —
+# they do not tabulate FY2029e/FY2030e. Documentation for the capex receipt; not computed on.
+E_DNA = [5132 - 4814, 5485 - 5138, 5620 - 5242]           # 318, 347, 378
 E_DF = [1.0000, 0.8329, 0.6937, 0.5779, 0.4813]           # = 1/(1.2006)^(t-1)
 E_PVEXP, E_PVTV, E_NC = 12387, 10653, 3119
 E_WACC, E_G = 0.2006, 0.025
@@ -128,8 +130,8 @@ STEPS = [
     dict(key='capex', driver='capex path', touches={'window'},
          label="Maintenance\ncapex", sub="5-yr 1,533 → 5,592\ntheirs below D&A", fn=s_capex,
          off='EFG',
-         receipt="EFG's FY2026 capex of 308 sits below their OWN FY2026 D&A of 318, and "
-                 "below it in four of five years — net disinvestment. ARCC actually spent "
+         receipt="EFG's capex sits below their OWN D&A in all three years they tabulate: "
+                 "308 vs 318, 300 vs 347, 248 vs 378 — net disinvestment. ARCC actually spent "
                  "912 (FY2024) and 799 (FY2025). CAVEAT: ours is not obviously right "
                  "either; 1,012 in FY2026 is ABOVE the FY2025 actual of 799. The "
                  "magnitude is arguable, the direction is not."),
