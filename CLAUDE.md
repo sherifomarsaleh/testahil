@@ -12,6 +12,15 @@ complete prose version, with the reasoning and the failures each rule was adopte
 is `engine/Standing_Research_Protocol.md` — read it when a condensed rule needs its
 full context, or before amending any rule.
 
+**KEEP THE TWO IN SYNC — same discipline as `Publish_Protocol.md`'s standing prompt.**
+Any new or amended standing rule gets added to BOTH files in the same commit: the full
+account in `Standing_Research_Protocol.md`, and a condensed paragraph in
+`PROJECT_INSTRUCTIONS_11-07-2026.md` (rule only, no narrative, no volatile numbers — the
+file's own header says as much). This digest has gone stale three times already this
+session from exactly this drift. After editing it, send the user its full current text in
+chat (not just a diff) — they paste it into their own external project files, so a
+diff-only summary leaves that copy silently behind.
+
 **Other governing documents, by task:**
 - Starting a brand-new study → `engine/Study_Initiation_Prompt.md`
 - Responding to an external critique of a delivered study → `engine/Critique_Response_Prompt.md`
