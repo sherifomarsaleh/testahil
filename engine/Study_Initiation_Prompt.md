@@ -22,6 +22,19 @@ Run a full valuation study for **{COMPANY NAME}**, listed on **{EXCHANGE}**. Thi
 
 Then follow the TESTAHIL Standing Research Protocol end-to-end without asking: read live state first (market_profiles.py + fitted_configs.json from the repo), then Step 0.0 data-quality gate → Step 0 calibration gate (scale-normalized, carry-anchored) → Step 2A four-ring Information Sweep → financials → build the 16-section Word + 16-sheet Excel matching TMPV_Valuation_Study_30-06-2026 → unprompted QC gate as a filled evidence table.
 
+**Step 2A's Company ring, primary-source discipline [ADDED 07-Aug-2026].** Try the company's own
+official website / investor-relations page FIRST, before any aggregator — log the attempt and its
+outcome in the Sweep Register even when it fails (a real case: a company's own site returned
+`connect_rejected` at the build environment's proxy), and ask the user to attach the primary
+document directly rather than silently substituting a weaker secondary source. Pull **audited
+financial statements for a minimum of TWO, target FOUR, complete past fiscal years**, from the
+filing itself. For the study year itself, pull **every quarter already disclosed** before the
+build starts — not discovered afterward because a user asked. Treat **every available
+investor-relations presentation and investor/earnings-call transcript** as a mandatory sweep
+source, not optional colour: this is where volumes, per-unit prices, utilisation rates and segment
+splits live, and none of it is in the financial statements. Tag these `COMPANY_INVESTOR_RELATIONS`
+in the Sweep Register, kept separate from `AUDITED_FINANCIAL_STATEMENTS`.
+
 **The Excel must CALCULATE, not store. A number that could be derived from a driver and is instead pasted is a defect, not a formatting choice.**
 
 Build the workbook formula-first:
@@ -62,6 +75,15 @@ Build the workbook formula-first:
 (l2) **Every deliverable ships as a PDF.** The Word file is the build artifact; the PDF is what the reader gets, and no study is delivered without one. Render with `python3 engine/make_pdf.py <files>` and report the page and figure count of each. If a conversion fails, fix the toolchain — do not record it as an environment limitation until you have checked that the converter is actually installed COMPLETE (LibreOffice without libreoffice-writer/calc fails on every input, including a two-line CSV).
 
 (l3) **Read the rendered PDF before delivering.** Open it and look at it — the rendered document is where layout breaks, table overflow and copy errors become visible. On the SWDY edition this step caught published site copy that stated the wrong lens weights.
+
+(l4) **[ADDED 07-Aug-2026] Sweep Register shows primary-source depth in the Company ring.** The
+register (feeding the bibliography document, item (l)) must show: an attempt at the company's own
+website/IR page, logged whether it succeeded or failed; a minimum of two, target four, complete
+past audited fiscal years cited to the filing itself; every quarter of the study year already
+disclosed at build time; and at least one investor-relations presentation or call transcript,
+tagged `COMPANY_INVESTOR_RELATIONS` distinctly from `AUDITED_FINANCIAL_STATEMENTS`. Missing any of
+these is a QC FAIL, not a noted limitation, unless the shortfall itself is stated plainly (e.g. the
+company genuinely discloses only one prior year).
 
 (m) Remove any reference to the procedure like references to step 2A for example
 

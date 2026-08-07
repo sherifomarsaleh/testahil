@@ -2,7 +2,9 @@
 
 How a completed study becomes a live ticker page + a ledger cohort. Companion to
 `Rollforward_and_Grading_Protocol.md` (which governs what happens to that cohort
-afterwards, and whose STEP 3 the publish-time ledger sweep runs) and to the PUBLISHING block in `PROJECT_INSTRUCTIONS_11-07-2026.md`.
+afterwards, and whose STEP 3 the publish-time ledger sweep runs). This is the
+canonical publishing instruction — `PROJECT_INSTRUCTIONS_11-07-2026.md` no longer
+carries its own PUBLISHING block and just points here.
 
 Publishing is a SEPARATE, EXPLICITLY-REQUESTED step. Running a study never
 publishes it; a study is delivered as files and sits until publication is asked
