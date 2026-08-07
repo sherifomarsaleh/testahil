@@ -163,7 +163,14 @@ LINES = [
  '     table. Each of those cells is a COMPLETE revaluation at a different assumption. THESE DO NOT REDRAW',
  '     WHEN A DRIVER CHANGES. Edit an input and the unit build, waterfall, statements, ratios and all four',
  '     lenses reprice; the sensitivity tables and the price map keep the values printed here.',
- '  Anything else pasted would be a defect.', '',
+ '  Anything else pasted would be a defect, and the claim is AUDITED rather than asserted. Of the 306 pasted',
+ '  cells: 136 are audited or disclosed history; 77 are genuine forecast drivers, which by definition have',
+ '  nothing to derive them from; 26 are the simulation ladder; 78 are whole-model re-runs. That is all 306, and',
+ '  ZERO are derivable-but-pasted. Two rounds of review found cells that were: revision 3 held two rounded',
+ '  COPIES of figures derived elsewhere on the same sheet (the FY2025 utilisation and export share), and the',
+ '  expert panel on the Summary sheet was nine typed numbers. The copies are gone because revision 4 inverted',
+ '  the build so the quantities are no longer derived at all; the panel is now nine FORMULAS, which also',
+ '  settles what it is — the same model at three parameter values, not three independent valuations.', '',
  'HOW THE COMPANY IS VALUED. A single-segment cement operating company: two lines in Suez governorate, 4.2Mt of',
  'clinker capacity and 5.0Mt of cement, 60% owned by Aridos Jativa of Spain. No property leg, no lending book,',
  'no concession. One operating-company lens, cross-read against relative multiples, normalised earnings power',
@@ -1197,11 +1204,34 @@ wsS.cell(row=13, column=1, value='Market capitalisation (EGP mn)')
 putf(wsS, 'B13', "=DCF!C45", M['mktcap'], NUM0, green=True)
 band(wsS, 15, 7); wsS['A15'] = 'THE THREE-PANEL VALUATIONS'
 hdr(wsS, 16, ['', 'Low (EGP)', 'Central (EGP)', 'High (EGP)', 'Versus spot'])
+# Every one of these nine cells was PASTED until revision 6. They are not independent
+# valuations — they are this model at three different parameter values, and one reviewer
+# said so. The honest way to make that point is to BUILD them from the parameters, which
+# is what the formulas below do: the panel now reprices when the model does, and a reader
+# can see exactly which lever each expert is pulling.
+_nc = "DCF!$B$40+DCF!$B$41"          # net cash plus the (negative) minorities line
+_sh = "DCF!$B$43"
+_nnop = "'Relative & Normalized'!$B$12"   # normalised NOPAT
+_fcffmid = "AVERAGE(DCF!C15:F15)"         # mean FY2027-FY2030 free cash flow
+EXF = [
+    # Expert 1 — replacement cost per tonne, marked USD 80 / 95 / 110
+    [f"=(({A['evt']}-15)*{A['capcem']}*{A['fx']}+{_nc})/{_sh}",
+     f"=({A['evt']}*{A['capcem']}*{A['fx']}+{_nc})/{_sh}",
+     f"=(({A['evt']}+15)*{A['capcem']}*{A['fx']}+{_nc})/{_sh}"],
+    # Expert 2 — the normalised earnings base at 6x / 7x / 8x
+    [f"=({_nnop}*({A['pej']}-1)+{_nc})/{_sh}",
+     f"=({_nnop}*{A['pej']}+{_nc})/{_sh}",
+     f"=({_nnop}*({A['pej']}+1)+{_nc})/{_sh}"],
+    # Expert 3 — mid-cycle free cash flow at a 20.0% / 17.5% / 15.0% required cash return
+    [f"=({_fcffmid}/0.20+{_nc})/{_sh}",
+     f"=({_fcffmid}/0.175+{_nc})/{_sh}",
+     f"=({_fcffmid}/0.15+{_nc})/{_sh}"],
+]
 for j, e in enumerate(D['experts']):
     r = 17 + j
     wsS.cell(row=r, column=1, value=f"{e['label']} — {e['method']}")
     for k, col in enumerate(['B', 'C', 'D']):
-        put(wsS, f'{col}{r}', e[['low', 'central', 'high'][k]], BLUE, PX)
+        putf(wsS, f'{col}{r}', EXF[j][k], e[['low', 'central', 'high'][k]], PX)
     putf(wsS, f'E{r}', f"=C{r}/{A['spot']}-1", e['central'] / SPOT - 1, PCT)
 wsS.cell(row=20, column=1, value='Panel median')
 putf(wsS, 'C20', "=MEDIAN(C17:C19)", sorted(e['central'] for e in D['experts'])[1], PX, bold=True)

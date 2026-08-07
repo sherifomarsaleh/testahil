@@ -806,6 +806,15 @@ for head, body in [
      f'were labelled one row above their contents. All of that is corrected here. The '
      f'central fair value moves from EGP 61.30 to EGP {n2(LN["central"])}, and the '
      f'conclusion moves from a premium over the market to a small discount.'),
+    ('The expert panel is the model at three parameter values, not three independent '
+     'valuations. ', f'A reviewer pointed out that Expert 1\'s central IS the asset lens '
+     f'to the pound and Expert 2\'s IS the normalised-earnings lens. That is correct, and '
+     f'the workbook now builds all nine panel figures as FORMULAS off the same drivers '
+     f'rather than typing them, so the point is demonstrated rather than argued: Expert 1 '
+     f'marks replacement cost at USD 80/95/110 a tonne, Expert 2 capitalises the '
+     f'normalised base at 6/7/8 times, Expert 3 discounts mid-cycle free cash flow at a '
+     f'20.0%/17.5%/15.0% required return. Read the panel as a sensitivity with reasoning '
+     f'attached, not as corroboration.'),
     ('Volume is now physical, and it is the largest open question in the study. ', f'The '
      f'build runs on kiln utilisation, the clinker factor and two export shares, and the '
      f'three realised prices are derived from the audited revenue note. That makes the '
