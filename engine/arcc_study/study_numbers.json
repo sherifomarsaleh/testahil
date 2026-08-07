@@ -1,0 +1,2040 @@
+{
+ "meta": {
+  "ticker": "ARCC",
+  "company": "Arabian Cement Company S.A.E.",
+  "market": "EGX",
+  "market_code": "EG",
+  "currency": "EGP",
+  "asof": "2026-08-06",
+  "spot": 59.0,
+  "shares_mn": 374.86744500000003,
+  "mktcap": 22117.179255000003,
+  "revision": 3,
+  "klass": "single-asset cement operating company (net cash)",
+  "sector": "Construction materials \u2014 cement",
+  "basis": "audited consolidated financial statements FY2023-FY2025 and reviewed Q1-2026 interim accounts"
+ },
+ "inputs": {
+  "spot": {
+   "value": 59.0,
+   "source": "Closing price 06-Aug-2026 from the supplied EGX daily series (open 58.40, high 59.90, low 58.25)",
+   "date": "2026-08-06",
+   "ring": "Market"
+  },
+  "shares_issued": {
+   "value": 378.7397,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026, note 20: 378,739,700 ordinary shares authorised, issued and fully paid at EGP 2 par, issued capital EGP 757,479,400",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "shares_treasury": {
+   "value": 3.872255,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026, note 21: 3,872,255 treasury shares acquired during 2025 for EGP 143,327,985, being 1% of capital, under a board approval of 21 July 2025",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "shares_wavg_fy25": {
+   "value": 377.155593,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026, note 11: weighted average ordinary shares for earnings per share, after excluding treasury shares",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "shares_wavg_fy24": {
+   "value": 378.7397,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026, note 11, comparative",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "tax_stat": {
+   "value": 0.225,
+   "source": "Egypt statutory corporate income tax rate",
+   "date": "2026-01-01",
+   "ring": "Country"
+  },
+  "rev_fy23": {
+   "value": 6042.831338,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024, Deloitte (Wafik, Ramy & Partners), signed 23 March 2025 \u2014 sales (net), comparative column",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "rev_fy24": {
+   "value": 8729.782821,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 sales (net), comparative column",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "rev_fy25": {
+   "value": 12447.320081,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 sales (net)",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "cogs_fy23": {
+   "value": 4759.815212,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024, Deloitte (Wafik, Ramy & Partners), signed 23 March 2025 \u2014 cost of sales, comparative",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "cogs_fy24": {
+   "value": 6642.972487,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 cost of sales, comparative",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "cogs_fy25": {
+   "value": 7389.054416,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 cost of sales",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "ga_fy23": {
+   "value": 183.940276,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024, Deloitte (Wafik, Ramy & Partners), signed 23 March 2025 \u2014 general and administrative expenses, comparative",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "ga_fy24": {
+   "value": 267.798104,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 general and administrative expenses, comparative",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "ga_fy25": {
+   "value": 384.332833,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 general and administrative expenses, note 6",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "prov_fy23": {
+   "value": 15.220195,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024, Deloitte (Wafik, Ramy & Partners), signed 23 March 2025 \u2014 provisions charged, comparative",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "prov_fy24": {
+   "value": 56.05295,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 provisions charged, comparative",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "prov_fy25": {
+   "value": 74.505707,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 provisions charged, note 27",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "ecl_fy23": {
+   "value": 4.745753,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024, Deloitte (Wafik, Ramy & Partners), signed 23 March 2025 \u2014 expected credit losses on trade receivables, comparative",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "ecl_fy24": {
+   "value": -1.106452,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 REVERSAL of expected credit losses, comparative (negative, i.e. a credit)",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "ecl_fy25": {
+   "value": 3.603563,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 expected credit losses on trade receivables, note 17",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "pbt_fy23": {
+   "value": 930.231432,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024, Deloitte (Wafik, Ramy & Partners), signed 23 March 2025 \u2014 net profit before tax, comparative",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "pbt_fy24": {
+   "value": 1505.866118,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 net profit before tax, comparative",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "pbt_fy25": {
+   "value": 4725.157878,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 net profit before tax",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "tax_fy23": {
+   "value": 232.732802,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024, Deloitte (Wafik, Ramy & Partners), signed 23 March 2025 \u2014 income tax, comparative",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "tax_fy24": {
+   "value": 345.730996,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 income tax, comparative",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "tax_fy25": {
+   "value": 1125.467657,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 income tax, note 10.1: current 1,111.30 plus deferred 14.17",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "pat_fy23": {
+   "value": 697.488741,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024, Deloitte (Wafik, Ramy & Partners), signed 23 March 2025 \u2014 profit attributable to owners of the Parent, comparative",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "pat_fy24": {
+   "value": 1160.129411,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 profit attributable to owners of the Parent, comparative",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "pat_fy25": {
+   "value": 3599.585937,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 profit attributable to owners of the Parent (group profit 3,599.690 less 0.104 to non-controlling interests)",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "eps_fy23": {
+   "value": 1.81,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024, Deloitte (Wafik, Ramy & Partners), signed 23 March 2025 \u2014 earnings per share, comparative",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "eps_fy24": {
+   "value": 3.02,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 earnings per share, comparative",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "eps_fy25": {
+   "value": 9.49,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 earnings per share, note 11, struck on distributable profit of 3,580.712 after the employees' share of 18.874",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "intinc_fy25": {
+   "value": 226.274781,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 interest income",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "othinc_fy25": {
+   "value": 53.339508,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 other income, note 7, including export subsidies of EGP 31.643mn",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "fincost_fy25": {
+   "value": 49.841733,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 finance costs, note 8: loan interest 24.613, credit-facility interest 23.007, lease interest 1.163, long-term trade-payable finance interest 1.059",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "fincost_fy24": {
+   "value": 91.188916,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 finance costs, comparative",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "fx_diff_fy25": {
+   "value": -101.57824,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 foreign currency exchange differences, a LOSS",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "rev_local_goods_fy25": {
+   "value": 8350.45461,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 note 4, local sales of goods",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "rev_local_svc_fy25": {
+   "value": 281.863546,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 note 4, local services",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "rev_exp_goods_fy25": {
+   "value": 3356.422381,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 note 4, export sales of goods",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "rev_exp_svc_fy25": {
+   "value": 458.579544,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 note 4, export services",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "rev_local_fy24": {
+   "value": 4883.304477,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 note 4, total local sales, comparative",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "rev_exp_fy24": {
+   "value": 3846.478344,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 note 4, total export sales, comparative",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "cos_materials_fy25": {
+   "value": 5698.184715,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 note 5, raw materials; note 16 confirms this is the cost of inventories charged to cost of sales, so it carries fuel, packing and spares as well as raw meal",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "cos_transport_fy25": {
+   "value": 764.279332,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 note 5, transportation costs",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "cos_overhead_fy25": {
+   "value": 641.143208,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 note 5, overhead costs",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "cos_mfg_dep_fy25": {
+   "value": 254.765548,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 note 5, manufacturing depreciation",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "ga_admin_dep_fy25": {
+   "value": 4.324134,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 note 6, administrative depreciation",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "dna_fy23": {
+   "value": 250.424521,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024, Deloitte (Wafik, Ramy & Partners), signed 23 March 2025 \u2014 cash flow statement, comparative column: property depreciation 215.377 plus intangible amortisation 28.156 plus right-of-use amortisation 6.891",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "dna_fy24": {
+   "value": 256.801527,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 cash flow statement, comparative: 221.563 plus 28.156 plus 7.082",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "dna_fy25": {
+   "value": 289.771295,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 cash flow statement: property depreciation 259.090 plus intangible amortisation 28.156 plus right-of-use amortisation 2.525",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "capex_fy23": {
+   "value": 58.543963,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024, Deloitte (Wafik, Ramy & Partners), signed 23 March 2025 \u2014 cash flow, comparative: purchases of property 56.808 plus assets under construction 1.736",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "capex_fy24": {
+   "value": 912.0154,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 cash flow, comparative: 206.543 plus 705.473",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "capex_fy25": {
+   "value": 796.47076,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 cash flow: purchases of property 329.893 plus assets under construction 466.578",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "ta_fy25": {
+   "value": 8783.721849,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 total assets",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "ta_fy24": {
+   "value": 5848.616103,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 total assets, comparative",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "ta_fy23": {
+   "value": 3887.527427,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024, Deloitte (Wafik, Ramy & Partners), signed 23 March 2025 \u2014 total assets, comparative",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "tl_fy25": {
+   "value": 4140.989609,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 TOTAL liabilities (non-current 1,246.860 plus current 2,894.130). Revision 1 was offered EGP 2,894.13mn as 'total liabilities' by an aggregator and rejected it because it would not close against assets and equity; the statements show that figure is total CURRENT liabilities, so both the rejection and the derived 4,140.99 were right",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "ppe_fy25": {
+   "value": 2522.323523,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 property, plant and equipment (net), note 12",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "auc_fy25": {
+   "value": 391.543753,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 assets under construction, note 13: alternative-fuel system for production line 2 EGP 240.235mn, new steel cement silo for line 1 EGP 146.239mn",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "intang_fy25": {
+   "value": 106.799617,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 intangible assets (net), note 14: the operating licence",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "inv_fy25": {
+   "value": 1053.646218,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 inventories, note 16: raw materials 282.765, fuel 200.388, packing 51.934, spares 190.444, work in progress 6.861, goods in transit 0.483, finished goods 320.771",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "recv_fy25": {
+   "value": 244.416417,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 trade receivables (net of EGP 7.639mn expected credit losses), note 17",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "debtors_fy25": {
+   "value": 1004.779062,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 debtors and other debit balances (net), note 18, of which advances to suppliers 826.903",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "cash_fy25": {
+   "value": 3459.391229,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 cash and bank balances, note 19: local-currency current accounts 1,839.630, foreign-currency current accounts 1,599.702, deposits 8.733, cash in hand 11.325",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "cash_fy24": {
+   "value": 1687.062873,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 cash and bank balances, comparative",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "cash_fy23": {
+   "value": 561.09968,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024, Deloitte (Wafik, Ramy & Partners), signed 23 March 2025 \u2014 cash and bank balances, comparative",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "eq_fy25": {
+   "value": 4642.574235,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 equity attributable to owners of the Parent: issued capital 757.479, treasury shares (143.328), legal reserve 379.506, retained earnings 3,648.917",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "eq_fy24": {
+   "value": 2303.472299,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 equity attributable to owners, comparative",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "eq_fy23": {
+   "value": 1754.221659,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024, Deloitte (Wafik, Ramy & Partners), signed 23 March 2025 \u2014 equity attributable to owners, comparative",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "nci": {
+   "value": 0.158005,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 non-controlling interests, note 24: EGP 158,005. Revision 1 deducted EGP 150mn on inference from the profit statements; the audited figure is 950 times smaller and immaterial to the bridge",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "debt_cib_fy25": {
+   "value": 99.916937,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 note 25, Commercial International Bank credit facilities. EGP 650mn package at the Central Bank corridor offer rate plus 0.6%, EGP-denominated, for working capital",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "debt_nbe_fy25": {
+   "value": 145.741484,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 note 25, National Bank of Egypt facility (current 27.057 plus non-current 118.685). EUR 3.09mn under a KfW industrial-pollution grant programme, 20 quarterly instalments at 6-month Euribor plus 3%",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "debt_ebrd_fy25": {
+   "value": 888.274195,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 note 25, European Bank for Reconstruction and Development facility (current 118.437 plus non-current 769.838). EUR 25mn at 3-month Euribor plus 4.35%, drawn to EUR 18.5mn, funding alternative-fuel capacity for kiln 2 and hydrogen injection on both kilns; 15 equal quarterly instalments from 18 months after signing",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "debt_fy24": {
+   "value": 760.917684,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 note 25, comparative: credit facilities 615.044 plus bank loans 145.874",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "debt_fy23": {
+   "value": 90.074273,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024, Deloitte (Wafik, Ramy & Partners), signed 23 March 2025 \u2014 credit facilities, comparative; no term borrowings at that date",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "lease_fy25": {
+   "value": 1.176042,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 lease liabilities, note 33-2",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "loan_int_fy25": {
+   "value": 24.61313,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 note 8, loan interest expense",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "fac_int_fy25": {
+   "value": 23.00737,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 note 8, credit-facility interest expense",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "loan_int_fy24": {
+   "value": 2.754107,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 note 8, loan interest expense, comparative",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "fac_int_fy24": {
+   "value": 85.953026,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 note 8, credit-facility interest, comparative",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "rev_q1_26": {
+   "value": 2995.95935,
+   "source": "Reviewed condensed consolidated interim financial statements for the three months ended 31 March 2026, Deloitte (Wafik, Ramy & Partners), 25 May 2026 \u2014 sales (net)",
+   "date": "2026-03-31",
+   "ring": "Company"
+  },
+  "rev_q1_25": {
+   "value": 2554.448091,
+   "source": "Reviewed condensed consolidated interim financial statements for the three months ended 31 March 2026, Deloitte (Wafik, Ramy & Partners), 25 May 2026 \u2014 sales (net), comparative",
+   "date": "2025-03-31",
+   "ring": "Company"
+  },
+  "gp_q1_26": {
+   "value": 1286.145881,
+   "source": "Reviewed condensed consolidated interim financial statements for the three months ended 31 March 2026, Deloitte (Wafik, Ramy & Partners), 25 May 2026 \u2014 gross profit",
+   "date": "2026-03-31",
+   "ring": "Company"
+  },
+  "ga_q1_26": {
+   "value": 102.281789,
+   "source": "Reviewed condensed consolidated interim financial statements for the three months ended 31 March 2026, Deloitte (Wafik, Ramy & Partners), 25 May 2026 \u2014 general and administrative expenses",
+   "date": "2026-03-31",
+   "ring": "Company"
+  },
+  "prov_q1_26": {
+   "value": 6.892,
+   "source": "Reviewed condensed consolidated interim financial statements for the three months ended 31 March 2026, Deloitte (Wafik, Ramy & Partners), 25 May 2026 \u2014 provisions",
+   "date": "2026-03-31",
+   "ring": "Company"
+  },
+  "pat_q1_26": {
+   "value": 943.068309,
+   "source": "Reviewed condensed consolidated interim financial statements for the three months ended 31 March 2026, Deloitte (Wafik, Ramy & Partners), 25 May 2026 \u2014 profit attributable to owners of the Parent",
+   "date": "2026-03-31",
+   "ring": "Company"
+  },
+  "pbt_q1_26": {
+   "value": 1273.03423,
+   "source": "Reviewed condensed consolidated interim financial statements for the three months ended 31 March 2026, Deloitte (Wafik, Ramy & Partners), 25 May 2026 \u2014 net profit before tax",
+   "date": "2026-03-31",
+   "ring": "Company"
+  },
+  "tax_q1_26": {
+   "value": 329.943494,
+   "source": "Reviewed condensed consolidated interim financial statements for the three months ended 31 March 2026, Deloitte (Wafik, Ramy & Partners), 25 May 2026 \u2014 income tax",
+   "date": "2026-03-31",
+   "ring": "Company"
+  },
+  "cash_q1_26": {
+   "value": 4379.627379,
+   "source": "Reviewed condensed consolidated interim financial statements for the three months ended 31 March 2026, Deloitte (Wafik, Ramy & Partners), 25 May 2026 \u2014 cash and bank balances",
+   "date": "2026-03-31",
+   "ring": "Company"
+  },
+  "debt_q1_26": {
+   "value": 1260.509089,
+   "source": "Reviewed condensed consolidated interim financial statements for the three months ended 31 March 2026, Deloitte (Wafik, Ramy & Partners), 25 May 2026 \u2014 borrowings 925.152 plus current portion 234.899 plus credit facilities 99.784 plus lease liabilities 0.675",
+   "date": "2026-03-31",
+   "ring": "Company"
+  },
+  "divpay_q1_26": {
+   "value": 2001.79216,
+   "source": "Reviewed condensed consolidated interim financial statements for the three months ended 31 March 2026, Deloitte (Wafik, Ramy & Partners), 25 May 2026 \u2014 dividends payable. This is the FY2025 distribution declared and unpaid at 31 March 2026, and it divides to EGP 5.34 per share on the shares outstanding",
+   "date": "2026-03-31",
+   "ring": "Company"
+  },
+  "fincost_q1_26": {
+   "value": 11.168843,
+   "source": "Reviewed condensed consolidated interim financial statements for the three months ended 31 March 2026, Deloitte (Wafik, Ramy & Partners), 25 May 2026 \u2014 finance costs",
+   "date": "2026-03-31",
+   "ring": "Company"
+  },
+  "div_fy24_paid": {
+   "value": 1102.110289,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 note 28: the ordinary general assembly of 2 December 2025 approved EGP 1,102,110,289 to shareholders for FY2024, plus EGP 15,045,727 to employees",
+   "date": "2025-12-02",
+   "ring": "Company"
+  },
+  "div_fy25_declared": {
+   "value": 2001.79216,
+   "source": "Reviewed condensed consolidated interim financial statements for the three months ended 31 March 2026, Deloitte (Wafik, Ramy & Partners), 25 May 2026 \u2014 dividends payable at 31 March 2026 for the FY2025 result",
+   "date": "2026-03-31",
+   "ring": "Company"
+  },
+  "cap_clinker_mt": {
+   "value": 4.2,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 note 1: 'a cement producer with a clinker capacity of 4.2 million tons per annum'",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "cap_cement_mt": {
+   "value": 5.0,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 note 1: '...that can produce 5 million tons per annum of cement'",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "clinker_factor": {
+   "value": 0.7329,
+   "source": "Tonnes of clinker per tonne of cement PRODUCED. Revision 3 used 0.84, taken from the ratio of the two nameplate capacities in note 1 and described as 'observed'. It is not observed and it is not a clinker factor: 4.2/5.0 is a ratio of two DESIGN capacities, and a clinker factor is a production-composition ratio. 0.84 also sits above the 0.65-0.80 band typical of blended cement, and the study then called this producer 'low-clinker' three sections later. The figure carried here is the production ratio implied by the FY2025 physical disclosure: clinker produced less clinker exported, over cement produced: FY2025 Investor Presentation, Arabian Cement Company S.A.E., investor relations library, page 5 (sales volumes and production indicators) gives clinker production 3,851.6 kt less clinker exports 1,300.5 kt = 2,551.1 kt ground into 3,480.6 kt of cement",
+   "date": "2026-03-01",
+   "ring": "Company"
+  },
+  "kiln_util": {
+   "value": [
+    0.917,
+    0.92,
+    0.925,
+    0.93,
+    0.933,
+    0.935
+   ],
+   "source": "Clinker-kiln utilisation, FY2025A then FY2026E-FY2030E, and the primary volume driver. FY2025 is now DISCLOSED, not inferred: FY2025 Investor Presentation, Arabian Cement Company S.A.E., investor relations library, page 5 (sales volumes and production indicators) gives clinker production of 3,851.6 kt, which is 91.70% of the audited 4.2Mt kiln, and the company states the rate as 92%. The plant has run 92-94% in three of the last five years, so the path rises only modestly \u2014 the kiln is the binding asset and there is little room above here",
+   "date": "2026-03-01",
+   "ring": "Company"
+  },
+  "clk_export_share": {
+   "value": [
+    0.3377,
+    0.33,
+    0.32,
+    0.31,
+    0.305,
+    0.3
+   ],
+   "source": "Share of clinker production sold AS CLINKER rather than ground into cement. FY2025 is DISCLOSED: FY2025 Investor Presentation, Arabian Cement Company S.A.E., investor relations library, page 5 (sales volumes and production indicators) gives clinker exports of 1,300.5 kt on production of 3,851.6 kt = 33.77%. This is the central operating lever and revision 3 could not see it at all: clinker exports and domestic cement compete for the same kiln, and a tonne of clinker realises a fraction of the tonne of cement it could have become. Note the direction of travel \u2014 clinker exports FELL 37% in FY2025 (2,074.4 kt to 1,300.5) while cement exports rose 74%, so the mix was already shifting toward the higher-value product before this forecast starts",
+   "date": "2026-03-01",
+   "ring": "Company"
+  },
+  "cem_export_share": {
+   "value": [
+    0.1772,
+    0.18,
+    0.18,
+    0.175,
+    0.17,
+    0.165
+   ],
+   "source": "Share of cement SOLD that is exported. FY2025 is DISCLOSED: FY2025 Investor Presentation, Arabian Cement Company S.A.E., investor relations library, page 5 (sales volumes and production indicators) gives cement exports of 629.5 kt against local sales of 2,923.6 kt, i.e. 17.72% of the 3,553.1 kt of cement sold. Well inside the 30% statutory cap; revision 3's single-product build put exports at 31.5% of volume and BREACHED the cap its own text called binding",
+   "date": "2026-03-01",
+   "ring": "Company"
+  },
+  "cem_stock_draw": {
+   "value": [
+    0.0725,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "source": "Cement sold LESS cement produced, in Mt. FY2025 Investor Presentation, Arabian Cement Company S.A.E., investor relations library, page 5 (sales volumes and production indicators) discloses cement production of 3,480.6 kt against sales of 3,553.1 kt (2,923.6 local plus 629.5 exported), so FY2025 drew 72.5 kt out of finished-goods inventory. Revision 4 equated sales to production and understated despatches by 1.5%. Held at zero across the forecast: a stock draw is a one-off by construction and the inventory note shows only EGP 320.8mn of finished goods at the year end",
+   "date": "2026-03-01",
+   "ring": "Company"
+  },
+  "clk_price_ratio": {
+   "value": 0.65,
+   "source": "Export clinker price as a fraction of the export cement price. Clinker is the unground intermediate and trades at a discount; 0.65 sits in the middle of the range the trade press reports. This is the one splitting assumption the export leg needs, and the two export prices are DERIVED from it and the audited export revenue, not asserted",
+   "date": "2026-01-15",
+   "ring": "Industry"
+  },
+  "fx_avg_fy25": {
+   "value": 49.26,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 note 2.5 currency table: average USD/EGP for 2025",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "fx_ye_fy25": {
+   "value": 47.66,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 note 2.5: year-end USD/EGP 2025",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "fx_avg_fy24": {
+   "value": 44.39,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 note 2.5: average USD/EGP 2024",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "fx": {
+   "value": 50.3,
+   "source": "USD/EGP at the valuation date",
+   "date": "2026-08-06",
+   "ring": "Country"
+  },
+  "price_local_path": {
+   "value": [
+    1.0,
+    1.08,
+    1.1772,
+    1.2714,
+    1.3604,
+    1.4488
+   ],
+   "source": "Local realised price index on the FY2025 base: growth of 8.0%, 9.0%, 8.0%, 7.0% and 6.5%, below the cost path in every year. IT IS NOW ANCHORED ON A DISCLOSED PRICE HISTORY AND A DISCLOSED EXIT RATE, which no earlier revision had. FY2025 Investor Presentation, Arabian Cement Company S.A.E., investor relations library, page 5 (sales volumes and production indicators) and page 4 give local revenue and local volume for both years and both fourth quarters, so the realised local price can be computed rather than assumed: FY2024 EGP 1,810/t, FY2025 EGP 2,909/t \u2014 a rise of 60.7% on volume up 11.7%. The FY2025 margin explosion was PRICE, not volume, which settles a question three revisions argued about without evidence. More useful still is the exit rate: the fourth quarter of 2025 realised EGP 3,118/t, 7.2% ABOVE the full-year average. Simply holding the Q4 exit flat through 2026 therefore produces a full-year average 7.2% higher, so the 8.0% carried here is only 0.8 points above a no-further-increase path. Revision 3 assumed 3.0% against 11.5% cost inflation and had nothing behind it; revision 4 assumed 8.0% and had only a plausibility argument. The number is unchanged from revision 4 \u2014 but it is now the conservative reading of a disclosed run rate rather than a guess that happened to land in the right place",
+   "date": "2026-03-01",
+   "ring": "Company"
+  },
+  "price_exp_path": {
+   "value": [
+    1.0,
+    0.968,
+    0.944,
+    0.927,
+    0.911,
+    0.895
+   ],
+   "source": "Export price index in US dollars on the FY2025 base, declining because the EU carbon border mechanism raises the landed cost of Egyptian cement in Europe; set shallower than a high-clinker peer would face because this producer's alternative-fuel and hydrogen programmes are funded and under construction",
+   "date": "2026-01-01",
+   "ring": "Industry"
+  },
+  "fx_path": {
+   "value": [
+    49.26,
+    50.6,
+    53.1,
+    55.8,
+    58.6,
+    61.5
+   ],
+   "source": "USD/EGP path, FY2025 actual average then FY2026E-FY2030E",
+   "date": "2026-08-06",
+   "ring": "House"
+  },
+  "cost_infl": {
+   "value": [
+    1.0,
+    1.115,
+    1.226,
+    1.336,
+    1.443,
+    1.544
+   ],
+   "source": "Cumulative local cost-inflation index from the FY2025 base. Steps of 11.5%, 10.0%, 9.0%, 8.0% and 7.0% track the disinflation path the central bank's own reporting describes, converging on its 7% medium-term target. This is an INPUT-PRICE path and is deliberately left at headline inflation even though the company's own audited cash cost grew only 12.5% in FY2025 on volume that rose \u2014 i.e. its realised unit cost inflation ran below the national rate. Crediting that outperformance here would double-count it, because the company-specific efficiency is carried separately and explicitly in af_saving, which is anchored to a funded, under-construction asset rather than to a trend",
+   "date": "2026-07-10",
+   "ring": "Country"
+  },
+  "af_saving": {
+   "value": [
+    0.0,
+    0.015,
+    0.03,
+    0.04,
+    0.048,
+    0.055
+   ],
+   "source": "Cumulative saving on the materials-and-fuel line from the alternative-fuel and hydrogen programmes, relative to the FY2025 cost base. Not an assumption about intent: EGP 240.235mn of alternative-fuel capacity for kiln 2 sits in assets under construction at the year end and a EUR 25mn EBRD facility is drawn against it",
+   "date": "2025-12-31",
+   "ring": "House"
+  },
+  "svc_share": {
+   "value": 0.06325,
+   "source": "Services revenue (transportation) as a share of goods revenue, derived from the disclosed FY2025 split",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "dna_pct": {
+   "value": [
+    0.025,
+    0.027,
+    0.029,
+    0.031,
+    0.033
+   ],
+   "source": "Depreciation as a share of revenue across the forecast, rising because capital spent from here is incurred at today's replacement cost and adds a larger depreciable base per tonne than the legacy book carries. FY2025 actual is 2.33%",
+   "date": "2026-08-06",
+   "ring": "House"
+  },
+  "capex_usd_t_cap": {
+   "value": 4.0,
+   "source": "Maintenance capital expenditure in US dollars per tonne of installed capacity. Cross-check against disclosure: FY2025 capex of EGP 796.471mn on 5.0Mt at an average USD/EGP of 49.26 is USD 3.23/t, and FY2024's EGP 912.015mn is USD 4.11/t \u2014 but both years carry the alternative-fuel and silo programmes, so the maintenance level is set at the middle of that band and held",
+   "date": "2026-08-06",
+   "ring": "Industry"
+  },
+  "wc_pct_drev": {
+   "value": 0.12,
+   "source": "Change in working capital over change in revenue. The FY2025 outturn on the disclosed movements is close to this",
+   "date": "2026-08-06",
+   "ring": "House"
+  },
+  "payout": {
+   "value": 0.556,
+   "source": "Dividend payout ratio from FY2026E, held at the FY2025 outturn: EGP 2,001.792mn declared on EGP 3,599.586mn of attributable profit",
+   "date": "2026-08-06",
+   "ring": "House"
+  },
+  "cash_yield": {
+   "value": [
+    0.15,
+    0.13,
+    0.12,
+    0.112,
+    0.108
+   ],
+   "source": "Yield earned on the cash balance across the forecast. The FY2025 outturn was 8.8% on the average balance \u2014 much of the cash sits in foreign-currency current accounts rather than pound deposits \u2014 and the path is set above it as the balance is redeployed, then easing",
+   "date": "2026-08-06",
+   "ring": "House"
+  },
+  "tax_eff": {
+   "value": 0.2382,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, Deloitte (Wafik, Ramy & Partners), signed 25 February 2026 \u2014 income tax of EGP 1,125.468mn over pre-tax profit of EGP 4,725.158mn. Note 10.2 separately discloses an average effective rate of 23.33% (2024: 22.96%); Q1-2026 ran at 25.92%. Revision 1 inferred 29.43% by closing a MODELLED net finance income against disclosed profit, and over-taxed every forecast year by 5.6 points",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "rf": {
+   "value": 0.2295,
+   "source": "Egypt 10-year local-currency government bond yield. Revision 3 carried 22.31% dated 21 July; three independent reviewers put the 10-year at 22.88-22.98% on 3-5 August, and the curve is inverted above it (1-year near 25.6%). 22.95% is the midpoint of the three, at the valuation date rather than sixteen days before it",
+   "date": "2026-08-05",
+   "ring": "Country"
+  },
+  "sov_spread_cds": {
+   "value": 0.034,
+   "source": "Egypt CDS-implied sovereign default spread, Damodaran January-2026 country risk file, CDS column. NETTED OUT of the local risk-free rate so sovereign default risk is charged once, not twice",
+   "date": "2026-01-05",
+   "ring": "Country"
+  },
+  "erp_cds": {
+   "value": 0.0941,
+   "source": "Egypt equity risk premium, CDS-based, Damodaran January-2026",
+   "date": "2026-01-05",
+   "ring": "Country"
+  },
+  "euribor": {
+   "value": 0.0249,
+   "source": "Three-month Euribor, the reference rate on the EBRD facility. Revision 3 carried 2.10%, which sits BELOW the ECB deposit facility rate of 2.25% and is therefore impossible as a term rate. It also applied one reference to both a 3-month and a 6-month facility; 6-month Euribor is nearer 2.72%, and the difference is carried as a known simplification",
+   "date": "2026-08-06",
+   "ring": "Country"
+  },
+  "kd_egp_marginal": {
+   "value": 0.206,
+   "source": "Marginal EGP borrowing rate: the Central Bank corridor offer rate of 20.0% plus the 0.6% margin disclosed on the CIB facility",
+   "date": "2026-08-06",
+   "ring": "Company"
+  },
+  "egp_dep_vs_eur": {
+   "value": 0.06,
+   "source": "Expected annual depreciation of the pound against the euro, used ONLY to compute the local-currency-equivalent cost of debt alternative under uncovered interest parity",
+   "date": "2026-08-06",
+   "ring": "House"
+  },
+  "kd_path": {
+   "value": [
+    0.206,
+    0.181,
+    0.161,
+    0.149,
+    0.14
+   ],
+   "source": "EGP marginal borrowing-rate path. The discount-rate glide inherits its SHAPE from this rather than from a second judgement. The company's own book is now 91% euro-denominated and will not glide with the Egyptian easing calendar, but the discount rate is a POUND rate applied to pound cash flows, so the pound path is the right shape anchor and the euro book sets the LEVEL of the cost of debt, not its slope",
+   "date": "2026-08-06",
+   "ring": "House"
+  },
+  "kd_term": {
+   "value": 0.135,
+   "source": "Terminal cost of debt = the terminal risk-free rate plus a 300bp corporate credit spread. Revision 3 carried 10.00% against a terminal risk-free rate of 12.50% \u2014 a corporate borrower funding 250bp BELOW its own sovereign in the same currency, printed one row above it in the same table. It is now built from the risk-free rate rather than asserted beside it, so the impossibility cannot recur",
+   "date": "2026-08-06",
+   "ring": "House"
+  },
+  "rf_term": {
+   "value": 0.105,
+   "source": "Terminal risk-free rate, NORM-BUILT from the central bank's longest-dated published inflation target of 5% (Q4-2028) plus a standard emerging-market real-rate convention of about 5.5 percentage points. Revision 3 used the 7% target, which is the NEAR-dated one (Q4-2026) and not the medium-term target at all. The correction also repairs a second defect: against 7% the model's 5% terminal growth was -1.9% real while the text called it 'approximately zero'. Against the 5% target it genuinely is zero",
+   "date": "2026-08-06",
+   "ring": "House"
+  },
+  "erp_term": {
+   "value": 0.07,
+   "source": "Terminal equity risk premium, normalised below the currently elevated level",
+   "date": "2026-08-06",
+   "ring": "House"
+  },
+  "wd_term": {
+   "value": 0.2,
+   "source": "Terminal debt weight",
+   "date": "2026-08-06",
+   "ring": "House"
+  },
+  "g_term": {
+   "value": 0.05,
+   "source": "Terminal growth, the house default for an established emerging-market industrial against a terminal risk-free rate that already embeds disinflation \u2014 approximately zero in real terms",
+   "date": "2026-08-06",
+   "ring": "House"
+  },
+  "stub_years": {
+   "value": 0.583,
+   "source": "Elapsed fraction of FY2026 at the valuation date \u2014 seven of twelve months",
+   "date": "2026-08-06",
+   "ring": "House"
+  },
+  "repl_usd_t": {
+   "value": 130.0,
+   "source": "Replacement cost per annual tonne of cement capacity, USD 120-150 band",
+   "date": "2026-08-06",
+   "ring": "Industry"
+  },
+  "ev_t_just": {
+   "value": 95.0,
+   "source": "Justified enterprise value per annual tonne of capacity, set well below replacement cost because a market carrying 76Mt against 54Mt of consumption does not pay replacement cost",
+   "date": "2026-08-06",
+   "ring": "House"
+  },
+  "ev_ebitda_just": {
+   "value": 4.5,
+   "source": "Justified enterprise value to EBITDA on normalised earnings, disclosed as weakly anchored against a thin Egyptian peer set",
+   "date": "2026-08-06",
+   "ring": "House"
+  },
+  "pe_just": {
+   "value": 7.0,
+   "source": "Justified price to earnings on normalised operating earnings, cash excluded and added back at face",
+   "date": "2026-08-06",
+   "ring": "House"
+  },
+  "norm_mgn": {
+   "value": 0.312,
+   "source": "Mid-cycle EBITDA margin: the midpoint of the AUDITED FY2024 outturn of 23.15% and the AUDITED FY2025 peak of 39.25%",
+   "date": "2026-08-06",
+   "ring": "House"
+  },
+  "norm_rev_haircut": {
+   "value": 0.94,
+   "source": "Haircut to the FY2025 revenue base for the normalised lens",
+   "date": "2026-08-06",
+   "ring": "House"
+  },
+  "egy_capacity_mt": {
+   "value": 76.0,
+   "source": "Egyptian nameplate cement capacity",
+   "date": "2025-10-01",
+   "ring": "Industry"
+  },
+  "egy_cons_mt": {
+   "value": 53.9,
+   "source": "Egyptian domestic cement sales 2025. FY2025 Investor Presentation, Arabian Cement Company S.A.E., investor relations library, page 5 (sales volumes and production indicators) page 12 gives 53.9Mt, against the 54.0 previously carried on trade estimate",
+   "date": "2026-03-01",
+   "ring": "Company"
+  },
+  "egy_prod_mt": {
+   "value": 72.6,
+   "source": "Egyptian cement and clinker SALES 2025 \u2014 local plus export. FY2025 Investor Presentation, Arabian Cement Company S.A.E., investor relations library, page 5 (sales volumes and production indicators) page 12 gives local 53.9Mt and exports 18.6Mt, total 72.6Mt. Revisions 1 to 4 carried 65.0Mt as 'production' against exports of 18.5Mt and consumption of 54Mt, a balance that does not close: 65 less 54 is 11Mt, not 18.5. One reviewer caught the gap and the disclosure now closes it. This changes the sector picture materially \u2014 see the utilisation note",
+   "date": "2026-03-01",
+   "ring": "Company"
+  },
+  "egy_exports_mt": {
+   "value": 18.6,
+   "source": "Egyptian cement AND clinker export sales 2025. FY2025 Investor Presentation, Arabian Cement Company S.A.E., investor relations library, page 5 (sales volumes and production indicators) page 12. The two products are reported together, which is why the earlier balance failed: it set a cement-plus-clinker export figure against a cement-only production figure",
+   "date": "2026-03-01",
+   "ring": "Company"
+  },
+  "egy_revival_mt": {
+   "value": 12.6,
+   "source": "Dormant Egyptian capacity under revival from the second half of 2026",
+   "date": "2025-10-01",
+   "ring": "Industry"
+  },
+  "egy_gdp_egp_bn": {
+   "value": 18000.0,
+   "source": "Egyptian nominal gross domestic product, order of magnitude, used only for the terminal-growth crossover arithmetic",
+   "date": "2026-01-01",
+   "ring": "Country"
+  },
+  "egy_gdp_growth": {
+   "value": 0.18,
+   "source": "Egyptian nominal GDP growth, same arithmetic",
+   "date": "2026-01-01",
+   "ring": "Country"
+  },
+  "peer_scem_rev": {
+   "value": 9090.0,
+   "source": "Sinai Cement FY2025 revenue",
+   "date": "2026-03-10",
+   "ring": "Industry"
+  },
+  "peer_scem_pat": {
+   "value": 2290.0,
+   "source": "Sinai Cement FY2025 profit after tax",
+   "date": "2026-03-10",
+   "ring": "Industry"
+  },
+  "peer_scem_mcap": {
+   "value": 20604.19,
+   "source": "Sinai Cement market capitalisation at 06-Aug-2026",
+   "date": "2026-08-06",
+   "ring": "Industry"
+  },
+  "peer_mbsc_rev": {
+   "value": 5700.0,
+   "source": "Misr Beni Suef Cement FY2025 net sales",
+   "date": "2026-03-01",
+   "ring": "Industry"
+  },
+  "peer_mbsc_pat": {
+   "value": 3946.0,
+   "source": "Misr Beni Suef Cement FY2025 attributable profit",
+   "date": "2026-03-01",
+   "ring": "Industry"
+  },
+  "peer_mbsc_mcap": {
+   "value": 13730.0,
+   "source": "Misr Beni Suef Cement market capitalisation",
+   "date": "2026-08-06",
+   "ring": "Industry"
+  },
+  "w_dcf": {
+   "value": 0.5,
+   "source": "Weight, cash-flow lens",
+   "date": "2026-08-06",
+   "ring": "House"
+  },
+  "w_rel": {
+   "value": 0.2,
+   "source": "Weight, relative lens, held down because the peer set is thin",
+   "date": "2026-08-06",
+   "ring": "House"
+  },
+  "w_norm": {
+   "value": 0.22,
+   "source": "Weight, normalised-earnings lens",
+   "date": "2026-08-06",
+   "ring": "House"
+  },
+  "w_asset": {
+   "value": 0.08,
+   "source": "Weight, asset lens, deliberately small: restarting a mothballed line costs a fraction of building one",
+   "date": "2026-08-06",
+   "ring": "House"
+  }
+ },
+ "bottom_up": [
+  {
+   "clk_prod": 3.8514000000000004,
+   "clk_exp": 1.30061778,
+   "clk_ground": 2.5507822200000003,
+   "cem_prod": 3.4803959885386826,
+   "cem_sold": 3.5528959885386824,
+   "cem_draw": 0.0725,
+   "mill_util": 0.6960791977077365,
+   "cem_exp": 0.6295731691690545,
+   "cem_loc": 2.923322819369628,
+   "sold": 4.853513768538683,
+   "kiln_util": 0.917,
+   "vol": 4.853513768538683,
+   "price_loc": 2856.494176650889,
+   "price_exp_cem": 2275.5795888907337,
+   "price_exp_clk": 1479.126732778977,
+   "rev_goods": 11706.876991000001,
+   "rev": 12447.336960680752,
+   "price": 2564.603203841008,
+   "c_mat": 5698.184715,
+   "c_tra": 764.279332,
+   "c_ovh": 1021.1519069999999,
+   "cc": 7483.615954000001,
+   "cc_t": 1541.896512689445,
+   "c_prv": 78.1093759231652,
+   "ebitda": 4885.611630757586,
+   "mgn": 0.3925025606835013,
+   "util": 0.6960791977077365
+  },
+  {
+   "clk_prod": 3.8640000000000003,
+   "clk_exp": 1.2751200000000003,
+   "clk_ground": 2.58888,
+   "cem_prod": 3.532378223495702,
+   "cem_sold": 3.532378223495702,
+   "cem_draw": 0.0,
+   "mill_util": 0.7064756446991404,
+   "cem_exp": 0.6358280802292263,
+   "cem_loc": 2.8965501432664755,
+   "sold": 4.807498223495703,
+   "kiln_util": 0.92,
+   "vol": 4.807498223495703,
+   "price_loc": 3085.0137107829605,
+   "price_exp_cem": 2262.6818661701027,
+   "price_exp_clk": 1470.7432130105667,
+   "rev_goods": 12249.94765885788,
+   "rev": 13024.756848280642,
+   "price": 2709.258795900267,
+   "c_mat": 6278.647668961064,
+   "c_tra": 844.092126295767,
+   "c_ovh": 1127.7896030434683,
+   "cc": 8250.5293983003,
+   "cc_t": 1716.1793961727242,
+   "c_prv": 81.73279410558621,
+   "ebitda": 4692.494655874756,
+   "mgn": 0.3602750293564365,
+   "util": 0.7064756446991404
+  },
+  {
+   "clk_prod": 3.8850000000000002,
+   "clk_exp": 1.2432,
+   "clk_ground": 2.6418,
+   "cem_prod": 3.6045845272206303,
+   "cem_sold": 3.6045845272206303,
+   "cem_draw": 0.0,
+   "mill_util": 0.720916905444126,
+   "cem_exp": 0.6488252148997135,
+   "cem_loc": 2.9557593123209167,
+   "sold": 4.847784527220631,
+   "kiln_util": 0.925,
+   "vol": 4.847784527220631,
+   "price_loc": 3362.664944753427,
+   "price_exp_cem": 2315.6031811728067,
+   "price_exp_clk": 1505.1420677623244,
+   "rev_goods": 13312.84257495907,
+   "rev": 14154.879867825231,
+   "price": 2919.8657218250205,
+   "c_mat": 6835.513178587107,
+   "c_tra": 935.9003889391124,
+   "c_ovh": 1250.4544175312283,
+   "cc": 9021.867985057448,
+   "cc_t": 1861.0290813048853,
+   "c_prv": 88.82452818909921,
+   "ebitda": 5044.187354578684,
+   "mgn": 0.3563567760150604,
+   "util": 0.720916905444126
+  },
+  {
+   "clk_prod": 3.9060000000000006,
+   "clk_exp": 1.2108600000000003,
+   "clk_ground": 2.6951400000000003,
+   "cem_prod": 3.677363896848138,
+   "cem_sold": 3.677363896848138,
+   "cem_draw": 0.0,
+   "mill_util": 0.7354727793696276,
+   "cem_exp": 0.6435386819484241,
+   "cem_loc": 3.0338252148997142,
+   "sold": 4.888223896848139,
+   "kiln_util": 0.93,
+   "vol": 4.888223896848139,
+   "price_loc": 3631.746696193941,
+   "price_exp_cem": 2389.524871350293,
+   "price_exp_clk": 1553.1911663776905,
+   "rev_goods": 14436.533442953745,
+   "rev": 15349.64418322057,
+   "price": 3140.127070103686,
+   "c_mat": 7411.870581140101,
+   "c_tra": 1028.3794683085785,
+   "c_ovh": 1374.015508747201,
+   "cc": 9814.26555819588,
+   "cc_t": 2007.736504157264,
+   "c_prv": 96.32189853792069,
+   "ebitda": 5439.056726486768,
+   "mgn": 0.3543441568784025,
+   "util": 0.7354727793696276
+  },
+  {
+   "clk_prod": 3.9186000000000005,
+   "clk_exp": 1.195173,
+   "clk_ground": 2.7234270000000005,
+   "cem_prod": 3.71595988538682,
+   "cem_sold": 3.71595988538682,
+   "cem_draw": 0.0,
+   "mill_util": 0.7431919770773641,
+   "cem_exp": 0.6317131805157594,
+   "cem_loc": 3.0842467048710605,
+   "sold": 4.91113288538682,
+   "kiln_util": 0.933,
+   "vol": 4.91113288538682,
+   "price_loc": 3885.9746779158695,
+   "price_exp_cem": 2466.1166488245285,
+   "price_exp_clk": 1602.9758217359436,
+   "rev_goods": 15459.016409117821,
+   "rev": 16436.799196994525,
+   "price": 3346.844726173582,
+   "c_mat": 7964.38252850928,
+   "c_tra": 1115.9477628438624,
+   "c_ovh": 1491.015311323889,
+   "cc": 10571.345602677031,
+   "cc_t": 2152.5268913273135,
+   "c_prv": 103.14400031968042,
+   "ebitda": 5762.309593997814,
+   "mgn": 0.35057370507096386,
+   "util": 0.7431919770773641
+  },
+  {
+   "clk_prod": 3.9270000000000005,
+   "clk_exp": 1.1781000000000001,
+   "clk_ground": 2.7489000000000003,
+   "cem_prod": 3.7507163323782238,
+   "cem_sold": 3.7507163323782238,
+   "cem_draw": 0.0,
+   "mill_util": 0.7501432664756448,
+   "cem_exp": 0.618868194842407,
+   "cem_loc": 3.1318481375358167,
+   "sold": 4.928816332378224,
+   "kiln_util": 0.935,
+   "vol": 4.928816332378224,
+   "price_loc": 4138.488763131809,
+   "price_exp_cem": 2542.7038067705685,
+   "price_exp_clk": 1652.7574744008696,
+   "rev_goods": 16481.830420533945,
+   "rev": 17524.306194632718,
+   "price": 3555.4796553307538,
+   "c_mat": 8477.30684400726,
+   "c_tra": 1198.355794676344,
+   "c_ovh": 1601.1204984387161,
+   "cc": 11276.78313712232,
+   "cc_t": 2287.9292667172917,
+   "c_prv": 109.96831086625926,
+   "ebitda": 6137.5547466441385,
+   "mgn": 0.3502309694020256,
+   "util": 0.7501432664756448
+  }
+ ],
+ "clinker_factor": 0.7329,
+ "share_triangulation": {
+  "issued": 378.7397,
+  "treasury": 3.872255,
+  "outstanding": 374.86744500000003,
+  "wavg_fy25": 377.155593,
+  "wavg_fy24": 378.7397,
+  "from_fy25_dividend": 374.8674456928839,
+  "par_check": 757.4794,
+  "treasury_price": 37.0140873986863
+ },
+ "kd_gate": {
+  "eur_share": 0.9109398221152498,
+  "kd_cib": 0.206,
+  "kd_nbe": 0.0549,
+  "kd_ebrd": 0.06839999999999999,
+  "kd_blended": 0.07892135739801572,
+  "kd_egp_equivalent": 0.1335777467249307,
+  "eff_fy24": 0.20847936874214196,
+  "eff_fy25": 0.05026307355256508,
+  "eff_q126_annualised": 0.03729757976283685,
+  "debt_total": 1135.108658,
+  "bound_met": false
+ },
+ "unit_calibration": {
+  "vol_fy25": 4.853513768538683,
+  "vol_local": 2.923322819369628,
+  "vol_export": 1.9301909491690545,
+  "vol_cem_exp": 0.6295731691690545,
+  "vol_clk_exp": 1.30061778,
+  "cem_prod": 3.4803959885386826,
+  "clk_prod": 3.8514000000000004,
+  "cem_sold": 3.5528959885386824,
+  "kiln_util_fy25": 0.917,
+  "util_fy25": 0.6960791977077365,
+  "price_loc_derived": 2856.494176650889,
+  "price_exp_cem_usd": 46.19528195068481,
+  "price_exp_clk_usd": 30.02693326794513,
+  "cc_mat_t": 1479.5099742950615,
+  "cc_tra_t": 157.46928276050045,
+  "cc_ovh_t": 210.39435668634206,
+  "cash_cost_fy25": 7483.615954000001,
+  "cash_cost_t": 1541.896512689445
+ },
+ "history": {
+  "years": [
+   "FY2023",
+   "FY2024",
+   "FY2025"
+  ],
+  "revenue": [
+   6042.831338,
+   8729.782821,
+   12447.320081
+  ],
+  "cogs": [
+   4759.815212,
+   6642.972487,
+   7389.054416
+  ],
+  "gross_profit": [
+   1283.0161259999995,
+   2086.8103340000007,
+   5058.265665
+  ],
+  "ga": [
+   183.940276,
+   267.798104,
+   384.332833
+  ],
+  "ebitda": [
+   1329.5344229999994,
+   2020.8672590000008,
+   4885.594857
+  ],
+  "dna": [
+   250.424521,
+   256.801527,
+   289.771295
+  ],
+  "ebit": [
+   1079.1099019999995,
+   1764.0657320000007,
+   4595.823562
+  ],
+  "pbt": [
+   930.231432,
+   1505.866118,
+   4725.157878
+  ],
+  "tax": [
+   232.732802,
+   345.730996,
+   1125.467657
+  ],
+  "pat": [
+   697.488741,
+   1160.129411,
+   3599.585937
+  ],
+  "eps": [
+   1.81,
+   3.02,
+   9.49
+  ],
+  "capex": [
+   58.543963,
+   912.0154,
+   796.47076
+  ],
+  "margin": [
+   0.22001845635493714,
+   0.23149112646178172,
+   0.39250174537228566
+  ],
+  "tax_eff_hist": [
+   0.2501880650276715,
+   0.2295894647388567,
+   0.23818625452497524
+  ],
+  "nopat": [
+   809.1294836664193,
+   1359.054824825961,
+   3501.1615613095896
+  ],
+  "tax_eff": 0.2382,
+  "volume_mt": [
+   null,
+   null,
+   4.853513768538683
+  ],
+  "price_t": [
+   null,
+   null,
+   2564.603203841008
+  ],
+  "utilisation": [
+   null,
+   null,
+   0.6960791977077365
+  ]
+ },
+ "forecast": {
+  "years": [
+   "FY2026E",
+   "FY2027E",
+   "FY2028E",
+   "FY2029E",
+   "FY2030E"
+  ],
+  "revenue": [
+   13024.756848280642,
+   14154.879867825231,
+   15349.64418322057,
+   16436.799196994525,
+   17524.306194632718
+  ],
+  "ebitda": [
+   4692.494655874756,
+   5044.187354578684,
+   5439.056726486768,
+   5762.309593997814,
+   6137.5547466441385
+  ],
+  "dna": [
+   325.61892120701606,
+   382.18175643128126,
+   445.1396813133965,
+   509.54077510683027,
+   578.3021044228797
+  ],
+  "ebit": [
+   4366.87573466774,
+   4662.005598147402,
+   4993.917045173372,
+   5252.768818890983,
+   5559.252642221259
+  ],
+  "nopat": [
+   3326.685934669885,
+   3551.5158646686914,
+   3804.3660050130748,
+   4001.5592862311514,
+   4235.038662844155
+  ],
+  "capex": [
+   1012.0,
+   1062.0,
+   1116.0,
+   1172.0,
+   1230.0
+  ],
+  "dwc": [
+   69.29241207367704,
+   135.61476234535075,
+   143.37171784744052,
+   130.4586016528747,
+   130.50083971658313
+  ],
+  "fcff": [
+   1072.1121890659444,
+   2736.082858754622,
+   2990.1339684790305,
+   3208.6414596851073,
+   3452.8399275504516
+  ],
+  "df": [
+   0.9553128303049964,
+   0.8305717225918348,
+   0.6967236258160606,
+   0.5965280192910443,
+   0.5177771918414789
+  ],
+  "pv": [
+   1024.2025297410728,
+   2272.513053149818,
+   2083.2969801944764,
+   1914.0445345610822,
+   1787.8017615652082
+  ],
+  "fwd_wacc": [
+   0.2451592218162085,
+   0.2073360262746093,
+   0.1770774698413299,
+   0.15892233598136227,
+   0.14530598558638658
+  ],
+  "glide": [
+   0.0,
+   0.37878787878787884,
+   0.6818181818181819,
+   0.8636363636363639,
+   1.0
+  ],
+  "t_mid": [
+   0.20850000000000002,
+   0.917,
+   1.917,
+   2.917,
+   3.917
+  ],
+  "treasury": [
+   127.08803423239996,
+   199.8303358175639,
+   279.11625142659204,
+   364.4846679974838,
+   468.87549348113487
+  ],
+  "pbt": [
+   4493.96376890014,
+   4861.835933964966,
+   5273.033296599964,
+   5617.253486888467,
+   6028.128135702394
+  ],
+  "tax": [
+   1070.4621697520133,
+   1158.089319470455,
+   1256.0365312501115,
+   1338.0297805768328,
+   1435.90012192431
+  ],
+  "pat": [
+   3423.501599148127,
+   3703.746614494511,
+   4016.9967653498525,
+   4279.223706311634,
+   4592.228013778084
+  ],
+  "dividends": [
+   1903.4668891263586,
+   2059.2831176589484,
+   2233.4502015345183,
+   2379.2483807092685,
+   2553.278775660615
+  ],
+  "cash": [
+   2221.9602881551073,
+   3050.9907790766006,
+   4020.3053063578914,
+   5127.362805414212,
+   6384.113308237977
+  ],
+  "equity": [
+   4160.816785021769,
+   5805.280281857331,
+   7588.8268456726655,
+   9488.80217127503,
+   11527.751409392498
+  ],
+  "ppe": [
+   3707.047971792984,
+   4386.866215361702,
+   5057.726534048306,
+   5720.185758941476,
+   6371.883654518596
+  ],
+  "wc": [
+   2372.134109073677,
+   2507.7488714190276,
+   2651.120589266468,
+   2781.5791909193426,
+   2912.0800306359256
+  ],
+  "total_assets": [
+   8301.142369021767,
+   9945.605865857331,
+   11729.152429672666,
+   13629.12775527503,
+   15668.076993392498
+  ],
+  "volume_mt": [
+   4.807498223495703,
+   4.847784527220631,
+   4.888223896848139,
+   4.91113288538682,
+   4.928816332378224
+  ],
+  "price_t": [
+   2709.258795900267,
+   2919.8657218250205,
+   3140.127070103686,
+   3346.844726173582,
+   3555.4796553307538
+  ],
+  "margin": [
+   0.3602750293564365,
+   0.3563567760150604,
+   0.3543441568784025,
+   0.35057370507096386,
+   0.3502309694020256
+  ],
+  "eps": [
+   9.13256577707922,
+   9.880150074100222,
+   10.71577918789361,
+   11.415298296472859,
+   12.25027159607867
+  ],
+  "dps": [
+   5.077706572056046,
+   5.493363441199724,
+   5.957973228468847,
+   6.34690585283891,
+   6.811151007419742
+  ]
+ },
+ "wacc": {
+  "rf": 0.2295,
+  "rf_star": 0.1955,
+  "beta": 0.6280798261200432,
+  "ke_exp": 0.2546023116378961,
+  "kd": 0.07892135739801572,
+  "kd_at": 0.061164051983462184,
+  "wd_gross": 0.04881707392610505,
+  "wd_net": -0.11743013708947825,
+  "wacc_exp": 0.2451592218162085,
+  "beta_term": 0.7210890283283314,
+  "ke_term": 0.15547623198298322,
+  "kd_term_at": 0.10462500000000001,
+  "wacc_term": 0.14530598558638658,
+  "ke_raw_retired": 0.28860231163789607,
+  "mktcap": 22117.179255000003,
+  "debt_total": 1135.108658,
+  "eur_share": 0.9109398221152498
+ },
+ "dcf": {
+  "sum_pv": 9081.858859211658,
+  "tv": 20174.352997415568,
+  "pv_tv": 9760.718011512829,
+  "ev": 18842.576870724486,
+  "tv_share": 0.5180139679662368,
+  "df_tv": 0.4838181434003472,
+  "cash_at_val": 3186.9619263724344,
+  "net_cash": 1926.4528373724345,
+  "nci": 0.158005,
+  "equity": 20768.87170309692,
+  "fv": 55.40324181284112,
+  "roic_term": 0.08808826189903947,
+  "rr_term": 0.5676125163793839,
+  "ic_repl": 50481.079999999994,
+  "nopat_term": 4446.790595986363,
+  "net_debt_bs": -2324.2825709999997,
+  "rem": 0.41700000000000004
+ },
+ "lenses": {
+  "values": {
+   "DCF (cash flow)": 55.40324181284112,
+   "Relative multiples": 48.9606932457765,
+   "Normalised earnings": 52.94667167624527,
+   "Asset / replacement cost": 68.87446529898703
+  },
+  "weights": {
+   "DCF (cash flow)": 0.5,
+   "Relative multiples": 0.2,
+   "Normalised earnings": 0.22,
+   "Asset / replacement cost": 0.08
+  },
+  "central": 54.65198454826878,
+  "low": 48.9606932457765,
+  "high": 68.87446529898703,
+  "ebitda_norm": 3650.55003335568,
+  "nopat_norm": 2560.2412428793573,
+  "ev_per_t_spot": 80.28184661084521,
+  "ev_asset": 23892.5,
+  "ev_spot": 20190.88442262757,
+  "bvps": 12.384575659804227,
+  "roe_fy25": 0.7753426773153149
+ },
+ "lens_ranges": {
+  "DCF (cash flow)": {
+   "bear": 50.5480545767635,
+   "base": 55.40324181284112,
+   "bull": 64.13577583906877
+  },
+  "Relative multiples": {
+   "bear": 44.06462392119885,
+   "base": 48.9606932457765,
+   "bull": 53.85676257035415
+  },
+  "Normalised earnings": {
+   "bear": 47.65200450862075,
+   "base": 52.94667167624527,
+   "bull": 58.241338843869805
+  },
+  "Asset / replacement cost": {
+   "bear": 61.98701876908833,
+   "base": 68.87446529898703,
+   "bull": 75.76191182888574
+  },
+  "Weighted central": {
+   "bear": 49.52935456604515,
+   "base": 54.65198454826878,
+   "bull": 61.71328792556743
+  }
+ },
+ "sensitivity": {
+  "nc_grid": [
+   426.4528373724345,
+   1176.4528373724345,
+   1926.4528373724345,
+   2676.4528373724343,
+   3426.4528373724343
+  ],
+  "net_cash": [
+   53.22941162256606,
+   55.230118832550644,
+   57.23082604253523,
+   59.23153325251982,
+   61.2322404625044
+  ],
+  "wacc_grid": [
+   0.2151592218162085,
+   0.23015922181620851,
+   0.2451592218162085,
+   0.2601592218162085,
+   0.2751592218162085
+  ],
+  "g_grid": [
+   0.03,
+   0.04,
+   0.05,
+   0.06,
+   0.07
+  ],
+  "wacc_g": [
+   [
+    65.4358916875569,
+    62.501660281659845,
+    58.95167921684183,
+    54.56940460534815,
+    49.0232717487574
+   ],
+   [
+    64.4439240155076,
+    61.56426472056051,
+    58.08030774646356,
+    53.77953658279984,
+    48.33655311551247
+   ],
+   [
+    63.47697718452289,
+    60.65047312877611,
+    57.23082604253523,
+    53.00944222874014,
+    47.666930052856834
+   ],
+   [
+    62.534209175820116,
+    59.75949172543742,
+    56.402498684846876,
+    52.258458166282814,
+    47.013830360720064
+   ],
+   [
+    61.61481376702958,
+    58.890560465161506,
+    55.59462149526185,
+    51.52594918262109,
+    46.376706107654
+   ]
+  ],
+  "beta_grid": [
+   0.6,
+   0.8,
+   1.0,
+   1.15,
+   1.3
+  ],
+  "beta": [
+   57.47276405811282,
+   52.17638945894387,
+   47.995379097873936,
+   45.38931766855932,
+   43.13157219177125
+  ],
+  "mgn_grid": [
+   -0.04,
+   -0.02,
+   0.0,
+   0.02,
+   0.04
+  ],
+  "mgn": [
+   45.323478533341074,
+   51.27715228793815,
+   57.23082604253523,
+   63.184499797132325,
+   69.13817355172941
+  ],
+  "wt_grid": [
+   0.1253059855863866,
+   0.13530598558638657,
+   0.14530598558638658,
+   0.15530598558638659,
+   0.16530598558638657
+  ],
+  "exp_term": [
+   [
+    68.64597961649716,
+    63.244522868005326,
+    58.95167921684183,
+    55.452280308516265,
+    52.540467902875676
+   ],
+   [
+    67.58840394218933,
+    62.29070054744534,
+    58.08030774646356,
+    54.64811079075967,
+    51.792205620567564
+   ],
+   [
+    66.55767856176094,
+    61.360964335512776,
+    57.23082604253523,
+    53.864041226304245,
+    51.06255463427581
+   ],
+   [
+    65.55289576343243,
+    60.45450253462565,
+    56.402498684846876,
+    53.09939834102199,
+    50.35089334641367
+   ],
+   [
+    64.57318654984805,
+    59.57053799713047,
+    55.59462149526185,
+    52.35353740838655,
+    49.656626466998944
+   ]
+  ]
+ },
+ "contested": [
+  {
+   "choice": "Cost of debt: currency composition as contracted (adopted) vs the pound-equivalent under uncovered interest parity",
+   "adopted": "7.89%",
+   "alternative": "13.36%",
+   "fv_adopted": 55.40324181284112,
+   "fv_alternative": 57.11539589886546,
+   "effect": 0.030903500048033328,
+   "note": "91% of the book is euro-denominated at Euribor-linked rates. Adopting the contracted rate means that debt is NOT compensated for pound depreciation beyond what this study already assumes; if the pound falls faster, the true pound cost of servicing it is understated by construction. The alternative is computed rather than described \u2014 and it is small, because debt is only 4.9% of the capital structure."
+  },
+  {
+   "choice": "Beta: contemporaneous regression (adopted) vs lead-lag sum-beta",
+   "adopted": "0.628",
+   "alternative": "0.919",
+   "fv_adopted": 55.40324181284112,
+   "fv_alternative": 49.580224350832346,
+   "effect": -0.1051024682216184,
+   "note": "The regression passes the usability gate, so it is adopted. It is also statistically weak, and the standard correction for a thinly traded share is higher."
+  },
+  {
+   "choice": "Capex: economic maintenance in dollars per tonne (adopted) vs book depreciation",
+   "adopted": "USD 4.00/t",
+   "alternative": "book depreciation",
+   "fv_adopted": 55.40324181284112,
+   "fv_alternative": 62.66429612426797,
+   "effect": 0.131058293230486,
+   "note": "Setting capex equal to book depreciation would flatter free cash flow by construction. The adopted treatment is the conservative one and the size of the conservatism is published."
+  }
+ ],
+ "terminal_reconciliation": {
+  "history": [
+   {
+    "year": "FY2023",
+    "capex": 58.543963,
+    "capex_over_ebitda": 0.044033431543577285,
+    "character": "stable \u2014 self-funded",
+    "nopat": 809.1294836664193,
+    "dna": 250.424521,
+    "reinvestment": -191.880558,
+    "rr": -0.23714443963965948,
+    "roic_book": 0.4387199850237588,
+    "implied_g": -0.10404000500717908,
+    "nopat_growth": null
+   },
+   {
+    "year": "FY2024",
+    "capex": 912.0154,
+    "capex_over_ebitda": 0.4512990133014964,
+    "character": "stable \u2014 self-funded",
+    "nopat": 1359.054824825961,
+    "dna": 256.801527,
+    "reinvestment": 655.2138729999999,
+    "rr": 0.4821099642421753,
+    "roic_book": 0.44349930405902943,
+    "implied_g": 0.2138154336213283,
+    "nopat_growth": 0.6796506026052316
+   },
+   {
+    "year": "FY2025",
+    "capex": 796.47076,
+    "capex_over_ebitda": 0.16302431603775533,
+    "character": "stable \u2014 self-funded",
+    "nopat": 3501.1615613095896,
+    "dna": 289.771295,
+    "reinvestment": 506.69946500000003,
+    "rr": 0.14472324573632986,
+    "roic_book": 0.6059802218552789,
+    "implied_g": 0.08769942455891722,
+    "nopat_growth": 1.5761738947933495
+   }
+  ],
+  "nopat_cagr": 1.080161540555328,
+  "pat_cagr_fy23_fy25": 1.2717350173047457,
+  "stable_years": [
+   "FY2023",
+   "FY2024",
+   "FY2025"
+  ],
+  "stable_implied_g": 0.0658249510576888,
+  "roic_repl": 0.08808826189903947,
+  "rr_repl": 0.5676125163793839,
+  "ic_repl": 50481.079999999994,
+  "roic_book_fy25": 0.6059802218552789,
+  "ic_book_fy25": 5777.682893,
+  "basis_adopted": "replacement cost",
+  "crossover_years": 11.108847029258035,
+  "share_of_gdp": 0.0006915177822777778
+ },
+ "growth_destroys_value": {
+  "fv_at_g3": 63.47697718452289,
+  "fv_at_g7": 47.666930052856834,
+  "roic_term": 0.08808826189903947,
+  "wacc_term": 0.14530598558638658,
+  "nopat_term": 4235.038662844155,
+  "ic_replacement": 50481.079999999994,
+  "n_over_ic": 0.08389358276098996,
+  "hurdle": 0.12687088639634692,
+  "analytic_adds_value": false,
+  "model_adds_value": false,
+  "spread_pct": -0.2490674230706893,
+  "holds": true
+ },
+ "experts": [
+  {
+   "label": "Expert 1",
+   "method": "Replacement-cost industrialist",
+   "central": 68.87446529898703,
+   "low": 58.81090803276457,
+   "high": 78.93802256520951,
+   "summary": "Values the plant, not the earnings stream. The audited accounts put net property, plant and equipment at EGP 2522mn and assets under construction at a further EGP 392mn, on a book carried at pre-devaluation historic cost. Five million tonnes of grey cement capacity costs about USD 130 per annual tonne to build; nobody pays that in a market carrying 76Mt of capacity against 54Mt of consumption, so the justified figure is marked to USD 95. Against that the market is paying USD 80 per annual tonne.",
+   "falsifier": "Find an Egyptian line built, bought or restarted below USD 95 per annual tonne. The 12.6Mt revival programme is the live test and it runs against this lens: restarting a mothballed kiln costs a fraction of building one, which is why this valuation is a ceiling and carries only 8% of the weight."
+  },
+  {
+   "label": "Expert 2",
+   "method": "Mid-cycle earnings-power analyst",
+   "central": 52.94667167624527,
+   "low": 46.11694752434044,
+   "high": 59.77639582815011,
+   "summary": "Refuses to capitalise a peak, and refuses it on both legs. The audited EBITDA margin went 22.0% to 23.1% to 39.3% across FY2023 to FY2025 \u2014 the last of those is the best year the Egyptian industry has had in over a decade. The margin is normalised to 31.2%, the midpoint of the two most recent audited years, the revenue base is cut 6%, and what is left is capitalised at 7 times with cash added back at face.",
+   "falsifier": "Two consecutive years of realised prices above EGP 4,200 a tonne WITH the revival proceeding would prove the mid-cycle base too low. Equally, the first quarter of 2026 already ran a 42.9% gross margin against 40.6% for FY2025 as a whole \u2014 if that holds for the year, this lens is too cautious."
+  },
+  {
+   "label": "Expert 3",
+   "method": "Cash-return and distribution investor",
+   "central": 52.3465209611052,
+   "low": 46.44553116758097,
+   "high": 60.214507352470825,
+   "summary": "Ignores the terminal value and asks what the cash stream is worth to someone who has to be paid in cash. Average free cash flow to the firm across FY2027-FY2030 is EGP 3097mn; required at a 17.5% cash return that is a business worth EGP 17697mn before net cash of EGP 1926mn is added back. This is not hypothetical: the company declared EGP 2002mn for FY2025 on EGP 3600mn of attributable profit, a 56% payout, and the audited cash flow shows EGP 1702mn actually paid out during 2025.",
+   "falsifier": "A required cash return above 20% takes this valuation to EGP 46.45. So would maintenance capital spending materially above the USD 4.00 per tonne assumed here \u2014 the audited FY2024 and FY2025 capex of EGP 912mn and EGP 796mn is the number to watch, and both years carried the alternative-fuel and silo programmes on top of maintenance."
+  }
+ ],
+ "peers": {
+  "scem": {
+   "name": "Sinai Cement (SCEM)",
+   "rev": 9090.0,
+   "pat": 2290.0,
+   "mcap": 20604.19,
+   "pe": 8.99746288209607,
+   "ps": 2.2666875687568755
+  },
+  "mbsc": {
+   "name": "Misr Beni Suef Cement (MBSC)",
+   "rev": 5700.0,
+   "pat": 3946.0,
+   "mcap": 13730.0,
+   "pe": 3.479472883933097,
+   "ps": 2.4087719298245616
+  },
+  "self": {
+   "name": "Arabian Cement (ARCC)",
+   "rev": 12447.320081,
+   "pat": 3599.585937,
+   "mcap": 22117.179255000003,
+   "pe": 6.144367613968708,
+   "ps": 1.7768627392140735
+  },
+  "sector": {
+   "capacity_mt": 76.0,
+   "consumption_mt": 53.9,
+   "production_mt": 72.6,
+   "exports_mt": 18.6,
+   "revival_mt": 12.6,
+   "share_of_capacity": 0.06578947368421052,
+   "revival_pct_of_consumption": 0.23376623376623376,
+   "utilisation": 0.9552631578947368
+  }
+ },
+ "assert_log": [
+  "bridge closes exactly: EV 18,842.58 + net cash 1,926.45 - NCI 0.158 = equity 20,768.87",
+  "net cash carries a POSITIVE sign into the bridge (1,926.5)",
+  "minority interests are DEDUCTED (0.158), not added",
+  "terminal value is 51.8% of enterprise value",
+  "implied fair value to spot 0.93x is inside the plausibility band",
+  "terminal rate 14.53% is BELOW the explicit-window rate 24.52%",
+  "the physical build reproduces EVERY disclosed FY2025 tonne to within 0.012%: clinker made 3.8514 vs 3.8516, cement made 3.4804 vs 3.4806, local 2.9233 vs 2.9236, cement exports 0.6296 vs 0.6295, clinker exports 1.3006 vs 1.3005, total 4.8535 vs 4.8536Mt. Revisions 1-3 reconstructed these from an assumed price and were 28% low on the total",
+  "the Egyptian sector balance CLOSES: local 53.9Mt plus exports 18.6Mt = 72.5Mt against the disclosed total of 72.6Mt. It did not close in any earlier revision",
+  "no forecast year asks the kiln for more than nameplate: peak 93.5% of 4.2Mt",
+  "no forecast year asks the mill for more than nameplate: peak 75.0% of 5.0Mt",
+  "cement exports (17.7%) sit INSIDE the 30% statutory cap the study cites \u2014 revision 3's single-product build breached it at 31.5%",
+  "the unit build reproduces AUDITED FY2025 revenue to +0.000%",
+  "the unit build reproduces AUDITED FY2025 EBITDA to +0.000%",
+  "FY2025 operating profit closes from the audited lines to EGP 4,595.824mn",
+  "the audited balance sheet closes: assets 8,783.722 less liabilities 4,140.990 = equity 4,642.732",
+  "the forecast EBITDA margin glides DOWN every year from the FY2025 peak",
+  "the effective tax rate used (23.82%) is within 3 points of the statutory rate (22.50%), as the audited accounts show",
+  "the terminal growth lever moves the model in the direction its own algebra requires: N/IC 8.39% against the hurdle W/(1+W) 12.69%, so growth destroys value, and the model destroys it \u2014 a spread of -24.9% from 3% to 7%, which is MATERIAL and is published",
+  "the share count is confirmed by the declared FY2025 dividend to 0.0000%",
+  "discount factors decline monotonically",
+  "lens weights sum to exactly 1",
+  "the weighted central sits inside the range of the four lenses",
+  "the cost-of-debt build is currency-blended: 91.1% of the book is euro-denominated and a single-currency shortcut would be wrong"
+ ],
+ "log": [
+  "==============================================================================",
+  "ARCC \u2014 REVISION 3 \u2014 audited accounts, price path recalibrated to the record",
+  "==============================================================================",
+  "\n[Shares] 378.7397mn issued less 3.8723mn treasury = 374.8674mn outstanding. The FY2025 distribution of EGP 2,001.8mn at the reported EGP 5.34 per share implies 374.8674mn \u2014 the same count. Market capitalisation EGP 22,117mn",
+  "\n[Audited history] EBITDA 1,330  2,021  4,886  margin 22.00%  23.15%  39.25%",
+  "[Audited history] operating profit 1,079  1,764  4,596; effective tax 25.02%  22.96%  23.82%",
+  "\n[The plant, in tonnes \u2014 DRIVERS, not outputs] kiln 91.7% of 4.2Mt = 3.851Mt of clinker; 1.301Mt sold as clinker, 2.551Mt ground at a clinker factor of 0.7329 into 3.480Mt of cement (69.6% of the 5.0Mt mill), plus a 72.5kt draw from finished-goods stock",
+  "[Against the DISCLOSED physicals] the company reports clinker production 3,851.6kt, cement production 3,480.6kt, local sales 2,923.6kt, cement exports 629.5kt, clinker exports 1,300.5kt, total 4,853.6kt. This build reproduces 3,851.4 / 3,480.4 / 2,923.3 / 629.6 / 1,300.6 / 4,853.5",
+  "[Despatches] local cement 2.923Mt, export cement 0.630Mt, export clinker 1.301Mt = 4.854Mt total",
+  "[Prices \u2014 DERIVED from the audited revenue note, not assumed] local cement EGP 2,856/t; export cement USD 46.2/t; export clinker USD 30.0/t at the 0.65 clinker ratio. Revision 3 ASSUMED EGP 3,500 and USD 62 and derived tonnes from them \u2014 the reverse, and untestable",
+  "[Export cap] cement exports are 17.7% of cement production against a 30% statutory cap. Revision 3's single-product build put exports at 31.5% of volume and BREACHED the cap its own text called binding",
+  "[Cost stack, DISCLOSED \u2014 notes 5 and 6, allocated to their own driver] materials and fuel EGP 1,480 per tonne of CLINKER (the kiln burns it, not the mill); transportation EGP 157 and overheads EGP 210 per tonne DESPATCHED; total cash cost EGP 1,542/t sold. Provisions and expected credit losses are EXCLUDED \u2014 revision 3 carried them inside 'cash cost', and they are not cash",
+  "[Reconstruction] FY2025 revenue 12,447 vs AUDITED 12,447 (+0.000%); EBITDA 4,886 vs AUDITED 4,886 (+0.000%)",
+  "[Capacity, and it BINDS] kiln 92% 92% 93% 93% 94%; mill 71% 72% 74% 74% 75%. Both are checked in every year against nameplate. Revision 3's kiln test could not bind because it ignored clinker exports altogether",
+  "[Volume] 4.854Mt -> 4.929Mt (+1.6%), and it comes from RETAINING clinker (1.301Mt -> 1.178Mt) and grinding it into cement (3.480Mt -> 3.751Mt), not from a price assumption",
+  "[Forecast margins] 36.0%  35.6%  35.4%  35.1%  35.0%",
+  "\n[Cost of debt \u2014 the integrity evidence, all from note 25 and note 8] 91.1% of the book is EURO-denominated. Contractual: CIB 20.60% (corridor + 0.6%), NBE 5.49% (Euribor + 3.00%), EBRD 6.84% (Euribor + 4.35%) -> blended 7.89%",
+  "[Cost of debt \u2014 independently computed effective rates] FY2024 20.85%, FY2025 5.03%, Q1-2026 annualised 3.73%. The 150bp bound against the FY2025 check is NOT met: the book re-based mid-year from pound facilities to euro term debt, and interest on the under-construction alternative-fuel assets is capitalised rather than expensed, so the trailing effective rate understates the marginal contractual one. The contractual rate is adopted and the gap is disclosed rather than smoothed",
+  "[Multi-currency alternative, computed as a VALUE not described] loading the euro legs with 6.0% annual pound depreciation under uncovered interest parity gives a pound-equivalent cost of debt of 13.36%",
+  "\n[Cost of capital] risk-free 22.95% less sovereign spread 3.40% = 19.55%; cost of equity 25.46% at beta 0.628; after-tax cost of debt 6.12% on a 4.88% weight -> explicit-window rate 24.52%; terminal 14.53%",
+  "\n[Free cash flow] 1,072 2,736 2,990 3,209 3,453",
+  "[Bridge] EV 18,843 = explicit 9,082 + terminal 9,761; plus net cash 1,926 (after deducting the EGP 2,002mn FY2025 dividend declared and unpaid at 31 March 2026), less minorities 0.158 = equity 20,769 -> EGP 55.40 per share",
+  "[Terminal value] 51.8% of enterprise value; terminal return on capital 8.81% against a terminal rate of 14.53%, reinvestment 56.8%",
+  "\n[Lenses] DCF 55.40 | Relative 48.96 | Normalised 52.95 | Asset 68.87",
+  "[Central] EGP 54.65 against a market price of EGP 59.00 (-7.4%); the market is paying USD 80.3 per annual tonne against a replacement cost of USD 130",
+  "\n[Contested choices, each computed]",
+  "  Cost of debt: currency composition as contracted (adopted) v: 55.40 -> 57.12 (+3.1%)",
+  "  Beta: contemporaneous regression (adopted) vs lead-lag sum-b: 55.40 -> 49.58 (-10.5%)",
+  "  Capex: economic maintenance in dollars per tonne (adopted) v: 55.40 -> 62.66 (+13.1%)",
+  "\n[Terminal reconciliation \u2014 now buildable, because capex is disclosed for all three years] reinvestment rate -24% 48% 14%; book return on capital 43.9% 44.3% 60.6%",
+  "[Terminal growth ceiling] profit compounded 127% a year over FY2023-FY2025; at that rate against 18% nominal economic growth this company equals the whole Egyptian economy in 11 years. Terminal growth is held at 5%",
+  "[Growth and value] terminal return on capital 8.8% against terminal rate 14.5%: EGP 63.48 at 3% growth against 47.67 at 7% \u2014 a spread of -24.9% across four points of growth, so the answer DOES rest partly on the terminal growth rate",
+  "[Growth and value \u2014 the correct hurdle] the terminal block reduces to [N(1+g) - g.IC]/(W-g), so the sign of the growth lever is the constant N(1+W) - IC.W and the test is N/IC vs W/(1+W), not ROIC vs W. N/IC = 8.389% against a hurdle of 12.687% -> growth DESTROYS value by 430bp. Revision 3 read 13.81% against a 13.61% hurdle and concluded growth added value by 21bp \u2014 but its denominator was in Aug-2026 pounds against a FY2031 numerator, and the currency-vintage error was larger than the margin it was measuring",
+  "\n==============================================================================",
+  "ASSERT LOG",
+  "   1. bridge closes exactly: EV 18,842.58 + net cash 1,926.45 - NCI 0.158 = equity 20,768.87",
+  "   2. net cash carries a POSITIVE sign into the bridge (1,926.5)",
+  "   3. minority interests are DEDUCTED (0.158), not added",
+  "   4. terminal value is 51.8% of enterprise value",
+  "   5. implied fair value to spot 0.93x is inside the plausibility band",
+  "   6. terminal rate 14.53% is BELOW the explicit-window rate 24.52%",
+  "   7. the physical build reproduces EVERY disclosed FY2025 tonne to within 0.012%: clinker made 3.8514 vs 3.8516, cement made 3.4804 vs 3.4806, local 2.9233 vs 2.9236, cement exports 0.6296 vs 0.6295, clinker exports 1.3006 vs 1.3005, total 4.8535 vs 4.8536Mt. Revisions 1-3 reconstructed these from an assumed price and were 28% low on the total",
+  "   8. the Egyptian sector balance CLOSES: local 53.9Mt plus exports 18.6Mt = 72.5Mt against the disclosed total of 72.6Mt. It did not close in any earlier revision",
+  "   9. no forecast year asks the kiln for more than nameplate: peak 93.5% of 4.2Mt",
+  "  10. no forecast year asks the mill for more than nameplate: peak 75.0% of 5.0Mt",
+  "  11. cement exports (17.7%) sit INSIDE the 30% statutory cap the study cites \u2014 revision 3's single-product build breached it at 31.5%",
+  "  12. the unit build reproduces AUDITED FY2025 revenue to +0.000%",
+  "  13. the unit build reproduces AUDITED FY2025 EBITDA to +0.000%",
+  "  14. FY2025 operating profit closes from the audited lines to EGP 4,595.824mn",
+  "  15. the audited balance sheet closes: assets 8,783.722 less liabilities 4,140.990 = equity 4,642.732",
+  "  16. the forecast EBITDA margin glides DOWN every year from the FY2025 peak",
+  "  17. the effective tax rate used (23.82%) is within 3 points of the statutory rate (22.50%), as the audited accounts show",
+  "  18. the terminal growth lever moves the model in the direction its own algebra requires: N/IC 8.39% against the hurdle W/(1+W) 12.69%, so growth destroys value, and the model destroys it \u2014 a spread of -24.9% from 3% to 7%, which is MATERIAL and is published",
+  "  19. the share count is confirmed by the declared FY2025 dividend to 0.0000%",
+  "  20. discount factors decline monotonically",
+  "  21. lens weights sum to exactly 1",
+  "  22. the weighted central sits inside the range of the four lenses",
+  "  23. the cost-of-debt build is currency-blended: 91.1% of the book is euro-denominated and a single-currency shortcut would be wrong",
+  "=============================================================================="
+ ]
+}

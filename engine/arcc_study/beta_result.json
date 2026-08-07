@@ -1,0 +1,68 @@
+{
+ "ticker": "ARCC",
+ "beta": 0.6280798261200432,
+ "r2": 0.09073396956447966,
+ "n": 257,
+ "se": 0.12451030053556583,
+ "ci90": [
+  0.4232603817390374,
+  0.832899270501049
+ ],
+ "usable": true,
+ "gate_msg": "passes minimum usability gate",
+ "composite_names": 34,
+ "window_years": 5,
+ "frequency": "weekly",
+ "weak": true,
+ "weak_reason": "R-squared = 9.1% against the 10% weak-instrument threshold; the 90% confidence interval [0.42, 0.83] spans 0.65x the point estimate",
+ "warnings": [],
+ "adopted": {
+  "beta_used": 0.6280798261200432,
+  "basis": "tier-1 own-stock weekly regression (usability gate PASSED)",
+  "why": "n = 257 weekly observations, R-squared = 0.091 against the 0.05 floor, SE(beta) = 0.125 against |beta| = 0.628. All three conditions of the usability gate are met, so the regression estimate is adopted rather than a default.",
+  "corroboration": "Cross-checked two ways. (i) The Dimson sum-beta is 0.919 with a 90% interval of [0.52, 1.32]; the adopted 0.63 sits inside it. (ii) The simple prior for a cyclical, capital-intensive materials business is 1.0-1.5 and for a defensive or staple business 0.6-0.9; the adopted figure is read against both in the study rather than accepted at face value.",
+  "sensitivity_required": [
+   0.6,
+   0.8,
+   1.0,
+   1.15,
+   1.3
+  ]
+ },
+ "dimson": {
+  "sum_beta": 0.918924909028853,
+  "se_sum": 0.24260912388095088,
+  "r2": 0.10155378294262896,
+  "n": 254,
+  "ci90": [
+   0.5198329002446889,
+   1.3180169178130172
+  ],
+  "coefficients": {
+   "lead": 0.10214723053857666,
+   "contemporaneous": 0.6162184008893299,
+   "lag1": 0.20605160465425668,
+   "lag2": -0.005492327053310172
+  },
+  "uplift_vs_ols": 0.29084508290880984,
+  "note": "Dimson (1979) sum-beta over one lead, the contemporaneous term and two lags. The uplift over the contemporaneous OLS beta measures how much co-movement is booked late because the stock does not trade on every session."
+ },
+ "self_inclusion_bias": {
+  "beta_index_including_subject": 0.7480736602766987,
+  "r2_including": 0.12649310023566973,
+  "beta_index_excluding_subject": 0.6280798261200432,
+  "r2_excluding": 0.09073396956447966,
+  "note": "Leaving the subject inside its own equal-weight index injects a self-covariance term into the numerator. The excluding figure is the correct one and is what is reported; the including figure is disclosed so the size of the contamination is visible rather than assumed away."
+ },
+ "thin_trading": {
+  "flat_frac": 0.1221,
+  "eg_panel_median": 0.0896,
+  "ratio": 1.36,
+  "note": "Share of sessions closing unchanged, against the median of the Egyptian library. A high ratio is the documented mechanism for a downward-biased contemporaneous beta."
+ },
+ "plausibility": {
+  "sector_prior": "cyclical / capital-intensive materials: 1.0-1.5",
+  "defensive_prior": "defensive or staple: 0.6-0.9",
+  "net_cash_note": "The company carries no net financial leverage, which genuinely damps equity beta relative to a levered sector peer and is a real reason for an estimate below the cyclical band rather than an excuse."
+ }
+}
