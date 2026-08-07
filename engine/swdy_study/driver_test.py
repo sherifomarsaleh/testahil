@@ -28,7 +28,7 @@ def row_of(label):
 
 def read(overrides=None):
     bk = xlcalc.Book(wb, overrides)
-    return dict(dcf=bk.cell_value('DCF', 'C31'),
+    return dict(dcf=bk.cell_value('DCF', 'C62'),
                 central=bk.cell_value('Summary', 'C9'),
                 pv_expl=bk.cell_value('DCF', 'C26'),
                 tv=bk.cell_value('DCF', 'C25'),
@@ -51,19 +51,13 @@ CASES = [
      'a higher terminal risk-free rate must lower the valuation'),
     ('Working capital / revenue', 'C', +0.02, 'dcf', -1,
      'more working capital absorbs cash and must lower the valuation'),
-    ('Operating load (% of revenue)', 'B', +0.01, 'ebitda26', -1,
-     'a heavier operating load must cut FY2026 EBITDA'),
-    # Depreciation pulls the two halves of the DCF in OPPOSITE directions, and both legs
-    # are asserted so the workbook cannot quietly lose either one. In the explicit window a
-    # higher charge is a pure tax shield and lifts cash flow. In the terminal state it is
-    # not: capex is unchanged, so a permanently higher depreciation rate is a business
-    # consuming its own asset base, and terminal NOPAT falls faster than the shrinking
-    # capital base lifts the return on it. With the terminal value at 77% of enterprise
-    # value the second effect wins, and the fair value falls.
+    ('Corporate cost load (% of revenue) — the bridge from segment profit to EBIT', 'B', +0.01,
+     'ebitda26', -1, 'a heavier operating load must cut FY2026 EBITDA'),
+    # Under the segment-profit construction the disclosed margins are POST-depreciation, so
+    # EBIT is fixed by margin and load; a higher D&A share re-labels more of that fixed cost
+    # structure as non-cash and must lift the explicit-window cash flow.
     ('Depreciation and amortisation / revenue', 'C', +0.01, 'pv_expl', +1,
-     'in the explicit window a higher charge is a tax shield and must lift the present value'),
-    ('Depreciation and amortisation / revenue', 'C', +0.01, 'tv', -1,
-     'in the terminal state, against unchanged capex, it must lower the terminal value'),
+     'within fixed post-D&A segment margins, more D&A is a larger non-cash add-back'),
     ('Effective tax rate', 'C', +0.05, 'dcf', -1,
      'a higher tax rate must lower NOPAT and the valuation'),
     ('Justified EV/EBITDA', 'C', +1.0, 'central', +1,
@@ -74,14 +68,16 @@ CASES = [
      'a higher sustainable return must raise the book lens and the central'),
     ('Net bank debt at FY2025 (EGP mn, disclosed)', 'C', +5000.0, 'dcf', -1,
      'more net debt must leave less for shareholders'),
-    ('Forecast dividend payout ratio', 'C', +0.25, 'nd30', +1,
+    ('Forecast dividend payout ratio (struck at the actual FY2025 rate)', 'C', +0.25, 'nd30', +1,
      'paying more of the profit out must leave more net debt at the end of the forecast'),
+    ('Days from the 31-Dec-2025 valuation date to the 5-Aug-2026 anchor', 'C', +100.0, 'dcf', +1,
+     'a later anchor accretes more value at the cost of equity'),
+    ('FY2025 dividend per share (EGP, ratified 6 May 2026, paid 4 June 2026)', 'C', +1.0, 'dcf', -1,
+     'a larger dividend paid before the anchor is value that left the share'),
     ('Cost of debt, blended', 'C', +0.03, 'wacc', +1,
      'a higher cost of debt must raise the explicit-window cost of capital'),
     ('Terminal debt weight', 'C', +0.10, 'wacc_term', -1,
      'more of the cheaper after-tax debt must lower the terminal cost of capital'),
-    ('FY2024 dividend per share (EGP)', 'C', +1.0, 'bvps', -1,
-     'a larger dividend paid out of FY2024 must reduce FY2025 book value per share'),
 ]
 
 fails, moved = [], []
@@ -102,14 +98,16 @@ for label, col, bump, key, sign, why in CASES:
 # a driver that moves NOTHING anywhere is a dead input: catch those too
 DEAD_OK = {          # inputs the valuation legitimately does not consume directly
     'Spot price (EGP)', 'Statutory corporate tax rate', 'FY2025 average USD/EGP',
-    'Copper (USD/tonne)', 'USD/EGP path', 'Cable volume growth',
-    'Cable fabrication uplift over copper', 'Raw-material volume growth',
-    'Transformer MVA growth', 'Meter unit growth', 'Order-book conversion rate',
-    'Order-book book-to-bill', 'Other-lines revenue growth', 'Meter price inflation',
-    'Gross profit per unit — growth', 'Non-cable margin recovery factor',
-    'Cable gross profit per tonne, FY2025 (EGP)', 'Order book at FY2025 (EGP mn)',
+    'Copper (USD/tonne)', 'USD/EGP path',
+    'Cables — real (volume) growth over copper x FX',
+    'Constructions and infrastructure — revenue growth',
+    'Electrical products and digital solutions — revenue growth',
+    'Cables — gross/segment margin', 'Constructions and infrastructure — segment margin',
+    'Electrical products and digital solutions — segment margin',
     'Weight — discounted cash flow', 'Weight — relative', 'Weight — normalised',
-    'Weight — book', 'Yield assumed on surplus cash',
+    'Weight — book', 'Yield assumed on surplus cash (blend of EGP deposit and hard-currency rates)',
+    'US dollar risk-free rate', 'Hard-currency-leg equity risk premium', 'US dollar cost of debt',
+    'Debt weight, USD leg', 'Terminal growth of the USD leg',
     'FY2025 profit after tax (EGP mn, disclosed)',
     'FY2025 profit after minority interests (EGP mn, disclosed)',
     'Growth in the share of equity-accounted investees',
@@ -119,6 +117,10 @@ DEAD_OK = {          # inputs the valuation legitimately does not consume direct
     'Equity risk premium', 'Risk-free rate (10-year local currency)',
     'Terminal equity risk premium', 'Terminal cost of debt', 'Cost of debt path',
     'Capital expenditure / revenue',
+    # FY2025 equity is now the audited closing balance (no triangulation), so the FY2024
+    # dividend per share no longer chains into it live — it is retained on the Assumptions
+    # sheet purely as the disclosed historical fact that informed the forecast payout ratio.
+    'FY2024 dividend per share (EGP)',
 }
 print('\nDEAD-INPUT SWEEP — every driver not covered above is bumped and must move something')
 dead = []

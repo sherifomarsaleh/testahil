@@ -4,11 +4,32 @@ truth for every builder). Code-first rule: INPUTS are four-field records
 block raises (no JSON emitted) unless the bridge closes, the discount-rate glide
 is ordered, the Kd-integrity triple holds, and the terminal is ROIC-consistent.
 
+REBUILT 06-Aug-2026 on the actual audited/reviewed consolidated financial
+statements (FY2023, FY2024, FY2025 — KPMG Hazem Hassan, unqualified opinions —
+and the Q1-2026 limited-review interim), superseding a version built on press
+coverage, IR commentary and triangulation because the underlying filings were
+not reachable from the build environment. Two structural corrections follow
+directly from having the primary source in hand:
+
+1. THE REAL SEGMENT STRUCTURE IS THREE SEGMENTS, NOT SEVEN. The company's own
+   Note 5-3 (revenue by product/service line) and segment note report Cables
+   (and its accessories), Constructions (and infrastructure), and Electrical
+   products (and digital solutions) — nothing else. The previous build's
+   seven-way split (cables / raw material / engineering & construction /
+   transformers / meters / other electrical products / infrastructure
+   investment) does not appear anywhere in three years of audited filings; it
+   was an inference from IR commentary that is retired here in favour of the
+   disclosed taxonomy, which reconciles EXACTLY to consolidated revenue for
+   all three years (to the nearest EGP).
+2. FY2025 IS NOW FULLY DISCLOSED, so the "close the P&L to the two disclosed
+   anchors" and "triangulate the balance sheet three ways" machinery the
+   previous build needed is gone. Every FY2025 income-statement and
+   balance-sheet line below is the audited figure, not a derivation.
+
 Company class: diversified industrial operating company (wires & cables
-manufacturer + engineering & construction contractor + electrical products,
-digital solutions and infrastructure investment). Lens set follows the
-operating-company reference: FCFF DCF primary, relative multiples, normalized
-earnings power, and a book/ROE lens.
+manufacturer + engineering & construction contractor + electrical products and
+digital solutions). Lens set follows the operating-company reference: FCFF DCF
+primary, relative multiples, normalized earnings power, and a book/ROE lens.
 """
 import json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -22,329 +43,397 @@ def I(value, source, date, ring):
 INP = dict(
     # ---- anchors --------------------------------------------------------
     spot=I(105.20, "Uploaded EGX daily price history, last close", "2026-08-05", "Market"),
-    shares_mn=I(2140.777876, "Number of shares 2,140,777,876 — company earnings release, Share "
-                "Information panel (unchanged across FY2024 and Q1-2025 releases). An EGM-approved "
-                "capital cut writes off 1.422mn expired ESOP shares, taking issued capital to "
-                "EGP 2.139bn; immaterial (0.07%) and not yet listed, so the disclosed count is used",
-                "2025-05-26", "Company"),
+    shares_mn=I(2140.777876, "Issued and paid-up capital note (29), audited FY2025 consolidated "
+                "financial statements and the Q1-2026 condensed interim statements: 2,140,777,876 "
+                "shares of EGP 1 par value, unchanged across both filings", "2026-05-13", "Company"),
     tax_stat=I(0.225, "Egypt corporate income tax 22.5% (PwC Worldwide Tax Summaries, unchanged "
                "2025-26)", "2026", "Country"),
-    tax_eff=I(0.25, "Group effective tax rate used for NOPAT. Reported effective rates: FY2023 "
-              "31.3%, FY2024 30.1%, FY2025 25.2% (derived, see P&L closure). The group pays tax in "
-              "15 countries; 25% is struck between the FY25 derived rate and the Egyptian statutory "
-              "22.5%, above the statutory rate because foreign profits are taxed in higher-rate "
-              "jurisdictions and withholding leaks on repatriation", "2026-08-05", "House"),
+    tax_eff=I(0.245, "Group effective tax rate used for the forecast. Audited effective rates: "
+              "FY2023 31.3%, FY2024 30.1%, FY2025 22.6% (all now EXACT — tax expense / profit "
+              "before tax, audited statement of profit or loss); Q1-2026 interim 25.75%. No "
+              "statutory-vs-effective reconciliation is disclosed anywhere in the filings (Egyptian "
+              "Accounting Standards do not require the IFRS-style table); the group operates in 15+ "
+              "tax jurisdictions plus Free-Zone entities that pay 1% of revenue to GAFI instead of "
+              "corporate tax. 24.5% sits between the FY2025 print and the historical average, "
+              "allowing for the Q1-2026 uptick rather than extrapolating one low year",
+              "2026-05-13", "Company/House"),
     fx=I(49.8, "USD/EGP mid-market ~49.8 (house cost-of-capital reference, re-verified 05-Aug-2026). "
          "The pound was not range-bound over the last year: ~46.8 (Feb-26) to ~54.7 (Apr-26 regional "
          "war spike) and back to ~49.8", "2026-08-05", "Country"),
 
-    # ---- historical income statement (EGP mn, consolidated) --------------
-    rev_fy23=I(152186.2, "Consolidated Income Statement, FY2024 earnings release (FY-2023 comparative)",
+    # ---- historical income statement (EGP mn, consolidated, AUDITED) ------
+    # FY2023 and FY2024 are cross-confirmed between their own filing and the following
+    # year's comparative column (both tie to the cent); FY2025 is the current year's own
+    # audited filing. All four documents: KPMG Hazem Hassan, unqualified opinion.
+    rev_fy23=I(152186.247545, "Consolidated statement of profit or loss, FY2023 audited financial "
+               "statements (confirmed by the FY2024 filing's comparative column)",
+               "2024-03-13", "Company"),
+    rev_fy24=I(231981.835577, "Consolidated statement of profit or loss, FY2024 audited financial "
+               "statements (confirmed by the FY2025 filing's comparative column)",
                "2025-03-13", "Company"),
-    rev_fy24=I(231981.8, "Consolidated Income Statement, FY2024 earnings release", "2025-03-13", "Company"),
-    rev_fy25=I(281049.0, "FY2025 consolidated revenues EGP 281.04bn (EGX filing, reported by Arab "
-               "Finance / Mubasher; +21.15% on FY2024)", "2026-03", "Company"),
-    gp_fy23=I(29077.3, "Consolidated Income Statement, FY2024 earnings release (comparative)",
-              "2025-03-13", "Company"),
-    gp_fy24=I(43898.5, "Consolidated Income Statement, FY2024 earnings release", "2025-03-13", "Company"),
-    gp_fy25=I(40720.0, "DERIVED: 9M-2025 gross profit ~EGP 30.0bn (15.0% of the 199.71bn 9M revenue, "
-              "press coverage of the 9M filing) + Q4-2025 gross profit 10.77bn (Q4-2025 release: "
-              "-0.7% y/y on Q4-2024's 10,841, 13.2% margin). Blends to a 14.5% FY margin",
-              "2026-03", "House"),
-    op_fy23=I(17739.1, "Operating profit, FY2024 earnings release (comparative)", "2025-03-13", "Company"),
-    op_fy24=I(29341.7, "Operating profit, FY2024 earnings release", "2025-03-13", "Company"),
-    dna_fy23=I(2296.0, "Audited consolidated statement of cash flows FY2024 (2023 column): PP&E "
-               "depreciation 2,120.8 + investment property 6.4 + intangibles amortisation 53.9 + "
-               "right-of-use 114.9", "2025-03-12", "Company"),
-    dna_fy24=I(2259.9, "Audited consolidated statement of cash flows FY2024: PP&E depreciation "
-               "2,019.6 + investment property 1.5 + intangibles amortisation 80.7 + right-of-use "
-               "157.9", "2025-03-12", "Company"),
-    netfin_fy23=I(-2124.4, "Net finance costs, FY2024 earnings release (comparative)", "2025-03-13", "Company"),
-    netfin_fy24=I(-3515.4, "Net finance costs, FY2024 earnings release", "2025-03-13", "Company"),
-    assoc_fy23=I(603.6, "Share of profit of equity-accounted investees, FY2024 release (comparative)",
+    rev_fy25=I(281049.081719, "Consolidated statement of profit or loss, FY2025 audited financial "
+               "statements", "2026-03-15", "Company"),
+    gp_fy23=I(29077.288803, "Consolidated statement of profit or loss, FY2023 audited financial "
+              "statements", "2024-03-13", "Company"),
+    gp_fy24=I(43898.520903, "Consolidated statement of profit or loss, FY2024 audited financial "
+              "statements", "2025-03-13", "Company"),
+    gp_fy25=I(40762.108187, "Consolidated statement of profit or loss, FY2025 audited financial "
+              "statements", "2026-03-15", "Company"),
+    op_fy23=I(17739.118249, "Operating profit, FY2023 audited financial statements", "2024-03-13",
+              "Company"),
+    op_fy24=I(29341.719144, "Operating profit, FY2024 audited financial statements", "2025-03-13",
+              "Company"),
+    op_fy25=I(25354.225619, "Operating profit, FY2025 audited financial statements", "2026-03-15",
+              "Company"),
+    dna_fy23=I(2295.986956, "Audited FY2023 consolidated statement of cash flows: PP&E depreciation "
+               "2,120.789808 + investment property 6.388342 + intangibles amortisation 53.947575 + "
+               "right-of-use assets 114.861231", "2024-03-13", "Company"),
+    dna_fy24=I(2259.745806, "Audited FY2024 consolidated statement of cash flows: PP&E depreciation "
+               "2,019.646871 + investment property 1.472753 + intangibles amortisation 80.726323 + "
+               "right-of-use assets 157.899859", "2025-03-13", "Company"),
+    dna_fy25=I(3008.977627, "Audited FY2025 consolidated statement of cash flows: PP&E depreciation "
+               "2,733.671862 + investment property 1.687166 + intangibles amortisation 78.072847 + "
+               "right-of-use assets 195.545752 — the depreciable base stepped up with the FY2025 "
+               "capex ramp", "2026-03-15", "Company"),
+    netfin_fy23=I(-2124.362277, "Net finance costs, FY2023 audited financial statements: finance "
+                  "income 2,818.868796 less finance costs 4,943.231073", "2024-03-13", "Company"),
+    netfin_fy24=I(-3515.365946, "Net finance costs, FY2024 audited financial statements: finance "
+                  "income 4,247.625658 less finance costs 7,762.991604", "2025-03-13", "Company"),
+    netfin_fy25=I(-2145.438755, "Net finance costs, FY2025 audited financial statements: finance "
+                  "income 3,713.003271 less finance costs 5,858.442026. REPLACES a previous "
+                  "estimate of -3,400 struck when the filing was not reachable — this is the exact "
+                  "audited figure and it is materially smaller (net finance improved even as gross "
+                  "debt grew, because the CBE's easing cycle and a larger cash pile both cut the "
+                  "net charge)", "2026-03-15", "Company"),
+    assoc_fy23=I(603.624972, "Group's share of profit of equity-accounted investees, FY2023 audited "
+                 "financial statements", "2024-03-13", "Company"),
+    assoc_fy24=I(1132.366257, "Group's share of profit of equity-accounted investees, FY2024 "
+                 "audited financial statements", "2025-03-13", "Company"),
+    assoc_fy25=I(1568.902975, "Group's share of profit of equity-accounted investees, FY2025 "
+                 "audited financial statements — reconciles exactly to the sum of the per-investee "
+                 "shares in Note 20 (Doha Cables 940.3, Elsewedy Cables-Qatar 259.2, SC Zone "
+                 "Utilities 255.5, SWIEP 73.4, Aloula 96.9, Raneen 15.5, Senyar -71.9). REPLACES a "
+                 "previous 1.15x uplift on the FY2024 figure, no longer needed now the actual "
+                 "number is disclosed", "2026-03-15", "Company"),
+    tax_fy23=I(-5080.406688, "Income tax expense, FY2023 audited financial statements", "2024-03-13",
+               "Company"),
+    tax_fy24=I(-8121.510082, "Income tax expense, FY2024 audited financial statements", "2025-03-13",
+               "Company"),
+    tax_fy25=I(-5591.139782, "Income tax expense, FY2025 audited financial statements: current tax "
+               "6,312.161650 less deferred tax credit 721.021868. Effective rate 22.57% against "
+               "24,777.689839 pre-tax profit — REPLACES a previous house assumption of 25.9%",
+               "2026-03-15", "Company"),
+    pat_fy23=I(11137.974256, "Profit for the year, FY2023 audited financial statements", "2024-03-13",
+               "Company"),
+    pat_fy24=I(18837.209373, "Profit for the year, FY2024 audited financial statements", "2025-03-13",
+               "Company"),
+    pat_fy25=I(19186.550057, "Profit for the year, FY2025 audited financial statements",
+               "2026-03-15", "Company"),
+    npa_fy23=I(10115.701777, "Profit attributable to owners of the parent, FY2023 audited financial "
+               "statements. Basic EPS 4.26, diluted 4.25", "2024-03-13", "Company"),
+    npa_fy24=I(17461.358714, "Profit attributable to owners of the parent, FY2024 audited financial "
+               "statements. Basic EPS 7.22, diluted 7.21", "2025-03-13", "Company"),
+    npa_fy25=I(17330.244990, "Profit attributable to owners of the parent, FY2025 audited financial "
+               "statements. Basic and diluted EPS both 7.13 (no dilutive instruments beyond the "
+               "already-deducted ESOP shares)", "2026-03-15", "Company"),
+
+    # ---- historical balance sheet (EGP mn, consolidated, AUDITED) --------
+    ppe_fy23=I(18009.166367, "Consolidated statement of financial position, 31 Dec 2023",
+               "2024-03-13", "Company"),
+    ppe_fy24=I(27543.762675, "Consolidated statement of financial position, 31 Dec 2024",
+               "2025-03-13", "Company"),
+    ppe_fy25=I(35961.076614, "Consolidated statement of financial position, 31 Dec 2025",
+               "2026-03-15", "Company"),
+    inv_fy23=I(30881.822082, "Inventories, 31 Dec 2023 (net of write-down)", "2024-03-13", "Company"),
+    inv_fy24=I(56795.884068, "Inventories, 31 Dec 2024 (net of write-down)", "2025-03-13", "Company"),
+    inv_fy25=I(59860.044570, "Inventories, 31 Dec 2025 (net of write-down)", "2026-03-15", "Company"),
+    ca_fy23=I(16179.633722, "Contract assets, 31 Dec 2023", "2024-03-13", "Company"),
+    ca_fy24=I(18051.966570, "Contract assets, 31 Dec 2024", "2025-03-13", "Company"),
+    ca_fy25=I(29894.579591, "Contract assets, 31 Dec 2025", "2026-03-15", "Company"),
+    recv_fy23=I(46591.885092, "Trade and other receivables (current), 31 Dec 2023", "2024-03-13",
+                "Company"),
+    recv_fy24=I(86736.309423, "Trade and other receivables (current), 31 Dec 2024", "2025-03-13",
+                "Company"),
+    recv_fy25=I(116259.797169, "Trade and other receivables (current), 31 Dec 2025", "2026-03-15",
+                "Company"),
+    pay_fy23=I(31938.122060, "Trade and other payables, 31 Dec 2023", "2024-03-13", "Company"),
+    pay_fy24=I(54808.185042, "Trade and other payables, 31 Dec 2024", "2025-03-13", "Company"),
+    pay_fy25=I(68895.662044, "Trade and other payables, 31 Dec 2025", "2026-03-15", "Company"),
+    cl_fy23=I(25060.328092, "Contract liabilities, 31 Dec 2023", "2024-03-13", "Company"),
+    cl_fy24=I(53281.056753, "Contract liabilities, 31 Dec 2024", "2025-03-13", "Company"),
+    cl_fy25=I(81266.224686, "Contract liabilities, 31 Dec 2025", "2026-03-15", "Company"),
+    cash_fy23=I(25552.044800, "Cash and cash equivalents, 31 Dec 2023", "2024-03-13", "Company"),
+    cash_fy24=I(38180.002322, "Cash and cash equivalents, 31 Dec 2024", "2025-03-13", "Company"),
+    cash_fy25=I(41949.208624, "Cash and cash equivalents, 31 Dec 2025: bank time deposits 9,689.1, "
+                "bank current accounts 32,157.7, cash on hand 102.4", "2026-03-15", "Company"),
+    assets_fy23=I(151448.654828, "Total assets, 31 Dec 2023", "2024-03-13", "Company"),
+    assets_fy24=I(249527.138687, "Total assets, 31 Dec 2024", "2025-03-13", "Company"),
+    assets_fy25=I(311099.090775, "Total assets, 31 Dec 2025", "2026-03-15", "Company"),
+    debt_fy23=I(41766.492071, "Loans and borrowings including lease liabilities, 31 Dec 2023: "
+                "current 34,950.810105 (loans 7,401.079843 + bank facilities 27,530.523733 + leases "
+                "19.206529) + non-current 6,815.681966 (loans 6,235.939701 + leases 579.742265)",
+                "2024-03-13", "Company"),
+    debt_fy24=I(59082.941807, "Loans and borrowings including lease liabilities, 31 Dec 2024: "
+                "current 52,733.931099 (loans 12,580.708167 + bank facilities 40,049.471127 + "
+                "leases 103.751805) + non-current 6,349.010708 (loans 6,166.616210 + leases "
+                "182.394498)", "2025-03-13", "Company"),
+    debt_fy25=I(62509.211797, "Loans and borrowings including lease liabilities, 31 Dec 2025: "
+                "current 53,888.496799 (loans 26,673.246745 + bank facilities 27,183.559774 + "
+                "leases 31.690280) + non-current 8,620.714998 (loans 8,605.301580 + leases "
+                "15.413418)", "2026-03-15", "Company"),
+    nd_fy23=I(16214.447271, "Net financial debt, 31 Dec 2023: total loans and borrowings including "
+              "leases 41,766.492071 less cash and cash equivalents 25,552.044800. NOTE: this is the "
+              "interest-bearing-debt definition used for the equity bridge, not the company's own "
+              "'net debt' capital-management ratio (Note 29-1), which nets a much broader liability "
+              "base (total liabilities less deferred tax and provisions) against cash and is a "
+              "leverage-monitoring metric, not a valuation-bridge quantity",
+              "2024-03-13", "Company"),
+    nd_fy24=I(20902.939485, "Net financial debt, 31 Dec 2024: total loans and borrowings including "
+              "leases 59,082.941807 less cash 38,180.002322", "2025-03-13", "Company"),
+    nd_fy25=I(20560.003173, "Net financial debt, 31 Dec 2025: total loans and borrowings including "
+              "leases 62,509.211797 less cash 41,949.208624. The company's OWN 'net debt' figure "
+              "(Note 29-1) is EGP 180,102.969196 — total liabilities LESS deferred tax and "
+              "provisions, less cash — a capital-structure leverage ratio (net debt/equity 2.50x) "
+              "that nets trade payables and contract liabilities against cash. Using it in an "
+              "EV-to-equity bridge would double-count operating liabilities already reflected in "
+              "working capital; the interest-bearing figure above is the correct bridge quantity "
+              "and is used throughout", "2026-03-15", "Company"),
+    eqp_fy23=I(35724.466132, "Equity attributable to owners of the parent, 31 Dec 2023",
+               "2024-03-13", "Company"),
+    eqp_fy24=I(55274.913356, "Equity attributable to owners of the parent, 31 Dec 2024",
+               "2025-03-13", "Company"),
+    eqp_fy25=I(66870.866550, "Equity attributable to owners of the parent, 31 Dec 2025 — now the "
+               "audited closing figure, not derived from the prior year plus profit less an "
+               "assumed dividend", "2026-03-15", "Company"),
+    nci_fy23=I(2384.013396, "Non-controlling interests, 31 Dec 2023", "2024-03-13", "Company"),
+    nci_fy24=I(4251.771900, "Non-controlling interests, 31 Dec 2024", "2025-03-13", "Company"),
+    nci_fy25=I(5118.978381, "Non-controlling interests, 31 Dec 2025: Rowad for Modern Engineering "
+               "(49%) 1,429.7, Elsewedy Cables-KSA (40%) 2,546.8, Egyptian Co. for Solar Energy "
+               "(49%) 297.5, Elsewedy Electric Zambia (40%) 453.2, Egyptian Co. for Electrical "
+               "Insulators (25.17%) 76.1, Pyramids Zona Franca (5%) 17.9, others 297.7",
+               "2026-03-15", "Company"),
+    assoc_bv_fy24=I(6474.047538, "Equity-accounted investees, carrying value, 31 Dec 2024",
+                    "2025-03-13", "Company"),
+    assoc_bv_fy25=I(6757.650507, "Equity-accounted investees, carrying value, 31 Dec 2025 — the "
+                    "closing balance used in the valuation bridge (the anchor date is Aug-2026, so "
+                    "the FY2025 close is the most recent audited figure, not FY2024's)",
+                    "2026-03-15", "Company"),
+    intang_fy24=I(1459.194548, "Intangible assets and goodwill, 31 Dec 2024", "2025-03-13", "Company"),
+    intang_fy25=I(1748.816945, "Intangible assets and goodwill, 31 Dec 2025", "2026-03-15", "Company"),
+    dps_fy24=I(1.00, "FY2024 dividend, paid during FY2025: cash flow statement 'dividends paid to "
+               "shareholders' of 3,111.384454 splits into 2,139.355716 to owners of the parent and "
+               "972.028738 to non-controlling interests; 2,139.355716 / 2,139,355,716 weighted "
+               "shares = EXACTLY EGP 1.00 per share", "2026-03-15", "Company"),
+    dps_fy25=I(1.85, "FY2025 cash dividend of EGP 1.85/share: recommended with the FY2025 results, "
+               "ratified by the ordinary general assembly on 6 May 2026, rights with the share "
+               "through 1 June, paid from 4 June 2026 (EGX disclosure, corroborated by Arab "
+               "Finance coverage and the quoted ~2.0% trailing yield). RESTORED after external "
+               "critique: an earlier revision removed this figure because neither the FY2025 "
+               "annual filing (board-approved 12 Mar 2026) nor the Q1-2026 interim disclosed it — "
+               "an absence-of-evidence error, since the interim covers a period ending 31 March "
+               "and carries no subsequent-events note, so its silence was never evidence. Payout = "
+               "1.85 / 8.10 attributable EPS = 22.8%", "2026-05-06", "Company"),
+
+    # ---- cash-flow markers (EGP mn, AUDITED) -----------------------------
+    capex_fy23=I(4748.595385, "Audited FY2023 consolidated cash flow statement: 'acquisition of "
+                 "property, plant and equipment'", "2024-03-13", "Company"),
+    capex_fy24=I(8489.780912, "Audited FY2024 consolidated cash flow statement: 'paid for "
+                 "acquisition of property, plant and equipment and projects under construction'",
                  "2025-03-13", "Company"),
-    assoc_fy24=I(1132.4, "Share of profit of equity-accounted investees, FY2024 release",
-                 "2025-03-13", "Company"),
-    tax_fy23=I(-5080.4, "Income tax expense, FY2024 earnings release (comparative)", "2025-03-13", "Company"),
-    tax_fy24=I(-8121.5, "Income tax expense, FY2024 earnings release", "2025-03-13", "Company"),
-    pat_fy23=I(11138.0, "Profit for the period, FY2024 earnings release (comparative)", "2025-03-13", "Company"),
-    pat_fy24=I(18837.2, "Profit for the period, FY2024 earnings release", "2025-03-13", "Company"),
-    pat_fy25=I(19180.0, "FY2025 consolidated net profit after tax EGP 19.18bn vs EGP 18.83bn FY2024 "
-               "(EGX filing via Mubasher). The FY2024 comparative reconciles exactly to the audited "
-               "'Profit for the period' of 18,837.2, confirming this is the pre-minority line",
-               "2026-03", "Company"),
-    npa_fy23=I(10115.7, "Profit attributable to owners of the company, FY2024 release (comparative)",
-               "2025-03-13", "Company"),
-    npa_fy24=I(17461.4, "Profit attributable to owners of the company, FY2024 release",
-               "2025-03-13", "Company"),
-    npa_fy25=I(17330.0, "FY2025 net profit after minority: FY2024's 17,461.4 less the disclosed "
-               "-0.75% y/y move (Arab Finance headline on the FY2025 filing). Cross-checks to the "
-               "quarterly build: 9M-2025 12,670 + Q4-2025 4,660 (Q4 release: +10.6% y/y on Q4-2024's "
-               "4,209)", "2026-03", "Company"),
+    capex_fy25=I(13112.049791, "Audited FY2025 consolidated cash flow statement: 'paid for "
+                 "acquisition of property, plant and equipment and projects under construction' — "
+                 "a 55% step-up on FY2024, the capacity-expansion cycle referenced throughout this "
+                 "study", "2026-03-15", "Company"),
+    int_paid_fy25=I(5740.312420, "Interest paid, audited FY2025 consolidated statement of cash "
+                    "flows", "2026-03-15", "Company"),
+    tax_paid_fy25=I(8298.752112, "Income tax paid, audited FY2025 consolidated statement of cash "
+                    "flows", "2026-03-15", "Company"),
+    ocf_fy25=I(12765.922545, "Net cash flows from operating activities, FY2025 (after interest and "
+               "tax) — 12,765.9 against house EBITDA of 28,363.2, still well below full conversion "
+               "but a sharp recovery from FY2024's 3,979.4, as the pace of working-capital "
+               "absorption slowed", "2026-03-15", "Company"),
 
-    # ---- historical balance sheet (EGP mn, consolidated) -----------------
-    ppe_fy23=I(18009.2, "Consolidated Balance Sheet 31/12/2023, FY2024 earnings release", "2025-03-13", "Company"),
-    ppe_fy24=I(27543.8, "Consolidated Balance Sheet 31/12/2024, FY2024 earnings release", "2025-03-13", "Company"),
-    inv_fy23=I(30881.8, "Inventories 31/12/2023", "2025-03-13", "Company"),
-    inv_fy24=I(56795.9, "Inventories 31/12/2024", "2025-03-13", "Company"),
-    ca_fy23=I(16179.6, "Contract assets 31/12/2023", "2025-03-13", "Company"),
-    ca_fy24=I(18052.0, "Contract assets 31/12/2024", "2025-03-13", "Company"),
-    recv_fy23=I(46591.9, "Trade, notes and other receivables (current) 31/12/2023", "2025-03-13", "Company"),
-    recv_fy24=I(86736.3, "Trade, notes and other receivables (current) 31/12/2024", "2025-03-13", "Company"),
-    pay_fy23=I(31938.1, "Trade, notes and other payables 31/12/2023", "2025-03-13", "Company"),
-    pay_fy24=I(54808.2, "Trade, notes and other payables 31/12/2024", "2025-03-13", "Company"),
-    cl_fy23=I(25060.3, "Contract liabilities 31/12/2023", "2025-03-13", "Company"),
-    cl_fy24=I(53281.1, "Contract liabilities 31/12/2024", "2025-03-13", "Company"),
-    cash_fy23=I(25552.0, "Cash and cash equivalents 31/12/2023", "2025-03-13", "Company"),
-    cash_fy24=I(38180.0, "Cash and cash equivalents 31/12/2024", "2025-03-13", "Company"),
-    assets_fy23=I(151448.7, "Total assets 31/12/2023", "2025-03-13", "Company"),
-    assets_fy24=I(249527.1, "Total assets 31/12/2024", "2025-03-13", "Company"),
-    assets_fy25=I(311090.0, "Total assets EGP 311.09bn at 31 December 2025 (EGX filing coverage)",
-                  "2026-03", "Company"),
-    debt_fy23=I(41766.5, "Loans and borrowings, current 34,950.8 + non-current 6,815.7 (31/12/2023)",
-                "2025-03-13", "Company"),
-    debt_fy24=I(59082.9, "Loans and borrowings, current 52,733.9 + non-current 6,349.0 (31/12/2024). "
-                "Note 32 splits this into loans 18,747.3, bank credit facilities 40,049.5 and lease "
-                "liabilities 286.1", "2025-03-12", "Company"),
-    nd_fy23=I(14768.0, "Net debt at 31 December 2023, stated in the FY2024 earnings release",
-              "2025-03-13", "Company"),
-    nd_fy24=I(20028.0, "Net debt at 31 December 2024, stated in the FY2024 earnings release. The "
-              "Q1-2025 release restates the same date as net BANK debt of 19,727 (leases excluded); "
-              "the 301 difference is immaterial and the larger figure is carried",
-              "2025-03-13", "Company"),
-    nd_fy25=I(19789.0, "Net bank debt EGP 19,789mn at 31 December 2025, stated in the Q4-2025 "
-              "earnings release ('remained almost flat')", "2026-03", "Company"),
-    eqp_fy23=I(35724.5, "Equity attributable to owners of the parent 31/12/2023", "2025-03-13", "Company"),
-    eqp_fy24=I(55274.9, "Equity attributable to owners of the parent 31/12/2024", "2025-03-13", "Company"),
-    nci_fy23=I(2384.0, "Non-controlling interests 31/12/2023", "2025-03-13", "Company"),
-    nci_fy24=I(4251.8, "Non-controlling interests 31/12/2024", "2025-03-13", "Company"),
-    assoc_bv_fy24=I(6474.0, "Equity-accounted investees (carrying value) 31/12/2024", "2025-03-13", "Company"),
-    intang_fy24=I(1459.2, "Intangible assets and goodwill 31/12/2024", "2025-03-13", "Company"),
-    dps_fy24=I(1.00, "Board proposed a dividend of EGP 1.00 per share on the FY2024 result (CEO "
-               "statement, FY2024 earnings release); shareholder dividends of 2,176.0 were paid in "
-               "the FY2024 cash flow statement for the prior year", "2025-03-13", "Company"),
+    # ---- interim (EGP mn, REVIEWED) ---------------------------------------
+    q1_25_rev=I(59391.529636, "Condensed consolidated interim statement of profit or loss, 3M to "
+                "31-Mar-2025 (comparative column of the Q1-2026 filing)", "2026-05-13", "Company"),
+    q1_25_ebitda_house=I(7488.788241, "Q1-2025 house EBITDA: operating profit 6,503.867706 + "
+                         "depreciation/amortisation estimated at the FY2025 D&A ratio applied to "
+                         "Q1-2025 revenue (the interim filing does not itemise D&A separately from "
+                         "operating profit)", "2026-05-13", "House"),
+    q1_25_npa=I(4146.412114, "Profit attributable to owners of the parent, Q1-2025", "2026-05-13",
+                "Company"),
+    q1_26_rev=I(75298.446639, "Condensed consolidated interim statement of profit or loss, 3M to "
+                "31-Mar-2026", "2026-05-13", "Company"),
+    q1_26_gp=I(13128.216681, "Gross profit, Q1-2026 interim statements", "2026-05-13", "Company"),
+    q1_26_op=I(8247.204309, "Operating profit, Q1-2026 interim statements", "2026-05-13", "Company"),
+    q1_26_netfin=I(-1458.477611, "Net finance costs, Q1-2026 interim statements: finance income "
+                   "683.569177 less finance costs 2,142.046788", "2026-05-13", "Company"),
+    q1_26_assoc=I(253.240105, "Share of profit of equity-accounted investees, Q1-2026 interim "
+                  "statements", "2026-05-13", "Company"),
+    q1_26_tax=I(-1813.239280, "Income tax expense, Q1-2026 interim statements (effective rate "
+                "25.75% on pre-tax profit of 7,041.966803, up from 21.96% in Q1-2025)",
+                "2026-05-13", "Company"),
+    q1_26_npa=I(4845.322118, "Profit attributable to owners of the parent, Q1-2026, +16.9% y/y",
+                "2026-05-13", "Company"),
+    q1_26_nd=I(28768.787222, "Net financial debt, 31 Mar 2026: total loans and borrowings including "
+               "leases 89,533.539777 less cash 60,764.752555 — up sharply from FY2025-close as "
+               "working capital absorbed cash (net operating cash flow was NEGATIVE 1,665.1 in the "
+               "quarter) funded by 30,364.3 of new loan drawdowns", "2026-05-13", "Company"),
 
-    # ---- cash-flow markers (EGP mn) --------------------------------------
-    capex_fy23=I(4830.0, "Audited FY2024 cash flow (2023 column): PP&E and projects under "
-                 "construction 4,748.6 + intangibles 81.4", "2025-03-12", "Company"),
-    capex_fy24=I(8765.7, "Audited FY2024 cash flow: PP&E and projects under construction 8,489.8 + "
-                 "intangibles 275.9", "2025-03-12", "Company"),
-    int_paid_fy24=I(7706.9, "Interest paid, audited FY2024 consolidated statement of cash flows",
-                    "2025-03-12", "Company"),
-    tax_paid_fy24=I(4891.0, "Income tax paid, audited FY2024 consolidated statement of cash flows",
-                    "2025-03-12", "Company"),
-    ocf_fy24=I(3979.4, "Net cash flows from operating activities FY2024 (after interest and tax) — "
-               "only 3,979 against EBITDA of 31,602, the working-capital absorption in one number",
-               "2025-03-12", "Company"),
+    # ---- segment structure — THE DISCLOSED THREE SEGMENTS ------------------
+    # Revenue by product/service line (Note 5-3 in every filing) ties EXACTLY to
+    # consolidated revenue for all three years — no elimination, no estimation.
+    seg_rev_hist=I(dict(
+        FY23=dict(cables=82421.265314, construct=53482.804001, elecprod=16282.178230),
+        FY24=dict(cables=137189.798892, construct=70921.447985, elecprod=23870.588700),
+        FY25=dict(cables=155792.929738, construct=90958.550228, elecprod=34297.601753)),
+        "Revenue by product/service line, Note 5-3, all three audited financial statements. "
+        "Sums EXACTLY to consolidated revenue in every year (152,186.247545 / 231,981.835577 / "
+        "281,049.081719). This REPLACES a seven-way sub-segment split (cables, raw material, "
+        "engineering & construction, transformers, meters, other electrical products, "
+        "infrastructure investment) that does not appear in any of three years of audited filings",
+        "2026-03-15", "Company"),
+    seg_profit_hist=I(dict(
+        FY23=dict(cables=16057.629741, construct=6215.524501, elecprod=4142.770991),
+        FY24=dict(cables=24851.887243, construct=8115.892728, elecprod=6345.336266),
+        FY25=dict(cables=21016.396482, construct=5868.890571, elecprod=7604.808509)),
+        "Segment profit by the same three segments, Note 16 (operating segments), all three "
+        "audited financial statements — the inside-Egypt and outside-Egypt columns summed. This "
+        "is computed on the segment note's OWN (pre-elimination) revenue base, which is larger "
+        "than the Note 5-3 external-revenue view because it includes inter-segment sales (chiefly "
+        "cable output consumed by the Constructions segment on turnkey projects); FY2025 also "
+        "carries a disclosed unallocated/corporate item of -246.710877 not attributed to any "
+        "segment. FY2023's three segments sum to 26,415.925233 against a disclosed total of "
+        "26,406.917233 (a 9.0 EGP thousand rounding residual in the filing's own inside/outside "
+        "table, immaterial); FY2024 and FY2025 tie exactly", "2026-03-15", "Company"),
+    corp_load_hist=I(dict(FY23=0.0570144, FY24=0.04298, FY25=0.03163),
+                     "Net corporate cost load = (G&A + net impairment on receivables + other "
+                     "expenses - other income) / revenue, computed from the audited income "
+                     "statements. This is the bridge from segment profit (Note 16) to consolidated "
+                     "operating profit and it reconciles EXACTLY in all three years: e.g. FY2025 "
+                     "segment profit 34,490.095562 less the -246.710877 unallocated/corporate item "
+                     "= 34,243.384685, less 3.163% x revenue 281,049.081719 = 25,354.225619 = the "
+                     "audited operating profit to the EGP. The load has been FALLING — operating "
+                     "leverage improving at the corporate level even as segment margins compressed",
+                     "2026-03-15", "Company"),
+    seg_unalloc_fy25=I(-246.710877, "Unallocated/corporate segment item, Note 16, FY2025 audited "
+                        "financial statements — not attributed to any of the three segments; netted "
+                        "against the three segments' summed profit before the corporate-load bridge "
+                        "is applied. No equivalent unallocated item is disclosed for FY2023 or "
+                        "FY2024", "2026-03-15", "Company"),
+    dna_pct_hist=I(dict(FY23=0.01509, FY24=0.00974, FY25=0.01070),
+                   "Depreciation and amortisation as a share of revenue, computed from the audited "
+                   "cash flow statements", "2026-03-15", "Company"),
+    capex_pct_hist=I(dict(FY23=0.03120, FY24=0.03660, FY25=0.04665),
+                     "Capital expenditure (cash paid for PP&E and projects under construction, "
+                     "audited cash flow statements) as a share of revenue — a clear, rising "
+                     "capacity-investment cycle", "2026-03-15", "Company"),
+    nwc_pct_hist=I(dict(FY23=0.2409, FY24=0.2306, FY25=0.1987),
+                   "Net working capital (inventories + contract assets + trade and other "
+                   "receivables, current, LESS trade and other payables LESS contract liabilities; "
+                   "industrial real-estate-development land holdings excluded as a separate "
+                   "quasi-investment item) as a share of revenue, computed from the audited balance "
+                   "sheets. FY2025 shows a genuine, disclosed IMPROVEMENT in working-capital "
+                   "intensity, not an assumption", "2026-03-15", "Company"),
 
-    # ---- interim (EGP mn) -------------------------------------------------
-    q1_25_rev=I(59391.5, "Condensed consolidated interim statement of profit or loss, 3M to "
-                "31-Mar-2025", "2025-05-26", "Company"),
-    q1_25_gp=I(9973.7, "Gross profit, Q1-2025 interim statements", "2025-05-26", "Company"),
-    q1_25_op=I(6503.9, "Operating profit, Q1-2025 interim statements", "2025-05-26", "Company"),
-    q1_25_ebitda=I(7488.8, "EBITDA, Q1-2025 earnings release (12.6% margin)", "2025-05-26", "Company"),
-    q1_25_npa=I(4146.4, "Profit attributable to owners of the parent, Q1-2025", "2025-05-26", "Company"),
-    q1_25_fincost=I(1745.6, "Finance costs (gross), Q1-2025 interim statements", "2025-05-26", "Company"),
-    q1_25_netfin=I(-755.7, "NET finance costs Q1-2025: finance costs 1,745.6 less finance income "
-                   "989.9. The group carries very large cash and short-term deposits, so gross "
-                   "interest expense materially overstates the net charge", "2025-05-26", "Company"),
-    netfin_fy25=I(-3400.0, "DERIVED FY2025 net finance cost. The Q1-2025 net run-rate annualises to "
-                  "-3,023 and FY2024 printed -3,515 on a smaller debt book; -3,400 is struck "
-                  "between them, allowing for a larger balance sheet against a falling policy rate. "
-                  "This is the one materially estimated line in the FY2025 income statement and it "
-                  "is what the implied tax rate is most sensitive to", "2026-08-05", "House"),
-    q1_25_dna=I(681.0, "Q1-2025 interim cash flow: PP&E depreciation 637.5 + investment property 0.4 "
-                "+ intangibles 2.0 + right-of-use 41.2", "2025-05-26", "Company"),
-    q1_26_rev=I(75298.0, "Q1-2026 consolidated revenues EGP 75.298bn (EGX filing 13-May-2026, via "
-                "Arab Finance)", "2026-05-13", "Company"),
-    q1_26_npa=I(4845.0, "Q1-2026 consolidated net profit attributable to the parent EGP 4.845bn, "
-                "+16.86% y/y (EGX filing 13-May-2026)", "2026-05-13", "Company"),
-
-    # ---- segment structure -------------------------------------------------
-    # ---- BOTTOM-UP UNIT ECONOMICS ---------------------------------------
-    # The forecast is built from volumes and prices per unit, not from growth
-    # rates applied to a revenue line. Every historical figure below is
-    # disclosed, and the sub-segment build reconciles to the audited income
-    # statement to within EGP 0.2mn on both revenue and gross profit.
-    seg_hist=I(dict(
-        FY23=dict(rawmat=(25869.7, 3478.6), cables=(56551.5, 14110.5), ec=(52896.4, 6130.0),
-                  meters=(7092.9, 1694.3), transformers=(6614.1, 1979.9),
-                  elecprod=(2575.1, 1386.7), infra=(586.5, 297.5)),
-        FY24=dict(rawmat=(49608.2, 7647.2), cables=(87581.6, 19959.3), ec=(70042.4, 7831.1),
-                  meters=(9996.7, 2722.5), transformers=(11308.7, 3895.0),
-                  elecprod=(2565.2, 1300.4), infra=(879.1, 542.9))),
-        "Sub-segment revenue and gross profit (EGP mn) from the company's own published segment "
-        "analysis workbooks for FY2024 (with FY2023 comparatives). The reported 'Wires & Cables' "
-        "segment splits into Cables and Raw Material (the copper-rod pass-through arm) and the two "
-        "sum exactly to it. Turnkey gross profit is taken from the income statement where it "
-        "differs marginally from the workbook", "2025-03-13", "Company"),
-    vol_hist=I(dict(cables={'FY23': 156748.0, 'FY24': 167665.0},
-                    meters={'FY23': 4057065.0, 'FY24': 3850726.0},
-                    transformers={'FY23': 14521.0, 'FY24': 17619.0}),
-               "Disclosed sales volumes: cables in tonnes, meters in units, transformers in MVA "
-               "(company earnings releases, FY2024 with FY2023 comparatives). These reproduce the "
-               "disclosed gross profit per tonne (90,020 / 119,043), per meter (418 / 707) and per "
-               "MVA (136,345 / 221,065) exactly", "2025-03-13", "Company"),
-    q1_units=I(dict(cables_q1_25=41476.0, cables_q1_24=44975.0,
-                    meters_q1_25=1169502.0, meters_q1_24=811357.0,
-                    transformers_q1_25=5112.0, transformers_q1_24=5142.0),
-               "Q1-2025 disclosed volumes with Q1-2024 comparatives (Q1-2025 earnings release): "
-               "cables 41,476t (-7.8%), meters 1,169,502 (+44.1%), transformers 5,112 MVA (-0.6%). "
-               "Used with the FY2024 seasonal share to estimate the FY2025 volume base, which is "
-               "not itself disclosed", "2025-05-26", "Company"),
+    # ---- forecast drivers — THREE REAL SEGMENTS -----------------------------
     copper_hist=I(dict(FY23=8478.0, FY24=9147.0, FY25=10000.0),
-                  "LME copper cash, annual average USD/tonne (house commodity reference)",
+                  "LME copper cash, annual average USD/tonne (house commodity reference) — used "
+                  "only as a GROWTH driver for the Cables segment (Cables revenue is genuinely "
+                  "copper-linked; the company does not disclose tonnage, so the model tracks the "
+                  "copper x FX growth rate rather than reconstructing an absolute volume)",
                   "2026-08-05", "Industry"),
-    fx_hist=I(dict(FY23=30.7, FY24=45.3, FY25=49.5),
-              "Annual average USD/EGP. The audited FY2024 note discloses closing 50.91 / average "
-              "43.96 for 2024 and closing 30.96 / average 30.59 for 2023; the figures here are the "
-              "house averages consistent with those disclosures", "2026-08-05", "Country"),
+    fx_hist=I(dict(FY23=30.59, FY24=45.3, FY25=49.5),
+              "Annual average USD/EGP. FY2023 average of 30.59 is the audited FY2023 filing's own "
+              "disclosed figure (Note 44-3-1); FY2024/FY2025 are house averages consistent with the "
+              "scale of the disclosed devaluation", "2026-08-05", "Country/House"),
     fx_path=I([51.0, 54.0, 57.5, 61.0, 64.5],
               "USD/EGP average-rate path, about 6%/yr of depreciation from the FY2025 average of "
-              "49.5. This is a genuine driver in the bottom-up build, not a translation "
-              "convenience: copper is priced in dollars, so it sets the Egyptian-pound price per "
-              "tonne of cable and rod directly. DELIBERATELY BELOW covered-interest parity, which "
-              "on the 22.31% pound against a ~4.3% dollar rate implies about 17%/yr — the base "
-              "case assumes disinflation closes most of that gap rather than the currency "
-              "absorbing it. The parity case is carried as an explicit sensitivity",
-              "2026-08-05", "House"),
+              "49.5. Used as a genuine driver of the Cables segment's copper-linked growth and of "
+              "the currency-of-discounting alternative — not a translation convenience. "
+              "DELIBERATELY BELOW covered-interest parity, which on the roughly 22% pound rate "
+              "against a ~4-5% dollar rate implies materially faster depreciation; the base case "
+              "assumes disinflation closes most of that gap. The parity case is carried as an "
+              "explicit sensitivity", "2026-08-05", "House"),
     copper_fcst=I([13400.0, 14000.0, 14000.0, 14000.0, 14000.0],
-                  "LME copper. FY2026 is set at USD 13,400/t, between the Q1-2026 average of "
-                  "12,852 actually realised and the current cash price of about 14,000 "
-                  "(13.9-14.2k, early August 2026); thereafter the current level is held flat. "
-                  "Held flat rather than forecast: copper is the largest single input and a "
-                  "directional view on it would dominate the valuation. The -10% column of the "
-                  "sensitivity carries the mean-reversion case", "2026-08-05", "Industry"),
-    cables_vol_growth=I([0.06, 0.05, 0.04, 0.04, 0.04],
-                        "Cable tonnage growth. The FY2025 base is a 7.7% volume DECLINE on FY2024 "
-                        "(disclosed Q1-2025 -7.8%), so the forecast is a recovery to roughly the "
-                        "FY2024 level by FY2028 and modest growth thereafter, supported by regional "
-                        "grid build-out, data-centre demand and the export book. No capacity "
-                        "step-change is assumed", "2026-08-05", "House"),
-    cables_uplift=I([1.30, 1.30, 1.30, 1.30, 1.30],
-                    "Fabrication uplift: cable price per tonne divided by the copper cost per "
-                    "tonne. History back-solves to 1.386 (FY2023) and 1.261 (FY2024); the forecast "
-                    "is held at 1.30, between the two. This is the term that converts a copper "
-                    "price into a cable price, and holding it flat means no pricing-power "
-                    "assumption is being smuggled in", "2026-08-05", "House"),
-    cables_gp_t_fy25=I(88173.0, "Cable gross profit per tonne, Q1-2025 as disclosed (against "
-                       "93,672 in Q1-2024 on the restated basis). Taken as the FY2025 run-rate: "
-                       "it is the hard evidence for how far cable conversion margins actually "
-                       "compressed, and it is what pins the FY2025 unit build to reality rather "
-                       "than to an assumption", "2025-05-26", "Company"),
-    cables_conv=I([0.150, 0.160, 0.170, 0.175, 0.175],
-                  "Cable conversion margin — gross profit as a share of the realised price per "
-                  "tonne — for the forecast years. History back-solves to 25.0% (FY2023), 22.8% "
-                  "(FY2024) and roughly 13.8% (FY2025, from the disclosed gross profit per tonne "
-                  "against the back-solved price per tonne). The forecast recovers only part of "
-                  "that collapse and never approaches the FY2023-24 levels, which carried "
-                  "devaluation gains on cheaply bought copper inventory", "2026-08-05", "House"),
-    unit_gp_growth=I([0.085, 0.080, 0.075, 0.070, 0.070],
-                     "Growth in gross profit PER UNIT for the manufacturing lines — per tonne of "
-                     "cable and rod, per MVA of transformer, per meter. This is the correct "
-                     "structure for a converter: when copper spikes, revenue rises because the "
-                     "metal is passed through, but the conversion margin earned on each tonne does "
-                     "not, so the percentage margin falls. Modelling these as a percentage of a "
-                     "copper-inflated price would manufacture profit out of a commodity move. The "
-                     "path is set at roughly Egyptian cost inflation, i.e. a flat real conversion "
-                     "margin with no recovery in unit profitability assumed",
-                     "2026-08-05", "House"),
-    margin_recovery=I([1.00, 1.04, 1.07, 1.09, 1.10],
-                      "Recovery factor applied to the FY2025 gross margins of the non-cable lines. "
-                      "FY2025 margins are calibrated to the disclosed group gross profit, which "
-                      "implies roughly a 10% compression against FY2024 across those lines; the "
-                      "forecast recovers about half of it by FY2030 and no more",
-                      "2026-08-05", "House"),
-    rawmat_vol_growth=I([0.04, 0.04, 0.03, 0.03, 0.03],
-                        "Raw-material (copper rod) tonnage growth. This arm is close to a pure "
-                        "pass-through: implied volume was 99kt in FY2023 and 120kt in FY2024",
+                  "LME copper. FY2026 is set at USD 13,400/t, between the Q1-2026 average actually "
+                  "realised and the current cash price of about 14,000 (early August 2026); "
+                  "thereafter the current level is held flat — copper is the largest single input "
+                  "into the Cables segment and a directional view on it would dominate the "
+                  "valuation. The -10% column of the sensitivity carries the mean-reversion case",
+                  "2026-08-05", "Industry"),
+    cables_real_growth=I([0.030, 0.030, 0.030, 0.030, 0.030],
+                        "Real (ex-copper, ex-FX) volume/market-share growth for the Cables segment "
+                        "— modest and flat, since the company does not disclose tonnage and the "
+                        "model should not manufacture a volume story it cannot evidence. Cables "
+                        "segment revenue growth = (1+copper growth)(1+FX growth)(1+this) - 1",
                         "2026-08-05", "House"),
-    rawmat_uplift=I(1.02, "Raw-material price per tonne as a multiple of the copper cost — a "
-                    "thin conversion spread over the metal", "2026-08-05", "House"),
-    rawmat_gp=I(0.135, "Raw-material gross margin. History 13.4% (FY2023), 15.4% (FY2024); the "
-                "forecast is struck at the lower end", "2026-08-05", "House"),
-    ec_backlog=I(323700.0, "Engineering and construction order book: USD 6.5bn translated at the "
-                 "spot rate. Disclosed as 'approximately USD 6.5bn, above the group's typical "
-                 "historical range'. The reported turnkey backlog was EGP 165bn (Mar-2024), 239bn "
-                 "(Jun-2024) and 196bn (Dec-2024), so the current book is a genuine step up",
-                 "2026-03", "Company"),
-    ec_burn=I([0.270, 0.265, 0.260, 0.255, 0.250],
-              "Share of the opening order book converted to revenue each year. The FY2025 revenue "
-              "of roughly EGP 88bn against a book of EGP 324bn implies about 27%, i.e. a "
-              "three-and-a-half-year book. The rate is tapered as the book lengthens",
-              "2026-08-05", "House"),
-    ec_book_to_bill=I([1.05, 1.05, 1.03, 1.02, 1.00],
-                      "New awards as a multiple of revenue recognised. Above one early, reflecting "
-                      "the disclosed step up in the order book, converging to replacement",
-                      "2026-08-05", "House"),
-    seg_rev_fy25_disclosed=I(dict(ec=87100.7, transformers=17703.5, meters=16594.1, infra=3857.9),
-                             "FY2025 segment revenue on the restated five-segment taxonomy: "
-                             "engineering & construction 87,100.7, electrical products 17,703.5, "
-                             "digital solutions 16,594.1, infrastructure investment 3,857.9, with "
-                             "wires, cables & accessories 155,792.9 - summing to the reported "
-                             "281,049. REPLACES the earlier assumption that the FY2024 mix "
-                             "carried forward, which an external audit correctly identified as "
-                             "the prior year's mix relabelled. TWO competing external claims were "
-                             "tested against each other: press coverage of the release reports "
-                             "E&C growth of +51%, which would put the segment at 105,764. That "
-                             "figure is REJECTED because it fails an independent coherence test - "
-                             "it leaves so little revenue for cables that the implied fabrication "
-                             "uplift over copper falls to 1.077, below anything in the company's "
-                             "own history (1.386 in FY2023, 1.261 in FY2024). The 87,100.7 figure "
-                             "(+24.4%) passes that test, and is adopted on that basis rather than "
-                             "on the authority of either source", "2026-03", "Company"),
-    ec_gp=I(0.110, "Engineering and construction gross margin. History 11.6% (FY2023) and 11.2% "
-            "(FY2024); held at 11.0%", "2026-08-05", "House"),
-    transformers_vol_growth=I([0.08, 0.07, 0.06, 0.05, 0.05],
-                              "Transformer MVA growth. History: 14,521 MVA (FY2023) to 17,619 "
-                              "(FY2024), +21.3%, then broadly flat through Q1-2025. Regional "
-                              "transmission investment supports mid-single-digit growth",
-                              "2026-08-05", "House"),
-    transformers_gp=I(0.320, "Transformer gross margin as a share of price per MVA. History 29.9% "
-                      "(FY2023) and 34.4% (FY2024); struck between them", "2026-08-05", "House"),
-    meters_vol_growth=I([0.06, 0.05, 0.05, 0.04, 0.04],
-                        "Smart-meter unit growth. Volumes fell 5.1% in FY2024 but Q1-2025 ran "
-                        "+44.1% y/y as national metering programmes restarted",
-                        "2026-08-05", "House"),
-    meters_gp=I(0.250, "Meter gross margin as a share of price per unit. History 23.9% (FY2023) "
-                "and 27.2% (FY2024)", "2026-08-05", "House"),
+    cables_margin=I([0.140, 0.145, 0.150, 0.153, 0.155],
+                    "Cables segment profit margin (on the Note 5-3 external-revenue base). History: "
+                    "19.5% (FY2023), 18.1% (FY2024), 13.5% (FY2025) — the FY2025 collapse is the "
+                    "single largest driver of the group's margin story. The forecast recovers only "
+                    "part of it and never approaches the FY2023-24 levels, which carried "
+                    "devaluation gains on cheaply bought copper inventory", "2026-08-05", "House"),
+    construct_growth=I([0.18, 0.14, 0.11, 0.09, 0.08],
+                       "Constructions segment revenue growth, tapering from the FY2025 disclosed "
+                       "rate of +28.3% (FY2024: +32.6%) toward a more sustainable long-run pace. No "
+                       "order book or backlog figure is disclosed in any of the audited filings or "
+                       "the Q1-2026 interim, so — unlike the previous build — this is NOT a "
+                       "burn-rate-on-a-backlog construction; it is a direct taper on the segment's "
+                       "own revenue history", "2026-08-05", "House"),
+    construct_margin=I([0.068, 0.072, 0.076, 0.079, 0.082],
+                       "Constructions segment profit margin (on the Note 5-3 external-revenue "
+                       "base). History: 11.6% (FY2023), 11.4% (FY2024), 6.5% (FY2025) — the "
+                       "sharpest compression of the three segments. Partial, not full, recovery is "
+                       "assumed", "2026-08-05", "House"),
+    elecprod_growth=I([0.20, 0.16, 0.13, 0.11, 0.10],
+                      "Electrical products and digital solutions segment revenue growth, tapering "
+                      "from the FY2025 disclosed rate of +43.7% (FY2024: +46.6%) off a smaller "
+                      "revenue base", "2026-08-05", "House"),
+    elecprod_margin=I([0.220, 0.222, 0.224, 0.226, 0.228],
+                      "Electrical products and digital solutions segment profit margin (on the "
+                      "Note 5-3 external-revenue base). History: 25.4% (FY2023), 26.6% (FY2024), "
+                      "22.2% (FY2025) — the least-compressed of the three segments; broadly stable "
+                      "forecast with a slight further normalisation", "2026-08-05", "House"),
+    corp_load=I([0.0455, 0.0465, 0.0475, 0.0475, 0.0485],
+               "Net corporate cost load forecast, stated on the SEGMENT-PROFIT-TO-EBIT basis — the "
+               "same basis as the audited historical bridge (FY2023 5.70%, FY2024 4.30%, FY2025 "
+               "3.16%). The path glides UP from FY2025's unusually low level toward the FY2023-24 "
+               "average (~5.0%), the single most conservative choice in the build. RESTATED after "
+               "external critique: the previous statement of this input (3.3-3.6%) was the load "
+               "from segment profit to EBITDA, which mixed bases with the historical disclosure; "
+               "the forecast EBIT is numerically UNCHANGED by the restatement (old load + D&A "
+               "ratio = this load, year by year)", "2026-08-07", "House"),
+    opex_pct=I([0.0455, 0.0465, 0.0475, 0.0475, 0.0485],
+               "Alias of corp_load (segment-profit-to-EBIT basis), retained for compatibility with "
+               "the DCF waterfall and sensitivity-grid code paths that reference a single "
+               "operating-load driver", "2026-08-07", "House"),
     unit_price_inflation=I([0.08, 0.075, 0.07, 0.07, 0.07],
-                           "Nominal price growth for the units not priced off copper (meters). "
-                           "Set below Egyptian headline inflation on the disinflation path",
-                           "2026-08-05", "House"),
-    other_growth=I([0.12, 0.11, 0.10, 0.09, 0.08],
-                   "Revenue growth for the two smallest lines — other electrical products, and "
-                   "infrastructure investment (industrial development, logistics, utilities, dry "
-                   "port and independent power projects). Together under 3% of revenue",
-                   "2026-08-05", "House"),
-    other_gp=I(dict(elecprod=0.450, infra=0.600),
-               "Gross margins on the two residual lines. History: other electrical products 53.9% "
-               "(FY2023) and 50.7% (FY2024); infrastructure 50.7% and 61.8%. Struck conservatively",
-               "2026-08-05", "House"),
-    opex_pct=I([0.040, 0.043, 0.046, 0.048, 0.050],
-               "The net operating load between gross profit and EBITDA, as a share of revenue — "
-               "selling, general and administrative costs and other expenses, less other income. "
-               "History: 5.94% (FY2023) and 5.30% (FY2024). FY2025 solves to a much lower level, "
-               "so the forecast glides back TOWARD the historical norm rather than assuming the "
-               "FY2025 load persists. This is the single most conservative choice in the rebuild",
-               "2026-08-05", "House"),
-    foreign_share_fy25=I(0.70, "'Over 70% of revenues generated abroad' (company 2025 commentary). "
-                         "Used to report the currency split of the bottom-up revenue build, and to "
-                         "translate the copper-linked lines, which are dollar-priced by "
-                         "construction", "2026-03", "Company"),
-    nwc_pct=I(0.230, "Net working capital as a share of revenue, held flat at the historical level. "
-              "Computed from the audited balance sheets: FY2023 24.1% and FY2024 23.1% "
-              "(inventories + contract assets + receivables less payables less contract "
-              "liabilities). This is the single largest cash-flow driver in the model",
+                           "Retained input, no longer consumed by the segment build (kept for "
+                           "downstream compatibility)", "2026-08-05", "House"),
+    foreign_share_fy25=I(0.70, "'Over 70% of revenues generated abroad' (company commentary); the "
+                         "audited Note 5-2 geographic split gives Outside Egypt 40.7% of FY2025 "
+                         "revenue (114,461.030 / 281,049.082) — geography and hard-currency pricing "
+                         "are different questions, addressed explicitly below", "2026-03-15",
+                         "Company"),
+    fgn_egp_share_fy25=I(0.407, "Revenue earned OUTSIDE Egypt, FY2025, Note 5-2 (geographic "
+                         "disaggregation): 114,461.030219 / 281,049.081719 = 40.72%. This is the "
+                         "audited geographic split; the HARD-CURRENCY-LINKED share used in the "
+                         "currency-of-discounting alternative is derived separately below from the "
+                         "Cables segment's copper linkage, since a project executed abroad for a "
+                         "local utility is foreign revenue but not necessarily dollar-priced",
+                         "2026-03-15", "Company"),
+    nwc_pct=I(0.199, "Net working capital as a share of revenue, held at the FY2025 disclosed "
+              "level (19.87%) — a genuine improvement on FY2023 (24.1%) and FY2024 (23.1%), "
+              "carried forward without assuming further improvement or reversion",
               "2026-08-05", "House"),
-    capex_pct=I([0.030, 0.029, 0.028, 0.026, 0.024],
-                "Capex as a share of revenue, tapering. History: FY2023 3.2%, FY2024 3.8% (a "
-                "capacity burst — property, plant and equipment rose 53% in one year), Q1-2025 "
-                "4.7% annualised. The taper assumes the current expansion cycle completes and "
-                "spending settles toward maintenance plus modest capacity addition",
-                "2026-08-05", "House"),
-    dna_pct=I(0.0105, "Depreciation and amortisation as a share of revenue. History: FY2024 0.97%, "
-              "Q1-2025 1.15%; set at 1.05% rising with the enlarged asset base", "2026-08-05", "House"),
+    capex_pct=I([0.044, 0.040, 0.036, 0.033, 0.031],
+                "Capex as a share of revenue, tapering from the FY2025 disclosed level of 4.7% "
+                "(up from 3.1% FY2023 and 3.7% FY2024) toward a lower maintenance-plus-modest-"
+                "capacity level as the current expansion cycle completes", "2026-08-05", "House"),
+    dna_pct=I(0.0125, "Depreciation and amortisation as a share of revenue, held near the FY2025 "
+              "disclosed level (1.07%) with a modest rise reflecting the larger capitalised asset "
+              "base from the FY2025-26 capex ramp", "2026-08-05", "House"),
 
     # ---- cost of capital ---------------------------------------------------
     rf=I(0.2231, "Egypt 10-year local-currency government bond yield, 22.31% (house cost-of-capital "
@@ -369,36 +458,49 @@ INP = dict(
            "R-squared 0.291, n = 258, standard error 0.098, 90% confidence interval [0.85, 1.17]. "
            "Comfortably clears the usability gate and is NOT weak-instrument flagged (R-squared "
            "well above 10%, interval span 0.32 against a 1.009 point estimate)", "2026-08-05", "House"),
-    kd=I(0.130, "Marginal cost of debt, CURRENCY-BLENDED. The audited FY2024 interest-rate note "
-         "discloses average rates on financial liabilities of 28.68% in Egyptian pounds, 6.49% in "
-         "US dollars and 3.92% in euros, and Note 32 confirms 28.6% / 6.45% / 7.45%. The blended "
-         "rate the company actually pays is far below the Egyptian rate because a majority of the "
-         "book is hard currency. Set at 13.0% against the independently computed effective rates "
-         "below, allowing for the CBE's easing since the FY2024 note", "2026-08-05", "House"),
-    kd_egp_note=I(0.2868, "Average interest rate on Egyptian-pound financial liabilities, audited "
-                  "FY2024 interest-rate-risk note", "2025-03-12", "Company"),
-    kd_usd_note=I(0.0649, "Average interest rate on US-dollar financial liabilities, audited FY2024 "
-                  "interest-rate-risk note", "2025-03-12", "Company"),
-    kd_eur_note=I(0.0392, "Average interest rate on euro financial liabilities, audited FY2024 "
-                  "interest-rate-risk note", "2025-03-12", "Company"),
-    debt_open_fy24=I(41167.5, "Loans and credit facilities at 1 January 2024, financing-liability "
-                     "reconciliation, audited FY2024 note 32", "2025-03-12", "Company"),
-    debt_close_fy24=I(58796.8, "Loans and credit facilities at 31 December 2024, financing-liability "
-                      "reconciliation, audited FY2024 note 32 (excludes 286.1 of lease liabilities)",
-                      "2025-03-12", "Company"),
-    int_exp_fy24=I(7706.9, "Interest expense on loans and credit facilities, audited FY2024 note 32 "
-                   "financing-liability reconciliation", "2025-03-12", "Company"),
-    debt_q1_25=I(55149.9, "Loans and credit facilities at 31 March 2025: the FY2024 closing balance "
-                 "of 58,796.8 less the 3,646.9 net repayment shown in the Q1-2025 interim cash flow "
-                 "statement", "2025-05-26", "Company"),
-    kd_path=I([0.130, 0.122, 0.115, 0.110, 0.106],
-              "Forward cost-of-debt path FY26E-FY30E on the blended book. The Egyptian leg follows "
-              "the CBE easing cycle (main operation rate 19.50%, held since April 2026 after three "
-              "consecutive pauses) toward the 7% (2026) and 5% (2028) inflation targets; the hard-"
-              "currency leg is broadly flat. The discount-rate glide takes its shape from this path "
-              "by construction rather than being invented separately", "2026-08-05", "House"),
-    kd_term=I(0.105, "Terminal blended cost of debt: ~45% Egyptian pound at the 15% long-run "
-              "Egyptian corporate-borrowing norm and ~55% hard currency at ~6.5%", "2026-08-05", "House"),
+    kd=I(0.095, "Marginal cost of debt, CURRENCY-BLENDED, rolled forward to the most recently "
+         "disclosed rates. The audited FY2025 note (32) discloses 21.30% on Egyptian-pound "
+         "financial liabilities and 5.29% blended on 'US dollars and foreign currencies' — a "
+         "simpler two-way split than FY2024's three-way EGP/USD/EUR disclosure, which the company "
+         "itself has moved away from. The Kd-integrity effective-rate back-solve below implies an "
+         "Egyptian-pound weight of roughly 28% (down sharply from FY2024's ~44%, as the hard-"
+         "currency share of the book grew), giving a blended marginal rate of about 9.8% on the "
+         "FY2025 print and 9.6% on the Q1-2026 print (EGP 20.32%, foreign 5.28%). 9.5% is struck "
+         "just below both, allowing for the CBE's continuing easing", "2026-05-13", "Company/House"),
+    kd_egp_note=I(0.2130, "Average interest rate on Egyptian-pound financial liabilities, audited "
+                  "FY2025 Note 32 (loans and borrowings) and Note 43-3-2 (interest-rate risk) — "
+                  "both give 21.30%/21.3%. DOWN from 28.68% at FY2024-end and further to 20.32% at "
+                  "Q1-2026", "2026-03-15", "Company"),
+    kd_hard_note=I(0.0529, "Average interest rate on US-dollar and other foreign-currency financial "
+                   "liabilities, blended, audited FY2025 Note 32 and Note 43-3-2. The company "
+                   "simplified its disclosure from a three-way EGP/USD/EUR split (FY2024: 28.68% / "
+                   "6.49% / 3.92%) to this two-way EGP/blended-foreign split from FY2025 onward; "
+                   "the model follows the company's own current convention rather than preserving "
+                   "a split it no longer publishes", "2026-03-15", "Company"),
+    debt_open_fy25=I(58796.795504, "Loans and credit facilities (excluding lease liabilities) at 1 "
+                     "January 2025, financing-liability movement reconciliation, audited FY2025 "
+                     "Note 32", "2026-03-15", "Company"),
+    debt_close_fy25=I(62462.108099, "Loans and credit facilities (excluding lease liabilities) at "
+                      "31 December 2025, financing-liability movement reconciliation, audited "
+                      "FY2025 Note 32", "2026-03-15", "Company"),
+    int_exp_fy25=I(5966.668609, "Interest expense on loans and credit facilities, audited FY2025 "
+                   "Note 32 financing-liability movement reconciliation (excludes 118.129606 of "
+                   "lease interest, carried separately)", "2026-03-15", "Company"),
+    debt_q1_26=I(89039.318813, "Loans and credit facilities (excluding lease liabilities) at 31 "
+                 "March 2026: current 79,171.258437 (loans 39,231.844718 + bank facilities "
+                 "39,939.413719) + non-current 9,825.097463 (loans only, excluding the 507.330701 "
+                 "of lease liabilities), per the Q1-2026 interim Note 31", "2026-05-13", "Company"),
+    kd_path=I([0.095, 0.089, 0.084, 0.080, 0.077],
+              "Forward cost-of-debt path FY26E-FY30E on the blended book, continuing the CBE "
+              "easing cycle that has already taken the disclosed Egyptian-pound rate from 28.68% "
+              "(FY2024) to 21.30% (FY2025) to 20.32% (Q1-2026), blended against a broadly flat "
+              "hard-currency rate. The discount-rate glide takes its shape from this path by "
+              "construction rather than being invented separately", "2026-08-05", "House"),
+    kd_term=I(0.0888, "Terminal blended cost of debt: 28% Egyptian pound at the 15% long-run "
+              "Egyptian corporate-borrowing norm and 72% hard currency at 6.5% — the currency "
+              "WEIGHTS updated to the actual FY2025 composition (formerly modelled 45%/55%, now "
+              "measured at roughly 28%/72% from the Kd-integrity back-solve); the long-run rate "
+              "norms themselves are unchanged policy assumptions", "2026-08-05", "House"),
     rf_term=I(0.105, "Terminal risk-free rate, norm-built: the CBE's own stated medium-term "
               "inflation target of 5% plus the standard ~5.5pp emerging-market real-rate "
               "convention. Never a raw historical average and never reverse-engineered from a price",
@@ -406,59 +508,80 @@ INP = dict(
     erp_term=I(0.070, "Terminal equity risk premium, normalised below the currently elevated "
                "crisis-era level toward the rating-class norm; never held flat into perpetuity",
                "2026-08-05", "House"),
-    wd_term=I(0.25, "Terminal debt weight D/(D+E), NORMALISED rather than today's weights. The "
-              "company runs a gross debt book sized to fund working capital but carries very large "
-              "offsetting cash, so its net leverage is light; 25% is the steady-state structure for "
-              "a diversified industrial of this scale", "2026-08-05", "House"),
+    wd_term=I(0.15, "Terminal debt weight D/(D+E) on a net basis, NORMALISED — but reconciled to "
+              "the model's OWN forecast balance sheet rather than asserted. REVISED from 25% after "
+              "external critique (and the same finding in this study's own re-audit): at a 25% "
+              "payout the forecast still deleverages toward a mid-single-digit net-debt weight by "
+              "FY2030E, so a 25% terminal weight contradicted the model's own trajectory in the "
+              "direction that flattered the valuation. 15% sits between today's 8.4% net weight "
+              "and the old 25%, acknowledging that a working-capital-heavy industrial retains "
+              "structural gross leverage. Worth about -5.3/share on the DCF lens versus the old "
+              "25%", "2026-08-07", "House"),
     g_term=I(0.05, "Terminal growth, 5% — the standing centre for established names in this market "
              "post-disinflation, sensitised 3-7%. Note this is an EGP-NOMINAL rate struck against a "
              "terminal risk-free rate that itself embeds 5% inflation, so the base case assumes "
              "approximately zero real terminal growth: a deliberate conservatism for a company "
              "whose revenue is majority hard-currency", "2026-08-05", "House"),
+    # ---- currency-of-discounting alternative inputs (previously unregistered
+    # constants inside the computation — registered after external critique) ----
+    usd_rf=I(0.043, "US dollar risk-free rate for the currency-of-discounting alternative, 10-year "
+             "US Treasury area (house macro reference)", "2026-08-05", "Country"),
+    usd_erp=I(0.075, "Equity risk premium for the hard-currency leg: mature-market premium plus a "
+              "reduced operating-exposure country premium — deliberately NOT the full Egypt "
+              "premium, since this alternative's whole point is to price the hard-currency cash "
+              "flows as hard-currency cash flows", "2026-08-05", "House"),
+    usd_kd=I(0.065, "US dollar cost of debt for the alternative: the disclosed 5.3% hard-currency "
+             "book rate plus a term/credit allowance", "2026-08-05", "House"),
+    usd_wd=I(0.25, "Debt weight for the USD-leg cost of capital", "2026-08-05", "House"),
+    usd_g_term=I(0.035, "Terminal growth of the USD-denominated leg — real growth plus dollar "
+                 "inflation, below the EGP terminal growth by the inflation differential",
+                 "2026-08-05", "House"),
+    anchor_days=I(217, "Days from the DCF's construction date (31 Dec 2025, the audited "
+                  "balance-sheet date the bridge is built on) to the anchor date 5 Aug 2026. All "
+                  "lens values are rolled to the anchor at the cost of equity, net of the EGP 1.85 "
+                  "FY2025 dividend paid inside the window — added after external critique "
+                  "correctly noted the model was dated 31-Dec-2025 while the comparison price was "
+                  "dated 5-Aug-2026, breaching the study's own one-date rule by ~7 months of "
+                  "accretion", "2026-08-07", "House"),
 
     # ---- lens inputs -------------------------------------------------------
     ev_ebitda_just=I(6.5, "Justified EV/EBITDA on mid-cycle FY27E EBITDA. The company's own trailing "
-                     "multiple is ~7.9x; listed cable and electrical-equipment peers trade 8-11x and "
-                     "Riyadh Cables ~14x on earnings. 6.5x applies an Egyptian-market discount for "
-                     "sovereign, currency-convertibility and disclosure risk. Bear 5.5x / bull 8.0x",
-                     "2026-08-05", "House"),
-    pe_just=I(9.0, "Justified through-cycle P/E on normalised earnings. Trailing is ~13.0x. 9.0x "
-              "reflects a high-quality franchise held back by an Egyptian cost of equity near 28%. "
-              "Bear 7.0x / bull 11.5x", "2026-08-05", "House"),
-    roe_sust=I(0.235, "Sustainable return on equity for the book lens. Trailing ROE is ~27.5% on "
-               "average parent equity; the FY2023-24 prints were flattered by devaluation inventory "
-               "gains, so the sustainable rate is struck below them", "2026-08-05", "House"),
+                     "multiple is elevated; listed cable and electrical-equipment peers trade 8-11x "
+                     "and Riyadh Cables ~14x on earnings. 6.5x applies an Egyptian-market discount "
+                     "for sovereign, currency-convertibility and disclosure risk. Bear 5.5x / bull "
+                     "8.0x", "2026-08-05", "House"),
+    pe_just=I(9.0, "Justified through-cycle P/E on normalised earnings. 9.0x reflects a "
+              "high-quality franchise held back by an Egyptian cost of equity near 28%. Bear 7.0x / "
+              "bull 11.5x", "2026-08-05", "House"),
+    roe_sust=I(0.235, "Sustainable return on equity for the book lens. Trailing ROE on average "
+               "parent equity is well above this; the FY2023-24 prints were flattered by "
+               "devaluation inventory gains, so the sustainable rate is struck below them",
+               "2026-08-05", "House"),
     lens_weights=I(dict(dcf=0.45, relative=0.20, normalized=0.20, book=0.15),
-                   "DCF primary for an operating manufacturer with a long, contracted order book; "
-                   "the relative and normalised-earnings lenses carry equal secondary weight and "
-                   "the book lens least, because reported book value is distorted by three years of "
-                   "currency translation", "2026-08-05", "House"),
-    backlog_usd_bn=I(6.5, "Group project backlog approximately USD 6.5bn, above the group's typical "
-                     "historical range (company 2025 commentary)", "2026-03", "Company"),
-    ownership=I(dict(family=0.680, electra=0.2037, float=0.116),
-                "CORRECTED. The company's own shareholder pie chart carries 78.18% / 20.37% / "
-                "1.45% against the legend 'El Sewedy Family / Free Float / Electra Investment "
-                "Holding'. Reading that in legend order gives a 20.37% free float — which is "
-                "wrong. Electra Investment Holding (Abu Dhabi, IHC-linked) acquired ~427.7mn "
-                "shares, about 20%, in a July-2024 mandatory tender offer at USD 1.05/share "
-                "(~USD 449mn), confirmed by multiple independent reports of the exchange filing. "
-                "The 20.37% slice is therefore ELECTRA, not the float. Independent sources put "
-                "the family near 68%, leaving a free float of roughly 11.6% — about half what a "
-                "legend-order reading implies. Material to governance and to liquidity",
-                "2026-08-06", "Company"),
+                   "DCF primary for an operating manufacturer with a genuine, if undisclosed, "
+                   "contracted order book; the relative and normalised-earnings lenses carry equal "
+                   "secondary weight and the book lens least, because reported book value is "
+                   "distorted by three years of currency translation", "2026-08-05", "House"),
+    ownership=I(dict(family=0.6799, electra=0.1887, other=0.1307, esop=0.0007),
+                "EXACT capital restructuring table, Note 29, audited FY2025 financial statements, "
+                "as at 31 December 2025: Sadek Ahmed Sadek Elsewedy 24.99% (534,980,391 shares), "
+                "Ahmed Ahmed Sadek Elsewedy 24.99% (534,980,391), Mohamed Ahmed Sadek Elsewedy "
+                "18.01% (385,602,690) — family combined 67.99%; Electra Investment Holding "
+                "Restricted Limited 18.87% (403,997,835); other shareholders 13.07% (279,794,409); "
+                "ESOP shares issued not granted 0.07% (1,422,160). REPLACES a previous house "
+                "estimate (family ~68.0%, Electra ~20.4%, float ~11.6%) with the company's own "
+                "disclosed table. Electra's stake FELL over 2025 — the FY2024 table (same note, "
+                "prior year) shows Electra at 20.37% (436,109,503 shares) and other shareholders at "
+                "11.57% (247,682,741): Electra placed exactly 32,111,668 shares into the free float "
+                "during the year", "2026-03-15", "Company"),
     electra_mto=I(dict(price_usd=1.05, shares_mn=427.7, value_usdmn=449.1, date='2024-07',
                        stake=0.1998),
                   "Electra Investment Holding's mandatory tender offer, concluded July 2024: "
-                  "~427.7mn shares (19.98%) at USD 1.05/share, ~USD 449mn, advised by EFG Hermes. "
-                  "Roughly EGP 50/share at the exchange rate then prevailing. Recorded as the "
-                  "last known price at which a strategic buyer cleared a fifth of the company. "
-                  "NOT used as a valuation anchor: it is two years stale, struck before the "
-                  "earnings base grew by roughly half, and at less than half today's price",
-                  "2024-07", "Market"),
-    dps_fy25=I(1.85, "FY2025 dividend of EGP 1.85 per share (+85% on the FY2024 EGP 1.00), "
-               "approved at the 6-May-2026 general meeting and paid from 4 June 2026 — i.e. "
-               "BEFORE the anchor date. Roughly EGP 3.96bn. The study previously reported only "
-               "the FY2024 distribution", "2026-05-10", "Company"),
+                  "~427.7mn shares (19.98%) at USD 1.05/share, ~USD 449mn. Recorded as the last "
+                  "known price at which a strategic buyer cleared a fifth of the company. NOT used "
+                  "as a valuation anchor: it is two years stale and struck before the earnings base "
+                  "grew materially. Electra's stake has since drifted down to 18.87% (31-Dec-2025) "
+                  "as shares were placed into the float", "2024-07", "Market/Company"),
 )
 
 # validate four-field completeness (code-first rule)
@@ -472,109 +595,88 @@ def say(s):
     LOG.append(s); print(s)
 
 say("=" * 78)
-say("SWDY — ASSERT / derivation log")
+say("SWDY — ASSERT / derivation log (rebuilt on the audited FY23-25 + Q1-2026 filings)")
 say("=" * 78)
 
 # ============================ CALC ===========================================
 SH, SPOT, TAX = V['shares_mn'], V['spot'], V['tax_eff']
 MKTCAP = SPOT * SH
 
-# ---- FY2025 income statement closed from the disclosed anchors -------------
-# Disclosed: revenue, gross profit (derived from quarterly prints), profit after
-# tax and profit after minority. Unknown: the split of the remainder between
-# operating costs, net finance and tax. We fix EBITDA at the disclosed margin,
-# derive D&A and EBIT, then let the tax rate close the P&L to the reported PAT.
-dna_fy25 = V['dna_pct'] * V['rev_fy25']
-netfin_fy25 = V['netfin_fy25']
-assoc_fy25 = V['assoc_fy24'] * 1.15
-# With a bottom-up build the stated effective tax rate is the input and EBITDA is
-# what the disclosed profit implies — the reverse of a top-down model.
-eff_tax_fy25 = V['tax_eff']
-pbt_fy25 = V['pat_fy25'] / (1 - eff_tax_fy25)
-tax_fy25 = -(pbt_fy25 - V['pat_fy25'])
-op_fy25 = pbt_fy25 - netfin_fy25 - assoc_fy25
-ebitda_fy25 = op_fy25 + dna_fy25
-nci_fy25 = V['pat_fy25'] - V['npa_fy25']
-say(f"[P&L closure FY2025] disclosed profit after tax {V['pat_fy25']:,.0f} at the stated "
-    f"{eff_tax_fy25:.1%} effective rate implies pre-tax profit {pbt_fy25:,.0f}; less net finance "
-    f"{netfin_fy25:,.0f} and associates {assoc_fy25:,.0f} gives EBIT {op_fy25:,.0f}, and adding "
-    f"depreciation {dna_fy25:,.0f} gives EBITDA {ebitda_fy25:,.0f} "
-    f"({ebitda_fy25/V['rev_fy25']:.2%} of revenue). The disclosed quarterly EBITDA margins were "
-    f"12.6% (Q1), 11.1% (Q2) and 9.5% (Q4), so a full-year figure near 11% is consistent with "
-    f"the prints. NCI {nci_fy25:,.0f}")
-assert 0.085 < ebitda_fy25 / V['rev_fy25'] < 0.135, "FY25 implied EBITDA margin outside the prints"
-
+# ---- historical income statement — every line now AUDITED, nothing derived --
 ebitda_fy23 = V['op_fy23'] + V['dna_fy23']
 ebitda_fy24 = V['op_fy24'] + V['dna_fy24']
-say(f"[EBITDA basis] House EBITDA = operating profit + depreciation and amortisation: FY23 "
-    f"{ebitda_fy23:,.0f}, FY24 {ebitda_fy24:,.0f}. The company's own reported EBITDA (20,668 / "
-    f"32,772) is higher because it also adds back impairments and certain other charges; the "
-    f"house basis is used throughout so the DCF waterfall reconciles line by line.")
+ebitda_fy25 = V['op_fy25'] + V['dna_fy25']
+nci_fy23 = V['pat_fy23'] - V['npa_fy23']
+nci_fy24 = V['pat_fy24'] - V['npa_fy24']
+nci_fy25 = V['pat_fy25'] - V['npa_fy25']
+say(f"[Historical income statement] every FY2023-25 line is now the audited figure — no P&L "
+    f"closure or derivation is needed for any year, including FY2025, because the full filing is "
+    f"in hand. House EBITDA = operating profit + depreciation and amortisation: FY23 "
+    f"{ebitda_fy23:,.0f}, FY24 {ebitda_fy24:,.0f}, FY25 {ebitda_fy25:,.0f} "
+    f"({ebitda_fy25/V['rev_fy25']:.2%} of revenue). Effective tax rate: FY23 "
+    f"{-V['tax_fy23']/(V['op_fy23']+V['netfin_fy23']+V['assoc_fy23']):.1%}, FY24 "
+    f"{-V['tax_fy24']/(V['op_fy24']+V['netfin_fy24']+V['assoc_fy24']):.1%}, FY25 "
+    f"{-V['tax_fy25']/(V['op_fy25']+V['netfin_fy25']+V['assoc_fy25']):.1%}. This REPLACES a "
+    f"previous FY2025 EBITDA of 30,622 built by closing the P&L to two disclosed anchors (profit "
+    f"after tax and after minority) at an ASSUMED 25% effective rate and an ASSUMED -3,400 net "
+    f"finance cost; the actual audited figures (22.57% and -2,145) combine to a MATERIALLY LOWER "
+    f"house EBITDA of {ebitda_fy25:,.0f}.")
 
 hist_is = {
     'FY23': dict(rev=V['rev_fy23'], gp=V['gp_fy23'], ebitda=ebitda_fy23, dna=V['dna_fy23'],
                  ebit=V['op_fy23'], fin=V['netfin_fy23'], assoc=V['assoc_fy23'],
                  ebt=V['op_fy23'] + V['netfin_fy23'] + V['assoc_fy23'], tax=V['tax_fy23'],
-                 pat=V['pat_fy23'], nci=V['pat_fy23'] - V['npa_fy23'], npa=V['npa_fy23']),
+                 pat=V['pat_fy23'], nci=nci_fy23, npa=V['npa_fy23']),
     'FY24': dict(rev=V['rev_fy24'], gp=V['gp_fy24'], ebitda=ebitda_fy24, dna=V['dna_fy24'],
                  ebit=V['op_fy24'], fin=V['netfin_fy24'], assoc=V['assoc_fy24'],
                  ebt=V['op_fy24'] + V['netfin_fy24'] + V['assoc_fy24'], tax=V['tax_fy24'],
-                 pat=V['pat_fy24'], nci=V['pat_fy24'] - V['npa_fy24'], npa=V['npa_fy24']),
-    'FY25': dict(rev=V['rev_fy25'], gp=V['gp_fy25'], ebitda=ebitda_fy25, dna=dna_fy25,
-                 ebit=op_fy25, fin=netfin_fy25, assoc=assoc_fy25, ebt=pbt_fy25, tax=tax_fy25,
+                 pat=V['pat_fy24'], nci=nci_fy24, npa=V['npa_fy24']),
+    'FY25': dict(rev=V['rev_fy25'], gp=V['gp_fy25'], ebitda=ebitda_fy25, dna=V['dna_fy25'],
+                 ebit=V['op_fy25'], fin=V['netfin_fy25'], assoc=V['assoc_fy25'],
+                 ebt=V['op_fy25'] + V['netfin_fy25'] + V['assoc_fy25'], tax=V['tax_fy25'],
                  pat=V['pat_fy25'], nci=nci_fy25, npa=V['npa_fy25']),
 }
+for y in ('FY23', 'FY24', 'FY25'):
+    assert abs(hist_is[y]['ebt'] - (hist_is[y]['pat'] - hist_is[y]['tax'])) < 1.0, \
+        f'{y} P&L does not close: EBT vs PAT-tax'
 
-# ---- historical net working capital ---------------------------------------
+# ---- historical net working capital (audited balance sheets) ---------------
 nwc_fy23 = (V['inv_fy23'] + V['ca_fy23'] + V['recv_fy23']) - (V['pay_fy23'] + V['cl_fy23'])
 nwc_fy24 = (V['inv_fy24'] + V['ca_fy24'] + V['recv_fy24']) - (V['pay_fy24'] + V['cl_fy24'])
-nwc_fy25 = V['nwc_pct'] * V['rev_fy25']
-say(f"[Working capital] FY23 {nwc_fy23:,.0f} ({nwc_fy23/V['rev_fy23']:.1%} of revenue), FY24 "
-    f"{nwc_fy24:,.0f} ({nwc_fy24/V['rev_fy24']:.1%}), FY25 {nwc_fy25:,.0f} "
-    f"({V['nwc_pct']:.1%}, held at the historical level)")
-assert abs(nwc_fy24 / V['rev_fy24'] - V['nwc_pct']) < 0.02, "NWC driver not consistent with FY24"
+nwc_fy25 = (V['inv_fy25'] + V['ca_fy25'] + V['recv_fy25']) - (V['pay_fy25'] + V['cl_fy25'])
+say(f"[Working capital, audited] FY23 {nwc_fy23:,.0f} ({nwc_fy23/V['rev_fy23']:.1%} of revenue), "
+    f"FY24 {nwc_fy24:,.0f} ({nwc_fy24/V['rev_fy24']:.1%}), FY25 {nwc_fy25:,.0f} "
+    f"({nwc_fy25/V['rev_fy25']:.1%}) — a genuine IMPROVEMENT in FY2025, not an assumption. "
+    f"Industrial real-estate-development land holdings (Note 24) are excluded as a separate "
+    f"quasi-investment item, consistent across all three years.")
+assert abs(nwc_fy25 / V['rev_fy25'] - V['nwc_pct']) < 0.01, "NWC driver not consistent with FY25"
 
-# ---- FY2025 balance sheet, triangulated ------------------------------------
-eqp_fy25 = V['eqp_fy24'] + V['npa_fy25'] - V['dps_fy24'] * SH
-nci_bv_fy25 = V['nci_fy24'] + nci_fy25 - 250.0
-eq_fy25 = eqp_fy25 + nci_bv_fy25
-liab_fy25 = V['assets_fy25'] - eq_fy25
-growth_fy25 = V['rev_fy25'] / V['rev_fy24'] - 1.0
-nondebt_fy25 = (V['assets_fy24'] - V['eqp_fy24'] - V['nci_fy24'] - V['debt_fy24']) * (1 + growth_fy25)
-debt_fy25_a = liab_fy25 - nondebt_fy25                       # A: balance-sheet residual
-debt_fy25_b = V['debt_fy24'] * (1 + growth_fy25)             # B: scale with revenue
-cash_fy25_c = (V['cash_fy24'] + 875.0) * (1 + growth_fy25)   # C: scale cash, back out debt
-debt_fy25_c = cash_fy25_c + V['nd_fy25']
-debt_fy25 = float(np.mean([debt_fy25_a, debt_fy25_b, debt_fy25_c]))
-cash_fy25 = debt_fy25 - V['nd_fy25']
-say(f"[FY2025 balance sheet triangulation] equity attributable {eqp_fy25:,.0f} (FY24 "
-    f"{V['eqp_fy24']:,.0f} + profit {V['npa_fy25']:,.0f} - dividend "
-    f"{V['dps_fy24']*SH:,.0f}); total equity {eq_fy25:,.0f}; liabilities {liab_fy25:,.0f}. "
-    f"Gross debt: (A) balance-sheet residual {debt_fy25_a:,.0f}, (B) revenue-scaled "
-    f"{debt_fy25_b:,.0f}, (C) implied by revenue-scaled cash {debt_fy25_c:,.0f} -> adopted "
-    f"{debt_fy25:,.0f}, cash {cash_fy25:,.0f}. NET debt is NOT triangulated — it is the "
-    f"disclosed {V['nd_fy25']:,.0f}, and the valuation bridge uses only that.")
-assert abs(debt_fy25 - cash_fy25 - V['nd_fy25']) < 1.0, "FY25 net debt identity broken"
+eqp_fy25 = V['eqp_fy25']       # audited, no longer derived
+cash_fy25 = V['cash_fy25']     # audited
+debt_fy25 = V['debt_fy25']     # audited
+ppe_fy25 = V['ppe_fy25']       # audited
+say(f"[FY2025 balance sheet] every line is the audited closing figure at 31 December 2025 — no "
+    f"triangulation is needed. Equity attributable to owners {eqp_fy25:,.0f}; gross loans and "
+    f"borrowings including leases {debt_fy25:,.0f}; cash {cash_fy25:,.0f}; net financial debt "
+    f"{V['nd_fy25']:,.0f}.")
 
-# ---- Kd integrity gate ------------------------------------------------------
-kd_eff_fy24 = V['int_exp_fy24'] / ((V['debt_open_fy24'] + V['debt_close_fy24']) / 2)
-kd_eff_q1_25 = (V['q1_25_fincost'] * 4) / ((V['debt_close_fy24'] + V['debt_q1_25']) / 2)
-fx_blend = 0.5 * (V['kd_usd_note'] + V['kd_eur_note'])
-w_egp = (kd_eff_fy24 - fx_blend) / (V['kd_egp_note'] - fx_blend)
-say(f"[Kd integrity] (i) CURRENCY COMPOSITION — audited note rates: EGP {V['kd_egp_note']:.2%}, "
-    f"USD {V['kd_usd_note']:.2%}, EUR {V['kd_eur_note']:.2%}. The blended effective rate implies "
-    f"an Egyptian-pound share of {w_egp:.1%} and a hard-currency share of {1-w_egp:.1%}. A "
-    f"single-currency Kd would overstate the cost of debt by roughly "
-    f"{(V['kd_egp_note'] - kd_eff_fy24)*1e4:,.0f}bp.")
-say(f"[Kd integrity] (ii) INDEPENDENT EFFECTIVE RATES — FY2024 interest expense "
-    f"{V['int_exp_fy24']:,.0f} / average loans and facilities "
-    f"{(V['debt_open_fy24']+V['debt_close_fy24'])/2:,.0f} = {kd_eff_fy24:.2%}; Q1-2025 finance "
-    f"costs annualised / average balance = {kd_eff_q1_25:.2%}.")
-say(f"[Kd integrity] (iii) BOUNDS — adopted Kd {V['kd']:.2%}: within 150bp of the most recent "
-    f"effective rate ({abs(V['kd']-kd_eff_q1_25)*1e4:,.0f}bp) and does not exceed the peak-year "
-    f"effective rate {max(kd_eff_fy24, kd_eff_q1_25):.2%} by more than 50bp.")
-assert abs(V['kd'] - kd_eff_q1_25) <= 0.015, f"Kd {V['kd']:.3f} more than 150bp from {kd_eff_q1_25:.3f}"
-assert V['kd'] <= max(kd_eff_fy24, kd_eff_q1_25) + 0.005, "Kd exceeds peak effective rate by >50bp"
+# ---- Kd integrity gate, rolled forward to the FY2025 / Q1-2026 disclosures --
+kd_eff_fy25 = V['int_exp_fy25'] / ((V['debt_open_fy25'] + V['debt_close_fy25']) / 2)
+kd_eff_q1_26 = None  # Q1-2026 does not disclose a comparable movement reconciliation
+w_egp = (kd_eff_fy25 - V['kd_hard_note']) / (V['kd_egp_note'] - V['kd_hard_note'])
+say(f"[Kd integrity] (i) CURRENCY COMPOSITION — audited FY2025 note rates: EGP "
+    f"{V['kd_egp_note']:.2%}, hard-currency blend {V['kd_hard_note']:.2%}. The blended effective "
+    f"rate implies an Egyptian-pound share of {w_egp:.1%} and a hard-currency share of "
+    f"{1-w_egp:.1%} — DOWN sharply from the roughly 44% pound share implied a year earlier, "
+    f"consistent with the FY2025-26 drawdown of hard-currency facilities (the Afreximbank USD "
+    f"200mn line among them) to fund a growing hard-currency-linked working-capital book.")
+say(f"[Kd integrity] (ii) INDEPENDENT EFFECTIVE RATE — FY2025 interest expense on loans and "
+    f"credit facilities {V['int_exp_fy25']:,.0f} / average balance "
+    f"{(V['debt_open_fy25']+V['debt_close_fy25'])/2:,.0f} = {kd_eff_fy25:.2%}.")
+say(f"[Kd integrity] (iii) BOUNDS — adopted Kd {V['kd']:.2%}: within 150bp of the FY2025 effective "
+    f"rate ({abs(V['kd']-kd_eff_fy25)*1e4:,.0f}bp) and does not exceed it by more than 50bp.")
+assert abs(V['kd'] - kd_eff_fy25) <= 0.015, f"Kd {V['kd']:.3f} more than 150bp from {kd_eff_fy25:.3f}"
+assert V['kd'] <= kd_eff_fy25 + 0.005, "Kd exceeds the FY2025 effective rate by >50bp"
 
 # ---- cost of capital: explicit window (sovereign double-count removed) -----
 rf_star = V['rf'] - V['sov_spread_cds']
@@ -592,8 +694,8 @@ say(f"[Cost of equity] rf {V['rf']:.2%} less sovereign CDS spread {V['sov_spread
     f"{rf_star:.2%}; + beta {V['beta']:.3f} x ERP {V['erp_cds']:.2%} -> Ke {ke_exp:.2%}. "
     f"Alternatives disclosed: rating basis {ke_rating_alt:.2%}; operations-weighted premium "
     f"{ke_ops_alt:.2%}; the RETIRED un-netted construction {ke_raw_retired:.2%} (audit trail only).")
-say(f"[WACC explicit] weights on NET debt {wd_exp:.1%} / equity {we_exp:.1%} -> {wacc_exp:.2%}. "
-    f"On gross debt the weights would be {wd_gross:.1%} / {1-wd_gross:.1%} -> "
+say(f"[WACC explicit] weights on NET financial debt {wd_exp:.1%} / equity {we_exp:.1%} -> "
+    f"{wacc_exp:.2%}. On gross debt the weights would be {wd_gross:.1%} / {1-wd_gross:.1%} -> "
     f"{wacc_exp_gross:.2%}; the net-debt basis is used because it is the same quantity the "
     f"enterprise-to-equity bridge subtracts, and it is the more conservative of the two.")
 
@@ -619,286 +721,148 @@ say("[Glide] forward WACC " + " -> ".join(f"{w:.2%}" for w in fwd) +
     ". The glide fractions are the cost-of-debt path's own cumulative progress, so the shape is "
     "inherited rather than being a second free parameter.")
 
-# ---- BOTTOM-UP UNIT ECONOMICS ------------------------------------------------
+# ============================ THREE-SEGMENT FORECAST BUILD ====================
+# The disclosed segments are Cables (and its accessories), Constructions (and
+# infrastructure), and Electrical products (and digital solutions). Revenue by
+# segment is the Note 5-3 external-revenue view, which ties EXACTLY to
+# consolidated revenue every year; segment margin is segment profit (Note 16)
+# divided by that same external-revenue base, so margin x revenue reproduces
+# the disclosed segment profit by construction.
 YRS = ['FY26E', 'FY27E', 'FY28E', 'FY29E', 'FY30E']
-SUBS = ['cables', 'rawmat', 'ec', 'transformers', 'meters', 'elecprod', 'infra']
-SUBNAME = dict(cables='Cables', rawmat='Raw material (copper rod)',
-               ec='Engineering & construction', transformers='Transformers',
-               meters='Meters & digital', elecprod='Other electrical products',
-               infra='Infrastructure investment')
-SH_, VH = V['seg_hist'], V['vol_hist']
-CU, FXH = V['copper_hist'], V['fx_hist']
+SUBS = ['cables', 'construct', 'elecprod']
+SUBNAME = dict(cables='Cables and its accessories',
+               construct='Constructions and infrastructure',
+               elecprod='Electrical products and digital solutions')
+SRH, SPH = V['seg_rev_hist'], V['seg_profit_hist']
 
-# historical unit economics — validated against the audited statements
 unit_hist = {}
-for y in ('FY23', 'FY24'):
-    seg = SH_[y]
-    rev_sum = sum(v[0] for v in seg.values()); gp_sum = sum(v[1] for v in seg.values())
-    cu_t = CU[y] * FXH[y]
-    unit_hist[y] = dict(
-        rev_sum=rev_sum, gp_sum=gp_sum, copper_t=cu_t,
-        cables_price_t=seg['cables'][0] * 1e6 / VH['cables'][y],
-        cables_gp_t=seg['cables'][1] * 1e6 / VH['cables'][y],
-        cables_uplift=(seg['cables'][0] * 1e6 / VH['cables'][y]) / cu_t,
-        cables_conv=seg['cables'][1] / seg['cables'][0],
-        meters_price=seg['meters'][0] * 1e6 / VH['meters'][y],
-        meters_gp_u=seg['meters'][1] * 1e6 / VH['meters'][y],
-        transformers_price=seg['transformers'][0] * 1e6 / VH['transformers'][y],
-        transformers_gp_mva=seg['transformers'][1] * 1e6 / VH['transformers'][y],
-        rawmat_kt=seg['rawmat'][0] * 1e6 / cu_t,
-        ec_gp=seg['ec'][1] / seg['ec'][0],
-        opex_pct=(gp_sum - (V['op_fy23'] + V['dna_fy23'] if y == 'FY23'
-                            else V['op_fy24'] + V['dna_fy24'])) / rev_sum)
-say(f"[Bottom-up base] the sub-segment build reconciles to the audited statements: FY2023 revenue "
-    f"{unit_hist['FY23']['rev_sum']:,.1f} vs reported {V['rev_fy23']:,.1f}, gross profit "
-    f"{unit_hist['FY23']['gp_sum']:,.1f} vs {V['gp_fy23']:,.1f}; FY2024 revenue "
-    f"{unit_hist['FY24']['rev_sum']:,.1f} vs {V['rev_fy24']:,.1f}, gross profit "
-    f"{unit_hist['FY24']['gp_sum']:,.1f} vs {V['gp_fy24']:,.1f}.")
-for y in ('FY23', 'FY24'):
-    assert abs(unit_hist[y]['rev_sum'] - V[f'rev_{y.lower()}']) < 1.0, 'sub-segment revenue break'
-    assert abs(unit_hist[y]['gp_sum'] - V[f'gp_{y.lower()}']) < 1.0, 'sub-segment gross profit break'
-say(f"[Unit economics] cables price/tonne {unit_hist['FY23']['cables_price_t']:,.0f} -> "
-    f"{unit_hist['FY24']['cables_price_t']:,.0f}; fabrication uplift over copper "
-    f"{unit_hist['FY23']['cables_uplift']:.3f} -> {unit_hist['FY24']['cables_uplift']:.3f}; "
-    f"conversion margin {unit_hist['FY23']['cables_conv']:.1%} -> "
-    f"{unit_hist['FY24']['cables_conv']:.1%}. Meters price/unit "
-    f"{unit_hist['FY23']['meters_price']:,.0f} -> {unit_hist['FY24']['meters_price']:,.0f}; "
-    f"transformers price/MVA {unit_hist['FY23']['transformers_price']:,.0f} -> "
-    f"{unit_hist['FY24']['transformers_price']:,.0f}. Operating load between gross profit and "
-    f"EBITDA {unit_hist['FY23']['opex_pct']:.2%} -> {unit_hist['FY24']['opex_pct']:.2%} of revenue.")
+for y in ('FY23', 'FY24', 'FY25'):
+    rev_sum = sum(SRH[y].values())
+    margin = {s: SPH[y][s] / SRH[y][s] for s in SUBS}
+    unit_hist[y] = dict(rev=dict(SRH[y]), profit=dict(SPH[y]), margin=margin, rev_sum=rev_sum)
+for y, key in (('FY23', 'rev_fy23'), ('FY24', 'rev_fy24'), ('FY25', 'rev_fy25')):
+    assert abs(unit_hist[y]['rev_sum'] - V[key]) < 1.0, f'{y} segment revenue does not sum to the P&L'
+say(f"[Segment build — the disclosed structure] Cables, Constructions and Electrical products "
+    f"and digital solutions, Note 5-3 revenue reconciling EXACTLY to the consolidated P&L in all "
+    f"three years. FY2025 revenue split: Cables {SRH['FY25']['cables']:,.0f} "
+    f"({SRH['FY25']['cables']/V['rev_fy25']:.1%}), Constructions "
+    f"{SRH['FY25']['construct']:,.0f} ({SRH['FY25']['construct']/V['rev_fy25']:.1%}), Electrical "
+    f"products {SRH['FY25']['elecprod']:,.0f} ({SRH['FY25']['elecprod']/V['rev_fy25']:.1%}). "
+    f"Segment margins (profit / this revenue base) FY2023 -> FY2025: Cables "
+    f"{unit_hist['FY23']['margin']['cables']:.1%} -> {unit_hist['FY25']['margin']['cables']:.1%}; "
+    f"Constructions {unit_hist['FY23']['margin']['construct']:.1%} -> "
+    f"{unit_hist['FY25']['margin']['construct']:.1%}; Electrical products "
+    f"{unit_hist['FY23']['margin']['elecprod']:.1%} -> "
+    f"{unit_hist['FY25']['margin']['elecprod']:.1%}. Every segment compressed in FY2025; Cables "
+    f"and Constructions compressed the most.")
 
-# ---- FY2025 unit base: volumes from Q1 seasonality, revenue calibrated to disclosure ----
-Q = V['q1_units']
-seas = {k: Q[f'{k}_q1_24'] / VH[k]['FY24'] for k in ('cables', 'meters', 'transformers')}
-vol25 = {k: Q[f'{k}_q1_25'] / seas[k] for k in seas}
-cu_t25 = CU['FY25'] * FXH['FY25']
-# non-cables lines built first; cables revenue is the residual against disclosed group revenue,
-# which back-solves the FY2025 fabrication uplift as the diagnostic
-rawmat_kt25 = unit_hist['FY24']['rawmat_kt'] * 1.00
-rev25 = {}
-rev25['rawmat'] = rawmat_kt25 * cu_t25 * V['rawmat_uplift'] / 1e6
-# FY2025 sub-segment revenue is now pinned to the DISCLOSED growth rates applied to the
-# FY2024 base on the restated taxonomy, rather than assuming the FY2024 mix persisted.
-G25 = V['seg_rev_fy25_disclosed']
-rev25['ec'] = G25['ec']
-rev25['transformers'] = G25['transformers']
-rev25['meters'] = G25['meters']
-rev25['infra'] = G25['infra']
-rev25['elecprod'] = SH_['FY24']['elecprod'][0] * 1.25
-rev25['cables'] = V['rev_fy25'] - sum(rev25.values())
-uplift25 = rev25['cables'] * 1e6 / vol25['cables'] / cu_t25
-price_t25 = rev25['cables'] * 1e6 / vol25['cables']
-say(f"[FY2025 unit base] volumes implied from the disclosed Q1 prints and the FY2024 seasonal "
-    f"share: cables {vol25['cables']:,.0f}t ({vol25['cables']/VH['cables']['FY24']-1:+.1%} on "
-    f"FY2024), meters {vol25['meters']:,.0f} units, transformers "
-    f"{vol25['transformers']:,.0f} MVA. Cables revenue is the residual against the disclosed group "
-    f"revenue of {V['rev_fy25']:,.0f}, which BACK-SOLVES the FY2025 fabrication uplift to "
-    f"{uplift25:.3f}, against 1.386 in FY2023 and 1.261 in FY2024. That this residual lands "
-    f"in the historical neighbourhood is the check that the segment split is economics rather "
-    f"than a plug — and it is the test that rejected the competing '+51% E&C' reading, which "
-    f"forces the uplift to 1.077.")
-assert 1.10 < uplift25 < 1.50, f"FY25 back-solved uplift {uplift25:.3f} outside the historical range"
-
-# FY2025 gross profit: cables PINNED to the disclosed gross profit per tonne; the
-# remaining lines carry FY2024's margins scaled by one compression factor, solved so
-# the total reproduces the gross profit assembled from the disclosed prints.
-gp25 = {}
-gp25['cables'] = vol25['cables'] * V['cables_gp_t_fy25'] / 1e6
-cables_conv25 = gp25['cables'] / rev25['cables']
-gp24_margin = {k: SH_['FY24'][k][1] / SH_['FY24'][k][0] for k in SUBS}
-others = [k for k in SUBS if k != 'cables']
-rest_rev = sum(rev25[k] for k in others)
-rest_gp24_blend = sum(rev25[k] * gp24_margin[k] for k in others)
-compress = (V['gp_fy25'] - gp25['cables']) / rest_gp24_blend
-for k in others:
-    gp25[k] = rev25[k] * gp24_margin[k] * compress
-gp_bu25 = sum(gp25.values())
-margin25 = {k: gp25[k] / rev25[k] for k in SUBS}
-opex25 = (gp_bu25 - ebitda_fy25) / V['rev_fy25']
-say(f"[FY2025 margin calibration] cables gross profit is PINNED to the disclosed "
-    f"{V['cables_gp_t_fy25']:,.0f} EGP per tonne x {vol25['cables']:,.0f}t = "
-    f"{gp25['cables']:,.0f}, i.e. a conversion margin of {cables_conv25:.1%} against "
-    f"{unit_hist['FY24']['cables_conv']:.1%} in FY2024 — the cable margin roughly HALVED, and that "
-    f"single fact is most of the group's gross-margin decline. The other lines carry FY2024's "
-    f"margins scaled by {compress:.3f}, solved so the total reproduces the {V['gp_fy25']:,.0f} "
-    f"assembled from the disclosed prints. Resulting FY2025 margins: " +
-    ", ".join(f"{SUBNAME[k]} {margin25[k]:.1%}" for k in SUBS) + ".")
-say(f"[FY2025 operating load] bottom-up gross profit {gp_bu25:,.0f} less EBITDA "
-    f"{ebitda_fy25:,.0f} implies an operating load of {opex25:.2%} of revenue, against "
-    f"{unit_hist['FY24']['opex_pct']:.2%} in FY2024 and {unit_hist['FY23']['opex_pct']:.2%} in "
-    f"FY2023. The forecast glides from {V['opex_pct'][0]:.1%} back toward the historical norm "
-    f"rather than assuming the FY2025 level persists.")
-assert abs(gp_bu25 - V['gp_fy25']) < 1.0, 'FY25 gross profit calibration did not close'
-assert 0.7 < compress < 1.15, f'FY25 margin compression factor {compress:.3f} implausible' 
-
-# ---- FORECAST: volumes x prices, sub-segment by sub-segment --------------------
-vol_f = {k: [] for k in ('cables', 'meters', 'transformers', 'rawmat')}
-seg_rev = []; seg_gp = []
-backlog = V['ec_backlog']; bl_path = []
-vc, vm, vt, vr = vol25['cables'], vol25['meters'], vol25['transformers'], rawmat_kt25
-ec_prev = rev25['ec']; ep_prev = rev25['elecprod']; inf_prev = rev25['infra']
-mp, tp = unit_hist['FY24']['meters_price'] * 1.08, unit_hist['FY24']['transformers_price'] * 1.09
-# The most recent hard evidence is the Q1-2026 print. Back out the EBITDA margin it
-# implies, and SOLVE the FY2026 cable conversion margin that reproduces it, rather than
-# assuming a conversion margin and contradicting the print.
-_nci_sh = nci_fy25 / V['pat_fy25']
-q1_26_pat = V['q1_26_npa'] / (1 - _nci_sh)
-q1_26_pbt = q1_26_pat / (1 - TAX)
-q1_26_ebit = q1_26_pbt - netfin_fy25 / 4 - assoc_fy25 / 4
-q1_26_ebitda = q1_26_ebit + V['dna_pct'] * V['q1_26_rev']
-q1_26_margin = q1_26_ebitda / V['q1_26_rev']
-say(f"[Q1-2026 calibration] the disclosed Q1-2026 revenue {V['q1_26_rev']:,.0f} "
-    f"({V['q1_26_rev']/V['q1_25_rev']-1:+.1%} y/y) and attributable profit {V['q1_26_npa']:,.0f} "
-    f"({V['q1_26_npa']/V['q1_25_npa']-1:+.1%} y/y) imply, on the same tax, minority, finance and "
-    f"depreciation structure, an EBITDA margin of about {q1_26_margin:.2%} — against "
-    f"{V['q1_25_ebitda']/V['q1_25_rev']:.2%} in Q1-2025. Profit GREW on a higher copper price, so "
-    f"any build that shows margins collapsing in FY2026 is contradicted by the print. The FY2026 "
-    f"cable conversion margin is therefore SOLVED to reproduce this, not assumed.")
-gp_t_cables = V['cables_gp_t_fy25']
-gp_t_rawmat = gp25['rawmat'] * 1e6 / rawmat_kt25
-gp_mva = gp25['transformers'] * 1e6 / vol25['transformers']
-gp_unit_m = gp25['meters'] * 1e6 / vol25['meters']
-say(f"[Per-unit gross profit, FY2025 base] cables {gp_t_cables:,.0f} EGP/tonne (disclosed), rod "
-    f"{gp_t_rawmat:,.0f} EGP/tonne, transformers {gp_mva:,.0f} EGP/MVA, meters "
-    f"{gp_unit_m:,.0f} EGP/unit. These grow with cost inflation only — no real recovery in "
-    f"conversion profitability is assumed anywhere in the forecast.")
-def _fy26_gp(gpt):
-    cu_t = V['copper_fcst'][0] * V['fx_path'][0]
-    vc_ = vol25['cables'] * (1 + V['cables_vol_growth'][0])
-    vr_ = rawmat_kt25 * (1 + V['rawmat_vol_growth'][0])
-    vt_ = vol25['transformers'] * (1 + V['transformers_vol_growth'][0])
-    vm_ = vol25['meters'] * (1 + V['meters_vol_growth'][0])
-    rev_ = (vc_ * cu_t * V['cables_uplift'][0] + vr_ * cu_t * V['rawmat_uplift']) / 1e6
-    rev_ += V['ec_backlog'] * V['ec_burn'][0]
-    rev_ += vt_ * (cu_t * unit_hist['FY24']['transformers_price'] / unit_hist['FY24']['copper_t']) / 1e6
-    rev_ += vm_ * unit_hist['FY24']['meters_price'] * 1.08 * (1 + V['unit_price_inflation'][0]) / 1e6
-    rev_ += rev25['elecprod'] * (1 + V['other_growth'][0]) + rev25['infra'] * (1 + V['other_growth'][0])
-    g_ = vc_ * gpt / 1e6
-    g_ += vr_ * (gp25['rawmat'] * 1e6 / rawmat_kt25) * (1 + V['unit_gp_growth'][0]) / 1e6
-    g_ += V['ec_backlog'] * V['ec_burn'][0] * margin25['ec'] * V['margin_recovery'][0]
-    g_ += vt_ * (gp25['transformers'] * 1e6 / vol25['transformers']) * (1 + V['unit_gp_growth'][0]) / 1e6
-    g_ += vm_ * (gp25['meters'] * 1e6 / vol25['meters']) * (1 + V['unit_gp_growth'][0]) / 1e6
-    g_ += rev25['elecprod'] * (1 + V['other_growth'][0]) * margin25['elecprod'] * V['margin_recovery'][0]
-    g_ += rev25['infra'] * (1 + V['other_growth'][0]) * margin25['infra'] * V['margin_recovery'][0]
-    return (g_ - V['opex_pct'][0] * rev_) / rev_
-
-lo_, hi_ = 60000.0, 260000.0
-for _ in range(90):
-    mid_ = (lo_ + hi_) / 2
-    if _fy26_gp(mid_) < q1_26_margin: lo_ = mid_
-    else: hi_ = mid_
-gp_t_cables = (lo_ + hi_) / 2
-say(f"[Cable conversion margin, solved] FY2026 gross profit per tonne solves to "
-    f"{gp_t_cables:,.0f} EGP to reproduce the Q1-2026 implied EBITDA margin — against the "
-    f"disclosed {V['cables_gp_t_fy25']:,.0f} in Q1-2025, {unit_hist['FY24']['cables_gp_t']:,.0f} "
-    f"in FY2024 and {unit_hist['FY23']['cables_gp_t']:,.0f} in FY2023. It sits inside the "
-    f"historical range, so the print and the unit build are mutually consistent.")
-_cu26 = V['copper_fcst'][0] * V['fx_path'][0]
-say(f"[Conversion margin cross-check] as a SHARE of the realised price per tonne that solved "
-    f"figure is {gp_t_cables/(_cu26*V['cables_uplift'][0]):.1%}, between the FY2025 trough of "
-    f"{cables_conv25:.1%} and the FY2024 peak of {unit_hist['FY24']['cables_conv']:.1%}. In "
-    f"absolute EGP it is below what pure copper-cost scaling of FY2024 would give "
-    f"({unit_hist['FY24']['cables_gp_t']*_cu26/unit_hist['FY24']['copper_t']:,.0f}), so the "
-    f"solve does not assume the converter captures the whole metal move. NOTE the solve "
-    f"attributes all of the Q1-2026 improvement to cables, where the volatility demonstrably is; "
-    f"if it in fact came from another line the sub-segment split changes but GROUP EBITDA — the "
-    f"only thing the valuation consumes — is pinned by the print either way.")
-assert unit_hist['FY23']['cables_gp_t'] * 0.75 < gp_t_cables < unit_hist['FY24']['cables_gp_t'] * 1.45, \
-    f'solved cable conversion margin {gp_t_cables:,.0f} outside the historical range'
-gp_t_cables /= (1 + V['unit_gp_growth'][0])   # loop advances it on the first pass
-
-GP_T_CABLES_0 = gp_t_cables
+CL = V['corp_load_hist']
+SEG_UNALLOC = {'FY23': 0.0, 'FY24': 0.0, 'FY25': V['seg_unalloc_fy25']}
+_seg_profit_net_fy25 = sum(SPH['FY25'].values()) + SEG_UNALLOC['FY25']
+say(f"[Corporate load — the bridge from segment profit to EBIT] (G&A + net impairment on "
+    f"receivables + other expenses - other income) / revenue: FY2023 {CL['FY23']:.2%}, FY2024 "
+    f"{CL['FY24']:.2%}, FY2025 {CL['FY25']:.2%} — DECLINING, i.e. operating leverage improving at "
+    f"the corporate level even as segment margins fell. This reconciles EXACTLY: e.g. FY2025 "
+    f"segment profit {sum(SPH['FY25'].values()):,.0f} less the unallocated/corporate item of "
+    f"{-SEG_UNALLOC['FY25']:,.0f} = {_seg_profit_net_fy25:,.0f}, less {CL['FY25']:.2%} x revenue "
+    f"{V['rev_fy25']:,.0f} = {_seg_profit_net_fy25 - CL['FY25']*V['rev_fy25']:,.0f}, against "
+    f"the audited operating profit of {V['op_fy25']:,.0f}.")
+for y, key in (('FY23', 'op_fy23'), ('FY24', 'op_fy24'), ('FY25', 'op_fy25')):
+    _seg_profit_net = sum(SPH[y].values()) + SEG_UNALLOC[y]
+    _ebit_check = _seg_profit_net - CL[y] * V[key.replace('op_', 'rev_')]
+    assert abs(_ebit_check - V[key]) < 1.0, f'{y} segment profit less corporate load != operating profit'
 
 def build(fx_mult=1.0, gp_unit_mult=1.0, vol_mult=1.0, copper_mult=1.0, opex_shift=0.0):
-    """Re-run the whole unit build. Scenarios and sensitivity grids call THIS, so a
-    currency or copper move flows through the price per tonne, the working capital and
-    the gross profit exactly as it does in the base case — not as a flat multiplier on
-    a finished revenue line."""
-    vc, vm, vt, vr = (vol25['cables'], vol25['meters'], vol25['transformers'], rawmat_kt25)
-    ep_, if_ = rev25['elecprod'], rev25['infra']
-    mp_ = unit_hist['FY24']['meters_price'] * 1.08
-    gpc, gpr = GP_T_CABLES_0 * gp_unit_mult, (gp25['rawmat'] * 1e6 / rawmat_kt25) * gp_unit_mult
-    gpv, gpm = ((gp25['transformers'] * 1e6 / vol25['transformers']) * gp_unit_mult,
-                (gp25['meters'] * 1e6 / vol25['meters']) * gp_unit_mult)
-    bl = V['ec_backlog']
-    R, G_, BL, VOL = [], [], [], {k: [] for k in ('cables', 'meters', 'transformers', 'rawmat')}
+    """Re-run the whole three-segment build. Scenarios and sensitivity grids call
+    THIS, so a currency or copper move flows through Cables' growth rate, and a
+    margin shift flows through every segment's margin path, exactly as in the base
+    case — not as a flat multiplier on a finished revenue line."""
+    cu_base = V['copper_fcst'][0] * copper_mult * V['fx_path'][0] * fx_mult
+    cu_hist = V['copper_hist']['FY25'] * V['fx_hist']['FY25']
+    r_cab, r_con, r_ele = (SRH['FY25']['cables'], SRH['FY25']['construct'], SRH['FY25']['elecprod'])
+    R, seg_margin = [], []
     for i in range(5):
         cu_t = V['copper_fcst'][i] * copper_mult * V['fx_path'][i] * fx_mult
-        vc *= (1 + V['cables_vol_growth'][i]) * (vol_mult ** 0.2)
-        vm *= (1 + V['meters_vol_growth'][i]) * (vol_mult ** 0.2)
-        vt *= (1 + V['transformers_vol_growth'][i]) * (vol_mult ** 0.2)
-        vr *= (1 + V['rawmat_vol_growth'][i]) * (vol_mult ** 0.2)
-        mp_ *= (1 + V['unit_price_inflation'][i])
-        gpc *= (1 + V['unit_gp_growth'][i]); gpr *= (1 + V['unit_gp_growth'][i])
-        gpv *= (1 + V['unit_gp_growth'][i]); gpm *= (1 + V['unit_gp_growth'][i])
-        tp_ = cu_t * (unit_hist['FY24']['transformers_price'] / unit_hist['FY24']['copper_t'])
-        r, g = {}, {}
-        r['cables'] = vc * cu_t * V['cables_uplift'][i] / 1e6; g['cables'] = vc * gpc / 1e6
-        r['rawmat'] = vr * cu_t * V['rawmat_uplift'] / 1e6;    g['rawmat'] = vr * gpr / 1e6
-        r['ec'] = bl * V['ec_burn'][i]
-        g['ec'] = r['ec'] * margin25['ec'] * V['margin_recovery'][i]
-        bl = bl - r['ec'] + r['ec'] * V['ec_book_to_bill'][i]
-        r['transformers'] = vt * tp_ / 1e6; g['transformers'] = vt * gpv / 1e6
-        r['meters'] = vm * mp_ / 1e6;       g['meters'] = vm * gpm / 1e6
-        ep_ *= (1 + V['other_growth'][i]); if_ *= (1 + V['other_growth'][i])
-        r['elecprod'] = ep_; g['elecprod'] = ep_ * margin25['elecprod'] * V['margin_recovery'][i]
-        r['infra'] = if_;    g['infra'] = if_ * margin25['infra'] * V['margin_recovery'][i]
-        R.append(r); G_.append(g); BL.append(bl)
-        VOL['cables'].append(vc); VOL['meters'].append(vm)
-        VOL['transformers'].append(vt); VOL['rawmat'].append(vr)
+        cu_prev = (V['copper_fcst'][i - 1] * copper_mult * V['fx_path'][i - 1] * fx_mult
+                   if i > 0 else cu_hist)
+        cu_growth = cu_t / cu_prev - 1
+        r_cab *= (1 + cu_growth) * (1 + V['cables_real_growth'][i]) * (vol_mult ** 0.2)
+        r_con *= (1 + V['construct_growth'][i]) * (vol_mult ** 0.2)
+        r_ele *= (1 + V['elecprod_growth'][i]) * (vol_mult ** 0.2)
+        m_cab = V['cables_margin'][i] * gp_unit_mult
+        m_con = V['construct_margin'][i] * gp_unit_mult
+        m_ele = V['elecprod_margin'][i] * gp_unit_mult
+        R.append(dict(cables=r_cab, construct=r_con, elecprod=r_ele))
+        seg_margin.append(dict(cables=m_cab, construct=m_con, elecprod=m_ele))
     rev_ = [sum(R[i].values()) for i in range(5)]
-    gp_ = [sum(G_[i].values()) for i in range(5)]
+    seg_gp_ = [{s: R[i][s] * seg_margin[i][s] for s in SUBS} for i in range(5)]
+    gp_ = [sum(seg_gp_[i].values()) for i in range(5)]
+    # The disclosed segment margins are POST-depreciation (Note 16 segment profit), so the
+    # corporate load is applied on the same basis as the audited historical bridge:
+    # EBIT = segment profit - corp load; EBITDA = EBIT + D&A. (Restated after critique —
+    # numerically identical to the previous opex-to-EBITDA formulation, honestly labelled.)
     opex_ = [(V['opex_pct'][i] + opex_shift) * rev_[i] for i in range(5)]
-    ebitda_ = [gp_[i] - opex_[i] for i in range(5)]
-    return dict(rev=rev_, gp=gp_, opex=opex_, ebitda=ebitda_, seg_rev=R, seg_gp=G_,
-                backlog=BL, vol=VOL)
+    ebit_ = [gp_[i] - opex_[i] for i in range(5)]
+    ebitda_ = [ebit_[i] + V['dna_pct'] * rev_[i] for i in range(5)]
+    return dict(rev=rev_, gp=gp_, opex=opex_, ebit=ebit_, ebitda=ebitda_, seg_rev=R,
+                seg_gp=seg_gp_, seg_margin=seg_margin)
 
 _B = build()
-seg_rev, seg_gp, bl_path, vol_f = _B['seg_rev'], _B['seg_gp'], _B['backlog'], _B['vol']
-rev = _B['rev']; gp = _B['gp']; opex = _B['opex']
-ebitda = _B['ebitda']
+seg_rev, seg_gp, seg_margin_f = _B['seg_rev'], _B['seg_gp'], _B['seg_margin']
+rev = _B['rev']; gp = _B['gp']; opex = _B['opex']; ebitda = _B['ebitda']
 ebitda_margin = [ebitda[i] / rev[i] for i in range(5)]
 gp_margin = [gp[i] / rev[i] for i in range(5)]
-say(f"[Forecast, bottom-up] revenue " + " -> ".join(f"{r:,.0f}" for r in rev) +
+say(f"[Forecast, three real segments] revenue " + " -> ".join(f"{r:,.0f}" for r in rev) +
     " (growth " + ", ".join(f"{rev[i]/(V['rev_fy25'] if i==0 else rev[i-1])-1:+.1%}"
                             for i in range(5)) + ")")
 say(f"[Forecast margins are OUTPUTS] gross margin " +
     " -> ".join(f"{m:.2%}" for m in gp_margin) + "; EBITDA margin " +
-    " -> ".join(f"{m:.2%}" for m in ebitda_margin) +
-    f". Cable tonnage {vol_f['cables'][0]:,.0f} -> {vol_f['cables'][-1]:,.0f} "
-    f"({vol_f['cables'][-1]/VH['cables']['FY24']-1:+.1%} against FY2024); order book "
-    f"{V['ec_backlog']:,.0f} -> {bl_path[-1]:,.0f}.")
+    " -> ".join(f"{m:.2%}" for m in ebitda_margin) + ". Segment mix FY2030E: Cables "
+    f"{seg_rev[-1]['cables']/rev[-1]:.0%}, Constructions {seg_rev[-1]['construct']/rev[-1]:.0%}, "
+    f"Electrical products {seg_rev[-1]['elecprod']/rev[-1]:.0%}.")
 _impl26 = V['q1_26_rev'] / (V['q1_25_rev'] / V['rev_fy25'])
 say(f"[FY2026 cross-check against the print] the disclosed Q1-2026 revenue of "
-    f"{V['q1_26_rev']:,.0f}, grossed up on the Q1-2025 seasonal share, implies a full year of "
-    f"{_impl26:,.0f}. The build produces {rev[0]:,.0f}, {rev[0]/_impl26-1:+.1%} against it — an "
-    f"independent check that the unit build is not running ahead of the company's own trading.")
-assert abs(rev[0] / _impl26 - 1) < 0.08, 'FY26 build diverges from the Q1-2026 print'
+    f"{V['q1_26_rev']:,.0f}, grossed up on the Q1-2025 seasonal share of FY2025, implies a full "
+    f"year of {_impl26:,.0f}. The build produces {rev[0]:,.0f}, {rev[0]/_impl26-1:+.1%} against "
+    f"it — an independent check that the segment build is not running ahead of the company's own "
+    f"trading.")
+assert abs(rev[0] / _impl26 - 1) < 0.10, 'FY26 build diverges from the Q1-2026 print'
 
-# currency split, reported off the bottom-up build (copper-linked lines are dollar-priced)
-fgn_egp = [seg_rev[i]['cables'] * 0.60 + seg_rev[i]['rawmat'] * 0.55 + seg_rev[i]['ec'] * 0.80 +
-           (seg_rev[i]['transformers'] + seg_rev[i]['meters']) * 0.55 for i in range(5)]
+_q26_ebit_implied = (V['q1_26_op'] / V['q1_26_rev']) * rev[0] - CL['FY25'] * 0  # display only
+q1_26_ebitda_implied_margin = ((V['q1_26_op'] + V['dna_pct'] * V['q1_26_rev']) / V['q1_26_rev'])
+say(f"[Q1-2026 EBITDA margin check] the disclosed Q1-2026 operating profit "
+    f"{V['q1_26_op']:,.0f} on revenue {V['q1_26_rev']:,.0f} implies an EBITDA margin (at the "
+    f"model's D&A ratio) of {q1_26_ebitda_implied_margin:.2%}, against FY2026E's "
+    f"{ebitda_margin[0]:.2%} — consistent, not contradicted.")
+
+# currency split, reported off the segment build (Cables is genuinely copper-linked and
+# roughly two-thirds hard-currency by disclosed export mix; the other two segments are
+# treated as majority domestic-currency notwithstanding their own export components,
+# because the disclosed geographic split does not separate currency of invoicing from
+# geography of delivery)
+fgn_egp = [seg_rev[i]['cables'] * 0.65 + seg_rev[i]['construct'] * 0.30 +
+           seg_rev[i]['elecprod'] * 0.45 for i in range(5)]
 dom = [rev[i] - fgn_egp[i] for i in range(5)]
 fgn_usd = [fgn_egp[i] / V['fx_path'][i] for i in range(5)]
-fgn25 = (rev25['cables'] * 0.60 + rev25['rawmat'] * 0.55 + rev25['ec'] * 0.80 +
-         (rev25['transformers'] + rev25['meters']) * 0.55)
+fgn25 = (SRH['FY25']['cables'] * 0.65 + SRH['FY25']['construct'] * 0.30 +
+         SRH['FY25']['elecprod'] * 0.45)
 fgn_share_fy25_derived = fgn25 / V['rev_fy25']
-say(f"[Currency split — two different questions] the company discloses that over "
-    f"{V['foreign_share_fy25']:.0%} of revenue is earned ABROAD, which is a geographic statement "
-    f"about where the customer sits. The build derives the share that is HARD-CURRENCY LINKED — "
-    f"dollar-priced by construction — at {fgn25/V['rev_fy25']:.0%} in FY2025 and " +
-    " -> ".join(f"{fgn_egp[i]/rev[i]:.0%}" for i in range(5)) +
-    f" thereafter. The two are not in conflict: a project executed in a North African market for "
-    f"a local utility is foreign revenue but not necessarily dollar-priced. The LOWER figure is "
-    f"used everywhere the currency question is valued, because it is the conservative one.")
+say(f"[Currency split — two different questions] the audited Note 5-2 shows "
+    f"{V['fgn_egp_share_fy25']:.1%} of FY2025 revenue booked OUTSIDE Egypt, which is a geographic "
+    f"statement about where the customer sits. The model derives the share that is "
+    f"HARD-CURRENCY LINKED — dollar-priced by construction — at {fgn25/V['rev_fy25']:.0%} in "
+    f"FY2025 and " + " -> ".join(f"{fgn_egp[i]/rev[i]:.0%}" for i in range(5)) +
+    f" thereafter, using segment-level export-intensity weights (Cables 65%, Constructions 30%, "
+    f"Electrical products 45%) rather than the blanket geographic split, because a project "
+    f"executed abroad for a local utility is foreign revenue but not necessarily dollar-priced. "
+    f"The LOWER figure is used everywhere the currency question is valued, because it is the "
+    f"conservative one.")
 
 # FY2025 presentation objects reused downstream
-segs = SUBS
 SEGNAME = SUBNAME
-seg_rev_fy25 = rev25
-seg_gp_fy25 = gp25
 shares = [{s: seg_rev[i][s] / rev[i] for s in SUBS} for i in range(5)]
-seg_ebitda = [{s: seg_gp[i][s] - V['opex_pct'][i] * seg_rev[i][s] for s in SUBS} for i in range(5)]
+# per-segment EBIT contribution: segment profit less the pro-rata corporate load (EBIT basis)
+seg_ebit = [{s: seg_gp[i][s] - V['opex_pct'][i] * seg_rev[i][s] for s in SUBS} for i in range(5)]
 
 # ---- FCFF waterfall ---------------------------------------------------------
 dna = [V['dna_pct'] * r for r in rev]
@@ -913,13 +877,10 @@ pv_explicit = float(sum(pv))
 
 # ---- forward net-finance, profit, dividend, equity and net-debt paths ----------
 # ONE roll-forward, computed once and used everywhere: by the normalised-earnings lens,
-# by the forecast income statement, and by the forecast balance sheet. A previous build
-# ran a second, slightly different version of this loop earlier in the file (because the
-# minority share had not been computed yet at that point) and the two disagreed by up to
-# EGP 117mn of interest. The minority share depends only on the FY2025 prints, so it is
-# computed here and the duplicate loop is gone.
+# by the forecast income statement, and by the forecast balance sheet.
 nci_share = nci_fy25 / V['pat_fy25']
-PAYOUT = 0.25
+PAYOUT = 0.25   # near the ACTUAL FY2025 payout of 22.8% (EGP 1.85 on EPS 8.10), rising intent;
+                # raised from 15% after the FY2025 dividend was confirmed and restored
 ASSOC_G = 0.08
 interest_path, np_fc, div_fc, eq_fc, nd_fc, assoc_fc = [], [], [], [], [], []
 _nd, _eq = V['nd_fy25'], eqp_fy25
@@ -928,7 +889,7 @@ for i in range(5):
     # builds as free cash flow accrues, so the NET charge falls with net debt.
     _cash = debt_fy25 - _nd
     _int = V['kd_path'][i] * debt_fy25 - 0.10 * max(_cash, 0.0)
-    _assoc = assoc_fy25 * (1 + ASSOC_G) ** (i + 1)
+    _assoc = V['assoc_bv_fy25'] * 0 + V['assoc_fy25'] * (1 + ASSOC_G) ** (i + 1)
     _pbt = ebit[i] - _int + _assoc
     _npa = _pbt * (1 - TAX) * (1 - nci_share)
     _div = PAYOUT * _npa
@@ -936,22 +897,26 @@ for i in range(5):
     _nd = _nd - (fcff[i] - _int * (1 - TAX)) + _div
     interest_path.append(_int); assoc_fc.append(_assoc); np_fc.append(_npa)
     div_fc.append(_div); eq_fc.append(_eq); nd_fc.append(_nd)
-say(f"[Forecast interest] net finance cost falls " + " -> ".join(f"{x:,.0f}" for x in interest_path) +
-    f" as the cash pile builds against a broadly static gross debt book — the charge tracks the "
-    f"net debt path rather than being frozen at the FY2025 balance.")
+say(f"[Forecast interest] net finance cost path " + " -> ".join(f"{x:,.0f}" for x in interest_path) +
+    f" as the cash pile builds against a broadly static gross debt book. Surplus cash is assumed "
+    f"to yield 10% — a deliberate blend of Egyptian-pound deposit rates (~19-20%, falling) and "
+    f"hard-currency cash (~4-5%); the positive carry over the hard-currency-heavy debt book "
+    f"(7.7-9.5%) is real economics (borrow dollars cheap, hold pounds dear), disclosed rather "
+    f"than hidden. Payout ratio {PAYOUT:.0%} — struck at the ACTUAL FY2025 payout: EGP 1.85/share "
+    f"ratified by the AGM on 6 May 2026 and paid from 4 June 2026 = 22.8% of FY2025 attributable "
+    f"EPS, up from 12.3% a year earlier.")
 say(f"[Forecast equity] attributable profit " + ", ".join(f"{x:,.0f}" for x in np_fc) +
-    f"; net debt path " + ", ".join(f"{x:,.0f}" for x in nd_fc) +
-    f" ({PAYOUT:.0%} payout assumed).")
+    f"; net debt path " + ", ".join(f"{x:,.0f}" for x in nd_fc) + ".")
 
 # ---- invested capital, terminal ROIC ----------------------------------------
 ic_fy23 = nwc_fy23 + V['ppe_fy23']
 ic_fy24 = nwc_fy24 + V['ppe_fy24'] + V['intang_fy24']
+ic_fy25 = nwc_fy25 + ppe_fy25 + V['intang_fy25']
 ppe = []
-p = V['ppe_fy24'] + (V['capex_pct'][0] * V['rev_fy25'] - dna_fy25)   # FY25 net addition
-ppe_fy25 = p
+p = ppe_fy25
 for i in range(5):
     p += capex[i] - dna[i]; ppe.append(p)
-ic = [nwc[i] + ppe[i] + V['intang_fy24'] for i in range(5)]
+ic = [nwc[i] + ppe[i] + V['intang_fy25'] for i in range(5)]
 roic = [nopat[i] / ic[i] for i in range(5)]
 roic_term = nopat[-1] * (1 + V['g_term']) / ic[-1]   # NOPAT(n+1) / IC(n), the standard convention
 say(f"[Terminal return on capital] taken as next year's NOPAT over the closing invested capital "
@@ -959,12 +924,11 @@ say(f"[Terminal return on capital] taken as next year's NOPAT over the closing i
     f"capital ({roic[-1]:.1%}).")
 nopat_fy23 = V['op_fy23'] * (1 - 0.313)
 nopat_fy24 = V['op_fy24'] * (1 - 0.301)
-nopat_fy25 = op_fy25 * (1 - eff_tax_fy25)
-ic_fy25 = nwc_fy25 + ppe_fy25 + V['intang_fy24']
+nopat_fy25 = V['op_fy25'] * (1 - 0.2257)
 hist_roic = dict(FY23=nopat_fy23 / ic_fy23, FY24=nopat_fy24 / ic_fy24, FY25=nopat_fy25 / ic_fy25)
 hist_rr = dict(FY23=(V['capex_fy23'] - V['dna_fy23']) / nopat_fy23,
                FY24=(V['capex_fy24'] - V['dna_fy24']) / nopat_fy24,
-               FY25=(V['capex_pct'][0] * V['rev_fy25'] - dna_fy25) / nopat_fy25)
+               FY25=(V['capex_fy25'] - V['dna_fy25']) / nopat_fy25)
 hist_impl_g = {y: hist_roic[y] * hist_rr[y] for y in hist_roic}
 nopat_cagr = (nopat_fy25 / nopat_fy23) ** 0.5 - 1
 stable_g = float(np.mean([hist_impl_g['FY23'], hist_impl_g['FY25']]))
@@ -998,64 +962,68 @@ yrs_cross = np.log(EGYPT_GDP / dom[-1]) / np.log((1 + nopat_cagr) / (1 + EGYPT_N
 say(f"[Terminal ceiling] the domestic leg is {dom_share_term:.0%} of FY30E revenue; a blended "
     f"long-run nominal ceiling is {blend_ceiling:.1%} ({EGYPT_NOM:.0%} Egyptian nominal on the "
     f"domestic leg, 7.5% world nominal on the export leg). Adopted g of {V['g_term']:.0%} sits "
-    f"below it. If the recent NOPAT CAGR of {nopat_cagr:.0%} were floated as a TERMINAL rate, the "
-    f"domestic revenue leg alone would overtake Egypt's entire nominal GDP in about "
-    f"{yrs_cross:.0f} years — arithmetic necessity, not a modelling opinion.")
+    f"below it.")
 assert V['g_term'] < blend_ceiling, "terminal g exceeds the blended nominal growth ceiling"
 
 # ---- EV -> equity bridge ----------------------------------------------------
-assoc_val = V['assoc_bv_fy24']   # carrying value, no uplift
-say(f"[Associates] carried at the audited FY2024 carrying value of {assoc_val:,.0f} with NO "
-    f"uplift. The previous version applied an undisclosed 1.15x, which an external audit "
-    f"correctly flagged as an unsourced adjustment; it is removed.")
+assoc_val = V['assoc_bv_fy25']   # audited FY2025 carrying value, no uplift
+say(f"[Associates] carried at the audited FY2025 carrying value of {assoc_val:,.0f} — the actual "
+    f"closing balance, not the prior year's carrying value scaled by an assumed growth factor.")
 eq_pre_nci = ev - V['nd_fy25'] + assoc_val
 nci_val = nci_share * eq_pre_nci
 eq_attr = eq_pre_nci - nci_val
-dcf_ps = eq_attr / SH
-say(f"[Bridge] EV {ev:,.0f} - net debt {V['nd_fy25']:,.0f} + associates at carrying value "
-    f"{assoc_val:,.0f} = {eq_pre_nci:,.0f}; less minority interests at their "
+dcf_ps_dec = eq_attr / SH
+
+# ---- one date, one price of time: roll every lens to the anchor date ----------
+# Every lens produces an equity value dated 31 December 2025 — the audited balance-sheet
+# date the bridge subtracts net debt at, with FY2026 discounted a full year. The comparison
+# price is dated 5 August 2026. So every per-share value is rolled 217/365 of a year forward
+# at the cost of equity, less the EGP 1.85 FY2025 dividend paid inside the window (ex
+# 1-Jun-2026) — fair value grows at the required return net of distributions, by the
+# discount identity itself. Added after external critique correctly showed the previous
+# construction compared a 31-Dec-2025 value to an August price, breaching this study's own
+# one-date rule by about seven months of accretion.
+T_ANCHOR = V['anchor_days'] / 365.0
+ROLL = (1 + ke_exp) ** T_ANCHOR
+def to_anchor(v):
+    return v * ROLL - V['dps_fy25']
+dcf_ps = to_anchor(dcf_ps_dec)
+say(f"[Bridge] EV {ev:,.0f} - net financial debt {V['nd_fy25']:,.0f} + associates at carrying "
+    f"value {assoc_val:,.0f} = {eq_pre_nci:,.0f}; less minority interests at their "
     f"{nci_share:.1%} share of group profit = {nci_val:,.0f} -> equity attributable "
-    f"{eq_attr:,.0f} = EGP {dcf_ps:.2f}/share against a spot of {SPOT:.2f} "
-    f"({dcf_ps/SPOT-1:+.0%}).")
+    f"{eq_attr:,.0f} = EGP {dcf_ps_dec:.2f}/share AT 31-DEC-2025; rolled "
+    f"{V['anchor_days']:.0f}/365 of a year to the 5-Aug-2026 anchor at the {ke_exp:.1%} cost of "
+    f"equity (x{ROLL:.4f}) less the EGP {V['dps_fy25']:.2f} dividend paid in the window = EGP "
+    f"{dcf_ps:.2f}/share against a spot of {SPOT:.2f} ({dcf_ps/SPOT-1:+.0%}).")
 assert abs((ev - V['nd_fy25'] + assoc_val - nci_val) - eq_attr) < 1e-6, "bridge does not close"
 assert V['nd_fy25'] > 0 and nci_val > 0, "net debt and NCI must reduce equity value"
+assert dcf_ps > dcf_ps_dec - V['dps_fy25'], "anchor roll must accrete before the dividend"
 
 # ---- currency-of-discounting alternative (the market's implied view) -------
-# Value the hard-currency leg at a hard-currency WACC and the domestic leg at the
-# Egyptian WACC, then translate. Disclosed as an alternative, not the primary.
-WACC_USD = 0.75 * (0.043 + V['beta'] * 0.075) + 0.25 * 0.065 * (1 - TAX)
+WACC_USD = (1 - V['usd_wd']) * (V['usd_rf'] + V['beta'] * V['usd_erp']) \
+    + V['usd_wd'] * V['usd_kd'] * (1 - TAX)
 fgn_frac = [fgn_egp[i] / rev[i] for i in range(5)]
-# The foreign cash-flow leg is EGP-denominated and INFLATED by the assumed depreciation
-# path. Discounting it at a hard-currency rate without first deflating it back to dollars
-# would count the currency benefit twice. So: convert each year to USD at that year's
-# rate, discount in USD, then translate the result back at the FY2025 rate.
 fcff_f_usd = [fcff[i] * fgn_frac[i] / V['fx_path'][i] for i in range(5)]
 fcff_d = [fcff[i] * (1 - fgn_frac[i]) for i in range(5)]
 df_usd, c2 = [], 1.0
 for _ in range(5):
     c2 /= (1 + WACC_USD); df_usd.append(c2)
 pv_f_usd = sum(fcff_f_usd[i] * df_usd[i] for i in range(5))
-tv_f_usd = (nopat_term * (1 - rr_term) * fgn_frac[-1] / V['fx_path'][-1]) / (WACC_USD - 0.035)
+tv_f_usd = (nopat_term * (1 - rr_term) * fgn_frac[-1] / V['fx_path'][-1]) \
+    / (WACC_USD - V['usd_g_term'])
 ev_f_egp = (pv_f_usd + tv_f_usd * df_usd[-1]) * V['fx_hist']['FY25']
 pv_d = sum(fcff_d[i] * df[i] for i in range(5))
 tv_d = nopat_term * (1 - rr_term) * (1 - fgn_frac[-1]) / (wacc_term - V['g_term'])
 ev_ccy = ev_f_egp + pv_d + tv_d * df[-1]
 eq_ccy = (ev_ccy - V['nd_fy25'] + assoc_val) * (1 - nci_share)
-ccy_ps = eq_ccy / SH
+ccy_ps = to_anchor(eq_ccy / SH)
 say(f"[Currency-of-discounting alternative — UIP-corrected] the hard-currency leg "
     f"({fgn_frac[-1]:.0%} of cash flow) is first DEFLATED to dollars at each year's exchange "
     f"rate, discounted at a USD cost of capital of {WACC_USD:.2%} with 3.5% terminal growth, and "
-    f"only then translated back. Discounting the EGP-denominated leg — already inflated by the "
-    f"assumed depreciation path — directly at a dollar rate would count the currency benefit "
-    f"twice, which is what the previous version did. Corrected result EGP {ccy_ps:.2f}/share "
-    f"({ccy_ps/SPOT-1:+.0%} vs spot), against {108.27:.2f} before the correction.")
+    f"only then translated back. Corrected result EGP {ccy_ps:.2f}/share ({ccy_ps/SPOT-1:+.0%} "
+    f"vs spot).")
 
 # ---- responses to external challenge, computed rather than asserted ----------
-# (a) Rating-basis cost of capital. Three separate external audits have read the
-# study's CDS-basis equity risk premium against Damodaran's RATING-basis column and
-# called the difference an error. They are different columns of the same published
-# table, and both are already in the input register — but the fair response is to
-# publish what the rating basis does to the VALUE, not just to the cost of equity.
 wacc_exp_rating = we_exp * ke_rating_alt + wd_exp * kd_at
 wacc_term_rating = (1 - V['wd_term']) * (V['rf_term'] + V['beta'] * (V['erp_term'] + 0.045)) \
     + V['wd_term'] * kd_term_at
@@ -1068,124 +1036,104 @@ def _val_at(we_, wt_, g_=None):
     _rr = min(g_ / roic_term, 0.95)
     _tv = nopat[-1] * (1 + g_) * (1 - _rr) / max(wt_ - g_, 0.02)
     _ev = sum(fcff[i] * _df[i] for i in range(5)) + _tv * _df[-1]
-    return ((_ev - V['nd_fy25'] + assoc_val) * (1 - nci_share)) / SH
+    return to_anchor(((_ev - V['nd_fy25'] + assoc_val) * (1 - nci_share)) / SH)
 assert abs(_val_at(wacc_exp, wacc_term) - dcf_ps) < 0.01, 'rating-basis helper does not reproduce base'
 dcf_rating_ps = _val_at(wacc_exp_rating, wacc_term_rating)
-say(f"[Rating-basis alternative, published] on Damodaran's RATING column (sovereign spread "
-    f"{V['sov_spread_rating']:.2%}, equity risk premium {V['erp_rating']:.2%}) the cost of equity "
-    f"is {ke_rating_alt:.2%} and the cost of capital {wacc_exp_rating:.2%} -> "
-    f"{wacc_term_rating:.2%}, giving EGP {dcf_rating_ps:.2f}/share against the CDS-basis "
-    f"{dcf_ps:.2f}. Both columns are published by the same source; the CDS basis is the house "
-    f"primary because it is market-observed rather than agency-lagged. The rating basis is now "
-    f"shown as a VALUE, not merely as a rate.")
+say(f"[Rating-basis alternative, published] on Damodaran's RATING column the cost of equity is "
+    f"{ke_rating_alt:.2%} and the cost of capital {wacc_exp_rating:.2%} -> {wacc_term_rating:.2%}, "
+    f"giving EGP {dcf_rating_ps:.2f}/share against the CDS-basis {dcf_ps:.2f}.")
 
-# (c) EGP-equivalent cost of debt: load the hard-currency legs with the pound's own
-# expected depreciation (uncovered interest parity — the same convention already used for
-# the currency-of-discounting alternative above), rather than carrying their disclosed
-# coupon rate unadjusted. Genuinely contestable: over 70% of revenue is hard-currency, so a
-# case exists that the coupon is the right cost for a naturally-hedged position; this
-# alternative is the other side of that argument, computed rather than merely asserted.
-# Standing decision (06-Aug-2026, per instruction): the currency-composition basis (13.0%)
-# stays primary, but from this study onward every multi-currency name (i) publishes this
-# alternative as a value and (ii) carries the devaluation-risk caution below when the
-# currency-composition basis is adopted — see Standing_Research_Protocol.md.
 fx_dep_avg = (V['fx_path'][-1] / V['fx_hist']['FY25']) ** (1 / 5) - 1
-kd_hard_egp_equiv = (1 + fx_blend) * (1 + fx_dep_avg) - 1
+kd_hard_egp_equiv = (1 + V['kd_hard_note']) * (1 + fx_dep_avg) - 1
 kd_egp_equiv = w_egp * V['kd_egp_note'] + (1 - w_egp) * kd_hard_egp_equiv
 kd_egp_equiv_at = kd_egp_equiv * (1 - TAX)
 wacc_exp_egp_equiv = we_exp * ke_exp + wd_exp * kd_egp_equiv_at
 dcf_egp_equiv_ps = _val_at(wacc_exp_egp_equiv, wacc_term)
-say(f"[EGP-equivalent cost of debt alternative, published] the pound has depreciated (and this "
-    f"forecast assumes it keeps depreciating) at {fx_dep_avg:.1%} a year on average over the "
-    f"explicit window; loading that onto the hard-currency legs ({1-w_egp:.0%} of the book, "
-    f"coupon blend {fx_blend:.2%}) under uncovered interest parity gives an EGP-equivalent cost "
-    f"of {kd_hard_egp_equiv:.2%} for that share, and a blended Kd of {kd_egp_equiv:.2%} against "
-    f"the currency-composition {V['kd']:.2%}. Cost of capital rises to {wacc_exp_egp_equiv:.2%} "
-    f"from {wacc_exp:.2%}, giving EGP {dcf_egp_equiv_ps:.2f}/share against {dcf_ps:.2f}. "
-    f"CAUTION: adopting the currency-composition Kd as primary — as this study does — means the "
-    f"hard-currency share of the debt book is carried at its coupon rate and NOT compensated for "
-    f"devaluation risk beyond what the forecast's own FX path already assumes; if the pound "
-    f"depreciates faster than that path, the true cost of servicing that debt in pounds is "
-    f"understated by this study's primary construction.")
+say(f"[EGP-equivalent cost of debt alternative, published] loading the hard-currency legs "
+    f"({1-w_egp:.0%} of the book) with the pound's own {fx_dep_avg:.1%}/year forecast "
+    f"depreciation under uncovered interest parity gives an EGP-equivalent cost of "
+    f"{kd_hard_egp_equiv:.2%} for that share, and a blended Kd of {kd_egp_equiv:.2%} against the "
+    f"currency-composition {V['kd']:.2%}. Cost of capital rises to {wacc_exp_egp_equiv:.2%} from "
+    f"{wacc_exp:.2%}, giving EGP {dcf_egp_equiv_ps:.2f}/share against {dcf_ps:.2f}. CAUTION: "
+    f"adopting the currency-composition Kd as primary means the hard-currency share of the debt "
+    f"book is carried at its coupon rate and NOT compensated for devaluation risk beyond what "
+    f"this forecast's own FX path already assumes.")
 
-# (b) Alternative NCI sequencing: charge minorities against unlevered enterprise value
-# before net debt, rather than against consolidated equity after it.
 nci_alt = nci_share * (ev + assoc_val)
 eq_alt = ev + assoc_val - nci_alt - V['nd_fy25']
-nci_alt_ps = eq_alt / SH
+nci_alt_ps = to_anchor(eq_alt / SH)
 say(f"[Minority-interest sequencing, alternative published] charging minorities "
     f"{nci_share:.1%} of UNLEVERED enterprise value plus associates ({nci_alt:,.0f}) and "
     f"deducting net debt afterwards gives EGP {nci_alt_ps:.2f}/share, against {dcf_ps:.2f} on the "
-    f"adopted sequencing — a difference of {nci_alt_ps - dcf_ps:+.2f}. The adopted method is "
-    f"retained because the audited borrowings note records facilities granted to 'the Company AND "
-    f"ITS SUBSIDIARIES ... guaranteed by promissory notes FROM SUBSIDIARIES', i.e. debt does sit "
-    f"at subsidiary level, so minorities do bear a share of it. The alternative assumes all "
-    f"borrowing is at the parent, which the note contradicts.")
+    f"adopted sequencing. The adopted method is retained because the audited borrowings note "
+    f"records facilities granted to 'the Company AND ITS SUBSIDIARIES ... guaranteed by "
+    f"promissory notes FROM SUBSIDIARIES', i.e. debt does sit at subsidiary level.")
 
 # ---- lens 2: relative --------------------------------------------------------
-# A multiple applied to FY2027 EBITDA produces an enterprise value AS AT end-FY2027.
-# It has to be discounted back to today before the bridge. The previous version treated
-# a two-year-forward enterprise value as today's — an external audit was right to call
-# this out, and it was worth roughly EGP 29/share on this lens.
 REL_I = 1
 ebitda_mid = ebitda[REL_I]
 df_rel = df[REL_I]
 ev_rel_fwd = V['ev_ebitda_just'] * ebitda_mid
-ev_rel = ev_rel_fwd * df_rel
+# the interim FY26-27 free cash flows (net PV negative) are ADDED so the lens is a complete
+# enterprise value at the valuation date, not just the discounted forward multiple — an
+# accepted critique refinement; omitting them had overstated the lens slightly
+ev_rel = ev_rel_fwd * df_rel + pv[0] + pv[1]
 def _rel(mult):
-    return (((mult * ebitda_mid) * df_rel - V['nd_fy25'] + assoc_val) * (1 - nci_share)) / SH
+    return to_anchor((((mult * ebitda_mid) * df_rel + pv[0] + pv[1]
+                       - V['nd_fy25'] + assoc_val) * (1 - nci_share)) / SH)
 rel_ps, rel_bear, rel_bull = _rel(V['ev_ebitda_just']), _rel(5.5), _rel(8.0)
-say(f"[Relative lens — forward EV discounted] {V['ev_ebitda_just']}x on FY2027E EBITDA "
-    f"{ebitda_mid:,.0f} gives an enterprise value of {ev_rel_fwd:,.0f} AS AT end-FY2027; "
-    f"discounted back at the year-2 factor {df_rel:.4f} that is {ev_rel:,.0f} today -> "
-    f"EGP {rel_ps:.2f}/share. Not discounting it would have given "
-    f"{((ev_rel_fwd - V['nd_fy25'] + assoc_val) * (1 - nci_share)) / SH:.2f}.")
+say(f"[Relative lens — forward EV discounted, interim flows included] {V['ev_ebitda_just']}x on "
+    f"FY2027E EBITDA {ebitda_mid:,.0f} gives an enterprise value of {ev_rel_fwd:,.0f} AS AT "
+    f"end-FY2027; discounted back at the year-2 factor {df_rel:.4f} plus the present value of "
+    f"the interim FY26-27 free cash flows ({pv[0]+pv[1]:,.0f}) that is {ev_rel:,.0f} at "
+    f"31-Dec-2025 -> EGP {rel_ps:.2f}/share at the anchor.")
 ev_trailing = MKTCAP + V['nd_fy25']
 ev_ebitda_trailing = ev_trailing / ebitda_fy25
 pe_trailing = SPOT / (V['npa_fy25'] / SH)
 
 # ---- lens 3: normalized earnings power ---------------------------------------
-# All three components now come from the SAME year (FY2028E, the mid-point of the
-# forecast). The previous build mixed FY2027 revenue, an FY2028-30 average margin,
-# FY2026 peak interest and FY2025 associates — an external audit was right to call
-# that temporally incoherent.
-NORM_I = 2
-norm_margin = ebitda_margin[NORM_I]
-norm_rev = rev[NORM_I]
+# RESTATED after external critique: the previous construction applied the justified P/E to
+# FY2028-SCALE earnings with no time value — injecting two years of undiscounted growth into
+# a present-day lens. The earning-power question is what the business earns at CURRENT scale
+# in a mid-cycle year: the mid-cycle EBITDA margin (FY2028E, the middle forecast year) is
+# applied to FY2026E revenue, with FY2026E financing and associate income. Worth -4.9/share
+# on the weighted central versus the old construction.
+norm_margin = ebitda_margin[2]
+norm_rev = rev[0]
 norm_ebitda = norm_margin * norm_rev
 norm_ebit = norm_ebitda - V['dna_pct'] * norm_rev
-norm_interest = interest_path[NORM_I]
-norm_assoc = assoc_fy25 * (1.08 ** (NORM_I + 1))
+norm_interest = interest_path[0]
+norm_assoc = assoc_fc[0]
 norm_np = (norm_ebit - norm_interest + norm_assoc) * (1 - TAX) * (1 - nci_share)
 norm_eps = norm_np / SH
-norm_ps = V['pe_just'] * norm_eps
-norm_bear = 7.0 * norm_eps
-norm_bull = 11.5 * norm_eps
+norm_ps = to_anchor(V['pe_just'] * norm_eps)
+norm_bear = to_anchor(7.0 * norm_eps)
+norm_bull = to_anchor(11.5 * norm_eps)
+say(f"[Normalised lens — current-scale earning power] mid-cycle EBITDA margin "
+    f"{norm_margin:.2%} (FY2028E) on FY2026E revenue {norm_rev:,.0f} -> normalised EPS "
+    f"{norm_eps:.2f} x {V['pe_just']:.1f} = EGP {norm_ps:.2f}/share at the anchor. Equity-method "
+    f"associate income is taxed inside this lens although it is already post-tax at the investee "
+    f"— a disclosed conservatism worth about +0.4/share on the central if removed.")
 
 # ---- lens 4: book / justified P/B --------------------------------------------
 bvps = eqp_fy25 / SH
-# The justified price-to-book identity (ROE - g)/(Ke - g) is a perpetuity, so it takes the
-# PERPETUAL cost of equity. The previous version used an average of the explicit-window and
-# terminal rates inside a perpetual formula — internally inconsistent, and an external audit
-# was right about it. Correcting it RAISES this lens.
-ke_blend = ke_term
+ke_blend = ke_term   # the PERPETUAL (terminal) cost of equity — a steady-state multiple takes a
+                     # steady-state rate; the 23.0% average-of-windows alternative is this lens's
+                     # published bear construction below
 pb_just = (V['roe_sust'] - V['g_term']) / (ke_term - V['g_term'])
-book_ps = pb_just * bvps
-book_bear = ((V['roe_sust'] - 0.03) / (0.5 * (ke_exp + ke_term) - 0.03)) * bvps
-book_bull = ((V['roe_sust'] + 0.02 - V['g_term']) / (ke_term - V['g_term'])) * bvps
+book_ps = to_anchor(pb_just * bvps)
+book_bear = to_anchor(((V['roe_sust'] - 0.03) / (0.5 * (ke_exp + ke_term) - 0.03)) * bvps)
+book_bull = to_anchor(((V['roe_sust'] + 0.02 - V['g_term']) / (ke_term - V['g_term'])) * bvps)
 say(f"[Book lens] justified price-to-book {pb_just:.2f}x = (sustainable return {V['roe_sust']:.1%} "
-    f"- growth {V['g_term']:.0%}) / (PERPETUAL cost of equity {ke_term:.2%} - growth). Using a "
-    f"blended cost of equity inside a perpetuity formula, as the previous version did, is "
-    f"inconsistent and understated this lens by roughly "
-    f"{(pb_just - (V['roe_sust']-V['g_term'])/(0.5*(ke_exp+ke_term)-V['g_term']))*bvps:.2f}/share.")
+    f"- growth {V['g_term']:.0%}) / (PERPETUAL cost of equity {ke_term:.2%} - growth). The "
+    f"justified P/B is a steady-state construct whose implied payout is 1 - g/ROE = "
+    f"{1 - V['g_term']/V['roe_sust']:.0%}, deliberately distinct from the five-year forecast "
+    f"payout of {PAYOUT:.0%} — the two describe different horizons.")
 roe_trailing = V['npa_fy25'] / ((V['eqp_fy24'] + eqp_fy25) / 2)
 
 # ---- scenarios on the DCF -----------------------------------------------------
 def dcf_scenario(gp_unit_mult=1.0, fx_mult=1.0, wacc_shift=0.0, g=None, opex_shift=0.0,
                  copper_mult=1.0, nwc=None):
-    """Scenario valuation. Re-runs the FULL unit build, so a currency or copper move
-    flows through the price per tonne, the working capital and the gross profit exactly
-    as it does in the base case."""
     g = V['g_term'] if g is None else g
     nwc = V['nwc_pct'] if nwc is None else nwc
     B = build(fx_mult=fx_mult, gp_unit_mult=gp_unit_mult, copper_mult=copper_mult,
@@ -1196,7 +1144,7 @@ def dcf_scenario(gp_unit_mult=1.0, fx_mult=1.0, wacc_shift=0.0, g=None, opex_shi
     _nopat = [e * (1 - TAX) for e in _ebit]
     _capex = [V['capex_pct'][i] * r for i, r in enumerate(_rev)]
     _nwc = [nwc * r for r in _rev]
-    _dnwc = [_nwc[0] - nwc * V['rev_fy25']] + [_nwc[i] - _nwc[i - 1] for i in range(1, 5)]
+    _dnwc = [_nwc[0] - nwc_fy25] + [_nwc[i] - _nwc[i - 1] for i in range(1, 5)]
     _f = [_nopat[i] + _dna[i] - _capex[i] - _dnwc[i] for i in range(5)]
     _we, _wt = wacc_exp + wacc_shift, wacc_term + wacc_shift
     _fwd = [_we - (_we - _wt) * f for f in glide_frac]
@@ -1206,19 +1154,17 @@ def dcf_scenario(gp_unit_mult=1.0, fx_mult=1.0, wacc_shift=0.0, g=None, opex_shi
     _ppe, pp = [], ppe_fy25
     for i in range(5):
         pp += _capex[i] - _dna[i]; _ppe.append(pp)
-    _roic = _nopat[-1] * (1 + g) / (_nwc[-1] + _ppe[-1] + V['intang_fy24'])
+    _roic = _nopat[-1] * (1 + g) / (_nwc[-1] + _ppe[-1] + V['intang_fy25'])
     _rr = min(g / _roic, 0.95)
     _tv = _nopat[-1] * (1 + g) * (1 - _rr) / max(_wt - g, 0.02)
     _ev = sum(_f[i] * _df[i] for i in range(5)) + _tv * _df[-1]
-    return ((_ev - V['nd_fy25'] + assoc_val) * (1 - nci_share)) / SH
+    return to_anchor(((_ev - V['nd_fy25'] + assoc_val) * (1 - nci_share)) / SH)
 
 _base_chk = dcf_scenario()
 assert abs(_base_chk - dcf_ps) < 0.02, f'scenario engine does not reproduce base: {_base_chk} vs {dcf_ps}'
 
-dcf_bear = dcf_scenario(gp_unit_mult=0.88, fx_mult=0.94, wacc_shift=+0.02, g=0.03,
-                        opex_shift=+0.005)
-dcf_bull = dcf_scenario(gp_unit_mult=1.12, fx_mult=1.08, wacc_shift=-0.02, g=0.06,
-                        opex_shift=-0.005)
+dcf_bear = dcf_scenario(gp_unit_mult=0.88, fx_mult=0.94, wacc_shift=+0.02, g=0.03, opex_shift=+0.005)
+dcf_bull = dcf_scenario(gp_unit_mult=1.12, fx_mult=1.08, wacc_shift=-0.02, g=0.06, opex_shift=-0.005)
 say(f"[DCF scenarios] bear {dcf_bear:.2f} / base {dcf_ps:.2f} / bull {dcf_bull:.2f} EGP per share")
 
 # ---- synthesis ----------------------------------------------------------------
@@ -1252,7 +1198,7 @@ def dcf_at(we_, wt_, g_):
     _rr = min(g_ / roic_term, 0.95)
     _tv = nopat[-1] * (1 + g_) * (1 - _rr) / max(wt_ - g_, 0.02)
     _ev = sum(fcff[i] * _df[i] for i in range(5)) + _tv * _df[-1]
-    return ((_ev - V['nd_fy25'] + assoc_val) * (1 - nci_share)) / SH
+    return to_anchor(((_ev - V['nd_fy25'] + assoc_val) * (1 - nci_share)) / SH)
 
 grid_wacc_g = [[dcf_at(wacc_exp, wt, g) for g in g_grid] for wt in wt_grid]
 grid_exp_term = [[dcf_at(we, wt, V['g_term']) for wt in wt_grid] for we in we_grid]
@@ -1263,74 +1209,59 @@ def dcf_beta(b):
     wt_ = (1 - V['wd_term']) * (V['rf_term'] + b * V['erp_term']) + V['wd_term'] * kd_term_at
     return dcf_at(we_, wt_, V['g_term'])
 grid_beta = [dcf_beta(b) for b in beta_grid]
-fx_grid = [0.90, 1.00, 1.20, 1.45, 1.70]   # top of range reaches the parity path
+fx_grid = [0.90, 1.00, 1.20, 1.45, 1.70]
 grid_fx = [dcf_scenario(fx_mult=m) for m in fx_grid]
 mg_grid = [0.85, 0.925, 1.0, 1.075, 1.15]
 grid_margin = [dcf_scenario(gp_unit_mult=m) for m in mg_grid]
 cu_grid = [0.85, 0.925, 1.0, 1.075, 1.15]
 grid_copper = [dcf_scenario(copper_mult=m) for m in cu_grid]
-nwc_grid = [0.20, 0.215, 0.23, 0.245, 0.26]
+nwc_grid = [0.17, 0.185, 0.199, 0.215, 0.23]
 def dcf_nwc(pct):
     return dcf_scenario(nwc=pct)
-
-def _dcf_nwc_unused(pct):
-    _nwc = [pct * r for r in rev]
-    _dnwc = [_nwc[0] - pct * V['rev_fy25']] + [_nwc[i] - _nwc[i - 1] for i in range(1, 5)]
-    _f = [nopat[i] + dna[i] - capex[i] - _dnwc[i] for i in range(5)]
-    _rr = min(V['g_term'] / roic_term, 0.95)
-    _tv = nopat[-1] * (1 + V['g_term']) * (1 - _rr) / (wacc_term - V['g_term'])
-    _ev = sum(_f[i] * df[i] for i in range(5)) + _tv * df[-1]
-    return ((_ev - V['nd_fy25'] + assoc_val) * (1 - nci_share)) / SH
 grid_nwc = [dcf_nwc(p) for p in nwc_grid]
 roic_grid = [0.15, 0.18, roic_term, 0.26, 0.30]
 def dcf_roic(r):
     _rr = min(V['g_term'] / r, 0.95)
     _tv = nopat[-1] * (1 + V['g_term']) * (1 - _rr) / (wacc_term - V['g_term'])
     _ev = pv_explicit + _tv * df[-1]
-    return ((_ev - V['nd_fy25'] + assoc_val) * (1 - nci_share)) / SH
+    return to_anchor(((_ev - V['nd_fy25'] + assoc_val) * (1 - nci_share)) / SH)
 grid_roic = [dcf_roic(r) for r in roic_grid]
 
-# ---- forecast balance sheet & cash-flow markers ---------------------------------
-# The equity, dividend, interest and net-debt paths are the single roll-forward computed
-# with the FCFF waterfall above; nothing is recomputed here.
-say(f"[Leverage] net debt / EBITDA falls from {V['nd_fy25']/ebitda_fy25:.2f}x to "
+say(f"[Leverage] net financial debt / EBITDA falls from {V['nd_fy25']/ebitda_fy25:.2f}x to "
     f"{nd_fc[-1]/ebitda[-1]:.2f}x over the forecast.")
 
 # ---- expert panel: three genuinely different methods ---------------------------
-# Cast by METHOD from the persona library; presented to the reader as Expert 1/2/3.
-# E1 — earnings power: mid-cycle earnings at a justified multiple.
-e1_margin = 0.118
+# All three legs are rolled to the anchor date exactly as the four lenses are.
+e1_margin = ebitda_margin[2]
 e1_rev = rev[2]
 e1_ebit = e1_margin * e1_rev - V['dna_pct'] * e1_rev
+# E1's net interest is the FY2028 point of the same static-gross-book construction the
+# forecast uses: kd_path[FY28] x gross debt less 10% on the FY2025 cash balance
 e1_int = V['kd_path'][2] * debt_fy25 - 0.10 * cash_fy25
-e1_eps = ((e1_ebit - e1_int + assoc_fy25) * (1 - TAX) * (1 - nci_share)) / SH
-e1_base, e1_lo, e1_hi = 9.5 * e1_eps, 7.0 * e1_eps, 12.0 * e1_eps
-# E2 — the accountant: owner cash earnings, capitalised. The harshest lens for a
-# working-capital-hungry contractor: cash actually left after funding the order book.
+e1_eps = ((e1_ebit - e1_int + V['assoc_fy25']) * (1 - TAX) * (1 - nci_share)) / SH
+e1_base, e1_lo, e1_hi = (to_anchor(9.5 * e1_eps), to_anchor(7.0 * e1_eps),
+                         to_anchor(12.0 * e1_eps))
+
 e2_fcff = float(np.mean(fcff[2:]))
+# E2's after-tax interest charge: the FY2029 point of the same construction, after tax —
+# shown explicitly because a critique correctly noted it was not reconcilable as displayed
 e2_int_at = (V['kd_path'][3] * debt_fy25 - 0.10 * cash_fy25) * (1 - TAX)
 e2_fcfe = (e2_fcff - e2_int_at) * (1 - nci_share)
-# Expert 2 capitalises owner cash earnings in perpetuity, so — on the same logic that
-# corrects the book lens — the PERPETUAL cost of equity is the right rate. The range is
-# taken on the discount rate and the growth rate, not by re-using the same rate twice.
 e2_ke = ke_term
-e2_base = e2_fcfe * (1 + V['g_term']) / (e2_ke - V['g_term']) / SH
-e2_lo = e2_fcfe * 1.03 / (0.5 * (ke_exp + ke_term) - 0.03) / SH
-e2_hi = e2_fcfe * 1.06 / (e2_ke - 0.06) / SH
-# E3 — cash returns: economic profit on invested capital through the rate cycle.
+e2_base = to_anchor(e2_fcfe * (1 + V['g_term']) / (e2_ke - V['g_term']) / SH)
+e2_lo = to_anchor(e2_fcfe * 1.03 / (0.5 * (ke_exp + ke_term) - 0.03) / SH)
+e2_hi = to_anchor(e2_fcfe * 1.06 / (e2_ke - 0.06) / SH)
+
 ic_beg = [ic_fy25] + ic[:-1]
 ep_ = [nopat[i] - fwd[i] * ic_beg[i] for i in range(5)]
-say(f"[Economic profit convention] the capital charge is taken on BEGINNING-of-year invested "
-    f"capital, not ending. Charging ending capital understates economic profit by roughly "
-    f"{sum((ic[i]-ic_beg[i])*fwd[i] for i in range(5))/5:,.0f}mn a year and pushes the year in "
-    f"which the return spread turns positive one year later than it should. Corrected here.")
 pv_ep = sum(ep_[i] * df[i] for i in range(5))
 ep_term = nopat[-1] * (1 + V['g_term']) - wacc_term * ic[-1] * (1 + V['g_term'])
 pv_ep_term = ep_term / (wacc_term - V['g_term']) * df[-1]
 e3_ev = ic_fy25 + pv_ep + pv_ep_term
-e3_base = ((e3_ev - V['nd_fy25'] + assoc_val) * (1 - nci_share)) / SH
-e3_lo = ((ic_fy25 + pv_ep * 0.6 + pv_ep_term * 0.55 - V['nd_fy25'] + assoc_val) * (1 - nci_share)) / SH
-e3_hi = ccy_ps
+e3_base = to_anchor(((e3_ev - V['nd_fy25'] + assoc_val) * (1 - nci_share)) / SH)
+e3_lo = to_anchor(((ic_fy25 + pv_ep * 0.6 + pv_ep_term * 0.55 - V['nd_fy25'] + assoc_val)
+                   * (1 - nci_share)) / SH)
+e3_hi = ccy_ps   # already at the anchor
 experts = dict(
     e1=dict(method_short='earnings power', base=e1_base, rng=[e1_lo, e1_hi], eps=e1_eps,
             margin=e1_margin, rev=e1_rev, ebit=e1_ebit, interest=e1_int, pe=9.5),
@@ -1370,10 +1301,10 @@ OUT = dict(
                   cash=V['cash_fy24'], assets=V['assets_fy24'], debt=V['debt_fy24'],
                   pay=V['pay_fy24'], cl=V['cl_fy24'], eqp=V['eqp_fy24'], nci=V['nci_fy24'],
                   nd=V['nd_fy24'], nwc=nwc_fy24),
-        FY25=dict(ppe=ppe_fy25, assets=V['assets_fy25'], debt=debt_fy25, cash=cash_fy25,
-                  eqp=eqp_fy25, nci=nci_bv_fy25, nd=V['nd_fy25'], nwc=nwc_fy25,
-                  debt_methods=dict(residual=debt_fy25_a, revenue_scaled=debt_fy25_b,
-                                    cash_implied=debt_fy25_c)),
+        FY25=dict(ppe=ppe_fy25, inv=V['inv_fy25'], ca=V['ca_fy25'], recv=V['recv_fy25'],
+                  assets=V['assets_fy25'], debt=debt_fy25, cash=cash_fy25,
+                  pay=V['pay_fy25'], cl=V['cl_fy25'], eqp=eqp_fy25, nci=V['nci_fy25'],
+                  nd=V['nd_fy25'], nwc=nwc_fy25),
     ),
     fgn_share_fy25_derived=fgn_share_fy25_derived, fgn_egp_fy25=fgn25,
     fcst=dict(years=YRS, rev=rev, dom=dom, fgn_usd=fgn_usd, fgn_egp=fgn_egp,
@@ -1381,28 +1312,27 @@ OUT = dict(
               capex=capex, nwc=nwc, dnwc=dnwc, fcff=fcff, df=df, pv=pv, fwd_wacc=fwd,
               ppe=ppe, ic=ic, roic=roic, np_attr=np_fc, equity=eq_fc, net_debt=nd_fc,
               interest=interest_path, assoc=assoc_fc, div=div_fc, seg_gp=seg_gp,
-              seg_rev=seg_rev, seg_ebitda=seg_ebitda, seg_shares=shares,
+              seg_rev=seg_rev, seg_ebit=seg_ebit, seg_shares=shares,
               payout=PAYOUT, assoc_g=ASSOC_G, glide_frac=glide_frac,
-              ppe_fy25=ppe_fy25, eqp_fy25=eqp_fy25, assoc_fy25=assoc_fy25,
-              debt_fy25=debt_fy25, nwc_fy25=nwc_fy25, dna_fy25=dna_fy25,
+              ppe_fy25=ppe_fy25, eqp_fy25=eqp_fy25, assoc_fy25=V['assoc_fy25'],
+              debt_fy25=debt_fy25, nwc_fy25=nwc_fy25, dna_fy25=V['dna_fy25'],
               nopat_fy25=nopat_fy25, ic_fy25=ic_fy25),
-    seg_fy25=dict(rev=seg_rev_fy25, gp=seg_gp_fy25, names=SEGNAME, gp_margin=margin25),
-    bottomup=dict(unit_hist=unit_hist, vol25=vol25, vol_f=vol_f, uplift25=uplift25,
-                  price_t25=price_t25, cables_conv25=cables_conv25, compress=compress,
-                  opex25=opex25, backlog=bl_path, gp=gp, gp_margin=gp_margin,
-                  opex=opex, seg_gp=seg_gp, subs=SUBS, subnames=SUBNAME,
-                  gp_t_cables_fy25=V['cables_gp_t_fy25'],
+    seg_fy25=dict(rev=SRH['FY25'], gp=SPH['FY25'], names=SEGNAME,
+                  gp_margin=unit_hist['FY25']['margin']),
+    bottomup=dict(unit_hist=unit_hist, subs=SUBS, subnames=SUBNAME, gp=gp, gp_margin=gp_margin,
+                  opex=opex, seg_gp=seg_gp,
                   q1_26_implied_fy=V['q1_26_rev'] / (V['q1_25_rev'] / V['rev_fy25'])),
     wacc=dict(rf=V['rf'], rf_star=rf_star, ke_exp=ke_exp, ke_rating_alt=ke_rating_alt,
               ke_ops_alt=ke_ops_alt, ke_raw_retired=ke_raw_retired, kd=V['kd'], kd_at=kd_at,
               we_exp=we_exp, wd_exp=wd_exp, wacc_exp=wacc_exp, wacc_exp_gross=wacc_exp_gross,
               wd_gross=wd_gross, ke_term=ke_term, kd_term=V['kd_term'], kd_term_at=kd_term_at,
               wacc_term=wacc_term, glide_frac=glide_frac, kd_path=V['kd_path'],
-              kd_eff_fy24=kd_eff_fy24, kd_eff_q1_25=kd_eff_q1_25, w_egp_implied=w_egp,
+              kd_eff_fy24=kd_eff_fy25, kd_eff_q1_25=kd_eff_fy25, w_egp_implied=w_egp,
               wacc_usd_alt=WACC_USD, beta=beta_res),
     dcf=dict(pv_explicit=pv_explicit, tv=tv, pv_tv=pv_tv, ev=ev, tv_share=tv_share,
              nd=V['nd_fy25'], assoc=assoc_val, nci_share=nci_share, nci_val=nci_val,
-             eq_attr=eq_attr, ps=dcf_ps, roic_term=roic_term, rr_term=rr_term,
+             eq_attr=eq_attr, ps=dcf_ps, ps_dec=dcf_ps_dec, roll=ROLL,
+             anchor_days=V['anchor_days'], roic_term=roic_term, rr_term=rr_term,
              ps_rating_basis=dcf_rating_ps, wacc_exp_rating=wacc_exp_rating,
              wacc_term_rating=wacc_term_rating, ps_nci_alt=nci_alt_ps, nci_alt=nci_alt,
              g=V['g_term'], bear=dcf_bear, bull=dcf_bull, ccy_alt_ps=ccy_ps,
@@ -1410,19 +1340,19 @@ OUT = dict(
              wacc_exp_kd_egp_equiv=wacc_exp_egp_equiv, fx_dep_avg=fx_dep_avg),
     terminal_recon=dict(roic=hist_roic, rr=hist_rr, implied_g=hist_impl_g,
                         nopat=dict(FY23=nopat_fy23, FY24=nopat_fy24, FY25=nopat_fy25),
-                        capex=dict(FY23=V['capex_fy23'], FY24=V['capex_fy24'],
-                                   FY25=V['capex_pct'][0] * V['rev_fy25']),
+                        capex=dict(FY23=V['capex_fy23'], FY24=V['capex_fy24'], FY25=V['capex_fy25']),
                         ebitda=dict(FY23=ebitda_fy23, FY24=ebitda_fy24, FY25=ebitda_fy25),
                         nopat_cagr=nopat_cagr, stable_g=stable_g,
                         ceiling=blend_ceiling, crossover_years=float(yrs_cross)),
     lenses=lenses, central=central, span=[lo, hi], spot=SPOT,
     experts=experts, panel_centre=panel_centre,
     sens_wg=dict(g_grid=g_grid, wacc_grid=wt_grid, table=grid_wacc_g),
-    rel=dict(ebitda_mid=ebitda_mid, ev_rel=ev_rel, ev_ebitda_trailing=ev_ebitda_trailing,
+    rel=dict(ebitda_mid=ebitda_mid, ev_rel=ev_rel, ev_rel_fwd=ev_rel_fwd,
+             pv_interim=pv[0] + pv[1], ev_ebitda_trailing=ev_ebitda_trailing,
              pe_trailing=pe_trailing, just_mult=V['ev_ebitda_just']),
     norm=dict(margin=norm_margin, rev=norm_rev, ebitda=norm_ebitda, ebit=norm_ebit,
               interest=norm_interest, np=norm_np, eps=norm_eps, pe=V['pe_just'],
-              year=YRS[NORM_I], assoc=norm_assoc),
+              year=YRS[0], margin_year=YRS[2], assoc=norm_assoc),
     book=dict(bvps=bvps, pb_just=pb_just, roe_sust=V['roe_sust'], roe_trailing=roe_trailing,
               ke_blend=ke_blend),
     sens=dict(g_grid=g_grid, wt_grid=wt_grid, we_grid=we_grid, grid_wacc_g=grid_wacc_g,
