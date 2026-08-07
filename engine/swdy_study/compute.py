@@ -224,6 +224,15 @@ INP = dict(
                "shareholders' of 3,111.384454 splits into 2,139.355716 to owners of the parent and "
                "972.028738 to non-controlling interests; 2,139.355716 / 2,139,355,716 weighted "
                "shares = EXACTLY EGP 1.00 per share", "2026-03-15", "Company"),
+    dps_fy25=I(1.85, "FY2025 cash dividend of EGP 1.85/share: recommended with the FY2025 results, "
+               "ratified by the ordinary general assembly on 6 May 2026, rights with the share "
+               "through 1 June, paid from 4 June 2026 (EGX disclosure, corroborated by Arab "
+               "Finance coverage and the quoted ~2.0% trailing yield). RESTORED after external "
+               "critique: an earlier revision removed this figure because neither the FY2025 "
+               "annual filing (board-approved 12 Mar 2026) nor the Q1-2026 interim disclosed it — "
+               "an absence-of-evidence error, since the interim covers a period ending 31 March "
+               "and carries no subsequent-events note, so its silence was never evidence. Payout = "
+               "1.85 / 8.10 attributable EPS = 22.8%", "2026-05-06", "Company"),
 
     # ---- cash-flow markers (EGP mn, AUDITED) -----------------------------
     capex_fy23=I(4748.595385, "Audited FY2023 consolidated cash flow statement: 'acquisition of "
@@ -386,15 +395,19 @@ INP = dict(
                       "Note 5-3 external-revenue base). History: 25.4% (FY2023), 26.6% (FY2024), "
                       "22.2% (FY2025) — the least-compressed of the three segments; broadly stable "
                       "forecast with a slight further normalisation", "2026-08-05", "House"),
-    corp_load=I([0.033, 0.034, 0.035, 0.035, 0.036],
-               "Net corporate cost load forecast, stabilising near the FY2025 disclosed level "
-               "(3.16%) with a slight uptick as growth normalises, rather than extrapolating the "
-               "three-year improving trend (5.70% to 4.30% to 3.16%) indefinitely",
-               "2026-08-05", "House"),
-    opex_pct=I([0.033, 0.034, 0.035, 0.035, 0.036],
-               "Alias of corp_load, retained for compatibility with the DCF waterfall and "
-               "sensitivity-grid code paths that reference a single operating-load driver",
-               "2026-08-05", "House"),
+    corp_load=I([0.0455, 0.0465, 0.0475, 0.0475, 0.0485],
+               "Net corporate cost load forecast, stated on the SEGMENT-PROFIT-TO-EBIT basis — the "
+               "same basis as the audited historical bridge (FY2023 5.70%, FY2024 4.30%, FY2025 "
+               "3.16%). The path glides UP from FY2025's unusually low level toward the FY2023-24 "
+               "average (~5.0%), the single most conservative choice in the build. RESTATED after "
+               "external critique: the previous statement of this input (3.3-3.6%) was the load "
+               "from segment profit to EBITDA, which mixed bases with the historical disclosure; "
+               "the forecast EBIT is numerically UNCHANGED by the restatement (old load + D&A "
+               "ratio = this load, year by year)", "2026-08-07", "House"),
+    opex_pct=I([0.0455, 0.0465, 0.0475, 0.0475, 0.0485],
+               "Alias of corp_load (segment-profit-to-EBIT basis), retained for compatibility with "
+               "the DCF waterfall and sensitivity-grid code paths that reference a single "
+               "operating-load driver", "2026-08-07", "House"),
     unit_price_inflation=I([0.08, 0.075, 0.07, 0.07, 0.07],
                            "Retained input, no longer consumed by the segment build (kept for "
                            "downstream compatibility)", "2026-08-05", "House"),
@@ -495,15 +508,41 @@ INP = dict(
     erp_term=I(0.070, "Terminal equity risk premium, normalised below the currently elevated "
                "crisis-era level toward the rating-class norm; never held flat into perpetuity",
                "2026-08-05", "House"),
-    wd_term=I(0.25, "Terminal debt weight D/(D+E), NORMALISED rather than today's weights. The "
-              "company runs a gross debt book sized to fund working capital but carries very large "
-              "offsetting cash, so its net leverage is light; 25% is the steady-state structure for "
-              "a diversified industrial of this scale", "2026-08-05", "House"),
+    wd_term=I(0.15, "Terminal debt weight D/(D+E) on a net basis, NORMALISED — but reconciled to "
+              "the model's OWN forecast balance sheet rather than asserted. REVISED from 25% after "
+              "external critique (and the same finding in this study's own re-audit): at a 25% "
+              "payout the forecast still deleverages toward a mid-single-digit net-debt weight by "
+              "FY2030E, so a 25% terminal weight contradicted the model's own trajectory in the "
+              "direction that flattered the valuation. 15% sits between today's 8.4% net weight "
+              "and the old 25%, acknowledging that a working-capital-heavy industrial retains "
+              "structural gross leverage. Worth about -5.3/share on the DCF lens versus the old "
+              "25%", "2026-08-07", "House"),
     g_term=I(0.05, "Terminal growth, 5% — the standing centre for established names in this market "
              "post-disinflation, sensitised 3-7%. Note this is an EGP-NOMINAL rate struck against a "
              "terminal risk-free rate that itself embeds 5% inflation, so the base case assumes "
              "approximately zero real terminal growth: a deliberate conservatism for a company "
              "whose revenue is majority hard-currency", "2026-08-05", "House"),
+    # ---- currency-of-discounting alternative inputs (previously unregistered
+    # constants inside the computation — registered after external critique) ----
+    usd_rf=I(0.043, "US dollar risk-free rate for the currency-of-discounting alternative, 10-year "
+             "US Treasury area (house macro reference)", "2026-08-05", "Country"),
+    usd_erp=I(0.075, "Equity risk premium for the hard-currency leg: mature-market premium plus a "
+              "reduced operating-exposure country premium — deliberately NOT the full Egypt "
+              "premium, since this alternative's whole point is to price the hard-currency cash "
+              "flows as hard-currency cash flows", "2026-08-05", "House"),
+    usd_kd=I(0.065, "US dollar cost of debt for the alternative: the disclosed 5.3% hard-currency "
+             "book rate plus a term/credit allowance", "2026-08-05", "House"),
+    usd_wd=I(0.25, "Debt weight for the USD-leg cost of capital", "2026-08-05", "House"),
+    usd_g_term=I(0.035, "Terminal growth of the USD-denominated leg — real growth plus dollar "
+                 "inflation, below the EGP terminal growth by the inflation differential",
+                 "2026-08-05", "House"),
+    anchor_days=I(217, "Days from the DCF's construction date (31 Dec 2025, the audited "
+                  "balance-sheet date the bridge is built on) to the anchor date 5 Aug 2026. All "
+                  "lens values are rolled to the anchor at the cost of equity, net of the EGP 1.85 "
+                  "FY2025 dividend paid inside the window — added after external critique "
+                  "correctly noted the model was dated 31-Dec-2025 while the comparison price was "
+                  "dated 5-Aug-2026, breaching the study's own one-date rule by ~7 months of "
+                  "accretion", "2026-08-07", "House"),
 
     # ---- lens inputs -------------------------------------------------------
     ev_ebitda_just=I(6.5, "Justified EV/EBITDA on mid-cycle FY27E EBITDA. The company's own trailing "
@@ -758,10 +797,15 @@ def build(fx_mult=1.0, gp_unit_mult=1.0, vol_mult=1.0, copper_mult=1.0, opex_shi
     rev_ = [sum(R[i].values()) for i in range(5)]
     seg_gp_ = [{s: R[i][s] * seg_margin[i][s] for s in SUBS} for i in range(5)]
     gp_ = [sum(seg_gp_[i].values()) for i in range(5)]
+    # The disclosed segment margins are POST-depreciation (Note 16 segment profit), so the
+    # corporate load is applied on the same basis as the audited historical bridge:
+    # EBIT = segment profit - corp load; EBITDA = EBIT + D&A. (Restated after critique —
+    # numerically identical to the previous opex-to-EBITDA formulation, honestly labelled.)
     opex_ = [(V['opex_pct'][i] + opex_shift) * rev_[i] for i in range(5)]
-    ebitda_ = [gp_[i] - opex_[i] for i in range(5)]
-    return dict(rev=rev_, gp=gp_, opex=opex_, ebitda=ebitda_, seg_rev=R, seg_gp=seg_gp_,
-                seg_margin=seg_margin)
+    ebit_ = [gp_[i] - opex_[i] for i in range(5)]
+    ebitda_ = [ebit_[i] + V['dna_pct'] * rev_[i] for i in range(5)]
+    return dict(rev=rev_, gp=gp_, opex=opex_, ebit=ebit_, ebitda=ebitda_, seg_rev=R,
+                seg_gp=seg_gp_, seg_margin=seg_margin)
 
 _B = build()
 seg_rev, seg_gp, seg_margin_f = _B['seg_rev'], _B['seg_gp'], _B['seg_margin']
@@ -817,7 +861,8 @@ say(f"[Currency split — two different questions] the audited Note 5-2 shows "
 # FY2025 presentation objects reused downstream
 SEGNAME = SUBNAME
 shares = [{s: seg_rev[i][s] / rev[i] for s in SUBS} for i in range(5)]
-seg_ebitda = [{s: seg_gp[i][s] - V['opex_pct'][i] * seg_rev[i][s] for s in SUBS} for i in range(5)]
+# per-segment EBIT contribution: segment profit less the pro-rata corporate load (EBIT basis)
+seg_ebit = [{s: seg_gp[i][s] - V['opex_pct'][i] * seg_rev[i][s] for s in SUBS} for i in range(5)]
 
 # ---- FCFF waterfall ---------------------------------------------------------
 dna = [V['dna_pct'] * r for r in rev]
@@ -834,7 +879,8 @@ pv_explicit = float(sum(pv))
 # ONE roll-forward, computed once and used everywhere: by the normalised-earnings lens,
 # by the forecast income statement, and by the forecast balance sheet.
 nci_share = nci_fy25 / V['pat_fy25']
-PAYOUT = 0.15
+PAYOUT = 0.25   # near the ACTUAL FY2025 payout of 22.8% (EGP 1.85 on EPS 8.10), rising intent;
+                # raised from 15% after the FY2025 dividend was confirmed and restored
 ASSOC_G = 0.08
 interest_path, np_fc, div_fc, eq_fc, nd_fc, assoc_fc = [], [], [], [], [], []
 _nd, _eq = V['nd_fy25'], eqp_fy25
@@ -851,13 +897,14 @@ for i in range(5):
     _nd = _nd - (fcff[i] - _int * (1 - TAX)) + _div
     interest_path.append(_int); assoc_fc.append(_assoc); np_fc.append(_npa)
     div_fc.append(_div); eq_fc.append(_eq); nd_fc.append(_nd)
-say(f"[Forecast interest] net finance cost falls " + " -> ".join(f"{x:,.0f}" for x in interest_path) +
-    f" as the cash pile builds against a broadly static gross debt book. Payout ratio "
-    f"{PAYOUT:.0%} — struck near the FY2025 disclosed rate (dividends paid in FY2025 relating to "
-    f"FY2024 profit of EGP 1.00/share = 12.3% of FY2024 attributable profit), since NO FY2025 "
-    f"dividend had been declared, proposed or approved as at the Q1-2026 interim report "
-    f"(board-approved 12-May-2026) — the most recent primary source available, and it discloses "
-    f"nothing beyond small subsidiary-level minority distributions.")
+say(f"[Forecast interest] net finance cost path " + " -> ".join(f"{x:,.0f}" for x in interest_path) +
+    f" as the cash pile builds against a broadly static gross debt book. Surplus cash is assumed "
+    f"to yield 10% — a deliberate blend of Egyptian-pound deposit rates (~19-20%, falling) and "
+    f"hard-currency cash (~4-5%); the positive carry over the hard-currency-heavy debt book "
+    f"(7.7-9.5%) is real economics (borrow dollars cheap, hold pounds dear), disclosed rather "
+    f"than hidden. Payout ratio {PAYOUT:.0%} — struck at the ACTUAL FY2025 payout: EGP 1.85/share "
+    f"ratified by the AGM on 6 May 2026 and paid from 4 June 2026 = 22.8% of FY2025 attributable "
+    f"EPS, up from 12.3% a year earlier.")
 say(f"[Forecast equity] attributable profit " + ", ".join(f"{x:,.0f}" for x in np_fc) +
     f"; net debt path " + ", ".join(f"{x:,.0f}" for x in nd_fc) + ".")
 
@@ -925,17 +972,36 @@ say(f"[Associates] carried at the audited FY2025 carrying value of {assoc_val:,.
 eq_pre_nci = ev - V['nd_fy25'] + assoc_val
 nci_val = nci_share * eq_pre_nci
 eq_attr = eq_pre_nci - nci_val
-dcf_ps = eq_attr / SH
+dcf_ps_dec = eq_attr / SH
+
+# ---- one date, one price of time: roll every lens to the anchor date ----------
+# Every lens produces an equity value dated 31 December 2025 — the audited balance-sheet
+# date the bridge subtracts net debt at, with FY2026 discounted a full year. The comparison
+# price is dated 5 August 2026. So every per-share value is rolled 217/365 of a year forward
+# at the cost of equity, less the EGP 1.85 FY2025 dividend paid inside the window (ex
+# 1-Jun-2026) — fair value grows at the required return net of distributions, by the
+# discount identity itself. Added after external critique correctly showed the previous
+# construction compared a 31-Dec-2025 value to an August price, breaching this study's own
+# one-date rule by about seven months of accretion.
+T_ANCHOR = V['anchor_days'] / 365.0
+ROLL = (1 + ke_exp) ** T_ANCHOR
+def to_anchor(v):
+    return v * ROLL - V['dps_fy25']
+dcf_ps = to_anchor(dcf_ps_dec)
 say(f"[Bridge] EV {ev:,.0f} - net financial debt {V['nd_fy25']:,.0f} + associates at carrying "
     f"value {assoc_val:,.0f} = {eq_pre_nci:,.0f}; less minority interests at their "
     f"{nci_share:.1%} share of group profit = {nci_val:,.0f} -> equity attributable "
-    f"{eq_attr:,.0f} = EGP {dcf_ps:.2f}/share against a spot of {SPOT:.2f} "
-    f"({dcf_ps/SPOT-1:+.0%}).")
+    f"{eq_attr:,.0f} = EGP {dcf_ps_dec:.2f}/share AT 31-DEC-2025; rolled "
+    f"{V['anchor_days']:.0f}/365 of a year to the 5-Aug-2026 anchor at the {ke_exp:.1%} cost of "
+    f"equity (x{ROLL:.4f}) less the EGP {V['dps_fy25']:.2f} dividend paid in the window = EGP "
+    f"{dcf_ps:.2f}/share against a spot of {SPOT:.2f} ({dcf_ps/SPOT-1:+.0%}).")
 assert abs((ev - V['nd_fy25'] + assoc_val - nci_val) - eq_attr) < 1e-6, "bridge does not close"
 assert V['nd_fy25'] > 0 and nci_val > 0, "net debt and NCI must reduce equity value"
+assert dcf_ps > dcf_ps_dec - V['dps_fy25'], "anchor roll must accrete before the dividend"
 
 # ---- currency-of-discounting alternative (the market's implied view) -------
-WACC_USD = 0.75 * (0.043 + V['beta'] * 0.075) + 0.25 * 0.065 * (1 - TAX)
+WACC_USD = (1 - V['usd_wd']) * (V['usd_rf'] + V['beta'] * V['usd_erp']) \
+    + V['usd_wd'] * V['usd_kd'] * (1 - TAX)
 fgn_frac = [fgn_egp[i] / rev[i] for i in range(5)]
 fcff_f_usd = [fcff[i] * fgn_frac[i] / V['fx_path'][i] for i in range(5)]
 fcff_d = [fcff[i] * (1 - fgn_frac[i]) for i in range(5)]
@@ -943,13 +1009,14 @@ df_usd, c2 = [], 1.0
 for _ in range(5):
     c2 /= (1 + WACC_USD); df_usd.append(c2)
 pv_f_usd = sum(fcff_f_usd[i] * df_usd[i] for i in range(5))
-tv_f_usd = (nopat_term * (1 - rr_term) * fgn_frac[-1] / V['fx_path'][-1]) / (WACC_USD - 0.035)
+tv_f_usd = (nopat_term * (1 - rr_term) * fgn_frac[-1] / V['fx_path'][-1]) \
+    / (WACC_USD - V['usd_g_term'])
 ev_f_egp = (pv_f_usd + tv_f_usd * df_usd[-1]) * V['fx_hist']['FY25']
 pv_d = sum(fcff_d[i] * df[i] for i in range(5))
 tv_d = nopat_term * (1 - rr_term) * (1 - fgn_frac[-1]) / (wacc_term - V['g_term'])
 ev_ccy = ev_f_egp + pv_d + tv_d * df[-1]
 eq_ccy = (ev_ccy - V['nd_fy25'] + assoc_val) * (1 - nci_share)
-ccy_ps = eq_ccy / SH
+ccy_ps = to_anchor(eq_ccy / SH)
 say(f"[Currency-of-discounting alternative — UIP-corrected] the hard-currency leg "
     f"({fgn_frac[-1]:.0%} of cash flow) is first DEFLATED to dollars at each year's exchange "
     f"rate, discounted at a USD cost of capital of {WACC_USD:.2%} with 3.5% terminal growth, and "
@@ -969,7 +1036,7 @@ def _val_at(we_, wt_, g_=None):
     _rr = min(g_ / roic_term, 0.95)
     _tv = nopat[-1] * (1 + g_) * (1 - _rr) / max(wt_ - g_, 0.02)
     _ev = sum(fcff[i] * _df[i] for i in range(5)) + _tv * _df[-1]
-    return ((_ev - V['nd_fy25'] + assoc_val) * (1 - nci_share)) / SH
+    return to_anchor(((_ev - V['nd_fy25'] + assoc_val) * (1 - nci_share)) / SH)
 assert abs(_val_at(wacc_exp, wacc_term) - dcf_ps) < 0.01, 'rating-basis helper does not reproduce base'
 dcf_rating_ps = _val_at(wacc_exp_rating, wacc_term_rating)
 say(f"[Rating-basis alternative, published] on Damodaran's RATING column the cost of equity is "
@@ -994,7 +1061,7 @@ say(f"[EGP-equivalent cost of debt alternative, published] loading the hard-curr
 
 nci_alt = nci_share * (ev + assoc_val)
 eq_alt = ev + assoc_val - nci_alt - V['nd_fy25']
-nci_alt_ps = eq_alt / SH
+nci_alt_ps = to_anchor(eq_alt / SH)
 say(f"[Minority-interest sequencing, alternative published] charging minorities "
     f"{nci_share:.1%} of UNLEVERED enterprise value plus associates ({nci_alt:,.0f}) and "
     f"deducting net debt afterwards gives EGP {nci_alt_ps:.2f}/share, against {dcf_ps:.2f} on the "
@@ -1007,41 +1074,61 @@ REL_I = 1
 ebitda_mid = ebitda[REL_I]
 df_rel = df[REL_I]
 ev_rel_fwd = V['ev_ebitda_just'] * ebitda_mid
-ev_rel = ev_rel_fwd * df_rel
+# the interim FY26-27 free cash flows (net PV negative) are ADDED so the lens is a complete
+# enterprise value at the valuation date, not just the discounted forward multiple — an
+# accepted critique refinement; omitting them had overstated the lens slightly
+ev_rel = ev_rel_fwd * df_rel + pv[0] + pv[1]
 def _rel(mult):
-    return (((mult * ebitda_mid) * df_rel - V['nd_fy25'] + assoc_val) * (1 - nci_share)) / SH
+    return to_anchor((((mult * ebitda_mid) * df_rel + pv[0] + pv[1]
+                       - V['nd_fy25'] + assoc_val) * (1 - nci_share)) / SH)
 rel_ps, rel_bear, rel_bull = _rel(V['ev_ebitda_just']), _rel(5.5), _rel(8.0)
-say(f"[Relative lens — forward EV discounted] {V['ev_ebitda_just']}x on FY2027E EBITDA "
-    f"{ebitda_mid:,.0f} gives an enterprise value of {ev_rel_fwd:,.0f} AS AT end-FY2027; "
-    f"discounted back at the year-2 factor {df_rel:.4f} that is {ev_rel:,.0f} today -> "
-    f"EGP {rel_ps:.2f}/share.")
+say(f"[Relative lens — forward EV discounted, interim flows included] {V['ev_ebitda_just']}x on "
+    f"FY2027E EBITDA {ebitda_mid:,.0f} gives an enterprise value of {ev_rel_fwd:,.0f} AS AT "
+    f"end-FY2027; discounted back at the year-2 factor {df_rel:.4f} plus the present value of "
+    f"the interim FY26-27 free cash flows ({pv[0]+pv[1]:,.0f}) that is {ev_rel:,.0f} at "
+    f"31-Dec-2025 -> EGP {rel_ps:.2f}/share at the anchor.")
 ev_trailing = MKTCAP + V['nd_fy25']
 ev_ebitda_trailing = ev_trailing / ebitda_fy25
 pe_trailing = SPOT / (V['npa_fy25'] / SH)
 
 # ---- lens 3: normalized earnings power ---------------------------------------
-NORM_I = 2
-norm_margin = ebitda_margin[NORM_I]
-norm_rev = rev[NORM_I]
+# RESTATED after external critique: the previous construction applied the justified P/E to
+# FY2028-SCALE earnings with no time value — injecting two years of undiscounted growth into
+# a present-day lens. The earning-power question is what the business earns at CURRENT scale
+# in a mid-cycle year: the mid-cycle EBITDA margin (FY2028E, the middle forecast year) is
+# applied to FY2026E revenue, with FY2026E financing and associate income. Worth -4.9/share
+# on the weighted central versus the old construction.
+norm_margin = ebitda_margin[2]
+norm_rev = rev[0]
 norm_ebitda = norm_margin * norm_rev
 norm_ebit = norm_ebitda - V['dna_pct'] * norm_rev
-norm_interest = interest_path[NORM_I]
-norm_assoc = V['assoc_fy25'] * (1.08 ** (NORM_I + 1))
+norm_interest = interest_path[0]
+norm_assoc = assoc_fc[0]
 norm_np = (norm_ebit - norm_interest + norm_assoc) * (1 - TAX) * (1 - nci_share)
 norm_eps = norm_np / SH
-norm_ps = V['pe_just'] * norm_eps
-norm_bear = 7.0 * norm_eps
-norm_bull = 11.5 * norm_eps
+norm_ps = to_anchor(V['pe_just'] * norm_eps)
+norm_bear = to_anchor(7.0 * norm_eps)
+norm_bull = to_anchor(11.5 * norm_eps)
+say(f"[Normalised lens — current-scale earning power] mid-cycle EBITDA margin "
+    f"{norm_margin:.2%} (FY2028E) on FY2026E revenue {norm_rev:,.0f} -> normalised EPS "
+    f"{norm_eps:.2f} x {V['pe_just']:.1f} = EGP {norm_ps:.2f}/share at the anchor. Equity-method "
+    f"associate income is taxed inside this lens although it is already post-tax at the investee "
+    f"— a disclosed conservatism worth about +0.4/share on the central if removed.")
 
 # ---- lens 4: book / justified P/B --------------------------------------------
 bvps = eqp_fy25 / SH
-ke_blend = ke_term
+ke_blend = ke_term   # the PERPETUAL (terminal) cost of equity — a steady-state multiple takes a
+                     # steady-state rate; the 23.0% average-of-windows alternative is this lens's
+                     # published bear construction below
 pb_just = (V['roe_sust'] - V['g_term']) / (ke_term - V['g_term'])
-book_ps = pb_just * bvps
-book_bear = ((V['roe_sust'] - 0.03) / (0.5 * (ke_exp + ke_term) - 0.03)) * bvps
-book_bull = ((V['roe_sust'] + 0.02 - V['g_term']) / (ke_term - V['g_term'])) * bvps
+book_ps = to_anchor(pb_just * bvps)
+book_bear = to_anchor(((V['roe_sust'] - 0.03) / (0.5 * (ke_exp + ke_term) - 0.03)) * bvps)
+book_bull = to_anchor(((V['roe_sust'] + 0.02 - V['g_term']) / (ke_term - V['g_term'])) * bvps)
 say(f"[Book lens] justified price-to-book {pb_just:.2f}x = (sustainable return {V['roe_sust']:.1%} "
-    f"- growth {V['g_term']:.0%}) / (PERPETUAL cost of equity {ke_term:.2%} - growth).")
+    f"- growth {V['g_term']:.0%}) / (PERPETUAL cost of equity {ke_term:.2%} - growth). The "
+    f"justified P/B is a steady-state construct whose implied payout is 1 - g/ROE = "
+    f"{1 - V['g_term']/V['roe_sust']:.0%}, deliberately distinct from the five-year forecast "
+    f"payout of {PAYOUT:.0%} — the two describe different horizons.")
 roe_trailing = V['npa_fy25'] / ((V['eqp_fy24'] + eqp_fy25) / 2)
 
 # ---- scenarios on the DCF -----------------------------------------------------
@@ -1071,7 +1158,7 @@ def dcf_scenario(gp_unit_mult=1.0, fx_mult=1.0, wacc_shift=0.0, g=None, opex_shi
     _rr = min(g / _roic, 0.95)
     _tv = _nopat[-1] * (1 + g) * (1 - _rr) / max(_wt - g, 0.02)
     _ev = sum(_f[i] * _df[i] for i in range(5)) + _tv * _df[-1]
-    return ((_ev - V['nd_fy25'] + assoc_val) * (1 - nci_share)) / SH
+    return to_anchor(((_ev - V['nd_fy25'] + assoc_val) * (1 - nci_share)) / SH)
 
 _base_chk = dcf_scenario()
 assert abs(_base_chk - dcf_ps) < 0.02, f'scenario engine does not reproduce base: {_base_chk} vs {dcf_ps}'
@@ -1111,7 +1198,7 @@ def dcf_at(we_, wt_, g_):
     _rr = min(g_ / roic_term, 0.95)
     _tv = nopat[-1] * (1 + g_) * (1 - _rr) / max(wt_ - g_, 0.02)
     _ev = sum(fcff[i] * _df[i] for i in range(5)) + _tv * _df[-1]
-    return ((_ev - V['nd_fy25'] + assoc_val) * (1 - nci_share)) / SH
+    return to_anchor(((_ev - V['nd_fy25'] + assoc_val) * (1 - nci_share)) / SH)
 
 grid_wacc_g = [[dcf_at(wacc_exp, wt, g) for g in g_grid] for wt in wt_grid]
 grid_exp_term = [[dcf_at(we, wt, V['g_term']) for wt in wt_grid] for we in we_grid]
@@ -1137,27 +1224,33 @@ def dcf_roic(r):
     _rr = min(V['g_term'] / r, 0.95)
     _tv = nopat[-1] * (1 + V['g_term']) * (1 - _rr) / (wacc_term - V['g_term'])
     _ev = pv_explicit + _tv * df[-1]
-    return ((_ev - V['nd_fy25'] + assoc_val) * (1 - nci_share)) / SH
+    return to_anchor(((_ev - V['nd_fy25'] + assoc_val) * (1 - nci_share)) / SH)
 grid_roic = [dcf_roic(r) for r in roic_grid]
 
 say(f"[Leverage] net financial debt / EBITDA falls from {V['nd_fy25']/ebitda_fy25:.2f}x to "
     f"{nd_fc[-1]/ebitda[-1]:.2f}x over the forecast.")
 
 # ---- expert panel: three genuinely different methods ---------------------------
+# All three legs are rolled to the anchor date exactly as the four lenses are.
 e1_margin = ebitda_margin[2]
 e1_rev = rev[2]
 e1_ebit = e1_margin * e1_rev - V['dna_pct'] * e1_rev
+# E1's net interest is the FY2028 point of the same static-gross-book construction the
+# forecast uses: kd_path[FY28] x gross debt less 10% on the FY2025 cash balance
 e1_int = V['kd_path'][2] * debt_fy25 - 0.10 * cash_fy25
 e1_eps = ((e1_ebit - e1_int + V['assoc_fy25']) * (1 - TAX) * (1 - nci_share)) / SH
-e1_base, e1_lo, e1_hi = 9.5 * e1_eps, 7.0 * e1_eps, 12.0 * e1_eps
+e1_base, e1_lo, e1_hi = (to_anchor(9.5 * e1_eps), to_anchor(7.0 * e1_eps),
+                         to_anchor(12.0 * e1_eps))
 
 e2_fcff = float(np.mean(fcff[2:]))
+# E2's after-tax interest charge: the FY2029 point of the same construction, after tax —
+# shown explicitly because a critique correctly noted it was not reconcilable as displayed
 e2_int_at = (V['kd_path'][3] * debt_fy25 - 0.10 * cash_fy25) * (1 - TAX)
 e2_fcfe = (e2_fcff - e2_int_at) * (1 - nci_share)
 e2_ke = ke_term
-e2_base = e2_fcfe * (1 + V['g_term']) / (e2_ke - V['g_term']) / SH
-e2_lo = e2_fcfe * 1.03 / (0.5 * (ke_exp + ke_term) - 0.03) / SH
-e2_hi = e2_fcfe * 1.06 / (e2_ke - 0.06) / SH
+e2_base = to_anchor(e2_fcfe * (1 + V['g_term']) / (e2_ke - V['g_term']) / SH)
+e2_lo = to_anchor(e2_fcfe * 1.03 / (0.5 * (ke_exp + ke_term) - 0.03) / SH)
+e2_hi = to_anchor(e2_fcfe * 1.06 / (e2_ke - 0.06) / SH)
 
 ic_beg = [ic_fy25] + ic[:-1]
 ep_ = [nopat[i] - fwd[i] * ic_beg[i] for i in range(5)]
@@ -1165,9 +1258,10 @@ pv_ep = sum(ep_[i] * df[i] for i in range(5))
 ep_term = nopat[-1] * (1 + V['g_term']) - wacc_term * ic[-1] * (1 + V['g_term'])
 pv_ep_term = ep_term / (wacc_term - V['g_term']) * df[-1]
 e3_ev = ic_fy25 + pv_ep + pv_ep_term
-e3_base = ((e3_ev - V['nd_fy25'] + assoc_val) * (1 - nci_share)) / SH
-e3_lo = ((ic_fy25 + pv_ep * 0.6 + pv_ep_term * 0.55 - V['nd_fy25'] + assoc_val) * (1 - nci_share)) / SH
-e3_hi = ccy_ps
+e3_base = to_anchor(((e3_ev - V['nd_fy25'] + assoc_val) * (1 - nci_share)) / SH)
+e3_lo = to_anchor(((ic_fy25 + pv_ep * 0.6 + pv_ep_term * 0.55 - V['nd_fy25'] + assoc_val)
+                   * (1 - nci_share)) / SH)
+e3_hi = ccy_ps   # already at the anchor
 experts = dict(
     e1=dict(method_short='earnings power', base=e1_base, rng=[e1_lo, e1_hi], eps=e1_eps,
             margin=e1_margin, rev=e1_rev, ebit=e1_ebit, interest=e1_int, pe=9.5),
@@ -1218,7 +1312,7 @@ OUT = dict(
               capex=capex, nwc=nwc, dnwc=dnwc, fcff=fcff, df=df, pv=pv, fwd_wacc=fwd,
               ppe=ppe, ic=ic, roic=roic, np_attr=np_fc, equity=eq_fc, net_debt=nd_fc,
               interest=interest_path, assoc=assoc_fc, div=div_fc, seg_gp=seg_gp,
-              seg_rev=seg_rev, seg_ebitda=seg_ebitda, seg_shares=shares,
+              seg_rev=seg_rev, seg_ebit=seg_ebit, seg_shares=shares,
               payout=PAYOUT, assoc_g=ASSOC_G, glide_frac=glide_frac,
               ppe_fy25=ppe_fy25, eqp_fy25=eqp_fy25, assoc_fy25=V['assoc_fy25'],
               debt_fy25=debt_fy25, nwc_fy25=nwc_fy25, dna_fy25=V['dna_fy25'],
@@ -1237,7 +1331,8 @@ OUT = dict(
               wacc_usd_alt=WACC_USD, beta=beta_res),
     dcf=dict(pv_explicit=pv_explicit, tv=tv, pv_tv=pv_tv, ev=ev, tv_share=tv_share,
              nd=V['nd_fy25'], assoc=assoc_val, nci_share=nci_share, nci_val=nci_val,
-             eq_attr=eq_attr, ps=dcf_ps, roic_term=roic_term, rr_term=rr_term,
+             eq_attr=eq_attr, ps=dcf_ps, ps_dec=dcf_ps_dec, roll=ROLL,
+             anchor_days=V['anchor_days'], roic_term=roic_term, rr_term=rr_term,
              ps_rating_basis=dcf_rating_ps, wacc_exp_rating=wacc_exp_rating,
              wacc_term_rating=wacc_term_rating, ps_nci_alt=nci_alt_ps, nci_alt=nci_alt,
              g=V['g_term'], bear=dcf_bear, bull=dcf_bull, ccy_alt_ps=ccy_ps,
@@ -1252,11 +1347,12 @@ OUT = dict(
     lenses=lenses, central=central, span=[lo, hi], spot=SPOT,
     experts=experts, panel_centre=panel_centre,
     sens_wg=dict(g_grid=g_grid, wacc_grid=wt_grid, table=grid_wacc_g),
-    rel=dict(ebitda_mid=ebitda_mid, ev_rel=ev_rel, ev_ebitda_trailing=ev_ebitda_trailing,
+    rel=dict(ebitda_mid=ebitda_mid, ev_rel=ev_rel, ev_rel_fwd=ev_rel_fwd,
+             pv_interim=pv[0] + pv[1], ev_ebitda_trailing=ev_ebitda_trailing,
              pe_trailing=pe_trailing, just_mult=V['ev_ebitda_just']),
     norm=dict(margin=norm_margin, rev=norm_rev, ebitda=norm_ebitda, ebit=norm_ebit,
               interest=norm_interest, np=norm_np, eps=norm_eps, pe=V['pe_just'],
-              year=YRS[NORM_I], assoc=norm_assoc),
+              year=YRS[0], margin_year=YRS[2], assoc=norm_assoc),
     book=dict(bvps=bvps, pb_just=pb_just, roe_sust=V['roe_sust'], roe_trailing=roe_trailing,
               ke_blend=ke_blend),
     sens=dict(g_grid=g_grid, wt_grid=wt_grid, we_grid=we_grid, grid_wacc_g=grid_wacc_g,

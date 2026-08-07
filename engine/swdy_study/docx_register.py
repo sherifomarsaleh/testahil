@@ -215,6 +215,28 @@ table([['Judgement', 'What was chosen', 'Why', 'What would overturn it'],
         'All three audited years show working capital absorbing cash rather than converting, '
         'though FY2025 improved (24.1% -> 23.1% -> 19.9% of revenue)',
         'Two consecutive years of operating cash flow above 60% of EBITDA'],
+       ['Valuation date rolled to the anchor',
+        'Every lens value, dated 31 December 2025 by construction, is rolled 217/365 of a year '
+        'to the 5-Aug-2026 anchor at the cost of equity, less the EGP 1.85 dividend paid in the '
+        'window',
+        'The comparison price is dated 5 August 2026; comparing an end-2025 value to it would '
+        'leave seven months of accretion out of the comparison — an external review flagged the '
+        'omission and it was accepted',
+        'A different roll rate (the risk-free rate instead of the cost of equity) would cut the '
+        'accretion roughly in half; the cost-of-equity roll is the discount identity\'s own rate'],
+       ['Terminal net-debt weight of 15%',
+        'Revised from 25% after review: the old weight contradicted the model\'s own forecast '
+        'deleveraging in the direction that flattered the valuation',
+        'At a 25% payout the forecast net-debt weight still falls toward mid-single digits by '
+        'FY2030E; 15% splits the difference between today\'s 8.4% and a structurally levered '
+        'steady state, and costs about 2.4/share on the weighted central versus 25%',
+        'Evidence the group intends to run materially higher structural net leverage'],
+       ['Forecast payout ratio of 25%',
+        'Struck at the actual FY2025 payout (EGP 1.85/share = 22.8% of attributable EPS), '
+        'rounded up for the rising trajectory the +85% step-up implies',
+        'The FY2025 dividend was ratified 6 May 2026 and paid from 4 June 2026 (EGX '
+        'disclosure); an earlier revision wrongly removed it on absence-of-evidence grounds',
+        'The distribution proposed on the FY2026 result'],
        ['Terminal growth of 5%',
         'The standing centre for established names in this market, sensitised 3–7%',
         'It is below the blended long-run nominal growth ceiling of the economies the company '
@@ -268,11 +290,18 @@ table([['What was sought', 'Outcome', 'How the study handled it'],
         'The Egyptian-pound share of the book is back-solved from the independently computed '
         'effective interest rate against the two disclosed currency-bucket rates, and is labelled '
         'as inferred'],
-       ['A declared, proposed or approved FY2025 dividend',
-        'Not disclosed in either the FY2025 annual filing (board-approved 12 March 2026) or the '
-        'Q1-2026 interim (board-approved 12 May 2026, the most recent primary source available)',
-        'No FY2025 dividend per share is carried in the model; the forecast payout ratio is struck '
-        'near the FY2025 disclosed cash-dividend rate relative to FY2024 profit instead'],
+       ['A declared, proposed or approved FY2025 dividend — RESOLVED, and the earlier handling '
+        'corrected',
+        'Not disclosed in the FY2025 annual filing or the Q1-2026 interim — but the interim '
+        'covers a period ending 31 March and carries no subsequent-events note, so its silence '
+        'was never evidence. The dividend exists: EGP 1.85/share, ratified by the general '
+        'assembly 6 May 2026, rights through 1 June, paid from 4 June 2026 (EGX disclosure, '
+        'corroborated by financial-press coverage and the quoted trailing yield)',
+        'An earlier revision removed the dividend on absence-of-evidence grounds — an error, '
+        'flagged by external review and corrected: the model now carries EGP 1.85 and a 25% '
+        'forecast payout. Recorded here because reasoning from the silence of a document that '
+        'could not have contained the fact is exactly the failure mode this register exists to '
+        'catch'],
        ['An explanation for the sharp single-session price move on 4 August 2026',
         'No corresponding company disclosure or news item was found',
         'Not used. The study\'s anchor is the closing price on 5 August 2026 and no narrative is '

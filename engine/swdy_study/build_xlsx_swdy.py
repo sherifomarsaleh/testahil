@@ -108,13 +108,17 @@ for i, ln in enumerate([
  'you can change a blue cell on Assumptions and watch the model reprice: the cost of capital is built from',
  'the risk-free rate, beta and the premium rather than pasted; the discount factors compound from the glide;',
  'and the income statement, balance sheet, cash flow, ratios and all four lenses chain off the same cells.', '',
- 'THREE THINGS ARE PASTED VALUES, and it is worth knowing which. First, audited and disclosed history — the',
- 'primary record, not a calculation. Second, the segment build: revenue and profit for the three segments the',
- 'company itself discloses (Cables and its accessories, Constructions and infrastructure, Electrical products',
- 'and digital solutions) are pasted for FY2025 and grown on their own drivers; only its OUTPUT is carried here',
- 'and everything downstream of it is formula. Third, the Monte Carlo price map and the sensitivity grids,',
- 'where each individual cell is a complete re-run of the whole valuation and so cannot be a formula in a grid.',
- 'Changing a driver reprices the model but does NOT redraw those two grids.', '',
+ 'THREE THINGS ARE PASTED VALUES, and it is worth knowing exactly which. First, audited and disclosed history',
+ '— the primary record, not a calculation. Second, the segment build: revenue and profit for the three',
+ 'segments the company itself discloses (Cables and its accessories, Constructions and infrastructure,',
+ 'Electrical products and digital solutions) are pasted for FY2025 and grown on their own drivers; only its',
+ 'OUTPUT is carried here and everything downstream of it is formula. Third, whole-model engine outputs, where',
+ 'each figure is a complete re-run of the entire valuation and so cannot be a single formula: the Monte Carlo',
+ 'price map, the sensitivity grids, the DCF scenario bear/bull bounds, the multi-leg currency-of-discounting',
+ 'alternative (its USD cost of capital IS a live formula; the leg-by-leg USD discounting is the engine\'s),',
+ 'and the expert-panel legs. Everything else — including every lens base value, the relative/normalised/book',
+ 'bear and bull bounds, and the anchor-date roll — is a live formula. Changing a driver reprices the model',
+ 'but does NOT redraw the engine outputs.', '',
  'How revenue is built. Not as one growth rate. Each of the three disclosed segments is grown on its own',
  'driver — Cables on copper-price growth times FX-translation growth times a modest real-volume assumption,',
  'Constructions and Electrical products on a taper of their own recent revenue CAGR — because none of the',
@@ -149,15 +153,25 @@ ws = sheet('Summary')
 title(ws, 'Summary — valuation at a glance', 'All values link live to their source sheets', 7,
       awidth=44, cwidth=15)
 hdr(ws, 4, ['Lens', 'Bear', 'Base', 'Bull', 'Weight', 'Contribution', 'vs spot'])
-LENS_SRC = {'dcf': '=DCF!C31', 'relative': "='Relative & Normalized'!C11",
+LENS_SRC = {'dcf': '=DCF!C62', 'relative': "='Relative & Normalized'!C11",
             'normalized': "='Relative & Normalized'!C28", 'book': "='Relative & Normalized'!C36"}
+BEAR_SRC = {'relative': "='Relative & Normalized'!C12",
+            'normalized': "='Relative & Normalized'!E28", 'book': "='Relative & Normalized'!E36"}
+BULL_SRC = {'relative': "='Relative & Normalized'!D12",
+            'normalized': "='Relative & Normalized'!F28", 'book': "='Relative & Normalized'!F36"}
 r = 5
 for k in ['dcf', 'relative', 'normalized', 'book']:
     l = LN[k]
     put(ws, f'A{r}', l['name'], fmt=None)
-    put(ws, f'B{r}', l['bear'], BLUE, PX)
+    if k in BEAR_SRC:
+        putf(ws, f'B{r}', BEAR_SRC[k], l['bear'], PX, green=True)
+    else:
+        put(ws, f'B{r}', l['bear'], BLUE, PX)   # DCF bear/bull are whole-model scenario re-runs
     putf(ws, f'C{r}', LENS_SRC[k], l['base'], PX, green=True)
-    put(ws, f'D{r}', l['bull'], BLUE, PX)
+    if k in BULL_SRC:
+        putf(ws, f'D{r}', BULL_SRC[k], l['bull'], PX, green=True)
+    else:
+        put(ws, f'D{r}', l['bull'], BLUE, PX)
     put(ws, f'E{r}', l['w'], BLUE, PCT)
     putf(ws, f'F{r}', f'=C{r}*E{r}', l['base'] * l['w'], PX)
     putf(ws, f'G{r}', f'=C{r}/$C$14-1', l['base'] / SPOT - 1, PCT)
@@ -204,7 +218,7 @@ title(ws, 'Fundamental valuation — the four lenses and the alternative reading
       awidth=52, cwidth=15)
 hdr(ws, 4, ['Lens / step', 'Basis', 'EGP per share'])
 rows = [
-    ('Discounted cash flow', 'links to the DCF sheet', "=DCF!C31", DCF['ps']),
+    ('Discounted cash flow', 'links to the DCF sheet', "=DCF!C62", DCF['ps']),
     ('  bear', 'margin −1.5pp, weaker currency path, +2pp cost of capital, g 3%', LN['dcf']['bear'], None),
     ('  bull', 'margin +1.5pp, stronger currency path, −2pp cost of capital, g 6%', LN['dcf']['bull'], None),
     ('Relative multiples', f"{IN['ev_ebitda_just']}x mid-cycle EV/EBITDA",
@@ -321,9 +335,20 @@ block('Balance-sheet and bridge anchors', [
     ('pat_fy25', 'FY2025 profit after tax (EGP mn, disclosed)', IN['pat_fy25'], NUM0),
     ('npa_fy25', 'FY2025 profit after minority interests (EGP mn, disclosed)', IN['npa_fy25'], NUM0),
     ('dps_fy24', 'FY2024 dividend per share (EGP)', IN['dps_fy24'], PX),
-    ('payout', 'Forecast dividend payout ratio', PAYOUT, PCT),
+    ('dps_fy25', 'FY2025 dividend per share (EGP, ratified 6 May 2026, paid 4 June 2026)',
+     IN['dps_fy25'], PX),
+    ('payout', 'Forecast dividend payout ratio (struck at the actual FY2025 rate)', PAYOUT, PCT),
     ('assoc_g', 'Growth in the share of equity-accounted investees', ASSOC_G, PCT),
-    ('cash_yield', 'Yield assumed on surplus cash', 0.10, PCT)])
+    ('cash_yield', 'Yield assumed on surplus cash (blend of EGP deposit and hard-currency rates)',
+     0.10, PCT),
+    ('anchor_days', 'Days from the 31-Dec-2025 valuation date to the 5-Aug-2026 anchor',
+     IN['anchor_days'], NUM0)])
+block('Currency-of-discounting alternative', [
+    ('usd_rf', 'US dollar risk-free rate', IN['usd_rf'], PCT),
+    ('usd_erp', 'Hard-currency-leg equity risk premium', IN['usd_erp'], PCT),
+    ('usd_kd', 'US dollar cost of debt', IN['usd_kd'], PCT),
+    ('usd_wd', 'Debt weight, USD leg', IN['usd_wd'], PCT),
+    ('usd_g', 'Terminal growth of the USD leg', IN['usd_g_term'], PCT)])
 block('Lens inputs', [
     ('ev_ebitda_just', 'Justified EV/EBITDA', IN['ev_ebitda_just'], MULT),
     ('pe_just', 'Justified price/earnings', IN['pe_just'], MULT),
@@ -348,6 +373,13 @@ for lab, fml, val, fmt in KEY:
     rr += 1
 ANCH['summary_shares'] = f'C{SHARES_ROW}'
 ANCH['summary_mktcap'] = f'C{SHARES_ROW + 1}'
+
+# ...and upgrade the Fundamental Valuation sheet's hard-currency cost of capital from a
+# pasted value to a live formula off the newly-addressable USD-alternative inputs
+ws = wb['Fundamental Valuation']
+putf(ws, 'C17',
+     f"=(1-{a('usd_wd')})*({a('usd_rf')}+{a('beta')}*{a('usd_erp')})"
+     f"+{a('usd_wd')}*{a('usd_kd')}*(1-{a('tax_eff')})", W['wacc_usd_alt'], PCT2, green=True)
 
 # ============ 5 SOTP BRIDGE ====================================================
 ws = sheet('SOTP Bridge')
@@ -381,7 +413,7 @@ ws = sheet('Segments')
 title(ws, 'Segments — the margin build', 'FY2025 disclosed shares and gross margins; forecast '
       'revenue and gross profit come from the unit build, and EBITDA is computed from them', 9,
       awidth=34, cwidth=13)
-hdr(ws, 4, ['Segment', 'FY2025 revenue', 'Share', 'Gross margin'] + YF)
+hdr(ws, 4, ['Segment', 'FY2025 revenue', 'Share', 'Segment margin'] + YF)
 r = 5
 _seg_rev_tot_row = r + len(SEGS)
 for s in SEGS:
@@ -401,41 +433,55 @@ for i in range(5):
     putf(ws, f'{col}{r}', f'=SUM({col}5:{col}{_last})', F['rev'][i], NUM0, bold=True)
 REV_TOT = r                                     # 12
 r += 2
-hdr(ws, r, ['Gross profit by segment'] + YF); r += 1
+hdr(ws, r, ['Segment profit by segment (Note 16 basis)'] + YF); r += 1
 first_g = r                                     # 15
 for s in SEGS:
     put(ws, f'A{r}', SEG['names'][s], fmt=None)
     for i in range(5):
         put(ws, f'{CD[i]}{r}', F['seg_gp'][i][s], BLUE, NUM0)
     r += 1
-band(ws, r, 6); put(ws, f'A{r}', 'Group gross profit', bold=True, fmt=None)
+band(ws, r, 6); put(ws, f'A{r}', 'Group segment profit', bold=True, fmt=None)
 for i in range(5):
     putf(ws, f'{CD[i]}{r}', f'=SUM({CD[i]}{first_g}:{CD[i]}{r-1})', BU['gp'][i], NUM0, bold=True)
 GP_TOT = r                                      # 22
 r += 1
-put(ws, f'A{r}', 'Group gross margin', fmt=None)
+put(ws, f'A{r}', 'Group segment-profit margin', fmt=None)
 for i in range(5):
     putf(ws, f'{CD[i]}{r}', f'={CD[i]}{GP_TOT}/{get_column_letter(5+i)}${REV_TOT}',
          BU['gp'][i] / F['rev'][i], PCT)
 r += 2
-hdr(ws, r, ['Segment EBITDA — gross profit less the operating load'] + YF); r += 1
+hdr(ws, r, ['Segment EBIT contribution — segment profit less the pro-rata corporate load'] + YF)
+r += 1
 first_e = r
 for j, s in enumerate(SEGS):
     put(ws, f'A{r}', SEG['names'][s], fmt=None)
     for i in range(5):
         putf(ws, f'{CD[i]}{r}',
              f'={CD[i]}{first_g + j}-{a("opex_pct", i)}*{get_column_letter(5+i)}{5 + j}',
-             F['seg_ebitda'][i][s], NUM0)
+             F['seg_ebit'][i][s], NUM0)
     r += 1
+band(ws, r, 6); put(ws, f'A{r}', 'Group EBIT', bold=True, fmt=None)
+for i in range(5):
+    putf(ws, f'{CD[i]}{r}', f'=SUM({CD[i]}{first_e}:{CD[i]}{r-1})', F['ebit'][i], NUM0, bold=True)
+EBIT_TOT = r
+r += 1
+put(ws, f'A{r}', 'Add back depreciation and amortisation', fmt=None)
+for i in range(5):
+    putf(ws, f'{CD[i]}{r}', f'={a("dna_pct")}*{get_column_letter(5+i)}{REV_TOT}',
+         F['dna'][i], NUM0)
+r += 1
 band(ws, r, 6); put(ws, f'A{r}', 'Group EBITDA', bold=True, fmt=None)
 for i in range(5):
-    putf(ws, f'{CD[i]}{r}', f'=SUM({CD[i]}{first_e}:{CD[i]}{r-1})', F['ebitda'][i], NUM0, bold=True)
+    putf(ws, f'{CD[i]}{r}', f'={CD[i]}{EBIT_TOT}+{CD[i]}{r-1}', F['ebitda'][i], NUM0, bold=True)
 EBITDA_TOT = r
 r += 1
 put(ws, f'A{r}', 'Group EBITDA margin', fmt=None)
 for i in range(5):
     putf(ws, f'{CD[i]}{r}', f'={CD[i]}{EBITDA_TOT}/{get_column_letter(5+i)}${REV_TOT}',
          F['ebitda_margin'][i], PCT)
+put(ws, f'A{r+1}', 'The corporate load is stated on the segment-profit-to-EBIT basis — the same '
+    'basis as the audited historical bridge — so EBIT falls out first and EBITDA is EBIT plus '
+    'D&A, not the other way round.', fmt=None).font = SUB
 ANCH.update(seg_rev_tot=REV_TOT, seg_gp_tot=GP_TOT, seg_ebitda_tot=EBITDA_TOT, seg_ebitda_mgn=r)
 
 # ============ 7 RELATIVE & NORMALIZED ==========================================
@@ -448,18 +494,24 @@ rel_rows = [
     ('FY2027E EBITDA (EGP mn)', '=DCF!C6', ebitda_mid, NUM0),
     ('Justified enterprise value / EBITDA', f'={a("ev_ebitda_just")}', IN['ev_ebitda_just'], MULT),
     ('Implied enterprise value AS AT end-FY2027 (EGP mn)', '=C5*C6', ev_rel_fwd, NUM0),
-    ('Discount factor back to today (year-2)', '=DCF!C16', F['df'][1], DF4),
-    ('Implied enterprise value TODAY (EGP mn)', '=C7*C8', ev_rel_fwd * F['df'][1], NUM0),
-    ('Less net bank debt, plus associates (EGP mn)', f'=-{a("nd_fy25")}+{a("assoc_bv")}',
-     -IN['nd_fy25'] + DCF['assoc'], NUM0),
-    ('Implied value per share (EGP)',
-     f"=(C9+C10)*(1-'SOTP Bridge'!$C$15)/{a('shares')}", LN['relative']['base'], PX)]
+    ('Discount factor back to the valuation date (year-2)', '=DCF!C16', F['df'][1], DF4),
+    ('Plus present value of the interim FY26-27 free cash flows (EGP mn)', '=DCF!B17+DCF!C17',
+     REL['pv_interim'], NUM0),
+    ('Implied enterprise value at 31-Dec-2025 (EGP mn)', '=C7*C8+C9', REL['ev_rel'], NUM0),
+    ('Implied value per share, rolled to the anchor (EGP)',
+     f"=((C10-{a('nd_fy25')}+{a('assoc_bv')})*(1-'SOTP Bridge'!$C$15)/{a('shares')})"
+     f"*DCF!$C$61-{a('dps_fy25')}", LN['relative']['base'], PX)]
 r = 5
 for lab, v, xp, fmt in rel_rows:
     put(ws, f'A{r}', lab, fmt=None)
     putf(ws, f'C{r}', v, xp, fmt, green=('DCF' in v or v.startswith('=Assumptions')))
     r += 1
 band(ws, 11, 3)
+put(ws, 'A12', 'Bear at 5.5× (C) / bull at 8.0× (D), same construction', fmt=None)
+for cell, mult, xp in (('C12', 5.5, LN['relative']['bear']), ('D12', 8.0, LN['relative']['bull'])):
+    putf(ws, cell,
+         f"=(({mult}*C5*C8+C9-{a('nd_fy25')}+{a('assoc_bv')})*(1-'SOTP Bridge'!$C$15)"
+         f"/{a('shares')})*DCF!$C$61-{a('dps_fy25')}", xp, PX)
 r = 13
 mktcap_f = f'({a("spot")}*{a("shares")})'
 for lab, v, xp, fmt in [
@@ -471,25 +523,31 @@ for lab, v, xp, fmt in [
          IN['nd_fy25'] / HI['FY25']['ebitda'], MULT)]:
     put(ws, f'A{r}', lab, fmt=None); putf(ws, f'C{r}', v, xp, fmt); r += 1
 r += 1
-hdr(ws, r, ['Normalised earnings lens — every component from the same year (FY2028E)', 'Value'])
+hdr(ws, r, ['Normalised earnings lens — mid-cycle margin (FY2028E) at current (FY2026E) scale',
+            'Value'])
 r += 1                                            # r = 19
 norm_ebitda = NRM['margin'] * NRM['rev']
 for lab, v, xp, fmt in [
-        ('Mid-cycle revenue (EGP mn)', '=DCF!D5', NRM['rev'], NUM0),
-        ('Mid-cycle EBITDA margin', '=DCF!D7', NRM['margin'], PCT),
-        ('Mid-cycle EBITDA (EGP mn)', '=C19*C20', norm_ebitda, NUM0),
-        ('Mid-cycle EBIT (EGP mn)', f'=C21-C19*{a("dna_pct")}', NRM['ebit'], NUM0),
-        ('Net finance cost (EGP mn)', "='Income Statement'!G11", -NRM['interest'], NUM0),
-        ('Share of equity-accounted investees (EGP mn)', "='Income Statement'!G12", NRM['assoc'], NUM0),
+        ('Current-scale revenue (FY2026E, EGP mn)', '=DCF!B5', NRM['rev'], NUM0),
+        ('Mid-cycle EBITDA margin (FY2028E)', '=DCF!D7', NRM['margin'], PCT),
+        ('Normalised EBITDA (EGP mn)', '=C19*C20', norm_ebitda, NUM0),
+        ('Normalised EBIT (EGP mn)', f'=C21-C19*{a("dna_pct")}', NRM['ebit'], NUM0),
+        ('Net finance cost (FY2026E, EGP mn)', "='Income Statement'!E11", -NRM['interest'], NUM0),
+        ('Share of equity-accounted investees (FY2026E, EGP mn)', "='Income Statement'!E12",
+         NRM['assoc'], NUM0),
         ('Normalised attributable earnings (EGP mn)',
          f"=(C22+C23+C24)*(1-{a('tax_eff')})*(1-'SOTP Bridge'!$C$15)", NRM['np'], NUM0),
         ('Normalised earnings per share (EGP)', f'=C25/{a("shares")}', NRM['eps'], PX),
         ('Justified price / earnings', f'={a("pe_just")}', IN['pe_just'], MULT),
-        ('Implied value per share (EGP)', '=C26*C27', LN['normalized']['base'], PX)]:
+        ('Implied value per share, rolled to the anchor (EGP)',
+         f'=C26*C27*DCF!$C$61-{a("dps_fy25")}', LN['normalized']['base'], PX)]:
     put(ws, f'A{r}', lab, fmt=None)
     putf(ws, f'C{r}', v, xp, fmt, green=('DCF' in v or 'Income Statement' in v))
     r += 1
 band(ws, r - 1, 3)                                 # implied value lands on row 28
+put(ws, 'D28', 'bear 7.0× (E) / bull 11.5× (F):', fmt=None)
+putf(ws, 'E28', f'=C26*7*DCF!$C$61-{a("dps_fy25")}', LN['normalized']['bear'], PX)
+putf(ws, 'F28', f'=C26*11.5*DCF!$C$61-{a("dps_fy25")}', LN['normalized']['bull'], PX)
 r += 1
 hdr(ws, r, ['Book lens', 'Value']); r += 1         # r = 31
 for lab, v, xp, fmt in [
@@ -498,14 +556,21 @@ for lab, v, xp, fmt in [
         ('Trailing return on equity',
          "='Income Statement'!D17/(('Balance Sheet'!C14+'Balance Sheet'!D14)/2)",
          BK['roe_trailing'], PCT),
-        ('Perpetual cost of equity', '=DCF!C49', BK['ke_blend'], PCT),
+        ('Perpetual (terminal) cost of equity — a steady-state multiple takes a steady-state rate',
+         '=DCF!C49', BK['ke_blend'], PCT),
         ('Justified price / book', f'=(C32-{a("g_term")})/(C34-{a("g_term")})', BK['pb_just'], MULT),
-        ('Implied value per share (EGP)', '=C31*C35', LN['book']['base'], PX)]:
+        ('Implied value per share, rolled to the anchor (EGP)',
+         f'=C31*C35*DCF!$C$61-{a("dps_fy25")}', LN['book']['base'], PX)]:
     put(ws, f'A{r}', lab, fmt=None)
     putf(ws, f'C{r}', v, xp, fmt,
          green=('DCF' in v or 'Balance Sheet' in v or 'Income Statement' in v))
     r += 1
 band(ws, r - 1, 3)                                 # implied value lands on row 36
+put(ws, 'D36', 'bear / bull constructions (E / F):', fmt=None)
+putf(ws, 'E36', f"=(({a('roe_sust')}-0.03)/((DCF!C39+DCF!C49)/2-0.03))*C31"
+     f"*DCF!$C$61-{a('dps_fy25')}", LN['book']['bear'], PX)
+putf(ws, 'F36', f"=(({a('roe_sust')}+0.02-{a('g_term')})/(DCF!C49-{a('g_term')}))*C31"
+     f"*DCF!$C$61-{a('dps_fy25')}", LN['book']['bull'], PX)
 
 # ============ 8 DCF =============================================================
 ws = sheet('DCF')
@@ -542,7 +607,7 @@ wf(16, 'Discount factor', lambda i: (f'=1/(1+{CD[i]}15)' if i == 0
                                      else f'={CD[i-1]}16/(1+{CD[i]}15)'), F['df'], DF4)
 wf(17, 'Present value of FCFF', lambda i: f'={CD[i]}14*{CD[i]}16', F['pv'], bd=True)
 
-put(ws, 'A19', 'TERMINAL VALUE AND BRIDGE', bold=True, fmt=None)
+put(ws, 'A19', 'TERMINAL VALUE, BRIDGE AND THE ANCHOR ROLL', bold=True, fmt=None)
 nopat_grown = F['nopat'][-1] * (1 + IN['g_term'])
 tv_block = [
     ('Terminal-year NOPAT grown one year (EGP mn)', '=F10*(1+C23)', nopat_grown, NUM0),
@@ -551,13 +616,14 @@ tv_block = [
     ('Required reinvestment rate (g / return on capital)', '=C23/C21', DCF['rr_term'], PCT),
     ('Terminal growth', f'={a("g_term")}', IN['g_term'], PCT),
     ('Terminal cost of capital', '=C53', W['wacc_term'], PCT),
-    ('Terminal value (EGP mn)', '=C20*(1-C22)/(C24-C23)', DCF['tv'], NUM0),
+    ('Terminal value — terminal-year FCFF C20×(1−C22), capitalised (EGP mn)',
+     '=C20*(1-C22)/(C24-C23)', DCF['tv'], NUM0),
     ('Present value of the five forecast years (EGP mn)', '=SUM(B17:F17)', DCF['pv_explicit'], NUM0),
     ('Present value of the terminal value (EGP mn)', '=C25*F16', DCF['pv_tv'], NUM0),
     ('Terminal value as a share of enterprise value', '=C27/(C26+C27)', DCF['tv_share'], PCT),
     ('Enterprise value (EGP mn)', '=C26+C27', DCF['ev'], NUM0),
     ('Equity attributable to shareholders (EGP mn)', "='SOTP Bridge'!C12", DCF['eq_attr'], NUM0),
-    ('Fair value per share (EGP)', f'=C30/{a("shares")}', DCF['ps'], PX)]
+    ('Fair value per share at 31-Dec-2025 (EGP)', f'=C30/{a("shares")}', DCF['ps_dec'], PX)]
 r = 20
 for lab, v, xp, fmt in tv_block:
     put(ws, f'A{r}', lab, fmt=None)
@@ -606,6 +672,16 @@ for i in range(5):
 put(ws, 'A58', 'Note: row 15 above is the explicit-window cost of capital walked down to the '
     'terminal rate by the glide fraction on row 57, so the shape of the easing is inherited from '
     'the cost-of-debt path rather than being a second free parameter.', fmt=None).font = SUB
+put(ws, 'A60', 'THE ANCHOR ROLL — one date, one price of time', bold=True, fmt=None)
+put(ws, 'A61', 'Anchor accretion factor — (1 + cost of equity)^(days to anchor / 365)', fmt=None)
+putf(ws, 'C61', f'=(1+C39)^({a("anchor_days")}/365)', DCF['roll'], DF4)
+put(ws, 'A62', 'Fair value per share at the 5-Aug-2026 anchor (EGP)', fmt=None)
+putf(ws, 'C62', f'=C31*C61-{a("dps_fy25")}', DCF['ps'], PX, bold=True)
+band(ws, 62, 4)
+put(ws, 'A63', 'The bridge on row 31 is dated 31-Dec-2025 (the audited balance-sheet date it '
+    'subtracts net debt at). Row 62 rolls it to the anchor at the cost of equity, net of the '
+    'EGP 1.85 FY2025 dividend paid in the window. Every lens on every sheet is rolled the same '
+    'way.', fmt=None).font = SUB
 
 # ============ 9 INCOME STATEMENT =================================================
 ws = sheet('Income Statement')
@@ -664,12 +740,12 @@ put(ws, 'A18', 'Earnings per share (EGP)', fmt=None)
 npa_all = [HI[y]['npa'] for y in H3] + F['np_attr']
 for i in range(8):
     putf(ws, f'{ALL[i]}18', f'={ALL[i]}17/{a("shares")}', npa_all[i] / SH, PX)
-put(ws, 'A20', 'Note: FY2023 and FY2024 are audited. FY2025 revenue, profit after tax and profit '
-    'after minority interests are disclosed; the intermediate lines are derived by closing the '
-    'account to the reported profit. In the forecast the finance charge is computed on the gross '
-    'debt book less the cash the business is accumulating, so it falls with net debt rather than '
-    'being frozen at the FY2025 balance; profit is therefore struck after interest and differs '
-    'from the pre-financing DCF waterfall by construction.', fmt=None).font = SUB
+put(ws, 'A20', 'Note: every FY2023-25 statement line is the audited figure — no closure or '
+    'derivation is used for any historical year (the EBITDA and EPS rows are labelled house '
+    'derivations). In the forecast the finance charge is computed on the gross debt book less '
+    'the cash the business is accumulating, so it moves with net debt rather than being frozen '
+    'at the FY2025 balance; profit is therefore struck after interest and differs from the '
+    'pre-financing DCF waterfall by construction.', fmt=None).font = SUB
 
 # ============ 10 BALANCE SHEET ====================================================
 ws = sheet('Balance Sheet')
@@ -880,15 +956,18 @@ for i, wt in enumerate(SN['wt_grid']):
         put(ws, f'{get_column_letter(2+j)}{r}', SN['grid_exp_term'][j][i], BLUE, PX)
     r += 1
 r += 1
-put(ws, f'A{r}', 'Single-driver sensitivities', bold=True, fmt=None); r += 1
-hdr(ws, r, ['Driver', 'Low', '', 'Base', '', 'High', 'Swing']); r += 1
-for lab, grid, vals in [
-        ('Beta', SN['beta_grid'], SN['grid_beta']),
-        ('Exchange-rate path multiplier', SN['fx_grid'], SN['grid_fx']),
-        ('EBITDA margin shift', SN['mg_grid'], SN['grid_margin']),
-        ('Working capital / revenue', SN['nwc_grid'], SN['grid_nwc']),
-        ('Terminal return on invested capital', SN['roic_grid'], SN['grid_roic'])]:
-    put(ws, f'A{r}', lab, fmt=None)
+put(ws, f'A{r}', 'Single-driver sensitivities — five engine re-runs per row; the parameter grid '
+    'for each row is shown beside its name', bold=True, fmt=None); r += 1
+hdr(ws, r, ['Driver (parameter grid)', '', '', '', '', '', '', 'Swing']); r += 1
+for lab, grid, vals, gfmt in [
+        ('Beta', SN['beta_grid'], SN['grid_beta'], '{:.2f}'),
+        ('Exchange-rate path multiplier', SN['fx_grid'], SN['grid_fx'], '{:.2f}x'),
+        ('Segment margins, multiplicative', SN['mg_grid'], SN['grid_margin'], '{:.3f}x'),
+        ('Copper price multiplier', SN['cu_grid'], SN['grid_copper'], '{:.3f}x'),
+        ('Working capital / revenue', SN['nwc_grid'], SN['grid_nwc'], '{:.1%}'),
+        ('Terminal return on invested capital', SN['roic_grid'], SN['grid_roic'], '{:.1%}'),
+        ('Terminal growth (at base cost of capital)', SN['g_grid'], SN['grid_wacc_g'][2], '{:.0%}')]:
+    put(ws, f'A{r}', f"{lab}  ({' / '.join(gfmt.format(g) for g in grid)})", fmt=None)
     vv = vals[:6]
     for j, v in enumerate(vv):
         put(ws, f'{get_column_letter(2+j)}{r}', v, BLUE, PX)
@@ -896,6 +975,7 @@ for lab, grid, vals in [
     putf(ws, f'H{r}', f'=MAX(B{r}:{last}{r})-MIN(B{r}:{last}{r})', max(vv) - min(vv), PX)
     r += 1
 ws.column_dimensions['H'].width = 13
+ws.column_dimensions['A'].width = 52
 
 # ============ 15 PER-SHARE & RATIOS =========================================================
 ws = sheet('Per-Share & Ratios')
