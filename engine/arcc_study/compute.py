@@ -86,6 +86,14 @@ AFS24 = ("Audited consolidated financial statements for the year ended 31 Decemb
          "Deloitte (Wafik, Ramy & Partners), signed 23 March 2025")
 Q126 = ("Reviewed condensed consolidated interim financial statements for the three months "
         "ended 31 March 2026, Deloitte (Wafik, Ramy & Partners), 25 May 2026")
+# The FY2025 investor presentation carries the PHYSICAL disclosure — tonnes by product,
+# production, and the sector balance — that the audited statements do not. Three revisions
+# of this study reconstructed those tonnes because this document had not been read. Note
+# that its financial tables are on a narrower basis than the audited consolidated accounts
+# (revenue 12,320 against 12,447, total assets 8,640 against 8,784), so every FINANCIAL
+# figure in this model stays on the audited statements and only the PHYSICALS come here.
+IRP = ("FY2025 Investor Presentation, Arabian Cement Company S.A.E., investor relations "
+       "library, page 5 (sales volumes and production indicators)")
 
 # ============================== INPUTS ======================================
 INP = dict(
@@ -303,7 +311,7 @@ INP = dict(
                      "of 4.2 million tons per annum'", "2025-12-31", "Company"),
     cap_cement_mt=I(5.00, AFS25 + " — note 1: '...that can produce 5 million tons per annum "
                     "of cement'", "2025-12-31", "Company"),
-    clinker_factor=I(0.7330, "Tonnes of clinker per tonne of cement PRODUCED. Revision 3 "
+    clinker_factor=I(0.7329, "Tonnes of clinker per tonne of cement PRODUCED. Revision 3 "
                      "used 0.84, taken from the ratio of the two nameplate capacities in "
                      "note 1 and described as 'observed'. It is not observed and it is not "
                      "a clinker factor: 4.2/5.0 is a ratio of two DESIGN capacities, and a "
@@ -312,28 +320,45 @@ INP = dict(
                      "then called this producer 'low-clinker' three sections later. The "
                      "figure carried here is the production ratio implied by the FY2025 "
                      "physical disclosure: clinker produced less clinker exported, over "
-                     "cement produced", "2025-12-31", "Industry"),
+                     "cement produced: " + IRP + " gives clinker production 3,851.6 kt "
+                     "less clinker exports 1,300.5 kt = 2,551.1 kt ground into 3,480.6 kt "
+                     "of cement", "2026-03-01", "Company"),
 
     # ---- PHYSICAL drivers. The build runs on these, and prices come OUT ----
     kiln_util=I([0.9170, 0.9200, 0.9250, 0.9300, 0.9330, 0.9350],
-                "Clinker-kiln utilisation, FY2025A then FY2026E-FY2030E. This is now the "
-                "primary volume driver: revision 3 drove volume off an ASSUMED cement "
-                "price, which made the plant a residual of a guess. FY2025 is the ratio "
-                "implied by the physical disclosure. The path rises modestly because the "
-                "kiln is already the binding asset; it cannot rise much",
-                "2026-08-06", "House"),
+                "Clinker-kiln utilisation, FY2025A then FY2026E-FY2030E, and the primary "
+                "volume driver. FY2025 is now DISCLOSED, not inferred: " + IRP + " gives "
+                "clinker production of 3,851.6 kt, which is 91.70% of the audited 4.2Mt "
+                "kiln, and the company states the rate as 92%. The plant has run 92-94% in "
+                "three of the last five years, so the path rises only modestly — the kiln "
+                "is the binding asset and there is little room above here",
+                "2026-03-01", "Company"),
     clk_export_share=I([0.3377, 0.3300, 0.3200, 0.3100, 0.3050, 0.3000],
                        "Share of clinker production sold AS CLINKER rather than ground into "
-                       "cement. This is the central operating lever and revision 3 could "
-                       "not see it at all: clinker exports and domestic cement compete for "
-                       "the same kiln, and a tonne of clinker sells for a fraction of the "
-                       "tonne of cement it could have become. The path retains clinker as "
-                       "domestic demand absorbs it", "2026-08-06", "House"),
+                       "cement. FY2025 is DISCLOSED: " + IRP + " gives clinker exports of "
+                       "1,300.5 kt on production of 3,851.6 kt = 33.77%. This is the "
+                       "central operating lever and revision 3 could not see it at all: "
+                       "clinker exports and domestic cement compete for the same kiln, and "
+                       "a tonne of clinker realises a fraction of the tonne of cement it "
+                       "could have become. Note the direction of travel — clinker exports "
+                       "FELL 37% in FY2025 (2,074.4 kt to 1,300.5) while cement exports "
+                       "rose 74%, so the mix was already shifting toward the higher-value "
+                       "product before this forecast starts", "2026-03-01", "Company"),
     cem_export_share=I([0.1772, 0.1800, 0.1800, 0.1750, 0.1700, 0.1650],
-                       "Share of CEMENT production exported. On this split, cement exports "
-                       "sit well inside the 30% statutory cap; revision 3's single-product "
-                       "build put exports at 31.5% of volume, BREACHING the cap its own "
-                       "text cited as binding", "2026-01-01", "Industry"),
+                       "Share of cement SOLD that is exported. FY2025 is DISCLOSED: " + IRP +
+                       " gives cement exports of 629.5 kt against local sales of 2,923.6 "
+                       "kt, i.e. 17.72% of the 3,553.1 kt of cement sold. Well inside the "
+                       "30% statutory cap; revision 3's single-product build put exports at "
+                       "31.5% of volume and BREACHED the cap its own text called binding",
+                       "2026-03-01", "Company"),
+    cem_stock_draw=I([0.0725, 0.0, 0.0, 0.0, 0.0, 0.0],
+                     "Cement sold LESS cement produced, in Mt. " + IRP + " discloses cement "
+                     "production of 3,480.6 kt against sales of 3,553.1 kt (2,923.6 local "
+                     "plus 629.5 exported), so FY2025 drew 72.5 kt out of finished-goods "
+                     "inventory. Revision 4 equated sales to production and understated "
+                     "despatches by 1.5%. Held at zero across the forecast: a stock draw is "
+                     "a one-off by construction and the inventory note shows only EGP "
+                     "320.8mn of finished goods at the year end", "2026-03-01", "Company"),
     clk_price_ratio=I(0.6500, "Export clinker price as a fraction of the export cement "
                       "price. Clinker is the unground intermediate and trades at a "
                       "discount; 0.65 sits in the middle of the range the trade press "
@@ -349,26 +374,25 @@ INP = dict(
     # ---- forecast drivers -------------------------------------------------
     price_local_path=I([1.0000, 1.0800, 1.1772, 1.2714, 1.3604, 1.4488],
                        "Local realised price index on the FY2025 base: growth of 8.0%, "
-                       "9.0%, 8.0%, 7.0% and 6.5%, i.e. 3.5 points below assumed cost "
-                       "inflation in FY2026 and about 1 point below it thereafter. "
-                       "CALIBRATED TO THE AUDITED RECORD, not asserted. In both years the "
-                       "statements cover, price outran cost: FY2024 revenue +44.5% against "
-                       "total cash cost +41.8%, and FY2025 revenue +42.6% against cash cost "
-                       "+12.5%, which is why the audited gross margin went 21.2% -> 23.9% "
-                       "-> 40.6%. Q1-2026 then printed revenue +17.3% at a 42.9% gross "
-                       "margin against 40.6% for FY2025 — still WIDENING. Against that, "
-                       "the FY2026 step of 8.0% produces group revenue growth of about "
-                       "10.7%, well below the 17.3% the first quarter actually ran, and "
-                       "the erosion thereafter is real but modest. Revision 2 assumed 3.0% "
-                       "in FY2026 against 11.5% cost inflation — a company unable to raise "
-                       "price even at the central bank's own 7% medium-term target — which "
-                       "manufactured the margin collapse rather than deriving it, and sat "
-                       "incoherently beside a utilisation path that RISES across the same "
-                       "window. The erosion that remains is the genuine one: the production "
-                       "quota abolished in May 2025 removed the mechanism supporting price "
-                       "into a structural surplus, and 12.6Mt of dormant national capacity "
-                       "is under revival from the second half of 2026",
-                       "2026-08-06", "Industry"),
+                       "9.0%, 8.0%, 7.0% and 6.5%, below the cost path in every year. IT IS "
+                       "NOW ANCHORED ON A DISCLOSED PRICE HISTORY AND A DISCLOSED EXIT "
+                       "RATE, which no earlier revision had. " + IRP + " and page 4 give "
+                       "local revenue and local volume for both years and both fourth "
+                       "quarters, so the realised local price can be computed rather than "
+                       "assumed: FY2024 EGP 1,810/t, FY2025 EGP 2,909/t — a rise of 60.7% "
+                       "on volume up 11.7%. The FY2025 margin explosion was PRICE, not "
+                       "volume, which settles a question three revisions argued about "
+                       "without evidence. More useful still is the exit rate: the fourth "
+                       "quarter of 2025 realised EGP 3,118/t, 7.2% ABOVE the full-year "
+                       "average. Simply holding the Q4 exit flat through 2026 therefore "
+                       "produces a full-year average 7.2% higher, so the 8.0% carried here "
+                       "is only 0.8 points above a no-further-increase path. Revision 3 "
+                       "assumed 3.0% against 11.5% cost inflation and had nothing behind "
+                       "it; revision 4 assumed 8.0% and had only a plausibility argument. "
+                       "The number is unchanged from revision 4 — but it is now the "
+                       "conservative reading of a disclosed run rate rather than a guess "
+                       "that happened to land in the right place",
+                       "2026-03-01", "Company"),
     price_exp_path=I([1.000, 0.968, 0.944, 0.927, 0.911, 0.895],
                      "Export price index in US dollars on the FY2025 base, declining "
                      "because the EU carbon border mechanism raises the landed cost of "
@@ -499,9 +523,20 @@ INP = dict(
 
     # ---- sector and peers --------------------------------------------------
     egy_capacity_mt=I(76.0, "Egyptian nameplate cement capacity", "2025-10-01", "Industry"),
-    egy_cons_mt=I(54.0, "Egyptian domestic cement consumption 2025", "2025-10-01", "Industry"),
-    egy_prod_mt=I(65.0, "Egyptian cement production 2025", "2026-01-01", "Industry"),
-    egy_exports_mt=I(18.5, "Egyptian cement and clinker exports 2025", "2026-01-01", "Industry"),
+    egy_cons_mt=I(53.9, "Egyptian domestic cement sales 2025. " + IRP + " page 12 gives "
+                  "53.9Mt, against the 54.0 previously carried on trade estimate",
+                  "2026-03-01", "Company"),
+    egy_prod_mt=I(72.6, "Egyptian cement and clinker SALES 2025 — local plus export. " + IRP +
+                  " page 12 gives local 53.9Mt and exports 18.6Mt, total 72.6Mt. Revisions "
+                  "1 to 4 carried 65.0Mt as 'production' against exports of 18.5Mt and "
+                  "consumption of 54Mt, a balance that does not close: 65 less 54 is 11Mt, "
+                  "not 18.5. One reviewer caught the gap and the disclosure now closes it. "
+                  "This changes the sector picture materially — see the utilisation note",
+                  "2026-03-01", "Company"),
+    egy_exports_mt=I(18.6, "Egyptian cement AND clinker export sales 2025. " + IRP +
+                     " page 12. The two products are reported together, which is why the "
+                     "earlier balance failed: it set a cement-plus-clinker export figure "
+                     "against a cement-only production figure", "2026-03-01", "Company"),
     egy_revival_mt=I(12.6, "Dormant Egyptian capacity under revival from the second half of "
                      "2026", "2025-10-01", "Industry"),
     egy_gdp_egp_bn=I(18000.0, "Egyptian nominal gross domestic product, order of magnitude, "
@@ -598,21 +633,23 @@ say(f"[Audited history] operating profit " + "  ".join(f"{x:,.0f}" for x in ebit
 # 0.9Mt of kiln headroom that does not exist.
 
 
-def physical(kiln_u, cf, clk_sh, cem_sh):
+def physical(kiln_u, cf, clk_sh, cem_sh, draw):
     """Everything downstream of the kiln, in tonnes. No prices enter here."""
     clk_prod = V['cap_clinker_mt'] * kiln_u
     clk_exp = clk_prod * clk_sh
     clk_ground = clk_prod - clk_exp
     cem_prod = clk_ground / cf
-    cem_exp = cem_prod * cem_sh
+    cem_sold = cem_prod + draw            # a stock movement, disclosed for FY2025
+    cem_exp = cem_sold * cem_sh
     return dict(clk_prod=clk_prod, clk_exp=clk_exp, clk_ground=clk_ground,
-                cem_prod=cem_prod, mill_util=cem_prod / V['cap_cement_mt'],
-                cem_exp=cem_exp, cem_loc=cem_prod - cem_exp,
-                sold=cem_prod + clk_exp, kiln_util=kiln_u)
+                cem_prod=cem_prod, cem_sold=cem_sold, cem_draw=draw,
+                mill_util=cem_prod / V['cap_cement_mt'],
+                cem_exp=cem_exp, cem_loc=cem_sold - cem_exp,
+                sold=cem_sold + clk_exp, kiln_util=kiln_u)
 
 
-PH = [physical(V['kiln_util'][i], V['clinker_factor'],
-               V['clk_export_share'][i], V['cem_export_share'][i]) for i in range(6)]
+PH = [physical(V['kiln_util'][i], V['clinker_factor'], V['clk_export_share'][i],
+               V['cem_export_share'][i], V['cem_stock_draw'][i]) for i in range(6)]
 p0 = PH[0]
 
 # ---- prices are DERIVED, and they are the test ----------------------------
@@ -624,8 +661,14 @@ vol25 = p0['sold']
 say(f"\n[The plant, in tonnes — DRIVERS, not outputs] kiln {p0['kiln_util']:.1%} of "
     f"{V['cap_clinker_mt']:.1f}Mt = {p0['clk_prod']:.3f}Mt of clinker; "
     f"{p0['clk_exp']:.3f}Mt sold as clinker, {p0['clk_ground']:.3f}Mt ground at a clinker "
-    f"factor of {V['clinker_factor']:.3f} into {p0['cem_prod']:.3f}Mt of cement "
-    f"({p0['mill_util']:.1%} of the {V['cap_cement_mt']:.1f}Mt mill)")
+    f"factor of {V['clinker_factor']:.4f} into {p0['cem_prod']:.3f}Mt of cement "
+    f"({p0['mill_util']:.1%} of the {V['cap_cement_mt']:.1f}Mt mill), plus a "
+    f"{p0['cem_draw']*1000:.1f}kt draw from finished-goods stock")
+say(f"[Against the DISCLOSED physicals] the company reports clinker production 3,851.6kt, "
+    f"cement production 3,480.6kt, local sales 2,923.6kt, cement exports 629.5kt, clinker "
+    f"exports 1,300.5kt, total 4,853.6kt. This build reproduces "
+    f"{p0['clk_prod']*1000:,.1f} / {p0['cem_prod']*1000:,.1f} / {p0['cem_loc']*1000:,.1f} / "
+    f"{p0['cem_exp']*1000:,.1f} / {p0['clk_exp']*1000:,.1f} / {p0['sold']*1000:,.1f}")
 say(f"[Despatches] local cement {p0['cem_loc']:.3f}Mt, export cement {p0['cem_exp']:.3f}Mt, "
     f"export clinker {p0['clk_exp']:.3f}Mt = {vol25:.3f}Mt total")
 say(f"[Prices — DERIVED from the audited revenue note, not assumed] local cement EGP "
@@ -1138,6 +1181,21 @@ chk(0.35 < fv_central / V['spot'] < 3.0,
     f"implied fair value to spot {fv_central/V['spot']:.2f}x is inside the plausibility band")
 chk(wacc_term < wacc_exp, f"terminal rate {wacc_term:.2%} is BELOW the explicit-window "
                           f"rate {wacc_exp:.2%}")
+DISC = dict(clk_prod=3.8516, cem_prod=3.4806, cem_loc=2.9236, cem_exp=0.6295,
+            clk_exp=1.3005, sold=4.8536)
+_worst = max(abs(p0[k] / v - 1) for k, v in DISC.items())
+chk(_worst < 0.001,
+    f"the physical build reproduces EVERY disclosed FY2025 tonne to within "
+    f"{_worst:.3%}: clinker made {p0['clk_prod']:.4f} vs {DISC['clk_prod']}, cement made "
+    f"{p0['cem_prod']:.4f} vs {DISC['cem_prod']}, local {p0['cem_loc']:.4f} vs "
+    f"{DISC['cem_loc']}, cement exports {p0['cem_exp']:.4f} vs {DISC['cem_exp']}, clinker "
+    f"exports {p0['clk_exp']:.4f} vs {DISC['clk_exp']}, total {p0['sold']:.4f} vs "
+    f"{DISC['sold']}Mt. Revisions 1-3 reconstructed these from an assumed price and were "
+    f"28% low on the total")
+chk(abs((V['egy_cons_mt'] + V['egy_exports_mt']) - V['egy_prod_mt']) < 0.15,
+    f"the Egyptian sector balance CLOSES: local {V['egy_cons_mt']}Mt plus exports "
+    f"{V['egy_exports_mt']}Mt = {V['egy_cons_mt']+V['egy_exports_mt']:.1f}Mt against the "
+    f"disclosed total of {V['egy_prod_mt']}Mt. It did not close in any earlier revision")
 chk(all(b['kiln_util'] <= 1.0 for b in BU),
     f"no forecast year asks the kiln for more than nameplate: peak "
     f"{max(b['kiln_util'] for b in BU):.1%} of {V['cap_clinker_mt']:.1f}Mt")
@@ -1198,6 +1256,7 @@ OUT = dict(
                           vol_export=p0['cem_exp'] + p0['clk_exp'],
                           vol_cem_exp=p0['cem_exp'], vol_clk_exp=p0['clk_exp'],
                           cem_prod=p0['cem_prod'], clk_prod=p0['clk_prod'],
+                          cem_sold=p0['cem_sold'],
                           kiln_util_fy25=p0['kiln_util'], util_fy25=p0['mill_util'],
                           price_loc_derived=price_loc25,
                           price_exp_cem_usd=price_exp_cem25 / V['fx_avg_fy25'],

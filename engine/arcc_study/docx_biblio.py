@@ -188,10 +188,24 @@ CAT = [
   'First-quarter revenue, gross profit, profit and the 31 March 2026 balance sheet, '
   'including the dividends payable that the valuation deducts from cash.',
   'Deloitte — Wafik, Ramy & Partners; limited review concluded 25 May 2026'),
+ ('Arabian Cement Company S.A.E. — FY2025 Investor Presentation',
+  'COMPANY DISCLOSURE — PHYSICAL',
+  'The tonnes. Sales volumes by product and market (local cement 2,923.6kt, cement exports '
+  '629.5kt, clinker exports 1,300.5kt, total 4,853.6kt), production indicators (clinker '
+  '3,851.6kt at 92% kiln utilisation, cement 3,480.6kt), the FY2024 comparatives that give '
+  'the realised local price series, the fourth-quarter split that gives the exit rate, and '
+  'the Egyptian market balance of 53.9Mt local plus 18.6Mt export. The audited statements '
+  'carry no volume table, so every physical figure in three earlier editions of this study '
+  'was reconstructed from an assumed price; all of them are now read from here. Its '
+  'FINANCIAL tables are on a narrower basis than the audited consolidated accounts '
+  '(revenue 12,320 against 12,447; total assets 8,640 against 8,784), so no financial '
+  'figure is taken from it.',
+  'Investor relations library, arabiancementcompany.com'),
  ('Central Bank of Egypt', 'Central bank',
   'Main operation rate of 19.50% held at the April and May 2026 meetings; the Q1-2026 '
-  'Monetary Policy Report; the medium-term inflation target of 7% used to build the terminal '
-  'risk-free rate; headline urban inflation easing to 14.3% in June 2026.', 'cbe.org.eg'),
+  'Monetary Policy Report; the LONGEST-DATED published inflation target of 5% for Q4-2028, '
+  'used to build the terminal risk-free rate — earlier editions used the 7% Q4-2026 target '
+  'and mis-described it as the medium-term one; headline urban inflation.', 'cbe.org.eg'),
  ('Aswath Damodaran — country risk premium file', 'Reference dataset',
   'Egypt equity risk premium and sovereign default spread on the credit-default-swap basis, '
   'January 2026 edition. The original file only.', 'Used for the cost-of-equity build'),

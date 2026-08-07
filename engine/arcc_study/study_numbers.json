@@ -604,10 +604,10 @@
    "ring": "Company"
   },
   "clinker_factor": {
-   "value": 0.733,
-   "source": "Tonnes of clinker per tonne of cement PRODUCED. Revision 3 used 0.84, taken from the ratio of the two nameplate capacities in note 1 and described as 'observed'. It is not observed and it is not a clinker factor: 4.2/5.0 is a ratio of two DESIGN capacities, and a clinker factor is a production-composition ratio. 0.84 also sits above the 0.65-0.80 band typical of blended cement, and the study then called this producer 'low-clinker' three sections later. The figure carried here is the production ratio implied by the FY2025 physical disclosure: clinker produced less clinker exported, over cement produced",
-   "date": "2025-12-31",
-   "ring": "Industry"
+   "value": 0.7329,
+   "source": "Tonnes of clinker per tonne of cement PRODUCED. Revision 3 used 0.84, taken from the ratio of the two nameplate capacities in note 1 and described as 'observed'. It is not observed and it is not a clinker factor: 4.2/5.0 is a ratio of two DESIGN capacities, and a clinker factor is a production-composition ratio. 0.84 also sits above the 0.65-0.80 band typical of blended cement, and the study then called this producer 'low-clinker' three sections later. The figure carried here is the production ratio implied by the FY2025 physical disclosure: clinker produced less clinker exported, over cement produced: FY2025 Investor Presentation, Arabian Cement Company S.A.E., investor relations library, page 5 (sales volumes and production indicators) gives clinker production 3,851.6 kt less clinker exports 1,300.5 kt = 2,551.1 kt ground into 3,480.6 kt of cement",
+   "date": "2026-03-01",
+   "ring": "Company"
   },
   "kiln_util": {
    "value": [
@@ -618,9 +618,9 @@
     0.933,
     0.935
    ],
-   "source": "Clinker-kiln utilisation, FY2025A then FY2026E-FY2030E. This is now the primary volume driver: revision 3 drove volume off an ASSUMED cement price, which made the plant a residual of a guess. FY2025 is the ratio implied by the physical disclosure. The path rises modestly because the kiln is already the binding asset; it cannot rise much",
-   "date": "2026-08-06",
-   "ring": "House"
+   "source": "Clinker-kiln utilisation, FY2025A then FY2026E-FY2030E, and the primary volume driver. FY2025 is now DISCLOSED, not inferred: FY2025 Investor Presentation, Arabian Cement Company S.A.E., investor relations library, page 5 (sales volumes and production indicators) gives clinker production of 3,851.6 kt, which is 91.70% of the audited 4.2Mt kiln, and the company states the rate as 92%. The plant has run 92-94% in three of the last five years, so the path rises only modestly \u2014 the kiln is the binding asset and there is little room above here",
+   "date": "2026-03-01",
+   "ring": "Company"
   },
   "clk_export_share": {
    "value": [
@@ -631,9 +631,9 @@
     0.305,
     0.3
    ],
-   "source": "Share of clinker production sold AS CLINKER rather than ground into cement. This is the central operating lever and revision 3 could not see it at all: clinker exports and domestic cement compete for the same kiln, and a tonne of clinker sells for a fraction of the tonne of cement it could have become. The path retains clinker as domestic demand absorbs it",
-   "date": "2026-08-06",
-   "ring": "House"
+   "source": "Share of clinker production sold AS CLINKER rather than ground into cement. FY2025 is DISCLOSED: FY2025 Investor Presentation, Arabian Cement Company S.A.E., investor relations library, page 5 (sales volumes and production indicators) gives clinker exports of 1,300.5 kt on production of 3,851.6 kt = 33.77%. This is the central operating lever and revision 3 could not see it at all: clinker exports and domestic cement compete for the same kiln, and a tonne of clinker realises a fraction of the tonne of cement it could have become. Note the direction of travel \u2014 clinker exports FELL 37% in FY2025 (2,074.4 kt to 1,300.5) while cement exports rose 74%, so the mix was already shifting toward the higher-value product before this forecast starts",
+   "date": "2026-03-01",
+   "ring": "Company"
   },
   "cem_export_share": {
    "value": [
@@ -644,9 +644,22 @@
     0.17,
     0.165
    ],
-   "source": "Share of CEMENT production exported. On this split, cement exports sit well inside the 30% statutory cap; revision 3's single-product build put exports at 31.5% of volume, BREACHING the cap its own text cited as binding",
-   "date": "2026-01-01",
-   "ring": "Industry"
+   "source": "Share of cement SOLD that is exported. FY2025 is DISCLOSED: FY2025 Investor Presentation, Arabian Cement Company S.A.E., investor relations library, page 5 (sales volumes and production indicators) gives cement exports of 629.5 kt against local sales of 2,923.6 kt, i.e. 17.72% of the 3,553.1 kt of cement sold. Well inside the 30% statutory cap; revision 3's single-product build put exports at 31.5% of volume and BREACHED the cap its own text called binding",
+   "date": "2026-03-01",
+   "ring": "Company"
+  },
+  "cem_stock_draw": {
+   "value": [
+    0.0725,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "source": "Cement sold LESS cement produced, in Mt. FY2025 Investor Presentation, Arabian Cement Company S.A.E., investor relations library, page 5 (sales volumes and production indicators) discloses cement production of 3,480.6 kt against sales of 3,553.1 kt (2,923.6 local plus 629.5 exported), so FY2025 drew 72.5 kt out of finished-goods inventory. Revision 4 equated sales to production and understated despatches by 1.5%. Held at zero across the forecast: a stock draw is a one-off by construction and the inventory note shows only EGP 320.8mn of finished goods at the year end",
+   "date": "2026-03-01",
+   "ring": "Company"
   },
   "clk_price_ratio": {
    "value": 0.65,
@@ -687,9 +700,9 @@
     1.3604,
     1.4488
    ],
-   "source": "Local realised price index on the FY2025 base: growth of 8.0%, 9.0%, 8.0%, 7.0% and 6.5%, i.e. 3.5 points below assumed cost inflation in FY2026 and about 1 point below it thereafter. CALIBRATED TO THE AUDITED RECORD, not asserted. In both years the statements cover, price outran cost: FY2024 revenue +44.5% against total cash cost +41.8%, and FY2025 revenue +42.6% against cash cost +12.5%, which is why the audited gross margin went 21.2% -> 23.9% -> 40.6%. Q1-2026 then printed revenue +17.3% at a 42.9% gross margin against 40.6% for FY2025 \u2014 still WIDENING. Against that, the FY2026 step of 8.0% produces group revenue growth of about 10.7%, well below the 17.3% the first quarter actually ran, and the erosion thereafter is real but modest. Revision 2 assumed 3.0% in FY2026 against 11.5% cost inflation \u2014 a company unable to raise price even at the central bank's own 7% medium-term target \u2014 which manufactured the margin collapse rather than deriving it, and sat incoherently beside a utilisation path that RISES across the same window. The erosion that remains is the genuine one: the production quota abolished in May 2025 removed the mechanism supporting price into a structural surplus, and 12.6Mt of dormant national capacity is under revival from the second half of 2026",
-   "date": "2026-08-06",
-   "ring": "Industry"
+   "source": "Local realised price index on the FY2025 base: growth of 8.0%, 9.0%, 8.0%, 7.0% and 6.5%, below the cost path in every year. IT IS NOW ANCHORED ON A DISCLOSED PRICE HISTORY AND A DISCLOSED EXIT RATE, which no earlier revision had. FY2025 Investor Presentation, Arabian Cement Company S.A.E., investor relations library, page 5 (sales volumes and production indicators) and page 4 give local revenue and local volume for both years and both fourth quarters, so the realised local price can be computed rather than assumed: FY2024 EGP 1,810/t, FY2025 EGP 2,909/t \u2014 a rise of 60.7% on volume up 11.7%. The FY2025 margin explosion was PRICE, not volume, which settles a question three revisions argued about without evidence. More useful still is the exit rate: the fourth quarter of 2025 realised EGP 3,118/t, 7.2% ABOVE the full-year average. Simply holding the Q4 exit flat through 2026 therefore produces a full-year average 7.2% higher, so the 8.0% carried here is only 0.8 points above a no-further-increase path. Revision 3 assumed 3.0% against 11.5% cost inflation and had nothing behind it; revision 4 assumed 8.0% and had only a plausibility argument. The number is unchanged from revision 4 \u2014 but it is now the conservative reading of a disclosed run rate rather than a guess that happened to land in the right place",
+   "date": "2026-03-01",
+   "ring": "Company"
   },
   "price_exp_path": {
    "value": [
@@ -924,22 +937,22 @@
    "ring": "Industry"
   },
   "egy_cons_mt": {
-   "value": 54.0,
-   "source": "Egyptian domestic cement consumption 2025",
-   "date": "2025-10-01",
-   "ring": "Industry"
+   "value": 53.9,
+   "source": "Egyptian domestic cement sales 2025. FY2025 Investor Presentation, Arabian Cement Company S.A.E., investor relations library, page 5 (sales volumes and production indicators) page 12 gives 53.9Mt, against the 54.0 previously carried on trade estimate",
+   "date": "2026-03-01",
+   "ring": "Company"
   },
   "egy_prod_mt": {
-   "value": 65.0,
-   "source": "Egyptian cement production 2025",
-   "date": "2026-01-01",
-   "ring": "Industry"
+   "value": 72.6,
+   "source": "Egyptian cement and clinker SALES 2025 \u2014 local plus export. FY2025 Investor Presentation, Arabian Cement Company S.A.E., investor relations library, page 5 (sales volumes and production indicators) page 12 gives local 53.9Mt and exports 18.6Mt, total 72.6Mt. Revisions 1 to 4 carried 65.0Mt as 'production' against exports of 18.5Mt and consumption of 54Mt, a balance that does not close: 65 less 54 is 11Mt, not 18.5. One reviewer caught the gap and the disclosure now closes it. This changes the sector picture materially \u2014 see the utilisation note",
+   "date": "2026-03-01",
+   "ring": "Company"
   },
   "egy_exports_mt": {
-   "value": 18.5,
-   "source": "Egyptian cement and clinker exports 2025",
-   "date": "2026-01-01",
-   "ring": "Industry"
+   "value": 18.6,
+   "source": "Egyptian cement AND clinker export sales 2025. FY2025 Investor Presentation, Arabian Cement Company S.A.E., investor relations library, page 5 (sales volumes and production indicators) page 12. The two products are reported together, which is why the earlier balance failed: it set a cement-plus-clinker export figure against a cement-only production figure",
+   "date": "2026-03-01",
+   "ring": "Company"
   },
   "egy_revival_mt": {
    "value": 12.6,
@@ -1025,166 +1038,178 @@
    "clk_prod": 3.8514000000000004,
    "clk_exp": 1.30061778,
    "clk_ground": 2.5507822200000003,
-   "cem_prod": 3.4799211732605735,
-   "mill_util": 0.6959842346521147,
-   "cem_exp": 0.6166420319017736,
-   "cem_loc": 2.8632791413587997,
-   "sold": 4.7805389532605735,
+   "cem_prod": 3.4803959885386826,
+   "cem_sold": 3.5528959885386824,
+   "cem_draw": 0.0725,
+   "mill_util": 0.6960791977077365,
+   "cem_exp": 0.6295731691690545,
+   "cem_loc": 2.923322819369628,
+   "sold": 4.853513768538683,
    "kiln_util": 0.917,
-   "vol": 4.7805389532605735,
-   "price_loc": 2916.395572258876,
-   "price_exp_cem": 2295.7060969168538,
-   "price_exp_clk": 1492.208962995955,
+   "vol": 4.853513768538683,
+   "price_loc": 2856.494176650889,
+   "price_exp_cem": 2275.5795888907337,
+   "price_exp_clk": 1479.126732778977,
    "rev_goods": 11706.876991000001,
    "rev": 12447.336960680752,
-   "price": 2603.7518117472982,
+   "price": 2564.603203841008,
    "c_mat": 5698.184715,
    "c_tra": 764.279332,
    "c_ovh": 1021.1519069999999,
    "cc": 7483.615954000001,
-   "cc_t": 1565.433526882108,
+   "cc_t": 1541.896512689445,
    "c_prv": 78.1093759231652,
    "ebitda": 4885.611630757586,
    "mgn": 0.3925025606835013,
-   "util": 0.6959842346521147
+   "util": 0.6960791977077365
   },
   {
    "clk_prod": 3.8640000000000003,
    "clk_exp": 1.2751200000000003,
    "clk_ground": 2.58888,
-   "cem_prod": 3.5318963165075035,
-   "mill_util": 0.7063792633015007,
-   "cem_exp": 0.6357413369713506,
-   "cem_loc": 2.8961549795361528,
-   "sold": 4.807016316507504,
+   "cem_prod": 3.532378223495702,
+   "cem_sold": 3.532378223495702,
+   "cem_draw": 0.0,
+   "mill_util": 0.7064756446991404,
+   "cem_exp": 0.6358280802292263,
+   "cem_loc": 2.8965501432664755,
+   "sold": 4.807498223495703,
    "kiln_util": 0.92,
-   "vol": 4.807016316507504,
-   "price_loc": 3149.7072180395867,
-   "price_exp_cem": 2282.6942994694487,
-   "price_exp_clk": 1483.7512946551417,
-   "rev_goods": 12465.204320288565,
-   "rev": 13253.628493546817,
-   "price": 2757.142397880631,
+   "vol": 4.807498223495703,
+   "price_loc": 3085.0137107829605,
+   "price_exp_cem": 2262.6818661701027,
+   "price_exp_clk": 1470.7432130105667,
+   "rev_goods": 12249.94765885788,
+   "rev": 13024.756848280642,
+   "price": 2709.258795900267,
    "c_mat": 6278.647668961064,
-   "c_tra": 856.8912688637848,
-   "c_ovh": 1144.8905088171396,
-   "cc": 8280.429446641989,
-   "cc_t": 1722.571529080655,
-   "c_prv": 83.16900664122494,
-   "ebitda": 4890.030040263604,
-   "mgn": 0.36895783238865915,
-   "util": 0.7063792633015007
+   "c_tra": 844.092126295767,
+   "c_ovh": 1127.7896030434683,
+   "cc": 8250.5293983003,
+   "cc_t": 1716.1793961727242,
+   "c_prv": 81.73279410558621,
+   "ebitda": 4692.494655874756,
+   "mgn": 0.3602750293564365,
+   "util": 0.7064756446991404
   },
   {
    "clk_prod": 3.8850000000000002,
    "clk_exp": 1.2432,
    "clk_ground": 2.6418,
-   "cem_prod": 3.604092769440655,
-   "mill_util": 0.720818553888131,
-   "cem_exp": 0.6487366984993178,
-   "cem_loc": 2.955356070941337,
-   "sold": 4.847292769440655,
+   "cem_prod": 3.6045845272206303,
+   "cem_sold": 3.6045845272206303,
+   "cem_draw": 0.0,
+   "mill_util": 0.720916905444126,
+   "cem_exp": 0.6488252148997135,
+   "cem_loc": 2.9557593123209167,
+   "sold": 4.847784527220631,
    "kiln_util": 0.925,
-   "vol": 4.847292769440655,
-   "price_loc": 3433.180867663149,
-   "price_exp_cem": 2336.0836803997763,
-   "price_exp_clk": 1518.4543922598546,
-   "rev_goods": 13549.517634586071,
-   "rev": 14406.524624973641,
-   "price": 2972.0764373462957,
+   "vol": 4.847784527220631,
+   "price_loc": 3362.664944753427,
+   "price_exp_cem": 2315.6031811728067,
+   "price_exp_clk": 1505.1420677623244,
+   "rev_goods": 13312.84257495907,
+   "rev": 14154.879867825231,
+   "price": 2919.8657218250205,
    "c_mat": 6835.513178587107,
-   "c_tra": 950.0904998131539,
-   "c_ovh": 1269.4137929491794,
-   "cc": 9055.01747134944,
-   "cc_t": 1868.0566456468296,
-   "c_prv": 90.40364627654944,
-   "ebitda": 5261.103507347651,
-   "mgn": 0.3651889435032481,
-   "util": 0.720818553888131
+   "c_tra": 935.9003889391124,
+   "c_ovh": 1250.4544175312283,
+   "cc": 9021.867985057448,
+   "cc_t": 1861.0290813048853,
+   "c_prv": 88.82452818909921,
+   "ebitda": 5044.187354578684,
+   "mgn": 0.3563567760150604,
+   "util": 0.720916905444126
   },
   {
    "clk_prod": 3.9060000000000006,
    "clk_exp": 1.2108600000000003,
    "clk_ground": 2.6951400000000003,
-   "cem_prod": 3.6768622100954986,
-   "mill_util": 0.7353724420190997,
-   "cem_exp": 0.6434508867667122,
-   "cem_loc": 3.0334113233287865,
-   "sold": 4.8877222100954985,
+   "cem_prod": 3.677363896848138,
+   "cem_sold": 3.677363896848138,
+   "cem_draw": 0.0,
+   "mill_util": 0.7354727793696276,
+   "cem_exp": 0.6435386819484241,
+   "cem_loc": 3.0338252148997142,
+   "sold": 4.888223896848139,
    "kiln_util": 0.93,
-   "vol": 4.8877222100954985,
-   "price_loc": 3707.9053305699354,
-   "price_exp_cem": 2410.6591756552853,
-   "price_exp_clk": 1566.9284641759355,
-   "rev_goods": 14696.073799981788,
-   "rev": 15625.600467830636,
-   "price": 3196.908456776912,
+   "vol": 4.888223896848139,
+   "price_loc": 3631.746696193941,
+   "price_exp_cem": 2389.524871350293,
+   "price_exp_clk": 1553.1911663776905,
+   "rev_goods": 14436.533442953745,
+   "rev": 15349.64418322057,
+   "price": 3140.127070103686,
    "c_mat": 7411.870581140101,
-   "c_tra": 1043.9705013627834,
-   "c_ovh": 1394.8466531584195,
-   "cc": 9850.687735661304,
-   "cc_t": 2015.3943518547132,
-   "c_prv": 98.05357602371994,
-   "ebitda": 5676.859156145612,
-   "mgn": 0.3633050242026157,
-   "util": 0.7353724420190997
+   "c_tra": 1028.3794683085785,
+   "c_ovh": 1374.015508747201,
+   "cc": 9814.26555819588,
+   "cc_t": 2007.736504157264,
+   "c_prv": 96.32189853792069,
+   "ebitda": 5439.056726486768,
+   "mgn": 0.3543441568784025,
+   "util": 0.7354727793696276
   },
   {
    "clk_prod": 3.9186000000000005,
    "clk_exp": 1.195173,
    "clk_ground": 2.7234270000000005,
-   "cem_prod": 3.715452933151433,
-   "mill_util": 0.7430905866302866,
-   "cem_exp": 0.6316269986357437,
-   "cem_loc": 3.0838259345156893,
-   "sold": 4.910625933151433,
+   "cem_prod": 3.71595988538682,
+   "cem_sold": 3.71595988538682,
+   "cem_draw": 0.0,
+   "mill_util": 0.7431919770773641,
+   "cem_exp": 0.6317131805157594,
+   "cem_loc": 3.0842467048710605,
+   "sold": 4.91113288538682,
    "kiln_util": 0.933,
-   "vol": 4.910625933151433,
-   "price_loc": 3967.4645365009756,
-   "price_exp_cem": 2487.9283739640173,
-   "price_exp_clk": 1617.1534430766112,
-   "rev_goods": 15739.190895622778,
-   "rev": 16734.69471977092,
-   "price": 3407.85369270253,
+   "vol": 4.91113288538682,
+   "price_loc": 3885.9746779158695,
+   "price_exp_cem": 2466.1166488245285,
+   "price_exp_clk": 1602.9758217359436,
+   "rev_goods": 15459.016409117821,
+   "rev": 16436.799196994525,
+   "price": 3346.844726173582,
    "c_mat": 7964.38252850928,
-   "c_tra": 1132.8657270730343,
-   "c_ovh": 1513.619365511732,
-   "cc": 10610.867621094045,
-   "cc_t": 2160.7973740089865,
-   "c_prv": 105.01335064319706,
-   "ebitda": 6018.813748033678,
-   "mgn": 0.35966080342791396,
-   "util": 0.7430905866302866
+   "c_tra": 1115.9477628438624,
+   "c_ovh": 1491.015311323889,
+   "cc": 10571.345602677031,
+   "cc_t": 2152.5268913273135,
+   "c_prv": 103.14400031968042,
+   "ebitda": 5762.309593997814,
+   "mgn": 0.35057370507096386,
+   "util": 0.7431919770773641
   },
   {
    "clk_prod": 3.9270000000000005,
    "clk_exp": 1.1781000000000001,
    "clk_ground": 2.7489000000000003,
-   "cem_prod": 3.750204638472033,
-   "mill_util": 0.7500409276944067,
-   "cem_exp": 0.6187837653478855,
-   "cem_loc": 3.1314208731241475,
-   "sold": 4.928304638472033,
+   "cem_prod": 3.7507163323782238,
+   "cem_sold": 3.7507163323782238,
+   "cem_draw": 0.0,
+   "mill_util": 0.7501432664756448,
+   "cem_exp": 0.618868194842407,
+   "cem_loc": 3.1318481375358167,
+   "sold": 4.928816332378224,
    "kiln_util": 0.935,
-   "vol": 4.928304638472033,
-   "price_loc": 4225.27390508866,
-   "price_exp_cem": 2565.192911886844,
-   "price_exp_clk": 1667.3753927264486,
-   "rev_goods": 16782.745580093488,
-   "rev": 17844.254238034402,
-   "price": 3620.7693206982467,
+   "vol": 4.928816332378224,
+   "price_loc": 4138.488763131809,
+   "price_exp_cem": 2542.7038067705685,
+   "price_exp_clk": 1652.7574744008696,
+   "rev_goods": 16481.830420533945,
+   "rev": 17524.306194632718,
+   "price": 3555.4796553307538,
    "c_mat": 8477.30684400726,
-   "c_tra": 1216.5223592826478,
-   "c_ovh": 1625.3928047992993,
-   "cc": 11319.222008089208,
-   "cc_t": 2296.7780684106833,
-   "c_prv": 111.97604489618757,
-   "ebitda": 6413.056185049007,
-   "mgn": 0.359390541039244,
-   "util": 0.7500409276944067
+   "c_tra": 1198.355794676344,
+   "c_ovh": 1601.1204984387161,
+   "cc": 11276.78313712232,
+   "cc_t": 2287.9292667172917,
+   "c_prv": 109.96831086625926,
+   "ebitda": 6137.5547466441385,
+   "mgn": 0.3502309694020256,
+   "util": 0.7501432664756448
   }
  ],
- "clinker_factor": 0.733,
+ "clinker_factor": 0.7329,
  "share_triangulation": {
   "issued": 378.7397,
   "treasury": 3.872255,
@@ -1209,23 +1234,24 @@
   "bound_met": false
  },
  "unit_calibration": {
-  "vol_fy25": 4.7805389532605735,
-  "vol_local": 2.8632791413587997,
-  "vol_export": 1.9172598119017736,
-  "vol_cem_exp": 0.6166420319017736,
+  "vol_fy25": 4.853513768538683,
+  "vol_local": 2.923322819369628,
+  "vol_export": 1.9301909491690545,
+  "vol_cem_exp": 0.6295731691690545,
   "vol_clk_exp": 1.30061778,
-  "cem_prod": 3.4799211732605735,
+  "cem_prod": 3.4803959885386826,
   "clk_prod": 3.8514000000000004,
+  "cem_sold": 3.5528959885386824,
   "kiln_util_fy25": 0.917,
-  "util_fy25": 0.6959842346521147,
-  "price_loc_derived": 2916.395572258876,
-  "price_exp_cem_usd": 46.603859052311286,
-  "price_exp_clk_usd": 30.292508384002335,
+  "util_fy25": 0.6960791977077365,
+  "price_loc_derived": 2856.494176650889,
+  "price_exp_cem_usd": 46.19528195068481,
+  "price_exp_clk_usd": 30.02693326794513,
   "cc_mat_t": 1479.5099742950615,
-  "cc_tra_t": 159.87304767775652,
-  "cc_ovh_t": 213.60602161886408,
+  "cc_tra_t": 157.46928276050045,
+  "cc_ovh_t": 210.39435668634206,
   "cash_cost_fy25": 7483.615954000001,
-  "cash_cost_t": 1565.433526882108
+  "cash_cost_t": 1541.896512689445
  },
  "history": {
   "years": [
@@ -1312,17 +1338,17 @@
   "volume_mt": [
    null,
    null,
-   4.7805389532605735
+   4.853513768538683
   ],
   "price_t": [
    null,
    null,
-   2603.7518117472982
+   2564.603203841008
   ],
   "utilisation": [
    null,
    null,
-   0.6959842346521147
+   0.6960791977077365
   ]
  },
  "forecast": {
@@ -1334,39 +1360,39 @@
    "FY2030E"
   ],
   "revenue": [
-   13253.628493546817,
-   14406.524624973641,
-   15625.600467830636,
-   16734.69471977092,
-   17844.254238034402
+   13024.756848280642,
+   14154.879867825231,
+   15349.64418322057,
+   16436.799196994525,
+   17524.306194632718
   ],
   "ebitda": [
-   4890.030040263604,
-   5261.103507347651,
-   5676.859156145612,
-   6018.813748033678,
-   6413.056185049007
+   4692.494655874756,
+   5044.187354578684,
+   5439.056726486768,
+   5762.309593997814,
+   6137.5547466441385
   ],
   "dna": [
-   331.34071233867047,
-   388.9761648742883,
-   453.14241356708845,
-   518.7755363128985,
-   588.8603898551353
+   325.61892120701606,
+   382.18175643128126,
+   445.1396813133965,
+   509.54077510683027,
+   578.3021044228797
   ],
   "ebit": [
-   4558.689327924933,
-   4872.127342473363,
-   5223.716742578524,
-   5500.03821172078,
-   5824.195795193871
+   4366.87573466774,
+   4662.005598147402,
+   4993.917045173372,
+   5252.768818890983,
+   5559.252642221259
   ],
   "nopat": [
-   3472.8095300132145,
-   3711.586609496208,
-   3979.4274144963197,
-   4189.92910968889,
-   4436.872356778691
+   3326.685934669885,
+   3551.5158646686914,
+   3804.3660050130748,
+   4001.5592862311514,
+   4235.038662844155
   ],
   "capex": [
    1012.0,
@@ -1376,18 +1402,18 @@
    1230.0
   ],
   "dwc": [
-   96.75700950561811,
-   138.34753577121882,
-   146.28910114283943,
-   133.091310232834,
-   133.1471421916179
+   69.29241207367704,
+   135.61476234535075,
+   143.37171784744052,
+   130.4586016528747,
+   130.50083971658313
   ],
   "fcff": [
-   1123.9789780968933,
-   2900.2152385992777,
-   3170.280726920568,
-   3403.613335768954,
-   3662.5856044422085
+   1072.1121890659444,
+   2736.082858754622,
+   2990.1339684790305,
+   3208.6414596851073,
+   3452.8399275504516
   ],
   "df": [
    0.9553128303049964,
@@ -1397,11 +1423,11 @@
    0.5177771918414789
   ],
   "pv": [
-   1073.7515387690607,
-   2408.836766610491,
-   2208.8094829148745,
-   2030.3507216188382,
-   1896.4032891471122
+   1024.2025297410728,
+   2272.513053149818,
+   2083.2969801944764,
+   1914.0445345610822,
+   1787.8017615652082
   ],
   "fwd_wacc": [
    0.2451592218162085,
@@ -1426,108 +1452,108 @@
   ],
   "treasury": [
    127.08803423239996,
-   205.43802492174362,
-   293.5361541500906,
-   387.7645228793235,
-   501.9200656574684
+   199.8303358175639,
+   279.11625142659204,
+   364.4846679974838,
+   468.87549348113487
   ],
   "pbt": [
-   4685.777362157333,
-   5077.5653673951065,
-   5517.252896728614,
-   5887.802734600104,
-   6326.11586085134
+   4493.96376890014,
+   4861.835933964966,
+   5273.033296599964,
+   5617.253486888467,
+   6028.128135702394
   ],
   "tax": [
-   1116.1521676658767,
-   1209.4760705135143,
-   1314.2096400007558,
-   1402.4746113817446,
-   1506.880798054789
+   1070.4621697520133,
+   1158.089319470455,
+   1256.0365312501115,
+   1338.0297805768328,
+   1435.90012192431
   ],
   "pat": [
-   3569.6251944914566,
-   3868.0892968815924,
-   4203.0432567278585,
-   4485.328123218359,
-   4819.235062796551
+   3423.501599148127,
+   3703.746614494511,
+   4016.9967653498525,
+   4279.223706311634,
+   4592.228013778084
   ],
   "dividends": [
-   1984.71160813725,
-   2150.6576490661655,
-   2336.8920507406897,
-   2493.842436509408,
-   2679.4946949148825
+   1903.4668891263586,
+   2059.2831176589484,
+   2233.4502015345183,
+   2379.2483807092685,
+   2553.278775660615
   ],
   "cash": [
-   2265.096358187259,
-   3171.156635105756,
-   4228.161153517174,
-   5433.331066306189,
-   6798.784681851375
+   2221.9602881551073,
+   3050.9907790766006,
+   4020.3053063578914,
+   5127.362805414212,
+   6384.113308237977
   ],
   "equity": [
-   4225.695661354206,
-   5943.127309169633,
-   7809.278515156802,
-   9800.764201865753,
-   11940.504569747422
+   4160.816785021769,
+   5805.280281857331,
+   7588.8268456726655,
+   9488.80217127503,
+   11527.751409392498
   ],
   "ppe": [
-   3701.3261806613295,
-   4374.350015787041,
-   5037.207602219953,
-   5690.4320659070545,
-   6331.571676051919
+   3707.047971792984,
+   4386.866215361702,
+   5057.726534048306,
+   5720.185758941476,
+   6371.883654518596
   ],
   "wc": [
-   2399.598706505618,
-   2537.9462422768365,
-   2684.235343419676,
-   2817.3266536525102,
-   2950.4737958441283
+   2372.134109073677,
+   2507.7488714190276,
+   2651.120589266468,
+   2781.5791909193426,
+   2912.0800306359256
   ],
   "total_assets": [
-   8366.021245354206,
-   10083.452893169633,
-   11949.604099156802,
-   13941.089785865754,
-   16080.830153747422
+   8301.142369021767,
+   9945.605865857331,
+   11729.152429672666,
+   13629.12775527503,
+   15668.076993392498
   ],
   "volume_mt": [
-   4.807016316507504,
-   4.847292769440655,
-   4.8877222100954985,
-   4.910625933151433,
-   4.928304638472033
+   4.807498223495703,
+   4.847784527220631,
+   4.888223896848139,
+   4.91113288538682,
+   4.928816332378224
   ],
   "price_t": [
-   2757.142397880631,
-   2972.0764373462957,
-   3196.908456776912,
-   3407.85369270253,
-   3620.7693206982467
+   2709.258795900267,
+   2919.8657218250205,
+   3140.127070103686,
+   3346.844726173582,
+   3555.4796553307538
   ],
   "margin": [
-   0.36895783238865915,
-   0.3651889435032481,
-   0.3633050242026157,
-   0.35966080342791396,
-   0.359390541039244
+   0.3602750293564365,
+   0.3563567760150604,
+   0.3543441568784025,
+   0.35057370507096386,
+   0.3502309694020256
   ],
   "eps": [
-   9.522366484748913,
-   10.318552193513609,
-   11.212078596816692,
-   11.965104420359465,
-   12.855837782330099
+   9.13256577707922,
+   9.880150074100222,
+   10.71577918789361,
+   11.415298296472859,
+   12.25027159607867
   ],
   "dps": [
-   5.2944357655203955,
-   5.737115019593567,
-   6.2339156998300815,
-   6.652598057719863,
-   7.1478458069755355
+   5.077706572056046,
+   5.493363441199724,
+   5.957973228468847,
+   6.34690585283891,
+   6.811151007419742
   ]
  },
  "wacc": {
@@ -1550,30 +1576,30 @@
   "eur_share": 0.9109398221152498
  },
  "dcf": {
-  "sum_pv": 9618.151799060375,
-  "tv": 22397.98436041292,
-  "pv_tv": 10836.55120916499,
-  "ev": 20454.703008225366,
-  "tv_share": 0.5297828672852074,
+  "sum_pv": 9081.858859211658,
+  "tv": 20174.352997415568,
+  "pv_tv": 9760.718011512829,
+  "ev": 18842.576870724486,
+  "tv_share": 0.5180139679662368,
   "df_tv": 0.4838181434003472,
-  "cash_at_val": 3259.475926384529,
-  "net_cash": 1998.966837384529,
+  "cash_at_val": 3186.9619263724344,
+  "net_cash": 1926.4528373724345,
   "nci": 0.158005,
-  "equity": 22453.511840609895,
-  "fv": 59.897204038643295,
-  "roic_term": 0.0922863768884823,
-  "rr_term": 0.5417917756205705,
+  "equity": 20768.87170309692,
+  "fv": 55.40324181284112,
+  "roic_term": 0.08808826189903947,
+  "rr_term": 0.5676125163793839,
   "ic_repl": 50481.079999999994,
-  "nopat_term": 4658.715974617626,
+  "nopat_term": 4446.790595986363,
   "net_debt_bs": -2324.2825709999997,
   "rem": 0.41700000000000004
  },
  "lenses": {
   "values": {
-   "DCF (cash flow)": 59.897204038643295,
-   "Relative multiples": 49.15413228930852,
-   "Normalised earnings": 53.140110719777304,
-   "Asset / replacement cost": 69.06790434251907
+   "DCF (cash flow)": 55.40324181284112,
+   "Relative multiples": 48.9606932457765,
+   "Normalised earnings": 52.94667167624527,
+   "Asset / replacement cost": 68.87446529898703
   },
   "weights": {
    "DCF (cash flow)": 0.5,
@@ -1581,58 +1607,58 @@
    "Normalised earnings": 0.22,
    "Asset / replacement cost": 0.08
   },
-  "central": 56.99568518293589,
-  "low": 49.15413228930852,
-  "high": 69.06790434251907,
+  "central": 54.65198454826878,
+  "low": 48.9606932457765,
+  "high": 68.87446529898703,
   "ebitda_norm": 3650.55003335568,
   "nopat_norm": 2560.2412428793573,
-  "ev_per_t_spot": 79.99352056705953,
+  "ev_per_t_spot": 80.28184661084521,
   "ev_asset": 23892.5,
-  "ev_spot": 20118.370422615473,
+  "ev_spot": 20190.88442262757,
   "bvps": 12.384575659804227,
   "roe_fy25": 0.7753426773153149
  },
  "lens_ranges": {
   "DCF (cash flow)": {
-   "bear": 55.06169777788984,
-   "base": 59.897204038643295,
-   "bull": 69.01854189411831
+   "bear": 50.5480545767635,
+   "base": 55.40324181284112,
+   "bull": 64.13577583906877
   },
   "Relative multiples": {
-   "bear": 44.23871906037767,
-   "base": 49.15413228930852,
-   "bull": 54.06954551823938
+   "bear": 44.06462392119885,
+   "base": 48.9606932457765,
+   "bull": 53.85676257035415
   },
   "Normalised earnings": {
-   "bear": 47.82609964779957,
-   "base": 53.140110719777304,
-   "bull": 58.45412179175504
+   "bear": 47.65200450862075,
+   "base": 52.94667167624527,
+   "bull": 58.241338843869805
   },
   "Asset / replacement cost": {
-   "bear": 62.16111390826717,
-   "base": 69.06790434251907,
-   "bull": 75.97469477677099
+   "bear": 61.98701876908833,
+   "base": 68.87446529898703,
+   "bull": 75.76191182888574
   },
   "Weighted central": {
-   "bear": 51.87322373619773,
-   "base": 56.99568518293589,
-   "bull": 64.26106242703483
+   "bear": 49.52935456604515,
+   "base": 54.65198454826878,
+   "bull": 61.71328792556743
   }
  },
  "sensitivity": {
   "nc_grid": [
-   498.9668373845291,
-   1248.966837384529,
-   1998.966837384529,
-   2748.966837384529,
-   3498.966837384529
+   426.4528373724345,
+   1176.4528373724345,
+   1926.4528373724345,
+   2676.4528373724343,
+   3426.4528373724343
   ],
   "net_cash": [
-   57.92481146632743,
-   59.92551867631202,
-   61.9262258862966,
-   63.92693309628118,
-   65.92764030626577
+   53.22941162256606,
+   55.230118832550644,
+   57.23082604253523,
+   59.23153325251982,
+   61.2322404625044
   ],
   "wacc_grid": [
    0.2151592218162085,
@@ -1650,39 +1676,39 @@
   ],
   "wacc_g": [
    [
-    69.68480446917765,
-    67.02354639938432,
-    63.80382223673868,
-    59.82923330334724,
-    54.79906056677138
+    65.4358916875569,
+    62.501660281659845,
+    58.95167921684183,
+    54.56940460534815,
+    49.0232717487574
    ],
    [
-    68.62467545844318,
-    66.01291262285645,
-    62.85307028953042,
-    58.95240248854102,
-    54.015783090712134
+    64.4439240155076,
+    61.56426472056051,
+    58.08030774646356,
+    53.77953658279984,
+    48.33655311551247
    ],
    [
-    67.59129378051799,
-    65.02774111983067,
-    61.9262258862966,
-    58.09755998163097,
-    53.2520649697296
+    63.47697718452289,
+    60.65047312877611,
+    57.23082604253523,
+    53.00944222874014,
+    47.666930052856834
    ],
    [
-    66.58375921938828,
-    64.0671754246041,
-    61.0224854926659,
-    57.26396758933526,
-    52.50725070512303
+    62.534209175820116,
+    59.75949172543742,
+    56.402498684846876,
+    52.258458166282814,
+    47.013830360720064
    ],
    [
-    65.60120983131745,
-    63.13039547455369,
-    60.141079715897554,
-    56.45091846835627,
-    51.78071261511543
+    61.61481376702958,
+    58.890560465161506,
+    55.59462149526185,
+    51.52594918262109,
+    46.376706107654
    ]
   ],
   "beta_grid": [
@@ -1693,11 +1719,11 @@
    1.3
   ],
   "beta": [
-   62.191853033913596,
-   56.34393307051827,
-   51.73278769457785,
-   48.86156459044297,
-   46.376281776879416
+   57.47276405811282,
+   52.17638945894387,
+   47.995379097873936,
+   45.38931766855932,
+   43.13157219177125
   ],
   "mgn_grid": [
    -0.04,
@@ -1707,11 +1733,11 @@
    0.04
   ],
   "mgn": [
-   49.80257797286092,
-   55.86440192957877,
-   61.9262258862966,
-   67.98804984301447,
-   74.04987379973232
+   45.323478533341074,
+   51.27715228793815,
+   57.23082604253523,
+   63.184499797132325,
+   69.13817355172941
   ],
   "wt_grid": [
    0.1253059855863866,
@@ -1722,39 +1748,39 @@
   ],
   "exp_term": [
    [
-    74.54479265991846,
-    68.55901969603394,
-    63.80382223673868,
-    59.92930060886857,
-    56.70691323937821
+    68.64597961649716,
+    63.244522868005326,
+    58.95167921684183,
+    55.452280308516265,
+    52.540467902875676
    ],
    [
-    73.38777996625358,
-    67.5169597654033,
-    62.85307028953042,
-    59.052932519594684,
-    55.89239471828357
+    67.58840394218933,
+    62.29070054744534,
+    58.08030774646356,
+    54.64811079075967,
+    51.792205620567564
    ],
    [
-    72.26016858976557,
-    66.50123914144211,
-    61.9262258862966,
-    58.19849137161848,
-    55.09815671448623
+    66.55767856176094,
+    61.360964335512776,
+    57.23082604253523,
+    53.864041226304245,
+    51.06255463427581
    ],
    [
-    71.16096421323304,
-    65.51096985080824,
-    61.0224854926659,
-    57.36524238774131,
-    54.32352159125278
+    65.55289576343243,
+    60.45450253462565,
+    56.402498684846876,
+    53.09939834102199,
+    50.35089334641367
    ],
    [
-    70.08921493439811,
-    64.54530172310298,
-    60.141079715897554,
-    56.552481951734464,
-    53.56784039640031
+    64.57318654984805,
+    59.57053799713047,
+    55.59462149526185,
+    52.35353740838655,
+    49.656626466998944
    ]
   ]
  },
@@ -1763,27 +1789,27 @@
    "choice": "Cost of debt: currency composition as contracted (adopted) vs the pound-equivalent under uncovered interest parity",
    "adopted": "7.89%",
    "alternative": "13.36%",
-   "fv_adopted": 59.897204038643295,
-   "fv_alternative": 61.80028530387204,
-   "effect": 0.03177245575604748,
+   "fv_adopted": 55.40324181284112,
+   "fv_alternative": 57.11539589886546,
+   "effect": 0.030903500048033328,
    "note": "91% of the book is euro-denominated at Euribor-linked rates. Adopting the contracted rate means that debt is NOT compensated for pound depreciation beyond what this study already assumes; if the pound falls faster, the true pound cost of servicing it is understated by construction. The alternative is computed rather than described \u2014 and it is small, because debt is only 4.9% of the capital structure."
   },
   {
    "choice": "Beta: contemporaneous regression (adopted) vs lead-lag sum-beta",
    "adopted": "0.628",
    "alternative": "0.919",
-   "fv_adopted": 59.897204038643295,
-   "fv_alternative": 53.48004877782317,
-   "effect": -0.1071361403894584,
+   "fv_adopted": 55.40324181284112,
+   "fv_alternative": 49.580224350832346,
+   "effect": -0.1051024682216184,
    "note": "The regression passes the usability gate, so it is adopted. It is also statistically weak, and the standard correction for a thinly traded share is higher."
   },
   {
    "choice": "Capex: economic maintenance in dollars per tonne (adopted) vs book depreciation",
    "adopted": "USD 4.00/t",
    "alternative": "book depreciation",
-   "fv_adopted": 59.897204038643295,
-   "fv_alternative": 67.29433644504972,
-   "effect": 0.12349712353241227,
+   "fv_adopted": 55.40324181284112,
+   "fv_alternative": 62.66429612426797,
+   "effect": 0.131058293230486,
    "note": "Setting capex equal to book depreciation would flatter free cash flow by construction. The adopted treatment is the conservative one and the size of the conservatism is published."
   }
  ],
@@ -1837,8 +1863,8 @@
    "FY2025"
   ],
   "stable_implied_g": 0.0658249510576888,
-  "roic_repl": 0.0922863768884823,
-  "rr_repl": 0.5417917756205705,
+  "roic_repl": 0.08808826189903947,
+  "rr_repl": 0.5676125163793839,
   "ic_repl": 50481.079999999994,
   "roic_book_fy25": 0.6059802218552789,
   "ic_book_fy25": 5777.682893,
@@ -1847,46 +1873,46 @@
   "share_of_gdp": 0.0006915177822777778
  },
  "growth_destroys_value": {
-  "fv_at_g3": 67.59129378051799,
-  "fv_at_g7": 53.2520649697296,
-  "roic_term": 0.0922863768884823,
+  "fv_at_g3": 63.47697718452289,
+  "fv_at_g7": 47.666930052856834,
+  "roic_term": 0.08808826189903947,
   "wacc_term": 0.14530598558638658,
-  "nopat_term": 4436.872356778691,
+  "nopat_term": 4235.038662844155,
   "ic_replacement": 50481.079999999994,
-  "n_over_ic": 0.08789178751284028,
+  "n_over_ic": 0.08389358276098996,
   "hurdle": 0.12687088639634692,
   "analytic_adds_value": false,
   "model_adds_value": false,
-  "spread_pct": -0.2121460917341017,
+  "spread_pct": -0.2490674230706893,
   "holds": true
  },
  "experts": [
   {
    "label": "Expert 1",
    "method": "Replacement-cost industrialist",
-   "central": 69.06790434251907,
-   "low": 59.004347076296604,
-   "high": 79.13146160874153,
+   "central": 68.87446529898703,
+   "low": 58.81090803276457,
+   "high": 78.93802256520951,
    "summary": "Values the plant, not the earnings stream. The audited accounts put net property, plant and equipment at EGP 2522mn and assets under construction at a further EGP 392mn, on a book carried at pre-devaluation historic cost. Five million tonnes of grey cement capacity costs about USD 130 per annual tonne to build; nobody pays that in a market carrying 76Mt of capacity against 54Mt of consumption, so the justified figure is marked to USD 95. Against that the market is paying USD 80 per annual tonne.",
    "falsifier": "Find an Egyptian line built, bought or restarted below USD 95 per annual tonne. The 12.6Mt revival programme is the live test and it runs against this lens: restarting a mothballed kiln costs a fraction of building one, which is why this valuation is a ceiling and carries only 8% of the weight."
   },
   {
    "label": "Expert 2",
    "method": "Mid-cycle earnings-power analyst",
-   "central": 53.140110719777304,
-   "low": 46.31038656787247,
-   "high": 59.96983487168214,
+   "central": 52.94667167624527,
+   "low": 46.11694752434044,
+   "high": 59.77639582815011,
    "summary": "Refuses to capitalise a peak, and refuses it on both legs. The audited EBITDA margin went 22.0% to 23.1% to 39.3% across FY2023 to FY2025 \u2014 the last of those is the best year the Egyptian industry has had in over a decade. The margin is normalised to 31.2%, the midpoint of the two most recent audited years, the revenue base is cut 6%, and what is left is capitalised at 7 times with cash added back at face.",
    "falsifier": "Two consecutive years of realised prices above EGP 4,200 a tonne WITH the revival proceeding would prove the mid-cycle base too low. Equally, the first quarter of 2026 already ran a 42.9% gross margin against 40.6% for FY2025 as a whole \u2014 if that holds for the year, this lens is too cautious."
   },
   {
    "label": "Expert 3",
    "method": "Cash-return and distribution investor",
-   "central": 55.394289681707846,
-   "low": 49.13650867854979,
-   "high": 63.73799768591857,
-   "summary": "Ignores the terminal value and asks what the cash stream is worth to someone who has to be paid in cash. Average free cash flow to the firm across FY2027-FY2030 is EGP 3284mn; required at a 17.5% cash return that is a business worth EGP 18767mn before net cash of EGP 1999mn is added back. This is not hypothetical: the company declared EGP 2002mn for FY2025 on EGP 3600mn of attributable profit, a 56% payout, and the audited cash flow shows EGP 1702mn actually paid out during 2025.",
-   "falsifier": "A required cash return above 20% takes this valuation to EGP 49.14. So would maintenance capital spending materially above the USD 4.00 per tonne assumed here \u2014 the audited FY2024 and FY2025 capex of EGP 912mn and EGP 796mn is the number to watch, and both years carried the alternative-fuel and silo programmes on top of maintenance."
+   "central": 52.3465209611052,
+   "low": 46.44553116758097,
+   "high": 60.214507352470825,
+   "summary": "Ignores the terminal value and asks what the cash stream is worth to someone who has to be paid in cash. Average free cash flow to the firm across FY2027-FY2030 is EGP 3097mn; required at a 17.5% cash return that is a business worth EGP 17697mn before net cash of EGP 1926mn is added back. This is not hypothetical: the company declared EGP 2002mn for FY2025 on EGP 3600mn of attributable profit, a 56% payout, and the audited cash flow shows EGP 1702mn actually paid out during 2025.",
+   "falsifier": "A required cash return above 20% takes this valuation to EGP 46.45. So would maintenance capital spending materially above the USD 4.00 per tonne assumed here \u2014 the audited FY2024 and FY2025 capex of EGP 912mn and EGP 796mn is the number to watch, and both years carried the alternative-fuel and silo programmes on top of maintenance."
   }
  ],
  "peers": {
@@ -1916,22 +1942,24 @@
   },
   "sector": {
    "capacity_mt": 76.0,
-   "consumption_mt": 54.0,
-   "production_mt": 65.0,
-   "exports_mt": 18.5,
+   "consumption_mt": 53.9,
+   "production_mt": 72.6,
+   "exports_mt": 18.6,
    "revival_mt": 12.6,
    "share_of_capacity": 0.06578947368421052,
-   "revival_pct_of_consumption": 0.23333333333333334,
-   "utilisation": 0.8552631578947368
+   "revival_pct_of_consumption": 0.23376623376623376,
+   "utilisation": 0.9552631578947368
   }
  },
  "assert_log": [
-  "bridge closes exactly: EV 20,454.70 + net cash 1,998.97 - NCI 0.158 = equity 22,453.51",
-  "net cash carries a POSITIVE sign into the bridge (1,999.0)",
+  "bridge closes exactly: EV 18,842.58 + net cash 1,926.45 - NCI 0.158 = equity 20,768.87",
+  "net cash carries a POSITIVE sign into the bridge (1,926.5)",
   "minority interests are DEDUCTED (0.158), not added",
-  "terminal value is 53.0% of enterprise value",
-  "implied fair value to spot 0.97x is inside the plausibility band",
+  "terminal value is 51.8% of enterprise value",
+  "implied fair value to spot 0.93x is inside the plausibility band",
   "terminal rate 14.53% is BELOW the explicit-window rate 24.52%",
+  "the physical build reproduces EVERY disclosed FY2025 tonne to within 0.012%: clinker made 3.8514 vs 3.8516, cement made 3.4804 vs 3.4806, local 2.9233 vs 2.9236, cement exports 0.6296 vs 0.6295, clinker exports 1.3006 vs 1.3005, total 4.8535 vs 4.8536Mt. Revisions 1-3 reconstructed these from an assumed price and were 28% low on the total",
+  "the Egyptian sector balance CLOSES: local 53.9Mt plus exports 18.6Mt = 72.5Mt against the disclosed total of 72.6Mt. It did not close in any earlier revision",
   "no forecast year asks the kiln for more than nameplate: peak 93.5% of 4.2Mt",
   "no forecast year asks the mill for more than nameplate: peak 75.0% of 5.0Mt",
   "cement exports (17.7%) sit INSIDE the 30% statutory cap the study cites \u2014 revision 3's single-product build breached it at 31.5%",
@@ -1941,7 +1969,7 @@
   "the audited balance sheet closes: assets 8,783.722 less liabilities 4,140.990 = equity 4,642.732",
   "the forecast EBITDA margin glides DOWN every year from the FY2025 peak",
   "the effective tax rate used (23.82%) is within 3 points of the statutory rate (22.50%), as the audited accounts show",
-  "the terminal growth lever moves the model in the direction its own algebra requires: N/IC 8.79% against the hurdle W/(1+W) 12.69%, so growth destroys value, and the model destroys it \u2014 a spread of -21.2% from 3% to 7%, which is MATERIAL and is published",
+  "the terminal growth lever moves the model in the direction its own algebra requires: N/IC 8.39% against the hurdle W/(1+W) 12.69%, so growth destroys value, and the model destroys it \u2014 a spread of -24.9% from 3% to 7%, which is MATERIAL and is published",
   "the share count is confirmed by the declared FY2025 dividend to 0.0000%",
   "discount factors decline monotonically",
   "lens weights sum to exactly 1",
@@ -1955,55 +1983,58 @@
   "\n[Shares] 378.7397mn issued less 3.8723mn treasury = 374.8674mn outstanding. The FY2025 distribution of EGP 2,001.8mn at the reported EGP 5.34 per share implies 374.8674mn \u2014 the same count. Market capitalisation EGP 22,117mn",
   "\n[Audited history] EBITDA 1,330  2,021  4,886  margin 22.00%  23.15%  39.25%",
   "[Audited history] operating profit 1,079  1,764  4,596; effective tax 25.02%  22.96%  23.82%",
-  "\n[The plant, in tonnes \u2014 DRIVERS, not outputs] kiln 91.7% of 4.2Mt = 3.851Mt of clinker; 1.301Mt sold as clinker, 2.551Mt ground at a clinker factor of 0.733 into 3.480Mt of cement (69.6% of the 5.0Mt mill)",
-  "[Despatches] local cement 2.863Mt, export cement 0.617Mt, export clinker 1.301Mt = 4.781Mt total",
-  "[Prices \u2014 DERIVED from the audited revenue note, not assumed] local cement EGP 2,916/t; export cement USD 46.6/t; export clinker USD 30.3/t at the 0.65 clinker ratio. Revision 3 ASSUMED EGP 3,500 and USD 62 and derived tonnes from them \u2014 the reverse, and untestable",
+  "\n[The plant, in tonnes \u2014 DRIVERS, not outputs] kiln 91.7% of 4.2Mt = 3.851Mt of clinker; 1.301Mt sold as clinker, 2.551Mt ground at a clinker factor of 0.7329 into 3.480Mt of cement (69.6% of the 5.0Mt mill), plus a 72.5kt draw from finished-goods stock",
+  "[Against the DISCLOSED physicals] the company reports clinker production 3,851.6kt, cement production 3,480.6kt, local sales 2,923.6kt, cement exports 629.5kt, clinker exports 1,300.5kt, total 4,853.6kt. This build reproduces 3,851.4 / 3,480.4 / 2,923.3 / 629.6 / 1,300.6 / 4,853.5",
+  "[Despatches] local cement 2.923Mt, export cement 0.630Mt, export clinker 1.301Mt = 4.854Mt total",
+  "[Prices \u2014 DERIVED from the audited revenue note, not assumed] local cement EGP 2,856/t; export cement USD 46.2/t; export clinker USD 30.0/t at the 0.65 clinker ratio. Revision 3 ASSUMED EGP 3,500 and USD 62 and derived tonnes from them \u2014 the reverse, and untestable",
   "[Export cap] cement exports are 17.7% of cement production against a 30% statutory cap. Revision 3's single-product build put exports at 31.5% of volume and BREACHED the cap its own text called binding",
-  "[Cost stack, DISCLOSED \u2014 notes 5 and 6, allocated to their own driver] materials and fuel EGP 1,480 per tonne of CLINKER (the kiln burns it, not the mill); transportation EGP 160 and overheads EGP 214 per tonne DESPATCHED; total cash cost EGP 1,565/t sold. Provisions and expected credit losses are EXCLUDED \u2014 revision 3 carried them inside 'cash cost', and they are not cash",
+  "[Cost stack, DISCLOSED \u2014 notes 5 and 6, allocated to their own driver] materials and fuel EGP 1,480 per tonne of CLINKER (the kiln burns it, not the mill); transportation EGP 157 and overheads EGP 210 per tonne DESPATCHED; total cash cost EGP 1,542/t sold. Provisions and expected credit losses are EXCLUDED \u2014 revision 3 carried them inside 'cash cost', and they are not cash",
   "[Reconstruction] FY2025 revenue 12,447 vs AUDITED 12,447 (+0.000%); EBITDA 4,886 vs AUDITED 4,886 (+0.000%)",
   "[Capacity, and it BINDS] kiln 92% 92% 93% 93% 94%; mill 71% 72% 74% 74% 75%. Both are checked in every year against nameplate. Revision 3's kiln test could not bind because it ignored clinker exports altogether",
-  "[Volume] 4.781Mt -> 4.928Mt (+3.1%), and it comes from RETAINING clinker (1.301Mt -> 1.178Mt) and grinding it into cement (3.480Mt -> 3.750Mt), not from a price assumption",
-  "[Forecast margins] 36.9%  36.5%  36.3%  36.0%  35.9%",
+  "[Volume] 4.854Mt -> 4.929Mt (+1.6%), and it comes from RETAINING clinker (1.301Mt -> 1.178Mt) and grinding it into cement (3.480Mt -> 3.751Mt), not from a price assumption",
+  "[Forecast margins] 36.0%  35.6%  35.4%  35.1%  35.0%",
   "\n[Cost of debt \u2014 the integrity evidence, all from note 25 and note 8] 91.1% of the book is EURO-denominated. Contractual: CIB 20.60% (corridor + 0.6%), NBE 5.49% (Euribor + 3.00%), EBRD 6.84% (Euribor + 4.35%) -> blended 7.89%",
   "[Cost of debt \u2014 independently computed effective rates] FY2024 20.85%, FY2025 5.03%, Q1-2026 annualised 3.73%. The 150bp bound against the FY2025 check is NOT met: the book re-based mid-year from pound facilities to euro term debt, and interest on the under-construction alternative-fuel assets is capitalised rather than expensed, so the trailing effective rate understates the marginal contractual one. The contractual rate is adopted and the gap is disclosed rather than smoothed",
   "[Multi-currency alternative, computed as a VALUE not described] loading the euro legs with 6.0% annual pound depreciation under uncovered interest parity gives a pound-equivalent cost of debt of 13.36%",
   "\n[Cost of capital] risk-free 22.95% less sovereign spread 3.40% = 19.55%; cost of equity 25.46% at beta 0.628; after-tax cost of debt 6.12% on a 4.88% weight -> explicit-window rate 24.52%; terminal 14.53%",
-  "\n[Free cash flow] 1,124 2,900 3,170 3,404 3,663",
-  "[Bridge] EV 20,455 = explicit 9,618 + terminal 10,837; plus net cash 1,999 (after deducting the EGP 2,002mn FY2025 dividend declared and unpaid at 31 March 2026), less minorities 0.158 = equity 22,454 -> EGP 59.90 per share",
-  "[Terminal value] 53.0% of enterprise value; terminal return on capital 9.23% against a terminal rate of 14.53%, reinvestment 54.2%",
-  "\n[Lenses] DCF 59.90 | Relative 49.15 | Normalised 53.14 | Asset 69.07",
-  "[Central] EGP 57.00 against a market price of EGP 59.00 (-3.4%); the market is paying USD 80.0 per annual tonne against a replacement cost of USD 130",
+  "\n[Free cash flow] 1,072 2,736 2,990 3,209 3,453",
+  "[Bridge] EV 18,843 = explicit 9,082 + terminal 9,761; plus net cash 1,926 (after deducting the EGP 2,002mn FY2025 dividend declared and unpaid at 31 March 2026), less minorities 0.158 = equity 20,769 -> EGP 55.40 per share",
+  "[Terminal value] 51.8% of enterprise value; terminal return on capital 8.81% against a terminal rate of 14.53%, reinvestment 56.8%",
+  "\n[Lenses] DCF 55.40 | Relative 48.96 | Normalised 52.95 | Asset 68.87",
+  "[Central] EGP 54.65 against a market price of EGP 59.00 (-7.4%); the market is paying USD 80.3 per annual tonne against a replacement cost of USD 130",
   "\n[Contested choices, each computed]",
-  "  Cost of debt: currency composition as contracted (adopted) v: 59.90 -> 61.80 (+3.2%)",
-  "  Beta: contemporaneous regression (adopted) vs lead-lag sum-b: 59.90 -> 53.48 (-10.7%)",
-  "  Capex: economic maintenance in dollars per tonne (adopted) v: 59.90 -> 67.29 (+12.3%)",
+  "  Cost of debt: currency composition as contracted (adopted) v: 55.40 -> 57.12 (+3.1%)",
+  "  Beta: contemporaneous regression (adopted) vs lead-lag sum-b: 55.40 -> 49.58 (-10.5%)",
+  "  Capex: economic maintenance in dollars per tonne (adopted) v: 55.40 -> 62.66 (+13.1%)",
   "\n[Terminal reconciliation \u2014 now buildable, because capex is disclosed for all three years] reinvestment rate -24% 48% 14%; book return on capital 43.9% 44.3% 60.6%",
   "[Terminal growth ceiling] profit compounded 127% a year over FY2023-FY2025; at that rate against 18% nominal economic growth this company equals the whole Egyptian economy in 11 years. Terminal growth is held at 5%",
-  "[Growth and value] terminal return on capital 9.2% against terminal rate 14.5%: EGP 67.59 at 3% growth against 53.25 at 7% \u2014 a spread of -21.2% across four points of growth, so the answer DOES rest partly on the terminal growth rate",
-  "[Growth and value \u2014 the correct hurdle] the terminal block reduces to [N(1+g) - g.IC]/(W-g), so the sign of the growth lever is the constant N(1+W) - IC.W and the test is N/IC vs W/(1+W), not ROIC vs W. N/IC = 8.789% against a hurdle of 12.687% -> growth DESTROYS value by 390bp. Revision 3 read 13.81% against a 13.61% hurdle and concluded growth added value by 21bp \u2014 but its denominator was in Aug-2026 pounds against a FY2031 numerator, and the currency-vintage error was larger than the margin it was measuring",
+  "[Growth and value] terminal return on capital 8.8% against terminal rate 14.5%: EGP 63.48 at 3% growth against 47.67 at 7% \u2014 a spread of -24.9% across four points of growth, so the answer DOES rest partly on the terminal growth rate",
+  "[Growth and value \u2014 the correct hurdle] the terminal block reduces to [N(1+g) - g.IC]/(W-g), so the sign of the growth lever is the constant N(1+W) - IC.W and the test is N/IC vs W/(1+W), not ROIC vs W. N/IC = 8.389% against a hurdle of 12.687% -> growth DESTROYS value by 430bp. Revision 3 read 13.81% against a 13.61% hurdle and concluded growth added value by 21bp \u2014 but its denominator was in Aug-2026 pounds against a FY2031 numerator, and the currency-vintage error was larger than the margin it was measuring",
   "\n==============================================================================",
   "ASSERT LOG",
-  "   1. bridge closes exactly: EV 20,454.70 + net cash 1,998.97 - NCI 0.158 = equity 22,453.51",
-  "   2. net cash carries a POSITIVE sign into the bridge (1,999.0)",
+  "   1. bridge closes exactly: EV 18,842.58 + net cash 1,926.45 - NCI 0.158 = equity 20,768.87",
+  "   2. net cash carries a POSITIVE sign into the bridge (1,926.5)",
   "   3. minority interests are DEDUCTED (0.158), not added",
-  "   4. terminal value is 53.0% of enterprise value",
-  "   5. implied fair value to spot 0.97x is inside the plausibility band",
+  "   4. terminal value is 51.8% of enterprise value",
+  "   5. implied fair value to spot 0.93x is inside the plausibility band",
   "   6. terminal rate 14.53% is BELOW the explicit-window rate 24.52%",
-  "   7. no forecast year asks the kiln for more than nameplate: peak 93.5% of 4.2Mt",
-  "   8. no forecast year asks the mill for more than nameplate: peak 75.0% of 5.0Mt",
-  "   9. cement exports (17.7%) sit INSIDE the 30% statutory cap the study cites \u2014 revision 3's single-product build breached it at 31.5%",
-  "  10. the unit build reproduces AUDITED FY2025 revenue to +0.000%",
-  "  11. the unit build reproduces AUDITED FY2025 EBITDA to +0.000%",
-  "  12. FY2025 operating profit closes from the audited lines to EGP 4,595.824mn",
-  "  13. the audited balance sheet closes: assets 8,783.722 less liabilities 4,140.990 = equity 4,642.732",
-  "  14. the forecast EBITDA margin glides DOWN every year from the FY2025 peak",
-  "  15. the effective tax rate used (23.82%) is within 3 points of the statutory rate (22.50%), as the audited accounts show",
-  "  16. the terminal growth lever moves the model in the direction its own algebra requires: N/IC 8.79% against the hurdle W/(1+W) 12.69%, so growth destroys value, and the model destroys it \u2014 a spread of -21.2% from 3% to 7%, which is MATERIAL and is published",
-  "  17. the share count is confirmed by the declared FY2025 dividend to 0.0000%",
-  "  18. discount factors decline monotonically",
-  "  19. lens weights sum to exactly 1",
-  "  20. the weighted central sits inside the range of the four lenses",
-  "  21. the cost-of-debt build is currency-blended: 91.1% of the book is euro-denominated and a single-currency shortcut would be wrong",
+  "   7. the physical build reproduces EVERY disclosed FY2025 tonne to within 0.012%: clinker made 3.8514 vs 3.8516, cement made 3.4804 vs 3.4806, local 2.9233 vs 2.9236, cement exports 0.6296 vs 0.6295, clinker exports 1.3006 vs 1.3005, total 4.8535 vs 4.8536Mt. Revisions 1-3 reconstructed these from an assumed price and were 28% low on the total",
+  "   8. the Egyptian sector balance CLOSES: local 53.9Mt plus exports 18.6Mt = 72.5Mt against the disclosed total of 72.6Mt. It did not close in any earlier revision",
+  "   9. no forecast year asks the kiln for more than nameplate: peak 93.5% of 4.2Mt",
+  "  10. no forecast year asks the mill for more than nameplate: peak 75.0% of 5.0Mt",
+  "  11. cement exports (17.7%) sit INSIDE the 30% statutory cap the study cites \u2014 revision 3's single-product build breached it at 31.5%",
+  "  12. the unit build reproduces AUDITED FY2025 revenue to +0.000%",
+  "  13. the unit build reproduces AUDITED FY2025 EBITDA to +0.000%",
+  "  14. FY2025 operating profit closes from the audited lines to EGP 4,595.824mn",
+  "  15. the audited balance sheet closes: assets 8,783.722 less liabilities 4,140.990 = equity 4,642.732",
+  "  16. the forecast EBITDA margin glides DOWN every year from the FY2025 peak",
+  "  17. the effective tax rate used (23.82%) is within 3 points of the statutory rate (22.50%), as the audited accounts show",
+  "  18. the terminal growth lever moves the model in the direction its own algebra requires: N/IC 8.39% against the hurdle W/(1+W) 12.69%, so growth destroys value, and the model destroys it \u2014 a spread of -24.9% from 3% to 7%, which is MATERIAL and is published",
+  "  19. the share count is confirmed by the declared FY2025 dividend to 0.0000%",
+  "  20. discount factors decline monotonically",
+  "  21. lens weights sum to exactly 1",
+  "  22. the weighted central sits inside the range of the four lenses",
+  "  23. the cost-of-debt build is currency-blended: 91.1% of the book is euro-denominated and a single-currency shortcut would be wrong",
   "=============================================================================="
  ]
 }

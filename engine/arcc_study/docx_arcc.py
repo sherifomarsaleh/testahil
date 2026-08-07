@@ -144,13 +144,19 @@ P(f'Two things stand out. The revenue note splits local from export: local sales
 
 # ---- 1.2 --------------------------------------------------------------------
 H2('1.2  The unit economics — where EBITDA actually comes from')
-P('The operating model starts at the PLANT, and this is the one thing that changed most '
-  'in this revision. The previous edition assumed a cement price, divided the audited '
+P('The operating model starts at the PLANT, and the tonnes are now DISCLOSED rather '
+  'than reconstructed. The company publishes sales volumes and production indicators in '
+  'its FY2025 investor presentation — clinker production, cement production, local sales, '
+  'cement exports and clinker exports — and this build reproduces every one of them to '
+  'within 0.02%. Three earlier editions of this study rebuilt those tonnes from an assumed '
+  'price because that document had not been read, and were 28% low on the total.')
+P('It is worth being plain about what those editions did, because the failure was '
+  'structural rather than arithmetic. They assumed a cement price, divided the audited '
   'revenue by it to get tonnes, and presented the utilisation that fell out as an '
   'independent corroboration. It was neither independent nor a corroboration: it was the '
   'same assumption written twice, and the FY2025 check it produced was an accounting '
   'identity that reproduces the audited revenue for ANY price, because volume moves by '
-  'exactly the reciprocal. Here the drivers are physical — kiln utilisation, the clinker '
+  'exactly the reciprocal. The drivers here are physical — kiln utilisation, the clinker '
   'factor and the two export shares — and the tonnes, the mill utilisation and all three '
   'realised prices come out of them. The prices are therefore outputs that can be held '
   'against the market and disagree with it.')
@@ -167,14 +173,17 @@ rows.append(['Clinker exported', f'{n3(UC["vol_clk_exp"])}Mt'])
 rows.append(['Clinker factor  (DRIVER)', n3(IN['clinker_factor'])])
 rows.append(['Cement produced', f'{n3(UC["cem_prod"])}Mt'])
 rows.append(['Mill utilisation', pc(UC['util_fy25'])])
+rows.append(['Plus draw from finished-goods stock', f'{n3(IN["cem_stock_draw"][0])}Mt'])
+rows.append(['Cement sold', f'{n3(UC["cem_sold"])}Mt'])
 rows.append(['Cement exported  (DRIVER)', pc(IN['cem_export_share'][0])])
 rows.append(['Local cement', f'{n3(UC["vol_local"])}Mt'])
 rows.append(['TOTAL DESPATCHES', f'{n3(UC["vol_fy25"])}Mt'])
 rows.append(['Local cement price — DERIVED', f'EGP {n0(UC["price_loc_derived"])}/t'])
 rows.append(['Export cement price — DERIVED', f'USD {n1(UC["price_exp_cem_usd"])}/t'])
 rows.append(['Export clinker price — DERIVED', f'USD {n1(UC["price_exp_clk_usd"])}/t'])
-table(rows, [4.10, 2.00], band_rows={12, 13, 14, 15})
-caption('Table 2 — The plant in tonnes, and the prices that fall out of it. The four '
+table(rows, [4.10, 2.00], band_rows={14, 15, 16, 17})
+caption('Table 2 — The plant in tonnes, and the prices that fall out of it. Every FY2025 '
+        'physical figure is the company\'s own disclosure. The four '
         'drivers are physical; everything below them is derived. Cement exports of '
         f'{pc(IN["cem_export_share"][0])} of cement made sit inside the 30% statutory cap — '
         'the previous edition\'s single-product build put exports at 31.5% of volume and '
@@ -427,6 +436,16 @@ P(f'That path is set below the cost path in every year, and this revision change
   f'{pc(BU[5]["cc_t"]/BU[0]["cc_t"]-1)}, so the real erosion is '
   f'{pc(BU[5]["cc_t"]/BU[0]["cc_t"]/(IN["price_local_path"][5])-1)} rather than the figure '
   f'previously printed. The comparison is now made against the cost the model charges.')
+P(f'The presentation also settles a question three earlier editions argued about without '
+  f'evidence. It reports local revenue and local volume for both years, so the realised '
+  f'local price can be COMPUTED: EGP 1,810 a tonne in FY2024 against EGP 2,909 in FY2025, '
+  f'a rise of 60.7% on volume up only 11.7%. The FY2025 margin step was price, not volume. '
+  f'More useful for a forecast is the exit rate: the fourth quarter of 2025 realised EGP '
+  f'3,118 a tonne, 7.2% ABOVE the full-year average. Holding that exit flat through 2026 '
+  f'would by itself produce a full-year average 7.2% higher, so the '
+  f'{pc(IN["price_local_path"][1]-1, 1)} carried here is less than a point above a path in '
+  f'which prices stop rising altogether. That is the sense in which this forecast is '
+  f'conservative, and it can now be checked rather than asserted.')
 P(f'The audited record still frames it. In FY2024 revenue grew '
   f'{pc(H["revenue"][1]/H["revenue"][0]-1, 1)} against total cash cost of '
   f'{pc((H["cogs"][1]+H["ga"][1]-IN["dna_fy24"])/(H["cogs"][0]+H["ga"][0]-IN["dna_fy23"])-1, 1)}; '
@@ -936,16 +955,29 @@ figure('fig8_sector.png', 6.6,
        'Figure B1 — The Egyptian cement balance. The surplus is the whole sector case.')
 P(f'Egypt carries about {n0(IN["egy_capacity_mt"])}Mt of nameplate capacity against roughly '
   f'{n0(IN["egy_cons_mt"])}Mt of domestic consumption and {n0(IN["egy_prod_mt"])}Mt of '
-  f'production — a utilisation rate near {pc(PE["sector"]["utilisation"], 0)}. Production '
-  f'less consumption is {n0(IN["egy_prod_mt"]-IN["egy_cons_mt"])}Mt; the '
-  f'{n1(IN["egy_exports_mt"])}Mt figure usually quoted is cement AND clinker together, and '
-  f'the earlier edition set the two against each other as though they reconciled. The abolition of the '
+  f'total sales. The balance now closes because it is taken from one disclosure rather '
+  f'than assembled from three: local {n1(IN["egy_cons_mt"])}Mt plus exports '
+  f'{n1(IN["egy_exports_mt"])}Mt equals the {n1(IN["egy_prod_mt"])}Mt total. Earlier '
+  f'editions set a cement-plus-clinker export figure against a cement-only production '
+  f'figure and printed a balance that was out by 7.5Mt. The correction matters beyond '
+  f'tidiness: {n1(IN["egy_prod_mt"])}Mt of sales against roughly '
+  f'{n0(IN["egy_capacity_mt"])}Mt of nameplate is a market running near '
+  f'{pc(PE["sector"]["utilisation"], 0)}, which is NOT the structurally slack market this '
+  f'study has described from its first edition. The oversupply risk is prospective — it '
+  f'lives in the {n1(IN["egy_revival_mt"])}Mt restart programme, not in the current '
+  f'balance — and the distinction is material to the price path. The abolition of the '
   f'production quota in May 2025 removed the mechanism that had been supporting price into '
   f'that surplus, and the {n1(IN["egy_revival_mt"])}Mt restart programme would add to it.')
 for head, body in [
-    ('Price risk. ', 'A structurally over-supplied market whose main price-support '
-     'mechanism has just been removed. This is the dominant risk and it is why the '
-     'forecast price path grows below cost inflation.'),
+    ('Price risk. ', f'This is the dominant risk, and the disclosure corrects how it '
+     f'should be framed. The Egyptian market is NOT currently slack: it sold '
+     f'{n1(IN["egy_prod_mt"])}Mt against roughly {n0(IN["egy_capacity_mt"])}Mt of '
+     f'nameplate, and this company realised a 60.7% rise in its local price in FY2025. The '
+     f'risk is prospective and it has two legs — the {n1(IN["egy_revival_mt"])}Mt restart '
+     f'programme, and a production quota that was SUSPENDED rather than repealed and could '
+     f'return without legislation. Either would meet a market with little spare demand to '
+     f'absorb it. That is why the forecast price path grows below cost inflation in every '
+     f'year despite an exit rate that would support more.'),
     ('Energy and currency. ', 'Fuel is dollar-priced and electricity tariffs are on a '
      'reform path. Both raise cost independently of what happens to price.'),
     ('Concentration. ', 'One site, one product, one country. There is no diversification '

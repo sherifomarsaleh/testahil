@@ -111,7 +111,7 @@ checks = [
     ('Unit build: EXPORT CLINKER PRICE USD, derived', ('Unit Build', 'B27'),
      D['unit_calibration']['price_exp_clk_usd'], 0.1),
     ('Unit build: cement exports inside the 30% cap', ('Unit Build', 'B28'),
-     D['inputs']['cem_export_share']['value'][0], 0.001),
+     D['unit_calibration']['vol_cem_exp'] / D['unit_calibration']['cem_prod'], 0.001),
     ('Unit build: FY2025 cash cost per tonne sold', ('Unit Build', 'B38'),
      D['unit_calibration']['cash_cost_t'], 0.5),
     ('Unit build: reconstructed FY2025 revenue', ('Unit Build', 'B76'),

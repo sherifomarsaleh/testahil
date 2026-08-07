@@ -190,7 +190,7 @@ CASES = [
      'fixed and the two prices split it between them'),
     ('Export clinker price as a fraction of export cement', 'B', +0.10, 'p_eclk', +1,
      'and the clinker price itself must rise'),
-    ('Cement exported, share of cement made', 'B', +0.03, 'p_loc', +1,
+    ('Cement exported, share of cement sold', 'B', +0.03, 'p_loc', +1,
      'exporting more cement leaves fewer local tonnes behind the same local revenue'),
     ('Kiln utilisation  (THE volume driver)', 'C', +0.03, 'vol26', +1,
      'running the plant harder must make more cement'),
@@ -207,7 +207,7 @@ CASES = [
      'a higher export price must raise revenue'),
     ('USD/EGP path', 'C', +5.0, 'rev26', +1,
      'a weaker pound raises the pound value of export revenue'),
-    ('Cement exported, share of cement made', 'C', +0.05, 'rev26', -1,
+    ('Cement exported, share of cement sold', 'C', +0.05, 'rev26', -1,
      'export cement realises less per tonne than local, so a heavier export mix LOWERS '
      'revenue'),
     ('Local cost-inflation index', 'C', +0.10, 'cc26', +1,

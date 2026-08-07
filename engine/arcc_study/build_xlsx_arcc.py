@@ -240,7 +240,8 @@ sect('PATHS — FY2025A then FY2026E to FY2030E')
 hdr(wsA, R[0], [''] + BUY); R[0] += 1
 inprow('Kiln utilisation  (THE volume driver)', 'kutl', IN['kiln_util'], BUC, PCT)
 inprow('Clinker sold as clinker, share of clinker made', 'cksh', IN['clk_export_share'], BUC, PCT)
-inprow('Cement exported, share of cement made', 'cesh', IN['cem_export_share'], BUC, PCT)
+inprow('Cement exported, share of cement sold', 'cesh', IN['cem_export_share'], BUC, PCT)
+inprow('Cement stock draw (Mt)', 'draw', IN['cem_stock_draw'], BUC, NUM3)
 inprow('Local price index', 'pli', IN['price_local_path'], BUC, NUM3)
 inprow('Export price index (USD)', 'pei', IN['price_exp_path'], BUC, NUM3)
 inprow('USD/EGP path', 'fxp', IN['fx_path'], BUC, NUM1)
@@ -398,14 +399,17 @@ CAL = [('Kiln clinker capacity (Mt, audited note 1)', 'B5', f"={A['capclk']}", I
        ('Cement produced (Mt)', 'B12', "=B10/B11", UC['cem_prod'], NUM3),
        ('Cement mill capacity (Mt, audited note 1)', 'B13', f"={A['capcem']}", IN['cap_cement_mt'], NUM2),
        ('Mill utilisation', 'B14', "=B12/B13", UC['util_fy25'], PCT),
-       ('Cement exported, share of cement made', 'B15', f"={A['cesh0']}", IN['cem_export_share'][0], PCT),
-       ('Cement EXPORTED (Mt)', 'B16', "=B12*B15", UC['vol_cem_exp'], NUM3),
-       ('Cement sold LOCALLY (Mt)', 'B17', "=B12-B16", UC['vol_local'], NUM3),
-       ('TOTAL DESPATCHES FY2025 (Mt)', 'B18', "=B12+B9", UC['vol_fy25'], NUM3)]
+       ('Plus draw from finished-goods stock (Mt)', 'B19', f"={A['draw0']}",
+        IN['cem_stock_draw'][0], NUM3),
+       ('Cement SOLD (Mt)', 'B29', "=B12+B19", UC['cem_sold'], NUM3),
+       ('Cement exported, share of cement sold', 'B15', f"={A['cesh0']}", IN['cem_export_share'][0], PCT),
+       ('Cement EXPORTED (Mt)', 'B16', "=B29*B15", UC['vol_cem_exp'], NUM3),
+       ('Cement sold LOCALLY (Mt)', 'B17', "=B29-B16", UC['vol_local'], NUM3),
+       ('TOTAL DESPATCHES FY2025 (Mt)', 'B18', "=B29+B9", UC['vol_fy25'], NUM3)]
 for lab, ad, fm, ex, ft in CAL:
     wsU.cell(row=int(ad[1:]), column=1, value=lab)
     putf(wsU, ad, fm, ex, ft, bold=(ad in ('B18', 'B12')),
-         green=(ad in ('B5', 'B6', 'B8', 'B11', 'B13', 'B15')))
+         green=(ad in ('B5', 'B6', 'B8', 'B11', 'B13', 'B15', 'B19')))
 band(wsU, 20, 10); wsU['A20'] = 'FY2025 PRICES — DERIVED FROM THE AUDITED REVENUE NOTE, AND TESTABLE'
 PRC = [('Local sales of goods (audited note 4)', 'B21', f"={A['rlg']}", IN['rev_local_goods_fy25'], NUM0),
        ('LOCAL CEMENT PRICE (EGP/t) — DERIVED', 'B22', "=B21/B17", UC['price_loc_derived'], NUM0),
@@ -417,8 +421,8 @@ PRC = [('Local sales of goods (audited note 4)', 'B21', f"={A['rlg']}", IN['rev_
         UC['price_exp_cem_usd'], NUM1),
        ('EXPORT CLINKER PRICE (USD/t) — DERIVED', 'B27', "=B26*B24",
         UC['price_exp_clk_usd'], NUM1),
-       ('Cement exports as a share of cement made — against a 30% statutory cap', 'B28',
-        "=B16/B12", IN['cem_export_share'][0], PCT)]
+       ('Cement exports as a share of cement PRODUCED — the 30% statutory cap bites here',
+        'B28', "=B16/B12", UC['vol_cem_exp'] / UC['cem_prod'], PCT)]
 for lab, ad, fm, ex, ft in PRC:
     wsU.cell(row=int(ad[1:]), column=1, value=lab)
     putf(wsU, ad, fm, ex, ft, bold=(ad in ('B22', 'B26', 'B27')),
@@ -460,6 +464,8 @@ LBL = ['Kiln utilisation  (DRIVER)', 'Clinker produced (Mt)',
        'EBITDA per tonne (EGP)']
 for j, l in enumerate(LBL):
     wsU.cell(row=45 + j, column=1, value=l)
+wsU['A74'] = 'Draw from finished-goods stock (Mt)  (DRIVER)'
+wsU['A75'] = 'Cement SOLD (Mt)'
 for i in range(6):
     c = BUC[i]
     b = BU[i]
@@ -471,9 +477,11 @@ for i in range(6):
     putf(wsU, f'{c}50', f"={c}49/$B$11", b['cem_prod'], NUM3)
     putf(wsU, f'{c}51', f"={c}50/$B$13", b['mill_util'], PCT)
     putf(wsU, f'{c}52', f"={A[f'cesh{i}']}", IN['cem_export_share'][i], PCT, green=True)
-    putf(wsU, f'{c}53', f"={c}50*{c}52", b['cem_exp'], NUM3)
-    putf(wsU, f'{c}54', f"={c}50-{c}53", b['cem_loc'], NUM3)
-    putf(wsU, f'{c}55', f"={c}50+{c}48", b['sold'], NUM3, bold=True)
+    putf(wsU, f'{c}74', f"={A[f'draw{i}']}", IN['cem_stock_draw'][i], NUM3, green=True)
+    putf(wsU, f'{c}75', f"={c}50+{c}74", b['cem_sold'], NUM3)
+    putf(wsU, f'{c}53', f"={c}75*{c}52", b['cem_exp'], NUM3)
+    putf(wsU, f'{c}54', f"={c}75-{c}53", b['cem_loc'], NUM3)
+    putf(wsU, f'{c}55', f"={c}75+{c}48", b['sold'], NUM3, bold=True)
     putf(wsU, f'{c}56', f"=$B$22*{A[f'pli{i}']}", b['price_loc'], NUM0)
     putf(wsU, f'{c}57', f"=$B$26*{A[f'pei{i}']}*{A[f'fxp{i}']}", b['price_exp_cem'], NUM0)
     putf(wsU, f'{c}58', f"={c}57*$B$24", b['price_exp_clk'], NUM0)
