@@ -121,10 +121,10 @@ const TICKERS = {
       tech: { data:"2026-08-06", computed:"2026-08-08" }
     },
     files: {
-      study: "files/AMOC_Valuation_Study_08-08-2026_public.docx?v=0808a",
-      model: "files/AMOC_Valuation_Model_08082026_public.xlsx?v=0808a",
-      pdf:   "files/AMOC_Valuation_Study_08-08-2026_public.pdf?v=0808a",
-      biblio:"files/AMOC_Bibliography_08-08-2026.pdf?v=0808a"
+      study: "files/AMOC_Valuation_Study_08-08-2026_public.docx?v=0808b",
+      model: "files/AMOC_Valuation_Model_08082026_public.xlsx?v=0808b",
+      pdf:   "files/AMOC_Valuation_Study_08-08-2026_public.pdf?v=0808b",
+      biblio:"files/AMOC_Bibliography_08-08-2026.pdf?v=0808b"
     }
   },
   SWDY: {
