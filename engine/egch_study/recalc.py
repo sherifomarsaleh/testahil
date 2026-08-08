@@ -58,17 +58,28 @@ for x in (unresolvable + mism + [f'ORPHAN {o}' for o in orphan])[:25]:
 def close(a, b, tol=0.01):
     return abs(a - b) <= max(abs(b) * tol, 0.01)
 
+LNS = json.load(open(os.path.join(HERE, 'lenses.json')))
 checks = []
-for case, sh in [("base", "10 DCF base"), ("bear", "11 DCF bear"),
-                 ("bull", "12 DCF bull"), ("halt", "12b DCF capital discipline")]:
+for case, col in [("base", "B"), ("halt", "D")]:
     b = D['cases'][case]['bridge']
-    checks.append((f"{case} EV", cv(sh, "B33"), b['ev']))
-    checks.append((f"{case} TV% of EV", cv(sh, "B34"), b['tv_pct_ev']))
-    checks.append((f"{case} equity", cv(sh, "B41"), b['equity']))
-    checks.append((f"{case} per share", cv(sh, "B42"), b['per_share']))
-checks.append(("WACC year one", cv("6 WACC", "B31"), D['drivers']['wacc_path'][0]))
-checks.append(("terminal WACC", cv("6 WACC", "B39"), D['drivers']['wacc_terminal']))
-checks.append(("Ke rating", cv("6 WACC", "B10"), D['wacc']['ke_rating']))
+    checks.append((f"{case} enterprise value", cv("DCF", f"{col}37"), b['ev']))
+    checks.append((f"{case} terminal value share", cv("DCF", f"{col}38"), b['tv_pct_ev']))
+    checks.append((f"{case} equity", cv("DCF", f"{col}45"), b['equity']))
+    checks.append((f"{case} per share", cv("DCF", f"{col}44"), b['per_share']))
+checks.append(("cost of capital, year one", cv("DCF", "B15"), D['drivers']['wacc_path'][0]))
+ADDR = json.load(open(os.path.join(HERE, 'xlsx_addresses.json')))
+checks.append(("terminal cost of capital", cv("Assumptions", ADDR['wacc_terminal']),
+               D['drivers']['wacc_terminal']))
+checks.append(("cost of equity", cv("Assumptions", ADDR['cost_of_equity']), D['wacc']['ke_rating']))
+checks.append(("normalised risk-free rate", cv("Assumptions", ADDR['rf_star']),
+               D['wacc']['rf_star_rating']))
+checks.append(("lens 2 value per share", cv("Fundamental Valuation", "B18"),
+               LNS['book']['value_per_share']))
+checks.append(("lens 3 value per share", cv("Relative & Normalized", "B12"),
+               LNS['relative']['value_per_share']))
+checks.append(("lens 4 value per share", cv("Relative & Normalized", "B31"),
+               LNS['normalised']['value_per_share']))
+checks.append(("contested judgement gap", cv("Summary", "B22"), LNS['contested']['gap']))
 bad = [(n, g, w) for n, g, w in checks if not close(float(g), float(w))]
 print(f"\nheadline reconciliations  : {len(checks) - len(bad)}/{len(checks)} pass")
 for n, g, w in bad:

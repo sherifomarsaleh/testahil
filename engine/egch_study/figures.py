@@ -233,10 +233,11 @@ style(ax)
 save(fig, 'fig8_price.png')
 
 # ---- D1: expert appendix comparison -----------------------------------------
+EX = json.load(open(os.path.join(HERE, 'experts.json')))
 fig, ax = plt.subplots(figsize=(9.8, 3.8), dpi=110)
-ex = [('Expert 1 — replacement cost\nand asset backing', 3.10, 6.40),
-      ('Expert 2 — normalised mid-cycle\nearnings power', 1.05, 3.55),
-      ('Expert 3 — option value on the\ncapital programme', 0.00, 2.60)]
+ex = [(f"Expert 1 — {EX['e1']['title']}", EX['e1']['low'], EX['e1']['high']),
+      (f"Expert 2 — {EX['e2']['title']}", EX['e2']['low'], EX['e2']['high']),
+      (f"Expert 3 — {EX['e3']['title']}", EX['e3']['low'], EX['e3']['high'])]
 for i, (lab, lo, hi) in enumerate(ex):
     ax.barh(i, hi - lo, left=lo, height=0.46, color=[GOLD, BRASS, SAGE][i],
             edgecolor=INK, linewidth=0.6)
@@ -252,3 +253,89 @@ ax.set_title('Three independent methods, three different answers', pad=12, fonts
 style(ax); ax.grid(axis='y', visible=False)
 save(fig, 'figD1_experts.png')
 print('all figures written')
+
+# ---- F9: the four-lens field -------------------------------------------------
+LNS = json.load(open(os.path.join(HERE, 'lenses.json')))
+fld = LNS['synthesis']['field']
+fig, ax = plt.subplots(figsize=(9.8, 4.0), dpi=110)
+labs = list(fld.keys())[::-1]
+vals9 = [fld[k] for k in labs]
+cols9 = [SAGE, BRASS, GOLD, CANVAS, RUST][:len(labs)]
+for i, (lab, v) in enumerate(zip(labs, vals9)):
+    ax.barh(i, v if v >= 0 else -v, left=0 if v >= 0 else v, height=0.5,
+            color=cols9[i], edgecolor=INK, linewidth=0.6)
+    ax.text(max(v, 0) + 0.18, i, f"EGP {v:,.2f}", va='center', ha='left',
+            fontsize=9.4, color=INK, fontweight='bold')
+ax.axvline(0, color=GREY, lw=0.9)
+ax.axvline(SPOT, color=CANVAS, lw=1.8, ls='--')
+ax.text(SPOT - 0.28, 2.0, f"market price\nEGP {SPOT:,.2f}", ha='right', va='center',
+        fontsize=9, color=CANVAS, fontweight='bold')
+ax.set_yticks(range(len(labs)))
+ax.set_yticklabels([l.replace(" — ", "\n") for l in labs], fontsize=8.4)
+ax.set_xlabel('Value per share (Egyptian pounds)')
+ax.set_xlim(-2.6, SPOT * 1.14)
+ax.set_title('Four lenses, one field — and the two sides of the contested judgement',
+             pad=12, fontsize=11.5)
+style(ax); ax.grid(axis='y', visible=False)
+save(fig, 'fig9_field.png')
+
+# ---- F10: the price fan ------------------------------------------------------
+ST = json.load(open(os.path.join(HERE, 'strike_result.json')))
+p3 = np.load(os.path.join(HERE, 'paths_3M.npy'))
+fig, ax = plt.subplots(figsize=(9.8, 4.2), dpi=110)
+hist = df.tail(120)
+ax.plot(range(-len(hist), 0), hist['Price'].to_numpy(), color=CANVAS, lw=1.3,
+        label='Traded price')
+steps = np.arange(p3.shape[1])
+for lo, hi, col, lab in [(5, 95, '#E6EDEB', '90% of simulated paths'),
+                         (25, 75, '#C4D3CF', '50% of simulated paths')]:
+    ax.fill_between(steps, np.percentile(p3, lo, axis=0), np.percentile(p3, hi, axis=0),
+                    color=col, linewidth=0, label=lab)
+ax.plot(steps, np.percentile(p3, 50, axis=0), color=BRASS, lw=1.6, label='Median path')
+ax.axhline(SPOT, color=GOLD, lw=1.1, ls='--')
+ax.text(-len(hist) + 3, SPOT + 0.55, f"anchor EGP {SPOT:,.2f}", fontsize=8.8,
+        color=BRASS, fontweight='bold')
+for p, v in ST['horizons']['3M']['pct'].items():
+    ax.text(p3.shape[1] + 1.5, v, f"{p.upper()}  {v:,.2f}", fontsize=8.4, color=INK,
+            va='center')
+ax.set_xlim(-len(hist), p3.shape[1] + 16)
+ax.set_ylabel('Share price (Egyptian pounds)')
+ax.set_xlabel('Trading sessions — past to the left of zero, simulated to the right')
+ax.legend(loc='upper left', frameon=False, fontsize=8.6)
+ax.set_title(f"Where the price may go by {ST['horizons']['3M']['grade_date']} — "
+             f"fifty thousand simulated paths", pad=12, fontsize=11.5)
+style(ax)
+save(fig, 'fig10_fan.png')
+
+# ---- F11: the technical read -------------------------------------------------
+TC = json.load(open(os.path.join(HERE, 'technicals.json')))
+fig, ax = plt.subplots(figsize=(9.8, 4.2), dpi=110)
+d2 = df.tail(320).reset_index(drop=True)
+px = d2['Price'].to_numpy()
+ax.plot(d2['Date'], px, color=CANVAS, lw=1.3, label='Close')
+for wdw, col, ls in [(20, GOLD, '-'), (50, BRASS, '--'), (200, SAGE, '-.')]:
+    ma = df['Price'].rolling(wdw).mean().tail(320).to_numpy()
+    ax.plot(d2['Date'], ma, color=col, lw=1.2, ls=ls, label=f'{wdw}-session average')
+# level labels sit at the RIGHT edge, clear of the legend in the upper left; the
+# earlier placement put the top resistance label straight through the legend text
+for lv in TC['levels']['res']:
+    ax.axhline(lv, color=RUST, lw=0.9, ls=':')
+    ax.text(d2['Date'].iloc[-1], lv, f" resistance {lv:,.2f}", fontsize=8,
+            color=RUST, va='bottom', ha='left')
+for lv in TC['levels']['sup']:
+    ax.axhline(lv, color=SAGE, lw=0.9, ls=':')
+    ax.text(d2['Date'].iloc[-1], lv, f" support {lv:,.2f}", fontsize=8,
+            color='#4C6B62', va='bottom', ha='left')
+import matplotlib.dates as _md
+_span = (d2['Date'].iloc[-1] - d2['Date'].iloc[0])
+ax.set_xlim(d2['Date'].iloc[0], d2['Date'].iloc[-1] + _span * 0.13)
+ax.set_ylabel('Share price (Egyptian pounds)')
+ax.set_ylim(min(TC['levels']['sup']) * 0.93, max(TC['levels']['res']) * 1.05)
+# the legend goes BELOW the plot: the level ladder spans the full width, so any
+# in-axes position collides with a line or a label
+ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.16), ncol=4,
+          frameon=False, fontsize=8.4)
+ax.set_title('Price structure — moving averages and the computed level ladder',
+             pad=12, fontsize=11.5)
+style(ax)
+save(fig, 'fig11_technical.png')

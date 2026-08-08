@@ -1,0 +1,2261 @@
+{
+ "layers": {
+  "L1": "Primary filing \u2014 the company's own statements",
+  "L2": "Primary market data",
+  "L3": "Official external (regulator, central bank, government)",
+  "L4": "Industry and sector context",
+  "L5": "Constructed in this study"
+ },
+ "inputs": {
+  "is_revenue_FY2122": {
+   "key": "is_revenue_FY2122",
+   "value": 4440.701,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2023 (Central Auditing Organization with PKF Rashed Badr & Co, report dated 8 October 2023), comparative column",
+   "date": "2023-10-08",
+   "layer": "L1",
+   "note": ""
+  },
+  "is_cogs_FY2122": {
+   "key": "is_cogs_FY2122",
+   "value": 2322.989,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2023 (Central Auditing Organization with PKF Rashed Badr & Co, report dated 8 October 2023), comparative column",
+   "date": "2023-10-08",
+   "layer": "L1",
+   "note": ""
+  },
+  "is_selling_FY2122": {
+   "key": "is_selling_FY2122",
+   "value": 272.81,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2023 (Central Auditing Organization with PKF Rashed Badr & Co, report dated 8 October 2023), comparative column",
+   "date": "2023-10-08",
+   "layer": "L1",
+   "note": ""
+  },
+  "is_admin_FY2122": {
+   "key": "is_admin_FY2122",
+   "value": 196.357,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2023 (Central Auditing Organization with PKF Rashed Badr & Co, report dated 8 October 2023), comparative column",
+   "date": "2023-10-08",
+   "layer": "L1",
+   "note": ""
+  },
+  "is_net_FY2122": {
+   "key": "is_net_FY2122",
+   "value": 651.486,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2023 (Central Auditing Organization with PKF Rashed Badr & Co, report dated 8 October 2023), comparative column",
+   "date": "2023-10-08",
+   "layer": "L1",
+   "note": ""
+  },
+  "is_revenue_FY2223": {
+   "key": "is_revenue_FY2223",
+   "value": 6612.226,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2023 (Central Auditing Organization with PKF Rashed Badr & Co, report dated 8 October 2023), income statement",
+   "date": "2023-10-08",
+   "layer": "L1",
+   "note": ""
+  },
+  "is_cogs_FY2223": {
+   "key": "is_cogs_FY2223",
+   "value": 3574.483,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2023 (Central Auditing Organization with PKF Rashed Badr & Co, report dated 8 October 2023), income statement",
+   "date": "2023-10-08",
+   "layer": "L1",
+   "note": ""
+  },
+  "is_selling_FY2223": {
+   "key": "is_selling_FY2223",
+   "value": 473.72,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2023 (Central Auditing Organization with PKF Rashed Badr & Co, report dated 8 October 2023), income statement",
+   "date": "2023-10-08",
+   "layer": "L1",
+   "note": ""
+  },
+  "is_admin_FY2223": {
+   "key": "is_admin_FY2223",
+   "value": 188.851,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2023 (Central Auditing Organization with PKF Rashed Badr & Co, report dated 8 October 2023), income statement",
+   "date": "2023-10-08",
+   "layer": "L1",
+   "note": ""
+  },
+  "is_net_FY2223": {
+   "key": "is_net_FY2223",
+   "value": 1150.767,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2023 (Central Auditing Organization with PKF Rashed Badr & Co, report dated 8 October 2023), income statement",
+   "date": "2023-10-08",
+   "layer": "L1",
+   "note": ""
+  },
+  "cogs_dep_FY2223": {
+   "key": "cogs_dep_FY2223",
+   "value": 627.213,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2023 (Central Auditing Organization with PKF Rashed Badr & Co, report dated 8 October 2023), note 21 cost of sales",
+   "date": "2023-10-08",
+   "layer": "L1",
+   "note": ""
+  },
+  "is_revenue_FY2324": {
+   "key": "is_revenue_FY2324",
+   "value": 6532.126,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2024 (Central Auditing Organization, report dated 23 October 2024), income statement",
+   "date": "2024-10-23",
+   "layer": "L1",
+   "note": ""
+  },
+  "is_cogs_FY2324": {
+   "key": "is_cogs_FY2324",
+   "value": 4395.788,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2024 (Central Auditing Organization, report dated 23 October 2024), income statement",
+   "date": "2024-10-23",
+   "layer": "L1",
+   "note": ""
+  },
+  "is_selling_FY2324": {
+   "key": "is_selling_FY2324",
+   "value": 562.527,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2024 (Central Auditing Organization, report dated 23 October 2024), income statement",
+   "date": "2024-10-23",
+   "layer": "L1",
+   "note": ""
+  },
+  "is_admin_FY2324": {
+   "key": "is_admin_FY2324",
+   "value": 297.887,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2024 (Central Auditing Organization, report dated 23 October 2024), income statement",
+   "date": "2024-10-23",
+   "layer": "L1",
+   "note": ""
+  },
+  "is_net_FY2324": {
+   "key": "is_net_FY2324",
+   "value": 2537.934,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2024 (Central Auditing Organization, report dated 23 October 2024), income statement",
+   "date": "2024-10-23",
+   "layer": "L1",
+   "note": ""
+  },
+  "cogs_dep_FY2324": {
+   "key": "cogs_dep_FY2324",
+   "value": 662.634,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2024 (Central Auditing Organization, report dated 23 October 2024), note 21 cost of sales",
+   "date": "2024-10-23",
+   "layer": "L1",
+   "note": ""
+  },
+  "oneoff_reval_FY2324": {
+   "key": "oneoff_reval_FY2324",
+   "value": 2034.573,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2024 (Central Auditing Organization, report dated 23 October 2024), income statement \u2014 gain on revaluation of investment property",
+   "date": "2024-10-23",
+   "layer": "L1",
+   "note": "One-off. Stripped from every margin and return in this study."
+  },
+  "is_revenue_FY2425": {
+   "key": "is_revenue_FY2425",
+   "value": 8602.606,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), income statement",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "is_cogs_FY2425": {
+   "key": "is_cogs_FY2425",
+   "value": 5300.31,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), income statement",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "is_selling_FY2425": {
+   "key": "is_selling_FY2425",
+   "value": 786.463,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), income statement",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "is_admin_FY2425": {
+   "key": "is_admin_FY2425",
+   "value": 359.624,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), income statement",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "is_net_FY2425": {
+   "key": "is_net_FY2425",
+   "value": 986.964,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), income statement",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "is_eps_FY2425": {
+   "key": "is_eps_FY2425",
+   "value": 0.4968,
+   "unit": "EGP",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), income statement",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "rev_export_FY2425": {
+   "key": "rev_export_FY2425",
+   "value": 6608.752,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 20 sales",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "rev_local_FY2425": {
+   "key": "rev_local_FY2425",
+   "value": 1993.85,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 20 sales",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "rev_services_FY2425": {
+   "key": "rev_services_FY2425",
+   "value": 0.00443,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 20 sales",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "cogs_materials_FY2425": {
+   "key": "cogs_materials_FY2425",
+   "value": 4398.636,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 21",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "cogs_wages_FY2425": {
+   "key": "cogs_wages_FY2425",
+   "value": 212.857,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 21",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "cogs_services_FY2425": {
+   "key": "cogs_services_FY2425",
+   "value": 62.557,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 21",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "cogs_dep_FY2425": {
+   "key": "cogs_dep_FY2425",
+   "value": 776.471,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 21",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "sell_freight_FY2425": {
+   "key": "sell_freight_FY2425",
+   "value": 610.158,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 22 freight and commissions",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "sell_other_FY2425": {
+   "key": "sell_other_FY2425",
+   "value": 176.305,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 22 selling materials, wages and other selling expense",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "dep_charge_FY2425": {
+   "key": "dep_charge_FY2425",
+   "value": 771.213,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 6 fixed-asset register",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "amort_FY2425": {
+   "key": "amort_FY2425",
+   "value": 119.378,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 10 usufruct intangible",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "dep_rate_kima2_machinery": {
+   "key": "dep_rate_kima2_machinery",
+   "value": 0.0395,
+   "unit": "per year",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 5-2 depreciation rates",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "dep_rate_intangible": {
+   "key": "dep_rate_intangible",
+   "value": 0.0475,
+   "unit": "per year",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 5-2",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "prod_urea_FY2425": {
+   "key": "prod_urea_FY2425",
+   "value": 513385,
+   "unit": "tonnes",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), auditor's product cost table",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "prod_ammonia_FY2425": {
+   "key": "prod_ammonia_FY2425",
+   "value": 318242,
+   "unit": "tonnes",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), auditor's product cost table",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "prod_an_gran_FY2425": {
+   "key": "prod_an_gran_FY2425",
+   "value": 17887,
+   "unit": "tonnes",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), auditor's product cost table",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "prod_ldan_FY2425": {
+   "key": "prod_ldan_FY2425",
+   "value": 8171,
+   "unit": "tonnes",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), auditor's product cost table",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "prod_nitric_FY2425": {
+   "key": "prod_nitric_FY2425",
+   "value": 35590,
+   "unit": "tonnes",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), auditor's product cost table",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "unitcost_urea_FY2425": {
+   "key": "unitcost_urea_FY2425",
+   "value": 7509,
+   "unit": "EGP/t",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), auditor's product cost table",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "unitcost_ammonia_FY2425": {
+   "key": "unitcost_ammonia_FY2425",
+   "value": 9114,
+   "unit": "EGP/t",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), auditor's product cost table",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "unitcost_an_gran_FY2425": {
+   "key": "unitcost_an_gran_FY2425",
+   "value": 4076.31,
+   "unit": "EGP/t",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), auditor's product cost table",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "unitcost_ldan_FY2425": {
+   "key": "unitcost_ldan_FY2425",
+   "value": 8154.48,
+   "unit": "EGP/t",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), auditor's product cost table",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "unitcost_nitric_FY2425": {
+   "key": "unitcost_nitric_FY2425",
+   "value": 610,
+   "unit": "EGP/t",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), auditor's product cost table",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "unitcost_urea_FY2324": {
+   "key": "unitcost_urea_FY2324",
+   "value": 9254,
+   "unit": "EGP/t",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), auditor's table, prior-year column",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "design_urea_tpd": {
+   "key": "design_urea_tpd",
+   "value": 1575,
+   "unit": "tonnes/day",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 28 contractual operating benchmark",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "design_ammonia_tpd": {
+   "key": "design_ammonia_tpd",
+   "value": 1200,
+   "unit": "tonnes/day",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 28 contractual operating benchmark",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "design_ammonia_tpy": {
+   "key": "design_ammonia_tpy",
+   "value": 438000,
+   "unit": "tonnes/year",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 28",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "gas_contract_usd_mmbtu": {
+   "key": "gas_contract_usd_mmbtu",
+   "value": 5.75,
+   "unit": "US$/mmBtu",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 28 contingent liabilities \u2014 gas price raised from US$4.50 under the November 2021 decision",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "gas_usage_low_m3_t": {
+   "key": "gas_usage_low_m3_t",
+   "value": 1025,
+   "unit": "m3/t",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), auditor's report on gas consumption",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "gas_usage_high_m3_t": {
+   "key": "gas_usage_high_m3_t",
+   "value": 1771,
+   "unit": "m3/t",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), auditor's report on gas consumption",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "gas_loss_FY2425_m3": {
+   "key": "gas_loss_FY2425_m3",
+   "value": 38480270,
+   "unit": "m3",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), auditor's report",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "gas_abnormal_loss_FY2425": {
+   "key": "gas_abnormal_loss_FY2425",
+   "value": 249.0,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), auditor's report",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "gas_abnormal_cum": {
+   "key": "gas_abnormal_cum",
+   "value": 781.0,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), auditor's report \u2014 cumulative since 1 July 2022",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "stoppage_cost_FY2425": {
+   "key": "stoppage_cost_FY2425",
+   "value": 164.478,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 25 other expenses",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "stoppage_cost_FY2324": {
+   "key": "stoppage_cost_FY2324",
+   "value": 152.742,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 25 comparative",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "gas_loss_Q1_m3": {
+   "key": "gas_loss_Q1_m3",
+   "value": 31313235,
+   "unit": "m3",
+   "source": "Interim statements, three months ended 30 September 2025, limited review dated 13 November 2025, auditor's report",
+   "date": "2025-11-13",
+   "layer": "L1",
+   "note": ""
+  },
+  "gas_loss_Q1_egp": {
+   "key": "gas_loss_Q1_egp",
+   "value": 251.0,
+   "unit": "EGP m",
+   "source": "Interim statements, three months ended 30 September 2025, limited review dated 13 November 2025, auditor's report",
+   "date": "2025-11-13",
+   "layer": "L1",
+   "note": ""
+  },
+  "gas_standard_m3_t": {
+   "key": "gas_standard_m3_t",
+   "value": 1200,
+   "unit": "m3/t",
+   "source": "Interim statements, three months ended 30 September 2025, limited review dated 13 November 2025, auditor's report \u2014 the standard rate",
+   "date": "2025-11-13",
+   "layer": "L1",
+   "note": ""
+  },
+  "gas_august_m3_t": {
+   "key": "gas_august_m3_t",
+   "value": 8492,
+   "unit": "m3/t",
+   "source": "Interim statements, three months ended 30 September 2025, limited review dated 13 November 2025, auditor's report \u2014 August 2025 actual, the plant idling and restarting",
+   "date": "2025-11-13",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_fixed_FY2223": {
+   "key": "bs_fixed_FY2223",
+   "value": 11300.438,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2023 (Central Auditing Organization with PKF Rashed Badr & Co, report dated 8 October 2023), statement of financial position",
+   "date": "2023-10-08",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_cwip_FY2223": {
+   "key": "bs_cwip_FY2223",
+   "value": 56.405,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2023 (Central Auditing Organization with PKF Rashed Badr & Co, report dated 8 October 2023), statement of financial position",
+   "date": "2023-10-08",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_invprop_FY2223": {
+   "key": "bs_invprop_FY2223",
+   "value": 0.0,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2023 (Central Auditing Organization with PKF Rashed Badr & Co, report dated 8 October 2023), statement of financial position",
+   "date": "2023-10-08",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_fvoci_FY2223": {
+   "key": "bs_fvoci_FY2223",
+   "value": 1855.435,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2023 (Central Auditing Organization with PKF Rashed Badr & Co, report dated 8 October 2023), statement of financial position",
+   "date": "2023-10-08",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_intang_FY2223": {
+   "key": "bs_intang_FY2223",
+   "value": 1908.612,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2023 (Central Auditing Organization with PKF Rashed Badr & Co, report dated 8 October 2023), statement of financial position",
+   "date": "2023-10-08",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_inventory_FY2223": {
+   "key": "bs_inventory_FY2223",
+   "value": 1391.802,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2023 (Central Auditing Organization with PKF Rashed Badr & Co, report dated 8 October 2023), statement of financial position",
+   "date": "2023-10-08",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_receivables_FY2223": {
+   "key": "bs_receivables_FY2223",
+   "value": 798.577,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2023 (Central Auditing Organization with PKF Rashed Badr & Co, report dated 8 October 2023), statement of financial position",
+   "date": "2023-10-08",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_cash_FY2223": {
+   "key": "bs_cash_FY2223",
+   "value": 1416.243,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2023 (Central Auditing Organization with PKF Rashed Badr & Co, report dated 8 October 2023), statement of financial position",
+   "date": "2023-10-08",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_capital_FY2223": {
+   "key": "bs_capital_FY2223",
+   "value": 5932.895,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2023 (Central Auditing Organization with PKF Rashed Badr & Co, report dated 8 October 2023), statement of financial position",
+   "date": "2023-10-08",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_reserves_FY2223": {
+   "key": "bs_reserves_FY2223",
+   "value": 1316.686,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2023 (Central Auditing Organization with PKF Rashed Badr & Co, report dated 8 October 2023), statement of financial position",
+   "date": "2023-10-08",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_debt_lt_FY2223": {
+   "key": "bs_debt_lt_FY2223",
+   "value": 8424.871,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2023 (Central Auditing Organization with PKF Rashed Badr & Co, report dated 8 October 2023), statement of financial position",
+   "date": "2023-10-08",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_debt_holdco_FY2223": {
+   "key": "bs_debt_holdco_FY2223",
+   "value": 50.266,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2023 (Central Auditing Organization with PKF Rashed Badr & Co, report dated 8 October 2023), statement of financial position",
+   "date": "2023-10-08",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_dtl_FY2223": {
+   "key": "bs_dtl_FY2223",
+   "value": 1469.472,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2023 (Central Auditing Organization with PKF Rashed Badr & Co, report dated 8 October 2023), statement of financial position",
+   "date": "2023-10-08",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_provisions_FY2223": {
+   "key": "bs_provisions_FY2223",
+   "value": 144.359,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2023 (Central Auditing Organization with PKF Rashed Badr & Co, report dated 8 October 2023), statement of financial position",
+   "date": "2023-10-08",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_payables_FY2223": {
+   "key": "bs_payables_FY2223",
+   "value": 1367.845,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2023 (Central Auditing Organization with PKF Rashed Badr & Co, report dated 8 October 2023), statement of financial position",
+   "date": "2023-10-08",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_debt_cur_FY2223": {
+   "key": "bs_debt_cur_FY2223",
+   "value": 21.391,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2023 (Central Auditing Organization with PKF Rashed Badr & Co, report dated 8 October 2023), statement of financial position",
+   "date": "2023-10-08",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_fixed_FY2324": {
+   "key": "bs_fixed_FY2324",
+   "value": 14144.067,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2024 (Central Auditing Organization, report dated 23 October 2024), statement of financial position",
+   "date": "2024-10-23",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_cwip_FY2324": {
+   "key": "bs_cwip_FY2324",
+   "value": 2535.135,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2024 (Central Auditing Organization, report dated 23 October 2024), statement of financial position",
+   "date": "2024-10-23",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_invprop_FY2324": {
+   "key": "bs_invprop_FY2324",
+   "value": 2034.589,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2024 (Central Auditing Organization, report dated 23 October 2024), statement of financial position",
+   "date": "2024-10-23",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_fvoci_FY2324": {
+   "key": "bs_fvoci_FY2324",
+   "value": 2491.189,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2024 (Central Auditing Organization, report dated 23 October 2024), statement of financial position",
+   "date": "2024-10-23",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_intang_FY2324": {
+   "key": "bs_intang_FY2324",
+   "value": 2376.211,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2024 (Central Auditing Organization, report dated 23 October 2024), statement of financial position",
+   "date": "2024-10-23",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_inventory_FY2324": {
+   "key": "bs_inventory_FY2324",
+   "value": 1615.47,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2024 (Central Auditing Organization, report dated 23 October 2024), statement of financial position",
+   "date": "2024-10-23",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_receivables_FY2324": {
+   "key": "bs_receivables_FY2324",
+   "value": 858.39,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2024 (Central Auditing Organization, report dated 23 October 2024), statement of financial position",
+   "date": "2024-10-23",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_cash_FY2324": {
+   "key": "bs_cash_FY2324",
+   "value": 3103.365,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2024 (Central Auditing Organization, report dated 23 October 2024), statement of financial position",
+   "date": "2024-10-23",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_capital_FY2324": {
+   "key": "bs_capital_FY2324",
+   "value": 9932.895,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2024 (Central Auditing Organization, report dated 23 October 2024), statement of financial position",
+   "date": "2024-10-23",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_reserves_FY2324": {
+   "key": "bs_reserves_FY2324",
+   "value": 4627.209,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2024 (Central Auditing Organization, report dated 23 October 2024), statement of financial position",
+   "date": "2024-10-23",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_debt_lt_FY2324": {
+   "key": "bs_debt_lt_FY2324",
+   "value": 11226.246,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2024 (Central Auditing Organization, report dated 23 October 2024), statement of financial position",
+   "date": "2024-10-23",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_debt_holdco_FY2324": {
+   "key": "bs_debt_holdco_FY2324",
+   "value": 0.0,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2024 (Central Auditing Organization, report dated 23 October 2024), statement of financial position",
+   "date": "2024-10-23",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_dtl_FY2324": {
+   "key": "bs_dtl_FY2324",
+   "value": 1001.464,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2024 (Central Auditing Organization, report dated 23 October 2024), statement of financial position",
+   "date": "2024-10-23",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_provisions_FY2324": {
+   "key": "bs_provisions_FY2324",
+   "value": 432.156,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2024 (Central Auditing Organization, report dated 23 October 2024), statement of financial position",
+   "date": "2024-10-23",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_payables_FY2324": {
+   "key": "bs_payables_FY2324",
+   "value": 1587.001,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2024 (Central Auditing Organization, report dated 23 October 2024), statement of financial position",
+   "date": "2024-10-23",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_debt_cur_FY2324": {
+   "key": "bs_debt_cur_FY2324",
+   "value": 354.051,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2024 (Central Auditing Organization, report dated 23 October 2024), statement of financial position",
+   "date": "2024-10-23",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_fixed_FY2425": {
+   "key": "bs_fixed_FY2425",
+   "value": 13587.193,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), statement of financial position",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_cwip_FY2425": {
+   "key": "bs_cwip_FY2425",
+   "value": 3790.155,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), statement of financial position",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_invprop_FY2425": {
+   "key": "bs_invprop_FY2425",
+   "value": 2160.62,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), statement of financial position",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_fvoci_FY2425": {
+   "key": "bs_fvoci_FY2425",
+   "value": 2163.27,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), statement of financial position",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_intang_FY2425": {
+   "key": "bs_intang_FY2425",
+   "value": 2256.834,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), statement of financial position",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_inventory_FY2425": {
+   "key": "bs_inventory_FY2425",
+   "value": 2399.625,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), statement of financial position",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_receivables_FY2425": {
+   "key": "bs_receivables_FY2425",
+   "value": 631.047,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), statement of financial position",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_cash_FY2425": {
+   "key": "bs_cash_FY2425",
+   "value": 3057.028,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), statement of financial position",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_capital_FY2425": {
+   "key": "bs_capital_FY2425",
+   "value": 9932.895,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), statement of financial position",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_reserves_FY2425": {
+   "key": "bs_reserves_FY2425",
+   "value": 5430.17,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), statement of financial position",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_debt_lt_FY2425": {
+   "key": "bs_debt_lt_FY2425",
+   "value": 11183.315,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), statement of financial position",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_debt_holdco_FY2425": {
+   "key": "bs_debt_holdco_FY2425",
+   "value": 596.896,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), statement of financial position",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_dtl_FY2425": {
+   "key": "bs_dtl_FY2425",
+   "value": 990.863,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), statement of financial position",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_provisions_FY2425": {
+   "key": "bs_provisions_FY2425",
+   "value": 309.113,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), statement of financial position",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_payables_FY2425": {
+   "key": "bs_payables_FY2425",
+   "value": 1207.768,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), statement of financial position",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_debt_cur_FY2425": {
+   "key": "bs_debt_cur_FY2425",
+   "value": 397.314,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), statement of financial position",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_fixed_M9FY2526": {
+   "key": "bs_fixed_M9FY2526",
+   "value": 13057.606,
+   "unit": "EGP m",
+   "source": "Interim statements, nine months ended 31 March 2026, limited review dated 20 May 2026, statement of financial position",
+   "date": "2026-05-21",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_cwip_M9FY2526": {
+   "key": "bs_cwip_M9FY2526",
+   "value": 5653.51,
+   "unit": "EGP m",
+   "source": "Interim statements, nine months ended 31 March 2026, limited review dated 20 May 2026, statement of financial position",
+   "date": "2026-05-21",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_invprop_M9FY2526": {
+   "key": "bs_invprop_M9FY2526",
+   "value": 2155.061,
+   "unit": "EGP m",
+   "source": "Interim statements, nine months ended 31 March 2026, limited review dated 20 May 2026, statement of financial position",
+   "date": "2026-05-21",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_fvoci_M9FY2526": {
+   "key": "bs_fvoci_M9FY2526",
+   "value": 1382.886,
+   "unit": "EGP m",
+   "source": "Interim statements, nine months ended 31 March 2026, limited review dated 20 May 2026, statement of financial position",
+   "date": "2026-05-21",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_intang_M9FY2526": {
+   "key": "bs_intang_M9FY2526",
+   "value": 2170.5,
+   "unit": "EGP m",
+   "source": "Interim statements, nine months ended 31 March 2026, limited review dated 20 May 2026, statement of financial position",
+   "date": "2026-05-21",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_inventory_M9FY2526": {
+   "key": "bs_inventory_M9FY2526",
+   "value": 3378.16,
+   "unit": "EGP m",
+   "source": "Interim statements, nine months ended 31 March 2026, limited review dated 20 May 2026, statement of financial position",
+   "date": "2026-05-21",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_receivables_M9FY2526": {
+   "key": "bs_receivables_M9FY2526",
+   "value": 1230.232,
+   "unit": "EGP m",
+   "source": "Interim statements, nine months ended 31 March 2026, limited review dated 20 May 2026, statement of financial position",
+   "date": "2026-05-21",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_cash_M9FY2526": {
+   "key": "bs_cash_M9FY2526",
+   "value": 4606.522,
+   "unit": "EGP m",
+   "source": "Interim statements, nine months ended 31 March 2026, limited review dated 20 May 2026, statement of financial position",
+   "date": "2026-05-21",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_capital_M9FY2526": {
+   "key": "bs_capital_M9FY2526",
+   "value": 9932.895,
+   "unit": "EGP m",
+   "source": "Interim statements, nine months ended 31 March 2026, limited review dated 20 May 2026, statement of financial position",
+   "date": "2026-05-21",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_reserves_M9FY2526": {
+   "key": "bs_reserves_M9FY2526",
+   "value": 6273.191,
+   "unit": "EGP m",
+   "source": "Interim statements, nine months ended 31 March 2026, limited review dated 20 May 2026, statement of financial position",
+   "date": "2026-05-21",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_debt_lt_M9FY2526": {
+   "key": "bs_debt_lt_M9FY2526",
+   "value": 14386.056,
+   "unit": "EGP m",
+   "source": "Interim statements, nine months ended 31 March 2026, limited review dated 20 May 2026, statement of financial position",
+   "date": "2026-05-21",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_debt_holdco_M9FY2526": {
+   "key": "bs_debt_holdco_M9FY2526",
+   "value": 45.955,
+   "unit": "EGP m",
+   "source": "Interim statements, nine months ended 31 March 2026, limited review dated 20 May 2026, statement of financial position",
+   "date": "2026-05-21",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_dtl_M9FY2526": {
+   "key": "bs_dtl_M9FY2526",
+   "value": 961.184,
+   "unit": "EGP m",
+   "source": "Interim statements, nine months ended 31 March 2026, limited review dated 20 May 2026, statement of financial position",
+   "date": "2026-05-21",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_provisions_M9FY2526": {
+   "key": "bs_provisions_M9FY2526",
+   "value": 291.769,
+   "unit": "EGP m",
+   "source": "Interim statements, nine months ended 31 March 2026, limited review dated 20 May 2026, statement of financial position",
+   "date": "2026-05-21",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_payables_M9FY2526": {
+   "key": "bs_payables_M9FY2526",
+   "value": 1538.968,
+   "unit": "EGP m",
+   "source": "Interim statements, nine months ended 31 March 2026, limited review dated 20 May 2026, statement of financial position",
+   "date": "2026-05-21",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_debt_cur_M9FY2526": {
+   "key": "bs_debt_cur_M9FY2526",
+   "value": 206.994,
+   "unit": "EGP m",
+   "source": "Interim statements, nine months ended 31 March 2026, limited review dated 20 May 2026, statement of financial position",
+   "date": "2026-05-21",
+   "layer": "L1",
+   "note": ""
+  },
+  "is_revenue_Q1": {
+   "key": "is_revenue_Q1",
+   "value": 1184.805,
+   "unit": "EGP m",
+   "source": "Interim statements, three months ended 30 September 2025, limited review dated 13 November 2025",
+   "date": "2025-11-13",
+   "layer": "L1",
+   "note": ""
+  },
+  "is_gross_Q1": {
+   "key": "is_gross_Q1",
+   "value": 389.837,
+   "unit": "EGP m",
+   "source": "Interim statements, three months ended 30 September 2025, limited review dated 13 November 2025",
+   "date": "2025-11-13",
+   "layer": "L1",
+   "note": ""
+  },
+  "is_net_Q1": {
+   "key": "is_net_Q1",
+   "value": 482.705,
+   "unit": "EGP m",
+   "source": "Interim statements, three months ended 30 September 2025, limited review dated 13 November 2025",
+   "date": "2025-11-13",
+   "layer": "L1",
+   "note": ""
+  },
+  "fx_gain_Q1": {
+   "key": "fx_gain_Q1",
+   "value": 357.162,
+   "unit": "EGP m",
+   "source": "Interim statements, three months ended 30 September 2025, limited review dated 13 November 2025, income statement",
+   "date": "2025-11-13",
+   "layer": "L1",
+   "note": ""
+  },
+  "is_revenue_H1": {
+   "key": "is_revenue_H1",
+   "value": 4156.379,
+   "unit": "EGP m",
+   "source": "Interim statements, six months ended 31 December 2025, limited review dated 10 February 2026",
+   "date": "2026-02-10",
+   "layer": "L1",
+   "note": ""
+  },
+  "is_gross_H1": {
+   "key": "is_gross_H1",
+   "value": 1672.613,
+   "unit": "EGP m",
+   "source": "Interim statements, six months ended 31 December 2025, limited review dated 10 February 2026",
+   "date": "2026-02-10",
+   "layer": "L1",
+   "note": ""
+  },
+  "is_net_H1": {
+   "key": "is_net_H1",
+   "value": 1190.045,
+   "unit": "EGP m",
+   "source": "Interim statements, six months ended 31 December 2025, limited review dated 10 February 2026",
+   "date": "2026-02-10",
+   "layer": "L1",
+   "note": ""
+  },
+  "is_revenue_9M": {
+   "key": "is_revenue_9M",
+   "value": 7314.933,
+   "unit": "EGP m",
+   "source": "Interim statements, nine months ended 31 March 2026, limited review dated 20 May 2026",
+   "date": "2026-05-21",
+   "layer": "L1",
+   "note": ""
+  },
+  "is_gross_9M": {
+   "key": "is_gross_9M",
+   "value": 3134.979,
+   "unit": "EGP m",
+   "source": "Interim statements, nine months ended 31 March 2026, limited review dated 20 May 2026",
+   "date": "2026-05-21",
+   "layer": "L1",
+   "note": ""
+  },
+  "is_selling_9M": {
+   "key": "is_selling_9M",
+   "value": 734.707,
+   "unit": "EGP m",
+   "source": "Interim statements, nine months ended 31 March 2026, limited review dated 20 May 2026",
+   "date": "2026-05-21",
+   "layer": "L1",
+   "note": ""
+  },
+  "is_admin_9M": {
+   "key": "is_admin_9M",
+   "value": 273.831,
+   "unit": "EGP m",
+   "source": "Interim statements, nine months ended 31 March 2026, limited review dated 20 May 2026",
+   "date": "2026-05-21",
+   "layer": "L1",
+   "note": ""
+  },
+  "is_net_9M": {
+   "key": "is_net_9M",
+   "value": 531.31,
+   "unit": "EGP m",
+   "source": "Interim statements, nine months ended 31 March 2026, limited review dated 20 May 2026",
+   "date": "2026-05-21",
+   "layer": "L1",
+   "note": ""
+  },
+  "fx_loss_9M": {
+   "key": "fx_loss_9M",
+   "value": 1071.975,
+   "unit": "EGP m",
+   "source": "Interim statements, nine months ended 31 March 2026, limited review dated 20 May 2026, income statement",
+   "date": "2026-05-21",
+   "layer": "L1",
+   "note": ""
+  },
+  "is_revenue_Q3": {
+   "key": "is_revenue_Q3",
+   "value": 3158.554,
+   "unit": "EGP m",
+   "source": "Interim statements, nine months ended 31 March 2026, limited review dated 20 May 2026, derived from the nine-month and six-month columns",
+   "date": "2026-05-21",
+   "layer": "L1",
+   "note": ""
+  },
+  "gross_margin_Q3": {
+   "key": "gross_margin_Q3",
+   "value": 0.463,
+   "unit": "ratio",
+   "source": "Interim statements, nine months ended 31 March 2026, limited review dated 20 May 2026, derived from the nine-month and six-month columns",
+   "date": "2026-05-21",
+   "layer": "L1",
+   "note": ""
+  },
+  "budget_net_9M": {
+   "key": "budget_net_9M",
+   "value": 1021.912,
+   "unit": "EGP m",
+   "source": "Interim statements, nine months ended 31 March 2026, limited review dated 20 May 2026, the company's own budget column",
+   "date": "2026-05-21",
+   "layer": "L1",
+   "note": ""
+  },
+  "kima2_loan_FY2425": {
+   "key": "kima2_loan_FY2425",
+   "value": 11580.629,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 18-1 KIMA-2 bank consortium loan",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "kima2_usd_interest_FY2425": {
+   "key": "kima2_usd_interest_FY2425",
+   "value": 1338.013,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 26 finance cost",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "holdco_drawn_FY2425": {
+   "key": "holdco_drawn_FY2425",
+   "value": 500.0,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 18-2 holding-company loan",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "holdco_interest_FY2425": {
+   "key": "holdco_interest_FY2425",
+   "value": 96.896,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 26 finance cost",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "anna_cost_egp": {
+   "key": "anna_cost_egp",
+   "value": 6422.418,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 18-3 \u2014 bank-approved investment cost, agreement of 25 June 2025",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "anna_cost_usd": {
+   "key": "anna_cost_usd",
+   "value": 278.385,
+   "unit": "US$ m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 18-3",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "anna_loan_egp": {
+   "key": "anna_loan_egp",
+   "value": 5930.701,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 18-3",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "anna_loan_usd": {
+   "key": "anna_loan_usd",
+   "value": 82.945,
+   "unit": "US$ m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 18-3",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "anna_cwip_FY2425": {
+   "key": "anna_cwip_FY2425",
+   "value": 3746.0,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), auditor's report on the project",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "anna_progress_sep2025": {
+   "key": "anna_progress_sep2025",
+   "value": 0.129,
+   "unit": "ratio",
+   "source": "Interim statements, three months ended 30 September 2025, limited review dated 13 November 2025, auditor's report \u2014 physical progress against a 37% plan",
+   "date": "2025-11-13",
+   "layer": "L1",
+   "note": ""
+  },
+  "anna_plan_sep2025": {
+   "key": "anna_plan_sep2025",
+   "value": 0.37,
+   "unit": "ratio",
+   "source": "Interim statements, three months ended 30 September 2025, limited review dated 13 November 2025, auditor's report",
+   "date": "2025-11-13",
+   "layer": "L1",
+   "note": ""
+  },
+  "shares_outstanding": {
+   "key": "shares_outstanding",
+   "value": 1986578999,
+   "unit": "shares",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 14 share capital",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "par_value": {
+   "key": "par_value",
+   "value": 5.0,
+   "unit": "EGP",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 14",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "paid_capital": {
+   "key": "paid_capital",
+   "value": 9932.895,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 14",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "holding_stake": {
+   "key": "holding_stake",
+   "value": 0.69825,
+   "unit": "ratio",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 14 shareholder register",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "free_float": {
+   "key": "free_float",
+   "value": 0.06184,
+   "unit": "ratio",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 14 shareholder register",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "dividend_FY2324": {
+   "key": "dividend_FY2324",
+   "value": 0.0,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2024 (Central Auditing Organization, report dated 23 October 2024), proposed appropriation statement",
+   "date": "2024-10-23",
+   "layer": "L1",
+   "note": ""
+  },
+  "dividend_FY2425": {
+   "key": "dividend_FY2425",
+   "value": 0.0,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), proposed appropriation statement",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "tax_statutory": {
+   "key": "tax_statutory",
+   "value": 0.225,
+   "unit": "ratio",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 5-16 income tax",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "export_price_FY2425_usd": {
+   "key": "export_price_FY2425_usd",
+   "value": 385.0,
+   "unit": "US$/t",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), auditor's report on the Damietta urea stock \u2014 average export selling price for the year",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "export_levy_charged_FY2425": {
+   "key": "export_levy_charged_FY2425",
+   "value": 437.5,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), auditor's report \u2014 levy on the 175kt quota shortfall",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "quota_required_14m": {
+   "key": "quota_required_14m",
+   "value": 322000,
+   "unit": "tonnes",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), auditor's report",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "quota_delivered_14m": {
+   "key": "quota_delivered_14m",
+   "value": 147000,
+   "unit": "tonnes",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), auditor's report",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "spot_price": {
+   "key": "spot_price",
+   "value": 13.98,
+   "unit": "EGP",
+   "source": "Exchange close, from the study's own price library",
+   "date": "2026-08-06",
+   "layer": "L2",
+   "note": ""
+  },
+  "rf_observed": {
+   "key": "rf_observed",
+   "value": 0.23,
+   "unit": "ratio",
+   "source": "Egypt ten-year government bond yield, market quote",
+   "date": "2026-08-06",
+   "layer": "L2",
+   "note": ""
+  },
+  "sovereign_bond_coupon": {
+   "key": "sovereign_bond_coupon",
+   "value": 0.23098,
+   "unit": "ratio",
+   "source": "New EGP 120.9bn treasury bond maturing 21 May 2029, listed coupon \u2014 corroborates the yield above",
+   "date": "2026-08-06",
+   "layer": "L2",
+   "note": ""
+  },
+  "usd_egp_spot": {
+   "key": "usd_egp_spot",
+   "value": 49.79,
+   "unit": "EGP/US$",
+   "source": "Market quote",
+   "date": "2026-08-07",
+   "layer": "L2",
+   "note": ""
+  },
+  "urea_fob_egypt": {
+   "key": "urea_fob_egypt",
+   "value": 545.0,
+   "unit": "US$/t",
+   "source": "Listed granular urea free-on-board Egypt futures contract, front-month settle",
+   "date": "2026-08-07",
+   "layer": "L2",
+   "note": ""
+  },
+  "erp_rating": {
+   "key": "erp_rating",
+   "value": 0.13937694320020103,
+   "unit": "ratio",
+   "source": "Country risk premium workbook, original file, Egypt row, rating basis total equity risk premium",
+   "date": "2026-01-01",
+   "layer": "L2",
+   "note": ""
+  },
+  "erp_cds": {
+   "key": "erp_cds",
+   "value": 0.09424719428808419,
+   "unit": "ratio",
+   "source": "Country risk premium workbook, original file, Egypt row, CDS basis total equity risk premium",
+   "date": "2026-01-01",
+   "layer": "L2",
+   "note": ""
+  },
+  "sov_spread_rating": {
+   "key": "sov_spread_rating",
+   "value": 0.06372478453347744,
+   "unit": "ratio",
+   "source": "Country risk premium workbook, original file, Egypt row, adjusted default spread",
+   "date": "2026-01-01",
+   "layer": "L2",
+   "note": ""
+  },
+  "sov_spread_cds": {
+   "key": "sov_spread_cds",
+   "value": 0.0355,
+   "unit": "ratio",
+   "source": "Country risk premium workbook, original file, Egypt row, ten-year CDS spread",
+   "date": "2026-01-01",
+   "layer": "L2",
+   "note": ""
+  },
+  "mature_market_erp": {
+   "key": "mature_market_erp",
+   "value": 0.0423,
+   "unit": "ratio",
+   "source": "Country risk premium workbook, original file, Egypt row, mature-market equity risk premium",
+   "date": "2026-01-01",
+   "layer": "L2",
+   "note": ""
+  },
+  "moodys_rating": {
+   "key": "moodys_rating",
+   "value": "Caa1",
+   "unit": "rating",
+   "source": "Country risk premium workbook, original file, Egypt row, sovereign rating",
+   "date": "2026-01-01",
+   "layer": "L2",
+   "note": ""
+  },
+  "cpi_latest": {
+   "key": "cpi_latest",
+   "value": 0.143,
+   "unit": "ratio",
+   "source": "Egyptian headline urban consumer price inflation, official statistics",
+   "date": "2026-06-30",
+   "layer": "L3",
+   "note": ""
+  },
+  "policy_rate": {
+   "key": "policy_rate",
+   "value": 0.195,
+   "unit": "ratio",
+   "source": "Central bank main operation rate, corridor 19.00/20.00",
+   "date": "2026-07-09",
+   "layer": "L3",
+   "note": ""
+  },
+  "cbe_inflation_target": {
+   "key": "cbe_inflation_target",
+   "value": 0.07,
+   "unit": "ratio",
+   "source": "Central bank published medium-term inflation target",
+   "date": "2026-07-09",
+   "layer": "L3",
+   "note": ""
+  },
+  "quota_domestic_share_2021": {
+   "key": "quota_domestic_share_2021",
+   "value": 0.55,
+   "unit": "ratio",
+   "source": "Cabinet decision 170 of 24 November 2021 \u2014 share of output to the subsidised system",
+   "date": "2021-11-24",
+   "layer": "L3",
+   "note": ""
+  },
+  "quota_free_local_2021": {
+   "key": "quota_free_local_2021",
+   "value": 0.1,
+   "unit": "ratio",
+   "source": "Cabinet decision 170 of 24 November 2021",
+   "date": "2021-11-24",
+   "layer": "L3",
+   "note": ""
+  },
+  "export_levy_egp_t": {
+   "key": "export_levy_egp_t",
+   "value": 2500.0,
+   "unit": "EGP/t",
+   "source": "Trade and industry ministry decree 241 of 2021 \u2014 levy on the quota shortfall",
+   "date": "2021-06-03",
+   "layer": "L3",
+   "note": ""
+  },
+  "export_duty_2026": {
+   "key": "export_duty_2026",
+   "value": 0.1,
+   "unit": "ratio",
+   "source": "2026 replacement of the shortfall levy with an ad-valorem duty tied to the global price",
+   "date": "2026-01-01",
+   "layer": "L3",
+   "note": ""
+  },
+  "subsidised_price": {
+   "key": "subsidised_price",
+   "value": 6000.0,
+   "unit": "EGP/t",
+   "source": "Cooperative supply price for subsidised fertilizer",
+   "date": "2025-09-08",
+   "layer": "L3",
+   "note": ""
+  },
+  "quota_revision_sep2025": {
+   "key": "quota_revision_sep2025",
+   "value": 0.53,
+   "unit": "ratio",
+   "source": "Cabinet decision of 8 September 2025 \u2014 industry export share after the revision",
+   "date": "2025-09-08",
+   "layer": "L3",
+   "note": ""
+  },
+  "egypt_urea_capacity": {
+   "key": "egypt_urea_capacity",
+   "value": 7250,
+   "unit": "kt/year",
+   "source": "Industry analysis of Egyptian nitrogen capacity across the named producers",
+   "date": "2026-03-25",
+   "layer": "L4",
+   "note": ""
+  },
+  "peer_abuqir_capacity": {
+   "key": "peer_abuqir_capacity",
+   "value": 2000,
+   "unit": "kt/year",
+   "source": "Industry capacity survey",
+   "date": "2026-03-25",
+   "layer": "L4",
+   "note": ""
+  },
+  "peer_mopco_capacity": {
+   "key": "peer_mopco_capacity",
+   "value": 1800,
+   "unit": "kt/year",
+   "source": "Industry capacity survey",
+   "date": "2026-03-25",
+   "layer": "L4",
+   "note": ""
+  },
+  "peer_ncic_capacity": {
+   "key": "peer_ncic_capacity",
+   "value": 1300,
+   "unit": "kt/year",
+   "source": "Industry capacity survey",
+   "date": "2026-03-25",
+   "layer": "L4",
+   "note": ""
+  },
+  "mideast_seaborne_share": {
+   "key": "mideast_seaborne_share",
+   "value": 0.35,
+   "unit": "ratio",
+   "source": "Commodity research on Middle East share of seaborne ammonia and urea trade",
+   "date": "2026-03-01",
+   "layer": "L4",
+   "note": ""
+  },
+  "greenfield_capex_usd_t_low": {
+   "key": "greenfield_capex_usd_t_low",
+   "value": 550.0,
+   "unit": "US$/annual t",
+   "source": "Industry build-cost range for a urea line with its own ammonia unit",
+   "date": "2026-03-25",
+   "layer": "L4",
+   "note": ""
+  },
+  "greenfield_capex_usd_t_high": {
+   "key": "greenfield_capex_usd_t_high",
+   "value": 700.0,
+   "unit": "US$/annual t",
+   "source": "Industry build-cost range",
+   "date": "2026-03-25",
+   "layer": "L4",
+   "note": ""
+  },
+  "egx_industrial_ev_ebitda_low": {
+   "key": "egx_industrial_ev_ebitda_low",
+   "value": 3.0,
+   "unit": "x",
+   "source": "Observed Egyptian industrial transaction and trading range",
+   "date": "2026-08-06",
+   "layer": "L4",
+   "note": ""
+  },
+  "egx_industrial_ev_ebitda_high": {
+   "key": "egx_industrial_ev_ebitda_high",
+   "value": 6.0,
+   "unit": "x",
+   "source": "Observed Egyptian industrial transaction and trading range",
+   "date": "2026-08-06",
+   "layer": "L4",
+   "note": ""
+  },
+  "control_discount_eg_state": {
+   "key": "control_discount_eg_state",
+   "value": 0.4,
+   "unit": "ratio",
+   "source": "Observed discount at which Egyptian state-controlled industrial assets have changed hands",
+   "date": "2026-08-06",
+   "layer": "L4",
+   "note": ""
+  },
+  "an_price_usd_t": {
+   "key": "an_price_usd_t",
+   "value": 280.0,
+   "unit": "US$/t",
+   "source": "Mid-cycle ammonium nitrate pricing",
+   "date": "2026-08-07",
+   "layer": "L4",
+   "note": ""
+  },
+  "mid_cycle_urea_usd_t": {
+   "key": "mid_cycle_urea_usd_t",
+   "value": 400.0,
+   "unit": "US$/t",
+   "source": "Mid-cycle urea free-on-board Egypt: above the 2015-2020 average of roughly US$250 and well below the August 2026 quote of US$545",
+   "date": "2026-08-07",
+   "layer": "L4",
+   "note": ""
+  },
+  "design_urea_tpy": {
+   "key": "design_urea_tpy",
+   "value": 574875,
+   "unit": "tonnes/year",
+   "source": "Constructed: 1,575 t/day contractual plate times 365 days",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "ammonia_per_urea": {
+   "key": "ammonia_per_urea",
+   "value": 0.619889556570605,
+   "unit": "tonnes",
+   "source": "Constructed: FY2024/25 ammonia output divided by FY2024/25 urea output, both from the auditor's product cost table",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "export_tonnes_FY2425": {
+   "key": "export_tonnes_FY2425",
+   "value": 350318.15531407367,
+   "unit": "tonnes",
+   "source": "Constructed: note 20 export revenue divided by the auditor's disclosed average export price of US$385/t at an average rate of 49.0 \u2014 reconciles to 350.3kt",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "usd_egp_avg_FY2425": {
+   "key": "usd_egp_avg_FY2425",
+   "value": 49.0,
+   "unit": "EGP/US$",
+   "source": "Constructed: the rate that reconciles note 20 export revenue to the disclosed export price and the implied export tonnage",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "subsidised_tonnes_FY2425": {
+   "key": "subsidised_tonnes_FY2425",
+   "value": 126000,
+   "unit": "tonnes",
+   "source": "Constructed: the auditor's 147kt delivered over fourteen months, annualised",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "gas_share_of_materials": {
+   "key": "gas_share_of_materials",
+   "value": 0.75,
+   "unit": "ratio",
+   "source": "Constructed and FLAGGED: the statements give a single materials line and do not split gas from the rest. Gas is set at three quarters of that line, which implies 1,292 m3 per tonne of ammonia \u2014 inside the auditor's own disclosed 1,025 to 1,771 range. This is the largest modelled allocation in the study.",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "gas_realised_usd_mmbtu": {
+   "key": "gas_realised_usd_mmbtu",
+   "value": 4.68,
+   "unit": "US$/mmBtu",
+   "source": "Constructed: the company's own Q1 disclosure values 31,313,235 m3 of lost gas at EGP 251m, or EGP 8.016/m3, which converts to about US$4.68/mmBtu at the prevailing rate \u2014 below the US$5.75 contract price, which the study carries as its downside case",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "mmbtu_per_m3": {
+   "key": "mmbtu_per_m3",
+   "value": 0.03531,
+   "unit": "mmBtu/m3",
+   "source": "Standard gross calorific conversion",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "nh3_per_t_an": {
+   "key": "nh3_per_t_an",
+   "value": 0.43,
+   "unit": "tonnes",
+   "source": "Ammonia per tonne of ammonium nitrate through the nitric-acid route plus direct neutralisation",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "anna_nameplate": {
+   "key": "anna_nameplate",
+   "value": 189862.7701545895,
+   "unit": "tonnes/year",
+   "source": "Constructed and FLAGGED: no filing states the new plant's capacity. It is the ammonia design plate less the draw of urea at ITS design plate, converted at the ratio above.",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "dso": {
+   "key": "dso",
+   "value": 26.774695365567133,
+   "unit": "days",
+   "source": "Constructed: FY2024/25 receivables over revenue",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "dio": {
+   "key": "dio",
+   "value": 165.24752797477882,
+   "unit": "days",
+   "source": "Constructed: FY2024/25 inventory over cost of sales",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "dpo": {
+   "key": "dpo",
+   "value": 83.17161071710899,
+   "unit": "days",
+   "source": "Constructed: FY2024/25 payables over cost of sales",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "kd_usd_nominal": {
+   "key": "kd_usd_nominal",
+   "value": 0.117,
+   "unit": "ratio",
+   "source": "Constructed: EGP 1,338.0m of FY2024/25 interest on a mean dollar balance of about US$233m",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "expected_depreciation": {
+   "key": "expected_depreciation",
+   "value": 0.045,
+   "unit": "ratio",
+   "source": "Constructed: the central bank's 7% inflation target against about 2.4% in the United States. The SAME wedge drives the currency path in the revenue build, so the two cannot diverge.",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "kd_local": {
+   "key": "kd_local",
+   "value": 0.194,
+   "unit": "ratio",
+   "source": "Constructed: EGP 96,896,001 of interest on the EGP 500,000,000 holding-company facility drawn in FY2024/25 \u2014 the company's own latest local borrowing",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "real_rate_lt": {
+   "key": "real_rate_lt",
+   "value": 0.035,
+   "unit": "ratio",
+   "source": "Long-run emerging-market real policy rate, used to build the terminal risk-free rate from its own components rather than from a spot yield",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "kd_usd_lt": {
+   "key": "kd_usd_lt",
+   "value": 0.09,
+   "unit": "ratio",
+   "source": "Long-run corporate dollar cost of debt",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "roc_terminal": {
+   "key": "roc_terminal",
+   "value": 0.18,
+   "unit": "ratio",
+   "source": "Terminal return on invested capital, which sets the terminal reinvestment rate as growth divided by return on capital",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "maint_capex_pct": {
+   "key": "maint_capex_pct",
+   "value": 0.03,
+   "unit": "ratio",
+   "source": "Maintenance capital expenditure as a share of revenue. The pre-project observed run of EGP 42.5-81m was abnormally low on a newly built plant; 3.0% is the mature-plant standard. No guidance exists, so this is sensitised.",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "anna_cash_margin": {
+   "key": "anna_cash_margin",
+   "value": 0.32,
+   "unit": "ratio",
+   "source": "Conversion margin on ammonium nitrate over its own ammonia feedstock",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "local_free_parity": {
+   "key": "local_free_parity",
+   "value": 0.9,
+   "unit": "ratio",
+   "source": "Local free-market urea clears at about 90% of export parity, implied by the FY2024/25 note-20 local revenue net of the subsidised and nitrate legs",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "urea_util": {
+   "key": "urea_util",
+   "value": [
+    0.913,
+    0.922,
+    0.93,
+    0.939,
+    0.948
+   ],
+   "unit": "ratio",
+   "source": "Utilisation path. Audited output ran 586.4kt in FY2022/23 (2% above plate), 521.9kt in FY2023/24 and 513.4kt in FY2024/25; the path never returns to plate because the summer gas curtailment is structural.",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "export_usd_path": {
+   "key": "export_usd_path",
+   "value": [
+    530.0,
+    500.0,
+    470.0,
+    450.0,
+    440.0
+   ],
+   "unit": "US$/t",
+   "source": "Export price path, mean-reverting from the August 2026 quote toward the cash cost of the marginal gas-based producer.",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "export_usd_path_bull": {
+   "key": "export_usd_path_bull",
+   "value": [
+    560.0,
+    545.0,
+    530.0,
+    520.0,
+    515.0
+   ],
+   "unit": "US$/t",
+   "source": "Upside export price path: urea holds nearer the August 2026 quote.",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "usd_egp_path": {
+   "key": "usd_egp_path",
+   "value": [
+    51.9,
+    54.2,
+    56.7,
+    59.2,
+    61.9
+   ],
+   "unit": "EGP/US$",
+   "source": "Currency path at 4.5% depreciation a year from the spot rate \u2014 the same wedge used to carry the dollar debt at local-equivalent cost.",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "subsidised_t_path": {
+   "key": "subsidised_t_path",
+   "value": [
+    155000,
+    160000,
+    165000,
+    170000,
+    175000
+   ],
+   "unit": "tonnes",
+   "source": "Subsidised delivery path. The company met 147kt of a 322kt requirement in the fourteen months to August 2025, a 46% compliance rate the forecast does not assume away.",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "subsidised_p_path": {
+   "key": "subsidised_p_path",
+   "value": [
+    7526.0,
+    8429.0,
+    9272.0,
+    10106.0,
+    10915.0
+   ],
+   "unit": "EGP/t",
+   "source": "Administered subsidised price path from the EGP 6,000 cooperative supply price.",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "local_free_path": {
+   "key": "local_free_path",
+   "value": [
+    40000,
+    41000,
+    42000,
+    43000,
+    44000
+   ],
+   "unit": "tonnes",
+   "source": "Local free-market volume path from the 37.1kt implied for FY2024/25.",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "an_path": {
+   "key": "an_path",
+   "value": [
+    26000,
+    26000,
+    26000,
+    26000,
+    26000
+   ],
+   "unit": "tonnes",
+   "source": "Nitrate volume path, flat on the FY2024/25 combined granulated and low-density output.",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "other_rev_path": {
+   "key": "other_rev_path",
+   "value": [
+    140.0,
+    152.0,
+    163.0,
+    174.0,
+    186.0
+   ],
+   "unit": "EGP m",
+   "source": "Merchant nitric acid, the ferrosilicon plant's rent and services.",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "abnormal_gas_path": {
+   "key": "abnormal_gas_path",
+   "value": [
+    150.0,
+    120.0,
+    100.0,
+    90.0,
+    80.0
+   ],
+   "unit": "EGP m",
+   "source": "Stoppage and abnormal-gas cost, decaying as supply normalises from the EGP 164.5m charged in FY2024/25.",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "cpi_path": {
+   "key": "cpi_path",
+   "value": [
+    0.1,
+    0.085,
+    0.075,
+    0.07,
+    0.07
+   ],
+   "unit": "ratio",
+   "source": "Domestic inflation converging from the June 2026 print on the central bank's target.",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "anna_capex_path": {
+   "key": "anna_capex_path",
+   "value": [
+    3000.0,
+    3500.0,
+    3500.0,
+    3000.0,
+    2000.0
+   ],
+   "unit": "EGP m",
+   "source": "Project spending path against the bank-approved cost and the observed pace: construction in progress moved from EGP 3,790m to EGP 5,654m over nine months.",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "g_terminal": {
+   "key": "g_terminal",
+   "value": 0.07,
+   "unit": "ratio",
+   "source": "Terminal growth set at the central bank's medium-term inflation target: nominal maintenance growth, no real growth assumed",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "anna_util_base": {
+   "key": "anna_util_base",
+   "value": 0.5,
+   "unit": "ratio",
+   "source": "Project utilisation in the terminal year, central case",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "anna_util_bull": {
+   "key": "anna_util_bull",
+   "value": 0.7,
+   "unit": "ratio",
+   "source": "Project utilisation in the terminal year, upside case",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "plant_distance_to_port_km": {
+   "key": "plant_distance_to_port_km",
+   "value": 1000,
+   "unit": "km",
+   "source": "Aswan to the Mediterranean export ports \u2014 the reason inland freight is a disclosed cost line of its own",
+   "date": "2026-08-08",
+   "layer": "L4",
+   "note": ""
+  },
+  "urea_stock_shortfall_t": {
+   "key": "urea_stock_shortfall_t",
+   "value": 1648,
+   "unit": "tonnes",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), auditor's report \u2014 shortfall between warehouse records and the physical count at Damietta",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "gas_m3_per_t_ammonia_modelled": {
+   "key": "gas_m3_per_t_ammonia_modelled",
+   "value": 1292.0,
+   "unit": "m3/t",
+   "source": "Constructed and FLAGGED: implied by setting gas at three quarters of the single disclosed materials line; inside the auditor's own disclosed 1,025-1,771 range",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "local_sack_price_low": {
+   "key": "local_sack_price_low",
+   "value": 1400.0,
+   "unit": "EGP per 50kg",
+   "source": "Egyptian press reporting of open-market fertilizer sack prices",
+   "date": "2026-06-30",
+   "layer": "L4",
+   "note": ""
+  },
+  "local_sack_price_high": {
+   "key": "local_sack_price_high",
+   "value": 1600.0,
+   "unit": "EGP per 50kg",
+   "source": "Egyptian press reporting of open-market fertilizer sack prices",
+   "date": "2026-06-30",
+   "layer": "L4",
+   "note": ""
+  },
+  "stale_listing_share_count": {
+   "key": "stale_listing_share_count",
+   "value": 394042710,
+   "unit": "shares",
+   "source": "A stale exchange listing document surfaced in search \u2014 recorded ONLY as a documented discrepancy; it predates the March 2024 capital increase and is not used anywhere",
+   "date": "2026-08-08",
+   "layer": "L4",
+   "note": ""
+  },
+  "aggregator_share_count": {
+   "key": "aggregator_share_count",
+   "value": 197950000,
+   "unit": "shares",
+   "source": "A widely visible market page, inconsistent with its own market-capitalisation figure by a factor of ten \u2014 recorded ONLY as a documented discrepancy, not used",
+   "date": "2026-08-08",
+   "layer": "L4",
+   "note": ""
+  }
+ }
+}

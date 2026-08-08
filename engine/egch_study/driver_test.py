@@ -39,8 +39,8 @@ import openpyxl, xlcalc
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 XLSX = os.path.join(HERE, 'EGCH_Valuation_Model_08082026.xlsx')
-SHEET_A = '3 Assumptions'
-HEAD = ('10 DCF base', 'B42')          # value per share, committed-capital case
+SHEET_A = 'Assumptions'
+HEAD = ('DCF', 'B44')          # value per share, programme carried through
 
 
 def value_with(overrides):
@@ -69,14 +69,14 @@ TESTS = [
     ("Export urea price — FY2030/31", 1.10, "up",
      "Year five feeds the terminal base, so the last year's price matters most."),
     ("Urea capacity utilisation — FY2026/27", 1.05, "up", "More tonnes at a positive margin."),
-    ("Gas consumption per tonne of ammonia", 1.10, "down",
+    ("Gas per tonne of ammonia", 1.10, "down",
      "Gas is the largest single cost; burning more of it per tonne costs money."),
     ("Realised gas price", 1.10, "down", "Same mechanism, through the price rather than the volume."),
-    ("USD/EGP — FY2026/27", 1.05, "up",
+    ("Egyptian pounds per US dollar — FY2026/27", 1.05, "up",
      "Revenue is dollar-linked and the gas bill is dollar-linked, but the pound cost base "
      "is not, so a weaker pound is net positive at this margin."),
     ("Export duty", 1.50, "down", "The duty is a direct wedge in the realised export price."),
-    ("ANNA project capital expenditure — FY2026/27", 1.20, "down",
+    ("Project capital expenditure — FY2026/27", 1.20, "down",
      "Cash out with no incremental cash in inside the explicit window."),
     ("Maintenance capital expenditure", 1.30, "down", "Cash out of free cash flow."),
     ("Terminal return on invested capital", 1.20, "up",
@@ -88,11 +88,11 @@ TESTS = [
     ("Tax rate", 1.20, "down", "A larger share of operating profit leaves the firm."),
     ("Days inventory outstanding", 1.20, "down", "More cash locked in working capital."),
     ("Days payable outstanding", 1.20, "up", "Supplier financing releases cash."),
-    ("Egyptian CPI — FY2026/27", 1.30, "down",
+    ("Egyptian inflation — FY2026/27", 1.30, "down",
      "Only the pound-denominated cost lines are indexed; revenue is dollar-linked, so "
      "domestic inflation is a pure cost shock."),
-    ("Abnormal gas and stoppage cost — FY2026/27", 2.0, "down", "A direct charge against EBIT."),
-    ("ANNA utilisation in the terminal year", 1.40, "up",
+    ("Stoppage and abnormal gas cost — FY2026/27", 2.0, "down", "A direct charge against EBIT."),
+    ("Project utilisation in the terminal year", 1.40, "up",
      "The only place ANNA earns anything in the committed-capital case."),
 ]
 fails = []
@@ -115,8 +115,9 @@ for lab, mult, want, why in TESTS:
 print("\ndead-input sweep — every remaining driver must move at least one case headline,")
 print("in at least one direction. A driver of the downside or upside case is live even")
 print("though it leaves the committed-capital headline untouched.")
-HEADS = [('10 DCF base', 'B42'), ('11 DCF bear', 'B42'),
-         ('12 DCF bull', 'B42'), ('12b DCF capital discipline', 'B42')]
+HEADS = [('DCF', 'B44'), ('DCF', 'D44'), ('Summary', 'B11'), ('Summary', 'B12'),
+         ('Fundamental Valuation', 'B18'), ('Relative & Normalized', 'B12'),
+         ('Relative & Normalized', 'B31'), ('Summary', 'B28')]
 
 
 def all_heads(overrides):

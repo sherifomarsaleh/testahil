@@ -15,6 +15,10 @@ from docx.oxml.ns import qn
 from docx.oxml import OxmlElement
 
 SW = json.load(open('sweep_register.json'))
+IRJ = json.load(open('input_register.json'))
+from inputs import V
+LN = json.load(open('lenses.json'))
+EXJ = json.load(open('experts.json'))
 LIVE = json.load(open('live_data.json'))
 INK = RGBColor(0x1C, 0x3A, 0x36); GREY = RGBColor(0x6E, 0x7B, 0x77)
 WHITE = RGBColor(0xFF, 0xFF, 0xFF)
@@ -106,7 +110,7 @@ P("This register lists every source behind the valuation study and the accompany
   "for market context and forecast drivers, and from cross-checks that inform no figure.",
   size=10)
 
-# --------------------------------------------- 1. company's own documents ----
+
 H1("1.  The company's own issued documents")
 P("Obtained from the company's investor-relations page at kimaegypt.com, which serves its "
   "filings through the Mist investor-relations portal. Every document was downloaded, "
@@ -156,7 +160,7 @@ dam = LIVE['damodaran_egypt']['value']
 rows += [
  ["Share price", "EGP 13.98", "6 Aug 2026", "Exchange close, from the study's own price library",
   "Market capitalisation, the equity weight in the cost of capital, and every comparison"],
- ["Share count", "1,986,578,999", "30 Jun 2025", "Note 14 of the audited statements",
+ ["Share count", f"{V('shares_outstanding'):,}", "30 Jun 2025", "Note 14 of the audited statements",
   "Per-share values. NOT taken from an exchange page or an aggregator"],
  ["Ten-year government bond yield", "23.00%", "6 Aug 2026", "Market quote",
   "The observed risk-free rate before normalisation"],
@@ -201,8 +205,9 @@ CTX = [
   "coverage", "2021 to 2026"),
  ("Egyptian nitrogen capacity", "About 7.2 to 7.3 million tonnes a year across the named "
   "producers", "Industry analysis", "Mar 2026"),
- ("Local fertilizer prices", "Subsidised supply at about EGP 6,000 a tonne against open "
-  "market sacks at EGP 1,400 to 1,600 per 50 kilograms", "Egyptian press", "2025-2026"),
+ ("Local fertilizer prices", f"Subsidised supply at about EGP {V('subsidised_price'):,.0f} a "
+  f"tonne against open-market sacks at EGP {V('local_sack_price_low'):,.0f} to "
+  f"{V('local_sack_price_high'):,.0f} per 50 kilograms", "Egyptian press", "2025-2026"),
  ("Project contractor and scope", "The engineering consortium, the contract value and the "
   "settlement history of the earlier project", "Contractor announcements, corroborated "
   "against the notes to the audited statements", "2022 to 2025"),
@@ -238,7 +243,123 @@ P("Two consequences follow and both are stated in the study itself. The share co
   "company reports about itself.", size=9)
 
 # ----------------------------------------------------------- 6. how to check -
-H1("6.  How a reader can check this study")
+
+# ------------------------------------------------- 6. THE FULL INPUT REGISTER -
+doc.add_page_break()
+H1("6.  The full input register — every input, four fields, grouped by layer")
+P("Value, source-and-construction, date and layer for every input the study uses. Nothing "
+  "in the deliverables is an orphan number.", size=9.2, color=GREY)
+for L in sorted(IRJ['layers']):
+    rowsL = [r for r in IRJ['inputs'].values() if r['layer'] == L]
+    if not rowsL:
+        continue
+    P(f"{L} — {IRJ['layers'][L]}  ({len(rowsL)} inputs)", bold=True, size=10.5, space_before=8)
+    rows = [["Input", "Value", "Unit", "Date", "Source and construction"]]
+    for rr in sorted(rowsL, key=lambda x: x['key']):
+        v = rr['value']
+        if isinstance(v, list):
+            sval = ", ".join(f"{x:,.4g}" for x in v)
+        elif isinstance(v, float):
+            sval = f"{v:,.4f}".rstrip('0').rstrip('.') if abs(v) < 1000 else f"{v:,.0f}"
+        else:
+            sval = f"{v:,}" if isinstance(v, int) else str(v)
+        note = rr['source'] + ((" — " + rr['note']) if rr.get('note') else "")
+        rows.append([rr['key'], sval, rr['unit'], rr['date'], note])
+    table(rows, [1.7, 1.35, 0.85, 0.8, 5.1], size=7.4)
+
+# ----------------------------------------------------- judgements and negatives
+doc.add_page_break()
+H1("The judgements, and what would overturn each")
+rows = [["Judgement", "What was decided", "What would overturn it"]]
+JD = [("The valuation lens",
+       "Free cash flow to the firm with a volume-times-price driver tree, because the "
+       "revenue note and the balance sheet show a single operating business with no lending, "
+       "rental or fee leg",
+       "A disclosed second segment of any size, or a change in the asset mix that made the "
+       "balance sheet something other than a plant"),
+      ("The contested judgement — the capital programme",
+       "Computed BOTH ways and published side by side rather than averaged, because the two "
+       f"differ by EGP {LN['contested']['gap']:,.2f} a share",
+       "A dated commissioning schedule with a disclosed nameplate, which would collapse the "
+       "two cases toward one"),
+      ("The gas share of the materials line",
+       f"Three quarters of a single disclosed materials line, implying "
+       f"{V('gas_m3_per_t_ammonia_modelled'):,.0f} cubic metres a "
+       "tonne of ammonia — inside the auditor's own disclosed range",
+       "Any disclosure splitting that line, or a stated consumption rate"),
+      ("The new complex's nameplate",
+       "Derived from the ammonia design plate less urea's draw at its own plate",
+       "A filing stating the capacity, which no filing currently does"),
+      ("The cost of capital basis",
+       "The sovereign's own yield less its own default spread, with a country-loaded premium "
+       "added back once; both premium bases published",
+       "Evidence that Egyptian equity risk clears below its sovereign, which would revalue "
+       "every Egyptian equity and not only this one"),
+      ("The dividend assumption",
+       "Zero, sourced from two consecutive appropriation statements rather than assumed",
+       "A distribution proposed in any future appropriation statement"),
+      ("The terminal growth rate",
+       "The central bank's medium-term inflation target — nominal maintenance growth with no "
+       "real growth assumed",
+       "A demonstrated ability to grow volumes, which needs gas the country does not "
+       "currently have")]
+for j in JD:
+    rows.append(list(j))
+table(rows, [1.7, 4.0, 4.1], size=8.0)
+
+H1("Negative results — what was searched for and not found")
+rows = [["What was sought", "Where", "Outcome"]]
+NEG = [("An investor presentation or earnings-call transcript",
+        "The company's investor-relations portal and open search",
+        "None exists. The company publishes filings and disclosure reports only, so the "
+        "volume, price and utilisation data such material normally carries was taken "
+        "instead from the statutory auditor's own tables"),
+       ("A stated nameplate capacity for the new complex",
+        "All four audited years and all three interim filings",
+        "Not disclosed. The capacity used is derived and flagged as derived throughout"),
+       ("A maintenance capital-expenditure guide or investment plan beyond the project",
+        "Board reports inside the filings, and open search",
+        "None found. Maintenance capital expenditure is set at a mature-plant standard and "
+        "sensitised"),
+       ("Separate audit reports for FY2023, FY2024 and FY2025",
+        "The portal's audit-reports section",
+        "That section holds only audit-committee reports and its newest item covers the "
+        "period to 31 December 2021. The statutory auditor's reports for the years used are "
+        "bound inside the annual statements themselves"),
+       ("Official treasury-bill auction results",
+        "The central bank's auction pages",
+        "Blocked to automated access. Secondary market quotes are carried instead, used for "
+        "context only, and no valuation figure depends on them"),
+       ("The exchange's own stated share count",
+        "The exchange company page for the listing",
+        "Behind a bot challenge that refused every automated read. The share count is taken "
+        "from note 14 of the audited statements instead")]
+for n in NEG:
+    rows.append(list(n))
+table(rows, [2.5, 2.6, 4.7], size=8.0)
+
+H1("Where a widely quoted third-party figure disagreed with the filings")
+rows = [["Figure", "What third parties showed", "What the filings show", "Which was used"],
+        ["Shares outstanding",
+         f"One widely visible market page reported {V('aggregator_share_count')/1e6:,.2f} million "
+         f"shares, inconsistent with its own market-capitalisation figure by a factor of ten; "
+         f"a stale exchange listing document showed {V('stale_listing_share_count'):,} shares",
+         f"{V('shares_outstanding'):,} shares of EGP {V('par_value'):.0f} par, paid-in capital EGP "
+         f"{V('paid_capital')*1e6:,.0f}, note 14",
+         "The filing. The stale document predates the capital increase"],
+        ["Fiscal-year convention",
+         "Several sources present results on a calendar-year basis",
+         "The financial year ends 30 June; every statement is dated accordingly",
+         "The filing"],
+        ["FY2023/24 profitability",
+         f"Reported net profit of EGP {V('is_net_FY2324'):,.1f} million is widely quoted without "
+         f"qualification",
+         f"That figure includes EGP {V('oneoff_reval_FY2324'):,.1f} million of one-off "
+         f"investment-property revaluation gain",
+         "The underlying figure, used for every margin and return in the study"]]
+table(rows, [1.5, 3.4, 3.4, 1.5], size=7.8)
+
+H1("7.  How a reader can check this study")
 P("Every historical figure in the study appears in the accompanying workbook on the sheets "
   "marked historical, carried exactly as issued. Every forecast figure is a formula on "
   "those sheets, driven by the assumptions sheet, and each assumption carries its source "

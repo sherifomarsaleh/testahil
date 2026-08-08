@@ -1,0 +1,10 @@
+formula cells in workbook : 555
+unresolvable              : 0
+reproduce the model       : 555
+mismatches                : 0
+unchecked formula cells   : 0
+recorded but not in file  : 0
+
+headline reconciliations  : 16/16 pass
+
+PASS: 555 of 555 formula cells reproduce the model, 0 unresolvable, 0 unchecked
