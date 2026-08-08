@@ -85,7 +85,7 @@ def bullet(text, bold_head=None):
     return p
 
 def table(rows, widths, header=True, first_col_bold=False, size=9.3, header_fill=F_PANEL,
-          align_right_from=1, band_rows=None):
+          align_right_from=1, band_rows=None, text_cols=()):
     t = doc.add_table(rows=len(rows), cols=len(widths))
     t.alignment = WD_TABLE_ALIGNMENT.CENTER
     cell_margins(t); borders(t)
@@ -109,7 +109,9 @@ def table(rows, widths, header=True, first_col_bold=False, size=9.3, header_fill
                 r.bold = True; shade(c, F_CREAM)
             if first_col_bold and j == 0 and i > 0:
                 r.bold = True
-            if j >= align_right_from and i > 0:
+            # numeric columns read right-aligned; prose columns must stay left-aligned
+            # or a sentence ends up ragged against the wrong edge of its cell
+            if j >= align_right_from and i > 0 and j not in text_cols:
                 p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
     doc.add_paragraph().paragraph_format.space_after = Pt(2)
     return t
