@@ -312,3 +312,188 @@ Done properly, the reviewer's own rule gives 7.5 × 0.9782 + 1.8034 = **EGP 9.13
 ---
 
 **§B running total:** one finding accepted (B-8, the same as A-1, −8.47%, not additive), two fixes accepted in reworked form (B-10 separation +1.22%, B-6 consistency via A-4 −0.55%), one promotion to the summary page (B-4, rating basis −3.21% shown as an alternative), one research item (B-5), three rejections with receipts carrying −9.12% of arithmetic error between them (B-7, B-14, B-15), and six clearances.
+
+---
+
+## §C — Claude Code ("Fail Table", 43 numbered findings F1–F43, plus a reconciliation appendix)
+
+**This is the most rigorous of the four.** It re-implemented the formula graph independently before comparing, reproduced 41 of 44 lines to the last decimal, and every one of its DCF-lens prices that I re-ran reproduced **exactly** — 5.26, 6.13, 6.48, 5.76, 6.71, 6.88, 4.94, 7.78, 7.0805%, 6.239%, 7.598%. It also has one systematic error that runs consistently in the direction of understating its own case: **it propagates its corrections into the DCF lens but not into the normalised-earnings lens**, so its weighted centrals are too close to the published figure on every finding, in both directions. Where I quote a weighted number below it is my own full re-run of all four lenses, and I flag each place it differs from theirs.
+
+### C-F1. "Revenue engine base = 6M tonnes ×2 × 6M realisation = 41,471.5mn. Cost engine base = 9M COS ×4/3 = 38,535.1mn. Implied opening GM = 1−38,535.1/41,471.5 = 7.0805% — neither the filed 6M 6.14% nor the base-year 7.506%… Two different annualisations applied to the two sides of the same margin ratio."
+
+**Premise — VERIFIED to four decimal places, and it is the largest defect found by anyone.** `build()` at `compute.py:637` sets `base_t = tot_t * 2 / 1e6` and `v = PT[k] * 2.0 / 1e6 * vidx[k]` — the volume base is the note 14-A **six-month** tonnage doubled, priced at the six-month realisation. Three lines earlier, `_cos0 = cogs9 / M * A` sets the cost level from the **nine months** scaled by four thirds. The two sides of the gross margin are annualised from different periods. Summing the eight lines gives an engine base revenue of **41,471.5mn** against `BASE_REV` of 41,662.0mn, and 1 − 38,535.1/41,471.5 = **7.0805%**, the reviewer's figure exactly. Meanwhile the study's own text states the 4/3 scaling "is the only step between the filings and the base year", which is true of the cost side and false of the revenue side.
+
+**Price — the two internally consistent bases span EGP 5.5853 to EGP 7.9347, −22.0% to +10.8%, a range of EGP 2.35 a share or 32.8% of the published central.** Far **above** the 5% line — escalated. The reviewer's DCF prices reproduce exactly (7.7827 against their 7.78; 4.9413 against their 4.94; 2026E margins 7.5980% and 6.2387% against their 7.598% and 6.239%) but their weighted centrals of 7.58 and 6.30 both understate: a full four-lens re-run gives **7.9347** and **5.5853**.
+
+**Re-derivation (step 6) — which basis is correct, decided on the filings and not on preference.**
+1. *What does note 14-A actually disclose?* Eight product lines with tonnes and values, **for the six-month transition period only**. There is no nine-month product table anywhere in the four filings. So the six-month table is the only source for the **mix** and the only source for **realisation per tonne**.
+2. *What is the base year everywhere else?* Nine months. Operating expense, depreciation, capex, the effective tax rate, working-capital intensity and profit after tax are all struck on `rev9`/`gp9`/`cogs9` × 4/3. The revenue engine is the sole exception.
+3. *The model already knows the right answer and states it in a comment.* `compute.py:630-632`: *"The disclosed note 15-A composition is a SHARE structure; the LEVEL is set by the nine-month base so the first forecast year joins the audited base year continuously instead of stepping down to the transition half's own margin."* That is precisely the correct treatment — take the **mix** from the six-month note, take the **level** from the nine-month base — and it was applied to the cost side and **not** to the revenue side. This is not a judgement call I got wrong; it is the same principle applied once instead of twice.
+4. *So Option A.* Scale the eight-line product table to the nine-month revenue level, preserving the disclosed mix and realisation structure, and leave the cost level where it is. The base gross margin then becomes 7.5055% — the actual nine-month audited-and-reviewed ratio — instead of an artefact 7.0805% that corresponds to no filed period. Option B (both sides on the six-month half) is wrong because it discards the Q1-2026 quarter entirely, and the Q1-2026 quarter is the reason the nine-month base exists.
+5. *Consequence.* Central **EGP 7.9347**, +10.8%. This is one of only three findings across all four files that raises the valuation, and it is the largest single move in either direction.
+
+**Conclusion — ACCEPTED in full, on Option A, at a magnitude larger than the reviewer computed.** **Bucket: ACCEPT.**
+
+### C-F2. "AMOC's board approved a capital-expenditure budget of ~EGP 580.19mn for FY2025/26, disclosed to the EGX (Dec-2025 board meeting, after Audit & Governance Committee review)… a board-approved, exchange-disclosed capex budget — 4.6× the annualised cash run rate, 3.9× depreciation — bearing directly on the assumption the study itself calls decisive, was not swept and is nowhere mentioned."
+
+**Premise — UNVERIFIABLE from this environment, and that is a problem I own rather than a defence.** The EGX disclosure feed, Mubasher and the company's IR site are all egress-blocked at the proxy (403 on CONNECT); the bibliography records seven such negative results. I cannot open the disclosure. But the reviewer reached it, and a board-approved capital budget disclosed to the exchange before the study date is exactly the class of document my own protocol requires me to sweep. **The sweep did not happen, and "the proxy blocked me" does not excuse not saying so on the face of the study.**
+
+**Price — EGP −0.8265 on the weighted central, −11.54%, to EGP 6.3371** (`CAPEX_ANN = 580.19` inflating; DCF lens **5.2604**, matching the reviewer's 5.26 exactly). Their weighted 6.45 (−10.0%) again understates. **Above the 5% line.**
+
+**Conclusion — DEFECT ACCEPTED, the number RESEARCH.** The defect — a decisive assumption held at the cash run rate without sweeping the exchange disclosures — is accepted unreservedly. The 580.19mn itself I cannot confirm, and a −11.54% adjustment may not be published on a figure I have not read. **Bucket: RESEARCH, with an ACCEPTED disclosure change**: state on the face of the study that forward capex is held at the cash run rate, that a board capital budget may exist and was not reachable, and publish the 580.19mn case as a priced scenario labelled unverified.
+
+### C-F3. "Board-approved revised FY2026 budget: sales 44,888mn, gross profit 3,428mn, operating profit 2,081mn, NPAT ~2,099mn (revised up from 1,024mn)… the study's EBIT is 28.3% below the company's own operating-profit budget."
+
+**Premise — UNVERIFIABLE from here, same egress block, same accepted process defect as C-F2.** **Price — EGP +1.1947 weighted, +16.68%, to EGP 8.3583** (operating expense scaled to the guidance-implied 1,347mn; DCF lens 8.3169 against the reviewer's 9.18, the one place their DCF price and mine diverge materially — they scaled the whole EBIT path, I scaled the line the divergence actually sits in). **Above the 5% line, and it runs upward.** **Bucket: RESEARCH**, same disclosure change as C-F2. Recorded prominently because it is evidence against the reading that this critique is uniformly bearish: its second and third headline findings point in opposite directions by 28 percentage points.
+
+### C-F4. "EGP 67,467,871 in the half = 134.9mn/yr. Cell C23 is referenced by zero formulas… The item is identified, priced, flagged as previously missed — and then still not modelled."
+
+**Premise — VERIFIED.** `V['emp_h2_25']` appears **zero times** in the model body after the input registry. Its own source note reads *"A real distribution out of profit that the previous edition of this study did not model at all"* — and this edition does not model it either. **Price — EGP −0.5876 weighted, −8.20%, to EGP 6.5760** (DCF lens **6.1312**, matching the reviewer's 6.13 exactly; their weighted 6.84 understates by 3.7pp). **Above the 5% line.** **Conclusion — ACCEPTED.** Employees' profit share and board bonuses are a contractual distribution out of profit before the shareholder sees it; it must be charged in the waterfall and in normalised EPS. **Bucket: ACCEPT.**
+
+### C-F5. "10.3% + 0.0% + 37.1% + 40.1% + 15.9% | Sum = 103.4%. Zone 'EGP 7.50 – 7.16' is inverted (7.16 < 7.50) and reports 0.0%; the 7.16–7.50 band is double-counted."
+
+**Premise — VERIFIED by addition; the zones do not partition.** **Price — EGP 0.0000 on fair value; every zone probability in the table is misstated.** **Conclusion — ACCEPTED.** Bins must tile. **Bucket: ACCEPT** the reviewer's partition: <7.16 = 6.9%, 7.16–7.50 = 3.4%, 7.50–9.10 = 33.7%, 9.10–11.00 = 40.1%, >11.00 = 15.9%.
+
+### C-F6. "The published row is non-monotonic (rises from 6.85 to 7.32 as NWC intensity increases), its endpoints are wrong by up to +0.97 (+12.8%), and its centre does not correspond to the model's actual 4.162%."
+
+**Premise — SPLIT, and the split matters.** The non-monotonicity is **real** and the cause is simpler than diagnosed: the published grid is `[0.0, 0.01, 0.0416243, 0.03, 0.05]` — **the x-axis is not sorted**. The base ratio was inserted in the middle position rather than in value order, so the row reads out of sequence. The **values are all correct**: re-running the engine gives 0% → 8.5225, 5% → 6.5156, base 4.1624% → 6.8518, every one matching the published cell.
+
+The "endpoints are wrong by up to +0.97" claim is **REJECTED with receipts**. The reviewer's own recomputed row (7.55 / 7.34 / 7.13 / 6.92 / 6.71) spans 0.84 across 0–5% where a full re-run spans 2.01, while their centre at 4.162% matches mine exactly at 6.85. A re-implementation that agrees at the centre and disagrees at both ends has not propagated the change in invested capital into the terminal block. Mine does; `dcf_scenario(nwc_p=·)` returns 8.5225 / 8.0208 / 7.5191 / 7.0174 / 6.5156 on their own grid — strictly monotone, and the endpoints are the published ones.
+
+**Price — EGP 0.0000 on the headline; the defect is a sorting error in a published table.** **Bucket: ACCEPT the sort fix, REJECT the endpoint claim with receipts.**
+
+### C-F7. "Carry alone… = +0.02348 → median 9.316 (reported 9.33)… Carry less half-variance = +0.0026 → median 9.12. The stated number is the carry with no half-variance deduction; if the stated formula were applied the 3M median would be 9.12, not 9.33."
+
+**Premise — VERIFIED.** The prose describes a half-variance deduction the number does not contain. **Price — EGP 0.0000 on the fundamental; −2.2% on the cone median if the prose were taken literally, flowing into every probability in the cone tables.** **Conclusion — ACCEPTED.** The engine's carry is `ln(1+rf) − ln(1+q)` and the prose should say so. **Bucket: ACCEPT** the wording fix.
+
+### C-F8. "The study's own Table 13 shows reinvestment −6.9%, +12.7%, −10.5%, +4.9% — positive in two of four periods. Implied growth −1.9/+2.8/−2.6/+3.2%, average +0.375% — positive."
+
+**Premise — VERIFIED against `terminal_recon`:** reinvestment −0.0687 / +0.1267 / −0.1051 / +0.0487, implied growth −0.0193 / +0.0282 / −0.0262 / +0.0321, mean **+0.37%**. The study says reinvestment is "NEGATIVE in every audited period" and calls +0.4% "shrinking its capital base". Both are contradicted by the table printed beside them. **Price — EGP 0.0000 arithmetically; it misstates the direction of the study's self-declared sharpest weakness.** **Conclusion — ACCEPTED.** **Bucket: ACCEPT.** Note this also partly refutes §A-3 and §B-9: the reinvestment record is not uniformly negative, and two other reviewers built a "shrinking asset base" argument on my own incorrect sentence rather than on my own correct table.
+
+### C-F9. "Model capex/depreciation by year: 0.99 / 1.11 / 1.24 / 1.37 / 1.50… the caveat's premise that the model 'carries the 0.86× forward' is false… The stated concession understates the real correction by ~250×."
+
+**Premise — VERIFIED exactly** (0.986 / 1.114 / 1.242 / 1.366 / 1.496). The study's stated concession — "free cash flow in the explicit window is overstated by roughly EGP 2mn a year", printed twice — holds only for 2026 and reverses sign from 2027. **Price — EGP 0.0000 as a standalone; the real correction is C-F2's −11.54% if the board budget is confirmed.** **Conclusion — ACCEPTED.** **Bucket: ACCEPT.** This is also the receipt that settles §A-3 and §B-9 against those reviewers: the capex path rises to 1.50× depreciation and the asset base grows.
+
+### C-F10. "engine/Cost_of_Capital_Reference.md is absent from the repository… The only Egypt 10Y figure cached anywhere in the repo is 22.55%."
+
+**Premise — VERIFIED.** The cited file does not exist; `ls` returns no such file. A citation to a non-existent document is a citation failure of the first order, whatever the number turns out to be. **Price — EGP −0.0284 weighted (−0.40%) at 22.55%; total on the citation plane.** **Conclusion — ACCEPTED without qualification.** **Bucket: ACCEPT.** This is the row that decides §A-6 and §B-5 as well: three reviewers questioned the risk-free rate, and the reason none of us can settle it is that the source I cited is not there to check.
+
+### C-F11. "2.47mn (6M) + 30.0mn + 20.3mn (Q1) = 52.8mn over 9M = 70.4mn/yr. All three cells referenced by zero formulas… Disclosed, recurring-in-practice charges recorded and then excluded from the forecast with no stated reason."
+
+**Premise — VERIFIED for the forecast.** The three inputs are each referenced once, in the historical reconstruction of the filed periods, and **not once** in the forward build. **Price — EGP −0.3065 weighted, −4.28%** (DCF lens **6.4759**, matching their 6.48 exactly). With C-F4 together: **EGP −0.8941, −12.48%, to EGP 6.2695** (DCF 5.7554 against their 5.76, exact). **Conclusion — ACCEPTED**; formed provisions and expected credit losses have appeared in every filed period and belong in the run rate. **Bucket: ACCEPT.**
+
+### C-F12. "An equal-weight basket of the analyst's own coverage list is not the local market index and is not investable or published; it is an artifact of which names happen to be covered."
+
+**Premise — correct as stated; the conclusion is a methodology dispute I cannot settle from here.** **Price — UNVERIFIABLE without an EGX30 regression; the grid span is EGP 8.24 → 6.01 on the DCF lens across beta 0.60–1.30, and beta 1.15 alone is EGP −0.4003 weighted (−5.59%), above the 5% line.** **Bucket: RESEARCH.** Run the EGX30 regression and publish both. Recorded as above the line because the *parameter* is, even though the *finding* is unresolved.
+
+### C-F13. "EV = 9.10×1,291.5mn + (−2,442.5mn) = 9,310mn. Base-year EBITDA = 1,653mn. 9,310/1,653 = 5.63×. The stated trailing multiple is wrong; 4.5× is a 20% de-rating, not a hold, so the lens's entire stated justification is false."
+
+**Premise — VERIFIED, and the model itself already computes the right number.** `rel.ev_ebitda_trailing` = **5.6315**. The study text says "around 4.6x". The model's own output contradicts the study's own sentence. **Price — EGP +0.1770 weighted, +2.47%, to EGP 7.3406** at 5.6315× (matching their "weighted 7.34 (+2.5%)" exactly — the one weighted figure of theirs that reproduces, because this lens is the only one it touches). **Conclusion — ACCEPTED.** The 4.5× may still be the right multiple, but it must be justified as a de-rating, not described as a hold. **Bucket: ACCEPT** the correction of the stated trailing multiple; the choice of 4.5× versus 5.63× then becomes **YOURS**, priced at +2.47%, and my recommendation is to keep 4.5× and state plainly that it is a 20% de-rating for the administered-margin and state-counterparty risk.
+
+### C-F14. "The published centre (6.93) is above the base case (6.85) at a beta (0.95) above the base beta — directionally impossible."
+
+**Premise — VERIFIED.** `grid_beta[2]` = 6.9312 at beta 0.9405, against a base DCF of 6.8518. A sensitivity row whose centre does not reproduce the base case is broken. **Price — EGP 0.0000 on the headline; the row is unusable.** **Bucket: ACCEPT** — rebuild the row from full re-runs, and add a gate asserting that every sensitivity row reproduces the base at its base point. That gate did not exist and would have caught this, C-F6 and C-F15 at once.
+
+### C-F15. "At zero volume growth: 2.572. The other four points reproduce exactly. 2.76 corresponds to ≈0.05× the path, not zero."
+
+**Premise — REJECTED with receipts.** `dcf_scenario(vol_mult=0.0)` returns **2.7647**, the published value, to four decimals. `vol_mult` scales the *growth rates*, so 0.0 holds volume flat at the base level; it does not zero volume. The published number is correct for the scenario the model runs. **The real defect is the label**: "zero to double" reads as a volume range when it is a growth-path multiplier, and that ambiguity is what produced this finding. **Price — EGP 0.0000.** **Bucket: REJECT the number, ACCEPT the relabelling.**
+
+### C-F16. "Itemised assets = 8,059.2mn (gap 77.3mn); itemised liabilities = 2,994.8mn (gap 316.8mn)… Presented as a footing table that does not foot."
+
+**Premise — ACCEPTED**; the reviewer also confirms the totals themselves close to zero. **Price — EGP 0.0000; ~0.3 a share of balances left unexamined.** **Bucket: ACCEPT** — add an "other" residual line. This also matches my own pre-critique self-audit item on Appendix A.2.
+
+### C-F17. "Base-year P&L runs to 31-Mar-2026; net debt, NWC, invested capital and book value all taken at 31-Dec-2025… struck four months apart with no disclosure; net cash alone is 1.89/share (28% of fair value)."
+
+**Premise — VERIFIED.** Every balance-sheet input carries `2025-12-31`; the P&L runs to 31-Mar-2026. **Price — the reviewer estimates ~−0.03 a share on the visible items and leaves working capital unquantified; I accept that as the best available number and record the working-capital leg as unpriced.** **Conclusion — ACCEPTED as a disclosure defect.** **Bucket: ACCEPT** — disclose the mismatch explicitly, and where the reviewed 31-Mar-2026 balance sheet supports it, restate the bridge at the base-year date.
+
+### C-F18. "4.6446% is a computed ratio from one half-year… Q1-2026 gives 3.563%; the 9-month blend consistent with the base year is 4.113%… A single-period ratio labelled 'disclosed'."
+
+**Premise — VERIFIED.** The study calls the rate "the DISCLOSED 4.645%"; it is computed from one half-year, 30,488,250 / 656,428,711. **Price — EGP +0.0272 weighted, +0.38%** at 4.113% (DCF **6.8795**, their 6.88, exact). **Conclusion — ACCEPTED on the word "disclosed" and on the period basis.** **Bucket: ACCEPT** — blend over the nine-month base year and stop calling a computed ratio disclosed. This finding also sharpens the §A-4 / §B-6 arbitration: all three reviewers found the NCI treatment, and this is the one that identifies the actual mechanical error.
+
+### C-F19. "the explicit window's own 2030 net reinvestment = 18.25%… Terminal FCFF 1,274mn vs 2030 explicit FCFF 1,156mn = +10.3% step-up. The terminal block assumes less reinvestment than the final explicit year."
+
+**Premise — VERIFIED exactly** (18.253% against a terminal 14.141%). **Price — EGP −0.0627 weighted, −0.88%** (DCF lens **6.7124**, their 6.71, exact). **Conclusion — ACCEPTED as an undisclosed discontinuity.** **Bucket: ACCEPT the disclosure**; the step is a legitimate consequence of the steady-state identity, but a reader is entitled to see that terminal free cash flow steps up 10.3% over the last explicit year.
+
+### C-F20. "TV = 11,039.7mn ✓; but 58.7% is PV(TV)/EV = 3,942.1/6,718.6. 11,039.7/6,718.6 = 164.3%. Two different objects joined in one clause."
+
+**Premise — VERIFIED.** **Price — EGP 0.0000.** **Bucket: ACCEPT** the rewording.
+
+### C-F21. "Table 3: capex 'about EGP 604mn a year'; depreciation 'about EGP 458mn a year' | Model source notes: 'about 649mn in the first forecast year' and 'about 440mn a year'."
+
+**Premise — ACCEPTED**; the reviewer establishes that the report is the internally consistent one (1.45% × 41,662 = 604.1; 1.1% × 41,662 = 458.3). **Price — EGP 0.0000.** **Bucket: ACCEPT** — reconcile the model's source notes to the report.
+
+### C-F22. "Statements!B10/C10 are blank for those periods; no opex, capex, depreciation or invested-capital input exists for 2024/2025 anywhere on Assumptions… Published figures with no support in the delivered model."
+
+**Premise — ACCEPTED**, and the reviewer is scrupulous enough to record that the two later columns of the same table do reproduce and that the P33 growth rates reconcile to within 1.6mn on an 18,246mn base. **Price — EGP 0.0000 directly; it removes the audit trail from the volume ranking at C-F25, which is the widest sensitivity in the model.** **Bucket: ACCEPT** — carry every published historical line as a sourced input.
+
+### C-F23. "Source note: multiple applied 'on mid-cycle 2028E EBITDA' | Formula reads Forecast!C39 = 2027E."
+
+**Premise — VERIFIED** (`REL_I = 1`, 2027E). **Price — EGP 0.0000** (report text and formula agree; only the source note is wrong). **Bucket: ACCEPT** the note correction.
+
+### C-F24. "Attributable annualised EPS = 1.2785 → P/E 7.12× (6.83× on group profit; 10.2× after the note-16 employees' share). Overstated, and the framing is single when three legitimate bases exist."
+
+**Premise — VERIFIED**; `rel.pe_trailing` = **7.1175** against a stated "about 7.5x". **Price — EGP 0.0000 as published**; the 10.2× basis is a consequence of C-F4 and is priced there. **Bucket: ACCEPT** — state the basis alongside the figure.
+
+### C-F25. "Measured value growth ranking: HFO +60.7% > fuel oil +29.1% > wax +21.3%… Assumed volume ranking: wax 7.0% > base oils 4.5% > fuel oil 3.0%… a value-growth record is used to rank volume growth, which mixes price into a volume driver."
+
+**Premise — VERIFIED against `unit.growth_v` and `line_vol_growth`; the rankings do not match and the study says they do.** **Price — no direct price; volume is the model's widest single sensitivity, EGP 2.76 to 11.76 on the DCF lens across the published grid.** **Conclusion — ACCEPTED.** Ranking volume growth off a value-growth record is a category error, and note 14-A discloses tonnes as well as values, so the decomposition is available and was not done. **Bucket: ACCEPT** — decompose the record into volume and price and re-rank on volume.
+
+### C-F26. "One 'Egyptian inflation factor' applied to salaries and to 'natural gas, electricity, water, spare parts, maintenance, EPROM contract'… the entire FX path is defined and unused, while feedstock and gas are world-priced/administered."
+
+**Premise — SPLIT.** The single-escalator criticism is **accepted**: one domestic-CPI factor across physically distinct cost drivers, with energy escalated on domestic inflation, is not defensible. The "FX path referenced by zero formulas" claim is **rejected for the model** — `V['fx_path']` is referenced twice in `compute.py`, in the currency-of-discounting alternative — though the reviewer is describing the *workbook*, where it may well be inert, and I have not yet rebuilt the standing gates on the nine-sheet file to check. **Price — the reviewer's own bound, confined to the 8.7% of cost of sales that is not pass-through, so second-order; no separate number.** **Bucket: ACCEPT** one escalator per driver class; **RESEARCH** the workbook-level orphan claim pending the gate rebuild.
+
+### C-F27. "Referenced by zero formulas. It is also incoherent with the study's own terminal build: terminal rf 10.5% = '5% inflation target + ~5.5% real', so 15% nominal growth would imply ~10% real growth in perpetuity."
+
+**Premise — the incoherence is VERIFIED and is the better half of the finding.** **Price — EGP 0.0000** (unused; the adopted g of 5% is well inside any of these ceilings). **Bucket: ACCEPT** — delete the 15% or restate it consistently with the terminal inflation assumption.
+
+### C-F28. "Rating-basis inputs sit in the model unused. Recomputed rating-basis: Ke = 29.05%, WACC = 33.21% → DCF 6.73. No USD/real cross-check is run."
+
+**Premise — PARTLY REJECTED with receipts.** The rating basis is **not unused**: `wacc_exp_rating` = 32.177%, `wacc_term_rating` = 20.352% and `ps_rating_basis` = **EGP 5.8434** are all computed and emitted, and the currency-of-discounting cross-check the reviewer says is absent is computed too, at `ccy_alt_ps` = **EGP 7.2093**, discounting the export leg in dollars at 10.72%. Both are in the model and neither is prominent enough in the study for a careful reader to find, which is the real defect. Their recomputed 33.21% differs from my 32.18% because they glide the terminal differently. **Price — EGP −0.2299 weighted (−3.21%) on the rating basis, as at §B-4.** **Bucket: DEFECT-NO-FIX** — the computations exist; promote both to the summary page.
+
+### C-F29. "A July-2026 Damodaran country-premium update exists and pre-dates the study… the implied mature ERP is consistent with the newer file, leaving the stated 05-Jan-2026 date in doubt."
+
+**Premise — the internal check is elegant and I accept it**: both my pairs imply the same ~4.20% mature-market premium and the same ~1.53 relative-volatility multiplier, which is a genuine coherence test of my own two columns against each other. The vintage claim is **UNVERIFIABLE** — `pages.stern.nyu.edu` is egress-blocked for both of us. **Price — small, direction unknown until the Egypt row is read.** **Bucket: RESEARCH.**
+
+### C-F30. "AMOC pays an annual DPS of EGP 0.80 (0.80/9.10 = 8.791% ✓). But neither audited document states the DPS… and the study's own filed cash dividends paid (736.6mn + 603.0mn = 1,339.5mn over 9M = EGP 1.38/share annualised, 15.2%) sit unreconciled beside it — while §7 claims 'the dividend… is read off a filing'."
+
+**Premise — VERIFIED, and this is the sharpest citation finding in the file.** The value is right, the sourcing claim is false, and the study's own cash-flow data disagrees with it by 6.4 percentage points of yield. **Price — the value as used is correct; at the filed 15.2% the 3M cone median falls to 9.19, −1.5%.** **Bucket: ACCEPT** — state the DPS, its declaration date, and reconcile declared against paid.
+
+### C-F31. "488 formula cells, 0 with cached values — the file has never been recalculated and saved by a spreadsheet engine."
+
+**Premise — REJECTED with receipts.** Reading the delivered workbook directly out of its own zip container: **488 formula cells, 488 with cached values** (`</f><v>` pairs), across 9 sheets. The cached values were injected by post-save XML rewrite and verified on the saved file. Either the reviewer received a stripped copy or their reader did not follow the `</f><v>` encoding. **Price — EGP 0.0000** (the reviewer records no value impact either). **Bucket: REJECT.**
+
+### C-F32. "Iterating the weights to the model's own fair value (6.85 × 1,291.5mn) gives net-debt weight −38.1%, WACC 33.3%, DCF 6.71… The discount rate is weighted on a price the study concludes is 21% too high."
+
+**Premise — VERIFIED, and the circularity is real and undisclosed.** **Price — EGP −0.0768 weighted, −1.07%, to EGP 7.0868** (DCF **6.7225**, their 6.71). **Conclusion — ACCEPTED as a disclosure defect, the fix is YOURS.** Iterating to convergence is defensible; so is using observable market weights and saying so. With a negative debt weight the iteration is self-reinforcing, which argues for disclosing the spot-based choice rather than iterating into it. **Bucket: YOURS**, priced at −1.07%; **my recommendation is to keep the spot-based weights and disclose the circularity in one sentence**, because a rate weighted on a price you are arguing against is at least an observable input, whereas the iterated version is an output of the thing being computed.
+
+### C-F33. "Cell referenced by zero formulas. The bridge has no line for investments or associates… A dividend-paying equity stake outside the operating EV is excluded from the bridge and never named."
+
+**Premise — VERIFIED**; `fvoci` is referenced zero times and the bridge carries no investments line. **Price — the reviewer's estimate is ~+0.17 a share (+2.4%) at 8×; the disclosed carrying amount of 69.6mn is +0.054 a share.** **Conclusion — ACCEPTED**; a non-operating asset that pays a dividend of 13.52mn belongs in the bridge. **Bucket: ACCEPT** at the disclosed carrying amount, with the 8× earnings-based figure shown as an alternative.
+
+### C-F34. "House template requires a 16-section Word document, 16-sheet Excel, a three-expert appendix and a six-clause disclaimer. Delivered: 7 sections + 1 appendix, 9 sheets, no expert appendix… three-clause closing box."
+
+**Premise — VERIFIED, and it is the same finding as my own pre-critique self-audit.** The audited rebuild lost roughly twelve pages and whole sections against the template the previous edition met. **Price — EGP 0.0000.** **Bucket: ACCEPT** — restore the template.
+
+### C-F35. "No moving-average value, slope, cross state, RSI, MACD, ATR or support/resistance level is quantified anywhere in the study; §2's only content is data-cleanliness prose."
+
+**Premise — VERIFIED.** A four-indicator chart asserted with no computable figure in the text. **Price — EGP 0.0000.** **Bucket: ACCEPT** — state the computed levels or drop the claim.
+
+### C-F36. "The live site record for AMOC carries fair: { bear: 3.83, base: 9.38, full: 18.12 }… while linking AMOC_Valuation_Study_06-08-2026_public.docx and stamping asof.mc.computed 2026-08-06."
+
+**Premise — VERIFIED and outstanding.** The published site still carries the superseded EGP 9.38 and a "roughly fairly valued" reading against a study that concludes EGP 7.16 and a −21.3% discount. A reader of the site sees +3% against spot. **Price — EGP 0.0000 inside the documents; the entire published conclusion outside them.** **Bucket: ACCEPT — highest operational priority.** This is the one finding in all four files where the defect is live in front of the public right now, and it must be fixed in the same pass as the numbers.
+
+### C-F37. "it is derived on a pre-tax base that includes ~316mn of credit interest and other income (items excluded from EBIT) and is flattered by a 19.4mn deferred credit; it is then applied to EBIT and into perpetuity."
+
+**Premise — VERIFIED.** The rate is right for its own base (366,807,706 / 1,658,355,952 = 22.1188%) and is then applied to a narrower base. I also record, against myself, that the registered `tax_eff` input is **dead** — `price.py '{"tax_eff": 0.225}'` returns the published central unchanged, because `TAX = TAX_EFF` is derived. **Price — EGP −0.0287 weighted (−0.40%) at the statutory 22.5%.** **Bucket: ACCEPT** — use the statutory rate on EBIT for the unlevered waterfall and keep the effective rate for the historical reconciliation only.
+
+### C-F38 to C-F43 (six UNVERIFIABLE rows). **Recorded individually, none dismissed.**
+- **C-F38** note-level statement items: the reviewer could not read the filings (egress-blocked) and corroborated eight headline figures against press reporting instead — H2-2025 revenue 20.74bn, NPAT 656.4mn, Q1-2026 revenue 10.51bn, NPAT 635.12mn, comparative 10.07bn, APC ~20.8%, wax subsidiary 86.45%, DPS 0.80, share capital 1,291,500,000, all matching. **I read the four filings visually, page by page, and `filings/AUDITED_EXTRACT.md` is the note-by-note record.** **Price EGP 0.0000. Bucket: no action**, with the extract offered as the resolution.
+- **C-F39** Damodaran Egypt row: unreachable for both of us; internally coherent on the two-pair test. **Bucket: RESEARCH.**
+- **C-F40** Egypt 10Y at 21-Jul-2026: unreachable; repo cache disagrees at 22.55%. **Priced at −0.40%. Bucket: RESEARCH**, and see C-F10 for the citation failure underneath it.
+- **C-F41** bear and bull columns: **ACCEPTED as a real defect.** The five driver sets are stated in `SCEN` in the model but not in the delivered study, and the weighted "range" is `MIN`/`MAX` of the DCF lens's own extremes rather than a weighted envelope — the reviewer is right that a 6.2× headline span is untestable as published, and §A's independent complaint about the range rests on the same gap. **Price EGP 0.0000 on the central; it sets the entire published range. Bucket: ACCEPT** — publish the driver sets and express the range as a weighted envelope.
+- **C-F42** anchor volatilities: match the repo ledger exactly but are engine outputs not re-derivable from the delivered files. **Bucket: no action**, with the fit output offered.
+- **C-F43** the "about 12%" net effect of the superseded edition's errors: not reproducible because the superseded build is not supplied. **Bucket: RESEARCH** — supply the superseded workbook or drop the claim.
+
+---
+
+**§C running total.** Accepted and material: C-F1 **+10.8%**, C-F4 **−8.20%**, C-F11 **−4.28%**, C-F13 **+2.47%**, C-F18 +0.38%, C-F19 −0.88%, C-F32 −1.07% (recommended as disclosure only), C-F37 −0.40%. Research, priced but not adopted: C-F2 **−11.54%**, C-F3 **+16.68%**, C-F12 −5.59% at beta 1.15. Rejected with receipts: C-F6's endpoint claim, C-F15, C-F31, and half of C-F26 and C-F28. Accepted with no price: C-F5, C-F7, C-F8, C-F9, C-F10, C-F14, C-F16, C-F17, C-F20 to C-F25, C-F27, C-F30, C-F33 to C-F36, C-F41.
