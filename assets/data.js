@@ -86,9 +86,9 @@ const TICKERS = {
       tech: { data:"2026-08-06", computed:"2026-08-07" }
     },
     files: {
-      study: "files/ARCC_Valuation_Study_06-08-2026_public.docx?v=0806a",
+      study: "files/ARCC_Valuation_Study_08-08-2026_public.docx?v=0808a",
       model: "files/ARCC_Valuation_Model_06082026_public.xlsx?v=0806a",
-      pdf:   "files/ARCC_Valuation_Study_06-08-2026_public.pdf?v=0806a",
+      pdf:   "files/ARCC_Valuation_Study_08-08-2026_public.pdf?v=0808a",
       biblio:"files/ARCC_Bibliography_06-08-2026.pdf?v=0806a"
     }
   },
