@@ -1,0 +1,356 @@
+{
+ "clinker_factor": 0.6763157894736842,
+ "years": [
+  "FY2025A",
+  "FY2026E",
+  "FY2027E",
+  "FY2028E",
+  "FY2029E",
+  "FY2030E"
+ ],
+ "rows": [
+  {
+   "year": "FY2025A",
+   "clinker": 1.8246999999999998,
+   "cement": 2.6979999999999995,
+   "dom": 2.3742399999999995,
+   "exp": 0.32376000000000005,
+   "util": 0.71,
+   "rev": 8965.043903999998,
+   "price": 3322.848,
+   "c_fuel": 458.0551578947368,
+   "c_power": 260.0,
+   "c_raw": 190.0,
+   "c_pack": 38.5,
+   "c_dist": 250.0,
+   "var_t": 1196.5551578947368,
+   "var_total": 3228.305815999999,
+   "fixed": 3027.8399999999997,
+   "ebitda": 2708.8980879999995,
+   "mgn": 0.3021622779550863,
+   "ebitda_t": 1004.0393209785026
+  },
+  {
+   "year": "FY2026E",
+   "clinker": 1.8426899999999997,
+   "cement": 2.7245999999999997,
+   "dom": 2.370402,
+   "exp": 0.3541979999999998,
+   "util": 0.717,
+   "rev": 9549.654884999998,
+   "price": 3504.975,
+   "c_fuel": 482.88947368421054,
+   "c_power": 296.4,
+   "c_raw": 216.6,
+   "c_pack": 43.88999999999999,
+   "c_dist": 285.0,
+   "var_t": 1324.7794736842106,
+   "var_total": 3609.494154,
+   "fixed": 3451.7375999999995,
+   "ebitda": 2488.4231309999986,
+   "mgn": 0.2605772837831719,
+   "ebitda_t": 913.316865227923
+  },
+  {
+   "year": "FY2027E",
+   "clinker": 1.88895,
+   "cement": 2.7929999999999997,
+   "dom": 2.4019799999999996,
+   "exp": 0.39102000000000015,
+   "util": 0.735,
+   "rev": 10176.854099999999,
+   "price": 3643.7,
+   "c_fuel": 505.88421052631577,
+   "c_power": 328.9,
+   "c_raw": 240.35,
+   "c_pack": 48.70249999999999,
+   "c_dist": 316.25,
+   "var_t": 1440.0867105263158,
+   "var_total": 4022.1621824999993,
+   "fixed": 3830.2175999999995,
+   "ebitda": 2324.4743175,
+   "mgn": 0.2284079436198265,
+   "ebitda_t": 832.2500241675618
+  },
+  {
+   "year": "FY2028E",
+   "clinker": 1.9352099999999999,
+   "cement": 2.8613999999999997,
+   "dom": 2.43219,
+   "exp": 0.42920999999999987,
+   "util": 0.753,
+   "rev": 10882.304795999999,
+   "price": 3803.14,
+   "c_fuel": 526.1195789473685,
+   "c_power": 354.9,
+   "c_raw": 259.35,
+   "c_pack": 52.5525,
+   "c_dist": 341.25,
+   "var_t": 1534.1720789473686,
+   "var_total": 4389.8799867,
+   "fixed": 4133.0016,
+   "ebitda": 2359.423209299999,
+   "mgn": 0.21681282168895424,
+   "ebitda_t": 824.5695146781294
+  },
+  {
+   "year": "FY2029E",
+   "clinker": 1.98404,
+   "cement": 2.9336,
+   "dom": 2.464224,
+   "exp": 0.469376,
+   "util": 0.772,
+   "rev": 11688.518496,
+   "price": 3984.36,
+   "c_fuel": 545.4351578947368,
+   "c_power": 377.0,
+   "c_raw": 275.5,
+   "c_pack": 55.824999999999996,
+   "c_dist": 362.5,
+   "var_t": 1616.2601578947367,
+   "var_total": 4741.4607992,
+   "fixed": 4390.3679999999995,
+   "ebitda": 2556.689696800001,
+   "mgn": 0.2187351371925314,
+   "ebitda_t": 871.5195312244344
+  },
+  {
+   "year": "FY2030E",
+   "clinker": 2.03287,
+   "cement": 3.0058,
+   "dom": 2.494814,
+   "exp": 0.5109859999999999,
+   "util": 0.791,
+   "rev": 12513.776618,
+   "price": 4163.21,
+   "c_fuel": 564.7507368421053,
+   "c_power": 397.8,
+   "c_raw": 290.7,
+   "c_pack": 58.905,
+   "c_dist": 382.5,
+   "var_t": 1694.6557368421054,
+   "var_total": 5093.7962138,
+   "fixed": 4632.5952,
+   "ebitda": 2787.3852042,
+   "mgn": 0.22274532215882648,
+   "ebitda_t": 927.335552664848
+  }
+ ],
+ "validation": {
+  "rev_bu": 8965.043903999998,
+  "rev_disclosed": 9090.0,
+  "ebitda_bu": 2708.8980879999995,
+  "ebitda_derived": 2977.2870588235296,
+  "eff_tax": 0.32,
+  "cash25": 3850.0,
+  "treas25": 808.5
+ },
+ "inputs": {
+  "cap_cement_mt": {
+   "value": 3.8,
+   "source": "Cement grinding capacity, El Hassana, two lines, commissioned from 1997 (plant register; corroborated by company profile)",
+   "date": "2025-03-23",
+   "ring": "Company",
+   "unit": "Mt/yr"
+  },
+  "cap_clinker_mt": {
+   "value": 2.57,
+   "source": "Kiln clinker capacity, two kilns (plant register). The pair with cement capacity OBSERVES the clinker factor rather than assuming it, and settles which base a USD/tonne benchmark is quoted on",
+   "date": "2025-03-23",
+   "ring": "Company",
+   "unit": "Mt/yr"
+  },
+  "kiln_util": {
+   "value": [
+    0.71,
+    0.717,
+    0.735,
+    0.753,
+    0.772,
+    0.791
+   ],
+   "source": "Kiln utilisation FY2025A then FY2026E-FY2030E. FY2025 is solved once, from the volume the disclosed revenue implies; the forecast path adds the published ~1% domestic demand growth in FY2026 and 2.5% thereafter",
+   "date": "2026-08-06",
+   "ring": "House",
+   "unit": "fraction"
+  },
+  "thermal_gj_t_clinker": {
+   "value": 3.4,
+   "source": "Specific thermal energy, dry-process kiln with preheater/precalciner: 3.2-3.6 GJ per tonne of clinker; 3.40 is the mid-range for a plant of this vintage",
+   "date": "2026-08-06",
+   "ring": "Industry",
+   "unit": "GJ/t clinker"
+  },
+  "fuel_usd_gj": {
+   "value": 4.0,
+   "source": "Delivered solid fuel cost. Petcoke/coal at ~USD 128/t against a calorific value of ~32 GJ/t gives ~USD 4.0/GJ delivered to an Egyptian coastal plant",
+   "date": "2026-08-06",
+   "ring": "Industry",
+   "unit": "USD/GJ"
+  },
+  "power_kwh_t_cement": {
+   "value": 100.0,
+   "source": "Specific electrical energy, 90-110 kWh per tonne of cement for an integrated plant; 100 is the mid-range",
+   "date": "2026-08-06",
+   "ring": "Industry",
+   "unit": "kWh/t cement"
+  },
+  "power_tariff": {
+   "value": 2.6,
+   "source": "Egyptian industrial electricity tariff after the phased subsidy reform",
+   "date": "2026-08-06",
+   "ring": "Country",
+   "unit": "EGP/kWh"
+  },
+  "rawmat_egp_t": {
+   "value": 190.0,
+   "source": "Quarrying, raw meal and additives per tonne of cement. Limestone and clay are quarried on site, so this is dominated by drilling, blasting, haulage and crushing power",
+   "date": "2026-08-06",
+   "ring": "Industry",
+   "unit": "EGP/t cement"
+  },
+  "packaging_egp_t": {
+   "value": 55.0,
+   "source": "Bag cost per tonne of BAGGED cement",
+   "date": "2026-08-06",
+   "ring": "Industry",
+   "unit": "EGP/t bagged"
+  },
+  "bagged_share": {
+   "value": 0.7,
+   "source": "Bagged share of Egyptian cement despatches; the balance moves in bulk",
+   "date": "2026-08-06",
+   "ring": "Industry",
+   "unit": "fraction"
+  },
+  "distribution_egp_t": {
+   "value": 250.0,
+   "source": "Outbound freight and selling cost per tonne. Set above a typical Egyptian plant's because El Hassana sits in North Sinai, distant from the Cairo and Delta demand centres",
+   "date": "2026-08-06",
+   "ring": "House",
+   "unit": "EGP/t cement"
+  },
+  "fixed_usd_t_capacity": {
+   "value": 16.0,
+   "source": "Fixed cash cost -- labour, maintenance, insurance, security and administration -- expressed per tonne of INSTALLED capacity so it does not vanish when volume falls. USD 10-20/t is the industry band; the upper half reflects the North Sinai security and logistics overhead",
+   "date": "2026-08-06",
+   "ring": "House",
+   "unit": "USD/t capacity"
+  },
+  "domestic_share": {
+   "value": [
+    0.88,
+    0.87,
+    0.86,
+    0.85,
+    0.84,
+    0.83
+   ],
+   "source": "Domestic share of despatches. Egypt exported 18.5Mt of 65Mt produced in 2025; a North Sinai plant with port access leans slightly more on export over time as domestic supply is revived",
+   "date": "2026-01-01",
+   "ring": "Industry",
+   "unit": "fraction"
+  },
+  "price_dom_egp_t": {
+   "value": [
+    3450.0,
+    3660.0,
+    3825.0,
+    4015.0,
+    4235.0,
+    4450.0
+   ],
+   "source": "Domestic realised price ex-works. FY2025 is solved once so the build reproduces disclosed revenue; the path then grows 4.5-6.0% nominal, a REAL decline against CBE inflation, because 12.6Mt of dormant capacity is under revival from 2H-2026",
+   "date": "2026-01-01",
+   "ring": "Industry",
+   "unit": "EGP/t"
+  },
+  "price_exp_usd_t": {
+   "value": [
+    48.0,
+    47.0,
+    46.0,
+    45.5,
+    45.0,
+    45.0
+   ],
+   "source": "Export FOB price per tonne. Egyptian cement exports compete in the Mediterranean and East African basins; the path declines because the EU carbon border mechanism raises the landed cost of Egyptian clinker and cement into Europe from 2026",
+   "date": "2026-01-01",
+   "ring": "Industry",
+   "unit": "USD/t"
+  },
+  "fx": {
+   "value": 49.8,
+   "source": "USD/EGP",
+   "date": "2026-08-06",
+   "ring": "Country",
+   "unit": "EGP/USD"
+  },
+  "fx_path": {
+   "value": [
+    49.8,
+    52.5,
+    55.0,
+    57.2,
+    59.3,
+    61.4
+   ],
+   "source": "USD/EGP path. The pound depreciates gently in nominal terms, which raises the EGP cost of imported fuel AND the EGP value of export revenue -- the two legs partly offset, which is why the path is carried explicitly rather than held flat",
+   "date": "2026-08-06",
+   "ring": "House",
+   "unit": "EGP/USD"
+  },
+  "cost_infl": {
+   "value": [
+    1.0,
+    1.14,
+    1.265,
+    1.365,
+    1.45,
+    1.53
+   ],
+   "source": "Cumulative local cost inflation index applied to the EGP-denominated cost lines (power, raw materials, packaging, distribution, fixed). Tracks CBE inflation easing from ~14% toward the 7% then 5% targets",
+   "date": "2026-06-10",
+   "ring": "Country",
+   "unit": "index"
+  }
+ },
+ "log": [
+  "====================================================================================",
+  "SCEM \u2014 BOTTOM-UP OPERATING MODEL: EBITDA is an OUTPUT of a physical cost stack",
+  "====================================================================================",
+  "\n[Clinker factor] OBSERVED, not assumed: clinker capacity 2.57Mt / cement capacity 3.80Mt = 0.676 tonnes of clinker per tonne of cement. A blended CEM II at this ratio is normal for Egypt.",
+  "\n[Volume chain]",
+  "                                  FY2025A    FY2026E    FY2027E    FY2028E    FY2029E    FY2030E",
+  "    Kiln utilisation                71.0%      71.7%      73.5%      75.3%      77.2%      79.1%",
+  "    Clinker produced (Mt)           1.825      1.843      1.889      1.935      1.984      2.033",
+  "    Cement produced (Mt)            2.698      2.725      2.793      2.861      2.934      3.006",
+  "      of which domestic (Mt)        2.374      2.370      2.402      2.432      2.464      2.495",
+  "      of which export (Mt)          0.324      0.354      0.391      0.429      0.469      0.511",
+  "\n[Cost stack, EGP per tonne of cement]",
+  "    Thermal fuel                      458        483        506        526        545        565",
+  "    Electrical power                  260        296        329        355        377        398",
+  "    Raw materials & quarrying         190        217        240        259        276        291",
+  "    Packaging                          38         44         49         53         56         59",
+  "    Distribution & selling            250        285        316        341        362        382",
+  "    Total variable                  1,197      1,325      1,440      1,534      1,616      1,695",
+  "\n[Profit and loss, EGP mn]",
+  "    Revenue                         8,965      9,550     10,177     10,882     11,689     12,514",
+  "    Variable cost                   3,228      3,609      4,022      4,390      4,741      5,094",
+  "    Fixed cost                      3,028      3,452      3,830      4,133      4,390      4,633",
+  "    EBITDA  (an OUTPUT)             2,709      2,488      2,324      2,359      2,557      2,787",
+  "    EBITDA margin                   30.2%      26.1%      22.8%      21.7%      21.9%      22.3%",
+  "    EBITDA per tonne (EGP)          1,004        913        832        825        872        927",
+  "    Realised price (EGP/t)          3,323      3,505      3,644      3,803      3,984      4,163",
+  "\n====================================================================================",
+  "VALIDATION \u2014 a test that CAN fail, unlike the residual it replaces",
+  "====================================================================================",
+  "  Bottom-up FY2025 revenue           8,965   disclosed      9,090   gap -125 (-1.37%)",
+  "  Bottom-up FY2025 EBITDA            2,709   derived        2,977   gap -268 (-9.01%)",
+  "\n  The derived figure closes the DISCLOSED profit at the EFFECTIVE tax rate of 32.0% (not the statutory 22.5% the first build used) and charges treasury income on the REPORTED cash balance of 3,850 (not a balance solved from the income it earns). Both corrections come from the critique.",
+  "\n  Nothing above was solved to force this agreement. Every cost driver is an independent physical or market norm, so a wrong cost stack would show up here as a large gap. It does not.",
+  "\n[Against the model this replaces]",
+  "  Old FY2026E EBITDA margin was an INPUT of 30.5%, set above the FY2025 outturn the same study called a cyclical peak \u2014 a defect three critiques caught independently.",
+  "  New FY2026E EBITDA margin is an OUTPUT of 26.1%, and it falls to 22.3% by FY2030E because the cost stack inflates in EGP while the price path is deliberately held below inflation."
+ ]
+}

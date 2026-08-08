@@ -1,0 +1,397 @@
+{
+ "ticker": "SCEM",
+ "asset_class": "STOCK",
+ "sweep_date": "2026-08-06",
+ "findings": [
+  {
+   "fid": "F01",
+   "ring": "GLOBAL",
+   "category": "rate cycle & USD/FX regime",
+   "klass": "STRUCTURAL",
+   "headline": "Global easing cycle underway; Fed funds midpoint 3.63% (Jun-2026), which sets the backdrop against which Egypt's own 19.50% policy rate normalises",
+   "source_name": "US Federal Reserve policy history (house FED_SCHEDULE, engine/market_profiles.py)",
+   "source_type": "REGULATOR_OFFICIAL",
+   "source_date": "2026-06-18",
+   "detail": "",
+   "url": "",
+   "model_impact": "Anchors the terminal risk-free rate build and the direction of the Kd glide: a falling global rate path is a necessary (not sufficient) condition for the EGP cost-of-debt path assumed in the WACC glide.",
+   "is_fs_data": false
+  },
+  {
+   "fid": "F02",
+   "ring": "GLOBAL",
+   "category": "commodity complex (input/output)",
+   "klass": "STRUCTURAL",
+   "headline": "Cement is an energy-conversion business: coal/petcoke and electricity are the dominant cash cost. Egypt's phased energy-subsidy reform keeps raising the local energy bill independent of the global fuel price",
+   "source_name": "Egypt Cement Industry Market Size & Forecast Report 2020-2029 (production faces pressure from energy reform, currency volatility and raw-material management)",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-02-16",
+   "detail": "",
+   "url": "",
+   "model_impact": "Sets the EBITDA-margin glide DOWN from the FY2025 peak: energy reform is a structural cost headwind that does not reverse with the cycle.",
+   "is_fs_data": false
+  },
+  {
+   "fid": "F03",
+   "ring": "GLOBAL",
+   "category": "global sector demand",
+   "klass": "COLOR",
+   "headline": "Cement is a non-traded-at-distance commodity \u2014 bulk sea freight limits the economic export radius, so global demand reaches SCEM only through the Mediterranean/East-African export basin, not through a world price",
+   "source_name": "Global Cement, Egypt country update",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2025-10-01",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false
+  },
+  {
+   "fid": "F04",
+   "ring": "GLOBAL",
+   "category": "trade / sanctions / supply chains",
+   "klass": "STRUCTURAL",
+   "headline": "Egyptian cement exports fell ~6% y/y to 18.5Mt in 2025, but the MIX inverted: finished-cement exports +66.6% to 12.5Mt while clinker exports fell ~38%",
+   "source_name": "Global Cement \u2014 Egyptian cement exports decline",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-01-01",
+   "detail": "",
+   "url": "",
+   "model_impact": "Supports a higher realised price per tonne than a clinker-weighted mix would give; carried in the realised-price driver rather than as a separate export volume leg.",
+   "is_fs_data": false
+  },
+  {
+   "fid": "F05",
+   "ring": "COUNTRY",
+   "category": "sovereign macro (inflation, policy rate, FX/deval risk)",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "CBE main operation rate 19.50%, held since 2 Apr 2026. Headline inflation eased to 14.6% in May-2026 (core 13.8%); CBE's own Q4-2026 target is 7% (+/-2pp) and it expects the target to be missed on average in Q4-2026 before declining from Q1-2027",
+   "source_name": "Central Bank of Egypt \u2014 policy rate and Monetary Policy Report Q1-2026; CPI release",
+   "source_type": "REGULATOR_OFFICIAL",
+   "source_date": "2026-06-10",
+   "detail": "",
+   "url": "",
+   "model_impact": "Explicit-window risk-free rate = 19.50%. Terminal rf is norm-built off the CBE's OWN stated medium-term target (7%) plus the standard EM real-rate convention (~5.5pp) = 12.5% -- never a historical average.",
+   "is_fs_data": false
+  },
+  {
+   "fid": "F06",
+   "ring": "COUNTRY",
+   "category": "sovereign macro (inflation, policy rate, FX/deval risk)",
+   "klass": "STRUCTURAL",
+   "headline": "Egypt 5-year CDS ~330bp (May-2026), materially tighter than the 2024 crisis peak",
+   "source_name": "Egypt 5Y CDS series",
+   "source_type": "PRIMARY_MARKET_DATA",
+   "source_date": "2026-05-31",
+   "detail": "",
+   "url": "",
+   "model_impact": "Netted OUT of the local-currency risk-free rate in the Ke build so the sovereign default premium is not charged twice (protocol Ke item 3), and used as the country ERP add-on.",
+   "is_fs_data": false
+  },
+  {
+   "fid": "F07",
+   "ring": "COUNTRY",
+   "category": "regulatory environment (regulator, caps, tariffs, tax/subsidy)",
+   "klass": "BASE_CHANGER",
+   "headline": "The Egyptian Competition Authority PERMANENTLY lifted cement production quotas in July 2025 (suspended from May 2025). The quota regime had capped output since 2021",
+   "source_name": "Egyptian Competition Authority, reported via EnterpriseAM / Global Cement",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2025-07-01",
+   "detail": "",
+   "url": "",
+   "model_impact": "BASE CHANGER. Removes the volume cap that held FY2021-24 utilisation down, and simultaneously removes the price floor the cartel-substitute provided. Drives BOTH the volume-recovery driver UP and the realised- price driver DOWN across the forecast window.",
+   "is_fs_data": false
+  },
+  {
+   "fid": "F08",
+   "ring": "COUNTRY",
+   "category": "regulatory environment (regulator, caps, tariffs, tax/subsidy)",
+   "klass": "COLOR",
+   "headline": "Egypt corporate income tax 22.5%, unchanged",
+   "source_name": "PwC Worldwide Tax Summaries (house Cost-of-Capital reference)",
+   "source_type": "REGULATOR_OFFICIAL",
+   "source_date": "2026-01-01",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false
+  },
+  {
+   "fid": "F09",
+   "ring": "COUNTRY",
+   "category": "fiscal / political events with sector read-through",
+   "klass": "STRUCTURAL",
+   "headline": "State-led housing, industrial and transport programmes are the marginal buyer of Egyptian cement; domestic consumption rose 13.4% to 54Mt in 2025 on that programme",
+   "source_name": "Global Cement \u2014 Update on Egypt",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2025-10-01",
+   "detail": "",
+   "url": "",
+   "model_impact": "Sets domestic demand growth in the explicit window; the forecast uses the conservative published 2026 estimate (~1%) rather than the 5-8% optimistic case, and sensitises the difference.",
+   "is_fs_data": false
+  },
+  {
+   "fid": "F10",
+   "ring": "INDUSTRY",
+   "category": "demand drivers & capacity/supply balance",
+   "klass": "BASE_CHANGER",
+   "headline": "2025 was the first year since 2008 that Egypt's cement supply-demand gap closed: domestic consumption 54Mt (+13.4% from 47.6Mt), production ~65Mt (+18% from 55Mt), operating utilisation ~98% against a nameplate 76Mt/yr across 46 lines",
+   "source_name": "Global Cement / cemnet (International Cement Review) \u2014 Egypt 2025 production",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-01-01",
+   "detail": "",
+   "url": "",
+   "model_impact": "BASE CHANGER. Establishes FY2025 as a CYCLICAL PEAK, not a new plateau. The normalised-earnings lens is anchored on this, and the explicit window glides margin down from the FY2025 peak rather than holding it.",
+   "is_fs_data": false
+  },
+  {
+   "fid": "F11",
+   "ring": "INDUSTRY",
+   "category": "new entrants (named-competitor level)",
+   "klass": "STRUCTURAL",
+   "headline": "Seven to nine dormant production lines are under study for revival, potentially adding 12.6Mt of supply from 2H 2026 -- ~23% of 2025 domestic consumption, landing INSIDE the explicit forecast window",
+   "source_name": "Global Cement \u2014 Update on Egypt",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2025-10-01",
+   "detail": "",
+   "url": "",
+   "model_impact": "The single largest downside driver. Sets the realised-price decline in FY2027-28 and is the mechanism behind the bear case in the sensitivity grid; also caps the terminal margin.",
+   "is_fs_data": false
+  },
+  {
+   "fid": "F12",
+   "ring": "INDUSTRY",
+   "category": "pricing",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "Egyptian cement prices roughly doubled to ~USD 81/t (EGP 3.9k) in 2025 from ~USD 50/t (EGP 2.1k) a year earlier, then are estimated to normalise to EGP 3,600-3,620/t in 2026e on ~1% higher demand and higher costs",
+   "source_name": "EnterpriseAM Egypt \u2014 how Egypt's cement industry fared in 2025 and what's next",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-01-01",
+   "detail": "",
+   "url": "",
+   "model_impact": "DRIVER UNLOCK: converts revenue from a top-down growth rate to a bottom-up volume x realised-price unit build. Sets the FY2026 price level directly and the decay path thereafter.",
+   "is_fs_data": false
+  },
+  {
+   "fid": "F13",
+   "ring": "INDUSTRY",
+   "category": "technology substitution",
+   "klass": "COLOR",
+   "headline": "No material substitution threat to Portland cement in Egyptian construction over the forecast horizon; the live technology question is decarbonisation capex (alternative fuels, clinker factor), which is a cost/capex item rather than a demand substitution",
+   "source_name": "Global Cement sector coverage",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2025-10-01",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false
+  },
+  {
+   "fid": "F14",
+   "ring": "INDUSTRY",
+   "category": "competitor capacity / price moves (named)",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "Named listed EGX peers all posted the same 2025 step-change: Misr Beni Suef (MBSC) attributable profit +373.7% to EGP 3.946bn on sales of EGP 5.700bn, EPS EGP 61.25, trailing P/E 6.44 and EV/EBITDA 5.03 on a EGP 13.73bn market cap; Arabian Cement (ARCC) FY2025 consolidated profit ~EGP 3.6bn (H1-2025 alone +305.5% to EGP 1.405bn)",
+   "source_name": "Arab Finance / EGX filings for MBSC and ARCC",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-03-01",
+   "detail": "",
+   "url": "",
+   "model_impact": "Sets the relative-multiple lens peer set and confirms the sector-wide (not company-specific) character of the 2025 earnings peak -- which is why the multiple lens is applied to NORMALISED, not trailing, earnings.",
+   "is_fs_data": false
+  },
+  {
+   "fid": "F15",
+   "ring": "COMPANY",
+   "category": "one-off base-resetting transactions",
+   "klass": "BASE_CHANGER",
+   "headline": "SCEM sold its 25.40% stake in Sinai White Portland Cement to Aalborg Portland Holding (Cementir) for EUR 30m; completed 13 Aug 2024, taking Cementir to 96.5% of SWCC",
+   "source_name": "Cementir Holding N.V. corporate announcement; cemnet/ICR",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2024-08-13",
+   "detail": "",
+   "url": "",
+   "model_impact": "BASE CHANGER, and the key to the whole history. The FY2024 disposal gain is why FY2024 net profit (EGP 3.07bn) is 48% of revenue and why FY2025 profit 'fell' 25% on a 41% revenue rise. FY2024 is excluded as a normalisation base; the gain is stripped to derive underlying FY2024. It also removes the ONLY non-cement earning leg, which is what makes the single operating-company lens correct rather than a two-leg sum.",
+   "is_fs_data": false
+  },
+  {
+   "fid": "F16",
+   "ring": "COMPANY",
+   "category": "ownership / stake changes (named-transaction rule)",
+   "klass": "STRUCTURAL",
+   "headline": "Vicat, via Vicat Egypt Cement Industries, holds 77.6%; in Jul-2025 it filed a mandatory tender offer for the remaining 58,416,664 shares (22.4%) at EGP 41.00/share",
+   "source_name": "FRA filing reported via Reuters/TradingView; Vicat H1-2025 results",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2025-07-28",
+   "detail": "",
+   "url": "",
+   "model_impact": "Fixes the free float at 22.4% and the share count at 260,788,678 by back-solving the offer (cross-checked against issued capital). The EGP 41 offer price is a disclosed reference point far BELOW the EGP 79.00 spot and is reported as an overhang, never as a fair value.",
+   "is_fs_data": false
+  },
+  {
+   "fid": "F17",
+   "ring": "COMPANY",
+   "category": "management & capital actions",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "Feb-2024 EGM raised authorised capital to EGP 10bn and issued capital by EGP 1.68bn; 168.20m shares offered, 75.95% (127.74m) taken up by senior shareholders in phase 1. Issued capital now EGP 2,608,124,770 at EGP 10 par = 260,812,477 shares",
+   "source_name": "Sinai Cement EGM resolutions and capital-increase announcements via EGX",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2024-07-01",
+   "detail": "",
+   "url": "",
+   "model_impact": "DRIVER UNLOCK: resolves the share count, which three aggregators report wrongly at 141.46m. Also explains the IAS-33 restatement of FY2023 EPS to -0.88 (unrestated -1.31 on the pre-issue 92.61m shares).",
+   "is_fs_data": false
+  },
+  {
+   "fid": "F18",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "FY2023-FY2025 consolidated: revenue EGP 4.28bn / 6.42bn / 9.09bn; net profit after tax EGP -121.4m / +3,070m / +2,290m; FY2024 EPS attributable EGP 23.13 (FY2023 -0.88 restated); 9M-2025 net profit EGP 1.53bn",
+   "source_name": "EGX filings reported by Global Cement, cemnet/ICR, Daily News Egypt and Arab Finance",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-03-10",
+   "detail": "PRIMARY SOURCE NOT RETRIEVABLE: the audited statements at sinaicement.com/wp-content/uploads/2025/05/SCC-AFS-E-1224.pdf were refused by this environment's egress policy. Provenance is press reporting of the company's own EGX filing, one step removed from the audited print.",
+   "url": "",
+   "model_impact": "The disclosed history the model is built on. Revenue and net profit are carried as printed; every line between them is DERIVED and labelled.",
+   "is_fs_data": true
+  },
+  {
+   "fid": "F19",
+   "ring": "COMPANY",
+   "category": "regular disclosures",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "Balance sheet: FY2024 total assets EGP 6,385.9m against total liabilities EGP 1,610.9m (equity EGP 4,775.1m -- the triple closes exactly). Latest reported total debt EGP 36.8m against ~EGP 5.2bn equity, i.e. debt/equity 0.7% and a NET CASH position",
+   "source_name": "EGX filings via aggregated financial summaries",
+   "source_type": "AGGREGATOR",
+   "source_date": "2026-03-10",
+   "detail": "",
+   "url": "",
+   "model_impact": "Fixes the capital structure: net cash, so the WACC is ~all-equity and the EV->equity bridge ADDS net cash. Treasury income is excluded from FCFF to avoid double-counting the cash.",
+   "is_fs_data": true
+  },
+  {
+   "fid": "F20",
+   "ring": "COMPANY",
+   "category": "strategic plans & guidance",
+   "klass": "COLOR",
+   "headline": "SCEM operates two lines at El Hassana, North Sinai, ~3.8Mt/yr cement capacity, and reported lifting its market share to ~5% of the Egyptian market",
+   "source_name": "Company profile and FY2024 results commentary via Daily News Egypt / Global Energy Monitor plant register",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2025-03-23",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false
+  },
+  {
+   "fid": "F21",
+   "ring": "COMPANY",
+   "category": "IR communications (calls, presentations, releases)",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found (sinaicement.com investor relations, EGX disclosure portal, earnings-call transcripts and results presentations for FY2024/FY2025 -- every host refused by egress policy; no transcript or presentation obtainable from search either)",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-08-06",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false
+  },
+  {
+   "fid": "F22",
+   "ring": "COMPANY",
+   "category": "regular disclosures",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found ('Sinai Cement other income / investment income / treasury bills / deposits EGP' and '9M 2025 operating profit gross profit cost of sales' -- no interest-income, finance-income or below-EBIT line item is disclosed in any retrievable source; the income statement between revenue and net profit is not obtainable line by line)",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-08-06",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false
+  },
+  {
+   "fid": "F23",
+   "ring": "COMPANY",
+   "category": "strategic plans & guidance",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found ('Sinai Cement capex / capital expenditure / investment plan / maintenance capex / free cash flow 2025 2026' -- no capital-expenditure figure, guidance or investment programme is disclosed in any retrievable source)",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-08-06",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false
+  }
+ ],
+ "drivers": [
+  {
+   "driver": "Sales volume (Mt)",
+   "mode": "BOTTOM_UP",
+   "justification": "Built from nameplate capacity (~3.8Mt/yr, two lines) times a utilisation path, cross-checked against the disclosed ~5% share of a 54Mt domestic market, and tied back to disclosed revenue. Quota removal is the unlock that lets utilisation rise.",
+   "sweep_refs": [
+    "F20",
+    "F07",
+    "F10",
+    "F18"
+   ]
+  },
+  {
+   "driver": "Realised price (EGP/t)",
+   "mode": "BOTTOM_UP",
+   "justification": "Disclosed industry price levels (EGP 2.1k 2024 -> 3.9k 2025 -> 3.6k 2026e) give a direct price path; the company's own realised price is solved from disclosed revenue divided by the derived volume, so the build ties back to the printed top line.",
+   "sweep_refs": [
+    "F12",
+    "F18"
+   ]
+  },
+  {
+   "driver": "EBITDA margin glide",
+   "mode": "BOTTOM_UP",
+   "justification": "Glides down from the FY2025 cyclical peak on two named, dated mechanisms: 12.6Mt of dormant capacity under revival from 2H-2026, and phased energy-subsidy reform, anchored on the disclosed FY2023-25 revenue and profit history.",
+   "sweep_refs": [
+    "F11",
+    "F02",
+    "F10",
+    "F18"
+   ]
+  },
+  {
+   "driver": "Cost of debt (Kd) and the WACC glide",
+   "mode": "BOTTOM_UP",
+   "justification": "The company is net cash with EGP 36.8m of gross debt, so Kd carries almost no weight; the glide shape is inherited from the CBE easing path rather than invented.",
+   "sweep_refs": [
+    "F19",
+    "F05"
+   ]
+  },
+  {
+   "driver": "Terminal risk-free rate",
+   "mode": "BOTTOM_UP",
+   "justification": "Norm-built from the CBE's own published medium-term inflation target plus a standard EM real-rate convention, never backed out of a price or averaged from history.",
+   "sweep_refs": [
+    "F05"
+   ]
+  },
+  {
+   "driver": "Treasury / interest income",
+   "mode": "TOP_DOWN",
+   "justification": "Modelled top-down as a yield on the modelled cash balance. The interest-income line itself is not separately disclosed in any retrievable source, so it cannot be built bottom-up; it is excluded from FCFF entirely and handled in the equity bridge.",
+   "sweep_refs": [
+    "F19",
+    "F22"
+   ]
+  },
+  {
+   "driver": "Capex",
+   "mode": "TOP_DOWN",
+   "justification": "No capital-expenditure guidance, maintenance-capex disclosure or investment plan is obtainable; capex is set as a percentage of revenue benchmarked to a mature, fully built two-line plant, and sensitised.",
+   "sweep_refs": [
+    "F23"
+   ]
+  }
+ ],
+ "qc_line": "QC(m) \u2014 Information Sweep [SCEM, 2026-08-06]: FAIL (2 errors) \u2014 4/4 rings, 23 findings (3 B \u00b7 7 S \u00b7 6 D \u00b7 4 C \u00b7 3 NEG), driver gate 7 rows (5 bottom-up / 2 top-down)"
+}

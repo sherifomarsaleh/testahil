@@ -1,0 +1,79 @@
+{
+ "start": 69.7549,
+ "end": 54.652,
+ "market": 59.0,
+ "steps": [
+  {
+   "key": "date_consistency",
+   "label": "EFG's own\ndate mismatch",
+   "sub": "flows dated 1-Jan,\ncash dated August",
+   "driver": "EFG net-cash date",
+   "off": "EFG",
+   "receipt": "Their factors are 1/(1.2006)^(t-1), so FY2026 is undiscounted and the flows sit at 1-Jan-2026. Their net cash of 3,119 is ABOVE the audited 31-Dec-2025 net cash of 2,324. The whole FY2026 free cash flow of 2,975 is in the window AND the cash it generated from January to August is in the bridge \u2014 those months are counted twice. On their own consistent basis their target is 67.64, not 69.75.",
+   "value": -2.1192
+  },
+  {
+   "key": "capex",
+   "label": "Maintenance\ncapex",
+   "sub": "5-yr 1,533 \u2192 5,592\ntheirs below D&A",
+   "driver": "capex path",
+   "off": "EFG",
+   "receipt": "EFG's capex sits below their OWN D&A in all three years they tabulate: 308 vs 318, 300 vs 347, 248 vs 378 \u2014 net disinvestment. ARCC actually spent 912 (FY2024) and 799 (FY2025). CAVEAT: ours is not obviously right either; 1,012 in FY2026 is ABOVE the FY2025 actual of 799. The magnitude is arguable, the direction is not.",
+   "value": -7.6241
+  },
+  {
+   "key": "operating",
+   "label": "Operating\nbuild",
+   "sub": "our volume up,\nour margin down",
+   "driver": "operating build",
+   "off": "OPEN",
+   "receipt": "Two errors pointing opposite ways and no referee. Our FY2028 revenue is 15,350 against their 13,792 (+11.3%) because we build tonnes from kiln utilisation 91.7%->93.5%; they have volume FALLING 3%. But our EBITDA margin glides 39.3%->34.3% while Q1-2026 gross margin was 42.9% and widening, which is their side of it.",
+   "value": 2.4353
+  },
+  {
+   "key": "terminal",
+   "label": "Terminal\nblock",
+   "sub": "growth must fund\nitself: 56.8% back in",
+   "driver": "terminal block",
+   "off": "EFG",
+   "receipt": "They grow FY2030 FCF at 2.5% forever with no reinvestment charge. A perpetuity growing at g on returns of ROIC must plough back g/ROIC. At our terminal ROIC of 8.81% that is 56.8% of profit. CAVEAT: the 8.81% rests on replacement capital of 50,481 = 5.0Mt x USD 130/t x 50.30 x 1.544, and the USD 130/t is our least-verified single input.",
+   "value": -2.5149
+  },
+  {
+   "key": "discount_rate",
+   "label": "Discount\nrate",
+   "sub": "their flat 20.06%\nvs our 24.5%\u219214.5%",
+   "driver": "discount rate",
+   "off": "OPEN",
+   "receipt": "Their flat 20.06% is applied to FY2026 while the Egyptian 1-year T-bill yields 22.95% \u2014 below the risk-free rate, which is hard to defend. But it is correspondingly too HIGH late: their year-5 factor of 0.4813 is harsher than our 0.4876. The two errors very nearly cancel and the whole bar is EGP 0.16, so neither convention is worth arguing over.",
+   "value": -0.1554
+  },
+  {
+   "key": "valuation_date",
+   "label": "Valuation date\n1 Jan \u2192 6 Aug",
+   "sub": "\u22123.33 out of window,\n+4.61 back as cash",
+   "driver": "valuation date",
+   "off": "EFG",
+   "receipt": "A price is what you pay today. Only 0.417 of FY2026 remains, so 0.583 of that year's FCFF leaves the discounted window \u2014 and arrives in the bridge as cash already earned. This step ADDS value on net. The +4.61 of accumulated cash is INSIDE the 54.65; it is not owed on top.",
+   "value": 1.28
+  },
+  {
+   "key": "balance_sheet",
+   "label": "Dividend paid,\ndebt refreshed",
+   "sub": "EGP 5.34 ex 12 Apr\n(\u22122,002mn)",
+   "driver": "balance-sheet items",
+   "off": "EFG",
+   "receipt": "EFG's own front page prints 'Last Div. / Ex. Date EGP5.34 / 12 Apr 2026'. A buyer on 6 August does not receive it. Their net cash of 3,119 is 1,193 ABOVE our post-dividend 1,926 and cannot be a post-dividend August figure. INFERRED, not proved: they do not print the date.",
+   "value": -5.6729
+  },
+  {
+   "key": "lenses",
+   "label": "Other three\nlenses",
+   "sub": "50/20/22/8 weights\nand share count",
+   "driver": "lens weighting",
+   "off": "NEITHER",
+   "receipt": "Not an error on either side. They publish a DCF; we weight DCF 50%, multiples 20%, normalised earnings 22%, replacement cost 8%. The three non-DCF lenses land at 48.96 / 52.95 / 68.87 and pull down 0.73 net. The share count (374.867 vs 375.0) is inside that.",
+   "value": -0.7317
+  }
+ ]
+}

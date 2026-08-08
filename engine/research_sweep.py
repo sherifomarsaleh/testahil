@@ -23,6 +23,28 @@ Enforced invariants
   4. GATE LINKAGE — the per-driver gate table must exist; every TOP_DOWN driver
      must cite the negative search that justifies it; every BOTTOM_UP driver
      must cite the company-official disclosure or D-finding that unlocked it.
+  5. PRIMARY ACCESS [ADDED 07-Aug-2026, per instruction — ARCC study] — at
+     least one `record_primary_access` call must exist: an attempt at the
+     company's own official website/IR page, logged whether it succeeded or
+     was blocked (real case: arabiancementcompany.com returned
+     connect_rejected at this environment's proxy). Never silently skipped.
+  6. FS DEPTH [ADDED 07-Aug-2026] — findings carrying is_fs_data=True and a
+     `fiscal_period` tagged as a full year (e.g. "FY2024") must span >= 2
+     distinct fiscal years (hard FAIL below that) with a warning below 4 (the
+     target, not the floor) — per Standing_Research_Protocol.md's PRIMARY-
+     SOURCE FINANCIAL RESEARCH procedure.
+  7. STUDY-YEAR QUARTER COVERAGE [ADDED 07-Aug-2026] — if
+     `declare_study_year` was called, every quarter it lists as already
+     disclosed must have >= 1 finding tagged with that `fiscal_period` in the
+     sweep, so the study year's actuals are swept in BEFORE the build rather
+     than discovered after (ARCC's own Q1-2026 actual sat unswept until a
+     user asked about it).
+  8. IR COVERAGE [ADDED 07-Aug-2026] — at least one finding sourced
+     SourceType.COMPANY_IR: an investor-relations presentation or
+     investor/earnings-call transcript, kept distinct from COMPANY_OFFICIAL
+     (audited statements/annual report/filing portal) so a reviewer can see
+     how much of the Company ring rests on the company's own primary IR
+     channel specifically, not just "some company source."
 
 Outputs: JSON (ships with the study files), Word-ready Sweep Register rows
 (Appendix B), per-driver gate rows (§1.6), and the QC item (m) verdict line.
@@ -65,7 +87,13 @@ class FindingClass(Enum):
 
 
 class SourceType(Enum):
-    COMPANY_OFFICIAL = "COMPANY_OFFICIAL"      # audited FS / annual report / company IR / exchange filing portal
+    COMPANY_OFFICIAL = "COMPANY_OFFICIAL"      # audited FS / annual report / exchange filing portal
+    COMPANY_IR = "COMPANY_IR"                  # [ADDED 07-Aug-2026] IR presentations, investor/earnings
+                                                # calls, webcast decks — kept distinct from
+                                                # COMPANY_OFFICIAL so the register shows how much of the
+                                                # Company ring rests on the primary IR channel specifically
+                                                # (volumes, per-unit prices, utilisation, segment splits —
+                                                # data that never appears in a financial statement at all)
     REGULATOR_OFFICIAL = "REGULATOR_OFFICIAL"  # CB, regulator, ministry, WGC/USGS/LBMA/CFTC etc.
     PRIMARY_MARKET_DATA = "PRIMARY_MARKET_DATA"  # exchange quotes, bond yields, FX
     REPUTABLE_PRESS = "REPUTABLE_PRESS"
@@ -151,6 +179,8 @@ class Finding:
     url: str = ""
     model_impact: str = ""           # REQUIRED for B/S/D: the base/driver touched + direction
     is_fs_data: bool = False         # True if the finding carries a financial-statement line item
+    fiscal_period: str = ""          # [ADDED 07-Aug-2026] "FY2024" for a full year, "Q1-2026" for a
+                                      # quarter — feeds the FS-depth and quarter-coverage invariants
 
 
 @dataclass
@@ -159,6 +189,18 @@ class DriverGateRow:
     mode: DriverMode
     justification: str
     sweep_refs: list[str] = field(default_factory=list)   # fids that justify the mode
+
+
+@dataclass
+class PrimaryAccessAttempt:
+    """[ADDED 07-Aug-2026] One attempt to reach the company's own official website/IR page,
+    logged whether it succeeded or failed. Real case: arabiancementcompany.com returned
+    connect_rejected at this environment's proxy — that is exactly what this record exists
+    to make visible rather than silently falling back to a weaker secondary source."""
+    url: str
+    reachable: bool
+    attempt_date: str
+    note: str = ""
 
 
 # ----------------------------------------------------------------------------
@@ -171,19 +213,40 @@ class SweepRegister:
     sweep_date: str                  # ISO — the day the sweep was run
     findings: list[Finding] = field(default_factory=list)
     drivers: list[DriverGateRow] = field(default_factory=list)
+    primary_access: list[PrimaryAccessAttempt] = field(default_factory=list)
+    study_year: str = ""
+    study_quarters_disclosed: list[str] = field(default_factory=list)
     _n: int = 0
 
     # ---- recording ----------------------------------------------------------
     def add(self, ring: Ring, category: str, klass: FindingClass, headline: str,
             source_name: str, source_type: SourceType, source_date: str,
             detail: str = "", url: str = "", model_impact: str = "",
-            is_fs_data: bool = False) -> str:
+            is_fs_data: bool = False, fiscal_period: str = "") -> str:
         self._n += 1
         fid = f"F{self._n:02d}"
         self.findings.append(Finding(fid, ring, category, klass, headline,
                                      source_name, source_type, source_date,
-                                     detail, url, model_impact, is_fs_data))
+                                     detail, url, model_impact, is_fs_data,
+                                     fiscal_period))
         return fid
+
+    def record_primary_access(self, url: str, reachable: bool, attempt_date: str,
+                              note: str = "") -> None:
+        """[ADDED 07-Aug-2026] Log an attempt at the company's own official website/IR
+        page — required before falling back to any aggregator or secondary source. Call
+        this even when `reachable` is False; that is the case the invariant exists to
+        surface, not to hide."""
+        self.primary_access.append(PrimaryAccessAttempt(url, reachable, attempt_date, note))
+
+    def declare_study_year(self, fiscal_year: str, quarters_disclosed: list[str]) -> None:
+        """[ADDED 07-Aug-2026] State which quarters of the study's own fiscal year are
+        already on the public record as of the sweep date, e.g. declare_study_year(
+        "2026", ["Q1-2026"]). Each one then requires >= 1 finding tagged with that
+        `fiscal_period` — the study year's own actuals must be swept in BEFORE the build,
+        not discovered after."""
+        self.study_year = fiscal_year
+        self.study_quarters_disclosed = list(quarters_disclosed)
 
     def add_negative(self, ring: Ring, category: str, searched: str,
                      search_date: str) -> str:
@@ -252,6 +315,41 @@ class SweepRegister:
                     errors.append(f"GATE: BOTTOM_UP driver '{d.driver}' cites no "
                                   f"company-official disclosure or D-finding")
 
+        # 5. primary access — the company's own site must have been attempted
+        if not self.primary_access:
+            errors.append("PRIMARY ACCESS: no record_primary_access() call — the "
+                          "company's own website/IR page must be attempted and logged, "
+                          "success or failure, before any secondary source is used")
+
+        # 6. FS depth — >= 2 distinct full fiscal years (hard floor), 4 is the target
+        fs_years = sorted({f.fiscal_period for f in self.findings
+                           if f.is_fs_data and f.fiscal_period.startswith("FY")})
+        if len(fs_years) < 2:
+            errors.append(f"FS DEPTH: only {len(fs_years)} distinct fiscal year(s) "
+                          f"{fs_years} carry is_fs_data — minimum 2 required "
+                          f"(or state the shortfall explicitly if the company genuinely "
+                          f"discloses fewer)")
+        elif len(fs_years) < 4:
+            warnings.append(f"FS DEPTH: {len(fs_years)} distinct fiscal years {fs_years} "
+                            f"— target is 4; below target but above the floor")
+
+        # 7. study-year quarter coverage — every declared quarter needs its own finding
+        if self.study_quarters_disclosed:
+            have = {f.fiscal_period for f in self.findings}
+            missing = [q for q in self.study_quarters_disclosed if q not in have]
+            if missing:
+                errors.append(f"QUARTER COVERAGE: study year {self.study_year} declared "
+                              f"{self.study_quarters_disclosed} disclosed but no finding "
+                              f"is tagged {missing} — sweep every disclosed quarter "
+                              f"BEFORE the build, not after")
+
+        # 8. IR coverage — at least one finding sourced distinctly as investor relations
+        if not any(f.source_type is SourceType.COMPANY_IR for f in self.findings):
+            errors.append("IR COVERAGE: no finding sourced SourceType.COMPANY_IR — an "
+                          "investor-relations presentation or call transcript is "
+                          "mandatory, not optional, for volumes/prices/utilisation data "
+                          "no financial statement carries")
+
         # warnings — non-fatal hygiene
         n_color = sum(1 for f in self.findings if f.klass is FindingClass.C)
         if n_color > 12:
@@ -285,17 +383,24 @@ class SweepRegister:
                 f"{len(self.findings)} findings "
                 f"({c['B']} B · {c['S']} S · {c['D']} D · {c['C']} C · {c['NEG']} NEG), "
                 f"driver gate {len(self.drivers)} rows ({nbu} bottom-up / {ntd} top-down)")
+        fs_years = sorted({f.fiscal_period for f in self.findings
+                           if f.is_fs_data and f.fiscal_period.startswith("FY")})
+        n_ir = sum(1 for f in self.findings if f.source_type is SourceType.COMPANY_IR)
+        access = ("attempted" if self.primary_access else "NOT ATTEMPTED")
+        line += (f" | primary access: {access} ({len(self.primary_access)}) "
+                 f"| FS years: {len(fs_years)} {fs_years} | IR findings: {n_ir}")
         if warnings:
             line += f" | warnings: {len(warnings)}"
         return line
 
     def register_rows(self) -> list[list[str]]:
         """Appendix B Sweep Register — Word-ready rows (header included)."""
-        rows = [["#", "Ring", "Category", "Class", "Finding", "Source", "Date"]]
+        rows = [["#", "Ring", "Category", "Class", "Finding", "Source", "Period", "Date"]]
         order = {r: i for i, r in enumerate(RINGS[self.asset_class])}
         for f in sorted(self.findings, key=lambda x: (order.get(x.ring, 99), x.fid)):
             rows.append([f.fid, f.ring.value.title(), f.category,
-                         f.klass.name, f.headline, f.source_name, f.source_date])
+                         f.klass.name, f.headline, f.source_name, f.fiscal_period,
+                         f.source_date])
         return rows
 
     def driver_rows(self) -> list[list[str]]:
@@ -313,6 +418,9 @@ class SweepRegister:
                               "klass": f.klass.value, "source_type": f.source_type.value}
                              for f in self.findings],
                    drivers=[{**asdict(d), "mode": d.mode.value} for d in self.drivers],
+                   primary_access=[asdict(p) for p in self.primary_access],
+                   study_year=self.study_year,
+                   study_quarters_disclosed=self.study_quarters_disclosed,
                    qc_line=self.qc_line())
         with open(path, "w") as fh:
             json.dump(out, fh, indent=1)
@@ -343,6 +451,7 @@ if __name__ == "__main__":
 
     # -- fixed register --------------------------------------------------------
     reg2 = SweepRegister("PHDC", AssetClass.STOCK, "2026-07-10")
+    reg2.record_primary_access("https://phdc.com.eg/investor-relations", True, "2026-07-08")
     fB = reg2.add(Ring.COMPANY, "one-off base-resetting transactions", FindingClass.B,
                   "Ras-El-Hekma-linked land monetisation resets recognised-revenue base",
                   "PHDC IR release", SourceType.COMPANY_OFFICIAL, "2026-05-14",
@@ -350,7 +459,19 @@ if __name__ == "__main__":
     fFS = reg2.add(Ring.COMPANY, "official financial statements", FindingClass.D,
                    "FY25 audited FS disclose launches, deliveries and backlog by project",
                    "PHDC FY25 audited FS", SourceType.COMPANY_OFFICIAL, "2026-03-30",
-                   model_impact="unlocks bottom-up collections schedule", is_fs_data=True)
+                   model_impact="unlocks bottom-up collections schedule", is_fs_data=True,
+                   fiscal_period="FY2025")
+    reg2.add(Ring.COMPANY, "official financial statements", FindingClass.D,
+             "FY24 audited FS — prior-year comparative", "PHDC FY24 audited FS",
+             SourceType.COMPANY_OFFICIAL, "2025-03-28",
+             model_impact="second historical year for the reconciliation table",
+             is_fs_data=True, fiscal_period="FY2024")
+    fIR = reg2.add(Ring.COMPANY, "IR communications (calls, presentations, releases)",
+                   FindingClass.D, "Q1-2026 earnings call: delivery pace and pricing by phase",
+                   "PHDC Q1-2026 investor call transcript", SourceType.COMPANY_IR,
+                   "2026-05-12", model_impact="confirms Q1 delivery volumes against the "
+                   "backlog schedule", fiscal_period="Q1-2026")
+    reg2.declare_study_year("2026", ["Q1-2026"])
     for ring in RINGS[AssetClass.STOCK]:
         for cat in MANDATORY[ring]:
             if not any(f.ring is ring and f.category == cat for f in reg2.findings):
@@ -358,7 +479,7 @@ if __name__ == "__main__":
     nSGA = [f.fid for f in reg2.findings
             if f.ring is Ring.COMPANY and f.category == "regular disclosures"][0]
     reg2.add_driver("Collections schedule (per-project)", DriverMode.BOTTOM_UP,
-                    "backlog + delivery schedule disclosed in FY25 FS", [fFS, fB])
+                    "backlog + delivery schedule disclosed in FY25 FS", [fFS, fB, fIR])
     reg2.add_driver("SG&A % of revenue", DriverMode.TOP_DOWN,
                     "no cost-line granularity disclosed; normalized glide", [nSGA])
     errs2, warns2 = reg2.validate()

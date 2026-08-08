@@ -217,7 +217,7 @@
   <!-- FAIR-VALUE SENSITIVITY LEVERS -->
   <section style="padding-top:8px">
     <div id="fl-lever-card"></div>
-    <p class="muted" style="font-size:var(--fs-caption);max-width:760px;margin:10px 2px 0">A weighted what-if off the published fair value &mdash; not a re-run DCF, and it never touches the Monte Carlo section below. The sizes come from the study’s own sensitivity grids, each of which re-runs the whole unit build, scaled down for the fact that only the cash-flow lenses move. Note which lever dominates: the cost of capital, not the operations. Three points of easing is worth more than a fifteen-percent swing in conversion margin, because 77% of the enterprise value sits in the terminal year and the Egyptian discount rate is what compresses it. That is the study’s central claim in one control.</p>
+    <p class="muted" style="font-size:var(--fs-caption);max-width:760px;margin:10px 2px 0">A weighted what-if off the published fair value &mdash; not a re-run DCF, and it never touches the Monte Carlo section below. The sizes come from the study’s own sensitivity grids, each of which re-runs the whole unit build, scaled down for the fact that only the cash-flow lenses move. Note which lever dominates: the GROSS MARGIN, not the discount rate. That is the opposite of the previous edition and it follows from the rebuild — terminal value now carries 44.8% of enterprise value rather than 59%, because the terminal return is struck on invested capital at REPLACEMENT cost instead of a 67%-written-down book base. Nudge the margin lever half a point and watch the answer move further than three points of easing does. The margin is also the one driver the study cannot pin down from the filings alone: it has ranged 5.05% to 10.19% across four consecutive filed periods, and it is administered rather than competed.</p>
   </section>
 
 </div>
@@ -275,8 +275,8 @@
     <div class="card">
       <p class="qhead">Volatility &amp; where the case breaks</p>
       <table><tbody>
-        <tr><td><span class="term" tabindex="0">Typical daily move<span class="tip">Roughly how far the price swings in an average day (based on a measure called ATR). Bigger means choppier.</span></span></td><td class="num">0.05</td></tr>
-        <tr><td>Where our case breaks</td><td class="num">above 0.95</td></tr>
+        <tr><td><span class="term" tabindex="0">Typical daily move<span class="tip">Roughly how far the price swings in an average day (based on a measure called ATR). Bigger means choppier.</span></span></td><td class="num">0.28</td></tr>
+        <tr><td>Where our case breaks</td><td class="num">above 9.88</td></tr>
       </tbody></table>
     </div>
   </section>
@@ -299,7 +299,7 @@
     <div id="mc-fan-static"></div>
 
   <div class="card" style="margin-top:16px">
-      <p class="muted">Our fundamental range tops out at EGP 0.95 even in the bull case — so unlike most names we cover, the whole simulated price cone sits ABOVE the fair-value range, not around it. Read that gap for what it is: the simulation prices where the tape can travel over three months, the study prices what the business is worth. A sustained move above EGP 0.95 on the fundamentals — collection landing, margins recovering, rates falling — is the point where we’d rebuild the study.</p>
+      <p class="muted">Our weighted fundamental range is EGP 4.09–8.52 and the widest single lens reaches 9.88 — so the whole simulated price cone sits ABOVE the weighted fair-value range, not around it. Read that gap for what it is: the simulation prices where the tape can travel over three months, the study prices what the business is worth, and the two answer different questions. Nothing in the drift comes from the valuation. The point at which we would rebuild the study is a sustained fundamental move above EGP 9.88 — above the top of every lens — which on the study’s own grids means a permanent gross margin near 12.2%, against a best-ever filed quarter of 10.19%.</p>
 
       <p class="qhead" style="margin-top:26px">The exact percentiles</p>
       <p class="muted">The <span class="term" tabindex="0">5th / 25th / middle / 75th / 95th outcomes<span class="tip">Line up all 50,000 outcomes low to high — these are the values at the 5%, 25%, 50%, 75% and 95% marks.</span></span>, from 50,000 paths.</p>
@@ -436,21 +436,21 @@ renderTrackBadge("track-badge");
 
 renderStaticFan("mc-fan-static", T);
 renderFairLevers("fl-lever-card", T, [
-  { name:"Base-oil crack over crude", min:-15, max:15, step:1, def:0, impact:0.33,
-    lo:"cracks compress (\u221215%)", hi:"cracks widen (+15%)",
-    fmt:v=>(v>=0?"+":"\u2212")+Math.abs(v).toFixed(0)+"% on the specialty realisation over crude parity \u2014 the single largest lever in the business, because base oils and wax carry essentially all the gross profit while the fuel slate runs at break-even" },
-  { name:"Specialty volume \u2014 base oils and wax", min:-50, max:100, step:10, def:0, impact:0.012,
-    lo:"the export ramp stalls (\u221250%)", hi:"it doubles (+100%)",
-    fmt:v=>(v>=0?"+":"\u2212")+Math.abs(v).toFixed(0)+"% on the assumed specialty growth path \u2014 worth far more per tonne than fuel-slate growth, which converts to revenue and almost nothing else" },
-  { name:"CBE easing \u2014 cost of capital", min:0, max:3, step:0.25, def:0, impact:0.42,
-    lo:"today\u2019s money (31.63% WACC)", hi:"3pp of easing (28.63%)",
-    fmt:v=>(31.63-v).toFixed(2)+"% explicit WACC \u2014 easing "+v.toFixed(2)+"pp. The terminal rate matters more still: two points off it is worth about EGP 1.30 a share, more than any operating assumption tested" },
-  { name:"Brent deck", min:-20, max:20, step:2, def:0, impact:0.02,
-    lo:"crude falls 20%", hi:"crude rises 20%",
-    fmt:v=>(v>=0?"+":"\u2212")+Math.abs(v).toFixed(0)+"% on the assumed crude path \u2014 deliberately a WEAK lever: crude prices the product and the feedstock, so most of a flat-price move cancels. What does not cancel is the pound-denominated fixed cost leg. The spread is what matters, not the level" },
-  { name:"EGP / USD path", min:-10, max:30, step:2, def:0, impact:0.037,
-    lo:"pound holds (\u221210%)", hi:"pound weakens 30% faster",
-    fmt:v=>(v>=0?"+":"\u2212")+Math.abs(v).toFixed(0)+"% on the assumed depreciation path \u2014 it lifts reported pounds and widens the reported margin, because revenue and feedstock are dollar-linked while labour and maintenance are not; the discount rate rises with it, and the study\u2019s currency alternative is the honest version of this question" }
+  { name:"Gross margin \u2014 the whole thesis", min:-150, max:150, step:25, def:0, impact:0.244,
+    lo:"\u22121.5pp (below the worst filed quarter)", hi:"+1.5pp (above the best)",
+    fmt:v=>(v>=0?"+":"\u2212")+Math.abs(v/100).toFixed(2)+"pp on the margin in EVERY forecast year \u2014 the dominant lever, and the one the filings cannot pin down: the record runs 5.05% to 10.19% across four consecutive periods and the margin is administered, not competed. Note where the slider has to sit for fair value to reach the market price" },
+  { name:"Volume growth path", min:-100, max:100, step:10, def:0, impact:0.082,
+    lo:"no growth at all (\u2212100%)", hi:"double the assumed path (+100%)",
+    fmt:v=>(v>=0?"+":"\u2212")+Math.abs(v).toFixed(0)+"% on the assumed growth path across all eight product lines. Deliberately weaker than margin: incremental tonnage now COSTS capital at the plant\u2019s own EGP 1,948 per annual tonne, so volume no longer arrives free the way it did in the previous edition" },
+  { name:"Realisation path \u2014 price per tonne", min:-10, max:10, step:1, def:0, impact:1.01,
+    lo:"realisations 10% weaker", hi:"realisations 10% stronger",
+    fmt:v=>(v>=0?"+":"\u2212")+Math.abs(v).toFixed(0)+"% on the assumed realisation path. Strong, because feedstock is allocated on net realisable value: a move in price per tonne widens the spread faster than it lifts the allocated feed cost" },
+  { name:"Working-capital cycle", min:-50, max:50, step:10, def:0, impact:-0.259,
+    lo:"cycle halves (\u221250%)", hi:"cycle lengthens 50%",
+    fmt:v=>(v>=0?"+":"\u2212")+Math.abs(v).toFixed(0)+"% on the 24.3 / 7.3 / 13.1 day cycle SOLVED from the audited balance sheet \u2014 not assumed. The house registry had carried 14/14/24 days and no formula read any of them" },
+  { name:"Beta \u2014 cost of capital", min:0.60, max:1.30, step:0.05, def:0.9405, impact:-21.9,
+    lo:"\u03b2 0.60 (defensive)", hi:"\u03b2 1.30 (high-beta)",
+    fmt:v=>"\u03b2 "+v.toFixed(2)+" \u2014 flowing to BOTH the explicit and terminal anchors, as the model wires it. Even at 0.60 the cash-flow lens reaches only 6.33: the discount rate cannot close the gap to the market price, which is why the study\u2019s case does not rest on it" }
 ]);
 if (T.levels) {
   injectLevels("ta-chart-svg", T.levels.res, T.levels.sup);
