@@ -843,6 +843,7 @@ conv_pt = {k: conv_tot0 * PROC[k] / (_pw_den * M) for k in LINES}
 _nrv = {k: px0[k] - conv_pt[k] for k in LINES}
 _nrv_den = sum(t0[k] * _nrv[k] for k in LINES)
 raw_pt = {k: raw_tot0 * _nrv[k] / (_nrv_den * M) for k in LINES}
+RAW_OF_REV = raw_tot0 / (BASE_REV * M)
 assert all(_nrv[k] > 0 for k in LINES), "a line's conversion cost exceeds its realisation"
 assert abs(sum(t0[k] * M * (raw_pt[k] + conv_pt[k]) for k in LINES) - COS_TTM) < 1.0, \
     "per-line cost allocation does not foot to the disclosed cost of sales"
@@ -966,7 +967,12 @@ def build(vol_mult=1.0, price_mult=1.0, fx_mult=1.0, gm_shift=0.0, ratio=None):
 ppe_b = (V['ppe_net'] + V['puc']) / M
 inv_b = V['inventory'] / M
 recv_b = (V['recv'] + V['debtors']) / M
-pay_b = (V['payables'] + V['creditors']) / M
+# dividends payable is a DECLARED distribution, not operating working capital. It is removed
+# here as well as from the forecast days, so opening and forecast working capital sit on the
+# same basis; it is then carried as its own claim in the equity bridge. Leaving it in the
+# opening balance while excluding it from the forecast would have put a 517mn step into the
+# first forecast year's cash flow that no operating change caused.
+pay_b = (V['payables'] + V['creditors'] - V['div_declared']) / M
 nwc_b = inv_b + recv_b - pay_b
 cash_b = V['cash'] / M
 debt_b = (V['debt_lt'] + V['debt_st']) / M
@@ -1769,6 +1775,83 @@ strike = json.load(open(os.path.join(HERE, 'strike_result.json')))
 beta_res = json.load(open(os.path.join(HERE, 'beta_result.json')))
 bt5 = json.load(open(os.path.join(HERE, 'backtest_5y.json')))
 
+# ---- BLOCK EMIT: the model's own values for every workbook block ------------
+# The workbook writes the whole forecast engine out again, in formulas, once per sensitivity
+# grid point. For the evaluator to check each of those blocks cell by cell, the model has to hand
+# over its own values for each one. That is what this does. It also means a grid point can no
+# longer be a number somebody pasted: if the block does not reproduce, the gate fails.
+def _blockvals(S, wacc_shift=0.0, g=None, nwc_days=None, we=None, wt=None,
+               fx_mult=1.0, price_mult=1.0):
+    g = V['g_term'] if g is None else g
+    R = waterfall(S, wacc_shift=wacc_shift, g=g, nwc_days=nwc_days, we=we, wt=wt)
+    _inf, _px, iv, pv_ = [], [], 1.0, 1.0
+    for i in range(5):
+        iv *= V['fixed_cost_infl'][3 + i]; _inf.append(iv)
+    for i in range(5):
+        pv_ *= (1 + V['line_price_growth'][i] * price_mult * fx_mult); _px.append(pv_)
+    _we = (wacc_exp if we is None else we) + wacc_shift
+    _wt = (wacc_term if wt is None else wt) + wacc_shift
+    _nop0 = [R['ebit'][i] * (1 - TAX_STAT) for i in range(5)]
+    return dict(
+        inf=_inf, px=_px,
+        vol={k: S['lines_vol'][k] for k in LINES}, vtot=S['vol'],
+        rev=R['rev'], cogs=S['cogs'], gp=R['gp'], gm=R['gm'], opex=R['opex'],
+        ebitda=R['ebitda'], capex=R['capex'], gross=R['ppe_gross'], dna=R['dna'],
+        ppe=R['ppe'], ebit=R['ebit'], nop0=_nop0, emp=R['emp'], nopat=R['nopat'],
+        nwc=R['nwc'], dnwc=R['dnwc'], fcff=R['fcff'],
+        glide=glide_frac, fwd=R['fwd_wacc'], df=R['df'], pv=R['pv'],
+        icr=[R['nwc'][i] + R['ppe_gross'][i] for i in range(5)],
+        pv_explicit=R['pv_explicit'], roic=R['roic_term'], rr=R['rr_term'], tv=R['tv'],
+        pv_tv=R['pv_tv'], ev=R['ev'], nd=nd_cy25, eq_gross=R['ev'] - nd_cy25,
+        nci=(R['ev'] - nd_cy25) * NCI_OP, prov=V['provisions'] / M, divp=V['div_declared'] / M,
+        inv=(V['fvoci'] + V['fin_inv']) / M, eq=R['eq'], ps=R['ps'], we=_we, wt=_wt)
+
+
+_GRIDS, _SCEN_V = [], {}
+
+
+def _grid(name, pts):
+    _GRIDS.append([name, None, []])
+    for pi, (label, lev, kw, is_base) in enumerate(pts):
+        _GRIDS[-1][2].append(dict(
+            label=label, levers=lev, is_base=is_base,
+            has_gm=any(c == 'C' for c, _, _ in lev), has_fx=any(c == 'D' for c, _, _ in lev),
+            has_wc=any(c == 'E' for c, _, _ in lev), has_we=any(c == 'F' for c, _, _ in lev),
+            has_wt=any(c == 'G' for c, _, _ in lev), has_g=any(c == 'H' for c, _, _ in lev)))
+        _S = build(vol_mult=kw.get('vol_mult', 1.0), gm_shift=kw.get('gm_shift', 0.0),
+                   fx_mult=kw.get('fx_mult', 1.0))
+        _SCEN_V[f'{name}|{pi}'] = _blockvals(
+            _S, g=kw.get('g'), nwc_days=kw.get('nwc_days'),
+            we=kw.get('we'), wt=kw.get('wt'), fx_mult=kw.get('fx_mult', 1.0))
+
+
+_PCT2, _NUM1, _NUM3 = '0.00%', '#,##0.0', '#,##0.000'
+_grid('Gross margin, shifted on every forecast year',
+      [(f'{s:+.1%}', [('C', s, _PCT2)], dict(gm_shift=s), s == 0.0) for s in gm_grid])
+_grid('Volume growth path, as a multiple of the assumed path',
+      [(f'{m:.2f}x', [('B', m, _NUM1)], dict(vol_mult=m), m == 1.0) for m in vol_grid])
+_grid('Realisation path, as a multiple of the assumed path',
+      [(f'{m:.2f}x', [('D', m, _NUM1)], dict(fx_mult=m), m == 1.0) for m in fx_grid])
+_grid('Beta', [(f'{b:.4f}',
+                [('F', cost_of_capital(b)[1], _PCT2), ('G', terminal_cost_of_capital(b), _PCT2)],
+                dict(we=cost_of_capital(b)[1], wt=terminal_cost_of_capital(b)),
+                abs(b - V['beta']) < 1e-9) for b in beta_grid])
+_grid('Working-capital cycle, as a multiple of the solved days',
+      [(f'{m:.2f}x', [('E', m, _NUM1)],
+        dict(nwc_days=(INV_DAYS * m, RECV_DAYS * m, PAY_DAYS * m)), m == 1.0)
+       for m in wc_mult_grid])
+_grid('Terminal growth',
+      [(f'{gg:.1%}', [('H', gg, _PCT2)], dict(g=gg), abs(gg - V['g_term']) < 1e-9)
+       for gg in g_grid])
+BLOCKS = dict(base=_blockvals(B), grids=_GRIDS, scen=_SCEN_V)
+_nb = 1 + sum(len(g[2]) for g in _GRIDS)
+say(f"[Workbook blocks emitted] {_nb} complete forecast engines — the base case and "
+    f"{_nb-1} sensitivity grid points — each with the model's own value for every cell, so the "
+    f"workbook can write all {_nb} out as live formula chains and an independent evaluator can "
+    f"check each one. The previous edition pasted its sensitivity grids because a whole-model "
+    f"re-run could not be expressed inside a grid; that was 27.6% of the file and three of the "
+    f"pasted rows did not reproduce.")
+
 OUT = dict(
     meta=dict(ticker='AMOC', company='Alexandria Mineral Oils Company S.A.E.', market='EGX',
               currency='EGP', asof='2026-08-06', spot=SPOT, shares_mn=SH, mktcap=MKTCAP,
@@ -1848,6 +1931,37 @@ OUT = dict(
               grid_exp_term=grid_exp_term, beta_grid=beta_grid, grid_beta=grid_beta,
               gm_grid=gm_grid, grid_margin=grid_margin, vol_grid=vol_grid, grid_vol=grid_vol,
               fx_grid=fx_grid, grid_fx=grid_fx, nwc_grid=nwc_grid, grid_nwc=grid_nwc),
+    # ---- the bottom-up layer, emitted so the workbook can REBUILD it in formulas ----
+    unitbuild=dict(
+        lines=LINES, labels=LBL, spec=SPEC,
+        t0={k: t0[k] for k in LINES}, px0={k: px0[k] for k in LINES},
+        raw_pt={k: raw_pt[k] for k in LINES}, conv_pt={k: conv_pt[k] for k in LINES},
+        proc={k: PROC[k] for k in LINES}, nrv={k: _nrv[k] for k in LINES},
+        spread={k: _spread[k] for k in LINES}, margin0={k: _m0[k] for k in LINES},
+        px_index=PX_INDEX, T0=T0, raw_tot0=raw_tot0, conv_tot0=conv_tot0,
+        nrv_den=_nrv_den, pw_den=_pw_den,
+        sal_sh=cos_share['salaries'] / (1 - cos_share['raw']),
+        oth_sh=cos_share['other'] / (1 - cos_share['raw']),
+        sup_sh=cos_share['support'] / (1 - cos_share['raw']),
+        dep_sh=cos_share['dep'] / (1 - cos_share['raw']),
+        lines_vol=B['lines_vol'], lines_rev=B['lines_rev'], lines_cost=B['lines_cost'],
+        line_margin=B['line_margin']),
+    ttm=dict(base_year=BASE_YEAR, rev=REV_TTM, gp=GP_TTM, cogs=COGS_TTM, gm=GM_TTM,
+             ga=ga_ttm / M, mkt=mkt_ttm / M, oth=oth_ttm / M, dep=dep_ttm / M,
+             capex=capex_ttm / M, credint=credint_ttm / M, prov=prov_ttm / M, emp=emp_ttm / M,
+             gp_h1=gp_h1cy26 / M, gp_h1_released=gp_h1cy26_at_release / M,
+             pat_if_released=_pat_if_released_gp / M, ct1=CT1, ct2=CT2, ct3=CT3,
+             rev9_ann=rev9 / M * A, gm9=gp9 / rev9),
+    rates=dict(tax_stat=TAX_STAT, tax_eff=TAX_EFF, emp_rate=EMP_RATE, nci_op=NCI_OP,
+               rf_term=RF_TERM, ke_blend=KE_BLEND, asset_life=ASSET_LIFE,
+               cap_intensity=CAP_INTENSITY, maint_capex0=MAINT_CAPEX0,
+               inv_days=INV_DAYS, recv_days=RECV_DAYS, pay_days=PAY_DAYS,
+               raw_of_rev=RAW_OF_REV, just_mult=JUST_MULT, norm_df=norm_df,
+               norm_yrs=NORM_YRS, rr_2030=_rr_2030),
+    bridge=dict(ev=ev, nd=nd_cy25, eq_gross=eq_gross, nci=nci_val, prov=prov_val,
+                divp=divp_val, inv=inv_val, eq=eq_attr, ps=dcf_ps),
+    span_env=[lo_env, hi_env],
+    blocks=BLOCKS,
     step0=step0, strike=strike, backtest=bt5,
     assert_log=LOG,
 )

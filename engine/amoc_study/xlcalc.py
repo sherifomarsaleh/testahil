@@ -18,7 +18,7 @@ changing a driver on the Assumptions sheet actually reprice the workbook?
 import re
 from openpyxl.utils import range_boundaries, get_column_letter
 
-FUNC = re.compile(r'\b(SUM|MIN|MAX|MEDIAN|AVERAGE)\(([^()]*)\)')
+FUNC = re.compile(r'\b(SUMPRODUCT|SUM|MIN|MAX|MEDIAN|AVERAGE)\(([^()]*)\)')
 # An UNQUOTED sheet name may not contain a hyphen or a space: every sheet in this workbook
 # whose name does is written quoted. Allowing them made "C34-Assumptions!$C$45" parse as a
 # reference to a sheet called "C34-Assumptions", which silently swallowed the subtraction.
@@ -87,6 +87,14 @@ class Book:
             if not m:
                 break
             fn = m.group(1)
+            if fn == 'SUMPRODUCT':
+                # two or more equal-length ranges multiplied element-wise, then summed
+                _parts = [self.arg_values(a, sheet) for a in m.group(2).split(',')]
+                assert len({len(x) for x in _parts}) == 1, 'SUMPRODUCT ranges differ in length'
+                val = sum(_prod for _prod in
+                          (float(__import__('math').prod(t)) for t in zip(*_parts)))
+                e = e[:m.start()] + repr(float(val)) + e[m.end():]
+                continue
             vals = self.arg_values(m.group(2), sheet)
             if not vals:
                 val = 0.0
