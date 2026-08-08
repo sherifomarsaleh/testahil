@@ -1,4 +1,4 @@
-"""AMOC_Bibliography_06-08-2026.docx — the companion bibliography document.
+"""AMOC_Bibliography_08-08-2026.docx — the companion bibliography document.
 
 Every input in the model: value, source, date and research layer — emitted directly from
 study_numbers.json (the compute script's own INPUTS block), plus the document bibliography,
@@ -152,8 +152,17 @@ P('The change was not cosmetic. Twelve published assumptions were overturned by 
   'depreciation charge modelled at three times the actual, an operating-expense base understated '
   'by a factor of three, a property-plant-and-equipment balance reconstructed at nearly twice the '
   'filed figure, a minority interest inferred at 3.0% against a disclosed 4.645%, and a '
-  'tax-disputes provision of EGP 904.6mn that was never carried at all. The fair-value estimate '
-  'moved from EGP 9.38 to EGP 7.10 as a result.')
+  'tax-disputes provision of EGP 904.6mn that was never carried at all.')
+P('THIS EDITION GOES ONE STEP FURTHER. The half-year results for 1 January to 30 June 2026, '
+  'disclosed to the Egyptian Exchange on 29-30 July 2026 — one week before the anchor date — '
+  'are restored to the record after the previous edition deleted them on a rule that treated '
+  '"is it inside one of the four PDFs?" as the test for use. With them, a clean CONTIGUOUS '
+  'twelve-month base year to 30 June 2026 exists and is the headline base. The disclosure is a '
+  'press release, not a filing, and is flagged REPORTED wherever it is used; its gross-profit '
+  'line is REJECTED on a coherence test recorded below and SOLVED from its own profit line '
+  f"instead. The fair-value estimate is EGP {D['central']:.2f} in this edition, against "
+  'EGP 7.16 in the audited nine-month edition and EGP 9.38 in the pre-filings edition — each '
+  'restatement is itself part of the record and none is silently overwritten.')
 
 H2('The research layers')
 table([['Layer', 'What it covers'],
@@ -239,16 +248,25 @@ P('The first edition carried a table here of figures disclosed only through grow
   'REMOVED rather than updated: the figures it triangulated are now read straight off the audited '
   'statements. Keeping it would imply a corroboration exercise that no longer has anything to '
   'corroborate.')
-P('One derivation remains, and the study states it on its face. There is no clean audited '
-  'twelve-month period — the year-end moved from 30 June to 31 December and the April-to-June '
-  '2025 quarter is not separately filed — so the base year is the NINE contiguous audited months '
-  'from 1 July 2025 to 31 March 2026, annualised by four thirds. That scaling is the only step '
-  'between the filings and the base year, and nothing inside it is estimated.')
+P('Two derivations remain, and the study states both on its face. FIRST, the base year: the '
+  'twelve contiguous months to 30 June 2026 — the audited transition half plus the half '
+  'disclosed to the exchange on 29-30 July 2026 — with no annualisation scalar; the audited '
+  'nine months annualised by four thirds is published beside it as the fully-audited '
+  'alternative. SECOND, the gross profit of the reported half: the released figure of EGP '
+  f"{D['ttm']['gp_h1_released']:,.0f}mn, run through the company's own first-quarter expense "
+  'run rates, implies a profit after tax '
+  f"{D['ttm']['ct3']:+.1%} above the profit printed in the same release, so it is rejected and "
+  f"the figure used, EGP {D['ttm']['gp_h1']:,.0f}mn, is SOLVED from the release's own profit "
+  'line. Two coherence tests support the profit line it is solved from: the reported majority '
+  f"profit ties to the AUDITED statement of changes in equity within {D['ttm']['ct1']:.1%}, "
+  f"and the reported revenue ties to an independent triangulation within {D['ttm']['ct2']:.1%}.")
 table([['What the first edition triangulated', 'What the filing says'],
        ['Base-year revenue, reconstructed from two reported halves at EGP 39,996mn',
-        f"Audited nine months annualised: EGP {D['unit']['base_gm'] and D['audited']['base_rev']:,.0f}mn"],
+        f"Twelve months to 30-Jun-2026, no scalar: EGP {D['ttm']['rev']:,.0f}mn "
+        f"(audited nine months annualised: {D['audited']['base_rev']:,.0f}mn)"],
        ['Gross margin, built from a per-tonne cost stack at 6.06%',
-        f"As filed across the nine audited months: {D['audited']['base_gm']:.2%}"],
+        f"Twelve months to 30-Jun-2026: {D['ttm']['gm']:.2%} "
+        f"(nine audited months: {D['audited']['base_gm']:.2%})"],
        ['Cost of sales, built from house yields, energy intensity and a solved feedstock '
         'differential',
         'Note 15-A as filed: raw materials ' + f"{D['unit']['cost_share']['raw']:.1%}" +
@@ -382,5 +400,5 @@ P('The companion workbook was verified on the DELIVERED file rather than on the 
   'in place with the whole workbook re-evaluated to confirm it moves the headline in the '
   'asserted direction.')
 
-doc.save(os.path.join(HERE, 'AMOC_Bibliography_06-08-2026.docx'))
-print('wrote AMOC_Bibliography_06-08-2026.docx')
+doc.save(os.path.join(HERE, 'AMOC_Bibliography_08-08-2026.docx'))
+print('wrote AMOC_Bibliography_08-08-2026.docx')
