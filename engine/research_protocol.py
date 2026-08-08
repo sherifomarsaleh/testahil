@@ -59,22 +59,26 @@ SIGCM_CLAUSES = {
 # --- THE MODEL STUDY (adopted 08 Aug 2026, per Sherif's instruction — SWDY) -------------------
 # SWDY_Valuation_Study_05-08-2026 (engine/swdy_study/) is the canonical exemplar EVERY study
 # matches for structure AND research depth, adopted because the level of recent valuation
-# reports had slipped below par. One-in-one-out: TMPV is retired as the structural template
-# and EAND as the operating-company exemplar — SWDY takes both roles. ADCB (bank; RIBL
-# secondary) and ALPHADHABI (holdco) remain LENS-PATTERN references only: class adapts the
-# lens and the indicator set, never the structure or the depth. This spec holds RULES and
-# structure, never numbers.
+# reports had slipped below par. ADCB (bank) and ALPHADHABI (holdco) remain LENS-PATTERN
+# references only: class adapts the lens and the indicator set, never the structure or the
+# depth. This spec holds RULES and structure, never numbers.
+#
+# THE REFERENCE SET IS CLOSED — exactly three names, enforced by REFERENCE_SET below
+# [08-Aug-2026, per Sherif's instruction]. No other company is a template, an exemplar or a
+# reference study anywhere in the protocol; every previously-named exemplar is gone from the
+# reference layer entirely rather than carried as a retired entry. A secondary exemplar of a
+# class whose primary already covers it is redundant by construction and is not admitted.
+# Adding a fourth name is a protocol change, not a documentation edit: it must displace one
+# of these three, and this assertion is what forces that decision to be made explicitly.
+REFERENCE_SET = ("SWDY", "ADCB", "ALPHADHABI")
+
 MODEL_STUDY = {
     "reference": "SWDY_Valuation_Study_05-08-2026",
     "path": "engine/swdy_study/",
     "adopted": "2026-08-08",
-    "retired": [
-        "TMPV_Valuation_Study_30-06-2026 (structural template)",
-        "EAND (operating-company exemplar)",
-    ],
     "lens_pattern_references": {
         "operating_company": "SWDY",
-        "bank": "ADCB (primary; RIBL secondary)",
+        "bank": "ADCB",
         "holdco": "ALPHADHABI",
     },
     "deliverables": [
@@ -270,5 +274,15 @@ if __name__ == "__main__":
     assert len(MODEL_STUDY["word_skeleton"]) == 16, "model study is a 16-section Word skeleton"
     assert len(MODEL_STUDY["excel_sheets"]) == 16, "model study is a 16-sheet Excel"
     assert set(MODEL_STUDY_DEPTH) < set(m.__dict__), "every depth standard has a checklist field"
+    # The reference set is CLOSED at exactly three names. This assertion is the enforcement:
+    # a fourth exemplar cannot be added without displacing one of these and failing here first.
+    assert set(MODEL_STUDY["lens_pattern_references"].values()) == set(REFERENCE_SET), (
+        "the reference set is closed — exactly SWDY / ADCB / ALPHADHABI, no other company "
+        "is a template, exemplar or reference study anywhere in the protocol"
+    )
+    assert MODEL_STUDY["lens_pattern_references"]["operating_company"] == "SWDY", (
+        "SWDY is the model study and therefore also the operating-company lens pattern"
+    )
     print("SIGCM module loaded; clauses:", len(SIGCM_CLAUSES),
-          "| model-study depth standards:", len(MODEL_STUDY_DEPTH))
+          "| model-study depth standards:", len(MODEL_STUDY_DEPTH),
+          "| reference set:", "/".join(REFERENCE_SET))
