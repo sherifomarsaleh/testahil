@@ -24,6 +24,8 @@ BETA = json.load(open('beta_result.json'))
 STK = json.load(open('strike_result.json'))
 S0 = json.load(open('step0_result.json'))
 TECH = json.load(open('technicals.json'))['state']
+EFG = json.load(open('efg_bridge.json'))
+MSC = json.load(open('scenario_margin.json'))
 M, H, F = D['meta'], D['history'], D['forecast']
 W, DCF, LN, SN = D['wacc'], D['dcf'], D['lenses'], D['sensitivity']
 TR, PE, SHT = D['terminal_reconciliation'], D['peers'], D['share_triangulation']
@@ -46,8 +48,8 @@ def sg(x, dp=1): return f"{x*100:+.{dp}f}%"
 # ============================== COVER ========================================
 masthead()
 P('Arabian Cement Company S.A.E.', size=22, bold=True, space_after=1)
-P('Egyptian Exchange · ARCC · Egyptian pounds · 6 August 2026', size=11, color=GREY,
-  space_after=10)
+P('Egyptian Exchange · ARCC · Egyptian pounds · valuation as of 6 August 2026, issued 8 '
+  'August 2026', size=11, color=GREY, space_after=10)
 rich([(f'One of Egypt\'s largest cement plants, at the top of the best year the industry '
        f'has had in more than a decade — audited profit up '
        f'{pc(IN["pat_fy25"]/IN["pat_fy24"]-1, 0)} in a single year on a '
@@ -385,7 +387,7 @@ P(f'Two cross-checks are run rather than asserted. The share closes unchanged on
 rows = [['Beta'] + [n2(b) for b in SN['beta_grid']]]
 rows.append(['Fair value per share (EGP)'] + [n2(x) for x in SN['beta']])
 table(rows, [2.20, 0.98, 0.98, 0.98, 0.98, 0.98])
-caption('Table 6 — Fair value across the fixed comparability anchors, which span the '
+caption('Table 8 — Fair value across the fixed comparability anchors, which span the '
         'regression\'s own confidence interval.')
 
 # ---- 1.6 --------------------------------------------------------------------
@@ -405,7 +407,7 @@ rows.append(['Free cash flow to the firm'] + [n0(x) for x in F['fcff']])
 rows.append(['Discount factor'] + [f'{x:.4f}' for x in F['df']])
 rows.append(['Present value of FCFF'] + [n0(x) for x in F['pv']])
 table(rows, [2.10, 0.92, 0.92, 0.92, 0.92, 0.92], band_rows={11, 13}, size=8.8)
-caption('Table 7 — The full build from revenue to present value. FY2026 carries only the '
+caption('Table 9 — The full build from revenue to present value. FY2026 carries only the '
         'five months not yet earned at the valuation date; the seven already earned are '
         'rolled into the opening cash balance instead, so the period is counted exactly '
         'once rather than twice or not at all.')
@@ -484,7 +486,7 @@ rows.append(['Terminal value as % of enterprise value', pc(DCF['tv_share']), '�
 rows.append(['Market price, 6 August 2026', '—', n2(SPOT)])
 rows.append(['Upside / (downside) to this lens', '—', sg(DCF['fv'] / SPOT - 1)])
 table(rows, [3.30, 1.50, 1.50], band_rows={3, 6, 7})
-caption('Table 8 — The bridge. Terminal value as a share of enterprise value is stated '
+caption('Table 10 — The bridge. Terminal value as a share of enterprise value is stated '
         'here and again in the summary table on page 1.')
 P(f'Cash is added at face and is not in the discount rate. The audited balance sheet shows '
   f'EGP {n0(IN["cash_fy25"])}mn of cash against EGP {n0(W["debt_total"])}mn of '
@@ -572,7 +574,7 @@ _row = SN["wacc_g"][0][4] - SN["wacc_g"][0][0]     # 3% -> 7% growth, rate held
 _col = SN["wacc_g"][4][0] - SN["wacc_g"][0][0]     # low -> high rate, growth held
 _g_up = 'UP' if _row > 0 else 'DOWN'
 _g_str = 'STRONGER' if abs(_row) > abs(_col) else 'WEAKER'
-caption(f'Table 9 — Fair value per share across the explicit-window cost of capital and '
+caption(f'Table 11 — Fair value per share across the explicit-window cost of capital and '
         f'terminal growth. Growth is the {_g_str} of the two levers here and it points '
         f'{_g_up}: across a row the value moves EGP {n2(abs(_row))}, against EGP '
         f'{n2(abs(_col))} down a column. The paragraphs above set out why the growth axis is '
@@ -587,7 +589,7 @@ rows = [['Explicit-window rate'] + [pc(w, 1) for w in SN['wt_grid']]]
 for i, wv in enumerate(SN['wacc_grid']):
     rows.append([pc(wv, 2)] + [n2(x) for x in SN['exp_term'][i]])
 table(rows, [1.72, 1.02, 1.02, 1.02, 1.02, 1.02])
-caption('Table 10 — The two anchors varied INDEPENDENTLY: the explicit-window rate down '
+caption('Table 12 — The two anchors varied INDEPENDENTLY: the explicit-window rate down '
         'the side, the terminal rate across the top. This shows what the valuation needs '
         'the economy to do, not merely what growth rate the model needs.')
 
@@ -619,8 +621,86 @@ for c in CON:
     rows.append([c['choice'], c['adopted'], c['alternative'],
                  f'{n2(c["fv_alternative"])}  ({sg(c["effect"])})'])
 table(rows, [2.55, 1.05, 1.20, 1.70], size=8.8)
-caption('Table 11 — Every contested choice computed as a value rather than argued in '
+caption('Table 13 — Every contested choice computed as a value rather than argued in '
         'prose. None of these alternatives is hidden; each is a full re-run of the model.')
+
+# ---- 1.10 -------------------------------------------------------------------
+OFF_LABEL = {'EFG': 'EFG off mark', 'OPEN': 'open — no referee', 'NEITHER': 'method, not error'}
+H2('1.10  A published sell-side target, reconciled item by item')
+P(f'On 6 August 2026 EFG Hermes published a Buy rating on ARCC with a target price of EGP '
+  f'{n2(EFG["start"])}, against a spot of EGP {n2(EFG["market"])}. Both models reproduce '
+  f'FY2025 revenue, cost of sales, gross profit, D&A, capex and net cash to the pound, so '
+  f'the whole EGP {n2(EFG["start"]-EFG["end"])} gap between the two targets is forward-'
+  f'looking. What follows replaces one driver of theirs with one of ours at a time and '
+  f'records the change, so the bars sum to the gap by construction rather than by a plug.')
+rows = [['Step', 'EGP/sh', 'What moved']]
+rows.append(['START — EFG Hermes target', n2(EFG['start']), '6 Aug 2026, Buy, DCF'])
+for s in EFG['steps']:
+    rows.append([s['label'].replace('\n', ' '), f'{s["value"]:+.2f}',
+                s['sub'].replace('\n', ' ')])
+rows.append(['END — this study\'s weighted central', n2(EFG['end']), 'four lenses, weighted'])
+table(rows, [2.65, 0.85, 3.00], size=8.8)
+caption(f'Table 14 — The reconciliation bridge. Bars sum to the gap exactly '
+        f'({sum(s["value"] for s in EFG["steps"]):+.2f} vs {EFG["end"]-EFG["start"]:+.2f}). '
+        f'Reproduced independently as a check before publication.')
+figure('fig_efg_bridge.png', 6.6,
+      f'Figure 4 — The same bridge, drawn. Every bar substitutes exactly one driver and '
+      f'carries it through both the discounted window and the cash bridge, so nothing is '
+      f'counted twice.')
+tally = {}
+for s in EFG['steps']:
+    tally[s['off']] = tally.get(s['off'], 0.0) + s['value']
+P(f'Sorting the eight steps by who the evidence favours: the items where EFG’s own '
+  f'construction is inconsistent with itself sum to {tally.get("EFG",0):+.2f} — an internal '
+  f'date mismatch between their discount factors and their cash balance, a capex path that '
+  f'sits below their own depreciation in every tabulated year, a terminal value grown '
+  f'without a reinvestment charge, and a dividend of EGP 5.34/share, ex 12 April 2026, that '
+  f'their own front page discloses and their balance sheet does not appear to reflect. Two '
+  f'items are genuinely open — the operating build, where our volumes are higher and our '
+  f'margin path is lower, and the discount-rate convention, where their rate is below the '
+  f'sovereign risk-free rate early and harsher than ours late, worth a combined '
+  f'{tally.get("OPEN",0):+.2f}. The remaining {tally.get("NEITHER",0):+.2f} is a lens-'
+  f'weighting difference, not an error on either side.')
+for s in EFG['steps']:
+    P(f'{s["label"].replace(chr(10), " ")} ({s["value"]:+.2f}, {OFF_LABEL[s["off"]]}). '
+      f'{s["receipt"]}', size=9.6)
+mgn_rows = [['Year', 'Testahil', 'EFG published', 'EFG on our definition', 'Gap']]
+FY25A = MSC['fy25a']
+mgn_rows.append(['FY2025a', pc(FY25A['testahil']), pc(FY25A['efg_published']),
+                 pc(FY25A['efg_our_definition']), 'audited'])
+for r in MSC['margin_table']:
+    mgn_rows.append([r['year'], pc(r['testahil']), pc(r['efg_published']),
+                     pc(r['efg_our_definition']), f'{r["gap_pt"]:+.2f}pt'])
+table(mgn_rows, [1.05, 1.15, 1.30, 1.55, 0.95], size=8.8)
+caption(f'Table 15 — EBITDA margin, year by year. EFG’s FY2025a margin restates to '
+        f'{pc(H["margin"][2])} once the {pc(MSC["wedge_pct"])} definitional wedge — '
+        f'provisions, expected credit losses and other operating income, which the two '
+        f'models classify oppositely — is removed, reproducing our own audited figure '
+        f'exactly. The disagreement from FY2026 on is real, not definitional, and it widens '
+        f'rather than staying flat.')
+sc_rows = [['Scenario', 'DCF lens', 'Central', 'vs spot']]
+for r in MSC['scenarios']:
+    sc_rows.append([r['name'], n2(r['dcf']), n2(r['central']), sg(r['central']/SPOT-1)])
+table(sc_rows, [3.60, 0.95, 0.95, 0.95], size=8.8)
+caption(f'Table 16 — What EFG’s margin view is worth, held against both volume '
+        f'assumptions. Their margin on OUR volumes clears spot; their margin AND their '
+        f'volumes, taken together, does not.')
+
+# ---- 1.11 -------------------------------------------------------------------
+H2('1.11  What a buyer at EGP ' + n2(SPOT) + ' must believe')
+half = next(r for r in MSC['scenarios'] if 'Half way' in r['name'])
+P(f'Strip out the items resolved above and the honest disagreement left is one thing: how '
+  f'fast does the FY2025 margin peak fade. Everything else in the bridge is either a '
+  f'construction error on the published target (the date mismatch, the sub-depreciation '
+  f'capex path, the unfunded terminal growth, the still-outstanding dividend) or a lens-'
+  f'weighting convention that is not a factual dispute at all. A market price of EGP '
+  f'{n2(SPOT)} sits between this study’s central of EGP {n2(LN["central"])} and '
+  f'EFG’s corrected-for-its-own-errors figure, closer to ours — but a buyer paying '
+  f'spot is not implicitly endorsing either model whole. Splitting the one open '
+  f'question down the middle — EFG’s margin path and this study’s volume path, '
+  f'averaged rather than either side’s optimism taken alone — prices at EGP '
+  f'{n2(half["central"])}, {sg(half["central"]/SPOT-1)} against spot. That, not either '
+  f'published figure, is the number this study would defend if forced to name one.')
 
 # ============================== 2 ============================================
 H1('2  Price structure')
@@ -633,12 +713,12 @@ for i, s_ in enumerate(TECH['levels']['sup']):
 rows.append(['52-week high', n2(TECH['hi_52w']), sg(TECH['hi_52w'] / SPOT - 1)])
 rows.append(['52-week low', n2(TECH['lo_52w']), sg(TECH['lo_52w'] / SPOT - 1)])
 table(rows, [2.00, 1.50, 1.70])
-caption('Table 12 — Levels are computed from swing structure with a recency weight; '
+caption('Table 17 — Levels are computed from swing structure with a recency weight; '
         'moving averages, the 52-week extremes and round numbers are admitted as '
         'candidates but score below real swing points. Resistance 1 and support 1 always '
         'mean nearest to the close.')
 figure('fig3_ma.png', 6.9,
-       'Figure 4 — Three years of price with the 50- and 200-day averages.')
+       'Figure 5 — Three years of price with the 50- and 200-day averages.')
 rich([('On the upside: ', {'bold': True}), (TECH['tech']['bull'], {})])
 rich([('On the downside: ', {'bold': True}), (TECH['tech']['bear'], {})])
 P('This section describes the tape and makes no claim about value. The two are compared in '
@@ -662,11 +742,11 @@ rows.append(['Probability of touching +10% at any point',
 rows.append(['Probability of touching −10% at any point',
              pc(STK['horizons']['1M']['touch_dn10']), pc(STK['horizons']['3M']['touch_dn10'])])
 table(rows, [3.00, 1.60, 1.60], band_rows={3})
-caption(f'Table 13 — Percentiles in EGP per share, from a 50,000-path simulation anchored '
+caption(f'Table 18 — Percentiles in EGP per share, from a 50,000-path simulation anchored '
         f'on the 6 August 2026 close of EGP {n2(SPOT)}. The drift is the carry — the '
         f'risk-free rate less the dividend yield — and nothing else.')
-figure('fig4_fan.png', 6.9, 'Figure 5 — The three-month cone.')
-figure('fig6_dist.png', 6.4, 'Figure 6 — The three-month outcome distribution.')
+figure('fig4_fan.png', 6.9, 'Figure 6 — The three-month cone.')
+figure('fig6_dist.png', 6.4, 'Figure 7 — The three-month outcome distribution.')
 P(f'How well calibrated is it? Measured over {S0["windows_scored"]} independent quarterly '
   f'windows, the bands cover {pc(S0["cov50"], 0)}, {pc(S0["cov80"], 0)} and '
   f'{pc(S0["cov90"], 0)} of outcomes against nominal 50%, 80% and 90%. The map is '
@@ -683,7 +763,7 @@ for k in list(LN['weights']) + ['Weighted central']:
     rows.append([k, n2(LR[k]['bear']), n2(LR[k]['base']), n2(LR[k]['bull']), w,
                  sg(LR[k]['base'] / SPOT - 1)])
 table(rows, [2.00, 1.00, 1.00, 1.00, 0.72, 1.02], band_rows={5})
-caption('Table 14 — Each lens as a range. The disagreement between them is information, '
+caption('Table 19 — Each lens as a range. The disagreement between them is information, '
         'not noise.')
 _above = sorted([k for k in LN['values'] if LN['values'][k] > SPOT],
                 key=lambda k: -LN['values'][k])
@@ -776,7 +856,7 @@ rows.append(['Upper tail', f'above {n2(h3["p95"])}', '5%',
              'A re-rating toward the asset lens, which would require the restart programme '
              'to be abandoned or delayed materially'])
 table(rows, [1.10, 1.55, 0.90, 2.55], size=8.8)
-caption('Table 15 — Zones, not forecasts. The four are exclusive and sum to 100%: each '
+caption('Table 20 — Zones, not forecasts. The four are exclusive and sum to 100%: each '
         'tail is carved OUT of the band beside it rather than counted twice. The '
         'probabilities come from the price map and are subject to the same over-width '
         'caution as everything else in section 3.')
@@ -865,11 +945,11 @@ for head, body in [
 rows = [['Net cash at the valuation date (EGP mn)'] + [n0(x) for x in SN['nc_grid']]]
 rows.append(['Fair value per share (EGP)'] + [n2(x) for x in SN['net_cash']])
 table(rows, [2.40, 0.92, 0.92, 0.92, 0.92, 0.92], size=8.8)
-caption('Table 16 — The clean net-cash sensitivity, with the tax rate held.')
+caption('Table 21 — The clean net-cash sensitivity, with the tax rate held.')
 rows = [['Shift in the EBITDA margin, every forecast year'] + [sg(m, 0) for m in SN['mgn_grid']]]
 rows.append(['Fair value per share (EGP)'] + [n2(x) for x in SN['mgn']])
 table(rows, [2.40, 0.92, 0.92, 0.92, 0.92, 0.92], size=8.8)
-caption('Table 17 — And the margin sensitivity, which is the largest single swing factor '
+caption('Table 22 — And the margin sensitivity, which is the largest single swing factor '
         'in the model.')
 
 # ============================== APPENDIX A ===================================
@@ -1035,6 +1115,6 @@ P('Testahil · Independent valuation research · Educational analysis, not inves
   'advice. No rating and no price target is expressed or implied.', size=8.6, italic=True,
   color=GREY)
 
-OUT = 'ARCC_Valuation_Study_06-08-2026_public.docx'
+OUT = 'ARCC_Valuation_Study_08-08-2026_public.docx'
 doc.save(OUT)
 print('wrote', OUT)
