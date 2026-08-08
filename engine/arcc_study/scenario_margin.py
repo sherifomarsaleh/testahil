@@ -155,6 +155,8 @@ print(f"    +1.00pt of EBITDA margin, every year   DCF {up-b_dcf:+.2f}   "
 print(f"    -5.0% on the revenue path, every year  DCF {dn-b_dcf:+.2f}   "
       f"central {lenses(dn, IN['norm_mgn'])[1]-b_c:+.2f}")
 
-json.dump(dict(wedge_pct=WEDGE_PCT, wedge_egp=WEDGE, margin_table=tbl, scenarios=rows),
+json.dump(dict(wedge_pct=WEDGE_PCT, wedge_egp=WEDGE, margin_table=tbl, scenarios=rows,
+               fy25a=dict(testahil=round(H['margin'][2], 4), efg_published=round(E_MGN_PUB[0], 4),
+                         efg_our_definition=round(E_MGN_OURS[0], 4))),
           open(os.path.join(HERE, 'scenario_margin.json'), 'w'), indent=1)
 print('\n  wrote scenario_margin.json')

@@ -135,5 +135,10 @@
    "rev_mult": null,
    "norm_mgn": 0.3925
   }
- ]
+ ],
+ "fy25a": {
+  "testahil": 0.3925,
+  "efg_published": 0.4031,
+  "efg_our_definition": 0.3925
+ }
 }
