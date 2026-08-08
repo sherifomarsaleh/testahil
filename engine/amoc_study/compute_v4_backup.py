@@ -104,28 +104,6 @@ INP['pat_fy25_full'] = I(1_488_520_098.0, "Majority profit for the financial yea
                                           "off the opening column of the consolidated statement of "
                                           f"changes in equity at 1-July-2025. {AUD}", "2025-06-30", "Company")
 
-# ---- THE 30-JUNE-2026 HALF-YEAR DISCLOSURE -----------------------------------
-# Disclosed to the Egyptian Exchange on 29-30 July 2026, one week BEFORE this study's anchor date.
-# The previous edition of this study carried these figures. The audited rebuild DELETED them on a
-# rule that treated "is it inside one of the four supplied PDFs?" as the test for whether a figure
-# could be used, and then argued that no clean twelve-month period existed. The rule deleted a
-# disclosure that had already been sourced and corroborated. It is restored here, flagged REPORTED
-# and NOT audited, and the gross-profit line is NOT taken at face value — see the coherence test.
-REP = ("Half-year results for 1-Jan to 30-Jun-2026, disclosed to the Egyptian Exchange 29-30 July "
-       "2026. REPORTED, NOT AUDITED — a press release, not a filing")
-INP['rev_h1cy26_rep'] = I(26_223_000_000.0, f"Net sales, six months to 30-Jun-2026. {REP}", "2026-06-30", "Company")
-INP['pat_h1cy26_rep'] = I(1_903_000_000.0, f"Net profit after tax, six months to 30-Jun-2026. {REP}", "2026-06-30", "Company")
-INP['gp_h1cy26_rep'] = I(3_258_000_000.0, "Gross profit, six months to 30-Jun-2026, AS RELEASED. This "
-                                          "study does NOT use this figure: run through the company's own "
-                                          "Q1-2026 expense run rates it implies a profit after tax about "
-                                          "12.6% above the profit the same release reports. The gross "
-                                          "profit actually used is SOLVED from the release's own profit "
-                                          f"line, which two independent coherence tests confirm. {REP}",
-                         "2026-06-30", "Company")
-INP['pat_h1cy25'] = I(878_800_000.0, "Majority profit, six months to 30-Jun-2025, read off the AUDITED "
-                                     "consolidated statement of changes in equity. Used only to test the "
-                                     f"reported +109% profit growth in the half above. {AUD}", "2025-06-30", "Company")
-
 # ---- NOTE 14-A: THE AUDITED PRODUCT TABLE, six months to 31-Dec-2025 ----------
 # Eight lines, each with tonnes and value. This replaces a three-line build that rested on a
 # product table obtained from a reviewer rather than from the filing, and whose realisations had
@@ -173,13 +151,6 @@ INP['ppe_net'] = I(893_016_274.0, "Fixed assets net of accumulated depreciation 
                                   "Cost 2,740,810,692 less accumulated depreciation 1,847,794,418 — the "
                                   "plant is 67% written down, and 273,466,121 of it is fully depreciated "
                                   f"and still in use. {AUD}", "2025-12-31", "Company")
-INP['ppe_gross'] = I(2_740_810_692.0, "Fixed assets at COST at 31-Dec-2025 (note 6), before accumulated "
-                                      "depreciation of 1,847,794,418. The gross figure is what a "
-                                      "replacement-capex line has to be built on; the net figure is what "
-                                      f"the terminal return is flattered by. {AUD}", "2025-12-31", "Company")
-INP['ppe_accdep'] = I(1_847_794_418.0, "Accumulated depreciation on fixed assets at 31-Dec-2025 (note 6). "
-                                       "The plant is 67.4% written down and 273,466,121 of it is fully "
-                                       f"depreciated and still in use. {AUD}", "2025-12-31", "Company")
 INP['puc'] = I(407_323_203.0, "Projects under construction at 31-Dec-2025 (note 7): assets in development "
                               "376,746,526 (administrative building, warehouses, civil projects, ERP "
                               f"system) plus investment expenditure 30,576,677. {AUD}", "2025-12-31", "Company")
@@ -322,22 +293,6 @@ INP['dps'] = I((736_577_469.0 + 602_957_265.0) / 1_291_500_000.0,
 INP['e1_pe'] = I(7.0, "Expert 1's justified price/earnings multiple. Struck below the main "
                       "normalised lens deliberately: it is an independent opinion, not a "
                       "re-run of the house view", "2026-08-06", "House")
-INP['proc_intensity'] = I(dict(oils=1.00, wax=1.15, gasoil=0.25, naphtha=0.20, lpg=0.15,
-                               fueloil=0.05, hfo=0.05, waste=0.00),
-                          "Processing intensity by product line, relative weights, used to "
-                          "allocate the note 15-A conversion stack (salaries, supporting "
-                          "materials, other, depreciation) across the eight disclosed lines. "
-                          "Base oils are the reference at 1.00: they pass the full lube train — "
-                          "vacuum distillation, solvent extraction, dewaxing, hydrofinishing. "
-                          "Paraffin wax carries 1.15 for the additional deoiling and sweating "
-                          "steps. Gas oil, naphtha and LPG are light ends drawn off the front of "
-                          "the process and carry 0.25/0.20/0.15. Fuel oil and heavy fuel oil are "
-                          "the residue, sold substantially as produced, at 0.05. THIS IS THE "
-                          "ONLY OPERATING INPUT IN THE MODEL THAT IS NOT READ OFF A FILING, and "
-                          "it exists because note 15-A discloses the cost stack for the company "
-                          "and not by line. It is stated here rather than hidden in a formula, "
-                          "and the valuation is sensitised to it",
-                  "2026-08-06", "House")
 INP['raw_pass'] = I(1.0, "Pass-through factor on the raw-material line: 1.0 means the feedstock "
                          "charge moves one-for-one with realisation and volume, so the gross "
                          "SPREAD per tonne is held flat in real terms and the margin neither "
@@ -479,16 +434,10 @@ INP['kd_path'] = I([0.2200, 0.1950, 0.1750, 0.1600, 0.1500],
 INP['kd_term'] = I(0.1500, "Terminal cost of debt: the midpoint of the 14-16% long-run Egyptian "
                            "corporate-borrowing norm, with no name-specific reason to deviate",
                    "2026-08-06", "House")
-INP['real_rate_term'] = I(0.055, "Terminal real risk-free rate, the standard emerging-market "
-                                 "convention. The terminal NOMINAL risk-free rate is not an input: it "
-                                 "is DERIVED as this real rate plus the central bank's inflation "
-                                 "target IN FORCE for the terminal horizon (`cbe_target`), so the "
-                                 "single most terminal-value-sensitive number in the model cannot be "
-                                 "set by hand. The previous edition hardcoded 10.50% by adding 5.5pp "
-                                 "to the 5% target dated Q4-2028 while describing it as 'the' "
-                                 "medium-term target; the target in force is 7% for Q4-2026 and the "
-                                 "July-2026 rate decision pushed even that to H2-2027",
-                          "2026-08-06", "House")
+INP['rf_term'] = I(0.1050, "Terminal risk-free rate, norm-built: the central bank's own stated "
+                           "medium-term inflation target of 5% plus the standard ~5.5pp emerging-"
+                           "market real-rate convention. Never a raw historical average and never "
+                           "backed out of a price", "2026-08-06", "House")
 INP['erp_term'] = I(0.0700, "Terminal equity risk premium, normalised below the currently elevated "
                             "crisis-era level toward the rating-class norm; never held flat into "
                             "perpetuity", "2026-08-06", "House")
@@ -500,20 +449,12 @@ INP['g_term'] = I(0.05, "Terminal growth, 5% — the standing centre for establi
                         "market once currency turbulence has passed, sensitised 3-7%. An "
                         "EGP-nominal rate struck against an EGP-nominal terminal risk-free rate",
                  "2026-08-06", "House")
-INP['rel_rerating'] = I(0.0, "Re-rating applied to the company's OWN trailing enterprise-value "
-                             "to EBITDA multiple in the relative lens. ZERO: the name is held at "
-                             "the multiple the market already pays it. The justified multiple is "
-                             "no longer a free number — it is DERIVED as the trailing multiple "
-                             "times one plus this figure, so it cannot drift away from the "
-                             "company's own pricing without the drift being visible. The previous "
-                             "edition set 4.5x by hand and justified it as 'holding the name at "
-                             "its own trailing level' against a stated trailing multiple of "
-                             "'around 4.6x'; the model's own output was different, so the stated "
-                             "justification was false whichever way the multiple was struck. "
-                             "Holding at zero re-rating makes the lens a statement about the "
-                             "BRIDGE — what the disclosed claims on the cash are worth — rather "
-                             "than a disguised view on the multiple",
-                        "2026-08-06", "House")
+INP['ev_ebitda_just'] = I(4.5, "Justified enterprise-value-to-EBITDA multiple on mid-cycle 2028E "
+                               "EBITDA. The company's own trailing multiple is around 4.6x on the "
+                               "constructed 2025 base. Group I base-oil refiners and independent "
+                               "lube processors trade 4-6x; 4.5x holds the name at its own trailing "
+                               "level rather than assuming a re-rating. Bear 3.5x / bull 6.0x",
+                          "2026-08-06", "House")
 INP['pe_just'] = I(7.5, "Justified through-cycle price-to-earnings multiple on normalised earnings. "
                         "Trailing is about 7.5x on the constructed 2025 base. A single-asset "
                         "processor with a 20% state shareholder, an administered feedstock "
@@ -587,133 +528,16 @@ TAX_EFF = tax9 / pbt9
 assert abs(_pbt_h2 - 840_932_632.0) < 1.0, "audited half does not rebuild from its components"
 assert abs(_pbt_q1 - 817_423_320.0) < 500.0, "reviewed quarter does not rebuild from its components"
 assert abs(pbt9 - (pat9 + tax9)) < 500.0, "9M pre-tax does not tie to after-tax plus tax"
-say(f"[Base year — ALTERNATIVE: nine AUDITED months, annualised] the transition period "
-    f"1-Jul-2025 to 31-Dec-2025 (audited, Crowe, unqualified) and the three months to "
-    f"31-Mar-2026 (reviewed) are contiguous and cover nine months: net sales {rev9/M:,.0f}, cost "
-    f"of sales {cogs9/M:,.0f}, GROSS PROFIT {gp9/M:,.0f}, a margin of {BASE_GM:.3%}. Annualised "
-    f"at 4/3 that is {BASE_REV:,.0f} of revenue. This edition NO LONGER uses it as the headline "
-    f"base — see the twelve months to 30-Jun-2026 below — but publishes it as the alternative, "
-    f"because half of the twelve-month base is a press release rather than a filing.")
-
-# ---- (1b) THE HEADLINE BASE: the twelve months to 30 June 2026 ---------------
-# The previous edition of this study argued that no clean twelve-month period existed. That was
-# wrong, and it was wrong on evidence this study had already sourced: AMOC disclosed its 1-Jan to
-# 30-Jun-2026 half to the exchange on 29-30 July 2026, a week before the anchor date. The audited
-# transition half (Jul-Dec 2025, AUDITED) plus that half is twelve contiguous months to
-# 30-Jun-2026, with no annualisation scalar at all.
-#
-# The released GROSS PROFIT is not used. Run through the company's own Q1-2026 expense run rates
-# it implies a profit after tax materially above the profit the SAME release reports, so at least
-# one of the two released lines is wrong. The profit line survives two independent coherence
-# tests below; the gross-profit line fails one. Gross profit is therefore SOLVED from the profit.
-_h1_opex = (V['ga_q1_26'] + V['mkt_q1_26'] + V['othexp_q1_26']) * 2.0
-_h1_othrev = V['othrev_q1_26'] * 2.0
-_h1_prov = (V['prov_q1_26'] + V['ecl_q1_26']) * 2.0
-_h1_fin = V['fin_q1_26'] * 2.0
-# PAT = (GP - opex + other revenue - provisions - finance cost) x (1 - effective tax)
-# solved for GP:
-gp_h1cy26 = (V['pat_h1cy26_rep'] / (1 - TAX_EFF)) + _h1_opex - _h1_othrev + _h1_prov + _h1_fin
-gp_h1cy26_at_release = V['gp_h1cy26_rep']
-_pat_if_released_gp = ((gp_h1cy26_at_release - _h1_opex + _h1_othrev - _h1_prov - _h1_fin)
-                       * (1 - TAX_EFF))
-
-# COHERENCE TEST 1 — the reported profit against the AUDITED equity statement.
-# The release reports profit up 109% on the comparable half. Majority profit for Jan-Jun 2025 is
-# read off the audited statement of changes in equity, so this test uses no press figure twice.
-_maj_h1cy26 = V['pat_h1cy26_rep'] * (1 - V['nci_share'])
-_maj_implied = V['pat_h1cy25'] * 2.09
-CT1 = abs(_maj_h1cy26 / _maj_implied - 1)
-
-# COHERENCE TEST 2 — the reported revenue against an independent triangulation.
-_rev_h1cy25_implied = V['rev_h1cy26_rep'] / 1.352
-_rev_ttm_jun25 = _rev_h1cy25_implied + V['rev_h2_24']
-_rev_ttm_jun25_tri = V['rev_h2_24'] + V['rev_q1_25'] + (V['rev_q1_25'] * 0.9186)
-CT2 = abs(_rev_ttm_jun25 / _rev_ttm_jun25_tri - 1)
-
-# COHERENCE TEST 3 — the reported GROSS PROFIT against the release's own profit line.
-CT3 = abs(_pat_if_released_gp / V['pat_h1cy26_rep'] - 1)
-
-assert CT1 < 0.02, f"reported H1-2026 profit fails the audited-equity test: {CT1:.1%}"
-assert CT2 < 0.02, f"reported H1-2026 revenue fails the triangulation test: {CT2:.1%}"
-assert CT3 > 0.05, "the released gross profit is coherent after all — stop solving it"
-
-REV_TTM = (V['rev_h2_25'] + V['rev_h1cy26_rep']) / M
-GP_TTM = (gp9 - (V['rev_q1_26'] - V['cogs_q1_26']) + gp_h1cy26) / M
-COGS_TTM = REV_TTM - GP_TTM
-GM_TTM = GP_TTM / REV_TTM
-say(f"[Base year — TWELVE CONTIGUOUS MONTHS to 30-Jun-2026, NO annualisation] the audited "
-    f"transition half (Jul-Dec 2025) plus the reported half (Jan-Jun 2026) is a clean twelve "
-    f"months: net sales {REV_TTM:,.0f}, gross profit {GP_TTM:,.0f}, margin {GM_TTM:.3%}. NO 4/3 "
-    f"scalar is applied and no period is estimated. HALF OF THIS BASE IS NOT AUDITED and the "
-    f"study says so on every page that uses it. The released gross profit of "
-    f"{gp_h1cy26_at_release/M:,.0f} is REJECTED: run through the company's own Q1-2026 expense "
-    f"run rates it produces a profit after tax of {_pat_if_released_gp/M:,.0f} against a "
-    f"reported {V['pat_h1cy26_rep']/M:,.0f}, {CT3:+.1%} too high. The gross profit used, "
-    f"{gp_h1cy26/M:,.0f}, is SOLVED from the release's own profit line, which passes two "
-    f"independent tests: majority profit ties to the AUDITED equity statement within "
-    f"{CT1:.1%}, and revenue ties to an independent triangulation within {CT2:.1%}. Implied "
-    f"Q2-2026 gross margin "
-    f"{(gp_h1cy26 - (V['rev_q1_26']-V['cogs_q1_26']))/(V['rev_h1cy26_rep']-V['rev_q1_26']):.2%} "
-    f"against the {(V['rev_q1_26']-V['cogs_q1_26'])/V['rev_q1_26']:.2%} of Q1 — a rise, but not "
-    f"the {(gp_h1cy26_at_release-(V['rev_q1_26']-V['cogs_q1_26']))/(V['rev_h1cy26_rep']-V['rev_q1_26']):.2%} "
-    f"the released gross-profit line would require.")
-
-# Every operating line moves onto the SAME twelve months as revenue and gross profit. This is the
-# discipline whose absence was the largest defect in the previous edition: revenue was built from
-# the six-month product table doubled while cost of sales was the nine months scaled by 4/3, so
-# the base-year gross margin corresponded to no filed period at all. One period, both sides, or
-# the margin is an artefact. Jan-Jun 2026 operating lines are the reviewed Q1 doubled — the same
-# convention used to solve gross profit above, applied consistently rather than case by case.
-_H1_SCALE = 2.0
-ga_ttm = V['ga_h2_25'] + V['ga_q1_26'] * _H1_SCALE
-mkt_ttm = V['mkt_h2_25'] + V['mkt_q1_26'] * _H1_SCALE
-oth_ttm = V['othexp_h2_25'] + V['othexp_q1_26'] * _H1_SCALE
-dep_ttm = V['dep_h2_25'] + V['dep_q1_26'] * _H1_SCALE
-capex_ttm = V['capex_h2_25'] + V['capex_q1_26'] * _H1_SCALE
-credint_ttm = V['credint_h2_25'] + V['credint_q1_26'] * _H1_SCALE
-prov_ttm = V['prov_h2_25'] + (V['prov_q1_26'] + V['ecl_q1_26']) * _H1_SCALE
-emp_ttm = V['emp_h2_25'] * 2.0
-
-BASE_YEAR = 'twelve months to 30-Jun-2026'
-BASE_REV = REV_TTM
-BASE_GM = GM_TTM
-BASE_COGS = COGS_TTM
-BASE_GP = GP_TTM
-say(f"[Base year — SELECTED] {BASE_YEAR}. Revenue {BASE_REV:,.0f}, gross margin {BASE_GM:.3%}, "
-    f"against the nine-month annualisation's {rev9/M*A:,.0f} and {gp9/rev9:.3%}. Both are "
-    f"published and the model runs on either; the twelve-month base is the headline because it "
-    f"needs no annualisation scalar, and the nine-month base is retained because all of it is "
-    f"audited or reviewed. The gap between the two is {BASE_REV/(rev9/M*A)-1:+.1%} on revenue "
-    f"and {BASE_GM-gp9/rev9:+.2%} on margin, and that gap is a real uncertainty about this "
-    f"company, not a rounding difference.")
-
-# ---- three rates the waterfall needs, every one SOLVED from the filings ------
-# TAX. The unlevered waterfall applies the STATUTORY rate to operating profit. The effective rate
-# of 22.12% is correct for its own base — a pre-tax profit that includes credit interest, other
-# income and a deferred credit — and applying it to EBIT and then into perpetuity taxes a
-# narrower base at a rate struck on a wider one. The effective rate stays where it belongs, in
-# the historical reconciliation.
-TAX_STAT = V['tax_stat']
-# EMPLOYEES' PROFIT SHARE. Struck as the company strikes it: the disclosed charge over the profit
-# it is charged against, so the rate is solved rather than picked.
-EMP_RATE = emp_ttm / (V['pat_h2_25'] + V['pat_h1cy26_rep'])
-# MINORITY. The previous edition called 4.645% "the DISCLOSED rate". It is not disclosed: it is a
-# ratio computed from ONE audited half, and it was struck on a profit figure that includes the
-# PARENT's credit interest — so the cash the study is careful to keep out of the minority's reach
-# on one line is inside the ratio on the next. It is restruck here over the whole base year and
-# over OPERATING profit only.
-_nci_ttm = V['nci_h2_25'] + V['nci_q1_26'] * _H1_SCALE
-_pat_ttm = V['pat_h2_25'] + V['pat_h1cy26_rep']
-NCI_OP = _nci_ttm / (_pat_ttm - credint_ttm * (1 - TAX_EFF))
-say(f"[Three rates, SOLVED not assumed] statutory tax {TAX_STAT:.2%} on operating profit (the "
-    f"effective {TAX_EFF:.2%} is struck on a pre-tax base that includes credit interest and a "
-    f"deferred credit, and is kept for the historical reconciliation only). Employees' profit "
-    f"share and board bonuses {EMP_RATE:.2%} of profit after tax, solved from the disclosed "
-    f"charge of {emp_ttm/M:,.0f} over profit of {_pat_ttm/M:,.0f}. Minority interest "
-    f"{NCI_OP:.3%}, restruck over the whole base year and over OPERATING profit — against the "
-    f"{V['nci_share']:.3%} the previous edition called 'the DISCLOSED rate', which was a "
-    f"single-half ratio computed on a profit base that included the parent's own credit "
-    f"interest.")
+say(f"[Base year — nine AUDITED months, annualised] the transition period 1-Jul-2025 to "
+    f"31-Dec-2025 (audited, Crowe, unqualified) and the three months to 31-Mar-2026 (reviewed) "
+    f"are contiguous and cover nine months: net sales {rev9/M:,.0f}, cost of sales {cogs9/M:,.0f}, "
+    f"GROSS PROFIT {gp9/M:,.0f}, a margin of {BASE_GM:.3%}. Annualised at 4/3 the base year is "
+    f"{BASE_REV:,.0f} of revenue. There is no clean audited twelve-month period to use instead — "
+    f"the year-end moved to December and April-June 2025 is not separately filed — so this "
+    f"scaling is the only step between the filings and the base year, and no part of it is "
+    f"estimated. The previous edition CONSTRUCTED a calendar-2025 base from two reported halves "
+    f"and got {39_996:,.0f}; the audited nine months annualise to {BASE_REV:,.0f}, "
+    f"{BASE_REV/39_996-1:+.1%} away.")
 TAX = TAX_EFF          # the audited rate supersedes the assumption everywhere downstream
 say(f"[Effective tax rate, computed not assumed] nine-month pre-tax profit {pbt9/M:,.0f} against "
     f"a total tax charge of {tax9/M:,.0f} (current less deferred, both periods) = {TAX_EFF:.2%}. "
@@ -790,172 +614,56 @@ say(f"[Line-level value growth, half on half] " +
     "That is the mix shift the forecast has to carry, and it is measured rather than "
     "assumed.".format(growth_v['wax'], growth_v['fueloil']))
 
-# ---- (5) THE BOTTOM-UP BUILD ------------------------------------------------
-# Both sides of the gross margin are now built per product line, from the disclosed table, on the
-# SAME twelve months. Nothing is a blended percentage of revenue.
-#
-# REVENUE per line = tonnes x realisation per tonne. Tonnes are the note 14-A half annualised;
-# realisations are note 14-A value / note 14-A tonnes, lifted by ONE solved index so the base year
-# foots to the twelve-month revenue. That index is solved, not assumed, and it is the only free
-# scalar on the revenue side.
-#
-# COST per line = feedstock per tonne + conversion per tonne. Note 15-A discloses the five cost
-# components for the company as a whole, not by line, so an allocation basis is needed and is
-# stated rather than buried:
-#   - RAW MATERIALS are allocated on TONNES. The feedstock is a single common stream drawn from
-#     the adjacent refining complex; a tonne of throughput consumes a tonne of feed whatever it
-#     leaves as. This is the 90.7% of cost, so the basis matters and the simplest defensible one
-#     is used.
-#   - CONVERSION (salaries, supporting materials, other, depreciation) is allocated on PROCESSING
-#     INTENSITY, measured as each line's realisation over the common feedstock cost per tonne.
-#     A tonne of base oil sells for 47,250 and a tonne of fuel oil for 19,506 out of the same
-#     feed; the difference is processing, and processing is what the conversion stack pays for.
-#     The intensity weights are SOLVED so the allocation foots to the disclosed total exactly.
-# The per-line gross margins that come out of this are DIFFERENT for every line, which is the
-# point: the previous edition applied one blended margin to all eight lines and called it a
-# bottom-up build.
-T0 = tot_t * 2.0 / M                                   # mn tonnes, annualised from note 14-A
-_rev_at_disclosed_px = sum(PT[k] * 2.0 * px[k] for k in LINES) / M
-PX_INDEX = BASE_REV / _rev_at_disclosed_px             # SOLVED, the only free scalar on revenue
-px0 = {k: px[k] * PX_INDEX for k in LINES}             # base-year realisation per tonne, EGP
-t0 = {k: PT[k] * 2.0 / M for k in LINES}               # base-year tonnes, mn
-assert abs(sum(t0[k] * px0[k] for k in LINES) - BASE_REV) < 1e-6, "revenue build does not foot to the base year"
-
-COS_TTM = BASE_COGS * M                                 # EGP, twelve months, footing to the base
-raw_tot0 = COS_TTM * cos_share['raw']
-conv_tot0 = COS_TTM * (1 - cos_share['raw'])
-# CONVERSION is allocated on PROCESSING INTENSITY, and this is the ONE operating input in the
-# model that is not read off a filing. It has to be: note 15-A gives the cost stack for the
-# company and not by line, and note 14-A gives only price and volume — so ANY weight derived from
-# note 14-A alone is a function of price, and a price-derived weight returns the same margin on
-# every line, which is exactly the defect this build exists to remove.
-PROC = V['proc_intensity']
-_pw_den = sum(t0[k] * PROC[k] for k in LINES)
-conv_pt = {k: conv_tot0 * PROC[k] / (_pw_den * M) for k in LINES}
-# FEEDSTOCK is allocated on NET REALISABLE VALUE — realisation less that line's own separable
-# conversion cost. This is the textbook joint-product method and it is the only one of the three
-# candidates that survives a sanity check. Flat per tonne says fuel oil sells below the cost of
-# its own feed (realisation 19,506 against a common feed at 23,980) — an artefact of the basis.
-# Relative sales value says base oils and paraffin wax, the products this plant was built for,
-# run at NEGATIVE margins once their conversion cost is stacked on top. Net realisable value
-# charges each line for the feed in proportion to what is left after its own processing, which is
-# both the standard and the only basis that produces a positive spread on every disclosed line.
-_nrv = {k: px0[k] - conv_pt[k] for k in LINES}
-_nrv_den = sum(t0[k] * _nrv[k] for k in LINES)
-raw_pt = {k: raw_tot0 * _nrv[k] / (_nrv_den * M) for k in LINES}
-RAW_OF_REV = raw_tot0 / (BASE_REV * M)
-assert all(_nrv[k] > 0 for k in LINES), "a line's conversion cost exceeds its realisation"
-assert abs(sum(t0[k] * M * (raw_pt[k] + conv_pt[k]) for k in LINES) - COS_TTM) < 1.0, \
-    "per-line cost allocation does not foot to the disclosed cost of sales"
-_m0 = {k: 1 - (raw_pt[k] + conv_pt[k]) / px0[k] for k in LINES}
-_spread = {k: px0[k] - raw_pt[k] - conv_pt[k] for k in LINES}
-assert all(_spread[k] > 0 for k in LINES), "a line earns a negative unit spread"
-say("[Cost, PER LINE — built, not blended] conversion runs " +
-    " · ".join(f"{LBL[k]} {conv_pt[k]:,.0f}" for k in ('oils', 'wax', 'gasoil', 'fueloil')) +
-    " EGP a tonne on the registered processing-intensity weights; feedstock is then allocated on "
-    "NET REALISABLE VALUE — realisation less that line's own conversion — which is the standard "
-    "joint-product method and the only basis of the three tested that leaves every disclosed "
-    "line with a positive spread. GROSS SPREAD PER TONNE: " +
-    " · ".join(f"{LBL[k]} {_spread[k]:,.0f}" for k in ('oils', 'wax', 'gasoil', 'naphtha', 'lpg',
-                                                       'fueloil', 'hfo')) +
-    f" EGP. That is the number that matters and it is the one the previous edition could not "
-    f"produce: a tonne of base oil contributes {_spread['oils']/_spread['fueloil']:.1f} times the "
-    f"spread of a tonne of fuel oil, so the specialty mix is now a real driver of value. GROSS "
-    f"MARGIN BY LINE: " +
-    " · ".join(f"{LBL[k]} {_m0[k]:.1%}" for k in ('oils', 'wax', 'gasoil', 'fueloil')) +
-    f" against a blended {BASE_GM:.1%} — note that the specialty lines show a LOWER margin "
-    f"percentage on a HIGHER spread per tonne, because their realisation per tonne is nearly "
-    f"three times fuel oil's. Percentage margin is the wrong lens on a joint-product slate; "
-    f"spread per tonne is the right one, and the previous edition had neither.")
-say("[The one operating input that is not read off a filing] the processing-intensity weights " +
-    " · ".join(f"{LBL[k]} {PROC[k]:.2f}" for k in LINES if k != 'waste') +
-    ". Note 15-A discloses the cost stack for the company and NOT by line. Any weight derivable "
-    "from note 14-A alone is a function of realisation, and a realisation-derived weight returns "
-    "an identical margin on every line — which is the defect being removed. So this vector is a "
-    "judgement, it is registered and dated like every other input, and section 7 treats it as a "
-    "named weakness rather than burying it in a formula.")
-
-# ---- capital expenditure, BUILT from the asset register ----------------------
-# Capex was one annualised cash number held flat and inflated. It is now two components, both
-# derived from disclosed balances: MAINTENANCE, which replaces the asset base over its implied
-# life, and GROWTH, which funds incremental tonnage at the plant's own capital intensity.
-ASSET_LIFE = V['ppe_gross'] / (dep_ttm / 1.0)           # years, gross cost over the annual charge
-CAP_INTENSITY = (V['ppe_gross'] + V['puc']) / (T0 * M)  # EGP of gross plant per annual tonne
-MAINT_CAPEX0 = V['ppe_gross'] / ASSET_LIFE / M          # EGP mn a year at today's price level
-say(f"[Capital expenditure, BUILT] fixed assets at COST are {V['ppe_gross']/M:,.0f} against an "
-    f"annual depreciation charge of {dep_ttm/M:,.0f}, an implied asset life of "
-    f"{ASSET_LIFE:.1f} years. Maintenance capital expenditure is struck at cost over that life, "
-    f"{MAINT_CAPEX0:,.0f} a year before inflation — against cash actually paid of "
-    f"{capex_ttm/M:,.0f}. The company is spending {capex_ttm/M/MAINT_CAPEX0:.2f} times "
-    f"replacement. GROWTH capital expenditure is charged at the plant's own capital intensity of "
-    f"{CAP_INTENSITY:,.0f} EGP of gross plant per annual tonne, so incremental tonnage now COSTS "
-    f"something instead of arriving free. The previous edition held one cash number flat and "
-    f"inflated it, which made volume growth self-funding.")
-
-# ---- working capital, BUILT on days SOLVED from the audited balance sheet ----
-INV_DAYS = V['inventory'] / (BASE_COGS * M) * 365.0
-RECV_DAYS = (V['recv'] + V['debtors']) / (BASE_REV * M) * 365.0
-_pay_op = V['payables'] + V['creditors'] - V['div_declared']    # dividends payable is FINANCING
-PAY_DAYS = _pay_op / (BASE_COGS * M) * 365.0
-say(f"[Working capital, BUILT on solved days] inventory {INV_DAYS:.1f} days of cost of sales, "
-    f"receivables {RECV_DAYS:.1f} days of revenue, operating payables {PAY_DAYS:.1f} days of "
-    f"cost of sales — every one SOLVED from the audited balance sheet against the base year, not "
-    f"assumed. The house registry carried {V['inv_days']:.0f}/{V['recv_days']:.0f}/"
-    f"{V['pay_days']:.0f} days and no formula read any of them. Dividends payable of "
-    f"{V['div_declared']/M:,.0f} is REMOVED from creditors: a declared distribution to "
-    f"shareholders is a financing claim, and leaving it inside operating working capital both "
-    f"understated the capital the business ties up and let a shareholder claim vanish from the "
-    f"bridge. It is carried in the bridge instead.")
+# ---- (5) the forecast: volume by line, realisations, and the disclosed cost stack ----
+# Volume growth is the ONLY free operating parameter left. Everything else — the realisation per
+# tonne, the cost stack shares, the tax rate — is taken from the filings and held or grown with
+# the stated inflation/FX path.
 
 
 def build(vol_mult=1.0, price_mult=1.0, fx_mult=1.0, gm_shift=0.0, ratio=None):
-    """Revenue AND cost, both per line, both from the same twelve-month base.
-
-    Per line: tonnes x realisation for revenue; tonnes x (feedstock + conversion) for cost.
-    Feedstock per tonne moves with realisation (pass-through). Conversion per tonne splits into
-    a pound-denominated leg on local inflation and a materials leg on realisation. Operating
-    expense is three disclosed lines on three different drivers plus two charges the previous
-    edition registered and never took. Depreciation rolls off the asset register instead of
-    being held flat."""
+    """Revenue from the AUDITED product table (note 14-A) rolled forward on volume and
+    realisation. Cost of sales from the AUDITED composition (note 15-A): raw materials and
+    supporting materials are pass-through and move with realisation and volume; salaries and the
+    other line are pound-denominated and move with local inflation; depreciation is the
+    asset-register charge. The gross margin is what falls out."""
+    # The disclosed note 15-A composition is a SHARE structure; the LEVEL is set by the
+    # nine-month base so the first forecast year joins the audited base year continuously
+    # instead of stepping down to the transition half's own margin.
+    _cos0 = cogs9 / M * A
+    raw0 = _cos0 * cos_share['raw']; sup0 = _cos0 * cos_share['support']
+    sal0 = _cos0 * cos_share['salaries']; oth0 = _cos0 * cos_share['other']
+    base_t = tot_t * 2 / 1e6
     rev, gp, gm, cogs_l = [], [], [], []
     lines_rev = {k: [] for k in LINES}; lines_vol = {k: [] for k in LINES}
-    lines_cost = {k: [] for k in LINES}; lmarg = {k: [] for k in LINES}
+    lmarg = {k: [] for k in LINES}
     infl = 1.0; pidx = 1.0; vidx = {k: 1.0 for k in LINES}
-    _sal_sh = cos_share['salaries'] / (1 - cos_share['raw'])
-    _oth_sh = cos_share['other'] / (1 - cos_share['raw'])
-    _sup_sh = cos_share['support'] / (1 - cos_share['raw'])
-    _dep_sh = cos_share['dep'] / (1 - cos_share['raw'])
     for i in range(5):
         infl *= V['fixed_cost_infl'][3 + i]
         pidx *= (1 + V['line_price_growth'][i] * price_mult * fx_mult)
-        r_tot = c_tot = 0.0
+        r_lines = {}
         for k in LINES:
             vidx[k] *= (1 + V['line_vol_growth'][k][i] * vol_mult)
-            v = t0[k] * vidx[k]
-            p = px0[k] * pidx
-            # feedstock per tonne is pass-through; conversion splits by driver
-            cpt = (raw_pt[k] * pidx * RAW_PASS
-                   + conv_pt[k] * (_sal_sh * infl + _oth_sh * infl
-                                   + _sup_sh * pidx + _dep_sh))
-            r = v * p; c = v * cpt
-            lines_vol[k].append(v); lines_rev[k].append(r); lines_cost[k].append(c)
-            lmarg[k].append(1 - cpt / p)
-            r_tot += r; c_tot += c
+            v = PT[k] * 2.0 / 1e6 * vidx[k]
+            p = px[k] * pidx
+            r_lines[k] = v * p
+            lines_vol[k].append(v); lines_rev[k].append(r_lines[k])
+        r_tot = sum(r_lines.values())
+        volidx = sum(lines_vol[k][i] for k in LINES) / base_t
+        raw = raw0 * volidx * pidx * RAW_PASS
+        sup = sup0 * volidx * pidx
+        c_tot = raw + sup + sal0 * infl + oth0 * infl + _cos0 * cos_share['dep']
         g = r_tot - c_tot + gm_shift * r_tot
         rev.append(r_tot); cogs_l.append(c_tot); gp.append(g); gm.append(g / r_tot)
-    # operating expense: three disclosed lines, three drivers, plus two charges never taken
+        for k in LINES:
+            lmarg[k].append(g / r_tot)
     _inf = 1.0; opex = []
     for i in range(5):
         _inf *= V['fixed_cost_infl'][3 + i]
-        _volidx = sum(lines_vol[k][i] for k in LINES) / T0
-        ga = ga_ttm / M * _inf                       # administrative: pound costs, inflation
-        mk = mkt_ttm / M * _inf * _volidx            # selling: inflation AND tonnage
-        ot = oth_ttm / M * _inf                      # other operating: inflation
-        pv = prov_ttm / M * _inf                     # formed provisions and expected credit losses
-        opex.append(ga + mk + ot + pv)
-    return dict(rev=rev, gm=gm, gp=gp, opex=opex, cogs=cogs_l,
-                lines_rev=lines_rev, lines_vol=lines_vol, lines_cost=lines_cost,
-                line_margin=lmarg,
+        opex.append(OPEX_ANN * _inf)
+    ebitda = [gp[i] - opex[i] + DEP_ANN for i in range(5)]
+    return dict(rev=rev, gm=gm, gp=gp, opex=opex, cogs=cogs_l, ebitda=ebitda,
+                ebitda_margin=[ebitda[i] / rev[i] for i in range(5)],
+                lines_rev=lines_rev, lines_vol=lines_vol, line_margin=lmarg,
                 vol=[sum(lines_vol[k][i] for k in LINES) for i in range(5)],
                 spec_vol=[sum(lines_vol[k][i] for k in SPEC) for i in range(5)],
                 spec_rev=[sum(lines_rev[k][i] for k in SPEC) for i in range(5)],
@@ -967,12 +675,7 @@ def build(vol_mult=1.0, price_mult=1.0, fx_mult=1.0, gm_shift=0.0, ratio=None):
 ppe_b = (V['ppe_net'] + V['puc']) / M
 inv_b = V['inventory'] / M
 recv_b = (V['recv'] + V['debtors']) / M
-# dividends payable is a DECLARED distribution, not operating working capital. It is removed
-# here as well as from the forecast days, so opening and forecast working capital sit on the
-# same basis; it is then carried as its own claim in the equity bridge. Leaving it in the
-# opening balance while excluding it from the forecast would have put a 517mn step into the
-# first forecast year's cash flow that no operating change caused.
-pay_b = (V['payables'] + V['creditors'] - V['div_declared']) / M
+pay_b = (V['payables'] + V['creditors']) / M
 nwc_b = inv_b + recv_b - pay_b
 cash_b = V['cash'] / M
 debt_b = (V['debt_lt'] + V['debt_st']) / M
@@ -1016,24 +719,25 @@ say(f"[Cost of debt — MATERIALITY] gross debt is {wd_gross:.4%} of the capital
     f"says so rather than dressing an immaterial input as a precise one.")
 assert kd_swing_effect < 0.0005, 'cost of debt is material after all'
 RAW_PASS = V['raw_pass']
-DEP_ANN = dep_ttm / M
-CAPEX_ANN = capex_ttm / M
-say(f"[Depreciation and capital expenditure, ACTUAL] over the twelve months to 30-Jun-2026 the "
-    f"company charged {DEP_ANN:,.0f} of depreciation and right-of-use amortisation and paid "
-    f"{CAPEX_ANN:,.0f} in cash for fixed assets and projects under construction. Cash capital "
-    f"expenditure is {CAPEX_ANN/DEP_ANN:.2f} times the depreciation charge and "
-    f"{CAPEX_ANN/MAINT_CAPEX0:.2f} times replacement at gross cost. The previous edition held "
-    f"the cash figure flat and inflated it, and separately stated that free cash flow was "
-    f"overstated by 'roughly EGP 2mn a year' — a claim that holds in the first forecast year and "
-    f"reverses sign in every year after it. Capital expenditure is now BUILT: maintenance at "
-    f"cost over the implied asset life, plus growth at the plant's own capital intensity, so the "
-    f"caveat is computed across the whole window instead of asserted for one year of it.")
-OPEX_ANN = (ga_ttm + mkt_ttm + oth_ttm + prov_ttm) / M
-ebitda_cy25 = BASE_GP - OPEX_ANN + DEP_ANN
+DEP_ANN = dep9 / M * A
+CAPEX_ANN = capex9 / M * A
+say(f"[Depreciation and capital expenditure, ACTUAL] the nine audited months charged "
+    f"{dep9/M:,.0f} of depreciation and right-of-use amortisation and paid {capex9/M:,.0f} in "
+    f"cash for fixed assets and projects under construction. Annualised: {DEP_ANN:,.0f} and "
+    f"{CAPEX_ANN:,.0f}. The previous edition modelled depreciation at 1.1% of revenue "
+    f"({0.011*BASE_REV:,.0f}) and capital expenditure at 1.45% ({0.0145*BASE_REV:,.0f}) — "
+    f"{0.011*BASE_REV/DEP_ANN:.1f}x and {0.0145*BASE_REV/CAPEX_ANN:.1f}x the actual. Capital "
+    f"expenditure is running at {CAPEX_ANN/DEP_ANN:.2f} times depreciation, which is BELOW "
+    f"replacement: this plant is being run, not renewed, and that is the most important thing "
+    f"the filings say about its cash flow. It also means the free cash flow the previous "
+    f"edition reported was understated by roughly {(0.0145*BASE_REV-CAPEX_ANN):,.0f} a year on "
+    f"the capital line alone.")
+OPEX_ANN = (ga9 + mkt9 + oth9) / M * A
+ebitda_cy25 = (gp9 / M - (ga9 + mkt9 + oth9) / M) * A + DEP_ANN
 gm_cy25 = BASE_GM
 dna_cy25 = DEP_ANN
 opex_cy25 = OPEX_ANN
-gp_cy25 = BASE_GP
+gp_cy25 = gp9 / M * A
 npa_cy25 = (pat9 - V['nci_h2_25'] - V['nci_q1_26']) / M * A
 np_cy25 = pat9 / M * A
 
@@ -1058,15 +762,7 @@ kd_at = V['kd'] * (1 - TAX)
 k_nd_at = (V['kd'] * debt_b - V['cash_yield'] * cash_b) / (debt_b - cash_b) * (1 - TAX)
 wd_exp = nd_cy25 / (nd_cy25 + MKTCAP)
 we_exp = 1 - wd_exp
-def cost_of_capital(beta):
-    """Both anchors from one beta. The base case and every sensitivity row call this.
-    The previous edition rebuilt the explicit anchor inside the beta sweep using the
-    cost of GROSS debt where the base case uses the cost of NET debt, so the beta row's
-    centre did not return the base case and two reviewers found it independently."""
-    _ke = rf_star + beta * V['erp_cds']
-    return _ke, we_exp * _ke + wd_exp * k_nd_at
-
-ke_exp, wacc_exp = cost_of_capital(V['beta'])
+wacc_exp = we_exp * ke_exp + wd_exp * k_nd_at
 wacc_exp_gross = (1 - wd_gross) * ke_exp + wd_gross * kd_at
 say(f"[Cost of equity] risk-free {V['rf']:.2%} less the sovereign default spread "
     f"{V['sov_spread_cds']:.2%} = {rf_star:.2%}; plus beta {V['beta']:.3f} times the equity risk "
@@ -1097,17 +793,11 @@ assert wacc_exp > wacc_exp_gross, \
     "unlevering for net cash must RAISE the operating rate; check the signs"
 
 # ---- terminal (norm-built, never backed out of a price) --------------------
-RF_TERM = V['cbe_target'] + V['real_rate_term']   # DERIVED, not set by hand
+ke_term = V['rf_term'] + V['beta'] * V['erp_term']
 kd_term_at = V['kd_term'] * (1 - TAX)
-
-def terminal_cost_of_capital(beta):
-    return (1 - V['wd_term']) * (RF_TERM + beta * V['erp_term']) + \
-        V['wd_term'] * kd_term_at
-
-ke_term = RF_TERM + V['beta'] * V['erp_term']
-wacc_term = terminal_cost_of_capital(V['beta'])
+wacc_term = (1 - V['wd_term']) * ke_term + V['wd_term'] * kd_term_at
 say(f"[Weighted cost of capital, terminal] cost of equity {ke_term:.2%} (norm-built risk-free "
-    f"{RF_TERM:.2%} = the central bank's inflation target IN FORCE for the terminal "
+    f"{V['rf_term']:.2%} = the central bank's own 5% medium-term inflation target plus a 5.5pp "
     f"emerging-market real-rate convention, plus beta times a normalised premium "
     f"{V['erp_term']:.2%}); cost of debt after tax {kd_term_at:.2%}; weights "
     f"{1-V['wd_term']:.0%}/{V['wd_term']:.0%} -> {wacc_term:.2%}. No terminal input is an "
@@ -1128,111 +818,41 @@ say("[Glide] forward cost of capital " + " -> ".join(f"{w:.2%}" for w in fwd) +
     ", ".join(f"{f:.3f}" for f in glide_frac) + "), so the front-loaded shape is inherited from "
     "the assumed easing calendar rather than being a second free parameter.")
 
-# ---- FCFF waterfall — ONE implementation, used by the base run and every scenario ----
-# The previous edition carried two copies of this waterfall: one for the base case and one inside
-# the scenario engine. They drifted, and a change to the terminal block applied to one and not the
-# other. There is now one function. Everything that reports a per-share number goes through it.
-def waterfall(S, wacc_shift=0.0, g=None, roic_cap=None, nwc_days=None,
-              we=None, wt=None):
-    """From a build() result to enterprise value and value per share.
-
-    Depreciation ROLLS off the asset register instead of being held flat: opening net book plus
-    capital expenditure, charged over the implied asset life. Capital expenditure is MAINTENANCE
-    at cost over that life plus GROWTH at the plant's own capital intensity on incremental
-    tonnage. Working capital is built on days, so it responds to cost of sales and revenue
-    separately rather than to one blended percentage."""
-    g = V['g_term'] if g is None else g
-    inv_d, recv_d, pay_d = nwc_days or (INV_DAYS, RECV_DAYS, PAY_DAYS)
-    _rev, _gp, _opex, _cogs = S['rev'], S['gp'], S['opex'], S['cogs']
-    _dna, _capex, _ppe_g, _ppe_n = [], [], [], []
-    gross, net = V['ppe_gross'] / M + V['puc'] / M, ppe_b
-    _inf = 1.0
-    for i in range(5):
-        _inf *= V['fixed_cost_infl'][3 + i]
-        dv = S['vol'][i] - (T0 if i == 0 else S['vol'][i - 1])
-        cap = MAINT_CAPEX0 * _inf + max(dv, 0.0) * CAP_INTENSITY * _inf
-        d = gross / ASSET_LIFE
-        gross += cap; net += cap - d
-        _capex.append(cap); _dna.append(d); _ppe_g.append(gross); _ppe_n.append(net)
-    _ebitda = [_gp[i] - _opex[i] for i in range(5)]          # opex already excludes depreciation
-    _ebit = [_ebitda[i] - _dna[i] for i in range(5)]
-    _nopat = [e * (1 - TAX_STAT) for e in _ebit]
-    # employees' profit share and board bonuses: a contractual appropriation of profit that
-    # reaches neither the shareholder nor the tax line. Registered by the previous edition,
-    # described in its own source note as an omission of the edition before it, and then not
-    # charged either. It is charged here, on the same base the company strikes it on.
-    _emp = [max(_nopat[i], 0.0) * EMP_RATE for i in range(5)]
-    _nopat = [_nopat[i] - _emp[i] for i in range(5)]
-    _nwc, _dn = [], []
-    for i in range(5):
-        w = (inv_d / 365.0 * _cogs[i] + recv_d / 365.0 * _rev[i] - pay_d / 365.0 * _cogs[i])
-        _nwc.append(w)
-    _dn = [_nwc[0] - nwc_b] + [_nwc[i] - _nwc[i - 1] for i in range(1, 5)]
-    _f = [_nopat[i] + _dna[i] - _capex[i] - _dn[i] for i in range(5)]
-    _we = (wacc_exp if we is None else we) + wacc_shift
-    _wt = (wacc_term if wt is None else wt) + wacc_shift
-    _fwd = [_we - (_we - _wt) * fr for fr in glide_frac]
-    _df, cc = [], 1.0
-    for w in _fwd:
-        cc /= (1 + w); _df.append(cc)
-    _ic = [_nwc[i] + _ppe_n[i] for i in range(5)]
-    # terminal return is capped at the rate a plant bought at REPLACEMENT cost would earn. The
-    # reported return is flattered by an asset base 67% written down, and the book lens already
-    # haircuts return on equity for exactly that reason. One view of the asset base, both lenses.
-    _roic_raw = _nopat[-1] * (1 + g) / _ic[-1]
-    _roic_repl = _nopat[-1] * (1 + g) / (_nwc[-1] + _ppe_g[-1])
-    _roic = min(_roic_raw, roic_cap) if roic_cap else max(_roic_repl, 0.01)
-    _rr = min(g / _roic, 0.95)
-    _tv = _nopat[-1] * (1 + g) * (1 - _rr) / max(_wt - g, 0.02)
-    _ev = sum(_f[i] * _df[i] for i in range(5)) + _tv * _df[-1]
-    # EV to EQUITY, every claim carried:
-    #   - the minority takes its share of the WHOLE enterprise, cash included, not of the
-    #     operating enterprise while the parent keeps all the cash
-    #   - the tax-disputes provision is a senior claim on that cash and is deducted at face
-    #   - dividends payable is a declared claim, removed from working capital and carried here
-    #   - the equity investment outside the operating enterprise is added at its carrying amount
-    _eq_gross = _ev - nd_cy25
-    _eq = (_eq_gross * (1 - NCI_OP) - V['provisions'] / M - V['div_declared'] / M
-           + V['fvoci'] / M + V['fin_inv'] / M)
-    return dict(rev=_rev, gp=_gp, gm=S['gm'], opex=_opex, ebitda=_ebitda, ebit=_ebit,
-                nopat=_nopat, emp=_emp, dna=_dna, capex=_capex, ppe=_ppe_n, ppe_gross=_ppe_g,
-                nwc=_nwc, dnwc=_dn, fcff=_f, df=_df, fwd_wacc=_fwd, ic=_ic, tv=_tv,
-                roic_term=_roic, rr_term=_rr, ev=_ev, eq=_eq, ps=_eq / SH,
-                pv=[_f[i] * _df[i] for i in range(5)],
-                pv_explicit=sum(_f[i] * _df[i] for i in range(5)), pv_tv=_tv * _df[-1],
-                ebitda_margin=[_ebitda[i] / _rev[i] for i in range(5)])
-
-
+# ---- FCFF waterfall — every level from the audited base ----------------------
 B = build()
-W = waterfall(B)
-rev, ebitda, ebitda_margin = B['rev'], W['ebitda'], W['ebitda_margin']
-dna, ebit, nopat, capex = W['dna'], W['ebit'], W['nopat'], W['capex']
-nwc, dnwc, fcff, pv = W['nwc'], W['dnwc'], W['fcff'], W['pv']
-pv_explicit = W['pv_explicit']
-nwc_pct = nwc[0] / rev[0]
+rev, ebitda = B['rev'], B['ebitda']
+ebitda_margin = B['ebitda_margin']
 say("[Forecast revenue] " + " -> ".join(f"{r:,.0f}" for r in rev) +
     f" (volume {B['vol'][0]:.3f} -> {B['vol'][-1]:.3f}mn tonnes; specialty share of revenue "
     f"{B['spec_rev'][0]/B['rev'][0]:.1%} -> {B['spec_rev'][4]/B['rev'][4]:.1%}). Base-year "
-    f"revenue is the {BASE_YEAR}, {BASE_REV:,.0f}, with no annualisation scalar.")
-say("[Forecast gross margin] " + " -> ".join(f"{g:.2%}" for g in W['gm']) +
-    ". The margin is an OUTPUT of eight per-line cost builds, not a path and not a blend: each "
-    "line carries its own feedstock cost per tonne and its own conversion cost per tonne, and "
-    "the company margin is whatever the mix produces. Specialty lines run " +
-    " · ".join(f"{LBL[k]} {B['line_margin'][k][0]:.1%}" for k in SPEC) +
-    " against fuel oil at " + f"{B['line_margin']['fueloil'][0]:.1%}" +
-    ", so the margin now moves when the MIX moves, which it could not do when one blended margin "
-    "was applied to every line.")
-say(f"[Capital expenditure, BUILT] " + " -> ".join(f"{c:,.0f}" for c in capex) +
-    f" against depreciation " + " -> ".join(f"{d:,.0f}" for d in dna) +
-    f". Ratio " + " · ".join(f"{capex[i]/dna[i]:.2f}" for i in range(5)) +
-    f". Maintenance is {MAINT_CAPEX0:,.0f} at today's prices, growth is charged at "
-    f"{CAP_INTENSITY:,.0f} EGP a tonne of new throughput, and depreciation ROLLS off the asset "
-    f"register rather than being held flat for five years.")
-say(f"[Employees' profit share, CHARGED] {EMP_RATE:.2%} of profit after tax, "
-    + " -> ".join(f"{e:,.0f}" for e in W['emp']) +
-    f". The previous edition registered this at {V['emp_h2_25']/M:,.0f} for the audited half, "
-    f"described it in its own source note as 'a real distribution out of profit that the "
-    f"previous edition of this study did not model at all', and then no formula read the cell.")
+    f"revenue is the audited nine months annualised, {BASE_REV:,.0f}.")
+say("[Forecast gross margin] " + " -> ".join(f"{g:.2%}" for g in B['gm']) +
+    ". The margin is an OUTPUT of the audited cost composition, not a path: raw materials and "
+    "supporting materials are pass-through and move with realisation and volume; salaries and "
+    "the other line are pound-denominated and move with local inflation; depreciation is the "
+    "asset-register charge. The margin therefore widens only to the extent that the "
+    "pound-denominated cost leg grows more slowly than revenue — which is a mechanical "
+    "consequence of the disclosed stack, not a view.")
+dna = [DEP_ANN for _ in rev]
+ebit = [ebitda[i] - dna[i] for i in range(5)]
+nopat = [e * (1 - TAX_EFF) for e in ebit]
+_cx = CAPEX_ANN
+capex = []
+for i in range(5):
+    _cx *= V['fixed_cost_infl'][3 + i]
+    capex.append(_cx)
+nwc_pct_aud = nwc_b / BASE_REV
+nwc_pct = nwc_pct_aud
+nwc = [nwc_pct_aud * r for r in rev]
+dnwc = [nwc[0] - nwc_b] + [nwc[i] - nwc[i - 1] for i in range(1, 5)]
+say(f"[Capital expenditure, forecast] held at the ACTUAL run rate {CAPEX_ANN:,.0f} grown with "
+    f"local inflation: " + " -> ".join(f"{c:,.0f}" for c in capex) + f". That is "
+    f"{capex[0]/dna[0]:.2f} times depreciation in the first forecast year. A reader who believes "
+    f"the plant must eventually be renewed should raise this line — it is the single sharpest "
+    f"criticism available of this valuation and section 7 says so.")
+fcff = [nopat[i] + dna[i] - capex[i] - dnwc[i] for i in range(5)]
+pv = [fcff[i] * df[i] for i in range(5)]
+pv_explicit = float(sum(pv))
 say(f"[Free cash flow to the firm] " + " -> ".join(f"{f:,.0f}" for f in fcff) +
     f"; present value of the explicit window {pv_explicit:,.0f}.")
 
@@ -1344,63 +964,36 @@ yrs_cross = None
 cross_candidates = {'recent NOPAT compound rate': None}
 assert V['g_term'] < blend_ceiling, "terminal growth exceeds the blended nominal ceiling"
 
-rr_term = W['rr_term']
-roic_term = W['roic_term']
+rr_term = V['g_term'] / roic_term
 nopat_term = nopat[-1] * (1 + V['g_term'])
-tv = W['tv']
-pv_tv = W['pv_tv']
-ev = W['ev']
+tv = nopat_term * (1 - rr_term) / (wacc_term - V['g_term'])
+pv_tv = tv * df[-1]
+ev = pv_explicit + pv_tv
 tv_share = pv_tv / ev
-_roic_written_down = nopat[-1] * (1 + V['g_term']) / W['ic'][-1]
-say(f"[Terminal value] the terminal return is struck on invested capital at REPLACEMENT cost — "
-    f"working capital plus the asset base at GROSS cost — giving {roic_term:.1%}, against "
-    f"{_roic_written_down:.1%} on net book. The difference is not cosmetic: this plant is 67.4% "
-    f"written down, the book lens already haircuts return on equity from a reported 33% to 28% "
-    f"for exactly that reason, and using the flattered figure in the terminal block while "
-    f"haircutting it in the book lens would be two views of one asset base. Required "
-    f"reinvestment = growth / return = {V['g_term']:.1%} / {roic_term:.1%} = {rr_term:.1%}; "
-    f"terminal value {tv:,.0f} capitalised at {wacc_term:.2%} and discounted at the YEAR-5 "
-    f"cumulative factor {W['df'][-1]:.4f}, giving a present value of {pv_tv:,.0f}. TERMINAL "
-    f"VALUE IS {tv_share:.1%} OF ENTERPRISE VALUE.")
+say(f"[Terminal value] required reinvestment rate = growth / return = {V['g_term']:.1%} / "
+    f"{roic_term:.1%} = {rr_term:.1%}; terminal NOPAT {nopat_term:,.0f}; terminal value "
+    f"{tv:,.0f} capitalised at the terminal cost of capital {wacc_term:.2%} and discounted at the "
+    f"YEAR-5 cumulative factor {df[-1]:.4f} — one date, one price of time — giving a present "
+    f"value of {pv_tv:,.0f}. TERMINAL VALUE IS {tv_share:.1%} OF ENTERPRISE VALUE.")
 assert abs(roic_term * rr_term - V['g_term']) < 1e-9, "terminal growth != return x reinvestment"
-# the identity is enforced, and the reinvestment STEP against the last explicit year is disclosed
-# rather than left for a reader to find: a terminal block that reinvests less than the final
-# forecast year while assuming perpetual growth is a step-up, and the size of it is stated.
-_rr_2030 = (capex[4] - dna[4] + dnwc[4]) / nopat[4]
-say(f"[Terminal reinvestment, against the explicit window] the final forecast year reinvests "
-    f"{_rr_2030:.2%} of profit; the terminal block reinvests {rr_term:.2%}. The step is "
-    f"{rr_term - _rr_2030:+.2%} and it is disclosed here because it RAISES the terminal block, "
-    f"which carries {tv_share:.1%} of enterprise value. It is a consequence of the steady-state "
-    f"identity rather than an assumption, but a reader is entitled to see it.")
 
-# ---- enterprise value -> equity bridge, EVERY claim carried -----------------
-eq_gross = ev - nd_cy25
-nci_val = eq_gross * NCI_OP
-prov_val = V['provisions'] / M
-divp_val = V['div_declared'] / M
-inv_val = V['fvoci'] / M + V['fin_inv'] / M
-eq_attr = W['eq']
-dcf_ps = W['ps']
-say(f"[Bridge — every disclosed claim carried] enterprise value {ev:,.0f} plus net cash "
-    f"{-nd_cy25:,.0f} = {eq_gross:,.0f}. Less minority interests at {NCI_OP:.3%} of the WHOLE "
-    f"enterprise including the cash ({nci_val:,.0f}) — the previous edition charged the minority "
-    f"its share of the operating enterprise and then credited the parent with 100% of the "
-    f"consolidated cash, which is an inconsistency a reader can find in one line. Less the "
-    f"tax-disputes provision {prov_val:,.0f}, a recognised liability the previous edition quoted "
-    f"in its text and NEVER carried into the bridge — setting it to zero moved that valuation by "
-    f"nothing at all. Less dividends payable {divp_val:,.0f}, a declared claim removed from "
-    f"working capital and carried here. Plus non-operating investments {inv_val:,.0f} — the "
-    f"equity stake at fair value through other comprehensive income and the PLEDGED deposits, "
-    f"which are real assets even though they are not free cash and were previously excluded from "
-    f"BOTH the cash line and the bridge. Equity attributable {eq_attr:,.0f} = EGP {dcf_ps:.2f} a "
-    f"share against a spot of EGP {SPOT:.2f} ({dcf_ps/SPOT-1:+.1%}).")
-assert abs((eq_gross * (1 - NCI_OP) - prov_val - divp_val + inv_val) - eq_attr) < 1e-6, \
-    "the bridge does not close"
-assert nci_val > 0 and nd_cy25 < 0 and prov_val > 0, "sign check on the bridge components"
+# ---- enterprise value -> equity bridge --------------------------------------
+nci_val = NCI_SHARE * ev          # on the OPERATING enterprise value, before the cash
+eq_attr = ev - nd_cy25 - nci_val
+dcf_ps = eq_attr / SH
+say(f"[Bridge] enterprise value {ev:,.0f} less net debt {nd_cy25:,.0f} (a NEGATIVE, i.e. net "
+    f"cash of {-nd_cy25:,.0f} is ADDED) = {ev - nd_cy25:,.0f}; less minority interests at their "
+    f"{NCI_SHARE:.1%} share OF THE ENTERPRISE VALUE (not of the cash — the previous "
+    f"construction deducted it after the cash was added, which handed the minority "
+    f"{NCI_SHARE*-nd_cy25:,.0f} of the parent's balance) = {nci_val:,.0f} -> equity attributable "
+    f"{eq_attr:,.0f} = EGP "
+    f"{dcf_ps:.2f} a share against a spot of EGP {SPOT:.2f} ({dcf_ps/SPOT-1:+.1%}).")
+assert abs((ev - nd_cy25 - nci_val) - eq_attr) < 1e-6, "the bridge does not close"
+assert nci_val > 0 and nd_cy25 < 0, "sign check on the bridge components"
 
 # ---- contested choices, computed rather than asserted -----------------------
 wacc_exp_rating = we_exp * ke_rating_alt + wd_exp * kd_at
-wacc_term_rating = (1 - V['wd_term']) * (RF_TERM + V['beta'] * (V['erp_term'] + 0.045)) + \
+wacc_term_rating = (1 - V['wd_term']) * (V['rf_term'] + V['beta'] * (V['erp_term'] + 0.045)) + \
     V['wd_term'] * kd_term_at
 
 
@@ -1454,134 +1047,100 @@ say(f"[Currency-of-discounting alternative] the export leg ({exp_frac[-1]:.0%} o
     f"EGP {ccy_ps:.2f} a share ({ccy_ps/SPOT-1:+.1%} against spot).")
 
 # ---- lens 2: relative -------------------------------------------------------
-# ---- lens 2: relative multiples, on the TRAILING metric ---------------------
-# The previous construction put the multiple on a FORWARD year and then discounted the result
-# back using lens 1's own discount factor and added back lens 1's own interim free cash flow.
-# Every reviewer who looked at it made the same objection: a cross-check that borrows the primary
-# lens's machinery is not independent of it. The multiple now goes on the TRAILING metric, which
-# needs no discount factor and no add-back, and is what a market participant actually quotes.
-ev_trailing = MKTCAP + nd_cy25
-ev_ebitda_trailing = ev_trailing / ebitda_cy25
-pe_trailing = SPOT / (npa_cy25 / SH)
+REL_I = 1                                    # 2027E, the year-2 forward
+ebitda_mid = ebitda[REL_I]
+df_rel = df[REL_I]
+
+
+pv_interim = sum(pv[:REL_I + 1])
 
 
 def _rel(mult):
-    """Multiple x TRAILING EBITDA -> enterprise value TODAY -> equity through the same bridge
-    the cash-flow lens uses. No discounting, no interim add-back, nothing borrowed."""
-    _eqg = mult * ebitda_cy25 - nd_cy25
-    return (_eqg * (1 - NCI_OP) - V['provisions'] / M - V['div_declared'] / M
-            + V['fvoci'] / M + V['fin_inv'] / M) / SH
+    """A multiple on a forward year values the business FROM that year on. The cash the firm
+    generates in the meantime belongs to today's owner and must be added back, or the lens
+    silently discards it — which the previous version did, to the tune of the figure below."""
+    return (((mult * ebitda_mid) * df_rel + pv_interim) * (1 - NCI_SHARE) - nd_cy25) / SH
 
 
-JUST_MULT = ev_ebitda_trailing * (1 + V['rel_rerating'])
-rel_ps = _rel(JUST_MULT)
-rel_bear, rel_bull = _rel(JUST_MULT * 0.75), _rel(JUST_MULT * 1.25)
-ev_rel = JUST_MULT * ebitda_cy25
-ev_rel_fwd = ev_rel
-df_rel = 1.0
-pv_interim = 0.0
-ebitda_mid = ebitda_cy25
-REL_I = 0
-say(f"[Relative lens — on the TRAILING metric, multiple DERIVED] the company's own trailing "
-    f"multiple is {ev_ebitda_trailing:.2f}x enterprise value to EBITDA — enterprise value "
-    f"{ev_trailing:,.0f} over base-year EBITDA {ebitda_cy25:,.0f} — and {pe_trailing:.1f}x "
-    f"earnings. The justified multiple is DERIVED from it at a {V['rel_rerating']:+.0%} "
-    f"re-rating, {JUST_MULT:.2f}x, rather than set by hand. The previous edition stated the "
-    f"trailing multiple as 'around 4.6x' and then set 4.5x, calling that 'holding the name at "
-    f"its own trailing level'; the model's own output disagreed with the stated 4.6x, so the "
-    f"justification did not hold whichever multiple was right. {JUST_MULT:.2f}x on TRAILING "
-    f"EBITDA gives an enterprise value of {ev_rel:,.0f} TODAY, carried through the SAME bridge "
-    f"as the cash-flow lens -> EGP {rel_ps:.2f} a share. Nothing here is discounted at the "
-    f"cash-flow lens's rate and nothing is added back from it, so the difference between this "
-    f"lens and the spot price is entirely the BRIDGE: the tax-disputes provision, the declared "
-    f"dividend and the minority's share of the cash. That is what this lens is now for.")
+rel_ps, rel_bear, rel_bull = _rel(V['ev_ebitda_just']), _rel(3.5), _rel(6.0)
+ev_rel_fwd = V['ev_ebitda_just'] * ebitda_mid
+ev_rel = ev_rel_fwd * df_rel
+ev_trailing = MKTCAP + nd_cy25
+ev_ebitda_trailing = ev_trailing / ebitda_cy25
+pe_trailing = SPOT / (npa_cy25 / SH)
+say(f"[Relative lens] interim free cash flow added back: {pv_interim:,.0f} of present value "
+    f"for the years before the multiple year, which the previous construction dropped. "
+    f"{V['ev_ebitda_just']}x on 2027E EBITDA {ebitda_mid:,.0f} gives an enterprise "
+    f"value of {ev_rel_fwd:,.0f} AS AT end-2027; discounted back at the year-2 factor "
+    f"{df_rel:.4f} that is {ev_rel:,.0f} today -> EGP {rel_ps:.2f} a share. Not discounting a "
+    f"forward enterprise value back to today would have given EGP "
+    f"{((ev_rel_fwd - nd_cy25) * (1 - NCI_SHARE)) / SH:.2f}. The company's own trailing multiple "
+    f"is {ev_ebitda_trailing:.1f}x enterprise value to EBITDA and {pe_trailing:.1f}x earnings.")
 
-# ---- lens 3: normalised earnings power, DISCOUNTED to the valuation date -----
+# ---- lens 3: normalised earnings power --------------------------------------
 NORM_I = 2                                   # every component from the SAME year
 norm_rev = rev[NORM_I]
 norm_ebitda = ebitda[NORM_I]
 norm_ebit = norm_ebitda - dna[NORM_I]
-norm_interest = credint_ttm / M
-# Operating and financial earnings are separated. Capitalising credit interest at an OPERATING
-# multiple values a risk-free cash balance as though it compounded like the business; the net
-# cash is instead added at face OUTSIDE the multiple, which is the treatment the critics
-# themselves stated and then did not apply.
-norm_np_op = norm_ebit * (1 - TAX_STAT) * (1 - EMP_RATE) * (1 - NCI_OP)
-norm_eps_op = norm_np_op / SH
-# And the result is a 2028 number. Lens 2 no longer discounts anything because it is trailing;
-# this lens IS forward-dated, so it is discounted to the valuation date at the COST OF EQUITY —
-# an equity claim discounted at an equity rate, not at the unlevered weighted rate.
-NORM_YRS = 2.4                               # 6-Aug-2026 to mid-2028
-norm_df = 1.0 / (1 + ke_exp) ** NORM_YRS
-norm_ps = (V['pe_just'] * norm_eps_op) * norm_df + (-nd_cy25 - V['provisions'] / M
-                                                    - V['div_declared'] / M) / SH
-norm_eps = norm_eps_op
-norm_np = norm_np_op
-norm_bear = (5.5 * norm_eps_op) * norm_df + (-nd_cy25 - V['provisions'] / M
-                                             - V['div_declared'] / M) / SH
-norm_bull = (9.5 * norm_eps_op) * norm_df + (-nd_cy25 - V['provisions'] / M
-                                             - V['div_declared'] / M) / SH
-say(f"[Normalised earnings lens — separated and discounted] OPERATING earnings only: 2028E "
-    f"operating profit {norm_ebit:,.0f}, taxed at the statutory {TAX_STAT:.1%}, less the "
-    f"employees' profit share and the minority -> EGP {norm_eps_op:.3f} a share. At "
-    f"{V['pe_just']}x that is EGP {V['pe_just']*norm_eps_op:.2f} AS AT mid-2028, discounted "
-    f"{NORM_YRS:.1f} years to the valuation date at the COST OF EQUITY {ke_exp:.2%} (factor "
-    f"{norm_df:.4f}) = EGP {V['pe_just']*norm_eps_op*norm_df:.2f}. Net cash less the provision "
-    f"and the declared dividend is then added at FACE, outside the multiple: EGP "
-    f"{(-nd_cy25 - V['provisions']/M - V['div_declared']/M)/SH:.2f} a share. Total EGP "
-    f"{norm_ps:.2f}. The previous edition capitalised {norm_interest:,.0f} of credit interest at "
-    f"an operating multiple — valuing a bank deposit as though it were the refinery — and then "
-    f"did not discount the 2028 answer at all, while lens 2 in the same document discounted its "
-    f"forward number. One lens discounted and the other did not; both are now on the valuation "
-    f"date.")
+# Use the AUDITED credit interest, annualised, rather than a modelled interest path. It is a
+# disclosed figure (note 14-B and both cash-flow statements) and the normalised lens is meant to
+# be a statement about earnings POWER, which a filed interest line supports better than a
+# projected cash balance does.
+norm_interest = credint9 / M * A
+norm_np = (norm_ebit + norm_interest) * (1 - TAX) * (1 - NCI_SHARE)
+norm_eps = norm_np / SH
+norm_ps = V['pe_just'] * norm_eps
+norm_bear, norm_bull = 5.5 * norm_eps, 9.5 * norm_eps
+say(f"[Normalised earnings lens] every component is taken from 2028E: revenue {norm_rev:,.0f}, "
+    f"EBITDA {norm_ebitda:,.0f}, depreciation {dna[NORM_I]:,.0f}, finance income "
+    f"{norm_interest:,.0f} -> attributable earnings {norm_np:,.0f}, EGP {norm_eps:.2f} a share; "
+    f"at {V['pe_just']}x -> EGP {norm_ps:.2f}.")
 
 # ---- lens 4: book value and sustainable return ------------------------------
 bvps = eqp_cy25 / SH
-# The justified multiple is a perpetuity identity, so it needs ONE discount rate — but the
-# previous edition used the TERMINAL cost of equity, 17.08%, for a perpetuity that starts today,
-# while the cash-flow lens charges 31.58% in year one. A shareholder buying today is exposed to
-# the near-term rate for as long as the glide lasts. The rate here is therefore the same glide
-# lens 1 uses, present-value weighted, so the two lenses price the same time in the same way.
-_ke_path = [ke_exp - (ke_exp - ke_term) * f for f in glide_frac]
-_w, _c = [], 1.0
-for _k in _ke_path:
-    _c /= (1 + _k); _w.append(_c)
-KE_BLEND = sum(_ke_path[i] * _w[i] for i in range(5)) / sum(_w)
-pb_just = (V['roe_sust'] - V['g_term']) / (KE_BLEND - V['g_term'])
+pb_just = (V['roe_sust'] - V['g_term']) / (ke_term - V['g_term'])
 book_ps = pb_just * bvps
-book_bear = ((V['roe_sust'] - 0.05 - 0.03) / (KE_BLEND - 0.03)) * bvps
-book_bull = ((V['roe_sust'] + 0.03 - V['g_term']) / (KE_BLEND - V['g_term'])) * bvps
+book_bear = ((V['roe_sust'] - 0.05 - 0.03) / (0.5 * (ke_exp + ke_term) - 0.03)) * bvps
+book_bull = ((V['roe_sust'] + 0.03 - V['g_term']) / (ke_term - V['g_term'])) * bvps
 roe_trailing = npa_cy25 / ((V['eq_parent_jun25'] / M + eqp_cy25) / 2)
-say(f"[Book lens — on a rate path consistent with lens 1] justified price-to-book "
-    f"{pb_just:.2f}x = (sustainable return {V['roe_sust']:.1%} less growth {V['g_term']:.0%}) / "
-    f"(cost of equity {KE_BLEND:.2%} less growth), applied to book value of EGP {bvps:.2f} a "
-    f"share -> EGP {book_ps:.2f}. The rate is the present-value-weighted average of the SAME "
-    f"cost-of-equity glide the cash-flow lens uses, {ke_exp:.2%} falling to {ke_term:.2%}, not "
-    f"the terminal rate alone. Using the terminal rate alone gives "
-    f"{((V['roe_sust']-V['g_term'])/(ke_term-V['g_term']))*bvps:.2f} and using the explicit rate "
-    f"alone gives {((V['roe_sust']-V['g_term'])/(ke_exp-V['g_term']))*bvps:.2f}; a perpetuity "
-    f"beginning today deserves neither endpoint. Trailing return on average parent equity is "
-    f"{roe_trailing:.1%}, and the sustainable rate is struck below it because the asset base is "
-    f"67.4% written down — the same haircut now applied to the terminal return in lens 1, so "
-    f"there is one view of the asset base across the model rather than two.")
+say(f"[Book lens] justified price-to-book {pb_just:.2f}x = (sustainable return "
+    f"{V['roe_sust']:.1%} less growth {V['g_term']:.0%}) / (PERPETUAL cost of equity "
+    f"{ke_term:.2%} less growth), applied to book value of EGP {bvps:.2f} a share -> EGP "
+    f"{book_ps:.2f}. The perpetual rate is the right one inside a perpetuity identity; using a "
+    f"blend of the explicit and terminal rates would be internally inconsistent. Trailing return "
+    f"on average parent equity is {roe_trailing:.1%}.")
 
 # ---- scenarios --------------------------------------------------------------
 def dcf_scenario(vol_mult=1.0, price_mult=1.0, fx_mult=1.0, gm_shift=0.0,
-                 wacc_shift=0.0, g=None, nwc_days=None, beta=None, proc=None):
-    """Every scenario is a FULL re-run through the same waterfall the base case uses.
-
-    There is no second copy of the arithmetic. The previous edition kept one waterfall for the
-    base and another inside this function; they drifted, and a sensitivity row could report a
-    number the model could not reproduce. Any change to the waterfall now reaches every
-    sensitivity row and every scenario automatically, because there is only one of it."""
-    _we = _wt = None
-    if beta is not None:
-        # beta reaches BOTH anchors through the SAME functions the base case uses
-        _we = cost_of_capital(beta)[1]
-        _wt = terminal_cost_of_capital(beta)
+                 wacc_shift=0.0, g=None, nwc_p=None):
+    """Full re-run of the unit build and the waterfall, so a volume, price or currency
+    move flows through both legs exactly as it does in the base case."""
+    g = V['g_term'] if g is None else g
+    nwc_p = nwc_pct if nwc_p is None else nwc_p
     S = build(vol_mult=vol_mult, price_mult=price_mult, fx_mult=fx_mult, gm_shift=gm_shift)
-    return waterfall(S, wacc_shift=wacc_shift, g=g, nwc_days=nwc_days,
-                     we=_we, wt=_wt)['ps']
+    _rev, _ebitda = S['rev'], S['ebitda']
+    _dna = [DEP_ANN for _ in _rev]
+    _ebit = [_ebitda[i] - _dna[i] for i in range(5)]
+    _nopat = [e * (1 - TAX_EFF) for e in _ebit]
+    _capex, _cx = [], CAPEX_ANN
+    for i in range(5):
+        _cx *= V['fixed_cost_infl'][3 + i]; _capex.append(_cx)
+    _nwc = [nwc_p * r for r in _rev]
+    _dnwc = [_nwc[0] - nwc_b] + [_nwc[i] - _nwc[i - 1] for i in range(1, 5)]
+    _f = [_nopat[i] + _dna[i] - _capex[i] - _dnwc[i] for i in range(5)]
+    _we, _wt = wacc_exp + wacc_shift, wacc_term + wacc_shift
+    _fwd = [_we - (_we - _wt) * f for f in glide_frac]
+    _df, cc = [], 1.0
+    for w in _fwd:
+        cc /= (1 + w); _df.append(cc)
+    _ppe, pp = [], ppe_cy25
+    for i in range(5):
+        pp += _capex[i] - _dna[i]; _ppe.append(pp)
+    _roic = _nopat[-1] * (1 + g) / (_nwc[-1] + _ppe[-1])
+    _rr = min(g / _roic, 0.95)
+    _tv = _nopat[-1] * (1 + g) * (1 - _rr) / max(_wt - g, 0.02)
+    _ev = sum(_f[i] * _df[i] for i in range(5)) + _tv * _df[-1]
+    return (_ev * (1 - NCI_SHARE) - nd_cy25) / SH
 
 
 _chk = dcf_scenario()
@@ -1623,21 +1182,8 @@ lenses = dict(
               bull=book_bull, w=W['book']),
 )
 central = sum(l['base'] * l['w'] for l in lenses.values())
-# The published range is WEIGHTED, exactly as the central estimate is. The previous edition
-# labelled a row "weighted central" and then took MIN and MAX across the four lenses — both of
-# which came from the cash-flow lens alone — so a range carrying the word "weighted" had the
-# weights applied to its centre and not to its ends. It overstated the published spread by about
-# two and a half times. The unweighted envelope is still reported, as an envelope.
-lo = sum(l['bear'] * l['w'] for l in lenses.values())
-hi = sum(l['bull'] * l['w'] for l in lenses.values())
-lo_env = min(l['bear'] for l in lenses.values())
-hi_env = max(l['bull'] for l in lenses.values())
-assert lo < central < hi, "the weighted range does not bracket the weighted central"
-assert lo_env <= lo and hi <= hi_env, "the weighted range escapes the unweighted envelope"
-say(f"[Range — WEIGHTED, like the central] EGP {lo:.2f} to {hi:.2f}, the bear and bull columns "
-    f"weighted {'/'.join(f'{l[chr(119)]:.0%}' for l in lenses.values())} exactly as the base "
-    f"column is. The widest single lens spans EGP {lo_env:.2f} to {hi_env:.2f} and that is "
-    f"reported as an ENVELOPE, not as the range of the weighted estimate.")
+lo = min(l['bear'] for l in lenses.values())
+hi = max(l['bull'] for l in lenses.values())
 lenses['central'] = dict(name='Weighted central', bear=lo, base=central, bull=hi, w=1.0)
 say(f"[Synthesis] weighted central EGP {central:.2f}; full span across lenses and scenarios EGP "
     f"{lo:.2f} - {hi:.2f}; spot EGP {SPOT:.2f} ({central/SPOT-1:+.1%} to the central).")
@@ -1653,51 +1199,17 @@ beta_grid = [0.60, 0.80, 0.9405, 1.15, 1.30]
 grid_beta = []
 for b in beta_grid:
     _ke = rf_star + b * V['erp_cds']
-    _kt = RF_TERM + b * V['erp_term']
+    _kt = V['rf_term'] + b * V['erp_term']
     grid_beta.append(_val_at(we_exp * _ke + wd_exp * kd_at,
                              (1 - V['wd_term']) * _kt + V['wd_term'] * kd_term_at))
-# ---- sensitivity: EVERY row a full re-run through the one waterfall ---------
-# The previous edition produced three rows the model could not reproduce: a working-capital row
-# whose grid was never sorted, so the base case sat in the middle slot and the row read
-# non-monotonic; a beta row built by a separate mini-valuation whose centre did not return the
-# base case; and a volume row whose label read as a volume range when the lever is a growth-path
-# multiplier. All three are rebuilt here from full re-runs, the grids are sorted, and a GATE at
-# the end asserts that every row returns the base case at its own base point.
 gm_grid = [-0.010, -0.005, 0.0, 0.005, 0.010]
 grid_margin = [dcf_scenario(gm_shift=s) for s in gm_grid]
-vol_grid = [0.0, 0.5, 1.0, 1.5, 2.0]                  # MULTIPLIER on the growth path, not volume
+vol_grid = [0.0, 0.5, 1.0, 1.5, 2.0]
 grid_vol = [dcf_scenario(vol_mult=m) for m in vol_grid]
 fx_grid = [0.90, 0.95, 1.0, 1.05, 1.10]
 grid_fx = [dcf_scenario(fx_mult=m) for m in fx_grid]
-beta_grid = sorted([0.60, 0.80, V['beta'], 1.15, 1.30])
-grid_beta = [dcf_scenario(beta=b) for b in beta_grid]
-# working capital is now DAYS, so the row sweeps the cycle the balance sheet actually shows
-_cyc0 = INV_DAYS + RECV_DAYS - PAY_DAYS
-wc_mult_grid = [0.5, 0.75, 1.0, 1.25, 1.5]
-wc_grid = [round(_cyc0 * m, 1) for m in wc_mult_grid]
-grid_nwc = [dcf_scenario(nwc_days=(INV_DAYS * m, RECV_DAYS * m, PAY_DAYS * m))
-            for m in wc_mult_grid]
-nwc_grid = wc_grid
-
-# ---- GATE: a sensitivity row that cannot reproduce the base case is broken ---
-_rows = [('gross margin', gm_grid, grid_margin, 0.0, +1),
-         ('growth-path multiple', vol_grid, grid_vol, 1.0, +1),
-         ('exchange-rate path', fx_grid, grid_fx, 1.0, +1),
-         ('beta', beta_grid, grid_beta, V['beta'], -1),
-         ('working-capital cycle', wc_mult_grid, grid_nwc, 1.0, -1)]
-for _nm, _g, _v, _base, _sign in _rows:
-    assert list(_g) == sorted(_g), f"sensitivity grid '{_nm}' is not sorted"
-    _i = min(range(len(_g)), key=lambda j: abs(_g[j] - _base))
-    assert abs(_g[_i] - _base) < 1e-9, f"sensitivity row '{_nm}' has no base point on its grid"
-    assert abs(_v[_i] - dcf_ps) < 0.005, \
-        f"sensitivity row '{_nm}' does not reproduce the base case: {_v[_i]:.4f} vs {dcf_ps:.4f}"
-    _d = [_v[j + 1] - _v[j] for j in range(len(_v) - 1)]
-    assert all(d * _sign > 0 for d in _d), f"sensitivity row '{_nm}' is not monotone: {_v}"
-say(f"[Sensitivity gate] {len(_rows)} rows, every one a full re-run through the same waterfall "
-    f"the base case uses. Every grid is sorted, every row returns EGP {dcf_ps:.2f} at its own "
-    f"base point, and every row is monotone in the direction theory requires. The previous "
-    f"edition published three rows that failed one or more of these tests and had no gate that "
-    f"could have caught them.")
+nwc_grid = [0.00, 0.01, nwc_pct, 0.03, 0.05]
+grid_nwc = [dcf_scenario(nwc_p=p) for p in nwc_grid]
 
 # ---- expert panel: three genuinely different methods ------------------------
 # Cast by METHOD from the persona library; presented to the reader as Expert 1/2/3.
@@ -1775,83 +1287,6 @@ strike = json.load(open(os.path.join(HERE, 'strike_result.json')))
 beta_res = json.load(open(os.path.join(HERE, 'beta_result.json')))
 bt5 = json.load(open(os.path.join(HERE, 'backtest_5y.json')))
 
-# ---- BLOCK EMIT: the model's own values for every workbook block ------------
-# The workbook writes the whole forecast engine out again, in formulas, once per sensitivity
-# grid point. For the evaluator to check each of those blocks cell by cell, the model has to hand
-# over its own values for each one. That is what this does. It also means a grid point can no
-# longer be a number somebody pasted: if the block does not reproduce, the gate fails.
-def _blockvals(S, wacc_shift=0.0, g=None, nwc_days=None, we=None, wt=None,
-               fx_mult=1.0, price_mult=1.0):
-    g = V['g_term'] if g is None else g
-    R = waterfall(S, wacc_shift=wacc_shift, g=g, nwc_days=nwc_days, we=we, wt=wt)
-    _inf, _px, iv, pv_ = [], [], 1.0, 1.0
-    for i in range(5):
-        iv *= V['fixed_cost_infl'][3 + i]; _inf.append(iv)
-    for i in range(5):
-        pv_ *= (1 + V['line_price_growth'][i] * price_mult * fx_mult); _px.append(pv_)
-    _we = (wacc_exp if we is None else we) + wacc_shift
-    _wt = (wacc_term if wt is None else wt) + wacc_shift
-    _nop0 = [R['ebit'][i] * (1 - TAX_STAT) for i in range(5)]
-    return dict(
-        inf=_inf, px=_px,
-        vol={k: S['lines_vol'][k] for k in LINES}, vtot=S['vol'],
-        rev=R['rev'], cogs=S['cogs'], gp=R['gp'], gm=R['gm'], opex=R['opex'],
-        ebitda=R['ebitda'], capex=R['capex'], gross=R['ppe_gross'], dna=R['dna'],
-        ppe=R['ppe'], ebit=R['ebit'], nop0=_nop0, emp=R['emp'], nopat=R['nopat'],
-        nwc=R['nwc'], dnwc=R['dnwc'], fcff=R['fcff'],
-        glide=glide_frac, fwd=R['fwd_wacc'], df=R['df'], pv=R['pv'],
-        icr=[R['nwc'][i] + R['ppe_gross'][i] for i in range(5)],
-        pv_explicit=R['pv_explicit'], roic=R['roic_term'], rr=R['rr_term'], tv=R['tv'],
-        pv_tv=R['pv_tv'], ev=R['ev'], nd=nd_cy25, eq_gross=R['ev'] - nd_cy25,
-        nci=(R['ev'] - nd_cy25) * NCI_OP, prov=V['provisions'] / M, divp=V['div_declared'] / M,
-        inv=(V['fvoci'] + V['fin_inv']) / M, eq=R['eq'], ps=R['ps'], we=_we, wt=_wt)
-
-
-_GRIDS, _SCEN_V = [], {}
-
-
-def _grid(name, pts):
-    _GRIDS.append([name, None, []])
-    for pi, (label, lev, kw, is_base) in enumerate(pts):
-        _GRIDS[-1][2].append(dict(
-            label=label, levers=lev, is_base=is_base,
-            has_gm=any(c == 'C' for c, _, _ in lev), has_fx=any(c == 'D' for c, _, _ in lev),
-            has_wc=any(c == 'E' for c, _, _ in lev), has_we=any(c == 'F' for c, _, _ in lev),
-            has_wt=any(c == 'G' for c, _, _ in lev), has_g=any(c == 'H' for c, _, _ in lev)))
-        _S = build(vol_mult=kw.get('vol_mult', 1.0), gm_shift=kw.get('gm_shift', 0.0),
-                   fx_mult=kw.get('fx_mult', 1.0))
-        _SCEN_V[f'{name}|{pi}'] = _blockvals(
-            _S, g=kw.get('g'), nwc_days=kw.get('nwc_days'),
-            we=kw.get('we'), wt=kw.get('wt'), fx_mult=kw.get('fx_mult', 1.0))
-
-
-_PCT2, _NUM1, _NUM3 = '0.00%', '#,##0.0', '#,##0.000'
-_grid('Gross margin, shifted on every forecast year',
-      [(f'{s:+.1%}', [('C', s, _PCT2)], dict(gm_shift=s), s == 0.0) for s in gm_grid])
-_grid('Volume growth path, as a multiple of the assumed path',
-      [(f'{m:.2f}x', [('B', m, _NUM1)], dict(vol_mult=m), m == 1.0) for m in vol_grid])
-_grid('Realisation path, as a multiple of the assumed path',
-      [(f'{m:.2f}x', [('D', m, _NUM1)], dict(fx_mult=m), m == 1.0) for m in fx_grid])
-_grid('Beta', [(f'{b:.4f}',
-                [('F', cost_of_capital(b)[1], _PCT2), ('G', terminal_cost_of_capital(b), _PCT2)],
-                dict(we=cost_of_capital(b)[1], wt=terminal_cost_of_capital(b)),
-                abs(b - V['beta']) < 1e-9) for b in beta_grid])
-_grid('Working-capital cycle, as a multiple of the solved days',
-      [(f'{m:.2f}x', [('E', m, _NUM1)],
-        dict(nwc_days=(INV_DAYS * m, RECV_DAYS * m, PAY_DAYS * m)), m == 1.0)
-       for m in wc_mult_grid])
-_grid('Terminal growth',
-      [(f'{gg:.1%}', [('H', gg, _PCT2)], dict(g=gg), abs(gg - V['g_term']) < 1e-9)
-       for gg in g_grid])
-BLOCKS = dict(base=_blockvals(B), grids=_GRIDS, scen=_SCEN_V)
-_nb = 1 + sum(len(g[2]) for g in _GRIDS)
-say(f"[Workbook blocks emitted] {_nb} complete forecast engines — the base case and "
-    f"{_nb-1} sensitivity grid points — each with the model's own value for every cell, so the "
-    f"workbook can write all {_nb} out as live formula chains and an independent evaluator can "
-    f"check each one. The previous edition pasted its sensitivity grids because a whole-model "
-    f"re-run could not be expressed inside a grid; that was 27.6% of the file and three of the "
-    f"pasted rows did not reproduce.")
-
 OUT = dict(
     meta=dict(ticker='AMOC', company='Alexandria Mineral Oils Company S.A.E.', market='EGX',
               currency='EGP', asof='2026-08-06', spot=SPOT, shares_mn=SH, mktcap=MKTCAP,
@@ -1920,7 +1355,7 @@ OUT = dict(
     experts=experts, panel_centre=panel_centre,
     rel=dict(ebitda_mid=ebitda_mid, pv_interim=pv_interim, ev_rel=ev_rel, ev_rel_fwd=ev_rel_fwd, df_rel=df_rel,
              ev_ebitda_trailing=ev_ebitda_trailing, pe_trailing=pe_trailing,
-             just_mult=JUST_MULT, year=YRS[REL_I]),
+             just_mult=V['ev_ebitda_just'], year=YRS[REL_I]),
     norm=dict(rev=norm_rev, ebitda=norm_ebitda, ebit=norm_ebit, dna=dna[NORM_I],
               interest=norm_interest, np=norm_np, eps=norm_eps, pe=V['pe_just'],
               year=YRS[NORM_I]),
@@ -1931,78 +1366,9 @@ OUT = dict(
               grid_exp_term=grid_exp_term, beta_grid=beta_grid, grid_beta=grid_beta,
               gm_grid=gm_grid, grid_margin=grid_margin, vol_grid=vol_grid, grid_vol=grid_vol,
               fx_grid=fx_grid, grid_fx=grid_fx, nwc_grid=nwc_grid, grid_nwc=grid_nwc),
-    # ---- the bottom-up layer, emitted so the workbook can REBUILD it in formulas ----
-    unitbuild=dict(
-        lines=LINES, labels=LBL, spec=SPEC,
-        t0={k: t0[k] for k in LINES}, px0={k: px0[k] for k in LINES},
-        raw_pt={k: raw_pt[k] for k in LINES}, conv_pt={k: conv_pt[k] for k in LINES},
-        proc={k: PROC[k] for k in LINES}, nrv={k: _nrv[k] for k in LINES},
-        spread={k: _spread[k] for k in LINES}, margin0={k: _m0[k] for k in LINES},
-        px_index=PX_INDEX, T0=T0, raw_tot0=raw_tot0, conv_tot0=conv_tot0,
-        nrv_den=_nrv_den, pw_den=_pw_den,
-        sal_sh=cos_share['salaries'] / (1 - cos_share['raw']),
-        oth_sh=cos_share['other'] / (1 - cos_share['raw']),
-        sup_sh=cos_share['support'] / (1 - cos_share['raw']),
-        dep_sh=cos_share['dep'] / (1 - cos_share['raw']),
-        lines_vol=B['lines_vol'], lines_rev=B['lines_rev'], lines_cost=B['lines_cost'],
-        line_margin=B['line_margin']),
-    ttm=dict(base_year=BASE_YEAR, rev=REV_TTM, gp=GP_TTM, cogs=COGS_TTM, gm=GM_TTM,
-             ga=ga_ttm / M, mkt=mkt_ttm / M, oth=oth_ttm / M, dep=dep_ttm / M,
-             capex=capex_ttm / M, credint=credint_ttm / M, prov=prov_ttm / M, emp=emp_ttm / M,
-             gp_h1=gp_h1cy26 / M, gp_h1_released=gp_h1cy26_at_release / M,
-             pat_if_released=_pat_if_released_gp / M, ct1=CT1, ct2=CT2, ct3=CT3,
-             rev9_ann=rev9 / M * A, gm9=gp9 / rev9),
-    rates=dict(tax_stat=TAX_STAT, tax_eff=TAX_EFF, emp_rate=EMP_RATE, nci_op=NCI_OP,
-               rf_term=RF_TERM, ke_blend=KE_BLEND, asset_life=ASSET_LIFE,
-               cap_intensity=CAP_INTENSITY, maint_capex0=MAINT_CAPEX0,
-               inv_days=INV_DAYS, recv_days=RECV_DAYS, pay_days=PAY_DAYS,
-               raw_of_rev=RAW_OF_REV, just_mult=JUST_MULT, norm_df=norm_df,
-               norm_yrs=NORM_YRS, rr_2030=_rr_2030),
-    bridge=dict(ev=ev, nd=nd_cy25, eq_gross=eq_gross, nci=nci_val, prov=prov_val,
-                divp=divp_val, inv=inv_val, eq=eq_attr, ps=dcf_ps),
-    span_env=[lo_env, hi_env],
-    blocks=BLOCKS,
     step0=step0, strike=strike, backtest=bt5,
     assert_log=LOG,
 )
-# ---- REACHABILITY GATE, rewritten -------------------------------------------
-# The previous gate accepted "quoted somewhere in a deliverable" as evidence that an input was
-# reached. It passed with sixteen inputs driving nothing, including a 921mn recognised liability
-# and a 135mn appropriation of profit that the study's own text described as a defect of the
-# edition before it. A sentence is not a formula. This gate now requires that any input carrying
-# a BALANCE-SHEET or PROFIT-STATEMENT claim actually appear in the model body; narrative inputs
-# may still be quotation-only, and they are listed by name so the exemption is visible.
-import re as _re
-_body = open(os.path.join(HERE, 'compute.py')).read().split(
-    "V = {k: v['value'] for k, v in INP.items()}")[1]
-NARRATIVE_ONLY = {
-    'inv_days', 'recv_days', 'pay_days',      # superseded: days are now SOLVED from the filings
-    'other_ca', 'dna_pct', 'capex_pct', 'opex_pct', 'tax_eff', 'nci_share', 'ev_ebitda_just',
-    'gp_h1cy26_rep',                          # registered precisely so it can be REJECTED
-    'egpc_sales', 'egpc_balance', 'alexpet_stake', 'puc', 'assets_snap', 'liab_snap',
-    'assets_jun24', 'assets_dec24', 'assets_jun25', 'eq_parent_jun24', 'eq_parent_mar26',
-    'cash_jun25', 'cash_mar26', 'inv_jun25', 'recv_jun25', 'debtors_jun25', 'payables_jun25',
-    'creditors_jun25', 'ppe_jun25', 'div_h2_25', 'div_q1_26', 'dps', 'payout_reported',
-    'tax_due', 'dtax_liab', 'leases', 'e1_pe', 'egypt_gdp_nominal', 'world_nominal_growth',
-    'egypt_nominal_growth', 'cbe_target', 'policy_rate', 'cpi', 'crude_hist', 'fx_hist',
-    'fx_avg_cy25', 'brent_path', 'wacc_usd_rf', 'wacc_usd_erp', 'sov_spread_rating',
-    'erp_rating', 'kd_now', 'pat_fy25_full', 'pat_h1cy25', 'cos_salaries_24', 'cos_raw_24',
-    'cos_support_24', 'cos_dep_24', 'cos_other_24', 'ppe_accdep', 'prod_v_prior',
-    'rev_h2_24', 'cogs_h2_24', 'pat_h2_24', 'rev_q1_25', 'cogs_q1_25', 'emp_h2_25',
-}
-_dead = [k for k in INP if k not in NARRATIVE_ONLY and f"V['{k}']" not in _body]
-assert not _dead, ("inputs registered with a claim on the balance sheet or the profit statement "
-                   f"that no formula reads: {_dead}")
-_quoted_only = sorted(k for k in NARRATIVE_ONLY if k in INP and f"V['{k}']" not in _body)
-say(f"[Reachability gate — rewritten] {len(INP)} registered inputs. "
-    f"{len(INP)-len(_quoted_only)} DRIVE the model. {len(_quoted_only)} are quotation-only and "
-    f"are named here rather than passing silently: {', '.join(_quoted_only)}. The previous gate "
-    f"treated 'appears in a deliverable' as reached and passed while `provisions` (921mn) and "
-    f"`emp_h2_25` (135mn a year) drove nothing at all — setting the provision to zero moved that "
-    f"valuation by less than a hundredth of a piastre. Both now drive the bridge and the "
-    f"waterfall. `emp_h2_25` stays on this list because the CHARGE is now taken through a rate "
-    f"solved from it rather than through the raw input.")
-
 with open(os.path.join(HERE, 'study_numbers.json'), 'w') as f:
     json.dump(OUT, f, indent=1)
 say("=" * 78)

@@ -136,16 +136,18 @@ for tag, fn, out in [('one month', 'paths_1M.npy', 'fig5_dist.png'),
     style(ax); fig.tight_layout(); fig.savefig(os.path.join(HERE, out)); plt.close(fig)
 
 # ---- F7 revenue by product leg, and the margin path -------------------------
-yrs = ['CY2025'] + [y.replace('E', '') for y in F['years']]
-spec = [U['rev25_lines']['oil']+U['rev25_lines']['wax']] + U['spec_rev']
-fuel = [U['rev25_lines']['fuel']] + U['fuel_rev']
-mar = [d['hist_is']['CY25']['ebitda'] / BASE['rev_cy25']] + F['ebitda_margin']
+yrs = ['Base yr'] + [y.replace('E', '') for y in F['years']]
+_b_spec = U['rev25_lines']['oils'] + U['rev25_lines']['wax']
+_b_tot = sum(U['rev25_lines'][k] for k in U['lines'])
+spec = [_b_spec] + U['spec_rev']
+fuel = [_b_tot - _b_spec] + U['fuel_rev']
+mar = [d['audited']['base_gm']] + F['gm']
 fig, ax = plt.subplots(figsize=(9.9, 4.2), dpi=110)
 xs = np.arange(len(yrs))
 ax.bar(xs, np.array(fuel) / 1000, width=0.56, color=SAGE, alpha=0.75,
        label='Fuel and by-products', edgecolor='#FFFFFF', linewidth=0.6)
 ax.bar(xs, np.array(spec) / 1000, width=0.56, bottom=np.array(fuel) / 1000, color=GOLD,
-       alpha=0.88, label='Base oils and paraffin wax', edgecolor='#FFFFFF', linewidth=0.6)
+       alpha=0.88, label='Base and special oils, paraffin wax', edgecolor='#FFFFFF', linewidth=0.6)
 tot = (np.array(spec) + np.array(fuel)) / 1000
 for i, t in enumerate(tot):
     ax.text(i, t + tot.max() * 0.028, f'{t:.1f}', ha='center', fontsize=8.4, color=INK)
@@ -154,20 +156,20 @@ ax.set_ylim(0, tot.max() * 1.46)
 ax.set_xticks(xs, yrs, fontsize=8.8)
 ax2 = ax.twinx()
 ax2.plot(xs, np.array(mar) * 100, color=BRASS, lw=2.1, marker='o', ms=4.5,
-         label='EBITDA margin (right axis)')
+         label='gross margin, as filed then forecast (right axis)')
 for i, m in enumerate(mar):
     ax2.text(i, m * 100 + 0.055, f'{m*100:.2f}%', ha='center', va='bottom', fontsize=8.0,
              color=BRASS,
              bbox=dict(boxstyle='round,pad=0.16', facecolor=BG, edgecolor=BRASS,
                        linewidth=0.4, alpha=0.96))
-ax2.set_ylabel('EBITDA margin (%)', color=BRASS)
+ax2.set_ylabel('gross margin (%)', color=BRASS)
 ax2.tick_params(axis='y', colors=BRASS)
 # lift the margin axis so the line and its labels ride clear ABOVE the revenue bars
 ax2.set_ylim(min(mar) * 100 - 1.95, max(mar) * 100 + 0.22)
 ax2.grid(False)
 h1, l1 = ax.get_legend_handles_labels(); h2, l2 = ax2.get_legend_handles_labels()
 ax.legend(h1 + h2, l1 + l2, frameon=False, fontsize=8.4, loc='upper left', labelcolor=INK, ncol=3)
-ax.set_title('Revenue by product line, and the EBITDA margin path', fontsize=10, pad=9)
+ax.set_title('Revenue by product line, and the gross-margin path', fontsize=10, pad=9)
 style(ax)
 ax2.spines['top'].set_visible(False)
 fig.tight_layout(); fig.savefig(os.path.join(HERE, 'fig7_mix.png')); plt.close(fig)

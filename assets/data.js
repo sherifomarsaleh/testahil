@@ -2,7 +2,7 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-08-07", latest: "SCEM" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
+const SITE = { updated: "2026-08-08", latest: "SCEM" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
 /* ---------- covered tickers ----------
    HORIZON FIELDS (see the HORIZON CONVENTION block above the LEDGER):
@@ -99,7 +99,8 @@ const TICKERS = {
     spot: 9.10,
     spotDate: "close 6 Aug 2026",
     ccy: "EGP",
-    fair: { bear: 3.83, base: 9.38, full: 18.12 },      // 6 Aug 2026 \u2014 four-lens weighted central EGP 9.38 (+3% vs spot 9.10). Weights 45/20/20/15: FCFF DCF 9.66 / relative EV\u2044EBITDA 8.20 (4.5x on 2027E EBITDA, the forward enterprise value DISCOUNTED back at the year-2 factor \u2014 not discounting it would have printed 10.72, and the interim free cash flow of the holding period is added back rather than dropped) / normalised earnings power 11.67 / justified P\u2044B on sustainable ROE 7.07. THE FORECAST IS BOTTOM-UP ON A PER-TONNE COST STACK, not a margin assumption: cost of sales is 93.9% of revenue on this name, so modelling it as revenue times one minus an assumed margin would make the assumption the valuation. Feedstock, energy, chemicals and fixed conversion are separate charges per tonne and the gross margin \u2014 blended AND per line \u2014 is an OUTPUT. Two parameters are SOLVED against disclosure rather than assumed: the crack multiples are the disclosed FY2023/24 product table divided by the crude price (base oils 1.898x crude parity, paraffin wax 1.737x, the fuel slate 0.998x \u2014 the textbook shape for a lube refinery), and the feedstock differential is solved so the build reproduces the DISCLOSED FY2022/23 cost of sales exactly, at 0.9216 of crude parity. The other three historical margins are then PREDICTIONS: the build returns 6.02% / 5.39% / 6.06% against a house path of 6.00% / 6.20% / 6.40% built by an entirely independent route \u2014 agreement within 81bp on a 6% margin. THE FINDING THAT MATTERS: base oils earn 38.6%, wax 31.3%, and the fuel and by-product slate \u2014 86% of the tonnage \u2014 runs at \u22123.0%, at or below break-even, because it sells at crude parity and the feedstock costs almost as much as the product fetches. Essentially all gross profit is made on 14% of the tonnage, so growth in the fuel slate is worth almost nothing and the export push into base oils and wax is worth far more than a blended-margin model can show. Discount rate is a sliding schedule: WACC 31.63% explicit \u2192 16.52% terminal, each year discounted at its own forward rate, the glide inherited from the cost-of-debt path rather than invented; the sovereign CDS spread is netted OUT of the risk-free rate so country risk is not counted twice; own-stock beta 0.940 (R\u00b2 0.312, n 257). THE COMPANY IS NET CASH \u2014 EGP 2,438mn, 21% of the market capitalisation \u2014 which makes the weighting run backwards: the debt weight is \u221226.2% and the operating WACC sits ABOVE the 27.76% cost of equity, because an equity cost observed on a cash-heavy balance sheet UNDERSTATES the risk of the operating assets. Minorities are deducted from the OPERATING enterprise value BEFORE the cash is added, not after \u2014 the reverse order hands the minority 3% of the parent\u2019s balance. Terminal value is ROIC-consistent (g = ROIC 53.8% \u00d7 reinvestment 9.3% = 5.0% exactly) and carries 63.6% of EV \u2014 high, and stated. The two standing terminal checks DISAGREE and both are printed: the historical NOPAT compound rate is +34.8% (above) and return-times-reinvestment on stable years is 4.0% (below), so the adopted 5% sits on the generous side of the company\u2019s own record. Three contested choices are published as VALUES, not argued in prose: the rating column of the country-risk table rather than the market-spread column gives 7.95, gross-debt rather than net-debt weights gives 10.16, and discounting the export leg at a hard-currency rate after first deflating those pounds to dollars gives 10.27. PRIMARY FILINGS WERE NOT REACHABLE from the build environment \u2014 every company figure comes from reported releases and aggregators, seven negative results are logged in the bibliography, and the base year is CONSTRUCTED from two separately disclosed halves. full = weighted bull central.
+    fair: { bear: 4.09, base: 5.95, full: 8.52 },
+      // 8 Aug 2026 - four-lens weighted central EGP 5.95 (-34.6% vs spot 9.10). Weights 45/20/20/15: FCFF DCF 5.50 / relative EV-to-EBITDA 8.14 / normalised earnings 5.83 / book 4.57. bear/full are the WEIGHTED bear and bull columns (4.09-8.52), not the min/max across lenses. Base year = twelve contiguous months to 30-Jun-2026 (audited half + REPORTED half, no scalar); the released H1-2026 gross profit is rejected on a coherence test and SOLVED from the release's own profit line. Give back every contested judgement simultaneously and the central still reaches only 7.47. Terminal value 44.8% of enterprise value; WACC 31.58% explicit to 18.34% terminal.
     dist: {
       t20: { label:"1 month",   p5:7.71, p25:8.60, p50:9.17, p75:9.79, p95:10.91, resolve:"2026-09-06" },
       t60: { label:"3 months",  p5:6.90, p25:8.34, p50:9.33, p75:10.42, p95:12.60, resolve:"2026-11-08" }
@@ -117,13 +118,13 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-06", computed:"2026-08-06" },
-      tech: { data:"2026-08-06", computed:"2026-08-06" }
+      tech: { data:"2026-08-06", computed:"2026-08-08" }
     },
     files: {
-      study: "files/AMOC_Valuation_Study_06-08-2026_public.docx?v=0806a",
-      model: "files/AMOC_Valuation_Model_06082026_public.xlsx?v=0806a",
-      pdf:   "files/AMOC_Valuation_Study_06-08-2026_public.pdf?v=0806a",
-      biblio:"files/AMOC_Bibliography_06-08-2026.pdf?v=0806a"
+      study: "files/AMOC_Valuation_Study_08-08-2026_public.docx?v=0808b",
+      model: "files/AMOC_Valuation_Model_08082026_public.xlsx?v=0808b",
+      pdf:   "files/AMOC_Valuation_Study_08-08-2026_public.pdf?v=0808b",
+      biblio:"files/AMOC_Bibliography_08-08-2026.pdf?v=0808b"
     }
   },
   SWDY: {
