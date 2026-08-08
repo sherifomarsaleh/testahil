@@ -1,0 +1,123 @@
+{
+  "_meta": {
+    "source": "engine/egch_study/filings/EGCH_FY2024-25_Annual.pdf (audited, Central Auditing Organization, report dated 23/9/2025)",
+    "method": "visual read of scanned Arabic statements, all EGP thousand unless noted; every statement crossfooted",
+    "extracted": "2026-08-08",
+    "fiscal_year": "1 Jul 2024 - 30 Jun 2025; comparatives FY2023/24",
+    "verify_flags": [
+      "note20 FY23/24 comparative sales digits to re-render at high DPI (IS total 6,532,126k is firm; note-level export/local split for FY24 needs re-read)",
+      "note21 FY25 materials figure 4,398,635,932 re-check at high DPI",
+      "CF wages/taxes line assignment approximate; net subtotals firm"
+    ]
+  },
+  "balance_sheet": {
+    "FY2425": {
+      "fixed_assets_net": 13587193, "cwip": 3790155, "investment_property": 2160620,
+      "fvoci_investments": 2163270, "other_fin_noncurrent": 2307, "loans_to_others": 255,
+      "intangibles": 2256834, "noncurrent_total": 23960634,
+      "inventory": 2399625, "receivables": 631047, "cash": 3057028, "current_total": 6087700,
+      "total_assets": 30048334,
+      "paid_capital": 9932895, "reserves": 2808214, "fvoci_reserve": 2091151,
+      "retained": -456159, "year_profit": 986964, "equity": 15363065,
+      "lt_bank_loans": 11183315, "holding_co_loans": 596896, "deferred_tax_liab": 990863,
+      "noncurrent_liab": 12771074,
+      "provisions": 309113, "payables": 1207768, "current_portion_lt": 397314,
+      "current_liab": 1914195, "total_liab": 14685269
+    },
+    "FY2324": {
+      "fixed_assets_net": 14144067, "cwip": 2535135, "investment_property": 2034589,
+      "fvoci_investments": 2491189, "other_fin_noncurrent": 2307, "loans_to_others": 298,
+      "intangibles": 2376211, "noncurrent_total": 23583796,
+      "inventory": 1615470, "receivables": 858390, "cash": 3103365, "current_total": 5577225,
+      "total_assets": 29161021,
+      "paid_capital": 9932895, "reserves": 462979, "fvoci_reserve": 2419070,
+      "retained": -792774, "year_profit": 2537934, "equity": 14560104,
+      "lt_bank_loans": 11226246, "holding_co_loans": 0, "deferred_tax_liab": 1001464,
+      "noncurrent_liab": 12227710,
+      "provisions": 432156, "payables": 1587001, "current_portion_lt": 354051,
+      "current_liab": 2373208, "total_liab": 14600918
+    }
+  },
+  "income_statement": {
+    "FY2425": {
+      "revenue": 8602606, "cogs": -5300310, "gross_profit": 3302296,
+      "selling_dist": -786463, "admin": -359624, "provisions_formed": -15000,
+      "provisions_released": 56500, "fx_gain_loss": -264642, "capital_gains": 78,
+      "inv_property_reval": 0, "other_income": 32610, "other_expenses": -166807,
+      "operating_result": 1798948,
+      "finance_income": 373969, "finance_cost": -1460891, "net_finance": -1086922,
+      "investment_income": 287290, "pbt": 999316, "deferred_tax_credit": 10601,
+      "solidarity_contribution": -22953, "net_profit": 986964, "eps_egp": 0.4968
+    },
+    "FY2324": {
+      "revenue": 6532126, "cogs": -4395788, "gross_profit": 2136338,
+      "selling_dist": -562527, "admin": -297887, "provisions_formed": -300472,
+      "provisions_released": 0, "fx_gain_loss": 278839, "capital_gains": 10925,
+      "inv_property_reval": 2034573, "other_income": 33440, "other_expenses": -162170,
+      "operating_result": 3171059,
+      "finance_income": 78119, "finance_cost": -1207200, "net_finance": -1129081,
+      "investment_income": 284059, "pbt": 2326037, "deferred_tax_credit": 234317,
+      "solidarity_contribution": -22420, "net_profit": 2537934, "eps_egp": 1.2775,
+      "note": "net profit includes ONE-OFF investment-property revaluation gain 2,034,573k; underlying ~503m"
+    }
+  },
+  "cash_flow_FY2425_egp_full": {
+    "operating_net": 2705814232, "investing_net": -1534124880,
+    "capex_paid": -1545053761, "asset_sale_proceeds": 10887048,
+    "financing_net": -1218027393, "lt_loan_proceeds_holdco": 500000000,
+    "lt_loan_repaid": -1347931274, "loan_interest_paid_financing": -370096119,
+    "cash_open": 3103366312, "cash_close": 3057028272,
+    "FY2324": {"operating_net": 2292474821, "investing_net": -2389592953,
+      "financing_net": 1784241346, "share_issue_proceeds": 3066667085}
+  },
+  "notes_key_facts": {
+    "shares_outstanding": 1986578999, "par_egp": 5, "paid_capital_egp": 9932894995,
+    "shareholders": {"Chemical Industries Holding": 0.69825, "public_sector_insurance_fund": 0.1927,
+      "Banque_Misr": 0.0378, "business_sector_insurance_fund": 0.0094, "free_float_individuals": 0.06184},
+    "dividends": {"FY2324": 0, "FY2425_proposed": 0, "note": "appropriation: legal reserve only, all profit retained; q=0 sourced"},
+    "depreciation_charge_FY2425": 771213, "amortization_intangibles_FY2425": 119378,
+    "depreciation_in_cogs_FY2425": 776471, "dep_rates": {"kima2_machinery_pct": 3.95, "factories_pct": 9.5, "intangibles_pct": 4.75},
+    "fully_depreciated_in_use": 220496,
+    "loans": {
+      "kima2_usd_consortium": {"balance_30jun2025_egp": 11580629115, "original": "USD 292.30m + EGP 1.92bn (contract 1/9/2013, amended 5/4/2018)",
+        "egp_tranche": "fully repaid June 2024 - remaining balance is the USD tranche (dollar-denominated)",
+        "consortium": ["NBE", "Banque Misr", "AAIB", "Banque du Caire", "Blom Egypt", "EMRC/Egyptian Arab Land Bank"],
+        "current_portion": 397313599, "lt_portion": 11183315516},
+      "holding_co": {"balance": 596896001, "drawn_FY2425": 500000000, "interest_accrued_FY2425": 96896001, "implied_rate_pct": 19.4},
+      "anna_project": {"approved_cost": "EGP 6,422,418,326 + USD 278,384,958 (bank agreement 25/6/2025)",
+        "loan": "USD 82,945,038 + EGP 5,930,700,606", "usd_installments": "16, ending 30/6/2035", "egp_installments": "18, ending 30/6/2036"}
+    },
+    "revenue_split_FY2425": {"export": 6608751963, "local": 1993849978, "services": 4430, "unit": "EGP full"},
+    "cogs_FY2425_egp_full": {"materials_incl_gas": 4398635932, "wages": 212857408, "services": 62556751,
+      "depreciation": 776471327, "indirect_taxes": 2056278, "real_estate_tax": 6990,
+      "wip_change": -87164710, "fg_change": -65173061, "total": 5300309915},
+    "selling_FY2425_egp_full": {"materials": 90788428, "wages": 57629243, "other": 27880806,
+      "freight_commissions": 610158356, "total": 786462833},
+    "other_expenses_FY2425": {"factory_stoppages_gas": 164477627, "prior_year": 152741795},
+    "finance_cost_FY2425": {"usd_loan_interest": 1338012810, "petrotrade_gas_rescheduling_interest": 25981869, "holdco_interest": 96896001},
+    "investment_income_FY2425": {"abuk_delta_dividends": 287209202, "govt_bonds": 80757},
+    "fvoci_stakes": {"delta_sugar": {"shares": 9182572, "stake_pct": 6.457, "price_30jun2025": 50.40, "value_egp": 462801629},
+      "abu_qir": {"shares": 34009360, "stake_pct": 2.7, "price_30jun2025": 50.00, "value_egp": 1700468000},
+      "note": "pledged as loan collateral per bank contract"},
+    "production_FY2425_tons": {"urea_46_5": 513385, "ammonia_liquid": 318242, "granulated_33_5": 17887,
+      "ldan": 8171, "nitric_acid": 35590},
+    "cost_per_ton_FY2425_egp": {"urea": 7509, "ammonia": 9114, "granulated_33_5": 4076.31, "ldan": 8154.48, "nitric_acid_610": 610},
+    "cost_per_ton_FY2324_egp": {"urea": 9254, "ammonia": 5439.1, "granulated_33_5": 2336.4, "ldan": 7481.57, "nitric_acid": 334.71},
+    "capacity_design": {"ammonia_tpd": 1200, "ammonia_tpy": 438000, "urea_tpd": 1575, "urea_tpy": 574875,
+      "utilization_FY2425_ammonia_pct": 73},
+    "gas": {"formula_price_usd_mmbtu": 5.75, "since": "1/11/2021 (applied from 13/9/2022), prior 4.5",
+      "need_m3_day": 1200000, "abnormal_gas_loss_FY2223_to_FY2425_egp": 781000000,
+      "abnormal_gas_loss_FY2425_egp": 249000000, "usage_m3_per_ton_urea_range": [1025, 1771],
+      "arrears": "rescheduled with Petrotrade, 25,981,869 rescheduling interest FY2425; provision for late-payment fines 35m"},
+    "quota_policy": {"decree": "cabinet 170 (24/11/2021): 55% of production to subsidized system + 10% local free market, max 35% export; export levy EGP 2500/t on shortfall (decree 241/2021)",
+      "FY2425_events": "MoA stopped issuing certificates May-Aug 2025; company delivered 147kt of required 322kt; export levy charged EGP 437.5m on 175kt",
+      "offtake": "Ameropa OFFTAK agreement 1/11/2024, 1yr to Oct-2025, ~30kt/month (~67% of production)",
+      "sept2025_redistribution": "export share raised to ~53%, subsidized cut to ~37% (news; confirm in FY2526 interims)"},
+    "one_offs": {"fy2324_inv_property_reval_gain": 2034573000, "fire_kima1_mar2025_cost": 12000000,
+      "fire_restart": "29/7/2025", "ferrosilicon": "furnace idle since 2019, leased to Saudi Sharq co for ferromanganese from May-2025; receivable 23.387m"},
+    "tax": {"cit_status": "settled through 2016/17; 2017-2019 under appeal; 2020-2023 examined+settled; company pays effectively no current CIT (deferred credits FY24 +234.3m, FY25 +10.6m)",
+      "statutory_rate": 0.225, "solidarity_contribution": "~22-23m/yr",
+      "real_estate_tax": "MoF bears it for chemical industry 5 years from 2022 (cabinet 61/2022, 3/2024)"},
+    "employees_wages_cash_FY2425": 270520652
+  }
+}

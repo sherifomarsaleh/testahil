@@ -1,0 +1,116 @@
+{
+ "_meta": {
+  "source": "EGCH_FY2025-26_9M_Mar2026.pdf (limited review 20/5/2026), EGP thousand",
+  "period": "1 Jul 2025 - 31 Mar 2026, comparatives prior 9M and company budget"
+ },
+ "income_9M": {
+  "FY2526_9M": {
+   "revenue": 7314933,
+   "cogs": -4179954,
+   "gross": 3134979,
+   "selling": -734707,
+   "admin": -273831,
+   "fx": -1071975,
+   "other_income": 54738,
+   "other_exp": -106039,
+   "operating": 1003165,
+   "fin_income": 205655,
+   "fin_cost": -915910,
+   "net_finance": -710255,
+   "inv_income": 227659,
+   "pbt": 520569,
+   "deferred_tax": 29679,
+   "solidarity": -18938,
+   "net": 531310,
+   "eps": 0.267
+  },
+  "FY2425_9M": {
+   "revenue": 6390798,
+   "cogs": -3767770,
+   "gross": 2623028,
+   "selling": -588337,
+   "admin": -282323,
+   "fx": -511292,
+   "operating": 1362405,
+   "fin_income": 283007,
+   "fin_cost": -1048330,
+   "net_finance": -765323,
+   "inv_income": 255070,
+   "pbt": 852152,
+   "net": 811655,
+   "eps": 0.408
+  },
+  "budget_9M": {
+   "revenue": 7150675,
+   "cogs": -4728534,
+   "gross": 2422141,
+   "operating": 1597385,
+   "pbt": 977697,
+   "net": 1021912
+  }
+ },
+ "balance_31mar2026": {
+  "fixed_assets_net": 13057606,
+  "cwip": 5653510,
+  "investment_property": 2155061,
+  "fvoci": 1382886,
+  "other_fin": 2307,
+  "loans_ext": 238,
+  "intangibles": 2170500,
+  "noncurrent": 24422108,
+  "inventory": 3378160,
+  "receivables": 1230232,
+  "cash": 4606522,
+  "current": 9214914,
+  "total_assets": 33637022,
+  "paid_capital": 9932895,
+  "reserves": 2857030,
+  "fvoci_reserve": 2467723,
+  "retained": 417138,
+  "period_profit": 531310,
+  "equity": 16206096,
+  "lt_bank_loans": 14386056,
+  "holdco_loans": 45905,
+  "deferred_tax": 961184,
+  "noncurrent_liab": 15393195,
+  "provisions": 291769,
+  "payables": 1538968,
+  "current_lt": 206994,
+  "current_liab": 2037731,
+  "total_liab": 17430926,
+  "verify_flags": [
+   "fvoci_reserve vs fvoci asset move (sale ~560m proceeds, recycling within equity)",
+   "holdco_loans 45,905 vs 596,896 at FY25 - repaid? re-verify",
+   "reserves digit 2,857,030 vs expected 2,857,562"
+  ]
+ },
+ "cashflow_9M_egp_full": {
+  "operating": 2182287345,
+  "investing": -1943276812,
+  "capex": -1949134461,
+  "asset_sales": 5840500,
+  "investment_sale_proceeds": 559796590,
+  "financing": 1310483687,
+  "lt_loan_proceeds": 1585808312,
+  "lt_repaid": -588110581,
+  "dividends_paid": -55974049,
+  "cash_open": 3057028272,
+  "cash_close": 4606522492,
+  "note": "investment_sale_proceeds digits ~559.8m re-verify; loan interest line ambiguous"
+ },
+ "auditor_9M_flags": [
+  "ANNA loan FX revaluation loss 197,841k expensed not capitalized (EAS14 allows partial capitalization)",
+  "ABUK stake not re-marked since 30/9/2025 (+112m unbooked)",
+  "Damietta urea stock book overstated 11.6kt / 116m vs Cisco Trans certificates",
+  "electricity invoices not issued since Oct-2025 (49,679k accrued cost)",
+  "USD KIMA-3/ANNA loan balance shown 1,661m EGP = $30,374k? incl interest per 31/12/2025 bank statement",
+  "kima2 loan interest est. 560,548k vs bank statement 588,111k (+27,563k unbooked)"
+ ],
+ "implied": {
+  "ttm_revenue_to_mar2026": 9526741,
+  "ttm_gross": 3814247,
+  "h1_net_reported_mubasher": 1190000,
+  "q3_implied_loss": -658690,
+  "q3_loss_driver": "FX reversal: EGP ~47 (Dec-25) -> ~50.4 (Mar-26) on ~$260-290m USD debt"
+ }
+}
