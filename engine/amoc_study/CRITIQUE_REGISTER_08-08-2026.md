@@ -8,11 +8,13 @@
 
 **Pricing method:** every price in this file is a number out of the same engine that produced the published figure, not an estimate. Parameter findings are priced by `price.py`, which re-runs the whole model — all four lenses, all weights — with the named registered input overridden. Bridge findings are priced on the published lens outputs. Where a finding cannot be priced because it names no number, the row says so explicitly and prices the *largest* reading of it, so no finding is dismissed for vagueness.
 
-**Reconciliation:** 89 raised, 89 answered, 0 unaddressed.
-- A — Gemini deep thinking: 15 raised, 15 answered
-- B — Gemini deep research: raised and answered, see §B
-- C — Claude Code: raised and answered, see §C
-- D — Claude Cowork: raised and answered, see §D
+**Reconciliation: 109 raised, 109 answered, 0 unaddressed.**
+- §A — Gemini deep thinking: **15 raised, 15 answered** (A-1 … A-15)
+- §B — Gemini deep research: **18 raised, 18 answered** (B-1 … B-18)
+- §C — Claude Code: **43 raised, 43 answered** (C-F1 … C-F43)
+- §D — Claude Cowork: **33 raised, 33 answered** (D-1 … D-33)
+
+Findings found by more than one reviewer are answered in full at each occurrence and their prices are **not** added twice; §7 below states which are the same defect.
 
 **Bucket key:**
 `ACCEPT` accept and implement · `DEFECT-NO-FIX` accept the defect, reject the proposed fix · `RESEARCH` unproven, needs evidence I do not have · `REJECT` rejected with receipts · `YOURS` your decision, priced, with a recommendation.
@@ -662,3 +664,107 @@ There is also a live question the reviewer does not raise and I must: a lens cal
 ---
 
 **§D running total.** Above the 5% line and accepted: D-1 (**+70.9%** on the coherence-tested base), D-2 (+10.8%), D-3 (−10.80% at the corrected rate), D-4 (−8.20%), D-7 (−5.48%), D-11 (+12.9% gross, offset by interim dividends), D-17 (bounded at −6.93%). Accepted below the line: D-5, D-8 to D-10, D-12 to D-16, D-18 to D-26, D-29, D-30. Research: D-6, D-24 (1bp), D-27, D-28, D-32, D-33. Clearances: D-31, and the ~62-line reconciliation appendix in their §C.
+
+---
+
+# §E — Step 7: the buckets, and Step 8: stop and report
+
+## E.1 Reconciliation against the self-audit (step 1)
+
+The self-audit in `SELF_AUDIT_pre_critique.md` was written and committed **before any critique was opened**. Fifteen findings, S1–S15.
+
+**They also caught, independently — 8 of my 15.** S1 (employees' profit share → C-F4, D-4), S2 (tax provision → A-1, B-8), S3 (capex vs depreciation → A-3, B-9, and *corrected* by C-F9 and D-13, which showed my own statement of the defect was backwards), S4 (forecast margin above the filed periods → B-3), S5 (annualisation and seasonality → B-3, and superseded by C-F1 / D-2), S9 (inherited lens multiples → C-F13, D-5), S12 (the QC gate not re-run → C-F34), S15 (the live site publishes 9.38 → C-F36).
+
+**They missed — 4 of my 15.** S6 (`raw_pass = 1.0` never tested against the currency path), S7 (provision reversals sitting inside disclosed other revenue and being non-recurring), S8 (the whole cost-of-capital stack inherited without re-examination against the filings — three reviewers questioned individual parameters, none questioned the inheritance), S13 (two of the four filings supplied were barely used). S10, S11 and S14 are internal-process items about the rebuild that outside reviewers had no way to see, though C-F34 reaches S11 from the template side.
+
+**I missed — the ones that matter most.** My self-audit did **not** find C-F1 / D-2, the period mismatch inside the gross margin, which is the single largest defect in the model and which I could have found by reading my own `build()` against my own text. It did not find D-1, the 30-Jun-2026 disclosure, which my *previous* edition had already sourced and which my rebuild deleted. It did not find D-3, the undiscounted lens 3, which is a **regression** of a defect an earlier edition had fixed. It did not find D-7, the terminal risk-free rate built off the wrong CBE target. It did not find D-15, D-16, D-17, C-F5/D-8, C-F6/D-9, C-F14/D-23, or C-F13.
+
+**The honest summary: my self-audit found the defects I already suspected and missed every one that required re-reading my own code against my own prose.** Nine of the ten largest priced findings in this register came from outside.
+
+## E.2 The buckets
+
+### ACCEPT AND IMPLEMENT — priced, no further evidence needed
+| Finding | Also raised as | Price on the weighted central |
+|---|---|---|
+| C-F1 / D-2 — one annualisation basis on both sides of the margin (Option A: mix from note 14-A, level from the nine months) | — | **+10.8%** |
+| D-1 — rebase on the twelve months to 30-Jun-2026, gross profit solved from the release's own profit, half flagged REPORTED not audited | — | **+70.9%** on the coherence-tested base (supersedes C-F1/D-2 if adopted) |
+| A-1 / B-8 — deduct the 921.44mn provision in the bridge | — | **−8.47%** |
+| C-F4 / D-4 — charge employees' profit share and board bonuses | — | **−8.20%** |
+| D-3 — discount lens 3 to the valuation date, at the **cost of equity** over 2.4 years, not at the WACC factor | — | **−10.80%** |
+| D-7 — terminal risk-free rate on the CBE target in force (7% + 5.5%) | — | **−5.48%** |
+| D-15 — dividends payable out of NWC and carried in the bridge | — | **−4.52%** |
+| C-F11 — charge formed provisions and expected credit losses | — | **−4.28%** |
+| A-2 — rebuild lens 2 on trailing EBITDA, dropping the borrowed discount factor and interim add-back | B-10 (in reworked form) | **+2.73%** |
+| D-16 — one view of the written-down asset base across all lenses (terminal ROIC) | — | **−1.25% to −2.31%** |
+| C-F19 — disclose the terminal-versus-2030 reinvestment step | — | −0.88% (disclosure) |
+| D-14 / C-F18 — strike the NCI ratio on the nine-month base and on operating profit only | A-4, B-6 | **+0.38% / −0.4%** |
+| A-4 — charge the minority its share of the whole enterprise including net cash | — | **−0.55%** |
+| C-F37 — statutory rate on EBIT for the unlevered waterfall | — | **−0.40%** |
+| C-F33 / D-25 — carry the ASPPC investment in the bridge | — | **+0.06 to +0.17 a share** |
+| C-F13 / D-5 — correct the stated trailing multiple to 5.63× | — | 0.00% (or +2.47% if the multiple follows) |
+| C-F36 — **update the live site**, which still publishes the superseded EGP 9.38 | — | 0.00% in the documents; the entire published conclusion outside them |
+
+**Zero-priced, accepted, all presentation or disclosure:** C-F5/D-8 (probability zones must partition), C-F6/D-9 (sort the NWC grid), C-F14/D-23 (rebuild the beta row; add a base-point-reproduction gate), C-F15 (relabel the volume row), C-F7/D-10 (drift prose), C-F8/D-12 (reinvestment narrative), C-F9/D-13 (capex/depreciation path), C-F10 (withdraw the non-existent house reference), C-F16/D-25 (Appendix A.2 residual line), C-F17/D-11 (state the valuation date), C-F20 (TV wording), C-F21 to C-F25, C-F27/D-21 (nominal-growth ceiling), C-F30/D-18 (source the dividend yield), C-F34 (restore the template), C-F35 (quantify the technical read), C-F41/D-22/D-29 (weight the range; publish the driver sets), D-19 (name the instrument at each use), D-20 (rewrite the reachability gate), D-24 (vintage discipline), D-26 (asymmetric log bound), D-30 (publish the invested-capital denominators).
+
+### ACCEPT THE DEFECT, REJECT THE PROPOSED FIX
+- **B-6** — NCI at the 34.079mn carrying amount (+1.35%). The premise is right; anchoring a claim on a going concern to a written-down accounting residual is the same error in mirror image, and the same document argues four rows earlier that book value understates a depreciated plant.
+- **A-2** — "destroys its value as an independent market read". The lens contributes the multiple and the metric; only the time-shift is borrowed. The rebuild goes in for a restated reason.
+- **C-F28** — the rating-basis WACC and the currency cross-check are **not** absent; both are computed (`ps_rating_basis` 5.8434, `ccy_alt_ps` 7.2093). They are buried, which is the real defect.
+- **C-F26** — the single-escalator criticism is accepted; the "FX path referenced by zero formulas" claim is false for the model (referenced twice).
+
+### UNPROVEN — RESEARCH, priced but not adopted
+| Finding | Price | Why it cannot be settled here |
+|---|---|---|
+| C-F2 — board capital budget EGP 580.19mn FY2025/26 | **−11.54%** | EGX disclosure feed egress-blocked (403 at proxy) |
+| C-F3 / D-27 — FY2026 board budget, operating profit 2,081mn / NPAT ~2.1bn | **+16.68%** | Same block; **two reviewers independently reached the same two figures**, which raises this to strongly corroborated |
+| C-F12 / D-28 — beta against EGX30 rather than a 33-name house composite | −5.59% at β 1.15 | Needs the EGX30 series |
+| A-6 / B-5 / C-F40 / D-6 — Egypt 10-year yield 22.31% vs 22.64–23.00% | −0.53% | All rate sources blocked; **three reviewers land above 22.6%**, and C-F10 shows the cited source file does not exist |
+| C-F29 / C-F39 / D-24 — Damodaran vintage and the 1bp spread | +0.01% | `pages.stern.nyu.edu` blocked |
+| D-32 — Central Auditing Organization as joint auditor | 0.00% | Re-read the signature block |
+| D-33 — standalone profit 843.86mn above consolidated 656.4mn | 0.00% | Bears on the NCI question; needs the standalone statements |
+| C-F43 — the "about 12%" claim about the superseded edition | 0.00% | The superseded workbook is not supplied |
+
+### REJECTED WITH RECEIPTS
+| Finding | Receipt | Value of the error |
+|---|---|---|
+| **B-7** — pledged cash "added back as free liquidity" | `compute.py:166-169` excludes the 508,750,050 by name; §A independently reproduced 2,463,522,365 from the components; **§B's own ledger verifies that figure at 0.00% variance** | **−2.47%** of double deduction |
+| **B-15** — deduct the provision from book equity | The balance sheet foots on §A-12's reading and not on §B's: 8,136.418 = 3,311.643 + 4,790.696 + 34.079. Their 2.996 is the arithmetic signature of the double-count | **−2.84%** of double deduction |
+| **B-14 / B-10** — strip the credit interest and add no cash back | Their own stated rule says "net cash added separately outside the multiple"; done properly the correction is **+1.22%**, not −3.81% | **−3.81%** understated, a 5.03pp swing |
+| **C-F31** — "0 cached values" | The delivered workbook contains **488 formula cells and 488 `</f><v>` cached values** across 9 sheets, read out of its own zip | 0.00% |
+| **C-F15** — volume row endpoint 2.572 | `dcf_scenario(vol_mult=0.0)` returns **2.7647**, the published value. `vol_mult` scales growth rates, not volume | 0.00% |
+| **C-F6** — NWC endpoints "wrong by up to +0.97" | Re-running gives 8.5225 / 6.5156, the published endpoints. §D-9 says explicitly "Endpoints match" | 0.00% |
+| **A-3 / B-9** — "permanently below depreciation", "shrinking capital base" | Capex 145.6 → **220.9**; PPE 1,298 → **1,478**; invested capital 3,034 → **4,198**; capex/D&A 0.99 → **1.50**. `rr_term = g/roic` is enforced with an assertion | −1.26% to −3.02% at most, not "violently broken" |
+| **A-7** — statutory tax rate cleared at 0.00% variance | The model does not use it; `price.py '{"tax_eff": 0.225}'` returns the published central unchanged | 0.00% |
+| **A-15** — "6.56 is an absolute ceiling" | The same reviewer's A-2, priced, runs **+2.73%** | 0.00% |
+| **B-16** — corrected central 6.10 | Decomposes into −8.47% real and −6.33% error | −6.33% of error |
+| **D-10** — drift overstated "by roughly 4×" | The published +0.0235 is the carry with no half-variance term and reproduces both medians exactly (9.316 vs 9.33; 9.1692 vs 9.17). The prose is wrong, not the number | 0.00% |
+| **A-8** — the Aldar / NMDC / JLR SOTP premise | Appears nowhere in the study, model, registry or bibliography; the reviewer is rejecting their own brief | 0.00% |
+
+**Total arithmetic error inside the two Gemini files: 9.12% of central**, all of it presented as part of a correction.
+
+### YOUR DECISION — priced, with a recommendation
+| Question | Options, priced | My recommendation |
+|---|---|---|
+| **The base year** — this is the fork that dominates everything else | (i) nine months × 4/3 as published, corrected for C-F1: **7.93 (+10.8%)**; (ii) twelve months to 30-Jun-2026 on the coherence-tested gross profit: **~12.24 (+70.9%)**; (iii) both, published side by side with the H1-2026 half flagged REPORTED not audited | **(iii)**, headlining (ii). A contiguous twelve-month period disclosed a week before the anchor date beats a synthetic annualisation, but half of it is a press release, not an audit, and the reader must see that |
+| **A-4 / B-6 / C-F18 / D-14 — the NCI treatment** | (i) as published 7.1636; (ii) minority charged its share of the whole enterprise including cash, 7.1241 (−0.55%); (iii) B's carrying-amount fix, 7.2605 (+1.35%) | **(ii)** — costs half a percent, removes an inconsistency findable in one line, and where the filings are silent the conservative reading is the one to publish |
+| **B-4 / C-F28 — CDS-basis or rating-basis ERP** | CDS 7.1636; rating **6.9337 (−3.21%)** | Keep CDS as the headline, **promote the rating basis to the summary page**. Two reviewers reached for it independently |
+| **C-F13 / D-5 — 4.5× or 5.63×** | 4.5× 7.1636; 5.63× **7.3406 (+2.47%)** | Keep 4.5×, and state plainly it is a **20% de-rating** for administered-margin and state-counterparty risk, not a hold |
+| **C-F32 — WACC weights at spot or iterated** | spot 7.1636; iterated **7.0868 (−1.07%)** | Keep spot weights and **disclose the circularity in one sentence**; with a negative debt weight the iteration is self-reinforcing |
+| **D-17 — the rate in the book lens** | terminal Ke 7.0606 on the lens; explicit Ke **3.749 (−6.93% weighted)** | **Neither endpoint — the glided path**, consistent with lens 1. I will implement and price it rather than pick an end |
+
+## E.3 What this does to the answer
+
+**I am not publishing a single combined number here, and the reason is a receipt, not a hedge.** The accepted changes do not compose linearly — D-1 supersedes C-F1/D-2 rather than adding to it; D-3 and B-10 both rebuild lens 3; D-15 moves the same balance twice if the NWC and bridge legs are taken together; and A-1, D-15 and C-F33 all move the same bridge. A weighted central struck by adding percentages would be exactly the error I have just rejected §B for. Step 9 requires the fix, then the proof: every gate re-run, before and after reported, and any further defect the fix surfaces reported too.
+
+What can be said now, priced:
+- **The two largest accepted findings run upward** — the base-year rebase (+70.9% on the coherence-tested basis, or +10.8% on the corrected annualisation) and the period mismatch inside the gross margin.
+- **The largest accepted bridge findings run downward** and total roughly **−25% before interaction** — the tax provision, the employees' profit share, lens 3's missing discount, the terminal risk-free rate, dividends payable, and the recurring provisions and credit losses.
+- **The two unresolved research items are individually larger than any accepted finding except D-1** — the board capital budget at −11.54% and the FY2026 guidance at +16.68%, both egress-blocked, both corroborated by two independent reviewers.
+- **The published EGP 7.1636 does not survive.** Not because the arithmetic is wrong — all four reviewers cleared the arithmetic, and ~62 lines reproduce to the last decimal — but because the base year it operates on is contested by a disclosure that existed a week before the anchor date, and because six separate real claims on the cash and the profit were registered and never charged.
+- **And the live site publishes EGP 9.38 with a "roughly fairly valued" reading**, which no version of this analysis supports. That is the only finding in this register whose defect is in front of the public right now.
+
+## E.4 Step 8 — what I need from you
+
+Steps 2 through 7 are complete: 109 findings, one row each, in each reviewer's own order, every one priced against the same engine that produced the published figure, every premise split from its conclusion, every rejection carrying a receipt at the same standard as an acceptance, and the four-way contradictions arbitrated by coherence test rather than by preference.
+
+Step 9 says I implement on approval and then prove it. **Six decisions in E.2's last table are yours, and the base-year fork is the one that matters** — it is worth more than every other finding in this register combined. Tell me which base year to publish on, and I will implement the whole accepted list, re-run every gate, and report before and after on each.
