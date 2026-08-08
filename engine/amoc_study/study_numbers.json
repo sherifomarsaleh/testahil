@@ -224,6 +224,30 @@
    "date": "2025-06-30",
    "ring": "Company"
   },
+  "rev_h1cy26_rep": {
+   "value": 26223000000.0,
+   "source": "Net sales, six months to 30-Jun-2026. Half-year results for 1-Jan to 30-Jun-2026, disclosed to the Egyptian Exchange 29-30 July 2026. REPORTED, NOT AUDITED \u2014 a press release, not a filing",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "pat_h1cy26_rep": {
+   "value": 1903000000.0,
+   "source": "Net profit after tax, six months to 30-Jun-2026. Half-year results for 1-Jan to 30-Jun-2026, disclosed to the Egyptian Exchange 29-30 July 2026. REPORTED, NOT AUDITED \u2014 a press release, not a filing",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "gp_h1cy26_rep": {
+   "value": 3258000000.0,
+   "source": "Gross profit, six months to 30-Jun-2026, AS RELEASED. This study does NOT use this figure: run through the company's own Q1-2026 expense run rates it implies a profit after tax about 12.6% above the profit the same release reports. The gross profit actually used is SOLVED from the release's own profit line, which two independent coherence tests confirm. Half-year results for 1-Jan to 30-Jun-2026, disclosed to the Egyptian Exchange 29-30 July 2026. REPORTED, NOT AUDITED \u2014 a press release, not a filing",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "pat_h1cy25": {
+   "value": 878800000.0,
+   "source": "Majority profit, six months to 30-Jun-2025, read off the AUDITED consolidated statement of changes in equity. Used only to test the reported +109% profit growth in the half above. Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2025-06-30",
+   "ring": "Company"
+  },
   "prod_t": {
    "value": {
     "oils": 54968.98,
@@ -332,6 +356,18 @@
   "ppe_net": {
    "value": 893016274.0,
    "source": "Fixed assets net of accumulated depreciation at 31-Dec-2025 (note 6). Cost 2,740,810,692 less accumulated depreciation 1,847,794,418 \u2014 the plant is 67% written down, and 273,466,121 of it is fully depreciated and still in use. Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "ppe_gross": {
+   "value": 2740810692.0,
+   "source": "Fixed assets at COST at 31-Dec-2025 (note 6), before accumulated depreciation of 1,847,794,418. The gross figure is what a replacement-capex line has to be built on; the net figure is what the terminal return is flattered by. Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "ppe_accdep": {
+   "value": 1847794418.0,
+   "source": "Accumulated depreciation on fixed assets at 31-Dec-2025 (note 6). The plant is 67.4% written down and 273,466,121 of it is fully depreciated and still in use. Audited consolidated FS, transition period 1-Jul-2025 to 31-Dec-2025, Crowe unqualified, 18-Feb-2026",
    "date": "2025-12-31",
    "ring": "Company"
   },
@@ -725,6 +761,21 @@
    "date": "2026-08-06",
    "ring": "House"
   },
+  "proc_intensity": {
+   "value": {
+    "oils": 1.0,
+    "wax": 1.15,
+    "gasoil": 0.25,
+    "naphtha": 0.2,
+    "lpg": 0.15,
+    "fueloil": 0.05,
+    "hfo": 0.05,
+    "waste": 0.0
+   },
+   "source": "Processing intensity by product line, relative weights, used to allocate the note 15-A conversion stack (salaries, supporting materials, other, depreciation) across the eight disclosed lines. Base oils are the reference at 1.00: they pass the full lube train \u2014 vacuum distillation, solvent extraction, dewaxing, hydrofinishing. Paraffin wax carries 1.15 for the additional deoiling and sweating steps. Gas oil, naphtha and LPG are light ends drawn off the front of the process and carry 0.25/0.20/0.15. Fuel oil and heavy fuel oil are the residue, sold substantially as produced, at 0.05. THIS IS THE ONLY OPERATING INPUT IN THE MODEL THAT IS NOT READ OFF A FILING, and it exists because note 15-A discloses the cost stack for the company and not by line. It is stated here rather than hidden in a formula, and the valuation is sensitised to it",
+   "date": "2026-08-06",
+   "ring": "House"
+  },
   "raw_pass": {
    "value": 1.0,
    "source": "Pass-through factor on the raw-material line: 1.0 means the feedstock charge moves one-for-one with realisation and volume, so the gross SPREAD per tonne is held flat in real terms and the margin neither widens nor narrows by assumption. Setting it below 1.0 is the way to express spread widening; the study leaves it at parity and sensitises it",
@@ -981,9 +1032,9 @@
    "date": "2026-08-06",
    "ring": "House"
   },
-  "rf_term": {
-   "value": 0.105,
-   "source": "Terminal risk-free rate, norm-built: the central bank's own stated medium-term inflation target of 5% plus the standard ~5.5pp emerging-market real-rate convention. Never a raw historical average and never backed out of a price",
+  "real_rate_term": {
+   "value": 0.055,
+   "source": "Terminal real risk-free rate, the standard emerging-market convention. The terminal NOMINAL risk-free rate is not an input: it is DERIVED as this real rate plus the central bank's inflation target IN FORCE for the terminal horizon (`cbe_target`), so the single most terminal-value-sensitive number in the model cannot be set by hand. The previous edition hardcoded 10.50% by adding 5.5pp to the 5% target dated Q4-2028 while describing it as 'the' medium-term target; the target in force is 7% for Q4-2026 and the July-2026 rate decision pushed even that to H2-2027",
    "date": "2026-08-06",
    "ring": "House"
   },
@@ -1005,9 +1056,9 @@
    "date": "2026-08-06",
    "ring": "House"
   },
-  "ev_ebitda_just": {
-   "value": 4.5,
-   "source": "Justified enterprise-value-to-EBITDA multiple on mid-cycle 2028E EBITDA. The company's own trailing multiple is around 4.6x on the constructed 2025 base. Group I base-oil refiners and independent lube processors trade 4-6x; 4.5x holds the name at its own trailing level rather than assuming a re-rating. Bear 3.5x / bull 6.0x",
+  "rel_rerating": {
+   "value": 0.0,
+   "source": "Re-rating applied to the company's OWN trailing enterprise-value to EBITDA multiple in the relative lens. ZERO: the name is held at the multiple the market already pays it. The justified multiple is no longer a free number \u2014 it is DERIVED as the trailing multiple times one plus this figure, so it cannot drift away from the company's own pricing without the drift being visible. The previous edition set 4.5x by hand and justified it as 'holding the name at its own trailing level' against a stated trailing multiple of 'around 4.6x'; the model's own output was different, so the stated justification was false whichever way the multiple was struck. Holding at zero re-rating makes the lens a statement about the BRIDGE \u2014 what the disclosed claims on the cash are worth \u2014 rather than a disguised view on the multiple",
    "date": "2026-08-06",
    "ring": "House"
   },
@@ -1188,12 +1239,12 @@
    "hfo": 0.6070510398850135,
    "waste": -0.24
   },
-  "base_rev": 41662.00662933333,
-  "base_gm": 0.07505511522333597,
+  "base_rev": 46958.725812,
+  "base_gm": 0.089969713697013,
   "tax_eff": 0.22118761296853667,
-  "dep_ann": 147.63050666666666,
-  "capex_ann": 127.12237466666666,
-  "opex_ann": 1621.346428,
+  "dep_ann": 151.320491,
+  "capex_ann": 160.326263,
+  "opex_ann": 1746.987048,
   "ic": 3034.491766,
   "ppe": 1300.339477,
   "nwc": 1734.152289,
@@ -1210,13 +1261,13 @@
   "pat9": 1291.548246
  },
  "base": {
-  "rev_cy25": 41662.00662933333,
+  "rev_cy25": 46958.725812,
   "pat_cy25": 1722.064328,
-  "gm_cy25": 0.07505511522333597,
-  "gp_cy25": 3126.946708,
-  "ebitda_cy25": 1653.2307866666665,
-  "dna_cy25": 147.63050666666666,
-  "opex_cy25": 1621.346428,
+  "gm_cy25": 0.089969713697013,
+  "gp_cy25": 4224.863116882174,
+  "ebitda_cy25": 2629.196559882174,
+  "dna_cy25": 151.320491,
+  "opex_cy25": 1746.987048,
   "npa_cy25": 1651.243093333333,
   "np_cy25": 1722.064328,
   "nd_cy25": -2442.544928,
@@ -1232,7 +1283,7 @@
   "recv": 939.148849,
   "pay": 2052.389066,
   "roe_trailing": 0.32555333214717463,
-  "implied_life": 8.808067562458636,
+  "implied_life": 8.593280846544438,
   "eq_jun25": 5353.528855,
   "eq_jun24": 4922.226388,
   "eq_dec24": 4430.087458,
@@ -1377,60 +1428,60 @@
   },
   "lines_rev": {
    "oils": [
-    5916.8641694184,
-    6615.054141409771,
-    7291.6088037224545,
-    7945.957777768507,
-    8593.20371451442
+    6699.751065327351,
+    7490.321691035978,
+    8256.394341986681,
+    8997.323170236567,
+    9730.209126391357
    ],
    "wax": [
-    4763.097656825401,
-    5401.948130047107,
-    6011.9631226326765,
-    6602.361949127695,
-    7167.94668313777
+    5393.324519009695,
+    6116.7041701218695,
+    6807.432988532881,
+    7475.950137738763,
+    8116.369930338017
    ],
    "gasoil": [
-    11388.6201227364,
-    12487.621964580463,
-    13538.705105339197,
-    14553.133201472054,
-    15539.54456986783
+    12895.499645619164,
+    14139.915361421414,
+    15330.07203739225,
+    16478.723675009976,
+    17595.651565702155
    ],
    "naphtha": [
-    2121.4186704137,
-    2321.5745219672326,
-    2516.981449481214,
-    2705.5738355279423,
-    2888.9576301000266
+    2402.113110956642,
+    2628.752482975401,
+    2850.01457946744,
+    3063.5604718777763,
+    3271.208600661652
    ],
    "lpg": [
-    1823.9296629399998,
-    2003.8603241890314,
-    2176.7934701665445,
-    2344.5023462820554,
-    2505.879131781342
+    2065.261995623195,
+    2269.000091491423,
+    2464.8147993871326,
+    2654.7139907911146,
+    2837.443264205249
    ],
    "fueloil": [
-    20153.7442403064,
-    22228.57220984595,
-    24194.244850362622,
-    26109.461272717326,
-    27961.562017558805
+    22820.37673641579,
+    25169.734521429793,
+    27395.494145159828,
+    29564.121461690676,
+    31661.28198169717
    ],
    "hfo": [
-    498.33178093080005,
-    545.349384461621,
-    590.0898479628522,
-    633.679785031868,
-    675.9639697274747
+    564.2682989807053,
+    617.5070129895347,
+    668.1672883351961,
+    717.5248059245168,
+    765.4038011742482
    ],
    "waste": [
-    0.19053199999999998,
-    0.2048219,
-    0.21813532349999998,
-    0.23078717226299997,
-    0.242788105220676
+    0.21574214540477216,
+    0.23192280631013007,
+    0.2469977887202885,
+    0.2613236604660652,
+    0.2749124908103006
    ]
   },
   "lines_vol": {
@@ -1493,60 +1544,60 @@
   },
   "line_margin": {
    "oils": [
-    0.07173467089486295,
-    0.07187388235213525,
-    0.07173416137023093,
-    0.07155355920471035,
-    0.07090364598851324
+    0.06908168330413522,
+    0.05924875914967653,
+    0.049700049617649955,
+    0.04123252108151387,
+    0.03210414088008584
    ],
    "wax": [
-    0.07173467089486295,
-    0.07187388235213525,
-    0.07173416137023093,
-    0.07155355920471035,
-    0.07090364598851324
+    0.06582069139077873,
+    0.05489017716343825,
+    0.044275602724233254,
+    0.03486289500059214,
+    0.02471556872237224
    ],
    "gasoil": [
-    0.07173467089486295,
-    0.07187388235213525,
-    0.07173416137023093,
-    0.07155355920471035,
-    0.07090364598851324
+    0.08672795908229725,
+    0.08283444772985094,
+    0.0790534759273478,
+    0.07570061588645549,
+    0.07208608053711174
    ],
    "naphtha": [
-    0.07173467089486295,
-    0.07187388235213525,
-    0.07173416137023093,
-    0.07155355920471035,
-    0.07090364598851324
+    0.08636568279251511,
+    0.08235023588491541,
+    0.07845085299945331,
+    0.07499298932214404,
+    0.07126525528540817
    ],
    "lpg": [
-    0.07173467089486295,
-    0.07187388235213525,
-    0.07173416137023093,
-    0.07155355920471035,
-    0.07090364598851324
+    0.09227487941124113,
+    0.09024835971344403,
+    0.08828041532058317,
+    0.08653529727628728,
+    0.08465398079335817
    ],
    "fueloil": [
-    0.07173467089486295,
-    0.07187388235213525,
-    0.07173416137023093,
-    0.07155355920471035,
-    0.07090364598851324
+    0.09475738744831697,
+    0.09356643442769674,
+    0.09240990517133785,
+    0.09138432737485647,
+    0.09027870794736104
    ],
    "hfo": [
-    0.07173467089486295,
-    0.07187388235213525,
-    0.07173416137023093,
-    0.07155355920471035,
-    0.07090364598851324
+    0.0938833893686688,
+    0.09239826462317846,
+    0.09095606649465116,
+    0.08967716553247307,
+    0.08829845223107557
    ],
    "waste": [
-    0.07173467089486295,
-    0.07187388235213525,
-    0.07173416137023093,
-    0.07155355920471035,
-    0.07090364598851324
+    0.0982957650861832,
+    0.0982957650861832,
+    0.0982957650861832,
+    0.0982957650861832,
+    0.0982957650861832
    ]
   },
   "vol": [
@@ -1564,32 +1615,32 @@
    0.2365153010872732
   ],
   "spec_rev": [
-   10679.961826243802,
-   12017.002271456877,
-   13303.571926355131,
-   14548.319726896203,
-   15761.15039765219
+   12093.075584337046,
+   13607.025861157847,
+   15063.827330519562,
+   16473.27330797533,
+   17846.579056729373
   ],
   "fuel_rev": [
-   35986.2350093273,
-   39587.1832269443,
-   43017.03285863593,
-   46346.58122820351,
-   49572.1501071407
+   40747.7355297409,
+   44825.14139311388,
+   48708.80984753057,
+   52478.90572895453,
+   56131.26412593128
   ],
   "cogs": [
-   43318.61256365651,
-   47895.19234101132,
-   52280.49343287551,
-   56537.65405434402,
-   60700.93129453991
+   48291.16047075804,
+   53647.98232139413,
+   58815.40117802743,
+   63847.57326959252,
+   68797.18591683466
   ],
-  "m_spec": 0.07173467089486295,
-  "m_fuel": 0.07173467089486295,
+  "m_spec": 0.06908168330413522,
+  "m_fuel": 0.09475738744831697,
   "raw_of_rev": 0.8511929066300484,
-  "dep_ann": 147.63050666666666,
-  "capex_ann": 127.12237466666666,
-  "base_gm": 0.07505511522333597,
+  "dep_ann": 151.320491,
+  "capex_ann": 160.326263,
+  "base_gm": 0.089969713697013,
   "tax_eff": 0.22118761296853667
  },
  "fcst": {
@@ -1601,116 +1652,116 @@
    "2030E"
   ],
   "rev": [
-   46666.1968355711,
-   51604.18549840117,
-   56320.60478499106,
-   60894.90095509972,
-   65333.3005047929
+   52840.811114077944,
+   58432.16725427173,
+   63772.63717805013,
+   68952.17903692985,
+   73977.84318266067
   ],
   "gp": [
-   3347.5842719145876,
-   3708.9931573898502,
-   4040.1113521155494,
-   4357.246900755701,
-   4632.369210252989
+   4549.650643319903,
+   4784.184932877601,
+   4957.236000022698,
+   5104.605767337336,
+   5180.657265826012
   ],
   "gm": [
-   0.07173467089486295,
-   0.07187388235213525,
-   0.07173416137023093,
-   0.07155355920471035,
-   0.07090364598851324
+   0.08610107504780101,
+   0.08187587689600627,
+   0.0777329622763182,
+   0.0740311015349258,
+   0.07002985005975793
   ],
   "opex": [
-   1856.44166006,
-   2097.7790758678,
-   2339.023669592597,
-   2572.9260365518567,
-   2817.354010024283
+   2007.6668111973768,
+   2276.2977595450516,
+   2545.6211802386333,
+   2807.7788110421184,
+   3082.2099818853626
   ],
   "ebitda": [
-   1638.7731185212542,
-   1758.8445881887167,
-   1848.7181891896191,
-   1931.951370870511,
-   1962.645706895373
+   2541.983832122526,
+   2507.887173332549,
+   2411.614819784065,
+   2296.8269562952178,
+   2098.4472839406494
   ],
   "ebitda_margin": [
-   0.03511692037590916,
-   0.034083370780907105,
-   0.03282489945282487,
-   0.03172599578238935,
-   0.030040510608390157
+   0.048106449892198686,
+   0.04291963298946794,
+   0.037815823941088594,
+   0.033310433236128305,
+   0.028365888942711092
   ],
   "dna": [
-   147.63050666666666,
-   147.63050666666666,
-   147.63050666666666,
-   147.63050666666666,
-   147.63050666666666
+   173.8088544807612,
+   189.31914425466857,
+   206.28894585439525,
+   224.4331664124313,
+   243.82002104992725
   ],
   "ebit": [
-   1491.1426118545876,
-   1611.21408152205,
-   1701.0876825229525,
-   1784.3208642038444,
-   1815.0152002287064
+   2368.174977641765,
+   2318.5680290778805,
+   2205.32587392967,
+   2072.3937898827867,
+   1854.6272628907222
   ],
   "nopat": [
-   1161.3203369428022,
-   1254.8334848488946,
-   1324.8281585755208,
-   1389.6511914806397,
-   1413.5563205885082
+   1738.5748067264683,
+   1702.1563022553041,
+   1619.0205712139505,
+   1521.4296522525067,
+   1361.5582740177208
   ],
   "capex": [
-   145.55511899333334,
-   164.47728446246666,
-   183.39217217565033,
-   201.73138939321538,
-   220.89587138557084
+   280.93199914573097,
+   307.3675835855539,
+   328.6393889871227,
+   351.14674901959336,
+   375.3721794527046
   ],
   "nwc": [
-   1942.4482546251554,
-   2147.988626669397,
-   2344.306326258186,
-   2534.7082491548317,
-   2719.4535689632585
+   2539.6919372055663,
+   2816.0110308946796,
+   3081.4964300959896,
+   3339.610255316537,
+   3592.1114097713016
   ],
   "dnwc": [
-   208.2959656251553,
-   205.54037204424162,
-   196.31769958878886,
-   190.40192289664583,
-   184.74531980842676
+   805.5396482055662,
+   276.3190936891133,
+   265.48539920131,
+   258.11382522054737,
+   252.50115445476467
   ],
   "fcff": [
-   955.0997589909803,
-   1032.4463350088529,
-   1092.7487934777482,
-   1145.1483858574452,
-   1155.5456360611772
+   825.9120138559324,
+   1307.7887692353056,
+   1231.184728879913,
+   1136.6022444247974,
+   977.5049611601787
   ],
   "df": [
    0.7600035144490629,
-   0.6021799403621043,
-   0.49394234921680996,
-   0.41615744031910895,
-   0.35708375807885456
+   0.5991282186145271,
+   0.48681849277495776,
+   0.4048922720823788,
+   0.3421334688532209
   ],
   "pv": [
-   725.8791734825979,
-   621.7184724427042,
-   539.7549061542337,
-   476.5620210439937,
-   412.62657835634553
+   627.6960331562118,
+   783.5331556360336,
+   599.3634940408643,
+   460.2014651990875,
+   334.43716318296487
   ],
   "fwd_wacc": [
    0.31578338913986986,
-   0.26208706652044206,
-   0.21913000842489977,
-   0.1869122148532431,
-   0.16543368580547196
+   0.26851563794901345,
+   0.23070143699632834,
+   0.20234078628181454,
+   0.18343368580547195
   ],
   "glide_frac": [
    0.0,
@@ -1720,67 +1771,67 @@
    1.0
   ],
   "ppe": [
-   1298.2640893266666,
-   1315.1108671224665,
-   1350.8725326314502,
-   1404.9734153579989,
-   1478.2387800769031
+   1407.4626216649697,
+   1525.5110609958551,
+   1647.8615041285825,
+   1774.5750867357447,
+   1906.127245138522
   ],
   "ic": [
-   3240.712343951822,
-   3463.0994937918636,
-   3695.178858889636,
-   3939.6816645128306,
-   4197.692349040161
+   3947.1545588705358,
+   4341.522091890534,
+   4729.357934224572,
+   5114.185342052282,
+   5498.238654909824
   ],
   "roic": [
-   0.35835341544897914,
-   0.3623440467414742,
-   0.35852883153093656,
-   0.35273184734647334,
-   0.33674605069895847
+   0.44046281461650066,
+   0.39206441110474527,
+   0.3423341167513907,
+   0.29749208339054234,
+   0.24763535369674702
   ],
   "np_attr": [
-   1414.9714843359804,
-   1446.7895877231394,
-   1467.897464590493,
-   1494.6162303406315,
-   1488.0219056376
+   2066.2907558849033,
+   1882.4578320325654,
+   1734.5665787065514,
+   1585.4194758317396,
+   1380.8860129379561
   ],
   "equity": [
-   4738.123763907211,
-   4684.3694025004115,
-   4629.830794060536,
-   4574.299470299329,
-   4519.013153632677
+   4713.924494150817,
+   4643.983212091009,
+   4579.536716520991,
+   4520.631667570953,
+   4469.325903117757
   ],
   "net_debt": [
-   -2252.6724659602587,
-   -2047.0010479510877,
-   -1831.8812881625604,
-   -1604.6467876947538,
-   -1363.8282196604946
+   -1447.9661795198945,
+   -971.7747472044643,
+   -505.4649807176304,
+   -46.37868681240661,
+   404.56873412516484
   ],
   "cash": [
-   2273.6499029602587,
-   2067.9784849510875,
-   1852.8587251625604,
-   1625.6242246947538,
-   1384.8056566604946
+   1468.9436165198945,
+   992.7521842044644,
+   526.4424177176304,
+   67.35612381240661,
+   -383.59129712516483
   ],
   "interest": [
    414.18376591000003,
-   336.9568852290388,
-   275.5060439933968,
-   228.25095072532005,
-   188.67704296398094
+   216.25094226298418,
+   130.3504933926027,
+   62.4489122947038,
+   4.80140705986398
   ],
   "div": [
-   1467.5436684287693,
-   1500.5439491299383,
-   1522.4360730303683,
-   1550.1475541018392,
-   1543.3082223042525
+   2143.0622097340856,
+   1952.3991140923736,
+   1799.013074276569,
+   1644.3245247817779,
+   1432.1917773911525
   ],
   "payout": 1.0371542357388637
  },
@@ -1798,10 +1849,10 @@
   "wacc_exp_gross": 0.2774117191215595,
   "wd_gross": 0.0017817310011081166,
   "k_nd_at": 0.13206367002721844,
-  "ke_term": 0.17083500000000001,
+  "ke_term": 0.190835,
   "kd_term": 0.15,
   "kd_term_at": 0.11682185805471951,
-  "wacc_term": 0.16543368580547196,
+  "wacc_term": 0.18343368580547195,
   "glide_frac": [
    0.0,
    0.35714285714285704,
@@ -1837,28 +1888,28 @@
   }
  },
  "dcf": {
-  "pv_explicit": 2776.5411514798748,
-  "tv": 11039.667582939788,
-  "pv_tv": 3942.0859884574443,
-  "ev": 6718.627139937319,
-  "tv_share": 0.586739806563253,
+  "pv_explicit": 2805.2313112151623,
+  "tv": 7572.683174948836,
+  "pv_tv": 2590.868363171667,
+  "ev": 5396.099674386829,
+  "tv_share": 0.48013723235497374,
   "nd": -2442.544928,
   "nci_share": 0.04644563756748903,
-  "nci_val": 312.05092109262415,
-  "eq_attr": 8849.121146844695,
-  "ps": 6.851816606151525,
-  "roic_term": 0.3535833532339064,
-  "rr_term": 0.1414093721966697,
+  "nci_val": 255.4021887847013,
+  "eq_attr": 6722.910806602126,
+  "ps": 5.205505851027585,
+  "roic_term": 0.1705256200950026,
+  "rr_term": 0.2932110727534325,
   "g": 0.05,
-  "bear": 2.365852151589731,
-  "bull": 14.65863459902409,
-  "ps_rating_basis": 5.843369311397428,
+  "bear": 2.761592248978394,
+  "bull": 9.341736843770565,
+  "ps_rating_basis": 5.428099161449696,
   "wacc_exp_rating": 0.32176965328103013,
-  "wacc_term_rating": 0.20352393580547196,
-  "ps_nci_alt": 6.781304250515741,
+  "wacc_term_rating": 0.22152393580547197,
+  "ps_nci_alt": 6.087967354065984,
   "nci_alt": 0.06,
-  "ps_gross_basis": 7.15662733919093,
-  "ccy_alt_ps": 7.209315217927761
+  "ps_gross_basis": 6.405384190660325,
+  "ccy_alt_ps": 6.206631807165366
  },
  "terminal_recon": {
   "roic": {
@@ -1911,8 +1962,8 @@
    "6M Dec-2025",
    "3M Mar-2026"
   ],
-  "rr_waterfall": 0.1700812779725055,
-  "g_waterfall": 0.04243215521882398,
+  "rr_waterfall": 0.9589904778665793,
+  "g_waterfall": 0.23925051184520704,
   "ceiling": 0.15,
   "crossover_years": null,
   "crossover": {
@@ -1924,44 +1975,44 @@
  "lenses": {
   "dcf": {
    "name": "Discounted cash flow (primary)",
-   "bear": 2.365852151589731,
-   "base": 6.851816606151525,
-   "bull": 14.65863459902409,
+   "bear": 2.761592248978394,
+   "base": 5.205505851027585,
+   "bull": 9.341736843770565,
    "w": 0.45
   },
   "relative": {
    "name": "Relative multiples",
-   "bear": 5.623207223609321,
-   "base": 6.405203703276505,
-   "bull": 7.578198422777281,
+   "bear": 6.393881975101156,
+   "base": 8.137350636879066,
+   "bull": 9.88081929865698,
    "w": 0.2
   },
   "normalized": {
    "name": "Normalised earnings power",
-   "bear": 6.380627459644426,
-   "base": 8.700855626787854,
-   "bull": 11.021083793931282,
+   "bear": 4.482259042816271,
+   "base": 5.829524865868314,
+   "bull": 7.176790688920358,
    "w": 0.2
   },
   "book": {
    "name": "Book value and sustainable return",
-   "bear": 3.819835494741683,
-   "base": 7.060562266360505,
-   "bull": 7.981505170668397,
+   "bear": 3.5901332267732737,
+   "base": 4.571061698789989,
+   "bull": 5.167287137762596,
    "w": 0.15
   },
   "central": {
    "name": "Weighted central",
-   "bear": 2.365852151589731,
-   "base": 7.1636136787351345,
-   "bull": 14.65863459902409,
+   "bear": 3.956464699639754,
+   "base": 5.821511988330387,
+   "bull": 8.390396647876612,
    "w": 1.0
   }
  },
- "central": 7.1636136787351345,
+ "central": 5.821511988330387,
  "span": [
-  2.365852151589731,
-  14.65863459902409
+  3.956464699639754,
+  8.390396647876612
  ],
  "spot": 9.1,
  "scen": {
@@ -1971,7 +2022,7 @@
    "fx_mult": 0.97,
    "wacc_shift": 0.02,
    "g": 0.03,
-   "ps": 2.365852151589731
+   "ps": 2.761592248978394
   },
   "bull": {
    "vol_mult": 1.5,
@@ -1979,9 +2030,9 @@
    "fx_mult": 1.03,
    "wacc_shift": -0.02,
    "g": 0.06,
-   "ps": 14.65863459902409
+   "ps": 9.341736843770565
   },
-  "base_ps": 6.851816606151525,
+  "base_ps": 5.205505851027585,
   "labels": {
    "vol_mult": "Volume growth path, as a multiple of the assumed path",
    "gm_shift": "Gross margin, shifted on every forecast year",
@@ -1993,107 +2044,107 @@
  "experts": {
   "e1": {
    "method_short": "earnings power at a justified multiple",
-   "base": 7.9560838189186605,
+   "base": 9.401444871038219,
    "rng": [
-    5.682917013513329,
-    10.797542325675325
+    6.715317765027299,
+    12.759103753551868
    ],
-   "eps": 1.1365834027026658,
-   "ebit": 1701.0876825229525,
-   "interest": 275.5060439933968,
+   "eps": 1.3430635530054598,
+   "ebit": 2205.32587392967,
+   "interest": 130.3504933926027,
    "pe": 7.0,
    "year": "2028E"
   },
   "e2": {
    "method_short": "free cash flow to equity, discounted",
-   "base": 5.336827207377083,
+   "base": 3.8564585113454615,
    "rng": [
-    4.510620769307971,
-    5.608333416166414
+    3.4784774225644863,
+    3.975144510168586
    ],
-   "fcff": 1131.1476051321235,
+   "fcff": 1115.0973114882963,
    "fcfe": [
-    1218.328952606667,
-    1234.7313508442353,
-    1246.5971735709445,
-    1261.4695134116462,
-    1241.9946918523651
+    1095.1414146603227,
+    1407.6442748147883,
+    1270.8050529711393,
+    1130.1890855741299,
+    935.6698367085941
    ],
-   "ke": 0.17083500000000001,
-   "fin_at": 177.76466777658743,
+   "ke": 0.190835,
+   "fin_at": 48.63598645175677,
    "ke_path": [
     0.27760105,
-    0.2394703178571429,
-    0.20896573214285713,
-    0.18608729285714287,
-    0.17083500000000001
+    0.24661317500000002,
+    0.221822875,
+    0.20323015000000003,
+    0.190835
    ],
    "df": [
     0.7827169522128994,
-    0.6314930990571027,
-    0.5223416034611662,
-    0.44039052319910416,
-    0.37613371926796185
+    0.6278747633265623,
+    0.5138836210826077,
+    0.427086722421814,
+    0.35864475130628004
    ],
-   "pv": 3407.1759201063883,
-   "pv_tv": 3485.336418221115
+   "pv": 3212.317796699164,
+   "pv_tv": 1768.2983707034998
   },
   "e3": {
    "method_short": "cash returns against the cost of capital",
-   "base": 6.851816606151527,
+   "base": 6.148482114401435,
    "rng": [
-    5.673579244616542,
-    7.209315217927761
+    5.301914056057947,
+    6.206631807165366
    ],
    "ic0": 3034.491766,
-   "pv_ep": 1240.9771447339906,
-   "pv_ep_term": 2443.1582292033286,
-   "ev": 6718.62713993732,
+   "pv_ep": 1651.871008802327,
+   "pv_ep_term": 1079.6637249596074,
+   "ev": 5766.026499761934,
    "ep": [
-    203.0782427582933,
-    405.48469318597574,
-    565.9591373246436,
-    698.9771266866983,
-    761.8002619279138
+    780.3327125419594,
+    642.2835777968255,
+    617.4251858634988,
+    564.4876492333686,
+    423.4444068327524
    ],
    "spread": [
-    0.04257002630910928,
-    0.10025698022103213,
-    0.1393988231060368,
-    0.16581963249323023,
-    0.1713123648934865
+    0.1246794254766308,
+    0.12354877315573182,
+    0.11163267975506236,
+    0.0951512971087278,
+    0.06420166789127507
    ]
   }
  },
- "panel_centre": 6.851816606151527,
+ "panel_centre": 6.148482114401435,
  "rel": {
-  "ebitda_mid": 1758.8445881887167,
-  "pv_interim": 1347.597645925302,
-  "ev_rel": 4766.134181497611,
-  "ev_rel_fwd": 7914.800646849225,
-  "df_rel": 0.6021799403621043,
-  "ev_ebitda_trailing": 5.631461225550692,
+  "ebitda_mid": 2629.196559882174,
+  "pv_interim": 0.0,
+  "ev_rel": 9310.105072,
+  "ev_rel_fwd": 9310.105072,
+  "df_rel": 1.0,
+  "ev_ebitda_trailing": 3.5410456616515686,
   "pe_trailing": 7.117455962389613,
-  "just_mult": 4.5,
-  "year": "2027E"
+  "just_mult": 3.5410456616515686,
+  "year": "2026E"
  },
  "norm": {
-  "rev": 56320.60478499106,
-  "ebitda": 1848.7181891896191,
-  "ebit": 1701.0876825229525,
-  "dna": 147.63050666666666,
-  "interest": 316.4274546666667,
-  "np": 1498.2873389328684,
-  "eps": 1.1601140835717139,
+  "rev": 63772.63717805013,
+  "ebitda": 2411.614819784065,
+  "ebit": 2205.32587392967,
+  "dna": 206.28894585439525,
+  "interest": 301.424769,
+  "np": 1566.2689261847077,
+  "eps": 1.212751781792263,
   "pe": 7.5,
   "year": "2028E"
  },
  "book": {
   "bvps": 3.7094045280681374,
-  "pb_just": 1.9034220217652171,
+  "pb_just": 1.232289890251092,
   "roe_sust": 0.28,
   "roe_trailing": 0.32555333214717463,
-  "ke_term": 0.17083500000000001
+  "ke_term": 0.190835
  },
  "sens_wg": {
   "g_grid": [
@@ -2104,47 +2155,47 @@
    0.07
   ],
   "wacc_grid": [
-   0.14543368580547197,
-   0.15543368580547196,
-   0.16543368580547196,
-   0.17543368580547197,
-   0.18543368580547195
+   0.16343368580547196,
+   0.17343368580547194,
+   0.18343368580547195,
+   0.19343368580547196,
+   0.20343368580547194
   ],
   "table": [
    [
-    7.163987864190678,
-    7.393261783710482,
-    7.670584548370177,
-    8.012828488335627,
-    8.445812774954168
+    6.452234170391962,
+    6.562489072384607,
+    6.692183508799457,
+    6.846955739823455,
+    7.034857827534525
    ],
    [
-    6.8220775270089895,
-    7.005003496696553,
-    7.222629186552307,
-    7.4858626066385305,
-    7.810718890728441
+    6.210382808191696,
+    6.297436508939066,
+    6.398595548950887,
+    6.517590391316039,
+    6.659594148318333
    ],
    [
-    6.530399132550305,
-    6.67829562232424,
-    6.851816606151525,
-    7.05825325303311,
-    7.307952746809736
+    5.999741737063358,
+    6.068926938101953,
+    6.148482114401436,
+    6.240927641625846,
+    6.34967265282946
    ],
    [
-    6.278592214652965,
-    6.399508001681145,
-    6.539703424199855,
-    6.70418905655471,
-    6.899876411793145
+    5.814583343151955,
+    5.8698193127943314,
+    5.932757234643011,
+    6.005128744639804,
+    6.0892266337890195
    ],
    [
-    6.058962590775114,
-    6.158759290646429,
-    6.273293343234359,
-    6.406089484168403,
-    6.561893838001035
+    5.650501113868669,
+    5.694720355737705,
+    5.744703552456277,
+    5.801656269122397,
+    5.867145468359964
    ]
   ]
  },
@@ -2157,11 +2208,11 @@
    0.07
   ],
   "wt_grid": [
-   0.14543368580547197,
-   0.15543368580547196,
-   0.16543368580547196,
-   0.17543368580547197,
-   0.18543368580547195
+   0.16343368580547196,
+   0.17343368580547194,
+   0.18343368580547195,
+   0.19343368580547196,
+   0.20343368580547194
   ],
   "we_grid": [
    0.2857833891398699,
@@ -2172,76 +2223,76 @@
   ],
   "grid_wacc_g": [
    [
-    7.163987864190678,
-    7.393261783710482,
-    7.670584548370177,
-    8.012828488335627,
-    8.445812774954168
+    6.452234170391962,
+    6.562489072384607,
+    6.692183508799457,
+    6.846955739823455,
+    7.034857827534525
    ],
    [
-    6.8220775270089895,
-    7.005003496696553,
-    7.222629186552307,
-    7.4858626066385305,
-    7.810718890728441
+    6.210382808191696,
+    6.297436508939066,
+    6.398595548950887,
+    6.517590391316039,
+    6.659594148318333
    ],
    [
-    6.530399132550305,
-    6.67829562232424,
-    6.851816606151525,
-    7.05825325303311,
-    7.307952746809736
+    5.999741737063358,
+    6.068926938101953,
+    6.148482114401436,
+    6.240927641625846,
+    6.34967265282946
    ],
    [
-    6.278592214652965,
-    6.399508001681145,
-    6.539703424199855,
-    6.70418905655471,
-    6.899876411793145
+    5.814583343151955,
+    5.8698193127943314,
+    5.932757234643011,
+    6.005128744639804,
+    6.0892266337890195
    ],
    [
-    6.058962590775114,
-    6.158759290646429,
-    6.273293343234359,
-    6.406089484168403,
-    6.561893838001035
+    5.650501113868669,
+    5.694720355737705,
+    5.744703552456277,
+    5.801656269122397,
+    5.867145468359964
    ]
   ],
   "grid_exp_term": [
    [
-    7.950588571582993,
-    7.478606646513155,
-    7.087912139243198,
-    6.759070709056802,
-    6.478387771609683
+    6.920339917514069,
+    6.611008504997245,
+    6.347487517922315,
+    6.120202795395178,
+    5.922076054969438
    ],
    [
-    7.8082671179142125,
-    7.348506330007696,
-    6.96792472909037,
-    6.647592040563117,
-    6.374168874582002
+    6.804390578668253,
+    6.503067059215716,
+    6.246365774113709,
+    6.024960888148154,
+    5.831957709137729
    ],
    [
-    7.670584548370177,
-    7.222629186552307,
-    6.851816606151525,
-    6.539703424199855,
-    6.273293343234359
+    6.692183508799457,
+    6.398595548950887,
+    6.148482114401436,
+    5.932757234643011,
+    5.744703552456277
    ],
    [
-    7.537348497341694,
-    7.100800531738765,
-    6.739427707944824,
-    6.435257091730974,
-    6.175623891416792
+    6.583564456880657,
+    6.2974513035519255,
+    6.053703724208596,
+    5.8434675124942395,
+    5.660196657310713
    ],
    [
-    7.4083763081266465,
-    6.982854482494681,
-    6.630606022983751,
-    6.3341126952017435,
-    6.081030115675241
+    6.478386926069382,
+    6.199498812265014,
+    5.961904443188759,
+    5.7569736179754285,
+    5.5783259355733295
    ]
   ],
   "beta_grid": [
@@ -2252,11 +2303,11 @@
    1.3
   ],
   "grid_beta": [
-   8.235178135129658,
-   7.403868649773529,
-   6.931165515100065,
-   6.350668315092941,
-   6.005469125298881
+   6.028780960986287,
+   5.510671535279789,
+   5.205505851027585,
+   4.819308388062103,
+   4.583202048570761
   ],
   "gm_grid": [
    -0.01,
@@ -2266,11 +2317,11 @@
    0.01
   ],
   "grid_margin": [
-   4.809112366348762,
-   5.830464486250144,
-   6.851816606151525,
-   7.873168726052909,
-   8.89452084595429
+   3.233436977610961,
+   4.2194714143192735,
+   5.205505851027585,
+   6.191540287735899,
+   7.177574724444212
   ],
   "vol_grid": [
    0.0,
@@ -2280,11 +2331,11 @@
    2.0
   ],
   "grid_vol": [
-   2.7646542240869465,
-   4.637776391817984,
-   6.851816606151525,
-   9.222474343285118,
-   11.758675795198704
+   4.533380620922758,
+   4.8633044430866565,
+   5.205505851027585,
+   5.560367009733724,
+   5.928278655755114
   ],
   "fx_grid": [
    0.9,
@@ -2294,25 +2345,25 @@
    1.1
   ],
   "grid_fx": [
-   6.022586116889416,
-   6.434857525179111,
-   6.851816606151525,
-   7.273504942563284,
-   7.6999643659541634
+   4.366720627443369,
+   4.78378484449282,
+   5.205505851027585,
+   5.631924544402922,
+   6.0630820651432265
   ],
   "nwc_grid": [
-   0.0,
-   0.01,
-   0.0416243102361522,
-   0.03,
-   0.05
+   9.3,
+   13.9,
+   18.5,
+   23.1,
+   27.8
   ],
   "grid_nwc": [
-   8.522537938514107,
-   8.121156793004698,
-   6.851816606151525,
-   7.318394501985878,
-   6.515632210967059
+   6.282806545810616,
+   5.7441561984191,
+   5.205505851027585,
+   4.666855503636071,
+   4.1282051562445545
   ]
  },
  "step0": {
@@ -2596,43 +2647,55 @@
   "==============================================================================",
   "AMOC \u2014 ASSERT / derivation log",
   "==============================================================================",
-  "[Base year \u2014 nine AUDITED months, annualised] the transition period 1-Jul-2025 to 31-Dec-2025 (audited, Crowe, unqualified) and the three months to 31-Mar-2026 (reviewed) are contiguous and cover nine months: net sales 31,247, cost of sales 28,901, GROSS PROFIT 2,345, a margin of 7.506%. Annualised at 4/3 the base year is 41,662 of revenue. There is no clean audited twelve-month period to use instead \u2014 the year-end moved to December and April-June 2025 is not separately filed \u2014 so this scaling is the only step between the filings and the base year, and no part of it is estimated. The previous edition CONSTRUCTED a calendar-2025 base from two reported halves and got 39,996; the audited nine months annualise to 41,662, +4.2% away.",
+  "[Base year \u2014 ALTERNATIVE: nine AUDITED months, annualised] the transition period 1-Jul-2025 to 31-Dec-2025 (audited, Crowe, unqualified) and the three months to 31-Mar-2026 (reviewed) are contiguous and cover nine months: net sales 31,247, cost of sales 28,901, GROSS PROFIT 2,345, a margin of 7.506%. Annualised at 4/3 that is 41,662 of revenue. This edition NO LONGER uses it as the headline base \u2014 see the twelve months to 30-Jun-2026 below \u2014 but publishes it as the alternative, because half of the twelve-month base is a press release rather than a filing.",
+  "[Base year \u2014 TWELVE CONTIGUOUS MONTHS to 30-Jun-2026, NO annualisation] the audited transition half (Jul-Dec 2025) plus the reported half (Jan-Jun 2026) is a clean twelve months: net sales 46,959, gross profit 4,225, margin 8.997%. NO 4/3 scalar is applied and no period is estimated. HALF OF THIS BASE IS NOT AUDITED and the study says so on every page that uses it. The released gross profit of 3,258 is REJECTED: run through the company's own Q1-2026 expense run rates it produces a profit after tax of 2,142 against a reported 1,903, +12.6% too high. The gross profit used, 2,951, is SOLVED from the release's own profit line, which passes two independent tests: majority profit ties to the AUDITED equity statement within 1.2%, and revenue ties to an independent triangulation within 0.2%. Implied Q2-2026 gross margin 11.96% against the 10.19% of Q1 \u2014 a rise, but not the 13.92% the released gross-profit line would require.",
+  "[Base year \u2014 SELECTED] twelve months to 30-Jun-2026. Revenue 46,959, gross margin 8.997%, against the nine-month annualisation's 41,662 and 7.506%. Both are published and the model runs on either; the twelve-month base is the headline because it needs no annualisation scalar, and the nine-month base is retained because all of it is audited or reviewed. The gap between the two is +12.7% on revenue and +1.49% on margin, and that gap is a real uncertainty about this company, not a rounding difference.",
+  "[Three rates, SOLVED not assumed] statutory tax 22.50% on operating profit (the effective 22.12% is struck on a pre-tax base that includes credit interest and a deferred credit, and is kept for the historical reconciliation only). Employees' profit share and board bonuses 5.27% of profit after tax, solved from the disclosed charge of 135 over profit of 2,559. Minority interest 3.258%, restruck over the whole base year and over OPERATING profit \u2014 against the 4.645% the previous edition called 'the DISCLOSED rate', which was a single-half ratio computed on a profit base that included the parent's own credit interest.",
   "[Effective tax rate, computed not assumed] nine-month pre-tax profit 1,658 against a total tax charge of 367 (current less deferred, both periods) = 22.12%. The statutory rate is 22.5%. The previous edition assumed 22.1%.",
   "[The margin record, as filed] 6M to Dec-2024 6.85% \u00b7 3M to Mar-2025 5.05% \u00b7 6M to Dec-2025 6.14% \u00b7 3M to Mar-2026 10.19%. This is not a modelled path and not a house assumption \u2014 it is gross profit over net sales in four consecutively filed periods. Note the shape: the margin was 6.85% in the half to December 2024, collapsed to 5.05% in the March-2025 quarter, recovered to 6.15% in the half to December 2025 and then printed 10.19% in the March-2026 quarter. The March-2026 print is the highest in the disclosed record by a wide margin and it is a SINGLE QUARTER; the base year above blends it with the half that precedes it rather than annualising it on its own.",
   "[The cost stack, DISCLOSED not built] note 15-A splits the 19,462 of cost of sales in the transition half: raw materials 17,650 (90.7%), salaries 881 (4.5%), other \u2014 natural gas, electricity, water, spare parts, maintenance and the EPROM operating contract \u2014 807 (4.1%), supporting materials 65 (0.3%) and depreciation 59 (0.3%). The previous edition BUILT a stack from house estimates of yields, energy intensity and a solved feedstock differential, carried NO salaries line at all inside cost of sales, and estimated chemicals at roughly five times the disclosed figure. None of that construction survives: the filing states the stack and the model uses it as stated.",
-  "[What this company actually is] raw materials are 85.1% of net sales. Every other cost line together is 7.4%. A business whose single largest line is 85% of revenue and whose gross margin is 7.5% is a PASS-THROUGH PROCESSOR: the value is not in the revenue line, and it is not in cost control either \u2014 it is in the spread between what the feedstock costs and what the slate fetches, and in the tonnage that spread is earned on.",
+  "[What this company actually is] raw materials are 85.1% of net sales. Every other cost line together is 5.9%. A business whose single largest line is 85% of revenue and whose gross margin is 9.0% is a PASS-THROUGH PROCESSOR: the value is not in the revenue line, and it is not in cost control either \u2014 it is in the spread between what the feedstock costs and what the slate fetches, and in the tonnage that spread is earned on.",
   "[The product table, AUDITED] note 14-A gives eight lines with tonnes AND value for the transition half: 808,084 tonnes for 20,736. Realisations per tonne fall straight out of the division and nothing is reconstructed: Base and special oils 47,250 \u00b7 Paraffin wax 48,881 \u00b7 Gas oil 29,832 \u00b7 Fuel oil (mix) 19,506 EGP a tonne. The specialty slate \u2014 oils and wax \u2014 is 11.97% of the tonnage and 22.37% of the value. The previous edition used a THREE-line table obtained from a reviewer rather than the filing, and had to reconstruct realisations through a crude-parity crack multiple. The filing makes all of that unnecessary: fuel oil (mix) alone is 56.9% of tonnage and 43.3% of value, and it is not the same product as gas oil, naphtha or LPG, which the old build had merged into one slate.",
   "[Line-level value growth, half on half] Base and special oils +2.8% \u00b7 Paraffin wax +21.3% \u00b7 Gas oil -1.9% \u00b7 Naphtha -7.3% \u00b7 Liquefied petroleum gas +18.7% \u00b7 Fuel oil (mix) +29.1% \u00b7 Heavy fuel oil +60.7%. Wax is the standout at +21.3% and fuel oil at +29.1%; gas oil and naphtha both FELL. That is the mix shift the forecast has to carry, and it is measured rather than assumed.",
-  "[Balance sheet, AUDITED] property plant and equipment 893 plus projects under construction 407 = 1,300. Inventory 2,847, receivables and debtors 939, payables and creditors 2,052 -> NET WORKING CAPITAL 1,734. INVESTED CAPITAL 3,034. The previous edition reconstructed property plant and equipment as the residual against disclosed total assets and got 2,403 \u2014 1.8 times the filed figure \u2014 and put net working capital at 2.0% of revenue against an actual 4.2%. Total assets matched only because the reconstruction was anchored on them; the composition was wrong in both directions.",
+  "[Cost, PER LINE \u2014 built, not blended] conversion runs Base and special oils 10,957 \u00b7 Paraffin wax 12,601 \u00b7 Gas oil 2,739 \u00b7 Fuel oil (mix) 548 EGP a tonne on the registered processing-intensity weights; feedstock is then allocated on NET REALISABLE VALUE \u2014 realisation less that line's own conversion \u2014 which is the standard joint-product method and the only basis of the three tested that leaves every disclosed line with a positive spread. GROSS SPREAD PER TONNE: Base and special oils 4,182 \u00b7 Paraffin wax 4,202 \u00b7 Gas oil 3,051 \u00b7 Naphtha 2,360 \u00b7 Liquefied petroleum gas 3,666 \u00b7 Fuel oil (mix) 2,117 \u00b7 Heavy fuel oil 1,687 EGP. That is the number that matters and it is the one the previous edition could not produce: a tonne of base oil contributes 2.0 times the spread of a tonne of fuel oil, so the specialty mix is now a real driver of value. GROSS MARGIN BY LINE: Base and special oils 7.8% \u00b7 Paraffin wax 7.6% \u00b7 Gas oil 9.0% \u00b7 Fuel oil (mix) 9.6% against a blended 9.0% \u2014 note that the specialty lines show a LOWER margin percentage on a HIGHER spread per tonne, because their realisation per tonne is nearly three times fuel oil's. Percentage margin is the wrong lens on a joint-product slate; spread per tonne is the right one, and the previous edition had neither.",
+  "[The one operating input that is not read off a filing] the processing-intensity weights Base and special oils 1.00 \u00b7 Paraffin wax 1.15 \u00b7 Gas oil 0.25 \u00b7 Naphtha 0.20 \u00b7 Liquefied petroleum gas 0.15 \u00b7 Fuel oil (mix) 0.05 \u00b7 Heavy fuel oil 0.05. Note 15-A discloses the cost stack for the company and NOT by line. Any weight derivable from note 14-A alone is a function of realisation, and a realisation-derived weight returns an identical margin on every line \u2014 which is the defect being removed. So this vector is a judgement, it is registered and dated like every other input, and section 7 treats it as a named weakness rather than burying it in a formula.",
+  "[Capital expenditure, BUILT] fixed assets at COST are 2,741 against an annual depreciation charge of 151, an implied asset life of 18.1 years. Maintenance capital expenditure is struck at cost over that life, 151 a year before inflation \u2014 against cash actually paid of 160. The company is spending 1.06 times replacement. GROWTH capital expenditure is charged at the plant's own capital intensity of 1,948 EGP of gross plant per annual tonne, so incremental tonnage now COSTS something instead of arriving free. The previous edition held one cash number flat and inflated it, which made volume growth self-funding.",
+  "[Working capital, BUILT on solved days] inventory 24.3 days of cost of sales, receivables 7.3 days of revenue, operating payables 13.1 days of cost of sales \u2014 every one SOLVED from the audited balance sheet against the base year, not assumed. The house registry carried 14/14/24 days and no formula read any of them. Dividends payable of 517 is REMOVED from creditors: a declared distribution to shareholders is a financing claim, and leaving it inside operating working capital both understated the capital the business ties up and let a shareholder claim vanish from the bridge. It is carried in the bridge instead.",
+  "[Balance sheet, AUDITED] property plant and equipment 893 plus projects under construction 407 = 1,300. Inventory 2,847, receivables and debtors 939, payables and creditors 2,052 -> NET WORKING CAPITAL 1,734. INVESTED CAPITAL 3,034. The previous edition reconstructed property plant and equipment as the residual against disclosed total assets and got 2,403 \u2014 1.8 times the filed figure \u2014 and put net working capital at 2.0% of revenue against an actual 3.7%. Total assets matched only because the reconstruction was anchored on them; the composition was wrong in both directions.",
   "[Net cash, AUDITED] cash 2,464 against long-term loans 11.8 and short-term loans 9.2: NET CASH 2,443 = EGP 1.89 a share, 20.8% of market capitalisation. A further 509 of deposits is PLEDGED against credit facilities and is deliberately NOT counted as free cash. Against it sits a tax-disputes provision of 921 \u2014 EGP 0.71 a share \u2014 which the previous edition never carried at all.",
   "[Minority interest, DISCLOSED] the non-controlling share of group profit after tax is 4.645% in the audited half \u2014 AMOC owns 86.45% of Alexandria Wax Products. The previous edition INFERRED 3.0% from a gap between consolidated and standalone profit. It is now read off the filing.",
   "[Cost of debt \u2014 MATERIALITY] gross debt is 0.1782% of the capital structure. A 500bp error in the cost of debt moves the weighted cost of capital by 0.69 basis points. The input cannot move the answer and the study says so rather than dressing an immaterial input as a precise one.",
-  "[Depreciation and capital expenditure, ACTUAL] the nine audited months charged 111 of depreciation and right-of-use amortisation and paid 95 in cash for fixed assets and projects under construction. Annualised: 148 and 127. The previous edition modelled depreciation at 1.1% of revenue (458) and capital expenditure at 1.45% (604) \u2014 3.1x and 4.8x the actual. Capital expenditure is running at 0.86 times depreciation, which is BELOW replacement: this plant is being run, not renewed, and that is the most important thing the filings say about its cash flow. It also means the free cash flow the previous edition reported was understated by roughly 477 a year on the capital line alone.",
+  "[Depreciation and capital expenditure, ACTUAL] over the twelve months to 30-Jun-2026 the company charged 151 of depreciation and right-of-use amortisation and paid 160 in cash for fixed assets and projects under construction. Cash capital expenditure is 1.06 times the depreciation charge and 1.06 times replacement at gross cost. The previous edition held the cash figure flat and inflated it, and separately stated that free cash flow was overstated by 'roughly EGP 2mn a year' \u2014 a claim that holds in the first forecast year and reverses sign in every year after it. Capital expenditure is now BUILT: maintenance at cost over the implied asset life, plus growth at the plant's own capital intensity, so the caveat is computed across the whole window instead of asserted for one year of it.",
   "[Cost of equity] risk-free 22.31% less the sovereign default spread 3.40% = 18.91%; plus beta 0.941 times the equity risk premium 9.41% -> cost of equity 27.76%. Alternatives disclosed: on the rating basis 29.05%; the RETIRED un-netted construction 31.16%, kept only for the audit trail \u2014 it charges Egypt's sovereign default risk twice, once inside the pound yield and again in the country premium.",
   "[Weighted cost of capital, explicit window] net debt is NEGATIVE, so the debt weight is -26.2% and the equity weight 126.2%. The cost of that negative debt is the blend of what the EGP 21mn borrowing costs and what the EGP 2,464mn cash pile EARNS: 13.21% after tax, i.e. essentially the after-tax deposit yield. Result 31.58% \u2014 ABOVE the 27.76% cost of equity, not below it. That direction is the point: a company holding 21% of its market capitalisation in near-riskless cash has an observed equity cost that UNDERSTATES the risk of its operating assets, so unlevering for the cash raises the operating rate. On a gross-debt basis the rate would be 27.74%; that construction discounts the operating cash flows at a rate the cash has already depressed AND then adds the cash back in the bridge, counting the cash twice and overstating the valuation. The net basis is primary and is the more conservative of the two by 384 basis points.",
   "[Unlevering identity] enterprise value over market capitalisation (0.7922) times the operating rate, plus cash over market capitalisation (0.2078) times the cash cost, recombines to 27.7601% against a cost of equity of 27.7601% \u2014 exact. This is the check that the net-cash weighting is a decomposition rather than an adjustment.",
-  "[Weighted cost of capital, terminal] cost of equity 17.08% (norm-built risk-free 10.50% = the central bank's own 5% medium-term inflation target plus a 5.5pp emerging-market real-rate convention, plus beta times a normalised premium 7.00%); cost of debt after tax 11.68%; weights 90%/10% -> 16.54%. No terminal input is an observable quote and none is reverse-engineered from a price.",
-  "[Glide] forward cost of capital 31.58% -> 26.21% -> 21.91% -> 18.69% -> 16.54%; cumulative discount factors 0.7600, 0.6022, 0.4939, 0.4162, 0.3571. The glide fractions are the cost-of-debt path's own cumulative progress (0.000, 0.357, 0.643, 0.857, 1.000), so the front-loaded shape is inherited from the assumed easing calendar rather than being a second free parameter.",
-  "[Forecast revenue] 46,666 -> 51,604 -> 56,321 -> 60,895 -> 65,333 (volume 1.664 -> 1.817mn tonnes; specialty share of revenue 22.9% -> 24.1%). Base-year revenue is the audited nine months annualised, 41,662.",
-  "[Forecast gross margin] 7.17% -> 7.19% -> 7.17% -> 7.16% -> 7.09%. The margin is an OUTPUT of the audited cost composition, not a path: raw materials and supporting materials are pass-through and move with realisation and volume; salaries and the other line are pound-denominated and move with local inflation; depreciation is the asset-register charge. The margin therefore widens only to the extent that the pound-denominated cost leg grows more slowly than revenue \u2014 which is a mechanical consequence of the disclosed stack, not a view.",
-  "[Capital expenditure, forecast] held at the ACTUAL run rate 127 grown with local inflation: 146 -> 164 -> 183 -> 202 -> 221. That is 0.99 times depreciation in the first forecast year. A reader who believes the plant must eventually be renewed should raise this line \u2014 it is the single sharpest criticism available of this valuation and section 7 says so.",
-  "[Free cash flow to the firm] 955 -> 1,032 -> 1,093 -> 1,145 -> 1,156; present value of the explicit window 2,777.",
-  "[Forecast finance income] 414 -> 337 -> 276 -> 228 -> 189 \u2014 the charge is a CREDIT throughout and it falls even as the cash pile builds, because the deposit yield eases with the policy rate faster than the balance grows. Attributable profit 1,415, 1,447, 1,468, 1,495, 1,488; net cash 2,253, 2,047, 1,832, 1,605, 1,364 on a 103.7% payout.",
-  "[Return on invested capital] 35.8% / 36.2% / 35.9% / 35.3% / 33.7%; terminal return taken as next year's NOPAT over closing invested capital, 35.4%. The level is high because the plant is substantially written down and the working capital is negative-to-negligible \u2014 a real feature of the business, and the reason the required terminal reinvestment rate comes out low.",
+  "[Weighted cost of capital, terminal] cost of equity 19.08% (norm-built risk-free 12.50% = the central bank's inflation target IN FORCE for the terminal emerging-market real-rate convention, plus beta times a normalised premium 7.00%); cost of debt after tax 11.68%; weights 90%/10% -> 18.34%. No terminal input is an observable quote and none is reverse-engineered from a price.",
+  "[Glide] forward cost of capital 31.58% -> 26.85% -> 23.07% -> 20.23% -> 18.34%; cumulative discount factors 0.7600, 0.5991, 0.4868, 0.4049, 0.3421. The glide fractions are the cost-of-debt path's own cumulative progress (0.000, 0.357, 0.643, 0.857, 1.000), so the front-loaded shape is inherited from the assumed easing calendar rather than being a second free parameter.",
+  "[Forecast revenue] 52,841 -> 58,432 -> 63,773 -> 68,952 -> 73,978 (volume 1.664 -> 1.817mn tonnes; specialty share of revenue 22.9% -> 24.1%). Base-year revenue is the twelve months to 30-Jun-2026, 46,959, with no annualisation scalar.",
+  "[Forecast gross margin] 8.61% -> 8.19% -> 7.77% -> 7.40% -> 7.00%. The margin is an OUTPUT of eight per-line cost builds, not a path and not a blend: each line carries its own feedstock cost per tonne and its own conversion cost per tonne, and the company margin is whatever the mix produces. Specialty lines run Base and special oils 6.9% \u00b7 Paraffin wax 6.6% against fuel oil at 9.5%, so the margin now moves when the MIX moves, which it could not do when one blended margin was applied to every line.",
+  "[Capital expenditure, BUILT] 281 -> 307 -> 329 -> 351 -> 375 against depreciation 174 -> 189 -> 206 -> 224 -> 244. Ratio 1.62 \u00b7 1.62 \u00b7 1.59 \u00b7 1.56 \u00b7 1.54. Maintenance is 151 at today's prices, growth is charged at 1,948 EGP a tonne of new throughput, and depreciation ROLLS off the asset register rather than being held flat for five years.",
+  "[Employees' profit share, CHARGED] 5.27% of profit after tax, 97 -> 95 -> 90 -> 85 -> 76. The previous edition registered this at 67 for the audited half, described it in its own source note as 'a real distribution out of profit that the previous edition of this study did not model at all', and then no formula read the cell.",
+  "[Free cash flow to the firm] 826 -> 1,308 -> 1,231 -> 1,137 -> 978; present value of the explicit window 2,805.",
+  "[Forecast finance income] 414 -> 216 -> 130 -> 62 -> 5 \u2014 the charge is a CREDIT throughout and it falls even as the cash pile builds, because the deposit yield eases with the policy rate faster than the balance grows. Attributable profit 2,066, 1,882, 1,735, 1,585, 1,381; net cash 1,448, 972, 505, 46, -405 on a 103.7% payout.",
+  "[Return on invested capital] 44.0% / 39.2% / 34.2% / 29.7% / 24.8%; terminal return taken as next year's NOPAT over closing invested capital, 26.0%. The level is high because the plant is substantially written down and the working capital is negative-to-negligible \u2014 a real feature of the business, and the reason the required terminal reinvestment rate comes out low.",
   "[Terminal growth, reconciled against the AUDITED record] gross margin as filed 6M Dec-2024 6.85% / 3M Mar-2025 5.05% / 6M Dec-2025 6.14% / 3M Mar-2026 10.19%. Annualised returns on invested capital 28.1% / 22.2% / 24.9% / 66.0%; reinvestment rates -6.9% / +12.7% / -10.5% / +4.9%; implied growth -1.9% / +2.8% / -2.6% / +3.2%.",
-  "[Terminal growth, the check that now BINDS] reinvestment is NEGATIVE in every audited period, because cash capital expenditure is running below the depreciation charge. Growth = return x reinvestment therefore implies a NEGATIVE steady-state growth rate of about 0.4%: on its own recent record this company is shrinking its capital base, not compounding it. The adopted terminal rate of 5.0% is NOT supported by the reinvestment identity and the study says so on its face rather than burying it. Two readings are defensible and both are published: either the under-investment is temporary and capital expenditure must rise toward depreciation \u2014 in which case free cash flow in the explicit window is overstated by roughly 2 a year \u2014 or it is durable and the terminal growth rate should be at or below zero. The sensitivity grid runs terminal growth down to 3% and the reader can go lower.",
-  "[Terminal growth, stated plainly] the two standing checks disagree with each other, and that is the honest reading rather than a problem to be smoothed. Check (a), the historical compound NOPAT rate, is +55.0% \u2014 far ABOVE the adopted 5.0%; it is a recovery rate off a devaluation-compressed base and belongs in the explicit years, not in perpetuity. Check (b), return times reinvestment from stable years, is 0.4% \u2014 BELOW the adopted rate. The adopted 5% sits between them and above the one that describes a steady state, so on the check that matters for a perpetuity it remains on the GENEROUS side of the company's own record. Sensitised 3-7%; the grid is on the face of the workbook. NOTE the reinvestment definition: check (b) uses net capex over NOPAT, EXCLUDING working capital, while the free-cash-flow waterfall subtracts working capital. On the waterfall-consistent definition the base-year reinvestment rate is 17.0% and the implied growth is 4.2% \u2014 ABOVE the adopted rate. Both definitions are shown; neither is hidden.",
-  "[Terminal value] required reinvestment rate = growth / return = 5.0% / 35.4% = 14.1%; terminal NOPAT 1,484; terminal value 11,040 capitalised at the terminal cost of capital 16.54% and discounted at the YEAR-5 cumulative factor 0.3571 \u2014 one date, one price of time \u2014 giving a present value of 3,942. TERMINAL VALUE IS 58.7% OF ENTERPRISE VALUE.",
-  "[Bridge] enterprise value 6,719 less net debt -2,443 (a NEGATIVE, i.e. net cash of 2,443 is ADDED) = 9,161; less minority interests at their 4.6% share OF THE ENTERPRISE VALUE (not of the cash \u2014 the previous construction deducted it after the cash was added, which handed the minority 113 of the parent's balance) = 312 -> equity attributable 8,849 = EGP 6.85 a share against a spot of EGP 9.10 (-24.7%).",
-  "[Contested choices, computed] (1) rating-basis cost of capital instead of the CDS basis: explicit 32.18% / terminal 20.35% -> EGP 5.84 (-14.7%). (2) minority share doubled to 6% -> EGP 6.78 (-1.0%). (3) GROSS-debt rather than net-debt weights, the construction this study rejects because it counts the cash pile twice -> EGP 7.16 (+4.4%).",
-  "[Currency-of-discounting alternative] the export leg (8% of cash flow) is first DEFLATED to dollars at each year's exchange rate, discounted at a dollar cost of capital of 10.72% with 3.5% terminal growth, and only then translated back at the spot rate. Discounting a pound-denominated cash flow already inflated by the assumed depreciation path directly at a dollar rate would count the currency benefit twice. Result EGP 7.21 a share (-20.8% against spot).",
-  "[Relative lens] interim free cash flow added back: 1,348 of present value for the years before the multiple year, which the previous construction dropped. 4.5x on 2027E EBITDA 1,759 gives an enterprise value of 7,915 AS AT end-2027; discounted back at the year-2 factor 0.6022 that is 4,766 today -> EGP 6.41 a share. Not discounting a forward enterprise value back to today would have given EGP 7.65. The company's own trailing multiple is 5.6x enterprise value to EBITDA and 7.1x earnings.",
-  "[Normalised earnings lens] every component is taken from 2028E: revenue 56,321, EBITDA 1,849, depreciation 148, finance income 316 -> attributable earnings 1,498, EGP 1.16 a share; at 7.5x -> EGP 8.70.",
-  "[Book lens] justified price-to-book 1.90x = (sustainable return 28.0% less growth 5%) / (PERPETUAL cost of equity 17.08% less growth), applied to book value of EGP 3.71 a share -> EGP 7.06. The perpetual rate is the right one inside a perpetuity identity; using a blend of the explicit and terminal rates would be internally inconsistent. Trailing return on average parent equity is 32.6%.",
-  "[Scenarios on the cash-flow lens] bear EGP 2.37 / base EGP 6.85 / bull EGP 14.66. The scenarios are FIVE simultaneous driver moves, not a single lever: volume growth at 0.4x / 1.5x the assumed path, gross margin -1.0% / +1.0%, the exchange-rate path -3% / +3%, the cost of capital +2% / -2% at both anchors, and terminal growth 3% / 6%. Because all five move together and in the same direction, the bear and bull ends are JOINT-worst and JOINT-best cases and are much wider than any single-driver row in the sensitivity table; they are not a confidence interval and no probability is attached to them.",
-  "[Synthesis] weighted central EGP 7.16; full span across lenses and scenarios EGP 2.37 - 14.66; spot EGP 9.10 (-21.3% to the central).",
-  "[Expert 2 construction] free cash flow to equity 1,218 -> 1,235 -> 1,247 -> 1,261 -> 1,242; discounted on the cost of EQUITY's own glide (27.8% -> 23.9% -> 20.9% -> 18.6% -> 17.1%) for a present value of 3,407, plus a terminal block of 3,485. No bridge is used: the cash pile reaches the shareholder through the finance income line rather than as a balance-sheet add-back, which is what makes this a genuinely independent second read rather than a re-arrangement of the first.",
-  "[Economic-profit convention] the capital charge is taken on BEGINNING-of-year invested capital, not ending. Charging ending capital would understate economic profit by about 53mn a year.",
-  "[Expert panel] Expert 1 EGP 7.96 [5.68-10.80]; Expert 2 EGP 5.34 [4.51-5.61]; Expert 3 EGP 6.85 [5.67-7.21]; panel median EGP 6.85 (-24.7% against spot)."
+  "[Terminal growth, the check that now BINDS] reinvestment is NEGATIVE in every audited period, because cash capital expenditure is running below the depreciation charge. Growth = return x reinvestment therefore implies a NEGATIVE steady-state growth rate of about 0.4%: on its own recent record this company is shrinking its capital base, not compounding it. The adopted terminal rate of 5.0% is NOT supported by the reinvestment identity and the study says so on its face rather than burying it. Two readings are defensible and both are published: either the under-investment is temporary and capital expenditure must rise toward depreciation \u2014 in which case free cash flow in the explicit window is overstated by roughly -107 a year \u2014 or it is durable and the terminal growth rate should be at or below zero. The sensitivity grid runs terminal growth down to 3% and the reader can go lower.",
+  "[Terminal growth, stated plainly] the two standing checks disagree with each other, and that is the honest reading rather than a problem to be smoothed. Check (a), the historical compound NOPAT rate, is +55.0% \u2014 far ABOVE the adopted 5.0%; it is a recovery rate off a devaluation-compressed base and belongs in the explicit years, not in perpetuity. Check (b), return times reinvestment from stable years, is 0.4% \u2014 BELOW the adopted rate. The adopted 5% sits between them and above the one that describes a steady state, so on the check that matters for a perpetuity it remains on the GENEROUS side of the company's own record. Sensitised 3-7%; the grid is on the face of the workbook. NOTE the reinvestment definition: check (b) uses net capex over NOPAT, EXCLUDING working capital, while the free-cash-flow waterfall subtracts working capital. On the waterfall-consistent definition the base-year reinvestment rate is 95.9% and the implied growth is 23.9% \u2014 ABOVE the adopted rate. Both definitions are shown; neither is hidden.",
+  "[Terminal value] the terminal return is struck on invested capital at REPLACEMENT cost \u2014 working capital plus the asset base at GROSS cost \u2014 giving 17.1%, against 26.0% on net book. The difference is not cosmetic: this plant is 67.4% written down, the book lens already haircuts return on equity from a reported 33% to 28% for exactly that reason, and using the flattered figure in the terminal block while haircutting it in the book lens would be two views of one asset base. Required reinvestment = growth / return = 5.0% / 17.1% = 29.3%; terminal value 7,573 capitalised at 18.34% and discounted at the YEAR-5 cumulative factor 0.3421, giving a present value of 2,591. TERMINAL VALUE IS 48.0% OF ENTERPRISE VALUE.",
+  "[Terminal reinvestment, against the explicit window] the final forecast year reinvests 28.21% of profit; the terminal block reinvests 29.32%. The step is +1.11% and it is disclosed here because it RAISES the terminal block, which carries 48.0% of enterprise value. It is a consequence of the steady-state identity rather than an assumption, but a reader is entitled to see it.",
+  "[Bridge \u2014 every disclosed claim carried] enterprise value 5,396 plus net cash 2,443 = 7,839. Less minority interests at 3.258% of the WHOLE enterprise including the cash (255) \u2014 the previous edition charged the minority its share of the operating enterprise and then credited the parent with 100% of the consolidated cash, which is an inconsistency a reader can find in one line. Less the tax-disputes provision 921, a recognised liability the previous edition quoted in its text and NEVER carried into the bridge \u2014 setting it to zero moved that valuation by nothing at all. Less dividends payable 517, a declared claim removed from working capital and carried here. Plus non-operating investments 578 \u2014 the equity stake at fair value through other comprehensive income and the PLEDGED deposits, which are real assets even though they are not free cash and were previously excluded from BOTH the cash line and the bridge. Equity attributable 6,723 = EGP 5.21 a share against a spot of EGP 9.10 (-42.8%).",
+  "[Contested choices, computed] (1) rating-basis cost of capital instead of the CDS basis: explicit 32.18% / terminal 22.15% -> EGP 5.43 (+4.3%). (2) minority share doubled to 6% -> EGP 6.09 (+17.0%). (3) GROSS-debt rather than net-debt weights, the construction this study rejects because it counts the cash pile twice -> EGP 6.41 (+23.1%).",
+  "[Currency-of-discounting alternative] the export leg (8% of cash flow) is first DEFLATED to dollars at each year's exchange rate, discounted at a dollar cost of capital of 10.72% with 3.5% terminal growth, and only then translated back at the spot rate. Discounting a pound-denominated cash flow already inflated by the assumed depreciation path directly at a dollar rate would count the currency benefit twice. Result EGP 6.21 a share (-31.8% against spot).",
+  "[Relative lens \u2014 on the TRAILING metric, multiple DERIVED] the company's own trailing multiple is 3.54x enterprise value to EBITDA \u2014 enterprise value 9,310 over base-year EBITDA 2,629 \u2014 and 7.1x earnings. The justified multiple is DERIVED from it at a +0% re-rating, 3.54x, rather than set by hand. The previous edition stated the trailing multiple as 'around 4.6x' and then set 4.5x, calling that 'holding the name at its own trailing level'; the model's own output disagreed with the stated 4.6x, so the justification did not hold whichever multiple was right. 3.54x on TRAILING EBITDA gives an enterprise value of 9,310 TODAY, carried through the SAME bridge as the cash-flow lens -> EGP 8.14 a share. Nothing here is discounted at the cash-flow lens's rate and nothing is added back from it, so the difference between this lens and the spot price is entirely the BRIDGE: the tax-disputes provision, the declared dividend and the minority's share of the cash. That is what this lens is now for.",
+  "[Normalised earnings lens \u2014 separated and discounted] OPERATING earnings only: 2028E operating profit 2,205, taxed at the statutory 22.5%, less the employees' profit share and the minority -> EGP 1.213 a share. At 7.5x that is EGP 9.10 AS AT mid-2028, discounted 2.4 years to the valuation date at the COST OF EQUITY 27.76% (factor 0.5555) = EGP 5.05. Net cash less the provision and the declared dividend is then added at FACE, outside the multiple: EGP 0.78 a share. Total EGP 5.83. The previous edition capitalised 301 of credit interest at an operating multiple \u2014 valuing a bank deposit as though it were the refinery \u2014 and then did not discount the 2028 answer at all, while lens 2 in the same document discounted its forward number. One lens discounted and the other did not; both are now on the valuation date.",
+  "[Book lens \u2014 on a rate path consistent with lens 1] justified price-to-book 1.23x = (sustainable return 28.0% less growth 5%) / (cost of equity 23.66% less growth), applied to book value of EGP 3.71 a share -> EGP 4.57. The rate is the present-value-weighted average of the SAME cost-of-equity glide the cash-flow lens uses, 27.76% falling to 19.08%, not the terminal rate alone. Using the terminal rate alone gives 6.06 and using the explicit rate alone gives 3.75; a perpetuity beginning today deserves neither endpoint. Trailing return on average parent equity is 32.6%, and the sustainable rate is struck below it because the asset base is 67.4% written down \u2014 the same haircut now applied to the terminal return in lens 1, so there is one view of the asset base across the model rather than two.",
+  "[Scenarios on the cash-flow lens] bear EGP 2.76 / base EGP 5.21 / bull EGP 9.34. The scenarios are FIVE simultaneous driver moves, not a single lever: volume growth at 0.4x / 1.5x the assumed path, gross margin -1.0% / +1.0%, the exchange-rate path -3% / +3%, the cost of capital +2% / -2% at both anchors, and terminal growth 3% / 6%. Because all five move together and in the same direction, the bear and bull ends are JOINT-worst and JOINT-best cases and are much wider than any single-driver row in the sensitivity table; they are not a confidence interval and no probability is attached to them.",
+  "[Range \u2014 WEIGHTED, like the central] EGP 3.96 to 8.39, the bear and bull columns weighted 45%/20%/20%/15% exactly as the base column is. The widest single lens spans EGP 2.76 to 9.88 and that is reported as an ENVELOPE, not as the range of the weighted estimate.",
+  "[Synthesis] weighted central EGP 5.82; full span across lenses and scenarios EGP 3.96 - 8.39; spot EGP 9.10 (-36.0% to the central).",
+  "[Sensitivity gate] 5 rows, every one a full re-run through the same waterfall the base case uses. Every grid is sorted, every row returns EGP 5.21 at its own base point, and every row is monotone in the direction theory requires. The previous edition published three rows that failed one or more of these tests and had no gate that could have caught them.",
+  "[Expert 2 construction] free cash flow to equity 1,095 -> 1,408 -> 1,271 -> 1,130 -> 936; discounted on the cost of EQUITY's own glide (27.8% -> 24.7% -> 22.2% -> 20.3% -> 19.1%) for a present value of 3,212, plus a terminal block of 1,768. No bridge is used: the cash pile reaches the shareholder through the finance income line rather than as a balance-sheet add-back, which is what makes this a genuinely independent second read rather than a re-arrangement of the first.",
+  "[Economic-profit convention] the capital charge is taken on BEGINNING-of-year invested capital, not ending. Charging ending capital would understate economic profit by about 126mn a year.",
+  "[Expert panel] Expert 1 EGP 9.40 [6.72-12.76]; Expert 2 EGP 3.86 [3.48-3.98]; Expert 3 EGP 6.15 [5.30-6.21]; panel median EGP 6.15 (-32.4% against spot).",
+  "[Reachability gate \u2014 rewritten] 152 registered inputs. 115 DRIVE the model. 37 are quotation-only and are named here rather than passing silently: alexpet_stake, assets_dec24, assets_jun24, assets_jun25, brent_path, capex_pct, cash_jun25, cash_mar26, cpi, creditors_jun25, crude_hist, debtors_jun25, div_h2_25, div_q1_26, dna_pct, dps, dtax_liab, e1_pe, egpc_balance, egpc_sales, egypt_gdp_nominal, eq_parent_mar26, fx_avg_cy25, fx_hist, inv_jun25, leases, opex_pct, other_ca, pat_fy25_full, pat_h2_24, payables_jun25, policy_rate, ppe_accdep, ppe_jun25, recv_jun25, tax_due, world_nominal_growth. The previous gate treated 'appears in a deliverable' as reached and passed while `provisions` (921mn) and `emp_h2_25` (135mn a year) drove nothing at all \u2014 setting the provision to zero moved that valuation by less than a hundredth of a piastre. Both now drive the bridge and the waterfall. `emp_h2_25` stays on this list because the CHARGE is now taken through a rate solved from it rather than through the raw input."
  ]
 }
