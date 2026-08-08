@@ -1,0 +1,180 @@
+{
+ "fits": {
+  "self_fit": {
+   "nu": 250.0,
+   "mle_scale": 0.79,
+   "width_cal": 0.853,
+   "windows": 62
+  },
+  "lono_gs": {
+   "nu": 20.0,
+   "mle_scale": 1.05,
+   "width_cal": 1.035,
+   "windows": 86
+  },
+  "pooled3": {
+   "nu": 20.0,
+   "mle_scale": 0.95,
+   "width_cal": 0.965
+  }
+ },
+ "scores": {
+  "self_fit": {
+   "nu": "Gaussian",
+   "cal": 0.853,
+   "skill": -0.0004,
+   "skill_raw": 0.0003,
+   "ci_block2": [
+    -0.009,
+    0.009
+   ],
+   "verdict": "PARITY",
+   "detail": {
+    "2": [
+     -0.0087,
+     0.0088,
+     "PARITY"
+    ],
+    "3": [
+     -0.01,
+     0.0082,
+     "PARITY"
+    ],
+    "4": [
+     -0.0107,
+     0.0075,
+     "PARITY"
+    ]
+   }
+  },
+  "borrowed_live_metals": {
+   "nu": "Gaussian",
+   "cal": 1.0,
+   "skill": -0.0094,
+   "skill_raw": -0.0087,
+   "ci_block2": [
+    -0.03,
+    0.01
+   ],
+   "verdict": "PARITY",
+   "detail": {
+    "2": [
+     -0.0298,
+     0.0103,
+     "PARITY"
+    ],
+    "3": [
+     -0.0356,
+     0.0097,
+     "PARITY"
+    ],
+    "4": [
+     -0.0382,
+     0.0084,
+     "PARITY"
+    ]
+   }
+  },
+  "lono_gold_silver": {
+   "nu": 20.0,
+   "cal": 1.035,
+   "skill": -0.0114,
+   "skill_raw": -0.0107,
+   "ci_block2": [
+    -0.032,
+    0.009
+   ],
+   "verdict": "PARITY",
+   "detail": {
+    "2": [
+     -0.0324,
+     0.0088,
+     "PARITY"
+    ],
+    "3": [
+     -0.0383,
+     0.0084,
+     "PARITY"
+    ],
+    "4": [
+     -0.0412,
+     0.007,
+     "PARITY"
+    ]
+   }
+  },
+  "self_fit_5y": {
+   "nu": "Gaussian",
+   "cal": 0.853,
+   "skill": 0.0106,
+   "skill_raw": 0.0093,
+   "ci_block2": [
+    -0.004,
+    0.029
+   ],
+   "verdict": "PARITY",
+   "detail": {
+    "2": [
+     -0.0041,
+     0.0291,
+     "PARITY"
+    ],
+    "3": [
+     -0.0053,
+     0.0278,
+     "PARITY"
+    ],
+    "4": [
+     -0.0064,
+     0.026,
+     "PARITY"
+    ]
+   }
+  },
+  "lono_5y": {
+   "nu": 20.0,
+   "cal": 1.035,
+   "skill": -0.0104,
+   "skill_raw": -0.0112,
+   "ci_block2": [
+    -0.049,
+    0.03
+   ],
+   "verdict": "PARITY",
+   "detail": {
+    "2": [
+     -0.0491,
+     0.0301,
+     "PARITY"
+    ],
+    "3": [
+     -0.0639,
+     0.0303,
+     "PARITY"
+    ],
+    "4": [
+     -0.0759,
+     0.0272,
+     "PARITY"
+    ]
+   }
+  }
+ },
+ "windows": {
+  "XPT": 62,
+  "GOLD": 67,
+  "SILVER": 19
+ },
+ "diag_self": {
+  "pit_mean": 0.4886859671521202,
+  "cov50": 0.4838709677419355,
+  "cov80": 0.8064516129032258,
+  "cov90": 0.9354838709677419
+ },
+ "diag_lono": {
+  "pit_mean": 0.4903303313828038,
+  "cov50": 0.6290322580645161,
+  "cov80": 0.9032258064516129,
+  "cov90": 0.967741935483871
+ }
+}

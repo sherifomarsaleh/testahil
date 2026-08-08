@@ -1,0 +1,280 @@
+{
+ "ticker": "XPTUSD",
+ "asset_class": "METAL",
+ "sweep_date": "2026-07-20",
+ "findings": [
+  {
+   "fid": "F01",
+   "ring": "GLOBAL_MACRO",
+   "category": "real rates & USD",
+   "klass": "STRUCTURAL",
+   "headline": "10Y TIPS real yield ~2.31% at the 18-Jul-2026 close (Treasury estimate via TipsWatch) \u2014 the highest 10-year real yield in ~18 years; rising path 1.99% (12-May, FRED) -> 2.07% (3-Jun, TE) -> 2.31%; firm dollar; hawkish 2026 repricing after hot CPI",
+   "source": "US Treasury est. via TipsWatch 19-Jul-2026 + FRED DFII10 trend",
+   "source_type": "REGULATOR_OFFICIAL",
+   "date": "2026-07-18",
+   "url": "https://fred.stlouisfed.org/series/DFII10",
+   "model_impact": "carry/opportunity-cost anchor: near-term tilt negative; sensitized via Expert 1 real-rate beta"
+  },
+  {
+   "fid": "F02",
+   "ring": "GLOBAL_MACRO",
+   "category": "central-bank policy path",
+   "klass": "STRUCTURAL",
+   "headline": "Fed funds midpoint 3.63% held at the 16\u201317-Jun-2026 FOMC (statement 17 Jun; 3.50\u20133.75%); market pricing leans to hikes near-term, easing expected 2027",
+   "source": "federalreserve.gov FOMC statement 17-Jun-2026 + UBS 29-Jun-2026",
+   "source_type": "REGULATOR_OFFICIAL",
+   "date": "2026-06-17",
+   "url": "",
+   "model_impact": "rf_live=3.63% is the MC carry anchor (q=0); drift = ln(1.0363)\u00b7h/252"
+  },
+  {
+   "fid": "F03",
+   "ring": "GLOBAL_MACRO",
+   "category": "official-sector behavior",
+   "klass": "STRUCTURAL",
+   "headline": "WPIC reports PGMs 'fundamentally key' to China's 15th Five-Year Plan (AI/hydrogen) and frames platinum as a strategic metal \u2014 an INDUSTRY-COUNCIL characterization: China's official strategic-minerals catalogue is undisclosed and its reconstructed 2016/2021 lists carry NO PGMs; no central bank holds platinum reserves in size",
+   "source": "WPIC via Mining Weekly",
+   "source_type": "REPUTABLE_PRESS",
+   "date": "2026-07-17",
+   "url": "https://www.miningweekly.com/article/platinum-metals-fundamentally-key-to-chinas-five-year-plan-wpic-reports-2026-07-16",
+   "model_impact": "supports the structural-demand leg of the balance anchor; no official-sector demand line added (none quantified)"
+  },
+  {
+   "fid": "F04",
+   "ring": "SUPPLY",
+   "category": "mine production",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "WPIC Q1-2026 Quarterly: 2026f mine supply 5,551 koz flat (SA 4,005, Zim 508, Ru 646, NA 201, other 192); total supply 7,377 koz (+2%)",
+   "source": "WPIC Platinum Quarterly Q1 2026 (Metals Focus)",
+   "source_type": "REGULATOR_OFFICIAL",
+   "date": "2026-05-18",
+   "url": "https://platinuminvestment.com/files/634916/WPIC_Platinum_Quarterly_Q1_2026.pdf",
+   "model_impact": "unlocks the bottom-up Appendix-A balance (the metal's 'financial statements')"
+  },
+  {
+   "fid": "F05",
+   "ring": "SUPPLY",
+   "category": "recycling",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "Recycling 1,826 koz 2026f (+9%): autocat 1,365, jewellery 373, industrial 88; recyclers working-capital-constrained at higher prices",
+   "source": "WPIC Platinum Quarterly Q1 2026",
+   "source_type": "REGULATOR_OFFICIAL",
+   "date": "2026-05-18",
+   "url": "",
+   "model_impact": "supply-response driver in the balance; the fastest-responding supply leg"
+  },
+  {
+   "fid": "F06",
+   "ring": "SUPPLY",
+   "category": "disruptions",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "Valterra Q2-2026: PGM M&C +1% YoY, Amandelbult +116% post-flood recovery, FY guidance unchanged 3.0\u20133.4 Moz; miners favour payouts over projects (S&P AISC 2026f $1,006/oz, +7.7%; SA electricity +900% since 2008); Valterra long-term planning $2,300\u20132,500",
+   "source": "Valterra Q2-2026 production report (Reuters) + Reuters/MarketScreener",
+   "source_type": "REPUTABLE_PRESS",
+   "date": "2026-07-17",
+   "url": "https://www.tradingview.com/news/reuters.com,2026-07-17:newsml_RSQ7965Ma:0-reg-valterra-platinum-ld-production-report-for-the-second-quarter-2026/",
+   "model_impact": "unlocks the cost-floor/incentive anchor ($1,006 AISC; $2,300\u20132,500 incentive) and the no-supply-response assumption"
+  },
+  {
+   "fid": "F07",
+   "ring": "DEMAND",
+   "category": "industrial demand",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "Industrial 2,238 koz 2026f (+9%): chemical 612, glass 377, medical 332, electrical 119, petroleum 132, hydrogen 69 (from 22 in 2023; WPIC sees PEM electrolyser demand >500 koz p.a. within 10 years)",
+   "source": "WPIC Platinum Quarterly Q1 2026 + WPIC Perspectives",
+   "source_type": "REGULATOR_OFFICIAL",
+   "date": "2026-05-18",
+   "url": "",
+   "model_impact": "balance-anchor demand legs; hydrogen is the long-term accelerant, not a 2026 driver"
+  },
+  {
+   "fid": "F08",
+   "ring": "DEMAND",
+   "category": "industrial demand",
+   "klass": "STRUCTURAL",
+   "headline": "Automotive 2,959 koz 2026f (\u22122%); Pt-for-Pd substitution (~700 koz embedded) flips: Pt now at a ~1.30\u00d7 PREMIUM to Pd \u2014 reverse-substitution incentive live, but platform lock-in (~15% of models/yr, ~7-yr cycles) makes it slow",
+   "source": "WPIC Quarterly + WPIC substitution Perspectives (24-Jan-2024 mechanism) + spot cross-section 17-Jul-2026",
+   "source_type": "REGULATOR_OFFICIAL",
+   "date": "2026-05-18",
+   "url": "",
+   "model_impact": "THE crux driver (\u00a71.7): reverse substitution sets the bear leg of the balance anchor; sensitized in real units (koz per 100 koz reversal)"
+  },
+  {
+   "fid": "F09",
+   "ring": "DEMAND",
+   "category": "jewelry / consumer demand",
+   "klass": "STRUCTURAL",
+   "headline": "Jewellery 1,958 koz 2026f (\u221212%); China fabrication \u221242% YoY in Q1-2026 on price shock, weak sentiment, destocking and the 1-Nov-2025 removal of the 13% VAT rebate",
+   "source": "WPIC Platinum Quarterly Q1 2026",
+   "source_type": "REGULATOR_OFFICIAL",
+   "date": "2026-05-18",
+   "url": "",
+   "model_impact": "demand-destruction leg of the balance anchor; bear scenario driver"
+  },
+  {
+   "fid": "F10",
+   "ring": "DEMAND",
+   "category": "investment / ETF flows",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "Investment 519 koz 2026f: bars & coins 533 (+27%), China \u2265500g bars 185, ETF \u2212100, exchange stocks \u2212100; China bar market grew <1t (2019) \u2192 ~13t (2025)",
+   "source": "WPIC Platinum Quarterly Q1 2026 + WPIC/Mining Weekly",
+   "source_type": "REGULATOR_OFFICIAL",
+   "date": "2026-05-18",
+   "url": "",
+   "model_impact": "investment leg of the balance; the price-sensitive marginal buyer"
+  },
+  {
+   "fid": "F11",
+   "ring": "DEMAND",
+   "category": "official-sector purchases",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found (searched 'central bank platinum reserves purchases 2026', 'Gokhran platinum purchases 2026'; only China strategic-mineral classification and the historic Russian palladium precedent surfaced \u2014 no quantified official platinum buying)",
+   "source": "negative search",
+   "source_type": "SEARCH",
+   "date": "2026-07-20",
+   "url": "",
+   "model_impact": ""
+  },
+  {
+   "fid": "F12",
+   "ring": "MARKET_STRUCTURE",
+   "category": "positioning (COT)",
+   "klass": "COLOR",
+   "headline": "NYMEX managed-money net long ~+8.3k contracts (14-Jul-2026) \u2014 modestly long, far off extremes; palladium net short \u22126.2k",
+   "source": "CFTC COT via metalcharts.org",
+   "source_type": "AGGREGATOR",
+   "date": "2026-07-14",
+   "url": "https://metalcharts.org/cot",
+   "model_impact": ""
+  },
+  {
+   "fid": "F13",
+   "ring": "MARKET_STRUCTURE",
+   "category": "forward curve / lease rates",
+   "klass": "STRUCTURAL",
+   "headline": "Lease rates 'sky-high' through 2025 (physical squeeze; episodic spot backwardation in squeezes); elevated in Q1-2026 constraining bar fabrication, easing late-Q1 and 'falling' by late-June \u2014 the tightness premium partially unwound",
+   "source": "WPIC Quarterly + UBS 29-Jun-2026 + Bloomberg/MINING.COM (13-Nov-2025)",
+   "source_type": "REPUTABLE_PRESS",
+   "date": "2026-06-29",
+   "url": "",
+   "model_impact": "tightness premium in/out of the price; a lease-rate re-spike is a catalyst, normalization is the bear-carry state"
+  },
+  {
+   "fid": "F14",
+   "ring": "MARKET_STRUCTURE",
+   "category": "regulatory treatment (e.g. Basel III)",
+   "klass": "STRUCTURAL",
+   "headline": "GFEX (Guangzhou) launched China's first platinum/palladium futures with stockpile publication \u2014 new price-discovery + transparency venue; US 2025 tariff-related dislocations have eased (UBS); China VAT-rebate removal (1-Nov-2025) reshaped jewellery flows",
+   "source": "Bloomberg/MINING.COM + UBS + WPIC",
+   "source_type": "REPUTABLE_PRESS",
+   "date": "2026-06-29",
+   "url": "",
+   "model_impact": "market-structure regime: GFEX adds a Chinese marginal-price setter; VAT change is in the jewellery driver"
+  },
+  {
+   "fid": "F15",
+   "ring": "MARKET_STRUCTURE",
+   "category": "forward curve / lease rates",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "Forward anchors: UBS $1,700 (Sep/Dec-26) & $1,800 (Mar/Jun-27, 29-Jun-2026, spot $1,618); LBMA survey avg $2,222 (20-Jan-2026 \u2014 set at the record, stale-high); TE palladium model $1,554 12-mo",
+   "source": "UBS via Yahoo Finance + LBMA/Kitco",
+   "source_type": "REPUTABLE_PRESS",
+   "date": "2026-06-29",
+   "url": "https://uk.finance.yahoo.com/news/platinum-prices-forecast-lower-swiss-145800828.html",
+   "model_impact": "unlocks the analyst-consensus forward anchor with the staleness axis (fresh post-crash vs stale peak-set)"
+  },
+  {
+   "fid": "F16",
+   "ring": "MARKET_STRUCTURE",
+   "category": "positioning (COT)",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found (searched 'authoritative fair Pt/Au ratio level' \u2014 no market-standard neutral exists; house uses the post-2016-regime distribution of the attached series)",
+   "source": "negative search",
+   "source_type": "SEARCH",
+   "date": "2026-07-20",
+   "url": "",
+   "model_impact": ""
+  },
+  {
+   "fid": "F17",
+   "ring": "GLOBAL_MACRO",
+   "category": "central-bank policy path",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found (searched 'platinum holder yield / dividend' \u2014 none exists; lease rate is a borrow cost to users, not a holder yield)",
+   "source": "negative search",
+   "source_type": "SEARCH",
+   "date": "2026-07-20",
+   "url": "",
+   "model_impact": ""
+  },
+  {
+   "fid": "F18",
+   "ring": "DEMAND",
+   "category": "investment / ETF flows",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found (searched 'market-implied weighting of commodity fair-value anchors' \u2014 none exists; weights are a stated house judgment)",
+   "source": "negative search",
+   "source_type": "SEARCH",
+   "date": "2026-07-20",
+   "url": "",
+   "model_impact": ""
+  }
+ ],
+ "drivers": [
+  {
+   "driver": "2026 supply/demand balance (deficit 297 koz; AGS 1,747 koz \u2248 11 weeks)",
+   "mode": "BOTTOM_UP",
+   "justification": "WPIC/Metals Focus Quarterly \u2014 the metal's official balance",
+   "refs": [
+    "F04",
+    "F05",
+    "F07",
+    "F08",
+    "F09",
+    "F10"
+   ]
+  },
+  {
+   "driver": "Analyst-consensus forward anchor ($1,700\u20131,800 fresh; $2,222 stale-high)",
+   "mode": "BOTTOM_UP",
+   "justification": "published bank/survey targets, dated, staleness flagged",
+   "refs": [
+    "F15"
+   ]
+  },
+  {
+   "driver": "AISC cost floor $1,006/oz; incentive range $2,300\u20132,500",
+   "mode": "BOTTOM_UP",
+   "justification": "S&P Global 2026 cost outlook + Valterra planning range",
+   "refs": [
+    "F06"
+   ]
+  },
+  {
+   "driver": "Pt/Au neutral-ratio band (0.36\u20130.46, base = 5y mean 0.461\u2026 computed 0.461\u2192base 1,831)",
+   "mode": "TOP_DOWN",
+   "justification": "no authoritative neutral ratio exists; derived from the attached 2011\u201326 series, post-2016 regime, sensitized in \u00a71.9",
+   "refs": [
+    "F16",
+    "F15"
+   ]
+  },
+  {
+   "driver": "q_annual = 0 (no holder yield; METALS-profile precedent)",
+   "mode": "TOP_DOWN",
+   "justification": "zero-yield store of value; carry = ln(1+rf) \u2212 ln(1+0)",
+   "refs": [
+    "F17",
+    "F02"
+   ]
+  },
+  {
+   "driver": "Anchor weights 30/30/20/20 (ratio/consensus/balance/cost; carry = tilt)",
+   "mode": "TOP_DOWN",
+   "justification": "house judgment, stated and logged to the Fundamental Driver Ledger; silver-study precedent 35/25/20/12/8",
+   "refs": [
+    "F18"
+   ]
+  }
+ ]
+}

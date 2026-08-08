@@ -1,0 +1,50 @@
+[
+ {
+  "instrument": "XPTUSD",
+  "asset_class": "metal",
+  "anchor_date": "2026-07-20",
+  "anchor_price": 1608.37,
+  "ccy": "USD",
+  "horizon_label": "1 month (T+20)",
+  "horizon_days": 20,
+  "grade_date": "2026-08-17",
+  "cycle_no": 1,
+  "p5": 1381.97,
+  "p25": 1514.01,
+  "p50": 1612.84,
+  "p75": 1718.44,
+  "p95": 1881.84,
+  "touch": {
+   "+5%": 0.5299,
+   "+10%": 0.265,
+   "-5%": 0.4935,
+   "-10%": 0.2066
+  },
+  "anchor_vol": 0.3356,
+  "engine": "mc_v3 carry-anchored YZ-HAR-t, nu=Gaussian, width_cal=0.853 (provisional self-fit), seed 42, 50k"
+ },
+ {
+  "instrument": "XPTUSD",
+  "asset_class": "metal",
+  "anchor_date": "2026-07-20",
+  "anchor_price": 1608.37,
+  "ccy": "USD",
+  "horizon_label": "3 months (T+60)",
+  "horizon_days": 60,
+  "grade_date": "2026-10-12",
+  "cycle_no": 1,
+  "p5": 1238.91,
+  "p25": 1452.81,
+  "p50": 1623.02,
+  "p75": 1813.36,
+  "p95": 2128.49,
+  "touch": {
+   "+5%": 0.7264,
+   "+10%": 0.5344,
+   "-5%": 0.6871,
+   "-10%": 0.463
+  },
+  "anchor_vol": 0.3395,
+  "engine": "mc_v3 carry-anchored YZ-HAR-t, nu=Gaussian, width_cal=0.853 (provisional self-fit), seed 42, 50k"
+ }
+]
