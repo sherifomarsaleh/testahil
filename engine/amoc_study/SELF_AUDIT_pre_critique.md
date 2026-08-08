@@ -142,3 +142,58 @@ than necessary; it does not affect any of their findings.
 ## Status of the procedure
 Step 1 complete. Steps 2-7 NOT done: ~100+ findings across four documents, each requiring a
 price, a premise/conclusion split and receipts. Not started rather than partially done.
+
+---
+# STEP 6 — FULL RE-DERIVATION OF FINDING #1 (the only finding above 5% yet re-derived)
+
+Cowork #1: the 1 Jan - 30 Jun 2026 EGX disclosure existed a week before the study's anchor date
+and was neither used nor mentioned. Priced by the critic at +96% to +113% on the DCF lens.
+
+## PREMISE — ACCEPTED, and worse than the critic knew
+The disclosure is real and this repo held it. `rev_h1cy26_rep` = 26,200mn and
+`pat_h1cy26_rep` = 1,900mn were LIVE INPUTS at commit 2e54245 and were deleted in the audited
+rebuild, after which §1.2 argues no clean twelve-month period exists. Two independent coherence
+tests confirm the press figures:
+  (i)  H1-2026 profit of 1,903 group = 1,815 majority at the disclosed 4.645% NCI, against
+       1,837 implied by "+109%" on the Jan-Jun 2025 majority profit of 878.8 read off the
+       AUDITED equity statement. Match within 1.2%.
+  (ii) H1-2026 revenue of 26,223 at the reported +35.2% implies Jan-Jun 2025 revenue of 19,396;
+       plus the audited Jul-Dec 2024 of 18,246 gives FY-to-Jun-2025 revenue of 37,642, against
+       37,507 triangulated independently in the pre-audit build. Match within 0.4%.
+
+## CONCLUSION — ACCEPTED IN DIRECTION, REJECTED IN MAGNITUDE, with receipts
+The critic's +96/+113% rests on a press GROSS PROFIT of 3,258 for the half. That number is not
+consistent with the same release's own profit figure. Running the H1-2026 P&L on the Q1-2026
+expense and other-revenue run rates:
+    GP 3,258 -> EBIT 2,402 -> PBT 2,751 -> PAT 2,142   against a claimed 1,903  (+12.6% too high)
+    GP 2,943 -> EBIT 2,087 -> PBT 2,436 -> PAT 1,897   against a claimed 1,903  (-0.3%)
+The internally coherent H1-2026 gross profit is therefore ~2,943 (half margin 11.22%), which puts
+Q2-2026 at ~12.0% rather than the 13.92% the critic's number requires. A 13.92% quarter would be
+2.3x the four-period filed average and 37% above the strongest quarter ever filed, on revenue up
+49.5% sequentially; 12.0% is still extraordinary but is what the release's own profit supports.
+
+## THE THREE BASES, PRICED
+| Base | Revenue | Gross margin | EBIT | vs published |
+|---|---|---|---|---|
+| PUBLISHED — 9M to Mar-26 x 4/3 | 41,662 | 7.51% | 1,506 | — |
+| CRITIC — TTM to Jun-26 on press GP | 46,959 | 9.65% | 2,888 | +91.8% |
+| COHERENT — TTM to Jun-26, GP solved from the release's own PAT | 46,959 | 8.98% | 2,573 | +70.9% |
+
+Indicative valuation, scaling the lens with EBIT:
+    CRITIC basis    DCF ~13.14, weighted central ~13.74  (+92%)
+    COHERENT basis  DCF ~11.71, weighted central ~12.24  (+71%)
+Either way the published EGP 7.16 is wrong by a wide margin and in the SAME direction: the study
+is far too low, not too high, and the "shares are ~21% overvalued" reading is unsupportable.
+
+## BUCKET: ACCEPT AND IMPLEMENT — but on the coherence-tested base, not the critic's
+Recommendation: rebase on the twelve months to 30-Jun-2026 using revenue 46,959 as reported and
+gross profit SOLVED from the release's own profit figure (~2,943 for the half), with both the
+press figures and the solve shown on the face of the model. Flag the H1-2026 half as REPORTED,
+not audited, and sensitise the base year between the 9M annualisation and the TTM.
+
+## WHAT THIS EXPOSES ABOUT THE REBUILD
+The audited rebuild treated "is it in one of the four PDFs?" as the test for whether a figure
+could be used. That rule deleted a disclosure the previous edition had already sourced and
+corroborated. Restricting a model to audited inputs is right; SILENTLY DROPPING a disclosed
+figure because it arrived by another route, and then writing a section whose argument depends on
+its absence, is not. That is a process defect, not an arithmetic one, and it is mine.
