@@ -1,0 +1,94 @@
+{
+  "_meta": {
+    "purpose": "Live market-data snapshot for the EGCH (Egyptian Chemical Industries, KIMA) WACC build",
+    "ticker": "EGCH",
+    "isin": "EGS38201C017",
+    "retrieved_utc": "2026-08-08T15:13:37Z",
+    "helper_session_note": "Fetched by a network-enabled helper session. Values are point-in-time snapshots; re-verify anything volatile before publication."
+  },
+  "damodaran_egypt": {
+    "value": {
+      "moodys_rating": "Caa1",
+      "rating_based_adjusted_default_spread": 0.06372478453347744,
+      "rating_based_country_risk_premium": 0.09707694320020104,
+      "rating_based_total_equity_risk_premium": 0.13937694320020103,
+      "cds_spread_2025_12_31": 0.0355,
+      "cds_spread_net_of_swiss": 0.0341,
+      "cds_based_country_risk_premium": 0.05194719428808419,
+      "cds_based_total_equity_risk_premium": 0.09424719428808419,
+      "mature_market_erp": 0.0423,
+      "us_implied_erp": 0.0446,
+      "relative_equity_vol_multiplier": 1.5233781316153723
+    },
+    "source_url": "https://pages.stern.nyu.edu/~adamodar/pc/datasets/ctryprem.xlsx",
+    "asof": "2026-01-01 (file's own 'Date of update'; sheet notes sovereign ratings updated Feb 16)",
+    "retrieved_utc": "2026-08-08T15:08:00Z",
+    "notes": "Extracted from sheets 'ERPs by country' (Egypt row) and '10-year CDS Spreads' (Egypt row) of the original workbook, saved alongside as ctryprem_snapshot.xlsx. Mature-market ERP 4.23% = US implied ERP 4.46% minus US default spread adjustment, per the file's own construction. Both ERP bases recorded per the v2 WACC rule (rating-basis and CDS-basis must not be mixed)."
+  },
+  "egypt_10y_yield": {
+    "value": 23.000,
+    "unit": "percent",
+    "source_url": "https://www.investing.com/rates-bonds/egypt-10-year-bond-yield",
+    "asof": "2026-08-06",
+    "retrieved_utc": "2026-08-08T15:09:00Z",
+    "notes": "Investing.com shows 23.000, change +0.020 (+0.09%), stamped '06/08 Closed'. Interpreted as dd/mm = 6-Aug-2026 (Egypt's last trading session before the Fri/Sat weekend; USD/EGP on the same site stamped 07/08 = Friday FX close, consistent with dd/mm). worldgovernmentbonds.com returned only JS placeholders and was unusable."
+  },
+  "egypt_tbills": {
+    "value": {
+      "3m_91d": 24.864,
+      "6m_182d": 25.830,
+      "9m_273d": 25.619,
+      "12m_364d": 25.520
+    },
+    "unit": "percent",
+    "source_url": "https://www.investing.com/rates-bonds/ (egypt-3-month / 6-month / 9-month / 1-year bond-yield pages)",
+    "asof": "2026-08-06 (all four stamped '06/08 Closed')",
+    "retrieved_utc": "2026-08-08T15:11:00Z",
+    "notes": "PRIMARY SOURCE FAILED: https://www.cbe.org.eg/en/auctions/egp-t-bills returned 'The requested URL was rejected' (CBE WAF blocked the fetch proxy), so these are NOT CBE auction accepted yields — they are Investing.com secondary-market T-bill yield quotes per tenor, recorded as a fallback. Auction dates and accepted-vs-average splits were not obtainable. If the WACC build needs the official accepted yields, the CBE auction pages must be accessed from an unblocked network or the user asked to supply them."
+  },
+  "usd_egp": {
+    "value": 49.79,
+    "source_url": "https://www.investing.com/currencies/usd-egp",
+    "asof": "2026-08-07",
+    "retrieved_utc": "2026-08-08T15:10:00Z",
+    "notes": "Investing.com quote 49.7900, previous close 49.74, stamped '07/08 Closed' = Friday 7-Aug-2026 FX close (dd/mm, see egypt_10y_yield note). CBE official-rates page was WAF-blocked like the T-bill page, so the CBE official rate itself was not captured."
+  },
+  "urea_fob_egypt": {
+    "value": 545.00,
+    "unit": "USD/MT",
+    "contract": "UFEQ2026 (Aug-2026 front month, continuous UFE1!)",
+    "source_url": "https://www.tradingview.com/symbols/CBOT-UFE1%21/",
+    "asof": "2026-08-07 (last settle before retrieval; market shown closed, page carries no explicit timestamp)",
+    "retrieved_utc": "2026-08-08T15:12:00Z",
+    "notes": "TradingView continuous front-month quote for CME/CBOT Urea (Granular) FOB Egypt futures, contract size 100 MT. CME's own quotes page is JS-rendered and returned no data through the proxy; Investing.com's page served stale historical data (730.00 for a May-26 contract dated 18-Mar-2026, self-flagged as historical; 52-week range 380.00-730.00 — 730 is the 52wk high, not the current price). Forward-curve points were NOT obtainable from any accessible source; only the front month is recorded. Cross-check against a primary quote (CME settlement file or Argus/Profercy assessment) before using as a driver anchor."
+  },
+  "egypt_cpi": {
+    "value": 14.30,
+    "unit": "percent y/y",
+    "reference_month": "2026-06",
+    "source_url": "https://tradingeconomics.com/egypt/inflation-cpi",
+    "asof": "June 2026 print (prior: 14.60% May 2026)",
+    "retrieved_utc": "2026-08-08T15:11:30Z",
+    "notes": "Headline urban CPI y/y per TradingEconomics (sourced from CAPMAS/CBE). Third consecutive month of easing, lowest since Feb-2026. The July-2026 print may land ~10-Aug; re-check before publication."
+  },
+  "egch_shares": {
+    "value": {
+      "shares_outstanding": 1990000000,
+      "shares_outstanding_display": "1.99 billion",
+      "market_cap_egp": 27770000000,
+      "last_price_egp": 13.98,
+      "price_asof": "2026-08-06"
+    },
+    "source_url": "https://stockanalysis.com/quote/egx/EGCH/ (cross-checked vs https://www.tradingview.com/symbols/EGX-EGCH/)",
+    "asof": "2026-08-06 close",
+    "retrieved_utc": "2026-08-08T15:13:00Z",
+    "notes": "PRIMARY SOURCE FAILED: egx.com.eg (company profile page and its listing PDFs) is behind an F5/TSPD JS bot-challenge that blocked WebFetch (503), curl (challenge HTML), and headless Chromium via the proxy (connection reset) — the exchange-stated figure was NOT obtained. Fallback: stockanalysis.com and TradingView agree on price 13.98 EGP and market cap 27.77bn EGP as of 6-Aug-2026, implying ~1.986bn shares; stockanalysis states 1.99bn shares outstanding. TradingView's headline '197.95M shares' is inconsistent with its own market cap (off by 10x; likely free float). A stale EGX listing PDF surfaced in search states 394,042,710 shares at par EGP 5 — almost certainly pre-capital-increase; do not use. SIGCM: confirm the exact share count and paid-in capital from the company's own FS/EGX disclosure before the WACC's market-value equity weight is finalized."
+  },
+  "egypt_corporate_spread_context": {
+    "value": null,
+    "source_url": "https://www.zawya.com/en/capital-markets/bonds/egypt-lists-egp-1209bln-treasury-bond-issue-on-egx-djeuoehg",
+    "asof": "n/a",
+    "retrieved_utc": "2026-08-08T15:13:30Z",
+    "notes": "SKIPPED — no reliable recent EGP corporate/securitization pricing vs sovereign found through accessible sources (searches surfaced only sovereign paper). Sovereign context captured instead: a new EGP 120.9bn treasury bond maturing 21-May-2029 listed with a 23.098% fixed annual coupon (semi-annual pay), consistent with the ~23% 10Y and ~25.5% 1Y secondary yields above. Kd for EGCH must still be built as sovereign + a corporate credit spread from a sourced comp or the company's own facilities, per the WACC rule that a same-currency corporate cannot borrow below its sovereign."
+  }
+}
