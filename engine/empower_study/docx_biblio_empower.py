@@ -227,15 +227,13 @@ P('Values are shown as the model holds them: AED millions for financial-statemen
   'than a quotation, the construction is stated in the source column itself.',
   size=9.5, color=GREY)
 RING_ORDER = ['Market', 'Company', 'Country', 'House']
+rows = [['Input', 'Value', 'Layer', 'Date', 'Source and construction']]
 for ring in RING_ORDER:
-    items = [(k, v) for k, v in INP.items() if v['ring'] == ring]
-    if not items:
-        continue
-    H2(f'{ring} layer — {len(items)} input{"s" if len(items) > 1 else ""}')
-    rows = [['Input', 'Value', 'Date', 'Source and construction']]
-    for k, v in items:
-        rows.append([k.replace('_', ' '), fmt(v['value']), v['date'], v['source']])
-    table(rows, [1.30, 1.55, 0.75, 6.20], size=7.8)
+    for k, v in INP.items():
+        if v['ring'] != ring:
+            continue
+        rows.append([k.replace('_', ' '), fmt(v['value']), v['ring'], v['date'], v['source']])
+table(rows, [1.30, 1.60, 0.62, 0.78, 5.50], size=7.8)
 
 # ---------------------------------------------------- 3. judgements
 doc.add_page_break()

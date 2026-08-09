@@ -1106,6 +1106,7 @@ title(ws, 'Summary — valuation at a glance', 'All values link live to their so
       'averaged.', 7, awidth=48, cwidth=14)
 hdr(ws, 4, ['Lens', 'AED/share', 'Weight', 'Contribution', 'vs spot', '',
             'Terminal value share of EV'])
+ws.column_dimensions['G'].width = 26
 lens_src = [
     ('Discounted cash flow (9% framing)', "='SOTP Bridge'!C13", B_CT['ps'], 'w_dcf',
      LN['dcf']['weight']),
@@ -1196,6 +1197,7 @@ ANCH['summary'] = dict(central=CEN_ROW, central_dm=CEN_DM_ROW, spot=SPOT_ROW)
 ws = wb['Fundamental Valuation']
 title(ws, 'Fundamental valuation — four lenses, two framings, one field', None, 6,
       awidth=56, cwidth=15)
+ws.column_dimensions['B'].width = 62
 hdr(ws, 4, ['Lens', 'Basis', 'AED per share'])
 fv_rows = [
     ('Discounted cash flow', 'five-year free-cash-flow build, reinvestment-consistent '

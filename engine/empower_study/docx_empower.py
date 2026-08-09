@@ -98,8 +98,10 @@ _dn50 = SN['table'][_wi + 1][_gi]; _up50 = SN['table'][_wi - 1][_gi]
 E1_LO = CRX['rows'][0]['ps'] * (1 + 0.5 * (_dn50 / _base_cell - 1))
 E1_HI = CRX['rows'][-1]['ps'] * (1 + 0.5 * (_up50 / _base_cell - 1))
 def ddm_at(g): return DDM['dps'] * (1 + g) / (W['ke_rating'] - g)
-E2_LO, E2_HI = ddm_at(0.02), ddm_at(0.03)
+E2_G_LO, E2_G_HI = SN['g_grid'][1], SN['g_grid'][3]     # the grid's 2.0% and 3.0% nodes
+E2_LO, E2_HI = ddm_at(E2_G_LO), ddm_at(E2_G_HI)
 E3_CENTRAL = REL['ps_pe']
+WAGE_ESC = SN['g_grid'][2]      # 2.5% — the wage-class escalator, numerically the g node
 DEWA_PCT = rx(r'DEWA (\d+)%', D['meta']['ownership'])
 FLOAT_PCT = rx(r'~(\d+)%', D['meta']['ownership'])
 TB_NDX = rx(r'([\d.]+)x', SX['peers_relative_multiples']['TABREED']['fy2025']['net_debt_ebitda'])
@@ -342,7 +344,7 @@ rows = [hdr,
         ['Free cash flow to the firm'] + [n0(BC['fcff'][y]) for y in YRS],
         ['Discount factor'] + [f"{BC['df'][y]:.4f}" for y in YRS],
         ['Present value of FCFF'] + [n0(BC['pv'][y]) for y in YRS]]
-table(rows, [2.05, 0.99, 0.99, 0.99, 0.99, 0.99], size=8.5, band_rows={12, 14})
+table(rows, [2.30, 0.94, 0.94, 0.94, 0.94, 0.94], size=8.5, band_rows={12, 14})
 caption(f"Every line is computed, not typed. Working capital is NEGATIVE for this company — "
         f"customer deposits and payables fund the cycle — so growth RELEASES cash: the "
         f"working-capital line adds to free cash flow every year, at the audited 2025 ratio of "
@@ -353,7 +355,7 @@ rows = [['AED mn — the same model at the ' + pc(IN['tax_dmtt'], 0) + ' minimum
         [f"NOPAT — EBIT × (1 − {pc(IN['tax_dmtt'], 0)})"] + [n0(BD['nopat'][y]) for y in YRS],
         ['Free cash flow to the firm'] + [n0(BD['fcff'][y]) for y in YRS],
         ['Present value of FCFF'] + [n0(BD['pv'][y]) for y in YRS]]
-table(rows, [2.05, 0.99, 0.99, 0.99, 0.99, 0.99], size=8.5, band_rows={2})
+table(rows, [3.05, 0.79, 0.79, 0.79, 0.79, 0.79], size=8.5, band_rows={2})
 
 H2('The bridge from enterprise value to the equity — both framings')
 fig('fig7_bridge.png', 7.0,
@@ -386,9 +388,9 @@ rows = [['Step', f"At {pc(IN['tax_ct'], 0)}", f"At {pc(IN['tax_dmtt'], 0)}", 'No
          'model, at book'],
         [f"Less minority interests ({pc(NCI_FRAC, 1)} of profits)", f"({n0(BC['nci_val'])})",
          f"({n0(BD['nci_val'])})",
-         f"minorities (the {DXB_PCT and ''}30% of DXB CoolCo and others) take {pc(NCI_FRAC, 1)} "
-         f"of group profit and are charged the same share of the value — the internally "
-         f"consistent convention when the group is valued above book"],
+         f"minorities (the {100 - int(DXB_PCT)}% of DXB CoolCo, and others) take "
+         f"{pc(NCI_FRAC, 1)} of group profit and are charged the same share of the value — the "
+         f"internally consistent convention when the group is valued above book"],
         ['Equity attributable', n0(BC['eq_attr']), n0(BD['eq_attr']), ''],
         ['Fair value per share (AED)', p3(BC['ps']), p3(BD['ps']),
          f"against a spot of {p2(SPOT)}: {sgn(BC['ps'] / SPOT - 1, 0)} and "
@@ -438,7 +440,7 @@ rows = [['Step', 'Value', 'Comment'],
          f"{n0(REL['npa26'])}", p3(REL['ps_pe']),
          f"the earnings-basis read; DEWA itself trades near {n1(REL['dewa_pe'])}× as a "
          f"secondary marker"]]
-table(rows, [2.45, 1.00, 3.55], size=8.5, band_rows={5})
+table(rows, [2.51, 0.94, 3.55], size=8.5, band_rows={5})
 P(f"Read this lens for what it is: a market-regime reading, not an independent fundamental. The "
   f"peer multiples are themselves struck in a war-discounted market — Tabreed and DEWA fell "
   f"with the index — so applying them imports the conflict discount rather than testing it. "
@@ -475,7 +477,7 @@ rows = [['Lens', f"At {pc(IN['tax_ct'], 0)}", f"At {pc(IN['tax_dmtt'], 0)}", 'We
          pc(LN['book']['weight'], 0)],
         ['Weighted central', p3(CEN['ct']), p3(CEN['dmtt']), '—'],
         ['Dividend cross-check (unweighted)', p3(DDM['ps']), p3(DDM['ps']), '—']]
-table(rows, [2.60, 1.20, 1.20, 0.90], size=8.6, band_rows={5})
+table(rows, [3.39, 0.83, 0.83, 0.95], size=8.6, band_rows={5})
 P(f"The lenses disagree in an orderly way. The cash-flow model sits highest because it credits "
   f"the contracted growth backlog and the negative-working-capital funding model in full; the "
   f"relative lens sits lowest because it imports today's war-discounted market regime; the "
@@ -488,7 +490,7 @@ P(f"The lenses disagree in an orderly way. The cash-flow model sits highest beca
 # ---- 1.6 drivers -------------------------------------------------------------
 H2('1.6  The drivers — a two-leg unit build, margins as outputs')
 fig('fig8_unit.png', 7.0,
-    "Figure 3 — the unit engine: connected capacity, consumption per connected ton and the "
+    "Figure 3 — the unit build: connected capacity, consumption per connected ton and the "
     "revenue that falls out of them.")
 P(f"Revenue is built from physical units at the finest level the company disclosures allow. The "
   f"volume driver is CONNECTED CAPACITY, taken from the company's own history and guidance: "
@@ -521,7 +523,7 @@ P(f"The cost stack is escalated one class at a time, never on a single blended i
   f"its own physical driver, the consumption leg itself (DEWA's slab tariff is flat; its fuel "
   f"surcharge floats monthly). Staff and other cash operating costs (AED "
   f"{n0(U['other_cos25'] + U['ga_cash25'])}mn in 2025 across cost of sales and administration) "
-  f"escalate on a UAE wage path of {pc(0.025, 1)} a year. Interest income on the airport "
+  f"escalate on a UAE wage path of {pc(WAGE_ESC, 1)} a year. Interest income on the airport "
   f"concession receivable amortises slowly down. The build reproduces audited 2025 EBITDA of "
   f"AED {n0(HI['FY25']['ebitda'])}mn exactly before any forecast year is struck.")
 rows = [['What the build produces', ] + YRS,
@@ -530,7 +532,7 @@ rows = [['What the build produces', ] + YRS,
         ['EBITDA margin — an OUTPUT'] + [pc(B['ebitda'][y] / B['rev'][y]) for y in YRS],
         ['Capital expenditure (AED mn)'] + [n0(B['capex'][y]) for y in YRS],
         ['Working capital released (AED mn)'] + [n0(-B['dnwc'][y]) for y in YRS]]
-table(rows, [2.05, 0.99, 0.99, 0.99, 0.99, 0.99], size=8.4, band_rows={3})
+table(rows, [3.00, 0.80, 0.80, 0.80, 0.80, 0.80], size=8.4, band_rows={3})
 caption(f"The margin path is not assumed: it emerges from the two-leg mix. It dips in the shock "
         f"year, then recovers toward the audited range ({MARG_LO}–{MARG_HI}%) as consumption "
         f"normalises and the connected base grows into the cost stack.")
@@ -740,7 +742,7 @@ rows = [['Horizon', '5th', '25th', 'Median', '75th', '95th', 'Probability above 
         [f"3 months (to {H3M['grade_date']})"] +
         [p2(H3M['pct'][k]) for k in ('p5', 'p25', 'p50', 'p75', 'p95')] +
         [pc(H3M['p_above'], 0)]]
-table(rows, [1.75, 0.80, 0.80, 0.80, 0.80, 0.80, 1.25], size=8.6)
+table(rows, [2.11, 0.71, 0.71, 0.80, 0.71, 0.71, 1.25], size=8.6)
 fig('fig5_dist.png', 5.3, "Figure 7 — the one-month price distribution.")
 fig('fig6_dist.png', 5.3, "Figure 8 — the three-month price distribution.")
 H2('Level-touch ladder')
@@ -751,7 +753,7 @@ rows = [['Event', '1 month', '3 months'],
          pc(H3M['touch_up10'], 0)],
         ['Touches 10% below spot at any point', pc(H1M['touch_dn10'], 0),
          pc(H3M['touch_dn10'], 0)]]
-table(rows, [3.30, 1.35, 1.35], size=8.6)
+table(rows, [3.90, 1.05, 1.05], size=8.6)
 caption(f"Touch probabilities exceed finish probabilities because a path can visit a level and "
         f"come back. The anchor volatility is about {pc(H3M['anchor_vol_ann'], 0)} annualised — "
         f"elevated for a regulated utility, which is itself a statement about the conflict "
@@ -1039,7 +1041,7 @@ rows = [['AED mn'] + [nm for nm, _ in COLS],
         bsr('Non-controlling interests', 'nci'),
         bsr('Total equity', 'eqt'),
         bsr('Net debt (borrowings + leases − cash − deposits)', 'nd')]
-table(rows, [2.60, 1.10, 1.10, 1.10, 1.10], size=8.3, band_rows={9, 16, 17})
+table(rows, [3.10, 0.90, 0.90, 0.90, 1.20], size=8.3, band_rows={9, 16, 17})
 caption(f"FY2023, FY2024 and FY2025 are audited; the June-2026 column is the reviewed interim. "
         f"The net-debt row reproduces the company's own presented figure at 30 June 2026 "
         f"({n0(IN['netdebt_jun26_co'])}mn) exactly. The 2023 step-up in borrowings funded the "
@@ -1186,7 +1188,7 @@ rows = [['Step (base case, ' + pc(IN['tax_ct'], 0) + ' tax, AED mn)'] + YRS,
         ['NOPAT'] + [n0(BC['nopat'][y]) for y in YRS],
         ['Free cash flow to the firm'] + [n0(BC['fcff'][y]) for y in YRS],
         ['Present value'] + [n0(BC['pv'][y]) for y in YRS]]
-table(rows, [2.05, 0.99, 0.99, 0.99, 0.99, 0.99], size=8.4, band_rows={6})
+table(rows, [3.00, 0.80, 0.80, 0.80, 0.80, 0.80], size=8.4, band_rows={6})
 rows = [['Terminal block and bridge', 'Value'],
         ['Sum of the five present values (AED mn)', n0(BC['pv_explicit'])],
         [f"Terminal value — final NOPAT × (1 + {pc(IN['g_term'], 1)}) × (1 − "
@@ -1227,7 +1229,7 @@ rows = [['Step', 'Value'],
          f"of equity", f"× {1 + IN['g_term']:.3f} ÷ ({pc(W['ke_rating'], 2)} − "
          f"{pc(IN['g_term'], 1)})"],
         ['Fair value per share (AED)', p3(DDM['ps'])],
-        [f"Range — growth {pc(0.02, 1)} to {pc(0.03, 1)}", f"{p2(E2_LO)} – {p2(E2_HI)}"]]
+        [f"Range — growth {pc(E2_G_LO, 1)} to {pc(E2_G_HI, 1)}", f"{p2(E2_LO)} – {p2(E2_HI)}"]]
 table(rows, [4.55, 2.45], size=8.5, band_rows={5})
 P("Coverage is the whole argument, so here it is, line by line:")
 rows = [['AED mn'] + YRS,
@@ -1240,7 +1242,7 @@ rows = [['AED mn'] + YRS,
         ['Dividend'] + [n0(IN['div_policy'])] * 5,
         ['Coverage'] + [f"{(BC['fcff'][y] - NF25 * (1 - IN['tax_ct'])) / IN['div_policy']:.2f}×"
                         for y in YRS]]
-table(rows, [2.60, 0.88, 0.88, 0.88, 0.88, 0.88], size=8.3, band_rows={5})
+table(rows, [3.00, 0.80, 0.80, 0.80, 0.80, 0.80], size=8.3, band_rows={5})
 P(f"In the shock year coverage is almost exactly one — the payout absorbs essentially all the "
   f"equity cash flow, and the growth is funded by the working-capital release and the "
   f"revolving facilities' headroom. That is covered, not slack, and it is why my number sits "
