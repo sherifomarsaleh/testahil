@@ -107,24 +107,28 @@ def sync_main(ticker: str) -> None:
 
 
 def market_of(ticker: str) -> str | None:
-    """The ticker's market, from its own `code:` prefix in data.js — file placement and
-    the entry decide the market, never the name."""
-    src = open(os.path.join(ROOT, "assets", "data.js"), encoding="utf-8").read()
-    m = re.search(r'\n  "?' + re.escape(ticker) + r'"?: \{(.*?)\n  \},', src, re.S)
-    if not m:
-        return None
-    c = re.search(r'code:\s*"([A-Z0-9]+):', m.group(1))
+    """Market prefix from the ticker's own TICKERS entry ("EGX:PHAR" -> "EG").
+
+    Parsed by LOADING data.js, not by regex: the entry is the authority on the
+    market, and a regex over a file this size has already mis-parsed it once."""
+    js = ("const fs=require('fs'),vm=require('vm');const c={};vm.createContext(c);"
+          "vm.runInContext(fs.readFileSync('assets/data.js','utf8')+';globalThis.__T=TICKERS;',c);"
+          f"process.stdout.write(String((c.__T[{json.dumps(ticker)}]||{{}}).code||''));")
+    code = run(["node", "-e", js]).strip()
     return {"EGX": "EG", "ADX": "AE", "DFM": "AE", "TADAWUL": "SA",
-            "QE": "QA"}.get(c.group(1)) if c else None
+            "QE": "QA"}.get(code.split(":")[0])
 
 
 def surfaces(ticker: str) -> None:
-    """All five generated surfaces, in dependency order. Never hand-edit these."""
+    """All generated surfaces, in dependency order. Never hand-edit these."""
     step("2/6", "regenerating the derived surfaces")
     print(run(["node", "scripts/generate_seo.js"]).strip()[-300:])
     print(run(["node", "scripts/generate_feed.js"]).strip()[-200:])
     print(run(["python3", "scripts/build_market_registry.py", "--write"]).strip()[-200:])
-    # 4 runs last: it rewrites the ticker's own data.js block, so the entry must exist.
+    # The Ticker Picker reads a GENERATED overlay that nothing here used to rebuild, so a
+    # published name simply was not on that page — SWDY, SCEM and EGCH all shipped green
+    # and invisible. The overlay is fitted per market and only EG has a fit today.
+    # these run last: they rewrite the ticker's own data.js block, so the entry must exist.
     print(run(["python3", "engine/ta_chart.py", "--only", ticker, "--write"]).strip()[-200:])
     print(run(["python3", "engine/apply_technicals.py", "--only", ticker,
                "--write"]).strip()[-300:])
@@ -209,6 +213,18 @@ const { chromium } = require('playwright');
     if res["errors"]:
         die(f"page errors on render: {res['errors'][:3]}")
     print(f"  {ticker.lower()}.html renders · {ticker} listed in ledger.html · 0 page errors")
+
+    # The ticker's own page and the ledger were the only two surfaces ever verified here.
+    # Everything else was taken on trust and drifted: three publishes in a row went out
+    # missing from the Ticker Picker. This checks every page that is supposed to carry
+    # every covered name, by rendering it and reading the DOM a reader would see.
+    env = dict(os.environ, NODE_PATH=os.environ.get(
+        "NODE_PATH", "/opt/node22/lib/node_modules"))
+    p = subprocess.run(["node", "scripts/check_ticker_surfaces.js", ticker, ROOT],
+                       cwd=ROOT, text=True, capture_output=True, timeout=300, env=env)
+    print((p.stdout + p.stderr).strip())
+    if p.returncode != 0:
+        die(f"{ticker} is missing from a register surface — see above")
 
 
 def commit_and_push(ticker: str, republish: bool) -> str:
