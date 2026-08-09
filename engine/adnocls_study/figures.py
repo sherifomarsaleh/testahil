@@ -314,8 +314,15 @@ mid = D['fleet']['tce_mid']
 for key, lbl, col in CLS:
     ax.plot([-0.35, len(QLAB) - 0.55], [mid[key]] * 2, color=col, lw=1.0, ls=':',
             alpha=0.75, zorder=1)
-ax.text(0.15, 165000, 'dotted lines: the mid-cycle rate each class reverts to in the '
+ax.text(0.15, 175000, 'dotted lines: the mid-cycle rate each class reverts to in the '
         'forecast', fontsize=8.2, color=GREY, va='center', ha='left')
+mcc = D['sens']['market_cross_check']
+ax.plot([-0.35, len(QLAB) - 0.55], [mcc['vlcc_1y_tc']] * 2, color=INK, lw=1.3, ls='-.',
+        alpha=0.9, zorder=2)
+ax.text(0.15, mcc['vlcc_1y_tc'] * 1.10,
+        f'one-year time charter fixed by a listed owner, early 2026: '
+        f'{mcc["vlcc_1y_tc"]:,.0f} a day', fontsize=8.2, color=INK, va='bottom',
+        ha='left')
 ax.set_yscale('log')
 ticks = [20000, 30000, 50000, 80000, 130000, 200000, 300000]
 ax.set_yticks(ticks)
