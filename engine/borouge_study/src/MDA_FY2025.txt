@@ -1,0 +1,353 @@
+
+=== [MDA_FY2025.pdf p1] ===
+Borouge Classification: Public
+BOROUGE PLC Q4 / FY 2025
+Management
+Discussion & Analysis
+1
+
+=== [MDA_FY2025.pdf p2] ===
+Borouge Classification: Public
+Table of Contents
+1. Summary of Operational and Financial Performance
+2. Operational Review
+3. Revenue and Pricing
+4. Costs
+5. Cash Generation
+6. Current Trading and Outlook
+7. Management Q4 / FY 2025 Earnings Call
+2
+
+=== [MDA_FY2025.pdf p3] ===
+Borouge Classification: Public
+1. Summary of Operational and Financial Performance
+Borouge Plc (Borouge) reported revenue of $1,676 million for the three months ending 31 December
+2025 (Q4 2025), up 3 percent year-on-year (YoY), driven by record quarterly production of 1,464 kt, 10
+percent higher YoY and record sales volumes of 1,643 kt, representing a 12 percent increase compared
+to Q4 2025 with sales volumes supported by sales from inventory. Blended average selling prices
+declined by 8 percent YoY, reflecting lower benchmark prices during the period with pricing premia
+maintained. On a quarter-on-quarter (QoQ) basis, production and sales volumes increased by 5 percent
+and 21 percent, respectively, underscoring continued strong operational performance and commercial
+resilience, while blended average selling prices declined by 6 percent.
+During the quarter, Borouge achieved premia above average benchmark prices of $202 per tonne for
+polyethylene (PE) and $118 per tonne for polypropylene (PP). The PE premia was 13 percent higher
+YoY, exceeding management guidance, while PP premia declined by 16 percent YoY, reflecting
+temporarily weaker market demand for PP products. On a QoQ basis, PE and PP premia reduced by
+12 percent and 11 percent, respectively.
+Borouge reported adjusted EBITDA(1) of $601 million in Q4 2025, down 8 percent YoY, with an EBITDA
+margin of 36 percent. Total operating costs increased 4 percent YoY, primarily due to the 12 percent
+YoY increase in sales volumes. The company generated robust adjusted operating free cash flow of
+$502 million (Q4 2024: $572 million), achieving a cash conversion rate of 84 percent.
+For the twelve months ending 31 December 2025 (FY 2025), Borouge reported revenue of $5,848
+million, down 3 percent YoY, reflecting lower realised pricing. Adjusted EBITDA declined 12 percent,
+with an EBITDA margin of 37 percent, while net profit decreased by 11 percent to $1,099 million. The
+company delivered adjusted operating free cash flow of $1,864 million, down 19 percent YoY, and
+achieved a strong cash conversion rate of 86 percent.
+Net Debt stood at $2,696 million as of 31 December 2025 (31 December 2024: $2,691 million).
+Q4 Q4 YoY Q3 QoQ FY FY YoY
+2025 2024 (%) 2025 (%) 2025 2024 (%)
+$m $m $m $m $m
+Revenue 1,676 1,621 +3% 1,447 +16% 5,848 6,026 -3%
+Total costs (1,014) (972) +4% (840) +21% (3,566) (3,491) +2%
+Gross Profit 662 649 +2% 607 +9% 2,282 2,535 -10%
+General & Administrative
+(46) (32) +41% (49) -6% (197) (193) +2%
+Expenses (excl. D&A)
+Selling & Distribution Expenses
+(115) (145) -21% (110) +4% (416) (472) -12%
+(excl. D&A)
+Other Income & Expenses 9 37 -76% 4 +141% 25 51 -51%
+Operating Profit 510 510 +0.1% 452 +13% 1,694 1,921 -12%
+Profit for the Period 330 331 -0.1% 295 +12% 1,099 1,239 -11%
+Profit Margin (%) 20% 20% 20% 19% 21%
+Total Comprehensive Income 333 335 -1% 296 +13% 1,104 1,243 -11%
+Adjusted EBITDA (1) 601 650 -8% 565 +6% 2,172 2,477 -12%
+Adjusted EBITDA Margin (%) 36% 40% 39% 37% 41%
+Basic Earnings per Share
+0.01 0.01 0.01 0.04 0.04
+(US$)
+Diluted Earnings per Share
+0.01 0.01 0.01 0.04 0.04
+(US$)
+Net Debt 2,696 2,691 +0.2% 2,915 -8% 2,696 2,691 +0.2%
+3
+
+=== [MDA_FY2025.pdf p4] ===
+Borouge Classification: Public
+(1) Adjusted EBITDA is calculated as EBITDA plus adjustments on foreign exchange gain or loss and impairment loss on property, plant and equipment.
+Q4 Q4 YoY Q3 QoQ FY FY YoY
+2025 2024 (%) 2025 (%) 2025 2024 (%)
+Total Sales Volume (kt) 1,643 1,467 +12% 1,355 +21% 5,388 5,335 +1%
+Polyethylene 935 823 +14% 753 +24% 3,053 3,072 -0.6%
+Polypropylene 708 640 +11% 602 +18% 2,322 2,253 +3.1%
+Ethylene & Others 0 4 - 0 - 13 10 +30%
+Average Selling Price ($/t) 958 1,045 -8% 1,021 -6% 1,020 1,075 -5%
+Polyethylene 994 1,059 -6% 1,047 -5% 1,046 1,095 -4%
+Polypropylene 912 1,025 -11% 987 -8% 985 1,047 -6%
+Average Product Premia ($/t)
+Polyethylene 202 178 +13% 230 -12% 224 197 +14%
+Polypropylene 118 140 -16% 132 -11% 134 150 -11%
+2. Operational Review
+In Q4 2025, Borouge achieved record production of 1,464 kt, representing a 10 percent YoY and 5
+percent QoQ increase. This strong performance followed record production in Q3 2025 and was split
+broadly between 56 percent PE and 44 percent PP. Production was supported by record utilisation rates
+during the period of 119 percent for PE and 114 percent for PP.
+For FY 2025, total production stood at 5,055 kt, representing a 3 percent YoY decrease, as high
+utilisation rates were offset by the B3 turnaround in Q2 2025. Utilisation rates for the full year, including
+the impact of the turnaround, were 102 percent for PE and 100 percent for PP.
+The Company’s strategic growth projects continue to advance. Commissioning activities for the first
+Borouge 4 facility, XLPE 2, commenced at the end of 2025, and the first shipments to customers are
+expected to take place in Q1 2026. The XLPE 2 facility utilises resin feedstock from the B3 plant to
+produce high purity XLPE material, primarily serving the high value wire and cable market. Production
+from Borouge 4 is expected to ramp up through 2026 as the remaining facilities are commissioned and
+brought online.
+The expansion project for the EU2 ethane cracker continues, with Front-End Engineering Design
+(FEED) services completed. The Company is now seeking to award an Engineering, Procurement and
+Construction contract (EPC) for the project in 2026. Borouge has also carried out a feasibility study for
+the expansion of its third ethane cracker (EU3) and is progressing with pre-FEED activities.
+Borouge expanded its differentiated product offering with 10 innovative new products released in FY
+2025. These included the Company’s first made-in-the-UAE healthcare-grade low-density polyethylene
+(LDPE) product. The Company also introduced advanced material solutions supporting ROX Motor’s
+new-energy vehicle development. In addition, Borouge expanded its circular product solutions through
+the Recleo™ portfolio, made from mechanically recycled polyolefin materials. Borouge further launched
+a new Borstar® product for advanced packaging applications, enabling energy savings and a reduction
+in food waste. Together, these innovations generated $94 million of value in FY 2025.
+4
+
+=== [MDA_FY2025.pdf p5] ===
+Borouge Classification: Public
+Q4 Q4 YoY Q3 QoQ FY FY YoY
+2025 2024 (%) 2025 (%) 2025 2024 (%)
+Production Capacity (kt) 1,255 1,255 1,255 4,980 4,994
+Polyethylene 693 693 693 2,750 2,758
+Polypropylene 562 562 562 2,230 2,236
+Utilisation Rate
+Polyethylene 119% 113% 110% 102% 110%
+Polypropylene 114% 98% 112% 100% 98%
+Production Volume (kt) 1,464 1,337 +10% 1,390 +5% 5,055 5,216 -3%
+Polyethylene 822 783 +5% 763 +8% 2,817 3,024 -7%
+Polypropylene 642 549 +17% 627 +2% 2,225 2,182 +2%
+Ethylene & Other 0 4.3 - 0 - 12.7 10.3 +23%
+3. Revenue and Pricing
+Q4 Q4 YoY Q3 QoQ FY FY YoY
+2025 2024 (%) 2025 (%) 2025 2024 (%)
+Sales Volume by Product 1,643 1,467 +12% 1,355 +21% 5,388 5,335 +1%
+Polyethylene 935 823 +14% 753 +24% 3,053 3,072 -1%
+Polypropylene 708 640 +11% 602 +18% 2,322 2,253 +3%
+Ethylene & Others 0 4.0 - 0 - 13.0 10.0 +30%
+Polyethylene (US$/t)
+Average Sales Prices (1) 994 1,059 -6% 1,047 -5% 1,046 1,095 -4%
+Average Premia (2) 202 178 +13% 230 -12% 224 197 +14%
+Average Benchmark (3) 792 881 -10% 817 -3% 822 898 -8%
+Polypropylene (US$/t)
+Average Sales Prices (1) 912 1,025 -11% 987 -8% 985 1,047 -6%
+Average Premia (2) 118 140 -16% 132 -11% 134 150 -11%
+Average Benchmark (3) 794 885 -10% 855 -7% 851 897 -5%
+Q4 Q4 YoY Q3 QoQ FY FY YoY
+2025 2024 (%) 2025 (%) 2025 2024 (%)
+$m $m $m $m $m
+Revenue by Product
+Polyethylene 991 933 +6% 831 +19% 3,436 3,558 -3%
+Polypropylene 678 676 +0.4% 605 +12% 2,368 2,421 -2%
+Ethylene & Others 6 13 -50% 10 -40% 44 47 -6%
+Total Revenues 1,676 1,621 +3% 1,477 +16% 5,848 6,026 -3%
+5
+
+=== [MDA_FY2025.pdf p6] ===
+Borouge Classification: Public
+(1) Average sales prices are equal to revenue over sales volumes (including commissions).
+(2) Premia is equal to the difference between average sales prices and the benchmark prices.
+(3) Benchmark prices represent HDPE Blow Molding NEA CFR for polyethylene and Raffia NEA CFR for polypropylene (as per CMA).
+In Q4 2025, total sales volumes increased 12 percent YoY to a record 1,643 kt, driven by a 14 percent
+increase in PE volumes, while PP volumes grew 11 percent. Infrastructure solutions accounted for 39
+percent of total volumes. By region, Asia Pacific remained the largest market, representing 59 percent
+of total sales, followed by the Middle East and Africa, which accounted for 32 percent. On a QoQ basis,
+total sales volumes increased 21 percent, reflecting record-high utilisation rates for both PE and PP.
+Borouge achieved premia over benchmark prices of $202 per tonne for PE and $118 per tonne for PP.
+The PE premia were above management’s through-the-cycle guidance of $200 per tonne, while PP
+premia were $22 per tonne below the guidance of $140 per tonne. This quality price premium reflects
+the company’s strategic focus on differentiated, durable products, geographic optimisation, and agility
+in navigating global market dynamics.
+Blended average selling prices declined by 8 percent YoY and 6 percent QoQ, reflecting softer market
+conditions. PE realised prices fell 6 percent YoY and 5 percent QoQ, while PP realised prices decreased
+11 percent YoY and 8 percent QoQ.
+Underlying product benchmark prices for PE declined 10 percent YoY and 3 percent QoQ, while PP
+benchmarks reduced by 10 percent YoY and 7 percent QoQ. Premia above benchmark for PE improved
+13 percent YoY to $202 per tonne, while PP premia declined 16 percent YoY to $118 per tonne. Borouge
+continues to optimise its operations and sales strategies to navigate market challenges and deliver
+strong financial results for shareholders.
+Borouge achieved record sales volumes of 5,388 kt in FY 2025, representing a 1 percent YoY increase
+and reflecting strong commercial performance. PE sales decreased by 1 percent, while PP sales
+increased by 3 percent during the year. Average selling prices for PE and PP decreased by 4 percent
+and 6 percent, respectively YoY, reflecting weaker market benchmark prices. However, this was partially
+offset by strong premia of $224 per tonne for PE and $134 per tonne for PP, with PE exceeding
+management’s TTC guidance and PP slightly below. The company continued to maintain a strategic
+focus on high value-add segments such as infrastructure solutions, which contributed 38 percent of
+total sales volume during the year.
+Segmental revenue breakdown (includes polyolefins and olefins)
+Q4 Q4 YoY Q3 QoQ FY FY YoY
+2025 2024 (%) 2025 (%) 2025 2024 (%)
+By Product Group
+Polyethylene 59% 58% 57% 59% 59%
+Polypropylene 40% 42% 42% 40% 40%
+Ethylene & Others 0.4% 1% 1% 1% 1%
+By End Market
+Consumer Solutions (1) 54% 55% 57% 54% 54%
+Infrastructure Solutions 43% 42% 40% 42% 43%
+Other (2) 3% 3% 3% 3% 3%
+By Geography
+Asia Pacific 59% 62% 60% 59% 62%
+Middle East & Africa 32% 30% 34% 32% 31%
+Rest of World 9% 7% 5% 8% 7%
+Ethylene & Others 0.4% 1% 1% 1% 1%
+(1) Consumer Solutions includes sales to the agriculture sector.
+(2) “Other” in “By End Markets” includes mobility and healthcare sectors and ethylene and other products.
+6
+
+=== [MDA_FY2025.pdf p7] ===
+Borouge Classification: Public
+Segmental volume breakdown (includes polyolefins and olefins)
+Q4 Q4 YoY Q3 QoQ FY FY YoY
+2025 2024 (%) 2025 (%) 2025 2024 (%)
+By Product Group
+Polyethylene 57% 56% 56% 57% 58%
+Polypropylene 43% 44% 44% 43% 42%
+Ethylene & Others - 0.3% - 0.2% 0.2%
+By End Market
+Consumer Solutions (1) 59% 59% 62% 59% 57%
+Infrastructure Solutions 39% 39% 36% 38% 40%
+Other (2) 2% 3% 2% 3% 3%
+By Geography
+Asia Pacific 59% 63% 61% 59% 63%
+Middle East & Africa 32% 30% 33% 32% 30%
+Rest of World 9% 7% 5% 8% 7%
+Ethylene & Others - 0.3% - 0.2% 0.2%
+(1) Consumer Solutions includes sales to the agriculture sector.
+(2) “Other” in “By End Markets” includes mobility and healthcare sectors and ethylene and other products.
+4. Costs
+Q4 Q4 YoY Q3 QoQ FY FY YoY
+2025 2024 (%) 2025 (%) 2025 2024 (%)
+$m $m $m $m $m
+Revenue 1,676 1,621 +3% 1,447 +16% 5,848 6,026 -3%
+Cost of Sales (excl. D&A) (927) (837) +11% (731) +27% (3,099) (2,947) +5%
+…Feedstock Costs (384) (338) +14% (339) +13% (1,295) (1,288) +1%
+…Other Variable & Fixed
+(543) (499) +9% (393) +38% (1,804) (1,659) +9%
+Production Costs
+…as % of revenue 55% 52% 51% 53% 49%
+General & Administrative
+(42) (27) +56% (47) -9% (188) (185) +2%
+Expenses (excl. D&A)
+…as % of revenue 3% 2% 3% 3% 3%
+Selling & Distribution
+(115) (145) -21% (110) +4% (416) (472) -12%
+Expenses (excl. D&A)
+…as % of revenue 7% 9% 8% 7% 8%
+Other Income & Expenses 9 37 -76% 5 +89% 25 51 -51%
+Depreciation & Amortisation (90) (140) -36% (112) -20% (476) (553) -14%
+Operating Profit 510 510 +0.1% 452 +13% 1,694 1,921 -12%
+…as % of revenue 30% 31% 31% 29% 32%
+7
+
+=== [MDA_FY2025.pdf p8] ===
+Borouge Classification: Public
+In Q4 2025, operating costs increased by 4 percent YoY, despite a 12 percent YoY rise in sales volumes
+during the period.
+Cost of Sales (excluding depreciation and amortisation) increased by 11 percent YoY, broadly in line
+with the 12 percent increase in sales volumes. The increase primarily reflected a 14 percent rise in
+feedstock costs and a 9 percent rise in other variable and fixed production expenses. On a QoQ basis,
+cost of sales (excluding depreciation and amortisation) increased significantly by 27 percent, mainly
+driven by a 38 percent increase in other variable and fixed production costs, while sales volumes
+increased 21 percent.
+General and Administrative expenses (excluding depreciation and amortisation) grew by 56 percent
+YoY but reduced by 9 percent on a QoQ basis. Selling and Distribution expenses decreased by 21
+percent YoY but grew by 4 percent QoQ, mainly reflecting changes in sales volumes.
+In FY 2025, Cost of Sales (excluding depreciation and amortisation) increased by 5 percent YoY,
+primarily due to a 9 percent rise in other variable and fixed production costs, while feedstock costs grew
+by 1 percent, in line with the 1% increase in sales volumes. General and Administrative expenses
+(excluding depreciation and amortisation) increased by 2 percent, while selling and distribution
+expenses fell by 12 percent YoY.
+The overall cost base remained well positioned, reflecting the Company’s focus on strategic cost
+management and sustained efficiencies following the successful completion of the Value Enhancement
+Program in 2023, which delivered $607 million through revenue optimisation and cost reductions.
+Building on this foundation, and following sustained momentum in 2024, Borouge continued to
+implement strict cost control measures and revenue improvement initiatives in 2025. Additionally,
+Borouge achieved $717 million in value generation in FY 2025 through its AI Digitilisation and
+Technology programme, significantly above its target of $575 million.
+Depreciation expense amounted to $476 million, representing a 14 percent YoY decrease, reflecting the
+reassessment of the useful life of certain fixed assets that was undertaken in Q3, which increased asset
+life by up to an additional 10 years. The reassessment is expected to result in a recurring annual benefit
+of $163 million in lower depreciation charges over the next 5 financial years, compared to depreciation
+levels reported in 2024.
+8
+
+=== [MDA_FY2025.pdf p9] ===
+Borouge Classification: Public
+5. Cash Generation
+Q4 Q4 YoY Q3 QoQ FY FY YoY
+2025 2024 (%) 2025 (%) 2025 2024 (%)
+$m $m $m $m $m
+Profit for the Period 330 331 -0.1% 295 +12% 1,099 1,239 -11%
+Income Tax Expense 133 137 -3% 122 +9% 441 506 -13%
+Net Finance Cost 47 42 +12% 36 +31% 154 176 -12%
+Depreciation of PPE 83 133 -38% 105 -21% 449 524 -14%
+Depreciation of Right-of-Use 0.9 1.1 -14% 0.9 +4% 3.6 4.8 -25%
+Assets
+Amortisation of Intangible Assets 6.3 6.4 -1% 5.9 +7% 23.3 23.7 -2%
+Impairment Loss on PPE 0.4 0.2 +136% 1.1 -63% 1.4 3.1 -53%
+Adjusted EBITDA (1) 601 650 -8% 565 +6% 2,172 2,477 -12%
+Capital Expenditure (2) 98 78 +26% 40 +146% 308 167 +84%
+Adjusted Operating Free Cash 502 572 -12% 525 -4% 1,864 2,309 -19%
+Flow (3)
+Cash Conversion (%) 84% 88% 93% 86% 93%
+(1) Adjusted EBITDA is calculated as EBITDA plus adjustments on foreign exchange gain or loss and impairment loss on property, plant and equipment.
+(2) Capital expenditure is calculated as additions to property, plant and equipment for the period.
+(3) Adjusted Operating Free Cash Flow is calculated as Adjusted EBITDA less capital expenditure.
+Adjusted EBITDA for Q4 decreased by 8 percent YoY to $601 million, representing a margin of 36
+percent. Adjusted operating free cash flow for the quarter was $502 million, down 12 percent YoY.
+During FY 2025, Borouge maintained a cash conversion rate of 86 percent, compared to 93 percent in
+the prior corresponding period, primarily due to higher capital expenditure compared to the prior year.
+The increase in capital expenditure was mainly attributed to the planned Borouge 3 turnaround, which
+was successfully executed during Q2 2025.
+6. Current Trading & Outlook
+Pricing conditions are expected to reflect continued softness in global polyolefin benchmarks in the near
+term. However, demand in Asia Pacific and the Middle East is expected to outperform developed
+regions, supported by relatively resilient macroeconomic conditions and underlying growth in
+infrastructure and energy‑transition‑related applications.
+Management reiterates its through-the-cycle premia guidance of $200 per tonne for PE and $140 per
+tonne for PP, reflecting its differentiated product offering and strong customer relationships. Borouge
+remains well positioned to tactically allocate volumes to the highest netback opportunities across its
+global customer base.
+Borouge continues to make strong progress against its innovation agenda, reaffirming its commitment
+to derive at least 20 percent of annual sales volumes from new products. This focus on innovation is
+expected to support long-term growth and enhance portfolio resilience.
+Based on levels of utilisation achieved in the second half of 2025, and the absence of any major
+maintenance turnarounds planned for 2026, management expects to achieve average utilisation of
+around 105% for FY 2026.
+9
+
+=== [MDA_FY2025.pdf p10] ===
+Borouge Classification: Public
+Management reiterates its FY 2025 dividend intention of 16.2 fils per share, subject to shareholder
+approval. An interim dividend of 8.1 fils per share for H1 2025 was paid in September 2025.
+Borouge management guidance:
+Metric Management Guidance
+Through-the-cycle product ▪ Polyethylene: c. $200/t premia
+premia guidance (1) ▪ Polypropylene: c. $140/t premia
+FY 2025 Dividend ▪ 16.2 fils per share
+(1) Premia is equal to the difference between average sales prices and the benchmark prices.
+7. Management Q4 / FY 2025 Earnings Call
+Borouge management will host its Q4 / FY 2025 earnings call on 4th February 2026 at 12:00 pm UAE
+time. Webcast and call access details are provided below.
+Webcast Link:
+https://webcast.openbriefing.com/brg_q425/
+Conference Call Dial-in Details:
+Operator Assisted Dial-In:
+United Arab Emirates (Toll-Free): +971 800 0357 04553
+United Kingdom (Local): +44 20 3936 2999
+United Kingdom (Toll-Free): +44 808 189 0158
+United States (Local): +1 646 664 1960
+United States (Toll-Free): +1 855 9796 654
+Global Dial-In Numbers
+Access Code: 443155
+10
