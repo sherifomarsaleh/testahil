@@ -494,3 +494,31 @@ Market panel verdict: skill=-0.0063 CI90=[-0.02, 0.003] **PARITY**
 | AAPL | 8.0 | 1.091 | +0.0073 | PARITY |
 | NVDA | 12.0 | 1.105 | -0.0234 | BOUNDARY(PARITY-flagged) |
 | TSLA | Gaussian | 1.056 | -0.0002 | PARITY |
+
+## AE (UAE (ADX/DFM)) — refit 2026-08-09
+Gate basis: scale-normalized (crps/spot) — primary since 11-Jul-2026
+Panel: 19 names (ADCB, ADIB, ADNOCGAS, AGTHIA, AIRARABIA, ALDAR, ALPHADHABI, BURJEEL, DEWA, DIB, EAND, EMAAR, EMAARDEV, ENBD, FAB, IHC, LULU, SALIK, TWOPOINTZERO), 279 pooled windows.
+Production fit: nu=8.0, width_cal=0.979 (mle_scale=0.97).
+Market panel verdict: skill=+0.0068 CI90=[-0.0, 0.014] **PARITY**
+
+| Name | nu | width_cal | skill | verdict |
+|---|---|---|---|---|
+| ADCB | 8.0 | 0.979 | +0.0347 | PASS |
+| ADIB | 8.0 | 0.965 | +0.0171 | PASS |
+| ADNOCGAS | 8.0 | 0.979 | +0.0015 | PARITY |
+| AGTHIA | 8.0 | 0.979 | -0.0353 | BOUNDARY(PARITY-flagged) |
+| AIRARABIA | 10.0 | 0.979 | +0.0013 | PARITY |
+| ALDAR | 8.0 | 0.979 | +0.0277 | PASS |
+| ALPHADHABI | 8.0 | 0.986 | +0.0005 | PARITY |
+| BURJEEL | 8.0 | 0.979 | +0.0150 | PARITY |
+| DEWA | 8.0 | 0.986 | +0.0066 | PARITY |
+| DIB | 10.0 | 0.965 | +0.0267 | PASS |
+| EAND | 10.0 | 0.979 | +0.0221 | BOUNDARY(PARITY-flagged) |
+| EMAAR | 10.0 | 0.965 | +0.0175 | PASS |
+| EMAARDEV | 8.0 | 0.979 | -0.0112 | PARITY |
+| ENBD | 8.0 | 0.986 | -0.0116 | PARITY |
+| FAB | 8.0 | 0.986 | -0.0114 | PARITY |
+| IHC | 10.0 | 0.972 | +0.0236 | PARITY |
+| LULU | 8.0 | 0.979 | -0.0808 | PROVISIONAL(insufficient-windows) |
+| SALIK | 8.0 | 0.979 | +0.0068 | PARITY |
+| TWOPOINTZERO | 8.0 | 0.965 | -0.0076 | PARITY |

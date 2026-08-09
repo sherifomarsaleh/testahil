@@ -26,3 +26,7 @@ engine/.pit_tmp_data.js
 # Local virtualenv created to run the engine (numpy/pandas/scipy/openpyxl/python-docx).
 # Build tooling, never a source of truth.
 .venv/
+# AIRARABIA study source documents (62MB of primary PDFs from airarabia.com IR +
+# their local OCR text). Provenance lives in the study's bibliography document;
+# the PDFs themselves are retrievable from the URLs recorded there.
+engine/airarabia_study/sources/
