@@ -1,0 +1,96 @@
+{
+ "market": "AE",
+ "series": "ADNOCDIST",
+ "close": 4.07,
+ "data_date": "2026-08-07",
+ "computed_on": "2026-08-09",
+ "sessions": 2162,
+ "rows_in": 2162,
+ "repairs": [],
+ "ma": {
+  "20": 4.0005,
+  "50": 3.9386000000000005,
+  "200": 3.8741499999999998
+ },
+ "ma_slope": {
+  "20": "rising",
+  "50": "rising",
+  "200": "rising"
+ },
+ "rsi": 61.06578558659751,
+ "atr": 0.05640790079557127,
+ "macd": {
+  "macd": 0.0368544546939189,
+  "signal": 0.029813851490369556,
+  "hist": 0.007040603203549347
+ },
+ "ma_cross": {
+  "ago": 23,
+  "kind": "golden"
+ },
+ "atr_pct": 0.013859435084906946,
+ "hi_52w": 4.18,
+ "lo_52w": 3.47,
+ "pct_off_high": 0.026315789473684077,
+ "pct_off_low": 0.1729106628242075,
+ "levels": {
+  "res": [
+   4.15,
+   4.3,
+   4.4
+  ],
+  "sup": [
+   4.0,
+   3.77,
+   3.65
+  ]
+ },
+ "level_detail": {
+  "res": [
+   {
+    "level": 4.149076096015629,
+    "score": 3.272850713596769,
+    "kind": "swing",
+    "touches": 2
+   },
+   {
+    "level": 4.3,
+    "score": 0.24103214890016933,
+    "kind": "round",
+    "touches": 0
+   },
+   {
+    "level": 4.4,
+    "score": 0.21229508196721308,
+    "kind": "round",
+    "touches": 0
+   }
+  ],
+  "sup": [
+   {
+    "level": 3.9980239051069044,
+    "score": 28.87425070481031,
+    "kind": "swing",
+    "touches": 6
+   },
+   {
+    "level": 3.7732907988375675,
+    "score": 58.75594513258937,
+    "kind": "swing",
+    "touches": 16
+   },
+   {
+    "level": 3.645790667972903,
+    "score": 117.52834629121656,
+    "kind": "swing",
+    "touches": 22
+   }
+  ]
+ },
+ "tech": {
+  "trend": "Trading above the whole moving-average stack, on a rising 200-day; fresh golden-cross",
+  "summary": "The price closed 4.07 above a rising 20-day (4.00), a rising 50-day (3.94) and a rising 200-day (3.87). Momentum is firm: RSI(14) is ~61 and the daily ATR near 0.06 (~1.4%) points to an orderly tape. MACD (12\u00b726\u00b79) is positive and rising (+0.04 / +0.03 / +0.01). The 50-day crossed above the 200-day 23 sessions ago \u2014 a fresh golden-cross, a momentum-regime change rather than noise inside an intact trend. Over the last year it has ranged 3.47\u20134.18; the last close sits 3% below that high and 17% above that low.",
+  "bull": "A daily close back above 4.15 would clear the nearest resistance and open the 4.40 zone.",
+  "bear": "A close below 4.00 would break the nearest support and open the 3.65 zone."
+ }
+}

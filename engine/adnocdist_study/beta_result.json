@@ -1,0 +1,101 @@
+{
+ "primary": {
+  "label": "ADX composite (incl. subject)",
+  "beta": 0.6328857050078354,
+  "alpha": -0.0005984681142352634,
+  "r2": 0.2775099811365339,
+  "n": 259,
+  "se": 0.06369940073177575,
+  "ci90": [
+   0.5281001908040642,
+   0.7376712192116065
+  ],
+  "usable": true,
+  "gate_msg": "passes minimum usability gate",
+  "warnings": []
+ },
+ "primary_ex_subject": {
+  "label": "ADX composite (ex-subject)",
+  "beta": 0.5085812621442458,
+  "alpha": -0.0006261317254477431,
+  "r2": 0.19427057847579232,
+  "n": 257,
+  "se": 0.06486065939439128,
+  "ci90": [
+   0.40188547744047215,
+   0.6152770468480195
+  ],
+  "usable": true,
+  "gate_msg": "passes minimum usability gate",
+  "warnings": []
+ },
+ "crosscheck_all_uae": {
+  "label": "All-UAE composite (incl. subject)",
+  "beta": 0.5924381386414411,
+  "alpha": -0.0010903959196261331,
+  "r2": 0.24693420697228263,
+  "n": 259,
+  "se": 0.06453603504787737,
+  "ci90": [
+   0.48627636098768284,
+   0.6985999162951995
+  ],
+  "usable": true,
+  "gate_msg": "passes minimum usability gate",
+  "warnings": []
+ },
+ "crosscheck_all_uae_ex": {
+  "label": "All-UAE composite (ex-subject)",
+  "beta": 0.5095206038761639,
+  "alpha": -0.0010815207320029952,
+  "r2": 0.19298496951923205,
+  "n": 257,
+  "se": 0.06524852962176707,
+  "ci90": [
+   0.4021867726483571,
+   0.6168544351039708
+  ],
+  "usable": true,
+  "gate_msg": "passes minimum usability gate",
+  "warnings": []
+ },
+ "constituents_adx": [
+  "ADCB",
+  "ADIB",
+  "ADNOCGAS",
+  "AGTHIA",
+  "ALDAR",
+  "ALPHADHABI",
+  "BURJEEL",
+  "EAND",
+  "FAB",
+  "IHC",
+  "TWOPOINTZERO"
+ ],
+ "constituents_all": [
+  "ADCB",
+  "ADIB",
+  "ADNOCGAS",
+  "AGTHIA",
+  "ALDAR",
+  "ALPHADHABI",
+  "BURJEEL",
+  "DEWA",
+  "DIB",
+  "EAND",
+  "EMAAR",
+  "EMAARDEV",
+  "ENBD",
+  "FAB",
+  "IHC",
+  "SALIK",
+  "TWOPOINTZERO"
+ ],
+ "window_years": 5,
+ "frequency": "weekly (W-FRI)",
+ "first_week": "2021-08-20",
+ "last_week": "2026-08-07",
+ "chosen": "primary_ex_subject",
+ "chosen_rationale": "ADX-only composite excluding the subject: ADNOCDIST lists on ADX, so the local index is ADX; excluding the subject removes the mechanical pull of its own weight toward beta = 1.",
+ "weak": false
+}
