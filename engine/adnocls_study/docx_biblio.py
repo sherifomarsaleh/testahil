@@ -876,6 +876,7 @@ T([['The definition', 'At 31 Mar 2026', 'Used?'],
 # ============================================================================
 # 8  SOURCE INTEGRITY
 # ============================================================================
+doc.add_page_break()
 H1('Source integrity')
 P(f"Every historical figure in this study — every income-statement line, every balance-"
   f"sheet line, every cash-flow line, every segment, service line and cost line — traces "

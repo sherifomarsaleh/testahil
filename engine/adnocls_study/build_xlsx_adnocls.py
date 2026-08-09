@@ -612,13 +612,6 @@ block('Lens weights and the multiple blend', [
     ('w_rel', 'Weight — relative multiples', LW['relative'], PCT),
     ('w_norm', 'Weight — normalised earnings power', LW['normalized'], PCT),
     ('w_book', 'Weight — book value and sustainable return', LW['book'], PCT)])
-block('The realised vessel sale — direct evidence on carrying values', [
-    ('vs_book', 'Carrying value of the very large crude carrier sold (USD 000)',
-     V['vessel_sale_book'], NUM0),
-    ('vs_price', 'Realised sale price, January 2026 (USD 000)', V['vessel_sale_price'],
-     NUM0),
-    ('vs_gain', 'Capital gain recognised on the sale, as disclosed (USD 000)',
-     V['vessel_sale_gain'], NUM0)])
 ASSUMPTIONS_LAST = r
 
 # ---- fixed row plans, so every sheet can reference every other ---------------
@@ -1186,17 +1179,20 @@ putf(ws, f"D{RN['bbear']}",
 band(ws, RN['vsb'], 5)
 put(ws, f"A{RN['vsb']}", 'THE REALISED VESSEL SALE — DIRECT EVIDENCE ON CARRYING VALUES',
     bold=True, fmt=None)
+# Disclosed history, carried where it is read rather than on the driver sheet: these two
+# figures are the primary record of one completed transaction, not inputs the valuation
+# consumes, so they live here as pasted values and only the ratio between them is computed.
 put(ws, f"A{RN['vsbook']}", 'Carrying value of the very large crude carrier sold (USD 000)',
     fmt=None)
-putf(ws, f"C{RN['vsbook']}", f"={a('vs_book')}", V['vessel_sale_book'], NUM0, green=True)
+put(ws, f"C{RN['vsbook']}", V['vessel_sale_book'], BLUE, NUM0)
 put(ws, f"A{RN['vsprice']}", 'Realised sale price, January 2026 (USD 000)', fmt=None)
-putf(ws, f"C{RN['vsprice']}", f"={a('vs_price')}", V['vessel_sale_price'], NUM0, green=True)
+put(ws, f"C{RN['vsprice']}", V['vessel_sale_price'], BLUE, NUM0)
 put(ws, f"A{RN['vsratio']}", 'Realised price over carrying value', bold=True, fmt=None)
 putf(ws, f"C{RN['vsratio']}", f"=C{RN['vsprice']}/C{RN['vsbook']}", VSB_RATIO, MULT,
      bold=True)
 put(ws, f"A{RN['vsgain']}", 'Capital gain recognised on the sale, as disclosed (USD 000)',
     fmt=None)
-putf(ws, f"C{RN['vsgain']}", f"={a('vs_gain')}", V['vessel_sale_gain'], NUM0, green=True)
+put(ws, f"C{RN['vsgain']}", V['vessel_sale_gain'], BLUE, NUM0)
 note(ws, f"A{RN['vsnote']}", 'This is the only direct evidence in the study on how far the '
      'balance sheet\'s carrying values sit below what the fleet would actually fetch: one '
      '2017-built very large crude carrier, ninety per cent owned, sold in January 2026 at '
@@ -2540,6 +2536,28 @@ for i in range(5):
     for s in SEGS:
         close(SEG_REV_F[s][i], D['fcst_seg'][s]['rev'][i], 1e-6)
         close(SEG_EB_F[s][i], D['fcst_seg'][s]['ebitda'][i], 1e-6)
+
+ANCH.update(
+    fv=f"DCF!C{DF_['fvaed']}", fv_asset=f"DCF!C{DF_['fvaeda']}",
+    fv_usd=f"DCF!C{DF_['fvusd']}", pv_expl=f"DCF!C{DF_['pvex']}", tv=f"DCF!C{DF_['tv']}",
+    ev=f"DCF!C{DF_['ev']}", tv_share=f"DCF!C{DF_['tvshare']}",
+    wacc=f"DCF!C{DF_['wacc']}", wacc_term=f"DCF!C{DF_['waccterm']}",
+    ke=f"DCF!C{DF_['ke']}", kd=f"DCF!C{DF_['kd']}",
+    rev26=f"DCF!B{DF_['rev']}", ebitda26=f"DCF!B{DF_['ebitda']}",
+    ebitda30=f"DCF!F{DF_['ebitda']}", nopat26=f"DCF!B{DF_['nopat']}",
+    tax26=f"DCF!B{DF_['taxtot']}", fcff26=f"DCF!B{DF_['fcff']}",
+    tankers26=f"Segments!B{SG['teb']}", tankers30=f"Segments!F{SG['teb']}",
+    gas28=f"Segments!D{SG['gaseb']}",
+    central=f"Summary!C{SU['central']}", central_asset=f"Summary!C{SU['centrala']}",
+    relative=f"'Relative & Normalized'!C{RN['base']}",
+    normalized=f"'Relative & Normalized'!C{RN['nbase']}",
+    book=f"'Relative & Normalized'!C{RN['bbase']}",
+    roe_sust=f"'Relative & Normalized'!C{RN['broe']}",
+    sotp=f"'SOTP Bridge'!C{SB['bfv']}",
+    nd30=f"'Balance Sheet'!I{BS['nd']}", bvps30=f"'Balance Sheet'!I{BS['bvps']}",
+    nwc26=f"'Balance Sheet'!B{BS['wcnwc']}", ppe30=f"'Balance Sheet'!F{BS['ppeclose']}",
+    npa26=f"'Income Statement'!E{IS['npa']}",
+    ordn26=f"'Income Statement'!E{IS['ordn']}")
 
 out = os.path.join(HERE, 'ADNOCLS_Valuation_Model_09082026_public.xlsx')
 wb.save(out)

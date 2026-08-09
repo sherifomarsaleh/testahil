@@ -495,17 +495,18 @@ IN('tce_mr_q2_26', 44000, _CALL, '2026-05-14', 'Company')
 # quarterly time-charter equivalent, USD per vessel per day, by class
 TCE_FY25 = {'mr': [23459, 25161, 23391, 24547], 'lr1': [21546, 24225, 24452, 26574],
             'lr2': [31033, 35533, 34410, 41973], 'vlcc': [39245, 44350, 40996, 85273]}
+QEND = ['{}-03-31', '{}-06-30', '{}-09-30', '{}-12-31']   # real quarter-end dates
 TCE_FY24 = {'lr1': [51645, 49424, 31911, 27640], 'lr2': [60038, 63734, 36237, 32034],
             'vlcc': [54580, 46097, 39681, 33167]}
 for _c, _q in TCE_FY25.items():
     for _i, _lab in enumerate(('q1', 'q2', 'q3', 'q4')):
         IN(f'tce_{_c}_25{_lab}', _q[_i], IPFY25 + " — time-charter equivalent by vessel class, "
            "calculated as revenue less voyage costs over calendar days net of off-hire",
-           f'2025-{3*(_i+1):02d}-31', 'Company')
+           QEND[_i].format(2025), 'Company')
 for _c, _q in TCE_FY24.items():
     for _i, _lab in enumerate(('q1', 'q2', 'q3', 'q4')):
         IN(f'tce_{_c}_24{_lab}', _q[_i], IPFY25 + " — time-charter equivalent by vessel class",
-           f'2024-{3*(_i+1):02d}-31', 'Company')
+           QEND[_i].format(2024), 'Company')
 
 IN('jub_owned', 33, IPFY25 + " — jack-up barge fleet: 33 owned and 12 chartered",
    '2025-12-31', 'Company')
@@ -1509,10 +1510,15 @@ def A(name, cond, detail=''):
     assert_log.append(dict(check=name, passed=True, detail=detail))
 
 
+import datetime as _dt
 for k, v in INPUTS.items():
     A(f'four fields complete: {k}',
       all(v.get(f) not in (None, '') for f in ('source', 'date', 'layer'))
       and v.get('value') is not None, k)
+    try:
+        _dt.date.fromisoformat(v['date'])
+    except Exception:                                     # a date nobody could look up
+        raise AssertionError(f'input {k} carries an impossible date {v["date"]!r}')
 for i, y in enumerate(H):
     A(f'income statement ties {y}',
       abs(V[f'gp_{y}'] - (V[f'rev_{y}'] + V[f'dc_{y}'])) < 1)

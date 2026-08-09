@@ -58,8 +58,29 @@ def vs(x):
     return '0%' if abs(v) < 0.005 else sgn(v, 0)
 
 
+def ab(x):
+    """Prose form: '53% above the market price' / '22% below the market price'."""
+    v = x / SPOT - 1
+    if abs(v) < 0.005:
+        return 'level with the market price'
+    return f"{abs(v)*100:.0f}% {'above' if v > 0 else 'below'} the market price"
+
+
 TBL = []
 _table = table
+_H1, _H2 = H1, H2
+
+
+def H1(text):
+    p = _H1(text)
+    p.paragraph_format.keep_with_next = True
+    return p
+
+
+def H2(text):
+    p = _H2(text)
+    p.paragraph_format.keep_with_next = True
+    return p
 
 
 def table(rows, widths, left_cols=(), **kw):
@@ -195,7 +216,9 @@ P(f"This study says they do not hold, and prices the fleet reverting over five y
   f"the same cash flows at an asset-risk beta of one and the centre falls to AED "
   f"{p2(D['central_asset_beta'])}, which is within a few fils of the market. The gap "
   f"between those two numbers, AED {p2(beta_gap)} a share on the cash-flow lens alone, is "
-  f"larger than the entire span of the tanker-rate sensitivity. This study therefore does "
+  f"about the same size as moving the whole tanker-rate anchor across its tested range, "
+  f"and less than half of what the beta alone moves across the range tested in section "
+  f"1.9. This study therefore does "
   f"not present one answer; it presents the two answers and says exactly what separates "
   f"them.", space_after=10)
 
@@ -394,7 +417,7 @@ rows = [hdr,
         ['Free cash flow to the firm'] + [m0(x) for x in F['fcff']],
         ['Less the first quarter already inside the balance sheet'] +
         [neg(m0(F['fcff'][0] - DCF['fcff'][0]))] + ['—'] * 4,
-        ['Free cash flow discounted'] + [m0(x) for x in DCF['fcff']],
+        ['Free cash flow from the valuation date'] + [m0(x) for x in DCF['fcff']],
         ['Cost of capital that year'] + [pc(x, 2) for x in DCF['glide']],
         ['Discount factor'] + [f"{x:.4f}" for x in DCF['df']],
         ['Present value of free cash flow'] + [m0(x) for x in DCF['pv']]]
@@ -469,8 +492,8 @@ table(rows, [2.55, 0.95, 3.50], size=8.2, band_rows={5, 12, 14, 15},
       align_right_from=1, left_cols=(2,))
 
 H2('The contested judgement, computed both ways')
-P(f"One choice in the construction above moves the answer more than every operating "
-  f"assumption in the study combined: which beta belongs in the cost of equity. The "
+P(f"One choice in the construction above moves the answer further than any operating "
+  f"assumption in the study: which beta belongs in the cost of equity. The "
   f"share's own weekly returns, regressed against an equal-weight index of the Abu Dhabi "
   f"names in this study's price library over its full listed history, give "
   f"{p3(BE['beta'])} — with {n0(BE['n'])} observations, an R-squared of "
@@ -633,9 +656,9 @@ rows = [['Business unit', f"{YRL[0]} earnings (USD mn)", 'Multiple',
 for leg in SOTP['legs']:
     rows.append([leg['leg'], m0(leg['ebitda_26']), xt(leg['multiple'], 2), m0(leg['ev']),
                  leg['basis']])
-rows.append(['Enterprise value of the operations', m0(sum(l['ebitda_26']
-                                                          for l in SOTP['legs'])), '',
-             m0(SOTP['ev_ops']), 'the three legs added'])
+rows.append(['Sum of the three legs', m0(sum(l['ebitda_26'] for l in SOTP['legs'])),
+             '', m0(SOTP['ev_ops']),
+             'enterprise value of the operations, the three legs added'])
 rows.append(['Plus joint ventures and associates', '', '', m0(SOTP['jv']),
              'at reviewed book value'])
 rows.append(['Less net debt and deferred consideration', '', '', neg(m0(SOTP['net_debt'])),
@@ -644,7 +667,7 @@ rows.append(['Less perpetual capital securities', '', '', neg(m0(SOTP['hybrid'])
              'at carrying value'])
 rows.append(['Less non-controlling interests', '', '', neg(m0(SOTP['nci'])), ''])
 rows.append(['Equity value', '', '', m0(SOTP['equity']),
-             f"AED {p2(SOTP['fv_aed'])} a share ({vs(SOTP['fv_aed'])} the market price)"])
+             f"AED {p2(SOTP['fv_aed'])} a share, {ab(SOTP['fv_aed'])}"])
 table(rows, [1.75, 1.02, 0.72, 1.11, 2.40], size=8.0, band_rows={4, 9},
       left_cols=(4,))
 caption(f"The sum of the parts lands at AED {p2(SOTP['fv_aed'])} against the blended "
@@ -928,10 +951,16 @@ P(f"One more comparison puts the crux in proportion. Moving the mid-cycle rate a
   f"across the whole tested range, from {pc(min(float(k) for k in SN['anchor']))} to "
   f"{pc(max(float(k) for k in SN['anchor']))} of the base, moves fair value by AED "
   f"{p2(anchor_span)} a share. Changing the beta from the share's own {p3(IN['beta'])} to "
-  f"an asset-risk one moves it by AED {p2(beta_gap)}. The discount-rate judgement is "
-  f"{beta_gap/anchor_span:.1f} times the whole operating crux, which is an uncomfortable "
-  f"thing for a valuation to be true of and is stated rather than buried. It is also the "
-  f"reason both are published and neither is averaged.")
+  f"an asset-risk one moves it by AED {p2(beta_gap)} — the same order of magnitude, so "
+  f"the two published constructions of the discount rate differ by about as much as the "
+  f"whole operating crux. Widen the beta to the range actually tested in section 1.9, "
+  f"{p2(SN['betas'][0])} to {p2(SN['betas'][-1])}, and it moves fair value by AED "
+  f"{p2(max(beta_span)-min(beta_span))}, which is "
+  f"{(max(beta_span)-min(beta_span))/anchor_span:.1f} times the rate anchor and the "
+  f"widest single sensitivity in the study. That a discount-rate input rivals and then "
+  f"exceeds the operating question is uncomfortable for a valuation, and it is stated "
+  f"rather than buried. It is also the reason both constructions are published and "
+  f"neither is averaged.")
 
 # ---- 1.8 macro ---------------------------------------------------------------
 H2('1.8  Macro and country — the sourced cost of capital')
@@ -1025,7 +1054,8 @@ rows = [['The choice made', 'The alternative', 'Value on the alternative', 'Why 
         ['Perpetual capital securities deducted at carrying value',
          'Deducted at the present value of their perpetual coupon, capitalised at the '
          'terminal cost of capital',
-         f"AED {p2(DCFH['fv_aed'])} ({p2(DCFH['fv_aed']-DCF['fv_aed'])})",
+         f"AED {p2(DCFH['fv_aed'])}, {DCFH['fv_aed']-DCF['fv_aed']:+.2f} against "
+         f"{p2(DCF['fv_aed'])}",
          'Carrying value is the more conservative and is the amount that would have to be '
          'found if the securities were ever called. The coupon-value treatment is the '
          'right one if they are genuinely permanent. Both are shown in the bridge'],
@@ -1119,13 +1149,13 @@ figure(os.path.join(HERE, 'fig3_ma.png'), 7.0,
 rows = [['Marker', 'Level (AED)', 'Reading'],
         ['Last close', p2(TC['close']), 'the anchor for everything in this study'],
         ['20-session average', p2(TC['ma']['20']),
-         f"price is {sgn(TC['close']/TC['ma']['20']-1)} against it; the average is "
+         f"price is {sgn(TC['close']/TC['ma']['20']-1, 1)} against it; the average is "
          f"{TC['ma_slope']['20']}"],
         ['50-session average', p2(TC['ma']['50']),
-         f"price is {sgn(TC['close']/TC['ma']['50']-1)} against it; the average is "
+         f"price is {sgn(TC['close']/TC['ma']['50']-1, 1)} against it; the average is "
          f"{TC['ma_slope']['50']}"],
         ['200-session average', p2(TC['ma']['200']),
-         f"price is {sgn(TC['close']/TC['ma']['200']-1)} against it; the average is "
+         f"price is {sgn(TC['close']/TC['ma']['200']-1, 1)} against it; the average is "
          f"{TC['ma_slope']['200']}"],
         ['Nearest resistance', p2(TC['levels']['res'][0]),
          f"then {p2(TC['levels']['res'][1])} and {p2(TC['levels']['res'][2])}; levels are "
@@ -1248,7 +1278,7 @@ caption("Touch probabilities exceed finish probabilities because a path can visi
 H1('4  Comparison of the lenses')
 rows = [['Read', 'What it says', 'What it assumes'],
         ['Fundamental — own beta',
-         f"AED {p2(D['central'])}, {vs(D['central'])} against the market",
+         f"AED {p2(D['central'])}, {ab(D['central'])}",
          f"that the share's own three years of price history describe its risk, and that "
          f"the tanker fleet reverts to its {HYRS[1]}-{HYRS[2]} average rate"],
         ['Fundamental — asset beta',
@@ -1386,8 +1416,11 @@ for head, body in [
     ("The beta is the study, and it is unresolved. ",
      f"The difference between the share's own regressed beta of {p3(IN['beta'])} and an "
      f"asset-risk beta of one is AED {p2(beta_gap)} a share on the cash-flow lens — larger "
-     f"than the entire tanker-rate sensitivity, larger than the capital programme, larger "
-     f"than the tax exposure. The regression is real and passes its usability conditions, "
+     f"than the capital-expenditure row and the tax row, and about the same size as moving "
+     f"the tanker-rate anchor across its whole tested range. Across the beta range tested "
+     f"in section 1.9 the swing is AED {p2(max(beta_span)-min(beta_span))}, the widest "
+     f"single sensitivity in the study. The regression is real and passes its usability "
+     f"conditions, "
      f"but it rests on {BE['window_years']:.1f} years of history in a period when the "
      f"contracted arm was growing faster than the merchant fleet. Both readings are "
      f"published as equals. If forced to say which way the evidence leans: the market "
@@ -1610,7 +1643,7 @@ rows = [['USD mn'] + YRL,
         ['Change in working capital'] +
         [neg(m0(x)) if x >= 0 else m0(-x) for x in F['dnwc']],
         ['Free cash flow to the firm'] + [m0(x) for x in F['fcff']],
-        ['Interest paid on the modelled debt'] + [neg(m0(x)) for x in FIN['interest']],
+        ['Interest on the modelled debt'] + [neg(m0(x)) for x in FIN['interest']],
         ['Perpetual securities coupon'] + [neg(m0(FIN['hybrid_coupon']))] * 5,
         ['Ordinary distributions'] + [neg(m0(x)) for x in FIN['dps']],
         ['Payout ratio on attributable profit'] + [pc(x, 0) for x in FIN['payout']],
@@ -1679,7 +1712,9 @@ rows = [['Risk', 'Mechanism', 'Rough valuation impact'],
          f"the rate-anchor row spans AED {p2(anchor_span)} a share"],
         ['The cost-of-equity construction',
          'the share’s own regressed beta against an asset-risk beta of one',
-         f"AED {p2(beta_gap)} a share — the largest single item in the study"],
+         f"AED {p2(beta_gap)} a share between the two published constructions, and AED "
+         f"{p2(max(beta_span)-min(beta_span))} across the beta range tested in section "
+         f"1.9 — the widest single sensitivity in the study"],
         ['Customer and shareholder concentration',
          'the parent is both the controlling shareholder and the principal customer; '
          f"about {pc(IN['contracted_2026_share'], 0)} of {YRL[0]} revenue is contracted "
@@ -1912,19 +1947,27 @@ rows = [['Line', 'Value'],
 table(rows, [4.80, 2.20], size=8.4, band_rows={7})
 rows = [['Year'] + YRL,
         ['Return on invested capital'] + [pc(b['roic']) for b in FBS],
-        ['Cost of capital that year'] + [pc(x, 2) for x in DCF['glide']],
+        ['Cost of capital charged — the explicit-window rate, held flat'] +
+        [pc(W['wacc'], 2)] * 5,
         ['Spread'] + [f"{s*100:+.1f}pp" for s in E3['spread']],
-        ['Economic profit (USD mn)'] + [m0(x) for x in E3['ep']]]
+        ['Economic profit — net operating profit after tax less the capital charge '
+         '(USD mn)'] + [m0(x) for x in E3['ep']]]
 table(rows, [2.20, 0.96, 0.96, 0.96, 0.96, 0.96], size=8.3, band_rows={3})
 caption(f"This is the most revealing exhibit in the study. The spread is positive in every "
         f"forecast year — the business earns {pc(FBS[0]['roic'], 0)} on capital in "
         f"{YRL[0]} against a cost of {pc(DCF['glide'][0], 0)} — and it narrows steadily as "
         f"the rate cycle normalises and the capital base grows. That is a company creating "
         f"value throughout, but creating less of it each year, which is a very different "
-        f"picture from either a compounder or a value destroyer. Note the convention: the "
-        f"return divides by closing invested capital, matching Appendix A.3, while "
-        f"economic profit charges the cost of capital on the same closing base, so the two "
-        f"rows are internally consistent. Note also that this leg's enterprise value of "
+        f"picture from either a compounder or a value destroyer. Two conventions in this "
+        f"table are named so they cannot be confused with the ones used elsewhere. The "
+        f"return divides by closing invested capital, matching Appendix A.3; and the "
+        f"capital charge is the explicit-window cost of capital of {pc(W['wacc'], 2)} held "
+        f"flat across all five years rather than the declining schedule the cash-flow "
+        f"model discounts at, so the spread row is exactly the return row less "
+        f"{pc(W['wacc'], 2)} and the economic-profit row is exactly that spread on the "
+        f"same closing capital. Appendix A.3 shows the spread on the declining schedule "
+        f"instead, which is why the two tables give different spreads from the same "
+        f"returns. Note also that this leg's enterprise value of "
         f"USD {m0(E3['ev'])} million differs from the cash-flow model's USD "
         f"{m0(DCF['ev'])} million: economic-profit and cash-flow valuations are "
         f"algebraically identical on identical assumptions, and the gap here is entirely "
@@ -1993,7 +2036,7 @@ P(f"The panel spans AED {p2(min(E1['base'], E2['base'], E3['base']))} to "
   f"{p2(max(E1['base'], E2['base'], E3['base'])-min(E1['base'], E2['base'], E3['base']))} "
   f"of one another, and all three land near the market price rather than near this "
   f"study's own weighted central of AED {p2(D['central'])}.")
-P(f"The panel centre of AED {p2(PANEL)} sits {vs(PANEL)} against the market price and "
+P(f"The panel centre of AED {p2(PANEL)} sits {ab(PANEL)} and "
   f"{sgn(PANEL/D['central']-1, 0)} against the study's own own-beta central. That gap is "
   f"real and it has a single explanation: every one of the three experts works from "
   f"mid-cycle or five-year-average earnings, and none of them capitalises a terminal value "
@@ -2049,7 +2092,7 @@ P("This series publishes independent, educational valuation studies of listed co
   "reached, the gap is recorded rather than filled.")
 P("Where a judgement has two legitimate constructions, both are computed and both are "
   "published side by side. This study does that twice: for the cost of equity, which is "
-  "the largest single item in it, and for the treatment of the perpetual capital "
+  "the widest single sensitivity in it, and for the treatment of the perpetual capital "
   "securities. Neither pair is averaged, because an average of two constructions is a "
   "number that neither construction supports.")
 P("The probabilistic price map in section 3 is produced by a volatility model that is "

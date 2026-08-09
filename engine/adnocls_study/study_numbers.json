@@ -2412,13 +2412,13 @@
   "tce_mr_25q2": {
    "value": 25161,
    "source": "ADNOC L&S plc, FY2025 Investor Presentation \u2014 time-charter equivalent by vessel class, calculated as revenue less voyage costs over calendar days net of off-hire",
-   "date": "2025-06-31",
+   "date": "2025-06-30",
    "layer": "Company"
   },
   "tce_mr_25q3": {
    "value": 23391,
    "source": "ADNOC L&S plc, FY2025 Investor Presentation \u2014 time-charter equivalent by vessel class, calculated as revenue less voyage costs over calendar days net of off-hire",
-   "date": "2025-09-31",
+   "date": "2025-09-30",
    "layer": "Company"
   },
   "tce_mr_25q4": {
@@ -2436,13 +2436,13 @@
   "tce_lr1_25q2": {
    "value": 24225,
    "source": "ADNOC L&S plc, FY2025 Investor Presentation \u2014 time-charter equivalent by vessel class, calculated as revenue less voyage costs over calendar days net of off-hire",
-   "date": "2025-06-31",
+   "date": "2025-06-30",
    "layer": "Company"
   },
   "tce_lr1_25q3": {
    "value": 24452,
    "source": "ADNOC L&S plc, FY2025 Investor Presentation \u2014 time-charter equivalent by vessel class, calculated as revenue less voyage costs over calendar days net of off-hire",
-   "date": "2025-09-31",
+   "date": "2025-09-30",
    "layer": "Company"
   },
   "tce_lr1_25q4": {
@@ -2460,13 +2460,13 @@
   "tce_lr2_25q2": {
    "value": 35533,
    "source": "ADNOC L&S plc, FY2025 Investor Presentation \u2014 time-charter equivalent by vessel class, calculated as revenue less voyage costs over calendar days net of off-hire",
-   "date": "2025-06-31",
+   "date": "2025-06-30",
    "layer": "Company"
   },
   "tce_lr2_25q3": {
    "value": 34410,
    "source": "ADNOC L&S plc, FY2025 Investor Presentation \u2014 time-charter equivalent by vessel class, calculated as revenue less voyage costs over calendar days net of off-hire",
-   "date": "2025-09-31",
+   "date": "2025-09-30",
    "layer": "Company"
   },
   "tce_lr2_25q4": {
@@ -2484,13 +2484,13 @@
   "tce_vlcc_25q2": {
    "value": 44350,
    "source": "ADNOC L&S plc, FY2025 Investor Presentation \u2014 time-charter equivalent by vessel class, calculated as revenue less voyage costs over calendar days net of off-hire",
-   "date": "2025-06-31",
+   "date": "2025-06-30",
    "layer": "Company"
   },
   "tce_vlcc_25q3": {
    "value": 40996,
    "source": "ADNOC L&S plc, FY2025 Investor Presentation \u2014 time-charter equivalent by vessel class, calculated as revenue less voyage costs over calendar days net of off-hire",
-   "date": "2025-09-31",
+   "date": "2025-09-30",
    "layer": "Company"
   },
   "tce_vlcc_25q4": {
@@ -2508,13 +2508,13 @@
   "tce_lr1_24q2": {
    "value": 49424,
    "source": "ADNOC L&S plc, FY2025 Investor Presentation \u2014 time-charter equivalent by vessel class",
-   "date": "2024-06-31",
+   "date": "2024-06-30",
    "layer": "Company"
   },
   "tce_lr1_24q3": {
    "value": 31911,
    "source": "ADNOC L&S plc, FY2025 Investor Presentation \u2014 time-charter equivalent by vessel class",
-   "date": "2024-09-31",
+   "date": "2024-09-30",
    "layer": "Company"
   },
   "tce_lr1_24q4": {
@@ -2532,13 +2532,13 @@
   "tce_lr2_24q2": {
    "value": 63734,
    "source": "ADNOC L&S plc, FY2025 Investor Presentation \u2014 time-charter equivalent by vessel class",
-   "date": "2024-06-31",
+   "date": "2024-06-30",
    "layer": "Company"
   },
   "tce_lr2_24q3": {
    "value": 36237,
    "source": "ADNOC L&S plc, FY2025 Investor Presentation \u2014 time-charter equivalent by vessel class",
-   "date": "2024-09-31",
+   "date": "2024-09-30",
    "layer": "Company"
   },
   "tce_lr2_24q4": {
@@ -2556,13 +2556,13 @@
   "tce_vlcc_24q2": {
    "value": 46097,
    "source": "ADNOC L&S plc, FY2025 Investor Presentation \u2014 time-charter equivalent by vessel class",
-   "date": "2024-06-31",
+   "date": "2024-06-30",
    "layer": "Company"
   },
   "tce_vlcc_24q3": {
    "value": 39681,
    "source": "ADNOC L&S plc, FY2025 Investor Presentation \u2014 time-charter equivalent by vessel class",
-   "date": "2024-09-31",
+   "date": "2024-09-30",
    "layer": "Company"
   },
   "tce_vlcc_24q4": {
