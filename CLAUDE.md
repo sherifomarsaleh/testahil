@@ -23,6 +23,14 @@ diff-only summary leaves that copy silently behind.
 
 **Other governing documents, by task:**
 - Starting a brand-new study → `engine/Study_Initiation_Prompt.md`
+- THE MODEL STUDY (canonical template + research-depth bar, adopted 08-Aug-2026) →
+  `engine/swdy_study/` — SWDY_Valuation_Study_05-08-2026 + its Excel + its standalone
+  bibliography + `QC_GATE_05-08-2026.md`. Every study matches its sections list, sheet list
+  and depth; machine-readable form in `engine/research_protocol.py` (`MODEL_STUDY`,
+  `MODEL_STUDY_DEPTH`, `ModelStudyChecklist` + `assert_model_study()`). THE REFERENCE SET IS
+  CLOSED AT THREE NAMES — SWDY (model study + operating-co pattern), ADCB (bank), ALPHADHABI
+  (holdco); `REFERENCE_SET` asserts on exactly those. No other company is a template or an
+  exemplar. Company names elsewhere in the protocol are evidence or coverage, not references.
 - Responding to an external critique of a delivered study → `engine/Critique_Response_Prompt.md`
 - Publishing a study or update to the live site → `engine/Publish_Protocol.md`
 - Rolling forward / grading a matured ledger cohort → `engine/Rollforward_and_Grading_Protocol.md`

@@ -1,0 +1,1001 @@
+{
+  "markets": {
+    "EG": {
+      "prod": 0.0199437872774193,
+      "lono": 0.019566546440424992,
+      "shrunk": 0.019566527398779066,
+      "d_lo": -5.613440867691111e-08,
+      "d_hi": 1.912046249108452e-08,
+      "call": "inconclusive"
+    },
+    "SA": {
+      "prod": 0.0023355962972094746,
+      "lono": 0.00020398595409176767,
+      "shrunk": -0.00026319618186576577,
+      "d_lo": -0.0019819361304969692,
+      "d_hi": 0.0006533998164249029,
+      "call": "inconclusive"
+    },
+    "US": {
+      "prod": -0.005559303311470254,
+      "lono": -0.008470591192851762,
+      "shrunk": -0.00847066057964141,
+      "d_lo": -2.386566568257642e-07,
+      "d_hi": 5.8342517372800267e-08,
+      "call": "inconclusive"
+    },
+    "KR": {
+      "prod": 0.014433071391038443,
+      "lono": 0.00017670953845105863,
+      "shrunk": 0.00017699834573581263,
+      "d_lo": -1.7896623222268808e-08,
+      "d_hi": 3.5729347362400964e-07,
+      "call": "inconclusive"
+    },
+    "AE": {
+      "prod": 0.0032953107807155435,
+      "lono": 0.002606086153867815,
+      "shrunk": 0.0025500146580471617,
+      "d_lo": -9.589905927487875e-05,
+      "d_hi": -2.1834333969139593e-05,
+      "call": "DEGRADES"
+    },
+    "IN": {
+      "prod": 0.004576205577891068,
+      "lono": 0.004425473109832989,
+      "shrunk": 0.004425392023217234,
+      "d_lo": -1.2615677898453194e-07,
+      "d_hi": -1.3712331997650689e-08,
+      "call": "DEGRADES"
+    },
+    "QA": {
+      "prod": -0.0091372302625361,
+      "lono": -0.010953888071689954,
+      "shrunk": -0.010954083994782593,
+      "d_lo": -4.616094386844516e-07,
+      "d_hi": -6.191299964930514e-08,
+      "call": "DEGRADES"
+    },
+    "GLOBAL": {
+      "prod": 0.012180882914864188,
+      "lono": 0.010693746970582119,
+      "shrunk": 0.010629959254431331,
+      "d_lo": -0.00021202792469127708,
+      "d_hi": 7.633963251930661e-05,
+      "call": "inconclusive"
+    }
+  },
+  "per_name": [
+    {
+      "market": "EG",
+      "name": "ABUK",
+      "windows": 16,
+      "k_lto": 1000000.0,
+      "skill_lono": 0.0178,
+      "skill_shrunk": 0.0178,
+      "verdict_lono": "BOUNDARY(PARITY-flagged)",
+      "verdict_shrunk": "BOUNDARY(PARITY-flagged)",
+      "cov90_shrunk": 0.812
+    },
+    {
+      "market": "EG",
+      "name": "ADIB",
+      "windows": 16,
+      "k_lto": 1000000.0,
+      "skill_lono": 0.0256,
+      "skill_shrunk": 0.0256,
+      "verdict_lono": "BOUNDARY(PARITY-flagged)",
+      "verdict_shrunk": "BOUNDARY(PARITY-flagged)",
+      "cov90_shrunk": 0.875
+    },
+    {
+      "market": "EG",
+      "name": "BTFH",
+      "windows": 16,
+      "k_lto": 1000000.0,
+      "skill_lono": 0.0205,
+      "skill_shrunk": 0.0205,
+      "verdict_lono": "PARITY",
+      "verdict_shrunk": "PARITY",
+      "cov90_shrunk": 0.812
+    },
+    {
+      "market": "EG",
+      "name": "CCAP",
+      "windows": 16,
+      "k_lto": 1000000.0,
+      "skill_lono": 0.0484,
+      "skill_shrunk": 0.0484,
+      "verdict_lono": "BOUNDARY(PARITY-flagged)",
+      "verdict_shrunk": "BOUNDARY(PARITY-flagged)",
+      "cov90_shrunk": 0.875
+    },
+    {
+      "market": "EG",
+      "name": "CLHO",
+      "windows": 17,
+      "k_lto": 1000000.0,
+      "skill_lono": -0.0219,
+      "skill_shrunk": -0.0219,
+      "verdict_lono": "BOUNDARY(PARITY-flagged)",
+      "verdict_shrunk": "BOUNDARY(PARITY-flagged)",
+      "cov90_shrunk": 1.0
+    },
+    {
+      "market": "EG",
+      "name": "COMI",
+      "windows": 16,
+      "k_lto": 1000000.0,
+      "skill_lono": 0.0016,
+      "skill_shrunk": 0.0016,
+      "verdict_lono": "PARITY",
+      "verdict_shrunk": "PARITY",
+      "cov90_shrunk": 0.875
+    },
+    {
+      "market": "EG",
+      "name": "DSCW",
+      "windows": 16,
+      "k_lto": 1000000.0,
+      "skill_lono": 0.0117,
+      "skill_shrunk": 0.0117,
+      "verdict_lono": "BOUNDARY(PARITY-flagged)",
+      "verdict_shrunk": "BOUNDARY(PARITY-flagged)",
+      "cov90_shrunk": 0.938
+    },
+    {
+      "market": "EG",
+      "name": "EFID",
+      "windows": 16,
+      "k_lto": 1000000.0,
+      "skill_lono": 0.0196,
+      "skill_shrunk": 0.0196,
+      "verdict_lono": "PARITY",
+      "verdict_shrunk": "PARITY",
+      "cov90_shrunk": 1.0
+    },
+    {
+      "market": "EG",
+      "name": "EFIH",
+      "windows": 14,
+      "k_lto": 1000000.0,
+      "skill_lono": 0.0322,
+      "skill_shrunk": 0.0322,
+      "verdict_lono": "PASS",
+      "verdict_shrunk": "PASS",
+      "cov90_shrunk": 0.929
+    },
+    {
+      "market": "EG",
+      "name": "EGAL",
+      "windows": 16,
+      "k_lto": 1000000.0,
+      "skill_lono": 0.0283,
+      "skill_shrunk": 0.0283,
+      "verdict_lono": "PARITY",
+      "verdict_shrunk": "PARITY",
+      "cov90_shrunk": 0.938
+    },
+    {
+      "market": "EG",
+      "name": "EMFD",
+      "windows": 16,
+      "k_lto": 1000000.0,
+      "skill_lono": 0.0568,
+      "skill_shrunk": 0.0568,
+      "verdict_lono": "PASS",
+      "verdict_shrunk": "PASS",
+      "cov90_shrunk": 1.0
+    },
+    {
+      "market": "EG",
+      "name": "ETEL",
+      "windows": 16,
+      "k_lto": 1000000.0,
+      "skill_lono": 0.0358,
+      "skill_shrunk": 0.0358,
+      "verdict_lono": "PASS",
+      "verdict_shrunk": "PASS",
+      "cov90_shrunk": 0.938
+    },
+    {
+      "market": "EG",
+      "name": "FWRY",
+      "windows": 16,
+      "k_lto": 1000000.0,
+      "skill_lono": 0.009,
+      "skill_shrunk": 0.009,
+      "verdict_lono": "PARITY",
+      "verdict_shrunk": "PARITY",
+      "cov90_shrunk": 0.875
+    },
+    {
+      "market": "EG",
+      "name": "GBCO",
+      "windows": 16,
+      "k_lto": 1000000.0,
+      "skill_lono": 0.0011,
+      "skill_shrunk": 0.0011,
+      "verdict_lono": "PARITY",
+      "verdict_shrunk": "PARITY",
+      "cov90_shrunk": 0.875
+    },
+    {
+      "market": "EG",
+      "name": "HELI",
+      "windows": 16,
+      "k_lto": 1000000.0,
+      "skill_lono": 0.0322,
+      "skill_shrunk": 0.0322,
+      "verdict_lono": "PARITY",
+      "verdict_shrunk": "PARITY",
+      "cov90_shrunk": 0.875
+    },
+    {
+      "market": "EG",
+      "name": "HRHO",
+      "windows": 16,
+      "k_lto": 1000000.0,
+      "skill_lono": -0.0041,
+      "skill_shrunk": -0.0041,
+      "verdict_lono": "PARITY",
+      "verdict_shrunk": "PARITY",
+      "cov90_shrunk": 0.875
+    },
+    {
+      "market": "EG",
+      "name": "ISPH",
+      "windows": 16,
+      "k_lto": 1000000.0,
+      "skill_lono": -0.0266,
+      "skill_shrunk": -0.0266,
+      "verdict_lono": "BOUNDARY(PARITY-flagged)",
+      "verdict_shrunk": "BOUNDARY(PARITY-flagged)",
+      "cov90_shrunk": 0.688
+    },
+    {
+      "market": "EG",
+      "name": "JUFO",
+      "windows": 16,
+      "k_lto": 1000000.0,
+      "skill_lono": 0.0285,
+      "skill_shrunk": 0.0285,
+      "verdict_lono": "PARITY",
+      "verdict_shrunk": "PARITY",
+      "cov90_shrunk": 0.938
+    },
+    {
+      "market": "EG",
+      "name": "KABO",
+      "windows": 16,
+      "k_lto": 1000000.0,
+      "skill_lono": 0.0107,
+      "skill_shrunk": 0.0107,
+      "verdict_lono": "PARITY",
+      "verdict_shrunk": "PARITY",
+      "cov90_shrunk": 0.938
+    },
+    {
+      "market": "EG",
+      "name": "LCSW",
+      "windows": 16,
+      "k_lto": 1000000.0,
+      "skill_lono": 0.0566,
+      "skill_shrunk": 0.0566,
+      "verdict_lono": "PASS",
+      "verdict_shrunk": "PASS",
+      "cov90_shrunk": 0.812
+    },
+    {
+      "market": "EG",
+      "name": "OCDI",
+      "windows": 16,
+      "k_lto": 1000000.0,
+      "skill_lono": 0.0409,
+      "skill_shrunk": 0.0409,
+      "verdict_lono": "PASS",
+      "verdict_shrunk": "PASS",
+      "cov90_shrunk": 0.938
+    },
+    {
+      "market": "EG",
+      "name": "OIH",
+      "windows": 16,
+      "k_lto": 1000000.0,
+      "skill_lono": -0.0029,
+      "skill_shrunk": -0.0029,
+      "verdict_lono": "PARITY",
+      "verdict_shrunk": "PARITY",
+      "cov90_shrunk": 0.875
+    },
+    {
+      "market": "EG",
+      "name": "ORAS",
+      "windows": 16,
+      "k_lto": 1000000.0,
+      "skill_lono": 0.0238,
+      "skill_shrunk": 0.0238,
+      "verdict_lono": "PASS",
+      "verdict_shrunk": "PASS",
+      "cov90_shrunk": 0.75
+    },
+    {
+      "market": "EG",
+      "name": "ORHD",
+      "windows": 16,
+      "k_lto": 1000000.0,
+      "skill_lono": 0.0162,
+      "skill_shrunk": 0.0162,
+      "verdict_lono": "PARITY",
+      "verdict_shrunk": "PARITY",
+      "cov90_shrunk": 0.938
+    },
+    {
+      "market": "EG",
+      "name": "ORWE",
+      "windows": 16,
+      "k_lto": 1000000.0,
+      "skill_lono": 0.0098,
+      "skill_shrunk": 0.0098,
+      "verdict_lono": "PARITY",
+      "verdict_shrunk": "PARITY",
+      "cov90_shrunk": 0.875
+    },
+    {
+      "market": "EG",
+      "name": "PHDC",
+      "windows": 17,
+      "k_lto": 1000000.0,
+      "skill_lono": 0.0204,
+      "skill_shrunk": 0.0204,
+      "verdict_lono": "PARITY",
+      "verdict_shrunk": "PARITY",
+      "cov90_shrunk": 0.824
+    },
+    {
+      "market": "EG",
+      "name": "PRDC",
+      "windows": 14,
+      "k_lto": 1000000.0,
+      "skill_lono": 0.0235,
+      "skill_shrunk": 0.0235,
+      "verdict_lono": "PASS",
+      "verdict_shrunk": "PASS",
+      "cov90_shrunk": 0.929
+    },
+    {
+      "market": "EG",
+      "name": "RAYA",
+      "windows": 16,
+      "k_lto": 1000000.0,
+      "skill_lono": 0.0175,
+      "skill_shrunk": 0.0175,
+      "verdict_lono": "PARITY",
+      "verdict_shrunk": "PARITY",
+      "cov90_shrunk": 0.938
+    },
+    {
+      "market": "EG",
+      "name": "RMDA",
+      "windows": 17,
+      "k_lto": 1000000.0,
+      "skill_lono": 0.0204,
+      "skill_shrunk": 0.0204,
+      "verdict_lono": "BOUNDARY(PARITY-flagged)",
+      "verdict_shrunk": "BOUNDARY(PARITY-flagged)",
+      "cov90_shrunk": 0.941
+    },
+    {
+      "market": "EG",
+      "name": "TMGH",
+      "windows": 16,
+      "k_lto": 1000000.0,
+      "skill_lono": 0.0193,
+      "skill_shrunk": 0.0193,
+      "verdict_lono": "BOUNDARY(PARITY-flagged)",
+      "verdict_shrunk": "BOUNDARY(PARITY-flagged)",
+      "cov90_shrunk": 0.812
+    },
+    {
+      "market": "SA",
+      "name": "ACWA",
+      "windows": 15,
+      "k_lto": 50.0,
+      "skill_lono": -0.0054,
+      "skill_shrunk": -0.006,
+      "verdict_lono": "PARITY",
+      "verdict_shrunk": "PARITY",
+      "cov90_shrunk": 0.933
+    },
+    {
+      "market": "SA",
+      "name": "ALINMA",
+      "windows": 18,
+      "k_lto": 25.0,
+      "skill_lono": -0.0078,
+      "skill_shrunk": -0.016,
+      "verdict_lono": "PARITY",
+      "verdict_shrunk": "FAIL",
+      "cov90_shrunk": 0.889
+    },
+    {
+      "market": "SA",
+      "name": "ARAMCO",
+      "windows": 18,
+      "k_lto": 50.0,
+      "skill_lono": 0.0065,
+      "skill_shrunk": 0.0063,
+      "verdict_lono": "PARITY",
+      "verdict_shrunk": "PARITY",
+      "cov90_shrunk": 0.944
+    },
+    {
+      "market": "SA",
+      "name": "ELM",
+      "windows": 13,
+      "k_lto": 50.0,
+      "skill_lono": -0.0142,
+      "skill_shrunk": -0.0141,
+      "verdict_lono": "FAIL",
+      "verdict_shrunk": "FAIL",
+      "cov90_shrunk": 0.692
+    },
+    {
+      "market": "SA",
+      "name": "EXTRA",
+      "windows": 18,
+      "k_lto": 110.0,
+      "skill_lono": -0.014,
+      "skill_shrunk": -0.0107,
+      "verdict_lono": "PARITY",
+      "verdict_shrunk": "PARITY",
+      "cov90_shrunk": 0.944
+    },
+    {
+      "market": "SA",
+      "name": "MAADEN",
+      "windows": 18,
+      "k_lto": 160.0,
+      "skill_lono": 0.0132,
+      "skill_shrunk": 0.0145,
+      "verdict_lono": "PARITY",
+      "verdict_shrunk": "PARITY",
+      "cov90_shrunk": 0.722
+    },
+    {
+      "market": "SA",
+      "name": "RAJHI",
+      "windows": 18,
+      "k_lto": 50.0,
+      "skill_lono": 0.0151,
+      "skill_shrunk": 0.0147,
+      "verdict_lono": "PASS",
+      "verdict_shrunk": "BOUNDARY(PARITY-flagged)",
+      "cov90_shrunk": 0.889
+    },
+    {
+      "market": "SA",
+      "name": "RIBL",
+      "windows": 18,
+      "k_lto": 50.0,
+      "skill_lono": 0.0047,
+      "skill_shrunk": 0.0045,
+      "verdict_lono": "PARITY",
+      "verdict_shrunk": "PARITY",
+      "cov90_shrunk": 0.944
+    },
+    {
+      "market": "SA",
+      "name": "SABIC",
+      "windows": 18,
+      "k_lto": 50.0,
+      "skill_lono": 0.0086,
+      "skill_shrunk": 0.007,
+      "verdict_lono": "PARITY",
+      "verdict_shrunk": "PARITY",
+      "cov90_shrunk": 0.889
+    },
+    {
+      "market": "SA",
+      "name": "SNB",
+      "windows": 18,
+      "k_lto": 50.0,
+      "skill_lono": -0.0046,
+      "skill_shrunk": -0.0033,
+      "verdict_lono": "PARITY",
+      "verdict_shrunk": "PARITY",
+      "cov90_shrunk": 0.944
+    },
+    {
+      "market": "SA",
+      "name": "STC",
+      "windows": 18,
+      "k_lto": 50.0,
+      "skill_lono": 0.0,
+      "skill_shrunk": 0.0009,
+      "verdict_lono": "PARITY",
+      "verdict_shrunk": "PARITY",
+      "cov90_shrunk": 0.944
+    },
+    {
+      "market": "US",
+      "name": "AAPL",
+      "windows": 18,
+      "k_lto": 1000000.0,
+      "skill_lono": -0.0064,
+      "skill_shrunk": -0.0064,
+      "verdict_lono": "PARITY",
+      "verdict_shrunk": "PARITY",
+      "cov90_shrunk": 1.0
+    },
+    {
+      "market": "US",
+      "name": "NVDA",
+      "windows": 18,
+      "k_lto": 1000000.0,
+      "skill_lono": -0.0233,
+      "skill_shrunk": -0.0233,
+      "verdict_lono": "PARITY",
+      "verdict_shrunk": "PARITY",
+      "cov90_shrunk": 0.833
+    },
+    {
+      "market": "US",
+      "name": "TSLA",
+      "windows": 18,
+      "k_lto": 1000000.0,
+      "skill_lono": 0.0077,
+      "skill_shrunk": 0.0077,
+      "verdict_lono": "PARITY",
+      "verdict_shrunk": "PARITY",
+      "cov90_shrunk": 0.889
+    },
+    {
+      "market": "KR",
+      "name": "KAKAO",
+      "windows": 18,
+      "k_lto": 1000000.0,
+      "skill_lono": 0.0022,
+      "skill_shrunk": 0.0022,
+      "verdict_lono": "PARITY",
+      "verdict_shrunk": "PARITY",
+      "cov90_shrunk": 0.889
+    },
+    {
+      "market": "KR",
+      "name": "LGES",
+      "windows": 13,
+      "k_lto": 1000000.0,
+      "skill_lono": -0.0268,
+      "skill_shrunk": -0.0268,
+      "verdict_lono": "FAIL",
+      "verdict_shrunk": "FAIL",
+      "cov90_shrunk": 1.0
+    },
+    {
+      "market": "KR",
+      "name": "SAMSUNG",
+      "windows": 18,
+      "k_lto": 1000000.0,
+      "skill_lono": 0.0094,
+      "skill_shrunk": 0.0094,
+      "verdict_lono": "PARITY",
+      "verdict_shrunk": "PARITY",
+      "cov90_shrunk": 0.722
+    },
+    {
+      "market": "AE",
+      "name": "ADCB",
+      "windows": 18,
+      "k_lto": 1000000.0,
+      "skill_lono": 0.0259,
+      "skill_shrunk": 0.0259,
+      "verdict_lono": "BOUNDARY(PARITY-flagged)",
+      "verdict_shrunk": "BOUNDARY(PARITY-flagged)",
+      "cov90_shrunk": 0.944
+    },
+    {
+      "market": "AE",
+      "name": "ADIB",
+      "windows": 18,
+      "k_lto": 1000000.0,
+      "skill_lono": 0.0042,
+      "skill_shrunk": 0.0042,
+      "verdict_lono": "PARITY",
+      "verdict_shrunk": "PARITY",
+      "cov90_shrunk": 0.778
+    },
+    {
+      "market": "AE",
+      "name": "ADNOCGAS",
+      "windows": 9,
+      "k_lto": 1000000.0,
+      "skill_lono": 0.0024,
+      "skill_shrunk": 0.0024,
+      "verdict_lono": "PARITY",
+      "verdict_shrunk": "PARITY",
+      "cov90_shrunk": 1.0
+    },
+    {
+      "market": "AE",
+      "name": "AGTHIA",
+      "windows": 18,
+      "k_lto": 400.0,
+      "skill_lono": 0.0068,
+      "skill_shrunk": 0.0066,
+      "verdict_lono": "PARITY",
+      "verdict_shrunk": "PARITY",
+      "cov90_shrunk": 0.889
+    },
+    {
+      "market": "AE",
+      "name": "ALDAR",
+      "windows": 18,
+      "k_lto": 1000000.0,
+      "skill_lono": -0.0105,
+      "skill_shrunk": -0.0105,
+      "verdict_lono": "PARITY",
+      "verdict_shrunk": "PARITY",
+      "cov90_shrunk": 0.778
+    },
+    {
+      "market": "AE",
+      "name": "ALPHADHABI",
+      "windows": 16,
+      "k_lto": 1000000.0,
+      "skill_lono": -0.0094,
+      "skill_shrunk": -0.0094,
+      "verdict_lono": "PARITY",
+      "verdict_shrunk": "PARITY",
+      "cov90_shrunk": 0.938
+    },
+    {
+      "market": "AE",
+      "name": "BURJEEL",
+      "windows": 11,
+      "k_lto": 1000000.0,
+      "skill_lono": 0.0099,
+      "skill_shrunk": 0.0099,
+      "verdict_lono": "PARITY",
+      "verdict_shrunk": "PARITY",
+      "cov90_shrunk": 0.909
+    },
+    {
+      "market": "AE",
+      "name": "DEWA",
+      "windows": 13,
+      "k_lto": 1000000.0,
+      "skill_lono": -0.0056,
+      "skill_shrunk": -0.0056,
+      "verdict_lono": "BOUNDARY(PARITY-flagged)",
+      "verdict_shrunk": "BOUNDARY(PARITY-flagged)",
+      "cov90_shrunk": 1.0
+    },
+    {
+      "market": "AE",
+      "name": "DIB",
+      "windows": 18,
+      "k_lto": 1000000.0,
+      "skill_lono": -0.0019,
+      "skill_shrunk": -0.0019,
+      "verdict_lono": "PARITY",
+      "verdict_shrunk": "PARITY",
+      "cov90_shrunk": 0.889
+    },
+    {
+      "market": "AE",
+      "name": "EAND",
+      "windows": 18,
+      "k_lto": 1000000.0,
+      "skill_lono": 0.0049,
+      "skill_shrunk": 0.0049,
+      "verdict_lono": "PARITY",
+      "verdict_shrunk": "PARITY",
+      "cov90_shrunk": 0.889
+    },
+    {
+      "market": "AE",
+      "name": "EMAAR",
+      "windows": 18,
+      "k_lto": 1000000.0,
+      "skill_lono": 0.0035,
+      "skill_shrunk": 0.0035,
+      "verdict_lono": "PARITY",
+      "verdict_shrunk": "PARITY",
+      "cov90_shrunk": 0.833
+    },
+    {
+      "market": "AE",
+      "name": "EMAARDEV",
+      "windows": 18,
+      "k_lto": 700.0,
+      "skill_lono": -0.0011,
+      "skill_shrunk": -0.0012,
+      "verdict_lono": "PARITY",
+      "verdict_shrunk": "PARITY",
+      "cov90_shrunk": 0.944
+    },
+    {
+      "market": "AE",
+      "name": "ENBD",
+      "windows": 18,
+      "k_lto": 1000000.0,
+      "skill_lono": 0.0018,
+      "skill_shrunk": 0.0018,
+      "verdict_lono": "PARITY",
+      "verdict_shrunk": "PARITY",
+      "cov90_shrunk": 0.889
+    },
+    {
+      "market": "AE",
+      "name": "FAB",
+      "windows": 18,
+      "k_lto": 1200.0,
+      "skill_lono": -0.0071,
+      "skill_shrunk": -0.0072,
+      "verdict_lono": "PARITY",
+      "verdict_shrunk": "PARITY",
+      "cov90_shrunk": 0.833
+    },
+    {
+      "market": "AE",
+      "name": "IHC",
+      "windows": 18,
+      "k_lto": 1000000.0,
+      "skill_lono": 0.0469,
+      "skill_shrunk": 0.0469,
+      "verdict_lono": "PARITY",
+      "verdict_shrunk": "PARITY",
+      "cov90_shrunk": 0.889
+    },
+    {
+      "market": "AE",
+      "name": "LULU",
+      "windows": 2,
+      "k_lto": 1000000.0,
+      "skill_lono": -0.1142,
+      "skill_shrunk": -0.1142,
+      "verdict_lono": "PROVISIONAL(insufficient-windows)",
+      "verdict_shrunk": "PROVISIONAL(insufficient-windows)",
+      "cov90_shrunk": 1.0
+    },
+    {
+      "market": "AE",
+      "name": "SALIK",
+      "windows": 11,
+      "k_lto": 1000000.0,
+      "skill_lono": -0.0139,
+      "skill_shrunk": -0.0139,
+      "verdict_lono": "PARITY",
+      "verdict_shrunk": "PARITY",
+      "cov90_shrunk": 1.0
+    },
+    {
+      "market": "AE",
+      "name": "TWOPOINTZERO",
+      "windows": 14,
+      "k_lto": 400.0,
+      "skill_lono": 0.0007,
+      "skill_shrunk": 0.0004,
+      "verdict_lono": "PARITY",
+      "verdict_shrunk": "PARITY",
+      "cov90_shrunk": 0.929
+    },
+    {
+      "market": "IN",
+      "name": "INFY",
+      "windows": 18,
+      "k_lto": 1000000.0,
+      "skill_lono": 0.007,
+      "skill_shrunk": 0.007,
+      "verdict_lono": "PARITY",
+      "verdict_shrunk": "PARITY",
+      "cov90_shrunk": 0.778
+    },
+    {
+      "market": "IN",
+      "name": "RELIANCE",
+      "windows": 18,
+      "k_lto": 1000000.0,
+      "skill_lono": 0.009,
+      "skill_shrunk": 0.009,
+      "verdict_lono": "PARITY",
+      "verdict_shrunk": "PARITY",
+      "cov90_shrunk": 0.944
+    },
+    {
+      "market": "IN",
+      "name": "TMPV",
+      "windows": 18,
+      "k_lto": 1000000.0,
+      "skill_lono": -0.0001,
+      "skill_shrunk": -0.0001,
+      "verdict_lono": "PARITY",
+      "verdict_shrunk": "PARITY",
+      "cov90_shrunk": 0.889
+    },
+    {
+      "market": "QA",
+      "name": "IQCD",
+      "windows": 18,
+      "k_lto": 1000000.0,
+      "skill_lono": -0.0179,
+      "skill_shrunk": -0.0179,
+      "verdict_lono": "FAIL",
+      "verdict_shrunk": "FAIL",
+      "cov90_shrunk": 0.889
+    },
+    {
+      "market": "QA",
+      "name": "QGTS",
+      "windows": 18,
+      "k_lto": 1000000.0,
+      "skill_lono": -0.0119,
+      "skill_shrunk": -0.0119,
+      "verdict_lono": "PARITY",
+      "verdict_shrunk": "PARITY",
+      "cov90_shrunk": 0.944
+    },
+    {
+      "market": "QA",
+      "name": "QNB",
+      "windows": 18,
+      "k_lto": 1000000.0,
+      "skill_lono": -0.0011,
+      "skill_shrunk": -0.0011,
+      "verdict_lono": "PARITY",
+      "verdict_shrunk": "PARITY",
+      "cov90_shrunk": 0.944
+    }
+  ],
+  "k_stability": {
+    "EG": {
+      "median": 1000000.0,
+      "iqr": [
+        1000000.0,
+        1000000.0
+      ],
+      "top": [
+        [
+          1000000.0,
+          928
+        ],
+        [
+          0.5,
+          13
+        ],
+        [
+          110.0,
+          9
+        ],
+        [
+          160.0,
+          9
+        ]
+      ]
+    },
+    "SA": {
+      "median": 50.0,
+      "iqr": [
+        25.0,
+        160.0
+      ],
+      "top": [
+        [
+          1000000.0,
+          176
+        ],
+        [
+          35.0,
+          156
+        ],
+        [
+          50.0,
+          136
+        ],
+        [
+          25.0,
+          105
+        ]
+      ]
+    },
+    "AE": {
+      "median": 1000000.0,
+      "iqr": [
+        110.0,
+        1000000.0
+      ],
+      "top": [
+        [
+          1000000.0,
+          600
+        ],
+        [
+          50.0,
+          58
+        ],
+        [
+          75.0,
+          50
+        ],
+        [
+          25.0,
+          48
+        ]
+      ]
+    }
+  },
+  "k_lto": {
+    "EG/ABUK": 1000000.0,
+    "EG/ADIB": 1000000.0,
+    "EG/BTFH": 1000000.0,
+    "EG/CCAP": 1000000.0,
+    "EG/CLHO": 1000000.0,
+    "EG/COMI": 1000000.0,
+    "EG/DSCW": 1000000.0,
+    "EG/EFID": 1000000.0,
+    "EG/EFIH": 1000000.0,
+    "EG/EGAL": 1000000.0,
+    "EG/EMFD": 1000000.0,
+    "EG/ETEL": 1000000.0,
+    "EG/FWRY": 1000000.0,
+    "EG/GBCO": 1000000.0,
+    "EG/HELI": 1000000.0,
+    "EG/HRHO": 1000000.0,
+    "EG/ISPH": 1000000.0,
+    "EG/JUFO": 1000000.0,
+    "EG/KABO": 1000000.0,
+    "EG/LCSW": 1000000.0,
+    "EG/OCDI": 1000000.0,
+    "EG/OIH": 1000000.0,
+    "EG/ORAS": 1000000.0,
+    "EG/ORHD": 1000000.0,
+    "EG/ORWE": 1000000.0,
+    "EG/PHDC": 1000000.0,
+    "EG/PRDC": 1000000.0,
+    "EG/RAYA": 1000000.0,
+    "EG/RMDA": 1000000.0,
+    "EG/TMGH": 1000000.0,
+    "SA/ACWA": 50.0,
+    "SA/ALINMA": 25.0,
+    "SA/ARAMCO": 50.0,
+    "SA/ELM": 50.0,
+    "SA/EXTRA": 110.0,
+    "SA/MAADEN": 160.0,
+    "SA/RAJHI": 50.0,
+    "SA/RIBL": 50.0,
+    "SA/SABIC": 50.0,
+    "SA/SNB": 50.0,
+    "SA/STC": 50.0,
+    "US/AAPL": 1000000.0,
+    "US/NVDA": 1000000.0,
+    "US/TSLA": 1000000.0,
+    "KR/KAKAO": 1000000.0,
+    "KR/LGES": 1000000.0,
+    "KR/SAMSUNG": 1000000.0,
+    "AE/ADCB": 1000000.0,
+    "AE/ADIB": 1000000.0,
+    "AE/ADNOCGAS": 1000000.0,
+    "AE/AGTHIA": 400.0,
+    "AE/ALDAR": 1000000.0,
+    "AE/ALPHADHABI": 1000000.0,
+    "AE/BURJEEL": 1000000.0,
+    "AE/DEWA": 1000000.0,
+    "AE/DIB": 1000000.0,
+    "AE/EAND": 1000000.0,
+    "AE/EMAAR": 1000000.0,
+    "AE/EMAARDEV": 700.0,
+    "AE/ENBD": 1000000.0,
+    "AE/FAB": 1200.0,
+    "AE/IHC": 1000000.0,
+    "AE/LULU": 1000000.0,
+    "AE/SALIK": 1000000.0,
+    "AE/TWOPOINTZERO": 400.0,
+    "IN/INFY": 1000000.0,
+    "IN/RELIANCE": 1000000.0,
+    "IN/TMPV": 1000000.0,
+    "QA/IQCD": 1000000.0,
+    "QA/QGTS": 1000000.0,
+    "QA/QNB": 1000000.0
+  }
+}
