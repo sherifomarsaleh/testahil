@@ -1,0 +1,2710 @@
+{
+ "meta": {
+  "company": "Egyptian International Pharmaceutical Industries Company",
+  "short": "EIPICO",
+  "ticker": "PHAR",
+  "market": "EG",
+  "exchange": "The Egyptian Exchange",
+  "currency": "EGP",
+  "sector": "Pharmaceuticals \u2014 generic and branded manufacturing",
+  "company_class": "Operating company (vertically integrated pharmaceutical manufacturer and exporter)",
+  "reference_pattern": "Operating company",
+  "study_date": "2026-08-09",
+  "price_date": "2026-08-06",
+  "fy_end": "31 December",
+  "audited_years": [
+   "FY2022",
+   "FY2023",
+   "FY2024",
+   "FY2025"
+  ],
+  "spot": 130.05,
+  "shares_mn": 168.75575,
+  "mcap": 21946.685287500004
+ },
+ "inputs": {
+  "spot": {
+   "value": 130.05,
+   "source": "Last close of the uploaded EGX daily price history for the company's listed ordinary shares",
+   "date": "2026-08-06",
+   "layer": "Market"
+  },
+  "shares_mn": {
+   "value": 168.75575,
+   "source": "Issued and fully paid capital note (13): EGP 1,687,557,500 divided into 168,755,750 shares of EGP 10 par value, following the July-2025 issue of 20 million new shares approved by the exchange's listing committee on 23 July 2025. The shareholder table in the same note sums to exactly 168,755,750 shares",
+   "date": "2026-03-28",
+   "layer": "Company"
+  },
+  "wavg_shares_mn": {
+   "value": 162.016024,
+   "source": "Weighted average shares outstanding during FY2025, earnings-per-share note (34)",
+   "date": "2026-03-28",
+   "layer": "Company"
+  },
+  "rev_fy23": {
+   "value": 5231.665571,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2023 (confirmed against the comparative column of the FY2024 filing)",
+   "date": "2024-03-01",
+   "layer": "Company"
+  },
+  "rev_fy24": {
+   "value": 7590.545643,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024 (confirmed against the comparative column of the FY2025 filing)",
+   "date": "2025-03-01",
+   "layer": "Company"
+  },
+  "rev_fy25": {
+   "value": 9441.379305,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports)",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "cogs_fy23": {
+   "value": 2896.343413,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2023 (confirmed against the comparative column of the FY2024 filing)",
+   "date": "2024-03-01",
+   "layer": "Company"
+  },
+  "cogs_fy24": {
+   "value": 4184.382863,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024 (confirmed against the comparative column of the FY2025 filing)",
+   "date": "2025-03-01",
+   "layer": "Company"
+  },
+  "cogs_fy25": {
+   "value": 5287.140903,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports)",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "mkt_fy23": {
+   "value": 648.291681,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2023 (confirmed against the comparative column of the FY2024 filing), marketing expenses note",
+   "date": "2024-03-01",
+   "layer": "Company"
+  },
+  "mkt_fy24": {
+   "value": 915.021183,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024 (confirmed against the comparative column of the FY2025 filing), marketing expenses note (27)",
+   "date": "2025-03-01",
+   "layer": "Company"
+  },
+  "mkt_fy25": {
+   "value": 1000.128922,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), marketing expenses note (27)",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "rnd_fy23": {
+   "value": 43.227785,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2023 (confirmed against the comparative column of the FY2024 filing), research and development note",
+   "date": "2024-03-01",
+   "layer": "Company"
+  },
+  "rnd_fy24": {
+   "value": 70.460824,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024 (confirmed against the comparative column of the FY2025 filing), research and development note (28)",
+   "date": "2025-03-01",
+   "layer": "Company"
+  },
+  "rnd_fy25": {
+   "value": 70.935883,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), research and development note (28)",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "ga_fy23": {
+   "value": 151.584727,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2023 (confirmed against the comparative column of the FY2024 filing), general and administrative note",
+   "date": "2024-03-01",
+   "layer": "Company"
+  },
+  "ga_fy24": {
+   "value": 188.492929,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024 (confirmed against the comparative column of the FY2025 filing), general and administrative note (29)",
+   "date": "2025-03-01",
+   "layer": "Company"
+  },
+  "ga_fy25": {
+   "value": 221.13686,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), general and administrative note (29)",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "board_fy23": {
+   "value": 2.02,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2023 (confirmed against the comparative column of the FY2024 filing)",
+   "date": "2024-03-01",
+   "layer": "Company"
+  },
+  "board_fy24": {
+   "value": 1.58,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024 (confirmed against the comparative column of the FY2025 filing)",
+   "date": "2025-03-01",
+   "layer": "Company"
+  },
+  "board_fy25": {
+   "value": 1.828,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports)",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "prov_fy23": {
+   "value": 265.0,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2023 (confirmed against the comparative column of the FY2024 filing): expected credit losses 39.0, inventory impairment 87.0, other provisions 139.0",
+   "date": "2024-03-01",
+   "layer": "Company"
+  },
+  "prov_fy24": {
+   "value": 702.0,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024 (confirmed against the comparative column of the FY2025 filing): expected credit losses 330.0, inventory impairment 60.0, other provisions 312.0 (note 31: disputed taxes 180.0, claims 50.0, end-of-service 82.0)",
+   "date": "2025-03-01",
+   "layer": "Company"
+  },
+  "prov_fy25": {
+   "value": 494.218374,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports): expected credit losses 376.158, inventory impairment 13.061, other provisions 105.0 (note 31: disputed taxes 18.5, claims 1.5, end-of-service 85.0)",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "fin_fy23": {
+   "value": 407.7052,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2023 (confirmed against the comparative column of the FY2024 filing), finance costs note",
+   "date": "2024-03-01",
+   "layer": "Company"
+  },
+  "fin_fy24": {
+   "value": 960.131966,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024 (confirmed against the comparative column of the FY2025 filing), finance costs note (30)",
+   "date": "2025-03-01",
+   "layer": "Company"
+  },
+  "fin_fy25": {
+   "value": 1332.946559,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), finance costs note (30): interest on credit facilities 1,275.312 plus bank commissions and charges 57.634",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "assoc_fy23": {
+   "value": 74.508447,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2023 (confirmed against the comparative column of the FY2024 filing), share of results of subsidiaries and associates",
+   "date": "2024-03-01",
+   "layer": "Company"
+  },
+  "assoc_fy24": {
+   "value": 147.111993,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024 (confirmed against the comparative column of the FY2025 filing), note (33): Batterjee Pharma (Saudi Arabia) 190.022, Medical Professions Company (38.441), less withholding tax on distributions (4.469)",
+   "date": "2025-03-01",
+   "layer": "Company"
+  },
+  "assoc_fy25": {
+   "value": 495.499218,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), note (33): Batterjee Pharma (Saudi Arabia) 427.906, Medical Professions Company 84.179, less withholding tax on distributions (16.585)",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "intinc_fy23": {
+   "value": 26.243536,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2023 (confirmed against the comparative column of the FY2024 filing)",
+   "date": "2024-03-01",
+   "layer": "Company"
+  },
+  "intinc_fy24": {
+   "value": 72.048362,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024 (confirmed against the comparative column of the FY2025 filing)",
+   "date": "2025-03-01",
+   "layer": "Company"
+  },
+  "intinc_fy25": {
+   "value": 139.673783,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports)",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "fx_fy23": {
+   "value": 139.625936,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2023 (confirmed against the comparative column of the FY2024 filing), foreign-exchange differences",
+   "date": "2024-03-01",
+   "layer": "Company"
+  },
+  "fx_fy24": {
+   "value": 699.879896,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024 (confirmed against the comparative column of the FY2025 filing), foreign-exchange differences",
+   "date": "2025-03-01",
+   "layer": "Company"
+  },
+  "fx_fy25": {
+   "value": -16.168329,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), foreign-exchange differences",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "othinc_fy23": {
+   "value": 25.384797000000002,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2023 (confirmed against the comparative column of the FY2024 filing): other income 20.695 plus capital gains 4.689",
+   "date": "2024-03-01",
+   "layer": "Company"
+  },
+  "othinc_fy24": {
+   "value": 42.853971,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024 (confirmed against the comparative column of the FY2025 filing): other income 42.632 plus capital gains 0.222",
+   "date": "2025-03-01",
+   "layer": "Company"
+  },
+  "othinc_fy25": {
+   "value": 143.85338199999998,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports): other income 142.090 plus capital gains 1.764",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "pbt_fy23": {
+   "value": 1083.255484,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2023 (confirmed against the comparative column of the FY2024 filing)",
+   "date": "2024-03-01",
+   "layer": "Company"
+  },
+  "pbt_fy24": {
+   "value": 1530.3701,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024 (confirmed against the comparative column of the FY2025 filing)",
+   "date": "2025-03-01",
+   "layer": "Company"
+  },
+  "pbt_fy25": {
+   "value": 1795.901858,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports)",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "taxtot_fy23": {
+   "value": 259.949154,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2023 (confirmed against the comparative column of the FY2024 filing): current tax 249.772, deferred tax credit 4.148, statutory solidarity contribution 14.324",
+   "date": "2024-03-01",
+   "layer": "Company"
+  },
+  "taxtot_fy24": {
+   "value": 433.446496,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024 (confirmed against the comparative column of the FY2025 filing): current tax 430.792, deferred tax credit 18.964, statutory solidarity contribution 21.619",
+   "date": "2025-03-01",
+   "layer": "Company"
+  },
+  "taxtot_fy25": {
+   "value": 338.00884299999996,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports): current tax 421.702, deferred tax credit 108.663, statutory solidarity contribution 24.970",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "np_fy23": {
+   "value": 823.30633,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2023 (confirmed against the comparative column of the FY2024 filing), profit for the year",
+   "date": "2024-03-01",
+   "layer": "Company"
+  },
+  "np_fy24": {
+   "value": 1096.923604,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024 (confirmed against the comparative column of the FY2025 filing), profit for the year",
+   "date": "2025-03-01",
+   "layer": "Company"
+  },
+  "np_fy25": {
+   "value": 1457.893015,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), profit for the year",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "parent_fy22": {
+   "value": 587.040623,
+   "source": "Audited consolidated financial statements for FY2022, profit attributable to the holding company (587.041) \u2014 read from the comparative column of the FY2023 filing",
+   "date": "2024-03-01",
+   "layer": "Company"
+  },
+  "parent_fy23": {
+   "value": 822.317715,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2023 (confirmed against the comparative column of the FY2024 filing), profit attributable to the holding company (751.218 parent plus 71.099 the holding company's share of the subsidiary)",
+   "date": "2024-03-01",
+   "layer": "Company"
+  },
+  "parent_fy24": {
+   "value": 1095.717079,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024 (confirmed against the comparative column of the FY2025 filing), profit attributable to the holding company",
+   "date": "2025-03-01",
+   "layer": "Company"
+  },
+  "parent_fy25": {
+   "value": 1441.6577,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), profit attributable to the holding company (1,352.285 parent plus 89.373 the holding company's share of the subsidiary); reported earnings per share EGP 8.89",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "dna_fy23": {
+   "value": 105.24974499999999,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2023 (confirmed against the comparative column of the FY2024 filing), consolidated statement of cash flows: depreciation of property 102.676, amortisation of right-of-use assets 2.083, amortisation of intangibles 0.491",
+   "date": "2024-03-01",
+   "layer": "Company"
+  },
+  "dna_fy24": {
+   "value": 102.81185400000001,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024 (confirmed against the comparative column of the FY2025 filing), consolidated statement of cash flows: depreciation 96.532, right-of-use 2.361, intangibles 3.918",
+   "date": "2025-03-01",
+   "layer": "Company"
+  },
+  "dna_fy25": {
+   "value": 117.725374,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), consolidated statement of cash flows: depreciation 109.455, right-of-use 3.324, intangibles 4.946",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "ppe_fy25": {
+   "value": 3069.747924,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), note (4) property, plant and equipment net of accumulated depreciation",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "ppe_fy24": {
+   "value": 1045.230507,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024 (confirmed against the comparative column of the FY2025 filing), note (4)",
+   "date": "2025-03-01",
+   "layer": "Company"
+  },
+  "cip_fy25": {
+   "value": 4901.223806,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), note (6) projects under construction \u2014 predominantly the EIPICO 3 biologicals and biosimilars facility",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "cip_fy24": {
+   "value": 5693.566382,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024 (confirmed against the comparative column of the FY2025 filing), note (6)",
+   "date": "2025-03-01",
+   "layer": "Company"
+  },
+  "rou_fy25": {
+   "value": 233.640379,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), note (5) right-of-use assets net",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "intang_fy25": {
+   "value": 40.142171,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), note (7) intangible assets net",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "dta_fy25": {
+   "value": 337.611796,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), deferred tax asset",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "assoc_bv_fy25": {
+   "value": 675.874567,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), note (8/2) investments in associates carried at equity: a 30% interest in Batterjee Pharmaceutical (Saudi Arabia) and a 9.77%-plus interest in the Medical Professions Company",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "assoc_bv_fy24": {
+   "value": 465.263725,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024 (confirmed against the comparative column of the FY2025 filing), note (8/2)",
+   "date": "2025-03-01",
+   "layer": "Company"
+  },
+  "afs_fy25": {
+   "value": 12.33,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), note (8/1) non-current assets held for sale \u2014 the investment in EIPICO Tech Pharmaceuticals, in liquidation",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "inv_fy25": {
+   "value": 3887.077629,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), note (9) inventories net of provision",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "inv_fy24": {
+   "value": 3584.699946,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024 (confirmed against the comparative column of the FY2025 filing), note (9)",
+   "date": "2025-03-01",
+   "layer": "Company"
+  },
+  "ar_fy25": {
+   "value": 3325.044117,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), note (10) trade and notes receivable net of the expected credit-loss allowance",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "ar_fy24": {
+   "value": 3049.275231,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024 (confirmed against the comparative column of the FY2025 filing), note (10)",
+   "date": "2025-03-01",
+   "layer": "Company"
+  },
+  "othdr_fy25": {
+   "value": 356.786958,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), note (11) other debtors and debit balances",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "othdr_fy24": {
+   "value": 185.584353,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024 (confirmed against the comparative column of the FY2025 filing), note (11)",
+   "date": "2025-03-01",
+   "layer": "Company"
+  },
+  "cash_fy25": {
+   "value": 1433.426902,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), note (12) cash and bank balances",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "cash_fy24": {
+   "value": 1295.38686,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024 (confirmed against the comparative column of the FY2025 filing), note (12)",
+   "date": "2025-03-01",
+   "layer": "Company"
+  },
+  "ap_fy25": {
+   "value": 780.416969,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), note (22) trade and notes payable",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "ap_fy24": {
+   "value": 410.391619,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024 (confirmed against the comparative column of the FY2025 filing), note (22)",
+   "date": "2025-03-01",
+   "layer": "Company"
+  },
+  "othcr_fy25": {
+   "value": 1044.832275,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), note (23) other creditors and credit balances",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "othcr_fy24": {
+   "value": 367.42118,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024 (confirmed against the comparative column of the FY2025 filing), note (23)",
+   "date": "2025-03-01",
+   "layer": "Company"
+  },
+  "provbs_fy25": {
+   "value": 537.942744,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), note (20) provisions",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "taxpay_fy25": {
+   "value": 388.949813,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), income tax payable",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "dtl_fy25": {
+   "value": 190.768071,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), note (19) deferred tax liabilities",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "equity_parent_fy25": {
+   "value": 6243.131482,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), total equity attributable to the holding company",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "equity_parent_fy24": {
+   "value": 4653.769234,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024 (confirmed against the comparative column of the FY2025 filing)",
+   "date": "2025-03-01",
+   "layer": "Company"
+  },
+  "equity_parent_fy23": {
+   "value": 4257.40809,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2023 (confirmed against the comparative column of the FY2024 filing)",
+   "date": "2024-03-01",
+   "layer": "Company"
+  },
+  "nci_fy25": {
+   "value": 288.704605,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), non-controlling interests",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "assets_fy25": {
+   "value": 18272.906249,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), total assets",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "loans_lt_fy25": {
+   "value": 3758.803399,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), note (17) long-term instalments of borrowings",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "loans_st_fy25": {
+   "value": 1107.863191,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), note (17) current instalments of borrowings",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "facilities_fy25": {
+   "value": 3918.693902,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), note (21) bank overdrafts and credit facilities",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "leases_fy25": {
+   "value": 12.365148,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), note (18) lease liabilities: 11.982 non-current plus 0.383 current",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "loans_fx_fy25": {
+   "value": 2443.2243519999997,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), note (17) borrowings by lender and currency: Qatar National Bank Alahli US-dollar 2,188.896 and euro 11.325, National Bank of Kuwait euro 220.002 and US-dollar 23.001",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "loans_lc_fy25": {
+   "value": 2423.442238,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), note (17): National Bank of Kuwait local currency 99.625, Banque du Caire local currency 1,401.588, Abu Dhabi Islamic Bank local currency 423.653, Kuwait Finance House 498.577",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "capint_cum_fy25": {
+   "value": 932.390475,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), note (6): interest capitalised into projects under construction, cumulative",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "capint_cum_fy24": {
+   "value": 381.335878,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024 (confirmed against the comparative column of the FY2025 filing), note (6): interest capitalised into projects under construction, cumulative",
+   "date": "2025-03-01",
+   "layer": "Company"
+  },
+  "capfx_cum_fy24": {
+   "value": 1843.125627,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024 (confirmed against the comparative column of the FY2025 filing), note (6): foreign-exchange differences on foreign-currency liabilities related to the purchase and construction of the EIPICO 3 plant, capitalised",
+   "date": "2025-03-01",
+   "layer": "Company"
+  },
+  "int_fac_fy25": {
+   "value": 1275.312358,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), note (30) interest on credit facilities",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "packs_sold_fy23": {
+   "value": 279.716,
+   "source": "Board of Directors' report for FY2024, published inside the 2025 Annual Report \u2014 the company's own disclosed operating statistics \u2014 packs sold, million: 273.750 own preparations plus 5.966 contract manufacturing",
+   "date": "2025-03-01",
+   "layer": "Company"
+  },
+  "packs_sold_fy24": {
+   "value": 307.846,
+   "source": "Board of Directors' report for FY2025, published inside the 2025 Annual Report \u2014 the company's own disclosed operating statistics \u2014 packs sold, million: 298.972 own preparations plus 8.874 contract manufacturing",
+   "date": "2026-03-28",
+   "layer": "Company"
+  },
+  "packs_sold_fy25": {
+   "value": 357.295,
+   "source": "Board of Directors' report for FY2025, published inside the 2025 Annual Report \u2014 the company's own disclosed operating statistics \u2014 packs sold, million: 351.810 own preparations plus 5.485 contract manufacturing",
+   "date": "2026-03-28",
+   "layer": "Company"
+  },
+  "packs_own_fy24": {
+   "value": 298.972,
+   "source": "Board of Directors' report for FY2025, published inside the 2025 Annual Report \u2014 the company's own disclosed operating statistics \u2014 packs sold of the company's own preparations",
+   "date": "2026-03-28",
+   "layer": "Company"
+  },
+  "packs_own_fy25": {
+   "value": 351.81,
+   "source": "Board of Directors' report for FY2025, published inside the 2025 Annual Report \u2014 the company's own disclosed operating statistics \u2014 packs sold of the company's own preparations",
+   "date": "2026-03-28",
+   "layer": "Company"
+  },
+  "packs_toll_fy25": {
+   "value": 5.485,
+   "source": "Board of Directors' report for FY2025, published inside the 2025 Annual Report \u2014 the company's own disclosed operating statistics \u2014 packs sold under contract-manufacturing agreements",
+   "date": "2026-03-28",
+   "layer": "Company"
+  },
+  "export_packs_fy25": {
+   "value": 60.0,
+   "source": "Company investor presentation, published on the corporate website (eipico.com.eg -> Company Profile / EIPICO Presentation): export reach of 60 million packs a year to more than 60 countries",
+   "date": "2026-08-09",
+   "layer": "Company"
+  },
+  "export_usd_fy25": {
+   "value": 60.0,
+   "source": "Board of Directors' report for FY2025, published inside the 2025 Annual Report \u2014 the company's own disclosed operating statistics: exports of EGP 2,967 million, stated in the same paragraph as USD 60 million (2024: EGP 2,500 million / USD 55 million)",
+   "date": "2026-03-28",
+   "layer": "Company"
+  },
+  "export_usd_fy24": {
+   "value": 54.7,
+   "source": "Board of Directors' report for FY2024: exports of EGP 2,500 million stated as USD 54.7 million, against EGP 1,592 million / USD 51.6 million in FY2023",
+   "date": "2025-03-01",
+   "layer": "Company"
+  },
+  "ch_direct_fy25": {
+   "value": 1943.421246,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), revenue note (25): local direct sales",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "ch_distrib_fy25": {
+   "value": 3591.139796,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), revenue note (25): local distributor sales",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "ch_tender_fy25": {
+   "value": 751.061996,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), revenue note (25): local tender/supply sales",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "ch_export_fy25": {
+   "value": 2967.4799080000003,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), revenue note (25): export sales 3,103.975 less export distributor incentives 136.496",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "ch_toll_fy25": {
+   "value": 49.366365,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), revenue note (25): contract-manufacturing revenue",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "ch_direct_fy24": {
+   "value": 1530.492099,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024 (confirmed against the comparative column of the FY2025 filing), revenue note (25)",
+   "date": "2025-03-01",
+   "layer": "Company"
+  },
+  "ch_distrib_fy24": {
+   "value": 2663.5390939999997,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024 (confirmed against the comparative column of the FY2025 filing), revenue note (25): distributor sales less local distributor incentives",
+   "date": "2025-03-01",
+   "layer": "Company"
+  },
+  "ch_tender_fy24": {
+   "value": 634.04871,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024 (confirmed against the comparative column of the FY2025 filing), revenue note (25)",
+   "date": "2025-03-01",
+   "layer": "Company"
+  },
+  "ch_export_fy24": {
+   "value": 2500.155946,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024 (confirmed against the comparative column of the FY2025 filing), revenue note (25): export sales less export distributor incentives",
+   "date": "2025-03-01",
+   "layer": "Company"
+  },
+  "ch_toll_fy24": {
+   "value": 35.835829,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024 (confirmed against the comparative column of the FY2025 filing), revenue note (25)",
+   "date": "2025-03-01",
+   "layer": "Company"
+  },
+  "units_prod_fy24": {
+   "value": 2143.68,
+   "source": "Board of Directors' report for FY2025, published inside the 2025 Annual Report \u2014 the company's own disclosed operating statistics \u2014 comparative production by pharmaceutical dosage form, million units. NOTE the FY2024 Annual Report's own tablet line read 1,513.38 million against the 1,351.75 million restated in the FY2025 report; the later filing is used and the restatement disclosed",
+   "date": "2026-03-28",
+   "layer": "Company"
+  },
+  "units_prod_fy25": {
+   "value": 2207.95,
+   "source": "Board of Directors' report for FY2025, published inside the 2025 Annual Report \u2014 the company's own disclosed operating statistics \u2014 production by pharmaceutical dosage form, million units, summed across all twenty-one disclosed forms",
+   "date": "2026-03-28",
+   "layer": "Company"
+  },
+  "units_cap": {
+   "value": 3383.06,
+   "source": "Board of Directors' report for FY2025, published inside the 2025 Annual Report \u2014 the company's own disclosed operating statistics \u2014 available capacity in the period, million units, summed across all disclosed dosage forms (unchanged 2024 and 2025)",
+   "date": "2026-03-28",
+   "layer": "Company"
+  },
+  "employees_fy25": {
+   "value": 4981,
+   "source": "Board of Directors' report for FY2025, published inside the 2025 Annual Report \u2014 the company's own disclosed operating statistics \u2014 average headcount",
+   "date": "2026-03-28",
+   "layer": "Company"
+  },
+  "prod_value_fy25": {
+   "value": 10811.924,
+   "source": "Board of Directors' report for FY2025, published inside the 2025 Annual Report \u2014 the company's own disclosed operating statistics \u2014 value of production",
+   "date": "2026-03-28",
+   "layer": "Company"
+  },
+  "products_fy25": {
+   "value": 414,
+   "source": "Board of Directors' report for FY2025, published inside the 2025 Annual Report \u2014 the company's own disclosed operating statistics \u2014 number of registered preparations produced (2024: 401)",
+   "date": "2026-03-28",
+   "layer": "Company"
+  },
+  "fx_avg_fy25": {
+   "value": 49.48,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), note (36) foreign-currency risk: average exchange rate used during the period, EGP per US dollar",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "fx_close_fy25": {
+   "value": 49.52,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), note (36): closing rate at the balance-sheet date",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "fx_avg_fy24": {
+   "value": 47.74,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024 (confirmed against the comparative column of the FY2025 filing), note (36): average rate during FY2024",
+   "date": "2025-03-01",
+   "layer": "Company"
+  },
+  "fx_close_fy24": {
+   "value": 50.89,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024 (confirmed against the comparative column of the FY2025 filing), note (36): closing rate at 31 December 2024",
+   "date": "2025-03-01",
+   "layer": "Company"
+  },
+  "fx_net_monetary_usd_fy25": {
+   "value": -0.540092,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), note (36): net monetary position in US dollars at the balance-sheet date \u2014 bank balances 10.510 plus receivables 40.068 less creditor banks 51.118, in millions of US dollars",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "fx_path": {
+   "value": [
+    50.5,
+    52.5,
+    54.3,
+    56.0,
+    57.7
+   ],
+   "source": "Egyptian pound per US dollar, FY2026E-FY2030E period averages. Built from the inflation differential rather than asserted: the pound averaged 47.74 in 2024 and 49.48 in 2025 (a 3.6% move) while consumer inflation ran far above the United States', so the real exchange rate appreciated. The path assumes that reverses only partially, at roughly 4% a year narrowing to 3% as domestic inflation converges on the central bank's stated 5% medium-term target",
+   "date": "2026-08-09",
+   "layer": "House"
+  },
+  "dom_pack_growth": {
+   "value": [
+    0.1,
+    0.085,
+    0.075,
+    0.065,
+    0.055
+   ],
+   "source": "Domestic packs sold, annual volume growth FY2026E-FY2030E. The company sold 244.3 million domestic packs of its own preparations in FY2024 and 291.8 million in FY2025 (+19.5%); disclosed capacity utilisation is 65% of 3,383 million units, so the volume is not capacity-constrained. The path steps down from a rate materially below the FY2025 outturn toward population-plus-penetration growth",
+   "date": "2026-08-09",
+   "layer": "House"
+  },
+  "exp_pack_growth": {
+   "value": [
+    0.09,
+    0.09,
+    0.085,
+    0.08,
+    0.07
+   ],
+   "source": "Export packs, annual volume growth. Export value grew 10% in US dollars in FY2025 (USD 54.7m to 60.0m) on a company that is already the largest Egyptian pharmaceutical exporter with 26% of national pharmaceutical export value across 67 countries; the biosimilars plant licensed in December 2025 adds a new export line rather than replacing one",
+   "date": "2026-08-09",
+   "layer": "House"
+  },
+  "dom_price_growth": {
+   "value": [
+    0.09,
+    0.085,
+    0.075,
+    0.065,
+    0.055
+   ],
+   "source": "Domestic realised price per pack, annual growth. Egyptian medicine prices are set administratively by the Egyptian Drug Authority and move in periodic approved adjustments rather than continuously; realised price per pack rose 12.6% in FY2025 after a much larger devaluation-driven step in FY2024. The path assumes price growth tracks domestic inflation as it converges on the central bank's target, with no real price gain",
+   "date": "2026-08-09",
+   "layer": "House"
+  },
+  "exp_price_usd_growth": {
+   "value": [
+    0.01,
+    0.01,
+    0.01,
+    0.01,
+    0.01
+   ],
+   "source": "Export realised price per pack in US dollars, annual growth. FY2025 realised USD 1.00 per pack. Generic export pricing is competitive and broadly flat in hard currency; 1% a year is a nominal-dollar drift, not a real gain",
+   "date": "2026-08-09",
+   "layer": "House"
+  },
+  "toll_growth": {
+   "value": [
+    0.15,
+    0.12,
+    0.1,
+    0.08,
+    0.07
+   ],
+   "source": "Contract-manufacturing revenue growth. A small line (0.5% of revenue) that grew 37.8% in FY2025 off a low base as the company let third parties use idle capacity",
+   "date": "2026-08-09",
+   "layer": "House"
+  },
+  "cost_shares": {
+   "value": {
+    "materials": 0.5488,
+    "packaging": 0.2456,
+    "labour": 0.0977,
+    "energy": 0.0342,
+    "services_other": 0.0571,
+    "depreciation": 0.0166
+   },
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), cost of sales note (26). Production cost of EGP 5,625.990 million splits as: raw materials 3,087.382 (54.88%); packaging materials 1,381.559 (24.56%); labour 447.415 wages + 55.497 benefits in kind + 46.342 social insurance = 549.254 (9.77%); fuel, oils, electricity, water and lighting 192.345 (3.42%); all other consumables and services 321.446 (5.71%); depreciation 93.498 (1.66%)",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "esc_materials_usd": {
+   "value": 0.02,
+   "source": "Active pharmaceutical ingredient input prices in US dollars, annual escalation. The company's raw materials are predominantly imported active ingredients; they are escalated on a hard-currency price path passed through the model's own exchange-rate path, NOT on a domestic inflation index",
+   "date": "2026-08-09",
+   "layer": "House"
+  },
+  "esc_packaging_import_share": {
+   "value": 0.55,
+   "source": "Share of the packaging cost line that is imported input (aluminium foil, film, closures) and therefore escalates on the hard-currency path; the balance is produced in-house by the group's own ampoule and plastics factories and escalates domestically",
+   "date": "2026-08-09",
+   "layer": "House"
+  },
+  "esc_labour": {
+   "value": [
+    0.14,
+    0.12,
+    0.1,
+    0.085,
+    0.075
+   ],
+   "source": "Egyptian wage escalation. Headcount grew 2% in FY2025 while the wage bill in cost of sales grew 27%, so unit labour cost is rising faster than consumer prices as the statutory minimum wage is reset; the path decays toward domestic inflation",
+   "date": "2026-08-09",
+   "layer": "House"
+  },
+  "esc_energy": {
+   "value": [
+    0.18,
+    0.15,
+    0.12,
+    0.1,
+    0.08
+   ],
+   "source": "Egyptian regulated energy and utility tariffs, escalated ABOVE consumer inflation for the near term because the subsidy-reform programme resets industrial electricity and gas tariffs on its own schedule; a domestic consumer-price proxy would understate it",
+   "date": "2026-08-09",
+   "layer": "House"
+  },
+  "esc_domestic_cpi": {
+   "value": [
+    0.12,
+    0.1,
+    0.085,
+    0.07,
+    0.06
+   ],
+   "source": "Egyptian consumer price inflation path, applied only to genuinely domestic service and consumable lines. Converges on the central bank's stated 5-7% medium-term target band",
+   "date": "2026-08-09",
+   "layer": "House"
+  },
+  "mkt_pct": {
+   "value": [
+    0.104,
+    0.102,
+    0.1,
+    0.099,
+    0.098
+   ],
+   "source": "Selling and marketing expense as a share of revenue. The disclosed ratio fell from 12.9% (FY2023) to 12.4% (FY2024) to 10.7% (FY2025) as the company got operating leverage on a larger sales base; the path assumes that gain is largely banked but not extended much further",
+   "date": "2026-08-09",
+   "layer": "House"
+  },
+  "rnd_pct": {
+   "value": [
+    0.0085,
+    0.009,
+    0.0095,
+    0.01,
+    0.01
+   ],
+   "source": "Research and development as a share of revenue, rising modestly from the FY2025 level of 0.75% as the biosimilars pipeline moves through registration",
+   "date": "2026-08-09",
+   "layer": "House"
+  },
+  "ga_pct": {
+   "value": [
+    0.0235,
+    0.0235,
+    0.023,
+    0.0228,
+    0.0225
+   ],
+   "source": "General and administrative expense as a share of revenue, held near the FY2025 level of 2.34%",
+   "date": "2026-08-09",
+   "layer": "House"
+  },
+  "prov_pct_permanent": {
+   "value": 0.0525,
+   "source": "Credit losses, inventory write-downs and other provisions as a permanent share of revenue \u2014 the FRAME A reading. Three-year average of the disclosed charge: 5.07% (FY2023), 9.24% (FY2024), 5.23% (FY2025); the average of the two years either side of the FY2024 spike is 5.15%, and 5.25% is struck marginally above it",
+   "date": "2026-08-09",
+   "layer": "House"
+  },
+  "prov_pct_normalising": {
+   "value": [
+    0.045,
+    0.038,
+    0.032,
+    0.028,
+    0.025
+   ],
+   "source": "The FRAME B reading of the same charge: a receivable and inventory book that is seasoning, with the charge decaying toward the 2.5% of revenue that a distributor-concentrated generic book carries in steady state. Both frames are carried through the whole model and published side by side; neither is averaged into the other",
+   "date": "2026-08-09",
+   "layer": "House"
+  },
+  "capex_pct": {
+   "value": [
+    0.075,
+    0.045,
+    0.035,
+    0.032,
+    0.03
+   ],
+   "source": "Capital expenditure as a share of revenue. FY2024 and FY2025 ran at 37.5% and 14.3% of revenue respectively as the EIPICO 3 plant was built; the plant was licensed in December 2025 and the residual construction spend completes in FY2026, after which the requirement falls to maintenance plus incremental line capacity on a plant running at 65% utilisation",
+   "date": "2026-08-09",
+   "layer": "House"
+  },
+  "cip_transfer": {
+   "value": [
+    3200.0,
+    1200.0,
+    400.0,
+    200.0,
+    200.0
+   ],
+   "source": "Transfers out of projects under construction into depreciable property, EGP million. The EIPICO 3 facility obtained its Egyptian Drug Authority and Industrial Development Authority licences in December 2025 and entered its operating phase in 2026, so the EGP 4,901 million construction balance begins depreciating rather than sitting idle. This is the single largest mechanical change in the forecast income statement",
+   "date": "2026-08-09",
+   "layer": "House"
+  },
+  "dep_rate": {
+   "value": 0.062,
+   "source": "Average annual depreciation rate on the depreciable property base. Implied by the audited fixed-asset note: FY2024 depreciation of 96.532 on average gross property of about 2,697 gives 3.6%, but that base is dominated by long-lived buildings and land; the incoming EIPICO 3 asset is process equipment and modular construction with a shorter life. 6.2% is a blended rate consistent with roughly a sixteen-year average life",
+   "date": "2026-08-09",
+   "layer": "House"
+  },
+  "dio": {
+   "value": [
+    265,
+    258,
+    250,
+    245,
+    240
+   ],
+   "source": "Inventory days on cost of sales. The audited FY2025 position implies 268 days. The chairman stated at the March-2026 general assembly that the company deliberately holds a strategic raw-material stockpile sufficient for at least eight months, so this is a policy choice rather than a working-capital failure; the path unwinds it only slowly",
+   "date": "2026-08-09",
+   "layer": "House"
+  },
+  "dso": {
+   "value": [
+    126,
+    122,
+    118,
+    115,
+    112
+   ],
+   "source": "Trade receivable days on revenue. The audited FY2025 position implies 129 days, against 147 days in FY2024, reflecting a distributor-concentrated domestic book and export terms; the path continues the improvement already underway",
+   "date": "2026-08-09",
+   "layer": "House"
+  },
+  "dpo": {
+   "value": [
+    55,
+    56,
+    57,
+    58,
+    58
+   ],
+   "source": "Trade payable days on cost of sales. The audited FY2025 position implies 54 days, up from 36 days in FY2024",
+   "date": "2026-08-09",
+   "layer": "House"
+  },
+  "payout": {
+   "value": 0.4,
+   "source": "Dividend payout ratio on profit attributable to the holding company. The board proposed EGP 3.50 a share for FY2025 (EGP 590.645 million on 168,755,750 shares) against attributable profit of EGP 1,441.658 million, a 41.0% payout; the FY2024 proposal was EGP 3.00 a share (EGP 446.267 million on 148,755,750 shares) against EGP 1,095.717 million, 40.7%",
+   "date": "2026-03-28",
+   "layer": "Company"
+  },
+  "dps_fy25": {
+   "value": 3.5,
+   "source": "Dividend per share proposed by the board for FY2025: EGP 590,645,125 divided by 168,755,750 shares, exactly EGP 3.50. The FY2024 proposal was EGP 446,267,250 on 148,755,750 shares, exactly EGP 3.00",
+   "date": "2026-03-28",
+   "layer": "Company"
+  },
+  "ppe_fy23": {
+   "value": 963.645369,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2023 (confirmed against the comparative column of the FY2024 filing), note (4)",
+   "date": "2024-03-01",
+   "layer": "Company"
+  },
+  "cip_fy23": {
+   "value": 3058.211677,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2023 (confirmed against the comparative column of the FY2024 filing), note (6)",
+   "date": "2024-03-01",
+   "layer": "Company"
+  },
+  "rou_fy23": {
+   "value": 2.022754,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2023 (confirmed against the comparative column of the FY2024 filing), note (5)",
+   "date": "2024-03-01",
+   "layer": "Company"
+  },
+  "intang_fy23": {
+   "value": 2.301715,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2023 (confirmed against the comparative column of the FY2024 filing), note (7)",
+   "date": "2024-03-01",
+   "layer": "Company"
+  },
+  "assoc_bv_fy23": {
+   "value": 466.490873,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2023 (confirmed against the comparative column of the FY2024 filing), note (8)",
+   "date": "2024-03-01",
+   "layer": "Company"
+  },
+  "inv_fy23": {
+   "value": 2242.39573,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2023 (confirmed against the comparative column of the FY2024 filing), note (9)",
+   "date": "2024-03-01",
+   "layer": "Company"
+  },
+  "ar_fy23": {
+   "value": 2357.855472,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2023 (confirmed against the comparative column of the FY2024 filing), note (10)",
+   "date": "2024-03-01",
+   "layer": "Company"
+  },
+  "othdr_fy23": {
+   "value": 197.731029,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2023 (confirmed against the comparative column of the FY2024 filing), note (11)",
+   "date": "2024-03-01",
+   "layer": "Company"
+  },
+  "cash_fy23": {
+   "value": 675.798245,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2023 (confirmed against the comparative column of the FY2024 filing), note (12)",
+   "date": "2024-03-01",
+   "layer": "Company"
+  },
+  "ap_fy23": {
+   "value": 176.353891,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2023 (confirmed against the comparative column of the FY2024 filing), note (23)",
+   "date": "2024-03-01",
+   "layer": "Company"
+  },
+  "othcr_fy23": {
+   "value": 230.675384,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2023 (confirmed against the comparative column of the FY2024 filing), note (24)",
+   "date": "2024-03-01",
+   "layer": "Company"
+  },
+  "provbs_fy23": {
+   "value": 191.159599,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2023 (confirmed against the comparative column of the FY2024 filing), note (21)",
+   "date": "2024-03-01",
+   "layer": "Company"
+  },
+  "taxpay_fy23": {
+   "value": 184.97929,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2023 (confirmed against the comparative column of the FY2024 filing), note (25)",
+   "date": "2024-03-01",
+   "layer": "Company"
+  },
+  "dtl_fy23": {
+   "value": 58.940504,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2023 (confirmed against the comparative column of the FY2024 filing), note (20)",
+   "date": "2024-03-01",
+   "layer": "Company"
+  },
+  "debt_fy23": {
+   "value": 4879.973467999999,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2023 (confirmed against the comparative column of the FY2024 filing), notes (17), (19) and (22): long-term borrowings 2,832.317, bank facilities 2,045.331, lease liabilities 2.325",
+   "date": "2024-03-01",
+   "layer": "Company"
+  },
+  "debt_fy24": {
+   "value": 9200.032863,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024 (confirmed against the comparative column of the FY2025 filing), notes (17), (18) and (21): borrowings 4,782.129, bank facilities 4,406.897, lease liabilities 11.008",
+   "date": "2025-03-01",
+   "layer": "Company"
+  },
+  "nci_fy23": {
+   "value": 3.394945,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2023 (confirmed against the comparative column of the FY2024 filing)",
+   "date": "2024-03-01",
+   "layer": "Company"
+  },
+  "nci_fy24": {
+   "value": 3.816172,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024 (confirmed against the comparative column of the FY2025 filing)",
+   "date": "2025-03-01",
+   "layer": "Company"
+  },
+  "assets_fy23": {
+   "value": 9978.782864,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2023 (confirmed against the comparative column of the FY2024 filing), total assets",
+   "date": "2024-03-01",
+   "layer": "Company"
+  },
+  "assets_fy24": {
+   "value": 15372.957471,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024 (confirmed against the comparative column of the FY2025 filing), total assets",
+   "date": "2025-03-01",
+   "layer": "Company"
+  },
+  "capex_fy23": {
+   "value": 2290.194556,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2023 (confirmed against the comparative column of the FY2024 filing), consolidated statement of cash flows: payments to acquire fixed assets",
+   "date": "2024-03-01",
+   "layer": "Company"
+  },
+  "capex_fy24": {
+   "value": 2846.239746,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024 (confirmed against the comparative column of the FY2025 filing), consolidated statement of cash flows",
+   "date": "2025-03-01",
+   "layer": "Company"
+  },
+  "capex_fy25": {
+   "value": 1354.665231,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), consolidated statement of cash flows",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "ocf_fy23": {
+   "value": 92.483752,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2023 (confirmed against the comparative column of the FY2024 filing), net cash from operating activities",
+   "date": "2024-03-01",
+   "layer": "Company"
+  },
+  "ocf_fy24": {
+   "value": -1274.488135,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024 (confirmed against the comparative column of the FY2025 filing), net cash used in operating activities",
+   "date": "2025-03-01",
+   "layer": "Company"
+  },
+  "ocf_fy25": {
+   "value": 1093.516116,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), net cash from operating activities",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "icf_fy23": {
+   "value": -2329.639953,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2023 (confirmed against the comparative column of the FY2024 filing), net cash used in investing activities",
+   "date": "2024-03-01",
+   "layer": "Company"
+  },
+  "icf_fy24": {
+   "value": -2679.028944,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024 (confirmed against the comparative column of the FY2025 filing)",
+   "date": "2025-03-01",
+   "layer": "Company"
+  },
+  "icf_fy25": {
+   "value": -1201.726573,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports)",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "fcf_fy23": {
+   "value": 2209.824906,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2023 (confirmed against the comparative column of the FY2024 filing), net cash from financing activities",
+   "date": "2024-03-01",
+   "layer": "Company"
+  },
+  "fcf_fy24": {
+   "value": 3853.615013,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024 (confirmed against the comparative column of the FY2025 filing)",
+   "date": "2025-03-01",
+   "layer": "Company"
+  },
+  "fcf_fy25": {
+   "value": 262.411958,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports)",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "dwc_fy23": {
+   "value": -835.715133,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2023 (confirmed against the comparative column of the FY2024 filing), consolidated statement of cash flows: movements in receivables, inventory and payables",
+   "date": "2024-03-01",
+   "layer": "Company"
+  },
+  "dwc_fy24": {
+   "value": -2426.81348,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2024 (confirmed against the comparative column of the FY2025 filing)",
+   "date": "2025-03-01",
+   "layer": "Company"
+  },
+  "dwc_fy25": {
+   "value": -428.2194999999999,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports)",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "dps_fy23": {
+   "value": 2.0,
+   "source": "Proposed profit-distribution table, FY2023 board of directors' report",
+   "date": "2024-03-01",
+   "layer": "Company"
+  },
+  "dps_fy24": {
+   "value": 3.0,
+   "source": "Proposed profit-distribution table, FY2024 board of directors' report: EGP 446,267,250 on 148,755,750 shares",
+   "date": "2025-03-01",
+   "layer": "Company"
+  },
+  "shares_fy23": {
+   "value": 148.75575,
+   "source": "Capital note (13), shares in issue at 31 December 2023 and 31 December 2024",
+   "date": "2024-03-01",
+   "layer": "Company"
+  },
+  "wavg_shares_fy25": {
+   "value": 162.016024,
+   "source": "Earnings-per-share note (34), FY2025 weighted average",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "tablets_fy24_as_reported": {
+   "value": 1513.38,
+   "source": "Production of tablets in FY2024 as stated in the FY2024 board of directors' report",
+   "date": "2025-03-01",
+   "layer": "Company"
+  },
+  "tablets_fy24_restated": {
+   "value": 1351.75,
+   "source": "The same year restated in the FY2025 board of directors' report \u2014 a disclosed restatement, resolved in favour of the later filing",
+   "date": "2026-03-28",
+   "layer": "Company"
+  },
+  "products_registered": {
+   "value": 1238,
+   "source": "Company investor presentation, published on the corporate website (eipico.com.eg -> Company Profile / EIPICO Presentation): products registered",
+   "date": "2026-08-09",
+   "layer": "Company"
+  },
+  "countries_registered": {
+   "value": 61,
+   "source": "Company investor presentation, published on the corporate website (eipico.com.eg -> Company Profile / EIPICO Presentation): countries of registration",
+   "date": "2026-08-09",
+   "layer": "Company"
+  },
+  "export_countries": {
+   "value": 67,
+   "source": "Board of Directors' report for FY2025, published inside the 2025 Annual Report \u2014 the company's own disclosed operating statistics: countries exported to in FY2025",
+   "date": "2026-03-28",
+   "layer": "Company"
+  },
+  "par_value": {
+   "value": 10.0,
+   "source": "Capital note (13): nominal value per share",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "tax_stat": {
+   "value": 0.225,
+   "source": "Egyptian corporate income tax rate, 22.5% \u2014 confirmed in the corporate tax-rate column of the country risk-premium file read for this study",
+   "date": "2026-01-05",
+   "layer": "Country"
+  },
+  "tax_eff_fwd": {
+   "value": 0.235,
+   "source": "Effective tax rate applied to forecast pre-tax profit. Audited effective rates, taking current tax less the deferred-tax movement plus the statutory solidarity contribution over pre-tax profit: 24.0% (FY2023), 28.3% (FY2024), 18.8% (FY2025). The FY2025 rate is flattered by a 108.663 deferred-tax credit and by associate income that arrives already taxed; 23.5% sits just above the statutory rate to allow for the solidarity contribution and for disallowed items",
+   "date": "2026-08-09",
+   "layer": "House"
+  },
+  "rf": {
+   "value": 0.2231,
+   "source": "Egypt ten-year local-currency government bond yield, 22.31% (house cost-of-capital reference, 21-Jul-2026 print). A live re-read of the central bank's own fixed-coupon treasury bond auction page was attempted on 09-Aug-2026 and rejected by that site's web application firewall; the cached print is used and the rate is sensitised",
+   "date": "2026-07-21",
+   "layer": "Country"
+  },
+  "sov_spread_cds": {
+   "value": 0.0341,
+   "source": "Egypt sovereign credit-default-swap spread, 3.41%, read live on 09-Aug-2026 from the original country default-spread and risk-premium file (last updated 5 January 2026), Egypt row, sovereign CDS column. Netted out of the local-currency risk-free rate so that sovereign default risk is charged once, inside the equity risk premium, and not twice",
+   "date": "2026-01-05",
+   "layer": "Country"
+  },
+  "sov_spread_rating": {
+   "value": 0.0637,
+   "source": "Egypt adjusted default spread on the rating basis (Moody's Caa1), 6.37%, same file and same live read \u2014 the alternative construction, published for the audit trail",
+   "date": "2026-01-05",
+   "layer": "Country"
+  },
+  "erp_cds": {
+   "value": 0.0941,
+   "source": "Egypt total equity risk premium on the sovereign-CDS basis, 9.41%, same file and same live read",
+   "date": "2026-01-05",
+   "layer": "Country"
+  },
+  "erp_rating": {
+   "value": 0.1394,
+   "source": "Egypt total equity risk premium on the rating basis, 13.94%, same file and same live read (country risk premium 9.71% over a 4.23% mature-market premium)",
+   "date": "2026-01-05",
+   "layer": "Country"
+  },
+  "beta": {
+   "value": 0.629,
+   "source": "Own-stock first-tier regression: weekly logarithmic returns of the company's own shares against an equal-weighted composite of 36 Egyptian listed names built from the full covered price library, five-year window. R-squared 0.235, n = 257, standard error 0.071, 90% confidence interval [0.51, 0.75]. Clears every usability test on every limb and is not weak-instrument flagged. A beta well below one is what a defensive, price-regulated, domestically-consumed staple should produce",
+   "date": "2026-08-09",
+   "layer": "House"
+  },
+  "kd_egp": {
+   "value": 0.2481,
+   "source": "Marginal cost of local-currency debt: the ten-year sovereign yield of 22.31% plus a 250 basis-point corporate credit spread. A same-currency corporate cannot borrow below its own sovereign, so this is floored at the sovereign yield by construction",
+   "date": "2026-08-09",
+   "layer": "House"
+  },
+  "kd_fx_coupon": {
+   "value": 0.075,
+   "source": "Marginal coupon on the group's hard-currency borrowings. Half the term-loan book is US-dollar and euro paper from Qatar National Bank Alahli and the National Bank of Kuwait; 7.5% is the dollar-funding cost for an unrated Egyptian corporate at current benchmark rates",
+   "date": "2026-08-09",
+   "layer": "House"
+  },
+  "fx_dep_wacc": {
+   "value": 0.045,
+   "source": "Expected annual depreciation of the Egyptian pound used to carry foreign-currency debt at its LOCAL-EQUIVALENT cost. Taken from the model's own exchange-rate path (50.5 to 57.7 over five years, a 3.4% compound rate) with a margin; a raw hard-currency coupon inside a pound-nominal weighted average cost of capital would understate the cost of that debt",
+   "date": "2026-08-09",
+   "layer": "House"
+  },
+  "kd_path": {
+   "value": [
+    0.189,
+    0.178,
+    0.166,
+    0.156,
+    0.148
+   ],
+   "source": "Forward blended cost of debt FY2026E-FY2030E in local-equivalent terms, continuing the central bank's easing cycle. The discount-rate glide takes its shape from this path by construction rather than being invented separately",
+   "date": "2026-08-09",
+   "layer": "House"
+  },
+  "rf_term": {
+   "value": 0.105,
+   "source": "Terminal risk-free rate, built from norms rather than extrapolated: the central bank's stated medium-term inflation target of 5% plus the standard 5.5-point emerging-market real-rate convention",
+   "date": "2026-08-09",
+   "layer": "House"
+  },
+  "erp_term": {
+   "value": 0.07,
+   "source": "Terminal equity risk premium, normalised below today's crisis-era level toward the rating-class norm; never held flat into perpetuity",
+   "date": "2026-08-09",
+   "layer": "House"
+  },
+  "kd_term_lc": {
+   "value": 0.15,
+   "source": "Terminal local-currency corporate borrowing rate \u2014 the long-run Egyptian norm of roughly 10 points above the 5% inflation target",
+   "date": "2026-08-09",
+   "layer": "House"
+  },
+  "kd_term_fx": {
+   "value": 0.065,
+   "source": "Terminal hard-currency coupon",
+   "date": "2026-08-09",
+   "layer": "House"
+  },
+  "wd_term": {
+   "value": 0.2,
+   "source": "Terminal debt weight on a net basis, NORMALISED but reconciled to the model's own forecast balance sheet rather than asserted. Today's net weight is 25.1%; at a 40% payout the forecast deleverages through the window, so a terminal weight at today's level would contradict the model's own trajectory. 20% acknowledges that an inventory-heavy manufacturer retains structural gross leverage",
+   "date": "2026-08-09",
+   "layer": "House"
+  },
+  "g_term": {
+   "value": 0.05,
+   "source": "Terminal growth, 5% \u2014 an Egyptian-pound NOMINAL rate struck against a terminal risk-free rate that itself embeds 5% inflation, so the base case assumes approximately zero real terminal growth. Deliberately conservative for a company with a third of its revenue in hard currency and a biosimilars plant just entering service. Sensitised 3-7%",
+   "date": "2026-08-09",
+   "layer": "House"
+  },
+  "roic_term": {
+   "value": 0.2,
+   "source": "Terminal return on invested capital, used to set terminal reinvestment as growth divided by return. The model's own FY2030E return on invested capital is computed below and this input is asserted against it",
+   "date": "2026-08-09",
+   "layer": "House"
+  },
+  "assoc_multiple": {
+   "value": 11.0,
+   "source": "Earnings multiple applied to the equity-accounted associate stream in the enterprise-to-equity bridge. The associates contributed EGP 495.5 million in FY2025 \u2014 34% of attributable profit \u2014 against a carrying value of only EGP 675.9 million, so carrying value is not a usable proxy. The larger holding is a 30% interest in a Saudi Arabian pharmaceutical manufacturer; 11 times is struck below the Gulf listed-pharmaceutical range to allow for the minority, unlisted and non-controlled nature of the stake",
+   "date": "2026-08-09",
+   "layer": "House"
+  },
+  "assoc_norm": {
+   "value": 320.0,
+   "source": "Normalised annual associate contribution used with the multiple above, EGP million. The disclosed stream is volatile \u2014 74.5 (FY2023), 147.1 (FY2024), 495.5 (FY2025) \u2014 and the FY2025 print is more than three times the FY2024 one. The three-year average is 239.0; 320 sits between that average and the latest year, recognising a genuine step-up at the Saudi associate without capitalising one exceptional year",
+   "date": "2026-08-09",
+   "layer": "House"
+  },
+  "peer_pe_regional": {
+   "value": 19.5,
+   "source": "Median trailing price-earnings multiple of listed Gulf and emerging-market generic pharmaceutical manufacturers used as the relative anchor. MARKET DATA, cross-check layer \u2014 not a company historical. Sourced range: a listed Saudi Arabian generics manufacturer at 26.7 times, larger and more liquid regional and international generic manufacturers in the mid-teens. The median is struck at 19.5 and the lens is run across a 13-26 times band rather than on a point",
+   "date": "2026-08-09",
+   "layer": "Market"
+  },
+  "peer_evebitda_regional": {
+   "value": 11.0,
+   "source": "Median enterprise-value-to-EBITDA multiple for the same peer group. MARKET DATA, cross-check layer. Range run 8-16 times",
+   "date": "2026-08-09",
+   "layer": "Market"
+  },
+  "own_pe_history_note": {
+   "value": true,
+   "source": "The relative lens is anchored primarily on the company's OWN traded history, which is computable entirely from primary material: audited attributable profit divided by the share count in issue at each year end, against the year-end close in the price history held for this study. No aggregator is in that path",
+   "date": "2026-08-09",
+   "layer": "House"
+  },
+  "q_annual": {
+   "value": 0.0269,
+   "source": "Forward dividend yield used as the carry offset in the probability map: the EGP 3.50 a share proposed for FY2025 over the 130.05 close",
+   "date": "2026-08-09",
+   "layer": "Market"
+  }
+ },
+ "history": {
+  "FY2023": {
+   "revenue": 5231.665571,
+   "cogs": 2896.343413,
+   "gross_profit": 2335.3221580000004,
+   "gross_margin": 0.4463821561808313,
+   "marketing": 648.291681,
+   "rnd": 43.227785,
+   "ga": 151.584727,
+   "board": 2.02,
+   "provisions": 265.0,
+   "prov_pct": 0.0506530848357241,
+   "ebit_pre_prov": 1490.1979650000003,
+   "ebit": 1225.1979650000003,
+   "ebit_margin": 0.23418889230830772,
+   "dna": 105.24974499999999,
+   "ebitda_pre_prov": 1595.4477100000004,
+   "ebitda": 1330.4477100000004,
+   "finance": 407.7052,
+   "associates": 74.508447,
+   "interest_income": 26.243536,
+   "fx": 139.625936,
+   "other": 25.384797000000002,
+   "pbt": 1083.255484,
+   "tax": 259.949154,
+   "net_profit": 823.30633,
+   "parent": 822.317715,
+   "eff_tax": 0.2399703097187367
+  },
+  "FY2024": {
+   "revenue": 7590.545643,
+   "cogs": 4184.382863,
+   "gross_profit": 3406.1627800000006,
+   "gross_margin": 0.44873754011889294,
+   "marketing": 915.021183,
+   "rnd": 70.460824,
+   "ga": 188.492929,
+   "board": 1.58,
+   "provisions": 702.0,
+   "prov_pct": 0.09248346996600755,
+   "ebit_pre_prov": 2230.6078440000006,
+   "ebit": 1528.6078440000006,
+   "ebit_margin": 0.20138313052760343,
+   "dna": 102.81185400000001,
+   "ebitda_pre_prov": 2333.4196980000006,
+   "ebitda": 1631.4196980000006,
+   "finance": 960.131966,
+   "associates": 147.111993,
+   "interest_income": 72.048362,
+   "fx": 699.879896,
+   "other": 42.853971,
+   "pbt": 1530.3701,
+   "tax": 433.446496,
+   "net_profit": 1096.923604,
+   "parent": 1095.717079,
+   "eff_tax": 0.28322985139346357
+  },
+  "FY2025": {
+   "revenue": 9441.379305,
+   "cogs": 5287.140903,
+   "gross_profit": 4154.238402,
+   "gross_margin": 0.4400033372030698,
+   "marketing": 1000.128922,
+   "rnd": 70.935883,
+   "ga": 221.13686,
+   "board": 1.828,
+   "provisions": 494.218374,
+   "prov_pct": 0.05234599289303735,
+   "ebit_pre_prov": 2860.208737,
+   "ebit": 2365.990363,
+   "ebit_margin": 0.250597956778096,
+   "dna": 117.725374,
+   "ebitda_pre_prov": 2977.934111,
+   "ebitda": 2483.715737,
+   "finance": 1332.946559,
+   "associates": 495.499218,
+   "interest_income": 139.673783,
+   "fx": -16.168329,
+   "other": 143.85338199999998,
+   "pbt": 1795.901858,
+   "tax": 338.00884299999996,
+   "net_profit": 1457.893015,
+   "parent": 1441.6577,
+   "eff_tax": 0.188211199567677
+  }
+ },
+ "unit_build": {
+  "dom_packs_fy24": 244.272,
+  "dom_packs_fy25": 291.81,
+  "exp_packs_fy24": 54.7,
+  "exp_packs_fy25": 60.0,
+  "dom_price_fy24": 19.76517940246938,
+  "dom_price_fy25": 21.540122127411674,
+  "exp_price_usd_fy25": 0.9995553449205068,
+  "dom_rev_fy24": 4828.079903,
+  "dom_rev_fy25": 6285.623038000001,
+  "exp_rev_fy24": 2500.155946,
+  "exp_rev_fy25": 2967.4799080000003,
+  "utilisation_fy25": 0.6526487854191175,
+  "utilisation_fy24": 0.6336511915248325,
+  "consol_uplift": 1.0149325914504324,
+  "unit_cost_fy25": 14.536009020557243
+ },
+ "forecast": {
+  "years": [
+   "FY2026E",
+   "FY2027E",
+   "FY2028E",
+   "FY2029E",
+   "FY2030E"
+  ],
+  "dom_packs": [
+   320.99100000000004,
+   348.275235,
+   374.39587762499997,
+   398.73160967062495,
+   420.6618482025093
+  ],
+  "exp_packs": [
+   65.4,
+   71.28600000000002,
+   77.34531000000001,
+   83.53293480000002,
+   89.38024023600003
+  ],
+  "dom_price": [
+   23.478733118878726,
+   25.474425433983416,
+   27.385007341532173,
+   29.165032818731763,
+   30.76910962376201
+  ],
+  "exp_price_usd": [
+   1.009550898369712,
+   1.019646407353409,
+   1.0298428714269432,
+   1.0401413001412125,
+   1.0505427131426246
+  ],
+  "fx": [
+   50.5,
+   52.5,
+   54.3,
+   56.0,
+   57.7
+  ],
+  "rev_dom": [
+   7536.462022562002,
+   8872.11150451055,
+   10252.833857400004,
+   11629.02048190952,
+   12943.390521877343
+  ],
+  "rev_exp": [
+   3334.243752045648,
+   3816.0419742162444,
+   4325.185926500124,
+   4865.619102819057,
+   5417.900756550629
+  ],
+  "toll": [
+   56.771319749999996,
+   63.58387812,
+   69.94226593200001,
+   75.53764720656002,
+   80.82528251101922
+  ],
+  "revenue": [
+   11090.65264539165,
+   12942.153841079806,
+   14866.69408270371,
+   16817.61291880088,
+   18717.505153024744
+  ],
+  "packs_total": [
+   391.8760000000001,
+   425.046235,
+   457.22618762499997,
+   487.749544470625,
+   515.5270884385093
+  ],
+  "unit_cash_cost": [
+   15.541227466769099,
+   16.738523336922928,
+   17.874467539604186,
+   18.96373971201673,
+   20.037962349596047
+  ],
+  "cogs_cash": [
+   6090.2340547676085,
+   7114.646323818727,
+   8172.6746489600355,
+   9249.555405995661,
+   10330.11238832772
+  ],
+  "cogs": [
+   6326.74247587304,
+   7445.22739745946,
+   8522.559260564565,
+   9592.926518312262,
+   10662.449794732649
+  ],
+  "dep_cogs_share": 0.7942005773538676,
+  "gross_profit": [
+   4763.91016951861,
+   5496.926443620346,
+   6344.134822139145,
+   7224.686400488619,
+   8055.055358292095
+  ],
+  "gross_margin": [
+   0.42954281608468675,
+   0.42473042054039745,
+   0.4267347391993539,
+   0.42959047965790315,
+   0.4303487720418979
+  ],
+  "marketing": [
+   1153.4278751207316,
+   1320.09969179014,
+   1486.6694082703712,
+   1664.9436789612873,
+   1834.315504996425
+  ],
+  "rnd": [
+   94.27054748582904,
+   116.47938456971825,
+   141.23359378568526,
+   168.17612918800882,
+   187.17505153024743
+  ],
+  "ga": [
+   260.6303371667038,
+   304.14061526537546,
+   341.9339639021853,
+   383.4415745486601,
+   421.1438659430567
+  ],
+  "prov_A": [
+   582.2592638830616,
+   679.4630766566897,
+   780.5014393419448,
+   882.9246782370462,
+   982.669020533799
+  ],
+  "prov_B": [
+   499.07936904262425,
+   491.8018459610326,
+   475.73421064651876,
+   470.8931617264247,
+   467.9376288256186
+  ],
+  "ebitda_A": [
+   2907.830566967716,
+   3405.3247489791547,
+   3941.681028443489,
+   4466.571451870218,
+   4960.089321693496
+  ],
+  "ebitda_B": [
+   2991.010461808153,
+   3592.985979674812,
+   4246.448257138915,
+   4878.60296838084,
+   5474.820713401676
+  ],
+  "ebit_A": [
+   2610.036246679716,
+   2989.0809397110106,
+   3501.13159851197,
+   4034.223349756453,
+   4541.634065072784
+  ],
+  "ebit_B": [
+   2693.216141520153,
+   3176.742170406668,
+   3805.898827207396,
+   4446.254866267075,
+   5056.365456780964
+  ],
+  "dna": [
+   297.79432028799994,
+   416.24380926814393,
+   440.54942993151906,
+   432.34810211376487,
+   418.45525662071145
+  ],
+  "dep": [
+   289.52437128799994,
+   407.97386026814394,
+   432.27948093151906,
+   424.07815311376487,
+   410.18530762071146
+  ],
+  "amort": [
+   8.269948999999997,
+   8.269948999999997,
+   8.269948999999997,
+   8.269948999999997,
+   8.269948999999997
+  ],
+  "capex": [
+   831.7989484043737,
+   582.3969228485912,
+   520.3342928946299,
+   538.1636134016283,
+   561.5251545907423
+  ],
+  "ppe": [
+   5980.223552711999,
+   6772.249692443856,
+   6739.970211512336,
+   6515.892058398572,
+   6305.70675077786
+  ],
+  "cip": [
+   2533.0227544043737,
+   1915.419677252965,
+   2035.7539701475948,
+   2373.9175835492233,
+   2735.4427381399655
+  ],
+  "inventory": [
+   4593.3883728941255,
+   5262.653886423399,
+   5837.369356551072,
+   6439.087662976724,
+   7010.925892426947
+  ],
+  "receivables": [
+   3828.5540638886246,
+   4325.870598936264,
+   4806.21890892887,
+   5298.699960718086,
+   5743.453635996634
+  ],
+  "payables": [
+   953.3447566384033,
+   1142.2814637198076,
+   1330.9202132936443,
+   1524.35544674551,
+   1694.3070906698456
+  ],
+  "other_dr": [
+   419.1125143641223,
+   489.0802021354527,
+   561.8080140552576,
+   635.5326653323635,
+   707.3290362733735
+  ],
+  "other_cr": [
+   1227.3494645620876,
+   1432.2462433019896,
+   1645.2259037971523,
+   1861.1247571331544,
+   2071.376740578803
+  ],
+  "wc": [
+   6660.360729946382,
+   7503.076980473317,
+   8229.250162444403,
+   8987.840085148508,
+   9696.024733448307
+  ],
+  "dwc": [
+   916.7012699463821,
+   842.7162505269353,
+   726.1731819710858,
+   758.5899227041045,
+   708.1846482997989
+  ],
+  "wc0": 5743.65946,
+  "equity": [
+   6911.762058071789,
+   7798.793865001303,
+   8969.314797145576,
+   10424.906403798668,
+   12145.704777332036
+  ],
+  "roe": [
+   0.16942505692781168,
+   0.20099666560713939,
+   0.23268792677190112,
+   0.250176172165178,
+   0.254135545219082
+  ],
+  "esc_trace": [
+   {
+    "year": "FY2026E",
+    "fx": 50.5,
+    "materials": 0.04102667744543265,
+    "packaging": 0.076564672594988,
+    "labour": 0.14000000000000012,
+    "energy": 0.17999999999999994,
+    "services": 0.1200000000000001,
+    "blend_index": 1.0691536751793596,
+    "unit_cash_cost": 15.541227466769099
+   },
+   {
+    "year": "FY2027E",
+    "fx": 52.5,
+    "materials": 0.06039603960396045,
+    "packaging": 0.07821782178217829,
+    "labour": 0.1200000000000001,
+    "energy": 0.1499999999999999,
+    "services": 0.10000000000000009,
+    "blend_index": 1.1515212540973816,
+    "unit_cash_cost": 16.738523336922928
+   },
+   {
+    "year": "FY2028E",
+    "fx": 54.3,
+    "materials": 0.05497142857142845,
+    "packaging": 0.06848428571428578,
+    "labour": 0.10000000000000009,
+    "energy": 0.1200000000000001,
+    "services": 0.08499999999999996,
+    "blend_index": 1.2296681650599968,
+    "unit_cash_cost": 17.874467539604186
+   },
+   {
+    "year": "FY2029E",
+    "fx": 56.0,
+    "materials": 0.051933701657458586,
+    "packaging": 0.060063535911602184,
+    "labour": 0.08499999999999996,
+    "energy": 0.10000000000000009,
+    "services": 0.07000000000000006,
+    "blend_index": 1.3046042889212341,
+    "unit_cash_cost": 18.96373971201673
+   },
+   {
+    "year": "FY2030E",
+    "fx": 57.7,
+    "materials": 0.050964285714285795,
+    "packaging": 0.0550303571428572,
+    "labour": 0.07499999999999996,
+    "energy": 0.08000000000000007,
+    "services": 0.06000000000000005,
+    "blend_index": 1.3785050849416634,
+    "unit_cash_cost": 20.037962349596047
+   }
+  ],
+  "board_fee": 2.0,
+  "nci_fwd": 18.0
+ },
+ "wacc": {
+  "rf": 0.2231,
+  "sov_spread_cds": 0.0341,
+  "rf_star": 0.189,
+  "beta": 0.629,
+  "erp_cds": 0.0941,
+  "ke": 0.2481889,
+  "ke_rating": 0.24708259999999999,
+  "ke_double_counted_retired": 0.2822889,
+  "kd_egp": 0.2481,
+  "kd_fx_coupon": 0.075,
+  "kd_fx_local_equiv": 0.12337499999999979,
+  "w_fx": 0.5020324090046201,
+  "kd_blend": 0.18548400778689864,
+  "kd_at": 0.14375010603484645,
+  "kd_eff_expensed": 0.14171902104225048,
+  "kd_eff_allin": 0.20295493515990531,
+  "avg_gross_debt": 8998.8792515,
+  "capitalised_interest_fy25": 551.0545970000001,
+  "mcap": 21946.685287500004,
+  "gross_debt": 8797.72564,
+  "net_debt": 7364.298738,
+  "cash": 1433.426902,
+  "we_net": 0.748752933999309,
+  "wd_net": 0.251247066000691,
+  "wd_gross": 0.2861569102997737,
+  "wacc0": 0.2219489594396045,
+  "wacc0_gross": 0.218303017403497,
+  "ke_term": 0.14903,
+  "kd_term": 0.12336718070230483,
+  "kd_term_at": 0.09560956504428625,
+  "wacc_term": 0.13834591300885724,
+  "glide_frac": [
+   1.0,
+   0.7317073170731706,
+   0.4390243902439027,
+   0.19512195121951234,
+   0.0
+  ],
+  "disc_rate": [
+   0.2219489594396045,
+   0.19951887381184302,
+   0.17504968949064875,
+   0.15465870255632014,
+   0.13834591300885724
+  ],
+  "df": [
+   0.8183647870681996,
+   0.682244193847148,
+   0.5806088031416626,
+   0.5028401915269353,
+   0.44172881527534674
+  ],
+  "kd_path": [
+   0.189,
+   0.178,
+   0.166,
+   0.156,
+   0.148
+  ],
+  "beta_regression": {
+   "beta": 0.6294840175287311,
+   "r2": 0.23503291018427552,
+   "n": 257,
+   "se": 0.0711167095609022,
+   "ci90": [
+    0.512497030301047,
+    0.7464710047564151
+   ],
+   "usable": true,
+   "gate_msg": "passes minimum usability gate",
+   "composite_names": 36,
+   "window_years": 5,
+   "frequency": "weekly",
+   "weak": false,
+   "warnings": []
+  }
+ },
+ "dcf": {
+  "frame_A": {
+   "label": "Frame A \u2014 provision charge permanent at 5.25% of revenue",
+   "ebitda": [
+    2907.830566967716,
+    3405.3247489791547,
+    3941.681028443489,
+    4466.571451870218,
+    4960.089321693496
+   ],
+   "ebit": [
+    2610.036246679716,
+    2989.0809397110106,
+    3501.13159851197,
+    4034.223349756453,
+    4541.634065072784
+   ],
+   "nopat": [
+    2022.77809117678,
+    2316.5377282760332,
+    2713.376988846777,
+    3126.523096061251,
+    3519.766400431408
+   ],
+   "fcff": [
+    572.0721931140242,
+    1307.668364168651,
+    1907.4189439125803,
+    2262.117662069283,
+    2668.5118541615784
+   ],
+   "pv": [
+    468.1637385053964,
+    892.14914893166,
+    1107.4642301148174,
+    1137.4836784513814,
+    1178.758579887013
+   ],
+   "pv_sum": 4784.019375890268,
+   "nopat_term": 3695.7547204529783,
+   "reinvest_rate": 0.25,
+   "fcff_term": 2771.8160403397337,
+   "tv": 31374.581414556684,
+   "pv_tv": 13859.056678012037,
+   "ev_core": 18643.076053902303,
+   "tv_share": 0.7433889470783502,
+   "assoc_value": 3520.0,
+   "ev_total": 22175.406053902305,
+   "net_debt": 7364.298738,
+   "nci": 288.704605,
+   "equity": 14522.402710902303,
+   "per_share": 86.05575046125719
+  },
+  "frame_B": {
+   "label": "Frame B \u2014 provision charge normalising to 2.5% of revenue",
+   "ebitda": [
+    2991.010461808153,
+    3592.985979674812,
+    4246.448257138915,
+    4878.60296838084,
+    5474.820713401676
+   ],
+   "ebit": [
+    2693.216141520153,
+    3176.742170406668,
+    3805.898827207396,
+    4446.254866267075,
+    5056.365456780964
+   ],
+   "nopat": [
+    2087.2425096781185,
+    2461.9751820651677,
+    2949.571591085732,
+    3445.847521356983,
+    3918.6832290052475
+   ],
+   "fcff": [
+    636.5366116153627,
+    1453.1058179577853,
+    2143.6135461515355,
+    2581.442087365015,
+    3067.428682735418
+   ],
+   "pv": [
+    520.9191486257196,
+    991.3730073472098,
+    1244.6008954292981,
+    1298.0528336263158,
+    1354.9716379663337
+   ],
+   "pv_sum": 5409.917522994878,
+   "nopat_term": 4114.61739045551,
+   "reinvest_rate": 0.25,
+   "fcff_term": 3085.963042841632,
+   "tv": 34930.456177777516,
+   "pv_tv": 15429.78902443708,
+   "ev_core": 20839.706547431957,
+   "tv_share": 0.7404033732105727,
+   "assoc_value": 3520.0,
+   "ev_total": 24372.03654743196,
+   "net_debt": 7364.298738,
+   "nci": 288.704605,
+   "equity": 16719.03320443196,
+   "per_share": 99.07237652306341
+  }
+ },
+ "lenses": {
+  "items": [
+   {
+    "name": "Discounted cash flow \u2014 Frame A",
+    "value": 86.05575046125719,
+    "weight": 0.25
+   },
+   {
+    "name": "Discounted cash flow \u2014 Frame B",
+    "value": 99.07237652306341,
+    "weight": 0.25
+   },
+   {
+    "name": "Book value and sustainable return",
+    "value": 73.09601586362226,
+    "weight": 0.2
+   },
+   {
+    "name": "Relative multiples",
+    "value": 55.58405552282212,
+    "weight": 0.15
+   },
+   {
+    "name": "Normalised earnings power",
+    "value": 69.331563094595,
+    "weight": 0.15
+   }
+  ],
+  "fair_base": 79.63857771141717,
+  "fair_bear": 55.58405552282212,
+  "fair_bull": 99.07237652306341,
+  "book_ps": 73.09601586362226,
+  "bv_ps": 36.995074135251684,
+  "just_pb": 1.9758310416242926,
+  "roe_sust": 0.2456665480520537,
+  "roe_fy24": 0.2459197116522333,
+  "roe_fy25": 0.264599584335609,
+  "rel_ps": 55.58405552282212,
+  "rel_lo": 45.254038272987074,
+  "rel_hi": 66.87131906096758,
+  "rel_triangulation": [
+   [
+    "Justified forward multiple from this model",
+    8.042735395971121,
+    54.6268092345117
+   ],
+   [
+    "The company's own four-year mean multiple",
+    6.662777133225662,
+    45.254038272987074
+   ],
+   [
+    "Regional peer median, cost-of-equity adjusted",
+    9.845501363223267,
+    66.87131906096758
+   ]
+  ],
+  "rel_peer_unadjusted": 132.44533453215237,
+  "just_fwd_pe": 8.042735395971121,
+  "peer_adj_pe": 9.845501363223267,
+  "payout_implied": 0.7964720862630201,
+  "eps_26_A": 6.603533766718956,
+  "eps_26_B": 6.980603108373594,
+  "eps_fwd": 6.792068437546275,
+  "own_pe_history": [
+   {
+    "year": 2022,
+    "close": 28.08,
+    "shares": 99.1705,
+    "eps": 5.919508553450875,
+    "pe": 4.7436370344680565
+   },
+   {
+    "year": 2023,
+    "close": 36.5,
+    "shares": 148.75575,
+    "eps": 5.527972632990657,
+    "pe": 6.602782326050218
+   },
+   {
+    "year": 2024,
+    "close": 45.91,
+    "shares": 148.75575,
+    "eps": 7.365880505459453,
+    "pe": 6.232791852375607
+   },
+   {
+    "year": 2025,
+    "close": 77.5,
+    "shares": 168.75575,
+    "eps": 8.54286565050376,
+    "pe": 9.071897320008766
+   }
+  ],
+  "own_pe_mean": 6.662777133225662,
+  "pe_now": 15.223228986672774,
+  "evebitda_now": 11.917502550534431,
+  "eps_ttm": 8.54286565050376,
+  "eps_27_A": 8.760509463425826,
+  "eps_27_B": 9.611211389032379,
+  "norm_ps": 69.331563094595,
+  "norm_margin": 0.22872332653800234,
+  "norm_pat_ps": 8.620395882888989
+ },
+ "sensitivity": {
+  "wacc": [
+   [
+    -0.02,
+    112.36854376717075
+   ],
+   [
+    -0.01,
+    97.89340304297896
+   ],
+   [
+    0.0,
+    86.05575046125719
+   ],
+   [
+    0.01,
+    76.19815884150698
+   ],
+   [
+    0.02,
+    67.86482990687243
+   ]
+  ],
+  "g": [
+   [
+    0.03,
+    78.37907531217829
+   ],
+   [
+    0.04,
+    81.87396424224464
+   ],
+   [
+    0.05,
+    86.05575046125719
+   ],
+   [
+    0.06,
+    91.18745877647113
+   ],
+   [
+    0.07,
+    97.68605139720472
+   ]
+  ],
+  "beta": [
+   [
+    0.45,
+    102.06066725016184
+   ],
+   [
+    0.55,
+    92.64040190393456
+   ],
+   [
+    0.629,
+    86.05575046125719
+   ],
+   [
+    0.75,
+    77.1779440718923
+   ],
+   [
+    0.9,
+    67.81579138834998
+   ]
+  ],
+  "prov": [
+   [
+    0.025,
+    100.82715583107034
+   ],
+   [
+    0.035,
+    95.45573569659282
+   ],
+   [
+    0.0525,
+    86.05575046125719
+   ],
+   [
+    0.065,
+    79.3414752931603
+   ],
+   [
+    0.08,
+    71.28434509144404
+   ]
+  ],
+  "fx": [
+   [
+    0.9,
+    94.9934319338922
+   ],
+   [
+    0.95,
+    90.52459119757468
+   ],
+   [
+    1.0,
+    86.05575046125719
+   ],
+   [
+    1.05,
+    81.58690972493966
+   ],
+   [
+    1.1,
+    77.11806898862218
+   ]
+  ],
+  "volume": [
+   [
+    -0.04,
+    81.38726261721223
+   ],
+   [
+    -0.02,
+    83.6327812986978
+   ],
+   [
+    0.0,
+    86.05575046125719
+   ],
+   [
+    0.02,
+    88.66630890383252
+   ],
+   [
+    0.04,
+    91.47497496279347
+   ]
+  ],
+  "dep": [
+   [
+    0.045,
+    87.56085253778264
+   ],
+   [
+    0.055,
+    86.64847962314892
+   ],
+   [
+    0.062,
+    86.05575046125719
+   ],
+   [
+    0.07,
+    85.42298698916217
+   ],
+   [
+    0.08,
+    84.6965360102921
+   ]
+  ],
+  "grid": [
+   [
+    98.5400198648115,
+    104.67440284875745,
+    112.36854376717075,
+    122.37297678942625,
+    136.01175491472443
+   ],
+   [
+    87.64132994285646,
+    92.25269102586633,
+    97.89340304297896,
+    105.00244711907075,
+    114.30978091942573
+   ],
+   [
+    78.37907531217829,
+    81.87396424224464,
+    86.05575046125719,
+    91.18745877647113,
+    97.68605139720472
+   ],
+   [
+    70.41477127303929,
+    73.07646792451291,
+    76.19815884150698,
+    79.9396643036937,
+    84.54453940947913
+   ],
+   [
+    63.497079703695555,
+    65.52769835728633,
+    67.86482990687243,
+    70.60593895464605,
+    73.89471147795089
+   ]
+  ],
+  "grid_wacc": [
+   -0.02,
+   -0.01,
+   0.0,
+   0.01,
+   0.02
+  ],
+  "grid_g": [
+   0.03,
+   0.04,
+   0.05,
+   0.06,
+   0.07
+  ]
+ },
+ "crux": {
+  "required_fy30_revenue": 4650.989132292205,
+  "required_share_of_fy30": 0.1990281904989722,
+  "required_ebit": 2092.945109531492,
+  "assumed_margin": 0.45,
+  "facility_investment_usd_mn": 100.0,
+  "required_rev_usd_mn": 80.60639744007287,
+  "asset_turn": 0.8060639744007287,
+  "at_base": 86.05575046125719,
+  "spot": 130.05
+ },
+ "working_capital": {
+  "dio_fy25": 268.3460419562417,
+  "dso_fy25": 128.54489407731722,
+  "dpo_fy25": 53.87641428723239,
+  "ccc_fy25": 343.0145217463265
+ },
+ "calibration": {
+  "step0": {
+   "windows_scored": 16,
+   "windows_prebreak_dropped": 40,
+   "first_origin": "2022-06-20",
+   "last_origin": "2026-03-24",
+   "nu": 6.0,
+   "width_cal": 0.951,
+   "skill_norm": -0.010858170856067995,
+   "skill_raw": -0.010366348506952505,
+   "verdict": "PARITY",
+   "ci_blocks": {
+    "2": [
+     -0.03793916036544143,
+     0.021139046953839228,
+     "PARITY"
+    ],
+    "3": [
+     -0.028396338382174834,
+     0.021389301130924902,
+     "PARITY"
+    ],
+    "4": [
+     -0.023943716003805533,
+     0.021466296127510394,
+     "PARITY"
+    ]
+   },
+   "cov50": 0.5,
+   "cov80": 0.9375,
+   "cov90": 1.0,
+   "pit_mean": 0.58203125,
+   "pit_hist": [
+    1,
+    0,
+    2,
+    1,
+    0,
+    3,
+    3,
+    3,
+    3,
+    0
+   ],
+   "w90_ratio": 1.3786247432163288,
+   "market_gate": {
+    "verdict": "PASS",
+    "skill": 0.0158,
+    "ci90": [
+     0.009,
+     0.022
+    ],
+    "fit_date": "2026-07-29",
+    "panel_names": 30,
+    "windows": 494
+   },
+   "dq_log": [
+    "dropped 3 rows carrying a non-positive or non-finite OHLC value (2011-06-15..2011-09-21) \u2014 vendor fills, not tradeable prices"
+   ],
+   "clean_rows": 3225,
+   "raw_rows": 3228,
+   "density_rows_per_yr": 206.83604038630378,
+   "span_years": 15.592060232717317,
+   "sessions_per_year": {
+    "2011": 182,
+    "2012": 191,
+    "2013": 176,
+    "2014": 193,
+    "2015": 166,
+    "2016": 176,
+    "2017": 191,
+    "2018": 162,
+    "2019": 195,
+    "2020": 238,
+    "2021": 244,
+    "2022": 244,
+    "2023": 242,
+    "2024": 242,
+    "2025": 242,
+    "2026": 141
+   },
+   "max_abs_log": 0.1823215567939549,
+   "flat_frac": 0.17679900744416874,
+   "artifact_threshold": 0.29008661670847263
+  },
+  "backtest": {
+   "full": {
+    "label": "FULL cleaned history",
+    "windows": 56,
+    "first_origin": "2012-05-23",
+    "last_origin": "2026-03-24",
+    "span_years": 13.83,
+    "skill_norm": -0.017714366550109606,
+    "skill_raw": -0.01823998832611462,
+    "verdict": "PARITY",
+    "ci_blocks": {
+     "2": [
+      -0.0411,
+      0.0036,
+      "PARITY"
+     ],
+     "3": [
+      -0.0403,
+      0.0046,
+      "PARITY"
+     ],
+     "4": [
+      -0.0393,
+      0.0049,
+      "PARITY"
+     ]
+    },
+    "cov50": 0.5178571428571429,
+    "cov80": 0.9285714285714286,
+    "cov90": 1.0,
+    "pit_mean": 0.5045348214285714,
+    "pit_hist": [
+     3,
+     5,
+     6,
+     5,
+     10,
+     5,
+     7,
+     4,
+     10,
+     1
+    ],
+    "chi2": 12.93,
+    "chi2_p": 0.166,
+    "ks_stat": 0.11,
+    "ks_p": 0.478,
+    "width_vs_benchmark": 1.3969759380559315
+   },
+   "five_year": {
+    "label": "LAST FIVE YEARS of origins",
+    "windows": 19,
+    "first_origin": "2021-09-19",
+    "last_origin": "2026-03-24",
+    "span_years": 4.51,
+    "skill_norm": 0.0021479229112748577,
+    "skill_raw": -0.0007256036743799044,
+    "verdict": "PARITY",
+    "ci_blocks": {
+     "2": [
+      -0.0299,
+      0.0265,
+      "PARITY"
+     ],
+     "3": [
+      -0.0194,
+      0.0271,
+      "PARITY"
+     ],
+     "4": [
+      -0.0184,
+      0.021,
+      "PARITY"
+     ]
+    },
+    "cov50": 0.47368421052631576,
+    "cov80": 0.8947368421052632,
+    "cov90": 1.0,
+    "pit_mean": 0.5247447368421053,
+    "pit_hist": [
+     2,
+     0,
+     3,
+     2,
+     0,
+     3,
+     3,
+     3,
+     3,
+     0
+    ],
+    "chi2": 8.89,
+    "chi2_p": 0.447,
+    "ks_stat": 0.158,
+    "ks_p": 0.676,
+    "width_vs_benchmark": 1.468556158769093
+   },
+   "production": {
+    "label": "production window set (post-break origins)",
+    "windows": 16,
+    "first_origin": "2022-06-20",
+    "last_origin": "2026-03-24",
+    "span_years": 3.76,
+    "skill_norm": -0.010858170856067995,
+    "skill_raw": -0.010366348506952505,
+    "verdict": "PARITY",
+    "ci_blocks": {
+     "2": [
+      -0.0379,
+      0.0211,
+      "PARITY"
+     ],
+     "3": [
+      -0.0284,
+      0.0214,
+      "PARITY"
+     ],
+     "4": [
+      -0.0239,
+      0.0215,
+      "PARITY"
+     ]
+    },
+    "cov50": 0.5,
+    "cov80": 0.9375,
+    "cov90": 1.0,
+    "pit_mean": 0.58203125,
+    "pit_hist": [
+     1,
+     0,
+     2,
+     1,
+     0,
+     3,
+     3,
+     3,
+     3,
+     0
+    ],
+    "chi2": 10.25,
+    "chi2_p": 0.331,
+    "ks_stat": 0.276,
+    "ks_p": 0.144,
+    "width_vs_benchmark": 1.3786247432163288
+   },
+   "fit": {
+    "nu": 6.0,
+    "width_cal": 0.951,
+    "market_verdict": "PASS",
+    "market_skill": 0.0158,
+    "market_ci90": [
+     0.009,
+     0.022
+    ],
+    "fit_date": "2026-07-29",
+    "panel_names": 30
+   }
+  }
+ },
+ "narrative": [
+  "[History] the audited consolidated income statement reconstructs line-by-line for all three years: revenue less cost of sales less operating expenses less the provision charge, plus associates, interest income, exchange differences and other income, less finance costs, equals disclosed pre-tax profit to within EGP 0.02 million in each year.",
+  "  FY2023: revenue 5,232 \u00b7 gross margin 44.6% \u00b7 provision charge 5.07% of revenue \u00b7 EBIT 1,225 (23.4%) \u00b7 EBITDA 1,330 \u00b7 net profit 823 \u00b7 effective tax 24.0%",
+  "  FY2024: revenue 7,591 \u00b7 gross margin 44.9% \u00b7 provision charge 9.25% of revenue \u00b7 EBIT 1,529 (20.1%) \u00b7 EBITDA 1,631 \u00b7 net profit 1,097 \u00b7 effective tax 28.3%",
+  "  FY2025: revenue 9,441 \u00b7 gross margin 44.0% \u00b7 provision charge 5.23% of revenue \u00b7 EBIT 2,366 (25.1%) \u00b7 EBITDA 2,484 \u00b7 net profit 1,458 \u00b7 effective tax 18.8%",
+  "",
+  "[Unit build] FY2025 sales of the company's own preparations were 351.8 million packs. Exports account for 60.0 million of them at EGP 49.46 a pack, which is USD 1.00 at the disclosed average rate of 49.48. The domestic book is therefore 291.8 million packs carrying EGP 6,286 million of revenue, EGP 21.54 a pack, against EGP 19.77 in FY2024 (+9.0%) on 244.3 million packs (+19.5% volume).",
+  "  Production ran at 2,208 million units against 3,383 million of disclosed capacity \u2014 65% utilisation, so the volume path below is not capacity-constrained.",
+  "  Reconstructed channel revenue 9,302.469 against the disclosed separate-company revenue total of 9,302.469 \u2014 a difference of 0.000, which is rounding on the incentive lines.",
+  "",
+  "[Consolidation] the reconstructed channel build is a separate-company total; the audited consolidated revenue is 1.0149 times it, the subsidiary's external sales. That measured factor, not an assumption, carries the build to a consolidated basis.",
+  "",
+  "[Cost stack] every physically distinct cost line carries its OWN escalator: imported active ingredients (54.9% of production cost) and the imported share of packaging escalate on a hard-currency price path passed through the exchange-rate path; labour on Egyptian wage growth; energy on the regulated tariff schedule, which runs above consumer inflation; domestic services on consumer inflation. No single blended index is applied across them. Depreciation is excluded here and enters exactly once, from the property roll-forward.",
+  "  Gross margin path (after the production share of depreciation): FY2025 actual 44.0% -> 43.0% -> 42.5% -> 42.7% -> 43.0% -> 43.0%",
+  "",
+  "[Depreciation] the EGP 4,901 million construction balance stops being free. Transfers of 3,200 / 1,200 million in the first two years take the depreciation charge from an audited FY2025 118 million to 298 then 418 million. That step is the single largest mechanical change in the forecast income statement and it is a consequence of the company's own disclosed licensing timetable, not a view.",
+  "  EBITDA (cash costs only) FY2026E 2,908 -> FY2030E 4,960 on Frame A; EBIT 2,610 -> 4,542 after the depreciation step.",
+  "",
+  "[Asset-conversion cycle] the audited FY2025 balance sheet implies 268 inventory days, 129 receivable days and 54 payable days \u2014 a cash cycle of 343 days. The inventory position is policy: the company stated at its March-2026 general assembly that it holds a strategic raw-material stockpile sufficient for at least eight months. Working capital is PROJECTED from those three ratios, not plugged.",
+  "",
+  "[Cost of equity] the quoted ten-year local-currency government yield is 22.31%. That yield is not riskless: it embeds the sovereign's own default risk. Subtracting the sovereign credit-default-swap spread of 3.41% leaves a normalised risk-free rate of 18.90%; adding beta 0.629 times the country equity risk premium of 9.41% gives a cost of equity of 24.82%. On the rating basis the same construction gives 24.71% \u2014 the two agree to 11 basis points, which is reassuring because they are built from different columns of the same source. Charging the raw 22.31% yield AND a country-loaded premium would give 28.23% and would count sovereign risk twice; that construction is not used.",
+  "[Cost of debt] the term-loan note splits the book 50% local currency / 50% hard currency. The local-currency leg is priced at 24.81% \u2014 the sovereign yield plus 250 basis points, and above the sovereign by construction. The hard-currency leg carries a 7.50% coupon but is charged at its LOCAL-EQUIVALENT cost of 12.34%, coupon compounded with expected currency depreciation of 4.50%. Blended marginal cost of debt 18.55%, 14.38% after tax.",
+  "[Cost-of-debt integrity] the company expensed 1,275 million of interest and capitalised a further 551 million into the construction balance in FY2025. On average gross debt of 8,999 million that is 14.2% expensed and 20.3% all-in. The 18.5% marginal rate sits inside that pair, which is the test: a marginal rate below the expensed rate or above the all-in rate would not be credible.",
+  "[Weighted average cost of capital] market capitalisation 21,947 against net debt 7,364 gives weights 74.9% equity / 25.1% debt and a starting discount rate of 22.19%. On GROSS debt the weights are 71.4%/28.6% and the rate 21.83%; both are published. Note the starting rate sits close to the quoted sovereign yield \u2014 that is arithmetic, not an error: the quoted yield contains default risk that the normalised build strips out and re-charges inside the equity premium.",
+  "[Terminal] cost of equity 14.90% (risk-free 10.50% plus beta times a normalised 7.00% premium); cost of debt 12.34%, 9.56% after tax; debt weight 20% -> terminal discount rate 13.83%.",
+  "[Discount-rate glide] the fractions are the cost-of-debt path normalised to its own endpoints \u2014 1.000, 0.732, 0.439, 0.195, 0.000 \u2014 so the glide has the shape of the easing cycle rather than a shape invented for it. Discount rates 22.19%, 19.95%, 17.50%, 15.47%, 13.83%; the factors compound.",
+  "",
+  "[Terminal consistency] terminal reinvestment is growth 5% divided by a terminal return on invested capital of 20%, i.e. 25% of terminal operating profit after tax reinvested. The model's own FY2030E return on invested capital is 18.7% on Frame A and 20.9% on Frame B, so the terminal assumption is not richer than the forecast that leads into it.",
+  "[Terminal weight] the terminal value is 74% of core enterprise value on Frame A and 74% on Frame B. That is high, as it is for any growing manufacturer discounted over five explicit years, and it is stated in the valuation summary and in the enterprise-to-equity bridge rather than buried.",
+  "",
+  "[Book value and sustainable return] book value per share 37.00. Return on average equity was 24.6% in FY2024 and 26.5% in FY2025; the forecast settles at 24.6%. A sustainable-return multiple of (return 24.6% less growth 5%) over (perpetual cost of equity 14.90% less growth) is 1.98 times book, or 73.10 a share.",
+  "",
+  "[Relative multiples] the company's OWN traded history is computable entirely from primary material \u2014 year-end closes against audited attributable profit: 4.7 times (2022), 6.6 times (2023), 6.2 times (2024), 9.1 times (2025), a four-year mean of 6.7. At 130.05 the shares trade on 15.2 times trailing attributable earnings and 11.9 times trailing EBITDA. The re-rating is the single most important fact about this share price: the earnings multiple has more than doubled against its own four-year history.",
+  "  The lens triangulates three multiples rather than asserting one. (1) The multiple this model's own economics justify: retention must equal growth 5% over sustainable return 24.6%, so the payout the multiple can assume is 80%, and 80% over (perpetual cost of equity 14.90% less growth) is 8.0 times. (2) The company's own four-year mean, 6.7 times. (3) A regional peer median of 19.5 times \u2014 but those peers are Gulf-listed and face a cost of equity near 10%, not 14.9%; adjusted for that single difference the same median implies 9.8 times. Averaged on 6.79 of FY2026E attributable earnings a share: 55.58. Left unadjusted, the peer median alone would give 132.45 \u2014 the size of that gap IS the country-risk discount, and it is shown rather than hidden inside a chosen multiple.",
+  "[Normalised earnings power] the three-year average operating margin is 22.9%, against 25.1% in FY2025 \u2014 so this lens deliberately gives back part of the best year. Applied to FY2027E revenue of 12,942 million, financed at the FY2027E cost of debt and taxed at 23.5%, with the normalised associate contribution added, that is EGP 8.62 a share of sustainable earnings. Capitalised at the PERPETUAL cost of equity of 14.90% less 5% growth, on the 80% payout that growth rate permits: 69.33 a share. Using today's crisis-level cost of equity of 24.82% in a perpetuity would be a category error \u2014 a steady-state multiple takes a steady-state rate.",
+  "",
+  "[Synthesis] four lenses, one field: Discounted cash flow \u2014 Frame A 86.06 \u00b7 Discounted cash flow \u2014 Frame B 99.07 \u00b7 Book value and sustainable return 73.10 \u00b7 Relative multiples 55.58 \u00b7 Normalised earnings power 69.33. Weighted centre 79.64; the field runs 55.58 to 99.07 against a 130.05 market price.",
+  "",
+  "[The crux] the base build charges the new biologicals facility's depreciation and its interest \u2014 both mechanical consequences of the company's own disclosed December-2025 licensing \u2014 but carries NO revenue line for it, because the company has published no volume, price or utilisation guidance for the plant. So the crux is not what the plant is worth; it is how much it must sell. Solving the same model for the market price: an additional EGP 4,651 million of revenue by FY2030E at a 45% contribution margin closes the gap from 86.06 to 130.05. That is 20% of FY2030E revenue, or about USD 81 million a year \u2014 0.81 times the USD 100 million the company says it invested in the plant. That number is observable: it is testable against the first year the company discloses biosimilar revenue."
+ ]
+}

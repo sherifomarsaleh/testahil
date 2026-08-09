@@ -1,0 +1,1727 @@
+{
+ "base": 86.05575046125706,
+ "headline_bases": {
+  "value per share, Frame A": 86.05575046125706,
+  "value per share, Frame B": 99.07237652306328,
+  "weighted central fair value": 79.63857743004463,
+  "FY2026E earnings per share": 6.60353376671894,
+  "FY2030E book value per share": 71.9720944461568,
+  "FY2030E total assets": 25235.88386861477,
+  "FY2030E return on invested capital": 0.18744778682404845,
+  "cost of equity, rating basis": 0.24708259999999999
+ },
+ "cases": [
+  {
+   "driver": "Domestic pack volume growth",
+   "cell": "C8",
+   "multiplier": 1.2,
+   "base_input": 0.1,
+   "headline": 86.52147187119854,
+   "move": 0.46572140994148015,
+   "expected": "up",
+   "passed": true,
+   "mechanism": "more packs, more revenue on a cost base that does not rise as fast"
+  },
+  {
+   "driver": "Export pack volume growth",
+   "cell": "C9",
+   "multiplier": 1.2,
+   "base_input": 0.09,
+   "headline": 87.13891124706976,
+   "move": 1.0831607858126944,
+   "expected": "up",
+   "passed": true,
+   "mechanism": "same, on the hard-currency book"
+  },
+  {
+   "driver": "Domestic price per pack growth",
+   "cell": "C10",
+   "multiplier": 1.2,
+   "base_input": 0.09,
+   "headline": 90.7745485244988,
+   "move": 4.718798063241735,
+   "expected": "up",
+   "passed": true,
+   "mechanism": "price straight to the margin"
+  },
+  {
+   "driver": "Export price per pack growth",
+   "cell": "C11",
+   "multiplier": 1.5,
+   "base_input": 0.01,
+   "headline": 86.65154929365018,
+   "move": 0.5957988323931147,
+   "expected": "up",
+   "passed": true,
+   "mechanism": "price straight to the margin"
+  },
+  {
+   "driver": "Exchange rate, year one",
+   "cell": "C13",
+   "multiplier": 1.1,
+   "base_input": 50.5,
+   "headline": 85.04644126445865,
+   "move": -1.0093091967984122,
+   "expected": "down",
+   "passed": true,
+   "mechanism": "a WEAKER pound raises export revenue but ALSO raises the imported ingredient and packaging cost, which is 79% of the cash cost stack against a 32% export share \u2014 the cost side dominates, so the net effect is negative"
+  },
+  {
+   "driver": "Selling and marketing / revenue",
+   "cell": "C27",
+   "multiplier": 1.2,
+   "base_input": 0.104,
+   "headline": 85.18876763311422,
+   "move": -0.866982828142838,
+   "expected": "down",
+   "passed": true,
+   "mechanism": "a bigger cost share"
+  },
+  {
+   "driver": "Provision charge, Frame A",
+   "cell": "C30",
+   "multiplier": 1.3,
+   "base_input": 0.0525,
+   "headline": 85.39926106013928,
+   "move": -0.6564894011177813,
+   "expected": "down",
+   "passed": true,
+   "mechanism": "a bigger cost share"
+  },
+  {
+   "driver": "Capital expenditure / revenue",
+   "cell": "C32",
+   "multiplier": 1.3,
+   "base_input": 0.075,
+   "headline": 84.84563174951921,
+   "move": -1.2101187117378487,
+   "expected": "down",
+   "passed": true,
+   "mechanism": "cash out of free cash flow"
+  },
+  {
+   "driver": "Depreciation rate",
+   "cell": "C34",
+   "multiplier": 1.3,
+   "base_input": 0.062,
+   "headline": 84.65516451273587,
+   "move": -1.400585948521197,
+   "expected": "down",
+   "passed": true,
+   "mechanism": "a bigger tax-effected charge; the add-back is not a full offset because the tax shield is worth less than the charge"
+  },
+  {
+   "driver": "Inventory days",
+   "cell": "C35",
+   "multiplier": 1.2,
+   "base_input": 265.0,
+   "headline": 85.31473304382027,
+   "move": -0.7410174174367938,
+   "expected": "down",
+   "passed": true,
+   "mechanism": "more cash tied up"
+  },
+  {
+   "driver": "Receivable days",
+   "cell": "C36",
+   "multiplier": 1.2,
+   "base_input": 126.0,
+   "headline": 85.4381181134936,
+   "move": -0.6176323477634611,
+   "expected": "down",
+   "passed": true,
+   "mechanism": "more cash tied up"
+  },
+  {
+   "driver": "Payable days",
+   "cell": "C37",
+   "multiplier": 1.2,
+   "base_input": 55.0,
+   "headline": 86.20954652902692,
+   "move": 0.15379606776986066,
+   "expected": "up",
+   "passed": true,
+   "mechanism": "less cash tied up"
+  },
+  {
+   "driver": "Ten-year government yield",
+   "cell": "C40",
+   "multiplier": 1.1,
+   "base_input": 0.2231,
+   "headline": 82.61197799858658,
+   "move": -3.4437724626704806,
+   "expected": "down",
+   "passed": true,
+   "mechanism": "a higher discount rate"
+  },
+  {
+   "driver": "Sovereign swap spread",
+   "cell": "C41",
+   "multiplier": 1.5,
+   "base_input": 0.0341,
+   "headline": 88.78828077940908,
+   "move": 2.7325303181520155,
+   "expected": "up",
+   "passed": true,
+   "mechanism": "a LARGER spread is subtracted from the quoted yield, so the normalised risk-free rate FALLS and the discount rate with it \u2014 this is the whole point of the normalisation"
+  },
+  {
+   "driver": "Country equity risk premium",
+   "cell": "C42",
+   "multiplier": 1.2,
+   "base_input": 0.0941,
+   "headline": 84.21029719184563,
+   "move": -1.8454532694114363,
+   "expected": "down",
+   "passed": true,
+   "mechanism": "a higher cost of equity"
+  },
+  {
+   "driver": "Beta",
+   "cell": "C45",
+   "multiplier": 1.3,
+   "base_input": 0.629,
+   "headline": 72.7513763574882,
+   "move": -13.304374103768865,
+   "expected": "down",
+   "passed": true,
+   "mechanism": "a higher cost of equity"
+  },
+  {
+   "driver": "Cost of local-currency debt",
+   "cell": "C46",
+   "multiplier": 1.2,
+   "base_input": 0.2481,
+   "headline": 85.04884813636151,
+   "move": -1.0069023248955489,
+   "expected": "down",
+   "passed": true,
+   "mechanism": "a higher cost of capital"
+  },
+  {
+   "driver": "Terminal risk-free rate",
+   "cell": "C51",
+   "multiplier": 1.2,
+   "base_input": 0.105,
+   "headline": 69.84611493203295,
+   "move": -16.209635529224116,
+   "expected": "down",
+   "passed": true,
+   "mechanism": "a higher terminal discount rate against a 74% terminal weight"
+  },
+  {
+   "driver": "Terminal growth",
+   "cell": "C56",
+   "multiplier": 1.2,
+   "base_input": 0.05,
+   "headline": 91.187458776471,
+   "move": 5.131708315213942,
+   "expected": "up",
+   "passed": true,
+   "mechanism": "growth in the terminal numerator and a smaller denominator"
+  },
+  {
+   "driver": "Terminal return on invested capital",
+   "cell": "C57",
+   "multiplier": 1.3,
+   "base_input": 0.2,
+   "headline": 92.37305391861481,
+   "move": 6.3173034573577524,
+   "expected": "up",
+   "passed": true,
+   "mechanism": "less reinvestment needed to buy the same growth"
+  },
+  {
+   "driver": "Normalised associate contribution",
+   "cell": "C58",
+   "multiplier": 1.3,
+   "base_input": 320.0,
+   "headline": 92.31331501831659,
+   "move": 6.257564557059524,
+   "expected": "up",
+   "passed": true,
+   "mechanism": "a bigger addition in the bridge"
+  },
+  {
+   "driver": "Associate earnings multiple",
+   "cell": "C59",
+   "multiplier": 1.3,
+   "base_input": 11.0,
+   "headline": 92.31331501831659,
+   "move": 6.257564557059524,
+   "expected": "up",
+   "passed": true,
+   "mechanism": "a bigger addition in the bridge"
+  },
+  {
+   "driver": "Tax rate",
+   "cell": "C5",
+   "multiplier": 1.2,
+   "base_input": 0.225,
+   "headline": 80.18964414432043,
+   "move": -5.866106316936637,
+   "expected": "down",
+   "passed": true,
+   "mechanism": "less cash, partly offset by a bigger interest shield in the cost of capital"
+  },
+  {
+   "driver": "Transfers out of construction",
+   "cell": "C33",
+   "multiplier": 1.3,
+   "base_input": 3200.0,
+   "headline": 85.29038257551153,
+   "move": -0.7653678857455333,
+   "expected": "down",
+   "passed": true,
+   "mechanism": "brings the depreciation charge forward"
+  },
+  {
+   "driver": "Gross borrowings",
+   "cell": "C70",
+   "multiplier": 1.2,
+   "base_input": 8797.72564,
+   "headline": 76.56694691948566,
+   "move": -9.488803541771404,
+   "expected": "down",
+   "passed": true,
+   "mechanism": "more debt to subtract in the bridge"
+  },
+  {
+   "driver": "Cash",
+   "cell": "C69",
+   "multiplier": 1.5,
+   "base_input": 1433.426902,
+   "headline": 89.89110757889817,
+   "move": 3.8353571176411094,
+   "expected": "up",
+   "passed": true,
+   "mechanism": "less net debt to subtract"
+  }
+ ],
+ "failures": [],
+ "dead_inputs": [],
+ "disclosure_rows": [
+  [
+   "Cost share: depreciation",
+   "C20"
+  ]
+ ],
+ "live_inputs": [
+  [
+   "Share price (EGP)",
+   "C3",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value"
+   ]
+  ],
+  [
+   "Shares in issue (million)",
+   "C4",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2026E earnings per share",
+    "FY2030E book value per share"
+   ]
+  ],
+  [
+   "Effective tax rate on forecast pre-tax profit",
+   "C6",
+   [
+    "weighted central fair value",
+    "FY2026E earnings per share",
+    "FY2030E book value per share"
+   ]
+  ],
+  [
+   "Domestic pack volume growth",
+   "D8",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Domestic pack volume growth",
+   "E8",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Domestic pack volume growth",
+   "F8",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Domestic pack volume growth",
+   "G8",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Export pack volume growth",
+   "D9",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Export pack volume growth",
+   "E9",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Export pack volume growth",
+   "F9",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Export pack volume growth",
+   "G9",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Domestic price per pack growth",
+   "D10",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Domestic price per pack growth",
+   "E10",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Domestic price per pack growth",
+   "F10",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Domestic price per pack growth",
+   "G10",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Export price per pack growth (USD)",
+   "D11",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Export price per pack growth (USD)",
+   "E11",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Export price per pack growth (USD)",
+   "F11",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Export price per pack growth (USD)",
+   "G11",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Contract-manufacturing revenue growth",
+   "C12",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2026E earnings per share",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Contract-manufacturing revenue growth",
+   "D12",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Contract-manufacturing revenue growth",
+   "E12",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Contract-manufacturing revenue growth",
+   "F12",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Contract-manufacturing revenue growth",
+   "G12",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Exchange rate (EGP per USD, period average)",
+   "D13",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Exchange rate (EGP per USD, period average)",
+   "E13",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Exchange rate (EGP per USD, period average)",
+   "F13",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Exchange rate (EGP per USD, period average)",
+   "G13",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Cost share: imported active ingredients",
+   "C15",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2026E earnings per share",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Cost share: packaging materials",
+   "C16",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2026E earnings per share",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Cost share: labour",
+   "C17",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2026E earnings per share",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Cost share: energy and utilities",
+   "C18",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2026E earnings per share",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Cost share: other consumables and services",
+   "C19",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2026E earnings per share",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Escalator: hard-currency ingredient price",
+   "C21",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2026E earnings per share",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Imported share of the packaging line",
+   "C22",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2026E earnings per share",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Escalator: Egyptian wages",
+   "C23",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2026E earnings per share",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Escalator: Egyptian wages",
+   "D23",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Escalator: Egyptian wages",
+   "E23",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Escalator: Egyptian wages",
+   "F23",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Escalator: Egyptian wages",
+   "G23",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Escalator: regulated energy tariffs",
+   "C24",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2026E earnings per share",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Escalator: regulated energy tariffs",
+   "D24",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Escalator: regulated energy tariffs",
+   "E24",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Escalator: regulated energy tariffs",
+   "F24",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Escalator: regulated energy tariffs",
+   "G24",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Escalator: domestic consumer prices",
+   "C25",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2026E earnings per share",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Escalator: domestic consumer prices",
+   "D25",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Escalator: domestic consumer prices",
+   "E25",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Escalator: domestic consumer prices",
+   "F25",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Escalator: domestic consumer prices",
+   "G25",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Selling and marketing / revenue",
+   "D27",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share"
+   ]
+  ],
+  [
+   "Selling and marketing / revenue",
+   "E27",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share"
+   ]
+  ],
+  [
+   "Selling and marketing / revenue",
+   "F27",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share"
+   ]
+  ],
+  [
+   "Selling and marketing / revenue",
+   "G27",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Research and development / revenue",
+   "C28",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2026E earnings per share",
+    "FY2030E book value per share"
+   ]
+  ],
+  [
+   "Research and development / revenue",
+   "D28",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share"
+   ]
+  ],
+  [
+   "Research and development / revenue",
+   "E28",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share"
+   ]
+  ],
+  [
+   "Research and development / revenue",
+   "F28",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share"
+   ]
+  ],
+  [
+   "Research and development / revenue",
+   "G28",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "General and administrative / revenue",
+   "C29",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2026E earnings per share",
+    "FY2030E book value per share"
+   ]
+  ],
+  [
+   "General and administrative / revenue",
+   "D29",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share"
+   ]
+  ],
+  [
+   "General and administrative / revenue",
+   "E29",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share"
+   ]
+  ],
+  [
+   "General and administrative / revenue",
+   "F29",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share"
+   ]
+  ],
+  [
+   "General and administrative / revenue",
+   "G29",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "FRAME A \u2014 provision charge / revenue",
+   "D30",
+   [
+    "value per share, Frame A",
+    "weighted central fair value",
+    "FY2030E book value per share"
+   ]
+  ],
+  [
+   "FRAME A \u2014 provision charge / revenue",
+   "E30",
+   [
+    "value per share, Frame A",
+    "weighted central fair value",
+    "FY2030E book value per share"
+   ]
+  ],
+  [
+   "FRAME A \u2014 provision charge / revenue",
+   "F30",
+   [
+    "value per share, Frame A",
+    "weighted central fair value",
+    "FY2030E book value per share"
+   ]
+  ],
+  [
+   "FRAME A \u2014 provision charge / revenue",
+   "G30",
+   [
+    "value per share, Frame A",
+    "weighted central fair value",
+    "FY2030E book value per share",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "FRAME B \u2014 provision charge / revenue",
+   "C31",
+   [
+    "value per share, Frame B",
+    "weighted central fair value"
+   ]
+  ],
+  [
+   "FRAME B \u2014 provision charge / revenue",
+   "D31",
+   [
+    "value per share, Frame B",
+    "weighted central fair value"
+   ]
+  ],
+  [
+   "FRAME B \u2014 provision charge / revenue",
+   "E31",
+   [
+    "value per share, Frame B",
+    "weighted central fair value"
+   ]
+  ],
+  [
+   "FRAME B \u2014 provision charge / revenue",
+   "F31",
+   [
+    "value per share, Frame B",
+    "weighted central fair value"
+   ]
+  ],
+  [
+   "FRAME B \u2014 provision charge / revenue",
+   "G31",
+   [
+    "value per share, Frame B",
+    "weighted central fair value"
+   ]
+  ],
+  [
+   "Capital expenditure / revenue",
+   "D32",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Capital expenditure / revenue",
+   "E32",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Capital expenditure / revenue",
+   "F32",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Capital expenditure / revenue",
+   "G32",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Transfers out of construction (EGP mn)",
+   "D33",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Transfers out of construction (EGP mn)",
+   "E33",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Transfers out of construction (EGP mn)",
+   "F33",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Transfers out of construction (EGP mn)",
+   "G33",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Inventory days",
+   "D35",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value"
+   ]
+  ],
+  [
+   "Inventory days",
+   "E35",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value"
+   ]
+  ],
+  [
+   "Inventory days",
+   "F35",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value"
+   ]
+  ],
+  [
+   "Inventory days",
+   "G35",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Receivable days",
+   "D36",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value"
+   ]
+  ],
+  [
+   "Receivable days",
+   "E36",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value"
+   ]
+  ],
+  [
+   "Receivable days",
+   "F36",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value"
+   ]
+  ],
+  [
+   "Receivable days",
+   "G36",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Payable days",
+   "D37",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value"
+   ]
+  ],
+  [
+   "Payable days",
+   "E37",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value"
+   ]
+  ],
+  [
+   "Payable days",
+   "F37",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value"
+   ]
+  ],
+  [
+   "Payable days",
+   "G37",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Dividend payout ratio",
+   "C38",
+   [
+    "FY2030E book value per share"
+   ]
+  ],
+  [
+   "Adjusted default spread (rating basis)",
+   "C43",
+   [
+    "cost of equity, rating basis"
+   ]
+  ],
+  [
+   "Country equity risk premium (rating basis)",
+   "C44",
+   [
+    "cost of equity, rating basis"
+   ]
+  ],
+  [
+   "Hard-currency coupon",
+   "C47",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value"
+   ]
+  ],
+  [
+   "Expected currency depreciation for the debt charge",
+   "C48",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value"
+   ]
+  ],
+  [
+   "Hard-currency share of the term-loan book",
+   "C49",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value"
+   ]
+  ],
+  [
+   "Cost-of-debt path",
+   "C50",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2026E earnings per share",
+    "FY2030E book value per share"
+   ]
+  ],
+  [
+   "Cost-of-debt path",
+   "D50",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share"
+   ]
+  ],
+  [
+   "Cost-of-debt path",
+   "E50",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share"
+   ]
+  ],
+  [
+   "Cost-of-debt path",
+   "F50",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share"
+   ]
+  ],
+  [
+   "Cost-of-debt path",
+   "G50",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E book value per share"
+   ]
+  ],
+  [
+   "Terminal equity risk premium",
+   "C52",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value"
+   ]
+  ],
+  [
+   "Terminal local-currency borrowing rate",
+   "C53",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value"
+   ]
+  ],
+  [
+   "Terminal hard-currency coupon",
+   "C54",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value"
+   ]
+  ],
+  [
+   "Terminal debt weight",
+   "C55",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value"
+   ]
+  ],
+  [
+   "Regional peer median price-earnings multiple",
+   "C60",
+   [
+    "weighted central fair value"
+   ]
+  ],
+  [
+   "Property, plant and equipment, net",
+   "C62",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2026E earnings per share",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Projects under construction",
+   "C63",
+   [
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Inventories, net",
+   "C64",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value"
+   ]
+  ],
+  [
+   "Trade and notes receivable, net",
+   "C65",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value"
+   ]
+  ],
+  [
+   "Other debtors",
+   "C66",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Trade and notes payable",
+   "C67",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value"
+   ]
+  ],
+  [
+   "Other creditors",
+   "C68",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Equity attributable to the holding company",
+   "C71",
+   [
+    "weighted central fair value",
+    "FY2030E book value per share"
+   ]
+  ],
+  [
+   "Non-controlling interests",
+   "C72",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value"
+   ]
+  ],
+  [
+   "Assets held for sale",
+   "C73",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value"
+   ]
+  ],
+  [
+   "Intangible assets, net",
+   "C74",
+   [
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Right-of-use and intangible amortisation run-rate",
+   "C75",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2026E earnings per share",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Share of depreciation charged to cost of sales",
+   "C76",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "FY2025 cash cost per pack sold (EGP)",
+   "C77",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2026E earnings per share",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "Consolidated-to-separate revenue factor",
+   "C78",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2026E earnings per share",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "FY2025 domestic packs (million)",
+   "C79",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2026E earnings per share",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "FY2025 export packs (million)",
+   "C80",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2026E earnings per share",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "FY2025 domestic price per pack (EGP)",
+   "C81",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2026E earnings per share",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "FY2025 export price per pack (USD)",
+   "C82",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2026E earnings per share",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "FY2025 contract-manufacturing packs (million)",
+   "C83",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2026E earnings per share",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "FY2025 contract-manufacturing revenue (EGP mn)",
+   "C84",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2026E earnings per share",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "FY2025 average exchange rate",
+   "C85",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2026E earnings per share",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ]
+ ]
+}
