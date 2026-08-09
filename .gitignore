@@ -26,3 +26,11 @@ engine/.pit_tmp_data.js
 # Local virtualenv created to run the engine (numpy/pandas/scipy/openpyxl/python-docx).
 # Build tooling, never a source of truth.
 .venv/
+
+# BOROUGE primary source PDFs — 78 MB of company filings. Excluded deliberately, NOT
+# because they are unimportant but because the provenance chain does not depend on
+# storing them: engine/borouge_study/source_access.json carries the public URL, the byte
+# count and the SHA-256 of all 21, and verify_sources.py re-downloads and re-hashes every
+# one. A hash plus a public URL proves more than a committed binary does. The extracted
+# .txt the build actually reads IS committed. See engine/borouge_study/src/README.md.
+engine/borouge_study/src/*.pdf

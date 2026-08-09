@@ -1,0 +1,13 @@
+{
+ "formulas": 759,
+ "unresolvable": 0,
+ "checked": 759,
+ "disagreements": 0,
+ "unchecked": 0,
+ "headline_failures": [],
+ "pasted": {
+  "history": 298,
+  "unit_build": 2,
+  "rerun": 87
+ }
+}

@@ -1,0 +1,644 @@
+{
+ "ticker": "BOROUGE",
+ "asset_class": "STOCK",
+ "sweep_date": "2026-08-09",
+ "findings": [
+  {
+   "fid": "F01",
+   "ring": "GLOBAL",
+   "category": "rate cycle & USD/FX regime",
+   "klass": "STRUCTURAL",
+   "headline": "Secured Overnight Financing Rate 3.65% and the US 10-year Treasury note at 4.65%. The dirham is hard-pegged to the dollar at 3.6725 and the Central Bank of the UAE Base Rate has tracked the Federal Reserve to 3.65%, held since 17 June 2026",
+   "source_name": "Federal Reserve Bank of New York SOFR publication; US Treasury constant-maturity yields; Central Bank of the UAE Base Rate",
+   "source_type": "REGULATOR_OFFICIAL",
+   "source_date": "2026-08-06",
+   "detail": "",
+   "url": "",
+   "model_impact": "Borouge reports and is financed in dollars, so the peg makes the dollar the natural valuation currency. The 10-year sets the risk-free rate and the floating leg of the debt book prices off SOFR.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F02",
+   "ring": "GLOBAL",
+   "category": "commodity complex (input/output)",
+   "klass": "BASE_CHANGER",
+   "headline": "Global polyethylene nameplate capacity rises 22% between 2026 and 2034, from 158 to 193 million tonnes; polypropylene rises 20%, from 125 to 151 million tonnes. Producer consensus on the return to the 1992-2021 average operating rate has moved out to 2032, from 2030 a year earlier",
+   "source_name": "OPIS, Asia Petrochemical Industry Conference briefing (capacity); ICIS Asian Chemical Connections (operating-rate consensus)",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-05-29",
+   "detail": "",
+   "url": "",
+   "model_impact": "BASE CHANGER, and the reason the forecast price path settles BELOW the 2023-24 level rather than back at it. Structural oversupply is untouched by the regional disruption, so benchmark prices give back the shortage premium and then keep drifting.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F03",
+   "ring": "GLOBAL",
+   "category": "commodity complex (input/output)",
+   "klass": "STRUCTURAL",
+   "headline": "Brent averaged USD 69/bbl in 2025 and is expected to average USD 82/bbl in 2026 and USD 65/bbl in 2027, the 2026 figure lifted by the Strait of Hormuz disruption",
+   "source_name": "US Energy Information Administration, Short-Term Energy Outlook, July 2026",
+   "source_type": "REGULATOR_OFFICIAL",
+   "source_date": "2026-07-31",
+   "detail": "",
+   "url": "",
+   "model_impact": "Sets the shape of the naphtha-linked marginal cost that anchors the polyolefin benchmark: a 2026 spike that unwinds, not a new level.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F04",
+   "ring": "GLOBAL",
+   "category": "global sector demand",
+   "klass": "STRUCTURAL",
+   "headline": "World real output growing about 3.0% in 2026 on the July update, revised up on front-loaded trade but with the Fund flagging war and technology crosscurrents",
+   "source_name": "International Monetary Fund, World Economic Outlook Update, July 2026",
+   "source_type": "REGULATOR_OFFICIAL",
+   "source_date": "2026-07-08",
+   "detail": "",
+   "url": "",
+   "model_impact": "Polyolefin demand grows roughly with world output; carried as the backdrop against which capacity growth of 20-22% is the binding side of the balance, not demand.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F05",
+   "ring": "GLOBAL",
+   "category": "trade / sanctions / supply chains",
+   "klass": "BASE_CHANGER",
+   "headline": "The Strait of Hormuz was disrupted through the first half of 2026. A United States-Iran memorandum of understanding was signed on 18 June 2026 to end the conflict and reopen the strait; the Energy Information Administration's July outlook expects most shut-in production back by the end of 2026",
+   "source_name": "US Energy Information Administration, Short-Term Energy Outlook, July 2026, recording the 18 June 2026 memorandum",
+   "source_type": "REGULATOR_OFFICIAL",
+   "source_date": "2026-06-18",
+   "detail": "",
+   "url": "",
+   "model_impact": "BASE CHANGER and the study's first contested judgement. Ruwais ships through Hormuz; the strait is the single variable separating the two published forecast constructions. Whether it reopens on the memorandum's timetable is not knowable, so both paths are carried.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F06",
+   "ring": "COUNTRY",
+   "category": "sovereign macro (inflation, policy rate, FX/deval risk)",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "Central Bank of the UAE Quarterly Economic Review, June 2026: inflation forecast 2.3% for 2026 and 1.9% for 2027; real GDP growth 6.2% actual for 2025, forecast 1.7% for 2026 and 9.8% for 2027. The IMF's April 2026 vintage carries 3.1% for 2026, cut from 5.0% in October",
+   "source_name": "Central Bank of the UAE, Quarterly Economic Review, June 2026; International Monetary Fund country page, April 2026 vintage",
+   "source_type": "REGULATOR_OFFICIAL",
+   "source_date": "2026-06-30",
+   "detail": "",
+   "url": "",
+   "model_impact": "The 2.1% inflation average escalates the domestic fixed-cost leg of the unit build \u2014 and only that leg. Traded inputs escalate on their own commodity paths, never on this index.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F07",
+   "ring": "COUNTRY",
+   "category": "sovereign macro (inflation, policy rate, FX/deval risk)",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "United Arab Emirates: Aa2 rating, adjusted default spread 0.42%, country risk premium 0.64%, total equity risk premium 4.87% against a mature-market 4.23%. No sovereign credit-default-swap quote is carried in the file for the UAE",
+   "source_name": "Aswath Damodaran, 'Country Default Spreads and Risk Premiums', pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/ctryprem.html, file dated 5 January 2026, United Arab Emirates row read fresh",
+   "source_type": "PRIMARY_MARKET_DATA",
+   "source_date": "2026-01-05",
+   "detail": "",
+   "url": "",
+   "model_impact": "Country risk enters ONCE, inside the equity risk premium. The risk-free rate is normalised by the sovereign's own default spread so the same risk is not charged twice. Both equity-risk-premium bases are published because the CDS basis is unavailable for this sovereign.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F08",
+   "ring": "COUNTRY",
+   "category": "sovereign macro (inflation, policy rate, FX/deval risk)",
+   "klass": "STRUCTURAL",
+   "headline": "UAE Ministry of Finance dirham Treasury bond and sukuk auction, July 2026: the January-2031 T-Bond cleared at 4.48%. The same programme's January 2026 final terms carried a 3.90% coupon",
+   "source_name": "UAE Ministry of Finance auction result reported by the Emirates News Agency (WAM); Ministry of Finance Treasury Bonds Programme Final Terms, 29 January 2026",
+   "source_type": "REGULATOR_OFFICIAL",
+   "source_date": "2026-07-30",
+   "detail": "",
+   "url": "",
+   "model_impact": "The dirham construction of the risk-free rate. It sits 0.36% below the dollar construction after each is normalised, and under a hard peg that gap is reported rather than reconciled away.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F09",
+   "ring": "COUNTRY",
+   "category": "regulatory environment (regulator, caps, tariffs, tax/subsidy)",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "United Arab Emirates headline corporate income tax 9%. Borouge's own effective rate ran 28.57%, 29.01% and 28.62% across the three audited years, because the group's profits are taxed under the Abu Dhabi emirate-level fiscal regime that pre-dates the federal tax, not at the 9% federal headline",
+   "source_name": "Damodaran country file corporate-tax column (headline); Borouge plc audited consolidated financial statements FY2023-FY2025, tax note (the rate that binds)",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2025-12-31",
+   "detail": "",
+   "url": "",
+   "model_impact": "The forecast carries the company's OWN three-year mean effective rate of 28.74%, not the 9% headline. Using the headline would overstate net operating profit after tax by roughly a fifth.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F10",
+   "ring": "COUNTRY",
+   "category": "fiscal / political events with sector read-through",
+   "klass": "BASE_CHANGER",
+   "headline": "ADNOC and OMV completed the formation of Borouge Group International AG on 31 March 2026, each holding 46.94%, combining Borouge and Borealis and acquiring Nova Chemicals. Borouge plc remains separately listed on the Abu Dhabi Securities Exchange; a tender offer converting Borouge plc shares into Borouge Group International AG shares is expected in 2027, subject to market conditions and UAE Capital Market Authority approval",
+   "source_name": "ADNOC press release 19 March 2026; OMV press release 31 March 2026; Borouge plc H1-2026 earnings release",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-03-31",
+   "detail": "",
+   "url": "",
+   "model_impact": "Sets the terminal horizon of the security being valued: this study values Borouge plc as it stands, on the assets it owns. The tender offer is carried as a catalyst and a caveat, not as a driver, because no exchange ratio has been published.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F11",
+   "ring": "INDUSTRY",
+   "category": "demand drivers & capacity/supply balance",
+   "klass": "BASE_CHANGER",
+   "headline": "The polyolefin cycle is in a capacity-led trough: 20-22% of new nameplate capacity arriving to 2034 against demand growing with world output, and the industry's own consensus on recovery pushed to 2032",
+   "source_name": "OPIS capacity outlook; ICIS Asian Chemical Connections operating-rate consensus",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-05-29",
+   "detail": "",
+   "url": "",
+   "model_impact": "Drives the benchmark price path DOWN through the explicit window and caps the terminal margin. It is the reason the normalisation construction does not return prices to the 2023-24 level.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F12",
+   "ring": "INDUSTRY",
+   "category": "pricing",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "Borouge discloses its own realised benchmark and premium for each product every quarter. Across the three audited years polyethylene revenue per tonne ran 1.0676 times the benchmark-plus-premium construct and polypropylene 1.0321 times; in H1-2026 those residuals widened to 1.0947 and 1.0186",
+   "source_name": "Borouge plc Management Discussion & Analysis, FY2023, FY2024, FY2025 and H1-2026, reconciled against the audited revenue line in each year",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-07-27",
+   "detail": "",
+   "url": "",
+   "model_impact": "The realisation residual is the bridge from a published benchmark to the company's own printed top line. The forecast carries the audited three-year mean, NOT the wider half-year figure, because the H1-2026 widening is a shortage artefact.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F13",
+   "ring": "INDUSTRY",
+   "category": "new entrants (named-competitor level)",
+   "klass": "STRUCTURAL",
+   "headline": "Borouge 4 at Ruwais adds 1.4 million tonnes a year of polyethylene and makes the site the world's largest single polyolefin complex. It is owned 70% by ADNOC and 30% by OMV \u2014 Borouge plc owns none of it",
+   "source_name": "ADNOC press release, 19 March 2026; ADNOC and OMV completion announcement, 31 March 2026",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-03-19",
+   "detail": "",
+   "url": "",
+   "model_impact": "Decisive for terminal growth. The largest capacity addition in the company's own back yard accrues to its parents, not to it, so terminal growth is set at long-run inflation and no volume ramp is modelled.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F14",
+   "ring": "INDUSTRY",
+   "category": "technology substitution",
+   "klass": "COLOR",
+   "headline": "No substitution threat to polyolefins over the valuation horizon: the pressure is regulatory (recycled-content mandates, single-use restrictions) and shows up as demand-growth drag and reinvestment need rather than displacement of the polymer",
+   "source_name": "Borouge plc Annual Report 2025, sustainability and circular-economy discussion",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2025-12-31",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F15",
+   "ring": "INDUSTRY",
+   "category": "competitor capacity / price moves (named)",
+   "klass": "STRUCTURAL",
+   "headline": "Eleven listed polyolefin and diversified-chemical peers observed: SABIC, Saudi Kayan, Yansab, Industries Qatar, LyondellBasell, Dow, Westlake, Braskem, Formosa Plastics, LG Chem and Petronas Chemicals. NINE of the eleven are loss-making on trailing net income and two carry no defined enterprise-value-to-EBITDA multiple",
+   "source_name": "stockanalysis.com company statistics pages (nine of eleven); TradingView and PitchBook company profile (Industries Qatar)",
+   "source_type": "AGGREGATOR",
+   "source_date": "2026-08-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "CROSS-CHECK ONLY, never a source for a Borouge figure. It is the evidence that kills the naive peer median: a 13.4x median built on collapsed trough EBITDA is a denominator artefact, so the relative lens is rebuilt on three through-cycle anchors instead.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F16",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "FY2025 audited statutory financial statements \u2014 full set with auditor's report, statement of financial position, statement of profit or loss and other comprehensive income, statement of changes in equity, statement of cash flows and notes. Operating profit and profit before tax rebuild to the filed figure to the dollar",
+   "source_name": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (Ernst & Young), read from borouge.com and verified byte-identical",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2025-12-31",
+   "detail": "",
+   "url": "https://www.borouge.com/en/investor-relations/Pages/reports-results.aspx",
+   "model_impact": "The FY2025 historical column of the income statement, balance sheet and cash flow, and the opening balance sheet the forecast rolls forward from.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2025"
+  },
+  {
+   "fid": "F17",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "FY2024 audited statutory financial statements \u2014 full set, and the comparative column against which the FY2025 filing is checked. Rebuilds to the filed operating profit and profit before tax to the dollar",
+   "source_name": "Borouge plc audited consolidated financial statements for the year ended 31 December 2024 (Ernst & Young), read from borouge.com and verified byte-identical",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2024-12-31",
+   "detail": "",
+   "url": "https://www.borouge.com/en/investor-relations/Pages/reports-results.aspx",
+   "model_impact": "The FY2024 historical column, and one of the three years the per-tonne cost stack and the realisation residual are measured over.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2024"
+  },
+  {
+   "fid": "F18",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "FY2023 audited statutory financial statements \u2014 full set, signed 31 January 2024. Rebuilds to the filed operating profit and profit before tax to the dollar",
+   "source_name": "Borouge plc audited consolidated financial statements for the year ended 31 December 2023 (Ernst & Young), read from borouge.com and verified byte-identical",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2023-12-31",
+   "detail": "",
+   "url": "https://www.borouge.com/en/investor-relations/Pages/reports-results.aspx",
+   "model_impact": "The FY2023 historical column and the earliest of the three years the cost stack, the tax rate and the asset-conversion cycle are measured over.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2023"
+  },
+  {
+   "fid": "F19",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "FY2022 audited statutory financial statements \u2014 a fourth complete year, obtained and read but deliberately NOT carried as a model column: 2022 is the post-listing peak-price year and including it would flatter every through-cycle average the study takes",
+   "source_name": "Borouge plc audited consolidated financial statements for the year ended 31 December 2022 (Ernst & Young), read from borouge.com and verified byte-identical",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2022-12-31",
+   "detail": "",
+   "url": "https://www.borouge.com/en/investor-relations/Pages/reports-results.aspx",
+   "model_impact": "Held as the depth check on the three carried years rather than as a fourth column. Its exclusion is a stated judgement, not a gap.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2022"
+  },
+  {
+   "fid": "F20",
+   "ring": "COMPANY",
+   "category": "regular disclosures",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "Q1-2026 reviewed interim statements and Management Discussion & Analysis: the first quarter of the study year, swept in before the build, not discovered after. It carries the first disclosed evidence of the feedstock step-up and the logistics cost increase",
+   "source_name": "Borouge plc Q1-2026 condensed consolidated interim financial statements (reviewed) and Q1-2026 Management Discussion & Analysis",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-03-31",
+   "detail": "",
+   "url": "https://www.borouge.com/en/investor-relations/Pages/reports-results.aspx",
+   "model_impact": "Sets the starting point of the 2026 forecast year and, with H1, fixes the disruption-year cost levels the two constructions diverge from.",
+   "is_fs_data": true,
+   "fiscal_period": "Q1 2026"
+  },
+  {
+   "fid": "F21",
+   "ring": "COMPANY",
+   "category": "regular disclosures",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "H1-2026 reviewed interim statements and Management Discussion & Analysis: feedstock at USD 395 per tonne of production against USD 265, 247 and 256 in the three audited years, a 54% step the company attributes to buying propylene at market prices while the Olefins Conversion Unit was idled for want of ethane; selling and distribution at USD 177 per tonne against USD 78, 88 and 77, on alternative logistics routes; the interim effective tax rate at 25.10%",
+   "source_name": "Borouge plc condensed consolidated interim financial statements for the six months ended 30 June 2026 (reviewed) and Q2-2026 Management Discussion & Analysis",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-06-30",
+   "detail": "",
+   "url": "https://www.borouge.com/en/investor-relations/Pages/reports-results.aspx",
+   "model_impact": "Every disruption-year cost level in the forecast, and the evidence that the step is mechanism-specific \u2014 an idled conversion unit and a re-routed shipping lane \u2014 rather than a permanent margin reset.",
+   "is_fs_data": true,
+   "fiscal_period": "Q2 2026"
+  },
+  {
+   "fid": "F22",
+   "ring": "COMPANY",
+   "category": "IR communications (calls, presentations, releases)",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "Earnings presentations and releases for FY2023, FY2024, FY2025 and H1-2026 carry the physical unit build no financial statement discloses: tonnes produced and sold by product, utilisation, the benchmark price and the premium Borouge realises over it, and the split of production cost. H1-2026 total sales of 873kt in Q2 include 54kt sourced from Borealis and the China compounding plant",
+   "source_name": "Borouge plc earnings presentations and earnings releases, FY2023, FY2024, FY2025 and Q2-2026",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-07-27",
+   "detail": "",
+   "url": "https://www.borouge.com/en/investor-relations/Pages/reports-results.aspx",
+   "model_impact": "Volume, price and per-unit cost \u2014 the whole ground-up revenue and cost build. The audited statements confirm the money totals those physicals roll up to, and compute.py asserts the reconciliation.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F23",
+   "ring": "COMPANY",
+   "category": "strategic plans & guidance",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "H1-2026 outlook: second-half utilisation recovery depends on free movement through the Strait of Hormuz, with facilities positioned for a fast recovery subject to feedstock; realised pricing expected to stay elevated in the short term and logistics costs to remain high. The annual dividend intention of 16.2 fils per share remains in place",
+   "source_name": "Borouge plc H1-2026 earnings release, outlook section",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-07-27",
+   "detail": "",
+   "url": "",
+   "model_impact": "The company's own words are the source of the two-construction split: it names the strait as the binding variable and declines to guide past it. The dividend intention supports the terminal payout.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F24",
+   "ring": "COMPANY",
+   "category": "one-off base-resetting transactions",
+   "klass": "BASE_CHANGER",
+   "headline": "Under the Asset Usage Agreement signed in March 2026, Borouge plc operates the Borouge 4 assets it does not own. ADNOC expects the agreement to deliver Borouge plc about USD 400 million of cumulative net profit over three years and roughly 10% annual earnings accretion after ramp-up; recontribution of Borouge 4 into Borouge Group International is not expected before 2029, deferred from an earlier date",
+   "source_name": "ADNOC press release, 19 March 2026; Borouge plc H1-2026 interim financial statements and Q2-2026 Management Discussion & Analysis",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-03-19",
+   "detail": "",
+   "url": "",
+   "model_impact": "Borouge plc's ownership of Borouge 4 is carried at ZERO, because that is what the agreement says. The fee stream is real but is neither capitalised as owned capacity nor extrapolated past the disclosed three-year figure.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F25",
+   "ring": "COMPANY",
+   "category": "ownership / stake changes (named-transaction rule)",
+   "klass": "BASE_CHANGER",
+   "headline": "Named transaction searched and found: ADNOC and OMV completed the formation of Borouge Group International AG on 31 March 2026, each holding 46.94% of the combined entity. Borouge plc has been majority-held by Borouge International since March 2026; the free float remains listed on the Abu Dhabi Securities Exchange under BOROUGE, ISIN AEE01072B225",
+   "source_name": "OMV press release, 'OMV and XRG complete transactions to create Borouge International', 31 March 2026; Borouge plc H1-2026 earnings release",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-03-31",
+   "detail": "",
+   "url": "",
+   "model_impact": "No stake percentage is estimated anywhere in this study \u2014 the specific transaction was searched and its published terms carried. Confirms the minority interest on the balance sheet is a 0.9% subsidiary minority, not a stake in the parent structure.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F26",
+   "ring": "COMPANY",
+   "category": "management & capital actions",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "30,057,691,583 ordinary shares of USD 0.16 in issue; weighted average 29,937,557,774 for FY2025 after treasury purchases, whose cumulative cost reached USD 216.7 million by 30 June 2026 from USD 158.2 million at the FY2025 year end. Related-party term facilities of USD 2.8 billion and a drawn revolving facility with Borouge Group International AG",
+   "source_name": "Borouge plc FY2025 audited financial statements, notes 14, 29 and 31; H1-2026 interim statements, note 11(iv)",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-06-30",
+   "detail": "",
+   "url": "",
+   "model_impact": "Share count for every per-share figure, and the debt book that the cost-of-debt test prices: the related-party facilities at 5.52% against an arm's-length 5.55%, inside by 0.03%.",
+   "is_fs_data": true,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F27",
+   "ring": "COMPANY",
+   "category": "strategic plans & guidance",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found (Borouge ethane feedstock pricing formula, ADNOC supply agreement terms, contracted feedstock price escalation \u2014 searched across all four annual reports, all audited statements and every Management Discussion & Analysis. The company discloses the cost per tonne it incurred but never the formula or the contract term, so no forward escalator can be built from a source. Real escalation is therefore carried at zero and flagged, not invented)",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-08-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F28",
+   "ring": "COMPANY",
+   "category": "regular disclosures",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found (Borouge segmental profitability by product \u2014 polyethylene versus polypropylene operating profit, segment assets, segment capital employed. The company reports as a single operating segment; volume and price are disclosed by product but cost and profit are not. The unit build therefore allocates cost across products on the disclosed physical drivers and the gap is stated)",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-08-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F29",
+   "ring": "COUNTRY",
+   "category": "sovereign macro (inflation, policy rate, FX/deval risk)",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found (United Arab Emirates sovereign credit-default-swap quote \u2014 no CDS-based spread is carried for the UAE in the Damodaran country file. Both equity-risk-premium bases are published on the rating basis and the absence is stated rather than filled with a neighbouring sovereign's quote)",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-08-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F30",
+   "ring": "COMPANY",
+   "category": "one-off base-resetting transactions",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found (Borouge Group International tender offer exchange ratio, valuation terms or prospectus \u2014 searched at ADNOC, OMV and Borouge investor relations. No ratio has been published; the offer is expected in 2027 subject to market conditions and regulatory approval. It is therefore carried as a catalyst and a caveat, and no conversion value enters any lens)",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-08-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F31",
+   "ring": "COMPANY",
+   "category": "strategic plans & guidance",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found (Borouge plc multi-year capital-expenditure plan beyond the current year \u2014 the company guides the year ahead but publishes no medium-term programme. Steady-state maintenance capital expenditure is therefore set from the company's own three-year outturn of USD 199m, 167m and 308m against a below-USD-300m guide, and sensitised)",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-08-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  }
+ ],
+ "drivers": [
+  {
+   "driver": "Sales volume by product (kt)",
+   "mode": "BOTTOM_UP",
+   "justification": "Nameplate capacity by product times a disclosed utilisation path. Utilisation, tonnes produced and tonnes sold are all published by product in the company's own Management Discussion & Analysis, and the forecast path is anchored on the rates the plant actually demonstrated in 2024 and 2025.",
+   "sweep_refs": [
+    "F22",
+    "F16",
+    "F17",
+    "F18",
+    "F23",
+    "F05"
+   ]
+  },
+  {
+   "driver": "Realised price by product (USD/t)",
+   "mode": "BOTTOM_UP",
+   "justification": "Published benchmark plus the company's own published premium, times a realisation residual measured against three years of audited revenue. Every leg is disclosed; nothing is solved backwards out of a target.",
+   "sweep_refs": [
+    "F12",
+    "F22",
+    "F02",
+    "F03"
+   ]
+  },
+  {
+   "driver": "Feedstock cost (USD/t of production)",
+   "mode": "BOTTOM_UP",
+   "justification": "Cost per tonne of production from the disclosed cost line over disclosed tonnes, split into the contracted ethane leg and the market-priced propylene leg, with the market share of the mix as the forecast driver. The traded leg escalates on its own price path, never on the domestic inflation index.",
+   "sweep_refs": [
+    "F21",
+    "F20",
+    "F22",
+    "F03"
+   ]
+  },
+  {
+   "driver": "Other production cost (fixed and variable)",
+   "mode": "BOTTOM_UP",
+   "justification": "Regressed across the three audited years into a USD 663m fixed leg and a USD 201 per-tonne variable leg. The fixed leg escalates on UAE consumer inflation \u2014 the only leg that does \u2014 and the variable leg moves with tonnes.",
+   "sweep_refs": [
+    "F16",
+    "F17",
+    "F18",
+    "F22",
+    "F06"
+   ]
+  },
+  {
+   "driver": "Selling and distribution (USD/t sold)",
+   "mode": "BOTTOM_UP",
+   "justification": "Per tonne sold from the disclosed line, at USD 78, 88 and 77 across the audited years against USD 177 in H1-2026 on re-routed shipping. The forecast path is the route decision, which is why it is the second variable the two constructions split on.",
+   "sweep_refs": [
+    "F21",
+    "F22",
+    "F05"
+   ]
+  },
+  {
+   "driver": "Effective tax rate",
+   "mode": "BOTTOM_UP",
+   "justification": "The company's own three-year mean of 28.74%, taken from the tax note, not the 9% federal headline. The H1-2026 interim rate of 25.10% is disclosed and deliberately not carried forward.",
+   "sweep_refs": [
+    "F09",
+    "F16",
+    "F21"
+   ]
+  },
+  {
+   "driver": "Working capital and the balance-sheet roll-forward",
+   "mode": "BOTTOM_UP",
+   "justification": "Days sales outstanding 51, days inventory 62, days payable 92, a 20-day cash cycle, each measured from the audited statements. Receivables, inventory and payables are projected from those days against forecast revenue and cost \u2014 no plug.",
+   "sweep_refs": [
+    "F16",
+    "F26"
+   ]
+  },
+  {
+   "driver": "Cost of capital",
+   "mode": "BOTTOM_UP",
+   "justification": "Risk-free rate normalised by the sovereign's own default spread; equity risk premium from the sovereign's own row; beta from the stock's own five-year weekly regression against its own market, published beside a sector bottom-up beta because the own-stock estimate is weak; marginal cost of debt tested against the sovereign and against the related-party facilities actually in place.",
+   "sweep_refs": [
+    "F07",
+    "F08",
+    "F01",
+    "F26"
+   ]
+  },
+  {
+   "driver": "Terminal growth",
+   "mode": "BOTTOM_UP",
+   "justification": "Long-run dollar inflation, on the specific ground that Borouge plc's owned capacity is fixed: the 1.4 million tonne Borouge 4 expansion next door is owned by its parents, not by it. This is a driver read off a named transaction, not a convention.",
+   "sweep_refs": [
+    "F13",
+    "F24",
+    "F10"
+   ]
+  },
+  {
+   "driver": "Maintenance capital expenditure",
+   "mode": "TOP_DOWN",
+   "justification": "No medium-term capital programme is published, so steady-state maintenance capital expenditure is set from the company's own three-year outturn against its current-year guide, and sensitised. Flagged as the one materially top-down driver in the build.",
+   "sweep_refs": [
+    "F31",
+    "F16"
+   ]
+  },
+  {
+   "driver": "Ethane contract escalation",
+   "mode": "TOP_DOWN",
+   "justification": "Carried at zero real escalation because the pricing formula is not disclosed. The gap is flagged rather than filled with an assumed formula, and the sensitivity shows what a non-zero escalator would cost.",
+   "sweep_refs": [
+    "F27"
+   ]
+  }
+ ],
+ "primary_access": [
+  {
+   "url": "https://www.borouge.com/en/investor-relations/Pages/reports-results.aspx",
+   "reachable": true,
+   "attempt_date": "2026-08-09",
+   "note": "Company investor-relations document library \u2014 the index every statement below was taken from. Reachable; 105 published documents enumerated."
+  },
+  {
+   "url": "https://www.borouge.com/en/investor-relations/IRResults/FYQ4-25/Q4%202025%20Financial%20Statements%20-%20statutory.pdf",
+   "reachable": true,
+   "attempt_date": "2026-08-09",
+   "note": "FY2025 audited statutory financial statements. Re-fetched and byte-identical to the copy the build reads (SHA-256 match)."
+  },
+  {
+   "url": "https://www.borouge.com/en/investor-relations/Documents/IR%20Documents/Borouge-Q4-2024-EN%20Borouge%20Financial%20Statement.pdf",
+   "reachable": true,
+   "attempt_date": "2026-08-09",
+   "note": "FY2024 audited statutory financial statements. Re-fetched, byte-identical."
+  },
+  {
+   "url": "https://www.borouge.com/en/investor-relations/Documents/IR%20Documents/Borouge-Q4-2023-EN%20Financial%20Statements.pdf",
+   "reachable": true,
+   "attempt_date": "2026-08-09",
+   "note": "FY2023 audited statutory financial statements. Re-fetched, byte-identical."
+  },
+  {
+   "url": "https://www.borouge.com/en/investor-relations/Documents/IR%20Documents/Borouge-Q4-2022-EN%20Financial%20Statements.pdf",
+   "reachable": true,
+   "attempt_date": "2026-08-09",
+   "note": "FY2022 audited statutory financial statements \u2014 the fourth complete year, held as the depth check on the three the model carries. Re-fetched, byte-identical."
+  },
+  {
+   "url": "https://www.borouge.com/en/investor-relations/Documents/IR%20Documents/Q1%202026%20Financial%20Statements%20-%20statutory%20-%20English.pdf",
+   "reachable": true,
+   "attempt_date": "2026-08-09",
+   "note": "Q1-2026 reviewed interim statements. Re-fetched, byte-identical."
+  },
+  {
+   "url": "https://www.borouge.com/en/investor-relations/Documents/IR%20Documents/Borouge-Q2-2026-EN%20Borouge%20Financial%20Statements.pdf",
+   "reachable": true,
+   "attempt_date": "2026-08-09",
+   "note": "H1-2026 reviewed interim statements. Re-fetched, byte-identical."
+  },
+  {
+   "url": "https://www.adx.ae/english/pages/default.aspx",
+   "reachable": false,
+   "attempt_date": "2026-08-09",
+   "note": "Abu Dhabi Securities Exchange web portal \u2014 HTTP 403 at the egress proxy on every attempt. Not needed: the exchange's own monthly market-statistics workbooks were obtained separately and are used only to cross-check traded shares and market capitalisation, never as a source for a reported figure."
+  }
+ ],
+ "study_year": "2026",
+ "study_quarters_disclosed": [
+  "Q1 2026",
+  "Q2 2026"
+ ],
+ "qc_line": "QC(m) \u2014 Information Sweep [BOROUGE, 2026-08-09]: PASS \u2014 4/4 rings, 31 findings (6 B \u00b7 6 S \u00b7 13 D \u00b7 1 C \u00b7 5 NEG), driver gate 11 rows (9 bottom-up / 2 top-down) | primary access: attempted (8) | FS years: 4 ['FY2022', 'FY2023', 'FY2024', 'FY2025'] | IR findings: 2"
+}

@@ -1,0 +1,20 @@
+{
+ "band_old": 1.7743994392326303,
+ "band_new": 1.7944638562173159,
+ "band_move_pct": 1.1307722794007935,
+ "material": false,
+ "verdict_changes": [
+  [
+   "BOROUGE",
+   "(new)",
+   "FAIL",
+   -0.0866
+  ],
+  [
+   "ENBD",
+   "BOUNDARY(PARITY-flagged)",
+   "PARITY",
+   -0.0108
+  ]
+ ]
+}
