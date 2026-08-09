@@ -190,8 +190,9 @@ for k, y in enumerate(YEARS):
                     src('export_usd_path'), N1)); r += 1
 FXP = []
 for k, y in enumerate(YEARS):
-    FXP.append(drv(r, f"Egyptian pounds per US dollar — {y}", V('usd_egp_path')[k], "EGP/US$",
-                   src('usd_egp_path'), N2)); r += 1
+    FXP.append(drv(r, f"Egyptian pounds per US dollar — {y}", DR['usd_egp_path'][k], "EGP/US$",
+                   "Derived: the spot rate compounded at the relative-purchasing-power wedge "
+                   "against the model's own inflation path, year by year", N2)); r += 1
 DUTY = drv(r, "Export duty", V('export_duty_2026'), "% of export value", src('export_duty_2026'), PC1); r += 1
 SUBP = []
 for k, y in enumerate(YEARS):
@@ -306,12 +307,30 @@ for k, y in enumerate(YEARS):
                    src('anna_capex_path'), N0)
     _ANNAC_ROWS.append(r)
     ANNAC.append(cell); r += 1
+ANNAC_RANGE = f"'Assumptions'!C{_ANNAC_ROWS[0]}:C{_ANNAC_ROWS[-1]}"
+DEPESC = drv(r, "Depreciation escalation on the existing base", V('dep_escalation'),
+             "per year", src('dep_escalation'), PC1); r += 1
+DEPRP = drv(r, "Depreciation rate on the new complex", V('dep_rate_kima2_machinery'),
+            "per year", src('dep_rate_kima2_machinery'), PC2); r += 1
+ANNATPD = drv(r, "New complex nameplate", V('anna_nameplate_disclosed_tpd'), "tonnes/day",
+              src('anna_nameplate_disclosed_tpd'), N0); r += 1
+ANNADAYS = drv(r, "Operating days a year", V('anna_operating_days'), "days",
+               src('anna_operating_days'), N0); r += 1
+FXTW = drv(r, "Steady-state depreciation wedge in the terminal year",
+           V('fx_terminal_wedge'), "ratio", src('fx_terminal_wedge'), PC1); r += 1
+ANNADONE = drv(r, "The complex is completed and in service (1 = yes)", 1, "switch",
+               "Case switch. Zero in the capital-discipline column, where the plant is "
+               "never finished and therefore never depreciated.", N0); r += 1
+ANNACOST = drv(r, "Approved cost of the new complex", DR['anna_total_cost'], "EGP m",
+               src('anna_cost_egp') + "; dual-currency tranches at the approval rate", N0); r += 1
 MCAP = drvf(r, "Maintenance capital expenditure", f"={CX_MAINT}", V('maint_capex_pct'),
             "% of revenue", src('maint_capex_pct'), PC1); r += 1
+WIND = drv(r, "Wind-down cost if the programme is stopped", V('anna_winddown_cost'),
+           "EGP m", src('anna_winddown_cost'), N0); r += 1
 NH3AN = drv(r, "Ammonia per tonne of nitrate", V('nh3_per_t_an'), "tonnes", src('nh3_per_t_an'), N2); r += 1
 put(ws, f"A{r}", "Project nameplate (derived, not disclosed)"); put(ws, f"B{r}", "tonnes/year")
-put(ws, f"C{r}", f"=({C_NH3D}-{C_DESIGN}*{C_NH3R})/{NH3AN}", fmt=N0, expect=V('anna_nameplate'))
-c = put(ws, f"D{r}", src('anna_nameplate')); c.alignment = Alignment(wrap_text=True, vertical="top")
+put(ws, f"C{r}", f"={ANNATPD}*{ANNADAYS}", fmt=N0, expect=DR['anna_nameplate_an_t'])
+c = put(ws, f"D{r}", src('anna_nameplate_disclosed_tpd')); c.alignment = Alignment(wrap_text=True, vertical="top")
 ws.row_dimensions[r].height = 40
 ANNAN = f"'Assumptions'!C{r}"; r += 1
 ANNAU = drv(r, "Project utilisation in the terminal year", V('anna_util_base'), "%", src('anna_util_base'), PC1); r += 1
@@ -370,7 +389,10 @@ UB['omat'] = line(r, "Other materials (EGP m)",
 UB['wage'] = line(r, "Wages (EGP m)", lambda k, c: f"={WAGE}*{c}{UB['cpi']}", 'wages'); r += 1
 UB['serv'] = line(r, "Purchased services (EGP m)", lambda k, c: f"={SERV}*{c}{UB['cpi']}", 'services'); r += 1
 UB['dep'] = line(r, "Depreciation and amortisation (EGP m)",
-                 lambda k, c: f"={DEPB}*(1+0.02*{k})+{AMOB}", 'dep'); r += 1
+                 lambda k, c: (f"={DEPB}*(1+{DEPESC}*{k})+{AMOB}" if k == 0 else
+                               f"={DEPB}*(1+{DEPESC}*{k})+{AMOB}+SUM("
+                               f"'Assumptions'!C{_ANNAC_ROWS[0]}:C{_ANNAC_ROWS[0]+k-1})*{DEPRP}"),
+                 'dep'); r += 1
 UB['cogs'] = line(r, "COST OF SALES (EGP m)",
                   lambda k, c: f"={c}{UB['gas']}+{c}{UB['omat']}+{c}{UB['wage']}+{c}{UB['serv']}+{c}{UB['dep']}",
                   'cogs', N0, True); r += 1
@@ -406,9 +428,11 @@ for k, c in enumerate(CO):
     put(ws, f"{c}8", f"={c}6*{DIO}/365", fmt=N0, expect=R[k]['cogs'] * V('dio') / 365)
     put(ws, f"{c}9", f"={c}6*{DPO}/365", fmt=N0, expect=R[k]['cogs'] * V('dpo') / 365)
     put(ws, f"{c}10", f"={c}7+{c}8-{c}9", fmt=N0, expect=R[k]['wc'])
-prev_wc0 = (F25S['revenue'] * V('dso') / 365 + F25S['cogs'] * V('dio') / 365
-            - F25S['cogs'] * V('dpo') / 365)
-put(ws, "A11", "Opening net working capital, FY2025/26E"); put(ws, "B11", prev_wc0, fmt=N0)
+# the REPORTED position at 31 March 2026, not a constructed one -- the same date the
+# bridge takes net debt from
+prev_wc0 = (V('bs_receivables_M9FY2526') + V('bs_inventory_M9FY2526')
+            - V('bs_payables_M9FY2526'))
+put(ws, "A11", "Opening net working capital, 31 March 2026 as reported"); put(ws, "B11", prev_wc0, fmt=N0)
 put(ws, f"{CO[0]}12", f"={CO[0]}10-B11", fmt=N0, expect=R[0]['dwc'])
 for k in range(1, 5):
     put(ws, f"{CO[k]}12", f"={CO[k]}10-{CO[k-1]}10", fmt=N0, expect=R[k]['dwc'])
@@ -528,18 +552,23 @@ for k, c in enumerate(CO):
 put(ws, "A19", "TERMINAL BLOCK AND THE BRIDGE — BOTH SIDES").font = SUB
 header(ws, 20, 1, ["", "Programme carried through", "", "Programme stopped"], [38, 15, 3, 15])
 BLK = [(21, "Year-five EBIT grown at terminal growth", f"=F9*(1+{GT})", TT['base_ebit'], HT['base_ebit'], N0),
-       (22, "Project revenue in the terminal year", f"={ANNAN}*{ANNAU}*{ANNAP}*{round(TT['fx'],4)}/1000000",
+       (22, "Project revenue in the terminal year",
+        f"={ANNAN}*{ANNAU}*{ANNAP}*({FXP[4]}*(1+{GT}-{FXTW}))/1000000",
         TT['anna_rev'], HT['anna_rev'], N0),
-       (23, "Project operating profit", f"=B22*{ANNAM}", TT['anna_ebit'], HT['anna_ebit'], N0),
+       # a CASH margin is struck before depreciation; the completed complex carries its own
+       (23, "Project operating profit, after its own depreciation",
+        f"=B22*{ANNAM}-{ANNADONE}*{ANNACOST}*{DEPRP}", TT['anna_ebit'], HT['anna_ebit'], N0),
        (24, "Terminal EBIT", "=B21+B23", TT['ebit_T'], HT['ebit_T'], N0),
        (25, "Terminal NOPAT", f"=B24*(1-{TAXR})", TT['nopat_T'], HT['nopat_T'], N0),
        (26, "Reinvestment rate = growth / return on capital", f"={GT}/{ROCT}", TT['reinv_rate'], HT['reinv_rate'], PC1),
        (27, "Terminal free cash flow", "=B25*(1-B26)", TT['fcff_T'], HT['fcff_T'], N0),
-       (28, "TERMINAL VALUE", f"=B27*(1+{GT})/({WTC}-{GT})", TT['tv'], HT['tv'], N0)]
+       (28, "TERMINAL VALUE", f"=B27/({WTC}-{GT})", TT['tv'], HT['tv'], N0)]
 for rr, lab, f, va, vb, fmt in BLK:
     c = put(ws, f"A{rr}", lab)
     put(ws, f"B{rr}", f, fmt=fmt, expect=va)
-    fd = f.replace("F9", "F9").replace(f"*{ANNAU}*", "*0*") if rr == 22 else f.replace("B2", "D2")
+    fd = (f.replace(f"*{ANNAU}*", "*0*") if rr == 22
+          else f.replace("B22", "D22").replace(f"{ANNADONE}*", "0*") if rr == 23
+          else f.replace("B2", "D2"))
     if rr == 21: fd = f
     put(ws, f"D{rr}", fd, fmt=fmt, expect=vb)
 put(ws, "A33", "Present value of the terminal value")
@@ -547,7 +576,12 @@ put(ws, "B33", "=B28*F16", fmt=N0, expect=TT['pv_tv'])
 put(ws, "D33", "=D28*F16", fmt=N0, expect=HT['pv_tv'])
 put(ws, "A36", "Present value of the explicit window")
 put(ws, "B36", "=SUM(B17:F17)", fmt=N0, expect=BASE['bridge']['pv_explicit'])
-put(ws, "D36", f"=SUM(B17:F17)+{round(HALT['bridge']['pv_explicit'] - BASE['bridge']['pv_explicit'], 6)}",
+# THE PLUG IS GONE. This was `=SUM(B17:F17)+7259.375005` -- a frozen constant on the
+# study's single most valuation-critical switch, found by external critique. The saving
+# decomposes exactly into two formula terms: the present value of the project capital the
+# board does not spend, less the wind-down it does. Both now read the driver cells, so the
+# stopped case responds to a driver change instead of silently freezing.
+put(ws, "D36", f"=SUM(B17:F17)+SUMPRODUCT({ANNAC_RANGE},B16:F16)-{WIND}*B16",
     fmt=N0, expect=HALT['bridge']['pv_explicit'])
 put(ws, "A37", "ENTERPRISE VALUE").font = SUB
 put(ws, "B37", "=B36+B33", fmt=N0, expect=BASE['bridge']['ev'])

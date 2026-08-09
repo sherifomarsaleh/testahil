@@ -88,7 +88,16 @@ D['export_usd_t'] = {"FY2024/25": _V('export_price_FY2425_usd'),
 D['export_usd_path'] = _V('export_usd_path')
 D['export_usd_path_bull'] = _V('export_usd_path_bull')
 D['usd_egp'] = {"FY2024/25": _V('usd_egp_avg_FY2425'), "FY2025/26E": _V('usd_egp_FY2526E')}
-D['usd_egp_path'] = _V('usd_egp_path')          # 4.5%/yr, the SAME wedge
+# The path is BUILT from the relative-purchasing-power identity the study states, applied
+# YEAR BY YEAR to the model's own inflation path, not from a single flat wedge asserted
+# beside a derivation that produces a different number in every year. The long-run wedge
+# (from the terminal inflation target) is what carries the dollar debt and the terminal.
+D['fx_wedge_path'] = [(1 + c) / (1 + _V('us_inflation_lt')) - 1 for c in _V('cpi_path')]
+D['usd_egp_path'] = []
+_fx = _V('usd_egp_spot')
+for _w in D['fx_wedge_path']:
+    _fx *= (1 + _w)
+    D['usd_egp_path'].append(_fx)
                                                             # used in the Kd FX build
 D['export_duty_pct'] = _V('export_duty_2026')       # 2026 switch from the EGP 2,500/t shortfall levy to
                                   # a 10% ad-valorem duty tied to the global price
@@ -134,6 +143,8 @@ D['abnormal_gas_path'] = _V('abnormal_gas_path')  # decays as supply normalises
 D['cpi_path'] = _V('cpi_path')         # CBE target convergence
                                                             # (14.3% Jun-2026 print)
 # ---- D&A, capex, working capital --------------------------------------------
+D['dep_escalation'] = _V('dep_escalation')
+D['dep_rate_project'] = _V('dep_rate_kima2_machinery')
 D['dep_base'] = _V('dep_charge_FY2425')
 D['amort_base'] = _V('amort_FY2425')
 D['anna_total_cost'] = (_V('anna_cost_egp')
@@ -152,9 +163,14 @@ D['maint_capex_pct_rev'] = _V('maint_capex_pct')      # pre-ANNA observed run 42
 # which the surplus is measured against urea's ACTUAL gas-constrained ammonia draw.
 D['nh3_per_t_an'] = _V('nh3_per_t_an')              # ammonia per tonne of ammonium nitrate, via the
                                       # nitric-acid route plus direct neutralisation
-D['anna_nameplate_an_t'] = ((D['design_ammonia_t']
-                             - D['design_urea_t'] * D['ammonia_per_urea_t'])
-                            / D['nh3_per_t_an'])
+# DISCLOSED, not derived. The EPC award for this plant states 800 t/day of granulated
+# ammonium nitrate. The study previously said "no filing states it" and derived the plate
+# from the ammonia surplus; an external critique produced the award. The derived figure is
+# retained only as the cross-check it now is.
+D['anna_nameplate_an_t'] = _V('anna_nameplate_disclosed_tpd') * _V('anna_operating_days')
+D['anna_nameplate_derived'] = ((D['design_ammonia_t']
+                                - D['design_urea_t'] * D['ammonia_per_urea_t'])
+                               / D['nh3_per_t_an'])
 D['anna_util_base'] = _V('anna_util_base')
 D['anna_util_bull'] = _V('anna_util_bull')
 D['anna_price_usd_t'] = _V('an_price_usd_t')
@@ -290,7 +306,12 @@ def build(case="base"):
         other_mat = urea_t * D['other_materials_egp_t_urea'] * cpi_cum / 1e6
         wages = D['wages']["FY2024/25"] * cpi_cum
         services = D['services'] * cpi_cum
-        dep = D['dep_base'] * (1 + 0.02 * k) + D['amort_base']
+        # the existing base, plus depreciation on the project capital already placed in
+        # service. EGP 14.7bn was being capitalised and never depreciated anywhere in the
+        # model, in any year -- found independently by two critiques and by the self-audit.
+        anna_in_service = sum(D['anna_capex_path'][:k])
+        dep = (D['dep_base'] * (1 + D['dep_escalation'] * k) + D['amort_base']
+               + anna_in_service * D['dep_rate_project'])
         cogs = gas_cost + other_mat + wages + services + dep
         gross = revenue - cogs
 
@@ -306,9 +327,14 @@ def build(case="base"):
         capex = D['anna_capex_path'][k] + revenue * D['maint_capex_pct_rev']
         wc = revenue * D['dso'] / 365 + cogs * D['dio'] / 365 - cogs * D['dpo'] / 365
         if prev_wc is None:
-            prev_wc = (fy2526['revenue'] * D['dso'] / 365
-                       + fy2526['cogs'] * D['dio'] / 365
-                       - fy2526['cogs'] * D['dpo'] / 365)
+            # OPENING BALANCE, CORRECTED 9 August 2026. The study constructed this from the
+            # study-year P&L at the disclosed day counts and claimed every pound of working
+            # capital traced to a receivable, an inventory or a payable. That claim was false
+            # for the opening balance alone -- the one constructed number in the chain -- and
+            # it sat about EGP 1bn below the balance the company actually reported at the same
+            # date the bridge takes net debt from. It is now the REPORTED position.
+            prev_wc = (_V('bs_receivables_M9FY2526') + _V('bs_inventory_M9FY2526')
+                       - _V('bs_payables_M9FY2526'))
         dwc = wc - prev_wc
         prev_wc = wc
         fcff = nopat + dep - capex - dwc
@@ -337,20 +363,25 @@ def terminal(rows, case="base"):
     """Normalised terminal year: the last explicit year's urea economics, plus ANNA at
     the case's utilisation, on maintenance capex only."""
     last = rows[-1]
-    fx = last['fx'] * (1 + D['g_terminal'] - 0.025)     # steady-state depreciation wedge
+    fx = last['fx'] * (1 + D['g_terminal'] - _V('fx_terminal_wedge'))     # steady-state depreciation wedge
     util = {"base": D['anna_util_base'], "bull": D['anna_util_bull'],
             "bear": 0.0, "halt": 0.0}[case]
     an_t = D['anna_nameplate_an_t'] * util
     anna_rev = an_t * D['anna_price_usd_t'] * fx / 1e6
     anna_ebit = anna_rev * D['anna_cash_margin']
-    anna_dep = (D['anna_total_cost'] * 0.045) if util > 0 else 0.0
-    anna_ebit -= anna_dep * 0.0        # dep already inside the cash margin convention
+    # a CASH margin is struck before depreciation. The completed plant must carry its own
+    # charge before it enters terminal EBIT.
+    anna_dep = (D['anna_total_cost'] * D['dep_rate_project']) if util > 0 else 0.0
+    anna_ebit -= anna_dep
     base_ebit = last['ebit'] * (1 + D['g_terminal'])
     ebit_T = base_ebit + anna_ebit
     nopat_T = ebit_T * (1 - D['tax_rate'])
     reinv_rate = D['g_terminal'] / D['roc_terminal']
     fcff_T = nopat_T * (1 - reinv_rate)
-    tv = fcff_T * (1 + D['g_terminal']) / (D['wacc_terminal'] - D['g_terminal'])
+    # base_ebit is ALREADY the year-six flow (EBIT_5 grown once). The Gordon numerator must
+    # therefore be FCFF_6, not FCFF_6 x (1+g): the extra factor put a year-seven flow into a
+    # perpetuity discounted at the year-five factor. Found by three independent critiques.
+    tv = fcff_T / (D['wacc_terminal'] - D['g_terminal'])
     pv_tv = tv * rows[-1]['df']
     return dict(fx=fx, anna_util=util, an_t=an_t, anna_rev=anna_rev, anna_ebit=anna_ebit,
                 base_ebit=base_ebit, ebit_T=ebit_T, nopat_T=nopat_T,
@@ -392,6 +423,15 @@ def run_case(case):
         # what the programme is costing shareholders, in EGP per share, against the
         # alternative of not doing it.
         for k, r in enumerate(rws):
+            # capital that is never spent is also never depreciated: the stopped case must
+            # strip the project charge out of the operating lines as well as out of capex
+            anna_dep = sum(D['anna_capex_path'][:k]) * D['dep_rate_project']
+            r['dep'] -= anna_dep
+            r['cogs'] -= anna_dep
+            r['gross'] += anna_dep
+            r['ebit'] += anna_dep
+            r['ebitda'] = r['ebit'] + r['dep']
+            r['nopat'] = r['ebit'] * (1 - D['tax_rate'])
             r['capex'] = ((_V('anna_winddown_cost') if k == 0 else 0.0)
                           + r['revenue'] * D['maint_capex_pct_rev'])
             r['fcff'] = r['nopat'] + r['dep'] - r['capex'] - r['dwc']

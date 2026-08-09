@@ -104,6 +104,12 @@ I("sell_other_FY2425", 176.305, "EGP m",
 I("dep_charge_FY2425", 771.213, "EGP m", FS25 + ", note 6 fixed-asset register", "2025-09-24", "L1")
 I("amort_FY2425", 119.378, "EGP m", FS25 + ", note 10 usufruct intangible", "2025-09-24", "L1")
 I("dep_rate_kima2_machinery", 0.0395, "per year", FS25 + ", note 5-2 depreciation rates", "2025-09-24", "L1")
+I("fx_terminal_wedge", 0.025, "ratio",
+  "Steady-state gap between the terminal inflation target and the currency wedge, held "
+  "constant in the terminal year", "2026-08-09", "L5")
+I("dep_escalation", 0.02, "per year",
+  "Escalation on the existing depreciation base, reflecting ordinary additions to the plant "
+  "already in service", "2026-08-09", "L5")
 I("dep_rate_intangible", 0.0475, "per year", FS25 + ", note 5-2", "2025-09-24", "L1")
 
 # Auditor production and unit-cost table — the ground-up spine
@@ -221,7 +227,7 @@ I("urea_fob_egypt", 545.0, "US$/t",
 I("erp_rating", 0.13937694320020103, "ratio", CPF + ", rating basis total equity risk premium", "2026-01-01", "L2")
 I("erp_cds", 0.09424719428808419, "ratio", CPF + ", CDS basis total equity risk premium", "2026-01-01", "L2")
 I("sov_spread_rating", 0.06372478453347744, "ratio", CPF + ", adjusted default spread", "2026-01-01", "L2")
-I("sov_spread_cds", 0.0355, "ratio", CPF + ", ten-year CDS spread", "2026-01-01", "L2")
+I("sov_spread_cds", 0.0341, "ratio", CPF + ", ten-year CDS spread", "2026-01-01", "L2")
 I("mature_market_erp", 0.0423, "ratio", CPF + ", mature-market equity risk premium", "2026-01-01", "L2")
 I("moodys_rating", "Caa1", "rating", CPF + ", sovereign rating", "2026-01-01", "L2")
 
@@ -289,6 +295,15 @@ I("gas_realised_usd_mmbtu", 4.68, "US$/mmBtu",
   "or EGP 8.016/m3, which converts to about US$4.68/mmBtu at the prevailing rate — below the "
   "US$5.75 contract price, which the study carries as its downside case", "2026-08-08", "L5")
 I("mmbtu_per_m3", 0.03531, "mmBtu/m3", "Standard gross calorific conversion", "2026-08-08", "L5")
+I("anna_nameplate_disclosed_tpd", 800.0, "tonnes/day",
+  "EPC award for this plant (Tecnimont S.p.A. with Orascom Construction, announced 9 June "
+  "2023): 600 t/day nitric acid converted to 800 t/day of fertilizer-grade granulated "
+  "ammonium nitrate. FOUND BY EXTERNAL CRITIQUE 9 August 2026 -- the study had said 'no "
+  "filing states it' and derived the plate from the ammonia surplus instead.",
+  "2023-06-09", "L4")
+I("anna_operating_days", 330, "days",
+  "Operating days a year for a continuous nitrate line, net of the turnaround the company "
+  "takes annually", "2026-08-09", "L5")
 I("nh3_per_t_an", 0.43, "tonnes",
   "Ammonia per tonne of ammonium nitrate through the nitric-acid route plus direct "
   "neutralisation", "2026-08-08", "L5")
@@ -305,10 +320,16 @@ I("dpo", 1207.768 / 5300.310 * 365, "days",
 I("kd_usd_nominal", 0.117, "ratio",
   "Constructed: EGP 1,338.0m of FY2024/25 interest on a mean dollar balance of about US$233m",
   "2026-08-08", "L5")
-I("expected_depreciation", 0.045, "ratio",
-  "Constructed: the central bank's 7% inflation target against about 2.4% in the United States. "
-  "The SAME wedge drives the currency path in the revenue build, so the two cannot diverge.",
-  "2026-08-08", "L5")
+I("us_inflation_lt", 0.024, "ratio",
+  "Long-run United States inflation, the other leg of the purchasing-power wedge",
+  "2026-08-09", "L3")
+I("expected_depreciation", (1 + 0.050) / (1 + 0.024) - 1, "ratio",
+  "Constructed: the central bank's LONG-RUN 5% target against about 2.4% in the United "
+  "States, on the same relative-purchasing-power identity the study states. CORRECTED 9 "
+  "August 2026: the study previously asserted 4.5% flat while stating a derivation that "
+  "produces a different number in every year. The wedge is now computed from the identity "
+  "rather than asserted, and the currency path is built from it year by year.",
+  "2026-08-09", "L5")
 I("kd_local", 0.194, "ratio",
   "Constructed: EGP 96,896,001 of interest on the EGP 500,000,000 holding-company facility drawn "
   "in FY2024/25 — the company's own latest local borrowing", "2026-08-08", "L5")
@@ -379,9 +400,13 @@ for k, vals, unit, src in [
 ]:
     I(k, vals, unit, src, "2026-08-08", "L5")
 
-I("g_terminal", 0.070, "ratio",
-  "Terminal growth set at the central bank's medium-term inflation target: nominal maintenance "
-  "growth, no real growth assumed", "2026-08-08", "L5")
+I("g_terminal", 0.050, "ratio",
+  "Terminal growth set at the central bank's LONGEST-HORIZON published inflation target: 5% "
+  "(+/-2) for Q4 2028. CORRECTED 9 August 2026 after external critique: the study previously "
+  "used the 7% Q4-2026 target, which expires one quarter after the anchor date, as a "
+  "perpetuity anchor -- and then defended it by calling 5% 'below the target', inverting the "
+  "central bank's own target structure. A perpetuity takes the longest-horizon target there "
+  "is.", "2026-08-09", "L5")
 I("anna_util_base", 0.50, "ratio", "Project utilisation in the terminal year, central case",
   "2026-08-08", "L5")
 I("anna_util_bull", 0.70, "ratio", "Project utilisation in the terminal year, upside case",
