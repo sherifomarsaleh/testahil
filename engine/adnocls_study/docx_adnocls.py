@@ -547,8 +547,8 @@ P(f"A justified price-to-book multiple is the sustainable return on equity less 
   f"{pc(BK['g'], 0)} growth and a cost of equity of {pc(BK['ke'], 2)} that gives "
   f"{xt(BK['pb_fair'], 2)} book, or AED {p2(LN['book']['base'])} a share. The bear bound "
   f"of AED {p2(LN['book']['bear'])} takes the same construction at a beta of one and a "
-  f"return {pc(0.15, 0)} lower; the bull bound of AED {p2(LN['book']['bull'])} takes a "
-  f"lower country charge and a return {pc(0.15, 0)} higher. The lens carries the lowest "
+  f"return one seventh lower; the bull bound of AED {p2(LN['book']['bull'])} takes a "
+  f"lower country charge and a return one seventh higher. The lens carries the lowest "
   f"weight of the four, at {pc(LW['book'], 0)}, because a book multiple derived from a "
   f"cost of equity inherits the same contested beta as the cash-flow model, and because "
   f"carrying value is a poor description of what a fleet is worth.")
@@ -1076,7 +1076,7 @@ rows = [['The choice made', 'The alternative', 'Value on the alternative', 'Why 
          'points. A reader should treat the single available basis as carrying that much '
          'construction uncertainty'],
         ['Tax charged unit by unit at each unit’s own disclosed effective rate',
-         f"A uniform {pc(0.15, 0)} across the group, the domestic minimum top-up rate",
+         f"A uniform {pc(IN['tax_topup_rate'], 0)} across the group, the domestic minimum top-up rate",
          f"AED {p2(SN['tax']['0.15'])} against {p2(DCF['fv_aed'])}",
          f"The unit rates are what the company actually bore in {HYRS[2]} — about "
          f"{pc(IN['tax_shipping'], 0)} in shipping, where international shipping income is "
@@ -1135,7 +1135,7 @@ rows.append(['Bear-to-bull scenario composite',
 table(rows, [2.10, 1.95, 1.60, 1.35], size=8.4, left_cols=(1, 2))
 caption(f"Ranked by single-row swing, the beta is the largest by a wide margin — larger "
         f"than the operating crux, larger than the capital programme, larger than the tax "
-        f"exposure. The tax row deserves its own note: at a uniform {pc(0.15, 0)} the "
+        f"exposure. The tax row deserves its own note: at a uniform {pc(IN['tax_topup_rate'], 0)} the "
         f"value falls to AED {p2(SN['tax']['0.15'])}, a loss of AED "
         f"{p2(DCF['fv_aed']-SN['tax']['0.15'])} a share, and that is the priced cost of "
         f"the shipping relief being withdrawn. Every row is a full re-run of the unit "
@@ -1361,7 +1361,7 @@ rows = [['Catalyst', 'Why it matters', 'What to watch'],
          'larger newbuild programme — see section 7'],
         ['The tax relief on international shipping',
          f"the shipping units bore about {pc(IN['tax_shipping'], 0)} in {HYRS[2]}; a "
-         f"uniform {pc(0.15, 0)} would cost AED "
+         f"uniform {pc(IN['tax_topup_rate'], 0)} would cost AED "
          f"{p2(DCF['fv_aed']-SN['tax']['0.15'])} a share",
          'any change to the exclusion of international shipping income from the domestic '
          'minimum top-up tax'],
@@ -1502,7 +1502,7 @@ for head, body in [
      f"The model taxes each unit at its own disclosed {HYRS[2]} effective rate, which is "
      f"about {pc(IN['tax_shipping'], 0)} in shipping because international shipping income "
      f"is excluded from the UAE's domestic minimum top-up tax rules. That exclusion is a "
-     f"policy choice. Priced at a uniform {pc(0.15, 0)} across the group, fair value falls "
+     f"policy choice. Priced at a uniform {pc(IN['tax_topup_rate'], 0)} across the group, fair value falls "
      f"to AED {p2(SN['tax']['0.15'])}."),
     ("The price history is short, and it is short in a specific way. ",
      f"The share listed in June 2023, so the cleaned series spans "
@@ -1559,14 +1559,14 @@ rows.append(['Profit before tax'] + h3('pbt') + [m0(x) for x in FIN['pbt']])
 rows.append(['Income tax'] + h3('tax', negate=True) + [neg(m0(x)) for x in FIN['tax']])
 rows.append(['Profit for the year'] + h3('pat') + [m0(x) for x in FIN['pat']])
 rows.append(['Non-controlling interests'] +
-            [neg(m0(HI['pat'][i] - HI['npa'][i])) for i in range(3)] +
-            [neg(m0(x)) for x in FIN['nci']])
+            [neg(m0(HI['pat'][i] - HI['npa'][i])) if HI['pat'][i] != HI['npa'][i] else '—'
+             for i in range(3)] + [neg(m0(x)) for x in FIN['nci']])
 rows.append(['Attributable to ordinary and hybrid holders'] + h3('npa') +
             [m0(x) for x in FIN['npa']])
 rows.append(['Perpetual securities coupon'] +
             ['—', '—', neg(m0(IN['hybrid_coupon_fy25']))] +
             [neg(m0(FIN['hybrid_coupon']))] * 5)
-rows.append(['Earnings per share (USD)'] + [f"{x:.2f}" for x in HI['eps']] +
+rows.append(['Earnings per share (USD)'] + [f"{x:.3f}" for x in HI['eps']] +
             [f"{x:.3f}" for x in FIN['eps']])
 table(rows, [1.72, 0.66, 0.66, 0.66, 0.66, 0.66, 0.66, 0.66, 0.66], size=7.5,
       band_rows={6, 16, 18})
@@ -1609,9 +1609,10 @@ rows.append(['Gross debt'] + [m0(x) for x in HB['debt']] +
 rows.append(['Net debt'] + [m0(x) for x in HB['net_debt']] +
             [m0(b['net_debt']) if b['net_debt'] >= 0 else neg(m0(-b['net_debt']))
              for b in FBS])
-rows.append(['Perpetual capital securities'] + [m0(x) for x in HB['hybrid']] +
+rows.append(['Perpetual capital securities'] +
+            [m0(x) if x else '—' for x in HB['hybrid']] +
             [m0(b['hybrid']) for b in FBS])
-rows.append(['Non-controlling interests'] + [m0(x) for x in HB['nci']] +
+rows.append(['Non-controlling interests'] + [m0(x) if x else '—' for x in HB['nci']] +
             [m0(b['nci']) for b in FBS])
 rows.append(['Equity attributable to ordinary shareholders'] +
             [m0(x) for x in HB['equity_parent']] +
@@ -1731,7 +1732,7 @@ rows = [['Risk', 'Mechanism', 'Rough valuation impact'],
          'international shipping relief withdrawn or narrowed under the minimum top-up '
          'rules',
          f"AED {p2(DCF['fv_aed']-SN['tax']['0.15'])} a share at a uniform "
-         f"{pc(0.15, 0)}"],
+         f"{pc(IN['tax_topup_rate'], 0)}"],
         ['The perpetual capital securities',
          'they rank ahead of the ordinary shares and their treatment in the bridge is a '
          'judgement',
@@ -1937,7 +1938,7 @@ rows = [['Line', 'Value'],
          m0(E3['pv_ep'])],
         ['Present value of terminal economic profit (USD mn)', m0(E3['pv_ep_term'])],
         ['Enterprise value (USD mn)', m0(E3['ev'])],
-        ['Plus joint ventures, less net debt, the perpetual securities and minorities '
+        ['Less net debt, the perpetual securities and minorities, plus joint ventures '
          '(USD mn)', neg(m0(E3['ev'] - E3['equity'])) if E3['ev'] > E3['equity']
          else m0(E3['equity'] - E3['ev'])],
         ['Equity value (USD mn)', m0(E3['equity'])],
@@ -2037,7 +2038,7 @@ P(f"The panel spans AED {p2(min(E1['base'], E2['base'], E3['base']))} to "
   f"of one another, and all three land near the market price rather than near this "
   f"study's own weighted central of AED {p2(D['central'])}.")
 P(f"The panel centre of AED {p2(PANEL)} sits {ab(PANEL)} and "
-  f"{sgn(PANEL/D['central']-1, 0)} against the study's own own-beta central. That gap is "
+  f"{sgn(PANEL/D['central']-1, 0)} against this study's own-beta central. That gap is "
   f"real and it has a single explanation: every one of the three experts works from "
   f"mid-cycle or five-year-average earnings, and none of them capitalises a terminal value "
   f"the way the cash-flow model does. The cash-flow model puts {pc(DCF['tv_share'], 0)} of "

@@ -27,7 +27,13 @@ SH, PEG = D['meta']['shares_mn'], D['meta']['fx']
 
 
 def val(sheet, addr):
-    return XP.get(sheet, {}).get(addr)
+    """The model's own value for a cell: the recorded expectation for a formula, or the
+    pasted figure itself for a disclosed-history cell."""
+    v = XP.get(sheet, {}).get(addr)
+    if v is not None:
+        return v
+    raw = wb[sheet][addr].value
+    return float(raw) if isinstance(raw, (int, float)) else None
 
 
 # sheet, label cell, value cell, words the label must contain, the independent figure
@@ -141,7 +147,7 @@ CASES = [
     ('Relative & Normalized', 'A52', 'C52', ['book lens'], LN['book']['base']),
     ('Relative & Normalized', 'A27', 'C27', ['enterprise value', 'ebitda'],
      REL['own_ev_ebitda_ttm']),
-    ('Relative & Normalized', 'A29', 'C29', ['price / 2025 ordinary earnings'],
+    ('Relative & Normalized', 'A29', 'C29', ['price /', 'ordinary shareholders'],
      REL['own_pe_ttm']),
     ('Relative & Normalized', 'A58', 'C58', ['realised price', 'carrying value'],
      BK['vessel_value_to_book']),
