@@ -68,10 +68,11 @@ box([("What this is.  ",
 H1("Headline")
 P(f"Four lenses put this company between EGP {E2(LN['synthesis']['low'])} and EGP "
   f"{E2(LN['synthesis']['high'])} a share. It trades at EGP {E2(SPOT)}. The gap is not a "
-  f"rounding difference and it does not close under any single assumption: the cheapest "
-  f"lens to satisfy — a peer multiple on forward operating profit — still lands at EGP "
-  f"{E2(LN['relative']['value_per_share'])}, and that lens reaches its answer only by never "
-  f"asking what the capital programme does to cash.", bold=True)
+  f"rounding difference between the lenses: it is the whole disagreement. The multiple "
+  f"lens, on the range Egyptian fertilizer producers actually trade at, centres at EGP "
+  f"{E2(LN['relative']['value_per_share'])} — above the traded price — and it reaches that "
+  f"answer only by never asking what the capital programme does to cash. Every lens that "
+  f"does ask lands below EGP {E2(LN['normalised']['value_per_share'])}.", bold=True)
 P(f"Three things push in the same direction. An EGP {E1(V('anna_cost_egp')/1000 + V('anna_cost_usd')*V('usd_egp_spot')/1000)} "
   f"billion capital programme is running two years behind its own plan. The debt book is "
   f"{PC(1 - WC['pct_debt_local'])} dollar-denominated against an earnings stream that must "
@@ -334,7 +335,11 @@ H2("1.5  Synthesis — four lenses, one field")
 P(f"The field runs from EGP {E2(LN['synthesis']['low'])} to EGP {E2(LN['synthesis']['high'])} "
   f"a share. It is a wide field, and the width is honest: the lenses disagree because they "
   f"ask different questions of a company whose asset base is changing underneath its "
-  f"earnings. What none of them does is reach EGP {E2(SPOT)}.")
+  f"earnings. One of them now reaches the traded price: on the observable Egyptian "
+  f"listed range the multiple lens centres at EGP {E2(LN['relative']['value_per_share'])} "
+  f"against EGP {E2(SPOT)}. That is a change from the first issue of this study, which "
+  f"used a lower multiple band it could not source, and it is reported rather than "
+  f"resisted.")
 P(f"The ordering is itself informative. The asset-backed and multiple-based lenses sit "
   f"highest because they value what has been built without asking what it earns. The "
   f"cash-flow lens sits lowest because it asks exactly that, and gets an uncomfortable "
@@ -842,8 +847,11 @@ P(f"The reading we take from this is not that four lenses agree — they do not,
   f"that decides this company.")
 P(f"Our own reading therefore sits at the conservative end of the field, and the field's "
   f"upper bound of EGP {E2(LN['synthesis']['high'])} should be read as what the shares "
-  f"would be worth if the programme were free — which it is not. What none of the lenses "
-  f"does, on any construction tested in section 1.8, is reach EGP {E2(SPOT)}. The gap is "
+  f"would be worth if the programme were free — which it is not. The multiple lens does "
+  f"reach EGP {E2(SPOT)}, and that is the whole point of it: at the multiple Egyptian "
+  f"fertilizer producers actually trade at, a reader who ignores the capital programme "
+  f"gets the market's answer. The cash-flow lens, which does not ignore it, does not. "
+  f"The gap is "
   f"reported as the flat discount rate that would close it, about "
   f"{PC(DR['implied_wacc_base'])} against a sovereign ten-year yield of "
   f"{PC(V('rf_observed'))}, so that a reader who disagrees can see precisely what they are "

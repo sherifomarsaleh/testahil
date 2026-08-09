@@ -1771,21 +1771,57 @@
    "layer": "L4",
    "note": ""
   },
-  "egx_industrial_ev_ebitda_low": {
-   "key": "egx_industrial_ev_ebitda_low",
-   "value": 3.0,
-   "unit": "x",
-   "source": "Observed Egyptian industrial transaction and trading range",
-   "date": "2026-08-06",
+  "abuqir_market_cap": {
+   "key": "abuqir_market_cap",
+   "value": 93320.0,
+   "unit": "EGP m",
+   "source": "Abu Qir Fertilizers (EGX: ABUK) market capitalisation at the 5 August 2026 close, EGP 73.77 a share \u2014 Investing.com / MarketScreener exchange data",
+   "date": "2026-08-05",
+   "layer": "L2",
+   "note": ""
+  },
+  "abuqir_revenue_FY2025": {
+   "key": "abuqir_revenue_FY2025",
+   "value": 22920.0,
+   "unit": "EGP m",
+   "source": "Abu Qir Fertilizers FY2025 revenue as reported (stockanalysis.com company financials)",
+   "date": "2026-08-09",
    "layer": "L4",
    "note": ""
   },
-  "egx_industrial_ev_ebitda_high": {
-   "key": "egx_industrial_ev_ebitda_high",
+  "abuqir_net_FY2025": {
+   "key": "abuqir_net_FY2025",
+   "value": 7980.0,
+   "unit": "EGP m",
+   "source": "Abu Qir Fertilizers FY2025 net earnings as reported (stockanalysis.com company financials)",
+   "date": "2026-08-09",
+   "layer": "L4",
+   "note": ""
+  },
+  "abuqir_da_estimate_pct_rev": {
+   "key": "abuqir_da_estimate_pct_rev",
+   "value": 0.05,
+   "unit": "ratio",
+   "source": "Constructed and FLAGGED: depreciation and amortisation as a share of revenue for a mature coastal nitrogen producer. Abu Qir does not publish a depreciation line in the sources reachable here, so the EBITDA denominator carries one estimated element and the multiple below is stated as approximate because of it.",
+   "date": "2026-08-09",
+   "layer": "L5",
+   "note": ""
+  },
+  "peer_ev_ebitda_low": {
+   "key": "peer_ev_ebitda_low",
    "value": 6.0,
    "unit": "x",
-   "source": "Observed Egyptian industrial transaction and trading range",
-   "date": "2026-08-06",
+   "source": "Constructed: the low end of the observable Egyptian listed range. Ezz Steel trades near 4.4x and MOPCO near 5.9x on the same basis; 6.0x is set at the top of that industrial cluster and below the fertilizer comparables, as the conservative floor for a single-asset producer with a committed capital programme.",
+   "date": "2026-08-09",
+   "layer": "L4",
+   "note": ""
+  },
+  "peer_ev_ebitda_high": {
+   "key": "peer_ev_ebitda_high",
+   "value": 9.9,
+   "unit": "x",
+   "source": "Constructed: the median of the listed Egyptian fertilizer and industrial set identified in external review (Ezz Steel 4.35x, MOPCO 5.92x, Abu Qir ~8.2x, EFIC 11.52x, SKPC 17.61x)",
+   "date": "2026-08-09",
    "layer": "L4",
    "note": ""
   },

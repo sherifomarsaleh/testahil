@@ -164,13 +164,13 @@
   },
   "relative": {
    "label": "Relative multiples",
-   "basis": "Forward operating profit before depreciation at 3.0x to 6.0x, the Egyptian industrial range, with 4.5x central",
-   "bear": 3.8038695868616714,
-   "base": 7.340407384570012,
-   "bull": 10.876945182278353,
-   "low": 3.8038695868616714,
-   "high": 10.876945182278353,
-   "vs_spot": -0.4749350940937045
+   "basis": "Forward operating profit before depreciation at 6.0x to 9.9x, the Egyptian industrial range, with 8.0x central",
+   "bear": 10.876945182278353,
+   "base": 15.474444319299197,
+   "bull": 20.071943456320042,
+   "low": 10.876945182278353,
+   "high": 20.071943456320042,
+   "vs_spot": 0.10689873528606553
   },
   "normalised": {
    "label": "Normalised earnings power",

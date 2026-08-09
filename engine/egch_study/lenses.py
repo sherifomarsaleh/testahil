@@ -64,7 +64,10 @@ L['book'] = dict(
 
 # ---------------- LENS 3: relative multiples ----------------------------------
 ebitda_fwd = R[0]['ebitda']
-lo, hi = V('egx_industrial_ev_ebitda_low'), V('egx_industrial_ev_ebitda_high')
+# REBUILT from named comparables, 9 August 2026. The band was 3.0-6.0x sourced as an
+# 'observed range' that named no peer, no transaction and no date, and it set the TOP
+# of the published field. It is now the observable Egyptian listed range.
+lo, hi = V('peer_ev_ebitda_low'), V('peer_ev_ebitda_high')
 mid = (lo + hi) / 2
 def per_share_from_ev(ev):
     return (ev - NET_DEBT + NONOP) * 1e6 / SHARES
