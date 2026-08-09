@@ -2,7 +2,7 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-08-09", latest: "EGCH" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
+const SITE = { updated: "2026-08-09", latest: "PHAR" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
 /* ---------- covered tickers ----------
    HORIZON FIELDS (see the HORIZON CONVENTION block above the LEDGER):
@@ -24,6 +24,44 @@ const SITE = { updated: "2026-08-09", latest: "EGCH" };  // latest = the LAST-PU
                            label would then misstate what was simulated.
    ------------------------------------- */
 const TICKERS = {
+  PHAR: {
+    name: "Egyptian International Pharmaceutical Industries (EIPICO)",
+    nameAr: "\u0627\u0644\u0634\u0631\u0643\u0629 \u0627\u0644\u0645\u0635\u0631\u064a\u0629 \u0627\u0644\u062f\u0648\u0644\u064a\u0629 \u0644\u0644\u0635\u0646\u0627\u0639\u0627\u062a \u0627\u0644\u062f\u0648\u0627\u0626\u064a\u0629 - \u0625\u064a\u0628\u064a\u0643\u0648",
+    code: "EGX:PHAR",
+    spot: 130.05,
+    spotDate: "close 6 Aug 2026",
+    ccy: "EGP",
+    fair: { bear: 58.04, base: 61.21, full: 73.03 },   // 9 Aug 2026 - TWO centres, never one. The contested judgement (the credit-loss and provision charge) is carried both ways and weighting both frames inside a single number would average them, which this study says it never does. Frame A, the charge permanent at 5.25% of revenue, gives a weighted centre of 61.21; Frame B, the charge normalising to 2.5%, gives 68.70. `base` below carries the CONSERVATIVE reading. Field 58.04 to 73.03 across five readings on four methods: cash flow 58.04 / 73.03, book value and sustainable return 62.81, relative multiples 65.42, normalised earnings power 65.40. Built bottom up from THREE product lines, each a volume x a price, reconciling the board report's two different splits of the same revenue: own preparations domestic (291.8m packs at EGP 21.22), own preparations exported (60m packs at USD 0.9996), and contract manufacturing (5.49m packs at a EGP 9.00 fee plus product resold through own channels). THE CRUX IS THE PLANT: EGP 4,901mn of construction - larger than the entire depreciated property base - was licensed in Dec-2025 and starts depreciating, and the study charges every pound of that while crediting the plant with NO revenue, because the company has published none. At EGP 130.05 the market pays EGP 72.01 a share, 55% of the price, for that plant - roughly 2.1x its stated USD 100mn cost - which needs about USD 120mn a year of biosimilar revenue by FY2030 to justify. Terminal return on capital and the terminal debt weight are COMPUTED from the model's own final year, not assumed; free cash flow is taxed at the effective rate; the forecast balance sheet is funded and balances.
+    dist: {
+      t20: { label:"1 month",   p5:103.80, p25:120.56, p50:131.69, p75:143.94, p95:167.17, resolve:"2026-09-06" },
+      t60: { label:"3 months",  p5:94.40, p25:118.42, p50:135.30, p75:154.39, p95:193.82, resolve:"2026-11-08" }
+    },
+    hz: { h1:20, h3:62, l1:"1 month", l3:"3 months", cal:true },
+    touch: [ /* level, P(touch) 1-month %, 3-month % - descending */
+      [156.06, 17, 39],
+      [149.56, 27, 50],
+      [143.06, 43, 64],
+      [136.55, 64, 80],
+      [123.55, 57, 69],
+      [117.05, 33, 48]
+    ],
+    levels: { res:[140, 150, 156], sup:[92.40, 88.49, 85.40] },
+    tech: {
+      trend: "Trading above the whole moving-average stack, on a rising 200-day",
+      summary: "The price closed 130.05 above a rising 20-day (101.58), a rising 50-day (92.49) and a rising 200-day (82.58). Momentum is stretched: RSI(14) is ~71 and the daily ATR near 7.84 (~6.0%) points to a volatile tape. MACD (12\u00b726\u00b79) is positive and rising (+11.68 / +7.24 / +4.44). Over the last year it has ranged 43.60\u2013156.00; the last close sits 17% below that high and 198% above that low.",
+      bull: "A daily close back above 140.00 would clear the nearest resistance and open the 156.00 zone.",
+      bear: "A close below 92.40 would break the nearest support and open the 85.40 zone."
+    },
+    asof: {
+      mc:   { data:"2026-08-06", computed:"2026-08-06" },
+      tech: { data:"2026-08-06", computed:"2026-08-09" }
+    },
+    files: {
+      study: "files/PHAR_Valuation_Study_09-08-2026.pdf?v=0809b",
+      model: "files/PHAR_Valuation_Model_09082026.xlsx?v=0809b",
+      biblio: "files/PHAR_Bibliography_09-08-2026.pdf?v=0809b"
+    }
+  },
   EGCH: {
     name: "Egyptian Chemical Industries (KIMA)",
     nameAr: "\u0627\u0644\u0635\u0646\u0627\u0639\u0627\u062a \u0627\u0644\u0643\u064a\u0645\u0627\u0648\u064a\u0629 \u0627\u0644\u0645\u0635\u0631\u064a\u0629 - \u0643\u064a\u0645\u0627",
@@ -4816,6 +4854,26 @@ const LEDGER = [
     note:"First coverage, 8-Aug-2026 — cycle 1, struck on the study's own committed path arrays at the 2026-08-06 anchor and NOT re-simulated at publish: re-striking a frozen cone would publish a forecast the study never made. Percentiles are the study's p5–p95; the touch ladder is the study's own ±5/10/15/20% ladder. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count. q_annual = 0 — no dividend was declared in either of the last two years, sourced to the appropriation statements. Name-level calibration: PARITY — the five-year back-test runs 17 non-overlapping quarterly origins with coverage of 64.7% and 88.2% against the 50% and 90% bands and a chart skill of −0.14, PIT mean 0.557. No single-name edge exists on this name and none is claimed; the EG panel it draws from is the part that passes. The price map is published as a map of dispersion around today's price, never as a forecast of value.",
     p5:10.69, p25:13.03, p50:14.64, p75:16.43, p95:20.04,
     touch:{ "+5":79, "+10":62, "+15":47, "+20":35, "-5":63, "-10":41 },
+    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
+    realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null },
+    reanchor_from:null },
+  { instrument:"PHAR", asset_class:"equity", anchor_date:"2026-08-06", run_date:"2026-08-06", anchor_price:130.05, ccy:"EGP",
+    horizon_label:"1 month", grade_date:"2026-09-06", grade_basis:"projected", horizon_days:20, cycle_no:1,
+    anchor_vol:0.6290, cal:"parity",
+    note:"First coverage, 9-Aug-2026 — cycle 1, struck on the study's own committed path arrays at the 2026-08-06 anchor and NOT re-simulated at publish: re-striking a frozen cone would publish a forecast the study never made. Percentiles are the study's p5–p95; the touch ladder is read off those same path arrays at ±5/10/15/20% and −5/−10%, and its ±10% pair reconciles to the study's separately published figures to within 0.2 percentage points. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count. q_annual = 0.0269 — SOURCED, not defaulted: the board proposed EGP 3.50 a share for FY2025. EG live fit nu=6.0, width_cal=0.951; rf_live 19.50%. Name-level calibration: PARITY on every window set and every bootstrap block size tested. Five-year set: 19 non-overlapping quarterly origins, skill +0.0021, coverage 47% and 100% against the 50% and 90% bands, PIT mean 0.525, block-bootstrap intervals [-0.0299, 0.0265] / [-0.0194, 0.0271] / [-0.0184, 0.0210] at block sizes 2/3/4 — all straddling zero. Post-break set, which is the period the live bands are built on: 16 windows, skill -0.0109, same PARITY verdict at every block size. No single-name edge exists on this name and none is claimed. The price map is published as a map of dispersion around today's price, never as a forecast of value.",
+    p5:103.80, p25:120.56, p50:131.69, p75:143.94, p95:167.17,
+    touch:{ "+5":64, "+10":43, "+15":27, "+20":17, "-5":57, "-10":33 },
+    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
+    realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null },
+    reanchor_from:null },
+  { instrument:"PHAR", asset_class:"equity", anchor_date:"2026-08-06", run_date:"2026-08-06", anchor_price:130.05, ccy:"EGP",
+    horizon_label:"3 months", grade_date:"2026-11-08", grade_basis:"projected", horizon_days:62, cycle_no:1,
+    anchor_vol:0.5355, cal:"parity",
+    note:"First coverage, 9-Aug-2026 — cycle 1, struck on the study's own committed path arrays at the 2026-08-06 anchor and NOT re-simulated at publish: re-striking a frozen cone would publish a forecast the study never made. Percentiles are the study's p5–p95; the touch ladder is read off those same path arrays at ±5/10/15/20% and −5/−10%, and its ±10% pair reconciles to the study's separately published figures to within 0.2 percentage points. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count. q_annual = 0.0269 — SOURCED, not defaulted: the board proposed EGP 3.50 a share for FY2025. EG live fit nu=6.0, width_cal=0.951; rf_live 19.50%. Name-level calibration: PARITY on every window set and every bootstrap block size tested. Five-year set: 19 non-overlapping quarterly origins, skill +0.0021, coverage 47% and 100% against the 50% and 90% bands, PIT mean 0.525, block-bootstrap intervals [-0.0299, 0.0265] / [-0.0194, 0.0271] / [-0.0184, 0.0210] at block sizes 2/3/4 — all straddling zero. Post-break set, which is the period the live bands are built on: 16 windows, skill -0.0109, same PARITY verdict at every block size. No single-name edge exists on this name and none is claimed. The price map is published as a map of dispersion around today's price, never as a forecast of value.",
+    p5:94.40, p25:118.42, p50:135.30, p75:154.39, p95:193.82,
+    touch:{ "+5":80, "+10":64, "+15":50, "+20":39, "-5":69, "-10":48 },
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
     realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null },
