@@ -1,0 +1,398 @@
+{
+ "headline_cell": "Summary!C10",
+ "headline_base": 2.355371096331561,
+ "directional": [
+  {
+   "driver": "Like-for-like sales growth",
+   "cells": [
+    "B30",
+    "C30",
+    "D30",
+    "E30",
+    "F30"
+   ],
+   "perturbation": [
+    "+",
+    0.01
+   ],
+   "expected": "higher",
+   "base": 2.355371096331561,
+   "moved_to": 2.4542382796946782,
+   "change_pct": 0.04197520446654919,
+   "passed": true,
+   "mechanism": "higher revenue per restaurant lifts revenue, EBITDA and free cash flow"
+  },
+  {
+   "driver": "Net new restaurants",
+   "cells": [
+    "B11",
+    "C11",
+    "D11",
+    "E11",
+    "F11"
+   ],
+   "perturbation": [
+    "x",
+    1.2
+   ],
+   "expected": "higher",
+   "base": 2.355371096331561,
+   "moved_to": 2.407766950500296,
+   "change_pct": 0.022245264981955688,
+   "passed": true,
+   "mechanism": "more restaurants means more revenue; the capital they cost is well inside the cash they generate at a three-year payback"
+  },
+  {
+   "driver": "Food and packaging cost",
+   "cells": [
+    "B49",
+    "C49",
+    "D49",
+    "E49",
+    "F49"
+   ],
+   "perturbation": [
+    "+",
+    0.01
+   ],
+   "expected": "lower",
+   "base": 2.355371096331561,
+   "moved_to": 2.207319494115405,
+   "change_pct": -0.06285701749789785,
+   "passed": true,
+   "mechanism": "a costlier input basket takes a point of margin straight out of EBITDA"
+  },
+  {
+   "driver": "Staff cost",
+   "cells": [
+    "B51",
+    "C51",
+    "D51",
+    "E51",
+    "F51"
+   ],
+   "perturbation": [
+    "+",
+    0.01
+   ],
+   "expected": "lower",
+   "base": 2.355371096331561,
+   "moved_to": 2.207319494115405,
+   "change_pct": -0.06285701749789785,
+   "passed": true,
+   "mechanism": "the same, through the largest single cost line"
+  },
+  {
+   "driver": "Royalty rate",
+   "cells": [
+    "B50",
+    "C50",
+    "D50",
+    "E50",
+    "F50"
+   ],
+   "perturbation": [
+    "+",
+    0.005
+   ],
+   "expected": "lower",
+   "base": 2.355371096331561,
+   "moved_to": 2.2813452952234834,
+   "change_pct": -0.03142850874894874,
+   "passed": true,
+   "mechanism": "a higher royalty is a direct transfer to the franchisor"
+  },
+  {
+   "driver": "Beta",
+   "cells": [
+    "C81"
+   ],
+   "perturbation": [
+    "+",
+    0.2
+   ],
+   "expected": "lower",
+   "base": 2.355371096331561,
+   "moved_to": 2.123021737568044,
+   "change_pct": -0.09864660355448697,
+   "passed": true,
+   "mechanism": "a higher beta raises the cost of equity and discounts the same cash flows harder"
+  },
+  {
+   "driver": "Equity risk premium (ratings basis)",
+   "cells": [
+    "C78"
+   ],
+   "perturbation": [
+    "+",
+    0.01
+   ],
+   "expected": "lower",
+   "base": 2.355371096331561,
+   "moved_to": 2.183534839476664,
+   "change_pct": -0.07295506730235758,
+   "passed": true,
+   "mechanism": "the same mechanism"
+  },
+  {
+   "driver": "US ten-year Treasury yield",
+   "cells": [
+    "C76"
+   ],
+   "perturbation": [
+    "+",
+    0.01
+   ],
+   "expected": "lower",
+   "base": 2.355371096331561,
+   "moved_to": 2.3277977030840327,
+   "change_pct": -0.011706602535147487,
+   "passed": true,
+   "mechanism": "a higher risk-free rate raises the whole cost of capital"
+  },
+  {
+   "driver": "Terminal growth",
+   "cells": [
+    "C84"
+   ],
+   "perturbation": [
+    "+",
+    0.005
+   ],
+   "expected": "higher",
+   "base": 2.355371096331561,
+   "moved_to": 2.443909074324367,
+   "change_pct": 0.037589821039539104,
+   "passed": true,
+   "mechanism": "faster perpetual growth raises the terminal value, and three-quarters of the enterprise value sits there"
+  },
+  {
+   "driver": "Terminal risk-free rate",
+   "cells": [
+    "C83"
+   ],
+   "perturbation": [
+    "+",
+    0.01
+   ],
+   "expected": "lower",
+   "base": 2.355371096331561,
+   "moved_to": 2.1908509217126784,
+   "change_pct": -0.06984894009912877,
+   "passed": true,
+   "mechanism": "raises the terminal cost of capital, which capitalises the terminal cash flow"
+  },
+  {
+   "driver": "Cost of debt",
+   "cells": [
+    "C82"
+   ],
+   "perturbation": [
+    "+",
+    0.01
+   ],
+   "expected": "lower",
+   "base": 2.355371096331561,
+   "moved_to": 2.326661478135653,
+   "change_pct": -0.012188999958699714,
+   "passed": true,
+   "mechanism": "raises the after-tax cost of debt inside the weighted cost, and the lease interest charge on the income statement with it"
+  },
+  {
+   "driver": "Effective tax rate",
+   "cells": [
+    "B71",
+    "C71",
+    "D71",
+    "E71",
+    "F71"
+   ],
+   "perturbation": [
+    "+",
+    0.02
+   ],
+   "expected": "lower",
+   "base": 2.355371096331561,
+   "moved_to": 2.3131473020288977,
+   "change_pct": -0.01792659949356844,
+   "passed": true,
+   "mechanism": "less of every dollar of EBIT survives to NOPAT"
+  },
+  {
+   "driver": "Capital expenditure per new restaurant",
+   "cells": [
+    "C61"
+   ],
+   "perturbation": [
+    "x",
+    1.25
+   ],
+   "expected": "lower",
+   "base": 2.355371096331561,
+   "moved_to": 2.3100447536807995,
+   "change_pct": -0.019243822224598105,
+   "passed": true,
+   "mechanism": "each opening costs more, so free cash flow falls"
+  },
+  {
+   "driver": "Maintenance capital expenditure",
+   "cells": [
+    "C62"
+   ],
+   "perturbation": [
+    "+",
+    0.005
+   ],
+   "expected": "lower",
+   "base": 2.355371096331561,
+   "moved_to": 2.3173356632943856,
+   "change_pct": -0.01614838234892779,
+   "passed": true,
+   "mechanism": "the same, on the estate"
+  },
+  {
+   "driver": "Additions to right-of-use assets",
+   "cells": [
+    "C64"
+   ],
+   "perturbation": [
+    "+",
+    0.01
+   ],
+   "expected": "lower",
+   "base": 2.355371096331561,
+   "moved_to": 2.2719872269150287,
+   "change_pct": -0.03540158472115101,
+   "passed": true,
+   "mechanism": "taking leases is investment on the capitalised reading, so more of it is cash out"
+  },
+  {
+   "driver": "Net working capital",
+   "cells": [
+    "C68"
+   ],
+   "perturbation": [
+    "+",
+    0.01
+   ],
+   "expected": "lower",
+   "base": 2.355371096331561,
+   "moved_to": 2.3436476325676394,
+   "change_pct": -0.004977331929639645,
+   "passed": true,
+   "mechanism": "working capital is negative here, so making it LESS negative consumes cash"
+  },
+  {
+   "driver": "Justified enterprise value / EBITDA",
+   "cells": [
+    "C100"
+   ],
+   "perturbation": [
+    "+",
+    1.0
+   ],
+   "expected": "higher",
+   "base": 2.355371096331561,
+   "moved_to": 2.411426415151005,
+   "change_pct": 0.02379893296081849,
+   "passed": true,
+   "mechanism": "lifts the relative lens, which carries a fifth of the weight"
+  },
+  {
+   "driver": "Justified price / earnings",
+   "cells": [
+    "C101"
+   ],
+   "perturbation": [
+    "+",
+    2.0
+   ],
+   "expected": "higher",
+   "base": 2.355371096331561,
+   "moved_to": 2.409943545061373,
+   "change_pct": 0.023169363339308892,
+   "passed": true,
+   "mechanism": "lifts the normalised lens"
+  },
+  {
+   "driver": "Sustainable return on equity",
+   "cells": [
+    "C102"
+   ],
+   "perturbation": [
+    "+",
+    0.05
+   ],
+   "expected": "higher",
+   "base": 2.355371096331561,
+   "moved_to": 2.3690564567337704,
+   "change_pct": 0.005810277804429302,
+   "passed": true,
+   "mechanism": "lifts the book lens"
+  },
+  {
+   "driver": "Market price",
+   "cells": [
+    "C5"
+   ],
+   "perturbation": [
+    "+",
+    0.2
+   ],
+   "expected": "lower",
+   "base": 2.355371096331561,
+   "moved_to": 2.347494658822074,
+   "change_pct": -0.0033440325058561836,
+   "passed": true,
+   "mechanism": "a higher market price raises the equity weight in the cost of capital, and since equity is dearer than debt here the weighted cost rises and the value falls \u2014 the valuation does not chase the price"
+  },
+  {
+   "driver": "Restaurants at 31 December 2025",
+   "cells": [
+    "C21",
+    "C22",
+    "C23",
+    "C24",
+    "C25",
+    "C26",
+    "C27"
+   ],
+   "perturbation": [
+    "x",
+    1.05
+   ],
+   "expected": "higher",
+   "base": 2.355371096331561,
+   "moved_to": 2.4646123963961872,
+   "change_pct": 0.046379655517878836,
+   "passed": true,
+   "mechanism": "a larger opening estate carries through the whole forecast"
+  },
+  {
+   "driver": "Revenue per restaurant, FY2025 base",
+   "cells": [
+    "C40",
+    "C41",
+    "C42",
+    "C43",
+    "C44",
+    "C45",
+    "C46"
+   ],
+   "perturbation": [
+    "x",
+    1.05
+   ],
+   "expected": "higher",
+   "base": 2.355371096331561,
+   "moved_to": 2.4867766284685247,
+   "change_pct": 0.05578973620828798,
+   "passed": true,
+   "mechanism": "the price side of the unit build, lifted at the base year"
+  }
+ ],
+ "n_directional": 22,
+ "n_directional_failed": 0,
+ "dead_sweep_inputs": 69,
+ "dead_inputs": []
+}
