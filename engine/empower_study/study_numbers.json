@@ -1,0 +1,1443 @@
+{
+ "meta": {
+  "ticker": "EMPOWER",
+  "company": "Emirates Central Cooling Systems Corporation PJSC (Empower)",
+  "market": "AE (Dubai Financial Market)",
+  "currency": "AED",
+  "asof": "2026-08-09",
+  "spot": 1.5,
+  "shares_mn": 10000.0,
+  "mktcap": 15000.0,
+  "klass": "operating company \u2014 regulated district-cooling utility",
+  "ownership": "DEWA 80% (since Feb-2026), free float ~20%"
+ },
+ "inputs": {
+  "spot": {
+   "value": 1.5,
+   "source": "Uploaded DFM daily price history, last close",
+   "date": "2026-08-07",
+   "ring": "Market"
+  },
+  "shares_mn": {
+   "value": 10000.0,
+   "source": "Share capital note 16: AED 1,000,000k at AED 0.10 par = 10,000,000,000 shares, unchanged since the Nov-2022 IPO (EPS note 35 cross-check: 896,754k / 0.090 = 9,964mn wtd)",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "tax_ct": {
+   "value": 0.09,
+   "source": "UAE federal corporate tax 9% (FY2025 audited effective rate exactly 9.0%: 99,226k tax on 1,103,161k PBT; note 28)",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "tax_dmtt": {
+   "value": 0.15,
+   "source": "OECD Pillar-Two UAE domestic minimum top-up tax 15% for groups >= EUR 750m revenue \u2014 whether DEWA-level (80%) consolidation sweeps Empower in is CONTESTED; computed as the full alternative framing",
+   "date": "2026-08-09",
+   "ring": "Country"
+  },
+  "rev_fy23": {
+   "value": 3035.203,
+   "source": "Consolidated statement of comprehensive income, FY2023 audited FS (confirmed by FY2024 filing comparative)",
+   "date": "2024-02-14",
+   "ring": "Company"
+  },
+  "rev_fy24": {
+   "value": 3260.489,
+   "source": "Consolidated statement of comprehensive income, FY2024 audited FS (confirmed by FY2025 filing comparative)",
+   "date": "2025-02-14",
+   "ring": "Company"
+  },
+  "rev_fy25": {
+   "value": 3419.304,
+   "source": "Consolidated statement of comprehensive income, FY2025 audited FS",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "intco_fy23": {
+   "value": 38.711,
+   "source": "Interest income on financial assets at amortised cost (airport concession receivable), presented INSIDE gross profit, FY2023 audited FS",
+   "date": "2024-02-14",
+   "ring": "Company"
+  },
+  "intco_fy24": {
+   "value": 59.151,
+   "source": "Interest income on financial assets at amortised cost, FY2024 audited FS",
+   "date": "2025-02-14",
+   "ring": "Company"
+  },
+  "intco_fy25": {
+   "value": 58.307,
+   "source": "Interest income on financial assets at amortised cost, FY2025 audited FS",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "cos_fy23": {
+   "value": 1740.878,
+   "source": "Cost of sales, FY2023 audited FS",
+   "date": "2024-02-14",
+   "ring": "Company"
+  },
+  "cos_fy24": {
+   "value": 1917.497,
+   "source": "Cost of sales, FY2024 audited FS",
+   "date": "2025-02-14",
+   "ring": "Company"
+  },
+  "cos_fy25": {
+   "value": 1989.283,
+   "source": "Cost of sales, FY2025 audited FS (gross-profit identity check in the ASSERT block)",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "gp_fy23": {
+   "value": 1333.036,
+   "source": "Gross profit, FY2023 audited FS",
+   "date": "2024-02-14",
+   "ring": "Company"
+  },
+  "gp_fy24": {
+   "value": 1402.143,
+   "source": "Gross profit, FY2024 audited FS",
+   "date": "2025-02-14",
+   "ring": "Company"
+  },
+  "gp_fy25": {
+   "value": 1488.328,
+   "source": "Gross profit, FY2025 audited FS",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "ga_fy23": {
+   "value": 220.285,
+   "source": "General & administrative expenses, FY2023 audited FS",
+   "date": "2024-02-14",
+   "ring": "Company"
+  },
+  "ga_fy24": {
+   "value": 235.119,
+   "source": "General & administrative expenses, FY2024 audited FS",
+   "date": "2025-02-14",
+   "ring": "Company"
+  },
+  "ga_fy25": {
+   "value": 246.577,
+   "source": "General & administrative expenses, FY2025 audited FS",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "ecl_fy24": {
+   "value": 17.482,
+   "source": "Reversal of expected credit losses, FY2024 audited FS",
+   "date": "2025-02-14",
+   "ring": "Company"
+  },
+  "ecl_fy25": {
+   "value": 16.137,
+   "source": "Reversal of expected credit losses, FY2025 audited FS",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "oi_fy23": {
+   "value": 7.12,
+   "source": "Other income, FY2023 audited FS",
+   "date": "2024-02-14",
+   "ring": "Company"
+  },
+  "oi_fy24": {
+   "value": 7.938,
+   "source": "Other income, FY2024 audited FS",
+   "date": "2025-02-14",
+   "ring": "Company"
+  },
+  "oi_fy25": {
+   "value": 14.624,
+   "source": "Other income, FY2025 audited FS",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "op_fy23": {
+   "value": 1119.871,
+   "source": "Operating profit, FY2023 audited FS",
+   "date": "2024-02-14",
+   "ring": "Company"
+  },
+  "op_fy24": {
+   "value": 1192.444,
+   "source": "Operating profit, FY2024 audited FS",
+   "date": "2025-02-14",
+   "ring": "Company"
+  },
+  "op_fy25": {
+   "value": 1272.512,
+   "source": "Operating profit, FY2025 audited FS",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "fin_inc_fy25": {
+   "value": 55.347,
+   "source": "Finance income, FY2025 audited FS note 30",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "fin_cost_fy25": {
+   "value": 224.698,
+   "source": "Finance costs (net of 10.711 capitalised), FY2025 audited FS note 30",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "pbt_fy23": {
+   "value": 942.631,
+   "source": "Profit before tax, FY2023 audited FS",
+   "date": "2024-02-14",
+   "ring": "Company"
+  },
+  "pbt_fy24": {
+   "value": 998.332,
+   "source": "Profit before tax, FY2024 audited FS",
+   "date": "2025-02-14",
+   "ring": "Company"
+  },
+  "pbt_fy25": {
+   "value": 1103.161,
+   "source": "Profit before tax, FY2025 audited FS",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "tax_fy23": {
+   "value": 17.454,
+   "source": "Income tax CREDIT (deferred tax asset first recognition ahead of UAE CT), FY2023 audited FS",
+   "date": "2024-02-14",
+   "ring": "Company"
+  },
+  "tax_fy24": {
+   "value": -90.097,
+   "source": "Income tax expense, FY2024 audited FS",
+   "date": "2025-02-14",
+   "ring": "Company"
+  },
+  "tax_fy25": {
+   "value": -99.226,
+   "source": "Income tax expense (current 98.082 + deferred 1.144), FY2025 audited FS note 28",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "pat_fy23": {
+   "value": 960.085,
+   "source": "Profit after tax, FY2023 audited FS",
+   "date": "2024-02-14",
+   "ring": "Company"
+  },
+  "pat_fy24": {
+   "value": 908.235,
+   "source": "Profit after tax, FY2024 audited FS",
+   "date": "2025-02-14",
+   "ring": "Company"
+  },
+  "pat_fy25": {
+   "value": 1003.935,
+   "source": "Profit after tax, FY2025 audited FS",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "npa_fy23": {
+   "value": 952.927,
+   "source": "Profit attributable to equity holders, FY2023",
+   "date": "2024-02-14",
+   "ring": "Company"
+  },
+  "npa_fy24": {
+   "value": 896.754,
+   "source": "Profit attributable to equity holders, FY2024",
+   "date": "2025-02-14",
+   "ring": "Company"
+  },
+  "npa_fy25": {
+   "value": 993.302,
+   "source": "Profit attributable to equity holders, FY2025",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "dna_fy23": {
+   "value": 348.199,
+   "source": "FY2023 CF: PPE dep 332.884 + RoU 3.158 + intangibles 12.157",
+   "date": "2024-02-14",
+   "ring": "Company"
+  },
+  "dna_fy24": {
+   "value": 359.081,
+   "source": "FY2024 CF: PPE dep 342.332 + RoU 4.592 + intangibles 12.157",
+   "date": "2025-02-14",
+   "ring": "Company"
+  },
+  "dna_fy25": {
+   "value": 369.717,
+   "source": "FY2025 CF: PPE dep 352.199 + RoU 5.361 + intangibles 12.157 (investment-property dep 6.317 excluded \u2014 investment properties are a non-operating side pocket in the bridge)",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "capex_fy23": {
+   "value": 320.144,
+   "source": "FY2023 CF: additions to PPE",
+   "date": "2024-02-14",
+   "ring": "Company"
+  },
+  "capex_fy24": {
+   "value": 306.781,
+   "source": "FY2024 CF: additions to PPE",
+   "date": "2025-02-14",
+   "ring": "Company"
+  },
+  "capex_fy25": {
+   "value": 440.039,
+   "source": "FY2025 CF: capital expenditure net of project-cost accruals (a further 171.085 was non-cash accrual movement, note 36)",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "rt_conn": {
+   "value": {
+    "2021": 1368.0,
+    "2022": 1405.0,
+    "2024": 1566.0,
+    "2025": 1656.0,
+    "H1_2026": 1707.0
+   },
+   "source": "Connected capacity history, k RT, H1-2026 earnings deck p13 (2023 not charted; interpolation never used \u2014 growth is computed 2024->2025)",
+   "date": "2026-08-05",
+   "ring": "Company"
+  },
+  "rt_contracted": {
+   "value": 2018.0,
+   "source": "Contracted capacity 30-Jun-2026, k RT, deck pp3-4,10",
+   "date": "2026-08-05",
+   "ring": "Company"
+  },
+  "rt_guid_2026": {
+   "value": [
+    100.0,
+    110.0
+   ],
+   "source": "FY2026 new-connections guidance, k RT, deck p13",
+   "date": "2026-08-05",
+   "ring": "Company"
+  },
+  "cons_rev": {
+   "value": {
+    "2022": 1462.983,
+    "2023": 1719.593,
+    "2024": 1895.257,
+    "2025": 1923.892
+   },
+   "source": "Consumption revenue, auditor's key-audit-matter section of each audited FS FY2022-FY2025 (the only disclosed AED split of the revenue streams)",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "pipes_rev_fy25": {
+   "value": 17.214,
+   "source": "Sale of pre-insulated pipes (Logstor), revenue note 23, FY2025 audited FS",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "eflh_h1": {
+   "value": -0.09,
+   "source": "Equivalent full-load hours H1-2026: 698 hrs, -9.0% y/y (consumption -42m RTh), deck p4; interim note 30 ties the fall partly to conflict impact on hospitality occupancy",
+   "date": "2026-08-05",
+   "ring": "Company"
+  },
+  "ew_cost_fy25": {
+   "value": 1467.65,
+   "source": "Electricity & water purchased from DEWA (related-party note 12), FY2025 audited FS",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "ew_cost_fy24": {
+   "value": 1373.2,
+   "source": "Electricity & water purchased from DEWA (related-party note 12), FY2024 audited FS",
+   "date": "2025-02-14",
+   "ring": "Company"
+  },
+  "borrow_jun26": {
+   "value": 5502.845,
+   "source": "Bank borrowings 30-Jun-2026: current 2.845 + non-current 5,500.000, reviewed interim BS",
+   "date": "2026-08-05",
+   "ring": "Company"
+  },
+  "lease_jun26": {
+   "value": 0.872,
+   "source": "Lease liabilities 30-Jun-2026",
+   "date": "2026-08-05",
+   "ring": "Company"
+  },
+  "cash_jun26": {
+   "value": 2472.012,
+   "source": "Cash and cash equivalents 30-Jun-2026",
+   "date": "2026-08-05",
+   "ring": "Company"
+  },
+  "deposits_jun26": {
+   "value": 40.212,
+   "source": "Term deposits (>3m) 30-Jun-2026",
+   "date": "2026-08-05",
+   "ring": "Company"
+  },
+  "nci_book_jun26": {
+   "value": 190.745,
+   "source": "Non-controlling interests (30% of DXB CoolCo et al.), 30-Jun-2026 reviewed BS",
+   "date": "2026-08-05",
+   "ring": "Company"
+  },
+  "invprop_jun26": {
+   "value": 168.716,
+   "source": "Investment properties 30-Jun-2026 (non-operating side pocket, added in the bridge at book)",
+   "date": "2026-08-05",
+   "ring": "Company"
+  },
+  "fvtpl_jun26": {
+   "value": 53.411,
+   "source": "Financial assets at FVTPL 30-Jun-2026 (cash-like, added in the bridge)",
+   "date": "2026-08-05",
+   "ring": "Company"
+  },
+  "fvoci_jun26": {
+   "value": 74.564,
+   "source": "Financial assets at FVOCI 30-Jun-2026 (added at book)",
+   "date": "2026-08-05",
+   "ring": "Company"
+  },
+  "eq_attr_fy25": {
+   "value": 3310.933,
+   "source": "Equity attributable to holders, 31-Dec-2025 audited BS",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "eq_attr_jun26": {
+   "value": 3337.585,
+   "source": "Equity attributable to holders, 30-Jun-2026 reviewed BS",
+   "date": "2026-08-05",
+   "ring": "Company"
+  },
+  "nci_pat_fy25": {
+   "value": 10.633,
+   "source": "Profit attributable to NCI, FY2025 audited FS",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "rev_h1_26": {
+   "value": 1519.415,
+   "source": "Revenue, H1-2026 reviewed interim FS",
+   "date": "2026-08-05",
+   "ring": "Company"
+  },
+  "rev_h1_25": {
+   "value": 1453.433,
+   "source": "Revenue, H1-2025 comparative",
+   "date": "2026-08-05",
+   "ring": "Company"
+  },
+  "pat_h1_26": {
+   "value": 467.924,
+   "source": "Profit after tax, H1-2026 reviewed interim FS",
+   "date": "2026-08-05",
+   "ring": "Company"
+  },
+  "ebitda_h1_26": {
+   "value": 773.0,
+   "source": "EBITDA H1-2026 as presented, earnings deck p4 (Q1 margin 56.8%, Q2 46.7%)",
+   "date": "2026-08-05",
+   "ring": "Company"
+  },
+  "netdebt_jun26_co": {
+   "value": 2991.0,
+   "source": "Net debt 30-Jun-2026 as the company presents it, deck p11 (1.8x LTM EBITDA) \u2014 reproduced exactly by borrowings + leases - cash - term deposits, see ASSERT",
+   "date": "2026-08-05",
+   "ring": "Company"
+  },
+  "div_policy": {
+   "value": 875.0,
+   "source": "Dividend AED 875m/yr committed for 2025 AND 2026 (2 x 437.5m, Oct/Apr), deck p12; FY2025 FS note 39: 875.0 paid in 2025",
+   "date": "2026-08-05",
+   "ring": "Company"
+  },
+  "rf_aed": {
+   "value": 0.0448,
+   "source": "UAE dirham T-Bond, Jan-2031 tranche, auction YTM 30-Jul-2026 \u2014 the longest AED sovereign print (4.4y tenor; the 5y+ tenor gap vs the cash-flow horizon is flagged, spread over UST was ~4bp at issue)",
+   "date": "2026-07-30",
+   "ring": "Country"
+  },
+  "ds_rating": {
+   "value": 0.00393,
+   "source": "UAE adjusted default spread, rating basis (Aa2), Damodaran ctryprem July-2026 edition (data 30-Jun-2026)",
+   "date": "2026-07-01",
+   "ring": "Country"
+  },
+  "ds_cds": {
+   "value": 0.0052,
+   "source": "Abu Dhabi 10y sovereign CDS adj. for Switzerland, 30-Jun-2026, Damodaran July-2026 (the UAE federal CDS row is n/a; Abu Dhabi is the quoted UAE sovereign CDS \u2014 proxy flagged)",
+   "date": "2026-07-01",
+   "ring": "Country"
+  },
+  "erp_rating": {
+   "value": 0.04811,
+   "source": "UAE total equity risk premium, rating basis, Damodaran July-2026",
+   "date": "2026-07-01",
+   "ring": "Country"
+  },
+  "erp_cds": {
+   "value": 0.050083,
+   "source": "UAE total ERP, sovereign-CDS basis (via Abu Dhabi CDS), Damodaran July-2026",
+   "date": "2026-07-01",
+   "ring": "Country"
+  },
+  "beta": {
+   "value": 0.652,
+   "source": "Own-stock weekly regression vs DFM General Index, full listing window 25-Nov-2022..17-Jul-2026 (3.64y, inside the 2-5y band): beta 0.652, R2 0.157, n 190, SE 0.110, CI90 [0.47, 0.83] \u2014 passes the usability gate (beta_result.json)",
+   "date": "2026-08-09",
+   "ring": "Company"
+  },
+  "kd_marg": {
+   "value": 0.0492,
+   "source": "Marginal cost of debt = the company's OWN FY2025 borrowing-cost capitalisation rate (note 30), struck on the 2025 full refinance of both AED 2.75bn RCFs at EIBOR + a REDUCED margin; sits above the 4.48% AED sovereign as a same-currency corporate must (2024 comparison: 5.993%; spot 3M EIBOR 3.66% + implied margin ~0.9-1.3%)",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "g_term": {
+   "value": 0.025,
+   "source": "Terminal growth: long-run UAE nominal-GDP-consistent 2.5% under a flat regulated tariff \u2014 bounded by Dubai build-out saturation (connected 1.7m of ~2.0m RT contracted; sensitised 1.5-3.5%)",
+   "date": "2026-08-09",
+   "ring": "House"
+  }
+ },
+ "hist_is": {
+  "FY23": {
+   "rev": 3035.203,
+   "intco": 38.711,
+   "cos": -1740.878,
+   "gp": 1333.036,
+   "ga": -220.285,
+   "op": 1119.871,
+   "dna": 348.199,
+   "ebitda": 1468.0700000000002,
+   "ebitda_margin": 0.4836809926716599,
+   "pbt": 942.631,
+   "tax": 17.454,
+   "pat": 960.085,
+   "npa": 952.927,
+   "capex": 320.144,
+   "gp_margin": 0.43919171139459207
+  },
+  "FY24": {
+   "rev": 3260.489,
+   "intco": 59.151,
+   "cos": -1917.497,
+   "gp": 1402.143,
+   "ga": -235.119,
+   "op": 1192.444,
+   "dna": 359.081,
+   "ebitda": 1551.525,
+   "ebitda_margin": 0.47585653563008495,
+   "pbt": 998.332,
+   "tax": -90.097,
+   "pat": 908.235,
+   "npa": 896.754,
+   "capex": 306.781,
+   "gp_margin": 0.4300407086176337
+  },
+  "FY25": {
+   "rev": 3419.304,
+   "intco": 58.307,
+   "cos": -1989.283,
+   "gp": 1488.328,
+   "ga": -246.577,
+   "op": 1272.512,
+   "dna": 369.717,
+   "ebitda": 1642.2289999999998,
+   "ebitda_margin": 0.4802816596593926,
+   "pbt": 1103.161,
+   "tax": -99.226,
+   "pat": 1003.935,
+   "npa": 993.302,
+   "capex": 440.039,
+   "gp_margin": 0.4352722074433861
+  }
+ },
+ "unit": {
+  "rt_path": {
+   "FY25": 1656.0,
+   "FY26": 1761.0,
+   "FY27": 1861.0,
+   "FY28": 1951.0,
+   "FY29": 2031.0,
+   "FY30": 2101.0
+  },
+  "rt_avg": {
+   "FY26": 1708.5,
+   "FY27": 1811.0,
+   "FY28": 1906.0,
+   "FY29": 1991.0,
+   "FY30": 2066.0
+  },
+  "cons_per_rt25": 1.1942222222222223,
+  "cap_per_rt25": 0.9175654872749845,
+  "cons25": 1923.892,
+  "cap25": 1478.198,
+  "crux_shock": -0.06,
+  "ew_ratio": 0.7628546716759569,
+  "ew_ratio_fy24": 0.7245455365683915,
+  "other_cos25": 162.4189999999998,
+  "ga_cash25": 236.074,
+  "dep_cos25": 359.214,
+  "dep_ga25": 10.503,
+  "capex_per_rt": 4.889322222222222,
+  "dep_rate": 0.050348955563561094,
+  "amort_flat": 17.517999999999972,
+  "maint_pct": 0.008,
+  "nwc25": -1756.752,
+  "nwc_ratio": -0.5137747331035789,
+  "h2_share_25": 0.5749330857975775,
+  "fy26_seasonality_check": 3574.531324911434
+ },
+ "fcst": {
+  "years": [
+   "FY26",
+   "FY27",
+   "FY28",
+   "FY29",
+   "FY30"
+  ],
+  "base": {
+   "rev": {
+    "FY26": 3502.783581675978,
+    "FY27": 3841.6615418994415,
+    "FY28": 4042.281374301676,
+    "FY29": 4221.783329608939,
+    "FY30": 4380.167407821229
+   },
+   "cons": {
+    "FY26": 1917.9089466666667,
+    "FY27": 2162.7364444444447,
+    "FY28": 2276.1875555555557,
+    "FY29": 2377.6964444444448,
+    "FY30": 2467.2631111111114
+   },
+   "cap": {
+    "FY26": 1567.6606350093111,
+    "FY27": 1661.7110974549971,
+    "FY28": 1748.8798187461205,
+    "FY29": 1826.8728851644942,
+    "FY30": 1895.690296710118
+   },
+   "pipes": {
+    "FY26": 17.214,
+    "FY27": 17.214,
+    "FY28": 17.214,
+    "FY29": 17.214,
+    "FY30": 17.214
+   },
+   "ebitda": {
+    "FY26": 1702.4242468621976,
+    "FY27": 1842.6262898261489,
+    "FY28": 1944.5869127183187,
+    "FY29": 2034.327546786025,
+    "FY30": 2111.840169113429
+   },
+   "ew": {
+    "FY26": 1463.0857998137803,
+    "FY27": 1649.8536002482933,
+    "FY28": 1736.4003103662324,
+    "FY29": 1813.836840471757,
+    "FY30": 1882.1631905648667
+   },
+   "other_cos": {
+    "FY26": 166.47947499999978,
+    "FY27": 170.64146187499978,
+    "FY28": 174.90749842187475,
+    "FY29": 179.2801858824216,
+    "FY30": 183.76219052948213
+   },
+   "ga": {
+    "FY26": 241.97584999999998,
+    "FY27": 248.02524624999998,
+    "FY28": 254.22587740624994,
+    "FY29": 260.5815243414062,
+    "FY30": 267.0960624499413
+   },
+   "intco": {
+    "FY26": 56.55779,
+    "FY27": 54.8610563,
+    "FY28": 53.215224611,
+    "FY29": 51.61876787267,
+    "FY30": 50.07020483648989
+   },
+   "dna": {
+    "FY26": 379.7782317902664,
+    "FY27": 390.2849773985079,
+    "FY28": 399.1159119673554,
+    "FY29": 405.111143007536,
+    "FY30": 408.3907596017767
+   },
+   "capex": {
+    "FY26": 570.9387533333334,
+    "FY27": 548.1615703945668,
+    "FY28": 500.671504916313,
+    "FY29": 452.7308714376824,
+    "FY30": 404.35875104290136
+   },
+   "ppe": {
+    "FY26": 7403.668521543067,
+    "FY27": 7579.063114539126,
+    "FY28": 7698.136707488084,
+    "FY29": 7763.27443591823,
+    "FY30": 7776.760427359354
+   },
+   "nwc": {
+    "FY26": -1799.6416997951737,
+    "FY27": -1973.748633363669,
+    "FY28": -2076.822034211412,
+    "FY29": -2169.0456033909713,
+    "FY30": -2250.419340902347
+   },
+   "dnwc": {
+    "FY26": -42.88969979517378,
+    "FY27": -174.10693356849515,
+    "FY28": -103.07340084774296,
+    "FY29": -92.22356917955949,
+    "FY30": -81.37373751137557
+   }
+  },
+  "persist": {
+   "rev": {
+    "FY26": 3502.783581675978,
+    "FY27": 3711.897355232775,
+    "FY28": 3905.7101209683424,
+    "FY29": 4079.121542942272,
+    "FY30": 4232.131621154563
+   },
+   "ebitda": {
+    "FY26": 1702.4242468621976,
+    "FY27": 1811.8533191743802,
+    "FY28": 1912.1996780069594,
+    "FY29": 2000.4959705476633,
+    "FY30": 2076.7341738806545
+   },
+   "dna": {
+    "FY26": 379.7782317902664,
+    "FY27": 390.2849773985079,
+    "FY28": 399.1159119673554,
+    "FY29": 405.111143007536,
+    "FY30": 408.3907596017767
+   },
+   "capex": {
+    "FY26": 570.9387533333334,
+    "FY27": 548.1615703945668,
+    "FY28": 500.671504916313,
+    "FY29": 452.7308714376824,
+    "FY30": 404.35875104290136
+   },
+   "dnwc": {
+    "FY26": -42.88969979517378,
+    "FY27": -107.43737319742581,
+    "FY28": -99.57610198785756,
+    "FY29": -89.09440704176768,
+    "FY30": -78.61271209567758
+   }
+  }
+ },
+ "wacc": {
+  "rf": 0.0448,
+  "rf_star_rating": 0.04087,
+  "rf_star_cds": 0.039599999999999996,
+  "beta": 0.652,
+  "erp_rating": 0.04811,
+  "erp_cds": 0.050083,
+  "ke_rating": 0.07223772,
+  "ke_cds": 0.07225411600000001,
+  "kd": 0.0492,
+  "kd_at_ct": 0.044772,
+  "kd_at_dmtt": 0.041819999999999996,
+  "we": 0.833727362148322,
+  "wd": 0.166272637851678,
+  "mktcap": 15000.0,
+  "net_debt": 2991.4930000000004,
+  "rating_ct": 0.06767092228510442,
+  "cds_ct": 0.06768459207893421,
+  "rating_dmtt": 0.06718008545816626,
+  "cds_dmtt": 0.06719375525199606
+ },
+ "dcf": {
+  "base_ct": {
+   "label": "base / 9% CT / rating-basis ERP",
+   "ebit": {
+    "FY26": 1322.6460150719313,
+    "FY27": 1452.341312427641,
+    "FY28": 1545.4710007509634,
+    "FY29": 1629.2164037784892,
+    "FY30": 1703.4494095116524
+   },
+   "nopat": {
+    "FY26": 1203.6078737154576,
+    "FY27": 1321.6305943091534,
+    "FY28": 1406.3786106833768,
+    "FY29": 1482.5869274384252,
+    "FY30": 1550.1389626556038
+   },
+   "fcff": {
+    "FY26": 1055.3370519675643,
+    "FY27": 1337.8609348815896,
+    "FY28": 1407.896418582162,
+    "FY29": 1527.190768187838,
+    "FY30": 1635.5447087258547
+   },
+   "df": {
+    "FY26": 0.9366181836812879,
+    "FY27": 0.8772536220024348,
+    "FY28": 0.8216516940677515,
+    "FY29": 0.7695739173163908,
+    "FY30": 0.7207969246453715
+   },
+   "pv": {
+    "FY26": 988.447872785425,
+    "FY27": 1173.6433508604382,
+    "FY28": 1156.8004773999535,
+    "FY29": 1175.2861819637426,
+    "FY30": 1178.8955961696058
+   },
+   "pv_explicit": 5673.073479179166,
+   "roic_term": 0.23218390770957895,
+   "rr_term": 0.10767326748273436,
+   "tv": 33226.63585540693,
+   "pv_tv": 23949.656940888948,
+   "tv_share": 0.8084891771038126,
+   "ev": 29622.730420068114,
+   "nci_val": 285.20239148011,
+   "eq_attr": 26642.726028588004,
+   "ps": 2.6642726028588
+  },
+  "base_dmtt": {
+   "label": "base / 15% DMTT / rating-basis ERP",
+   "ebit": {
+    "FY26": 1322.6460150719313,
+    "FY27": 1452.341312427641,
+    "FY28": 1545.4710007509634,
+    "FY29": 1629.2164037784892,
+    "FY30": 1703.4494095116524
+   },
+   "nopat": {
+    "FY26": 1124.2491128111415,
+    "FY27": 1234.4901155634948,
+    "FY28": 1313.650350638319,
+    "FY29": 1384.8339432117157,
+    "FY30": 1447.9319980849045
+   },
+   "fcff": {
+    "FY26": 975.9782910632482,
+    "FY27": 1250.720456135931,
+    "FY28": 1315.1681585371043,
+    "FY29": 1429.4377839611286,
+    "FY30": 1533.3377441551554
+   },
+   "df": {
+    "FY26": 0.9370489701095535,
+    "FY27": 0.8780607723833748,
+    "FY28": 0.8227859424554405,
+    "FY29": 0.7709907199984888,
+    "FY30": 0.722456060138607
+   },
+   "pv": {
+    "FY26": 914.5394524900987,
+    "FY27": 1098.2085697504024,
+    "FY28": 1082.1018728093375,
+    "FY29": 1102.0832662492348,
+    "FY30": 1107.769145504153
+   },
+   "pv_explicit": 5304.702306803227,
+   "roic_term": 0.2168750786298265,
+   "rr_term": 0.11527373342269207,
+   "tv": 31129.596904179667,
+   "pv_tv": 22489.76593309662,
+   "tv_share": 0.8091453932121587,
+   "ev": 27794.46823989985,
+   "nci_val": 265.83867593903494,
+   "eq_attr": 24833.82756396081,
+   "ps": 2.483382756396081
+  },
+  "pers_ct": {
+   "label": "consumption-persists / 9% CT",
+   "ebit": {
+    "FY26": 1322.6460150719313,
+    "FY27": 1421.5683417758723,
+    "FY28": 1513.0837660396041,
+    "FY29": 1595.3848275401274,
+    "FY30": 1668.3434142788778
+   },
+   "nopat": {
+    "FY26": 1203.6078737154576,
+    "FY27": 1293.627191016044,
+    "FY28": 1376.9062270960399,
+    "FY29": 1451.800193061516,
+    "FY30": 1518.1925069937788
+   },
+   "fcff": {
+    "FY26": 1055.3370519675643,
+    "FY27": 1243.187971217411,
+    "FY28": 1374.9267361349396,
+    "FY29": 1493.274871673137,
+    "FY30": 1600.8372276483317
+   },
+   "df": {
+    "FY26": 0.9366181836812879,
+    "FY27": 0.8772536220024348,
+    "FY28": 0.8216516940677515,
+    "FY29": 0.7695739173163908,
+    "FY30": 0.7207969246453715
+   },
+   "pv": {
+    "FY26": 988.447872785425,
+    "FY27": 1090.5911505803324,
+    "FY28": 1129.7108819643174,
+    "FY29": 1149.185392623627,
+    "FY30": 1153.87855054674
+   },
+   "pv_explicit": 5511.813848500442,
+   "roic_term": 0.22739888321066165,
+   "rr_term": 0.10993897440050343,
+   "tv": 32459.24871447322,
+   "pv_tv": 23396.526649691525,
+   "tv_share": 0.8093348233239064,
+   "ev": 28908.340498191967,
+   "nci_val": 277.63605696710954,
+   "eq_attr": 25935.902441224855,
+   "ps": 2.5935902441224856
+  },
+  "pers_dmtt": {
+   "label": "consumption-persists / 15% DMTT",
+   "ebit": {
+    "FY26": 1322.6460150719313,
+    "FY27": 1421.5683417758723,
+    "FY28": 1513.0837660396041,
+    "FY29": 1595.3848275401274,
+    "FY30": 1668.3434142788778
+   },
+   "nopat": {
+    "FY26": 1124.2491128111415,
+    "FY27": 1208.3330905094915,
+    "FY28": 1286.1212011336636,
+    "FY29": 1356.0771034091083,
+    "FY30": 1418.0919021370462
+   },
+   "fcff": {
+    "FY26": 975.9782910632482,
+    "FY27": 1157.8938707108584,
+    "FY28": 1284.1417101725635,
+    "FY29": 1397.5517820207294,
+    "FY30": 1500.7366227915993
+   },
+   "df": {
+    "FY26": 0.9370489701095535,
+    "FY27": 0.8780607723833748,
+    "FY28": 0.8227859424554405,
+    "FY29": 0.7709907199984888,
+    "FY30": 0.722456060138607
+   },
+   "pv": {
+    "FY26": 914.5394524900987,
+    "FY27": 1016.7011864543518,
+    "FY28": 1056.5737472506737,
+    "FY29": 1077.4994546553332,
+    "FY30": 1084.2162678077375
+   },
+   "pv_explicit": 5149.530108658195,
+   "roic_term": 0.21240555025171692,
+   "rr_term": 0.11769937259348015,
+   "tv": 30404.465648177596,
+   "pv_tv": 21965.890462802003,
+   "tv_share": 0.8100885031420744,
+   "ev": 27115.4205714602,
+   "nci_val": 258.6466626527975,
+   "eq_attr": 24161.971908807398,
+   "ps": 2.4161971908807396
+  },
+  "base_cds": {
+   "label": "base / 9% CT / CDS-basis ERP",
+   "ebit": {
+    "FY26": 1322.6460150719313,
+    "FY27": 1452.341312427641,
+    "FY28": 1545.4710007509634,
+    "FY29": 1629.2164037784892,
+    "FY30": 1703.4494095116524
+   },
+   "nopat": {
+    "FY26": 1203.6078737154576,
+    "FY27": 1321.6305943091534,
+    "FY28": 1406.3786106833768,
+    "FY29": 1482.5869274384252,
+    "FY30": 1550.1389626556038
+   },
+   "fcff": {
+    "FY26": 1055.3370519675643,
+    "FY27": 1337.8609348815896,
+    "FY28": 1407.896418582162,
+    "FY29": 1527.190768187838,
+    "FY30": 1635.5447087258547
+   },
+   "df": {
+    "FY26": 0.9366061919586732,
+    "FY27": 0.8772311588153271,
+    "FY28": 0.8216201351255177,
+    "FY29": 0.7695345059964817,
+    "FY30": 0.7207507832421636
+   },
+   "pv": {
+    "FY26": 988.4352174762329,
+    "FY27": 1173.6132982399338,
+    "FY28": 1156.7560456782082,
+    "FY29": 1175.2259933598152,
+    "FY30": 1178.820129841736
+   },
+   "pv_explicit": 5672.850684595926,
+   "roic_term": 0.23218390770957895,
+   "rr_term": 0.10767326748273436,
+   "tv": 33215.99498384932,
+   "pv_tv": 23940.454400777173,
+   "tv_share": 0.8084357464240653,
+   "ev": 29613.3050853731,
+   "nci_val": 285.10256471462014,
+   "eq_attr": 26633.40052065848,
+   "ps": 2.663340052065848
+  },
+  "bear": {
+   "label": "BEAR: re-escalation / persist-6% / 50k RT / 15% / +100bp",
+   "ebit": {
+    "FY26": 1290.0921350595163,
+    "FY27": 1312.7568451101658,
+    "FY28": 1359.0193669061737,
+    "FY29": 1400.338440702089,
+    "FY30": 1436.6591265536613
+   },
+   "nopat": {
+    "FY26": 1096.5783148005887,
+    "FY27": 1115.843318343641,
+    "FY28": 1155.1664618702475,
+    "FY29": 1190.2876745967756,
+    "FY30": 1221.160257570612
+   },
+   "fcff": {
+    "FY26": 1188.3955541731693,
+    "FY27": 1183.5521396666147,
+    "FY28": 1300.5159092800693,
+    "FY29": 1351.641243308817,
+    "FY30": 1397.6255727429316
+   },
+   "df": {
+    "FY26": 0.9297850858081251,
+    "FY27": 0.8645003057912226,
+    "FY28": 0.8037994910012425,
+    "FY29": 0.7473607787131176,
+    "FY30": 0.6948849057654033
+   },
+   "pv": {
+    "FY26": 1104.9524623108946,
+    "FY27": 1023.1811866616442,
+    "FY28": 1045.3540259183378,
+    "FY29": 1010.1636521400438,
+    "FY30": 971.1889144107898
+   },
+   "pv_explicit": 5154.8402414417105,
+   "roic_term": 0.20240895311008247,
+   "rr_term": 0.12351232302655832,
+   "tv": 21717.09359499294,
+   "pv_tv": 15090.880536255114,
+   "tv_share": 0.7453861831819588,
+   "ev": 20245.720777696824,
+   "nci_val": 185.88745223869108,
+   "eq_attr": 17365.031325458134,
+   "ps": 1.7365031325458133
+  },
+  "bull": {
+   "label": "BULL: recovery / 110k RT / 9% CT",
+   "ebit": {
+    "FY26": 1325.6054587094231,
+    "FY27": 1463.1181481736855,
+    "FY28": 1565.8459365985848,
+    "FY29": 1659.2914836431592,
+    "FY30": 1743.3223558556044
+   },
+   "nopat": {
+    "FY26": 1206.3009674255752,
+    "FY27": 1331.4375148380539,
+    "FY28": 1424.9198023047122,
+    "FY29": 1509.9552501152748,
+    "FY30": 1586.4233438286
+   },
+   "fcff": {
+    "FY26": 1036.2039583030933,
+    "FY27": 1308.039329567553,
+    "FY28": 1391.4562416078672,
+    "FY29": 1521.518625732454,
+    "FY30": 1640.6473329954904
+   },
+   "df": {
+    "FY26": 0.9366181836812879,
+    "FY27": 0.8772536220024348,
+    "FY28": 0.8216516940677515,
+    "FY29": 0.7695739173163908,
+    "FY30": 0.7207969246453715
+   },
+   "pv": {
+    "FY26": 970.5274693492042,
+    "FY27": 1147.4822395847725,
+    "FY28": 1143.2923781382506,
+    "FY29": 1170.9210490747762,
+    "FY30": 1182.57355205078
+   },
+   "pv_explicit": 5614.7966881977845,
+   "roic_term": 0.23203502783370197,
+   "rr_term": 0.10774235352912898,
+   "tv": 34001.74499050389,
+   "pv_tv": 24508.35322173137,
+   "tv_share": 0.8136052602404955,
+   "ev": 30123.149909929154,
+   "nci_val": 290.50249600449894,
+   "eq_attr": 27137.845413924653,
+   "ps": 2.7137845413924655
+  }
+ },
+ "scenarios": {
+  "bear": {
+   "rt_path": {
+    "FY25": 1656.0,
+    "FY26": 1706.0,
+    "FY27": 1756.0,
+    "FY28": 1801.0,
+    "FY29": 1841.0,
+    "FY30": 1876.0
+   },
+   "rev": {
+    "FY26": 3446.679886331471,
+    "FY27": 3432.096600339665,
+    "FY28": 3525.8036618741153,
+    "FY29": 3609.6468221944133,
+    "FY30": 3683.626081300559
+   },
+   "ebitda": {
+    "FY26": 1669.8703668497826,
+    "FY27": 1689.502347807031,
+    "FY28": 1732.86057341925,
+    "FY29": 1770.1674836048944,
+    "FY30": 1801.4150554481278
+   },
+   "wacc": 0.07551735907964949,
+   "ke": 0.08223772,
+   "tax": 0.15
+  },
+  "bull": {
+   "rt_path": {
+    "FY25": 1656.0,
+    "FY26": 1766.0,
+    "FY27": 1876.0,
+    "FY28": 1976.0,
+    "FY29": 2066.0,
+    "FY30": 2146.0
+   },
+   "rev": {
+    "FY26": 3507.8839176163874,
+    "FY27": 3862.7794189944134,
+    "FY28": 4084.5171284916205,
+    "FY29": 4285.136960893855,
+    "FY30": 4464.638916201117
+   },
+   "ebitda": {
+    "FY26": 1705.3836904996895,
+    "FY27": 1854.6339869087064,
+    "FY28": 1968.6023068834343,
+    "FY29": 2070.3506380336967,
+    "FY30": 2159.8709574436584
+   },
+   "wacc": 0.06767092228510442,
+   "tax": 0.09
+  }
+ },
+ "lenses": {
+  "dcf": {
+   "ps": 2.6642726028588,
+   "ps_dmtt": 2.483382756396081,
+   "weight": 0.5
+  },
+  "relative": {
+   "ps": 1.535674805922978,
+   "ps_pe": 1.7014930394181351,
+   "weight": 0.2
+  },
+  "normalized": {
+   "ps": 2.094019710209995,
+   "weight": 0.15
+  },
+  "book": {
+   "ps": 1.9799755433537913,
+   "weight": 0.15
+  }
+ },
+ "rel": {
+  "tabreed_ev_ebitda": 10.7,
+  "tabreed_pe": 16.6,
+  "dewa_pe": 16.8,
+  "ev_rel": 18215.939441425515,
+  "ps_rel": 1.535674805922978,
+  "ps_pe": 1.7014930394181351,
+  "np26": 1035.9680795754575,
+  "npa26": 1024.9958068783947
+ },
+ "norm": {
+  "rev": 3625.203301675978,
+  "ebitda": 1731.455511554935,
+  "npa": 1051.1344513986683,
+  "eps": 0.10511344513986683,
+  "pe_just": 19.92152105207507,
+  "ps": 2.094019710209995
+ },
+ "book": {
+  "bvps": 0.3337585,
+  "roe_sust": 0.3052311561317368,
+  "pb_just": 5.932359905002543,
+  "ps": 1.9799755433537913
+ },
+ "ddm": {
+  "dps": 0.0875,
+  "ps": 1.8986415940481458,
+  "policy_mn": 875.0
+ },
+ "dewa_buyin": {
+  "price": 2.16,
+  "date": "2026-02-11",
+  "note": "related-party CONTROL price for Dubai Holding's 24% \u2014 a disclosed reference point, never fair value"
+ },
+ "central": {
+  "ct": 2.250370550648564,
+  "dmtt": 2.139194832286125,
+  "bear": 1.7365031325458133,
+  "bull": 2.7137845413924655,
+  "spot": 1.5
+ },
+ "sens_wg": {
+  "g_grid": [
+   0.015,
+   0.02,
+   0.025,
+   0.03,
+   0.035
+  ],
+  "wacc_grid": [
+   0.05767092228510442,
+   0.06267092228510442,
+   0.06767092228510442,
+   0.07267092228510443,
+   0.07767092228510442
+  ],
+  "table": [
+   [
+    2.8893989431740774,
+    3.1784251779540513,
+    3.5551535236846417,
+    4.067126004831267,
+    4.803825616647874
+   ],
+   [
+    2.5568589626220177,
+    2.7751234859173755,
+    3.050680826953244,
+    3.409835485449838,
+    3.8979043376930576
+   ],
+   [
+    2.287409458845967,
+    2.4563269429907204,
+    2.6642726028588,
+    2.926786876547773,
+    3.2689235167546213
+   ],
+   [
+    2.064643211653873,
+    2.197973465095917,
+    2.358784740062372,
+    2.5567373696510765,
+    2.8066204879086394
+   ],
+   [
+    1.877388891476937,
+    1.9843454329813426,
+    2.111177135408709,
+    2.2641378616916934,
+    2.452412680651062
+   ]
+  ]
+ },
+ "crux": {
+  "levels": [
+   0.9,
+   0.94,
+   0.97,
+   1.0,
+   1.03
+  ],
+  "rows": [
+   {
+    "level": 0.9,
+    "ps": 2.54646867163161
+   },
+   {
+    "level": 0.94,
+    "ps": 2.5935902441224856
+   },
+   {
+    "level": 0.97,
+    "ps": 2.6289314234906414
+   },
+   {
+    "level": 1.0,
+    "ps": 2.6642726028588
+   },
+   {
+    "level": 1.03,
+    "ps": 2.6996137822269572
+   }
+  ],
+  "persist_ps_ct": 2.5935902441224856,
+  "persist_ps_dmtt": 2.4161971908807396
+ },
+ "step0": {
+  "windows": 10,
+  "first_origin": "2023-11-30",
+  "last_origin": "2026-03-04",
+  "span_years": 2.26,
+  "skill_norm": -0.04166903483918971,
+  "verdict": "FAIL",
+  "ci_blocks": {
+   "2": [
+    -0.0552,
+    -0.0162,
+    "FAIL"
+   ],
+   "3": [
+    -0.0515,
+    -0.017,
+    "FAIL"
+   ],
+   "4": [
+    -0.0502,
+    -0.0145,
+    "FAIL"
+   ]
+  },
+  "cov50": 0.6,
+  "cov80": 1.0,
+  "cov90": 1.0,
+  "pit_mean": 0.46122500000000005,
+  "pit_hist": [
+   0,
+   0,
+   4,
+   1,
+   1,
+   0,
+   2,
+   1,
+   1,
+   0
+  ],
+  "chi2_p": 0.122,
+  "ks_p": 0.63,
+  "width_vs_benchmark": 1.2818608962108222,
+  "market_gate": {
+   "verdict": "PARITY",
+   "skill": 0.0068,
+   "ci90": [
+    -0.001,
+    0.014
+   ],
+   "panel": 18,
+   "fit_date": "2026-07-29"
+  }
+ },
+ "strike": {
+  "anchor_date": "2026-08-07",
+  "spot": 1.5,
+  "nu": 10.0,
+  "width_cal": 0.979,
+  "width_overlay_mult": 1.0,
+  "rf_live": 0.0365,
+  "q_annual": 0.0583,
+  "horizons": {
+   "1M": {
+    "h": 20,
+    "target_date": "2026-09-07",
+    "grade_date": "2026-09-07",
+    "anchor_vol_ann": 0.30356068079755527,
+    "sigma_h": 0.0837226444415026,
+    "drift_log_h": -0.0017505974924589215,
+    "pct": {
+     "p5": 1.307778353533964,
+     "p25": 1.4214639079070368,
+     "p50": 1.4973046983980258,
+     "p75": 1.577608508784234,
+     "p95": 1.710596211715144
+    },
+    "p_above": 0.49096,
+    "p_up10": 0.10862,
+    "p_dn10": 0.09634,
+    "touch_up10": 0.18294,
+    "touch_dn10": 0.15638
+   },
+   "3M": {
+    "h": 63,
+    "target_date": "2026-11-07",
+    "grade_date": "2026-11-09",
+    "anchor_vol_ann": 0.3163850413636488,
+    "sigma_h": 0.1548704777475061,
+    "drift_log_h": -0.005251792477376765,
+    "pct": {
+     "p5": 1.1631291473183034,
+     "p25": 1.3569288334501248,
+     "p50": 1.4935900629128547,
+     "p75": 1.6434800772133427,
+     "p95": 1.9204095977345932
+    },
+    "p_above": 0.48788,
+    "p_up10": 0.2411,
+    "p_dn10": 0.23902,
+    "touch_up10": 0.45114,
+    "touch_dn10": 0.4303
+   }
+  }
+ },
+ "beta_reg": {
+  "beta": 0.651569693939167,
+  "r2": 0.15720515440205796,
+  "n": 190,
+  "se": 0.11002959036369793,
+  "ci90": [
+   0.47057101779088384,
+   0.8325683700874501
+  ],
+  "usable": true,
+  "gate_msg": "passes minimum usability gate",
+  "index": "DFMGI (DFM General Index)",
+  "window": [
+   "2022-11-25",
+   "2026-07-17"
+  ],
+  "window_years": 3.64,
+  "frequency": "weekly",
+  "weak": false,
+  "warnings": []
+ },
+ "assert_log": [
+  "PASS: gross-profit identity FY2025 \u2014 rev+intco-cos = 1488.328 vs gp 1488.328",
+  "PASS: EBITDA unit-identity reconciles to audited FY2025 \u2014 build 1642.229 vs audited op+dna 1642.229 (gap +0.000, inside note rounding)",
+  "PASS: net debt reproduces the company's own 2,991 \u2014 computed 2991.493 vs deck 2991.0",
+  "PASS: Kd integrity triple \u2014 kd 0.0492 > sovereign 0.0448 > rf* 0.0409",
+  "PASS: both-ERP-basis Ke converge (<30bp) \u2014 rating 0.0722 vs CDS 0.0723",
+  "PASS: terminal ROIC-consistent \u2014 roic_term 0.232, rr 0.108, wacc 0.0677",
+  "PASS: FY2026E revenue consistent with H1 print (\u00b14%) \u2014 model 3502.8 vs same-seasonality projection 3574.5",
+  "PASS: crux monotonic \u2014 fair value rises with the consumption recovery level",
+  "PASS: dual-framing spread is material and DISCLOSED \u2014 9% CT 2.664 vs 15% DMTT 2.483 \u2014 both published side by side"
+ ]
+}

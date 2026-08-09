@@ -13,7 +13,7 @@ import market_profiles as MP
 import horizons as HZ
 import adaptive_width as AW
 
-Q_ANNUAL = 0.0567   # PLACEHOLDER pending FY2025 dividend confirmation — will be finalised before delivery
+Q_ANNUAL = 0.0583   # AED 875m/yr policy 2025-26 (H1-2026 IR deck p12; FY2025 FS note: 2x 0.04375 paid) on 10,000m shares = DPS 0.0875; / spot 1.50 (07-Aug-2026)
 
 prof = MP.PROFILES['AE']
 raw = load_ohlc(os.path.join(HERE, 'EMPOWER_Stock_Price_History.csv'))
