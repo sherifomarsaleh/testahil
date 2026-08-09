@@ -11,98 +11,8 @@ const FV_OVERLAY = {
   "rf_live": 0.195,
   "width_overlay_active": true
  },
- "n": 31,
+ "n": 37,
  "rows": [
-  {
-   "ticker": "EFID",
-   "name": "Edita Food Industries",
-   "code": "EGX:EFID",
-   "ccy": "EGP",
-   "spot": 27.7,
-   "anchor_date": "2026-07-22",
-   "fv_asof": "2026-07-03",
-   "fv_lag_days": 19,
-   "fv_stale": false,
-   "fv_bear": 16.41,
-   "fv_base": 27.68,
-   "fv_full": 42.78,
-   "gap_base_pct": -0.1,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 6.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.107191,
-    "mu_h": 0.014693,
-    "G": {
-     "bear": -4.88,
-     "base": -0.01,
-     "full": 4.05
-    },
-    "band": "IN-REACH",
-    "informative": false,
-    "already_converged": true,
-    "p_term": {
-     "bear": 0.0004,
-     "base": 0.433,
-     "full": 0.0015
-    },
-    "p_touch": {
-     "bear": 0.0008,
-     "base": 0.8452,
-     "full": 0.002
-    },
-    "required_cagr": {
-     "bear": -0.9981,
-     "base": -0.0086,
-     "full": 183.1332
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.0018
-   },
-   "3M": {
-    "h_sessions": 61,
-    "sigma_h": 0.208438,
-    "mu_h": 0.046208,
-    "G": {
-     "bear": -2.51,
-     "base": -0.0,
-     "full": 2.09
-    },
-    "band": "IN-REACH",
-    "informative": false,
-    "already_converged": true,
-    "p_term": {
-     "bear": 0.0077,
-     "base": 0.396,
-     "full": 0.0313
-    },
-    "p_touch": {
-     "bear": 0.0145,
-     "base": 0.9015,
-     "full": 0.0491
-    },
-    "required_cagr": {
-     "bear": -0.8768,
-     "base": -0.0029,
-     "full": 4.6891
-    },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00303
-   }
-  },
   {
    "ticker": "HELI",
    "name": "Heliopolis Housing",
@@ -113,6 +23,7 @@ const FV_OVERLAY = {
    "fv_asof": "2026-07-03",
    "fv_lag_days": 19,
    "fv_stale": false,
+   "fv_asof_in_closure": false,
    "fv_bear": 5.2,
    "fv_base": 8.4,
    "fv_full": 11.82,
@@ -203,6 +114,7 @@ const FV_OVERLAY = {
    "fv_asof": "2026-06-24",
    "fv_lag_days": 33,
    "fv_stale": false,
+   "fv_asof_in_closure": false,
    "fv_bear": 16.72,
    "fv_base": 26.43,
    "fv_full": 30.77,
@@ -293,6 +205,7 @@ const FV_OVERLAY = {
    "fv_asof": "2026-07-01",
    "fv_lag_days": 21,
    "fv_stale": false,
+   "fv_asof_in_closure": false,
    "fv_bear": 23,
    "fv_base": 27.7,
    "fv_full": 33.6,
@@ -383,6 +296,7 @@ const FV_OVERLAY = {
    "fv_asof": "2026-06-11",
    "fv_lag_days": 41,
    "fv_stale": false,
+   "fv_asof_in_closure": false,
    "fv_bear": 7.62,
    "fv_base": 15.89,
    "fv_full": 24.92,
@@ -473,6 +387,7 @@ const FV_OVERLAY = {
    "fv_asof": "2026-06-30",
    "fv_lag_days": 22,
    "fv_stale": false,
+   "fv_asof_in_closure": false,
    "fv_bear": 3.296,
    "fv_base": 5.89,
    "fv_full": 8.601,
@@ -563,6 +478,7 @@ const FV_OVERLAY = {
    "fv_asof": "2026-07-06",
    "fv_lag_days": 15,
    "fv_stale": false,
+   "fv_asof_in_closure": false,
    "fv_bear": 26,
    "fv_base": 37,
    "fv_full": 51,
@@ -644,6 +560,97 @@ const FV_OVERLAY = {
    }
   },
   {
+   "ticker": "ARCC",
+   "name": "Arabian Cement",
+   "code": "EGX:ARCC",
+   "ccy": "EGP",
+   "spot": 59,
+   "anchor_date": "2026-08-06",
+   "fv_asof": "2026-08-08",
+   "fv_lag_days": -2,
+   "fv_stale": false,
+   "fv_asof_in_closure": true,
+   "fv_bear": 49.53,
+   "fv_base": 54.65,
+   "fv_full": 61.71,
+   "gap_base_pct": -7.4,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 6.0,
+    "width_cal": 0.951,
+    "width_overlay_active": true,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.103679,
+    "mu_h": 0.007598,
+    "G": {
+     "bear": -1.69,
+     "base": -0.74,
+     "full": 0.43
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0372,
+     "base": 0.1792,
+     "full": 0.3374
+    },
+    "p_touch": {
+     "bear": 0.0593,
+     "base": 0.3103,
+     "full": 0.5573
+    },
+    "required_cagr": {
+     "bear": -0.8775,
+     "base": -0.6011,
+     "full": 0.7141
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00163
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.201222,
+    "mu_h": 0.024445,
+    "G": {
+     "bear": -0.87,
+     "base": -0.38,
+     "full": 0.22
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.1352,
+     "base": 0.2806,
+     "full": 0.4525
+    },
+    "p_touch": {
+     "bear": 0.255,
+     "base": 0.5599,
+     "full": 0.7751
+    },
+    "required_cagr": {
+     "bear": -0.5033,
+     "base": -0.2639,
+     "full": 0.1968
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00249
+   }
+  },
+  {
    "ticker": "BTFH",
    "name": "Beltone Financial Holding",
    "code": "EGX:BTFH",
@@ -653,6 +660,7 @@ const FV_OVERLAY = {
    "fv_asof": "2026-07-03",
    "fv_lag_days": 19,
    "fv_stale": false,
+   "fv_asof_in_closure": false,
    "fv_bear": 1.89,
    "fv_base": 2.88,
    "fv_full": 4.13,
@@ -743,6 +751,7 @@ const FV_OVERLAY = {
    "fv_asof": "2026-07-03",
    "fv_lag_days": 19,
    "fv_stale": false,
+   "fv_asof_in_closure": false,
    "fv_bear": 31.6,
    "fv_base": 54.3,
    "fv_full": 95.3,
@@ -833,6 +842,7 @@ const FV_OVERLAY = {
    "fv_asof": "2026-07-01",
    "fv_lag_days": 21,
    "fv_stale": false,
+   "fv_asof_in_closure": false,
    "fv_bear": 22,
    "fv_base": 26,
    "fv_full": 33,
@@ -923,6 +933,7 @@ const FV_OVERLAY = {
    "fv_asof": "2026-07-08",
    "fv_lag_days": 14,
    "fv_stale": false,
+   "fv_asof_in_closure": false,
    "fv_bear": 23.3,
    "fv_base": 35.7,
    "fv_full": 51,
@@ -1013,6 +1024,7 @@ const FV_OVERLAY = {
    "fv_asof": "2026-07-03",
    "fv_lag_days": 19,
    "fv_stale": false,
+   "fv_asof_in_closure": false,
    "fv_bear": 82,
    "fv_base": 118,
    "fv_full": 160,
@@ -1103,6 +1115,7 @@ const FV_OVERLAY = {
    "fv_asof": "2026-07-01",
    "fv_lag_days": 21,
    "fv_stale": false,
+   "fv_asof_in_closure": false,
    "fv_bear": 16.7,
    "fv_base": 20.9,
    "fv_full": 29.7,
@@ -1193,6 +1206,7 @@ const FV_OVERLAY = {
    "fv_asof": "2026-07-06",
    "fv_lag_days": 16,
    "fv_stale": false,
+   "fv_asof_in_closure": false,
    "fv_bear": 5.92,
    "fv_base": 8.23,
    "fv_full": 11.51,
@@ -1283,6 +1297,7 @@ const FV_OVERLAY = {
    "fv_asof": "2026-07-03",
    "fv_lag_days": 19,
    "fv_stale": false,
+   "fv_asof_in_closure": false,
    "fv_bear": 183,
    "fv_base": 250,
    "fv_full": 358,
@@ -1373,6 +1388,7 @@ const FV_OVERLAY = {
    "fv_asof": "2026-07-01",
    "fv_lag_days": 21,
    "fv_stale": false,
+   "fv_asof_in_closure": false,
    "fv_bear": 50,
    "fv_base": 60,
    "fv_full": 72,
@@ -1463,6 +1479,7 @@ const FV_OVERLAY = {
    "fv_asof": "2026-06-29",
    "fv_lag_days": 29,
    "fv_stale": false,
+   "fv_asof_in_closure": false,
    "fv_bear": 90.86,
    "fv_base": 123.3,
    "fv_full": 169.7,
@@ -1544,6 +1561,97 @@ const FV_OVERLAY = {
    }
   },
   {
+   "ticker": "SCEM",
+   "name": "Sinai Cement Company S.A.E.",
+   "code": "EGX:SCEM",
+   "ccy": "EGP",
+   "spot": 79,
+   "anchor_date": "2026-08-06",
+   "fv_asof": "2026-08-06",
+   "fv_lag_days": 0,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 46.84,
+   "fv_base": 53.12,
+   "fv_full": 59.1,
+   "gap_base_pct": -32.8,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 6.0,
+    "width_cal": 0.951,
+    "width_overlay_active": true,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.160778,
+    "mu_h": 0.014702,
+    "G": {
+     "bear": -3.25,
+     "base": -2.47,
+     "full": -1.81
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0032,
+     "base": 0.0101,
+     "full": 0.0296
+    },
+    "p_touch": {
+     "bear": 0.0051,
+     "base": 0.0159,
+     "full": 0.0471
+    },
+    "required_cagr": {
+     "bear": -0.9981,
+     "base": -0.9915,
+     "full": -0.9693
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00263
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.291228,
+    "mu_h": 0.046739,
+    "G": {
+     "bear": -1.79,
+     "base": -1.36,
+     "full": -1.0
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0268,
+     "base": 0.0557,
+     "full": 0.1031
+    },
+    "p_touch": {
+     "bear": 0.048,
+     "base": 0.1032,
+     "full": 0.1947
+    },
+    "required_cagr": {
+     "bear": -0.8764,
+     "base": -0.7956,
+     "full": -0.6868
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00347
+   }
+  },
+  {
    "ticker": "ORAS",
    "name": "Orascom Construction",
    "code": "EGX:ORAS",
@@ -1553,6 +1661,7 @@ const FV_OVERLAY = {
    "fv_asof": "2026-06-30",
    "fv_lag_days": 29,
    "fv_stale": false,
+   "fv_asof_in_closure": false,
    "fv_bear": 740,
    "fv_base": 928,
    "fv_full": 1272,
@@ -1643,6 +1752,7 @@ const FV_OVERLAY = {
    "fv_asof": "2026-07-01",
    "fv_lag_days": 21,
    "fv_stale": false,
+   "fv_asof_in_closure": false,
    "fv_bear": 11.5,
    "fv_base": 14.7,
    "fv_full": 20.3,
@@ -1733,6 +1843,7 @@ const FV_OVERLAY = {
    "fv_asof": "2026-07-01",
    "fv_lag_days": 21,
    "fv_stale": false,
+   "fv_asof_in_closure": false,
    "fv_bear": 4.77,
    "fv_base": 5.56,
    "fv_full": 8.22,
@@ -1823,6 +1934,7 @@ const FV_OVERLAY = {
    "fv_asof": "2026-06-25",
    "fv_lag_days": 32,
    "fv_stale": false,
+   "fv_asof_in_closure": false,
    "fv_bear": 22.5,
    "fv_base": 53.79,
    "fv_full": 70.52,
@@ -1904,6 +2016,97 @@ const FV_OVERLAY = {
    }
   },
   {
+   "ticker": "SWDY",
+   "name": "Elsewedy Electric",
+   "code": "EGX:SWDY",
+   "ccy": "EGP",
+   "spot": 105.2,
+   "anchor_date": "2026-08-05",
+   "fv_asof": "2026-08-05",
+   "fv_lag_days": 0,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 19.95,
+   "fv_base": 69.73,
+   "fv_full": 138.73,
+   "gap_base_pct": -33.7,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 6.0,
+    "width_cal": 0.951,
+    "width_overlay_active": true,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.125282,
+    "mu_h": 0.01397,
+    "G": {
+     "bear": -13.27,
+     "base": -3.28,
+     "full": 2.21
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0,
+     "base": 0.003,
+     "full": 0.0212
+    },
+    "p_touch": {
+     "bear": 0.0,
+     "base": 0.0047,
+     "full": 0.0302
+    },
+    "required_cagr": {
+     "bear": -1.0,
+     "base": -0.9928,
+     "full": 26.6602
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00203
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.21355,
+    "mu_h": 0.043799,
+    "G": {
+     "bear": -7.79,
+     "base": -1.93,
+     "full": 1.3
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0,
+     "base": 0.0201,
+     "full": 0.1151
+    },
+    "p_touch": {
+     "bear": 0.0001,
+     "base": 0.0363,
+     "full": 0.1848
+    },
+    "required_cagr": {
+     "bear": -0.9987,
+     "base": -0.807,
+     "full": 2.0243
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00256
+   }
+  },
+  {
    "ticker": "ISPH",
    "name": "Ibnsina Pharma",
    "code": "EGX:ISPH",
@@ -1913,6 +2116,7 @@ const FV_OVERLAY = {
    "fv_asof": "2026-07-07",
    "fv_lag_days": 15,
    "fv_stale": false,
+   "fv_asof_in_closure": false,
    "fv_bear": 12.85,
    "fv_base": 17.78,
    "fv_full": 22.68,
@@ -1994,6 +2198,97 @@ const FV_OVERLAY = {
    }
   },
   {
+   "ticker": "AMOC",
+   "name": "Alexandria Mineral Oils",
+   "code": "EGX:AMOC",
+   "ccy": "EGP",
+   "spot": 9.1,
+   "anchor_date": "2026-08-06",
+   "fv_asof": "2026-08-08",
+   "fv_lag_days": -2,
+   "fv_stale": false,
+   "fv_asof_in_closure": true,
+   "fv_bear": 4.09,
+   "fv_base": 5.95,
+   "fv_full": 8.52,
+   "gap_base_pct": -34.6,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 6.0,
+    "width_cal": 0.951,
+    "width_overlay_active": true,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.109404,
+    "mu_h": 0.007663,
+    "G": {
+     "bear": -7.31,
+     "base": -3.88,
+     "full": -0.6
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0001,
+     "base": 0.0014,
+     "full": 0.221
+    },
+    "p_touch": {
+     "bear": 0.0001,
+     "base": 0.0025,
+     "full": 0.3882
+    },
+    "required_cagr": {
+     "bear": -0.9999,
+     "base": -0.9939,
+     "full": -0.5463
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00173
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.189769,
+    "mu_h": 0.024961,
+    "G": {
+     "bear": -4.21,
+     "base": -2.24,
+     "full": -0.35
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0009,
+     "base": 0.0136,
+     "full": 0.2896
+    },
+    "p_touch": {
+     "bear": 0.0015,
+     "base": 0.0245,
+     "full": 0.5853
+    },
+    "required_cagr": {
+     "bear": -0.9592,
+     "base": -0.8172,
+     "full": -0.2316
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00264
+   }
+  },
+  {
    "ticker": "TMGH",
    "name": "Talaat Moustafa Group Holding",
    "code": "EGX:TMGH",
@@ -2003,6 +2298,7 @@ const FV_OVERLAY = {
    "fv_asof": "2026-06-17",
    "fv_lag_days": 35,
    "fv_stale": false,
+   "fv_asof_in_closure": false,
    "fv_bear": 83.6,
    "fv_base": 147.12,
    "fv_full": 189.6,
@@ -2085,6 +2381,7 @@ const FV_OVERLAY = {
    "fv_asof": "2026-07-13",
    "fv_lag_days": 9,
    "fv_stale": false,
+   "fv_asof_in_closure": false,
    "fv_bear": 6.51,
    "fv_base": 9.21,
    "fv_full": 11.05,
@@ -2167,6 +2464,7 @@ const FV_OVERLAY = {
    "fv_asof": "2026-07-03",
    "fv_lag_days": 19,
    "fv_stale": false,
+   "fv_asof_in_closure": false,
    "fv_bear": 10.2,
    "fv_base": 14.16,
    "fv_full": 23.6,
@@ -2249,6 +2547,7 @@ const FV_OVERLAY = {
    "fv_asof": "2026-06-17",
    "fv_lag_days": 41,
    "fv_stale": false,
+   "fv_asof_in_closure": false,
    "fv_bear": 13.71,
    "fv_base": 19.84,
    "fv_full": 23.43,
@@ -2331,6 +2630,7 @@ const FV_OVERLAY = {
    "fv_asof": "2026-07-13",
    "fv_lag_days": 9,
    "fv_stale": false,
+   "fv_asof_in_closure": false,
    "fv_bear": 2.11,
    "fv_base": 2.77,
    "fv_full": 3.48,
@@ -2404,6 +2704,89 @@ const FV_OVERLAY = {
    }
   },
   {
+   "ticker": "PHAR",
+   "name": "Egyptian International Pharmaceutical Industries (EIPICO)",
+   "code": "EGX:PHAR",
+   "ccy": "EGP",
+   "spot": 130.05,
+   "anchor_date": "2026-08-06",
+   "fv_asof": "2026-08-09",
+   "fv_lag_days": -3,
+   "fv_stale": false,
+   "fv_asof_in_closure": true,
+   "fv_bear": 58.04,
+   "fv_base": 61.21,
+   "fv_full": 73.03,
+   "gap_base_pct": -52.9,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 6.0,
+    "width_cal": 0.951,
+    "width_overlay_active": true,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.150178,
+    "mu_h": 0.012532,
+    "G": {
+     "bear": -5.37,
+     "base": -5.02,
+     "full": -3.84
+    },
+    "band": "NOT-EXPRESSIBLE",
+    "informative": false,
+    "already_converged": false,
+    "p_term": null,
+    "p_touch": null,
+    "required_cagr": {
+     "bear": -0.9999,
+     "base": -0.9999,
+     "full": -0.999
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00243
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.226708,
+    "mu_h": 0.039576,
+    "G": {
+     "bear": -3.56,
+     "base": -3.32,
+     "full": -2.55
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0019,
+     "base": 0.0026,
+     "full": 0.0079
+    },
+    "p_touch": {
+     "bear": 0.0033,
+     "base": 0.0045,
+     "full": 0.0142
+    },
+    "required_cagr": {
+     "bear": -0.9603,
+     "base": -0.9509,
+     "full": -0.9006
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00266
+   }
+  },
+  {
    "ticker": "OIH",
    "name": "Orascom Investment Holding",
    "code": "EGX:OIH",
@@ -2413,6 +2796,7 @@ const FV_OVERLAY = {
    "fv_asof": "2026-07-03",
    "fv_lag_days": 19,
    "fv_stale": false,
+   "fv_asof_in_closure": false,
    "fv_bear": 0.53,
    "fv_base": 0.78,
    "fv_full": 1.7,
@@ -2495,6 +2879,7 @@ const FV_OVERLAY = {
    "fv_asof": "2026-07-19",
    "fv_lag_days": 3,
    "fv_stale": false,
+   "fv_asof_in_closure": false,
    "fv_bear": 0.59,
    "fv_base": 0.88,
    "fv_full": 1.2,
@@ -2569,6 +2954,7 @@ const FV_OVERLAY = {
    "fv_asof": "2026-07-06",
    "fv_lag_days": 16,
    "fv_stale": false,
+   "fv_asof_in_closure": false,
    "fv_bear": 1.42,
    "fv_base": 2.39,
    "fv_full": 3.52,
@@ -2634,6 +3020,81 @@ const FV_OVERLAY = {
    }
   },
   {
+   "ticker": "EGCH",
+   "name": "Egyptian Chemical Industries (KIMA)",
+   "code": "EGX:EGCH",
+   "ccy": "EGP",
+   "spot": 13.98,
+   "anchor_date": "2026-08-06",
+   "fv_asof": "2026-08-08",
+   "fv_lag_days": -2,
+   "fv_stale": false,
+   "fv_asof_in_closure": true,
+   "fv_bear": 0,
+   "fv_base": 3.64,
+   "fv_full": 15.47,
+   "gap_base_pct": -74.0,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 6.0,
+    "width_cal": 0.951,
+    "width_overlay_active": true,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.103671,
+    "mu_h": 0.01491,
+    "G": {
+     "bear": null,
+     "base": -12.98,
+     "full": 0.98
+    },
+    "band": "NOT-EXPRESSIBLE",
+    "informative": false,
+    "already_converged": false,
+    "p_term": null,
+    "p_touch": null,
+    "required_cagr": {
+     "bear": -1.0,
+     "base": -1.0,
+     "full": 2.3713
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00166
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.19804,
+    "mu_h": 0.04613,
+    "G": {
+     "bear": null,
+     "base": -6.79,
+     "full": 0.51
+    },
+    "band": "NOT-EXPRESSIBLE",
+    "informative": false,
+    "already_converged": false,
+    "p_term": null,
+    "p_touch": null,
+    "required_cagr": {
+     "bear": -1.0,
+     "base": -0.9954,
+     "full": 0.4995
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00234
+   }
+  },
+  {
    "ticker": "ELEC",
    "name": "Electro Cable Egypt",
    "code": "EGX:ELEC",
@@ -2643,6 +3104,7 @@ const FV_OVERLAY = {
    "fv_asof": "2026-08-05",
    "fv_lag_days": 0,
    "fv_stale": false,
+   "fv_asof_in_closure": false,
    "fv_bear": 0.18,
    "fv_base": 0.34,
    "fv_full": 0.95,
@@ -2705,6 +3167,97 @@ const FV_OVERLAY = {
     "beats_cash": false,
     "asymmetry": "base below p5",
     "selftest_max_dev": 0.00142
+   }
+  },
+  {
+   "ticker": "EFID",
+   "name": "Edita Food Industries",
+   "code": "EGX:EFID",
+   "ccy": "EGP",
+   "spot": 27.7,
+   "anchor_date": "2026-07-22",
+   "fv_asof": "2026-07-03",
+   "fv_lag_days": 19,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 16.41,
+   "fv_base": 27.68,
+   "fv_full": 42.78,
+   "gap_base_pct": -0.1,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 6.0,
+    "width_cal": 0.951,
+    "width_overlay_active": true,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.107191,
+    "mu_h": 0.014693,
+    "G": {
+     "bear": -4.88,
+     "base": -0.01,
+     "full": 4.05
+    },
+    "band": "IN-REACH",
+    "informative": false,
+    "already_converged": true,
+    "p_term": {
+     "bear": 0.0004,
+     "base": 0.433,
+     "full": 0.0015
+    },
+    "p_touch": {
+     "bear": 0.0008,
+     "base": 0.8452,
+     "full": 0.002
+    },
+    "required_cagr": {
+     "bear": -0.9981,
+     "base": -0.0086,
+     "full": 183.1332
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.0018
+   },
+   "3M": {
+    "h_sessions": 61,
+    "sigma_h": 0.208438,
+    "mu_h": 0.046208,
+    "G": {
+     "bear": -2.51,
+     "base": -0.0,
+     "full": 2.09
+    },
+    "band": "IN-REACH",
+    "informative": false,
+    "already_converged": true,
+    "p_term": {
+     "bear": 0.0077,
+     "base": 0.396,
+     "full": 0.0313
+    },
+    "p_touch": {
+     "bear": 0.0145,
+     "base": 0.9015,
+     "full": 0.0491
+    },
+    "required_cagr": {
+     "bear": -0.8768,
+     "base": -0.0029,
+     "full": 4.6891
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00303
    }
   }
  ]

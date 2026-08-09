@@ -63,9 +63,25 @@ These are binding. A run that breaks any of them is a HARD FAIL and must not be 
    signal. The socket for injection already exists (`mc_v3.py:114`,
    `alpha = ic × sigma_h × sign × clip(z)`) and stays empty until Phase C (§8) measures the `ic`
    that belongs in it.
-3. **Point-in-time only.** The overlay at `anchor_date` may use only a fair value **published on or
-   before `anchor_date`**. Never the current fair value applied to a past anchor. This is what
-   keeps Phase C free of look-ahead bias, and it must hold from the first run, not be retrofitted.
+3. **Point-in-time only.** The overlay at `anchor_date` may use only a fair value that could not
+   have seen a price the anchor does not carry. Never the current fair value applied to a past
+   anchor. This is what keeps Phase C free of look-ahead bias, and it must hold from the first run,
+   not be retrofitted.
+
+   **The test is TRADING SESSIONS, not calendar dates (amended 9-Aug-2026).** As first written the
+   invariant compared the two dates and blocked whenever `fv_asof > anchor_date`. That is the right
+   idea measured against the wrong clock: look-ahead is contamination by PRICE INFORMATION, and no
+   price information exists on a day the exchange is shut. A study signed on a Saturday against
+   Thursday's close has seen nothing the anchor has not. The date comparison blocked three live EGX
+   names at once — EGCH, ARCC and AMOC, fair value 2026-08-08 against anchor 2026-08-06, with EGX
+   closed on both the Friday and the Saturday — and dropped them off the Ticker Picker with no
+   reason a reader could see. The rule is now: block if **any real trading session falls strictly
+   after `anchor_date` and at or before `fv_asof`**, where "real trading session" comes from that
+   market's OWN raw OHLC library (`engine/raw_ohlc/{MARKET}/`), never from a weekday rule — EGX
+   trades Sunday to Thursday and the Gulf markets keep their own holidays. If the market has no
+   library to answer the question, **BLOCK**: an absent calendar is not evidence that no session
+   occurred. A fair value dated inside a closure is carried with `fv_asof_in_closure: true` and a
+   negative `fv_lag_days`, both recorded rather than clamped.
 4. **Append-only.** Overlay fields are added to a `LEDGER` row at strike and graded at that row's
    own `grade_date`. Never back-filled onto rows struck before adoption.
 5. **The overlay is graded, or it is not published.** An unfalsifiable overlay is decoration.
@@ -235,9 +251,17 @@ recommend exactly the wrong names for a 1–3 month horizon.
 ## 5. Procedure
 
 **Step 0 — Preconditions.** Cone struck under the current roll-forward cycle
-(`Rollforward_and_Grading_Protocol.md` Step 0). Fair value published on or before `anchor_date`.
-Both confirmed before anything is computed. If the fair value post-dates the anchor, **STOP** —
-that is a look-ahead violation, not a rounding issue.
+(`Rollforward_and_Grading_Protocol.md` Step 0). Fair value published with no trading session
+between it and `anchor_date` (invariant 3). Both confirmed before anything is computed. If a
+session traded in that window, **STOP** — that is a look-ahead violation, not a rounding issue.
+
+**A fair value of exactly zero is a value, not a missing number.** It is what a lens reports when
+the equity is worthless — the limited-liability floor, as EGCH's bear case published. Reading it as
+absent blocks the whole name (`if fair_raw.get(k)` is a truthiness test, and `0.00` is falsy); that
+is precisely what removed EGCH from the Ticker Picker. Test for PRESENCE. In log space a zero level
+is minus infinity, so every level-wise measure is taken at that limit rather than raising a domain
+error: `G` is `null`, `P(term)` and `P(touch)` are `0` (a lognormal path never reaches zero), and
+the required CAGR is `-100%`.
 
 **Step 1 — Load.** Pull `S0`, `sigma_h` (both horizons), `nu`, `h1`/`h3` from the panel and
 `horizons.resolve()`. Record whether `sigma_h` came from the panel or from quantile inversion.

@@ -74,22 +74,43 @@ without stopping to ask.
 	rows + your ticker's row), keep SITE.latest as main has it unless this is a genuine first publish
 	— a republish must not hijack the homepage hero — and only then regenerate the surfaces. Resolving
 	afterwards ships a feed and a market registry built against the wrong ticker set.
-•	Regenerate all four generated surfaces — none of them are hand-edited, and a missed one fails
+•	Regenerate all five generated surfaces — none of them are hand-edited, and a missed one fails
 	silently rather than loudly:
 	1. sitemap + homepage footer strip   node scripts/generate_seo.js
 	2. feed                              node scripts/generate_feed.js
 	3. market registry (exchange group)  python3 scripts/build_market_registry.py --write
-	4. page chart + technical read       python3 engine/ta_chart.py --only {TICKER} --write
+	4. Ticker Picker overlay (EG only)   python3 engine/fv_overlay.py --market EG --js assets/fv_overlay.js
+	5. page chart + technical read       python3 engine/ta_chart.py --only {TICKER} --write
 	                                     python3 engine/apply_technicals.py --only {TICKER} --write
-	(4 runs last — it rewrites the ticker's own data.js block, so the entry and page must exist first.)
-	OR JUST RUN THE SCRIPT, which does the sync, all four surfaces, both gates and the render check
+	(5 runs last — it rewrites the ticker's own data.js block, so the entry and page must exist first.)
+	OR JUST RUN THE SCRIPT, which does the sync, all five surfaces, both gates and the render check
 	in the right order and fails loudly on any of them:
 	    python3 scripts/publish_site.py --ticker {TICKER} [--republish]
+
+	**Surface 4 was missing from this list until 9-Aug-2026 and three publishes shipped broken
+	because of it.** picker.html reads `assets/fv_overlay.js`, which nothing in the publish path
+	regenerated, so SWDY, SCEM and EGCH all went live green and INVISIBLE on the Ticker Picker —
+	found only when a reader asked why a published name was not there. The overlay is fitted per
+	market and only EG has a fit today; for any other market the picker legitimately does not
+	carry the name, and the script says so rather than skipping silently.
 •	Render every deliverable to PDF first (python3 engine/make_pdf.py files/…) and point files.pdf at it.
 	The page surfaces ONLY the PDF — a missing pdf key leaves the download button pointing at "undefined".
 •	Verify by render, not by grep: load the ticker page and ledger.html headless and confirm the ticker
 	appears under its own exchange group. Then scripts/check_data_freshness.py and
 	scripts/check_page_integrity.py — both clean before you commit.
+•	Then verify EVERY register surface, not just those two:
+	    node scripts/check_ticker_surfaces.js {TICKER}
+	It renders stocks.html, trade.html, portfolio.html, ledger.html and (EGX names only) picker.html
+	and asserts the ticker is in the DOM a reader would see. Three of those never show their whole
+	register at rest — stocks paginates, Trade and Portfolio start empty behind a search combobox —
+	so the gate DRIVES each one the way a reader does: it types the ticker and reads back what
+	rendered. A resting-DOM check would pass whichever name happened to sort onto page one and fail
+	every older name for no reason. Pages deliberately excluded, with the reason: index.html (a hero
+	plus a curated selection, not a register), compare.html and calculator.html (both start empty and
+	are driven entirely by user input), news.html (dated items), archive.html (a hand-kept record of
+	past states, by construction not a live register), egypt.html (a 14-line redirect stub to
+	stocks.html despite the name), and method / metals / other-markets (prose and non-equity).
+	publish_site.py runs this gate as part of step 4/6 and dies on it.
 •	If any automated check (materiality gate, etc.) flags something, check in one step whether it's
 	actually about this ticker. If it's pre-existing and unrelated, proceed and just note it in passing —
 	don't investigate further. A red X on the calibration workflow is its designed behaviour (it fails the
@@ -301,9 +322,10 @@ Steps 1–4 are judgment and stay manual. Steps 5–9 are mechanical and are wha
    (Republish: registrations already exist; only the `coverage.js` numbers change.)
 5. **Merge `origin/main`** and resolve additively — before anything is regenerated.
 6. `build_market_registry.py --write`; `generate_seo.js`; `generate_feed.js`;
-   then `ta_chart.py` and `apply_technicals.py` (both `--only {TICKER} --write`) last,
-   because they rewrite the ticker's own block.
-7. Render-verify headless; run both gates.
+   `fv_overlay.py --market {MKT} --js assets/fv_overlay.js`; then `ta_chart.py` and
+   `apply_technicals.py` (both `--only {TICKER} --write`) last, because they rewrite
+   the ticker's own block.
+7. Render-verify headless; run both gates; run `check_ticker_surfaces.js {TICKER}`.
 8. Commit; push; open the PR; **merge to `main`**.
 9. **Confirm the `deploy-pages` run went green on the merge SHA.** Until that is true, the
    study is not published — it is only prepared.
@@ -315,8 +337,9 @@ Steps 1–4 are judgment and stay manual. Steps 5–9 are mechanical and are wha
 ## MECHANISED PUBLISH — `scripts/publish_site.py`
 
 Owns the mechanical half so it cannot be half-done. Sequence:
-`sync main -> four surfaces -> both gates -> headless render check -> commit -> push
--> PR -> squash-merge -> wait for the Pages deploy and assert it went green.`
+`sync main -> five surfaces -> both gates -> headless render check -> register-surface
+gate -> commit -> push -> PR -> squash-merge -> wait for the Pages deploy and assert it
+went green.`
 
 - `--ticker {KEY}` — required; refuses to run if `{key}.html` does not exist yet.
 - `--ship` — without it the script builds and verifies but changes nothing remotely.
