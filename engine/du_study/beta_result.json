@@ -1,0 +1,25 @@
+{
+ "beta": 0.4715600357114492,
+ "r2": 0.20228373108313535,
+ "n": 259,
+ "se": 0.05841362753766983,
+ "ci90": [
+  0.37546961841198234,
+  0.5676504530109161
+ ],
+ "usable": true,
+ "gate_msg": "passes minimum usability gate",
+ "window_years": 5,
+ "frequency": "weekly",
+ "index": "DFM General Index (official DFM API + Yahoo splice, cross-validated)",
+ "weak": false,
+ "warnings": [],
+ "composite_alt": {
+  "beta": 0.3935664244531698,
+  "r2": 0.11833583562015637,
+  "n": 257,
+  "se": 0.06727309439734015,
+  "names": 18,
+  "note": "equal-weight AE library composite, house cross-check construction"
+ }
+}

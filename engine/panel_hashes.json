@@ -146,5 +146,13 @@
   "US_TSLA_3m": "65f5b9c35c4ec8ec",
   "XAU_GOLD_3m": "e93de2b761d6949d",
   "XAU_SILVER_3m": "ec7f04ad833be178",
-  "XPT_PLATINUM_3m": "2bdc24b4aa1fa9d4"
+  "XPT_PLATINUM_3m": "2bdc24b4aa1fa9d4",
+  "AE_DU_3m": "edc2007d4afce25c",
+  "EG_AMOC_3m": "fc062bbf69c65721",
+  "EG_ARCC_3m": "5d7f59db67ca13aa",
+  "EG_EGCH_3m": "6afba55d2040bde7",
+  "EG_ELEC_3m": "43d94fccbe5e215a",
+  "EG_PHAR_3m": "f5f9749948d225a7",
+  "EG_SCEM_3m": "ac24a7ce57fc4bc6",
+  "EG_SWDY_3m": "c24e10d523ad268d"
 }

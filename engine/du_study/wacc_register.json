@@ -1,0 +1,98 @@
+{
+  "rf": {
+    "value": 0.0448,
+    "source": "AED risk-free anchor: UAE federal AED T-bond, January-2031 tranche, auction yield 4.48% (22-Jul-2026 auction, +4bp over matched UST) - the longest LIQUID recent AED government primary print. There is no liquid 10-year AED point (longest AED primary ever is the Feb-2033 tranche at 4.13%, Apr-2026, now stale); the 10-year peg-extrapolated alternative (Abu Dhabi USD 10y 4.73% Feb-2026 less the ~4bp AED-through-USD basis ~= 4.69%) is carried as rf_alt and PRICED in section 1.8 rather than averaged in",
+    "date": "2026-07-22",
+    "ring": "Country"
+  },
+  "rf_alt": {
+    "value": 0.0469,
+    "source": "Peg-extrapolated 10-year AED proxy: Abu Dhabi sovereign USD 10-year 4.73% (Feb-2026 issue, UST+25bp) less ~4bp observed AED-through-USD basis at matched tenor. The priced alternative construction for the risk-free tenor gap",
+    "date": "2026-08-06",
+    "ring": "Country"
+  },
+  "sov_spread_rating": {
+    "value": 0.0042,
+    "source": "Damodaran ctryprem dataset (05-Jan-2026 update), United Arab Emirates row: Moody's Aa2, rating-based adjusted default spread 0.42%",
+    "date": "2026-01-05",
+    "ring": "Country"
+  },
+  "erp_rating": {
+    "value": 0.0487,
+    "source": "Damodaran ctryprem (05-Jan-2026): UAE total equity risk premium 4.87% = 4.23% mature-market base + 0.64% country risk premium (rating basis). This is ERP basis 1",
+    "date": "2026-01-05",
+    "ring": "Country"
+  },
+  "sov_spread_mkt": {
+    "value": 0.0025,
+    "source": "Market-spread basis: Abu Dhabi USD 10-year traded at UST+25bp (Feb-2026 issue; UAE CDS itself unreachable - cbonds 403, Damodaran shows NA for UAE CDS; failure logged, never substituted silently). Basis-2 default spread = 0.25%",
+    "date": "2026-02-15",
+    "ring": "Country"
+  },
+  "erp_mkt": {
+    "value": 0.0466,
+    "source": "ERP basis 2 (market-spread, fresher base): Damodaran live implied US ERP 4.28% (01-Aug-2026, T12m adjusted payout) + CRP scaled off the market default spread 0.25% x 1.52 (Damodaran's own CRP/spread multiple 0.64/0.42) = 0.38% -> 4.66%. Same-basis consistency: this WACC strips the 0.25% market spread from rf, never the 0.42% rating spread",
+    "date": "2026-08-01",
+    "ring": "Country"
+  },
+  "beta": {
+    "value": 0.472,
+    "source": "Tier-1 own-stock regression: DU weekly log-returns vs the DFM General Index (official DFM API spliced with cross-validated Yahoo DFMGI.AE; identical closes on all 307 overlapping sessions), 5-year window, last-common-session weekly sampling: beta 0.472, R2 0.202, n 259, SE 0.058, CI90 [0.38, 0.57] - passes the usability gate (n>=24, R2>=5%, SE<|beta|). Equal-weight AE-library composite cross-check: 0.394 (R2 0.118). A defensive, negative-net-debt telecom regressing below 0.5 on its own index is economically coherent; betas of 0.6 and 0.8 are PRICED in the sensitivity grid",
+    "date": "2026-08-09",
+    "ring": "Market"
+  },
+  "kd": {
+    "value": 0.051,
+    "source": "MARGINAL cost of debt, AED, forward-looking: du has ZERO drawn debt and no bonds (audited Note 4.2, all years; H1-2026: AED 2.0bn RCF undrawn), so the marginal rate is constructed: AED sovereign anchor 4.48% (Jan-2031 tranche) + ~60bp A/AA-range GCC telecom spread read from the stc (Aa3/A+) USD sukuk curve (4.63%/4.92%/5.17% at 2.8/4.4/9.4y vs matched UST, 06-Aug-2026) = 5.10%. Sits ABOVE the sovereign as required. The 3.6% IFRS-16 lease-implied rate (FY2025 lease interest 71.094 / average lease book 1,968.8) is the historical incremental-borrowing rate on the lease stock, disclosed for the record, NOT the marginal Kd",
+    "date": "2026-08-06",
+    "ring": "Industry"
+  },
+  "kd_term": {
+    "value": 0.049,
+    "source": "Terminal marginal Kd: terminal AED sovereign 4.30% + 60bp telecom spread, rounded",
+    "date": "2026-08-09",
+    "ring": "House"
+  },
+  "rf_term": {
+    "value": 0.043,
+    "source": "Terminal AED risk-free 4.30%: Fed long-run neutral ~3% (FOMC dots) implies a ~4.2-4.4% 10y UST through the term premium, and the AED curve prints at/through UST under the peg (Jan-31 tranche +4bp). Below the current 4.48% anchor - the glide is mild easing, not a heroic rate call. Markets currently price possible near-term HIKES (~4% policy by end-2026), which is why the glide is kept shallow",
+    "date": "2026-08-09",
+    "ring": "Country/House"
+  },
+  "erp_term": {
+    "value": 0.0487,
+    "source": "Terminal ERP held at the rating-basis UAE ERP 4.87% (no structural convergence assumed for an Aa2 sovereign already near mature-market pricing)",
+    "date": "2026-01-05",
+    "ring": "Country"
+  },
+  "wd_term": {
+    "value": 0.05,
+    "source": "Terminal debt weight 5%: the disclosed capital structure is leases-only (~3.4% of EV at spot) and the board's stated posture is an unleveraged balance sheet with an undrawn RCF; 5% allows the lease book plus modest working facilities in perpetuity",
+    "date": "2026-08-09",
+    "ring": "House"
+  },
+  "rf_path": {
+    "value": [0.0448, 0.0444, 0.0439, 0.0435, 0.043],
+    "source": "AED risk-free glide path FY2026->FY2030: linear from the 4.48% live anchor to the 4.30% terminal - the glide fractions for the forward WACC are THIS path's own cumulative progress (the cost-of-money path, since du carries no debt whose Kd could define the glide)",
+    "date": "2026-08-09",
+    "ring": "House"
+  },
+  "pe_just": {
+    "value": 15.5,
+    "source": "Justified P/E 15.5x = the GCC-telecom peer median: e& 20.7x, stc 18.9x, Mobily 15.5x, Ooredoo ~12.5x, Omantel 11.4x, Zain ~9x (trailing, public aggregator reads 08/09-Aug-2026, labelled CROSS-CHECK). Mobily is the closest structural analogue (second operator, growth phase). du itself trades ~16.5x trailing",
+    "date": "2026-08-09",
+    "ring": "Industry"
+  },
+  "div_yield_peer": {
+    "value": 0.052,
+    "source": "GCC telecom incumbent dividend-yield bracket ~4.8-6.7% (e& 4.8%, stc 5.2%, Omantel 6.7%, aggregator reads Aug-2026, cross-check label); 5.2% (stc, the regional benchmark payer) used as the yield-lens anchor",
+    "date": "2026-08-09",
+    "ring": "Industry"
+  },
+  "roe_sust": {
+    "value": 0.27,
+    "source": "Sustainable ROE 27%: audited ROE on average equity FY2023 18.5%, FY2024 26.0%, FY2025 29.0% - the step-up is the 2024 regime change (43.6% take vs 53.1%) plus operating leverage; 27% sits just below the FY2025 print and is consistent with the ~100% payout / 2.5% growth pair (implied retention 9%)",
+    "date": "2026-08-09",
+    "ring": "Company/House"
+  }
+}
