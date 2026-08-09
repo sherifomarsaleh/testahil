@@ -1,0 +1,245 @@
+[
+ {
+  "tag": "A6/B-",
+  "what": "provision at the stated three-year average 6.5161%",
+  "centre": 63.655292375514875,
+  "d": -2.9119402368934146,
+  "pct": -0.04374434872256683,
+  "frame_a": 60.89611318831563,
+  "note": ""
+ },
+ {
+  "tag": "A18/B2",
+  "what": "terminal ROIC at the model FY2030 ROIC 16.36%",
+  "centre": 63.78360636032436,
+  "d": -2.783626252083927,
+  "pct": -0.04181676393687206,
+  "frame_a": 61.97701615670778,
+  "note": ""
+ },
+ {
+  "tag": "A17/B-",
+  "what": "FCFF taxed at the model effective rate 23.5%",
+  "centre": 65.98264877102207,
+  "d": -0.5845838413862197,
+  "pct": -0.00878185585376512,
+  "frame_a": 66.11206596712883,
+  "note": ""
+ },
+ {
+  "tag": "A11/B10",
+  "what": "risk-free at the 6-Aug observable print 23.00%",
+  "centre": 66.07749343302575,
+  "d": -0.4897391793825392,
+  "pct": -0.007357060826519213,
+  "frame_a": 66.30312898560307,
+  "note": ""
+ },
+ {
+  "tag": "D5",
+  "what": "risk-free at the CBE May-26 auction weighted average 23.407%",
+  "centre": 65.79163052305638,
+  "d": -0.7756020893519064,
+  "pct": -0.01165140954360977,
+  "frame_a": 65.76600358433843,
+  "note": ""
+ },
+ {
+  "tag": "A19/B-",
+  "what": "terminal risk-free at 9.5% (5% inflation + real GDP 4.5%)",
+  "centre": 74.30973686418216,
+  "d": 7.742504251773866,
+  "pct": 0.11631104295494854,
+  "frame_a": 75.91266151021891,
+  "note": ""
+ },
+ {
+  "tag": "B3a",
+  "what": "terminal debt weight at the market-value reading 25.1%",
+  "centre": 68.04144260793204,
+  "d": 1.4742099955237506,
+  "pct": 0.02214618120160461,
+  "frame_a": 70.00064787442196,
+  "note": ""
+ },
+ {
+  "tag": "B3b",
+  "what": "terminal debt weight at the book reading 39.5%",
+  "centre": 72.75865893957913,
+  "d": 6.191426327170845,
+  "pct": 0.09301012050810042,
+  "frame_a": 78.88796335930267,
+  "note": ""
+ },
+ {
+  "tag": "A15/B26",
+  "what": "interest charged at the blended marginal rate on flat debt",
+  "centre": 59.54662418840721,
+  "d": -7.020608424001082,
+  "pct": -0.10546643068187911,
+  "frame_a": 67.22333140666257,
+  "note": ""
+ },
+ {
+  "tag": "A22/B-",
+  "what": "associate contribution at the Q1-2026 run-rate (13.118 x 4)",
+  "centre": 56.23561905341087,
+  "d": -10.331613558997418,
+  "pct": -0.15520569435646903,
+  "frame_a": 54.34798298149781,
+  "note": ""
+ },
+ {
+  "tag": "B22/A7",
+  "what": "peer leg at the true midpoint of the two observations 21.35x",
+  "centre": 66.85606239990743,
+  "d": 0.28882978749913946,
+  "pct": 0.004338918356135757,
+  "frame_a": 67.22333140666257,
+  "note": ""
+ },
+ {
+  "tag": "D19",
+  "what": "associate multiple at the listed associate MUP trailing 9.33x",
+  "centre": 65.33023772482667,
+  "d": -1.2369948875816164,
+  "pct": -0.01858263952152095,
+  "frame_a": 64.74934163149935,
+  "note": ""
+ },
+ {
+  "tag": "A5/B9",
+  "what": "sustainable return set to the model FY2030 ROE 23.08%",
+  "centre": 67.6363428315983,
+  "d": 1.0691102191900086,
+  "pct": 0.016060607858148,
+  "frame_a": null,
+  "note": ""
+ },
+ {
+  "tag": "A5/B9",
+  "what": "sustainable return set to the model 5-year mean ROE 19.72%",
+  "centre": 64.54233545045844,
+  "d": -2.024897161949852,
+  "pct": -0.030418827439318896,
+  "frame_a": null,
+  "note": ""
+ },
+ {
+  "tag": "A3/B1",
+  "what": "de-averaged headline \u2014 Frame A only",
+  "centre": 63.32631772230511,
+  "d": -3.240914890103177,
+  "pct": -0.048686339553479674,
+  "frame_a": 67.22333140666257,
+  "note": ""
+ },
+ {
+  "tag": "A3/B1",
+  "what": "de-averaged headline \u2014 Frame B only",
+  "centre": 69.80814750251145,
+  "d": 3.2409148901031557,
+  "pct": 0.04868633955347934,
+  "frame_a": 79.32905218418915,
+  "note": ""
+ },
+ {
+  "tag": "A7/B22",
+  "what": "relative lens with the unsourced peer leg deleted",
+  "centre": 65.75767834124147,
+  "d": -0.8095542711668173,
+  "pct": -0.01216145300617344,
+  "frame_a": null,
+  "note": ""
+ },
+ {
+  "tag": "D2",
+  "what": "relative lens with the model-derived justified multiple deleted",
+  "centre": 66.71010004059495,
+  "d": 0.14286742818666198,
+  "pct": 0.0021462125219853245,
+  "frame_a": null,
+  "note": ""
+ },
+ {
+  "tag": "D2b",
+  "what": "relative lens on the own four-year mean alone",
+  "centre": 65.233858926448,
+  "d": -1.3333736859602965,
+  "pct": -0.020030480968375897,
+  "frame_a": null,
+  "note": ""
+ },
+ {
+  "tag": "A14",
+  "what": "trailing multiples applied to trailing EPS (period-matched)",
+  "centre": 68.51394945208528,
+  "d": 1.946716839676995,
+  "pct": 0.029244370890583182,
+  "frame_a": null,
+  "note": ""
+ },
+ {
+  "tag": "B4",
+  "what": "terminal NOPAT charged D&A on the parked construction balance (2947m)",
+  "centre": 64.99369788124703,
+  "d": -1.57353473116126,
+  "pct": -0.023638277714251088,
+  "frame_a": 64.07626194434005,
+  "note": ""
+ },
+ {
+  "tag": "C1",
+  "what": "credit-loss provision added back to FCFF as a non-cash charge",
+  "centre": 82.21164356311667,
+  "d": 15.644410950708377,
+  "pct": 0.23501669420146842,
+  "frame_a": 108.18352703867976,
+  "note": ""
+ },
+ {
+  "tag": "C2",
+  "what": "Dec-25 net debt held, NCI restored to the Dec-25 audited 288.7m",
+  "centre": 65.72369158343594,
+  "d": -0.8435410289723535,
+  "pct": -0.012672015883308907,
+  "frame_a": 65.53624934871787,
+  "note": ""
+ },
+ {
+  "tag": "C2b",
+  "what": "Dec-25 NCI 288.7m and the associate add-back at cost removed",
+  "centre": 65.04671785661478,
+  "d": -1.5205147557935135,
+  "pct": -0.02284179011386578,
+  "frame_a": 64.18230189507555,
+  "note": ""
+ },
+ {
+  "tag": "D1",
+  "what": "bridge anchored on the 31-Mar-2026 net debt (9065m)",
+  "centre": 61.527703636358574,
+  "d": -5.039528976049716,
+  "pct": -0.07570585073579184,
+  "frame_a": 57.14427345456317,
+  "note": ""
+ },
+ {
+  "tag": "D1b",
+  "what": "Mar-26 net debt with the explicit period rolled forward one quarter",
+  "centre": 63.23785712604168,
+  "d": -3.329375486366608,
+  "pct": -0.05001523055272705,
+  "frame_a": 60.35413342664777,
+  "note": ""
+ },
+ {
+  "tag": "C3",
+  "what": "normalised lens charged the model FY2027 finance cost (EPS 8.39)",
+  "centre": 66.57782952565813,
+  "d": 0.010596913249841577,
+  "pct": 0.0001591911340454999,
+  "frame_a": null,
+  "note": ""
+ }
+]

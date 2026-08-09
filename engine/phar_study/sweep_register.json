@@ -1,0 +1,555 @@
+{
+ "ticker": "PHAR",
+ "asset_class": "STOCK",
+ "sweep_date": "2026-08-09",
+ "findings": [
+  {
+   "fid": "F01",
+   "ring": "GLOBAL",
+   "category": "rate cycle & USD/FX regime",
+   "klass": "STRUCTURAL",
+   "headline": "Global easing under way, against which Egypt's own policy rate normalises. Egypt's sovereign credit-default-swap spread stands at 3.41% and its adjusted default spread on the Caa1 rating basis at 6.37%, with a total equity risk premium of 9.41% on the swap basis and 13.94% on the rating basis",
+   "source_name": "Country default spreads and risk premiums file, Egypt row, last updated 5 January 2026, read live on 9 August 2026",
+   "source_type": "REGULATOR_OFFICIAL",
+   "source_date": "2026-01-05",
+   "detail": "",
+   "url": "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/ctryprem.html",
+   "model_impact": "Sets the entire cost-of-capital build: the sovereign swap spread is netted out of the local-currency risk-free rate and the equity risk premium is taken from the same row, so country risk is charged exactly once. Both the swap and the rating construction are published.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F02",
+   "ring": "GLOBAL",
+   "category": "commodity complex (input/output)",
+   "klass": "STRUCTURAL",
+   "headline": "Active pharmaceutical ingredients are the dominant input and are imported. Raw materials are 54.9% of the company's own disclosed production cost and packaging materials a further 24.6%; both are priced in hard currency at the point of purchase",
+   "source_name": "Cost of sales note (26), audited consolidated financial statements FY2025",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-03-01",
+   "detail": "",
+   "url": "https://www.eipico.com.eg/DataImages/HTML/File1699.pdf",
+   "model_impact": "Forces the cost stack to carry ONE ESCALATOR PER DRIVER CLASS: imported ingredients and the imported share of packaging escalate on a hard-currency price path passed through the model's own exchange-rate path, never on a domestic inflation proxy. Applying a single blended index across physically distinct cost lines is precisely the error this rule exists to prevent.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2025"
+  },
+  {
+   "fid": "F03",
+   "ring": "GLOBAL",
+   "category": "global sector demand",
+   "klass": "STRUCTURAL",
+   "headline": "The company exports to more than 60 countries and reports 60 million packs a year of export volume, worth USD 60 million in FY2025 against USD 54.7 million in FY2024 \u2014 10% growth in hard currency against 19% in Egyptian pounds",
+   "source_name": "Investor presentation, export reach page; board of directors' report FY2025",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-03-28",
+   "detail": "",
+   "url": "https://www.eipico.com.eg/DataImages/HTML/File1585.pdf",
+   "model_impact": "Export revenue is forecast as pack volume times a US-dollar price times the model's own exchange-rate path \u2014 NOT extrapolated from its Egyptian-pound growth rate, which was inflated by translation.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F04",
+   "ring": "GLOBAL",
+   "category": "trade / sanctions / supply chains",
+   "klass": "STRUCTURAL",
+   "headline": "The company holds a strategic raw-material stockpile it states is sufficient for at least eight months, taken deliberately in response to regional supply-chain risk",
+   "source_name": "Chairman's statement to the ordinary general assembly, 28 March 2026, reproduced on the company's own press-release page",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-03-28",
+   "detail": "",
+   "url": "https://www.eipico.com.eg/NWSDetails.aspx?id=262",
+   "model_impact": "Explains and justifies 268 days of inventory. The working-capital forecast unwinds inventory days only slowly because the position is a stated policy choice, not a failure of control.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F05",
+   "ring": "COUNTRY",
+   "category": "sovereign macro (inflation, policy rate, FX/deval risk)",
+   "klass": "STRUCTURAL",
+   "headline": "The Egyptian pound averaged 47.74 to the US dollar in FY2024 and 49.48 in FY2025, closing at 50.89 and 49.52 respectively \u2014 a 3.6% average-rate move and a small year-end appreciation, after the step devaluation of March 2024",
+   "source_name": "Foreign-currency risk note (36), audited consolidated financial statements FY2025 and FY2024",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-03-01",
+   "detail": "",
+   "url": "https://www.eipico.com.eg/DataImages/HTML/File1699.pdf",
+   "model_impact": "Anchors the exchange-rate path. Because the real exchange rate appreciated while domestic inflation ran far above the United States', the path assumes a partial reversal at about 4% a year narrowing to 3%.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2025"
+  },
+  {
+   "fid": "F06",
+   "ring": "COUNTRY",
+   "category": "regulatory environment (regulator, caps, tariffs, tax/subsidy)",
+   "klass": "STRUCTURAL",
+   "headline": "Medicine prices in Egypt are set administratively by the Egyptian Drug Authority; the authority also licences manufacturing facilities. It granted the biologicals plant its licence in December 2025. The Egyptian corporate income tax rate is 22.5%",
+   "source_name": "Company announcement of the drug authority licence, December 2025; corporate tax-rate column of the country risk-premium file",
+   "source_type": "REGULATOR_OFFICIAL",
+   "source_date": "2025-12-11",
+   "detail": "",
+   "url": "https://www.eipico.com.eg/NWSDetails.aspx?id=256",
+   "model_impact": "Two consequences. Domestic price per pack is forecast to track inflation with no real gain, because the company cannot set its own domestic price. And the December-2025 licence is what makes the construction balance start depreciating in the forecast \u2014 the largest single mechanical change in it.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F07",
+   "ring": "COUNTRY",
+   "category": "fiscal / political events with sector read-through",
+   "klass": "STRUCTURAL",
+   "headline": "Pharmaceutical localisation is explicit Egyptian industrial policy. The deputy prime minister for industrial development attended the foundation-stone ceremony for the active-ingredient plant in the Suez Canal Economic Zone in January 2026, a USD 165 million project the company chairs",
+   "source_name": "Company press release, 15 January 2026",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-01-15",
+   "detail": "",
+   "url": "https://www.eipico.com.eg/NWSDetails.aspx?id=258",
+   "model_impact": "Supports the export and volume path and the assumption that the company faces no policy risk to its capacity expansion; the associated plant is a separate legal entity and is NOT consolidated, so it enters only through the associate line.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F08",
+   "ring": "INDUSTRY",
+   "category": "demand drivers & capacity/supply balance",
+   "klass": "STRUCTURAL",
+   "headline": "The company produced 2,208 million units in FY2025 against 3,383 million of its own disclosed available capacity \u2014 65% utilisation, up from 63% \u2014 and holds 54 production lines across three plants. Utilisation by dosage form ranges from 11% (soft capsules) to 221% (lyophilised ampoules, run beyond nameplate)",
+   "source_name": "Comparative statement of production quantities by pharmaceutical dosage form, board of directors' report FY2025",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-03-28",
+   "detail": "",
+   "url": "https://www.eipico.com.eg/DataImages/HTML/File1699.pdf",
+   "model_impact": "The volume path is NOT capacity-constrained, so incremental volume needs little capital. This is why forecast capital expenditure falls from 14.3% of revenue in FY2025 to about 3%.",
+   "is_fs_data": false,
+   "fiscal_period": "FY2025"
+  },
+  {
+   "fid": "F09",
+   "ring": "INDUSTRY",
+   "category": "pricing",
+   "klass": "STRUCTURAL",
+   "headline": "Realised price per domestic pack was EGP 21.54 in FY2025 against EGP 19.77 in FY2024, up 9.0%, while domestic pack volume rose 19.5%. Export realised price was USD 1.00 a pack",
+   "source_name": "Derived from the board's own disclosed pack volumes and the revenue note (25) channel split, audited FY2025 and FY2024",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-03-28",
+   "detail": "",
+   "url": "https://www.eipico.com.eg/DataImages/HTML/File1699.pdf",
+   "model_impact": "Splits revenue growth into its volume and price components separately for the domestic and export books, which is what the ground-up rule requires and what a blended growth rate would hide.",
+   "is_fs_data": false,
+   "fiscal_period": "FY2025"
+  },
+  {
+   "fid": "F10",
+   "ring": "INDUSTRY",
+   "category": "new entrants (named-competitor level)",
+   "klass": "COLOR",
+   "headline": "The company reports itself first in the Egyptian market by units sold and, for the first time in its history, second by value in January 2026, on independent prescription-audit data. It cites a 6.4% share of the local pharmacy and warehouse market",
+   "source_name": "Company results release citing the January-2026 independent market audit",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-03-01",
+   "detail": "",
+   "url": "https://www.eipico.com.eg/NWSDetails.aspx?id=261",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F11",
+   "ring": "INDUSTRY",
+   "category": "technology substitution",
+   "klass": "STRUCTURAL",
+   "headline": "Biosimilars are the substitution event, and the company has moved to be on the right side of it: the new plant is described as the first in Egypt to manufacture biologicals and biosimilars from cell culture through to finished product, with a USD 100 million investment, and it launched its first biosimilar in December 2025. The published pipeline names trastuzumab, rituximab and adalimumab equivalents",
+   "source_name": "Company announcements of the plant licence and first biosimilar launch; investor presentation pipeline page",
+   "source_type": "COMPANY_IR",
+   "source_date": "2025-12-11",
+   "detail": "",
+   "url": "https://www.eipico.com.eg/DataImages/HTML/File1585.pdf",
+   "model_impact": "THE CRUX. The forecast charges this plant's depreciation and its interest because both follow mechanically from the licence date, but carries NO revenue line for it, because the company has published no volume, price or utilisation guidance. The study therefore states in observable units how much the plant must sell to justify the market price, rather than assuming an answer.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F12",
+   "ring": "INDUSTRY",
+   "category": "competitor capacity / price moves (named)",
+   "klass": "COLOR",
+   "headline": "The company is the largest Egyptian pharmaceutical exporter with 26% of national pharmaceutical export value; it is the largest operating subsidiary of the Arab Company for Drug Industries and Medical Appliances, which holds 51.34% of its shares",
+   "source_name": "Board of directors' report FY2025 and the shareholder-structure table in capital note (13)",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-03-28",
+   "detail": "",
+   "url": "https://www.eipico.com.eg/DataImages/HTML/File1699.pdf",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": "FY2025"
+  },
+  {
+   "fid": "F13",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "BASE_CHANGER",
+   "headline": "Complete audited separate AND consolidated financial statements with the auditor's report and full notes for FY2022, FY2023, FY2024 and FY2025 \u2014 four consecutive audited years, three more than the floor and one more than the study standard requires \u2014 obtained from the company's own investor-relations page. FY2019 through FY2021 are also on the same page and were downloaded",
+   "source_name": "Annual Reports FY2022-FY2025, company investor-relations page",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-03-01",
+   "detail": "",
+   "url": "https://www.eipico.com.eg/DataImages/HTML/File1699.pdf",
+   "model_impact": "Every historical income-statement, balance-sheet and cash-flow line in this study is the audited consolidated figure or a disclosed note to it. The income statement reconstructs to disclosed pre-tax profit within EGP 0.02 million in each of the three modelled years.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2025"
+  },
+  {
+   "fid": "F14",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "BASE_CHANGER",
+   "headline": "FY2024 audited consolidated statements, cross-confirmed against the comparative column of the FY2025 filing",
+   "source_name": "Annual Report FY2024",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2025-03-01",
+   "detail": "",
+   "url": "https://www.eipico.com.eg/DataImages/HTML/File1536.pdf",
+   "model_impact": "Second of the three modelled history years.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2024"
+  },
+  {
+   "fid": "F15",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "BASE_CHANGER",
+   "headline": "FY2023 audited consolidated statements, cross-confirmed against the comparative column of the FY2024 filing",
+   "source_name": "Annual Report FY2023",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2024-03-01",
+   "detail": "",
+   "url": "https://www.eipico.com.eg/DataImages/HTML/File1138.pdf",
+   "model_impact": "Third of the three modelled history years.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2023"
+  },
+  {
+   "fid": "F16",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "BASE_CHANGER",
+   "headline": "FY2022 audited consolidated statements, carried as the fourth year for the traded-multiple history",
+   "source_name": "Annual Report FY2022",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2023-03-01",
+   "detail": "",
+   "url": "https://www.eipico.com.eg/DataImages/HTML/File1202.pdf",
+   "model_impact": "Supplies FY2022 attributable profit for the company's own price-earnings history, which anchors the relative lens.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2022"
+  },
+  {
+   "fid": "F17",
+   "ring": "COMPANY",
+   "category": "strategic plans & guidance",
+   "klass": "STRUCTURAL",
+   "headline": "The chairman told the March-2026 general assembly the company had reached a production value of EGP 10.8 billion and sales of EGP 9.8 billion, that the active-ingredient project is on schedule, and that the strategic raw-material stockpile covers at least eight months. No numerical revenue or earnings guidance for FY2026 was given",
+   "source_name": "General assembly report, company press-release page",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-03-28",
+   "detail": "",
+   "url": "https://www.eipico.com.eg/NWSDetails.aspx?id=262",
+   "model_impact": "No guidance exists to anchor the forecast to, so every forecast driver in this study is built from disclosed history and stated policy. That absence is itself the reason the crux is posed as a reverse valuation.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F18",
+   "ring": "COMPANY",
+   "category": "regular disclosures",
+   "klass": "BASE_CHANGER",
+   "headline": "The board's own report inside each annual report carries a full operating dataset that appears in no financial statement: production and sales by value and by pack, the channel split, production quantities and available capacity for twenty-one dosage forms, headcount, productivity, leverage ratios and a quarterly income summary",
+   "source_name": "Board of directors' report FY2025 and FY2024",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-03-28",
+   "detail": "",
+   "url": "https://www.eipico.com.eg/DataImages/HTML/File1699.pdf",
+   "model_impact": "This is what makes a genuine volume-times-price build possible rather than a percentage-growth assertion.",
+   "is_fs_data": false,
+   "fiscal_period": "FY2025"
+  },
+  {
+   "fid": "F19",
+   "ring": "COMPANY",
+   "category": "IR communications (calls, presentations, releases)",
+   "klass": "STRUCTURAL",
+   "headline": "Investor presentation giving 54 production lines with capacity per shift per year by dosage form, 414 products across 27 therapeutic groups, 1,238 products registered in 61 countries, about 5,000 employees, export reach of 60 million packs and USD 60 million a year, and the biologicals and active-ingredient project descriptions",
+   "source_name": "Company investor presentation, corporate website",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-08-09",
+   "detail": "",
+   "url": "https://www.eipico.com.eg/DataImages/HTML/File1585.pdf",
+   "model_impact": "Supplies the export pack volume that splits the export book into volume and price, and the capacity detail behind the utilisation constraint. This is the single most useful non-financial-statement source in the build.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F20",
+   "ring": "COMPANY",
+   "category": "one-off base-resetting transactions",
+   "klass": "BASE_CHANGER",
+   "headline": "The share count changed: the exchange's listing committee approved on 23 July 2025 an increase in issued and paid capital from EGP 1,487,557,500 to EGP 1,687,557,500 through 20 million new shares, raising EGP 1,000 million. Weighted average shares for FY2025 were therefore 162.016 million against 168.756 million now in issue",
+   "source_name": "Capital note (13) and earnings-per-share note (34), audited FY2025",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-03-01",
+   "detail": "",
+   "url": "https://www.eipico.com.eg/DataImages/HTML/File1699.pdf",
+   "model_impact": "Per-share values use the 168.756 million shares now in issue, not the weighted average, because the valuation is of the company as it stands.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2025"
+  },
+  {
+   "fid": "F21",
+   "ring": "COMPANY",
+   "category": "ownership / stake changes (named-transaction rule)",
+   "klass": "BASE_CHANGER",
+   "headline": "Named holdings, from the company's own register: the Arab Company for Drug Industries and Medical Appliances 51.34% (86,647,861 shares); the Medical Professions Investment Company 3.68%; the Federation of Medical Professions Syndicates 3.50%; its pension and benefits fund 4.84%; other shareholders 36.64%. On the other side, the company holds a named 30% interest in Batterjee Pharmaceutical (Saudi Arabia), fully paid at SAR 35,900,976 equivalent, and a named 9.77%-plus interest in the Medical Professions Company for Pharmaceuticals acquired for EGP 211,167,305",
+   "source_name": "Capital note (13) shareholder table and investments note (8/3), audited FY2025",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-03-01",
+   "detail": "",
+   "url": "https://www.eipico.com.eg/DataImages/HTML/File1699.pdf",
+   "model_impact": "No ownership driver is estimated. The associate stake is valued in the enterprise-to-equity bridge on its normalised earnings rather than its carrying value, because the carrying value of EGP 676 million sits against an FY2025 contribution of EGP 495 million.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2025"
+  },
+  {
+   "fid": "F22",
+   "ring": "COMPANY",
+   "category": "management & capital actions",
+   "klass": "BASE_CHANGER",
+   "headline": "The board proposed a dividend of exactly EGP 3.50 a share for FY2025 (EGP 590,645,125 on 168,755,750 shares), against exactly EGP 3.00 for FY2024 (EGP 446,267,250 on 148,755,750 shares) \u2014 payout ratios of 41.0% and 40.7% of attributable profit",
+   "source_name": "Proposed profit-distribution table, board of directors' report FY2025",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-03-28",
+   "detail": "",
+   "url": "https://www.eipico.com.eg/DataImages/HTML/File1699.pdf",
+   "model_impact": "Sets the 40% payout in the equity roll-forward and the 2.69% dividend yield used as the carry offset in the probability map.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2025"
+  },
+  {
+   "fid": "F23",
+   "ring": "COMPANY",
+   "category": "regular disclosures",
+   "klass": "BASE_CHANGER",
+   "headline": "Reviewed consolidated interim financial statements for the three months ended 31 March 2026, obtained. Net sales 2,532.834 (+10.1%), gross margin 42.4% against 45.7%, attributable profit 283.954 (-10.9%). Fixed assets rose 1,139.916 and projects under construction fell 917.600 in the quarter; the depreciation and amortisation charge more than doubled to 56.209. THE REVIEW CONCLUSION IS QUALIFIED on three matters: the associates' own periodic statements were not received; the active-ingredient company was recognised at cost following loss of control rather than remeasured and equity-accounted; and NO expected-credit-loss charge was recognised for the period",
+   "source_name": "Reviewed consolidated interim financial statements, three months ended 31 March 2026, English translation issued by the auditor, review report dated 14 May 2026",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-05-14",
+   "detail": "",
+   "url": "",
+   "model_impact": "Resets the FY2026 revenue, capital-expenditure and finance-cost paths to the quarter's outturn; lowers the normalised associate contribution; replaces the non-controlling interest deducted in the bridge with the post-deconsolidation figure and adds the active-ingredient company at carrying cost. CONFIRMS the study's central mechanism \u2014 the construction balance is transferring and the depreciation step has arrived.",
+   "is_fs_data": true,
+   "fiscal_period": "Q1-2026"
+  },
+  {
+   "fid": "F24",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "BASE_CHANGER",
+   "headline": "Separately issued audited consolidated financial statements for FY2023 and FY2024, English translations issued by the auditor. Every line ties to the Arabic annual reports already used, with one presentation difference: these show dividend-distribution tax on its own line where the annual reports fold it into general and administrative expense (FY2023) or into the associates line (FY2024)",
+   "source_name": "Audited consolidated financial statements FY2023 and FY2024, English translation issued by the auditor",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2025-03-01",
+   "detail": "",
+   "url": "",
+   "model_impact": "Adopts the filings' own presentation, which lifts FY2023 operating profit by 4.124 (0.34%) and states the dividend-distribution tax as its own line in all three history years.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2024"
+  },
+  {
+   "fid": "F25",
+   "ring": "INDUSTRY",
+   "category": "pricing",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found (Volume, price or utilisation guidance for the biologicals facility, sought across the company's annual reports, its investor presentation and every 2026 press release on its own site. The plant's products and investment are described; nothing quantifies its expected revenue)",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-08-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F26",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found (A counterparty-level or ageing-bucket breakdown of the expected-credit-loss allowance, sought in notes 10, 20, 31 and 36 of the audited FY2025 consolidated statements and in their FY2024 and FY2023 equivalents. The charge is disclosed in total and split by type (credit losses, inventory write-down, other provisions, and within that disputed taxes, claims and end-of-service), but never by counterparty, ageing band or geography, so no bottom-up build of it is possible from disclosure)",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-08-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F27",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found (Separate financial statements, revenue or balance sheet for either equity-accounted associate, sought in the investments notes (8/2 and 8/3) of the FY2023, FY2024 and FY2025 filings and on the company's own website. Only the carrying value, the ownership percentage and the share of result are disclosed; no underlying accounts are published through this company, so the associate stream can only be normalised, not built up)",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-08-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  }
+ ],
+ "drivers": [
+  {
+   "driver": "Domestic pack volume",
+   "mode": "BOTTOM_UP",
+   "justification": "Packs sold of the company's own preparations are disclosed for FY2023, FY2024 and FY2025; export packs are disclosed in the investor presentation; the difference is the domestic book, and it is grown as a volume in its own right against a disclosed 65% capacity utilisation.",
+   "sweep_refs": [
+    "F08",
+    "F18",
+    "F19"
+   ]
+  },
+  {
+   "driver": "Domestic realised price per pack",
+   "mode": "BOTTOM_UP",
+   "justification": "Domestic channel revenue divided by domestic packs, computed separately for FY2024 and FY2025 from the revenue note and the board's pack disclosure, then grown on the domestic inflation path because the price is set administratively.",
+   "sweep_refs": [
+    "F09",
+    "F06"
+   ]
+  },
+  {
+   "driver": "Export volume and price",
+   "mode": "BOTTOM_UP",
+   "justification": "Export packs and export US-dollar value are both disclosed, giving a realised US-dollar price per pack. Volume and price are grown separately in dollars and translated on the model's own exchange-rate path.",
+   "sweep_refs": [
+    "F03",
+    "F09",
+    "F05"
+   ]
+  },
+  {
+   "driver": "Cost of sales",
+   "mode": "BOTTOM_UP",
+   "justification": "Built as a cash cost per pack from the audited cost-of-sales note's own line items, with one escalator per physically distinct driver class: imported ingredients and imported packaging on a hard-currency path through the exchange rate, labour on wage growth, energy on the regulated tariff schedule, domestic services on consumer inflation. Depreciation is excluded here and enters once from the property roll-forward.",
+   "sweep_refs": [
+    "F02",
+    "F05"
+   ]
+  },
+  {
+   "driver": "Depreciation",
+   "mode": "BOTTOM_UP",
+   "justification": "Projected from a property roll-forward that transfers the disclosed construction balance into depreciable assets on the company's own disclosed licensing timetable.",
+   "sweep_refs": [
+    "F11",
+    "F06",
+    "F13"
+   ]
+  },
+  {
+   "driver": "Working capital",
+   "mode": "BOTTOM_UP",
+   "justification": "Inventory, receivable and payable days computed from the audited balance sheet and projected as ratios, with the inventory position explained by the company's stated eight-month stockpile policy.",
+   "sweep_refs": [
+    "F04",
+    "F13"
+   ]
+  },
+  {
+   "driver": "Credit-loss and provision charge",
+   "mode": "TOP_DOWN",
+   "justification": "Carried as a percentage of revenue because the company discloses the charge in total and by type but not by counterparty or ageing bucket. This is the study's single most consequential contested judgement and it is computed BOTH WAYS and published side by side rather than resolved.",
+   "sweep_refs": [
+    "F13",
+    "F26"
+   ]
+  },
+  {
+   "driver": "Associate contribution",
+   "mode": "TOP_DOWN",
+   "justification": "Normalised from three disclosed years rather than built up, because the associates publish no separate accounts through this company's filings.",
+   "sweep_refs": [
+    "F21",
+    "F27"
+   ]
+  },
+  {
+   "driver": "Biologicals facility revenue",
+   "mode": "TOP_DOWN",
+   "justification": "NOT FORECAST. The company has published nothing that would support a bottom-up build and this study does not invent one; the required contribution is instead solved for and published as the crux.",
+   "sweep_refs": [
+    "F25",
+    "F11"
+   ]
+  },
+  {
+   "driver": "FY2026 revenue, capital expenditure and finance cost",
+   "mode": "BOTTOM_UP",
+   "justification": "Each reset to the reviewed first quarter of 2026 rather than left at the pre-quarter estimate: net sales grew 10.1% not the 17.5% first assumed, capital payments ran at an annual rate of about 1,299 not 832, and finance cost at about 1,251 not 1,548.",
+   "sweep_refs": [
+    "F23"
+   ]
+  }
+ ],
+ "primary_access": [
+  {
+   "url": "https://www.eipico.com.eg/",
+   "reachable": true,
+   "attempt_date": "2026-08-09",
+   "note": "Corporate site reachable; Investor Relations -> Annual Reports carries FY2019 through FY2025 as complete PDFs, each containing the auditor's report and both the separate and the consolidated financial statements with full notes."
+  },
+  {
+   "url": "https://www.eipico.com.eg/HTML.aspx?name=Eipico3_AnnualReports",
+   "reachable": true,
+   "attempt_date": "2026-08-09",
+   "note": "Seven annual reports downloaded; FY2022-FY2025 used."
+  },
+  {
+   "url": "https://www.eipico.com.eg/DataImages/HTML/File1585.pdf",
+   "reachable": true,
+   "attempt_date": "2026-08-09",
+   "note": "Investor presentation downloaded \u2014 production lines and capacities per shift, export pack volumes, market ranks, EIPICO 3 and Arab API detail."
+  },
+  {
+   "url": "company-supplied issued financial statements",
+   "reachable": true,
+   "attempt_date": "2026-08-11",
+   "note": "The reviewed FY2026 first-quarter interim and the separately issued FY2023 and FY2024 audited consolidated statements, all English translations issued by the auditor, were supplied directly after the first issue of this study. This CLOSES the study-year quarter that could not be reached online."
+  },
+  {
+   "url": "https://www.egx.com.eg/en/DisclosureNews.aspx",
+   "reachable": false,
+   "attempt_date": "2026-08-09",
+   "note": "Exchange disclosure portal NOT reachable. Every request returns a 48KB bot-defence challenge page instead of content; a headless-browser render was also attempted and the browser could not be routed through this environment's egress proxy. Consequence: the FY2026 first-quarter interim could not be obtained from an official home."
+  },
+  {
+   "url": "https://disclosure.efsa.gov.eg/",
+   "reachable": false,
+   "attempt_date": "2026-08-09",
+   "note": "Regulator disclosure sub-domain refused at the egress proxy (connect_rejected, gateway 502)."
+  },
+  {
+   "url": "https://www.cbe.org.eg/en/auctions/egp-t-bonds-fixed-coupon",
+   "reachable": false,
+   "attempt_date": "2026-08-09",
+   "note": "Central bank fixed-coupon treasury bond auction page rejected the request at its own web application firewall. The ten-year local-currency yield is therefore carried from the dated house reference print and sensitised rather than re-read live."
+  }
+ ],
+ "study_year": "2026",
+ "study_quarters_disclosed": [
+  "Q1-2026"
+ ],
+ "qc_line": "QC(m) \u2014 Information Sweep [PHAR, 2026-08-09]: PASS \u2014 4/4 rings, 27 findings (10 B \u00b7 12 S \u00b7 0 D \u00b7 2 C \u00b7 3 NEG), driver gate 10 rows (7 bottom-up / 3 top-down) | primary access: attempted (7) | FS years: 4 ['FY2022', 'FY2023', 'FY2024', 'FY2025'] | IR findings: 7"
+}

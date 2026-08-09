@@ -6,7 +6,15 @@
     <atom:link href="https://testahil.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>دراسات تقييم تعليمية مستقلة لأسهم البورصة المصرية — توزيعات احتمالية، وليست توصيات. Educational EGX valuation studies — distributions, not tips.</description>
     <language>ar</language>
-    <lastBuildDate>Sat, 08 Aug 2026 08:30:00 +0300</lastBuildDate>
+    <lastBuildDate>Sun, 09 Aug 2026 08:30:00 +0300</lastBuildDate>
+
+    <item>
+      <title>Egyptian International Pharmaceutical Industries (EIPICO) (PHAR): Valuation Study — is it worth it?</title>
+      <link>https://testahil.com/phar.html</link>
+      <guid isPermaLink="true">https://testahil.com/phar.html</guid>
+      <description>Latest 130.05 · 3-month median 135.30 · range 94.40–193.82 EGP — educational analysis, a distribution not a recommendation.</description>
+      <pubDate>Sun, 09 Aug 2026 08:30:00 +0300</pubDate>
+    </item>
 
     <item>
       <title>Egyptian Chemical Industries (KIMA) (EGCH): Valuation Study — is it worth it?</title>
