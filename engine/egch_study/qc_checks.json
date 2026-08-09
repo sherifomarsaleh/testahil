@@ -1,0 +1,16 @@
+{
+ "scrub_patterns": 49,
+ "scrub_hits": [],
+ "figures": 15,
+ "transparent": [],
+ "tables": 55,
+ "table_problems": [],
+ "builders": [
+  "docx_egch.py",
+  "docx_biblio.py",
+  "build_xlsx.py",
+  "figures.py"
+ ],
+ "typed_numerals": [],
+ "fails": []
+}

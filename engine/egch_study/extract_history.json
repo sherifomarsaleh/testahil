@@ -1,0 +1,219 @@
+{
+ "_meta": {
+  "unit": "EGP thousand",
+  "source": "audited annuals FY2021/22-FY2024/25 (Central Auditing Organization; FY22/23 dual-audited with PKF Rashed Badr & Co; FY25/26 interims dual-reviewed with Nasr Abou El Abbas & Co / Morison Global)",
+  "years": "FY ends 30 June",
+  "extracted": "2026-08-08",
+  "verify_flags": [
+   "FY22 IS one line misreads by 189k between admin/other-exp (operating 1,020,183 firm via PBT tie)",
+   "FY23 reserves 426,979 (fixes earlier 462,979 misread for FY23; FY24 462,979 crossfoots)",
+   "FY23/24 intangibles rose y/y (1,530,114->1,908,612->2,376,211) - staged KIMA-2 license capitalization, confirm in re-verify pass"
+  ]
+ },
+ "IS": {
+  "FY2122": {
+   "revenue": 4440701,
+   "cogs": -2322989,
+   "gross": 2117712,
+   "selling": -272810,
+   "admin": -196357,
+   "provisions": -21000,
+   "fx": -98425,
+   "capital_gains": 23307,
+   "other_income": 12587,
+   "other_exp": -355831,
+   "operating": 1020183,
+   "fin_income": 4002,
+   "fin_cost": -427249,
+   "inv_income": 140507,
+   "pbt": 737443,
+   "tax": -74611,
+   "solidarity": -11346,
+   "net": 651486,
+   "eps": 0.5294
+  },
+  "FY2223": {
+   "revenue": 6612226,
+   "cogs": -3574483,
+   "gross": 3037743,
+   "selling": -473720,
+   "admin": -188851,
+   "provisions": -94355,
+   "prov_released": 1236,
+   "fx": 0,
+   "other_income": 31032,
+   "other_exp": -159734,
+   "operating": 2153351,
+   "fin_income": 35100,
+   "fin_cost": -828259,
+   "inv_income": 125524,
+   "pbt": 1485716,
+   "tax": -318250,
+   "solidarity": -16699,
+   "net": 1150767,
+   "eps": 0.9698
+  },
+  "FY2324": "see extract_fy2425.json comparatives",
+  "FY2425": "see extract_fy2425.json"
+ },
+ "BS": {
+  "FY2122": {
+   "fixed": 9434151,
+   "cwip": 65009,
+   "fvoci": 873584,
+   "intangibles": 1530114,
+   "noncurrent": 11903232,
+   "inventory": 733660,
+   "receivables": 644442,
+   "cash": 520435,
+   "current": 1898537,
+   "total_assets": 13801769,
+   "capital": 5932895,
+   "reserves": 403672,
+   "fvoci_res": 799157,
+   "retained": -2895981,
+   "profit": 651486,
+   "equity": 4891229,
+   "bank_loans_lt": 5518347,
+   "holdco": 71523,
+   "dtl": 1151222,
+   "noncurrent_liab": 6741092,
+   "provisions": 366258,
+   "payables": 1089458,
+   "current_lt": 713732,
+   "current_liab": 2169448,
+   "total_liab": 8910540
+  },
+  "FY2223": {
+   "fixed": 11300438,
+   "cwip": 56405,
+   "fvoci": 1855435,
+   "intangibles": 1908612,
+   "loans_ext": 328,
+   "noncurrent": 15121218,
+   "inventory": 1391802,
+   "receivables": 798577,
+   "cash": 1416243,
+   "current": 3606622,
+   "total_assets": 18727840,
+   "capital": 5932895,
+   "reserves": 426979,
+   "fvoci_res": 1781009,
+   "retained": -2042014,
+   "profit": 1150767,
+   "equity": 7249636,
+   "bank_loans_lt": 8424871,
+   "holdco": 50266,
+   "dtl": 1469472,
+   "noncurrent_liab": 9944609,
+   "provisions": 144359,
+   "payables": 1367845,
+   "current_lt": 21391,
+   "current_liab": 1533595,
+   "total_liab": 11478204
+  }
+ },
+ "CF_egp_full": {
+  "FY2122": {
+   "operating": 1144779510,
+   "investing": -6335717,
+   "capex": -80847245
+  },
+  "FY2223": {
+   "operating": 2749700020,
+   "investing": -35729523,
+   "capex": -42470154
+  }
+ },
+ "notes": {
+  "FY2324_cogs": {
+   "materials": 3157760580,
+   "wages": 163938790,
+   "services": 66717074,
+   "depreciation": 662634227,
+   "indirect_tax": 8061627,
+   "re_tax": 139980,
+   "wip_chg": 23115762,
+   "fg_chg": 349712098,
+   "total": 4395788181
+  },
+  "FY2223_cogs": {
+   "materials": 2978956126,
+   "wages": 109855073,
+   "services": 54281060,
+   "depreciation": 627212517,
+   "indirect_tax": 6203081,
+   "re_tax": 104986,
+   "wip_chg": -34442115,
+   "fg_chg": -167934927,
+   "total": 3574482847
+  },
+  "FY2324_selling": {
+   "materials": 79463045,
+   "wages": 47028218,
+   "other": 28505653,
+   "freight": 407528930,
+   "total": 562526756
+  },
+  "FY2223_selling": {
+   "materials": 51602258,
+   "wages": 28579199,
+   "other": 29800546,
+   "freight": 363733485,
+   "total": 473719988
+  },
+  "FY2324_revenue_note": {
+   "sales": 6531920103,
+   "services": 191028,
+   "operating_for_others": 15052,
+   "total": 6532126183
+  },
+  "FY2223_revenue_note": {
+   "sales": 6612030153,
+   "services": 196150,
+   "total": 6612226303
+  },
+  "loans_kima2": {
+   "FY2223": {
+    "current": 21391168,
+    "lt": 8424870610,
+    "total": 8446261778
+   },
+   "FY2324": {
+    "current": 354050551,
+    "lt": 11226245553,
+    "total": 11580296104,
+    "note": "EGP tranche fully repaid Jun-2024"
+   }
+  },
+  "production_tons_derived": {
+   "FY2223": {
+    "urea": "~586,400 (+2% over 574,875 design)",
+    "ammonia": "~376,700 (14% below 438,000 design)"
+   },
+   "FY2324": {
+    "urea": "~521,900 (-11% yoy)",
+    "ammonia": "~267,400 (-29% yoy)"
+   },
+   "FY2425": {
+    "urea": 513385,
+    "ammonia": 318242,
+    "source": "auditor cost table (exact)"
+   }
+  },
+  "price_anchors": {
+   "local_industrial_urea_egp_t_jun2024": 14600,
+   "subsidized_urea_egp_t_2025": 6000,
+   "urea_fob_egypt_usd_aug2026": 545,
+   "q1_fy2526": "export volumes +34%, export prices +43% yoy (auditor)"
+  }
+ },
+ "quarterly_FY2526": {
+  "q1_net": 482705,
+  "q2_net": 707340,
+  "q3_net": -658735,
+  "q1_rev": 1184805,
+  "q2_rev": 2971574,
+  "q3_rev": 3158554
+ }
+}

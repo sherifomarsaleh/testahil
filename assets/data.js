@@ -2,7 +2,7 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-08-08", latest: "SCEM" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
+const SITE = { updated: "2026-08-09", latest: "EGCH" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
 /* ---------- covered tickers ----------
    HORIZON FIELDS (see the HORIZON CONVENTION block above the LEDGER):
@@ -24,6 +24,44 @@ const SITE = { updated: "2026-08-08", latest: "SCEM" };  // latest = the LAST-PU
                            label would then misstate what was simulated.
    ------------------------------------- */
 const TICKERS = {
+  EGCH: {
+    name: "Egyptian Chemical Industries (KIMA)",
+    nameAr: "\u0627\u0644\u0635\u0646\u0627\u0639\u0627\u062a \u0627\u0644\u0643\u064a\u0645\u0627\u0648\u064a\u0629 \u0627\u0644\u0645\u0635\u0631\u064a\u0629 - \u0643\u064a\u0645\u0627",
+    code: "EGX:EGCH",
+    spot: 13.98,
+    spotDate: "close 6 Aug 2026",
+    ccy: "EGP",
+    fair: { bear: 0.00, base: 3.64, full: 15.47 },   // 9 Aug 2026 - four lenses, one field, EGP 0.00 to 15.47. Weighted central 3.64 on FCFF DCF 45% / relative 20% / normalised 20% / book 15%. THE CASH-FLOW LENS IS PUBLISHED BOTH WAYS AND NEVER AVERAGED: -0.67 carried through, 3.34 stopped - a gap of 4.00, the single judgement deciding this company. Built bottom up: urea tonnes x price in five channels against a physical cost stack, each cost class on ITS OWN escalator. The new nitrate complex is built from the auditor's own disclosed unit cost (EGP 4,076.31/t, reconciling to the disclosed ammonia unit cost at the disclosed ratio); where the build implies a margin the study does not believe, the LOWER of build and assumption is taken. Capital programme is the crux: EGP 20.3bn approved against EGP 27.8bn of market value, 27.8% of the money spent against 12.9% of the plant built, ~2% return on approved cost against a ~20% terminal cost of capital. Net debt EGP 10,032mn against an enterprise value of EGP 5,169mn - the operating business is carried at less than half the debt against it. The relative lens, rebuilt from named comparables at 6.0-9.9x, is the one lens that reaches the traded price, and only by never charging the capital programme.
+    dist: {
+      t20: { label:"1 month",   p5:12.04, p25:13.35, p50:14.19, p75:15.09, p95:16.73, resolve:"2026-09-06" },
+      t60: { label:"3 months",  p5:10.69, p25:13.03, p50:14.64, p75:16.43, p95:20.04, resolve:"2026-11-08" }
+    },
+    hz: { h1:20, h3:62, l1:"1 month", l3:"3 months", cal:true },
+    touch: [ /* level, P(touch) 1-month %, 3-month % - descending */
+      [16.78, 7, 35],
+      [16.08, 15, 47],
+      [15.38, 30, 62],
+      [14.68, 56, 79],
+      [13.28, 44, 63],
+      [12.58, 18, 41]
+    ],
+    levels: { res:[14.98, 15.37, 16], sup:[12.49, 11.13, 9.83] },
+    tech: {
+      trend: "Trading above the whole moving-average stack, on a rising 200-day",
+      summary: "The price closed 13.98 above a rising 20-day (13.34), a rising 50-day (13.44) and a rising 200-day (12.12). Momentum is firm: RSI(14) is ~61 and the daily ATR near 0.44 (~3.1%) points to a lively tape. MACD (12\u00b726\u00b79) is positive and rising (+0.23 / +0.09 / +0.14). Over the last year it has ranged 9.50\u201315.37; the last close sits 9% below that high and 47% above that low.",
+      bull: "A daily close back above 14.98 would clear the nearest resistance and open the 16.00 zone.",
+      bear: "A close below 12.49 would break the nearest support and open the 9.83 zone."
+    },
+    asof: {
+      mc:   { data:"2026-08-06", computed:"2026-08-06" },
+      tech: { data:"2026-08-06", computed:"2026-08-09" }
+    },
+    files: {
+      study: "files/EGCH_Valuation_Study_08-08-2026.pdf?v=0809a",
+      model: "files/EGCH_Valuation_Model_08082026.xlsx?v=0809a",
+      biblio: "files/EGCH_Bibliography_08-08-2026.pdf?v=0809a"
+    }
+  },
   SCEM: {
     name: "Sinai Cement Company S.A.E.",
     nameAr: "\u0633\u064a\u0646\u0627\u0621 \u0644\u0644\u0623\u0633\u0645\u0646\u062a",
@@ -4761,7 +4799,27 @@ const LEDGER = [
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
-  }
+  },
+  { instrument:"EGCH", asset_class:"equity", anchor_date:"2026-08-06", run_date:"2026-08-06", anchor_price:13.98, ccy:"EGP",
+    horizon_label:"1 month", grade_date:"2026-09-06", grade_basis:"projected", horizon_days:20, cycle_no:1,
+    anchor_vol:0.4347, cal:"parity",
+    note:"First coverage, 8-Aug-2026 — cycle 1, struck on the study's own committed path arrays at the 2026-08-06 anchor and NOT re-simulated at publish: re-striking a frozen cone would publish a forecast the study never made. Percentiles are the study's p5–p95; the touch ladder is the study's own ±5/10/15/20% ladder. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count. q_annual = 0 — no dividend was declared in either of the last two years, sourced to the appropriation statements. Name-level calibration: PARITY — the five-year back-test runs 17 non-overlapping quarterly origins with coverage of 64.7% and 88.2% against the 50% and 90% bands and a chart skill of −0.14, PIT mean 0.557. No single-name edge exists on this name and none is claimed; the EG panel it draws from is the part that passes. The price map is published as a map of dispersion around today's price, never as a forecast of value.",
+    p5:12.04, p25:13.35, p50:14.19, p75:15.09, p95:16.73,
+    touch:{ "+5":56, "+10":30, "+15":15, "+20":7, "-5":44, "-10":18 },
+    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
+    realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null },
+    reanchor_from:null },
+  { instrument:"EGCH", asset_class:"equity", anchor_date:"2026-08-06", run_date:"2026-08-06", anchor_price:13.98, ccy:"EGP",
+    horizon_label:"3 months", grade_date:"2026-11-08", grade_basis:"projected", horizon_days:62, cycle_no:1,
+    anchor_vol:0.4680, cal:"parity",
+    note:"First coverage, 8-Aug-2026 — cycle 1, struck on the study's own committed path arrays at the 2026-08-06 anchor and NOT re-simulated at publish: re-striking a frozen cone would publish a forecast the study never made. Percentiles are the study's p5–p95; the touch ladder is the study's own ±5/10/15/20% ladder. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count. q_annual = 0 — no dividend was declared in either of the last two years, sourced to the appropriation statements. Name-level calibration: PARITY — the five-year back-test runs 17 non-overlapping quarterly origins with coverage of 64.7% and 88.2% against the 50% and 90% bands and a chart skill of −0.14, PIT mean 0.557. No single-name edge exists on this name and none is claimed; the EG panel it draws from is the part that passes. The price map is published as a map of dispersion around today's price, never as a forecast of value.",
+    p5:10.69, p25:13.03, p50:14.64, p75:16.43, p95:20.04,
+    touch:{ "+5":79, "+10":62, "+15":47, "+20":35, "-5":63, "-10":41 },
+    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
+    realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null },
+    reanchor_from:null }
 ];
 
 /* ==========================================================================
