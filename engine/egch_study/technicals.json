@@ -1,0 +1,98 @@
+{
+ "market": "EG",
+ "series": "EGCH",
+ "close": 13.98,
+ "data_date": "2026-08-06",
+ "computed_on": "2026-08-08",
+ "sessions": 3755,
+ "rows_in": 3756,
+ "repairs": [
+  "dropped 1 rows carrying a non-positive or non-finite OHLC value (2011-08-03) \u2014 vendor fills, not tradeable prices"
+ ],
+ "ma": {
+  "20": 13.3375,
+  "50": 13.439000000000004,
+  "200": 12.115350000000001
+ },
+ "ma_slope": {
+  "20": "rising",
+  "50": "rising",
+  "200": "rising"
+ },
+ "rsi": 60.626932688591246,
+ "atr": 0.43653249238831765,
+ "macd": {
+  "macd": 0.23088912038900133,
+  "signal": 0.09482408810262866,
+  "hist": 0.13606503228637268
+ },
+ "ma_cross": {
+  "ago": 252,
+  "kind": "golden"
+ },
+ "atr_pct": 0.03122550017083817,
+ "hi_52w": 15.37,
+ "lo_52w": 9.5,
+ "pct_off_high": 0.09043591411841241,
+ "pct_off_low": 0.4715789473684211,
+ "levels": {
+  "res": [
+   14.98,
+   15.37,
+   16.0
+  ],
+  "sup": [
+   12.49,
+   11.13,
+   9.83
+  ]
+ },
+ "level_detail": {
+  "res": [
+   {
+    "level": 14.98,
+    "score": 1.0452439124576296,
+    "kind": "swing",
+    "touches": 1
+   },
+   {
+    "level": 15.370000000000001,
+    "score": 0.9475957697285228,
+    "kind": "swing",
+    "touches": 1
+   },
+   {
+    "level": 16.0,
+    "score": 0.16234240212342402,
+    "kind": "round",
+    "touches": 0
+   }
+  ],
+  "sup": [
+   {
+    "level": 12.490400760091607,
+    "score": 3.544010987650145,
+    "kind": "swing",
+    "touches": 3
+   },
+   {
+    "level": 11.134943490128313,
+    "score": 9.673965822079294,
+    "kind": "swing",
+    "touches": 6
+   },
+   {
+    "level": 9.829709075861837,
+    "score": 1.9467844400243337,
+    "kind": "swing",
+    "touches": 3
+   }
+  ]
+ },
+ "tech": {
+  "trend": "Trading above the whole moving-average stack, on a rising 200-day",
+  "summary": "The price closed 13.98 above a rising 20-day (13.34), a rising 50-day (13.44) and a rising 200-day (12.12). Momentum is firm: RSI(14) is ~61 and the daily ATR near 0.44 (~3.1%) points to a lively tape. MACD (12\u00b726\u00b79) is positive and rising (+0.23 / +0.09 / +0.14). Over the last year it has ranged 9.50\u201315.37; the last close sits 9% below that high and 47% above that low.",
+  "bull": "A daily close back above 14.98 would clear the nearest resistance and open the 16.00 zone.",
+  "bear": "A close below 12.49 would break the nearest support and open the 9.83 zone."
+ }
+}

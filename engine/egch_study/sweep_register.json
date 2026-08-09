@@ -1,0 +1,520 @@
+{
+ "ticker": "EGCH",
+ "asset_class": "STOCK",
+ "sweep_date": "2026-08-08",
+ "findings": [
+  {
+   "fid": "F01",
+   "ring": "GLOBAL",
+   "category": "rate cycle & USD/FX regime",
+   "klass": "STRUCTURAL",
+   "headline": "Global easing cycle under way; Fed funds midpoint 3.63% (Jun-2026) \u2014 the backdrop against which Egypt's 19.00/19.50% policy corridor normalises",
+   "source_name": "US Federal Reserve policy history (house FED_SCHEDULE, engine/market_profiles.py)",
+   "source_type": "REGULATOR_OFFICIAL",
+   "source_date": "2026-06-18",
+   "detail": "",
+   "url": "",
+   "model_impact": "Anchors the direction of the Kd glide and the terminal risk-free build: the EGP cost-of-debt path falls only if the global path allows it.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F02",
+   "ring": "GLOBAL",
+   "category": "commodity complex (input/output)",
+   "klass": "STRUCTURAL",
+   "headline": "Urea is the output commodity and it is in a war-supply squeeze: Middle-East conflict (Hormuz risk, Israeli-gas force majeure) drove global urea above $700/t FOB in H1-2026; CME Urea (Granular) FOB EGYPT front month settled ~$545/t on 7-Aug-2026. Natural gas is the input; Egyptian fertilizer producers pay a formula price of $5.75/mmBtu (raised from $4.50 effective from Nov-2021 pricing decision)",
+   "source_name": "CME/TradingView UFE front month (helper snapshot, live_data.json); Profercy/CRU coverage; gas formula price per note 28 of the audited FY2024/25 statements",
+   "source_type": "PRIMARY_MARKET_DATA",
+   "source_date": "2026-08-07",
+   "detail": "",
+   "url": "",
+   "model_impact": "Sets the export-price driver's anchor ($545/t FOB Egypt today, mean-reverting glide) and the gas-cost driver's USD price leg ($5.75/mmBtu through USD/EGP \u2014 its own escalator, never a CPI proxy).",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F03",
+   "ring": "GLOBAL",
+   "category": "global sector demand",
+   "klass": "COLOR",
+   "headline": "Nitrogen demand is annually recurring and price-inelastic (crop nutrient); the Middle East 'big three' (Qatar, Saudi, Egypt) carry ~35% of seaborne ammonia/urea trade, so regional disruption transmits straight into the FOB Egypt price",
+   "source_name": "CRU Group, 'Middle East Conflict: Urea supply disruptions could be catastrophic'",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-03-01",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F04",
+   "ring": "GLOBAL",
+   "category": "trade / sanctions / supply chains",
+   "klass": "STRUCTURAL",
+   "headline": "Two trade-policy overlays: (1) Israel's war-driven gas-export force majeure removes ~one LNG cargo per four days from Egypt's balance, forcing industrial gas rationing; (2) the EU CBAM reaches Egyptian nitrogen exports \u2014 KIMA has contracted an MRV emissions-reporting system (EGP 4.46m, Feb-2025) and its auditor warns delays threaten EU-bound exports from 2026",
+   "source_name": "S&P Global/Argus gas-curtailment coverage; CBAM/MRV per the auditor's report on the audited FY2024/25 statements",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-03-04",
+   "detail": "",
+   "url": "",
+   "model_impact": "Downside scenario driver: gas-availability haircut on volumes; CBAM compliance treated as a cost line risk, not a separate leg.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F05",
+   "ring": "COUNTRY",
+   "category": "sovereign macro (inflation, policy rate, FX/deval risk)",
+   "klass": "STRUCTURAL",
+   "headline": "CBE held the corridor at 19.00/20.00% (main operation 19.50%) in July-2026 after 825bp of cuts from Apr-2025; headline CPI 14.3% y/y (Jun-2026, third month easing); USD/EGP 49.79 (7-Aug-2026); 10Y EGP sovereign 23.0% (6-Aug-2026). Devaluation remains a way of life: the EGP swung ~47 (Dec-2025) to ~50.4 (Mar-2026) and that single move produced a 1.46bn EGP Q3 FX loss on KIMA's USD debt",
+   "source_name": "CBE July-2026 MPC (FocusEconomics report); TradingEconomics CPI; investing.com 10Y/FX (helper snapshot live_data.json); FX-loss mechanics per the 9M-2025/26 interim statements",
+   "source_type": "PRIMARY_MARKET_DATA",
+   "source_date": "2026-08-07",
+   "detail": "",
+   "url": "",
+   "model_impact": "Sets rf* build (23.0% less the sovereign's own default spread), the USD/EGP path applied to the gas price, the USD debt service, and the FX-translation line that dominates quarterly earnings volatility.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F06",
+   "ring": "COUNTRY",
+   "category": "regulatory environment (regulator, caps, tariffs, tax/subsidy)",
+   "klass": "STRUCTURAL",
+   "headline": "The nitrogen-fertilizer regime is administered: cabinet decision 170 (24-Nov-2021) required 55% of production to the subsidized system + 10% local free market with max 35% exports; trade-ministry decree 241/2021 set an EGP 2,500/t export levy on quota shortfalls (KIMA was charged EGP 437.5m on a 175kt shortfall in FY2024/25). Cabinet decision of 8-Sep-2025 then CUT the subsidized obligation (KIMA's required cooperative deliveries reset to ~16kt at a changed supply price, ~2.5kt/month) \u2014 the export share rose to ~53% sector-wide \u2014 and 2026 policy switched the export levy toward a 10% ad-valorem duty tied to global prices. Subsidized urea ~EGP 6,000/t vs open-market ~EGP 28-32k/t",
+   "source_name": "Cabinet/ministry decisions as cited in the auditor's reports on the audited FY2024/25 statements and the Q1-2025/26 limited review; Mada Masr and Edge Consultancy reporting on the Sep-2025 redistribution and 2026 duty change",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2025-09-08",
+   "detail": "",
+   "url": "",
+   "model_impact": "THE mix driver: share of output at subsidized vs free-local vs export price, plus the export-duty wedge on the realized export price. The Sep-2025 cut is why the FY2025/26 export mix and margin jumped.",
+   "is_fs_data": false,
+   "fiscal_period": "Q1-2025/26"
+  },
+  {
+   "fid": "F07",
+   "ring": "COUNTRY",
+   "category": "fiscal / political events with sector read-through",
+   "klass": "STRUCTURAL",
+   "headline": "Egypt's gas deficit forces summer industrial rationing (households and power first): producers were curtailed up to ~50% in the 2025 and 2026 summers; KIMA expensed factory-stoppage costs of EGP 152.7m (FY2023/24) and 164.5m (FY2024/25) and booked abnormal gas losses of ~EGP 781m cumulative FY2022/23-FY2024/25 (~249m in FY2024/25 alone); its Q1-2025/26 gas loss was 31.3m m3 (~EGP 251m) with August-2025 usage at 8,492 m3/t against a 1,200 m3/t standard because plants burned gas idling/restarting",
+   "source_name": "Auditor's reports on the audited FY2024/25 statements and Q1-2025/26 limited review; S&P Global gas-cut coverage",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2025-11-13",
+   "detail": "",
+   "url": "",
+   "model_impact": "Volume driver's availability haircut (utilisation capped below design by summer gas cuts) and a standing abnormal-gas-cost line in the cost stack.",
+   "is_fs_data": false,
+   "fiscal_period": "Q1-2025/26"
+  },
+  {
+   "fid": "F08",
+   "ring": "INDUSTRY",
+   "category": "demand drivers & capacity/supply balance",
+   "klass": "STRUCTURAL",
+   "headline": "Egypt operates ~7.2-7.3 Mt/y of urea capacity (Abu Qir, MOPCO, AlexFert, Helwan, KIMA, NCIC); domestic subsidized demand takes the administered share and the balance exports through Mediterranean ports. KIMA is the smallest gas-based producer (~0.57 Mt/y design) and the only one located 1,000km inland at Aswan",
+   "source_name": "Discovery Alert Egypt-nitrogen supply analysis; capacity plates per Tecnimont project record and note 28 benchmarks (1,200 t/d ammonia / 1,575 t/d urea)",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-03-25",
+   "detail": "",
+   "url": "",
+   "model_impact": "Caps the volume driver at design capacity; the Aswan location makes freight-to-port its own explicit cost line (EGP 610m in FY2024/25).",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F09",
+   "ring": "INDUSTRY",
+   "category": "pricing",
+   "klass": "STRUCTURAL",
+   "headline": "Three-tier realized pricing: subsidized ~EGP 6,000/t; local free-market urea reached EGP 14,600/t by Jun-2024 (auditor) and sacks of EGP 1,400-1,600/50kg (~EGP 28-32k/t) by mid-2026 as the EGP price caught the world price; export FOB Egypt $545/t front month (Aug-2026) after $710-720/t placements in Mar-2026. KIMA's Q1-2025/26 export prices rose 43% y/y (auditor)",
+   "source_name": "Auditor's reports (FY2023/24, Q1-2025/26); CME FOB Egypt quote; Al Manassa / Mada Masr local-market reporting",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-08-07",
+   "detail": "",
+   "url": "",
+   "model_impact": "Sets the three price legs of the revenue build separately \u2014 never one blended realized price.",
+   "is_fs_data": false,
+   "fiscal_period": "Q1-2025/26"
+  },
+  {
+   "fid": "F10",
+   "ring": "INDUSTRY",
+   "category": "new entrants (named-competitor level)",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found (new Egyptian nitrogen/urea plant announcements 2025-2026 beyond existing producers' debottlenecks (searched: Egypt new urea plant 2026, NCIC expansion, green ammonia greenfield urea))",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-08-08",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F11",
+   "ring": "INDUSTRY",
+   "category": "technology substitution",
+   "klass": "COLOR",
+   "headline": "Green-ammonia projects (Scatec/Egypt Green at Ain Sokhna and successors) target export bunkering/hydrogen niches, not the domestic subsidized urea system; no commercial displacement of gas-based urea inside the forecast window",
+   "source_name": "Egypt green-hydrogen program coverage",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-01-15",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F12",
+   "ring": "INDUSTRY",
+   "category": "competitor capacity / price moves (named)",
+   "klass": "STRUCTURAL",
+   "headline": "Named peers: Abu Qir Fertilizers (ABUK, ~2 Mt/y, EGX-listed \u2014 KIMA holds a 2.7% stake it began selling down in H1-2025/26) and MOPCO (Damietta) were curtailed by up to ~50% in the 2026 gas squeeze; both sit on the coast with structurally lower freight than Aswan. ABUK also acts as KIMA's ammonia export marketer (12% of the export price per the disputed FY2024/25 contract)",
+   "source_name": "S&P Global curtailment coverage; ABUK relationship per the auditor's report on the audited FY2024/25 statements",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-03-04",
+   "detail": "",
+   "url": "",
+   "model_impact": "Peer KPI/multiple cross-checks (ABUK margins, EV/t); the ammonia-marketing fee stays in the selling-cost stack.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F13",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "Audited FY2021/22 (comparatives in the FY2022/23 filing): revenue 4,440.7m, gross 2,117.7m (47.7%), net 651.5m; equity 4,891.2m; KIMA-2 USD loan 6,232.1m incl. current portion",
+   "source_name": "Audited financial statements FY2022/23 (Central Auditing Organization + PKF), kimaegypt.com IR portal",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2023-10-08",
+   "detail": "",
+   "url": "",
+   "model_impact": "First year of the four-year statement history the model chains from.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2021/22"
+  },
+  {
+   "fid": "F14",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "Audited FY2022/23: revenue 6,612.2m (gas year: urea +2% over design at ~586kt), gross 3,037.7m (46.0%), net 1,150.8m; capex a mere 42.5m \u2014 KIMA-2 complete, pre-ANNA; dual-audited (state CAO + PKF Rashed Badr & Co)",
+   "source_name": "Audited financial statements FY2022/23, kimaegypt.com IR portal",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2023-10-08",
+   "detail": "",
+   "url": "",
+   "model_impact": "Peak-utilisation reference year for the volume driver's upper leg.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2022/23"
+  },
+  {
+   "fid": "F15",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "Audited FY2023/24: revenue 6,532.1m, net 2,537.9m \u2014 but 2,034.6m of that is a ONE-OFF investment-property revaluation gain; underlying ~503m. Ammonia/urea output fell ~29%/~11% on gas cuts; EGP tranche of the KIMA-2 loan fully repaid June-2024; EGP 4bn capital increase (3,066.7m cash + 933.3m holdco debt-to-equity)",
+   "source_name": "Audited financial statements FY2023/24, kimaegypt.com IR portal",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2024-10-23",
+   "detail": "",
+   "url": "",
+   "model_impact": "Base-cleaning: the revaluation gain is stripped from every margin and ROE read; the trough-utilisation reference for the volume driver.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2023/24"
+  },
+  {
+   "fid": "F16",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "Audited FY2024/25: revenue 8,602.6m split EXPORT 6,608.8m / LOCAL 1,993.8m (note 20), gross 3,302.3m (38.4%), net 987.0m; production urea 513,385t @ EGP 7,509/t, ammonia 318,242t @ 9,114/t, AN 26,058t, nitric acid 35,590t (auditor cost table); COGS: materials 4,398.6m / wages 212.9m / depreciation 776.5m; selling includes freight-to-port 610.2m; finance cost 1,460.9m of which USD-loan interest 1,338.0m; debt 12.18bn (USD tranche ~$233m + holdco 596.9m); cash 3,057.0m; zero dividends",
+   "source_name": "Audited financial statements FY2024/25 (Central Auditing Organization, report 23-Sep-2025), kimaegypt.com IR portal",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2025-09-24",
+   "detail": "",
+   "url": "",
+   "model_impact": "The anchor year: every forecast driver chains off this base.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2024/25"
+  },
+  {
+   "fid": "F17",
+   "ring": "COMPANY",
+   "category": "regular disclosures",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "Q1-2025/26 (limited review, state auditor + Nasr Abou El Abbas/Morison Global): revenue 1,184.8m (+23.6% y/y), gross 389.8m; auditor: urea export volumes +34%, export prices +43% y/y; net 482.7m incl. +357.2m FX gain",
+   "source_name": "Q1-2025/26 interim statements (16-Nov-2025 filing), kimaegypt.com IR portal",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2025-11-16",
+   "detail": "",
+   "url": "",
+   "model_impact": "Study-year actuals: sets the FY2025/26 volume/price/mix starting run.",
+   "is_fs_data": true,
+   "fiscal_period": "Q1-2025/26"
+  },
+  {
+   "fid": "F18",
+   "ring": "COMPANY",
+   "category": "regular disclosures",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "H1-2025/26: revenue 4,156.4m, gross 1,672.6m (40.2%), net 1,190.0m incl. +383.9m FX gain; holdco loan repaid down to 45.96m; part of the ABUK stake SOLD (~559.8m proceeds in the 9M cash flow)",
+   "source_name": "H1-2025/26 interim statements (15-Feb-2026 filing), kimaegypt.com IR portal",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-02-15",
+   "detail": "",
+   "url": "",
+   "model_impact": "Confirms the mix-shift margin; updates the non-operating asset stack for the EV-to-equity bridge.",
+   "is_fs_data": true,
+   "fiscal_period": "H1-2025/26"
+  },
+  {
+   "fid": "F19",
+   "ring": "COMPANY",
+   "category": "regular disclosures",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "9M-2025/26: revenue 7,314.9m (+14.5% y/y), gross 3,135.0m (42.9%), net 531.3m AFTER a 1,072.0m FX loss (Q3 alone -1,455.9m as USD/EGP went ~47 to ~50.4 on ~$260-290m USD debt); operationally Q3 was the best quarter on record (revenue 3,158.6m, gross 46.3%). Company budget column: 9M budget net 1,021.9m. ANNA CWIP 5,653.5m; ANNA loan draws 1,585.8m in 9M",
+   "source_name": "9M-2025/26 interim statements (21-May-2026 filing), kimaegypt.com IR portal",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-05-21",
+   "detail": "",
+   "url": "",
+   "model_impact": "TTM base for the strike; quantifies the FX-translation channel that the fair-value range must carry as a sensitivity; the budget column is the sourced near-term cost anchor the cost stack must cite.",
+   "is_fs_data": true,
+   "fiscal_period": "9M-2025/26"
+  },
+  {
+   "fid": "F20",
+   "ring": "COMPANY",
+   "category": "strategic plans & guidance",
+   "klass": "STRUCTURAL",
+   "headline": "ANNA project (nitric acid + ammonium nitrate, Tecnimont/Orascom consortium): final bank-approved cost EGP 6,422.4m + US$278.4m (agreement 25-Jun-2025), financed US$82.9m + EGP 5,930.7m amortizing to 2035/2036; contract $245.0m + EGP 1,611m signed 12-Oct-2023; execution 8.3% vs 21.7% plan (30-Jun-2025), 12.9% vs 37% (30-Sep-2025); a holding-company committee (9-Apr-2025) found 'severe deficiencies' in the award process. Purpose: convert surplus ammonia capacity (design 438kt vs urea's ~297kt need) into AN products",
+   "source_name": "Note 18-3 and auditor's reports, audited FY2024/25 + Q1-2025/26 filings",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2025-09-24",
+   "detail": "",
+   "url": "",
+   "model_impact": "Capex driver (bottom-up from the approved cost and draw schedule) and debt build; ANNA revenue is carried as an explicit SCENARIO leg, not in the base FCFF, given 2-year delay track and governance findings.",
+   "is_fs_data": false,
+   "fiscal_period": "FY2024/25"
+  },
+  {
+   "fid": "F21",
+   "ring": "COMPANY",
+   "category": "IR communications (calls, presentations, releases)",
+   "klass": "COLOR",
+   "headline": "KIMA's IR channel is the Mist-hosted portal: quarterly board & shareholder-structure disclosure reports (latest 30-Jun-2026), news feed, share-price page. No investor presentations or earnings calls exist \u2014 volumes/prices/utilisation reach the record only through the statutory auditor's tables, which this sweep therefore mines as the de-facto IR disclosure",
+   "source_name": "KIMA IR portal index (Disclosure Reports section, item dated 30-Jun-2026), mistnews.com via kimaegypt.com",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-06-30",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F22",
+   "ring": "COMPANY",
+   "category": "IR communications (calls, presentations, releases)",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found (KIMA investor presentation, earnings call transcript, guidance deck (searched IR portal index + web: 'KIMA investor presentation', '\u0643\u064a\u0645\u0627 \u0645\u0624\u062a\u0645\u0631 \u0627\u0644\u0645\u062d\u0644\u0644\u064a\u0646'))",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-08-08",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F23",
+   "ring": "COMPANY",
+   "category": "one-off base-resetting transactions",
+   "klass": "BASE_CHANGER",
+   "headline": "Three base-resetting events: (1) FY2023/24 investment-property revaluation gain EGP 2,034.6m (one-off, in net profit); (2) Mar-2024 capital increase EGP 4bn to 9,932.9m paid-in (1,986,578,999 shares x EGP 5); (3) H1-2025/26 partial sale of the ABUK stake (~559.8m proceeds; FVOCI assets 2,163.3m -> 1,382.9m by Mar-2026). Also: ferrosilicon furnace (idle since 2019) leased to a Saudi tenant from May-2025 \u2014 ferrosilicon is now rental income, not production",
+   "source_name": "Audited FY2023/24 and FY2024/25 statements; H1/9M-2025/26 interims",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-05-21",
+   "detail": "",
+   "url": "",
+   "model_impact": "Dual-framing on FY2023/24 profit (with/without the gain); share count and equity base reset; the non-operating bridge marks the REMAINING stakes at market and the ferrosilicon leg becomes a rental line.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2024/25"
+  },
+  {
+   "fid": "F24",
+   "ring": "COMPANY",
+   "category": "ownership / stake changes (named-transaction rule)",
+   "klass": "COLOR",
+   "headline": "Register (note 14, 30-Jun-2025): Chemical Industries Holding 69.825%, public-sector workers' insurance fund 19.27%, Banque Misr 3.78%, business-sector insurance fund 0.94%, individuals 6.184% \u2014 free float ~6.2%, consistent with the thin-trading diagnostics in the beta build. Offtake: Ameropa AG agreement 1-Nov-2024, ~30kt/month (~67% of production), one year renewable to Oct-2025, signed at the funding banks' request",
+   "source_name": "Note 14 + auditor's report, audited FY2024/25 statements",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2025-09-24",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": "FY2024/25"
+  },
+  {
+   "fid": "F25",
+   "ring": "COMPANY",
+   "category": "management & capital actions",
+   "klass": "STRUCTURAL",
+   "headline": "Zero dividends in FY2023/24 and FY2024/25 (appropriation statements: all retained after legal reserve) \u2014 q=0 is SOURCED, not assumed; the 500m holdco loan drawn FY2024/25 at ~19.4% was repaid to 45.96m by Dec-2025; gas arrears are being rescheduled with Petrotrade (25.98m rescheduling interest in FY2024/25, 35m late-fine provision); KIMA-1 fire (21-Mar-2025, 12m cost) repaired, plant restarted 29-Jul-2025",
+   "source_name": "Appropriation statements and notes 16/26, audited FY2024/25 statements",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2025-09-24",
+   "detail": "",
+   "url": "",
+   "model_impact": "q_annual=0 in the cone strike; working-capital driver carries the gas-arrears financing behavior; no buyback/dividend leg in the bridge.",
+   "is_fs_data": false,
+   "fiscal_period": "FY2024/25"
+  },
+  {
+   "fid": "F26",
+   "ring": "COMPANY",
+   "category": "strategic plans & guidance",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found (maintenance-capex guidance or an investment plan beyond ANNA (searched filings' board reports + news: '\u0643\u064a\u0645\u0627 \u062e\u0637\u0629 \u0627\u0633\u062a\u062b\u0645\u0627\u0631\u064a\u0629', 'KIMA capex plan'))",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-08-08",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  }
+ ],
+ "drivers": [
+  {
+   "driver": "Urea volumes (tonnes)",
+   "mode": "BOTTOM_UP",
+   "justification": "Design capacity 574,875 t/y (1,575 t/d, note 28 benchmark) with actuals 586kt (FY2022/23) / 522kt (FY2023/24) / 513kt (FY2024/25) from the auditor's own production tables; forecast utilisation banded by the gas-availability pattern (summer cuts) and the Q1-2025/26 +34% export-volume print.",
+   "sweep_refs": [
+    "F16",
+    "F17",
+    "F07",
+    "F08"
+   ]
+  },
+  {
+   "driver": "Realized price mix (subsidized / local free / export)",
+   "mode": "BOTTOM_UP",
+   "justification": "Note 20 gives the FY2024/25 export/local revenue split (6,608.8m/1,993.8m); the quota decrees set the administered shares and their Sep-2025 reset; FOB Egypt $545/t and the EGP 2,500/t-to-10% duty wedge price the export leg; EGP 6,000/t prices the subsidized leg.",
+   "sweep_refs": [
+    "F16",
+    "F06",
+    "F09",
+    "F02"
+   ]
+  },
+  {
+   "driver": "Natural-gas cost (feedstock + fuel)",
+   "mode": "BOTTOM_UP",
+   "justification": "Priced as USD formula price ($5.75/mmBtu, note 28) x usage (1,025-1,771 m3/t urea, auditor) x USD/EGP path \u2014 a commodity input escalating on its own USD path through FX, never a domestic-CPI proxy (cost-stack escalation rule); the abnormal-loss history (781m cumulative) carries as a standing inefficiency line.",
+   "sweep_refs": [
+    "F16",
+    "F02",
+    "F07"
+   ]
+  },
+  {
+   "driver": "Non-gas cost stack (wages, services, electricity, freight)",
+   "mode": "BOTTOM_UP",
+   "justification": "Each class its own escalator: wages (212.9m FY2024/25) on domestic CPI-wage path; freight-to-port (610.2m) scales with export tonnage; electricity per the transmission-tariff dispute record; anchored to the company's own FY2025/26 budget column in the 9M interim (the sourced near-term anchor).",
+   "sweep_refs": [
+    "F16",
+    "F19"
+   ]
+  },
+  {
+   "driver": "Depreciation & amortization",
+   "mode": "BOTTOM_UP",
+   "justification": "Note 6 register: KIMA-2 machinery at 3.95%/yr, intangible usufruct at 4.75%/yr; FY2024/25 charge 771.2m + 119.4m amortization; ANNA assets phase in on commissioning at the same class rates.",
+   "sweep_refs": [
+    "F16",
+    "F20"
+   ]
+  },
+  {
+   "driver": "Capex",
+   "mode": "BOTTOM_UP",
+   "justification": "ANNA from its bank-approved cost (EGP 6,422.4m + $278.4m) and observed draw pace (CWIP 3,790.2m -> 5,653.5m in nine months); maintenance capex from the pre-ANNA observed run (42.5-81m/yr FY2022-23) uplifted for age \u2014 the one leg without guidance, so it is sensitized.",
+   "sweep_refs": [
+    "F20",
+    "F19",
+    "F26"
+   ]
+  },
+  {
+   "driver": "Cost of debt / WACC glide",
+   "mode": "BOTTOM_UP",
+   "justification": "The USD consortium loan's actual interest (1,338.0m FY2024/25 on ~$233m = ~11.5% USD, carried at local-equivalent cost), the holdco loan's 19.4% EGP print, and the ANNA loan schedule to 2035/36 give a fully-sourced Kd; rf* from the live 10Y less the sovereign's own default spread.",
+   "sweep_refs": [
+    "F16",
+    "F20",
+    "F05"
+   ]
+  },
+  {
+   "driver": "ANNA revenue leg",
+   "mode": "BOTTOM_UP",
+   "justification": "Carried as an explicit scenario (not base FCFF): bank-approved cost, capacity purpose (converting the 438kt ammonia design surplus into AN), and the delay/governance record are all disclosed; the scenario prices completion in 2029-2030 against the sunk-capex base case.",
+   "sweep_refs": [
+    "F20",
+    "F16"
+   ]
+  },
+  {
+   "driver": "Dividend / distribution policy (q)",
+   "mode": "BOTTOM_UP",
+   "justification": "q=0 sourced from two consecutive appropriation statements (zero proposed both years); flagged to revisit when leverage normalises.",
+   "sweep_refs": [
+    "F25",
+    "F16"
+   ]
+  }
+ ],
+ "primary_access": [
+  {
+   "url": "https://www.kimaegypt.com/InvestorsRelations.aspx",
+   "reachable": true,
+   "attempt_date": "2026-08-08",
+   "note": "Company's own IR page. This session's original proxy refused CONNECT (403); the user opened an unrestricted environment and a network-enabled helper session retrieved the page and every filing. The page embeds the IR portal from mistnews.com (the company's IR-portal provider); the PDFs are the company's own issued filings."
+  },
+  {
+   "url": "https://www.mistnews.com/ir/ir.aspx?sk=1034241017",
+   "reachable": true,
+   "attempt_date": "2026-08-08",
+   "note": "KIMA's IR portal (Financial Statements / Disclosure Reports / Audit Reports / Share Price / News). Source of all seven filing PDFs; full index in filings/SOURCES.md."
+  },
+  {
+   "url": "https://www.egx.com.eg/en/CompanyProfile.aspx?ISIN=EGS38201C017",
+   "reachable": false,
+   "attempt_date": "2026-08-08",
+   "note": "Exchange disclosure portal behind an F5/TSPD JS bot-challenge: WebFetch 503, curl got the challenge HTML, headless Chromium reset \u2014 even from the unrestricted helper. Exchange-stated share count therefore NOT obtained from EGX; the share count is taken from note 14 of the audited FY2024/25 statements instead (1,986,578,999 x EGP 5)."
+  },
+  {
+   "url": "https://www.cbe.org.eg/en/auctions/egp-t-bills",
+   "reachable": false,
+   "attempt_date": "2026-08-08",
+   "note": "CBE auction pages WAF-blocked ('requested URL was rejected') from the helper too; T-bill yields carried from secondary quotes (investing.com), labelled as such."
+  }
+ ],
+ "study_year": "FY2025/26",
+ "study_quarters_disclosed": [
+  "Q1-2025/26",
+  "H1-2025/26",
+  "9M-2025/26"
+ ],
+ "qc_line": "QC(m) \u2014 Information Sweep [EGCH, 2026-08-08]: PASS \u2014 4/4 rings, 26 findings (1 B \u00b7 11 S \u00b7 7 D \u00b7 4 C \u00b7 3 NEG), driver gate 9 rows (9 bottom-up / 0 top-down) | primary access: attempted (4) | FS years: 4 ['FY2021/22', 'FY2022/23', 'FY2023/24', 'FY2024/25'] | IR findings: 1"
+}
