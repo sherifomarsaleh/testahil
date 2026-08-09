@@ -37,6 +37,13 @@ E24 = json.load(open(os.path.join(HERE, 'extract_fy2024.json')))
 
 IN = {k: v['value'] for k, v in D['inputs'].items()}
 SRC = {k: f"{v['source']} ({v['date']})" for k, v in D['inputs'].items()}
+# external-reader wording for the beta source (the stored string carries internal QC
+# vocabulary; the statistics themselves are restated in plain language, from the same data)
+BR = D['beta_reg']
+SRC['beta'] = (f"Own-stock weekly regression vs {BR['index']}, {BR['window'][0]} to "
+               f"{BR['window'][1]} ({BR['window_years']:.2f} years, {BR['n']} weeks): "
+               f"R-squared {BR['r2']:.2f}, standard error {BR['se']:.2f}, 90% interval "
+               f"[{BR['ci90'][0]:.2f}, {BR['ci90'][1]:.2f}] ({D['inputs']['beta']['date']})")
 M, HI, U = D['meta'], D['hist_is'], D['unit']
 F = D['fcst']['base']
 W, DC = D['wacc'], D['dcf']
@@ -75,7 +82,7 @@ assert abs(CASH_YIELD - 0.035) < 1e-12 and abs(CONCESSION - 1150.0) < 1e-6
 def th(x):
     return x / 1000.0
 BS25 = E25['2025']['balance_sheet']
-BS24 = E25['2024_comparative']
+BS24 = E25['2024_comparative']['balance_sheet']
 BSJ = H1['h1_2026']['balance_sheet_30_jun_2026_full']
 BH = {
  'FY24': dict(ppe=th(BS24['property_plant_and_equipment']),
@@ -1023,7 +1030,7 @@ for lab, fml, xp, fmt in [
          (W['mktcap'] + NET_DEBT) / HI['FY25']['ebitda'], MULT),
         ('Trailing price / earnings', f"={a('spot')}/'Income Statement'!D18",
          SPOT / (HI['FY25']['npa'] / SH), MULT),
-        ('Trailing price / book (30-Jun-2026)', f'={a("spot")}/C29', SPOT / BK['bvps'], MULT),
+        ('Trailing price / book (30-Jun-2026)', 'PATCH_PB', SPOT / BK['bvps'], MULT),
         ('Net debt / FY2025 EBITDA', f"=DCF!$C$47/'Income Statement'!D8",
          NET_DEBT / HI['FY25']['ebitda'], MULT)]:
     put(ws, f'A{r}', lab, fmt=None); putf(ws, f'C{r}', fml, xp, fmt); r += 1
@@ -1070,6 +1077,8 @@ for lab, fml, xp, fmt in book_rows:
     putf(ws, f'C{r}', fml, xp, fmt, green=('DCF' in fml))
     r += 1
 band(ws, bk0 + 2, 3)
+# patch the trailing price/book formula now that the book-value row is known
+putf(ws, 'C17', f'={a("spot")}/C{bk0}', SPOT / BK['bvps'], MULT)
 r += 1
 hdr(ws, r, ['Dividend cross-check', 'Value']); r += 1
 dd0 = r
