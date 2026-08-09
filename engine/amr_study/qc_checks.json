@@ -11,21 +11,21 @@
  "pdf_inventory": [
   {
    "file": "AMR_Valuation_Study_09-08-2026_public.pdf",
-   "pages": 25,
+   "pages": 26,
    "images": 9,
-   "kb": 1290
+   "kb": 1307
   },
   {
    "file": "AMR_Bibliography_09-08-2026.pdf",
-   "pages": 25,
+   "pages": 26,
    "images": 0,
-   "kb": 672
+   "kb": 697
   },
   {
    "file": "AMR_Valuation_Model_09082026_public.pdf",
-   "pages": 50,
+   "pages": 54,
    "images": 0,
-   "kb": 108
+   "kb": 116
   }
  ]
 }

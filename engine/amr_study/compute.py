@@ -55,7 +55,9 @@ IR24 = ('FY 2024 earnings presentation, Americana Restaurants International PLC,
 PR26 = ('H1 2026 earnings press release, Americana Restaurants International PLC, '
         '28 July 2026')
 DAM = ('Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), '
-       'ctryprem data file, last updated 5 January 2026, read from the original file')
+       'ctrypremJuly26 data file, published 15 July 2026, read from the original file — the '
+       'edition current at the anchor date, adopted in the critique-response round in place '
+       'of the January 2026 vintage used at first delivery')
 IMF = ('IMF World Economic Outlook, retrieved through the IMF DataMapper API, '
        '9 August 2026')
 
@@ -410,25 +412,28 @@ STAFF_FTE = [inp('fte_fy23', 41575, FS24 + ', note 28', '2023-12-31', 'Company')
                  'of 37,207, of which 33,324 restaurant-level', '2025-12-31', 'Company')]
 
 # ---- Country layer: cost of capital ----------------------------------------
-UST10 = inp('ust_10y', 0.0466, 'US 10-year Treasury constant-maturity yield, 4.66% at the close '
-            'of 7 August 2026', '2026-08-07', 'Country')
-US_DEFAULT_SPREAD = inp('us_default_spread', 0.0023, DAM + ': United States, Moody\'s Aa1, '
-                        'adjusted default spread 0.23%', '2026-01-05', 'Country')
-US_CDS = inp('us_cds', 0.0030, DAM + ': United States sovereign credit default swap spread 0.30%',
-             '2026-01-05', 'Country')
-ADGB_SPREAD = inp('abu_dhabi_new_issue_spread', 0.0055,
-                  'Abu Dhabi sovereign dual-tranche US dollar benchmark, initial price thoughts '
-                  'of 55 basis points over US Treasuries on the ten-year tranche, February 2026',
+UST10 = inp('ust_10y', 0.0465, 'US 10-year Treasury par yield, 4.65% at the close of 7 August '
+            '2026, read from the Treasury daily par yield curve CSV (the 4.66% previously '
+            'carried was a secondary-source transcription, corrected against the primary)',
+            '2026-08-07', 'Country')
+US_DEFAULT_SPREAD = inp('us_default_spread', 0.0022, DAM + ': United States, Moody\'s Aa1, '
+                        'adjusted default spread 0.22%', '2026-07-15', 'Country')
+US_CDS = inp('us_cds', 0.0043, DAM + ': United States sovereign credit default swap spread 0.43%',
+             '2026-07-15', 'Country')
+ADGB_SPREAD = inp('abu_dhabi_new_issue_spread', 0.0025,
+                  'Abu Dhabi sovereign dual-tranche US dollar benchmark, February 2026: final '
+                  're-offer spread of 25 basis points over US Treasuries on the ten-year tranche '
+                  '(initial price thoughts were +55; the final pricing is the market evidence)',
                   '2026-02-01', 'Country')
 UAE_DEFAULT_SPREAD = inp('uae_default_spread', 0.0042, DAM + ': United Arab Emirates, Moody\'s '
                          'Aa2, adjusted default spread 0.42%', '2026-01-05', 'Country')
 
-ERP_RATING = {'UAE': 0.0487, 'Saudi Arabia': 0.0501, 'Kuwait': 0.0514, 'Egypt': 0.1394,
-              'Morocco': 0.0747, 'Qatar': 0.0487, 'Oman': 0.0708, 'Bahrain': 0.1135,
-              'Kazakhstan': 0.0630, 'Iraq': 0.1394, 'Lebanon': 0.3089, 'Jordan': 0.0889}
-ERP_CDS = {'UAE': 0.0487, 'Saudi Arabia': 0.0572, 'Kuwait': 0.0534, 'Egypt': 0.0941,
-           'Morocco': 0.0599, 'Qatar': 0.0494, 'Oman': 0.0599, 'Bahrain': 0.0777,
-           'Kazakhstan': 0.0601, 'Iraq': 0.0841, 'Lebanon': 0.3089, 'Jordan': 0.0889}
+ERP_RATING = {'UAE': 0.0481, 'Saudi Arabia': 0.0494, 'Kuwait': 0.0507, 'Egypt': 0.1348,
+              'Morocco': 0.0730, 'Qatar': 0.0481, 'Oman': 0.0692, 'Bahrain': 0.1101,
+              'Kazakhstan': 0.0618, 'Iraq': 0.1348, 'Lebanon': 0.3140, 'Jordan': 0.0865}
+ERP_CDS = {'UAE': 0.0481, 'Saudi Arabia': 0.0551, 'Kuwait': 0.0540, 'Egypt': 0.0952,
+           'Morocco': 0.0600, 'Qatar': 0.0490, 'Oman': 0.0589, 'Bahrain': 0.0865,
+           'Kazakhstan': 0.0589, 'Iraq': 0.1000, 'Lebanon': 0.3140, 'Jordan': 0.0865}
 CDS_NA = ['UAE', 'Lebanon', 'Jordan']
 for c in ERP_RATING:
     inp(f'erp_rating_{c.lower().replace(" ", "_")}', ERP_RATING[c],
@@ -458,10 +463,12 @@ ETR25 = inp('etr_fy25', 0.14, FS25 + ', note 28: effective tax rate of 14% (2024
 ETR_H1_26 = inp('etr_h1_26', 24.101 / 171.084, IH26 + ': income tax and zakat of USD 24,101 '
                 'thousand on profit before tax of USD 171,084 thousand', '2026-06-30', 'Company')
 
-BETA = inp('beta', 0.895, 'Ordinary least squares regression of 183 weekly logarithmic returns '
-           'of the company\'s own shares against the Tadawul All Share Index over 30 December '
-           '2022 to 14 August 2026 — the longest window available since listing, inside the '
-           'two-to-five-year rule. Standard error 0.193, t-statistic 4.65, R-squared 10.7%; the '
+BETA = inp('beta', 0.894, 'Ordinary least squares regression of 182 complete weekly logarithmic '
+           'returns of the company\'s own shares against the Tadawul All Share Index, windows '
+           'labelled 30 December 2022 to 17 July 2026 — no observation after the 7 August 2026 '
+           'price anchor enters the sample, and the count is the number of Fridays on which '
+           'both series have a complete week after holiday alignment. Standard error 0.193, '
+           't-statistic 4.63, R-squared 10.6%; the '
            'regression clears the usability gate of at least 24 observations, R-squared of at '
            'least 5% and a standard error below the absolute coefficient. Americana is '
            'concurrently listed on the Abu Dhabi Securities Exchange and the Saudi Exchange, so '
@@ -493,10 +500,12 @@ TERMINAL_G = inp('terminal_growth', 0.030,
                  'top. The figure is deliberately set far below the risk-free rate, which is '
                  'the ceiling any perpetual growth assumption has to respect. Source for the '
                  'inflation and real-growth paths: ' + IMF, '2026-08-09', 'Country')
-TERMINAL_RF = inp('terminal_risk_free', 0.0430,
-                  'Terminal US dollar risk-free rate. The ten-year Treasury yield less the US '
-                  'sovereign default spread, rounded to the nearest five basis points and held '
-                  'flat, since no forward path is being forecast.', '2026-08-07', 'Country')
+TERMINAL_RF = inp('terminal_risk_free', 0.0445,
+                  'Terminal US dollar risk-free rate: the ten-year Treasury par yield of 4.65% '
+                  'less the US sovereign default spread of 0.22%, rounded to the nearest five '
+                  'basis points (4.43% -> 4.45%) and held flat. The first delivery carried '
+                  '4.30%, which did not follow this stated construction; corrected in the '
+                  'critique-response round.', '2026-08-07', 'Country')
 
 # ---- Industry layer --------------------------------------------------------
 PEERS = json.load(open(os.path.join(HERE, 'peers.json')))
@@ -631,6 +640,56 @@ scale26 = rev_f[0] / (rev_gross_f[0] * (1 - ELIM_PCT))
 for u in UNITS:
     rev_f_unit[u][0] *= scale26
 
+# ---- the brand build: product-by-product volume x price, reconciled -------
+BRANDS = ['KFC', 'Pizza Hut', "Hardee's", 'Krispy Kreme', 'Growth, niche and other brands']
+BRAND_SRC = (IR25 + ', portfolio appendix (restaurants by brand at 31 December 2025: KFC 1,146, '
+             'Pizza Hut 457, Hardee\'s 458, Krispy Kreme 395, growth/niche 290, other 3) and '
+             'revenue by power brand (FY2024 -> FY2025: KFC 1,325 -> 1,494, Pizza Hut 367 -> '
+             '433, Hardee\'s 275 -> 330, Krispy Kreme 87 -> 94); ' + IR24 +
+             ' for the 31 December 2024 brand estate; ' + IR26 + ' for 30 June 2026')
+BRAND_STORES_24 = [1089, 432, 410, 388, 271]
+BRAND_STORES_25 = [1146, 457, 458, 395, 293]
+BRAND_STORES_H1 = [1144, 459, 446, 395, 302]
+BRAND_REV_24 = [1325.0, 367.0, 275.0, 87.0, REV[1] - 2054.0]
+BRAND_REV_25 = [1494.0, 433.0, 330.0, 94.0, REV[2] - 2351.0]
+BRAND_LFL_25 = [0.093, 0.126, 0.112, 0.069, None]
+BRAND_NSO_MIX = [0.40, 0.15, 0.16, 0.12, 0.17]
+inp('brand_build', dict(brands=BRANDS, stores_2024=BRAND_STORES_24, stores_2025=BRAND_STORES_25,
+                        stores_h1_2026=BRAND_STORES_H1, revenue_2024=BRAND_REV_24,
+                        revenue_2025=BRAND_REV_25, lfl_2025=BRAND_LFL_25,
+                        nso_mix=BRAND_NSO_MIX),
+    BRAND_SRC + '. The residual brand revenue is total audited revenue less the four disclosed '
+    'power brands, so the brand build ties to the audited total by construction in both years. '
+    'The opening mix is the company\'s own new-restaurant pie (KFC 40%, Hardee\'s 16%, Pizza '
+    'Hut 15%, Krispy Kreme 12%, other 17%).', '2026-02-09', 'Company (investor relations)')
+chk('the brand build ties to audited revenue in both disclosed years',
+    isclose(sum(BRAND_REV_25), REV[2], abs_tol=0.01) and isclose(sum(BRAND_REV_24), REV[1],
+                                                                 abs_tol=0.01), '')
+brand_rps_25 = [BRAND_REV_25[b] * 1000.0 / BRAND_STORES_25[b] for b in range(5)]
+WAVG_DRAG = sum(FX_DRAG[u] * REV_UNIT[u][2] for u in UNITS) / sum(REV_UNIT[u][2] for u in UNITS)
+brand_stores_f, brand_rps_f, brand_rev_f = [], [], []
+sb = list(BRAND_STORES_25)
+rb = list(brand_rps_25)
+for t in range(5):
+    sb = [sb[b] + NSO_TOTAL[t] * BRAND_NSO_MIX[b] for b in range(5)]
+    rb = [rb[b] * (1 + LFL_PATH[t]) * (1 - WAVG_DRAG) for b in range(5)]
+    brand_stores_f.append(list(sb)); brand_rps_f.append(list(rb))
+    brand_rev_f.append([sb[b] * rb[b] / 1000.0 for b in range(5)])
+brand_total_f = [sum(brand_rev_f[t]) * (1 - ELIM_PCT) for t in range(5)]
+brand_total_f[0] = (brand_total_f[0] + rev_2026_from_h1) / 2.0
+brand_vs_geo = [brand_total_f[t] / rev_f[t] - 1 for t in range(5)]
+chk('the brand build and the geographic build reconcile within 2% in every year',
+    max(abs(x) for x in brand_vs_geo) < 0.02,
+    f'max gap {100 * max(abs(x) for x in brand_vs_geo):.2f}%')
+# The residual gap is a genuine mix effect, not an error: the company's brand-level opening
+# mix is KFC-heavy (40% of openings at ~USD 1.3m per restaurant) while the geographic mix
+# spreads additions across markets averaging ~USD 0.9m, so the brand build runs ~2% ahead
+# by FY2030. The geographic build is adopted (it ties the audited history exactly at unit
+# level); the brand build is the volume-x-price cross-check and its gap is published.
+log(f'Brand build: FY2030E {brand_total_f[4]:,.0f}m vs geographic {rev_f[4]:,.0f}m '
+    f'({100 * brand_vs_geo[4]:+.2f}%); KFC revenue per restaurant USD '
+    f'{brand_rps_25[0]:,.0f}k, Krispy Kreme {brand_rps_25[3]:,.0f}k')
+
 # ============================================================================
 # 4. THE COST STACK — one escalator per driver class
 # ============================================================================
@@ -647,16 +706,6 @@ COST_DRIVERS = {
                     'Royalties to the brand franchisors. A contractual percentage of branded '
                     'sales, not an inflating cost: 5.55% of revenue in FY2025 and 5.52% in '
                     'FY2024. Held flat.'),
-    'staff':       ('share of revenue', [0.1810, 0.1805, 0.1800, 0.1798, 0.1795],
-                    'Total staff cost. Driven by wages in the operating countries against sales '
-                    'per restaurant: the headcount per restaurant has been falling (37,207 '
-                    'full-time equivalents across 2,749 restaurants in FY2025 against 41,575 '
-                    'across 2,435 in FY2023), so wage inflation is partly absorbed by '
-                    'productivity. 18.4% of revenue in FY2025.'),
-    'delivery':    ('share of revenue', [0.0720, 0.0715, 0.0710, 0.0705, 0.0700],
-                    'Home delivery and transportation. Driven by delivery-channel volume and '
-                    'fuel, not by wages: the channel is 52% of revenue and the company reports '
-                    'improving unit economics in it. 7.20% of revenue in FY2025.'),
     'advertising': ('share of revenue', [0.0425] * 5,
                     'Advertisement and business development. A managed percentage of sales set '
                     'with the franchisors. 4.35% of revenue in FY2025.'),
@@ -675,6 +724,46 @@ for k, (_, path, why) in COST_DRIVERS.items():
     inp(f'cost_path_{k}', path, why + ' Base year from ' + COST_SRC25 + '.',
         '2026-08-09', 'House estimate')
 
+# Staff: headcount per restaurant x wage per head — a unit build, not a share.
+FTE_STORE_PATH = inp('fte_per_store_path', [12.05, 11.85, 11.65, 11.45, 11.25],
+    'Restaurant-level full-time equivalents per restaurant. Disclosed trend: 15.4 in FY2023, '
+    '13.3 in FY2024, 12.12 in FY2025 (note 26 of each filing over the year-end estate) — '
+    'kiosks, the ordering application and delivery mix keep pulling it down; the path slows '
+    'the decline to about 1.7% a year.', '2026-08-09', 'House estimate')
+WAGE_FTE_25 = inp('wage_per_fte', STAFF_FTE and 461.118 / 37.207,
+    'Average staff cost per full-time equivalent: USD 12,394 in FY2025 (staff costs USD '
+    '461.118m over 37,207 average FTEs, note 26). Implied growth from FY2023 (USD 10,959) is '
+    '6.3% a year.', '2025-12-31', 'Company')
+WAGE_G = inp('wage_growth', 0.06,
+    'Wage cost per full-time equivalent grows 6% a year, the rate the audited notes imply for '
+    'FY2023 to FY2025 — deliberately above Gulf CPI, because the mix shifts toward '
+    'delivery-capable and above-restaurant staff.', '2026-08-09', 'House estimate')
+ABOVE_FTE = inp('above_restaurant_fte', 3.883,
+    'Above-restaurant staff: 3,883 average FTEs in FY2025 (note 26), held flat — scale '
+    'leverage in headcount, cost growth through the wage line only.', '2025-12-31', 'Company')
+_stores_prev = STORES_TOT[1]
+staff_f, _st = [], _stores_prev
+for t in range(5):
+    _open = _st
+    _st = _st + NSO_TOTAL[t]
+    avg_stores = (_open + _st) / 2.0
+    wage = WAGE_FTE_25 * (1 + WAGE_G) ** (t + 1)
+    staff_f.append((avg_stores * FTE_STORE_PATH[t] / 1000.0 + ABOVE_FTE) * wage)
+# Delivery: channel share x cost per unit of delivered revenue — volume x price, not a share.
+DEL_SHARE_PATH = inp('delivery_share_path', [0.52, 0.535, 0.55, 0.56, 0.565],
+    'Home delivery share of revenue: 44% in FY2024, 48% in FY2025, 52% in H1 2026 (channel-mix '
+    'slides). The path continues the shift and flattens near 56%.', '2026-06-30',
+    'Company (investor relations)')
+DEL_RATIO_PATH = inp('delivery_cost_ratio_path', [0.1425, 0.1420, 0.1415, 0.1410, 0.1405],
+    'Delivery and transportation cost per dollar of delivered revenue: 13.8% in FY2024 '
+    '(133.7/966.6), 15.0% in FY2025 (180.6/1,204.2). FY2026 is calibrated at 14.25% so the '
+    'line reproduces the disclosed H1 2026 margin at the disclosed 52% share — consistent with '
+    'the company\'s claim of improving unit economics in the channel — then improves only '
+    'five basis points a year. The channel mix keeps rising, so the LINE as a share of group '
+    'revenue rises from 7.4% to 7.9%: the unit build caps the margin expansion in a way the '
+    'flat-share treatment at first delivery did not.', '2026-06-30', 'House estimate')
+delivery_f = None  # filled after rev_f is final (below)
+
 OTHER_COST_25 = (COGS[2] + SM[2] + GA[2] - DNA[2]
                  - sum(COST_LINES[k][0][2] for k in COST_LINES))
 OTHER_COST_PCT = OTHER_COST_25 / REV[2]
@@ -684,12 +773,27 @@ inp('cost_residual_pct', OTHER_COST_PCT,
     'claims. Carried at its FY2025 share of revenue. Source: ' + COST_SRC25,
     '2025-12-31', 'Company')
 
+delivery_f = [DEL_SHARE_PATH[t] * DEL_RATIO_PATH[t] * rev_f[t] for t in range(5)]
 cash_cost_f = []
 for t in range(5):
     c = sum(COST_DRIVERS[k][1][t] for k in COST_DRIVERS) + OTHER_COST_PCT
-    cash_cost_f.append(c * rev_f[t])
+    cash_cost_f.append(c * rev_f[t] + staff_f[t] + delivery_f[t])
 ebitda_f = [rev_f[t] - cash_cost_f[t] + OTHINC[2] / REV[2] * rev_f[t] for t in range(5)]
 ebitda_margin_f = [ebitda_f[t] / rev_f[t] for t in range(5)]
+
+MARGIN_HIST_AVG = sum(ebitda[i] / REV[i] for i in range(3)) / 3.0
+inp('margin_history_average', MARGIN_HIST_AVG,
+    'Average EBITDA margin across the three audited years — 22.6% in FY2023, 22.0% in FY2024 '
+    'and 23.7% in FY2025. This is the level the cyclical reading reverts to. Source: ' + FS25 +
+    ' and ' + FS24, '2025-12-31', 'Company')
+margin_revert = [ebitda_margin_f[0]]
+for t in range(1, 5):
+    margin_revert.append(margin_revert[0] + (MARGIN_HIST_AVG - margin_revert[0]) * (t / 4.0))
+inp('margin_path_cyclical', margin_revert,
+    'The cyclical reading of the margin: the first half of 2026 is banked, and the margin then '
+    'reverts in a straight line to the three-year audited average by FY2030. Constructed from '
+    'the audited history; no forecast is taken from any outside party.',
+    '2026-08-09', 'House estimate')
 
 cost_pct_25 = ((COGS[2] + SM[2] + GA[2] - DNA[2]) / REV[2])
 chk('the FY2025 cost stack closes on the audited EBITDA',
@@ -706,6 +810,15 @@ chk('the FY2026E EBITDA margin is consistent with the disclosed first half',
 # ============================================================================
 # 5. ASSET, LEASE AND WORKING-CAPITAL ROLL-FORWARDS
 # ============================================================================
+IMP_RATE = inp('impairment_rate_recurring',
+               (sum(IMP_NF) + sum(IMP_F)) / sum(REV),
+               'Recurring impairment charge on the estate, as a share of revenue: the three-year '
+               'audited total of impairments on non-financial and financial assets (USD 2.4m, '
+               '13.7m, 5.8m) over three-year revenue = 0.31%. A 2,700-restaurant estate always '
+               'carries some underperforming brand-country units, so the forecast charges this '
+               'as a recurring operating line rather than caveating it — adopted from the '
+               'critique round; the first delivery excluded it and said so in §7.',
+               '2025-12-31', 'Company')
 OWNED_DEP_RATE = inp('owned_depreciation_rate',
                      owned_dna[2] / (PPE[1] + INTANG[1] + INVPROP[1]),
                      'Depreciation and amortisation of owned assets over the opening owned asset '
@@ -800,7 +913,8 @@ for t in range(5):
     ppe_f.append(own_prev); owned_dep_f.append(dep)
 
 dna_f = [owned_dep_f[t] + rou_dep_f[t] for t in range(5)]
-ebit_f = [ebitda_f[t] - dna_f[t] for t in range(5)]
+imp_line_f = [IMP_RATE * rev_f[t] for t in range(5)]
+ebit_f = [ebitda_f[t] - dna_f[t] - imp_line_f[t] for t in range(5)]
 nopat_f = [ebit_f[t] * (1 - ETR_PATH[t]) for t in range(5)]
 # On the capitalised-lease reading, taking a new restaurant lease IS an investment: the
 # right-of-use asset is capital the firm puts to work and the matching lease liability is
@@ -883,7 +997,7 @@ RF_CDS = UST10 - US_CDS
 KE_RATING = RF_RATING + BETA * ERP_BLEND_RATING
 KE_CDS = RF_CDS + BETA * ERP_BLEND_CDS
 
-MKTCAP = SPOT * SH_ISSUED
+MKTCAP = SPOT * SH   # net of treasury — treasury shares carry no market value
 DEBT_MV = LEASE_L[2]
 WD = DEBT_MV / (DEBT_MV + MKTCAP)
 WE = 1 - WD
@@ -909,6 +1023,27 @@ log(f'Cost of capital: risk-free {100*RF_RATING:.2f}% (ratings basis) / {100*RF_
     f'beta {BETA}; cost of equity {100*KE_RATING:.2f}% / {100*KE_CDS:.2f}%; cost of debt '
     f'{100*KD:.2f}% ({100*KD_AT:.2f}% after tax); debt weight {100*WD:.1f}%; '
     f'weighted cost {100*WACC_RATING:.2f}% / {100*WACC_CDS:.2f}%, terminal {100*WACC_TERM:.2f}%')
+DAYS_ANCHOR = inp('days_to_anchor', 219,
+    'Calendar days from the 31 December 2025 valuation date — the audited balance sheet the '
+    'bridge deducts net debt at, and the date the year-1 discount factor runs from — to the '
+    '7 August 2026 price anchor. Every published per-share value is rolled forward across '
+    'this window at the cost of equity, net of the dividend paid inside it, so the valuation '
+    'and the market price are compared on the same date. The first delivery omitted this '
+    'roll (the model-study convention) entirely — the largest single correction of the '
+    'critique-response round, found by self-audit.', '2026-08-07', 'Market')
+DIV_WINDOW = inp('dividend_paid_in_window', DIV_FY25_DECL / SH,
+    'The FY2025 dividend of USD 201.6 million (USD 0.024 a share), approved at the annual '
+    'general meeting and paid in June 2026 — inside the roll window. The USD 100.8 million '
+    'interim declared 28 July 2026 had not been paid by the anchor date and is excluded.',
+    '2026-06-30', 'Company (investor relations)')
+ROLL = (1 + KE_RATING) ** (DAYS_ANCHOR / 365.0)
+
+
+def rollv(v):
+    """Roll a 31-Dec-2025 per-share USD value to the 7-Aug-2026 anchor."""
+    return v * ROLL - DIV_WINDOW
+
+
 chk('the marginal cost of debt sits above the sovereign', KD > UST10 + ADGB_SPREAD,
     f'{100*KD:.2f}% against an Abu Dhabi ten-year of about '
     f'{100*(UST10 + ADGB_SPREAD):.2f}%')
@@ -918,11 +1053,24 @@ chk('terminal growth is below the terminal risk-free rate', TERMINAL_G < TERMINA
 # ============================================================================
 # 7. THE DISCOUNTED CASH FLOW, AND THE CONTESTED JUDGEMENT COMPUTED BOTH WAYS
 # ============================================================================
+TERMINAL_ROIC = inp('terminal_roic', 0.30,
+    'Terminal return on incremental invested capital, faded to 30% from the model-implied '
+    'average of ~55%. Anchored on the company\'s own store-economics disclosure: USD 402 '
+    'thousand average capital cost and a 3.0-year average payback imply roughly a 33% pre-tax '
+    'cash-on-cash return on the AVERAGE new store, and the same table shows the MARGINAL brands '
+    '(Pizza Hut, Krispy Kreme, growth brands) beyond five years — materially below the average. '
+    'Continuing the average net-book return into perpetuity was the largest judgement defect '
+    'raised in the critique round, conceded in the study\'s own expert cross-examination; the '
+    'fade prices it. The 55% continuation is published as the bull reading in the sensitivity.',
+    '2026-06-30', 'Company (investor relations)')
+
+
 def run_dcf(fcff, nopat_last, invested_capital, wacc_t, g, disc, wacc_term,
-            net_debt_bridge, nci_deduct):
+            net_debt_bridge, nci_deduct, roic_target=None):
     pv = [fcff[t] * disc[t] for t in range(5)]
     nopat_next = nopat_last * (1 + g)
-    roic_term = nopat_next / invested_capital
+    roic_implied_avg = nopat_last / invested_capital   # matched-year, off-by-one fixed
+    roic_term = roic_target if roic_target is not None else roic_implied_avg
     rr = g / roic_term
     tv = nopat_next * (1 - rr) / (wacc_term - g)
     pv_tv = tv * disc[4]
@@ -930,6 +1078,7 @@ def run_dcf(fcff, nopat_last, invested_capital, wacc_t, g, disc, wacc_term,
     equity = ev - net_debt_bridge - nci_deduct
     return dict(pv=pv, sum_pv=sum(pv), tv=tv, pv_tv=pv_tv, ev=ev,
                 tv_share=pv_tv / ev, roic_term=roic_term, rr_term=rr,
+                roic_implied_avg=roic_implied_avg,
                 nopat_next=nopat_next, equity=equity, fv=equity / SH,
                 net_debt=net_debt_bridge, invested_capital=invested_capital)
 
@@ -938,7 +1087,7 @@ NET_CASH_25 = CASH[2] + DEPOSITS[2] - BANK_DEBT[2]
 IC_TERM = ppe_f[4] + rou_f[4] + nwc_f[4]
 NET_DEBT_A = LEASE_L[2] - NET_CASH_25
 A = run_dcf(fcff_f, nopat_f[4], IC_TERM, wacc_path, TERMINAL_G, df, WACC_TERM,
-            NET_DEBT_A, NCI[2])
+            NET_DEBT_A, NCI[2], roic_target=TERMINAL_ROIC)
 
 # --- Framing B: leases as an operating cost, not as debt ---------------------
 # EBITDA is struck after the cash rent the company actually pays, depreciation excludes
@@ -959,8 +1108,10 @@ for t in range(5):
     df_B.append(acc)
 IC_TERM_B = ppe_f[4] + nwc_f[4]
 B = run_dcf(fcff_B, nopat_B[4], IC_TERM_B, wacc_path_B, TERMINAL_G, df_B, WACC_TERM_B,
-            -NET_CASH_25, NCI[2])
+            -NET_CASH_25, NCI[2], roic_target=TERMINAL_ROIC)
 
+A['fv_unrolled'], A['fv'] = A['fv'], rollv(A['fv'])
+B['fv_unrolled'], B['fv'] = B['fv'], rollv(B['fv'])
 log(f'Lease treatment, both ways: capitalised USD {A["fv"]:.3f}/share '
     f'(AED {A["fv"]*AEDUSD:.2f}); as an operating cost USD {B["fv"]:.3f}/share '
     f'(AED {B["fv"]*AEDUSD:.2f}); gap {100*(B["fv"]/A["fv"]-1):+.1f}%')
@@ -1000,29 +1151,39 @@ SUSTAINABLE_ROE = inp('sustainable_roe', 0.42,
 
 # relative lens: FY2027E EBITDA on the justified multiple, discounted back
 rel_ev_27 = ebitda_f[1] * MULT_EV_EBITDA
-rel_ev_now = rel_ev_27 * df[1] + A['pv'][0]
+# EV struck at the END of FY2027 is discounted two years, so BOTH intervening years'
+# free cash flows belong to today's holder — the first delivery dropped FY2027's
+# (the one defect all four external critiques agreed on).
+rel_ev_now = rel_ev_27 * df[1] + A['pv'][0] + A['pv'][1]
 rel_equity = rel_ev_now - NET_DEBT_A - NCI[2]
-rel_fv = rel_equity / SH
-rel_bear = ((ebitda_f[1] * 7.0) * df[1] + A['pv'][0] - NET_DEBT_A - NCI[2]) / SH
-rel_bull = ((ebitda_f[1] * 10.5) * df[1] + A['pv'][0] - NET_DEBT_A - NCI[2]) / SH
+rel_fv = rollv(rel_equity / SH)
+rel_bear = rollv(((ebitda_f[1] * 7.0) * df[1] + A['pv'][0] + A['pv'][1] - NET_DEBT_A - NCI[2]) / SH)
+rel_bull = rollv(((ebitda_f[1] * 10.5) * df[1] + A['pv'][0] + A['pv'][1] - NET_DEBT_A - NCI[2]) / SH)
 
 # normalised earnings power: mid-cycle margin at current scale
-norm_margin = ebitda_margin_f[2]
+# Mid-cycle means neither the structural peak nor the trough: the midpoint of the two
+# FY2028 margin readings the study itself dual-frames. The first delivery used the
+# structural FY2028 margin alone — above every audited year — under a mid-cycle label,
+# the second-largest judgement defect raised in the critique round.
+norm_margin = (ebitda_margin_f[2] + margin_revert[2]) / 2.0
 norm_ebitda = rev_f[0] * norm_margin
-norm_ebit = norm_ebitda - dna_f[0]
-norm_net_fin = fin_inc_f[0] - KD * LEASE_L[2]
+norm_ebit = norm_ebitda - dna_f[0] - imp_line_f[0]
+norm_net_fin = fin_inc_f[0] - KD * LEASE_L[2] - OTHER_FIN_PCT * rev_f[0]
 norm_earnings = (norm_ebit + norm_net_fin) * (1 - ETR_PATH[1])
 norm_eps = norm_earnings / SH
-norm_fv = norm_eps * MULT_PE
-norm_bear = norm_eps * 13.0
-norm_bull = norm_eps * 21.0
+norm_fv = rollv(norm_eps * MULT_PE)
+norm_bear = rollv(norm_eps * 13.0)
+norm_bull = rollv(norm_eps * 21.0)
 
 # book value and sustainable return
 bvps_now = EQ_H1_26 / SH
 justified_pb = (SUSTAINABLE_ROE - TERMINAL_G) / (KE_TERM - TERMINAL_G)
-book_fv = bvps_now * justified_pb
-book_bear = bvps_now * ((0.34 - TERMINAL_G) / (KE_TERM + 0.02 - TERMINAL_G))
-book_bull = bvps_now * ((0.48 - TERMINAL_G) / (KE_TERM - 0.01 - TERMINAL_G))
+# The book lens is struck on 30-Jun-2026 equity, already inside the window: roll the
+# remaining 38 days only, with no dividend (the interim was unpaid at the anchor).
+BOOK_ROLL = (1 + KE_RATING) ** (38 / 365.0)
+book_fv = bvps_now * justified_pb * BOOK_ROLL
+book_bear = bvps_now * ((0.34 - TERMINAL_G) / (KE_TERM + 0.02 - TERMINAL_G)) * BOOK_ROLL
+book_bull = bvps_now * ((0.48 - TERMINAL_G) / (KE_TERM - 0.01 - TERMINAL_G)) * BOOK_ROLL
 
 # DCF bear/bull: whole-model re-runs
 def rerun(margin_shift, wacc_shift, g, lfl_shift, margin_path=None):
@@ -1053,7 +1214,7 @@ def rerun(margin_shift, wacc_shift, g, lfl_shift, margin_path=None):
         op = op + cx[t] - d2
         od.append(d2)
     dn = [rd[t] + od[t] for t in range(5)]
-    eb_it = [eb[t] - dn[t] for t in range(5)]
+    eb_it = [eb[t] - dn[t] - IMP_RATE * revs[t] for t in range(5)]
     npt = [eb_it[t] * (1 - ETR_PATH[t]) for t in range(5)]
     fc = [npt[t] + dn[t] - cx[t] - ROU_ADD_PCT * revs[t] - dnw[t] for t in range(5)]
     w0, wt = WACC_RATING + wacc_shift, WACC_TERM + wacc_shift
@@ -1061,28 +1222,13 @@ def rerun(margin_shift, wacc_shift, g, lfl_shift, margin_path=None):
     d_, a_ = [], 1.0
     for t in range(5):
         a_ = a_ / (1 + wp[t]); d_.append(a_)
-    return run_dcf(fc, npt[4], op + rr + nw[4], wp, g, d_, wt, NET_DEBT_A, NCI[2])['fv']
+    return rollv(run_dcf(fc, npt[4], op + rr + nw[4], wp, g, d_, wt, NET_DEBT_A, NCI[2],
+                         roic_target=TERMINAL_ROIC)['fv'])
 
 
 dcf_bear = rerun(-0.015, +0.015, 0.020, -0.010)
 dcf_bull = rerun(+0.015, -0.015, 0.040, +0.010)
 
-# --- the contested judgement, the other way -------------------------------------
-# Cyclical reading: the procurement and mix gains are competed away and the margin
-# reverts to where the company actually ran across the three audited years.
-MARGIN_HIST_AVG = sum(ebitda[i] / REV[i] for i in range(3)) / 3.0
-inp('margin_history_average', MARGIN_HIST_AVG,
-    'Average EBITDA margin across the three audited years — 22.6% in FY2023, 22.0% in FY2024 '
-    'and 23.7% in FY2025. This is the level the cyclical reading reverts to. Source: ' + FS25 +
-    ' and ' + FS24, '2025-12-31', 'Company')
-margin_revert = [ebitda_margin_f[0]]
-for t in range(1, 5):
-    margin_revert.append(margin_revert[0] + (MARGIN_HIST_AVG - margin_revert[0]) * (t / 4.0))
-inp('margin_path_cyclical', margin_revert,
-    'The cyclical reading of the margin: the first half of 2026 is banked, and the margin then '
-    'reverts in a straight line to the three-year audited average by FY2030. Constructed from '
-    'the audited history; no forecast is taken from any outside party.',
-    '2026-08-09', 'House estimate')
 contested_b_fv = rerun(0.0, 0.0, TERMINAL_G, 0.0, margin_path=margin_revert)
 log(f'Contested judgement — margin: structural USD {A["fv"]:.3f}/share '
     f'(AED {A["fv"]*AEDUSD:.2f}); cyclical USD {contested_b_fv:.3f}/share '
@@ -1153,20 +1299,23 @@ e1_corporate = (GA[2] - GA[2] * 0.14)   # G&A less its depreciation share, the c
 e1_maint = MAINT_CAPEX_PCT * rev_f[0]
 e1_lease = LEASE_PAY_PCT * rev_f[0]
 e1_owner_cash = (e1_fw_annual - e1_corporate - e1_maint - e1_lease) * (1 - ETR_PATH[1])
-e1_cap_rate = KE_TERM - 0.02
+# No growth credit without the capital that funds it (critique finding): the owner
+# cash earnings charge no growth capital, so they are capitalised at the FULL
+# terminal cost of equity rather than a growth-adjusted rate.
+e1_cap_rate = KE_TERM
 e1_value = e1_owner_cash / e1_cap_rate
 e1_equity = e1_value + NET_CASH_25 - NCI[2]
-e1_fv = e1_equity / SH
-e1_low = (e1_owner_cash / (e1_cap_rate + 0.015) + NET_CASH_25 - NCI[2]) / SH
-e1_high = (e1_owner_cash / (e1_cap_rate - 0.010) + NET_CASH_25 - NCI[2]) / SH
+e1_fv = rollv(e1_equity / SH)
+e1_low = rollv((e1_owner_cash / (e1_cap_rate + 0.015) + NET_CASH_25 - NCI[2]) / SH)
+e1_high = rollv((e1_owner_cash / (e1_cap_rate - 0.010) + NET_CASH_25 - NCI[2]) / SH)
 
 # Expert 2 — franchise-annuity view: capitalise the dividend the company actually pays.
 e2_dps_25 = DIV_FY25_DECL / SH
 e2_g = TERMINAL_G
 e2_ke = KE_TERM
-e2_fv = e2_dps_25 * (1 + e2_g) / (e2_ke - e2_g)
-e2_low = e2_dps_25 * (1 + 0.02) / (e2_ke + 0.01 - 0.02)
-e2_high = e2_dps_25 * (1 + 0.04) / (e2_ke - 0.005 - 0.04)
+e2_fv = rollv(e2_dps_25 * (1 + e2_g) / (e2_ke - e2_g))
+e2_low = rollv(e2_dps_25 * (1 + 0.02) / (e2_ke + 0.01 - 0.02))
+e2_high = rollv(e2_dps_25 * (1 + 0.04) / (e2_ke - 0.005 - 0.04))
 
 # Expert 3 — return on invested capital against the cost of capital.
 e3_ic = ppe_f[0] + rou_f[0] + nwc_f[0]
@@ -1175,9 +1324,9 @@ e3_spread = e3_roic - WACC_RATING
 e3_ev = nopat_f[0] / WACC_TERM + (nopat_f[0] * (e3_roic - WACC_TERM) / e3_roic) * \
     (TERMINAL_G / (WACC_TERM * (WACC_TERM - TERMINAL_G)))
 e3_equity = e3_ev - NET_DEBT_A - NCI[2]
-e3_fv = e3_equity / SH
-e3_low = (nopat_f[0] / (WACC_TERM + 0.01) - NET_DEBT_A - NCI[2]) / SH
-e3_high = (e3_ev * 1.18 - NET_DEBT_A - NCI[2]) / SH
+e3_fv = rollv(e3_equity / SH)
+e3_low = rollv((nopat_f[0] / (WACC_TERM + 0.01) - NET_DEBT_A - NCI[2]) / SH)
+e3_high = rollv((e3_ev * 1.18 - NET_DEBT_A - NCI[2]) / SH)
 
 experts = [
     dict(label='Expert 1', method='Restaurant-level unit economics',
@@ -1276,10 +1425,23 @@ OUT = dict(
     cost_stack=dict(lines={k: dict(hist=COST_LINES[k][0], description=COST_LINES[k][1],
                                    driver_class=COST_LINES[k][2],
                                    pct_hist=[COST_LINES[k][0][i] / REV[i] for i in range(3)],
-                                   path=COST_DRIVERS[k][1]) for k in COST_LINES},
+                                   path=(COST_DRIVERS[k][1] if k in COST_DRIVERS else
+                                         [(staff_f if k == 'staff' else delivery_f)[t] / rev_f[t]
+                                          for t in range(5)]))
+                           for k in COST_LINES},
                     residual_pct=OTHER_COST_PCT,
+                    staff_f=staff_f, delivery_f=delivery_f,
+                    fte_per_store=FTE_STORE_PATH, wage_per_fte=WAGE_FTE_25, wage_growth=WAGE_G,
+                    above_restaurant_fte=ABOVE_FTE, delivery_share=DEL_SHARE_PATH,
+                    delivery_cost_ratio=DEL_RATIO_PATH,
                     cash_cost_f=cash_cost_f,
                     cost_pct_2025=cost_pct_25),
+    brand_build=dict(brands=BRANDS, stores_2024=BRAND_STORES_24, stores_2025=BRAND_STORES_25,
+                     stores_h1_2026=BRAND_STORES_H1, revenue_2024=BRAND_REV_24,
+                     revenue_2025=BRAND_REV_25, rps_2025=brand_rps_25, lfl_2025=BRAND_LFL_25,
+                     nso_mix=BRAND_NSO_MIX, wavg_drag=WAVG_DRAG,
+                     stores_f=brand_stores_f, rps_f=brand_rps_f, revenue_f=brand_rev_f,
+                     total_f=brand_total_f, vs_geographic=brand_vs_geo),
     forecast=dict(years=FY_F, revenue=rev_f, ebitda=ebitda_f, ebitda_margin=ebitda_margin_f,
                   dna=dna_f, owned_dep=owned_dep_f, rou_dep=rou_dep_f, ebit=ebit_f,
                   nopat=nopat_f, capex=capex_f, capex_total=capex_total_f,
@@ -1287,6 +1449,7 @@ OUT = dict(
                   lease_liabilities=lease_l_f, lease_interest=lease_int_f,
                   lease_additions=lease_add_f, lease_payments=lease_pay_f,
                   rou=rou_f, owned_assets=ppe_f,
+                  impairment=imp_line_f,
                   etr=ETR_PATH, wacc_path=wacc_path, discount_factor=df, glide=glide,
                   stores=stores_tot_f, gross_openings=gross_open_f,
                   finance_income=fin_inc_f, other_finance_cost=other_fin_f,
@@ -1300,7 +1463,8 @@ OUT = dict(
               kd=KD, kd_fy24=KD_FY24, kd_after_tax=KD_AT,
               debt_weight=WD, equity_weight=WE,
               wacc_rating=WACC_RATING, wacc_cds=WACC_CDS, wacc_terminal=WACC_TERM,
-              terminal_rf=TERMINAL_RF, terminal_g=TERMINAL_G,
+              terminal_rf=TERMINAL_RF, terminal_g=TERMINAL_G, terminal_roic=TERMINAL_ROIC,
+              roll_factor=ROLL, days_to_anchor=DAYS_ANCHOR, div_in_window=DIV_WINDOW,
               country_weights=country_weights, erp_by_country_rating=ERP_RATING,
               erp_by_country_cds=ERP_CDS, cds_not_published=CDS_NA,
               abu_dhabi_spread=ADGB_SPREAD, uae_default_spread=UAE_DEFAULT_SPREAD),
@@ -1326,7 +1490,9 @@ OUT = dict(
         way_a=dict(name='Structural — the gains hold and improve slowly',
                    detail='The base case. Food and packaging stays near the 27.4% of revenue '
                           'the company actually recorded in the first half of 2026, and the '
-                          'EBITDA margin runs from 25.3% to 26.1% across the forecast.',
+                          f'EBITDA margin runs from {100*ebitda_margin_f[0]:.1f}% to a peak of '
+                          f'{100*max(ebitda_margin_f):.1f}% before the growing delivery channel '
+                          f'eases it to {100*ebitda_margin_f[4]:.1f}%.',
                    value_usd=A['fv'], value_aed=A['fv'] * AEDUSD, ev=A['ev'],
                    margin_path=ebitda_margin_f, wacc=WACC_RATING, tv_share=A['tv_share']),
         way_b=dict(name='Cyclical — the gains are competed away',

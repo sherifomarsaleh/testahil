@@ -55,8 +55,10 @@ DOCS = [
      'investor relations', '2026-07-28'),
     ('FY 2024 earnings presentation', 'restaurant count by country at 31 December 2024, and the '
      'jurisdiction-by-jurisdiction corporate tax table', 'investor relations', '2025-02-13'),
-    ('Integrated annual report 2025', 'narrative and strategy context', 'annual report',
-     '2026-03-17'),
+    ('Integrated annual report 2025', 'narrative, strategy and headcount context',
+     'annual report', '2026-03-17'),
+    ('FY 2023 earnings release', 'the disclosed 2,435 restaurant count at 31 December 2023 and '
+     'the 300 gross / 252 net openings of that year', 'investor relations', '2024-02-15'),
 ]
 table([['Document', 'What it carries', 'Status', 'Date']] +
       [[a, b, c, d] for a, b, c, d in DOCS], [2.55, 2.65, 1.00, 0.80], size=8.8)
@@ -64,25 +66,26 @@ table([['Document', 'What it carries', 'Status', 'Date']] +
 P('Two further access attempts are recorded for completeness. The Abu Dhabi Securities Exchange '
   'company page returned an automated-access refusal to this environment; it was not needed, '
   'because every document the exchange would carry is published by the company itself. A daily '
-  'history for the Abu Dhabi general index could not be obtained from any machine-readable '
-  'source available for this study — the consequence for the beta calculation is set out in '
-  'section 4 and in section 1.8 of the study.')
+  'history for the Abu Dhabi general index was sought from the machine-readable sources '
+  'available — the Yahoo index quote returns one observation and no history, and the main '
+  'data portals refused automated access — and not obtained; the consequence for the beta, '
+  'and its sizing, is in section 1.8 of the study.')
 
 # ---------------------------------------------------------------- outside sources
 H1('2  Outside sources, and what each is used for')
 OUT = [
-    ('Aswath Damodaran, NYU Stern — country default spreads and risk premiums, January 2026 '
-     'edition', 'read from the original data file',
+    ('Aswath Damodaran, NYU Stern — country default spreads and risk premiums, July 2026 '
+     'edition (published 15 July 2026)', 'read from the original data file',
      'the equity risk premium for each of the twelve operating countries, on both the ratings '
      'and the credit-default-swap basis', 'cost of capital only'),
-    ('US Treasury constant-maturity yield', 'close of 7 August 2026',
+    ('US Treasury daily par yield curve', 'close of 7 August 2026, read from the Treasury CSV',
      'the risk-free rate', 'cost of capital only'),
     ('IMF World Economic Outlook, retrieved 9 August 2026',
      'through the IMF DataMapper interface',
      'inflation and real growth for each operating country, which set the currency drag and '
      'anchor terminal growth', 'forecast drivers only'),
-    ('Abu Dhabi sovereign US dollar issue, February 2026', 'initial price thoughts, 55 basis '
-     'points over Treasuries on the ten-year tranche',
+    ('Abu Dhabi sovereign US dollar issue, February 2026', 'final re-offer spread of 25 basis '
+     'points over Treasuries on the ten-year tranche (price thoughts opened at 55)',
      'a cross-check that the company\'s own borrowing rate sits above its sovereign',
      'cross-check only'),
     ('Peer market data, retrieved 9 August 2026', 'trailing figures as published',
@@ -131,7 +134,8 @@ def fmt_val(v):
     if isinstance(v, list):
         return ', '.join(fmt_val(x) for x in v[:6])
     if isinstance(v, dict):
-        return '; '.join(f'{k} {fmt_val(x)}' for k, x in list(v.items())[:8])
+        out = '; '.join(f'{k} {fmt_val(x)}' for k, x in list(v.items())[:4])
+        return out[:100] + ' …' if len(out) > 100 else out
     return str(v)
 
 

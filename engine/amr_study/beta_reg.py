@@ -72,13 +72,16 @@ def regress(y, x, label):
 out = {'note': __doc__.strip()}
 
 # ---- tier (1): own shares (Saudi line, SAR) vs Tadawul All Share Index (SAR) ----
+ANCHOR = pd.Timestamp('2026-08-07')   # no observation past the price anchor enters any window
 amr_sr = _yahoo_series('yh_6015.SR.json')
+amr_sr = amr_sr[amr_sr['Date'] <= ANCHOR]
 tasi = _yahoo_series('yh_TASI.json')
+tasi = tasi[tasi['Date'] <= ANCHOR]
 cut5 = amr_sr['Date'].iloc[-1] - pd.DateOffset(years=5)
 r_amr = _weekly_logret(amr_sr[amr_sr['Date'] >= cut5])
 r_tasi = _weekly_logret(tasi[tasi['Date'] >= cut5])
 out['tier1_own_vs_tasi'] = regress(r_amr, r_tasi,
-                                  'AMR (Saudi line 6015, SAR) weekly vs Tadawul All Share Index, longest available window <= 5yr')
+                                  'AMR (Saudi line 6015, SAR) weekly vs Tadawul All Share Index, truncated at the 07-Aug-2026 anchor')
 
 # ---- cross-check A: ADX line (AED) vs equal-weighted covered-UAE composite ----
 RAW = os.path.join(HERE, '..', 'raw_ohlc', 'AE')

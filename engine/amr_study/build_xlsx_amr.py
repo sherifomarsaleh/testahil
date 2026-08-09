@@ -108,13 +108,19 @@ lines = [
      'right-of-use assets, working capital, equity, cash and the lease liability each carry from one year '
      'to the next — and every ratio and per-share figure on every sheet is a formula.', None),
     ('', None),
-    ('THREE CLASSES OF CELL ARE PASTED, AND ONLY THREE.', SECT),
+    ('FOUR CLASSES OF CELL ARE PASTED, AND ONLY FOUR.', SECT),
     ('  1. Audited and disclosed history. The primary record is not a calculation. Where a line is both '
      'disclosed and derivable, the disclosed figure is carried.', None),
     ('  2. The probability map. Each figure on the Monte Carlo sheet is the output of a fifty-thousand-path '
      'simulation, not a formula.', None),
-    ('  3. The sensitivity grids. Each cell there is a complete re-run of the whole model, including the '
-     'unit build, so it cannot be a single formula. Those grids do NOT redraw when a driver is changed.', None),
+    ('  3. The sensitivity grids. Each cell there is a complete re-run of the whole model with joint driver '
+     'shifts, so it cannot be a single formula. Those grids do NOT redraw when a driver is changed.', None),
+    ('  4. Two whole-model re-runs named individually: the bear and bull of the cash-flow lens on the '
+     'Summary sheet, whose joint driver sets (margin plus or minus 1.5 points, cost of capital minus or '
+     'plus 1.5 points, terminal growth 2% or 4%, like-for-like plus or minus 1 point) are stated beside '
+     'them; and the leases-as-operating-cost reading on the Fundamental Valuation sheet. The expert '
+     'panel, both readings of the margin question, the cyclical value and every lens bear and bull are '
+     'LIVE FORMULAS in this edition.', None),
     ('Anything else pasted would be a defect. The formula and pasted-value counts are reported at the '
      'foot of this sheet.', None),
     ('', None),
@@ -161,8 +167,10 @@ for i, y in enumerate(FY):
 T(A, 'A4', 'Anchors', SECT)
 T(A, 'A5', 'Market price (AED per share)'); V(A, 'C5', M['spot_aed'], N2)
 T(A, 'A6', 'Dirhams per US dollar (the peg)'); V(A, 'C6', FX, N3)
-T(A, 'A7', 'Shares outstanding, net of treasury (million)'); V(A, 'C7', SH, N0)
+T(A, 'A7', 'Shares outstanding, net of treasury (million) — issued less treasury')
+FM(A, 'C7', '=C8-E8', SH, N0)
 T(A, 'A8', 'Shares issued (million)'); V(A, 'C8', M['shares_issued_mn'], N0)
+T(A, 'D8', 'less treasury (million)', SUB); V(A, 'E8', M['shares_issued_mn'] - SH, N0)
 T(A, 'A10', 'Volume — the restaurant estate', SECT)
 T(A, 'A11', 'Net new restaurants a year')
 for i in range(5):
@@ -193,6 +201,9 @@ COST_ROWS = [('inventory', 'Food, filling and packing materials', 49),
              ('rent_other', 'Short-term, low-value and variable lease payments', 55),
              ('maintenance', 'Maintenance, repairs and other restaurant costs', 56)]
 for key, lab, rr in COST_ROWS:
+    if rr in (51, 52):
+        T(A, f'A{rr}', lab + ' — UNIT BUILD, not a share: inputs at rows 109-114 below')
+        continue
     T(A, f'A{rr}', lab)
     for i in range(5):
         V(A, f'{COLS[i]}{rr}', CS['lines'][key]['path'][i], PC2)
@@ -271,6 +282,38 @@ LENSI = [('A100', 'Justified enterprise value / EBITDA', 'C100', LN['relative'][
           LN['weights']['Book value and sustainable return'], PC1)]
 for lc, lab, vc, val, fmt in LENSI:
     T(A, lc, lab); V(A, vc, val, fmt)
+T(A, 'A108', 'Unit-built cost lines, the terminal fade, and the anchor roll', SECT)
+T(A, 'A109', 'Restaurant-level staff per restaurant (full-time equivalents)')
+for i in range(5):
+    V(A, f'{COLS[i]}109', CS['fte_per_store'][i], N2)
+T(A, 'A110', 'Staff cost per full-time equivalent (USD thousand, FY2025)')
+V(A, 'C110', CS['wage_per_fte'], N3)
+T(A, 'A111', 'Wage growth per full-time equivalent'); V(A, 'C111', CS['wage_growth'], PC1)
+T(A, 'A112', 'Above-restaurant staff (thousand full-time equivalents)')
+V(A, 'C112', CS['above_restaurant_fte'], N3)
+T(A, 'A113', 'Home delivery share of revenue')
+for i in range(5):
+    V(A, f'{COLS[i]}113', CS['delivery_share'][i], PC1)
+T(A, 'A114', 'Delivery cost per dollar of delivered revenue')
+for i in range(5):
+    V(A, f'{COLS[i]}114', CS['delivery_cost_ratio'][i], PC2)
+T(A, 'A115', 'Recurring impairment charge, share of revenue')
+V(A, 'C115', D['inputs']['impairment_rate_recurring']['value'], PC2)
+T(A, 'A116', 'Terminal return on incremental invested capital')
+V(A, 'C116', W['terminal_roic'], PC1)
+T(A, 'A117', 'Calendar days, valuation date to the price anchor')
+V(A, 'C117', W['days_to_anchor'], N0)
+T(A, 'A118', 'Dividend paid inside the roll window (USD per share)')
+V(A, 'C118', W['div_in_window'], '0.0000')
+T(A, 'A119', 'Cyclical margin path (the other reading of the open question)')
+for i in range(5):
+    V(A, f'{COLS[i]}119', D['inputs']['margin_path_cyclical']['value'][i], PC1)
+T(A, 'A124', 'Four-wall EBITDA, first half of 2026 (USD million)')
+V(A, 'C124', D['inputs']['four_wall_ebitda_h1_26']['value'], N2)
+T(A, 'A125', 'Corporate overhead for the owner-cash reading (USD million)')
+V(A, 'C125', H['admin'][2] * 0.86, N2)
+T(A, 'A126', 'Dividend declared against FY2025 (USD million)')
+V(A, 'C126', D['inputs']['div_fy25_declared']['value'], N2)
 
 # ===========================================================================
 # 3. SEGMENTS — the unit build
@@ -350,6 +393,52 @@ T(S, 'A36', 'Revenue adopted', HEAD)
 FM(S, 'E36', '=AVERAGE(E34,E35)', F['revenue'][0], N2)
 for i in range(1, 5):
     FM(S, f'{FCOL[i]}36', f'={FCOL[i]}34', F['revenue'][i], N2)
+BB = D['brand_build']
+T(S, 'A40', 'THE BRAND BUILD — product by product, volume x price, the cross-check spine', SECT)
+T(S, 'A41', 'Restaurants by brand', HEAD)
+T(S, 'B41', 'FY2024', HEAD); T(S, 'C41', 'FY2025', HEAD)
+for i, y in enumerate(FY):
+    T(S, f'{"DEFGH"[i]}41', y, HEAD)
+for b, nm in enumerate(BB['brands']):
+    rr = 42 + b
+    T(S, f'A{rr}', nm)
+    V(S, f'B{rr}', BB['stores_2024'][b], N0)
+    V(S, f'C{rr}', BB['stores_2025'][b], N0)
+    for i in range(5):
+        col, prev = 'DEFGH'[i], ('C' if i == 0 else 'DEFGH'[i - 1])
+        FM(S, f'{col}{rr}', f'={prev}{rr}+Assumptions!{COLS[i]}$11*{BB["nso_mix"][b]}',
+           BB['stores_f'][i][b], N0)
+T(S, 'A48', 'Revenue by brand (USD million; residual ties to the audited total)', HEAD)
+for b, nm in enumerate(BB['brands']):
+    rr = 49 + b
+    T(S, f'A{rr}', nm)
+    V(S, f'B{rr}', BB['revenue_2024'][b], N2)
+    V(S, f'C{rr}', BB['revenue_2025'][b], N2)
+    for i in range(5):
+        col, prev = 'DEFGH'[i], ('C' if i == 0 else 'DEFGH'[i - 1])
+        FM(S, f'{col}{rr}',
+           f'={col}{42 + b}*({prev}{rr}/{prev}{42 + b})*(1+Assumptions!{COLS[i]}$30)'
+           f'*(1-{BB["wavg_drag"]:.6f})',
+           BB['revenue_f'][i][b], N2)
+T(S, 'A54', 'Brand build, after eliminations (FY2026 blended with the disclosed half, as above)',
+  HEAD)
+bt = BB['total_f']
+FM(S, 'D54', '=(SUM(D49:D53)*(1-Assumptions!$C$95)+Assumptions!$C$96)/2', bt[0], N2)
+for i in range(1, 5):
+    col = 'DEFGH'[i]
+    FM(S, f'{col}54', f'=SUM({col}49:{col}53)*(1-Assumptions!$C$95)', bt[i], N2)
+T(S, 'A55', 'Against the geographic build (row 36)')
+for i in range(5):
+    col = 'DEFGH'[i]
+    FM(S, f'{col}55', f'={col}54/{FCOL[i]}36-1', BB['vs_geographic'][i], PC1)
+T(S, 'A56', 'The gap is a disclosed-mix effect, stated rather than smoothed: the company\'s '
+            'brand-level opening mix is KFC-heavy (40% of openings at about USD 1.3 million of '
+            'revenue per restaurant) while the geographic mix spreads additions across markets '
+            'averaging about USD 0.9 million, so the brand build runs about 2% ahead by FY2030. '
+            'The geographic build is adopted because it ties the audited history exactly; the '
+            'brand build is the volume-times-price cross-check.', SUB, wrap=True)
+S.row_dimensions[56].height = 56
+
 T(S, 'A38', 'FY2026 is half disclosed and half built. The unit build and the first-half run rate '
             'are averaged rather than one being chosen over the other; the two are within two '
             'per cent of each other. The historical columns tie exactly to reported revenue in '
@@ -600,16 +689,16 @@ for k in range(3):
     FM(IS, f'{"BCD"[k]}10', f"=-'Cash Flow'!{'BCD'[k]}8", -H['dna'][k], N2)
 for i in range(5):
     FM(IS, f'{FCOL[i]}10', f"=-'Cash Flow'!{FCOL[i]}8", -F['dna'][i], N2)
-T(IS, 'A11', 'EBIT', HEAD)
+T(IS, 'A11', 'EBIT, before the impairment line beneath', HEAD)
 for k in range(3):
     FM(IS, f'{"BCD"[k]}11', f'={"BCD"[k]}8+{"BCD"[k]}10', H['ebit'][k], N2)
 for i in range(5):
-    FM(IS, f'{FCOL[i]}11', f'={FCOL[i]}8+{FCOL[i]}10', F['ebit'][i], N2)
-T(IS, 'A12', 'Impairment losses on non-financial and financial assets')
+    FM(IS, f'{FCOL[i]}11', f'={FCOL[i]}8+{FCOL[i]}10', F['ebitda'][i] - F['dna'][i], N2)
+T(IS, 'A12', 'Impairment losses — audited history, and the recurring charge in the forecast')
 for k in range(3):
     V(IS, f'{"BCD"[k]}12', -(H['impair_nonfin'][k] + H['impair_fin'][k]), N2)
 for i in range(5):
-    dash(IS, f'{FCOL[i]}12')
+    FM(IS, f'{FCOL[i]}12', f'=-{FCOL[i]}5*Assumptions!$C$115', -F['impairment'][i], N2)
 T(IS, 'A13', 'Finance income')
 for k in range(3):
     V(IS, f'{"BCD"[k]}13', H['finance_income'][k], N2)
@@ -630,7 +719,7 @@ for k in range(3):
     FM(IS, f'{"BCD"[k]}15', f'={"BCD"[k]}11+{"BCD"[k]}12+{"BCD"[k]}13+{"BCD"[k]}14',
        H['pbt'][k], N2)
 for i in range(5):
-    FM(IS, f'{FCOL[i]}15', f'={FCOL[i]}11+{FCOL[i]}13+{FCOL[i]}14', F['pbt'][i], N2)
+    FM(IS, f'{FCOL[i]}15', f'={FCOL[i]}11+{FCOL[i]}12+{FCOL[i]}13+{FCOL[i]}14', F['pbt'][i], N2)
 T(IS, 'A16', 'Income tax and zakat')
 for k in range(3):
     V(IS, f'{"BCD"[k]}16', -H['tax'][k], N2)
@@ -680,10 +769,17 @@ for i, y in enumerate(FY):
 T(X, 'A5', 'Revenue')
 for i, c in enumerate(COLS):
     FM(X, f'{c}5', f'=Segments!{FCOL[i]}36', F['revenue'][i], N2, link=True)
-T(X, 'A6', 'Cash operating costs')
+T(X, 'A6', 'Cash operating costs — six escalator classes as shares, staff and delivery '
+           'as unit builds (headcount x wage; channel share x unit cost)')
 for i, c in enumerate(COLS):
-    terms = '+'.join(f'Assumptions!{c}${rr}' for _, _, rr in COST_ROWS)
-    FM(X, f'{c}6', f'=-{c}5*({terms}+Assumptions!$C$57)', -CS['cash_cost_f'][i], N2)
+    terms = '+'.join(f'Assumptions!{c}${rr}' for _, _, rr in COST_ROWS
+                     if rr not in (51, 52))
+    prev_col = 'B' if i == 0 else COLS[i - 1]
+    staff = (f"((Segments!{'BCDEF'[i]}12+Segments!{'CDEFG'[i]}12)/2*Assumptions!{c}$109/1000"
+             f"+Assumptions!$C$112)*Assumptions!$C$110*(1+Assumptions!$C$111)^{i + 1}")
+    FM(X, f'{c}6',
+       f'=-{c}5*({terms}+Assumptions!$C$57)-{staff}-{c}5*Assumptions!{c}$113*Assumptions!{c}$114',
+       -CS['cash_cost_f'][i], N2)
 T(X, 'A7', 'Other income')
 for i, c in enumerate(COLS):
     FM(X, f'{c}7', f'={c}5*Assumptions!$C$58',
@@ -697,9 +793,9 @@ for i, c in enumerate(COLS):
 T(X, 'A10', 'Less depreciation and amortisation')
 for i, c in enumerate(COLS):
     FM(X, f'{c}10', f"=-'Cash Flow'!{FCOL[i]}8", -F['dna'][i], N2, link=True)
-T(X, 'A11', 'EBIT')
+T(X, 'A11', 'EBIT, after the recurring impairment charge')
 for i, c in enumerate(COLS):
-    FM(X, f'{c}11', f'={c}8+{c}10', F['ebit'][i], N2)
+    FM(X, f'{c}11', f'={c}8+{c}10-{c}5*Assumptions!$C$115', F['ebit'][i], N2)
 T(X, 'A12', 'NOPAT — EBIT after tax')
 for i, c in enumerate(COLS):
     FM(X, f'{c}12', f'={c}11*(1-Assumptions!{c}$71)', F['nopat'][i], N2)
@@ -730,7 +826,10 @@ T(X, 'A22', 'Terminal growth'); FM(X, 'C22', '=Assumptions!$C$84', W['terminal_g
 T(X, 'A23', 'Terminal-year NOPAT grown one year'); FM(X, 'C23', '=F12*(1+C22)', DCF['nopat_next'], N2)
 T(X, 'A24', 'Invested capital at the end of the forecast')
 FM(X, 'C24', "='Balance Sheet'!I18", DCF['invested_capital'], N2, link=True)
-T(X, 'A25', 'Terminal return on invested capital'); FM(X, 'C25', '=C23/C24', DCF['roic_term'], PC1)
+T(X, 'A25', 'Terminal return on incremental capital — the payback-anchored fade')
+FM(X, 'C25', '=Assumptions!$C$116', DCF['roic_term'], PC1, link=True)
+T(X, 'A63', 'Model-implied average return on closing invested capital (the bull reading)')
+FM(X, 'C63', '=F12/C24', DCF['roic_implied_avg'], PC1)
 T(X, 'A26', 'Required reinvestment rate — growth divided by the return on capital')
 FM(X, 'C26', '=C22/C25', DCF['rr_term'], PC1)
 T(X, 'A27', 'Terminal cost of capital'); FM(X, 'C27', '=C53', W['wacc_terminal'], PC2)
@@ -749,9 +848,13 @@ T(X, 'A36', 'Less non-controlling interests')
 FM(X, 'C36', '=-Assumptions!$C$90', -H['nci'][2], N2, link=True)
 T(X, 'A37', 'Equity value', HEAD)
 FM(X, 'C37', '=C31+C33+C34+C35+C36', DCF['equity'], N2)
-T(X, 'A38', 'Fair value per share (USD)'); FM(X, 'C38', '=C37/Assumptions!$C$7', DCF['fv'], N3)
-T(X, 'A39', 'Fair value per share (AED)', HEAD)
-FM(X, 'C39', '=C38*Assumptions!$C$6', DCF['fv'] * FX, N2)
+T(X, 'A38', 'Fair value per share at 31 December 2025 (USD)')
+FM(X, 'C38', '=C37/Assumptions!$C$7', DCF['fv_unrolled'], N3)
+T(X, 'D38', 'Anchor roll factor', SUB)
+FM(X, 'E38', '=(1+C52)^(Assumptions!$C$117/365)', W['roll_factor'], N3)
+T(X, 'A39', 'Fair value per share at the 7 August 2026 anchor (AED) — rolled at the cost of '
+            'equity, net of the dividend paid in the window', HEAD)
+FM(X, 'C39', '=(C38*E38-Assumptions!$C$118)*Assumptions!$C$6', DCF['fv'] * FX, N2)
 T(X, 'A41', 'THE COST OF CAPITAL — BUILT HERE, NOT PASTED', SECT)
 T(X, 'A42', 'The glide', HEAD)
 for i, y in enumerate(FY):
@@ -782,7 +885,7 @@ T(X, 'A54', 'Cost of debt — the group’s own incremental borrowing rate')
 FM(X, 'C54', '=Assumptions!$C$82', W['kd'], PC2, link=True)
 T(X, 'A55', 'Cost of debt after tax'); FM(X, 'C55', '=C54*(1-Assumptions!$B$71)', W['kd_after_tax'], PC2)
 T(X, 'A56', 'Market capitalisation (USD million)')
-FM(X, 'C56', '=Assumptions!$C$5/Assumptions!$C$6*Assumptions!$C$8', M['mktcap'], N2)
+FM(X, 'C56', '=Assumptions!$C$5/Assumptions!$C$6*Assumptions!$C$7', M['mktcap'], N2)
 T(X, 'A57', 'Debt at market value — the lease liability')
 FM(X, 'C57', '=Assumptions!$C$87', H['lease_liabilities'][2], N2, link=True)
 T(X, 'A58', 'Debt weight'); FM(X, 'C58', '=C57/(C57+C56)', W['debt_weight'], PC1)
@@ -791,6 +894,45 @@ T(X, 'A60', 'Terminal risk-free rate'); FM(X, 'C60', '=Assumptions!$C$83', W['te
 T(X, 'A61', 'Terminal cost of equity'); FM(X, 'C61', '=C60+C50*C51', W['ke_terminal'], PC2)
 T(X, 'A62', 'Terminal cost of debt after tax')
 FM(X, 'C62', '=C54*(1-Assumptions!$F$71)', W['kd'] * (1 - F['etr'][4]), PC2)
+T(X, 'A71', 'THE OTHER READING OF THE OPEN QUESTION — the cyclical margin, computed live', SECT)
+T(X, 'A72', 'Cyclical EBITDA margin path')
+CYC = D['contested']['way_b']
+mrg = D['inputs']['margin_path_cyclical']['value']
+for i, c in enumerate(COLS):
+    FM(X, f'{c}72', f'=Assumptions!{c}$119', mrg[i], PC1, link=True)
+cyc_eb = [F['revenue'][i] * mrg[i] for i in range(5)]
+cyc_nopat = [(cyc_eb[i] - F['dna'][i] - F['impairment'][i]) * (1 - F['etr'][i]) for i in range(5)]
+cyc_fcff = [cyc_nopat[i] + F['dna'][i] - F['capex_total'][i] - F['dnwc'][i] for i in range(5)]
+T(X, 'A73', 'EBITDA on the cyclical path')
+for i, c in enumerate(COLS):
+    FM(X, f'{c}73', f'={c}5*{c}72', cyc_eb[i], N2)
+T(X, 'A74', 'NOPAT on the cyclical path')
+for i, c in enumerate(COLS):
+    FM(X, f'{c}74', f'=({c}73+{c}10-{c}5*Assumptions!$C$115)*(1-Assumptions!{c}$71)',
+       cyc_nopat[i], N2)
+T(X, 'A75', 'Free cash flow to the firm, cyclical')
+for i, c in enumerate(COLS):
+    FM(X, f'{c}75', f'={c}74-{c}10+{c}14+{c}15', cyc_fcff[i], N2)
+T(X, 'A76', 'Present value')
+for i, c in enumerate(COLS):
+    FM(X, f'{c}76', f'={c}75*{c}18', cyc_fcff[i] * F['discount_factor'][i], N2)
+cyc_tvnum = cyc_nopat[4] * (1 + W['terminal_g'])
+cyc_tv = cyc_tvnum * (1 - W['terminal_g'] / W['terminal_roic']) / (W['wacc_terminal'] - W['terminal_g'])
+cyc_ev = sum(cyc_fcff[i] * F['discount_factor'][i] for i in range(5)) + cyc_tv * F['discount_factor'][4]
+cyc_eq = cyc_ev - H['lease_liabilities'][2] + H['cash'][2] + H['deposits'][2] - H['nci'][2]
+T(X, 'A77', 'Terminal value, cyclical')
+FM(X, 'C77', '=F74*(1+C22)*(1-C22/C25)/(C27-C22)', cyc_tv, N2)
+T(X, 'A78', 'Equity value, cyclical')
+FM(X, 'C78', '=SUM(B76:F76)+C77*F18+C33+C34+C35+C36', cyc_eq, N2)
+T(X, 'A79', 'Value per share on the cyclical reading (AED), rolled to the anchor', HEAD)
+FM(X, 'C79', '=(C78/Assumptions!$C$7*E38-Assumptions!$C$118)*Assumptions!$C$6',
+   CYC['value_aed'], N2)
+T(X, 'A80', 'Every cell in this block is a live formula: the cyclical reading shares the '
+            'revenue, depreciation, capital-expenditure and working-capital lines of the base '
+            'case and differs only in the margin path, so it can be — and is — computed in the '
+            'sheet rather than pasted.', SUB, wrap=True)
+X.row_dimensions[80].height = 42
+
 T(X, 'A64', 'The same cost of capital on the credit-default-swap basis', SECT)
 T(X, 'A65', 'Risk-free rate net of the US sovereign credit-default-swap spread')
 FM(X, 'C65', '=C47-Assumptions!$C$79', W['rf_cds'], PC2)
@@ -847,19 +989,20 @@ FM(RN, 'B6', '=Assumptions!$C$100', LN['relative']['multiple'], MULT, link=True)
 T(RN, 'A7', 'Implied enterprise value at the end of FY2027 (USD million)')
 FM(RN, 'B7', '=B5*B6', F['ebitda'][1] * LN['relative']['multiple'], N2)
 T(RN, 'A8', 'Discount factor back to the valuation date'); FM(RN, 'B8', '=DCF!C18', F['discount_factor'][1], N3, link=True)
-T(RN, 'A9', 'Plus the present value of the FY2026 free cash flow')
-FM(RN, 'B9', '=DCF!B19', DCF['pv'][0], N2, link=True)
+T(RN, 'A9', 'Plus the present value of the FY2026 AND FY2027 free cash flows — a two-year '
+            'discount makes both years intervening')
+FM(RN, 'B9', '=DCF!B19+DCF!C19', DCF['pv'][0] + DCF['pv'][1], N2, link=True)
 T(RN, 'A10', 'Implied enterprise value today (USD million)')
 FM(RN, 'B10', '=B7*B8+B9', LN['relative']['ev'], N2)
 T(RN, 'A11', 'Implied equity value (USD million)')
 FM(RN, 'B11', '=B10+DCF!C33+DCF!C34+DCF!C35+DCF!C36', LN['relative']['equity'], N2)
-T(RN, 'A12', 'Implied value per share (AED)', HEAD)
-FM(RN, 'B12', '=B11/Assumptions!$C$7*Assumptions!$C$6',
+T(RN, 'A12', 'Implied value per share (AED), rolled to the anchor', HEAD)
+FM(RN, 'B12', '=(B11/Assumptions!$C$7*DCF!$E$38-Assumptions!$C$118)*Assumptions!$C$6',
    LN['values']['Relative multiples'] * FX, N2)
 T(RN, 'A13', 'Bear at 7.0 times (column C) and bull at 10.5 times (column D), same construction')
-FM(RN, 'C13', '=(B5*7*B8+B9+DCF!C33+DCF!C34+DCF!C35+DCF!C36)/Assumptions!$C$7*Assumptions!$C$6',
+FM(RN, 'C13', '=((B5*7*B8+B9+DCF!C33+DCF!C34+DCF!C35+DCF!C36)/Assumptions!$C$7*DCF!$E$38-Assumptions!$C$118)*Assumptions!$C$6',
    LN['ranges']['Relative multiples'][0] * FX, N2)
-FM(RN, 'D13', '=(B5*10.5*B8+B9+DCF!C33+DCF!C34+DCF!C35+DCF!C36)/Assumptions!$C$7*Assumptions!$C$6',
+FM(RN, 'D13', '=((B5*10.5*B8+B9+DCF!C33+DCF!C34+DCF!C35+DCF!C36)/Assumptions!$C$7*DCF!$E$38-Assumptions!$C$118)*Assumptions!$C$6',
    LN['ranges']['Relative multiples'][2] * FX, N2)
 T(RN, 'A15', 'The company’s own trailing multiples', HEAD)
 T(RN, 'A16', 'Trailing enterprise value / EBITDA')
@@ -872,23 +1015,27 @@ FM(RN, 'B18', "=Assumptions!$C$5/Assumptions!$C$6/('Balance Sheet'!D14/Assumptio
 T(RN, 'A19', 'Net debt / EBITDA'); FM(RN, 'B19', "='Balance Sheet'!D20", H['net_debt'][2] / H['ebitda'][2], MULT, link=True)
 T(RN, 'A21', 'Normalised earnings lens — the mid-cycle margin at today’s scale', HEAD)
 T(RN, 'A22', 'Current-scale revenue, FY2026E (USD million)'); FM(RN, 'B22', '=DCF!B5', F['revenue'][0], N2, link=True)
-T(RN, 'A23', 'Mid-cycle EBITDA margin (FY2028E)'); FM(RN, 'B23', '=DCF!D9', F['ebitda_margin'][2], PC1, link=True)
+T(RN, 'A23', 'Mid-cycle EBITDA margin — the midpoint of the structural and cyclical '
+            'FY2028 readings')
+FM(RN, 'B23', '=(DCF!D9+Assumptions!$D$119)/2', LN['normalised']['margin'], PC1)
 T(RN, 'A24', 'Normalised EBITDA (USD million)'); FM(RN, 'B24', '=B22*B23', LN['normalised']['ebitda'], N2)
 T(RN, 'A25', 'Less depreciation and amortisation'); FM(RN, 'B25', "=-'Cash Flow'!E8", -F['dna'][0], N2)
-T(RN, 'A26', 'Normalised EBIT (USD million)'); FM(RN, 'B26', '=B24+B25', LN['normalised']['ebit'], N2)
+T(RN, 'A26', 'Normalised EBIT, after the recurring impairment charge (USD million)')
+FM(RN, 'B26', '=B24+B25-B22*Assumptions!$C$115', LN['normalised']['ebit'], N2)
 T(RN, 'A27', 'Net finance result (USD million)')
-FM(RN, 'B27', "='Income Statement'!E13-Assumptions!$C$82*'Balance Sheet'!D12",
-   LN['normalised']['net_finance'], N2)
+FM(RN, 'B27', "='Income Statement'!E13-Assumptions!$C$82*'Balance Sheet'!D12"
+              "-Assumptions!$C$74*B22", LN['normalised']['net_finance'], N2)
 T(RN, 'A28', 'Normalised earnings after tax (USD million)')
 FM(RN, 'B28', '=(B26+B27)*(1-Assumptions!$C$71)', LN['normalised']['earnings'], N2)
 T(RN, 'A29', 'Normalised earnings per share (USD)')
 FM(RN, 'B29', '=B28/Assumptions!$C$7', LN['normalised']['eps'], N3)
 T(RN, 'A30', 'Justified price / earnings'); FM(RN, 'B30', '=Assumptions!$C$101', LN['normalised']['multiple'], MULT, link=True)
-T(RN, 'A31', 'Implied value per share (AED)', HEAD)
-FM(RN, 'B31', '=B29*B30*Assumptions!$C$6', LN['values']['Normalised earnings power'] * FX, N2)
+T(RN, 'A31', 'Implied value per share (AED), rolled to the anchor', HEAD)
+FM(RN, 'B31', '=(B29*B30*DCF!$E$38-Assumptions!$C$118)*Assumptions!$C$6',
+   LN['values']['Normalised earnings power'] * FX, N2)
 T(RN, 'A32', 'Bear at 13 times (column C) and bull at 21 times (column D)')
-FM(RN, 'C32', '=B29*13*Assumptions!$C$6', LN['ranges']['Normalised earnings power'][0] * FX, N2)
-FM(RN, 'D32', '=B29*21*Assumptions!$C$6', LN['ranges']['Normalised earnings power'][2] * FX, N2)
+FM(RN, 'C32', '=(B29*13*DCF!$E$38-Assumptions!$C$118)*Assumptions!$C$6', LN['ranges']['Normalised earnings power'][0] * FX, N2)
+FM(RN, 'D32', '=(B29*21*DCF!$E$38-Assumptions!$C$118)*Assumptions!$C$6', LN['ranges']['Normalised earnings power'][2] * FX, N2)
 T(RN, 'A34', 'Book value and sustainable return', HEAD)
 T(RN, 'A35', 'Book value per share (USD)')
 FM(RN, 'B35', '=Assumptions!$C$97/Assumptions!$C$7', LN['book']['bvps'], N3)
@@ -899,13 +1046,16 @@ FM(RN, 'B37', "='Income Statement'!D19/(('Balance Sheet'!C14+'Balance Sheet'!D14
 T(RN, 'A38', 'Terminal cost of equity'); FM(RN, 'B38', '=DCF!C61', W['ke_terminal'], PC2, link=True)
 T(RN, 'A39', 'Justified price / book')
 FM(RN, 'B39', '=(B36-Assumptions!$C$84)/(B38-Assumptions!$C$84)', LN['book']['justified_pb'], MULT)
-T(RN, 'A40', 'Implied value per share (AED)', HEAD)
-FM(RN, 'B40', '=B35*B39*Assumptions!$C$6',
+T(RN, 'A39b', '', SUB) if False else None
+T(RN, 'E39', 'Roll factor from the 30 June book date (38 days)', SUB)
+FM(RN, 'F39', '=(1+DCF!C52)^(38/365)', (1 + W['ke_rating']) ** (38 / 365), N3)
+T(RN, 'A40', 'Implied value per share (AED), rolled from the book date to the anchor', HEAD)
+FM(RN, 'B40', '=B35*B39*F39*Assumptions!$C$6',
    LN['values']['Book value and sustainable return'] * FX, N2)
 T(RN, 'A41', 'Bear at a 34% return (column C) and bull at 48% (column D)')
-FM(RN, 'C41', '=B35*((0.34-Assumptions!$C$84)/(B38+0.02-Assumptions!$C$84))*Assumptions!$C$6',
+FM(RN, 'C41', '=B35*((0.34-Assumptions!$C$84)/(B38+0.02-Assumptions!$C$84))*F39*Assumptions!$C$6',
    LN['ranges']['Book value and sustainable return'][0] * FX, N2)
-FM(RN, 'D41', '=B35*((0.48-Assumptions!$C$84)/(B38-0.01-Assumptions!$C$84))*Assumptions!$C$6',
+FM(RN, 'D41', '=B35*((0.48-Assumptions!$C$84)/(B38-0.01-Assumptions!$C$84))*F39*Assumptions!$C$6',
    LN['ranges']['Book value and sustainable return'][2] * FX, N2)
 T(RN, 'A43', 'The book lens is the weakest of the four here and carries the lowest weight for '
              'that reason. An operator that leases its estate and distributes almost all its '
@@ -937,14 +1087,15 @@ T(FV, 'A10', 'Weighted central', HEAD)
 FM(FV, 'C10', '=Summary!C10', LN['central'] * FX, N2, link=True)
 T(FV, 'A12', 'THE OPEN QUESTION — the margin, computed both ways', SECT)
 T(FV, 'A13', C['way_a']['name']); T(FV, 'B13', C['way_a']['detail'])
-V(FV, 'C13', C['way_a']['value_aed'], N2, kind='engine')
+FM(FV, 'C13', '=DCF!C39', C['way_a']['value_aed'], N2, link=True)
 T(FV, 'A14', C['way_b']['name']); T(FV, 'B14', C['way_b']['detail'])
-V(FV, 'C14', C['way_b']['value_aed'], N2, kind='engine')
+FM(FV, 'C14', '=DCF!C79', C['way_b']['value_aed'], N2, link=True)
 T(FV, 'A15', 'The gap')
 FM(FV, 'C15', '=C14/C13-1', C['gap_pct'], PC1)
-T(FV, 'A16', 'Both are complete re-runs of the whole model, including the unit build, so they '
-             'are engine outputs rather than formulas. They are published side by side and '
-             'never averaged.', SUB, wrap=True)
+T(FV, 'A16', 'Both readings are LIVE in this workbook: the structural value is the DCF sheet '
+             'headline and the cyclical value is the parallel formula block at the foot of the '
+             'DCF sheet, sharing every driver except the margin path. They are published side '
+             'by side and never averaged.', SUB, wrap=True)
 FV.row_dimensions[16].height = 42
 T(FV, 'A18', 'A SECOND READING — how the lease estate is treated', SECT)
 T(FV, 'A19', DFL['way_a']['name']); V(FV, 'C19', DFL['way_a']['value_aed'], N2, kind='engine')
@@ -955,12 +1106,30 @@ FV.row_dimensions[22].height = 42
 T(FV, 'A24', 'THE EXPERT PANEL', SECT)
 T(FV, 'A25', 'Expert', HEAD); T(FV, 'B25', 'Method', HEAD)
 T(FV, 'C25', 'Base (AED)', HEAD); T(FV, 'D25', 'Low', HEAD); T(FV, 'E25', 'High', HEAD)
-for j, e in enumerate(D['experts']):
-    rr = 26 + j
-    T(FV, f'A{rr}', e['label']); T(FV, f'B{rr}', e['method'])
-    V(FV, f'C{rr}', e['base'] * FX, N2, kind='engine')
-    V(FV, f'D{rr}', e['low'] * FX, N2, kind='engine')
-    V(FV, f'E{rr}', e['high'] * FX, N2, kind='engine')
+E1, E2, E3 = D['experts']
+T(FV, 'A26', E1['label']); T(FV, 'B26', E1['method'])
+OC = ("(2*Assumptions!$C$124-Assumptions!$C$125-Assumptions!$C$62*DCF!B5"
+      "-Assumptions!$C$65*DCF!B5)*(1-Assumptions!$C$71)")
+BRIDGE1 = "+Assumptions!$C$88-Assumptions!$C$90"
+RLL = "*DCF!$E$38-Assumptions!$C$118)*Assumptions!$C$6"
+FM(FV, 'C26', f'=(({OC}/DCF!C61{BRIDGE1})/Assumptions!$C$7{RLL}', E1['base'] * FX, N2)
+FM(FV, 'D26', f'=(({OC}/(DCF!C61+0.015){BRIDGE1})/Assumptions!$C$7{RLL}', E1['low'] * FX, N2)
+FM(FV, 'E26', f'=(({OC}/(DCF!C61-0.01){BRIDGE1})/Assumptions!$C$7{RLL}', E1['high'] * FX, N2)
+T(FV, 'A27', E2['label']); T(FV, 'B27', E2['method'])
+DPS = "Assumptions!$C$126/Assumptions!$C$7"
+FM(FV, 'C27', f'=({DPS}*(1+Assumptions!$C$84)/(DCF!C61-Assumptions!$C$84){RLL}',
+   E2['base'] * FX, N2)
+FM(FV, 'D27', f'=({DPS}*1.02/(DCF!C61+0.01-0.02){RLL}', E2['low'] * FX, N2)
+FM(FV, 'E27', f'=({DPS}*1.04/(DCF!C61-0.005-0.04){RLL}', E2['high'] * FX, N2)
+T(FV, 'A28', E3['label']); T(FV, 'B28', E3['method'])
+ROIC3 = "DCF!B12/'Balance Sheet'!E18"
+GT = (f"DCF!B12*({ROIC3}-DCF!C53)/({ROIC3})"
+      f"*Assumptions!$C$84/(DCF!C53*(DCF!C53-Assumptions!$C$84))")
+BR3 = "+DCF!C33+DCF!C34+DCF!C35+DCF!C36"
+FM(FV, 'C28', f'=((DCF!B12/DCF!C53+{GT}{BR3})/Assumptions!$C$7{RLL}', E3['base'] * FX, N2)
+FM(FV, 'D28', f'=((DCF!B12/(DCF!C53+0.01){BR3})/Assumptions!$C$7{RLL}', E3['low'] * FX, N2)
+FM(FV, 'E28', f'=(((DCF!B12/DCF!C53+{GT})*1.18{BR3})/Assumptions!$C$7{RLL}',
+   E3['high'] * FX, N2)
 T(FV, 'A29', 'Panel median', HEAD)
 FM(FV, 'C29', '=MEDIAN(C26:C28)', LN['expert_median'] * FX, N2)
 
@@ -978,25 +1147,42 @@ KEYS = ['Discounted cash flow', 'Relative multiples', 'Normalised earnings power
 SRC = ['=DCF!C39', "='Relative & Normalized'!B12", "='Relative & Normalized'!B31",
        "='Relative & Normalized'!B40"]
 WROW = [103, 104, 105, 106]
+BB = [None, ("='Relative & Normalized'!C13", "='Relative & Normalized'!D13"),
+      ("='Relative & Normalized'!C32", "='Relative & Normalized'!D32"),
+      ("='Relative & Normalized'!C41", "='Relative & Normalized'!D41")]
 for j, k in enumerate(KEYS):
     rr = 5 + j
     T(SU, f'A{rr}', k)
-    V(SU, f'B{rr}', LN['ranges'][k][0] * FX, N2, kind='engine' if j == 0 else 'audited')
+    if j == 0:
+        V(SU, f'B{rr}', LN['ranges'][k][0] * FX, N2, kind='engine')
+    else:
+        FM(SU, f'B{rr}', BB[j][0], LN['ranges'][k][0] * FX, N2, link=True)
     FM(SU, f'C{rr}', SRC[j], LN['values'][k] * FX, N2, link=True)
-    V(SU, f'D{rr}', LN['ranges'][k][2] * FX, N2, kind='engine' if j == 0 else 'audited')
+    if j == 0:
+        V(SU, f'D{rr}', LN['ranges'][k][2] * FX, N2, kind='engine')
+    else:
+        FM(SU, f'D{rr}', BB[j][1], LN['ranges'][k][2] * FX, N2, link=True)
     FM(SU, f'E{rr}', f'=Assumptions!$C${WROW[j]}', LN['weights'][k], PC1, link=True)
     FM(SU, f'F{rr}', f'=C{rr}*E{rr}', LN['values'][k] * FX * LN['weights'][k], N2)
     FM(SU, f'H{rr}', f'=C{rr}/$C$12-1', LN['values'][k] / M['spot'] - 1, PC1)
 FM(SU, 'G5', '=DCF!C32', DCF['tv_share'], PC1, link=True)
-T(SU, 'A10', 'Weighted central', HEAD)
-FM(SU, 'B10', '=MIN(B5:B8)', min(LN['ranges'][k][0] for k in KEYS) * FX, N2)
+T(SU, 'A9b', '', SUB) if False else None
+T(SU, 'A10', 'Weighted central — outer columns are the weighted bear and bull', HEAD)
+wb_ = sum(LN['ranges'][k][0] * LN['weights'][k] for k in KEYS) * FX
+wu_ = sum(LN['ranges'][k][2] * LN['weights'][k] for k in KEYS) * FX
+FM(SU, 'B10', '=B5*E5+B6*E6+B7*E7+B8*E8', wb_, N2)
 FM(SU, 'C10', '=SUM(F5:F8)', LN['central'] * FX, N2)
-FM(SU, 'D10', '=MAX(D5:D8)', max(LN['ranges'][k][2] for k in KEYS) * FX, N2)
+FM(SU, 'D10', '=D5*E5+D6*E6+D7*E7+D8*E8', wu_, N2)
 FM(SU, 'E10', '=SUM(E5:E8)', 1.0, PC1)
 FM(SU, 'H10', '=C10/$C$12-1', LN['central'] / M['spot'] - 1, PC1)
-T(SU, 'A11', 'Expert panel median')
-FM(SU, 'C11', "='Fundamental Valuation'!C29", LN['expert_median'] * FX, N2, link=True)
-FM(SU, 'H11', '=C11/$C$12-1', LN['expert_median'] / M['spot'] - 1, PC1)
+T(SU, 'A11b', '', SUB) if False else None
+T(SU, 'A11', 'Range across the lenses (widest bear to widest bull, unweighted)')
+FM(SU, 'B11', '=MIN(B5:B8)', min(LN['ranges'][k][0] for k in KEYS) * FX, N2)
+FM(SU, 'D11', '=MAX(D5:D8)', max(LN['ranges'][k][2] for k in KEYS) * FX, N2)
+T(SU, 'A11c', '', SUB) if False else None
+T(SU, 'A13', 'Expert panel median')
+FM(SU, 'C13', "='Fundamental Valuation'!C29", LN['expert_median'] * FX, N2, link=True)
+FM(SU, 'H13', '=C13/$C$12-1', LN['expert_median'] / M['spot'] - 1, PC1)
 T(SU, 'A12', 'Market price (anchor, 7 August 2026)', HEAD)
 FM(SU, 'C12', '=Assumptions!$C$5', M['spot_aed'], N2, link=True)
 T(SU, 'A14', 'The open question — the margin, both ways', SECT)
@@ -1014,14 +1200,14 @@ KF = [('Shares outstanding, net of treasury (million)', '=Assumptions!$C$7', SH,
       ('FY2025 EBITDA (USD million)', "='Income Statement'!D8", H['ebitda'][2], N2),
       ('FY2025 profit attributable to shareholders (USD million)', "='Income Statement'!D19",
        H['pat_shareholders'][2], N2),
-      ('Restaurants at 30 June 2026', '=Segments!B12', sum(U['stores_hist'][u][1] for u in UNITS), N0),
+      ('Restaurants at 31 December 2025', '=Segments!B12', sum(U['stores_hist'][u][1] for u in UNITS), N0),
       ('Cost of capital — explicit window', '=DCF!C46', W['wacc_rating'], PC2),
       ('Cost of capital — terminal', '=DCF!C53', W['wacc_terminal'], PC2),
       ('Terminal growth', '=DCF!C22', W['terminal_g'], PC1),
       ('Terminal value as a share of enterprise value', '=DCF!C32', DCF['tv_share'], PC1),
       ('Trailing enterprise value / EBITDA', "='Relative & Normalized'!B16",
        D['trailing']['ev_ebitda'], MULT),
-      ('Dividend yield on the declared FY2025 distribution', '=201.6/DCF!C56',
+      ('Dividend yield on the declared FY2025 distribution', '=Assumptions!$C$126/DCF!C56',
        D['trailing']['dividend_yield'], PC1)]
 for j, (lab, fml, val, fmt) in enumerate(KF):
     rr = 19 + j
@@ -1045,7 +1231,8 @@ SFROWS = [('Revenue', "='Income Statement'!{c}5", H['revenue'] + F['revenue'], N
           ('EBITDA', "='Income Statement'!{c}8", H['ebitda'] + F['ebitda'], N2),
           ('EBITDA margin', "='Income Statement'!{c}9",
            H['ebitda_margin'] + F['ebitda_margin'], PC1),
-          ('EBIT', "='Income Statement'!{c}11", H['ebit'] + F['ebit'], N2),
+          ('EBIT (before impairments in the forecast)', "='Income Statement'!{c}11",
+           H['ebit'] + [F['ebitda'][i] - F['dna'][i] for i in range(5)], N2),
           ('Profit attributable to shareholders', "='Income Statement'!{c}19",
            H['pat_shareholders'] + F['pat'], N2),
           ('Net debt', "='Balance Sheet'!{c}17", H['net_debt'] + F['net_debt'], N2)]
@@ -1104,7 +1291,8 @@ for i, c in enumerate(ALLC):
 T(PS, 'A9', 'EBIT margin')
 for i, c in enumerate(ALLC):
     FM(PS, f'{c}9', f"='Income Statement'!{c}11/'Income Statement'!{c}5",
-       (H['ebit'] + F['ebit'])[i] / (H['revenue'] + F['revenue'])[i], PC1)
+       (H['ebit'] + [F['ebitda'][j] - F['dna'][j] for j in range(5)])[i]
+       / (H['revenue'] + F['revenue'])[i], PC1)
 T(PS, 'A10', 'Net margin')
 for i, c in enumerate(ALLC):
     FM(PS, f'{c}10', f"='Income Statement'!{c}19/'Income Statement'!{c}5",
@@ -1248,20 +1436,35 @@ T(PE, 'A4', 'Company', HEAD); T(PE, 'B4', 'Market', HEAD)
 T(PE, 'C4', 'EV / EBITDA', HEAD); T(PE, 'D4', 'Price / earnings', HEAD)
 T(PE, 'E4', 'EBITDA margin', HEAD); T(PE, 'F4', 'Why it is here', HEAD)
 rr = 5
+EV_OK, PE_OK = [], []
 for sym, p in PEERS.items():
     if p.get('error'):
         continue
     T(PE, f'A{rr}', p['name']); T(PE, f'B{rr}', p['country'])
+    if p.get('ev_ebitda') and 4 < p['ev_ebitda'] < 40:
+        EV_OK.append(rr)
+    if p.get('pe_trailing') and 5 < p['pe_trailing'] < 45:
+        PE_OK.append(rr)
     V(PE, f'C{rr}', round(p['ev_ebitda'], 2) if p.get('ev_ebitda') else '-', MULT)
     V(PE, f'D{rr}', round(p['pe_trailing'], 2) if p.get('pe_trailing') else '-', MULT)
     V(PE, f'E{rr}', p.get('ebitda_margin') or '-', PC1)
     T(PE, f'F{rr}', p['rationale'])
     PE.row_dimensions[rr].height = 26
     rr += 1
-T(PE, f'A{rr + 1}', 'Peer median, enterprise value / EBITDA (usable comparators)', HEAD)
-V(PE, f'C{rr + 1}', round(LN['relative']['peer_median'], 2), MULT)
-T(PE, f'A{rr + 2}', 'Peer median, price / earnings (usable comparators)', HEAD)
-V(PE, f'D{rr + 2}', round(LN['normalised']['peer_median'], 2), MULT)
+T(PE, f'A{rr + 1}', 'Peer median, enterprise value / EBITDA — MEDIAN over the rows inside '
+                    'the stated band of 4x to 40x (one exclusion: the row whose multiple is '
+                    'an arithmetic artefact of a depressed year)', HEAD)
+ev_cells = [f'C{r_}' for r_ in EV_OK]
+pe_cells = [f'D{r_}' for r_ in PE_OK]
+import statistics as _st
+_evr = [round(p['ev_ebitda'], 2) for p in PEERS.values()
+        if p.get('ev_ebitda') and 4 < p['ev_ebitda'] < 40]
+FM(PE, f'C{rr + 1}', '=MEDIAN(' + ','.join(ev_cells) + ')', _st.median(_evr), MULT)
+T(PE, f'A{rr + 2}', 'Peer median, price / earnings — MEDIAN over the rows inside the stated '
+                    'band of 5x to 45x', HEAD)
+_per = [round(p['pe_trailing'], 2) for p in PEERS.values()
+        if p.get('pe_trailing') and 5 < p['pe_trailing'] < 45]
+FM(PE, f'D{rr + 2}', '=MEDIAN(' + ','.join(pe_cells) + ')', _st.median(_per), MULT)
 T(PE, f'A{rr + 4}', 'Americana — trailing enterprise value / EBITDA', HEAD)
 FM(PE, f'C{rr + 4}', "='Relative & Normalized'!B16", D['trailing']['ev_ebitda'], MULT, link=True)
 T(PE, f'A{rr + 5}', 'Americana — trailing price / earnings', HEAD)

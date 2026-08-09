@@ -1,8 +1,8 @@
-# AMR — response to four external critiques · 9 August 2026 · ASSESSMENT ONLY, NOT YET IMPLEMENTED
+# AMR — response to four external critiques · 9 August 2026 · ASSESSED §§0–6, IMPLEMENTED §7 (same day)
 
 Sources: **Claude_cowork (CW, 40 findings) · Claude_code (CC, 29) · Gemini_deep_research (GDR, 8) · Gemini_deep_think (GDT, 5)**.
 Reconciliation: **82 raised, 82 answered, 0 unaddressed.** Duplicates get their own row pointing at the original.
-Baseline for every price: weighted central **AED 2.3554**; DCF lens AED 2.6038; market AED 2.23. "0.00 / 0.00%" means the finding has no formula path to the valuation — the row then says what else it damages.
+Baseline for every price in §§0–6: the FIRST-edition weighted central **AED 2.3554**; DCF lens AED 2.6038; market AED 2.23 — the deliverables the critics read. Every accepted fix is implemented in the second edition; §7 carries the before→after. "0.00 / 0.00%" means the finding has no formula path to the valuation — the row then says what else it damages.
 
 ---
 
@@ -161,3 +161,19 @@ Triggered by CW4/CC3/GDT3 brackets reaching −5.6% and −12.3%. Independent re
 **Calibration note both directions:** the critiques' four highest-severity claims split two right (terminal ROIC, mid-cycle margin), one right-defect-wrong-fix (relative lens per GDR), one flatly wrong (GDR's terminal WACC). And the largest single correction in this entire exercise (+2.4%, the missing anchor roll) was found by the self-audit, not by any of the four critiques — including two that certified the DCF "mathematically pristine."
 
 *Assessment only. Nothing has been changed in the study, the model, or the repo. Implementation, gate re-runs and before/after proofs follow on approval.*
+
+---
+
+## 7 · IMPLEMENTATION REPORT — second edition, all gates re-run (added after approval-by-instruction)
+
+The user's three challenges — "taken seriously enough / built bottom-up / minimal hardcoding" — were treated as the step-10 trigger: no defence, full implementation, deeper than the critiques asked.
+
+**Bottom-up, deeper than before.** Revenue now has TWO unit spines: the geographic build (ties audited revenue exactly in all three years, using each year's own disclosed elimination — the FY2023 36,706 was found disclosed after all) and a NEW brand build — restaurants × revenue-per-restaurant for KFC / Pizza Hut / Hardee's / Krispy Kreme / growth brands, from the disclosed brand estate (1,146 / 457 / 458 / 395 / 293 at Dec-2025) and disclosed brand revenue, forecast on the company's own opening mix. The two builds reconcile within 1.91%, and the residual is published as a disclosed-mix effect. The two largest cost lines are now genuine volume×price builds: **staff** = heads-per-restaurant (disclosed trend 15.4→12.1) × wage-per-head (audited USD 12,394, growing at the audited 6%/yr) + above-restaurant block; **delivery** = channel share (disclosed 44→48→52%) × cost-per-delivered-dollar (13.8→15.0% audited, calibrated to the H1-2026 margin). The honest consequence: the margin now PEAKS near 25.4% and eases to 24.9% as the delivery channel grows — the flat-share treatment had let it expand to 26.1%.
+
+**Minimal hardcoding.** Workbook now: **897 live formulas / 406 pasted** — and the pasted set is exactly: 307 audited-or-disclosed history (incl. the brand estate and peer table), 70 sensitivity-grid re-runs, 29 engine outputs (25 probability-map cells + the DCF bear/bull pair with driver sets stated + the lease-B framing pair). Newly converted to LIVE formulas: all nine expert-panel legs, both peer medians (`=MEDIAN(...)` with the band rule stated), the ENTIRE cyclical reading (a parallel formula block on the DCF sheet), every lens bear/bull for three lenses, the net-share count chain, the anchor-roll chain, the terminal-ROIC fade, the impairment line, and the unit-built staff/delivery cost lines. Re-proved on the delivered file: **897 of 897 formula cells reproduce the model, 0 unresolvable, 0 unchecked; 28 drivers directional-tested in place, all correct; 71 further inputs swept, 0 dead.**
+
+**Every accepted critique fix implemented:** UST 4.65% · Damodaran July-2026 vintage (all 24 ERPs re-read) · beta re-run with no post-anchor observation (0.894, n=182, window to 17-Jul-2026) · net-of-treasury market cap chained from issued-less-treasury · terminal rf 4.45% per its own stated rule · terminal ROIC faded to 30% with the implied-average published as the bull · ROIC off-by-one fixed · recurring impairment charged (0.31% of revenue) · relative lens carries both intervening years' cash flows · normalised lens on the midpoint margin with the full finance line · anchor roll on every published value · Expert 1 recapitalised at the full terminal Ke · quarterly food-cost series published with its adverse direction stated · weighted bear/bull row · NCI row restored · Abu Dhabi final re-offer spread · every label/wording fix in the ledger.
+
+**Before → after:** weighted central **AED 2.36 → 2.19** (market 2.23; the conclusion inverts from "+6%" to "roughly fair, −2%"). DCF lens 2.60 → 2.31 · relative 2.41 → 2.56 · normalised 2.32 → 2.06 · book 1.07 → 1.07 · structural/cyclical 2.60/2.06 → 2.31/1.98 · weighted range 1.50–3.44 (replacing the 0.66–4.88 envelope, now labelled as unweighted extremes) · expert median 1.93 → 1.68 · WACC 9.60% → 9.50%, terminal 9.47% → 9.51% · TV share 76.5% → 74.9%. Defects the re-run surfaced and fixed in-pass: the IS forecast initially omitted the new impairment line (caught by recalc, 130 cell disagreements → 0); the issued-share input went dead when market cap moved to net shares (caught by the dead-input sweep; now chained issued − treasury); a bibliography cell overflow from the brand-build register entry (caught by the table scan).
+
+Deliverables re-rendered: study 26 pp / 18 images · bibliography 26 pp · workbook 54 pp. All checks green.

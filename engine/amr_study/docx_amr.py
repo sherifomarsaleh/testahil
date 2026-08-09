@@ -65,11 +65,15 @@ box([('READ THIS FIRST. ',
 # =====================================================================  2. HEADLINE
 H1('Headline')
 central_a = aed(LN['central'])
-rich([('Four methods put the equity somewhere between about AED ', dict()),
-      (f'{aed(LN["low"]):.2f}', dict(bold=True)),
-      (' and AED ', dict()),
-      (f'{aed(LN["high"]):.2f}', dict(bold=True)),
-      (' a share, with a weighted central value of AED ', dict()),
+WB_ = sum(LN['ranges'][k][0] * LN['weights'][k] for k in LN['weights'])
+WU_ = sum(LN['ranges'][k][2] * LN['weights'][k] for k in LN['weights'])
+rich([('Four methods, on their stated weights, put the equity between a weighted bear of AED ',
+       dict()),
+      (f'{aed(WB_):.2f}', dict(bold=True)),
+      (' and a weighted bull of AED ', dict()),
+      (f'{aed(WU_):.2f}', dict(bold=True)),
+      (f' a share (the widest single-lens extremes span {aed(LN["low"]):.2f} to '
+       f'{aed(LN["high"]):.2f}), with a weighted central value of AED ', dict()),
       (f'{central_a:.2f}', dict(bold=True)),
       (f' — about {pc(LN["central"]/SPOT-1, 0)} above the AED {SPOTA:.2f} the market is paying. '
        'That gap is not the interesting part of this study. The interesting part is that the '
@@ -79,7 +83,9 @@ rich([('Four methods put the equity somewhere between about AED ', dict()),
 P('Americana operates 2,746 restaurants across twelve countries — KFC, Pizza Hut, Hardee\'s, '
   'Krispy Kreme and a widening tail of smaller brands — as a master franchisee. It does not own '
   'the brands; it pays for them, 5.6% of revenue in royalties last year, and in exchange it '
-  'operates the restaurants, employs the 37,000 people in them and carries the leases. That is '
+  'operates the restaurants, employs the people in them — 37,207 on the audited average '
+  'full-time-equivalent measure, about 39,400 heads including part-time and contract staff '
+  '— and carries the leases. That is '
   'the structural fact that governs everything else here, including why the company should not '
   'be valued on the multiples the brand owners command.')
 
@@ -111,12 +117,15 @@ for k in ['Discounted cash flow', 'Relative multiples', 'Normalised earnings pow
     rows.append([k, pc(LN['weights'][k], 0), f'{aed(lo):.2f}', f'{aed(ba):.2f}',
                  f'{aed(hi):.2f}', pc(ba / SPOT - 1, 0),
                  pc(DCF['tv_share'], 0) if k == 'Discounted cash flow' else '—'])
-rows.append(['Weighted central', '100%', f'{aed(LN["low"]):.2f}', f'{central_a:.2f}',
-             f'{aed(LN["high"]):.2f}', pc(LN['central'] / SPOT - 1, 0), '—'])
+rows.append(['Weighted central (bear and bull weighted the same way)', '100%',
+             f'{aed(WB_):.2f}', f'{central_a:.2f}', f'{aed(WU_):.2f}',
+             pc(LN['central'] / SPOT - 1, 0), '—'])
+rows.append(['Range across the lenses (unweighted extremes)', '—', f'{aed(LN["low"]):.2f}',
+             '—', f'{aed(LN["high"]):.2f}', '—', '—'])
 rows.append(['Expert panel median', '—', '—', f'{aed(LN["expert_median"]):.2f}', '—',
              pc(LN['expert_median'] / SPOT - 1, 0), '—'])
 rows.append(['Market price, 7 August 2026', '—', '—', f'{SPOTA:.2f}', '—', '—', '—'])
-table(rows, [2.05, 0.62, 0.72, 0.80, 0.72, 0.78, 1.16], band_rows={5}, size=9.0)
+table(rows, [2.05, 0.62, 0.72, 0.80, 0.72, 0.78, 1.16], band_rows={5, 6}, size=9.0)
 caption('AED a share. The terminal value share is the portion of the cash-flow lens\'s '
         'enterprise value that sits beyond the fifth forecast year; it is shown again in the '
         'bridge from enterprise value to equity below.')
@@ -164,8 +173,8 @@ P('The business is a master franchisee. It licenses KFC, Pizza Hut, Hardee\'s, K
   'Costa Coffee, Peet\'s Coffee, Baskin-Robbins, TGI Fridays, Wimpy and Chicken Tikka, and has '
   'lately added two of its own: Malak Al Tawouk, acquired in the United Arab Emirates and Saudi '
   'Arabia, and carpo, launched in Qatar. Four power brands produce 94% of revenue. Home delivery '
-  'is now 52% of sales, up from 44% two years ago, largely through the company\'s own ordering '
-  'application rather than third-party platforms.')
+  'is 52% of sales in the first half of 2026, against 42% in the same half two years earlier, '
+  'largely through the company\'s own ordering application rather than third-party platforms.')
 
 rows = [['Market', 'Restaurants at 31 Dec 2025', 'FY2025 revenue (USD m)',
          'Revenue per restaurant (USD 000)', 'Share of revenue', 'Restaurants at 30 Jun 2026']]
@@ -210,8 +219,12 @@ rows.append(['Lease liabilities'] + [n(x, 0) for x in H['lease_liabilities']] +
             [n(h1['lease_liabilities'], 0)])
 rows.append(['Bank debt', n(H['bank_debt'][0], 1), '—', '—', '—'])
 table(rows, [2.55, 1.05, 1.05, 1.05, 1.30], size=9.0)
-caption('The 2023 restaurant count is derived from the disclosed net-opening series; every other '
-        'figure is read directly from the audited statements or the reviewed interim statements.')
+caption('The 2023 restaurant count of 2,435 is the company\'s own disclosure in its FY2023 '
+        'earnings release. EBITDA is reconstructed as operating profit plus depreciation, '
+        'amortisation and impairments — it appears in no audited statement, and the releases '
+        'publish a closely similar "Adjusted EBITDA". The 30 June 2026 cash figure includes '
+        'the USD 22 million of treasury bills and deposit-linked notes reported that date as '
+        'investments in financial assets; the earlier columns have no such line.')
 
 # =====================================================================  5. §1 FUNDAMENTAL
 H1('1  Fundamental valuation')
@@ -229,6 +242,7 @@ for lab, key, sign in [('Revenue', 'revenue', 1), ('EBITDA', 'ebitda', 1),
                        ('Less depreciation and amortisation', 'dna', -1),
                        ('EBIT', 'ebit', 1), ('NOPAT — EBIT after tax', 'nopat', 1),
                        ('Add back depreciation and amortisation', 'dna', 1),
+                       ('Less the recurring impairment charge', 'impairment', -1),
                        ('Less capital expenditure, including new leases', 'capex_total', -1),
                        ('Less change in working capital', 'dnwc', -1),
                        ('Free cash flow to the firm', 'fcff', 1),
@@ -250,7 +264,10 @@ caption('Taking a new restaurant lease is treated as an investment on this readi
 rows = [['Terminal block', 'Value'],
         ['Terminal-year NOPAT grown one year (USD m)', n(DCF['nopat_next'], 0)],
         ['Invested capital at the end of the forecast (USD m)', n(DCF['invested_capital'], 0)],
-        ['Terminal return on invested capital', pc(DCF['roic_term'], 0)],
+        ['Terminal return on incremental capital — faded to the payback-anchored target',
+         pc(DCF['roic_term'], 0)],
+        ['Model-implied average return on closing capital (the bull reading)',
+         pc(DCF['roic_implied_avg'], 0)],
         ['Required reinvestment rate — growth over return on capital', pc(DCF['rr_term'], 1)],
         ['Terminal growth', pc(W['terminal_g'])],
         ['Terminal cost of capital', pc(W['wacc_terminal'], 2)],
@@ -259,13 +276,20 @@ rows = [['Terminal block', 'Value'],
         ['Terminal value as a share of enterprise value', pc(DCF['tv_share'], 0)],
         ['Enterprise value (USD m)', n(DCF['ev'], 0)],
         ['Equity value (USD m)', n(DCF['equity'], 0)],
-        ['Fair value per share (AED)', f'{aed(DCF["fv"]):.2f}']]
+        ['Fair value per share at 31 December 2025 (USD)', f'{DCF["fv_unrolled"]:.4f}'],
+        ['Rolled to the 7 August 2026 anchor at the cost of equity, net of the USD 0.024 '
+         'dividend paid in the window', f'x {W["roll_factor"]:.4f} - 0.024'],
+        ['Fair value per share at the anchor (AED)', f'{aed(DCF["fv"]):.2f}']]
 table(rows, [5.20, 1.35], band_rows={9, 12}, size=9.3)
-caption(f'{pc(DCF["tv_share"], 0)} of the enterprise value sits beyond the fifth year. That is '
-        'high, and it is why the terminal assumptions are sensitised on their own rather than '
-        'buried in the total. The reinvestment rate is not assumed: it is growth divided by the '
-        'return on capital, so a business earning 56% on incremental capital only has to '
-        f'reinvest {pc(DCF["rr_term"], 1)} of its profit to grow at {pc(W["terminal_g"])}.')
+caption(f'{pc(DCF["tv_share"], 0)} of the enterprise value sits beyond the fifth year, which '
+        'is why the terminal assumptions are sensitised on their own rather than buried in the '
+        'total. The terminal return is NOT the model-implied average: the company\'s own '
+        'store-economics table (USD 402 thousand a restaurant, three-year average payback, and '
+        'the marginal brands beyond five years) says the incremental restaurant earns far less '
+        'than the book average, so the return is faded to 30% and the reinvestment rate — '
+        'growth over that return — is 10% of terminal profit. Every published value in this '
+        'study is rolled from the 31 December 2025 valuation date to the 7 August 2026 price '
+        'anchor at the cost of equity, net of the dividend paid between the two dates.')
 
 H2('1.2  Book value and sustainable return')
 P(f'The company earned a {pc(H["pat_shareholders"][2]/((H["equity"][1]+H["equity"][2])/2), 0)} '
@@ -275,18 +299,23 @@ P(f'The company earned a {pc(H["pat_shareholders"][2]/((H["equity"][1]+H["equity
   f'against a market capitalisation of USD {n(M["mktcap"], 0)} million. A justified '
   'price-to-book multiple therefore divides a very large return by a very small base and is '
   'unstable in both directions. On a sustainable return of '
-  f'{pc(LN["book"]["roe"], 0)} and a terminal cost of equity of {pc(W["ke_terminal"], 1)} the '
+  f'{pc(LN["book"]["roe"], 0)}, a terminal cost of equity of {pc(W["ke_terminal"], 2)} and '
+  f'the same {pc(W["terminal_g"])} terminal growth the cash-flow model uses, the '
   f'justified multiple is {LN["book"]["justified_pb"]:.1f} times book, which gives AED '
   f'{aed(LN["values"]["Book value and sustainable return"]):.2f} a share. It is the lowest of '
   'the four lenses and carries the lowest weight. It is reported because leaving out the lens '
-  'that disagrees would be dishonest, not because it is informative.')
+  'that disagrees would be dishonest, not because it is informative. One reconciliation note: '
+  'the justified multiple implicitly retains growth over return — about a 93% payout — while '
+  'the forecast distributes 85%; the difference is retained cash the firm-value lenses '
+  'already count, so it is stated rather than adjusted.')
 
 H2('1.3  Relative multiples')
 P('There is no clean comparable. The global names — Yum! Brands, Restaurant Brands, Domino\'s — '
   'are on the other side of Americana\'s contract: they collect royalties and carry EBITDA '
   'margins of 20% to 35% on a fraction of the revenue. The right comparators are the listed '
-  'operator-franchisees, and the closest of all are Devyani International and Sapphire Foods in '
-  'India, which run the same two brands Americana runs.')
+  'operator-franchisees — closest in structure, Devyani International and Sapphire Foods in '
+  'India, which run the same two brands — though their published multiples may sit on a '
+  'different lease-accounting basis and are read as indicative rather than precise.')
 rows = [['Company', 'Market', 'EV / EBITDA', 'Price / earnings', 'EBITDA margin']]
 for sym, p in PEERS.items():
     if p.get('error'):
@@ -298,13 +327,20 @@ for sym, p in PEERS.items():
 rows.append(['Peer median (usable comparators)', '—',
              f'{LN["relative"]["peer_median"]:.1f}x',
              f'{LN["normalised"]["peer_median"]:.1f}x', '—'])
-rows.append(['Americana, trailing', 'United Arab Emirates',
+rows.append(['Americana, FY2025 (the peers are as-published trailing figures)',
+             'United Arab Emirates',
              f'{D["trailing"]["ev_ebitda"]:.1f}x', f'{D["trailing"]["pe"]:.1f}x',
              pc(H['ebitda_margin'][2])])
 table(rows, [2.05, 1.35, 1.10, 1.20, 1.20], band_rows={12, 13}, size=8.8)
-caption('Outside market data, retrieved 9 August 2026, used as a cross-check only. Nothing in '
-        'this table enters the valuation of Americana; the company\'s own figures come from its '
-        'audited statements.')
+caption('Outside market data as published by the aggregator, retrieved 9 August 2026. The '
+        'medians take every row inside a stated band — 4 to 40 times for enterprise value to '
+        'EBITDA, 5 to 45 times for price to earnings — which excludes one arithmetic artefact '
+        'each (a peer on a depressed-earnings year whose multiple is noise, and one whose '
+        'published figure appears to carry a basis error). The Indian franchisees\' figures '
+        'may sit on a pre-lease-capitalisation basis; the comparison is treated as indicative '
+        'only. This table ANCHORS the two justified multiples — it is the reason 8.5 and 17 '
+        'times sit below the medians — but no figure in it sources any number Americana '
+        'itself reports.')
 P(f'The lens applies {LN["relative"]["multiple"]:.1f} times forward EBITDA — below the peer '
   'median — discounts the resulting enterprise value back one year, adds the intervening free '
   f'cash flow and runs the same bridge. That gives AED '
@@ -313,10 +349,14 @@ P(f'The lens applies {LN["relative"]["multiple"]:.1f} times forward EBITDA — b
   'carries the whole lease estate on its balance sheet.')
 
 H2('1.4  Normalised earnings power')
-P('This lens strips out growth and asks what the company earns at today\'s scale on a mid-cycle '
-  f'margin. Revenue at the FY2026 level of USD {n(F["revenue"][0], 0)} million, the FY2028 '
-  f'margin of {pc(F["ebitda_margin"][2])}, depreciation and the net finance result as they '
-  f'stand, taxed at {pc(F["etr"][1])}, gives normalised earnings of USD '
+P('This lens strips out growth and asks what the company earns at today\'s scale on a '
+  'mid-cycle margin — and mid-cycle here means the MIDPOINT of the structural and cyclical '
+  'FY2028 readings, '
+  f'{pc(LN["normalised"]["margin"])}, not the structural path alone, which sits above every '
+  f'margin the company has ever recorded. Revenue at the FY2026 level of USD '
+  f'{n(F["revenue"][0], 0)} million on that margin, depreciation, the recurring impairment '
+  f'charge and the full net finance result as they stand, taxed at {pc(F["etr"][1])} (the '
+  'FY2027 rate on the rising path), gives normalised earnings of USD '
   f'{n(LN["normalised"]["earnings"], 0)} million, or USD {LN["normalised"]["eps"]:.4f} a share. '
   f'At {LN["normalised"]["multiple"]:.0f} times — just below the usable peer median — that is '
   f'AED {aed(LN["values"]["Normalised earnings power"]):.2f}.')
@@ -344,16 +384,26 @@ figure('fig7_build.png', 6.8,
        'Revenue and the restaurant estate. Both sides of the volume-times-price build move, and '
        'both are shown.')
 rows = [['Driver', 'How it is set', 'FY2026E', 'FY2030E']]
-rows.append(['Net new restaurants', 'the company\'s published guidance of 120–130 for 2026, '
-             'then a gentle taper', n(U['nso'][0]), n(U['nso'][4])])
+rows.append(['Net new restaurants', 'the 125 midpoint of the company\'s guidance for 2026, '
+             'then 130, 130, 125, 120 — a two-year rise before the taper. The estate SHRANK by '
+             'three in the first half of 2026, so the full-year guide needs about 128 net '
+             'openings in the second half; the company reaffirmed it on 28 July',
+             n(U['nso'][0]), n(U['nso'][4])])
 rows.append(['Like-for-like sales growth', 'set just below the 6.3% delivered in the first half '
              'of 2026, converging on long-run inflation in the pegged markets',
              pc(U['lfl'][0]), pc(U['lfl'][4])])
 rows.append(['Restaurants at year end', 'an output of the two rows above',
              n(F['stores'][0]), n(F['stores'][4])])
 rows.append(['Revenue (USD m)', 'an output', n(F['revenue'][0], 0), n(F['revenue'][4], 0)])
-rows.append(['EBITDA margin', 'an OUTPUT of the cost stack below, never an input',
-             pc(F['ebitda_margin'][0]), pc(F['ebitda_margin'][4])])
+rows.append(['Currency drag on dollar revenue per restaurant', 'Egypt 2.5% a year, the '
+             'Kazakhstan-led markets 1.5%, Morocco 0.5%, every pegged market zero — set from '
+             'the inflation differentials, though the two most recent disclosed readings ran '
+             'the other way (Egypt dollar revenue +29% in FY2025, +23% in H1 2026)',
+             '—', '—'])
+rows.append(['EBITDA margin', 'an OUTPUT of the cost stack below, never an input — and the '
+             'unit-built staff and delivery lines now cap it: the margin peaks near 25.4% and '
+             'eases as the delivery channel grows', pc(F['ebitda_margin'][0]),
+             pc(F['ebitda_margin'][4])])
 table(rows, [1.75, 2.90, 1.15, 1.15], size=9.0)
 
 P('The cost side gets one escalator per driver class. A globally traded food basket does not '
@@ -371,11 +421,16 @@ for k, lab in NAMES.items():
                 [pc(L['path'][4])])
 rows.append(['All other operating costs', 'the residual of the three expense notes',
              '—', '—', pc(CS['residual_pct']), pc(CS['residual_pct'])])
+rows.append(['Other income', 'held at its FY2025 share — the half-point the margin needs '
+             'beyond the cost lines', '—', '—',
+             pc(H['other_income'][2] / H['revenue'][2]), pc(H['other_income'][2] / H['revenue'][2])])
 table(rows, [1.75, 1.85, 0.78, 0.78, 0.78, 0.85], size=8.6)
-caption('Each line as a share of revenue. Royalties are contractual, not inflating, so they are '
-        'held flat. The food line is anchored on the 27.4% the company actually recorded in the '
-        'first half of 2026 — a disclosed, dated figure — rather than on a macroeconomic '
-        'assumption.')
+caption('Each line as a share of revenue; the FY2030 staff and delivery shares are OUTPUTS of '
+        'their unit builds — staff is headcount per restaurant times a wage growing at the '
+        'audited 6% a year, and delivery is the channel share times a cost per delivered '
+        'dollar — so the two biggest operating lines are built from volume and price, not '
+        'escalated. Royalties are contractual and held flat. The food line is anchored on the '
+        '27.4% actually recorded in the first half of 2026.')
 
 H2('1.7  The crux')
 P('The crux is the food and packaging line, and behind it the whole margin. Between the first '
@@ -398,10 +453,14 @@ table([['', C['way_a']['name'], C['way_b']['name']],
        ['Against the market price', pc(C['way_a']['value_usd'] / SPOT - 1, 0),
         pc(C['way_b']['value_usd'] / SPOT - 1, 0)]],
       [2.30, 2.35, 2.35], size=9.3)
-P('The observable test is quarterly and public. The cost of food and packaging as a share of '
-  'revenue is disclosed every quarter. If it holds near 27% through the second half of 2026 and '
-  'into 2027, the structural reading is winning. If it drifts back toward 29%, the cyclical '
-  'reading is.')
+P('The observable test is quarterly and public, and two of its readings are already in. The '
+  'company disclosed the full quarterly series with its half-year results: 29.2% in the first '
+  'and second quarters of 2025, 28.5% in the third, 27.1% in the fourth, then 27.3% in the '
+  'first quarter of 2026 and 27.5% in the second. The trough was the fourth quarter of 2025, '
+  'and the ratio has RISEN in the two quarters since — the two most recently disclosed '
+  'readings lean toward the cyclical column, not the structural one. If the ratio holds near '
+  '27% through the second half of 2026 the structural reading is winning; a drift back toward '
+  '29% would confirm the cyclical one.')
 
 H2('1.8  Macro, country risk and the cost of capital')
 P('The company reports in dollars and earns 83% of its revenue in currencies pegged to the '
@@ -470,18 +529,23 @@ rows = [['Evidence on the cost of debt', 'Rate'],
         ['Bank debt outstanding at 31 December 2025', 'none']]
 table(rows, [5.60, 1.15], size=9.0)
 
-P('Beta is measured on the company\'s own share price. Americana is concurrently listed in Abu '
-  'Dhabi and Riyadh, and a daily history for the Abu Dhabi index could not be obtained from any '
-  'machine-readable source available for this study — that limitation is recorded rather than '
-  'glossed over. The regression therefore runs the company\'s own shares against the index of '
-  f'its other home market: {BETA["tier1_own_vs_tasi"]["n"]} weekly observations from '
-  f'{BETA["tier1_own_vs_tasi"]["first"]} to {BETA["tier1_own_vs_tasi"]["last"]}, giving a beta '
-  f'of {W["beta"]:.3f} with a standard error of {BETA["tier1_own_vs_tasi"]["se_beta"]:.3f} and '
-  f'an R-squared of {pc(BETA["tier1_own_vs_tasi"]["r2"])}. Two cross-checks point lower — the '
-  f'Abu Dhabi line against a composite of eighteen UAE-listed names gives '
+P('Beta is measured on the company\'s own share price. Americana is concurrently listed in '
+  'Abu Dhabi and Riyadh. A daily history for the Abu Dhabi general index was sought and not '
+  'obtained from the machine-readable sources tried for this study — the Yahoo quote for the '
+  'index returns a single observation with no history, and the exchange\'s own site and the '
+  'main data portals refused automated access — so the regression runs the company\'s own '
+  'shares against the index of its other home market, whose series is fully available: '
+  f'{BETA["tier1_own_vs_tasi"]["n"]} complete weekly observations, windows labelled '
+  f'{BETA["tier1_own_vs_tasi"]["first"]} to {BETA["tier1_own_vs_tasi"]["last"]}, with nothing '
+  f'after the 7 August price anchor in the sample. Beta {W["beta"]:.3f}, standard error '
+  f'{BETA["tier1_own_vs_tasi"]["se_beta"]:.3f}, R-squared '
+  f'{pc(BETA["tier1_own_vs_tasi"]["r2"])}. Two cross-checks point much lower — the Abu Dhabi '
+  f'line against an equally weighted composite of eighteen UAE-listed names gives '
   f'{BETA["crosscheck_adx_line_vs_uae_composite"]["beta"]:.3f}, and two UAE-listed consumer '
-  f'companies give a median of {BETA["peer_median_beta"]:.3f} — so the figure adopted is the '
-  'conservative one.')
+  f'companies give a median of {BETA["peer_median_beta"]:.3f} — so the adopted figure is the '
+  'conservative one, and the choice is worth sizing: at a beta near 0.60 the cost of capital '
+  'falls by roughly one and a half points and the cash-flow value rises by roughly a third. '
+  'The adopted beta is the single largest conservative judgement in this study.')
 
 H2('1.9  Sensitivity')
 figure('fig8_tornado.png', 6.6,
@@ -514,7 +578,9 @@ for i, lv in enumerate(TECH['levels']['res']):
 for i, lv in enumerate(TECH['levels']['sup']):
     rows.append([f'Support {i+1}', f'{lv:.2f}', pc(lv / SPOTA - 1)])
 table(rows, [2.30, 2.30, 2.40], size=9.3)
-caption('Levels are computed from clustered pivot highs and lows in the same cleaned price '
+caption('Computed from the daily price series used throughout this study (13 December 2022 '
+        'to 7 August 2026, delivered in the study repository). Levels are clustered pivot '
+        'highs and lows in the same cleaned price '
         'series the valuation and the probability map use; the first of each is the nearest to '
         'the last close. This is a description of the tape, and carries no view on value.')
 
@@ -557,8 +623,8 @@ P('The honest answer is: less than for most of the shares we cover, and here is 
   'beaten the simple benchmark. The spread of outcomes was well shaped — the realised price fell '
   f'inside the 90% band in {pc(p5["cov90"], 0)} of windows and inside the 80% band in '
   f'{pc(p5["cov80"], 0)} — and a formal test of whether outcomes land uniformly across the '
-  f'distribution passes comfortably (chi-square p={p5["chi2_p"]}, Kolmogorov-Smirnov '
-  f'p={p5["ks_p"]}). But ten windows cannot carry a strong claim either way.')
+  f'distribution is passed comfortably on the chi-square (p={p5["chi2_p"]}) and only '
+  f'marginally on the Kolmogorov-Smirnov (p={p5["ks_p"]}). But ten windows cannot carry a strong claim either way.')
 P('The width and shape of the band are not fitted on Americana alone; they come from a pooled '
   f'set of {pp["names"]} UAE-listed shares. That set does carry the longer record: '
   f'{pp["windows"]} windows over {pp["span_years"]} years, on which the method scored '
@@ -676,10 +742,12 @@ for head, body in [
      'here follows where the estate has actually grown. The group result is not very sensitive '
      'to it, because the growth rates differ between markets by more than the revenue per '
      'restaurant does — but it is an estimate, and it is the only one in the revenue build.'),
-    ('Impairments are recurring but not forecast. ',
-     'A 2,700-restaurant estate always contains some brand-country units that are '
-     'underperforming, and the company has charged impairments in each of the last three years. '
-     'The forecast carries none as a separate line. That flatters forecast EBIT modestly.'),
+    ('The margin is capped by the channel mix. ',
+     'The delivery channel is dearer to serve than the counter, and its share keeps rising; '
+     'built as volume times price, the delivery line rises from 7.4% to 7.9% of revenue and '
+     'holds the EBITDA margin near 25% rather than letting it expand indefinitely. The first '
+     'edition of this study escalated delivery as a flat share and showed a higher terminal '
+     'margin.'),
     ('A controlled company. ',
      'Adeptio holds 66.03%. The free float is a third of the shares, and the dividend policy, '
      'the acquisition programme and the capital structure are set by a holder whose interests '
@@ -714,20 +782,26 @@ r_('EBITDA margin', H['ebitda_margin'] + F['ebitda_margin'], 'pc')
 rows.append(['Depreciation and amortisation'] +
             [f'({n(x, 0)})' for x in H['dna'] + F['dna']])
 r_('EBIT', H['ebit'] + F['ebit'])
-rows.append(['Impairments'] +
-            [f'({n(H["impair_nonfin"][i] + H["impair_fin"][i], 0)})' for i in range(3)] + ['—'] * 5)
+rows.append(['Impairments — audited, then the recurring charge'] +
+            [f'({n(H["impair_nonfin"][i] + H["impair_fin"][i], 0)})' for i in range(3)] +
+            [f'({n(x, 0)})' for x in F['impairment']])
 r_('Finance income', H['finance_income'] + F['finance_income'])
 rows.append(['Finance costs'] +
             [f'({n(x, 0)})' for x in H['finance_cost'] + F['finance_cost']])
 r_('Profit before tax', H['pbt'] + F['pbt'])
 rows.append(['Income tax and zakat'] + [f'({n(x, 0)})' for x in H['tax'] + F['tax']])
 r_('Profit for the year', H['pat'] + F['pat'])
+rows.append(['Non-controlling interests'] +
+            [n(H['pat_shareholders'][i] - H['pat'][i], 1) for i in range(3)] + ['—'] * 5)
 r_('Profit attributable to shareholders', H['pat_shareholders'] + F['pat'])
 rows.append(['Earnings per share (USD)'] +
             [f'{x:.4f}' for x in H['eps'] + F['eps']])
 table(rows, [1.95, 0.63, 0.63, 0.63, 0.63, 0.63, 0.63, 0.63, 0.63], size=8.2)
-caption('EBIT here is EBITDA less depreciation and therefore sits above the impairment charges; '
-        'the audited operating profit is EBIT after them. Impairments are not forecast as a line.')
+caption('EBIT is EBITDA less depreciation, above the impairment line; the audited operating '
+        'profit is EBIT after it. The forecast charges a recurring impairment of 0.31% of '
+        'revenue — the three-year audited average — rather than assuming a perfect estate. '
+        'The non-controlling interest was 4.9% of FY2024 profit and has since collapsed to a '
+        'rounding item; the forecast carries none.')
 
 H2('A.2  Balance sheet')
 rows = [['USD million'] + YH + FY]

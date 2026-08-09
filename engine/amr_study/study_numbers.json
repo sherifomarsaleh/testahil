@@ -15,7 +15,7 @@
   "spot_aed": 2.23,
   "shares_mn": 8398.6331,
   "shares_issued_mn": 8423.6331,
-  "mktcap": 5114.963053233492,
+  "mktcap": 5099.78265840708,
   "klass": "Operating company \u2014 multi-country restaurant operator and master franchisee",
   "sector": "Consumer discretionary \u2014 restaurants and quick-service food",
   "basis": "Post-IFRS-16 free cash flow to the firm, US dollars million",
@@ -1379,176 +1379,176 @@
    "layer": "Company"
   },
   "ust_10y": {
-   "value": 0.0466,
-   "source": "US 10-year Treasury constant-maturity yield, 4.66% at the close of 7 August 2026",
+   "value": 0.0465,
+   "source": "US 10-year Treasury par yield, 4.65% at the close of 7 August 2026, read from the Treasury daily par yield curve CSV (the 4.66% previously carried was a secondary-source transcription, corrected against the primary)",
    "date": "2026-08-07",
    "layer": "Country"
   },
   "us_default_spread": {
-   "value": 0.0023,
-   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctryprem data file, last updated 5 January 2026, read from the original file: United States, Moody's Aa1, adjusted default spread 0.23%",
-   "date": "2026-01-05",
+   "value": 0.0022,
+   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctrypremJuly26 data file, published 15 July 2026, read from the original file \u2014 the edition current at the anchor date, adopted in the critique-response round in place of the January 2026 vintage used at first delivery: United States, Moody's Aa1, adjusted default spread 0.22%",
+   "date": "2026-07-15",
    "layer": "Country"
   },
   "us_cds": {
-   "value": 0.003,
-   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctryprem data file, last updated 5 January 2026, read from the original file: United States sovereign credit default swap spread 0.30%",
-   "date": "2026-01-05",
+   "value": 0.0043,
+   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctrypremJuly26 data file, published 15 July 2026, read from the original file \u2014 the edition current at the anchor date, adopted in the critique-response round in place of the January 2026 vintage used at first delivery: United States sovereign credit default swap spread 0.43%",
+   "date": "2026-07-15",
    "layer": "Country"
   },
   "abu_dhabi_new_issue_spread": {
-   "value": 0.0055,
-   "source": "Abu Dhabi sovereign dual-tranche US dollar benchmark, initial price thoughts of 55 basis points over US Treasuries on the ten-year tranche, February 2026",
+   "value": 0.0025,
+   "source": "Abu Dhabi sovereign dual-tranche US dollar benchmark, February 2026: final re-offer spread of 25 basis points over US Treasuries on the ten-year tranche (initial price thoughts were +55; the final pricing is the market evidence)",
    "date": "2026-02-01",
    "layer": "Country"
   },
   "uae_default_spread": {
    "value": 0.0042,
-   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctryprem data file, last updated 5 January 2026, read from the original file: United Arab Emirates, Moody's Aa2, adjusted default spread 0.42%",
+   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctrypremJuly26 data file, published 15 July 2026, read from the original file \u2014 the edition current at the anchor date, adopted in the critique-response round in place of the January 2026 vintage used at first delivery: United Arab Emirates, Moody's Aa2, adjusted default spread 0.42%",
    "date": "2026-01-05",
    "layer": "Country"
   },
   "erp_rating_uae": {
-   "value": 0.0487,
-   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctryprem data file, last updated 5 January 2026, read from the original file: UAE, total equity risk premium on the ratings basis",
+   "value": 0.0481,
+   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctrypremJuly26 data file, published 15 July 2026, read from the original file \u2014 the edition current at the anchor date, adopted in the critique-response round in place of the January 2026 vintage used at first delivery: UAE, total equity risk premium on the ratings basis",
    "date": "2026-01-05",
    "layer": "Country"
   },
   "erp_cds_uae": {
-   "value": 0.0487,
-   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctryprem data file, last updated 5 January 2026, read from the original file: UAE, equity risk premium on the sovereign credit-default-swap basis \u2014 no CDS is published for this sovereign, so the ratings-basis premium is carried here and the substitution is flagged",
+   "value": 0.0481,
+   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctrypremJuly26 data file, published 15 July 2026, read from the original file \u2014 the edition current at the anchor date, adopted in the critique-response round in place of the January 2026 vintage used at first delivery: UAE, equity risk premium on the sovereign credit-default-swap basis \u2014 no CDS is published for this sovereign, so the ratings-basis premium is carried here and the substitution is flagged",
    "date": "2026-01-05",
    "layer": "Country"
   },
   "erp_rating_saudi_arabia": {
-   "value": 0.0501,
-   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctryprem data file, last updated 5 January 2026, read from the original file: Saudi Arabia, total equity risk premium on the ratings basis",
+   "value": 0.0494,
+   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctrypremJuly26 data file, published 15 July 2026, read from the original file \u2014 the edition current at the anchor date, adopted in the critique-response round in place of the January 2026 vintage used at first delivery: Saudi Arabia, total equity risk premium on the ratings basis",
    "date": "2026-01-05",
    "layer": "Country"
   },
   "erp_cds_saudi_arabia": {
-   "value": 0.0572,
-   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctryprem data file, last updated 5 January 2026, read from the original file: Saudi Arabia, equity risk premium on the sovereign credit-default-swap basis",
+   "value": 0.0551,
+   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctrypremJuly26 data file, published 15 July 2026, read from the original file \u2014 the edition current at the anchor date, adopted in the critique-response round in place of the January 2026 vintage used at first delivery: Saudi Arabia, equity risk premium on the sovereign credit-default-swap basis",
    "date": "2026-01-05",
    "layer": "Country"
   },
   "erp_rating_kuwait": {
-   "value": 0.0514,
-   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctryprem data file, last updated 5 January 2026, read from the original file: Kuwait, total equity risk premium on the ratings basis",
+   "value": 0.0507,
+   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctrypremJuly26 data file, published 15 July 2026, read from the original file \u2014 the edition current at the anchor date, adopted in the critique-response round in place of the January 2026 vintage used at first delivery: Kuwait, total equity risk premium on the ratings basis",
    "date": "2026-01-05",
    "layer": "Country"
   },
   "erp_cds_kuwait": {
-   "value": 0.0534,
-   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctryprem data file, last updated 5 January 2026, read from the original file: Kuwait, equity risk premium on the sovereign credit-default-swap basis",
+   "value": 0.054,
+   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctrypremJuly26 data file, published 15 July 2026, read from the original file \u2014 the edition current at the anchor date, adopted in the critique-response round in place of the January 2026 vintage used at first delivery: Kuwait, equity risk premium on the sovereign credit-default-swap basis",
    "date": "2026-01-05",
    "layer": "Country"
   },
   "erp_rating_egypt": {
-   "value": 0.1394,
-   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctryprem data file, last updated 5 January 2026, read from the original file: Egypt, total equity risk premium on the ratings basis",
+   "value": 0.1348,
+   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctrypremJuly26 data file, published 15 July 2026, read from the original file \u2014 the edition current at the anchor date, adopted in the critique-response round in place of the January 2026 vintage used at first delivery: Egypt, total equity risk premium on the ratings basis",
    "date": "2026-01-05",
    "layer": "Country"
   },
   "erp_cds_egypt": {
-   "value": 0.0941,
-   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctryprem data file, last updated 5 January 2026, read from the original file: Egypt, equity risk premium on the sovereign credit-default-swap basis",
+   "value": 0.0952,
+   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctrypremJuly26 data file, published 15 July 2026, read from the original file \u2014 the edition current at the anchor date, adopted in the critique-response round in place of the January 2026 vintage used at first delivery: Egypt, equity risk premium on the sovereign credit-default-swap basis",
    "date": "2026-01-05",
    "layer": "Country"
   },
   "erp_rating_morocco": {
-   "value": 0.0747,
-   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctryprem data file, last updated 5 January 2026, read from the original file: Morocco, total equity risk premium on the ratings basis",
+   "value": 0.073,
+   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctrypremJuly26 data file, published 15 July 2026, read from the original file \u2014 the edition current at the anchor date, adopted in the critique-response round in place of the January 2026 vintage used at first delivery: Morocco, total equity risk premium on the ratings basis",
    "date": "2026-01-05",
    "layer": "Country"
   },
   "erp_cds_morocco": {
-   "value": 0.0599,
-   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctryprem data file, last updated 5 January 2026, read from the original file: Morocco, equity risk premium on the sovereign credit-default-swap basis",
+   "value": 0.06,
+   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctrypremJuly26 data file, published 15 July 2026, read from the original file \u2014 the edition current at the anchor date, adopted in the critique-response round in place of the January 2026 vintage used at first delivery: Morocco, equity risk premium on the sovereign credit-default-swap basis",
    "date": "2026-01-05",
    "layer": "Country"
   },
   "erp_rating_qatar": {
-   "value": 0.0487,
-   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctryprem data file, last updated 5 January 2026, read from the original file: Qatar, total equity risk premium on the ratings basis",
+   "value": 0.0481,
+   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctrypremJuly26 data file, published 15 July 2026, read from the original file \u2014 the edition current at the anchor date, adopted in the critique-response round in place of the January 2026 vintage used at first delivery: Qatar, total equity risk premium on the ratings basis",
    "date": "2026-01-05",
    "layer": "Country"
   },
   "erp_cds_qatar": {
-   "value": 0.0494,
-   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctryprem data file, last updated 5 January 2026, read from the original file: Qatar, equity risk premium on the sovereign credit-default-swap basis",
+   "value": 0.049,
+   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctrypremJuly26 data file, published 15 July 2026, read from the original file \u2014 the edition current at the anchor date, adopted in the critique-response round in place of the January 2026 vintage used at first delivery: Qatar, equity risk premium on the sovereign credit-default-swap basis",
    "date": "2026-01-05",
    "layer": "Country"
   },
   "erp_rating_oman": {
-   "value": 0.0708,
-   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctryprem data file, last updated 5 January 2026, read from the original file: Oman, total equity risk premium on the ratings basis",
+   "value": 0.0692,
+   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctrypremJuly26 data file, published 15 July 2026, read from the original file \u2014 the edition current at the anchor date, adopted in the critique-response round in place of the January 2026 vintage used at first delivery: Oman, total equity risk premium on the ratings basis",
    "date": "2026-01-05",
    "layer": "Country"
   },
   "erp_cds_oman": {
-   "value": 0.0599,
-   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctryprem data file, last updated 5 January 2026, read from the original file: Oman, equity risk premium on the sovereign credit-default-swap basis",
+   "value": 0.0589,
+   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctrypremJuly26 data file, published 15 July 2026, read from the original file \u2014 the edition current at the anchor date, adopted in the critique-response round in place of the January 2026 vintage used at first delivery: Oman, equity risk premium on the sovereign credit-default-swap basis",
    "date": "2026-01-05",
    "layer": "Country"
   },
   "erp_rating_bahrain": {
-   "value": 0.1135,
-   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctryprem data file, last updated 5 January 2026, read from the original file: Bahrain, total equity risk premium on the ratings basis",
+   "value": 0.1101,
+   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctrypremJuly26 data file, published 15 July 2026, read from the original file \u2014 the edition current at the anchor date, adopted in the critique-response round in place of the January 2026 vintage used at first delivery: Bahrain, total equity risk premium on the ratings basis",
    "date": "2026-01-05",
    "layer": "Country"
   },
   "erp_cds_bahrain": {
-   "value": 0.0777,
-   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctryprem data file, last updated 5 January 2026, read from the original file: Bahrain, equity risk premium on the sovereign credit-default-swap basis",
+   "value": 0.0865,
+   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctrypremJuly26 data file, published 15 July 2026, read from the original file \u2014 the edition current at the anchor date, adopted in the critique-response round in place of the January 2026 vintage used at first delivery: Bahrain, equity risk premium on the sovereign credit-default-swap basis",
    "date": "2026-01-05",
    "layer": "Country"
   },
   "erp_rating_kazakhstan": {
-   "value": 0.063,
-   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctryprem data file, last updated 5 January 2026, read from the original file: Kazakhstan, total equity risk premium on the ratings basis",
+   "value": 0.0618,
+   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctrypremJuly26 data file, published 15 July 2026, read from the original file \u2014 the edition current at the anchor date, adopted in the critique-response round in place of the January 2026 vintage used at first delivery: Kazakhstan, total equity risk premium on the ratings basis",
    "date": "2026-01-05",
    "layer": "Country"
   },
   "erp_cds_kazakhstan": {
-   "value": 0.0601,
-   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctryprem data file, last updated 5 January 2026, read from the original file: Kazakhstan, equity risk premium on the sovereign credit-default-swap basis",
+   "value": 0.0589,
+   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctrypremJuly26 data file, published 15 July 2026, read from the original file \u2014 the edition current at the anchor date, adopted in the critique-response round in place of the January 2026 vintage used at first delivery: Kazakhstan, equity risk premium on the sovereign credit-default-swap basis",
    "date": "2026-01-05",
    "layer": "Country"
   },
   "erp_rating_iraq": {
-   "value": 0.1394,
-   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctryprem data file, last updated 5 January 2026, read from the original file: Iraq, total equity risk premium on the ratings basis",
+   "value": 0.1348,
+   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctrypremJuly26 data file, published 15 July 2026, read from the original file \u2014 the edition current at the anchor date, adopted in the critique-response round in place of the January 2026 vintage used at first delivery: Iraq, total equity risk premium on the ratings basis",
    "date": "2026-01-05",
    "layer": "Country"
   },
   "erp_cds_iraq": {
-   "value": 0.0841,
-   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctryprem data file, last updated 5 January 2026, read from the original file: Iraq, equity risk premium on the sovereign credit-default-swap basis",
+   "value": 0.1,
+   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctrypremJuly26 data file, published 15 July 2026, read from the original file \u2014 the edition current at the anchor date, adopted in the critique-response round in place of the January 2026 vintage used at first delivery: Iraq, equity risk premium on the sovereign credit-default-swap basis",
    "date": "2026-01-05",
    "layer": "Country"
   },
   "erp_rating_lebanon": {
-   "value": 0.3089,
-   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctryprem data file, last updated 5 January 2026, read from the original file: Lebanon, total equity risk premium on the ratings basis",
+   "value": 0.314,
+   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctrypremJuly26 data file, published 15 July 2026, read from the original file \u2014 the edition current at the anchor date, adopted in the critique-response round in place of the January 2026 vintage used at first delivery: Lebanon, total equity risk premium on the ratings basis",
    "date": "2026-01-05",
    "layer": "Country"
   },
   "erp_cds_lebanon": {
-   "value": 0.3089,
-   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctryprem data file, last updated 5 January 2026, read from the original file: Lebanon, equity risk premium on the sovereign credit-default-swap basis \u2014 no CDS is published for this sovereign, so the ratings-basis premium is carried here and the substitution is flagged",
+   "value": 0.314,
+   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctrypremJuly26 data file, published 15 July 2026, read from the original file \u2014 the edition current at the anchor date, adopted in the critique-response round in place of the January 2026 vintage used at first delivery: Lebanon, equity risk premium on the sovereign credit-default-swap basis \u2014 no CDS is published for this sovereign, so the ratings-basis premium is carried here and the substitution is flagged",
    "date": "2026-01-05",
    "layer": "Country"
   },
   "erp_rating_jordan": {
-   "value": 0.0889,
-   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctryprem data file, last updated 5 January 2026, read from the original file: Jordan, total equity risk premium on the ratings basis",
+   "value": 0.0865,
+   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctrypremJuly26 data file, published 15 July 2026, read from the original file \u2014 the edition current at the anchor date, adopted in the critique-response round in place of the January 2026 vintage used at first delivery: Jordan, total equity risk premium on the ratings basis",
    "date": "2026-01-05",
    "layer": "Country"
   },
   "erp_cds_jordan": {
-   "value": 0.0889,
-   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctryprem data file, last updated 5 January 2026, read from the original file: Jordan, equity risk premium on the sovereign credit-default-swap basis \u2014 no CDS is published for this sovereign, so the ratings-basis premium is carried here and the substitution is flagged",
+   "value": 0.0865,
+   "source": "Country default spreads and risk premiums, Aswath Damodaran (NYU Stern), ctrypremJuly26 data file, published 15 July 2026, read from the original file \u2014 the edition current at the anchor date, adopted in the critique-response round in place of the January 2026 vintage used at first delivery: Jordan, equity risk premium on the sovereign credit-default-swap basis \u2014 no CDS is published for this sovereign, so the ratings-basis premium is carried here and the substitution is flagged",
    "date": "2026-01-05",
    "layer": "Country"
   },
@@ -1613,8 +1613,8 @@
    "layer": "Company"
   },
   "beta": {
-   "value": 0.895,
-   "source": "Ordinary least squares regression of 183 weekly logarithmic returns of the company's own shares against the Tadawul All Share Index over 30 December 2022 to 14 August 2026 \u2014 the longest window available since listing, inside the two-to-five-year rule. Standard error 0.193, t-statistic 4.65, R-squared 10.7%; the regression clears the usability gate of at least 24 observations, R-squared of at least 5% and a standard error below the absolute coefficient. Americana is concurrently listed on the Abu Dhabi Securities Exchange and the Saudi Exchange, so this is the company's own share price against the index of one of its two home markets; both currencies are pegged to the US dollar. A daily history for the Abu Dhabi index could not be obtained from any machine-readable source reachable for this study, and the substitution is recorded rather than hidden. Cross-checks: the Abu Dhabi line against an equally weighted composite of eighteen covered UAE names gives 0.603, and two UAE-listed consumer peers give a median of 0.583 \u2014 both below the adopted figure, so the adopted beta is the conservative one.",
+   "value": 0.894,
+   "source": "Ordinary least squares regression of 182 complete weekly logarithmic returns of the company's own shares against the Tadawul All Share Index, windows labelled 30 December 2022 to 17 July 2026 \u2014 no observation after the 7 August 2026 price anchor enters the sample, and the count is the number of Fridays on which both series have a complete week after holiday alignment. Standard error 0.193, t-statistic 4.63, R-squared 10.6%; the regression clears the usability gate of at least 24 observations, R-squared of at least 5% and a standard error below the absolute coefficient. Americana is concurrently listed on the Abu Dhabi Securities Exchange and the Saudi Exchange, so this is the company's own share price against the index of one of its two home markets; both currencies are pegged to the US dollar. A daily history for the Abu Dhabi index could not be obtained from any machine-readable source reachable for this study, and the substitution is recorded rather than hidden. Cross-checks: the Abu Dhabi line against an equally weighted composite of eighteen covered UAE names gives 0.603, and two UAE-listed consumer peers give a median of 0.583 \u2014 both below the adopted figure, so the adopted beta is the conservative one.",
    "date": "2026-08-09",
    "layer": "Market"
   },
@@ -1637,8 +1637,8 @@
    "layer": "Country"
   },
   "terminal_risk_free": {
-   "value": 0.043,
-   "source": "Terminal US dollar risk-free rate. The ten-year Treasury yield less the US sovereign default spread, rounded to the nearest five basis points and held flat, since no forward path is being forecast.",
+   "value": 0.0445,
+   "source": "Terminal US dollar risk-free rate: the ten-year Treasury par yield of 4.65% less the US sovereign default spread of 0.22%, rounded to the nearest five basis points (4.43% -> 4.45%) and held flat. The first delivery carried 4.30%, which did not follow this stated construction; corrected in the critique-response round.",
    "date": "2026-08-07",
    "layer": "Country"
   },
@@ -1712,6 +1712,69 @@
    "date": "2026-06-30",
    "layer": "Company"
   },
+  "brand_build": {
+   "value": {
+    "brands": [
+     "KFC",
+     "Pizza Hut",
+     "Hardee's",
+     "Krispy Kreme",
+     "Growth, niche and other brands"
+    ],
+    "stores_2024": [
+     1089,
+     432,
+     410,
+     388,
+     271
+    ],
+    "stores_2025": [
+     1146,
+     457,
+     458,
+     395,
+     293
+    ],
+    "stores_h1_2026": [
+     1144,
+     459,
+     446,
+     395,
+     302
+    ],
+    "revenue_2024": [
+     1325.0,
+     367.0,
+     275.0,
+     87.0,
+     142.7510000000002
+    ],
+    "revenue_2025": [
+     1494.0,
+     433.0,
+     330.0,
+     94.0,
+     157.8209999999999
+    ],
+    "lfl_2025": [
+     0.093,
+     0.126,
+     0.112,
+     0.069,
+     null
+    ],
+    "nso_mix": [
+     0.4,
+     0.15,
+     0.16,
+     0.12,
+     0.17
+    ]
+   },
+   "source": "FY 2025 earnings presentation, Americana Restaurants International PLC, published 9 February 2026, portfolio appendix (restaurants by brand at 31 December 2025: KFC 1,146, Pizza Hut 457, Hardee's 458, Krispy Kreme 395, growth/niche 290, other 3) and revenue by power brand (FY2024 -> FY2025: KFC 1,325 -> 1,494, Pizza Hut 367 -> 433, Hardee's 275 -> 330, Krispy Kreme 87 -> 94); FY 2024 earnings presentation, Americana Restaurants International PLC, published 13 February 2025 for the 31 December 2024 brand estate; H1 2026 earnings presentation, Americana Restaurants International PLC, published 28 July 2026 for 30 June 2026. The residual brand revenue is total audited revenue less the four disclosed power brands, so the brand build ties to the audited total by construction in both years. The opening mix is the company's own new-restaurant pie (KFC 40%, Hardee's 16%, Pizza Hut 15%, Krispy Kreme 12%, other 17%).",
+   "date": "2026-02-09",
+   "layer": "Company (investor relations)"
+  },
   "cost_path_inventory": {
    "value": [
     0.274,
@@ -1733,30 +1796,6 @@
     0.0555
    ],
    "source": "Royalties to the brand franchisors. A contractual percentage of branded sales, not an inflating cost: 5.55% of revenue in FY2025 and 5.52% in FY2024. Held flat. Base year from Audited consolidated financial statements for the year ended 31 December 2025, Americana Restaurants International PLC, audited by Deloitte & Touche (M.E.) LLP, signed 6 February 2026, published on the company investor-relations site, notes 21, 22 and 23.",
-   "date": "2026-08-09",
-   "layer": "House estimate"
-  },
-  "cost_path_staff": {
-   "value": [
-    0.181,
-    0.1805,
-    0.18,
-    0.1798,
-    0.1795
-   ],
-   "source": "Total staff cost. Driven by wages in the operating countries against sales per restaurant: the headcount per restaurant has been falling (37,207 full-time equivalents across 2,749 restaurants in FY2025 against 41,575 across 2,435 in FY2023), so wage inflation is partly absorbed by productivity. 18.4% of revenue in FY2025. Base year from Audited consolidated financial statements for the year ended 31 December 2025, Americana Restaurants International PLC, audited by Deloitte & Touche (M.E.) LLP, signed 6 February 2026, published on the company investor-relations site, notes 21, 22 and 23.",
-   "date": "2026-08-09",
-   "layer": "House estimate"
-  },
-  "cost_path_delivery": {
-   "value": [
-    0.072,
-    0.0715,
-    0.071,
-    0.0705,
-    0.07
-   ],
-   "source": "Home delivery and transportation. Driven by delivery-channel volume and fuel, not by wages: the channel is 52% of revenue and the company reports improving unit economics in it. 7.20% of revenue in FY2025. Base year from Audited consolidated financial statements for the year ended 31 December 2025, Americana Restaurants International PLC, audited by Deloitte & Touche (M.E.) LLP, signed 6 February 2026, published on the company investor-relations site, notes 21, 22 and 23.",
    "date": "2026-08-09",
    "layer": "House estimate"
   },
@@ -1808,9 +1847,87 @@
    "date": "2026-08-09",
    "layer": "House estimate"
   },
+  "fte_per_store_path": {
+   "value": [
+    12.05,
+    11.85,
+    11.65,
+    11.45,
+    11.25
+   ],
+   "source": "Restaurant-level full-time equivalents per restaurant. Disclosed trend: 15.4 in FY2023, 13.3 in FY2024, 12.12 in FY2025 (note 26 of each filing over the year-end estate) \u2014 kiosks, the ordering application and delivery mix keep pulling it down; the path slows the decline to about 1.7% a year.",
+   "date": "2026-08-09",
+   "layer": "House estimate"
+  },
+  "wage_per_fte": {
+   "value": 12.393313086247211,
+   "source": "Average staff cost per full-time equivalent: USD 12,394 in FY2025 (staff costs USD 461.118m over 37,207 average FTEs, note 26). Implied growth from FY2023 (USD 10,959) is 6.3% a year.",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "wage_growth": {
+   "value": 0.06,
+   "source": "Wage cost per full-time equivalent grows 6% a year, the rate the audited notes imply for FY2023 to FY2025 \u2014 deliberately above Gulf CPI, because the mix shifts toward delivery-capable and above-restaurant staff.",
+   "date": "2026-08-09",
+   "layer": "House estimate"
+  },
+  "above_restaurant_fte": {
+   "value": 3.883,
+   "source": "Above-restaurant staff: 3,883 average FTEs in FY2025 (note 26), held flat \u2014 scale leverage in headcount, cost growth through the wage line only.",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "delivery_share_path": {
+   "value": [
+    0.52,
+    0.535,
+    0.55,
+    0.56,
+    0.565
+   ],
+   "source": "Home delivery share of revenue: 44% in FY2024, 48% in FY2025, 52% in H1 2026 (channel-mix slides). The path continues the shift and flattens near 56%.",
+   "date": "2026-06-30",
+   "layer": "Company (investor relations)"
+  },
+  "delivery_cost_ratio_path": {
+   "value": [
+    0.1425,
+    0.142,
+    0.1415,
+    0.141,
+    0.1405
+   ],
+   "source": "Delivery and transportation cost per dollar of delivered revenue: 13.8% in FY2024 (133.7/966.6), 15.0% in FY2025 (180.6/1,204.2). FY2026 is calibrated at 14.25% so the line reproduces the disclosed H1 2026 margin at the disclosed 52% share \u2014 consistent with the company's claim of improving unit economics in the channel \u2014 then improves only five basis points a year. The channel mix keeps rising, so the LINE as a share of group revenue rises from 7.4% to 7.9%: the unit build caps the margin expansion in a way the flat-share treatment at first delivery did not.",
+   "date": "2026-06-30",
+   "layer": "House estimate"
+  },
   "cost_residual_pct": {
    "value": 0.05313651312708256,
    "source": "Everything in the three expense notes not separately named above \u2014 the residual \"others\" lines, professional fees, travel, office administration and provisions for legal and tax claims. Carried at its FY2025 share of revenue. Source: Audited consolidated financial statements for the year ended 31 December 2025, Americana Restaurants International PLC, audited by Deloitte & Touche (M.E.) LLP, signed 6 February 2026, published on the company investor-relations site, notes 21, 22 and 23",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "margin_history_average": {
+   "value": 0.22794329803739358,
+   "source": "Average EBITDA margin across the three audited years \u2014 22.6% in FY2023, 22.0% in FY2024 and 23.7% in FY2025. This is the level the cyclical reading reverts to. Source: Audited consolidated financial statements for the year ended 31 December 2025, Americana Restaurants International PLC, audited by Deloitte & Touche (M.E.) LLP, signed 6 February 2026, published on the company investor-relations site and Audited consolidated financial statements for the year ended 31 December 2024, Americana Restaurants International PLC, audited by Deloitte & Touche (M.E.) LLP, published on the company investor-relations site",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "margin_path_cyclical": {
+   "value": [
+    0.25397518724328516,
+    0.24746721494181226,
+    0.24095924264033936,
+    0.23445127033886648,
+    0.22794329803739358
+   ],
+   "source": "The cyclical reading of the margin: the first half of 2026 is banked, and the margin then reverts in a straight line to the three-year audited average by FY2030. Constructed from the audited history; no forecast is taken from any outside party.",
+   "date": "2026-08-09",
+   "layer": "House estimate"
+  },
+  "impairment_rate_recurring": {
+   "value": 0.0030792113060997325,
+   "source": "Recurring impairment charge on the estate, as a share of revenue: the three-year audited total of impairments on non-financial and financial assets (USD 2.4m, 13.7m, 5.8m) over three-year revenue = 0.31%. A 2,700-restaurant estate always carries some underperforming brand-country units, so the forecast charges this as a recurring operating line rather than caveating it \u2014 adopted from the critique round; the first delivery excluded it and said so in \u00a77.",
    "date": "2025-12-31",
    "layer": "Company"
   },
@@ -1886,6 +2003,24 @@
    "date": "2025-12-31",
    "layer": "Company"
   },
+  "days_to_anchor": {
+   "value": 219,
+   "source": "Calendar days from the 31 December 2025 valuation date \u2014 the audited balance sheet the bridge deducts net debt at, and the date the year-1 discount factor runs from \u2014 to the 7 August 2026 price anchor. Every published per-share value is rolled forward across this window at the cost of equity, net of the dividend paid inside it, so the valuation and the market price are compared on the same date. The first delivery omitted this roll (the model-study convention) entirely \u2014 the largest single correction of the critique-response round, found by self-audit.",
+   "date": "2026-08-07",
+   "layer": "Market"
+  },
+  "dividend_paid_in_window": {
+   "value": 0.024003906064190377,
+   "source": "The FY2025 dividend of USD 201.6 million (USD 0.024 a share), approved at the annual general meeting and paid in June 2026 \u2014 inside the roll window. The USD 100.8 million interim declared 28 July 2026 had not been paid by the anchor date and is excluded.",
+   "date": "2026-06-30",
+   "layer": "Company (investor relations)"
+  },
+  "terminal_roic": {
+   "value": 0.3,
+   "source": "Terminal return on incremental invested capital, faded to 30% from the model-implied average of ~55%. Anchored on the company's own store-economics disclosure: USD 402 thousand average capital cost and a 3.0-year average payback imply roughly a 33% pre-tax cash-on-cash return on the AVERAGE new store, and the same table shows the MARGINAL brands (Pizza Hut, Krispy Kreme, growth brands) beyond five years \u2014 materially below the average. Continuing the average net-book return into perpetuity was the largest judgement defect raised in the critique round, conceded in the study's own expert cross-examination; the fade prices it. The 55% continuation is published as the bull reading in the sensitivity.",
+   "date": "2026-06-30",
+   "layer": "Company (investor relations)"
+  },
   "justified_ev_ebitda": {
    "value": 8.5,
    "source": "Justified enterprise value to EBITDA. The peer median on a post-lease basis is 16.9 times across the usable comparators, but every one of them is either a franchisor keeping a royalty margin rather than an operator, or a listed franchisee on a different growth and currency profile. 8.5 times is set below the peer median to reflect that Americana is the operator, not the brand owner, and carries the whole lease estate on its balance sheet. Source of the peer figures, as a cross-check only: Yahoo Finance quoteSummary API (query2.finance.yahoo.com/v10/finance/quoteSummary), trailing-twelve-month figures as published, retrieved 9 August 2026. CROSS-CHECK ONLY \u2014 no figure here enters the Americana build; Americana\u2019s own historicals come exclusively from its audited consolidated financial statements.",
@@ -1903,24 +2038,6 @@
    "source": "Sustainable return on equity. The company earned 49.6% in FY2025 on average equity, and 41.9% in FY2024, on a book that is small because the estate is leased rather than owned and most of the earnings are paid out. 42% is set below the FY2025 outturn. Source: Audited consolidated financial statements for the year ended 31 December 2025, Americana Restaurants International PLC, audited by Deloitte & Touche (M.E.) LLP, signed 6 February 2026, published on the company investor-relations site",
    "date": "2025-12-31",
    "layer": "Company"
-  },
-  "margin_history_average": {
-   "value": 0.22794329803739358,
-   "source": "Average EBITDA margin across the three audited years \u2014 22.6% in FY2023, 22.0% in FY2024 and 23.7% in FY2025. This is the level the cyclical reading reverts to. Source: Audited consolidated financial statements for the year ended 31 December 2025, Americana Restaurants International PLC, audited by Deloitte & Touche (M.E.) LLP, signed 6 February 2026, published on the company investor-relations site and Audited consolidated financial statements for the year ended 31 December 2024, Americana Restaurants International PLC, audited by Deloitte & Touche (M.E.) LLP, published on the company investor-relations site",
-   "date": "2025-12-31",
-   "layer": "Company"
-  },
-  "margin_path_cyclical": {
-   "value": [
-    0.2530890959936957,
-    0.2468026465046202,
-    0.24051619701554466,
-    0.2342297475264691,
-    0.22794329803739358
-   ],
-   "source": "The cyclical reading of the margin: the first half of 2026 is banked, and the margin then reverts in a straight line to the three-year audited average by FY2030. Constructed from the audited history; no forecast is taken from any outside party.",
-   "date": "2026-08-09",
-   "layer": "House estimate"
   },
   "weight_dcf": {
    "value": 0.5,
@@ -2580,11 +2697,11 @@
      0.18379868472083102
     ],
     "path": [
-     0.181,
-     0.1805,
-     0.18,
-     0.1798,
-     0.1795
+     0.17801390875041054,
+     0.17921708192129718,
+     0.17971486256549868,
+     0.18086923461205018,
+     0.1823696056351793
     ]
    },
    "delivery": {
@@ -2601,11 +2718,11 @@
      0.07198560598783253
     ],
     "path": [
-     0.072,
-     0.0715,
-     0.071,
-     0.0705,
-     0.07
+     0.0741,
+     0.07597,
+     0.077825,
+     0.07896,
+     0.0793825
     ]
    },
    "advertising": {
@@ -2694,14 +2811,243 @@
    }
   },
   "residual_pct": 0.05313651312708256,
+  "staff_f": [
+   496.070482901094,
+   539.0437388242999,
+   585.0650428471866,
+   633.4068651945529,
+   683.6647256109477
+  ],
+  "delivery_f": [
+   206.49410510113464,
+   228.50027686794766,
+   253.36071991812872,
+   276.5191448011457,
+   297.5880486871115
+  ],
+  "fte_per_store": [
+   12.05,
+   11.85,
+   11.65,
+   11.45,
+   11.25
+  ],
+  "wage_per_fte": 12.393313086247211,
+  "wage_growth": 0.06,
+  "above_restaurant_fte": 3.883,
+  "delivery_share": [
+   0.52,
+   0.535,
+   0.55,
+   0.56,
+   0.565
+  ],
+  "delivery_cost_ratio": [
+   0.1425,
+   0.142,
+   0.1415,
+   0.141,
+   0.1405
+  ],
   "cash_cost_f": [
-   2096.253786809377,
-   2254.132562123044,
-   2432.316670003187,
-   2611.2306350355766,
-   2789.2340766976467
+   2093.7845206876236,
+   2263.718571092601,
+   2453.6073129554566,
+   2644.6021624612804,
+   2835.164605570904
   ],
   "cost_pct_2025": 0.7675023447268657
+ },
+ "brand_build": {
+  "brands": [
+   "KFC",
+   "Pizza Hut",
+   "Hardee's",
+   "Krispy Kreme",
+   "Growth, niche and other brands"
+  ],
+  "stores_2024": [
+   1089,
+   432,
+   410,
+   388,
+   271
+  ],
+  "stores_2025": [
+   1146,
+   457,
+   458,
+   395,
+   293
+  ],
+  "stores_h1_2026": [
+   1144,
+   459,
+   446,
+   395,
+   302
+  ],
+  "revenue_2024": [
+   1325.0,
+   367.0,
+   275.0,
+   87.0,
+   142.7510000000002
+  ],
+  "revenue_2025": [
+   1494.0,
+   433.0,
+   330.0,
+   94.0,
+   157.8209999999999
+  ],
+  "rps_2025": [
+   1303.6649214659685,
+   947.4835886214443,
+   720.5240174672489,
+   237.9746835443038,
+   538.6382252559724
+  ],
+  "lfl_2025": [
+   0.093,
+   0.126,
+   0.112,
+   0.069,
+   null
+  ],
+  "nso_mix": [
+   0.4,
+   0.15,
+   0.16,
+   0.12,
+   0.17
+  ],
+  "wavg_drag": 0.0032031739521966797,
+  "stores_f": [
+   [
+    1196.0,
+    475.75,
+    478.0,
+    410.0,
+    314.25
+   ],
+   [
+    1248.0,
+    495.25,
+    498.8,
+    425.6,
+    336.35
+   ],
+   [
+    1300.0,
+    514.75,
+    519.6,
+    441.20000000000005,
+    358.45000000000005
+   ],
+   [
+    1350.0,
+    533.5,
+    539.6,
+    456.20000000000005,
+    379.70000000000005
+   ],
+   [
+    1398.0,
+    551.5,
+    558.8000000000001,
+    470.6,
+    400.1
+   ]
+  ],
+  "rps_f": [
+   [
+    1370.9609540242286,
+    996.3933087331012,
+    757.7179366562067,
+    250.25909174471047,
+    566.4430813559496
+   ],
+   [
+    1428.0651563491263,
+    1037.8957635842432,
+    789.2789218418251,
+    260.6830544160664,
+    590.0369555858039
+   ],
+   [
+    1480.4304478477998,
+    1075.9540510256043,
+    818.2207531246979,
+    270.24196289623706,
+    611.6728431619915
+   ],
+   [
+    1530.2888413483856,
+    1112.1903636079155,
+    845.7770441608243,
+    279.3432551224535,
+    632.2729499433186
+   ],
+   [
+    1578.7756070921764,
+    1147.4297982595085,
+    872.5752487243284,
+    288.1941665368607,
+    652.3063381388599
+   ]
+  ],
+  "revenue_f": [
+   [
+    1639.6693010129775,
+    474.0341166297729,
+    362.1891737216668,
+    102.6062276153313,
+    178.00473831610717
+   ],
+   [
+    1782.2253151237096,
+    514.0178769150965,
+    393.69232621470235,
+    110.94670795947786,
+    198.45893001128516
+   ],
+   [
+    1924.5595822021398,
+    553.8473477654297,
+    425.14750332359307,
+    119.2307540298198,
+    219.2541306314159
+   ],
+   [
+    2065.8899358203207,
+    593.3535589848229,
+    456.38129302918077,
+    127.4363929868633,
+    240.07403909347812
+   ],
+   [
+    2207.1282987148625,
+    632.807533740119,
+    487.59504898715477,
+    135.62417477224665,
+    260.9877658893579
+   ]
+  ],
+  "total_f": [
+   2767.435912890428,
+   2961.656144381226,
+   3201.3049420581738,
+   3439.3716114498475,
+   3677.351090504643
+  ],
+  "vs_geographic": [
+   -0.006911112330567404,
+   -0.015331533192541769,
+   -0.016652789760838616,
+   -0.01788795623761541,
+   -0.019055623268960598
+  ]
  },
  "forecast": {
   "years": [
@@ -2719,18 +3065,18 @@
    3748.7865548088243
   ],
   "ebitda": [
-   705.2821374908685,
-   769.6555124660831,
-   840.5393541403611,
-   909.4352423804376,
-   979.5170499793184
+   707.7514036126217,
+   760.0695034965261,
+   819.2487111880915,
+   876.0637149547338,
+   933.5865211060612
   ],
   "ebitda_margin": [
-   0.2530890959936957,
-   0.2558890959936958,
-   0.25818909599369577,
-   0.25968909599369566,
-   0.2612890959936956
+   0.25397518724328516,
+   0.25270201407239856,
+   0.25164923342819706,
+   0.25015986138164553,
+   0.24903699035851642
   ],
   "dna": [
    327.762023640947,
@@ -2754,18 +3100,18 @@
    268.4589759486621
   ],
   "ebit": [
-   377.52011384992153,
-   433.01046509368797,
-   489.33154085879903,
-   539.5468773439586,
-   588.8797607747356
+   371.4085569882691,
+   414.16289714060184,
+   458.01646882469885,
+   495.39190416059637,
+   531.4059259577565
   ],
   "nopat": [
-   322.7796973416829,
-   368.05889532963477,
-   413.4851520256852,
-   453.21937696892525,
-   494.6589990507779
+   317.5543162249701,
+   352.0384625695116,
+   387.02391615687054,
+   416.12919949490094,
+   446.38097780451545
   ],
   "capex": [
    119.1205683368346,
@@ -2796,11 +3142,11 @@
    -24.39509246178693
   ],
   "fcff": [
-   322.02192214162136,
-   345.1209877392317,
-   381.6115801897745,
-   415.9455407955721,
-   454.21804175486625
+   316.79654102490866,
+   329.1005549791085,
+   355.1503443209598,
+   378.8553633215477,
+   405.9400205086039
   ],
   "lease_liabilities": [
    669.1563277756879,
@@ -2844,6 +3190,13 @@
    471.0401299180333,
    485.6882984656439
   ],
+  "impairment": [
+   8.580822983405671,
+   9.261558983529072,
+   10.02442908183064,
+   10.783445757658521,
+   11.543305943721997
+  ],
   "etr": [
    0.145,
    0.15,
@@ -2852,18 +3205,18 @@
    0.16
   ],
   "wacc_path": [
-   0.0960114904319931,
-   0.09558894379862637,
-   0.09516639716525965,
-   0.09474385053189292,
-   0.09474385053189292
+   0.09503883858338807,
+   0.09506076546466172,
+   0.09508269234593536,
+   0.095104619227209,
+   0.095104619227209
   ],
   "discount_factor": [
-   0.9123991935575875,
-   0.8327933562327826,
-   0.7604263227838197,
-   0.6946157518166085,
-   0.6345007112660391
+   0.9132096184767873,
+   0.8339351086962644,
+   0.7615270650564033,
+   0.6953920672837597,
+   0.6350005790081339
   ],
   "glide": [
    0.0,
@@ -2888,10 +3241,10 @@
   ],
   "finance_income": [
    18.168457439567764,
-   21.464304255958996,
-   24.15035220215355,
-   26.798971992517355,
-   29.530020780984362
+   21.803682205712956,
+   24.79014082550308,
+   27.705854782215138,
+   30.66908281411848
   ],
   "other_finance_cost": [
    3.6299598524663184,
@@ -2908,60 +3261,60 @@
    56.74182940676694
   ],
   "pbt": [
-   349.22150335897953,
-   405.5901686894031,
-   462.06133401509726,
-   512.3088282559049,
-   561.6679521489531
+   343.1099464973271,
+   387.0819786860709,
+   431.3860506043467,
+   469.06073786224044,
+   505.33317936510804
   ],
   "tax": [
-   50.63711798705203,
-   60.83852530341046,
-   71.61950677234007,
-   81.96941252094479,
-   89.8668723438325
+   49.75094224211242,
+   58.06229680291063,
+   66.86483784367374,
+   75.04971805795847,
+   80.8533086984173
   ],
   "pat": [
-   298.5843853719275,
-   344.7516433859926,
-   390.4418272427572,
-   430.33941573496014,
-   471.8010798051206
+   293.35900425521464,
+   329.0196818831603,
+   364.52121276067294,
+   394.011019804282,
+   424.4798706666908
   ],
   "eps": [
-   0.03555154533086194,
-   0.04104854198071739,
-   0.046488734844573366,
-   0.05123922078879243,
-   0.05617593651104019
+   0.03492937490687796,
+   0.03917538460909315,
+   0.04340244518607117,
+   0.04691370787518769,
+   0.050541542369161335
   ],
   "dividends": [
-   253.79672756613837,
-   293.03889687809374,
-   331.8755531563436,
-   365.78850337471613,
-   401.0309178343525
+   249.35515361693243,
+   279.6667296006862,
+   309.843030846572,
+   334.9093668336397,
+   360.80789006668715
   ],
   "cash": [
-   493.13021038141545,
-   554.840637749857,
-   615.691174476659,
-   678.4354706606246,
-   745.6281745648446
+   500.92722619731455,
+   569.5394183238604,
+   636.5262919601803,
+   704.6047745122025,
+   776.2426029893797
   ],
   "equity": [
-   533.7776578057892,
-   585.490404313688,
-   644.0566784001016,
-   708.6075907603456,
-   779.3777527311138
+   532.9938506382822,
+   582.3468029207563,
+   637.0249848348573,
+   696.1266378054995,
+   759.7986184055032
   ],
   "net_debt": [
-   176.0261173942725,
-   147.25127847677663,
-   120.55857622627377,
-   93.2815000393831,
-   62.95229536452655
+   168.2291015783734,
+   132.5524979027732,
+   99.72345874275243,
+   67.11219618780513,
+   32.337866939991386
   ],
   "invested_capital": [
    771.9937752000614,
@@ -2971,35 +3324,39 @@
    904.5200480956402
   ],
   "roic": [
-   0.41811178756983486,
-   0.4630069517894045,
-   0.5000998115481678,
-   0.5245114501607239,
-   0.5468745552873303
+   0.41134310460298235,
+   0.4428537322021736,
+   0.4680956174277856,
+   0.48158693333241326,
+   0.4935003693332367
   ]
  },
  "wacc": {
-  "rf_ust": 0.0466,
-  "us_default_spread": 0.0023,
-  "us_cds": 0.003,
-  "rf_rating": 0.044300000000000006,
-  "rf_cds": 0.0436,
-  "erp_rating": 0.06314712111898113,
-  "erp_cds": 0.05949197635223904,
-  "beta": 0.895,
-  "ke_rating": 0.10081667340148812,
-  "ke_cds": 0.09684531883525394,
-  "ke_terminal": 0.0995166734014881,
+  "rf_ust": 0.0465,
+  "us_default_spread": 0.0022,
+  "us_cds": 0.0043,
+  "rf_rating": 0.0443,
+  "rf_cds": 0.0422,
+  "erp_rating": 0.062009781702719625,
+  "erp_cds": 0.05927625031955178,
+  "beta": 0.894,
+  "ke_rating": 0.09973674484223134,
+  "ke_cds": 0.09519296778567929,
+  "ke_terminal": 0.09993674484223133,
   "kd": 0.06719904760103823,
   "kd_fy24": 0.05951862454685166,
   "kd_after_tax": 0.05745518569888769,
-  "debt_weight": 0.11081683826099073,
-  "equity_weight": 0.8891831617390092,
-  "wacc_rating": 0.0960114904319931,
-  "wacc_cds": 0.09248022882240234,
-  "wacc_terminal": 0.09474385053189292,
-  "terminal_rf": 0.043,
+  "debt_weight": 0.11111005256254475,
+  "equity_weight": 0.8888899474374552,
+  "wacc_rating": 0.09503883858338807,
+  "wacc_cds": 0.090999920834422,
+  "wacc_terminal": 0.095104619227209,
+  "terminal_rf": 0.0445,
   "terminal_g": 0.03,
+  "terminal_roic": 0.3,
+  "roll_factor": 1.0587008010207752,
+  "days_to_anchor": 219,
+  "div_in_window": 0.024003906064190377,
   "country_weights": {
    "UAE": 0.33244317412537433,
    "Saudi Arabia": 0.2479234428970412,
@@ -3015,120 +3372,124 @@
    "Jordan": 0.02030822617401886
   },
   "erp_by_country_rating": {
-   "UAE": 0.0487,
-   "Saudi Arabia": 0.0501,
-   "Kuwait": 0.0514,
-   "Egypt": 0.1394,
-   "Morocco": 0.0747,
-   "Qatar": 0.0487,
-   "Oman": 0.0708,
-   "Bahrain": 0.1135,
-   "Kazakhstan": 0.063,
-   "Iraq": 0.1394,
-   "Lebanon": 0.3089,
-   "Jordan": 0.0889
+   "UAE": 0.0481,
+   "Saudi Arabia": 0.0494,
+   "Kuwait": 0.0507,
+   "Egypt": 0.1348,
+   "Morocco": 0.073,
+   "Qatar": 0.0481,
+   "Oman": 0.0692,
+   "Bahrain": 0.1101,
+   "Kazakhstan": 0.0618,
+   "Iraq": 0.1348,
+   "Lebanon": 0.314,
+   "Jordan": 0.0865
   },
   "erp_by_country_cds": {
-   "UAE": 0.0487,
-   "Saudi Arabia": 0.0572,
-   "Kuwait": 0.0534,
-   "Egypt": 0.0941,
-   "Morocco": 0.0599,
-   "Qatar": 0.0494,
-   "Oman": 0.0599,
-   "Bahrain": 0.0777,
-   "Kazakhstan": 0.0601,
-   "Iraq": 0.0841,
-   "Lebanon": 0.3089,
-   "Jordan": 0.0889
+   "UAE": 0.0481,
+   "Saudi Arabia": 0.0551,
+   "Kuwait": 0.054,
+   "Egypt": 0.0952,
+   "Morocco": 0.06,
+   "Qatar": 0.049,
+   "Oman": 0.0589,
+   "Bahrain": 0.0865,
+   "Kazakhstan": 0.0589,
+   "Iraq": 0.1,
+   "Lebanon": 0.314,
+   "Jordan": 0.0865
   },
   "cds_not_published": [
    "UAE",
    "Lebanon",
    "Jordan"
   ],
-  "abu_dhabi_spread": 0.0055,
+  "abu_dhabi_spread": 0.0025,
   "uae_default_spread": 0.0042
  },
  "dcf": {
   "pv": [
-   293.81254206987956,
-   287.41446568572775,
-   290.18749065543295,
-   288.9223245344821,
-   288.2016705633301
+   289.30164836412274,
+   274.4485070885038,
+   270.4565993645116,
+   263.45301430171094,
+   257.77214806553724
   ],
-  "sum_pv": 1448.5384935088523,
-  "tv": 7450.331786210633,
-  "pv_tv": 4727.2408175186265,
-  "ev": 6175.779311027479,
-  "tv_share": 0.7654484688398208,
-  "roic_term": 0.5632807919459503,
-  "rr_term": 0.05325940530718231,
-  "nopat_next": 509.49876902230125,
-  "equity": 5954.739311027479,
-  "fv": 0.7090129119972486,
+  "sum_pv": 1355.4319171843863,
+  "tv": 6355.84957467733,
+  "pv_tv": 4035.968160008706,
+  "ev": 5391.400077193092,
+  "tv_share": 0.7485937052013286,
+  "roic_term": 0.3,
+  "rr_term": 0.1,
+  "roic_implied_avg": 0.4935003693332367,
+  "nopat_next": 459.7724071386509,
+  "equity": 5170.360077193092,
+  "fv": 0.6277526702875216,
   "net_debt": 220.05600000000004,
   "invested_capital": 904.5200480956402,
+  "fv_unrolled": 0.6156192341814638,
   "framing": "Leases capitalised (IFRS 16): the lease liability is debt, right-of-use depreciation is in depreciation and amortisation, and lease payments are not an operating cost"
  },
  "dcf_alt": {
   "pv": [
-   285.85413174397655,
-   279.98415659382607,
-   282.70417342187113,
-   280.90218361849514,
-   279.15223674391103
+   288.05458979550605,
+   273.67008973311414,
+   269.6277292617849,
+   262.08162790560453,
+   255.40873265654565
   ],
-  "sum_pv": 1408.59688212208,
-  "tv": 6468.226658917309,
-  "pv_tv": 4015.5925406772194,
-  "ev": 5424.1894227993,
-  "tv_share": 0.7403120038173121,
-  "roic_term": 3.93681042762444,
-  "rr_term": 0.007620382172707939,
-  "nopat_next": 453.10241369045076,
-  "equity": 5840.615422799299,
-  "fv": 0.6954245236405553,
+  "sum_pv": 1348.8427693525553,
+  "tv": 5319.478178997676,
+  "pv_tv": 3305.1290768746267,
+  "ev": 4653.971846227182,
+  "tv_share": 0.7101738442087876,
+  "roic_term": 0.3,
+  "rr_term": 0.1,
+  "roic_implied_avg": 3.486926866592906,
+  "nopat_next": 413.3633201093087,
+  "equity": 5070.397846227182,
+  "fv": 0.6151517990820116,
   "net_debt": -417.40999999999997,
   "invested_capital": 115.09378518992162,
+  "fv_unrolled": 0.6037170317902305,
   "framing": "Leases as an operating cost: EBITDA is struck after the cash rent actually paid, right-of-use depreciation is excluded, and the lease liability is not deducted in the bridge",
   "ebitda": [
-   457.2662757634599,
-   501.9639942187836,
-   550.7982160393209,
-   597.7558618421655,
-   645.875046601333
+   459.7355418852131,
+   492.3779852492266,
+   529.5075730870514,
+   564.3843344164617,
+   599.9445177280759
   ],
   "ebit": [
-   351.32802733123856,
-   392.60651776659324,
-   437.18175556722474,
-   479.66831934235364,
-   523.6967333454123
+   353.79729345299177,
+   383.0205087970362,
+   415.8911126149552,
+   446.29679191664985,
+   477.7662044721552
   ],
   "nopat": [
-   300.38546336820895,
-   333.71554010160423,
-   369.4185834543049,
-   402.92138824757706,
-   439.90525601014633
+   302.49668590230795,
+   325.56743247748074,
+   351.42799015963715,
+   374.8893052099859,
+   401.3236117566104
   ],
   "fcff": [
-   314.67299438447503,
-   339.1505003665072,
-   376.6727232874498,
-   411.518048029165,
-   449.6521799243227
+   316.78421691857403,
+   331.0023927423836,
+   358.68212999278205,
+   383.4859649915739,
+   411.07053567078674
   ],
-  "wacc": 0.10081667340148812,
-  "wacc_terminal": 0.0995166734014881,
+  "wacc": 0.09973674484223134,
+  "wacc_terminal": 0.09993674484223133,
   "discount_factor": [
-   0.9084164731172104,
-   0.8255454622395005,
-   0.7505299851673396,
-   0.6825999126011287,
-   0.6208181550257198
+   0.9093085274180417,
+   0.8267918774415304,
+   0.7517177654409791,
+   0.6834190865664747,
+   0.6213258078440688
   ]
  },
  "contested": {
@@ -3136,34 +3497,34 @@
   "why": "Between the first half of 2025 and the first half of 2026 the EBITDA margin went from 22.6% to 25.5%, and the cost of food and packaging fell from 29.2% of revenue to 27.4%. Almost the entire increase in value over the last year rests on that move. The company attributes it to procurement work, menu engineering and the improving unit economics of home delivery \u2014 all of which are structural if they hold. The same numbers are equally consistent with a favourable turn in globally traded food prices and a period of restrained promotional intensity, both of which revert. Nothing in the filings settles it, and the two readings are worth materially different amounts, so both are computed and published.",
   "way_a": {
    "name": "Structural \u2014 the gains hold and improve slowly",
-   "detail": "The base case. Food and packaging stays near the 27.4% of revenue the company actually recorded in the first half of 2026, and the EBITDA margin runs from 25.3% to 26.1% across the forecast.",
-   "value_usd": 0.7090129119972486,
-   "value_aed": 2.603849919309895,
-   "ev": 6175.779311027479,
+   "detail": "The base case. Food and packaging stays near the 27.4% of revenue the company actually recorded in the first half of 2026, and the EBITDA margin runs from 25.4% to a peak of 25.4% before the growing delivery channel eases it to 24.9%.",
+   "value_usd": 0.6277526702875216,
+   "value_aed": 2.3054216816309228,
+   "ev": 5391.400077193092,
    "margin_path": [
-    0.2530890959936957,
-    0.2558890959936958,
-    0.25818909599369577,
-    0.25968909599369566,
-    0.2612890959936956
+    0.25397518724328516,
+    0.25270201407239856,
+    0.25164923342819706,
+    0.25015986138164553,
+    0.24903699035851642
    ],
-   "wacc": 0.0960114904319931,
-   "tv_share": 0.7654484688398208
+   "wacc": 0.09503883858338807,
+   "tv_share": 0.7485937052013286
   },
   "way_b": {
    "name": "Cyclical \u2014 the gains are competed away",
    "detail": "The first half of 2026 is banked, and the EBITDA margin then reverts in a straight line to the three-year audited average of 22.8% by FY2030.",
-   "value_usd": 0.5619764518282802,
-   "value_aed": 2.063858519339359,
+   "value_usd": 0.5384493742518169,
+   "value_aed": 1.9774553269397976,
    "margin_path": [
-    0.2530890959936957,
-    0.2468026465046202,
-    0.24051619701554466,
-    0.2342297475264691,
+    0.25397518724328516,
+    0.24746721494181226,
+    0.24095924264033936,
+    0.23445127033886648,
     0.22794329803739358
    ]
   },
-  "gap_pct": -0.20738192165608826,
+  "gap_pct": -0.14225872746156887,
   "margin_history_average": 0.22794329803739358,
   "resolution": "Both are published side by side, in the summary table, in the body and in the workbook, and an expert range is struck on each. Neither is averaged into the other."
  },
@@ -3172,31 +3533,31 @@
   "why": "Americana leases essentially every restaurant it operates. At 31 December 2025 the capitalised lease liability was USD 637.5 million and the right-of-use asset USD 610.8 million \u2014 35% of total assets, and larger than the entire owned property and equipment base. Determining the discount rate inside those leases is one of the two key audit matters in the filing. Whether that estate is treated as borrowed money or as next year's rent is a live question, so it is answered twice.",
   "way_a": {
    "name": "Leases capitalised, as the accounts present them",
-   "value_usd": 0.7090129119972486,
-   "value_aed": 2.603849919309895,
-   "ev": 6175.779311027479,
+   "value_usd": 0.6277526702875216,
+   "value_aed": 2.3054216816309228,
+   "ev": 5391.400077193092,
    "net_debt": 220.05600000000004,
-   "wacc": 0.0960114904319931,
-   "tv_share": 0.7654484688398208
+   "wacc": 0.09503883858338807,
+   "tv_share": 0.7485937052013286
   },
   "way_b": {
    "name": "Leases as an operating cost",
-   "value_usd": 0.6954245236405553,
-   "value_aed": 2.5539465630699394,
-   "ev": 5424.1894227993,
+   "value_usd": 0.6151517990820116,
+   "value_aed": 2.2591449821286873,
+   "ev": 4653.971846227182,
    "net_debt": -417.40999999999997,
-   "wacc": 0.10081667340148812,
-   "tv_share": 0.7403120038173121
+   "wacc": 0.09973674484223134,
+   "tv_share": 0.7101738442087876
   },
-  "gap_pct": -0.019165219880714957,
+  "gap_pct": -0.020072987024871702,
   "finding": "The two readings differ by under two percent once each is built consistently \u2014 charging the right-of-use additions as investment on the capitalised reading, and charging the whole rent bill as a cost on the other. That is a result worth stating: the accounting choice that dominates the balance sheet turns out not to be the thing that decides the value."
  },
  "lenses": {
   "values": {
-   "Discounted cash flow": 0.7090129119972486,
-   "Relative multiples": 0.6573648894975849,
-   "Normalised earnings power": 0.6315395700522882,
-   "Book value and sustainable return": 0.29066252181683294
+   "Discounted cash flow": 0.6277526702875216,
+   "Relative multiples": 0.6983522219616524,
+   "Normalised earnings power": 0.5620378495470485,
+   "Book value and sustainable return": 0.29179050631297826
   },
   "weights": {
    "Discounted cash flow": 0.5,
@@ -3204,55 +3565,55 @@
    "Normalised earnings power": 0.2,
    "Book value and sustainable return": 0.1
   },
-  "central": 0.6413536000902822,
+  "central": 0.5951334000767987,
   "ranges": {
    "Discounted cash flow": [
-    0.4366338096132719,
-    0.7090129119972486,
-    1.32921063727087
+    0.38121742983928775,
+    0.6277526702875216,
+    1.1702352975812227
    ],
    "Relative multiples": [
-    0.5428884045021232,
-    0.6573648894975849,
-    0.8100002028248672
+    0.5785012785126445,
+    0.6983522219616524,
+    0.8581534798936625
    ],
    "Normalised earnings power": [
-    0.48294202415763215,
-    0.6315395700522882,
-    0.7801371159469442
+    0.42414567175616874,
+    0.5620378495470485,
+    0.6999300273379282
    ],
    "Book value and sustainable return": [
-    0.17942013160387407,
-    0.29066252181683294,
-    0.3917304004793219
+    0.1803584499416857,
+    0.29179050631297826,
+    0.39285413264457725
    ]
   },
-  "low": 0.17942013160387407,
-  "high": 1.32921063727087,
+  "low": 0.1803584499416857,
+  "high": 1.1702352975812227,
   "relative": {
-   "ebitda_27": 769.6555124660831,
+   "ebitda_27": 760.0695034965261,
    "multiple": 8.5,
-   "ev": 5742.0065197122585,
-   "equity": 5520.966519712258,
+   "ev": 5951.463629580902,
+   "equity": 5730.423629580902,
    "peer_median": 16.87362665986464
   },
   "normalised": {
-   "margin": 0.25818909599369577,
-   "ebitda": 719.4942823763719,
-   "ebit": 391.73225873542486,
-   "net_finance": -24.668650638475672,
-   "earnings": 312.0040668824068,
-   "eps": 0.03714938647366401,
+   "margin": 0.2463042380342682,
+   "ebitda": 686.374807226762,
+   "ebit": 350.0319606024093,
+   "net_finance": -28.29861049094199,
+   "earnings": 273.4733475947472,
+   "eps": 0.03256164953732141,
    "multiple": 17.0,
    "peer_median": 18.7644245
   },
   "book": {
    "bvps": 0.05180997845947099,
    "roe": 0.42,
-   "justified_pb": 5.610164884438379,
-   "ke_terminal": 0.0995166734014881
+   "justified_pb": 5.576467719219587,
+   "ke_terminal": 0.09993674484223133
   },
-  "expert_median": 0.5246965280926094
+  "expert_median": 0.4561363585732973
  },
  "sensitivity": {
   "g_grid": [
@@ -3271,39 +3632,39 @@
   ],
   "grid_growth_wacc": [
    [
-    0.8125140632943252,
-    0.8696788308430521,
-    0.9383354244039362,
-    1.0223363821053062,
-    1.1274729259608067
+    0.7324610492377915,
+    0.7788530660460546,
+    0.8343767726966311,
+    0.9020690055486684,
+    0.9864810581074814
    ],
    [
-    0.7153867664122757,
-    0.7582499537652477,
-    0.808600965042484,
-    0.8685896677924226,
-    0.9412760448586075
+    0.6432441414191793,
+    0.6774999919442087,
+    0.7175955679317049,
+    0.765196044098713,
+    0.822666180515163
    ],
    [
-    0.637850651622739,
-    0.6708809382649429,
-    0.7090129119972486,
-    0.7535274629141213,
-    0.8061734387279224
+    0.5719063109923521,
+    0.5978804276328099,
+    0.6277526702875216,
+    0.6624958741722419,
+    0.7034359611329948
    ],
    [
-    0.5745424717478365,
-    0.6005601596233974,
-    0.6301792180909201,
-    0.6642030002964853,
-    0.7036929903145207
+    0.513575480686221,
+    0.533691563472592,
+    0.5564990105076645,
+    0.5825949771957877,
+    0.6127673893386786
    ],
    [
-    0.5218919851149885,
-    0.5427583069151897,
-    0.5662412971683216,
-    0.5928660830455776,
-    0.6233083790938679
+    0.46500180468353614,
+    0.4808524407729992,
+    0.49861236530727676,
+    0.5186629040552347,
+    0.541494170415733
    ]
   ],
   "m_grid": [
@@ -3315,80 +3676,80 @@
   ],
   "grid_margin_wacc": [
    [
-    0.8068917325145339,
-    0.8726135784592349,
-    0.9383354244039362,
-    1.0040572703486377,
-    1.069779116293339
+    0.7070052064788684,
+    0.7706909895877496,
+    0.8343767726966311,
+    0.8980625558055125,
+    0.9617483389143937
    ],
    [
-    0.6946333798318397,
-    0.7516171724371616,
-    0.808600965042484,
-    0.8655847576478064,
-    0.9225685502531286
+    0.6067502924379252,
+    0.6621729301848148,
+    0.7175955679317049,
+    0.7730182056785945,
+    0.8284408434254841
    ],
    [
-    0.6084664736736249,
-    0.6587396928354367,
-    0.7090129119972486,
-    0.7592861311590605,
-    0.8095593503208722
+    0.5296313906111954,
+    0.5786920304493584,
+    0.6277526702875216,
+    0.6768133101256844,
+    0.7258739499638472
    ],
    [
-    0.540262055568353,
-    0.5852206368296364,
-    0.6301792180909201,
-    0.6751377993522036,
-    0.7200963806134874
+    0.46847746085815617,
+    0.5124882356829102,
+    0.5564990105076645,
+    0.6005097853324186,
+    0.6445205601571729
    ],
    [
-    0.4849494409555627,
-    0.525595369061942,
-    0.5662412971683216,
-    0.6068872252747011,
-    0.6475331533810804
+    0.41880314117557643,
+    0.4587077532414266,
+    0.49861236530727676,
+    0.538516977373127,
+    0.5784215894389773
    ]
   ],
   "single": {
    "Like-for-like sales growth (\u22121.0pp / \u22120.5pp / base / +0.5pp / +1.0pp)": [
-    0.6643894592262679,
-    0.6864787665660025,
-    0.7090129119972486,
-    0.7319985425537573,
-    0.7554423707952146
+    0.587225045116177,
+    0.6072879229250366,
+    0.6277526702875216,
+    0.6486252764743062,
+    0.6699117897148561
    ],
    "EBITDA margin (\u22122.0pp / \u22121.0pp / base / +1.0pp / +2.0pp)": [
-    0.6084664736736249,
-    0.6587396928354367,
-    0.7090129119972486,
-    0.7592861311590605,
-    0.8095593503208722
+    0.5296313906111954,
+    0.5786920304493584,
+    0.6277526702875216,
+    0.6768133101256844,
+    0.7258739499638472
    ],
    "Cost of capital (\u22121.5pp / \u22120.75pp / base / +0.75pp / +1.5pp)": [
-    0.9383354244039362,
-    0.808600965042484,
-    0.7090129119972486,
-    0.6301792180909201,
-    0.5662412971683216
+    0.8343767726966311,
+    0.7175955679317049,
+    0.6277526702875216,
+    0.5564990105076645,
+    0.49861236530727676
    ],
    "Terminal growth (2.0% / 2.5% / 3.0% / 3.5% / 4.0%)": [
-    0.637850651622739,
-    0.6708809382649429,
-    0.7090129119972486,
-    0.7535274629141213,
-    0.8061734387279224
+    0.5719063109923521,
+    0.5978804276328099,
+    0.6277526702875216,
+    0.6624958741722419,
+    0.7034359611329948
    ]
   },
-  "base": 0.7090129119972486
+  "base": 0.6277526702875216
  },
  "experts": [
   {
    "label": "Expert 1",
    "method": "Restaurant-level unit economics",
-   "base": 0.5572500450617659,
-   "low": 0.47668212493785894,
-   "high": 0.6302782019089594,
+   "base": 0.4561363585732973,
+   "low": 0.40032559912251625,
+   "high": 0.5036861265033268,
    "worldview": "A restaurant chain is a portfolio of individual cash machines. Value it by what one restaurant earns against what one restaurant costs to build, then count the restaurants and take off what head office and the landlords cost.",
    "works": "When the operator publishes store-level economics, as this one does, and when the estate is homogeneous enough for an average to mean something.",
    "fails": "When new restaurants are systematically worse than the ones already open, so the portfolio average flatters the marginal decision \u2014 and when a large part of the estate sits in markets where the currency, not the restaurant, drives the result.",
@@ -3397,9 +3758,9 @@
   {
    "label": "Expert 2",
    "method": "Distributable cash as a perpetuity",
-   "base": 0.35565601799332985,
-   "low": 0.27351311498877895,
-   "high": 0.4579160970243017,
+   "base": 0.3502677772142881,
+   "low": 0.26421214750560446,
+   "high": 0.4570852599720942,
    "worldview": "The only thing an outside shareholder in a controlled company receives is the dividend. Capitalise what is actually paid, at the return the risk demands, and grow it at what the business can sustain.",
    "works": "When the payout is high, established and covered by cash rather than by accounting profit \u2014 as here, at roughly 92% of FY2025 earnings and with an interim already declared against 2026.",
    "fails": "When the payout is discretionary and the controlling shareholder has a reason to change it, or when the dividend is funded from a balance sheet that is quietly running down.",
@@ -3408,9 +3769,9 @@
   {
    "label": "Expert 3",
    "method": "Return on capital against the cost of capital",
-   "base": 0.5246965280926094,
-   "low": 0.34059947219194736,
-   "high": 0.6238792454675188,
+   "base": 0.5181426712214303,
+   "low": 0.3289886460939612,
+   "high": 0.6207444832398722,
    "worldview": "Value is the capitalised current profit plus whatever the business earns above its cost of capital on the capital it goes on to invest. If the spread is positive, growth is worth paying for; if it is not, growth destroys value.",
    "works": "When invested capital is measurable and the spread is wide and stable, so the growth term is not doing all the work.",
    "fails": "When most of the invested capital is a right-of-use asset whose measurement depends on lease-term judgements \u2014 which is exactly the key audit matter in this filing.",
@@ -3666,11 +4027,11 @@
   }
  },
  "trailing": {
-  "ev": 5335.019053233493,
-  "ev_ebitda": 8.957325762139766,
+  "ev": 5319.8386584070795,
+  "ev_ebitda": 8.931838366443275,
   "pe": 23.273607327423775,
   "pb": 10.429216667839997,
-  "dividend_yield": 0.0394137744304049,
+  "dividend_yield": 0.039531096421856114,
   "net_debt_ebitda": 0.36946696126956846
  },
  "assert_log": [
@@ -3720,6 +4081,16 @@
    "detail": ""
   },
   {
+   "check": "the brand build ties to audited revenue in both disclosed years",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "check": "the brand build and the geographic build reconcile within 2% in every year",
+   "passed": true,
+   "detail": "max gap 1.91%"
+  },
+  {
    "check": "the FY2025 cost stack closes on the audited EBITDA",
    "passed": true,
    "detail": "595.604 against 595.604"
@@ -3727,7 +4098,7 @@
   {
    "check": "the FY2026E EBITDA margin is consistent with the disclosed first half",
    "passed": true,
-   "detail": "25.31% against 25.52% actually delivered in H1 2026"
+   "detail": "25.40% against 25.52% actually delivered in H1 2026"
   },
   {
    "check": "capitalised-lease free cash flow reconciles to the published free-cash-flow measure",
@@ -3737,7 +4108,7 @@
   {
    "check": "the forecast balance sheet keeps cash positive",
    "passed": true,
-   "detail": "minimum forecast cash and deposits 493.1m"
+   "detail": "minimum forecast cash and deposits 500.9m"
   },
   {
    "check": "the terminal invested capital used in the DCF is the balance sheet\u2019s own",
@@ -3752,12 +4123,12 @@
   {
    "check": "the marginal cost of debt sits above the sovereign",
    "passed": true,
-   "detail": "6.72% against an Abu Dhabi ten-year of about 5.21%"
+   "detail": "6.72% against an Abu Dhabi ten-year of about 4.90%"
   },
   {
    "check": "terminal growth is below the terminal risk-free rate",
    "passed": true,
-   "detail": "3.0% against 4.30%"
+   "detail": "3.0% against 4.45%"
   },
   {
    "check": "the lens weights sum to one",
@@ -9305,6 +9676,26 @@
    "detail": "input h1_share_of_year is missing layer"
   },
   {
+   "check": "input brand_build carries a value",
+   "passed": true,
+   "detail": "input brand_build is missing value"
+  },
+  {
+   "check": "input brand_build carries a source",
+   "passed": true,
+   "detail": "input brand_build is missing source"
+  },
+  {
+   "check": "input brand_build carries a date",
+   "passed": true,
+   "detail": "input brand_build is missing date"
+  },
+  {
+   "check": "input brand_build carries a layer",
+   "passed": true,
+   "detail": "input brand_build is missing layer"
+  },
+  {
    "check": "input cost_path_inventory carries a value",
    "passed": true,
    "detail": "input cost_path_inventory is missing value"
@@ -9343,46 +9734,6 @@
    "check": "input cost_path_royalties carries a layer",
    "passed": true,
    "detail": "input cost_path_royalties is missing layer"
-  },
-  {
-   "check": "input cost_path_staff carries a value",
-   "passed": true,
-   "detail": "input cost_path_staff is missing value"
-  },
-  {
-   "check": "input cost_path_staff carries a source",
-   "passed": true,
-   "detail": "input cost_path_staff is missing source"
-  },
-  {
-   "check": "input cost_path_staff carries a date",
-   "passed": true,
-   "detail": "input cost_path_staff is missing date"
-  },
-  {
-   "check": "input cost_path_staff carries a layer",
-   "passed": true,
-   "detail": "input cost_path_staff is missing layer"
-  },
-  {
-   "check": "input cost_path_delivery carries a value",
-   "passed": true,
-   "detail": "input cost_path_delivery is missing value"
-  },
-  {
-   "check": "input cost_path_delivery carries a source",
-   "passed": true,
-   "detail": "input cost_path_delivery is missing source"
-  },
-  {
-   "check": "input cost_path_delivery carries a date",
-   "passed": true,
-   "detail": "input cost_path_delivery is missing date"
-  },
-  {
-   "check": "input cost_path_delivery carries a layer",
-   "passed": true,
-   "detail": "input cost_path_delivery is missing layer"
   },
   {
    "check": "input cost_path_advertising carries a value",
@@ -9465,6 +9816,126 @@
    "detail": "input cost_path_maintenance is missing layer"
   },
   {
+   "check": "input fte_per_store_path carries a value",
+   "passed": true,
+   "detail": "input fte_per_store_path is missing value"
+  },
+  {
+   "check": "input fte_per_store_path carries a source",
+   "passed": true,
+   "detail": "input fte_per_store_path is missing source"
+  },
+  {
+   "check": "input fte_per_store_path carries a date",
+   "passed": true,
+   "detail": "input fte_per_store_path is missing date"
+  },
+  {
+   "check": "input fte_per_store_path carries a layer",
+   "passed": true,
+   "detail": "input fte_per_store_path is missing layer"
+  },
+  {
+   "check": "input wage_per_fte carries a value",
+   "passed": true,
+   "detail": "input wage_per_fte is missing value"
+  },
+  {
+   "check": "input wage_per_fte carries a source",
+   "passed": true,
+   "detail": "input wage_per_fte is missing source"
+  },
+  {
+   "check": "input wage_per_fte carries a date",
+   "passed": true,
+   "detail": "input wage_per_fte is missing date"
+  },
+  {
+   "check": "input wage_per_fte carries a layer",
+   "passed": true,
+   "detail": "input wage_per_fte is missing layer"
+  },
+  {
+   "check": "input wage_growth carries a value",
+   "passed": true,
+   "detail": "input wage_growth is missing value"
+  },
+  {
+   "check": "input wage_growth carries a source",
+   "passed": true,
+   "detail": "input wage_growth is missing source"
+  },
+  {
+   "check": "input wage_growth carries a date",
+   "passed": true,
+   "detail": "input wage_growth is missing date"
+  },
+  {
+   "check": "input wage_growth carries a layer",
+   "passed": true,
+   "detail": "input wage_growth is missing layer"
+  },
+  {
+   "check": "input above_restaurant_fte carries a value",
+   "passed": true,
+   "detail": "input above_restaurant_fte is missing value"
+  },
+  {
+   "check": "input above_restaurant_fte carries a source",
+   "passed": true,
+   "detail": "input above_restaurant_fte is missing source"
+  },
+  {
+   "check": "input above_restaurant_fte carries a date",
+   "passed": true,
+   "detail": "input above_restaurant_fte is missing date"
+  },
+  {
+   "check": "input above_restaurant_fte carries a layer",
+   "passed": true,
+   "detail": "input above_restaurant_fte is missing layer"
+  },
+  {
+   "check": "input delivery_share_path carries a value",
+   "passed": true,
+   "detail": "input delivery_share_path is missing value"
+  },
+  {
+   "check": "input delivery_share_path carries a source",
+   "passed": true,
+   "detail": "input delivery_share_path is missing source"
+  },
+  {
+   "check": "input delivery_share_path carries a date",
+   "passed": true,
+   "detail": "input delivery_share_path is missing date"
+  },
+  {
+   "check": "input delivery_share_path carries a layer",
+   "passed": true,
+   "detail": "input delivery_share_path is missing layer"
+  },
+  {
+   "check": "input delivery_cost_ratio_path carries a value",
+   "passed": true,
+   "detail": "input delivery_cost_ratio_path is missing value"
+  },
+  {
+   "check": "input delivery_cost_ratio_path carries a source",
+   "passed": true,
+   "detail": "input delivery_cost_ratio_path is missing source"
+  },
+  {
+   "check": "input delivery_cost_ratio_path carries a date",
+   "passed": true,
+   "detail": "input delivery_cost_ratio_path is missing date"
+  },
+  {
+   "check": "input delivery_cost_ratio_path carries a layer",
+   "passed": true,
+   "detail": "input delivery_cost_ratio_path is missing layer"
+  },
+  {
    "check": "input cost_residual_pct carries a value",
    "passed": true,
    "detail": "input cost_residual_pct is missing value"
@@ -9483,6 +9954,66 @@
    "check": "input cost_residual_pct carries a layer",
    "passed": true,
    "detail": "input cost_residual_pct is missing layer"
+  },
+  {
+   "check": "input margin_history_average carries a value",
+   "passed": true,
+   "detail": "input margin_history_average is missing value"
+  },
+  {
+   "check": "input margin_history_average carries a source",
+   "passed": true,
+   "detail": "input margin_history_average is missing source"
+  },
+  {
+   "check": "input margin_history_average carries a date",
+   "passed": true,
+   "detail": "input margin_history_average is missing date"
+  },
+  {
+   "check": "input margin_history_average carries a layer",
+   "passed": true,
+   "detail": "input margin_history_average is missing layer"
+  },
+  {
+   "check": "input margin_path_cyclical carries a value",
+   "passed": true,
+   "detail": "input margin_path_cyclical is missing value"
+  },
+  {
+   "check": "input margin_path_cyclical carries a source",
+   "passed": true,
+   "detail": "input margin_path_cyclical is missing source"
+  },
+  {
+   "check": "input margin_path_cyclical carries a date",
+   "passed": true,
+   "detail": "input margin_path_cyclical is missing date"
+  },
+  {
+   "check": "input margin_path_cyclical carries a layer",
+   "passed": true,
+   "detail": "input margin_path_cyclical is missing layer"
+  },
+  {
+   "check": "input impairment_rate_recurring carries a value",
+   "passed": true,
+   "detail": "input impairment_rate_recurring is missing value"
+  },
+  {
+   "check": "input impairment_rate_recurring carries a source",
+   "passed": true,
+   "detail": "input impairment_rate_recurring is missing source"
+  },
+  {
+   "check": "input impairment_rate_recurring carries a date",
+   "passed": true,
+   "detail": "input impairment_rate_recurring is missing date"
+  },
+  {
+   "check": "input impairment_rate_recurring carries a layer",
+   "passed": true,
+   "detail": "input impairment_rate_recurring is missing layer"
   },
   {
    "check": "input owned_depreciation_rate carries a value",
@@ -9705,6 +10236,66 @@
    "detail": "input other_finance_cost_pct is missing layer"
   },
   {
+   "check": "input days_to_anchor carries a value",
+   "passed": true,
+   "detail": "input days_to_anchor is missing value"
+  },
+  {
+   "check": "input days_to_anchor carries a source",
+   "passed": true,
+   "detail": "input days_to_anchor is missing source"
+  },
+  {
+   "check": "input days_to_anchor carries a date",
+   "passed": true,
+   "detail": "input days_to_anchor is missing date"
+  },
+  {
+   "check": "input days_to_anchor carries a layer",
+   "passed": true,
+   "detail": "input days_to_anchor is missing layer"
+  },
+  {
+   "check": "input dividend_paid_in_window carries a value",
+   "passed": true,
+   "detail": "input dividend_paid_in_window is missing value"
+  },
+  {
+   "check": "input dividend_paid_in_window carries a source",
+   "passed": true,
+   "detail": "input dividend_paid_in_window is missing source"
+  },
+  {
+   "check": "input dividend_paid_in_window carries a date",
+   "passed": true,
+   "detail": "input dividend_paid_in_window is missing date"
+  },
+  {
+   "check": "input dividend_paid_in_window carries a layer",
+   "passed": true,
+   "detail": "input dividend_paid_in_window is missing layer"
+  },
+  {
+   "check": "input terminal_roic carries a value",
+   "passed": true,
+   "detail": "input terminal_roic is missing value"
+  },
+  {
+   "check": "input terminal_roic carries a source",
+   "passed": true,
+   "detail": "input terminal_roic is missing source"
+  },
+  {
+   "check": "input terminal_roic carries a date",
+   "passed": true,
+   "detail": "input terminal_roic is missing date"
+  },
+  {
+   "check": "input terminal_roic carries a layer",
+   "passed": true,
+   "detail": "input terminal_roic is missing layer"
+  },
+  {
    "check": "input justified_ev_ebitda carries a value",
    "passed": true,
    "detail": "input justified_ev_ebitda is missing value"
@@ -9763,46 +10354,6 @@
    "check": "input sustainable_roe carries a layer",
    "passed": true,
    "detail": "input sustainable_roe is missing layer"
-  },
-  {
-   "check": "input margin_history_average carries a value",
-   "passed": true,
-   "detail": "input margin_history_average is missing value"
-  },
-  {
-   "check": "input margin_history_average carries a source",
-   "passed": true,
-   "detail": "input margin_history_average is missing source"
-  },
-  {
-   "check": "input margin_history_average carries a date",
-   "passed": true,
-   "detail": "input margin_history_average is missing date"
-  },
-  {
-   "check": "input margin_history_average carries a layer",
-   "passed": true,
-   "detail": "input margin_history_average is missing layer"
-  },
-  {
-   "check": "input margin_path_cyclical carries a value",
-   "passed": true,
-   "detail": "input margin_path_cyclical is missing value"
-  },
-  {
-   "check": "input margin_path_cyclical carries a source",
-   "passed": true,
-   "detail": "input margin_path_cyclical is missing source"
-  },
-  {
-   "check": "input margin_path_cyclical carries a date",
-   "passed": true,
-   "detail": "input margin_path_cyclical is missing date"
-  },
-  {
-   "check": "input margin_path_cyclical carries a layer",
-   "passed": true,
-   "detail": "input margin_path_cyclical is missing layer"
   },
   {
    "check": "input weight_dcf carries a value",
@@ -9908,13 +10459,14 @@
  "log": [
   "History: FY2025 revenue 2,508.8m, EBITDA 595.6m (23.7%), attributable profit 219.1m, net working capital -248.0m (-9.9% of revenue)",
   "FY2026E revenue: unit build 2,760.4m, H1 run-rate 2,813.0m, adopted 2,786.7m (+11.1% on FY2025)",
-  "Cost stack: FY2025 cash costs 76.75% of revenue -> FY2026E 75.22%; EBITDA margin 23.7% -> 25.3% -> 26.1%",
-  "Forecast: revenue 2,787 -> 3,749m; EBITDA 705 -> 980m; FCFF 322 -> 454m",
-  "Statements: FY2030E profit after tax 472m, equity 779m, cash and deposits 746m, return on invested capital 41.8% -> 54.7%",
-  "Cost of capital: risk-free 4.43% (ratings basis) / 4.36% (CDS basis); blended equity premium 6.31% / 5.95%; beta 0.895; cost of equity 10.08% / 9.68%; cost of debt 6.72% (5.75% after tax); debt weight 11.1%; weighted cost 9.60% / 9.25%, terminal 9.47%",
-  "Lease treatment, both ways: capitalised USD 0.709/share (AED 2.60); as an operating cost USD 0.695/share (AED 2.55); gap -1.9%",
-  "Contested judgement \u2014 margin: structural USD 0.709/share (AED 2.60); cyclical USD 0.562/share (AED 2.06); gap -20.7%",
-  "Lenses (USD/share): cash flow 0.709, relative 0.657, normalised 0.632, book 0.291; weighted central 0.641 (AED 2.36) against a spot of AED 2.23",
-  "Input register: 307 inputs, every one four-field complete"
+  "Brand build: FY2030E 3,677m vs geographic 3,749m (-1.91%); KFC revenue per restaurant USD 1,304k, Krispy Kreme 238k",
+  "Cost stack: FY2025 cash costs 76.75% of revenue -> FY2026E 75.14%; EBITDA margin 23.7% -> 25.4% -> 24.9%",
+  "Forecast: revenue 2,787 -> 3,749m; EBITDA 708 -> 934m; FCFF 317 -> 406m",
+  "Statements: FY2030E profit after tax 424m, equity 760m, cash and deposits 776m, return on invested capital 41.1% -> 49.4%",
+  "Cost of capital: risk-free 4.43% (ratings basis) / 4.22% (CDS basis); blended equity premium 6.20% / 5.93%; beta 0.894; cost of equity 9.97% / 9.52%; cost of debt 6.72% (5.75% after tax); debt weight 11.1%; weighted cost 9.50% / 9.10%, terminal 9.51%",
+  "Lease treatment, both ways: capitalised USD 0.628/share (AED 2.31); as an operating cost USD 0.615/share (AED 2.26); gap -2.0%",
+  "Contested judgement \u2014 margin: structural USD 0.628/share (AED 2.31); cyclical USD 0.538/share (AED 1.98); gap -14.2%",
+  "Lenses (USD/share): cash flow 0.628, relative 0.698, normalised 0.562, book 0.292; weighted central 0.595 (AED 2.19) against a spot of AED 2.23",
+  "Input register: 316 inputs, every one four-field complete"
  ]
 }
