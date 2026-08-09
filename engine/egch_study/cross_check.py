@@ -55,10 +55,26 @@ CHECKS = [
     ("Maintenance capital expenditure rate", D['drivers']['maint_capex_pct_rev'],
      ('Cash Flow', 'D28'), "pct1"),
     ("Project capital expenditure, FY2026/27", D['drivers']['anna_capex_path'][0],
-     ('Assumptions', 'C108'), None),
-    ("Cost of capital, year one", D['drivers']['wacc_path'][0], ('Assumptions', 'C95'), "pct1"),
-    ("Terminal cost of capital", D['drivers']['wacc_terminal'], ('Assumptions', 'C101'), "pct1"),
+     ('Assumptions', 'Project capital expenditure — FY2026/27'), None),
+    ("Cost of capital, year one", D['drivers']['wacc_path'][0],
+     ('Assumptions', 'Cost of capital, year one'), "pct1"),
+    ("Terminal cost of capital", D['drivers']['wacc_terminal'],
+     ('Assumptions', 'TERMINAL COST OF CAPITAL'), "pct1"),
 ]
+
+
+def resolve(sheet, ref):
+    """A coordinate is a brittle way to name a cell: inserting a row above it silently
+    re-points the check at a different number, which is what happened the first time the
+    Assumptions sheet grew. Anything that is not a coordinate is looked up BY LABEL in
+    column A, and a label that is not found is a failure, never a skip."""
+    if re.fullmatch(r"[A-Z]+\d+", ref):
+        return ref
+    ws = WB[sheet]
+    for row in ws.iter_rows(min_col=1, max_col=1):
+        if row[0].value == ref:
+            return f"C{row[0].row}"
+    raise KeyError(f"no row labelled {ref!r} on {sheet}")
 
 fails, checked, in_doc = [], 0, 0
 
@@ -82,7 +98,7 @@ def renders(value, style):
 for lab, model_v, (sheet, coord), style in CHECKS:
     checked += 1
     try:
-        wb_v = float(BK.cell_value(sheet, coord))
+        wb_v = float(BK.cell_value(sheet, resolve(sheet, coord)))
     except Exception as ex:
         fails.append(f"{lab}: workbook cell {sheet}!{coord} would not evaluate ({ex})")
         continue

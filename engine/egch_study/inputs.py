@@ -105,10 +105,10 @@ I("dep_charge_FY2425", 771.213, "EGP m", FS25 + ", note 6 fixed-asset register",
 I("amort_FY2425", 119.378, "EGP m", FS25 + ", note 10 usufruct intangible", "2025-09-24", "L1")
 I("dep_rate_kima2_machinery", 0.0395, "per year", FS25 + ", note 5-2 depreciation rates", "2025-09-24", "L1")
 I("fx_terminal_wedge", 0.025, "ratio",
-  "Steady-state gap between the terminal inflation target and the currency wedge, held "
+  "Constructed: steady-state gap between the terminal inflation target and the currency wedge, held "
   "constant in the terminal year", "2026-08-09", "L5")
 I("dep_escalation", 0.02, "per year",
-  "Escalation on the existing depreciation base, reflecting ordinary additions to the plant "
+  "Constructed: escalation on the existing depreciation base, reflecting ordinary additions to the plant "
   "already in service", "2026-08-09", "L5")
 I("dep_rate_intangible", 0.0475, "per year", FS25 + ", note 5-2", "2025-09-24", "L1")
 
@@ -227,6 +227,10 @@ I("urea_fob_egypt", 545.0, "US$/t",
 I("erp_rating", 0.13937694320020103, "ratio", CPF + ", rating basis total equity risk premium", "2026-01-01", "L2")
 I("erp_cds", 0.09424719428808419, "ratio", CPF + ", CDS basis total equity risk premium", "2026-01-01", "L2")
 I("sov_spread_rating", 0.06372478453347744, "ratio", CPF + ", adjusted default spread", "2026-01-01", "L2")
+I("erp_cds_damodaran", 0.0941, "ratio",
+  CPF + ", equity risk premium based on the sovereign credit default swap. CORRECTED "
+  "9 August 2026: the study had 9.4247%, reconstructed from a 3.55% spread the file does "
+  "not carry. Damodaran's Egypt row reads 3.41% and 9.41%.", "2026-01-05", "L4")
 I("sov_spread_cds", 0.0341, "ratio", CPF + ", ten-year CDS spread", "2026-01-01", "L2")
 I("mature_market_erp", 0.0423, "ratio", CPF + ", mature-market equity risk premium", "2026-01-01", "L2")
 I("moodys_rating", "Caa1", "rating", CPF + ", sovereign rating", "2026-01-01", "L2")
@@ -294,7 +298,7 @@ I("gas_realised_usd_mmbtu", 4.68, "US$/mmBtu",
   "Constructed: the company's own Q1 disclosure values 31,313,235 m3 of lost gas at EGP 251m, "
   "or EGP 8.016/m3, which converts to about US$4.68/mmBtu at the prevailing rate — below the "
   "US$5.75 contract price, which the study carries as its downside case", "2026-08-08", "L5")
-I("mmbtu_per_m3", 0.03531, "mmBtu/m3", "Standard gross calorific conversion", "2026-08-08", "L5")
+I("mmbtu_per_m3", 0.03531, "mmBtu/m3", "Constructed: standard gross calorific conversion", "2026-08-08", "L5")
 I("anna_nameplate_disclosed_tpd", 800.0, "tonnes/day",
   "EPC award for this plant (Tecnimont S.p.A. with Orascom Construction, announced 9 June "
   "2023): 600 t/day nitric acid converted to 800 t/day of fertilizer-grade granulated "
@@ -302,10 +306,10 @@ I("anna_nameplate_disclosed_tpd", 800.0, "tonnes/day",
   "filing states it' and derived the plate from the ammonia surplus instead.",
   "2023-06-09", "L4")
 I("anna_operating_days", 330, "days",
-  "Operating days a year for a continuous nitrate line, net of the turnaround the company "
+  "Constructed: operating days a year for a continuous nitrate line, net of the turnaround the company "
   "takes annually", "2026-08-09", "L5")
 I("nh3_per_t_an", 0.43, "tonnes",
-  "Ammonia per tonne of ammonium nitrate through the nitric-acid route plus direct "
+  "Constructed: ammonia per tonne of ammonium nitrate through the nitric-acid route plus direct "
   "neutralisation", "2026-08-08", "L5")
 I("anna_nameplate", (438000 - 574875 * (318242 / 513385)) / 0.43, "tonnes/year",
   "Constructed and FLAGGED: no filing states the new plant's capacity. It is the ammonia "
@@ -334,11 +338,11 @@ I("kd_local", 0.194, "ratio",
   "Constructed: EGP 96,896,001 of interest on the EGP 500,000,000 holding-company facility drawn "
   "in FY2024/25 — the company's own latest local borrowing", "2026-08-08", "L5")
 I("real_rate_lt", 0.035, "ratio",
-  "Long-run emerging-market real policy rate, used to build the terminal risk-free rate from "
+  "Constructed: long-run emerging-market real policy rate, used to build the terminal risk-free rate from "
   "its own components rather than from a spot yield", "2026-08-08", "L5")
-I("kd_usd_lt", 0.090, "ratio", "Long-run corporate dollar cost of debt", "2026-08-08", "L5")
+I("kd_usd_lt", 0.090, "ratio", "Constructed: long-run corporate dollar cost of debt", "2026-08-08", "L5")
 I("roc_terminal", 0.18, "ratio",
-  "Terminal return on invested capital, which sets the terminal reinvestment rate as growth "
+  "Constructed: terminal return on invested capital, which sets the terminal reinvestment rate as growth "
   "divided by return on capital", "2026-08-08", "L5")
 I("maint_capex_pct", (80.847245 + 42.470154) / (4440.701 + 6612.226), "ratio",
   "Maintenance capital expenditure as a share of revenue, RE-ANCHORED 9 August 2026 on the "
@@ -349,9 +353,9 @@ I("maint_capex_pct", (80.847245 + 42.470154) / (4440.701 + 6612.226), "ratio",
   "(gross fixed assets at the disclosed 3.95% machinery rate, 6.11% of revenue) is carried "
   "as the published alternative and as the downside case.", "2026-08-09", "L5")
 I("anna_cash_margin", 0.32, "ratio",
-  "Conversion margin on ammonium nitrate over its own ammonia feedstock", "2026-08-08", "L5")
+  "Constructed: conversion margin on ammonium nitrate over its own ammonia feedstock", "2026-08-08", "L5")
 I("local_free_parity", 0.90, "ratio",
-  "Local free-market urea clears at about 90% of export parity, implied by the FY2024/25 note-20 "
+  "Constructed: local free-market urea clears at about 90% of export parity, implied by the FY2024/25 note-20 "
   "local revenue net of the subsidised and nitrate legs", "2026-08-08", "L5")
 
 # The project path is DERIVED, not typed: it opens at the company's own observed run rate
@@ -363,36 +367,36 @@ _REMAINING = 6422.418 + 278.385 * 50.0 - 5653.51
 # Forward paths — each a driver, each dated to the day it was set
 for k, vals, unit, src in [
     ("urea_util", [0.913, 0.922, 0.930, 0.939, 0.948], "ratio",
-     "Utilisation path. Audited output ran 586.4kt in FY2022/23 (2% above plate), 521.9kt in "
+     "Constructed: utilisation path. Audited output ran 586.4kt in FY2022/23 (2% above plate), 521.9kt in "
      "FY2023/24 and 513.4kt in FY2024/25; the path never returns to plate because the summer "
      "gas curtailment is structural."),
     ("export_usd_path", [530.0, 500.0, 470.0, 450.0, 440.0], "US$/t",
-     "Export price path, mean-reverting from the August 2026 quote toward the cash cost of the "
+     "Constructed: export price path, mean-reverting from the August 2026 quote toward the cash cost of the "
      "marginal gas-based producer."),
     ("export_usd_path_bull", [560.0, 545.0, 530.0, 520.0, 515.0], "US$/t",
-     "Upside export price path: urea holds nearer the August 2026 quote."),
+     "Constructed: upside export price path: urea holds nearer the August 2026 quote."),
     ("usd_egp_path", [51.9, 54.2, 56.7, 59.2, 61.9], "EGP/US$",
-     "Currency path at 4.5% depreciation a year from the spot rate — the same wedge used to "
+     "Constructed: currency path at 4.5% depreciation a year from the spot rate — the same wedge used to "
      "carry the dollar debt at local-equivalent cost."),
     ("subsidised_t_path", [155000, 160000, 165000, 170000, 175000], "tonnes",
-     "Subsidised delivery path. The company met 147kt of a 322kt requirement in the fourteen "
+     "Constructed: subsidised delivery path. The company met 147kt of a 322kt requirement in the fourteen "
      "months to August 2025, a 46% compliance rate the forecast does not assume away."),
     ("subsidised_p_path", [7526.0, 8429.0, 9272.0, 10106.0, 10915.0], "EGP/t",
-     "Administered subsidised price path from the EGP 6,000 cooperative supply price."),
+     "Constructed: administered subsidised price path from the EGP 6,000 cooperative supply price."),
     ("local_free_path", [40000, 41000, 42000, 43000, 44000], "tonnes",
-     "Local free-market volume path from the 37.1kt implied for FY2024/25."),
+     "Constructed: local free-market volume path from the 37.1kt implied for FY2024/25."),
     ("an_path", [26000, 26000, 26000, 26000, 26000], "tonnes",
-     "Nitrate volume path, flat on the FY2024/25 combined granulated and low-density output."),
+     "Constructed: nitrate volume path, flat on the FY2024/25 combined granulated and low-density output."),
     ("other_rev_path", [140.0, 152.0, 163.0, 174.0, 186.0], "EGP m",
-     "Merchant nitric acid, the ferrosilicon plant's rent and services."),
+     "Constructed: merchant nitric acid, the ferrosilicon plant's rent and services."),
     ("abnormal_gas_path", [150.0, 120.0, 100.0, 90.0, 80.0], "EGP m",
-     "Stoppage and abnormal-gas cost, decaying as supply normalises from the EGP 164.5m charged "
+     "Constructed: stoppage and abnormal-gas cost, decaying as supply normalises from the EGP 164.5m charged "
      "in FY2024/25."),
     ("cpi_path", [0.100, 0.085, 0.075, 0.070, 0.070], "ratio",
      "Domestic inflation converging from the June 2026 print on the central bank's target."),
     ("anna_capex_path", [_RUN_RATE, 3100.0, 3300.0, 3200.0,
                          _REMAINING - (_RUN_RATE + 3100.0 + 3300.0 + 3200.0)], "EGP m",
-     "Project spending path, RE-ANCHORED 9 August 2026 on the observed run rate. The first "
+     "Constructed: project spending path, RE-ANCHORED 9 August 2026 on the observed run rate. The first "
      "year is the company's own nine-month actual extended to a full year (EGP 1,949.1m x "
      "4/3 = EGP 2,598.8m); the remaining years complete the EGP 14,688m still to spend "
      "against the bank-approved cost. The first issue opened at EGP 3,000m, above anything "
@@ -407,9 +411,9 @@ I("g_terminal", 0.050, "ratio",
   "perpetuity anchor -- and then defended it by calling 5% 'below the target', inverting the "
   "central bank's own target structure. A perpetuity takes the longest-horizon target there "
   "is.", "2026-08-09", "L5")
-I("anna_util_base", 0.50, "ratio", "Project utilisation in the terminal year, central case",
+I("anna_util_base", 0.50, "ratio", "Constructed: project utilisation in the terminal year, central case",
   "2026-08-08", "L5")
-I("anna_util_bull", 0.70, "ratio", "Project utilisation in the terminal year, upside case",
+I("anna_util_bull", 0.70, "ratio", "Constructed: project utilisation in the terminal year, upside case",
   "2026-08-08", "L5")
 
 I("plant_distance_to_port_km", 1000, "km",
@@ -461,11 +465,11 @@ I("usd_egp_anna_approval", 50.0, "EGP/US$",
   "The rate prevailing when the project cost was approved on 25 June 2025, used to state the "
   "dual-currency approved cost as one figure", "2025-06-25", "L2")
 I("anna_winddown_cost", 1000.0, "EGP m",
-  "Capital-discipline case only: the cost of stopping the programme in the first forecast "
+  "Constructed: capital-discipline case only: the cost of stopping the programme in the first forecast "
   "year — contract settlement and site preservation. No filing states it; it is the study's "
   "estimate and is flagged.", "2026-08-08", "L5")
 I("q4_runrate_haircut", 0.97, "ratio",
-  "The fourth quarter of FY2025/26 is run-rated on the third quarter's revenue with a 3% "
+  "Constructed: the fourth quarter of FY2025/26 is run-rated on the third quarter's revenue with a 3% "
   "haircut for the summer gas curtailment the company discloses every year", "2026-08-08", "L5")
 # ---- CAPITAL EXPENDITURE, AS ACTUALLY PAID -----------------------------------
 # The cash-flow statement's investing section, line "payments to acquire fixed assets
@@ -508,10 +512,10 @@ I("bs_acc_dep_M9FY2526", 3435.300, "EGP m",
 I("spot_price_date", "2026-08-06", "date",
   "Egyptian Exchange closing session used as the study's anchor date", "2026-08-06", "L2")
 I("dimson_sum_beta", 0.8275754032593131, "ratio",
-  "Dimson sum-beta over one lead, the contemporaneous term and two lags of the same weekly "
+  "Constructed: dimson sum-beta over one lead, the contemporaneous term and two lags of the same weekly "
   "regression — the thin-trading correction, carried as the beta alternative", "2026-08-08", "L5")
 I("g_terminal_alt", 0.050, "ratio",
-  "The alternative terminal growth rate: two points below the inflation target, which is "
+  "Constructed: the alternative terminal growth rate: two points below the inflation target, which is "
   "negative real maintenance growth", "2026-08-08", "L5")
 for k, v, u, s in [
     ("prod_urea_FY2526E", 520000, "tonnes",
@@ -530,6 +534,19 @@ for k, v, u, s in [
 ]:
     I(k, v, u, "Constructed for the FY2025/26 bridge year: " + s + ", from the nine-month "
       "reviewed accounts and the disclosed quarterly detail", "2026-08-08", "L5")
+
+# Two small non-current asset lines the condensed house layout dropped. Their omission is
+# why none of the four reported balance sheets footed -- FY2024/25 was short by exactly
+# 2.307 + 0.255 = 2.562. Found by external critique; no gate of this study had ever added
+# the columns up.
+for _d, _fin, _loan, _src, _dt in [
+        ("FY2223", 0.000, 0.328, FS23, "2023-10-08"),
+        ("FY2324", 2.307, 0.298, FS24, "2024-10-23"),
+        ("FY2425", 2.307, 0.255, FS25, "2025-09-24"),
+        ("M9FY2526", 2.307, 0.238, M9, "2026-05-20")]:
+    I(f"bs_otherfin_{_d}", _fin, "EGP m", _src + ", other non-current financial assets",
+      _dt, "L1")
+    I(f"bs_loansext_{_d}", _loan, "EGP m", _src + ", loans to others", _dt, "L1")
 
 # ------------------------------------------------------------------ validate --
 def validate():

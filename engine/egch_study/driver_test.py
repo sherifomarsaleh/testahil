@@ -94,10 +94,13 @@ TESTS = [
     ("Maintenance capital expenditure", 1.30, "down", "Cash out of free cash flow."),
     ("Terminal return on invested capital", 1.20, "up",
      "A higher return on capital means less must be reinvested to buy the same growth."),
-    ("Terminal growth", 1.20, "concave",
+    ("Terminal growth", 1.20, "up",
      "Growth enters twice and the entries fight: it raises the reinvestment rate and it "
-     "tightens the perpetuity denominator. Value peaks near 7.35% and falls away on both "
-     "sides, so the honest assertion is concavity, not a direction."),
+     "tightens the perpetuity denominator, so the response is concave with a turning point "
+     "near 7.3%. RE-DERIVED 9 August 2026: with terminal growth re-anchored on the central "
+     "bank's longest-horizon 5% target the base now sits well BELOW that turning point, so "
+     "the response over the tested range is monotonically increasing. The assertion follows "
+     "the model rather than the other way round."),
     ("Tax rate", 1.20, "down", "A larger share of operating profit leaves the firm."),
     ("Days inventory outstanding", 1.20, "down", "More cash locked in working capital."),
     ("Days payable outstanding", 1.20, "up", "Supplier financing releases cash."),
@@ -131,12 +134,28 @@ for lab, mult, want, why in TESTS:
     print(f"{lab:52s} {mult:6.2f}x {got:9.3f} {move:+10.4f}  {want:5s} {'OK' if ok else 'FAIL'}")
 
 # ---- dead-input sweep -------------------------------------------------------
+# A CROSS-CHECK IS NOT A DRIVER. Three cells stopped moving the headline the moment the
+# new complex's nameplate came from the engineering award instead of being derived from the
+# ammonia surplus: the derivation is now a check on the disclosed plate, not the plate. They
+# are exempted BY EXPLICIT LABEL and the exemptions are counted out loud -- an exemption the
+# reader cannot see is indistinguishable from a dead input the sweep missed.
+CROSS_CHECK_PREFIXES = ("Cross-check:",)
+CROSS_CHECK_FEEDS = ("Ammonia design capacity", "Ammonia per tonne of nitrate")
+exempt = [lab for lab in LABELS
+          if lab.startswith(CROSS_CHECK_PREFIXES) or lab in CROSS_CHECK_FEEDS]
+
 print("\ndead-input sweep — every remaining driver must move at least one case headline,")
 print("in at least one direction. A driver of the downside or upside case is live even")
 print("though it leaves the committed-capital headline untouched.")
+# The sweep watches every PUBLISHED output, not only the four case headlines. Three cells
+# read as dead the moment the anchor price and the normalised multiples became driver cells:
+# they move the lens RANGES and the market ratios, which the study publishes, but not the
+# central. Widening the watch list is the honest fix; exempting them would not have been.
 HEADS = [('DCF', 'B44'), ('DCF', 'D44'), ('Summary', 'B11'), ('Summary', 'B12'),
-         ('Fundamental Valuation', 'B18'), ('Relative & Normalized', 'B12'),
-         ('Relative & Normalized', 'B31'), ('Summary', 'B28')]
+         ('Fundamental Valuation', 'B18'), ('Fundamental Valuation', 'B19'),
+         ('Relative & Normalized', 'B12'), ('Relative & Normalized', 'B31'),
+         ('Relative & Normalized', 'B32'), ('Relative & Normalized', 'B33'),
+         ('Summary', 'B28')]
 
 
 def all_heads(overrides):
@@ -151,6 +170,8 @@ BASE_ALL = all_heads({})
 tested = {LABELS[l][0] for l, _, _, _ in TESTS}
 dead = []
 for lab, (coord, v0) in LABELS.items():
+    if lab in exempt:
+        continue
     if coord in tested:
         continue
     moved = False
@@ -161,7 +182,9 @@ for lab, (coord, v0) in LABELS.items():
             break
     if not moved:
         dead.append(lab)
-print(f"  drivers swept: {len(LABELS) - len(tested)} | dead inputs: {len(dead)}")
+print(f"  drivers swept: {len(LABELS) - len(tested) - len(exempt)} | "
+      f"cross-checks exempted (named, not silent): {len(exempt)} -> {exempt} | "
+      f"dead inputs: {len(dead)}")
 for d in dead:
     print(f"  ! DEAD: {d}")
 

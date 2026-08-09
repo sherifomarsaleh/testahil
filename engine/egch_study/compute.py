@@ -227,6 +227,28 @@ def set_glide():
     D['wacc'] = D['wacc_path'][0]
 
 
+# THE COST OF DEBT IS RE-DERIVED HERE, not read frozen from wacc_result.json. Changing the
+# expected-depreciation wedge in the register used to leave the dollar debt's local-
+# equivalent cost untouched, because that figure was computed once and cached -- so the
+# model and the workbook, which rebuilds it from the register, disagreed. The wedge that
+# carries long-dated dollar debt is the LONG-RUN one, not the near-term path.
+# the CDS basis is re-derived from the register too: the spread was corrected from 3.55%
+# to Damodaran's actual 3.41% and the cached file still held the old premium
+WACC['sov_spread_cds'] = _V('sov_spread_cds')
+WACC['rf_star_cds'] = _V('rf_observed') - _V('sov_spread_cds')
+WACC['erp_cds'] = _V('erp_cds_damodaran')
+WACC['ke_cds'] = WACC['rf_star_cds'] + WACC['beta'] * WACC['erp_cds']
+WACC['kd_fx_local_equiv'] = ((1 + WACC['kd_usd_nominal'])
+                             * (1 + _V('expected_depreciation')) - 1)
+WACC['kd_pretax_blended'] = (WACC['pct_debt_local'] * WACC['kd_local']
+                             + (1 - WACC['pct_debt_local']) * WACC['kd_fx_local_equiv'])
+WACC['kd_aftertax'] = WACC['kd_pretax_blended'] * (1 - WACC['tax_rate'])
+for _basis in ('rating', 'cds'):
+    WACC[f'wacc_{_basis}'] = (WACC['we'] * WACC[f'ke_{_basis}']
+                              + WACC['wd'] * WACC['kd_aftertax'])
+WACC['wacc_published'] = WACC['wacc_rating']
+D['wacc_spot'] = WACC['wacc_rating']
+D['wacc_cds'] = WACC['wacc_cds']
 D['kd_pretax_spot'] = WACC['kd_pretax_blended']
 set_glide()
 

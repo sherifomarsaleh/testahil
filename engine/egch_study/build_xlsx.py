@@ -166,6 +166,18 @@ def src(k):
     return IR[k]['source']
 
 r = 5
+put(ws, f"A{r}", "THE CAPITALISATION").font = SUB; r += 1
+SHARESC = drv(r, "Shares outstanding", V('shares_outstanding'), "shares",
+              src('shares_outstanding'), N0); r += 1
+SPOTC = drv(r, "Anchor price", V('spot_price'), "EGP", src('spot_price'), N2); r += 1
+FXBASE = drv(r, "Exchange rate, FY2024/25 average", V('usd_egp_avg_FY2425'), "EGP/US$",
+             src('usd_egp_avg_FY2425'), N2); r += 1
+PEL = drv(r, "Normalised-earnings multiple, low", LN['normalised']['mult_low'], "x",
+          "Multiple applied to mid-cycle profit after tax, low end", N1); r += 1
+PEM = drv(r, "Normalised-earnings multiple, central", LN['normalised']['mult'], "x",
+          "Multiple applied to mid-cycle profit after tax, central", N1); r += 1
+PEH = drv(r, "Normalised-earnings multiple, high", LN['normalised']['mult_high'], "x",
+          "Multiple applied to mid-cycle profit after tax, high end", N1); r += 1
 put(ws, f"A{r}", "CAPACITY AND VOLUME").font = SUB; r += 1
 C_DESIGN = drv(r, "Urea design capacity", V('design_urea_tpy'), "tonnes/year", src('design_urea_tpy'), N0); r += 1
 C_NH3D = drv(r, "Ammonia design capacity", V('design_ammonia_tpy'), "tonnes/year", src('design_ammonia_tpy'), N0); r += 1
@@ -244,7 +256,8 @@ put(ws, f"D{r}", "Country risk enters ONCE, through the premium below. Using the
 RFSTAR = f"'Assumptions'!C{r}"; r += 1
 ERP = drv(r, "Equity risk premium, rating basis", V('erp_rating'), "%", src('erp_rating'), PC2); r += 1
 SPRC = drv(r, "Sovereign default spread, CDS basis", V('sov_spread_cds'), "%", src('sov_spread_cds'), PC2); r += 1
-ERPC = drv(r, "Equity risk premium, CDS basis", V('erp_cds'), "%", src('erp_cds'), PC2); r += 1
+ERPC = drv(r, "Equity risk premium, CDS basis", V('erp_cds_damodaran'), "%",
+           src('erp_cds_damodaran'), PC2); r += 1
 BETAC = drv(r, "Beta", W['beta'], "x",
             f"Own-stock weekly regression, {BETA['n']} observations over five years against an "
             f"equal-weight index of {BETA['composite_names']} Egyptian names with the subject "
@@ -333,6 +346,15 @@ put(ws, f"C{r}", f"={ANNATPD}*{ANNADAYS}", fmt=N0, expect=DR['anna_nameplate_an_
 c = put(ws, f"D{r}", src('anna_nameplate_disclosed_tpd')); c.alignment = Alignment(wrap_text=True, vertical="top")
 ws.row_dimensions[r].height = 40
 ANNAN = f"'Assumptions'!C{r}"; r += 1
+put(ws, f"A{r}", "Cross-check: nameplate derived from the ammonia surplus")
+put(ws, f"B{r}", "tonnes/year")
+put(ws, f"C{r}", f"=({C_NH3D}-{C_DESIGN}*{C_NH3R})/{NH3AN}", fmt=N0,
+    expect=DR['anna_nameplate_derived'])
+c = put(ws, f"D{r}", "The construction the study used before the engineering award was "
+                     "found. Retained as a cross-check on the disclosed plate, not as the "
+                     "plate itself."); c.alignment = Alignment(wrap_text=True, vertical="top")
+ws.row_dimensions[r].height = 40
+r += 1
 ANNAU = drv(r, "Project utilisation in the terminal year", V('anna_util_base'), "%", src('anna_util_base'), PC1); r += 1
 ANNAP = drv(r, "Nitrate price", V('an_price_usd_t'), "US$/tonne", src('an_price_usd_t'), N0); r += 1
 ANNAM = drv(r, "Project cash margin", V('anna_cash_margin'), "% of revenue", src('anna_cash_margin'), PC1); r += 1
@@ -366,7 +388,7 @@ UB['pexp'] = line(r, "Export price net of duty (EGP/tonne)",
 UB['pfree'] = line(r, "Local free-market price (EGP/tonne)",
                    lambda k, c: f"={EXPP[k]}*{FXP[k]}*{PARITY}", 'p_free'); r += 1
 UB['pan'] = line(r, "Nitrate price (EGP/tonne)",
-                 lambda k, c: f"={ANP}*{FXP[k]}/{V('usd_egp_avg_FY2425')}", 'p_an'); r += 1
+                 lambda k, c: f"={ANP}*{FXP[k]}/{FXBASE}", 'p_an'); r += 1
 UB['rexp'] = line(r, "Export revenue (EGP m)",
                   lambda k, c: f"={c}{UB['exp']}*{c}{UB['pexp']}/1000000", 'rev_exp'); r += 1
 UB['rsub'] = line(r, "Subsidised revenue (EGP m)",
@@ -569,7 +591,11 @@ for rr, lab, f, va, vb, fmt in BLK:
     fd = (f.replace(f"*{ANNAU}*", "*0*") if rr == 22
           else f.replace("B22", "D22").replace(f"{ANNADONE}*", "0*") if rr == 23
           else f.replace("B2", "D2"))
-    if rr == 21: fd = f
+    if rr == 21:
+        # the stopped column never builds the plant, so year-five EBIT must be struck
+        # before the project depreciation the carried column charges
+        fd = (f"=(F9+SUM('Assumptions'!C{_ANNAC_ROWS[0]}:C{_ANNAC_ROWS[3]})*{DEPRP})"
+              f"*(1+{GT})")
     put(ws, f"D{rr}", fd, fmt=fmt, expect=vb)
 put(ws, "A33", "Present value of the terminal value")
 put(ws, "B33", "=B28*F16", fmt=N0, expect=TT['pv_tv'])
@@ -581,7 +607,38 @@ put(ws, "B36", "=SUM(B17:F17)", fmt=N0, expect=BASE['bridge']['pv_explicit'])
 # decomposes exactly into two formula terms: the present value of the project capital the
 # board does not spend, less the wind-down it does. Both now read the driver cells, so the
 # stopped case responds to a driver change instead of silently freezing.
-put(ws, "D36", f"=SUM(B17:F17)+SUMPRODUCT({ANNAC_RANGE},B16:F16)-{WIND}*B16",
+# THE STOPPED CASE IS NOW A REAL COLUMN, not a constant. It was
+# `=SUM(B17:F17)+7259.375005` -- a frozen plug on the study's most valuation-critical
+# switch, found by external critique. The plug existed because the Segments sheet has only
+# one operating column, so the sheet had nowhere to put a case whose depreciation and capex
+# both differ. It does now: the stopped case is the same operating build with the project
+# capital added back, the wind-down charged, and the tax shield on the project depreciation
+# the board never incurs removed. Every term is a formula off a driver cell.
+put(ws, "A47", "PROGRAMME STOPPED — the same operating build, project capital removed").font = SUB
+header(ws, 48, 1, ["EGP million"] + YEARS, [38, 15, 3, 15, 15, 15])
+SR = [(49, "Free cash flow, programme carried through", lambda k, c: f"={c}14"),
+      (50, "Add back project capital not spent",
+       lambda k, c: f"=+'Assumptions'!C{_ANNAC_ROWS[k]}"),
+      (51, "Less the wind-down cost", lambda k, c: (f"=-{WIND}" if k == 0 else "=0")),
+      (52, "Less the tax shield on depreciation never incurred",
+       lambda k, c: ("=0" if k == 0 else
+                     f"=-SUM('Assumptions'!C{_ANNAC_ROWS[0]}:C{_ANNAC_ROWS[0]+k-1})"
+                     f"*{DEPRP}*{TAXR}")),
+      (53, "FREE CASH FLOW, PROGRAMME STOPPED",
+       lambda k, c: f"={c}49+{c}50+{c}51+{c}52"),
+      (54, "Present value", lambda k, c: f"={c}53*{c}16")]
+for rr, lab, fn in SR:
+    put(ws, f"A{rr}", lab)
+    for k, c in enumerate(CO):
+        _exp = {49: BASE['rows'][k]['fcff'],
+                50: DR['anna_capex_path'][k],
+                51: (-V('anna_winddown_cost') if k == 0 else 0.0),
+                52: (-sum(DR['anna_capex_path'][:k]) * DR['dep_rate_project']
+                     * DR['tax_rate']),
+                53: HALT['rows'][k]['fcff'],
+                54: HALT['rows'][k]['pv']}[rr]
+        put(ws, f"{c}{rr}", fn(k, c), fmt=N0, expect=_exp)
+put(ws, "D36", "=SUM(B54:F54)",
     fmt=N0, expect=HALT['bridge']['pv_explicit'])
 put(ws, "A37", "ENTERPRISE VALUE").font = SUB
 put(ws, "B37", "=B36+B33", fmt=N0, expect=BASE['bridge']['ev'])
@@ -601,8 +658,8 @@ put(ws, "A45", "EQUITY VALUE").font = SUB
 put(ws, "B45", "=B37-B41+B42+B43", fmt=N0, expect=BASE['bridge']['equity'])
 put(ws, "D45", "=D37-D41+D42+D43", fmt=N0, expect=HALT['bridge']['equity'])
 put(ws, "A44", "VALUE PER SHARE (EGP)").font = SUB
-put(ws, "B44", f"=B45*1000000/{SHARES}", fmt=N2, expect=BASE['bridge']['per_share'])
-put(ws, "D44", f"=D45*1000000/{SHARES}", fmt=N2, expect=HALT['bridge']['per_share'])
+put(ws, "B44", f"=B45*1000000/{SHARESC}", fmt=N2, expect=BASE['bridge']['per_share'])
+put(ws, "D44", f"=D45*1000000/{SHARESC}", fmt=N2, expect=HALT['bridge']['per_share'])
 
 # =========================== 9 Income Statement · 10 Balance Sheet · 11 CF ====
 ws = wb.create_sheet("Summary")
@@ -684,7 +741,7 @@ def fv(r, lab, val, note, fmt=N2, expect=None):
     ws.row_dimensions[r].height = max(14, 12 * (1 + len(note) // 88))
 B = LN['book']
 fv(5, "Book equity, 31 March 2026 (EGP m)", B['equity_book'], "Paid-in capital plus reserves, as reported", N0)
-fv(6, "Book value per share (EGP)", f"=B5*1000000/{SHARES}", "", N2, B['book_per_share'])
+fv(6, "Book value per share (EGP)", f"=B5*1000000/{SHARESC}", "", N2, B['book_per_share'])
 fv(7, "Underlying profit FY2023/24 (EGP m)", B['underlying_FY2324'],
    "Reported profit less the one-off investment-property revaluation gain", N0)
 fv(8, "Underlying profit FY2024/25 (EGP m)", B['underlying_FY2425'], "As reported", N0)
@@ -702,7 +759,7 @@ fv(16, "Justified price-to-book, before flooring", "=(B13-B15)/(B14-B15)",
    "NEGATIVE. That is the finding, not a rounding artefact.", N3, B['pb_raw'])
 fv(17, "Justified price-to-book", "=MAX(0,B16)", "Floored at zero", N2, B['pb_justified'])
 fv(18, "Value per share on this lens (EGP)", "=B17*B6", "", N2, B['value_per_share'])
-fv(19, "Price-to-book the market pays", f"=B14*0+{SPOT}*{SHARES}/1000000/B5",
+fv(19, "Price-to-book the market pays", f"=B14*0+{SPOTC}*{SHARESC}/1000000/B5",
    "For comparison", N2, B['pb_at_market'])
 put(ws, "A21", "WHAT THE FOUR LENSES SAY TOGETHER").font = SUB
 header(ws, 22, 1, ["Lens", "EGP per share", "Note"], [44, 14, 66])
@@ -772,9 +829,9 @@ rn(9, "Enterprise value at the mid-point (EGP m)", "=B5*B8", "", N0, RL['ev_mid'
 rn(10, "Less net debt (EGP m)", "=-'DCF'!B41", "31 March 2026", N0, -BASE['bridge']['net_debt'])
 rn(11, "Plus non-operating assets (EGP m)", "='DCF'!B42+'DCF'!B43", "Listed stakes and investment property",
    N0, BASE['bridge']['fvoci'] + BASE['bridge']['inv_prop'])
-rn(12, "Value per share on this lens (EGP)", f"=(B9+B10+B11)*1000000/{SHARES}", "", N2, RL['value_per_share'])
-rn(13, "At the low multiple (EGP)", f"=(B5*B6+B10+B11)*1000000/{SHARES}", "", N2, RL['value_low'])
-rn(14, "At the high multiple (EGP)", f"=(B5*B7+B10+B11)*1000000/{SHARES}", "", N2, RL['value_high'])
+rn(12, "Value per share on this lens (EGP)", f"=(B9+B10+B11)*1000000/{SHARESC}", "", N2, RL['value_per_share'])
+rn(13, "At the low multiple (EGP)", f"=(B5*B6+B10+B11)*1000000/{SHARESC}", "", N2, RL['value_low'])
+rn(14, "At the high multiple (EGP)", f"=(B5*B7+B10+B11)*1000000/{SHARESC}", "", N2, RL['value_high'])
 rn(15, "Multiple the market pays", f"=('Summary'!B16+'DCF'!B41)/B5",
    "The gap between this line and the next is the whole disagreement in one number", N1,
    RL['implied_at_market'])
@@ -787,7 +844,7 @@ para(ws, 18, "This lens gives the highest of the four answers, and it is worth s
 header(ws, 20, 1, ["Normalised earnings power — every intermediate line", "Value", "Note"], [42, 15, 64])
 rn(21, "Mid-cycle urea output (tonnes)", NM['urea_mid'],
    "Three-year average of audited output: 586.4kt, 521.9kt and 513.4kt", N0)
-rn(22, "Export tonnes at mid-cycle", f"=B21-{V('subsidised_t_path')[0]}-{V('local_free_path')[0]}",
+rn(22, "Export tonnes at mid-cycle", f"=B21-{SUBT[0]}-{FREET[0]}",
    "Output less the subsidised and free-market legs", N0, NM['export_t'])
 rn(23, "Mid-cycle export price (US$/tonne)", NM['price_usd'],
    "Above the 2015-2020 average of roughly US$250 and well below the August 2026 quote of US$545", N0)
@@ -801,12 +858,14 @@ rn(28, "Mid-cycle cash cost (EGP m)", NM['cash_cost'],
    "escalated on its own driver", N0)
 rn(29, "Mid-cycle EBITDA (EGP m)", "=B27-B28", "", N0, NM['ebitda'])
 rn(30, "Mid-cycle operating profit after tax (EGP m)",
-   f"=(B29-{NM['dep']})*(1-{TAXR})", "After depreciation and tax", N0, NM['nopat'])
-rn(31, "Value per share at ten times (EGP)",
-   f"=(B30*10+B10+B11)*1000000/{SHARES}", "A mature single-asset industrial in a "
+   f"=(B29-{DEPB}-{AMOB})*(1-{TAXR})", "After depreciation and tax", N0, NM['nopat'])
+rn(31, "Value per share at the central multiple (EGP)",
+   f"=(B30*{PEM}+B10+B11)*1000000/{SHARESC}", "A mature single-asset industrial in a "
    "high-inflation economy does not deserve more", N2, NM['value_per_share'])
-rn(32, "At eight times (EGP)", f"=(B30*8+B10+B11)*1000000/{SHARES}", "", N2, NM['value_low'])
-rn(33, "At twelve times (EGP)", f"=(B30*12+B10+B11)*1000000/{SHARES}", "", N2, NM['value_high'])
+rn(32, "At the low multiple (EGP)", f"=(B30*{PEL}+B10+B11)*1000000/{SHARESC}", "", N2,
+   NM['value_low'])
+rn(33, "At the high multiple (EGP)", f"=(B30*{PEH}+B10+B11)*1000000/{SHARESC}", "", N2,
+   NM['value_high'])
 
 # ==================================================================== 8 DCF ===
 ws = wb.create_sheet("Income Statement")
@@ -1018,6 +1077,8 @@ for i, p in enumerate(GRID['prices']):
     for j in range(len(GRID['waccs'])):
         put(ws, f"{get_column_letter(2+j)}{6+i}", round(GRID['grid'][i][j], 2), fmt=N2)
 put(ws, "A15", "THE CONTESTED CONSTRUCTIONS — one component moved, model re-run").font = SUB
+put(ws, "C15", "The published answer")
+put(ws, "D15", "='DCF'!B44", fmt=N2, expect=ALT['baseline'])
 header(ws, 16, 1, ["Choice made", "The alternative", "EGP/share", "Against the published"],
        [42, 46, 13, 20])
 for i, a in enumerate(ALT['alternatives']):
@@ -1027,7 +1088,7 @@ for i, a in enumerate(ALT['alternatives']):
     # pasted UNROUNDED under a two-decimal format: rounding the paste and not the
     # formula beside it is exactly the rounding-class mismatch the recalculation catches
     put(ws, f"C{r}", a['value'], fmt=N2)
-    put(ws, f"D{r}", f"=C{r}-{ALT['baseline']!r}", fmt=N2, expect=a['delta'])
+    put(ws, f"D{r}", f"=C{r}-$D$15", fmt=N2, expect=a['delta'])
     ws.row_dimensions[r].height = 26
 para(ws, 17 + len(ALT['alternatives']) + 1,
      "Each row is a complete re-run of the model through the same case machinery with one "
@@ -1051,7 +1112,7 @@ def pr(r, lab, f, exp, basis, fmt=N2):
 eb = LN['book']['equity_book']
 pr(5, "Book value per share (EGP)", f"='Fundamental Valuation'!B6", LN['book']['book_per_share'],
    "Paid-in capital plus reserves at 31 March 2026 over the share count")
-pr(6, "Price to book the market pays", f"='Summary'!B16/{eb}", SPOT * SHARES / 1e6 / eb, "")
+pr(6, "Price to book the market pays", "='Summary'!B16/'Fundamental Valuation'!B5", SPOT * SHARES / 1e6 / eb, "")
 pr(7, "Sustainable return on equity", "='Fundamental Valuation'!B13", LN['book']['roe_sustainable'],
    "Two-year average on underlying profit", PC1)
 pr(8, "Cost of equity", f"='Assumptions'!C{KE_R}", W['ke_rating'], "Built on the Assumptions sheet", PC2)
@@ -1064,9 +1125,9 @@ pr(11, "Enterprise value to EBITDA at the model's value",
 pr(12, "Enterprise value to EBITDA at the market price",
    "=('Summary'!B16+'DCF'!B41)/'DCF'!B6",
    (SPOT * SHARES / 1e6 + BASE['bridge']['net_debt']) / R[0]['ebitda'], "", N1)
-pr(13, "Free cash flow per share, FY2026/27 (EGP)", f"='DCF'!B14*1000000/{SHARES}",
+pr(13, "Free cash flow per share, FY2026/27 (EGP)", f"='DCF'!B14*1000000/{SHARESC}",
    R[0]['fcff'] * 1e6 / SHARES, "")
-pr(14, "Free cash flow per share, FY2030/31 (EGP)", f"='DCF'!F14*1000000/{SHARES}",
+pr(14, "Free cash flow per share, FY2030/31 (EGP)", f"='DCF'!F14*1000000/{SHARESC}",
    R[4]['fcff'] * 1e6 / SHARES, "")
 pr(15, "Dividend per share", 0.0, "Nothing distributed in either of the last two years", N2)
 
