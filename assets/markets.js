@@ -63,6 +63,7 @@ const MARKET_OF = {
  "ORAS": "EG",
  "ORHD": "EG",
  "ORWE": "EG",
+ "PHAR": "EG",
  "PHDC": "EG",
  "PRDC": "EG",
  "QGTS": "QA",
