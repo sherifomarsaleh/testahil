@@ -1,0 +1,39 @@
+{
+ "beta": 0.49170467247561433,
+ "r2": 0.06152028593246317,
+ "n": 246,
+ "se": 0.12294551603733715,
+ "ci90": [
+  0.2894592985941947,
+  0.693950046357034
+ ],
+ "usable": true,
+ "gate_msg": "passes minimum usability gate",
+ "composite_names": 17,
+ "composite_list": [
+  "ADCB",
+  "ADIB",
+  "ADNOCGAS",
+  "AGTHIA",
+  "ALDAR",
+  "ALPHADHABI",
+  "BURJEEL",
+  "DEWA",
+  "DIB",
+  "EAND",
+  "EMAAR",
+  "EMAARDEV",
+  "ENBD",
+  "FAB",
+  "IHC",
+  "SALIK",
+  "TWOPOINTZERO"
+ ],
+ "window_years": 4.71,
+ "frequency": "weekly",
+ "blume_crosscheck": 0.6611364483170762,
+ "weak": true,
+ "warnings": [],
+ "first_obs": "2021-11-05",
+ "last_obs": "2026-07-24"
+}
