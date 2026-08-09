@@ -140,6 +140,53 @@ def parse_anchor(t: dict) -> _dt.date | None:
     return None
 
 
+_RAW_DATE = re.compile(r'"(\d{2})/(\d{2})/(\d{4})"')
+_SESSIONS: dict[str, frozenset] = {}
+
+
+def market_sessions(market: str) -> frozenset | None:
+    """Every real trading session for a market, from that market's own OHLC library.
+
+    The exchange's REAL calendar, not a weekday rule: EGX trades Sunday-Thursday, the
+    Gulf markets keep their own holidays, and a hardcoded Mon-Fri assumption is exactly
+    the kind of guess the Step 0.0 rule forbids. The union across every file in the
+    market's library is the exchange calendar — a name halted for one session still
+    leaves that session visible in its neighbours.
+
+    Returns None when the market has no library, so the caller can BLOCK rather than
+    assume: an absent calendar is not evidence that no session occurred.
+    """
+    if market in _SESSIONS:
+        return _SESSIONS[market]
+    d = os.path.join(REPO, "engine", "raw_ohlc", market)
+    if not os.path.isdir(d):
+        _SESSIONS[market] = None
+        return None
+    days = set()
+    for fn in os.listdir(d):
+        if not fn.endswith(".csv"):
+            continue
+        with open(os.path.join(d, fn), encoding="utf-8-sig", errors="replace") as fh:
+            for line in fh:
+                m = _RAW_DATE.match(line)
+                if m:
+                    mo, dy, y = (int(x) for x in m.groups())
+                    try:
+                        days.add(_dt.date(y, mo, dy))
+                    except ValueError:
+                        pass
+    _SESSIONS[market] = frozenset(days) or None
+    return _SESSIONS[market]
+
+
+def sessions_between(market: str, after: _dt.date, upto: _dt.date):
+    """Trading sessions strictly after `after` and at or before `upto`, or None."""
+    cal = market_sessions(market)
+    if cal is None:
+        return None
+    return sorted(d for d in cal if after < d <= upto)
+
+
 # ------------------------------------------------------- standardized-t maths
 def std_t_q(p: float, nu: float) -> float:
     """Quantile of the engine's UNIT-VARIANCE Student-t.
@@ -175,13 +222,24 @@ def horizon_overlay(spot, dist_h, h_sessions, nu, fair, yearfrac, rf,
     sigma = invert_sigma(p5, p95, nu)
     mu = math.log(p50 / spot)                 # = carry; alpha is 0 by design
 
+    # A fair value of exactly zero is a real published state — the limited-liability
+    # floor, what a lens says when the equity is worthless (EGCH's bear). It is not a
+    # missing number, and it is not an error: in log space it is minus infinity, and
+    # under the lognormal engine the price can never reach it. Every level-wise measure
+    # below is defined at that limit rather than raising a domain error on log(0).
+    def _rel(level):
+        return math.log(level / spot) if level > 0 else None
+
     # --- G, per level (protocol §3.1) — drift-free distance in own vol units
-    g = {k: math.log(v / spot) / sigma for k, v in fair.items()}
-    band = band_for(g["base"])
+    g = {k: (None if _rel(v) is None else _rel(v) / sigma) for k, v in fair.items()}
+    band = band_for(g["base"]) if g["base"] is not None else BAND_SUPPRESSED
 
     # --- terminal convergence probability (§3.2)
     def p_term(level):
-        z = (math.log(level / spot) - mu) / sigma
+        r = _rel(level)
+        if r is None:
+            return 0.0                 # P(terminal price at or below zero) = 0
+        z = (r - mu) / sigma
         # "reach" means at/beyond fair value in the direction it lies from spot
         return std_t_sf(z, nu) if level >= spot else 1.0 - std_t_sf(z, nu)
 
@@ -193,6 +251,8 @@ def horizon_overlay(spot, dist_h, h_sessions, nu, fair, yearfrac, rf,
     term = paths[:, -1]
 
     def p_touch(level):
+        if level <= 0:
+            return 0.0                 # a lognormal path never touches zero
         hit = run_max >= level if level >= spot else run_min <= level
         return float(hit.mean())
 
@@ -201,7 +261,8 @@ def horizon_overlay(spot, dist_h, h_sessions, nu, fair, yearfrac, rf,
     dev = max(abs(rec[0] / p5 - 1), abs(rec[1] / p50 - 1), abs(rec[2] / p95 - 1))
 
     # --- required CAGR vs the cash hurdle (§3.4)
-    req = {k: (v / spot) ** (1.0 / yearfrac) - 1.0 for k, v in fair.items()}
+    req = {k: ((v / spot) ** (1.0 / yearfrac) - 1.0) if v > 0 else -1.0
+           for k, v in fair.items()}        # zero level = total loss, -100%
 
     # --- tail asymmetry (§3.5)
     if fair["base"] > p95:
@@ -212,12 +273,12 @@ def horizon_overlay(spot, dist_h, h_sessions, nu, fair, yearfrac, rf,
         asym = "base inside 90% band"
 
     suppressed = band == BAND_SUPPRESSED
-    trivial = abs(g["base"]) <= TRIVIAL_G
+    trivial = g["base"] is not None and abs(g["base"]) <= TRIVIAL_G
     return {
         "h_sessions": int(h_sessions),
         "sigma_h": round(sigma, 6),
         "mu_h": round(mu, 6),
-        "G": {k: round(v, 2) for k, v in g.items()},
+        "G": {k: (None if v is None else round(v, 2)) for k, v in g.items()},
         "band": band,
         # False when the gap is inside the horizon's noise (|G| <= TRIVIAL_G) or
         # beyond its reach (suppressed): in both states the probability carries
@@ -234,11 +295,15 @@ def horizon_overlay(spot, dist_h, h_sessions, nu, fair, yearfrac, rf,
     }
 
 
-def overlay_for_ticker(tkr, t, profile, n_paths=N_PATHS, seed=SEED):
+def overlay_for_ticker(tkr, t, profile, market="EG", n_paths=N_PATHS, seed=SEED):
     """Full overlay for one name, or a BLOCKED row explaining why not."""
     spot = t.get("spot")
     fair_raw = t.get("fair") or {}
-    fair = {k: fair_raw[k] for k in ("bear", "base", "full") if fair_raw.get(k)}
+    # PRESENCE, not truthiness. `fair_raw.get(k)` drops a legitimate fair value of exactly
+    # 0.00 -- which is what a limited-liability floor looks like when a lens says the equity
+    # is worthless -- and the name is then blocked as "incomplete fair value". EGCH published
+    # a bear of 0.00 and vanished from the Ticker Picker for exactly this reason.
+    fair = {k: fair_raw[k] for k in ("bear", "base", "full") if fair_raw.get(k) is not None}
     dist, hz = t.get("dist") or {}, t.get("hz") or {}
     anchor, fv_asof = parse_anchor(t), parse_fv_asof(t.get("files"))
 
@@ -256,8 +321,24 @@ def overlay_for_ticker(tkr, t, profile, n_paths=N_PATHS, seed=SEED):
         return blocked("fv_asof unknown — cannot enforce point-in-time")
     if anchor is None:
         return blocked("anchor date unknown")
+    # LOOK-AHEAD is about PRICE INFORMATION, not about the calendar. A fair value dated
+    # after the anchor is only contaminated if the market actually traded in between —
+    # then the study could have seen a close the anchor does not reflect. A study signed
+    # on a Saturday against Thursday's close has seen nothing the anchor has not.
+    # Comparing the two dates alone blocked three live EGX names (EGCH, ARCC, AMOC:
+    # fair value 2026-08-08, anchor 2026-08-06, EGX shut both intervening days) and
+    # dropped them off the Ticker Picker with no visible reason.
+    gap_only = False
     if fv_asof > anchor:
-        return blocked(f"look-ahead: fair value {fv_asof} post-dates anchor {anchor}")
+        traded = sessions_between(market, anchor, fv_asof)
+        if traded is None:
+            return blocked(f"look-ahead: fair value {fv_asof} post-dates anchor {anchor} "
+                           f"and {market} has no session calendar to rule it out")
+        if traded:
+            return blocked(f"look-ahead: fair value {fv_asof} post-dates anchor {anchor} "
+                           f"across {len(traded)} trading session(s), "
+                           f"last {traded[-1]}")
+        gap_only = True
 
     h1 = hz.get("h1") or 21
     h3 = hz.get("h3") or 63
@@ -265,8 +346,10 @@ def overlay_for_ticker(tkr, t, profile, n_paths=N_PATHS, seed=SEED):
         "ticker": tkr, "name": t.get("name"), "code": t.get("code"),
         "ccy": t.get("ccy"), "spot": spot,
         "anchor_date": anchor.isoformat(), "fv_asof": fv_asof.isoformat(),
-        "fv_lag_days": (anchor - fv_asof).days,
+        "fv_lag_days": (anchor - fv_asof).days,   # negative when gap_only, deliberately
         "fv_stale": (anchor - fv_asof).days > FV_STALE_DAYS,
+        # the fair value is dated after the anchor, but only across a market closure
+        "fv_asof_in_closure": gap_only,
         "fv_bear": fair["bear"], "fv_base": fair["base"], "fv_full": fair["full"],
         "gap_base_pct": round((fair["base"] / spot - 1) * 100, 1),
         "sigma_src": "quantile_inversion",
@@ -293,8 +376,11 @@ def run_market(market="EG", only=None, n_paths=N_PATHS, seed=SEED):
             continue
         if only and tkr != only:
             continue
-        rows.append(overlay_for_ticker(tkr, t, profile, n_paths=n_paths, seed=seed))
-    rows.sort(key=lambda r: abs(r.get("3M", {}).get("G", {}).get("base", 1e9)))
+        rows.append(overlay_for_ticker(tkr, t, profile, market=market,
+                                       n_paths=n_paths, seed=seed))
+    # 1e9 for a blocked row (no "3M") and for a base G that is None (a zero fair value):
+    # both sort to the end rather than raising on abs(None).
+    rows.sort(key=lambda r: abs(r.get("3M", {}).get("G", {}).get("base") or 1e9))
     return {
         "protocol": "Fundamental_MC_Integration_Protocol.md (PROPOSED 6-Aug-2026)",
         "phase": "A", "market": market,
