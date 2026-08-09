@@ -402,6 +402,27 @@ P('This document accompanies an educational valuation study. For information onl
   'implied or estimated rather than disclosed, that is stated in the register itself.',
   size=9.2, color=GREY)
 
+_TBLPR_ORDER = ['tblStyle', 'tblpPr', 'tblOverlap', 'bidiVisual', 'tblStyleRowBandSize',
+                'tblStyleColBandSize', 'tblW', 'jc', 'tblCellSpacing', 'tblInd',
+                'tblBorders', 'shd', 'tblLayout', 'tblCellMar', 'tblLook',
+                'tblCaption', 'tblDescription']
+def _key(el):
+    tag = el.tag.split('}')[1]
+    return _TBLPR_ORDER.index(tag) if tag in _TBLPR_ORDER else len(_TBLPR_ORDER)
+for tblPr in doc._element.iter(qn('w:tblPr')):
+    _seen = set()
+    for child in list(tblPr):                # drop duplicate singleton children
+        _tag = child.tag.split('}')[1]
+        if _tag in _seen:
+            tblPr.remove(child)
+        else:
+            _seen.add(_tag)
+    for child in sorted(list(tblPr), key=_key):
+        tblPr.remove(child); tblPr.append(child)
+zoom = doc.settings.element.find(qn('w:zoom'))
+if zoom is not None and zoom.get(qn('w:percent')) is None:
+    zoom.set(qn('w:percent'), '100')
+
 OUT = 'EMPOWER_Bibliography_09-08-2026.docx'
 doc.save(OUT)
 print(f"wrote {OUT} | {len(doc.paragraphs)} paragraphs | {len(doc.tables)} tables | "

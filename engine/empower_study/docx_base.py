@@ -145,5 +145,30 @@ def masthead():
     r2.font.size = Pt(9.5); r2.font.color.rgb = RGBColor(0x9F, 0xB0, 0xAC)
     doc.add_paragraph().paragraph_format.space_after = Pt(0)
 
+_TBLPR_ORDER = ['tblStyle', 'tblpPr', 'tblOverlap', 'bidiVisual', 'tblStyleRowBandSize',
+                'tblStyleColBandSize', 'tblW', 'jc', 'tblCellSpacing', 'tblInd',
+                'tblBorders', 'shd', 'tblLayout', 'tblCellMar', 'tblLook',
+                'tblCaption', 'tblDescription']
+
+def finalize(document):
+    """Schema hygiene before save: order tblPr children per the OOXML sequence and
+    give the settings zoom element its required percent attribute."""
+    def key(el):
+        tag = el.tag.split('}')[1]
+        return _TBLPR_ORDER.index(tag) if tag in _TBLPR_ORDER else len(_TBLPR_ORDER)
+    for tblPr in document._element.iter(qn('w:tblPr')):
+        seen = set()
+        for child in list(tblPr):            # drop duplicate singleton children
+            tag = child.tag.split('}')[1]
+            if tag in seen:
+                tblPr.remove(child)
+            else:
+                seen.add(tag)
+        for child in sorted(list(tblPr), key=key):
+            tblPr.remove(child); tblPr.append(child)
+    zoom = document.settings.element.find(qn('w:zoom'))
+    if zoom is not None and zoom.get(qn('w:percent')) is None:
+        zoom.set(qn('w:percent'), '100')
+
 # expose everything for the content scripts
 G = dict(globals())

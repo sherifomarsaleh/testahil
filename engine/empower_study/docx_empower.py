@@ -731,9 +731,10 @@ P(f"The widths are calibrated rather than assumed, and the evidence is stated pl
   f"percent behind the benchmark on average sharpness, the price of never missing. A reader "
   f"should treat the intervals as honest but wide.")
 fig('fig4_fan.png', 7.0,
-    f"Figure 6 — the forward price cone to three months. The dashed lines mark the fundamental "
-    f"central estimates ({p3(CEN['ct'])} and {p3(CEN['dmtt'])}); the dotted line is the spot "
-    f"of {p2(SPOT)}.")
+    f"Figure 6 — the forward price cone to three months from the anchor close of {p2(SPOT)}, "
+    f"with the trailing tape behind it. Both fundamental central estimates ({p3(CEN['ct'])} "
+    f"and {p3(CEN['dmtt'])}) sit above the cone's 95th percentile — the two objects genuinely "
+    f"disagree, and section 6 reads that gap.")
 H2('Percentile map (AED/share)')
 rows = [['Horizon', '5th', '25th', 'Median', '75th', '95th', 'Probability above spot'],
         [f"1 month (to {H1M['grade_date']})"] +
@@ -1391,6 +1392,7 @@ P("For information only — not investment advice. This document is educational 
   "any loss arising from use of this material.", size=9.2, color=GREY)
 
 out = os.path.join(HERE, 'EMPOWER_Valuation_Study_09-08-2026_public.docx')
+finalize(doc)
 doc.save(out)
 print(f"wrote {out} | {len(doc.paragraphs)} paragraphs | {len(doc.tables)} tables")
 if MISSING_FIGS:

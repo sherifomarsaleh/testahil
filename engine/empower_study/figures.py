@@ -376,9 +376,24 @@ style(axR)
 save(fig, 'fig8_unit.png')
 
 # ---- FD1 expert panel --------------------------------------------------------
-experts = [('Expert 1\n(Infrastructure DCF)', 2.42, 2.90, 2.66),
-           ('Expert 2\n(Income/dividend)', 1.75, 2.05, 1.90),
-           ('Expert 3\n(Relative value & control transaction)', 1.50, 2.16, 1.70)]
+# Ranges derived from study_numbers.json with the same constructions the study
+# document states (docx_empower.py): E1 = the crux-grid endpoints each carrying
+# half the effect of a 50bp move in the cost of capital; E2 = the committed-
+# dividend model at the 2.0% and 3.0% growth nodes; E3 = market price to the
+# DEWA control print, central at the peer-P/E read.
+_SN, _CRX, _W = D['sens_wg'], D['crux'], D['wacc']
+_gi = _SN['g_grid'].index(D['inputs']['g_term']['value'])
+_wi = _SN['wacc_grid'].index(_W['rating_ct'])
+_bc = _SN['table'][_wi][_gi]
+_e1lo = _CRX['rows'][0]['ps'] * (1 + 0.5 * (_SN['table'][_wi + 1][_gi] / _bc - 1))
+_e1hi = _CRX['rows'][-1]['ps'] * (1 + 0.5 * (_SN['table'][_wi - 1][_gi] / _bc - 1))
+_dps, _ke = D['ddm']['dps'], _W['ke_rating']
+_e2 = lambda g: _dps * (1 + g) / (_ke - g)
+experts = [('Expert 1\n(Infrastructure DCF)', _e1lo, _e1hi, D['dcf']['base_ct']['ps']),
+           ('Expert 2\n(Income/dividend)', _e2(_SN['g_grid'][1]), _e2(_SN['g_grid'][3]),
+            D['ddm']['ps']),
+           ('Expert 3\n(Relative value & control transaction)', D['meta']['spot'],
+            D['dewa_buyin']['price'], D['rel']['ps_pe'])]
 fig, axes = plt.subplots(1, 3, figsize=(9.8, 4.2), dpi=110, sharey=True)
 for k, (ax, (lab, lo, hi, ce)) in enumerate(zip(axes, experts)):
     ax.bar(0, hi - lo, bottom=lo, width=0.42, color=SAGE_L, edgecolor=SAGE,
