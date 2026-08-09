@@ -962,7 +962,7 @@
   },
   "prov_pct_permanent": {
    "value": 0.0525,
-   "source": "Credit losses, inventory write-downs and other provisions as a permanent share of revenue \u2014 the FRAME A reading. Three-year average of the disclosed charge: 5.07% (FY2023), 9.24% (FY2024), 5.23% (FY2025); the average of the two years either side of the FY2024 spike is 5.15%, and 5.25% is struck marginally above it",
+   "source": "Credit losses, inventory write-downs and other provisions as a permanent share of revenue \u2014 the FRAME A reading. LABEL CORRECTED: this is NOT 'the three-year average', which the earlier edition called it. The disclosed charge runs 5.07% (FY2023), 9.24% (FY2024), 5.23% (FY2025); the mean of those three ratios is 6.52% and the mean of the two years either side of the FY2024 spike is 5.15%. 5.25% IS STRUCK MARGINALLY ABOVE THE TWO NON-OUTLIER YEARS, and that is what it should be called. Both the 6.52% three-year mean and the 3.03% expected-credit-loss-only three-year mean are published beside it and the frame is sensitised across them. Context that neither reading carries: the first quarter of 2026 booked NO expected credit loss at all \u2014 one of the three matters the auditor qualified \u2014 so 6.52% is more than twice a quarter that charged nothing",
    "date": "2026-08-09",
    "layer": "House"
   },
@@ -1477,33 +1477,45 @@
    "layer": "House"
   },
   "rf": {
-   "value": 0.2231,
-   "source": "Egypt ten-year local-currency government bond yield, 22.31% (house cost-of-capital reference, 21-Jul-2026 print). A live re-read of the central bank's own fixed-coupon treasury bond auction page was attempted on 09-Aug-2026 and rejected by that site's web application firewall; the cached print is used and the rate is sensitised",
-   "date": "2026-07-21",
+   "value": 0.23,
+   "source": "Egypt ten-year local-currency government bond yield, 23.00%, the observable print on the SAME date as the equity price used throughout this study (6 August 2026). The earlier edition carried a 22.31% print dated 21 July 2026, which was both stale against the pricing date and 39 basis points below the observable level on its own date; the risk-free rate and the share price are now struck on one date. A live re-read of the central bank's own fixed-coupon treasury bond auction page was attempted on 09-Aug-2026 and rejected by that site's web application firewall, so the level is indicated by a market-data series rather than proven from the auction curve \u2014 and it is sensitised",
+   "date": "2026-08-06",
    "layer": "Country"
   },
   "sov_spread_cds": {
-   "value": 0.0341,
-   "source": "Egypt sovereign credit-default-swap spread, 3.41%, read live on 09-Aug-2026 from the original country default-spread and risk-premium file (last updated 5 January 2026), Egypt row, sovereign CDS column. Netted out of the local-currency risk-free rate so that sovereign default risk is charged once, inside the equity risk premium, and not twice",
-   "date": "2026-01-05",
+   "value": 0.0342,
+   "source": "Egypt sovereign credit-default-swap spread, 3.42%, from the MID-YEAR (July 2026) vintage of the country default-spread and risk-premium dataset, Egypt row, 'Sovereign CDS, net of Swiss CDS' column, spread measured 30 June 2026. Netted out of the local-currency risk-free rate so that sovereign default risk is charged once, inside the equity risk premium, and not twice. The January-2026 vintage previously used carried 3.41%",
+   "date": "2026-07-02",
    "layer": "Country"
   },
   "sov_spread_rating": {
-   "value": 0.0637,
-   "source": "Egypt adjusted default spread on the rating basis (Moody's Caa1), 6.37%, same file and same live read \u2014 the alternative construction, published for the audit trail",
-   "date": "2026-01-05",
+   "value": 0.059702,
+   "source": "Egypt adjusted default spread on the rating basis (Moody's Caa1), 5.9702%, same mid-year (July 2026) vintage, 'Rating-based Default Spread' column \u2014 the alternative construction, published for the audit trail. The January-2026 vintage carried 6.3725%",
+   "date": "2026-07-02",
    "layer": "Country"
   },
   "erp_cds": {
-   "value": 0.0941,
-   "source": "Egypt total equity risk premium on the sovereign-CDS basis, 9.41%, same file and same live read",
-   "date": "2026-01-05",
+   "value": 0.095164,
+   "source": "Egypt TOTAL equity risk premium on the sovereign-CDS basis, 9.5164%, same mid-year vintage. This is the dataset's TOTAL equity risk premium column, not its country risk premium column \u2014 the total premium is what multiplies beta. The CDS-basis country risk premium alone is 5.3164%",
+   "date": "2026-07-02",
    "layer": "Country"
   },
   "erp_rating": {
-   "value": 0.1394,
-   "source": "Egypt total equity risk premium on the rating basis, 13.94%, same file and same live read (country risk premium 9.71% over a 4.23% mature-market premium)",
-   "date": "2026-01-05",
+   "value": 0.134806,
+   "source": "Egypt TOTAL equity risk premium on the rating basis, 13.4806%, same mid-year vintage \u2014 again the TOTAL equity risk premium column, being the 9.2806% country risk premium over a 4.20% mature-market premium. The January-2026 vintage carried 13.9377% total over a 9.7077% country premium",
+   "date": "2026-07-02",
+   "layer": "Country"
+  },
+  "crp_rating": {
+   "value": 0.092806,
+   "source": "Egypt COUNTRY risk premium on the rating basis, 9.2806%, mid-year (July 2026) vintage \u2014 carried separately and published beside the total premium so that a reader checking the dataset's own 'Country Risk Premium' column finds the figure this study calls by that name. It is NOT added to the cost of equity; the total premium above already contains it",
+   "date": "2026-07-02",
+   "layer": "Country"
+  },
+  "crp_cds": {
+   "value": 0.053164,
+   "source": "Egypt COUNTRY risk premium on the sovereign-CDS basis, 5.3164%, mid-year vintage, disclosure only \u2014 see the note above",
+   "date": "2026-07-02",
    "layer": "Country"
   },
   "beta": {
@@ -1550,7 +1562,7 @@
     0.156,
     0.148
    ],
-   "source": "Forward blended cost of debt FY2026E-FY2030E in local-equivalent terms, continuing the central bank's easing cycle. The discount-rate glide takes its shape from this path by construction rather than being invented separately",
+   "source": "CONVERGENCE PATH, FY2026E-FY2030E. This row is NOT the cost of local-currency debt (24.81%) and NOT the blended marginal cost of debt (18.55%): its first point, 18.90%, is the NORMALISED RISK-FREE RATE, and the row traces that rate converging on the terminal norm as the central bank's easing cycle runs. Its only job is to give the discount-rate glide a shape derived from something in the model rather than an invented curve; the glide uses the row normalised to its own endpoints, so the levels cancel and only the SHAPE enters. The earlier edition described it as a cost-of-debt path, which it is not",
    "date": "2026-08-09",
    "layer": "House"
   },
@@ -1578,9 +1590,9 @@
    "date": "2026-08-09",
    "layer": "House"
   },
-  "wd_term": {
-   "value": 0.2,
-   "source": "Terminal debt weight on a net basis, NORMALISED but reconciled to the model's own forecast balance sheet rather than asserted. Today's net weight is 25.1%; at a 40% payout the forecast deleverages through the window, so a terminal weight at today's level would contradict the model's own trajectory. 20% acknowledges that an inventory-heavy manufacturer retains structural gross leverage",
+  "wd_term_basis": {
+   "value": "market",
+   "source": "Basis on which the TERMINAL debt weight is set. It is no longer an asserted 20%. The earlier edition claimed 20% was 'reconciled to the model's own forecast balance sheet'; it was not \u2014 that sheet, once it is made to balance, carries a book net-debt weight near 39% at FY2030E, and today's market-value net-debt weight is near 25%. Neither is 20%, and the stated deleveraging never happens once the forecast is funded. This input selects which reconcilable reading is used: 'market' takes today's market-value net-debt weight (the weighting basis a weighted average cost of capital requires), 'book' takes the forecast terminal book weight. Both are computed below and both are published",
    "date": "2026-08-09",
    "layer": "House"
   },
@@ -1590,27 +1602,27 @@
    "date": "2026-08-09",
    "layer": "House"
   },
-  "roic_term": {
-   "value": 0.2,
-   "source": "Terminal return on invested capital, used to set terminal reinvestment as growth divided by return. The model's own FY2030E return on invested capital is computed below and this input is asserted against it",
+  "roic_term_source": {
+   "value": "model_fy2030",
+   "source": "Terminal return on invested capital is no longer an input. The earlier edition asserted 20% while the model's own FY2030E return on invested capital was 16.36% \u2014 a 364 basis-point step up, taken at exactly the point where three quarters of core enterprise value sits. The terminal return is now COMPUTED as the model's own final forecast year, so terminal reinvestment (growth divided by return) cannot assume a return the forecast does not earn. This input records that choice; there is no numeric assumption left to make",
    "date": "2026-08-09",
    "layer": "House"
   },
   "assoc_multiple": {
    "value": 11.0,
-   "source": "Earnings multiple applied to the equity-accounted associate stream in the enterprise-to-equity bridge. The associates contributed EGP 495.5 million in FY2025 \u2014 34% of attributable profit \u2014 against a carrying value of only EGP 675.9 million, so carrying value is not a usable proxy. The larger holding is a 30% interest in a Saudi Arabian pharmaceutical manufacturer; 11 times is struck below the Gulf listed-pharmaceutical range to allow for the minority, unlisted and non-controlled nature of the stake",
+   "source": "Earnings multiple applied to the equity-accounted associate stream in the enterprise-to-equity bridge. The associates contributed EGP 495.5 million in FY2025 \u2014 36% of attributable profit \u2014 against a carrying value of only EGP 675.9 million, so carrying value is not a usable proxy. The larger holding is a 30% interest in a Saudi Arabian pharmaceutical manufacturer; 11 times is struck below the Gulf listed-pharmaceutical range to allow for the minority, unlisted and non-controlled nature of the stake. CROSS-CHECK: the one associate in the group that is itself listed trades on roughly 9.3 times trailing earnings, so 11 times is above the only observable comparable in the portfolio and the enterprise-to-equity bridge is sensitised on it",
    "date": "2026-08-09",
    "layer": "House"
   },
   "assoc_norm": {
    "value": 250.0,
-   "source": "Normalised annual contribution of the EARNING associates, used with the multiple above; the pre-revenue active-ingredient company is carried separately at cost. EGP million. The disclosed stream is volatile \u2014 74.5 (FY2023), 147.1 (FY2024), 495.5 (FY2025) \u2014 and the FY2025 print is more than three times the FY2024 one. The three-year average is 239.0; 320 sits between that average and the latest year. REVISED DOWN from 320 after the first quarter of 2026 reported only 13.118 against 33.445 a year earlier; on a like-for-like gross basis the three disclosed years average 246.1, and 250 is struck there rather than at the level the FY2025 print alone would support. The quarter is not decisive \u2014 the auditor states the associates' own statements were not received \u2014 but it removes the case for leaning on the best year",
+   "source": "Normalised annual contribution of the EARNING associates, used with the multiple above; the pre-revenue active-ingredient company is carried separately at cost, on its own line. EGP million. BASIS, RECONCILED TO THIS STUDY'S OWN INCOME STATEMENT (the earlier edition's basis note quoted 74.5 / 147.1 / 495.5, two of which did not match it): the disclosed share of associates' and subsidiaries' results is 74.508 (FY2023), 151.581 (FY2024) and 512.085 (FY2025). Those three average 246.058, and 250 is struck there \u2014 not at the level the FY2025 print alone would support. REVISED DOWN from 320 after the first quarter of 2026 reported only 13.118 against 33.445 a year earlier, an annualised 52.5. That quarter is EVIDENCE, NOT A RUN-RATE: the auditor states in the review report that the periodic financial statements of two of the holdings were not received, so the quarter's associate line is incomplete by construction. Both the 250 carried and the 52.5 the quarter annualises to are published, and the leg is sensitised across them",
    "date": "2026-08-11",
    "layer": "House"
   },
   "peer_pe_regional": {
-   "value": 19.5,
-   "source": "Median trailing price-earnings multiple of listed Gulf and emerging-market generic pharmaceutical manufacturers used as the relative anchor. MARKET DATA, cross-check layer \u2014 not a company historical. Sourced range: a listed Saudi Arabian generics manufacturer at 26.7 times, larger and more liquid regional and international generic manufacturers in the mid-teens. The median is struck at 19.5 and the lens is run across a 13-26 times band rather than on a point",
+   "value": 21.35,
+   "source": "A STRUCK REFERENCE, not a median of a disclosed peer set \u2014 the earlier edition called it a 'peer median', which it was not, because only two reference points are disclosed. Those two are: a listed Saudi Arabian generics manufacturer at 26.7 times, and larger, more liquid regional and international generic manufacturers at about 16.0 times. 21.35 is the midpoint of those two observations \u2014 which for a two-element set is also their median \u2014 rather than a figure struck between them by judgement. MARKET DATA, cross-check layer, never a source for any company historical. The peers are not named and their financials are not published, so this multiple cannot be rebuilt from peer filings; that gap is recorded as an open research item and the lens is run across a 13-26 times band rather than on a point",
    "date": "2026-08-09",
    "layer": "Market"
   },
@@ -2080,17 +2092,82 @@
    }
   ],
   "board_fee": 2.0,
-  "nci_fwd": 18.0
+  "nci_fwd": 18.0,
+  "parent": [
+   1013.8616658981421,
+   1259.6344721085957,
+   1648.1487755126673,
+   2051.063604576512,
+   2436.700750129719
+  ],
+  "retained": [
+   608.3169995388852,
+   755.7806832651573,
+   988.8892653076003,
+   1230.638162745907,
+   1462.0204500778314
+  ],
+  "eps": [
+   6.007864418831015,
+   7.4642462381791175,
+   9.766474775008657,
+   12.15403685253102,
+   14.439216145996323
+  ],
+  "cash": [
+   1433.426902,
+   1433.426902,
+   1433.426902,
+   1433.426902,
+   1433.426902
+  ],
+  "debt": [
+   10065.175529023581,
+   10202.517439961013,
+   9943.153747146323,
+   9499.209588604743,
+   8813.083585927547
+  ],
+  "net_debt": [
+   8631.748627023582,
+   8769.090537961014,
+   8509.726845146324,
+   8065.782686604743,
+   7379.6566839275465
+  ],
+  "assets": [
+   20105.18441631604,
+   21359.727611092512,
+   22467.18534776139,
+   23639.472188820117,
+   24773.308963114443
+  ],
+  "oth_nc": 1299.5989129999998,
+  "ptx": 1117.6606279999999,
+  "bs_gap_frozen": [
+   1267.449889023581,
+   1404.7917999610108,
+   1145.4281071463229,
+   701.4839486047422,
+   15.357945927546098
+  ],
+  "int_rate_implied": [
+   0.13253528593499012,
+   0.11940184823715738,
+   0.11416844733730865,
+   0.11212628641659864,
+   0.11249273809491717
+  ]
  },
  "wacc": {
-  "rf": 0.2231,
-  "sov_spread_cds": 0.0341,
-  "rf_star": 0.189,
+  "rf": 0.23,
+  "sov_spread_cds": 0.0342,
+  "rf_star": 0.1958,
   "beta": 0.629,
-  "erp_cds": 0.0941,
-  "ke": 0.2481889,
-  "ke_rating": 0.24708259999999999,
-  "ke_double_counted_retired": 0.2822889,
+  "erp_cds": 0.095164,
+  "ke": 0.255658156,
+  "ke_rating": 0.255090974,
+  "ke_double_counted_retired": 0.28985815600000003,
   "kd_egp": 0.2481,
   "kd_fx_coupon": 0.075,
   "kd_fx_local_equiv": 0.12337499999999979,
@@ -2108,12 +2185,12 @@
   "we_net": 0.748752933999309,
   "wd_net": 0.251247066000691,
   "wd_gross": 0.2861569102997737,
-  "wacc0": 0.2219489594396045,
-  "wacc0_gross": 0.218303017403497,
+  "wacc0": 0.22754158678439645,
+  "wacc0_gross": 0.223634894184299,
   "ke_term": 0.14903,
   "kd_term": 0.12336718070230483,
   "kd_term_at": 0.09560956504428625,
-  "wacc_term": 0.13834591300885724,
+  "wacc_term": 0.13560827245289617,
   "glide_frac": [
    1.0,
    0.7317073170731706,
@@ -2122,18 +2199,18 @@
    0.0
   ],
   "disc_rate": [
-   0.2219489594396045,
-   0.19951887381184302,
-   0.17504968949064875,
-   0.15465870255632014,
-   0.13834591300885724
+   0.22754158678439645,
+   0.2028765512320427,
+   0.17596923972038414,
+   0.15354648012733527,
+   0.13560827245289617
   ],
   "df": [
-   0.8183647870681996,
-   0.682244193847148,
-   0.5806088031416626,
-   0.5028401915269353,
-   0.44172881527534674
+   0.8146363518482072,
+   0.6772401964389597,
+   0.5758995844142916,
+   0.49924263506982436,
+   0.43962574699413565
   ],
   "kd_path": [
    0.189,
@@ -2142,6 +2219,14 @@
    0.156,
    0.148
   ],
+  "wd_term": 0.251247066000691,
+  "wd_term_market": 0.251247066000691,
+  "wd_term_book": 0.3953013301436529,
+  "wacc_term_book_basis": 0.12791283100515385,
+  "tax_fcff": 0.235,
+  "tax_stat": 0.225,
+  "crp_rating": 0.092806,
+  "crp_cds": 0.053164,
   "beta_regression": {
    "beta": 0.6294840175287311,
    "r2": 0.23503291018427552,
@@ -2178,42 +2263,45 @@
     3911.9617648754493
    ],
    "nopat": [
-    1760.8320798314512,
-    1978.8176024629565,
-    2325.9105242121796,
-    2687.5922137866623,
-    3031.7703677784734
+    1738.111665898142,
+    1953.2844721085958,
+    2295.8987755126673,
+    2652.9136045765117,
+    2992.6507501297187
    ],
    "fcff": [
-    178.47458826898082,
-    1093.9649572603707,
-    1604.6549007192625,
-    1909.1681585823403,
-    2264.1458693778363
+    155.75417433567168,
+    1068.43182690601,
+    1574.6431520197502,
+    1874.4895493721897,
+    2225.0262517290817
    ],
    "pv": [
-    146.0573184258291,
-    746.3512403631313,
-    931.6767613620145,
-    960.0064825186703,
-    1000.1384724908417
+    126.88301236594123,
+    723.5849803354628,
+    906.8363368489843,
+    935.8251020394196,
+    978.1788279979593
    ],
-   "pv_sum": 3784.230275160487,
-   "nopat_term": 3183.358886167397,
-   "reinvest_rate": 0.25,
-   "fcff_term": 2387.519164625548,
-   "tv": 27024.67022312831,
-   "pv_tv": 11937.575560869409,
-   "ev_core": 15721.805836029896,
-   "tv_share": 0.7593005336264801,
+   "pv_sum": 3671.3082595877668,
+   "nopat_term": 3002.4874919631657,
+   "reinvest_rate": 0.309602405477146,
+   "roic_term": 0.16149745323503586,
+   "term_dep_catchup": 182.73960218697943,
+   "fcff_term": 2072.9101420363263,
+   "tv": 24213.89992628217,
+   "pv_tv": 10645.053842733045,
+   "ev_core": 14316.36210232081,
+   "tv_share": 0.7435585777065101,
    "assoc_value": 2978.486418,
    "assoc_earnings_value": 2750.0,
    "arab_api_cost": 228.48641800000007,
-   "ev_total": 18712.6222540299,
+   "ev_total": 17307.178520320813,
    "net_debt": 7364.298738,
    "nci": 3.999807,
-   "equity": 11344.323709029897,
-   "per_share": 67.22333140666257
+   "equity": 9938.879975320811,
+   "per_share": 58.895059725791924,
+   "tv_share_total": 0.6150658138895607
   },
   "frame_B": {
    "label": "Frame B \u2014 provision charge normalising to 2.5% of revenue",
@@ -2232,55 +2320,53 @@
     4390.581217801521
    ],
    "nopat": [
-    1821.1910565187154,
-    2114.097212860578,
-    2545.559229211983,
-    2984.516428962179,
-    3402.700443796179
+    1797.6918170797644,
+    2086.818539146248,
+    2512.7133036737637,
+    2946.006539556215,
+    3358.7946316181637
    ],
    "fcff": [
-    238.83356495624503,
-    1229.2445676579923,
-    1824.3036057190666,
-    2206.092373757857,
-    2635.075945395542
+    215.33432551729402,
+    1201.9658939436622,
+    1791.457680180847,
+    2167.582484351893,
+    2591.1701332175267
    ],
    "pv": [
-    195.45297953015648,
-    838.6449691028129,
-    1059.2067330835669,
-    1109.311911746512,
-    1163.988975520137
+    175.4191693671027,
+    814.0196181273357,
+    1031.6997335119406,
+    1082.1495912190355,
+    1139.145105404649
    ],
-   "pv_sum": 4366.605568983185,
-   "nopat_term": 3572.8354659859883,
-   "reinvest_rate": 0.25,
-   "fcff_term": 2679.626599489491,
-   "tv": 30331.075974288044,
-   "pv_tv": 13398.110256148791,
-   "ev_core": 17764.715825131978,
-   "tv_share": 0.75419783733294,
+   "pv_sum": 4242.433217630064,
+   "nopat_term": 3386.938567526033,
+   "reinvest_rate": 0.2758524925195477,
+   "roic_term": 0.18125629224269874,
+   "term_dep_catchup": 182.73960218697943,
+   "fcff_term": 2452.64312166339,
+   "tv": 28649.604195819935,
+   "pv_tv": 12595.103645673662,
+   "ev_core": 16837.536863303725,
+   "tv_share": 0.7480371831062678,
    "assoc_value": 2978.486418,
    "assoc_earnings_value": 2750.0,
    "arab_api_cost": 228.48641800000007,
-   "ev_total": 20755.53224313198,
+   "ev_total": 19828.353281303727,
    "net_debt": 7364.298738,
    "nci": 3.999807,
-   "equity": 13387.233698131979,
-   "per_share": 79.32905218418915
+   "equity": 12460.054736303726,
+   "per_share": 73.83484554632197,
+   "tv_share_total": 0.63520673991368
   }
  },
  "lenses": {
-  "items": [
+  "items_A": [
    {
     "name": "Discounted cash flow \u2014 Frame A",
-    "value": 67.22333140666257,
-    "weight": 0.25
-   },
-   {
-    "name": "Discounted cash flow \u2014 Frame B",
-    "value": 79.32905218418915,
-    "weight": 0.25
+    "value": 58.895059725791924,
+    "weight": 0.5
    },
    {
     "name": "Book value and sustainable return",
@@ -2289,7 +2375,7 @@
    },
    {
     "name": "Relative multiples",
-    "value": 50.09438474011719,
+    "value": 65.47441645748769,
     "weight": 0.15
    },
    {
@@ -2298,38 +2384,79 @@
     "weight": 0.15
    }
   ],
-  "fair_base": 66.56723261240829,
-  "fair_bear": 50.09438474011719,
-  "fair_bull": 79.32905218418915,
+  "items_B": [
+   {
+    "name": "Discounted cash flow \u2014 Frame B",
+    "value": 73.83484554632197,
+    "weight": 0.5
+   },
+   {
+    "name": "Book value and sustainable return",
+    "value": 63.120998500343326,
+    "weight": 0.2
+   },
+   {
+    "name": "Relative multiples",
+    "value": 65.47441645748769,
+    "weight": 0.15
+   },
+   {
+    "name": "Normalised earnings power",
+    "value": 65.27186202406072,
+    "weight": 0.15
+   }
+  ],
+  "shared": [
+   {
+    "name": "Book value and sustainable return",
+    "value": 63.120998500343326,
+    "weight": 0.2
+   },
+   {
+    "name": "Relative multiples",
+    "value": 65.47441645748769,
+    "weight": 0.15
+   },
+   {
+    "name": "Normalised earnings power",
+    "value": 65.27186202406072,
+    "weight": 0.15
+   }
+  ],
+  "w_dcf": 0.5,
+  "centre_A": 61.68367133519689,
+  "centre_B": 69.15356424546192,
+  "fair_bear": 58.895059725791924,
+  "fair_bull": 73.83484554632197,
   "book_ps": 63.120998500343326,
   "bv_ps": 36.995074135251684,
   "just_pb": 1.7062000813831835,
   "roe_sust": 0.21896499405937667,
   "roe_fy24": 0.2459197116522333,
   "roe_fy25": 0.264599584335609,
-  "rel_ps": 50.09438474011719,
-  "rel_lo": 41.20522683371522,
-  "rel_hi": 60.88844168900808,
+  "rel_ps": 65.47441645748769,
+  "rel_lo": 48.18948569762828,
+  "rel_hi": 92.08834779271702,
   "rel_triangulation": [
    [
-    "Justified forward multiple from this model",
+    "Justified forward multiple from this model, on FY2026E earnings",
     7.79211347783068,
     48.18948569762828
    ],
    [
-    "The company's own four-year mean multiple",
-    6.662777133225662,
-    41.20522683371522
+    "The company's own four-year mean multiple, on trailing earnings",
+    6.572199327377573,
+    56.14541588211779
    ],
    [
-    "Regional peer median, cost-of-equity adjusted",
-    9.845501363223267,
-    60.88844168900808
+    "Struck peer reference, cost-of-equity adjusted, on trailing earnings",
+    10.779561748964962,
+    92.08834779271702
    ]
   ],
-  "rel_peer_unadjusted": 120.5956476092494,
+  "rel_peer_unadjusted": 182.39018163825529,
   "just_fwd_pe": 7.79211347783068,
-  "peer_adj_pe": 9.845501363223267,
+  "peer_adj_pe": 10.779561748964962,
   "payout_implied": 0.7716529977095722,
   "eps_26_A": 6.007864418831015,
   "eps_26_B": 6.36091995134841,
@@ -2359,13 +2486,15 @@
    {
     "year": 2025,
     "close": 77.5,
-    "shares": 168.75575,
-    "eps": 8.54286565050376,
-    "pe": 9.071897320008766
+    "shares": 162.016024,
+    "eps": 8.898241448018748,
+    "pe": 8.709586096616414
    }
   ],
-  "own_pe_mean": 6.662777133225662,
+  "own_pe_mean": 6.572199327377573,
   "pe_now": 15.223228986672774,
+  "pe_now_wavg": 14.615247378902772,
+  "eps_ttm_wavg": 8.898241448018748,
   "evebitda_now": 11.80287397458319,
   "eps_ttm": 8.54286565050376,
   "eps_27_A": 7.4642462381791175,
@@ -2378,192 +2507,192 @@
   "wacc": [
    [
     -0.02,
-    89.84813331120365
+    78.31243222697051
    ],
    [
     -0.01,
-    77.40004473614924
+    67.66927140208438
    ],
    [
     0.0,
-    67.22333140666257
+    58.895059725791924
    ],
    [
     0.01,
-    58.75172925757619
+    51.53879625116383
    ],
    [
     0.02,
-    51.592647786440835
+    45.28376888412894
    ]
   ],
   "g": [
    [
     0.03,
-    60.61098456535337
+    54.919096953061874
    ],
    [
     0.04,
-    63.621326585651516
+    56.7496401224546
    ],
    [
     0.05,
-    67.22333140666257
+    58.895059725791924
    ],
    [
     0.06,
-    71.64355690919623
+    61.48029305778895
    ],
    [
     0.07,
-    77.24115581160892
+    64.70644908483796
    ]
   ],
   "beta": [
    [
     0.45,
-    80.97758075566436
+    70.79426033337107
    ],
    [
     0.55,
-    72.88120797264808
+    63.80394773089595
    ],
    [
     0.629,
-    67.22333140666257
+    58.895059725791924
    ],
    [
     0.75,
-    59.59720934796569
+    52.246415053455046
    ],
    [
     0.9,
-    51.55825479216958
+    45.19664792628173
    ]
   ],
   "prov": [
    [
     0.025,
-    80.96631184285123
+    75.44108799206906
    ],
    [
     0.035,
-    75.9688644115099
+    69.42057921447211
    ],
    [
     0.0525,
-    67.22333140666257
+    58.895059725791924
    ],
    [
     0.065,
-    60.97652211748589
+    51.386435538930236
    ],
    [
     0.08,
-    53.48035097047391
+    42.38906083457892
    ]
   ],
   "fx": [
    [
     0.9,
-    75.77915145840042
+    69.63797562069173
    ],
    [
     0.95,
-    71.50124143253151
+    64.26420965733911
    ],
    [
     1.0,
-    67.22333140666257
+    58.895059725791924
    ],
    [
     1.05,
-    62.945421380793775
+    53.53091600504677
    ],
    [
     1.1,
-    58.66751135492491
+    48.17221392319875
    ]
   ],
   "volume": [
    [
     -0.04,
-    64.48888551420453
+    56.64350538610749
    ],
    [
     -0.02,
-    65.79955269637973
+    57.717730693628305
    ],
    [
     0.0,
-    67.22333140666257
+    58.895059725791924
    ],
    [
     0.02,
-    68.76686082035675
+    60.18174317376977
    ],
    [
     0.04,
-    70.43703306905046
+    61.58427576254385
    ]
   ],
   "dep": [
    [
     0.045,
-    68.74251908404773
+    61.068627870349694
    ],
    [
     0.055,
-    67.8214386822146
+    59.75834853177898
    ],
    [
     0.062,
-    67.22333140666257
+    58.895059725791924
    ],
    [
     0.07,
-    66.5851120616971
+    57.960493108524716
    ],
    [
     0.08,
-    65.85282935351343
+    56.866976085624174
    ]
   ],
   "grid": [
    [
-    77.93685732648191,
-    83.22074223232461,
-    89.84813331120365,
-    98.4655073447705,
-    110.21334474895626
+    70.22746456102367,
+    73.832429239797,
+    78.31243222697051,
+    84.10042351180795,
+    91.97138153249236
    ],
    [
-    68.56936454400906,
-    72.54138606364246,
-    77.40004473614924,
-    83.52345939528244,
-    91.54038313643774
+    61.97903730199961,
+    64.5578448735507,
+    67.66927140208438,
+    71.54787934213813,
+    76.58966229449742
    ],
    [
-    60.61098456535337,
-    63.621326585651516,
-    67.22333140666257,
-    71.64355690919623,
-    77.24115581160892
+    54.919096953061874,
+    56.7496401224546,
+    58.895059725791924,
+    61.48029305778895,
+    64.70644908483796
    ],
    [
-    53.77017620527427,
-    56.06284342175879,
-    58.75172925757619,
-    61.9744957996253,
-    65.94093058669804
+    48.811031397367714,
+    50.08798575638645,
+    51.53879625116383,
+    53.22623000061837,
+    55.247401989006335
    ],
    [
-    47.83046185324169,
-    49.579546525866576,
-    51.592647786440835,
-    53.953717312211346,
-    56.78651981901907
+    43.47701854793333,
+    44.33968449095657,
+    45.28376888412894,
+    46.33623644020645,
+    47.537436631486166
    ]
   ],
   "grid_wacc": [
@@ -2579,18 +2708,61 @@
    0.05,
    0.06,
    0.07
-  ]
+  ],
+  "grid_lo": 43.47701854793333,
+  "grid_hi": 91.97138153249236,
+  "prov_readings": [
+   [
+    "Carried \u2014 struck above the two non-outlier years",
+    0.0525,
+    58.895059725791924
+   ],
+   [
+    "Mean of the three disclosed years, including the FY2024 spike",
+    0.06516084923158967,
+    51.289874596720125
+   ],
+   [
+    "Expected-credit-loss component alone, three-year mean",
+    0.03025705493737288,
+    72.27558451474968
+   ],
+   [
+    "The two non-outlier years, FY2023 and FY2025",
+    0.05149953886438073,
+    59.49639785618902
+   ]
+  ],
+  "prov_3yr_mean": 0.06516084923158967,
+  "prov_ecl_3yr_mean": 0.03025705493737288,
+  "prov_2yr_mean": 0.05149953886438073
  },
  "crux": {
-  "required_fy30_revenue": 6641.916975726794,
-  "required_share_of_fy30": 0.2762141296512998,
-  "required_ebit": 2988.8626390770573,
+  "required_fy30_revenue": 6848.505570056388,
+  "required_share_of_fy30": 0.2823794219690113,
+  "required_ebit": 3081.8275065253747,
   "assumed_margin": 0.45,
   "facility_investment_usd_mn": 100.0,
-  "required_rev_usd_mn": 115.11121275089764,
-  "asset_turn": 1.1511121275089764,
-  "at_base": 67.22333140666257,
+  "required_rev_usd_mn": 118.69160433373288,
+  "asset_turn": 1.186916043337329,
+  "at_base": 58.895059725791924,
   "spot": 130.05
+ },
+ "crux_ramp": [
+  0.0,
+  0.1,
+  0.3,
+  0.6,
+  1.0
+ ],
+ "cost_exposure": {
+  "fx_cost_share": 0.6954240390482,
+  "fx_cost_share_if_all_packaging_imported": 0.807809640024405,
+  "fx_cost_share_full_stack": 0.6838799999999999,
+  "fx_cost_share_full_stack_if_all_packaging": 0.7944,
+  "materials_share": 0.5580638600772828,
+  "packaging_share": 0.24974577994712222,
+  "packaging_import_share": 0.55
  },
  "working_capital": {
   "dio_fy25": 268.3460419562417,
@@ -2862,24 +3034,31 @@
   "",
   "[Asset-conversion cycle] the audited FY2025 balance sheet implies 268 inventory days, 129 receivable days and 54 payable days \u2014 a cash cycle of 343 days. The inventory position is policy: the company stated at its March-2026 general assembly that it holds a strategic raw-material stockpile sufficient for at least eight months. Working capital is PROJECTED from those three ratios, not plugged.",
   "",
-  "[Cost of equity] the quoted ten-year local-currency government yield is 22.31%. That yield is not riskless: it embeds the sovereign's own default risk. Subtracting the sovereign credit-default-swap spread of 3.41% leaves a normalised risk-free rate of 18.90%; adding beta 0.629 times the country equity risk premium of 9.41% gives a cost of equity of 24.82%. On the rating basis the same construction gives 24.71% \u2014 the two agree to 11 basis points, which is reassuring because they are built from different columns of the same source. Charging the raw 22.31% yield AND a country-loaded premium would give 28.23% and would count sovereign risk twice; that construction is not used.",
+  "[Funding] the forecast balance sheet is FUNDED, not frozen. Cash is held at the audited 1,433 million operating minimum and gross borrowings carry the difference, so total assets equal total liabilities and equity in every forecast year by construction. Borrowings run 10,065 -> 10,203 -> 9,943 -> 9,499 -> 8,813 against an audited 8,798: the working-capital build and the first year's capital expenditure are debt-funded while a 40% payout continues, and the book only returns to its opening level in the final year. The earlier edition held both cash and borrowings flat, which left the statement out by up to 7.0% of total assets.",
+  "  CONSEQUENCE, STATED RATHER THAN HIDDEN: on this funded book the finance cost charged in the income statement implies an average borrowing rate of 13.25% / 11.94% / 11.42% / 11.21% / 11.25%, against a blended MARGINAL cost of debt of 18.55% used in the discount rate. The charged path is calibrated to the first quarter of 2026 and is right for FY2026E; the later years assume an easing cycle the debt schedule does not evidence. That gap is an open item, it is not resolved in this edition, and the EARNINGS-BASED lenses are sensitised across it.",
+  "",
+  "[Cost of equity] the quoted ten-year local-currency government yield is 23.00%. That yield is not riskless: it embeds the sovereign's own default risk. Subtracting the sovereign credit-default-swap spread of 3.42% leaves a normalised risk-free rate of 19.58%; adding beta 0.629 times the country equity risk premium of 9.52% gives a cost of equity of 25.57%. On the rating basis the same construction gives 25.51% \u2014 the two agree to 6 basis points, which is reassuring because they are built from different columns of the same source. Charging the raw 23.00% yield AND a country-loaded premium would give 28.99% and would count sovereign risk twice; that construction is not used.",
   "[Cost of debt] the term-loan note splits the book 50% local currency / 50% hard currency. The local-currency leg is priced at 24.81% \u2014 the sovereign yield plus 250 basis points, and above the sovereign by construction. The hard-currency leg carries a 7.50% coupon but is charged at its LOCAL-EQUIVALENT cost of 12.34%, coupon compounded with expected currency depreciation of 4.50%. Blended marginal cost of debt 18.55%, 14.38% after tax.",
   "[Cost-of-debt integrity] the company expensed 1,275 million of interest and capitalised a further 551 million into the construction balance in FY2025. On average gross debt of 8,999 million that is 14.2% expensed and 20.3% all-in. The 18.5% marginal rate sits inside that pair, which is the test: a marginal rate below the expensed rate or above the all-in rate would not be credible.",
-  "[Weighted average cost of capital] market capitalisation 21,947 against net debt 7,364 gives weights 74.9% equity / 25.1% debt and a starting discount rate of 22.19%. On GROSS debt the weights are 71.4%/28.6% and the rate 21.83%; both are published. Note the starting rate sits close to the quoted sovereign yield \u2014 that is arithmetic, not an error: the quoted yield contains default risk that the normalised build strips out and re-charges inside the equity premium.",
-  "[Terminal] cost of equity 14.90% (risk-free 10.50% plus beta times a normalised 7.00% premium); cost of debt 12.34%, 9.56% after tax; debt weight 20% -> terminal discount rate 13.83%.",
-  "[Discount-rate glide] the fractions are the cost-of-debt path normalised to its own endpoints \u2014 1.000, 0.732, 0.439, 0.195, 0.000 \u2014 so the glide has the shape of the easing cycle rather than a shape invented for it. Discount rates 22.19%, 19.95%, 17.50%, 15.47%, 13.83%; the factors compound.",
+  "  Two FY2025 figures are in play here and they are not the same line: INTEREST ON CREDIT FACILITIES of 1,275.312 million, which is what an interest RATE must be computed on, and the income statement's FINANCE COSTS of 1,332.947 million, which is that interest plus 57.634 million of bank commissions and charges. Both come from the same note; the bridge between them is stated here so that neither reads as a contradiction of the other.",
+  "[Weighted average cost of capital] market capitalisation 21,947 against net debt 7,364 gives weights 74.9% equity / 25.1% debt and a starting discount rate of 22.75%. On GROSS debt the weights are 71.4%/28.6% and the rate 22.36%; both are published. Note the starting rate sits close to the quoted sovereign yield \u2014 that is arithmetic, not an error: the quoted yield contains default risk that the normalised build strips out and re-charges inside the equity premium.",
+  "[Terminal] cost of equity 14.90% (risk-free 10.50% plus beta times a normalised 7.00% premium); cost of debt 12.34%, 9.56% after tax; DERIVED debt weight 25.1% on today's market values (39.5% on the funded forecast balance sheet at FY2030E) -> terminal discount rate 13.56% (12.79% on the book weight).",
+  "[Discount-rate glide] the fractions are the cost-of-debt path normalised to its own endpoints \u2014 1.000, 0.732, 0.439, 0.195, 0.000 \u2014 so the glide has the shape of the easing cycle rather than a shape invented for it. Discount rates 22.75%, 20.29%, 17.60%, 15.35%, 13.56%; the factors compound.",
   "",
-  "[Terminal consistency] terminal reinvestment is growth 5% divided by a terminal return on invested capital of 20%, i.e. 25% of terminal operating profit after tax reinvested. The model's own FY2030E return on invested capital is 16.4% on Frame A and 18.4% on Frame B, so the terminal assumption is not richer than the forecast that leads into it.",
-  "[Terminal weight] the terminal value is 76% of core enterprise value on Frame A and 75% on Frame B. That is high, as it is for any growing manufacturer discounted over five explicit years, and it is stated in the valuation summary and in the enterprise-to-equity bridge rather than buried.",
+  "[Terminal consistency] terminal reinvestment is growth 5% divided by the model's OWN FY2030E return on invested capital \u2014 16.15% on Frame A and 18.13% on Frame B \u2014 so 31.0% of terminal operating profit after tax is reinvested on Frame A. There is no terminal return assumption left to make. The earlier edition asserted 20% here, a 385 basis-point step above the last forecast year, taken at exactly the point where three quarters of core enterprise value sits.",
+  "  The terminal year is also charged the depreciation the forecast never charged: 2,947 million of construction is still parked at FY2030E and has never entered the depreciable base, so at the model's own 6.2% rate a further 183 million a year is deducted before the perpetuity is struck. A steady state cannot capitalise profit on capital it never charges.",
+  "[Terminal weight] the terminal value is 74% of CORE enterprise value on Frame A and 75% on Frame B \u2014 62% and 64% of TOTAL enterprise value, which carries the associates and the assets held for sale as well. Both readings are published; the earlier edition dropped the word 'core' outside the workbook, which made the concentration look higher than the whole bridge supports. It is high either way, as it is for any growing manufacturer discounted over five explicit years, and the terminal grid in the sensitivity section runs the whole range rather than quoting a comfortable part of it.",
+  "  The terminal DEBT WEIGHT is derived, not asserted. Today's market-value net-debt weight is 25.1%; the forecast balance sheet, once funded, carries a book net-debt weight of 39.5% at FY2030E. The valuation uses the market-value reading, 25.1%, because a weighted average cost of capital weights market values; the book reading gives a terminal rate of 12.79% against 13.56% and is published beside it. The earlier edition used 20%, which is neither reading, and said it was reconciled to a balance sheet that did not balance.",
   "",
-  "[Book value and sustainable return] book value per share 37.00. Return on average equity was 24.6% in FY2024 and 26.5% in FY2025; the forecast settles at 21.9%. A sustainable-return multiple of (return 21.9% less growth 5%) over (perpetual cost of equity 14.90% less growth) is 1.71 times book, or 63.12 a share.",
+  "[Book value and sustainable return] book value per share 37.00. Return on average equity was 24.6% in FY2024 and 26.5% in FY2025. The forecast path is 15.5% / 17.4% / 20.3% / 22.3% / 23.1% \u2014 it RISES THROUGH the window rather than settling, so the sustainable return used here is the MEAN OF ITS LAST THREE YEARS, 21.90%, computed from that path and not asserted. (The earlier edition described the same number as the level the forecast 'settles at', which the path does not do.) A sustainable-return multiple of (return 21.9% less growth 5%) over (perpetual cost of equity 14.90% less growth) is 1.706 times book, or 63.12 a share. Every term in that multiple is live: change beta, the terminal risk-free rate, the terminal premium or growth and the lens moves.",
   "",
-  "[Relative multiples] the company's OWN traded history is computable entirely from primary material \u2014 year-end closes against audited attributable profit: 4.7 times (2022), 6.6 times (2023), 6.2 times (2024), 9.1 times (2025), a four-year mean of 6.7. At 130.05 the shares trade on 15.2 times trailing attributable earnings and 11.8 times trailing EBITDA. The re-rating is the single most important fact about this share price: the earnings multiple has more than doubled against its own four-year history.",
-  "  The lens triangulates three multiples rather than asserting one. (1) The multiple this model's own economics justify: retention must equal growth 5% over sustainable return 21.9%, so the payout the multiple can assume is 77%, and 77% over (perpetual cost of equity 14.90% less growth) is 7.8 times. (2) The company's own four-year mean, 6.7 times. (3) A regional peer median of 19.5 times \u2014 but those peers are Gulf-listed and face a cost of equity near 10%, not 14.9%; adjusted for that single difference the same median implies 9.8 times. Averaged on 6.18 of FY2026E attributable earnings a share: 50.09. Left unadjusted, the peer median alone would give 120.60 \u2014 the size of that gap IS the country-risk discount, and it is shown rather than hidden inside a chosen multiple.",
-  "[Normalised earnings power] the three-year average operating margin is 22.9%, against 25.1% in FY2025 \u2014 so this lens deliberately gives back part of the best year. Applied to FY2027E revenue of 12,038 million, financed at the FY2027E cost of debt and taxed at 23.5%, with the normalised associate contribution added, that is EGP 8.38 a share of sustainable earnings. Capitalised at the PERPETUAL cost of equity of 14.90% less 5% growth, on the 77% payout that growth rate permits: 65.27 a share. Using today's crisis-level cost of equity of 24.82% in a perpetuity would be a category error \u2014 a steady-state multiple takes a steady-state rate.",
+  "[Relative multiples] the company's OWN traded history is computable entirely from primary material \u2014 year-end closes against audited attributable profit: 4.7 times (2022), 6.6 times (2023), 6.2 times (2024), 8.7 times (2025), a four-year mean of 6.6. Each year divides that year's audited attributable profit by that year's WEIGHTED-AVERAGE share count, so the FY2025 reading uses 162.016 million shares rather than the 168.756 million now in issue \u2014 the capital increase completed during that year. At 130.05 the shares trade on 15.2 times trailing attributable earnings measured on the count in issue today, or 14.6 times on the audited weighted average; both readings are legitimate and both are published. The shares also trade on 11.8 times trailing EBITDA. The re-rating is the single most important fact about this share price: the earnings multiple has more than doubled against its own four-year history.",
+  "  The lens triangulates three multiples rather than asserting one, and EACH IS APPLIED TO THE EARNINGS OF ITS OWN PERIOD. (1) The forward multiple this model's own economics justify: retention must equal growth 5% over sustainable return 21.9%, so the payout the multiple can assume is 77%, and 77% over (perpetual cost of equity 14.90% less growth) is 7.79 times \u2014 applied to 6.18 of FY2026E earnings a share. (2) The company's own four-year mean, 6.57 times, a TRAILING multiple applied to 8.54 of trailing earnings. (3) A struck reference of 21.35 times \u2014 the midpoint of the only two comparable observations available, 26.7 times for a listed Saudi Arabian generics manufacturer and about 16 times for larger international generic manufacturers, and NOT a median of a disclosed peer set \u2014 but those companies are Gulf-listed and face a cost of equity near 10%, not 14.9%; adjusted for that single difference the same reference implies 10.78 times, also on trailing earnings. The three give 48.19 / 56.15 / 92.09, averaging 65.47. Left unadjusted, the struck reference alone would give 182.39 \u2014 the size of that gap IS the country-risk discount, and it is shown rather than hidden inside a chosen multiple. The peers are not named and their financials are not published, so this third leg cannot be rebuilt from peer filings; that is a stated limitation of the leg, not a hidden one.",
+  "[Normalised earnings power] the three-year average operating margin is 22.9%, against 25.1% in FY2025 \u2014 so this lens deliberately gives back part of the best year. Applied to FY2027E revenue of 12,038 million, financed at the FY2027E cost of debt and taxed at 23.5%, with the normalised associate contribution added, that is EGP 8.38 a share of sustainable earnings. Capitalised at the PERPETUAL cost of equity of 14.90% less 5% growth, on the 77% payout that growth rate permits: 65.27 a share. Using today's crisis-level cost of equity of 25.57% in a perpetuity would be a category error \u2014 a steady-state multiple takes a steady-state rate.",
   "",
-  "[Synthesis] four lenses, one field: Discounted cash flow \u2014 Frame A 67.22 \u00b7 Discounted cash flow \u2014 Frame B 79.33 \u00b7 Book value and sustainable return 63.12 \u00b7 Relative multiples 50.09 \u00b7 Normalised earnings power 65.27. Weighted centre 66.57; the field runs 50.09 to 79.33 against a 130.05 market price.",
+  "[Synthesis] TWO centres, not one. The three lenses that do not turn on the contested judgement are Book value and sustainable return 63.12 \u00b7 Relative multiples 65.47 \u00b7 Normalised earnings power 65.27. Carrying them beside Frame A gives a weighted centre of 61.68; beside Frame B, 69.15. The two frames are NOT averaged into a single number \u2014 that is the study's standing rule and the earlier edition's single centre of 66.57 broke it, because weighting both frames at a quarter each is a straight average of them. The field across all five readings runs 58.90 to 73.83 against a 130.05 market price.",
   "",
-  "[The crux] the base build charges the new biologicals facility's depreciation and its interest \u2014 both mechanical consequences of the company's own disclosed December-2025 licensing \u2014 but carries NO revenue line for it, because the company has published no volume, price or utilisation guidance for the plant. So the crux is not what the plant is worth; it is how much it must sell. Solving the same model for the market price: an additional EGP 6,642 million of revenue by FY2030E at a 45% contribution margin closes the gap from 67.22 to 130.05. That is 28% of FY2030E revenue, or about USD 115 million a year \u2014 1.15 times the USD 100 million the company says it invested in the plant. That number is observable: it is testable against the first year the company discloses biosimilar revenue."
+  "[The crux] the base build charges the new biologicals facility's depreciation and its interest \u2014 both mechanical consequences of the company's own disclosed December-2025 licensing \u2014 but carries NO revenue line for it, because the company has published no volume, price or utilisation guidance for the plant. So the crux is not what the plant is worth; it is how much it must sell. Solving the same model for the market price: an additional EGP 6,849 million of revenue by FY2030E at a 45% contribution margin closes the gap from 58.90 to 130.05. That is 28% of FY2030E revenue, or about USD 119 million a year \u2014 1.19 times the USD 100 million the company says it invested in the plant. That number is observable: it is testable against the first year the company discloses biosimilar revenue.",
+  "  Two things that must be published for that hurdle to be auditable, and were not before. THE RAMP: the incremental revenue is not dropped into the final year, it is phased 0% / 10% / 30% / 60% / 100% across FY2026E-FY2030E, and the same total placed entirely in FY2030E would be a lower and easier hurdle. THE REINVESTMENT: the incremental revenue is charged capital expenditure at the same share of revenue as the existing business and working capital on the same day ratios, so it faces the identical reinvestment discipline. The earlier edition let it arrive free of both and published a hurdle of about USD 115 million; charged properly it is USD 119 million."
  ]
 }

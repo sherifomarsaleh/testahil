@@ -405,10 +405,18 @@ INP = dict(
              "General and administrative expense as a share of revenue, held near the FY2025 "
              "level of 2.34%", "2026-08-09", "House"),
     prov_pct_permanent=I(0.0525, "Credit losses, inventory write-downs and other provisions as a "
-                         "permanent share of revenue — the FRAME A reading. Three-year average "
-                         "of the disclosed charge: 5.07% (FY2023), 9.24% (FY2024), 5.23% "
-                         "(FY2025); the average of the two years either side of the FY2024 "
-                         "spike is 5.15%, and 5.25% is struck marginally above it",
+                         "permanent share of revenue — the FRAME A reading. LABEL CORRECTED: "
+                         "this is NOT 'the three-year average', which the earlier edition called "
+                         "it. The disclosed charge runs 5.07% (FY2023), 9.24% (FY2024), 5.23% "
+                         "(FY2025); the mean of those three ratios is 6.52% and the mean of the "
+                         "two years either side of the FY2024 spike is 5.15%. 5.25% IS STRUCK "
+                         "MARGINALLY ABOVE THE TWO NON-OUTLIER YEARS, and that is what it "
+                         "should be called. Both the 6.52% three-year mean and the 3.03% "
+                         "expected-credit-loss-only three-year mean are published beside it and "
+                         "the frame is sensitised across them. Context that neither reading "
+                         "carries: the first quarter of 2026 booked NO expected credit loss at "
+                         "all — one of the three matters the auditor qualified — so 6.52% is "
+                         "more than twice a quarter that charged nothing",
                          "2026-08-09", "House"),
     prov_pct_normalising=I([0.045, 0.038, 0.032, 0.028, 0.025],
                            "The FRAME B reading of the same charge: a receivable and inventory "
@@ -605,25 +613,45 @@ INP = dict(
                   "for disallowed items", "2026-08-09", "House"),
 
     # ---- cost of capital ----------------------------------------------------
-    rf=I(0.2231, "Egypt ten-year local-currency government bond yield, 22.31% (house cost-of-"
-         "capital reference, 21-Jul-2026 print). A live re-read of the central bank's own "
-         "fixed-coupon treasury bond auction page was attempted on 09-Aug-2026 and rejected by "
-         "that site's web application firewall; the cached print is used and the rate is "
-         "sensitised", "2026-07-21", "Country"),
-    sov_spread_cds=I(0.0341, "Egypt sovereign credit-default-swap spread, 3.41%, read live on "
-                     "09-Aug-2026 from the original country default-spread and risk-premium "
-                     "file (last updated 5 January 2026), Egypt row, sovereign CDS column. "
-                     "Netted out of the local-currency risk-free rate so that sovereign default "
-                     "risk is charged once, inside the equity risk premium, and not twice",
-                     "2026-01-05", "Country"),
-    sov_spread_rating=I(0.0637, "Egypt adjusted default spread on the rating basis (Moody's "
-                        "Caa1), 6.37%, same file and same live read — the alternative "
-                        "construction, published for the audit trail", "2026-01-05", "Country"),
-    erp_cds=I(0.0941, "Egypt total equity risk premium on the sovereign-CDS basis, 9.41%, same "
-              "file and same live read", "2026-01-05", "Country"),
-    erp_rating=I(0.1394, "Egypt total equity risk premium on the rating basis, 13.94%, same "
-                 "file and same live read (country risk premium 9.71% over a 4.23% mature-market "
-                 "premium)", "2026-01-05", "Country"),
+    rf=I(0.2300, "Egypt ten-year local-currency government bond yield, 23.00%, the observable "
+         "print on the SAME date as the equity price used throughout this study (6 August "
+         "2026). The earlier edition carried a 22.31% print dated 21 July 2026, which was both "
+         "stale against the pricing date and 39 basis points below the observable level on its "
+         "own date; the risk-free rate and the share price are now struck on one date. A live "
+         "re-read of the central bank's own fixed-coupon treasury bond auction page was "
+         "attempted on 09-Aug-2026 and rejected by that site's web application firewall, so the "
+         "level is indicated by a market-data series rather than proven from the auction curve "
+         "— and it is sensitised", "2026-08-06", "Country"),
+    sov_spread_cds=I(0.0342, "Egypt sovereign credit-default-swap spread, 3.42%, from the "
+                     "MID-YEAR (July 2026) vintage of the country default-spread and "
+                     "risk-premium dataset, Egypt row, 'Sovereign CDS, net of Swiss CDS' "
+                     "column, spread measured 30 June 2026. Netted out of the local-currency "
+                     "risk-free rate so that sovereign default risk is charged once, inside the "
+                     "equity risk premium, and not twice. The January-2026 vintage previously "
+                     "used carried 3.41%", "2026-07-02", "Country"),
+    sov_spread_rating=I(0.059702, "Egypt adjusted default spread on the rating basis (Moody's "
+                        "Caa1), 5.9702%, same mid-year (July 2026) vintage, 'Rating-based "
+                        "Default Spread' column — the alternative construction, published for "
+                        "the audit trail. The January-2026 vintage carried 6.3725%",
+                        "2026-07-02", "Country"),
+    erp_cds=I(0.095164, "Egypt TOTAL equity risk premium on the sovereign-CDS basis, 9.5164%, "
+              "same mid-year vintage. This is the dataset's TOTAL equity risk premium column, "
+              "not its country risk premium column — the total premium is what multiplies beta. "
+              "The CDS-basis country risk premium alone is 5.3164%", "2026-07-02", "Country"),
+    erp_rating=I(0.134806, "Egypt TOTAL equity risk premium on the rating basis, 13.4806%, same "
+                 "mid-year vintage — again the TOTAL equity risk premium column, being the "
+                 "9.2806% country risk premium over a 4.20% mature-market premium. The "
+                 "January-2026 vintage carried 13.9377% total over a 9.7077% country premium",
+                 "2026-07-02", "Country"),
+    crp_rating=I(0.092806, "Egypt COUNTRY risk premium on the rating basis, 9.2806%, mid-year "
+                 "(July 2026) vintage — carried separately and published beside the total "
+                 "premium so that a reader checking the dataset's own 'Country Risk Premium' "
+                 "column finds the figure this study calls by that name. It is NOT added to the "
+                 "cost of equity; the total premium above already contains it",
+                 "2026-07-02", "Country"),
+    crp_cds=I(0.053164, "Egypt COUNTRY risk premium on the sovereign-CDS basis, 5.3164%, "
+              "mid-year vintage, disclosure only — see the note above", "2026-07-02",
+              "Country"),
     beta=I(0.629, "Own-stock first-tier regression: weekly logarithmic returns of the company's "
            "own shares against an equal-weighted composite of 36 Egyptian listed names built "
            "from the full covered price library, five-year window. R-squared 0.235, n = 257, "
@@ -657,9 +685,14 @@ INP = dict(
                "this model implied. It then declines with the central bank's easing cycle",
                "2026-08-11", "House"),
     kd_path=I([0.189, 0.178, 0.166, 0.156, 0.148],
-              "Forward blended cost of debt FY2026E-FY2030E in local-equivalent terms, "
-              "continuing the central bank's easing cycle. The discount-rate glide takes its "
-              "shape from this path by construction rather than being invented separately",
+              "CONVERGENCE PATH, FY2026E-FY2030E. This row is NOT the cost of local-currency "
+              "debt (24.81%) and NOT the blended marginal cost of debt (18.55%): its first "
+              "point, 18.90%, is the NORMALISED RISK-FREE RATE, and the row traces that rate "
+              "converging on the terminal norm as the central bank's easing cycle runs. Its "
+              "only job is to give the discount-rate glide a shape derived from something in "
+              "the model rather than an invented curve; the glide uses the row normalised to "
+              "its own endpoints, so the levels cancel and only the SHAPE enters. The earlier "
+              "edition described it as a cost-of-debt path, which it is not",
               "2026-08-09", "House"),
     rf_term=I(0.105, "Terminal risk-free rate, built from norms rather than extrapolated: the "
               "central bank's stated medium-term inflation target of 5% plus the standard "
@@ -671,51 +704,70 @@ INP = dict(
                  "Egyptian norm of roughly 10 points above the 5% inflation target",
                  "2026-08-09", "House"),
     kd_term_fx=I(0.065, "Terminal hard-currency coupon", "2026-08-09", "House"),
-    wd_term=I(0.20, "Terminal debt weight on a net basis, NORMALISED but reconciled to the "
-              "model's own forecast balance sheet rather than asserted. Today's net weight is "
-              "25.1%; at a 40% payout the forecast deleverages through the window, so a "
-              "terminal weight at today's level would contradict the model's own trajectory. "
-              "20% acknowledges that an inventory-heavy manufacturer retains structural gross "
-              "leverage", "2026-08-09", "House"),
+    wd_term_basis=I('market', "Basis on which the TERMINAL debt weight is set. It is no longer "
+                    "an asserted 20%. The earlier edition claimed 20% was 'reconciled to the "
+                    "model's own forecast balance sheet'; it was not — that sheet, once it is "
+                    "made to balance, carries a book net-debt weight near 39% at FY2030E, and "
+                    "today's market-value net-debt weight is near 25%. Neither is 20%, and the "
+                    "stated deleveraging never happens once the forecast is funded. This input "
+                    "selects which reconcilable reading is used: 'market' takes today's "
+                    "market-value net-debt weight (the weighting basis a weighted average cost "
+                    "of capital requires), 'book' takes the forecast terminal book weight. Both "
+                    "are computed below and both are published", "2026-08-09", "House"),
     g_term=I(0.05, "Terminal growth, 5% — an Egyptian-pound NOMINAL rate struck against a "
              "terminal risk-free rate that itself embeds 5% inflation, so the base case assumes "
              "approximately zero real terminal growth. Deliberately conservative for a company "
              "with a third of its revenue in hard currency and a biosimilars plant just "
              "entering service. Sensitised 3-7%", "2026-08-09", "House"),
-    roic_term=I(0.20, "Terminal return on invested capital, used to set terminal reinvestment "
-                "as growth divided by return. The model's own FY2030E return on invested "
-                "capital is computed below and this input is asserted against it",
-                "2026-08-09", "House"),
+    roic_term_source=I('model_fy2030', "Terminal return on invested capital is no longer an "
+                       "input. The earlier edition asserted 20% while the model's own FY2030E "
+                       "return on invested capital was 16.36% — a 364 basis-point step up, "
+                       "taken at exactly the point where three quarters of core enterprise "
+                       "value sits. The terminal return is now COMPUTED as the model's own "
+                       "final forecast year, so terminal reinvestment (growth divided by "
+                       "return) cannot assume a return the forecast does not earn. This input "
+                       "records that choice; there is no numeric assumption left to make",
+                       "2026-08-09", "House"),
     assoc_multiple=I(11.0, "Earnings multiple applied to the equity-accounted associate stream "
                      "in the enterprise-to-equity bridge. The associates contributed EGP 495.5 "
-                     "million in FY2025 — 34% of attributable profit — against a carrying value "
+                     "million in FY2025 — 36% of attributable profit — against a carrying value "
                      "of only EGP 675.9 million, so carrying value is not a usable proxy. The "
                      "larger holding is a 30% interest in a Saudi Arabian pharmaceutical "
                      "manufacturer; 11 times is struck below the Gulf listed-pharmaceutical "
                      "range to allow for the minority, unlisted and non-controlled nature of "
-                     "the stake", "2026-08-09", "House"),
+                     "the stake. CROSS-CHECK: the one associate in the group that is itself "
+                     "listed trades on roughly 9.3 times trailing earnings, so 11 times is "
+                     "above the only observable comparable in the portfolio and the "
+                     "enterprise-to-equity bridge is sensitised on it", "2026-08-09", "House"),
     assoc_norm=I(250.0, "Normalised annual contribution of the EARNING associates, used with "
                  "the multiple above; the pre-revenue active-ingredient company is carried "
-                 "separately at cost. "
-                 "EGP million. The disclosed stream is volatile — 74.5 (FY2023), 147.1 "
-                 "(FY2024), 495.5 (FY2025) — and the FY2025 print is more than three times the "
-                 "FY2024 one. The three-year average is 239.0; 320 sits between that average "
-                 "and the latest year. REVISED DOWN from 320 after the first quarter of 2026 "
-                 "reported only 13.118 against 33.445 a year earlier; on a like-for-like gross "
-                 "basis the three disclosed years average 246.1, and 250 is struck there rather "
-                 "than at the level the FY2025 print alone would support. The quarter is not "
-                 "decisive — the auditor states the associates' own statements were not "
-                 "received — but it removes the case for leaning on the best year",
+                 "separately at cost, on its own line. EGP million. BASIS, RECONCILED TO THIS "
+                 "STUDY'S OWN INCOME STATEMENT (the earlier edition's basis note quoted 74.5 / "
+                 "147.1 / 495.5, two of which did not match it): the disclosed share of "
+                 "associates' and subsidiaries' results is 74.508 (FY2023), 151.581 (FY2024) "
+                 "and 512.085 (FY2025). Those three average 246.058, and 250 is struck there — "
+                 "not at the level the FY2025 print alone would support. REVISED DOWN from 320 "
+                 "after the first quarter of 2026 reported only 13.118 against 33.445 a year "
+                 "earlier, an annualised 52.5. That quarter is EVIDENCE, NOT A RUN-RATE: the "
+                 "auditor states in the review report that the periodic financial statements of "
+                 "two of the holdings were not received, so the quarter's associate line is "
+                 "incomplete by construction. Both the 250 carried and the 52.5 the quarter "
+                 "annualises to are published, and the leg is sensitised across them",
                  "2026-08-11", "House"),
 
     # ---- relative lens ------------------------------------------------------
-    peer_pe_regional=I(19.5, "Median trailing price-earnings multiple of listed Gulf and "
-                       "emerging-market generic pharmaceutical manufacturers used as the "
-                       "relative anchor. MARKET DATA, cross-check layer — not a company "
-                       "historical. Sourced range: a listed Saudi Arabian generics manufacturer "
-                       "at 26.7 times, larger and more liquid regional and international "
-                       "generic manufacturers in the mid-teens. The median is struck at 19.5 "
-                       "and the lens is run across a 13-26 times band rather than on a point",
+    peer_pe_regional=I(21.35, "A STRUCK REFERENCE, not a median of a disclosed peer set — the "
+                       "earlier edition called it a 'peer median', which it was not, because "
+                       "only two reference points are disclosed. Those two are: a listed Saudi "
+                       "Arabian generics manufacturer at 26.7 times, and larger, more liquid "
+                       "regional and international generic manufacturers at about 16.0 times. "
+                       "21.35 is the midpoint of those two observations — which for a "
+                       "two-element set is also their median — rather than a figure struck "
+                       "between them by judgement. MARKET DATA, cross-check layer, never a "
+                       "source for any company historical. The peers are not named and their "
+                       "financials are not published, so this multiple cannot be rebuilt from "
+                       "peer filings; that gap is recorded as an open research item and the "
+                       "lens is run across a 13-26 times band rather than on a point",
                        "2026-08-09", "Market"),
     peer_evebitda_regional=I(11.0, "Median enterprise-value-to-EBITDA multiple for the same "
                              "peer group. MARKET DATA, cross-check layer. Range run 8-16 times",
@@ -895,6 +947,16 @@ for i in range(n):
                           blend_index=blend, unit_cash_cost=unit_costs[-1]))
     fx_prev = fx[i]
 say('')
+# Hard-currency exposure of the cost stack, COMPUTED — two legitimate denominators, both
+# published. On the CASH cost stack the escalators actually act on, and on the full disclosed
+# cost split including the depreciation line. Neither is the 79% the earlier edition's risk
+# narrative quoted; that figure counted the WHOLE packaging line as imported, which the same
+# study's own cost table denies.
+fx_cost_share = cs['materials'] + V['esc_packaging_import_share'] * cs['packaging']
+fx_cost_share_all_packaging = cs['materials'] + cs['packaging']
+fx_cost_share_full = (cs_all['materials']
+                      + V['esc_packaging_import_share'] * cs_all['packaging'])
+fx_cost_share_full_all_pack = cs_all['materials'] + cs_all['packaging']
 say('[Cost stack] every physically distinct cost line carries its OWN escalator: imported '
     'active ingredients (54.9% of production cost) and the imported share of packaging escalate '
     'on a hard-currency price path passed through the exchange-rate path; labour on Egyptian '
@@ -965,19 +1027,89 @@ say(f"[Asset-conversion cycle] the audited FY2025 balance sheet implies {dio0:.0
     f"for at least eight months. Working capital is PROJECTED from those three ratios, not "
     f"plugged.")
 
+# ==================== FORECAST EQUITY, FUNDING AND RETURNS ====================
+# This block used to sit below the discounted cash flow. It has been moved ahead of it
+# because two things the earlier edition ASSERTED are now DERIVED from it: the terminal
+# debt weight and the terminal return on invested capital.
+gross_debt_open = (V['loans_lt_fy25'] + V['loans_st_fy25'] + V['facilities_fy25']
+                   + V['leases_fy25'])
+w_fx = V['loans_fx_fy25'] / (V['loans_fx_fy25'] + V['loans_lc_fy25'])
+kd_fx_local_equiv = (1 + V['kd_fx_coupon']) * (1 + V['fx_dep_wacc']) - 1
+kd_blend_pre = (1 - w_fx) * V['kd_egp'] + w_fx * kd_fx_local_equiv
+roe_fwd, eq_path = [None] * n, []
+parent_path, retained_path = [], []
+eq_b = V['equity_parent_fy25']
+for i in range(n):
+    # Associate income arrives ALREADY TAXED — the equity method takes the group's share of
+    # the associate's post-tax profit, and the disclosed figure is already net of withholding.
+    # Taxing it again inside this chain would understate attributable profit.
+    pat = ((ebit_A[i] - V['int_path'][i]) * (1 - V['tax_eff_fwd'])
+           + V['assoc_norm'] - NCI_FWD)
+    eq_n = eq_b + pat * (1 - V['payout'])
+    roe_fwd[i] = pat / ((eq_b + eq_n) / 2)
+    eq_path.append(eq_n)
+    parent_path.append(pat)
+    retained_path.append(pat * (1 - V['payout']))
+    eq_b = eq_n
+roe_sust = float(np.mean(roe_fwd[-3:]))
+
+# ---- the funding plug: the forecast balance sheet has to balance ---------------
+# The earlier edition froze cash AND gross borrowings at their audited 31-Dec-2025 levels
+# for five years while retained earnings compounded, so total assets exceeded total
+# liabilities and equity by as much as 6.6% and the forecast was quietly unfunded. Cash is
+# now held at the audited level as the operating minimum and GROSS BORROWINGS ARE THE PLUG:
+# whatever the asset side needs that trade credit, provisions and equity do not supply.
+OTH_NC_FWD = (V['assoc_bv_fy25'] + V['intang_fy25'] + V['rou_fy25'] + V['dta_fy25']
+              + V['afs_fy25'])
+PTX_FWD = V['provbs_fy25'] + V['taxpay_fy25'] + V['dtl_fy25']
+cash_f = [V['cash_fy25'] for _ in range(n)]
+debt_f, assets_f, bs_gap_old = [], [], []
+for i in range(n):
+    a = (ppe[i] + cip[i] + OTH_NC_FWD + inv_f[i] + ar_f[i] + othdr_f[i] + cash_f[i])
+    other_le = ap_f[i] + othcr_f[i] + PTX_FWD + eq_path[i] + V['nci_bridge']
+    assets_f.append(a)
+    debt_f.append(a - other_le)
+    bs_gap_old.append(a - (other_le + gross_debt_open))
+for i in range(n):
+    lhs = assets_f[i]
+    rhs = (ap_f[i] + othcr_f[i] + PTX_FWD + debt_f[i] + eq_path[i] + V['nci_bridge'])
+    assert abs(lhs - rhs) < 1e-6, f'forecast balance sheet does not balance in year {i}'
+net_debt_f = [debt_f[i] - cash_f[i] for i in range(n)]
+say('')
+say(f"[Funding] the forecast balance sheet is FUNDED, not frozen. Cash is held at the audited "
+    f"{V['cash_fy25']:,.0f} million operating minimum and gross borrowings carry the "
+    f"difference, so total assets equal total liabilities and equity in every forecast year by "
+    f"construction. Borrowings run "
+    + ' -> '.join(f'{d:,.0f}' for d in debt_f) +
+    f" against an audited {gross_debt_open:,.0f}: the working-capital build and the first "
+    f"year's capital expenditure are debt-funded while a {V['payout']:.0%} payout continues, "
+    f"and the book only returns to its opening level in the final year. The earlier edition "
+    f"held both cash and borrowings flat, which left the statement out by up to "
+    f"{max(bs_gap_old) / min(assets_f) * 100:.1f}% of total assets.")
+say(f"  CONSEQUENCE, STATED RATHER THAN HIDDEN: on this funded book the finance cost charged in "
+    f"the income statement implies an average borrowing rate of "
+    + ' / '.join(f'{V["int_path"][i] / ((debt_f[i] + (gross_debt_open if i == 0 else debt_f[i - 1])) / 2):.2%}'
+                 for i in range(n)) +
+    f", against a blended MARGINAL cost of debt of {kd_blend_pre:.2%} used in the discount "
+    f"rate. The charged path is calibrated to the first quarter of 2026 and is right for "
+    f"FY2026E; the later years assume an easing cycle the debt schedule does not evidence. "
+    f"That gap is an open item, it is not resolved in this edition, and the EARNINGS-BASED "
+    f"lenses are sensitised across it.")
+
+# ---- terminal return on invested capital: computed, never asserted -------------
+ic_fy30 = ppe[-1] + cip[-1] + wc[-1] + V['intang_fy25']
+
 # ============================ COST OF CAPITAL =================================
 rf_star = V['rf'] - V['sov_spread_cds']
 ke = rf_star + V['beta'] * V['erp_cds']
 ke_rating = (V['rf'] - V['sov_spread_rating']) + V['beta'] * V['erp_rating']
 ke_double_counted = V['rf'] + V['beta'] * V['erp_cds']   # the retired construction, for contrast
 
-w_fx = V['loans_fx_fy25'] / (V['loans_fx_fy25'] + V['loans_lc_fy25'])
-kd_fx_local_equiv = (1 + V['kd_fx_coupon']) * (1 + V['fx_dep_wacc']) - 1
-kd_blend = (1 - w_fx) * V['kd_egp'] + w_fx * kd_fx_local_equiv
+kd_blend = kd_blend_pre
 kd_at = kd_blend * (1 - TAX)
 
 mcap = V['spot'] * V['shares_mn']
-gross_debt = V['loans_lt_fy25'] + V['loans_st_fy25'] + V['facilities_fy25'] + V['leases_fy25']
+gross_debt = gross_debt_open
 net_debt = gross_debt - V['cash_fy25']
 we_net = mcap / (mcap + net_debt)
 wd_net = 1 - we_net
@@ -988,7 +1120,14 @@ wacc0_gross = (1 - wd_gross) * ke + wd_gross * kd_at
 ke_term = V['rf_term'] + V['beta'] * V['erp_term']
 kd_term = (1 - w_fx) * V['kd_term_lc'] + w_fx * ((1 + V['kd_term_fx']) * 1.03 - 1)
 kd_term_at = kd_term * (1 - TAX)
-wacc_term = (1 - V['wd_term']) * ke_term + V['wd_term'] * kd_term_at
+# TERMINAL DEBT WEIGHT — DERIVED, both readings computed and published. The earlier edition
+# asserted 20% and claimed it was reconciled to the forecast balance sheet; it reconciled to
+# neither reading of that sheet.
+wd_term_market = wd_net
+wd_term_book = net_debt_f[-1] / (net_debt_f[-1] + eq_path[-1])
+wd_term = wd_term_market if V['wd_term_basis'] == 'market' else wd_term_book
+wacc_term = (1 - wd_term) * ke_term + wd_term * kd_term_at
+wacc_term_alt = (1 - wd_term_book) * ke_term + wd_term_book * kd_term_at
 
 say('')
 say(f"[Cost of equity] the quoted ten-year local-currency government yield is {V['rf']:.2%}. "
@@ -1019,6 +1158,12 @@ say(f"[Cost-of-debt integrity] the company expensed {V['int_fac_fy25']:,.0f} mil
     f"expensed and {kd_eff_incl:.1%} all-in. The {kd_blend:.1%} marginal rate sits inside that "
     f"pair, which is the test: a marginal rate below the expensed rate or above the all-in rate "
     f"would not be credible.")
+say(f"  Two FY2025 figures are in play here and they are not the same line: INTEREST ON CREDIT "
+    f"FACILITIES of {V['int_fac_fy25']:,.3f} million, which is what an interest RATE must be "
+    f"computed on, and the income statement's FINANCE COSTS of {V['fin_fy25']:,.3f} million, "
+    f"which is that interest plus {V['fin_fy25'] - V['int_fac_fy25']:,.3f} million of bank "
+    f"commissions and charges. Both come from the same note; the bridge between them is stated "
+    f"here so that neither reads as a contradiction of the other.")
 assert kd_eff_excl <= kd_blend <= kd_eff_incl + 0.01, \
     f'Kd {kd_blend:.3f} outside the effective-rate pair [{kd_eff_excl:.3f}, {kd_eff_incl:.3f}]'
 say(f"[Weighted average cost of capital] market capitalisation {mcap:,.0f} against net debt "
@@ -1030,9 +1175,13 @@ say(f"[Weighted average cost of capital] market capitalisation {mcap:,.0f} again
     f"re-charges inside the equity premium.")
 say(f"[Terminal] cost of equity {ke_term:.2%} (risk-free {V['rf_term']:.2%} plus beta times a "
     f"normalised {V['erp_term']:.2%} premium); cost of debt {kd_term:.2%}, {kd_term_at:.2%} "
-    f"after tax; debt weight {V['wd_term']:.0%} -> terminal discount rate {wacc_term:.2%}.")
+    f"after tax; DERIVED debt weight {wd_term:.1%} on today's market values "
+    f"({wd_term_book:.1%} on the funded forecast balance sheet at FY2030E) -> terminal "
+    f"discount rate {wacc_term:.2%} ({wacc_term_alt:.2%} on the book weight).")
 
-# ---- the glide: fractions derived from the cost-of-debt path -----------------
+# ---- the glide: its SHAPE comes from the convergence path, its LEVELS do not --
+# The row this normalises is the normalised-risk-free-rate convergence path. Because it is
+# rebased to its own endpoints the levels cancel out entirely and only the shape survives.
 kdp = V['kd_path']
 glide_frac = [(kdp[i] - kdp[-1]) / (kdp[0] - kdp[-1]) for i in range(n)]
 disc_rate = [wacc_term + (wacc0 - wacc_term) * glide_frac[i] for i in range(n)]
@@ -1048,75 +1197,85 @@ say(f"[Discount-rate glide] the fractions are the cost-of-debt path normalised t
 
 
 # ============================ DCF ============================================
+TAX_FCFF = V['tax_eff_fwd']    # the rate the business actually bears, not the statutory rate
+# The construction balance still parked at FY2030E has never been charged depreciation, so a
+# perpetuity capitalising the final year's operating profit capitalises a profit that
+# under-charges the capital standing behind it. The terminal year is normalised for it.
+term_dep_catchup = cip[-1] * V['dep_rate']
+
+
 def run_dcf(ebit, ebitda, label):
-    nopat = [e * (1 - TAX) for e in ebit]
+    nopat = [e * (1 - TAX_FCFF) for e in ebit]
     fcff = [nopat[i] + dna[i] - capex[i] - dwc[i] for i in range(n)]
     pv = [fcff[i] * df[i] for i in range(n)]
     pv_sum = sum(pv)
-    nopat_term = nopat[-1] * (1 + V['g_term'])
-    reinv_rate = V['g_term'] / V['roic_term']
+    roic_fy30 = nopat[-1] / ic_fy30
+    nopat_term = nopat[-1] * (1 + V['g_term']) - term_dep_catchup * (1 - TAX_FCFF)
+    reinv_rate = V['g_term'] / roic_fy30
     fcff_term = nopat_term * (1 - reinv_rate)
     tv = fcff_term / (wacc_term - V['g_term'])
     pv_tv = tv * df[-1]
     ev_core = pv_sum + pv_tv
-    assoc_value = V['assoc_norm'] * V['assoc_multiple'] + V['arab_api_cost']
+    assoc_earnings = V['assoc_norm'] * V['assoc_multiple']
+    assoc_value = assoc_earnings + V['arab_api_cost']
     ev_total = ev_core + assoc_value + V['afs_fy25']
     equity = ev_total - net_debt - V['nci_bridge']
     ps = equity / V['shares_mn']
     return dict(label=label, ebitda=ebitda, ebit=ebit, nopat=nopat, fcff=fcff, pv=pv,
                 pv_sum=pv_sum, nopat_term=nopat_term, reinvest_rate=reinv_rate,
+                roic_term=roic_fy30, term_dep_catchup=term_dep_catchup,
                 fcff_term=fcff_term, tv=tv, pv_tv=pv_tv, ev_core=ev_core,
                 tv_share=pv_tv / ev_core, assoc_value=assoc_value,
-                assoc_earnings_value=V['assoc_norm'] * V['assoc_multiple'],
+                assoc_earnings_value=assoc_earnings,
                 arab_api_cost=V['arab_api_cost'], ev_total=ev_total,
-                net_debt=net_debt, nci=V['nci_bridge'], equity=equity, per_share=ps)
+                net_debt=net_debt, nci=V['nci_bridge'], equity=equity, per_share=ps,
+                tv_share_total=pv_tv / ev_total)
 
 
 dcf_A = run_dcf(ebit_A, ebitda_A, 'Frame A — provision charge permanent at 5.25% of revenue')
 dcf_B = run_dcf(ebit_B, ebitda_B, 'Frame B — provision charge normalising to 2.5% of revenue')
 
-# ROIC consistency: the terminal reinvestment rate must not assume a return the
-# model's own final forecast year does not earn.
-ic_fy30 = ppe[-1] + cip[-1] + wc[-1] + V['intang_fy25']
-roic_fy30_A = ebit_A[-1] * (1 - TAX) / ic_fy30
-roic_fy30_B = ebit_B[-1] * (1 - TAX) / ic_fy30
+# ROIC consistency: the terminal reinvestment rate is now SET BY the model's own final
+# forecast year rather than checked against it.
+roic_fy30_A, roic_fy30_B = dcf_A['roic_term'], dcf_B['roic_term']
 say('')
-say(f"[Terminal consistency] terminal reinvestment is growth {V['g_term']:.0%} divided by a "
-    f"terminal return on invested capital of {V['roic_term']:.0%}, i.e. "
-    f"{dcf_A['reinvest_rate']:.0%} of terminal operating profit after tax reinvested. The "
-    f"model's own FY2030E return on invested capital is {roic_fy30_A:.1%} on Frame A and "
-    f"{roic_fy30_B:.1%} on Frame B, so the terminal assumption is not richer than the forecast "
-    f"that leads into it.")
-assert V['roic_term'] <= max(roic_fy30_A, roic_fy30_B) + 0.02, \
-    'terminal ROIC richer than the forecast that leads into it'
+say(f"[Terminal consistency] terminal reinvestment is growth {V['g_term']:.0%} divided by the "
+    f"model's OWN FY2030E return on invested capital — {roic_fy30_A:.2%} on Frame A and "
+    f"{roic_fy30_B:.2%} on Frame B — so {dcf_A['reinvest_rate']:.1%} of terminal operating "
+    f"profit after tax is reinvested on Frame A. There is no terminal return assumption left "
+    f"to make. The earlier edition asserted 20% here, a {(0.20 - roic_fy30_A) * 1e4:.0f} "
+    f"basis-point step above the last forecast year, taken at exactly the point where three "
+    f"quarters of core enterprise value sits.")
+say(f"  The terminal year is also charged the depreciation the forecast never charged: "
+    f"{cip[-1]:,.0f} million of construction is still parked at FY2030E and has never entered "
+    f"the depreciable base, so at the model's own {V['dep_rate']:.1%} rate a further "
+    f"{term_dep_catchup:,.0f} million a year is deducted before the perpetuity is struck. A "
+    f"steady state cannot capitalise profit on capital it never charges.")
 for d in (dcf_A, dcf_B):
     assert abs((d['ev_total'] - d['net_debt'] - d['nci']) - d['equity']) < 1e-6, 'bridge open'
     assert 0.0 < d['tv_share'] < 0.95, f"terminal share implausible: {d['tv_share']:.2f}"
-say(f"[Terminal weight] the terminal value is {dcf_A['tv_share']:.0%} of core enterprise value "
-    f"on Frame A and {dcf_B['tv_share']:.0%} on Frame B. That is high, as it is for any "
-    f"growing manufacturer discounted over five explicit years, and it is stated in the "
-    f"valuation summary and in the enterprise-to-equity bridge rather than buried.")
+    assert abs(d['reinvest_rate'] - V['g_term'] / d['roic_term']) < 1e-12, 'reinvestment open'
+say(f"[Terminal weight] the terminal value is {dcf_A['tv_share']:.0%} of CORE enterprise value "
+    f"on Frame A and {dcf_B['tv_share']:.0%} on Frame B — {dcf_A['tv_share_total']:.0%} and "
+    f"{dcf_B['tv_share_total']:.0%} of TOTAL enterprise value, which carries the associates and "
+    f"the assets held for sale as well. Both readings are published; the earlier edition "
+    f"dropped the word 'core' outside the workbook, which made the concentration look higher "
+    f"than the whole bridge supports. It is high either way, as it is for any growing "
+    f"manufacturer discounted over five explicit years, and the terminal grid in the "
+    f"sensitivity section runs the whole range rather than quoting a comfortable part of it.")
+say(f"  The terminal DEBT WEIGHT is derived, not asserted. Today's market-value net-debt weight "
+    f"is {wd_term_market:.1%}; the forecast balance sheet, once funded, carries a book net-debt "
+    f"weight of {wd_term_book:.1%} at FY2030E. The valuation uses the market-value reading, "
+    f"{wd_term:.1%}, because a weighted average cost of capital weights market values; the book "
+    f"reading gives a terminal rate of {wacc_term_alt:.2%} against {wacc_term:.2%} and is "
+    f"published beside it. The earlier edition used 20%, which is neither reading, and said it "
+    f"was reconciled to a balance sheet that did not balance.")
 
 # ============================ OTHER LENSES ====================================
 # --- book value and sustainable return ---------------------------------------
 bv_ps = V['equity_parent_fy25'] / V['shares_mn']
 roe_fy25 = V['parent_fy25'] / ((V['equity_parent_fy25'] + V['equity_parent_fy24']) / 2)
 roe_fy24 = V['parent_fy24'] / ((V['equity_parent_fy24'] + V['equity_parent_fy23']) / 2)
-roe_sust = 0.235          # set below from the forecast, then asserted
-roe_fwd = [None] * n
-eq_b = V['equity_parent_fy25']
-eq_path = []
-for i in range(n):
-    # Associate income arrives ALREADY TAXED — the equity method takes the group's share of
-    # the associate's post-tax profit, and the disclosed figure is already net of withholding.
-    # Taxing it again inside this chain would understate attributable profit.
-    pat = ((ebit_A[i] - V['int_path'][i]) * (1 - V['tax_eff_fwd'])
-           + V['assoc_norm'] - NCI_FWD)
-    eq_n = eq_b + pat * (1 - V['payout'])
-    roe_fwd[i] = pat / ((eq_b + eq_n) / 2)
-    eq_path.append(eq_n)
-    eq_b = eq_n
-roe_sust = float(np.mean(roe_fwd[-3:]))
 just_pb = (roe_sust - V['g_term']) / (ke_term - V['g_term'])
 book_ps = just_pb * bv_ps
 # The same sustainable return, expressed as an earnings multiple: retention must
@@ -1125,10 +1284,16 @@ payout_implied = 1 - V['g_term'] / roe_sust
 just_fwd_pe = payout_implied / (ke_term - V['g_term'])
 say('')
 say(f"[Book value and sustainable return] book value per share {bv_ps:,.2f}. Return on average "
-    f"equity was {roe_fy24:.1%} in FY2024 and {roe_fy25:.1%} in FY2025; the forecast settles at "
-    f"{roe_sust:.1%}. A sustainable-return multiple of (return {roe_sust:.1%} less growth "
-    f"{V['g_term']:.0%}) over (perpetual cost of equity {ke_term:.2%} less growth) is "
-    f"{just_pb:.2f} times book, or {book_ps:,.2f} a share.")
+    f"equity was {roe_fy24:.1%} in FY2024 and {roe_fy25:.1%} in FY2025. The forecast path is "
+    + ' / '.join(f'{r:.1%}' for r in roe_fwd) +
+    f" — it RISES THROUGH the window rather than settling, so the sustainable return used here "
+    f"is the MEAN OF ITS LAST THREE YEARS, {roe_sust:.2%}, computed from that path and not "
+    f"asserted. (The earlier edition described the same number as the level the forecast "
+    f"'settles at', which the path does not do.) A sustainable-return multiple of (return "
+    f"{roe_sust:.1%} less growth {V['g_term']:.0%}) over (perpetual cost of equity "
+    f"{ke_term:.2%} less growth) is {just_pb:.3f} times book, or {book_ps:,.2f} a share. Every "
+    f"term in that multiple is live: change beta, the terminal risk-free rate, the terminal "
+    f"premium or growth and the lens moves.")
 
 # --- relative multiples: the company's OWN traded history first ---------------
 import glob as _glob
@@ -1142,13 +1307,22 @@ own_hist = []
 for yr, parent, sh in ((2022, V['parent_fy22'], 99.170500),
                        (2023, V['parent_fy23'], 148.755750),
                        (2024, V['parent_fy24'], 148.755750),
-                       (2025, V['parent_fy25'], 168.755750)):
+                       (2025, V['parent_fy25'], V['wavg_shares_fy25'])):
     close = float(_px[_px.index <= f'{yr}-12-31'].iloc[-1])
     own_hist.append(dict(year=yr, close=close, shares=sh, eps=parent / sh,
                          pe=close * sh / parent))
 own_pe_mean = float(np.mean([o['pe'] for o in own_hist]))
-eps_ttm = V['parent_fy25'] / V['shares_mn']
+# TWO SHARE COUNTS, BOTH PUBLISHED. The capital increase from 148.755750 to 168.755750 million
+# shares completed during FY2025, so the audited weighted-average count for that year is
+# 162.016024 million while the count in issue at the year end — and today — is 168.755750
+# million. The earlier edition carried the closing count in one sheet and the weighted average
+# in another without saying so. Per-period consistency: a multiple struck on a FULL YEAR of
+# earnings uses that year's WEIGHTED-AVERAGE count; a multiple struck on today's price uses
+# the count in issue today.
+eps_ttm = V['parent_fy25'] / V['shares_mn']                 # count in issue today
+eps_ttm_wavg = V['parent_fy25'] / V['wavg_shares_fy25']     # audited weighted average
 pe_now = V['spot'] / eps_ttm
+pe_now_wavg = V['spot'] / eps_ttm_wavg
 ev_now = mcap + net_debt + V['nci_bridge']
 evebitda_now = ev_now / hist['FY2025']['ebitda']
 # forward relative: FY2027E attributable earnings, both frames
@@ -1166,32 +1340,53 @@ eps_27_A, eps_27_B = fwd_eps(ebit_A, 1), fwd_eps(ebit_B, 1)
 #       do not face.
 eps_fwd = (eps_26_A + eps_26_B) / 2
 peer_adj_pe = V['peer_pe_regional'] * (0.10 - 0.05) / (ke_term - V['g_term'])
-tri = [('Justified forward multiple from this model', just_fwd_pe, just_fwd_pe * eps_fwd),
-       ("The company's own four-year mean multiple", own_pe_mean, own_pe_mean * eps_fwd),
-       ('Regional peer median, cost-of-equity adjusted', peer_adj_pe, peer_adj_pe * eps_fwd)]
+# PERIOD-MATCHED. A TRAILING multiple multiplies TRAILING earnings; a FORWARD multiple
+# multiplies FORWARD earnings. The earlier edition applied all three legs to FY2026E earnings,
+# including the two built from trailing multiples — and because FY2026E earnings are BELOW
+# trailing on the depreciation and interest step, that mismatch understated the lens.
+tri = [('Justified forward multiple from this model, on FY2026E earnings',
+        just_fwd_pe, just_fwd_pe * eps_fwd),
+       ("The company's own four-year mean multiple, on trailing earnings",
+        own_pe_mean, own_pe_mean * eps_ttm),
+       ('Struck peer reference, cost-of-equity adjusted, on trailing earnings',
+        peer_adj_pe, peer_adj_pe * eps_ttm)]
 rel_ps = float(np.mean([t[2] for t in tri]))
 rel_lo, rel_hi = min(t[2] for t in tri), max(t[2] for t in tri)
-rel_peer_unadjusted = V['peer_pe_regional'] * eps_fwd
+rel_peer_unadjusted = V['peer_pe_regional'] * eps_ttm
 say('')
 say(f"[Relative multiples] the company's OWN traded history is computable entirely from primary "
     f"material — year-end closes against audited attributable profit: " +
     ', '.join(f"{o['pe']:.1f} times ({o['year']})" for o in own_hist) +
-    f", a four-year mean of {own_pe_mean:.1f}. At {V['spot']:,.2f} the shares trade on "
-    f"{pe_now:.1f} times trailing attributable earnings and {evebitda_now:.1f} times trailing "
-    f"EBITDA. The re-rating is the single most important fact about this share price: the "
-    f"earnings multiple has more than doubled against its own four-year history.")
-say(f"  The lens triangulates three multiples rather than asserting one. (1) The multiple this "
-    f"model's own economics justify: retention must equal growth {V['g_term']:.0%} over "
-    f"sustainable return {roe_sust:.1%}, so the payout the multiple can assume is "
-    f"{payout_implied:.0%}, and {payout_implied:.0%} over (perpetual cost of equity "
-    f"{ke_term:.2%} less growth) is {just_fwd_pe:.1f} times. (2) The company's own four-year "
-    f"mean, {own_pe_mean:.1f} times. (3) A regional peer median of "
-    f"{V['peer_pe_regional']:.1f} times — but those peers are Gulf-listed and face a cost of "
-    f"equity near 10%, not {ke_term:.1%}; adjusted for that single difference the same median "
-    f"implies {peer_adj_pe:.1f} times. Averaged on {eps_fwd:,.2f} of FY2026E attributable "
-    f"earnings a share: {rel_ps:,.2f}. Left unadjusted, the peer median alone would give "
+    f", a four-year mean of {own_pe_mean:.1f}. Each year divides that year's audited "
+    f"attributable profit by that year's WEIGHTED-AVERAGE share count, so the FY2025 reading "
+    f"uses {V['wavg_shares_fy25']:.3f} million shares rather than the "
+    f"{V['shares_mn']:.3f} million now in issue — the capital increase completed during that "
+    f"year. At {V['spot']:,.2f} the shares trade on {pe_now:.1f} times trailing attributable "
+    f"earnings measured on the count in issue today, or {pe_now_wavg:.1f} times on the audited "
+    f"weighted average; both readings are legitimate and both are published. The shares also "
+    f"trade on {evebitda_now:.1f} times trailing EBITDA. The re-rating is the single most "
+    f"important fact about this share price: the earnings multiple has more than doubled "
+    f"against its own four-year history.")
+say(f"  The lens triangulates three multiples rather than asserting one, and EACH IS APPLIED TO "
+    f"THE EARNINGS OF ITS OWN PERIOD. (1) The forward multiple this model's own economics "
+    f"justify: retention must equal growth {V['g_term']:.0%} over sustainable return "
+    f"{roe_sust:.1%}, so the payout the multiple can assume is {payout_implied:.0%}, and "
+    f"{payout_implied:.0%} over (perpetual cost of equity {ke_term:.2%} less growth) is "
+    f"{just_fwd_pe:.2f} times — applied to {eps_fwd:,.2f} of FY2026E earnings a share. (2) The "
+    f"company's own four-year mean, {own_pe_mean:.2f} times, a TRAILING multiple applied to "
+    f"{eps_ttm:,.2f} of trailing earnings. (3) A struck reference of "
+    f"{V['peer_pe_regional']:.2f} times — the midpoint of the only two comparable observations "
+    f"available, 26.7 times for a listed Saudi Arabian generics manufacturer and about 16 "
+    f"times for larger international generic manufacturers, and NOT a median of a disclosed "
+    f"peer set — but those companies are Gulf-listed and face a cost of equity near 10%, not "
+    f"{ke_term:.1%}; adjusted for that single difference the same reference implies "
+    f"{peer_adj_pe:.2f} times, also on trailing earnings. The three give "
+    + ' / '.join(f'{t[2]:,.2f}' for t in tri) +
+    f", averaging {rel_ps:,.2f}. Left unadjusted, the struck reference alone would give "
     f"{rel_peer_unadjusted:,.2f} — the size of that gap IS the country-risk discount, and it is "
-    f"shown rather than hidden inside a chosen multiple.")
+    f"shown rather than hidden inside a chosen multiple. The peers are not named and their "
+    f"financials are not published, so this third leg cannot be rebuilt from peer filings; that "
+    f"is a stated limitation of the leg, not a hidden one.")
 
 # --- normalised earnings power -------------------------------------------------
 norm_margin = float(np.mean([hist[k]['ebit_margin'] for k in ('FY2023', 'FY2024', 'FY2025')]))
@@ -1211,24 +1406,62 @@ say(f"[Normalised earnings power] the three-year average operating margin is {no
     f"{ke:.2%} in a perpetuity would be a category error — a steady-state multiple takes a "
     f"steady-state rate.")
 
-# --- synthesis: four lenses, one field ------------------------------------------
-lenses = [
-    dict(name='Discounted cash flow — Frame A', value=dcf_A['per_share'], weight=0.25),
-    dict(name='Discounted cash flow — Frame B', value=dcf_B['per_share'], weight=0.25),
+# --- synthesis: TWO centres, one for each reading of the contested judgement ------
+# The contested judgement is the provision charge, and this study's standing rule is that its
+# two readings are never averaged into one number. The earlier edition broke that rule with
+# its own headline: weighting Frame A and Frame B at 0.25 each IS a straight average of them,
+# and it supplied a majority of the single centre published. There is no single centre now.
+# Each frame carries the DCF weight in full, alongside the three lenses that do not depend on
+# which reading is right, and the answer is published as a pair.
+shared_lenses = [
     dict(name='Book value and sustainable return', value=book_ps, weight=0.20),
     dict(name='Relative multiples', value=rel_ps, weight=0.15),
     dict(name='Normalised earnings power', value=norm_ps, weight=0.15),
 ]
-fair_base = sum(l['value'] * l['weight'] for l in lenses)
-vals = [l['value'] for l in lenses]
+W_DCF = 0.50
+
+
+def weighted_centre(dcf_ps):
+    return W_DCF * dcf_ps + sum(l['value'] * l['weight'] for l in shared_lenses)
+
+
+centre_A = weighted_centre(dcf_A['per_share'])
+centre_B = weighted_centre(dcf_B['per_share'])
+lenses_A = [dict(name='Discounted cash flow — Frame A', value=dcf_A['per_share'],
+                 weight=W_DCF)] + shared_lenses
+lenses_B = [dict(name='Discounted cash flow — Frame B', value=dcf_B['per_share'],
+                 weight=W_DCF)] + shared_lenses
+assert abs(sum(l['weight'] for l in lenses_A) - 1.0) < 1e-12, 'weights do not sum to one'
+vals = [dcf_A['per_share'], dcf_B['per_share'], book_ps, rel_ps, norm_ps]
 fair_bear, fair_bull = min(vals), max(vals)
 say('')
-say(f"[Synthesis] four lenses, one field: " +
-    ' · '.join(f"{l['name']} {l['value']:,.2f}" for l in lenses) +
-    f". Weighted centre {fair_base:,.2f}; the field runs {fair_bear:,.2f} to {fair_bull:,.2f} "
-    f"against a {V['spot']:,.2f} market price.")
+say(f"[Synthesis] TWO centres, not one. The three lenses that do not turn on the contested "
+    f"judgement are " +
+    ' · '.join(f"{l['name']} {l['value']:,.2f}" for l in shared_lenses) +
+    f". Carrying them beside Frame A gives a weighted centre of {centre_A:,.2f}; beside Frame B, "
+    f"{centre_B:,.2f}. The two frames are NOT averaged into a single number — that is the "
+    f"study's standing rule and the earlier edition's single centre of 66.57 broke it, because "
+    f"weighting both frames at a quarter each is a straight average of them. The field across "
+    f"all five readings runs {fair_bear:,.2f} to {fair_bull:,.2f} against a {V['spot']:,.2f} "
+    f"market price.")
 
 # ============================ SENSITIVITY =====================================
+# The ramp the reverse valuation puts the incremental revenue on. PUBLISHED, because the
+# answer it produces is meaningless without it: a hurdle placed entirely in the terminal year
+# is a different — and easier — hurdle than the same total reached along a path.
+CRUX_RAMP = [0.0, 0.10, 0.30, 0.60, 1.00]
+
+# The provision charge, read every way the disclosed statements allow. Computed here so no
+# reading of it is quoted from prose.
+_prov_hist = [(V['prov_fy23'], V['rev_fy23']), (V['prov_fy24'], V['rev_fy24']),
+              (V['prov_fy25'], V['rev_fy25'])]
+_ecl_hist = [(39.0, V['rev_fy23']), (330.0, V['rev_fy24']), (376.158, V['rev_fy25'])]
+PROV_3YR_MEAN = float(np.mean([p / r for p, r in _prov_hist]))
+PROV_ECL_3YR_MEAN = float(np.mean([p / r for p, r in _ecl_hist]))
+PROV_2YR_MEAN = float(np.mean([_prov_hist[0][0] / _prov_hist[0][1],
+                               _prov_hist[2][0] / _prov_hist[2][1]]))
+
+
 def dcf_at(wacc_shift=0.0, g=None, beta_override=None, prov_pct=None, fx_scale=1.0,
            dom_vol_shift=0.0, dep_rate=None, extra_rev_fy30=0.0, extra_margin=0.45):
     """extra_rev_fy30 is an ADDITIONAL revenue line reaching that level by FY2030E on a
@@ -1239,7 +1472,7 @@ def dcf_at(wacc_shift=0.0, g=None, beta_override=None, prov_pct=None, fx_scale=1
     ke_ = rf_star + b * V['erp_cds'] + wacc_shift
     ket_ = V['rf_term'] + b * V['erp_term'] + wacc_shift
     w0 = we_net * ke_ + wd_net * kd_at
-    wt = (1 - V['wd_term']) * ket_ + V['wd_term'] * kd_term_at
+    wt = (1 - wd_term) * ket_ + wd_term * kd_term_at
     dr = [wt + (w0 - wt) * glide_frac[i] for i in range(n)]
     d_, a_ = [], 1.0
     for i in range(n):
@@ -1276,14 +1509,21 @@ def dcf_at(wacc_shift=0.0, g=None, beta_override=None, prov_pct=None, fx_scale=1
         dd = dr_rate * (ppe_b_ + tr / 2.0)
         ppe_b_ = ppe_b_ + tr - dd; cip_b_ = cip_b_ + cap_[i] - tr
         dep_.append(dd)
+    cip_close_ = cip_b_
     dna_ = [dep_[i] + amort[i] for i in range(n)]
     pv_pct = V['prov_pct_permanent'] if prov_pct is None else prov_pct
-    ramp = [0.0, 0.10, 0.30, 0.60, 1.00]
-    xrev = [extra_rev_fy30 * ramp[i] for i in range(n)]
+    xrev = [extra_rev_fy30 * r for r in CRUX_RAMP]
     ebit_ = [rev_[i] - cog_[i] - rev_[i] * (V['mkt_pct'][i] + V['rnd_pct'][i] + V['ga_pct'][i])
              - rev_[i] * pv_pct - dna_[i] - BOARD_FEE + xrev[i] * extra_margin
              for i in range(n)]
     rev_ = [rev_[i] + xrev[i] for i in range(n)]
+    # ANY INCREMENTAL REVENUE IS CHARGED THE SAME REINVESTMENT IDENTITY AS THE EXISTING
+    # BUSINESS: capital expenditure at the same share of revenue, and working capital on the
+    # same day ratios applied to its own revenue and its own cost of sales. The earlier
+    # edition let the incremental revenue arrive free of both, which made the hurdle the
+    # market's price implies look easier than the model's own discipline requires.
+    cap_ = [cap_[i] + xrev[i] * V['capex_pct'][i] for i in range(n)]
+    cog_ = [cog_[i] + xrev[i] * (1 - extra_margin) for i in range(n)]
     cogs_full_ = [cog_[i] + dna_[i] * DEP_COGS_SHARE for i in range(n)]
     inv_ = [cogs_full_[i] * V['dio'][i] / 365 for i in range(n)]
     ar_ = [rev_[i] * V['dso'][i] / 365 for i in range(n)]
@@ -1292,10 +1532,13 @@ def dcf_at(wacc_shift=0.0, g=None, beta_override=None, prov_pct=None, fx_scale=1
     oc_ = [V['othcr_fy25'] * rev_[i] / V['rev_fy25'] for i in range(n)]
     wc_ = [inv_[i] + ar_[i] + od_[i] - ap_[i] - oc_[i] for i in range(n)]
     dwc_ = [wc_[0] - wc0] + [wc_[i] - wc_[i - 1] for i in range(1, n)]
-    fc = [ebit_[i] * (1 - TAX) + dna_[i] - cap_[i] - dwc_[i] for i in range(n)]
+    fc = [ebit_[i] * (1 - TAX_FCFF) + dna_[i] - cap_[i] - dwc_[i] for i in range(n)]
     pvs = sum(fc[i] * d_[i] for i in range(n))
-    nt = ebit_[-1] * (1 - TAX) * (1 + g)
-    tv_ = nt * (1 - g / V['roic_term']) / (wt - g)
+    ic_ = ppe_b_ + cip_b_ + wc_[-1] + V['intang_fy25']
+    roic_ = ebit_[-1] * (1 - TAX_FCFF) / ic_
+    nt = (ebit_[-1] * (1 - TAX_FCFF) * (1 + g)
+          - cip_close_ * dr_rate * (1 - TAX_FCFF))
+    tv_ = nt * (1 - g / roic_) / (wt - g)
     ev_ = (pvs + tv_ * d_[-1] + V['assoc_norm'] * V['assoc_multiple'] + V['arab_api_cost']
            + V['afs_fy25'])
     return (ev_ - net_debt - V['nci_bridge']) / V['shares_mn']
@@ -1314,6 +1557,16 @@ sens = dict(
     volume=[(s, dcf_at(dom_vol_shift=s)) for s in (-0.04, -0.02, 0.0, 0.02, 0.04)],
     dep=[(d, dcf_at(dep_rate=d)) for d in (0.045, 0.055, 0.062, 0.070, 0.080)],
 )
+# The three readings of the provision charge that anyone auditing this study will ask for,
+# published together rather than argued about: the level carried, the mean of the three
+# disclosed years, and the expected-credit-loss component alone.
+PROV_READINGS = [
+    ('Carried — struck above the two non-outlier years', V['prov_pct_permanent']),
+    ('Mean of the three disclosed years, including the FY2024 spike', PROV_3YR_MEAN),
+    ('Expected-credit-loss component alone, three-year mean', PROV_ECL_3YR_MEAN),
+    ('The two non-outlier years, FY2023 and FY2025', PROV_2YR_MEAN),
+]
+prov_readings = [(name, p, dcf_at(prov_pct=p)) for name, p in PROV_READINGS]
 grid = [[dcf_at(wacc_shift=w, g=g) for g in (0.03, 0.04, 0.05, 0.06, 0.07)]
         for w in (-0.02, -0.01, 0.0, 0.01, 0.02)]
 
@@ -1351,6 +1604,15 @@ say(f"[The crux] the base build charges the new biologicals facility's depreciat
     f"{crux['required_rev_usd_mn']:,.0f} million a year — {crux['asset_turn']:.2f} times the "
     f"USD 100 million the company says it invested in the plant. That number is observable: it "
     f"is testable against the first year the company discloses biosimilar revenue.")
+say(f"  Two things that must be published for that hurdle to be auditable, and were not before. "
+    f"THE RAMP: the incremental revenue is not dropped into the final year, it is phased "
+    + ' / '.join(f'{r:.0%}' for r in CRUX_RAMP) +
+    f" across FY2026E-FY2030E, and the same total placed entirely in FY2030E would be a lower "
+    f"and easier hurdle. THE REINVESTMENT: the incremental revenue is charged capital "
+    f"expenditure at the same share of revenue as the existing business and working capital on "
+    f"the same day ratios, so it faces the identical reinvestment discipline. The earlier "
+    f"edition let it arrive free of both and published a hurdle of about USD 115 million; "
+    f"charged properly it is USD {crux['required_rev_usd_mn']:,.0f} million.")
 
 # ============================ OUTPUT ==========================================
 step0 = json.load(open(os.path.join(HERE, 'step0_result.json')))
@@ -1388,7 +1650,14 @@ OUT = dict(
                   dna=dna, dep=dep, amort=amort, capex=capex, ppe=ppe, cip=cip,
                   inventory=inv_f, receivables=ar_f, payables=ap_f, other_dr=othdr_f,
                   other_cr=othcr_f, wc=wc, dwc=dwc, wc0=wc0, equity=eq_path, roe=roe_fwd,
-                  esc_trace=esc_trace, board_fee=BOARD_FEE, nci_fwd=NCI_FWD),
+                  esc_trace=esc_trace, board_fee=BOARD_FEE, nci_fwd=NCI_FWD,
+                  parent=parent_path, retained=retained_path,
+                  eps=[p / V['shares_mn'] for p in parent_path],
+                  cash=cash_f, debt=debt_f, net_debt=net_debt_f, assets=assets_f,
+                  oth_nc=OTH_NC_FWD, ptx=PTX_FWD, bs_gap_frozen=bs_gap_old,
+                  int_rate_implied=[V['int_path'][i]
+                                    / ((debt_f[i] + (gross_debt_open if i == 0 else debt_f[i-1])) / 2)
+                                    for i in range(n)]),
     wacc=dict(rf=V['rf'], sov_spread_cds=V['sov_spread_cds'], rf_star=rf_star, beta=V['beta'],
               erp_cds=V['erp_cds'], ke=ke, ke_rating=ke_rating,
               ke_double_counted_retired=ke_double_counted,
@@ -1401,9 +1670,14 @@ OUT = dict(
               wacc0=wacc0, wacc0_gross=wacc0_gross,
               ke_term=ke_term, kd_term=kd_term, kd_term_at=kd_term_at, wacc_term=wacc_term,
               glide_frac=glide_frac, disc_rate=disc_rate, df=df, kd_path=kdp,
+              wd_term=wd_term, wd_term_market=wd_term_market, wd_term_book=wd_term_book,
+              wacc_term_book_basis=wacc_term_alt, tax_fcff=TAX_FCFF, tax_stat=TAX,
+              crp_rating=V['crp_rating'], crp_cds=V['crp_cds'],
               beta_regression=beta_res),
     dcf=dict(frame_A=dcf_A, frame_B=dcf_B),
-    lenses=dict(items=lenses, fair_base=fair_base, fair_bear=fair_bear, fair_bull=fair_bull,
+    lenses=dict(items_A=lenses_A, items_B=lenses_B, shared=shared_lenses, w_dcf=W_DCF,
+                centre_A=centre_A, centre_B=centre_B,
+                fair_bear=fair_bear, fair_bull=fair_bull,
                 book_ps=book_ps, bv_ps=bv_ps, just_pb=just_pb, roe_sust=roe_sust,
                 roe_fy24=roe_fy24, roe_fy25=roe_fy25,
                 rel_ps=rel_ps, rel_lo=rel_lo, rel_hi=rel_hi,
@@ -1412,13 +1686,26 @@ OUT = dict(
                 peer_adj_pe=peer_adj_pe, payout_implied=payout_implied,
                 eps_26_A=eps_26_A, eps_26_B=eps_26_B, eps_fwd=eps_fwd,
                 own_pe_history=own_hist, own_pe_mean=own_pe_mean, pe_now=pe_now,
+                pe_now_wavg=pe_now_wavg, eps_ttm_wavg=eps_ttm_wavg,
                 evebitda_now=evebitda_now, eps_ttm=eps_ttm, eps_27_A=eps_27_A,
                 eps_27_B=eps_27_B, norm_ps=norm_ps, norm_margin=norm_margin,
                 norm_pat_ps=norm_pat / V['shares_mn']),
     sensitivity=dict(**{k: [[float(a), float(b)] for a, b in v] for k, v in sens.items()},
                      grid=grid, grid_wacc=[-0.02, -0.01, 0.0, 0.01, 0.02],
-                     grid_g=[0.03, 0.04, 0.05, 0.06, 0.07]),
+                     grid_g=[0.03, 0.04, 0.05, 0.06, 0.07],
+                     grid_lo=float(min(min(r) for r in grid)),
+                     grid_hi=float(max(max(r) for r in grid)),
+                     prov_readings=[[a, float(b), float(c)] for a, b, c in prov_readings],
+                     prov_3yr_mean=PROV_3YR_MEAN, prov_ecl_3yr_mean=PROV_ECL_3YR_MEAN,
+                     prov_2yr_mean=PROV_2YR_MEAN),
     crux=crux,
+    crux_ramp=CRUX_RAMP,
+    cost_exposure=dict(fx_cost_share=fx_cost_share,
+                       fx_cost_share_if_all_packaging_imported=fx_cost_share_all_packaging,
+                       fx_cost_share_full_stack=fx_cost_share_full,
+                       fx_cost_share_full_stack_if_all_packaging=fx_cost_share_full_all_pack,
+                       materials_share=cs['materials'], packaging_share=cs['packaging'],
+                       packaging_import_share=V['esc_packaging_import_share']),
     working_capital=dict(dio_fy25=dio0, dso_fy25=dso0, dpo_fy25=dpo0,
                          ccc_fy25=dio0 + dso0 - dpo0),
     calibration=dict(step0=step0, backtest=bt5),
@@ -1429,5 +1716,5 @@ _out_path = os.environ.get('PHAR_OUT', os.path.join(HERE, 'study_numbers.json'))
 with open(_out_path, 'w') as f:
     json.dump(OUT, f, indent=1, default=float)
 print('\nwrote study_numbers.json')
-print(f"FAIR VALUE FIELD  bear {fair_bear:,.2f} · centre {fair_base:,.2f} · bull {fair_bull:,.2f} "
-      f"| spot {V['spot']:,.2f}")
+print(f"FAIR VALUE FIELD  bear {fair_bear:,.2f} · centre A {centre_A:,.2f} · centre B "
+      f"{centre_B:,.2f} · bull {fair_bull:,.2f} | spot {V['spot']:,.2f}")

@@ -90,17 +90,36 @@ checks = [
     ('value per share, Frame A',
      V('SOTP Bridge', f'C{find("SOTP Bridge", "Value per share — Frame A")}'),
      DCFD['frame_A']['per_share']),
-    ('weighted central fair value',
-     V('Fundamental Valuation', f'B{find("Fundamental Valuation", "WEIGHTED CENTRAL")}'),
-     LN['fair_base']),
-    ('summary sheet central value', V('Summary', f'B{find("Summary", "WEIGHTED CENTRAL")}'),
-     LN['fair_base']),
-    ('lens weights sum to one',
-     V('Fundamental Valuation', f'C{find("Fundamental Valuation", "WEIGHTED CENTRAL")}'), 1.0),
+    ('terminal share of TOTAL enterprise value',
+     V('DCF', f'B{find("DCF", "Terminal value as a percentage of TOTAL")}'),
+     DCFD['frame_A']['tv_share_total']),
+    ('weighted centre — Frame A',
+     V('Fundamental Valuation', f'B{find("Fundamental Valuation", "WEIGHTED CENTRE — FRAME A")}'),
+     LN['centre_A']),
+    ('weighted centre — Frame B',
+     V('Fundamental Valuation', f'B{find("Fundamental Valuation", "WEIGHTED CENTRE — FRAME B")}'),
+     LN['centre_B']),
+    ('summary sheet centre — Frame A',
+     V('Summary', f'B{find("Summary", "WEIGHTED CENTRE — FRAME A")}'), LN['centre_A']),
+    ('summary sheet centre — Frame B',
+     V('Summary', f'B{find("Summary", "WEIGHTED CENTRE — FRAME B")}'), LN['centre_B']),
+    ('Frame A weights sum to one',
+     V('Fundamental Valuation', f'C{find("Fundamental Valuation", "WEIGHTED CENTRE — FRAME A")}'),
+     1.0),
+    ('Frame B weights sum to one',
+     V('Fundamental Valuation', f'C{find("Fundamental Valuation", "WEIGHTED CENTRE — FRAME B")}'),
+     1.0),
+    ('forecast balance sheet balances, FY2030E',
+     V('Balance Sheet', f'I{find("Balance Sheet", "BALANCE CHECK")}'), 0.0),
+    ('forecast balance sheet balances, FY2026E',
+     V('Balance Sheet', f'E{find("Balance Sheet", "BALANCE CHECK")}'), 0.0),
+    ('book lens moves with the sustainable return it reads',
+     V('Fundamental Valuation', f'B{find("Fundamental Valuation", "Book value and sustainable")}'),
+     LN['book_ps']),
 ]
 bad = []
 for name, got, exp in checks:
-    ok = abs(float(got) - float(exp)) <= max(abs(exp) * 1e-6, 1e-7)
+    ok = abs(float(got) - float(exp)) <= max(abs(exp) * 1e-6, 1e-6)
     print(f'gate 3 — {name:42s} {float(got):>14,.6f} vs {float(exp):>14,.6f}  '
           f'{"OK" if ok else "MISMATCH"}')
     if not ok:

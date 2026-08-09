@@ -57,9 +57,9 @@ CASES = [
     ('Export price per pack growth', f'C{row_of("Export price per pack growth")}', 1.50, +1,
      'price straight to the margin'),
     ('Exchange rate, year one', f'C{row_of("Exchange rate (EGP per USD")}', 1.10, -1,
-     'a WEAKER pound raises export revenue but ALSO raises the imported ingredient and '
-     'packaging cost, which is 79% of the cash cost stack against a 32% export share — the '
-     'cost side dominates, so the net effect is negative'),
+     'a WEAKER pound raises export revenue but ALSO raises the imported ingredient and the '
+     'imported SHARE of the packaging cost, 68.4% of the disclosed cost stack against a 32% '
+     'export share — the cost side dominates, so the net effect is negative'),
     ('Selling and marketing / revenue', f'C{row_of("Selling and marketing / revenue")}', 1.20,
      -1, 'a bigger cost share'),
     ('Provision charge, Frame A', f'C{row_of("FRAME A")}', 1.30, -1, 'a bigger cost share'),
@@ -85,18 +85,40 @@ CASES = [
      'a higher terminal discount rate against a 74% terminal weight'),
     ('Terminal growth', f'C{row_of("Terminal growth")}', 1.20, +1,
      'growth in the terminal numerator and a smaller denominator'),
-    ('Terminal return on invested capital',
-     f'C{row_of("Terminal return on invested capital")}', 1.30, +1,
-     'less reinvestment needed to buy the same growth'),
+    # Terminal return on invested capital is no longer an input — it is COMPUTED on the DCF
+    # sheet from the model's own FY2030E rows, so there is no cell left to perturb. It is
+    # exercised indirectly by every driver that moves FY2030E operating profit or invested
+    # capital, and directly by the recalculation gate.
+    ('Terminal debt weight', f'C{row_of("Terminal debt weight — DERIVED")}', 1.30, +1,
+     'more weight on the cheaper after-tax debt lowers the terminal discount rate'),
     ('Normalised associate contribution',
      f'C{row_of("Normalised associate contribution")}', 1.30, +1,
      'a bigger addition in the bridge'),
     ('Associate earnings multiple', f'C{row_of("Associate earnings multiple")}', 1.30, +1,
      'a bigger addition in the bridge'),
-    ('Tax rate', f'C{row_of("Corporate income tax rate")}', 1.20, -1,
-     'less cash, partly offset by a bigger interest shield in the cost of capital'),
-    ('Transfers out of construction', f'C{row_of("Transfers out of construction")}', 1.30, -1,
-     'brings the depreciation charge forward'),
+    # The STATUTORY rate no longer taxes free cash flow — the cash-flow engine applies the
+    # EFFECTIVE rate. All the statutory rate now does is size the interest tax shield inside
+    # the after-tax cost of debt, so raising it LOWERS the discount rate and RAISES the value.
+    # The earlier expectation (down) was written when this row taxed the cash flows; it was
+    # the expectation that went stale, not the model.
+    ('Tax rate, statutory — the interest shield only',
+     f'C{row_of("Corporate income tax rate")}', 1.20, +1,
+     'the statutory rate sizes the interest tax shield in the after-tax cost of debt and '
+     'nothing else, so a higher rate lowers the discount rate'),
+    ('Tax rate, effective — what the cash flows bear',
+     f'C{row_of("Effective tax rate on forecast")}', 1.20, -1,
+     'the rate the free-cash-flow engine actually applies: more tax, less cash'),
+    # DECOMPOSED before the expectation was changed. Bringing construction into service
+    # earlier does raise the explicit-year depreciation charge, but depreciation is added back
+    # in free cash flow, so all that reaches the cash flow is the tax shield: +22.5 on the sum
+    # of present values. And it shrinks the balance still parked at FY2030E, which cuts the
+    # terminal depreciation catch-up from 182.7 to 84.2 and lifts the present value of the
+    # terminal block by +21.5 net of the lower FY2030E operating profit. Both legs point the
+    # same way. The old expectation (down) was written when the terminal block did not charge
+    # the parked balance at all; it was the EXPECTATION that went stale, not the model.
+    ('Transfers out of construction', f'C{row_of("Transfers out of construction")}', 1.30, +1,
+     'the explicit-year tax shield on higher depreciation, plus a smaller never-depreciated '
+     'balance left parked at FY2030E for the terminal block to charge'),
     ('Gross borrowings', f'C{row_of("Gross borrowings including leases")}', 1.20, -1,
      'more debt to subtract in the bridge'),
     ('Cash', f'C{row_of("Cash and bank balances")}', 1.50, +1, 'less net debt to subtract'),
@@ -118,7 +140,7 @@ results, failures = [], []
 CENTRAL = None
 for row in wb['Fundamental Valuation'].iter_rows(min_col=1, max_col=1):
     for cc in row:
-        if isinstance(cc.value, str) and cc.value.startswith('WEIGHTED CENTRAL'):
+        if isinstance(cc.value, str) and cc.value.startswith('WEIGHTED CENTRE — FRAME A'):
             CENTRAL = ('Fundamental Valuation', f'B{cc.row}')
 CENTRAL_BASE = float(xlcalc.Book(wb).cell_value(*CENTRAL))
 
@@ -176,7 +198,12 @@ def rowref(sheet, startswith, col):
 HEADLINES = {
     'value per share, Frame A': HEADLINE,
     'value per share, Frame B': cellref('DCF', 'VALUE PER SHARE ON FRAME B'),
-    'weighted central fair value': cellref('Fundamental Valuation', 'WEIGHTED CENTRAL'),
+    'weighted centre, Frame A': cellref('Fundamental Valuation', 'WEIGHTED CENTRE — FRAME A'),
+    'weighted centre, Frame B': cellref('Fundamental Valuation', 'WEIGHTED CENTRE — FRAME B'),
+    'book value and sustainable return lens':
+        cellref('Fundamental Valuation', 'Book value and sustainable'),
+    'relative multiples lens': cellref('Fundamental Valuation', 'Relative multiples'),
+    'FY2030E gross borrowings': rowref('Balance Sheet', 'Gross borrowings', 'I'),
     'FY2026E earnings per share': rowref('Income Statement', 'Earnings per share', 'E'),
     'FY2030E book value per share': rowref('Balance Sheet', 'Book value per share', 'I'),
     'FY2030E total assets': rowref('Balance Sheet', 'TOTAL ASSETS', 'I'),

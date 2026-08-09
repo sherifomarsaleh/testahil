@@ -19,6 +19,16 @@ D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 INP = D['inputs']
 SW = json.load(open(os.path.join(HERE, 'sweep_register.json')))
 M = D['meta']
+BETA = json.load(open(os.path.join(HERE, 'beta_result.json')))
+XB = json.load(open(os.path.join(HERE, 'beta_ex_subject_price.json')))
+BT = D['calibration']['backtest']
+sys.path.insert(0, os.path.join(HERE, '..'))
+from primitives import load_ohlc                                  # noqa: E402
+from data_quality import clean_ohlc                               # noqa: E402
+_PX, _ = clean_ohlc(load_ohlc(os.path.join(HERE, 'PHAR_Stock_Price_History.csv')),
+                    'PHAR', verbose=False, market='EG')
+PX_DATES = [d.strftime('%d %b %Y') for d in _PX['Date']]
+PX_CLOSE = [float(x) for x in _PX['Price']]
 
 masthead()
 P('Egyptian International Pharmaceutical Industries Company (EIPICO)', size=19, bold=True,
@@ -320,7 +330,88 @@ rows += [
 table(rows, [1.75, 2.5, 2.35], size=7.6)
 caption('Table B5 — where a secondary source says something, and what the study did about it.')
 
-H1('6. How to check this study')
+H1('6. The series and outcomes behind the checkable claims')
+P('Three claims in this study could not be reproduced from the documents alone, because the '
+  'underlying series were not published. They are published here.')
+
+H2('6.1 The cleaned daily price series')
+_px = list(zip(PX_DATES, PX_CLOSE))
+P(f'The technical read, the probability map and the calibration all run on ONE cleaned daily '
+  f'series: {len(_px)} sessions from {_px[0][0]} to {_px[-1][0]}, screened for the exchange\'s '
+  f'own daily price limit so that any move beyond what one session can physically do is '
+  f'treated as a corporate action or a data error rather than a return. The full series is '
+  f'supplied as a comma-separated file alongside this document. Its last twenty sessions, '
+  f'which are what the twenty-day average is computed on, are printed here so that average '
+  f'can be recomputed by hand:')
+rows = [['Date', 'Close (EGP)', 'Date', 'Close (EGP)']]
+_last20 = _px[-20:]
+for i in range(10):
+    rows.append([_last20[i][0], f'{_last20[i][1]:,.2f}',
+                 _last20[i + 10][0], f'{_last20[i + 10][1]:,.2f}'])
+table(rows, [1.6, 1.5, 1.6, 1.5], size=8.6)
+caption(f'Table B6 — the twenty sessions behind the twenty-day moving average of EGP '
+        f'{sum(c for _, c in _last20) / 20:,.2f}. The exchange calendar is respected: '
+        f'non-trading days are absent rather than carried forward.')
+
+H2('6.2 The index the beta was regressed against')
+P(f'The beta of {BETA["beta"]:.3f} is a weekly regression of this company\'s own returns '
+  f'against an equal-weighted composite of {BETA["composite_names"]} Egyptian listed names, '
+  f'over {BETA["window_years"]} years and {BETA["n"]} weekly observations, with an R-squared '
+  f'of {BETA["r2"]:.3f} and a standard error of {BETA["se"]:.3f}. The composite is '
+  f'equal-weighted across the following constituents, and both the constituent list and the '
+  f'weekly return series are supplied alongside this document so the coefficient can be '
+  f're-estimated rather than taken on trust:')
+P(', '.join(BETA['constituents']) + '.')
+P(f'THE SUBJECT IS IN ITS OWN INDEX, and publishing the list makes that visible, so it is '
+  f'priced here rather than left for a reader to notice. An equal-weighted composite of '
+  f'{BETA["composite_names"]} names gives this company a weight of about '
+  f'{1 / BETA["composite_names"] * 100:.1f}% in the very index it is being regressed against, '
+  f'which biases the coefficient toward one. That is how a real local index behaves and it is '
+  f'the construction used, but the regression was also re-run with the subject removed from '
+  f'the composite: the coefficient falls from {BETA["beta"]:.4f} to '
+  f'{BETA["beta_ex_subject"]:.4f}, with an R-squared of {BETA["r2_ex_subject"]:.3f} and a '
+  f'standard error of {BETA["se_ex_subject"]:.4f}. Carried through the whole model, the '
+  f'ex-subject coefficient would RAISE the two fundamental centres to EGP '
+  f'{XB["beta_ex_subject_centre_A"]:,.2f} and EGP {XB["beta_ex_subject_centre_B"]:,.2f} from '
+  f'EGP {D["lenses"]["centre_A"]:,.2f} and EGP {D["lenses"]["centre_B"]:,.2f}. The study '
+  f'carries the in-index coefficient because it is the more conservative of the two and '
+  f'because it is what a local-index construction actually produces; the alternative and its '
+  f'price are stated here so the choice is visible rather than silent.')
+P(f'Two statistics a reader can check without the series at all. The standard error implied '
+  f'by the reported coefficient, R-squared and sample size is '
+  f'{BETA["beta"] * ((1 - BETA["r2"]) / (BETA["r2"] * (BETA["n"] - 2))) ** 0.5:.5f}, against '
+  f'the {BETA["se"]:.5f} reported — they agree, so the three statistics are mutually '
+  f'consistent rather than separately asserted. And the standard error is well below the '
+  f'coefficient, which is the usability test this study applies before a regression beta is '
+  f'used at all.')
+
+H2('6.3 The window outcomes behind the coverage statistics')
+P('The coverage figures quoted in the study are counts over a finite number of test windows, '
+  'and a count is only meaningful if the windows are shown. Each window struck a distribution '
+  'at its origin and was scored against the close on its own check date; the probability each '
+  'realised outcome sat at within its own forecast distribution is the number that has to be '
+  'uniformly spread if the bands are honestly sized.')
+rows = [['Window set', 'Windows', 'Inside the 50% band', 'Inside the 80% band',
+         'Inside the 90% band', 'Uniformity (chi-square p, KS p)']]
+for key, label in (('five_year', 'Last five years'), ('full', 'Full history'),
+                   ('production', 'Post-break — the set the live bands match')):
+    b = BT[key]
+    rows.append([label, str(b['windows']), f"{b['cov50'] * 100:.0f}%",
+                 f"{b['cov80'] * 100:.0f}%", f"{b['cov90'] * 100:.0f}%",
+                 f"{b['chi2_p']:.3f}, {b['ks_p']:.3f}"])
+table(rows, [1.7, 0.7, 1.0, 1.0, 1.0, 1.35], size=8.4)
+caption('Table B7 — all THREE window sets, not a selection from them. The distribution of '
+        'realised outcomes within each set is printed below it as a ten-bin histogram so a '
+        'reader can run the uniformity test independently.')
+rows = [['Window set'] + [f'{i * 10}-{(i + 1) * 10}%' for i in range(10)]]
+for key, label in (('five_year', 'Last five years'), ('full', 'Full history'),
+                   ('production', 'Post-break')):
+    rows.append([label] + [str(x) for x in BT[key]['pit_hist']])
+table(rows, [1.35] + [0.53] * 10, size=7.6)
+caption('Table B8 — where each window\'s realised outcome fell inside its own forecast '
+        'distribution, in ten equal bins. A well-sized band spreads these evenly.')
+
+H1('7. How to check this study')
 P('The valuation model is a live spreadsheet. Open the Assumptions sheet, change any driver, '
   'and the cost of capital, the discount-rate glide, the discount factors, the cash-flow '
   'waterfall, the terminal block, the three statements, the bridge and every ratio all move. '

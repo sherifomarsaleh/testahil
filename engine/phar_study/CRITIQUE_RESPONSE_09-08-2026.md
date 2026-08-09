@@ -525,6 +525,82 @@ business (A26) — is unaffected by all 84 findings.
 
 ---
 
+## Step 9 — Implemented, and proved
+
+Bucket ① was approved and is implemented. Nothing from ②, ③ or ⑤ was touched; the four
+open decisions are listed at the end of this section.
+
+### Before and after, on the numbers
+
+| | 2nd edition | 3rd edition |
+|---|---|---|
+| Headline | one centre, EGP 66.5672 | **two centres, EGP 61.6837 (Frame A) and EGP 69.1536 (Frame B)** |
+| Frame A / Frame B | 67.2233 / 79.3291 | **58.8951 / 73.8348** |
+| Field | 50.09 – 79.33 | **58.90 – 73.83** |
+| Book / relative / normalised | 63.12 / 50.09 / 65.27 | **63.12 / 65.47 / 65.27** |
+| Terminal ROIC | asserted 20% | **computed 16.15% / 18.13%** |
+| Terminal reinvestment | 25.0% | **31.0%** |
+| Terminal depreciation charged | none | **EGP 182.7m a year** |
+| Terminal debt weight | 20% | **derived 25.1% (book reading 39.5% published beside it)** |
+| Tax on FCFF | 22.5% | **23.5%** |
+| Cost of equity | 24.82% | **25.57%** (6-Aug yield, July country-risk vintage) |
+| Terminal discount rate | 13.83% | **13.56%** |
+| Reverse-valuation hurdle | USD 115m, ramp unpublished | **USD 119m, ramp published, reinvestment charged** |
+| Forecast balance sheet | out by up to 6.6% | **balances to zero in every column** |
+
+The centre moved DOWN and away from the market price, which is what the adjudication predicted.
+
+### Every gate, re-run on the delivered files
+
+| Gate | 2nd edition | 3rd edition |
+|---|---|---|
+| Recalculation | 785 / 785 cells, 10 headline checks | **824 / 824 cells, 0 unresolvable, 0 unchecked, 0 mismatched, 17 headline checks** |
+| Driver test | 29 directions, 134 live, 0 dead | **30 directions, 133 live, 0 dead, 3 disclosure rows** |
+| External-reader scrub | 0 hits | **0 hits (study, bibliography, workbook)** |
+| Table discipline | 41 tables, 0 problems | **45 tables, 0 problems, numbers assigned in document order** |
+| Figure discipline | 8 figures, 0 problems | **8 figures, 0 problems, all re-inspected as rendered images** |
+| Numeric traceability | 0 typed numerals | **0 typed numerals** |
+| Sweep register | PASS | **PASS — 4/4 rings, 27 findings, 4 audited years** |
+| Import-not-parse | 14 modules | **13 modules import cleanly; REFERENCE_SET intact** |
+| PDFs | study 20pp, biblio 20pp | **study 25pp, biblio 22pp, workbook 55pp — all read** |
+
+### Defects the fixes themselves surfaced
+
+1. **Two driver-test expectations went stale, and the model was right both times.** The
+   statutory tax rate no longer taxes free cash flow, so raising it now RAISES value through
+   a larger interest shield. And bringing construction into service earlier now HELPS: the
+   explicit-year tax shield is worth +22.5 on the sum of present values and the smaller
+   never-depreciated balance left for the terminal block is worth +21.5. Both were decomposed
+   before either expectation was changed, and the decomposition is recorded beside them.
+2. **The historical balance-sheet columns do not balance exactly.** Adding the check row
+   exposed residuals of −4.1 / +0.2 / +0.4 million on the three audited columns — under 0.05%
+   of total assets, from grouping the filed statement into the sheet's captions. Published
+   rather than suppressed; only the forecast columns are zero by construction.
+3. **The beta composite contains the subject.** Publishing the constituent list, which A31 and
+   B32 asked for, made this visible. At 36 equal-weighted names the company
+   carries about 2.8% of the index it is regressed against.
+   Removing it gives 0.5652 against 0.6295, which would RAISE the
+   two centres to EGP 65.04 and EGP
+   72.86. The in-index coefficient is kept — it is the more
+   conservative and it is what a real local index produces — and both are now published with
+   the price of the choice. No critic raised this; it is a defect the fix uncovered.
+
+### What was NOT touched, and is waiting on you
+
+- **⑤ A6** — the Frame A provision LEVEL stays at 5.25%. Only the label changed. Every reading
+  is now priced side by side in the study (Table 12).
+- **⑤ A22** — the associate stream stays at 250. Only the basis note was reconciled to the
+  income statement, and the quarter is published beside it.
+- **⑤ C3** — the bridge still mixes December net debt with March non-controlling interests.
+  It is now named as a caveat with its price; choosing a perimeter is your call.
+- **⑤ A15 / ③** — the interest path is unchanged. The funded balance sheet makes the tension
+  worse and visible: the implied average borrowing rate now falls to
+  11.25% against a marginal 18.55%,
+  and that is stated in the study rather than left in the model.
+- **⑤ C6 / D5** and **⑤ D4**, and all seven ③ research items, are untouched.
+
+---
+
 ## Step 8 — Stopped here
 
 Nothing above is implemented. No document, workbook, figure or input has been changed in response to

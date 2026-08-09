@@ -50,7 +50,7 @@ def save(fig, name):
 
 
 # ---- F1: the valuation field -------------------------------------------------
-items = LN['items']
+items = LN['items_A'][:1] + LN['items_B'][:1] + LN['shared']
 fig, ax = plt.subplots(figsize=(9.6, 3.9), dpi=110)
 names = [i['name'].replace('Discounted cash flow — ', 'DCF ').replace(
     'Book value and sustainable return', 'Book value /\nsustainable return').replace(
@@ -59,21 +59,27 @@ names = [i['name'].replace('Discounted cash flow — ', 'DCF ').replace(
 vals = [i['value'] for i in items]
 y = np.arange(len(items))[::-1]
 ax.barh(y, vals, height=0.5, color=SAGE, alpha=0.55, edgecolor=TEAL, linewidth=1.1)
+_XMAX = max(max(vals), SPOT) * 1.22
 for yy, v in zip(y, vals):
-    ax.text(v + 2.0, yy, f'{v:,.0f}', va='center', ha='left', fontsize=9.6, color=INK,
+    # printed in a clear right-hand gutter, so a value label can never collide with the
+    # centre or market-price rules the chart draws through the bars
+    ax.text(_XMAX * 0.995, yy, f'{v:,.2f}', va='center', ha='right', fontsize=9.4, color=INK,
             fontweight='bold')
-ax.axvline(LN['fair_base'], color=BRASS, lw=2.6)
+ax.axvline(LN['centre_A'], color=BRASS, lw=2.6)
+ax.axvline(LN['centre_B'], color=BRASS, lw=2.6, ls=(0, (5, 2)))
 ax.axvline(SPOT, color=RUST, lw=2.0, ls='--')
 ax.set_yticks(y, names, fontsize=9.0)
-ax.set_xlim(0, max(max(vals), SPOT) * 1.22)
+ax.set_xlim(0, _XMAX)
 ax.set_xlabel('EGP per share')
-ax.text(LN['fair_base'], len(items) - 0.28, f"weighted centre {LN['fair_base']:,.0f}",
-        color=BRASS, fontsize=9.2, ha='center', fontweight='bold')
+ax.text(LN['centre_A'] - 1.5, len(items) - 0.62, f"centre A {LN['centre_A']:,.1f}",
+        color=BRASS, fontsize=9.0, ha='right', fontweight='bold')
+ax.text(LN['centre_B'] + 1.5, len(items) - 0.22, f"centre B {LN['centre_B']:,.1f}",
+        color=BRASS, fontsize=9.0, ha='left', fontweight='bold')
 ax.text(SPOT - 2.5, len(items) - 0.28, f'market price {SPOT:,.2f}', color=RUST,
-        fontsize=9.2, ha='right', fontweight='bold')
+        fontsize=9.0, ha='right', fontweight='bold')
 ax.set_ylim(-1.25, len(items) - 0.05)
-ax.set_title('Five lenses, one field — each is an independent route to a value per share',
-             fontsize=10.4, pad=12)
+ax.set_title('Five readings, two centres — the two provision frames are published side by '
+             'side, never averaged', fontsize=10.4, pad=12)
 style(ax)
 save(fig, 'fig1_field.png')
 
@@ -182,8 +188,11 @@ for short, hz, off in (('1M', strike['horizons']['1M'], 22), ('3M', strike['hori
             fontsize=8.4, va='bottom', color=BRASS)
     ax.text(n0 + off + 1.5, hz['pct']['p5'], f"{short} 5th {hz['pct']['p5']:,.0f}",
             fontsize=8.4, va='center', color=INK)
-ax.axhline(LN['fair_base'], color=RUST, lw=1.6, ls='--')
-ax.text(2, LN['fair_base'] + 5.5, f"weighted central fair value {LN['fair_base']:,.0f}",
+ax.axhline(LN['centre_A'], color=RUST, lw=1.6, ls='--')
+ax.axhline(LN['centre_B'], color=RUST, lw=1.2, ls=':')
+ax.text(2, LN['centre_A'] - 9.0, f"fundamental centre, Frame A {LN['centre_A']:,.0f}",
+        color=RUST, fontsize=8.8, va='bottom')
+ax.text(2, LN['centre_B'] + 3.0, f"fundamental centre, Frame B {LN['centre_B']:,.0f}",
         color=RUST, fontsize=8.8, va='bottom')
 ax.set_xlim(0, n0 + 92)
 ax.set_ylabel('EGP per share')
@@ -196,13 +205,31 @@ save(fig, 'fig5_cone.png')
 # ---- F6: sensitivity tornado ----------------------------------------------------
 fig, ax = plt.subplots(figsize=(9.2, 4.0), dpi=110)
 base = DCFD['frame_A']['per_share']
-rows = [('Terminal risk-free rate', SENS['wacc'][0][1], SENS['wacc'][-1][1]),
-        ('Beta', SENS['beta'][-1][1], SENS['beta'][0][1]),
-        ('Terminal growth', SENS['g'][0][1], SENS['g'][-1][1]),
-        ('Provision charge', SENS['prov'][-1][1], SENS['prov'][0][1]),
-        ('Exchange-rate path', SENS['fx'][-1][1], SENS['fx'][0][1]),
-        ('Domestic volume growth', SENS['volume'][0][1], SENS['volume'][-1][1]),
-        ('Depreciation rate', SENS['dep'][-1][1], SENS['dep'][0][1])]
+def _pc(x):
+    return f'{x * 100:.1f}%'
+
+
+def _bp(x):
+    return f'{x * 1e4:+,.0f}bp'
+
+
+# EVERY bar now carries the INPUT range that produced it. A tornado whose input ranges are not
+# printed cannot be checked by the reader, which is exactly what was wrong with the first cut.
+rows = [('Terminal cost of equity\n' + f"{_bp(SENS['wacc'][0][0])} to {_bp(SENS['wacc'][-1][0])}",
+         SENS['wacc'][0][1], SENS['wacc'][-1][1]),
+        ('Beta\n' + f"{SENS['beta'][-1][0]:.2f} to {SENS['beta'][0][0]:.2f}",
+         SENS['beta'][-1][1], SENS['beta'][0][1]),
+        ('Terminal growth\n' + f"{_pc(SENS['g'][0][0])} to {_pc(SENS['g'][-1][0])}",
+         SENS['g'][0][1], SENS['g'][-1][1]),
+        ('Provision charge\n' + f"{_pc(SENS['prov'][-1][0])} to {_pc(SENS['prov'][0][0])} of revenue",
+         SENS['prov'][-1][1], SENS['prov'][0][1]),
+        ('Exchange-rate path\n' + f"x{SENS['fx'][-1][0]:.2f} to x{SENS['fx'][0][0]:.2f}",
+         SENS['fx'][-1][1], SENS['fx'][0][1]),
+        ('Domestic volume growth\n'
+         + f"{_bp(SENS['volume'][0][0])} to {_bp(SENS['volume'][-1][0])} a year",
+         SENS['volume'][0][1], SENS['volume'][-1][1]),
+        ('Depreciation rate\n' + f"{_pc(SENS['dep'][-1][0])} to {_pc(SENS['dep'][0][0])}",
+         SENS['dep'][-1][1], SENS['dep'][0][1])]
 rows.sort(key=lambda t: abs(t[2] - t[1]))
 yy = np.arange(len(rows))
 for i, (nm, lo, hi) in enumerate(rows):
@@ -211,12 +238,12 @@ for i, (nm, lo, hi) in enumerate(rows):
     ax.text(min(lo, hi) - 1.5, i, f'{min(lo, hi):,.0f}', ha='right', va='center', fontsize=8.6)
     ax.text(max(lo, hi) + 1.5, i, f'{max(lo, hi):,.0f}', ha='left', va='center', fontsize=8.6)
 ax.axvline(base, color=INK, lw=1.6)
-ax.set_yticks(yy, [r[0] for r in rows], fontsize=9.0)
+ax.set_yticks(yy, [r[0] for r in rows], fontsize=8.0)
 ax.set_xlabel('EGP per share')
 lo_all = min(min(r[1], r[2]) for r in rows); hi_all = max(max(r[1], r[2]) for r in rows)
 ax.set_xlim(lo_all - (hi_all - lo_all) * 0.16, hi_all + (hi_all - lo_all) * 0.16)
-ax.set_title(f'What actually moves the answer (base {base:,.0f} per share)', fontsize=10,
-             pad=10)
+ax.set_title(f'What actually moves the answer — Frame A base {base:,.1f} per share, with '
+             f'the input range that produced each bar', fontsize=10, pad=10)
 style(ax)
 save(fig, 'fig6_tornado.png')
 
@@ -250,17 +277,22 @@ save(fig, 'fig7_crux.png')
 
 # ---- F8: the expert panel -------------------------------------------------------
 fig, ax = plt.subplots(figsize=(9.0, 3.2), dpi=110)
-experts = [('Expert 1\ncash-flow', 74.0, 86.1, 101.0),
-           ('Expert 2\nasset and return', 62.0, 73.5, 88.0),
-           ('Expert 3\nmarket-implied', 96.0, 118.0, 141.0)]
+# These are the experts' OWN worked values, read from the model, not illustrative numbers.
+_e1 = DCFD['frame_A']['per_share']
+_e2 = LN['book_ps']
+_e3 = SPOT
+experts = [('Expert 1\ncash-flow', SENS['prov'][-1][1], _e1, SENS['prov'][0][1]),
+           ('Expert 2\nasset and return', LN['book_ps'] * 0.85, _e2, LN['book_ps'] * 1.20),
+           ('Expert 3\nmarket-implied', _e3 * 0.85, _e3, _e3 * 1.12)]
 for i, (nm, lo, mid, hi) in enumerate(experts):
     ax.barh(i, hi - lo, left=lo, height=0.42, color=SAGE, alpha=0.5, edgecolor=TEAL)
     ax.plot([mid, mid], [i - 0.21, i + 0.21], color=BRASS, lw=3.0)
-    ax.text(hi + 2, i, f'{lo:,.0f}–{hi:,.0f} · centre {mid:,.0f}', va='center', fontsize=8.8)
+    ax.text(hi + 2, i, f'{lo:,.0f}–{hi:,.0f} · worked value {mid:,.1f}', va='center',
+            fontsize=8.8)
 ax.axvline(SPOT, color=RUST, lw=1.8, ls='--')
 ax.text(SPOT, -0.78, f'market price {SPOT:,.2f}', color=RUST, fontsize=8.8, ha='center')
 ax.set_yticks(range(3), [e[0] for e in experts], fontsize=9.0)
-ax.set_xlim(40, 190)
+ax.set_xlim(30, 200)
 ax.set_ylim(-1.0, 2.6)
 ax.set_xlabel('EGP per share')
 ax.set_title('Three independent methods, three different answers', fontsize=10, pad=10)

@@ -32,7 +32,10 @@ UB, SENS, CAL, CRUX = D['unit_build'], D['sensitivity'], D['calibration'], D['cr
 V = {k: v['value'] for k, v in D['inputs'].items()}
 YRS = FC['years']
 SH = M['shares_mn']
-TAX = V['tax_stat']
+TAX = V['tax_stat']              # statutory — used for the after-tax cost of debt
+TAX_FCFF = W['tax_fcff']         # effective — the rate the cash-flow engine applies
+PROV = D['sensitivity']
+CE = D['cost_exposure']
 PATHS = 50000            # simulation path count, from the probability-map run
 PEER_HI, PEER_MID = 26.7, 16.0   # observed peer multiples, market-data layer
 
@@ -268,30 +271,43 @@ arow('fxdep', 'Expected currency depreciation for the debt charge', 'Carries for
      'debt at its LOCAL-EQUIVALENT cost', V['fx_dep_wacc'], fmt=PCT2)
 arow('wfx', 'Hard-currency share of the term-loan book', 'Borrowings note (17), by lender and '
      'currency', W['w_fx'], fmt=PCT)
-arow('kdpath', 'Cost-of-debt path', 'The glide fractions are DERIVED from this row',
+arow('kdpath', 'Normalised risk-free convergence path', 'NOT a cost of debt: the first '
+     'point is the normalised risk-free rate. Only the SHAPE of this row enters the model — '
+     'the discount-rate glide rebases it to its own endpoints, so the levels cancel',
      V['kd_path'], fmt=PCT2)
 arow('intpath', 'Finance cost charged to profit (EGP mn)', 'What the profit and loss account '
      'actually bears — NOT the marginal cost of debt above. Calibrated to the first quarter '
      'of 2026', V['int_path'], fmt=MONEY)
-arow('rf_t', 'Terminal risk-free rate', '5% inflation target plus a 5.5-point real convention',
+arow('rf_t', 'Terminal risk-free rate', 'A sourced 5% medium-term inflation target plus an '
+     'UNSOURCED 5.5-point real convention. The real leg is an assertion, it is the widest '
+     'single lever in the study, and it is an open item — see the terminal grid',
      V['rf_term'], fmt=PCT2)
 arow('erp_t', 'Terminal equity risk premium', 'Normalised toward the rating-class norm',
      V['erp_term'], fmt=PCT2)
 arow('kdt_lc', 'Terminal local-currency borrowing rate', 'Long-run Egyptian norm',
      V['kd_term_lc'], fmt=PCT2)
 arow('kdt_fx', 'Terminal hard-currency coupon', 'Long-run norm', V['kd_term_fx'], fmt=PCT2)
-arow('wd_t', 'Terminal debt weight', 'Reconciled to the model\'s own forecast balance sheet',
-     V['wd_term'], fmt=PCT)
+arow('wd_t', 'Terminal debt weight — DERIVED, market-value basis', "Today's net debt over "
+     "market capitalisation plus net debt. Not an assumption; the earlier edition's 20% was "
+     "neither this nor the book reading below", W['wd_term'], fmt=PCT)
+arow('wd_tb', 'Terminal debt weight — the funded forecast balance sheet at FY2030E',
+     'disclosure — the BOOK reading, published beside the market reading above rather than '
+     'chosen between in silence. The valuation uses the market reading, because a weighted '
+     'average cost of capital weights market values; this row drives nothing',
+     W['wd_term_book'], fmt=PCT)
 arow('g', 'Terminal growth', 'Pound-nominal, against a 5% terminal inflation rate — about zero '
      'in real terms', V['g_term'], fmt=PCT)
-arow('roic_t', 'Terminal return on invested capital', 'Sets terminal reinvestment as growth '
-     'over return', V['roic_term'], fmt=PCT)
-arow('assoc_e', 'Normalised associate contribution (EGP mn)', 'Three disclosed years: 74.5, '
-     '147.1, 495.5', V['assoc_norm'], fmt=MONEY)
+arow('assoc_e', 'Normalised associate contribution (EGP mn)', 'Three disclosed years, '
+     'reconciled to this model\'s own income statement: 74.508, 151.581, 512.085 — mean '
+     '246.058. The first quarter of 2026 annualises to 52.5, but the auditor states two '
+     'holdings\' statements were not received, so that quarter is evidence, not a run-rate',
+     V['assoc_norm'], fmt=MONEY)
 arow('assoc_m', 'Associate earnings multiple', 'Below the Gulf listed range for a minority, '
      'unlisted, non-controlled stake', V['assoc_multiple'], fmt='0.0"x"')
-arow('peer_pe', 'Regional peer median price-earnings multiple', 'MARKET DATA, cross-check layer',
-     V['peer_pe_regional'], fmt='0.0"x"')
+arow('peer_pe', 'Struck peer reference price-earnings multiple', 'MARKET DATA, cross-check '
+     'layer. The MIDPOINT of the only two disclosed observations (26.7x and 16.0x) — NOT a '
+     'median of a peer set, and the peers are not named, so it cannot be rebuilt from their '
+     'filings', V['peer_pe_regional'], fmt='0.00"x"')
 
 lbl(wa, r, 1, 'OPENING BALANCE SHEET (AUDITED, 31 DECEMBER 2025)', bold=True, fill=FILL_C)
 r += 1
@@ -305,6 +321,8 @@ arow('oc0', 'Other creditors', 'Note (23)', V['othcr_fy25'], fmt=MONEY)
 arow('cash0', 'Cash and bank balances', 'Note (12)', V['cash_fy25'], fmt=MONEY)
 arow('debt0', 'Gross borrowings including leases', 'Notes (17), (18) and (21)', W['gross_debt'],
      fmt=MONEY)
+arow('parent25', 'Attributable profit, FY2025 (EGP mn)', 'Audited — the trailing earnings '
+     'base for every trailing multiple', V['parent_fy25'], fmt=MONEY)
 arow('eq0', 'Equity attributable to the holding company', 'Audited', V['equity_parent_fy25'],
      fmt=MONEY)
 arow('nci0', 'Non-controlling interests, audited 31 December 2025', 'disclosure — the audited '
@@ -385,12 +403,10 @@ drow('kdt', 'Terminal cost of debt',
 drow('kdtat', 'Terminal cost of debt after tax', f'={c("kdt")}*(1-{c("tax")})', W['kd_term_at'])
 drow('waccT', 'Terminal weighted average cost of capital',
      f'=(1-{c("wd_t")})*{c("ket")}+{c("wd_t")}*{c("kdtat")}', W['wacc_term'])
-drow('reinv', 'Terminal reinvestment rate = growth / return on capital',
-     f'={c("g")}/{c("roic_t")}', DCFD['frame_A']['reinvest_rate'], fmt=PCT)
 ROW_LAST = r
 
 # glide fractions, derived from the cost-of-debt path
-lbl(wa, r, 1, 'Glide fraction (derived from the cost-of-debt path)', bold=True)
+lbl(wa, r, 1, 'Glide fraction (derived from the convergence path — SHAPE only)', bold=True)
 lbl(wa, r, 2, 'calculated: (this year\'s cost of debt less the last year\'s) over (the first '
      'year\'s less the last year\'s)', note=True)
 A['glide'] = r
@@ -998,7 +1014,46 @@ for j in range(5):
     f(wb_, BS['oc'], 5 + j,
       f"='Income Statement'!{col}{IS['rev']}/{V['rev_fy25']:.6f}*Assumptions!{c('oc0')}",
       FC['other_cr'][j], fmt=MONEY)
-    f(wb_, BS['debt'], 5 + j, f'=Assumptions!{c("debt0")}', W['gross_debt'], fmt=MONEY)
+    # THE FUNDING PLUG. Cash is held at the audited operating minimum and gross borrowings
+    # carry whatever the asset side needs that trade credit, provisions and equity do not
+    # supply, so the forecast statement balances instead of being out by up to 6.6%.
+    f(wb_, BS['debt'], 5 + j,
+      f'={col}{BS["ta"]}-{col}{BS["ap"]}-{col}{BS["oc"]}-{col}{BS["ptx"]}'
+      f'-{col}{BS["eq"]}-{col}{BS["nci"]}', FC['debt'][j], fmt=MONEY)
+BS['tle'] = r
+lbl(wb_, r, 1, 'TOTAL LIABILITIES AND EQUITY', bold=True, fill=FILL_C)
+tle_hist = [
+    V['ap_fy23'] + V['othcr_fy23'] + (V['provbs_fy23'] + V['taxpay_fy23'] + V['dtl_fy23'])
+    + V['debt_fy23'] + V['equity_parent_fy23'] + V['nci_fy23'],
+    V['ap_fy24'] + V['othcr_fy24'] + (356.698370 + 344.846967 + 35.828578)
+    + V['debt_fy24'] + V['equity_parent_fy24'] + V['nci_fy24'],
+    V['ap_fy25'] + V['othcr_fy25'] + PTX0 + W['gross_debt'] + V['equity_parent_fy25']
+    + V['nci_fy25'],
+]
+ta_hist_ = [V['assets_fy23'], V['assets_fy24'], V['assets_fy25']]
+for j in range(3):
+    col = get_column_letter(2 + j)
+    f(wb_, r, 2 + j, f'={col}{BS["ap"]}+{col}{BS["oc"]}+{col}{BS["ptx"]}+{col}{BS["debt"]}'
+      f'+{col}{BS["eq"]}+{col}{BS["nci"]}', tle_hist[j], fmt=MONEY, bold=True, fill=FILL_C)
+for j in range(5):
+    col = get_column_letter(5 + j)
+    f(wb_, r, 5 + j, f'={col}{BS["ap"]}+{col}{BS["oc"]}+{col}{BS["ptx"]}+{col}{BS["debt"]}'
+      f'+{col}{BS["eq"]}+{col}{BS["nci"]}', FC['assets'][j], fmt=MONEY, bold=True,
+      fill=FILL_C)
+r += 1
+BS['chk'] = r
+lbl(wb_, r, 1, 'BALANCE CHECK — total assets less total liabilities and equity', bold=True)
+for j in range(8):
+    col = get_column_letter(2 + j)
+    exp = 0.0 if j >= 3 else (ta_hist_[j] - tle_hist[j])
+    f(wb_, r, 2 + j, f'={col}{BS["ta"]}-{col}{BS["tle"]}', exp, fmt=MONEY, bold=True)
+lbl(wb_, r, 10, 'ZERO IN EVERY FORECAST COLUMN, BY CONSTRUCTION — gross borrowings are the '
+    'funding plug. The earlier edition never computed this row at all and its forecast '
+    'columns were out by up to 6.6% of total assets. The three audited columns carry small '
+    'residuals (-4.1, +0.2, +0.4 on assets of 10.0bn to 18.3bn, under 0.05%) from grouping '
+    'the filed statement into these line captions; they are shown rather than suppressed.',
+    note=True)
+r += 1
 BS['nd'] = r
 lbl(wb_, r, 1, 'NET DEBT', bold=True, fill=FILL_C)
 for j in range(3):
@@ -1006,6 +1061,10 @@ for j in range(3):
     f(wb_, r, 2 + j, f'={col}{BS["debt"]}-{col}{BS["cash"]}',
       [V['debt_fy23'] - V['cash_fy23'], V['debt_fy24'] - V['cash_fy24'],
        W['net_debt']][j], fmt=MONEY, bold=True, fill=FILL_C)
+for j in range(5):
+    col = get_column_letter(5 + j)
+    f(wb_, r, 5 + j, f'={col}{BS["debt"]}-{col}{BS["cash"]}', FC['net_debt'][j], fmt=MONEY,
+      bold=True, fill=FILL_C)
 r += 1
 BS['wc'] = r
 lbl(wb_, r, 1, 'Net working capital', bold=True)
@@ -1051,26 +1110,26 @@ for j in range(5):
     f(wcf, r, 5 + j, f"='Income Statement'!{col}{IS['ebit']}", FC['ebit_A'][j], fmt=MONEY)
 r += 1
 CF['tax'] = r
-lbl(wcf, r, 1, 'Tax on operating profit at the statutory rate')
+lbl(wcf, r, 1, 'Tax on operating profit at the EFFECTIVE rate the business bears')
 for j in range(3):
     col = get_column_letter(2 + j)
-    f(wcf, r, 2 + j, f'=-{col}{CF["ebit"]}*Assumptions!{c("tax")}',
-      -H[['FY2023', 'FY2024', 'FY2025'][j]]['ebit'] * TAX, fmt=MONEY)
+    f(wcf, r, 2 + j, f'=-{col}{CF["ebit"]}*Assumptions!{c("tax_eff")}',
+      -H[['FY2023', 'FY2024', 'FY2025'][j]]['ebit'] * TAX_FCFF, fmt=MONEY)
 for j in range(5):
     col = get_column_letter(5 + j)
-    f(wcf, r, 5 + j, f'=-{col}{CF["ebit"]}*Assumptions!{c("tax")}',
-      -(FC['ebit_A'][j]) * TAX, fmt=MONEY)
+    f(wcf, r, 5 + j, f'=-{col}{CF["ebit"]}*Assumptions!{c("tax_eff")}',
+      -(FC['ebit_A'][j]) * TAX_FCFF, fmt=MONEY)
 r += 1
 CF['nopat'] = r
 lbl(wcf, r, 1, 'Operating profit after tax (NOPAT)', bold=True, fill=FILL_C)
 for j in range(3):
     col = get_column_letter(2 + j)
     f(wcf, r, 2 + j, f'={col}{CF["ebit"]}+{col}{CF["tax"]}',
-      H[['FY2023', 'FY2024', 'FY2025'][j]]['ebit'] * (1 - TAX), fmt=MONEY, bold=True,
+      H[['FY2023', 'FY2024', 'FY2025'][j]]['ebit'] * (1 - TAX_FCFF), fmt=MONEY, bold=True,
       fill=FILL_C)
 for j in range(5):
     col = get_column_letter(5 + j)
-    f(wcf, r, 5 + j, f'={col}{CF["ebit"]}+{col}{CF["tax"]}', FC['ebit_A'][j] * (1 - TAX),
+    f(wcf, r, 5 + j, f'={col}{CF["ebit"]}+{col}{CF["tax"]}', FC['ebit_A'][j] * (1 - TAX_FCFF),
       fmt=MONEY, bold=True, fill=FILL_C)
 r += 1
 CF['dna'] = r
@@ -1106,7 +1165,7 @@ lbl(wcf, r, 1, 'FREE CASH FLOW TO THE FIRM', bold=True, fill=FILL_C)
 fcff_sheet = []
 for j in range(5):
     col = get_column_letter(5 + j)
-    e = (FC['ebit_A'][j] * (1 - TAX) + FC['dna'][j] - FC['capex'][j] - FC['dwc'][j])
+    e = (FC['ebit_A'][j] * (1 - TAX_FCFF) + FC['dna'][j] - FC['capex'][j] - FC['dwc'][j])
     fcff_sheet.append(e)
     f(wcf, r, 5 + j, f'={col}{CF["nopat"]}+{col}{CF["dna"]}+{col}{CF["capex"]}+{col}{CF["dwc"]}',
       e, fmt=MONEY, bold=True, fill=FILL_C)
@@ -1155,11 +1214,11 @@ dcfrow('dna', 'Less depreciation and amortisation',
 dcfrow('ebit', 'EBIT = EBITDA less depreciation and amortisation',
        lambda j: f'={get_column_letter(2 + j)}{DR["ebitda"]}+{get_column_letter(2 + j)}'
                  f'{DR["dna"]}', [FC['ebit_A'][j] for j in range(5)], bold=True)
-dcfrow('taxr', 'Tax rate',
-       lambda j: f'=Assumptions!{c("tax")}', [TAX] * 5, fmt=PCT2)
+dcfrow('taxr', 'Tax rate — the EFFECTIVE rate the business bears, not the statutory rate',
+       lambda j: f'=Assumptions!{c("tax_eff")}', [TAX_FCFF] * 5, fmt=PCT2)
 dcfrow('nopat', 'NOPAT = EBIT x (1 less the tax rate)',
        lambda j: f'={get_column_letter(2 + j)}{DR["ebit"]}*(1-{get_column_letter(2 + j)}'
-                 f'{DR["taxr"]})', [FC['ebit_A'][j] * (1 - TAX) for j in range(5)],
+                 f'{DR["taxr"]})', [FC['ebit_A'][j] * (1 - TAX_FCFF) for j in range(5)],
        bold=True, fill=FILL_C)
 dcfrow('adddna', 'Add back depreciation and amortisation',
        lambda j: f'=Segments!{get_column_letter(4 + j)}{S["ppe_dna"]}', FC['dna'])
@@ -1167,7 +1226,7 @@ dcfrow('capex', 'Less capital expenditure',
        lambda j: f'=-Segments!{get_column_letter(4 + j)}{S["ppe_capex"]}', [-x for x in FC['capex']])
 dcfrow('dwc', 'Less the increase in working capital',
        lambda j: f"='Cash Flow'!{get_column_letter(5 + j)}{CF['dwc']}",
-       [fcff_sheet[j] - (FC['ebit_A'][j] * (1 - TAX) + FC['dna'][j] - FC['capex'][j])
+       [fcff_sheet[j] - (FC['ebit_A'][j] * (1 - TAX_FCFF) + FC['dna'][j] - FC['capex'][j])
         for j in range(5)])
 dcfrow('fcff', 'FREE CASH FLOW TO THE FIRM',
        lambda j: f'={get_column_letter(2 + j)}{DR["nopat"]}+{get_column_letter(2 + j)}'
@@ -1184,7 +1243,8 @@ dcfrow('pv', 'PRESENT VALUE OF FREE CASH FLOW TO THE FIRM',
        fill=FILL_C)
 r += 1
 pv_sum_sheet = sum(fcff_sheet[j] * W['df'][j] for j in range(5))
-nopat_t_sheet = FC['ebit_A'][-1] * (1 - TAX) * (1 + V['g_term'])
+nopat_t_sheet = (FC['ebit_A'][-1] * (1 - TAX_FCFF) * (1 + V['g_term'])
+                 - DCFD['frame_A']['term_dep_catchup'] * (1 - TAX_FCFF))
 tv_sheet = (nopat_t_sheet * (1 - DCFD['frame_A']['reinvest_rate'])
             / (W['wacc_term'] - V['g_term']))
 pv_tv_sheet = tv_sheet * W['df'][-1]
@@ -1196,11 +1256,35 @@ ps_sheet = eq_sheet / SH
 
 lbl(wd, r, 1, 'TERMINAL BLOCK', bold=True, fill=FILL_C); r += 1
 TB = {}
+ic_fy30 = (FC['ppe'][-1] + FC['cip'][-1] + FC['wc'][-1] + V['intang_fy25'])
+TB['ic'] = r
+lbl(wd, r, 1, 'Invested capital at FY2030E — property, construction, working capital and '
+    'intangibles')
+f(wd, r, 2, f"='Balance Sheet'!I{BS['ppe']}+'Balance Sheet'!I{BS['cip']}"
+  f"+'Balance Sheet'!I{BS['wc']}+Assumptions!{c('intang0')}", ic_fy30, fmt=MONEY)
+r += 1
+TB['roic'] = r
+lbl(wd, r, 1, "Return on invested capital, FY2030E — the model's OWN, read from the rows above",
+    bold=True)
+f(wd, r, 2, f'=F{DR["nopat"]}/B{TB["ic"]}', DCFD['frame_A']['roic_term'], fmt=PCT2, bold=True)
+lbl(wd, r, 4, 'This is what sets terminal reinvestment. It is not an assumption and there is '
+    'no cell to type it into.', note=True)
+r += 1
+TB['tdep'] = r
+lbl(wd, r, 1, 'Terminal depreciation catch-up — the parked construction balance at the '
+    'depreciation rate')
+f(wd, r, 2, f"='Balance Sheet'!I{BS['cip']}*Assumptions!{c('deprate')}",
+  DCFD['frame_A']['term_dep_catchup'], fmt=MONEY)
+lbl(wd, r, 4, 'Construction still parked at FY2030E has never entered the depreciable base. A '
+    'perpetuity cannot capitalise profit on capital it never charges.', note=True)
+r += 1
 for key, label, formula, exp, fmt in (
-    ('nt', 'Terminal NOPAT = final-year NOPAT x (1 + growth)',
-     f'=F{DR["nopat"]}*(1+Assumptions!{c("g")})', nopat_t_sheet, MONEY),
-    ('rr', 'Terminal reinvestment rate = growth / return on invested capital',
-     f'=Assumptions!{c("g")}/Assumptions!{c("roic_t")}', DCFD['frame_A']['reinvest_rate'], PCT),
+    ('nt', 'Terminal NOPAT = final-year NOPAT x (1 + growth), less the depreciation the '
+     'parked construction balance has never been charged',
+     f'=F{DR["nopat"]}*(1+Assumptions!{c("g")})'
+     f'-B{TB["tdep"]}*(1-Assumptions!{c("tax_eff")})', nopat_t_sheet, MONEY),
+    ('rr', 'Terminal reinvestment rate = growth / the return the model itself earns in FY2030E',
+     f'=Assumptions!{c("g")}/B{TB["roic"]}', DCFD['frame_A']['reinvest_rate'], PCT),
     ('ft', 'Terminal free cash flow = terminal NOPAT x (1 less reinvestment)', None, 0, MONEY),
     ('wt', 'Terminal discount rate', f'=Assumptions!{c("waccT")}', W['wacc_term'], PCT2),
     ('gt', 'Terminal growth', f'=Assumptions!{c("g")}', V['g_term'], PCT),
@@ -1226,11 +1310,18 @@ DR['pvsum'] = r; r += 1
 lbl(wd, r, 1, 'CORE ENTERPRISE VALUE', bold=True, fill=FILL_C)
 f(wd, r, 2, f'=B{DR["pvsum"]}+B{TB["pvtv"]}', ev_core_sheet, fmt=MONEY, bold=True, fill=FILL_C)
 DR['evcore'] = r; r += 1
-lbl(wd, r, 1, 'Terminal value as a percentage of core enterprise value', bold=True,
+lbl(wd, r, 1, 'Terminal value as a percentage of CORE enterprise value', bold=True,
     fill=FILL_C)
 f(wd, r, 2, f'=B{TB["pvtv"]}/B{DR["evcore"]}', pv_tv_sheet / ev_core_sheet, fmt=PCT, bold=True,
   fill=FILL_C)
 DR['tvshare'] = r
+r += 1
+lbl(wd, r, 1, 'Terminal value as a percentage of TOTAL enterprise value (both are published)',
+    bold=True)
+f(wd, r, 2, f"=B{TB['pvtv']}/(B{DR['evcore']}+Assumptions!{c('assoc_e')}"
+  f"*Assumptions!{c('assoc_m')}+Assumptions!{c('apicost')}+Assumptions!{c('afs0')})",
+  pv_tv_sheet / ev_tot_sheet, fmt=PCT, bold=True)
+DR['tvshare_tot'] = r
 
 r += 2
 lbl(wd, r, 1, 'FRAME B — THE SAME MODEL WITH THE CONTESTED JUDGEMENT RESOLVED THE OTHER WAY',
@@ -1250,12 +1341,12 @@ FB['nopat'] = r
 lbl(wd, r, 1, 'NOPAT on Frame B')
 for j in range(5):
     col = get_column_letter(2 + j)
-    f(wd, r, 2 + j, f'={col}{FB["ebit"]}*(1-{col}{DR["taxr"]})', ebitB[j] * (1 - TAX),
+    f(wd, r, 2 + j, f'={col}{FB["ebit"]}*(1-{col}{DR["taxr"]})', ebitB[j] * (1 - TAX_FCFF),
       fmt=MONEY)
 r += 1
 FB['fcff'] = r
 lbl(wd, r, 1, 'Free cash flow to the firm on Frame B')
-fcffB = [fcff_sheet[j] + prov_delta[j] * (1 - TAX) for j in range(5)]
+fcffB = [fcff_sheet[j] + prov_delta[j] * (1 - TAX_FCFF) for j in range(5)]
 for j in range(5):
     col = get_column_letter(2 + j)
     f(wd, r, 2 + j, f'={col}{FB["nopat"]}+{col}{DR["adddna"]}+{col}{DR["capex"]}'
@@ -1267,14 +1358,21 @@ for j in range(5):
     col = get_column_letter(2 + j)
     f(wd, r, 2 + j, f'={col}{FB["fcff"]}*{col}{DR["df"]}', fcffB[j] * W['df'][j], fmt=MONEY)
 r += 1
-nopat_tB = ebitB[-1] * (1 - TAX) * (1 + V['g_term'])
-tvB = nopat_tB * (1 - DCFD['frame_A']['reinvest_rate']) / (W['wacc_term'] - V['g_term'])
+nopat_tB = (ebitB[-1] * (1 - TAX_FCFF) * (1 + V['g_term'])
+            - DCFD['frame_B']['term_dep_catchup'] * (1 - TAX_FCFF))
+tvB = nopat_tB * (1 - DCFD['frame_B']['reinvest_rate']) / (W['wacc_term'] - V['g_term'])
 evB = sum(fcffB[j] * W['df'][j] for j in range(5)) + tvB * W['df'][-1]
 eqB = (evB + assoc_val + V['arab_api_cost'] + V['afs_fy25'] - W['net_debt']
        - V['nci_bridge'])
+FB['roic'] = r
+lbl(wd, r, 1, "Return on invested capital, FY2030E — Frame B's own")
+f(wd, r, 2, f'=F{FB["nopat"]}/B{TB["ic"]}', DCFD['frame_B']['roic_term'], fmt=PCT2)
+r += 1
 FB['tv'] = r
 lbl(wd, r, 1, 'Terminal value on Frame B')
-f(wd, r, 2, f'=F{FB["nopat"]}*(1+Assumptions!{c("g")})*(1-B{TB["rr"]})'
+f(wd, r, 2, f'=(F{FB["nopat"]}*(1+Assumptions!{c("g")})'
+  f'-B{TB["tdep"]}*(1-Assumptions!{c("tax_eff")}))'
+  f'*(1-Assumptions!{c("g")}/B{FB["roic"]})'
   f'/(B{TB["wt"]}-B{TB["gt"]})', tvB, fmt=MONEY)
 r += 1
 FB['ev'] = r
@@ -1339,6 +1437,29 @@ wr = sheet('Relative & Normalized', [46, 16, 16, 40])
 hdr(wr, 1, ['Triangulation', 'Multiple', 'Value (EGP/share)', 'Note'])
 RL = {}
 r = 2
+lbl(wr, r, 1, 'SUSTAINABLE RETURN ON EQUITY — COMPUTED FROM THE FORECAST, NOT ASSERTED',
+    bold=True, fill=FILL_C); r += 1
+roe_rows = []
+for j in (2, 3, 4):
+    col = get_column_letter(5 + j)
+    prev = f"Assumptions!{c('eq0')}" if j == 0 else f"'Balance Sheet'!{get_column_letter(4 + j)}{BS['eq']}"
+    lbl(wr, r, 1, f"Return on average equity, {YRS[j]}")
+    f(wr, r, 2, f"='Income Statement'!{col}{IS['parent']}"
+      f"/(({prev}+'Balance Sheet'!{col}{BS['eq']})/2)", FC['roe'][j], fmt=PCT2)
+    roe_rows.append(r); r += 1
+RL['roe'] = r
+lbl(wr, r, 1, 'Sustainable return — the mean of the last three forecast years', bold=True,
+    fill=FILL_C)
+f(wr, r, 2, f'=AVERAGE(B{roe_rows[0]}:B{roe_rows[-1]})', LN['roe_sust'], fmt=PCT2, bold=True,
+  fill=FILL_C)
+lbl(wr, r, 4, 'The forecast path RISES through the window rather than settling, so the '
+    'sustainable return is the mean of its last three years — read from the path here, never '
+    'typed', note=True)
+r += 1
+RL['pay'] = r
+lbl(wr, r, 1, 'Payout the growth rate permits = 1 less growth over the sustainable return')
+f(wr, r, 2, f'=1-Assumptions!{c("g")}/B{RL["roe"]}', LN['payout_implied'], fmt=PCT)
+r += 2
 lbl(wr, r, 1, 'FY2026E attributable earnings per share — Frame A')
 f(wr, r, 2, f"='Income Statement'!E{IS['eps']}", par_f[0] / SH, fmt=PS)
 RL['epsA'] = r; r += 1
@@ -1349,26 +1470,43 @@ f(wr, r, 2, f'=((DCF!B{FB["ebit"]}-Assumptions!C${A["intpath"]})'
   f'*(1-Assumptions!{c("tax_eff")})'
   f'+Assumptions!{c("assoc_e")}-{FC["nci_fwd"]})/Assumptions!{c("shares")}', epsB0, fmt=PS)
 RL['epsB'] = r; r += 1
-lbl(wr, r, 1, 'Average of the two frames — the base for the multiples below', bold=True)
+lbl(wr, r, 1, 'Average of the two frames — the FORWARD earnings base', bold=True)
 f(wr, r, 2, f'=AVERAGE(B{RL["epsA"]}:B{RL["epsB"]})', LN['eps_fwd'], fmt=PS,
   bold=True)
+lbl(wr, r, 4, 'Averaging the two frames\' EARNINGS is not averaging the two VALUATIONS: the '
+    'frames are published as two separate centres and are never averaged into one', note=True)
 RL['eps'] = r; r += 1
+RL['epsT'] = r
+lbl(wr, r, 1, 'TRAILING attributable earnings per share, FY2025, on the count in issue today',
+    bold=True)
+f(wr, r, 2, f"=Assumptions!{c('parent25')}/Assumptions!{c('shares')}", LN['eps_ttm'], fmt=PS,
+  bold=True)
+lbl(wr, r, 4, 'The base for the two TRAILING multiples below. A trailing multiple applied to '
+    'forward earnings would mismatch the periods', note=True)
+r += 1
 tri = LN['rel_triangulation']
 for i, (name, mult, value) in enumerate(tri):
     RL[f't{i}'] = r
     lbl(wr, r, 1, name)
     if i == 0:
-        f(wr, r, 2, f'=(1-Assumptions!{c("g")}/{LN["roe_sust"]:.8f})/(Assumptions!{c("ket")}'
+        f(wr, r, 2, f'=B{RL["pay"]}/(Assumptions!{c("ket")}'
           f'-Assumptions!{c("g")})', mult, fmt='0.00"x"')
     elif i == 1:
         val(wr, r, 2, mult, fmt='0.00"x"')
     else:
         f(wr, r, 2, f'=Assumptions!{c("peer_pe")}*(0.10-Assumptions!{c("g")})/'
           f'(Assumptions!{c("ket")}-Assumptions!{c("g")})', mult, fmt='0.00"x"')
-    f(wr, r, 3, f'=B{r}*B{RL["eps"]}', mult * LN['eps_fwd'], fmt=PS)
-    lbl(wr, r, 4, ['Built from this model\'s own sustainable return and perpetual cost of '
-                   'equity', 'Year-end closes against audited attributable profit',
-                   'The peers face a cost of equity near 10%, not this one'][i], note=True)
+    eps_ref = f'B{RL["eps"]}' if i == 0 else f'B{RL["epsT"]}'
+    eps_val = LN['eps_fwd'] if i == 0 else LN['eps_ttm']
+    f(wr, r, 3, f'=B{r}*{eps_ref}', mult * eps_val, fmt=PS)
+    lbl(wr, r, 4, ["A FORWARD multiple, applied to FORWARD earnings — built from this model's "
+                   'own sustainable return and perpetual cost of equity',
+                   'A TRAILING multiple, applied to TRAILING earnings — year-end closes '
+                   'against audited attributable profit, each year on its own weighted-average '
+                   'share count',
+                   'A TRAILING multiple, applied to TRAILING earnings. The midpoint of the two '
+                   'disclosed observations, not a median of a peer set; those companies face a '
+                   'cost of equity near 10%, not this one'][i], note=True)
     r += 1
 RL['avg'] = r
 lbl(wr, r, 1, 'AVERAGE OF THE THREE — the relative lens', bold=True, fill=FILL_C)
@@ -1391,11 +1529,20 @@ for o in LN['own_pe_history']:
 lbl(wr, r, 1, 'Four-year mean', bold=True)
 f(wr, r, 4, f'=AVERAGE(D{oh_start}:D{r - 1})', LN['own_pe_mean'], fmt='0.0"x"', bold=True)
 r += 1
-lbl(wr, r, 1, 'Trailing multiple at the market price today', bold=True)
+lbl(wr, r, 1, 'Trailing multiple today — on the share count IN ISSUE', bold=True)
 f(wr, r, 2, f'=Assumptions!{c("spot")}', M['spot'], fmt=PS)
-f(wr, r, 3, f"='Income Statement'!D{IS['eps']}*{V['wavg_shares_fy25']}/Assumptions!{c('shares')}",
-  V['parent_fy25'] / SH, fmt=PS)
-f(wr, r, 4, f'=B{r}/C{r}', LN['pe_now'], fmt='0.0"x"', bold=True)
+f(wr, r, 3, f"=B{RL['epsT']}", LN['eps_ttm'], fmt=PS)
+f(wr, r, 4, f'=B{r}/C{r}', LN['pe_now'], fmt='0.00"x"', bold=True)
+r += 1
+lbl(wr, r, 1, 'Trailing multiple today — on the AUDITED WEIGHTED-AVERAGE count for FY2025',
+    bold=True)
+f(wr, r, 2, f'=Assumptions!{c("spot")}', M['spot'], fmt=PS)
+f(wr, r, 3, f"=Assumptions!{c('parent25')}/{V['wavg_shares_fy25']}", LN['eps_ttm_wavg'], fmt=PS)
+f(wr, r, 4, f'=B{r}/C{r}', LN['pe_now_wavg'], fmt='0.00"x"', bold=True)
+lbl(wr, r, 6, 'TWO SHARE COUNTS, BOTH PUBLISHED. The capital increase from 148.755750 to '
+    '168.755750 million shares completed during FY2025, so that year has a weighted-average '
+    'count of 162.016024 million and a closing count of 168.755750 million. Both readings of '
+    'the trailing multiple are legitimate; neither is stated alone.', note=True)
 r += 2
 lbl(wr, r, 1, 'NORMALISED EARNINGS POWER', bold=True, fill=FILL_C); r += 1
 NP = {}
@@ -1438,24 +1585,28 @@ LV = {}
 r = 2
 lens_rows = [
     ('dcfA', 'Discounted cash flow — Frame A (provision charge permanent)',
-     f"=('SOTP Bridge'!B{BR['eq']})/Assumptions!{c('shares')}", ps_sheet, 0.25,
+     f"=('SOTP Bridge'!B{BR['eq']})/Assumptions!{c('shares')}", ps_sheet, LN['w_dcf'],
      'Five explicit years of free cash flow to the firm, discounted on a glide from the '
      'current to the terminal cost of capital, plus a terminal value on the growth-over-'
      'return reinvestment identity.'),
     ('dcfB', 'Discounted cash flow — Frame B (provision charge normalising)',
-     f"=DCF!B{FB['ps']}", eqB / SH, 0.25,
+     f"=DCF!B{FB['ps']}", eqB / SH, LN['w_dcf'],
      'The identical model with the single contested judgement resolved the other way. '
      'Published beside Frame A, never averaged into it.'),
     ('book', 'Book value and sustainable return',
-     f"=('Balance Sheet'!G{BS['bvps']})*0+{LN['just_pb']:.6f}*'Balance Sheet'!D{BS['bvps']}",
+     f"=(('Relative & Normalized'!B{RL['roe']}-Assumptions!{c('g')})"
+     f"/(Assumptions!{c('ket')}-Assumptions!{c('g')}))*'Balance Sheet'!D{BS['bvps']}",
      LN['book_ps'], 0.20,
      'Book value per share multiplied by (sustainable return less growth) over (perpetual '
-     'cost of equity less growth).'),
+     'cost of equity less growth). EVERY term is live: the sustainable return reads the '
+     'forecast return-on-equity path, and the perpetual cost of equity reads beta, the '
+     'terminal risk-free rate and the terminal premium.'),
     ('rel', 'Relative multiples', "='Relative & Normalized'!C%d" % (RL_AVG_ROW,),
      LN['rel_ps'], 0.15,
-     'Three multiples triangulated ON the sheet — the multiple this model\'s own economics '
-     'justify, the company\'s own four-year mean, and a cost-of-equity-adjusted regional '
-     'peer median — averaged rather than asserted.'),
+     'Three multiples triangulated ON the sheet, EACH APPLIED TO THE EARNINGS OF ITS OWN '
+     'PERIOD — the forward multiple this model\'s own economics justify on forward earnings, '
+     'and the company\'s own four-year mean and a cost-of-equity-adjusted struck peer '
+     'reference on trailing earnings.'),
     ('norm', 'Normalised earnings power', "='Relative & Normalized'!B%d" % (NP_VAL_ROW,),
      LN['norm_ps'], 0.15,
      'The three-year average operating margin applied to forecast revenue, capitalised at '
@@ -1472,14 +1623,31 @@ for key, label, formula, exp, wt, how in lens_rows:
     lbl(wfv, r, 4, how, note=True)
     wfv.row_dimensions[r].height = 42
     r += 1
-LV['central'] = r
-lbl(wfv, r, 1, 'WEIGHTED CENTRAL FAIR VALUE', bold=True, fill=FILL_C)
-f(wfv, r, 2, '=' + '+'.join(f'B{LV[k]}*C{LV[k]}' for k, *_ in lens_rows), LN['fair_base'],
-  fmt=PS, bold=True, fill=FILL_C)
-f(wfv, r, 3, '=' + '+'.join(f'C{LV[k]}' for k, *_ in lens_rows), 1.0, fmt=PCT, bold=True,
+SHARED = ('book', 'rel', 'norm')
+_shared_sum = '+'.join(f'B{LV[k]}*C{LV[k]}' for k in SHARED)
+LV['centreA'] = r
+lbl(wfv, r, 1, 'WEIGHTED CENTRE — FRAME A', bold=True, fill=FILL_C)
+f(wfv, r, 2, f'=B{LV["dcfA"]}*C{LV["dcfA"]}+' + _shared_sum, LN['centre_A'], fmt=PS, bold=True,
   fill=FILL_C)
-lbl(wfv, r, 4, 'The weights sum to one; the cell to the left proves it.', note=True)
+f(wfv, r, 3, f'=C{LV["dcfA"]}+' + '+'.join(f'C{LV[k]}' for k in SHARED), 1.0, fmt=PCT,
+  bold=True, fill=FILL_C)
+lbl(wfv, r, 4, 'The discounted-cash-flow weight in full on Frame A, beside the three lenses '
+    'that do not turn on the contested judgement. The weights sum to one; the cell to the '
+    'left proves it.', note=True)
+wfv.row_dimensions[r].height = 42
 r += 1
+LV['centreB'] = r
+lbl(wfv, r, 1, 'WEIGHTED CENTRE — FRAME B', bold=True, fill=FILL_C)
+f(wfv, r, 2, f'=B{LV["dcfB"]}*C{LV["dcfB"]}+' + _shared_sum, LN['centre_B'], fmt=PS, bold=True,
+  fill=FILL_C)
+f(wfv, r, 3, f'=C{LV["dcfB"]}+' + '+'.join(f'C{LV[k]}' for k in SHARED), 1.0, fmt=PCT,
+  bold=True, fill=FILL_C)
+lbl(wfv, r, 4, 'THE TWO CENTRES ARE NOT AVERAGED. Weighting both frames inside one number is '
+    'a straight average of them, which is exactly what this study says it never does.',
+    note=True)
+wfv.row_dimensions[r].height = 42
+r += 1
+LV['central'] = LV['centreA']
 LV['lo'] = r
 lbl(wfv, r, 1, 'Low of the field', bold=True)
 f(wfv, r, 2, f'=MIN(B{LV["dcfA"]}:B{LV["norm"]})', LN['fair_bear'], fmt=PS, bold=True)
@@ -1492,8 +1660,12 @@ LV['spot'] = r
 lbl(wfv, r, 1, 'Market price', bold=True)
 f(wfv, r, 2, f'=Assumptions!{c("spot")}', M['spot'], fmt=PS, bold=True)
 r += 1
-lbl(wfv, r, 1, 'Market price relative to the weighted central value', bold=True, fill=FILL_C)
-f(wfv, r, 2, f'=B{LV["spot"]}/B{LV["central"]}-1', M['spot'] / LN['fair_base'] - 1, fmt=PCT,
+lbl(wfv, r, 1, 'Market price relative to the Frame A centre', bold=True, fill=FILL_C)
+f(wfv, r, 2, f'=B{LV["spot"]}/B{LV["centreA"]}-1', M['spot'] / LN['centre_A'] - 1, fmt=PCT,
+  bold=True, fill=FILL_C)
+r += 1
+lbl(wfv, r, 1, 'Market price relative to the Frame B centre', bold=True, fill=FILL_C)
+f(wfv, r, 2, f'=B{LV["spot"]}/B{LV["centreB"]}-1', M['spot'] / LN['centre_B'] - 1, fmt=PCT,
   bold=True, fill=FILL_C)
 
 # ============================================================== 2. SUMMARY
@@ -1504,10 +1676,12 @@ SU = {}
 summary_rows = [
     ('dcfA', 'Discounted cash flow — Frame A',
      f"='Fundamental Valuation'!B{LV['dcfA']}", ps_sheet,
-     f'Terminal value {pv_tv_sheet / ev_core_sheet:.0%} of core enterprise value'),
+     f'Terminal value {pv_tv_sheet / ev_core_sheet:.0%} of core enterprise value, '
+     f'{pv_tv_sheet / ev_tot_sheet:.0%} of total'),
     ('dcfB', 'Discounted cash flow — Frame B',
      f"='Fundamental Valuation'!B{LV['dcfB']}", DCFD['frame_B']['per_share'],
-     f"Terminal value {DCFD['frame_B']['tv_share']:.0%} of core enterprise value"),
+     f"Terminal value {DCFD['frame_B']['tv_share']:.0%} of core enterprise value, "
+     f"{DCFD['frame_B']['tv_share_total']:.0%} of total"),
     ('book', 'Book value and sustainable return',
      f"='Fundamental Valuation'!B{LV['book']}", LN['book_ps'],
      f"Justified {LN['just_pb']:.2f} times book"),
@@ -1524,13 +1698,22 @@ for key, label, formula, exp, note in summary_rows:
     lbl(wsum, r, 4, note, note=True)
     r += 1
 SU['central'] = r
-lbl(wsum, r, 1, 'WEIGHTED CENTRAL FAIR VALUE', bold=True, fill=FILL_C)
-f(wsum, r, 2, f"='Fundamental Valuation'!B{LV['central']}", LN['fair_base'], fmt=PS, bold=True,
+lbl(wsum, r, 1, 'WEIGHTED CENTRE — FRAME A', bold=True, fill=FILL_C)
+f(wsum, r, 2, f"='Fundamental Valuation'!B{LV['centreA']}", LN['centre_A'], fmt=PS, bold=True,
   fill=FILL_C)
-f(wsum, r, 3, f'=B{r}/Assumptions!{c("spot")}-1', LN['fair_base'] / M['spot'] - 1, fmt=PCT,
+f(wsum, r, 3, f'=B{r}/Assumptions!{c("spot")}-1', LN['centre_A'] / M['spot'] - 1, fmt=PCT,
   bold=True, fill=FILL_C)
 lbl(wsum, r, 4, 'A range, not a target. No rating is expressed anywhere in this workbook.',
     note=True)
+r += 1
+SU['centreB'] = r
+lbl(wsum, r, 1, 'WEIGHTED CENTRE — FRAME B', bold=True, fill=FILL_C)
+f(wsum, r, 2, f"='Fundamental Valuation'!B{LV['centreB']}", LN['centre_B'], fmt=PS, bold=True,
+  fill=FILL_C)
+f(wsum, r, 3, f'=B{r}/Assumptions!{c("spot")}-1', LN['centre_B'] / M['spot'] - 1, fmt=PCT,
+  bold=True, fill=FILL_C)
+lbl(wsum, r, 4, 'TWO CENTRES, NEVER AVERAGED INTO ONE. Which one you use is a judgement about '
+    'the debtor book, and it is yours to make rather than ours to bury.', note=True)
 r += 1
 lbl(wsum, r, 1, 'Field low to field high', bold=True)
 f(wsum, r, 2, f"='Fundamental Valuation'!B{LV['lo']}", LN['fair_bear'], fmt=PS, bold=True)
@@ -1671,7 +1854,7 @@ for j in range(5):
     col = get_column_letter(5 + j)
     f(wps, r, 5 + j, f"=('Balance Sheet'!{col}{BS['debt']}-Assumptions!{c('cash0')})"
       f"/'Income Statement'!{col}{IS['ebitda']}",
-      W['net_debt'] / (FC['ebit_A'][j] + FC['dna'][j]), fmt=X)
+      FC['net_debt'][j] / (FC['ebit_A'][j] + FC['dna'][j]), fmt=X)
 r += 1
 lbl(wps, r, 1, 'Inventory days')
 for j in range(5):
@@ -1698,10 +1881,10 @@ lbl(wps, r, 1, 'Return on invested capital')
 for j in range(5):
     col = get_column_letter(5 + j)
     ic = FC['ppe'][j] + FC['cip'][j] + wc_f_full[j] + V['intang_fy25']
-    f(wps, r, 5 + j, f"=('Income Statement'!{col}{IS['ebit']}*(1-Assumptions!{c('tax')}))"
+    f(wps, r, 5 + j, f"=('Income Statement'!{col}{IS['ebit']}*(1-Assumptions!{c('tax_eff')}))"
       f"/('Balance Sheet'!{col}{BS['ppe']}+'Balance Sheet'!{col}{BS['cip']}"
       f"+'Balance Sheet'!{col}{BS['wc']}+Assumptions!{c('intang0')})",
-      FC['ebit_A'][j] * (1 - TAX) / ic, fmt=PCT)
+      FC['ebit_A'][j] * (1 - TAX_FCFF) / ic, fmt=PCT)
 
 # ============================================================== 13. MONTE CARLO
 strike = json.load(open(os.path.join(HERE, 'strike_result.json')))

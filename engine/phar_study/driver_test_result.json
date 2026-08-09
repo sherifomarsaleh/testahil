@@ -1,14 +1,18 @@
 {
- "base": 67.22333140666252,
+ "base": 58.89505972579197,
  "headline_bases": {
-  "value per share, Frame A": 67.22333140666252,
-  "value per share, Frame B": 79.32905218418912,
-  "weighted central fair value": 66.56723194332193,
+  "value per share, Frame A": 58.89505972579197,
+  "value per share, Frame B": 73.83484554632204,
+  "weighted centre, Frame A": 61.683671281484415,
+  "weighted centre, Frame B": 69.15356419174945,
+  "book value and sustainable return lens": 63.120998500343326,
+  "relative multiples lens": 65.47441645748764,
+  "FY2030E gross borrowings": 8813.083585927543,
   "FY2026E earnings per share": 6.007864418830994,
   "FY2030E book value per share": 66.89417719357931,
   "FY2030E total assets": 24773.308963114432,
-  "FY2030E return on invested capital": 0.16360853105510176,
-  "cost of equity, rating basis": 0.24708259999999999
+  "FY2030E return on invested capital": 0.16149745323503595,
+  "cost of equity, rating basis": 0.255090974
  },
  "cases": [
   {
@@ -16,8 +20,8 @@
    "cell": "C8",
    "multiplier": 1.2,
    "base_input": 0.055,
-   "headline": 67.34412688055616,
-   "move": 0.12079547389363654,
+   "headline": 58.95701316038677,
+   "move": 0.0619534345948054,
    "expected": "up",
    "passed": true,
    "mechanism": "more packs, more revenue on a cost base that does not rise as fast"
@@ -27,8 +31,8 @@
    "cell": "C9",
    "multiplier": 1.2,
    "base_input": 0.05,
-   "headline": 67.8175596276631,
-   "move": 0.5942282210005772,
+   "headline": 59.578680013291624,
+   "move": 0.6836202874996573,
    "expected": "up",
    "passed": true,
    "mechanism": "same, on the hard-currency book"
@@ -38,8 +42,8 @@
    "cell": "C10",
    "multiplier": 1.2,
    "base_input": 0.05,
-   "headline": 69.69972786494826,
-   "move": 2.476396458285734,
+   "headline": 61.821686481803354,
+   "move": 2.9266267560113874,
    "expected": "up",
    "passed": true,
    "mechanism": "price straight to the margin"
@@ -49,8 +53,8 @@
    "cell": "C11",
    "multiplier": 1.5,
    "base_input": 0.01,
-   "headline": 67.79335311138672,
-   "move": 0.5700217047241978,
+   "headline": 59.56772131287448,
+   "move": 0.6726615870825157,
    "expected": "up",
    "passed": true,
    "mechanism": "price straight to the margin"
@@ -60,19 +64,19 @@
    "cell": "C13",
    "multiplier": 1.1,
    "base_input": 50.5,
-   "headline": 66.17781502818042,
-   "move": -1.0455163784821053,
+   "headline": 57.73100699318988,
+   "move": -1.1640527326020873,
    "expected": "down",
    "passed": true,
-   "mechanism": "a WEAKER pound raises export revenue but ALSO raises the imported ingredient and packaging cost, which is 79% of the cash cost stack against a 32% export share \u2014 the cost side dominates, so the net effect is negative"
+   "mechanism": "a WEAKER pound raises export revenue but ALSO raises the imported ingredient and the imported SHARE of the packaging cost, 68.4% of the disclosed cost stack against a 32% export share \u2014 the cost side dominates, so the net effect is negative"
   },
   {
    "driver": "Selling and marketing / revenue",
    "cell": "C27",
    "multiplier": 1.2,
    "base_input": 0.104,
-   "headline": 66.41156272048343,
-   "move": -0.8117686861790929,
+   "headline": 58.097416136858136,
+   "move": -0.7976435889338305,
    "expected": "down",
    "passed": true,
    "mechanism": "a bigger cost share"
@@ -82,8 +86,8 @@
    "cell": "C30",
    "multiplier": 1.3,
    "base_input": 0.0525,
-   "headline": 66.60865079092596,
-   "move": -0.6146806157365603,
+   "headline": 58.29107479667139,
+   "move": -0.6039849291205783,
    "expected": "down",
    "passed": true,
    "mechanism": "a bigger cost share"
@@ -93,8 +97,8 @@
    "cell": "C32",
    "multiplier": 1.3,
    "base_input": 0.125,
-   "headline": 65.3349116962583,
-   "move": -1.8884197104042215,
+   "headline": 56.036416527971866,
+   "move": -2.8586431978201006,
    "expected": "down",
    "passed": true,
    "mechanism": "cash out of free cash flow"
@@ -104,8 +108,8 @@
    "cell": "C34",
    "multiplier": 1.3,
    "base_input": 0.062,
-   "headline": 65.8111416346257,
-   "move": -1.4121897720368253,
+   "headline": 56.803916858243035,
+   "move": -2.091142867548932,
    "expected": "down",
    "passed": true,
    "mechanism": "a bigger tax-effected charge; the add-back is not a full offset because the tax shield is worth less than the charge"
@@ -115,8 +119,8 @@
    "cell": "C35",
    "multiplier": 1.2,
    "base_input": 265.0,
-   "headline": 66.5100085493603,
-   "move": -0.7133228573022308,
+   "headline": 58.17505244519111,
+   "move": -0.7200072806008535,
    "expected": "down",
    "passed": true,
    "mechanism": "more cash tied up"
@@ -126,8 +130,8 @@
    "cell": "C36",
    "multiplier": 1.2,
    "base_input": 126.0,
-   "headline": 66.64503321757427,
-   "move": -0.5782981890882581,
+   "headline": 58.31134240587238,
+   "move": -0.583717319919586,
    "expected": "down",
    "passed": true,
    "mechanism": "more cash tied up"
@@ -137,8 +141,8 @@
    "cell": "C37",
    "multiplier": 1.2,
    "base_input": 55.0,
-   "headline": 67.37137954685733,
-   "move": 0.1480481401948026,
+   "headline": 59.04449519912423,
+   "move": 0.14943547333226093,
    "expected": "up",
    "passed": true,
    "mechanism": "less cash tied up"
@@ -147,9 +151,9 @@
    "driver": "Ten-year government yield",
    "cell": "C40",
    "multiplier": 1.1,
-   "base_input": 0.2231,
-   "headline": 64.29120744135793,
-   "move": -2.932123965304598,
+   "base_input": 0.23,
+   "headline": 56.15464205401997,
+   "move": -2.7404176717719935,
    "expected": "down",
    "passed": true,
    "mechanism": "a higher discount rate"
@@ -158,9 +162,9 @@
    "driver": "Sovereign swap spread",
    "cell": "C41",
    "multiplier": 1.5,
-   "base_input": 0.0341,
-   "headline": 69.55011792544347,
-   "move": 2.326786518780949,
+   "base_input": 0.0342,
+   "headline": 61.011848375546684,
+   "move": 2.1167886497547173,
    "expected": "up",
    "passed": true,
    "mechanism": "a LARGER spread is subtracted from the quoted yield, so the normalised risk-free rate FALLS and the discount rate with it \u2014 this is the whole point of the normalisation"
@@ -169,9 +173,9 @@
    "driver": "Country equity risk premium",
    "cell": "C42",
    "multiplier": 1.2,
-   "base_input": 0.0941,
-   "headline": 65.65201919303094,
-   "move": -1.571312213631586,
+   "base_input": 0.095164,
+   "headline": 57.45373131556466,
+   "move": -1.4413284102273067,
    "expected": "down",
    "passed": true,
    "mechanism": "a higher cost of equity"
@@ -181,8 +185,8 @@
    "cell": "C45",
    "multiplier": 1.3,
    "base_input": 0.629,
-   "headline": 55.79581350058406,
-   "move": -11.427517906078464,
+   "headline": 48.91815214160104,
+   "move": -9.976907584190926,
    "expected": "down",
    "passed": true,
    "mechanism": "a higher cost of equity"
@@ -192,8 +196,8 @@
    "cell": "C46",
    "multiplier": 1.2,
    "base_input": 0.2481,
-   "headline": 66.36599203705862,
-   "move": -0.8573393696039062,
+   "headline": 58.1173508152102,
+   "move": -0.7777089105817652,
    "expected": "down",
    "passed": true,
    "mechanism": "a higher cost of capital"
@@ -203,40 +207,40 @@
    "cell": "C52",
    "multiplier": 1.2,
    "base_input": 0.105,
-   "headline": 53.26916741445634,
-   "move": -13.954163992206183,
+   "headline": 46.84464560951918,
+   "move": -12.050414116272783,
    "expected": "down",
    "passed": true,
    "mechanism": "a higher terminal discount rate against a 74% terminal weight"
   },
   {
    "driver": "Terminal growth",
-   "cell": "C57",
+   "cell": "C58",
    "multiplier": 1.2,
    "base_input": 0.05,
-   "headline": 71.6435569091962,
-   "move": 4.4202255025336825,
+   "headline": 61.48029305778899,
+   "move": 2.585233331997024,
    "expected": "up",
    "passed": true,
    "mechanism": "growth in the terminal numerator and a smaller denominator"
   },
   {
-   "driver": "Terminal return on invested capital",
-   "cell": "C58",
+   "driver": "Terminal debt weight",
+   "cell": "C56",
    "multiplier": 1.3,
-   "base_input": 0.2,
-   "headline": 72.6647758797771,
-   "move": 5.441444473114572,
+   "base_input": 0.251247066000691,
+   "headline": 62.723144968713164,
+   "move": 3.8280852429211976,
    "expected": "up",
    "passed": true,
-   "mechanism": "less reinvestment needed to buy the same growth"
+   "mechanism": "more weight on the cheaper after-tax debt lowers the terminal discount rate"
   },
   {
    "driver": "Normalised associate contribution",
    "cell": "C59",
    "multiplier": 1.3,
    "base_input": 250.0,
-   "headline": 72.11205371686529,
+   "headline": 63.78378203599473,
    "move": 4.888722310202766,
    "expected": "up",
    "passed": true,
@@ -247,41 +251,52 @@
    "cell": "C60",
    "multiplier": 1.3,
    "base_input": 11.0,
-   "headline": 72.11205371686529,
+   "headline": 63.78378203599473,
    "move": 4.888722310202766,
    "expected": "up",
    "passed": true,
    "mechanism": "a bigger addition in the bridge"
   },
   {
-   "driver": "Tax rate",
+   "driver": "Tax rate, statutory \u2014 the interest shield only",
    "cell": "C5",
    "multiplier": 1.2,
    "base_input": 0.225,
-   "headline": 62.16749835785129,
-   "move": -5.0558330488112375,
+   "headline": 60.52729045363304,
+   "move": 1.6322307278410761,
+   "expected": "up",
+   "passed": true,
+   "mechanism": "the statutory rate sizes the interest tax shield in the after-tax cost of debt and nothing else, so a higher rate lowers the discount rate"
+  },
+  {
+   "driver": "Tax rate, effective \u2014 what the cash flows bear",
+   "cell": "C6",
+   "multiplier": 1.2,
+   "base_input": 0.235,
+   "headline": 50.84203400890417,
+   "move": -8.053025716887795,
    "expected": "down",
    "passed": true,
-   "mechanism": "less cash, partly offset by a bigger interest shield in the cost of capital"
+   "mechanism": "the rate the free-cash-flow engine actually applies: more tax, less cash"
   },
   {
    "driver": "Transfers out of construction",
    "cell": "C33",
    "multiplier": 1.3,
    "base_input": 3400.0,
-   "headline": 66.41012802805794,
-   "move": -0.8132033786045838,
-   "expected": "down",
+   "headline": 59.160049370327584,
+   "move": 0.2649896445356177,
+   "expected": "up",
    "passed": true,
-   "mechanism": "brings the depreciation charge forward"
+   "mechanism": "the explicit-year tax shield on higher depreciation, plus a smaller never-depreciated balance left parked at FY2030E for the terminal block to charge"
   },
   {
    "driver": "Gross borrowings",
    "cell": "C71",
    "multiplier": 1.2,
    "base_input": 8797.72564,
-   "headline": 57.595258079003585,
-   "move": -9.628073327658939,
+   "headline": 49.244904876614385,
+   "move": -9.650154849177582,
    "expected": "down",
    "passed": true,
    "mechanism": "more debt to subtract in the bridge"
@@ -291,8 +306,8 @@
    "cell": "C70",
    "multiplier": 1.5,
    "base_input": 1433.426902,
-   "headline": 71.11983645202206,
-   "move": 3.8965050453595325,
+   "headline": 62.80144716720248,
+   "move": 3.9063874414105157,
    "expected": "up",
    "passed": true,
    "mechanism": "less net debt to subtract"
@@ -302,18 +317,18 @@
    "cell": "C51",
    "multiplier": 1.2,
    "base_input": 1250.0,
-   "headline": 65.1902566530265,
-   "move": -1.3769752902954338,
+   "headline": 61.455276226606166,
+   "move": -0.22839505487824852,
    "expected": "down (weighted central)",
    "passed": true,
    "mechanism": "lower attributable earnings feed the relative and normalised lenses; the free-cash-flow lens is unaffected because free cash flow to the firm is struck before financing, so the Frame A headline itself should NOT move \u2014 this case therefore asserts on the weighted central value, not on the bridge"
   },
   {
    "driver": "Active-ingredient company at cost",
-   "cell": "C75",
+   "cell": "C76",
    "multiplier": 1.3,
    "base_input": 228.4864180000001,
-   "headline": 67.62951564275521,
+   "headline": 59.30124396188465,
    "move": 0.4061842360926846,
    "expected": "up",
    "passed": true,
@@ -321,11 +336,11 @@
   },
   {
    "driver": "Non-controlling interests in the bridge",
-   "cell": "C74",
+   "cell": "C75",
    "multiplier": 2.0,
    "base_input": 3.999807,
-   "headline": 67.19962965427779,
-   "move": -0.023701752384738484,
+   "headline": 58.871357973407235,
+   "move": -0.023701752384731378,
    "expected": "down",
    "passed": true,
    "mechanism": "a bigger deduction in the bridge"
@@ -339,8 +354,12 @@
    "C20"
   ],
   [
+   "Terminal debt weight \u2014 the funded forecast balance sheet at FY2030E",
+   "C57"
+  ],
+  [
    "Non-controlling interests, audited 31 December 2025",
-   "C73"
+   "C74"
   ]
  ],
  "live_inputs": [
@@ -350,7 +369,8 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value"
+    "weighted centre, Frame A",
+    "weighted centre, Frame B"
    ]
   ],
   [
@@ -359,16 +379,9 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
-    "FY2026E earnings per share",
-    "FY2030E book value per share"
-   ]
-  ],
-  [
-   "Effective tax rate on forecast pre-tax profit",
-   "C6",
-   [
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "relative multiples lens",
     "FY2026E earnings per share",
     "FY2030E book value per share"
    ]
@@ -379,7 +392,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share",
     "FY2030E total assets",
     "FY2030E return on invested capital"
@@ -391,7 +408,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share",
     "FY2030E total assets",
     "FY2030E return on invested capital"
@@ -403,7 +424,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share",
     "FY2030E total assets",
     "FY2030E return on invested capital"
@@ -415,7 +440,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share",
     "FY2030E total assets",
     "FY2030E return on invested capital"
@@ -427,7 +456,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share",
     "FY2030E total assets",
     "FY2030E return on invested capital"
@@ -439,7 +472,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share",
     "FY2030E total assets",
     "FY2030E return on invested capital"
@@ -451,7 +488,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share",
     "FY2030E total assets",
     "FY2030E return on invested capital"
@@ -463,7 +504,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share",
     "FY2030E total assets",
     "FY2030E return on invested capital"
@@ -475,7 +520,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share",
     "FY2030E total assets",
     "FY2030E return on invested capital"
@@ -487,7 +536,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share",
     "FY2030E total assets",
     "FY2030E return on invested capital"
@@ -499,7 +552,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share",
     "FY2030E total assets",
     "FY2030E return on invested capital"
@@ -511,7 +568,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share",
     "FY2030E total assets",
     "FY2030E return on invested capital"
@@ -523,7 +584,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share",
     "FY2030E total assets",
     "FY2030E return on invested capital"
@@ -535,7 +600,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share",
     "FY2030E total assets",
     "FY2030E return on invested capital"
@@ -547,7 +616,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share",
     "FY2030E total assets",
     "FY2030E return on invested capital"
@@ -559,7 +632,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share",
     "FY2030E total assets",
     "FY2030E return on invested capital"
@@ -571,7 +648,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2026E earnings per share",
     "FY2030E book value per share",
     "FY2030E total assets",
@@ -584,7 +665,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share",
     "FY2030E total assets",
     "FY2030E return on invested capital"
@@ -596,7 +681,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share",
     "FY2030E total assets",
     "FY2030E return on invested capital"
@@ -608,7 +697,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share",
     "FY2030E total assets",
     "FY2030E return on invested capital"
@@ -620,7 +713,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share",
     "FY2030E total assets",
     "FY2030E return on invested capital"
@@ -632,7 +729,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share",
     "FY2030E total assets",
     "FY2030E return on invested capital"
@@ -644,7 +745,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share",
     "FY2030E total assets",
     "FY2030E return on invested capital"
@@ -656,7 +761,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share",
     "FY2030E total assets",
     "FY2030E return on invested capital"
@@ -668,7 +777,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share",
     "FY2030E total assets",
     "FY2030E return on invested capital"
@@ -680,7 +793,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2026E earnings per share",
     "FY2030E book value per share",
     "FY2030E total assets",
@@ -693,7 +810,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2026E earnings per share",
     "FY2030E book value per share",
     "FY2030E total assets",
@@ -706,7 +827,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2026E earnings per share",
     "FY2030E book value per share",
     "FY2030E total assets",
@@ -719,7 +844,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2026E earnings per share",
     "FY2030E book value per share",
     "FY2030E total assets",
@@ -732,7 +861,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2026E earnings per share",
     "FY2030E book value per share",
     "FY2030E total assets",
@@ -745,7 +878,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2026E earnings per share",
     "FY2030E book value per share",
     "FY2030E total assets",
@@ -758,7 +895,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2026E earnings per share",
     "FY2030E book value per share",
     "FY2030E total assets",
@@ -771,7 +912,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2026E earnings per share",
     "FY2030E book value per share",
     "FY2030E total assets",
@@ -784,7 +929,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share",
     "FY2030E total assets",
     "FY2030E return on invested capital"
@@ -796,7 +945,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share",
     "FY2030E total assets",
     "FY2030E return on invested capital"
@@ -808,7 +961,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share",
     "FY2030E total assets",
     "FY2030E return on invested capital"
@@ -820,7 +977,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share",
     "FY2030E total assets",
     "FY2030E return on invested capital"
@@ -832,7 +993,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2026E earnings per share",
     "FY2030E book value per share",
     "FY2030E total assets",
@@ -845,7 +1010,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share",
     "FY2030E total assets",
     "FY2030E return on invested capital"
@@ -857,7 +1026,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share",
     "FY2030E total assets",
     "FY2030E return on invested capital"
@@ -869,7 +1042,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share",
     "FY2030E total assets",
     "FY2030E return on invested capital"
@@ -881,7 +1058,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share",
     "FY2030E total assets",
     "FY2030E return on invested capital"
@@ -893,7 +1074,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2026E earnings per share",
     "FY2030E book value per share",
     "FY2030E total assets",
@@ -906,7 +1091,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share",
     "FY2030E total assets",
     "FY2030E return on invested capital"
@@ -918,7 +1107,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share",
     "FY2030E total assets",
     "FY2030E return on invested capital"
@@ -930,7 +1123,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share",
     "FY2030E total assets",
     "FY2030E return on invested capital"
@@ -942,7 +1139,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share",
     "FY2030E total assets",
     "FY2030E return on invested capital"
@@ -954,7 +1155,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share"
    ]
   ],
@@ -964,7 +1169,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share"
    ]
   ],
@@ -974,7 +1183,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share"
    ]
   ],
@@ -984,7 +1197,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share",
     "FY2030E return on invested capital"
    ]
@@ -995,7 +1212,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2026E earnings per share",
     "FY2030E book value per share"
    ]
@@ -1006,7 +1227,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share"
    ]
   ],
@@ -1016,7 +1241,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share"
    ]
   ],
@@ -1026,7 +1255,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share"
    ]
   ],
@@ -1036,7 +1269,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share",
     "FY2030E return on invested capital"
    ]
@@ -1047,7 +1284,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2026E earnings per share",
     "FY2030E book value per share"
    ]
@@ -1058,7 +1299,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share"
    ]
   ],
@@ -1068,7 +1313,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share"
    ]
   ],
@@ -1078,7 +1327,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share"
    ]
   ],
@@ -1088,7 +1341,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share",
     "FY2030E return on invested capital"
    ]
@@ -1098,7 +1355,11 @@
    "D30",
    [
     "value per share, Frame A",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share"
    ]
   ],
@@ -1107,7 +1368,11 @@
    "E30",
    [
     "value per share, Frame A",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share"
    ]
   ],
@@ -1116,7 +1381,11 @@
    "F30",
    [
     "value per share, Frame A",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share"
    ]
   ],
@@ -1125,7 +1394,11 @@
    "G30",
    [
     "value per share, Frame A",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share",
     "FY2030E return on invested capital"
    ]
@@ -1135,7 +1408,9 @@
    "C31",
    [
     "value per share, Frame B",
-    "weighted central fair value"
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "relative multiples lens"
    ]
   ],
   [
@@ -1143,7 +1418,7 @@
    "D31",
    [
     "value per share, Frame B",
-    "weighted central fair value"
+    "weighted centre, Frame B"
    ]
   ],
   [
@@ -1151,7 +1426,7 @@
    "E31",
    [
     "value per share, Frame B",
-    "weighted central fair value"
+    "weighted centre, Frame B"
    ]
   ],
   [
@@ -1159,7 +1434,7 @@
    "F31",
    [
     "value per share, Frame B",
-    "weighted central fair value"
+    "weighted centre, Frame B"
    ]
   ],
   [
@@ -1167,7 +1442,7 @@
    "G31",
    [
     "value per share, Frame B",
-    "weighted central fair value"
+    "weighted centre, Frame B"
    ]
   ],
   [
@@ -1176,7 +1451,9 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "FY2030E gross borrowings",
     "FY2030E total assets",
     "FY2030E return on invested capital"
    ]
@@ -1187,7 +1464,9 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "FY2030E gross borrowings",
     "FY2030E total assets",
     "FY2030E return on invested capital"
    ]
@@ -1198,7 +1477,9 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "FY2030E gross borrowings",
     "FY2030E total assets",
     "FY2030E return on invested capital"
    ]
@@ -1209,7 +1490,9 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "FY2030E gross borrowings",
     "FY2030E total assets",
     "FY2030E return on invested capital"
    ]
@@ -1220,7 +1503,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share",
     "FY2030E total assets",
     "FY2030E return on invested capital"
@@ -1232,7 +1519,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share",
     "FY2030E total assets",
     "FY2030E return on invested capital"
@@ -1244,7 +1535,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share",
     "FY2030E total assets",
     "FY2030E return on invested capital"
@@ -1256,7 +1551,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share",
     "FY2030E total assets",
     "FY2030E return on invested capital"
@@ -1268,7 +1567,8 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value"
+    "weighted centre, Frame A",
+    "weighted centre, Frame B"
    ]
   ],
   [
@@ -1277,7 +1577,8 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value"
+    "weighted centre, Frame A",
+    "weighted centre, Frame B"
    ]
   ],
   [
@@ -1286,7 +1587,8 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value"
+    "weighted centre, Frame A",
+    "weighted centre, Frame B"
    ]
   ],
   [
@@ -1295,7 +1597,9 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "FY2030E gross borrowings",
     "FY2030E total assets",
     "FY2030E return on invested capital"
    ]
@@ -1306,7 +1610,8 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value"
+    "weighted centre, Frame A",
+    "weighted centre, Frame B"
    ]
   ],
   [
@@ -1315,7 +1620,8 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value"
+    "weighted centre, Frame A",
+    "weighted centre, Frame B"
    ]
   ],
   [
@@ -1324,7 +1630,8 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value"
+    "weighted centre, Frame A",
+    "weighted centre, Frame B"
    ]
   ],
   [
@@ -1333,7 +1640,9 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "FY2030E gross borrowings",
     "FY2030E total assets",
     "FY2030E return on invested capital"
    ]
@@ -1344,7 +1653,8 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value"
+    "weighted centre, Frame A",
+    "weighted centre, Frame B"
    ]
   ],
   [
@@ -1353,7 +1663,8 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value"
+    "weighted centre, Frame A",
+    "weighted centre, Frame B"
    ]
   ],
   [
@@ -1362,7 +1673,8 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value"
+    "weighted centre, Frame A",
+    "weighted centre, Frame B"
    ]
   ],
   [
@@ -1371,7 +1683,9 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "FY2030E gross borrowings",
     "FY2030E return on invested capital"
    ]
   ],
@@ -1379,6 +1693,11 @@
    "Dividend payout ratio",
    "C38",
    [
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share"
    ]
   ],
@@ -1402,7 +1721,8 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value"
+    "weighted centre, Frame A",
+    "weighted centre, Frame B"
    ]
   ],
   [
@@ -1411,7 +1731,8 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value"
+    "weighted centre, Frame A",
+    "weighted centre, Frame B"
    ]
   ],
   [
@@ -1420,59 +1741,69 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value"
+    "weighted centre, Frame A",
+    "weighted centre, Frame B"
    ]
   ],
   [
-   "Cost-of-debt path",
+   "Normalised risk-free convergence path",
    "C50",
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value"
+    "weighted centre, Frame A",
+    "weighted centre, Frame B"
    ]
   ],
   [
-   "Cost-of-debt path",
+   "Normalised risk-free convergence path",
    "D50",
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value"
+    "weighted centre, Frame A",
+    "weighted centre, Frame B"
    ]
   ],
   [
-   "Cost-of-debt path",
+   "Normalised risk-free convergence path",
    "E50",
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value"
+    "weighted centre, Frame A",
+    "weighted centre, Frame B"
    ]
   ],
   [
-   "Cost-of-debt path",
+   "Normalised risk-free convergence path",
    "F50",
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value"
+    "weighted centre, Frame A",
+    "weighted centre, Frame B"
    ]
   ],
   [
-   "Cost-of-debt path",
+   "Normalised risk-free convergence path",
    "G50",
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value"
+    "weighted centre, Frame A",
+    "weighted centre, Frame B"
    ]
   ],
   [
    "Finance cost charged to profit (EGP mn)",
    "D51",
    [
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share"
    ]
   ],
@@ -1480,6 +1811,11 @@
    "Finance cost charged to profit (EGP mn)",
    "E51",
    [
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share"
    ]
   ],
@@ -1487,6 +1823,11 @@
    "Finance cost charged to profit (EGP mn)",
    "F51",
    [
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share"
    ]
   ],
@@ -1494,6 +1835,11 @@
    "Finance cost charged to profit (EGP mn)",
    "G51",
    [
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share"
    ]
   ],
@@ -1503,7 +1849,10 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value"
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens"
    ]
   ],
   [
@@ -1512,7 +1861,8 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value"
+    "weighted centre, Frame A",
+    "weighted centre, Frame B"
    ]
   ],
   [
@@ -1521,23 +1871,17 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value"
+    "weighted centre, Frame A",
+    "weighted centre, Frame B"
    ]
   ],
   [
-   "Terminal debt weight",
-   "C56",
-   [
-    "value per share, Frame A",
-    "value per share, Frame B",
-    "weighted central fair value"
-   ]
-  ],
-  [
-   "Regional peer median price-earnings multiple",
+   "Struck peer reference price-earnings multiple",
    "C61",
    [
-    "weighted central fair value"
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "relative multiples lens"
    ]
   ],
   [
@@ -1546,7 +1890,11 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2026E earnings per share",
     "FY2030E book value per share",
     "FY2030E total assets",
@@ -1557,6 +1905,11 @@
    "Projects under construction",
    "C64",
    [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "FY2030E gross borrowings",
     "FY2030E total assets",
     "FY2030E return on invested capital"
    ]
@@ -1567,7 +1920,8 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value"
+    "weighted centre, Frame A",
+    "weighted centre, Frame B"
    ]
   ],
   [
@@ -1576,7 +1930,8 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value"
+    "weighted centre, Frame A",
+    "weighted centre, Frame B"
    ]
   ],
   [
@@ -1585,7 +1940,9 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "FY2030E gross borrowings",
     "FY2030E total assets",
     "FY2030E return on invested capital"
    ]
@@ -1596,7 +1953,8 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value"
+    "weighted centre, Frame A",
+    "weighted centre, Frame B"
    ]
   ],
   [
@@ -1605,41 +1963,65 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "FY2030E gross borrowings",
     "FY2030E return on invested capital"
    ]
   ],
   [
-   "Equity attributable to the holding company",
+   "Attributable profit, FY2025 (EGP mn)",
    "C72",
    [
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "relative multiples lens"
+   ]
+  ],
+  [
+   "Equity attributable to the holding company",
+   "C73",
+   [
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2030E book value per share"
    ]
   ],
   [
    "Assets held for sale",
-   "C76",
+   "C77",
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value"
+    "weighted centre, Frame A",
+    "weighted centre, Frame B"
    ]
   ],
   [
    "Intangible assets, net",
-   "C77",
+   "C78",
    [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
     "FY2030E return on invested capital"
    ]
   ],
   [
    "Right-of-use and intangible amortisation run-rate",
-   "C78",
+   "C79",
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2026E earnings per share",
     "FY2030E book value per share",
     "FY2030E total assets",
@@ -1648,22 +2030,28 @@
   ],
   [
    "Share of depreciation charged to cost of sales",
-   "C79",
+   "C80",
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "FY2030E gross borrowings",
     "FY2030E total assets",
     "FY2030E return on invested capital"
    ]
   ],
   [
    "FY2025 cash cost per pack sold (EGP)",
-   "C80",
+   "C81",
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2026E earnings per share",
     "FY2030E book value per share",
     "FY2030E total assets",
@@ -1672,11 +2060,15 @@
   ],
   [
    "Consolidated-to-separate revenue factor",
-   "C81",
+   "C82",
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2026E earnings per share",
     "FY2030E book value per share",
     "FY2030E total assets",
@@ -1685,11 +2077,15 @@
   ],
   [
    "FY2025 domestic packs (million)",
-   "C82",
+   "C83",
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2026E earnings per share",
     "FY2030E book value per share",
     "FY2030E total assets",
@@ -1698,11 +2094,15 @@
   ],
   [
    "FY2025 export packs (million)",
-   "C83",
+   "C84",
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2026E earnings per share",
     "FY2030E book value per share",
     "FY2030E total assets",
@@ -1711,11 +2111,15 @@
   ],
   [
    "FY2025 domestic price per pack (EGP)",
-   "C84",
+   "C85",
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2026E earnings per share",
     "FY2030E book value per share",
     "FY2030E total assets",
@@ -1724,11 +2128,15 @@
   ],
   [
    "FY2025 export price per pack (USD)",
-   "C85",
+   "C86",
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2026E earnings per share",
     "FY2030E book value per share",
     "FY2030E total assets",
@@ -1737,11 +2145,15 @@
   ],
   [
    "FY2025 contract-manufacturing packs (million)",
-   "C86",
+   "C87",
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2026E earnings per share",
     "FY2030E book value per share",
     "FY2030E total assets",
@@ -1750,11 +2162,15 @@
   ],
   [
    "FY2025 contract-manufacturing revenue (EGP mn)",
-   "C87",
+   "C88",
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2026E earnings per share",
     "FY2030E book value per share",
     "FY2030E total assets",
@@ -1763,11 +2179,15 @@
   ],
   [
    "FY2025 average exchange rate",
-   "C88",
+   "C89",
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
+    "weighted centre, Frame A",
+    "weighted centre, Frame B",
+    "book value and sustainable return lens",
+    "relative multiples lens",
+    "FY2030E gross borrowings",
     "FY2026E earnings per share",
     "FY2030E book value per share",
     "FY2030E total assets",
