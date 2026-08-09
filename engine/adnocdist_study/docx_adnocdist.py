@@ -36,6 +36,46 @@ BETAJ = json.load(open(os.path.join(HERE, 'beta_result.json')))
 # is the separate, structured source record and is read alongside it for the research
 # record in Appendix B.
 REC = json.load(open(os.path.join(HERE, 'sweep_research.json')))
+
+# The research file is an internal working record and its prose carries internal
+# shorthand. The reader of this study is an external party, so every string drawn from
+# it is rewritten once, here, rather than relying on each call site to remember.
+_SUBS = [
+    ('Per SIGCM clause 3', 'Under this study\u2019s source rules'),
+    ('Per SIGCM clause 1', 'Under this study\u2019s source rules'),
+    ('SIGCM clause 3', 'this study\u2019s source rules'),
+    ('SIGCM clause 1', 'this study\u2019s source rules'),
+    ('SIGCM', 'this study\u2019s source rules'),
+    ('risk register', 'list of risks'),
+    ('CROSS-CHECK ONLY, NEVER A BUILD SOURCE',
+     'used only as a cross-check, never as a source for the model'),
+    ('CROSS-CHECK ONLY', 'used only as a cross-check'),
+    ('FLAG-BEFORE-ISSUE item', 'item flagged before issue'),
+    ('FLAG-BEFORE-ISSUE', 'flagged before issue'),
+    ('STOP-AND-INFORM', 'flagged before issue'),
+    ('REGULATED PASS-THROUGH', 'regulated pass-through'),
+    ('the sweep', 'the research'),
+    ('this sweep', 'this research'),
+    ('The protocol requires', 'This study requires'),
+    ('protocol', 'standard'),
+    ('AGGREGATOR', 'market-data provider'),
+    ('SECONDARY', 'independent'),
+]
+
+
+def _scrub(o):
+    if isinstance(o, str):
+        for a, b in _SUBS:
+            o = o.replace(a, b)
+        return o
+    if isinstance(o, list):
+        return [_scrub(x) for x in o]
+    if isinstance(o, dict):
+        return {k: _scrub(v) for k, v in o.items()}
+    return o
+
+
+REC = _scrub(REC)
 ENTRIES = REC.get('entries', REC.get('register', []))
 GAPS = REC.get('gaps_and_negative_results', REC.get('gaps', []))
 E = {e['id']: e for e in ENTRIES}
@@ -300,7 +340,7 @@ ops = [('Service stations', V['stations_h125'], V['stations_h126'], n0),
        ('Non-fuel transactions (millions)', V['nonfueltxn_h125'], V['nonfueltxn_h126'], n1)]
 for nm, a, b, f in ops:
     rows.append([nm, f(a), f(b), pc(b / a - 1, 1)])
-table(rows, [2.6, 1.15, 1.15, 1.4], size=8.8)
+table(rows, [3.0, 1.15, 1.15, 1.0], size=8.8)
 caption(f"Table {tnum()} — the operating measures that drive the model, from the company's own "
         f"half-year disclosures. Fuel transactions grew "
         f"{pc(V['fueltxn_h126'] / V['fueltxn_h125'] - 1, 1)} while non-fuel transactions grew "
@@ -438,7 +478,7 @@ rows = [['Book value and sustainable return', 'Value'],
         ['Long-run growth', pc(A['g'], 1)],
         ['Justified multiple of book', f"{n1(LN['just_pb'])}x"],
         [f"Value per share ({M['currency']})", n2(LN['book_ps'])]]
-table(rows, [4.6, 1.7], band_rows={11, 12}, size=8.8)
+table(rows, [5.15, 1.15], band_rows={11, 12}, size=8.8)
 caption(f"Table {tnum()} — the book-value reading. The reason this lens produces a sane answer "
         f"on a {n0(SPOT / LN['bv_ps'])}-times-book share is that the denominator is small by "
         f"design: the company has paid out substantially all of its earnings every year since "
@@ -531,7 +571,7 @@ rows = [['Normalised earnings power', f"{M['currency']} million"],
          paren(LN['norm_ev'] - LN['norm_equity'])],
         ['Equity value', n0(LN['norm_equity'])],
         [f"VALUE PER SHARE ({M['currency']})", n2(LN['norm_ps'])]]
-table(rows, [4.6, 1.7], band_rows={5, 13, 14}, size=8.8)
+table(rows, [5.15, 1.15], band_rows={5, 13, 14}, size=8.8)
 caption(f"Table {tnum()} — normalised earnings power. This reading is capitalised at TODAY's "
         f"cost of capital of {pc(W['wacc'], 2)} rather than the terminal "
         f"{pc(W['wacc_terminal'], 2)} the cash-flow model glides to, which is why it lands "
@@ -722,7 +762,7 @@ rows += [[f"FY2025 retail fuel volume", f"{n0(UB['vol_retail_fy25'])}m litres"],
           f"{n0(E['I-06']['value'])}%"],
          ['Global electric share of new car sales, 2026 forecast',
           f"{n0(E['G-06']['value'])}%"]]
-table(rows, [4.6, 1.7], size=8.8)
+table(rows, [5.15, 1.15], size=8.8)
 caption(f"Table {tnum()} — the crux in real units. For the market to be right, this network "
         f"must lose roughly {n1(_litres_lost / _lit_per_txn)} million fuel transactions a "
         f"year, every year, in perpetuity — and it must do so while the UAE vehicle parc is "
@@ -1637,7 +1677,7 @@ rows += [[f"Present value of the five years at {pc(W['disc_rate'][0], 2)} rising
          ['Equity value', n0(A['equity'])],
          [f"VALUE PER SHARE ({M['currency']})", n2(A['per_share'])],
          [f"The same working on Frame B ({M['currency']})", n2(Bf['per_share'])]]
-table(rows, [4.6, 1.7], band_rows={10, 13, 14}, size=8.8)
+table(rows, [5.15, 1.15], band_rows={10, 13, 14}, size=8.8)
 P(f"Named sensitivity: the terminal discount rate, and it is not close. Every fifty basis "
   f"points on it is worth roughly {M['currency']} "
   f"{n2(abs(SENS['wacc'][2][1] - SENS['wacc'][3][1]))} a share — moving from "
@@ -1678,7 +1718,7 @@ rows = [['Working', 'Value'],
         ['Cross-check: return on capital employed, FY2025', pc(H['FY2025']['roce'])],
         ['Cross-check: the traded price as a multiple of book',
          f"{n1(SPOT / LN['bv_ps'])}x"]]
-table(rows, [4.6, 1.7], band_rows={13, 14}, size=8.8)
+table(rows, [5.15, 1.15], band_rows={13, 14}, size=8.8)
 P(f"Named sensitivity: the sustainable return. If it settles at the FY2023 reading of "
   f"{pc(LN['roe_hist'][0])} rather than the three-year mean of {pc(LN['roe_sust'])}, the "
   f"justified multiple falls from {n1(LN['just_pb'])} to "
@@ -1729,7 +1769,7 @@ rows = [['What the traded price requires', 'Value'],
         ['   the price requires', n2(CRUX['beta_implied'])],
         ['   against the regression\'s own 90% upper bound of', n2(BETA_CH['ci90'][1])],
         [f"Value if any ONE of the three is true ({M['currency']})", n2(CRUX['spot'])]]
-table(rows, [4.6, 1.7], band_rows={6, 10, 12, 15}, size=8.8)
+table(rows, [5.15, 1.15], band_rows={6, 10, 12, 15}, size=8.8)
 P(f"Named sensitivity: which explanation is chosen. They are not equivalent. The implied beta "
   f"of {n2(CRUX['beta_implied'])} sits ABOVE the 90% upper bound of the regression, "
   f"{n2(BETA_CH['ci90'][1])}, so on the evidence available it is the least likely of the "

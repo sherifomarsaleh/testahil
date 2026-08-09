@@ -32,7 +32,10 @@ BANNED = [
     r'\bcalibration ledger\b', r'\bmateriality gate\b', r'\bpanel\b(?!ed)',
     r'\bCRPS\b', r'\bPIT\b', r'\bnu=', r'\bblock bootstrap\b',
 ]
-ALLOW = {'expert panel', 'panel of', 'the panel does'}   # 'panel' in its ordinary sense
+# Ordinary English that collides with an internal token. 'pass-through' is the correct
+# term for a fuel retailer's cost base and must not be blocked by the verdict token PASS.
+ALLOW = {'expert panel', 'panel of', 'the panel does',
+         'pass-through', 'passes through', 'a pass through'}
 
 
 def doc_text(path):
