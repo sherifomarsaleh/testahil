@@ -2023,6 +2023,15 @@
    "layer": "L5",
    "note": ""
   },
+  "an_conversion_cost_FY2425": {
+   "key": "an_conversion_cost_FY2425",
+   "value": 157.28999999999996,
+   "unit": "EGP/t",
+   "source": "Constructed from the auditor's own product cost table: the disclosed granulated ammonium-nitrate unit cost less the ammonia embodied in it at the disclosed ammonia unit cost and the disclosed ammonia ratio. ADDED 9 August 2026 to replace a flat 32% cash-margin assumption on the whole new complex \u2014 the company discloses what a tonne of this exact product costs to make, and the study was assuming a margin instead of using it.",
+   "date": "2025-09-24",
+   "layer": "L5",
+   "note": ""
+  },
   "anna_cash_margin": {
    "key": "anna_cash_margin",
    "value": 0.32,

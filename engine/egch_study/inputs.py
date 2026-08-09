@@ -352,6 +352,14 @@ I("maint_capex_pct", (80.847245 + 42.470154) / (4440.701 + 6612.226), "ratio",
   "keep its plant running, and which no disclosure supports. The replacement-rate framing "
   "(gross fixed assets at the disclosed 3.95% machinery rate, 6.11% of revenue) is carried "
   "as the published alternative and as the downside case.", "2026-08-09", "L5")
+I("an_conversion_cost_FY2425",
+  4076.31 - 0.43 * 9114, "EGP/t",
+  "Constructed from the auditor's own product cost table: the disclosed granulated "
+  "ammonium-nitrate unit cost less the ammonia embodied in it at the disclosed ammonia "
+  "unit cost and the disclosed ammonia ratio. ADDED 9 August 2026 to replace a flat 32% "
+  "cash-margin assumption on the whole new complex — the company discloses what a tonne of "
+  "this exact product costs to make, and the study was assuming a margin instead of using "
+  "it.", "2025-09-24", "L5")
 I("anna_cash_margin", 0.32, "ratio",
   "Constructed: conversion margin on ammonium nitrate over its own ammonia feedstock", "2026-08-08", "L5")
 I("local_free_parity", 0.90, "ratio",

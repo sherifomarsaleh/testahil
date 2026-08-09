@@ -210,6 +210,10 @@
    0.12324339496403815
   ],
   "wacc": 0.2438835148668597,
+  "anna_unit_cost_terminal": 6360.0058368632035,
+  "anna_ebit_built": 0.0,
+  "anna_ebit_assumed": 0.0,
+  "anna_margin_built_pct": 0.0,
   "implied_wacc_base": 0.07933489569564534,
   "implied_wacc_halt": 0.09138064474447832
  },

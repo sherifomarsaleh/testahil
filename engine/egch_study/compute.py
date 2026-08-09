@@ -390,7 +390,36 @@ def terminal(rows, case="base"):
             "bear": 0.0, "halt": 0.0}[case]
     an_t = D['anna_nameplate_an_t'] * util
     anna_rev = an_t * D['anna_price_usd_t'] * fx / 1e6
-    anna_ebit = anna_rev * D['anna_cash_margin']
+    # BUILT, not assumed. The new complex was valued on a flat 32% cash margin — a whole
+    # business line priced by a single ratio in a study whose entire discipline is
+    # volume x price and cost per physical unit. The auditor's product cost table gives the
+    # unit cost of this exact product: granulated ammonium nitrate at EGP 4,076.31/t,
+    # which reconciles to the disclosed ammonia unit cost at the disclosed ammonia ratio
+    # with EGP 157/t of conversion. So the terminal tonne is built the same way every urea
+    # tonne is: ammonia (gas-driven) plus conversion (domestic-inflation-driven).
+    _gas_egp_m3_T = D['gas_usd_mmbtu'] * D['mmbtu_per_m3'] * fx
+    _nh3_cost_T = D['gas_m3_per_t_ammonia'] * _gas_egp_m3_T          # EGP per tonne NH3
+    _cpi_cum_T = rows[-1]['cpi_cum'] * (1 + D['cpi_path'][-1])
+    _an_unit_cost = (D['nh3_per_t_an'] * _nh3_cost_T
+                     + _V('an_conversion_cost_FY2425') * _cpi_cum_T)
+    anna_cash_cost = an_t * _an_unit_cost / 1e6
+    _ebit_built = anna_rev - anna_cash_cost
+    _ebit_assumed = anna_rev * D['anna_cash_margin']
+    # THE BUILD AND THE ASSUMPTION DISAGREE, AND THE MORE CONSERVATIVE ONE IS KEPT.
+    # Built from the auditor's own disclosed unit costs the terminal tonne carries a ~66%
+    # cash margin, because the disclosed granulated-nitrate unit cost is only EGP 4,076/t
+    # against a disclosed realised price near EGP 20,000/t. An 80% historical margin on a
+    # commodity fertilizer is not credible, so the disclosed unit cost is almost certainly a
+    # partial cost -- most likely ammonia transferred internally below its economic cost.
+    # The build is the right METHOD and it is published; adopting its margin would flatter
+    # the valuation by EGP 0.58 a share on a number the study does not believe. The central
+    # takes the lower of the two and the gap is carried as a contested construction.
+    anna_ebit = min(_ebit_built, _ebit_assumed)
+    D['anna_unit_cost_terminal'] = _an_unit_cost
+    D['anna_ebit_built'] = _ebit_built
+    D['anna_ebit_assumed'] = _ebit_assumed
+    D['anna_margin_built_pct'] = (_ebit_built / anna_rev) if anna_rev else 0.0
+
     # a CASH margin is struck before depreciation. The completed plant must carry its own
     # charge before it enters terminal EBIT.
     anna_dep = (D['anna_total_cost'] * D['dep_rate_project']) if util > 0 else 0.0
