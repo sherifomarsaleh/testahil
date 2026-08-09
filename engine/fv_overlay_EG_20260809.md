@@ -2,7 +2,7 @@
 
 Protocol: `Fundamental_MC_Integration_Protocol.md (PROPOSED 6-Aug-2026)`  
 Engine: nu=6.0, width_cal=0.951, overlay_active=True, cash hurdle rf=19.50%  
-Names: 36 computed, 0 blocked
+Names: 37 computed, 0 blocked
 
 `G` is the fair-value gap in the name's own horizon volatility (drift-free). Probabilities are suppressed in NOT-EXPRESSIBLE per protocol §4.
 
@@ -38,6 +38,7 @@ Names: 36 computed, 0 blocked
 | EFIH | -40% | -4.73 | NOT-EXPRESSIBLE | -2.51 | OUT-OF-REACH | — | 1% | no |
 | EMFD | +72% | +5.92 | NOT-EXPRESSIBLE | +3.16 | OUT-OF-REACH | — | 1% | yes |
 | RMDA | -44% | -6.60 | NOT-EXPRESSIBLE | -3.18 | OUT-OF-REACH | — | 1% | no |
+| PHAR | -53% | -5.02 | NOT-EXPRESSIBLE | -3.32 | OUT-OF-REACH | — | 0% | no |
 | OIH | -47% | -6.55 | NOT-EXPRESSIBLE | -3.45 | OUT-OF-REACH | — | 0% | no |
 | DSCW | -55% | -8.06 | NOT-EXPRESSIBLE | -4.09 | NOT-EXPRESSIBLE | — | — | no |
 | KABO | -73% | -10.17 | NOT-EXPRESSIBLE | -5.44 | NOT-EXPRESSIBLE | — | — | no |
@@ -45,13 +46,13 @@ Names: 36 computed, 0 blocked
 | ELEC | -84% | -19.41 | NOT-EXPRESSIBLE | -10.10 | NOT-EXPRESSIBLE | — | — | no |
 | EFID | -0% | -0.01 | IN-REACH | -0.00 | IN-REACH | 85%&dagger; | 90%&dagger; | no |
 
-- **IN-REACH** — 1M: 12/36, 3M: 17/36
-- **STRETCH** — 1M: 6/36, 3M: 7/36
-- **OUT-OF-REACH** — 1M: 8/36, 3M: 8/36
-- **NOT-EXPRESSIBLE** — 1M: 10/36, 3M: 4/36
+- **IN-REACH** — 1M: 12/37, 3M: 17/37
+- **STRETCH** — 1M: 6/37, 3M: 7/37
+- **OUT-OF-REACH** — 1M: 8/37, 3M: 9/37
+- **NOT-EXPRESSIBLE** — 1M: 11/37, 3M: 4/37
 
 &dagger; already converged (|G| <= 0.25): the fair value sits inside the horizon's own noise, so a high P(touch) means spot is already at fair value — the probability is correct but carries no information about the thesis.
 
-**Informative rows** (neither suppressed nor already converged) — 1M: 24/36, 3M: 28/36.
+**Informative rows** (neither suppressed nor already converged) — 1M: 24/37, 3M: 29/37.
 
 Self-test — reconstructed cone vs published, worst relative deviation: 1M 0.324%, 3M 0.481% (tolerance 2%).

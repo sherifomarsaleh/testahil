@@ -11,7 +11,7 @@ const FV_OVERLAY = {
   "rf_live": 0.195,
   "width_overlay_active": true
  },
- "n": 36,
+ "n": 37,
  "rows": [
   {
    "ticker": "HELI",
@@ -2701,6 +2701,89 @@ const FV_OVERLAY = {
     "beats_cash": false,
     "asymmetry": "base below p5",
     "selftest_max_dev": 0.00138
+   }
+  },
+  {
+   "ticker": "PHAR",
+   "name": "Egyptian International Pharmaceutical Industries (EIPICO)",
+   "code": "EGX:PHAR",
+   "ccy": "EGP",
+   "spot": 130.05,
+   "anchor_date": "2026-08-06",
+   "fv_asof": "2026-08-09",
+   "fv_lag_days": -3,
+   "fv_stale": false,
+   "fv_asof_in_closure": true,
+   "fv_bear": 58.04,
+   "fv_base": 61.21,
+   "fv_full": 73.03,
+   "gap_base_pct": -52.9,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 6.0,
+    "width_cal": 0.951,
+    "width_overlay_active": true,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.150178,
+    "mu_h": 0.012532,
+    "G": {
+     "bear": -5.37,
+     "base": -5.02,
+     "full": -3.84
+    },
+    "band": "NOT-EXPRESSIBLE",
+    "informative": false,
+    "already_converged": false,
+    "p_term": null,
+    "p_touch": null,
+    "required_cagr": {
+     "bear": -0.9999,
+     "base": -0.9999,
+     "full": -0.999
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00243
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.226708,
+    "mu_h": 0.039576,
+    "G": {
+     "bear": -3.56,
+     "base": -3.32,
+     "full": -2.55
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0019,
+     "base": 0.0026,
+     "full": 0.0079
+    },
+    "p_touch": {
+     "bear": 0.0033,
+     "base": 0.0045,
+     "full": 0.0142
+    },
+    "required_cagr": {
+     "bear": -0.9603,
+     "base": -0.9509,
+     "full": -0.9006
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00266
    }
   },
   {
