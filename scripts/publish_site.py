@@ -34,6 +34,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import subprocess
 import sys
 import time
@@ -106,12 +107,16 @@ def sync_main(ticker: str) -> None:
 
 
 def market_of(ticker: str) -> str | None:
-    """Market prefix from the ticker's own TICKERS entry ("EGX:EGCH" -> "EG")."""
+    """Market prefix from the ticker's own TICKERS entry ("EGX:PHAR" -> "EG").
+
+    Parsed by LOADING data.js, not by regex: the entry is the authority on the
+    market, and a regex over a file this size has already mis-parsed it once."""
     js = ("const fs=require('fs'),vm=require('vm');const c={};vm.createContext(c);"
           "vm.runInContext(fs.readFileSync('assets/data.js','utf8')+';globalThis.__T=TICKERS;',c);"
           f"process.stdout.write(String((c.__T[{json.dumps(ticker)}]||{{}}).code||''));")
     code = run(["node", "-e", js]).strip()
-    return {"EGX": "EG"}.get(code.split(":")[0])
+    return {"EGX": "EG", "ADX": "AE", "DFM": "AE", "TADAWUL": "SA",
+            "QE": "QA"}.get(code.split(":")[0])
 
 
 def surfaces(ticker: str) -> None:
@@ -123,16 +128,32 @@ def surfaces(ticker: str) -> None:
     # The Ticker Picker reads a GENERATED overlay that nothing here used to rebuild, so a
     # published name simply was not on that page — SWDY, SCEM and EGCH all shipped green
     # and invisible. The overlay is fitted per market and only EG has a fit today.
-    mkt = market_of(ticker)
-    if mkt:
-        print(run(["python3", "engine/fv_overlay.py", "--market", mkt,
-                   "--js", "assets/fv_overlay.js"]).strip()[-200:])
-    else:
-        print(f"  no fair-value overlay for {ticker}'s market — picker is EG-only today")
     # these run last: they rewrite the ticker's own data.js block, so the entry must exist.
     print(run(["python3", "engine/ta_chart.py", "--only", ticker, "--write"]).strip()[-200:])
     print(run(["python3", "engine/apply_technicals.py", "--only", ticker,
                "--write"]).strip()[-300:])
+    # 5. the fair-value overlay feeds picker.html. It was NOT in this list, so four
+    # consecutive EG publishes shipped without ever reaching the Ticker Picker — the
+    # page simply read a file nobody had regenerated. It is a per-MARKET file, so it is
+    # rebuilt for the ticker's own market.
+    mkt = market_of(ticker)
+    if mkt:
+        out = run(["python3", "engine/fv_overlay.py", "--market", mkt,
+                   "--js", "assets/fv_overlay.js"])
+        blocked = [l for l in out.splitlines() if "BLOCKED" in l]
+        if blocked:
+            print("  fv_overlay BLOCKED rows (these names will NOT appear in the picker):")
+            for l in blocked:
+                print("   ", l.strip()[:150])
+            if any(ticker in l for l in blocked):
+                die(f"{ticker} is BLOCKED from the fair-value overlay — it would publish "
+                    f"without reaching the Ticker Picker. Most often the entry is missing "
+                    f"`fairAsof` (the close the FAIR VALUE is struck on); without it the "
+                    f"overlay falls back to the publication date in the study filename and "
+                    f"reports look-ahead against the cone anchor.")
+        print(f"  fv_overlay regenerated for {mkt}")
+    else:
+        print(f"  no market resolved for {ticker} — fv_overlay not regenerated")
 
 
 def gates() -> None:

@@ -108,15 +108,35 @@ def load_tickers(data_js: str = DATA_JS) -> dict:
 _FILE_DATE = re.compile(r"(\d{2})-(\d{2})-(\d{4})")
 
 
-def parse_fv_asof(files: dict | None) -> _dt.date | None:
-    """Fair-value publication date, from the study filename (DD-MM-YYYY).
+def parse_fv_asof(entry: dict) -> _dt.date | None:
+    """The date the FAIR VALUE was struck on — the close it was priced against.
 
-    House filename convention, e.g. ELEC_Valuation_Study_05-08-2026_public.docx.
-    This is the only machine-readable provenance for when a fair value was
-    struck — `TICKERS[t].fair` carries no date field, and `asof` covers the MC
-    and technical reads only. Returns None when no date can be sourced; the
-    caller BLOCKS rather than guessing (protocol invariant 3).
+    Prefers an explicit `fairAsof` on the entry, which is the only field that
+    states this directly. Falls back to the study FILENAME date (DD-MM-YYYY,
+    house convention e.g. ELEC_Valuation_Study_05-08-2026_public.docx).
+
+    WHY THE EXPLICIT FIELD EXISTS. The filename carries the PUBLICATION date,
+    which is days after the close the study is priced on — every study is
+    written after its own price date. Comparing publication date to cone anchor
+    therefore reported look-ahead on names that had none, and blocked four
+    consecutive EG publishes (PHAR, ARCC, AMOC, and EGCH on a separate fault)
+    from the picker for a reason that was an artefact of the filename.
+
+    The fallback is NOT `spotDate` or `asof.mc.data`, though both are already
+    machine-readable and both would make every row pass. They track the CONE,
+    which is re-struck on every roll-forward while `fair` deliberately is not,
+    so either one would make the look-ahead test vacuous — and the test is the
+    point. A cone anchored in July must not be annotated with a fair value
+    struck in August. Returns None when nothing can be sourced; the caller
+    BLOCKS rather than guessing (protocol invariant 3).
     """
+    explicit = (entry or {}).get("fairAsof")
+    if explicit:
+        try:
+            return _dt.date.fromisoformat(explicit)
+        except ValueError:
+            pass
+    files = (entry or {}).get("files")
     if not files:
         return None
     for key in ("study", "pdf", "model", "biblio"):
@@ -305,7 +325,7 @@ def overlay_for_ticker(tkr, t, profile, market="EG", n_paths=N_PATHS, seed=SEED)
     # a bear of 0.00 and vanished from the Ticker Picker for exactly this reason.
     fair = {k: fair_raw[k] for k in ("bear", "base", "full") if fair_raw.get(k) is not None}
     dist, hz = t.get("dist") or {}, t.get("hz") or {}
-    anchor, fv_asof = parse_anchor(t), parse_fv_asof(t.get("files"))
+    anchor, fv_asof = parse_anchor(t), parse_fv_asof(t)
 
     def blocked(reason):
         return {"ticker": tkr, "overlay_status": f"BLOCKED — {reason}",
