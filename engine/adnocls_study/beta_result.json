@@ -1,0 +1,78 @@
+{
+ "ticker": "ADNOCLS",
+ "beta": 0.7046672185679277,
+ "r2": 0.17239686601187942,
+ "n": 163,
+ "se": 0.12167952631768053,
+ "ci90": [
+  0.5045043977753432,
+  0.9048300393605122
+ ],
+ "usable": true,
+ "gate_msg": "passes minimum usability gate",
+ "composite_names": 12,
+ "composite_basis": "ADX-listed names in the UAE library",
+ "window_years": 3.18,
+ "frequency": "weekly",
+ "window_note": "The stock listed on 02-Jun-2023, so the longest window available is 3.18 years, short of the five-year target. The regression uses the full listed history.",
+ "weak": false,
+ "weak_reason": "R-squared = 17.2% against the 10% weak-instrument threshold; the 90% confidence interval [0.50, 0.90] spans 0.57x the point estimate",
+ "warnings": [],
+ "adopted": {
+  "beta_used": 0.7046672185679277,
+  "basis": "tier-1 own-stock weekly regression (usability gate PASSED)",
+  "why": "n = 163 weekly observations, R-squared = 0.172 against the 0.05 floor, SE(beta) = 0.122 against |beta| = 0.705. All three conditions of the usability gate are met, so the regression estimate is adopted rather than a default.",
+  "corroboration": "Cross-checked three ways. (i) The Dimson sum-beta is 0.806 with a 90% interval of [0.45, 1.16]; the adopted 0.70 sits inside it. (ii) Regressing against the wider ADX+DFM library instead gives 0.663 (R-squared 0.168). (iii) The sector prior for a listed tanker owner is 0.9-1.4 and for a contracted, fee-based marine services provider 0.5-0.9; the adopted figure is read against both in the study rather than accepted at face value.",
+  "sensitivity_required": [
+   0.5,
+   0.7,
+   0.9,
+   1.1,
+   1.3
+  ]
+ },
+ "full_library_variant": {
+  "beta": 0.6629468802329991,
+  "r2": 0.16770385447087355,
+  "n": 163,
+  "se": 0.11639470197057153,
+  "names": 18,
+  "note": "ADX + DFM composite; disclosed, not adopted."
+ },
+ "dimson": {
+  "sum_beta": 0.8060049156157114,
+  "se_sum": 0.21710807937737164,
+  "r2": 0.18680560669135904,
+  "n": 160,
+  "ci90": [
+   0.44886212503993506,
+   1.1631477061914879
+  ],
+  "coefficients": {
+   "lead": 0.11242031288081833,
+   "contemporaneous": 0.716162040780364,
+   "lag1": -0.14784977002411906,
+   "lag2": 0.12527233197864804
+  },
+  "uplift_vs_ols": 0.10133769704778373,
+  "note": "Dimson (1979) sum-beta over one lead, the contemporaneous term and two lags. The uplift over the contemporaneous OLS beta measures how much co-movement is booked late because the stock does not trade on every session."
+ },
+ "self_inclusion_bias": {
+  "beta_index_including_subject": 0.9073276815884009,
+  "r2_including": 0.2769126767246628,
+  "beta_index_excluding_subject": 0.7046672185679277,
+  "r2_excluding": 0.17239686601187942,
+  "note": "Leaving the subject inside its own equal-weight index injects a self-covariance term into the numerator. The excluding figure is the correct one and is what is reported; the including figure is disclosed so the size of the contamination is visible rather than assumed away."
+ },
+ "thin_trading": {
+  "flat_frac": 0.0793,
+  "ae_panel_median": 0.1183,
+  "ratio": 0.67,
+  "note": "Share of sessions closing unchanged, against the median of the UAE library. A high ratio is the documented mechanism for a downward-biased contemporaneous beta."
+ },
+ "plausibility": {
+  "tanker_owner_prior": "listed crude/product tanker owner: 0.9-1.4",
+  "contracted_services_prior": "contracted, fee-based marine services: 0.5-0.9",
+  "mix_note": "Roughly half of group revenue is contracted work for the parent group and half is exposed to spot and short-charter shipping markets, so an estimate between the two priors is the economically coherent answer."
+ }
+}

@@ -1,0 +1,262 @@
+{
+ "full": {
+  "label": "FULL cleaned history",
+  "independent_windows": true,
+  "windows": 8,
+  "first_origin": "2024-06-21",
+  "last_origin": "2026-03-24",
+  "span_years": 1.75,
+  "skill_norm": 0.02948949787050581,
+  "skill_raw": 0.02420660507582373,
+  "verdict": "PARITY",
+  "ci_blocks": {
+   "2": [
+    -0.0103,
+    0.0433,
+    "PARITY"
+   ],
+   "3": [
+    -0.0133,
+    0.0449,
+    "PARITY"
+   ],
+   "4": [
+    -0.0019,
+    0.0295,
+    "PARITY"
+   ]
+  },
+  "cov50": 0.375,
+  "cov80": 0.75,
+  "cov90": 0.875,
+  "pit_mean": 0.5495,
+  "pit_hist": [
+   0,
+   2,
+   1,
+   0,
+   1,
+   1,
+   0,
+   0,
+   1,
+   2
+  ],
+  "chi2": 7.0,
+  "chi2_p": 0.637,
+  "ks_stat": 0.268,
+  "ks_p": 0.53,
+  "width_vs_benchmark": 1.1819522750304219
+ },
+ "five_year": {
+  "label": "LAST FIVE YEARS of origins",
+  "independent_windows": true,
+  "windows": 8,
+  "first_origin": "2024-06-21",
+  "last_origin": "2026-03-24",
+  "span_years": 1.75,
+  "skill_norm": 0.02948949787050581,
+  "skill_raw": 0.02420660507582373,
+  "verdict": "PARITY",
+  "ci_blocks": {
+   "2": [
+    -0.0103,
+    0.0433,
+    "PARITY"
+   ],
+   "3": [
+    -0.0133,
+    0.0449,
+    "PARITY"
+   ],
+   "4": [
+    -0.0019,
+    0.0295,
+    "PARITY"
+   ]
+  },
+  "cov50": 0.375,
+  "cov80": 0.75,
+  "cov90": 0.875,
+  "pit_mean": 0.5495,
+  "pit_hist": [
+   0,
+   2,
+   1,
+   0,
+   1,
+   1,
+   0,
+   0,
+   1,
+   2
+  ],
+  "chi2": 7.0,
+  "chi2_p": 0.637,
+  "ks_stat": 0.268,
+  "ks_p": 0.53,
+  "width_vs_benchmark": 1.1819522750304219
+ },
+ "production": {
+  "label": "production window set (post-break origins)",
+  "independent_windows": true,
+  "windows": 8,
+  "first_origin": "2024-06-21",
+  "last_origin": "2026-03-24",
+  "span_years": 1.75,
+  "skill_norm": 0.02948949787050581,
+  "skill_raw": 0.02420660507582373,
+  "verdict": "PARITY",
+  "ci_blocks": {
+   "2": [
+    -0.0103,
+    0.0433,
+    "PARITY"
+   ],
+   "3": [
+    -0.0133,
+    0.0449,
+    "PARITY"
+   ],
+   "4": [
+    -0.0019,
+    0.0295,
+    "PARITY"
+   ]
+  },
+  "cov50": 0.375,
+  "cov80": 0.75,
+  "cov90": 0.875,
+  "pit_mean": 0.5495,
+  "pit_hist": [
+   0,
+   2,
+   1,
+   0,
+   1,
+   1,
+   0,
+   0,
+   1,
+   2
+  ],
+  "chi2": 7.0,
+  "chi2_p": 0.637,
+  "ks_stat": 0.268,
+  "ks_p": 0.53,
+  "width_vs_benchmark": 1.1819522750304219
+ },
+ "one_month": {
+  "label": "1-month horizon, full cleaned history",
+  "independent_windows": true,
+  "windows": 24,
+  "first_origin": "2024-06-21",
+  "last_origin": "2026-06-08",
+  "span_years": 1.96,
+  "skill_norm": 0.0002584792575753836,
+  "skill_raw": -0.00266720268421472,
+  "verdict": "PARITY",
+  "ci_blocks": {
+   "2": [
+    -0.0255,
+    0.0133,
+    "PARITY"
+   ],
+   "3": [
+    -0.0273,
+    0.012,
+    "PARITY"
+   ],
+   "4": [
+    -0.0287,
+    0.0078,
+    "PARITY"
+   ]
+  },
+  "cov50": 0.6666666666666666,
+  "cov80": 0.875,
+  "cov90": 0.9583333333333334,
+  "pit_mean": 0.52825,
+  "pit_hist": [
+   0,
+   1,
+   4,
+   5,
+   3,
+   2,
+   3,
+   1,
+   2,
+   3
+  ],
+  "chi2": 8.5,
+  "chi2_p": 0.485,
+  "ks_stat": 0.179,
+  "ks_p": 0.379,
+  "width_vs_benchmark": 1.1379406973524224
+ },
+ "shifted_grid": {
+  "label": "shifted-grid pooled (12 grids, 5-session offsets)",
+  "independent_windows": false,
+  "windows": 91,
+  "first_origin": "2024-06-21",
+  "last_origin": "2026-05-05",
+  "span_years": 1.87,
+  "skill_norm": 0.00657764996417709,
+  "skill_raw": 0.0027441257105008665,
+  "verdict": "PARITY",
+  "ci_blocks": {
+   "2": [
+    -0.0113,
+    0.0186,
+    "PARITY"
+   ],
+   "3": [
+    -0.016,
+    0.0195,
+    "PARITY"
+   ],
+   "4": [
+    -0.0191,
+    0.02,
+    "PARITY"
+   ]
+  },
+  "cov50": 0.5164835164835165,
+  "cov80": 0.8351648351648352,
+  "cov90": 0.9560439560439561,
+  "pit_mean": 0.5402593406593406,
+  "pit_hist": [
+   4,
+   11,
+   6,
+   9,
+   13,
+   6,
+   12,
+   5,
+   14,
+   11
+  ],
+  "chi2": 12.85,
+  "chi2_p": 0.17,
+  "ks_stat": 0.093,
+  "ks_p": 0.385,
+  "width_vs_benchmark": 1.1790709819242626
+ },
+ "listing_note": "ADNOCLS listed on ADX on 02-Jun-2023. The cleaned series spans 3.18 years, so the five-year origin set is the full listed history and no longer window set exists to run. The five-year requirement is met at the market-panel level, which is the standing gate: see fit.market_windows.",
+ "fit": {
+  "nu": 10.0,
+  "width_cal": 0.979,
+  "market_verdict": "PARITY",
+  "market_skill": 0.0068,
+  "market_ci90": [
+   -0.001,
+   0.014
+  ],
+  "fit_date": "2026-07-29",
+  "panel_names": 18,
+  "market_windows": 261,
+  "signal_active": false
+ }
+}

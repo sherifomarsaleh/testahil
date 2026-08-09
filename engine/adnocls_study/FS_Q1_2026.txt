@@ -1,0 +1,1500 @@
+
+===== PAGE 1 =====
+ADNOC Logistics & Services plc
+Review report and condensed consolidated interim
+financial information for the three-month period ended 31
+March 2026 (unaudited)
+1
+
+===== PAGE 2 =====
+ADNOC Logistics & Services plc
+Condensed consolidated interim financial information
+as at and for the three-month period ended 31 March 2026
+(Unaudited)
+CONTENTS Page(s)
+Review report on condensed consolidated interim financial information 1
+Condensed consolidated interim statement of comprehensive income 2
+Condensed consolidated interim statement of financial position 3 - 4
+Condensed consolidated interim statement of changes in equity 5 - 6
+Condensed consolidated interim statement of cash flows 7 - 9
+Notes to the condensed consolidated interim financial information 10 - 41
+
+===== PAGE 3 =====
+Review report on condensed consolidated interim
+financial information
+To the Board of Directors of ADNOC Logistics & Services plc
+Introduction
+We have reviewed the accompanying condensed consolidated interim statement of financial position of
+ADNOC Logistics & Services plc (the ‘Company’) and its subsidiaries (the ‘Group’) as at 31 March 2026
+and the related condensed consolidated interim statements of comprehensive income, changes in equity
+and cash flows for the three-month period then ended and other explanatory notes. Management is
+responsible for the preparation and presentation of this condensed consolidated interim financial
+information in accordance with International Accounting Standard 34, ‘Interim Financial Reporting’.
+Our responsibility is to express a conclusion on this condensed consolidated interim financial
+information based on our review.
+Scope of review
+We conducted our review in accordance with International Standard on Review Engagements 2410,
+'Review of interim financial information performed by the independent auditor of the entity'. A review of
+interim financial information consists of making inquiries, primarily of persons responsible for financial
+and accounting matters, and applying analytical and other review procedures. A review is substantially
+less in scope than an audit conducted in accordance with International Standards on Auditing and
+consequently does not enable us to obtain assurance that we would become aware of all significant
+matters that might be identified in an audit. Accordingly, we do not express an audit opinion.
+Conclusion
+Based on our review, nothing has come to our attention that causes us to believe that the accompanying
+condensed consolidated interim financial information is not prepared, in all material respects, in
+accordance with International Accounting Standard 34 ‘Interim Financial Reporting’.
+For and on behalf of PricewaterhouseCoopers Limited Partnership (ADGM Branch)
+Douglas O'Mahony
+13 May 2026
+PricewaterhouseCoopers Limited Partnership (ADGM Branch)
+Al Khatem Tower, Abu Dhabi Global Market, 25 floor
+PO Box: 45263, Abu Dhabi - United Arab Emirates
+Tel: +971 2 694 6800
+www.pwc.com
+ADGM Licence no. 000000256, branch of a foreign Partnership
+ADGM Auditors’ Registry no. 000000002.
+
+===== PAGE 4 =====
+ADNOC Logistics & Services plc
+Condensed consolidated interim statement of comprehensive
+income
+(Unaudited)
+For the three-month
+period ended 31 March
+2026 2025
+Notes USD’000 USD’000
+Revenues 3 1,082,675 1,181,426
+Direct costs (801,953) (952,212)
+Gross profit 280,722 229,214
+General and administrative expenses (53,814) (56,130)
+Provision for expected credit losses (21,801) (1,687)
+Other income 39,051 28,548
+Other expenses (18,010) -
+Operating profit 226,148 199,945
+Share of profit from joint ventures and
+6 14,094 8,179
+associates
+Bargain purchase gain 18A - 12,056
+Loss on previously held equity interest in an
+18B - (3,398)
+associate
+Finance income 2,479 5,622
+Finance costs (9,704) (26,248)
+Profit before income tax for the period 233,017 196,156
+Deferred tax credit 15 226 227
+Current tax expense 15 (11,007) (11,835)
+Profit for the period 222,236 184,548
+Attributable to:
+Equity holders of the Company 202,743 180,520
+Non-controlling interests 19,493 4,028
+222,236 184,548
+Other comprehensive income for the
+- -
+period
+Total comprehensive income for the
+222,236 184,548
+period
+Attributable to:
+Equity holders of the Company 202,743 180,520
+Non-controlling interests 19,493 4,028
+222,236 184,548
+Basic and diluted earnings per share
+13 0.03 0.02
+(USD)
+The attached notes on pages 10 to 41 form part of this condensed consolidated interim financial information. 2
+
+===== PAGE 5 =====
+ADNOC Logistics & Services plc
+Condensed consolidated interim statement of financial
+position
+(Unaudited) Audited
+As at 31 As at 31
+March December
+2026 2025
+Notes USD’000 USD’000
+Assets
+Non-current assets
+Property, plant and equipment 4 7,015,261 6,884,178
+Right-of-use assets 5 215,945 225,292
+Intangible assets 16,848 19,434
+Investment properties 87,848 89,154
+Investment in joint ventures and associates 6 493,120 577,769
+Goodwill 51,368 51,368
+Advances to shipyards and others 128,057 137,600
+Sub-lease receivables 5 10,328 11,149
+Total non-current assets 8,018,775 7,995,944
+Current assets
+Inventories 7 139,891 137,108
+Trade and other receivables 8 785,852 813,285
+Due from related parties 10 632,114 676,383
+Sub-lease receivables 5 2,516 4,639
+Derivative financial instruments 21 7,626 -
+Cash and cash equivalents 695,345 337,794
+Total current assets 2,263,344 1,969,209
+Total assets 10,282,119 9,965,153
+The attached notes on pages 10 to 41 form part of this condensed consolidated interim financial information. 3
+
+===== PAGE 6 =====
+
+
+===== PAGE 7 =====
+ADNOC Logistics & Services plc
+Condensed consolidated interim statement of changes in equity
+Equity
+attributable to Hybrid Non-
+Share Treasury Investment Retained the owners of equity controlling Total
+capital shares reserve earnings the Company instrument interests equity
+USD’000 USD’000 USD’000 USD’000 USD’000 USD’000 USD’000 USD’000
+Balance as at 1 January 2025 3,995,189 - - 899,438 4,894,627 - - 4,894,627
+Profit for the period - - - 180,520 180,520 - 4,028 184,548
+Total comprehensive
+income for the period - - - 180,520 180,520 - 4,028 184,548
+Other movements:
+Investment reserve - - (287,474) - (287,474) - - (287,474)
+Issuance of hybrid equity
+instrument - - - - - 1,082,765 - 1,082,765
+Coupons paid on hybrid equity
+instrument - - - (7,142) (7,142) - - (7,142)
+Fees paid on hybrid equity
+instrument - - - (738) (738) - - (738)
+Total other movements - - (287,474) (7,880) (295,354) 1,082,765 - 787,411
+Transactions with owners in
+their capacity as owners:
+Non-controlling interests arising
+on business combinations (note
+18A) - - - - - - 251,985 251,985
+Dividends payable - - - (136,500) (136,500) - - (136,500)
+Total transactions with owners in
+their capacity as owners - - - (136,500) (136,500) - 251,985 115,485
+Balance as at 31 March 2025 3,995,189 - (287,474) 935,578 4,643,293 1,082,765 256,013 5,982,071
+The attached notes on pages 10 to 41 form part of this condensed consolidated interim financial information. 5
+
+===== PAGE 8 =====
+ADNOC Logistics & Services plc
+Condensed consolidated interim statement of changes in equity (continued)
+Equity
+attributable to Hybrid Non-
+Share Treasury Investment Retained the owners of equity controlling Total
+capital shares reserve earnings the Company instrument interests equity
+USD’000 USD’000 USD’000 USD’000 USD’000 USD’000 USD’000 USD’000
+Balance as at 1 January 2026 3,995,189 (8,805) (298,626) 1,294,229 4,981,987 1,978,619 264,512 7,225,118
+Profit for the period - - - 202,743 202,743 - 19,493 222,236
+Total comprehensive income
+for the period - - - 202,743 202,743 - 19,493 222,236
+Other movements:
+Accretion on investment
+reserve/interest on second
+- - (2,836) - (2,836) - - (2,836)
+tranche purchase consideration
+payable (note 18A / note 20)
+Coupons paid on hybrid equity
+instrument (note 17) - - - (24,610) (24,610) - - (24,610)
+Fees paid on hybrid equity
+instrument (note 17) - - - (261) (261) - - (261)
+Total other movements - - (2,836) (24,871) (27,707) - - (27,707)
+Transactions with owners
+in their capacity as
+owners:
+Dividends payable - - - (81,250) (81,250) - - (81,250)
+Dividend paid by a subsidiary to
+non-controlling interests - - - - - - (11,871) (11,871)
+Acquisition of treasury shares - (707) - (1,164) (1,871) - - (1,871)
+Total transactions with owners in
+their capacity as owners - (707) - (82,414) (83,121) - (11,871) (94,992)
+Balance as at 31 March 2026 3,995,189 (9,512) (301,462) 1,389,687 5,073,902 1,978,619 272,134 7,324,655
+The attached notes on pages 10 to 41 form part of this condensed consolidated interim financial information. 6
+
+===== PAGE 9 =====
+ADNOC Logistics & Services plc
+Condensed consolidated interim statement of cash flows
+(Unaudited)
+For the three-month
+period ended 31 March
+2026 2025
+Notes USD’000 USD’000
+OPERATING ACTIVITIES
+Profit for the period 222,236 184,548
+Adjustments for:
+Deferred tax credit 15 (226) (227)
+Current tax expense 15 11,007 11,835
+Profit before income tax 233,017 196,156
+Adjustments for:
+Depreciation on property, plant and
+equipment 4 100,704 88,900
+Depreciation on investment properties 1,353 1,329
+Depreciation on right-of-use assets 5 23,520 33,270
+Bargain purchase gain - (12,056)
+Loss on previously held equity interest in an
+associate - 3,398
+Provision for dismantling expenses 5 37 35
+Provision for slow moving and obsolete
+inventories 7 112 49
+Amortisation of intangible assets 2,586 3,323
+Gain on disposal of property, plant and
+equipment (27,218) (7,527)
+Provision for expected credit losses on trade
+receivables 8 21,801 663
+Provision for expected credit losses on due
+from related parties 10 - 1,024
+Provision for employees' end of service
+benefits 1,413 1,997
+Share of profit from joint ventures and
+associates 6 (14,094) (8,179)
+Finance income (2,479) (5,622)
+Finance costs 9,704 26,248
+Fair value adjustment to derivatives 7,141 -
+357,597 323,008
+Working capital adjustments:
+Inventories (2,895) 27,394
+Trade and other receivables 5,015 (101,105)
+Due from related parties 44,269 10,080
+Trade and other payables (66,687) (20,808)
+Due to related parties 56,699 24,775
+Cash flows from operating activities 393,998 263,344
+Employees’ end of service benefits paid (1,400) (1,458)
+Interest portion of sub-leases 5 211 326
+Principal portion of sub-leases 5 2,944 5,073
+Tax paid (668) (2,504)
+Interest paid (43) -
+Net cash generated from operating
+activities 395,042 264,781
+The attached notes on pages 10 to 41 form part of this condensed consolidated interim financial information. 7
+
+===== PAGE 10 =====
+ADNOC Logistics & Services plc
+Condensed consolidated interim statement of cash flows
+(continued)
+(Unaudited)
+For the three-month
+period ended 31 March
+2026 2025
+Notes USD’000 USD’000
+Investing activities
+Purchase of property, plant and equipment (263,913) (69,872)
+Proceeds from disposals of property, plant and
+equipment 109,880 26,603
+Purchase of intangible assets - (53)
+Investment in a subsidiary, net of cash
+acquired - (793,200)
+Investment in a subsidiary, net of cash
+acquired - (31,222)
+Investment in joint ventures and associates 6 (11,890) (6,700)
+Dividends received from joint ventures and
+associates 6 1,133 2,893
+Advances paid to shipyards and others (14,468) (28,930)
+Interest received 2,268 5,296
+Net cash used in investing activities (176,990) (895,185)
+Financing activities
+Proceeds from shareholder loan – term facility 10 - 950,000
+Repayment of shareholder loan – term facility 10 - (1,290,000)
+Proceeds from shareholder loan - revolving
+credit facility 10 350,000 332,000
+Repayment of shareholder loan - revolving
+credit facility 10 (250,000) -
+Interest paid on shareholder loans (3,375) (16,536)
+Proceeds from repayment of capital
+contribution by a joint venture 6 109,500 -
+Proceeds from issuance of hybrid equity
+instrument - net - 1,082,765
+Coupons paid on hybrid equity instrument 17 (24,610) (7,142)
+Fees paid on hybrid equity instrument 17 (261) (738)
+Acquisition of treasury shares - net (1,871) -
+Repayments of loans and other borrowings (6,159) (32,605)
+Interest on loans and other borrowings (5,982) (13,146)
+Interest portion on lease liabilities 5 (2,866) (3,178)
+Principal portion of lease liabilities 5 (24,877) (34,639)
+Net cash generated from financing
+activities 139,499 966,781
+The attached notes on pages 10 to 41 form part of this condensed consolidated interim financial information. 8
+
+===== PAGE 11 =====
+ADNOC Logistics & Services plc
+Condensed consolidated interim statement of cash flows
+(continued)
+(Unaudited)
+For the three-month
+period ended 31 March
+2026 2025
+Notes USD’000 USD’000
+Net increase in cash and cash
+equivalents 357,551 336,377
+Cash and cash equivalents at beginning of the
+period 337,794 198,919
+Cash and cash equivalents at end of the
+period 695,345 535,296
+Significant non-cash transactions
+excluded from the consolidated
+statement of cash flows are:
+Additions to right-of-use assets 5 14,173 81,252
+Additions to lease liabilities 5 14,173 81,252
+Purchase consideration payable and
+investment reserve 18A 301,462 287,474
+Interest on purchase consideration payable 2,836 2,646
+The attached notes on pages 10 to 41 form part of this condensed consolidated interim financial information. 9
+
+===== PAGE 12 =====
+ADNOC Logistics & Services plc
+Notes to the condensed consolidated interim financial information
+for the three-month period ended 31 March 2026
+1 General information
+ADNOC Logistics & Services plc (the “Company”) was incorporated on 19 April 2023
+as a public company limited by shares, with registration number 000009847,
+pursuant to the Abu Dhabi Global Market (“ADGM”) (Amendment No. 1) Regulations
+2020. The Company has been established for the purpose of serving as a holding
+company for the Abu Dhabi Marine Business and Services Company P.J.S.C. Group.
+In 2023, the shareholders approved the listing of the Company’s shares on the Abu
+Dhabi Securities Exchange, whereby 19% of its shares were offered in an Initial Public
+Offering (“IPO”). Subsequently, on 28 August 2025, ADNOC sold an additional 3% of
+its shareholding in the Company through an institutional placement. As of the
+reporting date, ADNOC ultimately holds 78% of the issued share capital of the Group,
+while the remaining 22% is held by the general public. The Company is controlled by
+the ultimate parent Company Abu Dhabi National Oil Company (“ADNOC”). ADNOC
+is wholly owned by the Emirate of Abu Dhabi.
+On 11 September 2025, ADNOC transferred its majority shareholding in ADNOC
+Logistics & Services plc, to XRG P.J.S.C., ADNOC’s wholly owned international energy
+investment company. This internal restructuring was executed through an off-market
+transaction on the Abu Dhabi Securities Exchange (ADX). ADNOC’s strategy
+continues to retain ultimate ownership and control through its 100% stake in XRG.
+The transfer does not impact ADNOC Logistics & Services plc’s operations.
+The Company and its subsidiaries (collectively referred to as the “Group”) are engaged
+in the business of providing onshore and offshore logistics and transportation services
+to energy production facilities including material handling, manpower and equipment
+supply, provision of storage facilities and related services, provision of office space and
+the supply of chemicals, catering and other onshore and offshore oil and gas field
+services; the operation and maintenance of supply bases supporting those activities;
+EPC services related to dredging, land reclamation and marine construction; freight
+and charter services for the transportation of oil, gas and related petroleum products
+on ocean going vessels owned or hired from third parties; pooling, commercial
+management, bunker trading, technical management and ESG-focused digital
+solutions; petroleum ports operations services, and oil spill and hazardous and
+noxious substances response services.
+The registered office of the Company is Level 28, Al Sarab Tower, Abu Dhabi Global
+Market Square, Al Maryah Island, Abu Dhabi, United Arab Emirates.
+The condensed consolidated interim financial information of the Group for the three-
+month period ended 31 March 2026 (the “period”) was approved and authorised for
+issue by the Board of Directors and signed on their behalf on 13 May 2026.
+(10)
+
+===== PAGE 13 =====
+ADNOC Logistics & Services plc
+Notes to the condensed consolidated interim financial information
+for the three-month period ended 31 March 2026 (continued)
+2 Basis of preparation and accounting policies
+2.1 Basis of preparation
+Statement of compliance
+The condensed consolidated interim financial information for the period has been
+prepared in accordance with IAS 34, ‘Interim Financial Reporting’ as issued by the
+International Accounting Standard Board (IASB).
+Functional and presentation currency
+Items included in the financial statements of each of the Group’s entities are measured
+using the currency of the primary economic environment in which the entity operates
+(‘the functional currency’). Since the Company is registered in the ADGM, its financial
+statements must be reported in USD.
+The condensed consolidated interim financial information does not include all the
+information and disclosures required in the annual consolidated financial statements
+and should be read in conjunction with the previously issued annual consolidated
+financial statements for ADNOC Logistics & Services plc for the year ended 31
+December 2025. In addition, results of the period are not necessarily indicative of the
+results that may be expected for the financial year ending 31 December 2026.
+Basis of measurement
+The condensed consolidated interim financial information for the period has been
+presented in United States Dollars (USD), which is the presentation currency of the
+Group. All values are rounded to the nearest thousand (USD’000), except where
+otherwise indicated. There were no material changes in the structure of the Group
+during the period.
+(11)
+
+===== PAGE 14 =====
+ADNOC Logistics & Services plc
+Notes to the condensed consolidated interim financial information
+for the three-month period ended 31 March 2026 (continued)
+2 Basis of preparation and accounting policies (continued)
+2.2 Changes in accounting policies and disclosures
+2.2.1 New and amended IFRS Accounting Standards applied with no
+material effect on the condensed consolidated interim financial
+information
+The accounting policies adopted in the preparation of the condensed consolidated
+interim financial information for the period are consistent with those followed in the
+preparation of the Group’s annual consolidated financial statements for the year ended
+31 December 2025, and the notes thereto, except for the adoption of certain new and
+revised standards, that became effective in the current period, as set out below:
+Amendments to the Classification and Measurement of Financial
+Instruments – Amendments to IFRS 9 and IFRS 7 (effective 1 January
+2026) In May 2024, the IASB issued targeted amendments to IFRS 9, ‘Financial
+Instruments’, and IFRS 7, ‘Financial Instruments: Disclosures’, to respond to recent
+questions arising in practice. These amendments:
+(a) clarify the date of recognition and derecognition of some financial assets and
+liabilities, with a new exception for some financial liabilities settled through an
+electronic cash transfer system;
+(b) clarify and add further guidance for assessing whether a financial asset meets the
+solely payments of principal and interest (SPPI) criterion;
+(c) add new disclosures for certain instruments with contractual terms that can change
+cash flows (such as some financial instruments with features linked to the achievement
+of environment, social and governance targets); and
+(d) update the disclosures for equity instruments designated at fair value through
+other comprehensive income (FVOCI).
+Annual Improvements to IFRS Accounting Standards – Volume 11
+(effective 1 January 2026) The IASB has made the following improvements in
+September 2024:
+IFRS 1, ‘First-time Adoption of International Financial Reporting’ – to improve
+consistency between IFRS 1 and IFRS 9, ‘Financial Instruments’, in relation to the
+requirements for hedge accounting, and to improve the understandability of IFRS 1;
+IFRS 7, ‘Financial Instruments: Disclosures’ – to improve consistency in the language
+used in IFRS 7 with the language used in IFRS 13, ‘Fair Value Measurement’;
+IFRS 9 – to clarify how a lessee accounts for the derecognition of a lease liability when
+it is extinguished, and to address an inconsistency between IFRS 9 and IFRS 15,
+‘Revenue from Contracts with Customers’, in relation to the term ‘transaction price’;
+IFRS 10, ‘Consolidated Financial Statements’ – to clarify the requirements in relation
+to determining de facto agents of an entity; and
+IAS 7, ‘Statement of Cash Flows’ – to replace the term ‘cost method’ with ‘at cost’, since
+the term is no longer defined in IFRS Accounting Standards.
+(12)
+
+===== PAGE 15 =====
+ADNOC Logistics & Services plc
+Notes to the condensed consolidated interim financial information
+for the three-month period ended 31 March 2026 (continued)
+2 Basis of preparation and accounting policies (continued)
+2.2 Changes in accounting policies and disclosures (continued)
+2.2.1 New and amended IFRS Accounting Standards applied with no
+material effect on the condensed consolidated interim financial
+information (continued)
+Contracts Referencing Nature-dependent Electricity – Amendments to
+IFRS 9 and IFRS 7 (effective 1 January 2026) In December 2024, the IASB
+issued targeted amendments to IFRS 7 and IFRS 9 to allow entities to better reflect
+nature-dependent electricity contracts in the financial statements. The amendments:
+(a) clarify the application of the ‘own-use’ criteria to nature-dependent electricity
+contracts; (b) permit hedge accounting if these contracts are used as hedging
+instruments; and (c) add new disclosure requirements to enable users of financial
+statements to better understand the effect of these contracts on an entity’s financial
+performance and cash flows.
+Other than the above, there are no other material IFRS Accounting Standards or
+amendments that were effective for the first time for the financial year beginning on
+or after 1 January 2025.
+The application of these amendments to IFRS Accounting Standards has not had any
+material impact on the amounts reported for the current period but may affect the
+accounting for the Group’s future transactions or arrangements.
+2.3.2 New and revised IFRS Accounting Standards in issue but not yet
+effective and not early adopted
+The Group has not early adopted new and revised IFRS Accounting Standards that
+have been issued but are not yet effective.
+• Amendment to IAS 21 - Translation to a Hyperinflationary Presentation
+Currency – Effective from annual periods beginning on or after 1 January 2027
+but can be early adopted subject to local endorsement where required.
+• IFRS 18, ‘Presentation and Disclosure in Financial Statements’ – Effective from
+annual periods beginning or after 1 January 2027 with early adoption possible
+subject to local endorsement where required.
+• IFRS 19, ‘Subsidiaries without Public Accountability: Disclosures’ and
+amendment (see separate section below for the amendment) – Effective from -
+annual periods beginning on or after 1 January 2027. Earlier application is
+permitted.
+• Amendment to IFRS 19, ‘Subsidiaries without Public Accountability:
+Disclosures’ – Effective from annual periods beginning on or after 1 January
+2027 when the standard becomes effective.
+The Group is currently assessing the impact of these standards and amendments on
+the future consolidated financial statements of the Group, and intends to adopt it, if
+applicable, when it becomes effective.
+(13)
+
+===== PAGE 16 =====
+ADNOC Logistics & Services plc
+Notes to the condensed consolidated interim financial information
+for the three-month period ended 31 March 2026 (continued)
+2 Basis of preparation and accounting policies (continued)
+2.3 Material accounting judgments and estimates
+The preparation of condensed consolidated interim financial information requires
+management to make judgements, estimates and assumptions that affect the
+application of accounting policies and reported amounts of assets and liabilities,
+income and expenses. Actual results may differ from these estimates.
+In preparing this condensed consolidated interim financial information, the
+significant judgements made by management in applying the Group’s accounting
+policies and the key sources of estimation and uncertainty were the same as those
+applied to the consolidated financial statements for the year ended 31 December
+2025.
+3 Revenues
+Disaggregation of revenue
+The Group derives its revenue from contracts with customers for the transfer of goods
+and services over time and at a point in time in the following major product lines.
+(Unaudited)
+Three-month period ended
+31 March
+2026 2025
+USD’000 USD’000
+Freight/voyage charter income 400,364 423,614
+Operating lease income 196,499 110,695
+Offshore vessels charter
+income 167,542 154,569
+Base operation services 150,659 137,764
+Petroleum port operations 61,180 57,061
+Sales of bunkering fuel & water 51,147 56,551
+Onshore services income 32,392 29,899
+Ship management income 10,961 15,968
+Commission income 7,255 2,486
+EPC contracts income 3,725 192,330
+Drilling chemicals 951 489
+1,082,675 1,181,426
+(14)
+
+===== PAGE 17 =====
+ADNOC Logistics & Services plc
+Notes to the condensed consolidated interim financial information
+for the three-month period ended 31 March 2026 (continued)
+4 Property, plant and equipment
+(Unaudited) (Audited)
+31 31
+March December
+2026 2025
+USD’000 USD’000
+Cost:
+At 1 January 8,167,686 5,537,038
+Additions 314,496 1,135,509
+Additions on business acquisition - 1,661,559
+Write-offs - (7,725)
+Disposals (86,407) (154,149)
+Transfer to investment properties (47) (2,089)
+Transfer to intangible assets - (2,457)
+At 31 March / 31 December 8,395,728 8,167,686
+Accumulated depreciation:
+At 1 January 1,283,508 993,703
+Charge for the period / year 100,704 385,487
+Disposals (3,745) (87,957)
+Write-offs - (7,725)
+At 31 March / 31 December 1,380,467 1,283,508
+Net book value:
+At 31 March / 31 December 7,015,261 6,884,178
+(15)
+
+===== PAGE 18 =====
+ADNOC Logistics & Services plc
+Notes to the condensed consolidated interim financial information
+for the three-month period ended 31 March 2026 (continued)
+5 Right-of-use assets, sub-lease receivables & lease
+liabilities
+Set out below, are the carrying amounts of the Group's right-of-use assets, sub-lease
+receivables and lease liabilities and the movements during the period / year:
+A. In respect of head-lease:
+Right-of-use assets Total
+USD’000
+As at 1 January 2026 225,292
+Additions 14,173
+Depreciation expense (23,520)
+As at 31 March 2026 215,945
+As at 1 January 2025 161,691
+Additions 96,418
+Additions on business acquisition 84,288
+Lease modification (27)
+Disposals 26
+Depreciation expense (117,104)
+As at 31 December 2025 225,292
+Lease liabilities Total
+USD’000
+As at 1 January 2026 216,090
+Additions 14,173
+Interest expense 2,802
+Payments (24,879)
+As at 31 March 2026 208,186
+170,274
+As at 1 January 2025
+Additions 96,418
+Liabilities acquired on business acquisition 43,615
+Lease modification (27)
+Interest expense 12,238
+Payments (106,428)
+As at 31 December 2025 216,090
+(16)
+
+===== PAGE 19 =====
+ADNOC Logistics & Services plc
+Notes to the condensed consolidated interim financial information
+for the three-month period ended 31 March 2026 (continued)
+5 Right-of-use assets, sub-lease receivables & lease
+liabilities (continued)
+In respect of sub-lease:
+Total
+Sub-lease receivables
+USD’000
+As at 1 January 2026 15,788
+Interest income 211
+Payments received (3,155)
+As at 31 March 2026 12,844
+As at 1 January 2025 29,201
+Additions 3,372
+Profit on initial recognition of sub-lease 140
+Interest income 1,102
+Payments received (18,027)
+As at 31 December 2025 15,788
+Sub-lease liabilities Total
+USD’000
+As at 1 January 2026 7,063
+Interest expense 64
+Payments (2,864)
+As at 31 March 2026 4,263
+As at 1 January 2025 19,027
+Additions 3,372
+Interest expense 481
+Payments (15,817)
+As at 31 December 2025 7,063
+Sub-lease receivables are analysed in the condensed consolidated interim statement of
+financial position as follows:
+(Unaudited) (Audited)
+31 31
+March December
+2026 2025
+USD’000 USD’000
+Current portion 2,516 4,639
+Non-current portion 10,328 11,149
+12,844 15,788
+(17)
+
+===== PAGE 20 =====
+ADNOC Logistics & Services plc
+Notes to the condensed consolidated interim financial information
+for the three-month period ended 31 March 2026 (continued)
+5 Right-of-use assets, sub-lease receivables & lease
+liabilities (continued)
+Lease liabilities are analysed in the condensed consolidated interim statement of
+financial position as follows:
+(Unaudited) (Audited)
+31 31
+March December
+2026 2025
+USD’000 USD’000
+Relating to head-lease (in respect of right-of-use
+208,186 216,090
+assets)
+Relating to sub-lease receivables (in respect of
+liabilities for sub-leased assets) 4,263 7,063
+212,449 223,153
+Current portion 81,074 82,003
+Non-current portion 131,375 141,150
+212,449 223,153
+6 Investment in joint ventures and associates
+The movement in the carrying value of investment in joint ventures is summarised
+below:
+(Unaudited) (Audited)
+31 31
+March December
+2026 2025
+USD’000 USD’000
+As at 1 January 541,811 267,775
+Additions on business acquisition - 160,267
+Investment during the period / year 11,890 85,590
+Share of profit for the period / year 11,248 28,946
+Dividend received - (767)
+Repayment of capital contribution (109,500) -
+As at 31 March / December 455,449 541,811
+(18)
+
+===== PAGE 21 =====
+ADNOC Logistics & Services plc
+Notes to the condensed consolidated interim financial information
+for the three-month period ended 31 March 2026 (continued)
+6 Investment in joint ventures and associates (continued)
+During the period, the Group recorded changes in its ownership interests in two
+associate entities. The Group’s effective interest in DUNA Marine Shipmanagement
+increased from 21% to 24%, and its effective interest in UD Marine Services Ltd
+increased from 17% to 24%.
+These changes did not result in a change in the classification of the investees, which
+continue to be accounted for as associates using the equity method. There were no
+other significant changes in the Group’s investments in associates during the period.
+The movement in the carrying value of investment in associates is summarised below:
+(Unaudited) (Audited)
+31 31
+March December
+2026 2025
+USD’000 USD’000
+As at 1 January 35,958 -
+Additions on business acquisition - 75,146
+Derecognition of SWS VLCC JV LLC - (35,177)
+Loss on previously held equity interest in an
+- (3,398)
+associate
+Dividend received (1,133) (8,853)
+Disposals - (206)
+Share of profit for the period / year 2,846 8,446
+At 31 March / 31 December 37,671 35,958
+The amounts in the condensed consolidated interim statement of comprehensive income
+are analysed as follows:
+(Unaudited)
+Three-month period ended
+31 March
+2026 2025
+USD’000 USD’000
+Share of profit for the period from joint ventures 11,248 5,816
+Share of profit for the period from associates 2,846 2,363
+Total 14,094 8,179
+(19)
+
+===== PAGE 22 =====
+ADNOC Logistics & Services plc
+Notes to the condensed consolidated interim financial information
+for the three-month period ended 31 March 2026 (continued)
+6 Investment in joint ventures and associates (continued)
+The amounts in the condensed consolidated interim statement of financial position are
+analysed as follows:
+(Unaudited) (Audited)
+31 31
+March December
+2026 2025
+USD’000 USD’000
+Investment in joint ventures 455,449 541,811
+Investment in associates 37,671 35,958
+Total 493,120 577,769
+The assets, liabilities and results of material joint ventures and associates
+are summarised below:
+Condensed interim statement of financial position:
+(Unaudited) (Audited)
+31 March 31
+2026 December
+2025
+USD’000 USD’000
+Total non-current assets 1,062,393 982,029
+Total current assets 350,941 284,254
+Total non-current liabilities 377,939 170,069
+Total current liabilities 334,561 217,493
+Net assets 700,834 878,721
+Company’s share of net assets 417,441 504,059
+Investment in joint ventures 455,449 541,811
+Condensed interim statement of comprehensive income:
+(Unaudited)
+Three-month period ended
+31 March
+2026 2025
+USD’000 USD’000
+Revenues 616,463 606,960
+Expenses (599,130) (597,859)
+Net profit and total comprehensive income for the 17,333 9,101
+period
+Company’s share of profit for the period from the 10,991 5,813
+joint ventures
+(20)
+
+===== PAGE 23 =====
+ADNOC Logistics & Services plc
+Notes to the condensed consolidated interim financial information
+for the three-month period ended 31 March 2026 (continued)
+7 Inventories
+(Unaudited) (Audited)
+31 31
+March December
+2026 2025
+USD’000 USD’000
+Inventories 152,354 149,459
+Less: provision for slow-moving and obsolete
+inventories (12,463) (12,351)
+139,891 137,108
+Movement in the provision for slow-moving and obsolete inventories is as follows:
+(Unaudited) (Audited)
+31 31
+March December
+2026 2025
+USD’000 USD’000
+At 1 January 12,351 11,009
+Charge during the period / year 112 1,342
+At 31 March / 31 December 12,463 12,351
+8 Trade and other receivables
+(Unaudited) (Audited)
+31 31
+March December
+2026 2025
+Current USD’000 USD’000
+Trade receivables 334,442 308,335
+Provision for expected credit losses ( ۳٤٬۹۷۱) ( ۱۳٬۱۷۰)
+Trade receivables, net 299,471 295,165
+Other receivables 69,255 45,735
+Prepayments 23,209 19,638
+Accrued revenue 324,785 382,091
+Receivable from employees 15,907 16,823
+Advances to suppliers 53,225 53,833
+785,852 813,285
+(21)
+
+===== PAGE 24 =====
+ADNOC Logistics & Services plc
+Notes to the condensed consolidated interim financial information
+for the three-month period ended 31 March 2026 (continued)
+8 Trade and other receivables (continued)
+Movement in the provision for expected credit losses is as follows:
+(Unaudited) (Audited)
+31 31
+March December
+2026 2025
+USD’000 USD’000
+At 1 January 13,170 3,154
+Write off - (430)
+Charge during the period / year 21,801 10,446
+At 31 March / 31 December 34,971 13,170
+9 Trade and other payables
+(Unaudited) (Audited)
+31 31
+March December
+2026 2025
+USD’000 USD’000
+Trade payables 198,049 90,776
+Accrued expenses 487,982 643,631
+Other payables 143,161 157,025
+Dividend payable 81,250 -
+Capital expenses accruals 178,736 152,164
+Operating lease rent received in advance 18,283 10,859
+1,107,461 1,054,455
+Trade payables are interest free and are normally settled within 30 days from the date of
+receipt of the invoice.
+(22)
+
+===== PAGE 25 =====
+ADNOC Logistics & Services plc
+Notes to the condensed consolidated interim financial information
+for the three-month period ended 31 March 2026 (continued)
+10 Related party balances and transactions
+These represent transactions with related parties i.e., the shareholder, directors and
+entities related to them, companies under common ownership and/or common
+management and control, their partners and key management personnel. Pricing
+policies and terms of these transactions are approved by the Group's management.
+Terms and conditions of transactions with related parties
+The sales to and services from related parties are made at agreed rates with the related
+parties. Outstanding balances at the period end are unsecured, interest free and
+settlement occurs in cash. There have been no guarantees provided or received for any
+related party receivables or payables. For the period ended 31 March 2026, the Group
+has provision for expected credit losses of USD 2,283 thousand (2025: USD 2,283
+thousand) on amounts due from related parties. The Group's significant balances are
+with entities controlled, jointly controlled or significantly influenced by the ADNOC.
+Transactions with related parties included in the condensed consolidated interim
+statement of comprehensive income are as follows:
+(Unaudited)
+Three-month period
+ended
+31 March
+2026 2025
+USD’000 USD’000
+Goods sold and services provided to Services /
+entities under common control Goods 486,861 652,916
+Goods and services received from Services /
+entities under common control Goods 68,490 67,893
+Interest transactions:
+Interest received on cash pooling Finance
+balances income 544 1,296
+Finance
+Interest on shareholder loan cost - 6,516
+Amortisation of upfront fee on Finance
+shareholder loans cost 617 370
+Commitment fee on shareholder loan Finance
+facilities cost - 392
+(23)
+
+===== PAGE 26 =====
+ADNOC Logistics & Services plc
+Notes to the condensed consolidated interim financial information
+for the three-month period ended 31 March 2026 (continued)
+10 Related party balances and transactions (continued)
+Balances with related parties included in the condensed consolidated interim statement
+of financial position are as follows:
+(Unaudited) (Audited)
+31 31
+March December
+2026 2025
+USD’000 USD’000
+Due from related parties under common
+control:
+ADNOC Offshore 319,251 295,362
+ADNOC (Holding Company) 161,878 165,101
+ADNOC (Holding Company) cash pooling balance** 57,125 125,860
+Abu Dhabi Polymers Company Limited (Borouge
+31,060 36,197
+ADP)
+ADNOC Gas 29,828 27,338
+Al Yasat 11,012 10,040
+ADNOC Distribution 7,381 5,449
+ADNOC Onshore 5,832 2,307
+ADNOC Global Trading (AGT) 4,438 2,486
+ADNOC Drilling 3,817 4,190
+ADNOC Refining 1,789 1,605
+ADNOC Trading (AT) 763 2,465
+Integr8 Fuels Europe Ltd 115 -
+Integr8 Fuels Houston 22 -
+Integr8 Fuels India Pvt Ltd 14 -
+Integrate Fuels LLC 9 -
+Integr8 Fuels Germany GmbH 2 -
+Integrate Fuels Trading Co 2 -
+Due from a joint venture:
+AW Shipping Limited 59 266
+Total due from related parties 634,397 678,666
+Less: provision for expected credit losses (2,283) (2,283)
+632,114 676,383
+** The balance is held with ADNOC (Holding Company) under cash pooling arrangement
+and earns interest based on rates agreed between the parties.
+(24)
+
+===== PAGE 27 =====
+ADNOC Logistics & Services plc
+Notes to the condensed consolidated interim financial information
+for the three-month period ended 31 March 2026 (continued)
+10 Related party balances and transactions (continued)
+The movement in provision for expected credit losses on related parties’ receivables is as
+follows:
+(Unaudited) (Audited)
+31 31
+March December
+2026 2025
+USD’000 USD’000
+Balance at 1 January 2,283 3,139
+Reversal of provision during the period / year - (856)
+Balance at 31 March / 31 December 2,283 2,283
+The provision for expected credit losses on amounts due from related parties is
+prepared in accordance with the requirements of IFRS 9. The Group also utilizes
+provisioning of 33.3% and 100% against balances overdue above 365 days and 730 days
+respectively in accordance with the Group accounting policies.
+(Unaudited) (Audited)
+31 31
+March December
+2026 2025
+USD’000 USD’000
+Due to related parties under common
+control:
+ADNOC Global Trading (AGT) 101,299 9,526
+ADNOC Distribution 91,038 63,990
+ADNOC (Holding Company) 73,294 142,925
+Integr8 Fuels Pte Ltd 6,192 -
+ADNOC Offshore 4,054 517
+ADNOC Refining 1,297 1,286
+National Gas Shipping Company Holding Limited 1,008 2,132
+Integr8 Fuels LLC 388 -
+Integr8 Risk Mgt Pte Ltd 383 -
+Al Yasat 90 90
+ADNOC Sour Gas (Al Hosn Gas) 84 52
+ADNOC Onshore 75 97
+Integr8 Fuels DMCC 20 -
+Integr8 Fuels Greece 6 -
+Navig8 SGJV LLC 2 -
+ADNOC Trading (AT) - 5,291
+Total due to related parties 279,230 225,906
+(25)
+
+===== PAGE 28 =====
+ADNOC Logistics & Services plc
+Notes to the condensed consolidated interim financial information
+for the three-month period ended 31 March 2026 (continued)
+10 Related party balances and transactions (continued)
+Shareholder loan from ADNOC (Holding Company) forming part of
+current and non-current liabilities
+As at 31 December 2025, the Group had an outstanding balance of USD 400,000
+thousand under its unsecured revolving credit facility (“RCF”) with ADNOC, classified
+as a current liability.
+In January 2026, the Group repaid USD 50,000 thousand and converted the
+remaining USD 350,000 thousand into a new unsecured senior corporate revolving
+credit facility entered into with ADNOC in January 2026, with a committed amount of
+USD 2,000,000 thousand and an incremental facility of USD 600,000 thousand.
+During the period, the Group drew down USD 350,000 thousand and repaid USD
+200,000 thousand under the facility, resulting in a closing balance of USD 500,000
+thousand as at 31 March 2026, which is classified as a non current liability as the
+lender does not have a contractual right to demand repayment within the next 12
+months, except in the event of default. ‑
+The Group incurred commitment fees during the period of USD 818 thousand in
+relation to these facilities, which were capitalised. Borrowing costs of USD 5,552
+thousand were capitalised within capital work in progress for vessels under
+construction and other property, plant and equipment.
+Interest is charged at SOFR plus 0.80%.
+Movement in shareholder loans can be summarized as follows:
+Old New
+revolving revolving
+credit credit
+facility facility Total
+USD’000 USD’000 USD’000
+Balance as at 1 January 2026 400,000 - 400,000
+Repayment of old revolving credit
+facility (50,000) - (50,000)
+Conversion to new revolving credit
+facility (350,000) 350,000 -
+Drawdowns - 350,000 350,000
+Repayment of new revolving credit
+facility - (200,000) (200,000)
+Balance as at 31 March 2026 - 500,000 500,000
+(26)
+
+===== PAGE 29 =====
+ADNOC Logistics & Services plc
+Notes to the condensed consolidated interim financial information
+for the three-month period ended 31 March 2026 (continued)
+10 Related party balances and transactions (continued)
+Shareholder loan from ADNOC (Holding Company) forming part of
+current and non-current liabilities (continued)
+Revolving
+Term credit
+facility facility Total
+USD’000 USD’000 USD’000
+Balance as at 1 January 2025 550,000 - 550,000
+Draw down from the term facility 950,000 - 950,000
+Repayment of the term facility (1,290,000) - (1,290,000)
+Conversion of term facility to
+revolving credit facility (210,000) 210,000 -
+Draw down from the revolving credit
+facility - 715,000 715,000
+Repayment of the revolving credit
+facility (525,000) (525,000)
+Balance as at 31 December 2025 - 400,000 400,000
+The Group's significant bank balances with Abu Dhabi Government and other entities
+controlled, jointly controlled or significantly influenced by the Abu Dhabi
+Government are as follows:
+(Unaudited) (Audited)
+31 31
+March December
+2026 2025
+USD’000 USD’000
+Bank balances and term deposits 496,387 108,705
+11 Bank guarantees, contingencies and commitments
+(a) Bank guarantees:
+At 31 March 2026, the Group had bank guarantees issued by the bank arising
+in the ordinary course of business from which it is anticipated that no material
+liabilities will arise, amounting to USD 11,927 thousand (31 December 2025:
+USD 8,931 thousand).
+(b) Capital commitments:
+At 31 March 2026, the Group's capital commitments in relation to the
+construction of vessels amount to USD 2,817,737 thousand (31 December 2025:
+USD 2,897,077 thousand).
+(27)
+
+===== PAGE 30 =====
+ADNOC Logistics & Services plc
+Notes to the condensed consolidated interim financial information
+for the three-month period ended 31 March 2026 (continued)
+11 Bank guarantees, contingencies and commitments
+(continued)
+(c) Purchases commitments:
+At 31 March 2026, the Group's purchases commitments amount to USD 55,418
+thousand (31 December 2025: USD 72,001 thousand).
+(d) Contingencies:
+The Group is involved in various legal proceedings and claims arising in the
+ordinary course of business. While the outcome of these matters cannot be
+predicted with certainty, management does not believe that these matters will
+have a material adverse effect on the Group’s financial statements if concluded
+unfavorably.
+12 Fair value of financial instruments
+Financial instruments comprise of financial assets and financial liabilities. As at 31
+March 2026 and 31 December 2025, the Group considers that the carrying amounts
+of financial assets and financial liabilities recognised in the consolidated financial
+statements approximate their fair values.
+13 Basic and diluted earnings per share
+Earnings per share (EPS) amounts are calculated by dividing the profit attributable to
+shareholders of the Company by the weighted average number of shares outstanding
+during the period.
+(Unaudited)
+Three-month period
+ended
+31 March
+2026 2025
+USD’000 USD’000
+Earnings for the purposes of basic and
+diluted earnings per share
+Profit attributable to equity holders of the Company 202,743 180,520
+Weighted average number of shares (’000) 7,392,769 7,398,499
+USD USD
+Earnings per share 0.03 0.02
+The weighted average number of ordinary shares for the current period has changed
+due to the impact of acquisition of treasury shares. There are no potential dilutive
+shares.
+(28)
+
+===== PAGE 31 =====
+ADNOC Logistics & Services plc
+Notes to the condensed consolidated interim financial information
+for the three-month period ended 31 March 2026 (continued)
+14 Operating segments
+Information regarding the Group’s operating segments is set out below in accordance
+with IFRS 8, ‘Operating Segments’. IFRS 8 requires operating segments to be
+identified on the basis of internal reports about components of the Group that are
+regularly reviewed by the Board of Directors, as the chief operating decision maker
+(CODM), in order to allocate resources to the segment and to assess its performance.
+The Group’s strategic steering committee, consisting of the Chief Executive Officer, the
+Chief Financial Officer and the Senior Vice President of Strategy, examines the group’s
+performance from both a product and a service perspective but financial decisions are
+made by the Board. The operating segments are identified based on the nature of
+different services provided and are managed separately because they have different
+economic characteristics – such as trends in sales growth, rates of return and level of
+capital investment – and have different marketing strategies.
+The CODM primarily uses EBITDA to monitor the performance of the business. For
+management purposes, the Group is organised into eight operating segments and
+seven reportable segments. These are referred to as “business units” as follows:
+Integrated Logistics:
+Integrated Logistics comprises three operating segments: (i) offshore contracting; (ii)
+offshore services; and (iii) offshore projects, which includes engineering, procurement
+and construction (EPC) and other projects.
+Shipping:
+Shipping comprises the following reportable segments: (i) tankers; (ii) gas carriers
+(including ship management services and share of profits from AW Shipping joint
+venture); and (iii) dry-bulk shipping (including containers).
+Services:
+Services reportable segment comprises marine, onshore, pool management
+operations, other services and share of profits from other joint ventures and associates.
+Others:
+One-off items are classed under Others by management to facilitate better
+understanding of the business and to ensure proper decision making. Finance income,
+finance costs, general provision for expected credit losses, other income and other
+expenses which are largely non-operational costs are recorded under this segment to
+facilitate better decision making.
+(29)
+
+===== PAGE 32 =====
+ADNOC Logistics & Services plc
+Notes to the condensed consolidated interim financial information
+for the three-month period ended 31 March 2026
+14 Operating segments (continued)
+The following schedules illustrate the Group’s activities according to the operating segments/sub-segments for the period ended 31
+March 2026 in USD’000s:
+2026 USD'000 Integrated Logistics Shipping
+Dry-Bulk
+Offshore Offshore Offshore Gas and
+Contracting Services Projects Tankers Carriers Containers Services Others Total
+Revenues 312,048 165,714 3,725 407,267 55,787 49,291 88,843 - 1,082,675
+Direct costs (212,443) (129,769) (8,137) (301,993) (35,420) (42,718) (71,473) - (801,953)
+Gross profit / (loss) 99,605 35,945 (4,412) 105,274 20,367 6,573 17,370 - 280,722
+General and administrative
+expenses (12,942) (4,474) (207) (14,875) (3,607) (3,894) (13,548) (267) (53,814)
+Provision for expected
+credit losses (20,461) - - (1,340) - - - - (21,801)
+Other income - - - 38,218 - - - 833 39,051
+Other expenses - - - (18,010) - - - - (18,010)
+Operating profit/(loss) 66,202 31,471 (4,619) 109,267 16,760 2,679 3,822 566 226,148
+Share of profit from joint
+ventures and associates - - - - 6,341 - 7,753 - 14,094
+Finance income 178 26 - 706 7 - 229 1,333 2,479
+Finance costs (1,046) (57) - (9,305) (360) (227) (659) 1,950 (9,704)
+Profit/(loss) before tax
+for the period* 65,334 31,440 (4,619) 100,668 22,748 2,452 11,145 3,849 233,017
+(30)
+
+===== PAGE 33 =====
+ADNOC Logistics & Services plc
+Notes to the condensed consolidated interim financial information
+for the three-month period ended 31 March 2026 (continued)
+14 Operating segments (continued)
+2026 USD'000 Integrated Logistics Shipping
+Dry-Bulk
+Offshore Offshore Offshore Gas and
+Contracting Services Projects Tankers Carriers Containers Services Others Total
+Profit/(loss) before tax
+for the period* 65,334 31,440 (4,619) 100,668 22,748 2,452 11,145 3,849 233,017
+Deferred tax credit* 226 - - - - - - - 226
+Income tax expense* (6,336) (3,623) 416 (545) (126) (142) (305) (346) (11,007)
+Profit/(loss) for the
+period* 59,224 27,817 (4,203) 100,123 22,622 2,310 10,840 3,503 222,236
+Depreciation and
+amortisation in direct
+costs 39,385 16,127 1,051 40,340 13,624 6,488 8,568 - 125,583
+Depreciation and
+amortisation in general
+and administrative
+expenses 845 391 6 994 84 90 170 - 2,580
+Deferred tax credit (226) - - - - - - - (226)
+Income tax expense 6,336 3,623 (416) 545 126 142 305 346 11,007
+Finance income (178) (26) - (706) (7) - (229) (1,333) (2,479)
+Finance costs 1,046 57 - 9,305 360 227 659 (1,950) 9,704
+EBITDA 106,432 47,989 (3,562) 150,601 36,809 9,257 20,313 566 368,405
+(31)
+
+===== PAGE 34 =====
+ADNOC Logistics & Services plc
+Notes to the condensed consolidated interim financial information
+for the three-month period ended 31 March 2026 (continued)
+14 Operating segments (continued)
+The following schedules illustrate the Group’s activities according to the operating segments/sub-segments for the period ended 31
+March 2025 in USD’000s:
+2025 USD'000 Integrated Logistics Shipping
+Dry-Bulk
+Offshore Offshore Offshore Gas and
+Contracting Services Projects Tankers Carriers Containers Services Others Total
+Revenues 300,150 135,647 192,330 382,367 39,359 47,234 84,339 - 1,181,426
+Direct costs (192,380) (111,206) (177,240) (331,919) (28,843) (44,292) (66,332) - (952,212)
+Gross profit 107,770 24,441 15,090 50,448 10,516 2,942 18,007 229,214
+General and administrative
+expenses (11,339) (3,946) (328) (13,837) (2,740) (3,088) (11,669) (9,183) (56,130)
+Provision for expected
+credit losses - - - - - - - (1,687) (1,687)
+Other income - - - 358 25,868 - - 2,322 28,548
+Operating profit/(loss) 96,431 20,495 14,762 36,969 33,644 (146) 6,338 (8,548) 199,945
+Share of profit from joint
+ventures and associates - - - - 3,288 - 4,891 - 8,179
+Bargain purchase gain - - - - - - - 12,056 12,056
+Loss on previously held
+equity interest in an
+associate - - - - - - - (3,398) (3,398)
+Finance income 199 - - 2,091 127 - - 3,205 5,622
+Finance costs (1,600) - - (13,718) (270) (319) (417) (9,924) (26,248)
+Profit/(loss) before tax
+for the period* 95,030 20,495 14,762 25,342 36,789 (465) 10,812 (6,609) 196,156
+(32)
+
+===== PAGE 35 =====
+ADNOC Logistics & Services plc
+Notes to the condensed consolidated interim financial information
+for the three-month period ended 31 March 2026 (continued)
+14 Operating segments (continued)
+2025 USD'000 Integrated Logistics Shipping
+Dry-Bulk
+Offshore Offshore Offshore Gas and
+Contracting Services Projects Tankers Carriers Containers Services Others Total
+Profit/(loss) before tax
+for the period* 95,030 20,495 14,762 25,342 36,789 (465) 10,812 (6,609) 196,156
+Deferred tax credit* 227 - - - - - - - 227
+Income tax expense* (8,878) (1,745) (1,329) (193) (93) 101 (293) 595 (11,835)
+Profit/(loss) for the
+period* 86,379 18,750 13,433 25,149 36,696 (364) 10,519 (6,014) 184,548
+Depreciation and
+amortisation in direct
+costs 34,636 13,709 819 51,940 10,405 5,644 6,241 - 123,394
+Depreciation and
+amortisation in general
+and administrative
+expenses 894 350 22 1,252 184 208 493 25 3,428
+Deferred tax credit (227) - - - - - - - (227)
+Income tax expense 8,878 1,745 1,329 193 93 (101) 293 (595) 11,835
+Finance income (199) - - (2,091) (127) - - (3,206) (5,622)
+Finance costs 1,600 - - 13,718 270 319 417 9,925 26,248
+EBITDA 131,961 34,554 15,603 90,161 47,521 5,706 17,963 135 343,604
+(33)
+
+===== PAGE 36 =====
+ADNOC Logistics & Services plc
+Notes to the condensed consolidated interim financial information
+for the three-month period ended 31 March 2026 (continued)
+14 Operating segments (continued)
+The Group’s largest customers are related entities within the ADNOC Group (refer to note 15). The Group’s vessels are deployed
+throughout the world and are not concentrated in certain geographical areas. The Group’s management does not consider the
+geographical distribution of the group’s operations to be relevant for their internal management analysis and therefore no
+geographical segment information has been disclosed.
+All operating segment/sub-segment results are reviewed regularly by the Group’s strategic steering committee to make decisions
+about resources to be allocated to the segment/sub-segment and to assess their performance.
+The following tables represent segment assets for the Group’s operating segments as reviewed by the management in USD’000s:
+Integrated Logistics Shipping Services Total
+Dry-Bulk
+Offshore Offshore Offshore Gas and
+Contracting Services Projects** Tankers Carriers Containers
+31 March 2026
+Property, plant & equipment
+* 2,017,202 279,325 - 2,531,615 1,600,335 168,024 418,760 7,015,261
+Investment properties * 87,848 - - - - - 87,848
+31 December 2025
+Property, plant & equipment
+* 1,998,956 282,637 - 2,643,389 1,411,865 168,789 378,542 6,884,178
+Investment properties * 89,154 - - - - - 89,154
+* These relate to additional voluntary disclosures not presented to CODM, but which are allocated on a reasonable and consistent
+basis to provide additional information.
+**The offshore projects sub-segment does not have dedicated property, plant & equipment. Instead, it utilizes the property, plant &
+equipment from other sub-segments.
+(34)
+
+===== PAGE 37 =====
+ADNOC Logistics & Services plc
+Notes to the condensed consolidated interim financial information
+for the three-month period ended 31 March 2026
+15 Income tax
+Income tax expense for the three-month period ended 31 March 2026 amounted to
+USD 10.8 million (31 March 2025: USD 11.6 million) and comprised current tax of
+USD 11.0 million (including tonnage tax of USD 0.2 million) and a deferred tax credit
+of USD 0.2 million.
+The effective tax rate for the period was 4.6% (31 March 2025: 5.9%), primarily
+reflecting the application of the UAE corporate tax regime, tonnage tax arrangements
+and the exclusion of profits from joint ventures and associates.
+Income tax payable as at 31 March 2026 amounted to USD 64.6 million (31 December
+2025: USD 54.3 million).
+As at 31 March 2026, the Group recognised a deferred tax liability of USD 33.7 million
+(31 December 2025: USD 33.9 million), primarily relating to temporary differences
+arising from property, plant and equipment.
+Deferred tax recognised in the condensed consolidated interim statement of
+comprehensive income for the three-month period ended 31 March 2026 resulted in a
+net credit of USD 0.2 million (31 March 2025: USD 0.2 million).
+There are no material unrecognised deferred tax assets or liabilities arising from
+business operations or investments in subsidiaries, associates or joint ventures.
+(35)
+
+===== PAGE 38 =====
+ADNOC Logistics & Services plc
+Notes to the condensed consolidated interim financial information
+for the three-month period ended 31 March 2026 (continued)
+16 Loans and other borrowings
+Non-
+Current current Total Maturity Weighted average interest rates
+USD’000 USD’000 USD’000
+• For bank loans: 7.11% to 7.55% per annum
+31 March 2026 • For other borrowings: 4.36% to 8.31% per
+Loans and other borrowings 79,732 323,031 402,763 5 to 10 years annum
+79,732 323,031 402,763
+• For bank loans: 7.11% to 7.55% per annum
+31 December 2025 79,931 328,795 408,726 5 to 10 years • For other borrowings: 4.36% to 8.31% per
+Loans and other borrowings annum
+79,931 328,795 408,726
+As at 31 March 2026, certain subsidiaries within the Group are subject to financial covenants under their loan agreements. The covenants are
+assessed at the individual subsidiary level and relate primarily to liquidity, leverage, net worth and short-term solvency metrics.
+Management has assessed compliance with all applicable covenants as at the reporting date and confirms that all subsidiaries were in compliance
+with their respective covenant requirements. No breaches, waivers or events of default occurred during the reporting period.
+Compliance with covenant requirements is monitored on an ongoing basis as part of the Group’s treasury and financing management processes.
+Based on management’s assessment, there are no indicators that the Group would have difficulties complying with the covenants at their next
+scheduled testing date.
+(36)
+
+===== PAGE 39 =====
+ADNOC Logistics & Services plc
+Notes to the condensed consolidated interim financial information
+for the three-month period ended 31 March 2026 (continued)
+17 Hybrid equity instrument
+During 2025, Hyper Issuerco SPV RSV Limited, a subsidiary of the Group, issued
+USD 2.0 billion Perpetual Capital Securities to an investor. The Securities are
+perpetual in nature, bear coupons priced at SOFR + 125 bps, and are repayable solely
+at the Group’s discretion.
+During the period, coupons of USD 24.6 million (31 March 2025: USD 7.1 million) and
+fees of USD 0.3 million (31 March 2025: USD 0.7 million) relating to the Securities
+were recognised directly in retained earnings.
+The carrying amount of the Securities as at 31 March 2026 and 31 December 2025 was
+USD 1,978.6 million, net of transaction costs of USD 21.4 million.
+In accordance with the contractual terms, the Securities have no maturity date, and
+the Group has the unconditional right to defer or cancel coupon payments without
+triggering an event of default. Accordingly, the Securities continue to be classified as
+a hybrid equity instrument in accordance with IAS 32, Financial Instruments:
+Presentation.
+18 Business combination
+Details of the Group’s significant business combinations completed during the year
+ended 31 December 2025, including the acquisition of Navig8 Topco Holdings Inc and
+the acquisition of SWS VLCC JV LLC and SWS VLCC GP LLC, are disclosed in the
+Group’s annual consolidated financial statements for the year ended
+31 December 2025.
+A. Acquisition of Navig8 Topco Holdings Inc:
+As disclosed in the 31 December 2025 annual consolidated financial statements, the
+Group acquired an 80% interest in Navig8 Topco Holdings Inc on 7 January 2025,
+with a contractual commitment to acquire the remaining 20% interest in 2027. The
+present value of the expected redemption amount was recognised as a non-current
+financial liability with a corresponding investment reserve in equity.
+As at 31 March 2026, management reassessed the expected redemption amount and
+did not identify any material changes. The subsequent measurement of the liability
+and the corresponding investment reserve amounted to USD 301.5 million
+(31 December 2025: USD 298.6 million), reflecting an interest unwinding of
+USD 2.8 million during the period ended 31 March 2026. The interest unwinding has
+been recognised directly in equity, in accordance with the Group’s accounting policy.
+(37)
+
+===== PAGE 40 =====
+ADNOC Logistics & Services plc
+Notes to the condensed consolidated interim financial information
+for the three-month period ended 31 March 2026 (continued)
+18 Business combination
+B. Acquisition of SWS VLCC JV LLC and SWS VLCC GP LLC:
+As disclosed in the Group’s annual consolidated financial statements for the year
+ended 31 December 2025, control over SWS VLCC JV LLC and SWS VLCC GP LLC
+was obtained on 27 March 2025. No subsequent adjustments to the acquisition
+accounting were identified during the period ended 31 March 2026.
+19 Treasury shares
+In 2025, the Group appointed a licensed market maker on the Abu Dhabi Securities
+Exchange (ADX) to provide liquidity in the Group’s shares. Under the arrangement,
+the market maker purchases and sells the Group’s shares for the Group’s account
+within parameters approved by the Group, with the Group retaining all risks and
+rewards associated with the arrangement. Given the substance of the arrangement,
+shares held by the market maker are classified as treasury shares within equity.
+As at 31 March 2026, the market maker held 6,865,850 shares on behalf of the Group
+(31 December 2025: 5,480,588 shares), which are presented in equity under treasury
+shares at an aggregate purchase cost of USD 9.5 million (31 December 2025:
+USD 8.8 million).
+During the period, a net loss of USD 1.2 million (31 December 2025: USD 0.5 million)
+arising from the market-making activities was recognised directly in retained
+earnings, as reflected in the condensed consolidated statement of changes in equity.
+The movement in the number of shares held by the market maker during the period
+can be summarised as follows:
+Opening number of shares on 1 January 2026 5,480,588
+Acquired during the period 79,672,725
+Sold during the period (78,287,463)
+Closing number of shares on 31 March 2026 6,865,850
+(38)
+
+===== PAGE 41 =====
+ADNOC Logistics & Services plc
+Notes to the condensed consolidated interim financial information
+for the three-month period ended 31 March 2026 (continued)
+20 Investment reserve
+During 2025, the Group recognised an investment reserve in equity in connection with
+the acquisition of an 80% interest in Navig8 Topco Holdings Inc, reflecting the
+contractual obligation to acquire the remaining 20% interest in 2027. At the
+acquisition date, the present value of the expected redemption amount was recognised
+as a non-current financial liability, with a corresponding investment reserve recorded
+in equity.
+During the period, management reassessed the expected redemption amount and did
+not identify any material changes to the underlying assumptions.
+As at 31 March 2026, the subsequent measurement of the financial liability and the
+corresponding investment reserve amounted to USD 301.5 million
+(31 December 2025: USD 298.6 million), reflecting an interest unwinding of
+USD 2.8 million during the period (31 December 2025: USD 11.1 million). The interest
+unwinding has been recognised directly in equity, in accordance with the Group’s
+accounting policy.
+21 Derivative financial instruments
+31 March 2026 31 December 2025
+(Unaudited) (Audited)
+USD’000 USD’000 USD’000 USD’000
+Assets Liabilities Assets Liabilities
+Freight forward 6,477 13,443 - -
+agreements
+Bunker futures 1,149 1,324 - -
+7,626 14,767
+Analysed as:
+Current 7,626 14,767 - -
+Non-hedging instruments:
+Forward freight forward agreements
+The Group has entered into a number of forward freight agreements.
+As at 31 March 2026, the Group has recognised mark-to-market assets amounting to
+USD 6,477 thousand (31 December 2025: USD nil) within current assets and mark-to-
+market liabilities amounting to USD 13,443 thousand (31 December 2025: USD nil)
+within current liabilities.
+These positions will mature within 2026. No hedge accounting is adopted and the fair
+value changes of these forward freight agreements are recorded in profit or loss.
+(39)
+
+===== PAGE 42 =====
+ADNOC Logistics & Services plc
+Notes to the condensed consolidated interim financial information
+for the three-month period ended 31 March 2026 (continued)
+21 Derivative financial instruments (continued)
+Bunker futures
+The Group has entered into a number of bunker futures.
+As at 31 March 2026, the Group has recognised mark-to-market assets amounting to
+USD 1,149 thousand (31 December 2025: USD nil) within current assets and mark-to-
+market liabilities amounting to USD 1,324 thousand (31 December 2025: USD nil)
+within current liabilities.
+These positions will mature within 2026. No hedge accounting is adopted and the fair
+value changes of these bunker futures are recorded in profit or loss.
+22 Geopolitical conflict
+During quarter one, geopolitical tensions in the Middle East have intensified following
+military actions involving the United States and Israel and retaliatory actions by Iran,
+including isolated incidents affecting the United Arab Emirates.
+At the date of authorization of this condensed consolidated interim financial
+information, management is closely monitoring the situation. The evolving
+geopolitical environment may increase risks related to regional security, logistics,
+energy supply, insurance coverage, with possible impact on operation. As of the
+reporting date, no disruptions to operations based in United Arab Emirates have been
+identified.
+In addition, prolonged disruptions to Middle Eastern supply routes such as a potential
+blockade or restriction of the Strait of Hormuz could result in tighter global product
+supply and shifts in trade flows and could also lead to volatility in commodity prices.
+However, the extent and duration of any such effects remain uncertain and dependent
+on future developments.
+Given the rapidly evolving nature of the situation, it is not currently possible to reliably
+quantify any potential financial impact, whether adverse or favorable.
+Accordingly, no adjustments have been made to the condensed consolidated interim
+financial information as of the reporting date, as these events are considered non
+adjusting subsequent events.
+Management will continue to monitor developments and assess potential implications
+for operations, financial position, and performance.
+(40)
+
+===== PAGE 43 =====
+ADNOC Logistics & Services plc
+Notes to the condensed consolidated interim financial information
+for the three-month period ended 31 March 2026 (continued)
+23 Subsequent events
+On 16 April 2026, the final cash dividend of USD 81,250 thousand pertaining to the
+year ended 31 December 2025 was paid.
+On 4 May 2026, an incident occurred involving ADNOC Logistics & Services’ crude
+carrier Barakah, which was struck by drones off the coast of Oman. At the time of the
+incident, the vessel was not carrying any cargo. There were no reported injuries, and
+all crew members are safe. Following the incident, the vessel’s operations were
+impacted while inspections and assessments are being carried out. The financial
+impact, if any, is currently under assessment and cannot be reliably estimated at the
+date of authorisation of these condensed consolidated interim financial statements.
+On 13 May 2026, the Board of Directors approved a cash dividend of USD 85.3125
+million for the first quarter of 2026 for its shareholders, equivalent to 4.23 fils per
+share.
+(41)
