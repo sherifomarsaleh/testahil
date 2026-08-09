@@ -34,6 +34,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import subprocess
 import sys
 import time
@@ -105,9 +106,21 @@ def sync_main(ticker: str) -> None:
     print("  merged origin/main cleanly")
 
 
+def market_of(ticker: str) -> str | None:
+    """The ticker's market, from its own `code:` prefix in data.js — file placement and
+    the entry decide the market, never the name."""
+    src = open(os.path.join(ROOT, "assets", "data.js"), encoding="utf-8").read()
+    m = re.search(r'\n  "?' + re.escape(ticker) + r'"?: \{(.*?)\n  \},', src, re.S)
+    if not m:
+        return None
+    c = re.search(r'code:\s*"([A-Z0-9]+):', m.group(1))
+    return {"EGX": "EG", "ADX": "AE", "DFM": "AE", "TADAWUL": "SA",
+            "QE": "QA"}.get(c.group(1)) if c else None
+
+
 def surfaces(ticker: str) -> None:
-    """All four generated surfaces, in dependency order. Never hand-edit these."""
-    step("2/6", "regenerating the four derived surfaces")
+    """All five generated surfaces, in dependency order. Never hand-edit these."""
+    step("2/6", "regenerating the derived surfaces")
     print(run(["node", "scripts/generate_seo.js"]).strip()[-300:])
     print(run(["node", "scripts/generate_feed.js"]).strip()[-200:])
     print(run(["python3", "scripts/build_market_registry.py", "--write"]).strip()[-200:])
@@ -115,6 +128,28 @@ def surfaces(ticker: str) -> None:
     print(run(["python3", "engine/ta_chart.py", "--only", ticker, "--write"]).strip()[-200:])
     print(run(["python3", "engine/apply_technicals.py", "--only", ticker,
                "--write"]).strip()[-300:])
+    # 5. the fair-value overlay feeds picker.html. It was NOT in this list, so four
+    # consecutive EG publishes shipped without ever reaching the Ticker Picker — the
+    # page simply read a file nobody had regenerated. It is a per-MARKET file, so it is
+    # rebuilt for the ticker's own market.
+    mkt = market_of(ticker)
+    if mkt:
+        out = run(["python3", "engine/fv_overlay.py", "--market", mkt,
+                   "--js", "assets/fv_overlay.js"])
+        blocked = [l for l in out.splitlines() if "BLOCKED" in l]
+        if blocked:
+            print("  fv_overlay BLOCKED rows (these names will NOT appear in the picker):")
+            for l in blocked:
+                print("   ", l.strip()[:150])
+            if any(ticker in l for l in blocked):
+                die(f"{ticker} is BLOCKED from the fair-value overlay — it would publish "
+                    f"without reaching the Ticker Picker. Most often the entry is missing "
+                    f"`fairAsof` (the close the FAIR VALUE is struck on); without it the "
+                    f"overlay falls back to the publication date in the study filename and "
+                    f"reports look-ahead against the cone anchor.")
+        print(f"  fv_overlay regenerated for {mkt}")
+    else:
+        print(f"  no market resolved for {ticker} — fv_overlay not regenerated")
 
 
 def gates() -> None:

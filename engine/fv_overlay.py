@@ -108,15 +108,35 @@ def load_tickers(data_js: str = DATA_JS) -> dict:
 _FILE_DATE = re.compile(r"(\d{2})-(\d{2})-(\d{4})")
 
 
-def parse_fv_asof(files: dict | None) -> _dt.date | None:
-    """Fair-value publication date, from the study filename (DD-MM-YYYY).
+def parse_fv_asof(entry: dict) -> _dt.date | None:
+    """The date the FAIR VALUE was struck on — the close it was priced against.
 
-    House filename convention, e.g. ELEC_Valuation_Study_05-08-2026_public.docx.
-    This is the only machine-readable provenance for when a fair value was
-    struck — `TICKERS[t].fair` carries no date field, and `asof` covers the MC
-    and technical reads only. Returns None when no date can be sourced; the
-    caller BLOCKS rather than guessing (protocol invariant 3).
+    Prefers an explicit `fairAsof` on the entry, which is the only field that
+    states this directly. Falls back to the study FILENAME date (DD-MM-YYYY,
+    house convention e.g. ELEC_Valuation_Study_05-08-2026_public.docx).
+
+    WHY THE EXPLICIT FIELD EXISTS. The filename carries the PUBLICATION date,
+    which is days after the close the study is priced on — every study is
+    written after its own price date. Comparing publication date to cone anchor
+    therefore reported look-ahead on names that had none, and blocked four
+    consecutive EG publishes (PHAR, ARCC, AMOC, and EGCH on a separate fault)
+    from the picker for a reason that was an artefact of the filename.
+
+    The fallback is NOT `spotDate` or `asof.mc.data`, though both are already
+    machine-readable and both would make every row pass. They track the CONE,
+    which is re-struck on every roll-forward while `fair` deliberately is not,
+    so either one would make the look-ahead test vacuous — and the test is the
+    point. A cone anchored in July must not be annotated with a fair value
+    struck in August. Returns None when nothing can be sourced; the caller
+    BLOCKS rather than guessing (protocol invariant 3).
     """
+    explicit = (entry or {}).get("fairAsof")
+    if explicit:
+        try:
+            return _dt.date.fromisoformat(explicit)
+        except ValueError:
+            pass
+    files = (entry or {}).get("files")
     if not files:
         return None
     for key in ("study", "pdf", "model", "biblio"):
@@ -175,12 +195,20 @@ def horizon_overlay(spot, dist_h, h_sessions, nu, fair, yearfrac, rf,
     sigma = invert_sigma(p5, p95, nu)
     mu = math.log(p50 / spot)                 # = carry; alpha is 0 by design
 
-    # --- G, per level (protocol §3.1) — drift-free distance in own vol units
-    g = {k: math.log(v / spot) / sigma for k, v in fair.items()}
+    # --- G, per level (protocol §3.1) — drift-free distance in own vol units.
+    # A fair-value leg of EXACTLY ZERO is a real published result, not a missing
+    # field (EGCH: the equity is worth nothing on the base case, floored at zero
+    # because a shareholder cannot owe more than the stake). In log space it is
+    # infinitely far below any positive price, so G is -inf — unreachable — and
+    # that is reported rather than crashed on or silently dropped.
+    g = {k: (math.log(v / spot) / sigma if v > 0 else float("-inf"))
+         for k, v in fair.items()}
     band = band_for(g["base"])
 
     # --- terminal convergence probability (§3.2)
     def p_term(level):
+        if level <= 0:
+            return 0.0            # the price cannot reach zero in a lognormal-tailed process
         z = (math.log(level / spot) - mu) / sigma
         # "reach" means at/beyond fair value in the direction it lies from spot
         return std_t_sf(z, nu) if level >= spot else 1.0 - std_t_sf(z, nu)
@@ -193,6 +221,8 @@ def horizon_overlay(spot, dist_h, h_sessions, nu, fair, yearfrac, rf,
     term = paths[:, -1]
 
     def p_touch(level):
+        if level <= 0:
+            return 0.0
         hit = run_max >= level if level >= spot else run_min <= level
         return float(hit.mean())
 
@@ -200,8 +230,10 @@ def horizon_overlay(spot, dist_h, h_sessions, nu, fair, yearfrac, rf,
     rec = np.percentile(term, [5, 50, 95])
     dev = max(abs(rec[0] / p5 - 1), abs(rec[1] / p50 - 1), abs(rec[2] / p95 - 1))
 
-    # --- required CAGR vs the cash hurdle (§3.4)
-    req = {k: (v / spot) ** (1.0 / yearfrac) - 1.0 for k, v in fair.items()}
+    # --- required CAGR vs the cash hurdle (§3.4). A zero leg means total loss:
+    # the required return is -100%, which is exact rather than a limit.
+    req = {k: ((v / spot) ** (1.0 / yearfrac) - 1.0 if v > 0 else -1.0)
+           for k, v in fair.items()}
 
     # --- tail asymmetry (§3.5)
     if fair["base"] > p95:
@@ -238,9 +270,14 @@ def overlay_for_ticker(tkr, t, profile, n_paths=N_PATHS, seed=SEED):
     """Full overlay for one name, or a BLOCKED row explaining why not."""
     spot = t.get("spot")
     fair_raw = t.get("fair") or {}
-    fair = {k: fair_raw[k] for k in ("bear", "base", "full") if fair_raw.get(k)}
+    # `is not None`, never truthiness: a fair-value leg of 0.00 is a RESULT, not a
+    # missing field. EGCH publishes bear 0.00 — the equity is worth nothing on the base
+    # case and is floored at zero only because a shareholder cannot owe more than the
+    # stake — and a truthiness test read that as an incomplete valuation and blocked it.
+    fair = {k: fair_raw[k] for k in ("bear", "base", "full")
+            if fair_raw.get(k) is not None}
     dist, hz = t.get("dist") or {}, t.get("hz") or {}
-    anchor, fv_asof = parse_anchor(t), parse_fv_asof(t.get("files"))
+    anchor, fv_asof = parse_anchor(t), parse_fv_asof(t)
 
     def blocked(reason):
         return {"ticker": tkr, "overlay_status": f"BLOCKED — {reason}",
