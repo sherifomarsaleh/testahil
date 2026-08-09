@@ -242,6 +242,8 @@ INP = dict(
                    "2026-07-22", "Company"),
     h1_26_dna=I(1133.244, H126, "2026-07-22", "Company"),
     h1_26_np=I(1631.971, H126, "2026-07-22", "Company"),
+    h1_25_np=I(1449.267, H126 + ", comparative", "2026-07-22", "Company"),
+    h1_25_ebitda=I(3650.187, H126 + ", comparative", "2026-07-22", "Company"),
     h1_26_capex=I(1038.0, IRQ2 + ": cost additions to PP&E + intangibles, H1-2026 (capital "
                   "intensity 12.7%)", "2026-07-23", "Company"),
     h2_25_rev=I(8155.126, "DERIVED (flagged): FY2025 revenue 15,905.421 − H1-2025 7,750.295, "
@@ -938,6 +940,8 @@ def dcf_roic(r_):
     _ev = pv_explicit + _tv * df[-1]
     return ((_ev - LEASE + NETCASH + 0.511) / SH) * ROLL - V['div_between']
 grid_roic = [dcf_roic(r_) for r_ in roic_grid]
+dcf_opex_1pp = dcf_scenario(opex_shift=+0.01)   # +1pp of revenue in the cost stack
+dcf_tax_per_pp = (grid_tax[0] - grid_tax[4]) / ((tax_grid[4] - tax_grid[0]) * 100)
 
 # ---- expert panel: three genuinely different methods ---------------------------
 # Expert 1 — earnings power on a through-cycle multiple
@@ -1046,7 +1050,8 @@ OUT = dict(
               tax_grid=tax_grid, grid_tax=grid_tax, arpu_grid=arpu_grid, grid_arpu=grid_arpu,
               subs_grid=subs_grid, grid_subs=grid_subs, mg_grid=mg_grid,
               grid_margin=grid_margin, capex_grid=capex_grid, grid_capex=grid_capex,
-              nwc_grid=nwc_grid, grid_nwc=grid_nwc, roic_grid=roic_grid, grid_roic=grid_roic),
+              nwc_grid=nwc_grid, grid_nwc=grid_nwc, roic_grid=roic_grid, grid_roic=grid_roic,
+              dcf_opex_1pp=dcf_opex_1pp, dcf_tax_per_pp=dcf_tax_per_pp),
     step0=step0, strike=strike, backtest=bt5,
     assert_log=LOG,
 )

@@ -690,6 +690,18 @@
    "date": "2026-07-22",
    "ring": "Company"
   },
+  "h1_25_np": {
+   "value": 1449.267,
+   "source": "Reviewed condensed consolidated interim FS for the six months ended 30-Jun-2026, investors.du.ae (KPMG ISRE 2410 review, 22-Jul-2026), comparative",
+   "date": "2026-07-22",
+   "ring": "Company"
+  },
+  "h1_25_ebitda": {
+   "value": 3650.187,
+   "source": "Reviewed condensed consolidated interim FS for the six months ended 30-Jun-2026, investors.du.ae (KPMG ISRE 2410 review, 22-Jul-2026), comparative",
+   "date": "2026-07-22",
+   "ring": "Company"
+  },
   "h1_26_capex": {
    "value": 1038.0,
    "source": "Company Q2-2026 earnings release + analyst presentation, investors.du.ae (COMPANY_IR): cost additions to PP&E + intangibles, H1-2026 (capital intensity 12.7%)",
@@ -2180,7 +2192,9 @@
    19.143149672746045,
    19.3326278367189,
    19.51264328154805
-  ]
+  ],
+  "dcf_opex_1pp": 18.501525864266576,
+  "dcf_tax_per_pp": 0.38312109868102995
  },
  "step0": {
   "windows_scored": 18,

@@ -1280,6 +1280,13 @@ put(ws, f'A{r+1}', 'Peer EV/EBITDA was not reliably sourceable from public aggre
     'dividend yield, both sourced, and that limitation is stated rather than papered over.',
     fmt=None).font = SUB
 
+# print layout: wide sheets paginate label-from-value in portrait; landscape+fit-to-width
+# keeps every row's label and values on one page in the rendered PDF
+for _ws in wb.worksheets:
+    _ws.page_setup.orientation = 'landscape'
+    _ws.page_setup.fitToWidth = 1
+    _ws.page_setup.fitToHeight = 0
+    _ws.sheet_properties.pageSetUpPr.fitToPage = True
 out = os.path.join(HERE, 'DU_Valuation_Model_09082026_public.xlsx')
 wb.save(out)
 json.dump({'expected': EXPECT, 'anchors': ANCH},
