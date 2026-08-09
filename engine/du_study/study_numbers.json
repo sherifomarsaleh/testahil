@@ -1,0 +1,2499 @@
+{
+ "meta": {
+  "ticker": "DU",
+  "company": "Emirates Integrated Telecommunications Company PJSC (du)",
+  "market": "DFM",
+  "currency": "AED",
+  "asof": "2026-08-07",
+  "spot": 12.3,
+  "shares_mn": 4532.905989,
+  "mktcap": 55754.7436647,
+  "ev_trailing": 55443.843664700005,
+  "klass": "integrated telecom operating company"
+ },
+ "inputs": {
+  "spot": {
+   "value": 12.3,
+   "source": "Uploaded DFM daily price history for DU, last close 07-Aug-2026",
+   "date": "2026-08-07",
+   "ring": "Market"
+  },
+  "shares_mn": {
+   "value": 4532.905989,
+   "source": "Share capital note 27, audited FY2025 consolidated FS: 4,532,905,989 shares of AED 1 each, authorised, issued and fully paid, unchanged across FY2023-FY2025 and both 2026 interims",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "anchor_days": {
+   "value": 219.0,
+   "source": "31-Dec-2025 valuation date to the 07-Aug-2026 price anchor",
+   "date": "2026-08-07",
+   "ring": "House"
+  },
+  "div_between": {
+   "value": 0.4,
+   "source": "Final FY2025 cash dividend AED 0.40/share, approved AGM 30-Mar-2026, PAID 28-Apr-2026 (AED 1,813,162k) \u2014 value that left the share between the valuation date and the anchor. The H1-2026 interim of AED 0.26 was declared 23-Jul-2026 but not yet paid at the anchor, so it stays in the share",
+   "date": "2026-07-22",
+   "ring": "Company"
+  },
+  "rev_fy23": {
+   "value": 13636.34,
+   "source": "Audited consolidated FS, Annual Report 2023, investors.du.ae (PwC, unqualified opinion 13-Feb-2024), consolidated statement of comprehensive income",
+   "date": "2024-02-13",
+   "ring": "Company"
+  },
+  "rev_fy24": {
+   "value": 14635.917,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026), FY2024 comparative (IFRS 18 re-presented, Note 39)",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "rev_fy25": {
+   "value": 15905.421,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026)",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "ebitda_fy25": {
+   "value": 7338.388,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026): 'Operating profit before depreciation and amortization' printed on the face of the statement",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "ebitda_fy24": {
+   "value": 6469.839,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026), FY2024 comparative on the face (IFRS 18)",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "ebitda_fy23": {
+   "value": 5799.601,
+   "source": "DERIVED (flagged): FY2023 statements print no EBITDA line (pre-IFRS 18). Operating profit pre-royalty (rev - opex - ECL + other income = 3,601.324) + D&A 2,198.277, every component audited (Audited consolidated FS, Annual Report 2023, investors.du.ae (PwC, unqualified opinion 13-Feb-2024))",
+   "date": "2024-02-13",
+   "ring": "Company/derived"
+  },
+  "dna_fy23": {
+   "value": 2198.277,
+   "source": "Audited consolidated FS, Annual Report 2023, investors.du.ae (PwC, unqualified opinion 13-Feb-2024), Note 26 opex split: PP&E depreciation 1,544.182 + right-of-use depreciation 445.042 + intangibles amortisation 209.053",
+   "date": "2024-02-13",
+   "ring": "Company"
+  },
+  "dna_fy24": {
+   "value": 2153.59,
+   "source": "Audited consolidated FS, Annual Report 2024, investors.du.ae (PwC, unqualified opinion 10-Feb-2025), Note 31 split: PP&E 1,569.189 + ROU 374.505 + intangibles 209.896",
+   "date": "2025-02-10",
+   "ring": "Company"
+  },
+  "dna_fy25": {
+   "value": 2167.933,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026), Note 31 split: PP&E 1,557.989 + ROU 364.063 + intangibles 245.881",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "op_fy25": {
+   "value": 5170.455,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026), operating profit on the face",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "op_fy24": {
+   "value": 4316.249,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026), FY2024 comparative",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "int_inc_fy25": {
+   "value": 74.672,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026), interest income (Note 32)",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "int_inc_fy24": {
+   "value": 82.214,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026), FY2024 comparative",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "int_exp_fy25": {
+   "value": 95.054,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026), interest expense (Note 32; principally lease interest 71.094)",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "int_exp_fy24": {
+   "value": 89.77,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026), FY2024 comparative",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "assoc_fy25": {
+   "value": -0.894,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026), share of loss on equity-accounted investments",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "pbt_fy25": {
+   "value": 5149.122,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026), profit before federal royalty and income tax",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "pbt_fy24": {
+   "value": 4306.151,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026), FY2024 comparative",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "pbt_fy23": {
+   "value": 3558.501,
+   "source": "DERIVED (flagged): profit 1,667.851 + total federal royalty 1,890.650 (revenue leg 1,400.199 + profit leg 490.451, Note 27, Audited consolidated FS, Annual Report 2023, investors.du.ae (PwC, unqualified opinion 13-Feb-2024)) \u2014 the pre-royalty profit the FY2023 statement layout never prints as one line",
+   "date": "2024-02-13",
+   "ring": "Company/derived"
+  },
+  "royalty_fy25": {
+   "value": 1956.602,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026), federal royalty on the face",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "royalty_fy24": {
+   "value": 1571.649,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026), FY2024 comparative (IFRS 18)",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "royalty_fy23": {
+   "value": 1890.65,
+   "source": "Audited consolidated FS, Annual Report 2023, investors.du.ae (PwC, unqualified opinion 13-Feb-2024), Note 27: royalty on regulated revenue 1,400.199 + royalty on regulated profit 490.451",
+   "date": "2024-02-13",
+   "ring": "Company"
+  },
+  "tax_fy25": {
+   "value": 287.435,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026), income tax expense on the face",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "tax_fy24": {
+   "value": 246.955,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026), FY2024 comparative",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "np_fy23": {
+   "value": 1667.851,
+   "source": "Audited consolidated FS, Annual Report 2023, investors.du.ae (PwC, unqualified opinion 13-Feb-2024)",
+   "date": "2024-02-13",
+   "ring": "Company"
+  },
+  "np_fy24": {
+   "value": 2487.547,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026), FY2024 comparative",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "np_fy25": {
+   "value": 2905.085,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026)",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "eps_fy23": {
+   "value": 0.37,
+   "source": "Audited consolidated FS, Annual Report 2023, investors.du.ae (PwC, unqualified opinion 13-Feb-2024), Note 29",
+   "date": "2024-02-13",
+   "ring": "Company"
+  },
+  "eps_fy24": {
+   "value": 0.55,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026), Note 33 comparative",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "eps_fy25": {
+   "value": 0.64,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026), Note 33",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "tax_eff": {
+   "value": 0.4357,
+   "source": "Combined federal royalty + income tax charge / profit before both, audited FY2025: (1,956.602 + 287.435) / 5,149.122 = 43.57% (Note 26 states 43.6%; FY2024 44.7%). Regime: Cabinet decision 8/38 of 2023 \u2014 38% federal royalty on total UAE regulated and non-regulated profits + 9% corporate income tax, combined floor AED 1.8bn/yr, legislated for 2024-2026",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "reg_share": {
+   "value": 0.69,
+   "source": "Regulated revenue share under the PRE-2024 regime, audited FY2023 Note 27: total regulated revenue 9,410.136 / total revenue 13,636.340 = 69.0% \u2014 the revenue base for Framing B of the contested judgement",
+   "date": "2024-02-13",
+   "ring": "Company"
+  },
+  "royB_rev_rate": {
+   "value": 0.15,
+   "source": "Pre-2024 royalty construction, leg 1: 15% of regulated revenue (Audited consolidated FS, Annual Report 2023, investors.du.ae (PwC, unqualified opinion 13-Feb-2024), Note 27)",
+   "date": "2024-02-13",
+   "ring": "Company"
+  },
+  "royB_prof_rate": {
+   "value": 0.3,
+   "source": "Pre-2024 royalty construction, leg 2: 30% of regulated profit after deducting the revenue-leg royalty (Audited consolidated FS, Annual Report 2023, investors.du.ae (PwC, unqualified opinion 13-Feb-2024), Note 27)",
+   "date": "2024-02-13",
+   "ring": "Company"
+  },
+  "ppe_fy23": {
+   "value": 9722.7,
+   "source": "Audited consolidated FS, Annual Report 2023, investors.du.ae (PwC, unqualified opinion 13-Feb-2024)",
+   "date": "2024-02-13",
+   "ring": "Company"
+  },
+  "ppe_fy24": {
+   "value": 9838.448,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026), FY2024 comparative",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "ppe_fy25": {
+   "value": 10288.767,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026)",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "rou_fy23": {
+   "value": 1597.185,
+   "source": "Audited consolidated FS, Annual Report 2023, investors.du.ae (PwC, unqualified opinion 13-Feb-2024)",
+   "date": "2024-02-13",
+   "ring": "Company"
+  },
+  "rou_fy24": {
+   "value": 1657.217,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026), FY2024 comparative",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "rou_fy25": {
+   "value": 1515.395,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026)",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "intang_fy23": {
+   "value": 1110.769,
+   "source": "Audited consolidated FS, Annual Report 2023, investors.du.ae (PwC, unqualified opinion 13-Feb-2024) ('Intangible assets and goodwill', one line pre-2024)",
+   "date": "2024-02-13",
+   "ring": "Company"
+  },
+  "intang_fy24": {
+   "value": 846.932,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026), FY2024 comparative (intangibles excl. goodwill)",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "intang_fy25": {
+   "value": 869.6,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026) (software 297.272 + capital work in progress 571.459 + TDRA licence NBV 0.869, Note 8)",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "goodwill_fy25": {
+   "value": 413.22,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026), Note 9 (unchanged from FY2024)",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "inv_fy23": {
+   "value": 101.695,
+   "source": "Audited consolidated FS, Annual Report 2023, investors.du.ae (PwC, unqualified opinion 13-Feb-2024)",
+   "date": "2024-02-13",
+   "ring": "Company"
+  },
+  "inv_fy24": {
+   "value": 175.61,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026), FY2024 comparative",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "inv_fy25": {
+   "value": 175.457,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026)",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "recv_fy23": {
+   "value": 2224.031,
+   "source": "Audited consolidated FS, Annual Report 2023, investors.du.ae (PwC, unqualified opinion 13-Feb-2024) ('Trade receivables, contract assets and other assets', current)",
+   "date": "2024-02-13",
+   "ring": "Company"
+  },
+  "recv_fy24": {
+   "value": 2128.565,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026), FY2024 comparative (trade receivables and contract assets, current)",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "recv_fy25": {
+   "value": 2222.511,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026)",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "ccost_fy23": {
+   "value": 341.863,
+   "source": "Audited consolidated FS, Annual Report 2023, investors.du.ae (PwC, unqualified opinion 13-Feb-2024) (contract costs, current)",
+   "date": "2024-02-13",
+   "ring": "Company"
+  },
+  "ccost_fy24": {
+   "value": 361.577,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026), FY2024 comparative",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "ccost_fy25": {
+   "value": 442.363,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026)",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "relparty_a_fy23": {
+   "value": 53.449,
+   "source": "Audited consolidated FS, Annual Report 2023, investors.du.ae (PwC, unqualified opinion 13-Feb-2024) (due from related parties)",
+   "date": "2024-02-13",
+   "ring": "Company"
+  },
+  "relparty_a_fy24": {
+   "value": 21.732,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026), FY2024 comparative",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "relparty_a_fy25": {
+   "value": 27.481,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026)",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "othca_fy23": {
+   "value": 0.0,
+   "source": "Audited consolidated FS, Annual Report 2023, investors.du.ae (PwC, unqualified opinion 13-Feb-2024) \u2014 other non-financial assets are not a separate current line in the FY2023 layout (folded into trade receivables and other assets); carried at zero to avoid double-counting",
+   "date": "2024-02-13",
+   "ring": "Company"
+  },
+  "othca_fy24": {
+   "value": 324.287,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026), FY2024 comparative (other non-financial assets, current)",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "othca_fy25": {
+   "value": 416.846,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026)",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "cash_fy23": {
+   "value": 610.036,
+   "source": "Audited consolidated FS, Annual Report 2023, investors.du.ae (PwC, unqualified opinion 13-Feb-2024) (cash and bank balances)",
+   "date": "2024-02-13",
+   "ring": "Company"
+  },
+  "cash_fy24": {
+   "value": 983.969,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026), FY2024 comparative",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "cash_fy25": {
+   "value": 465.7,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026)",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "deposits_fy23": {
+   "value": 1326.586,
+   "source": "Audited consolidated FS, Annual Report 2023, investors.du.ae (PwC, unqualified opinion 13-Feb-2024) (term deposits)",
+   "date": "2024-02-13",
+   "ring": "Company"
+  },
+  "deposits_fy24": {
+   "value": 1299.283,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026), FY2024 comparative",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "deposits_fy25": {
+   "value": 1784.019,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026)",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "assets_fy23": {
+   "value": 17703.736,
+   "source": "Audited consolidated FS, Annual Report 2023, investors.du.ae (PwC, unqualified opinion 13-Feb-2024)",
+   "date": "2024-02-13",
+   "ring": "Company"
+  },
+  "assets_fy24": {
+   "value": 18693.292,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026), FY2024 comparative",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "assets_fy25": {
+   "value": 19375.709,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026)",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "pay_fy23": {
+   "value": 5247.287,
+   "source": "Audited consolidated FS, Annual Report 2023, investors.du.ae (PwC, unqualified opinion 13-Feb-2024) (trade and other payables \u2014 INCLUDES the accrued federal royalty, which the FY2023 layout does not present separately)",
+   "date": "2024-02-13",
+   "ring": "Company"
+  },
+  "roy_accr_fy23": {
+   "value": 2033.172,
+   "source": "Audited consolidated FS, Annual Report 2024, investors.du.ae (PwC, unqualified opinion 10-Feb-2025), Note 23 accrued-royalty movement: balance at 1-Jan-2024 = 2,033.172 \u2014 the royalty accrual sitting INSIDE FY2023 trade payables, netted out for a like-for-like working-capital series",
+   "date": "2025-02-10",
+   "ring": "Company"
+  },
+  "pay_fy24": {
+   "value": 3666.058,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026), FY2024 comparative (trade and other payables)",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "pay_fy25": {
+   "value": 3711.346,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026)",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "roytax_fy24": {
+   "value": 1923.452,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026), FY2024 comparative (federal royalty and income tax, current liability)",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "roytax_fy25": {
+   "value": 2283.439,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026)",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "cliab_fy23": {
+   "value": 465.71,
+   "source": "Audited consolidated FS, Annual Report 2023, investors.du.ae (PwC, unqualified opinion 13-Feb-2024) (contract liabilities, current)",
+   "date": "2024-02-13",
+   "ring": "Company"
+  },
+  "cliab_fy24": {
+   "value": 559.18,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026), FY2024 comparative",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "cliab_fy25": {
+   "value": 629.724,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026)",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "relparty_l_fy23": {
+   "value": 6.064,
+   "source": "Audited consolidated FS, Annual Report 2023, investors.du.ae (PwC, unqualified opinion 13-Feb-2024) (due to related parties)",
+   "date": "2024-02-13",
+   "ring": "Company"
+  },
+  "relparty_l_fy24": {
+   "value": 6.717,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026), FY2024 comparative",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "relparty_l_fy25": {
+   "value": 6.03,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026)",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "lease_fy23": {
+   "value": 2104.959,
+   "source": "Audited consolidated FS, Annual Report 2023, investors.du.ae (PwC, unqualified opinion 13-Feb-2024) (lease liabilities: current 649.585 + non-current 1,455.374)",
+   "date": "2024-02-13",
+   "ring": "Company"
+  },
+  "lease_fy24": {
+   "value": 1998.687,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026), FY2024 comparative (561.999 + 1,436.688)",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "lease_fy25": {
+   "value": 1938.819,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026) (592.141 + 1,346.678)",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "debt_fy25": {
+   "value": 0.0,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026), Note 4.2 capital-risk table: Total borrowings '\u2013' \u2014 ZERO drawn borrowings in every year studied (FY2022-FY2025 and both 2026 interims). The only facility is undrawn: AED 2.0bn 7-year unsecured RCF signed 06-Apr-2026",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "eq_fy23": {
+   "value": 9243.213,
+   "source": "Audited consolidated FS, Annual Report 2023, investors.du.ae (PwC, unqualified opinion 13-Feb-2024)",
+   "date": "2024-02-13",
+   "ring": "Company"
+  },
+  "eq_fy24": {
+   "value": 9878.445,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026), FY2024 comparative",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "eq_fy25": {
+   "value": 10148.291,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026)",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "ocf_fy23": {
+   "value": 4425.366,
+   "source": "Audited consolidated FS, Annual Report 2023, investors.du.ae (PwC, unqualified opinion 13-Feb-2024), net cash generated from operating activities",
+   "date": "2024-02-13",
+   "ring": "Company"
+  },
+  "ocf_fy24": {
+   "value": 4636.508,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026), FY2024 comparative",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "ocf_fy25": {
+   "value": 5229.823,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026)",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "capex_ppe_fy23": {
+   "value": 1899.868,
+   "source": "Audited consolidated FS, Annual Report 2023, investors.du.ae (PwC, unqualified opinion 13-Feb-2024), purchase of property, plant and equipment",
+   "date": "2024-02-13",
+   "ring": "Company"
+  },
+  "capex_ppe_fy24": {
+   "value": 1535.742,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026), FY2024 comparative",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "capex_ppe_fy25": {
+   "value": 2038.501,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026)",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "capex_int_fy23": {
+   "value": 327.69,
+   "source": "Audited consolidated FS, Annual Report 2023, investors.du.ae (PwC, unqualified opinion 13-Feb-2024), purchase of intangible assets",
+   "date": "2024-02-13",
+   "ring": "Company"
+  },
+  "capex_int_fy24": {
+   "value": 384.726,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026), FY2024 comparative",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "capex_int_fy25": {
+   "value": 314.729,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026)",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "div_paid_fy23": {
+   "value": 1178.556,
+   "source": "Audited consolidated FS, Annual Report 2023, investors.du.ae (PwC, unqualified opinion 13-Feb-2024), dividends paid",
+   "date": "2024-02-13",
+   "ring": "Company"
+  },
+  "div_paid_fy24": {
+   "value": 1858.491,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026), FY2024 comparative",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "div_paid_fy25": {
+   "value": 2629.085,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026) (final-2024 AED 0.34 + interim-2025 AED 0.24)",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "lease_paid_fy25": {
+   "value": 282.473,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026), repayment of lease liabilities (financing)",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "lease_int_fy25": {
+   "value": 71.094,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026), interest paid on lease liabilities",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "dps_fy23": {
+   "value": 0.34,
+   "source": "Audited consolidated FS, Annual Report 2023, investors.du.ae (PwC, unqualified opinion 13-Feb-2024)/AR24: interim 0.13 (paid 23-Aug-2023) + final 0.21 (paid 18-Apr-2024)",
+   "date": "2024-04-18",
+   "ring": "Company"
+  },
+  "dps_fy24": {
+   "value": 0.54,
+   "source": "Audited consolidated FS, Annual Report 2024, investors.du.ae (PwC, unqualified opinion 10-Feb-2025)/AR25: interim 0.20 (paid 19-Aug-2024) + final 0.34 (paid 15-Apr-2025); IR: 98% payout",
+   "date": "2025-04-15",
+   "ring": "Company"
+  },
+  "dps_fy25": {
+   "value": 0.64,
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026): interim 0.24 (paid 21-Aug-2025) + final 0.40 (paid 28-Apr-2026); IR: ~100% payout, the highest dividend and payout in du history",
+   "date": "2026-04-28",
+   "ring": "Company"
+  },
+  "h1_26_rev": {
+   "value": 8197.573,
+   "source": "Reviewed condensed consolidated interim FS for the six months ended 30-Jun-2026, investors.du.ae (KPMG ISRE 2410 review, 22-Jul-2026)",
+   "date": "2026-07-22",
+   "ring": "Company"
+  },
+  "h1_25_rev": {
+   "value": 7750.295,
+   "source": "Reviewed condensed consolidated interim FS for the six months ended 30-Jun-2026, investors.du.ae (KPMG ISRE 2410 review, 22-Jul-2026), comparative",
+   "date": "2026-07-22",
+   "ring": "Company"
+  },
+  "h1_26_ebitda": {
+   "value": 4031.922,
+   "source": "Reviewed condensed consolidated interim FS for the six months ended 30-Jun-2026, investors.du.ae (KPMG ISRE 2410 review, 22-Jul-2026), operating profit before D&A on the face (margin 49.2%)",
+   "date": "2026-07-22",
+   "ring": "Company"
+  },
+  "h1_26_dna": {
+   "value": 1133.244,
+   "source": "Reviewed condensed consolidated interim FS for the six months ended 30-Jun-2026, investors.du.ae (KPMG ISRE 2410 review, 22-Jul-2026)",
+   "date": "2026-07-22",
+   "ring": "Company"
+  },
+  "h1_26_np": {
+   "value": 1631.971,
+   "source": "Reviewed condensed consolidated interim FS for the six months ended 30-Jun-2026, investors.du.ae (KPMG ISRE 2410 review, 22-Jul-2026)",
+   "date": "2026-07-22",
+   "ring": "Company"
+  },
+  "h1_25_np": {
+   "value": 1449.267,
+   "source": "Reviewed condensed consolidated interim FS for the six months ended 30-Jun-2026, investors.du.ae (KPMG ISRE 2410 review, 22-Jul-2026), comparative",
+   "date": "2026-07-22",
+   "ring": "Company"
+  },
+  "h1_25_ebitda": {
+   "value": 3650.187,
+   "source": "Reviewed condensed consolidated interim FS for the six months ended 30-Jun-2026, investors.du.ae (KPMG ISRE 2410 review, 22-Jul-2026), comparative",
+   "date": "2026-07-22",
+   "ring": "Company"
+  },
+  "h1_26_capex": {
+   "value": 1038.0,
+   "source": "Company Q2-2026 earnings release + analyst presentation, investors.du.ae (COMPANY_IR): cost additions to PP&E + intangibles, H1-2026 (capital intensity 12.7%)",
+   "date": "2026-07-23",
+   "ring": "Company"
+  },
+  "h2_25_rev": {
+   "value": 8155.126,
+   "source": "DERIVED (flagged): FY2025 revenue 15,905.421 \u2212 H1-2025 7,750.295, both audited/reviewed",
+   "date": "2026-07-22",
+   "ring": "Company/derived"
+  },
+  "h2_25_ebitda": {
+   "value": 3688.201,
+   "source": "DERIVED (flagged): FY2025 EBITDA 7,338.388 \u2212 H1-2025 3,650.187",
+   "date": "2026-07-22",
+   "ring": "Company/derived"
+  },
+  "dps_h1_26": {
+   "value": 0.26,
+   "source": "Reviewed condensed consolidated interim FS for the six months ended 30-Jun-2026, investors.du.ae (KPMG ISRE 2410 review, 22-Jul-2026) + Q2 earnings release: interim AED 0.26/share approved by the Board 23-Jul-2026 (AED 1,178.556mn), +8.3% y/y",
+   "date": "2026-07-23",
+   "ring": "Company"
+  },
+  "seg_rev_hist": {
+   "value": {
+    "FY23": {
+     "mobile": 7004.142,
+     "fixed": 3779.777,
+     "wholesale": 1768.447,
+     "ict": 1083.974
+    },
+    "FY24": {
+     "mobile": 6548.135,
+     "fixed": 4002.658,
+     "wholesale": 2373.068,
+     "ict": 1712.056
+    },
+    "FY25": {
+     "mobile": 7074.936,
+     "fixed": 4379.705,
+     "wholesale": 2568.222,
+     "ict": 1882.558
+    }
+   },
+   "source": "Segment notes: FY2023 Note 34 (Audited consolidated FS, Annual Report 2023, investors.du.ae (PwC, unqualified opinion 13-Feb-2024), old basis, 'Others' shown under ict); FY2024-FY2025 Note 38 (Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026), current basis, FY2024 re-presented)",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "seg_contrib_hist": {
+   "value": {
+    "FY24": {
+     "mobile": 3985.612,
+     "fixed": 3387.593,
+     "wholesale": 2088.976,
+     "ict": 355.294
+    },
+    "FY25": {
+     "mobile": 4303.642,
+     "fixed": 3757.853,
+     "wholesale": 2219.473,
+     "ict": 365.028
+    }
+   },
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026), Note 38: segment contribution ('gross margin' = revenue less direct costs, before opex and D&A)",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "subs_mobile": {
+   "value": {
+    "Q4_2024": 8916,
+    "Q1_2025": 9137,
+    "Q2_2025": 9138,
+    "Q3_2025": 9170,
+    "Q4_2025": 9704,
+    "Q1_2026": 9692,
+    "Q2_2026": 9280
+   },
+   "source": "Company Q2-2026 earnings release + analyst presentation, investors.du.ae (COMPANY_IR) + prior quarterly decks: mobile customers ('000, TDRA 90-day active definition); Q2-2026 net adds \u2212412k (prepaid \u2212442k on the tourism shock, postpaid +30k)",
+   "date": "2026-07-23",
+   "ring": "Company"
+  },
+  "subs_fixed": {
+   "value": {
+    "Q4_2024": 682,
+    "Q1_2025": 701,
+    "Q2_2025": 706,
+    "Q3_2025": 718,
+    "Q4_2025": 735,
+    "Q1_2026": 745,
+    "Q2_2026": 744
+   },
+   "source": "Company Q2-2026 earnings release + analyst presentation, investors.du.ae (COMPANY_IR): fixed customers ('000)",
+   "date": "2026-07-23",
+   "ring": "Company"
+  },
+  "arpu_mobile": {
+   "value": {
+    "FY2025": 63.3,
+    "Q1_2026": 63.4,
+    "Q2_2026": 63.4
+   },
+   "source": "Company Q2-2026 earnings release + analyst presentation, investors.du.ae (COMPANY_IR): blended mobile ARPU, AED/month",
+   "date": "2026-07-23",
+   "ring": "Company"
+  },
+  "subs_mobile_path": {
+   "value": [
+    9450.0,
+    9760.0,
+    10010.0,
+    10240.0,
+    10450.0
+   ],
+   "source": "House forecast, end-of-year mobile subscribers ('000): H2-2026 recovery of +170k from the Q2 trough (gross adds still below pre-conflict per the company's own Q2 commentary), then +310k/+250k/+230k/+210k as tourism and population inflows normalise \u2014 well below the +788k of boom-year 2025, above the flat conflict quarter",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "subs_fixed_path": {
+   "value": [
+    760.0,
+    790.0,
+    815.0,
+    838.0,
+    858.0
+   ],
+   "source": "House forecast, end-of-year fixed subscribers ('000): +16k in H2-2026 then +30k/+25k/+23k/+20k \u2014 continued fibre/FWA share gain at a slowing rate; FY2025 added +53k",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "arpu_mobile_path": {
+   "value": [
+    63.4,
+    63.6,
+    63.8,
+    64.0,
+    64.2
+   ],
+   "source": "House forecast, blended mobile ARPU AED/month: held essentially flat (+0.3%/yr) \u2014 postpaid mix gain (+9% y/y postpaid growth) offsetting prepaid dilution; company printed 63.3-63.4 across FY2025-Q2-2026",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "arpu_fixed_path": {
+   "value": [
+    537.0,
+    545.0,
+    553.0,
+    561.0,
+    569.0
+   ],
+   "source": "House forecast, implied fixed revenue per subscriber AED/month (fixed segment revenue / average base \u2014 a blend of consumer broadband and enterprise fixed, so a revenue-intensity metric, not a tariff): H1-2026 actual 533; FY2025 515. +1.5%/yr on enterprise/ICT-adjacent mix",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "seg_g": {
+   "value": {
+    "wholesale": [
+     -0.008,
+     0.015,
+     0.02,
+     0.02,
+     0.02
+    ],
+    "ict": [
+     0.079,
+     0.11,
+     0.1,
+     0.09,
+     0.08
+    ]
+   },
+   "source": "House forecast: wholesale \u22120.8% in 2026 (H1 actual \u22122.0% y/y on conflict-hit roaming/transit, partial H2 stabilisation) then +1.5-2%; ICT +7.9% in 2026 (H1 actual +4.8%, Q4-heavy seasonality) accelerating to +11% on the data-centre ramp (Microsoft hyperscale agreement, du Q4-2025 deck) then easing to +8%",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "contrib_margin_path": {
+   "value": {
+    "mobile": [
+     0.608,
+     0.608,
+     0.608,
+     0.608,
+     0.608
+    ],
+    "fixed": [
+     0.858,
+     0.858,
+     0.858,
+     0.858,
+     0.858
+    ],
+    "wholesale": [
+     0.864,
+     0.864,
+     0.864,
+     0.864,
+     0.864
+    ],
+    "ict": [
+     0.194,
+     0.2,
+     0.205,
+     0.21,
+     0.215
+    ]
+   },
+   "source": "Segment contribution margins: mobile/fixed/wholesale held at the audited FY2025 rates (60.8% / 85.8% / 86.4% \u2014 FY2024: 60.9% / 84.6% / 88.0%); ICT lifted 19.4% -> 21.5% over five years on data-centre scale (still the thinnest-margin segment)",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "opex_base_fy25": {
+   "value": {
+    "network": 963.878,
+    "marketing": 292.293,
+    "staff": 1105.328,
+    "admin": 189.654,
+    "licence": 433.959,
+    "other": 133.192,
+    "ecl": 211.02,
+    "other_inc": -21.716
+   },
+   "source": "Audited consolidated FS, Integrated Annual Report 2025, investors.du.ae (KPMG Lower Gulf, unmodified opinion 09-Feb-2026), face of the income statement: net operating expenses before D&A by nature (licence = telecommunication licence and related fees, a revenue-linked regulatory charge; ecl = impairment of trade/lease receivables and contract assets net of recoveries)",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "esc_staff": {
+   "value": 0.02,
+   "source": "Staff-cost escalator 2.0%/yr \u2014 UAE wage inflation proxied by CPI (~2%) on a base the company is actively managing DOWN (H1-2026 staff cost \u22126.3% y/y, reviewed interims); applied from a rebased FY2026 level",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "esc_network": {
+   "value": 0.03,
+   "source": "Network & maintenance escalator 3.0%/yr \u2014 grows with network scale (sites, fibre, data centres), proxied by blended subscriber growth plus capacity additions",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "esc_admin": {
+   "value": 0.02,
+   "source": "Administrative escalator 2.0%/yr \u2014 general UAE cost inflation",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "esc_other": {
+   "value": 0.02,
+   "source": "Other operating expense escalator 2.0%/yr",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "marketing_pct": {
+   "value": 0.018,
+   "source": "Marketing at 1.80% of revenue (FY2025 actual 1.84%, H1-2026 1.44% \u2014 conflict-quarter restraint; forecast between the two)",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "licence_pct": {
+   "value": 0.027,
+   "source": "Telecom licence and related fees at 2.70% of revenue (FY2025 2.73%, H1-2026 2.65% \u2014 a regulatory revenue-share, so revenue-linked by its own nature)",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "ecl_pct": {
+   "value": 0.0145,
+   "source": "Expected-credit-loss charge at 1.45% of revenue (FY2025 1.33%, H1-2026 1.64% \u2014 conflict-quarter receivables stress; forecast between the two)",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "staff_fy26": {
+   "value": 985.0,
+   "source": "FY2026E staff cost: H1-2026 actual 471.360 + H2 at the H2-2025 seasonal ratio (H2 runs above H1; 513.6 = H1 x 1.09) \u2014 the company's own run-rate after the efficiency program, escalated 2%/yr thereafter",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "other_inc_path": {
+   "value": 15.0,
+   "source": "Other operating income held at AED 15mn/yr (FY2025 21.7, H1-2026 5.8 \u2014 lumpy, small)",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "capex_pct": {
+   "value": [
+    0.155,
+    0.15,
+    0.145,
+    0.135,
+    0.13
+   ],
+   "source": "Capex (PP&E + intangibles, cash basis) / revenue: FY2025 actual 14.8% (2,353.230 / 15,905.421, audited CF); H1-2026 12.7% with the company stating a back-loaded, data-centre-heavy plan and commitments UP at 2,411.760 (30-Jun-26 note) vs 2,124.526 (FY2025) \u2014 15.5% at the peak of the data-centre build, gliding to 13.0% (no numeric company capex guidance for FY2026 was published; flagged as a house path on sourced commitment evidence)",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "capex_tang_share": {
+   "value": 0.866,
+   "source": "Tangible share of capex: FY2025 audited 2,038.501 / 2,353.230",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "dep_rate_ppe": {
+   "value": 0.1583,
+   "source": "PP&E depreciation rate on OPENING gross-of-additions balance: FY2025 audited PP&E depreciation 1,557.989 / opening PP&E 9,838.448 = 15.83%",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "amort_rate": {
+   "value": 0.289,
+   "source": "Intangibles amortisation rate on opening balance: FY2025 amortisation 245.881 / opening intangibles 846.932 = 29.0% (short-lived software; the TDRA licence is fully amortised at NBV 0.869)",
+   "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "rou_dep_path": {
+   "value": [
+    355.0,
+    350.0,
+    345.0,
+    340.0,
+    335.0
+   ],
+   "source": "Right-of-use depreciation: FY2025 actual 364.063, FY2024 374.505, FY2023 445.042 \u2014 a gently declining site-lease book; held on that glide. Lease REPLACEMENT capex is set equal to ROU depreciation in the FCFF build (the steady-state assumption; actual FY2025 lease additions were only 96.034, so this is the conservative side)",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "rf": {
+   "value": 0.0448,
+   "source": "AED risk-free anchor: UAE federal AED T-bond, January-2031 tranche, auction yield 4.48% (22-Jul-2026 auction, +4bp over matched UST) - the longest LIQUID recent AED government primary print. There is no liquid 10-year AED point (longest AED primary ever is the Feb-2033 tranche at 4.13%, Apr-2026, now stale); the 10-year peg-extrapolated alternative (Abu Dhabi USD 10y 4.73% Feb-2026 less the ~4bp AED-through-USD basis ~= 4.69%) is carried as rf_alt and PRICED in section 1.8 rather than averaged in",
+   "date": "2026-07-22",
+   "ring": "Country"
+  },
+  "lens_weights": {
+   "value": {
+    "dcf": 0.45,
+    "relative": 0.25,
+    "normalized": 0.2,
+    "book": 0.1
+   },
+   "source": "House synthesis weights, operating-company pattern (SWDY reference study)",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "g_term": {
+   "value": 0.025,
+   "source": "Terminal nominal AED growth 2.5%: below the IMF's UAE long-run nominal GDP growth (~4%: real ~4% + CPI ~2% per WEO Apr-2026) and consistent with a mature duopoly telecom growing at population-plus-inflation minus price erosion",
+   "date": "2026-08-09",
+   "ring": "Country/House"
+  },
+  "rf_alt": {
+   "value": 0.0469,
+   "source": "Peg-extrapolated 10-year AED proxy: Abu Dhabi sovereign USD 10-year 4.73% (Feb-2026 issue, UST+25bp) less ~4bp observed AED-through-USD basis at matched tenor. The priced alternative construction for the risk-free tenor gap",
+   "date": "2026-08-06",
+   "ring": "Country"
+  },
+  "sov_spread_rating": {
+   "value": 0.0042,
+   "source": "Damodaran ctryprem dataset (05-Jan-2026 update), United Arab Emirates row: Moody's Aa2, rating-based adjusted default spread 0.42%",
+   "date": "2026-01-05",
+   "ring": "Country"
+  },
+  "erp_rating": {
+   "value": 0.0487,
+   "source": "Damodaran ctryprem (05-Jan-2026): UAE total equity risk premium 4.87% = 4.23% mature-market base + 0.64% country risk premium (rating basis). This is ERP basis 1",
+   "date": "2026-01-05",
+   "ring": "Country"
+  },
+  "sov_spread_mkt": {
+   "value": 0.0025,
+   "source": "Market-spread basis: Abu Dhabi USD 10-year traded at UST+25bp (Feb-2026 issue; UAE CDS itself unreachable - cbonds 403, Damodaran shows NA for UAE CDS; failure logged, never substituted silently). Basis-2 default spread = 0.25%",
+   "date": "2026-02-15",
+   "ring": "Country"
+  },
+  "erp_mkt": {
+   "value": 0.0466,
+   "source": "ERP basis 2 (market-spread, fresher base): Damodaran live implied US ERP 4.28% (01-Aug-2026, T12m adjusted payout) + CRP scaled off the market default spread 0.25% x 1.52 (Damodaran's own CRP/spread multiple 0.64/0.42) = 0.38% -> 4.66%. Same-basis consistency: this WACC strips the 0.25% market spread from rf, never the 0.42% rating spread",
+   "date": "2026-08-01",
+   "ring": "Country"
+  },
+  "beta": {
+   "value": 0.472,
+   "source": "Tier-1 own-stock regression: DU weekly log-returns vs the DFM General Index (official DFM API spliced with cross-validated Yahoo DFMGI.AE; identical closes on all 307 overlapping sessions), 5-year window, last-common-session weekly sampling: beta 0.472, R2 0.202, n 259, SE 0.058, CI90 [0.38, 0.57] - passes the usability gate (n>=24, R2>=5%, SE<|beta|). Equal-weight AE-library composite cross-check: 0.394 (R2 0.118). A defensive, negative-net-debt telecom regressing below 0.5 on its own index is economically coherent; betas of 0.6 and 0.8 are PRICED in the sensitivity grid",
+   "date": "2026-08-09",
+   "ring": "Market"
+  },
+  "kd": {
+   "value": 0.051,
+   "source": "MARGINAL cost of debt, AED, forward-looking: du has ZERO drawn debt and no bonds (audited Note 4.2, all years; H1-2026: AED 2.0bn RCF undrawn), so the marginal rate is constructed: AED sovereign anchor 4.48% (Jan-2031 tranche) + ~60bp A/AA-range GCC telecom spread read from the stc (Aa3/A+) USD sukuk curve (4.63%/4.92%/5.17% at 2.8/4.4/9.4y vs matched UST, 06-Aug-2026) = 5.10%. Sits ABOVE the sovereign as required. The 3.6% IFRS-16 lease-implied rate (FY2025 lease interest 71.094 / average lease book 1,968.8) is the historical incremental-borrowing rate on the lease stock, disclosed for the record, NOT the marginal Kd",
+   "date": "2026-08-06",
+   "ring": "Industry"
+  },
+  "kd_term": {
+   "value": 0.049,
+   "source": "Terminal marginal Kd: terminal AED sovereign 4.30% + 60bp telecom spread, rounded",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "rf_term": {
+   "value": 0.043,
+   "source": "Terminal AED risk-free 4.30%: Fed long-run neutral ~3% (FOMC dots) implies a ~4.2-4.4% 10y UST through the term premium, and the AED curve prints at/through UST under the peg (Jan-31 tranche +4bp). Below the current 4.48% anchor - the glide is mild easing, not a heroic rate call. Markets currently price possible near-term HIKES (~4% policy by end-2026), which is why the glide is kept shallow",
+   "date": "2026-08-09",
+   "ring": "Country/House"
+  },
+  "erp_term": {
+   "value": 0.0487,
+   "source": "Terminal ERP held at the rating-basis UAE ERP 4.87% (no structural convergence assumed for an Aa2 sovereign already near mature-market pricing)",
+   "date": "2026-01-05",
+   "ring": "Country"
+  },
+  "wd_term": {
+   "value": 0.05,
+   "source": "Terminal debt weight 5%: the disclosed capital structure is leases-only (~3.4% of EV at spot) and the board's stated posture is an unleveraged balance sheet with an undrawn RCF; 5% allows the lease book plus modest working facilities in perpetuity",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "rf_path": {
+   "value": [
+    0.0448,
+    0.0444,
+    0.0439,
+    0.0435,
+    0.043
+   ],
+   "source": "AED risk-free glide path FY2026->FY2030: linear from the 4.48% live anchor to the 4.30% terminal - the glide fractions for the forward WACC are THIS path's own cumulative progress (the cost-of-money path, since du carries no debt whose Kd could define the glide)",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "pe_just": {
+   "value": 15.5,
+   "source": "Justified P/E 15.5x = the GCC-telecom peer median: e& 20.7x, stc 18.9x, Mobily 15.5x, Ooredoo ~12.5x, Omantel 11.4x, Zain ~9x (trailing, public aggregator reads 08/09-Aug-2026, labelled CROSS-CHECK). Mobily is the closest structural analogue (second operator, growth phase). du itself trades ~16.5x trailing",
+   "date": "2026-08-09",
+   "ring": "Industry"
+  },
+  "div_yield_peer": {
+   "value": 0.052,
+   "source": "GCC telecom incumbent dividend-yield bracket ~4.8-6.7% (e& 4.8%, stc 5.2%, Omantel 6.7%, aggregator reads Aug-2026, cross-check label); 5.2% (stc, the regional benchmark payer) used as the yield-lens anchor",
+   "date": "2026-08-09",
+   "ring": "Industry"
+  },
+  "roe_sust": {
+   "value": 0.27,
+   "source": "Sustainable ROE 27%: audited ROE on average equity FY2023 18.5%, FY2024 26.0%, FY2025 29.0% - the step-up is the 2024 regime change (43.6% take vs 53.1%) plus operating leverage; 27% sits just below the FY2025 print and is consistent with the ~100% payout / 2.5% growth pair (implied retention 9%)",
+   "date": "2026-08-09",
+   "ring": "Company/House"
+  }
+ },
+ "hist_is": {
+  "FY23": {
+   "rev": 13636.34,
+   "ebitda": 5799.601,
+   "dna": 2198.277,
+   "ebit": 3601.3239999999996,
+   "royalty": 1890.65,
+   "tax": 0.0,
+   "np": 1667.851,
+   "eps": 0.37,
+   "pbt": 3558.501
+  },
+  "FY24": {
+   "rev": 14635.917,
+   "ebitda": 6469.839,
+   "dna": 2153.59,
+   "ebit": 4316.249,
+   "royalty": 1571.649,
+   "tax": 246.955,
+   "np": 2487.547,
+   "eps": 0.55,
+   "pbt": 4306.151,
+   "fin": -7.555999999999997
+  },
+  "FY25": {
+   "rev": 15905.421,
+   "ebitda": 7338.388,
+   "dna": 2167.933,
+   "ebit": 5170.455,
+   "royalty": 1956.602,
+   "tax": 287.435,
+   "np": 2905.085,
+   "eps": 0.64,
+   "pbt": 5149.122,
+   "fin": -20.382000000000005
+  }
+ },
+ "hist_bs": {
+  "FY23": {
+   "ppe": 9722.7,
+   "rou": 1597.185,
+   "intang": 1110.769,
+   "goodwill": null,
+   "inv": 101.695,
+   "recv": 2224.031,
+   "cash": 610.036,
+   "deposits": 1326.586,
+   "assets": 17703.736,
+   "pay": 5247.287,
+   "lease": 2104.959,
+   "debt": 0.0,
+   "eq": 9243.213,
+   "nwc": -964.8510000000001,
+   "net_cash": 1936.6219999999998,
+   "nd": 168.337
+  },
+  "FY24": {
+   "ppe": 9838.448,
+   "rou": 1657.217,
+   "intang": 846.932,
+   "goodwill": 413.22,
+   "inv": 175.61,
+   "recv": 2128.565,
+   "cash": 983.969,
+   "deposits": 1299.283,
+   "assets": 18693.292,
+   "pay": 3666.058,
+   "lease": 1998.687,
+   "debt": 0.0,
+   "eq": 9878.445,
+   "nwc": -1220.1839999999997,
+   "net_cash": 2283.252,
+   "nd": -284.56500000000005
+  },
+  "FY25": {
+   "ppe": 10288.767,
+   "rou": 1515.395,
+   "intang": 869.6,
+   "goodwill": 413.22,
+   "inv": 175.457,
+   "recv": 2222.511,
+   "cash": 465.7,
+   "deposits": 1784.019,
+   "assets": 19375.709,
+   "pay": 3711.346,
+   "lease": 1938.819,
+   "debt": 0.0,
+   "eq": 10148.291,
+   "nwc": -1062.4419999999996,
+   "net_cash": 2249.719,
+   "nd": -310.9000000000001
+  }
+ },
+ "nwc_hist": {
+  "FY23": -964.8510000000001,
+  "FY24": -1220.1839999999997,
+  "FY25": -1062.4419999999996
+ },
+ "nwc_pct": -0.0667974774135183,
+ "cycle": {
+  "dso": {
+   "FY23": 59.529999618666004,
+   "FY24": 53.083535865911244,
+   "FY25": 51.00251763219596
+  },
+  "dpo": {
+   "FY23": 86.03129395424287,
+   "FY24": 91.42653446312931,
+   "FY25": 85.16852776169836
+  },
+  "dio_fy25": 5.393157148919281
+ },
+ "fcst": {
+  "years": [
+   "FY26E",
+   "FY27E",
+   "FY28E",
+   "FY29E",
+   "FY30E"
+  ],
+  "rev": [
+   16593.268306,
+   17239.64825838,
+   18011.148174829203,
+   18733.769726934326,
+   19423.78378237299
+  ],
+  "seg_rev": {
+   "mobile": [
+    7208.76,
+    7330.536,
+    7567.956,
+    7776.0,
+    7969.788
+   ],
+   "fixed": [
+    4805.552,
+    5068.5,
+    5325.39,
+    5563.998,
+    5790.144
+   ],
+   "wholesale": [
+    2547.6762240000003,
+    2585.89136736,
+    2637.6091947072,
+    2690.361378601344,
+    2744.168606173371
+   ],
+   "ict": [
+    2031.280082,
+    2254.72089102,
+    2480.1929801220003,
+    2703.4103483329804,
+    2919.683176199619
+   ]
+  },
+  "contrib": {
+   "mobile": [
+    4382.92608,
+    4456.965888,
+    4601.317248,
+    4727.808,
+    4845.631104
+   ],
+   "fixed": [
+    4123.163616,
+    4348.773,
+    4569.18462,
+    4773.910284,
+    4967.943552
+   ],
+   "wholesale": [
+    2201.1922575360004,
+    2234.21014139904,
+    2278.8943442270206,
+    2324.472231111561,
+    2370.961675733792
+   ],
+   "ict": [
+    394.068335908,
+    450.9441782040001,
+    508.43956092501,
+    567.7161731499259,
+    627.7318828829181
+   ]
+  },
+  "contrib_tot": [
+   11101.350289443999,
+   11490.89320760304,
+   11957.83577315203,
+   12393.906688261486,
+   12812.26821461671
+  ],
+  "opex": [
+   3279.396724207,
+   3373.9262199736104,
+   3477.319589676338,
+   3579.261252645132,
+   3680.7576598292358
+  ],
+  "opex_lines": {
+   "staff": [
+    985.0,
+    1004.7,
+    1024.794,
+    1045.28988,
+    1066.1956776
+   ],
+   "network": [
+    992.79434,
+    1022.5781702,
+    1053.255515306,
+    1084.8531807651802,
+    1117.3987761881356
+   ],
+   "admin": [
+    193.44708,
+    197.3160216,
+    201.26234203200002,
+    205.28758887264,
+    209.3933406500928
+   ],
+   "other": [
+    135.85584,
+    138.57295680000001,
+    141.34441593600002,
+    144.17130425472,
+    147.0547303398144
+   ],
+   "marketing": [
+    298.67882950800004,
+    310.31366865083993,
+    324.20066714692564,
+    337.2078550848178,
+    349.62810808271377
+   ],
+   "licence": [
+    448.01824426200005,
+    465.47050297626,
+    486.30100072038846,
+    505.8117826272268,
+    524.4421621240707
+   ],
+   "ecl": [
+    240.60239043700003,
+    249.97489974651,
+    261.16164853502346,
+    271.63966104054776,
+    281.64486484440835
+   ]
+  },
+  "ebitda": [
+   7821.953565237,
+   8116.966987629429,
+   8480.516183475691,
+   8814.645435616354,
+   9131.510554787474
+  ],
+  "ebitda_margin": [
+   0.47139318312647543,
+   0.4708313572281768,
+   0.4708481714301432,
+   0.4705217136806784,
+   0.47012006811331397
+  ],
+  "dna": [
+   2235.0262161,
+   2351.75673508247,
+   2448.1518574772217,
+   2530.431905506949,
+   2582.4184232844186
+  ],
+  "dep_ppe": [
+   1628.7118160999999,
+   1723.4706058776562,
+   1805.1470268444953,
+   1877.4130109154073,
+   1926.9216537597224
+  ],
+  "amort": [
+   251.31439999999998,
+   278.28612920481413,
+   298.00483063272645,
+   313.01889459154165,
+   320.4967695246961
+  ],
+  "rou_dep": [
+   355.0,
+   350.0,
+   345.0,
+   340.0,
+   335.0
+  ],
+  "ebit": [
+   5586.9273491369995,
+   5765.210252546959,
+   6032.364325998469,
+   6284.213530109405,
+   6549.0921315030555
+  ],
+  "nopat": [
+   3152.703103118009,
+   3253.308145512249,
+   3404.0631891609364,
+   3546.1816950407374,
+   3695.6526898071743
+  ],
+  "capex": [
+   2571.95658743,
+   2585.947238757,
+   2611.616485350234,
+   2529.0589131361344,
+   2525.0918917084887
+  ],
+  "capex_tang": [
+   2227.31440471438,
+   2239.4303087635617,
+   2261.659876313303,
+   2190.1650187758923,
+   2186.729578219551
+  ],
+  "capex_int": [
+   344.64218271562004,
+   346.516929993438,
+   349.9566090369314,
+   338.89389436024203,
+   338.3623134889375
+  ],
+  "nwc": [
+   -1108.3884648864841,
+   -1151.565015156138,
+   -1203.099263399685,
+   -1251.3685602049484,
+   -1297.4597584881228
+  ],
+  "dnwc": [
+   -45.94646488648459,
+   -43.176550269653944,
+   -51.53424824354693,
+   -48.269296805263366,
+   -46.091198283174435
+  ],
+  "rou_repl": [
+   355.0,
+   350.0,
+   345.0,
+   340.0,
+   335.0
+  ],
+  "fcff": [
+   2506.719196674494,
+   2712.2941921073734,
+   2947.132809531471,
+   3255.8239842168155,
+   3464.070419666279
+  ],
+  "df": [
+   0.9412502723878934,
+   0.8863853746417798,
+   0.8352291328322569,
+   0.787410628048327,
+   0.742784425722899
+  ],
+  "pv": [
+   2359.450126669829,
+   2404.137903609818,
+   2461.5311808464635,
+   2563.670408226969,
+   2573.057557335499
+  ],
+  "fwd_wacc": [
+   0.06241669121971366,
+   0.06189734094866618,
+   0.06124815310985683,
+   0.06072880283880934,
+   0.06007961499999999
+  ],
+  "ppe": [
+   10887.36958861438,
+   11403.329291500286,
+   11859.842140969093,
+   12172.59414882958,
+   12432.402073289408
+  ],
+  "intang": [
+   962.92778271562,
+   1031.1585835042438,
+   1083.1103619084488,
+   1108.9853616771493,
+   1126.850905641391
+  ],
+  "rou": [
+   1515.395,
+   1515.395,
+   1515.395,
+   1515.395,
+   1515.395
+  ],
+  "ic": [
+   12670.523906443515,
+   13211.537859848391,
+   13668.468239477857,
+   13958.82595030178,
+   14190.408220442676
+  ],
+  "roic": [
+   0.25533062923521294,
+   0.2513948212386441,
+   0.2532784536270072,
+   0.2567158166616694,
+   0.26257571821602677
+  ],
+  "np": [
+   3155.210425142909,
+   3244.961140090068,
+   3386.850022836938,
+   3521.721008529122,
+   3667.096613769342
+  ],
+  "eps": [
+   0.6960679159902403,
+   0.7158677342889116,
+   0.7471697032887522,
+   0.7769234608163682,
+   0.8089946322884884
+  ],
+  "dps": [
+   0.6821465576704354,
+   0.7015503796031334,
+   0.7322263092229773,
+   0.7613849916000408,
+   0.7928147396427186
+  ],
+  "div": [
+   3092.1062166400507,
+   3180.0619172882666,
+   3319.1130223801993,
+   3451.2865883585396,
+   3593.754681493955
+  ],
+  "equity": [
+   10211.395208502858,
+   10276.29443130466,
+   10344.031431761397,
+   10414.46585193198,
+   10487.807784207365
+  ],
+  "net_cash": [
+   1666.839302059344,
+   1190.7245714562691,
+   801.5311922835426,
+   581.6079016302033,
+   423.3675637646943
+  ],
+  "int_inc": [
+   74.240727,
+   55.00569696795835,
+   39.29391085805688,
+   26.45052934535691,
+   19.193060753796708
+  ],
+  "int_exp": [
+   69.797484,
+   69.797484,
+   69.797484,
+   69.797484,
+   69.797484
+  ],
+  "payout": 0.98,
+  "dep_yield": 0.033,
+  "lease_rate": 0.036,
+  "glide_frac": [
+   0.0,
+   0.22222222222222052,
+   0.49999999999999806,
+   0.7222222222222224,
+   1.0
+  ],
+  "taxB_path": [
+   0.5150067266977971,
+   0.5172037607019246,
+   0.5174171876022478,
+   0.5174796721427248,
+   0.5165508650951043
+  ],
+  "fcffB": [
+   2063.6382763160373,
+   2242.407875287503,
+   2454.1849622187474,
+   2741.903062049593,
+   2934.5706552467163
+  ],
+  "npB": [
+   2711.7771257262,
+   2776.2804095408114,
+   2896.394841733193,
+   3011.3449861019417,
+   3141.6882607468738
+  ]
+ },
+ "seg_fy25": {
+  "rev": {
+   "mobile": 7074.936,
+   "fixed": 4379.705,
+   "wholesale": 2568.222,
+   "ict": 1882.558
+  },
+  "contrib": {
+   "mobile": 4303.642,
+   "fixed": 3757.853,
+   "wholesale": 2219.473,
+   "ict": 365.028
+  },
+  "names": {
+   "mobile": "Mobile",
+   "fixed": "Fixed",
+   "wholesale": "Wholesale",
+   "ict": "ICT and associated telecom services"
+  },
+  "margin": {
+   "mobile": 0.6082941244980873,
+   "fixed": 0.858015094623953,
+   "wholesale": 0.8642060538380248,
+   "ict": 0.1939000020185301
+  }
+ },
+ "bottomup": {
+  "seg_rev_hist": {
+   "FY23": {
+    "mobile": 7004.142,
+    "fixed": 3779.777,
+    "wholesale": 1768.447,
+    "ict": 1083.974
+   },
+   "FY24": {
+    "mobile": 6548.135,
+    "fixed": 4002.658,
+    "wholesale": 2373.068,
+    "ict": 1712.056
+   },
+   "FY25": {
+    "mobile": 7074.936,
+    "fixed": 4379.705,
+    "wholesale": 2568.222,
+    "ict": 1882.558
+   }
+  },
+  "seg_contrib_hist": {
+   "FY24": {
+    "mobile": 3985.612,
+    "fixed": 3387.593,
+    "wholesale": 2088.976,
+    "ict": 355.294
+   },
+   "FY25": {
+    "mobile": 4303.642,
+    "fixed": 3757.853,
+    "wholesale": 2219.473,
+    "ict": 365.028
+   }
+  },
+  "subs_mobile": {
+   "Q4_2024": 8916,
+   "Q1_2025": 9137,
+   "Q2_2025": 9138,
+   "Q3_2025": 9170,
+   "Q4_2025": 9704,
+   "Q1_2026": 9692,
+   "Q2_2026": 9280
+  },
+  "subs_fixed": {
+   "Q4_2024": 682,
+   "Q1_2025": 701,
+   "Q2_2025": 706,
+   "Q3_2025": 718,
+   "Q4_2025": 735,
+   "Q1_2026": 745,
+   "Q2_2026": 744
+  },
+  "arpu": {
+   "FY2025": 63.3,
+   "Q1_2026": 63.4,
+   "Q2_2026": 63.4
+  },
+  "unit_mobile_fy25": 7071.876,
+  "subs_mobile_path": [
+   9450.0,
+   9760.0,
+   10010.0,
+   10240.0,
+   10450.0
+  ],
+  "subs_fixed_path": [
+   760.0,
+   790.0,
+   815.0,
+   838.0,
+   858.0
+  ],
+  "arpu_mobile_path": [
+   63.4,
+   63.6,
+   63.8,
+   64.0,
+   64.2
+  ],
+  "arpu_fixed_path": [
+   537.0,
+   545.0,
+   553.0,
+   561.0,
+   569.0
+  ],
+  "h1_seg": {
+   "mobile": 3646.314,
+   "fixed": 2382.608,
+   "wholesale": 1257.566,
+   "ict": 911.085
+  }
+ },
+ "wacc": {
+  "rf": 0.0448,
+  "rf_alt": 0.0469,
+  "rf_star": 0.0406,
+  "ke_exp": 0.0635864,
+  "ke_mkt_alt": 0.0642952,
+  "ke_raw_retired": 0.0677864,
+  "kd": 0.051,
+  "kd_at": 0.0287793,
+  "we_exp": 0.9663945350148003,
+  "wd_exp": 0.03360546498519969,
+  "wacc_exp": 0.06241669121971366,
+  "wacc_exp_mkt": 0.06310167166613215,
+  "wacc_rf_alt": 0.06444611974324473,
+  "ke_term": 0.06178639999999999,
+  "kd_term": 0.049,
+  "kd_term_at": 0.027650700000000004,
+  "wacc_term": 0.06007961499999999,
+  "glide_frac": [
+   0.0,
+   0.22222222222222052,
+   0.49999999999999806,
+   0.7222222222222224,
+   1.0
+  ],
+  "rf_path": [
+   0.0448,
+   0.0444,
+   0.0439,
+   0.0435,
+   0.043
+  ],
+  "lease_rate_disclosed": 0.036,
+  "beta": {
+   "beta": 0.4715600357114492,
+   "r2": 0.20228373108313535,
+   "n": 259,
+   "se": 0.05841362753766983,
+   "ci90": [
+    0.37546961841198234,
+    0.5676504530109161
+   ],
+   "usable": true,
+   "gate_msg": "passes minimum usability gate",
+   "window_years": 5,
+   "frequency": "weekly",
+   "index": "DFM General Index (official DFM API + Yahoo splice, cross-validated)",
+   "weak": false,
+   "warnings": [],
+   "composite_alt": {
+    "beta": 0.3935664244531698,
+    "r2": 0.11833583562015637,
+    "n": 257,
+    "se": 0.06727309439734015,
+    "names": 18,
+    "note": "equal-weight AE library composite, house cross-check construction"
+   }
+  },
+  "erp_rating": 0.0487,
+  "erp_mkt": 0.0466,
+  "sov_spread_rating": 0.0042,
+  "sov_spread_mkt": 0.0025
+ },
+ "dcf": {
+  "pv_explicit": 12361.847176688578,
+  "tv": 97871.19389825936,
+  "pv_tv": 72697.19855453308,
+  "ev": 85059.04573122166,
+  "tv_share": 0.8546674598754515,
+  "lease": 1938.819,
+  "net_cash": 2249.719,
+  "investees": 0.511,
+  "eq_val": 85370.45673122165,
+  "ps": 19.143149672746045,
+  "ps_dec": 18.83349377604347,
+  "roll": 1.037680523069239,
+  "anchor_days": 219.0,
+  "div_between": 0.4,
+  "roic_term": 0.2669439771010466,
+  "rr_term": 0.09365260932834878,
+  "g": 0.025,
+  "bear": 10.968319116848143,
+  "bull": 29.583688776262303,
+  "ps_framing_b": 16.29100563856143,
+  "ps_rf_alt": 18.08892923382408
+ },
+ "terminal_recon": {
+  "roic_term": 0.2669439771010466,
+  "rr": 0.09365260932834878,
+  "nopat": {
+   "FY25": 2917.1511072000003
+  },
+  "roic_path": [
+   0.25533062923521294,
+   0.2513948212386441,
+   0.2532784536270072,
+   0.2567158166616694,
+   0.26257571821602677
+  ]
+ },
+ "lenses": {
+  "dcf": {
+   "name": "Discounted cash flow (primary)",
+   "bear": 10.968319116848143,
+   "base": 19.143149672746045,
+   "bull": 29.583688776262303,
+   "w": 0.45
+  },
+  "relative": {
+   "name": "Relative multiples",
+   "bear": 8.267553429877612,
+   "base": 10.795589846925248,
+   "bull": 12.962478204394651,
+   "w": 0.25
+  },
+  "normalized": {
+   "name": "Normalised earnings power",
+   "bear": 8.253534463060353,
+   "base": 10.77748201478629,
+   "bull": 12.940865630551377,
+   "w": 0.2
+  },
+  "book": {
+   "name": "Book value and sustainable return",
+   "bear": 9.741663031342366,
+   "base": 15.072434780712504,
+   "bull": 16.335490681178833,
+   "w": 0.1
+  },
+  "central": {
+   "name": "Weighted central",
+   "bear": 8.253534463060353,
+   "base": 14.976054695495542,
+   "bull": 29.583688776262303,
+   "w": 1.0
+  }
+ },
+ "central": 14.976054695495542,
+ "span": [
+  8.253534463060353,
+  29.583688776262303
+ ],
+ "spot": 12.3,
+ "experts": {
+  "e1": {
+   "method_short": "earnings power",
+   "base": 9.880840632384245,
+   "rng": [
+    7.824672505907397,
+    11.594314071114955
+   ],
+   "eps": 0.7471697032887522,
+   "pe": 15.0,
+   "discount_years": 2
+  },
+  "e2": {
+   "method_short": "dividend stream",
+   "base": 19.323225205311523,
+   "rng": [
+    10.186511851427676,
+    22.537032903271168
+   ],
+   "dps": 0.6821465576704354,
+   "ke": 0.06178639999999999,
+   "g": 0.025
+  },
+  "e3": {
+   "method_short": "cash returns vs cost of capital",
+   "base": 19.039836199338843,
+   "rng": [
+    12.642503087602869,
+    21.324616543259506
+   ],
+   "ic0": 12024.54,
+   "pv_ep": 10877.721397483598,
+   "pv_ep_term": 61705.47947454428,
+   "ev": 84607.74087202788,
+   "ep": [
+    2402.171102878913,
+    2469.0364072768893,
+    2594.880895504272,
+    2716.1119822169594,
+    2857.0118008610343
+   ],
+   "spread": [
+    0.19291393801549928,
+    0.18949748028997793,
+    0.19203030051715037,
+    0.1959870138228601,
+    0.2024961032160268
+   ]
+  }
+ },
+ "panel_centre": 19.039836199338843,
+ "yield_ps": 13.118203032123759,
+ "rel": {
+  "pe_trailing": 19.192121285504555,
+  "ev_ebitda_trailing": 7.555316462511931,
+  "pe_just": 15.5,
+  "div_yield_peer": 0.052,
+  "eps26": 0.6960679159902403,
+  "dps26": 0.6821465576704354
+ },
+ "norm": {
+  "margin": 0.4708481714301432,
+  "rev": 16593.268306,
+  "ebitda": 7812.91003992985,
+  "ebit": 5577.88382382985,
+  "np": 3150.107163812085,
+  "eps": 0.694942090450684,
+  "pe": 15.5,
+  "year": "FY26E",
+  "margin_year": "FY28E"
+ },
+ "book": {
+  "bvps": 2.2388046486353015,
+  "pb_just": 6.660070025879132,
+  "roe_sust": 0.27,
+  "roe_trailing": 0.29012066669276515,
+  "ke_term": 0.06178639999999999
+ },
+ "sens": {
+  "g_grid": [
+   0.015,
+   0.02,
+   0.025,
+   0.03,
+   0.035
+  ],
+  "wt_grid": [
+   0.05007961499999999,
+   0.05507961499999999,
+   0.06007961499999999,
+   0.065079615,
+   0.07007961499999998
+  ],
+  "we_grid": [
+   0.05241669121971366,
+   0.05741669121971366,
+   0.06241669121971366,
+   0.06741669121971366,
+   0.07241669121971366
+  ],
+  "grid_wacc_g": [
+   [
+    20.090288099298974,
+    22.70200399121432,
+    26.350286876770767,
+    31.809479536176866,
+    40.88093078422291
+   ],
+   [
+    17.708826501420255,
+    19.613812669415008,
+    22.14815500546771,
+    25.688268479300557,
+    30.98549055762803
+   ],
+   [
+    15.855159724904867,
+    17.295531911261467,
+    19.143149672746045,
+    21.601096846266746,
+    25.034408588086606
+   ],
+   [
+    14.371205184533668,
+    15.49098364095381,
+    16.887247459361355,
+    18.678221438683295,
+    21.06073829814544
+   ],
+   [
+    13.156281731215381,
+    14.04629803516069,
+    15.131194696790477,
+    16.483906682303093,
+    18.218951493052003
+   ]
+  ],
+  "grid_exp_term": [
+   [
+    26.990248986289007,
+    22.684542870983712,
+    19.60547307585225,
+    17.293972183291185,
+    15.494642298357492
+   ],
+   [
+    26.667777306418333,
+    22.41426634164783,
+    19.37252054004068,
+    17.089037995680183,
+    15.311517134615675
+   ],
+   [
+    26.350286876770767,
+    22.14815500546771,
+    19.143149672746045,
+    16.887247459361355,
+    15.131194696790477
+   ],
+   [
+    26.03768235944068,
+    21.88612926312696,
+    18.91729212807279,
+    16.68854067526362,
+    14.953621659897022
+   ],
+   [
+    25.729870602060803,
+    21.628111338071644,
+    18.694881123507173,
+    16.492859113016547,
+    14.778745916141421
+   ]
+  ],
+  "beta_grid": [
+   0.38,
+   0.472,
+   0.57,
+   0.65,
+   0.8
+  ],
+  "grid_beta": [
+   19.481379479086122,
+   17.2964558290179,
+   15.438565883698445,
+   14.186177848294369,
+   12.299066476998826
+  ],
+  "tax_grid": [
+   0.4,
+   0.4357,
+   0.47,
+   0.5,
+   0.531
+  ],
+  "grid_tax": [
+   20.51089199503732,
+   19.143149672746045,
+   17.82904430427011,
+   16.679681008227018,
+   15.492005602315826
+  ],
+  "arpu_grid": [
+   0.92,
+   0.96,
+   1.0,
+   1.04,
+   1.08
+  ],
+  "grid_arpu": [
+   17.14659176130132,
+   18.144870717023675,
+   19.143149672746045,
+   20.141428628468407,
+   21.13970758419079
+  ],
+  "subs_grid": [
+   -400.0,
+   -200.0,
+   0.0,
+   200.0,
+   400.0
+  ],
+  "grid_subs": [
+   18.192011258557788,
+   18.66758046565191,
+   19.143149672746045,
+   19.618718879840166,
+   20.094288086934295
+  ],
+  "mg_grid": [
+   0.94,
+   0.97,
+   1.0,
+   1.03,
+   1.06
+  ],
+  "grid_margin": [
+   16.601107608670578,
+   17.872128640708308,
+   19.143149672746045,
+   20.414170704783785,
+   21.68519173682152
+  ],
+  "capex_grid": [
+   0.85,
+   0.925,
+   1.0,
+   1.1,
+   1.2
+  ],
+  "grid_capex": [
+   20.20687199725451,
+   19.675010835000272,
+   19.143149672746045,
+   18.434001456407067,
+   17.724853240068096
+  ],
+  "nwc_grid": [
+   -0.1,
+   -0.085,
+   -0.0667974774135183,
+   -0.05,
+   -0.03
+  ],
+  "grid_nwc": [
+   19.357486821724997,
+   19.26065510581214,
+   19.143149672746045,
+   19.034714435348814,
+   18.905605480798343
+  ],
+  "roic_grid": [
+   0.18,
+   0.22,
+   0.2669439771010466,
+   0.3,
+   0.34
+  ],
+  "grid_roic": [
+   18.3125403160204,
+   18.776216461792444,
+   19.143149672746045,
+   19.3326278367189,
+   19.51264328154805
+  ],
+  "dcf_opex_1pp": 18.501525864266576,
+  "dcf_tax_per_pp": 0.38312109868102995
+ },
+ "step0": {
+  "windows_scored": 18,
+  "windows_prebreak_dropped": 40,
+  "first_origin": "2022-01-27",
+  "last_origin": "2026-04-29",
+  "nu": 10.0,
+  "width_cal": 0.979,
+  "skill_norm": -0.007429777050631747,
+  "skill_raw": 0.0008480894810285466,
+  "verdict": "PARITY",
+  "ci_blocks": {
+   "2": [
+    -0.0694353365697697,
+    0.04610827136478506,
+    "PARITY"
+   ],
+   "3": [
+    -0.06769662187409366,
+    0.05092317888653118,
+    "PARITY"
+   ],
+   "4": [
+    -0.0636233417933879,
+    0.055165770044337196,
+    "PARITY"
+   ]
+  },
+  "cov50": 0.6111111111111112,
+  "cov80": 0.9444444444444444,
+  "cov90": 1.0,
+  "pit_mean": 0.5713194444444444,
+  "pit_hist": [
+   0,
+   1,
+   2,
+   3,
+   1,
+   2,
+   2,
+   4,
+   2,
+   1
+  ],
+  "w90_ratio": 1.5307762058939494,
+  "market_gate": {
+   "verdict": "PARITY",
+   "skill": 0.0068,
+   "ci90": [
+    -0.001,
+    0.014
+   ],
+   "fit_date": "2026-07-29",
+   "panel_names": 18,
+   "windows": 261
+  },
+  "dq_log": [],
+  "clean_rows": 3897,
+  "density_rows_per_yr": 249.89102001404495,
+  "span_years": 15.594798083504449
+ },
+ "strike": {
+  "anchor_date": "2026-08-07",
+  "spot": 12.3,
+  "nu": 10.0,
+  "width_cal": 0.979,
+  "width_overlay_mult": 1.0,
+  "rf_live": 0.0365,
+  "q_annual": 0.05365853658536585,
+  "horizons": {
+   "1M": {
+    "h": 20,
+    "target_date": "2026-09-07",
+    "grade_date": "2026-09-07",
+    "anchor_vol_ann": 0.27845358036990564,
+    "sigma_h": 0.0767980558006468,
+    "drift_log_h": -0.0013843126114768446,
+    "pct": {
+     "p5": 10.848509682659836,
+     "p25": 11.710557734698478,
+     "p50": 12.282445205350406,
+     "p75": 12.8853822483405,
+     "p95": 13.878371420398961
+    },
+    "p_above": 0.49186,
+    "p_up10": 0.0909,
+    "p_dn10": 0.07884,
+    "touch_up10": 0.1523,
+    "touch_dn10": 0.128
+   },
+   "3M": {
+    "h": 63,
+    "target_date": "2026-11-07",
+    "grade_date": "2026-11-09",
+    "anchor_vol_ann": 0.2808947610903803,
+    "sigma_h": 0.13749798555374115,
+    "drift_log_h": -0.004152937834430534,
+    "pct": {
+     "p5": 9.818707373130604,
+     "p25": 11.258375206884907,
+     "p50": 12.259570943656882,
+     "p75": 13.345945892124613,
+     "p95": 15.32471824257266
+    },
+    "p_above": 0.48962,
+    "p_up10": 0.21854,
+    "p_dn10": 0.21026,
+    "touch_up10": 0.40526,
+    "touch_dn10": 0.37854
+   }
+  }
+ },
+ "backtest": {
+  "full": {
+   "label": "FULL cleaned history",
+   "windows": 58,
+   "first_origin": "2012-01-16",
+   "last_origin": "2026-04-29",
+   "span_years": 14.28,
+   "skill_norm": -0.03190383580297196,
+   "skill_raw": -0.029547870700943113,
+   "verdict": "FAIL",
+   "ci_blocks": {
+    "2": [
+     -0.0663,
+     -0.0053,
+     "FAIL"
+    ],
+    "3": [
+     -0.0695,
+     -0.0048,
+     "FAIL"
+    ],
+    "4": [
+     -0.0709,
+     -0.0037,
+     "FAIL"
+    ]
+   },
+   "cov50": 0.7241379310344828,
+   "cov80": 0.9137931034482759,
+   "cov90": 0.9482758620689655,
+   "pit_mean": 0.5358586206896552,
+   "pit_hist": [
+    0,
+    1,
+    7,
+    15,
+    6,
+    7,
+    8,
+    5,
+    4,
+    5
+   ],
+   "chi2": 26.48,
+   "chi2_p": 0.002,
+   "ks_stat": 0.196,
+   "ks_p": 0.02,
+   "width_vs_benchmark": 1.3692012878865136
+  },
+  "five_year": {
+   "label": "LAST FIVE YEARS of origins",
+   "windows": 19,
+   "first_origin": "2021-10-27",
+   "last_origin": "2026-04-29",
+   "span_years": 4.5,
+   "skill_norm": -0.011537956890712797,
+   "skill_raw": -0.0028557976184837575,
+   "verdict": "PARITY",
+   "ci_blocks": {
+    "2": [
+     -0.0787,
+     0.0399,
+     "PARITY"
+    ],
+    "3": [
+     -0.074,
+     0.0467,
+     "PARITY"
+    ],
+    "4": [
+     -0.072,
+     0.051,
+     "PARITY"
+    ]
+   },
+   "cov50": 0.631578947368421,
+   "cov80": 0.9473684210526315,
+   "cov90": 1.0,
+   "pit_mean": 0.5749921052631578,
+   "pit_hist": [
+    0,
+    1,
+    2,
+    3,
+    1,
+    2,
+    3,
+    4,
+    2,
+    1
+   ],
+   "chi2": 6.79,
+   "chi2_p": 0.659,
+   "ks_stat": 0.194,
+   "ks_p": 0.421,
+   "width_vs_benchmark": 1.5191857625636616
+  },
+  "production": {
+   "label": "production window set (post-break origins)",
+   "windows": 18,
+   "first_origin": "2022-01-27",
+   "last_origin": "2026-04-29",
+   "span_years": 4.25,
+   "skill_norm": -0.007429777050631747,
+   "skill_raw": 0.0008480894810285466,
+   "verdict": "PARITY",
+   "ci_blocks": {
+    "2": [
+     -0.0694,
+     0.0461,
+     "PARITY"
+    ],
+    "3": [
+     -0.0677,
+     0.0509,
+     "PARITY"
+    ],
+    "4": [
+     -0.0636,
+     0.0552,
+     "PARITY"
+    ]
+   },
+   "cov50": 0.6111111111111112,
+   "cov80": 0.9444444444444444,
+   "cov90": 1.0,
+   "pit_mean": 0.5713194444444444,
+   "pit_hist": [
+    0,
+    1,
+    2,
+    3,
+    1,
+    2,
+    2,
+    4,
+    2,
+    1
+   ],
+   "chi2": 6.44,
+   "chi2_p": 0.695,
+   "ks_stat": 0.173,
+   "ks_p": 0.593,
+   "width_vs_benchmark": 1.5307762058939494
+  },
+  "fit": {
+   "nu": 10.0,
+   "width_cal": 0.979,
+   "market_verdict": "PARITY",
+   "market_skill": 0.0068,
+   "market_ci90": [
+    -0.001,
+    0.014
+   ],
+   "fit_date": "2026-07-29",
+   "panel_names": 18
+  }
+ },
+ "assert_log": [
+  "==============================================================================",
+  "DU \u2014 ASSERT / derivation log (built on audited FY23-25 + reviewed Q1/H1-2026 filings)",
+  "==============================================================================",
+  "[Historical income statement] FY2025 EBITDA 7,338 is PRINTED on the face ('operating profit before depreciation and amortization', IFRS 18); FY2024 comparative likewise (6,470). FY2023 predates IFRS 18 and prints no such line \u2014 the 5,800 carried here is DERIVED from audited components and flagged. Margins: FY23 42.5%, FY24 44.2%, FY25 46.1%; H1-2026 ACTUAL 49.2%.",
+  "[Fiscal regime] combined royalty+tax take: FY2023 53.1% (OLD regime: 15% of regulated revenue + 30% of regulated profit), FY2024 42.2%, FY2025 43.6% (CURRENT regime: 38% royalty + 9% CT, legislated 2024-2026 only). The post-2026 regime is THE CONTESTED JUDGEMENT \u2014 both framings are computed and published side by side.",
+  "[Working capital, audited, royalty-accrual-adjusted] FY23 -965 (-7.1% of revenue), FY24 -1,220 (-8.3%), FY25 -1,062 (-6.7%) \u2014 structurally NEGATIVE, the classic prepaid/deferred-revenue telecom shape: customers and payables fund the operation. Cycle: DSO 51d (FY23 60d), payables 85d of revenue, inventory 5d of direct costs. The forecast holds the FY2025 component days constant, so NWC stays -6.7% of revenue and GROWTH RELEASES cash rather than absorbing it.",
+  "[Balance sheet] ZERO drawn borrowings in every year studied (Note 4.2 prints Total borrowings '\u2013'); cash + term deposits: FY23 1,937, FY24 2,283, FY25 2,250. Lease liabilities (the only debt-like item): FY23 2,105 -> FY25 1,939. Net cash AFTER leases at FY2025: +311.",
+  "[Segment contribution margins FY24] mobile 60.9%, fixed 84.6%, wholesale 88.0%, ict 20.8%",
+  "[Segment contribution margins FY25] mobile 60.8%, fixed 85.8%, wholesale 86.4%, ict 19.4%",
+  "[Unit-build reconciliation, FY2025] avg mobile base 9,310k x ARPU AED 63.3 x 12 = 7,072 vs disclosed mobile segment revenue 7,075 (-0.0%) \u2014 the subscribers-x-ARPU frame reproduces the audited segment to within a percent.",
+  "[Revenue build] FY26E 16,593 (+4.3% vs guidance 4-6% revised 23-Jul-2026) -> FY30E 19,424. Segments FY26E: mobile 7,209, fixed 4,806, wholesale 2,548, ict 2,031",
+  "[EBITDA \u2014 an OUTPUT, not an input] 7,822 (47.1%) -> 8,117 (47.1%) -> 8,481 (47.1%) -> 8,815 (47.1%) -> 9,132 (47.0%). H1-2026 actual margin was 49.2% and H2 is seasonally softer (H2-2025: 45.2%); the FY26E output sits against the company's 46-47% guidance \u2014 ABOVE it, because H1 already printed 49.2% and the build holds disclosed contribution margins rather than forcing the guidance midpoint.",
+  "[D&A roll-forward] FY26E 2,235 (2x reviewed H1-2026 actual = 2,266 \u2014 within 1.4%); PP&E 10,289 -> 12,432.",
+  "[FCFF waterfall] 2,507 -> 2,712 -> 2,947 -> 3,256 -> 3,464",
+  "[Cost of equity] rf 4.48% (Jan-2031 AED T-bond) less UAE rating-basis default spread 0.42% = rf* 4.06%; + beta 0.472 x ERP 4.87% -> Ke 6.36%. ERP basis 2 (market-spread, implied-US base): 6.43%. RETIRED un-netted construction 6.78% (audit trail only).",
+  "[WACC explicit] weights: lease debt 3.4% / market equity 96.6% (market cap 55,755; du has no drawn borrowings) -> WACC 6.24% (basis 2: 6.31%). Interest shields both fiscal legs (the royalty base is profit AFTER interest), so the shield runs at the combined 43.6%.",
+  "[WACC terminal] Ke 6.18%; Kd after tax 2.77%; weights 95%/5% -> 6.01%",
+  "[Glide] forward WACC 6.24% -> 6.19% -> 6.12% -> 6.07% -> 6.01%; discount factors 0.9413, 0.8864, 0.8352, 0.7874, 0.7428",
+  "[Profit path] EPS 0.70 -> 0.72 -> 0.75 -> 0.78 -> 0.81; DPS at 98% payout 0.68 -> 0.70 -> 0.73 -> 0.76 -> 0.79; net cash (before leases) 2,250 -> 423",
+  "[Terminal] ROIC(term) 26.7%; reinvestment = g/ROIC = 9.4% of NOPAT; TV 97,871 at g 2.5% / WACC(term) 6.01%",
+  "[DCF] PV(explicit) 12,362 + PV(terminal) 72,697 (TV = 85% of EV) = EV 85,059; \u2212 leases 1,939 + cash & deposits 2,250 + investees 0.5 = equity 85,370 -> AED 18.83 at 31-Dec-2025; x accretion 1.0377 \u2212 final dividend 0.40 paid 28-Apr-2026 = AED 19.14 at the 07-Aug-2026 anchor",
+  "[Contested judgement \u2014 BOTH WAYS] Framing A (regime persists, 43.6% take): AED 19.14. Framing B (reversion to the pre-2024 construction, effective take 51.5% -> 51.7%): AED 16.29. Gap +2.85/share (-15%). Published side by side; never averaged.",
+  "[rf tenor gap, PRICED] 10y peg-extrapolated rf 4.69% instead of the Jan-2031 AED print 4.48% -> WACC 6.44% -> AED 18.09 (-1.05/share)",
+  "[DCF scenarios] bear 10.97 / base 19.14 / bull 29.58 AED per share",
+  "[Relative lens] trailing P/E 19.2x, trailing EV/EBITDA 7.6x (du's own, computed from audited figures). Justified P/E 15.5x (GCC peer median) x FY26E EPS 0.70 -> AED 10.80 at the anchor [bear 12x 8.27 / bull 18.5x 12.96]. Dividend-yield cross: DPS 0.68 / peer benchmark 5.2% = AED 13.12. Peer EV/EBITDA was NOT reliably sourceable from public aggregators (flagged) \u2014 the relative lens runs on P/E and yield, both sourced.",
+  "[Normalised lens] mid-cycle margin 47.1% (FY2028E) on FY2026E revenue -> normalised EPS 0.69 x 15.5 = AED 10.78 at the anchor",
+  "[Book lens] justified P/B = (27% \u2212 2.5%) / (6.18% \u2212 2.5%) = 6.66x on BVPS 2.24 -> AED 15.07 at the anchor. A 27% sustainable ROE against a 6.2% cost of equity is what a licensed duopoly with negative working capital looks like; the multiple is high because the equity base is small, not because the claim is aggressive. Trailing ROE 29.0%.",
+  "[Synthesis] weighted central AED 14.98; span 8.25 - 29.58; spot 12.30 (+22% to the central).",
+  "[Expert panel] Expert 1 9.88 [7.82-11.59]; Expert 2 19.32 [10.19-22.54]; Expert 3 19.04 [12.64-21.32]; panel median 19.04 (+55% vs spot)"
+ ]
+}
