@@ -50,7 +50,10 @@ g_low = reprice(g_terminal=V('g_terminal_alt'))
 beta_dimson = reprice(glide=True, beta=V('dimson_sum_beta'))
 gas_contract = reprice(gas_usd_mmbtu=V('gas_contract_usd_mmbtu'))
 util_bull = reprice(anna_util_base=V('anna_util_bull'))
-capex_low = reprice(maint_capex_pct_rev=V('maint_capex_pct') * 2 / 3)
+capex_replacement = reprice(maint_capex_pct_rev=V('maint_capex_pct_replacement'))
+capex_house = reprice(maint_capex_pct_rev=0.030)          # the superseded house standard
+roc_high = reprice(roc_terminal=0.30)
+project_faster = reprice(anna_capex_path=[3000.0, 3500.0, 3500.0, 3000.0, 2000.0])
 
 ALTS = [
     dict(key="premium_basis",
@@ -103,12 +106,35 @@ ALTS = [
              "under the same gas constraint. Assuming the new line does better than the "
              "old one on the same feedstock would need evidence no filing provides."),
     dict(key="maintenance_capex",
-         made="Maintenance capital expenditure at three per cent of revenue",
-         alt="Two per cent, nearer the company's own pre-project observed spend",
-         value=capex_low,
-         why="The observed pre-project run was abnormally low on a plant that had just "
-             "been built. Three per cent is the mature-plant standard, and no guidance "
-             "exists, which is why it is sensitised here rather than asserted."),
+         made="Maintenance capital expenditure at the company's own observed pre-project "
+              "rate of 1.12% of revenue",
+         alt="Replacement-rate maintenance: gross fixed assets at the disclosed 3.95% "
+             "machinery depreciation rate, or 6.11% of revenue",
+         value=capex_replacement,
+         why="The observed rate is what this company has actually paid to keep this plant "
+             "running in the two years when it was not building anything. The "
+             "replacement-rate framing is the honest upper bound — a plant cannot spend a "
+             "fifth of its depreciation forever — and it is carried as the downside case "
+             "rather than averaged into the central."),
+    dict(key="terminal_reinvestment",
+         made="Terminal reinvestment of 38.9% of operating profit after tax, from growth "
+              "over an 18% return on capital",
+         alt="23.3%, from a 30% return on capital — the rate a newly completed plant earns "
+             "on incremental capital while it is still filling",
+         value=roc_high,
+         why="Eighteen per cent is the conservative reading and is kept, but it is an "
+             "assumption rather than a disclosure, and on a plant that has just been "
+             "rebuilt it charges a heavy ongoing reinvestment against a terminal year that "
+             "needs no further building. It is the single largest unsourced input left in "
+             "the model and is flagged as such."),
+    dict(key="project_profile",
+         made="Project spending anchored on the observed run rate: the nine-month actual "
+              "extended to a full year",
+         alt="The faster profile the first issue of this study used, opening at EGP 3,000m",
+         value=project_faster,
+         why="The company has never spent EGP 3,000m in a year on this project. The "
+             "observed rate is a disclosed, dated figure and the total still completes the "
+             "approved cost inside the forecast window."),
 ]
 for a in ALTS:
     a['delta'] = a['value'] - BASELINE
@@ -194,7 +220,37 @@ for tag, yr in [("FY2022/23", "FY2223"), ("FY2023/24", "FY2324"), ("FY2024/25", 
 cyc_fwd = [dict(year=r['year'], wc=r['wc'], dwc=r['dwc'], wc_pct_rev=r['wc'] / r['revenue'])
            for r in C.CASES['base']['rows']]
 
-OUT = dict(baseline=BASELINE, baseline_halt=BASELINE_HALT, spot=SPOT,
+# ---------------------------------------------------------------------------
+# 5. WHAT THE COMPANY ACTUALLY SPENDS — the capex record, from the cash-flow
+#    statements. Two clean pre-project years, then the build.
+# ---------------------------------------------------------------------------
+CAPEX_HIST = []
+for tag, ck, rk, note in [
+        ("FY2021/22", 'capex_paid_FY2122', 'is_revenue_FY2122', "Before the project"),
+        ("FY2022/23", 'capex_paid_FY2223', 'is_revenue_FY2223', "Before the project"),
+        ("FY2023/24", 'capex_paid_FY2324', 'is_revenue_FY2324', "The build begins"),
+        ("FY2024/25", 'capex_paid_FY2425', 'is_revenue_FY2425', "Building"),
+]:
+    CAPEX_HIST.append(dict(year=tag, capex=V(ck), revenue=V(rk),
+                           pct=V(ck) / V(rk), note=note))
+CAPEX_HIST.append(dict(year="9M FY2025/26", capex=V('capex_paid_9M_FY2526'),
+                       revenue=V('is_revenue_9M'),
+                       pct=V('capex_paid_9M_FY2526') / V('is_revenue_9M'),
+                       note="Nine months actual; a full year at this rate is EGP "
+                            f"{V('capex_run_rate_FY2526E'):,.0f}m"))
+capex_block = dict(history=CAPEX_HIST,
+                   pre_project_pooled=V('maint_capex_pct'),
+                   replacement_rate=V('maint_capex_pct_replacement'),
+                   house_standard=0.030,
+                   house_standard_value=capex_house,
+                   run_rate=V('capex_run_rate_FY2526E'),
+                   forecast_path=D['anna_capex_path'],
+                   forecast_total=sum(D['anna_capex_path']),
+                   remaining=D['anna_total_cost'] - D['anna_spent'],
+                   machinery_dep_rate=V('dep_rate_kima2_machinery'),
+                   implied_asset_life=1 / V('dep_rate_kima2_machinery'))
+
+OUT = dict(baseline=BASELINE, capex=capex_block, baseline_halt=BASELINE_HALT, spot=SPOT,
            alternatives=ALTS, spans=SPANS, programme=prog,
            cycle_hist=cyc_hist, cycle_fwd=cyc_fwd)
 json.dump(OUT, open('alternatives.json', 'w'), indent=1, default=float)
@@ -206,6 +262,12 @@ print()
 for k, s in SPANS.items():
     print(f"  {k:18s} {s['low']:6.2f} .. {s['high']:6.2f}  base {s['base']:6.2f}  "
           f"vs spot {s['vs_spot']*100:+6.1f}%")
+print("\ncapex record (EGP m):")
+for r in CAPEX_HIST:
+    print(f"  {r['year']:14s} {r['capex']:10,.1f}  {r['pct']*100:6.2f}% of revenue   {r['note']}")
+print(f"  pre-project pooled maintenance {V('maint_capex_pct')*100:.2f}% of revenue; "
+      f"replacement rate {V('maint_capex_pct_replacement')*100:.2f}%; "
+      f"superseded house standard 3.00% would give EGP {capex_house:.2f}")
 print(f"\nprogramme: approved EGP {prog['approved_total']:,.0f}m = "
       f"{prog['pct_market_cap']*100:.0f}% of market cap; spent {prog['spent_pct']*100:.1f}%; "
       f"return on cost {prog['return_on_cost']*100:.1f}% against a terminal cost of capital "

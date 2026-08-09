@@ -1,10 +1,10 @@
 {
  "cashflow": {
   "label": "Cash flow",
-  "carry_through": -1.2979590362377038,
-  "stopped": 2.1990174706666927,
-  "upside": 0.9329325481819671,
-  "downside": -3.372086006061536
+  "carry_through": -0.7910702774432968,
+  "stopped": 2.491915450464006,
+  "upside": 1.4651389441534148,
+  "downside": -2.8651972472671288
  },
  "book": {
   "label": "Book value and sustainable return",
@@ -35,7 +35,7 @@
   "value_per_share": 6.918193137103221,
   "value_high": 10.313992852322633,
   "implied_at_market": 8.406030389823245,
-  "implied_at_model": 0.8707434791350498
+  "implied_at_model": 1.0946474787684568
  },
  "normalised": {
   "label": "Normalised earnings power",
@@ -70,27 +70,27 @@
  },
  "synthesis": {
   "field": {
-   "Cash flow \u2014 programme carried through": -1.2979590362377038,
-   "Cash flow \u2014 programme stopped": 2.1990174706666927,
+   "Cash flow \u2014 programme carried through": -0.7910702774432968,
+   "Cash flow \u2014 programme stopped": 2.491915450464006,
    "Book value and sustainable return": 0.0,
    "Relative multiples": 6.918193137103221,
    "Normalised earnings power": 3.776252679840041
   },
   "low": 0.0,
   "high": 6.918193137103221,
-  "central_carry_through": -1.2979590362377038,
-  "central_stopped": 2.1990174706666927,
+  "central_carry_through": -0.7910702774432968,
+  "central_stopped": 2.491915450464006,
   "spot": 13.98,
   "note": "The two cash-flow readings are the contested judgement and are never averaged. The other three lenses are shown against both."
  },
  "contested": {
   "question": "Is the ANNA capital programme carried through, or stopped?",
   "side_a_label": "Carried through",
-  "side_a": -1.2979590362377038,
+  "side_a": -0.7910702774432968,
   "side_b_label": "Stopped",
-  "side_b": 2.1990174706666927,
-  "gap": 3.4969765069043968,
-  "gap_equity": 6947.020088612653,
+  "side_b": 2.491915450464006,
+  "gap": 3.282985727907303,
+  "gap_equity": 6521.9105010773765,
   "decides": "Whether the plant, once built, earns a return above the cost of the capital sunk into it. On the disclosed bank-approved cost and the derived nameplate it does not, which is why stopping is worth more than finishing."
  }
 }

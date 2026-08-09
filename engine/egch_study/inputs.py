@@ -319,10 +319,14 @@ I("kd_usd_lt", 0.090, "ratio", "Long-run corporate dollar cost of debt", "2026-0
 I("roc_terminal", 0.18, "ratio",
   "Terminal return on invested capital, which sets the terminal reinvestment rate as growth "
   "divided by return on capital", "2026-08-08", "L5")
-I("maint_capex_pct", 0.030, "ratio",
-  "Maintenance capital expenditure as a share of revenue. The pre-project observed run of EGP "
-  "42.5-81m was abnormally low on a newly built plant; 3.0% is the mature-plant standard. No "
-  "guidance exists, so this is sensitised.", "2026-08-08", "L5")
+I("maint_capex_pct", (80.847245 + 42.470154) / (4440.701 + 6612.226), "ratio",
+  "Maintenance capital expenditure as a share of revenue, RE-ANCHORED 9 August 2026 on the "
+  "company's OWN pre-project cash-flow statements: EGP 123.3m spent across FY2021/22 and "
+  "FY2022/23 on EGP 11,052.9m of revenue. The first issue of this study used a 3.0% "
+  "mature-plant standard instead, which is 2.7 times what this company has ever spent to "
+  "keep its plant running, and which no disclosure supports. The replacement-rate framing "
+  "(gross fixed assets at the disclosed 3.95% machinery rate, 6.11% of revenue) is carried "
+  "as the published alternative and as the downside case.", "2026-08-09", "L5")
 I("anna_cash_margin", 0.32, "ratio",
   "Conversion margin on ammonium nitrate over its own ammonia feedstock", "2026-08-08", "L5")
 I("local_free_parity", 0.90, "ratio",
@@ -359,9 +363,12 @@ for k, vals, unit, src in [
      "in FY2024/25."),
     ("cpi_path", [0.100, 0.085, 0.075, 0.070, 0.070], "ratio",
      "Domestic inflation converging from the June 2026 print on the central bank's target."),
-    ("anna_capex_path", [3000.0, 3500.0, 3500.0, 3000.0, 2000.0], "EGP m",
-     "Project spending path against the bank-approved cost and the observed pace: construction "
-     "in progress moved from EGP 3,790m to EGP 5,654m over nine months."),
+    ("anna_capex_path", [2598.8, 3100.0, 3300.0, 3200.0, 2489.4], "EGP m",
+     "Project spending path, RE-ANCHORED 9 August 2026 on the observed run rate. The first "
+     "year is the company's own nine-month actual extended to a full year (EGP 1,949.1m x "
+     "4/3 = EGP 2,598.8m); the remaining years complete the EGP 14,688m still to spend "
+     "against the bank-approved cost. The first issue opened at EGP 3,000m, above anything "
+     "the company has actually spent in a year."),
 ]:
     I(k, vals, unit, src, "2026-08-08", "L5")
 
@@ -428,6 +435,40 @@ I("anna_winddown_cost", 1000.0, "EGP m",
 I("q4_runrate_haircut", 0.97, "ratio",
   "The fourth quarter of FY2025/26 is run-rated on the third quarter's revenue with a 3% "
   "haircut for the summer gas curtailment the company discloses every year", "2026-08-08", "L5")
+# ---- CAPITAL EXPENDITURE, AS ACTUALLY PAID -----------------------------------
+# The cash-flow statement's investing section, line "payments to acquire fixed assets
+# (projects under construction)". This is the record that separates what the plant costs
+# to KEEP from what the new complex costs to BUILD, and it was not built into the first
+# issue of this study — the maintenance driver was set to a house standard instead.
+I("capex_paid_FY2122", 80.847245, "EGP m",
+  "Audited financial statements, year ended 30 June 2022 (comparative column of the "
+  "FY2022/23 statements), cash-flow statement, payments to acquire fixed assets",
+  "2023-10-08", "L1")
+I("capex_paid_FY2223", 42.470154, "EGP m",
+  FS23 + ", cash-flow statement, payments to acquire fixed assets", "2023-10-08", "L1")
+I("capex_paid_FY2324", 2396.608259, "EGP m",
+  FS25 + ", cash-flow statement comparative column, payments to acquire fixed assets "
+  "(projects under construction) — reconciles exactly to the disclosed investing total "
+  "with the asset-sale and loan-collection lines", "2025-09-24", "L1")
+I("capex_paid_FY2425", 1545.053761, "EGP m",
+  FS25 + ", cash-flow statement, payments to acquire fixed assets (projects under "
+  "construction)", "2025-09-24", "L1")
+I("capex_paid_9M_FY2526", 1949.134461, "EGP m",
+  M9 + ", cash-flow statement, payments to acquire fixed assets", "2026-05-20", "L1")
+I("capex_run_rate_FY2526E", 1949.134461 * 4 / 3, "EGP m",
+  "Constructed: the nine-month actual extended to a full year — the company's own latest "
+  "observed project spending rate, and the near-term anchor for the forecast path",
+  "2026-08-09", "L5")
+I("maint_capex_pct_observed", (80.847245 + 42.470154) / (4440.701 + 6612.226), "ratio",
+  "Constructed: the two clean PRE-PROJECT years pooled — EGP 123.3m of capital "
+  "expenditure on EGP 11,052.9m of revenue. This is what the plant costs to keep running "
+  "when it is not building anything, from the company's own cash-flow statements.",
+  "2026-08-09", "L5")
+I("maint_capex_pct_replacement", 17022.493 * 0.0395 / 11014.0, "ratio",
+  "Constructed: gross fixed assets at the disclosed 3.95% machinery depreciation rate, "
+  "over first-forecast-year revenue — replacement-rate maintenance, the upper framing of "
+  "the same driver", "2026-08-09", "L5")
+
 I("bs_gross_fixed_M9FY2526", 17022.493, "EGP m",
   M9 + ", note 6 fixed assets at cost", "2026-05-20", "L1")
 I("bs_acc_dep_M9FY2526", 3435.300, "EGP m",

@@ -1962,10 +1962,10 @@
   },
   "maint_capex_pct": {
    "key": "maint_capex_pct",
-   "value": 0.03,
+   "value": 0.011156990270541007,
    "unit": "ratio",
-   "source": "Maintenance capital expenditure as a share of revenue. The pre-project observed run of EGP 42.5-81m was abnormally low on a newly built plant; 3.0% is the mature-plant standard. No guidance exists, so this is sensitised.",
-   "date": "2026-08-08",
+   "source": "Maintenance capital expenditure as a share of revenue, RE-ANCHORED 9 August 2026 on the company's OWN pre-project cash-flow statements: EGP 123.3m spent across FY2021/22 and FY2022/23 on EGP 11,052.9m of revenue. The first issue of this study used a 3.0% mature-plant standard instead, which is 2.7 times what this company has ever spent to keep its plant running, and which no disclosure supports. The replacement-rate framing (gross fixed assets at the disclosed 3.95% machinery rate, 6.11% of revenue) is carried as the published alternative and as the downside case.",
+   "date": "2026-08-09",
    "layer": "L5",
    "note": ""
   },
@@ -2155,14 +2155,14 @@
   "anna_capex_path": {
    "key": "anna_capex_path",
    "value": [
-    3000.0,
-    3500.0,
-    3500.0,
-    3000.0,
-    2000.0
+    2598.8,
+    3100.0,
+    3300.0,
+    3200.0,
+    2489.4
    ],
    "unit": "EGP m",
-   "source": "Project spending path against the bank-approved cost and the observed pace: construction in progress moved from EGP 3,790m to EGP 5,654m over nine months.",
+   "source": "Project spending path, RE-ANCHORED 9 August 2026 on the observed run rate. The first year is the company's own nine-month actual extended to a full year (EGP 1,949.1m x 4/3 = EGP 2,598.8m); the remaining years complete the EGP 14,688m still to spend against the bank-approved cost. The first issue opened at EGP 3,000m, above anything the company has actually spent in a year.",
    "date": "2026-08-08",
    "layer": "L5",
    "note": ""
@@ -2353,6 +2353,78 @@
    "unit": "ratio",
    "source": "The fourth quarter of FY2025/26 is run-rated on the third quarter's revenue with a 3% haircut for the summer gas curtailment the company discloses every year",
    "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "capex_paid_FY2122": {
+   "key": "capex_paid_FY2122",
+   "value": 80.847245,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2022 (comparative column of the FY2022/23 statements), cash-flow statement, payments to acquire fixed assets",
+   "date": "2023-10-08",
+   "layer": "L1",
+   "note": ""
+  },
+  "capex_paid_FY2223": {
+   "key": "capex_paid_FY2223",
+   "value": 42.470154,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2023 (Central Auditing Organization with PKF Rashed Badr & Co, report dated 8 October 2023), cash-flow statement, payments to acquire fixed assets",
+   "date": "2023-10-08",
+   "layer": "L1",
+   "note": ""
+  },
+  "capex_paid_FY2324": {
+   "key": "capex_paid_FY2324",
+   "value": 2396.608259,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), cash-flow statement comparative column, payments to acquire fixed assets (projects under construction) \u2014 reconciles exactly to the disclosed investing total with the asset-sale and loan-collection lines",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "capex_paid_FY2425": {
+   "key": "capex_paid_FY2425",
+   "value": 1545.053761,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), cash-flow statement, payments to acquire fixed assets (projects under construction)",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "capex_paid_9M_FY2526": {
+   "key": "capex_paid_9M_FY2526",
+   "value": 1949.134461,
+   "unit": "EGP m",
+   "source": "Interim statements, nine months ended 31 March 2026, limited review dated 20 May 2026, cash-flow statement, payments to acquire fixed assets",
+   "date": "2026-05-20",
+   "layer": "L1",
+   "note": ""
+  },
+  "capex_run_rate_FY2526E": {
+   "key": "capex_run_rate_FY2526E",
+   "value": 2598.845948,
+   "unit": "EGP m",
+   "source": "Constructed: the nine-month actual extended to a full year \u2014 the company's own latest observed project spending rate, and the near-term anchor for the forecast path",
+   "date": "2026-08-09",
+   "layer": "L5",
+   "note": ""
+  },
+  "maint_capex_pct_observed": {
+   "key": "maint_capex_pct_observed",
+   "value": 0.011156990270541007,
+   "unit": "ratio",
+   "source": "Constructed: the two clean PRE-PROJECT years pooled \u2014 EGP 123.3m of capital expenditure on EGP 11,052.9m of revenue. This is what the plant costs to keep running when it is not building anything, from the company's own cash-flow statements.",
+   "date": "2026-08-09",
+   "layer": "L5",
+   "note": ""
+  },
+  "maint_capex_pct_replacement": {
+   "key": "maint_capex_pct_replacement",
+   "value": 0.0610485267386962,
+   "unit": "ratio",
+   "source": "Constructed: gross fixed assets at the disclosed 3.95% machinery depreciation rate, over first-forecast-year revenue \u2014 replacement-rate maintenance, the upper framing of the same driver",
+   "date": "2026-08-09",
    "layer": "L5",
    "note": ""
   },

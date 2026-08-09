@@ -3,7 +3,7 @@
  "scrub_hits": [],
  "figures": 15,
  "transparent": [],
- "tables": 52,
+ "tables": 53,
  "table_problems": [],
  "builders": [
   "docx_egch.py",

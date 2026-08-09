@@ -453,6 +453,50 @@ figure('fig14_programme.png', 6.9,
        "{F}.  On the left, what has been spent against what has been built. On the "
        "right, what the finished plant earns against what the capital costs.")
 
+H2("What the company actually spends — the capital-expenditure record")
+P("Before any of the above can be read, one question has to be answered from the "
+  "statements rather than assumed: is this a one-off build, or is it what this company "
+  "spends? The cash-flow statements answer it directly. The investing section carries a "
+  "single line — payments to acquire fixed assets, projects under construction — and it "
+  "has two clean years before the programme started.")
+CX = AL['capex']
+rows = [["Year", "Capital expenditure paid (EGP m)", "Revenue (EGP m)", "Of revenue",
+         "What it was"]]
+for r in CX['history']:
+    rows.append([r['year'], E1(r['capex']), E(r['revenue']), PC(r['pct']), r['note']])
+table(rows, [1.25, 1.55, 1.15, 0.8, 2.25], size=8.4, band_rows={1, 2}, text_cols=(4,))
+caption(f"{{T}}.  The two shaded years are the answer. With nothing being built, this "
+        f"plant cost EGP {E1(V('capex_paid_FY2122'))}m and then EGP "
+        f"{E1(V('capex_paid_FY2223'))}m a year to keep running — pooled, "
+        f"{PC(CX['pre_project_pooled'])} of revenue. Everything above that is the new "
+        f"complex.")
+P(f"Three things follow, and the first two correct this study rather than confirm it. "
+  f"First, the capital expenditure in the forecast IS a one-off bulk: EGP "
+  f"{E(CX['forecast_total'])} million across five years against EGP {E(CX['remaining'])} "
+  f"million still to spend on the approved cost, after which it stops. Second, it does "
+  f"not repeat inside any horizon this study can see — the disclosed depreciation rate on "
+  f"the plant's machinery is {PC2(CX['machinery_dep_rate'])} a year, an asset life of "
+  f"about {E(CX['implied_asset_life'])} years, so the replacement cycle sits far beyond "
+  f"the terminal year. Third, and this is the correction: maintenance capital expenditure "
+  f"is now set at the {PC(CX['pre_project_pooled'])} of revenue the company has actually "
+  f"paid, not at a three per cent mature-plant standard. That standard was an assertion, "
+  f"it was almost three times anything this company has ever spent to keep this plant "
+  f"running, and no disclosure supported it.", bold=True)
+P(f"The project path is anchored the same way. The company spent EGP "
+  f"{E1(V('capex_paid_FY2425'))}m in the last audited year and EGP "
+  f"{E1(V('capex_paid_9M_FY2526'))}m in nine months of this one — a full year at that "
+  f"rate is EGP {E(CX['run_rate'])}m, and that is where the forecast now opens. The "
+  f"remaining years complete the approved cost inside the window, because the terminal "
+  f"year only earns if the plant is finished.")
+P(f"The honest counter-argument is that the two pre-project years flatter the plant: it "
+  f"was newly built, and new plant does not need much. The upper framing of the same "
+  f"driver is replacement-rate maintenance — gross fixed assets at that same "
+  f"{PC2(CX['machinery_dep_rate'])} machinery rate, or {PC(CX['replacement_rate'])} of "
+  f"revenue. Both are published: the observed rate is the central and the replacement "
+  f"rate is the downside, and they are worth EGP "
+  f"{E2(abs(AL_BY['maintenance_capex']['delta']))} a share between them. They are not "
+  f"averaged.", size=9.8, italic=True)
+
 H2("The asset-conversion cycle — disclosed, then projected from it")
 P("Working capital is not a percentage of revenue in this model. It is three day counts "
   "taken from the audited statements and applied to the forecast revenue and cost of "
@@ -866,6 +910,23 @@ P(f"The largest modelled allocation is the gas share of the cost stack. The stat
   f"auditor's own disclosed {E(V('gas_usage_low_m3_t'))} to {E(V('gas_usage_high_m3_t'))} "
   f"range, but a choice nonetheless. The alternative gas price is priced in section 1.8 "
   f"and is worth EGP {E2(abs(AL_BY['gas']['delta']))} a share.")
+P(f"Maintenance capital expenditure is the driver this study got wrong on its first "
+  f"issue and has since re-anchored. It was set at three per cent of revenue on the "
+  f"assertion that the company's own observed spending was abnormally low; the cash-flow "
+  f"statements show two pre-project years at {PC(AL['capex']['pre_project_pooled'])} of "
+  f"revenue, and that is now the central. The correction is worth EGP "
+  f"{E2(abs(AL['capex']['house_standard_value'] - AL['baseline']))} a share on its own. "
+  f"The replacement-rate framing at {PC(AL['capex']['replacement_rate'])} is published "
+  f"beside it as the downside rather than averaged in.")
+P(f"The terminal reinvestment rate is now the largest unsourced input left in the model. "
+  f"It is set by terminal growth over an assumed {PC(DR['roc_terminal'])} return on "
+  f"invested capital, which charges "
+  f"{PC(DR['g_terminal'] / DR['roc_terminal'])} of terminal operating profit after tax "
+  f"back into the business every year for ever — on a plant that has just been rebuilt "
+  f"and needs no further building. A thirty per cent return on capital, which is what a "
+  f"newly completed line earns while it is still filling, is worth EGP "
+  f"{E2(abs(AL_BY['terminal_reinvestment']['delta']))} a share. The conservative reading "
+  f"is kept and the alternative is priced.")
 P(f"The new plant's capacity is derived, not disclosed. No filing states it. It is built "
   f"from the ammonia design plate less the draw of urea at its own plate, converted at "
   f"the nitrate route's ammonia ratio. Every figure that depends on it is flagged as "
