@@ -1617,7 +1617,7 @@ for e in ENTRIES:
                  clip(f"{e['topic']} — {e.get('finding', '')}", 175),
                  clip(e.get('source_name', ''), 42),
                  e.get('as_of_date') or '—'])
-table(rows, [0.5, 0.72, 0.68, 2.85, 1.5, 0.72], size=7.0)
+table(rows, [0.5, 0.72, 0.85, 2.68, 1.5, 0.72], size=7.0)
 caption(f"Table {tnum()} — the full external research record: {n0(len(ENTRIES))} items, of which "
         f"{n0(len(DRIVERS))} are drivers. Findings are abbreviated for the page; each item "
         f"carries its full text, its source address and its access date in the accompanying "
