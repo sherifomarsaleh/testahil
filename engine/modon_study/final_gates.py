@@ -15,18 +15,20 @@ sig = SIGCMChecklist(
     asset_conversion_cycle=True,        # NWC studied (inventory/DWIP/receivables/escrow) and
                                         # BS/CF projected from a stated release schedule
     competitors=True,                   # Aldar/Emaar/EmaarDev (in-country) from own releases
-    beta_own_history_vs_egx30=False,    # tier-3 fallback — index unobtainable, 7 attempts logged
+    beta_own_history_vs_egx30=False,    # regression vs a PROXY composite, not the official index
     formula_based_model=True,           # 537 formula cells; recalc + driver test green
     flags_raised_before_issue=True,     # beta interim flag, segment-level gap, EIBOR mirror
     stop_and_inform_honoured=True,      # nothing official was inaccessible for the build itself
     na_reasons={'beta_own_history_vs_egx30':
-                'Own-stock regression impossible: no FTSE ADX General Index history obtainable '
-                '(seven sources attempted, all logged in the bibliography); same-country peer '
-                'betas need the same index. Tier-3 fallback beta=1.0 applied per the strict '
-                'preference order, FLAGGED INTERIM, sensitised 0.8-1.2 in the study and priced '
-                'as its own sensitivity strip. House precedent: EAND, TWOPOINTZERO.'})
+                'The official FTSE ADX General Index remains unobtainable (seven sources '
+                'logged). REVISION 2: beta is now an OWN-STOCK weekly regression against an '
+                'equal-weight composite of the 18 house-library UAE names — 3y beta 1.025 '
+                '(SE 0.109, R2 0.367, n 155, usability gate PASS), adopted 1.03 — the own-'
+                'history clause satisfied in substance, flagged because the regressor is a '
+                'proxy composite rather than the official index. Damodaran EM industry route '
+                'rejected as primary with receipt; sensitised 0.8-1.2.'})
 assert_sigcm(sig)
-print('SIGCM gate: PASS (beta tier-3 exception documented, not silent)')
+print('SIGCM gate: PASS (beta = own-stock regression vs proxy composite, flagged)')
 
 chk = ModelStudyChecklist(
     structure_matches_model=True,        # 16 sections, 16 sheets, same order

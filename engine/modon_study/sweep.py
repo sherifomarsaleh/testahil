@@ -222,6 +222,36 @@ R.add(Ring.COMPANY, "official financial statements", FindingClass.C,
     "Audited FY2023 consolidated financial statements, FY2022 comparatives", CO,
     "2024-02-15", is_fs_data=True, fiscal_period="FY2022")
 
+f_h1r = R.add(Ring.COMPANY, "IR communications (calls, presentations, releases)",
+    FindingClass.B,
+    "H1-2026 results release (29-Jul-2026): revenue backlog AED 65.4bn (doubling y/y, "
+    "+42% vs FY2025), 95% development; H1 real-estate sales AED 26bn incl. 23bn Abu "
+    "Dhabi (Hudayriyat Golf Estates AED 13bn within days); net debt AED 912mn on the "
+    "company definition with AED 8.6bn unrestricted cash; adjusted EBITDA AED 3.0bn "
+    "(32.6%); hospitality 3,613 keys across 16 owned/operated/JV hotels. [ADDED at "
+    "revision 2: the first edition swept the interim STATEMENTS but not this release, "
+    "and struck its development drivers on 31-Dec-2025 disclosures — the largest "
+    "finding of the external audits, accepted and implemented]",
+    "Modon H1-2026 results announcement, modon.com media centre, 29-Jul-2026", IR,
+    "2026-07-29", fiscal_period="H1-2026",
+    model_impact="Restrikes the valuation date to 30-Jun-2026: backlog roll opens at "
+                 "62.1bn, FY2026 sales true to the realised 26bn + an H2 assumption, "
+                 "the bridge uses the 30-Jun balance sheet and available cash, and "
+                 "the run-off scenario is demoted to a stress reading.")
+
+f_beta = R.add(Ring.INDUSTRY, "beta evidence (regression + industry cross-check)",
+    FindingClass.S,
+    "Own-stock weekly regression vs an equal-weight proxy of the 18 ADX/DFM names in "
+    "the house library: beta 1.025 (3y, SE 0.109, R2 0.367, n 155, gate PASS); 1.071 "
+    "(5y); 1.055 (2y). Damodaran EM industry route rejected as primary (RE Development "
+    "unlevered 0.45 dominated by highly-levered Chinese developers, D/E 1.97); "
+    "retained as a lower-bound cross-check (relevered 0.56-0.59)",
+    "House regression on the price library; Damodaran betaemerg.xls (07-Jan-2026)",
+    PMD, "2026-08-09",
+    model_impact="Beta upgrades from the tier-3 assumption 1.0 to 1.03 (proxy-index "
+                 "regression, flagged: proxy is not the official benchmark); "
+                 "sensitised 0.8-1.2.")
+
 # ---- primary access log (successes AND failures, per the standing rule) -------
 R.record_primary_access("https://www.modon.ae/investor-relations", True, SWEEP_DATE,
     "301 redirect to modon.com/investor-relations — followed")

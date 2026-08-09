@@ -406,181 +406,334 @@ D['units'] = dict(total=dict(sales=sales25, units=units25, px=sales25 / units25)
                   backlog=backlog, dev_backlog=dev_backlog)
 
 # =============================================================================
-# FORECAST — FY2026E..FY2030E, segment build (finest sourced level = IFRS 8
-# segment, with unit-level anchors on development; full per-project volume x
-# price is NOT disclosed — flagged per the ground-up mandate)
+# H1-2026 RESULTS RELEASE (29-Jul-2026) — the restrike anchors [ADDED at revision 2,
+# 09-Aug-2026: the first edition struck its development drivers on 31-Dec-2025
+# disclosures although this release existed; the external audits caught it]
 # =============================================================================
-years = ['FY26E', 'FY27E', 'FY28E', 'FY29E', 'FY30E']
+H1R = ("Modon H1-2026 results announcement, modon.com media centre, 29-Jul-2026 "
+       "(verified via Zawya/WAM syndication of the official release)")
+h1_backlog = inp('h1_backlog', 65400.0, 'Group revenue backlog AED 65.4bn, doubling '
+                 'y/y, +42% vs FY2025; ' + H1R, '2026-07-29', 'Company')
+h1_dev_share = inp('h1_dev_share', 0.95, 'Development projects across the UAE and '
+                   'Egypt = 95% of the total backlog; ' + H1R, '2026-07-29', 'Company')
+dev_backlog_h1 = h1_backlog * h1_dev_share
+h1_sales = inp('h1_sales', 26000.0, 'H1-2026 real estate sales AED 26bn (2.6x H1-2025), '
+               'incl. AED 23bn Abu Dhabi; Hudayriyat Golf Estates AED 13bn within days; '
+               + H1R, '2026-07-29', 'Company')
+h1_netdebt = inp('h1_netdebt', 912.0, 'Net debt AED 912mn (0.02x equity) at 30-Jun-2026, '
+                 'company definition; ' + H1R, '2026-07-29', 'Company')
+h1_avail_cash = inp('h1_avail_cash', 8600.0, 'AED 8.6bn of unrestricted cash plus AED '
+                    '1.5bn undrawn committed facilities; ' + H1R, '2026-07-29', 'Company')
+h1_adj_ebitda = inp('h1_adj_ebitda', 2995.0, 'H1-2026 Group Adjusted EBITDA AED 3.0bn, '
+                    'margin 32.6% (32.6% x 9,188 = 2,995); ' + H1R, '2026-07-29',
+                    'Company')
+h1_keys = inp('h1_keys', 3613, 'Hospitality portfolio 3,613 keys across 16 owned, '
+              'operated and JV hotels (narrower perimeter than the FY2025 report\'s '
+              '7,137 keys across 27 hotels incl. managed); ' + H1R, '2026-07-29',
+              'Company')
+h1_recurring = inp('h1_recurring', 3500.0, 'Recurring revenues +22% y/y to AED 3.5bn '
+                   '= 38% of Group revenues; ' + H1R, '2026-07-29', 'Company')
+
+# 30-Jun-2026 balance-sheet anchors (reviewed interim, already extracted above)
+bs30_cash_total = h1_cash                          # 12,303.240
+bs30_debt = h1_loans + h1_rploan                   # 9,541.685
+bs30_lease = inp('h1_lease', 559.703 + 85.096, 'Lease liabilities NC + C, ' + H126,
+                 '2026-08-07', 'Company')
+bs30_assoc = inp('h1_assoc_bv', 2826.454, 'Investments in associates and JVs, ' + H126,
+                 '2026-08-07', 'Company')
+bs30_finass = inp('h1_finass', 338.000 + 54.972, 'Investments in financial assets, '
+                  'NC + C, ' + H126, '2026-08-07', 'Company')
+bs30_nci = inp('h1_nci', 922.342, 'Non-controlling interests, ' + H126, '2026-08-07',
+               'Company')
+bs30_eqp = h1_eqp                                  # 56,396.629
+bs30_recv = inp('h1_recv_total', 762.616 + 10637.555 + 2436.750 + 8318.759,
+                'Trade and other receivables (NC+C) + amounts due from related '
+                'parties (NC+C), 30-Jun-2026, ' + H126, '2026-08-07', 'Company')
+bs30_invdwip = inp('h1_inv_dwip', 27599.592 + 6487.697, 'Inventories + development '
+                   'work-in-progress, 30-Jun-2026, ' + H126, '2026-08-07', 'Company')
+bs30_pay = inp('h1_pay_total', 4219.904 + 16903.729 + 717.981 + 447.706,
+               'Trade and other payables (NC+C, incl. customer advances/contract '
+               'liabilities) + amounts due to related parties, 30-Jun-2026, ' + H126,
+               '2026-08-07', 'Company')
+nwc30 = bs30_recv + bs30_invdwip - bs30_pay
+D['h1_anchors'] = dict(backlog=h1_backlog, dev_backlog=dev_backlog_h1,
+                       sales=h1_sales, netdebt=h1_netdebt, avail_cash=h1_avail_cash,
+                       cash_total=bs30_cash_total, debt=bs30_debt, lease=bs30_lease,
+                       assoc=bs30_assoc, finass=bs30_finass, nci=bs30_nci,
+                       eqp=bs30_eqp, recv=bs30_recv, invdwip=bs30_invdwip,
+                       pay=bs30_pay, nwc=nwc30, adj_ebitda=h1_adj_ebitda)
+
+# =============================================================================
+# FORECAST v2 — valuation date 30-Jun-2026; H2-2026 stub + FY2027E..FY2030E.
+# Bottom-up: development off the DISCLOSED 30-Jun backlog with H1-realised
+# anchors; working capital from components (receivable days, land-bank
+# conversion, payables/advances cover) calibrated to the two audited/reviewed
+# balance-sheet dates; D&A off the asset base, not revenue.
+# =============================================================================
+years = ['H2-26E', 'FY27E', 'FY28E', 'FY29E', 'FY30E']
 NY = 5
+YRFRAC = [0.5, 1.0, 1.0, 1.0, 1.0]
+T_EXP = [0.5, 1.5, 2.5, 3.5, 4.5]     # end-of-period discounting from 30-Jun-2026
 
-# development: backlog roll-forward. dev revenue_t = conv_t x opening backlog
-# + point-in-time land sales; backlog_t = backlog_{t-1} + new dev sales - dev rev
-conv_path = inp('conv_path', [0.24, 0.27, 0.29, 0.31, 0.33],
-                'Backlog conversion rate on opening development backlog. FY2026E '
-                'anchored on H1-2026 actuals (RED development revenue ex-land 4,237 '
-                'in H1 = ~20% annualised pace on the opening 42,600, with an '
-                'H2-weighted construction ramp), stepping up as the AED 32bn of '
-                'construction contracts procured in 2025 mobilise', '2026-08-09',
-                'House')
-new_sales = inp('new_sales', [26000.0, 24000.0, 22000.0, 20500.0, 19000.0],
-                'New development sales, BASE path: normalising from the 2025 record '
-                '(33.8bn dev component of 36.3bn) toward a mid-cycle ~19-26bn as '
-                'the ADREC-reported +67% residential market cools; Modon share of '
-                'Abu Dhabi residential held roughly flat', '2026-08-09', 'House')
-land_rev = inp('land_rev', [1800.0, 1600.0, 1400.0, 1200.0, 1000.0],
-               'Point-in-time land and plot sales, tapering from the FY2025 2,513 '
-               '(related-party-heavy; 67% gross margin) toward 1,000', '2026-08-09',
-               'House')
+conv_path = inp('conv_path', [0.105, 0.25, 0.28, 0.30, 0.32],
+                'Backlog conversion on opening development backlog (H2-2026 is a '
+                'half-year rate). Anchor: H1-2026 realised development revenue '
+                'ex-land 4,237 = 9.9% of the 42,600 opening — a ~20-23% annualised '
+                'pace on a growing base, stepping up as the record construction '
+                'book mobilises', '2026-08-09', 'House')
+new_sales = inp('new_sales', [12000.0, 30000.0, 26000.0, 23000.0, 21000.0],
+                'New development sales, BASE path, POST-H1 (the AED 26bn H1-2026 '
+                'actual is already inside the opening backlog): H2-2026 12bn '
+                '(no assumed repeat of the 13bn Golf Estates launch), then fading '
+                '30->21bn/yr — still below the 52bn annualised H1 run-rate '
+                'throughout', '2026-08-09', 'House')
+land_rev = inp('land_rev', [700.0, 1400.0, 1300.0, 1200.0, 1100.0],
+               'Point-in-time land and plot sales: H1-2026 actual was 1,438; '
+               'tapering path', '2026-08-09', 'House')
 red_margin = inp('red_margin', [0.41, 0.40, 0.39, 0.385, 0.38],
-                 'RED gross margin: FY2025 actual 43.7%, H1-2026 41.3%; glides to '
-                 '38% as the related-party land mix fades and the tender-price '
-                 'escalator (~4%) runs ahead of realised-price escalation (~2%)',
+                 'RED gross margin: FY2025 43.7%, H1-2026 actual 41.3%; glides to '
+                 '38% as related-party land mix fades and the ~4% tender-price '
+                 'escalator runs ahead of ~2% realised-price escalation',
                  '2026-08-09', 'House')
-aim_growth = inp('aim_growth', [0.10, 0.085, 0.085, 0.08, 0.08],
-                 'AIM revenue growth: 97% occupancy, contracted GLA additions, '
-                 '2 Finsbury Avenue and Harborside step-ins', '2026-08-09', 'House')
-aim_margin = inp('aim_margin', [0.64, 0.64, 0.64, 0.64, 0.64],
-                 'AIM gross margin held at the FY2025 actual 64.3%', '2026-08-09',
-                 'House')
-hosp_growth = inp('hosp_growth', [0.06, 0.07, 0.07, 0.06, 0.06],
-                  'Hospitality: 7,137 keys at 71% occupancy recovering toward 75% '
-                  'plus Olympia Resort ramp', '2026-08-09', 'House')
-hosp_margin = inp('hosp_margin', [0.27, 0.28, 0.29, 0.30, 0.30],
-                  'Hospitality gross margin: FY2025 26.6% (post-2024 impairment '
-                  'reset), H1-2026 27.2%, recovering to 30%', '2026-08-09', 'House')
-ect_growth = inp('ect_growth', [0.118, 0.045, 0.043, 0.041, 0.039],
-                 'ECT: FY2026E anchored on H1 actual 2,775 with the H2-weighted '
-                 'events season (896 events, 6.3mn visitors 2025; Arena Group '
-                 'full-year effect), then ~4%/yr events-industry growth',
+aim_growth = inp('aim_growth', [None, 0.09, 0.085, 0.08, 0.08],
+                 'AIM revenue growth off the FY2026E base; H2-2026E set directly',
                  '2026-08-09', 'House')
-ect_margin = inp('ect_margin', [0.265, 0.27, 0.275, 0.28, 0.28],
-                 'ECT gross margin: FY2025 26.5%, temporary-infrastructure mix '
-                 'maturing', '2026-08-09', 'House')
-oth_rev_f = inp('oth_rev_f', -30.0, 'Others/eliminations revenue, held at FY2025',
-                '2026-08-09', 'House')
-oth_gp_f = inp('oth_gp_f', -120.0, 'Others gross loss: FY2025 -164.6 included '
-               'one-off items; H1-2026 run-rate -115', '2026-08-09', 'House')
-ga_pct = inp('ga_pct', [0.088, 0.088, 0.087, 0.086, 0.085],
-             'G&A as a share of revenue: FY2025 11.2%, H1-2026 actual 7.5% '
-             '(operating leverage); forecast holds a conservative 8.5-8.8%',
-             '2026-08-09', 'House')
-sm_pct = inp('sm_pct', [0.018, 0.018, 0.017, 0.017, 0.016],
-             'Selling and marketing as a share of revenue: FY2025 1.9%, H1-2026 '
-             '1.6%', '2026-08-09', 'House')
-invinc_f = inp('invinc_f', [160.0, 165.0, 170.0, 175.0, 180.0],
-               'Investment and other income, recurring component only: FY2025 338 '
-               'included 94 of one-off unwinding/disposal items; H1-2026 71',
-               '2026-08-09', 'House')
-assoc_g = inp('assoc_g', 0.08, 'Growth in the share of associates/JV profit off a '
-              'post-disposal FY2026E base of 200', '2026-08-09', 'House')
-assoc_base = inp('assoc_base', 200.0, 'FY2026E associate income base: H1-2026 actual '
-                 '88.3 plus H2, after the Q2-2026 JV disposal', '2026-08-09', 'House')
-dna_pct = inp('dna_pct', 0.042, 'Depreciation and amortisation as a share of revenue: '
-              'FY2025 4.4%, H1-2026 3.6%; held near 4.2% as venues and resorts '
-              'commission', '2026-08-09', 'House')
-capex_f = inp('capex_f', [1400.0, 1500.0, 1550.0, 1600.0, 1650.0],
-              'Capital expenditure: FY2025 actual 1,260.6 (PP&E + intangibles + IP); '
-              'rising with Olympia Resort and venue pipeline', '2026-08-09', 'House')
-nwc_release = inp('nwc_release', [-1500.0, 800.0, 1200.0, 1400.0, 1400.0],
-                  'Annual net working-capital release (negative = absorption) as '
-                  'the AED 26.6bn land bank and WIP convert to recognised revenue. '
-                  'FY2026E ABSORBS cash: the H1-2026 interim shows AED 5.4bn of '
-                  'receivable/related-party build-up and negative operating cash '
-                  'flow, only partly collected in H2; releases start FY2027E as '
-                  'escrows and Department-of-Finance receivables collect',
+aim_h2 = inp('aim_h2', 385.0, 'AIM H2-2026E revenue: H1 actual 361 with contracted '
+             'occupancy 96% and GLA additions', '2026-08-09', 'House')
+aim_margin = inp('aim_margin', [0.68, 0.66, 0.65, 0.64, 0.64],
+                 'AIM gross margin: FY2025 64.3%, H1-2026 actual 71.6%; held near '
+                 'the blend', '2026-08-09', 'House')
+hosp_growth = inp('hosp_growth', [None, 0.07, 0.07, 0.06, 0.06],
+                  'Hospitality growth off FY2026E; H2 set directly', '2026-08-09',
+                  'House')
+hosp_h2 = inp('hosp_h2', 452.0, 'Hospitality H2-2026E: H1 actual 388 plus the '
+              'winter-season weighting (H2-2025 was 52% of the year)', '2026-08-09',
+              'House')
+hosp_margin = inp('hosp_margin', [0.29, 0.28, 0.29, 0.30, 0.30],
+                  'Hospitality gross margin: H1-2026 actual 27.2%, recovering to 30%',
                   '2026-08-09', 'House')
-tax_f = inp('tax_f', 0.155, 'Forecast effective tax rate: DMTT 15% floor on UAE '
-            'profits plus the UK/Spain uplift; H1-2026 actual 15.4%', '2026-08-09',
-            'House')
-nci_pct = inp('nci_pct', 0.02, 'NCI share of profit: FY2025 was a small NCI loss, '
-              'H1-2026 +1.8% of PAT as hospitality JVs recover', '2026-08-09', 'House')
+ect_growth = inp('ect_growth', [None, 0.045, 0.043, 0.041, 0.039],
+                 'ECT growth off FY2026E; H2 set directly', '2026-08-09', 'House')
+ect_h2 = inp('ect_h2', 3000.0, 'ECT H2-2026E: H1 actual 2,775 plus the H2-weighted '
+             'events season (ADNEC calendar; Arena full-period)', '2026-08-09',
+             'House')
+ect_margin = inp('ect_margin', [0.29, 0.27, 0.275, 0.28, 0.28],
+                 'ECT gross margin: H1-2026 actual 19.9% (temporary-infrastructure '
+                 'mix), recovering toward the FY2025 26.5% as the events season '
+                 'carries H2', '2026-08-09', 'House')
+oth_rev_f = inp('oth_rev_f', -30.0, 'Others / eliminations, full-year rate',
+                '2026-08-09', 'House')
+oth_gp_f = inp('oth_gp_f', -120.0, 'Others gross loss, full-year rate (H1-2026 '
+               'actual -57.5)', '2026-08-09', 'House')
+ga_pct = inp('ga_pct', [0.083, 0.088, 0.087, 0.086, 0.085],
+             'G&A / revenue. Anchors stated: FY2025 11.19%; H1-2026 headline 7.46% '
+             'flattered by a -77.9 ECL reversal — ex-reversal 8.30%. The path '
+             'glides 8.3% -> 8.5-8.8%, i.e. BELOW FY2025 on realised operating '
+             'leverage but ABOVE the flattered H1 print. The first edition\'s '
+             'conservatism claim is withdrawn: this is a generous assumption '
+             'relative to FY2025 and is now labelled as such', '2026-08-09', 'House')
+sm_pct = inp('sm_pct', [0.017, 0.018, 0.017, 0.017, 0.016],
+             'S&M / revenue: FY2025 1.93%, H1-2026 1.64%', '2026-08-09', 'House')
+invinc_f = inp('invinc_f', [80.0, 165.0, 170.0, 175.0, 180.0],
+               'Investment and other income, recurring component (H1-2026 actual 71 '
+               'incl. one-offs)', '2026-08-09', 'House')
+assoc_f_path = inp('assoc_f_path', [95.0, 210.0, 227.0, 245.0, 264.0],
+                   'Associate/JV income: H1-2026 actual 88.3 post the Q2 JV '
+                   'disposal; ~8%/yr thereafter', '2026-08-09', 'House')
+dna_rate = inp('dna_rate', 0.034, 'Depreciation & amortisation as a rate on the '
+               'AVERAGE depreciable asset base (PP&E + investment properties + '
+               'right-of-use + intangibles): FY2025 charge 610.5 on an average '
+               'base of ~17,940 = 3.4%. Respecified off the asset base at '
+               'revision 2 — the first edition drove D&A off revenue, a '
+               'mis-specified driver both external audits flagged', '2026-08-09',
+               'House')
+asset_base_30jun = inp('asset_base_30jun', 8702.928 + 9496.084 + 529.636 + 1007.486,
+                       'Depreciable base at 30-Jun-2026: PP&E 8,702.928 + investment '
+                       'properties 9,496.084 + right-of-use 529.636 + intangibles '
+                       '1,007.486, ' + H126, '2026-08-07', 'Company')
+capex_f = inp('capex_f', [700.0, 1500.0, 1550.0, 1600.0, 1650.0],
+              'Capital expenditure (H2 stub then annual): H1-2026 actual 312.5 '
+              '(PP&E 206.9 + intangibles 63.5 + IP 42.0); rising with Olympia and '
+              'venue pipeline', '2026-08-09', 'House')
+tax_f = inp('tax_f', 0.155, 'Effective tax: DMTT 15% floor + foreign uplift; '
+            'H1-2026 actual 15.4%', '2026-08-09', 'House')
+nci_pct = inp('nci_pct', 0.02, 'NCI share of profit: H1-2026 actual 1.8%',
+              '2026-08-09', 'House')
 
-# --- build the segment paths -------------------------------------------------
+# ---- working capital from components (SIGCM clause 4), calibrated at
+# 31-Dec-2025 and 30-Jun-2026 --------------------------------------------------
+dso_path = inp('dso_path', [440.0, 430.0, 410.0, 390.0, 370.0],
+               'Receivable days (trade + contract + related-party receivables '
+               'over revenue): FY2025 439 days, 30-Jun-2026 440 days — held flat '
+               'through 2026 then declining as Department-of-Finance balances '
+               'collect. THE collection caveat in one driver', '2026-08-09', 'House')
+inv_addition = inp('inv_addition', 0.10, 'New-project WIP added per dirham of new '
+                   'development sales (mobilisation, infrastructure)', '2026-08-09',
+                   'House')
+inv_consumption = inp('inv_consumption', 0.20, 'Share of RED direct costs drawn '
+                      'from the existing land bank / WIP (land content of cost of '
+                      'sales)', '2026-08-09', 'House')
+pay_cover = inp('pay_cover', [1.86, 1.70, 1.55, 1.45, 1.40],
+                'Trade payables + customer advances + related-party payables as a '
+                'multiple of annual direct costs: FY2025 2.62x (advance-heavy), '
+                '30-Jun-2026 1.86x; declining as handovers recognise advances. '
+                'This is the presale-funding mechanism: customers, not the '
+                'balance sheet, fund construction', '2026-08-09', 'House')
+
+# ---- build the paths ---------------------------------------------------------
 red_rev, aim_rev, hosp_rev, ect_rev = [], [], [], []
 bl_open, bl_close, dev_rev_l = [], [], []
-bl = dev_backlog
-a_prev, h_prev, e_prev = seg_rev25['aim'], seg_rev25['hosp'], seg_rev25['ect']
+bl = dev_backlog_h1
 for t in range(NY):
-    dev_rev = conv_path[t] * bl
-    rr = dev_rev + land_rev[t]
-    bl_open.append(bl)
-    bl = bl + new_sales[t] - dev_rev
-    bl_close.append(bl)
-    dev_rev_l.append(dev_rev)
-    red_rev.append(rr)
-    a_prev *= (1 + aim_growth[t]); aim_rev.append(a_prev)
-    h_prev *= (1 + hosp_growth[t]); hosp_rev.append(h_prev)
-    e_prev *= (1 + ect_growth[t]); ect_rev.append(e_prev)
+    dr = conv_path[t] * bl
+    rr = dr + land_rev[t]
+    bl_open.append(bl); bl = bl + new_sales[t] - dr; bl_close.append(bl)
+    dev_rev_l.append(dr); red_rev.append(rr)
+    if t == 0:
+        aim_rev.append(aim_h2); hosp_rev.append(hosp_h2); ect_rev.append(ect_h2)
+    elif t == 1:
+        # FY2027 = the FULL FY2026 (H1 actual + H2 stub) grown at the segment rate
+        aim_rev.append((h1_seg_rev['aim'] + aim_h2) * (1 + aim_growth[t]))
+        hosp_rev.append((h1_seg_rev['hosp'] + hosp_h2) * (1 + hosp_growth[t]))
+        ect_rev.append((h1_seg_rev['ect'] + ect_h2) * (1 + ect_growth[t]))
+    else:
+        aim_rev.append(aim_rev[-1] * (1 + aim_growth[t]))
+        hosp_rev.append(hosp_rev[-1] * (1 + hosp_growth[t]))
+        ect_rev.append(ect_rev[-1] * (1 + ect_growth[t]))
 
-rev_f = [red_rev[t] + aim_rev[t] + hosp_rev[t] + ect_rev[t] + oth_rev_f
+rev_f = [red_rev[t] + aim_rev[t] + hosp_rev[t] + ect_rev[t] + oth_rev_f * YRFRAC[t]
          for t in range(NY)]
 gp_f = [red_rev[t] * red_margin[t] + aim_rev[t] * aim_margin[t]
-        + hosp_rev[t] * hosp_margin[t] + ect_rev[t] * ect_margin[t] + oth_gp_f
-        for t in range(NY)]
+        + hosp_rev[t] * hosp_margin[t] + ect_rev[t] * ect_margin[t]
+        + oth_gp_f * YRFRAC[t] for t in range(NY)]
 ga_f = [ga_pct[t] * rev_f[t] for t in range(NY)]
 sm_f = [sm_pct[t] * rev_f[t] for t in range(NY)]
 ebit_f = [gp_f[t] - ga_f[t] - sm_f[t] + invinc_f[t] for t in range(NY)]
-dna_f = [dna_pct * rev_f[t] for t in range(NY)]
+# D&A off the asset base
+dna_f, ab = [], asset_base_30jun
+for t in range(NY):
+    da = dna_rate * (ab + capex_f[t] / 2) * YRFRAC[t]
+    dna_f.append(da); ab = ab + capex_f[t] - da
 ebitda_f = [ebit_f[t] + dna_f[t] for t in range(NY)]
-assoc_f = [assoc_base * (1 + assoc_g) ** t for t in range(NY)]
+assoc_f = assoc_f_path
 nopat_f = [ebit_f[t] * (1 - tax_f) for t in range(NY)]
-dnwc_f = [-nwc_release[t] for t in range(NY)]
+
+# WC components
+fy26_rev_total = h1_rev + rev_f[0]
+recv_f, inv_f, pay_f, nwc_f, dnwc_f = [], [], [], [], []
+rprev, iprev, pprev, nprev = bs30_recv, bs30_invdwip, bs30_pay, nwc30
+for t in range(NY):
+    rev_run = fy26_rev_total if t == 0 else rev_f[t]
+    dc_run = (fy26_rev_total - (h1_gp + gp_f[0])) if t == 0 else rev_f[t] - gp_f[t]
+    red_cost = red_rev[t] * (1 - red_margin[t])
+    recv = dso_path[t] / 365.0 * rev_run
+    invv = iprev + inv_addition * new_sales[t] - inv_consumption * red_cost
+    pay = pay_cover[t] * dc_run
+    nwc = recv + invv - pay
+    recv_f.append(recv); inv_f.append(invv); pay_f.append(pay)
+    nwc_f.append(nwc); dnwc_f.append(nwc - nprev)
+    rprev, iprev, pprev, nprev = recv, invv, pay, nwc
 fcff_f = [nopat_f[t] + dna_f[t] - capex_f[t] - dnwc_f[t] for t in range(NY)]
 
 # =============================================================================
-# COST OF CAPITAL — v2 (per-sovereign, bottom-up, both ERP bases where published)
+# COST OF CAPITAL v2 — beta upgraded from the tier-3 assumption to a
+# proxy-index regression, cross-checked against the industry route
 # =============================================================================
-rf_gross = inp('rf', 0.0448, 'AED sovereign anchor: UAE dirham T-Bond maturing '
-               'Jan-2031 auctioned at 4.48% YTM (July-2026 auction, ~4bp over '
-               'comparable UST), UAE MoF/CBUAE via WAM, longest liquid AED tranche',
-               '2026-07-30', 'Country')
+rf_gross = inp('rf', 0.0448, 'AED sovereign anchor: Jan-2031 dirham T-Bond, 4.48% '
+               'YTM, July-2026 auction, ~4bp over UST (UAE MoF via WAM) — the '
+               'longest liquid AED government tranche; the tenor choice (4.4y vs a '
+               'perpetual stream) is stated as a limitation', '2026-07-30', 'Country')
 sov_spread = inp('sov_spread_rating', 0.0042, 'Damodaran adjusted default spread, '
-                 'UAE row, rating basis (Aa2), January 2026 update of ctryprem',
+                 'UAE (Aa2), rating basis, January-2026 ctryprem (the July-2026 '
+                 'refresh carries the same UAE parameters per independent '
+                 'verification; vintage stated)', '2026-01-05', 'Country')
+erp_rating = inp('erp_rating', 0.0487, 'Damodaran total ERP, UAE row, rating basis',
                  '2026-01-05', 'Country')
-erp_rating = inp('erp_rating', 0.0487, 'Damodaran total equity risk premium, UAE row, '
-                 'rating basis, January 2026 ctryprem (mature-market base 4.23% + '
-                 'CRP 0.64%)', '2026-01-05', 'Country')
-inp('erp_cds_na', 'NA', 'Damodaran ctryprem UAE row: sovereign CDS and CDS-based ERP '
-    'published as NA — the CDS-basis WACC cannot be built for the UAE; the '
-    'consistency rule (strip the same basis you add back) is satisfied on the '
-    'rating basis alone', '2026-01-05', 'Country')
-beta = inp('beta', 1.0, 'Tier-3 fallback, FLAGGED INTERIM: the own-stock regression '
-           'is unavailable because no FTSE ADX General Index history could be '
-           'retrieved (seven sources attempted and logged); same-country peer betas '
-           'need the same index. House precedent: EAND, TWOPOINTZERO. Sensitised '
+inp('erp_cds_na', 'NA', 'No UAE sovereign CDS row is published — the CDS-basis '
+    'WACC cannot be built; rating basis stands alone, stated', '2026-01-05',
+    'Country')
+beta = inp('beta', 1.03, 'OWN-STOCK regression against an equal-weight proxy of '
+           'the 18 ADX/DFM names in the house library (the official FTSE ADX '
+           'General index remains unobtainable — 7 sources logged): 3-year weekly '
+           'beta 1.025 (SE 0.109, R2 0.367, n 155, gate PASS); 5-year 1.071 '
+           '(R2 0.142, spans the pre-2022 thin-trading regime); 2-year 1.055 '
+           '(R2 0.460). Adopted 1.03, FLAGGED: proxy index, not the official '
+           'benchmark. The Damodaran EM industry route (business-weighted '
+           'unlevered 0.50 -> relevered 0.56-0.59) is REJECTED as a primary: the '
+           '786-firm Real-Estate-Development row is dominated by highly-levered '
+           'Chinese developers (D/E 1.97) unrepresentative of a UAE state '
+           'platform; it is retained as a lower-bound cross-check. Sensitised '
            '0.8-1.2', '2026-08-09', 'House')
+inp('beta_reg_detail', dict(w3y=[1.025, 0.109, 0.367, 155], w5y=[1.071, 0.164, 0.142, 259],
+                            w2y=[1.055, 0.114, 0.460, 103]),
+    'Regression detail (beta, SE, R2, n) per window: MODON weekly log-returns vs '
+    'the equal-weight 18-name panel proxy, computed from the house price library',
+    '2026-08-09', 'House')
+inp('beta_industry_check', dict(unlevered_weighted=0.501, relevered_fy25=0.563,
+                                relevered_h1=0.588),
+    'Damodaran January-2026 EM industry betas (betaemerg.xls, saved 07-Jan-2026): '
+    'RE Development unlevered 0.452 (cash-corrected, 786 firms, D/E 1.97), RE '
+    'Operations 0.590, Hotel/Gaming 0.580; gross-profit-weighted and relevered at '
+    'Modon\'s structure. Cross-check only', '2026-01-07', 'Industry')
 rf_star = rf_gross - sov_spread
 ke = rf_star + beta * erp_rating
-eibor6 = inp('eibor6m', 0.0371, 'EIBOR 6-month fixing 3.71% at 31-Mar-2026 (CBUAE '
-             'published set via secondary mirrors; CBUAE page returned 403 at this '
-             'session\'s proxy, logged)', '2026-03-31', 'Country')
-kd_margin = inp('kd_margin', 0.0165, 'Blended forward margin over 6M EIBOR: the '
-                'newest large AED tranche (Term Loan 15, 1,415mn, Jan-2027) priced '
-                'at 6M EIBOR+0.60%; construction tranches at 3M EIBOR+0.85-2.5%; '
-                'GBP venue debt at SONIA+0.95-2.05%. Blend ~+165bp', '2026-02-18',
+eibor6 = inp('eibor6m', 0.0371, 'EIBOR 6M 3.71% (31-Mar-2026 published set; the '
+             'CBUAE page again refused this session — fixing retained WITH ITS '
+             'DATE; a 25bp EIBOR move is ~3bp of WACC)', '2026-03-31', 'Country')
+kd_margin = inp('kd_margin', 0.0165, 'Blended forward margin over 6M EIBOR from '
+                'the note-29 tranche table (+0.60% newest large AED tranche to '
+                '+2.5% construction; SONIA +0.95-2.05% GBP)', '2026-02-18',
                 'Company/House')
 kd = eibor6 + kd_margin
-A(kd > rf_gross, f'marginal Kd {kd:.3%} sits above the AED sovereign {rf_gross:.3%} '
-  '(a same-currency corporate cannot borrow below its sovereign)')
+A(kd > rf_gross, 'marginal Kd above the AED sovereign')
 kd_at = kd * (1 - tax_f)
-we = mktcap / (mktcap + debt25)
-wd = debt25 / (mktcap + debt25)
+mktcap = spot * shares_mn
+we = mktcap / (mktcap + bs30_debt)
+wd = bs30_debt / (mktcap + bs30_debt)
 wacc = we * ke + wd * kd_at
-wd_term = inp('wd_term', 0.15, 'Terminal debt weight D/(D+E), normalised: current '
-              'book gearing 12.8% on market values, construction-phase drawdowns '
-              'push it up before land-bank cash releases pull it back',
-              '2026-08-09', 'House')
-g_term = inp('g_term', 0.025, 'Terminal growth 2.5%: long-run AED/USD-peg nominal '
-             'growth; Abu Dhabi population and tourism growth support the real '
-             'component', '2026-08-09', 'House')
-ke_term = ke
-kd_term = kd
-wacc_term = (1 - wd_term) * ke_term + wd_term * kd_term * (1 - tax_f)
-roic_term = inp('roic_term', 0.085, 'Terminal return on invested capital: FY2025 '
-                'clean ROIC 6.6% rising as the at-cost land bank converts to '
-                'recognised profit; capped near the terminal WACC + a thin spread',
-                '2026-08-09', 'House')
+g_term = inp('g_term', 0.025, 'Terminal growth 2.5%', '2026-08-09', 'House')
+roic_term = inp('roic_term', 0.085, 'Terminal ROIC 8.5% — deliberately BELOW the '
+                'model\'s own forecast path (which reaches ~15% by FY2030E as '
+                'invested capital shrinks while NOPAT grows): a mean-reversion '
+                'margin of safety on the block that carries ~70% of EV, and above '
+                'the FY2025 clean achieved 6.1% because the at-cost land bank '
+                'converts. Both anchors stated; the step-down is a choice, priced '
+                'in sensitivity', '2026-08-09', 'House')
 rr_term = g_term / roic_term
+
+# forecast balance-sheet roll (needed for the DERIVED terminal weights)
+debt_path = inp('debt_path', [10300.0, 10500.0, 9700.0, 8800.0, 7900.0],
+                'Gross debt path incl. related-party loan from the 30-Jun-2026 '
+                'actual 9,542: construction peak then amortising', '2026-08-09',
+                'House')
+cash_yield = inp('cash_yield', 0.035, 'Yield on cash', '2026-06-17', 'Country')
+lease_int = inp('lease_int', 36.0, 'Annual interest on lease liabilities (H1-2026 '
+                'actual ~18 per half), now an explicit input rather than an '
+                'embedded numeral', '2026-08-07', 'Company')
+np_f, npa_f, eq_f, nd_f, int_f, cash_f, debt_f = [], [], [], [], [], [], []
+eq = bs30_eqp + bs30_nci
+c_prev, d_prev = bs30_cash_total, bs30_debt
+for t in range(NY):
+    fin_cost_t = (kd * (d_prev + debt_path[t]) / 2 + lease_int) * YRFRAC[t]
+    fin_inc_t = cash_yield * c_prev * YRFRAC[t]
+    ebt_t = ebit_f[t] + assoc_f[t] + fin_inc_t - fin_cost_t
+    np_t = ebt_t * (1 - tax_f)
+    npa_f.append(np_t * (1 - nci_pct)); np_f.append(np_t); int_f.append(fin_cost_t)
+    eq = eq + np_t; eq_f.append(eq)
+    cash_t = c_prev + fcff_f[t] + fin_inc_t - fin_cost_t \
+        - (ebt_t - ebit_f[t]) * tax_f + (debt_path[t] - d_prev)
+    cash_f.append(cash_t); debt_f.append(debt_path[t]); nd_f.append(debt_path[t] - cash_t)
+    c_prev, d_prev = cash_t, debt_path[t]
+
+# terminal weights DERIVED from the model's own terminal-year structure
+# (the first edition assumed 15%; both audits showed the model's own FY2030E
+# balance sheet contradicts it)
+wd_term = debt_f[-1] / (debt_f[-1] + eq_f[-1])
+inp('wd_term_derived', wd_term, 'Terminal debt weight DERIVED from the model\'s own '
+    'FY2030E balance sheet: gross debt / (gross debt + book equity). Assumed-15% '
+    'retired at revision 2', '2026-08-09', 'House')
+ke_term, kd_term = ke, kd
+wacc_term = (1 - wd_term) * ke_term + wd_term * kd_term * (1 - tax_f)
 D['wacc'] = dict(rf=rf_gross, rf_star=rf_star, sov_spread=sov_spread,
                  erp=erp_rating, beta=beta, ke_exp=ke, kd=kd, kd_at=kd_at,
                  we_exp=we, wd_exp=wd, wacc_exp=wacc,
@@ -588,15 +741,15 @@ D['wacc'] = dict(rf=rf_gross, rf_star=rf_star, sov_spread=sov_spread,
                  wd_term=wd_term, wacc_term=wacc_term,
                  eibor6=eibor6, kd_margin=kd_margin,
                  kd_eff_fy25=(390.389 - 30.916) / ((debt24 + debt25) / 2),
-                 cds_basis='NA — Damodaran publishes no UAE sovereign CDS row',
-                 war_adder=0.0,
-                 war_adder_note='the 1.0pt conflict adder used by the Jul-2026 AE '
-                                'bank studies is retired here on auction evidence: '
-                                'the July-2026 AED sovereign printed 4bp over UST; '
-                                'a +1pt Ke stress is carried in sensitivity instead')
+                 cds_basis='NA — no UAE sovereign CDS published',
+                 weights_note='market-value equity per the standing method; the '
+                              'circularity (using the market\'s weights while '
+                              'arguing the market misprices the equity) is '
+                              'acknowledged: at the study\'s own equity value the '
+                              'WACC would be ~30bp higher and the DCF ~1% lower')
 
-# ---- DCF --------------------------------------------------------------------
-df_l = [(1 + wacc) ** -(t + 1) for t in range(NY)]
+# ---- DCF ---------------------------------------------------------------------
+df_l = [(1 + wacc) ** -x for x in T_EXP]
 pv_l = [fcff_f[t] * df_l[t] for t in range(NY)]
 pv_explicit = sum(pv_l)
 nopat_term = nopat_f[-1] * (1 + g_term)
@@ -605,237 +758,270 @@ pv_tv = tv * df_l[-1]
 ev = pv_explicit + pv_tv
 tv_share = pv_tv / ev
 
-# EV -> equity bridge (31-Dec-2025 basis)
-nci_val = nci25            # book value; alt framing below
-eq_attr = ev + cash25 - debt25 - lease25 + assocbv25 + finass25 - nci_val
-ps_dec = eq_attr / shares_mn
-anchor_days = inp('anchor_days', 219, 'Days from the 31-Dec-2025 valuation date (the '
-                  'audited balance-sheet anchor) to the 7-Aug-2026 price anchor',
-                  '2026-08-09', 'House')
+# EV -> equity bridge at 30-Jun-2026, AVAILABLE-cash basis (revision 2: the
+# gross-cash basis added ~AED 3.7bn of escrow committed to completing the very
+# backlog the DCF values — the escrow's value is already inside the margins)
+restricted = bs30_cash_total - h1_avail_cash
+eq_attr_book_nci = ev + h1_avail_cash - bs30_debt - bs30_lease + bs30_assoc \
+    + bs30_finass - bs30_nci
+nci_cap = max(bs30_nci, 0.02 * eq_attr_book_nci)
+eq_attr = ev + h1_avail_cash - bs30_debt - bs30_lease + bs30_assoc \
+    + bs30_finass - nci_cap
+ps_jun = eq_attr / shares_mn
+anchor_days = inp('anchor_days', 38, 'Days from the 30-Jun-2026 valuation date '
+                  '(reviewed balance sheet) to the 7-Aug-2026 price anchor — the '
+                  'first edition\'s 219-day accretion from 31-Dec-2025 is retired '
+                  'with the restrike', '2026-08-09', 'House')
 roll = (1 + ke) ** (anchor_days / 365.0)
-ps = ps_dec * roll
-eq_attr_anchor = eq_attr * roll
+ps = ps_jun * roll
+D['netcash'] = dict(strict=-(bs30_debt - bs30_cash_total),
+                    company=-h1_netdebt,
+                    note='30-Jun-2026: strict all-cash basis net cash 2,762; '
+                         'company definition net DEBT 912 (available cash only). '
+                         'The bridge uses the available-cash basis; the strict '
+                         'basis is the disclosed alternative')
 
-# NCI alternative framing: capitalise NCI at its share of group profit
-nci_alt = max(nci25, 0.02 * eq_attr)
-ps_nci_alt = (ev + cash25 - debt25 - lease25 + assocbv25 + finass25 - nci_alt) \
-    / shares_mn * roll
-
-# ---- CONTESTED JUDGEMENT, BOTH WAYS: backlog run-off alternative ------------
-new_sales_runoff = inp('new_sales_runoff', [15000.0, 12000.0, 10000.0, 9000.0, 8000.0],
-                       'ALTERNATIVE (run-off) path: new development sales halve from '
-                       'the record and keep fading — the mean-reversion reading of '
-                       'an ADREC market that grew 67% in a year', '2026-08-09',
-                       'House')
+# ---- contested judgement, both ways (post-H1 basis) --------------------------
+new_sales_runoff = inp('new_sales_runoff', [8000.0, 15000.0, 11000.0, 9000.0, 8000.0],
+                       'RUN-OFF path, post-H1: launches halve from the realised '
+                       'pace and fade — now a stress reading, not a live '
+                       'alternative: the H1-2026 disclosure (26bn in six months) '
+                       'falsified the first edition\'s run-off premise as a '
+                       'central scenario', '2026-08-09', 'House')
 red_margin_runoff = inp('red_margin_runoff', [0.40, 0.385, 0.37, 0.36, 0.35],
-                        'Run-off RED margin: pricing power fades with volume',
-                        '2026-08-09', 'House')
+                        'Run-off margins', '2026-08-09', 'House')
+new_sales_bull = inp('new_sales_bull', [15000.0, 34000.0, 34000.0, 34000.0, 34000.0],
+                     'GROWTH-HOLD path: sales hold near the realised H1-2026 '
+                     'annualised pace less the launch effect', '2026-08-09', 'House')
+red_margin_bull = inp('red_margin_bull', [0.42, 0.42, 0.41, 0.41, 0.40],
+                      'Growth-hold margins (published in full at revision 2 — the '
+                      'first edition left this vector undisclosed)', '2026-08-09',
+                      'House')
 
 
-def dcf_variant(ns, rm, conv=conv_path):
-    bl_v = dev_backlog
-    fcffs, revs, ebits = [], [], []
-    a2, h2, e2 = seg_rev25['aim'], seg_rev25['hosp'], seg_rev25['ect']
+def dcf_variant(ns, rm, conv=conv_path, ke_add=0.0, dso=None, nwc_add=0.0):
+    ke_x = rf_star + beta * erp_rating + ke_add
+    wacc_x = we * ke_x + wd * kd_at
+    dfx = [(1 + wacc_x) ** -x for x in T_EXP]
+    bl_v = dev_backlog_h1
+    a2 = h2_ = e2 = None
+    fcffs, ebits, revs = [], [], []
+    rprev2, iprev2, nprev2 = bs30_recv, bs30_invdwip, nwc30
+    ab2 = asset_base_30jun
+    dso_v = dso or dso_path
     for t in range(NY):
         dr = conv[t] * bl_v
         bl_v = bl_v + ns[t] - dr
         rr = dr + land_rev[t]
-        a2 *= (1 + aim_growth[t]); h2 *= (1 + hosp_growth[t]); e2 *= (1 + ect_growth[t])
-        rv = rr + a2 + h2 + e2 + oth_rev_f
-        gpv = rr * rm[t] + a2 * aim_margin[t] + h2 * hosp_margin[t] \
-            + e2 * ect_margin[t] + oth_gp_f
+        av = aim_rev[t]; hv = hosp_rev[t]; ev_ = ect_rev[t]
+        rv = rr + av + hv + ev_ + oth_rev_f * YRFRAC[t]
+        gpv = rr * rm[t] + av * aim_margin[t] + hv * hosp_margin[t] \
+            + ev_ * ect_margin[t] + oth_gp_f * YRFRAC[t]
         eb = gpv - ga_pct[t] * rv - sm_pct[t] * rv + invinc_f[t]
-        fc = eb * (1 - tax_f) + dna_pct * rv - capex_f[t] + nwc_release[t]
-        revs.append(rv); ebits.append(eb); fcffs.append(fc)
-    pvx = sum(f * d for f, d in zip(fcffs, df_l))
-    tvv = ebits[-1] * (1 - tax_f) * (1 + g_term) * (1 - rr_term) / (wacc_term - g_term)
-    evv = pvx + tvv * df_l[-1]
-    eq = (evv + cash25 - debt25 - lease25 + assocbv25 + finass25 - nci_val) \
-        / shares_mn * roll
-    return dict(ev=evv, ps=eq, rev=revs, fcff=fcffs, ebit=ebits)
+        da = dna_rate * (ab2 + capex_f[t] / 2) * YRFRAC[t]
+        ab2 = ab2 + capex_f[t] - da
+        rev_run = (h1_rev + rv) if t == 0 else rv
+        dc_run = (h1_rev + rv - (h1_gp + gpv)) if t == 0 else rv - gpv
+        recv = dso_v[t] / 365.0 * rev_run
+        invv = iprev2 + inv_addition * ns[t] - inv_consumption * rr * (1 - rm[t])
+        pay = pay_cover[t] * dc_run
+        nwc = recv + invv - pay
+        dn = nwc - nprev2
+        rprev2, iprev2, nprev2 = recv, invv, nwc
+        fcffs.append(eb * (1 - tax_f) + da - capex_f[t] - dn + nwc_add)
+        ebits.append(eb); revs.append(rv)
+    wt_x = (1 - wd_term) * ke_x + wd_term * kd * (1 - tax_f)
+    tvv = ebits[-1] * (1 - tax_f) * (1 + g_term) * (1 - rr_term) / (wt_x - g_term)
+    evv = sum(f * d for f, d in zip(fcffs, dfx)) + tvv * dfx[-1]
+    eqv = evv + h1_avail_cash - bs30_debt - bs30_lease + bs30_assoc + bs30_finass
+    eqv_attr = eqv - max(bs30_nci, 0.02 * (eqv - bs30_nci))
+    return dict(ev=evv, ps=eqv_attr / shares_mn * (1 + ke_x) ** (anchor_days / 365.0),
+                rev=revs, fcff=fcffs, ebit=ebits)
 
 
+base_check = dcf_variant(new_sales, red_margin)
+A(abs(base_check['ps'] - ps) < 0.02, 'scenario engine reproduces the base DCF')
 runoff = dcf_variant(new_sales_runoff, red_margin_runoff)
-bull_var = dcf_variant([30000.0] * 5, [0.42, 0.42, 0.41, 0.41, 0.40])
+bull_var = dcf_variant(new_sales_bull, red_margin_bull)
 D['contested'] = dict(
-    name='development sales trajectory (sustained-normalising vs backlog run-off)',
+    name='development sales trajectory (sustained-normalising vs run-off stress)',
     base_ps=ps, runoff_ps=runoff['ps'], bull_ps=bull_var['ps'],
-    runoff_ev=runoff['ev'], base_ev=ev * 1.0,
+    runoff_ev=runoff['ev'], base_ev=ev,
     runoff_rev=runoff['rev'], runoff_fcff=runoff['fcff'],
-    note='published side by side (summary table, section 1.7, workbook, Expert 2), '
-         'never averaged')
+    note='published side by side; the run-off is now labelled a stress: the '
+         'H1-2026 disclosure falsified it as a live central path')
 
-# ---- Egypt stress (Ras El Hekma leg priced at Egypt risk) -------------------
-egy_crp = inp('egy_crp', 0.0971, 'Damodaran country risk premium, Egypt row (Caa1), '
-              'January 2026 ctryprem — applied as a stress to the ~18% of revenue '
-              'earned outside the UAE', '2026-01-05', 'Country')
-fgn_share = inp('fgn_share', 2361.935 / 13828.869, 'Revenue outside UAE, FY2025 '
-                'geographic split, note 5, ' + FS25, '2026-02-18', 'Company')
-ke_stress = rf_star + beta * (erp_rating + fgn_share * (egy_crp - 0.0064))
-wacc_stress = we * ke_stress + wd * kd_at
-df_s = [(1 + wacc_stress) ** -(t + 1) for t in range(NY)]
-wacc_term_s = (1 - wd_term) * ke_stress + wd_term * kd_term * (1 - tax_f)
-tv_s = nopat_term * (1 - rr_term) / (wacc_term_s - g_term)
-ev_s = sum(f * d for f, d in zip(fcff_f, df_s)) + tv_s * df_s[-1]
-ps_egystress = (ev_s + cash25 - debt25 - lease25 + assocbv25 + finass25 - nci_val) \
-    / shares_mn * (1 + ke_stress) ** (anchor_days / 365.0)
-D['egy_stress'] = dict(ke=ke_stress, wacc=wacc_stress, ps=ps_egystress,
-                       fgn_share=fgn_share)
+# Egypt stress (note 5 geographic revenue split — 17.08% outside UAE)
+egy_crp = inp('egy_crp', 0.0971, 'Damodaran CRP, Egypt (Caa1), Jan-2026',
+              '2026-01-05', 'Country')
+fgn_share = inp('fgn_share', 2361.935 / 13828.869, 'Revenue OUTSIDE the UAE, FY2025 '
+                'audited geographic split, note 5 (11,466.934 within / 2,361.935 '
+                'outside) — recognised REVENUE, not contracted sales; one external '
+                'audit asserted this split is unpublished; it is note 5 of the '
+                'audited statements', '2026-02-18', 'Company')
+egy = dcf_variant(new_sales, red_margin,
+                  ke_add=beta * fgn_share * (egy_crp - 0.0064))
+D['egy_stress'] = dict(ke=ke + beta * fgn_share * (egy_crp - 0.0064),
+                       ps=egy['ps'], fgn_share=fgn_share)
 
-# ---- balance-sheet / statement roll-forward ---------------------------------
-np_f, npa_f, eq_f, nd_f, int_f, cash_f, debt_f = [], [], [], [], [], [], []
-eq = eqp25 + nci25
-nd = nd25
-debt_path = inp('debt_path', [9700.0, 9900.0, 9200.0, 8300.0, 7400.0],
-                'Gross debt path (loans + related-party loan): H1-2026 actual '
-                'already 9,542 as construction mobilises; amortising from FY2028 '
-                'as land-bank cash releases fund the build', '2026-08-09', 'House')
-cash_yield = inp('cash_yield', 0.035, 'Yield on cash balances ~ CBUAE base rate',
-                 '2026-06-17', 'Country')
-for t in range(NY):
-    d_open = debt25 if t == 0 else debt_path[t - 1]
-    c_open = cash25 if t == 0 else cash_f[t - 1]
-    fin_cost_t = kd * (d_open + debt_path[t]) / 2 + 35.0
-    fin_inc_t = cash_yield * c_open
-    ebt_t = ebit_f[t] + assoc_f[t] + fin_inc_t - fin_cost_t
-    np_t = ebt_t * (1 - tax_f)
-    npa_t = np_t * (1 - nci_pct)
-    np_f.append(np_t); npa_f.append(npa_t); int_f.append(fin_cost_t)
-    eq = eq + np_t
-    eq_f.append(eq)
-    cash_t = c_open + fcff_f[t] - fin_cost_t + fin_inc_t \
-        - (ebt_t * tax_f - ebit_f[t] * tax_f) + (debt_path[t] - d_open)
-    cash_f.append(cash_t)
-    debt_f.append(debt_path[t])
-    nd_f.append(debt_path[t] - cash_t)
-
-ic25 = eqp25 + nci25 + debt25 - cash25
-nopat25_clean = ebit25_clean * (1 - tax_f)
-ic_f = [ic25 + sum(capex_f[:t + 1]) - sum(dna_f[:t + 1])
-        + sum(dnwc_f[:t + 1]) for t in range(NY)]
-roic_f = [nopat_f[t] / ((ic_f[t] + (ic25 if t == 0 else ic_f[t - 1])) / 2)
+ic30 = bs30_eqp + bs30_nci + bs30_debt - bs30_cash_total
+ic_f = [ic30 + sum(capex_f[:t + 1]) - sum(dna_f[:t + 1]) + sum(dnwc_f[:t + 1])
+        for t in range(NY)]
+roic_f = [nopat_f[t] / YRFRAC[t] / ((ic_f[t] + (ic30 if t == 0 else ic_f[t - 1])) / 2)
           for t in range(NY)]
 
-D['fcst'] = dict(years=years, rev=rev_f, gp=gp_f, ga=ga_f, sm=sm_f,
-                 invinc=invinc_f, ebitda=ebitda_f,
+D['fcst'] = dict(years=years, yrfrac=YRFRAC, t_exp=T_EXP,
+                 rev=rev_f, gp=gp_f, ga=ga_f, sm=sm_f, invinc=invinc_f,
+                 ebitda=ebitda_f,
                  ebitda_margin=[ebitda_f[t] / rev_f[t] for t in range(NY)],
                  dna=dna_f, ebit=ebit_f, nopat=nopat_f, capex=capex_f,
-                 dnwc=dnwc_f, nwc_release=nwc_release, fcff=fcff_f, df=df_l, pv=pv_l,
+                 dnwc=dnwc_f, recv=recv_f, invdwip=inv_f, pay=pay_f, nwc=nwc_f,
+                 fcff=fcff_f, df=df_l, pv=pv_l,
                  red_rev=red_rev, aim_rev=aim_rev, hosp_rev=hosp_rev,
                  ect_rev=ect_rev, dev_rev=dev_rev_l, land_rev=land_rev,
                  bl_open=bl_open, bl_close=bl_close, new_sales=new_sales,
                  assoc=assoc_f, np=np_f, np_attr=npa_f, equity=eq_f,
                  net_debt=nd_f, cash=cash_f, debt=debt_f, interest=int_f,
                  ic=ic_f, roic=roic_f,
-                 nwc=[nwc25 + sum(dnwc_f[:t + 1]) for t in range(NY)],
-                 ic_fy25=ic25, nopat_fy25=nopat25_clean, nwc_fy25=nwc25,
-                 dna_fy25=dna25, eqp_fy25=eqp25, debt_fy25=debt25)
+                 fy26_rev_total=fy26_rev_total,
+                 fy26_npa_total=h1_npa + npa_f[0],
+                 ic_30jun=ic30, nwc_30jun=nwc30)
 
 D['dcf'] = dict(pv_explicit=pv_explicit, tv=tv, pv_tv=pv_tv, ev=ev,
-                tv_share=tv_share, cash=cash25, debt=debt25, lease=lease25,
-                assoc=assocbv25, finass=finass25, nci_val=nci_val,
-                eq_attr=eq_attr, ps_dec=ps_dec, roll=roll, ps=ps,
+                tv_share=tv_share, cash_avail=h1_avail_cash,
+                cash_total=bs30_cash_total, restricted=restricted,
+                debt=bs30_debt, lease=bs30_lease, assoc=bs30_assoc,
+                finass=bs30_finass, nci_book=bs30_nci, nci_val=nci_cap,
+                eq_attr=eq_attr, ps_jun=ps_jun, roll=roll, ps=ps,
                 anchor_days=anchor_days, roic_term=roic_term, rr_term=rr_term,
                 g=g_term, nopat_term=nopat_term,
-                ps_nci_alt=ps_nci_alt, nci_alt=nci_alt,
-                bear=runoff['ps'], bull=bull_var['ps'],
-                ps_egystress=ps_egystress)
+                ps_grosscash=(ev + bs30_cash_total - bs30_debt - bs30_lease
+                              + bs30_assoc + bs30_finass - nci_cap) / shares_mn * roll,
+                ps_booknci=(eq_attr_book_nci / shares_mn) * roll,
+                bear=runoff['ps'], bull=bull_var['ps'], ps_egystress=egy['ps'])
 
-# ---- relative multiples lens ------------------------------------------------
+# ---- relative multiples lens (rebuilt: ONE attributable basis, P/E leg only
+# in the average; EV/EBITDA shown as an unanchored cross-check) ----------------
 peers = dict(
-    ALDAR=dict(name='Aldar Properties (ADX)', pe=7.54, spot=7.78, mcap=61170.0,
-               np=8800.0, rev=33800.0, ebitda=11200.0, backlog=66500.0),
-    EMAAR=dict(name='Emaar Properties (DFM)', pe=5.30, spot=11.50, mcap=101650.0,
-               np=None, rev=49600.0, ebitda=None, backlog=155000.0),
-    EMAARDEV=dict(name='Emaar Development (DFM)', pe=4.08, spot=13.38, mcap=53520.0,
-                  np=11320.0, rev=27490.0, ebitda=None, backlog=134300.0),
-)
-inp('peers', peers, 'Peer FY2025 fundamentals from each company\'s own results '
-    'release (aldar.com 09-Feb-2026; emaar.com Feb-2026); trailing P/E and market '
-    'caps cross-checked on stockanalysis.com, 07-Aug-2026 — CROSS-CHECK ONLY, '
-    'labelled as such; no peer figure enters the subject\'s historicals',
-    '2026-08-07', 'Industry')
-pe_just = inp('pe_just', 8.0, 'Justified P/E on FY2026E attributable profit: peer '
-              'trailing set 4.1-7.5x (EmaarDev/Emaar/Aldar); premium to Aldar for '
-              'the recurring-income mix and backlog growth, discounted for the '
-              '~15% free float and related-party revenue concentration',
-              '2026-08-09', 'House')
-ev_ebitda_just = inp('ev_ebitda_just', 7.0, 'Justified EV/EBITDA on FY2026E: Aldar '
-                     'trailing ~5.6x (EV on net-debt-adjusted 61.2bn mcap vs 11.2bn '
-                     'EBITDA); premium for growth, discount for asset heaviness',
-                     '2026-08-09', 'House')
-rel_pe_ps = pe_just * npa_f[0] / shares_mn
-rel_ev = ev_ebitda_just * ebitda_f[0]
-rel_ev_ps = (rel_ev + cash25 - debt25 - lease25 + assocbv25 + finass25 - nci_val) \
-    / shares_mn
-rel_base = (rel_pe_ps + rel_ev_ps) / 2
+    ALDAR=dict(name='Aldar Properties (ADX)', spot=7.78, shares_mn=7862.6,
+               mcap=61171.0, np_attr=7548.0, eps=0.96, pe_attr=8.10,
+               rev=33800.0, ebitda=11200.0, backlog=71700.0,
+               basis='attributable EPS 0.96 disclosed in the Q4-FY25 release; '
+                     'FY2025 development backlog 71.7bn (66.5bn was the 9M-2025 '
+                     'vintage, corrected at revision 2)'),
+    EMAAR=dict(name='Emaar Properties (DFM)', spot=11.50, shares_mn=8838.0,
+               mcap=101650.0, np_attr=17599.0, eps=None, pe_attr=5.78,
+               rev=49600.0, ebitda=None, backlog=155000.0,
+               basis='attributable 17,599.179 from the audited DFM filing '
+                     '(previously marked n/d in error)'),
+    EMAARDEV=dict(name='Emaar Development (DFM)', spot=13.38, shares_mn=4000.0,
+                  mcap=53520.0, np_attr=11316.0, eps=None, pe_attr=4.73,
+                  rev=27490.0, ebitda=None, backlog=125200.0,
+                  basis='attributable 11,316.189 audited; backlog 125.2bn '
+                        '(134.3bn was Emaar Properties\' UAE figure, corrected)'))
+inp('peers', peers, 'Peer table REBUILT at revision 2 on one attributable-earnings '
+    'basis from the peers\' own audited filings/releases (figures per the '
+    'external audits\' primary-source checks, adopted after verification); market '
+    'caps from prices at 07-Aug-2026. Cross-check only', '2026-08-09', 'Industry')
+pe_just = inp('pe_just', 7.5, 'Justified P/E on FY2026E attributable profit: peer '
+              'attributable trailing set 4.7x / 5.8x / 8.1x (EmaarDev / Emaar / '
+              'Aldar). 7.5x = parity-minus with the sector leader: the growth and '
+              'recurring-income premium and the 15%-float/related-party discount '
+              'are treated as offsetting, stated as a judgement. (The first '
+              'edition\'s 8.0x was described as a premium to Aldar off a broken '
+              'peer table)', '2026-08-09', 'House')
+fy26_npa = h1_npa + npa_f[0]
+rel_pe_ps = pe_just * fy26_npa / shares_mn
+ev_ebitda_just = inp('ev_ebitda_just', 7.0, 'EV/EBITDA 7.0x — HOUSE JUDGEMENT '
+                     'WITHOUT A PEER ANCHOR (no peer EV/EBITDA is computable from '
+                     'reachable disclosures: peer net debt not held). Shown as a '
+                     'cross-check only; EXCLUDED from the lens average at '
+                     'revision 2', '2026-08-09', 'House')
+fy26_ebitda = h1_adj_ebitda + ebitda_f[0]
+_ev_rel = ev_ebitda_just * fy26_ebitda
+_eq_rel_book = _ev_rel + h1_avail_cash - bs30_debt - bs30_lease + bs30_assoc \
+    + bs30_finass - bs30_nci
+rel_ev_ps = (_ev_rel + h1_avail_cash - bs30_debt - bs30_lease + bs30_assoc
+             + bs30_finass - max(bs30_nci, 0.02 * _eq_rel_book)) / shares_mn
+rel_base = rel_pe_ps
 D['rel'] = dict(pe_just=pe_just, ev_ebitda_just=ev_ebitda_just,
                 pe_ps=rel_pe_ps, ev_ps=rel_ev_ps, base=rel_base,
-                pe_trailing=mktcap / pat25,
+                fy26_npa=fy26_npa, fy26_ebitda=fy26_ebitda,
+                pe_trailing_attr=mktcap / npa25,
+                pe_trailing_group=mktcap / pat25,
                 ev_ebitda_trailing=(mktcap + nd25) / ebitda25,
-                peers=peers)
+                peers=peers,
+                note='lens = P/E leg only; EV/EBITDA displayed as unanchored '
+                     'cross-check (first edition averaged the two legs, which '
+                     'disagreed by 43%, without showing either)')
 
-# ---- normalised earnings power lens -----------------------------------------
-norm_sales = inp('norm_sales', 18000.0, 'Through-cycle development sales: midpoint '
-                 'of the base terminal-year 19,000 and the run-off tail 8,000, '
-                 'weighted toward the ADREC structural-demand reading',
+# ---- normalised earnings power ----------------------------------------------
+norm_sales = inp('norm_sales', 20000.0, 'Through-cycle development sales raised '
+                 '18bn -> 20bn: the realised H1-2026 26bn lifts the cycle '
+                 'evidence; still far below the 38bn FY2026E in-year pace',
                  '2026-08-09', 'House')
-norm_margin = inp('norm_margin', 0.115, 'Through-cycle group net margin on revenue: '
-                  'FY2025 clean 10.8% (ex-fair-value/one-off), H1-2026 headline '
-                  '24.0% flattered by land mix; mid-cycle 11.5%', '2026-08-09',
+norm_margin = inp('norm_margin', 0.115, 'Through-cycle net margin', '2026-08-09',
                   'House')
-norm_rev = norm_sales * 0.85 + (seg_rev25['aim'] + seg_rev25['hosp']
-                                + seg_rev25['ect']) * 1.15
+recurring_base = inp('recurring_base', seg_rev25['aim'] + seg_rev25['hosp']
+                     + seg_rev25['ect'],
+                     'Recurring/operating legs base = FY2025 AIM + Hospitality + '
+                     'ECT segment revenue (6,455.178), grown 15% to mid-cycle',
+                     '2026-02-18', 'Company')
+norm_rev = norm_sales * 0.85 + recurring_base * 1.15
 norm_np = norm_rev * norm_margin
 norm_eps = norm_np / shares_mn
-norm_pe = inp('norm_pe', 8.5, 'Through-cycle P/E on normalised earnings, midway '
-              'between Aldar trailing 7.5x and the justified 8.0x with a growth '
-              'nudge', '2026-08-09', 'House')
+norm_pe = inp('norm_pe', 8.5, 'Through-cycle P/E', '2026-08-09', 'House')
 norm_ps = norm_eps * norm_pe
 D['norm'] = dict(rev=norm_rev, margin=norm_margin, np=norm_np, eps=norm_eps,
                  pe=norm_pe, base=norm_ps,
+                 clean_np_fy25=pat25 - oneoff25 * (1 - tax_f),
                  clean_margin_fy25=(pat25 - oneoff25 * (1 - tax_f)) / rev25)
 
-# ---- book value & sustainable return lens -----------------------------------
-bvps = eqp25 / shares_mn
-roe_sust = inp('roe_sust', 0.075, 'Sustainable ROE: FY2025 attributable 4,020 on '
-               'average attributable equity 51,789 = 7.8% reported; clean-basis '
-               '~7.0%; forward forecast 7.3-7.6%', '2026-08-09', 'House')
+# ---- book value & sustainable return (rolled to the anchor like the DCF) -----
+bvps = bs30_eqp / shares_mn
+roe_sust = inp('roe_sust', 0.075, 'Sustainable ROE 7.5%. Receipts, one cleaning '
+               'only: mechanical FY2025 clean ROE (ex the 735.1 of fair-value/'
+               'disposal gains, tax-effected) = 6.6%; the model\'s own forward '
+               'attributable ROE path runs 7.8% -> 9.8%. 7.5% sits between the '
+               'two, below the forward path — a forward-sustainable judgement, '
+               'not a historical cleaning (the first edition conflated the two)',
+               '2026-08-09', 'House')
 pb_just = (roe_sust - g_term) / (ke - g_term)
-book_ps = bvps * pb_just
+book_ps = bvps * pb_just * roll
 D['book'] = dict(bvps=bvps, roe_sust=roe_sust, pb_just=pb_just, base=book_ps,
                  roe_fy25=npa25 / ((eqp24 + eqp25) / 2),
-                 pb_trailing=mktcap / eqp25)
+                 roe_fy25_clean=(npa25 - oneoff25 * (1 - tax_f))
+                 / ((eqp24 + eqp25) / 2),
+                 pb_trailing=mktcap / bs30_eqp, rolled=True)
 
-# ---- SOTP by segment (DCF EV decomposed on segment EBIT contribution) -------
-seg_ebit_w = {k: (seg_gp25[k] - (ga25 + sm25) * seg_rev25[k] / rev25
-                  * 1.0) for k in SEG}
-tot_w = sum(max(v, 0.0) for v in seg_ebit_w.values())
-sotp = {k: ev * max(seg_ebit_w[k], 0.0) / tot_w for k in SEG}
-D['sotp'] = dict(ev_split=sotp, weights=seg_ebit_w,
+# ---- SOTP (weights now DERIVED from the same segment data, no fixed divisor) --
+seg_w = {k: seg_gp25[k] - (ga25 + sm25) * seg_rev25[k] / rev25 for k in SEG}
+tot_w = sum(max(v, 0.0) for v in seg_w.values())
+D['sotp'] = dict(ev_split={k: ev * max(seg_w[k], 0.0) / tot_w for k in SEG},
+                 weights=seg_w, tot_w=tot_w,
                  note='group EV allocated on FY2025 segment gross profit less a '
-                      'revenue-proportional share of the corporate load; the four '
-                      'legs share one discount rate, with the Egypt stress case '
-                      'pricing the cross-border leg separately')
+                      'revenue-proportional corporate load; weights and divisor '
+                      'are live formulas in the workbook at revision 2')
 
 # ---- lenses & weighted central ----------------------------------------------
 w = inp('lens_weights', dict(dcf=0.40, relative=0.20, normalized=0.20, book=0.20),
-        'DCF primary: the backlog gives unusual forward revenue visibility for a '
-        'developer. Relative/normalised/book each 0.20: the peer set is cheap and '
-        'liquid where MODON is tightly held, so the market lens is real evidence '
-        'against the DCF, not decoration', '2026-08-09', 'House')
+        'Weights unchanged: DCF primary on backlog visibility; three market lenses '
+        'carry 60% jointly — that structure, not an additional holdco discount, is '
+        'how float/governance friction is priced (a 30% haircut on top would '
+        'double-count it; the reading is still shown in section 4)', '2026-08-09',
+        'House')
 lens = dict(
     dcf=dict(name='Discounted cash flow (primary)', bear=runoff['ps'], base=ps,
              bull=bull_var['ps'], w=w['dcf']),
-    relative=dict(name='Relative multiples', bear=rel_base * (4.08 / pe_just),
-                  base=rel_base, bull=rel_base * (9.5 / pe_just), w=w['relative']),
+    relative=dict(name='Relative multiples', bear=rel_base * (4.73 / pe_just),
+                  base=rel_base, bull=rel_base * (8.1 / pe_just), w=w['relative']),
     normalized=dict(name='Normalised earnings power',
                     bear=norm_eps * 6.0, base=norm_ps, bull=norm_eps * 10.5,
                     w=w['normalized']),
     book=dict(name='Book value and sustainable return',
-              bear=bvps * (0.055 - g_term) / (ke - g_term) if True else 0,
+              bear=bvps * (0.055 - g_term) / (ke - g_term) * roll,
               base=book_ps,
-              bull=bvps * (0.095 - g_term) / (ke - g_term), w=w['book']),
+              bull=bvps * (0.095 - g_term) / (ke - g_term) * roll, w=w['book']),
 )
 central = sum(lens[k]['base'] * lens[k]['w'] for k in lens)
 lo = min(lens[k]['bear'] for k in lens)
@@ -846,159 +1032,174 @@ D['central'] = central
 D['span'] = [lo, hi]
 D['spot'] = spot
 
-# panel centre for the expert appendix (median of the three expert bases, below)
-
-# ---- sensitivity grids ------------------------------------------------------
-def dcf_ps_for(wacc_x=None, g_x=None, beta_x=None, margin_shift=0.0,
-               conv_shift=0.0, nwc_add=0.0, sales_mult=1.0, ke_add=0.0):
+# ---- sensitivity (rebuilt on the base convention: explicit and terminal
+# rates move TOGETHER by the same shift, preserving the terminal-weight step) ---
+def dcf_shift(w_add=0.0, g_x=None, beta_x=None, margin_shift=0.0, conv_shift=0.0,
+              nwc_add=0.0, sales_mult=1.0, dso_add=0.0):
     b = beta if beta_x is None else beta_x
-    ke_x = rf_star + b * erp_rating + ke_add
-    wx = we * ke_x + wd * kd_at if wacc_x is None else wacc_x
+    ke_x = rf_star + b * erp_rating + w_add
+    wacc_x = we * ke_x + wd * kd_at
+    wt_x = (1 - wd_term) * ke_x + wd_term * kd * (1 - tax_f)
     gx = g_term if g_x is None else g_x
-    wtx = (1 - wd_term) * ke_x + wd_term * kd_term * (1 - tax_f) \
-        if wacc_x is None else wacc_x
-    dfx = [(1 + wx) ** -(t + 1) for t in range(NY)]
-    bl_v = dev_backlog
+    dfx = [(1 + wacc_x) ** -x for x in T_EXP]
+    bl_v = dev_backlog_h1
     fcffs, ebits = [], []
-    a2, h2, e2 = seg_rev25['aim'], seg_rev25['hosp'], seg_rev25['ect']
+    iprev2, nprev2 = bs30_invdwip, nwc30
+    ab2 = asset_base_30jun
     for t in range(NY):
-        cv = min(max(conv_path[t] + conv_shift, 0.05), 0.6)
+        cv = min(max(conv_path[t] + conv_shift * (YRFRAC[t]), 0.03), 0.6)
+        ns_t = new_sales[t] * sales_mult
         dr = cv * bl_v
-        bl_v = bl_v + new_sales[t] * sales_mult - dr
+        bl_v = bl_v + ns_t - dr
         rr = dr + land_rev[t]
-        a2 *= (1 + aim_growth[t]); h2 *= (1 + hosp_growth[t]); e2 *= (1 + ect_growth[t])
-        rv = rr + a2 + h2 + e2 + oth_rev_f
-        gpv = rr * (red_margin[t] + margin_shift) + a2 * aim_margin[t] \
-            + h2 * hosp_margin[t] + e2 * ect_margin[t] + oth_gp_f
+        rv = rr + aim_rev[t] + hosp_rev[t] + ect_rev[t] + oth_rev_f * YRFRAC[t]
+        gpv = rr * (red_margin[t] + margin_shift) + aim_rev[t] * aim_margin[t] \
+            + hosp_rev[t] * hosp_margin[t] + ect_rev[t] * ect_margin[t] \
+            + oth_gp_f * YRFRAC[t]
         eb = gpv - ga_pct[t] * rv - sm_pct[t] * rv + invinc_f[t]
-        fcffs.append(eb * (1 - tax_f) + dna_pct * rv - capex_f[t]
-                     + nwc_release[t] + nwc_add)
+        da = dna_rate * (ab2 + capex_f[t] / 2) * YRFRAC[t]
+        ab2 = ab2 + capex_f[t] - da
+        rev_run = (h1_rev + rv) if t == 0 else rv
+        dc_run = (h1_rev + rv - (h1_gp + gpv)) if t == 0 else rv - gpv
+        recv = (dso_path[t] + dso_add) / 365.0 * rev_run
+        invv = iprev2 + inv_addition * ns_t - inv_consumption * rr * (1 - red_margin[t] - margin_shift)
+        pay = pay_cover[t] * dc_run
+        nwc = recv + invv - pay
+        dn = nwc - nprev2
+        iprev2, nprev2 = invv, nwc
+        fcffs.append(eb * (1 - tax_f) + da - capex_f[t] - dn + nwc_add)
         ebits.append(eb)
     rrx = gx / roic_term
-    tvx = ebits[-1] * (1 - tax_f) * (1 + gx) * (1 - rrx) / max(wtx - gx, 0.005)
+    tvx = ebits[-1] * (1 - tax_f) * (1 + gx) * (1 - rrx) / max(wt_x - gx, 0.005)
     evx = sum(f * d for f, d in zip(fcffs, dfx)) + tvx * dfx[-1]
-    return (evx + cash25 - debt25 - lease25 + assocbv25 + finass25 - nci_val) \
-        / shares_mn * (1 + ke_x) ** (anchor_days / 365.0)
+    eqx = evx + h1_avail_cash - bs30_debt - bs30_lease + bs30_assoc + bs30_finass
+    eqx_attr = eqx - max(bs30_nci, 0.02 * (eqx - bs30_nci))
+    return eqx_attr / shares_mn * (1 + ke_x) ** (anchor_days / 365.0)
 
 
+A(abs(dcf_shift() - ps) < 0.02, 'sensitivity engine reproduces the base at the '
+  'unshifted point (grid convention fixed at revision 2)')
 g_grid = [0.015, 0.02, 0.025, 0.03, 0.035]
-wacc_grid = [wacc - 0.01, wacc - 0.005, wacc, wacc + 0.005, wacc + 0.01]
-sens_wg = [[dcf_ps_for(wacc_x=wx, g_x=gx) for gx in g_grid] for wx in wacc_grid]
-beta_grid = [0.8, 0.9, 1.0, 1.1, 1.2]
-grid_beta = [dcf_ps_for(beta_x=b) for b in beta_grid]
+w_grid = [-0.01, -0.005, 0.0, 0.005, 0.01]
+sens_wg = [[dcf_shift(w_add=wx, g_x=gx) for gx in g_grid] for wx in w_grid]
+beta_grid = [0.8, 0.9, 1.03, 1.1, 1.2]
+grid_beta = [dcf_shift(beta_x=b) for b in beta_grid]
 mg_grid = [-0.04, -0.02, 0.0, 0.02, 0.04]
-grid_margin = [dcf_ps_for(margin_shift=m) for m in mg_grid]
+grid_margin = [dcf_shift(margin_shift=m) for m in mg_grid]
 conv_grid = [-0.06, -0.03, 0.0, 0.03, 0.06]
-grid_conv = [dcf_ps_for(conv_shift=c) for c in conv_grid]
+grid_conv = [dcf_shift(conv_shift=c) for c in conv_grid]
 sales_grid = [0.5, 0.75, 1.0, 1.25, 1.5]
-grid_sales = [dcf_ps_for(sales_mult=s) for s in sales_grid]
+grid_sales = [dcf_shift(sales_mult=s) for s in sales_grid]
 nwc_grid = [-1000.0, -500.0, 0.0, 500.0, 1000.0]
-grid_nwc = [dcf_ps_for(nwc_add=n) for n in nwc_grid]
+grid_nwc = [dcf_shift(nwc_add=n) for n in nwc_grid]
+dso_grid = [-60.0, -30.0, 0.0, 30.0, 60.0]
+grid_dso = [dcf_shift(dso_add=d_) for d_ in dso_grid]
 ke_grid = [0.0, 0.005, 0.01, 0.015, 0.02]
-grid_ke = [dcf_ps_for(ke_add=k) for k in ke_grid]
-D['sens'] = dict(g_grid=g_grid, wacc_grid=wacc_grid, table=sens_wg,
+grid_ke = [dcf_shift(w_add=k) for k in ke_grid]
+D['sens'] = dict(g_grid=g_grid, wacc_grid=[wacc + x for x in w_grid], table=sens_wg,
                  beta_grid=beta_grid, grid_beta=grid_beta,
                  mg_grid=mg_grid, grid_margin=grid_margin,
                  conv_grid=conv_grid, grid_conv=grid_conv,
                  sales_grid=sales_grid, grid_sales=grid_sales,
                  nwc_grid=nwc_grid, grid_nwc=grid_nwc,
+                 dso_grid=dso_grid, grid_dso=grid_dso,
                  ke_grid=ke_grid, grid_ke=grid_ke)
-A(abs(dcf_ps_for() - ps) < 0.02, 'sensitivity engine reproduces the base DCF at '
-  'the unshifted point')
 
-# ---- experts ----------------------------------------------------------------
-# Expert 1 — asset/NAV: land bank + investment portfolio at appraisal logic
-land_uplift = inp('e1_land_uplift', 0.35, 'Expert 1 marks the at-cost land bank '
-                  '(26,611 land plots) up 35%: 2025 realised land sales carried a '
-                  '67% gross margin on related-party pricing; an arms-length '
-                  'haircut halves that', '2026-08-09', 'House')
-land_bv = inp('land_bv', 26610.771, 'Land plots at cost inside inventories, note 19, '
-              + FS25, '2026-02-18', 'Company')
-e1_nav = eqp25 + land_bv * land_uplift + dwip25 * 0.15
-e1_ps = e1_nav / shares_mn
-e1 = dict(method_short='asset value (RNAV)', base=e1_ps,
-          rng=[e1_nav * 0.85 / shares_mn, e1_nav * 1.12 / shares_mn],
-          nav=e1_nav, land_bv=land_bv, uplift=land_uplift,
-          dwip_uplift=0.15, eqp=eqp25)
-# Expert 2 — cash-quality skeptic: run-off DCF + related-party receivable haircut
-e2_hair = inp('e2_rp_haircut', 0.25, 'Expert 2 haircuts the AED 7.9bn net '
-              'related-party receivable book 25% for timing/collection on '
-              'non-arms-length land sales (H1-2026: 5.4bn further build-up, '
-              'negative operating cash flow)', '2026-08-09', 'House')
-e2_ps = runoff['ps'] - e2_hair * duefr25 / shares_mn
-e2 = dict(method_short='owner cash flow, run-off basis', base=e2_ps,
-          rng=[e2_ps * 0.8, ps * 0.95],
-          runoff_ps=runoff['ps'], haircut=e2_hair, rp_book=duefr25)
-# Expert 3 — market pricer: peer multiple convergence
-e3_pe = inp('e3_pe', 6.5, 'Expert 3 prices MODON at the peer-set centre (Aldar 7.5x, '
-            'Emaar 5.3x, EmaarDev 4.1x): a government developer earns the sector '
-            'multiple, not a premium, once the growth premium is competed away',
-            '2026-08-09', 'House')
-e3_ps = e3_pe * npa_f[0] / shares_mn
-e3 = dict(method_short='peer-multiple convergence', base=e3_ps,
-          rng=[4.08 * npa_f[0] / shares_mn, 8.5 * npa_f[0] / shares_mn],
-          pe=e3_pe, npa26=npa_f[0])
-D['experts'] = dict(e1=e1, e2=e2, e3=e3)
-panel_centre = sorted([e1_ps, e2_ps, e3_ps])[1]
-D['panel_centre'] = panel_centre
-
-# ---- what the spot implies: solve the Ke adder that prices MODON at 2.83 ----
-lo_k, hi_k = 0.0, 0.20
+# ---- what the market price implies -------------------------------------------
+lo_k, hi_k = 0.0, 0.25
 for _ in range(60):
     mid = (lo_k + hi_k) / 2
-    if dcf_ps_for(ke_add=mid) > spot:
+    if dcf_shift(w_add=mid) > spot:
         lo_k = mid
     else:
         hi_k = mid
 implied_ke_add = (lo_k + hi_k) / 2
-D['market_implied'] = dict(
-    ke_add=implied_ke_add, ke=ke + implied_ke_add,
-    note='the cost-of-equity adder that reconciles the base-path DCF to the market '
-         'price — one honest reading of the spot is the base cash flows at a deep '
-         'related-party/execution risk premium')
+D['market_implied'] = dict(ke_add=implied_ke_add, ke=ke + implied_ke_add,
+                           note='cost-of-equity adder reconciling the base DCF '
+                                'to the market price')
+disc_solve = 1 - spot / runoff['ps']
+D['market_implied']['runoff_discount'] = disc_solve
 
-# ---- terminal reconciliation ------------------------------------------------
+# ---- experts (post-restrike) -------------------------------------------------
+land_bv = inp('land_bv', 26610.771, 'Land plots at cost, note 19, ' + FS25,
+              '2026-02-18', 'Company')
+land_uplift = inp('e1_land_uplift', 0.337, 'Expert 1 land mark-up = exactly HALF '
+                  'the realised 67.4% related-party land-sale gross margin '
+                  '(1 - 818.033/2,512.837), as the arms-length haircut — the '
+                  'first edition said "half" but used 35%; aligned at revision 2',
+                  '2026-08-09', 'House')
+dwip_bv_h1 = inp('dwip_bv_h1', 6487.697, 'Development WIP at 30-Jun-2026, ' + H126,
+                 '2026-08-07', 'Company')
+e1_nav = bs30_eqp + land_bv * land_uplift + dwip_bv_h1 * 0.15
+e1_ps = e1_nav / shares_mn
+e1 = dict(method_short='asset value (RNAV)', base=e1_ps,
+          rng=[e1_nav * 0.85 / shares_mn, e1_nav * 1.12 / shares_mn],
+          nav=e1_nav, land_bv=land_bv, uplift=land_uplift,
+          dwip_uplift=0.15, eqp=bs30_eqp)
+e2_hair = inp('e2_rp_haircut', 0.25, 'Expert 2 haircut on the related-party '
+              'receivable book (30-Jun-2026: 10,756 gross due-from)', '2026-08-09',
+              'House')
+rp_book_h1 = inp('rp_book_h1', 2436.750 + 8318.759, 'Amounts due from related '
+                 'parties NC + C, 30-Jun-2026, ' + H126, '2026-08-07', 'Company')
+e2_ps = runoff['ps'] - e2_hair * rp_book_h1 / shares_mn
+e2 = dict(method_short='owner cash flow, run-off stress basis', base=e2_ps,
+          rng=[e2_ps * 0.8, ps * 0.95],
+          runoff_ps=runoff['ps'], haircut=e2_hair, rp_book=rp_book_h1,
+          note='builds on the study\'s own run-off scenario with an independent '
+               'receivable haircut — labelled as derived, not independent')
+e3_pe = inp('e3_pe', 6.2, 'Expert 3 multiple = the arithmetic MEAN of the '
+            'rebuilt attributable peer set (4.73 + 5.78 + 8.10)/3 = 6.20x — the '
+            'first edition claimed "centre of the set" but used 6.5x; the '
+            'statistic is now the one named', '2026-08-09', 'House')
+e3_ps = e3_pe * fy26_npa / shares_mn
+e3 = dict(method_short='peer-multiple convergence', base=e3_ps,
+          rng=[4.73 * fy26_npa / shares_mn, 8.10 * fy26_npa / shares_mn],
+          pe=e3_pe, npa26=fy26_npa)
+D['experts'] = dict(e1=e1, e2=e2, e3=e3)
+D['panel_centre'] = sorted([e1_ps, e2_ps, e3_ps])[1]
+
 D['terminal_recon'] = dict(
-    roic_fy25=nopat25_clean / ic25,
+    roic_fy25_clean=ebit25_clean * (1 - tax_f)
+    / (eqp25 + nci25 + debt25 - cash25),
     roic_path=roic_f, roic_term=roic_term, rr_term=rr_term,
-    implied_reinvest=[(capex_f[t] - dna_f[t] + dnwc_f[t]) / nopat_f[t]
-                      for t in range(NY)],
-    note='FY2025 clean ROIC on invested capital (equity + NCI + debt - cash) is '
-         f'{nopat25_clean / ic25:.1%}; the terminal 8.5% sits above it because the '
-         'at-cost land bank inside invested capital converts to recognised profit '
-         'across the explicit window')
+    note='terminal 8.5% sits between the FY2025 clean achieved 6.1% and the '
+         'model\'s own forward path (peaking ~15% as capital releases); the '
+         'step-down from the path is a deliberate mean-reversion margin of '
+         'safety, stated and sensitised')
 
-# ---- external results: step0 / strike / technicals --------------------------
+# ---- external results --------------------------------------------------------
 with open(os.path.join(HERE, 'step0_result.json')) as f:
     D['step0'] = json.load(f)
 with open(os.path.join(HERE, 'strike_result.json')) as f:
     D['strike'] = json.load(f)
 with open(os.path.join(HERE, 'tech_read.json')) as f:
     D['tech'] = json.load(f)
-A(D['step0']['verdict'] == 'PASS', 'Step 0 calibration verdict PASS carried into '
-  'the study')
-A(abs(D['strike']['spot'] - spot) < 1e-9, 'strike anchor equals the study spot')
-A(D['strike']['q_annual'] == 0.0, 'q=0 sourced (no dividend paid or proposed)')
+A(D['step0']['verdict'] == 'PASS', 'Step 0 PASS carried')
+A(abs(D['strike']['spot'] - spot) < 1e-9, 'strike anchor equals study spot')
+A(D['strike']['q_annual'] == 0.0, 'q=0 sourced')
 
-# ---- inputs validation: four-field completeness ------------------------------
 for k, v in INP.items():
     assert set(v.keys()) == {'value', 'source', 'date', 'ring'}, k
     assert v['source'] and v['date'] and v['ring'], f'orphan field on {k}'
 D['inputs'] = INP
-A(len(INP) >= 100, f'input register carries {len(INP)} four-field inputs')
-
+A(len(INP) >= 120, f'input register carries {len(INP)} four-field inputs')
 D['assert_log'] = assert_log
+D['meta']['revision'] = 2
+D['meta']['valuation_date'] = '2026-06-30'
 with open(OUT, 'w') as f:
     json.dump(D, f, indent=1)
 
-print(f"inputs: {len(INP)} | asserts passed: {len(assert_log)}")
-print(f"WACC {wacc:.3%} (Ke {ke:.3%}, Kd {kd:.3%}, wd {wd:.1%}) | term {wacc_term:.3%}")
-print(f"rev path: {[round(r) for r in rev_f]}")
-print(f"EBITDA path: {[round(e) for e in ebitda_f]}")
-print(f"FCFF path: {[round(x) for x in fcff_f]}")
+print(f"inputs: {len(INP)} | asserts: {len(assert_log)}")
+print(f"Ke {ke:.3%} (beta {beta}) | WACC {wacc:.3%} | term {wacc_term:.3%} "
+      f"(wd_term derived {wd_term:.3%})")
+print(f"rev: {[round(r) for r in rev_f]} (FY26 total {fy26_rev_total:,.0f})")
+print(f"FCFF: {[round(x) for x in fcff_f]}")
+print(f"dNWC: {[round(x) for x in dnwc_f]}")
 print(f"EV {ev:,.0f} | TV share {tv_share:.1%} | eq_attr {eq_attr:,.0f}")
-print(f"DCF ps {ps:.2f} (dec {ps_dec:.2f}, roll {roll:.4f}) | run-off {runoff['ps']:.2f} "
-      f"| bull {bull_var['ps']:.2f} | Egypt-stress {ps_egystress:.2f}")
+print(f"DCF ps {ps:.2f} (30-Jun {ps_jun:.2f}, roll {roll:.4f}) | runoff {runoff['ps']:.2f} "
+      f"| bull {bull_var['ps']:.2f} | Egypt {egy['ps']:.2f} | gross-cash alt "
+      f"{D['dcf']['ps_grosscash']:.2f}")
 print(f"lenses: rel {rel_base:.2f} | norm {norm_ps:.2f} | book {book_ps:.2f}")
-print(f"CENTRAL {central:.2f} vs spot {spot} ({central / spot - 1:+.1%}) | "
-      f"span [{lo:.2f}, {hi:.2f}] | experts {e1_ps:.2f}/{e2_ps:.2f}/{e3_ps:.2f}")
+print(f"CENTRAL {central:.2f} vs spot {spot} ({central / spot - 1:+.1%}) | span "
+      f"[{lo:.2f},{hi:.2f}] | experts {e1_ps:.2f}/{e2_ps:.2f}/{e3_ps:.2f} | "
+      f"implied ke_add {implied_ke_add:.2%}")

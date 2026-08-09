@@ -79,15 +79,49 @@ class Book:
             return self.range_values(tgt, rng.replace('$', ''))
         return [float(self.evaluate(part, sheet)) for part in arg.split(',') if part.strip()]
 
+    def _split_args(self, s):
+        """Split a function-argument string on TOP-LEVEL commas only."""
+        parts, depth, cur = [], 0, ''
+        for ch in s:
+            if ch == '(':
+                depth += 1; cur += ch
+            elif ch == ')':
+                depth -= 1; cur += ch
+            elif ch == ',' and depth == 0:
+                parts.append(cur); cur = ''
+            else:
+                cur += ch
+        if cur.strip():
+            parts.append(cur)
+        return parts
+
     def evaluate(self, expr, sheet):
         e = expr
-        # functions over ranges or scalar lists (possibly cross-sheet)
+        # functions over ranges or scalar lists (possibly cross-sheet); arguments
+        # may themselves contain nested parentheses (e.g. MAX(a, 0.02*(b+c))),
+        # so the argument span is found by paren matching, innermost-first via
+        # repeated rescanning
         while True:
-            m = FUNC.search(e)
+            m = re.search(r'\b(SUM|MIN|MAX|MEDIAN|AVERAGE)\(', e)
             if not m:
                 break
             fn = m.group(1)
-            vals = self.arg_values(m.group(2), sheet)
+            i = m.end()          # position just after the opening paren
+            depth = 1
+            while i < len(e) and depth:
+                if e[i] == '(':
+                    depth += 1
+                elif e[i] == ')':
+                    depth -= 1
+                i += 1
+            if depth:
+                raise ValueError(f'unbalanced parens in {expr!r}')
+            argstr = e[m.end():i - 1]
+            if RANGE.match(argstr.strip()):
+                vals = self.arg_values(argstr, sheet)
+            else:
+                vals = [float(self.evaluate(p, sheet))
+                        for p in self._split_args(argstr) if p.strip()]
             if not vals:
                 val = 0.0
             elif fn == 'SUM':
@@ -101,7 +135,7 @@ class Book:
             else:
                 vs = sorted(vals); n = len(vs)
                 val = (vs[n // 2] if n % 2 else (vs[n // 2 - 1] + vs[n // 2]) / 2)
-            e = e[:m.start()] + repr(float(val)) + e[m.end():]
+            e = e[:m.start()] + repr(float(val)) + e[i:]
         # cross-sheet single-cell references
         while True:
             m = SHEETREF.search(e)

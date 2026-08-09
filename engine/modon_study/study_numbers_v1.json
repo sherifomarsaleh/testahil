@@ -8,9 +8,7 @@
   "spot": 2.83,
   "shares_mn": 16347.08,
   "mktcap": 46262.2364,
-  "klass": "diversified city-developer group (development + recurring income + hospitality + events platform)",
-  "revision": 2,
-  "valuation_date": "2026-06-30"
+  "klass": "diversified city-developer group (development + recurring income + hospitality + events platform)"
  },
  "hist_is": {
   "FY23": {
@@ -122,9 +120,9 @@
   }
  },
  "netcash": {
-  "strict": 2761.5550000000003,
-  "company": -912.0,
-  "note": "30-Jun-2026: strict all-cash basis net cash 2,762; company definition net DEBT 912 (available cash only). The bridge uses the available-cash basis; the strict basis is the disclosed alternative"
+  "strict": 5852.901,
+  "company": 1800.0,
+  "note": "strict = all cash and bank balances (incl. escrow/restricted) less loans+related-party loan; company definition restricts to available cash"
  },
  "hist_cf": {
   "FY24": {
@@ -233,479 +231,417 @@
   "backlog": 46000.0,
   "dev_backlog": 42600.0
  },
- "h1_anchors": {
-  "backlog": 65400.0,
-  "dev_backlog": 62130.0,
-  "sales": 26000.0,
-  "netdebt": 912.0,
-  "avail_cash": 8600.0,
-  "cash_total": 12303.24,
-  "debt": 9541.685,
-  "lease": 644.799,
-  "assoc": 2826.454,
-  "finass": 392.972,
-  "nci": 922.342,
-  "eqp": 56396.629,
-  "recv": 22155.68,
-  "invdwip": 34087.289000000004,
-  "pay": 22289.32,
-  "nwc": 33953.649000000005,
-  "adj_ebitda": 2995.0
- },
  "wacc": {
   "rf": 0.0448,
   "rf_star": 0.0406,
   "sov_spread": 0.0042,
   "erp": 0.0487,
-  "beta": 1.03,
-  "ke_exp": 0.09076100000000001,
+  "beta": 1.0,
+  "ke_exp": 0.08929999999999999,
   "kd": 0.0536,
   "kd_at": 0.045292,
-  "we_exp": 0.8290140771361635,
-  "wd_exp": 0.17098592286383657,
-  "wacc_exp": 0.08298644107330422,
-  "ke_term": 0.09076100000000001,
+  "we_exp": 0.8720279590994701,
+  "wd_exp": 0.1279720409005299,
+  "wacc_exp": 0.08366820642404947,
+  "ke_term": 0.08929999999999999,
   "kd_term": 0.0536,
   "kd_term_at": 0.045292,
-  "wd_term": 0.08020685679031156,
-  "wacc_term": 0.08711407442860132,
+  "wd_term": 0.15,
+  "wacc_term": 0.08269879999999999,
   "eibor6": 0.0371,
   "kd_margin": 0.0165,
   "kd_eff_fy25": 0.0591569493325048,
-  "cds_basis": "NA \u2014 no UAE sovereign CDS published",
-  "weights_note": "market-value equity per the standing method; the circularity (using the market's weights while arguing the market misprices the equity) is acknowledged: at the study's own equity value the WACC would be ~30bp higher and the DCF ~1% lower"
+  "cds_basis": "NA \u2014 Damodaran publishes no UAE sovereign CDS row",
+  "war_adder": 0.0,
+  "war_adder_note": "the 1.0pt conflict adder used by the Jul-2026 AE bank studies is retired here on auction evidence: the July-2026 AED sovereign printed 4bp over UST; a +1pt Ke stress is carried in sensitivity instead"
  },
  "contested": {
-  "name": "development sales trajectory (sustained-normalising vs run-off stress)",
-  "base_ps": 5.2917989217253325,
-  "runoff_ps": 3.7840783271845235,
-  "bull_ps": 6.305618176058718,
-  "runoff_ev": 60900.95719247659,
-  "base_ev": 85824.33874042283,
+  "name": "development sales trajectory (sustained-normalising vs backlog run-off)",
+  "base_ps": 6.024236149749804,
+  "runoff_ps": 4.179391161327742,
+  "bull_ps": 7.393430194946205,
+  "runoff_ev": 56403.13316055285,
+  "base_ev": 85052.27163776195,
   "runoff_rev": [
-   11045.65,
-   25019.21139,
-   26966.534638970006,
-   26539.82479830767,
-   25445.600938549094
+   19153.182441999998,
+   21892.65253539,
+   22791.53319601917,
+   22810.990481898207,
+   22418.069321716102
   ],
   "runoff_fcff": [
-   1844.3469121780822,
-   3455.8188849437156,
-   5259.9965178122875,
-   6142.4428885830275,
-   6661.895146596579
+   2121.650215107411,
+   4948.613152272965,
+   5420.234140702224,
+   5502.888698183277,
+   5274.223989738139
   ],
-  "note": "published side by side; the run-off is now labelled a stress: the H1-2026 disclosure falsified it as a live central path"
+  "note": "published side by side (summary table, section 1.7, workbook, Expert 2), never averaged"
  },
  "egy_stress": {
-  "ke": 0.10671706478266589,
-  "ps": 4.311736370448707,
+  "ke": 0.10479132503171446,
+  "wacc": 0.09717707497520198,
+  "ps": 5.0866766930325555,
   "fgn_share": 0.170797409390457
  },
  "fcst": {
   "years": [
-   "H2-26E",
+   "FY26E",
    "FY27E",
    "FY28E",
    "FY29E",
    "FY30E"
   ],
-  "yrfrac": [
-   0.5,
-   1.0,
-   1.0,
-   1.0,
-   1.0
-  ],
-  "t_exp": [
-   0.5,
-   1.5,
-   2.5,
-   3.5,
-   4.5
-  ],
   "rev": [
-   11045.65,
-   26019.21139,
-   32006.534638970006,
-   34927.82479830767,
-   36188.64093854909
+   19153.182441999998,
+   24862.65253539,
+   28600.23319601917,
+   30939.593481898202,
+   32183.659331716106
   ],
   "gp": [
-   4164.576499999999,
-   9618.595855500002,
-   11783.50421198225,
-   12806.978845467507,
-   13143.29411112225
+   6981.26615843,
+   9156.0877507473,
+   10459.748290195956,
+   11283.05527340185,
+   11631.766681062461
   ],
   "ga": [
-   916.78895,
-   2289.69060232,
-   2784.5685135903905,
-   3003.7929326544595,
-   3076.034479776673
+   1685.4800548959997,
+   2187.91342311432,
+   2488.2202880536674,
+   2660.8050394432453,
+   2735.611043195869
   ],
   "sm": [
-   187.77605,
-   468.34580501999994,
-   544.1110888624902,
-   593.7730215712305,
-   579.0182550167855
+   344.7572839559999,
+   447.52774563701996,
+   486.20396433232594,
+   525.9730891922695,
+   514.9385493074577
   ],
   "invinc": [
-   80.0,
+   160.0,
    165.0,
    170.0,
    175.0,
    180.0
   ],
   "ebitda": [
-   3481.475777999999,
-   7734.278218708002,
-   9361.296941878736,
-   10149.395164291305,
-   10462.464252094598
+   5915.462482142001,
+   7729.87798848234,
+   8856.533832042767,
+   9570.74007100606,
+   9912.930780491211
   ],
   "ebitda_margin": [
-   0.31518976049395003,
-   0.2972525993497454,
-   0.2924808026696135,
-   0.29058194213064953,
-   0.28910906794926655
+   0.30885010885555486,
+   0.31090319013546425,
+   0.309666490176573,
+   0.3093363226186408,
+   0.308011300962358
   ],
   "dna": [
-   341.46427800000004,
-   708.7187705480002,
-   736.4723323493681,
-   764.9822730494897,
-   794.2228757658071
+   804.433662564,
+   1044.2314064863801,
+   1201.2097942328053,
+   1299.4629262397245,
+   1351.7136919320765
   ],
   "ebit": [
-   3140.011499999999,
-   7025.559448160002,
-   8624.824609529369,
-   9384.412891241816,
-   9668.241376328791
+   5111.028819578001,
+   6685.646581995959,
+   7655.324037809962,
+   8271.277144766334,
+   8561.217088559135
   ],
   "nopat": [
-   2653.3097174999994,
-   5936.597733695201,
-   7287.976795052316,
-   7929.828893099335,
-   8169.663962997828
+   4318.819352543411,
+   5649.371361786585,
+   6468.748811949417,
+   6989.229187327553,
+   7234.228439832469
   ],
   "capex": [
-   700.0,
+   1400.0,
    1500.0,
    1550.0,
    1600.0,
    1650.0
   ],
   "dnwc": [
-   938.1944308219099,
-   3118.587543267815,
-   1519.6507359222742,
-   -313.0977934151888,
-   -2109.2326940719067
+   1500.0,
+   -800.0,
+   -1200.0,
+   -1400.0,
+   -1400.0
   ],
-  "recv": [
-   24391.615780821914,
-   30652.76958273973,
-   35952.54575884302,
-   37320.14156531505,
-   36684.37574592648
-  ],
-  "invdwip": [
-   34434.8983,
-   35238.707800000004,
-   34923.233113,
-   33972.068982900004,
-   32686.861034996004
-  ],
-  "pay": [
-   23934.67065,
-   27881.04640865,
-   31345.697161831024,
-   32075.22663161824,
-   32263.485558397577
-  ],
-  "nwc": [
-   34891.843430821915,
-   38010.43097408973,
-   39530.081710012004,
-   39216.983916596815,
-   37107.75122252491
+  "nwc_release": [
+   -1500.0,
+   800.0,
+   1200.0,
+   1400.0,
+   1400.0
   ],
   "fcff": [
-   1356.5795646780894,
-   2026.7289609753861,
-   4954.79839147941,
-   7407.908959564013,
-   9423.119532835542
+   2223.2530151074106,
+   5993.6027682729655,
+   7319.958606182223,
+   8088.6921135672765,
+   8335.942131764547
   ],
   "df": [
-   0.9609227828448683,
-   0.8872897631964225,
-   0.8192990507961165,
-   0.7565182902790014,
-   0.6985482565499589
+   0.9227916755995429,
+   0.8515444765558121,
+   0.7857981543684736,
+   0.725127995552712,
+   0.669142078040225
   ],
   "pv": [
-   1303.5682104409495,
-   1798.2958598471819,
-   4059.461619025206,
-   5604.218620631863,
-   6582.503720924131
+   2051.599375092703,
+   5103.8193319924685,
+   5752.009962791615,
+   5865.337098954069,
+   5577.929640471992
   ],
   "red_rev": [
-   7223.65,
-   18301.5875,
-   23897.333500000004,
-   26432.2287,
-   27300.064096
+   12024.0,
+   17361.52,
+   20718.1992,
+   22681.847047999996,
+   23543.76313816
   ],
   "aim_rev": [
-   385.0,
-   813.1029400000001,
-   882.2166899000001,
-   952.7940250920002,
-   1029.0175470993602
+   720.1238000000001,
+   781.334323,
+   847.747740455,
+   915.5675596914,
+   988.8129644667121
   ],
   "hosp_rev": [
-   452.0,
-   899.2258600000001,
-   962.1716702000002,
-   1019.9019704120003,
-   1081.0960886367204
+   839.27726,
+   898.0266682,
+   960.8885349740001,
+   1018.5418470724402,
+   1079.6543578967867
   ],
   "ect_rev": [
-   3000.0,
-   6035.29509,
-   6294.812778869999,
-   6552.900102803669,
-   6808.463206813011
+   5599.781381999999,
+   5851.771544189999,
+   6103.397720590168,
+   6353.637027134365,
+   6601.428871192605
   ],
   "dev_rev": [
-   6523.65,
-   16901.5875,
-   22597.333500000004,
-   25232.2287,
-   26200.064096
+   10224.0,
+   15761.52,
+   19318.1992,
+   21481.847047999996,
+   22543.76313816
   ],
   "land_rev": [
-   700.0,
+   1800.0,
+   1600.0,
    1400.0,
-   1300.0,
    1200.0,
-   1100.0
+   1000.0
   ],
   "bl_open": [
-   62130.0,
-   67606.35,
-   80704.76250000001,
-   84107.429,
-   81875.2003
+   42600.0,
+   58376.0,
+   66614.48,
+   69296.2808,
+   68314.433752
   ],
   "bl_close": [
-   67606.35,
-   80704.76250000001,
-   84107.429,
-   81875.2003,
-   76675.136204
+   58376.0,
+   66614.48,
+   69296.2808,
+   68314.433752,
+   64770.67061384
   ],
   "new_sales": [
-   12000.0,
-   30000.0,
    26000.0,
-   23000.0,
-   21000.0
+   24000.0,
+   22000.0,
+   20500.0,
+   19000.0
   ],
   "assoc": [
-   95.0,
-   210.0,
-   227.0,
-   245.0,
-   264.0
+   200.0,
+   216.0,
+   233.28000000000003,
+   251.94240000000002,
+   272.0977920000001
   ],
   "np": [
-   2675.6414797449993,
-   6036.8581003139525,
-   7478.799721034663,
-   8296.168244545614,
-   8788.881133242237
+   4458.719276512411,
+   5882.40705703477,
+   6911.388739756239,
+   7685.849538777101,
+   8214.399817194892
   ],
   "np_attr": [
-   2622.1286501500995,
-   5916.120938307673,
-   7329.22372661397,
-   8130.244879654701,
-   8613.103510577392
+   4369.5448909821625,
+   5764.758915894075,
+   6773.160964961115,
+   7532.1325480015585,
+   8050.111820850993
   ],
   "equity": [
-   59994.612479744996,
-   66031.47058005894,
-   73510.27030109361,
-   81806.43854563922,
-   90595.31967888145
+   59208.70327651242,
+   65091.110333547185,
+   72002.49907330342,
+   79688.34861208052,
+   87902.74842927541
   ],
   "net_debt": [
-   -4045.4663269230896,
-   -5962.455654517224,
-   -10881.076971978979,
-   -18410.325282989274,
-   -28188.661986069223
+   -8016.05393907641,
+   -14026.692402597564,
+   -21556.01093658661,
+   -30089.381001603433,
+   -39133.3967187304
   ],
   "cash": [
-   14345.46632692309,
-   16462.455654517224,
-   20581.07697197898,
-   27210.325282989274,
-   36088.66198606922
+   17716.05393907641,
+   23926.692402597564,
+   30756.01093658661,
+   38389.38100160343,
+   46533.3967187304
   ],
   "debt": [
-   10300.0,
-   10500.0,
    9700.0,
-   8800.0,
-   7900.0
+   9900.0,
+   9200.0,
+   8300.0,
+   7400.0
   ],
   "interest": [
-   283.878579,
-   593.44,
-   577.36,
-   531.8,
-   483.56
+   476.90750479999997,
+   560.28,
+   546.88,
+   504.0,
+   455.76
   ],
   "ic": [
-   55854.146152821915,
-   59764.01492554173,
-   62097.193329114634,
-   62619.11326264996,
-   61365.657692812245
+   50992.64933743601,
+   50648.417930949625,
+   49797.20813671682,
+   48697.74521047709,
+   47596.031518545016
   ],
   "roic": [
-   0.09612434298601889,
-   0.10269316997130745,
-   0.11961110347474074,
-   0.1271658712449871,
-   0.13178495875001509
+   0.08647173741449364,
+   0.11116316492170014,
+   0.12880100538358263,
+   0.14192055429866698,
+   0.1502532912420733
   ],
-  "fy26_rev_total": 20233.953999999998,
-  "fy26_npa_total": 4785.094650150099,
-  "ic_30jun": 54557.416000000005,
-  "nwc_30jun": 33953.649000000005
+  "nwc": [
+   28442.909999999996,
+   27642.909999999996,
+   26442.909999999996,
+   25042.909999999996,
+   23642.909999999996
+  ],
+  "ic_fy25": 48897.083000000006,
+  "nopat_fy25": 2999.7618300000004,
+  "nwc_fy25": 26942.909999999996,
+  "dna_fy25": 610.483,
+  "eqp_fy25": 53902.504,
+  "debt_fy25": 6789.085999999999
  },
  "dcf": {
-  "pv_explicit": 19348.04803086933,
-  "tv": 95163.4909775188,
-  "pv_tv": 66476.2907095535,
-  "ev": 85824.33874042283,
-  "tv_share": 0.7745622242498387,
-  "cash_avail": 8600.0,
-  "cash_total": 12303.24,
-  "restricted": 3703.24,
-  "debt": 9541.685,
-  "lease": 644.799,
-  "assoc": 2826.454,
-  "finass": 392.972,
-  "nci_book": 922.342,
-  "nci_val": 1730.6987748084564,
-  "eq_attr": 85726.58196561437,
-  "ps_jun": 5.244152592733037,
-  "roll": 1.0090856107158896,
-  "ps": 5.2917989217253325,
-  "anchor_days": 38,
+  "pv_explicit": 24350.695409302847,
+  "tv": 90715.52697185197,
+  "pv_tv": 60701.576228459104,
+  "ev": 85052.27163776195,
+  "tv_share": 0.7136972953172541,
+  "cash": 12641.987,
+  "debt": 6789.085999999999,
+  "lease": 623.7660000000001,
+  "assoc": 3723.897,
+  "finass": 394.305,
+  "nci_val": 847.48,
+  "eq_attr": 93552.12863776194,
+  "ps_dec": 5.722864795288329,
+  "roll": 1.0526609251208583,
+  "ps": 6.024236149749804,
+  "anchor_days": 219,
   "roic_term": 0.085,
   "rr_term": 0.29411764705882354,
   "g": 0.025,
-  "nopat_term": 8373.905562072772,
-  "ps_grosscash": 5.520395478237414,
-  "ps_booknci": 5.341697814358385,
-  "bear": 3.7840783271845235,
-  "bull": 6.305618176058718,
-  "ps_egystress": 4.311736370448707
+  "nopat_term": 7415.08415082828,
+  "ps_nci_alt": 5.958324419657603,
+  "nci_alt": 1871.0425727552388,
+  "bear": 4.179391161327742,
+  "bull": 7.393430194946205,
+  "ps_egystress": 5.0866766930325555
  },
  "rel": {
-  "pe_just": 7.5,
+  "pe_just": 8.0,
   "ev_ebitda_just": 7.0,
-  "pe_ps": 2.1953896277577245,
-  "ev_ps": 2.816767914881434,
-  "base": 2.1953896277577245,
-  "fy26_npa": 4785.094650150099,
-  "fy26_ebitda": 6476.475777999999,
-  "pe_trailing_attr": 11.507727017871687,
-  "pe_trailing_group": 11.784440348930957,
+  "pe_ps": 2.13838551764947,
+  "ev_ps": 3.053028086667099,
+  "base": 2.5957068021582845,
+  "pe_trailing": 11.784440348930957,
   "ev_ebitda_trailing": 8.254296022185036,
   "peers": {
    "ALDAR": {
     "name": "Aldar Properties (ADX)",
+    "pe": 7.54,
     "spot": 7.78,
-    "shares_mn": 7862.6,
-    "mcap": 61171.0,
-    "np_attr": 7548.0,
-    "eps": 0.96,
-    "pe_attr": 8.1,
+    "mcap": 61170.0,
+    "np": 8800.0,
     "rev": 33800.0,
     "ebitda": 11200.0,
-    "backlog": 71700.0,
-    "basis": "attributable EPS 0.96 disclosed in the Q4-FY25 release; FY2025 development backlog 71.7bn (66.5bn was the 9M-2025 vintage, corrected at revision 2)"
+    "backlog": 66500.0
    },
    "EMAAR": {
     "name": "Emaar Properties (DFM)",
+    "pe": 5.3,
     "spot": 11.5,
-    "shares_mn": 8838.0,
     "mcap": 101650.0,
-    "np_attr": 17599.0,
-    "eps": null,
-    "pe_attr": 5.78,
+    "np": null,
     "rev": 49600.0,
     "ebitda": null,
-    "backlog": 155000.0,
-    "basis": "attributable 17,599.179 from the audited DFM filing (previously marked n/d in error)"
+    "backlog": 155000.0
    },
    "EMAARDEV": {
     "name": "Emaar Development (DFM)",
+    "pe": 4.08,
     "spot": 13.38,
-    "shares_mn": 4000.0,
     "mcap": 53520.0,
-    "np_attr": 11316.0,
-    "eps": null,
-    "pe_attr": 4.73,
+    "np": 11320.0,
     "rev": 27490.0,
     "ebitda": null,
-    "backlog": 125200.0,
-    "basis": "attributable 11,316.189 audited; backlog 125.2bn (134.3bn was Emaar Properties' UAE figure, corrected)"
+    "backlog": 134300.0
    }
-  },
-  "note": "lens = P/E leg only; EV/EBITDA displayed as unanchored cross-check (first edition averaged the two legs, which disagreed by 43%, without showing either)"
+  }
  },
  "norm": {
-  "rev": 24423.4547,
+  "rev": 22723.4547,
   "margin": 0.115,
-  "np": 2808.6972905,
-  "eps": 0.17181645226548103,
+  "np": 2613.1972905,
+  "eps": 0.15985712986661837,
   "pe": 8.5,
-  "base": 1.4604398442565887,
-  "clean_np_fy25": 3304.583525,
+  "base": 1.3587856038662562,
   "clean_margin_fy25": 0.23896267474946795
  },
  "book": {
-  "bvps": 3.4499512451153356,
+  "bvps": 3.29737812502294,
   "roe_sust": 0.075,
-  "pb_just": 0.7603290704216783,
-  "base": 2.6469306725241797,
+  "pb_just": 0.7776049766718507,
+  "base": 2.5640576399867343,
   "roe_fy25": 0.07762394723744538,
-  "roe_fy25_clean": 0.06563074392980686,
-  "pb_trailing": 0.8203014474499886,
-  "rolled": true
+  "pb_trailing": 0.8582576497744892
  },
  "sotp": {
   "ev_split": {
-   "red": 57565.24153144195,
-   "aim": 8531.299060054273,
-   "hosp": 2724.392916174382,
-   "ect": 17003.40523275221
+   "red": 57047.39041956125,
+   "aim": 8454.552353421888,
+   "hosp": 2699.8845520416576,
+   "ect": 16850.444312737145
   },
   "weights": {
    "red": 2261.929994799141,
@@ -713,50 +649,49 @@
    "hosp": 107.0504681431287,
    "ect": 668.1204019387269
   },
-  "tot_w": 3372.3240086594938,
-  "note": "group EV allocated on FY2025 segment gross profit less a revenue-proportional corporate load; weights and divisor are live formulas in the workbook at revision 2"
+  "note": "group EV allocated on FY2025 segment gross profit less a revenue-proportional share of the corporate load; the four legs share one discount rate, with the Egypt stress case pricing the cross-border leg separately"
  },
  "lenses": {
   "dcf": {
    "name": "Discounted cash flow (primary)",
-   "bear": 3.7840783271845235,
-   "base": 5.2917989217253325,
-   "bull": 6.305618176058718,
+   "bear": 4.179391161327742,
+   "base": 6.024236149749804,
+   "bull": 7.393430194946205,
    "w": 0.4
   },
   "relative": {
    "name": "Relative multiples",
-   "bear": 1.3845590585725382,
-   "base": 2.1953896277577245,
-   "bull": 2.371020797978342,
+   "bear": 1.323810469100725,
+   "base": 2.5957068021582845,
+   "bull": 3.082401827562963,
    "w": 0.2
   },
   "normalized": {
    "name": "Normalised earnings power",
-   "bear": 1.0308987135928862,
-   "base": 1.4604398442565887,
-   "bull": 1.8040727487875508,
+   "bear": 0.9591427791997102,
+   "base": 1.3587856038662562,
+   "bull": 1.678499863599493,
    "w": 0.2
   },
   "book": {
    "name": "Book value and sustainable return",
-   "bear": 1.5881584035145078,
-   "base": 2.6469306725241797,
-   "bull": 3.705702941533852,
+   "bear": 1.5384345839920406,
+   "base": 2.5640576399867343,
+   "bull": 3.5896806959814285,
    "w": 0.2
   },
   "central": {
    "name": "Weighted central",
-   "bear": 1.0308987135928862,
-   "base": 3.3772715975978316,
-   "bull": 6.305618176058718,
+   "bear": 0.9591427791997102,
+   "base": 3.713404469102177,
+   "bull": 7.393430194946205,
    "w": 1.0
   }
  },
- "central": 3.3772715975978316,
+ "central": 3.713404469102177,
  "span": [
-  1.0308987135928862,
-  6.305618176058718
+  0.9591427791997102,
+  7.393430194946205
  ],
  "spot": 2.83,
  "sens": {
@@ -768,62 +703,62 @@
    0.035
   ],
   "wacc_grid": [
-   0.07298644107330422,
-   0.07798644107330421,
-   0.08298644107330422,
-   0.08798644107330422,
-   0.09298644107330421
+   0.07366820642404948,
+   0.07866820642404947,
+   0.08366820642404947,
+   0.08866820642404948,
+   0.09366820642404947
   ],
   "table": [
    [
-    6.042201126082581,
-    6.10721428904692,
-    6.180544547870568,
-    6.264795543624948,
-    6.363784279482363
+    6.816452482925069,
+    6.909873380799658,
+    7.018543394391232,
+    7.1477005848542525,
+    7.305292247434371
    ],
    [
-    5.630966604933419,
-    5.664779705951927,
-    5.7008811742258265,
-    5.739924640865718,
-    5.782838862569954
+    6.327851843498262,
+    6.380928636790108,
+    6.44039871910471,
+    6.50823256238644,
+    6.587303112991017
    ],
    [
-    5.272022262605483,
-    5.28268685237433,
-    5.2917989217253325,
-    5.298950728670187,
-    5.303578050656447
+    5.909838209003201,
+    5.934227354209989,
+    5.9596482199374865,
+    5.986389167001941,
+    6.014857056915395
    ],
    [
-    4.95597119576637,
-    4.94933727846957,
-    4.938715350961064,
-    4.923136085639504,
-    4.9012883190227905
+    5.548060984956186,
+    5.5518341939254485,
+    5.55338560371135,
+    5.5521471555682504,
+    5.547339097912793
    ],
    [
-    4.675542181427662,
-    4.655928128818662,
-    4.6308093130353045,
-    4.598940538029852,
-    4.558670424322702
+    5.231817129849231,
+    5.2206819357375975,
+    5.205374749702586,
+    5.184912665481165,
+    5.157977703923985
    ]
   ],
   "beta_grid": [
    0.8,
    0.9,
-   1.03,
+   1.0,
    1.1,
    1.2
   ],
   "grid_beta": [
-   6.308360959810829,
-   5.820961579529833,
-   5.2917989217253325,
-   5.0457112922861365,
-   4.7322477167536325
+   6.866679344218397,
+   6.413169493505883,
+   6.024236149749804,
+   5.686927547554161,
+   5.391541877257699
   ],
   "mg_grid": [
    -0.04,
@@ -833,11 +768,11 @@
    0.04
   ],
   "grid_margin": [
-   4.792998926154786,
-   5.042398923940059,
-   5.2917989217253325,
-   5.541198919510606,
-   5.790598917295879
+   5.43240572430237,
+   5.728320937026088,
+   6.024236149749804,
+   6.320151362473521,
+   6.616066575197236
   ],
   "conv_grid": [
    -0.06,
@@ -847,11 +782,11 @@
    0.06
   ],
   "grid_conv": [
-   4.8493419852166895,
-   5.088978093938395,
-   5.2917989217253325,
-   5.462012652655713,
-   5.603513696301147
+   5.68305748265587,
+   5.869617894273379,
+   6.024236149749804,
+   6.151121771303977,
+   6.254107573264127
   ],
   "sales_grid": [
    0.5,
@@ -861,11 +796,11 @@
    1.5
   ],
   "grid_sales": [
-   4.098077467988583,
-   4.694938194856958,
-   5.2917989217253325,
-   5.888659648593707,
-   6.485520375462085
+   4.467805933968548,
+   5.246021041859176,
+   6.024236149749804,
+   6.80245125764043,
+   7.580666365531059
   ],
   "nwc_grid": [
    -1000.0,
@@ -875,25 +810,11 @@
    1000.0
   ],
   "grid_nwc": [
-   5.0424067612814465,
-   5.1671028415033895,
-   5.2917989217253325,
-   5.4164950019472755,
-   5.5411910821692185
-  ],
-  "dso_grid": [
-   -60.0,
-   -30.0,
-   0.0,
-   30.0,
-   60.0
-  ],
-  "grid_dso": [
-   5.615709443012417,
-   5.4537541823688755,
-   5.2917989217253325,
-   5.12984366108179,
-   4.967888400438247
+   5.76959452732698,
+   5.896915338538393,
+   6.024236149749804,
+   6.151556960961216,
+   6.278877772172628
   ],
   "ke_grid": [
    0.0,
@@ -903,69 +824,74 @@
    0.02
   ],
   "grid_ke": [
-   5.2917989217253325,
-   4.938715350961064,
-   4.6308093130353045,
-   4.359881599769382,
-   4.119606091590888
+   6.024236149749804,
+   5.678535191814055,
+   5.376799558560899,
+   5.111087154173134,
+   4.875262927275586
   ]
- },
- "market_implied": {
-  "ke_add": 0.061803349912400676,
-  "ke": 0.1525643499124007,
-  "note": "cost-of-equity adder reconciling the base DCF to the market price",
-  "runoff_discount": 0.25212964550191763
  },
  "experts": {
   "e1": {
    "method_short": "asset value (RNAV)",
-   "base": 4.058071128115847,
+   "base": 3.9232109312488834,
    "rng": [
-    3.4493604588984703,
-    4.545039663489749
+    3.3347292915615507,
+    4.3939962429987505
    ],
-   "nav": 66337.613377,
+   "nav": 64133.042949999995,
    "land_bv": 26610.771,
-   "uplift": 0.337,
+   "uplift": 0.35,
    "dwip_uplift": 0.15,
-   "eqp": 56396.629
+   "eqp": 53902.504
   },
   "e2": {
-   "method_short": "owner cash flow, run-off stress basis",
-   "base": 3.6195916268074533,
+   "method_short": "owner cash flow, run-off basis",
+   "base": 4.05809229633167,
    "rng": [
-    2.895673301445963,
-    5.027208975639065
+    3.246473837065336,
+    5.723024342262313
    ],
-   "runoff_ps": 3.7840783271845235,
+   "runoff_ps": 4.179391161327742,
    "haircut": 0.25,
-   "rp_book": 10755.509,
-   "note": "builds on the study's own run-off scenario with an independent receivable haircut \u2014 labelled as derived, not independent"
+   "rp_book": 7931.529
   },
   "e3": {
    "method_short": "peer-multiple convergence",
-   "base": 1.8148554256130525,
+   "base": 1.7374382330901945,
    "rng": [
-    1.3845590585725385,
-    2.371020797978342
+    1.0905766140012298,
+    2.2720346125025617
    ],
-   "pe": 6.2,
-   "npa26": 4785.094650150099
+   "pe": 6.5,
+   "npa26": 4369.5448909821625
   }
  },
- "panel_centre": 3.6195916268074533,
+ "panel_centre": 3.9232109312488834,
+ "market_implied": {
+  "ke_add": 0.11409083292467073,
+  "ke": 0.20339083292467072,
+  "note": "the cost-of-equity adder that reconciles the base-path DCF to the market price \u2014 one honest reading of the spot is the base cash flows at a deep related-party/execution risk premium"
+ },
  "terminal_recon": {
-  "roic_fy25_clean": 0.06134848228063011,
+  "roic_fy25": 0.06134848228063011,
   "roic_path": [
-   0.09612434298601889,
-   0.10269316997130745,
-   0.11961110347474074,
-   0.1271658712449871,
-   0.13178495875001509
+   0.08647173741449364,
+   0.11116316492170014,
+   0.12880100538358263,
+   0.14192055429866698,
+   0.1502532912420733
   ],
   "roic_term": 0.085,
   "rr_term": 0.29411764705882354,
-  "note": "terminal 8.5% sits between the FY2025 clean achieved 6.1% and the model's own forward path (peaking ~15% as capital releases); the step-down from the path is a deliberate mean-reversion margin of safety, stated and sensitised"
+  "implied_reinvest": [
+   0.48521740929078055,
+   -0.06093269223100226,
+   -0.13158801168170345,
+   -0.15730818045474945,
+   -0.15229180293311143
+  ],
+  "note": "FY2025 clean ROIC on invested capital (equity + NCI + debt - cash) is 6.1%; the terminal 8.5% sits above it because the at-cost land bank inside invested capital converts to recognised profit across the explicit window"
  },
  "step0": {
   "windows_scored": 17,
@@ -1960,129 +1886,39 @@
    "date": "2026-03-31",
    "ring": "Company"
   },
-  "h1_backlog": {
-   "value": 65400.0,
-   "source": "Group revenue backlog AED 65.4bn, doubling y/y, +42% vs FY2025; Modon H1-2026 results announcement, modon.com media centre, 29-Jul-2026 (verified via Zawya/WAM syndication of the official release)",
-   "date": "2026-07-29",
-   "ring": "Company"
-  },
-  "h1_dev_share": {
-   "value": 0.95,
-   "source": "Development projects across the UAE and Egypt = 95% of the total backlog; Modon H1-2026 results announcement, modon.com media centre, 29-Jul-2026 (verified via Zawya/WAM syndication of the official release)",
-   "date": "2026-07-29",
-   "ring": "Company"
-  },
-  "h1_sales": {
-   "value": 26000.0,
-   "source": "H1-2026 real estate sales AED 26bn (2.6x H1-2025), incl. AED 23bn Abu Dhabi; Hudayriyat Golf Estates AED 13bn within days; Modon H1-2026 results announcement, modon.com media centre, 29-Jul-2026 (verified via Zawya/WAM syndication of the official release)",
-   "date": "2026-07-29",
-   "ring": "Company"
-  },
-  "h1_netdebt": {
-   "value": 912.0,
-   "source": "Net debt AED 912mn (0.02x equity) at 30-Jun-2026, company definition; Modon H1-2026 results announcement, modon.com media centre, 29-Jul-2026 (verified via Zawya/WAM syndication of the official release)",
-   "date": "2026-07-29",
-   "ring": "Company"
-  },
-  "h1_avail_cash": {
-   "value": 8600.0,
-   "source": "AED 8.6bn of unrestricted cash plus AED 1.5bn undrawn committed facilities; Modon H1-2026 results announcement, modon.com media centre, 29-Jul-2026 (verified via Zawya/WAM syndication of the official release)",
-   "date": "2026-07-29",
-   "ring": "Company"
-  },
-  "h1_adj_ebitda": {
-   "value": 2995.0,
-   "source": "H1-2026 Group Adjusted EBITDA AED 3.0bn, margin 32.6% (32.6% x 9,188 = 2,995); Modon H1-2026 results announcement, modon.com media centre, 29-Jul-2026 (verified via Zawya/WAM syndication of the official release)",
-   "date": "2026-07-29",
-   "ring": "Company"
-  },
-  "h1_keys": {
-   "value": 3613,
-   "source": "Hospitality portfolio 3,613 keys across 16 owned, operated and JV hotels (narrower perimeter than the FY2025 report's 7,137 keys across 27 hotels incl. managed); Modon H1-2026 results announcement, modon.com media centre, 29-Jul-2026 (verified via Zawya/WAM syndication of the official release)",
-   "date": "2026-07-29",
-   "ring": "Company"
-  },
-  "h1_recurring": {
-   "value": 3500.0,
-   "source": "Recurring revenues +22% y/y to AED 3.5bn = 38% of Group revenues; Modon H1-2026 results announcement, modon.com media centre, 29-Jul-2026 (verified via Zawya/WAM syndication of the official release)",
-   "date": "2026-07-29",
-   "ring": "Company"
-  },
-  "h1_lease": {
-   "value": 644.799,
-   "source": "Lease liabilities NC + C, Interim condensed consolidated financial statements, 30-Jun-2026 (reviewed, unaudited), modon.com investor relations",
-   "date": "2026-08-07",
-   "ring": "Company"
-  },
-  "h1_assoc_bv": {
-   "value": 2826.454,
-   "source": "Investments in associates and JVs, Interim condensed consolidated financial statements, 30-Jun-2026 (reviewed, unaudited), modon.com investor relations",
-   "date": "2026-08-07",
-   "ring": "Company"
-  },
-  "h1_finass": {
-   "value": 392.972,
-   "source": "Investments in financial assets, NC + C, Interim condensed consolidated financial statements, 30-Jun-2026 (reviewed, unaudited), modon.com investor relations",
-   "date": "2026-08-07",
-   "ring": "Company"
-  },
-  "h1_nci": {
-   "value": 922.342,
-   "source": "Non-controlling interests, Interim condensed consolidated financial statements, 30-Jun-2026 (reviewed, unaudited), modon.com investor relations",
-   "date": "2026-08-07",
-   "ring": "Company"
-  },
-  "h1_recv_total": {
-   "value": 22155.68,
-   "source": "Trade and other receivables (NC+C) + amounts due from related parties (NC+C), 30-Jun-2026, Interim condensed consolidated financial statements, 30-Jun-2026 (reviewed, unaudited), modon.com investor relations",
-   "date": "2026-08-07",
-   "ring": "Company"
-  },
-  "h1_inv_dwip": {
-   "value": 34087.289000000004,
-   "source": "Inventories + development work-in-progress, 30-Jun-2026, Interim condensed consolidated financial statements, 30-Jun-2026 (reviewed, unaudited), modon.com investor relations",
-   "date": "2026-08-07",
-   "ring": "Company"
-  },
-  "h1_pay_total": {
-   "value": 22289.32,
-   "source": "Trade and other payables (NC+C, incl. customer advances/contract liabilities) + amounts due to related parties, 30-Jun-2026, Interim condensed consolidated financial statements, 30-Jun-2026 (reviewed, unaudited), modon.com investor relations",
-   "date": "2026-08-07",
-   "ring": "Company"
-  },
   "conv_path": {
    "value": [
-    0.105,
-    0.25,
-    0.28,
-    0.3,
-    0.32
+    0.24,
+    0.27,
+    0.29,
+    0.31,
+    0.33
    ],
-   "source": "Backlog conversion on opening development backlog (H2-2026 is a half-year rate). Anchor: H1-2026 realised development revenue ex-land 4,237 = 9.9% of the 42,600 opening \u2014 a ~20-23% annualised pace on a growing base, stepping up as the record construction book mobilises",
+   "source": "Backlog conversion rate on opening development backlog. FY2026E anchored on H1-2026 actuals (RED development revenue ex-land 4,237 in H1 = ~20% annualised pace on the opening 42,600, with an H2-weighted construction ramp), stepping up as the AED 32bn of construction contracts procured in 2025 mobilise",
    "date": "2026-08-09",
    "ring": "House"
   },
   "new_sales": {
    "value": [
-    12000.0,
-    30000.0,
     26000.0,
-    23000.0,
-    21000.0
+    24000.0,
+    22000.0,
+    20500.0,
+    19000.0
    ],
-   "source": "New development sales, BASE path, POST-H1 (the AED 26bn H1-2026 actual is already inside the opening backlog): H2-2026 12bn (no assumed repeat of the 13bn Golf Estates launch), then fading 30->21bn/yr \u2014 still below the 52bn annualised H1 run-rate throughout",
+   "source": "New development sales, BASE path: normalising from the 2025 record (33.8bn dev component of 36.3bn) toward a mid-cycle ~19-26bn as the ADREC-reported +67% residential market cools; Modon share of Abu Dhabi residential held roughly flat",
    "date": "2026-08-09",
    "ring": "House"
   },
   "land_rev": {
    "value": [
-    700.0,
+    1800.0,
+    1600.0,
     1400.0,
-    1300.0,
     1200.0,
-    1100.0
+    1000.0
    ],
-   "source": "Point-in-time land and plot sales: H1-2026 actual was 1,438; tapering path",
+   "source": "Point-in-time land and plot sales, tapering from the FY2025 2,513 (related-party-heavy; 67% gross margin) toward 1,000",
    "date": "2026-08-09",
    "ring": "House"
   },
@@ -2094,366 +1930,259 @@
     0.385,
     0.38
    ],
-   "source": "RED gross margin: FY2025 43.7%, H1-2026 actual 41.3%; glides to 38% as related-party land mix fades and the ~4% tender-price escalator runs ahead of ~2% realised-price escalation",
+   "source": "RED gross margin: FY2025 actual 43.7%, H1-2026 41.3%; glides to 38% as the related-party land mix fades and the tender-price escalator (~4%) runs ahead of realised-price escalation (~2%)",
    "date": "2026-08-09",
    "ring": "House"
   },
   "aim_growth": {
    "value": [
-    null,
-    0.09,
+    0.1,
+    0.085,
     0.085,
     0.08,
     0.08
    ],
-   "source": "AIM revenue growth off the FY2026E base; H2-2026E set directly",
-   "date": "2026-08-09",
-   "ring": "House"
-  },
-  "aim_h2": {
-   "value": 385.0,
-   "source": "AIM H2-2026E revenue: H1 actual 361 with contracted occupancy 96% and GLA additions",
+   "source": "AIM revenue growth: 97% occupancy, contracted GLA additions, 2 Finsbury Avenue and Harborside step-ins",
    "date": "2026-08-09",
    "ring": "House"
   },
   "aim_margin": {
    "value": [
-    0.68,
-    0.66,
-    0.65,
+    0.64,
+    0.64,
+    0.64,
     0.64,
     0.64
    ],
-   "source": "AIM gross margin: FY2025 64.3%, H1-2026 actual 71.6%; held near the blend",
+   "source": "AIM gross margin held at the FY2025 actual 64.3%",
    "date": "2026-08-09",
    "ring": "House"
   },
   "hosp_growth": {
    "value": [
-    null,
+    0.06,
     0.07,
     0.07,
     0.06,
     0.06
    ],
-   "source": "Hospitality growth off FY2026E; H2 set directly",
-   "date": "2026-08-09",
-   "ring": "House"
-  },
-  "hosp_h2": {
-   "value": 452.0,
-   "source": "Hospitality H2-2026E: H1 actual 388 plus the winter-season weighting (H2-2025 was 52% of the year)",
+   "source": "Hospitality: 7,137 keys at 71% occupancy recovering toward 75% plus Olympia Resort ramp",
    "date": "2026-08-09",
    "ring": "House"
   },
   "hosp_margin": {
    "value": [
-    0.29,
+    0.27,
     0.28,
     0.29,
     0.3,
     0.3
    ],
-   "source": "Hospitality gross margin: H1-2026 actual 27.2%, recovering to 30%",
+   "source": "Hospitality gross margin: FY2025 26.6% (post-2024 impairment reset), H1-2026 27.2%, recovering to 30%",
    "date": "2026-08-09",
    "ring": "House"
   },
   "ect_growth": {
    "value": [
-    null,
+    0.118,
     0.045,
     0.043,
     0.041,
     0.039
    ],
-   "source": "ECT growth off FY2026E; H2 set directly",
-   "date": "2026-08-09",
-   "ring": "House"
-  },
-  "ect_h2": {
-   "value": 3000.0,
-   "source": "ECT H2-2026E: H1 actual 2,775 plus the H2-weighted events season (ADNEC calendar; Arena full-period)",
+   "source": "ECT: FY2026E anchored on H1 actual 2,775 with the H2-weighted events season (896 events, 6.3mn visitors 2025; Arena Group full-year effect), then ~4%/yr events-industry growth",
    "date": "2026-08-09",
    "ring": "House"
   },
   "ect_margin": {
    "value": [
-    0.29,
+    0.265,
     0.27,
     0.275,
     0.28,
     0.28
    ],
-   "source": "ECT gross margin: H1-2026 actual 19.9% (temporary-infrastructure mix), recovering toward the FY2025 26.5% as the events season carries H2",
+   "source": "ECT gross margin: FY2025 26.5%, temporary-infrastructure mix maturing",
    "date": "2026-08-09",
    "ring": "House"
   },
   "oth_rev_f": {
    "value": -30.0,
-   "source": "Others / eliminations, full-year rate",
+   "source": "Others/eliminations revenue, held at FY2025",
    "date": "2026-08-09",
    "ring": "House"
   },
   "oth_gp_f": {
    "value": -120.0,
-   "source": "Others gross loss, full-year rate (H1-2026 actual -57.5)",
+   "source": "Others gross loss: FY2025 -164.6 included one-off items; H1-2026 run-rate -115",
    "date": "2026-08-09",
    "ring": "House"
   },
   "ga_pct": {
    "value": [
-    0.083,
+    0.088,
     0.088,
     0.087,
     0.086,
     0.085
    ],
-   "source": "G&A / revenue. Anchors stated: FY2025 11.19%; H1-2026 headline 7.46% flattered by a -77.9 ECL reversal \u2014 ex-reversal 8.30%. The path glides 8.3% -> 8.5-8.8%, i.e. BELOW FY2025 on realised operating leverage but ABOVE the flattered H1 print. The first edition's conservatism claim is withdrawn: this is a generous assumption relative to FY2025 and is now labelled as such",
+   "source": "G&A as a share of revenue: FY2025 11.2%, H1-2026 actual 7.5% (operating leverage); forecast holds a conservative 8.5-8.8%",
    "date": "2026-08-09",
    "ring": "House"
   },
   "sm_pct": {
    "value": [
-    0.017,
+    0.018,
     0.018,
     0.017,
     0.017,
     0.016
    ],
-   "source": "S&M / revenue: FY2025 1.93%, H1-2026 1.64%",
+   "source": "Selling and marketing as a share of revenue: FY2025 1.9%, H1-2026 1.6%",
    "date": "2026-08-09",
    "ring": "House"
   },
   "invinc_f": {
    "value": [
-    80.0,
+    160.0,
     165.0,
     170.0,
     175.0,
     180.0
    ],
-   "source": "Investment and other income, recurring component (H1-2026 actual 71 incl. one-offs)",
+   "source": "Investment and other income, recurring component only: FY2025 338 included 94 of one-off unwinding/disposal items; H1-2026 71",
    "date": "2026-08-09",
    "ring": "House"
   },
-  "assoc_f_path": {
-   "value": [
-    95.0,
-    210.0,
-    227.0,
-    245.0,
-    264.0
-   ],
-   "source": "Associate/JV income: H1-2026 actual 88.3 post the Q2 JV disposal; ~8%/yr thereafter",
+  "assoc_g": {
+   "value": 0.08,
+   "source": "Growth in the share of associates/JV profit off a post-disposal FY2026E base of 200",
    "date": "2026-08-09",
    "ring": "House"
   },
-  "dna_rate": {
-   "value": 0.034,
-   "source": "Depreciation & amortisation as a rate on the AVERAGE depreciable asset base (PP&E + investment properties + right-of-use + intangibles): FY2025 charge 610.5 on an average base of ~17,940 = 3.4%. Respecified off the asset base at revision 2 \u2014 the first edition drove D&A off revenue, a mis-specified driver both external audits flagged",
+  "assoc_base": {
+   "value": 200.0,
+   "source": "FY2026E associate income base: H1-2026 actual 88.3 plus H2, after the Q2-2026 JV disposal",
    "date": "2026-08-09",
    "ring": "House"
   },
-  "asset_base_30jun": {
-   "value": 19736.134000000002,
-   "source": "Depreciable base at 30-Jun-2026: PP&E 8,702.928 + investment properties 9,496.084 + right-of-use 529.636 + intangibles 1,007.486, Interim condensed consolidated financial statements, 30-Jun-2026 (reviewed, unaudited), modon.com investor relations",
-   "date": "2026-08-07",
-   "ring": "Company"
+  "dna_pct": {
+   "value": 0.042,
+   "source": "Depreciation and amortisation as a share of revenue: FY2025 4.4%, H1-2026 3.6%; held near 4.2% as venues and resorts commission",
+   "date": "2026-08-09",
+   "ring": "House"
   },
   "capex_f": {
    "value": [
-    700.0,
+    1400.0,
     1500.0,
     1550.0,
     1600.0,
     1650.0
    ],
-   "source": "Capital expenditure (H2 stub then annual): H1-2026 actual 312.5 (PP&E 206.9 + intangibles 63.5 + IP 42.0); rising with Olympia and venue pipeline",
+   "source": "Capital expenditure: FY2025 actual 1,260.6 (PP&E + intangibles + IP); rising with Olympia Resort and venue pipeline",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "nwc_release": {
+   "value": [
+    -1500.0,
+    800.0,
+    1200.0,
+    1400.0,
+    1400.0
+   ],
+   "source": "Annual net working-capital release (negative = absorption) as the AED 26.6bn land bank and WIP convert to recognised revenue. FY2026E ABSORBS cash: the H1-2026 interim shows AED 5.4bn of receivable/related-party build-up and negative operating cash flow, only partly collected in H2; releases start FY2027E as escrows and Department-of-Finance receivables collect",
    "date": "2026-08-09",
    "ring": "House"
   },
   "tax_f": {
    "value": 0.155,
-   "source": "Effective tax: DMTT 15% floor + foreign uplift; H1-2026 actual 15.4%",
+   "source": "Forecast effective tax rate: DMTT 15% floor on UAE profits plus the UK/Spain uplift; H1-2026 actual 15.4%",
    "date": "2026-08-09",
    "ring": "House"
   },
   "nci_pct": {
    "value": 0.02,
-   "source": "NCI share of profit: H1-2026 actual 1.8%",
-   "date": "2026-08-09",
-   "ring": "House"
-  },
-  "dso_path": {
-   "value": [
-    440.0,
-    430.0,
-    410.0,
-    390.0,
-    370.0
-   ],
-   "source": "Receivable days (trade + contract + related-party receivables over revenue): FY2025 439 days, 30-Jun-2026 440 days \u2014 held flat through 2026 then declining as Department-of-Finance balances collect. THE collection caveat in one driver",
-   "date": "2026-08-09",
-   "ring": "House"
-  },
-  "inv_addition": {
-   "value": 0.1,
-   "source": "New-project WIP added per dirham of new development sales (mobilisation, infrastructure)",
-   "date": "2026-08-09",
-   "ring": "House"
-  },
-  "inv_consumption": {
-   "value": 0.2,
-   "source": "Share of RED direct costs drawn from the existing land bank / WIP (land content of cost of sales)",
-   "date": "2026-08-09",
-   "ring": "House"
-  },
-  "pay_cover": {
-   "value": [
-    1.86,
-    1.7,
-    1.55,
-    1.45,
-    1.4
-   ],
-   "source": "Trade payables + customer advances + related-party payables as a multiple of annual direct costs: FY2025 2.62x (advance-heavy), 30-Jun-2026 1.86x; declining as handovers recognise advances. This is the presale-funding mechanism: customers, not the balance sheet, fund construction",
+   "source": "NCI share of profit: FY2025 was a small NCI loss, H1-2026 +1.8% of PAT as hospitality JVs recover",
    "date": "2026-08-09",
    "ring": "House"
   },
   "rf": {
    "value": 0.0448,
-   "source": "AED sovereign anchor: Jan-2031 dirham T-Bond, 4.48% YTM, July-2026 auction, ~4bp over UST (UAE MoF via WAM) \u2014 the longest liquid AED government tranche; the tenor choice (4.4y vs a perpetual stream) is stated as a limitation",
+   "source": "AED sovereign anchor: UAE dirham T-Bond maturing Jan-2031 auctioned at 4.48% YTM (July-2026 auction, ~4bp over comparable UST), UAE MoF/CBUAE via WAM, longest liquid AED tranche",
    "date": "2026-07-30",
    "ring": "Country"
   },
   "sov_spread_rating": {
    "value": 0.0042,
-   "source": "Damodaran adjusted default spread, UAE (Aa2), rating basis, January-2026 ctryprem (the July-2026 refresh carries the same UAE parameters per independent verification; vintage stated)",
+   "source": "Damodaran adjusted default spread, UAE row, rating basis (Aa2), January 2026 update of ctryprem",
    "date": "2026-01-05",
    "ring": "Country"
   },
   "erp_rating": {
    "value": 0.0487,
-   "source": "Damodaran total ERP, UAE row, rating basis",
+   "source": "Damodaran total equity risk premium, UAE row, rating basis, January 2026 ctryprem (mature-market base 4.23% + CRP 0.64%)",
    "date": "2026-01-05",
    "ring": "Country"
   },
   "erp_cds_na": {
    "value": "NA",
-   "source": "No UAE sovereign CDS row is published \u2014 the CDS-basis WACC cannot be built; rating basis stands alone, stated",
+   "source": "Damodaran ctryprem UAE row: sovereign CDS and CDS-based ERP published as NA \u2014 the CDS-basis WACC cannot be built for the UAE; the consistency rule (strip the same basis you add back) is satisfied on the rating basis alone",
    "date": "2026-01-05",
    "ring": "Country"
   },
   "beta": {
-   "value": 1.03,
-   "source": "OWN-STOCK regression against an equal-weight proxy of the 18 ADX/DFM names in the house library (the official FTSE ADX General index remains unobtainable \u2014 7 sources logged): 3-year weekly beta 1.025 (SE 0.109, R2 0.367, n 155, gate PASS); 5-year 1.071 (R2 0.142, spans the pre-2022 thin-trading regime); 2-year 1.055 (R2 0.460). Adopted 1.03, FLAGGED: proxy index, not the official benchmark. The Damodaran EM industry route (business-weighted unlevered 0.50 -> relevered 0.56-0.59) is REJECTED as a primary: the 786-firm Real-Estate-Development row is dominated by highly-levered Chinese developers (D/E 1.97) unrepresentative of a UAE state platform; it is retained as a lower-bound cross-check. Sensitised 0.8-1.2",
+   "value": 1.0,
+   "source": "Tier-3 fallback, FLAGGED INTERIM: the own-stock regression is unavailable because no FTSE ADX General Index history could be retrieved (seven sources attempted and logged); same-country peer betas need the same index. House precedent: EAND, TWOPOINTZERO. Sensitised 0.8-1.2",
    "date": "2026-08-09",
    "ring": "House"
-  },
-  "beta_reg_detail": {
-   "value": {
-    "w3y": [
-     1.025,
-     0.109,
-     0.367,
-     155
-    ],
-    "w5y": [
-     1.071,
-     0.164,
-     0.142,
-     259
-    ],
-    "w2y": [
-     1.055,
-     0.114,
-     0.46,
-     103
-    ]
-   },
-   "source": "Regression detail (beta, SE, R2, n) per window: MODON weekly log-returns vs the equal-weight 18-name panel proxy, computed from the house price library",
-   "date": "2026-08-09",
-   "ring": "House"
-  },
-  "beta_industry_check": {
-   "value": {
-    "unlevered_weighted": 0.501,
-    "relevered_fy25": 0.563,
-    "relevered_h1": 0.588
-   },
-   "source": "Damodaran January-2026 EM industry betas (betaemerg.xls, saved 07-Jan-2026): RE Development unlevered 0.452 (cash-corrected, 786 firms, D/E 1.97), RE Operations 0.590, Hotel/Gaming 0.580; gross-profit-weighted and relevered at Modon's structure. Cross-check only",
-   "date": "2026-01-07",
-   "ring": "Industry"
   },
   "eibor6m": {
    "value": 0.0371,
-   "source": "EIBOR 6M 3.71% (31-Mar-2026 published set; the CBUAE page again refused this session \u2014 fixing retained WITH ITS DATE; a 25bp EIBOR move is ~3bp of WACC)",
+   "source": "EIBOR 6-month fixing 3.71% at 31-Mar-2026 (CBUAE published set via secondary mirrors; CBUAE page returned 403 at this session's proxy, logged)",
    "date": "2026-03-31",
    "ring": "Country"
   },
   "kd_margin": {
    "value": 0.0165,
-   "source": "Blended forward margin over 6M EIBOR from the note-29 tranche table (+0.60% newest large AED tranche to +2.5% construction; SONIA +0.95-2.05% GBP)",
+   "source": "Blended forward margin over 6M EIBOR: the newest large AED tranche (Term Loan 15, 1,415mn, Jan-2027) priced at 6M EIBOR+0.60%; construction tranches at 3M EIBOR+0.85-2.5%; GBP venue debt at SONIA+0.95-2.05%. Blend ~+165bp",
    "date": "2026-02-18",
    "ring": "Company/House"
   },
+  "wd_term": {
+   "value": 0.15,
+   "source": "Terminal debt weight D/(D+E), normalised: current book gearing 12.8% on market values, construction-phase drawdowns push it up before land-bank cash releases pull it back",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
   "g_term": {
    "value": 0.025,
-   "source": "Terminal growth 2.5%",
+   "source": "Terminal growth 2.5%: long-run AED/USD-peg nominal growth; Abu Dhabi population and tourism growth support the real component",
    "date": "2026-08-09",
    "ring": "House"
   },
   "roic_term": {
    "value": 0.085,
-   "source": "Terminal ROIC 8.5% \u2014 deliberately BELOW the model's own forecast path (which reaches ~15% by FY2030E as invested capital shrinks while NOPAT grows): a mean-reversion margin of safety on the block that carries ~70% of EV, and above the FY2025 clean achieved 6.1% because the at-cost land bank converts. Both anchors stated; the step-down is a choice, priced in sensitivity",
-   "date": "2026-08-09",
-   "ring": "House"
-  },
-  "debt_path": {
-   "value": [
-    10300.0,
-    10500.0,
-    9700.0,
-    8800.0,
-    7900.0
-   ],
-   "source": "Gross debt path incl. related-party loan from the 30-Jun-2026 actual 9,542: construction peak then amortising",
-   "date": "2026-08-09",
-   "ring": "House"
-  },
-  "cash_yield": {
-   "value": 0.035,
-   "source": "Yield on cash",
-   "date": "2026-06-17",
-   "ring": "Country"
-  },
-  "lease_int": {
-   "value": 36.0,
-   "source": "Annual interest on lease liabilities (H1-2026 actual ~18 per half), now an explicit input rather than an embedded numeral",
-   "date": "2026-08-07",
-   "ring": "Company"
-  },
-  "wd_term_derived": {
-   "value": 0.08020685679031156,
-   "source": "Terminal debt weight DERIVED from the model's own FY2030E balance sheet: gross debt / (gross debt + book equity). Assumed-15% retired at revision 2",
+   "source": "Terminal return on invested capital: FY2025 clean ROIC 6.6% rising as the at-cost land bank converts to recognised profit; capped near the terminal WACC + a thin spread",
    "date": "2026-08-09",
    "ring": "House"
   },
   "anchor_days": {
-   "value": 38,
-   "source": "Days from the 30-Jun-2026 valuation date (reviewed balance sheet) to the 7-Aug-2026 price anchor \u2014 the first edition's 219-day accretion from 31-Dec-2025 is retired with the restrike",
+   "value": 219,
+   "source": "Days from the 31-Dec-2025 valuation date (the audited balance-sheet anchor) to the 7-Aug-2026 price anchor",
    "date": "2026-08-09",
    "ring": "House"
   },
   "new_sales_runoff": {
    "value": [
-    8000.0,
     15000.0,
-    11000.0,
+    12000.0,
+    10000.0,
     9000.0,
     8000.0
    ],
-   "source": "RUN-OFF path, post-H1: launches halve from the realised pace and fade \u2014 now a stress reading, not a live alternative: the H1-2026 disclosure (26bn in six months) falsified the first edition's run-off premise as a central scenario",
+   "source": "ALTERNATIVE (run-off) path: new development sales halve from the record and keep fading \u2014 the mean-reversion reading of an ADREC market that grew 67% in a year",
    "date": "2026-08-09",
    "ring": "House"
   },
@@ -2465,131 +2194,110 @@
     0.36,
     0.35
    ],
-   "source": "Run-off margins",
-   "date": "2026-08-09",
-   "ring": "House"
-  },
-  "new_sales_bull": {
-   "value": [
-    15000.0,
-    34000.0,
-    34000.0,
-    34000.0,
-    34000.0
-   ],
-   "source": "GROWTH-HOLD path: sales hold near the realised H1-2026 annualised pace less the launch effect",
-   "date": "2026-08-09",
-   "ring": "House"
-  },
-  "red_margin_bull": {
-   "value": [
-    0.42,
-    0.42,
-    0.41,
-    0.41,
-    0.4
-   ],
-   "source": "Growth-hold margins (published in full at revision 2 \u2014 the first edition left this vector undisclosed)",
+   "source": "Run-off RED margin: pricing power fades with volume",
    "date": "2026-08-09",
    "ring": "House"
   },
   "egy_crp": {
    "value": 0.0971,
-   "source": "Damodaran CRP, Egypt (Caa1), Jan-2026",
+   "source": "Damodaran country risk premium, Egypt row (Caa1), January 2026 ctryprem \u2014 applied as a stress to the ~18% of revenue earned outside the UAE",
    "date": "2026-01-05",
    "ring": "Country"
   },
   "fgn_share": {
    "value": 0.170797409390457,
-   "source": "Revenue OUTSIDE the UAE, FY2025 audited geographic split, note 5 (11,466.934 within / 2,361.935 outside) \u2014 recognised REVENUE, not contracted sales; one external audit asserted this split is unpublished; it is note 5 of the audited statements",
+   "source": "Revenue outside UAE, FY2025 geographic split, note 5, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
    "date": "2026-02-18",
    "ring": "Company"
+  },
+  "debt_path": {
+   "value": [
+    9700.0,
+    9900.0,
+    9200.0,
+    8300.0,
+    7400.0
+   ],
+   "source": "Gross debt path (loans + related-party loan): H1-2026 actual already 9,542 as construction mobilises; amortising from FY2028 as land-bank cash releases fund the build",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "cash_yield": {
+   "value": 0.035,
+   "source": "Yield on cash balances ~ CBUAE base rate",
+   "date": "2026-06-17",
+   "ring": "Country"
   },
   "peers": {
    "value": {
     "ALDAR": {
      "name": "Aldar Properties (ADX)",
+     "pe": 7.54,
      "spot": 7.78,
-     "shares_mn": 7862.6,
-     "mcap": 61171.0,
-     "np_attr": 7548.0,
-     "eps": 0.96,
-     "pe_attr": 8.1,
+     "mcap": 61170.0,
+     "np": 8800.0,
      "rev": 33800.0,
      "ebitda": 11200.0,
-     "backlog": 71700.0,
-     "basis": "attributable EPS 0.96 disclosed in the Q4-FY25 release; FY2025 development backlog 71.7bn (66.5bn was the 9M-2025 vintage, corrected at revision 2)"
+     "backlog": 66500.0
     },
     "EMAAR": {
      "name": "Emaar Properties (DFM)",
+     "pe": 5.3,
      "spot": 11.5,
-     "shares_mn": 8838.0,
      "mcap": 101650.0,
-     "np_attr": 17599.0,
-     "eps": null,
-     "pe_attr": 5.78,
+     "np": null,
      "rev": 49600.0,
      "ebitda": null,
-     "backlog": 155000.0,
-     "basis": "attributable 17,599.179 from the audited DFM filing (previously marked n/d in error)"
+     "backlog": 155000.0
     },
     "EMAARDEV": {
      "name": "Emaar Development (DFM)",
+     "pe": 4.08,
      "spot": 13.38,
-     "shares_mn": 4000.0,
      "mcap": 53520.0,
-     "np_attr": 11316.0,
-     "eps": null,
-     "pe_attr": 4.73,
+     "np": 11320.0,
      "rev": 27490.0,
      "ebitda": null,
-     "backlog": 125200.0,
-     "basis": "attributable 11,316.189 audited; backlog 125.2bn (134.3bn was Emaar Properties' UAE figure, corrected)"
+     "backlog": 134300.0
     }
    },
-   "source": "Peer table REBUILT at revision 2 on one attributable-earnings basis from the peers' own audited filings/releases (figures per the external audits' primary-source checks, adopted after verification); market caps from prices at 07-Aug-2026. Cross-check only",
-   "date": "2026-08-09",
+   "source": "Peer FY2025 fundamentals from each company's own results release (aldar.com 09-Feb-2026; emaar.com Feb-2026); trailing P/E and market caps cross-checked on stockanalysis.com, 07-Aug-2026 \u2014 CROSS-CHECK ONLY, labelled as such; no peer figure enters the subject's historicals",
+   "date": "2026-08-07",
    "ring": "Industry"
   },
   "pe_just": {
-   "value": 7.5,
-   "source": "Justified P/E on FY2026E attributable profit: peer attributable trailing set 4.7x / 5.8x / 8.1x (EmaarDev / Emaar / Aldar). 7.5x = parity-minus with the sector leader: the growth and recurring-income premium and the 15%-float/related-party discount are treated as offsetting, stated as a judgement. (The first edition's 8.0x was described as a premium to Aldar off a broken peer table)",
+   "value": 8.0,
+   "source": "Justified P/E on FY2026E attributable profit: peer trailing set 4.1-7.5x (EmaarDev/Emaar/Aldar); premium to Aldar for the recurring-income mix and backlog growth, discounted for the ~15% free float and related-party revenue concentration",
    "date": "2026-08-09",
    "ring": "House"
   },
   "ev_ebitda_just": {
    "value": 7.0,
-   "source": "EV/EBITDA 7.0x \u2014 HOUSE JUDGEMENT WITHOUT A PEER ANCHOR (no peer EV/EBITDA is computable from reachable disclosures: peer net debt not held). Shown as a cross-check only; EXCLUDED from the lens average at revision 2",
+   "source": "Justified EV/EBITDA on FY2026E: Aldar trailing ~5.6x (EV on net-debt-adjusted 61.2bn mcap vs 11.2bn EBITDA); premium for growth, discount for asset heaviness",
    "date": "2026-08-09",
    "ring": "House"
   },
   "norm_sales": {
-   "value": 20000.0,
-   "source": "Through-cycle development sales raised 18bn -> 20bn: the realised H1-2026 26bn lifts the cycle evidence; still far below the 38bn FY2026E in-year pace",
+   "value": 18000.0,
+   "source": "Through-cycle development sales: midpoint of the base terminal-year 19,000 and the run-off tail 8,000, weighted toward the ADREC structural-demand reading",
    "date": "2026-08-09",
    "ring": "House"
   },
   "norm_margin": {
    "value": 0.115,
-   "source": "Through-cycle net margin",
+   "source": "Through-cycle group net margin on revenue: FY2025 clean 10.8% (ex-fair-value/one-off), H1-2026 headline 24.0% flattered by land mix; mid-cycle 11.5%",
    "date": "2026-08-09",
    "ring": "House"
   },
-  "recurring_base": {
-   "value": 6455.178,
-   "source": "Recurring/operating legs base = FY2025 AIM + Hospitality + ECT segment revenue (6,455.178), grown 15% to mid-cycle",
-   "date": "2026-02-18",
-   "ring": "Company"
-  },
   "norm_pe": {
    "value": 8.5,
-   "source": "Through-cycle P/E",
+   "source": "Through-cycle P/E on normalised earnings, midway between Aldar trailing 7.5x and the justified 8.0x with a growth nudge",
    "date": "2026-08-09",
    "ring": "House"
   },
   "roe_sust": {
    "value": 0.075,
-   "source": "Sustainable ROE 7.5%. Receipts, one cleaning only: mechanical FY2025 clean ROE (ex the 735.1 of fair-value/disposal gains, tax-effected) = 6.6%; the model's own forward attributable ROE path runs 7.8% -> 9.8%. 7.5% sits between the two, below the forward path \u2014 a forward-sustainable judgement, not a historical cleaning (the first edition conflated the two)",
+   "source": "Sustainable ROE: FY2025 attributable 4,020 on average attributable equity 51,789 = 7.8% reported; clean-basis ~7.0%; forward forecast 7.3-7.6%",
    "date": "2026-08-09",
    "ring": "House"
   },
@@ -2600,43 +2308,31 @@
     "normalized": 0.2,
     "book": 0.2
    },
-   "source": "Weights unchanged: DCF primary on backlog visibility; three market lenses carry 60% jointly \u2014 that structure, not an additional holdco discount, is how float/governance friction is priced (a 30% haircut on top would double-count it; the reading is still shown in section 4)",
+   "source": "DCF primary: the backlog gives unusual forward revenue visibility for a developer. Relative/normalised/book each 0.20: the peer set is cheap and liquid where MODON is tightly held, so the market lens is real evidence against the DCF, not decoration",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "e1_land_uplift": {
+   "value": 0.35,
+   "source": "Expert 1 marks the at-cost land bank (26,611 land plots) up 35%: 2025 realised land sales carried a 67% gross margin on related-party pricing; an arms-length haircut halves that",
    "date": "2026-08-09",
    "ring": "House"
   },
   "land_bv": {
    "value": 26610.771,
-   "source": "Land plots at cost, note 19, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "source": "Land plots at cost inside inventories, note 19, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
    "date": "2026-02-18",
-   "ring": "Company"
-  },
-  "e1_land_uplift": {
-   "value": 0.337,
-   "source": "Expert 1 land mark-up = exactly HALF the realised 67.4% related-party land-sale gross margin (1 - 818.033/2,512.837), as the arms-length haircut \u2014 the first edition said \"half\" but used 35%; aligned at revision 2",
-   "date": "2026-08-09",
-   "ring": "House"
-  },
-  "dwip_bv_h1": {
-   "value": 6487.697,
-   "source": "Development WIP at 30-Jun-2026, Interim condensed consolidated financial statements, 30-Jun-2026 (reviewed, unaudited), modon.com investor relations",
-   "date": "2026-08-07",
    "ring": "Company"
   },
   "e2_rp_haircut": {
    "value": 0.25,
-   "source": "Expert 2 haircut on the related-party receivable book (30-Jun-2026: 10,756 gross due-from)",
+   "source": "Expert 2 haircuts the AED 7.9bn net related-party receivable book 25% for timing/collection on non-arms-length land sales (H1-2026: 5.4bn further build-up, negative operating cash flow)",
    "date": "2026-08-09",
    "ring": "House"
   },
-  "rp_book_h1": {
-   "value": 10755.509,
-   "source": "Amounts due from related parties NC + C, 30-Jun-2026, Interim condensed consolidated financial statements, 30-Jun-2026 (reviewed, unaudited), modon.com investor relations",
-   "date": "2026-08-07",
-   "ring": "Company"
-  },
   "e3_pe": {
-   "value": 6.2,
-   "source": "Expert 3 multiple = the arithmetic MEAN of the rebuilt attributable peer set (4.73 + 5.78 + 8.10)/3 = 6.20x \u2014 the first edition claimed \"centre of the set\" but used 6.5x; the statistic is now the one named",
+   "value": 6.5,
+   "source": "Expert 3 prices MODON at the peer-set centre (Aldar 7.5x, Emaar 5.3x, EmaarDev 4.1x): a government developer earns the sector multiple, not a premium, once the growth premium is competed away",
    "date": "2026-08-09",
    "ring": "House"
   }
@@ -2647,12 +2343,11 @@
   "FY2025 liability components sum to total liabilities",
   "segment revenues + others sum to group revenue FY2025",
   "segment gross profit + others sums to group gross profit FY2025",
-  "marginal Kd above the AED sovereign",
-  "scenario engine reproduces the base DCF",
-  "sensitivity engine reproduces the base at the unshifted point (grid convention fixed at revision 2)",
-  "Step 0 PASS carried",
-  "strike anchor equals study spot",
-  "q=0 sourced",
-  "input register carries 205 four-field inputs"
+  "marginal Kd 5.360% sits above the AED sovereign 4.480% (a same-currency corporate cannot borrow below its sovereign)",
+  "sensitivity engine reproduces the base DCF at the unshifted point",
+  "Step 0 calibration verdict PASS carried into the study",
+  "strike anchor equals the study spot",
+  "q=0 sourced (no dividend paid or proposed)",
+  "input register carries 176 four-field inputs"
  ]
 }

@@ -411,3 +411,31 @@ The depth bar — eight standards, every one of which the SWDY build actually de
 8. THE CONTESTED JUDGEMENT, BOTH WAYS. The study's single most consequential contested judgement is computed BOTH ways and published side by side — summary table, body, workbook, and an expert's range — never averaged into a single number that would hide the disagreement. SWDY's precedent: full Egyptian cost of equity against a hard-currency-leg discounting, central 24% below spot against an alternative above it, both shown, the reader told exactly which question decides between them. This extends the standing dual-framing rule from individual figures to the study's central judgement.
 
 QC consequence. Gate item (a) now reads: structure, content, format AND DEPTH match the MODEL STUDY (SWDY). A study missing the bibliography document, the four-field input register, the recalc evidence, the scrub, the figure/table checks, the maximum-detail expert appendix, or the side-by-side contested judgement is a QC FAIL — not a noted limitation. ModelStudyChecklist is attested alongside SIGCM before issue.
+
+
+## Results releases are swept WITH their statements [ADOPTED 09-Aug-2026 — MODON revision 2]
+
+A reporting period is not swept until BOTH its financial statements AND its results
+announcement are in the register. The two are different documents with different content:
+the statements carry the audited/reviewed record; the release carries the operating
+anchors that never appear in the statements — backlog and its composition, sales and
+their geography, management's own net-debt definition and its current value, adjusted
+EBITDA, portfolio counts on the current perimeter.
+
+Adopted from a real failure, same day, same study. The first edition of the MODON study
+(09-Aug-2026) swept the H1-2026 interim STATEMENTS — P&L, balance sheet, cash flow, even
+citing them in the register with an 07-Aug date — but never fetched the H1-2026 RESULTS
+RELEASE of 29-Jul-2026. That release carried a revenue backlog of AED 65.4bn (95%
+development, +42% vs FY2025) and H1 real-estate sales of AED 26bn: the study's single
+most consequential driver (the development backlog, struck at the 31-Dec-2025 value of
+AED 42.6bn) and its central contested judgement ("does the surge persist?") were both
+already answered by a disclosure the study partially cited. Four external audits caught
+it; the study was restruck on the 30-Jun-2026 balance sheet the same day (DCF 6.02 →
+5.29, weighted central 3.71 → 3.38).
+
+The rule: the sweep's Company-ring "IR communications" category is not satisfied for the
+study year until the LATEST results release is registered, and the quarter-coverage
+invariant reads a period as covered only when both documents carry findings. When a
+release post-dates the statements it accompanies, the release's operating anchors
+(backlog, sales, net debt on the company definition) supersede any older anchors in the
+driver set, or the study must state explicitly why they do not.
