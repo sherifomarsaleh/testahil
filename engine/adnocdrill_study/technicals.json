@@ -1,0 +1,96 @@
+{
+ "market": "AE",
+ "series": "ADNOCDRILL",
+ "close": 5.94,
+ "data_date": "2026-08-07",
+ "computed_on": "2026-08-09",
+ "sessions": 1215,
+ "rows_in": 1215,
+ "repairs": [],
+ "ma": {
+  "20": 5.7829999999999995,
+  "50": 5.812,
+  "200": 5.5078000000000005
+ },
+ "ma_slope": {
+  "20": "rising",
+  "50": "falling",
+  "200": "flat"
+ },
+ "rsi": 57.0520134977418,
+ "atr": 0.1192292193608107,
+ "macd": {
+  "macd": 0.06019059323100073,
+  "signal": 0.02363147406688819,
+  "hist": 0.036559119164112544
+ },
+ "ma_cross": {
+  "ago": 50,
+  "kind": "golden"
+ },
+ "atr_pct": 0.02007225915165163,
+ "hi_52w": 6.67,
+ "lo_52w": 4.51,
+ "pct_off_high": 0.10944527736131927,
+ "pct_off_low": 0.3170731707317075,
+ "levels": {
+  "res": [
+   6.0,
+   6.31,
+   6.67
+  ],
+  "sup": [
+   5.86,
+   5.48,
+   5.17
+  ]
+ },
+ "level_detail": {
+  "res": [
+   {
+    "level": 6.0,
+    "score": 0.32383177570093474,
+    "kind": "round",
+    "touches": 0
+   },
+   {
+    "level": 6.307227457700934,
+    "score": 2.64551650698592,
+    "kind": "swing",
+    "touches": 2
+   },
+   {
+    "level": 6.669999999999999,
+    "score": 0.7882033254752577,
+    "kind": "swing",
+    "touches": 1
+   }
+  ],
+  "sup": [
+   {
+    "level": 5.86,
+    "score": 1.4664982475246318,
+    "kind": "swing",
+    "touches": 1
+   },
+   {
+    "level": 5.480802292495028,
+    "score": 155.6065964495416,
+    "kind": "swing",
+    "touches": 24
+   },
+   {
+    "level": 5.169558680000266,
+    "score": 45.05667005618272,
+    "kind": "swing",
+    "touches": 14
+   }
+  ]
+ },
+ "tech": {
+  "trend": "Trading above the whole moving-average stack, on a flat 200-day",
+  "summary": "The price closed 5.94 above a rising 20-day (5.78), a falling 50-day (5.81) and a flat 200-day (5.51). Momentum is neutral: RSI(14) is ~57 and the daily ATR near 0.12 (~2.0%) points to a normal tape. MACD (12\u00b726\u00b79) is positive and rising (+0.06 / +0.02 / +0.04). Over the last year it has ranged 4.51\u20136.67; the last close sits 11% below that high and 32% above that low.",
+  "bull": "A daily close back above 6.00 would clear the nearest resistance and open the 6.67 zone.",
+  "bear": "A close below 5.86 would break the nearest support and open the 5.17 zone."
+ }
+}

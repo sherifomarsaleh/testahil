@@ -1,0 +1,268 @@
+{
+ "experts": [
+  {
+   "label": "Expert 1",
+   "method": "Depreciated replacement cost of the rig fleet",
+   "base": 1.2149712735321365,
+   "range": [
+    1.0263077797030022,
+    1.6551860924667836
+   ],
+   "detail": {
+    "gross_ppe_cost": 10379255.0,
+    "accumulated_depreciation": 4902097.0,
+    "net_book_value": 5477158.0,
+    "fully_depreciated_in_use_at_cost": 1539151.0,
+    "replacement_uplift_on_net_book": 0.15,
+    "residual_rate_on_fully_depreciated": 0.25,
+    "uplifted_net_fleet": 6298731.699999999,
+    "fully_depreciated_value": 384787.75,
+    "depreciated_replacement_cost": 6683519.449999999,
+    "right_of_use_and_intangibles": 56498.0,
+    "net_working_capital": 263311.0,
+    "other_non_current": 100446.0,
+    "enterprise_asset_value": 7103774.449999999,
+    "equity_value": 5290840.449999999,
+    "value_per_share_aed": 1.2149712735321365,
+    "sensitivity": [
+     {
+      "uplift": 0.0,
+      "aed": 1.0263077797030022
+     },
+     {
+      "uplift": 0.15,
+      "aed": 1.2149712735321365
+     },
+     {
+      "uplift": 0.3,
+      "aed": 1.403634767361271
+     },
+     {
+      "uplift": 0.5,
+      "aed": 1.6551860924667836
+     }
+    ]
+   }
+  },
+  {
+   "label": "Expert 2",
+   "method": "Contracted cash flow, split-rate discounting",
+   "base": 4.575625294570338,
+   "range": [
+    3.635161901996219,
+    5.278567473143059
+   ],
+   "detail": {
+    "contracted_discount_rate": 0.0515,
+    "tail_discount_rate": 0.08962065236427508,
+    "tail_growth": 0.015,
+    "contracted_years": [
+     {
+      "year": 2026,
+      "fcff": 1326552.1916957153,
+      "discount_factor": 0.951022349025202,
+      "present_value": 1261580.7814509892
+     },
+     {
+      "year": 2027,
+      "fcff": 1513493.198240063,
+      "discount_factor": 0.9044435083454132,
+      "present_value": 1368869.0980731624
+     },
+     {
+      "year": 2028,
+      "fcff": 1683444.0942333203,
+      "discount_factor": 0.8601459898672497,
+      "present_value": 1448007.686820495
+     },
+     {
+      "year": 2029,
+      "fcff": 1852939.2454825477,
+      "discount_factor": 0.8180180597881593,
+      "present_value": 1515737.7664949696
+     },
+     {
+      "year": 2030,
+      "fcff": 1945874.9890763436,
+      "discount_factor": 0.7779534567647735,
+      "present_value": 1513800.1741840574
+     }
+    ],
+    "pv_contracted": 7107995.5070236735,
+    "terminal_nopat": 1829285.161893651,
+    "terminal_reinvestment": 0.08333333333333333,
+    "terminal_value": 22471590.352091886,
+    "pv_terminal": 14630432.963455733,
+    "enterprise_value": 21738428.470479406,
+    "tv_pct_of_ev": 0.6730216484288978,
+    "equity_value": 19925494.470479406,
+    "value_per_share_aed": 4.575625294570338,
+    "sensitivity": [
+     {
+      "tail_premium": 0.005,
+      "tail_rate": 0.07962065236427508,
+      "aed": 5.278567473143059
+     },
+     {
+      "tail_premium": 0.01,
+      "tail_rate": 0.08462065236427507,
+      "aed": 4.90067981835548
+     },
+     {
+      "tail_premium": 0.015,
+      "tail_rate": 0.08962065236427508,
+      "aed": 4.575625294570338
+     },
+     {
+      "tail_premium": 0.025,
+      "tail_rate": 0.09962065236427509,
+      "aed": 4.04631171965151
+     },
+     {
+      "tail_premium": 0.035,
+      "tail_rate": 0.10962065236427508,
+      "aed": 3.635161901996219
+     }
+    ]
+   }
+  },
+  {
+   "label": "Expert 3",
+   "method": "Two-stage dividend capitalisation",
+   "base": 5.057719390865712,
+   "range": [
+    4.117610641287288,
+    5.50461728582788
+   ],
+   "detail": {
+    "dividend_2026": 1050000.0,
+    "stage1_growth": 0.05,
+    "stage1_years": 5,
+    "terminal_growth": 0.025,
+    "cost_of_equity": 0.0769368,
+    "schedule": [
+     {
+      "year": 2026,
+      "dividend": 1050000.0,
+      "discount_factor": 0.9285595960691473,
+      "present_value": 974987.5758726046
+     },
+     {
+      "year": 2027,
+      "dividend": 1102500.0,
+      "discount_factor": 0.8622229234520981,
+      "present_value": 950600.7731059381
+     },
+     {
+      "year": 2028,
+      "dividend": 1157625.0,
+      "discount_factor": 0.8006253695222395,
+      "present_value": 926823.9433931825
+     },
+     {
+      "year": 2029,
+      "dividend": 1215506.2500000002,
+      "discount_factor": 0.7434283697262825,
+      "present_value": 903641.8298296073
+     },
+     {
+      "year": 2030,
+      "dividend": 1276281.5625000002,
+      "discount_factor": 0.6903175466993815,
+      "present_value": 881039.5571226535
+     }
+    ],
+    "pv_stage1": 4637093.679323986,
+    "terminal_dividend": 1308188.6015625002,
+    "terminal_value": 25188086.319574952,
+    "pv_terminal": 17387777.954181235,
+    "equity_value": 22024871.63350522,
+    "value_per_share_aed": 5.057719390865712,
+    "payout_check_2026": 0.7228129463073949,
+    "payout_check_2030": 0.7153544066957502,
+    "sensitivity": [
+     {
+      "terminal_growth": 0.01,
+      "aed": 4.117610641287288
+     },
+     {
+      "terminal_growth": 0.015,
+      "aed": 4.380385169005353
+     },
+     {
+      "terminal_growth": 0.02,
+      "aed": 4.689311663064706
+     },
+     {
+      "terminal_growth": 0.025,
+      "aed": 5.057719390865712
+     },
+     {
+      "terminal_growth": 0.03,
+      "aed": 5.50461728582788
+     }
+    ]
+   }
+  }
+ ],
+ "divergence": [
+  {
+   "assumption": "What is being valued",
+   "e1": "The steel. The fleet at what it would cost to rebuild, and nothing else.",
+   "e2": "The cash the contracted book throws off, plus a discounted tail.",
+   "e3": "The cash that actually reaches the shareholder.",
+   "drives": "Expert 1 is structurally the lowest because it refuses to pay for the contract that makes the steel earn 23% on capital."
+  },
+  {
+   "assumption": "Discount rate",
+   "e1": "None. An asset value is not discounted.",
+   "e2": "5.15% on the contracted years, 8.96% on the tail.",
+   "e3": "7.69% throughout \u2014 the cost of equity, not of capital.",
+   "drives": "Expert 2 discounts the near years more cheaply than the study does and the far years more dearly; the two effects partly cancel, which is why its answer lands close to the study despite a very different construction."
+  },
+  {
+   "assumption": "Treatment of growth",
+   "e1": "Ignored entirely.",
+   "e2": "1.5% in the tail, with the fleet build inside the explicit years.",
+   "e3": "5% for five guided years, then 2.5%.",
+   "drives": "The dividend step is the single largest source of Expert 3's premium over Expert 1: five years of guided 5% growth compounds before the fade begins."
+  },
+  {
+   "assumption": "Where the risk sits",
+   "e1": "In whether the rigs can be redeployed if the customer walks.",
+   "e2": "In the renewal of the uncontracted tail, priced as an explicit premium.",
+   "e3": "In whether the dividend floor survives a capital-expenditure cycle.",
+   "drives": "All three risks are the same risk seen from three sides: the durability of one customer relationship."
+  }
+ ],
+ "cross_examination": [
+  {
+   "challenge": "Expert 1 to Expert 3: the dividend floor is a board policy, not a contract. In the year the six island rigs and a regional acquisition land together, the floor is the first thing to go.",
+   "response": "Conceded in part. The guided floor is 72% of the profit this model forecasts for 2026 and 72% by 2030, so it is covered by earnings with room to spare, and the company funded a 58% dividend increase in 2025 out of operating cash flow while capital expenditure ran at $815 million. But the challenge stands where it matters: the floor is uncontracted, and the valuation of a promise is not the valuation of an obligation. Expert 3 is the widest of the three for exactly that reason.",
+   "verdict": "Partly conceded"
+  },
+  {
+   "challenge": "Expert 3 to Expert 1: replacement cost values a rig at what it costs, not at what it earns. This fleet earns a 23% return on capital employed. Valuing it at book plus a fifteen-point uplift prices it as scrap.",
+   "response": "Rejected as a criticism, accepted as a description. Expert 1 is not claiming to be the fair value; it is claiming to be the floor. The gap between the replacement-cost answer of AED 1.21 and the market price of AED 5.94 is the market's price for the contract, and putting a number on that gap is the point of running the lens at all.",
+   "verdict": "Rejected"
+  },
+  {
+   "challenge": "Expert 2 to Expert 3: discounting dividends at the cost of equity while the company runs net cash by 2030 double-counts the balance sheet. The undistributed cash is not risky.",
+   "response": "Conceded. Under the model's flat-debt, floor-dividend policy the company accumulates roughly $2.5 billion of cash by 2030 and net debt turns negative. Expert 3 does not credit that cash, so its answer is conservative by construction \u2014 the correction would raise it, not lower it. The reason it is left uncorrected is that a board holding that much idle cash would in practice have raised the distribution, which is the same thing seen from the other end.",
+   "verdict": "Conceded"
+  },
+  {
+   "challenge": "Expert 1 to Expert 2: a 150-basis-point premium on the tail is a number chosen to look prudent. The tail is 70% of your answer.",
+   "response": "Conceded on the arbitrariness, and the sensitivity is published rather than buried: moving the premium from 50 to 350 basis points moves the answer from AED 5.28 to AED 3.64. That spread is wider than the gap between any two of the three experts, which is the honest summary of how much of this valuation is a judgement about a period nobody has contracted for.",
+   "verdict": "Conceded"
+  }
+ ],
+ "falsifiers": {
+  "Expert 1": "A rig sale, or an impairment, at a price materially away from depreciated book. The company sold one rig for $36.0 million in 2025 against a carrying value that produced a $21.6 million disposal gain \u2014 that single observation supports the uplift. A future disposal at or below carrying value would falsify it.",
+  "Expert 2": "The 2027 guidance the company has said it will publish once rig and oilfield-services phasing is fixed. If the guided 2027 revenue lands below this model's $5.16 billion, the contracted book is thinner than assumed and the near-year discount rate is too generous.",
+  "Expert 3": "Any distribution below the guided floor, or a capital raise. Either would break the premise that the payout is the residual the shareholder actually receives."
+ },
+ "three_in_a_room": "Put in one room, the three do not disagree about the company \u2014 they agree on the fleet, on the customer, and on the 2026 numbers, because all three read the same filings. They disagree about what a single-customer contract is worth. Expert 1 will not pay for it at all and lands at AED 1.21. Expert 2 pays for the part that is written down and charges a premium for the part that is not, landing at AED 4.58. Expert 3 pays for the part that reaches the bank account and lands at AED 5.06. The spread between them, AED 3.84, is not measurement error. It is the price of the question none of them can answer from the filings: what happens to a rig fleet whose only customer is also its controlling shareholder, once that shareholder's capacity target is met.",
+ "spot": 5.94,
+ "study_central": 5.519655056693554
+}

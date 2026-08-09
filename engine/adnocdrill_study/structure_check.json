@@ -1,0 +1,38 @@
+{
+ "sections_expected": 16,
+ "sections_missing": [],
+ "section_order_matches_reference": true,
+ "subsections_expected": 21,
+ "subsections_missing": [],
+ "excel_sheets": [
+  "READ FIRST",
+  "Summary",
+  "Fundamental Valuation",
+  "Assumptions",
+  "SOTP Bridge",
+  "Segments",
+  "Relative & Normalized",
+  "DCF",
+  "Income Statement",
+  "Balance Sheet",
+  "Cash Flow",
+  "Summary Financials",
+  "Monte Carlo",
+  "Sensitivity",
+  "Per-Share & Ratios",
+  "Peer & Sector"
+ ],
+ "excel_sheets_match_reference": true,
+ "excel_sheet_count": 16,
+ "reference_set": [
+  "SWDY",
+  "ADCB",
+  "ALPHADHABI"
+ ],
+ "expert_labels_present": [
+  true,
+  true,
+  true
+ ],
+ "persona_name_leaks": []
+}

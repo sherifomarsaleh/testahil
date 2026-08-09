@@ -1,0 +1,4114 @@
+{
+ "meta": {
+  "ticker": "ADNOCDRILL",
+  "market": "AE",
+  "exchange": "Abu Dhabi Securities Exchange",
+  "company": "ADNOC Drilling Company P.J.S.C.",
+  "reporting_currency": "USD",
+  "listing_currency": "AED",
+  "sector": "Energy Equipment & Services \u2014 contract drilling and oilfield services",
+  "company_class": "Operating company (asset-heavy contract driller with an integrated oilfield-services arm)",
+  "units": "USD thousands unless stated",
+  "anchor_date": "2026-08-07",
+  "study_date": "2026-08-09"
+ },
+ "inputs": {
+  "spot_aed": {
+   "value": 5.94,
+   "source": "Uploaded ADX daily price history for ADNOCDRILL, last close 07-Aug-2026",
+   "date": "2026-08-07",
+   "ring": "Market"
+  },
+  "fx_aed_usd": {
+   "value": 3.6725,
+   "source": "AED/USD central-bank peg, unchanged since 1997; the rate at which the company itself translates its AED-declared dividends into the USD amounts disclosed in Note 24 of the audited statements",
+   "date": "2026-08-07",
+   "ring": "Country"
+  },
+  "shares_issued_k": {
+   "value": 16000000.0,
+   "source": "Share capital note 13, FY2025 audited statements: 16,000,000 thousand shares of AED 0.10 each, unchanged since listing",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  "treasury_shares_k": {
+   "value": 7349.0,
+   "source": "Note 14, 1H-2026 interim: the appointed market maker held 7,349 thousand shares on the company's behalf at 30 June 2026, classified as treasury shares in equity (31 Dec 2025: 9,279 thousand)",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "rev_fy23": {
+   "value": 3056865.0,
+   "source": "Consolidated statement of profit or loss, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified) (confirmed to the dollar by the FY2024 filing's comparative column)",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  "rev_fy24": {
+   "value": 4034222.0,
+   "source": "Consolidated statement of profit or loss, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified) (confirmed to the dollar by the FY2025 filing's comparative column)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  "rev_fy25": {
+   "value": 4902886.0,
+   "source": "Consolidated statement of profit or loss, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  "dcost_fy23": {
+   "value": 1848729.0,
+   "source": "Direct cost, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified)",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  "dcost_fy24": {
+   "value": 2337407.0,
+   "source": "Direct cost, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  "dcost_fy25": {
+   "value": 3105963.0,
+   "source": "Direct cost, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  "gna_fy23": {
+   "value": 126334.0,
+   "source": "General and administrative expenses, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified)",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  "gna_fy24": {
+   "value": 155358.0,
+   "source": "General and administrative expenses, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  "gna_fy25": {
+   "value": 167197.0,
+   "source": "General and administrative expenses, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  "othinc_fy23": {
+   "value": 9847.0,
+   "source": "Other income - net, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified)",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  "othinc_fy24": {
+   "value": 6388.0,
+   "source": "Other income - net, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  "othinc_fy25": {
+   "value": 26991.0,
+   "source": "Other income - net, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  "jv_fy23": {
+   "value": 0.0,
+   "source": "Share of results of joint ventures, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified) \u2014 the joint ventures did not exist in FY2023; the first investment was made in FY2024",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  "jv_fy24": {
+   "value": 8490.0,
+   "source": "Share of results of joint ventures, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  "jv_fy25": {
+   "value": 29000.0,
+   "source": "Share of results of joint ventures, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  "fincost_fy23": {
+   "value": 74577.0,
+   "source": "Finance cost, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified) (the FY2023 face presents finance cost net of income; the gross figures are in the cash-flow statement adjustments)",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  "fincost_fy24": {
+   "value": 135995.0,
+   "source": "Finance cost, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  "fincost_fy25": {
+   "value": 109463.0,
+   "source": "Finance cost note 23, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified): interest on loans 108,839 plus lease interest 624",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  "finincome_fy23": {
+   "value": 15727.0,
+   "source": "Finance income, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified)",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  "finincome_fy24": {
+   "value": 11736.0,
+   "source": "Finance income, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  "finincome_fy25": {
+   "value": 11626.0,
+   "source": "Finance income, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  "tax_fy23": {
+   "value": 0.0,
+   "source": "Income tax, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified) \u2014 the Abu Dhabi fiscal arrangement took effect 1 January 2024, so FY2023 carries no corporate income tax charge",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  "tax_fy24": {
+   "value": 128510.0,
+   "source": "Income tax note 30, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  "tax_fy25": {
+   "value": 139099.0,
+   "source": "Income tax note 30, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified): current 138,930 plus deferred 169",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  "pat_fy23": {
+   "value": 1032799.0,
+   "source": "Profit for the year, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified)",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  "pat_fy24": {
+   "value": 1303566.0,
+   "source": "Profit after tax, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  "pat_fy25": {
+   "value": 1448781.0,
+   "source": "Profit after tax, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  "dna_fy23": {
+   "value": 391247.0,
+   "source": "Consolidated statement of cash flows, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified): property and equipment 368,110 + right-of-use assets 19,589 + intangibles 3,548. Ties to the segment note's total depreciation of 391,247",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  "dna_fy24": {
+   "value": 458452.0,
+   "source": "Consolidated statement of cash flows, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified): property and equipment 426,473 + right-of-use assets 28,435 + intangibles 3,544. Ties to the segment note's total depreciation and amortisation of 458,452",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  "dna_fy25": {
+   "value": 512319.0,
+   "source": "Consolidated statement of cash flows, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified): property and equipment 497,084 + right-of-use assets 11,042 + intangibles 4,193. Ties to the segment note's total depreciation and amortisation of 512,319",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  "seg_on_fy23": {
+   "value": 1495057.0,
+   "source": "Segment note 26, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified) \u2014 Onshore",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  "seg_off_fy23": {
+   "value": 1008805.0,
+   "source": "Segment note 26, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified) \u2014 Offshore Jackup 799,726 plus Offshore Island 209,079. The two were reported separately until FY2024 and combined into a single Offshore segment from 1Q-2025; they are summed here so the three-year series is on one basis",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  "seg_ofs_fy23": {
+   "value": 553003.0,
+   "source": "Segment note 26, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified) \u2014 Oilfield Services",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  "seg_on_fy24": {
+   "value": 1892670.0,
+   "source": "Segment note 28, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified) comparative column \u2014 Onshore",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  "seg_off_fy24": {
+   "value": 1328436.0,
+   "source": "Segment note 28, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified) comparative column \u2014 Offshore",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  "seg_ofs_fy24": {
+   "value": 813116.0,
+   "source": "Segment note 28, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified) comparative column \u2014 Oilfield Services",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  "seg_on_fy25": {
+   "value": 2037025.0,
+   "source": "Segment note 28, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified) \u2014 Onshore",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  "seg_off_fy25": {
+   "value": 1403893.0,
+   "source": "Segment note 28, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified) \u2014 Offshore",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  "seg_ofs_fy25": {
+   "value": 1461968.0,
+   "source": "Segment note 28, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified) \u2014 Oilfield Services",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  "seg_ebitda_on_fy25": {
+   "value": 994477.0,
+   "source": "Segment note 28, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified) \u2014 Onshore EBITDA",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  "seg_ebitda_off_fy25": {
+   "value": 952523.0,
+   "source": "Segment note 28, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified) \u2014 Offshore EBITDA",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  "seg_ebitda_ofs_fy25": {
+   "value": 251036.0,
+   "source": "Segment note 28, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified) \u2014 Oilfield Services EBITDA",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  "dc_repairs_fy25": {
+   "value": 904937.0,
+   "source": "Direct cost note 20, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified) \u2014 repairs and maintenance",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  "dc_staff_fy25": {
+   "value": 802536.0,
+   "source": "Direct cost note 20, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified) \u2014 staff costs",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  "dc_hire_fy25": {
+   "value": 303652.0,
+   "source": "Direct cost note 20, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified) \u2014 hire of equipment",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  "dc_chem_fy25": {
+   "value": 254535.0,
+   "source": "Direct cost note 20, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified) \u2014 chemicals",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  "dc_fuel_fy25": {
+   "value": 170776.0,
+   "source": "Direct cost note 20, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified) \u2014 fuel and lubricants",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  "dc_majmaint_fy25": {
+   "value": 53151.0,
+   "source": "Direct cost note 20, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified) \u2014 major maintenance charges",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  "dc_other_fy25": {
+   "value": 123312.0,
+   "source": "Direct cost note 20, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified) \u2014 other direct cost",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  "dc_dep_fy25": {
+   "value": 493064.0,
+   "source": "Direct cost note 20, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified) \u2014 depreciation of property and equipment charged to direct cost",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  "gna_dep_fy25": {
+   "value": 19255.0,
+   "source": "Segment note 28, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified) \u2014 depreciation and amortisation included in general and administrative expenses. Ties to note 21: property and equipment 4,020 plus right-of-use 11,042 plus intangibles 4,193",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  "ppe_fy23": {
+   "value": 4847540.0,
+   "source": "Consolidated statement of financial position, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified)",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  "ppe_fy24": {
+   "value": 5352674.0,
+   "source": "Consolidated statement of financial position, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  "ppe_fy25": {
+   "value": 5477158.0,
+   "source": "Consolidated statement of financial position, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  "rou_fy23": {
+   "value": 173911.0,
+   "source": "Right-of-use assets, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified)",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  "rou_fy24": {
+   "value": 23310.0,
+   "source": "Right-of-use assets, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  "rou_fy25": {
+   "value": 45729.0,
+   "source": "Right-of-use assets, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  "intang_fy23": {
+   "value": 5432.0,
+   "source": "Intangible assets, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified)",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  "intang_fy24": {
+   "value": 5301.0,
+   "source": "Intangible assets, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  "intang_fy25": {
+   "value": 10769.0,
+   "source": "Intangible assets, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  "jvinv_fy23": {
+   "value": 0.0,
+   "source": "Investment in joint ventures, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified) \u2014 none held",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  "jvinv_fy24": {
+   "value": 275240.0,
+   "source": "Investment in joint ventures, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  "jvinv_fy25": {
+   "value": 437090.0,
+   "source": "Investment in joint ventures, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  "dta_fy23": {
+   "value": 0.0,
+   "source": "Deferred tax assets, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified) \u2014 none recognised",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  "dta_fy24": {
+   "value": 1397.0,
+   "source": "Deferred tax assets, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  "dta_fy25": {
+   "value": 1228.0,
+   "source": "Deferred tax assets, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  "advnc_fy23": {
+   "value": 1654.0,
+   "source": "Advances (non-current), FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified)",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  "advnc_fy24": {
+   "value": 2230.0,
+   "source": "Advances (non-current), FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  "advnc_fy25": {
+   "value": 99218.0,
+   "source": "Advances 8,292 plus advance for acquisition of a subsidiary 90,926, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  "inv_fy23": {
+   "value": 206107.0,
+   "source": "Inventories, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified)",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  "inv_fy24": {
+   "value": 223083.0,
+   "source": "Inventories, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  "inv_fy25": {
+   "value": 279030.0,
+   "source": "Inventories, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  "tr_fy23": {
+   "value": 153946.0,
+   "source": "Trade and other receivables, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified)",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  "tr_fy24": {
+   "value": 185958.0,
+   "source": "Trade and other receivables, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  "tr_fy25": {
+   "value": 150376.0,
+   "source": "Trade and other receivables, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  "dfrp_fy23": {
+   "value": 986696.0,
+   "source": "Due from related parties, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified)",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  "dfrp_fy24": {
+   "value": 1361282.0,
+   "source": "Due from related parties, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  "dfrp_fy25": {
+   "value": 1364794.0,
+   "source": "Due from related parties note 18, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified) \u2014 228,666 billed plus 1,164,132 of unbilled contract assets less a 28,004 expected-credit-loss allowance",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  "cash_fy23": {
+   "value": 354122.0,
+   "source": "Cash and cash equivalents, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified)",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  "cash_fy24": {
+   "value": 330288.0,
+   "source": "Cash and cash equivalents, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  "cash_fy25": {
+   "value": 236016.0,
+   "source": "Cash and cash equivalents, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  "afs_fy23": {
+   "value": 10717.0,
+   "source": "Assets held for sale, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified)",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  "afs_fy24": {
+   "value": 5708.0,
+   "source": "Assets held for sale, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  "afs_fy25": {
+   "value": 0.0,
+   "source": "Assets held for sale, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified) \u2014 nil at year end",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  "debt_fy23": {
+   "value": 1992264.0,
+   "source": "Borrowings note 13, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified) (non-current 1,992,264, current nil)",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  "debt_fy24": {
+   "value": 2294750.0,
+   "source": "Borrowings note 15, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified): non-current 1,495,227 plus current 799,523",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  "debt_fy25": {
+   "value": 2269039.0,
+   "source": "Borrowings note 15, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified): non-current 1,246,507 plus current 1,022,532",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  "lease_fy23": {
+   "value": 189211.0,
+   "source": "Lease liabilities, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified): non-current 152,378 plus current 36,833",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  "lease_fy24": {
+   "value": 25157.0,
+   "source": "Lease liabilities, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified): non-current 12,027 plus current 13,130",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  "lease_fy25": {
+   "value": 47581.0,
+   "source": "Lease liabilities, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified): non-current 35,855 plus current 11,726",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  "tp_fy23": {
+   "value": 929770.0,
+   "source": "Trade and other payables, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified): non-current 80,936 plus current 848,834",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  "tp_fy24": {
+   "value": 1240598.0,
+   "source": "Trade and other payables note 17, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified): non-current 64,849 plus current 1,175,749",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  "tp_fy25": {
+   "value": 1114818.0,
+   "source": "Trade and other payables note 17, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified): non-current 75,399 plus current 1,039,419",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  "dtrp_fy23": {
+   "value": 250237.0,
+   "source": "Due to related parties, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified)",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  "dtrp_fy24": {
+   "value": 250850.0,
+   "source": "Due to related parties, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  "dtrp_fy25": {
+   "value": 416071.0,
+   "source": "Due to related parties note 18, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  "eosb_fy23": {
+   "value": 114422.0,
+   "source": "Provision for employees' end of service benefits, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified): non-current 105,328 plus current 9,094",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  "eosb_fy24": {
+   "value": 129947.0,
+   "source": "Provision for employees' end of service benefits note 16, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  "eosb_fy25": {
+   "value": 143587.0,
+   "source": "Provision for employees' end of service benefits note 16, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  "taxpay_fy23": {
+   "value": 0.0,
+   "source": "Income tax payable, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified) \u2014 nil",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  "taxpay_fy24": {
+   "value": 15000.0,
+   "source": "Income tax payable, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  "taxpay_fy25": {
+   "value": 11000.0,
+   "source": "Income tax payable, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  "equity_fy23": {
+   "value": 3264221.0,
+   "source": "Total equity, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified)",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  "equity_fy24": {
+   "value": 3810169.0,
+   "source": "Total equity, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  "equity_fy25": {
+   "value": 4099312.0,
+   "source": "Total equity, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  "ta_fy23": {
+   "value": 6740125.0,
+   "source": "Total assets, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified)",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  "ta_fy24": {
+   "value": 7766471.0,
+   "source": "Total assets, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  "ta_fy25": {
+   "value": 8101408.0,
+   "source": "Total assets, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  "capex_fy23": {
+   "value": 1062274.0,
+   "source": "Payments for purchase of property and equipment, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified)",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  "capex_fy24": {
+   "value": 761822.0,
+   "source": "Purchase of property and equipment 758,409 plus intangibles 3,413, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  "capex_fy25": {
+   "value": 814876.0,
+   "source": "Purchase of property and equipment 805,215 plus intangibles 9,661, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  "cfo_fy23": {
+   "value": 1355056.0,
+   "source": "Net cash from operating activities, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified)",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  "cfo_fy24": {
+   "value": 1653666.0,
+   "source": "Net cash from operating activities, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  "cfo_fy25": {
+   "value": 2225843.0,
+   "source": "Net cash from operating activities, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  "div_fy23": {
+   "value": 699559.0,
+   "source": "Dividends paid, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified)",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  "div_fy24": {
+   "value": 752452.0,
+   "source": "Dividends paid, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  "div_fy25": {
+   "value": 1143567.0,
+   "source": "Dividends paid, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  "rev_1h26": {
+   "value": 2459813.0,
+   "source": "Revenue, 1H-2026 condensed consolidated interim financial information (reviewed)",
+   "date": "2026-07-30",
+   "ring": "Company"
+  },
+  "ebitda_1h26": {
+   "value": 1084000.0,
+   "source": "EBITDA, 1H-2026 management discussion and analysis financial summary. Reconciles to the interim statements: revenue 2,459,813 less direct cost 1,566,479 less general and administrative 90,356 plus joint-venture share 16,479 plus other income 3,807 = 823,264 before adding back the 260,530 of depreciation and amortisation inside cost of sales and overheads",
+   "date": "2026-07-30",
+   "ring": "Company"
+  },
+  "pat_1h26": {
+   "value": 705545.0,
+   "source": "Profit after tax, 1H-2026 condensed consolidated interim financial information (reviewed)",
+   "date": "2026-07-30",
+   "ring": "Company"
+  },
+  "dna_1h26": {
+   "value": 260530.0,
+   "source": "Cash-flow statement adjustments, 1H-2026 condensed consolidated interim financial information (reviewed): property and equipment 252,319 plus right-of-use 5,906 plus intangibles 2,305",
+   "date": "2026-07-30",
+   "ring": "Company"
+  },
+  "ppe_1h26": {
+   "value": 5705373.0,
+   "source": "Property and equipment, 1H-2026 condensed consolidated interim financial information (reviewed)",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "debt_1h26": {
+   "value": 2468779.0,
+   "source": "Borrowings, 1H-2026 condensed consolidated interim financial information (reviewed): non-current 1,247,510 plus current 1,221,269",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "cash_1h26": {
+   "value": 355423.0,
+   "source": "Cash and cash equivalents, 1H-2026 condensed consolidated interim financial information (reviewed)",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "lease_1h26": {
+   "value": 45183.0,
+   "source": "Lease liabilities, 1H-2026 condensed consolidated interim financial information (reviewed): non-current 28,206 plus current 16,977",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "jvinv_1h26": {
+   "value": 461729.0,
+   "source": "Investment in joint ventures, 1H-2026 condensed consolidated interim financial information (reviewed)",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "nci_1h26": {
+   "value": 53594.0,
+   "source": "Non-controlling interests, 1H-2026 condensed consolidated interim financial information (reviewed) \u2014 arising on the SLDC and MBPS acquisitions completed in the period",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "equity_1h26": {
+   "value": 4287313.0,
+   "source": "Total equity, 1H-2026 condensed consolidated interim financial information (reviewed)",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "finliab_1h26": {
+   "value": 62530.0,
+   "source": "Financial liability, 1H-2026 condensed consolidated interim financial information (reviewed) note 5 \u2014 the put obligation recognised over the non-controlling interests in the acquired regional businesses",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "rigs_onshore_fy22": {
+   "value": 74.0,
+   "source": "FY2023 MD&A operational highlights, FY22 comparative column \u2014 onshore rigs at year end",
+   "date": "2024-02-12",
+   "ring": "Company/IR"
+  },
+  "rigs_onshore_fy23": {
+   "value": 84.0,
+   "source": "FY2023 MD&A operational highlights \u2014 onshore rigs at year end (includes 4 lease-to-own land rigs)",
+   "date": "2024-02-12",
+   "ring": "Company/IR"
+  },
+  "rigs_onshore_fy24": {
+   "value": 95.0,
+   "source": "FY2024 MD&A operational highlights \u2014 onshore rigs at year end",
+   "date": "2025-02-11",
+   "ring": "Company/IR"
+  },
+  "rigs_onshore_fy25": {
+   "value": 92.0,
+   "source": "FY2025 management discussion and analysis operational highlights \u2014 Abu Dhabi onshore rigs at year end",
+   "date": "2026-02-11",
+   "ring": "Company/IR"
+  },
+  "rigs_jackup_fy22": {
+   "value": 31.0,
+   "source": "FY2023 MD&A, FY22 comparative \u2014 offshore jack-up rigs",
+   "date": "2024-02-12",
+   "ring": "Company/IR"
+  },
+  "rigs_jackup_fy23": {
+   "value": 35.0,
+   "source": "FY2023 MD&A \u2014 offshore jack-up rigs at year end",
+   "date": "2024-02-12",
+   "ring": "Company/IR"
+  },
+  "rigs_jackup_fy24": {
+   "value": 37.0,
+   "source": "FY2024 MD&A \u2014 offshore jack-up rigs at year end",
+   "date": "2025-02-11",
+   "ring": "Company/IR"
+  },
+  "rigs_jackup_fy25": {
+   "value": 36.0,
+   "source": "FY2025 management discussion and analysis \u2014 offshore jack-up rigs at year end",
+   "date": "2026-02-11",
+   "ring": "Company/IR"
+  },
+  "rigs_island_fy22": {
+   "value": 10.0,
+   "source": "FY2023 MD&A, FY22 comparative \u2014 offshore island rigs",
+   "date": "2024-02-12",
+   "ring": "Company/IR"
+  },
+  "rigs_island_fy23": {
+   "value": 10.0,
+   "source": "FY2023 MD&A \u2014 offshore island rigs at year end",
+   "date": "2024-02-12",
+   "ring": "Company/IR"
+  },
+  "rigs_island_fy24": {
+   "value": 10.0,
+   "source": "FY2024 MD&A \u2014 offshore island rigs at year end",
+   "date": "2025-02-11",
+   "ring": "Company/IR"
+  },
+  "rigs_island_fy25": {
+   "value": 12.0,
+   "source": "FY2025 management discussion and analysis \u2014 offshore island rigs at year end",
+   "date": "2026-02-11",
+   "ring": "Company/IR"
+  },
+  "ids_fy23": {
+   "value": 48.0,
+   "source": "FY2023 MD&A \u2014 integrated-drilling-services rigs at year end (2022: 40)",
+   "date": "2024-02-12",
+   "ring": "Company/IR"
+  },
+  "ids_fy24": {
+   "value": 57.0,
+   "source": "FY2024 MD&A \u2014 integrated-drilling-services rigs at year end",
+   "date": "2025-02-11",
+   "ring": "Company/IR"
+  },
+  "ids_fy25": {
+   "value": 60.0,
+   "source": "FY2025 management discussion and analysis \u2014 integrated-drilling-services rigs at year end",
+   "date": "2026-02-11",
+   "ring": "Company/IR"
+  },
+  "ids_2q26": {
+   "value": 61.0,
+   "source": "1H-2026 management discussion and analysis \u2014 integrated-drilling-services rigs at 30 June 2026",
+   "date": "2026-07-30",
+   "ring": "Company/IR"
+  },
+  "ids_target_fy26": {
+   "value": 70.0,
+   "source": "1H-2026 earnings press release: 'ADNOC Drilling targets to deploy approximately 70 IDS rigs by the end of 2026'",
+   "date": "2026-07-30",
+   "ring": "Company/IR"
+  },
+  "rigs_regional_2q26": {
+   "value": 30.0,
+   "source": "1H-2026 management discussion and analysis: 30 regional rigs outside the UAE at 30 June 2026 \u2014 8 in Oman and Kuwait from the 70%-owned SLDC joint venture with SLB (completed January 2026) and 22 from the 80% stake in MBPS",
+   "date": "2026-06-30",
+   "ring": "Company/IR"
+  },
+  "wells_fy23": {
+   "value": 613.0,
+   "source": "FY2023 MD&A \u2014 wells drilled",
+   "date": "2024-02-12",
+   "ring": "Company/IR"
+  },
+  "wells_fy24": {
+   "value": 676.0,
+   "source": "FY2024 MD&A \u2014 wells drilled",
+   "date": "2025-02-11",
+   "ring": "Company/IR"
+  },
+  "wells_fy25": {
+   "value": 836.0,
+   "source": "FY2025 management discussion and analysis \u2014 wells drilled",
+   "date": "2026-02-11",
+   "ring": "Company/IR"
+  },
+  "availability_fy25": {
+   "value": 0.98,
+   "source": "FY2025 management discussion and analysis \u2014 overall owned fleet availability at year end, excluding the 29 regional rigs",
+   "date": "2026-02-11",
+   "ring": "Company/IR"
+  },
+  "island_rigs_ordered": {
+   "value": 6.0,
+   "source": "FY2025 management discussion and analysis: 'the Company has ordered an additional six new island rigs that are expected to join the fleet gradually between 2026 and 2028'",
+   "date": "2026-02-11",
+   "ring": "Company/IR"
+  },
+  "unconv_fy24": {
+   "value": 117000.0,
+   "source": "FY2024 MD&A \u2014 unconventional business revenue contribution",
+   "date": "2025-02-11",
+   "ring": "Company/IR"
+  },
+  "unconv_fy25": {
+   "value": 692000.0,
+   "source": "FY2025 management discussion and analysis: unconventional revenue of $692 million in full year 2025, split $534 million in Oilfield Services and $158 million in Onshore land drilling",
+   "date": "2026-02-11",
+   "ring": "Company/IR"
+  },
+  "unconv_ofs_fy25": {
+   "value": 534000.0,
+   "source": "FY2025 management discussion and analysis Oilfield Services commentary \u2014 unconventional contribution rose from $95 million in 2024 to $534 million in 2025",
+   "date": "2026-02-11",
+   "ring": "Company/IR"
+  },
+  "unconv_remaining_2025": {
+   "value": 860000.0,
+   "source": "FY2025 management discussion and analysis: 'The remaining $0.86 billion contract value for unconventional ($1.7 billion total contract value less...)'",
+   "date": "2026-02-11",
+   "ring": "Company/IR"
+  },
+  "unconv_1h26": {
+   "value": 206000.0,
+   "source": "1Q-2026 MD&A ($131 million) plus 1H-2026 management discussion and analysis ($75 million in 2Q26, split $60 million Oilfield Services and $15 million Onshore)",
+   "date": "2026-07-30",
+   "ring": "Company/IR"
+  },
+  "conv_ebitda_margin_fy25": {
+   "value": 0.51,
+   "source": "FY2025 management discussion and analysis financial summary \u2014 conventional EBITDA margin for FY2025, defined by the company as excluding the contribution of the unconventional business",
+   "date": "2026-02-11",
+   "ring": "Company/IR"
+  },
+  "g26_revenue": {
+   "value": 5000000.0,
+   "source": "1H-2026 earnings press release full-year 2026 guidance \u2014 revenue of approximately $5 billion, reaffirmed at the 1H-2026 results",
+   "date": "2026-07-30",
+   "ring": "Company/IR"
+  },
+  "g26_rev_onshore": {
+   "value": 2000000.0,
+   "source": "1H-2026 earnings press release guidance \u2014 Onshore revenue of approximately $2 billion",
+   "date": "2026-07-30",
+   "ring": "Company/IR"
+  },
+  "g26_rev_offshore": {
+   "value": 1500000.0,
+   "source": "1H-2026 earnings press release guidance \u2014 Offshore revenue of approximately $1.5 billion",
+   "date": "2026-07-30",
+   "ring": "Company/IR"
+  },
+  "g26_rev_ofs": {
+   "value": 1500000.0,
+   "source": "1H-2026 earnings press release guidance \u2014 Oilfield Services revenue of approximately $1.5 billion",
+   "date": "2026-07-30",
+   "ring": "Company/IR"
+  },
+  "g26_ebitda_lo": {
+   "value": 2200000.0,
+   "source": "1H-2026 earnings press release guidance \u2014 EBITDA of $2.2-2.3 billion",
+   "date": "2026-07-30",
+   "ring": "Company/IR"
+  },
+  "g26_ebitda_hi": {
+   "value": 2300000.0,
+   "source": "1H-2026 earnings press release guidance \u2014 EBITDA of $2.2-2.3 billion",
+   "date": "2026-07-30",
+   "ring": "Company/IR"
+  },
+  "g26_capex_lo": {
+   "value": 600000.0,
+   "source": "1H-2026 earnings press release guidance \u2014 cash capital expenditure excluding mergers and acquisitions of $0.6-0.8 billion",
+   "date": "2026-07-30",
+   "ring": "Company/IR"
+  },
+  "g26_capex_hi": {
+   "value": 800000.0,
+   "source": "1H-2026 earnings press release guidance \u2014 cash capital expenditure excluding mergers and acquisitions of $0.6-0.8 billion",
+   "date": "2026-07-30",
+   "ring": "Company/IR"
+  },
+  "g26_dividend": {
+   "value": 1050000.0,
+   "source": "1H-2026 earnings press release guidance \u2014 dividend floor of $1.05 billion, up 5% year on year",
+   "date": "2026-07-30",
+   "ring": "Company/IR"
+  },
+  "g_maint_capex": {
+   "value": 250000.0,
+   "source": "FY2025 management discussion and analysis: 'Maintenance CapEx is expected at around $250 million per annum'",
+   "date": "2026-02-11",
+   "ring": "Company/IR"
+  },
+  "g_conv_margin_mt": {
+   "value": 0.5,
+   "source": "1H-2026 earnings press release: 'management is focused on preserving a healthy EBITDA margin of circa 50% in the domestic conventional drilling business'",
+   "date": "2026-07-30",
+   "ring": "Company/IR"
+  },
+  "g_ofs_margin_mt_lo": {
+   "value": 0.23,
+   "source": "1H-2026 earnings press release medium-term guidance \u2014 conventional Oilfield Services EBITDA margin of 23-26%",
+   "date": "2026-07-30",
+   "ring": "Company/IR"
+  },
+  "g_ofs_margin_mt_hi": {
+   "value": 0.26,
+   "source": "1H-2026 earnings press release medium-term guidance \u2014 conventional Oilfield Services EBITDA margin of 23-26%",
+   "date": "2026-07-30",
+   "ring": "Company/IR"
+  },
+  "ust10": {
+   "value": 0.0469,
+   "source": "US 10-year constant-maturity Treasury yield, Federal Reserve H.15 via the St. Louis Fed (series DGS10), 06-Aug-2026 close",
+   "date": "2026-08-06",
+   "ring": "Global"
+  },
+  "ust5": {
+   "value": 0.044,
+   "source": "US 5-year constant-maturity Treasury yield, Federal Reserve H.15 via the St. Louis Fed (series DGS5), 06-Aug-2026 close",
+   "date": "2026-08-06",
+   "ring": "Global"
+  },
+  "us_default_spread": {
+   "value": 0.0023,
+   "source": "Adjusted default spread for the United States (Moody's Aa1), Damodaran country default spreads and risk premiums, original ctryprem file, last updated 5 January 2026",
+   "date": "2026-01-05",
+   "ring": "Global"
+  },
+  "ad_rating": {
+   "value": "Aa2",
+   "source": "Moody's rating for the Emirate of Abu Dhabi, Damodaran ctryprem file",
+   "date": "2026-01-05",
+   "ring": "Country"
+  },
+  "ad_default_spread": {
+   "value": 0.0042,
+   "source": "Adjusted default spread for the Emirate of Abu Dhabi (Aa2), Damodaran ctryprem file, 5 January 2026",
+   "date": "2026-01-05",
+   "ring": "Country"
+  },
+  "ad_crp": {
+   "value": 0.0064,
+   "source": "Country risk premium for the Emirate of Abu Dhabi, Damodaran ctryprem file",
+   "date": "2026-01-05",
+   "ring": "Country"
+  },
+  "erp_rating": {
+   "value": 0.0487,
+   "source": "Equity risk premium for the Emirate of Abu Dhabi on the rating basis (mature-market premium plus the Abu Dhabi country risk premium), Damodaran ctryprem file, 5 January 2026. The United Arab Emirates federal row carries the identical Aa2 / 0.42% / 0.64% / 4.87% set",
+   "date": "2026-01-05",
+   "ring": "Country"
+  },
+  "ad_cds": {
+   "value": 0.0046,
+   "source": "Sovereign credit-default-swap spread for the Emirate of Abu Dhabi, Damodaran ctryprem file",
+   "date": "2026-01-05",
+   "ring": "Country"
+  },
+  "erp_cds": {
+   "value": 0.0493,
+   "source": "Equity risk premium for the Emirate of Abu Dhabi on the credit-default-swap basis, Damodaran ctryprem file, 5 January 2026",
+   "date": "2026-01-05",
+   "ring": "Country"
+  },
+  "tax_rate": {
+   "value": 0.09,
+   "source": "Income tax note 30, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified): 'The Group is subject to income tax at 9% on its taxable profits in accordance with the fiscal arrangement with Abu Dhabi Supreme Council for Financial and Economic Affairs effective 1 January 2024.' The same 9% is the UAE statutory corporate rate in the Damodaran country file",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  "facility_margin": {
+   "value": 0.0075,
+   "source": "Borrowings note 15, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified) \u2014 the Facility E and F term loan and revolving facility signed 16 October 2025, USD 2.0 billion committed, 5-year initial maturity, priced at Term SOFR plus 0.75%. This is the company's own latest and longest-dated debt issue and therefore its marginal borrowing margin",
+   "date": "2025-10-16",
+   "ring": "Company"
+  },
+  "sofr_spot": {
+   "value": 0.0365,
+   "source": "Secured Overnight Financing Rate, New York Fed via the St. Louis Fed (series SOFR), 06-Aug-2026",
+   "date": "2026-08-06",
+   "ring": "Global"
+  },
+  "beta_raw": {
+   "value": 0.664,
+   "source": "Own-stock 5-year weekly regression against an equal-weight ADX composite built from the full committed 18-name UAE price library; n=249 weekly observations, R-squared 0.160, standard error 0.097, 90% interval 0.50 to 0.82. Clears the regression usability gate (n>=24, R-squared>=5%, standard error below the absolute beta), so the first tier of the beta hierarchy applies and no peer beta is needed. Source: engine/adnocdrill_study/beta_reg.py",
+   "date": "2026-08-07",
+   "ring": "Market"
+  },
+  "esc_wages": {
+   "value": 0.02,
+   "source": "Staff-cost escalator. United Arab Emirates consumer price inflation ran 1.63% in 2023, 1.66% in 2024 and 1.25% in 2025 (World Bank via the St. Louis Fed, series FPCPITOTLZGARE); 2.0% carries a modest real-wage drift above that for a business competing for skilled rig crews in a tight regional labour market. Applies ONLY to the domestic labour line",
+   "date": "2026-08-07",
+   "ring": "Country"
+  },
+  "esc_oilfield": {
+   "value": 0.015,
+   "source": "Oilfield-services cost escalator, applied to repairs and maintenance, major maintenance and hire of equipment. US producer price index for drilling oil and gas wells (series PCU213111213111) stood at 396.978 in June 2026, down 1.63% year on year with a three-year compound rate of +0.29%. 1.5% sits above the flat recent print and below general inflation, on the view that the recent softness reflects the US land downturn rather than the Gulf market these costs are actually incurred in \u2014 the gap is flagged rather than smoothed away",
+   "date": "2026-06-01",
+   "ring": "Industry"
+  },
+  "esc_fuel": {
+   "value": 0.0,
+   "source": "Fuel and lubricants escalator. This is a globally traded input and is escalated on its own commodity path, NOT on a domestic inflation proxy: Brent closed at $88.90 on 03-Aug-2026 against a one-year average of $79.69 and a three-year average of $79.48 (US Energy Information Administration via the St. Louis Fed, series DCOILBRENTEU). Spot sits roughly 12% above the three-year mean, so a flat nominal path embeds mean reversion in real terms. The company's onshore contracts carry an explicit fuel-escalation pass-through \u2014 the 1H-2026 MD&A attributes part of the onshore revenue increase to 'higher fuel escalation' \u2014 so this line is close to margin-neutral either way",
+   "date": "2026-08-03",
+   "ring": "Global"
+  },
+  "esc_general": {
+   "value": 0.015,
+   "source": "Escalator for other direct cost and for general and administrative expenses, anchored on United Arab Emirates consumer price inflation (1.25% in 2025, 1.66% in 2024) rounded to 1.5%",
+   "date": "2026-08-07",
+   "ring": "Country"
+  },
+  "esc_dayrate": {
+   "value": 0.015,
+   "source": "Contract day-rate escalator applied to the conventional revenue-per-rig price line. The customer is a single national oil company on multi-year contracts, so realised day rates track a negotiated escalation rather than a spot market. Realised Abu Dhabi onshore revenue per average deployed rig moved from $18.9 million in FY2023 to $20.9 million in FY2024 to $20.1 million in FY2025 (this model's own unit arithmetic on disclosed segment revenue and disclosed rig counts) \u2014 a three-year path that is up but not monotone. 1.5% is set at domestic inflation rather than extrapolating the FY2024 step",
+   "date": "2026-08-07",
+   "ring": "Industry"
+  },
+  "unconv_ebitda_margin": {
+   "value": 0.065,
+   "source": "EBITDA margin on unconventional revenue, triangulated three ways in the workbook rather than asserted: (i) the FY2025 disclosed conventional EBITDA margin of 51% applied to conventional revenue implies $50 million of EBITDA on $692 million of unconventional revenue, a 7.3% margin; (ii) the same arithmetic on FY2024's disclosed 52% implies a negative margin, but on a $117 million revenue base a half-point of rounding in the disclosed margin swings the answer by more than the answer itself, so it is reported and discarded; (iii) the FY2024-to-FY2025 incremental bridge \u2014 group EBITDA up $183 million on revenue up $869 million, of which $294 million of conventional revenue at 51% explains $150 million \u2014 leaves $33 million on $575 million of incremental unconventional revenue, a 5.8% margin. The average of the two usable estimates is 6.5%. This is the single most consequential fact about the unconventional programme: it is a large revenue line that carries almost no profit",
+   "date": "2026-08-07",
+   "ring": "House"
+  },
+  "terminal_growth_A": {
+   "value": 0.025,
+   "source": "Terminal nominal growth under the continued-expansion framing. Sits below long-run United States inflation expectations of 2.25% plus real regional activity growth, and below the 3.0% ceiling a mature contract driller could justify",
+   "date": "2026-08-07",
+   "ring": "House"
+  },
+  "terminal_growth_B": {
+   "value": 0.015,
+   "source": "Terminal nominal growth under the capacity-plateau framing \u2014 the domestic fleet stops growing once the five-million-barrel-per-day capacity target is met, so nominal growth is contract escalation only",
+   "date": "2026-08-07",
+   "ring": "House"
+  },
+  "terminal_roic": {
+   "value": 0.18,
+   "source": "Terminal after-tax return on invested capital. The company earned a 23% return on capital employed in FY2025 and again in 1H-2026 (both disclosed in the MD&A financial summary). 18% fades that toward, but not to, a cost-of-capital return: the rig fleet is contracted to a single national oil company on terms that have sustained a 23% return through a full commodity cycle, so a fade to parity would contradict the observed record, while holding 23% in perpetuity would capitalise an incumbency that faces renegotiation at every contract roll",
+   "date": "2026-08-07",
+   "ring": "House"
+  },
+  "rev_per_rig_regional": {
+   "value": 8000.0,
+   "source": "Revenue per regional land rig-year, USD thousands. Derived, not assumed: 1H-2026 Onshore revenue of $1,031 million less roughly $35 million of unconventional land drilling leaves $996 million; the Abu Dhabi conventional fleet at its disclosed FY2025 realised rate accounts for approximately $920 million of that, leaving about $76 million earned across an average of roughly 19 regional rigs in the half (8 SLDC rigs from January, 22 MBPS rigs part-period). That is about $8.0 million per rig-year, roughly 40% of the Abu Dhabi rate, consistent with smaller land rigs on Oman and Kuwait terms",
+   "date": "2026-07-30",
+   "ring": "House"
+  }
+ },
+ "history": {
+  "2023": {
+   "revenue": 3056865.0,
+   "direct_cost": 1848729.0,
+   "gross_profit": 1208136.0,
+   "gna": 126334.0,
+   "other_income": 9847.0,
+   "jv_share": 0.0,
+   "ebitda": 1482896.0,
+   "ebitda_ex_jv": 1482896.0,
+   "dna": 391247.0,
+   "ebit": 1091649.0,
+   "finance_cost": 74577.0,
+   "finance_income": 15727.0,
+   "pbt": 1032799.0,
+   "tax": 0.0,
+   "pat": 1032799.0,
+   "seg_onshore": 1495057.0,
+   "seg_offshore": 1008805.0,
+   "seg_ofs": 553003.0,
+   "ppe": 4847540.0,
+   "rou": 173911.0,
+   "intangibles": 5432.0,
+   "jv_investment": 0.0,
+   "deferred_tax_asset": 0.0,
+   "advances": 1654.0,
+   "inventories": 206107.0,
+   "receivables": 153946.0,
+   "due_from_rp": 986696.0,
+   "cash": 354122.0,
+   "assets_held_for_sale": 10717.0,
+   "debt": 1992264.0,
+   "leases": 189211.0,
+   "payables": 929770.0,
+   "due_to_rp": 250237.0,
+   "eosb": 114422.0,
+   "tax_payable": 0.0,
+   "equity": 3264221.0,
+   "total_assets": 6740125.0,
+   "capex": 1062274.0,
+   "cfo": 1355056.0,
+   "dividends": 699559.0,
+   "net_debt": 1827353.0,
+   "working_capital": 166742.0,
+   "capital_employed": 5091574.0,
+   "nopat": 993400.5900000001,
+   "roic": 0.19510677641138086,
+   "dso": 136.19650524311672,
+   "dio": 40.69231077134615,
+   "dpo": 232.97225012427458,
+   "ebitda_margin": 0.48510352926936584,
+   "net_margin": 0.33786215616325876
+  },
+  "2024": {
+   "revenue": 4034222.0,
+   "direct_cost": 2337407.0,
+   "gross_profit": 1696815.0,
+   "gna": 155358.0,
+   "other_income": 6388.0,
+   "jv_share": 8490.0,
+   "ebitda": 2014787.0,
+   "ebitda_ex_jv": 2006297.0,
+   "dna": 458452.0,
+   "ebit": 1556335.0,
+   "finance_cost": 135995.0,
+   "finance_income": 11736.0,
+   "pbt": 1432076.0,
+   "tax": 128510.0,
+   "pat": 1303566.0,
+   "seg_onshore": 1892670.0,
+   "seg_offshore": 1328436.0,
+   "seg_ofs": 813116.0,
+   "ppe": 5352674.0,
+   "rou": 23310.0,
+   "intangibles": 5301.0,
+   "jv_investment": 275240.0,
+   "deferred_tax_asset": 1397.0,
+   "advances": 2230.0,
+   "inventories": 223083.0,
+   "receivables": 185958.0,
+   "due_from_rp": 1361282.0,
+   "cash": 330288.0,
+   "assets_held_for_sale": 5708.0,
+   "debt": 2294750.0,
+   "leases": 25157.0,
+   "payables": 1240598.0,
+   "due_to_rp": 250850.0,
+   "eosb": 129947.0,
+   "tax_payable": 15000.0,
+   "equity": 3810169.0,
+   "total_assets": 7766471.0,
+   "capex": 761822.0,
+   "cfo": 1653666.0,
+   "dividends": 752452.0,
+   "net_debt": 1989619.0,
+   "working_capital": 278875.0,
+   "capital_employed": 5799788.0,
+   "nopat": 1408538.95,
+   "roic": 0.24286042007052672,
+   "dso": 139.987982813043,
+   "dio": 34.835736780115745,
+   "dpo": 232.89847253815873,
+   "ebitda_margin": 0.499423928579042,
+   "net_margin": 0.32312698706218945
+  },
+  "2025": {
+   "revenue": 4902886.0,
+   "direct_cost": 3105963.0,
+   "gross_profit": 1796923.0,
+   "gna": 167197.0,
+   "other_income": 26991.0,
+   "jv_share": 29000.0,
+   "ebitda": 2198036.0,
+   "ebitda_ex_jv": 2169036.0,
+   "dna": 512319.0,
+   "ebit": 1685717.0,
+   "finance_cost": 109463.0,
+   "finance_income": 11626.0,
+   "pbt": 1587880.0,
+   "tax": 139099.0,
+   "pat": 1448781.0,
+   "seg_onshore": 2037025.0,
+   "seg_offshore": 1403893.0,
+   "seg_ofs": 1461968.0,
+   "ppe": 5477158.0,
+   "rou": 45729.0,
+   "intangibles": 10769.0,
+   "jv_investment": 437090.0,
+   "deferred_tax_asset": 1228.0,
+   "advances": 99218.0,
+   "inventories": 279030.0,
+   "receivables": 150376.0,
+   "due_from_rp": 1364794.0,
+   "cash": 236016.0,
+   "assets_held_for_sale": 0.0,
+   "debt": 2269039.0,
+   "leases": 47581.0,
+   "payables": 1114818.0,
+   "due_to_rp": 416071.0,
+   "eosb": 143587.0,
+   "tax_payable": 11000.0,
+   "equity": 4099312.0,
+   "total_assets": 8101408.0,
+   "capex": 814876.0,
+   "cfo": 2225843.0,
+   "dividends": 1143567.0,
+   "net_debt": 2080604.0,
+   "working_capital": 263311.0,
+   "capital_employed": 6179916.0,
+   "nopat": 1507612.47,
+   "roic": 0.24395355373762362,
+   "dso": 112.79826820366617,
+   "dio": 32.79045822503359,
+   "dpo": 179.90378024464556,
+   "ebitda_margin": 0.4483147272851133,
+   "net_margin": 0.2954955509877244
+  }
+ },
+ "units_history": {
+  "2023": {
+   "onshore": 79.0,
+   "jackup": 33.0,
+   "island": 10.0,
+   "ids": 44.0,
+   "wells": 613.0,
+   "regional": 0.0,
+   "unconv": 0.0,
+   "unconv_ofs": 0.0,
+   "unconv_onshore": 0.0,
+   "offshore": 43.0,
+   "rev_per_onshore_rig": 18924.772151898735,
+   "rev_per_offshore_rig": 23460.581395348836,
+   "rev_per_ids_rig": 12568.25,
+   "wells_per_rig": 5.024590163934426
+  },
+  "2024": {
+   "onshore": 89.5,
+   "jackup": 36.0,
+   "island": 10.0,
+   "ids": 52.5,
+   "wells": 676.0,
+   "regional": 0.0,
+   "unconv": 117000.0,
+   "unconv_ofs": 95000.0,
+   "unconv_onshore": 22000.0,
+   "offshore": 46.0,
+   "rev_per_onshore_rig": 20901.340782122905,
+   "rev_per_offshore_rig": 28879.043478260868,
+   "rev_per_ids_rig": 13678.4,
+   "wells_per_rig": 4.988929889298893
+  },
+  "2025": {
+   "onshore": 93.5,
+   "jackup": 36.5,
+   "island": 11.0,
+   "ids": 58.5,
+   "wells": 836.0,
+   "regional": 0.0,
+   "unconv": 692000.0,
+   "unconv_ofs": 534000.0,
+   "unconv_onshore": 158000.0,
+   "offshore": 47.5,
+   "rev_per_onshore_rig": 20096.524064171124,
+   "rev_per_offshore_rig": 29555.64210526316,
+   "rev_per_ids_rig": 15862.700854700855,
+   "wells_per_rig": 5.929078014184397
+  }
+ },
+ "fleet_plan": {
+  "A": {
+   "onshore_ad": {
+    "2026": 92,
+    "2027": 94,
+    "2028": 96,
+    "2029": 98,
+    "2030": 100
+   },
+   "regional": {
+    "2026": 30,
+    "2027": 32,
+    "2028": 34,
+    "2029": 36,
+    "2030": 38
+   },
+   "jackup": {
+    "2026": 36,
+    "2027": 36,
+    "2028": 36,
+    "2029": 36,
+    "2030": 36
+   },
+   "island": {
+    "2026": 14,
+    "2027": 16,
+    "2028": 18,
+    "2029": 18,
+    "2030": 18
+   },
+   "ids": {
+    "2026": 70,
+    "2027": 74,
+    "2028": 78,
+    "2029": 80,
+    "2030": 82
+   },
+   "unconv": {
+    "2026": 400000.0,
+    "2027": 260000.0,
+    "2028": 200000.0,
+    "2029": 200000.0,
+    "2030": 200000.0
+   }
+  },
+  "B": {
+   "onshore_ad": {
+    "2026": 92,
+    "2027": 92,
+    "2028": 92,
+    "2029": 92,
+    "2030": 92
+   },
+   "regional": {
+    "2026": 30,
+    "2027": 30,
+    "2028": 30,
+    "2029": 30,
+    "2030": 30
+   },
+   "jackup": {
+    "2026": 36,
+    "2027": 36,
+    "2028": 36,
+    "2029": 36,
+    "2030": 36
+   },
+   "island": {
+    "2026": 14,
+    "2027": 16,
+    "2028": 18,
+    "2029": 18,
+    "2030": 18
+   },
+   "ids": {
+    "2026": 70,
+    "2027": 72,
+    "2028": 72,
+    "2029": 72,
+    "2030": 72
+   },
+   "unconv": {
+    "2026": 400000.0,
+    "2027": 200000.0,
+    "2028": 60000.0,
+    "2029": 0.0,
+    "2030": 0.0
+   }
+  }
+ },
+ "capex_plan": {
+  "A": {
+   "2026": 700000.0,
+   "2027": 600000.0,
+   "2028": 520000.0,
+   "2029": 420000.0,
+   "2030": 380000.0
+  },
+  "B": {
+   "2026": 700000.0,
+   "2027": 520000.0,
+   "2028": 400000.0,
+   "2029": 300000.0,
+   "2030": 280000.0
+  }
+ },
+ "terminal_growth": {
+  "A": 0.025,
+  "B": 0.015
+ },
+ "unconv_margin_triangulation": {
+  "m1_disclosed_fy25_margin": 0.07295395953757244,
+  "m2_disclosed_fy24_margin": -0.18947384615384766,
+  "m3_incremental_bridge": 0.058226713043478234,
+  "used": [
+   0.07295395953757244,
+   0.058226713043478234
+  ],
+  "average_of_used": 0.06559033629052534,
+  "adopted": 0.065
+ },
+ "unit_economics": {
+  "rev_per_jackup_fy25": 30525.909738844206,
+  "rev_per_island_fy25": 26336.117684744233,
+  "island_to_jackup_ratio": 0.8627463656302284,
+  "conventional_cost_stack_fy25": {
+   "repairs": 680851.668825699,
+   "staff": 603807.7511392519,
+   "hire": 228460.07063725006,
+   "chemicals": 191505.6844007365,
+   "fuel": 128487.5351492729,
+   "major_maintenance": 39989.465619987604,
+   "other": 92776.82422780215
+  },
+  "cost_driver": {
+   "repairs": "rig_years",
+   "staff": "rig_years",
+   "hire": "conv_revenue",
+   "chemicals": "wells",
+   "fuel": "rig_years",
+   "major_maintenance": "offshore_rig_years",
+   "other": "conv_revenue"
+  },
+  "cost_escalator": {
+   "repairs": 0.015,
+   "staff": 0.02,
+   "hire": 0.015,
+   "chemicals": 0.015,
+   "fuel": 0.0,
+   "major_maintenance": 0.015,
+   "other": 0.015
+  },
+  "base_units_fy25": {
+   "rig_years": 199.5,
+   "offshore_rig_years": 47.5,
+   "wells": 836.0,
+   "conv_revenue": 4210886.0
+  },
+  "depreciation_rate": 0.09520384071834144,
+  "wc_pct_revenue": 0.05912645730011457,
+  "unconventional_cost_fy25": 647020.0
+ },
+ "wacc": {
+  "rf_observed": 0.0469,
+  "us_default_spread": 0.0023,
+  "rf_star": 0.0446,
+  "beta": 0.664,
+  "erp_rating": 0.0487,
+  "erp_cds": 0.0493,
+  "ke_rating": 0.0769368,
+  "ke_cds": 0.07733519999999999,
+  "kd_candidates": {
+   "term_matched": 0.0515,
+   "spot_floating": 0.044,
+   "trailing_effective": 0.04769677125739161
+  },
+  "kd_passing_sovereign_floor": [
+   "term_matched"
+  ],
+  "sovereign_floor": 0.0486,
+  "kd_pretax": 0.0515,
+  "kd_after_tax": 0.046865,
+  "tax_rate": 0.09,
+  "market_cap": 25866942.66575902,
+  "net_debt": 2158539.0,
+  "weight_equity": 0.9229794147432171,
+  "weight_debt": 0.0770205852567829,
+  "wacc_rating": 0.07462065236427508,
+  "wacc_cds": 0.07498836736310877,
+  "wacc_used": 0.07462065236427508
+ },
+ "market": {
+  "spot_aed": 5.94,
+  "spot_usd": 1.617426820966644,
+  "fx": 3.6725,
+  "shares_outstanding_k": 15992651.0,
+  "market_cap_usd_k": 25866942.66575902,
+  "enterprise_value_usd_k": 28025481.66575902,
+  "net_debt_usd_k": 2158539.0
+ },
+ "cases": {
+  "A": {
+   "case": "A",
+   "rows": [
+    {
+     "year": 2026,
+     "avg_onshore_ad": 92.0,
+     "avg_regional": 15.0,
+     "avg_jackup": 36.0,
+     "avg_island": 13.0,
+     "avg_ids": 65.0,
+     "day_rate_index": 1.015,
+     "rev_onshore_ad": 1876613.4171122995,
+     "rev_regional": 121799.99999999999,
+     "rev_jackup": 1115416.7418573673,
+     "rev_island": 347505.0728502001,
+     "rev_ids": 1046541.6888888888,
+     "unconventional": 400000.0,
+     "unconv_onshore": 91329.47976878613,
+     "unconv_ofs": 308670.5202312139,
+     "seg_onshore": 2089742.8968810856,
+     "seg_offshore": 1462921.8147075674,
+     "seg_ofs": 1355212.2091201027,
+     "revenue": 4907876.920708755,
+     "conv_revenue": 4507876.920708755,
+     "cost_stack": {
+      "repairs": 765540.0606147202,
+      "staff": 682257.3597083216,
+      "hire": 248241.80182628753,
+      "chemicals": 215056.80899299728,
+      "fuel": 142334.56274681358,
+      "major_maintenance": 41871.07521284387,
+      "other": 100810.11508833522
+     },
+     "conv_cash_cost": 2196111.784190319,
+     "unconv_cash_cost": 374000.0,
+     "gna": 160751.89219431422,
+     "other_income": 27395.864999999998,
+     "jv_share": 29434.999999999996,
+     "ebitda": 2233844.109324122,
+     "ebitda_ex_jv": 2204409.109324122,
+     "ebitda_margin": 0.4551548756038341,
+     "dna": 526825.3044140944,
+     "ebit": 1677583.8049100274,
+     "nopat": 1526601.262468125,
+     "capex": 700000.0,
+     "working_capital": 290185.375186504,
+     "delta_wc": 26874.37518650398,
+     "fcff": 1326552.1916957153,
+     "discount_factor": 0.9305609358985405,
+     "pv_fcff": 1234437.6490226248,
+     "ppe_open": 5533656.0,
+     "ppe_close": 5706830.695585906,
+     "interest": 119305.93,
+     "finance_income": 8614.583999999999,
+     "pbt": 1596327.4589100275,
+     "tax": 143669.47130190246,
+     "pat": 1452657.987608125,
+     "dividend": 1050000.0,
+     "equity_open": 4099312.0,
+     "equity_close": 4501969.987608125,
+     "cfo": 1955842.0913846407,
+     "cash_open": 236016.0,
+     "cash_close": 441858.0913846409,
+     "net_margin": 0.29598500758620166,
+     "balance_sheet": {
+      "fixed_assets": 5706830.695585906,
+      "other_non_current": 100446.0,
+      "jv_investment": 437090.0,
+      "inventories": 307508.7073395726,
+      "receivables": 165723.86257712636,
+      "due_from_rp": 1504089.3048231541,
+      "cash": 441858.0913846409,
+      "debt": 2316620.0,
+      "payables": 1228599.9430128934,
+      "due_to_rp": 458536.55654045555,
+      "eosb": 146458.74,
+      "tax_payable": 11361.43454892506,
+      "total_assets": 8663546.6617104,
+      "total_liabilities": 4161576.6741022742,
+      "equity_residual": 4501969.987608125,
+      "equity_rollforward": 4501969.987608125,
+      "balance_check": 0.0
+     },
+     "net_debt": 1874761.908615359,
+     "capital_employed": 6376731.896223485,
+     "roic": 0.23940182640769792,
+     "units": {
+      "rig_years": 221.0,
+      "offshore_rig_years": 49.0,
+      "wells": 924.936170212766,
+      "conv_revenue": 4507876.920708755
+     }
+    },
+    {
+     "year": 2027,
+     "avg_onshore_ad": 93.0,
+     "avg_regional": 31.0,
+     "avg_jackup": 36.0,
+     "avg_island": 15.0,
+     "avg_ids": 72.0,
+     "day_rate_index": 1.0302249999999997,
+     "rev_onshore_ad": 1925466.5598729944,
+     "rev_regional": 255495.79999999993,
+     "rev_jackup": 1132147.9929852276,
+     "rev_island": 406981.9026264843,
+     "rev_ids": 1176634.8711384612,
+     "unconventional": 260000.0,
+     "unconv_onshore": 59364.16184971098,
+     "unconv_ofs": 200635.83815028903,
+     "seg_onshore": 2240326.5217227056,
+     "seg_offshore": 1539129.8956117118,
+     "seg_ofs": 1377270.7092887503,
+     "revenue": 5156727.126623168,
+     "conv_revenue": 4896727.126623168,
+     "cost_stack": {
+      "repairs": 868437.6511149927,
+      "staff": 777773.3900674867,
+      "hire": 273700.00826133403,
+      "chemicals": 244868.36985500724,
+      "fuel": 159079.8054229093,
+      "major_maintenance": 44233.80017128289,
+      "other": 111148.60240907891
+     },
+     "conv_cash_cost": 2479241.6273020916,
+     "unconv_cash_cost": 243100.0,
+     "gna": 177237.6525545737,
+     "other_income": 27806.80297499999,
+     "jv_share": 29876.52499999999,
+     "ebitda": 2314831.1747415024,
+     "ebitda_ex_jv": 2284954.6497415025,
+     "ebitda_margin": 0.44889541717080284,
+     "dna": 543312.2005491023,
+     "ebit": 1741642.4491924,
+     "nopat": 1584894.628765084,
+     "capex": 600000.0,
+     "working_capital": 304899.00626062724,
+     "delta_wc": 14713.63107412326,
+     "fcff": 1513493.198240063,
+     "discount_factor": 0.8659436554203676,
+     "pv_fcff": 1310599.8325378632,
+     "ppe_open": 5706830.695585906,
+     "ppe_close": 5763518.495036803,
+     "interest": 119305.93,
+     "finance_income": 16127.820335539393,
+     "pbt": 1668340.8645279394,
+     "tax": 150150.67780751453,
+     "pat": 1518190.1867204248,
+     "dividend": 1102500.0,
+     "equity_open": 4501969.987608125,
+     "equity_close": 4917660.174328551,
+     "cfo": 2050230.4671858994,
+     "cash_open": 441858.0913846409,
+     "cash_close": 789588.5585705405,
+     "net_margin": 0.2944096418990851,
+     "balance_sheet": {
+      "fixed_assets": 5763518.495036803,
+      "other_non_current": 100446.0,
+      "jv_investment": 437090.0,
+      "inventories": 323100.70493410004,
+      "receivables": 174126.76631606,
+      "due_from_rp": 1580353.0211440711,
+      "cash": 789588.5585705405,
+      "debt": 2316620.0,
+      "payables": 1290895.1785586623,
+      "due_to_rp": 481786.30757494154,
+      "eosb": 149387.9148,
+      "tax_payable": 11873.970739420556,
+      "total_assets": 9168223.546001576,
+      "total_liabilities": 4250563.371673025,
+      "equity_residual": 4917660.174328551,
+      "equity_rollforward": 4917660.174328551,
+      "balance_check": 0.0
+     },
+     "net_debt": 1527031.4414294595,
+     "capital_employed": 6444691.61575801,
+     "roic": 0.2459224930002601,
+     "units": {
+      "rig_years": 247.0,
+      "offshore_rig_years": 51.0,
+      "wells": 1037.5886524822695,
+      "conv_revenue": 4896727.126623168
+     }
+    },
+    {
+     "year": 2028,
+     "avg_onshore_ad": 95.0,
+     "avg_regional": 33.0,
+     "avg_jackup": 36.0,
+     "avg_island": 17.0,
+     "avg_ids": 76.0,
+     "day_rate_index": 1.0456783749999996,
+     "rev_onshore_ad": 1996377.559524231,
+     "rev_regional": 276059.0909999999,
+     "rev_jackup": 1149130.2128800058,
+     "rev_island": 468164.84865466575,
+     "rev_ids": 1260633.5272169567,
+     "unconventional": 200000.0,
+     "unconv_onshore": 45664.739884393064,
+     "unconv_ofs": 154335.26011560694,
+     "seg_onshore": 2318101.390408624,
+     "seg_offshore": 1617295.0615346716,
+     "seg_ofs": 1414968.7873325637,
+     "revenue": 5350365.23927586,
+     "conv_revenue": 5150365.23927586,
+     "cost_stack": {
+      "repairs": 917151.0262413011,
+      "staff": 825447.4351104898,
+      "hire": 292195.1329261561,
+      "chemicals": 257062.8146737866,
+      "fuel": 165520.2833752538,
+      "major_maintenance": 46657.98588655222,
+      "other": 118659.40692434156
+     },
+     "conv_cash_cost": 2622694.0851378813,
+     "unconv_cash_cost": 187000.0,
+     "gna": 189214.38759422823,
+     "other_income": 28223.90501962499,
+     "jv_share": 30324.67287499999,
+     "ebitda": 2410005.3444383754,
+     "ebitda_ex_jv": 2379680.6715633753,
+     "ebitda_margin": 0.45043753774920897,
+     "dna": 548709.0967786987,
+     "ebit": 1830971.5747846765,
+     "nopat": 1666184.1330540557,
+     "capex": 520000.0,
+     "working_capital": 316348.1418600614,
+     "delta_wc": 11449.135599434143,
+     "fcff": 1683444.0942333203,
+     "discount_factor": 0.8058133384233803,
+     "pv_fcff": 1356541.7056232756,
+     "ppe_open": 5763518.495036803,
+     "ppe_close": 5734809.398258105,
+     "interest": 119305.93,
+     "finance_income": 28819.982387824726,
+     "pbt": 1770810.3000475012,
+     "tax": 159372.92700427512,
+     "pat": 1611437.373043226,
+     "dividend": 1157625.0,
+     "equity_open": 4917660.174328551,
+     "equity_close": 5371472.547371777,
+     "cfo": 2152414.391371569,
+     "cash_open": 789588.5585705405,
+     "cash_close": 1264377.9499421096,
+     "net_margin": 0.30118268584993363,
+     "balance_sheet": {
+      "fixed_assets": 5734809.398258105,
+      "other_non_current": 100446.0,
+      "jv_investment": 437090.0,
+      "inventories": 335233.32493975916,
+      "receivables": 180665.32799749568,
+      "due_from_rp": 1639696.1992539645,
+      "cash": 1264377.9499421096,
+      "debt": 2316620.0,
+      "payables": 1339369.0457753376,
+      "due_to_rp": 499877.6645558203,
+      "eosb": 152375.673096,
+      "tax_payable": 12603.269592499057,
+      "total_assets": 9692318.200391434,
+      "total_liabilities": 4320845.653019657,
+      "equity_residual": 5371472.547371777,
+      "equity_rollforward": 5371472.547371777,
+      "balance_check": 0.0
+     },
+     "net_debt": 1052242.0500578904,
+     "capital_employed": 6423714.597429667,
+     "roic": 0.2593801620203907,
+     "units": {
+      "rig_years": 257.0,
+      "offshore_rig_years": 53.0,
+      "wells": 1073.163120567376,
+      "conv_revenue": 5150365.23927586
+     }
+    },
+    {
+     "year": 2029,
+     "avg_onshore_ad": 97.0,
+     "avg_regional": 35.0,
+     "avg_jackup": 36.0,
+     "avg_island": 18.0,
+     "avg_ids": 79.0,
+     "day_rate_index": 1.0613635506249997,
+     "rev_onshore_ad": 2068982.6591890329,
+     "rev_regional": 297181.79417499993,
+     "rev_jackup": 1166367.166073206,
+     "rev_island": 503139.51676004374,
+     "rev_ids": 1330051.3076301538,
+     "unconventional": 200000.0,
+     "unconv_onshore": 45664.739884393064,
+     "unconv_ofs": 154335.26011560694,
+     "seg_onshore": 2411829.193248426,
+     "seg_offshore": 1669506.68283325,
+     "seg_ofs": 1484386.5677457608,
+     "revenue": 5565722.443827437,
+     "conv_revenue": 5365722.443827437,
+     "cost_stack": {
+      "repairs": 959885.9816469027,
+      "staff": 868165.1428418886,
+      "hire": 308979.1652685872,
+      "chemicals": 268126.45736057556,
+      "fuel": 170672.66573712943,
+      "major_maintenance": 48251.4001215458,
+      "other": 125475.34291755043
+     },
+     "conv_cash_cost": 2749556.1558941794,
+     "unconv_cash_cost": 187000.0,
+     "gna": 200083.08471875355,
+     "other_income": 28647.263594919365,
+     "jv_share": 30779.54296812499,
+     "ebitda": 2488510.0097775487,
+     "ebitda_ex_jv": 2457730.4668094236,
+     "ebitda_margin": 0.44711356609911174,
+     "dna": 545975.8805018121,
+     "ebit": 1911754.5863076115,
+     "nopat": 1739696.6735399265,
+     "capex": 420000.0,
+     "working_capital": 329081.4504192523,
+     "delta_wc": 12733.30855919089,
+     "fcff": 1852939.2454825477,
+     "discount_factor": 0.7498584143627882,
+     "pv_fcff": 1389442.0845281244,
+     "ppe_open": 5734809.398258105,
+     "ppe_close": 5608833.517756293,
+     "interest": 119305.93,
+     "finance_income": 46149.795172886996,
+     "pbt": 1869377.9944486236,
+     "tax": 168244.01950037613,
+     "pat": 1701133.9749482474,
+     "dividend": 1215506.2500000002,
+     "equity_open": 5371472.547371777,
+     "equity_close": 5857100.272320025,
+     "cfo": 2238125.589605027,
+     "cash_open": 1264377.9499421096,
+     "cash_close": 1866997.2895471363,
+     "net_margin": 0.30564477336358353,
+     "balance_sheet": {
+      "fixed_assets": 5608833.517756293,
+      "other_non_current": 100446.0,
+      "jv_investment": 437090.0,
+      "inventories": 348726.7797793634,
+      "receivables": 187937.2764079187,
+      "due_from_rp": 1705695.504720627,
+      "cash": 1866997.2895471363,
+      "debt": 2316620.0,
+      "payables": 1393279.9024480176,
+      "due_to_rp": 519998.20804063906,
+      "eosb": 155423.18655792,
+      "tax_payable": 13304.798844737472,
+      "total_assets": 10255726.368211338,
+      "total_liabilities": 4398626.095891315,
+      "equity_residual": 5857100.272320024,
+      "equity_rollforward": 5857100.272320025,
+      "balance_check": -9.313225746154785e-10
+     },
+     "net_debt": 449622.7104528637,
+     "capital_employed": 6306722.982772889,
+     "roic": 0.2758479607066919,
+     "units": {
+      "rig_years": 265.0,
+      "offshore_rig_years": 54.0,
+      "wells": 1102.8085106382978,
+      "conv_revenue": 5365722.443827437
+     }
+    },
+    {
+     "year": 2030,
+     "avg_onshore_ad": 99.0,
+     "avg_regional": 37.0,
+     "avg_jackup": 36.0,
+     "avg_island": 18.0,
+     "avg_ids": 81.0,
+     "day_rate_index": 1.0772840038843745,
+     "rev_onshore_ad": 2143316.726892886,
+     "rev_regional": 318876.06514977483,
+     "rev_jackup": 1183862.673564304,
+     "rev_island": 510686.60951144435,
+     "rev_ids": 1384179.3450229503,
+     "unconventional": 200000.0,
+     "unconv_onshore": 45664.739884393064,
+     "unconv_ofs": 154335.26011560694,
+     "seg_onshore": 2507857.5319270543,
+     "seg_offshore": 1694549.2830757482,
+     "seg_ofs": 1538514.6051385573,
+     "revenue": 5740921.42014136,
+     "conv_revenue": 5540921.42014136,
+     "cost_stack": {
+      "repairs": 996343.5378932274,
+      "staff": 905578.146356056,
+      "hire": 323853.8207173447,
+      "chemicals": 278001.00699993,
+      "fuel": 174536.9525085361,
+      "major_maintenance": 48975.17112336898,
+      "other": 131515.8877277186
+     },
+     "conv_cash_cost": 2858804.523326182,
+     "unconv_cash_cost": 187000.0,
+     "gna": 209715.34242690328,
+     "other_income": 29076.972548843154,
+     "jv_share": 31241.23611264686,
+     "ebitda": 2545719.763049765,
+     "ebitda_ex_jv": 2514478.5269371183,
+     "ebitda_margin": 0.44343400244399817,
+     "dna": 533982.4928401648,
+     "ebit": 1980496.0340969535,
+     "nopat": 1802251.3910282278,
+     "capex": 380000.0,
+     "working_capital": 339440.34521130123,
+     "delta_wc": 10358.894792048959,
+     "fcff": 1945874.9890763436,
+     "discount_factor": 0.6977889478608318,
+     "pv_fcff": 1357810.0612962893,
+     "ppe_open": 5608833.517756293,
+     "ppe_close": 5454851.024916127,
+     "interest": 119305.93,
+     "finance_income": 68145.40106847047,
+     "pbt": 1960576.7412780707,
+     "tax": 176451.90671502636,
+     "pat": 1784124.8345630444,
+     "dividend": 1276281.5625000002,
+     "equity_open": 5857100.272320025,
+     "equity_close": 6364943.5443830695,
+     "cfo": 2311505.9790773573,
+     "cash_open": 1866997.2895471363,
+     "cash_close": 2522221.706124494,
+     "net_margin": 0.3107732546736572,
+     "balance_sheet": {
+      "fixed_assets": 5454851.024916127,
+      "other_non_current": 100446.0,
+      "jv_investment": 437090.0,
+      "inventories": 359704.07436191186,
+      "receivables": 193853.2053408123,
+      "due_from_rp": 1759387.7449187944,
+      "cash": 2522221.706124494,
+      "debt": 2316620.0,
+      "payables": 1437137.8589112207,
+      "due_to_rp": 536366.8204989966,
+      "eosb": 158531.65028907842,
+      "tax_payable": 13953.881579776204,
+      "total_assets": 10827553.75566214,
+      "total_liabilities": 4462610.211279072,
+      "equity_residual": 6364943.544383068,
+      "equity_rollforward": 6364943.5443830695,
+      "balance_check": -1.862645149230957e-09
+     },
+     "net_debt": -205601.70612449385,
+     "capital_employed": 6159341.838258576,
+     "roic": 0.2926045409322137,
+     "units": {
+      "rig_years": 271.0,
+      "offshore_rig_years": 54.0,
+      "wells": 1126.5248226950355,
+      "conv_revenue": 5540921.42014136
+     }
+    }
+   ],
+   "terminal_growth": 0.025,
+   "terminal_roic": 0.18,
+   "terminal_nopat": 1847307.6758039333,
+   "reinvestment_rate": 0.1388888888888889,
+   "terminal_value": 32057965.57444855,
+   "pv_terminal": 22369694.06875322,
+   "pv_explicit": 6648831.333008178,
+   "enterprise_value": 29018525.401761398,
+   "tv_pct_of_ev": 0.7708763198351699,
+   "equity_value": 27205591.401761398,
+   "value_per_share_usd": 1.7011308132567513,
+   "value_per_share_aed": 6.247402911685419
+  },
+  "B": {
+   "case": "B",
+   "rows": [
+    {
+     "year": 2026,
+     "avg_onshore_ad": 92.0,
+     "avg_regional": 15.0,
+     "avg_jackup": 36.0,
+     "avg_island": 13.0,
+     "avg_ids": 65.0,
+     "day_rate_index": 1.015,
+     "rev_onshore_ad": 1876613.4171122995,
+     "rev_regional": 121799.99999999999,
+     "rev_jackup": 1115416.7418573673,
+     "rev_island": 347505.0728502001,
+     "rev_ids": 1046541.6888888888,
+     "unconventional": 400000.0,
+     "unconv_onshore": 91329.47976878613,
+     "unconv_ofs": 308670.5202312139,
+     "seg_onshore": 2089742.8968810856,
+     "seg_offshore": 1462921.8147075674,
+     "seg_ofs": 1355212.2091201027,
+     "revenue": 4907876.920708755,
+     "conv_revenue": 4507876.920708755,
+     "cost_stack": {
+      "repairs": 765540.0606147202,
+      "staff": 682257.3597083216,
+      "hire": 248241.80182628753,
+      "chemicals": 215056.80899299728,
+      "fuel": 142334.56274681358,
+      "major_maintenance": 41871.07521284387,
+      "other": 100810.11508833522
+     },
+     "conv_cash_cost": 2196111.784190319,
+     "unconv_cash_cost": 374000.0,
+     "gna": 160751.89219431422,
+     "other_income": 27395.864999999998,
+     "jv_share": 29434.999999999996,
+     "ebitda": 2233844.109324122,
+     "ebitda_ex_jv": 2204409.109324122,
+     "ebitda_margin": 0.4551548756038341,
+     "dna": 526825.3044140944,
+     "ebit": 1677583.8049100274,
+     "nopat": 1526601.262468125,
+     "capex": 700000.0,
+     "working_capital": 290185.375186504,
+     "delta_wc": 26874.37518650398,
+     "fcff": 1326552.1916957153,
+     "discount_factor": 0.9305609358985405,
+     "pv_fcff": 1234437.6490226248,
+     "ppe_open": 5533656.0,
+     "ppe_close": 5706830.695585906,
+     "interest": 119305.93,
+     "finance_income": 8614.583999999999,
+     "pbt": 1596327.4589100275,
+     "tax": 143669.47130190246,
+     "pat": 1452657.987608125,
+     "dividend": 1050000.0,
+     "equity_open": 4099312.0,
+     "equity_close": 4501969.987608125,
+     "cfo": 1955842.0913846407,
+     "cash_open": 236016.0,
+     "cash_close": 441858.0913846409,
+     "net_margin": 0.29598500758620166,
+     "balance_sheet": {
+      "fixed_assets": 5706830.695585906,
+      "other_non_current": 100446.0,
+      "jv_investment": 437090.0,
+      "inventories": 307508.7073395726,
+      "receivables": 165723.86257712636,
+      "due_from_rp": 1504089.3048231541,
+      "cash": 441858.0913846409,
+      "debt": 2316620.0,
+      "payables": 1228599.9430128934,
+      "due_to_rp": 458536.55654045555,
+      "eosb": 146458.74,
+      "tax_payable": 11361.43454892506,
+      "total_assets": 8663546.6617104,
+      "total_liabilities": 4161576.6741022742,
+      "equity_residual": 4501969.987608125,
+      "equity_rollforward": 4501969.987608125,
+      "balance_check": 0.0
+     },
+     "net_debt": 1874761.908615359,
+     "capital_employed": 6376731.896223485,
+     "roic": 0.23940182640769792,
+     "units": {
+      "rig_years": 221.0,
+      "offshore_rig_years": 49.0,
+      "wells": 924.936170212766,
+      "conv_revenue": 4507876.920708755
+     }
+    },
+    {
+     "year": 2027,
+     "avg_onshore_ad": 92.0,
+     "avg_regional": 30.0,
+     "avg_jackup": 36.0,
+     "avg_island": 15.0,
+     "avg_ids": 71.0,
+     "day_rate_index": 1.0302249999999997,
+     "rev_onshore_ad": 1904762.6183689837,
+     "rev_regional": 247253.99999999994,
+     "rev_jackup": 1132147.9929852276,
+     "rev_island": 406981.9026264843,
+     "rev_ids": 1160292.7201504272,
+     "unconventional": 200000.0,
+     "unconv_onshore": 45664.739884393064,
+     "unconv_ofs": 154335.26011560694,
+     "seg_onshore": 2197681.358253377,
+     "seg_offshore": 1539129.8956117118,
+     "seg_ofs": 1314627.9802660341,
+     "revenue": 5051439.234131123,
+     "conv_revenue": 4851439.234131123,
+     "cost_stack": {
+      "repairs": 857889.8253929482,
+      "staff": 768326.7497022944,
+      "hire": 271168.6651358782,
+      "chemicals": 242069.8741995215,
+      "fuel": 157147.66203720594,
+      "major_maintenance": 44233.80017128289,
+      "other": 110120.6329457254
+     },
+     "conv_cash_cost": 2450957.2095848564,
+     "unconv_cash_cost": 187000.0,
+     "gna": 175598.45160527164,
+     "other_income": 27806.80297499999,
+     "jv_share": 29876.52499999999,
+     "ebitda": 2295566.900915995,
+     "ebitda_ex_jv": 2265690.375915995,
+     "ebitda_margin": 0.4544381896956236,
+     "dna": 543312.2005491023,
+     "ebit": 1722378.1753668925,
+     "nopat": 1567364.1395838722,
+     "capex": 520000.0,
+     "working_capital": 298673.7061809773,
+     "delta_wc": 8488.330994473305,
+     "fcff": 1582188.0091385012,
+     "discount_factor": 0.8659436554203676,
+     "pv_fcff": 1370085.6681956677,
+     "ppe_open": 5706830.695585906,
+     "ppe_close": 5683518.495036803,
+     "interest": 119305.93,
+     "finance_income": 16127.820335539393,
+     "pbt": 1649076.5907024317,
+     "tax": 148416.89316321886,
+     "pat": 1500659.6975392129,
+     "dividend": 1102500.0,
+     "equity_open": 4501969.987608125,
+     "equity_close": 4900129.685147339,
+     "cfo": 2038788.169757985,
+     "cash_open": 441858.0913846409,
+     "cash_close": 858146.2611426259,
+     "net_margin": 0.29707567051379863,
+     "balance_sheet": {
+      "fixed_assets": 5683518.495036803,
+      "other_non_current": 100446.0,
+      "jv_investment": 437090.0,
+      "inventories": 316503.77020207315,
+      "receivables": 170571.51900479142,
+      "due_from_rp": 1548086.0357279442,
+      "cash": 858146.2611426259,
+      "debt": 2316620.0,
+      "payables": 1264538.2220160372,
+      "due_to_rp": 471949.39673779445,
+      "eosb": 149387.9148,
+      "tax_payable": 11736.862413068444,
+      "total_assets": 9114362.081114238,
+      "total_liabilities": 4214232.3959669005,
+      "equity_residual": 4900129.685147338,
+      "equity_rollforward": 4900129.685147339,
+      "balance_check": -9.313225746154785e-10
+     },
+     "net_debt": 1458473.738857374,
+     "capital_employed": 6358603.424004713,
+     "roic": 0.2464950296580582,
+     "units": {
+      "rig_years": 244.0,
+      "offshore_rig_years": 51.0,
+      "wells": 1025.7304964539007,
+      "conv_revenue": 4851439.234131123
+     }
+    },
+    {
+     "year": 2028,
+     "avg_onshore_ad": 92.0,
+     "avg_regional": 30.0,
+     "avg_jackup": 36.0,
+     "avg_island": 17.0,
+     "avg_ids": 72.0,
+     "day_rate_index": 1.0456783749999996,
+     "rev_onshore_ad": 1933334.0576445183,
+     "rev_regional": 250962.8099999999,
+     "rev_jackup": 1149130.2128800058,
+     "rev_island": 468164.84865466575,
+     "rev_ids": 1194284.3942055379,
+     "unconventional": 60000.0,
+     "unconv_onshore": 13699.421965317919,
+     "unconv_ofs": 46300.57803468208,
+     "seg_onshore": 2197996.289609836,
+     "seg_offshore": 1617295.0615346716,
+     "seg_ofs": 1240584.9722402198,
+     "revenue": 5055876.323384727,
+     "conv_revenue": 4995876.323384727,
+     "cost_stack": {
+      "repairs": 881464.2158817174,
+      "staff": 793328.8578688365,
+      "hire": 283430.52940441173,
+      "chemicals": 248541.39540283234,
+      "fuel": 159079.8054229093,
+      "major_maintenance": 46657.98588655222,
+      "other": 115100.13252643426
+     },
+     "conv_cash_cost": 2527602.9223936936,
+     "unconv_cash_cost": 56100.0,
+     "gna": 183538.7657203615,
+     "other_income": 28223.90501962499,
+     "jv_share": 30324.67287499999,
+     "ebitda": 2347183.2131652976,
+     "ebitda_ex_jv": 2316858.5402902975,
+     "ebitda_margin": 0.4642485422970044,
+     "dna": 541092.7895212314,
+     "ebit": 1775765.7507690662,
+     "nopat": 1615946.8331998503,
+     "capex": 400000.0,
+     "working_capital": 298936.05554926733,
+     "delta_wc": 262.34936829004437,
+     "fcff": 1756777.2733527916,
+     "discount_factor": 0.8058133384233803,
+     "pv_fcff": 1415634.5595067362,
+     "ppe_open": 5683518.495036803,
+     "ppe_close": 5542425.705515572,
+     "interest": 119305.93,
+     "finance_income": 31322.338531705846,
+     "pbt": 1718106.832175772,
+     "tax": 154629.61489581948,
+     "pat": 1563477.2172799525,
+     "dividend": 1157625.0,
+     "equity_open": 4900129.685147339,
+     "equity_close": 5305981.9024272915,
+     "cfo": 2107786.7200449463,
+     "cash_open": 858146.2611426259,
+     "cash_close": 1408307.9811875722,
+     "net_margin": 0.30923960897707653,
+     "balance_sheet": {
+      "fixed_assets": 5542425.705515572,
+      "other_non_current": 100446.0,
+      "jv_investment": 437090.0,
+      "inventories": 316781.78116338496,
+      "receivables": 170721.34582025293,
+      "due_from_rp": 1549445.8453969138,
+      "cash": 1408307.9811875722,
+      "debt": 2316620.0,
+      "payables": 1265648.968616287,
+      "due_to_rp": 472363.9482149975,
+      "eosb": 152375.673096,
+      "tax_payable": 12228.166729121089,
+      "total_assets": 9525218.659083696,
+      "total_liabilities": 4219236.756656406,
+      "equity_residual": 5305981.90242729,
+      "equity_rollforward": 5305981.9024272915,
+      "balance_check": -1.862645149230957e-09
+     },
+     "net_debt": 908312.0188124278,
+     "capital_employed": 6214293.921239719,
+     "roic": 0.2600370780140823,
+     "units": {
+      "rig_years": 247.0,
+      "offshore_rig_years": 53.0,
+      "wells": 1037.5886524822695,
+      "conv_revenue": 4995876.323384727
+     }
+    },
+    {
+     "year": 2029,
+     "avg_onshore_ad": 92.0,
+     "avg_regional": 30.0,
+     "avg_jackup": 36.0,
+     "avg_island": 18.0,
+     "avg_ids": 72.0,
+     "day_rate_index": 1.0613635506249997,
+     "rev_onshore_ad": 1962334.0685091862,
+     "rev_regional": 254727.25214999993,
+     "rev_jackup": 1166367.166073206,
+     "rev_island": 503139.51676004374,
+     "rev_ids": 1212198.660118621,
+     "unconventional": 0.0,
+     "unconv_onshore": 0.0,
+     "unconv_ofs": 0.0,
+     "seg_onshore": 2217061.320659186,
+     "seg_offshore": 1669506.68283325,
+     "seg_ofs": 1212198.660118621,
+     "revenue": 5098766.663611057,
+     "conv_revenue": 5098766.663611057,
+     "cost_stack": {
+      "repairs": 898308.3903714409,
+      "staff": 812471.5299048617,
+      "hire": 293606.8132696931,
+      "chemicals": 253711.05642721127,
+      "fuel": 159723.85321814375,
+      "major_maintenance": 48251.4001215458,
+      "other": 119232.68530394134
+     },
+     "conv_cash_cost": 2585305.728616838,
+     "unconv_cash_cost": 0.0,
+     "gna": 190128.53776848406,
+     "other_income": 28647.263594919365,
+     "jv_share": 30779.54296812499,
+     "ebitda": 2382759.2037887797,
+     "ebitda_ex_jv": 2351979.6608206546,
+     "ebitda_margin": 0.46732069949270005,
+     "dna": 527660.2140611457,
+     "ebit": 1824319.446759509,
+     "nopat": 1660130.6965511532,
+     "capex": 300000.0,
+     "working_capital": 301472.0094192468,
+     "delta_wc": 2535.9538699794794,
+     "fcff": 1885254.9567423197,
+     "discount_factor": 0.7498584143627882,
+     "pv_fcff": 1413674.2925323828,
+     "ppe_open": 5542425.705515572,
+     "ppe_close": 5314765.491454426,
+     "interest": 119305.93,
+     "finance_income": 51403.241313346385,
+     "pbt": 1787196.3010409805,
+     "tax": 160847.66709368824,
+     "pat": 1626348.6339472923,
+     "dividend": 1215506.2500000002,
+     "equity_open": 5305981.9024272915,
+     "equity_close": 5716824.286374584,
+     "cfo": 2155012.133451582,
+     "cash_open": 1408307.9811875722,
+     "cash_close": 2047813.864639154,
+     "net_margin": 0.3189690255006643,
+     "balance_sheet": {
+      "fixed_assets": 5314765.491454426,
+      "other_non_current": 100446.0,
+      "jv_investment": 437090.0,
+      "inventories": 319469.12505840027,
+      "receivables": 172169.62029094363,
+      "due_from_rp": 1562590.2055870495,
+      "cash": 2047813.864639154,
+      "debt": 2316620.0,
+      "payables": 1276385.8046065143,
+      "due_to_rp": 476371.1369106321,
+      "eosb": 155423.18655792,
+      "tax_payable": 12719.892580324595,
+      "total_assets": 9954344.307029974,
+      "total_liabilities": 4237520.020655391,
+      "equity_residual": 5716824.286374583,
+      "equity_rollforward": 5716824.286374584,
+      "balance_check": -9.313225746154785e-10
+     },
+     "net_debt": 268806.13536084606,
+     "capital_employed": 5985630.42173543,
+     "roic": 0.2773526896219274,
+     "units": {
+      "rig_years": 248.0,
+      "offshore_rig_years": 54.0,
+      "wells": 1043.5177304964539,
+      "conv_revenue": 5098766.663611057
+     }
+    },
+    {
+     "year": 2030,
+     "avg_onshore_ad": 92.0,
+     "avg_regional": 30.0,
+     "avg_jackup": 36.0,
+     "avg_island": 18.0,
+     "avg_ids": 72.0,
+     "day_rate_index": 1.0772840038843745,
+     "rev_onshore_ad": 1991769.0795368236,
+     "rev_regional": 258548.16093224988,
+     "rev_jackup": 1183862.673564304,
+     "rev_island": 510686.60951144435,
+     "rev_ids": 1230381.6400204003,
+     "unconventional": 0.0,
+     "unconv_onshore": 0.0,
+     "unconv_ofs": 0.0,
+     "seg_onshore": 2250317.2404690734,
+     "seg_offshore": 1694549.2830757482,
+     "seg_ofs": 1230381.6400204003,
+     "revenue": 5175248.163565222,
+     "conv_revenue": 5175248.163565222,
+     "cost_stack": {
+      "repairs": 911783.0162270124,
+      "staff": 828720.960502959,
+      "hire": 302481.07920076954,
+      "chemicals": 257516.7222736194,
+      "fuel": 159723.85321814375,
+      "major_maintenance": 48975.17112336898,
+      "other": 122836.49321725294
+     },
+     "conv_cash_cost": 2632037.2957631266,
+     "unconv_cash_cost": 0.0,
+     "gna": 195875.17282253646,
+     "other_income": 29076.972548843154,
+     "jv_share": 31241.23611264686,
+     "ebitda": 2407653.9036410493,
+     "ebitda_ex_jv": 2376412.6675284025,
+     "ebitda_margin": 0.46522482160206585,
+     "dna": 505986.0873037648,
+     "ebit": 1870426.5802246376,
+     "nopat": 1702088.1880044204,
+     "capex": 280000.0,
+     "working_capital": 305994.08956053545,
+     "delta_wc": 4522.080141288636,
+     "fcff": 1923552.1951668966,
+     "discount_factor": 0.6977889478608318,
+     "pv_fcff": 1342233.4624209022,
+     "ppe_open": 5314765.491454426,
+     "ppe_close": 5088779.404150661,
+     "interest": 119305.93,
+     "finance_income": 74745.20605932911,
+     "pbt": 1857107.0923966137,
+     "tax": 167139.63831569522,
+     "pat": 1689967.4540809183,
+     "dividend": 1276281.5625000002,
+     "equity_open": 5716824.286374584,
+     "equity_close": 6130510.177955503,
+     "cfo": 2195037.4963693297,
+     "cash_open": 2047813.864639154,
+     "cash_close": 2686569.798508484,
+     "net_margin": 0.3265480998531869,
+     "balance_sheet": {
+      "fixed_assets": 5088779.404150661,
+      "other_non_current": 100446.0,
+      "jv_investment": 437090.0,
+      "inventories": 324261.1619342762,
+      "receivables": 174752.16459530772,
+      "due_from_rp": 1586029.058670855,
+      "cash": 2686569.798508484,
+      "debt": 2316620.0,
+      "payables": 1295531.5916756117,
+      "due_to_rp": 483516.70396429143,
+      "eosb": 158531.65028907842,
+      "tax_payable": 13217.46397510153,
+      "total_assets": 10397927.587859584,
+      "total_liabilities": 4267417.409904083,
+      "equity_residual": 6130510.177955501,
+      "equity_rollforward": 6130510.177955503,
+      "balance_check": -1.862645149230957e-09
+     },
+     "net_debt": -369949.7985084839,
+     "capital_employed": 5760560.379447019,
+     "roic": 0.29547267555379936,
+     "units": {
+      "rig_years": 248.0,
+      "offshore_rig_years": 54.0,
+      "wells": 1043.5177304964539,
+      "conv_revenue": 5175248.163565222
+     }
+    }
+   ],
+   "terminal_growth": 0.015,
+   "terminal_roic": 0.18,
+   "terminal_nopat": 1727619.5108244866,
+   "reinvestment_rate": 0.08333333333333333,
+   "terminal_value": 26562124.959315423,
+   "pv_terminal": 18534757.228308648,
+   "pv_explicit": 6776065.631678314,
+   "enterprise_value": 25310822.85998696,
+   "tv_pct_of_ev": 0.7322858419435122,
+   "equity_value": 23497888.85998696,
+   "value_per_share_usd": 1.469292918352746,
+   "value_per_share_aed": 5.395978242650459
+  }
+ },
+ "relative": {
+  "peers": [
+   {
+    "symbol": "2382.SR",
+    "name": "ADES Holding",
+    "group": "MENA NOC-contracted driller",
+    "market_cap_usd_mn": 5167.41972084,
+    "net_debt_usd_mn": 4813.9656,
+    "ev_usd_mn": 9981.38532084,
+    "ltm_ebitda_usd_mn": 976.1512,
+    "ltm_net_income_usd_mn": 223.96933333333334,
+    "ev_ebitda": 10.225245147309145,
+    "pe": 23.071996705679943,
+    "latest_period": "2026-03-31"
+   },
+   {
+    "symbol": "2381.SR",
+    "name": "Arabian Drilling",
+    "group": "MENA NOC-contracted driller",
+    "market_cap_usd_mn": 1960.373333333333,
+    "net_debt_usd_mn": 626.8503327999999,
+    "ev_usd_mn": 2587.2236661333327,
+    "ltm_ebitda_usd_mn": 295.61051653333334,
+    "ltm_net_income_usd_mn": -15.677100266666667,
+    "ev_ebitda": 8.752136752352634,
+    "pe": null,
+    "latest_period": "2026-03-31"
+   },
+   {
+    "symbol": "HP",
+    "name": "Helmerich & Payne",
+    "group": "Global land driller",
+    "market_cap_usd_mn": 3706.9393984000003,
+    "net_debt_usd_mn": 1657.689,
+    "ev_usd_mn": 5364.6283984,
+    "ltm_ebitda_usd_mn": 794.456,
+    "ltm_net_income_usd_mn": -136.996,
+    "ev_ebitda": 6.752580883522813,
+    "pe": null,
+    "latest_period": "2026-06-30"
+   },
+   {
+    "symbol": "NBR",
+    "name": "Nabors Industries",
+    "group": "Global land driller",
+    "market_cap_usd_mn": 1207.61359,
+    "net_debt_usd_mn": 1618.75,
+    "ev_usd_mn": 2826.36359,
+    "ltm_ebitda_usd_mn": 1308.166,
+    "ltm_net_income_usd_mn": 247.05,
+    "ev_ebitda": 2.1605542339427872,
+    "pe": 4.888134345274236,
+    "latest_period": "2026-06-30"
+   },
+   {
+    "symbol": "PTEN",
+    "name": "Patterson-UTI",
+    "group": "Global land driller",
+    "market_cap_usd_mn": 3764.22361035,
+    "net_debt_usd_mn": 1084.557,
+    "ev_usd_mn": 4848.78061035,
+    "ltm_ebitda_usd_mn": 872.833,
+    "ltm_net_income_usd_mn": -89.725,
+    "ev_ebitda": 5.555221457426564,
+    "pe": null,
+    "latest_period": "2026-06-30"
+   },
+   {
+    "symbol": "PDS",
+    "name": "Precision Drilling",
+    "group": "Global land driller",
+    "market_cap_usd_mn": 973.587783,
+    "net_debt_usd_mn": 630.732,
+    "ev_usd_mn": 1604.319783,
+    "ltm_ebitda_usd_mn": 228.669,
+    "ltm_net_income_usd_mn": -32.755,
+    "ev_ebitda": 7.015904136546711,
+    "pe": null,
+    "latest_period": "2026-06-30"
+   },
+   {
+    "symbol": "VAL",
+    "name": "Valaris",
+    "group": "Global offshore driller",
+    "market_cap_usd_mn": 5455.6552284,
+    "net_debt_usd_mn": 624.3,
+    "ev_usd_mn": 6079.9552284,
+    "ltm_ebitda_usd_mn": 606.3,
+    "ltm_net_income_usd_mn": 939.6,
+    "ev_ebitda": 10.027965080653143,
+    "pe": 5.806359332056194,
+    "latest_period": "2026-06-30"
+   },
+   {
+    "symbol": "NE",
+    "name": "Noble Corporation",
+    "group": "Global offshore driller",
+    "market_cap_usd_mn": 6508.572784020001,
+    "net_debt_usd_mn": 1432.222,
+    "ev_usd_mn": 7940.79478402,
+    "ltm_ebitda_usd_mn": 928.575,
+    "ltm_net_income_usd_mn": 149.583,
+    "ev_ebitda": 8.551592261282073,
+    "pe": 43.511447049597884,
+    "latest_period": "2026-06-30"
+   },
+   {
+    "symbol": "BORR",
+    "name": "Borr Drilling",
+    "group": "Global offshore driller",
+    "market_cap_usd_mn": 1187.7261495,
+    "net_debt_usd_mn": 2058.9,
+    "ev_usd_mn": 3246.6261495,
+    "ltm_ebitda_usd_mn": 452.0,
+    "ltm_net_income_usd_mn": 32.9,
+    "ev_ebitda": 7.182801215707964,
+    "pe": 36.10109876899696,
+    "latest_period": "2026-03-31"
+   },
+   {
+    "symbol": "SLB",
+    "name": "SLB",
+    "group": "Diversified oilfield services",
+    "market_cap_usd_mn": 74993.75746243,
+    "net_debt_usd_mn": 10055.0,
+    "ev_usd_mn": 85048.75746243,
+    "ltm_ebitda_usd_mn": 6663.0,
+    "ltm_net_income_usd_mn": 3101.0,
+    "ev_ebitda": 12.764334003066187,
+    "pe": 24.183733460957757,
+    "latest_period": "2026-06-30"
+   },
+   {
+    "symbol": "HAL",
+    "name": "Halliburton",
+    "group": "Diversified oilfield services",
+    "market_cap_usd_mn": 26596.26,
+    "net_debt_usd_mn": 6151.0,
+    "ev_usd_mn": 32747.26,
+    "ltm_ebitda_usd_mn": 3592.0,
+    "ltm_net_income_usd_mn": 1602.0,
+    "ev_ebitda": 9.116720489977729,
+    "pe": 16.60191011235955,
+    "latest_period": "2026-06-30"
+   },
+   {
+    "symbol": "BKR",
+    "name": "Baker Hughes",
+    "group": "Diversified oilfield services",
+    "market_cap_usd_mn": 61077.72685,
+    "net_debt_usd_mn": 526.0,
+    "ev_usd_mn": 61603.72685,
+    "ltm_ebitda_usd_mn": 5080.0,
+    "ltm_net_income_usd_mn": 3096.0,
+    "ev_ebitda": 12.126717883858268,
+    "pe": 19.727947948966406,
+    "latest_period": "2026-06-30"
+   },
+   {
+    "symbol": "WFRD",
+    "name": "Weatherford Intl",
+    "group": "Diversified oilfield services",
+    "market_cap_usd_mn": 6233.6759999999995,
+    "net_debt_usd_mn": 522.0,
+    "ev_usd_mn": 6755.6759999999995,
+    "ltm_ebitda_usd_mn": 848.0,
+    "ltm_net_income_usd_mn": 366.0,
+    "ev_ebitda": 7.966599056603773,
+    "pe": 17.031901639344262,
+    "latest_period": "2026-06-30"
+   }
+  ],
+  "median_mena": 9.48869094983089,
+  "median_land": 6.153901170474688,
+  "median_offshore": 8.551592261282073,
+  "median_ofs": 10.621719186917998,
+  "blended_multiple": 8.66065218329872,
+  "segment_weights": {
+   "onshore": 0.45243890454933405,
+   "offshore": 0.43335186502859824,
+   "ofs": 0.1142092304220677
+  },
+  "applied_ebitda": 2250000.0,
+  "enterprise_value": 19486467.41242212,
+  "equity_value": 17673533.41242212,
+  "value_per_share_usd": 1.1051034260937802,
+  "value_per_share_aed": 4.058492332329408,
+  "implied_own_ev_ebitda": 12.45576962922623,
+  "median_pe_mena": 23.071996705679943,
+  "median_pe_land": 4.888134345274236,
+  "median_pe_offshore": 36.10109876899696,
+  "median_pe_ofs": 18.379924794155336
+ },
+ "book": {
+  "roe_fy25": 0.36634034521354814,
+  "roe_sustainable": 0.3674356711161862,
+  "justified_pb": 6.593314780968142,
+  "cost_of_equity": 0.0769368,
+  "growth": 0.025,
+  "book_equity": 4233719.0,
+  "equity_value": 27914242.06116566,
+  "value_per_share_usd": 1.7454418320743483,
+  "value_per_share_aed": 6.410135128293044,
+  "current_pb": 6.109744804924233
+ },
+ "normalised": {
+  "units": {
+   "onshore": 92.0,
+   "regional": 30.0,
+   "jackup": 36.0,
+   "island": 14.0,
+   "ids": 70.0
+  },
+  "revenue": 4666907.6719176145,
+  "ebitda": 2100108.4523629267,
+  "ebitda_margin": 0.45,
+  "dna": 391991.2464200824,
+  "ebit": 1708117.2059428443,
+  "nopat": 1554386.6574079883,
+  "capitalisation_rate": 0.05962065236427508,
+  "enterprise_value": 26071278.923800953,
+  "equity_value": 24258344.923800953,
+  "value_per_share_usd": 1.5168432628087083,
+  "value_per_share_aed": 5.570606882664981
+ },
+ "sensitivity": {
+  "wacc_grid": [
+   0.064621,
+   0.069621,
+   0.074621,
+   0.079621,
+   0.084621
+  ],
+  "g_grid": [
+   0.01,
+   0.015,
+   0.02,
+   0.025,
+   0.03
+  ],
+  "matrix": [
+   [
+    6.439473892704435,
+    6.828836475852107,
+    7.303575178495154,
+    7.896012299223474,
+    8.657142213453122
+   ],
+   [
+    5.86179219004092,
+    6.167691868302923,
+    6.533583992603078,
+    6.979635898737802,
+    7.53619504708212
+   ],
+   [
+    5.373388977815597,
+    5.617194738766592,
+    5.904167753049582,
+    6.2473571087518565,
+    6.665660749023269
+   ],
+   [
+    4.955035063878917,
+    5.151671126876438,
+    5.379973582807436,
+    5.648638645472497,
+    5.969867582500469
+   ],
+   [
+    4.5926548285967,
+    4.752822038737026,
+    4.93658968054318,
+    5.149895367859067,
+    5.400850828456897
+   ]
+  ],
+  "margin_shift": [
+   {
+    "shift": -0.04,
+    "aed": 5.471874275925205
+   },
+   {
+    "shift": -0.02,
+    "aed": 5.859638593805311
+   },
+   {
+    "shift": 0.0,
+    "aed": 6.247402911685418
+   },
+   {
+    "shift": 0.02,
+    "aed": 6.635167229565526
+   },
+   {
+    "shift": 0.04,
+    "aed": 7.022931547445633
+   }
+  ],
+  "beta_grid": [
+   {
+    "beta": 0.5,
+    "aed": 7.387409647763772
+   },
+   {
+    "beta": 0.6,
+    "aed": 6.6496603564905215
+   },
+   {
+    "beta": 0.664,
+    "aed": 6.247402911685418
+   },
+   {
+    "beta": 0.8,
+    "aed": 5.52994449165278
+   },
+   {
+    "beta": 1.0,
+    "aed": 4.7199599381143225
+   }
+  ]
+ },
+ "fair_value": {
+  "by_lens": {
+   "dcf_A": 6.247402911685419,
+   "dcf_B": 5.395978242650459,
+   "relative": 4.058492332329408,
+   "book": 6.410135128293044,
+   "normalised": 5.570606882664981
+  },
+  "weights": {
+   "dcf_A": 0.25,
+   "dcf_B": 0.25,
+   "relative": 0.2,
+   "book": 0.15,
+   "normalised": 0.15
+  },
+  "central": 5.519655056693554,
+  "low": 4.058492332329408,
+  "high": 6.410135128293044,
+  "spot": 5.94,
+  "upside_central": -0.07076514197078221,
+  "lens_range": {
+   "dcf_A": {
+    "bear": 5.648676479469689,
+    "base": 6.247402911685419,
+    "bull": 6.979692495465288
+   },
+   "dcf_B": {
+    "bear": 4.954797022996693,
+    "base": 5.395978242650459,
+    "bull": 5.917443513705311
+   },
+   "relative": {
+    "bear": 3.072625032470192,
+    "base": 4.058492332329408,
+    "bull": 4.764959157932728
+   },
+   "book": {
+    "bear": 5.847218426942332,
+    "base": 6.410135128293044,
+    "bull": 7.092982609192152
+   },
+   "normalised": {
+    "bear": 5.243458168375043,
+    "base": 5.570606882664981,
+    "bull": 5.897755596954919
+   }
+  },
+  "central_range": {
+   "bear": 4.928994871408241,
+   "base": 5.519655056693554,
+   "bull": 6.125886564801255
+  }
+ },
+ "register": [
+  {
+   "value": 5.94,
+   "source": "Uploaded ADX daily price history for ADNOCDRILL, last close 07-Aug-2026",
+   "date": "2026-08-07",
+   "ring": "Market"
+  },
+  {
+   "value": 3.6725,
+   "source": "AED/USD central-bank peg, unchanged since 1997; the rate at which the company itself translates its AED-declared dividends into the USD amounts disclosed in Note 24 of the audited statements",
+   "date": "2026-08-07",
+   "ring": "Country"
+  },
+  {
+   "value": 16000000.0,
+   "source": "Share capital note 13, FY2025 audited statements: 16,000,000 thousand shares of AED 0.10 each, unchanged since listing",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 7349.0,
+   "source": "Note 14, 1H-2026 interim: the appointed market maker held 7,349 thousand shares on the company's behalf at 30 June 2026, classified as treasury shares in equity (31 Dec 2025: 9,279 thousand)",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  {
+   "value": 3056865.0,
+   "source": "Consolidated statement of profit or loss, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified) (confirmed to the dollar by the FY2024 filing's comparative column)",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  {
+   "value": 4034222.0,
+   "source": "Consolidated statement of profit or loss, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified) (confirmed to the dollar by the FY2025 filing's comparative column)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 4902886.0,
+   "source": "Consolidated statement of profit or loss, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 1848729.0,
+   "source": "Direct cost, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified)",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  {
+   "value": 2337407.0,
+   "source": "Direct cost, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 3105963.0,
+   "source": "Direct cost, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 126334.0,
+   "source": "General and administrative expenses, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified)",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  {
+   "value": 155358.0,
+   "source": "General and administrative expenses, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 167197.0,
+   "source": "General and administrative expenses, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 9847.0,
+   "source": "Other income - net, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified)",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  {
+   "value": 6388.0,
+   "source": "Other income - net, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 26991.0,
+   "source": "Other income - net, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 0.0,
+   "source": "Share of results of joint ventures, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified) \u2014 the joint ventures did not exist in FY2023; the first investment was made in FY2024",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  {
+   "value": 8490.0,
+   "source": "Share of results of joint ventures, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 29000.0,
+   "source": "Share of results of joint ventures, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 74577.0,
+   "source": "Finance cost, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified) (the FY2023 face presents finance cost net of income; the gross figures are in the cash-flow statement adjustments)",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  {
+   "value": 135995.0,
+   "source": "Finance cost, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 109463.0,
+   "source": "Finance cost note 23, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified): interest on loans 108,839 plus lease interest 624",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 15727.0,
+   "source": "Finance income, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified)",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  {
+   "value": 11736.0,
+   "source": "Finance income, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 11626.0,
+   "source": "Finance income, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 0.0,
+   "source": "Income tax, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified) \u2014 the Abu Dhabi fiscal arrangement took effect 1 January 2024, so FY2023 carries no corporate income tax charge",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  {
+   "value": 128510.0,
+   "source": "Income tax note 30, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 139099.0,
+   "source": "Income tax note 30, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified): current 138,930 plus deferred 169",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 1032799.0,
+   "source": "Profit for the year, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified)",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  {
+   "value": 1303566.0,
+   "source": "Profit after tax, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 1448781.0,
+   "source": "Profit after tax, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 391247.0,
+   "source": "Consolidated statement of cash flows, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified): property and equipment 368,110 + right-of-use assets 19,589 + intangibles 3,548. Ties to the segment note's total depreciation of 391,247",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  {
+   "value": 458452.0,
+   "source": "Consolidated statement of cash flows, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified): property and equipment 426,473 + right-of-use assets 28,435 + intangibles 3,544. Ties to the segment note's total depreciation and amortisation of 458,452",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 512319.0,
+   "source": "Consolidated statement of cash flows, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified): property and equipment 497,084 + right-of-use assets 11,042 + intangibles 4,193. Ties to the segment note's total depreciation and amortisation of 512,319",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 1495057.0,
+   "source": "Segment note 26, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified) \u2014 Onshore",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  {
+   "value": 1008805.0,
+   "source": "Segment note 26, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified) \u2014 Offshore Jackup 799,726 plus Offshore Island 209,079. The two were reported separately until FY2024 and combined into a single Offshore segment from 1Q-2025; they are summed here so the three-year series is on one basis",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  {
+   "value": 553003.0,
+   "source": "Segment note 26, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified) \u2014 Oilfield Services",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  {
+   "value": 1892670.0,
+   "source": "Segment note 28, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified) comparative column \u2014 Onshore",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 1328436.0,
+   "source": "Segment note 28, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified) comparative column \u2014 Offshore",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 813116.0,
+   "source": "Segment note 28, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified) comparative column \u2014 Oilfield Services",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 2037025.0,
+   "source": "Segment note 28, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified) \u2014 Onshore",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 1403893.0,
+   "source": "Segment note 28, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified) \u2014 Offshore",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 1461968.0,
+   "source": "Segment note 28, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified) \u2014 Oilfield Services",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 994477.0,
+   "source": "Segment note 28, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified) \u2014 Onshore EBITDA",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 952523.0,
+   "source": "Segment note 28, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified) \u2014 Offshore EBITDA",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 251036.0,
+   "source": "Segment note 28, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified) \u2014 Oilfield Services EBITDA",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 904937.0,
+   "source": "Direct cost note 20, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified) \u2014 repairs and maintenance",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 802536.0,
+   "source": "Direct cost note 20, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified) \u2014 staff costs",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 303652.0,
+   "source": "Direct cost note 20, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified) \u2014 hire of equipment",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 254535.0,
+   "source": "Direct cost note 20, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified) \u2014 chemicals",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 170776.0,
+   "source": "Direct cost note 20, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified) \u2014 fuel and lubricants",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 53151.0,
+   "source": "Direct cost note 20, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified) \u2014 major maintenance charges",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 123312.0,
+   "source": "Direct cost note 20, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified) \u2014 other direct cost",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 493064.0,
+   "source": "Direct cost note 20, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified) \u2014 depreciation of property and equipment charged to direct cost",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 19255.0,
+   "source": "Segment note 28, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified) \u2014 depreciation and amortisation included in general and administrative expenses. Ties to note 21: property and equipment 4,020 plus right-of-use 11,042 plus intangibles 4,193",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 4847540.0,
+   "source": "Consolidated statement of financial position, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified)",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  {
+   "value": 5352674.0,
+   "source": "Consolidated statement of financial position, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 5477158.0,
+   "source": "Consolidated statement of financial position, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 173911.0,
+   "source": "Right-of-use assets, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified)",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  {
+   "value": 23310.0,
+   "source": "Right-of-use assets, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 45729.0,
+   "source": "Right-of-use assets, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 5432.0,
+   "source": "Intangible assets, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified)",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  {
+   "value": 5301.0,
+   "source": "Intangible assets, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 10769.0,
+   "source": "Intangible assets, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 0.0,
+   "source": "Investment in joint ventures, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified) \u2014 none held",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  {
+   "value": 275240.0,
+   "source": "Investment in joint ventures, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 437090.0,
+   "source": "Investment in joint ventures, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 0.0,
+   "source": "Deferred tax assets, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified) \u2014 none recognised",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  {
+   "value": 1397.0,
+   "source": "Deferred tax assets, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 1228.0,
+   "source": "Deferred tax assets, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 1654.0,
+   "source": "Advances (non-current), FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified)",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  {
+   "value": 2230.0,
+   "source": "Advances (non-current), FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 99218.0,
+   "source": "Advances 8,292 plus advance for acquisition of a subsidiary 90,926, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 206107.0,
+   "source": "Inventories, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified)",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  {
+   "value": 223083.0,
+   "source": "Inventories, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 279030.0,
+   "source": "Inventories, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 153946.0,
+   "source": "Trade and other receivables, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified)",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  {
+   "value": 185958.0,
+   "source": "Trade and other receivables, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 150376.0,
+   "source": "Trade and other receivables, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 986696.0,
+   "source": "Due from related parties, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified)",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  {
+   "value": 1361282.0,
+   "source": "Due from related parties, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 1364794.0,
+   "source": "Due from related parties note 18, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified) \u2014 228,666 billed plus 1,164,132 of unbilled contract assets less a 28,004 expected-credit-loss allowance",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 354122.0,
+   "source": "Cash and cash equivalents, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified)",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  {
+   "value": 330288.0,
+   "source": "Cash and cash equivalents, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 236016.0,
+   "source": "Cash and cash equivalents, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 10717.0,
+   "source": "Assets held for sale, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified)",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  {
+   "value": 5708.0,
+   "source": "Assets held for sale, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 0.0,
+   "source": "Assets held for sale, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified) \u2014 nil at year end",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 1992264.0,
+   "source": "Borrowings note 13, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified) (non-current 1,992,264, current nil)",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  {
+   "value": 2294750.0,
+   "source": "Borrowings note 15, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified): non-current 1,495,227 plus current 799,523",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 2269039.0,
+   "source": "Borrowings note 15, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified): non-current 1,246,507 plus current 1,022,532",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 189211.0,
+   "source": "Lease liabilities, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified): non-current 152,378 plus current 36,833",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  {
+   "value": 25157.0,
+   "source": "Lease liabilities, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified): non-current 12,027 plus current 13,130",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 47581.0,
+   "source": "Lease liabilities, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified): non-current 35,855 plus current 11,726",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 929770.0,
+   "source": "Trade and other payables, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified): non-current 80,936 plus current 848,834",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  {
+   "value": 1240598.0,
+   "source": "Trade and other payables note 17, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified): non-current 64,849 plus current 1,175,749",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 1114818.0,
+   "source": "Trade and other payables note 17, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified): non-current 75,399 plus current 1,039,419",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 250237.0,
+   "source": "Due to related parties, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified)",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  {
+   "value": 250850.0,
+   "source": "Due to related parties, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 416071.0,
+   "source": "Due to related parties note 18, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 114422.0,
+   "source": "Provision for employees' end of service benefits, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified): non-current 105,328 plus current 9,094",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  {
+   "value": 129947.0,
+   "source": "Provision for employees' end of service benefits note 16, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 143587.0,
+   "source": "Provision for employees' end of service benefits note 16, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 0.0,
+   "source": "Income tax payable, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified) \u2014 nil",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  {
+   "value": 15000.0,
+   "source": "Income tax payable, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 11000.0,
+   "source": "Income tax payable, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 3264221.0,
+   "source": "Total equity, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified)",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  {
+   "value": 3810169.0,
+   "source": "Total equity, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 4099312.0,
+   "source": "Total equity, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 6740125.0,
+   "source": "Total assets, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified)",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  {
+   "value": 7766471.0,
+   "source": "Total assets, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 8101408.0,
+   "source": "Total assets, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 1062274.0,
+   "source": "Payments for purchase of property and equipment, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified)",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  {
+   "value": 761822.0,
+   "source": "Purchase of property and equipment 758,409 plus intangibles 3,413, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 814876.0,
+   "source": "Purchase of property and equipment 805,215 plus intangibles 9,661, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 1355056.0,
+   "source": "Net cash from operating activities, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified)",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  {
+   "value": 1653666.0,
+   "source": "Net cash from operating activities, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 2225843.0,
+   "source": "Net cash from operating activities, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 699559.0,
+   "source": "Dividends paid, FY2023 audited consolidated financial statements (KPMG Lower Gulf Limited, unqualified)",
+   "date": "2024-02-12",
+   "ring": "Company"
+  },
+  {
+   "value": 752452.0,
+   "source": "Dividends paid, FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2025-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 1143567.0,
+   "source": "Dividends paid, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 2459813.0,
+   "source": "Revenue, 1H-2026 condensed consolidated interim financial information (reviewed)",
+   "date": "2026-07-30",
+   "ring": "Company"
+  },
+  {
+   "value": 1084000.0,
+   "source": "EBITDA, 1H-2026 management discussion and analysis financial summary. Reconciles to the interim statements: revenue 2,459,813 less direct cost 1,566,479 less general and administrative 90,356 plus joint-venture share 16,479 plus other income 3,807 = 823,264 before adding back the 260,530 of depreciation and amortisation inside cost of sales and overheads",
+   "date": "2026-07-30",
+   "ring": "Company"
+  },
+  {
+   "value": 705545.0,
+   "source": "Profit after tax, 1H-2026 condensed consolidated interim financial information (reviewed)",
+   "date": "2026-07-30",
+   "ring": "Company"
+  },
+  {
+   "value": 260530.0,
+   "source": "Cash-flow statement adjustments, 1H-2026 condensed consolidated interim financial information (reviewed): property and equipment 252,319 plus right-of-use 5,906 plus intangibles 2,305",
+   "date": "2026-07-30",
+   "ring": "Company"
+  },
+  {
+   "value": 5705373.0,
+   "source": "Property and equipment, 1H-2026 condensed consolidated interim financial information (reviewed)",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  {
+   "value": 2468779.0,
+   "source": "Borrowings, 1H-2026 condensed consolidated interim financial information (reviewed): non-current 1,247,510 plus current 1,221,269",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  {
+   "value": 355423.0,
+   "source": "Cash and cash equivalents, 1H-2026 condensed consolidated interim financial information (reviewed)",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  {
+   "value": 45183.0,
+   "source": "Lease liabilities, 1H-2026 condensed consolidated interim financial information (reviewed): non-current 28,206 plus current 16,977",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  {
+   "value": 461729.0,
+   "source": "Investment in joint ventures, 1H-2026 condensed consolidated interim financial information (reviewed)",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  {
+   "value": 53594.0,
+   "source": "Non-controlling interests, 1H-2026 condensed consolidated interim financial information (reviewed) \u2014 arising on the SLDC and MBPS acquisitions completed in the period",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  {
+   "value": 4287313.0,
+   "source": "Total equity, 1H-2026 condensed consolidated interim financial information (reviewed)",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  {
+   "value": 62530.0,
+   "source": "Financial liability, 1H-2026 condensed consolidated interim financial information (reviewed) note 5 \u2014 the put obligation recognised over the non-controlling interests in the acquired regional businesses",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  {
+   "value": 74.0,
+   "source": "FY2023 MD&A operational highlights, FY22 comparative column \u2014 onshore rigs at year end",
+   "date": "2024-02-12",
+   "ring": "Company/IR"
+  },
+  {
+   "value": 84.0,
+   "source": "FY2023 MD&A operational highlights \u2014 onshore rigs at year end (includes 4 lease-to-own land rigs)",
+   "date": "2024-02-12",
+   "ring": "Company/IR"
+  },
+  {
+   "value": 95.0,
+   "source": "FY2024 MD&A operational highlights \u2014 onshore rigs at year end",
+   "date": "2025-02-11",
+   "ring": "Company/IR"
+  },
+  {
+   "value": 92.0,
+   "source": "FY2025 management discussion and analysis operational highlights \u2014 Abu Dhabi onshore rigs at year end",
+   "date": "2026-02-11",
+   "ring": "Company/IR"
+  },
+  {
+   "value": 31.0,
+   "source": "FY2023 MD&A, FY22 comparative \u2014 offshore jack-up rigs",
+   "date": "2024-02-12",
+   "ring": "Company/IR"
+  },
+  {
+   "value": 35.0,
+   "source": "FY2023 MD&A \u2014 offshore jack-up rigs at year end",
+   "date": "2024-02-12",
+   "ring": "Company/IR"
+  },
+  {
+   "value": 37.0,
+   "source": "FY2024 MD&A \u2014 offshore jack-up rigs at year end",
+   "date": "2025-02-11",
+   "ring": "Company/IR"
+  },
+  {
+   "value": 36.0,
+   "source": "FY2025 management discussion and analysis \u2014 offshore jack-up rigs at year end",
+   "date": "2026-02-11",
+   "ring": "Company/IR"
+  },
+  {
+   "value": 10.0,
+   "source": "FY2023 MD&A, FY22 comparative \u2014 offshore island rigs",
+   "date": "2024-02-12",
+   "ring": "Company/IR"
+  },
+  {
+   "value": 10.0,
+   "source": "FY2023 MD&A \u2014 offshore island rigs at year end",
+   "date": "2024-02-12",
+   "ring": "Company/IR"
+  },
+  {
+   "value": 10.0,
+   "source": "FY2024 MD&A \u2014 offshore island rigs at year end",
+   "date": "2025-02-11",
+   "ring": "Company/IR"
+  },
+  {
+   "value": 12.0,
+   "source": "FY2025 management discussion and analysis \u2014 offshore island rigs at year end",
+   "date": "2026-02-11",
+   "ring": "Company/IR"
+  },
+  {
+   "value": 48.0,
+   "source": "FY2023 MD&A \u2014 integrated-drilling-services rigs at year end (2022: 40)",
+   "date": "2024-02-12",
+   "ring": "Company/IR"
+  },
+  {
+   "value": 57.0,
+   "source": "FY2024 MD&A \u2014 integrated-drilling-services rigs at year end",
+   "date": "2025-02-11",
+   "ring": "Company/IR"
+  },
+  {
+   "value": 60.0,
+   "source": "FY2025 management discussion and analysis \u2014 integrated-drilling-services rigs at year end",
+   "date": "2026-02-11",
+   "ring": "Company/IR"
+  },
+  {
+   "value": 61.0,
+   "source": "1H-2026 management discussion and analysis \u2014 integrated-drilling-services rigs at 30 June 2026",
+   "date": "2026-07-30",
+   "ring": "Company/IR"
+  },
+  {
+   "value": 70.0,
+   "source": "1H-2026 earnings press release: 'ADNOC Drilling targets to deploy approximately 70 IDS rigs by the end of 2026'",
+   "date": "2026-07-30",
+   "ring": "Company/IR"
+  },
+  {
+   "value": 30.0,
+   "source": "1H-2026 management discussion and analysis: 30 regional rigs outside the UAE at 30 June 2026 \u2014 8 in Oman and Kuwait from the 70%-owned SLDC joint venture with SLB (completed January 2026) and 22 from the 80% stake in MBPS",
+   "date": "2026-06-30",
+   "ring": "Company/IR"
+  },
+  {
+   "value": 613.0,
+   "source": "FY2023 MD&A \u2014 wells drilled",
+   "date": "2024-02-12",
+   "ring": "Company/IR"
+  },
+  {
+   "value": 676.0,
+   "source": "FY2024 MD&A \u2014 wells drilled",
+   "date": "2025-02-11",
+   "ring": "Company/IR"
+  },
+  {
+   "value": 836.0,
+   "source": "FY2025 management discussion and analysis \u2014 wells drilled",
+   "date": "2026-02-11",
+   "ring": "Company/IR"
+  },
+  {
+   "value": 0.98,
+   "source": "FY2025 management discussion and analysis \u2014 overall owned fleet availability at year end, excluding the 29 regional rigs",
+   "date": "2026-02-11",
+   "ring": "Company/IR"
+  },
+  {
+   "value": 6.0,
+   "source": "FY2025 management discussion and analysis: 'the Company has ordered an additional six new island rigs that are expected to join the fleet gradually between 2026 and 2028'",
+   "date": "2026-02-11",
+   "ring": "Company/IR"
+  },
+  {
+   "value": 117000.0,
+   "source": "FY2024 MD&A \u2014 unconventional business revenue contribution",
+   "date": "2025-02-11",
+   "ring": "Company/IR"
+  },
+  {
+   "value": 692000.0,
+   "source": "FY2025 management discussion and analysis: unconventional revenue of $692 million in full year 2025, split $534 million in Oilfield Services and $158 million in Onshore land drilling",
+   "date": "2026-02-11",
+   "ring": "Company/IR"
+  },
+  {
+   "value": 534000.0,
+   "source": "FY2025 management discussion and analysis Oilfield Services commentary \u2014 unconventional contribution rose from $95 million in 2024 to $534 million in 2025",
+   "date": "2026-02-11",
+   "ring": "Company/IR"
+  },
+  {
+   "value": 860000.0,
+   "source": "FY2025 management discussion and analysis: 'The remaining $0.86 billion contract value for unconventional ($1.7 billion total contract value less...)'",
+   "date": "2026-02-11",
+   "ring": "Company/IR"
+  },
+  {
+   "value": 206000.0,
+   "source": "1Q-2026 MD&A ($131 million) plus 1H-2026 management discussion and analysis ($75 million in 2Q26, split $60 million Oilfield Services and $15 million Onshore)",
+   "date": "2026-07-30",
+   "ring": "Company/IR"
+  },
+  {
+   "value": 0.51,
+   "source": "FY2025 management discussion and analysis financial summary \u2014 conventional EBITDA margin for FY2025, defined by the company as excluding the contribution of the unconventional business",
+   "date": "2026-02-11",
+   "ring": "Company/IR"
+  },
+  {
+   "value": 5000000.0,
+   "source": "1H-2026 earnings press release full-year 2026 guidance \u2014 revenue of approximately $5 billion, reaffirmed at the 1H-2026 results",
+   "date": "2026-07-30",
+   "ring": "Company/IR"
+  },
+  {
+   "value": 2000000.0,
+   "source": "1H-2026 earnings press release guidance \u2014 Onshore revenue of approximately $2 billion",
+   "date": "2026-07-30",
+   "ring": "Company/IR"
+  },
+  {
+   "value": 1500000.0,
+   "source": "1H-2026 earnings press release guidance \u2014 Offshore revenue of approximately $1.5 billion",
+   "date": "2026-07-30",
+   "ring": "Company/IR"
+  },
+  {
+   "value": 1500000.0,
+   "source": "1H-2026 earnings press release guidance \u2014 Oilfield Services revenue of approximately $1.5 billion",
+   "date": "2026-07-30",
+   "ring": "Company/IR"
+  },
+  {
+   "value": 2200000.0,
+   "source": "1H-2026 earnings press release guidance \u2014 EBITDA of $2.2-2.3 billion",
+   "date": "2026-07-30",
+   "ring": "Company/IR"
+  },
+  {
+   "value": 2300000.0,
+   "source": "1H-2026 earnings press release guidance \u2014 EBITDA of $2.2-2.3 billion",
+   "date": "2026-07-30",
+   "ring": "Company/IR"
+  },
+  {
+   "value": 600000.0,
+   "source": "1H-2026 earnings press release guidance \u2014 cash capital expenditure excluding mergers and acquisitions of $0.6-0.8 billion",
+   "date": "2026-07-30",
+   "ring": "Company/IR"
+  },
+  {
+   "value": 800000.0,
+   "source": "1H-2026 earnings press release guidance \u2014 cash capital expenditure excluding mergers and acquisitions of $0.6-0.8 billion",
+   "date": "2026-07-30",
+   "ring": "Company/IR"
+  },
+  {
+   "value": 1050000.0,
+   "source": "1H-2026 earnings press release guidance \u2014 dividend floor of $1.05 billion, up 5% year on year",
+   "date": "2026-07-30",
+   "ring": "Company/IR"
+  },
+  {
+   "value": 250000.0,
+   "source": "FY2025 management discussion and analysis: 'Maintenance CapEx is expected at around $250 million per annum'",
+   "date": "2026-02-11",
+   "ring": "Company/IR"
+  },
+  {
+   "value": 0.5,
+   "source": "1H-2026 earnings press release: 'management is focused on preserving a healthy EBITDA margin of circa 50% in the domestic conventional drilling business'",
+   "date": "2026-07-30",
+   "ring": "Company/IR"
+  },
+  {
+   "value": 0.23,
+   "source": "1H-2026 earnings press release medium-term guidance \u2014 conventional Oilfield Services EBITDA margin of 23-26%",
+   "date": "2026-07-30",
+   "ring": "Company/IR"
+  },
+  {
+   "value": 0.26,
+   "source": "1H-2026 earnings press release medium-term guidance \u2014 conventional Oilfield Services EBITDA margin of 23-26%",
+   "date": "2026-07-30",
+   "ring": "Company/IR"
+  },
+  {
+   "value": 0.0469,
+   "source": "US 10-year constant-maturity Treasury yield, Federal Reserve H.15 via the St. Louis Fed (series DGS10), 06-Aug-2026 close",
+   "date": "2026-08-06",
+   "ring": "Global"
+  },
+  {
+   "value": 0.044,
+   "source": "US 5-year constant-maturity Treasury yield, Federal Reserve H.15 via the St. Louis Fed (series DGS5), 06-Aug-2026 close",
+   "date": "2026-08-06",
+   "ring": "Global"
+  },
+  {
+   "value": 0.0023,
+   "source": "Adjusted default spread for the United States (Moody's Aa1), Damodaran country default spreads and risk premiums, original ctryprem file, last updated 5 January 2026",
+   "date": "2026-01-05",
+   "ring": "Global"
+  },
+  {
+   "value": "Aa2",
+   "source": "Moody's rating for the Emirate of Abu Dhabi, Damodaran ctryprem file",
+   "date": "2026-01-05",
+   "ring": "Country"
+  },
+  {
+   "value": 0.0042,
+   "source": "Adjusted default spread for the Emirate of Abu Dhabi (Aa2), Damodaran ctryprem file, 5 January 2026",
+   "date": "2026-01-05",
+   "ring": "Country"
+  },
+  {
+   "value": 0.0064,
+   "source": "Country risk premium for the Emirate of Abu Dhabi, Damodaran ctryprem file",
+   "date": "2026-01-05",
+   "ring": "Country"
+  },
+  {
+   "value": 0.0487,
+   "source": "Equity risk premium for the Emirate of Abu Dhabi on the rating basis (mature-market premium plus the Abu Dhabi country risk premium), Damodaran ctryprem file, 5 January 2026. The United Arab Emirates federal row carries the identical Aa2 / 0.42% / 0.64% / 4.87% set",
+   "date": "2026-01-05",
+   "ring": "Country"
+  },
+  {
+   "value": 0.0046,
+   "source": "Sovereign credit-default-swap spread for the Emirate of Abu Dhabi, Damodaran ctryprem file",
+   "date": "2026-01-05",
+   "ring": "Country"
+  },
+  {
+   "value": 0.0493,
+   "source": "Equity risk premium for the Emirate of Abu Dhabi on the credit-default-swap basis, Damodaran ctryprem file, 5 January 2026",
+   "date": "2026-01-05",
+   "ring": "Country"
+  },
+  {
+   "value": 0.09,
+   "source": "Income tax note 30, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified): 'The Group is subject to income tax at 9% on its taxable profits in accordance with the fiscal arrangement with Abu Dhabi Supreme Council for Financial and Economic Affairs effective 1 January 2024.' The same 9% is the UAE statutory corporate rate in the Damodaran country file",
+   "date": "2026-02-11",
+   "ring": "Company"
+  },
+  {
+   "value": 0.0075,
+   "source": "Borrowings note 15, FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified) \u2014 the Facility E and F term loan and revolving facility signed 16 October 2025, USD 2.0 billion committed, 5-year initial maturity, priced at Term SOFR plus 0.75%. This is the company's own latest and longest-dated debt issue and therefore its marginal borrowing margin",
+   "date": "2025-10-16",
+   "ring": "Company"
+  },
+  {
+   "value": 0.0365,
+   "source": "Secured Overnight Financing Rate, New York Fed via the St. Louis Fed (series SOFR), 06-Aug-2026",
+   "date": "2026-08-06",
+   "ring": "Global"
+  },
+  {
+   "value": 0.664,
+   "source": "Own-stock 5-year weekly regression against an equal-weight ADX composite built from the full committed 18-name UAE price library; n=249 weekly observations, R-squared 0.160, standard error 0.097, 90% interval 0.50 to 0.82. Clears the regression usability gate (n>=24, R-squared>=5%, standard error below the absolute beta), so the first tier of the beta hierarchy applies and no peer beta is needed. Source: engine/adnocdrill_study/beta_reg.py",
+   "date": "2026-08-07",
+   "ring": "Market"
+  },
+  {
+   "value": 0.02,
+   "source": "Staff-cost escalator. United Arab Emirates consumer price inflation ran 1.63% in 2023, 1.66% in 2024 and 1.25% in 2025 (World Bank via the St. Louis Fed, series FPCPITOTLZGARE); 2.0% carries a modest real-wage drift above that for a business competing for skilled rig crews in a tight regional labour market. Applies ONLY to the domestic labour line",
+   "date": "2026-08-07",
+   "ring": "Country"
+  },
+  {
+   "value": 0.015,
+   "source": "Oilfield-services cost escalator, applied to repairs and maintenance, major maintenance and hire of equipment. US producer price index for drilling oil and gas wells (series PCU213111213111) stood at 396.978 in June 2026, down 1.63% year on year with a three-year compound rate of +0.29%. 1.5% sits above the flat recent print and below general inflation, on the view that the recent softness reflects the US land downturn rather than the Gulf market these costs are actually incurred in \u2014 the gap is flagged rather than smoothed away",
+   "date": "2026-06-01",
+   "ring": "Industry"
+  },
+  {
+   "value": 0.0,
+   "source": "Fuel and lubricants escalator. This is a globally traded input and is escalated on its own commodity path, NOT on a domestic inflation proxy: Brent closed at $88.90 on 03-Aug-2026 against a one-year average of $79.69 and a three-year average of $79.48 (US Energy Information Administration via the St. Louis Fed, series DCOILBRENTEU). Spot sits roughly 12% above the three-year mean, so a flat nominal path embeds mean reversion in real terms. The company's onshore contracts carry an explicit fuel-escalation pass-through \u2014 the 1H-2026 MD&A attributes part of the onshore revenue increase to 'higher fuel escalation' \u2014 so this line is close to margin-neutral either way",
+   "date": "2026-08-03",
+   "ring": "Global"
+  },
+  {
+   "value": 0.015,
+   "source": "Escalator for other direct cost and for general and administrative expenses, anchored on United Arab Emirates consumer price inflation (1.25% in 2025, 1.66% in 2024) rounded to 1.5%",
+   "date": "2026-08-07",
+   "ring": "Country"
+  },
+  {
+   "value": 0.015,
+   "source": "Contract day-rate escalator applied to the conventional revenue-per-rig price line. The customer is a single national oil company on multi-year contracts, so realised day rates track a negotiated escalation rather than a spot market. Realised Abu Dhabi onshore revenue per average deployed rig moved from $18.9 million in FY2023 to $20.9 million in FY2024 to $20.1 million in FY2025 (this model's own unit arithmetic on disclosed segment revenue and disclosed rig counts) \u2014 a three-year path that is up but not monotone. 1.5% is set at domestic inflation rather than extrapolating the FY2024 step",
+   "date": "2026-08-07",
+   "ring": "Industry"
+  },
+  {
+   "value": 0.065,
+   "source": "EBITDA margin on unconventional revenue, triangulated three ways in the workbook rather than asserted: (i) the FY2025 disclosed conventional EBITDA margin of 51% applied to conventional revenue implies $50 million of EBITDA on $692 million of unconventional revenue, a 7.3% margin; (ii) the same arithmetic on FY2024's disclosed 52% implies a negative margin, but on a $117 million revenue base a half-point of rounding in the disclosed margin swings the answer by more than the answer itself, so it is reported and discarded; (iii) the FY2024-to-FY2025 incremental bridge \u2014 group EBITDA up $183 million on revenue up $869 million, of which $294 million of conventional revenue at 51% explains $150 million \u2014 leaves $33 million on $575 million of incremental unconventional revenue, a 5.8% margin. The average of the two usable estimates is 6.5%. This is the single most consequential fact about the unconventional programme: it is a large revenue line that carries almost no profit",
+   "date": "2026-08-07",
+   "ring": "House"
+  },
+  {
+   "value": 0.025,
+   "source": "Terminal nominal growth under the continued-expansion framing. Sits below long-run United States inflation expectations of 2.25% plus real regional activity growth, and below the 3.0% ceiling a mature contract driller could justify",
+   "date": "2026-08-07",
+   "ring": "House"
+  },
+  {
+   "value": 0.015,
+   "source": "Terminal nominal growth under the capacity-plateau framing \u2014 the domestic fleet stops growing once the five-million-barrel-per-day capacity target is met, so nominal growth is contract escalation only",
+   "date": "2026-08-07",
+   "ring": "House"
+  },
+  {
+   "value": 0.18,
+   "source": "Terminal after-tax return on invested capital. The company earned a 23% return on capital employed in FY2025 and again in 1H-2026 (both disclosed in the MD&A financial summary). 18% fades that toward, but not to, a cost-of-capital return: the rig fleet is contracted to a single national oil company on terms that have sustained a 23% return through a full commodity cycle, so a fade to parity would contradict the observed record, while holding 23% in perpetuity would capitalise an incumbency that faces renegotiation at every contract roll",
+   "date": "2026-08-07",
+   "ring": "House"
+  },
+  {
+   "value": 8000.0,
+   "source": "Revenue per regional land rig-year, USD thousands. Derived, not assumed: 1H-2026 Onshore revenue of $1,031 million less roughly $35 million of unconventional land drilling leaves $996 million; the Abu Dhabi conventional fleet at its disclosed FY2025 realised rate accounts for approximately $920 million of that, leaving about $76 million earned across an average of roughly 19 regional rigs in the half (8 SLDC rigs from January, 22 MBPS rigs part-period). That is about $8.0 million per rig-year, roughly 40% of the Abu Dhabi rate, consistent with smaller land rigs on Oman and Kuwait terms",
+   "date": "2026-07-30",
+   "ring": "House"
+  }
+ ]
+}

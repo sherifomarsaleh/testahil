@@ -1,0 +1,8 @@
+# The primary filings are ADNOC Drilling's own copyright and are freely available
+# from its investor-relations site; fetch_sources.py re-downloads and re-reads
+# them, so they are not carried in the repository.
+src/
+txt/
+ocr/
+pdfview/
+__pycache__/
