@@ -1,0 +1,369 @@
+{
+ "base": 4.793056883267029,
+ "cases": [
+  {
+   "driver": "Retail fuel volume growth",
+   "cell": "C29",
+   "multiplier": 1.5,
+   "expected": "up",
+   "base": 4.793056883267029,
+   "moved_to": 4.825283101146615,
+   "change": 0.03222621787958602,
+   "ok": true,
+   "why": "more litres through the same network at the same margin per litre"
+  },
+  {
+   "driver": "Commercial fuel volume growth",
+   "cell": "C30",
+   "multiplier": 1.5,
+   "expected": "up",
+   "base": 4.793056883267029,
+   "moved_to": 4.834112124855902,
+   "change": 0.041055241588872526,
+   "ok": true,
+   "why": "same mechanism on the business-to-business leg"
+  },
+  {
+   "driver": "Retail margin per litre, escalation",
+   "cell": "C33",
+   "multiplier": 1.5,
+   "expected": "up",
+   "base": 4.793056883267029,
+   "moved_to": 4.844575576265742,
+   "change": 0.05151869299871237,
+   "ok": true,
+   "why": "the margin per litre IS the economics of a regulated fuel retailer"
+  },
+  {
+   "driver": "Commercial margin per litre, escalation",
+   "cell": "C34",
+   "multiplier": 1.2,
+   "expected": "up",
+   "base": 4.793056883267029,
+   "moved_to": 4.872101619915415,
+   "change": 0.07904473664838552,
+   "ok": true,
+   "why": "same, on the commercial leg"
+  },
+  {
+   "driver": "Non-fuel retail revenue growth",
+   "cell": "C35",
+   "multiplier": 1.5,
+   "expected": "up",
+   "base": 4.793056883267029,
+   "moved_to": 4.870862906414626,
+   "change": 0.07780602314759655,
+   "ok": true,
+   "why": "the highest-margin leg compounds faster"
+  },
+  {
+   "driver": "Non-fuel retail gross margin",
+   "cell": "C36",
+   "multiplier": 1.1,
+   "expected": "up",
+   "base": 4.793056883267029,
+   "moved_to": 4.80037227151137,
+   "change": 0.007315388244340859,
+   "ok": true,
+   "why": "more gross profit on the same non-fuel revenue"
+  },
+  {
+   "driver": "Realised retail price per litre",
+   "cell": "C31",
+   "multiplier": 1.1,
+   "expected": "up",
+   "base": 4.793056883267029,
+   "moved_to": 4.794141859737316,
+   "change": 0.0010849764702864917,
+   "ok": true,
+   "why": "THE FIRST EXPECTATION WRITTEN HERE WAS DOWN, AND IT WAS WRONG \u2014 the model is right and the mechanism is worth stating. The realised price is a pass-through: it lifts revenue and direct cost by the same amount and leaves gross profit, which is volume x margin per litre, untouched. So it reaches value ONLY through working capital, which is struck off days ratios: the change is (receivable days + inventory days - payable days) / 365 x the change in revenue. Those days are about 34.5 + 19.8 - 85.2, which is NEGATIVE 31 days. A higher price therefore makes an already negative working-capital balance more negative, which RELEASES cash, and the value rises very slightly. The first expectation had the sign of the payable term backwards. Note how small the move is: this is a pass-through, and the model says so."
+  },
+  {
+   "driver": "Cash operating cost growth",
+   "cell": "C40",
+   "multiplier": 1.5,
+   "expected": "down",
+   "base": 4.793056883267029,
+   "moved_to": 4.725238801465506,
+   "change": -0.06781808180152371,
+   "ok": true,
+   "why": "costs compound against a margin that does not"
+  },
+  {
+   "driver": "Impairments and other operating expenses",
+   "cell": "C42",
+   "multiplier": 1.5,
+   "expected": "down",
+   "base": 4.793056883267029,
+   "moved_to": 4.780920311982573,
+   "change": -0.01213657128445611,
+   "ok": true,
+   "why": "straight charge against operating profit"
+  },
+  {
+   "driver": "Depreciation and amortisation",
+   "cell": "C43",
+   "multiplier": 1.5,
+   "expected": "up",
+   "base": 4.793056883267029,
+   "moved_to": 4.79611027869204,
+   "change": 0.0030533954250104856,
+   "ok": true,
+   "why": "THE FIRST EXPECTATION WRITTEN HERE WAS DOWN, AND IT WAS WRONG. Work the waterfall through algebraically: free cash flow = NOPAT + depreciation - capital spending - the working-capital change, and NOPAT = (EBITDA - depreciation) x (1 - tax). Substituting gives free cash flow = EBITDA x (1 - tax) + depreciation x tax - capital spending - working capital. Depreciation does not cancel: it leaves a TAX SHIELD worth depreciation x the tax rate, so more depreciation RAISES free cash flow in the explicit years. It does lower terminal NOPAT, and therefore the terminal value, exactly as the first expectation said \u2014 but on these numbers the shield in the five explicit years slightly outweighs it. The net is small and positive, and the model is right."
+  },
+  {
+   "driver": "Capital expenditure",
+   "cell": "C44",
+   "multiplier": 1.5,
+   "expected": "down",
+   "base": 4.793056883267029,
+   "moved_to": 4.755152146550453,
+   "change": -0.037904736716575904,
+   "ok": true,
+   "why": "cash out of the door, and it is not in the terminal reinvestment rate"
+  },
+  {
+   "driver": "Inventory movement, normalised frame",
+   "cell": "C37",
+   "multiplier": 2.0,
+   "expected": "up",
+   "base": 4.793056883267029,
+   "moved_to": 4.843788462707904,
+   "change": 0.0507315794408747,
+   "ok": true,
+   "why": "straight addition to gross profit in the frame the headline uses"
+  },
+  {
+   "driver": "Receivable days",
+   "cell": "C45",
+   "multiplier": 1.2,
+   "expected": "down",
+   "base": 4.793056883267029,
+   "moved_to": 4.726980558061364,
+   "change": -0.06607632520566487,
+   "ok": true,
+   "why": "slower collection absorbs cash"
+  },
+  {
+   "driver": "Inventory days",
+   "cell": "C46",
+   "multiplier": 1.2,
+   "expected": "down",
+   "base": 4.793056883267029,
+   "moved_to": 4.761921652613328,
+   "change": -0.031135230653701385,
+   "ok": true,
+   "why": "more stock absorbs cash"
+  },
+  {
+   "driver": "Payable days",
+   "cell": "C47",
+   "multiplier": 1.2,
+   "expected": "up",
+   "base": 4.793056883267029,
+   "moved_to": 4.92679703919104,
+   "change": 0.133740155924011,
+   "ok": true,
+   "why": "paying later releases cash \u2014 this is why the working-capital line is a source in every forecast year"
+  },
+  {
+   "driver": "Government bond yield",
+   "cell": "C7",
+   "multiplier": 1.2,
+   "expected": "down",
+   "base": 4.793056883267029,
+   "moved_to": 4.094806828480203,
+   "change": -0.6982500547868264,
+   "ok": true,
+   "why": "lifts the cost of equity and the cost of debt together"
+  },
+  {
+   "driver": "Sovereign default spread",
+   "cell": "C8",
+   "multiplier": 1.5,
+   "expected": "up",
+   "base": 4.793056883267029,
+   "moved_to": 4.971644249536884,
+   "change": 0.17858736626985472,
+   "ok": true,
+   "why": "THE SIGN LOOKS WRONG AND IS NOT. The spread is SUBTRACTED from the quoted yield to normalise it, so a larger spread means a LOWER normalised risk-free rate and a lower discount rate. That is the entire point of normalising: country risk is priced once, inside the equity premium, and stripping it from the yield is what stops it being counted twice."
+  },
+  {
+   "driver": "Total equity risk premium",
+   "cell": "C10",
+   "multiplier": 1.2,
+   "expected": "down",
+   "base": 4.793056883267029,
+   "moved_to": 4.3015846123641905,
+   "change": -0.49147227090283874,
+   "ok": true,
+   "why": "raises the cost of equity in both the first year and the terminal"
+  },
+  {
+   "driver": "Beta",
+   "cell": "C11",
+   "multiplier": 1.5,
+   "expected": "down",
+   "base": 4.793056883267029,
+   "moved_to": 4.687373350996691,
+   "change": -0.105683532270338,
+   "ok": true,
+   "why": "raises the cost of equity"
+  },
+  {
+   "driver": "Credit margin over the sovereign",
+   "cell": "C13",
+   "multiplier": 1.5,
+   "expected": "down",
+   "base": 4.793056883267029,
+   "moved_to": 4.769470198941377,
+   "change": -0.02358668432565203,
+   "ok": true,
+   "why": "raises the after-tax cost of debt, and the debt weight is small but real"
+  },
+  {
+   "driver": "Terminal beta",
+   "cell": "C22",
+   "multiplier": 1.2,
+   "expected": "down",
+   "base": 4.793056883267029,
+   "moved_to": 4.3401806525315845,
+   "change": -0.4528762307354448,
+   "ok": true,
+   "why": "raises the terminal cost of capital, which discounts three-quarters of the value"
+  },
+  {
+   "driver": "Terminal debt weight",
+   "cell": "C24",
+   "multiplier": 1.5,
+   "expected": "up",
+   "base": 4.793056883267029,
+   "moved_to": 4.912354629529658,
+   "change": 0.11929774626262901,
+   "ok": true,
+   "why": "debt is cheaper than equity after tax, so more of it lowers the terminal rate"
+  },
+  {
+   "driver": "Long-run growth",
+   "cell": "C26",
+   "multiplier": 1.5,
+   "expected": "up",
+   "base": 4.793056883267029,
+   "moved_to": 5.27875690389558,
+   "change": 0.4857000206285509,
+   "ok": true,
+   "why": "the terminal is a perpetuity and growth is in its denominator"
+  },
+  {
+   "driver": "Terminal return on invested capital",
+   "cell": "C27",
+   "multiplier": 1.5,
+   "expected": "up",
+   "base": 4.793056883267029,
+   "moved_to": 4.876753949168721,
+   "change": 0.08369706590169201,
+   "ok": true,
+   "why": "a higher return needs less reinvestment to fund the same growth"
+  },
+  {
+   "driver": "Statutory tax rate",
+   "cell": "C15",
+   "multiplier": 1.5,
+   "expected": "up",
+   "base": 4.793056883267029,
+   "moved_to": 4.812981948321967,
+   "change": 0.019925065054938074,
+   "ok": true,
+   "why": "THE SIGN LOOKS WRONG AND IS NOT. The statutory rate no longer taxes the cash flows in this model \u2014 the effective rate does that. All it still does is size the interest tax shield inside the after-tax cost of debt, so raising it LOWERS the discount rate."
+  },
+  {
+   "driver": "Effective tax rate",
+   "cell": "C16",
+   "multiplier": 1.2,
+   "expected": "down",
+   "base": 4.793056883267029,
+   "moved_to": 4.675415956214655,
+   "change": -0.11764092705237417,
+   "ok": true,
+   "why": "this is the rate that taxes the cash flows"
+  },
+  {
+   "driver": "Share price",
+   "cell": "C3",
+   "multiplier": 1.2,
+   "expected": "down",
+   "base": 4.793056883267029,
+   "moved_to": 4.7915125934640495,
+   "change": -0.0015442898029798258,
+   "ok": true,
+   "why": "a higher price raises the market capitalisation, which raises the equity weight, which raises the blended cost of capital because equity is the dearer money"
+  },
+  {
+   "driver": "Net debt excluding leases",
+   "cell": "C18",
+   "multiplier": 1.5,
+   "expected": "down",
+   "base": 4.793056883267029,
+   "moved_to": 4.678121856818314,
+   "change": -0.11493502644871523,
+   "ok": true,
+   "why": "straight deduction in the bridge, and it lifts the debt weight"
+  },
+  {
+   "driver": "Lease liabilities, FY2025",
+   "cell": "C63",
+   "multiplier": 1.5,
+   "expected": "down",
+   "base": 4.793056883267029,
+   "moved_to": 4.735203803267029,
+   "change": -0.05785308000000011,
+   "ok": true,
+   "why": "deducted in the bridge on the same basis as debt"
+  },
+  {
+   "driver": "Non-controlling interests, FY2025",
+   "cell": "C61",
+   "multiplier": 1.5,
+   "expected": "down",
+   "base": 4.793056883267029,
+   "moved_to": 4.78384192326703,
+   "change": -0.00921495999999955,
+   "ok": true,
+   "why": "deducted in the bridge"
+  },
+  {
+   "driver": "Shares in issue",
+   "cell": "C4",
+   "multiplier": 1.2,
+   "expected": "down",
+   "base": 4.793056883267029,
+   "moved_to": 3.992927161220041,
+   "change": -0.8001297220469881,
+   "ok": true,
+   "why": "the same equity value spread over more shares"
+  }
+ ],
+ "failures": [],
+ "live_inputs": 76,
+ "dead_inputs": [],
+ "excluded_by_design": [
+  [
+   "C65",
+   "Term deposits, FY2025 (AED m)"
+  ]
+ ],
+ "headlines": [
+  "value per share, Frame A",
+  "value per share, Frame B",
+  "weighted centre, Frame A",
+  "weighted centre, Frame B",
+  "book and sustainable return lens",
+  "relative multiples lens",
+  "normalised earnings power lens",
+  "dividend capitalisation lens",
+  "first forecast year earnings per share",
+  "final year total assets",
+  "final year net debt",
+  "cost of equity"
+ ]
+}

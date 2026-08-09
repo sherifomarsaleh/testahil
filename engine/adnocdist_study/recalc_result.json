@@ -1,0 +1,15 @@
+{
+ "formulas": 567,
+ "checked": 567,
+ "unresolvable": 0,
+ "unchecked": 0,
+ "mismatched": 0,
+ "headline_checks": 21,
+ "headline_failures": [],
+ "paste_counts": {
+  "audited": 299,
+  "unit_build": 6,
+  "grid": 125,
+  "label": 468
+ }
+}

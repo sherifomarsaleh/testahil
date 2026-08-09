@@ -739,19 +739,22 @@ WC['ccc_all'] = WC['dso_all'] + WC['dio'] - WC['dpo_all']
 WC['nwc_fy25'] = (V['tr_fy25'] + V['dfrp_fy25'] + V['inv_fy25']
                   - V['tp_fy25'] - V['dtrp_fy25'])
 
+# ONE working-capital path, used by both frames. Inventory and payables are driven by
+# the physical cost base, and an inventory movement is a margin effect rather than a
+# change in the stock held or the amounts owed. Letting the frames diverge here would
+# make the contested judgement leak into working capital, where it does not belong.
+_nwc, _prev, _dnwc = [], WC['nwc_fy25'], []
+for i in range(N):
+    rec = WC['dso_all'] / 365 * F['revenue'][i]
+    inv = WC['dio'] / 365 * F['direct_costs_A'][i]
+    pay = WC['dpo_all'] / 365 * F['direct_costs_A'][i]
+    cur = rec + inv - pay
+    _nwc.append(cur)
+    _dnwc.append(cur - _prev)
+    _prev = cur
 for fr in ('A', 'B'):
-    nwc, prev = [], WC['nwc_fy25']
-    dnwc = []
-    for i in range(N):
-        rec = WC['dso_all'] / 365 * F['revenue'][i]
-        inv = WC['dio'] / 365 * F[f'direct_costs_{fr}'][i]
-        pay = WC['dpo_all'] / 365 * F[f'direct_costs_{fr}'][i]
-        cur = rec + inv - pay
-        nwc.append(cur)
-        dnwc.append(cur - prev)
-        prev = cur
-    F[f'nwc_{fr}'] = nwc
-    F[f'delta_nwc_{fr}'] = dnwc
+    F[f'nwc_{fr}'] = list(_nwc)
+    F[f'delta_nwc_{fr}'] = list(_dnwc)
 
 # ============================ COST OF CAPITAL ============================
 W = {}
@@ -866,22 +869,38 @@ own_pe = [V['spot'] / H[y]['eps'] for y in HYRS]
 L['own_pe_history'] = own_pe
 L['own_pe_mean'] = sum(own_pe) / 3
 L['pe_now'] = V['spot'] / H['FY2025']['eps']
-eps_fwd_A = (F['ebit_A'][0] * (1 - W['tax_statutory'])
-             - (V['fin_fy25'] - V['intinc_fy25']) * (1 - W['tax_statutory'])
-             - V['nci_fy25']) / V['shares_mn']
-eps_fwd_B = (F['ebit_B'][0] * (1 - W['tax_statutory'])
-             - (V['fin_fy25'] - V['intinc_fy25']) * (1 - W['tax_statutory'])
-             - V['nci_fy25']) / V['shares_mn']
+# Forward earnings per share, built the way the income statement builds it: profit
+# before tax is EBIT plus interest income less finance costs, taxed at the effective
+# rate, then the non-controlling share removed.
+def _eps_fwd(frame):
+    pbt = F[f'ebit_{frame}'][0] + V['intinc_fy25'] - V['fin_fy25']
+    return (pbt * (1 - W['tax_fcff']) - V['nci_fy25']) / V['shares_mn']
+
+
+eps_fwd_A = _eps_fwd('A')
+eps_fwd_B = _eps_fwd('B')
 L['eps_fwd_A'] = eps_fwd_A
 L['eps_fwd_B'] = eps_fwd_B
-L['just_fwd_pe'] = 16.0
+# The reference multiple is TRIANGULATED from three independent readings rather than
+# asserted, and the average is taken explicitly so a reader can see what went into it:
+#   1. what the company's own shares trade at today on the last audited year
+#   2. what they have averaged against each of the three audited years
+#   3. what the company's own economics justify, from the dividend relation
+#      payout x (1 + growth) / (cost of equity - growth)
+# A peer median is deliberately NOT one of the three: the peer set spans fuel-pricing
+# regimes that are not the same instrument as an administered monthly price.
+L['pe_method_today'] = L['pe_now']
+L['pe_method_own_mean'] = L['own_pe_mean']
+L['pe_method_justified'] = V['payout'] * (1 + V['g_terminal']) / (W['ke'] - V['g_terminal'])
+L['pe_methods'] = [L['pe_method_today'], L['pe_method_own_mean'], L['pe_method_justified']]
+L['just_fwd_pe'] = sum(L['pe_methods']) / 3
 L['rel_A'] = eps_fwd_A * L['just_fwd_pe']
 L['rel_B'] = eps_fwd_B * L['just_fwd_pe']
 
 # 4. normalised earnings power — structural gross profit only, no inventory movement
 norm_ebitda = F['gp_struct'][0] - F['cash_opex'][0] + F['other_income'][0] - F['impairments'][0]
 norm_ebit = norm_ebitda - F['dna'][0]
-norm_nopat = norm_ebit * (1 - W['tax_statutory'])
+norm_nopat = norm_ebit * (1 - W['tax_fcff'])
 L['norm_ebitda'] = norm_ebitda
 L['norm_ebit'] = norm_ebit
 L['norm_nopat'] = norm_nopat

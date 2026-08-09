@@ -2,6 +2,7 @@
  "anchor_date": "2026-08-07",
  "spot": 4.07,
  "nu": 10.0,
+ "n_paths": 50000,
  "width_cal": 0.979,
  "width_overlay_mult": 1.0,
  "rf_live": 0.0365,
