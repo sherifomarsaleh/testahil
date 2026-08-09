@@ -1400,6 +1400,33 @@ sens['capex'] = {str(m): dcf_scenario(V['beta'], 1.0, m, True)['fv_aed']
                  for m in (0.90, 1.00, 1.10, 1.20)}
 
 # ============================================================================
+# SUM OF THE PARTS — the two legs valued separately and added
+# ============================================================================
+# The group is one operating company, but its two legs earn on different terms: the
+# logistics and services work is contracted, largely to the parent group, and the shipping
+# fleet carries market rate risk on the part of itself that is not fixed out. They are
+# built separately in the forecast and are cross-checked here on separate multiples, so the
+# reader can see what each leg is worth rather than only what the whole is.
+SOTP_MULT = {'Integrated Logistics': contracted_mult,
+             'Shipping': (1 - SPOT_W) * contracted_mult + SPOT_W * spot_mult,
+             'Services': contracted_mult}
+sotp_legs = []
+for g in GROUPS:
+    e26 = BASE['group'][g]['ebitda'][0]
+    sotp_legs.append(dict(leg=g, ebitda_26=e26, multiple=SOTP_MULT[g], ev=e26 * SOTP_MULT[g],
+                          basis=('a contracted-fleet multiple, because this leg earns under '
+                                 'long-term contracts' if g != 'Shipping' else
+                                 'a blend of the contracted and spot multiples, weighted by '
+                                 "the company's own disclosed share of earnings exposed to "
+                                 'spot rates')))
+sotp_ev = sum(l['ev'] for l in sotp_legs)
+sotp = dict(legs=sotp_legs, ev_ops=sotp_ev, jv=JV_BV, ev=sotp_ev + JV_BV,
+            net_debt=NETDEBT, hybrid=HYBRID, nci=NCI_BV,
+            equity=sotp_ev + JV_BV - NETDEBT - HYBRID - NCI_BV,
+            fv_aed=(sotp_ev + JV_BV - NETDEBT - HYBRID - NCI_BV) / shares_mn / 1000.0 * peg,
+            contracted_multiple=contracted_mult, spot_multiple=spot_mult, spot_weight=SPOT_W)
+
+# ============================================================================
 # MONTE CARLO PRICE MAP + THE COMMITTED CALIBRATION EVIDENCE
 # ============================================================================
 strike = json.load(open(os.path.join(HERE, 'strike_result.json')))
@@ -1503,7 +1530,7 @@ OUT = dict(
     dcf=dcf_own_beta, dcf_asset_beta=dcf_asset_beta, dcf_sustained=dcf_sustained,
     dcf_bear=dcf_bear, dcf_bull=dcf_bull, dcf_hybrid_pv=dcf_hyb_pv,
     lenses=lenses, lens_weights=LENS_W, central=central, central_asset_beta=central_alt,
-    rel=rel, norm=norm, book=book, peers=PEERS,
+    rel=rel, norm=norm, book=book, peers=PEERS, sotp=sotp,
     experts=experts, panel_centre=panel_centre,
     sens=sens,
     strike=strike, step0=step0, backtest=bt5, technicals=tech, beta=beta_res,

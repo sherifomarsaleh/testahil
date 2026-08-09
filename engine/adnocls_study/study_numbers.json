@@ -5656,6 +5656,42 @@
    "asof": "2026-07-26"
   }
  ],
+ "sotp": {
+  "legs": [
+   {
+    "leg": "Integrated Logistics",
+    "ebitda_26": 668293.592,
+    "multiple": 12.26,
+    "ev": 8193279.4379199995,
+    "basis": "a contracted-fleet multiple, because this leg earns under long-term contracts"
+   },
+   {
+    "leg": "Shipping",
+    "ebitda_26": 1120135.1644249998,
+    "multiple": 11.1037,
+    "ev": 12437644.825225871,
+    "basis": "a blend of the contracted and spot multiples, weighted by the company's own disclosed share of earnings exposed to spot rates"
+   },
+   {
+    "leg": "Services",
+    "ebitda_26": 71074.40000000001,
+    "multiple": 12.26,
+    "ev": 871372.1440000001,
+    "basis": "a contracted-fleet multiple, because this leg earns under long-term contracts"
+   }
+  ],
+  "ev_ops": 21502296.407145873,
+  "jv": 493120,
+  "ev": 21995416.407145873,
+  "net_debt": 721329,
+  "hybrid": 1978619,
+  "nci": 272134,
+  "equity": 19023334.407145873,
+  "fv_aed": 9.442888055910368,
+  "contracted_multiple": 12.26,
+  "spot_multiple": 8.530000000000001,
+  "spot_weight": 0.31
+ },
  "experts": {
   "e1": {
    "method_short": "mid-cycle earnings power",
