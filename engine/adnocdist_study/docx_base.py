@@ -96,6 +96,13 @@ def table(rows, widths, header=True, first_col_bold=False, size=9.3, header_fill
     tblPr = t._tbl.tblPr
     layout = OxmlElement('w:tblLayout'); layout.set(qn('w:type'), 'fixed')
     tblPr.append(layout)
+    # Keep each row whole. Without this Word may break a row across a page boundary and
+    # strand a single wrapped word at the top of the next page, which reads as a defect in
+    # the rendered PDF even though the table itself is correct.
+    for _r in t.rows:
+        _trPr = _r._tr.get_or_add_trPr()
+        _cant = OxmlElement('w:cantSplit')
+        _trPr.append(_cant)
     for j, w in enumerate(widths):
         t.columns[j].width = Inches(w)
     for i, row in enumerate(rows):
