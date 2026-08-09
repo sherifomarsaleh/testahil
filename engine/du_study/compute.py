@@ -833,12 +833,12 @@ dcf_bull = dcf_scenario(arpu_mult=1.03, subs_shift=+200.0, contrib_mult=1.015,
 say(f"[DCF scenarios] bear {dcf_bear:.2f} / base {dcf_ps:.2f} / bull {dcf_bull:.2f} AED per share")
 
 # ---- lens 2: relative ---------------------------------------------------------
-pe_trailing = SPOT / V['eps_fy25']
+pe_trailing = SPOT / (V['np_fy25'] / SH)   # exact EPS, not the printed 2dp round
 ev_trailing = MKTCAP + LEASE - NETCASH
 ev_ebitda_trailing = ev_trailing / V['ebitda_fy25']
-rel_ps = to_anchor(V['pe_just'] * eps_fc[0]) - 0.0
-rel_bear = to_anchor(12.0 * eps_fc[0])
-rel_bull = to_anchor(18.5 * eps_fc[0])
+rel_ps = to_anchor(V['pe_just'] * eps_fc[0]) - V['div_between']
+rel_bear = to_anchor(12.0 * eps_fc[0]) - V['div_between']
+rel_bull = to_anchor(18.5 * eps_fc[0]) - V['div_between']
 yield_ps = dps_fc[0] / V['div_yield_peer']
 say(f"[Relative lens] trailing P/E {pe_trailing:.1f}x, trailing EV/EBITDA "
     f"{ev_ebitda_trailing:.1f}x (du's own, computed from audited figures). Justified P/E "
@@ -855,18 +855,18 @@ norm_ebitda = norm_margin * norm_rev
 norm_ebit = norm_ebitda - dna[0]
 norm_np = (norm_ebit + int_inc_fc[0] - int_exp_fc[0]) * (1 - TAX)
 norm_eps = norm_np / SH
-norm_ps = to_anchor(V['pe_just'] * norm_eps)
-norm_bear = to_anchor(12.0 * norm_eps)
-norm_bull = to_anchor(18.5 * norm_eps)
+norm_ps = to_anchor(V['pe_just'] * norm_eps) - V['div_between']
+norm_bear = to_anchor(12.0 * norm_eps) - V['div_between']
+norm_bull = to_anchor(18.5 * norm_eps) - V['div_between']
 say(f"[Normalised lens] mid-cycle margin {norm_margin:.1%} (FY2028E) on FY2026E revenue -> "
     f"normalised EPS {norm_eps:.2f} x {V['pe_just']:.1f} = AED {norm_ps:.2f} at the anchor")
 
 # ---- lens 4: book / justified P/B ---------------------------------------------
 bvps = V['eq_fy25'] / SH
 pb_just = (V['roe_sust'] - V['g_term']) / (ke_term - V['g_term'])
-book_ps = to_anchor(pb_just * bvps)
-book_bear = to_anchor(((V['roe_sust'] - 0.04) / (0.5 * (ke_exp + ke_term) + 0.01 - 0.02)) * bvps)
-book_bull = to_anchor(((V['roe_sust'] + 0.02 - V['g_term']) / (ke_term - V['g_term'])) * bvps)
+book_ps = to_anchor(pb_just * bvps) - V['div_between']
+book_bear = to_anchor(((V['roe_sust'] - 0.04) / (0.5 * (ke_exp + ke_term) + 0.01 - 0.02)) * bvps) - V['div_between']
+book_bull = to_anchor(((V['roe_sust'] + 0.02 - V['g_term']) / (ke_term - V['g_term'])) * bvps) - V['div_between']
 roe_trailing = V['np_fy25'] / ((V['eq_fy24'] + V['eq_fy25']) / 2)
 say(f"[Book lens] justified P/B = ({V['roe_sust']:.0%} − {V['g_term']:.1%}) / ({ke_term:.2%} − "
     f"{V['g_term']:.1%}) = {pb_just:.2f}x on BVPS {bvps:.2f} -> AED {book_ps:.2f} at the anchor. "
@@ -942,15 +942,15 @@ grid_roic = [dcf_roic(r_) for r_ in roic_grid]
 # ---- expert panel: three genuinely different methods ---------------------------
 # Expert 1 — earnings power on a through-cycle multiple
 e1_eps = eps_fc[2]
-e1_base, e1_lo, e1_hi = (to_anchor(15.0 * e1_eps) / (1 + ke_exp) ** 2,
-                         to_anchor(12.0 * e1_eps) / (1 + ke_exp) ** 2,
-                         to_anchor(17.5 * e1_eps) / (1 + ke_exp) ** 2)
+e1_base, e1_lo, e1_hi = (to_anchor(15.0 * e1_eps) / (1 + ke_exp) ** 2 - V['div_between'],
+                         to_anchor(12.0 * e1_eps) / (1 + ke_exp) ** 2 - V['div_between'],
+                         to_anchor(17.5 * e1_eps) / (1 + ke_exp) ** 2 - V['div_between'])
 # Expert 2 — dividend discount (the natural lens for a ~100%-payout duopoly)
 e2_dps = dps_fc[0]
 e2_ke = ke_term
-e2_base = to_anchor(e2_dps * (1 + V['g_term']) / (e2_ke - V['g_term']))
-e2_lo = to_anchor((e2_dps * 0.85) * (1 + 0.015) / (0.5 * (ke_exp + ke_term) + 0.01 - 0.015))
-e2_hi = to_anchor(e2_dps * (1 + 0.030) / (e2_ke - 0.030))
+e2_base = to_anchor(e2_dps * (1 + V['g_term']) / (e2_ke - V['g_term'])) - V['div_between']
+e2_lo = to_anchor((e2_dps * 0.85) * (1 + 0.015) / (0.5 * (ke_exp + ke_term) + 0.01 - 0.015)) - V['div_between']
+e2_hi = to_anchor(e2_dps * (1 + 0.030) / (e2_ke - 0.030)) - V['div_between']
 # Expert 3 — economic profit / residual income on invested capital
 ic_beg = [ic_fy25] + ic[:-1]
 ep_ = [nopat[i] - fwd[i] * ic_beg[i] for i in range(5)]

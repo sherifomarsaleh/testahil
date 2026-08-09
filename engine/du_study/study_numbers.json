@@ -1862,46 +1862,46 @@
   },
   "relative": {
    "name": "Relative multiples",
-   "bear": 8.667553429877612,
-   "base": 11.195589846925248,
-   "bull": 13.362478204394652,
+   "bear": 8.267553429877612,
+   "base": 10.795589846925248,
+   "bull": 12.962478204394651,
    "w": 0.25
   },
   "normalized": {
    "name": "Normalised earnings power",
-   "bear": 8.653534463060353,
-   "base": 11.17748201478629,
-   "bull": 13.340865630551377,
+   "bear": 8.253534463060353,
+   "base": 10.77748201478629,
+   "bull": 12.940865630551377,
    "w": 0.2
   },
   "book": {
    "name": "Book value and sustainable return",
-   "bear": 10.141663031342366,
-   "base": 15.472434780712504,
-   "bull": 16.73549068117883,
+   "bear": 9.741663031342366,
+   "base": 15.072434780712504,
+   "bull": 16.335490681178833,
    "w": 0.1
   },
   "central": {
    "name": "Weighted central",
-   "bear": 8.653534463060353,
-   "base": 15.19605469549554,
+   "bear": 8.253534463060353,
+   "base": 14.976054695495542,
    "bull": 29.583688776262303,
    "w": 1.0
   }
  },
- "central": 15.19605469549554,
+ "central": 14.976054695495542,
  "span": [
-  8.653534463060353,
+  8.253534463060353,
   29.583688776262303
  ],
  "spot": 12.3,
  "experts": {
   "e1": {
    "method_short": "earnings power",
-   "base": 10.280840632384246,
+   "base": 9.880840632384245,
    "rng": [
-    8.224672505907398,
-    11.994314071114955
+    7.824672505907397,
+    11.594314071114955
    ],
    "eps": 0.7471697032887522,
    "pe": 15.0,
@@ -1909,10 +1909,10 @@
   },
   "e2": {
    "method_short": "dividend stream",
-   "base": 19.723225205311522,
+   "base": 19.323225205311523,
    "rng": [
-    10.586511851427677,
-    22.937032903271167
+    10.186511851427676,
+    22.537032903271168
    ],
    "dps": 0.6821465576704354,
    "ke": 0.06178639999999999,
@@ -1948,7 +1948,7 @@
  "panel_centre": 19.039836199338843,
  "yield_ps": 13.118203032123759,
  "rel": {
-  "pe_trailing": 19.21875,
+  "pe_trailing": 19.192121285504555,
   "ev_ebitda_trailing": 7.555316462511931,
   "pe_just": 15.5,
   "div_yield_peer": 0.052,
@@ -2476,10 +2476,10 @@
   "[Contested judgement \u2014 BOTH WAYS] Framing A (regime persists, 43.6% take): AED 19.14. Framing B (reversion to the pre-2024 construction, effective take 51.5% -> 51.7%): AED 16.29. Gap +2.85/share (-15%). Published side by side; never averaged.",
   "[rf tenor gap, PRICED] 10y peg-extrapolated rf 4.69% instead of the Jan-2031 AED print 4.48% -> WACC 6.44% -> AED 18.09 (-1.05/share)",
   "[DCF scenarios] bear 10.97 / base 19.14 / bull 29.58 AED per share",
-  "[Relative lens] trailing P/E 19.2x, trailing EV/EBITDA 7.6x (du's own, computed from audited figures). Justified P/E 15.5x (GCC peer median) x FY26E EPS 0.70 -> AED 11.20 at the anchor [bear 12x 8.67 / bull 18.5x 13.36]. Dividend-yield cross: DPS 0.68 / peer benchmark 5.2% = AED 13.12. Peer EV/EBITDA was NOT reliably sourceable from public aggregators (flagged) \u2014 the relative lens runs on P/E and yield, both sourced.",
-  "[Normalised lens] mid-cycle margin 47.1% (FY2028E) on FY2026E revenue -> normalised EPS 0.69 x 15.5 = AED 11.18 at the anchor",
-  "[Book lens] justified P/B = (27% \u2212 2.5%) / (6.18% \u2212 2.5%) = 6.66x on BVPS 2.24 -> AED 15.47 at the anchor. A 27% sustainable ROE against a 6.2% cost of equity is what a licensed duopoly with negative working capital looks like; the multiple is high because the equity base is small, not because the claim is aggressive. Trailing ROE 29.0%.",
-  "[Synthesis] weighted central AED 15.20; span 8.65 - 29.58; spot 12.30 (+24% to the central).",
-  "[Expert panel] Expert 1 10.28 [8.22-11.99]; Expert 2 19.72 [10.59-22.94]; Expert 3 19.04 [12.64-21.32]; panel median 19.04 (+55% vs spot)"
+  "[Relative lens] trailing P/E 19.2x, trailing EV/EBITDA 7.6x (du's own, computed from audited figures). Justified P/E 15.5x (GCC peer median) x FY26E EPS 0.70 -> AED 10.80 at the anchor [bear 12x 8.27 / bull 18.5x 12.96]. Dividend-yield cross: DPS 0.68 / peer benchmark 5.2% = AED 13.12. Peer EV/EBITDA was NOT reliably sourceable from public aggregators (flagged) \u2014 the relative lens runs on P/E and yield, both sourced.",
+  "[Normalised lens] mid-cycle margin 47.1% (FY2028E) on FY2026E revenue -> normalised EPS 0.69 x 15.5 = AED 10.78 at the anchor",
+  "[Book lens] justified P/B = (27% \u2212 2.5%) / (6.18% \u2212 2.5%) = 6.66x on BVPS 2.24 -> AED 15.07 at the anchor. A 27% sustainable ROE against a 6.2% cost of equity is what a licensed duopoly with negative working capital looks like; the multiple is high because the equity base is small, not because the claim is aggressive. Trailing ROE 29.0%.",
+  "[Synthesis] weighted central AED 14.98; span 8.25 - 29.58; spot 12.30 (+22% to the central).",
+  "[Expert panel] Expert 1 9.88 [7.82-11.59]; Expert 2 19.32 [10.19-22.54]; Expert 3 19.04 [12.64-21.32]; panel median 19.04 (+55% vs spot)"
  ]
 }
