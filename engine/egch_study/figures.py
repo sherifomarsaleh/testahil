@@ -244,40 +244,128 @@ for i, (lab, lo, hi) in enumerate(ex):
     ax.text(hi + 0.16, i, f"EGP {lo:,.2f} – {hi:,.2f}", va='center', fontsize=9,
             color=INK, fontweight='bold')
 ax.axvline(SPOT, color=CANVAS, lw=1.8, ls='--')
-ax.text(SPOT - 0.2, 2.42, f"market price EGP {SPOT:,.2f}", ha='right', fontsize=9,
-        color=CANVAS, fontweight='bold')
+# the label sat above the top bar and struck through the title; it now sits beside the
+# rule at mid-height, inside the plot, where nothing else is drawn
+ax.text(SPOT - 0.25, 1.0, f"market price\nEGP {SPOT:,.2f}", ha='right', va='center',
+        fontsize=9, color=CANVAS, fontweight='bold')
 ax.set_yticks(range(3)); ax.set_yticklabels([e[0] for e in ex], fontsize=8.8)
 ax.set_xlabel('Value per share (Egyptian pounds)')
 ax.set_xlim(-0.4, SPOT * 1.14)
 ax.set_title('Three independent methods, three different answers', pad=12, fontsize=11.5)
 style(ax); ax.grid(axis='y', visible=False)
 save(fig, 'figD1_experts.png')
-print('all figures written')
 
-# ---- F9: the four-lens field -------------------------------------------------
-LNS = json.load(open(os.path.join(HERE, 'lenses.json')))
-fld = LNS['synthesis']['field']
-fig, ax = plt.subplots(figsize=(9.8, 4.0), dpi=110)
-labs = list(fld.keys())[::-1]
-vals9 = [fld[k] for k in labs]
-cols9 = [SAGE, BRASS, GOLD, CANVAS, RUST][:len(labs)]
-for i, (lab, v) in enumerate(zip(labs, vals9)):
-    ax.barh(i, v if v >= 0 else -v, left=0 if v >= 0 else v, height=0.5,
-            color=cols9[i], edgecolor=INK, linewidth=0.6)
-    ax.text(max(v, 0) + 0.18, i, f"EGP {v:,.2f}", va='center', ha='left',
-            fontsize=9.4, color=INK, fontweight='bold')
+# ---- F9: the four-lens field, as a SPAN per lens -----------------------------
+# The earlier version of this chart drew one bar per lens at its central value. A point
+# per lens hides the thing the reader most needs, which is how wide each lens is before
+# any of them is compared with another. Every bar is now the lens's own bear-to-bull
+# span with the central marked, on the same axis as the traded price.
+ALT = json.load(open(os.path.join(HERE, 'alternatives.json')))
+SPANS = ALT['spans']
+order9 = ['cashflow_carry', 'cashflow_stopped', 'book', 'relative', 'normalised']
+fig, ax = plt.subplots(figsize=(9.8, 4.4), dpi=110)
+cols9 = {'cashflow_carry': RUST, 'cashflow_stopped': CANVAS, 'book': GREY,
+         'relative': GOLD, 'normalised': SAGE}
+for i, k in enumerate(order9[::-1]):
+    sp = SPANS[k]
+    lo, hi, ba = sp['low'], sp['high'], sp['base']
+    c = cols9[k]
+    if hi > lo:
+        ax.barh(i, hi - lo, left=lo, height=0.46, color=c, alpha=0.42,
+                edgecolor=c, linewidth=1.2)
+    ax.plot([ba, ba], [i - 0.24, i + 0.24], color=c, lw=3.4)
+    # the widest span's label runs past the market-price rule; an opaque backing box
+    # keeps the rule from striking through the text instead of moving the label
+    ax.text(max(hi, ba) + 0.28, i,
+            (f"{lo:,.2f} to {hi:,.2f} · central {ba:,.2f}" if hi > lo
+             else f"{ba:,.2f}"),
+            va='center', ha='left', fontsize=8.8, color=INK, zorder=6,
+            bbox=dict(facecolor=BG, edgecolor='none', pad=1.4))
 ax.axvline(0, color=GREY, lw=0.9)
 ax.axvline(SPOT, color=CANVAS, lw=1.8, ls='--')
 ax.text(SPOT - 0.28, 2.0, f"market price\nEGP {SPOT:,.2f}", ha='right', va='center',
         fontsize=9, color=CANVAS, fontweight='bold')
-ax.set_yticks(range(len(labs)))
-ax.set_yticklabels([l.replace(" — ", "\n") for l in labs], fontsize=8.4)
+ax.set_yticks(range(len(order9)))
+ax.set_yticklabels([SPANS[k]['label'].replace(" — ", "\n") for k in order9[::-1]],
+                   fontsize=8.4)
 ax.set_xlabel('Value per share (Egyptian pounds)')
-ax.set_xlim(-2.6, SPOT * 1.14)
-ax.set_title('Four lenses, one field — and the two sides of the contested judgement',
+ax.set_xlim(-4.2, SPOT * 1.16)
+ax.set_ylim(-0.7, len(order9) - 0.3)
+ax.set_title('Four lenses, one field — each lens as its own bear-to-bull span',
              pad=12, fontsize=11.5)
 style(ax); ax.grid(axis='y', visible=False)
 save(fig, 'fig9_field.png')
+
+# ---- F12/F13: the two price distributions ------------------------------------
+# The cone in F10 shows the middle of the distribution over time. It cannot show the
+# SHAPE of the distribution at the check date, which is what a reader needs in order to
+# see that the tail is not symmetric. One figure per horizon, on the same construction.
+ST_ = json.load(open(os.path.join(HERE, 'strike_result.json')))
+for tag, fn, out in [('one month', 'paths_1M.npy', 'fig12_dist1m.png'),
+                     ('three months', 'paths_3M.npy', 'fig13_dist3m.png')]:
+    hz = ST_['horizons']['1M' if tag == 'one month' else '3M']
+    x = np.load(os.path.join(HERE, fn))[:, -1]
+    fig, ax = plt.subplots(figsize=(9.4, 3.6), dpi=110)
+    ax.hist(x, bins=90, color=GOLD, alpha=0.92, edgecolor=BG, linewidth=0.2)
+    # the percentiles are READ FROM THE STRIKE RESULT, never recomputed here: a figure
+    # that recomputes its own quantiles will disagree with the table beside it in the
+    # second decimal, and it did
+    med = hz['pct']['p50']
+    ax.axvline(SPOT, color=CANVAS, lw=1.7)
+    ax.axvline(med, color=RUST, lw=1.7, ls='--')
+    yl = ax.get_ylim()[1]
+    ax.set_ylim(0, yl * 1.22)                    # headroom so no label sits on a bar
+    yl = ax.get_ylim()[1]
+    ax.text(SPOT, yl * 0.99, f"anchor {SPOT:,.2f} ", color=CANVAS, fontsize=8.6,
+            ha='right', va='top', fontweight='bold')
+    ax.text(med, yl * 0.90, f" median {med:,.2f}", color=RUST, fontsize=8.6,
+            ha='left', va='top', fontweight='bold')
+    for q, lab in (('p5', 'P5'), ('p95', 'P95')):
+        v = hz['pct'][q]
+        ax.axvline(v, color=GREY, lw=0.9, ls=':')
+        ax.text(v, yl * 0.70, f" {lab} {v:,.2f}" if q == 'p95' else f"{lab} {v:,.2f} ",
+                color=GREY, fontsize=8.0, ha='left' if q == 'p95' else 'right', va='top')
+    ax.set_xlim(float(np.percentile(x, 0.3)), float(np.percentile(x, 99.7)))
+    ax.set_xlabel('Share price at the check date (Egyptian pounds)')
+    ax.set_yticks([])
+    ax.set_title(f"The distribution of the price at {tag}, to {hz['grade_date']}",
+                 pad=10, fontsize=11.5)
+    style(ax); ax.grid(axis='y', visible=False)
+    save(fig, out)
+
+# ---- F14: the capital programme, in its own units ----------------------------
+PRG = ALT['programme']
+fig, (axa, axb) = plt.subplots(1, 2, figsize=(9.8, 3.7), dpi=110,
+                               gridspec_kw={'width_ratios': [1.0, 1.0]})
+bars = [('Money spent', PRG['spent_pct'] * 100, BRASS),
+        ('Physical progress', PRG['progress'] * 100, RUST),
+        ('Progress planned', PRG['plan'] * 100, SAGE)]
+for i, (lab, v, c) in enumerate(bars):
+    axa.bar(i, v, width=0.56, color=c, edgecolor=INK, linewidth=0.6)
+    axa.text(i, v + 1.2, f"{v:.1f}%", ha='center', fontsize=9.2, color=INK,
+             fontweight='bold')
+axa.set_xticks(range(len(bars)))
+axa.set_xticklabels([b[0] for b in bars], fontsize=8.6)
+axa.set_ylabel('Per cent of the approved cost, or of the plan')
+axa.set_ylim(0, 46)
+axa.set_title('More than a quarter of the money, an eighth of the plant',
+              fontsize=10.4, pad=9)
+style(axa); axa.grid(axis='x', visible=False)
+
+rets = [('Return on the approved cost', PRG['return_on_cost'] * 100, RUST),
+        ('Terminal cost of capital', DR['wacc_terminal'] * 100, CANVAS)]
+for i, (lab, v, c) in enumerate(rets):
+    axb.bar(i, v, width=0.5, color=c, edgecolor=INK, linewidth=0.6)
+    axb.text(i, v + 0.6, f"{v:.1f}%", ha='center', fontsize=9.2, color=INK,
+             fontweight='bold')
+axb.set_xticks(range(len(rets)))
+axb.set_xticklabels([r[0].replace(' the ', '\nthe ').replace(' cost of', '\ncost of')
+                     for r in rets], fontsize=8.6)
+axb.set_ylabel('Per cent')
+axb.set_ylim(0, max(DR['wacc_terminal'] * 100, PRG['return_on_cost'] * 100) * 1.28)
+axb.set_title('What the new plant earns on what it costs', fontsize=10.4, pad=9)
+style(axb); axb.grid(axis='x', visible=False)
+save(fig, 'fig14_programme.png')
 
 # ---- F10: the price fan ------------------------------------------------------
 ST = json.load(open(os.path.join(HERE, 'strike_result.json')))
@@ -339,3 +427,4 @@ ax.set_title('Price structure — moving averages and the computed level ladder'
              pad=12, fontsize=11.5)
 style(ax)
 save(fig, 'fig11_technical.png')
+print('all figures written')

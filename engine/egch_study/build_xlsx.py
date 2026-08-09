@@ -21,6 +21,7 @@ D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 LN = json.load(open(os.path.join(HERE, 'lenses.json')))
 ST = json.load(open(os.path.join(HERE, 'strike_result.json')))
 GRID = json.load(open(os.path.join(HERE, 'sensitivity_grid.json')))
+ALT = json.load(open(os.path.join(HERE, 'alternatives.json')))
 BETA = json.load(open(os.path.join(HERE, 'beta_result.json')))
 IR = json.load(open(os.path.join(HERE, 'input_register.json')))['inputs']
 W, DR, YEARS = D['wacc'], D['drivers'], D['years']
@@ -182,7 +183,7 @@ PARITY = drv(r, "Local free price as % of export parity", V('local_free_parity')
 ANT = []
 for k, y in enumerate(YEARS):
     ANT.append(drv(r, f"Nitrate volume — {y}", V('an_path')[k], "tonnes", src('an_path'), N0)); r += 1
-ANP = drv(r, "Nitrate price, FY2024/25 basis", 20000.0, "EGP/tonne",
+ANP = drv(r, "Nitrate price, FY2024/25 basis", V('an_price_egp_t_FY2425'), "EGP/tonne",
           "Implied by the note-20 local revenue net of the subsidised and free-market urea "
           "legs; indexed forward on the currency", N0); r += 1
 OTHR = []
@@ -191,11 +192,12 @@ for k, y in enumerate(YEARS):
                     src('other_rev_path'), N1)); r += 1
 r += 1
 put(ws, f"A{r}", "COST STACK — ONE ESCALATOR PER PHYSICAL DRIVER").font = SUB; r += 1
-GASQ = drv(r, "Gas per tonne of ammonia", 1292.0, "m3", src('gas_share_of_materials'), N0); r += 1
+GASQ = drv(r, "Gas per tonne of ammonia", V('gas_m3_per_t_ammonia_modelled'), "m3",
+           src('gas_share_of_materials'), N0); r += 1
 GASP = drv(r, "Realised gas price", V('gas_realised_usd_mmbtu'), "US$/mmBtu",
            src('gas_realised_usd_mmbtu'), N2); r += 1
 MMB = drv(r, "Energy conversion", V('mmbtu_per_m3'), "mmBtu per m3", src('mmbtu_per_m3'), '0.00000'); r += 1
-OMAT = drv(r, "Other materials per tonne of urea", 1101.6e6 / V('prod_urea_FY2425'), "EGP",
+OMAT = drv(r, "Other materials per tonne of urea", DR['other_materials_egp_t_urea'], "EGP",
            "The FY2024/25 materials line less modelled gas, over urea output: packaging, "
            "catalysts and consumable spares", N0); r += 1
 WAGE = drv(r, "Wages in cost of sales, FY2024/25", V('cogs_wages_FY2425'), "EGP m", src('cogs_wages_FY2425'), N1); r += 1
@@ -394,7 +396,7 @@ header(ws, 4, 1, ["EGP million"] + YEARS, [38, 13, 13, 13, 13, 13])
 def dcf_block(col0, case, tag):
     rws = CASES[case]['rows']; T = CASES[case]['terminal']
     anna_flag = 0 if case == "halt" else 1
-    wind = 1000.0 if case == "halt" else 0.0
+    wind = V('anna_winddown_cost') if case == "halt" else 0.0
     for k, c in enumerate(CO):
         pass
     return rws, T, anna_flag, wind
@@ -403,7 +405,8 @@ RW, TT = BASE['rows'], BASE['terminal']
 HW, HT = HALT['rows'], HALT['terminal']
 put(ws, "H4", "Case switches").font = SUB
 put(ws, "H5", "Programme carried through (1 = yes)"); put(ws, "I5", 1)
-put(ws, "H6", "Wind-down cost if stopped (EGP m)"); put(ws, "I6", 1000.0, fmt=N0)
+put(ws, "H6", "Wind-down cost if stopped (EGP m)")
+put(ws, "I6", V('anna_winddown_cost'), fmt=N0)
 ws.column_dimensions['H'].width = 32; ws.column_dimensions['I'].width = 10
 LAB = [(5, "Revenue"), (6, "EBITDA"), (7, "EBITDA margin"), (8, "Depreciation and amortisation"),
        (9, "EBIT"), (10, "NOPAT = EBIT x (1 - tax rate)"), (11, "Add back depreciation"),
@@ -560,8 +563,10 @@ fv(6, "Book value per share (EGP)", f"=B5*1000000/{SHARES}", "", N2, B['book_per
 fv(7, "Underlying profit FY2023/24 (EGP m)", B['underlying_FY2324'],
    "Reported profit less the one-off investment-property revaluation gain", N0)
 fv(8, "Underlying profit FY2024/25 (EGP m)", B['underlying_FY2425'], "As reported", N0)
-fv(9, "Opening equity FY2023/24 (EGP m)", 5932.895 + 1316.686, "Prior-year closing equity", N0)
-fv(10, "Opening equity FY2024/25 (EGP m)", 9932.895 + 4627.209, "Prior-year closing equity", N0)
+fv(9, "Opening equity FY2023/24 (EGP m)", V('bs_capital_FY2223') + V('bs_reserves_FY2223'),
+   "Prior-year closing equity", N0)
+fv(10, "Opening equity FY2024/25 (EGP m)", V('bs_capital_FY2324') + V('bs_reserves_FY2324'),
+    "Prior-year closing equity", N0)
 fv(11, "Return on equity FY2023/24", "=B7/B9", "", PC1, B['roe_FY2324'])
 fv(12, "Return on equity FY2024/25", "=B8/B10", "", PC1, B['roe_FY2425'])
 fv(13, "Sustainable return on equity", "=(B11+B12)/2", "The two-year average on underlying profit", PC1, B['roe_sustainable'])
@@ -887,6 +892,23 @@ for i, p in enumerate(GRID['prices']):
     put(ws, f"A{6+i}", f"US$ {p:.0f}/t long-run export price")
     for j in range(len(GRID['waccs'])):
         put(ws, f"{get_column_letter(2+j)}{6+i}", round(GRID['grid'][i][j], 2), fmt=N2)
+put(ws, "A15", "THE CONTESTED CONSTRUCTIONS — one component moved, model re-run").font = SUB
+header(ws, 16, 1, ["Choice made", "The alternative", "EGP/share", "Against the published"],
+       [42, 46, 13, 20])
+for i, a in enumerate(ALT['alternatives']):
+    r = 17 + i
+    put(ws, f"A{r}", a['made']).alignment = Alignment(wrap_text=True, vertical="top")
+    put(ws, f"B{r}", a['alt']).alignment = Alignment(wrap_text=True, vertical="top")
+    # pasted UNROUNDED under a two-decimal format: rounding the paste and not the
+    # formula beside it is exactly the rounding-class mismatch the recalculation catches
+    put(ws, f"C{r}", a['value'], fmt=N2)
+    put(ws, f"D{r}", f"=C{r}-{ALT['baseline']!r}", fmt=N2, expect=a['delta'])
+    ws.row_dimensions[r].height = 26
+para(ws, 17 + len(ALT['alternatives']) + 1,
+     "Each row is a complete re-run of the model through the same case machinery with one "
+     "component moved and everything else held. Column C is pasted class 3 and DOES NOT "
+     "REDRAW; column D is a formula against the published answer so the gap can never drift "
+     "from the values beside it.", 9)
 para(ws, 13, "The crux in observable units. Both inputs are observable rather than matters "
      "of opinion: the first prints daily on a listed futures contract, the second can be read "
      "against the sovereign's own borrowing cost. A reader who believes urea holds above "

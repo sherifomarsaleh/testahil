@@ -104,15 +104,36 @@ if problems:
 # layout, not finance. The test looks for numerals with a thousands separator or more
 # than four significant digits, which is what a financial figure looks like.
 BUILDERS = ['docx_egch.py', 'docx_biblio.py', 'build_xlsx.py', 'figures.py']
-FIN = re.compile(r"(?<![\w.])\d{1,3}(?:[_,]\d{3})+(?:\.\d+)?(?![\w])")
+# Three shapes of financial numeral, all of which have reached a builder at some point:
+#   1,234,567 or 1_234_567   — separated thousands
+#   1101.6e6                 — scientific notation, which the separated-thousands test
+#                              cannot see and which hid a stale materials figure until a
+#                              recalculation caught it downstream
+#   1292.0 / 8602.606        — any bare number of a thousand or more
+FIN = re.compile(r"(?<![\w.])("
+                 r"\d{1,3}(?:[_,]\d{3})+(?:\.\d+)?"
+                 r"|\d+(?:\.\d+)?[eE]\d+"
+                 r"|\d{4,}(?:\.\d+)?"
+                 r")(?![\w])")
+SCALE_TOKENS = {'1000', '10000', '100000', '1000000', '914400', '365', '1e6', '1e3',
+                '1e5', '1e9'}
 typed = []
 for f in BUILDERS:
     for n, line in enumerate(open(f), 1):
         s = line.split('#')[0]
+        if re.search(r'color\s*=|set_[xy]lim|set_[xy]ticks|figsize|dpi=', s):
+            continue              # palette hex and axis geometry are layout, not finance
         for m in FIN.finditer(s):
             tok = m.group(0)
-            if tok.replace('_', '').replace(',', '') in ('914400', '1000000'):
-                continue          # unit conversions, not financial figures
+            plain = tok.replace('_', '').replace(',', '')
+            if plain.lower() in SCALE_TOKENS:
+                continue          # unit conversions and scale factors, not finance
+            try:                  # a bare calendar year in prose is not a financial figure
+                if float(plain) == int(float(plain)) and 1900 <= int(float(plain)) <= 2100 \
+                        and '.' not in plain and 'e' not in plain.lower():
+                    continue
+            except ValueError:
+                pass
             typed.append(f"{f}:{n}: {tok}  |  {line.strip()[:80]}")
 print(f"(3) numeric traceability  : {len(BUILDERS)} builders, {len(typed)} typed financial numerals")
 for t in typed[:12]:

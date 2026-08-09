@@ -18,8 +18,8 @@ NET_DEBT, FVOCI, INVPROP = B['net_debt'], B['fvoci'], B['inv_prop']
 E = {}
 
 # ------------------------------------------------ EXPERT 1: replacement cost --
-gross_fixed = 17022.493       # note 6 cost at period end, EGP m
-acc_dep = 3435.300            # note 6 accumulated depreciation
+gross_fixed = V('bs_gross_fixed_M9FY2526')   # note 6 cost at period end, EGP m
+acc_dep = V('bs_acc_dep_M9FY2526')           # note 6 accumulated depreciation
 cwip = V('bs_cwip_M9FY2526')
 cap_lo, cap_hi = V('greenfield_capex_usd_t_low'), V('greenfield_capex_usd_t_high')
 fx = V('usd_egp_spot')
@@ -68,6 +68,18 @@ E['e1'] = dict(
                  f"starts at EGP {(repl_lo + cwip_valued + FVOCI + INVPROP - NET_DEBT) * (1 - disc) * 1e6 / SH:,.2f}; "
                  f"at US$700 it reaches EGP {(repl_hi + cwip_valued + FVOCI + INVPROP - NET_DEBT) * (1 - disc) * 1e6 / SH:,.2f}. "
                  "The control discount moves it by about a third either way."),
+    reading=(f"This is the highest of the three readings and it should be read as a "
+             f"ceiling rather than a centre. It values the plant at what a buyer would pay "
+             f"to avoid building one, and on a plate of {plate:,.0f} tonnes at the "
+             f"mid-point of the industry build range that is EGP {repl_mid:,.0f}m before "
+             f"anything is owed against it. What the method cannot see is that the plant "
+             f"has been running at about ninety per cent of that plate on rationed gas, "
+             f"and that the asset under construction — carried here at "
+             f"{(1 - cwip_haircut) * 100:.0f}% of what has been spent on it — is exactly "
+             f"the asset whose return the cash-flow lens finds inadequate. The gap between "
+             f"this expert and the panel's lowest is not a disagreement about the plant. "
+             f"It is a disagreement about whether an asset that cannot earn its cost of "
+             f"capital is worth its replacement cost."),
     falsifier=("A comparable Egyptian nitrogen asset transacting above US$700 per annual "
                "tonne, or a state-held listed subsidiary changing hands without a control "
                "discount. Either would show this method is set too low and the cash-flow "
@@ -115,6 +127,15 @@ E['e2'] = dict(
     sensitivity=(f"The multiple is the swing factor: eight times gives EGP {NM['value_low']:,.2f}, "
                  f"twelve times EGP {NM['value_high']:,.2f}. The mid-cycle price matters almost as "
                  "much — every US$50 a tonne is worth roughly a pound a share."),
+    reading=(f"The middle reading, and the one closest to a conventional analyst's "
+             f"answer. It credits an ordinary year — EGP {NM['revenue']:,.0f}m of revenue "
+             f"and EGP {NM['ebitda']:,.0f}m of operating profit before depreciation — and "
+             f"capitalises the after-tax result at ten times. Its blind spot is stated in "
+             f"its own worldview: a normalised year is a steady state, and this company is "
+             f"not in one. The capital programme sits entirely outside this table. Read "
+             f"strictly, this expert is valuing the plant that exists, and the reader who "
+             f"wants the whole company should subtract the programme's cost separately — "
+             f"which is what the cash-flow lens does inside a single model."),
     falsifier=("Two consecutive years of EBITDA above EGP 4 billion with the capital "
                "programme funded out of operating cash flow. That would show the "
                "normalisation is too harsh and the multiple too low."))
@@ -167,6 +188,24 @@ E['e3'] = dict(
                "roughly a US$120 a tonne sustained improvement in the export price, or the "
                "capital programme being stopped. Either would retire the option framing and "
                "hand the question back to the cash-flow lens."))
+
+GRID3 = dict(vols=[0.30, 0.35, 0.45, 0.55, 0.60], years=[3.0, 5.0, 7.0])
+GRID3['values'] = [[bs_call(ev_incl, strike, rf_opt, v, t) * (1 - dilution) * 1e6 / SH
+                    for v in GRID3['vols']] for t in GRID3['years']]
+E['e3']['grid'] = GRID3
+E['e3']['reading'] = (
+    f"The lowest and the widest of the three, and the only one that takes the debt "
+    f"seriously as a structural fact rather than as a subtraction. Enterprise value "
+    f"including the non-operating assets is EGP {ev_incl:,.0f}m against gross debt of "
+    f"EGP {strike:,.0f}m, so the equity is out of the money on the model's own central "
+    f"case and its value is entirely time value. That is why the answer rises with "
+    f"volatility and with time, and why the grid below matters more than the point: at "
+    f"{GRID3['vols'][0]*100:.0f}% volatility over three years the claim is worth EGP "
+    f"{GRID3['values'][0][0]:,.2f} a share, and at {GRID3['vols'][-1]*100:.0f}% over "
+    f"seven years EGP {GRID3['values'][-1][-1]:,.2f}. A reader who finds it perverse "
+    f"that a worse business is worth more here has understood the method correctly: "
+    f"limited liability truncates the downside, so dispersion accrues to the holder. "
+    f"What the method cannot do is tell that holder when the option expires.")
 
 E['ranges'] = {k: (E[k]['low'], E[k]['high']) for k in ('e1', 'e2', 'e3')}
 E['spot'] = SPOT

@@ -19,6 +19,9 @@ TC = json.load(open('technicals.json'))
 BT = json.load(open('backtest_5y.json'))
 BE = json.load(open('beta_result.json'))
 WC = json.load(open('wacc_result.json'))
+AL = json.load(open('alternatives.json'))
+AL_BY = {a['key']: a for a in AL['alternatives']}
+GRD = json.load(open('sensitivity_grid.json'))
 DR, CASES, YEARS = DD['drivers'], DD['cases'], DD['years']
 SPOT, SH = V('spot_price'), V('shares_outstanding')
 H, F25 = DD['hist'], DD['fy2526']
@@ -29,6 +32,7 @@ E1 = lambda x: f"{x:,.1f}"
 E2 = lambda x: f"{x:,.2f}"
 PC = lambda x: f"{x*100:.1f}%"
 PC2 = lambda x: f"{x*100:.2f}%"
+PC0 = lambda x: f"{x*100:+.0f}%"
 M3 = ST['horizons']['3M']; M1 = ST['horizons']['1M']
 
 masthead()
@@ -80,38 +84,56 @@ P(f"Read the other way round: the traded price is reproduced by this model only 
 
 # ------------------------------------------------------- VALUATION SUMMARY ---
 H1("Valuation summary — every read at a glance")
-rows = [["Lens", "Programme carried through", "Programme stopped", "What it measures"]]
-rows.append(["Cash flow — primary", E2(LN['cashflow']['carry_through']),
-             E2(LN['cashflow']['stopped']),
-             "Free cash flow to the firm on a glided cost of capital"])
-rows.append(["Book value and sustainable return", E2(LN['book']['value_per_share']),
-             E2(LN['book']['value_per_share']),
-             "Book equity at the multiple its own return justifies"])
-rows.append(["Relative multiples", E2(LN['relative']['value_per_share']),
-             E2(LN['relative']['value_per_share']),
-             "Forward operating profit at the Egyptian industrial range"])
-rows.append(["Normalised earnings power", E2(LN['normalised']['value_per_share']),
-             E2(LN['normalised']['value_per_share']),
-             "Mid-cycle profit after tax at a justified multiple"])
-rows.append(["THE FIELD", E2(LN['synthesis']['low']), E2(LN['synthesis']['high']),
-             "Low to high across all four lenses"])
-table(rows, [2.0, 1.35, 1.35, 2.3], size=8.9, band_rows={5}, text_cols=(3,))
-caption("Table 1.  Egyptian pounds per share against a traded price of EGP "
-        f"{E2(SPOT)}. The two cash-flow columns are the contested judgement and are never "
-        "averaged; the other three lenses are read against both.")
+SP = AL['spans']
+rows = [["Read", "Basis", "Range (EGP/share)", "Central", "vs spot"]]
+for k in ("cashflow_carry", "cashflow_stopped", "relative", "normalised", "book"):
+    sp = SP[k]
+    rng = (f"{E2(sp['low'])} to {E2(sp['high'])}" if sp['high'] > sp['low'] else "—")
+    rows.append([sp['label'], sp['basis'], rng, E2(sp['base']), PC0(sp['vs_spot'])])
+rows.append(["THE FIELD, all four lenses",
+             "Low to high across every read above. The two cash-flow readings are the "
+             "contested judgement and are never averaged into one another",
+             f"{E2(LN['synthesis']['low'])} to {E2(LN['synthesis']['high'])}", "—", "—"])
+rows.append(["Market price", "Closing price on the anchor date", "—", E2(SPOT), "—"])
+rows.append(["ALTERNATIVE READINGS — each a full re-run of the model with ONE component "
+             "moved, and none of them inside the field above", "", "", "", ""])
+for a in AL['alternatives']:
+    rows.append([a['made'], a['alt'], "—", E2(a['value']), PC0(a['value'] / SPOT - 1)])
+t1 = table(rows, [1.55, 2.75, 1.05, 0.7, 0.65], size=7.9, band_rows={6, 7, 8},
+           text_cols=(1,))
+# the banner row is a heading inside the table, not a data row: left as five cells it
+# wrapped into a tall narrow column with four empties beside it
+_banner = t1.rows[8].cells[0].merge(t1.rows[8].cells[4])
+# merging concatenates the paragraphs of every cell, so four empty ones follow the text
+# and leave a tall blank band under it
+for _p in _banner.paragraphs[1:]:
+    _p._p.getparent().remove(_p._p)
+caption("{T}.  Egyptian pounds a share against a traded price of EGP "
+        f"{E2(SPOT)}. Every alternative reading is a complete re-run of the model through "
+        "the same case machinery, not an adjustment applied to the answer; each is argued "
+        "for and against in section 1.8.")
 rows = [["Terminal value as a share of enterprise value", "Programme carried through",
          "Programme stopped"],
         ["Discounted cash-flow lens", PC(BASE['bridge']['tv_pct_ev']),
          PC(HALT['bridge']['tv_pct_ev'])]]
 table(rows, [3.2, 1.9, 1.9], size=8.9)
-caption("Table 2.  Reported beside the cash-flow lens because on this company it is the "
+caption("{T}.  Reported beside the cash-flow lens because on this company it is the "
         "number that decides the answer. Above one hundred per cent means the five explicit "
         "years contribute negative present value: the capital programme absorbs more cash "
         "than the plant generates, so the terminal block carries the whole enterprise value "
         "and then some.")
 figure('fig9_field.png', 6.9,
-       "Figure 1.  The four lenses and the two sides of the contested judgement, against "
-       "the traded price.")
+       "{F}.  Each lens as its own bear-to-bull span, with the central marked, "
+       "against the traded price.")
+P(f"The alternative readings are shown so that each genuinely contested choice in the "
+  f"construction can be priced rather than argued. The widest of them is the gas price: "
+  f"moving from the price the company's own loss disclosure implies to the contract "
+  f"formula price in its operating agreement is worth EGP "
+  f"{E2(abs(AL_BY['gas']['delta']))} a share. The narrowest is terminal growth, worth EGP "
+  f"{E2(abs(AL_BY['terminal_growth']['delta']))}. Not one of them, alone or together, "
+  f"reaches the traded price — which is the finding this study reports, and the reason the "
+  f"headline states the discount rate the market itself implies rather than asserting that "
+  f"the market is wrong.")
 
 # --------------------------------------------------------- COMPANY OVERVIEW --
 H1("Company overview")
@@ -143,7 +165,7 @@ rows = [["Product", "FY2024/25 output (tonnes)", "Unit cost (EGP/t)", "Role"],
         ["Ferrosilicon", "nil", "n/a",
          "Furnace idle since 2019 and leased to a tenant from May 2025, so it is now rent"]]
 table(rows, [1.6, 1.2, 1.1, 3.1], size=8.7, text_cols=(3,))
-caption("Table 3.  Production and unit costs as disclosed in the auditor's own cost table. "
+caption("{T}.  Production and unit costs as disclosed in the auditor's own cost table. "
         "Ammonia is consumed by urea rather than sold, which is why the surplus over urea's "
         "draw is what the new complex is built to use.")
 
@@ -167,10 +189,10 @@ rows.append(["Discount rate from the glide"] + [PC2(w) for w in DR['wacc_path']]
 rows.append(["Discount factor"] + [f"{r['df']:.4f}" for r in R])
 rows.append(["PRESENT VALUE OF FREE CASH FLOW"] + [E(r['pv']) for r in R])
 table(rows, [2.05, 0.99, 0.99, 0.99, 0.99, 0.99], size=8.4, band_rows={2, 4, 9, 12})
-caption("Table 4.  The full waterfall, programme carried through. Every line is a live "
+caption("{T}.  The full waterfall, programme carried through. Every line is a live "
         "formula in the accompanying workbook.")
 figure('fig4_cashflow.png', 6.9,
-       "Figure 2.  Operating profit is healthy throughout and free cash flow is not, "
+       "{F}.  Operating profit is healthy throughout and free cash flow is not, "
        "because the capital programme absorbs it. This is the study in one picture.")
 H2("The bridge from enterprise value to the equity — both sides of the judgement")
 rows = [["Component", "Carried through (EGP m)", "Stopped (EGP m)"]]
@@ -189,10 +211,10 @@ rows.append(["EQUITY VALUE", E(BASE['bridge']['equity']), E(HALT['bridge']['equi
 rows.append(["VALUE PER SHARE (EGP)", E2(BASE['bridge']['per_share']),
              E2(HALT['bridge']['per_share'])])
 table(rows, [3.0, 1.95, 1.95], size=8.9, band_rows={3, 4, 8, 9})
-caption("Table 5.  Net debt is larger than the enterprise value the cash flows support in "
+caption("{T}.  Net debt is larger than the enterprise value the cash flows support in "
         "the carried-through column. That is why the equity value there is negative, and it "
         "is stated rather than clipped to zero.")
-figure('fig2_bridge.png', 6.9, "Figure 3.  The bridge, carried-through case.")
+figure('fig2_bridge.png', 6.9, "{F}.  The bridge, carried-through case.")
 
 H2("1.2  Book value and sustainable return — the asset lens")
 B = LN['book']
@@ -216,7 +238,7 @@ rows = [["Line", "Value"],
         ["Value per share on this lens (EGP)", E2(B['value_per_share'])],
         ["Price-to-book the market pays", f"{B['pb_at_market']:.2f}x"]]
 table(rows, [4.4, 2.5], size=8.9, band_rows={7, 12})
-caption("Table 6.  The justified multiple of book is negative before flooring, and that is "
+caption("{T}.  The justified multiple of book is negative before flooring, and that is "
         "the finding rather than a rounding artefact: a sustainable return of "
         f"{PC(B['roe_sustainable'])} does not cover even nominal maintenance growth of "
         f"{PC(B['g'])}, let alone a {PC2(B['ke'])} cost of equity. On this lens the book is "
@@ -264,7 +286,7 @@ rows = [["Line", "EGP million"],
         ["At eight times (EGP)", E2(NM['value_low'])],
         ["At twelve times (EGP)", E2(NM['value_high'])]]
 table(rows, [4.4, 2.5], size=8.9, band_rows={7, 9, 11})
-caption("Table 7.  A mature single-asset industrial in a high-inflation economy does not "
+caption("{T}.  A mature single-asset industrial in a high-inflation economy does not "
         "deserve more than ten times, and the band either side is shown.")
 
 H2("1.5  Synthesis — four lenses, one field")
@@ -280,10 +302,41 @@ P(f"The ordering is itself informative. The asset-backed and multiple-based lens
   f"below its cost of capital destroys value by growing, which is the same finding the "
   f"capital programme produces from a different direction.")
 
+figure('fig1_range.png', 6.9,
+       "{F}.  The same cash-flow model run in four states of the world. The spread "
+       "between the top and the bottom bar is what the capital programme is worth, in "
+       "either direction.")
+
 H2("1.6  The drivers — each leg grown on its own driver, margins as outputs")
 P("The company reports one operating segment, so the build goes below it to the product and "
   "the channel, which is the finest level the statements source. Nothing in the model sets "
   "a margin: every margin falls out of tonnes, prices and physical consumption.")
+H2("The channels, historically")
+rows = [["Channel", "FY2022/23", "FY2023/24", "FY2024/25", "What sets it"]]
+rows.append(["Urea produced (tonnes)", E(DR['urea_t']['FY2022/23']),
+             E(DR['urea_t']['FY2023/24']), E(DR['urea_t']['FY2024/25']),
+             f"Gas availability against a {E(V('design_urea_tpy'))}-tonne design plate"])
+rows.append(["Export tonnes", "—", "—", E(V('export_tonnes_FY2425')),
+             "Output less the subsidised and free-market legs"])
+rows.append(["Subsidised tonnes", "—", "—", E(V('subsidised_tonnes_FY2425')),
+             "An administered quota the company has been unable to meet in full"])
+rows.append(["Free-market tonnes", "—", "—", E(V('local_free_tonnes_FY2425')),
+             "The residual of the local revenue note"])
+rows.append(["Realised export price (US$/t)", "—", "—", E(V('export_price_FY2425_usd')),
+             "The auditor's own disclosed average"])
+rows.append(["Revenue (EGP m)", E(H[0]['revenue']), E(H[1]['revenue']), E(H[2]['revenue']),
+             "Tonnes times price, in five legs"])
+rows.append(["Gross margin", PC(H[0]['gross_pct']), PC(H[1]['gross_pct']),
+             PC(H[2]['gross_pct']), "An output, never an input"])
+rows.append(["Operating margin before depreciation", PC(H[0]['ebitda_pct']),
+             PC(H[1]['ebitda_pct']), PC(H[2]['ebitda_pct']), "An output"])
+table(rows, [1.85, 0.92, 0.92, 0.92, 2.3], size=8.4, band_rows={6, 7, 8}, text_cols=(4,))
+caption("{T}.  The channel split is disclosed only for the most recent year, in the "
+        "revenue note; the two earlier years disclose production and revenue but not the "
+        "split between the three domestic and export channels. That gap is stated here "
+        "rather than filled with an assumption.")
+
+H2("How the forecast is driven")
 rows = [["Driver", "Basis", YEARS[0], YEARS[-1]]]
 rows.append(["Urea output (tonnes)", "Design plate with utilisation banded by gas availability",
              E(R[0]['urea_t']), E(R[4]['urea_t'])])
@@ -304,14 +357,45 @@ rows.append(["Gross margin — OUTPUT", "Falls out of the above", PC(R[0]['gross
 rows.append(["EBITDA margin — OUTPUT", "Falls out of the above", PC(R[0]['ebitda_pct']),
              PC(R[4]['ebitda_pct'])])
 table(rows, [1.6, 2.75, 1.28, 1.28], size=8.5, band_rows={8, 9}, text_cols=(1,))
-caption("Table 8.  Each cost class escalates on its own driver and never on one blended "
+caption("{T}.  Each cost class escalates on its own driver and never on one blended "
         "index: gas is a globally traded input and escalates on its dollar price through "
         "the exchange rate, while wages, inland haulage and administration escalate on "
         "Egyptian consumer prices and the subsidised price follows its own administered path.")
-figure('fig3_revenue.png', 6.9, "Figure 4.  Revenue built channel by channel.")
+figure('fig3_revenue.png', 6.9, "{F}.  Revenue built channel by channel.")
 figure('fig6_coststack.png', 6.9,
-       "Figure 5.  Where a tonne of urea costs its money. Gas dominates, which is why the "
+       "{F}.  Where a tonne of urea costs its money. Gas dominates, which is why the "
        "gas price and the consumption rate are treated as crux variables.")
+H2("What the build produces — margins as outputs")
+rows = [["EGP million"] + [y.replace("FY", "FY").replace("/", "/") for y in YEARS]]
+for lab, key, fmt in [("Revenue", 'revenue', E), ("Cost of sales", 'cogs', E),
+                      ("Gross profit", 'gross', E), ("Gross margin", 'gross_pct', PC),
+                      ("Operating profit before depreciation", 'ebitda', E),
+                      ("Margin before depreciation", 'ebitda_pct', PC),
+                      ("Operating profit", 'ebit', E), ("Operating margin", 'ebit_pct', PC)]:
+    rows.append([lab] + [fmt(r[key]) for r in R])
+table(rows, [2.05, 0.99, 0.99, 0.99, 0.99, 0.99], size=8.4, band_rows={4, 6})
+caption("{T}.  Not one margin in this table is set. Each is revenue less a cost stack "
+        "that was built from physical consumption times a unit price, so the margin path is "
+        "a consequence of the tonnes, the prices and the escalators above it. The margin "
+        "falls across the window because the export price mean-reverts faster than the "
+        "domestic cost base disinflates — which is a statement about two sourced paths, "
+        "not a view about management.")
+
+H2("The revenue mix, the first forecast year against the last")
+rows = [["Channel", f"{YEARS[0]} revenue (EGP m)", "Share", f"{YEARS[-1]} revenue (EGP m)",
+         "Share"]]
+for lab, key in [("Export urea", 'rev_exp'), ("Subsidised urea", 'rev_sub'),
+                 ("Free-market urea", 'rev_free'), ("Nitrates", 'rev_an'),
+                 ("Other", 'rev_other')]:
+    rows.append([lab, E(R[0][key]), PC(R[0][key] / R[0]['revenue']),
+                 E(R[4][key]), PC(R[4][key] / R[4]['revenue'])])
+rows.append(["Total", E(R[0]['revenue']), PC(1.0), E(R[4]['revenue']), PC(1.0)])
+table(rows, [1.8, 1.35, 0.9, 1.35, 0.9], size=8.5, band_rows={6})
+caption("{T}.  The export leg shrinks as a share of the total, not because the "
+        "company sells less abroad but because the administered domestic price rises "
+        "faster than the export price falls. A reader who expects the opposite is "
+        "disagreeing with one of those two paths, and section 1.9 prices both.")
+
 P(f"One allocation is the model's rather than the company's, and it is the largest in the "
   f"study. The audited statements give a single materials line and do not split gas from "
   f"everything else. Gas is set at three quarters of that line, which implies "
@@ -334,6 +418,67 @@ P(f"Carried through, the programme is worth EGP {E2(LN['cashflow']['carry_throug
   f"equity, is the cost of the programme to shareholders on this model's assumptions. What "
   f"decides it is whether the plant, once built, earns a return above the capital sunk into "
   f"it. On the disclosed cost and the derived nameplate it does not.", bold=True)
+PRG = AL['programme']
+rows = [["The capital programme", "Value", "Where it comes from"]]
+rows.append(["Bank-approved cost", f"EGP {E(PRG['approved_egp'])}m plus US${E1(PRG['approved_usd'])}m",
+             "The facility signed on 25 June 2025"])
+rows.append(["Approved cost, one currency", f"EGP {E(PRG['approved_total'])}m",
+             "At the rate prevailing when it was approved"])
+rows.append(["As a share of the whole company's market value", PC(PRG['pct_market_cap']),
+             "Against a market value of EGP " + E(PRG['market_cap']) + "m"])
+rows.append(["Spent by 31 March 2026", f"EGP {E(PRG['spent'])}m",
+             "Construction in progress on the reviewed balance sheet"])
+rows.append(["Money spent, as a share of the approved cost", PC(PRG['spent_pct']), "Derived"])
+rows.append(["Physical progress reported", PC(PRG['progress']),
+             "The auditor's own figure at September 2025"])
+rows.append(["Physical progress planned by the same date", PC(PRG['plan']),
+             "The auditor's own figure"])
+rows.append(["Still to spend", f"EGP {E(PRG['remaining'])}m", "Derived"])
+rows.append(["Derived nameplate", f"{E(PRG['nameplate'])} tonnes a year",
+             "FLAGGED as derived: no filing states it"])
+rows.append(["Capital per annual tonne", f"EGP {E(PRG['capital_per_tonne'])}",
+             "Approved cost over derived nameplate"])
+rows.append(["What it earns after tax in the terminal year, at half nameplate",
+             f"EGP {E(PRG['terminal_ebit'] * (1 - DR['tax_rate']))}m", "The model's own terminal year"])
+rows.append(["Return on the approved cost", PC(PRG['return_on_cost']), "Derived"])
+rows.append(["Against a terminal cost of capital of", PC(DR['wacc_terminal']),
+             "Section 1.8"])
+table(rows, [2.85, 1.75, 2.4], size=8.4, band_rows={5, 12, 13}, text_cols=(2,))
+caption("{T}.  The two lines that matter are the fifth and the sixth. More than a "
+        "quarter of the money has been spent against an eighth of the plant, and the whole "
+        "of it earns a return an order of magnitude below what the capital costs. Neither "
+        "number is a forecast: both are the company's own disclosures set against the "
+        "model's own terminal year.")
+figure('fig14_programme.png', 6.9,
+       "{F}.  On the left, what has been spent against what has been built. On the "
+       "right, what the finished plant earns against what the capital costs.")
+
+H2("The asset-conversion cycle — disclosed, then projected from it")
+P("Working capital is not a percentage of revenue in this model. It is three day counts "
+  "taken from the audited statements and applied to the forecast revenue and cost of "
+  "sales, so that every pound of it traces to a receivable, an inventory or a payable "
+  "rather than to a plug.")
+rows = [["Days", "FY2022/23", "FY2023/24", "FY2024/25", "Carried forward"]]
+CH = AL['cycle_hist']
+rows.append(["Receivable days", E1(CH[0]['dso']), E1(CH[1]['dso']), E1(CH[2]['dso']),
+             E1(DR['dso'])])
+rows.append(["Inventory days", E1(CH[0]['dio']), E1(CH[1]['dio']), E1(CH[2]['dio']),
+             E1(DR['dio'])])
+rows.append(["Payable days", E1(CH[0]['dpo']), E1(CH[1]['dpo']), E1(CH[2]['dpo']),
+             E1(DR['dpo'])])
+rows.append(["Cash-conversion cycle", E1(CH[0]['ccc']), E1(CH[1]['ccc']), E1(CH[2]['ccc']),
+             E1(DR['dso'] + DR['dio'] - DR['dpo'])])
+rows.append(["Working capital (EGP m)", E(CH[0]['wc']), E(CH[1]['wc']), E(CH[2]['wc']),
+             E(AL['cycle_fwd'][0]['wc'])])
+rows.append(["As a share of revenue", PC(CH[0]['wc_pct_rev']), PC(CH[1]['wc_pct_rev']),
+             PC(CH[2]['wc_pct_rev']), PC(AL['cycle_fwd'][0]['wc_pct_rev'])])
+table(rows, [2.0, 1.15, 1.15, 1.15, 1.55], size=8.5, band_rows={4, 6})
+caption(f"{{T}}.  Inventory is the whole story: {E1(CH[2]['dio'])} days of cost of sales "
+        f"sat in stock at the last audited date, against {E1(CH[2]['dso'])} days of "
+        f"receivables. A plant a thousand kilometres from its export port carries its "
+        f"working capital in warehouses, and the auditor's inability to satisfy itself on "
+        f"the slow-moving provision is a caveat about exactly this line.")
+
 P("The second-order crux is the long-run export price, and the third is the rate at which a "
   "perpetuity of Egyptian pounds is capitalised. Both are observable — one prints daily on "
   "a listed futures contract, the other can be read against the sovereign's own borrowing "
@@ -367,7 +512,7 @@ rows = [["Component", "Rating basis", "CDS basis", "Source"],
         ["Cost of capital, year one", PC2(DR['wacc_path'][0]), PC2(WC['wacc_cds']),
          "The rating basis is carried into the valuation as the more conservative"]]
 table(rows, [1.85, 1.05, 1.05, 2.95], size=8.5, band_rows={3, 6, 9}, text_cols=(3,))
-caption("Table 9.  The cost of capital, built rather than assumed, on both premium bases.")
+caption("{T}.  The cost of capital, built rather than assumed, on both premium bases.")
 H2("The cost of debt — three pieces of evidence, not an assumption")
 rows = [["Evidence", "What it shows", "Rate"],
         ["The holding-company facility",
@@ -400,27 +545,99 @@ P(f"A spot cost of capital embeds today's {PC(V('cpi_latest'))} inflation in eve
   f"{PC2(DR['wacc_terminal'])}. Discount factors compound the glide year by year rather "
   f"than raising one rate to a power.")
 figure('fig7_glide.png', 6.9,
-       "Figure 6.  The rate glides from its spot build to a terminal rate made from its own "
+       "{F}.  The rate glides from its spot build to a terminal rate made from its own "
        "parts. The dotted line is the rate the traded price implies.")
+P(f"Seven choices in the construction above are legitimately arguable, and every one of "
+  f"them has been priced rather than defended in prose. Each row below is a complete "
+  f"re-run of the model with that single component moved and everything else held, so the "
+  f"figure in the third column is what this study would have published had it made the "
+  f"other choice.")
+rows = [["Choice made", "The alternative", "On the alternative",
+         f"Against EGP {E2(AL['baseline'])}", "Why we keep ours"]]
+for a in AL['alternatives']:
+    rows.append([a['made'], a['alt'], E2(a['value']), f"{a['delta']:+.2f}", a['why']])
+table(rows, [1.72, 1.78, 0.66, 0.66, 2.18], size=7.8, text_cols=(0, 1, 4))
+caption("{T}.  The premium basis and the gas price are the two that move the answer "
+        "most, in opposite directions, and both are published on both readings elsewhere "
+        "in this study. None of the seven, and no combination of them, closes the gap to "
+        "the traded price.")
 
 H2("1.9  Sensitivity")
 figure('fig5_crux.png', 6.9,
-       "Figure 7.  Value per share across the two observable inputs that decide it. Every "
+       "{F}.  Value per share across the two observable inputs that decide it. Every "
        "cell is a complete revaluation, not an interpolation.")
-P(f"No cell in that grid reaches the traded price. The highest is EGP "
-  f"{E2(max(max(r) for r in json.load(open('sensitivity_grid.json'))['grid']))}, at a "
-  f"long-run export price above today's spot and a terminal rate below the sovereign's own "
-  f"short-term yield. Reaching EGP {E2(SPOT)} requires leaving the grid altogether, which "
-  f"is what the reverse calculation in the headline does explicitly.")
-rows = [["What moves", "Move", "Effect on value per share"],
-        ["Long-run export price", "US$50 a tonne", "about EGP 1.5"],
-        ["Terminal cost of capital", "One percentage point", "about EGP 0.4"],
-        ["The capital programme", "Carried through against stopped", f"EGP {E2(abs(LN['contested']['gap']))}"],
-        ["Gas consumption per tonne", "Ten per cent", "about EGP 0.8"],
-        ["Project utilisation in the terminal year", "Forty per cent higher", "about EGP 0.2"]]
-table(rows, [2.6, 2.0, 2.3], size=8.9, band_rows={3})
-caption("Table 10.  The capital programme dominates everything else on this company, which "
-        "is why it and not the discount rate is the study's contested judgement.")
+P(f"The same grid in numbers. Each column is a long-run export price in dollars a tonne, "
+  f"each row a terminal cost of capital, and each cell a full re-run of the model — the "
+  f"segment build, the waterfall, the terminal year and the bridge — not a multiplier "
+  f"applied to the central answer.")
+rows = [["Terminal cost of capital"] + [f"US${p:,.0f}/t" for p in GRD['prices']]]
+for i, w in enumerate(GRD['waccs']):
+    rows.append([PC(w)] + [E2(GRD['grid'][j][i]) for j in range(len(GRD['prices']))])
+table(rows, [1.75, 1.03, 1.03, 1.03, 1.03, 1.03], size=8.5)
+caption(f"{{T}}.  The highest cell in the grid is EGP "
+        f"{E2(max(max(r) for r in GRD['grid']))}, at a long-run export price above today's "
+        f"spot and a terminal rate below the sovereign's own short-term yield. Reaching "
+        f"EGP {E2(SPOT)} requires leaving the grid altogether, which is what the reverse "
+        f"calculation in the headline does explicitly.")
+P("Each anchor below is varied independently around its own base, so the swings do not "
+  "add. Every one is the difference between two complete re-runs of the model.")
+rows = [["What moves", "Range tested", "Fair value span (EGP/share)", "Swing"]]
+_pmin, _pmax = GRD['prices'][0], GRD['prices'][-1]
+_wmin, _wmax = GRD['waccs'][0], GRD['waccs'][-1]
+_pcol = [GRD['grid'][j][2] for j in range(len(GRD['prices']))]
+_wrow = GRD['grid'][2]
+SWINGS = [
+    ("The capital programme",
+     "Carried through against stopped",
+     LN['cashflow']['carry_through'], LN['cashflow']['stopped']),
+    ("Long-run export price",
+     f"US${_pmin:,.0f} to US${_pmax:,.0f} a tonne", min(_pcol), max(_pcol)),
+    ("Terminal cost of capital", f"{PC(_wmin)} to {PC(_wmax)}", min(_wrow), max(_wrow)),
+    ("Gas price",
+     "The realised price against the contract formula price",
+     AL_BY['gas']['value'], AL['baseline']),
+    ("Country-risk basis", "Rating spread against traded default swap",
+     AL['baseline'], AL_BY['premium_basis']['value']),
+    ("Beta", f"{WC['beta']:.3f} against the Dimson sum-beta of {V('dimson_sum_beta'):.3f}",
+     AL['baseline'], AL_BY['beta']['value']),
+    ("Project utilisation in the terminal year",
+     f"{PC(V('anna_util_base'))} against {PC(V('anna_util_bull'))}",
+     AL['baseline'], AL_BY['utilisation']['value']),
+    ("Maintenance capital expenditure",
+     f"{PC(V('maint_capex_pct'))} of revenue against {PC(V('maint_capex_pct')*2/3)}",
+     AL['baseline'], AL_BY['maintenance_capex']['value']),
+    ("Terminal growth",
+     f"{PC(V('g_terminal'))} against {PC(V('g_terminal_alt'))}",
+     AL_BY['terminal_growth']['value'], AL['baseline']),
+]
+SWINGS = sorted(SWINGS, key=lambda t: -abs(t[3] - t[2]))
+for lab, rng, lo, hi in SWINGS:
+    rows.append([lab, rng, f"{E2(min(lo, hi))} to {E2(max(lo, hi))}",
+                 E2(abs(hi - lo))])
+table(rows, [1.9, 2.35, 1.5, 0.8], size=8.3, band_rows={1}, text_cols=(1,))
+caption("{T}.  Ranked by the size of the swing. The capital programme dominates "
+        "everything else on this company, which is why it and not the discount rate is "
+        "the study's contested judgement, and why it is published both ways rather than "
+        "averaged.")
+P(f"The beta deserves a note of its own, because it is the one input in the cost of "
+  f"capital that comes from a statistical estimate rather than from a quote or a "
+  f"disclosure. It is {WC['beta']:.3f}, from {BE['n']} weekly observations over "
+  f"{BE['window_years']} years against an equal-weight index of {BE['composite_names']} "
+  f"Egyptian names with the subject itself excluded — leaving a share inside its own "
+  f"index injects a self-covariance term, and doing so here would have returned "
+  f"{BE['self_inclusion_bias']['beta_index_including_subject']:.3f} instead. The "
+  f"regression explains {PC(BE['r2'])} of the variation with a standard error of "
+  f"{BE['se']:.3f}, so all three conditions of the usability test are met and the "
+  f"estimate is adopted rather than defaulted. It was cross-checked two ways. The Dimson "
+  f"sum-beta over one lead and two lags — the correction for co-movement booked late "
+  f"because the share does not trade every session — is {V('dimson_sum_beta'):.3f}, and "
+  f"the adopted figure sits inside its interval; the share closes unchanged on "
+  f"{PC(BE['thin_trading']['flat_frac'])} of sessions against "
+  f"{PC(BE['thin_trading']['eg_panel_median'])} for the Egyptian library, so it is not "
+  f"unusually thin. And the simple prior for a cyclical, capital-intensive materials "
+  f"business is 1.0 to 1.5. The alternative is priced with the other contested constructions in section 1.8 rather than argued: on "
+  f"the sum-beta the answer is EGP {E2(AL_BY['beta']['value'])} instead of EGP "
+  f"{E2(AL['baseline'])}.", size=9.8)
 
 # ================================================== 2 TECHNICAL AND PRICE =====
 H1("2  Technical and price structure")
@@ -436,11 +653,11 @@ for i, lv in enumerate(TC['levels']['res']):
 for i, lv in enumerate(TC['levels']['sup']):
     rows.append([f"Support {i+1}", E2(lv), PC(lv / TC['close'] - 1)])
 table(rows, [2.2, 2.2, 2.5], size=8.9)
-caption("Table 11.  Levels are computed from recency-weighted pivot clusters in the same "
+caption("{T}.  Levels are computed from recency-weighted pivot clusters in the same "
         "cleaned price history the rest of the study uses; the first of each is the nearest "
         "to the close. Nothing here is fitted and nothing is hand-drawn.")
 figure('fig11_technical.png', 6.9,
-       "Figure 8.  Price structure — moving averages and the computed level ladder.")
+       "{F}.  Price structure — moving averages and the computed level ladder.")
 P("A technical read cannot speak to whether a business is worth owning, and this one makes "
   "no fundamental claim. What it does say is that the price sits in the upper part of its "
   "own year, with the nearest resistance about seven per cent above and the nearest support "
@@ -455,13 +672,25 @@ P(f"This is a map of where the traded price may go, not of what the business is 
   f"less the dividend yield, which is zero here because nothing was distributed in either "
   f"of the last two years.")
 figure('fig10_fan.png', 6.9,
-       f"Figure 9.  The distribution of the price to {M3['grade_date']}.")
+       f"{{F}}.  The middle of the simulated distribution over time, to "
+       f"{M3['grade_date']}. The shaded bands hold half and ninety per cent of the paths.")
 H2("Percentile map (Egyptian pounds a share)")
 rows = [["Percentile", f"One month, to {M1['grade_date']}", f"Three months, to {M3['grade_date']}"]]
 for p in ('p5', 'p25', 'p50', 'p75', 'p95'):
     rows.append([p.upper().replace('P', 'Percentile '), E2(M1['pct'][p]), E2(M3['pct'][p])])
 rows.append(["Probability the price ends above today's", PC(M1['p_above']), PC(M3['p_above'])])
 table(rows, [2.4, 2.25, 2.25], size=8.9, band_rows={6})
+caption("{T}.  The map says where the price may end. It is not a forecast of where it "
+        "will end, and the probability in the last row is the share of paths finishing "
+        "above the anchor, not a claim about direction.")
+figure('fig12_dist1m.png', 6.6,
+       f"{{F}}.  The shape of the distribution at one month, to {M1['grade_date']}.")
+figure('fig13_dist3m.png', 6.6,
+       f"{{F}}.  And at three months, to {M3['grade_date']}. The right tail is longer "
+       f"than the left because the price cannot fall below zero and can rise without a "
+       f"bound — which is why the median sits below the mean and why the ladder below, not "
+       f"the median, is the more useful line.")
+
 H2("Level-touch ladder")
 P("The percentile map says where the price may END. This ladder says how likely it is to "
   "TRADE THROUGH a level at any point before the check date, which is a different and "
@@ -472,7 +701,7 @@ for pct in (5, 10, 15, 20):
 for pct in (5, 10, 15, 20):
     rows.append([f"Down {pct}%", PC(M1['ladder'][f'touch_dn{pct}']), PC(M3['ladder'][f'touch_dn{pct}'])])
 table(rows, [2.4, 2.25, 2.25], size=8.9)
-caption("Table 12.  Probability of touching each level at any point before the check date.")
+caption("{T}.  Probability of touching each level at any point before the check date.")
 prod = BT['production']
 P(f"How this was tested, in plain terms. The same method was run backwards over the "
   f"company's own price history in non-overlapping three-month windows and scored against a "
@@ -514,65 +743,177 @@ rows.append(["Normalised earnings power", E2(LN['normalised']['value_per_share']
              "That an average year is the right year, and the balance sheet is stable",
              "Mid-cycle pricing plus the same blindness to the capital programme"])
 table(rows, [1.7, 0.85, 2.4, 2.05], size=8.3, text_cols=(2, 3))
-caption("Table 13.  The divergence is structured, not random. Every lens that lands above "
+caption("{T}.  The divergence is structured, not random. Every lens that lands above "
         "the cash-flow reading does so by not asking what the capital programme costs.")
+
+P(f"The reading we take from this is not that four lenses agree — they do not, and a study "
+  f"that made them agree would have hidden the thing worth knowing. It is that they "
+  f"disagree in one direction and for one reason. The three lenses that land above the "
+  f"cash-flow reading all reach their answer by declining to charge the capital programme "
+  f"against the years in which it is actually spent: the multiple lens capitalises a "
+  f"forward operating profit that is struck before capital expenditure, the normalised "
+  f"lens values a steady state the company is not in, and the book lens values what has "
+  f"already been paid for. Each is a legitimate question. None of them is the question "
+  f"that decides this company.")
+P(f"Our own reading therefore sits at the conservative end of the field, and the field's "
+  f"upper bound of EGP {E2(LN['synthesis']['high'])} should be read as what the shares "
+  f"would be worth if the programme were free — which it is not. What none of the lenses "
+  f"does, on any construction tested in section 1.8, is reach EGP {E2(SPOT)}. The gap is "
+  f"reported as the flat discount rate that would close it, about "
+  f"{PC(DR['implied_wacc_base'])} against a sovereign ten-year yield of "
+  f"{PC(V('rf_observed'))}, so that a reader who disagrees can see precisely what they are "
+  f"disagreeing with rather than being asked to accept a conclusion.")
+P("No rating and no price target is expressed here or anywhere else in this document. "
+  "What is published is a field of fair values, the reasoning behind each, and the "
+  "probability map around today's price.", italic=True, size=9.8)
 
 # ==================================================================== 5-7 =====
 H1("5  Catalysts")
-bullet("A dated disclosure of the new complex's nameplate capacity and commissioning "
-       "schedule. The capacity used here is derived from the ammonia design plate because "
-       "no filing states it, and is flagged as derived throughout.", "Capacity disclosure.  ")
-bullet("Physical progress moving back toward plan. It ran 12.9% against a 37% plan; a "
-       "reported figure near plan would shorten the construction window and lift the "
-       "terminal contribution.", "Execution.  ")
-bullet("A structural fix to industrial gas supply. Every tonne not made is fixed cost with "
-       "no revenue against it, and the stoppage cost is disclosed each year.", "Gas.  ")
-bullet("A move in the export price the market treats as permanent rather than as a war "
-       "premium. The study assumes mean reversion; a decade above US$540 is a different "
-       "company.", "Price regime.  ")
-bullet("Refinancing the dollar debt into pounds, or a genuine slowing of depreciation. The "
-       "translation line swung the reported result by more than a billion pounds in a "
-       "single quarter this year.", "Currency.  ")
-bullet("The first year in which distributable profit is actually distributed. Nothing has "
-       "been paid in either of the last two years.", "A dividend.  ")
+rows = [["Catalyst", "Why it matters", "What to watch"]]
+rows.append(["A dated capacity disclosure for the new complex",
+             "The nameplate used in this study is derived from the ammonia design plate "
+             "because no filing states it, and it is the input the terminal value is most "
+             "sensitive to after the discount rate.",
+             "The annual report's note on the project, or any prospectus for the facility "
+             "drawn to build it"])
+rows.append(["Physical progress moving back toward plan",
+             f"Progress ran {PC(V('anna_progress_sep2025'))} against a "
+             f"{PC(V('anna_plan_sep2025'))} plan while more than a quarter of the money "
+             f"had been spent. Closing that gap shortens the construction window and "
+             f"brings the terminal contribution forward.",
+             "The percentage-of-completion figure the auditor discloses each year, against "
+             "construction in progress on the balance sheet"])
+rows.append(["A structural fix to industrial gas supply",
+             "Every tonne not made is fixed cost with no revenue against it. The stoppage "
+             f"cost was EGP {E1(V('stoppage_cost_FY2425'))}m in the last audited year and "
+             f"EGP {E1(V('stoppage_cost_FY2324'))}m the year before.",
+             "The disclosed stoppage cost, and the summer curtailment months in the "
+             "quarterly production numbers"])
+rows.append(["A price regime the market treats as permanent",
+             "The study assumes mean reversion from a war-tightened level toward the cash "
+             "cost of the marginal gas-based producer. A decade above today's spot is a "
+             "different company.",
+             "The Egyptian free-on-board quote against the model's path, and any change in "
+             "the export duty that sits between the two"])
+rows.append(["The debt moving into the currency the company earns",
+             f"{PC(1 - WC['pct_debt_local'])} of the book is dollar-denominated against a "
+             f"revenue stream that is largely priced in dollars but settled in pounds. A "
+             f"single quarter's translation swing this year was larger than the whole "
+             f"nine-month profit.",
+             "Any refinancing announcement, and the currency split in the borrowings note"])
+rows.append(["The first dividend",
+             "Nothing was distributed in either of the last two years. A distribution "
+             "would say the board considers the capital programme funded.",
+             "The appropriation statement in the annual accounts"])
+rows.append(["The next disclosed quarter against this study's own forecast",
+             "This study forecasts the year to June 2026 from nine reviewed months. The "
+             "fourth quarter is a direct test of that construction.",
+             f"Revenue against EGP {E(F25['revenue'])}m and gross margin against "
+             f"{PC(F25['gross_pct'])} for the full year"])
+table(rows, [1.9, 3.0, 2.1], size=8.3, text_cols=(1, 2))
+caption("{T}.  Each of these is observable from a disclosure the company already "
+        "makes. None of them requires an estimate to detect.")
 
 H1("6  Reading the probability zones")
-P(f"Three zones, and what each would mean. Below EGP {E2(M3['pct']['p25'])} — the "
-  f"twenty-fifth percentile of the three-month distribution — the price would be moving "
-  f"toward the upper end of what the four lenses support, and the gap this study reports "
-  f"would be closing from the price side rather than the value side. Between EGP "
-  f"{E2(M3['pct']['p25'])} and EGP {E2(M3['pct']['p75'])} is the ordinary range: half the "
-  f"simulated paths end there, and nothing in it would tell a reader anything about value. "
-  f"Above EGP {E2(M3['pct']['p95'])} the market would be paying more than nineteen times "
-  f"forward operating profit before depreciation for a business earning "
-  f"{PC(LN['book']['roe_sustainable'])} on equity.")
-P(f"The single most useful line in section 3 is the ladder rather than the map: there is a "
-  f"{PC(M3['ladder']['touch_dn20'])} chance of touching twenty per cent below today's price "
-  f"at some point in three months, against {PC(M3['ladder']['touch_up20'])} of touching "
-  f"twenty per cent above. A reader who cares about the path, not just the destination, "
-  f"should read that pair together.")
+P(f"Three zones, and what each would mean. The boundaries are the quartiles of the "
+  f"three-month distribution in section 3, not levels chosen for the purpose.")
+rows = [["Zone", "Three-month range (EGP)", "How to read it"]]
+rows.append(["Below the lower quartile", f"under {E2(M3['pct']['p25'])}",
+             "The price would be moving toward the upper end of what the four lenses "
+             "support, and the gap this study reports would be closing from the price "
+             "side rather than from the value side."])
+rows.append(["The ordinary range",
+             f"{E2(M3['pct']['p25'])} to {E2(M3['pct']['p75'])}",
+             "Half the simulated paths end here. Nothing inside it would tell a reader "
+             "anything about value, in either direction."])
+rows.append(["Above the upper quartile",
+             f"{E2(M3['pct']['p75'])} to {E2(M3['pct']['p95'])}",
+             "The market would be paying more for a business whose sustainable return on "
+             f"equity is {PC(LN['book']['roe_sustainable'])} against a cost of equity of "
+             f"{PC(WC['ke_rating'])}, with the capital programme still unfinished."])
+rows.append(["Above the ninety-fifth percentile", f"over {E2(M3['pct']['p95'])}",
+             "One path in twenty. On a free float of about six per cent this can happen "
+             "on modest volume, which is a fact about the register rather than about the "
+             "business."])
+rows.append(["What none of the zones says", "—",
+             "Where the price will go. The distribution is a map of dispersion around "
+             "today's price and carries no view of value; the value work is sections 1 "
+             "and 4."])
+table(rows, [1.75, 1.6, 3.65], size=8.3, band_rows={5}, text_cols=(2,))
+caption("{T}.  Zones, not targets.")
+P(f"The single most useful line in section 3 is the ladder rather than the map: there is "
+  f"a {PC(M3['ladder']['touch_dn20'])} chance of touching twenty per cent below today's "
+  f"price at some point in three months, against {PC(M3['ladder']['touch_up20'])} of "
+  f"touching twenty per cent above. A reader who cares about the path, not just the "
+  f"destination, should read that pair together — and should note that the two are close "
+  f"to each other even though the median path drifts up, which is what a wide, "
+  f"right-skewed distribution looks like from the inside.")
 
 H1("7  Caveats and what would change our mind")
-P(f"The auditor's reports on these statements are long and carry a formal basis for "
-  "qualification in every year examined. They are not boilerplate and they are part of the "
-  "evidence: fixed assets whose useful lives and residual values have not been reassessed "
-  "as the standard requires; inventory whose slow-moving provision the auditor could not "
-  f"satisfy itself was sufficient; a shortfall of {E(V('urea_stock_shortfall_t'))} tonnes of "
-  "urea between warehouse records and the physical count at Damietta; supplier and customer "
-  "balances unconfirmed; "
-  "and, on the capital programme, a holding-company committee finding of severe "
-  "deficiencies in the award process.")
-P("The concentration risks are equally plain. One product, one site, one feedstock, one "
-  "regulator setting both the domestic price and the export cap, and a single offtake "
-  "agreement covering roughly two thirds of production. A six per cent free float means the "
-  "traded price is set by a thin market, which is worth remembering when comparing it with "
-  "any valuation.")
-P("What would change this view, in order of force: the capital programme completing near "
-  "its approved cost with a disclosed capacity that earns above the cost of capital; a "
-  "sustained export price regime above US$540; a refinancing that moves the debt into the "
-  "currency the company actually earns; or evidence that Egyptian equity risk is genuinely "
-  "priced below its sovereign, which would revalue every Egyptian equity and not only this "
-  "one.")
+P(f"The auditor's reports carry a formal basis for qualification in every year examined. "
+  f"They are not boilerplate and they are part of the evidence: fixed assets whose useful "
+  f"lives and residual values have not been reassessed as the standard requires; "
+  f"inventory whose slow-moving provision the auditor could not satisfy itself was "
+  f"sufficient; a shortfall of {E(V('urea_stock_shortfall_t'))} tonnes of urea between "
+  f"warehouse records and the physical count at Damietta; supplier and customer balances "
+  f"unconfirmed; and, on the capital programme, a holding-company committee finding of "
+  f"severe deficiencies in the award process. A reader who discounts this study should "
+  f"discount the statements underneath it first.")
+P(f"The largest modelled allocation is the gas share of the cost stack. The statements "
+  f"give one materials line of EGP {E(V('cogs_materials_FY2425'))}m and do not split gas "
+  f"from the rest. Gas is set at {PC(V('gas_share_of_materials'))} of it, which implies "
+  f"{E(V('gas_m3_per_t_ammonia_modelled'))} cubic metres a tonne of ammonia — inside the "
+  f"auditor's own disclosed {E(V('gas_usage_low_m3_t'))} to {E(V('gas_usage_high_m3_t'))} "
+  f"range, but a choice nonetheless. The alternative gas price is priced in section 1.8 "
+  f"and is worth EGP {E2(abs(AL_BY['gas']['delta']))} a share.")
+P(f"The new plant's capacity is derived, not disclosed. No filing states it. It is built "
+  f"from the ammonia design plate less the draw of urea at its own plate, converted at "
+  f"the nitrate route's ammonia ratio. Every figure that depends on it is flagged as "
+  f"derived wherever it appears, and the utilisation applied to it is sensitised in both "
+  f"directions.")
+P(f"Terminal value is {PC(BASE['bridge']['tv_pct_ev'])} of enterprise value on the "
+  f"carried-through case and {PC(HALT['bridge']['tv_pct_ev'])} on the stopped case. Above "
+  f"one hundred per cent is unusual and is explained rather than smoothed: the explicit "
+  f"window is a construction window with negative free cash flow, so the terminal block "
+  f"carries the whole enterprise value and then some. It is a real characteristic of an "
+  f"asset being rebuilt, not a modelling artefact — but it does mean the answer rests "
+  f"more heavily on one year than most studies do.")
+P(f"The forecast for the year to June 2026 rests on nine reviewed months and one "
+  f"run-rated quarter. The fourth quarter is run-rated on the third quarter's revenue "
+  f"with a {PC(1 - V('q4_runrate_haircut'))} haircut for the summer gas curtailment, and "
+  f"the translation line is set to zero because a currency swing is not forecastable. "
+  f"That last choice matters: the nine-month translation loss was larger than the "
+  f"nine-month profit.")
+P(f"The currency of discounting is unresolved and is the largest single judgement after "
+  f"the capital programme. This is a company that sells most of its output in dollars, "
+  f"borrows almost entirely in dollars, and reports in pounds. The study discounts pound "
+  f"cash flows at a pound rate throughout and carries the dollar debt at "
+  f"local-equivalent cost using the same depreciation wedge that drives the revenue "
+  f"path, so the two cannot quietly disagree. A dollar valuation would be a different "
+  f"study, not a different number.")
+P(f"The concentration risks are plain and are not diversifiable inside this company: one "
+  f"product, one site, one feedstock, one regulator setting both the domestic price and "
+  f"the export duty, and a single offtake arrangement covering roughly two thirds of "
+  f"production. The state and its related institutions hold about "
+  f"{PC(V('holding_stake'))} of the shares and the free float is about "
+  f"{PC(V('free_float'))}, so the traded price is set in a thin market. That is worth "
+  f"remembering when comparing it with any valuation, including this one.")
+P(f"The subsidised quota is a legal obligation the company has not been able to meet. It "
+  f"delivered {E(V('quota_delivered_14m'))} tonnes of a {E(V('quota_required_14m'))}-tonne "
+  f"requirement over fourteen months. The forecast does not assume that gap closes, but "
+  f"it also does not price a penalty for it, because none is disclosed.")
+P(f"The share count is taken from the capital note rather than from the exchange, whose "
+  f"page is behind an automated challenge. Two third-party sources carry figures "
+  f"inconsistent with the note and with each other; both are recorded in the bibliography "
+  f"as documented discrepancies and neither is used anywhere in the build.")
+P(f"What would change our mind, specifically. Upward: a disclosed capacity for the new "
+  f"complex that earns above the cost of capital on the approved cost; the programme "
+  f"completing near that cost rather than above it; a sustained export price regime above "
+  f"the top of the tested grid; a refinancing that moves the debt into pounds; or evidence "
+  f"that Egyptian equity risk is genuinely priced below its own sovereign — which would "
+  f"revalue every Egyptian equity, not only this one. Downward: the contract gas price "
+  f"replacing the realised price; a further slip in physical progress against money "
+  f"spent; or a translation loss on the scale of this year's repeating.")
 
 # =============================================================== APPENDIX A ===
 H1("Appendix A  Financial statements")
@@ -595,7 +936,7 @@ isr("EBITDA margin", [s['ebitda'] / s['revenue'] for s in SER], [r['ebitda_pct']
 rows.append(["Net profit as reported"] + [E(s['net']) for s in SER] + [""] * 5)
 table(rows, [1.42, 0.62, 0.62, 0.62, 0.62, 0.62, 0.62, 0.62, 0.62, 0.62], size=7.4,
       band_rows={3, 6, 8})
-caption("Table 14.  The EBIT line is struck before provisions, currency translation and "
+caption("{T}.  The EBIT line is struck before provisions, currency translation and "
         "other income and expense, so it measures trading rather than the statements' own "
         "operating result which mixes all three. The FY2023/24 reported profit includes EGP "
         f"{E(V('oneoff_reval_FY2324'))} million of one-off investment-property revaluation "
@@ -640,7 +981,7 @@ rows.append(["Net working capital"] + [E(r['wc']) for r in R])
 rows.append(["Change in net working capital"] + [E(r['dwc']) for r in R])
 rows.append(["Free cash flow to the firm"] + [E(r['fcff']) for r in R])
 table(rows, [2.05, 0.99, 0.99, 0.99, 0.99, 0.99], size=8.2, band_rows={8})
-caption(f"Table 15.  Working capital is projected from the day counts the audited statements "
+caption(f"{{T}}.  Working capital is projected from the day counts the audited statements "
         f"themselves imply — {E1(V('dso'))} days of receivables, {E1(V('dio'))} of inventory "
         f"and {E1(V('dpo'))} of payables — rather than plugged.")
 
@@ -687,7 +1028,7 @@ for L in sorted(IRJ['layers']):
 rows.append(["Total", "Every input carries a value, a source, a date and a layer",
              str(len(IRJ['inputs']))])
 table(rows, [0.8, 4.6, 1.6], size=8.6, band_rows={6}, text_cols=(1,))
-caption("Table 16.  The full register — every input with its value, date and "
+caption("{T}.  The full register — every input with its value, date and "
         "source-and-construction — is printed in the separate bibliography document, "
         "together with the judgements table, the negative results and the notes on where a "
         "widely quoted third-party figure disagreed with the filings.")
@@ -717,7 +1058,19 @@ for tag, num in [('e1', '1'), ('e2', '2'), ('e3', '3')]:
             sval = E(val)          # EGP millions and tonnes, one precision per column
         rows.append([lab, sval, basis])
     table(rows, [3.0, 1.35, 2.55], size=8.2, text_cols=(2,))
+    caption(f"{{T}}.  Expert {num}'s workings in full — every intermediate "
+            f"line, not a summary of them.")
     P(f"Range: EGP {E2(X['low'])} to EGP {E2(X['high'])} a share.", bold=True)
+    P("Reading it.  " + X['reading'], size=9.8)
+    if 'grid' in X:
+        G3 = X['grid']
+        rows = [["Time to maturity"] + [f"{v*100:.0f}% volatility" for v in G3['vols']]]
+        for t, vals in zip(G3['years'], G3['values']):
+            rows.append([f"{t:.0f} years"] + [E2(v) for v in vals])
+        table(rows, [1.55, 1.07, 1.07, 1.07, 1.07, 1.07], size=8.5)
+        caption("{T}.  The claim in Egyptian pounds a share across the two parameters "
+                "that decide it. The published figure is the five-year, forty-five per cent "
+                "cell; every other cell is a full revaluation of the same option.")
     P("Named sensitivity.  " + X['sensitivity'], size=9.8)
     P("Falsifier, stated in advance.  " + X['falsifier'], size=9.8, italic=True)
 
@@ -758,7 +1111,8 @@ for ch, frm, to, ver in CX:
 table(rows, [2.3, 0.75, 0.75, 3.2], size=8.0, text_cols=(0, 3))
 H2("C.5  The three in one room")
 figure('figD1_experts.png', 6.9,
-       "Figure 10.  Three methods, three ranges, and none of them reaches the traded price.")
+       "{F}.  Three methods, three ranges, and none of them reaches the traded "
+       "price.")
 P(f"Put together, the panel spans EGP {E2(min(EX[k]['low'] for k in ('e1','e2','e3')))} to "
   f"EGP {E2(max(EX[k]['high'] for k in ('e1','e2','e3')))}. They agree on more than the "
   f"spread suggests: all three price the same plant, the same debt and the same programme, "
@@ -791,7 +1145,7 @@ rows = [["Pair", "Gap (EGP/share)", "The single assumption that drives it"],
          f"{PC(DR['implied_wacc_base'])} the market's price is reproduced; at any rate "
          "anchored to Egypt's sovereign it is not."]]
 table(rows, [1.9, 1.0, 4.1], size=8.3, text_cols=(2,))
-caption("Table 17.  Each gap isolated to the one assumption that creates it.")
+caption("{T}.  Each gap isolated to the one assumption that creates it.")
 
 # ==================================================================== ABOUT ===
 H1("About")

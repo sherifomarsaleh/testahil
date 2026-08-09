@@ -1,6 +1,6 @@
 {
  "model_study": {
-  "sections": "43 headings, 0 model-study sections missing",
+  "sections": "48 headings, 0 model-study sections missing",
   "sheets": "16 sheets in the model order",
   "lenses": [
    "Book value and sustainable return",
@@ -9,10 +9,10 @@
    "Normalised earnings power",
    "Relative multiples"
   ],
-  "inputs": "242 inputs, all four-field complete",
+  "inputs": "267 inputs, all four-field complete",
   "scrub": "49 patterns, 0 hits",
-  "figures": "12 figures, 0 with transparency",
-  "tables": "42 tables, 0 problems",
+  "figures": "15 figures, 0 with transparency",
+  "tables": "52 tables, 0 problems",
   "builders": "4 builders, 0 typed numerals",
   "contested": "EGP 3.50 a share between the two sides"
  },

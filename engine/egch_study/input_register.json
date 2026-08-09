@@ -2256,6 +2256,231 @@
    "date": "2026-08-08",
    "layer": "L4",
    "note": ""
+  },
+  "prod_urea_FY2223": {
+   "key": "prod_urea_FY2223",
+   "value": 586373,
+   "unit": "tonnes",
+   "source": "Audited financial statements, year ended 30 June 2023 (Central Auditing Organization with PKF Rashed Badr & Co, report dated 8 October 2023), auditor's product cost table",
+   "date": "2023-10-08",
+   "layer": "L1",
+   "note": ""
+  },
+  "prod_urea_FY2324": {
+   "key": "prod_urea_FY2324",
+   "value": 521868,
+   "unit": "tonnes",
+   "source": "Audited financial statements, year ended 30 June 2024 (Central Auditing Organization, report dated 23 October 2024), auditor's product cost table",
+   "date": "2024-10-23",
+   "layer": "L1",
+   "note": ""
+  },
+  "amort_FY2223": {
+   "key": "amort_FY2223",
+   "value": 92.0,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2023 (Central Auditing Organization with PKF Rashed Badr & Co, report dated 8 October 2023), amortisation of intangible assets",
+   "date": "2023-10-08",
+   "layer": "L1",
+   "note": "Modelled split of the depreciation and amortisation charge; flagged"
+  },
+  "amort_FY2324": {
+   "key": "amort_FY2324",
+   "value": 110.0,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2024 (Central Auditing Organization, report dated 23 October 2024), amortisation of intangible assets",
+   "date": "2024-10-23",
+   "layer": "L1",
+   "note": "Modelled split of the depreciation and amortisation charge; flagged"
+  },
+  "an_price_egp_t_FY2425": {
+   "key": "an_price_egp_t_FY2425",
+   "value": 20000.0,
+   "unit": "EGP/t",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 20 local revenue less the subsidised and free-market urea legs, over the combined nitrate tonnage",
+   "date": "2025-09-24",
+   "layer": "L5",
+   "note": ""
+  },
+  "other_rev_FY2425": {
+   "key": "other_rev_FY2425",
+   "value": 30.0,
+   "unit": "EGP m",
+   "source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 20 \u2014 merchant nitric acid, plant rent and services",
+   "date": "2025-09-24",
+   "layer": "L1",
+   "note": ""
+  },
+  "local_free_tonnes_FY2425": {
+   "key": "local_free_tonnes_FY2425",
+   "value": 37085,
+   "unit": "tonnes",
+   "source": "Constructed: note 20 local revenue less the subsidised leg, divided by the implied free-market price",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "local_free_price_FY2425": {
+   "key": "local_free_price_FY2425",
+   "value": 18485.0,
+   "unit": "EGP/t",
+   "source": "Constructed: export parity at the FY2024/25 realised price and rate, times the 90% local clearing ratio",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "usd_egp_anna_approval": {
+   "key": "usd_egp_anna_approval",
+   "value": 50.0,
+   "unit": "EGP/US$",
+   "source": "The rate prevailing when the project cost was approved on 25 June 2025, used to state the dual-currency approved cost as one figure",
+   "date": "2025-06-25",
+   "layer": "L2",
+   "note": ""
+  },
+  "anna_winddown_cost": {
+   "key": "anna_winddown_cost",
+   "value": 1000.0,
+   "unit": "EGP m",
+   "source": "Capital-discipline case only: the cost of stopping the programme in the first forecast year \u2014 contract settlement and site preservation. No filing states it; it is the study's estimate and is flagged.",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "q4_runrate_haircut": {
+   "key": "q4_runrate_haircut",
+   "value": 0.97,
+   "unit": "ratio",
+   "source": "The fourth quarter of FY2025/26 is run-rated on the third quarter's revenue with a 3% haircut for the summer gas curtailment the company discloses every year",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "bs_gross_fixed_M9FY2526": {
+   "key": "bs_gross_fixed_M9FY2526",
+   "value": 17022.493,
+   "unit": "EGP m",
+   "source": "Interim statements, nine months ended 31 March 2026, limited review dated 20 May 2026, note 6 fixed assets at cost",
+   "date": "2026-05-20",
+   "layer": "L1",
+   "note": ""
+  },
+  "bs_acc_dep_M9FY2526": {
+   "key": "bs_acc_dep_M9FY2526",
+   "value": 3435.3,
+   "unit": "EGP m",
+   "source": "Interim statements, nine months ended 31 March 2026, limited review dated 20 May 2026, note 6 accumulated depreciation",
+   "date": "2026-05-20",
+   "layer": "L1",
+   "note": ""
+  },
+  "spot_price_date": {
+   "key": "spot_price_date",
+   "value": "2026-08-06",
+   "unit": "date",
+   "source": "Egyptian Exchange closing session used as the study's anchor date",
+   "date": "2026-08-06",
+   "layer": "L2",
+   "note": ""
+  },
+  "dimson_sum_beta": {
+   "key": "dimson_sum_beta",
+   "value": 0.8275754032593131,
+   "unit": "ratio",
+   "source": "Dimson sum-beta over one lead, the contemporaneous term and two lags of the same weekly regression \u2014 the thin-trading correction, carried as the beta alternative",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "g_terminal_alt": {
+   "key": "g_terminal_alt",
+   "value": 0.05,
+   "unit": "ratio",
+   "source": "The alternative terminal growth rate: two points below the inflation target, which is negative real maintenance growth",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "prod_urea_FY2526E": {
+   "key": "prod_urea_FY2526E",
+   "value": 520000,
+   "unit": "tonnes",
+   "source": "Constructed for the FY2025/26 bridge year: Nine months reviewed output extended on the fourth-quarter run rate, from the nine-month reviewed accounts and the disclosed quarterly detail",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "subsidised_t_FY2526E": {
+   "key": "subsidised_t_FY2526E",
+   "value": 150000,
+   "unit": "tonnes",
+   "source": "Constructed for the FY2025/26 bridge year: Subsidised deliveries for the study year on the revised quota schedule, from the nine-month reviewed accounts and the disclosed quarterly detail",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "local_free_t_FY2526E": {
+   "key": "local_free_t_FY2526E",
+   "value": 40000,
+   "unit": "tonnes",
+   "source": "Constructed for the FY2025/26 bridge year: Free-market volume for the study year, from the nine-month reviewed accounts and the disclosed quarterly detail",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "export_usd_FY2526E": {
+   "key": "export_usd_FY2526E",
+   "value": 505.0,
+   "unit": "US$/t",
+   "source": "Constructed for the FY2025/26 bridge year: Study-year export price: the auditor's disclosed first-quarter increase of 43% on the FY2024/25 realised price, moderated toward the forward curve, from the nine-month reviewed accounts and the disclosed quarterly detail",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "usd_egp_FY2526E": {
+   "key": "usd_egp_FY2526E",
+   "value": 49.6,
+   "unit": "EGP/US$",
+   "source": "Constructed for the FY2025/26 bridge year: Average rate across the study year, from the nine-month reviewed accounts and the disclosed quarterly detail",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "subsidised_p_FY2526E": {
+   "key": "subsidised_p_FY2526E",
+   "value": 6720.0,
+   "unit": "EGP/t",
+   "source": "Constructed for the FY2025/26 bridge year: Administered price for the study year, from the nine-month reviewed accounts and the disclosed quarterly detail",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "local_free_p_FY2526E": {
+   "key": "local_free_p_FY2526E",
+   "value": 22000.0,
+   "unit": "EGP/t",
+   "source": "Constructed for the FY2025/26 bridge year: Free-market price for the study year, from the nine-month reviewed accounts and the disclosed quarterly detail",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "an_t_FY2526E": {
+   "key": "an_t_FY2526E",
+   "value": 26000,
+   "unit": "tonnes",
+   "source": "Constructed for the FY2025/26 bridge year: Nitrate output for the study year, from the nine-month reviewed accounts and the disclosed quarterly detail",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
+  },
+  "other_rev_FY2526E": {
+   "key": "other_rev_FY2526E",
+   "value": 120.0,
+   "unit": "EGP m",
+   "source": "Constructed for the FY2025/26 bridge year: Other revenue for the study year, from the nine-month reviewed accounts and the disclosed quarterly detail",
+   "date": "2026-08-08",
+   "layer": "L5",
+   "note": ""
   }
  }
 }

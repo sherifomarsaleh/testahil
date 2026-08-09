@@ -395,6 +395,69 @@ I("aggregator_share_count", 197950000, "shares",
   "A widely visible market page, inconsistent with its own market-capitalisation figure by "
   "a factor of ten — recorded ONLY as a documented discrepancy, not used", "2026-08-08", "L4")
 
+# ---- inputs the model reads directly, previously typed inside compute.py -----
+# Depth standard 3 (numeric traceability) is not satisfied by a builder that reads a
+# numbers file if the numbers file itself types its own literals. Everything below was
+# a literal in compute.py and is now sourced here like every other input.
+I("prod_urea_FY2223", 586373, "tonnes", FS23 + ", auditor's product cost table",
+  "2023-10-08", "L1")
+I("prod_urea_FY2324", 521868, "tonnes", FS24 + ", auditor's product cost table",
+  "2024-10-23", "L1")
+I("amort_FY2223", 92.000, "EGP m", FS23 + ", amortisation of intangible assets",
+  "2023-10-08", "L1", "Modelled split of the depreciation and amortisation charge; flagged")
+I("amort_FY2324", 110.000, "EGP m", FS24 + ", amortisation of intangible assets",
+  "2024-10-23", "L1", "Modelled split of the depreciation and amortisation charge; flagged")
+I("an_price_egp_t_FY2425", 20000.0, "EGP/t",
+  FS25 + ", note 20 local revenue less the subsidised and free-market urea legs, over the "
+  "combined nitrate tonnage", "2025-09-24", "L5")
+I("other_rev_FY2425", 30.0, "EGP m",
+  FS25 + ", note 20 — merchant nitric acid, plant rent and services", "2025-09-24", "L1")
+I("local_free_tonnes_FY2425", 37085, "tonnes",
+  "Constructed: note 20 local revenue less the subsidised leg, divided by the implied "
+  "free-market price", "2026-08-08", "L5")
+I("local_free_price_FY2425", 18485.0, "EGP/t",
+  "Constructed: export parity at the FY2024/25 realised price and rate, times the 90% local "
+  "clearing ratio", "2026-08-08", "L5")
+I("usd_egp_anna_approval", 50.0, "EGP/US$",
+  "The rate prevailing when the project cost was approved on 25 June 2025, used to state the "
+  "dual-currency approved cost as one figure", "2025-06-25", "L2")
+I("anna_winddown_cost", 1000.0, "EGP m",
+  "Capital-discipline case only: the cost of stopping the programme in the first forecast "
+  "year — contract settlement and site preservation. No filing states it; it is the study's "
+  "estimate and is flagged.", "2026-08-08", "L5")
+I("q4_runrate_haircut", 0.97, "ratio",
+  "The fourth quarter of FY2025/26 is run-rated on the third quarter's revenue with a 3% "
+  "haircut for the summer gas curtailment the company discloses every year", "2026-08-08", "L5")
+I("bs_gross_fixed_M9FY2526", 17022.493, "EGP m",
+  M9 + ", note 6 fixed assets at cost", "2026-05-20", "L1")
+I("bs_acc_dep_M9FY2526", 3435.300, "EGP m",
+  M9 + ", note 6 accumulated depreciation", "2026-05-20", "L1")
+I("spot_price_date", "2026-08-06", "date",
+  "Egyptian Exchange closing session used as the study's anchor date", "2026-08-06", "L2")
+I("dimson_sum_beta", 0.8275754032593131, "ratio",
+  "Dimson sum-beta over one lead, the contemporaneous term and two lags of the same weekly "
+  "regression — the thin-trading correction, carried as the beta alternative", "2026-08-08", "L5")
+I("g_terminal_alt", 0.050, "ratio",
+  "The alternative terminal growth rate: two points below the inflation target, which is "
+  "negative real maintenance growth", "2026-08-08", "L5")
+for k, v, u, s in [
+    ("prod_urea_FY2526E", 520000, "tonnes",
+     "Nine months reviewed output extended on the fourth-quarter run rate"),
+    ("subsidised_t_FY2526E", 150000, "tonnes",
+     "Subsidised deliveries for the study year on the revised quota schedule"),
+    ("local_free_t_FY2526E", 40000, "tonnes", "Free-market volume for the study year"),
+    ("export_usd_FY2526E", 505.0, "US$/t",
+     "Study-year export price: the auditor's disclosed first-quarter increase of 43% on the "
+     "FY2024/25 realised price, moderated toward the forward curve"),
+    ("usd_egp_FY2526E", 49.60, "EGP/US$", "Average rate across the study year"),
+    ("subsidised_p_FY2526E", 6720.0, "EGP/t", "Administered price for the study year"),
+    ("local_free_p_FY2526E", 22000.0, "EGP/t", "Free-market price for the study year"),
+    ("an_t_FY2526E", 26000, "tonnes", "Nitrate output for the study year"),
+    ("other_rev_FY2526E", 120.0, "EGP m", "Other revenue for the study year"),
+]:
+    I(k, v, u, "Constructed for the FY2025/26 bridge year: " + s + ", from the nine-month "
+      "reviewed accounts and the disclosed quarterly detail", "2026-08-08", "L5")
+
 # ------------------------------------------------------------------ validate --
 def validate():
     bad = []

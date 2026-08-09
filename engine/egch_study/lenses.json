@@ -1,10 +1,10 @@
 {
  "cashflow": {
   "label": "Cash flow",
-  "carry_through": -1.3030620665663768,
-  "stopped": 2.1939144403380193,
-  "upside": 0.9278295178532958,
-  "downside": -3.3771890363902095
+  "carry_through": -1.2979590362377038,
+  "stopped": 2.1990174706666927,
+  "upside": 0.9329325481819671,
+  "downside": -3.372086006061536
  },
  "book": {
   "label": "Book value and sustainable return",
@@ -24,18 +24,18 @@
  },
  "relative": {
   "label": "Relative multiples",
-  "ebitda_fwd": 4495.166772737418,
+  "ebitda_fwd": 4497.349599376708,
   "mult_low": 3.0,
   "mult_mid": 4.5,
   "mult_high": 6.0,
-  "ev_low": 13485.500318212253,
-  "ev_mid": 20228.25047731838,
-  "ev_high": 26971.000636424506,
-  "value_low": 3.5191222305940886,
-  "value_per_share": 6.913273765720695,
-  "value_high": 10.3074253008473,
-  "implied_at_market": 8.410101185856124,
-  "implied_at_model": 0.8688999678174687
+  "ev_low": 13492.048798130125,
+  "ev_mid": 20238.073197195186,
+  "ev_high": 26984.09759626025,
+  "value_low": 3.5223934218838107,
+  "value_per_share": 6.918193137103221,
+  "value_high": 10.313992852322633,
+  "implied_at_market": 8.406030389823245,
+  "implied_at_model": 0.8707434791350498
  },
  "normalised": {
   "label": "Normalised earnings power",
@@ -64,32 +64,32 @@
   "mult": 10.0,
   "mult_high": 12.0,
   "ev": 13996.360268687697,
-  "value_low": 2.367186111056919,
-  "value_per_share": 3.776277848735929,
-  "value_high": 5.18536958641494
+  "value_low": 2.3671609421610307,
+  "value_per_share": 3.776252679840041,
+  "value_high": 5.185344417519053
  },
  "synthesis": {
   "field": {
-   "Cash flow \u2014 programme carried through": -1.3030620665663768,
-   "Cash flow \u2014 programme stopped": 2.1939144403380193,
+   "Cash flow \u2014 programme carried through": -1.2979590362377038,
+   "Cash flow \u2014 programme stopped": 2.1990174706666927,
    "Book value and sustainable return": 0.0,
-   "Relative multiples": 6.913273765720695,
-   "Normalised earnings power": 3.776277848735929
+   "Relative multiples": 6.918193137103221,
+   "Normalised earnings power": 3.776252679840041
   },
   "low": 0.0,
-  "high": 6.913273765720695,
-  "central_carry_through": -1.3030620665663768,
-  "central_stopped": 2.1939144403380193,
+  "high": 6.918193137103221,
+  "central_carry_through": -1.2979590362377038,
+  "central_stopped": 2.1990174706666927,
   "spot": 13.98,
   "note": "The two cash-flow readings are the contested judgement and are never averaged. The other three lenses are shown against both."
  },
  "contested": {
   "question": "Is the ANNA capital programme carried through, or stopped?",
   "side_a_label": "Carried through",
-  "side_a": -1.3030620665663768,
+  "side_a": -1.2979590362377038,
   "side_b_label": "Stopped",
-  "side_b": 2.1939144403380193,
-  "gap": 3.496976506904396,
+  "side_b": 2.1990174706666927,
+  "gap": 3.4969765069043968,
   "gap_equity": 6947.020088612653,
   "decides": "Whether the plant, once built, earns a return above the cost of the capital sunk into it. On the disclosed bank-approved cost and the derived nameplate it does not, which is why stopping is worth more than finishing."
  }

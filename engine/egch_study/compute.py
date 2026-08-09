@@ -60,8 +60,8 @@ D['design_ammonia_t'] = _V('design_ammonia_tpy')
 # FY2023/24 fell 11%/29% on gas curtailment; FY2024/25 is exact from the auditor's
 # own cost table. The forecast never returns to plate because the summer gas cuts
 # are structural, not cyclical.
-D['urea_t'] = {"FY2022/23": 586_373, "FY2023/24": 521_868, "FY2024/25": 513_385,
-               "FY2025/26E": 520_000}
+D['urea_t'] = {"FY2022/23": _V('prod_urea_FY2223'), "FY2023/24": _V('prod_urea_FY2324'),
+               "FY2024/25": _V('prod_urea_FY2425'), "FY2025/26E": _V('prod_urea_FY2526E')}
 D['urea_util'] = _V('urea_util')      # -> 525k .. 545k tonnes
 D['ammonia_per_urea_t'] = _V('ammonia_per_urea')
 
@@ -71,9 +71,11 @@ D['ammonia_per_urea_t'] = _V('ammonia_per_urea')
 # against 6,608.75m disclosed. Subsidised deliveries were 147kt over the 14 months
 # to Aug-2025 (126kt/yr) against a 322kt requirement — a 46% compliance rate the
 # forecast does not assume away.
-D['subsidised_t'] = {"FY2024/25": 126_000, "FY2025/26E": 150_000}
+D['subsidised_t'] = {"FY2024/25": _V('subsidised_tonnes_FY2425'),
+                     "FY2025/26E": _V('subsidised_t_FY2526E')}
 D['subsidised_t_path'] = _V('subsidised_t_path')
-D['local_free_t'] = {"FY2024/25": 37_085, "FY2025/26E": 40_000}
+D['local_free_t'] = {"FY2024/25": _V('local_free_tonnes_FY2425'),
+                     "FY2025/26E": _V('local_free_t_FY2526E')}
 D['local_free_path'] = _V('local_free_path')
 
 # ---- prices ------------------------------------------------------------------
@@ -81,24 +83,29 @@ D['local_free_path'] = _V('local_free_path')
 # export prices ran +43% y/y (auditor) and CME FOB Egypt settled US$545/t on
 # 7-Aug-2026 in a war-tightened market. The path mean-reverts toward the cash cost
 # of the marginal gas-based producer rather than holding the conflict premium.
-D['export_usd_t'] = {"FY2024/25": 385.0, "FY2025/26E": 505.0}
+D['export_usd_t'] = {"FY2024/25": _V('export_price_FY2425_usd'),
+                     "FY2025/26E": _V('export_usd_FY2526E')}
 D['export_usd_path'] = _V('export_usd_path')
 D['export_usd_path_bull'] = _V('export_usd_path_bull')
-D['usd_egp'] = {"FY2024/25": 49.00, "FY2025/26E": 49.60}
+D['usd_egp'] = {"FY2024/25": _V('usd_egp_avg_FY2425'), "FY2025/26E": _V('usd_egp_FY2526E')}
 D['usd_egp_path'] = _V('usd_egp_path')          # 4.5%/yr, the SAME wedge
                                                             # used in the Kd FX build
 D['export_duty_pct'] = _V('export_duty_2026')       # 2026 switch from the EGP 2,500/t shortfall levy to
                                   # a 10% ad-valorem duty tied to the global price
-D['subsidised_egp_t'] = {"FY2024/25": 6_000.0, "FY2025/26E": 6_720.0}
+D['subsidised_egp_t'] = {"FY2024/25": _V('subsidised_price'),
+                         "FY2025/26E": _V('subsidised_p_FY2526E')}
 D['subsidised_p_path'] = _V('subsidised_p_path')  # administered
-D['local_free_egp_t'] = {"FY2024/25": 18_485.0, "FY2025/26E": 22_000.0}
+D['local_free_egp_t'] = {"FY2024/25": _V('local_free_price_FY2425'),
+                          "FY2025/26E": _V('local_free_p_FY2526E')}
 D['local_free_parity'] = _V('local_free_parity')     # local free-market urea clears at ~90% of export parity
 
 # ---- ammonium nitrate & other legs ------------------------------------------
-D['an_t'] = {"FY2024/25": 26_058, "FY2025/26E": 26_000}     # 33.5% granulated + LDAN
+D['an_t'] = {"FY2024/25": _V('prod_an_gran_FY2425') + _V('prod_ldan_FY2425'),
+             "FY2025/26E": _V('an_t_FY2526E')}                  # 33.5% granulated + LDAN
 D['an_path'] = _V('an_path')
-D['an_egp_t'] = {"FY2024/25": 20_000.0}
-D['other_rev'] = {"FY2024/25": 30.0, "FY2025/26E": 120.0}   # nitric acid merchant,
+D['an_egp_t'] = {"FY2024/25": _V('an_price_egp_t_FY2425')}
+D['other_rev'] = {"FY2024/25": _V('other_rev_FY2425'),
+                  "FY2025/26E": _V('other_rev_FY2526E')}      # nitric acid merchant,
 D['other_rev_path'] = _V('other_rev_path')   # ferrosilicon plant rent,
                                                             # services (EGP million)
 
@@ -110,25 +117,28 @@ D['other_rev_path'] = _V('other_rev_path')   # ferrosilicon plant rent,
 # disclosed 1,025-1,771 m3/t range, and calibrated so that gas is 75% of the
 # FY2024/25 materials line — the split of that line between gas and everything else
 # is the model's, and is flagged as such, because the statements give only the total.
-D['gas_m3_per_t_ammonia'] = 1_292.0
+D['gas_m3_per_t_ammonia'] = _V('gas_m3_per_t_ammonia_modelled')
 D['gas_usd_mmbtu'] = _V('gas_realised_usd_mmbtu')
 D['gas_usd_mmbtu_contract'] = _V('gas_contract_usd_mmbtu')
 D['mmbtu_per_m3'] = _V('mmbtu_per_m3')
-D['other_materials_egp_t_urea'] = 1_101.6e6 / _V('prod_urea_FY2425')
+D['other_materials_egp_t_urea'] = (_V('cogs_materials_FY2425')
+                                   * (1 - _V('gas_share_of_materials'))
+                                   * 1e6 / _V('prod_urea_FY2425'))
 D['wages'] = {"FY2024/25": _V('cogs_wages_FY2425')}
 D['services'] = _V('cogs_services_FY2425')
 D['freight_egp_t_export'] = _V('sell_freight_FY2425') * 1e6 / _V('export_tonnes_FY2425')
 D['other_selling'] = _V('sell_other_FY2425')
 D['admin'] = _V('is_admin_FY2425')
-D['abnormal_gas'] = {"FY2024/25": 164.478}                  # stoppage cost, note 25
+D['abnormal_gas'] = {"FY2024/25": _V('stoppage_cost_FY2425')}   # stoppage cost, note 25
 D['abnormal_gas_path'] = _V('abnormal_gas_path')  # decays as supply normalises
 D['cpi_path'] = _V('cpi_path')         # CBE target convergence
                                                             # (14.3% Jun-2026 print)
 # ---- D&A, capex, working capital --------------------------------------------
 D['dep_base'] = _V('dep_charge_FY2425')
 D['amort_base'] = _V('amort_FY2425')
-D['anna_total_cost'] = 6_422.4 + 278.385 * 50.0        # EGP m; bank-approved 25-Jun-2025
-D['anna_spent'] = 5_653.5             # CWIP at 31-Mar-2026
+D['anna_total_cost'] = (_V('anna_cost_egp')
+                        + _V('anna_cost_usd') * _V('usd_egp_anna_approval'))
+D['anna_spent'] = _V('bs_cwip_M9FY2526')            # CWIP at 31-Mar-2026
 D['anna_capex_path'] = _V('anna_capex_path')
 D['maint_capex_pct_rev'] = _V('maint_capex_pct')      # pre-ANNA observed run 42.5-81m on 4.4-6.6bn of
                                       # revenue was abnormally low (plant just built);
@@ -182,18 +192,27 @@ def _wacc_from(rf_star, kd_pretax):
     ke = rf_star + D['beta'] * D['erp']
     return D['we'] * ke + D['wd'] * kd_pretax * (1 - D['tax_rate']), ke
 
-D['wacc_terminal'], D['ke_terminal'] = _wacc_from(D['rf_star_terminal'],
-                                                  D['kd_local_equiv_terminal'])
-# linear glide across the explicit window, spot in year 1 -> terminal-adjacent in year 5
-D['wacc_path'], D['rf_star_path'], D['kd_path'] = [], [], []
-for _k in range(5):
-    _f = _k / 5.0                                     # glide fraction, visibly derived
-    _rf = D['rf_star_spot'] + (D['rf_star_terminal'] - D['rf_star_spot']) * _f
-    _kd = WACC['kd_pretax_blended'] + (D['kd_local_equiv_terminal']
-                                       - WACC['kd_pretax_blended']) * _f
-    _w, _ = _wacc_from(_rf, _kd)
-    D['rf_star_path'].append(_rf); D['kd_path'].append(_kd); D['wacc_path'].append(_w)
-D['wacc'] = D['wacc_path'][0]
+def set_glide():
+    """Rebuild the whole rate structure from its own components. Called once here and
+    again by alternatives.py, which moves one component at a time and reprices — so an
+    alternative construction can never be a hand-adjusted rate."""
+    D['rf_star_terminal'] = (1 + D['inflation_lt']) * (1 + D['real_rate_lt']) - 1
+    D['kd_local_equiv_terminal'] = (1 + D['kd_usd_lt']) * (1 + D['deprec_lt']) - 1
+    D['wacc_terminal'], D['ke_terminal'] = _wacc_from(D['rf_star_terminal'],
+                                                     D['kd_local_equiv_terminal'])
+    # linear glide across the explicit window, spot in year 1 -> terminal-adjacent in year 5
+    D['wacc_path'], D['rf_star_path'], D['kd_path'] = [], [], []
+    for _k in range(5):
+        _f = _k / 5.0                                 # glide fraction, visibly derived
+        _rf = D['rf_star_spot'] + (D['rf_star_terminal'] - D['rf_star_spot']) * _f
+        _kd = D['kd_pretax_spot'] + (D['kd_local_equiv_terminal'] - D['kd_pretax_spot']) * _f
+        _w, _ = _wacc_from(_rf, _kd)
+        D['rf_star_path'].append(_rf); D['kd_path'].append(_kd); D['wacc_path'].append(_w)
+    D['wacc'] = D['wacc_path'][0]
+
+
+D['kd_pretax_spot'] = WACC['kd_pretax_blended']
+set_glide()
 
 # =============================================================================
 # 2. HISTORICALS — straight from the audited statements
@@ -205,36 +224,33 @@ def hist_year(rev, cogs, sell, admin, dep, net, label):
                 selling=sell, admin=admin, ebit=ebit, ebit_pct=ebit / rev,
                 dep=dep, ebitda=ebit + dep, ebitda_pct=(ebit + dep) / rev, net=net)
 
-H = [
-    hist_year(m(6_612_226), m(3_574_483), m(473_720), m(188_851), m(627_213 + 92_000),
-              m(1_150_767), "FY2022/23"),
-    hist_year(m(6_532_126), m(4_395_788), m(562_527), m(297_887), m(662_634 + 110_000),
-              m(2_537_934), "FY2023/24"),
-    hist_year(m(8_602_606), m(5_300_310), m(786_463), m(359_624), m(771_213 + 119_378),
-              m(986_964), "FY2024/25"),
-]
-H[1]['net_underlying'] = m(2_537_934 - 2_034_573)     # ex the one-off revaluation gain
+H = [hist_year(_V(f'is_revenue_FY{t}'), _V(f'is_cogs_FY{t}'), _V(f'is_selling_FY{t}'),
+               _V(f'is_admin_FY{t}'), _V(f'cogs_dep_FY{t}') + _V(f'amort_FY{t}'),
+               _V(f'is_net_FY{t}'), y)
+     for y, t in zip(HIST_YEARS, ("2223", "2324", "2425"))]
+H[1]['net_underlying'] = _V('is_net_FY2324') - _V('oneoff_reval_FY2324')   # ex the one-off gain
 
 # FY2025/26E — nine months reviewed, fourth quarter run-rated on the third quarter's
 # operating performance (the strongest on record) with the FX line set to zero, since
 # a translation swing is not forecastable and is carried as a sensitivity instead.
-q3_rev, q3_gross_pct = m(3_158_554), 0.463
+q3_rev, q3_gross_pct = _V('is_revenue_Q3'), _V('gross_margin_Q3')
+q4 = q3_rev * _V('q4_runrate_haircut')
 fy2526 = dict(
     year="FY2025/26E",
-    revenue=m(7_314_933) + q3_rev * 0.97,
+    revenue=_V('is_revenue_9M') + q4,
     cogs=None, gross=None,
 )
-fy2526['gross'] = m(3_134_979) + q3_rev * 0.97 * q3_gross_pct
+fy2526['gross'] = _V('is_gross_9M') + q4 * q3_gross_pct
 fy2526['cogs'] = fy2526['revenue'] - fy2526['gross']
 fy2526['gross_pct'] = fy2526['gross'] / fy2526['revenue']
-fy2526['selling'] = m(734_707) * 4 / 3
-fy2526['admin'] = m(273_831) * 4 / 3
+fy2526['selling'] = _V('is_selling_9M') * 4 / 3
+fy2526['admin'] = _V('is_admin_9M') * 4 / 3
 fy2526['ebit'] = fy2526['gross'] - fy2526['selling'] - fy2526['admin']
 fy2526['ebit_pct'] = fy2526['ebit'] / fy2526['revenue']
 fy2526['dep'] = D['dep_base'] + D['amort_base']
 fy2526['ebitda'] = fy2526['ebit'] + fy2526['dep']
 fy2526['ebitda_pct'] = fy2526['ebitda'] / fy2526['revenue']
-fy2526['net'] = m(531_310)      # nine months actual; Q4 not annualised into net because
+fy2526['net'] = _V('is_net_9M')  # nine months actual; Q4 not annualised into net because
                                 # the FX line dominates it
 
 # =============================================================================
@@ -272,7 +288,7 @@ def build(case="base"):
         for j in range(k + 1):
             cpi_cum *= (1 + D['cpi_path'][j])
         other_mat = urea_t * D['other_materials_egp_t_urea'] * cpi_cum / 1e6
-        wages = 212.857 * cpi_cum
+        wages = D['wages']["FY2024/25"] * cpi_cum
         services = D['services'] * cpi_cum
         dep = D['dep_base'] * (1 + 0.02 * k) + D['amort_base']
         cogs = gas_cost + other_mat + wages + services + dep
@@ -304,7 +320,7 @@ def build(case="base"):
             year=yr, fx=fx, urea_t=urea_t, ammonia_t=ammonia_t,
             exp_t=exp_t, sub_t=sub_t, free_t=free_t, an_t=an_t,
             p_exp_usd=p_exp_usd, p_exp_egp=p_exp_egp, p_free=p_free,
-            p_sub=[7_526.0, 8_429.0, 9_272.0, 10_106.0, 10_915.0][k], p_an=p_an,
+            p_sub=D['subsidised_p_path'][k], p_an=p_an,
             rev_exp=rev_exp, rev_sub=rev_sub, rev_free=rev_free, rev_an=rev_an,
             rev_other=rev_other, revenue=revenue,
             gas_price_egp_m3=gas_price_egp_m3, gas_cost=gas_cost, other_mat=other_mat,
@@ -348,13 +364,14 @@ def bridge(rows, T):
     pv_explicit = sum(r['pv'] for r in rows)
     ev = pv_explicit + T['pv_tv']
     # non-operating assets and net debt, 31-Mar-2026 reviewed balance sheet
-    cash = m(4_606_522)
-    debt = m(14_386_056 + 45_905 + 206_994)
-    fvoci = m(1_382_886)              # remaining ABUK + Delta Sugar stakes, at market
-    inv_prop = m(2_155_061)
+    cash = _V('bs_cash_M9FY2526')
+    debt = (_V('bs_debt_lt_M9FY2526') + _V('bs_debt_holdco_M9FY2526')
+            + _V('bs_debt_cur_M9FY2526'))
+    fvoci = _V('bs_fvoci_M9FY2526')   # remaining ABUK + Delta Sugar stakes, at market
+    inv_prop = _V('bs_invprop_M9FY2526')
     net_debt = debt - cash
     equity = ev - net_debt + fvoci + inv_prop
-    shares = 1_986_578_999
+    shares = _V('shares_outstanding')
     return dict(pv_explicit=pv_explicit, pv_tv=T['pv_tv'], ev=ev,
                 tv_pct_ev=T['pv_tv'] / ev if ev else float('nan'),
                 cash=cash, debt=debt, net_debt=net_debt, fvoci=fvoci,
@@ -362,8 +379,10 @@ def bridge(rows, T):
                 per_share=equity * 1e6 / shares)
 
 
-CASES = {}
-for case in ("base", "bull", "bear", "halt"):
+def run_case(case):
+    """One case, end to end: the operating build, the case adjustment, the terminal year
+    and the bridge. Every alternative construction in alternatives.py goes through THIS
+    function, so an alternative is a re-run of the model and never a re-description of it."""
     rws = build("bull" if case == "bull" else "base")
     if case == "halt":
         # CAPITAL-DISCIPLINE case: the board stops ANNA at the end of FY2026/27, takes
@@ -373,7 +392,8 @@ for case in ("base", "bull", "bear", "halt"):
         # what the programme is costing shareholders, in EGP per share, against the
         # alternative of not doing it.
         for k, r in enumerate(rws):
-            r['capex'] = (1_000.0 if k == 0 else 0.0) + r['revenue'] * D['maint_capex_pct_rev']
+            r['capex'] = ((_V('anna_winddown_cost') if k == 0 else 0.0)
+                          + r['revenue'] * D['maint_capex_pct_rev'])
             r['fcff'] = r['nopat'] + r['dep'] - r['capex'] - r['dwc']
             r['pv'] = r['fcff'] * r['df']
     if case == "bear":
@@ -395,7 +415,10 @@ for case in ("base", "bull", "bear", "halt"):
             r['fcff'] = r['nopat'] + r['dep'] - r['capex'] - r['dwc']
             r['pv'] = r['fcff'] * r['df']
     T = terminal(rws, case)
-    CASES[case] = dict(rows=rws, terminal=T, bridge=bridge(rws, T))
+    return dict(rows=rws, terminal=T, bridge=bridge(rws, T))
+
+
+CASES = {case: run_case(case) for case in ("base", "bull", "bear", "halt")}
 
 base = CASES['base']
 print(f"{'':12s} " + " ".join(f"{y:>11s}" for y in YEARS))
@@ -408,7 +431,7 @@ for case in ("bear", "base", "bull", "halt"):
     print(f"{case.upper():5s} EV {b['ev']:10,.0f} | TV {b['tv_pct_ev']*100:5.1f}% of EV | "
           f"net debt {b['net_debt']:9,.0f} | equity {b['equity']:10,.0f} | "
           f"per share EGP {b['per_share']:6.2f}")
-print(f"\nspot EGP 13.98 (6-Aug-2026) | WACC glide "
+print(f"\nspot EGP {_V('spot_price'):.2f} ({_V('spot_price_date')}) | WACC glide "
       f"{' -> '.join(f'{w*100:.1f}%' for w in D['wacc_path'])} | terminal "
       f"{D['wacc_terminal']*100:.2f}% | g {D['g_terminal']*100:.1f}%")
 
@@ -428,7 +451,8 @@ def implied_flat_wacc(target_per_share, case="base"):
         rws = build("bull" if case == "bull" else "base")
         if case == "halt":
             for k, r in enumerate(rws):
-                r['capex'] = (1_000.0 if k == 0 else 0.0) + r['revenue'] * D['maint_capex_pct_rev']
+                r['capex'] = ((_V('anna_winddown_cost') if k == 0 else 0.0)
+                              + r['revenue'] * D['maint_capex_pct_rev'])
                 r['fcff'] = r['nopat'] + r['dep'] - r['capex'] - r['dwc']
                 r['pv'] = r['fcff'] * r['df']
         ps = bridge(rws, terminal(rws, case))['per_share']
@@ -439,8 +463,8 @@ def implied_flat_wacc(target_per_share, case="base"):
     D['wacc_path'], D['wacc_terminal'] = saved_path, saved_T
     return mid
 
-D['implied_wacc_base'] = implied_flat_wacc(13.98, "base")
-D['implied_wacc_halt'] = implied_flat_wacc(13.98, "halt")
+D['implied_wacc_base'] = implied_flat_wacc(_V('spot_price'), "base")
+D['implied_wacc_halt'] = implied_flat_wacc(_V('spot_price'), "halt")
 print(f"reverse DCF: EGP 13.98 implies a FLAT nominal EGP discount rate of "
       f"{D['implied_wacc_base']*100:.1f}% on the committed-capital case and "
       f"{D['implied_wacc_halt']*100:.1f}% on the capital-discipline case — against a "
@@ -453,6 +477,6 @@ print(f"ANNA programme cost to shareholders: "
 out = dict(drivers=D, hist=H, fy2526=fy2526, years=YEARS, hist_years=HIST_YEARS,
            cases={k: dict(rows=v['rows'], terminal=v['terminal'], bridge=v['bridge'])
                   for k, v in CASES.items()},
-           wacc=WACC, spot=13.98, spot_date="2026-08-06")
+           wacc=WACC, spot=_V('spot_price'), spot_date=_V('spot_price_date'))
 json.dump(out, open(os.path.join(HERE, 'study_numbers.json'), 'w'), indent=1, default=float)
 print("\nwrote study_numbers.json")

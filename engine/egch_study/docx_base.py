@@ -73,8 +73,24 @@ def H1(text):
 def H2(text):
     return P(text, size=12, bold=True, color=INK, space_before=10, space_after=4)
 
+# Figures and tables are numbered BY THE BUILDER, in document order, from a token in the
+# caption text. Hand-numbered captions drifted the moment a table was inserted in the
+# middle of a section — the numbering is a property of the document's order, so the
+# document's order is what assigns it.
+_FIGN, _TABN = [0], [0]
+
+def _number(text):
+    while '{F}' in text:
+        _FIGN[0] += 1
+        text = text.replace('{F}', f'Figure {_FIGN[0]}', 1)
+    while '{T}' in text:
+        _TABN[0] += 1
+        text = text.replace('{T}', f'Table {_TABN[0]}', 1)
+    return text
+
+
 def caption(text):
-    return P(text, size=8.7, italic=True, color=GREY, space_after=10)
+    return P(_number(text), size=8.7, italic=True, color=GREY, space_after=10)
 
 def bullet(text, bold_head=None):
     p = doc.add_paragraph(style='List Bullet')
