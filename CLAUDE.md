@@ -32,6 +32,9 @@ diff-only summary leaves that copy silently behind.
   (holdco); `REFERENCE_SET` asserts on exactly those. No other company is a template or an
   exemplar. Company names elsewhere in the protocol are evidence or coverage, not references.
 - Responding to an external critique of a delivered study → `engine/Critique_Response_Prompt.md`
+- Setting a SET of delivered studies against a third party's studies on the same names ("are ours too
+  conservative?") → `engine/Comparative_Adjudication_Prompt.md` — the adjudication runs OUTSIDE this
+  project, with no protocol file attached; only the bridge/scorecard build happens in-repo.
 - Publishing a study or update to the live site → `engine/Publish_Protocol.md`
 - Rolling forward / grading a matured ledger cohort → `engine/Rollforward_and_Grading_Protocol.md`
 - Fundamental study ↔ Monte Carlo cone integration → `engine/Fundamental_MC_Integration_Protocol.md`
