@@ -1,0 +1,98 @@
+[
+ {
+  "label": "SA-1  provision at the stated three-year average 6.516%",
+  "over": {
+   "prov_pct_permanent": 0.0651609
+  },
+  "centre": 63.655292375514875,
+  "d": -2.9119402368934146,
+  "pct": -0.04374434872256683,
+  "frame_a": 60.89611318831563
+ },
+ {
+  "label": "SA-3  terminal ROIC at the model FY2030 ROIC 16.36%",
+  "over": {
+   "roic_term": 0.1636
+  },
+  "centre": 63.78360636032436,
+  "d": -2.783626252083927,
+  "pct": -0.04181676393687206,
+  "frame_a": 61.97701615670778
+ },
+ {
+  "label": "SA-4  FCFF taxed at the effective 23.5%",
+  "over": {
+   "tax_stat": 0.235
+  },
+  "centre": 65.98264877102207,
+  "d": -0.5845838413862197,
+  "pct": -0.00878185585376512,
+  "frame_a": 66.11206596712883
+ },
+ {
+  "label": "SA-10 peer leg at the true midpoint of the two observations, 21.35x",
+  "over": {
+   "peer_pe_regional": 21.35
+  },
+  "centre": 66.85606239990743,
+  "d": 0.28882978749913946,
+  "pct": 0.004338918356135757,
+  "frame_a": 67.22333140666257
+ },
+ {
+  "label": "C-11  risk-free at the 6-Aug observable 23.00%",
+  "over": {
+   "rf": 0.23
+  },
+  "centre": 66.07749343302575,
+  "d": -0.4897391793825392,
+  "pct": -0.007357060826519213,
+  "frame_a": 66.30312898560307
+ },
+ {
+  "label": "C-15  interest charged at the marginal blended rate on flat debt",
+  "over": {
+   "int_path": [
+    1631.802144288,
+    1631.802144288,
+    1631.802144288,
+    1631.802144288,
+    1631.802144288
+   ]
+  },
+  "centre": 59.547170223292,
+  "d": -7.0200623891162905,
+  "pct": -0.10545822792410531,
+  "frame_a": 67.22333140666257
+ },
+ {
+  "label": "C-19  terminal real rate at Egypt real GDP growth (rf_term 9.5%)",
+  "over": {
+   "rf_term": 0.095
+  },
+  "centre": 74.30973686418216,
+  "d": 7.742504251773866,
+  "pct": 0.11631104295494854,
+  "frame_a": 75.91266151021891
+ },
+ {
+  "label": "C-22  associates at the Q1 run-rate, 52.5m",
+  "over": {
+   "assoc_norm": 52.5
+  },
+  "centre": 56.236997322975476,
+  "d": -10.330235289432814,
+  "pct": -0.15518498943138026,
+  "frame_a": 54.34969598979529
+ },
+ {
+  "label": "X     associates dropped to zero (bound test)",
+  "over": {
+   "assoc_norm": 0.0
+  },
+  "centre": 53.48160369177121,
+  "d": -13.085628920637077,
+  "pct": -0.19657763147266372,
+  "frame_a": 50.927590372653356
+ }
+]

@@ -734,6 +734,14 @@ INP = dict(
 )
 
 V = {k: v['value'] for k, v in INP.items()}
+# --- audit hook: re-run the whole model with one input replaced, for pricing a finding ---
+_ovr = os.environ.get('PHAR_OVERRIDE')
+if _ovr:
+    for _k, _v in json.loads(_ovr).items():
+        assert _k in V, f'override targets an unknown input: {_k}'
+        V[_k] = _v
+        INP[_k] = dict(INP[_k], value=_v, source=INP[_k]['source'] + ' [AUDIT OVERRIDE]')
+_QUIET = bool(os.environ.get('PHAR_QUIET'))
 for k, rec in INP.items():
     assert set(rec) == {'value', 'source', 'date', 'layer'}, k
     assert rec['source'] and rec['date'] and rec['layer'], f'{k} is not four-field complete'
@@ -747,7 +755,8 @@ NARR = []
 
 def say(s):
     NARR.append(s)
-    print(s)
+    if not _QUIET:
+        print(s)
 
 
 # ============================ HISTORY ========================================
@@ -1416,7 +1425,8 @@ OUT = dict(
     narrative=NARR,
 )
 
-with open(os.path.join(HERE, 'study_numbers.json'), 'w') as f:
+_out_path = os.environ.get('PHAR_OUT', os.path.join(HERE, 'study_numbers.json'))
+with open(_out_path, 'w') as f:
     json.dump(OUT, f, indent=1, default=float)
 print('\nwrote study_numbers.json')
 print(f"FAIR VALUE FIELD  bear {fair_bear:,.2f} · centre {fair_base:,.2f} · bull {fair_bull:,.2f} "
