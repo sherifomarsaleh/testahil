@@ -1,0 +1,21 @@
+{
+ "beta": 0.651569693939167,
+ "r2": 0.15720515440205796,
+ "n": 190,
+ "se": 0.11002959036369793,
+ "ci90": [
+  0.47057101779088384,
+  0.8325683700874501
+ ],
+ "usable": true,
+ "gate_msg": "passes minimum usability gate",
+ "index": "DFMGI (DFM General Index)",
+ "window": [
+  "2022-11-25",
+  "2026-07-17"
+ ],
+ "window_years": 3.64,
+ "frequency": "weekly",
+ "weak": false,
+ "warnings": []
+}
