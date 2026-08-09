@@ -2921,8 +2921,50 @@
   },
   "cb_rate": {
    "value": 0.0365,
-   "source": "Central Bank of the UAE Base Rate, unchanged since the June 2026 decision",
-   "date": "2026-06-17",
+   "source": "Central Bank of the UAE Base Rate, maintained at the 29 July 2026 decision. The last change was a 25 basis point cut from 3.90% on 10 December 2025",
+   "date": "2026-07-29",
+   "layer": "Country"
+  },
+  "erp_cds_available": {
+   "value": 0,
+   "source": "Damodaran country risk file, January 2026 edition \u2014 the United Arab Emirates has no sovereign credit-default-swap entry in the file, so the second premium basis cannot be built for this country. Gulf comparators that do carry one show the two bases are not interchangeable: Saudi Arabia's swap basis gives 5.72% against 5.01% on the rating basis",
+   "date": "2026-01-05",
+   "layer": "Country"
+  },
+  "gdp_growth_26": {
+   "value": 0.031,
+   "source": "International Monetary Fund World Economic Outlook database, United Arab Emirates real GDP growth",
+   "date": "2026-04-30",
+   "layer": "Country"
+  },
+  "inflation_26": {
+   "value": 0.025,
+   "source": "International Monetary Fund World Economic Outlook database, United Arab Emirates consumer price inflation; the projection settles at 2.0% from 2027 onward, which is the anchor the terminal growth rate rests on",
+   "date": "2026-04-30",
+   "layer": "Country"
+  },
+  "vlcc_1y_tc_market": {
+   "value": 76900,
+   "source": "One-year time charters fixed by a listed crude tanker owner in early 2026 for seven very large crude carriers, commencing between late January and April 2026, as reported in trade coverage of its results",
+   "date": "2026-01-31",
+   "layer": "Industry"
+  },
+  "vlcc_spot_clarksons_jan26": {
+   "value": 102897,
+   "source": "Weighted average very large crude carrier earnings reported by a shipbroker for the week to 23 January 2026, down from USD 115,635 a week earlier",
+   "date": "2026-01-23",
+   "layer": "Industry"
+  },
+  "tanker_orderbook_pct_fleet": {
+   "value": 0.27,
+   "source": "Crude tanker order book as a share of the trading fleet, about 130 million deadweight tonnes, reported by trade coverage as a seventeen-year high, with the very large crude carrier order book near 30%",
+   "date": "2026-06-30",
+   "layer": "Industry"
+  },
+  "tax_topup_rate": {
+   "value": 0.15,
+   "source": "Domestic minimum top-up tax of 15% applying in the UAE to groups within the global minimum tax rules for financial years beginning on or after 1 January 2025. International shipping income is excluded from those rules, which is consistent with the sub-1% charge the company's shipping units actually bore in 2025, but the exposure is priced as a downside case rather than assumed away",
+   "date": "2025-01-01",
    "layer": "Country"
   },
   "tax_stat": {
@@ -5837,6 +5879,24 @@
    "1.0": 8.398472715396702,
    "1.1": 7.91369095144921,
    "1.2": 7.428909187501718
+  },
+  "tax": {
+   "0.05": 8.369572255284547,
+   "0.09": 7.8500874528441384,
+   "0.15": 7.0708602491835295
+  },
+  "market_cross_check": {
+   "vlcc_1y_tc": 76900,
+   "vlcc_spot_broker": 102897,
+   "vlcc_path": [
+    150616.5,
+    124943.28125,
+    99270.0625,
+    73596.84375,
+    47923.625
+   ],
+   "orderbook_pct": 0.27,
+   "note": "An independent one-year time charter fixed in early 2026 priced a very large crude carrier at USD 76,900 a day, well below the spot rate of the moment. A forward market that will not pay spot for a year of time is telling the reader it does not expect spot to hold, and a crude tanker order book near 27% of the trading fleet is the supply reason why. Both point the same way as the reversion path this study uses as its base, and both are reasons the sustained-strength path is published as an alternative rather than adopted."
   }
  },
  "strike": {
@@ -8821,6 +8881,41 @@
    "check": "four fields complete: cb_rate",
    "passed": true,
    "detail": "cb_rate"
+  },
+  {
+   "check": "four fields complete: erp_cds_available",
+   "passed": true,
+   "detail": "erp_cds_available"
+  },
+  {
+   "check": "four fields complete: gdp_growth_26",
+   "passed": true,
+   "detail": "gdp_growth_26"
+  },
+  {
+   "check": "four fields complete: inflation_26",
+   "passed": true,
+   "detail": "inflation_26"
+  },
+  {
+   "check": "four fields complete: vlcc_1y_tc_market",
+   "passed": true,
+   "detail": "vlcc_1y_tc_market"
+  },
+  {
+   "check": "four fields complete: vlcc_spot_clarksons_jan26",
+   "passed": true,
+   "detail": "vlcc_spot_clarksons_jan26"
+  },
+  {
+   "check": "four fields complete: tanker_orderbook_pct_fleet",
+   "passed": true,
+   "detail": "tanker_orderbook_pct_fleet"
+  },
+  {
+   "check": "four fields complete: tax_topup_rate",
+   "passed": true,
+   "detail": "tax_topup_rate"
   },
   {
    "check": "four fields complete: tax_stat",

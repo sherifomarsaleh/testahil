@@ -600,8 +600,35 @@ IN('erp_mature', 0.0423, "Damodaran country risk file, January 2026 edition — 
    '2026-01-05', 'Global')
 IN('sofr', 0.0365, "Secured Overnight Financing Rate published by the Federal Reserve Bank "
    "of New York", '2026-08-06', 'Global')
-IN('cb_rate', 0.0365, "Central Bank of the UAE Base Rate, unchanged since the June 2026 "
-   "decision", '2026-06-17', 'Country')
+IN('cb_rate', 0.0365, "Central Bank of the UAE Base Rate, maintained at the 29 July 2026 "
+   "decision. The last change was a 25 basis point cut from 3.90% on 10 December 2025",
+   '2026-07-29', 'Country')
+IN('erp_cds_available', 0, "Damodaran country risk file, January 2026 edition — the "
+   "United Arab Emirates has no sovereign credit-default-swap entry in the file, so the "
+   "second premium basis cannot be built for this country. Gulf comparators that do carry "
+   "one show the two bases are not interchangeable: Saudi Arabia's swap basis gives 5.72% "
+   "against 5.01% on the rating basis", '2026-01-05', 'Country')
+IN('gdp_growth_26', 0.031, "International Monetary Fund World Economic Outlook database, "
+   "United Arab Emirates real GDP growth", '2026-04-30', 'Country')
+IN('inflation_26', 0.025, "International Monetary Fund World Economic Outlook database, "
+   "United Arab Emirates consumer price inflation; the projection settles at 2.0% from 2027 "
+   "onward, which is the anchor the terminal growth rate rests on", '2026-04-30', 'Country')
+IN('vlcc_1y_tc_market', 76900, "One-year time charters fixed by a listed crude tanker owner "
+   "in early 2026 for seven very large crude carriers, commencing between late January and "
+   "April 2026, as reported in trade coverage of its results", '2026-01-31', 'Industry')
+IN('vlcc_spot_clarksons_jan26', 102897, "Weighted average very large crude carrier earnings "
+   "reported by a shipbroker for the week to 23 January 2026, down from USD 115,635 a week "
+   "earlier", '2026-01-23', 'Industry')
+IN('tanker_orderbook_pct_fleet', 0.27, "Crude tanker order book as a share of the trading "
+   "fleet, about 130 million deadweight tonnes, reported by trade coverage as a seventeen-"
+   "year high, with the very large crude carrier order book near 30%", '2026-06-30',
+   'Industry')
+IN('tax_topup_rate', 0.15, "Domestic minimum top-up tax of 15% applying in the UAE to "
+   "groups within the global minimum tax rules for financial years beginning on or after "
+   "1 January 2025. International shipping income is excluded from those rules, which is "
+   "consistent with the sub-1% charge the company's shipping units actually bore in 2025, "
+   "but the exposure is priced as a downside case rather than assumed away",
+   '2025-01-01', 'Country')
 IN('tax_stat', 0.09, "UAE corporate tax, Federal Decree-Law 47 of 2022 — the 9% standard "
    "rate applying to taxable income above the threshold", '2023-06-01', 'Country')
 IN('beta', 0.705, "Weekly regression of the stock's own returns on an equal-weight index of "
@@ -1406,6 +1433,34 @@ sens['anchor'] = {str(m): dcf_scenario(V['beta'], m, 1.0, True)['fv_aed']
                   for m in (0.80, 0.90, 1.00, 1.10, 1.20)}
 sens['capex'] = {str(m): dcf_scenario(V['beta'], 1.0, m, True)['fv_aed']
                  for m in (0.90, 1.00, 1.10, 1.20)}
+
+
+def dcf_tax(rate):
+    """What the valuation is worth if the whole group were taxed at one rate — the
+    downside case for the global minimum tax reaching the shipping earnings that are
+    currently relieved."""
+    p = project('reversion')
+    ebit = p['ebit']
+    nopat = [e * (1 - rate) for e in ebit]
+    fcff = [n + d - c - w for n, d, c, w in zip(nopat, p['dna'], p['capex'], p['dnwc'])]
+    q = dict(p); q['nopat'] = nopat; q['fcff'] = fcff
+    q['tax'] = [e * rate for e in ebit]; q['tax_rate'] = [rate] * 5
+    return dcf(q, hybrid_as_debt=True)
+
+
+sens['tax'] = {f'{r:.2f}': dcf_tax(r)['fv_aed'] for r in (0.05, 0.09, 0.15)}
+sens['market_cross_check'] = dict(
+    vlcc_1y_tc=V['vlcc_1y_tc_market'],
+    vlcc_spot_broker=V['vlcc_spot_clarksons_jan26'],
+    vlcc_path=[BASE['tce']['vlcc'][i] for i in range(5)],
+    orderbook_pct=V['tanker_orderbook_pct_fleet'],
+    note=('An independent one-year time charter fixed in early 2026 priced a very large '
+          'crude carrier at USD 76,900 a day, well below the spot rate of the moment. A '
+          'forward market that will not pay spot for a year of time is telling the reader '
+          'it does not expect spot to hold, and a crude tanker order book near 27% of the '
+          'trading fleet is the supply reason why. Both point the same way as the reversion '
+          'path this study uses as its base, and both are reasons the sustained-strength '
+          'path is published as an alternative rather than adopted.'))
 
 # ============================================================================
 # SUM OF THE PARTS — the two legs valued separately and added
