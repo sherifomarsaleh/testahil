@@ -22,6 +22,7 @@ WC = json.load(open('wacc_result.json'))
 AL = json.load(open('alternatives.json'))
 AL_BY = {a['key']: a for a in AL['alternatives']}
 GRD = json.load(open('sensitivity_grid.json'))
+FLAT = json.load(open('flat_rate_ladder.json'))
 DR, CASES, YEARS = DD['drivers'], DD['cases'], DD['years']
 SPOT, SH = V('spot_price'), V('shares_outstanding')
 H, F25 = DD['hist'], DD['fy2526']
@@ -215,6 +216,46 @@ caption("{T}.  Net debt is larger than the enterprise value the cash flows suppo
         "the carried-through column. That is why the equity value there is negative, and it "
         "is stated rather than clipped to zero.")
 figure('fig2_bridge.png', 6.9, "{F}.  The bridge, carried-through case.")
+
+H2("Why the answer is negative, and what would change its sign")
+_SHm = SH / 1e6
+P("The same bridge in pounds a share makes the mechanism plain, and it is not the "
+  "capital programme.")
+rows = [["Carried-through case, per share", "EGP"],
+        ["Enterprise value the cash flows support", E2(BASE['bridge']['ev'] / _SHm)],
+        ["Less net debt", E2(-BASE['bridge']['net_debt'] / _SHm)],
+        ["Plus listed stakes and investment property",
+         E2((BASE['bridge']['fvoci'] + BASE['bridge']['inv_prop']) / _SHm)],
+        ["EQUITY", E2(BASE['bridge']['per_share'])],
+        ["Traded price", E2(SPOT)]]
+table(rows, [4.4, 2.5], size=8.9, band_rows={4, 5})
+caption("{T}.  The operating business is carried at less than half the debt standing "
+        "against it. Free cash flow is positive in three of the five forecast years — the "
+        "construction is no longer what makes the answer negative. The debt is.")
+P(f"So the question is not whether the plant earns. It is whether EGP "
+  f"{E(BASE['bridge']['ev'])} million is the right enterprise value for a business "
+  f"generating around EGP {E(R[0]['ebitda'])} million of operating profit before "
+  f"depreciation, and that is entirely a question about the rate at which Egyptian pounds "
+  f"are capitalised. Holding every operating assumption exactly as built and moving only "
+  f"the discount rate:")
+rows = [["A flat cost of capital of", "Value per share (EGP)", "What it would mean"]]
+for w, note in [(0.2500, "roughly the rate this study builds from the sovereign's own yield"),
+                (0.2000, "below the sovereign's ten-year yield of "
+                         f"{PC(V('rf_observed'))}"),
+                (0.1800, "the sign changes here"),
+                (0.1600, ""),
+                (0.1400, ""),
+                (0.1200, "")]:
+    rows.append([PC(w), E2(FLAT[f"{w:.4f}"]), note])
+rows.append([PC(DR['implied_wacc_base']), E2(SPOT),
+             "the rate the traded price itself implies"])
+table(rows, [1.5, 1.8, 3.6], size=8.5, band_rows={3, 7}, text_cols=(2,))
+caption(f"{{T}}.  Every row is a full re-run. The sign of the answer turns at about "
+        f"eighteen per cent — five points below what Egypt's own government pays to borrow "
+        f"for ten years. Reaching the traded price needs about "
+        f"{PC(DR['implied_wacc_base'])}, which is {PC(V('rf_observed') - DR['implied_wacc_base'])} "
+        f"below the sovereign. That, and not the capital programme, is the disagreement "
+        f"between this study and the market.")
 
 H2("1.2  Book value and sustainable return — the asset lens")
 B = LN['book']

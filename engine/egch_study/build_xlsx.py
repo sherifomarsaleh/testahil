@@ -22,6 +22,15 @@ LN = json.load(open(os.path.join(HERE, 'lenses.json')))
 ST = json.load(open(os.path.join(HERE, 'strike_result.json')))
 GRID = json.load(open(os.path.join(HERE, 'sensitivity_grid.json')))
 ALT = json.load(open(os.path.join(HERE, 'alternatives.json')))
+
+# The capital-expenditure record lives at fixed rows on the Cash Flow sheet. Its addresses
+# are declared HERE because the Assumptions sheet is built first and reads three of them:
+# the maintenance driver and the project path's first and last years are formulas off the
+# record, so a driver can never disagree with the evidence beneath it.
+CXR = 20                                   # first row of the record block
+CX_MAINT = f"'Cash Flow'!D{CXR+8}"         # pooled pre-project maintenance rate
+CX_RUN = f"'Cash Flow'!B{CXR+10}"          # full-year project spend at the observed rate
+CX_REMAIN = f"'Cash Flow'!D{CXR+14}"       # still to spend on the approved cost
 BETA = json.load(open(os.path.join(HERE, 'beta_result.json')))
 IR = json.load(open(os.path.join(HERE, 'input_register.json')))['inputs']
 W, DR, YEARS = D['wacc'], D['drivers'], D['years']
@@ -142,6 +151,16 @@ def drv(row, label, key_or_val, unit, source, fmt=N2):
     c = put(ws, f"D{row}", source); c.alignment = Alignment(wrap_text=True, vertical="top")
     ws.row_dimensions[row].height = max(14, 12 * (1 + len(source) // 96))
     return f"'Assumptions'!C{row}"
+
+def drvf(row, label, formula, expect, unit, source, fmt=N2):
+    """Same as drv(), but the driver is a FORMULA off evidence held elsewhere in the
+    workbook rather than a pasted constant."""
+    put(ws, f"A{row}", label); put(ws, f"B{row}", unit)
+    put(ws, f"C{row}", formula, fmt=fmt, expect=expect)
+    c = put(ws, f"D{row}", source); c.alignment = Alignment(wrap_text=True, vertical="top")
+    ws.row_dimensions[row].height = max(14, 12 * (1 + len(source) // 96))
+    return f"'Assumptions'!C{row}"
+
 
 def src(k):
     return IR[k]['source']
@@ -270,11 +289,25 @@ r += 1
 put(ws, f"A{r}", "CAPITAL, WORKING CAPITAL AND THE PROJECT").font = SUB; r += 1
 DEPB = drv(r, "Depreciation charge, FY2024/25", V('dep_charge_FY2425'), "EGP m", src('dep_charge_FY2425'), N1); r += 1
 AMOB = drv(r, "Amortisation, FY2024/25", V('amort_FY2425'), "EGP m", src('amort_FY2425'), N1); r += 1
-ANNAC = []
+# The first and last years of the project path and the whole maintenance driver are
+# FORMULAS off the capital-expenditure record on the Cash Flow sheet. A driver that is
+# read off a record cannot disagree with it.
+ANNAC, _ANNAC_ROWS = [], []
 for k, y in enumerate(YEARS):
-    ANNAC.append(drv(r, f"Project capital expenditure — {y}", V('anna_capex_path')[k], "EGP m",
-                     src('anna_capex_path'), N0)); r += 1
-MCAP = drv(r, "Maintenance capital expenditure", V('maint_capex_pct'), "% of revenue", src('maint_capex_pct'), PC1); r += 1
+    if k == 0:
+        cell = drvf(r, f"Project capital expenditure — {y}", f"={CX_RUN}",
+                    V('anna_capex_path')[0], "EGP m", src('anna_capex_path'), N0)
+    elif k == 4:
+        prior = "+".join(f"C{rr}" for rr in _ANNAC_ROWS)
+        cell = drvf(r, f"Project capital expenditure — {y}", f"={CX_REMAIN}-({prior})",
+                    V('anna_capex_path')[4], "EGP m", src('anna_capex_path'), N0)
+    else:
+        cell = drv(r, f"Project capital expenditure — {y}", V('anna_capex_path')[k], "EGP m",
+                   src('anna_capex_path'), N0)
+    _ANNAC_ROWS.append(r)
+    ANNAC.append(cell); r += 1
+MCAP = drvf(r, "Maintenance capital expenditure", f"={CX_MAINT}", V('maint_capex_pct'),
+            "% of revenue", src('maint_capex_pct'), PC1); r += 1
 NH3AN = drv(r, "Ammonia per tonne of nitrate", V('nh3_per_t_an'), "tonnes", src('nh3_per_t_an'), N2); r += 1
 put(ws, f"A{r}", "Project nameplate (derived, not disclosed)"); put(ws, f"B{r}", "tonnes/year")
 put(ws, f"C{r}", f"=({C_NH3D}-{C_DESIGN}*{C_NH3R})/{NH3AN}", fmt=N0, expect=V('anna_nameplate'))
@@ -386,6 +419,64 @@ for rr, lab in [(5, "Revenue"), (6, "Cost of sales"), (7, "Receivables"), (8, "I
 put(ws, "A14", "Free cash flow to the firm").font = SUB
 for k, c in enumerate(CO):
     put(ws, f"{c}14", f"='DCF'!{c}14", fmt=N0, expect=R[k]['fcff'], link=True)
+
+# ---- the capital-expenditure record: what the company ACTUALLY spends -------
+# The maintenance driver on Assumptions is a FORMULA off rows 22-23 of this block, and
+# the project path's first and last years are formulas off rows 30 and 33. The evidence
+# and the driver cannot drift apart, because the driver IS the evidence.
+put(ws, f"A{CXR}", "CAPITAL EXPENDITURE RECORD — WHAT THE COMPANY ACTUALLY SPENDS").font = SUB
+header(ws, CXR + 1, 1, ["Year", "Capital expenditure paid (EGP m)", "Revenue (EGP m)",
+                        "Of revenue", "What it was"], [34, 14, 14, 14, 46])
+CXH = [("FY2021/22", 'capex_paid_FY2122', 'is_revenue_FY2122', "Before the project"),
+       ("FY2022/23", 'capex_paid_FY2223', 'is_revenue_FY2223', "Before the project"),
+       ("FY2023/24", 'capex_paid_FY2324', 'is_revenue_FY2324', "The build begins"),
+       ("FY2024/25", 'capex_paid_FY2425', 'is_revenue_FY2425', "Building"),
+       ("9M FY2025/26", 'capex_paid_9M_FY2526', 'is_revenue_9M', "Nine months actual")]
+for i, (yr, ck, rk, note) in enumerate(CXH):
+    rw = CXR + 2 + i
+    put(ws, f"A{rw}", yr)
+    put(ws, f"B{rw}", V(ck), fmt=N1)
+    put(ws, f"C{rw}", V(rk), fmt=N0)
+    put(ws, f"D{rw}", f"=B{rw}/C{rw}", fmt=PC1, expect=V(ck) / V(rk))
+    put(ws, f"E{rw}", note)
+R22, R23 = CXR + 2, CXR + 3
+put(ws, f"A{CXR+8}", "Pre-project maintenance rate, the two clean years pooled")
+put(ws, f"D{CXR+8}", f"=(B{R22}+B{R23})/(C{R22}+C{R23})", fmt=PC1,
+    expect=V('maint_capex_pct')).font = BLUE
+put(ws, f"E{CXR+8}", "THE MAINTENANCE DRIVER. Assumptions reads this cell.")
+put(ws, f"A{CXR+9}", "Replacement-rate framing, the published alternative")
+put(ws, f"B{CXR+9}", V('bs_gross_fixed_M9FY2526'), fmt=N0)
+put(ws, f"C{CXR+9}", V('dep_rate_kima2_machinery'), fmt=PC2)
+put(ws, f"D{CXR+9}", f"=B{CXR+9}*C{CXR+9}/B5", fmt=PC1,
+    expect=V('bs_gross_fixed_M9FY2526') * V('dep_rate_kima2_machinery') / R[0]['revenue'])
+put(ws, f"E{CXR+9}", "Gross fixed assets at the disclosed machinery rate, over "
+                     "first-forecast-year revenue. NOT used in the valuation — the "
+                     "downside case, published beside the central and never averaged in.")
+put(ws, f"A{CXR+10}", "Full-year project spend at the observed run rate")
+put(ws, f"B{CXR+10}", f"=B{CXR+6}*4/3", fmt=N1, expect=V('capex_run_rate_FY2526E'))
+put(ws, f"E{CXR+10}", "THE PROJECT PATH'S FIRST YEAR. Assumptions reads this cell.")
+put(ws, f"A{CXR+11}", "Rate when the facility was signed, 25 June 2025")
+put(ws, f"B{CXR+11}", V('usd_egp_anna_approval'), fmt=N2)
+put(ws, f"E{CXR+11}", "EGP per US dollar")
+put(ws, f"A{CXR+12}", "Approved cost of the programme (EGP m)")
+put(ws, f"B{CXR+12}", V('anna_cost_egp'), fmt=N0)
+put(ws, f"C{CXR+12}", V('anna_cost_usd'), fmt=N1)
+put(ws, f"D{CXR+12}", f"=B{CXR+12}+C{CXR+12}*B{CXR+11}", fmt=N0,
+    expect=V('anna_cost_egp') + V('anna_cost_usd') * V('usd_egp_anna_approval'))
+put(ws, f"E{CXR+12}", "EGP tranche, dollar tranche, and the two in one currency")
+put(ws, f"A{CXR+13}", "Spent by 31 March 2026 (construction in progress)")
+put(ws, f"B{CXR+13}", V('bs_cwip_M9FY2526'), fmt=N0)
+put(ws, f"A{CXR+14}", "Still to spend")
+put(ws, f"D{CXR+14}", f"=D{CXR+12}-B{CXR+13}", fmt=N0,
+    expect=V('anna_cost_egp') + V('anna_cost_usd') * V('usd_egp_anna_approval')
+           - V('bs_cwip_M9FY2526'))
+put(ws, f"E{CXR+14}", "THE PROJECT PATH'S LAST YEAR is this less the four before it, so "
+                      "the path completes the programme by construction")
+para(ws, CXR + 16,
+     "The two shaded years at the top are the answer to the question this block exists to "
+     "settle. With nothing being built, this plant cost EGP 80.8m and then EGP 42.5m a "
+     "year to keep running. Everything above that is the new complex, and it stops when "
+     "the complex is finished.", 9)
 
 # ==================================================== 12 Summary Financials ===
 ws = wb.create_sheet("DCF")

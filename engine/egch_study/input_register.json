@@ -2155,11 +2155,11 @@
   "anna_capex_path": {
    "key": "anna_capex_path",
    "value": [
-    2598.8,
+    2598.845948,
     3100.0,
     3300.0,
     3200.0,
-    2489.4
+    2489.3120519999975
    ],
    "unit": "EGP m",
    "source": "Project spending path, RE-ANCHORED 9 August 2026 on the observed run rate. The first year is the company's own nine-month actual extended to a full year (EGP 1,949.1m x 4/3 = EGP 2,598.8m); the remaining years complete the EGP 14,688m still to spend against the bank-approved cost. The first issue opened at EGP 3,000m, above anything the company has actually spent in a year.",

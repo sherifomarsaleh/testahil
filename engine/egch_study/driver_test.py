@@ -57,10 +57,23 @@ print(f"baseline value per share: EGP {BASE:.4f}\n")
 wb0 = openpyxl.load_workbook(XLSX)
 ws0 = wb0[SHEET_A]
 LABELS = {}
+# A driver that has become a FORMULA off evidence elsewhere in the workbook is still a
+# driver. Reading only numeric cells silently dropped three of them the moment the capital
+# expenditure drivers started reading the capex record — and a test that loses a driver
+# without saying so is worse than no test. Formula-valued drivers are resolved to the
+# number they currently produce and bumped from there.
+_BK0 = xlcalc.Book(wb0)
 for row in range(5, 200):
     lab = ws0.cell(row=row, column=1).value
     val = ws0.cell(row=row, column=3).value
-    if lab and isinstance(val, (int, float)):
+    if not lab:
+        continue
+    if isinstance(val, str) and val.startswith('='):
+        try:
+            val = float(_BK0.cell_value(SHEET_A, f"C{row}"))
+        except Exception:
+            continue
+    if isinstance(val, (int, float)) and not isinstance(val, bool):
         LABELS[lab] = (f"C{row}", val)
 
 TESTS = [
@@ -95,6 +108,12 @@ TESTS = [
     ("Project utilisation in the terminal year", 1.40, "up",
      "The only place ANNA earns anything in the committed-capital case."),
 ]
+# COUNT AGAINST A KNOWN TOTAL: every named driver must be found, or the test is silently
+# smaller than it claims to be.
+missing = [lab for lab, *_ in TESTS if lab not in LABELS]
+assert not missing, ("driver test cannot find these drivers on the Assumptions sheet: "
+                     + "; ".join(missing))
+
 fails = []
 print(f"{'driver':52s} {'bump':>7s} {'new':>9s} {'move':>10s}  expected")
 for lab, mult, want, why in TESTS:

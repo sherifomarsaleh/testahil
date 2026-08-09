@@ -333,6 +333,12 @@ I("local_free_parity", 0.90, "ratio",
   "Local free-market urea clears at about 90% of export parity, implied by the FY2024/25 note-20 "
   "local revenue net of the subsidised and nitrate legs", "2026-08-08", "L5")
 
+# The project path is DERIVED, not typed: it opens at the company's own observed run rate
+# and its final year is whatever is left of the approved cost. Written this way, the path
+# completes the programme by construction — it cannot quietly under- or over-spend it.
+_RUN_RATE = 1949.134461 * 4 / 3
+_REMAINING = 6422.418 + 278.385 * 50.0 - 5653.51
+
 # Forward paths — each a driver, each dated to the day it was set
 for k, vals, unit, src in [
     ("urea_util", [0.913, 0.922, 0.930, 0.939, 0.948], "ratio",
@@ -363,7 +369,8 @@ for k, vals, unit, src in [
      "in FY2024/25."),
     ("cpi_path", [0.100, 0.085, 0.075, 0.070, 0.070], "ratio",
      "Domestic inflation converging from the June 2026 print on the central bank's target."),
-    ("anna_capex_path", [2598.8, 3100.0, 3300.0, 3200.0, 2489.4], "EGP m",
+    ("anna_capex_path", [_RUN_RATE, 3100.0, 3300.0, 3200.0,
+                         _REMAINING - (_RUN_RATE + 3100.0 + 3300.0 + 3200.0)], "EGP m",
      "Project spending path, RE-ANCHORED 9 August 2026 on the observed run rate. The first "
      "year is the company's own nine-month actual extended to a full year (EGP 1,949.1m x "
      "4/3 = EGP 2,598.8m); the remaining years complete the EGP 14,688m still to spend "

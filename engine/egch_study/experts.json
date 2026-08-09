@@ -273,7 +273,7 @@
   "rows": [
    [
     "Enterprise value including non-operating assets (EGP m)",
-    8460.959400098043,
+    8460.953718474173,
     "the underlying"
    ],
    [
@@ -298,17 +298,17 @@
    ],
    [
     "Call value on those parameters (EGP m)",
-    4441.716196108928,
+    4441.7114833468995,
     ""
    ],
    [
     "At 35% volatility (EGP m)",
-    3963.3238375923174,
+    3963.3191012822513,
     ""
    ],
    [
     "At 55% volatility (EGP m)",
-    4915.773621662833,
+    4915.768866060489,
     ""
    ],
    [
@@ -318,17 +318,17 @@
    ],
    [
     "Adjusted call value (EGP m)",
-    3331.287147081696,
+    3331.283612510175,
     ""
    ],
    [
     "PER SHARE (EGP)",
-    1.6768963875882068,
+    1.6768946083629543,
     ""
    ]
   ],
   "low": 0.0,
-  "high": 1.8558689174218561,
+  "high": 1.855867122022952,
   "sensitivity": "Volatility is the swing factor: at 35% the claim is worth EGP 1.50 a share, at 55% EGP 1.86. Time to maturity matters almost as much, because it is time for the enterprise to recover above the debt.",
   "falsifier": "Enterprise value rising above the face value of the debt \u2014 which needs roughly a US$120 a tonne sustained improvement in the export price, or the capital programme being stopped. Either would retire the option framing and hand the question back to the cash-flow lens.",
   "grid": {
@@ -346,25 +346,25 @@
    ],
    "values": [
     [
-     0.7219519304294701,
-     0.8248700064574559,
-     1.0267963177170087,
-     1.2222271633841495,
-     1.3170939090139084
+     0.7219505568369066,
+     0.824868609671624,
+     1.0267948680084835,
+     1.2222256572205035,
+     1.3170923743307188
     ],
     [
-     1.4086835554830928,
-     1.4962872756082317,
-     1.6768963875882068,
-     1.8558689174218561,
-     1.9427630755336036
+     1.4086817462111036,
+     1.4962854874928075,
+     1.6768946083629543,
+     1.855867122022952,
+     1.9427612669417678
     ],
     [
-     1.945274400939164,
-     2.006588198739982,
-     2.144317911733285,
-     2.287742119666735,
-     2.358200630205196
+     1.9452724077626917,
+     2.006586232539726,
+     2.1443159704560006,
+     2.2877401775892148,
+     2.3581986819227456
     ]
    ]
   },
@@ -381,7 +381,7 @@
   ],
   "e3": [
    0.0,
-   1.8558689174218561
+   1.855867122022952
   ]
  },
  "spot": 13.98
