@@ -68,10 +68,13 @@ def rich(parts, size=10.5, space_after=6, space_before=0, align=None):
 
 def H1(text):
     p = P(text, size=15, bold=True, space_before=14, space_after=6)
+    p.paragraph_format.keep_with_next = True
     return p
 
 def H2(text):
-    return P(text, size=12, bold=True, color=INK, space_before=10, space_after=4)
+    p = P(text, size=12, bold=True, color=INK, space_before=10, space_after=4)
+    p.paragraph_format.keep_with_next = True
+    return p
 
 # Figures and tables are numbered BY THE BUILDER, in document order, from a token in the
 # caption text. Hand-numbered captions drifted the moment a table was inserted in the
@@ -91,6 +94,13 @@ def _number(text):
 
 def caption(text):
     return P(_number(text), size=8.7, italic=True, color=GREY, space_after=10)
+
+
+def finalise(path):
+    """Save, then strip the false page/word counts python-docx stamps into app.xml."""
+    from docprops import strip_stub_counts
+    doc.save(path)
+    return strip_stub_counts(path)
 
 def bullet(text, bold_head=None):
     p = doc.add_paragraph(style='List Bullet')
@@ -113,6 +123,13 @@ def table(rows, widths, header=True, first_col_bold=False, size=9.3, header_fill
     tblPr.append(layout)
     for j, w in enumerate(widths):
         t.columns[j].width = Inches(w)
+    for i, row_ in enumerate(t.rows):
+        # a row that splits across a page break is unreadable, and a table that spills
+        # without repeating its header leaves the second half unlabelled
+        trPr = row_._tr.get_or_add_trPr()
+        cs = OxmlElement('w:cantSplit'); trPr.append(cs)
+        if header and i == 0:
+            th = OxmlElement('w:tblHeader'); trPr.append(th)
     for i, row in enumerate(rows):
         for j, val in enumerate(row):
             c = t.cell(i, j); c.width = Inches(widths[j])

@@ -1279,5 +1279,5 @@ box([("Educational analysis.  ", "This document is an independent educational an
      ("No position.  ", "The author holds no position in the subject and receives no "
       "compensation from it or from any party with an interest in it.")])
 
-doc.save('EGCH_Valuation_Study_08-08-2026.docx')
+finalise('EGCH_Valuation_Study_08-08-2026.docx')
 print("wrote EGCH_Valuation_Study_08-08-2026.docx")

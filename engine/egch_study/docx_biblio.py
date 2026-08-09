@@ -17,6 +17,7 @@ from docx.oxml import OxmlElement
 SW = json.load(open('sweep_register.json'))
 IRJ = json.load(open('input_register.json'))
 from inputs import V
+from docprops import strip_stub_counts
 LN = json.load(open('lenses.json'))
 EXJ = json.load(open('experts.json'))
 LIVE = json.load(open('live_data.json'))
@@ -368,4 +369,5 @@ P("Every historical figure in the study appears in the accompanying workbook on 
   "sheets, because each of their cells is a separate run of the whole model.", size=9.5)
 
 doc.save('EGCH_Bibliography_08-08-2026.docx')
+strip_stub_counts('EGCH_Bibliography_08-08-2026.docx')
 print("wrote EGCH_Bibliography_08-08-2026.docx")
