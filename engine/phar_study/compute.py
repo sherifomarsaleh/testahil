@@ -276,6 +276,104 @@ INP = dict(
                      "Company"),
     ch_toll_fy25=I(49.366365, AUD25 + ", revenue note (25): contract-manufacturing revenue",
                    "2026-03-01", "Company"),
+    # ---- PRODUCT-LINE DISCLOSURE: the board report splits the SAME total two ways —
+    # by channel (below) and by product line (here). Both are used: the channel split drives
+    # the price realised per pack, the product-line split separates the company's OWN
+    # preparations from product made under contract for third parties, which carry a
+    # completely different economics (a manufacturing fee, not a product price).
+    own_prep_value_fy25=I(9160.148, "Board of directors' report for FY2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), sales-indicators table: value of sales of the company's own preparations, "
+                          "EGP thousand converted to million. Together with the "
+                          "contract-manufacturing line below it sums to the disclosed "
+                          "separate-company total", "2026-03-01", "Company"),
+    own_prep_value_fy24=I(7104.160, "Board of directors' report for FY2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), sales-indicators table, prior-year comparative column", "2026-03-01",
+                          "Company"),
+    contract_value_fy25=I(142.321, "Board of directors' report for FY2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), sales-indicators table: value of sales of preparations made under "
+                          "contract-manufacturing agreements. NOT the same line as the "
+                          "contract-manufacturing REVENUE the company books — that is the "
+                          "manufacturing fee only, disclosed separately below", "2026-03-01",
+                          "Company"),
+    contract_value_fy24=I(259.912, "Board of directors' report for FY2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), sales-indicators table, prior-year comparative column", "2026-03-01",
+                          "Company"),
+    packs_toll_fy24=I(8.874, "Board of directors' report for FY2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), sales-indicators table: packs sold of contract-manufactured preparations, "
+                      "million", "2026-03-01", "Company"),
+    prod_value_hist=I([1668.045836, 1911.944828, 2463.788810, 2747.157810, 3220.648533,
+                       2789.983904, 3364.116402, 3799.457166, 5017.014708, 7364.071677,
+                       9302.469311],
+                      "Board of directors' report for FY2025, eleven-year revenue history table (total activity revenue, domestic sales, export sales, contract-manufacturing revenue and production value at selling price, by year): total activity revenue FY2015-FY2025, separate company, EGP "
+                      "million. Eleven observations, used to test the forecast growth path "
+                      "against what the business has actually delivered rather than against an "
+                      "assertion", "2026-03-01", "Company"),
+    dom_rev_hist=I([1300.974873, 1530.074523, 1772.408657, 2093.136929, 2580.583743,
+                    2174.335906, 2611.133966, 2834.802684, 3425.007683, 4863.915731,
+                    6334.989403],
+                   "Board of directors' report for FY2025, eleven-year revenue history table (total activity revenue, domestic sales, export sales, contract-manufacturing revenue and production value at selling price, by year): domestic sales FY2015-FY2025, separate company, EGP million",
+                   "2026-03-01", "Company"),
+    exp_rev_hist=I([355.660824, 381.870305, 691.380153, 654.020881, 640.064790, 615.647998,
+                    752.982436, 964.654482, 1592.007025, 2500.155946, 2967.479908],
+                   "Board of directors' report for FY2025, eleven-year revenue history table (total activity revenue, domestic sales, export sales, contract-manufacturing revenue and production value at selling price, by year): export sales FY2015-FY2025, separate company, EGP million",
+                   "2026-03-01", "Company"),
+    prod_at_sale_hist=I([1762.036059, 1837.019705, 2592.543185, 2876.887489, 3281.506091,
+                         3520.827945, 3464.934156, 4043.785528, 5628.821812, 8475.335057,
+                         10811.924284],
+                        "Board of directors' report for FY2025, eleven-year revenue history table (total activity revenue, domestic sales, export sales, contract-manufacturing revenue and production value at selling price, by year): value of production at selling price FY2015-FY2025, EGP "
+                        "million. Production consistently EXCEEDS sales, which is the "
+                        "inventory build the eight-month raw-material and finished-goods "
+                        "policy implies", "2026-03-01", "Company"),
+    dep_in_cogs_fy25=I(93.497560, AUD25 + ", note (26) cost of sales: the depreciation line "
+                       "inside cost of sales. Used to split the forecast depreciation charge "
+                       "between production and operating expense in the same proportion the "
+                       "audited note shows", "2026-03-01", "Company"),
+    dep_only_fy25=I(109.455425, AUD25 + ", note (4) fixed assets: the DEPRECIATION charge "
+                    "alone, against the total depreciation-and-amortisation of 117.725 that "
+                    "also carries right-of-use and intangible amortisation. The difference is "
+                    "the non-property amortisation run-rate the forecast holds flat",
+                    "2026-03-01", "Company"),
+    ecl_fy23=I(39.0, "Audited consolidated financial statements for the year ended 31 December "
+               "2023: the EXPECTED-CREDIT-LOSS component of the formed-provisions line, "
+               "separated from inventory impairment and other provisions", "2026-03-01",
+               "Company"),
+    ecl_fy24=I(330.0, "Audited FY2024 statements: the expected-credit-loss component alone",
+               "2026-03-01", "Company"),
+    ecl_fy25=I(376.158, AUD25 + ": the expected-credit-loss component alone", "2026-03-01",
+               "Company"),
+    shares_fy22=I(99.170500, "Shares in issue at 31 December 2022, from the capital and "
+                  "shareholders' table in the board report. Used ONLY to compute that year's "
+                  "earnings per share and traded multiple", "2026-03-01", "Company"),
+    board_fee_fwd=I(2.0, "Board remuneration and attendance allowances carried flat in the "
+                    "forecast at the FY2025 disclosed level of 1.828, rounded up. Immaterial "
+                    "to value; carried as a line rather than dropped so the forecast income "
+                    "statement reconciles to the audited one", "2026-08-09", "House"),
+    nci_fwd=I(18.0, "Non-controlling share of forecast profit, held near the FY2025 disclosed "
+              "16.235. The subsidiary carrying the minority is the ampoule and vial plant, "
+              "which is 98.6% owned", "2026-08-09", "House"),
+    plant_cost_usd_mn=I(100.0, "The stated cost of the EIPICO 3 biologicals facility in US "
+                        "dollars, as the company describes it in its own announcements and "
+                        "investor material. Used only as the denominator of the asset-turn "
+                        "figure in the reverse valuation", "2026-08-09", "Company"),
+    assoc_saudi_fy25=I(427.906046, AUD25 + ", note (33) associates by entity: the share of "
+                       "results attributed to the Saudi Arabian manufacturing associate",
+                       "2026-03-01", "Company"),
+    assoc_saudi_fy24=I(190.021502, AUD25 + ", note (33), prior-year comparative. NOTE this "
+                       "EXCEEDS the group associate line of 151.581 for FY2024, so the other "
+                       "holdings were a net drag that year; both figures are published rather "
+                       "than one being quoted alone", "2026-03-01", "Company"),
+    peer_pe_hi=I(26.7, "Trailing price-earnings multiple of a listed Saudi Arabian generics "
+                 "manufacturer. MARKET DATA, cross-check layer", "2026-08-09", "Market"),
+    peer_pe_lo=I(16.0, "Trailing price-earnings multiple of larger, more liquid regional and "
+                 "international generic manufacturers. MARKET DATA, cross-check layer",
+                 "2026-08-09", "Market"),
+    w_dcf=I(0.50, "Weight on the discounted-cash-flow reading inside each weighted centre. "
+            "Carried IN FULL on one provision frame at a time — never split across both, "
+            "because splitting it across both averages the two frames", "2026-08-09", "House"),
+    w_book=I(0.20, "Weight on the book-value and sustainable-return reading", "2026-08-09",
+             "House"),
+    w_rel=I(0.15, "Weight on the relative-multiples reading, held below the intrinsic lenses "
+            "because one of its three legs rests on undisclosed peer financials", "2026-08-09",
+            "House"),
+    w_norm=I(0.15, "Weight on the normalised-earnings-power reading", "2026-08-09", "House"),
+    rev_sep_fy25=I(9302.469331, "Board of directors' report for FY2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), sales-indicators table: total separate-company activity revenue for FY2025. "
+                   "The channel build must reconcile to this figure exactly before the "
+                   "consolidation factor is applied", "2026-03-01", "Company"),
     ch_direct_fy24=I(1530.492099, AUD24 + ", revenue note (25)", "2025-03-01", "Company"),
     ch_distrib_fy24=I(2674.363238 - 10.824144, AUD24 + ", revenue note (25): distributor sales "
                       "less local distributor incentives", "2025-03-01", "Company"),
@@ -799,8 +897,8 @@ for k, rec in INP.items():
     assert rec['source'] and rec['date'] and rec['layer'], f'{k} is not four-field complete'
 
 TAX = V['tax_stat']
-BOARD_FEE = 2.0          # forecast board remuneration, held at the FY2025 disclosed level
-NCI_FWD = 18.0           # non-controlling share, held near the FY2025 disclosed 16.2
+BOARD_FEE = V['board_fee_fwd']
+NCI_FWD = V['nci_fwd']
 YEARS = ['FY2026E', 'FY2027E', 'FY2028E', 'FY2029E', 'FY2030E']
 NARR = []
 
@@ -854,54 +952,120 @@ for k in ('FY2023', 'FY2024', 'FY2025'):
         f"· effective tax {h['eff_tax']:.1%}")
 
 # ---- the unit build, reconstructed from disclosure --------------------------
+# THREE PRODUCT LINES, not two. The board report splits the same separate-company total two
+# different ways — by CHANNEL and by PRODUCT LINE — and reconciling the two is what separates
+# the company's own preparations from product it manufactures under contract for third
+# parties. Those are different businesses: the first is priced per pack, the second earns a
+# manufacturing fee, and part of the contract-made product is then sold through the company's
+# own domestic channels. The earlier cut of this build divided a domestic revenue figure that
+# INCLUDED contract-made product by a pack count that EXCLUDED contract packs, which
+# overstated the realised price per own pack in both years.
 exp_rev25 = V['ch_export_fy25']
 exp_rev24 = V['ch_export_fy24']
 exp_packs25 = V['export_packs_fy25']
 exp_packs24 = exp_packs25 * V['export_usd_fy24'] / V['export_usd_fy25']  # dollar price held
 dom_packs25 = V['packs_own_fy25'] - exp_packs25
 dom_packs24 = V['packs_own_fy24'] - exp_packs24
+# line 1 + 2: the company's OWN preparations, domestic and export
+dom_own_rev25 = V['own_prep_value_fy25'] - exp_rev25
+dom_own_rev24 = V['own_prep_value_fy24'] - exp_rev24
+# line 3: contract manufacturing — a FEE the company books, plus contract-made product that
+# reaches the market through its own domestic channels
+toll_fee25, toll_fee24 = V['ch_toll_fy25'], V['ch_toll_fy24']
+contract_resale25 = V['contract_value_fy25'] - toll_fee25
+contract_resale24 = V['contract_value_fy24'] - toll_fee24
+toll_packs25, toll_packs24 = V['packs_toll_fy25'], V['packs_toll_fy24']
+toll_fee_pp25, toll_fee_pp24 = toll_fee25 / toll_packs25, toll_fee24 / toll_packs24
+resale_pp25, resale_pp24 = contract_resale25 / toll_packs25, contract_resale24 / toll_packs24
 dom_rev25 = V['ch_direct_fy25'] + V['ch_distrib_fy25'] + V['ch_tender_fy25']
 dom_rev24 = V['ch_direct_fy24'] + V['ch_distrib_fy24'] + V['ch_tender_fy24']
-dom_ppp25 = dom_rev25 / dom_packs25
-dom_ppp24 = dom_rev24 / dom_packs24
+dom_ppp25 = dom_own_rev25 / dom_packs25
+dom_ppp24 = dom_own_rev24 / dom_packs24
 exp_ppp_usd25 = (exp_rev25 / V['fx_avg_fy25']) / exp_packs25
+# the two disclosures must close on each other, both years, to the thousand
+for _y, _own, _con, _dom, _exp, _tot in (
+        (2025, V['own_prep_value_fy25'], V['contract_value_fy25'], dom_rev25, exp_rev25,
+         V['rev_sep_fy25']),
+        (2024, V['own_prep_value_fy24'], V['contract_value_fy24'], dom_rev24, exp_rev24,
+         V['ch_direct_fy24'] + V['ch_distrib_fy24'] + V['ch_tender_fy24'] + exp_rev24
+         + V['ch_toll_fy24'])):
+    assert abs((_own + _con) - _tot) < 0.03, \
+        f'FY{_y} product-line split does not tie to the disclosed total'
+    _resale = _con - (V['ch_toll_fy25'] if _y == 2025 else V['ch_toll_fy24'])
+    assert abs((_own - _exp) + _resale - _dom) < 0.03, \
+        f'FY{_y} channel split and product-line split do not reconcile'
 say('')
-say(f"[Unit build] FY2025 sales of the company's own preparations were {V['packs_own_fy25']:.1f} "
-    f"million packs. Exports account for {exp_packs25:.1f} million of them at EGP "
-    f"{exp_rev25 / exp_packs25:,.2f} a pack, which is USD {exp_ppp_usd25:.2f} at the disclosed "
-    f"average rate of {V['fx_avg_fy25']:.2f}. The domestic book is therefore "
-    f"{dom_packs25:.1f} million packs carrying EGP {dom_rev25:,.0f} million of revenue, "
-    f"EGP {dom_ppp25:,.2f} a pack, against EGP {dom_ppp24:,.2f} in FY2024 "
-    f"(+{dom_ppp25 / dom_ppp24 - 1:.1%}) on {dom_packs24:.1f} million packs "
-    f"(+{dom_packs25 / dom_packs24 - 1:.1%} volume).")
+say(f"[Unit build] The board report splits the same separate-company revenue two ways, and the "
+    f"two only reconcile once contract manufacturing is separated out. FY2025 sales of the "
+    f"company's OWN preparations were EGP {V['own_prep_value_fy25']:,.3f} million on "
+    f"{V['packs_own_fy25']:.3f} million packs; preparations made under CONTRACT for third "
+    f"parties were EGP {V['contract_value_fy25']:,.3f} million of product value on "
+    f"{toll_packs25:.3f} million packs, of which the company books only the manufacturing fee "
+    f"of EGP {toll_fee25:,.3f} million — EGP {toll_fee_pp25:,.2f} a pack — while the remaining "
+    f"EGP {contract_resale25:,.3f} million reaches the market through its own domestic "
+    f"channels at EGP {resale_pp25:,.2f} a pack. The two splits sum to the same "
+    f"EGP {V['rev_sep_fy25']:,.3f} million.")
+say(f"  LINE 1, own preparations sold at home: {dom_packs25:.3f} million packs carrying EGP "
+    f"{dom_own_rev25:,.3f} million, EGP {dom_ppp25:,.4f} a pack against EGP {dom_ppp24:,.4f} "
+    f"in FY2024 — realised price +{dom_ppp25 / dom_ppp24 - 1:.2%} on volume "
+    f"+{dom_packs25 / dom_packs24 - 1:.2%}. Dividing the CHANNEL domestic figure of EGP "
+    f"{dom_rev25:,.0f} million by these packs instead would read EGP "
+    f"{dom_rev25 / dom_packs25:,.4f} a pack, because that figure carries the contract-made "
+    f"product as well; the difference is {dom_rev25 / dom_packs25 / dom_ppp25 - 1:.2%} on the "
+    f"price and it flows into every forecast year.")
+say(f"  LINE 2, own preparations exported: {exp_packs25:.3f} million packs at EGP "
+    f"{exp_rev25 / exp_packs25:,.2f} a pack, which is USD {exp_ppp_usd25:.4f} at the disclosed "
+    f"average rate of {V['fx_avg_fy25']:.2f} — against USD "
+    f"{(exp_rev24 / V['fx_avg_fy24']) / exp_packs24:.4f} in FY2024.")
+say(f"  LINE 3, contract manufacturing: packs fell {1 - toll_packs25 / toll_packs24:.1%} to "
+    f"{toll_packs25:.3f} million while the fee per pack rose "
+    f"{toll_fee_pp25 / toll_fee_pp24 - 1:.1%} to EGP {toll_fee_pp25:,.2f}. This is a small "
+    f"line — {(toll_fee25 + contract_resale25) / V['rev_sep_fy25']:.2%} of revenue — but it is "
+    f"forecast on its own volume and its own price rather than folded into the domestic book.")
 say(f"  Production ran at {V['units_prod_fy25']:,.0f} million units against {V['units_cap']:,.0f} "
     f"million of disclosed capacity — {V['units_prod_fy25'] / V['units_cap']:.0%} utilisation, so "
     f"the volume path below is not capacity-constrained.")
 # the reconstructed channels must tie to the disclosed standalone revenue total
 recon25 = dom_rev25 + exp_rev25 + V['ch_toll_fy25']
 say(f"  Reconstructed channel revenue {recon25:,.3f} against the disclosed separate-company "
-    f"revenue total of 9,302.469 — a difference of {abs(recon25 - 9302.469331):,.3f}, which is "
+    f"revenue total of {V['rev_sep_fy25']:,.3f} — a difference of "
+    f"{abs(recon25 - V['rev_sep_fy25']):,.3f}, which is "
     f"rounding on the incentive lines.")
-assert abs(recon25 - 9302.469331) < 0.05, 'channel build does not tie to disclosed revenue'
+assert abs(recon25 - V['rev_sep_fy25']) < 0.05, 'channel build does not tie to disclosed revenue'
 
 # ============================ FORECAST =======================================
 n = 5
 fx = V['fx_path']
-dom_packs, exp_packs, dom_ppp, exp_ppp_usd, toll = [], [], [], [], []
-p_d, p_e, r_d, r_e, r_t = dom_packs25, exp_packs25, dom_ppp25, exp_ppp_usd25, V['ch_toll_fy25']
+# EVERY LINE IS A VOLUME TIMES A PRICE. Nothing is grown as a revenue percentage.
+dom_packs, exp_packs, dom_ppp, exp_ppp_usd = [], [], [], []
+toll_packs, toll_fee_pp, resale_pp = [], [], []
+p_d, p_e, r_d, r_e = dom_packs25, exp_packs25, dom_ppp25, exp_ppp_usd25
+p_t, f_t, s_t = toll_packs25, toll_fee_pp25, resale_pp25
 for i in range(n):
     p_d *= (1 + V['dom_pack_growth'][i]); dom_packs.append(p_d)
     p_e *= (1 + V['exp_pack_growth'][i]); exp_packs.append(p_e)
     r_d *= (1 + V['dom_price_growth'][i]); dom_ppp.append(r_d)
     r_e *= (1 + V['exp_price_usd_growth'][i]); exp_ppp_usd.append(r_e)
-    r_t *= (1 + V['toll_growth'][i]); toll.append(r_t)
+    # contract manufacturing: its PACK count grows on its own driver, and both the
+    # manufacturing fee and the resale price escalate on the domestic price path — the same
+    # administered-price environment the company's own preparations sell into.
+    p_t *= (1 + V['toll_growth'][i]); toll_packs.append(p_t)
+    f_t *= (1 + V['dom_price_growth'][i]); toll_fee_pp.append(f_t)
+    s_t *= (1 + V['dom_price_growth'][i]); resale_pp.append(s_t)
 
 rev_dom = [dom_packs[i] * dom_ppp[i] for i in range(n)]
 rev_exp = [exp_packs[i] * exp_ppp_usd[i] * fx[i] for i in range(n)]
+toll = [toll_packs[i] * toll_fee_pp[i] for i in range(n)]
+rev_resale = [toll_packs[i] * resale_pp[i] for i in range(n)]
 # the consolidated total runs a small step above the separate-company channel build:
 # the subsidiary's external sales. Measured, not assumed.
-consol_uplift = V['rev_fy25'] / 9302.469331
-revenue = [(rev_dom[i] + rev_exp[i] + toll[i]) * consol_uplift for i in range(n)]
+consol_uplift = V['rev_fy25'] / V['rev_sep_fy25']
+revenue = [(rev_dom[i] + rev_exp[i] + toll[i] + rev_resale[i]) * consol_uplift
+           for i in range(n)]
+# the build must reproduce the audited FY2025 separate-company total from its own three lines
+_base_check = dom_own_rev25 + exp_rev25 + toll_fee25 + contract_resale25
+assert abs(_base_check - V['rev_sep_fy25']) < 0.03, \
+    f'the three-line unit build does not reproduce FY2025: {_base_check:.3f}'
 say('')
 say(f"[Consolidation] the reconstructed channel build is a separate-company total; the audited "
     f"consolidated revenue is {consol_uplift:.4f} times it, the subsidiary's external sales. "
@@ -913,13 +1077,13 @@ say(f"[Consolidation] the reconstructed channel build is a separate-company tota
 # adding the roll-forward charge would count it twice; the first cut of this model
 # did exactly that and the sensitivity harness caught it.
 cs_all = V['cost_shares']
-DEP_IN_COGS_FY25 = 93.497560      # audited cost-of-sales note (26), depreciation line
+DEP_IN_COGS_FY25 = V['dep_in_cogs_fy25']
 DEP_COGS_SHARE = DEP_IN_COGS_FY25 / V['dna_fy25']
 CASH_CLASSES = ('materials', 'packaging', 'labour', 'energy', 'services_other')
 _cash_tot = sum(cs_all[k] for k in CASH_CLASSES)
 cs = {k: cs_all[k] / _cash_tot for k in CASH_CLASSES}
 unit_cost25 = (V['cogs_fy25'] - DEP_IN_COGS_FY25) / V['packs_sold_fy25']   # CASH cost per pack
-packs_total = [dom_packs[i] + exp_packs[i] + V['packs_toll_fy25'] for i in range(n)]
+packs_total = [dom_packs[i] + exp_packs[i] + toll_packs[i] for i in range(n)]
 esc_idx = {k: 1.0 for k in cs}
 fx_prev = V['fx_avg_fy25']
 unit_costs, cogs_cash = [], []
@@ -982,7 +1146,7 @@ for i in range(n):
     cip_n = cip_b + capex[i] - transfer
     dep.append(d); ppe.append(ppe_n); cip.append(cip_n)
     ppe_b, cip_b = ppe_n, cip_n
-amort = [V['dna_fy25'] - 109.455425 for _ in range(n)]     # right-of-use + intangible run-rate
+amort = [V['dna_fy25'] - V['dep_only_fy25'] for _ in range(n)]   # right-of-use + intangibles
 dna = [dep[i] + amort[i] for i in range(n)]
 # depreciation lands in cost of sales in the same proportion the audited note shows
 cogs = [cogs_cash[i] + dna[i] * DEP_COGS_SHARE for i in range(n)]
@@ -1304,9 +1468,9 @@ _px, _ = clean_ohlc(load_ohlc(os.path.join(HERE, 'PHAR_Stock_Price_History.csv')
                     'PHAR', verbose=False, market='EG')
 _px = _px.set_index('Date')['Price']
 own_hist = []
-for yr, parent, sh in ((2022, V['parent_fy22'], 99.170500),
-                       (2023, V['parent_fy23'], 148.755750),
-                       (2024, V['parent_fy24'], 148.755750),
+for yr, parent, sh in ((2022, V['parent_fy22'], V['shares_fy22']),
+                       (2023, V['parent_fy23'], V['shares_fy23']),
+                       (2024, V['parent_fy24'], V['shares_fy23']),
                        (2025, V['parent_fy25'], V['wavg_shares_fy25'])):
     close = float(_px[_px.index <= f'{yr}-12-31'].iloc[-1])
     own_hist.append(dict(year=yr, close=close, shares=sh, eps=parent / sh,
@@ -1339,7 +1503,11 @@ eps_27_A, eps_27_B = fwd_eps(ebit_A, 1), fwd_eps(ebit_B, 1)
 #   (3) the regional peer median, adjusted for the cost-of-equity gap the peers
 #       do not face.
 eps_fwd = (eps_26_A + eps_26_B) / 2
-peer_adj_pe = V['peer_pe_regional'] * (0.10 - 0.05) / (ke_term - V['g_term'])
+# The struck reference is DERIVED: the midpoint of the only two disclosed observations.
+peer_pe_struck = (V['peer_pe_hi'] + V['peer_pe_lo']) / 2
+assert abs(peer_pe_struck - V['peer_pe_regional']) < 1e-9, \
+    'the struck peer reference does not equal the midpoint of its two observations'
+peer_adj_pe = peer_pe_struck * (0.10 - 0.05) / (ke_term - V['g_term'])
 # PERIOD-MATCHED. A TRAILING multiple multiplies TRAILING earnings; a FORWARD multiple
 # multiplies FORWARD earnings. The earlier edition applied all three legs to FY2026E earnings,
 # including the two built from trailing multiples — and because FY2026E earnings are BELOW
@@ -1414,11 +1582,11 @@ say(f"[Normalised earnings power] the three-year average operating margin is {no
 # Each frame carries the DCF weight in full, alongside the three lenses that do not depend on
 # which reading is right, and the answer is published as a pair.
 shared_lenses = [
-    dict(name='Book value and sustainable return', value=book_ps, weight=0.20),
-    dict(name='Relative multiples', value=rel_ps, weight=0.15),
-    dict(name='Normalised earnings power', value=norm_ps, weight=0.15),
+    dict(name='Book value and sustainable return', value=book_ps, weight=V['w_book']),
+    dict(name='Relative multiples', value=rel_ps, weight=V['w_rel']),
+    dict(name='Normalised earnings power', value=norm_ps, weight=V['w_norm']),
 ]
-W_DCF = 0.50
+W_DCF = V['w_dcf']
 
 
 def weighted_centre(dcf_ps):
@@ -1455,7 +1623,8 @@ CRUX_RAMP = [0.0, 0.10, 0.30, 0.60, 1.00]
 # reading of it is quoted from prose.
 _prov_hist = [(V['prov_fy23'], V['rev_fy23']), (V['prov_fy24'], V['rev_fy24']),
               (V['prov_fy25'], V['rev_fy25'])]
-_ecl_hist = [(39.0, V['rev_fy23']), (330.0, V['rev_fy24']), (376.158, V['rev_fy25'])]
+_ecl_hist = [(V['ecl_fy23'], V['rev_fy23']), (V['ecl_fy24'], V['rev_fy24']),
+             (V['ecl_fy25'], V['rev_fy25'])]
 PROV_3YR_MEAN = float(np.mean([p / r for p, r in _prov_hist]))
 PROV_ECL_3YR_MEAN = float(np.mean([p / r for p, r in _ecl_hist]))
 PROV_2YR_MEAN = float(np.mean([_prov_hist[0][0] / _prov_hist[0][1],
@@ -1478,7 +1647,8 @@ def dcf_at(wacc_shift=0.0, g=None, beta_override=None, prov_pct=None, fx_scale=1
     for i in range(n):
         a_ *= (1 + dr[i]); d_.append(1 / a_)
     # revenue side
-    pd_, pe_, rd_, re_, rt_ = dom_packs25, exp_packs25, dom_ppp25, exp_ppp_usd25, V['ch_toll_fy25']
+    pd_, pe_, rd_, re_ = dom_packs25, exp_packs25, dom_ppp25, exp_ppp_usd25
+    pt_, ft_, st_ = toll_packs25, toll_fee_pp25, resale_pp25
     rev_, cog_, pk_ = [], [], []
     ei = {k: 1.0 for k in cs}
     fxp = V['fx_avg_fy25']
@@ -1487,10 +1657,12 @@ def dcf_at(wacc_shift=0.0, g=None, beta_override=None, prov_pct=None, fx_scale=1
         pe_ *= (1 + V['exp_pack_growth'][i])
         rd_ *= (1 + V['dom_price_growth'][i])
         re_ *= (1 + V['exp_price_usd_growth'][i])
-        rt_ *= (1 + V['toll_growth'][i])
+        pt_ *= (1 + V['toll_growth'][i])
+        ft_ *= (1 + V['dom_price_growth'][i])
+        st_ *= (1 + V['dom_price_growth'][i])
         f_ = fx[i] * fx_scale
-        rev_.append((pd_ * rd_ + pe_ * re_ * f_ + rt_) * consol_uplift)
-        pk_.append(pd_ + pe_ + V['packs_toll_fy25'])
+        rev_.append((pd_ * rd_ + pe_ * re_ * f_ + pt_ * ft_ + pt_ * st_) * consol_uplift)
+        pk_.append(pd_ + pe_ + pt_)
         mv = f_ / fxp
         ei['materials'] *= (1 + V['esc_materials_usd']) * mv
         ei['packaging'] *= (V['esc_packaging_import_share'] * (1 + V['esc_materials_usd']) * mv +
@@ -1588,9 +1760,9 @@ req_ebit = req_rev * 0.45
 crux = dict(required_fy30_revenue=req_rev,
             required_share_of_fy30=req_rev / (revenue[-1] + req_rev),
             required_ebit=req_ebit, assumed_margin=0.45,
-            facility_investment_usd_mn=100.0,
+            facility_investment_usd_mn=V['plant_cost_usd_mn'],
             required_rev_usd_mn=req_rev / fx[-1],
-            asset_turn=req_rev / (100.0 * fx[-1]),
+            asset_turn=req_rev / (V['plant_cost_usd_mn'] * fx[-1]),
             at_base=dcf_A['per_share'], spot=V['spot'])
 say('')
 say(f"[The crux] the base build charges the new biologicals facility's depreciation and its "
@@ -1637,11 +1809,19 @@ OUT = dict(
                     exp_price_usd_fy25=exp_ppp_usd25,
                     dom_rev_fy24=dom_rev24, dom_rev_fy25=dom_rev25,
                     exp_rev_fy24=exp_rev24, exp_rev_fy25=exp_rev25,
+                    dom_own_rev_fy25=dom_own_rev25, dom_own_rev_fy24=dom_own_rev24,
+                    contract_resale_fy25=contract_resale25,
+                    contract_resale_fy24=contract_resale24,
+                    toll_packs_fy25=toll_packs25, toll_packs_fy24=toll_packs24,
+                    toll_fee_pp_fy25=toll_fee_pp25, toll_fee_pp_fy24=toll_fee_pp24,
+                    resale_pp_fy25=resale_pp25, resale_pp_fy24=resale_pp24,
                     utilisation_fy25=V['units_prod_fy25'] / V['units_cap'],
                     utilisation_fy24=V['units_prod_fy24'] / V['units_cap'],
                     consol_uplift=consol_uplift, unit_cost_fy25=unit_cost25),
     forecast=dict(years=YEARS, dom_packs=dom_packs, exp_packs=exp_packs, dom_price=dom_ppp,
                   exp_price_usd=exp_ppp_usd, fx=fx, rev_dom=rev_dom, rev_exp=rev_exp, toll=toll,
+                  toll_packs=toll_packs, toll_fee_pp=toll_fee_pp, resale_pp=resale_pp,
+                  rev_resale=rev_resale,
                   revenue=revenue, packs_total=packs_total, unit_cash_cost=unit_costs,
                   cogs_cash=cogs_cash, cogs=cogs, dep_cogs_share=DEP_COGS_SHARE,
                   gross_profit=gross_profit, gross_margin=gross_margin,

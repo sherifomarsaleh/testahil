@@ -1,14 +1,14 @@
 {
- "formulas": 824,
- "checked": 824,
+ "formulas": 869,
+ "checked": 869,
  "unresolvable": 0,
  "unchecked": 0,
  "mismatched": 0,
  "paste_counts": {
-  "audited": 321,
-  "unit_build": 14,
+  "audited": 320,
+  "unit_build": 5,
   "grid": 136,
-  "label": 553
+  "label": 568
  },
  "headline_failures": []
 }

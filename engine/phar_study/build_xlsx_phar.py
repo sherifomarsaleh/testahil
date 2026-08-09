@@ -179,6 +179,14 @@ r = 2
 lbl(wa, r, 1, 'ANCHORS', bold=True, fill=FILL_C); r += 1
 arow('spot', 'Share price (EGP)', 'Last close of the uploaded exchange price history, '
      f"{M['price_date']}", M['spot'])
+arow('sh22', 'Shares in issue at 31 December 2022 (million)', 'Board report, capital and '
+     'shareholders table', V['shares_fy22'], fmt='#,##0.000')
+arow('sh23', 'Shares in issue, FY2023 and FY2024 (million)', 'Board report',
+     V['shares_fy23'], fmt='#,##0.000')
+arow('shwavg', 'Weighted-average shares, FY2025 (million)', 'Audited — the capital increase '
+     'completed during the year', V['wavg_shares_fy25'], fmt='#,##0.000')
+arow('par22', 'Attributable profit, FY2022 (EGP mn)', 'Board report, eleven-year profit table',
+     V['parent_fy22'], fmt=MONEY)
 arow('shares', 'Shares in issue (million)', f"Capital note (13): issued capital of "
      f"EGP {SH * V['par_value'] * 1e6:,.0f} at EGP {V['par_value']:,.0f} nominal a share",
      SH, fmt='#,##0.000000')
@@ -346,17 +354,25 @@ arow('uc0', 'FY2025 cash cost per pack sold (EGP)', 'Cost of sales less its depr
      (V['cogs_fy25'] - 93.497560) / V['packs_sold_fy25'], fmt=PS, kind='unit_build')
 arow('consol', 'Consolidated-to-separate revenue factor', 'MEASURED: audited consolidated '
      'revenue over the separate-company channel total', UB['consol_uplift'], fmt='0.0000')
-arow('dp0', 'FY2025 domestic packs (million)', 'Unit build', UB['dom_packs_fy25'], fmt='#,##0.00',
-     kind='unit_build')
-arow('ep0', 'FY2025 export packs (million)', 'Investor presentation', UB['exp_packs_fy25'],
-     fmt='#,##0.00', kind='unit_build')
-arow('dpp0', 'FY2025 domestic price per pack (EGP)', 'Unit build', UB['dom_price_fy25'],
-     fmt=PS, kind='unit_build')
-arow('epp0', 'FY2025 export price per pack (USD)', 'Unit build', UB['exp_price_usd_fy25'],
-     fmt=PS, kind='unit_build')
-arow('tp0', 'FY2025 contract-manufacturing packs (million)', 'Board report',
-     V['packs_toll_fy25'], fmt='#,##0.00', kind='unit_build')
-arow('toll0', 'FY2025 contract-manufacturing revenue (EGP mn)', 'Revenue note (25)',
+arow('ownpk0', "FY2025 packs sold of the company's OWN preparations (million)",
+     'Board report, sales-indicators table', V['packs_own_fy25'], fmt='#,##0.000')
+arow('ep0', 'FY2025 export packs (million)', 'Investor presentation', V['export_packs_fy25'],
+     fmt='#,##0.000')
+arow('erev0', 'FY2025 export revenue (EGP mn)', 'Revenue note (25)', V['ch_export_fy25'],
+     fmt=MONEY)
+arow('ownval0', "FY2025 sales value of the company's OWN preparations (EGP mn)",
+     'Board report, sales-indicators table', V['own_prep_value_fy25'], fmt=MONEY)
+arow('conval0', 'FY2025 sales value of CONTRACT-MANUFACTURED preparations (EGP mn)',
+     'Board report, sales-indicators table — product value, not the fee the company books',
+     V['contract_value_fy25'], fmt=MONEY)
+arow('tollpk0', 'FY2025 contract-manufactured packs (million)', 'Board report',
+     V['packs_toll_fy25'], fmt='#,##0.000')
+arow('toll0', 'FY2025 contract-manufacturing FEE revenue (EGP mn)',
+     'disclosure — this row SPLITS the contract-manufacturing line in two and cannot move the '
+     'valuation by construction: the fee per pack rises by exactly what the resale price per '
+     'pack falls, so the product value above is what reaches revenue either way. It is carried '
+     'because the two halves are disclosed separately and a reader should see both. Revenue '
+     'note (25)',
      V['ch_toll_fy25'], fmt='#,##0.0')
 arow('fx0', 'FY2025 average exchange rate', 'Note (36)', V['fx_avg_fy25'], fmt='#,##0.00')
 
@@ -444,8 +460,10 @@ lbl(wsg, r, 1, 'Domestic packs sold (million)', bold=True)
 val(wsg, r, 2, UB['dom_packs_fy24'], fmt='#,##0.00', kind='unit_build')
 val(wsg, r, 3, UB['dom_packs_fy25'], fmt='#,##0.00', kind='unit_build')
 S['dp'] = r
+f(wsg, r, 3, f"=Assumptions!{c('ownpk0')}-Assumptions!{c('ep0')}", UB['dom_packs_fy25'],
+  fmt='#,##0.000')
 for j in range(5):
-    prev = 'Assumptions!' + c('dp0') if j == 0 else get_column_letter(3 + j) + str(r)
+    prev = f'C{r}' if j == 0 else get_column_letter(3 + j) + str(r)
     f(wsg, r, 4 + j, f'={prev}*(1+Assumptions!{get_column_letter(3 + j)}${A["dvol"]})',
       FC['dom_packs'][j], fmt='#,##0.00')
 r += 1
@@ -453,27 +471,24 @@ lbl(wsg, r, 1, 'Export packs sold (million)', bold=True)
 val(wsg, r, 2, UB['exp_packs_fy24'], fmt='#,##0.00', kind='unit_build')
 val(wsg, r, 3, UB['exp_packs_fy25'], fmt='#,##0.00', kind='unit_build')
 S['ep'] = r
+f(wsg, r, 3, f"=Assumptions!{c('ep0')}", UB['exp_packs_fy25'], fmt='#,##0.000')
 for j in range(5):
-    prev = 'Assumptions!' + c('ep0') if j == 0 else get_column_letter(3 + j) + str(r)
+    prev = f'C{r}' if j == 0 else get_column_letter(3 + j) + str(r)
     f(wsg, r, 4 + j, f'={prev}*(1+Assumptions!{get_column_letter(3 + j)}${A["evol"]})',
       FC['exp_packs'][j], fmt='#,##0.00')
 r += 1
-lbl(wsg, r, 1, 'Domestic realised price per pack (EGP)', bold=True)
-val(wsg, r, 2, UB['dom_price_fy24'], fmt=PS, kind='unit_build')
-val(wsg, r, 3, UB['dom_price_fy25'], fmt=PS, kind='unit_build')
+lbl(wsg, r, 1, 'Domestic realised price per pack (EGP) — own preparations only', bold=True)
 S['dpp'] = r
+DPP_HIST = r          # filled once the revenue rows below exist
 for j in range(5):
-    prev = 'Assumptions!' + c('dpp0') if j == 0 else get_column_letter(3 + j) + str(r)
+    prev = f'C{r}' if j == 0 else get_column_letter(3 + j) + str(r)
     f(wsg, r, 4 + j, f'={prev}*(1+Assumptions!{get_column_letter(3 + j)}${A["dprice"]})',
       FC['dom_price'][j], fmt=PS)
 r += 1
 lbl(wsg, r, 1, 'Export realised price per pack (USD)', bold=True)
-val(wsg, r, 2, UB['exp_rev_fy24'] / UB['exp_packs_fy24'] / V['fx_avg_fy24'], fmt=PS,
-    kind='unit_build')
-val(wsg, r, 3, UB['exp_price_usd_fy25'], fmt=PS, kind='unit_build')
 S['epp'] = r
 for j in range(5):
-    prev = 'Assumptions!' + c('epp0') if j == 0 else get_column_letter(3 + j) + str(r)
+    prev = f'C{r}' if j == 0 else get_column_letter(3 + j) + str(r)
     f(wsg, r, 4 + j, f'={prev}*(1+Assumptions!{get_column_letter(3 + j)}${A["eprice"]})',
       FC['exp_price_usd'][j], fmt=PS)
 r += 1
@@ -485,9 +500,7 @@ for j in range(5):
     f(wsg, r, 4 + j, f'=Assumptions!{get_column_letter(3 + j)}${A["fx"]}', FC['fx'][j],
       fmt='#,##0.00')
 r += 1
-lbl(wsg, r, 1, 'Domestic revenue (EGP mn)', bold=True, fill=FILL_P)
-val(wsg, r, 2, UB['dom_rev_fy24'], fmt=MONEY)
-val(wsg, r, 3, UB['dom_rev_fy25'], fmt=MONEY)
+lbl(wsg, r, 1, 'Domestic revenue, own preparations (EGP mn)', bold=True, fill=FILL_P)
 S['drev'] = r
 for j in range(5):
     col = get_column_letter(4 + j)
@@ -495,30 +508,84 @@ for j in range(5):
       fill=FILL_P)
 r += 1
 lbl(wsg, r, 1, 'Export revenue (EGP mn)', bold=True, fill=FILL_P)
-val(wsg, r, 2, UB['exp_rev_fy24'], fmt=MONEY)
-val(wsg, r, 3, UB['exp_rev_fy25'], fmt=MONEY)
+val(wsg, r, 2, UB['exp_rev_fy24'], fmt=MONEY, kind='audited')
+f(wsg, r, 3, f"=Assumptions!{c('erev0')}", UB['exp_rev_fy25'], fmt=MONEY)
 S['erev'] = r
 for j in range(5):
     col = get_column_letter(4 + j)
     f(wsg, r, 4 + j, f'={col}{S["ep"]}*{col}{S["epp"]}*{col}{S["fx"]}', FC['rev_exp'][j],
       fmt=MONEY, fill=FILL_P)
 r += 1
-lbl(wsg, r, 1, 'Contract-manufacturing revenue (EGP mn)', bold=True)
-val(wsg, r, 2, V['ch_toll_fy24'], fmt='#,##0.0')
-val(wsg, r, 3, V['ch_toll_fy25'], fmt='#,##0.0')
-S['toll'] = r
+lbl(wsg, r, 1, 'Contract-manufactured packs (million)', bold=True)
+val(wsg, r, 2, UB['toll_packs_fy24'], fmt='#,##0.000', kind='audited')
+f(wsg, r, 3, f"=Assumptions!{c('tollpk0')}", UB['toll_packs_fy25'], fmt='#,##0.000')
+S['tpk'] = r
 for j in range(5):
-    prev = 'Assumptions!' + c('toll0') if j == 0 else get_column_letter(3 + j) + str(r)
+    prev = f'C{r}' if j == 0 else get_column_letter(3 + j) + str(r)
     f(wsg, r, 4 + j, f'={prev}*(1+Assumptions!{get_column_letter(3 + j)}${A["toll"]})',
-      FC['toll'][j], fmt='#,##0.0')
+      FC['toll_packs'][j], fmt='#,##0.000')
 r += 1
+lbl(wsg, r, 1, 'Contract-manufacturing FEE per pack (EGP)', bold=True)
+S['tfee'] = r
+f(wsg, r, 2, f"={V['ch_toll_fy24']}/B{S['tpk']}", UB['toll_fee_pp_fy24'], fmt=PS)
+f(wsg, r, 3, f"=Assumptions!{c('toll0')}/C{S['tpk']}", UB['toll_fee_pp_fy25'], fmt=PS)
+for j in range(5):
+    prev = f"C{r}" if j == 0 else get_column_letter(3 + j) + str(r)
+    f(wsg, r, 4 + j, f'={prev}*(1+Assumptions!{get_column_letter(3 + j)}${A["dprice"]})',
+      FC['toll_fee_pp'][j], fmt=PS)
+r += 1
+lbl(wsg, r, 1, 'Contract product resold through own channels, per pack (EGP)', bold=True)
+S['tres'] = r
+f(wsg, r, 2, f"=({V['contract_value_fy24']}-{V['ch_toll_fy24']})/B{S['tpk']}",
+  UB['resale_pp_fy24'], fmt=PS)
+f(wsg, r, 3, f"=(Assumptions!{c('conval0')}-Assumptions!{c('toll0')})/C{S['tpk']}",
+  UB['resale_pp_fy25'], fmt=PS)
+for j in range(5):
+    prev = f"C{r}" if j == 0 else get_column_letter(3 + j) + str(r)
+    f(wsg, r, 4 + j, f'={prev}*(1+Assumptions!{get_column_letter(3 + j)}${A["dprice"]})',
+      FC['resale_pp'][j], fmt=PS)
+r += 1
+lbl(wsg, r, 1, 'Contract-manufacturing revenue — fee (EGP mn)', bold=True, fill=FILL_P)
+S['toll'] = r
+for j, col in enumerate(('B', 'C')):
+    f(wsg, r, 2 + j, f'={col}{S["tpk"]}*{col}{S["tfee"]}',
+      [V['ch_toll_fy24'], V['ch_toll_fy25']][j], fmt='#,##0.0')
+for j in range(5):
+    col = get_column_letter(4 + j)
+    f(wsg, r, 4 + j, f'={col}{S["tpk"]}*{col}{S["tfee"]}', FC['toll'][j], fmt='#,##0.0',
+      fill=FILL_P)
+r += 1
+lbl(wsg, r, 1, 'Contract product resold through own channels (EGP mn)', bold=True, fill=FILL_P)
+S['tresrev'] = r
+for j, col in enumerate(('B', 'C')):
+    f(wsg, r, 2 + j, f'={col}{S["tpk"]}*{col}{S["tres"]}',
+      [UB['contract_resale_fy24'], UB['contract_resale_fy25']][j], fmt='#,##0.0')
+for j in range(5):
+    col = get_column_letter(4 + j)
+    f(wsg, r, 4 + j, f'={col}{S["tpk"]}*{col}{S["tres"]}', FC['rev_resale'][j], fmt='#,##0.0',
+      fill=FILL_P)
+r += 1
+# ---- backfill the HISTORY columns of the price and domestic-revenue rows as FORMULAS.
+# The realised price is not an input: it is what the disclosed revenue divided by the
+# disclosed pack count actually was, and the sheet computes it.
+f(wsg, S['drev'], 2, f"={V['own_prep_value_fy24']}-B{S['erev']}", UB['dom_own_rev_fy24'],
+  fmt=MONEY)
+f(wsg, S['drev'], 3, f"=Assumptions!{c('ownval0')}-C{S['erev']}", UB['dom_own_rev_fy25'],
+  fmt=MONEY)
+for col, exp in (('B', UB['dom_price_fy24']), ('C', UB['dom_price_fy25'])):
+    f(wsg, S['dpp'], 2 if col == 'B' else 3, f'={col}{S["drev"]}/{col}{S["dp"]}', exp, fmt=PS)
+for col, exp, fxv in (('B', UB['exp_rev_fy24'] / UB['exp_packs_fy24'] / V['fx_avg_fy24'],
+                       V['fx_avg_fy24']),
+                      ('C', UB['exp_price_usd_fy25'], V['fx_avg_fy25'])):
+    f(wsg, S['epp'], 2 if col == 'B' else 3,
+      f'={col}{S["erev"]}/{col}{S["ep"]}/{col}{S["fx"]}', exp, fmt=PS)
 lbl(wsg, r, 1, 'Total packs sold (million)', bold=True)
 val(wsg, r, 2, V['packs_sold_fy24'], fmt='#,##0.00')
 val(wsg, r, 3, V['packs_sold_fy25'], fmt='#,##0.00')
 S['packs'] = r
 for j in range(5):
     col = get_column_letter(4 + j)
-    f(wsg, r, 4 + j, f'={col}{S["dp"]}+{col}{S["ep"]}+Assumptions!{c("tp0")}',
+    f(wsg, r, 4 + j, f'={col}{S["dp"]}+{col}{S["ep"]}+{col}{S["tpk"]}',
       FC['packs_total'][j], fmt='#,##0.00')
 r += 1
 lbl(wsg, r, 1, 'REVENUE, consolidated (EGP mn)', bold=True, fill=FILL_C)
@@ -527,8 +594,9 @@ val(wsg, r, 3, V['rev_fy25'], fmt=MONEY)
 S['rev'] = r
 for j in range(5):
     col = get_column_letter(4 + j)
-    f(wsg, r, 4 + j, f'=({col}{S["drev"]}+{col}{S["erev"]}+{col}{S["toll"]})*Assumptions!'
-      f'{c("consol")}', FC['revenue'][j], fmt=MONEY, bold=True, fill=FILL_C)
+    f(wsg, r, 4 + j, f'=({col}{S["drev"]}+{col}{S["erev"]}+{col}{S["toll"]}'
+      f'+{col}{S["tresrev"]})*Assumptions!{c("consol")}', FC['revenue'][j], fmt=MONEY,
+      bold=True, fill=FILL_C)
 r += 2
 lbl(wsg, r, 1, 'DISCLOSED CAPACITY AND UTILISATION', bold=True, fill=FILL_C); r += 1
 for label, v24, v25 in (('Units produced (million)', V['units_prod_fy24'], V['units_prod_fy25']),
@@ -1484,6 +1552,48 @@ f(wr, r, 2, f"=Assumptions!{c('parent25')}/Assumptions!{c('shares')}", LN['eps_t
 lbl(wr, r, 4, 'The base for the two TRAILING multiples below. A trailing multiple applied to '
     'forward earnings would mismatch the periods', note=True)
 r += 1
+r += 2
+lbl(wr, r, 1, "THE COMPANY'S OWN TRADED MULTIPLE HISTORY", bold=True, fill=FILL_C); r += 1
+hdr(wr, r, ['Year', 'Year-end close', 'Attributable EPS', 'Price / earnings'], fill=FILL_P,
+    font=F_SUB)
+r += 1
+oh_start = r
+IS_PARENT_COL = {2023: 'B', 2024: 'C', 2025: 'D'}
+for o in LN['own_pe_history']:
+    lbl(wr, r, 1, str(o['year']))
+    val(wr, r, 2, o['close'], fmt=PS)          # a market observation: the year-end close
+    if o['year'] == 2022:
+        f(wr, r, 3, f"=Assumptions!{c('par22')}/Assumptions!{c('sh22')}", o['eps'], fmt=PS)
+    else:
+        col = IS_PARENT_COL[o['year']]
+        shref = (f"Assumptions!{c('sh23')}" if o['year'] < 2025
+                 else f"Assumptions!{c('shwavg')}")
+        f(wr, r, 3, f"='Income Statement'!{col}{IS['parent']}/{shref}", o['eps'], fmt=PS)
+    f(wr, r, 4, f'=B{r}/C{r}', o['pe'], fmt='0.00"x"')
+    r += 1
+OH_MEAN_ROW = r
+lbl(wr, r, 1, 'Four-year mean', bold=True)
+f(wr, r, 4, f'=AVERAGE(D{oh_start}:D{r - 1})', LN['own_pe_mean'], fmt='0.00"x"', bold=True)
+r += 1
+lbl(wr, r, 1, 'Trailing multiple today — on the share count IN ISSUE', bold=True)
+f(wr, r, 2, f'=Assumptions!{c("spot")}', M['spot'], fmt=PS)
+f(wr, r, 3, f"=B{RL['epsT']}", LN['eps_ttm'], fmt=PS)
+f(wr, r, 4, f'=B{r}/C{r}', LN['pe_now'], fmt='0.00"x"', bold=True)
+r += 1
+lbl(wr, r, 1, 'Trailing multiple today — on the AUDITED WEIGHTED-AVERAGE count for FY2025',
+    bold=True)
+f(wr, r, 2, f'=Assumptions!{c("spot")}', M['spot'], fmt=PS)
+f(wr, r, 3, f"=Assumptions!{c('parent25')}/{V['wavg_shares_fy25']}", LN['eps_ttm_wavg'], fmt=PS)
+f(wr, r, 4, f'=B{r}/C{r}', LN['pe_now_wavg'], fmt='0.00"x"', bold=True)
+lbl(wr, r, 6, 'TWO SHARE COUNTS, BOTH PUBLISHED. The capital increase from 148.755750 to '
+    '168.755750 million shares completed during FY2025, so that year has a weighted-average '
+    'count of 162.016024 million and a closing count of 168.755750 million. Both readings of '
+    'the trailing multiple are legitimate; neither is stated alone.', note=True)
+r += 2
+
+lbl(wr, r, 1, 'THE THREE MULTIPLES, EACH ON THE EARNINGS OF ITS OWN PERIOD', bold=True,
+    fill=FILL_C)
+r += 1
 tri = LN['rel_triangulation']
 for i, (name, mult, value) in enumerate(tri):
     RL[f't{i}'] = r
@@ -1492,7 +1602,7 @@ for i, (name, mult, value) in enumerate(tri):
         f(wr, r, 2, f'=B{RL["pay"]}/(Assumptions!{c("ket")}'
           f'-Assumptions!{c("g")})', mult, fmt='0.00"x"')
     elif i == 1:
-        val(wr, r, 2, mult, fmt='0.00"x"')
+        f(wr, r, 2, f'=D{OH_MEAN_ROW}', mult, fmt='0.00"x"')
     else:
         f(wr, r, 2, f'=Assumptions!{c("peer_pe")}*(0.10-Assumptions!{c("g")})/'
           f'(Assumptions!{c("ket")}-Assumptions!{c("g")})', mult, fmt='0.00"x"')
@@ -1514,35 +1624,6 @@ f(wr, r, 2, f'=AVERAGE(B{RL["t0"]}:B{RL["t2"]})', sum(t[1] for t in tri) / 3, fm
   bold=True, fill=FILL_C)
 f(wr, r, 3, f'=AVERAGE(C{RL["t0"]}:C{RL["t2"]})', LN['rel_ps'], fmt=PS, bold=True,
   fill=FILL_C)
-r += 2
-lbl(wr, r, 1, "THE COMPANY'S OWN TRADED MULTIPLE HISTORY", bold=True, fill=FILL_C); r += 1
-hdr(wr, r, ['Year', 'Year-end close', 'Attributable EPS', 'Price / earnings'], fill=FILL_P,
-    font=F_SUB)
-r += 1
-oh_start = r
-for o in LN['own_pe_history']:
-    lbl(wr, r, 1, str(o['year']))
-    val(wr, r, 2, o['close'], fmt=PS)
-    val(wr, r, 3, o['eps'], fmt=PS)
-    f(wr, r, 4, f'=B{r}/C{r}', o['pe'], fmt='0.0"x"')
-    r += 1
-lbl(wr, r, 1, 'Four-year mean', bold=True)
-f(wr, r, 4, f'=AVERAGE(D{oh_start}:D{r - 1})', LN['own_pe_mean'], fmt='0.0"x"', bold=True)
-r += 1
-lbl(wr, r, 1, 'Trailing multiple today — on the share count IN ISSUE', bold=True)
-f(wr, r, 2, f'=Assumptions!{c("spot")}', M['spot'], fmt=PS)
-f(wr, r, 3, f"=B{RL['epsT']}", LN['eps_ttm'], fmt=PS)
-f(wr, r, 4, f'=B{r}/C{r}', LN['pe_now'], fmt='0.00"x"', bold=True)
-r += 1
-lbl(wr, r, 1, 'Trailing multiple today — on the AUDITED WEIGHTED-AVERAGE count for FY2025',
-    bold=True)
-f(wr, r, 2, f'=Assumptions!{c("spot")}', M['spot'], fmt=PS)
-f(wr, r, 3, f"=Assumptions!{c('parent25')}/{V['wavg_shares_fy25']}", LN['eps_ttm_wavg'], fmt=PS)
-f(wr, r, 4, f'=B{r}/C{r}', LN['pe_now_wavg'], fmt='0.00"x"', bold=True)
-lbl(wr, r, 6, 'TWO SHARE COUNTS, BOTH PUBLISHED. The capital increase from 148.755750 to '
-    '168.755750 million shares completed during FY2025, so that year has a weighted-average '
-    'count of 162.016024 million and a closing count of 168.755750 million. Both readings of '
-    'the trailing multiple are legitimate; neither is stated alone.', note=True)
 r += 2
 lbl(wr, r, 1, 'NORMALISED EARNINGS POWER', bold=True, fill=FILL_C); r += 1
 NP = {}
@@ -1993,32 +2074,40 @@ wpe.merge_cells(start_row=r, start_column=1, end_row=r, end_column=4)
 r += 1
 peers = [
     ('Listed Saudi Arabian generics manufacturer', PEER_HI, 'Trailing price / earnings',
-     'Public-comparables service, 2025 basis — cross-check only'),
+     'Public-comparables service, 2025 basis — cross-check only. This company is not named '
+     'and its financial statements are not published here, so this multiple cannot be '
+     'rebuilt from its filings'),
     ('Regional and international generic manufacturers, mid-cap', PEER_MID,
      'Trailing price / earnings', 'Range observed across the peer set — cross-check only'),
-    ('PEER MEDIAN USED', V['peer_pe_regional'], 'Trailing price / earnings',
-     'Struck between the two above; the lens runs a 13-26 times band'),
+    ('STRUCK REFERENCE USED — the midpoint of the two above', None,
+     'Trailing price / earnings',
+     'NOT a median of a disclosed peer set: two observations have a midpoint, and this cell '
+     'computes it. The lens runs a 13-26 times band around it'),
 ]
 pstart = r
 for name, mult, basis, prov in peers:
-    lbl(wpe, r, 1, name, bold=name.startswith('PEER'))
-    val(wpe, r, 2, mult, fmt='0.0"x"')
+    lbl(wpe, r, 1, name, bold=mult is None)
+    if mult is None:
+        f(wpe, r, 2, f'=AVERAGE(B{pstart}:B{pstart + 1})', V['peer_pe_regional'],
+          fmt='0.00"x"', bold=True)
+    else:
+        val(wpe, r, 2, mult, fmt='0.00"x"')
     lbl(wpe, r, 3, basis); lbl(wpe, r, 4, prov, note=True)
     r += 1
 lbl(wpe, r, 1, 'The subject company today', bold=True, fill=FILL_C)
 f(wpe, r, 2, f"=Assumptions!{c('spot')}/('Income Statement'!D{IS['parent']}/Assumptions!"
-  f"{c('shares')})", LN['pe_now'], fmt='0.0"x"', bold=True, fill=FILL_C)
+  f"{c('shares')})", LN['pe_now'], fmt='0.00"x"', bold=True, fill=FILL_C)
 lbl(wpe, r, 3, 'Trailing price / earnings')
 lbl(wpe, r, 4, 'Computed in this sheet from the audited attributable profit and the market '
     'price', note=True)
 r += 1
 lbl(wpe, r, 1, "The subject company's own four-year mean", bold=True)
-f(wpe, r, 2, f"='Relative & Normalized'!D{oh_start + 4}", LN['own_pe_mean'], fmt='0.0"x"',
+f(wpe, r, 2, f"='Relative & Normalized'!D{OH_MEAN_ROW}", LN['own_pe_mean'], fmt='0.00"x"',
   bold=True)
 lbl(wpe, r, 3, 'Trailing price / earnings')
 lbl(wpe, r, 4, 'Computed from year-end closes and audited profit — entirely primary', note=True)
 r += 1
-lbl(wpe, r, 1, 'Discount of the subject to the peer median', bold=True, fill=FILL_C)
+lbl(wpe, r, 1, 'Discount of the subject to the struck reference', bold=True, fill=FILL_C)
 f(wpe, r, 2, f'=B{r - 2}/B{pstart + 2}-1', LN['pe_now'] / V['peer_pe_regional'] - 1, fmt=PCT,
   bold=True, fill=FILL_C)
 lbl(wpe, r, 4, 'The peers face a cost of equity near 10%; this company\'s perpetual cost of '
@@ -2033,7 +2122,9 @@ for label, formula, exp, fmt_ in (
         ('EBITDA margin, FY2025',
          f"='Income Statement'!D{IS['ebitda']}/'Income Statement'!D{IS['rev']}",
          H['FY2025']['ebitda'] / V['rev_fy25'], PCT),
-        ('Return on average equity, FY2025', None, LN['roe_fy25'], PCT),
+        ('Return on average equity, FY2025',
+         f"='Income Statement'!D{IS['parent']}/(('Balance Sheet'!C{BS['eq']}"
+         f"+'Balance Sheet'!D{BS['eq']})/2)", LN['roe_fy25'], PCT),
         ('Capacity utilisation, FY2025', f"=Segments!C{S['util']}",
          UB['utilisation_fy25'], PCT),
         ('Cash conversion cycle, FY2025 (days)', None,

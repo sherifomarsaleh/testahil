@@ -28,8 +28,8 @@ BT = CAL['backtest']
 SPOT, SH = M['spot'], M['shares_mn']
 YR = ['FY2026E', 'FY2027E', 'FY2028E', 'FY2029E', 'FY2030E']
 A, Bf = DCFD['frame_A'], DCFD['frame_B']
-ASSOC_SA_FY25, ASSOC_SA_FY24 = 427.906046, 190.021502   # note (33), by associate
-PEER_HI, PEER_MID = 26.7, 16.0                          # market data, cross-check
+ASSOC_SA_FY25, ASSOC_SA_FY24 = V['assoc_saudi_fy25'], V['assoc_saudi_fy24']
+PEER_HI, PEER_MID = V['peer_pe_hi'], V['peer_pe_lo']
 
 
 # Table numbers are ASSIGNED IN DOCUMENT ORDER by this counter, never typed. The first
@@ -405,25 +405,53 @@ P(f'There is no single weighted centre, and the absence is deliberate. The two p
   f'reader.')
 
 H2('1.6 Drivers — every segment grown on its own driver')
-P(f'Revenue is not grown as a percentage. Each book is built from a volume and a price, both '
-  f'taken from disclosure. The company sold {n1(V["packs_own_fy25"])} million packs of its own '
-  f'preparations in FY2025; the investor presentation puts export volume at '
-  f'{n0(UB["exp_packs_fy25"])} million packs. The difference — {n1(UB["dom_packs_fy25"])} '
-  f'million packs — is the domestic book, carrying EGP {n0(UB["dom_rev_fy25"])} million of '
-  f'revenue, or EGP {n2(UB["dom_price_fy25"])} a pack, against EGP {n2(UB["dom_price_fy24"])} '
-  f'in FY2024. Exports realise USD {n2(UB["exp_price_usd_fy25"])} a pack. Margins are an '
-  f'OUTPUT of this build, never an input.')
+P(f'Revenue is not grown as a percentage. It is built from THREE product lines, each with '
+  f'its own volume and its own price, all taken from disclosure. The company\'s board report '
+  f'splits the same total two different ways — by sales channel and by product line — and the '
+  f'two only reconcile once contract manufacturing is separated out.')
+P(f'LINE 1 AND LINE 2, the company\'s OWN preparations. It sold '
+  f'{n1(V["packs_own_fy25"])} million packs of them in FY2025 for EGP '
+  f'{n0(V["own_prep_value_fy25"])} million. The investor presentation puts export volume at '
+  f'{n0(UB["exp_packs_fy25"])} million packs earning EGP {n0(V["ch_export_fy25"])} million, '
+  f'which is USD {n2(UB["exp_price_usd_fy25"])} a pack at the disclosed average rate. The '
+  f'remainder — {n1(UB["dom_packs_fy25"])} million packs carrying EGP '
+  f'{n0(UB["dom_own_rev_fy25"])} million — is the domestic book at EGP '
+  f'{n2(UB["dom_price_fy25"])} a pack, against EGP {n2(UB["dom_price_fy24"])} in FY2024: a '
+  f'realised price up {pc(UB["dom_price_fy25"] / UB["dom_price_fy24"] - 1)} on volume up '
+  f'{pc(UB["dom_packs_fy25"] / UB["dom_packs_fy24"] - 1)}.')
+P(f'LINE 3, preparations made under contract for third parties. This is a different business '
+  f'and it is now modelled as one: {n2(UB["toll_packs_fy25"])} million packs in FY2025 against '
+  f'{n2(UB["toll_packs_fy24"])} million in FY2024, carrying EGP '
+  f'{n1(V["contract_value_fy25"])} million of product value. The company books EGP '
+  f'{n1(V["ch_toll_fy25"])} million of that as a manufacturing fee — EGP '
+  f'{n2(UB["toll_fee_pp_fy25"])} a pack against EGP {n2(UB["toll_fee_pp_fy24"])} the year '
+  f'before — and the remaining EGP {n1(UB["contract_resale_fy25"])} million reaches the market '
+  f'through its own domestic channels.')
+P(f'That separation matters more than its size. The channel disclosure puts domestic revenue '
+  f'at EGP {n0(UB["dom_rev_fy25"])} million, but that figure CARRIES the contract-made product '
+  f'while the pack count against it does NOT carry the contract packs. Dividing one by the '
+  f'other reads EGP {n2(UB["dom_rev_fy25"] / UB["dom_packs_fy25"])} a pack rather than the EGP '
+  f'{n2(UB["dom_price_fy25"])} the company actually realised on its own preparations — '
+  f'{pc(UB["dom_rev_fy25"] / UB["dom_packs_fy25"] / UB["dom_price_fy25"] - 1, 2)} too high, in '
+  f'every forecast year. The two disclosures now close on each other to the thousand pound in '
+  f'both years, and the model asserts it. Margins are an OUTPUT of this build, never an input.')
 rows = [['Driver'] + YR]
-rows.append(['Domestic packs (million)'] + [n1(x) for x in FC['dom_packs']])
+rows.append(['Domestic packs, own preparations (million)'] + [n1(x) for x in FC['dom_packs']])
 rows.append(['Domestic price per pack (EGP)'] + [n2(x) for x in FC['dom_price']])
 rows.append(['Export packs (million)'] + [n1(x) for x in FC['exp_packs']])
 rows.append(['Export price per pack (USD)'] + [n2(x) for x in FC['exp_price_usd']])
 rows.append(['Exchange rate (EGP per USD)'] + [n1(x) for x in FC['fx']])
+rows.append(['Contract-manufactured packs (million)'] + [n2(x) for x in FC['toll_packs']])
+rows.append(['Contract manufacturing fee per pack (EGP)']
+            + [n2(x) for x in FC['toll_fee_pp']])
+rows.append(['Contract product resold, price per pack (EGP)']
+            + [n2(x) for x in FC['resale_pp']])
 rows.append(['Revenue (EGP million)'] + [n0(x) for x in FC['revenue']])
 rows.append(['Gross margin (an output)'] + [pc(x) for x in FC['gross_margin']])
-table(rows, [2.35, 0.92, 0.92, 0.92, 0.92, 0.92], band_rows={7}, size=8.8)
-caption(f'Table {tnum()} — the forecast driver table. Volume and price move separately, in the '
-        'currency each is actually earned in.')
+table(rows, [2.35, 0.92, 0.92, 0.92, 0.92, 0.92], band_rows={10}, size=8.8)
+caption(f'Table {tnum()} — the forecast driver table. THREE product lines, each with its own '
+        f'volume and its own price, moving separately and in the currency each is actually '
+        f'earned in. Nothing on this table is a revenue growth rate.')
 figure(os.path.join(HERE, 'fig2_volume_price.png'), 6.9,
        'Figure 3 — revenue by book, and the volumes and prices underneath it.')
 
@@ -486,6 +514,17 @@ P('Two things have to be published for that hurdle to be checkable, and they are
   f'Left uncharged — which is how the first cut of this model ran it — the hurdle prices out '
   f'about USD 115 million a year instead of USD {n0(CRUX["required_rev_usd_mn"])} million, '
   f'which understates what the market is actually asking of the plant.')
+P(f'The same arithmetic read the other way is worth stating, because it is the plainest '
+  f'summary of what is at issue. At EGP {n2(SPOT)} the market is paying EGP '
+  f'{n2(SPOT - A["per_share"])} a share — EGP {n0((SPOT - A["per_share"]) * SH)} million, '
+  f'{pc((SPOT - A["per_share"]) / SPOT, 0)} of the entire share price — for a plant this '
+  f'study values at nothing, against a stated build cost of USD '
+  f'{n0(V["plant_cost_usd_mn"])} million, about EGP '
+  f'{n0(V["plant_cost_usd_mn"] * FC["fx"][-1])} million. The market is not merely paying for '
+  f'the plant to work; it is paying roughly '
+  f'{(SPOT - A["per_share"]) * SH / (V["plant_cost_usd_mn"] * FC["fx"][-1]):.1f} times what '
+  f'the plant cost to build. That is the proposition, stated as a multiple of an observable '
+  f'outlay rather than as a valuation.')
 box([('Why this number is useful. ',
       f'It is observable. Roughly USD {n0(CRUX["required_rev_usd_mn"])} million a year of '
       f'biosimilar revenue by 2030 is a figure the company will eventually disclose, and a '
@@ -543,8 +582,16 @@ P(f'Two of those rows carry more weight than the rest. The depreciation line is 
   f'judgement, and here the quarter does NOT settle it: the company took EGP {n0(V["q1_prov"])} '
   f'million of provisions and inventory write-downs but no credit-loss charge whatsoever, '
   f'against receivables that grew EGP {n0(V["q1_ar"] - V["ar_fy25"])} million in the same three '
-  f'months. The auditor qualified the review on precisely that point. A charge that is omitted '
-  f'in the first quarter is deferred, not avoided, which is why both frames still run.')
+  f'months. The auditor qualified the review on precisely that point. Put a number on it: '
+  f'Frame A\'s {pc(V["prov_pct_permanent"], 2)} of revenue applied to the quarter\'s own '
+  f'sales would have charged EGP {n1(V["q1_rev"] * V["prov_pct_permanent"])} million — '
+  f'{pc(V["q1_rev"] * V["prov_pct_permanent"] / V["q1_parent"], 0)} of the attributable '
+  f'profit the quarter actually reported — and even the three-year expected-credit-loss mean '
+  f'of {pc(SENS["prov_ecl_3yr_mean"], 2)} would have charged EGP '
+  f'{n1(V["q1_rev"] * SENS["prov_ecl_3yr_mean"])} million, or '
+  f'{pc(V["q1_rev"] * SENS["prov_ecl_3yr_mean"] / V["q1_parent"], 0)} of it. A charge that '
+  f'is omitted in the first quarter is deferred, not avoided, which is why both frames still '
+  f'run.')
 
 H2('1.8 Macro and country — the cost of capital')
 P(f'The quoted ten-year Egyptian local-currency government yield is {pc(V["rf"], 2)}. That '

@@ -611,3 +611,83 @@ On approval I will implement bucket ①, take your calls on ⑤, open the ③ it
 every gate — `recalc.py` (785/785 formula cells), `driver_test.py` (29 asserted directions, dead-input
 sweep), `qc_checks.py` (scrub, table, figure, traceability), the sweep register, SIGCM and the
 model-study checklist — and report before/after for each, plus any further defect the fixes surface.
+
+
+---
+
+## Step 10 — Recalibrated after being told the critique was taken too lightly
+
+Not a defence. Three things were re-checked at finding level, and all three found something.
+
+### (a) Four findings were "priced" in words, not numbers — which rule 3 forbids
+
+Rule 3 says a finding may not be called immaterial without a number beside the word. Four
+were dismissed with a phrase. They are now priced, on the corrected model:
+
+| finding | how it was priced before | priced properly |
+|---|---|---|
+| **B31** — the peer leg cannot be rebuilt from peer filings | "~5% of headline weight" | delete the leg: relative lens 65.42 → 52.09, centres **59.21 / 66.70** (−2.00 each) |
+| **B34** — the FY2022 close and earnings per share are untraceable | "~5% of headline weight" | drop that one observation: four-year mean 6.572× → 7.182×, centres **61.47 / 68.96** (+0.26 each) |
+| **D6** — the auditor's zero-credit-loss qualification | "already disclosed" | Frame A's own 5.25% on the quarter's sales would have charged **EGP 133.0 million — 47% of the quarter's reported attributable profit**; the three-year credit-loss mean would have charged EGP 76.6 million, 27% of it. Now in the study. |
+| **C6 / D5** — the plant carried at zero revenue | "the crux prices it" | the market pays **EGP 72.01 a share, EGP 12,152 million, 55% of the share price** for it — about 2.1× its stated build cost. Now in the study. |
+
+### (b) The build was not bottom-up enough, and mining the disclosure again found an error
+
+The board report splits the same separate-company revenue TWO ways — by sales channel and by
+product line — and the second split had not been used. Reconciling them separates the
+company's own preparations from preparations it manufactures under contract for third parties,
+and the two only close once that is done.
+
+The earlier build divided a domestic revenue figure that INCLUDED contract-made product by a
+pack count that EXCLUDED contract packs. The realised domestic price per pack read EGP
+21.5401 when the company actually realised EGP
+21.2216 — 1.50% too high, in every forecast year, and the measured
+year-on-year price growth read +8.98% when it was **+12.59%**. No critic found this.
+
+The forecast now carries three product lines, each a volume times a price:
+
+| line | FY2025 volume | FY2025 price | FY2025 revenue |
+|---|---|---|---|
+| Own preparations, domestic | 291.810m packs | EGP 21.2216/pack | EGP 6,192.7m |
+| Own preparations, export | 60.000m packs | USD 0.9996/pack | EGP 2,967.5m |
+| Contract manufacturing — fee | 5.485m packs | EGP 9.00/pack | EGP 49.4m |
+| Contract manufacturing — product resold through own channels | the same packs | EGP 16.95/pack | EGP 93.0m |
+| | | **total** | **EGP 9,302.469m** |
+
+Two assertions now guard it: the product-line split must sum to the disclosed total in both
+years, and it must reconcile to the channel split in both years. Also swept in and published:
+the board report's **eleven-year** history of total revenue, domestic sales, export sales,
+contract-manufacturing revenue and production value at selling price (FY2015–FY2025), which
+had not been read before.
+
+Centres move to **61.2060** and **68.7011**.
+
+### (c) The workbook still had derived constants pasted where formulas belonged
+
+| | before | after |
+|---|---|---|
+| Formula cells | 824 | **869** |
+| Pasted numeric cells | 471 | **457** |
+| Pasted "unit build" cells | 14 | **5** |
+| Typed constants in the model that were not four-field inputs | 14 | **0** |
+
+Every constant that was typed into `compute.py` rather than sourced is now an input with a
+value, a source, a date and a research layer: the disclosed separate-company revenue total,
+the depreciation inside cost of sales, the depreciation-versus-amortisation split, the three
+historical share counts, the three expected-credit-loss components, the board fee, the
+minority share, the plant's stated cost, the Saudi associate's contribution in two years, the
+two peer observations, and all four lens weights. The input register goes from 249 to
+276 entries.
+
+In the workbook these became live cells: the four-year mean multiple (was pasted, now
+`=AVERAGE` over the history table), the historical earnings per share (now profit over that
+year's own share count), the struck peer reference (now `=AVERAGE` of its two observations),
+the realised price per pack in BOTH history years (now revenue over packs, on the sheet), the
+FY2025 return on equity, the grouped balance-sheet lines, and the whole three-line unit build.
+The forecast openers no longer read duplicate Assumptions rows — they read the computed FY2025
+column, so each figure exists in exactly one place.
+
+One input is genuinely inert and the driver test named it: the contract-manufacturing FEE.
+Raising it raises the fee per pack by exactly what it lowers the resale price per pack, so the
+product value reaching revenue is unchanged. It is now labelled a disclosure row with that
+reason, rather than left looking like a driver.
