@@ -67,6 +67,20 @@ box([('What this is. ',
       'plant\'s depreciation and its interest, because both follow mechanically from the '
       'licence the company obtained in December 2025. Section 1.7 then solves for how much '
       'the plant must sell to justify the market price and states that in observable units.'),
+     ('This is the second edition. ',
+      'It folds in the reviewed first quarter of 2026 and the separately issued audited '
+      'FY2023 and FY2024 statements, obtained after the first issue. The first quarter '
+      'CONFIRMED the study\'s central mechanism — the construction balance is transferring '
+      'and the depreciation charge has more than doubled — but it also came in softer than '
+      'the first edition assumed on revenue, associates and capital spending. The weighted '
+      f'central value moves from EGP 79.64 to EGP {n0(LN["fair_base"])} a share. Section 7 '
+      'lists what changed and by how much.'),
+     ('The first-quarter review is QUALIFIED. ',
+      'The auditor qualified the conclusion on three matters: the associates\' own periodic '
+      'statements were not received; the active-ingredient company was recognised at cost '
+      'after loss of control rather than remeasured and equity-accounted; and NO '
+      'expected-credit-loss charge was recognised in the quarter. The third goes straight to '
+      'this study\'s contested judgement and is the reason it is still carried both ways.'),
      ('The contested judgement is carried both ways. ',
       'The credit-loss and provision charge is the study\'s single most consequential '
       'contested judgement. It is computed on two frames and both are published side by '
@@ -95,6 +109,14 @@ P(f'Against that, four lenses that do not depend on the new plant at all — dis
   f'flow on two framings of the provision charge, book value against sustainable return, '
   f'triangulated multiples, and normalised earnings power — cluster between EGP '
   f'{n0(LN["fair_bear"])} and EGP {n0(LN["fair_bull"])}. The market is above all of them.')
+P(f'The first quarter of 2026, reviewed and published in May, settles part of that question '
+  f'and sharpens the rest. Fixed assets rose EGP {n0(V["q1_ppe"] - V["ppe_fy25"])} million and '
+  f'the construction balance fell EGP {n0(V["cip_fy25"] - V["q1_cip"])} million in three '
+  f'months; depreciation and amortisation went to EGP {n1(V["q1_dna"])} million from EGP '
+  f'{n1(V["q1_dna_ly"])} million a year earlier, more than double. The plant is in service and '
+  f'the charge has arrived, exactly as this study said it would. What has not arrived is the '
+  f'revenue: net sales grew {pc(V["q1_rev"] / V["q1_rev_ly"] - 1)} and attributable profit '
+  f'FELL {pc(abs(V["q1_parent"] / V["q1_parent_ly"] - 1))} to EGP {n0(V["q1_parent"])} million.')
 figure(os.path.join(HERE, 'fig1_field.png'), 6.9,
        'Figure 1 — five independent routes to a value per share, against the market price.')
 
@@ -367,6 +389,44 @@ box([('Why this number is useful. ',
       f'is declining to answer either way.')])
 figure(os.path.join(HERE, 'fig7_crux.png'), 6.6,
        'Figure 5 — the crux stated as a reverse valuation.')
+P('The first quarter of 2026 is the first real test of all this, and it is worth setting the '
+  'forecast against it line by line rather than claiming a hit.')
+rows = [['Line', 'Q1-2026 actual', 'Read into a full year', "This study's FY2026",
+         'How the forecast stands against it']]
+q1r = V['q1_rev'] / V['q1_share_of_year_rev']
+rows += [
+    ['Net sales (EGP m)', n0(V['q1_rev']), n0(q1r), n0(FC['revenue'][0]),
+     f"{pc(FC['revenue'][0] / q1r - 1, 1)} against the quarter's run-rate"],
+    ['Gross margin', pc(V['q1_gp'] / V['q1_rev']), '—', pc(FC['gross_margin'][0]),
+     f"within {abs(FC['gross_margin'][0] - V['q1_gp'] / V['q1_rev']) * 1e4:,.0f} basis points"],
+    ['Depreciation and amortisation (EGP m)', n1(V['q1_dna']), n0(V['q1_dna'] * 4),
+     n0(FC['dna'][0]), 'the step is real; the study is ahead on timing only'],
+    ['Transfers out of construction (EGP m)', n0(V['cip_fy25'] - V['q1_cip']),
+     n0((V['cip_fy25'] - V['q1_cip']) * 4), n0(V['cip_transfer'][0]),
+     'confirmed, and the study is if anything conservative'],
+    ['Finance cost (EGP m)', n0(V['q1_fin']), n0(V['q1_fin'] * 4), n0(V['int_path'][0]),
+     'reset to the quarter'],
+    ['Provision charge as a share of sales', pc(V['q1_prov'] / V['q1_rev'], 2), '—',
+     f"{pc(V['prov_pct_permanent'], 2)} / {pc(V['prov_pct_normalising'][0], 2)}",
+     'no credit-loss charge was taken at all — see below'],
+    ['Associates (EGP m)', n1(V['q1_assoc']), n0(V['q1_assoc'] * 4), n0(V['assoc_norm']),
+     'the quarter is incomplete by the auditor\'s own statement'],
+    ['Capital expenditure (EGP m)', n0(V['q1_capex']), n0(V['q1_capex'] * 4),
+     n0(FC['capex'][0]), 'reset upward to the quarter'],
+]
+table(rows, [1.75, 0.95, 1.05, 1.0, 2.3], size=8.2)
+caption('Table 11 — the forecast against the first quarter it can be checked on. The middle '
+        'column reads the quarter into a year on the FY2025 seasonal shape, in which the first '
+        'quarter carried 24.4% of sales and 22.1% of attributable profit.')
+P(f'Two of those rows carry more weight than the rest. The depreciation line is the study\'s '
+  f'central claim and it is confirmed: the charge is running at roughly double last year on a '
+  f'plant that has only just entered service, and the model\'s own depreciation rate '
+  f'reproduces the quarter to within 3%. The provision line is the study\'s contested '
+  f'judgement, and here the quarter does NOT settle it: the company took EGP {n0(V["q1_prov"])} '
+  f'million of provisions and inventory write-downs but no credit-loss charge whatsoever, '
+  f'against receivables that grew EGP {n0(V["q1_ar"] - V["ar_fy25"])} million in the same three '
+  f'months. The auditor qualified the review on precisely that point. A charge that is omitted '
+  f'in the first quarter is deferred, not avoided, which is why both frames still run.')
 
 H2('1.8 Macro and country — the cost of capital')
 P(f'The quoted ten-year Egyptian local-currency government yield is {pc(V["rf"], 2)}. That '
@@ -612,18 +672,54 @@ bullet('the bands describe where the PRICE may go. The valuation describes what 
 
 # ============ 11. SECTION 7 — CAVEATS AND WHAT WOULD CHANGE OUR MIND ===========
 H1('7. Caveats, and what would change our mind')
+H2('7.1 What changed in this edition, and by how much')
+rows = [['Change', 'Effect']]
+rows += [
+    ['FY2026 revenue growth reset from 17.5% to the quarter\'s 10.1%',
+     'the largest single change; it lowers the base every later year compounds from'],
+    ['FY2026 capital expenditure raised to the quarter\'s run-rate',
+     'more cash out of free cash flow in the first forecast year'],
+    ['Finance cost charged to profit reset to the quarter, and separated from the marginal '
+     'cost of debt used in the discount rate',
+     'raises forecast earnings; the two were being conflated and are now distinct rows'],
+    ['Normalised associate contribution cut from EGP 320m to EGP 250m, the like-for-like '
+     'three-year average', 'lowers the bridge; the quarter reported only EGP 13.1m, but the '
+     'auditor states the associates\' statements were not received, so it is not decisive'],
+    ['The active-ingredient company added to the bridge at carrying cost, and the '
+     'non-controlling interest deducted there replaced with the post-deconsolidation figure',
+     'both POSITIVE, and they are two halves of one event: that company left the consolidation '
+     'in the quarter, taking EGP 284.7m of minorities out and adding EGP 228.5m of associate '
+     'carrying value'],
+    ['Dividend-distribution tax given its own line in all three history years, following the '
+     'separately issued statements', 'lifts FY2023 operating profit by EGP 4.1m (0.34%); worth '
+     'about EGP 0.12 a share'],
+    ['NET EFFECT ON THE WEIGHTED CENTRAL VALUE',
+     f"EGP 79.64 to EGP {n2(LN['fair_base'])} a share, {pc(LN['fair_base'] / 79.64 - 1, 0)}"],
+]
+table(rows, [2.7, 4.2], band_rows={7}, size=8.4)
+caption('Table 17 — every change from the first edition, and its direction.')
+
 rows = [['Caveat', 'What it costs the study', 'What would settle it']]
 rows += [
+    ['The first-quarter review conclusion is QUALIFIED on three matters',
+     'no expected-credit-loss charge was recognised in the quarter; the associates\' own '
+     'statements were not received; and the active-ingredient company was recognised at cost '
+     'after loss of control rather than remeasured and equity-accounted. The first flatters '
+     'the quarter\'s profit, the second makes the associate line incomplete, the third is a '
+     'measurement question this study side-steps by carrying that company at cost',
+     'an unqualified half-year review'],
     ['No revenue is modelled for the biologicals plant',
      'the cash-flow lenses are understated by whatever the plant earns. This is the largest '
      'single limitation and it is deliberate',
      'the company disclosing biosimilar revenue, volumes or utilisation'],
-    ['The FY2026 first-quarter interim could not be obtained from an official source',
-     'the study is built on full years to FY2025 and has no FY2026 actuals in it. Secondary '
-     'reporting of that filing exists and is recorded as a cross-check in the bibliography, '
-     'but it is not in the build path and no figure here rests on it',
-     'the company publishing interims on its own site, or the exchange portal becoming '
-     'readable'],
+    ['The valuation bridge is anchored on the audited 31 December 2025 balance sheet, not on '
+     'the March one',
+     'net debt was EGP 9,065m at 31 March against EGP 7,364m at 31 December, but the quarter '
+     'also paid the FY2025 dividend and built working capital, and the forecast still carries '
+     'a full FY2026 of cash flow. Using the March balance sheet AND a full forecast year would '
+     'charge the same quarter twice. On the March net debt alone the value would be about EGP '
+     '10 a share lower',
+     'a half-year balance sheet, at which point the anchor can move forward cleanly'],
     ['The ten-year government yield is a cached print, not a live read',
      'the discount rate carries the 21 July 2026 figure. The central bank\'s auction page '
      'refused the request. The rate is sensitised over a wide range in section 1.9',
@@ -650,6 +746,10 @@ rows += [
      'a complete exchange-sourced price history']]
 table(rows, [1.9, 3.35, 1.65], size=8.3)
 caption('Table 16 — every limitation this study knows about, and what would resolve it.')
+P(f'One caveat from the first edition is now closed: the FY2026 first-quarter interim, which '
+  f'could not be reached at any official source online, was supplied directly and is in this '
+  f'edition. The secondary reporting recorded then as an unverified cross-check turned out to '
+  f'be accurate to the pound on both sales and attributable profit.')
 P('What would change the conclusion, stated in advance so it can be checked: if the company '
   f'disclosed biosimilar revenue on a path toward USD {n0(CRUX["required_rev_usd_mn"])} '
   f'million a year, the cash-flow lenses would move to the market price and this study would '

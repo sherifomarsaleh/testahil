@@ -40,6 +40,12 @@ R.record_primary_access("https://www.eipico.com.eg/HTML.aspx?name=Eipico3_Annual
 R.record_primary_access(DECK, True, SWEEP_DATE,
                         "Investor presentation downloaded — production lines and capacities per "
                         "shift, export pack volumes, market ranks, EIPICO 3 and Arab API detail.")
+R.record_primary_access("company-supplied issued financial statements", True, "2026-08-11",
+                        "The reviewed FY2026 first-quarter interim and the separately issued "
+                        "FY2023 and FY2024 audited consolidated statements, all English "
+                        "translations issued by the auditor, were supplied directly after the "
+                        "first issue of this study. This CLOSES the study-year quarter that "
+                        "could not be reached online.")
 R.record_primary_access("https://www.egx.com.eg/en/DisclosureNews.aspx", False, SWEEP_DATE,
                         "Exchange disclosure portal NOT reachable. Every request returns a "
                         "48KB bot-defence challenge page instead of content; a headless-browser "
@@ -56,7 +62,7 @@ R.record_primary_access("https://www.cbe.org.eg/en/auctions/egp-t-bonds-fixed-co
                         "yield is therefore carried from the dated house reference print and "
                         "sensitised rather than re-read live.")
 
-R.declare_study_year("2026", [])
+R.declare_study_year("2026", ["Q1-2026"])
 
 # ---------------------------------------------------------------- RING 1 GLOBAL
 f_rate = R.add(Ring.GLOBAL, "rate cycle & USD/FX regime", FindingClass.S,
@@ -296,13 +302,36 @@ f_capital = R.add(Ring.COMPANY, "management & capital actions", FindingClass.B,
                  "used as the carry offset in the probability map.")
 
 # ---- negative results, recorded rather than hidden ----------------------------
-f_q1 = R.add_negative(Ring.COMPANY, "regular disclosures",
-    "FY2026 first-quarter interim financial statements, sought at the company's own website "
-    "(annual reports only, no interims published there), at the exchange disclosure portal "
-    "(bot-defence challenge on every request, scripted and browser-rendered) and at the "
-    "regulator's disclosure sub-domain (refused at the egress proxy). Secondary reporting of "
-    "the filing exists and is recorded in the bibliography as a labelled cross-check; it is "
-    "NOT in the build path and no figure in this study rests on it", SWEEP_DATE)
+f_q1 = R.add(Ring.COMPANY, "regular disclosures", FindingClass.B,
+    "Reviewed consolidated interim financial statements for the three months ended 31 March "
+    "2026, obtained. Net sales 2,532.834 (+10.1%), gross margin 42.4% against 45.7%, "
+    "attributable profit 283.954 (-10.9%). Fixed assets rose 1,139.916 and projects under "
+    "construction fell 917.600 in the quarter; the depreciation and amortisation charge more "
+    "than doubled to 56.209. THE REVIEW CONCLUSION IS QUALIFIED on three matters: the "
+    "associates' own periodic statements were not received; the active-ingredient company was "
+    "recognised at cost following loss of control rather than remeasured and equity-accounted; "
+    "and NO expected-credit-loss charge was recognised for the period",
+    "Reviewed consolidated interim financial statements, three months ended 31 March 2026, "
+    "English translation issued by the auditor, review report dated 14 May 2026", CO,
+    "2026-05-14", is_fs_data=True, fiscal_period="Q1-2026",
+    model_impact="Resets the FY2026 revenue, capital-expenditure and finance-cost paths to the "
+                 "quarter's outturn; lowers the normalised associate contribution; replaces "
+                 "the non-controlling interest deducted in the bridge with the "
+                 "post-deconsolidation figure and adds the active-ingredient company at "
+                 "carrying cost. CONFIRMS the study's central mechanism — the construction "
+                 "balance is transferring and the depreciation step has arrived.")
+
+f_q1fs = R.add(Ring.COMPANY, "official financial statements", FindingClass.B,
+    "Separately issued audited consolidated financial statements for FY2023 and FY2024, "
+    "English translations issued by the auditor. Every line ties to the Arabic annual reports "
+    "already used, with one presentation difference: these show dividend-distribution tax on "
+    "its own line where the annual reports fold it into general and administrative expense "
+    "(FY2023) or into the associates line (FY2024)",
+    "Audited consolidated financial statements FY2023 and FY2024, English translation issued "
+    "by the auditor", CO, "2025-03-01", is_fs_data=True, fiscal_period="FY2024",
+    model_impact="Adopts the filings' own presentation, which lifts FY2023 operating profit by "
+                 "4.124 (0.34%) and states the dividend-distribution tax as its own line in "
+                 "all three history years.")
 
 f_bio = R.add_negative(Ring.INDUSTRY, "pricing",
     "Volume, price or utilisation guidance for the biologicals facility, sought across the "
@@ -376,6 +405,12 @@ R.add_driver("Biologicals facility revenue", DriverMode.TOP_DOWN,
              "build and this study does not invent one; the required contribution is instead "
              "solved for and published as the crux.",
              [f_bio, f_tech])
+R.add_driver("FY2026 revenue, capital expenditure and finance cost", DriverMode.BOTTOM_UP,
+             "Each reset to the reviewed first quarter of 2026 rather than left at the "
+             "pre-quarter estimate: net sales grew 10.1% not the 17.5% first assumed, capital "
+             "payments ran at an annual rate of about 1,299 not 832, and finance cost at about "
+             "1,251 not 1,548.",
+             [f_q1])
 
 errors, warnings = R.validate()
 print(f"Sweep register: {R.counts()}")

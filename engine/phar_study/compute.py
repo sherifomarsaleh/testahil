@@ -30,6 +30,11 @@ MN = 1e6   # every monetary figure below is in EGP millions unless named otherwi
 
 
 # ============================ INPUT REGISTER =================================
+Q1SRC = ("Reviewed consolidated interim financial statements for the three months ended "
+         "31 March 2026, English translation issued by the auditor, review report dated "
+         "14 May 2026. THE REVIEW CONCLUSION IS QUALIFIED")
+
+
 def I(value, source, date, layer):
     return dict(value=value, source=source, date=date, layer=layer)
 
@@ -71,7 +76,12 @@ INP = dict(
     rnd_fy23=I(43.227785, AUD23 + ", research and development note", "2024-03-01", "Company"),
     rnd_fy24=I(70.460824, AUD24 + ", research and development note (28)", "2025-03-01", "Company"),
     rnd_fy25=I(70.935883, AUD25 + ", research and development note (28)", "2026-03-01", "Company"),
-    ga_fy23=I(151.584727, AUD23 + ", general and administrative note", "2024-03-01", "Company"),
+    ga_fy23=I(147.460991, "Audited consolidated statement of profit or loss for the year ended "
+              "31 December 2023, English translation issued by the auditor: general and "
+              "administrative expenses note (30). The Arabic annual report presents this line "
+              "at 151.585 with dividend-distribution tax folded into it; the separately issued "
+              "statements split the two, and this study follows the split", "2024-03-01",
+              "Company"),
     ga_fy24=I(188.492929, AUD24 + ", general and administrative note (29)", "2025-03-01", "Company"),
     ga_fy25=I(221.136860, AUD25 + ", general and administrative note (29)", "2026-03-01", "Company"),
     board_fy23=I(2.020000, AUD23, "2024-03-01", "Company"),
@@ -93,12 +103,22 @@ INP = dict(
                "1,275.312 plus bank commissions and charges 57.634", "2026-03-01", "Company"),
     assoc_fy23=I(74.508447, AUD23 + ", share of results of subsidiaries and associates",
                  "2024-03-01", "Company"),
-    assoc_fy24=I(147.111993, AUD24 + ", note (33): Batterjee Pharma (Saudi Arabia) 190.022, "
-                 "Medical Professions Company (38.441), less withholding tax on distributions "
-                 "(4.469)", "2025-03-01", "Company"),
-    assoc_fy25=I(495.499218, AUD25 + ", note (33): Batterjee Pharma (Saudi Arabia) 427.906, "
-                 "Medical Professions Company 84.179, less withholding tax on distributions "
-                 "(16.585)", "2026-03-01", "Company"),
+    assoc_fy24=I(151.580926, "Audited consolidated statement of profit or loss FY2024, English "
+                 "translation issued by the auditor: profit of subsidiaries and associates. "
+                 "GROSS of dividend-distribution tax, which that statement shows on its own "
+                 "line; the Arabic annual report nets the two to 147.112", "2025-03-01",
+                 "Company"),
+    assoc_fy25=I(427.906046 + 84.178592, AUD25 + ", note (33): Batterjee Pharma (Saudi Arabia) "
+                 "427.906 plus Medical Professions Company 84.179, stated GROSS of the 16.585 "
+                 "withholding tax on distributions so that all three years are presented on the "
+                 "same basis as the separately issued statements", "2026-03-01", "Company"),
+    divtax_fy23=I(4.123733, "Dividend-distribution tax, shown as its own line in the separately "
+                  "issued audited consolidated statement of profit or loss FY2023",
+                  "2024-03-01", "Company"),
+    divtax_fy24=I(4.468933, "Dividend-distribution tax, separately issued audited consolidated "
+                  "statement of profit or loss FY2024", "2025-03-01", "Company"),
+    divtax_fy25=I(16.585420, AUD25 + ", note (33): withholding tax on associate distributions",
+                  "2026-03-01", "Company"),
     intinc_fy23=I(26.243536, AUD23, "2024-03-01", "Company"),
     intinc_fy24=I(72.048362, AUD24, "2025-03-01", "Company"),
     intinc_fy25=I(139.673783, AUD25, "2026-03-01", "Company"),
@@ -302,21 +322,24 @@ INP = dict(
               "House"),
 
     # ---- forecast drivers: volume ------------------------------------------
-    dom_pack_growth=I([0.10, 0.085, 0.075, 0.065, 0.055],
+    dom_pack_growth=I([0.055, 0.080, 0.075, 0.065, 0.055],
                       "Domestic packs sold, annual volume growth FY2026E-FY2030E. The company "
                       "sold 244.3 million domestic packs of its own preparations in FY2024 and "
                       "291.8 million in FY2025 (+19.5%); disclosed capacity utilisation is 65% "
                       "of 3,383 million units, so the volume is not capacity-constrained. The "
                       "path steps down from a rate materially below the FY2025 outturn toward "
-                      "population-plus-penetration growth", "2026-08-09", "House"),
-    exp_pack_growth=I([0.09, 0.09, 0.085, 0.08, 0.07],
+                      "population-plus-penetration growth. THE FIRST YEAR IS RESET TO THE "
+                      "FIRST QUARTER'S OUTTURN: net sales grew 10.1% year on year in the three "
+                      "months to March 2026, against the 17.5% the first cut of this model "
+                      "carried", "2026-08-11", "House"),
+    exp_pack_growth=I([0.05, 0.09, 0.085, 0.08, 0.07],
                       "Export packs, annual volume growth. Export value grew 10% in US dollars "
                       "in FY2025 (USD 54.7m to 60.0m) on a company that is already the largest "
                       "Egyptian pharmaceutical exporter with 26% of national pharmaceutical "
                       "export value across 67 countries; the biosimilars plant licensed in "
                       "December 2025 adds a new export line rather than replacing one",
                       "2026-08-09", "House"),
-    dom_price_growth=I([0.09, 0.085, 0.075, 0.065, 0.055],
+    dom_price_growth=I([0.05, 0.080, 0.075, 0.065, 0.055],
                        "Domestic realised price per pack, annual growth. Egyptian medicine "
                        "prices are set administratively by the Egyptian Drug Authority and move "
                        "in periodic approved adjustments rather than continuously; realised "
@@ -394,13 +417,13 @@ INP = dict(
                            "steady state. Both frames are carried through the whole model and "
                            "published side by side; neither is averaged into the other",
                            "2026-08-09", "House"),
-    capex_pct=I([0.075, 0.045, 0.035, 0.032, 0.030],
+    capex_pct=I([0.125, 0.045, 0.035, 0.032, 0.030],
                 "Capital expenditure as a share of revenue. FY2024 and FY2025 ran at 37.5% and "
                 "14.3% of revenue respectively as the EIPICO 3 plant was built; the plant was "
                 "licensed in December 2025 and the residual construction spend completes in "
                 "FY2026, after which the requirement falls to maintenance plus incremental line "
                 "capacity on a plant running at 65% utilisation", "2026-08-09", "House"),
-    cip_transfer=I([3200.0, 1200.0, 400.0, 200.0, 200.0],
+    cip_transfer=I([3400.0, 1100.0, 400.0, 200.0, 200.0],
                    "Transfers out of projects under construction into depreciable property, "
                    "EGP million. The EIPICO 3 facility obtained its Egyptian Drug Authority and "
                    "Industrial Development Authority licences in December 2025 and entered its "
@@ -506,6 +529,69 @@ INP = dict(
                        "Company"),
     par_value=I(10.0, "Capital note (13): nominal value per share", "2026-03-01", "Company"),
 
+    # ---- FY2026 first quarter, reviewed interim (obtained after the first issue) ----
+    q1_rev=I(2532.833589, Q1SRC + ": net sales for the quarter (Q1-2025: 2,299.890)",
+             "2026-05-14", "Company"),
+    q1_rev_ly=I(2299.890497, Q1SRC + ": comparative quarter", "2026-05-14", "Company"),
+    q1_gp=I(1073.711911, Q1SRC + ": gross profit (Q1-2025: 1,051.090)", "2026-05-14", "Company"),
+    q1_gp_ly=I(1051.089983, Q1SRC + ": comparative quarter", "2026-05-14", "Company"),
+    q1_dna=I(52.999633 + 1.538957 + 1.670794, Q1SRC + ", statement of cash flows: fixed-asset "
+             "depreciation 52.9996, right-of-use amortisation 1.5390, intangible amortisation "
+             "1.6708. The comparative quarter total was 26.613, so the charge has MORE THAN "
+             "DOUBLED year on year", "2026-05-14", "Company"),
+    q1_dna_ly=I(25.257457 + 0.336093 + 1.019572, Q1SRC + ": comparative quarter",
+                "2026-05-14", "Company"),
+    q1_fin=I(312.861801, Q1SRC + ": financing expenses (Q1-2025: 335.979) — DOWN 6.9% year on "
+             "year despite a larger debt book", "2026-05-14", "Company"),
+    q1_prov=I(65.0, Q1SRC + ": formed provisions 40.000 plus inventory impairment 25.000. THERE "
+              "IS NO EXPECTED-CREDIT-LOSS CHARGE AT ALL, which is one of the three matters the "
+              "auditor qualified", "2026-05-14", "Company"),
+    q1_assoc=I(13.118430, Q1SRC + ": profits of subsidiaries and associates (Q1-2025: 33.445). "
+               "The auditor states the associates' own periodic statements were NOT received, "
+               "so this line is incomplete by construction", "2026-05-14", "Company"),
+    q1_capex=I(324.734898, Q1SRC + ": payments to purchase fixed assets and projects under "
+               "construction", "2026-05-14", "Company"),
+    q1_parent=I(283.953868, Q1SRC + ": profit attributable to the holding company (Q1-2025: "
+                "318.564), a fall of 10.9% on a 10.1% rise in sales", "2026-05-14", "Company"),
+    q1_parent_ly=I(318.563839, Q1SRC + ": comparative quarter", "2026-05-14", "Company"),
+    q1_ppe=I(4209.663874, Q1SRC + ": fixed assets net, against 3,069.748 at 31 December 2025 — "
+             "a rise of 1,139.916 in one quarter", "2026-05-14", "Company"),
+    q1_cip=I(3983.624093, Q1SRC + ": projects under construction, against 4,901.224 at 31 "
+             "December 2025 — a TRANSFER OUT of 917.600 in one quarter, which is the study's "
+             "central mechanism arriving on schedule", "2026-05-14", "Company"),
+    q1_assoc_bv=I(904.360985, Q1SRC + ": investments in associates, against 675.875 at 31 "
+                  "December 2025. The increase is the active-ingredient company moving from "
+                  "consolidation into associates", "2026-05-14", "Company"),
+    q1_nci=I(3.999807, Q1SRC + ": non-controlling interests, against 288.705 at 31 December "
+             "2025. The collapse is the deconsolidation of the active-ingredient company",
+             "2026-05-14", "Company"),
+    q1_debt=I(4021.835282 + 965.585755 + 4428.322532 + 11.867322 + 0.402127,
+              Q1SRC + ": long-term loans 4,021.835, short-term loans 965.586, bank facilities "
+              "4,428.323, lease liabilities 12.269", "2026-05-14", "Company"),
+    q1_cash=I(362.815296, Q1SRC + ": cash and cash equivalents, against 1,433.427 at 31 "
+              "December 2025; the quarter paid the FY2025 dividend and built working capital",
+              "2026-05-14", "Company"),
+    q1_ar=I(4123.004310, Q1SRC + ": accounts and notes receivable net, against 3,325.044 — a "
+            "rise of 797.960 against which no credit-loss charge was taken", "2026-05-14",
+            "Company"),
+    q1_share_of_year_rev=I(0.24360, "Q1-2025 net sales of 2,299.890 as a share of FY2025 net "
+                           "sales of 9,441.379 — the seasonal shape used to read the quarter "
+                           "into a full year", "2026-05-14", "Company"),
+    q1_share_of_year_profit=I(0.22097, "Q1-2025 attributable profit of 318.564 as a share of "
+                              "FY2025 attributable profit of 1,441.658", "2026-05-14",
+                              "Company"),
+    arab_api_cost=I(904.360985 - 675.874567, "The active-ingredient company's carrying value "
+                    "after deconsolidation, taken as the movement in investments in associates "
+                    "across the first quarter. It is pre-revenue — the company indicates trial "
+                    "batches in 2027 — so carrying cost, not an earnings multiple, is the right "
+                    "proxy for it", "2026-05-14", "Company"),
+    nci_bridge=I(3.999807, "Non-controlling interests deducted in the enterprise-to-equity "
+                 "bridge. The audited 31 December 2025 figure was 288.705, but essentially all "
+                 "of it was the active-ingredient company's minorities, and that company was "
+                 "deconsolidated in the first quarter of 2026. Deducting the December figure "
+                 "while also carrying the March associate value would charge the same interest "
+                 "twice", "2026-05-14", "Company"),
+
     # ---- tax ----------------------------------------------------------------
     tax_stat=I(0.225, "Egyptian corporate income tax rate, 22.5% — confirmed in the corporate "
                "tax-rate column of the country risk-premium file read for this study",
@@ -560,6 +646,16 @@ INP = dict(
                   "with a margin; a raw hard-currency coupon inside a pound-nominal weighted "
                   "average cost of capital would understate the cost of that debt",
                   "2026-08-09", "House"),
+    int_path=I([1250.0, 1210.0, 1150.0, 1090.0, 1030.0],
+               "Finance cost charged to the income statement, EGP million. This is NOT the "
+               "marginal cost of debt used in the discount rate — that is a forward, "
+               "local-equivalent, currency-blended rate; this is what the profit and loss "
+               "account actually bears, and part of the group's interest is still being "
+               "capitalised into the remaining construction balance. CALIBRATED TO THE FIRST "
+               "QUARTER OF 2026: 312.862 of financing expense in three months, DOWN 6.9% year "
+               "on year, an annual run-rate of about 1,251 against the 1,548 the first cut of "
+               "this model implied. It then declines with the central bank's easing cycle",
+               "2026-08-11", "House"),
     kd_path=I([0.189, 0.178, 0.166, 0.156, 0.148],
               "Forward blended cost of debt FY2026E-FY2030E in local-equivalent terms, "
               "continuing the central bank's easing cycle. The discount-rate glide takes its "
@@ -598,12 +694,19 @@ INP = dict(
                      "manufacturer; 11 times is struck below the Gulf listed-pharmaceutical "
                      "range to allow for the minority, unlisted and non-controlled nature of "
                      "the stake", "2026-08-09", "House"),
-    assoc_norm=I(320.0, "Normalised annual associate contribution used with the multiple above, "
+    assoc_norm=I(250.0, "Normalised annual contribution of the EARNING associates, used with "
+                 "the multiple above; the pre-revenue active-ingredient company is carried "
+                 "separately at cost. "
                  "EGP million. The disclosed stream is volatile — 74.5 (FY2023), 147.1 "
                  "(FY2024), 495.5 (FY2025) — and the FY2025 print is more than three times the "
                  "FY2024 one. The three-year average is 239.0; 320 sits between that average "
-                 "and the latest year, recognising a genuine step-up at the Saudi associate "
-                 "without capitalising one exceptional year", "2026-08-09", "House"),
+                 "and the latest year. REVISED DOWN from 320 after the first quarter of 2026 "
+                 "reported only 13.118 against 33.445 a year earlier; on a like-for-like gross "
+                 "basis the three disclosed years average 246.1, and 250 is struck there rather "
+                 "than at the level the FY2025 print alone would support. The quarter is not "
+                 "decisive — the auditor states the associates' own statements were not "
+                 "received — but it removes the case for leaning on the best year",
+                 "2026-08-11", "House"),
 
     # ---- relative lens ------------------------------------------------------
     peer_pe_regional=I(19.5, "Median trailing price-earnings multiple of listed Gulf and "
@@ -655,6 +758,7 @@ for y in (23, 24, 25):
     ebit_pre_prov = gp - opex
     ebit = ebit_pre_prov - V[f'prov_fy{y}']
     hist[f'FY20{y}'] = dict(
+        divtax=V[f'divtax_fy{y}'],
         revenue=V[f'rev_fy{y}'], cogs=V[f'cogs_fy{y}'], gross_profit=gp,
         gross_margin=gp / V[f'rev_fy{y}'],
         marketing=V[f'mkt_fy{y}'], rnd=V[f'rnd_fy{y}'], ga=V[f'ga_fy{y}'], board=V[f'board_fy{y}'],
@@ -671,7 +775,7 @@ for y in (23, 24, 25):
     )
     # the audited statement must reconstruct EXACTLY from its own disclosed lines
     check = (ebit + V[f'assoc_fy{y}'] + V[f'intinc_fy{y}'] + V[f'fx_fy{y}'] + V[f'othinc_fy{y}']
-             - V[f'fin_fy{y}'])
+             - V[f'fin_fy{y}'] - V[f'divtax_fy{y}'])
     assert abs(check - V[f'pbt_fy{y}']) < 0.02, \
         f'FY20{y} income statement does not close: {check:.3f} vs {V[f"pbt_fy{y}"]:.3f}'
     assert abs(V[f'pbt_fy{y}'] - V[f'taxtot_fy{y}'] - V[f'np_fy{y}']) < 0.02, \
@@ -946,15 +1050,17 @@ def run_dcf(ebit, ebitda, label):
     tv = fcff_term / (wacc_term - V['g_term'])
     pv_tv = tv * df[-1]
     ev_core = pv_sum + pv_tv
-    assoc_value = V['assoc_norm'] * V['assoc_multiple']
+    assoc_value = V['assoc_norm'] * V['assoc_multiple'] + V['arab_api_cost']
     ev_total = ev_core + assoc_value + V['afs_fy25']
-    equity = ev_total - net_debt - V['nci_fy25']
+    equity = ev_total - net_debt - V['nci_bridge']
     ps = equity / V['shares_mn']
     return dict(label=label, ebitda=ebitda, ebit=ebit, nopat=nopat, fcff=fcff, pv=pv,
                 pv_sum=pv_sum, nopat_term=nopat_term, reinvest_rate=reinv_rate,
                 fcff_term=fcff_term, tv=tv, pv_tv=pv_tv, ev_core=ev_core,
-                tv_share=pv_tv / ev_core, assoc_value=assoc_value, ev_total=ev_total,
-                net_debt=net_debt, nci=V['nci_fy25'], equity=equity, per_share=ps)
+                tv_share=pv_tv / ev_core, assoc_value=assoc_value,
+                assoc_earnings_value=V['assoc_norm'] * V['assoc_multiple'],
+                arab_api_cost=V['arab_api_cost'], ev_total=ev_total,
+                net_debt=net_debt, nci=V['nci_bridge'], equity=equity, per_share=ps)
 
 
 dcf_A = run_dcf(ebit_A, ebitda_A, 'Frame A — provision charge permanent at 5.25% of revenue')
@@ -995,8 +1101,8 @@ for i in range(n):
     # Associate income arrives ALREADY TAXED — the equity method takes the group's share of
     # the associate's post-tax profit, and the disclosed figure is already net of withholding.
     # Taxing it again inside this chain would understate attributable profit.
-    pat = ((ebit_A[i] - (kdp[i] * gross_debt - 0.08 * V['cash_fy25']))
-           * (1 - V['tax_eff_fwd']) + V['assoc_norm'] - NCI_FWD)
+    pat = ((ebit_A[i] - V['int_path'][i]) * (1 - V['tax_eff_fwd'])
+           + V['assoc_norm'] - NCI_FWD)
     eq_n = eq_b + pat * (1 - V['payout'])
     roe_fwd[i] = pat / ((eq_b + eq_n) / 2)
     eq_path.append(eq_n)
@@ -1034,12 +1140,12 @@ for yr, parent, sh in ((2022, V['parent_fy22'], 99.170500),
 own_pe_mean = float(np.mean([o['pe'] for o in own_hist]))
 eps_ttm = V['parent_fy25'] / V['shares_mn']
 pe_now = V['spot'] / eps_ttm
-ev_now = mcap + net_debt + V['nci_fy25']
+ev_now = mcap + net_debt + V['nci_bridge']
 evebitda_now = ev_now / hist['FY2025']['ebitda']
 # forward relative: FY2027E attributable earnings, both frames
 def fwd_eps(ebit_series, i=1):
-    pat = ((ebit_series[i] - (kdp[i] * gross_debt - 0.08 * V['cash_fy25']))
-           * (1 - V['tax_eff_fwd']) + V['assoc_norm'] - NCI_FWD)
+    pat = ((ebit_series[i] - V['int_path'][i]) * (1 - V['tax_eff_fwd'])
+           + V['assoc_norm'] - NCI_FWD)
     return pat / V['shares_mn']
 eps_26_A, eps_26_B = fwd_eps(ebit_A, 0), fwd_eps(ebit_B, 0)
 eps_27_A, eps_27_B = fwd_eps(ebit_A, 1), fwd_eps(ebit_B, 1)
@@ -1082,8 +1188,8 @@ say(f"  The lens triangulates three multiples rather than asserting one. (1) The
 norm_margin = float(np.mean([hist[k]['ebit_margin'] for k in ('FY2023', 'FY2024', 'FY2025')]))
 norm_rev = revenue[1]
 norm_ebit = norm_rev * norm_margin
-norm_pat = ((norm_ebit - BOARD_FEE - (kdp[1] * gross_debt - 0.08 * V['cash_fy25']))
-            * (1 - V['tax_eff_fwd']) + V['assoc_norm'] - NCI_FWD)
+norm_pat = ((norm_ebit - BOARD_FEE - V['int_path'][1]) * (1 - V['tax_eff_fwd'])
+            + V['assoc_norm'] - NCI_FWD)
 norm_ps = (norm_pat / V['shares_mn']) * payout_implied / (ke_term - V['g_term'])
 say(f"[Normalised earnings power] the three-year average operating margin is {norm_margin:.1%}, "
     f"against {hist['FY2025']['ebit_margin']:.1%} in FY2025 — so this lens deliberately gives "
@@ -1181,8 +1287,9 @@ def dcf_at(wacc_shift=0.0, g=None, beta_override=None, prov_pct=None, fx_scale=1
     pvs = sum(fc[i] * d_[i] for i in range(n))
     nt = ebit_[-1] * (1 - TAX) * (1 + g)
     tv_ = nt * (1 - g / V['roic_term']) / (wt - g)
-    ev_ = pvs + tv_ * d_[-1] + V['assoc_norm'] * V['assoc_multiple'] + V['afs_fy25']
-    return (ev_ - net_debt - V['nci_fy25']) / V['shares_mn']
+    ev_ = (pvs + tv_ * d_[-1] + V['assoc_norm'] * V['assoc_multiple'] + V['arab_api_cost']
+           + V['afs_fy25'])
+    return (ev_ - net_debt - V['nci_bridge']) / V['shares_mn']
 
 
 base_dcf = dcf_at()

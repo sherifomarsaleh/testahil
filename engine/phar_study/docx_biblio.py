@@ -76,6 +76,25 @@ docs = [
      'total equity risk premium 13.94% on the rating basis; corporate tax rate 22.50%; '
      'sovereign credit-default-swap spread 3.41%; equity risk premium on the swap basis 9.41%',
      'pages.stern.nyu.edu → adamodar → datafile → ctryprem'),
+    ('P12', 'Reviewed consolidated interim financial statements for the three months ended '
+     '31 March 2026, English translation issued by the auditor, review report dated 14 May '
+     '2026. THE REVIEW CONCLUSION IS QUALIFIED',
+     'The full first-quarter income statement, balance sheet, statement of changes in equity '
+     'and cash-flow statement, with the 31 December 2025 comparative column — which ties to '
+     'every opening balance in this model, line for line. Supplies the reset FY2026 revenue, '
+     'capital-expenditure and finance-cost paths; the confirmation that the construction '
+     'balance is transferring and the depreciation charge has doubled; the deconsolidation of '
+     'the active-ingredient company; and the three matters on which the auditor qualified',
+     'supplied directly for this study'),
+    ('P13', 'Audited consolidated financial statements for the year ended 31 December 2024, '
+     'English translation issued by the auditor',
+     'Used to verify every FY2024 and FY2023 line already taken from the Arabic annual '
+     'reports. All tie. Adopted for the presentation of dividend-distribution tax, which this '
+     'statement shows on its own line',
+     'supplied directly for this study'),
+    ('P14', 'Audited consolidated financial statements for the year ended 31 December 2023, '
+     'English translation issued by the auditor',
+     'Used to verify FY2023 and FY2022. All tie', 'supplied directly for this study'),
     ('P11', 'Daily price history for the listed shares, 2 January 2011 to 6 August 2026',
      'More than three thousand daily open, high, low, close and volume records. Used for the share price, the '
      'beta regression, the technical read and the probability map',
@@ -85,8 +104,8 @@ for r in docs:
     rows.append(list(r))
 table(rows, [0.42, 1.55, 3.05, 1.6], size=7.8)
 caption('Table B1 — the primary documents. Four consecutive audited financial years were '
-        'obtained: FY2022, FY2023, FY2024 and FY2025, each with the auditor\'s report and '
-        'full notes.')
+        'obtained — FY2022, FY2023, FY2024 and FY2025, each with the auditor\'s report and '
+        'full notes — plus the reviewed first quarter of FY2026.')
 
 H2('Primary-source access attempted, and what happened')
 rows = [['Source', 'Reachable', 'Outcome']]
@@ -217,14 +236,14 @@ caption('Table B3 — twelve judgements, each with the evidence that would overt
 H1('4. Negative results — what was looked for and not found')
 rows = [['What was sought', 'Where it was sought', 'Consequence']]
 rows += [
-    ['The FY2026 first-quarter interim financial statements',
+    ['[CLOSED] The FY2026 first-quarter interim financial statements',
      'The company\'s own website (annual reports only, no interims published there); the '
      'exchange disclosure portal (every request, scripted and browser-rendered, answered with '
      'a bot-defence challenge page rather than content); the regulator\'s disclosure '
      'sub-domain (refused at the network egress layer)',
-     'The study is built on full years to FY2025 with no FY2026 actuals. Secondary reporting '
-     'of that filing exists and is recorded in section 5 below as a labelled cross-check; it '
-     'is NOT in the build path and no figure in the study rests on it.'],
+     'CLOSED. The filing was supplied directly and is in this edition as primary document P12. '
+     'Recorded here because the search history matters: the secondary reporting logged at the '
+     'time as an unverified cross-check turned out to be accurate to the pound.'],
     ['Volume, price or utilisation guidance for the biologicals plant',
      'All four annual reports, the investor presentation, and every 2026 press release on the '
      'company\'s own site',
@@ -259,16 +278,28 @@ P('Nothing in this section is used to build any figure in the study. It is recor
   'difference was noticed.')
 rows = [['Item', 'What the secondary source says', 'What this study does']]
 rows += [
-    ['FY2026 first-quarter results',
+    ['FY2026 first-quarter results — NOW VERIFIED',
      'Financial-news reporting of the company\'s exchange filing states consolidated net sales '
      'of about EGP 2.532 billion against EGP 2.299 billion, and attributable net profit of '
      'about EGP 284.0 million against EGP 318.6 million — a fall of roughly 11% on a rise of '
      'roughly 10% in sales',
-     'NOT USED. The filing itself could not be obtained from an official source (see table '
-     'B4). Recorded here as a cross-check only. It is directionally consistent with the '
-     'study\'s central mechanism — that costs, depreciation and interest are rising faster '
-     'than revenue as the new plant comes into service — but no figure in the study rests on '
-     'it.'],
+     f"The filing has since been obtained and both figures are EXACT: net sales "
+     f"{INP['q1_rev']['value'] * 1e6:,.0f} against {INP['q1_rev_ly']['value'] * 1e6:,.0f}, "
+     f"attributable profit {INP['q1_parent']['value'] * 1e6:,.0f} against "
+     f"{INP['q1_parent_ly']['value'] * 1e6:,.0f}, a fall of "
+     f"{abs(INP['q1_parent']['value'] / INP['q1_parent_ly']['value'] - 1):.2%}. The study now "
+     f"builds on the filing itself, not on the report of it."],
+    ['Dividend-distribution tax',
+     'The separately issued audited consolidated statements show it on its own line; the '
+     'Arabic annual reports fold it into general and administrative expense in FY2023 and into '
+     'the associates line in FY2024',
+     'This edition adopts the separately issued statements\' presentation for all three '
+     'history years. Profit before and after tax is identical either way; the only real effect '
+     'is that FY2023 operating profit rises by EGP 4.1 million, 0.34%.'],
+    ['FY2023 total assets',
+     f"The FY2024 filing prints the FY2023 comparative four pounds below the sum of its own "
+     f"subtotals ({INP['assets_fy23']['value'] * 1e6:,.0f})",
+     'The subtotal-consistent figure is used. A four-pound difference in the filing itself.'],
     ['FY2024 tablet production volume',
      'The company\'s OWN FY2024 annual report gives one figure for FY2024 tablet production; '
      'the FY2025 report restates the same year about eleven per cent lower',
@@ -286,7 +317,7 @@ rows += [
      'The FY2024 report\'s own 54.7 is used for FY2024 and 60.0 for FY2025, giving 9.7% '
      'hard-currency growth. The difference is rounding and is immaterial.'],
 ]
-table(rows, [1.35, 2.7, 2.55], size=7.6)
+table(rows, [1.75, 2.5, 2.35], size=7.6)
 caption('Table B5 — where a secondary source says something, and what the study did about it.')
 
 H1('6. How to check this study')

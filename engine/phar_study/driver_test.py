@@ -100,11 +100,43 @@ CASES = [
     ('Gross borrowings', f'C{row_of("Gross borrowings including leases")}', 1.20, -1,
      'more debt to subtract in the bridge'),
     ('Cash', f'C{row_of("Cash and bank balances")}', 1.50, +1, 'less net debt to subtract'),
+    ('Finance cost charged to profit',
+     f'C{row_of("Finance cost charged to profit")}', 1.20, -1,
+     'lower attributable earnings feed the relative and normalised lenses; the free-cash-flow '
+     'lens is unaffected because free cash flow to the firm is struck before financing, so the '
+     'Frame A headline itself should NOT move — this case therefore asserts on the weighted '
+     'central value, not on the bridge'),
+    ('Active-ingredient company at cost',
+     f'C{row_of("Active-ingredient company at carrying cost")}', 1.30, +1,
+     'a bigger addition in the bridge'),
+    ('Non-controlling interests in the bridge',
+     f'C{row_of("Non-controlling interests deducted in the bridge")}', 2.00, -1,
+     'a bigger deduction in the bridge'),
 ]
 
 results, failures = [], []
+CENTRAL = None
+for row in wb['Fundamental Valuation'].iter_rows(min_col=1, max_col=1):
+    for cc in row:
+        if isinstance(cc.value, str) and cc.value.startswith('WEIGHTED CENTRAL'):
+            CENTRAL = ('Fundamental Valuation', f'B{cc.row}')
+CENTRAL_BASE = float(xlcalc.Book(wb).cell_value(*CENTRAL))
+
 for label, cell, mult, want, why in CASES:
     base_v = wa[cell].value
+    if label == 'Finance cost charged to profit':
+        got = float(xlcalc.Book(wb, {('Assumptions', cell): base_v * mult}).cell_value(*CENTRAL))
+        move = got - CENTRAL_BASE
+        ok = move < -1e-6
+        results.append(dict(driver=label, cell=cell, multiplier=mult,
+                            base_input=float(base_v), headline=got, move=move,
+                            expected='down (weighted central)', passed=bool(ok),
+                            mechanism=why))
+        print(f"{'PASS' if ok else 'FAIL'}  {label:38s} x{mult:<5.2f} "
+              f"{CENTRAL_BASE:8.3f} -> {got:8.3f}  ({move:+8.3f})  expected down [central]")
+        if not ok:
+            failures.append(label)
+        continue
     got = headline({('Assumptions', cell): base_v * mult})
     move = got - BASE
     ok = (move > 1e-6) if want > 0 else (move < -1e-6)

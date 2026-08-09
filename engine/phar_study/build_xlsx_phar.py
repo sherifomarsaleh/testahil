@@ -270,6 +270,9 @@ arow('wfx', 'Hard-currency share of the term-loan book', 'Borrowings note (17), 
      'currency', W['w_fx'], fmt=PCT)
 arow('kdpath', 'Cost-of-debt path', 'The glide fractions are DERIVED from this row',
      V['kd_path'], fmt=PCT2)
+arow('intpath', 'Finance cost charged to profit (EGP mn)', 'What the profit and loss account '
+     'actually bears — NOT the marginal cost of debt above. Calibrated to the first quarter '
+     'of 2026', V['int_path'], fmt=MONEY)
 arow('rf_t', 'Terminal risk-free rate', '5% inflation target plus a 5.5-point real convention',
      V['rf_term'], fmt=PCT2)
 arow('erp_t', 'Terminal equity risk premium', 'Normalised toward the rating-class norm',
@@ -304,7 +307,16 @@ arow('debt0', 'Gross borrowings including leases', 'Notes (17), (18) and (21)', 
      fmt=MONEY)
 arow('eq0', 'Equity attributable to the holding company', 'Audited', V['equity_parent_fy25'],
      fmt=MONEY)
-arow('nci0', 'Non-controlling interests', 'Audited', V['nci_fy25'], fmt=MONEY)
+arow('nci0', 'Non-controlling interests, audited 31 December 2025', 'disclosure — the audited '
+     'December figure, shown so the reader can see both. It is SUPERSEDED for valuation by the '
+     'March figure below, because almost all of it was the active-ingredient company and that '
+     'company was deconsolidated in the first quarter of 2026. This row drives the balance '
+     'sheet history only', V['nci_fy25'], fmt=MONEY)
+arow('ncibr', 'Non-controlling interests deducted in the bridge', 'Post-deconsolidation, from '
+     'the reviewed 31 March 2026 interim', V['nci_bridge'], fmt=MONEY)
+arow('apicost', 'Active-ingredient company at carrying cost (EGP mn)', 'Pre-revenue, so cost '
+     'not an earnings multiple; the Q1-2026 movement in investments in associates',
+     V['arab_api_cost'], fmt=MONEY)
 arow('afs0', 'Assets held for sale', 'Note (8/1)', V['afs_fy25'], fmt=MONEY)
 arow('intang0', 'Intangible assets, net', 'Note (7)', V['intang_fy25'], fmt=MONEY)
 arow('amort', 'Right-of-use and intangible amortisation run-rate', 'Audited FY2025 cash-flow '
@@ -776,9 +788,8 @@ lbl(wi, r, 1, 'Finance costs')
 for j in range(3):
     val(wi, r, 2 + j, -H[['FY2023', 'FY2024', 'FY2025'][j]]['finance'], fmt=MONEY)
 for j in range(5):
-    f(wi, r, 5 + j, f'=-(Assumptions!{get_column_letter(3 + j)}${A["kdpath"]}*Assumptions!'
-      f'{c("debt0")}-0.08*Assumptions!{c("cash0")})',
-      -(V['kd_path'][j] * W['gross_debt'] - 0.08 * V['cash_fy25']), fmt=MONEY)
+    f(wi, r, 5 + j, f'=-Assumptions!{get_column_letter(3 + j)}${A["intpath"]}',
+      -V['int_path'][j], fmt=MONEY)
 r += 1
 IS['assoc'] = r
 lbl(wi, r, 1, 'Share of results of associates')
@@ -786,6 +797,13 @@ for j in range(3):
     val(wi, r, 2 + j, H[['FY2023', 'FY2024', 'FY2025'][j]]['associates'], fmt=MONEY)
 for j in range(5):
     f(wi, r, 5 + j, f'=Assumptions!{c("assoc_e")}', V['assoc_norm'], fmt=MONEY)
+r += 1
+IS['divtax'] = r
+lbl(wi, r, 1, 'Dividend distribution tax')
+for j in range(3):
+    val(wi, r, 2 + j, -H[['FY2023', 'FY2024', 'FY2025'][j]]['divtax'], fmt='#,##0.0')
+for j in range(5):
+    val(wi, r, 5 + j, 0.0, fmt='#,##0.0')
 r += 1
 IS['other'] = r
 lbl(wi, r, 1, 'Interest income, exchange differences and other income')
@@ -799,16 +817,15 @@ IS['pbt'] = r
 lbl(wi, r, 1, 'Profit before tax', bold=True, fill=FILL_C)
 for j in range(3):
     y = ['FY2023', 'FY2024', 'FY2025'][j]; col = get_column_letter(2 + j)
-    f(wi, r, 2 + j, f'={col}{IS["ebit"]}+{col}{IS["fin"]}+{col}{IS["assoc"]}+{col}{IS["other"]}',
-      H[y]['pbt'], fmt=MONEY, bold=True, fill=FILL_C)
+    f(wi, r, 2 + j, f'={col}{IS["ebit"]}+{col}{IS["fin"]}+{col}{IS["assoc"]}+{col}{IS["other"]}'
+      f'+{col}{IS["divtax"]}', H[y]['pbt'], fmt=MONEY, bold=True, fill=FILL_C)
 pbt_f = []
 for j in range(5):
     col = get_column_letter(5 + j)
-    e = (FC['ebit_A'][j]) - (V['kd_path'][j] * W['gross_debt'] - 0.08 * V['cash_fy25']) \
-        + V['assoc_norm']
+    e = FC['ebit_A'][j] - V['int_path'][j] + V['assoc_norm']
     pbt_f.append(e)
-    f(wi, r, 5 + j, f'={col}{IS["ebit"]}+{col}{IS["fin"]}+{col}{IS["assoc"]}+{col}{IS["other"]}',
-      e, fmt=MONEY, bold=True, fill=FILL_C)
+    f(wi, r, 5 + j, f'={col}{IS["ebit"]}+{col}{IS["fin"]}+{col}{IS["assoc"]}+{col}{IS["other"]}'
+      f'+{col}{IS["divtax"]}', e, fmt=MONEY, bold=True, fill=FILL_C)
 r += 1
 IS['tax'] = r
 lbl(wi, r, 1, 'Income tax and the statutory solidarity contribution')
@@ -966,10 +983,11 @@ for j in range(5):
 r += 1
 BS['nci'] = r
 lbl(wb_, r, 1, 'Non-controlling interests')
-for j, v in enumerate((V['nci_fy23'], V['nci_fy24'], V['nci_fy25'])):
+for j, v in enumerate((V['nci_fy23'], V['nci_fy24'])):
     val(wb_, r, 2 + j, v, fmt=MONEY)
+f(wb_, r, 4, f'=Assumptions!{c("nci0")}', V['nci_fy25'], fmt=MONEY)
 for j in range(5):
-    f(wb_, r, 5 + j, f'=Assumptions!{c("nci0")}', V['nci_fy25'], fmt=MONEY)
+    f(wb_, r, 5 + j, f'=Assumptions!{c("ncibr")}', V['nci_bridge'], fmt=MONEY)
 r += 1
 # forecast payables and other creditors
 for j in range(5):
@@ -1172,8 +1190,8 @@ tv_sheet = (nopat_t_sheet * (1 - DCFD['frame_A']['reinvest_rate'])
 pv_tv_sheet = tv_sheet * W['df'][-1]
 ev_core_sheet = pv_sum_sheet + pv_tv_sheet
 assoc_val = V['assoc_norm'] * V['assoc_multiple']
-ev_tot_sheet = ev_core_sheet + assoc_val + V['afs_fy25']
-eq_sheet = ev_tot_sheet - W['net_debt'] - V['nci_fy25']
+ev_tot_sheet = ev_core_sheet + assoc_val + V['arab_api_cost'] + V['afs_fy25']
+eq_sheet = ev_tot_sheet - W['net_debt'] - V['nci_bridge']
 ps_sheet = eq_sheet / SH
 
 lbl(wd, r, 1, 'TERMINAL BLOCK', bold=True, fill=FILL_C); r += 1
@@ -1252,7 +1270,8 @@ r += 1
 nopat_tB = ebitB[-1] * (1 - TAX) * (1 + V['g_term'])
 tvB = nopat_tB * (1 - DCFD['frame_A']['reinvest_rate']) / (W['wacc_term'] - V['g_term'])
 evB = sum(fcffB[j] * W['df'][j] for j in range(5)) + tvB * W['df'][-1]
-eqB = evB + assoc_val + V['afs_fy25'] - W['net_debt'] - V['nci_fy25']
+eqB = (evB + assoc_val + V['arab_api_cost'] + V['afs_fy25'] - W['net_debt']
+       - V['nci_bridge'])
 FB['tv'] = r
 lbl(wd, r, 1, 'Terminal value on Frame B')
 f(wd, r, 2, f'=F{FB["nopat"]}*(1+Assumptions!{c("g")})*(1-B{TB["rr"]})'
@@ -1265,8 +1284,9 @@ r += 1
 FB['ps'] = r
 lbl(wd, r, 1, 'VALUE PER SHARE ON FRAME B', bold=True, fill=FILL_C)
 f(wd, r, 2, f'=(B{FB["ev"]}+Assumptions!{c("assoc_e")}*Assumptions!{c("assoc_m")}'
-  f'+Assumptions!{c("afs0")}-Assumptions!{c("nd")}-Assumptions!{c("nci0")})'
-  f'/Assumptions!{c("shares")}', eqB / SH, fmt=PS, bold=True, fill=FILL_C)
+  f'+Assumptions!{c("apicost")}+Assumptions!{c("afs0")}-Assumptions!{c("nd")}'
+  f'-Assumptions!{c("ncibr")})/Assumptions!{c("shares")}', eqB / SH, fmt=PS, bold=True,
+  fill=FILL_C)
 
 # ============================================================= 5. SOTP BRIDGE
 wsb = sheet('SOTP Bridge', [52, 18, 16])
@@ -1279,12 +1299,15 @@ bridge = [
     ('tvpct', '   of which the terminal value (memorandum)', f"=DCF!B{TB['pvtv']}", pv_tv_sheet),
     ('tvshare', '   terminal value as a percentage of core enterprise value',
      f"=DCF!B{DR['tvshare']}", pv_tv_sheet / ev_core_sheet),
-    ('assoc', 'Add: equity-accounted associates at normalised earnings x the multiple',
+    ('assoc', 'Add: earning associates at normalised earnings x the multiple',
      f'=Assumptions!{c("assoc_e")}*Assumptions!{c("assoc_m")}', assoc_val),
+    ('api', 'Add: the pre-revenue active-ingredient company at carrying cost',
+     f'=Assumptions!{c("apicost")}', V['arab_api_cost']),
     ('afs', 'Add: assets held for sale', f'=Assumptions!{c("afs0")}', V['afs_fy25']),
     ('evtot', 'TOTAL ENTERPRISE VALUE', None, ev_tot_sheet),
     ('nd', 'Less: net debt', f'=-Assumptions!{c("nd")}', -W['net_debt']),
-    ('nci', 'Less: non-controlling interests', f'=-Assumptions!{c("nci0")}', -V['nci_fy25']),
+    ('nci', 'Less: non-controlling interests, post-deconsolidation',
+     f'=-Assumptions!{c("ncibr")}', -V['nci_bridge']),
     ('eq', 'EQUITY VALUE', None, eq_sheet),
 ]
 for key, label, formula, exp in bridge:
@@ -1293,8 +1316,8 @@ for key, label, formula, exp in bridge:
     fill = FILL_C if bold else None
     lbl(wsb, r, 1, label, bold=bold, fill=fill)
     if key == 'evtot':
-        f(wsb, r, 2, f'=B{BR["evcore"]}+B{BR["assoc"]}+B{BR["afs"]}', exp, fmt=MONEY, bold=True,
-          fill=FILL_C)
+        f(wsb, r, 2, f'=B{BR["evcore"]}+B{BR["assoc"]}+B{BR["api"]}+B{BR["afs"]}', exp,
+          fmt=MONEY, bold=True, fill=FILL_C)
     elif key == 'eq':
         f(wsb, r, 2, f'=B{BR["evtot"]}+B{BR["nd"]}+B{BR["nci"]}', exp, fmt=MONEY, bold=True,
           fill=FILL_C)
@@ -1320,14 +1343,14 @@ lbl(wr, r, 1, 'FY2026E attributable earnings per share — Frame A')
 f(wr, r, 2, f"='Income Statement'!E{IS['eps']}", par_f[0] / SH, fmt=PS)
 RL['epsA'] = r; r += 1
 lbl(wr, r, 1, 'FY2026E attributable earnings per share — Frame B')
-epsB0 = ((ebitB[0] - (V['kd_path'][0] * W['gross_debt'] - 0.08 * V['cash_fy25']))
-         * (1 - V['tax_eff_fwd']) + V['assoc_norm'] - FC['nci_fwd']) / SH
-f(wr, r, 2, f'=((DCF!B{FB["ebit"]}-(Assumptions!C${A["kdpath"]}*Assumptions!{c("debt0")}'
-  f'-0.08*Assumptions!{c("cash0")}))*(1-Assumptions!{c("tax_eff")})'
+epsB0 = ((ebitB[0] - V['int_path'][0]) * (1 - V['tax_eff_fwd'])
+         + V['assoc_norm'] - FC['nci_fwd']) / SH
+f(wr, r, 2, f'=((DCF!B{FB["ebit"]}-Assumptions!C${A["intpath"]})'
+  f'*(1-Assumptions!{c("tax_eff")})'
   f'+Assumptions!{c("assoc_e")}-{FC["nci_fwd"]})/Assumptions!{c("shares")}', epsB0, fmt=PS)
 RL['epsB'] = r; r += 1
 lbl(wr, r, 1, 'Average of the two frames — the base for the multiples below', bold=True)
-f(wr, r, 2, f'=AVERAGE(B{RL["epsA"]}:B{RL["epsB"]})', (par_f[0] / SH + epsB0) / 2, fmt=PS,
+f(wr, r, 2, f'=AVERAGE(B{RL["epsA"]}:B{RL["epsB"]})', LN['eps_fwd'], fmt=PS,
   bold=True)
 RL['eps'] = r; r += 1
 tri = LN['rel_triangulation']
@@ -1393,8 +1416,8 @@ for key, label, formula, exp, fmt in (
     elif key == 'ebit':
         f(wr, r, 2, f'=B{NP["mgn"]}*B{NP["rev"]}', exp, fmt=MONEY)
     elif key == 'eps':
-        f(wr, r, 2, f'=((B{NP["ebit"]}-{FC["board_fee"]}-(Assumptions!D${A["kdpath"]}*Assumptions!{c("debt0")}'
-          f'-0.08*Assumptions!{c("cash0")}))*(1-Assumptions!{c("tax_eff")})'
+        f(wr, r, 2, f'=((B{NP["ebit"]}-{FC["board_fee"]}-Assumptions!D${A["intpath"]})'
+          f'*(1-Assumptions!{c("tax_eff")})'
           f'+Assumptions!{c("assoc_e")}-{FC["nci_fwd"]})/Assumptions!{c("shares")}', exp, fmt=PS)
     elif key == 'pay':
         f(wr, r, 2, f'=1-Assumptions!{c("g")}/{LN["roe_sust"]:.8f}', exp, fmt=PCT)
@@ -1521,8 +1544,8 @@ for label, formula, exp, fmt in (
     ('Market capitalisation (EGP mn)', f'=Assumptions!{c("mcap")}', W['mcap'], MONEY),
     ('Net debt (EGP mn)', f'=Assumptions!{c("nd")}', W['net_debt'], MONEY),
     ('Enterprise value (EGP mn)',
-     f'=Assumptions!{c("mcap")}+Assumptions!{c("nd")}+Assumptions!{c("nci0")}',
-     W['mcap'] + W['net_debt'] + V['nci_fy25'], MONEY),
+     f'=Assumptions!{c("mcap")}+Assumptions!{c("nd")}+Assumptions!{c("ncibr")}',
+     W['mcap'] + W['net_debt'] + V['nci_bridge'], MONEY),
     ('FY2025 revenue (EGP mn)', f"='Income Statement'!D{IS['rev']}", V['rev_fy25'], MONEY),
     ('FY2025 EBITDA (EGP mn)', f"='Income Statement'!D{IS['ebitda']}", H['FY2025']['ebitda'],
      MONEY),
@@ -1545,7 +1568,7 @@ for label, formula, exp, fmt in (
         f(wsum, r, 2, f"=Assumptions!{c('spot')}/('Income Statement'!D{IS['parent']}"
           f"/Assumptions!{c('shares')})", exp, fmt=fmt)
     elif label.startswith('Trailing enterprise'):
-        f(wsum, r, 2, f"=(Assumptions!{c('mcap')}+Assumptions!{c('nd')}+Assumptions!{c('nci0')})"
+        f(wsum, r, 2, f"=(Assumptions!{c('mcap')}+Assumptions!{c('nd')}+Assumptions!{c('ncibr')})"
           f"/'Income Statement'!D{IS['ebitda']}", exp, fmt=fmt)
     elif label.startswith('Dividend per share'):
         val(wsum, r, 2, exp, fmt=fmt)

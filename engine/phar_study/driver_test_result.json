@@ -1,13 +1,13 @@
 {
- "base": 86.05575046125706,
+ "base": 67.22333140666252,
  "headline_bases": {
-  "value per share, Frame A": 86.05575046125706,
-  "value per share, Frame B": 99.07237652306328,
-  "weighted central fair value": 79.63857743004463,
-  "FY2026E earnings per share": 6.60353376671894,
-  "FY2030E book value per share": 71.9720944461568,
-  "FY2030E total assets": 25235.88386861477,
-  "FY2030E return on invested capital": 0.18744778682404845,
+  "value per share, Frame A": 67.22333140666252,
+  "value per share, Frame B": 79.32905218418912,
+  "weighted central fair value": 66.56723194332193,
+  "FY2026E earnings per share": 6.007864418830994,
+  "FY2030E book value per share": 66.89417719357931,
+  "FY2030E total assets": 24773.308963114432,
+  "FY2030E return on invested capital": 0.16360853105510176,
   "cost of equity, rating basis": 0.24708259999999999
  },
  "cases": [
@@ -15,9 +15,9 @@
    "driver": "Domestic pack volume growth",
    "cell": "C8",
    "multiplier": 1.2,
-   "base_input": 0.1,
-   "headline": 86.52147187119854,
-   "move": 0.46572140994148015,
+   "base_input": 0.055,
+   "headline": 67.34412688055616,
+   "move": 0.12079547389363654,
    "expected": "up",
    "passed": true,
    "mechanism": "more packs, more revenue on a cost base that does not rise as fast"
@@ -26,9 +26,9 @@
    "driver": "Export pack volume growth",
    "cell": "C9",
    "multiplier": 1.2,
-   "base_input": 0.09,
-   "headline": 87.13891124706976,
-   "move": 1.0831607858126944,
+   "base_input": 0.05,
+   "headline": 67.8175596276631,
+   "move": 0.5942282210005772,
    "expected": "up",
    "passed": true,
    "mechanism": "same, on the hard-currency book"
@@ -37,9 +37,9 @@
    "driver": "Domestic price per pack growth",
    "cell": "C10",
    "multiplier": 1.2,
-   "base_input": 0.09,
-   "headline": 90.7745485244988,
-   "move": 4.718798063241735,
+   "base_input": 0.05,
+   "headline": 69.69972786494826,
+   "move": 2.476396458285734,
    "expected": "up",
    "passed": true,
    "mechanism": "price straight to the margin"
@@ -49,8 +49,8 @@
    "cell": "C11",
    "multiplier": 1.5,
    "base_input": 0.01,
-   "headline": 86.65154929365018,
-   "move": 0.5957988323931147,
+   "headline": 67.79335311138672,
+   "move": 0.5700217047241978,
    "expected": "up",
    "passed": true,
    "mechanism": "price straight to the margin"
@@ -60,8 +60,8 @@
    "cell": "C13",
    "multiplier": 1.1,
    "base_input": 50.5,
-   "headline": 85.04644126445865,
-   "move": -1.0093091967984122,
+   "headline": 66.17781502818042,
+   "move": -1.0455163784821053,
    "expected": "down",
    "passed": true,
    "mechanism": "a WEAKER pound raises export revenue but ALSO raises the imported ingredient and packaging cost, which is 79% of the cash cost stack against a 32% export share \u2014 the cost side dominates, so the net effect is negative"
@@ -71,8 +71,8 @@
    "cell": "C27",
    "multiplier": 1.2,
    "base_input": 0.104,
-   "headline": 85.18876763311422,
-   "move": -0.866982828142838,
+   "headline": 66.41156272048343,
+   "move": -0.8117686861790929,
    "expected": "down",
    "passed": true,
    "mechanism": "a bigger cost share"
@@ -82,8 +82,8 @@
    "cell": "C30",
    "multiplier": 1.3,
    "base_input": 0.0525,
-   "headline": 85.39926106013928,
-   "move": -0.6564894011177813,
+   "headline": 66.60865079092596,
+   "move": -0.6146806157365603,
    "expected": "down",
    "passed": true,
    "mechanism": "a bigger cost share"
@@ -92,9 +92,9 @@
    "driver": "Capital expenditure / revenue",
    "cell": "C32",
    "multiplier": 1.3,
-   "base_input": 0.075,
-   "headline": 84.84563174951921,
-   "move": -1.2101187117378487,
+   "base_input": 0.125,
+   "headline": 65.3349116962583,
+   "move": -1.8884197104042215,
    "expected": "down",
    "passed": true,
    "mechanism": "cash out of free cash flow"
@@ -104,8 +104,8 @@
    "cell": "C34",
    "multiplier": 1.3,
    "base_input": 0.062,
-   "headline": 84.65516451273587,
-   "move": -1.400585948521197,
+   "headline": 65.8111416346257,
+   "move": -1.4121897720368253,
    "expected": "down",
    "passed": true,
    "mechanism": "a bigger tax-effected charge; the add-back is not a full offset because the tax shield is worth less than the charge"
@@ -115,8 +115,8 @@
    "cell": "C35",
    "multiplier": 1.2,
    "base_input": 265.0,
-   "headline": 85.31473304382027,
-   "move": -0.7410174174367938,
+   "headline": 66.5100085493603,
+   "move": -0.7133228573022308,
    "expected": "down",
    "passed": true,
    "mechanism": "more cash tied up"
@@ -126,8 +126,8 @@
    "cell": "C36",
    "multiplier": 1.2,
    "base_input": 126.0,
-   "headline": 85.4381181134936,
-   "move": -0.6176323477634611,
+   "headline": 66.64503321757427,
+   "move": -0.5782981890882581,
    "expected": "down",
    "passed": true,
    "mechanism": "more cash tied up"
@@ -137,8 +137,8 @@
    "cell": "C37",
    "multiplier": 1.2,
    "base_input": 55.0,
-   "headline": 86.20954652902692,
-   "move": 0.15379606776986066,
+   "headline": 67.37137954685733,
+   "move": 0.1480481401948026,
    "expected": "up",
    "passed": true,
    "mechanism": "less cash tied up"
@@ -148,8 +148,8 @@
    "cell": "C40",
    "multiplier": 1.1,
    "base_input": 0.2231,
-   "headline": 82.61197799858658,
-   "move": -3.4437724626704806,
+   "headline": 64.29120744135793,
+   "move": -2.932123965304598,
    "expected": "down",
    "passed": true,
    "mechanism": "a higher discount rate"
@@ -159,8 +159,8 @@
    "cell": "C41",
    "multiplier": 1.5,
    "base_input": 0.0341,
-   "headline": 88.78828077940908,
-   "move": 2.7325303181520155,
+   "headline": 69.55011792544347,
+   "move": 2.326786518780949,
    "expected": "up",
    "passed": true,
    "mechanism": "a LARGER spread is subtracted from the quoted yield, so the normalised risk-free rate FALLS and the discount rate with it \u2014 this is the whole point of the normalisation"
@@ -170,8 +170,8 @@
    "cell": "C42",
    "multiplier": 1.2,
    "base_input": 0.0941,
-   "headline": 84.21029719184563,
-   "move": -1.8454532694114363,
+   "headline": 65.65201919303094,
+   "move": -1.571312213631586,
    "expected": "down",
    "passed": true,
    "mechanism": "a higher cost of equity"
@@ -181,8 +181,8 @@
    "cell": "C45",
    "multiplier": 1.3,
    "base_input": 0.629,
-   "headline": 72.7513763574882,
-   "move": -13.304374103768865,
+   "headline": 55.79581350058406,
+   "move": -11.427517906078464,
    "expected": "down",
    "passed": true,
    "mechanism": "a higher cost of equity"
@@ -192,63 +192,63 @@
    "cell": "C46",
    "multiplier": 1.2,
    "base_input": 0.2481,
-   "headline": 85.04884813636151,
-   "move": -1.0069023248955489,
+   "headline": 66.36599203705862,
+   "move": -0.8573393696039062,
    "expected": "down",
    "passed": true,
    "mechanism": "a higher cost of capital"
   },
   {
    "driver": "Terminal risk-free rate",
-   "cell": "C51",
+   "cell": "C52",
    "multiplier": 1.2,
    "base_input": 0.105,
-   "headline": 69.84611493203295,
-   "move": -16.209635529224116,
+   "headline": 53.26916741445634,
+   "move": -13.954163992206183,
    "expected": "down",
    "passed": true,
    "mechanism": "a higher terminal discount rate against a 74% terminal weight"
   },
   {
    "driver": "Terminal growth",
-   "cell": "C56",
+   "cell": "C57",
    "multiplier": 1.2,
    "base_input": 0.05,
-   "headline": 91.187458776471,
-   "move": 5.131708315213942,
+   "headline": 71.6435569091962,
+   "move": 4.4202255025336825,
    "expected": "up",
    "passed": true,
    "mechanism": "growth in the terminal numerator and a smaller denominator"
   },
   {
    "driver": "Terminal return on invested capital",
-   "cell": "C57",
+   "cell": "C58",
    "multiplier": 1.3,
    "base_input": 0.2,
-   "headline": 92.37305391861481,
-   "move": 6.3173034573577524,
+   "headline": 72.6647758797771,
+   "move": 5.441444473114572,
    "expected": "up",
    "passed": true,
    "mechanism": "less reinvestment needed to buy the same growth"
   },
   {
    "driver": "Normalised associate contribution",
-   "cell": "C58",
+   "cell": "C59",
    "multiplier": 1.3,
-   "base_input": 320.0,
-   "headline": 92.31331501831659,
-   "move": 6.257564557059524,
+   "base_input": 250.0,
+   "headline": 72.11205371686529,
+   "move": 4.888722310202766,
    "expected": "up",
    "passed": true,
    "mechanism": "a bigger addition in the bridge"
   },
   {
    "driver": "Associate earnings multiple",
-   "cell": "C59",
+   "cell": "C60",
    "multiplier": 1.3,
    "base_input": 11.0,
-   "headline": 92.31331501831659,
-   "move": 6.257564557059524,
+   "headline": 72.11205371686529,
+   "move": 4.888722310202766,
    "expected": "up",
    "passed": true,
    "mechanism": "a bigger addition in the bridge"
@@ -258,8 +258,8 @@
    "cell": "C5",
    "multiplier": 1.2,
    "base_input": 0.225,
-   "headline": 80.18964414432043,
-   "move": -5.866106316936637,
+   "headline": 62.16749835785129,
+   "move": -5.0558330488112375,
    "expected": "down",
    "passed": true,
    "mechanism": "less cash, partly offset by a bigger interest shield in the cost of capital"
@@ -268,34 +268,67 @@
    "driver": "Transfers out of construction",
    "cell": "C33",
    "multiplier": 1.3,
-   "base_input": 3200.0,
-   "headline": 85.29038257551153,
-   "move": -0.7653678857455333,
+   "base_input": 3400.0,
+   "headline": 66.41012802805794,
+   "move": -0.8132033786045838,
    "expected": "down",
    "passed": true,
    "mechanism": "brings the depreciation charge forward"
   },
   {
    "driver": "Gross borrowings",
-   "cell": "C70",
+   "cell": "C71",
    "multiplier": 1.2,
    "base_input": 8797.72564,
-   "headline": 76.56694691948566,
-   "move": -9.488803541771404,
+   "headline": 57.595258079003585,
+   "move": -9.628073327658939,
    "expected": "down",
    "passed": true,
    "mechanism": "more debt to subtract in the bridge"
   },
   {
    "driver": "Cash",
-   "cell": "C69",
+   "cell": "C70",
    "multiplier": 1.5,
    "base_input": 1433.426902,
-   "headline": 89.89110757889817,
-   "move": 3.8353571176411094,
+   "headline": 71.11983645202206,
+   "move": 3.8965050453595325,
    "expected": "up",
    "passed": true,
    "mechanism": "less net debt to subtract"
+  },
+  {
+   "driver": "Finance cost charged to profit",
+   "cell": "C51",
+   "multiplier": 1.2,
+   "base_input": 1250.0,
+   "headline": 65.1902566530265,
+   "move": -1.3769752902954338,
+   "expected": "down (weighted central)",
+   "passed": true,
+   "mechanism": "lower attributable earnings feed the relative and normalised lenses; the free-cash-flow lens is unaffected because free cash flow to the firm is struck before financing, so the Frame A headline itself should NOT move \u2014 this case therefore asserts on the weighted central value, not on the bridge"
+  },
+  {
+   "driver": "Active-ingredient company at cost",
+   "cell": "C75",
+   "multiplier": 1.3,
+   "base_input": 228.4864180000001,
+   "headline": 67.62951564275521,
+   "move": 0.4061842360926846,
+   "expected": "up",
+   "passed": true,
+   "mechanism": "a bigger addition in the bridge"
+  },
+  {
+   "driver": "Non-controlling interests in the bridge",
+   "cell": "C74",
+   "multiplier": 2.0,
+   "base_input": 3.999807,
+   "headline": 67.19962965427779,
+   "move": -0.023701752384738484,
+   "expected": "down",
+   "passed": true,
+   "mechanism": "a bigger deduction in the bridge"
   }
  ],
  "failures": [],
@@ -304,6 +337,10 @@
   [
    "Cost share: depreciation",
    "C20"
+  ],
+  [
+   "Non-controlling interests, audited 31 December 2025",
+   "C73"
   ]
  ],
  "live_inputs": [
@@ -1392,9 +1429,7 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
-    "FY2026E earnings per share",
-    "FY2030E book value per share"
+    "weighted central fair value"
    ]
   ],
   [
@@ -1403,8 +1438,7 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
-    "FY2030E book value per share"
+    "weighted central fair value"
    ]
   ],
   [
@@ -1413,8 +1447,7 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
-    "FY2030E book value per share"
+    "weighted central fair value"
    ]
   ],
   [
@@ -1423,8 +1456,7 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
-    "weighted central fair value",
-    "FY2030E book value per share"
+    "weighted central fair value"
    ]
   ],
   [
@@ -1433,21 +1465,40 @@
    [
     "value per share, Frame A",
     "value per share, Frame B",
+    "weighted central fair value"
+   ]
+  ],
+  [
+   "Finance cost charged to profit (EGP mn)",
+   "D51",
+   [
     "weighted central fair value",
     "FY2030E book value per share"
    ]
   ],
   [
-   "Terminal equity risk premium",
-   "C52",
+   "Finance cost charged to profit (EGP mn)",
+   "E51",
    [
-    "value per share, Frame A",
-    "value per share, Frame B",
-    "weighted central fair value"
+    "FY2030E book value per share"
    ]
   ],
   [
-   "Terminal local-currency borrowing rate",
+   "Finance cost charged to profit (EGP mn)",
+   "F51",
+   [
+    "FY2030E book value per share"
+   ]
+  ],
+  [
+   "Finance cost charged to profit (EGP mn)",
+   "G51",
+   [
+    "FY2030E book value per share"
+   ]
+  ],
+  [
+   "Terminal equity risk premium",
    "C53",
    [
     "value per share, Frame A",
@@ -1456,7 +1507,7 @@
    ]
   ],
   [
-   "Terminal hard-currency coupon",
+   "Terminal local-currency borrowing rate",
    "C54",
    [
     "value per share, Frame A",
@@ -1465,7 +1516,7 @@
    ]
   ],
   [
-   "Terminal debt weight",
+   "Terminal hard-currency coupon",
    "C55",
    [
     "value per share, Frame A",
@@ -1474,15 +1525,24 @@
    ]
   ],
   [
+   "Terminal debt weight",
+   "C56",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value"
+   ]
+  ],
+  [
    "Regional peer median price-earnings multiple",
-   "C60",
+   "C61",
    [
     "weighted central fair value"
    ]
   ],
   [
    "Property, plant and equipment, net",
-   "C62",
+   "C63",
    [
     "value per share, Frame A",
     "value per share, Frame B",
@@ -1495,7 +1555,7 @@
   ],
   [
    "Projects under construction",
-   "C63",
+   "C64",
    [
     "FY2030E total assets",
     "FY2030E return on invested capital"
@@ -1503,15 +1563,6 @@
   ],
   [
    "Inventories, net",
-   "C64",
-   [
-    "value per share, Frame A",
-    "value per share, Frame B",
-    "weighted central fair value"
-   ]
-  ],
-  [
-   "Trade and notes receivable, net",
    "C65",
    [
     "value per share, Frame A",
@@ -1520,8 +1571,17 @@
    ]
   ],
   [
-   "Other debtors",
+   "Trade and notes receivable, net",
    "C66",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value"
+   ]
+  ],
+  [
+   "Other debtors",
+   "C67",
    [
     "value per share, Frame A",
     "value per share, Frame B",
@@ -1532,7 +1592,7 @@
   ],
   [
    "Trade and notes payable",
-   "C67",
+   "C68",
    [
     "value per share, Frame A",
     "value per share, Frame B",
@@ -1541,7 +1601,7 @@
   ],
   [
    "Other creditors",
-   "C68",
+   "C69",
    [
     "value per share, Frame A",
     "value per share, Frame B",
@@ -1551,24 +1611,15 @@
   ],
   [
    "Equity attributable to the holding company",
-   "C71",
+   "C72",
    [
     "weighted central fair value",
     "FY2030E book value per share"
    ]
   ],
   [
-   "Non-controlling interests",
-   "C72",
-   [
-    "value per share, Frame A",
-    "value per share, Frame B",
-    "weighted central fair value"
-   ]
-  ],
-  [
    "Assets held for sale",
-   "C73",
+   "C76",
    [
     "value per share, Frame A",
     "value per share, Frame B",
@@ -1577,50 +1628,13 @@
   ],
   [
    "Intangible assets, net",
-   "C74",
+   "C77",
    [
     "FY2030E return on invested capital"
    ]
   ],
   [
    "Right-of-use and intangible amortisation run-rate",
-   "C75",
-   [
-    "value per share, Frame A",
-    "value per share, Frame B",
-    "weighted central fair value",
-    "FY2026E earnings per share",
-    "FY2030E book value per share",
-    "FY2030E total assets",
-    "FY2030E return on invested capital"
-   ]
-  ],
-  [
-   "Share of depreciation charged to cost of sales",
-   "C76",
-   [
-    "value per share, Frame A",
-    "value per share, Frame B",
-    "weighted central fair value",
-    "FY2030E total assets",
-    "FY2030E return on invested capital"
-   ]
-  ],
-  [
-   "FY2025 cash cost per pack sold (EGP)",
-   "C77",
-   [
-    "value per share, Frame A",
-    "value per share, Frame B",
-    "weighted central fair value",
-    "FY2026E earnings per share",
-    "FY2030E book value per share",
-    "FY2030E total assets",
-    "FY2030E return on invested capital"
-   ]
-  ],
-  [
-   "Consolidated-to-separate revenue factor",
    "C78",
    [
     "value per share, Frame A",
@@ -1633,20 +1647,18 @@
    ]
   ],
   [
-   "FY2025 domestic packs (million)",
+   "Share of depreciation charged to cost of sales",
    "C79",
    [
     "value per share, Frame A",
     "value per share, Frame B",
     "weighted central fair value",
-    "FY2026E earnings per share",
-    "FY2030E book value per share",
     "FY2030E total assets",
     "FY2030E return on invested capital"
    ]
   ],
   [
-   "FY2025 export packs (million)",
+   "FY2025 cash cost per pack sold (EGP)",
    "C80",
    [
     "value per share, Frame A",
@@ -1659,7 +1671,7 @@
    ]
   ],
   [
-   "FY2025 domestic price per pack (EGP)",
+   "Consolidated-to-separate revenue factor",
    "C81",
    [
     "value per share, Frame A",
@@ -1672,7 +1684,7 @@
    ]
   ],
   [
-   "FY2025 export price per pack (USD)",
+   "FY2025 domestic packs (million)",
    "C82",
    [
     "value per share, Frame A",
@@ -1685,7 +1697,7 @@
    ]
   ],
   [
-   "FY2025 contract-manufacturing packs (million)",
+   "FY2025 export packs (million)",
    "C83",
    [
     "value per share, Frame A",
@@ -1698,7 +1710,7 @@
    ]
   ],
   [
-   "FY2025 contract-manufacturing revenue (EGP mn)",
+   "FY2025 domestic price per pack (EGP)",
    "C84",
    [
     "value per share, Frame A",
@@ -1711,8 +1723,47 @@
    ]
   ],
   [
-   "FY2025 average exchange rate",
+   "FY2025 export price per pack (USD)",
    "C85",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2026E earnings per share",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "FY2025 contract-manufacturing packs (million)",
+   "C86",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2026E earnings per share",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "FY2025 contract-manufacturing revenue (EGP mn)",
+   "C87",
+   [
+    "value per share, Frame A",
+    "value per share, Frame B",
+    "weighted central fair value",
+    "FY2026E earnings per share",
+    "FY2030E book value per share",
+    "FY2030E total assets",
+    "FY2030E return on invested capital"
+   ]
+  ],
+  [
+   "FY2025 average exchange rate",
+   "C88",
    [
     "value per share, Frame A",
     "value per share, Frame B",

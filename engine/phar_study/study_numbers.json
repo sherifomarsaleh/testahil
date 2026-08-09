@@ -114,8 +114,8 @@
    "layer": "Company"
   },
   "ga_fy23": {
-   "value": 151.584727,
-   "source": "Audited consolidated financial statements for the year ended 31 December 2023 (confirmed against the comparative column of the FY2024 filing), general and administrative note",
+   "value": 147.460991,
+   "source": "Audited consolidated statement of profit or loss for the year ended 31 December 2023, English translation issued by the auditor: general and administrative expenses note (30). The Arabic annual report presents this line at 151.585 with dividend-distribution tax folded into it; the separately issued statements split the two, and this study follows the split",
    "date": "2024-03-01",
    "layer": "Company"
   },
@@ -192,14 +192,32 @@
    "layer": "Company"
   },
   "assoc_fy24": {
-   "value": 147.111993,
-   "source": "Audited consolidated financial statements for the year ended 31 December 2024 (confirmed against the comparative column of the FY2025 filing), note (33): Batterjee Pharma (Saudi Arabia) 190.022, Medical Professions Company (38.441), less withholding tax on distributions (4.469)",
+   "value": 151.580926,
+   "source": "Audited consolidated statement of profit or loss FY2024, English translation issued by the auditor: profit of subsidiaries and associates. GROSS of dividend-distribution tax, which that statement shows on its own line; the Arabic annual report nets the two to 147.112",
    "date": "2025-03-01",
    "layer": "Company"
   },
   "assoc_fy25": {
-   "value": 495.499218,
-   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), note (33): Batterjee Pharma (Saudi Arabia) 427.906, Medical Professions Company 84.179, less withholding tax on distributions (16.585)",
+   "value": 512.084638,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), note (33): Batterjee Pharma (Saudi Arabia) 427.906 plus Medical Professions Company 84.179, stated GROSS of the 16.585 withholding tax on distributions so that all three years are presented on the same basis as the separately issued statements",
+   "date": "2026-03-01",
+   "layer": "Company"
+  },
+  "divtax_fy23": {
+   "value": 4.123733,
+   "source": "Dividend-distribution tax, shown as its own line in the separately issued audited consolidated statement of profit or loss FY2023",
+   "date": "2024-03-01",
+   "layer": "Company"
+  },
+  "divtax_fy24": {
+   "value": 4.468933,
+   "source": "Dividend-distribution tax, separately issued audited consolidated statement of profit or loss FY2024",
+   "date": "2025-03-01",
+   "layer": "Company"
+  },
+  "divtax_fy25": {
+   "value": 16.58542,
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), note (33): withholding tax on associate distributions",
    "date": "2026-03-01",
    "layer": "Company"
   },
@@ -787,19 +805,19 @@
   },
   "dom_pack_growth": {
    "value": [
-    0.1,
-    0.085,
+    0.055,
+    0.08,
     0.075,
     0.065,
     0.055
    ],
-   "source": "Domestic packs sold, annual volume growth FY2026E-FY2030E. The company sold 244.3 million domestic packs of its own preparations in FY2024 and 291.8 million in FY2025 (+19.5%); disclosed capacity utilisation is 65% of 3,383 million units, so the volume is not capacity-constrained. The path steps down from a rate materially below the FY2025 outturn toward population-plus-penetration growth",
-   "date": "2026-08-09",
+   "source": "Domestic packs sold, annual volume growth FY2026E-FY2030E. The company sold 244.3 million domestic packs of its own preparations in FY2024 and 291.8 million in FY2025 (+19.5%); disclosed capacity utilisation is 65% of 3,383 million units, so the volume is not capacity-constrained. The path steps down from a rate materially below the FY2025 outturn toward population-plus-penetration growth. THE FIRST YEAR IS RESET TO THE FIRST QUARTER'S OUTTURN: net sales grew 10.1% year on year in the three months to March 2026, against the 17.5% the first cut of this model carried",
+   "date": "2026-08-11",
    "layer": "House"
   },
   "exp_pack_growth": {
    "value": [
-    0.09,
+    0.05,
     0.09,
     0.085,
     0.08,
@@ -811,8 +829,8 @@
   },
   "dom_price_growth": {
    "value": [
-    0.09,
-    0.085,
+    0.05,
+    0.08,
     0.075,
     0.065,
     0.055
@@ -962,7 +980,7 @@
   },
   "capex_pct": {
    "value": [
-    0.075,
+    0.125,
     0.045,
     0.035,
     0.032,
@@ -974,8 +992,8 @@
   },
   "cip_transfer": {
    "value": [
-    3200.0,
-    1200.0,
+    3400.0,
+    1100.0,
     400.0,
     200.0,
     200.0
@@ -1308,6 +1326,144 @@
    "date": "2026-03-01",
    "layer": "Company"
   },
+  "q1_rev": {
+   "value": 2532.833589,
+   "source": "Reviewed consolidated interim financial statements for the three months ended 31 March 2026, English translation issued by the auditor, review report dated 14 May 2026. THE REVIEW CONCLUSION IS QUALIFIED: net sales for the quarter (Q1-2025: 2,299.890)",
+   "date": "2026-05-14",
+   "layer": "Company"
+  },
+  "q1_rev_ly": {
+   "value": 2299.890497,
+   "source": "Reviewed consolidated interim financial statements for the three months ended 31 March 2026, English translation issued by the auditor, review report dated 14 May 2026. THE REVIEW CONCLUSION IS QUALIFIED: comparative quarter",
+   "date": "2026-05-14",
+   "layer": "Company"
+  },
+  "q1_gp": {
+   "value": 1073.711911,
+   "source": "Reviewed consolidated interim financial statements for the three months ended 31 March 2026, English translation issued by the auditor, review report dated 14 May 2026. THE REVIEW CONCLUSION IS QUALIFIED: gross profit (Q1-2025: 1,051.090)",
+   "date": "2026-05-14",
+   "layer": "Company"
+  },
+  "q1_gp_ly": {
+   "value": 1051.089983,
+   "source": "Reviewed consolidated interim financial statements for the three months ended 31 March 2026, English translation issued by the auditor, review report dated 14 May 2026. THE REVIEW CONCLUSION IS QUALIFIED: comparative quarter",
+   "date": "2026-05-14",
+   "layer": "Company"
+  },
+  "q1_dna": {
+   "value": 56.209384,
+   "source": "Reviewed consolidated interim financial statements for the three months ended 31 March 2026, English translation issued by the auditor, review report dated 14 May 2026. THE REVIEW CONCLUSION IS QUALIFIED, statement of cash flows: fixed-asset depreciation 52.9996, right-of-use amortisation 1.5390, intangible amortisation 1.6708. The comparative quarter total was 26.613, so the charge has MORE THAN DOUBLED year on year",
+   "date": "2026-05-14",
+   "layer": "Company"
+  },
+  "q1_dna_ly": {
+   "value": 26.613122,
+   "source": "Reviewed consolidated interim financial statements for the three months ended 31 March 2026, English translation issued by the auditor, review report dated 14 May 2026. THE REVIEW CONCLUSION IS QUALIFIED: comparative quarter",
+   "date": "2026-05-14",
+   "layer": "Company"
+  },
+  "q1_fin": {
+   "value": 312.861801,
+   "source": "Reviewed consolidated interim financial statements for the three months ended 31 March 2026, English translation issued by the auditor, review report dated 14 May 2026. THE REVIEW CONCLUSION IS QUALIFIED: financing expenses (Q1-2025: 335.979) \u2014 DOWN 6.9% year on year despite a larger debt book",
+   "date": "2026-05-14",
+   "layer": "Company"
+  },
+  "q1_prov": {
+   "value": 65.0,
+   "source": "Reviewed consolidated interim financial statements for the three months ended 31 March 2026, English translation issued by the auditor, review report dated 14 May 2026. THE REVIEW CONCLUSION IS QUALIFIED: formed provisions 40.000 plus inventory impairment 25.000. THERE IS NO EXPECTED-CREDIT-LOSS CHARGE AT ALL, which is one of the three matters the auditor qualified",
+   "date": "2026-05-14",
+   "layer": "Company"
+  },
+  "q1_assoc": {
+   "value": 13.11843,
+   "source": "Reviewed consolidated interim financial statements for the three months ended 31 March 2026, English translation issued by the auditor, review report dated 14 May 2026. THE REVIEW CONCLUSION IS QUALIFIED: profits of subsidiaries and associates (Q1-2025: 33.445). The auditor states the associates' own periodic statements were NOT received, so this line is incomplete by construction",
+   "date": "2026-05-14",
+   "layer": "Company"
+  },
+  "q1_capex": {
+   "value": 324.734898,
+   "source": "Reviewed consolidated interim financial statements for the three months ended 31 March 2026, English translation issued by the auditor, review report dated 14 May 2026. THE REVIEW CONCLUSION IS QUALIFIED: payments to purchase fixed assets and projects under construction",
+   "date": "2026-05-14",
+   "layer": "Company"
+  },
+  "q1_parent": {
+   "value": 283.953868,
+   "source": "Reviewed consolidated interim financial statements for the three months ended 31 March 2026, English translation issued by the auditor, review report dated 14 May 2026. THE REVIEW CONCLUSION IS QUALIFIED: profit attributable to the holding company (Q1-2025: 318.564), a fall of 10.9% on a 10.1% rise in sales",
+   "date": "2026-05-14",
+   "layer": "Company"
+  },
+  "q1_parent_ly": {
+   "value": 318.563839,
+   "source": "Reviewed consolidated interim financial statements for the three months ended 31 March 2026, English translation issued by the auditor, review report dated 14 May 2026. THE REVIEW CONCLUSION IS QUALIFIED: comparative quarter",
+   "date": "2026-05-14",
+   "layer": "Company"
+  },
+  "q1_ppe": {
+   "value": 4209.663874,
+   "source": "Reviewed consolidated interim financial statements for the three months ended 31 March 2026, English translation issued by the auditor, review report dated 14 May 2026. THE REVIEW CONCLUSION IS QUALIFIED: fixed assets net, against 3,069.748 at 31 December 2025 \u2014 a rise of 1,139.916 in one quarter",
+   "date": "2026-05-14",
+   "layer": "Company"
+  },
+  "q1_cip": {
+   "value": 3983.624093,
+   "source": "Reviewed consolidated interim financial statements for the three months ended 31 March 2026, English translation issued by the auditor, review report dated 14 May 2026. THE REVIEW CONCLUSION IS QUALIFIED: projects under construction, against 4,901.224 at 31 December 2025 \u2014 a TRANSFER OUT of 917.600 in one quarter, which is the study's central mechanism arriving on schedule",
+   "date": "2026-05-14",
+   "layer": "Company"
+  },
+  "q1_assoc_bv": {
+   "value": 904.360985,
+   "source": "Reviewed consolidated interim financial statements for the three months ended 31 March 2026, English translation issued by the auditor, review report dated 14 May 2026. THE REVIEW CONCLUSION IS QUALIFIED: investments in associates, against 675.875 at 31 December 2025. The increase is the active-ingredient company moving from consolidation into associates",
+   "date": "2026-05-14",
+   "layer": "Company"
+  },
+  "q1_nci": {
+   "value": 3.999807,
+   "source": "Reviewed consolidated interim financial statements for the three months ended 31 March 2026, English translation issued by the auditor, review report dated 14 May 2026. THE REVIEW CONCLUSION IS QUALIFIED: non-controlling interests, against 288.705 at 31 December 2025. The collapse is the deconsolidation of the active-ingredient company",
+   "date": "2026-05-14",
+   "layer": "Company"
+  },
+  "q1_debt": {
+   "value": 9428.013018,
+   "source": "Reviewed consolidated interim financial statements for the three months ended 31 March 2026, English translation issued by the auditor, review report dated 14 May 2026. THE REVIEW CONCLUSION IS QUALIFIED: long-term loans 4,021.835, short-term loans 965.586, bank facilities 4,428.323, lease liabilities 12.269",
+   "date": "2026-05-14",
+   "layer": "Company"
+  },
+  "q1_cash": {
+   "value": 362.815296,
+   "source": "Reviewed consolidated interim financial statements for the three months ended 31 March 2026, English translation issued by the auditor, review report dated 14 May 2026. THE REVIEW CONCLUSION IS QUALIFIED: cash and cash equivalents, against 1,433.427 at 31 December 2025; the quarter paid the FY2025 dividend and built working capital",
+   "date": "2026-05-14",
+   "layer": "Company"
+  },
+  "q1_ar": {
+   "value": 4123.00431,
+   "source": "Reviewed consolidated interim financial statements for the three months ended 31 March 2026, English translation issued by the auditor, review report dated 14 May 2026. THE REVIEW CONCLUSION IS QUALIFIED: accounts and notes receivable net, against 3,325.044 \u2014 a rise of 797.960 against which no credit-loss charge was taken",
+   "date": "2026-05-14",
+   "layer": "Company"
+  },
+  "q1_share_of_year_rev": {
+   "value": 0.2436,
+   "source": "Q1-2025 net sales of 2,299.890 as a share of FY2025 net sales of 9,441.379 \u2014 the seasonal shape used to read the quarter into a full year",
+   "date": "2026-05-14",
+   "layer": "Company"
+  },
+  "q1_share_of_year_profit": {
+   "value": 0.22097,
+   "source": "Q1-2025 attributable profit of 318.564 as a share of FY2025 attributable profit of 1,441.658",
+   "date": "2026-05-14",
+   "layer": "Company"
+  },
+  "arab_api_cost": {
+   "value": 228.48641800000007,
+   "source": "The active-ingredient company's carrying value after deconsolidation, taken as the movement in investments in associates across the first quarter. It is pre-revenue \u2014 the company indicates trial batches in 2027 \u2014 so carrying cost, not an earnings multiple, is the right proxy for it",
+   "date": "2026-05-14",
+   "layer": "Company"
+  },
+  "nci_bridge": {
+   "value": 3.999807,
+   "source": "Non-controlling interests deducted in the enterprise-to-equity bridge. The audited 31 December 2025 figure was 288.705, but essentially all of it was the active-ingredient company's minorities, and that company was deconsolidated in the first quarter of 2026. Deducting the December figure while also carrying the March associate value would charge the same interest twice",
+   "date": "2026-05-14",
+   "layer": "Company"
+  },
   "tax_stat": {
    "value": 0.225,
    "source": "Egyptian corporate income tax rate, 22.5% \u2014 confirmed in the corporate tax-rate column of the country risk-premium file read for this study",
@@ -1374,6 +1530,18 @@
    "date": "2026-08-09",
    "layer": "House"
   },
+  "int_path": {
+   "value": [
+    1250.0,
+    1210.0,
+    1150.0,
+    1090.0,
+    1030.0
+   ],
+   "source": "Finance cost charged to the income statement, EGP million. This is NOT the marginal cost of debt used in the discount rate \u2014 that is a forward, local-equivalent, currency-blended rate; this is what the profit and loss account actually bears, and part of the group's interest is still being capitalised into the remaining construction balance. CALIBRATED TO THE FIRST QUARTER OF 2026: 312.862 of financing expense in three months, DOWN 6.9% year on year, an annual run-rate of about 1,251 against the 1,548 the first cut of this model implied. It then declines with the central bank's easing cycle",
+   "date": "2026-08-11",
+   "layer": "House"
+  },
   "kd_path": {
    "value": [
     0.189,
@@ -1435,9 +1603,9 @@
    "layer": "House"
   },
   "assoc_norm": {
-   "value": 320.0,
-   "source": "Normalised annual associate contribution used with the multiple above, EGP million. The disclosed stream is volatile \u2014 74.5 (FY2023), 147.1 (FY2024), 495.5 (FY2025) \u2014 and the FY2025 print is more than three times the FY2024 one. The three-year average is 239.0; 320 sits between that average and the latest year, recognising a genuine step-up at the Saudi associate without capitalising one exceptional year",
-   "date": "2026-08-09",
+   "value": 250.0,
+   "source": "Normalised annual contribution of the EARNING associates, used with the multiple above; the pre-revenue active-ingredient company is carried separately at cost. EGP million. The disclosed stream is volatile \u2014 74.5 (FY2023), 147.1 (FY2024), 495.5 (FY2025) \u2014 and the FY2025 print is more than three times the FY2024 one. The three-year average is 239.0; 320 sits between that average and the latest year. REVISED DOWN from 320 after the first quarter of 2026 reported only 13.118 against 33.445 a year earlier; on a like-for-like gross basis the three disclosed years average 246.1, and 250 is struck there rather than at the level the FY2025 print alone would support. The quarter is not decisive \u2014 the auditor states the associates' own statements were not received \u2014 but it removes the case for leaning on the best year",
+   "date": "2026-08-11",
    "layer": "House"
   },
   "peer_pe_regional": {
@@ -1467,22 +1635,23 @@
  },
  "history": {
   "FY2023": {
+   "divtax": 4.123733,
    "revenue": 5231.665571,
    "cogs": 2896.343413,
    "gross_profit": 2335.3221580000004,
    "gross_margin": 0.4463821561808313,
    "marketing": 648.291681,
    "rnd": 43.227785,
-   "ga": 151.584727,
+   "ga": 147.460991,
    "board": 2.02,
    "provisions": 265.0,
    "prov_pct": 0.0506530848357241,
-   "ebit_pre_prov": 1490.1979650000003,
-   "ebit": 1225.1979650000003,
-   "ebit_margin": 0.23418889230830772,
+   "ebit_pre_prov": 1494.3217010000003,
+   "ebit": 1229.3217010000003,
+   "ebit_margin": 0.23497711853264028,
    "dna": 105.24974499999999,
-   "ebitda_pre_prov": 1595.4477100000004,
-   "ebitda": 1330.4477100000004,
+   "ebitda_pre_prov": 1599.5714460000004,
+   "ebitda": 1334.5714460000004,
    "finance": 407.7052,
    "associates": 74.508447,
    "interest_income": 26.243536,
@@ -1495,6 +1664,7 @@
    "eff_tax": 0.2399703097187367
   },
   "FY2024": {
+   "divtax": 4.468933,
    "revenue": 7590.545643,
    "cogs": 4184.382863,
    "gross_profit": 3406.1627800000006,
@@ -1512,7 +1682,7 @@
    "ebitda_pre_prov": 2333.4196980000006,
    "ebitda": 1631.4196980000006,
    "finance": 960.131966,
-   "associates": 147.111993,
+   "associates": 151.580926,
    "interest_income": 72.048362,
    "fx": 699.879896,
    "other": 42.853971,
@@ -1523,6 +1693,7 @@
    "eff_tax": 0.28322985139346357
   },
   "FY2025": {
+   "divtax": 16.58542,
    "revenue": 9441.379305,
    "cogs": 5287.140903,
    "gross_profit": 4154.238402,
@@ -1540,7 +1711,7 @@
    "ebitda_pre_prov": 2977.934111,
    "ebitda": 2483.715737,
    "finance": 1332.946559,
-   "associates": 495.499218,
+   "associates": 512.084638,
    "interest_income": 139.673783,
    "fx": -16.168329,
    "other": 143.85338199999998,
@@ -1577,25 +1748,25 @@
    "FY2030E"
   ],
   "dom_packs": [
-   320.99100000000004,
-   348.275235,
-   374.39587762499997,
-   398.73160967062495,
-   420.6618482025093
+   307.85954999999996,
+   332.488314,
+   357.42493755,
+   380.65755849075,
+   401.5937242077412
   ],
   "exp_packs": [
-   65.4,
-   71.28600000000002,
-   77.34531000000001,
-   83.53293480000002,
-   89.38024023600003
+   63.0,
+   68.67,
+   74.50695,
+   80.46750600000001,
+   86.10023142000001
   ],
   "dom_price": [
-   23.478733118878726,
-   25.474425433983416,
-   27.385007341532173,
-   29.165032818731763,
-   30.76910962376201
+   22.61712823378226,
+   24.426498492484843,
+   26.258485879421205,
+   27.965287461583582,
+   29.50337827197068
   ],
   "exp_price_usd": [
    1.009550898369712,
@@ -1612,18 +1783,18 @@
    57.7
   ],
   "rev_dom": [
-   7536.462022562002,
-   8872.11150451055,
-   10252.833857400004,
-   11629.02048190952,
-   12943.390521877343
+   6962.898920344501,
+   8121.525300689827,
+   9385.43767560968,
+   10645.198047618389,
+   11848.371556950457
   ],
   "rev_exp": [
-   3334.243752045648,
-   3816.0419742162444,
-   4325.185926500124,
-   4865.619102819057,
-   5417.900756550629
+   3211.8861831632385,
+   3676.003736630327,
+   4166.463507179018,
+   4687.064273357807,
+   5219.078710438678
   ],
   "toll": [
    56.771319749999996,
@@ -1633,18 +1804,18 @@
    80.82528251101922
   ],
   "revenue": [
-   11090.65264539165,
-   12942.153841079806,
-   14866.69408270371,
-   16817.61291880088,
-   18717.505153024744
+   10384.340075228294,
+   12038.230068753868,
+   13825.252871742194,
+   15637.878350257613,
+   17404.343742766247
   ],
   "packs_total": [
-   391.8760000000001,
-   425.046235,
-   457.22618762499997,
-   487.749544470625,
-   515.5270884385093
+   376.34454999999997,
+   406.64331400000003,
+   437.41688755,
+   466.61006449075,
+   493.17895562774123
   ],
   "unit_cash_cost": [
    15.541227466769099,
@@ -1654,110 +1825,110 @@
    20.037962349596047
   ],
   "cogs_cash": [
-   6090.2340547676085,
-   7114.646323818727,
-   8172.6746489600355,
-   9249.555405995661,
-   10330.11238832772
+   5848.856257428856,
+   6806.608601192678,
+   7818.5939577871695,
+   8848.671810009922,
+   9882.301344481779
   ],
   "cogs": [
-   6326.74247587304,
-   7445.22739745946,
-   8522.559260564565,
-   9592.926518312262,
-   10662.449794732649
+   6090.288722113883,
+   7144.2704495008675,
+   8172.658314239976,
+   9195.963522994207,
+   10218.316274312996
   ],
   "dep_cogs_share": 0.7942005773538676,
   "gross_profit": [
-   4763.91016951861,
-   5496.926443620346,
-   6344.134822139145,
-   7224.686400488619,
-   8055.055358292095
+   4294.0513531144115,
+   4893.959619253001,
+   5652.594557502218,
+   6441.914827263407,
+   7186.027468453251
   ],
   "gross_margin": [
-   0.42954281608468675,
-   0.42473042054039745,
-   0.4267347391993539,
-   0.42959047965790315,
-   0.4303487720418979
+   0.4135122041464931,
+   0.40653481378094286,
+   0.4088601206749504,
+   0.41194301956935764,
+   0.4128870111198518
   ],
   "marketing": [
-   1153.4278751207316,
-   1320.09969179014,
-   1486.6694082703712,
-   1664.9436789612873,
-   1834.315504996425
+   1079.9713678237426,
+   1227.8994670128945,
+   1382.5252871742196,
+   1548.1499566755037,
+   1705.6256867910922
   ],
   "rnd": [
-   94.27054748582904,
-   116.47938456971825,
-   141.23359378568526,
-   168.17612918800882,
-   187.17505153024743
+   88.2668906394405,
+   108.34407061878481,
+   131.33990228155085,
+   156.37878350257614,
+   174.04343742766247
   ],
   "ga": [
-   260.6303371667038,
-   304.14061526537546,
-   341.9339639021853,
-   383.4415745486601,
-   421.1438659430567
+   244.03199176786492,
+   282.8984066157159,
+   317.9808160500705,
+   356.5436263858736,
+   391.59773421224054
   ],
   "prov_A": [
-   582.2592638830616,
-   679.4630766566897,
-   780.5014393419448,
-   882.9246782370462,
-   982.669020533799
+   545.1778539494854,
+   632.007078609578,
+   725.8257757664652,
+   820.9886133885246,
+   913.7280464952279
   ],
   "prov_B": [
-   499.07936904262425,
-   491.8018459610326,
-   475.73421064651876,
-   470.8931617264247,
-   467.9376288256186
+   467.2953033852732,
+   457.452742612647,
+   442.4080918957502,
+   437.8605938072132,
+   435.1085935691562
   ],
   "ebitda_A": [
-   2907.830566967716,
-   3405.3247489791547,
-   3941.681028443489,
-   4466.571451870218,
-   4960.089321693496
+   2576.0357136189045,
+   2978.4724447042167,
+   3446.987132682718,
+   3905.145560295213,
+   4335.047493358244
   ],
   "ebitda_B": [
-   2991.010461808153,
-   3592.985979674812,
-   4246.448257138915,
-   4878.60296838084,
-   5474.820713401676
+   2653.9182641831167,
+   3153.026780701148,
+   3730.4048165534327,
+   4288.273579876524,
+   4813.666946284316
   ],
   "ebit_A": [
-   2610.036246679716,
-   2989.0809397110106,
-   3501.13159851197,
-   4034.223349756453,
-   4541.634065072784
+   2272.0413933309046,
+   2553.313035436073,
+   3001.174869951199,
+   3467.860921015048,
+   3911.9617648754493
   ],
   "ebit_B": [
-   2693.216141520153,
-   3176.742170406668,
-   3805.898827207396,
-   4446.254866267075,
-   5056.365456780964
+   2349.9239438951167,
+   2727.867371433004,
+   3284.5925538219135,
+   3850.9889405963595,
+   4390.581217801521
   ],
   "dna": [
-   297.79432028799994,
-   416.24380926814393,
-   440.54942993151906,
-   432.34810211376487,
-   418.45525662071145
+   303.9943202879999,
+   425.159409268144,
+   445.812262731519,
+   437.28463928016487,
+   423.0857284827946
   ],
   "dep": [
-   289.52437128799994,
-   407.97386026814394,
-   432.27948093151906,
-   424.07815311376487,
-   410.18530762071146
+   295.72437128799993,
+   416.889460268144,
+   437.542313731519,
+   429.01469028016487,
+   414.8157794827946
   ],
   "amort": [
    8.269948999999997,
@@ -1767,89 +1938,89 @@
    8.269948999999997
   ],
   "capex": [
-   831.7989484043737,
-   582.3969228485912,
-   520.3342928946299,
-   538.1636134016283,
-   561.5251545907423
+   1298.0425094035368,
+   541.720353093924,
+   483.8838505109768,
+   500.41210720824364,
+   522.1303122829873
   ],
   "ppe": [
-   5980.223552711999,
-   6772.249692443856,
-   6739.970211512336,
-   6515.892058398572,
-   6305.70675077786
+   6174.023552711999,
+   6857.1340924438555,
+   6819.591778712336,
+   6590.577088432171,
+   6375.761308949376
   ],
   "cip": [
-   2533.0227544043737,
-   1915.419677252965,
-   2035.7539701475948,
-   2373.9175835492233,
-   2735.4427381399655
+   2799.2663154035363,
+   2240.9866684974604,
+   2324.8705190084374,
+   2625.282626216681,
+   2947.412938499668
   ],
   "inventory": [
-   4593.3883728941255,
-   5262.653886423399,
-   5837.369356551072,
-   6439.087662976724,
-   7010.925892426947
+   4421.716469479942,
+   5049.922673893764,
+   5597.71117413697,
+   6172.633049681042,
+   6718.8928926989565
   ],
   "receivables": [
-   3828.5540638886246,
-   4325.870598936264,
-   4806.21890892887,
-   5298.699960718086,
-   5743.453635996634
+   3584.7310944623705,
+   4023.7371736656764,
+   4469.533805111175,
+   4927.002767889386,
+   5340.510956684438
   ],
   "payables": [
-   953.3447566384033,
-   1142.2814637198076,
-   1330.9202132936443,
-   1524.35544674551,
-   1694.3070906698456
+   917.7147389486673,
+   1096.1072470467084,
+   1276.2781477032293,
+   1461.2763954346958,
+   1623.7324490689143
   ],
   "other_dr": [
-   419.1125143641223,
-   489.0802021354527,
-   561.8080140552576,
-   635.5326653323635,
-   707.3290362733735
+   392.4211692581918,
+   454.92118759175554,
+   522.4522557924773,
+   590.9508416008367,
+   657.7050512820069
   ],
   "other_cr": [
-   1227.3494645620876,
-   1432.2462433019896,
-   1645.2259037971523,
-   1861.1247571331544,
-   2071.376740578803
+   1149.185231804904,
+   1332.213324280748,
+   1529.9745878001963,
+   1730.5691769231285,
+   1926.0554501826014
   ],
   "wc": [
-   6660.360729946382,
-   7503.076980473317,
-   8229.250162444403,
-   8987.840085148508,
-   9696.024733448307
+   6331.968762446933,
+   7100.260463823739,
+   7783.444499537198,
+   8498.741086813441,
+   9167.321001413886
   ],
   "dwc": [
-   916.7012699463821,
-   842.7162505269353,
-   726.1731819710858,
-   758.5899227041045,
-   708.1846482997989
+   588.3093024469335,
+   768.2917013768056,
+   683.1840357134588,
+   715.2965872762434,
+   668.5799146004447
   ],
   "wc0": 5743.65946,
   "equity": [
-   6911.762058071789,
-   7798.793865001303,
-   8969.314797145576,
-   10424.906403798668,
-   12145.704777332036
+   6851.448481538885,
+   7607.229164804043,
+   8596.118430111643,
+   9826.75659285755,
+   11288.77704293538
   ],
   "roe": [
-   0.16942505692781168,
-   0.20099666560713939,
-   0.23268792677190112,
-   0.250176172165178,
-   0.254135545219082
+   0.15485210960888893,
+   0.17423923583042167,
+   0.20343311971284578,
+   0.2226648774438621,
+   0.2307969850214222
   ],
   "esc_trace": [
    {
@@ -1993,172 +2164,176 @@
   "frame_A": {
    "label": "Frame A \u2014 provision charge permanent at 5.25% of revenue",
    "ebitda": [
-    2907.830566967716,
-    3405.3247489791547,
-    3941.681028443489,
-    4466.571451870218,
-    4960.089321693496
+    2576.0357136189045,
+    2978.4724447042167,
+    3446.987132682718,
+    3905.145560295213,
+    4335.047493358244
    ],
    "ebit": [
-    2610.036246679716,
-    2989.0809397110106,
-    3501.13159851197,
-    4034.223349756453,
-    4541.634065072784
+    2272.0413933309046,
+    2553.313035436073,
+    3001.174869951199,
+    3467.860921015048,
+    3911.9617648754493
    ],
    "nopat": [
-    2022.77809117678,
-    2316.5377282760332,
-    2713.376988846777,
-    3126.523096061251,
-    3519.766400431408
+    1760.8320798314512,
+    1978.8176024629565,
+    2325.9105242121796,
+    2687.5922137866623,
+    3031.7703677784734
    ],
    "fcff": [
-    572.0721931140242,
-    1307.668364168651,
-    1907.4189439125803,
-    2262.117662069283,
-    2668.5118541615784
+    178.47458826898082,
+    1093.9649572603707,
+    1604.6549007192625,
+    1909.1681585823403,
+    2264.1458693778363
    ],
    "pv": [
-    468.1637385053964,
-    892.14914893166,
-    1107.4642301148174,
-    1137.4836784513814,
-    1178.758579887013
+    146.0573184258291,
+    746.3512403631313,
+    931.6767613620145,
+    960.0064825186703,
+    1000.1384724908417
    ],
-   "pv_sum": 4784.019375890268,
-   "nopat_term": 3695.7547204529783,
+   "pv_sum": 3784.230275160487,
+   "nopat_term": 3183.358886167397,
    "reinvest_rate": 0.25,
-   "fcff_term": 2771.8160403397337,
-   "tv": 31374.581414556684,
-   "pv_tv": 13859.056678012037,
-   "ev_core": 18643.076053902303,
-   "tv_share": 0.7433889470783502,
-   "assoc_value": 3520.0,
-   "ev_total": 22175.406053902305,
+   "fcff_term": 2387.519164625548,
+   "tv": 27024.67022312831,
+   "pv_tv": 11937.575560869409,
+   "ev_core": 15721.805836029896,
+   "tv_share": 0.7593005336264801,
+   "assoc_value": 2978.486418,
+   "assoc_earnings_value": 2750.0,
+   "arab_api_cost": 228.48641800000007,
+   "ev_total": 18712.6222540299,
    "net_debt": 7364.298738,
-   "nci": 288.704605,
-   "equity": 14522.402710902303,
-   "per_share": 86.05575046125719
+   "nci": 3.999807,
+   "equity": 11344.323709029897,
+   "per_share": 67.22333140666257
   },
   "frame_B": {
    "label": "Frame B \u2014 provision charge normalising to 2.5% of revenue",
    "ebitda": [
-    2991.010461808153,
-    3592.985979674812,
-    4246.448257138915,
-    4878.60296838084,
-    5474.820713401676
+    2653.9182641831167,
+    3153.026780701148,
+    3730.4048165534327,
+    4288.273579876524,
+    4813.666946284316
    ],
    "ebit": [
-    2693.216141520153,
-    3176.742170406668,
-    3805.898827207396,
-    4446.254866267075,
-    5056.365456780964
+    2349.9239438951167,
+    2727.867371433004,
+    3284.5925538219135,
+    3850.9889405963595,
+    4390.581217801521
    ],
    "nopat": [
-    2087.2425096781185,
-    2461.9751820651677,
-    2949.571591085732,
-    3445.847521356983,
-    3918.6832290052475
+    1821.1910565187154,
+    2114.097212860578,
+    2545.559229211983,
+    2984.516428962179,
+    3402.700443796179
    ],
    "fcff": [
-    636.5366116153627,
-    1453.1058179577853,
-    2143.6135461515355,
-    2581.442087365015,
-    3067.428682735418
+    238.83356495624503,
+    1229.2445676579923,
+    1824.3036057190666,
+    2206.092373757857,
+    2635.075945395542
    ],
    "pv": [
-    520.9191486257196,
-    991.3730073472098,
-    1244.6008954292981,
-    1298.0528336263158,
-    1354.9716379663337
+    195.45297953015648,
+    838.6449691028129,
+    1059.2067330835669,
+    1109.311911746512,
+    1163.988975520137
    ],
-   "pv_sum": 5409.917522994878,
-   "nopat_term": 4114.61739045551,
+   "pv_sum": 4366.605568983185,
+   "nopat_term": 3572.8354659859883,
    "reinvest_rate": 0.25,
-   "fcff_term": 3085.963042841632,
-   "tv": 34930.456177777516,
-   "pv_tv": 15429.78902443708,
-   "ev_core": 20839.706547431957,
-   "tv_share": 0.7404033732105727,
-   "assoc_value": 3520.0,
-   "ev_total": 24372.03654743196,
+   "fcff_term": 2679.626599489491,
+   "tv": 30331.075974288044,
+   "pv_tv": 13398.110256148791,
+   "ev_core": 17764.715825131978,
+   "tv_share": 0.75419783733294,
+   "assoc_value": 2978.486418,
+   "assoc_earnings_value": 2750.0,
+   "arab_api_cost": 228.48641800000007,
+   "ev_total": 20755.53224313198,
    "net_debt": 7364.298738,
-   "nci": 288.704605,
-   "equity": 16719.03320443196,
-   "per_share": 99.07237652306341
+   "nci": 3.999807,
+   "equity": 13387.233698131979,
+   "per_share": 79.32905218418915
   }
  },
  "lenses": {
   "items": [
    {
     "name": "Discounted cash flow \u2014 Frame A",
-    "value": 86.05575046125719,
+    "value": 67.22333140666257,
     "weight": 0.25
    },
    {
     "name": "Discounted cash flow \u2014 Frame B",
-    "value": 99.07237652306341,
+    "value": 79.32905218418915,
     "weight": 0.25
    },
    {
     "name": "Book value and sustainable return",
-    "value": 73.09601586362226,
+    "value": 63.120998500343326,
     "weight": 0.2
    },
    {
     "name": "Relative multiples",
-    "value": 55.58405552282212,
+    "value": 50.09438474011719,
     "weight": 0.15
    },
    {
     "name": "Normalised earnings power",
-    "value": 69.331563094595,
+    "value": 65.27186202406072,
     "weight": 0.15
    }
   ],
-  "fair_base": 79.63857771141717,
-  "fair_bear": 55.58405552282212,
-  "fair_bull": 99.07237652306341,
-  "book_ps": 73.09601586362226,
+  "fair_base": 66.56723261240829,
+  "fair_bear": 50.09438474011719,
+  "fair_bull": 79.32905218418915,
+  "book_ps": 63.120998500343326,
   "bv_ps": 36.995074135251684,
-  "just_pb": 1.9758310416242926,
-  "roe_sust": 0.2456665480520537,
+  "just_pb": 1.7062000813831835,
+  "roe_sust": 0.21896499405937667,
   "roe_fy24": 0.2459197116522333,
   "roe_fy25": 0.264599584335609,
-  "rel_ps": 55.58405552282212,
-  "rel_lo": 45.254038272987074,
-  "rel_hi": 66.87131906096758,
+  "rel_ps": 50.09438474011719,
+  "rel_lo": 41.20522683371522,
+  "rel_hi": 60.88844168900808,
   "rel_triangulation": [
    [
     "Justified forward multiple from this model",
-    8.042735395971121,
-    54.6268092345117
+    7.79211347783068,
+    48.18948569762828
    ],
    [
     "The company's own four-year mean multiple",
     6.662777133225662,
-    45.254038272987074
+    41.20522683371522
    ],
    [
     "Regional peer median, cost-of-equity adjusted",
     9.845501363223267,
-    66.87131906096758
+    60.88844168900808
    ]
   ],
-  "rel_peer_unadjusted": 132.44533453215237,
-  "just_fwd_pe": 8.042735395971121,
+  "rel_peer_unadjusted": 120.5956476092494,
+  "just_fwd_pe": 7.79211347783068,
   "peer_adj_pe": 9.845501363223267,
-  "payout_implied": 0.7964720862630201,
-  "eps_26_A": 6.603533766718956,
-  "eps_26_B": 6.980603108373594,
-  "eps_fwd": 6.792068437546275,
+  "payout_implied": 0.7716529977095722,
+  "eps_26_A": 6.007864418831015,
+  "eps_26_B": 6.36091995134841,
+  "eps_fwd": 6.184392185089712,
   "own_pe_history": [
    {
     "year": 2022,
@@ -2191,204 +2366,204 @@
   ],
   "own_pe_mean": 6.662777133225662,
   "pe_now": 15.223228986672774,
-  "evebitda_now": 11.917502550534431,
+  "evebitda_now": 11.80287397458319,
   "eps_ttm": 8.54286565050376,
-  "eps_27_A": 8.760509463425826,
-  "eps_27_B": 9.611211389032379,
-  "norm_ps": 69.331563094595,
-  "norm_margin": 0.22872332653800234,
-  "norm_pat_ps": 8.620395882888989
+  "eps_27_A": 7.4642462381791175,
+  "eps_27_B": 8.255532265693157,
+  "norm_ps": 65.27186202406072,
+  "norm_margin": 0.2289860686127799,
+  "norm_pat_ps": 8.376657014783667
  },
  "sensitivity": {
   "wacc": [
    [
     -0.02,
-    112.36854376717075
+    89.84813331120365
    ],
    [
     -0.01,
-    97.89340304297896
+    77.40004473614924
    ],
    [
     0.0,
-    86.05575046125719
+    67.22333140666257
    ],
    [
     0.01,
-    76.19815884150698
+    58.75172925757619
    ],
    [
     0.02,
-    67.86482990687243
+    51.592647786440835
    ]
   ],
   "g": [
    [
     0.03,
-    78.37907531217829
+    60.61098456535337
    ],
    [
     0.04,
-    81.87396424224464
+    63.621326585651516
    ],
    [
     0.05,
-    86.05575046125719
+    67.22333140666257
    ],
    [
     0.06,
-    91.18745877647113
+    71.64355690919623
    ],
    [
     0.07,
-    97.68605139720472
+    77.24115581160892
    ]
   ],
   "beta": [
    [
     0.45,
-    102.06066725016184
+    80.97758075566436
    ],
    [
     0.55,
-    92.64040190393456
+    72.88120797264808
    ],
    [
     0.629,
-    86.05575046125719
+    67.22333140666257
    ],
    [
     0.75,
-    77.1779440718923
+    59.59720934796569
    ],
    [
     0.9,
-    67.81579138834998
+    51.55825479216958
    ]
   ],
   "prov": [
    [
     0.025,
-    100.82715583107034
+    80.96631184285123
    ],
    [
     0.035,
-    95.45573569659282
+    75.9688644115099
    ],
    [
     0.0525,
-    86.05575046125719
+    67.22333140666257
    ],
    [
     0.065,
-    79.3414752931603
+    60.97652211748589
    ],
    [
     0.08,
-    71.28434509144404
+    53.48035097047391
    ]
   ],
   "fx": [
    [
     0.9,
-    94.9934319338922
+    75.77915145840042
    ],
    [
     0.95,
-    90.52459119757468
+    71.50124143253151
    ],
    [
     1.0,
-    86.05575046125719
+    67.22333140666257
    ],
    [
     1.05,
-    81.58690972493966
+    62.945421380793775
    ],
    [
     1.1,
-    77.11806898862218
+    58.66751135492491
    ]
   ],
   "volume": [
    [
     -0.04,
-    81.38726261721223
+    64.48888551420453
    ],
    [
     -0.02,
-    83.6327812986978
+    65.79955269637973
    ],
    [
     0.0,
-    86.05575046125719
+    67.22333140666257
    ],
    [
     0.02,
-    88.66630890383252
+    68.76686082035675
    ],
    [
     0.04,
-    91.47497496279347
+    70.43703306905046
    ]
   ],
   "dep": [
    [
     0.045,
-    87.56085253778264
+    68.74251908404773
    ],
    [
     0.055,
-    86.64847962314892
+    67.8214386822146
    ],
    [
     0.062,
-    86.05575046125719
+    67.22333140666257
    ],
    [
     0.07,
-    85.42298698916217
+    66.5851120616971
    ],
    [
     0.08,
-    84.6965360102921
+    65.85282935351343
    ]
   ],
   "grid": [
    [
-    98.5400198648115,
-    104.67440284875745,
-    112.36854376717075,
-    122.37297678942625,
-    136.01175491472443
+    77.93685732648191,
+    83.22074223232461,
+    89.84813331120365,
+    98.4655073447705,
+    110.21334474895626
    ],
    [
-    87.64132994285646,
-    92.25269102586633,
-    97.89340304297896,
-    105.00244711907075,
-    114.30978091942573
+    68.56936454400906,
+    72.54138606364246,
+    77.40004473614924,
+    83.52345939528244,
+    91.54038313643774
    ],
    [
-    78.37907531217829,
-    81.87396424224464,
-    86.05575046125719,
-    91.18745877647113,
-    97.68605139720472
+    60.61098456535337,
+    63.621326585651516,
+    67.22333140666257,
+    71.64355690919623,
+    77.24115581160892
    ],
    [
-    70.41477127303929,
-    73.07646792451291,
-    76.19815884150698,
-    79.9396643036937,
-    84.54453940947913
+    53.77017620527427,
+    56.06284342175879,
+    58.75172925757619,
+    61.9744957996253,
+    65.94093058669804
    ],
    [
-    63.497079703695555,
-    65.52769835728633,
-    67.86482990687243,
-    70.60593895464605,
-    73.89471147795089
+    47.83046185324169,
+    49.579546525866576,
+    51.592647786440835,
+    53.953717312211346,
+    56.78651981901907
    ]
   ],
   "grid_wacc": [
@@ -2407,14 +2582,14 @@
   ]
  },
  "crux": {
-  "required_fy30_revenue": 4650.989132292205,
-  "required_share_of_fy30": 0.1990281904989722,
-  "required_ebit": 2092.945109531492,
+  "required_fy30_revenue": 6641.916975726794,
+  "required_share_of_fy30": 0.2762141296512998,
+  "required_ebit": 2988.8626390770573,
   "assumed_margin": 0.45,
   "facility_investment_usd_mn": 100.0,
-  "required_rev_usd_mn": 80.60639744007287,
-  "asset_turn": 0.8060639744007287,
-  "at_base": 86.05575046125719,
+  "required_rev_usd_mn": 115.11121275089764,
+  "asset_turn": 1.1511121275089764,
+  "at_base": 67.22333140666257,
   "spot": 130.05
  },
  "working_capital": {
@@ -2669,7 +2844,7 @@
  },
  "narrative": [
   "[History] the audited consolidated income statement reconstructs line-by-line for all three years: revenue less cost of sales less operating expenses less the provision charge, plus associates, interest income, exchange differences and other income, less finance costs, equals disclosed pre-tax profit to within EGP 0.02 million in each year.",
-  "  FY2023: revenue 5,232 \u00b7 gross margin 44.6% \u00b7 provision charge 5.07% of revenue \u00b7 EBIT 1,225 (23.4%) \u00b7 EBITDA 1,330 \u00b7 net profit 823 \u00b7 effective tax 24.0%",
+  "  FY2023: revenue 5,232 \u00b7 gross margin 44.6% \u00b7 provision charge 5.07% of revenue \u00b7 EBIT 1,229 (23.5%) \u00b7 EBITDA 1,335 \u00b7 net profit 823 \u00b7 effective tax 24.0%",
   "  FY2024: revenue 7,591 \u00b7 gross margin 44.9% \u00b7 provision charge 9.25% of revenue \u00b7 EBIT 1,529 (20.1%) \u00b7 EBITDA 1,631 \u00b7 net profit 1,097 \u00b7 effective tax 28.3%",
   "  FY2025: revenue 9,441 \u00b7 gross margin 44.0% \u00b7 provision charge 5.23% of revenue \u00b7 EBIT 2,366 (25.1%) \u00b7 EBITDA 2,484 \u00b7 net profit 1,458 \u00b7 effective tax 18.8%",
   "",
@@ -2680,10 +2855,10 @@
   "[Consolidation] the reconstructed channel build is a separate-company total; the audited consolidated revenue is 1.0149 times it, the subsidiary's external sales. That measured factor, not an assumption, carries the build to a consolidated basis.",
   "",
   "[Cost stack] every physically distinct cost line carries its OWN escalator: imported active ingredients (54.9% of production cost) and the imported share of packaging escalate on a hard-currency price path passed through the exchange-rate path; labour on Egyptian wage growth; energy on the regulated tariff schedule, which runs above consumer inflation; domestic services on consumer inflation. No single blended index is applied across them. Depreciation is excluded here and enters exactly once, from the property roll-forward.",
-  "  Gross margin path (after the production share of depreciation): FY2025 actual 44.0% -> 43.0% -> 42.5% -> 42.7% -> 43.0% -> 43.0%",
+  "  Gross margin path (after the production share of depreciation): FY2025 actual 44.0% -> 41.4% -> 40.7% -> 40.9% -> 41.2% -> 41.3%",
   "",
-  "[Depreciation] the EGP 4,901 million construction balance stops being free. Transfers of 3,200 / 1,200 million in the first two years take the depreciation charge from an audited FY2025 118 million to 298 then 418 million. That step is the single largest mechanical change in the forecast income statement and it is a consequence of the company's own disclosed licensing timetable, not a view.",
-  "  EBITDA (cash costs only) FY2026E 2,908 -> FY2030E 4,960 on Frame A; EBIT 2,610 -> 4,542 after the depreciation step.",
+  "[Depreciation] the EGP 4,901 million construction balance stops being free. Transfers of 3,400 / 1,100 million in the first two years take the depreciation charge from an audited FY2025 118 million to 304 then 423 million. That step is the single largest mechanical change in the forecast income statement and it is a consequence of the company's own disclosed licensing timetable, not a view.",
+  "  EBITDA (cash costs only) FY2026E 2,576 -> FY2030E 4,335 on Frame A; EBIT 2,272 -> 3,912 after the depreciation step.",
   "",
   "[Asset-conversion cycle] the audited FY2025 balance sheet implies 268 inventory days, 129 receivable days and 54 payable days \u2014 a cash cycle of 343 days. The inventory position is policy: the company stated at its March-2026 general assembly that it holds a strategic raw-material stockpile sufficient for at least eight months. Working capital is PROJECTED from those three ratios, not plugged.",
   "",
@@ -2694,17 +2869,17 @@
   "[Terminal] cost of equity 14.90% (risk-free 10.50% plus beta times a normalised 7.00% premium); cost of debt 12.34%, 9.56% after tax; debt weight 20% -> terminal discount rate 13.83%.",
   "[Discount-rate glide] the fractions are the cost-of-debt path normalised to its own endpoints \u2014 1.000, 0.732, 0.439, 0.195, 0.000 \u2014 so the glide has the shape of the easing cycle rather than a shape invented for it. Discount rates 22.19%, 19.95%, 17.50%, 15.47%, 13.83%; the factors compound.",
   "",
-  "[Terminal consistency] terminal reinvestment is growth 5% divided by a terminal return on invested capital of 20%, i.e. 25% of terminal operating profit after tax reinvested. The model's own FY2030E return on invested capital is 18.7% on Frame A and 20.9% on Frame B, so the terminal assumption is not richer than the forecast that leads into it.",
-  "[Terminal weight] the terminal value is 74% of core enterprise value on Frame A and 74% on Frame B. That is high, as it is for any growing manufacturer discounted over five explicit years, and it is stated in the valuation summary and in the enterprise-to-equity bridge rather than buried.",
+  "[Terminal consistency] terminal reinvestment is growth 5% divided by a terminal return on invested capital of 20%, i.e. 25% of terminal operating profit after tax reinvested. The model's own FY2030E return on invested capital is 16.4% on Frame A and 18.4% on Frame B, so the terminal assumption is not richer than the forecast that leads into it.",
+  "[Terminal weight] the terminal value is 76% of core enterprise value on Frame A and 75% on Frame B. That is high, as it is for any growing manufacturer discounted over five explicit years, and it is stated in the valuation summary and in the enterprise-to-equity bridge rather than buried.",
   "",
-  "[Book value and sustainable return] book value per share 37.00. Return on average equity was 24.6% in FY2024 and 26.5% in FY2025; the forecast settles at 24.6%. A sustainable-return multiple of (return 24.6% less growth 5%) over (perpetual cost of equity 14.90% less growth) is 1.98 times book, or 73.10 a share.",
+  "[Book value and sustainable return] book value per share 37.00. Return on average equity was 24.6% in FY2024 and 26.5% in FY2025; the forecast settles at 21.9%. A sustainable-return multiple of (return 21.9% less growth 5%) over (perpetual cost of equity 14.90% less growth) is 1.71 times book, or 63.12 a share.",
   "",
-  "[Relative multiples] the company's OWN traded history is computable entirely from primary material \u2014 year-end closes against audited attributable profit: 4.7 times (2022), 6.6 times (2023), 6.2 times (2024), 9.1 times (2025), a four-year mean of 6.7. At 130.05 the shares trade on 15.2 times trailing attributable earnings and 11.9 times trailing EBITDA. The re-rating is the single most important fact about this share price: the earnings multiple has more than doubled against its own four-year history.",
-  "  The lens triangulates three multiples rather than asserting one. (1) The multiple this model's own economics justify: retention must equal growth 5% over sustainable return 24.6%, so the payout the multiple can assume is 80%, and 80% over (perpetual cost of equity 14.90% less growth) is 8.0 times. (2) The company's own four-year mean, 6.7 times. (3) A regional peer median of 19.5 times \u2014 but those peers are Gulf-listed and face a cost of equity near 10%, not 14.9%; adjusted for that single difference the same median implies 9.8 times. Averaged on 6.79 of FY2026E attributable earnings a share: 55.58. Left unadjusted, the peer median alone would give 132.45 \u2014 the size of that gap IS the country-risk discount, and it is shown rather than hidden inside a chosen multiple.",
-  "[Normalised earnings power] the three-year average operating margin is 22.9%, against 25.1% in FY2025 \u2014 so this lens deliberately gives back part of the best year. Applied to FY2027E revenue of 12,942 million, financed at the FY2027E cost of debt and taxed at 23.5%, with the normalised associate contribution added, that is EGP 8.62 a share of sustainable earnings. Capitalised at the PERPETUAL cost of equity of 14.90% less 5% growth, on the 80% payout that growth rate permits: 69.33 a share. Using today's crisis-level cost of equity of 24.82% in a perpetuity would be a category error \u2014 a steady-state multiple takes a steady-state rate.",
+  "[Relative multiples] the company's OWN traded history is computable entirely from primary material \u2014 year-end closes against audited attributable profit: 4.7 times (2022), 6.6 times (2023), 6.2 times (2024), 9.1 times (2025), a four-year mean of 6.7. At 130.05 the shares trade on 15.2 times trailing attributable earnings and 11.8 times trailing EBITDA. The re-rating is the single most important fact about this share price: the earnings multiple has more than doubled against its own four-year history.",
+  "  The lens triangulates three multiples rather than asserting one. (1) The multiple this model's own economics justify: retention must equal growth 5% over sustainable return 21.9%, so the payout the multiple can assume is 77%, and 77% over (perpetual cost of equity 14.90% less growth) is 7.8 times. (2) The company's own four-year mean, 6.7 times. (3) A regional peer median of 19.5 times \u2014 but those peers are Gulf-listed and face a cost of equity near 10%, not 14.9%; adjusted for that single difference the same median implies 9.8 times. Averaged on 6.18 of FY2026E attributable earnings a share: 50.09. Left unadjusted, the peer median alone would give 120.60 \u2014 the size of that gap IS the country-risk discount, and it is shown rather than hidden inside a chosen multiple.",
+  "[Normalised earnings power] the three-year average operating margin is 22.9%, against 25.1% in FY2025 \u2014 so this lens deliberately gives back part of the best year. Applied to FY2027E revenue of 12,038 million, financed at the FY2027E cost of debt and taxed at 23.5%, with the normalised associate contribution added, that is EGP 8.38 a share of sustainable earnings. Capitalised at the PERPETUAL cost of equity of 14.90% less 5% growth, on the 77% payout that growth rate permits: 65.27 a share. Using today's crisis-level cost of equity of 24.82% in a perpetuity would be a category error \u2014 a steady-state multiple takes a steady-state rate.",
   "",
-  "[Synthesis] four lenses, one field: Discounted cash flow \u2014 Frame A 86.06 \u00b7 Discounted cash flow \u2014 Frame B 99.07 \u00b7 Book value and sustainable return 73.10 \u00b7 Relative multiples 55.58 \u00b7 Normalised earnings power 69.33. Weighted centre 79.64; the field runs 55.58 to 99.07 against a 130.05 market price.",
+  "[Synthesis] four lenses, one field: Discounted cash flow \u2014 Frame A 67.22 \u00b7 Discounted cash flow \u2014 Frame B 79.33 \u00b7 Book value and sustainable return 63.12 \u00b7 Relative multiples 50.09 \u00b7 Normalised earnings power 65.27. Weighted centre 66.57; the field runs 50.09 to 79.33 against a 130.05 market price.",
   "",
-  "[The crux] the base build charges the new biologicals facility's depreciation and its interest \u2014 both mechanical consequences of the company's own disclosed December-2025 licensing \u2014 but carries NO revenue line for it, because the company has published no volume, price or utilisation guidance for the plant. So the crux is not what the plant is worth; it is how much it must sell. Solving the same model for the market price: an additional EGP 4,651 million of revenue by FY2030E at a 45% contribution margin closes the gap from 86.06 to 130.05. That is 20% of FY2030E revenue, or about USD 81 million a year \u2014 0.81 times the USD 100 million the company says it invested in the plant. That number is observable: it is testable against the first year the company discloses biosimilar revenue."
+  "[The crux] the base build charges the new biologicals facility's depreciation and its interest \u2014 both mechanical consequences of the company's own disclosed December-2025 licensing \u2014 but carries NO revenue line for it, because the company has published no volume, price or utilisation guidance for the plant. So the crux is not what the plant is worth; it is how much it must sell. Solving the same model for the market price: an additional EGP 6,642 million of revenue by FY2030E at a 45% contribution margin closes the gap from 67.22 to 130.05. That is 28% of FY2030E revenue, or about USD 115 million a year \u2014 1.15 times the USD 100 million the company says it invested in the plant. That number is observable: it is testable against the first year the company discloses biosimilar revenue."
  ]
 }
