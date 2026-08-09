@@ -251,44 +251,40 @@ rev_tot = np.array([sum(GH[g]['revenue'][i] for g in GROUPS) for i in range(3)] 
                    [sum(FG[g]['rev'][i] for g in GROUPS) for i in range(5)]) / 1000.0
 margin = tot / rev_tot
 cols = {'Integrated Logistics': SAGE, 'Shipping': GOLD, 'Services': SLATE}
-fig, ax = plt.subplots(figsize=(9.9, 4.5), dpi=110)
+fig, (axb, axm) = plt.subplots(2, 1, figsize=(9.9, 5.6), dpi=110, sharex=True,
+                               gridspec_kw={'height_ratios': [2.5, 1.0], 'hspace': 0.10})
 xs = np.arange(len(yrs))
 bottom = np.zeros(len(yrs))
 for g in GROUPS:
     v = np.array(series[g])
-    ax.bar(xs, v, width=0.60, bottom=bottom, color=cols[g], alpha=0.88, label=g,
-           edgecolor='#FFFFFF', linewidth=0.7)
+    axb.bar(xs, v, width=0.60, bottom=bottom, color=cols[g], alpha=0.88, label=g,
+            edgecolor='#FFFFFF', linewidth=0.7)
     bottom = bottom + v
 for i, t in enumerate(tot):
-    ax.text(i, t + 0.030 * tot.max(), f'{t:,.0f}', ha='center', fontsize=8.4, color=INK)
-ax.axvline(2.5, color=GREY, lw=1.1, ls='--')
-ax.text(2.42, tot.max() * 1.155, 'reported  ', ha='right', fontsize=8.4, color=GREY)
-ax.text(2.58, tot.max() * 1.155, '  forecast', ha='left', fontsize=8.4, color=GREY)
-ax.set_ylim(0, tot.max() * 1.26)
-ax.set_ylabel('earnings before interest, tax,\ndepreciation and amortisation (USD mn)',
-              fontsize=9)
-ax.set_xticks(xs)
-ax.set_xticklabels(yrs, fontsize=8.8)
-axm = ax.twinx()
-axm.plot(xs, margin * 100, color=BRASS, lw=2.1, marker='o', ms=4.6,
-         label='group margin (right)')
+    axb.text(i, t + 0.028 * tot.max(), f'{t:,.0f}', ha='center', fontsize=8.4, color=INK)
+axb.axvline(2.5, color=GREY, lw=1.1, ls='--')
+axb.set_ylim(0, tot.max() * 1.32)
+axb.set_ylabel('earnings before interest, tax,\ndepreciation and amortisation (USD mn)',
+               fontsize=9)
+axb.legend(frameon=False, fontsize=8.5, loc='upper left', labelcolor=INK, ncol=3)
+axb.set_title('Earnings by business unit, reported and forecast, with the group margin',
+              fontsize=10, pad=10)
+style(axb)
+
+axm.plot(xs, margin * 100, color=BRASS, lw=2.1, marker='o', ms=5)
 for i, m in enumerate(margin):
     axm.annotate(f'{m*100:.0f}%', (i, m * 100), textcoords='offset points',
-                 xytext=(0, -14), ha='center', fontsize=8.0, color=BRASS,
-                 bbox=dict(boxstyle='round,pad=0.16', facecolor=BG, edgecolor='none',
-                           alpha=0.92))
-axm.set_ylabel('margin on revenue (%)', color=BRASS, fontsize=9)
+                 xytext=(0, 9), ha='center', fontsize=8.2, color=BRASS)
+axm.axvline(2.5, color=GREY, lw=1.1, ls='--')
+lo_m, hi_m = min(margin) * 100, max(margin) * 100
+axm.set_ylim(lo_m - 3.0, hi_m + 6.5)
+axm.text(2.40, hi_m + 4.6, 'reported  ', ha='right', fontsize=8.6, color=GREY)
+axm.text(2.60, hi_m + 4.6, '  forecast', ha='left', fontsize=8.6, color=GREY)
+axm.set_ylabel('group margin\non revenue (%)', color=BRASS, fontsize=9)
 axm.tick_params(axis='y', colors=BRASS)
-axm.set_ylim(min(margin) * 100 - 9, max(margin) * 100 + 5)
-axm.grid(False)
-axm.spines['top'].set_visible(False)
-h1, l1 = ax.get_legend_handles_labels()
-h2, l2 = axm.get_legend_handles_labels()
-ax.legend(h1 + h2, l1 + l2, frameon=False, fontsize=8.4, loc='upper left',
-          labelcolor=INK, ncol=4)
-ax.set_title('Earnings by business unit, reported and forecast, with the group margin',
-             fontsize=10, pad=10)
-style(ax)
+axm.set_xticks(xs)
+axm.set_xticklabels(yrs, fontsize=8.8)
+style(axm)
 fig.tight_layout()
 save(fig, 'fig7_mix.png')
 
@@ -318,17 +314,18 @@ mid = D['fleet']['tce_mid']
 for key, lbl, col in CLS:
     ax.plot([-0.35, len(QLAB) - 0.55], [mid[key]] * 2, color=col, lw=1.0, ls=':',
             alpha=0.75, zorder=1)
-ax.text(-0.30, mid['vlcc'] * 1.05, 'dotted lines: the mid-cycle rate each class '
-        'reverts to in the forecast', fontsize=8.2, color=GREY, va='bottom', ha='left')
+ax.text(0.15, 165000, 'dotted lines: the mid-cycle rate each class reverts to in the '
+        'forecast', fontsize=8.2, color=GREY, va='center', ha='left')
 ax.set_yscale('log')
 ticks = [20000, 30000, 50000, 80000, 130000, 200000, 300000]
 ax.set_yticks(ticks)
 ax.set_yticklabels([f'{t/1000:,.0f}k' for t in ticks], fontsize=8.6)
-ax.set_ylim(17000, 380000)
+ax.yaxis.set_minor_formatter(matplotlib.ticker.NullFormatter())
+ax.set_ylim(13500, 400000)
 ax.set_xticks(xs)
 ax.set_xticklabels(QLAB, fontsize=8.4)
 ax.set_xlim(-0.45, len(QLAB) - 0.20)
-ax.text(8.5, 330000, 'first quarter reported;\nsecond quarter as indicated',
+ax.text(8.5, 392000, 'first quarter reported;\nsecond quarter as indicated',
         ha='center', va='top', fontsize=8.4, color=BRASS)
 ax.set_ylabel('time-charter equivalent (USD per vessel per day, log scale)', fontsize=9)
 ax.legend(frameon=False, fontsize=8.5, ncol=4, labelcolor=INK, loc='lower left')

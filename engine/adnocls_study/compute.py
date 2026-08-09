@@ -442,6 +442,12 @@ IN('ebitda_rep_fy24', 1148796, FS24 + SEG_SRC + " — the company's own EBITDA t
    '2024-12-31', 'Company')
 IN('ebitda_rep_fy25', 1514621, FS25 + SEG_SRC + " — the company's own EBITDA total",
    '2025-12-31', 'Company')
+IN('vessel_sale_price', 111000, "ADNOC L&S plc, FY2025 earnings release" + " — sale of a 2017-built very large crude "
+   "carrier, 90% owned, completed January 2026", '2026-01-31', 'Company')
+IN('vessel_sale_book', 83000, "ADNOC L&S plc, FY2025 earnings release" + " — the same vessel's carrying value",
+   '2026-01-31', 'Company')
+IN('vessel_sale_gain', 27000, "ADNOC L&S plc, FY2025 earnings release" + " — the capital gain recognised on that sale",
+   '2026-01-31', 'Company')
 IN('gw_growth_assumption', 0.02, FS25 + " — goodwill note: the company's own value-in-use "
    "test projects cash flows beyond the explicit plan at a growth rate equivalent to an "
    "estimated 2% inflation rate", '2025-12-31', 'Company')
@@ -1238,6 +1244,8 @@ g_b = V['g_terminal']
 pb_fair = (roe_sust - g_b) / (ke - g_b)
 bvps_now = (V['q1_26_eqp']) / shares_mn / 1000.0
 book = dict(roe_sustainable=roe_sust, ke=ke, g=g_b, pb_fair=pb_fair,
+            vessel_sale_price=V['vessel_sale_price'], vessel_sale_book=V['vessel_sale_book'],
+            vessel_value_to_book=V['vessel_sale_price'] / V['vessel_sale_book'],
             bvps_usd=bvps_now, bvps_aed=bvps_now * peg,
             base=pb_fair * bvps_now * peg,
             bear=((roe_sust * 0.85) - g_b) / (ke_beta1 - g_b) * bvps_now * peg,
