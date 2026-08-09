@@ -546,33 +546,34 @@ ex = [(f'Expert {i}', E[k]['method'], E[k]['ps_aed']) for i, k in enumerate(['e1
 vals = [v for _, _, v in ex]
 spread = max(vals) - min(vals)
 
-fig, ax = plt.subplots(figsize=(W, 3.5), dpi=DPI)
-xhi = max(max(vals), SPOT) * 1.30
+fig, ax = plt.subplots(figsize=(W, 3.6), dpi=DPI)
+xhi = max(max(vals), SPOT) * 1.34
+haloD = dict(boxstyle='round,pad=0.15', facecolor=BG, edgecolor='none', alpha=0.95)
+ax.axvspan(min(vals), max(vals), color=GOLD, alpha=0.16, zorder=1)
+ax.axvline(SPOT, color=INK, lw=1.7, zorder=5)
 for i, (nm, meth, v) in enumerate(ex):
     y = len(ex) - 1 - i
     ax.barh(y, v, height=0.48, color=SAGE, alpha=0.55, edgecolor=SLATE, linewidth=1.0,
             zorder=3)
-    ax.text(v + 0.012 * xhi, y, f'{v:.2f}', va='center', ha='left', fontsize=8.4,
-            color=INK, fontweight='bold')
-ax.axvspan(min(vals), max(vals), color=GOLD, alpha=0.16, zorder=1)
-ax.axvline(SPOT, color=INK, lw=1.7, zorder=5)
-ax.text(SPOT + 0.008 * xhi, len(ex) - 0.52, f'market price {SPOT:.2f}', fontsize=7.2,
-        color=INK, ha='left', va='center', rotation=0)
+    ax.text(v + 0.014 * xhi, y, f'{v:.2f}', va='center', ha='left', fontsize=8.4,
+            color=INK, fontweight='bold', zorder=8, bbox=haloD)
+ax.text(SPOT + 0.010 * xhi, len(ex) - 0.50, f'market price\n{SPOT:.2f}', fontsize=7.0,
+        color=INK, ha='left', va='center', linespacing=1.3, zorder=8, bbox=haloD)
 
-ax.annotate('', xy=(min(vals), -0.62), xytext=(max(vals), -0.62),
+ax.annotate('', xy=(min(vals), -0.55), xytext=(max(vals), -0.55),
             arrowprops=dict(arrowstyle='<->', color=BRASS, lw=1.1))
-ax.text((min(vals) + max(vals)) / 2, -0.80,
-        f'spread between the three: {spread:.2f} {CUR} per share '
-        f'({spread / min(vals) * 100:.0f}% of the lowest)',
-        ha='center', va='center', fontsize=7.2, color=BRASS)
+ax.text(0.015 * xhi, -0.90,
+        f'spread between the three: {spread:.2f} {CUR} per share, '
+        f'{spread / min(vals) * 100:.0f}% of the lowest',
+        ha='left', va='center', fontsize=7.2, color=BRASS, zorder=8, bbox=haloD)
 
 ylabs = []
 for nm, meth, _ in ex:
-    ylabs.append(nm + '\n' + '\n'.join(textwrap.wrap(meth, 26)))
+    ylabs.append(nm + '\n' + '\n'.join(textwrap.wrap(meth, 24)))
 ax.set_yticks(range(len(ex)))
 ax.set_yticklabels(ylabs[::-1], fontsize=7.0, linespacing=1.30)
 ax.set_xlim(0, xhi)
-ax.set_ylim(-1.05, len(ex) - 0.38)
+ax.set_ylim(-1.20, len(ex) - 0.35)
 ax.set_xlabel(f'Fair value ({PS})')
 ax.set_title('Fertiglobe — three independent valuations, three different methods',
              fontsize=9.2, pad=8)

@@ -98,6 +98,14 @@ def table(rows, widths, header=True, first_col_bold=False, size=9.3, header_fill
     for j, w in enumerate(widths):
         t.columns[j].width = Inches(w)
     for i, row in enumerate(rows):
+        # A row that splits across a page break leaves half a line of text stranded at the top
+        # of the next page; a header that is not declared as one does not reprint, so a table
+        # continues over the break with no column labels at all. Both are only visible in the
+        # rendered PDF, and both are fixed here for every table in the document.
+        trPr = t.rows[i]._tr.get_or_add_trPr()
+        trPr.append(OxmlElement('w:cantSplit'))
+        if i == 0 and header:
+            trPr.append(OxmlElement('w:tblHeader'))
         for j, val in enumerate(row):
             c = t.cell(i, j); c.width = Inches(widths[j])
             p = c.paragraphs[0]; p.paragraph_format.space_after = Pt(1)

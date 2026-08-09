@@ -124,6 +124,23 @@ for label, path in [(l,p) for l,p in [('study', STUDY), ('bibliography', BIB)] i
     if bad:
         fails.append(f'placeholders in {label}')
 
+# ---- figure numbering ascends in reading order -----------------------------------
+# Figures are placed section by section, so moving one between sections silently leaves the
+# reader meeting Figure 4 before Figure 3. Nothing else catches this: every caption is
+# individually well-formed and the document renders cleanly.
+print('=' * 74)
+print('figure captions numbered in document order')
+for label, path in [(l, p) for l, p in [('study', STUDY), ('bibliography', BIB)]
+                    if os.path.exists(path := p)]:
+    d, _ = doc_text(path)
+    seen = [int(m.group(1)) for p in d.paragraphs
+            if (m := re.match(r'^Figure (\d+)\.', p.text.strip()))]
+    ok = seen == sorted(seen) and seen == list(range(1, len(seen) + 1))
+    print(f'  {label}: {len(seen)} numbered figures, order {seen} — '
+          f'{"OK" if ok else "OUT OF ORDER"}')
+    if not ok:
+        fails.append(f'figure numbering in {label}: {seen}')
+
 print('=' * 74)
 if fails:
     print('QC CHECKS FAILED:', '; '.join(fails))

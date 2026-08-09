@@ -357,7 +357,7 @@ caption('The unit build, measured across three independently disclosed periods. 
 
 if os.path.exists('fig6_segments.png'):
     figure('fig6_segments.png', 6.2,
-           'Figure 4. Revenue and profit by segment, reported and forecast.')
+           'Figure 3. Revenue and profit by segment, reported and forecast.')
 
 H2('1.7  The crux')
 P('Everything above turns on one question: when the price of urea rises by a dollar, how '
@@ -407,7 +407,7 @@ bullet(f"The physics agrees. At roughly {CS['gas_per_tonne']:.0f} million Britis
 
 if os.path.exists('fig3_costpass.png'):
     figure('fig3_costpass.png', 6.0,
-           'Figure 3. Cash cost per tonne against realised price per tonne, with the fitted '
+           'Figure 4. Cash cost per tonne against realised price per tonne, with the fitted '
            'relationship. This is the study\'s central piece of evidence.')
 
 box([('Why this cuts both ways. ',
@@ -421,7 +421,9 @@ H2('1.8  Macro and country')
 P('Fertiglobe operates across three sovereigns with very different risk, and the cost of '
   'capital is built from the ground up to reflect that rather than treating the company as '
   'purely Emirati.')
-rows = [['Country', 'Rating', 'Default spread', 'Equity risk premium', 'Share of non-current assets']]
+# Header kept to one line: wrapped to two it straddled the page break, leaving the word
+# "assets" orphaned at the top of the following page.
+rows = [['Country', 'Rating', 'Default spread', 'Equity risk premium', 'Non-current assets']]
 rows.append(['Abu Dhabi', 'Aa2', pct(W['ad_ads'], 2), pct(D['inputs']['ad_erp']['value']),
              pct(W['w_uae'])])
 rows.append(['Egypt', 'Caa1', '6.37%', pct(D['inputs']['eg_erp']['value']), pct(W['w_egypt'])])

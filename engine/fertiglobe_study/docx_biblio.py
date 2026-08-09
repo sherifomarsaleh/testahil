@@ -90,6 +90,150 @@ def fmt(key, v):
     return f'${v:,.1f}m'
 
 
+# ---------------------------------------------------------------------------
+# plain-English names for every input. The model's own short keys are working
+# shorthand and mean nothing to an outside reader, so nothing in this document shows
+# one. Most keys are a stem plus a period suffix, so the stem carries the name and the
+# suffix is formatted according to whether the item is a flow (a period) or a stock
+# (a date).
+# ---------------------------------------------------------------------------
+FLOW = {
+    'rev': 'Revenue',
+    'cogs': 'Cost of sales',
+    'sga': 'Selling, general and administrative expenses',
+    'othinc': 'Other income net of other expenses',
+    'dna': 'Depreciation and amortisation',
+    'finc': 'Finance income',
+    'fcost': 'Finance cost',
+    'fx': 'Net foreign exchange loss',
+    'tax': 'Income tax charge',
+    'tax_paid': 'Income tax paid',
+    'tax_eff': 'Reported effective tax rate',
+    'nci': 'Profit attributable to non-controlling interests',
+    'npown': 'Profit attributable to owners',
+    'pbt': 'Profit before tax',
+    'op': 'Operating profit',
+    'ebitda': 'EBITDA',
+    'adj_ebitda': 'Adjusted EBITDA',
+    'cfo': 'Net cash from operating activities',
+    'capex': 'Capital expenditure',
+    'maint_capex': 'Maintenance capital expenditure',
+    'divsh': 'Dividends paid to shareholders',
+    'divnci': 'Dividends paid to non-controlling interests',
+    'cost_raw': 'Cost by nature — raw materials and gas',
+    'cost_freight': 'Cost by nature — freight and logistics',
+    'cost_staff': 'Cost by nature — employee benefits',
+    'cost_maint': 'Cost by nature — maintenance and repair',
+    'cost_consult': 'Cost by nature — consultancy',
+    'cost_other': 'Cost by nature — other',
+    'seg_own_rev': 'Segment revenue, own-produced',
+    'seg_own_ebitda': 'Segment adjusted EBITDA, own-produced',
+    'seg_3p_rev': 'Segment revenue, third-party traded',
+    'seg_3p_ebitda': 'Segment adjusted EBITDA, third-party traded',
+    'seg_oth_ebitda': 'Segment adjusted EBITDA, corporate and other',
+    'vol_urea': 'Urea sales volume, own-produced',
+    'vol_nh3': 'Ammonia sales volume, own-produced',
+    'vol_own': 'Total sales volume, own-produced',
+    'vol_3p': 'Sales volume, third-party traded',
+    'urea_util': 'Urea capacity utilisation',
+    'bm_urea_eg': 'Benchmark urea price, granular, free on board Egypt',
+    'bm_nh3_me': 'Benchmark ammonia price, free on board Middle East',
+    'bm_ttf': 'Benchmark European gas price (TTF)',
+    'eu_tariff_russia': 'EU tariff on Russian and Belarusian urea',
+}
+STOCK = {
+    'cash': 'Cash and cash equivalents',
+    'inv': 'Inventories',
+    'recv': 'Trade and other receivables',
+    'pay': 'Trade and other payables',
+    'ta': 'Total assets',
+    'eq': 'Total equity',
+    'eqown': 'Equity attributable to owners',
+    'eqnci': 'Equity attributable to non-controlling interests',
+    'ltd': 'Long-term loans and borrowings',
+    'std': 'Short-term loans and borrowings',
+    'lease': 'Lease obligations, current and non-current',
+    'dtl': 'Deferred tax liabilities',
+    'taxpay': 'Income tax payable',
+    'ppe': 'Property, plant and equipment',
+    'rou': 'Right-of-use assets',
+    'gwi': 'Goodwill and intangible assets',
+    'netdebt': 'Net debt',
+    'grossdebt': 'Gross interest-bearing debt',
+    'sorfert_accr': 'Accrued Algerian gas cost (Sorfert)',
+    'debt_usd': 'Loans and borrowings denominated in US dollars',
+    'debt_dzd': 'Loans and borrowings denominated in Algerian dinar',
+    'debt_aud': 'Loans and borrowings denominated in Australian dollars',
+}
+PLAIN = {
+    'spot_aed': 'Share price, close on the Abu Dhabi Securities Exchange',
+    'fx_aed_usd': 'Dirham per US dollar (peg)',
+    'shares_mn': 'Ordinary shares outstanding, 31 Dec 2025',
+    'beta': 'Beta against the local market',
+    'ust10': 'US 10-year Treasury yield',
+    'sofr': 'Secured Overnight Financing Rate',
+    'ad_cds': 'Abu Dhabi sovereign credit-default-swap spread',
+    'ad_ads': 'Abu Dhabi adjusted default spread (rating basis)',
+    'ad_erp': 'Abu Dhabi equity risk premium (rating basis)',
+    'ad_erp_cds': 'Abu Dhabi equity risk premium (swap basis)',
+    'ad_crp': 'Abu Dhabi country risk premium',
+    'eg_erp': 'Egypt equity risk premium (rating basis)',
+    'eg_erp_cds': 'Egypt equity risk premium (swap basis)',
+    'dz_erp': 'Algeria equity risk premium (rating basis)',
+    'mature_erp': 'Mature-market equity risk premium',
+    'tax_dam_uae': 'Published corporate tax rate, Abu Dhabi',
+    'tax_dam_eg': 'Published corporate tax rate, Egypt',
+    'tax_dam_dz': 'Published corporate tax rate, Algeria',
+    'tax_stat_uae': 'UAE statutory corporate tax rate, per the accounts',
+    'w_egypt': 'Share of non-current assets in Egypt',
+    'w_algeria': 'Share of non-current assets in Algeria',
+    'nca_middle_east': 'Non-current assets, Middle East, 31 Dec 2025',
+    'nca_total': 'Non-current assets, total, 31 Dec 2025',
+    'nca_other_regions': 'Non-current assets, Europe, North America, Asia and Oceania, '
+                         '31 Dec 2025',
+    'kd_spread_facility_bc': 'Credit margin on facilities B and C',
+    'kd_spread_adnoc': 'Credit margin on the ADNOC term loan',
+    'kd_spread_rcf': 'Credit margin on the revolving credit facility',
+    'kd_cap_rate_rejected': 'Borrowing-cost capitalisation rate, examined and not used',
+    'cap_urea': 'Installed urea production capacity',
+    'cap_nh3_merchant': 'Installed merchant ammonia capacity',
+    'gas_realised_q2_26': 'Delivered gas price, Q2 2026',
+    'gas_realised_q2_26_ecremage': 'Delivered gas price including the Algerian '
+                                   'profit-share, Q2 2026',
+    'urea_demand_growth_2030': 'Global urea demand growth outside China to 2030',
+    'urea_capacity_adds_2030': 'Global urea capacity additions to 2030',
+}
+PERIOD_FLOW = {'fy22': 'FY2022', 'fy23': 'FY2023', 'fy24': 'FY2024', 'fy25': 'FY2025',
+               'h1_26': 'H1 2026', 'q1_26': 'Q1 2026', 'jul26': 'July 2026'}
+PERIOD_STOCK = {'fy22': '31 Dec 2022', 'fy23': '31 Dec 2023', 'fy24': '31 Dec 2024',
+                'fy25': '31 Dec 2025', 'h1_26': '30 Jun 2026', 'q1_26': '31 Mar 2026',
+                'jul26': 'July 2026'}
+SUFFIX = ('fy22', 'fy23', 'fy24', 'fy25', 'h1_26', 'q1_26', 'jul26')
+
+
+def label(key):
+    """Plain-English name for a model input. Every key must resolve — an unmapped key is
+    a build failure, never a raw key leaking into the reader's table."""
+    if key in PLAIN:
+        return PLAIN[key]
+    for suf in SUFFIX:
+        if key.endswith('_' + suf):
+            stem = key[: -len(suf) - 1]
+            if stem in FLOW:
+                return f'{FLOW[stem]}, {PERIOD_FLOW[suf]}'
+            if stem in STOCK:
+                return f'{STOCK[stem]}, {PERIOD_STOCK[suf]}'
+    if key in FLOW:
+        return FLOW[key]
+    if key in STOCK:
+        return STOCK[key]
+    raise KeyError(f'no plain-English name for input {key!r}')
+
+
+_LABELS = {k: label(k) for k in INP}
+assert not any('_' in v for v in _LABELS.values()), 'a raw key leaked into a name'
+assert len(set(_LABELS.values())) == len(_LABELS), 'two inputs share the same name'
+
 LAYERS = [
     ('GLOBAL', 'Global'),
     ('COUNTRY', 'Country'),
