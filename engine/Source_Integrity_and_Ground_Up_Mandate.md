@@ -78,6 +78,14 @@ applies to inaccessible primary financials. Do not build a composite and proceed
 beta previously built on a composite is non-conforming and must be re-derived before that
 study is re-issued or rolled forward.
 
+[ADDED 10-Aug-2026] **Never hand-roll a study-local beta script.** Use
+`engine/beta_regression.own_stock_beta(ticker, market, exchange)` — it resolves the
+regressor through `wacc_builder.market_index_path()`, so a composite cannot be reached
+without deleting the call. Attest the result with
+`research_protocol.assert_beta_provenance()`, which inspects the record rather than
+trusting this checklist's boolean. That boolean was set True by every study in the repo
+while it regressed against a composite; a self-attestation cannot catch that.
+
 **7. Formula-based, always.**
 Every constructed financial statement is a live formula model: driver → income statement
 → balance sheet → cash flow → DCF. Blue cells are inputs, black cells are formulas. Fair
