@@ -200,7 +200,21 @@ THE RULE, from now on:
 
 **Dual-listed names.** Orascom Construction trades on both ADX and EGX. The same issuer therefore has two legitimate regressors, and only the *series* tells you which: an EGP-denominated series filed under `EG` regresses on the EGX index; a dirham series of the same company would regress on the ADX index. Verify the series' currency and price magnitude against the exchange it is filed under before regressing, and flag dual listings explicitly in the Sweep Register. Nothing in the file name carries this.
 
-**Broad versus subset, stated openly rather than quietly ignored.** Clause (a) says prefer the broad all-share. Only TASI actually is one. EGX30 covers 30 names against a 37-name covered panel that includes small caps (KABO, DSCW, LCSW); NIFTY50, KOSPI100 and QATAR10 are subsets by construction; NASDAQCOMP is tech-weighted rather than a market proxy. Each needs either a broad replacement series or a documented reason for the subset. Until then the subset is a known, recorded compromise — not a silent one.
+**Broad versus subset — SETTLED 10-Aug-2026, per instruction.** Clause (a) prefers the broad all-share, and only TASI actually is one: EGX30 is 30 names against a 37-name covered panel that includes small caps (KABO, DSCW, LCSW); NIFTY50, KOSPI100 and QATAR10 are subsets by construction; NASDAQCOMP is tech-weighted rather than a market proxy. **The user supplied all seven series explicitly as "the indices to use", so these ARE the regressors** and the subset question is closed by decision, not left as a drifting compromise. All seven uploads were byte-identical to the copies already in `raw_indices/`, so the registrations were already correct. The documented "why" required by clause (a) is this instruction. Revisit only on a further instruction.
+
+**All seven passed Step 0.0 on 10-Aug-2026** — density screened against each exchange's real calendar, max one-day move against that exchange's own price limit:
+
+| market / exchange | index | rows | sessions/yr 2021-25 | max abs 1-day log move | limit |
+|---|---|---|---|---|---|
+| AE / ADX | FADGI | 3,883 | 238–252 | 0.084 | 0.211 |
+| EG / EGX | EGX30 | 3,745 | 241–244 | 0.111 | 0.290 |
+| IN / NSE | NIFTY50 | 3,857 | 246–249 | 0.139 | 0.290 |
+| KR / KRX | KOSPI100 | 3,624 | 243–248 | 0.127 | 0.464 |
+| QA / QSE | QATAR10 | 2,878 | **188–201** | 0.116 | 0.137 |
+| SA / TADAWUL | TASI | 3,882 | 248–251 | 0.087 | 0.137 |
+| US / NASDAQ | NASDAQCOMP | 3,913 | 250–252 | 0.132 | none |
+
+**QATAR10 carries a standing caveat — weekly only.** It runs ~198 sessions a year while QSE stocks (QNB, IQCD, QGTS) all carry 248–250, a systematic ~20% shortfall that is stable at 188–201 every year for fourteen years. That consistency means it is a property of how the series is published, not vendor corruption, so Step 0.0 correctly passes it. It does NOT impair the weekly regression this protocol mandates: over the last five years the index supplies 255 weekly points against a stock's 259, and 255 of them align — 98.5% coverage. It WOULD impair any daily use of QATAR10, which is therefore not permitted without re-screening. Quote this caveat wherever a Qatari beta is quoted.
 
 (d) **If the index is not in `raw_indices/`, STOP AND ASK for it** — the same stop-and-inform discipline SIGCM applies to missing primary financials. Do not build a composite and proceed. The index is one file; the request costs a message.
 
