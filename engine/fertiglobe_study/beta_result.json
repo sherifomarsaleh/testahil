@@ -55,87 +55,87 @@
   {
    "label": "equal-weight composite [cross-check]",
    "dimson": false,
-   "beta": 0.49170467247561433,
-   "r2": 0.06152028593246317,
-   "n": 246,
-   "se": 0.12294551603733717,
+   "beta": 0.4935519659924021,
+   "r2": 0.0626234336850543,
+   "n": 248,
+   "se": 0.12174578673752295,
    "ci90": [
-    0.2894592985941947,
-    0.693950046357034
+    0.2932801468091768,
+    0.6938237851756274
    ],
    "usable": true,
    "gate_msg": "passes minimum usability gate",
-   "window_years": 4.71,
+   "window_years": 4.75,
    "first_obs": "2021-11-05",
-   "last_obs": "2026-07-24"
+   "last_obs": "2026-08-07"
   },
   {
    "label": "turnover-weighted composite [cross-check]",
    "dimson": false,
-   "beta": 0.3755552635369102,
-   "r2": 0.04266518722497947,
-   "n": 246,
-   "se": 0.11388696987883047,
+   "beta": 0.37807470962997525,
+   "r2": 0.04391342142601362,
+   "n": 248,
+   "se": 0.11247604757195732,
    "ci90": [
-    0.18821119808623407,
-    0.5628993289875863
+    0.19305161137410545,
+    0.5630978078858451
    ],
    "usable": false,
-   "gate_msg": "R^2=0.043 < minimum 0.05 \u2014 index barely explains the stock's returns",
-   "window_years": 4.71,
+   "gate_msg": "R^2=0.044 < minimum 0.05 \u2014 index barely explains the stock's returns",
+   "window_years": 4.75,
    "first_obs": "2021-11-05",
-   "last_obs": "2026-07-24"
+   "last_obs": "2026-08-07"
   },
   {
    "label": "equal-weight composite [cross-check]",
    "dimson": true,
-   "beta": 0.5358642445847095,
-   "r2": 0.06534060862276492,
-   "n": 244,
-   "se": 0.2045003131742574,
+   "beta": 0.5433158813380414,
+   "r2": 0.066019034482929,
+   "n": 246,
+   "se": 0.20266298718737094,
    "ci90": [
-    0.19946122941305605,
-    0.872267259756363
+    0.20993526741481622,
+    0.8766964952612666
    ],
    "usable": true,
    "gate_msg": "passes minimum usability gate",
-   "window_years": 4.68,
+   "window_years": 4.71,
    "first_obs": "2021-11-12",
-   "last_obs": "2026-07-17"
+   "last_obs": "2026-07-31"
   },
   {
    "label": "turnover-weighted composite [cross-check]",
    "dimson": true,
-   "beta": 0.34344036243566034,
-   "r2": 0.04642624788230598,
-   "n": 244,
-   "se": 0.18835420480352627,
+   "beta": 0.34816573523353406,
+   "r2": 0.04971576405560141,
+   "n": 246,
+   "se": 0.18555497900475357,
    "ci90": [
-    0.033597695533859606,
-    0.6532830293374611
+    0.042927794770714456,
+    0.6534036756963537
    ],
    "usable": false,
-   "gate_msg": "R^2=0.046 < minimum 0.05 \u2014 index barely explains the stock's returns",
-   "window_years": 4.68,
+   "gate_msg": "R^2=0.050 < minimum 0.05 \u2014 index barely explains the stock's returns",
+   "window_years": 4.71,
    "first_obs": "2021-11-12",
-   "last_obs": "2026-07-17"
+   "last_obs": "2026-07-31"
   }
  ],
  "daily_crosscheck": [
   {
    "label": "DAILY cross-check (equal-weight, Dimson +/-5)",
-   "beta": 0.34200337027727035,
-   "r2": 0.051326381125467835,
-   "n": 1173,
-   "se": 0.16363685862164234,
+   "beta": 0.35418306921518283,
+   "r2": 0.05553699812633672,
+   "n": 1183,
+   "se": 0.16190597325320602,
    "tier": "cross-check only, not a tier"
   },
   {
    "label": "DAILY cross-check (turnover-weight, Dimson +/-5)",
-   "beta": 0.27303100162946736,
-   "r2": 0.03970454263339973,
-   "n": 1173,
-   "se": 0.1505042001845146,
+   "beta": 0.2743122339223501,
+   "r2": 0.03935853534140965,
+   "n": 1183,
+   "se": 0.1499441087653063,
    "tier": "cross-check only, not a tier"
   }
  ],
@@ -146,6 +146,7 @@
   "AGTHIA",
   "ALDAR",
   "ALPHADHABI",
+  "AMR",
   "BURJEEL",
   "DEWA",
   "DIB",
@@ -155,18 +156,34 @@
   "ENBD",
   "FAB",
   "IHC",
+  "MODON",
   "SALIK",
   "TWOPOINTZERO"
  ],
- "constituent_count": 17,
+ "constituent_count": 19,
  "weighting": "turnover (price x volume, lagged one week)",
  "correction": "Dimson (1979) lead-lag, +/-1 week",
  "blume_crosscheck": 0.9543258162692112,
- "naive_equal_weight_beta": 0.49170467247561433,
+ "naive_equal_weight_beta": 0.4935519659924021,
  "index_file": "engine/raw_indices/AE/FADGI.csv (FTSE ADX General)",
  "index_dq": [
   "dropped 1 interior stale/no-trade rows"
  ],
  "index_note": "published FTSE ADX General index supplied 10-Aug-2026 and now the regressor",
- "free_float_note": "~13% free float \u2014 a naive beta is biased low by thin trading"
+ "free_float_note": "~13% free float \u2014 a naive beta is biased low by thin trading",
+ "beta": 0.9314887244038168,
+ "r2": 0.09960762477978913,
+ "se": 0.283328369471792,
+ "n": 242,
+ "ci90": [
+  0.46541355662271894,
+  1.3975638921849147
+ ],
+ "window_years": 4.68,
+ "usable": true,
+ "gate_msg": "passes minimum usability gate",
+ "first_obs": "2021-11-12",
+ "last_obs": "2026-07-17",
+ "weak": true,
+ "frequency": "weekly"
 }

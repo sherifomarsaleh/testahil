@@ -214,6 +214,15 @@ out = dict(chosen=chosen, all_fits=fits, daily_crosscheck=daily, constituents=so
            index_file='engine/raw_indices/AE/FADGI.csv (FTSE ADX General)', index_dq=idx_dq,
            index_note='published FTSE ADX General index supplied 10-Aug-2026 and now the regressor',
            free_float_note='~13% free float — a naive beta is biased low by thin trading')
+# Mirror the CHOSEN fit's scalars at the top level. compute.py and any other consumer
+# reads _beta['beta'] / ['r2'] / ['se'] / ['n'] / ['ci90'] / ['window_years'] directly, and
+# nesting them under 'chosen' silently broke that contract -- compute.py died on KeyError.
+# The nested detail stays for the ladder; the top level stays the stable interface.
+out.update({k: chosen[k] for k in ('beta', 'r2', 'se', 'n', 'ci90', 'window_years',
+                                   'usable', 'gate_msg', 'first_obs', 'last_obs')})
+out['weak'] = bool(chosen['r2'] < 0.10
+                   or (chosen['ci90'][1] - chosen['ci90'][0]) > 2 * abs(chosen['beta']))
+out['frequency'] = 'weekly'
 json.dump(out, open(os.path.join(HERE, 'beta_result.json'), 'w'), indent=1)
 
 print(f'constituents: {len(px)}  ({", ".join(sorted(px))})')
