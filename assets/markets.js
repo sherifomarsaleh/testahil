@@ -17,6 +17,7 @@ const MARKET_OF = {
  "ALPHADHABI": "AE",
  "ALRAJHI": "SA",
  "AMOC": "EG",
+ "AMR": "AE",
  "ARAMCO": "SA",
  "ARCC": "EG",
  "BTFH": "EG",

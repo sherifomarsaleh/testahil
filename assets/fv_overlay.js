@@ -11,7 +11,7 @@ const FV_OVERLAY = {
   "rf_live": 0.0365,
   "width_overlay_active": false
  },
- "n": 79,
+ "n": 80,
  "rows": [
   {
    "ticker": "HELI",
@@ -102,6 +102,97 @@ const FV_OVERLAY = {
     "beats_cash": true,
     "asymmetry": "base inside 90% band",
     "selftest_max_dev": 0.00305
+   }
+  },
+  {
+   "ticker": "AMR",
+   "name": "Americana Restaurants International PLC",
+   "code": "ADX:AMR",
+   "ccy": "AED",
+   "spot": 2.23,
+   "anchor_date": "2026-08-07",
+   "fv_asof": "2026-08-07",
+   "fv_lag_days": 0,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 1.5,
+   "fv_base": 2.19,
+   "fv_full": 3.44,
+   "gap_base_pct": -1.8,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.097925,
+    "mu_h": 0.0,
+    "G": {
+     "bear": -4.05,
+     "base": -0.18,
+     "full": 4.43
+    },
+    "band": "IN-REACH",
+    "informative": false,
+    "already_converged": true,
+    "p_term": {
+     "bear": 0.0005,
+     "base": 0.4202,
+     "full": 0.0003
+    },
+    "p_touch": {
+     "bear": 0.0008,
+     "base": 0.7405,
+     "full": 0.0004
+    },
+    "required_cagr": {
+     "bear": -0.9914,
+     "base": -0.1952,
+     "full": 180.5695
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.0018
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.174693,
+    "mu_h": 0.0,
+    "G": {
+     "bear": -2.27,
+     "base": -0.1,
+     "full": 2.48
+    },
+    "band": "IN-REACH",
+    "informative": false,
+    "already_converged": true,
+    "p_term": {
+     "bear": 0.0147,
+     "base": 0.455,
+     "full": 0.0098
+    },
+    "p_touch": {
+     "bear": 0.0248,
+     "base": 0.8513,
+     "full": 0.0165
+    },
+    "required_cagr": {
+     "bear": -0.7953,
+     "base": -0.0698,
+     "full": 4.6626
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00223
    }
   },
   {

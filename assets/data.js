@@ -2,7 +2,7 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-08-10", latest: "MODON" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
+const SITE = { updated: "2026-08-10", latest: "AMR" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
 /* ---------- covered tickers ----------
    HORIZON FIELDS (see the HORIZON CONVENTION block above the LEDGER):
@@ -24,6 +24,45 @@ const SITE = { updated: "2026-08-10", latest: "MODON" };  // latest = the LAST-P
                            label would then misstate what was simulated.
    ------------------------------------- */
 const TICKERS = {
+  AMR: {
+    name: "Americana Restaurants International PLC",
+    nameAr: "أمريكانا للمطاعم العالمية",
+    code: "ADX:AMR",
+    spot: 2.23,
+    spotDate: "close 7 Aug 2026",
+    fairAsof: "2026-08-07",   // the close the FAIR VALUE is struck on — not the publication date in the filename
+    ccy: "AED",
+    fair: { bear: 1.50, base: 2.19, full: 3.44 },   // 9 Aug 2026 (second edition, post-critique) - four lenses, one field, AED 1.50 to 3.44 weighted. Weighted central 2.19 on FCFF DCF 50% / relative 20% / normalised 20% / book 10%: cash flow 2.31, relative multiples 2.56, normalised earnings power 2.06, book value and sustainable return 1.07. Against a close of 2.23 the market is ROUGHLY FAIRLY PRICED (-2%). The company reports in US dollars; the valuation runs in dollars and converts at the 3.6725 peg. THE CONTESTED JUDGEMENT - whether today's 25%+ EBITDA margin is structural or cyclical - is computed BOTH WAYS and never averaged: margin structural gives AED 2.31, margin reverting to the audited average gives 1.98, a 14% gap that is the single judgement deciding this company. Revenue is built bottom-up TWICE and the two builds reconcile within 1.91%: a geographic build tying audited revenue exactly in all three disclosed years, and a brand build - restaurants x revenue-per-restaurant for KFC (1,146 stores), Pizza Hut (457), Hardee's (458), Krispy Kreme (395) and the growth brands (293). The two largest cost lines are genuine volume x price: staff = heads-per-restaurant (disclosed trend 15.4 down to 12.1) x an audited wage growing 6%/yr, and delivery = channel share (disclosed 44 -> 48 -> 52%) x cost-per-delivered-dollar - so the margin PEAKS near 25.4% and eases to 24.9% as the delivery channel grows, rather than expanding forever. Cost of equity prices the whole footprint: a 12-country revenue-weighted premium blend (UAE to Egypt to Kazakhstan, both rating and CDS bases published), WACC 9.50%. Terminal economics are FADED: return on new capital eases to 30% - anchored on the company's own disclosed ~3-year store payback - rather than the 55% the forecast years imply, which is published as the bull case, not the base. 74.9% of the DCF sits in the terminal value and the study says so. Own-share beta 0.894 from the Saudi line of this dual-listed share against the Tadawul index, the ADX index being unobtainable machine-readably - substitution disclosed, lower cross-checks (0.60/0.58) reported with their value effect.
+    dist: {
+      t20: { label:"1 month",   p5:1.90, p25:2.10, p50:2.23, p75:2.37, p95:2.61, resolve:"2026-09-07" },
+      t60: { label:"3 months",  p5:1.68, p25:2.00, p50:2.23, p75:2.48, p95:2.96, resolve:"2026-11-09" }
+    },
+    hz: { h1:20, h3:63, l1:"1 month", l3:"3 months", cal:true },
+    touch: [ /* level, P(touch) 1-month %, 3-month % - descending */
+      [2.68, 5, 23],
+      [2.56, 11, 35],
+      [2.45, 25, 51],
+      [2.34, 50, 71],
+      [2.12, 49, 69],
+      [2.01, 21, 47]
+    ],
+    levels: { res:[2.36, 2.46, 2.68], sup:[2.16, 2, 1.82] },
+    tech: {
+      trend: "Trading above the whole moving-average stack, on a rising 200-day",
+      summary: "The price closed 2.23 above a rising 20-day (2.11), a rising 50-day (2.05) and a rising 200-day (1.87). Momentum is firm: RSI(14) is ~64 and the daily ATR near 0.06 (~2.8%) points to a normal tape. MACD (12\u00b726\u00b79) is positive and rising (+0.05 / +0.04 / +0.01). Over the last year it has ranged 1.55\u20132.28; the last close sits 2% below that high and 44% above that low.",
+      bull: "A daily close back above 2.36 would clear the nearest resistance and open the 2.68 zone.",
+      bear: "A close below 2.16 would break the nearest support and open the 1.82 zone."
+    },
+    asof: {
+      mc:   { data:"2026-08-07", computed:"2026-08-08" },
+      tech: { data:"2026-08-07", computed:"2026-08-10" }
+    },
+    files: {
+      study: "files/AMR_Valuation_Study_09-08-2026.pdf?v=0810a",
+      model: "files/AMR_Valuation_Model_09082026.xlsx?v=0810a",
+      biblio: "files/AMR_Bibliography_09-08-2026.pdf?v=0810a"
+    }
+  },
   MODON: {
     name: "Modon Holding PSC",
     nameAr: "مدن القابضة",
@@ -4943,6 +4982,27 @@ const LEDGER = [
     note:"First coverage, 9-Aug-2026 — cycle 1, struck on the study's own committed path arrays at the 2026-08-06 anchor and NOT re-simulated at publish: re-striking a frozen cone would publish a forecast the study never made. Percentiles are the study's p5–p95; the touch ladder is read off those same path arrays at ±5/10/15/20% and −5/−10%, and its ±10% pair reconciles to the study's separately published figures to within 0.2 percentage points. Horizon resolved by horizons.resolve() on EG's own realized calendar, not a session count. q_annual = 0.0269 — SOURCED, not defaulted: the board proposed EGP 3.50 a share for FY2025. EG live fit nu=6.0, width_cal=0.951; rf_live 19.50%. Name-level calibration: PARITY on every window set and every bootstrap block size tested. Five-year set: 19 non-overlapping quarterly origins, skill +0.0021, coverage 47% and 100% against the 50% and 90% bands, PIT mean 0.525, block-bootstrap intervals [-0.0299, 0.0265] / [-0.0194, 0.0271] / [-0.0184, 0.0210] at block sizes 2/3/4 — all straddling zero. Post-break set, which is the period the live bands are built on: 16 windows, skill -0.0109, same PARITY verdict at every block size. No single-name edge exists on this name and none is claimed. The price map is published as a map of dispersion around today's price, never as a forecast of value.",
     p5:94.40, p25:118.42, p50:135.30, p75:154.39, p95:193.82,
     touch:{ "+5":80, "+10":64, "+15":50, "+20":39, "-5":69, "-10":48 },
+    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
+    realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null },
+    reanchor_from:null },
+  // ---- AMR · equity (ADX UAE) · cycle 1 (9 Aug 2026 published study; MC BOUNDARY(PARITY-flagged) — own fitted verdict, scale-normalized skill −0.0054 on 10 windows (listed Dec-2022, only 2.25 years scoreable), CI90 straddles zero at bootstrap blocks {2,3} ([−0.0222,+0.0087] / [−0.0204,+0.0032]) but EXCLUDES zero at block 4 ([−0.0193,−0.0028]), so not block-robust — weakest block reported; shape passes (PIT KS 0.378 < 0.429 crit); AE panel PARITY +0.0065, CI90 straddles zero at every block, 19 names, 271 windows over 4.25 years — cone published INDICATIVE, matches-benchmark) ----
+  { instrument:"AMR", asset_class:"equity", anchor_date:"2026-08-07", run_date:"2026-08-08", anchor_price:2.23, ccy:"AED",
+    horizon_label:"1 month", grade_date:"2026-09-07", grade_basis:"projected", horizon_days:20, cycle_no:1,
+    anchor_vol:0.3567, cal:"matches",
+    note:"First coverage, 9-Aug-2026 — cycle 1, struck on the study's own committed path arrays at the 2026-08-07 anchor and NOT re-simulated at publish: re-striking a frozen cone would publish a forecast the study never made. Struck on the production chain, no approximation: data-quality gate → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF per the AE profile (the touch ladder is read off the stored first-20,000-path subset; the percentiles are from the full 50,000). q_annual = 0.0395 — SOURCED, not defaulted: the FY2025 declared distributions against the 7-Aug close. AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% on the Fed schedule. Horizon resolved by horizons.resolve() on the UAE's own realized calendar, not a session count — the 1-month calendar target 2026-09-07 is a trading Monday and grades as stored. Name-level calibration: BOUNDARY, flagged PARITY and published as such — the shortest history in the AE panel. The company listed 12-Dec-2022, so its own record yields only 10 non-overlapping quarterly origins (2023-12-25 → 2026-03-25); scale-normalized CRPS skill −0.0054 against the carry-anchored random walk, with the bootstrap CI90 straddling zero at block sizes 2 and 3 ([−0.0222,+0.0087] / [−0.0204,+0.0032]) but excluding it at block 4 ([−0.0193,−0.0028]) — NOT robustly at parity across every block size, and the weakest block is reported rather than the friendliest. The shape limb passes: PIT KS statistic 0.378 against a 0.429 critical value, coverage 20/80/100 per cent against the 50/80/90 bands on those 10 windows. What carries the cone is the MARKET-level gate: the 19-name UAE panel scores +0.0065 over 271 windows spanning 4.25 years, PARITY with the CI90 straddling zero at every block size, and that panel is the standing gate. The panel window is 4.25 rather than 5 years because the UAE changed its trading week in January 2022 and earlier trading-day patterns are not comparable. No single-name edge exists on this name and none is claimed. The price map is published as a map of dispersion around today's price, never as a forecast of value.",
+    p5:1.90, p25:2.10, p50:2.23, p75:2.37, p95:2.61,
+    touch:{ "+5":50, "+10":25, "+15":11, "+20":5, "-5":49, "-10":21 },
+    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
+    realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null },
+    reanchor_from:null },
+  { instrument:"AMR", asset_class:"equity", anchor_date:"2026-08-07", run_date:"2026-08-08", anchor_price:2.23, ccy:"AED",
+    horizon_label:"3 months", grade_date:"2026-11-09", grade_basis:"projected", horizon_days:63, cycle_no:1,
+    anchor_vol:0.3562, cal:"matches",
+    note:"First coverage, 9-Aug-2026 — cycle 1, struck on the study's own committed path arrays at the 2026-08-07 anchor and NOT re-simulated at publish: re-striking a frozen cone would publish a forecast the study never made. Struck on the production chain, no approximation: data-quality gate → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF per the AE profile (the touch ladder is read off the stored first-20,000-path subset; the percentiles are from the full 50,000). q_annual = 0.0395 — SOURCED, not defaulted: the FY2025 declared distributions against the 7-Aug close. AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% on the Fed schedule. Horizon resolved by horizons.resolve() on the UAE's own realized calendar, not a session count — the 3-month calendar target 2026-11-07 falls on a Saturday, so the grade date rolls FORWARD to Monday 2026-11-09. Name-level calibration: BOUNDARY, flagged PARITY and published as such — the shortest history in the AE panel. The company listed 12-Dec-2022, so its own record yields only 10 non-overlapping quarterly origins (2023-12-25 → 2026-03-25); scale-normalized CRPS skill −0.0054 against the carry-anchored random walk, with the bootstrap CI90 straddling zero at block sizes 2 and 3 ([−0.0222,+0.0087] / [−0.0204,+0.0032]) but excluding it at block 4 ([−0.0193,−0.0028]) — NOT robustly at parity across every block size, and the weakest block is reported rather than the friendliest. The shape limb passes: PIT KS statistic 0.378 against a 0.429 critical value, coverage 20/80/100 per cent against the 50/80/90 bands on those 10 windows. What carries the cone is the MARKET-level gate: the 19-name UAE panel scores +0.0065 over 271 windows spanning 4.25 years, PARITY with the CI90 straddling zero at every block size, and that panel is the standing gate. The panel window is 4.25 rather than 5 years because the UAE changed its trading week in January 2022 and earlier trading-day patterns are not comparable. No single-name edge exists on this name and none is claimed. The price map is published as a map of dispersion around today's price, never as a forecast of value.",
+    p5:1.68, p25:2.00, p50:2.23, p75:2.48, p95:2.96,
+    touch:{ "+5":71, "+10":51, "+15":35, "+20":23, "-5":69, "-10":47 },
     realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
     realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null },

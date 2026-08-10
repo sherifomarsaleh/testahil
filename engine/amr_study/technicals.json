@@ -1,0 +1,96 @@
+{
+ "market": "AE",
+ "series": "AMR",
+ "close": 2.23,
+ "data_date": "2026-08-07",
+ "computed_on": "2026-08-09",
+ "sessions": 915,
+ "rows_in": 915,
+ "repairs": [],
+ "ma": {
+  "20": 2.110499999999999,
+  "50": 2.0476,
+  "200": 1.8749
+ },
+ "ma_slope": {
+  "20": "rising",
+  "50": "rising",
+  "200": "rising"
+ },
+ "rsi": 64.04800906740044,
+ "atr": 0.06212217287642363,
+ "macd": {
+  "macd": 0.054700615847659506,
+  "signal": 0.040699663871160564,
+  "hist": 0.014000951976498942
+ },
+ "ma_cross": {
+  "ago": 49,
+  "kind": "golden"
+ },
+ "atr_pct": 0.02785747662619894,
+ "hi_52w": 2.28,
+ "lo_52w": 1.55,
+ "pct_off_high": 0.02192982456140343,
+ "pct_off_low": 0.4387096774193548,
+ "levels": {
+  "res": [
+   2.36,
+   2.46,
+   2.68
+  ],
+  "sup": [
+   2.16,
+   2.0,
+   1.82
+  ]
+ },
+ "level_detail": {
+  "res": [
+   {
+    "level": 2.357722397397835,
+    "score": 3.6214280950769955,
+    "kind": "swing",
+    "touches": 4
+   },
+   {
+    "level": 2.4600000000000004,
+    "score": 1.1401366674886644,
+    "kind": "swing",
+    "touches": 3
+   },
+   {
+    "level": 2.677442322044824,
+    "score": 0.8835938712097607,
+    "kind": "swing",
+    "touches": 3
+   }
+  ],
+  "sup": [
+   {
+    "level": 2.1569815030411994,
+    "score": 96.12394808304973,
+    "kind": "swing",
+    "touches": 15
+   },
+   {
+    "level": 2.001962503957471,
+    "score": 75.29256351751684,
+    "kind": "swing",
+    "touches": 16
+   },
+   {
+    "level": 1.8190731373775095,
+    "score": 9.165605334442835,
+    "kind": "swing",
+    "touches": 6
+   }
+  ]
+ },
+ "tech": {
+  "trend": "Trading above the whole moving-average stack, on a rising 200-day",
+  "summary": "The price closed 2.23 above a rising 20-day (2.11), a rising 50-day (2.05) and a rising 200-day (1.87). Momentum is firm: RSI(14) is ~64 and the daily ATR near 0.06 (~2.8%) points to a normal tape. MACD (12\u00b726\u00b79) is positive and rising (+0.05 / +0.04 / +0.01). Over the last year it has ranged 1.55\u20132.28; the last close sits 2% below that high and 44% above that low.",
+  "bull": "A daily close back above 2.36 would clear the nearest resistance and open the 2.68 zone.",
+  "bear": "A close below 2.16 would break the nearest support and open the 1.82 zone."
+ }
+}

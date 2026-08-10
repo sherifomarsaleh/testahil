@@ -1,0 +1,71 @@
+{
+ "ticker": "AMR",
+ "market": "AE",
+ "windows_scored": 10,
+ "windows_prebreak_dropped": 0,
+ "first_origin": "2023-12-25",
+ "last_origin": "2026-03-25",
+ "nu": 10.0,
+ "width_cal": 0.979,
+ "skill_norm": -0.005440238508095385,
+ "skill_raw": -0.008903512771136324,
+ "verdict": "BOUNDARY(PARITY-flagged)",
+ "ci_blocks": {
+  "2": [
+   -0.022195790683072314,
+   0.008746868242109213,
+   "PARITY"
+  ],
+  "3": [
+   -0.020430501883037744,
+   0.0031972432838980325,
+   "PARITY"
+  ],
+  "4": [
+   -0.01929954009744206,
+   -0.0028101588866866756,
+   "FAIL"
+  ]
+ },
+ "cov50": 0.2,
+ "cov80": 0.8,
+ "cov90": 1.0,
+ "pit_mean": 0.38669499999999996,
+ "pit_hist": [
+  2,
+  3,
+  1,
+  0,
+  0,
+  0,
+  1,
+  2,
+  1,
+  0
+ ],
+ "pit_ks": 0.37815,
+ "pit_ks_crit_5pct": 0.4294373062508659,
+ "pit_uniform": true,
+ "w90_ratio": 0.9044792808258105,
+ "market_gate": {
+  "verdict": "PARITY",
+  "skill": 0.0068,
+  "ci90": [
+   -0.001,
+   0.014
+  ],
+  "fit_date": "2026-07-29",
+  "panel_names": 18,
+  "windows": 261
+ },
+ "dq_log": [],
+ "clean_rows": 915,
+ "raw_rows": 915,
+ "density_rows_per_yr": 250.71549137284322,
+ "span_years": 3.649555099247091,
+ "first_session": "2022-12-13",
+ "last_session": "2026-08-07",
+ "max_abs_log": 0.13735841604782445,
+ "jump_threshold": 0.21127460834710743,
+ "flat_frac": 0.09190371991247265
+}

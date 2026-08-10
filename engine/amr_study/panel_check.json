@@ -1,0 +1,293 @@
+{
+ "incumbent": {
+  "nu": 10.0,
+  "width_cal": 0.979,
+  "market_verdict": "PARITY",
+  "market_skill": 0.0068,
+  "market_ci90": [
+   -0.001,
+   0.014
+  ],
+  "panel_names": [
+   "ADCB",
+   "ADIB",
+   "ADNOCGAS",
+   "AGTHIA",
+   "ALDAR",
+   "ALPHADHABI",
+   "BURJEEL",
+   "DEWA",
+   "DIB",
+   "EAND",
+   "EMAAR",
+   "EMAARDEV",
+   "ENBD",
+   "FAB",
+   "IHC",
+   "LULU",
+   "SALIK",
+   "TWOPOINTZERO"
+  ],
+  "windows": 261
+ },
+ "refit": {
+  "nu": 12.0,
+  "width_cal": 0.972,
+  "market_verdict": "PARITY",
+  "market_skill": 0.0064,
+  "market_ci90": [
+   -0.002,
+   0.014
+  ],
+  "windows": 271,
+  "panel_names": [
+   "ADCB",
+   "ADIB",
+   "ADNOCGAS",
+   "AGTHIA",
+   "ALDAR",
+   "ALPHADHABI",
+   "AMR",
+   "BURJEEL",
+   "DEWA",
+   "DIB",
+   "EAND",
+   "EMAAR",
+   "EMAARDEV",
+   "ENBD",
+   "FAB",
+   "IHC",
+   "LULU",
+   "SALIK",
+   "TWOPOINTZERO"
+  ]
+ },
+ "amr": {
+  "nu": 10.0,
+  "width_cal": 0.979,
+  "skill": -0.0054,
+  "skill_raw_basis": -0.0089,
+  "verdict": "BOUNDARY(PARITY-flagged)",
+  "ci_block2": [
+   -0.022,
+   0.009
+  ]
+ },
+ "per_name": {
+  "ADCB": {
+   "nu": 12.0,
+   "width_cal": 0.979,
+   "skill": 0.0349,
+   "skill_raw_basis": 0.0316,
+   "verdict": "PASS",
+   "ci_block2": [
+    0.012,
+    0.056
+   ]
+  },
+  "ADIB": {
+   "nu": 10.0,
+   "width_cal": 0.965,
+   "skill": 0.018,
+   "skill_raw_basis": 0.0132,
+   "verdict": "PASS",
+   "ci_block2": [
+    0.002,
+    0.032
+   ]
+  },
+  "ADNOCGAS": {
+   "nu": 12.0,
+   "width_cal": 0.979,
+   "skill": 0.0013,
+   "skill_raw_basis": 0.0017,
+   "verdict": "PARITY",
+   "ci_block2": [
+    -0.008,
+    0.023
+   ]
+  },
+  "AGTHIA": {
+   "nu": 12.0,
+   "width_cal": 0.979,
+   "skill": -0.0379,
+   "skill_raw_basis": -0.0417,
+   "verdict": "BOUNDARY(PARITY-flagged)",
+   "ci_block2": [
+    -0.115,
+    0.014
+   ]
+  },
+  "ALDAR": {
+   "nu": 12.0,
+   "width_cal": 0.972,
+   "skill": 0.0276,
+   "skill_raw_basis": 0.0223,
+   "verdict": "PASS",
+   "ci_block2": [
+    0.004,
+    0.045
+   ]
+  },
+  "ALPHADHABI": {
+   "nu": 12.0,
+   "width_cal": 0.979,
+   "skill": -0.0006,
+   "skill_raw_basis": -0.0035,
+   "verdict": "PARITY",
+   "ci_block2": [
+    -0.009,
+    0.008
+   ]
+  },
+  "AMR": {
+   "nu": 10.0,
+   "width_cal": 0.979,
+   "skill": -0.0054,
+   "skill_raw_basis": -0.0089,
+   "verdict": "BOUNDARY(PARITY-flagged)",
+   "ci_block2": [
+    -0.022,
+    0.009
+   ]
+  },
+  "BURJEEL": {
+   "nu": 12.0,
+   "width_cal": 0.972,
+   "skill": 0.0139,
+   "skill_raw_basis": 0.0066,
+   "verdict": "PARITY",
+   "ci_block2": [
+    -0.011,
+    0.04
+   ]
+  },
+  "DEWA": {
+   "nu": 12.0,
+   "width_cal": 0.979,
+   "skill": 0.0033,
+   "skill_raw_basis": 0.0042,
+   "verdict": "PARITY",
+   "ci_block2": [
+    -0.015,
+    0.015
+   ]
+  },
+  "DIB": {
+   "nu": 15.0,
+   "width_cal": 0.965,
+   "skill": 0.027,
+   "skill_raw_basis": 0.0267,
+   "verdict": "PASS",
+   "ci_block2": [
+    0.003,
+    0.041
+   ]
+  },
+  "EAND": {
+   "nu": 12.0,
+   "width_cal": 0.979,
+   "skill": 0.0213,
+   "skill_raw_basis": 0.0185,
+   "verdict": "BOUNDARY(PARITY-flagged)",
+   "ci_block2": [
+    -0.003,
+    0.058
+   ]
+  },
+  "EMAAR": {
+   "nu": 15.0,
+   "width_cal": 0.965,
+   "skill": 0.0182,
+   "skill_raw_basis": 0.0233,
+   "verdict": "PASS",
+   "ci_block2": [
+    0.012,
+    0.037
+   ]
+  },
+  "EMAARDEV": {
+   "nu": 12.0,
+   "width_cal": 0.972,
+   "skill": -0.0108,
+   "skill_raw_basis": -0.0089,
+   "verdict": "PARITY",
+   "ci_block2": [
+    -0.02,
+    0.004
+   ]
+  },
+  "ENBD": {
+   "nu": 12.0,
+   "width_cal": 0.979,
+   "skill": -0.0134,
+   "skill_raw_basis": -0.0092,
+   "verdict": "BOUNDARY(PARITY-flagged)",
+   "ci_block2": [
+    -0.061,
+    0.009
+   ]
+  },
+  "FAB": {
+   "nu": 12.0,
+   "width_cal": 0.979,
+   "skill": -0.0131,
+   "skill_raw_basis": -0.0147,
+   "verdict": "PARITY",
+   "ci_block2": [
+    -0.031,
+    0.015
+   ]
+  },
+  "IHC": {
+   "nu": 15.0,
+   "width_cal": 0.965,
+   "skill": 0.0235,
+   "skill_raw_basis": 0.0078,
+   "verdict": "PARITY",
+   "ci_block2": [
+    -0.186,
+    0.073
+   ]
+  },
+  "LULU": {
+   "nu": 12.0,
+   "width_cal": 0.972,
+   "skill": -0.0902,
+   "skill_raw_basis": -0.0917,
+   "verdict": "PROVISIONAL(insufficient-windows)",
+   "ci_block2": [
+    -0.09,
+    -0.09
+   ]
+  },
+  "SALIK": {
+   "nu": 10.0,
+   "width_cal": 0.979,
+   "skill": 0.0064,
+   "skill_raw_basis": 0.0059,
+   "verdict": "PARITY",
+   "ci_block2": [
+    -0.009,
+    0.023
+   ]
+  },
+  "TWOPOINTZERO": {
+   "nu": 10.0,
+   "width_cal": 0.965,
+   "skill": -0.005,
+   "skill_raw_basis": -0.0053,
+   "verdict": "PARITY",
+   "ci_block2": [
+    -0.013,
+    0.005
+   ]
+  }
+ },
+ "material": false,
+ "reasons": [],
+ "added": [
+  "AMR"
+ ],
+ "registry_written": false
+}
