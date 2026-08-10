@@ -58,6 +58,7 @@ const MARKET_OF = {
  "LGES": "KR",
  "LULU": "AE",
  "MAADEN": "SA",
+ "MODON": "AE",
  "NVDA": "US",
  "OCDI": "EG",
  "OIH": "EG",

@@ -105,97 +105,6 @@ const FV_OVERLAY = {
    }
   },
   {
-   "ticker": "AMR",
-   "name": "Americana Restaurants International PLC",
-   "code": "ADX:AMR",
-   "ccy": "AED",
-   "spot": 2.23,
-   "anchor_date": "2026-08-07",
-   "fv_asof": "2026-08-07",
-   "fv_lag_days": 0,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 1.5,
-   "fv_base": 2.19,
-   "fv_full": 3.44,
-   "gap_base_pct": -1.8,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 10.0,
-    "width_cal": 0.979,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.097925,
-    "mu_h": 0.0,
-    "G": {
-     "bear": -4.05,
-     "base": -0.18,
-     "full": 4.43
-    },
-    "band": "IN-REACH",
-    "informative": false,
-    "already_converged": true,
-    "p_term": {
-     "bear": 0.0005,
-     "base": 0.4202,
-     "full": 0.0003
-    },
-    "p_touch": {
-     "bear": 0.0008,
-     "base": 0.7405,
-     "full": 0.0004
-    },
-    "required_cagr": {
-     "bear": -0.9914,
-     "base": -0.1952,
-     "full": 180.5695
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.0018
-   },
-   "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.174693,
-    "mu_h": 0.0,
-    "G": {
-     "bear": -2.27,
-     "base": -0.1,
-     "full": 2.48
-    },
-    "band": "IN-REACH",
-    "informative": false,
-    "already_converged": true,
-    "p_term": {
-     "bear": 0.0147,
-     "base": 0.455,
-     "full": 0.0098
-    },
-    "p_touch": {
-     "bear": 0.0248,
-     "base": 0.8513,
-     "full": 0.0165
-    },
-    "required_cagr": {
-     "bear": -0.7953,
-     "base": -0.0698,
-     "full": 4.6626
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00223
-   }
-  },
-  {
    "ticker": "ACWA",
    "name": "ACWA Power Company",
    "code": "TADAWUL:2082",
@@ -4106,6 +4015,97 @@ const FV_OVERLAY = {
     "beats_cash": true,
     "asymmetry": "base inside 90% band",
     "selftest_max_dev": 0.00083
+   }
+  },
+  {
+   "ticker": "MODON",
+   "name": "Modon Holding PSC",
+   "code": "ADX:MODON",
+   "ccy": "AED",
+   "spot": 2.83,
+   "anchor_date": "2026-08-07",
+   "fv_asof": "2026-08-07",
+   "fv_lag_days": 0,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 1.03,
+   "fv_base": 3.38,
+   "fv_full": 6.31,
+   "gap_base_pct": 19.4,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.068338,
+    "mu_h": 0.003527,
+    "G": {
+     "bear": -14.79,
+     "base": 2.6,
+     "full": 11.73
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0,
+     "base": 0.0087,
+     "full": 0.0
+    },
+    "p_touch": {
+     "bear": 0.0,
+     "base": 0.0121,
+     "full": 0.0
+    },
+    "required_cagr": {
+     "bear": -1.0,
+     "base": 7.4249,
+     "full": 15096.8492
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00126
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.128582,
+    "mu_h": 0.010545,
+    "G": {
+     "bear": -7.86,
+     "base": 1.38,
+     "full": 6.24
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0,
+     "base": 0.0885,
+     "full": 0.0
+    },
+    "p_touch": {
+     "bear": 0.0,
+     "base": 0.1519,
+     "full": 0.0
+    },
+    "required_cagr": {
+     "bear": -0.9825,
+     "base": 1.0348,
+     "full": 23.7156
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00244
    }
   },
   {

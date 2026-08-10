@@ -63,6 +63,46 @@ const TICKERS = {
       biblio: "files/AMR_Bibliography_09-08-2026.pdf?v=0810a"
     }
   },
+  MODON: {
+    name: "Modon Holding PSC",
+    nameAr: "مدن القابضة",
+    code: "ADX:MODON",
+    spot: 2.83,
+    spotDate: "close 7 Aug 2026",
+    fairAsof: "2026-08-07",   // the close the FAIR VALUE is struck on — not the publication date in the filename
+    ccy: "AED",
+    fair: { bear: 1.03, base: 3.38, full: 6.31 },   // 9 Aug 2026 (revision 2, restruck same day on the 29-Jul-2026 H1 results release after external critique) — four lenses, one field, AED 1.03 to 6.31. Weighted central 3.38 (+19% vs spot 2.83) on FCFF DCF 40% / relative multiples 20% / normalised earnings power 20% / book value & sustainable return 20%: 5.29 / 2.20 / 1.46 / 2.65. THE GAP BETWEEN THE LENSES IS THE STORY: the cash-flow lens capitalises an AED 65.4bn contracted backlog (95% development, H1-2026 sales AED 26bn) that today's P&L barely shows, while the earnings lenses price the P&L as it stands — both are published, never averaged. The contested judgement (does the sales machine keep running?) is computed BOTH WAYS: base path AED 12→30→26→23→21bn of new sales gives DCF 5.29; a RUN-OFF that sells nothing new after the current backlog still gives 3.78, ABOVE spot — the market price is below the wind-down reading of the development book. Built bottom-up from the H1-2026 release anchors: backlog conversion 10.5%→32% per year, component working capital (receivable days 440→370, payables-and-advances cover 1.86×→1.40×, inventory added at 10% of new sales and consumed at 20% of recognised revenue), D&A at 3.4% of the average depreciable asset base, terminal debt weight DERIVED from the model's own FY2030E balance sheet (8.0%), escrow cash EXCLUDED from the bridge as funding the very backlog being valued, minorities capitalised at max(book, 2% of equity). WACC 8.30% explicit → 8.71% terminal; Ke 9.08% on an own-stock weekly regression beta of 1.03 vs an equal-weight 18-name UAE composite (flagged: the regressor is a proxy composite, not the official index). TV is 77.5% of EV and is said plainly, not hidden.
+    dist: {
+      t20: { label:"1 month",   p5:2.54, p25:2.72, p50:2.84, p75:2.96, p95:3.17, resolve:"2026-09-07" },
+      t60: { label:"3 months",  p5:2.32, p25:2.64, p50:2.86, p75:3.09, p95:3.52, resolve:"2026-11-09" }
+    },
+    hz: { h1:20, h3:63, l1:"1 month", l3:"3 months", cal:true },
+    touch: [ /* level, P(touch) 1-month %, 3-month % - descending */
+      [3.40, 1, 13],
+      [3.25, 4, 24],
+      [3.11, 13, 41],
+      [2.97, 39, 65],
+      [2.69, 35, 59],
+      [2.55, 9, 32]
+    ],
+    levels: { res:[2.88, 3.30, 3.57], sup:[2.76, 2.70, 2.40] },
+    tech: {
+      trend: "Trading below the whole moving-average stack, under a falling 200-day",
+      summary: "The price closed 2.83 below a falling 20-day (2.88), a falling 50-day (2.95) and a falling 200-day (3.21). Momentum is soft: RSI(14) is ~39 and the daily ATR near 0.05 (~1.8%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22120.04 / \u22120.04 / +0.00). Over the last year it has ranged 2.76\u20133.82; the last close sits 26% below that high and 3% above that low.",
+      bull: "A daily close back above 2.88 would clear the nearest resistance and open the 3.57 zone.",
+      bear: "A close below 2.76 would break the nearest support and open the 2.40 zone."
+    },
+    asof: {
+      mc:   { data:"2026-08-07", computed:"2026-08-09" },
+      tech: { data:"2026-08-07", computed:"2026-08-10" }
+    },
+    files: {
+      study: "files/MODON_Valuation_Study_09-08-2026_public.docx?v=0810a",
+      model: "files/MODON_Valuation_Model_09082026_public.xlsx?v=0810a",
+      pdf:   "files/MODON_Valuation_Study_09-08-2026_public.pdf?v=0810a",
+      biblio: "files/MODON_Bibliography_09-08-2026.pdf?v=0810a"
+    }
+  },
   PHAR: {
     name: "Egyptian International Pharmaceutical Industries (EIPICO)",
     nameAr: "\u0627\u0644\u0634\u0631\u0643\u0629 \u0627\u0644\u0645\u0635\u0631\u064a\u0629 \u0627\u0644\u062f\u0648\u0644\u064a\u0629 \u0644\u0644\u0635\u0646\u0627\u0639\u0627\u062a \u0627\u0644\u062f\u0648\u0627\u0626\u064a\u0629 - \u0625\u064a\u0628\u064a\u0643\u0648",
@@ -2721,6 +2761,31 @@ const COMING = [
    session it lands on can, and by at most a few days.
    ========================================================================== */
 const LEDGER = [
+  // ---- MODON · equity (ADX Abu Dhabi) · cycle 1 (9 Aug 2026 published study; MC PASS — own fitted verdict, scale-normalized skill +0.0424, CI90 EXCLUDES zero at every bootstrap block {2,3,4} ([+1.8%,+6.1%] / [+2.1%,+6.1%] / [+1.9%,+5.7%]) — robust PASS; 18-name AE panel PARITY +0.0068, CI90 [−0.001,+0.014], 261 windows) ----
+  {
+    instrument:"MODON", asset_class:"equity",
+    anchor_date:"2026-08-07", run_date:"2026-08-09", anchor_price:2.83, ccy:"AED",
+    horizon_label:"1 month", grade_date:"2026-09-07", grade_basis:"projected", horizon_days:20,
+    cycle_no:1, anchor_vol:0.2517,
+    note:"First coverage, 9-Aug-2026 — struck on the production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF (the touch ladder below is read off the stored first-20,000-path subset; the percentiles are from the full 50,000). q_annual=0 (no cash dividend declared; flagged in the study rather than assumed). AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% (AED sovereign curve). Horizon resolved by horizons.resolve() on ADX's own calendar, not a session count. Name-level calibration: PASS — 17 non-overlapping post-break quarterly origins (2022-02-18 → 2026-02-26; 6 pre-break windows dropped at the 2021 restructuring break), scale-normalized CRPS skill +4.24% against the carry-anchored random walk, with the bootstrap CI90 EXCLUDING zero at every block size {2,3,4} ([+1.8%,+6.1%] / [+2.1%,+6.1%] / [+1.9%,+5.7%]) — a robust PASS. Coverage 50/80/90 = 0.59/0.94/0.94 against nominal 0.50/0.80/0.90, PIT mean 0.439, cone 1.018x the benchmark's width — centred and near-nominal. The 18-name AE panel it is drawn from scores +0.68% with a CI90 of [−0.1%,+1.4%] across 261 windows — PARITY, and that panel is the standing market gate. A 19-name AE refit INCLUDING MODON sits in engine/PENDING_REVIEW/AE_2026-08-09.md awaiting human review (market PASS +0.99%, width_cal 0.979 → 0.972 proposed, a −0.7% band move, under the 5% materiality gate); this cone is struck on the COMMITTED fit 0.979, not the proposal. Price history 1,577 clean sessions over 8.7 years, zero repairs; density 182 rows/yr against ADX's Mon–Fri calendar reflects thin trading in the pre-restructuring years, screened at Step 0.0. The cone is a 1/3-month object and is NEVER blended with the undated fair-value zone.",
+    p5:2.54, p25:2.72, p50:2.84, p75:2.96, p95:3.17,
+    touch:{ "+5":39, "+10":13, "+15":4, "+20":1, "-5":35, "-10":9 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null, touch_hit:null,
+    reanchor_from:null
+  },
+  {
+    instrument:"MODON", asset_class:"equity",
+    anchor_date:"2026-08-07", run_date:"2026-08-09", anchor_price:2.83, ccy:"AED",
+    horizon_label:"3 months", grade_date:"2026-11-09", grade_basis:"projected", horizon_days:63,
+    cycle_no:1, anchor_vol:0.2637,
+    note:"First coverage, 9-Aug-2026 — struck on the production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF (the touch ladder below is read off the stored first-20,000-path subset; the percentiles are from the full 50,000). q_annual=0 (no cash dividend declared; flagged in the study rather than assumed). AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% (AED sovereign curve). Horizon resolved by horizons.resolve() on ADX's own calendar, not a session count — the 3-month calendar target 2026-11-07 falls on a non-trading day, so the grade date rolls FORWARD to 2026-11-09. Name-level calibration: PASS — 17 non-overlapping post-break quarterly origins (2022-02-18 → 2026-02-26; 6 pre-break windows dropped at the 2021 restructuring break), scale-normalized CRPS skill +4.24% against the carry-anchored random walk, with the bootstrap CI90 EXCLUDING zero at every block size {2,3,4} ([+1.8%,+6.1%] / [+2.1%,+6.1%] / [+1.9%,+5.7%]) — a robust PASS. Coverage 50/80/90 = 0.59/0.94/0.94 against nominal 0.50/0.80/0.90, PIT mean 0.439, cone 1.018x the benchmark's width — centred and near-nominal. The 18-name AE panel it is drawn from scores +0.68% with a CI90 of [−0.1%,+1.4%] across 261 windows — PARITY, and that panel is the standing market gate. A 19-name AE refit INCLUDING MODON sits in engine/PENDING_REVIEW/AE_2026-08-09.md awaiting human review (market PASS +0.99%, width_cal 0.979 → 0.972 proposed, a −0.7% band move, under the 5% materiality gate); this cone is struck on the COMMITTED fit 0.979, not the proposal. Price history 1,577 clean sessions over 8.7 years, zero repairs; density 182 rows/yr against ADX's Mon–Fri calendar reflects thin trading in the pre-restructuring years, screened at Step 0.0. The cone is a 1/3-month object and is NEVER blended with the undated fair-value zone.",
+    p5:2.32, p25:2.64, p50:2.86, p75:3.09, p95:3.52,
+    touch:{ "+5":65, "+10":41, "+15":24, "+20":13, "-5":59, "-10":32 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null, touch_hit:null,
+    reanchor_from:null
+  },
   // ---- ARCC · equity (EGX Egypt) · cycle 1 (6 Aug 2026 published study; MC BOUNDARY(PARITY-flagged) — own fitted verdict, scale-normalized skill −0.0178, CI90 straddles zero at bootstrap blocks {2,3} ([−7.6%,+0.9%] / [−8.3%,+0.4%]) but EXCLUDES zero at block 4 ([−8.5%,−0.3%]), so not block-robust; 5-year gate-(d) back-test FAILS on the skill limb (−0.0205) with the shape limb passing, on OVER-COVERAGE (cov80/90 = 1.00/1.00, cone 1.234x benchmark width); full cleaned history PARITY (−0.0063, 44 windows); EG panel PASS +0.0158, CI90 [0.009, 0.022] — cone published ILLUSTRATIVE ONLY) ----
   {
     instrument:"ARCC", asset_class:"equity",
