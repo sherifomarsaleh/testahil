@@ -19,11 +19,18 @@ THREE CHANGES OVER THE FIRST CUT (09-Aug-2026), all aimed at accuracy:
    window the listing supports (FERTIGLB listed 27-Oct-2021, so ~4.8 years -- inside
    the 2-5yr tier-1 band).
 
-STANDING LIMITATION, STATED NOT BURIED: engine/raw_indices/ holds a published index
-for EG, IN, KR, QA and US but NOT for AE. SIGCM clause 6 asks for the stock's own
-LOCAL INDEX. A constituent composite is the best available stand-in, and it is
-labelled as one everywhere it is quoted. Dropping a published ADX series into
-engine/raw_indices/AE/ would replace it -- exactly as EGX30 was added on 09-Aug-2026.
+RESOLVED 10-Aug-2026 -- THE REAL INDEX IS NOW THE REGRESSOR. engine/raw_indices/AE/
+FADGI.csv (FTSE ADX General, 2011-01-02 -> 2026-07-24) was supplied and is now the
+primary regressor, which is what SIGCM clause 6 actually asks for. The constituent
+composite is retained ONLY as a cross-check and is no longer the headline.
+
+Why the composite was worse than "an approximation of the index":
+  - It mixed TWO EXCHANGES. The engine's AE library holds ADX names (ADCB, FAB,
+    ALDAR, ADNOCGAS) alongside DFM names (EMAAR, DIB, ENBD, SALIK). FERTIGLB is
+    ADX-listed, so the correct regressor is an ADX index, not an ADX/DFM mongrel.
+  - It covered only the 17 names this engine happens to cover, not the exchange.
+  - Equal weighting gave TWOPOINTZERO the same weight as FAB; turnover weighting
+    was a proxy for a float-cap scheme the real index applies properly.
 """
 import glob
 import json
@@ -133,10 +140,19 @@ def fit(mkt, label, dimson):
                 first_obs=str(al.index.min().date()), last_obs=str(al.index.max().date()))
 
 
-fits = [fit(mkt_eq, 'equal-weight composite', False),
-        fit(mkt_to, 'turnover-weighted composite', False),
-        fit(mkt_eq, 'equal-weight composite', True),
-        fit(mkt_to, 'turnover-weighted composite', True)]
+# THE PUBLISHED LOCAL INDEX -- the SIGCM clause 6 regressor.
+IDX = os.path.join(HERE, '..', 'raw_indices', 'AE', 'FADGI.csv')
+idx, idx_dq = clean_ohlc(load_ohlc(IDX), 'FADGI', verbose=False, market='AE')
+idx = idx.set_index('Date').sort_index()['Price']
+idx_wk = weekly_last(idx[idx.index >= cut])
+mkt_ix = np.log(idx_wk / idx_wk.shift(1)).dropna()
+
+fits = [fit(mkt_ix, 'FTSE ADX General (published index)', False),
+        fit(mkt_ix, 'FTSE ADX General (published index)', True),
+        fit(mkt_eq, 'equal-weight composite [cross-check]', False),
+        fit(mkt_to, 'turnover-weighted composite [cross-check]', False),
+        fit(mkt_eq, 'equal-weight composite [cross-check]', True),
+        fit(mkt_to, 'turnover-weighted composite [cross-check]', True)]
 
 # DAILY CROSS-CHECK ONLY. The tier-1 rule is a 2-5yr WEEKLY/monthly regression; a daily
 # regression is explicitly NOT one of the tiers. It is run here purely to see whether a
@@ -177,20 +193,26 @@ daily = [daily_fit('equal'), daily_fit('turnover')]
 # that passes. Among the fits that DO pass, the Dimson form is preferred: it corrects a
 # documented downward bias from the ~13% float, and it is also the more conservative
 # (higher beta, lower value), so the choice does not flatter the valuation.
-passing = [f for f in fits if f['usable']]
-chosen = max(passing, key=lambda f: f['beta'])
+# SELECTION. SIGCM clause 6 names the stock's own LOCAL INDEX, so the choice is between
+# the two published-index fits only; the composites are cross-checks and cannot be
+# selected. Between naive and Dimson, the Dimson form is taken when it is usable: the
+# ~13% float means a naive beta understates systematic risk.
+idx_fits = [f for f in fits if 'published index' in f['label']]
+usable_idx = [f for f in idx_fits if f['usable']]
+chosen = (max(usable_idx, key=lambda f: f['beta']) if usable_idx
+          else dict(idx_fits[0], tier_fallback=True))
 chosen = dict(chosen, selection_note=(
-    'tier-1 own-stock weekly regression; Dimson-corrected; equal-weight composite. '
-    'The turnover-weighted composite is the better index proxy but fails the usability '
-    'gate (R2 4.3-4.6%), so the gate outcome is construction-dependent and the own-stock '
-    'beta is NOT robust. Published with that caveat and sensitised in the study.'))
+    'tier-1 own-stock weekly regression against the PUBLISHED FTSE ADX General index '
+    '(engine/raw_indices/AE/FADGI.csv). The constituent composites are reported as '
+    'cross-checks only -- they mixed ADX and DFM names and covered only the 17 names '
+    'this engine holds, so they were never the right regressor for an ADX-listed share.'))
 out = dict(chosen=chosen, all_fits=fits, daily_crosscheck=daily, constituents=sorted(px),
            constituent_count=len(px), weighting='turnover (price x volume, lagged one week)',
            correction='Dimson (1979) lead-lag, +/-1 week',
            blume_crosscheck=2 / 3 * chosen['beta'] + 1 / 3,
-           naive_equal_weight_beta=fits[0]['beta'],
-           index_note=('no published ADX index exists in engine/raw_indices/; this is a '
-                       'constituent composite and is labelled as one wherever quoted'),
+           naive_equal_weight_beta=[f for f in fits if f['label'].startswith('equal') and not f['dimson']][0]['beta'],
+           index_file='engine/raw_indices/AE/FADGI.csv (FTSE ADX General)', index_dq=idx_dq,
+           index_note='published FTSE ADX General index supplied 10-Aug-2026 and now the regressor',
            free_float_note='~13% free float — a naive beta is biased low by thin trading')
 json.dump(out, open(os.path.join(HERE, 'beta_result.json'), 'w'), indent=1)
 

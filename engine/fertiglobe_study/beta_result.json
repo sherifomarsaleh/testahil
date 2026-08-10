@@ -1,25 +1,59 @@
 {
  "chosen": {
-  "label": "equal-weight composite",
+  "label": "FTSE ADX General (published index)",
   "dimson": true,
-  "beta": 0.5358642445847095,
-  "r2": 0.06534060862276492,
-  "n": 244,
-  "se": 0.2045003131742574,
+  "beta": 0.9314887244038168,
+  "r2": 0.09960762477978913,
+  "n": 242,
+  "se": 0.283328369471792,
   "ci90": [
-   0.19946122941305605,
-   0.872267259756363
+   0.46541355662271894,
+   1.3975638921849147
   ],
   "usable": true,
   "gate_msg": "passes minimum usability gate",
   "window_years": 4.68,
   "first_obs": "2021-11-12",
   "last_obs": "2026-07-17",
-  "selection_note": "tier-1 own-stock weekly regression; Dimson-corrected; equal-weight composite. The turnover-weighted composite is the better index proxy but fails the usability gate (R2 4.3-4.6%), so the gate outcome is construction-dependent and the own-stock beta is NOT robust. Published with that caveat and sensitised in the study."
+  "selection_note": "tier-1 own-stock weekly regression against the PUBLISHED FTSE ADX General index (engine/raw_indices/AE/FADGI.csv). The constituent composites are reported as cross-checks only -- they mixed ADX and DFM names and covered only the 17 names this engine holds, so they were never the right regressor for an ADX-listed share."
  },
  "all_fits": [
   {
-   "label": "equal-weight composite",
+   "label": "FTSE ADX General (published index)",
+   "dimson": false,
+   "beta": 0.8101870844634188,
+   "r2": 0.09108460643948046,
+   "n": 244,
+   "se": 0.16451930604346496,
+   "ci90": [
+    0.5395528260219189,
+    1.0808213429049187
+   ],
+   "usable": true,
+   "gate_msg": "passes minimum usability gate",
+   "window_years": 4.71,
+   "first_obs": "2021-11-05",
+   "last_obs": "2026-07-24"
+  },
+  {
+   "label": "FTSE ADX General (published index)",
+   "dimson": true,
+   "beta": 0.9314887244038168,
+   "r2": 0.09960762477978913,
+   "n": 242,
+   "se": 0.283328369471792,
+   "ci90": [
+    0.46541355662271894,
+    1.3975638921849147
+   ],
+   "usable": true,
+   "gate_msg": "passes minimum usability gate",
+   "window_years": 4.68,
+   "first_obs": "2021-11-12",
+   "last_obs": "2026-07-17"
+  },
+  {
+   "label": "equal-weight composite [cross-check]",
    "dimson": false,
    "beta": 0.49170467247561433,
    "r2": 0.06152028593246317,
@@ -36,7 +70,7 @@
    "last_obs": "2026-07-24"
   },
   {
-   "label": "turnover-weighted composite",
+   "label": "turnover-weighted composite [cross-check]",
    "dimson": false,
    "beta": 0.3755552635369102,
    "r2": 0.04266518722497947,
@@ -53,7 +87,7 @@
    "last_obs": "2026-07-24"
   },
   {
-   "label": "equal-weight composite",
+   "label": "equal-weight composite [cross-check]",
    "dimson": true,
    "beta": 0.5358642445847095,
    "r2": 0.06534060862276492,
@@ -70,7 +104,7 @@
    "last_obs": "2026-07-17"
   },
   {
-   "label": "turnover-weighted composite",
+   "label": "turnover-weighted composite [cross-check]",
    "dimson": true,
    "beta": 0.34344036243566034,
    "r2": 0.04642624788230598,
@@ -127,8 +161,12 @@
  "constituent_count": 17,
  "weighting": "turnover (price x volume, lagged one week)",
  "correction": "Dimson (1979) lead-lag, +/-1 week",
- "blume_crosscheck": 0.690576163056473,
+ "blume_crosscheck": 0.9543258162692112,
  "naive_equal_weight_beta": 0.49170467247561433,
- "index_note": "no published ADX index exists in engine/raw_indices/; this is a constituent composite and is labelled as one wherever quoted",
+ "index_file": "engine/raw_indices/AE/FADGI.csv (FTSE ADX General)",
+ "index_dq": [
+  "dropped 1 interior stale/no-trade rows"
+ ],
+ "index_note": "published FTSE ADX General index supplied 10-Aug-2026 and now the regressor",
  "free_float_note": "~13% free float \u2014 a naive beta is biased low by thin trading"
 }
