@@ -79,7 +79,7 @@ without stopping to ask.
 	1. sitemap + homepage footer strip   node scripts/generate_seo.js
 	2. feed                              node scripts/generate_feed.js
 	3. market registry (exchange group)  python3 scripts/build_market_registry.py --write
-	4. Ticker Picker overlay (EG only)   python3 engine/fv_overlay.py --market EG --js assets/fv_overlay.js
+	4. Ticker Picker overlay (ALL names) python3 engine/fv_overlay.py --js assets/fv_overlay.js
 	5. page chart + technical read       python3 engine/ta_chart.py --only {TICKER} --write
 	                                     python3 engine/apply_technicals.py --only {TICKER} --write
 	(5 runs last — it rewrites the ticker's own data.js block, so the entry and page must exist first.)
@@ -90,9 +90,16 @@ without stopping to ask.
 	**Surface 4 was missing from this list until 9-Aug-2026 and three publishes shipped broken
 	because of it.** picker.html reads `assets/fv_overlay.js`, which nothing in the publish path
 	regenerated, so SWDY, SCEM and EGCH all went live green and INVISIBLE on the Ticker Picker —
-	found only when a reader asked why a published name was not there. The overlay is fitted per
-	market and only EG has a fit today; for any other market the picker legitimately does not
-	carry the name, and the script says so rather than skipping silently.
+	found only when a reader asked why a published name was not there.
+	**[CHANGED 10-Aug-2026] The picker carries EVERY covered name, each row computed under its
+	OWN market's committed fit and cash hurdle** — `fv_overlay.py` resolves each row's market
+	from `assets/markets.js` and ignores any `--market` argument for row selection. The old
+	EG-only carve-out is retired, and the defect that retired it is on record: the first non-EG
+	publish (MODON, ADX) hit a prefix map that only knew EG, so `--market AE` filtered NOTHING
+	and every EGX row shipped live recomputed under the AE fit, judged against a 3.65% cash
+	hurdle instead of 19.5% — while the surface gate skipped the picker for ADX names, hiding
+	exactly the page that would have shown it. A name missing from the market registry becomes
+	a loud BLOCKED row, never a silent drop.
 •	Render every deliverable to PDF first (python3 engine/make_pdf.py files/…) and point files.pdf at it.
 	The page surfaces ONLY the PDF — a missing pdf key leaves the download button pointing at "undefined".
 •	Verify by render, not by grep: load the ticker page and ledger.html headless and confirm the ticker
@@ -100,7 +107,7 @@ without stopping to ask.
 	scripts/check_page_integrity.py — both clean before you commit.
 •	Then verify EVERY register surface, not just those two:
 	    node scripts/check_ticker_surfaces.js {TICKER}
-	It renders stocks.html, trade.html, portfolio.html, ledger.html and (EGX names only) picker.html
+	It renders stocks.html, trade.html, portfolio.html, ledger.html and picker.html
 	and asserts the ticker is in the DOM a reader would see. Three of those never show their whole
 	register at rest — stocks paginates, Trade and Portfolio start empty behind a search combobox —
 	so the gate DRIVES each one the way a reader does: it types the ticker and reads back what
@@ -322,7 +329,7 @@ Steps 1–4 are judgment and stay manual. Steps 5–9 are mechanical and are wha
    (Republish: registrations already exist; only the `coverage.js` numbers change.)
 5. **Merge `origin/main`** and resolve additively — before anything is regenerated.
 6. `build_market_registry.py --write`; `generate_seo.js`; `generate_feed.js`;
-   `fv_overlay.py --market {MKT} --js assets/fv_overlay.js`; then `ta_chart.py` and
+   `fv_overlay.py --js assets/fv_overlay.js` (all names, per-row markets); then `ta_chart.py` and
    `apply_technicals.py` (both `--only {TICKER} --write`) last, because they rewrite
    the ticker's own block.
 7. Render-verify headless; run both gates; run `check_ticker_surfaces.js {TICKER}`.
