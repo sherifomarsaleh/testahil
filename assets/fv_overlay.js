@@ -3,15 +3,15 @@
 const FV_OVERLAY = {
  "protocol": "Fundamental_MC_Integration_Protocol.md (PROPOSED 6-Aug-2026)",
  "phase": "A",
- "market": "EG",
+ "market": "AE",
  "generated_from": "assets/data.js",
  "engine_config": {
-  "nu": 6.0,
-  "width_cal": 0.951,
-  "rf_live": 0.195,
-  "width_overlay_active": true
+  "nu": 10.0,
+  "width_cal": 0.979,
+  "rf_live": 0.0365,
+  "width_overlay_active": false
  },
- "n": 37,
+ "n": 79,
  "rows": [
   {
    "ticker": "HELI",
@@ -30,9 +30,9 @@ const FV_OVERLAY = {
    "gap_base_pct": 1.6,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 6.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
    },
@@ -41,67 +41,431 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.10356,
+    "sigma_h": 0.101355,
     "mu_h": 0.014406,
     "G": {
-     "bear": -4.48,
+     "bear": -4.58,
      "base": 0.15,
-     "full": 3.45
+     "full": 3.52
     },
     "band": "IN-REACH",
     "informative": false,
     "already_converged": true,
     "p_term": {
-     "bear": 0.0007,
-     "base": 0.4946,
-     "full": 0.0033
+     "bear": 0.0002,
+     "base": 0.4949,
+     "full": 0.0018
     },
     "p_touch": {
-     "bear": 0.0013,
-     "base": 0.7952,
-     "full": 0.0045
+     "bear": 0.0002,
+     "base": 0.7994,
+     "full": 0.0023
     },
     "required_cagr": {
      "bear": -0.9962,
      "base": 0.2058,
      "full": 71.6681
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00166
+    "selftest_max_dev": 0.00331
    },
    "3M": {
     "h_sessions": 61,
-    "sigma_h": 0.192677,
+    "sigma_h": 0.188575,
     "mu_h": 0.04608,
     "G": {
-     "bear": -2.41,
+     "bear": -2.46,
      "base": 0.08,
-     "full": 1.85
+     "full": 1.89
     },
     "band": "IN-REACH",
     "informative": false,
     "already_converged": true,
     "p_term": {
-     "bear": 0.0088,
-     "base": 0.5736,
-     "full": 0.0477
+     "bear": 0.0064,
+     "base": 0.5699,
+     "full": 0.0475
     },
     "p_touch": {
-     "bear": 0.0167,
-     "base": 0.9024,
-     "full": 0.0763
+     "bear": 0.0114,
+     "base": 0.9027,
+     "full": 0.0766
     },
     "required_cagr": {
      "bear": -0.8437,
      "base": 0.0644,
      "full": 3.173
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00305
+   }
+  },
+  {
+   "ticker": "ACWA",
+   "name": "ACWA Power Company",
+   "code": "TADAWUL:2082",
+   "ccy": "SAR",
+   "spot": 191.2,
+   "anchor_date": "2026-07-26",
+   "fv_asof": "2026-07-05",
+   "fv_lag_days": 21,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 129,
+   "fv_base": 195,
+   "fv_full": 299,
+   "gap_base_pct": 2.0,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.108227,
+    "mu_h": 0.002872,
+    "G": {
+     "bear": -3.64,
+     "base": 0.18,
+     "full": 4.13
+    },
+    "band": "IN-REACH",
+    "informative": false,
+    "already_converged": true,
+    "p_term": {
+     "bear": 0.0011,
+     "base": 0.4328,
+     "full": 0.0005
+    },
+    "p_touch": {
+     "bear": 0.0013,
+     "base": 0.7567,
+     "full": 0.0007
+    },
+    "required_cagr": {
+     "bear": -0.9911,
+     "base": 0.2664,
+     "full": 212.8945
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00328
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.18984,
+    "mu_h": 0.011337,
+    "G": {
+     "bear": -2.07,
+     "base": 0.1,
+     "full": 2.36
+    },
+    "band": "IN-REACH",
+    "informative": false,
+    "already_converged": true,
+    "p_term": {
+     "bear": 0.0192,
+     "base": 0.4809,
+     "full": 0.014
+    },
+    "p_touch": {
+     "bear": 0.033,
+     "base": 0.8628,
+     "full": 0.0241
+    },
+    "required_cagr": {
+     "bear": -0.7928,
+     "base": 0.0819,
+     "full": 4.9804
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00152
+   }
+  },
+  {
+   "ticker": "ALPHADHABI",
+   "name": "Alpha Dhabi Holding",
+   "code": "ADX:ALPHADHABI",
+   "ccy": "AED",
+   "spot": 7.3,
+   "anchor_date": "2026-07-24",
+   "fv_asof": "2026-07-10",
+   "fv_lag_days": 14,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 5.95,
+   "fv_base": 7.13,
+   "fv_full": 8.63,
+   "gap_base_pct": -2.3,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.087025,
+    "mu_h": 0.002736,
+    "G": {
+     "bear": -2.35,
+     "base": -0.27,
+     "full": 1.92
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0119,
+     "base": 0.3712,
+     "full": 0.0303
+    },
+    "p_touch": {
+     "bear": 0.0172,
+     "base": 0.6649,
+     "full": 0.0446
+    },
+    "required_cagr": {
+     "bear": -0.914,
+     "base": -0.2463,
+     "full": 6.4517
+    },
+    "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00283
+    "selftest_max_dev": 0.00162
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.16036,
+    "mu_h": 0.009543,
+    "G": {
+     "bear": -1.28,
+     "base": -0.15,
+     "full": 1.04
+    },
+    "band": "IN-REACH",
+    "informative": false,
+    "already_converged": true,
+    "p_term": {
+     "bear": 0.0833,
+     "base": 0.4111,
+     "full": 0.1485
+    },
+    "p_touch": {
+     "bear": 0.1475,
+     "base": 0.8026,
+     "full": 0.2581
+    },
+    "required_cagr": {
+     "bear": -0.5587,
+     "base": -0.0899,
+     "full": 0.9532
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.001
+   }
+  },
+  {
+   "ticker": "NVDA",
+   "name": "NVIDIA Corporation",
+   "code": "NASDAQ:NVDA",
+   "ccy": "USD",
+   "spot": 196.51,
+   "anchor_date": "2026-07-27",
+   "fv_asof": "2026-07-06",
+   "fv_lag_days": 21,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 147,
+   "fv_base": 204,
+   "fv_full": 287,
+   "gap_base_pct": 3.8,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.140873,
+    "mu_h": 0.00244,
+    "G": {
+     "bear": -2.06,
+     "base": 0.27,
+     "full": 2.69
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0213,
+     "base": 0.3935,
+     "full": 0.0068
+    },
+    "p_touch": {
+     "bear": 0.0323,
+     "base": 0.6893,
+     "full": 0.0093
+    },
+    "required_cagr": {
+     "bear": -0.9693,
+     "base": 0.5666,
+     "full": 93.1818
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00471
+   },
+   "3M": {
+    "h_sessions": 64,
+    "sigma_h": 0.249931,
+    "mu_h": 0.011033,
+    "G": {
+     "bear": -1.16,
+     "base": 0.15,
+     "full": 1.52
+    },
+    "band": "IN-REACH",
+    "informative": false,
+    "already_converged": true,
+    "p_term": {
+     "bear": 0.1037,
+     "base": 0.4542,
+     "full": 0.0655
+    },
+    "p_touch": {
+     "bear": 0.1862,
+     "base": 0.8227,
+     "full": 0.1135
+    },
+    "required_cagr": {
+     "bear": -0.6869,
+     "base": 0.1614,
+     "full": 3.5498
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.002
+   }
+  },
+  {
+   "ticker": "KAKAO",
+   "name": "Kakao Corp.",
+   "code": "KRX:035720",
+   "ccy": "KRW",
+   "spot": 35650,
+   "anchor_date": "2026-07-28",
+   "fv_asof": "2026-06-28",
+   "fv_lag_days": 30,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 24517,
+   "fv_base": 34258,
+   "fv_full": 46401,
+   "gap_base_pct": -3.9,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.154291,
+    "mu_h": 0.001885,
+    "G": {
+     "bear": -2.43,
+     "base": -0.26,
+     "full": 1.71
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0107,
+     "base": 0.3843,
+     "full": 0.0436
+    },
+    "p_touch": {
+     "bear": 0.0156,
+     "base": 0.6809,
+     "full": 0.0666
+    },
+    "required_cagr": {
+     "bear": -0.9888,
+     "base": -0.3799,
+     "full": 22.6382
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00348
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.249733,
+    "mu_h": 0.009398,
+    "G": {
+     "bear": -1.5,
+     "base": -0.16,
+     "full": 1.06
+    },
+    "band": "IN-REACH",
+    "informative": false,
+    "already_converged": true,
+    "p_term": {
+     "bear": 0.0583,
+     "base": 0.415,
+     "full": 0.1408
+    },
+    "p_touch": {
+     "bear": 0.1011,
+     "base": 0.7981,
+     "full": 0.2444
+    },
+    "required_cagr": {
+     "bear": -0.7763,
+     "base": -0.1473,
+     "full": 1.8699
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00201
    }
   },
   {
@@ -121,9 +485,9 @@ const FV_OVERLAY = {
    "gap_base_pct": -3.8,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 6.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
    },
@@ -132,67 +496,158 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 21,
-    "sigma_h": 0.127225,
+    "sigma_h": 0.124516,
     "mu_h": 0.01481,
     "G": {
-     "bear": -3.91,
+     "bear": -3.99,
      "base": -0.31,
-     "full": 0.89
+     "full": 0.91
     },
     "band": "IN-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0013,
-     "base": 0.3116,
-     "full": 0.1903
+     "bear": 0.0005,
+     "base": 0.3198,
+     "full": 0.1991
     },
     "p_touch": {
-     "bear": 0.0022,
-     "base": 0.5906,
-     "full": 0.3026
+     "bear": 0.0008,
+     "base": 0.6065,
+     "full": 0.3133
     },
     "required_cagr": {
      "bear": -0.9974,
      "base": -0.3734,
      "full": 2.8844
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00144
+    "selftest_max_dev": 0.00203
    },
    "3M": {
     "h_sessions": 62,
-    "sigma_h": 0.225642,
+    "sigma_h": 0.220838,
     "mu_h": 0.046222,
     "G": {
-     "bear": -2.2,
-     "base": -0.17,
-     "full": 0.5
+     "bear": -2.25,
+     "base": -0.18,
+     "full": 0.51
     },
     "band": "IN-REACH",
     "informative": false,
     "already_converged": true,
     "p_term": {
-     "bear": 0.0128,
-     "base": 0.3301,
-     "full": 0.3646
+     "bear": 0.0102,
+     "base": 0.3377,
+     "full": 0.371
     },
     "p_touch": {
-     "bear": 0.0235,
-     "base": 0.7268,
-     "full": 0.5935
+     "bear": 0.0181,
+     "base": 0.741,
+     "full": 0.6068
     },
     "required_cagr": {
      "bear": -0.863,
      "base": -0.1443,
      "full": 0.572
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00285
+    "selftest_max_dev": 0.00177
+   }
+  },
+  {
+   "ticker": "IQCD",
+   "name": "Industries Qatar",
+   "code": "QSE:IQCD",
+   "ccy": "QAR",
+   "spot": 10.7,
+   "anchor_date": "2026-07-28",
+   "fv_asof": "2026-07-05",
+   "fv_lag_days": 23,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 6.9,
+   "fv_base": 10.9,
+   "fv_full": 15,
+   "gap_base_pct": 1.9,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.055256,
+    "mu_h": 0.0028,
+    "G": {
+     "bear": -7.94,
+     "base": 0.34,
+     "full": 6.11
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0,
+     "base": 0.3785,
+     "full": 0.0
+    },
+    "p_touch": {
+     "bear": 0.0,
+     "base": 0.6473,
+     "full": 0.0
+    },
+    "required_cagr": {
+     "bear": -0.9948,
+     "base": 0.2489,
+     "full": 56.6089
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00153
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.09747,
+    "mu_h": 0.010228,
+    "G": {
+     "bear": -4.5,
+     "base": 0.19,
+     "full": 3.47
+    },
+    "band": "IN-REACH",
+    "informative": false,
+    "already_converged": true,
+    "p_term": {
+     "bear": 0.0002,
+     "base": 0.4631,
+     "full": 0.0019
+    },
+    "p_touch": {
+     "bear": 0.0003,
+     "base": 0.806,
+     "full": 0.0034
+    },
+    "required_cagr": {
+     "bear": -0.8271,
+     "base": 0.0769,
+     "full": 2.8622
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00061
    }
   },
   {
@@ -212,9 +667,9 @@ const FV_OVERLAY = {
    "gap_base_pct": 2.8,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 6.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
    },
@@ -223,89 +678,89 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.082146,
+    "sigma_h": 0.080397,
     "mu_h": 0.014733,
     "G": {
-     "bear": -1.93,
-     "base": 0.33,
-     "full": 2.68
+     "bear": -1.97,
+     "base": 0.34,
+     "full": 2.74
     },
     "band": "IN-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0208,
-     "base": 0.4279,
-     "full": 0.011
+     "bear": 0.0184,
+     "base": 0.4316,
+     "full": 0.0084
     },
     "p_touch": {
-     "bear": 0.034,
-     "base": 0.6714,
-     "full": 0.0154
+     "bear": 0.029,
+     "base": 0.6798,
+     "full": 0.0115
     },
     "required_cagr": {
      "bear": -0.8507,
      "base": 0.3901,
      "full": 13.1048
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00129
+    "selftest_max_dev": 0.00258
    },
    "3M": {
     "h_sessions": 61,
-    "sigma_h": 0.149779,
+    "sigma_h": 0.14659,
     "mu_h": 0.045693,
     "G": {
-     "bear": -1.06,
-     "base": 0.18,
-     "full": 1.47
+     "bear": -1.08,
+     "base": 0.19,
+     "full": 1.5
     },
     "band": "IN-REACH",
     "informative": false,
     "already_converged": true,
     "p_term": {
-     "bear": 0.073,
-     "base": 0.5569,
-     "full": 0.1014
+     "bear": 0.0752,
+     "base": 0.554,
+     "full": 0.106
     },
     "p_touch": {
-     "bear": 0.1486,
-     "base": 0.8488,
-     "full": 0.161
+     "bear": 0.1529,
+     "base": 0.8489,
+     "full": 0.1658
     },
     "required_cagr": {
      "bear": -0.4695,
      "base": 0.1161,
      "full": 1.4161
     },
-    "hurdle_rf": 0.195,
-    "beats_cash": false,
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00215
+    "selftest_max_dev": 0.00231
    }
   },
   {
-   "ticker": "PHDC",
-   "name": "Palm Hills Developments",
-   "code": "EGX:PHDC",
-   "ccy": "EGP",
-   "spot": 15.01,
-   "anchor_date": "2026-07-22",
-   "fv_asof": "2026-06-11",
-   "fv_lag_days": 41,
+   "ticker": "QGTS",
+   "name": "Nakilat",
+   "code": "QSE:QGTS",
+   "ccy": "QAR",
+   "spot": 4.165,
+   "anchor_date": "2026-07-28",
+   "fv_asof": "2026-07-05",
+   "fv_lag_days": 23,
    "fv_stale": false,
    "fv_asof_in_closure": false,
-   "fv_bear": 7.62,
-   "fv_base": 15.89,
-   "fv_full": 24.92,
-   "gap_base_pct": 5.9,
+   "fv_bear": 2.71,
+   "fv_base": 4.29,
+   "fv_full": 6.4,
+   "gap_base_pct": 3.0,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 6.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
    },
@@ -313,68 +768,68 @@ const FV_OVERLAY = {
    "realized_vs_fv": null,
    "converged": null,
    "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.105406,
-    "mu_h": 0.014551,
+    "h_sessions": 22,
+    "sigma_h": 0.079739,
+    "mu_h": 0.002973,
     "G": {
-     "bear": -6.43,
-     "base": 0.54,
-     "full": 4.81
+     "bear": -5.39,
+     "base": 0.37,
+     "full": 5.39
     },
     "band": "IN-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
      "bear": 0.0001,
-     "base": 0.3198,
-     "full": 0.0006
+     "base": 0.3585,
+     "full": 0.0001
     },
     "p_touch": {
-     "bear": 0.0002,
-     "base": 0.5067,
-     "full": 0.0009
+     "bear": 0.0001,
+     "base": 0.6159,
+     "full": 0.0001
     },
     "required_cagr": {
-     "bear": -0.9997,
-     "base": 0.9812,
-     "full": 437.5389
+     "bear": -0.9942,
+     "base": 0.426,
+     "full": 172.2924
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00193
+    "selftest_max_dev": 0.00176
    },
    "3M": {
-    "h_sessions": 61,
-    "sigma_h": 0.19502,
-    "mu_h": 0.046217,
+    "h_sessions": 63,
+    "sigma_h": 0.136733,
+    "mu_h": 0.010651,
     "G": {
-     "bear": -3.48,
-     "base": 0.29,
-     "full": 2.6
+     "bear": -3.14,
+     "base": 0.22,
+     "full": 3.14
     },
     "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
+    "informative": false,
+    "already_converged": true,
     "p_term": {
-     "bear": 0.002,
-     "base": 0.4742,
-     "full": 0.0138
+     "bear": 0.0024,
+     "base": 0.4401,
+     "full": 0.0032
     },
     "p_touch": {
-     "bear": 0.0038,
-     "base": 0.7551,
-     "full": 0.0215
+     "bear": 0.0042,
+     "base": 0.778,
+     "full": 0.0054
     },
     "required_cagr": {
-     "bear": -0.9336,
-     "base": 0.256,
-     "full": 6.5975
+     "bear": -0.8208,
+     "base": 0.1256,
+     "full": 4.5752
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00286
+    "selftest_max_dev": 0.00191
    }
   },
   {
@@ -394,9 +849,9 @@ const FV_OVERLAY = {
    "gap_base_pct": 6.9,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 6.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
    },
@@ -405,67 +860,158 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.129157,
+    "sigma_h": 0.126407,
     "mu_h": 0.014415,
     "G": {
-     "bear": -3.98,
-     "base": 0.52,
-     "full": 3.45
+     "bear": -4.07,
+     "base": 0.53,
+     "full": 3.52
     },
     "band": "IN-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0012,
-     "base": 0.3189,
-     "full": 0.0032
+     "bear": 0.0004,
+     "base": 0.3269,
+     "full": 0.0017
     },
     "p_touch": {
-     "bear": 0.0022,
-     "base": 0.513,
-     "full": 0.0043
+     "bear": 0.0006,
+     "base": 0.5278,
+     "full": 0.0022
     },
     "required_cagr": {
      "bear": -0.9979,
      "base": 1.2262,
      "full": 208.2995
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00311
+    "selftest_max_dev": 0.00517
    },
    "3M": {
     "h_sessions": 61,
-    "sigma_h": 0.231965,
+    "sigma_h": 0.227027,
     "mu_h": 0.046107,
     "G": {
-     "bear": -2.22,
+     "bear": -2.26,
      "base": 0.29,
-     "full": 1.92
+     "full": 1.96
     },
     "band": "IN-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0127,
-     "base": 0.4585,
-     "full": 0.0398
+     "bear": 0.0101,
+     "base": 0.4606,
+     "full": 0.0388
     },
     "p_touch": {
-     "bear": 0.0234,
-     "base": 0.7476,
-     "full": 0.0638
+     "bear": 0.0179,
+     "base": 0.7539,
+     "full": 0.0633
     },
     "required_cagr": {
      "bear": -0.872,
      "base": 0.3057,
      "full": 4.9373
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00255
+    "selftest_max_dev": 0.00281
+   }
+  },
+  {
+   "ticker": "PHDC",
+   "name": "Palm Hills Developments",
+   "code": "EGX:PHDC",
+   "ccy": "EGP",
+   "spot": 15.01,
+   "anchor_date": "2026-07-22",
+   "fv_asof": "2026-06-11",
+   "fv_lag_days": 41,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 7.62,
+   "fv_base": 15.89,
+   "fv_full": 24.92,
+   "gap_base_pct": 5.9,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.103162,
+    "mu_h": 0.014551,
+    "G": {
+     "bear": -6.57,
+     "base": 0.55,
+     "full": 4.91
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0,
+     "base": 0.3278,
+     "full": 0.0002
+    },
+    "p_touch": {
+     "bear": 0.0,
+     "base": 0.5216,
+     "full": 0.0002
+    },
+    "required_cagr": {
+     "bear": -0.9997,
+     "base": 0.9812,
+     "full": 437.5389
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00362
+   },
+   "3M": {
+    "h_sessions": 61,
+    "sigma_h": 0.190868,
+    "mu_h": 0.046217,
+    "G": {
+     "bear": -3.55,
+     "base": 0.3,
+     "full": 2.66
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0009,
+     "base": 0.4755,
+     "full": 0.0112
+    },
+    "p_touch": {
+     "bear": 0.0013,
+     "base": 0.7615,
+     "full": 0.0176
+    },
+    "required_cagr": {
+     "bear": -0.9336,
+     "base": 0.256,
+     "full": 6.5975
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00308
    }
   },
   {
@@ -485,9 +1031,9 @@ const FV_OVERLAY = {
    "gap_base_pct": 9.4,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 6.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
    },
@@ -496,67 +1042,158 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 21,
-    "sigma_h": 0.159039,
+    "sigma_h": 0.155653,
     "mu_h": 0.014672,
     "G": {
-     "bear": -1.66,
-     "base": 0.56,
-     "full": 2.58
+     "bear": -1.69,
+     "base": 0.58,
+     "full": 2.64
     },
     "band": "IN-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0381,
-     "base": 0.2925,
-     "full": 0.0113
+     "bear": 0.0369,
+     "base": 0.3012,
+     "full": 0.0087
     },
     "p_touch": {
-     "bear": 0.0613,
-     "base": 0.4749,
-     "full": 0.017
+     "bear": 0.0579,
+     "base": 0.4896,
+     "full": 0.0129
     },
     "required_cagr": {
      "bear": -0.9575,
      "base": 1.9295,
      "full": 136.7901
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.0019
+    "selftest_max_dev": 0.00237
    },
    "3M": {
     "h_sessions": 61,
-    "sigma_h": 0.27141,
+    "sigma_h": 0.265631,
     "mu_h": 0.046493,
     "G": {
-     "bear": -0.97,
-     "base": 0.33,
-     "full": 1.51
+     "bear": -0.99,
+     "base": 0.34,
+     "full": 1.55
     },
     "band": "IN-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.1058,
-     "base": 0.4261,
-     "full": 0.0758
+     "bear": 0.1108,
+     "base": 0.4299,
+     "full": 0.0783
     },
     "p_touch": {
-     "bear": 0.2043,
-     "base": 0.7077,
-     "full": 0.1251
+     "bear": 0.2111,
+     "base": 0.7161,
+     "full": 0.1278
     },
     "required_cagr": {
      "bear": -0.6511,
      "base": 0.4309,
      "full": 4.165
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00372
+    "selftest_max_dev": 0.00403
+   }
+  },
+  {
+   "ticker": "ENBD",
+   "name": "Emirates NBD Bank",
+   "code": "DFM:EMIRATESNBD",
+   "ccy": "AED",
+   "spot": 30.22,
+   "anchor_date": "2026-07-24",
+   "fv_asof": "2026-07-03",
+   "fv_lag_days": 21,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 25,
+   "fv_base": 32.3,
+   "fv_full": 43.2,
+   "gap_base_pct": 6.9,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.095494,
+    "mu_h": 0.002974,
+    "G": {
+     "bear": -1.99,
+     "base": 0.7,
+     "full": 3.74
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0239,
+     "base": 0.2369,
+     "full": 0.001
+    },
+    "p_touch": {
+     "bear": 0.0366,
+     "base": 0.3924,
+     "full": 0.0013
+    },
+    "required_cagr": {
+     "bear": -0.8973,
+     "base": 1.2228,
+     "full": 71.8235
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00169
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.173117,
+    "mu_h": 0.009878,
+    "G": {
+     "bear": -1.1,
+     "base": 0.38,
+     "full": 2.06
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.1133,
+     "base": 0.361,
+     "full": 0.0243
+    },
+    "p_touch": {
+     "bear": 0.2038,
+     "base": 0.6458,
+     "full": 0.0412
+    },
+    "required_cagr": {
+     "bear": -0.5316,
+     "base": 0.3051,
+     "full": 3.176
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.0014
    }
   },
   {
@@ -576,9 +1213,9 @@ const FV_OVERLAY = {
    "gap_base_pct": -7.4,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 6.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
    },
@@ -587,67 +1224,249 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.103679,
+    "sigma_h": 0.101472,
     "mu_h": 0.007598,
     "G": {
-     "bear": -1.69,
-     "base": -0.74,
-     "full": 0.43
+     "bear": -1.72,
+     "base": -0.75,
+     "full": 0.44
     },
     "band": "IN-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0372,
-     "base": 0.1792,
-     "full": 0.3374
+     "bear": 0.036,
+     "base": 0.1877,
+     "full": 0.3448
     },
     "p_touch": {
-     "bear": 0.0593,
-     "base": 0.3103,
-     "full": 0.5573
+     "bear": 0.0573,
+     "base": 0.3259,
+     "full": 0.5708
     },
     "required_cagr": {
      "bear": -0.8775,
      "base": -0.6011,
      "full": 0.7141
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00163
+    "selftest_max_dev": 0.00329
    },
    "3M": {
     "h_sessions": 62,
-    "sigma_h": 0.201222,
+    "sigma_h": 0.196938,
     "mu_h": 0.024445,
     "G": {
-     "bear": -0.87,
-     "base": -0.38,
-     "full": 0.22
+     "bear": -0.89,
+     "base": -0.39,
+     "full": 0.23
     },
     "band": "IN-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.1352,
-     "base": 0.2806,
-     "full": 0.4525
+     "bear": 0.142,
+     "base": 0.2895,
+     "full": 0.4549
     },
     "p_touch": {
-     "bear": 0.255,
-     "base": 0.5599,
-     "full": 0.7751
+     "bear": 0.2675,
+     "base": 0.5768,
+     "full": 0.7844
     },
     "required_cagr": {
      "bear": -0.5033,
      "base": -0.2639,
      "full": 0.1968
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00249
+    "selftest_max_dev": 0.00158
+   }
+  },
+  {
+   "ticker": "ELM",
+   "name": "Elm Company",
+   "code": "TADAWUL:7203",
+   "ccy": "SAR",
+   "spot": 666,
+   "anchor_date": "2026-07-26",
+   "fv_asof": "2026-07-10",
+   "fv_lag_days": 16,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 530,
+   "fv_base": 620,
+   "fv_full": 720,
+   "gap_base_pct": -6.9,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.11203,
+    "mu_h": 0.002849,
+    "G": {
+     "bear": -2.04,
+     "base": -0.64,
+     "full": 0.7
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0218,
+     "base": 0.2374,
+     "full": 0.2354
+    },
+    "p_touch": {
+     "bear": 0.0335,
+     "base": 0.4106,
+     "full": 0.3966
+    },
+    "required_cagr": {
+     "bear": -0.9355,
+     "base": -0.5763,
+     "full": 1.5486
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00341
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.182541,
+    "mu_h": 0.011287,
+    "G": {
+     "bear": -1.25,
+     "base": -0.39,
+     "full": 0.43
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0864,
+     "base": 0.3114,
+     "full": 0.3458
+    },
+    "p_touch": {
+     "bear": 0.1524,
+     "base": 0.5952,
+     "full": 0.6141
+    },
+    "required_cagr": {
+     "bear": -0.5989,
+     "base": -0.2489,
+     "full": 0.3659
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00147
+   }
+  },
+  {
+   "ticker": "2POINTZERO",
+   "name": "Two Point Zero Group",
+   "code": "ADX:2POINTZERO",
+   "ccy": "AED",
+   "spot": 2.06,
+   "anchor_date": "2026-07-24",
+   "fv_asof": "2026-07-11",
+   "fv_lag_days": 13,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 1.55,
+   "fv_base": 1.91,
+   "fv_full": 2.27,
+   "gap_base_pct": -7.3,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.10125,
+    "mu_h": 0.004843,
+    "G": {
+     "bear": -2.81,
+     "base": -0.75,
+     "full": 0.96
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0048,
+     "base": 0.1976,
+     "full": 0.1662
+    },
+    "p_touch": {
+     "bear": 0.0065,
+     "base": 0.3397,
+     "full": 0.2697
+    },
+    "required_cagr": {
+     "bear": -0.9671,
+     "base": -0.5964,
+     "full": 2.2056
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00421
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.190775,
+    "mu_h": 0.009662,
+    "G": {
+     "bear": -1.49,
+     "base": -0.4,
+     "full": 0.51
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0577,
+     "base": 0.3141,
+     "full": 0.3098
+    },
+    "p_touch": {
+     "bear": 0.0999,
+     "base": 0.5963,
+     "full": 0.5539
+    },
+    "required_cagr": {
+     "bear": -0.6795,
+     "base": -0.261,
+     "full": 0.4745
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00119
    }
   },
   {
@@ -667,9 +1486,9 @@ const FV_OVERLAY = {
    "gap_base_pct": -6.8,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 6.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
    },
@@ -678,67 +1497,158 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.094142,
+    "sigma_h": 0.092138,
     "mu_h": 0.016052,
     "G": {
-     "bear": -5.22,
-     "base": -0.75,
-     "full": 3.08
+     "bear": -5.34,
+     "base": -0.76,
+     "full": 3.15
     },
     "band": "IN-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0003,
-     "base": 0.1519,
-     "full": 0.0059
+     "bear": 0.0001,
+     "base": 0.1595,
+     "full": 0.0038
     },
     "p_touch": {
-     "bear": 0.0007,
-     "base": 0.2762,
-     "full": 0.0077
+     "bear": 0.0001,
+     "base": 0.2898,
+     "full": 0.0052
     },
     "required_cagr": {
      "bear": -0.9973,
      "base": -0.5703,
      "full": 31.5012
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00319
+    "selftest_max_dev": 0.00198
    },
    "3M": {
     "h_sessions": 61,
-    "sigma_h": 0.179124,
+    "sigma_h": 0.17531,
     "mu_h": 0.047402,
     "G": {
-     "bear": -2.74,
-     "base": -0.39,
-     "full": 1.62
+     "bear": -2.8,
+     "base": -0.4,
+     "full": 1.65
     },
     "band": "IN-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0051,
-     "base": 0.2257,
-     "full": 0.074
+     "bear": 0.0032,
+     "base": 0.2349,
+     "full": 0.0764
     },
     "p_touch": {
-     "bear": 0.0095,
-     "base": 0.4964,
-     "full": 0.1187
+     "bear": 0.0055,
+     "base": 0.5172,
+     "full": 0.1222
     },
     "required_cagr": {
      "bear": -0.86,
      "base": -0.2454,
      "full": 2.1913
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00481
+    "selftest_max_dev": 0.00501
+   }
+  },
+  {
+   "ticker": "FAB",
+   "name": "First Abu Dhabi Bank",
+   "code": "ADX:FAB",
+   "ccy": "AED",
+   "spot": 18.66,
+   "anchor_date": "2026-07-24",
+   "fv_asof": "2026-07-03",
+   "fv_lag_days": 21,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 17.1,
+   "fv_base": 19.9,
+   "fv_full": 22.4,
+   "gap_base_pct": 6.6,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.077679,
+    "mu_h": 0.002676,
+    "G": {
+     "bear": -1.12,
+     "base": 0.83,
+     "full": 2.35
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.1122,
+     "base": 0.1978,
+     "full": 0.0135
+    },
+    "p_touch": {
+     "bear": 0.1846,
+     "base": 0.3263,
+     "full": 0.0193
+    },
+    "required_cagr": {
+     "bear": -0.6492,
+     "base": 1.1642,
+     "full": 7.9544
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00142
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.138679,
+    "mu_h": 0.0096,
+    "G": {
+     "bear": -0.63,
+     "base": 0.46,
+     "full": 1.32
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.2264,
+     "base": 0.3342,
+     "full": 0.0966
+    },
+    "p_touch": {
+     "bear": 0.4259,
+     "base": 0.5926,
+     "full": 0.1668
+    },
+    "required_cagr": {
+     "bear": -0.2948,
+     "base": 0.2935,
+     "full": 1.0766
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00088
    }
   },
   {
@@ -758,9 +1668,9 @@ const FV_OVERLAY = {
    "gap_base_pct": 10.1,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 6.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
    },
@@ -769,67 +1679,67 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.104002,
+    "sigma_h": 0.101788,
     "mu_h": 0.014699,
     "G": {
-     "bear": -4.28,
-     "base": 0.93,
-     "full": 6.34
+     "bear": -4.37,
+     "base": 0.95,
+     "full": 6.48
     },
     "band": "IN-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0008,
-     "base": 0.186,
-     "full": 0.0001
+     "bear": 0.0003,
+     "base": 0.1947,
+     "full": 0.0
     },
     "p_touch": {
-     "bear": 0.0016,
-     "base": 0.2922,
-     "full": 0.0002
+     "bear": 0.0004,
+     "base": 0.305,
+     "full": 0.0
     },
     "required_cagr": {
      "bear": -0.9952,
      "base": 2.1874,
      "full": 2721.399
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00173
+    "selftest_max_dev": 0.00339
    },
    "3M": {
     "h_sessions": 61,
-    "sigma_h": 0.200287,
+    "sigma_h": 0.196022,
     "mu_h": 0.045985,
     "G": {
-     "bear": -2.22,
-     "base": 0.48,
-     "full": 3.29
+     "bear": -2.27,
+     "base": 0.49,
+     "full": 3.36
     },
     "band": "IN-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.012,
-     "base": 0.3837,
-     "full": 0.0048
+     "bear": 0.0094,
+     "base": 0.3894,
+     "full": 0.0029
     },
     "p_touch": {
-     "bear": 0.0224,
-     "base": 0.6182,
-     "full": 0.0073
+     "bear": 0.0167,
+     "base": 0.6287,
+     "full": 0.0043
     },
     "required_cagr": {
      "bear": -0.8312,
      "base": 0.4717,
      "full": 12.9632
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00273
+    "selftest_max_dev": 0.00296
    }
   },
   {
@@ -849,9 +1759,9 @@ const FV_OVERLAY = {
    "gap_base_pct": -10.0,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 6.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
    },
@@ -860,67 +1770,67 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.108923,
+    "sigma_h": 0.106604,
     "mu_h": 0.014769,
     "G": {
-     "bear": -2.5,
-     "base": -0.97,
-     "full": 1.22
+     "bear": -2.56,
+     "base": -0.99,
+     "full": 1.24
     },
     "band": "IN-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0089,
-     "base": 0.1121,
-     "full": 0.1166
+     "bear": 0.0065,
+     "base": 0.1175,
+     "full": 0.1223
     },
     "p_touch": {
-     "bear": 0.0142,
-     "base": 0.1955,
-     "full": 0.179
+     "bear": 0.0091,
+     "base": 0.2041,
+     "full": 0.1878
     },
     "required_cagr": {
      "bear": -0.9621,
      "base": -0.7189,
      "full": 3.9135
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00176
+    "selftest_max_dev": 0.0035
    },
    "3M": {
     "h_sessions": 61,
-    "sigma_h": 0.202364,
+    "sigma_h": 0.198056,
     "mu_h": 0.045985,
     "G": {
-     "bear": -1.35,
-     "base": -0.52,
-     "full": 0.66
+     "bear": -1.38,
+     "base": -0.53,
+     "full": 0.67
     },
     "band": "IN-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.051,
-     "base": 0.1969,
-     "full": 0.3093
+     "bear": 0.0511,
+     "base": 0.2059,
+     "full": 0.3176
     },
     "p_touch": {
-     "bear": 0.0991,
-     "base": 0.4109,
-     "full": 0.4994
+     "bear": 0.097,
+     "base": 0.4316,
+     "full": 0.5132
     },
     "required_cagr": {
      "bear": -0.6642,
      "base": -0.3449,
      "full": 0.7001
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00284
+    "selftest_max_dev": 0.00307
    }
   },
   {
@@ -940,9 +1850,9 @@ const FV_OVERLAY = {
    "gap_base_pct": 14.0,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 6.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
    },
@@ -951,67 +1861,340 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.137614,
+    "sigma_h": 0.134684,
     "mu_h": 0.0149,
     "G": {
-     "bear": -2.15,
-     "base": 0.95,
-     "full": 3.55
+     "bear": -2.19,
+     "base": 0.97,
+     "full": 3.62
     },
     "band": "IN-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0164,
-     "base": 0.1702,
-     "full": 0.0028
+     "bear": 0.0138,
+     "base": 0.1785,
+     "full": 0.0014
     },
     "p_touch": {
-     "bear": 0.026,
-     "base": 0.2699,
-     "full": 0.0037
+     "bear": 0.0209,
+     "base": 0.2826,
+     "full": 0.0019
     },
     "required_cagr": {
      "bear": -0.9712,
      "base": 3.8286,
      "full": 347.8553
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00218
+    "selftest_max_dev": 0.00431
    },
    "3M": {
     "h_sessions": 61,
-    "sigma_h": 0.24824,
+    "sigma_h": 0.242955,
     "mu_h": 0.046491,
     "G": {
-     "bear": -1.19,
-     "base": 0.53,
-     "full": 1.97
+     "bear": -1.22,
+     "base": 0.54,
+     "full": 2.01
     },
     "band": "IN-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0713,
-     "base": 0.3452,
-     "full": 0.0361
+     "bear": 0.0733,
+     "base": 0.3524,
+     "full": 0.0348
     },
     "p_touch": {
-     "bear": 0.1364,
-     "base": 0.5694,
-     "full": 0.0579
+     "bear": 0.138,
+     "base": 0.582,
+     "full": 0.0565
     },
     "required_cagr": {
      "bear": -0.6933,
      "base": 0.6902,
      "full": 6.0396
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00373
+    "selftest_max_dev": 0.004
+   }
+  },
+  {
+   "ticker": "TMPV",
+   "name": "Tata Motors Passenger Vehicles Ltd.",
+   "code": "NSE:TMPV",
+   "ccy": "INR",
+   "spot": 349.3,
+   "anchor_date": "2026-08-03",
+   "fv_asof": "2026-06-30",
+   "fv_lag_days": 34,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 236,
+   "fv_base": 378,
+   "fv_full": 579,
+   "gap_base_pct": 8.2,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.08175,
+    "mu_h": 0.004912,
+    "G": {
+     "bear": -4.8,
+     "base": 0.97,
+     "full": 6.18
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0001,
+     "base": 0.1675,
+     "full": 0.0
+    },
+    "p_touch": {
+     "bear": 0.0001,
+     "base": 0.2731,
+     "full": 0.0
+    },
+    "required_cagr": {
+     "bear": -0.991,
+     "base": 1.5794,
+     "full": 429.2885
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00212
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.145869,
+    "mu_h": 0.016919,
+    "G": {
+     "bear": -2.69,
+     "base": 0.54,
+     "full": 3.46
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0053,
+     "base": 0.3223,
+     "full": 0.0019
+    },
+    "p_touch": {
+     "bear": 0.0091,
+     "base": 0.5541,
+     "full": 0.0031
+    },
+    "required_cagr": {
+     "bear": -0.7916,
+     "base": 0.3714,
+     "full": 6.5495
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00128
+   }
+  },
+  {
+   "ticker": "SABIC",
+   "name": "Saudi Basic Industries Corp",
+   "code": "TADAWUL:2010",
+   "ccy": "SAR",
+   "spot": 52.25,
+   "anchor_date": "2026-07-26",
+   "fv_asof": "2026-07-07",
+   "fv_lag_days": 19,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 43,
+   "fv_base": 55.5,
+   "fv_full": 66,
+   "gap_base_pct": 6.2,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.058145,
+    "mu_h": 0.003058,
+    "G": {
+     "bear": -3.35,
+     "base": 1.04,
+     "full": 4.02
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0017,
+     "base": 0.1482,
+     "full": 0.0006
+    },
+    "p_touch": {
+     "bear": 0.0022,
+     "base": 0.24,
+     "full": 0.0009
+    },
+    "required_cagr": {
+     "bear": -0.9035,
+     "base": 1.0629,
+     "full": 15.5003
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00172
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.106316,
+    "mu_h": 0.010661,
+    "G": {
+     "bear": -1.83,
+     "base": 0.57,
+     "full": 2.2
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.028,
+     "base": 0.3064,
+     "full": 0.0205
+    },
+    "p_touch": {
+     "bear": 0.0491,
+     "base": 0.5307,
+     "full": 0.0343
+    },
+    "required_cagr": {
+     "bear": -0.5413,
+     "base": 0.273,
+     "full": 1.5458
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00085
+   }
+  },
+  {
+   "ticker": "TSLA",
+   "name": "Tesla, Inc.",
+   "code": "NASDAQ:TSLA",
+   "ccy": "USD",
+   "spot": 309.22,
+   "anchor_date": "2026-07-27",
+   "fv_asof": "2026-06-30",
+   "fv_lag_days": 27,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 105,
+   "fv_base": 254,
+   "fv_full": 350,
+   "gap_base_pct": -17.9,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.176697,
+    "mu_h": 0.002261,
+    "G": {
+     "bear": -6.11,
+     "base": -1.11,
+     "full": 0.7
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0,
+     "base": 0.1183,
+     "full": 0.2297
+    },
+    "p_touch": {
+     "bear": 0.0,
+     "base": 0.1923,
+     "full": 0.3889
+    },
+    "required_cagr": {
+     "bear": -1.0,
+     "base": -0.9056,
+     "full": 3.4219
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00595
+   },
+   "3M": {
+    "h_sessions": 64,
+    "sigma_h": 0.299468,
+    "mu_h": 0.011447,
+    "G": {
+     "bear": -3.61,
+     "base": -0.66,
+     "full": 0.41
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0011,
+     "base": 0.2275,
+     "full": 0.3418
+    },
+    "p_touch": {
+     "bear": 0.002,
+     "base": 0.4206,
+     "full": 0.6184
+    },
+    "required_cagr": {
+     "bear": -0.9867,
+     "base": -0.5447,
+     "full": 0.6414
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.0024
    }
   },
   {
@@ -1031,9 +2214,9 @@ const FV_OVERLAY = {
    "gap_base_pct": 14.3,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 6.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
    },
@@ -1042,67 +2225,249 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.106625,
+    "sigma_h": 0.104355,
     "mu_h": 0.014801,
     "G": {
-     "bear": -2.16,
-     "base": 1.25,
-     "full": 4.11
+     "bear": -2.21,
+     "base": 1.28,
+     "full": 4.19
     },
     "band": "STRETCH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0152,
-     "base": 0.1113,
-     "full": 0.0014
+     "bear": 0.0126,
+     "base": 0.1166,
+     "full": 0.0005
     },
     "p_touch": {
-     "bear": 0.0243,
-     "base": 0.1703,
-     "full": 0.0019
+     "bear": 0.019,
+     "base": 0.1782,
+     "full": 0.0006
     },
     "required_cagr": {
      "bear": -0.9373,
      "base": 3.9475,
      "full": 190.0931
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00168
+    "selftest_max_dev": 0.00339
    },
    "3M": {
     "h_sessions": 61,
-    "sigma_h": 0.188241,
+    "sigma_h": 0.184233,
     "mu_h": 0.045983,
     "G": {
-     "bear": -1.23,
-     "base": 0.71,
-     "full": 2.33
+     "bear": -1.25,
+     "base": 0.72,
+     "full": 2.38
     },
     "band": "IN-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0609,
-     "base": 0.2954,
-     "full": 0.0218
+     "bear": 0.062,
+     "base": 0.304,
+     "full": 0.0194
     },
     "p_touch": {
-     "bear": 0.1198,
-     "base": 0.4722,
-     "full": 0.034
+     "bear": 0.1193,
+     "base": 0.4883,
+     "full": 0.0305
     },
     "required_cagr": {
      "bear": -0.6026,
      "base": 0.704,
      "full": 4.7599
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00275
+    "selftest_max_dev": 0.00296
+   }
+  },
+  {
+   "ticker": "ARAMCO",
+   "name": "Saudi Aramco",
+   "code": "TADAWUL:2222",
+   "ccy": "SAR",
+   "spot": 26.6,
+   "anchor_date": "2026-07-26",
+   "fv_asof": "2026-07-01",
+   "fv_lag_days": 25,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 20,
+   "fv_base": 25.04,
+   "fv_full": 31,
+   "gap_base_pct": -5.9,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.048365,
+    "mu_h": 0.003003,
+    "G": {
+     "bear": -5.9,
+     "base": -1.25,
+     "full": 3.17
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0,
+     "base": 0.0866,
+     "full": 0.003
+    },
+    "p_touch": {
+     "bear": 0.0001,
+     "base": 0.1411,
+     "full": 0.0042
+    },
+    "required_cagr": {
+     "bear": -0.9674,
+     "base": -0.5158,
+     "full": 5.2771
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00149
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.08227,
+    "mu_h": 0.010471,
+    "G": {
+     "bear": -3.47,
+     "base": -0.73,
+     "full": 1.86
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0012,
+     "base": 0.179,
+     "full": 0.0407
+    },
+    "p_touch": {
+     "bear": 0.0022,
+     "base": 0.3433,
+     "full": 0.0678
+    },
+    "required_cagr": {
+     "bear": -0.6804,
+     "base": -0.2147,
+     "full": 0.8447
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00066
+   }
+  },
+  {
+   "ticker": "ALRAJHI",
+   "name": "Al Rajhi Bank",
+   "code": "TADAWUL:1120",
+   "ccy": "SAR",
+   "spot": 64.5,
+   "anchor_date": "2026-07-26",
+   "fv_asof": "2026-07-02",
+   "fv_lag_days": 24,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 58,
+   "fv_base": 70,
+   "fv_full": 80,
+   "gap_base_pct": 8.5,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.061644,
+    "mu_h": 0.003096,
+    "G": {
+     "bear": -1.72,
+     "base": 1.33,
+     "full": 3.49
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0378,
+     "base": 0.0919,
+     "full": 0.0016
+    },
+    "p_touch": {
+     "bear": 0.059,
+     "base": 0.1449,
+     "full": 0.0023
+    },
+    "required_cagr": {
+     "bear": -0.7205,
+     "base": 1.6697,
+     "full": 12.2545
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00185
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.111497,
+    "mu_h": 0.010641,
+    "G": {
+     "bear": -0.95,
+     "base": 0.73,
+     "full": 1.93
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.1342,
+     "base": 0.2458,
+     "full": 0.0336
+    },
+    "p_touch": {
+     "bear": 0.2479,
+     "base": 0.4243,
+     "full": 0.0562
+    },
+    "required_cagr": {
+     "bear": -0.3462,
+     "base": 0.3872,
+     "full": 1.3666
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.0009
    }
   },
   {
@@ -1122,9 +2487,9 @@ const FV_OVERLAY = {
    "gap_base_pct": -9.6,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 6.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
    },
@@ -1133,67 +2498,67 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.069691,
+    "sigma_h": 0.068207,
     "mu_h": 0.014599,
     "G": {
-     "bear": -4.67,
-     "base": -1.45,
-     "full": 3.59
+     "bear": -4.77,
+     "base": -1.48,
+     "full": 3.67
     },
     "band": "STRETCH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0005,
-     "base": 0.0443,
-     "full": 0.003
+     "bear": 0.0001,
+     "base": 0.0437,
+     "full": 0.0016
     },
     "p_touch": {
-     "bear": 0.0009,
-     "base": 0.0751,
-     "full": 0.0038
+     "bear": 0.0001,
+     "base": 0.0741,
+     "full": 0.002
     },
     "required_cagr": {
      "bear": -0.9798,
      "base": -0.7022,
      "full": 19.1941
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00127
+    "selftest_max_dev": 0.00239
    },
    "3M": {
     "h_sessions": 61,
-    "sigma_h": 0.138473,
+    "sigma_h": 0.135524,
     "mu_h": 0.045655,
     "G": {
-     "bear": -2.35,
-     "base": -0.73,
-     "full": 1.81
+     "bear": -2.4,
+     "base": -0.74,
+     "full": 1.85
     },
     "band": "IN-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0084,
-     "base": 0.1212,
-     "full": 0.06
+     "bear": 0.006,
+     "base": 0.1272,
+     "full": 0.061
     },
     "p_touch": {
-     "bear": 0.0165,
-     "base": 0.2617,
-     "full": 0.0943
+     "bear": 0.011,
+     "base": 0.2744,
+     "full": 0.0961
     },
     "required_cagr": {
      "bear": -0.7278,
      "base": -0.3322,
      "full": 1.7232
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00188
+    "selftest_max_dev": 0.00204
    }
   },
   {
@@ -1213,9 +2578,9 @@ const FV_OVERLAY = {
    "gap_base_pct": -16.0,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 6.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
    },
@@ -1224,67 +2589,613 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.15002,
+    "sigma_h": 0.146826,
     "mu_h": 0.01519,
     "G": {
-     "bear": -3.36,
-     "base": -1.16,
-     "full": 1.07
+     "bear": -3.43,
+     "base": -1.19,
+     "full": 1.1
     },
     "band": "STRETCH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0027,
-     "base": 0.0861,
-     "full": 0.1397
+     "bear": 0.0014,
+     "base": 0.0895,
+     "full": 0.1467
     },
     "p_touch": {
-     "bear": 0.0044,
-     "base": 0.1448,
-     "full": 0.2197
+     "bear": 0.0018,
+     "base": 0.1493,
+     "full": 0.2299
     },
     "required_cagr": {
      "bear": -0.9976,
      "base": -0.8769,
      "full": 5.8896
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00284
+    "selftest_max_dev": 0.00423
    },
    "3M": {
     "h_sessions": 61,
-    "sigma_h": 0.238229,
+    "sigma_h": 0.233157,
     "mu_h": 0.04587,
     "G": {
-     "bear": -2.12,
-     "base": -0.73,
-     "full": 0.68
+     "bear": -2.16,
+     "base": -0.75,
+     "full": 0.69
     },
     "band": "IN-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.015,
-     "base": 0.1501,
-     "full": 0.288
+     "bear": 0.0124,
+     "base": 0.1576,
+     "full": 0.2968
     },
     "p_touch": {
-     "bear": 0.0276,
-     "base": 0.2981,
-     "full": 0.4724
+     "bear": 0.0225,
+     "base": 0.3139,
+     "full": 0.4879
     },
     "required_cagr": {
      "bear": -0.8668,
      "base": -0.5026,
      "full": 0.9028
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00327
+    "selftest_max_dev": 0.00353
+   }
+  },
+  {
+   "ticker": "RELIANCE",
+   "name": "Reliance Industries Limited",
+   "code": "NSE:RELIANCE",
+   "ccy": "INR",
+   "spot": 1272,
+   "anchor_date": "2026-07-28",
+   "fv_asof": "2026-07-06",
+   "fv_lag_days": 22,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 1112,
+   "fv_base": 1395,
+   "fv_full": 1719,
+   "gap_base_pct": 9.7,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.068157,
+    "mu_h": 0.004839,
+    "G": {
+     "bear": -1.97,
+     "base": 1.35,
+     "full": 4.42
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0227,
+     "base": 0.0909,
+     "full": 0.0003
+    },
+    "p_touch": {
+     "bear": 0.0352,
+     "base": 0.1419,
+     "full": 0.0005
+    },
+    "required_cagr": {
+     "bear": -0.8007,
+     "base": 2.0272,
+     "full": 36.1078
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.0015
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.122241,
+    "mu_h": 0.016522,
+    "G": {
+     "bear": -1.1,
+     "base": 0.76,
+     "full": 2.46
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0987,
+     "base": 0.252,
+     "full": 0.0132
+    },
+    "p_touch": {
+     "bear": 0.183,
+     "base": 0.4269,
+     "full": 0.0225
+    },
+    "required_cagr": {
+     "bear": -0.4159,
+     "base": 0.4466,
+     "full": 2.3355
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00098
+   }
+  },
+  {
+   "ticker": "INFY",
+   "name": "Infosys Limited",
+   "code": "NSE:INFY",
+   "ccy": "INR",
+   "spot": 1105,
+   "anchor_date": "2026-07-28",
+   "fv_asof": "2026-07-06",
+   "fv_lag_days": 22,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 995,
+   "fv_base": 1242,
+   "fv_full": 1556,
+   "gap_base_pct": 12.4,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.091212,
+    "mu_h": 0.004515,
+    "G": {
+     "bear": -1.15,
+     "base": 1.28,
+     "full": 3.75
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.1048,
+     "base": 0.0992,
+     "full": 0.001
+    },
+    "p_touch": {
+     "bear": 0.1728,
+     "base": 0.1575,
+     "full": 0.0014
+    },
+    "required_cagr": {
+     "bear": -0.7159,
+     "base": 3.0655,
+     "full": 59.781
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00354
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.14926,
+    "mu_h": 0.017048,
+    "G": {
+     "bear": -0.7,
+     "base": 0.78,
+     "full": 2.29
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.1913,
+     "base": 0.2359,
+     "full": 0.0175
+    },
+    "p_touch": {
+     "bear": 0.3661,
+     "base": 0.403,
+     "full": 0.0294
+    },
+    "required_cagr": {
+     "bear": -0.3426,
+     "base": 0.596,
+     "full": 2.9318
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.0012
+   }
+  },
+  {
+   "ticker": "LGES",
+   "name": "LG Energy Solution, Ltd.",
+   "code": "KRX:373220",
+   "ccy": "KRW",
+   "spot": 314000,
+   "anchor_date": "2026-07-28",
+   "fv_asof": "2026-06-28",
+   "fv_lag_days": 30,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 150000,
+   "fv_base": 248000,
+   "fv_full": 415000,
+   "gap_base_pct": -21.0,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.167812,
+    "mu_h": 0.001834,
+    "G": {
+     "bear": -4.4,
+     "base": -1.41,
+     "full": 1.66
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0003,
+     "base": 0.0721,
+     "full": 0.0473
+    },
+    "p_touch": {
+     "bear": 0.0003,
+     "base": 0.1146,
+     "full": 0.0727
+    },
+    "required_cagr": {
+     "bear": -0.9999,
+     "base": -0.9411,
+     "full": 27.4067
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00378
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.273879,
+    "mu_h": 0.009592,
+    "G": {
+     "bear": -2.7,
+     "base": -0.86,
+     "full": 1.02
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0061,
+     "base": 0.1699,
+     "full": 0.1487
+    },
+    "p_touch": {
+     "bear": 0.01,
+     "base": 0.3077,
+     "full": 0.2588
+    },
+    "required_cagr": {
+     "bear": -0.9479,
+     "base": -0.6109,
+     "full": 2.0512
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.0022
+   }
+  },
+  {
+   "ticker": "SNB",
+   "name": "The Saudi National Bank",
+   "code": "TADAWUL:1180",
+   "ccy": "SAR",
+   "spot": 39.92,
+   "anchor_date": "2026-07-26",
+   "fv_asof": "2026-07-04",
+   "fv_lag_days": 22,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 36,
+   "fv_base": 45,
+   "fv_full": 55,
+   "gap_base_pct": 12.7,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.077775,
+    "mu_h": 0.003002,
+    "G": {
+     "bear": -1.33,
+     "base": 1.54,
+     "full": 4.12
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0786,
+     "base": 0.0621,
+     "full": 0.0005
+    },
+    "p_touch": {
+     "bear": 0.1263,
+     "base": 0.0962,
+     "full": 0.0007
+    },
+    "required_cagr": {
+     "bear": -0.7107,
+     "base": 3.2098,
+     "full": 45.7806
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00227
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.138134,
+    "mu_h": 0.010962,
+    "G": {
+     "bear": -0.75,
+     "base": 0.87,
+     "full": 2.32
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.1883,
+     "base": 0.1996,
+     "full": 0.0156
+    },
+    "p_touch": {
+     "bear": 0.3514,
+     "base": 0.3463,
+     "full": 0.0265
+    },
+    "required_cagr": {
+     "bear": -0.3386,
+     "base": 0.6147,
+     "full": 2.6032
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00111
+   }
+  },
+  {
+   "ticker": "SAMSUNG",
+   "name": "Samsung Electronics Co., Ltd.",
+   "code": "KRX:005930",
+   "ccy": "KRW",
+   "spot": 220000,
+   "anchor_date": "2026-07-28",
+   "fv_asof": "2026-06-27",
+   "fv_lag_days": 31,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 214800,
+   "fv_base": 296502,
+   "fv_full": 410754,
+   "gap_base_pct": 34.8,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.217923,
+    "mu_h": 0.001648,
+    "G": {
+     "bear": -0.11,
+     "base": 1.37,
+     "full": 2.87
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.4491,
+     "base": 0.0794,
+     "full": 0.0048
+    },
+    "p_touch": {
+     "bear": 0.8,
+     "base": 0.1264,
+     "full": 0.0065
+    },
+    "required_cagr": {
+     "bear": -0.2495,
+     "base": 34.9136,
+     "full": 1793.3595
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.0048
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.333263,
+    "mu_h": 0.009947,
+    "G": {
+     "bear": -0.07,
+     "base": 0.9,
+     "full": 1.87
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.4559,
+     "base": 0.178,
+     "full": 0.0331
+    },
+    "p_touch": {
+     "bear": 0.8729,
+     "base": 0.3155,
+     "full": 0.0569
+    },
+    "required_cagr": {
+     "bear": -0.0912,
+     "base": 2.2993,
+     "full": 11.1517
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00268
+   }
+  },
+  {
+   "ticker": "QNB",
+   "name": "QNB Group",
+   "code": "QSE:QNBK",
+   "ccy": "QAR",
+   "spot": 17.15,
+   "anchor_date": "2026-08-05",
+   "fv_asof": "2026-07-05",
+   "fv_lag_days": 31,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 14,
+   "fv_base": 18.76,
+   "fv_full": 28.5,
+   "gap_base_pct": 9.4,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.058001,
+    "mu_h": 0.002911,
+    "G": {
+     "bear": -3.5,
+     "base": 1.55,
+     "full": 8.76
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0013,
+     "base": 0.0626,
+     "full": 0.0
+    },
+    "p_touch": {
+     "bear": 0.0016,
+     "base": 0.0967,
+     "full": 0.0
+    },
+    "required_cagr": {
+     "bear": -0.9124,
+     "base": 1.9351,
+     "full": 442.5768
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00143
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.099416,
+    "mu_h": 0.010441,
+    "G": {
+     "bear": -2.04,
+     "base": 0.9,
+     "full": 5.11
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0187,
+     "base": 0.1968,
+     "full": 0.0001
+    },
+    "p_touch": {
+     "bear": 0.0327,
+     "base": 0.3372,
+     "full": 0.0002
+    },
+    "required_cagr": {
+     "bear": -0.5559,
+     "base": 0.4318,
+     "full": 6.6265
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.0008
    }
   },
   {
@@ -1304,9 +3215,9 @@ const FV_OVERLAY = {
    "gap_base_pct": -17.0,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 6.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
    },
@@ -1315,67 +3226,67 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.094356,
+    "sigma_h": 0.092348,
     "mu_h": 0.014801,
     "G": {
-     "bear": -5.28,
-     "base": -1.97,
-     "full": 1.83
+     "bear": -5.39,
+     "base": -2.01,
+     "full": 1.87
     },
-    "band": "STRETCH",
+    "band": "OUT-OF-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0003,
-     "base": 0.0201,
-     "full": 0.0429
+     "bear": 0.0001,
+     "base": 0.0177,
+     "full": 0.0422
     },
     "p_touch": {
-     "bear": 0.0007,
-     "base": 0.0328,
-     "full": 0.0628
+     "bear": 0.0001,
+     "base": 0.0276,
+     "full": 0.0611
     },
     "required_cagr": {
      "bear": -0.9975,
      "base": -0.8927,
      "full": 6.9748
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00151
+    "selftest_max_dev": 0.00302
    },
    "3M": {
     "h_sessions": 61,
-    "sigma_h": 0.195803,
+    "sigma_h": 0.191635,
     "mu_h": 0.046016,
     "G": {
-     "bear": -2.54,
-     "base": -0.95,
-     "full": 0.88
+     "bear": -2.6,
+     "base": -0.97,
+     "full": 0.9
     },
     "band": "IN-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0072,
-     "base": 0.0984,
-     "full": 0.2286
+     "bear": 0.005,
+     "base": 0.1028,
+     "full": 0.2379
     },
     "p_touch": {
-     "bear": 0.0135,
-     "base": 0.1969,
-     "full": 0.3682
+     "bear": 0.0088,
+     "base": 0.2025,
+     "full": 0.3845
     },
     "required_cagr": {
      "bear": -0.8636,
      "base": -0.5249,
      "full": 0.9979
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00279
+    "selftest_max_dev": 0.00301
    }
   },
   {
@@ -1395,9 +3306,9 @@ const FV_OVERLAY = {
    "gap_base_pct": -17.0,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 6.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
    },
@@ -1406,67 +3317,67 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.101456,
+    "sigma_h": 0.099296,
     "mu_h": 0.014827,
     "G": {
-     "bear": -3.64,
-     "base": -1.84,
+     "bear": -3.71,
+     "base": -1.88,
      "full": -0.04
     },
     "band": "STRETCH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0018,
-     "base": 0.0256,
-     "full": 0.4132
+     "bear": 0.0008,
+     "base": 0.0234,
+     "full": 0.4175
     },
     "p_touch": {
-     "bear": 0.0029,
-     "base": 0.0414,
-     "full": 0.8147
+     "bear": 0.001,
+     "base": 0.0371,
+     "full": 0.8181
     },
     "required_cagr": {
      "bear": -0.988,
      "base": -0.8933,
      "full": -0.0487
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00162
+    "selftest_max_dev": 0.00324
    },
    "3M": {
     "h_sessions": 61,
-    "sigma_h": 0.187267,
+    "sigma_h": 0.18328,
     "mu_h": 0.045954,
     "G": {
-     "bear": -1.97,
-     "base": -1.0,
+     "bear": -2.01,
+     "base": -1.02,
      "full": -0.02
     },
-    "band": "IN-REACH",
+    "band": "STRETCH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0175,
-     "base": 0.0896,
-     "full": 0.3771
+     "bear": 0.0149,
+     "base": 0.0933,
+     "full": 0.3831
     },
     "p_touch": {
-     "bear": 0.0326,
-     "base": 0.179,
-     "full": 0.8809
+     "bear": 0.0277,
+     "base": 0.1845,
+     "full": 0.8835
     },
     "required_cagr": {
      "bear": -0.7713,
      "base": -0.5257,
      "full": -0.0165
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00265
+    "selftest_max_dev": 0.00286
    }
   },
   {
@@ -1486,9 +3397,9 @@ const FV_OVERLAY = {
    "gap_base_pct": -13.2,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 6.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
    },
@@ -1497,67 +3408,704 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 21,
-    "sigma_h": 0.072941,
+    "sigma_h": 0.071388,
     "mu_h": 0.014819,
     "G": {
-     "bear": -6.12,
-     "base": -1.94,
-     "full": 2.44
+     "bear": -6.25,
+     "base": -1.98,
+     "full": 2.5
     },
     "band": "STRETCH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0001,
-     "base": 0.0198,
-     "full": 0.0168
+     "bear": 0.0,
+     "base": 0.0173,
+     "full": 0.0142
     },
     "p_touch": {
-     "bear": 0.0003,
-     "base": 0.0325,
-     "full": 0.025
+     "bear": 0.0,
+     "base": 0.0272,
+     "full": 0.0206
     },
     "required_cagr": {
      "bear": -0.9953,
      "base": -0.8163,
      "full": 7.4864
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00083
+    "selftest_max_dev": 0.00113
    },
    "3M": {
     "h_sessions": 62,
-    "sigma_h": 0.132739,
+    "sigma_h": 0.129913,
     "mu_h": 0.045566,
     "G": {
-     "bear": -3.36,
-     "base": -1.06,
-     "full": 1.34
+     "bear": -3.44,
+     "base": -1.09,
+     "full": 1.37
     },
     "band": "STRETCH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.002,
-     "base": 0.0678,
-     "full": 0.1334
+     "bear": 0.0009,
+     "base": 0.0695,
+     "full": 0.1401
     },
     "p_touch": {
-     "bear": 0.0035,
-     "base": 0.1394,
-     "full": 0.205
+     "bear": 0.0016,
+     "base": 0.1416,
+     "full": 0.2158
     },
     "required_cagr": {
      "bear": -0.8324,
      "base": -0.4315,
      "full": 1.0397
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00162
+    "selftest_max_dev": 0.00104
+   }
+  },
+  {
+   "ticker": "STC",
+   "name": "stc Group (Saudi Telecom)",
+   "code": "TADAWUL:7010",
+   "ccy": "SAR",
+   "spot": 43.1,
+   "anchor_date": "2026-07-26",
+   "fv_asof": "2026-07-09",
+   "fv_lag_days": 17,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 36.2,
+   "fv_base": 47.11,
+   "fv_full": 59.1,
+   "gap_base_pct": 9.3,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.042681,
+    "mu_h": 0.003012,
+    "G": {
+     "bear": -4.09,
+     "base": 2.08,
+     "full": 7.4
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0005,
+     "base": 0.024,
+     "full": 0.0
+    },
+    "p_touch": {
+     "bear": 0.0005,
+     "base": 0.0344,
+     "full": 0.0
+    },
+    "required_cagr": {
+     "bear": -0.8768,
+     "base": 1.9082,
+     "full": 43.1899
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00138
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.08094,
+    "mu_h": 0.010387,
+    "G": {
+     "bear": -2.16,
+     "base": 1.1,
+     "full": 3.9
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0143,
+     "base": 0.1516,
+     "full": 0.0009
+    },
+    "p_touch": {
+     "bear": 0.0255,
+     "base": 0.2534,
+     "full": 0.0016
+    },
+    "required_cagr": {
+     "bear": -0.5023,
+     "base": 0.4274,
+     "full": 2.5354
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00065
+   }
+  },
+  {
+   "ticker": "EAND",
+   "name": "e& (Emirates Telecommunications Group)",
+   "code": "ADX:EAND",
+   "ccy": "AED",
+   "spot": 20.08,
+   "anchor_date": "2026-07-24",
+   "fv_asof": "2026-07-10",
+   "fv_lag_days": 14,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 17.61,
+   "fv_base": 22.72,
+   "fv_full": 28.75,
+   "gap_base_pct": 13.1,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.06197,
+    "mu_h": 0.002984,
+    "G": {
+     "bear": -2.12,
+     "base": 1.99,
+     "full": 5.79
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.018,
+     "base": 0.0274,
+     "full": 0.0
+    },
+    "p_touch": {
+     "bear": 0.0271,
+     "base": 0.0397,
+     "full": 0.0001
+    },
+    "required_cagr": {
+     "bear": -0.793,
+     "base": 3.4029,
+     "full": 73.2147
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.0011
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.109664,
+    "mu_h": 0.009418,
+    "G": {
+     "bear": -1.2,
+     "base": 1.13,
+     "full": 3.27
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.091,
+     "base": 0.1359,
+     "full": 0.0026
+    },
+    "p_touch": {
+     "bear": 0.1641,
+     "base": 0.2329,
+     "full": 0.0045
+    },
+    "required_cagr": {
+     "bear": -0.4085,
+     "base": 0.639,
+     "full": 3.2024
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00072
+   }
+  },
+  {
+   "ticker": "SALIK",
+   "name": "Salik Company",
+   "code": "DFM:SALIK",
+   "ccy": "AED",
+   "spot": 5.47,
+   "anchor_date": "2026-07-24",
+   "fv_asof": "2026-07-11",
+   "fv_lag_days": 13,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 3.32,
+   "fv_base": 4.62,
+   "fv_full": 7.05,
+   "gap_base_pct": -15.5,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.078009,
+    "mu_h": 0.00365,
+    "G": {
+     "bear": -6.4,
+     "base": -2.16,
+     "full": 3.25
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0,
+     "base": 0.0165,
+     "full": 0.0025
+    },
+    "p_touch": {
+     "bear": 0.0,
+     "base": 0.025,
+     "full": 0.0032
+    },
+    "required_cagr": {
+     "bear": -0.9975,
+     "base": -0.8682,
+     "full": 20.0098
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00194
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.148759,
+    "mu_h": 0.009099,
+    "G": {
+     "bear": -3.36,
+     "base": -1.14,
+     "full": 1.71
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0017,
+     "base": 0.1053,
+     "full": 0.0479
+    },
+    "p_touch": {
+     "bear": 0.0026,
+     "base": 0.1891,
+     "full": 0.0829
+    },
+    "required_cagr": {
+     "bear": -0.8643,
+     "base": -0.4911,
+     "full": 1.7594
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00123
+   }
+  },
+  {
+   "ticker": "ADNOCGAS",
+   "name": "ADNOC Gas",
+   "code": "ADX:ADNOCGAS",
+   "ccy": "AED",
+   "spot": 3.34,
+   "anchor_date": "2026-07-24",
+   "fv_asof": "2026-07-04",
+   "fv_lag_days": 20,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 3.3,
+   "fv_base": 3.79,
+   "fv_full": 4.6,
+   "gap_base_pct": 13.5,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.051524,
+    "mu_h": 0.00299,
+    "G": {
+     "bear": -0.23,
+     "base": 2.45,
+     "full": 6.21
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.3755,
+     "base": 0.0116,
+     "full": 0.0
+    },
+    "p_touch": {
+     "bear": 0.6864,
+     "base": 0.0162,
+     "full": 0.0
+    },
+    "required_cagr": {
+     "bear": -0.1346,
+     "base": 3.5574,
+     "full": 45.5732
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00109
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.098221,
+    "mu_h": 0.008942,
+    "G": {
+     "bear": -0.12,
+     "base": 1.29,
+     "full": 3.26
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.408,
+     "base": 0.1054,
+     "full": 0.0027
+    },
+    "p_touch": {
+     "bear": 0.8176,
+     "base": 0.1803,
+     "full": 0.0046
+    },
+    "required_cagr": {
+     "bear": -0.0471,
+     "base": 0.6579,
+     "full": 2.5979
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.0013
+   }
+  },
+  {
+   "ticker": "EXTRA",
+   "name": "United Electronics Company (eXtra)",
+   "code": "TADAWUL:4003",
+   "ccy": "SAR",
+   "spot": 68.5,
+   "anchor_date": "2026-07-26",
+   "fv_asof": "2026-07-10",
+   "fv_lag_days": 16,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 66,
+   "fv_base": 81,
+   "fv_full": 92,
+   "gap_base_pct": 18.2,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.066226,
+    "mu_h": 0.003061,
+    "G": {
+     "bear": -0.56,
+     "base": 2.53,
+     "full": 4.45
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.2562,
+     "base": 0.0098,
+     "full": 0.0003
+    },
+    "p_touch": {
+     "bear": 0.4507,
+     "base": 0.0135,
+     "full": 0.0005
+    },
+    "required_cagr": {
+     "bear": -0.3599,
+     "base": 6.4737,
+     "full": 33.4482
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00194
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.127622,
+    "mu_h": 0.010889,
+    "G": {
+     "bear": -0.29,
+     "base": 1.31,
+     "full": 2.31
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.3413,
+     "base": 0.0999,
+     "full": 0.016
+    },
+    "p_touch": {
+     "bear": 0.6716,
+     "base": 0.1696,
+     "full": 0.0271
+    },
+    "required_cagr": {
+     "bear": -0.1382,
+     "base": 0.9551,
+     "full": 2.2538
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00102
+   }
+  },
+  {
+   "ticker": "ALINMA",
+   "name": "Alinma Bank",
+   "code": "TADAWUL:1150",
+   "ccy": "SAR",
+   "spot": 23.8,
+   "anchor_date": "2026-07-26",
+   "fv_asof": "2026-07-10",
+   "fv_lag_days": 16,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 19.9,
+   "fv_base": 27.32,
+   "fv_full": 31.23,
+   "gap_base_pct": 14.8,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.054418,
+    "mu_h": 0.002937,
+    "G": {
+     "bear": -3.29,
+     "base": 2.53,
+     "full": 4.99
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0019,
+     "base": 0.0098,
+     "full": 0.0001
+    },
+    "p_touch": {
+     "bear": 0.0024,
+     "base": 0.0136,
+     "full": 0.0002
+    },
+    "required_cagr": {
+     "bear": -0.8832,
+     "base": 4.2341,
+     "full": 25.058
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00184
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.103648,
+    "mu_h": 0.010449,
+    "G": {
+     "bear": -1.73,
+     "base": 1.33,
+     "full": 2.62
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0341,
+     "base": 0.0996,
+     "full": 0.0091
+    },
+    "p_touch": {
+     "bear": 0.0604,
+     "base": 0.1679,
+     "full": 0.0152
+    },
+    "required_cagr": {
+     "bear": -0.5112,
+     "base": 0.7363,
+     "full": 1.9647
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00083
+   }
+  },
+  {
+   "ticker": "MODON",
+   "name": "Modon Holding PSC",
+   "code": "ADX:MODON",
+   "ccy": "AED",
+   "spot": 2.83,
+   "anchor_date": "2026-08-07",
+   "fv_asof": "2026-08-07",
+   "fv_lag_days": 0,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 1.03,
+   "fv_base": 3.38,
+   "fv_full": 6.31,
+   "gap_base_pct": 19.4,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.068338,
+    "mu_h": 0.003527,
+    "G": {
+     "bear": -14.79,
+     "base": 2.6,
+     "full": 11.73
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0,
+     "base": 0.0087,
+     "full": 0.0
+    },
+    "p_touch": {
+     "bear": 0.0,
+     "base": 0.0121,
+     "full": 0.0
+    },
+    "required_cagr": {
+     "bear": -1.0,
+     "base": 7.4249,
+     "full": 15096.8492
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00126
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.128582,
+    "mu_h": 0.010545,
+    "G": {
+     "bear": -7.86,
+     "base": 1.38,
+     "full": 6.24
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0,
+     "base": 0.0885,
+     "full": 0.0
+    },
+    "p_touch": {
+     "bear": 0.0,
+     "base": 0.1519,
+     "full": 0.0
+    },
+    "required_cagr": {
+     "bear": -0.9825,
+     "base": 1.0348,
+     "full": 23.7156
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00244
    }
   },
   {
@@ -1577,9 +4125,9 @@ const FV_OVERLAY = {
    "gap_base_pct": -32.8,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 6.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
    },
@@ -1588,67 +4136,67 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.160778,
+    "sigma_h": 0.157355,
     "mu_h": 0.014702,
     "G": {
-     "bear": -3.25,
-     "base": -2.47,
-     "full": -1.81
+     "bear": -3.32,
+     "base": -2.52,
+     "full": -1.84
     },
     "band": "OUT-OF-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0032,
-     "base": 0.0101,
-     "full": 0.0296
+     "bear": 0.0017,
+     "base": 0.0076,
+     "full": 0.0277
     },
     "p_touch": {
-     "bear": 0.0051,
-     "base": 0.0159,
-     "full": 0.0471
+     "bear": 0.0022,
+     "base": 0.0108,
+     "full": 0.0436
     },
     "required_cagr": {
      "bear": -0.9981,
      "base": -0.9915,
      "full": -0.9693
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00263
+    "selftest_max_dev": 0.0052
    },
    "3M": {
     "h_sessions": 62,
-    "sigma_h": 0.291228,
+    "sigma_h": 0.285028,
     "mu_h": 0.046739,
     "G": {
-     "bear": -1.79,
-     "base": -1.36,
-     "full": -1.0
+     "bear": -1.83,
+     "base": -1.39,
+     "full": -1.02
     },
     "band": "STRETCH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0268,
-     "base": 0.0557,
-     "full": 0.1031
+     "bear": 0.0248,
+     "base": 0.0562,
+     "full": 0.1078
     },
     "p_touch": {
-     "bear": 0.048,
+     "bear": 0.044,
      "base": 0.1032,
-     "full": 0.1947
+     "full": 0.2041
     },
     "required_cagr": {
      "bear": -0.8764,
      "base": -0.7956,
      "full": -0.6868
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00347
+    "selftest_max_dev": 0.00229
    }
   },
   {
@@ -1668,9 +4216,9 @@ const FV_OVERLAY = {
    "gap_base_pct": 29.3,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 6.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
    },
@@ -1679,67 +4227,67 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.087799,
+    "sigma_h": 0.085929,
     "mu_h": 0.014795,
     "G": {
      "bear": 0.35,
-     "base": 2.92,
-     "full": 6.52
+     "base": 2.99,
+     "full": 6.66
     },
     "band": "OUT-OF-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.4179,
-     "base": 0.0075,
-     "full": 0.0001
+     "bear": 0.422,
+     "base": 0.0052,
+     "full": 0.0
     },
     "p_touch": {
-     "bear": 0.6591,
-     "base": 0.01,
-     "full": 0.0002
+     "bear": 0.6678,
+     "base": 0.0069,
+     "full": 0.0
     },
     "required_cagr": {
      "bear": 0.4388,
      "base": 20.7675,
      "full": 956.3658
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00142
+    "selftest_max_dev": 0.00282
    },
    "3M": {
     "h_sessions": 62,
-    "sigma_h": 0.178859,
+    "sigma_h": 0.175051,
     "mu_h": 0.045874,
     "G": {
      "bear": 0.17,
-     "base": 1.44,
-     "full": 3.2
+     "base": 1.47,
+     "full": 3.27
     },
     "band": "STRETCH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.5407,
-     "base": 0.0995,
-     "full": 0.0057
+     "bear": 0.5386,
+     "base": 0.1039,
+     "full": 0.0036
     },
     "p_touch": {
-     "bear": 0.8497,
-     "base": 0.1572,
-     "full": 0.0089
+     "bear": 0.8522,
+     "base": 0.1654,
+     "full": 0.006
     },
     "required_cagr": {
      "bear": 0.1289,
      "base": 1.7921,
      "full": 8.8558
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00213
+    "selftest_max_dev": 0.00141
    }
   },
   {
@@ -1759,9 +4307,9 @@ const FV_OVERLAY = {
    "gap_base_pct": -23.8,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 6.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
    },
@@ -1770,67 +4318,67 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.091031,
+    "sigma_h": 0.089093,
     "mu_h": 0.014914,
     "G": {
-     "bear": -5.69,
-     "base": -2.99,
-     "full": 0.55
+     "bear": -5.81,
+     "base": -3.06,
+     "full": 0.57
     },
     "band": "OUT-OF-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0002,
-     "base": 0.0042,
-     "full": 0.3245
+     "bear": 0.0,
+     "base": 0.0024,
+     "full": 0.3323
     },
     "p_touch": {
-     "bear": 0.0005,
-     "base": 0.0069,
-     "full": 0.508
+     "bear": 0.0,
+     "base": 0.0035,
+     "full": 0.5219
     },
     "required_cagr": {
      "bear": -0.998,
      "base": -0.9619,
      "full": 0.8334
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00157
+    "selftest_max_dev": 0.00303
    },
    "3M": {
     "h_sessions": 61,
-    "sigma_h": 0.182907,
+    "sigma_h": 0.179013,
     "mu_h": 0.046072,
     "G": {
-     "bear": -2.83,
-     "base": -1.49,
+     "bear": -2.89,
+     "base": -1.52,
      "full": 0.28
     },
     "band": "STRETCH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0046,
-     "base": 0.0385,
-     "full": 0.4886
+     "bear": 0.0028,
+     "base": 0.0374,
+     "full": 0.4892
     },
     "p_touch": {
-     "bear": 0.0085,
-     "base": 0.0743,
-     "full": 0.771
+     "bear": 0.0046,
+     "base": 0.0715,
+     "full": 0.7766
     },
     "required_cagr": {
      "bear": -0.8739,
      "base": -0.6635,
      "full": 0.2239
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00263
+    "selftest_max_dev": 0.00283
    }
   },
   {
@@ -1850,9 +4398,9 @@ const FV_OVERLAY = {
    "gap_base_pct": -28.4,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 6.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
    },
@@ -1861,67 +4409,67 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.118472,
+    "sigma_h": 0.11595,
     "mu_h": 0.015346,
     "G": {
-     "bear": -4.11,
-     "base": -2.81,
-     "full": 0.49
+     "bear": -4.2,
+     "base": -2.88,
+     "full": 0.5
     },
     "band": "OUT-OF-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.001,
-     "base": 0.0056,
-     "full": 0.3388
+     "bear": 0.0003,
+     "base": 0.0036,
+     "full": 0.3462
     },
     "p_touch": {
-     "bear": 0.0019,
-     "base": 0.0092,
-     "full": 0.5409
+     "bear": 0.0005,
+     "base": 0.005,
+     "full": 0.5536
     },
     "required_cagr": {
      "bear": -0.9971,
      "base": -0.9817,
      "full": 0.9958
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00194
+    "selftest_max_dev": 0.00364
    },
    "3M": {
     "h_sessions": 61,
-    "sigma_h": 0.219262,
+    "sigma_h": 0.214594,
     "mu_h": 0.046579,
     "G": {
-     "bear": -2.22,
-     "base": -1.52,
-     "full": 0.26
+     "bear": -2.27,
+     "base": -1.55,
+     "full": 0.27
     },
     "band": "STRETCH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0123,
-     "base": 0.039,
-     "full": 0.4765
+     "bear": 0.0098,
+     "base": 0.038,
+     "full": 0.4777
     },
     "p_touch": {
-     "bear": 0.023,
-     "base": 0.0741,
-     "full": 0.7685
+     "bear": 0.0174,
+     "base": 0.0713,
+     "full": 0.7758
     },
     "required_cagr": {
      "bear": -0.8572,
      "base": -0.7365,
      "full": 0.259
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00358
+    "selftest_max_dev": 0.00382
    }
   },
   {
@@ -1941,9 +4489,9 @@ const FV_OVERLAY = {
    "gap_base_pct": 33.9,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 6.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
    },
@@ -1952,67 +4500,431 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 21,
-    "sigma_h": 0.099451,
+    "sigma_h": 0.097334,
     "mu_h": 0.01483,
     "G": {
-     "bear": -5.83,
-     "base": 2.94,
-     "full": 5.66
+     "bear": -5.95,
+     "base": 3.0,
+     "full": 5.78
     },
     "band": "OUT-OF-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0002,
-     "base": 0.0071,
-     "full": 0.0003
+     "bear": 0.0,
+     "base": 0.0049,
+     "full": 0.0
     },
     "p_touch": {
-     "bear": 0.0004,
-     "base": 0.0103,
-     "full": 0.0005
+     "bear": 0.0,
+     "base": 0.0071,
+     "full": 0.0
     },
     "required_cagr": {
      "bear": -0.999,
      "base": 32.3345,
      "full": 858.4551
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00112
+    "selftest_max_dev": 0.00158
    },
    "3M": {
     "h_sessions": 62,
-    "sigma_h": 0.189928,
+    "sigma_h": 0.185885,
     "mu_h": 0.045988,
     "G": {
-     "bear": -3.05,
-     "base": 1.54,
-     "full": 2.96
+     "bear": -3.12,
+     "base": 1.57,
+     "full": 3.03
     },
     "band": "STRETCH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0034,
-     "base": 0.0817,
-     "full": 0.0079
+     "bear": 0.0019,
+     "base": 0.0847,
+     "full": 0.0055
     },
     "p_touch": {
-     "bear": 0.0063,
-     "base": 0.1301,
-     "full": 0.0121
+     "bear": 0.0032,
+     "base": 0.1361,
+     "full": 0.0092
     },
     "required_cagr": {
      "bear": -0.9015,
      "base": 2.2183,
      "full": 8.5077
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00232
+    "selftest_max_dev": 0.00149
+   }
+  },
+  {
+   "ticker": "EMAARDEV",
+   "name": "Emaar Development PJSC",
+   "code": "DFM:EMAARDEV",
+   "ccy": "AED",
+   "spot": 13.16,
+   "anchor_date": "2026-07-24",
+   "fv_asof": "2026-07-08",
+   "fv_lag_days": 16,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 12.88,
+   "fv_base": 17.29,
+   "fv_full": 22.76,
+   "gap_base_pct": 31.4,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.086298,
+    "mu_h": 0.003035,
+    "G": {
+     "bear": -0.25,
+     "base": 3.16,
+     "full": 6.35
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.3785,
+     "base": 0.0029,
+     "full": 0.0
+    },
+    "p_touch": {
+     "bear": 0.6809,
+     "base": 0.0037,
+     "full": 0.0
+    },
+    "required_cagr": {
+     "bear": -0.2275,
+     "base": 25.4527,
+     "full": 715.1375
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00181
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.166116,
+    "mu_h": 0.00983,
+    "G": {
+     "bear": -0.13,
+     "base": 1.64,
+     "full": 3.3
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.4186,
+     "base": 0.0535,
+     "full": 0.0023
+    },
+    "p_touch": {
+     "bear": 0.818,
+     "base": 0.0933,
+     "full": 0.0041
+    },
+    "required_cagr": {
+     "bear": -0.0824,
+     "base": 1.9796,
+     "full": 7.9468
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00137
+   }
+  },
+  {
+   "ticker": "LULU",
+   "name": "Lulu Retail Holdings",
+   "code": "ADX:LULU",
+   "ccy": "AED",
+   "spot": 0.96,
+   "anchor_date": "2026-07-24",
+   "fv_asof": "2026-07-13",
+   "fv_lag_days": 11,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 0.78,
+   "fv_base": 1.28,
+   "fv_full": 1.74,
+   "gap_base_pct": 33.3,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.083172,
+    "mu_h": 0.0,
+    "G": {
+     "bear": -2.5,
+     "base": 3.46,
+     "full": 7.15
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0095,
+     "base": 0.0016,
+     "full": 0.0
+    },
+    "p_touch": {
+     "bear": 0.0135,
+     "base": 0.002,
+     "full": 0.0
+    },
+    "required_cagr": {
+     "bear": -0.9172,
+     "base": 30.5693,
+     "full": 1256.0026
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00387
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.160011,
+    "mu_h": 0.010363,
+    "G": {
+     "bear": -1.3,
+     "base": 1.8,
+     "full": 3.72
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0793,
+     "base": 0.0407,
+     "full": 0.0011
+    },
+    "p_touch": {
+     "bear": 0.1406,
+     "base": 0.0699,
+     "full": 0.0021
+    },
+    "required_cagr": {
+     "bear": -0.5642,
+     "base": 2.1605,
+     "full": 9.7923
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.001
+   }
+  },
+  {
+   "ticker": "ALDAR",
+   "name": "Aldar Properties PJSC",
+   "code": "ADX:ALDAR",
+   "ccy": "AED",
+   "spot": 7.61,
+   "anchor_date": "2026-07-24",
+   "fv_asof": "2026-07-08",
+   "fv_lag_days": 16,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 7.95,
+   "fv_base": 10.18,
+   "fv_full": 11.77,
+   "gap_base_pct": 33.8,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.085109,
+    "mu_h": 0.002625,
+    "G": {
+     "bear": 0.51,
+     "base": 3.42,
+     "full": 5.12
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.3006,
+     "base": 0.0018,
+     "full": 0.0001
+    },
+    "p_touch": {
+     "bear": 0.5057,
+     "base": 0.0023,
+     "full": 0.0002
+    },
+    "required_cagr": {
+     "bear": 0.6896,
+     "base": 31.8365,
+     "full": 186.3707
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00163
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.158589,
+    "mu_h": 0.010458,
+    "G": {
+     "bear": 0.28,
+     "base": 1.83,
+     "full": 2.75
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.4097,
+     "base": 0.0381,
+     "full": 0.0067
+    },
+    "p_touch": {
+     "bear": 0.7296,
+     "base": 0.065,
+     "full": 0.0108
+    },
+    "required_cagr": {
+     "bear": 0.191,
+     "base": 2.2022,
+     "full": 4.7223
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00145
+   }
+  },
+  {
+   "ticker": "DEWA",
+   "name": "DEWA (Dubai Electricity and Water Authority)",
+   "code": "DFM:DEWA",
+   "ccy": "AED",
+   "spot": 2.67,
+   "anchor_date": "2026-07-24",
+   "fv_asof": "2026-07-11",
+   "fv_lag_days": 13,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 2.18,
+   "fv_base": 3.32,
+   "fv_full": 4.92,
+   "gap_base_pct": 24.3,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.064442,
+    "mu_h": 0.003738,
+    "G": {
+     "bear": -3.15,
+     "base": 3.38,
+     "full": 9.48
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0025,
+     "base": 0.002,
+     "full": 0.0
+    },
+    "p_touch": {
+     "bear": 0.0036,
+     "base": 0.0026,
+     "full": 0.0
+    },
+    "required_cagr": {
+     "bear": -0.9122,
+     "base": 12.6622,
+     "full": 1531.661
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00199
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.114791,
+    "mu_h": 0.011173,
+    "G": {
+     "bear": -1.77,
+     "base": 1.9,
+     "full": 5.32
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0319,
+     "base": 0.0359,
+     "full": 0.0001
+    },
+    "p_touch": {
+     "bear": 0.056,
+     "base": 0.0607,
+     "full": 0.0001
+    },
+    "required_cagr": {
+     "bear": -0.5556,
+     "base": 1.3906,
+     "full": 10.5296
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00214
    }
   },
   {
@@ -2032,9 +4944,9 @@ const FV_OVERLAY = {
    "gap_base_pct": -33.7,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 6.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
    },
@@ -2043,67 +4955,249 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.125282,
+    "sigma_h": 0.122615,
     "mu_h": 0.01397,
     "G": {
-     "bear": -13.27,
-     "base": -3.28,
-     "full": 2.21
+     "bear": -13.56,
+     "base": -3.35,
+     "full": 2.26
     },
     "band": "OUT-OF-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
      "bear": 0.0,
-     "base": 0.003,
-     "full": 0.0212
+     "base": 0.0015,
+     "full": 0.0188
     },
     "p_touch": {
      "bear": 0.0,
-     "base": 0.0047,
-     "full": 0.0302
+     "base": 0.002,
+     "full": 0.0265
     },
     "required_cagr": {
      "bear": -1.0,
      "base": -0.9928,
      "full": 26.6602
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00203
+    "selftest_max_dev": 0.00403
    },
    "3M": {
     "h_sessions": 62,
-    "sigma_h": 0.21355,
+    "sigma_h": 0.209004,
     "mu_h": 0.043799,
     "G": {
-     "bear": -7.79,
-     "base": -1.93,
-     "full": 1.3
+     "bear": -7.96,
+     "base": -1.97,
+     "full": 1.32
     },
     "band": "STRETCH",
     "informative": true,
     "already_converged": false,
     "p_term": {
      "bear": 0.0,
-     "base": 0.0201,
-     "full": 0.1151
+     "base": 0.0176,
+     "full": 0.1206
     },
     "p_touch": {
-     "bear": 0.0001,
-     "base": 0.0363,
-     "full": 0.1848
+     "bear": 0.0,
+     "base": 0.0319,
+     "full": 0.1953
     },
     "required_cagr": {
      "bear": -0.9987,
      "base": -0.807,
      "full": 2.0243
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00256
+    "selftest_max_dev": 0.00168
+   }
+  },
+  {
+   "ticker": "EMAAR",
+   "name": "Emaar Properties PJSC",
+   "code": "DFM:EMAAR",
+   "ccy": "AED",
+   "spot": 11.08,
+   "anchor_date": "2026-07-24",
+   "fv_asof": "2026-07-01",
+   "fv_lag_days": 23,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 11.08,
+   "fv_base": 14.8,
+   "fv_full": 18.75,
+   "gap_base_pct": 33.6,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.075903,
+    "mu_h": 0.002704,
+    "G": {
+     "bear": 0.0,
+     "base": 3.81,
+     "full": 6.93
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.5155,
+     "base": 0.0009,
+     "full": 0.0
+    },
+    "p_touch": {
+     "bear": 1.0,
+     "base": 0.0012,
+     "full": 0.0
+    },
+    "required_cagr": {
+     "bear": 0.0,
+     "base": 31.2599,
+     "full": 550.4906
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00198
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.145181,
+    "mu_h": 0.009879,
+    "G": {
+     "bear": 0.0,
+     "base": 1.99,
+     "full": 3.62
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.5296,
+     "base": 0.0284,
+     "full": 0.0013
+    },
+    "p_touch": {
+     "bear": 1.0,
+     "base": 0.048,
+     "full": 0.0025
+    },
+    "required_cagr": {
+     "bear": 0.0,
+     "base": 2.1834,
+     "full": 7.2006
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00109
+   }
+  },
+  {
+   "ticker": "ADCB",
+   "name": "Abu Dhabi Commercial Bank",
+   "code": "ADX:ADCB",
+   "ccy": "AED",
+   "spot": 14.42,
+   "anchor_date": "2026-07-24",
+   "fv_asof": "2026-07-10",
+   "fv_lag_days": 14,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 14.3,
+   "fv_base": 19.7,
+   "fv_full": 23.3,
+   "gap_base_pct": 36.6,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.086819,
+    "mu_h": 0.00277,
+    "G": {
+     "bear": -0.1,
+     "base": 3.59,
+     "full": 5.53
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.4445,
+     "base": 0.0013,
+     "full": 0.0001
+    },
+    "p_touch": {
+     "bear": 0.8012,
+     "base": 0.0018,
+     "full": 0.0001
+    },
+    "required_cagr": {
+     "bear": -0.0954,
+     "base": 41.268,
+     "full": 315.7291
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00177
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.153564,
+    "mu_h": 0.009662,
+    "G": {
+     "bear": -0.05,
+     "base": 2.03,
+     "full": 3.12
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.4491,
+     "base": 0.0262,
+     "full": 0.0033
+    },
+    "p_touch": {
+     "bear": 0.8823,
+     "base": 0.0443,
+     "full": 0.0055
+    },
+    "required_cagr": {
+     "bear": -0.0329,
+     "base": 2.4834,
+     "full": 5.8165
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00118
    }
   },
   {
@@ -2123,9 +5217,9 @@ const FV_OVERLAY = {
    "gap_base_pct": 51.6,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 6.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
    },
@@ -2134,67 +5228,158 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.109302,
+    "sigma_h": 0.106975,
     "mu_h": 0.014389,
     "G": {
-     "bear": 0.83,
-     "base": 3.81,
-     "full": 6.03
+     "bear": 0.85,
+     "base": 3.89,
+     "full": 6.16
     },
     "band": "OUT-OF-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.2113,
-     "base": 0.0021,
-     "full": 0.0002
+     "bear": 0.2204,
+     "base": 0.0009,
+     "full": 0.0
     },
     "p_touch": {
-     "bear": 0.3341,
-     "base": 0.0028,
-     "full": 0.0002
+     "bear": 0.347,
+     "base": 0.0012,
+     "full": 0.0001
     },
     "required_cagr": {
      "bear": 1.9872,
      "base": 146.0974,
      "full": 2728.8605
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00203
+    "selftest_max_dev": 0.00377
    },
    "3M": {
     "h_sessions": 61,
-    "sigma_h": 0.202814,
+    "sigma_h": 0.198496,
     "mu_h": 0.045822,
     "G": {
-     "bear": 0.45,
-     "base": 2.05,
-     "full": 3.25
+     "bear": 0.46,
+     "base": 2.1,
+     "full": 3.32
     },
     "band": "OUT-OF-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.3966,
-     "base": 0.0334,
-     "full": 0.005
+     "bear": 0.4017,
+     "base": 0.0319,
+     "full": 0.0031
     },
     "p_touch": {
-     "bear": 0.64,
-     "base": 0.0528,
-     "full": 0.0077
+     "bear": 0.6497,
+     "base": 0.0507,
+     "full": 0.0044
     },
     "required_cagr": {
      "bear": 0.4402,
      "base": 4.2788,
      "full": 12.9759
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00275
+    "selftest_max_dev": 0.00298
+   }
+  },
+  {
+   "ticker": "MAADEN",
+   "name": "Saudi Arabian Mining Company (Ma'aden)",
+   "code": "TADAWUL:1211",
+   "ccy": "SAR",
+   "spot": 58.2,
+   "anchor_date": "2026-07-26",
+   "fv_asof": "2026-07-05",
+   "fv_lag_days": 21,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 27,
+   "fv_base": 42,
+   "fv_full": 57,
+   "gap_base_pct": -27.8,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.086825,
+    "mu_h": 0.002917,
+    "G": {
+     "bear": -8.85,
+     "base": -3.76,
+     "full": -0.24
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0,
+     "base": 0.0009,
+     "full": 0.383
+    },
+    "p_touch": {
+     "bear": 0.0,
+     "base": 0.001,
+     "full": 0.6895
+    },
+    "required_cagr": {
+     "bear": -0.9999,
+     "base": -0.9801,
+     "full": -0.2212
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00267
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.153452,
+    "mu_h": 0.011106,
+    "G": {
+     "bear": -5.01,
+     "base": -2.13,
+     "full": -0.14
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0001,
+     "base": 0.0169,
+     "full": 0.4103
+    },
+    "p_touch": {
+     "bear": 0.0001,
+     "base": 0.0293,
+     "full": 0.8113
+    },
+    "required_cagr": {
+     "bear": -0.9537,
+     "base": -0.7288,
+     "full": -0.08
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00123
    }
   },
   {
@@ -2214,9 +5399,9 @@ const FV_OVERLAY = {
    "gap_base_pct": -34.6,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 6.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
    },
@@ -2225,67 +5410,233 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.109404,
+    "sigma_h": 0.107075,
     "mu_h": 0.007663,
     "G": {
-     "bear": -7.31,
-     "base": -3.88,
-     "full": -0.6
+     "bear": -7.47,
+     "base": -3.97,
+     "full": -0.62
     },
     "band": "OUT-OF-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0001,
-     "base": 0.0014,
-     "full": 0.221
+     "bear": 0.0,
+     "base": 0.0006,
+     "full": 0.2302
     },
     "p_touch": {
-     "bear": 0.0001,
-     "base": 0.0025,
-     "full": 0.3882
+     "bear": 0.0,
+     "base": 0.0008,
+     "full": 0.4057
     },
     "required_cagr": {
      "bear": -0.9999,
      "base": -0.9939,
      "full": -0.5463
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00173
+    "selftest_max_dev": 0.00348
    },
    "3M": {
     "h_sessions": 62,
-    "sigma_h": 0.189769,
+    "sigma_h": 0.185729,
     "mu_h": 0.024961,
     "G": {
-     "bear": -4.21,
-     "base": -2.24,
+     "bear": -4.31,
+     "base": -2.29,
      "full": -0.35
     },
     "band": "OUT-OF-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0009,
-     "base": 0.0136,
-     "full": 0.2896
+     "bear": 0.0003,
+     "base": 0.011,
+     "full": 0.2983
     },
     "p_touch": {
-     "bear": 0.0015,
-     "base": 0.0245,
-     "full": 0.5853
+     "bear": 0.0003,
+     "base": 0.0191,
+     "full": 0.6017
     },
     "required_cagr": {
      "bear": -0.9592,
      "base": -0.8172,
      "full": -0.2316
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00264
+    "selftest_max_dev": 0.00149
+   }
+  },
+  {
+   "ticker": "RIBL",
+   "name": "Riyad Bank",
+   "code": "TADAWUL:1010",
+   "ccy": "SAR",
+   "spot": 20.92,
+   "anchor_date": "2026-07-26",
+   "fv_asof": "2026-07-09",
+   "fv_lag_days": 17,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 20.85,
+   "fv_base": 26.61,
+   "fv_full": 33.24,
+   "gap_base_pct": 27.2,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.059103,
+    "mu_h": 0.002864,
+    "G": {
+     "bear": -0.06,
+     "base": 4.07,
+     "full": 7.83
+    },
+    "band": "NOT-EXPRESSIBLE",
+    "informative": false,
+    "already_converged": false,
+    "p_term": null,
+    "p_touch": null,
+    "required_cagr": {
+     "bear": -0.0394,
+     "base": 16.939,
+     "full": 257.9358
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00211
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.104567,
+    "mu_h": 0.010461,
+    "G": {
+     "bear": -0.03,
+     "base": 2.3,
+     "full": 4.43
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.4428,
+     "base": 0.0168,
+     "full": 0.0003
+    },
+    "p_touch": {
+     "bear": 0.8954,
+     "base": 0.0283,
+     "full": 0.0007
+    },
+    "required_cagr": {
+     "bear": -0.0133,
+     "base": 1.6178,
+     "full": 5.3738
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00084
+   }
+  },
+  {
+   "ticker": "AGTHIA",
+   "name": "Agthia Group PJSC",
+   "code": "ADX:AGTHIA",
+   "ccy": "AED",
+   "spot": 3.2,
+   "anchor_date": "2026-07-24",
+   "fv_asof": "2026-07-06",
+   "fv_lag_days": 18,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 3.05,
+   "fv_base": 4.37,
+   "fv_full": 6.09,
+   "gap_base_pct": 36.6,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.070116,
+    "mu_h": 0.00312,
+    "G": {
+     "bear": -0.68,
+     "base": 4.44,
+     "full": 9.18
+    },
+    "band": "NOT-EXPRESSIBLE",
+    "informative": false,
+    "already_converged": false,
+    "p_term": null,
+    "p_touch": null,
+    "required_cagr": {
+     "bear": -0.4379,
+     "base": 41.0705,
+     "full": 2256.3961
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00207
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.134405,
+    "mu_h": 0.009331,
+    "G": {
+     "bear": -0.36,
+     "base": 2.32,
+     "full": 4.79
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.3218,
+     "base": 0.0153,
+     "full": 0.0002
+    },
+    "p_touch": {
+     "bear": 0.6193,
+     "base": 0.0257,
+     "full": 0.0005
+    },
+    "required_cagr": {
+     "bear": -0.1747,
+     "base": 2.478,
+     "full": 12.118
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00084
    }
   },
   {
@@ -2305,9 +5656,9 @@ const FV_OVERLAY = {
    "gap_base_pct": 46.4,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 6.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
    },
@@ -2316,12 +5667,12 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.091302,
+    "sigma_h": 0.089358,
     "mu_h": 0.014815,
     "G": {
-     "bear": -2.02,
-     "base": 4.17,
-     "full": 6.95
+     "bear": -2.06,
+     "base": 4.26,
+     "full": 7.1
     },
     "band": "NOT-EXPRESSIBLE",
     "informative": false,
@@ -2333,42 +5684,125 @@ const FV_OVERLAY = {
      "base": 95.8429,
      "full": 2031.6718
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00148
+    "selftest_max_dev": 0.00294
    },
    "3M": {
     "h_sessions": 61,
-    "sigma_h": 0.166757,
+    "sigma_h": 0.163207,
     "mu_h": 0.045801,
     "G": {
-     "bear": -1.1,
-     "base": 2.29,
-     "full": 3.81
+     "bear": -1.13,
+     "base": 2.34,
+     "full": 3.89
     },
     "band": "OUT-OF-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0711,
-     "base": 0.0245,
-     "full": 0.0025
+     "bear": 0.0732,
+     "base": 0.0222,
+     "full": 0.0012
     },
     "p_touch": {
-     "bear": 0.142,
-     "base": 0.0377,
-     "full": 0.0032
+     "bear": 0.1452,
+     "base": 0.0345,
+     "full": 0.0016
     },
     "required_cagr": {
      "bear": -0.5212,
      "base": 3.5922,
      "full": 11.6674
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00236
+    "selftest_max_dev": 0.00255
+   }
+  },
+  {
+   "ticker": "BURJEEL",
+   "name": "Burjeel Holdings PLC",
+   "code": "ADX:BURJEEL",
+   "ccy": "AED",
+   "spot": 1.2,
+   "anchor_date": "2026-07-24",
+   "fv_asof": "2026-07-11",
+   "fv_lag_days": 13,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 1.14,
+   "fv_base": 1.85,
+   "fv_full": 2.35,
+   "gap_base_pct": 54.2,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.096856,
+    "mu_h": 0.0,
+    "G": {
+     "bear": -0.53,
+     "base": 4.47,
+     "full": 6.94
+    },
+    "band": "NOT-EXPRESSIBLE",
+    "informative": false,
+    "already_converged": false,
+    "p_term": null,
+    "p_touch": null,
+    "required_cagr": {
+     "bear": -0.4596,
+     "base": 179.2544,
+     "full": 3180.5547
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00723
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.175973,
+    "mu_h": 0.008299,
+    "G": {
+     "bear": -0.29,
+     "base": 2.46,
+     "full": 3.82
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.3564,
+     "base": 0.0112,
+     "full": 0.0009
+    },
+    "p_touch": {
+     "bear": 0.6819,
+     "base": 0.0188,
+     "full": 0.0016
+    },
+    "required_cagr": {
+     "bear": -0.1855,
+     "base": 4.6489,
+     "full": 13.7078
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00189
    }
   },
   {
@@ -2388,9 +5822,9 @@ const FV_OVERLAY = {
    "gap_base_pct": -45.5,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 6.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
    },
@@ -2399,12 +5833,12 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.13955,
+    "sigma_h": 0.136579,
     "mu_h": 0.014685,
     "G": {
-     "bear": -6.84,
-     "base": -4.35,
-     "full": -3.04
+     "bear": -6.98,
+     "base": -4.44,
+     "full": -3.11
     },
     "band": "NOT-EXPRESSIBLE",
     "informative": false,
@@ -2416,42 +5850,42 @@ const FV_OVERLAY = {
      "base": -0.9993,
      "full": -0.9939
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00245
+    "selftest_max_dev": 0.00468
    },
    "3M": {
     "h_sessions": 61,
-    "sigma_h": 0.24768,
+    "sigma_h": 0.242407,
     "mu_h": 0.046251,
     "G": {
-     "bear": -3.85,
-     "base": -2.45,
-     "full": -1.72
+     "bear": -3.94,
+     "base": -2.5,
+     "full": -1.75
     },
     "band": "OUT-OF-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0013,
-     "base": 0.009,
-     "full": 0.0293
+     "bear": 0.0005,
+     "base": 0.0065,
+     "full": 0.0274
     },
     "p_touch": {
-     "bear": 0.0026,
-     "base": 0.0167,
-     "full": 0.0556
+     "bear": 0.0008,
+     "base": 0.0115,
+     "full": 0.0506
     },
     "required_cagr": {
      "bear": -0.978,
      "base": -0.9118,
      "full": -0.8172
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00336
+    "selftest_max_dev": 0.00364
    }
   },
   {
@@ -2471,9 +5905,9 @@ const FV_OVERLAY = {
    "gap_base_pct": -39.5,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 6.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
    },
@@ -2482,12 +5916,12 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.106215,
+    "sigma_h": 0.103954,
     "mu_h": 0.014853,
     "G": {
-     "bear": -7.81,
-     "base": -4.73,
-     "full": 0.08
+     "bear": -7.98,
+     "base": -4.83,
+     "full": 0.09
     },
     "band": "NOT-EXPRESSIBLE",
     "informative": false,
@@ -2499,42 +5933,125 @@ const FV_OVERLAY = {
      "base": -0.9976,
      "full": 0.1132
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.0017
+    "selftest_max_dev": 0.00331
    },
    "3M": {
     "h_sessions": 61,
-    "sigma_h": 0.199581,
+    "sigma_h": 0.195332,
     "mu_h": 0.045956,
     "G": {
-     "bear": -4.16,
-     "base": -2.51,
-     "full": 0.04
+     "bear": -4.25,
+     "base": -2.57,
+     "full": 0.05
     },
     "band": "OUT-OF-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0009,
-     "base": 0.0076,
-     "full": 0.5861
+     "bear": 0.0003,
+     "base": 0.0053,
+     "full": 0.5818
     },
     "p_touch": {
-     "bear": 0.0016,
-     "base": 0.0142,
-     "full": 0.9228
+     "bear": 0.0006,
+     "base": 0.0094,
+     "full": 0.9229
     },
     "required_cagr": {
      "bear": -0.9638,
      "base": -0.8657,
      "full": 0.0364
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00275
+    "selftest_max_dev": 0.00298
+   }
+  },
+  {
+   "ticker": "DIB",
+   "name": "Dubai Islamic Bank",
+   "code": "DFM:DIB",
+   "ccy": "AED",
+   "spot": 7.35,
+   "anchor_date": "2026-07-24",
+   "fv_asof": "2026-07-11",
+   "fv_lag_days": 13,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 8.14,
+   "fv_base": 10.18,
+   "fv_full": 11.2,
+   "gap_base_pct": 38.5,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.063113,
+    "mu_h": 0.002717,
+    "G": {
+     "bear": 1.62,
+     "base": 5.16,
+     "full": 6.67
+    },
+    "band": "NOT-EXPRESSIBLE",
+    "informative": false,
+    "already_converged": false,
+    "p_term": null,
+    "p_touch": null,
+    "required_cagr": {
+     "bear": 2.4044,
+     "base": 48.8339,
+     "full": 155.7358
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00147
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.118103,
+    "mu_h": 0.009479,
+    "G": {
+     "bear": 0.86,
+     "base": 2.76,
+     "full": 3.57
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.2006,
+     "base": 0.0067,
+     "full": 0.0015
+    },
+    "p_touch": {
+     "bear": 0.349,
+     "base": 0.0109,
+     "full": 0.0027
+    },
+    "required_cagr": {
+     "bear": 0.5043,
+     "base": 2.6799,
+     "full": 4.3917
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00102
    }
   },
   {
@@ -2554,9 +6071,9 @@ const FV_OVERLAY = {
    "gap_base_pct": 72.1,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 6.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
    },
@@ -2565,12 +6082,12 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 21,
-    "sigma_h": 0.091748,
+    "sigma_h": 0.089795,
     "mu_h": 0.014637,
     "G": {
-     "bear": 1.89,
-     "base": 5.92,
-     "full": 7.73
+     "bear": 1.93,
+     "base": 6.04,
+     "full": 7.9
     },
     "band": "NOT-EXPRESSIBLE",
     "informative": false,
@@ -2582,42 +6099,125 @@ const FV_OVERLAY = {
      "base": 672.8269,
      "full": 4957.1056
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00124
+    "selftest_max_dev": 0.00122
    },
    "3M": {
     "h_sessions": 62,
-    "sigma_h": 0.171768,
+    "sigma_h": 0.168111,
     "mu_h": 0.045771,
     "G": {
-     "bear": 1.01,
-     "base": 3.16,
-     "full": 4.13
+     "bear": 1.03,
+     "base": 3.23,
+     "full": 4.22
     },
     "band": "OUT-OF-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.1993,
-     "base": 0.0061,
-     "full": 0.0016
+     "bear": 0.2083,
+     "base": 0.004,
+     "full": 0.0007
     },
     "p_touch": {
-     "bear": 0.3175,
-     "base": 0.0096,
-     "full": 0.0028
+     "bear": 0.3323,
+     "base": 0.0066,
+     "full": 0.001
     },
     "required_cagr": {
      "bear": 0.9991,
      "base": 7.767,
      "full": 16.0519
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base above p95",
-    "selftest_max_dev": 0.0019
+    "selftest_max_dev": 0.00135
+   }
+  },
+  {
+   "ticker": "AAPL",
+   "name": "Apple Inc.",
+   "code": "NASDAQ:AAPL",
+   "ccy": "USD",
+   "spot": 336.91,
+   "anchor_date": "2026-07-27",
+   "fv_asof": "2026-07-06",
+   "fv_lag_days": 21,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 182,
+   "fv_base": 208,
+   "fv_full": 244,
+   "gap_base_pct": -38.3,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 22,
+    "sigma_h": 0.085332,
+    "mu_h": 0.002638,
+    "G": {
+     "bear": -7.22,
+     "base": -5.65,
+     "full": -3.78
+    },
+    "band": "NOT-EXPRESSIBLE",
+    "informative": false,
+    "already_converged": false,
+    "p_term": null,
+    "p_touch": null,
+    "required_cagr": {
+     "bear": -0.9994,
+     "base": -0.9969,
+     "full": -0.9792
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00191
+   },
+   "3M": {
+    "h_sessions": 64,
+    "sigma_h": 0.149457,
+    "mu_h": 0.010071,
+    "G": {
+     "bear": -4.12,
+     "base": -3.23,
+     "full": -2.16
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0004,
+     "base": 0.0021,
+     "full": 0.016
+    },
+    "p_touch": {
+     "bear": 0.0007,
+     "base": 0.0039,
+     "full": 0.0287
+    },
+    "required_cagr": {
+     "bear": -0.9148,
+     "base": -0.8547,
+     "full": -0.7249
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.0012
    }
   },
   {
@@ -2637,9 +6237,9 @@ const FV_OVERLAY = {
    "gap_base_pct": -44.4,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 6.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
    },
@@ -2648,12 +6248,12 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.08886,
+    "sigma_h": 0.086968,
     "mu_h": 0.013958,
     "G": {
-     "bear": -9.66,
-     "base": -6.6,
-     "full": -4.03
+     "bear": -9.87,
+     "base": -6.74,
+     "full": -4.12
     },
     "band": "NOT-EXPRESSIBLE",
     "informative": false,
@@ -2665,42 +6265,42 @@ const FV_OVERLAY = {
      "base": -0.9991,
      "full": -0.9864
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.0022
+    "selftest_max_dev": 0.00362
    },
    "3M": {
     "h_sessions": 61,
-    "sigma_h": 0.184243,
+    "sigma_h": 0.18032,
     "mu_h": 0.04515,
     "G": {
-     "bear": -4.66,
-     "base": -3.18,
-     "full": -1.95
+     "bear": -4.76,
+     "base": -3.25,
+     "full": -1.99
     },
     "band": "OUT-OF-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0005,
-     "base": 0.0028,
-     "full": 0.0182
+     "bear": 0.0001,
+     "base": 0.0014,
+     "full": 0.0157
     },
     "p_touch": {
-     "bear": 0.0009,
-     "base": 0.0053,
-     "full": 0.0337
+     "bear": 0.0003,
+     "base": 0.0021,
+     "full": 0.029
     },
     "required_cagr": {
      "bear": -0.9678,
      "base": -0.9043,
      "full": -0.7615
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00138
+    "selftest_max_dev": 0.00152
    }
   },
   {
@@ -2720,9 +6320,9 @@ const FV_OVERLAY = {
    "gap_base_pct": -52.9,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 6.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
    },
@@ -2731,12 +6331,12 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.150178,
+    "sigma_h": 0.146981,
     "mu_h": 0.012532,
     "G": {
-     "bear": -5.37,
-     "base": -5.02,
-     "full": -3.84
+     "bear": -5.49,
+     "base": -5.13,
+     "full": -3.93
     },
     "band": "NOT-EXPRESSIBLE",
     "informative": false,
@@ -2748,42 +6348,42 @@ const FV_OVERLAY = {
      "base": -0.9999,
      "full": -0.999
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00243
+    "selftest_max_dev": 0.00483
    },
    "3M": {
     "h_sessions": 62,
-    "sigma_h": 0.226708,
+    "sigma_h": 0.221881,
     "mu_h": 0.039576,
     "G": {
-     "bear": -3.56,
-     "base": -3.32,
-     "full": -2.55
+     "bear": -3.64,
+     "base": -3.4,
+     "full": -2.6
     },
     "band": "OUT-OF-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0019,
-     "base": 0.0026,
-     "full": 0.0079
+     "bear": 0.0008,
+     "base": 0.0013,
+     "full": 0.0056
     },
     "p_touch": {
-     "bear": 0.0033,
-     "base": 0.0045,
-     "full": 0.0142
+     "bear": 0.0014,
+     "base": 0.0023,
+     "full": 0.0096
     },
     "required_cagr": {
      "bear": -0.9603,
      "base": -0.9509,
      "full": -0.9006
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00266
+    "selftest_max_dev": 0.00178
    }
   },
   {
@@ -2803,9 +6403,9 @@ const FV_OVERLAY = {
    "gap_base_pct": -46.9,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 6.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
    },
@@ -2814,12 +6414,12 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.096756,
+    "sigma_h": 0.094696,
     "mu_h": 0.013514,
     "G": {
-     "bear": -10.54,
-     "base": -6.55,
-     "full": 1.5
+     "bear": -10.77,
+     "base": -6.69,
+     "full": 1.54
     },
     "band": "NOT-EXPRESSIBLE",
     "informative": false,
@@ -2831,42 +6431,42 @@ const FV_OVERLAY = {
      "base": -0.9995,
      "full": 4.7224
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00298
+    "selftest_max_dev": 0.00452
    },
    "3M": {
     "h_sessions": 61,
-    "sigma_h": 0.183709,
+    "sigma_h": 0.179797,
     "mu_h": 0.04652,
     "G": {
-     "bear": -5.55,
-     "base": -3.45,
-     "full": 0.79
+     "bear": -5.67,
+     "base": -3.52,
+     "full": 0.81
     },
     "band": "OUT-OF-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0002,
-     "base": 0.002,
-     "full": 0.2672
+     "bear": 0.0,
+     "base": 0.0009,
+     "full": 0.2763
     },
     "p_touch": {
-     "bear": 0.0004,
-     "base": 0.0039,
-     "full": 0.4256
+     "bear": 0.0001,
+     "base": 0.0014,
+     "full": 0.4421
     },
     "required_cagr": {
      "bear": -0.9831,
      "base": -0.9207,
      "full": 0.7887
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.0019
+    "selftest_max_dev": 0.0021
    }
   },
   {
@@ -2886,9 +6486,9 @@ const FV_OVERLAY = {
    "gap_base_pct": -55.1,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 6.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
    },
@@ -2897,12 +6497,12 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.099345,
+    "sigma_h": 0.097229,
     "mu_h": 0.01519,
     "G": {
-     "bear": -12.08,
-     "base": -8.06,
-     "full": -4.94
+     "bear": -12.35,
+     "base": -8.24,
+     "full": -5.05
     },
     "band": "NOT-EXPRESSIBLE",
     "informative": false,
@@ -2914,19 +6514,19 @@ const FV_OVERLAY = {
      "base": -0.9999,
      "full": -0.9972
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00156
+    "selftest_max_dev": 0.00312
    },
    "3M": {
     "h_sessions": 61,
-    "sigma_h": 0.195568,
+    "sigma_h": 0.191404,
     "mu_h": 0.044895,
     "G": {
-     "bear": -6.14,
-     "base": -4.09,
-     "full": -2.51
+     "bear": -6.27,
+     "base": -4.18,
+     "full": -2.56
     },
     "band": "NOT-EXPRESSIBLE",
     "informative": false,
@@ -2938,10 +6538,10 @@ const FV_OVERLAY = {
      "base": -0.9594,
      "full": -0.8595
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00353
+    "selftest_max_dev": 0.00375
    }
   },
   {
@@ -2961,9 +6561,9 @@ const FV_OVERLAY = {
    "gap_base_pct": -72.8,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 6.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
    },
@@ -2972,12 +6572,12 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.12821,
+    "sigma_h": 0.12548,
     "mu_h": 0.014665,
     "G": {
-     "bear": -14.23,
-     "base": -10.17,
-     "full": -7.15
+     "bear": -14.54,
+     "base": -10.39,
+     "full": -7.3
     },
     "band": "NOT-EXPRESSIBLE",
     "informative": false,
@@ -2989,19 +6589,19 @@ const FV_OVERLAY = {
      "base": -1.0,
      "full": -1.0
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00234
+    "selftest_max_dev": 0.00439
    },
    "3M": {
     "h_sessions": 61,
-    "sigma_h": 0.239746,
+    "sigma_h": 0.234641,
     "mu_h": 0.046623,
     "G": {
-     "bear": -7.61,
-     "base": -5.44,
-     "full": -3.82
+     "bear": -7.77,
+     "base": -5.56,
+     "full": -3.91
     },
     "band": "NOT-EXPRESSIBLE",
     "informative": false,
@@ -3013,10 +6613,10 @@ const FV_OVERLAY = {
      "base": -0.9946,
      "full": -0.9744
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.0038
+    "selftest_max_dev": 0.00407
    }
   },
   {
@@ -3036,9 +6636,9 @@ const FV_OVERLAY = {
    "gap_base_pct": -74.0,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 6.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
    },
@@ -3047,12 +6647,12 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.103671,
+    "sigma_h": 0.101464,
     "mu_h": 0.01491,
     "G": {
      "bear": null,
-     "base": -12.98,
-     "full": 0.98
+     "base": -13.26,
+     "full": 1.0
     },
     "band": "NOT-EXPRESSIBLE",
     "informative": false,
@@ -3064,19 +6664,19 @@ const FV_OVERLAY = {
      "base": -1.0,
      "full": 2.3713
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00166
+    "selftest_max_dev": 0.00332
    },
    "3M": {
     "h_sessions": 62,
-    "sigma_h": 0.19804,
+    "sigma_h": 0.193824,
     "mu_h": 0.04613,
     "G": {
      "bear": null,
-     "base": -6.79,
-     "full": 0.51
+     "base": -6.94,
+     "full": 0.52
     },
     "band": "NOT-EXPRESSIBLE",
     "informative": false,
@@ -3088,10 +6688,10 @@ const FV_OVERLAY = {
      "base": -0.9954,
      "full": 0.4995
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00234
+    "selftest_max_dev": 0.00156
    }
   },
   {
@@ -3111,9 +6711,9 @@ const FV_OVERLAY = {
    "gap_base_pct": -84.5,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 6.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
    },
@@ -3122,12 +6722,12 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.095977,
+    "sigma_h": 0.093934,
     "mu_h": 0.013606,
     "G": {
-     "bear": -26.03,
-     "base": -19.41,
-     "full": -8.7
+     "bear": -26.6,
+     "base": -19.83,
+     "full": -8.89
     },
     "band": "NOT-EXPRESSIBLE",
     "informative": false,
@@ -3139,19 +6739,19 @@ const FV_OVERLAY = {
      "base": -1.0,
      "full": -1.0
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00324
+    "selftest_max_dev": 0.00478
    },
    "3M": {
     "h_sessions": 62,
-    "sigma_h": 0.184415,
+    "sigma_h": 0.180488,
     "mu_h": 0.04465,
     "G": {
-     "bear": -13.55,
-     "base": -10.1,
-     "full": -4.53
+     "bear": -13.84,
+     "base": -10.32,
+     "full": -4.63
     },
     "band": "NOT-EXPRESSIBLE",
     "informative": false,
@@ -3163,10 +6763,85 @@ const FV_OVERLAY = {
      "base": -0.9994,
      "full": -0.9646
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00142
+    "selftest_max_dev": 0.00145
+   }
+  },
+  {
+   "ticker": "IHC",
+   "name": "International Holding Company",
+   "code": "ADX:IHC",
+   "ccy": "AED",
+   "spot": 380,
+   "anchor_date": "2026-07-24",
+   "fv_asof": "2026-07-04",
+   "fv_lag_days": 20,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 78,
+   "fv_base": 104.5,
+   "fv_full": 150,
+   "gap_base_pct": -72.5,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.026253,
+    "mu_h": 0.002969,
+    "G": {
+     "bear": -60.31,
+     "base": -49.17,
+     "full": -35.41
+    },
+    "band": "NOT-EXPRESSIBLE",
+    "informative": false,
+    "already_converged": false,
+    "p_term": null,
+    "p_touch": null,
+    "required_cagr": {
+     "bear": -1.0,
+     "base": -1.0,
+     "full": -1.0
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00046
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.058513,
+    "mu_h": 0.009273,
+    "G": {
+     "bear": -27.06,
+     "base": -22.06,
+     "full": -15.89
+    },
+    "band": "NOT-EXPRESSIBLE",
+    "informative": false,
+    "already_converged": false,
+    "p_term": null,
+    "p_touch": null,
+    "required_cagr": {
+     "bear": -0.9982,
+     "base": -0.9943,
+     "full": -0.9757
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00049
    }
   },
   {
@@ -3186,9 +6861,9 @@ const FV_OVERLAY = {
    "gap_base_pct": -0.1,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 6.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
    },
@@ -3197,67 +6872,158 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 20,
-    "sigma_h": 0.107191,
+    "sigma_h": 0.104909,
     "mu_h": 0.014693,
     "G": {
-     "bear": -4.88,
+     "bear": -4.99,
      "base": -0.01,
-     "full": 4.05
+     "full": 4.14
     },
     "band": "IN-REACH",
     "informative": false,
     "already_converged": true,
     "p_term": {
-     "bear": 0.0004,
-     "base": 0.433,
-     "full": 0.0015
+     "bear": 0.0001,
+     "base": 0.4364,
+     "full": 0.0006
     },
     "p_touch": {
-     "bear": 0.0008,
-     "base": 0.8452,
-     "full": 0.002
+     "bear": 0.0001,
+     "base": 0.8466,
+     "full": 0.0007
     },
     "required_cagr": {
      "bear": -0.9981,
      "base": -0.0086,
      "full": 183.1332
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.0018
+    "selftest_max_dev": 0.00351
    },
    "3M": {
     "h_sessions": 61,
-    "sigma_h": 0.208438,
+    "sigma_h": 0.204,
     "mu_h": 0.046208,
     "G": {
-     "bear": -2.51,
+     "bear": -2.57,
      "base": -0.0,
-     "full": 2.09
+     "full": 2.13
     },
     "band": "IN-REACH",
     "informative": false,
     "already_converged": true,
     "p_term": {
-     "bear": 0.0077,
-     "base": 0.396,
-     "full": 0.0313
+     "bear": 0.0054,
+     "base": 0.4011,
+     "full": 0.0296
     },
     "p_touch": {
-     "bear": 0.0145,
-     "base": 0.9015,
-     "full": 0.0491
+     "bear": 0.0096,
+     "base": 0.9035,
+     "full": 0.047
     },
     "required_cagr": {
      "bear": -0.8768,
      "base": -0.0029,
      "full": 4.6891
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00303
+    "selftest_max_dev": 0.00327
+   }
+  },
+  {
+   "ticker": "ADIBUAE",
+   "name": "Abu Dhabi Islamic Bank",
+   "code": "ADX:ADIB",
+   "ccy": "AED",
+   "spot": 21.24,
+   "anchor_date": "2026-07-24",
+   "fv_asof": "2026-07-11",
+   "fv_lag_days": 13,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 17.73,
+   "fv_base": 21.23,
+   "fv_full": 24.63,
+   "gap_base_pct": -0.0,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.086261,
+    "mu_h": 0.002821,
+    "G": {
+     "bear": -2.09,
+     "base": -0.01,
+     "full": 1.72
+    },
+    "band": "IN-REACH",
+    "informative": false,
+    "already_converged": true,
+    "p_term": {
+     "bear": 0.0194,
+     "base": 0.4834,
+     "full": 0.0446
+    },
+    "p_touch": {
+     "bear": 0.0296,
+     "base": 0.866,
+     "full": 0.0672
+    },
+    "required_cagr": {
+     "bear": -0.8855,
+     "base": -0.0056,
+     "full": 4.9118
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00158
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.15362,
+    "mu_h": 0.009838,
+    "G": {
+     "bear": -1.18,
+     "base": -0.0,
+     "full": 0.96
+    },
+    "band": "IN-REACH",
+    "informative": false,
+    "already_converged": true,
+    "p_term": {
+     "bear": 0.0979,
+     "base": 0.4708,
+     "full": 0.169
+    },
+    "p_touch": {
+     "bear": 0.1753,
+     "base": 0.9204,
+     "full": 0.294
+    },
+    "required_cagr": {
+     "bear": -0.5145,
+     "base": -0.0019,
+     "full": 0.8082
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00143
    }
   }
  ]
