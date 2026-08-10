@@ -93,6 +93,30 @@ def scan():
     return reg
 
 
+def ticker_keys():
+    """Load assets/data.js in node and return its TICKERS keys.
+
+    LEDGER and TICKERS do not always spell a name the same way: the ledger carries
+    `Samsung` and `Kakao` (and `Gold`), while TICKERS keys them `SAMSUNG` and `KAKAO`.
+    The registry is built from library filenames through ALIAS, which lands on the LEDGER
+    spelling — so a page looking a TICKERS key up in MARKET_OF got nothing back for those
+    names and fell through to whatever its fallback was. Asserting only against LEDGER
+    could never see that; this is the second known total to count against.
+    """
+    js = (
+        "const fs=require('fs'),vm=require('vm');"
+        "const c=vm.createContext({console,globalThis:undefined});"
+        "vm.runInContext(\"var globalThis=this;\"+fs.readFileSync(process.argv[1],'utf8')"
+        "+'\\n;globalThis.__T=TICKERS;',c);"
+        "console.log(JSON.stringify(Object.keys(c.__T)));"
+    )
+    p = subprocess.run(["node", "-e", js, os.path.join(ROOT, "assets", "data.js")],
+                       capture_output=True, text=True)
+    if p.returncode:
+        raise SystemExit("FAIL — could not IMPORT assets/data.js:\n" + p.stderr)
+    return json.loads(p.stdout)
+
+
 def ledger_instruments():
     """Load assets/data.js in node and return its LEDGER instruments + count."""
     js = (
@@ -127,6 +151,20 @@ def main():
     if extra:
         print(f"note: libraries with no ledger rows yet (kept in the registry): {extra}")
 
+    # Second known total: every TICKERS key must resolve too, case-insensitively.
+    ci = {t.upper(): m for t, m in reg.items()}
+    tks = ticker_keys()
+    unresolved = sorted(t for t in tks if t not in reg and t.upper() not in ci)
+    print(f"TICKERS keys      : {len(tks)}")
+    if unresolved:
+        raise SystemExit(
+            "FAIL — these TICKERS keys resolve to no market, so every surface that\n"
+            "       sections by market would drop them:\n"
+            f"       {unresolved}")
+    cased = sorted(t for t in tks if t not in reg)
+    if cased:
+        print(f"note: resolved only case-insensitively (LEDGER vs TICKERS spelling): {cased}")
+
     counts = {}
     for t, m in reg.items():
         counts[m] = counts.get(m, 0) + 1
@@ -145,7 +183,24 @@ def main():
         "const MARKET_OF = " + json.dumps(dict(sorted(reg.items())), indent=1) + ";\n\n"
         "const MARKET_META = " + json.dumps(dict(MARKET_META), indent=1) + ";\n\n"
         "// Tab-group render order.\n"
-        "const MARKET_ORDER = " + json.dumps(ORDER) + ";\n"
+        "const MARKET_ORDER = " + json.dumps(ORDER) + ";\n\n"
+        "// Resolver — USE THIS, not MARKET_OF directly. The keys above are the LEDGER\n"
+        "// spelling of each name; TICKERS spells three of them differently (SAMSUNG vs\n"
+        "// Samsung, KAKAO vs Kakao). A page that indexed MARKET_OF straight with a\n"
+        "// TICKERS key got undefined for those and quietly grouped them somewhere else.\n"
+        "const MARKET_OF_CI = " + json.dumps(
+            {t.upper(): m for t, m in sorted(reg.items())}, indent=1) + ";\n"
+        "function marketOf(tk){\n"
+        "  if (!tk) return null;\n"
+        "  return MARKET_OF[tk] || MARKET_OF_CI[String(tk).toUpperCase()] || null;\n"
+        "}\n"
+        "function marketLabel(m){\n"
+        "  return (MARKET_META[m] && MARKET_META[m].label) || m;\n"
+        "}\n"
+        "function marketRank(m){\n"
+        "  var i = MARKET_ORDER.indexOf(m);\n"
+        "  return i < 0 ? 99 : i;\n"
+        "}\n"
     )
 
     if write:

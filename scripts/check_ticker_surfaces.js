@@ -39,10 +39,12 @@ const SURFACES = [
   { file: 'trade.html',     what: 'Trade name search',     search: '#t-sym' },
   { file: 'portfolio.html', what: 'Portfolio name search', search: '#p-sel' },
   { file: 'ledger.html',    what: 'forecast ledger' },
-  // EGX-only by construction -- the overlay behind it is fitted per market and only EG
-  // has one, which the page says in its own description. Checking it for a Gulf or US
-  // name would fail on a page that is not supposed to carry that name.
-  { file: 'picker.html',    what: 'Ticker Picker', markets: ['EGX'] },
+  // The Ticker Picker used to be EGX-only, because engine/fv_overlay.py could only scope
+  // rows for EG and its output file could carry one market's calibration. It now runs
+  // --all-markets: every market with a fitted profile, each row priced with its OWN
+  // profile and cash hurdle, sectioned per market on the page. So it carries every
+  // covered name and is checked for every covered name -- no markets restriction.
+  { file: 'picker.html',    what: 'Ticker Picker' },
 ];
 
 (async () => {
@@ -68,8 +70,11 @@ const SURFACES = [
   const p = await b.newPage();
   const bad = [];
   // Word boundary, not substring: "SCEM" must not be satisfied by some longer token, and
-  // a three-letter ticker must not match inside a sentence.
-  const re = new RegExp('\\b' + TK + '\\b');
+  // a three-letter ticker must not match inside a sentence. Case-INSENSITIVE, because
+  // three names are spelled one way in TICKERS and another everywhere a reader sees
+  // them (SAMSUNG/Samsung, KAKAO/Kakao, XPTUSD/Platinum): a case-sensitive test failed
+  // those on pages that were rendering them perfectly well, which is a gate crying wolf.
+  const re = new RegExp('\\b' + TK + '\\b', 'i');
 
   for (const s of targets) {
     const errs = [];
@@ -99,7 +104,7 @@ const SURFACES = [
     console.error(`\nFAIL: ${TK} is missing from ${bad.length} surface(s) that should carry it:`);
     for (const m of bad) console.error('   ! ' + m);
     console.error('\nA generated surface is stale until it is regenerated. The usual causes:');
-    console.error('  picker.html   -> python3 engine/fv_overlay.py --market EG --js assets/fv_overlay.js');
+    console.error('  picker.html   -> python3 engine/fv_overlay.py --all-markets --js assets/fv_overlay.js');
     console.error('  stocks/market -> python3 scripts/build_market_registry.py --write');
     console.error('  ledger.html   -> the LEDGER rows and MARKET_OF in the registry');
     process.exit(1);

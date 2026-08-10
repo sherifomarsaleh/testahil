@@ -54,6 +54,11 @@
   .pk-table th:nth-child(6){min-width:128px}
   .pk-table th:nth-child(7){min-width:118px}
   .pk-table td{padding:8px 8px;border-bottom:1px solid var(--line);vertical-align:middle;white-space:nowrap}
+  /* market section heading: one band per market, so the UAE reads as its own block
+     rather than as rows interleaved with a market it shares no cash rate with. */
+  .pk-table tr.pk-mkt td{background:var(--tint2);font-weight:700;font-size:var(--fs-caption);
+    letter-spacing:.04em;text-transform:uppercase;padding:9px 8px;border-bottom:1px solid var(--line)}
+  .pk-table tr.pk-mkt td .pk-flag{text-transform:none;letter-spacing:0;font-weight:400}
   .pk-table td.pk-stock{white-space:normal;min-width:132px}
   .pk-table td.num,.pk-table th.num{text-align:right;font-family:'IBM Plex Mono',monospace}
   .pk-wrap{overflow-x:auto}
@@ -124,7 +129,7 @@
       </div>
       <div class="pk-controls">
         <label class="ck"><input type="checkbox" id="pk-reach"> only names whose fair value is in reach</label>
-        <label class="ck"><input type="checkbox" id="pk-cash"> only names whose case beats <span id="pk-rf-label">19.5%</span> EGP cash</label>
+        <label class="ck"><input type="checkbox" id="pk-cash"> only names whose case beats <span id="pk-rf-label">its own market’s</span> cash rate</label>
         <label class="ck"><input type="checkbox" id="pk-up"> only undervalued (fair value above price)</label>
       </div>
     </div>
@@ -166,7 +171,7 @@ window.addEventListener('error', function(e){
   }catch(_){}
 });
 </script>
-<script src="assets/data.js?v=20260805c"></script>
+<script src="assets/markets.js?v=20260729d"></script><script src="assets/data.js?v=20260805c"></script>
 <script src="assets/fv_overlay.js?v=20260806"></script>
 <script>
 (function(){
@@ -188,9 +193,28 @@ window.addEventListener('error', function(e){
     { key:'cash',  label:null,          num:false, defDir:'desc' }, // label carries the live rf%
     { key:'asof',  label:'As of',       num:false, defDir:'desc' }
   ];
-  var rfPct = Math.round((FV_OVERLAY.engine_config && FV_OVERLAY.engine_config.rf_live || 0.195) * 1000) / 10;
+  /* ---------- markets ----------
+     This page covers every market on the site, so it has no single cash rate: the
+     hurdle a name has to beat is ITS OWN market's, 19.5% in Egypt against 3.65% in the
+     UAE. The overlay carries `hurdle_rf` per row and `engine_config_by_market` per
+     market; the section heading below states the rate that actually applies to the rows
+     under it, and the filter checkbox reads each row's own `beats_cash`. */
+  var CFG_BY_MKT = FV_OVERLAY.engine_config_by_market || {};
+  function mktOf(r){
+    if (r.market) return r.market;
+    if (typeof marketOf === 'function'){ var m = marketOf(r.ticker); if (m) return m; }
+    return 'OTHER';
+  }
+  function mktLabel(m){ return (typeof marketLabel === 'function') ? marketLabel(m) : m; }
+  function mktRank(m){ return (typeof marketRank === 'function') ? marketRank(m) : 99; }
+  function rfOf(m){
+    var c = CFG_BY_MKT[m];
+    if (c && typeof c.rf_live === 'number') return c.rf_live;
+    return (FV_OVERLAY.engine_config && FV_OVERLAY.engine_config.rf_live) || 0.195;
+  }
+  function rfTxt(m){ return (Math.round(rfOf(m) * 1000) / 10) + '%'; }
   var rfLabelEl = document.getElementById('pk-rf-label');
-  if (rfLabelEl) rfLabelEl.textContent = rfPct + '%';
+  if (rfLabelEl) rfLabelEl.textContent = 'its own market’s';
 
   function pageFor(t){ return t.toLowerCase() + '.html'; }
   function pct(x, signed){
@@ -240,7 +264,7 @@ window.addEventListener('error', function(e){
     });
 
     var reachLabel = 'Reachability (' + (h==='1M'?'1 month':'3 months') + ')';
-    var cashLabel = 'Beats ' + rfPct + '% cash?';
+    var cashLabel = 'Beats cash?';
     var thHtml = '<tr>' + COLS.map(function(c){
       var label = c.key==='reach' ? reachLabel : (c.key==='cash' ? cashLabel : c.label);
       var active = state.sortKey === c.key;
@@ -252,7 +276,23 @@ window.addEventListener('error', function(e){
            + label + '<span class="pk-care">'+caret+'</span></button></th>';
     }).join('') + '</tr>';
 
-    var rowsHtml = shown.map(function(r){
+    // One section per market, in the registry's order (Egypt, UAE, Saudi Arabia, Qatar,
+    // India, Korea, US, metals) — the UAE as its own block rather than mixed through the
+    // Egyptian names it shares no cash rate, calendar or calibration with. The active
+    // sort still decides the order INSIDE each section, so clicking a heading reorders
+    // every section by that column instead of shuffling markets together.
+    var order = [], byMkt = {};
+    shown.forEach(function(r){
+      var m = mktOf(r);
+      if (!byMkt[m]){ byMkt[m] = []; order.push(m); }
+      byMkt[m].push(r);
+    });
+    order.sort(function(a,b){
+      var ra = mktRank(a), rb = mktRank(b);
+      return ra !== rb ? ra - rb : a.localeCompare(b);
+    });
+
+    var rowOf = function(r){
       var o = r[h];
       var t = (typeof TICKERS !== 'undefined') && TICKERS[r.ticker];
       var nm = (t && t.name) || r.name || r.ticker;
@@ -276,11 +316,22 @@ window.addEventListener('error', function(e){
         + '<td>'+(o.beats_cash ? 'yes' : 'no')+'</td>'
         + '<td class="pk-flag">'+(r.anchor_date||'')+'</td>'
         + '</tr>';
+    };
+
+    var rowsHtml = order.map(function(m){
+      return '<tr class="pk-mkt"><td colspan="' + COLS.length + '">'
+           + mktLabel(m)
+           + '<span class="pk-flag"> · ' + byMkt[m].length + ' name' + (byMkt[m].length===1?'':'s')
+           + ' · cash hurdle ' + rfTxt(m) + '</span></td></tr>'
+           + byMkt[m].map(rowOf).join('');
     }).join('');
 
     document.getElementById('pk-table').innerHTML = '<thead>'+thHtml+'</thead><tbody>'+rowsHtml+'</tbody>';
     document.getElementById('pk-count').textContent =
-      'Showing ' + shown.length + ' of ' + rows.length + ' covered EGX names · fair values as published, prices as of each name’s own anchor date.';
+      'Showing ' + shown.length + ' of ' + rows.length + ' covered names across ' +
+      order.length + ' market' + (order.length===1?'':'s') +
+      ' · each grouped under its own market, with that market’s own cash rate · fair ' +
+      'values as published, prices as of each name’s own anchor date.';
 
     document.querySelectorAll('.pk-sortbtn').forEach(function(btn){
       btn.addEventListener('click', function(){
