@@ -106,6 +106,7 @@ MARKET_INDEX = {
     "IN": "NIFTY50",
     "KR": "KOSPI100",
     "QA": "QATAR10",
+    "SA": "TASI",         # Tadawul All Share
     "US": "NASDAQCOMP",
 }
 

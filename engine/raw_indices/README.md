@@ -29,11 +29,12 @@ Nothing in this directory is part of any MC panel.
 | IN | `IN/NIFTY50.csv` | — | investing.com daily export |
 | KR | `KR/KOSPI100.csv` | — | investing.com daily export |
 | QA | `QA/QATAR10.csv` | — | investing.com daily export |
+| SA | `SA/TASI.csv` (Tadawul All Share) | 2011-01-01 → 2026-07-27 | investing.com daily export |
 | US | `US/NASDAQCOMP.csv` | — | investing.com daily export |
 
 ## Missing — no conforming beta is possible in these markets
 
-**SA (Tadawul/TASI), BR, GB.** Under the amended BETA rule (10-Aug-2026) a constituent
+**BR, GB.** (SA/TASI supplied 10-Aug-2026.) Under the amended BETA rule (10-Aug-2026) a constituent
 composite is not a substitute, so a study on a name in these markets must STOP AND ASK
 for the index rather than build one.
 

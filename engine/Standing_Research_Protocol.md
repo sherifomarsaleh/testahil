@@ -186,7 +186,7 @@ THE RULE, from now on:
 
 (f) Every beta previously built on a composite is **non-conforming and must be re-derived before that study is re-issued or rolled forward**. Affected: AMOC, ARCC, EGCH, ELEC, PHAR, SCEM, SWDY (all EGX, all against the EG composite; EGX30 has been in the repo since 09-Aug-2026) and FERTIGLB (corrected 10-Aug-2026). The WACC/Ke, fair-value range and any sensitivity anchored on beta all move with it.
 
-(g) Markets whose index is still absent as of 10-Aug-2026: **SA (Tadawul/TASI), BR, GB.** No conforming beta can be produced for a name in those markets until the file is supplied.
+(g) Markets whose index is still absent as of 10-Aug-2026: **BR, GB.** SA/TASI was supplied 10-Aug-2026, so every Tadawul beta (STC and any future Saudi name) must be re-derived against it. No conforming beta can be produced for a name in those markets until the file is supplied.
 
 [NEW 13-Jul r2] KE / KD / WACC — standing procedure
 
