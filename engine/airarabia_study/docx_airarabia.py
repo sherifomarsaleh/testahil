@@ -56,10 +56,11 @@ H1('Headline')
 rich([(f'Fair value clusters at AED {CEN:.2f} per share on the base framing and AED '
        f"{D['central_jvcap']:.2f} with the joint-venture network capitalised — against a market price of "
        f'AED {SPOT:.2f}. ', dict(bold=True)),
-      ('The market is paying roughly a fifth more than the base fundamental value; the gap is, in large '
-       'part, a price on two things this study deliberately prices both ways: cheaper fuel from 2027 and '
-       'the five equity-accounted airlines the balance sheet carries at less than two times their annual '
-       'profit contribution.', dict())])
+      (f'The market is paying about {SPOT/CEN-1:+.0%} above the base fundamental central (equivalently, '
+       f'the central sits {CEN/SPOT-1:.0%} below the market — the same figure the summary table carries); '
+       'the gap is, in large part, a price on two things this study deliberately prices both ways: '
+       'cheaper fuel from 2027 and the five equity-accounted airlines the balance sheet carries at less '
+       'than two times their annual profit contribution.', dict())])
 P(f"Air Arabia closed FY2025 with record results: revenue AED {mn(HI['FY25']['rev'])}mn (+15%), profit "
   f"before tax AED {mn(HI['FY25']['ebt'])}mn (+14%), 13.06mn passengers (+16%) at a record 85.3% seat "
   f"load factor, a fleet of 90 A320-family aircraft, net CASH of AED {mn(-HB['FY25']['nd'])}mn including "
@@ -80,8 +81,10 @@ for k, extra in [('dcf', f" · terminal value {pct(DCF['tv_share'],0)} of EV"), 
     l = LN[k]
     rows.append([l['name'] + extra, px(l['bear']), px(l['base']), px(l['bull']),
                  pct(l['w'], 0), f"{l['base']/SPOT-1:+.0%}"])
-rows.append(['Weighted central', px(LN['central']['bear']), px(CEN), px(LN['central']['bull']),
-             '100%', f'{CEN/SPOT-1:+.0%}'])
+rows.append(['Weighted central (range weighted like the base)', px(LN['central']['bear']),
+             px(CEN), px(LN['central']['bull']), '100%', f'{CEN/SPOT-1:+.0%}'])
+rows.append(['Widest single-lens span (DCF scenarios; labelled, not a weighted range)',
+             px(D['span_widest'][0]), '—', px(D['span_widest'][1]), '—', '—'])
 table(rows, [2.65, 0.75, 0.75, 0.75, 0.75, 0.85], band_rows={5})
 rows = [['Alternative framings (never averaged into the central)', 'AED/share', 'vs spot'],
         ['DCF with the JV network capitalised at '
@@ -99,18 +102,20 @@ caption('The DCF row shows the terminal-value share of enterprise value beside t
 # ============================== COMPANY OVERVIEEW =============================
 H1('Company overview')
 P('Air Arabia PJSC, incorporated 19 June 2007 and listed on the Dubai Financial Market, is the Middle '
-  'East and North Africa\'s first and largest listed low-cost carrier. From hubs at Sharjah and Ras Al '
-  'Khaimah it operates a 90-aircraft Airbus A320-family fleet (plus five short-term leases) to 219 '
-  'destinations, with the first of 120 ordered A320neo-family aircraft (73 A320neo, 27 A321neo, 20 '
+  'East and North Africa\'s first and largest listed low-cost carrier. The GROUP operates a 90-aircraft '
+  'Airbus A320-family fleet (plus five short-term leases) to 219 destinations across six hubs; the '
+  'CONSOLIDATED company itself flies from Sharjah (54 aircraft) and Ras Al Khaimah (2) — the other 34 '
+  'aircraft sit at the equity-accounted venture hubs and are valued separately in the bridge — with the first of 120 ordered A320neo-family aircraft (73 A320neo, 27 A321neo, 20 '
   'A321XLR — the 2019 order) delivered on 29 September 2025. Around the listed company sits a network of '
   'equity-accounted airline ventures: Air Arabia Abu Dhabi (49%, with Etihad), Air Arabia Egypt (raised '
   'to 49% in 2025), Fly Jinnah in Pakistan (45%), Air Arabia Maroc (44.13%), and — signed in 2025 — Air '
   'Arabia DMM (49%), a new Dammam-based Saudi carrier. The group also owns hotels (Centro Sharjah, '
   'Radisson Blu Dubai Marina), the COZMO travel network, aviation-services subsidiaries, and leases 17 '
   'of its aircraft to the venture airlines.')
-P(f"Class and lens. Air Arabia is an OPERATING COMPANY — a low-cost airline: {pct(6165.584/7787.581,0)} "
-  "of FY2025 revenue is passenger fares plus baggage, another 11% is ancillary/cargo/services sold around "
-  "the seat, 3% is aircraft leases to its own ventures and 1% hotels. The balance sheet is a fleet "
+P(f"Class and lens. Air Arabia is an OPERATING COMPANY — a low-cost airline: "
+  f"{pct((6165.584+86.129)/7787.581,0)} of FY2025 revenue is passenger fares plus baggage, 11% is "
+  "ancillary services sold around the seat, 5% cargo and services, 3% aircraft leases to its own "
+  "ventures and 1% hotels (the six disclosed lines sum exactly to audited revenue). The balance sheet is a fleet "
   f"(AED {mn(HB['FY25']['ppe'])}mn owned equipment, AED {mn(HB['FY25']['rou'])}mn right-of-use aircraft, "
   f"AED {mn(HB['FY25']['adv'])}mn pre-delivery payments) funded by secured aircraft debt and leases of "
   f"AED {mn(HB['FY25']['debt'])}mn against AED {mn(-HB['FY25']['nd'])}mn of NET CASH. The study therefore "
@@ -130,7 +135,8 @@ for lbl, arr in [('Revenue', F['rev']), ('EBITDA (incl. fees and other income)',
                  ('EBIT', F['ebit_incl']),
                  (f"NOPAT (EBIT × (1 − {pct(IN['tax_eff'],0)}))", F['nopat']),
                  ('add back depreciation & amortisation', F['dna']),
-                 ('less fleet capital expenditure', F['capex']),
+                 ('less owned capex + pre-delivery payments', F['capex']),
+                 ('less leased-fleet additions (gross right-of-use value)', F['leased_gross']),
                  ('less change in working capital', F['dnwc']),
                  ('Free cash flow to the firm', F['fcff']),
                  ('Discount factor (glide-compounded)', None),
@@ -139,11 +145,12 @@ for lbl, arr in [('Revenue', F['rev']), ('EBITDA (incl. fees and other income)',
         rows.append([lbl] + [f"{x:.4f}" for x in F['df']])
     else:
         rows.append([lbl] + [mn(x) for x in arr])
-table(rows, [2.55, 0.89, 0.89, 0.89, 0.89, 0.89], band_rows={9, 11})
-caption(f"The FY2026 free cash flow is negative (AED {mn(F['fcff'][0])}mn): the fuel spike lands in the "
-        "same year as the heaviest pre-delivery-payment schedule. It turns positive from FY2027 and "
-        "reaches AED "
-        f"{mn(F['fcff'][4])}mn by FY2030.")
+table(rows, [2.55, 0.89, 0.89, 0.89, 0.89, 0.89], band_rows={10, 12})
+caption(f"The FY2026 free cash flow is negative (AED {mn(F['fcff'][0])}mn) and the window is lean "
+        f"throughout: after external critique, the ~9 leased aircraft the plan adds are charged at their "
+        f"gross right-of-use value inside FCFF (the 'all capacity is bought with capital' convention; "
+        f"financing mix is the discount rate's business). The alternative — treat new leases as value-"
+        f"neutral financing and charge nothing — is worth about +0.09/share and is noted, not adopted.")
 rows = [['Enterprise value → equity', 'AED mn'],
         ['PV of explicit years FY2026–30', mn(DCF['pv_explicit'])],
         [f"PV of terminal value (growth {pct(IN['g_term'])}, terminal cost of capital "
@@ -155,9 +162,10 @@ rows = [['Enterprise value → equity', 'AED mn'],
         ['plus non-operating assets (investments, investment property, net investment in lease)',
          mn(DCF['non_op'])],
         ['plus JV network at audited carrying value — BASE framing', mn(DCF['jv_book'])],
-        ['less minorities', f"{DCF['nci_val']:.1f}"],
+        ['less minorities at audited carrying value', f"{DCF['nci_val']:.2f}"],
         ['Equity attributable, 31-Dec-2025', mn(DCF['eq_attr'])],
-        [f"Per share, rolled to {M['asof']} at the cost of equity less the 30-fils dividend",
+        [f"Per share at {M['asof']}: operating equity rolled at the cost of equity, cash and "
+         f"near-cash legs at the deposit yield, less the 30-fils dividend",
          f"AED {px(DCF['ps'])}"],
         [f"Same bridge with the JV network at {IN['jv_pe']:.0f}× profit share — ALTERNATIVE framing",
          f"AED {px(DCF['ps_jvcap'])}"]]
@@ -169,23 +177,31 @@ P(f"Audited FY2025 book value is AED {px(BKL['bvps'])} per share. The trailing r
   f"constrained regional capacity. A justified price-to-book of ({pct(IN['roe_sust'],0)} − "
   f"{pct(IN['g_term'])}) / ({pct(W['ke_term'],2)} − {pct(IN['g_term'])}) = "
   f"{BKL['pb_just']:.2f}× values the share at AED {px(LN['book']['base'])} at the anchor "
-  f"(bear {px(LN['book']['bear'])} / bull {px(LN['book']['bull'])}).")
+  f"(bear {px(LN['book']['bear'])} / bull {px(LN['book']['bull'])} — all three legs on the same "
+  f"Gordon identity, (ROE − g) / (k − g), after critique caught the bear leg abandoning it).")
 H2('1.3  Relative multiples')
-P(f"At {IN['ev_ebitda_just']:.1f}× FY2027E EBITDA of AED {mn(REL['ebitda_mid'])}mn — the global "
-  f"low-cost-carrier centre — discounted to today and passed through the same bridge, the share is worth "
-  f"AED {px(LN['relative']['base'])} (bear {px(LN['relative']['bear'])} at 6.0×, bull "
-  f"{px(LN['relative']['bull'])} at 9.0×). For context, the market currently pays "
-  f"{REL['ev_ebitda_trailing']:.1f}× trailing EV/EBITDA and {REL['pe_trailing']:.1f}× trailing earnings "
-  f"— a premium to Ryanair (7.8×, 12.6×), easyJet (3.5×, 12.4×) and the sector aggregate (7.6×, 12.9×), "
-  f"nearer Kuwait's Jazeera Airways (~17.7× earnings). The relative lens's message is that the premium "
-  f"is already in the price; whether the JV network and the order book justify it is the study's "
-  f"central question, not the lens's input.")
+P(f"At {IN['ev_ebitda_just']:.1f}× FY2027E EBITDA of AED {mn(REL['ebitda_mid'])}mn EXCLUDING the "
+  f"fee/other-income stream — the basis peer multiples are computed on; the peer median rebuilt from "
+  f"primary filings is 6.5× — plus that fee stream valued separately as an after-tax annuity (AED "
+  f"{mn(REL['fee_value'])}mn), discounted and passed through the same bridge, the share is worth "
+  f"AED {px(LN['relative']['base'])} (bear {px(LN['relative']['bear'])} at 5.0×, bull "
+  f"{px(LN['relative']['bull'])} at 8.0×). For context, the market currently pays "
+  f"{REL['ev_ebitda_trailing_ex']:.1f}× trailing EV/EBITDA ex-fees ({REL['ev_ebitda_trailing']:.1f}× "
+  f"including them — both bases published) and {REL['pe_trailing']:.1f}× trailing earnings "
+  f"— a premium to Ryanair (6.5×, 12.6× from its own filings), Wizz (4.7×), easyJet (3.5×, 12.4×) and "
+  f"the US profitable-carriers aggregate (7.6×, 12.9× — a survivorship-screened US dataset, labelled as "
+  f"such), nearer Kuwait's Jazeera Airways (~17.7× on FY2025). The relative lens's message is that the "
+  f"premium is already in the price; whether the JV network and the order book justify it is the "
+  f"study's central question, not the lens's input.")
 H2('1.4  Normalised earnings power')
 P(f"Applying the mid-cycle EBITDA margin ({pct(NRM['margin'])}, the FY2028E middle year) to FY2026E "
-  f"revenue at CURRENT scale, with FY2026E net finance income and JV share, gives normalised earnings "
-  f"of AED {NRM['eps']:.3f} per share; at a justified through-cycle multiple of {IN['pe_just']:.0f}× "
-  f"that is AED {px(LN['normalized']['base'])} (bear {px(LN['normalized']['bear'])} at 10×, bull "
-  f"{px(LN['normalized']['bull'])} at 16×).")
+  f"revenue at CURRENT scale, with FY2026E net finance income but EXCLUDING the JV share — after "
+  f"external critique correctly showed that multiplying JV earnings at {IN['pe_just']:.0f}× silently "
+  f"averaged the two JV framings inside the base central — gives normalised earnings of AED "
+  f"{NRM['eps']:.3f} per share; at {IN['pe_just']:.0f}× plus the JV network at BOOK that is AED "
+  f"{px(LN['normalized']['base'])} (bear {px(LN['normalized']['bear'])} at 10×, bull "
+  f"{px(LN['normalized']['bull'])} at 16×). The base-framing central now carries the JV at carrying "
+  f"value in every lens.")
 H2('1.5  Synthesis — four lenses, one field')
 figure('fig1_football.png', 6.9,
        'Figure 1 — the four lenses and the weighted central. Every lens base sits below the market '
@@ -202,9 +218,11 @@ rows.append(['Fare + baggage', f"{uh24['fare']:.0f}", f"{uh25['fare']:.0f}"]
             + [f"{x:.0f}" for x in IN['fare_path']])
 rows.append(['Ancillary', f"{uh24['anc']:.0f}", f"{uh25['anc']:.0f}"]
             + [f"{x:.0f}" for x in IN['anc_path']])
-rows.append(['Fuel (base path)', f"{uh24['fuel']:.0f}", f"{uh25['fuel']:.0f}"]
-            + [f"{x:.0f}" for x in IN['fuel_per_pax']])
-rows.append(['Fuel (high-fuel alternative)', '—', '—'] + [f"{x:.0f}" for x in IN['fuel_per_pax_alt']])
+FUELB = [IN['fuel_intensity'] * p for p in IN['jet_eff_base']]
+FUELA = [IN['fuel_intensity'] * p for p in IN['jet_eff_alt']]
+rows.append(['Fuel = intensity x effective jet price (base)', f"{uh24['fuel']:.0f}", f"{uh25['fuel']:.0f}"]
+            + [f"{x:.0f}" for x in FUELB])
+rows.append(['Fuel (high-fuel alternative)', '—', '—'] + [f"{x:.0f}" for x in FUELA])
 rows.append(['Staff', f"{uh24['staff']:.0f}", f"{uh25['staff']:.0f}"]
             + [f"{x:.0f}" for x in IN['staff_per_pax']])
 rows.append(['Maintenance', f"{uh24['maint']:.0f}", f"{uh25['maint']:.0f}"]
@@ -216,11 +234,17 @@ rows.append(['Handling', f"{uh24['handling']:.0f}", f"{uh25['handling']:.0f}"]
 rows.append(['Other direct', f"{uh24['other']:.0f}", f"{uh25['other']:.0f}"]
             + [f"{x:.0f}" for x in IN['other_per_pax']])
 table(rows, [1.90, 0.66, 0.66, 0.66, 0.66, 0.66, 0.66, 0.66], size=8.6)
-caption('One escalator per cost class: fuel moves on the commodity path (never a domestic inflation '
-        'proxy), staff on UAE aviation wages, maintenance on its own MRO inflation, airport charges on '
-        '~2% UAE inflation, and the other-direct line is held flat as the 2025 wet-lease spike unwinds '
-        'against ordinary inflation. Passenger growth is fleet-led: 90 aircraft to roughly 115 by 2030 '
-        'out of the 120-aircraft order, at a held ~85–86% load factor.')
+caption('THE ANCHORS, stated. Fare + baggage: the FY2025 realised AED 478.7 per passenger, lifted '
+        '+1.9% in FY2026 (the Q1-2026 print held revenue on 11% fewer passengers — scarcity pricing), '
+        'given back -1.6% in FY2027 as regional capacity returns, then held at roughly zero real growth '
+        '— and the FY2026 build sits within 0.1% of the Q1-2026 seasonal gross-up. Ancillary: FY2025\'s '
+        'AED 64.8 per passenger at +4%/yr, the disclosed 2023-25 trend tapered. Fuel is now built '
+        'BOTTOM-UP: cost per passenger = intensity 1.937 (FY2025 audited fuel over the ~USD 89/bbl 2025 '
+        'market average) x an effective hedge-blended jet price path — its own commodity escalator. '
+        'Every other cost class keeps its own escalator (wages, MRO, ~2% UAE tariff inflation; the '
+        'other-direct line held flat as the 2025 wet-lease spike unwinds). Volume is fleet-led on the '
+        'CONSOLIDATED fleet: 56 aircraft (Sharjah 54 + Ras Al Khaimah 2) to roughly 72 by FY2030 — about '
+        '7 owned and 9 leased additions from the 120-aircraft order — at a held ~85-86% load factor.')
 figure('fig7_units.png', 6.9,
        'Figure 2 — passengers, revenue and the EBITDA margin path. The 2026 dip is the fuel spike plus '
        'flat traffic; 2027 recovers on the official-curve fuel path.')
@@ -234,16 +258,21 @@ P(f"Two judgements dominate this valuation, and both are sensitised in their own
   f"at the audited carrying value it contributes AED {DCF['jv_book']/SH:.2f} per share; capitalised at "
   f"{IN['jv_pe']:.0f}× its AED {mn(IN['assoc_fy25'])}mn profit share it contributes AED "
   f"{DCF['jv_cap']/SH:.2f} — the {px(DCF['ps_jvcap']-DCF['ps'])} per-share gap between the two framings "
-  f"is the single largest contested item in the study, and the ventures' own 100%-basis profits grew "
-  f"roughly 65% in FY2025 with a new Saudi carrier signed.")
+  f"is the single largest contested item in the study; the three ventures disclosed in both years grew "
+  f"their combined 100%-basis profits ~70% in FY2025 (the group's share grew 52% — a mix effect: the "
+  f"highest-stake venture, Morocco, declined while Pakistan tripled), and a new Saudi carrier was "
+  f"signed. One housekeeping note a reader of the auditor's report will want: the 'shares purchased "
+  f"during the year' it references is the venture transaction disclosed in note 1 — Air Arabia Egypt "
+  f"raised from 40% to 49% — not a buyback; share capital is unchanged and no treasury shares exist.")
 H2('1.8  Macro & country — the cost of capital, built and evidenced')
 rows = [['Component', 'Value', 'Evidence'],
         ['AED government bond yield', pct(IN['rf'],2),
          'UAE Ministry of Finance dirham T-Bond auction, July-2026, January-2031 tranche (4bp over '
          'comparable US Treasuries); May-2026 auction 4.30%'],
-        ['less UAE sovereign default spread', pct(IN['sov_spread_rating'],2),
-         'Aa2 rating basis, Damodaran country file, 5-Jan-2026 — netted so sovereign risk is counted '
-         'once, in the premium'],
+        ['less the observed auction spread', pct(IN['sov_spread_obs'],2),
+         'the July-2026 auction itself priced 4bp over comparable US Treasuries — netting the spread '
+         'the yield actually embeds keeps the rate currency-consistent under the peg (UST 5-yr 4.35% '
+         'on 07-Aug-2026); the rating-table netting (0.42%, rf* 4.06%) is the disclosed alternative'],
         ['Net risk-free rate', pct(W['rf_star'],2), 'derived'],
         ['Beta', f"{IN['beta_used']:.3f}",
          'own-stock five-year weekly regression against the Dubai (DFM) general index: R² 0.40, 258 '
@@ -271,11 +300,17 @@ rows = [['Cost-of-debt evidence', 'Rate', 'Nature'],
          'sovereign + ~100bp; above every secured print and the deposit rate, as it must be']]
 table(rows, [2.80, 0.95, 3.25], size=8.6, band_rows={6})
 P(f"Tax: the UAE Domestic Minimum Top-up Tax puts the group at a 15% statutory rate from 2025; the "
-  f"audited effective rates were 8.79% (FY2024, the 9% year) and 11.60% (FY2025, exempt income). The "
-  f"forecast provides at the full 15% — the conservative anchor. Country backdrop: UAE GDP grew ~5.6% "
-  f"in 2025 with ~5% projected for 2026, inflation ~2%, and the central bank's base rate held at 3.65% "
-  f"(29-Jul-2026) under the dollar peg; Sharjah airport handled a record 19.5mn passengers in 2025, "
-  f"up 13.9%.")
+  f"audited effective rates were 8.79% (FY2024, the 9% year) and 11.6% on the filing's own tax-for-"
+  f"the-year reconciliation (11.0% on the income-statement charge, which nets a prior-period credit — "
+  f"both bases stated). The forecast provides at the full 15%, and the JV share is carried below the "
+  f"tax line (equity-method income arrives net of the ventures' own tax). Country backdrop: UAE real "
+  f"GDP grew 6.2% in 2025 (statistics-centre outturn, 30-May-2026; non-oil +6.8%), and the central "
+  f"bank's June-2026 review cut its 2026 projection to 1.7% — regional developments weighing on trade "
+  f"and tourism — before a projected 9.8% rebound in 2027: a profile consistent with this study's "
+  f"dip-then-recover volume path. Inflation printed ~1.3% in 2025 with ~2.3% projected for 2026; the "
+  f"base rate held at 3.65% (29-Jul-2026) under the dollar peg; Sharjah airport handled a record "
+  f"19.48mn passengers in 2025, up 13.9%. Per-share figures are BASIC throughout; the filing states "
+  f"basic and diluted are equal.")
 H2('1.9  Sensitivity')
 figure('fig2_sens.png', 6.3,
        'Figure 3 — DCF fair value across terminal cost of capital × terminal growth.')
@@ -290,14 +325,21 @@ for lbl, xs, vals, fmtx in [
         ('Working capital / revenue', SN['nwc_grid'], SN['grid_nwc'], lambda x: f'{x:.0%}')]:
     rows.append([f'{lbl}  [{fmtx(xs[0])} … {fmtx(xs[4])}]'] + [px(v) for v in vals])
 table(rows, [2.90, 0.82, 0.82, 0.82, 0.82, 0.82], size=8.6)
-caption('Each cell is a complete revaluation at the perturbed driver, all else held. The middle column '
-        'is the base DCF of AED ' + px(DCF['ps']) + '.')
+caption('Each cell is a complete revaluation at the perturbed driver, all else held (the anchor-roll '
+        'rate is held at the base cost of equity inside these re-runs; rolling at each perturbed rate '
+        'moves off-base cells by no more than ~0.03). The middle column is the base DCF of AED '
+        + px(DCF['ps']) + ' on every row EXCEPT the JV row, whose base (the audited carrying value) is '
+        'its leftmost column — the remaining columns price successively richer JV framings.')
 
 # ============================== 2 TECHNICAL ====================================
 H1('2  Technical and price structure')
 nr = TA['tech']
 P(nr['summary'])
 P(nr['trend'])
+P('How the levels are computed (so they are checkable): support and resistance are recency-weighted '
+  'clusters of fractal pivot highs/lows over the full cleaned trading history — not hand-drawn lines — '
+  'with RSI(14) and ATR(14) on Wilder smoothing and the 52-week range from the same series; a cluster '
+  'may sit slightly outside the 52-week range when older pivots carry the weight.', size=9.3)
 rows = [['Level', 'AED', 'Reading'],
         ['Resistance 3', f"{TA['levels']['res'][2]:.2f}", 'the 52-week high zone'],
         ['Resistance 2', f"{TA['levels']['res'][1]:.2f}", 'minor supply shelf'],
@@ -339,7 +381,10 @@ P(f"How much to trust these bands. Backtested on this stock's own history — ev
   f"{pct(BT['full']['cov90'],0)} — about as close to nominal as {BT['full']['windows']} windows allow. "
   f"The recent windows lean toward outcomes in the upper half of the bands (the share nearly tripled "
   f"from its 2022 lows), which is visible in the distribution of where outcomes fell but does not "
-  f"reject uniformity on a standard test of the full history.")
+  f"reject uniformity on a standard test of the full history. These full-history figures are the ONE "
+  f"set of calibration statistics, quoted identically in the companion workbook (an earlier draft "
+  f"quoted a recent-window subset there — 83%/89% — without labelling the different window set; "
+  f"corrected).")
 
 # ============================== 4 COMPARISON OF THE LENSES =====================
 H1('4  Comparison of the lenses')
@@ -370,8 +415,9 @@ for head, body in [
      'load factor, and the first disclosure of summer bookings.'),
     ('The fuel path.  ',
      'The official curve has Brent averaging ~$82 in 2026 falling toward ~$65 in 2027; the airline '
-     'association assumed ~$95 with jet fuel near $152. Every quarter the curve view wins is roughly '
-     'AED 0.04 per share of annualised value; the study prices both paths in full.'),
+     'association assumed ~$95 with jet fuel near $152. Defined precisely: each quarter the relief is '
+     f"deferred costs (fuel/pax FY26 − FY27) × FY27 passengers × (1−t) ÷ 4 ≈ AED {D['fuel_defer_q']:.02f} "
+     'per share; the study prices both full paths side by side.'),
     ('Air Arabia DMM (Saudi Arabia).  ',
      'The 49% Dammam carrier signed in 2025: an operating-certificate date, fleet plan or launch '
      'schedule would move the JV framing from optionality toward earnings.'),
@@ -382,8 +428,10 @@ for head, body in [
      'Nine A320-family aircraft arrived in FY2025; the neo ramp (lower fuel burn, more seats) is the '
      'whole volume story, and Airbus\'s output remains constrained.'),
     ('The dividend ladder.  ',
-     'Four consecutive 5-fil raises to 30 fils (a 5.7% trailing yield). A fifth raise with FY2026 '
-     'results would signal the board reads the dip year as behind it.')]:
+     'Raised in each of the last four years — +6.5 fils then three 5-fil steps to 30 fils (a 5.7% '
+     'trailing yield). The base case HOLDS 30 fils through the dip year (a ~109% payout funded by net '
+     'cash) rather than assuming a fifth raise; a raise with FY2026 results would signal the board '
+     'reads the dip as behind it.')]:
     bullet(body, bold_head=head)
 
 # ============================== 6 READING THE ZONES ============================
@@ -406,9 +454,10 @@ table(rows, [1.35, 1.30, 1.10, 3.25], size=8.6)
 H1('7  Caveats — and what would change our mind')
 for head, body in [
     ('The owned-versus-leased delivery split is not disclosed.  ',
-     'Fleet capex is the model\'s weakest driver: the forward split between loan-financed and leased '
-     'aircraft is assumed (~3–4 owned a year plus the pre-delivery ladder) and heavily sensitised. A '
-     'disclosure of the financing plan for the neo ramp would replace an assumption with a fact.'),
+     'Fleet financing is the model\'s weakest driver even after the rebuild: ~7 owned and ~9 leased '
+     'consolidated additions are assumed, the leased units now charged at their gross right-of-use '
+     'value inside the cash flows (with the value-neutral-financing alternative noted at ~+0.09/share). '
+     'A disclosure of the financing plan for the neo ramp would replace an assumption with a fact.'),
     ('Fuel hedge ratios are not disclosed.  ',
      'The accounts show commodity swaps and collars out to 2028 but not the hedged share; the fuel '
      'sensitivity therefore overstates both directions somewhat.'),
@@ -440,10 +489,12 @@ def isrow(lbl, hkey, farr, fmt=mn):
 np_f = F['np_attr']; pat_f = [n / (1 - DCF['nci_share']) for n in np_f]
 pbt_f = [p / (1 - IN['tax_eff']) for p in pat_f]
 isrow('Revenue', 'rev', F['rev'])
-isrow('Direct operating costs', 'dcost',
-      [F['dcost_cash'][i] + F['dna'][i] * 0.93 for i in range(5)])
-rows[-1] = (['Direct operating costs (cash, forecast)'] +
-            [mn(HI[y]['dcost']) for y in ('FY23', 'FY24', 'FY25')] + [mn(x) for x in F['dcost_cash']])
+dep_in_dc = {'FY23': 617.587, 'FY24': 615.155, 'FY25': 581.717}   # dep+amort inside audited direct costs (notes 27/29)
+rows.append(['Direct operating costs (CASH basis, all columns)'] +
+            [mn(HI[y]['dcost'] - dep_in_dc[y]) for y in ('FY23', 'FY24', 'FY25')] +
+            [mn(x) for x in F['dcost_cash']])
+rows.append(['memo: depreciation & amortisation within audited direct costs'] +
+            [mn(dep_in_dc[y]) for y in ('FY23', 'FY24', 'FY25')] + ['—'] * 5)
 isrow('EBITDA', 'ebitda', F['ebitda'])
 isrow('Depreciation & amortisation', 'dna', F['dna'])
 isrow('Operating profit', 'ebit', [F['ebitda'][i] - F['dna'][i] for i in range(5)])
@@ -459,10 +510,12 @@ rows.append(['Earnings per share (AED)'] + [f"{HI[y]['npa']/SH:.2f}" for y in ('
             + [f'{n/SH:.2f}' for n in np_f])
 table(rows, [1.70, 0.66, 0.66, 0.66, 0.66, 0.66, 0.66, 0.66, 0.66], size=7.9)
 caption('*FY2024 as restated in the FY2025 filing (lease-rental revenue reclassified into revenue, '
-        'maintenance provisions re-measured). FY2023 as reported. Historical direct costs include '
-        'their depreciation; forecast direct costs are shown cash-basis with all depreciation on its '
-        'own line — the operating-profit line is on one consistent basis throughout.')
-H2('A.2  Balance sheet (AED mn)')
+        'maintenance provisions re-measured). FY2023 as reported. RESTATED after critique: every '
+        'column now shows direct costs on the CASH basis, with the depreciation embedded in the '
+        'audited direct-cost line broken out as a memo row — the table foots top-to-bottom in every '
+        'column. Forecast profit before tax excludes the JV share, which is carried below the tax '
+        'line; history keeps the audited presentation.')
+H2('A.2  Selected balance-sheet roll-forwards (AED mn)')
 rows = [[''] + ['FY2023*', 'FY2024', 'FY2025'] + ['FY2026E', 'FY2028E', 'FY2030E']]
 def bsrow(lbl, fn, fc=None):
     rows.append([lbl] + [mn(fn(HB[y])) for y in ('FY23', 'FY24', 'FY25')]
@@ -484,8 +537,12 @@ rows[-1] = (['Equity attributable to owners'] + [mn(HB[y]['eqp']) for y in ('FY2
             + [mn(F['equity'][0]), mn(F['equity'][2]), mn(F['equity'][4])])
 table(rows, [2.30, 0.78, 0.78, 0.78, 0.78, 0.78, 0.78], size=8.2)
 caption('*FY2023 column is the restated 1-January-2024 position from the FY2025 filing — the same '
-        'basis as FY2024/25. Forecast columns roll fleet assets, working capital, net debt and equity; '
-        'the intermediate rows are audited history only.')
+        'basis as FY2024/25. The forecast columns are four linked roll-forwards (fleet assets, working '
+        'capital, net debt via the financing walk, equity via profit less dividends), not a fully '
+        'articulated balance sheet: the block of non-operating assets and the JV carrying value are '
+        'deliberately NOT rolled, and the residual between the asset rolls and the equity roll is '
+        'that unrolled block plus the financing timing — the workbook carries the same construction '
+        'with a check row.')
 H2('A.3  Cash-flow markers (AED mn)')
 rows = [['', 'FY2023', 'FY2024', 'FY2025', 'FY2026E', 'FY2028E', 'FY2030E'],
         ['Net cash from operating activities', mn(IN['ocf_fy23']), mn(IN['ocf_fy24']),
@@ -502,16 +559,22 @@ table(rows, [2.30, 0.78, 0.78, 0.78, 0.78, 0.78, 0.78], size=8.2)
 doc.add_page_break()
 H1('Appendix B — Peer frame, risk register, research register')
 H2('B.1  Peer frame (cross-check only, never a build source)')
-rows = [['Carrier', 'Trailing P/E', 'EV/EBITDA', 'Basis'],
-        ['Ryanair', '12.6×', '7.8×', 'trailing, USD ADR, 09-Aug-2026'],
-        ['easyJet', '12.4×', '3.5×', 'trailing, GBP, 07-Aug-2026'],
-        ['IndiGo', 'n/m (loss year)', '11.1×', 'trailing, INR, 09-Aug-2026'],
-        ['Pegasus', '8.9×', '6.6×', 'lira statutory accounts — caution'],
-        ['Jazeera Airways', '≈17.7× (computed)', 'n/d', 'KWD, market cap 07-Aug-2026 / FY2025 profit'],
-        ['Air-transport sector aggregate', '12.9×', '7.6×', 'profitable firms, January-2026 dataset'],
-        ['Air Arabia at spot', f"{REL['pe_trailing']:.1f}×", f"{REL['ev_ebitda_trailing']:.1f}×",
-         'FY2025 audited, spot 07-Aug-2026']]
-table(rows, [1.80, 1.35, 1.10, 2.75], size=8.6, band_rows={7})
+rows = [['Carrier', 'P/E', 'EV/EBITDA', 'Basis (close of Friday 7-Aug-2026; filings as dated)'],
+        ['Ryanair', '12.6×', '6.5×', 'PRIMARY: FY26 EBITDA €3,747.6mn (op profit + dep), 1,039.2mn '
+         'shares and €2.7bn net cash per the Q1-FY27 report'],
+        ['easyJet', '12.4×', '3.5×', 'FY25 (Sep y/e) results; aggregator cross-check'],
+        ['Wizz Air', 'n/m (near-zero FY26 earnings)', '4.7×', 'PRIMARY: FY26 EBITDA €1,318.3mn, net '
+         'debt €4.9bn — the cheapest member, stated rather than suppressed'],
+        ['IndiGo', 'n/m (FX loss year)', '11.1×', 'TTM INR; aggregator'],
+        ['Pegasus', '8.9×', '6.6×', 'EUR-functional IFRS (no inflation restatement — corrected label)'],
+        ['Jazeera Airways', '17.7× FY2025 (≈24× TTM after a Q1-2026 loss)', 'n/d',
+         'KWD; computed from market cap / reported profit'],
+        ['US air-transport aggregate', '12.9×', '7.6×', 'profitable firms only — a survivorship '
+         'screen, US dataset, January-2026'],
+        ['Air Arabia at spot', f"{REL['pe_trailing']:.1f}×",
+         f"{REL['ev_ebitda_trailing_ex']:.1f}× ex-fees / {REL['ev_ebitda_trailing']:.1f}× incl-fees",
+         'FY2025 audited; both EBITDA bases published']]
+table(rows, [1.45, 1.55, 1.30, 2.70], size=8.2, band_rows={8})
 H2('B.2  Risk register')
 rows = [['Risk', 'Mechanism', 'Where it is priced'],
         ['Regional conflict / airspace closure', 'traffic and yields, as in Q1-2026',
@@ -556,7 +619,9 @@ rows = [['Line', 'Value'],
         ['plus net finance income (AED mn)', mn(-E1['interest'])],
         ['plus JV profit share (AED mn)', mn(F['assoc'][2])],
         [f"× (1 − 15% tax) × (1 − minorities) ÷ {SH:,.0f}mn shares → EPS (AED)", f"{E1['eps']:.3f}"],
-        [f"× justified multiple {E1['pe']:.0f}× → value (AED/share, at the anchor)", px(E1['base'])],
+        [f"× justified multiple {E1['pe']:.0f}×", px(E1['eps'] * E1['pe'])],
+        [f"× anchor accretion {DCF['roll']:.4f}, less the 30-fils dividend → value at the anchor",
+         px(E1['base'])],
         ['Range at 10× / 16×', f"{px(E1['rng'][0])} – {px(E1['rng'][1])}"]]
 table(rows, [4.30, 2.70], size=8.8, band_rows={8})
 P(f"Named sensitivity: each turn of the multiple is AED {E1['eps']*1.055:.2f} per share. Falsifier, "
@@ -575,8 +640,11 @@ rows = [['Line', 'Value'],
         ['plus 40% of the JV profit share, after tax (the cash-remitted part, AED mn)',
          mn(F['assoc'][3] * (1 - IN['tax_eff']) * 0.4)],
         ['Owner cash earnings (AED mn)', mn(E2['fcfe'])],
-        [f"Capitalised at {pct(E2['ke'],2)} − {pct(IN['g_term'])} growth, plus half the net cash "
-         f"(haircut for permanence), per share", px(E2['base'])],
+        [f"Grown one year at {pct(IN['g_term'])} and capitalised at {pct(E2['ke'],2)} − "
+         f"{pct(IN['g_term'])}, plus half the net cash (haircut for permanence)",
+         mn(E2['fcfe'] * 1.025 / (E2['ke'] - IN['g_term']) + 0.5 * -HB['FY25']['nd'])],
+        [f"Per share, × anchor accretion {DCF['roll']:.4f}, less the 30-fils dividend",
+         px(E2['base'])],
         ['Range (tighter rate + full cash / wider rate, no cash)',
          f"{px(E2['rng'][0])} – {px(E2['rng'][1])}"]]
 table(rows, [4.30, 2.70], size=8.8, band_rows={6})

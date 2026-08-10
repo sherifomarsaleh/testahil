@@ -48,6 +48,9 @@ FCOL = ['E', 'F', 'G', 'H', 'I']            # forecast columns on the statements
 ALL = HC + FCOL
 
 nd25 = HB['FY25']['nd']
+FLC = IN['fleet_cons']
+NCIB = IN['nci_book']
+ROLLC = DCF['roll_cash']
 debt25 = HB['FY25']['debt']
 liq25 = HB['FY25']['cash'] + HB['FY25']['dep']
 nwc25 = HB['FY25']['nwc']
@@ -56,7 +59,7 @@ intang25 = HB['FY25']['intang']
 nonop25 = DCF['non_op']
 jv_book, jv_cap = DCF['jv_book'], DCF['jv_cap']
 GA_CASH_25 = IN['ga_fy25'] - 40.081
-ROU_ADD = 300.0
+FUEL_BASE = [IN['fuel_intensity'] * p for p in IN['jet_eff_base']]
 
 # split cargo/service expected paths (compute carries their sum)
 cargo_e, svc_e, hotel_e, lease_e = [], [], [], []
@@ -175,8 +178,8 @@ PATHS = [
     ('Service revenue growth', IN['svc_g'], PCT),
     ('Hotel revenue growth', IN['hotel_g'], PCT),
     ('Aircraft-lease revenue growth', IN['lease_g'], PCT),
-    ('Fuel cost per passenger (AED) — base path', IN['fuel_per_pax'], NUM1),
-    ('Fuel cost per passenger (AED) — high-fuel alternative', IN['fuel_per_pax_alt'], NUM1),
+    ('Effective jet fuel price (USD/bbl) — base path', IN['jet_eff_base'], NUM1),
+    ('Effective jet fuel price (USD/bbl) — high-fuel alternative', IN['jet_eff_alt'], NUM1),
     ('Staff cost per passenger (AED)', IN['staff_per_pax'], NUM1),
     ('Maintenance cost per passenger (AED)', IN['maint_per_pax'], NUM1),
     ('Landing & overflying charges per passenger (AED)', IN['landing_per_pax'], NUM1),
@@ -186,6 +189,11 @@ PATHS = [
     ('Other-income growth', IN['other_g'], PCT),
     ('Depreciation & amortisation (AED mn)', IN['dna_path'], NUM0),
     ('Fleet capital expenditure incl. pre-delivery payments (AED mn)', IN['capex_path'], NUM0),
+    ('Owned aircraft additions (units)', FLC['owned_adds'], NUM0),
+    ('Leased aircraft additions (units)', FLC['leased_adds'], NUM0),
+    ('Consolidated fleet, year-end (aircraft)', FLC['ends'], NUM0),
+    ('Booked finance-cost rate on the debt book', IN['kd_booked_path'], PCT2),
+    ('Debt amortisation (AED mn)', IN['debt_amort'], NUM0),
     ('Marginal cost of debt path', IN['kd_path'], PCT2),
     ('Deposit yield path', IN['dep_rate_path'], PCT2),
     ('Growth in the share of joint-venture and associate profit', IN['assoc_g'], PCT),
@@ -206,7 +214,8 @@ SCALARS = [
     ('Working capital / revenue', IN['nwc_pct'], PCT),
     ('Tax rate', TAX, PCT),
     ('AED government bond yield (January-2031 tranche)', IN['rf'], PCT2),
-    ('Sovereign default spread (netted out)', IN['sov_spread_rating'], PCT2),
+    ('Observed sovereign spread at the auction (netted out)', IN['sov_spread_obs'], PCT2),
+    ('Rating-table sovereign spread (alternative netting, disclosed)', IN['sov_spread_rating'], PCT2),
     ('Beta (five-year weekly, vs the Dubai index)', IN['beta_used'], NUM2),
     ('Equity risk premium', IN['erp_rating'], PCT2),
     ('Terminal risk-free rate', IN['rf_term'], PCT2),
@@ -223,7 +232,17 @@ SCALARS = [
     ('Shares outstanding (mn)', SH, NUM0),
     ('FY2025 dividend per share (AED, approved 12 March 2026)', IN['dps_fy25'], PX),
     ('Days from 31-Dec-2025 to the 7-Aug-2026 anchor', IN['anchor_days'], NUM0),
-    ('Leased-fleet asset additions net of their depreciation (AED mn / year)', ROU_ADD, NUM0),
+    ('Fuel intensity (AED per passenger per USD/bbl of effective jet price)', IN['fuel_intensity'], '0.000'),
+    ('Right-of-use value per leased aircraft (AED mn)', FLC['ac_rou'], NUM0),
+    ('Loan drawn per owned aircraft (AED mn)', FLC['loan_per_owned'], NUM0),
+    ('Dividend floor (AED mn = 30 fils on the full share count)', 1400.0, NUM0),
+    ('Minority interests at carrying value (AED mn, audited)', NCIB, NUM2),
+    ('Scenario: passenger multiplier', 1.0, NUM2),
+    ('Scenario: fare multiplier', 1.0, NUM2),
+    ('Scenario: fuel multiplier', 1.0, NUM2),
+    ('Scenario: capital-expenditure multiplier', 1.0, NUM2),
+    ('Scenario: cost-of-capital shift', 0.0, PCT2),
+    ('Scenario: high-fuel switch (0 = base path, 1 = alternative)', 0.0, NUM2),
     ('Cash administrative costs, FY2025 (AED mn, audited less its depreciation)', GA_CASH_25, NUM1),
     ('Cargo revenue, FY2025 (AED mn, disclosed)', 186.948, NUM1),
     ('Service revenue, FY2025 (AED mn, disclosed)', 223.323, NUM1),
@@ -244,8 +263,8 @@ SCALARS = [
     ('Weight — relative', IN['lens_weights']['relative'], PCT),
     ('Weight — normalised', IN['lens_weights']['normalized'], PCT),
     ('Weight — book', IN['lens_weights']['book'], PCT),
-    ('Relative lens — bear multiple', 6.0, MULT),
-    ('Relative lens — bull multiple', 9.0, MULT),
+    ('Relative lens — bear multiple', 5.0, MULT),
+    ('Relative lens — bull multiple', 8.0, MULT),
     ('Normalised lens — bear P/E', 10.0, MULT),
     ('Normalised lens — bull P/E', 16.0, MULT),
 ]
@@ -272,11 +291,13 @@ def srow(r_, label, mk_formula, expects, fmt=NUM0, green=False, bold=False):
         putf(wsS, f'{cc}{r_}', mk_formula(j, cc), expects[j], fmt, green=green, bold=bold)
     SR[label] = r_
 
-srow(5, 'Passengers (millions)', lambda j, cc: f"={ARP('Passengers (millions)', j)}",
-     F['pax'], NUM2, green=True)
+srow(5, 'Passengers (millions)',
+     lambda j, cc: f"={ARP('Passengers (millions)', j)}*{AR('Scenario: passenger multiplier')}",
+     F['pax'], NUM2)
 srow(6, 'Revenue per passenger — fare + baggage (AED)',
-     lambda j, cc: f"={ARP('Passenger + baggage revenue per passenger (AED)', j)}",
-     IN['fare_path'], NUM1, green=True)
+     lambda j, cc: f"={ARP('Passenger + baggage revenue per passenger (AED)', j)}"
+                   f"*{AR('Scenario: fare multiplier')}",
+     IN['fare_path'], NUM1)
 srow(7, 'Passenger and baggage revenue',
      lambda j, cc: f"={cc}5*{cc}6", [F['seg_rev'][j]['pax'] for j in range(5)])
 srow(8, 'Ancillary rate (AED per passenger)',
@@ -303,8 +324,14 @@ srow(13, 'Aircraft-lease revenue (JV network)',
 srow(14, 'Total revenue', lambda j, cc: f"={cc}7+{cc}9+{cc}10+{cc}11+{cc}12+{cc}13",
      F['rev'], NUM0, bold=True)
 hdr(wsS, 16, ['Cost build (AED per passenger)'] + YF)
-srow(17, 'Fuel (base path)', lambda j, cc: f"={ARP('Fuel cost per passenger (AED) — base path', j)}",
-     IN['fuel_per_pax'], NUM1, green=True)
+srow(17, 'Fuel cost per passenger (intensity x effective jet price)',
+     lambda j, cc: (f"={AR('Fuel intensity (AED per passenger per USD/bbl of effective jet price)')}"
+                    f"*({ARP('Effective jet fuel price (USD/bbl) — base path', j)}"
+                    f"*(1-{AR('Scenario: high-fuel switch (0 = base path, 1 = alternative)')})"
+                    f"+{ARP('Effective jet fuel price (USD/bbl) — high-fuel alternative', j)}"
+                    f"*{AR('Scenario: high-fuel switch (0 = base path, 1 = alternative)')})"
+                    f"*{AR('Scenario: fuel multiplier')}"),
+     FUEL_BASE, NUM1)
 srow(18, 'Staff', lambda j, cc: f"={ARP('Staff cost per passenger (AED)', j)}",
      IN['staff_per_pax'], NUM1, green=True)
 srow(19, 'Maintenance', lambda j, cc: f"={ARP('Maintenance cost per passenger (AED)', j)}",
@@ -369,8 +396,8 @@ title(wsD, 'DCF — cost of capital, glide, waterfall, terminal', 'Everything he
 put(wsD, 'A4', 'Cost of capital — explicit window', bold=True, fmt=None)
 putf(wsD, 'C5', f"={AR('AED government bond yield (January-2031 tranche)')}", IN['rf'], PCT2, green=True)
 put(wsD, 'A5', 'AED government bond yield', fmt=None)
-putf(wsD, 'C6', f"={AR('Sovereign default spread (netted out)')}", IN['sov_spread_rating'], PCT2, green=True)
-put(wsD, 'A6', 'less sovereign default spread', fmt=None)
+putf(wsD, 'C6', f"={AR('Observed sovereign spread at the auction (netted out)')}", IN['sov_spread_obs'], PCT2, green=True)
+put(wsD, 'A6', 'less the observed auction spread over US Treasuries', fmt=None)
 putf(wsD, 'C7', '=C5-C6', W['rf_star'], PCT2)
 put(wsD, 'A7', 'Net risk-free rate', fmt=None)
 putf(wsD, 'C8', f"={AR('Beta (five-year weekly, vs the Dubai index)')}", IN['beta_used'], NUM2, green=True)
@@ -391,7 +418,7 @@ putf(wsD, 'C15', f"={AR('Gross debt, FY2025 (AED mn, audited)')}", debt25, NUM1,
 put(wsD, 'A15', 'Gross debt (audited)', fmt=None)
 putf(wsD, 'C16', '=C15/(C15+C14)', W['wd_exp'], PCT2)
 put(wsD, 'A16', 'Debt weight (gross)', fmt=None)
-putf(wsD, 'C17', '=(1-C16)*C10+C16*C13', W['wacc_exp'], PCT2, bold=True)
+putf(wsD, 'C17', f"=(1-C16)*C10+C16*C13+{AR('Scenario: cost-of-capital shift')}", W['wacc_exp'], PCT2, bold=True)
 put(wsD, 'A17', 'Cost of capital — explicit window', bold=True, fmt=None)
 put(wsD, 'A19', 'Cost of capital — terminal', bold=True, fmt=None)
 putf(wsD, 'C20', f"={AR('Terminal risk-free rate')}", IN['rf_term'], PCT2, green=True)
@@ -403,7 +430,7 @@ putf(wsD, 'C22', f"={AR('Terminal cost of debt')}*(1-C12)", W['kd_term_at'], PCT
 put(wsD, 'A22', 'Terminal cost of debt after tax', fmt=None)
 putf(wsD, 'C23', f"={AR('Terminal debt weight')}", IN['wd_term'], PCT, green=True)
 put(wsD, 'A23', 'Terminal debt weight', fmt=None)
-putf(wsD, 'C24', '=(1-C23)*C21+C23*C22', W['wacc_term'], PCT2, bold=True)
+putf(wsD, 'C24', f"=(1-C23)*C21+C23*C22+{AR('Scenario: cost-of-capital shift')}", W['wacc_term'], PCT2, bold=True)
 put(wsD, 'A24', 'Cost of capital — terminal', bold=True, fmt=None)
 hdr(wsD, 26, ['Glide & discounting'] + YF)
 put(wsD, 'A27', 'Cost-of-debt path', fmt=None)
@@ -429,13 +456,15 @@ WROWS = [
     ('EBIT', 36, lambda j, cc: f"={cc}34-{cc}35", F['ebit_incl'], NUM0, False),
     ('NOPAT (EBIT x (1 - tax))', 37, lambda j, cc: f"={cc}36*(1-$C$12)", F['nopat'], NUM0, False),
     ('add back depreciation & amortisation', 38, lambda j, cc: f"={cc}35", F['dna'], NUM0, False),
-    ('less capital expenditure', 39, lambda j, cc: f"={ARP('Fleet capital expenditure incl. pre-delivery payments (AED mn)', j)}",
-     F['capex'], NUM0, True),
+    ('less owned capex + pre-delivery payments', 39,
+     lambda j, cc: f"={ARP('Fleet capital expenditure incl. pre-delivery payments (AED mn)', j)}"
+                   f"*{AR('Scenario: capital-expenditure multiplier')}",
+     F['capex'], NUM0, False),
     ('Working capital balance', 40, lambda j, cc: f"={AR('Working capital / revenue')}*{cc}33", F['nwc'], NUM0, False),
     ('less change in working capital', 41,
      lambda j, cc: (f"={cc}40-{AR('Working capital, FY2025 (AED mn, audited balance sheet)')}" if j == 0
                     else f"={cc}40-{CD[j-1]}40"), F['dnwc'], NUM0, False),
-    ('Free cash flow to the firm', 42, lambda j, cc: f"={cc}37+{cc}38-{cc}39-{cc}41", F['fcff'], NUM0, False),
+    ('Free cash flow to the firm', 42, lambda j, cc: f"={cc}37+{cc}38-{cc}39-{cc}41-{cc}45", F['fcff'], NUM0, False),
     ('Discount factor', 43, lambda j, cc: f"={cc}30", F['df'], DF4, False),
     ('PV of FCFF', 44, lambda j, cc: f"={cc}42*{cc}43", F['pv'], NUM0, False),
 ]
@@ -444,14 +473,20 @@ for label, rr, mk, exps, fmt, green in WROWS:
     for j, cc in enumerate(CD):
         putf(wsD, f'{cc}{rr}', mk(j, cc), exps[j], fmt, green=green,
              bold=(rr in (42, 44)))
+put(wsD, 'A45', 'less leased-fleet additions (gross right-of-use value)', fmt=None)
+for j, cc in enumerate(CD):
+    putf(wsD, f'{cc}45',
+         f"={ARP('Leased aircraft additions (units)', j)}"
+         f"*{AR('Right-of-use value per leased aircraft (AED mn)')}"
+         f"*{AR('Scenario: capital-expenditure multiplier')}",
+         F['leased_gross'][j], NUM0)
 put(wsD, 'A46', 'Fleet assets roll-forward', fmt=None)
 for j, cc in enumerate(CD):
     if j == 0:
         fm = (f"={AR('Fleet assets, FY2025 (PP&E + right-of-use + aircraft advances, AED mn, audited)')}"
-              f"+{cc}39-{cc}35+{AR('Leased-fleet asset additions net of their depreciation (AED mn / year)')}")
+              f"+{cc}39+{cc}45-{cc}35")
     else:
-        fm = (f"={CD[j-1]}46+{cc}39-{cc}35"
-              f"+{AR('Leased-fleet asset additions net of their depreciation (AED mn / year)')}")
+        fm = f"={CD[j-1]}46+{cc}39+{cc}45-{cc}35"
     putf(wsD, f'{cc}46', fm, F['ppe'][j], NUM0)
 put(wsD, 'A47', 'Invested capital (fleet + intangibles + working capital)', fmt=None)
 for j, cc in enumerate(CD):
@@ -481,8 +516,13 @@ putf(wsD, 'C61', f"=(1+C10)^({AR('Days from 31-Dec-2025 to the 7-Aug-2026 anchor
      DCF['roll'], DF4)
 put(wsD, 'A61', 'Anchor accretion factor (at the cost of equity)', fmt=None)
 putf(wsD, 'C62', f"=C60*C61-{AR('FY2025 dividend per share (AED, approved 12 March 2026)')}",
-     DCF['ps'], PX, bold=True)
-put(wsD, 'A62', 'Fair value per share at the 7-Aug-2026 anchor', bold=True, fmt=None)
+     DCF['ps_dec'] * DCF['roll'] - IN['dps_fy25'], PX)
+put(wsD, 'A62', 'Per share, whole equity rolled at Ke (single-rate view)', fmt=None)
+putf(wsD, 'C63', f"=(1+{ARP('Deposit yield path', 0)})^({AR('Days from 31-Dec-2025 to the 7-Aug-2026 anchor')}/365)",
+     ROLLC, DF4)
+put(wsD, 'A63', 'Cash-leg accretion factor (deposit yield)', fmt=None)
+putf(wsD, 'C64', "='SOTP Bridge'!C15", DCF['ps'], PX, bold=True, green=True)
+put(wsD, 'A64', 'Fair value per share at the anchor (split roll — the published figure)', bold=True, fmt=None)
 
 # ============ 5 SOTP BRIDGE ====================================================
 wsB = sheet('SOTP Bridge')
@@ -501,24 +541,25 @@ putf(wsB, 'C8', f"={AR('JV and associates at carrying value (AED mn, audited)')}
 put(wsB, 'A8', 'plus JV network at audited carrying value', fmt=None)
 putf(wsB, 'C9', '=SUM(C5:C8)', DCF['eq_attr'] + DCF['nci_val'], NUM0, bold=True)
 put(wsB, 'A9', 'Equity before minorities', bold=True, fmt=None)
-putf(wsB, 'C10', f"={AR('Minority share of profit')}", NCI_SH, '0.000%', green=True)
-put(wsB, 'A10', 'Minority share of group profit', fmt=None)
-putf(wsB, 'C11', '=C9*C10', DCF['nci_val'], NUM1)
-put(wsB, 'A11', 'less minorities', fmt=None)
+putf(wsB, 'C11', f"={AR('Minority interests at carrying value (AED mn, audited)')}", NCIB, NUM2, green=True)
+put(wsB, 'A11', 'less minorities at audited carrying value', fmt=None)
 putf(wsB, 'C13', '=C9-C11', DCF['eq_attr'], NUM0, bold=True)
 put(wsB, 'A13', 'Equity attributable to shareholders', bold=True, fmt=None)
 putf(wsB, 'C14', f"=C13/{AR('Shares outstanding (mn)')}", DCF['ps_dec'], PX)
 put(wsB, 'A14', 'Per share at 31-Dec-2025', fmt=None)
-putf(wsB, 'C15', f"=C14*DCF!C61-{AR('FY2025 dividend per share (AED, approved 12 March 2026)')}",
+putf(wsB, 'C15', f"=(C5*DCF!C61+(C6+C7+C8)*DCF!C63-C11)/{AR('Shares outstanding (mn)')}"
+     f"-{AR('FY2025 dividend per share (AED, approved 12 March 2026)')}",
      DCF['ps'], PX, bold=True)
-put(wsB, 'A15', 'Per share at the 7-Aug-2026 anchor', bold=True, fmt=None)
+put(wsB, 'A15', 'Per share at the anchor — operating equity rolled at the cost of equity, '
+    'cash and near-cash legs at the deposit yield', bold=True, fmt=None)
 hdr(wsB, 17, ['Alternative framing (JV capitalised at a growth multiple)', '', 'AED mn'])
 putf(wsB, 'C18', f"={AR('Joint-venture capitalisation multiple')}*{AR('Share of JV and associate profit, FY2025 (AED mn, disclosed)')}",
      jv_cap, NUM0)
 put(wsB, 'A18', 'JV network capitalised (multiple x FY2025 profit share)', fmt=None)
-putf(wsB, 'C19', '=(C5+C6+C7+C18)*(1-C10)', DCF['ps_jvcap'] and (DCF['ev'] - nd25 + nonop25 + jv_cap) * (1 - NCI_SH), NUM0)
+putf(wsB, 'C19', '=C5+C6+C7+C18-C11', DCF['ev'] - nd25 + nonop25 + jv_cap - NCIB, NUM0)
 put(wsB, 'A19', 'Equity attributable on this framing', fmt=None)
-putf(wsB, 'C20', f"=(C19/{AR('Shares outstanding (mn)')})*DCF!C61-{AR('FY2025 dividend per share (AED, approved 12 March 2026)')}",
+putf(wsB, 'C20', f"=(C5*DCF!C61+(C6+C7+C18)*DCF!C63-C11)/{AR('Shares outstanding (mn)')}"
+     f"-{AR('FY2025 dividend per share (AED, approved 12 March 2026)')}",
      DCF['ps_jvcap'], PX, bold=True)
 put(wsB, 'A20', 'Per share at the anchor — JV capitalised', bold=True, fmt=None)
 hdr(wsB, 22, ['Non-operating assets, itemised (audited FY2025)', '', 'AED mn'])
@@ -563,13 +604,34 @@ put(wsF, 'A15', 'DCF bear scenario (high fuel + weaker traffic + tighter money)'
 put(wsF, 'C16', DCF['bull'], BLUE, PX)
 put(wsF, 'A16', 'DCF bull scenario (fuel relief + stronger traffic + JV capitalised)', fmt=None)
 hdr(wsF, 18, ['Expert panel (each leg is a complete model of its own)', '', 'AED per share'])
-for i, (k, lbl) in enumerate([('e1', 'Expert 1 — earnings power at a justified multiple'),
-                              ('e2', 'Expert 2 — owner cash earnings capitalised'),
-                              ('e3', 'Expert 3 — cash returns vs the cost of capital')]):
-    put(wsF, f'A{19+i}', lbl, fmt=None)
-    put(wsF, f'C{19+i}', EXP[k]['base'], BLUE, PX)
-    put(wsF, f'D{19+i}', EXP[k]['rng'][0], BLUE, PX)
-    put(wsF, f'E{19+i}', EXP[k]['rng'][1], BLUE, PX)
+DPSR = AR('FY2025 dividend per share (AED, approved 12 March 2026)')
+SHR = AR('Shares outstanding (mn)')
+NCIR = AR('Minority share of profit')
+TAXR = AR('Tax rate')
+# Expert 1 — LIVE: FY2028E earnings power x justified multiple, rolled
+E1_EPS = (f"(('Segments'!D30*'Segments'!D14+'Segments'!D28-{ARP('Depreciation & amortisation (AED mn)', 2)}"
+          f"+('Cash Flow'!D13-'Cash Flow'!D14)+'Income Statement'!G15)*(1-{TAXR})*(1-{NCIR})/{SHR})")
+put(wsF, 'A19', 'Expert 1 — earnings power at a justified multiple (live formula)', fmt=None)
+putf(wsF, 'C19', f"=13*{E1_EPS}*DCF!C61-{DPSR}", EXP['e1']['base'], PX)
+putf(wsF, 'D19', f"=10*{E1_EPS}*DCF!C61-{DPSR}", EXP['e1']['rng'][0], PX)
+putf(wsF, 'E19', f"=16*{E1_EPS}*DCF!C61-{DPSR}", EXP['e1']['rng'][1], PX)
+# Expert 2 — LIVE: owner cash earnings capitalised at the terminal rate, half net cash
+E2_FCFE = (f"((AVERAGE('Cash Flow'!D9:F9)+('Cash Flow'!E13-'Cash Flow'!E14)*(1-{TAXR})"
+           f"+'Income Statement'!H15*(1-{TAXR})*0.4)*(1-{NCIR}))")
+E2_HALFCASH = (f"0.5*({AR('Cash and fixed deposits, FY2025 (AED mn, audited)')}-{AR('Gross debt, FY2025 (AED mn, audited)')})")
+put(wsF, 'A20', 'Expert 2 — owner cash earnings capitalised (live formula)', fmt=None)
+putf(wsF, 'C20', f"=({E2_FCFE}*(1+{AR('Terminal growth')})/(DCF!C21-{AR('Terminal growth')})+{E2_HALFCASH})/{SHR}*DCF!C61-{DPSR}",
+     EXP['e2']['base'], PX)
+putf(wsF, 'D20', f"={E2_FCFE}*1.015/(0.5*(DCF!C10+DCF!C21)-0.015)/{SHR}*DCF!C61-{DPSR}",
+     EXP['e2']['rng'][0], PX)
+putf(wsF, 'E20', f"=({E2_FCFE}*1.035/(DCF!C21-0.035)+2*{E2_HALFCASH})/{SHR}*DCF!C61-{DPSR}",
+     EXP['e2']['rng'][1], PX)
+# Expert 3 — economic-profit legs stay whole-model outputs (their PV chain lives in the
+# study's Appendix C table line by line); pasted, named as such
+put(wsF, 'A21', 'Expert 3 — cash returns vs the cost of capital (whole-model re-run; full chain in Appendix C)', fmt=None)
+put(wsF, 'C21', EXP['e3']['base'], BLUE, PX)
+put(wsF, 'D21', EXP['e3']['rng'][0], BLUE, PX)
+put(wsF, 'E21', EXP['e3']['rng'][1], BLUE, PX)
 putf(wsF, 'C23', '=MEDIAN(C19,C20,C21)', D['panel_centre'], PX, bold=True)
 put(wsF, 'A23', 'Panel median', bold=True, fmt=None)
 put(wsF, 'A25', 'Columns D and E carry each expert\'s own low and high. The spot price on the anchor date is '
@@ -606,12 +668,15 @@ for k in ['dcf', 'relative', 'normalized', 'book']:
     putf(wsU, f'G{r}', f'=C{r}/$C$16-1', l['base'] / SPOT - 1, PCT)
     r += 1
 band(wsU, 9, 7)
-putf(wsU, 'B9', '=MIN(B5:B8)', min(LN[k]['bear'] for k in LSRC), PX, bold=True)
+putf(wsU, 'B9', '=B5*E5+B6*E6+B7*E7+B8*E8', LN['central']['bear'], PX, bold=True)
 putf(wsU, 'C9', '=SUM(F5:F8)', D['central'], PX, bold=True)
-putf(wsU, 'D9', '=MAX(D5:D8)', max(LN[k]['bull'] for k in LSRC), PX, bold=True)
+putf(wsU, 'D9', '=D5*E5+D6*E6+D7*E7+D8*E8', LN['central']['bull'], PX, bold=True)
 putf(wsU, 'E9', '=SUM(E5:E8)', 1.0, PCT, bold=True)
 putf(wsU, 'G9', '=C9/$C$16-1', D['central'] / SPOT - 1, PCT, bold=True)
-put(wsU, 'A9', 'Weighted central', bold=True, fmt=None)
+put(wsU, 'A9', 'Weighted central (range weighted like the base)', bold=True, fmt=None)
+putf(wsU, 'B15', '=MIN(B5:B8)', D['span_widest'][0], PX)
+putf(wsU, 'D15', '=MAX(D5:D8)', D['span_widest'][1], PX)
+put(wsU, 'A15', 'Widest single-lens span (the DCF scenarios) — labelled, not the weighted range', fmt=None)
 putf(wsU, 'C10', "='SOTP Bridge'!C20", DCF['ps_jvcap'], PX, green=True)
 putf(wsU, 'G10', '=C10/$C$16-1', DCF['ps_jvcap'] / SPOT - 1, PCT)
 put(wsU, 'A10', 'DCF — JV network capitalised (contested judgement, other framing)', fmt=None)
@@ -679,7 +744,7 @@ for rr, (lbl, vals, fmt) in HVAL.items():
         put(wsI, f'{cc}{rr}', vals[j], BLUE, fmt)
 put(wsI, 'A9', 'EBITDA', bold=True, fmt=None)
 put(wsI, 'A11', 'Operating profit (EBIT)', bold=True, fmt=None)
-put(wsI, 'A16', 'Profit before tax', bold=True, fmt=None)
+put(wsI, 'A16', 'Profit before tax (before the JV share, forecast)', bold=True, fmt=None)
 put(wsI, 'A18', 'Profit for the year', bold=True, fmt=None)
 put(wsI, 'A19', 'Minorities', fmt=None)
 put(wsI, 'A21', 'Earnings per share (AED)', fmt=None)
@@ -690,12 +755,14 @@ for j, cc in enumerate(HC):
     putf(wsI, f'{cc}11', f'={cc}9-{cc}10', HI[y]['ebit'], NUM0, bold=True)
     putf(wsI, f'{cc}16', f'={cc}11+{cc}12+{cc}13-{cc}14+{cc}15', HI[y]['ebt'], NUM0, bold=True)
     putf(wsI, f'{cc}18', f'={cc}16-{cc}17', HI[y]['pat'], NUM0, bold=True)
+    # history keeps the audited presentation (JV share inside profit before tax); the
+    # forecast carries it below the tax line — each column is labelled by its basis
     putf(wsI, f'{cc}19', f'={cc}18-{cc}20', HI[y]['nci'], NUM2)
     putf(wsI, f'{cc}21', f"={cc}20/{AR('Shares outstanding (mn)')}", HI[y]['npa'] / SH, PX)
     putf(wsI, f'{cc}22', f'={cc}9/{cc}5', HI[y]['ebitda'] / HI[y]['rev'], PCT)
 # forecast columns
 np_f = F['np_attr']; pat_f = [n / (1 - NCI_SH) for n in np_f]
-pbt_f = [p / (1 - TAX) for p in pat_f]
+pretax_ex_jv = [(pat_f[j] - F['assoc'][j]) / (1 - TAX) for j in range(5)]
 for j, cc in enumerate(FCOL):
     sc = CD[j]     # matching column on Segments / DCF / Cash Flow
     putf(wsI, f'{cc}5', f'=Segments!{sc}14', F['rev'][j], NUM0, green=True)
@@ -715,9 +782,9 @@ for j, cc in enumerate(FCOL):
     else:
         putf(wsI, f'{cc}15', f"={FCOL[j-1]}15*(1+{ARP('Growth in the share of joint-venture and associate profit', j)})",
              assoc_e[j], NUM1)
-    putf(wsI, f'{cc}16', f'={cc}11+{cc}12+{cc}13-{cc}14+{cc}15', pbt_f[j], NUM0, bold=True)
-    putf(wsI, f'{cc}17', f"={cc}16*{AR('Tax rate')}", pbt_f[j] * TAX, NUM1)
-    putf(wsI, f'{cc}18', f'={cc}16-{cc}17', pat_f[j], NUM0, bold=True)
+    putf(wsI, f'{cc}16', f'={cc}11+{cc}12+{cc}13-{cc}14', pretax_ex_jv[j], NUM0, bold=True)
+    putf(wsI, f'{cc}17', f"={cc}16*{AR('Tax rate')}", pretax_ex_jv[j] * TAX, NUM1)
+    putf(wsI, f'{cc}18', f'={cc}16-{cc}17+{cc}15', pat_f[j], NUM0, bold=True)
     putf(wsI, f'{cc}19', f"={cc}18*{AR('Minority share of profit')}", pat_f[j] * NCI_SH, NUM2)
     putf(wsI, f'{cc}20', f'={cc}18-{cc}19', np_f[j], NUM0, bold=True)
     putf(wsI, f'{cc}21', f"={cc}20/{AR('Shares outstanding (mn)')}", np_f[j] / SH, PX)
@@ -733,8 +800,9 @@ hdr(wsC, 4, ['FCFF build (AED mn)'] + YF)
 CROWS = [
     (5, 'NOPAT', lambda j, cc: f'=DCF!{cc}37', F['nopat'], True),
     (6, 'add depreciation & amortisation', lambda j, cc: f'=DCF!{cc}38', F['dna'], True),
-    (7, 'less capital expenditure', lambda j, cc: f'=DCF!{cc}39', F['capex'], True),
+    (7, 'less owned capex + pre-delivery payments', lambda j, cc: f'=DCF!{cc}39', F['capex'], True),
     (8, 'less change in working capital', lambda j, cc: f'=DCF!{cc}41', F['dnwc'], True),
+    (10, 'less leased-fleet additions (gross)', lambda j, cc: f'=DCF!{cc}45', F['leased_gross'], True),
 ]
 for rr, lbl, mk, exps, green in CROWS:
     put(wsC, f'A{rr}', lbl, fmt=None)
@@ -742,35 +810,44 @@ for rr, lbl, mk, exps, green in CROWS:
         putf(wsC, f'{cc}{rr}', mk(j, cc), exps[j], NUM0, green=green)
 put(wsC, 'A9', 'Free cash flow to the firm', bold=True, fmt=None)
 for j, cc in enumerate(CD):
-    putf(wsC, f'{cc}9', f'={cc}5+{cc}6-{cc}7-{cc}8', F['fcff'][j], NUM0, bold=True)
+    putf(wsC, f'{cc}9', f'={cc}5+{cc}6-{cc}7-{cc}8-{cc}10', F['fcff'][j], NUM0, bold=True)
 hdr(wsC, 11, ['Financing walk (AED mn)'] + YF)
 put(wsC, 'A12', 'Opening net debt (negative = net cash)', fmt=None)
-put(wsC, 'A13', 'Finance income (deposit yield x cash and deposits)', fmt=None)
-put(wsC, 'A14', 'Finance costs (booked rate x gross debt)', fmt=None)
-put(wsC, 'A15', 'Dividends paid', fmt=None)
+put(wsC, 'A13', 'Finance income (deposit yield x opening cash and deposits)', fmt=None)
+put(wsC, 'A14', 'Finance costs (booked rate x average gross debt)', fmt=None)
+put(wsC, 'A15', 'Dividends paid (payout, floored at 30 fils)', fmt=None)
 put(wsC, 'A16', 'Closing net debt', fmt=None)
+put(wsC, 'A17', 'Opening gross debt (borrowings + leases)', fmt=None)
+put(wsC, 'A18', 'Closing gross debt (+ new leases + aircraft loans - amortisation)', fmt=None)
 nd_open = [nd25] + F['net_debt'][:-1]
-liq_open = [max(-nd_open[j], 0.0) + debt25 for j in range(5)]
+debt_open = [HB['FY25']['debt']] + F['debt'][:-1]
 for j, cc in enumerate(CD):
     if j == 0:
         putf(wsC, f'{cc}12', f"={AR('Gross debt, FY2025 (AED mn, audited)')}-{AR('Cash and fixed deposits, FY2025 (AED mn, audited)')}",
              nd25, NUM0)
+        putf(wsC, f'{cc}17', f"={AR('Gross debt, FY2025 (AED mn, audited)')}", debt_open[j], NUM0, green=True)
     else:
         putf(wsC, f'{cc}12', f'={CD[j-1]}16', nd_open[j], NUM0)
-    putf(wsC, f'{cc}13', f"={ARP('Deposit yield path', j)}*(MAX(-{cc}12,0)+{AR('Gross debt, FY2025 (AED mn, audited)')})",
+        putf(wsC, f'{cc}17', f'={CD[j-1]}18', debt_open[j], NUM0)
+    putf(wsC, f'{cc}18',
+         f"={cc}17+DCF!{cc}45+{ARP('Owned aircraft additions (units)', j)}"
+         f"*{AR('Loan drawn per owned aircraft (AED mn)')}-{ARP('Debt amortisation (AED mn)', j)}",
+         F['debt'][j], NUM0)
+    putf(wsC, f'{cc}13', f"={ARP('Deposit yield path', j)}*({cc}17-{cc}12)",
          F['fininc'][j], NUM1)
-    putf(wsC, f'{cc}14', f"={ARP('Marginal cost of debt path', j)}*{AR('Gross debt, FY2025 (AED mn, audited)')}*0.8",
+    putf(wsC, f'{cc}14', f"={ARP('Booked finance-cost rate on the debt book', j)}*({cc}17+{cc}18)/2",
          F['interest'][j], NUM1)
-    putf(wsC, f'{cc}15', f"={ARP('Dividend payout ratio', j)}*'Income Statement'!{FCOL[j]}20",
+    putf(wsC, f'{cc}15', f"=MAX({ARP('Dividend payout ratio', j)}*'Income Statement'!{FCOL[j]}20,"
+         f"{AR('Dividend floor (AED mn = 30 fils on the full share count)')})",
          F['div'][j], NUM0)
-    putf(wsC, f'{cc}16', f"={cc}12-({cc}9+{cc}13-{cc}14*(1-{AR('Tax rate')}))+{cc}15",
+    putf(wsC, f'{cc}16', f"={cc}12-({cc}9+({cc}13-{cc}14)*(1-{AR('Tax rate')}))+{cc}15",
          F['net_debt'][j], NUM0, bold=True)
-hdr(wsC, 18, ['Audited history (AED mn)', 'FY2023', 'FY2024', 'FY2025'])
+hdr(wsC, 20, ['Audited history (AED mn)', 'FY2023', 'FY2024', 'FY2025'])
 CH = [('Net cash from operating activities', [IN['ocf_fy23'], IN['ocf_fy24'], IN['ocf_fy25']]),
       ('Fleet capex incl. aircraft advances', [IN['capex_fy23'], IN['capex_fy24'], IN['capex_fy25']]),
       ('Dividends paid to owners', [IN['div_fy23'], IN['div_fy24'], IN['div_fy25']]),
       ('Depreciation & amortisation', [HI['FY23']['dna'], HI['FY24']['dna'], HI['FY25']['dna']])]
-r = 19
+r = 21
 for lbl, vals in CH:
     put(wsC, f'A{r}', lbl, fmt=None)
     for j, cc in enumerate(['B', 'C', 'D']):
@@ -832,36 +909,41 @@ put(wsBS, 'A20', 'The forecast rolls fleet assets (capex less depreciation plus 
 wsR = sheet('Relative & Normalized')
 title(wsR, 'Relative multiples · normalised earnings · book value', None, 7, awidth=56, cwidth=13)
 hdr(wsR, 4, ['Relative lens', '', 'Value'])
-putf(wsR, 'C5', '=Segments!C29', F['ebitda_incl'][1], NUM0, green=True)
-put(wsR, 'A5', 'FY2027E EBITDA incl. fees and other income (AED mn)', fmt=None)
+putf(wsR, 'C5', '=Segments!C27', F['ebitda'][1], NUM0, green=True)
+put(wsR, 'A5', 'FY2027E EBITDA EXCLUDING fees/other income (AED mn) — peer basis', fmt=None)
 putf(wsR, 'C6', f"={AR('Justified EV/EBITDA')}", IN['ev_ebitda_just'], MULT, green=True)
-put(wsR, 'A6', 'Justified EV/EBITDA', fmt=None)
-putf(wsR, 'C7', '=C5*C6', REL['ev_rel_fwd'], NUM0)
-put(wsR, 'A7', 'Enterprise value at end-FY2027', fmt=None)
-putf(wsR, 'C8', '=DCF!C30', F['df'][1], DF4, green=True)
-put(wsR, 'A8', 'Year-2 discount factor', fmt=None)
-putf(wsR, 'C9', '=DCF!B44+DCF!C44', F['pv'][0] + F['pv'][1], NUM0, green=True)
-put(wsR, 'A9', 'PV of FY2026-27 free cash flow', fmt=None)
-putf(wsR, 'C10', '=C7*C8+C9', REL['ev_rel'], NUM0)
-put(wsR, 'A10', 'Enterprise value at 31-Dec-2025', fmt=None)
-BRIDGE_TAIL = (f"+{AR('Cash and fixed deposits, FY2025 (AED mn, audited)')}"
+put(wsR, 'A6', 'Justified EV/EBITDA (peer median, primary filings)', fmt=None)
+putf(wsR, 'C7', f"=Segments!C28*(1-{AR('Tax rate')})/(DCF!C24-{AR('Terminal growth')})",
+     REL['fee_value'], NUM0)
+put(wsR, 'A7', 'Fee/other-income stream valued separately (after-tax annuity)', fmt=None)
+putf(wsR, 'C8', '=C5*C6+C7', REL['ev_rel_fwd'], NUM0)
+put(wsR, 'A8', 'Enterprise value at end-FY2027', fmt=None)
+putf(wsR, 'C9', '=DCF!C30', F['df'][1], DF4, green=True)
+put(wsR, 'A9', 'Year-2 discount factor', fmt=None)
+putf(wsR, 'C10', '=DCF!B44+DCF!C44', F['pv'][0] + F['pv'][1], NUM0, green=True)
+put(wsR, 'A10', 'PV of FY2026-27 free cash flow', fmt=None)
+BRIDGE_CASH = (f"({AR('Cash and fixed deposits, FY2025 (AED mn, audited)')}"
                f"-{AR('Gross debt, FY2025 (AED mn, audited)')}"
                f"+{AR('Non-operating assets (investments + investment property + net investment in lease, AED mn)')}"
-               f"+{AR('JV and associates at carrying value (AED mn, audited)')}")
-ROLL_TAIL = (f")*(1-{AR('Minority share of profit')})/{AR('Shares outstanding (mn)')}*DCF!C61"
-             f"-{AR('FY2025 dividend per share (AED, approved 12 March 2026)')}")
-putf(wsR, 'C11', f"=(C10{BRIDGE_TAIL}{ROLL_TAIL}", LN['relative']['base'], PX, bold=True)
-put(wsR, 'A11', 'Implied value per share at the anchor', bold=True, fmt=None)
-putf(wsR, 'C12', f"=(C5*{AR('Relative lens — bear multiple')}*C8+C9{BRIDGE_TAIL}{ROLL_TAIL}",
-     LN['relative']['bear'], PX)
-put(wsR, 'A12', 'Bear (6.0x)', fmt=None)
-putf(wsR, 'C13', f"=(C5*{AR('Relative lens — bull multiple')}*C8+C9{BRIDGE_TAIL}{ROLL_TAIL}",
-     LN['relative']['bull'], PX)
-put(wsR, 'A13', 'Bull (9.0x)', fmt=None)
+               f"+{AR('JV and associates at carrying value (AED mn, audited)')})")
+def rel_formula(mult_ref):
+    return (f"=((C5*{mult_ref}+C7)*C9+C10)*DCF!C61/{AR('Shares outstanding (mn)')}"
+            f"+({BRIDGE_CASH}*DCF!C63-{AR('Minority interests at carrying value (AED mn, audited)')})"
+            f"/{AR('Shares outstanding (mn)')}"
+            f"-{AR('FY2025 dividend per share (AED, approved 12 March 2026)')}")
+putf(wsR, 'C11', rel_formula('C6'), LN['relative']['base'], PX, bold=True)
+put(wsR, 'A11', 'Implied value per share at the anchor (split roll)', bold=True, fmt=None)
+putf(wsR, 'C12', rel_formula(AR('Relative lens — bear multiple')), LN['relative']['bear'], PX)
+put(wsR, 'A12', 'Bear (5.0x)', fmt=None)
+putf(wsR, 'C13', rel_formula(AR('Relative lens — bull multiple')), LN['relative']['bull'], PX)
+put(wsR, 'A13', 'Bull (8.0x)', fmt=None)
 put(wsR, 'A15', 'Trailing context (formulas at spot)', bold=True, fmt=None)
 putf(wsR, 'C16', f"=(DCF!C14+{AR('Gross debt, FY2025 (AED mn, audited)')}-{AR('Cash and fixed deposits, FY2025 (AED mn, audited)')})/'Income Statement'!D9",
      (M['mktcap'] + nd25) / HI['FY25']['ebitda'], MULT)
-put(wsR, 'A16', 'EV / FY2025 EBITDA at spot', fmt=None)
+put(wsR, 'A16', 'EV / FY2025 EBITDA at spot — EX fees (peer basis)', fmt=None)
+putf(wsR, 'C18', f"=(DCF!C14+{AR('Gross debt, FY2025 (AED mn, audited)')}-{AR('Cash and fixed deposits, FY2025 (AED mn, audited)')})/('Income Statement'!D9+'Income Statement'!D12)",
+     (M['mktcap'] + nd25) / HI['FY25']['ebitda_incl'], MULT)
+put(wsR, 'A18', 'EV / FY2025 EBITDA at spot — INCLUDING fees (both bases published)', fmt=None)
 putf(wsR, 'C17', f"={AR('Spot price (AED)')}/'Income Statement'!D21", REL['pe_trailing'], MULT)
 put(wsR, 'A17', 'Price / FY2025 earnings at spot', fmt=None)
 hdr(wsR, 20, ['Normalised earnings power', '', 'Value'])
@@ -877,19 +959,20 @@ putf(wsR, 'C25', '=C23-C24', NRM['ebit'], NUM0)
 put(wsR, 'A25', 'Normalised EBIT', fmt=None)
 putf(wsR, 'C26', f"='Cash Flow'!B13-'Cash Flow'!B14", F['fininc'][0] - F['interest'][0], NUM1, green=True)
 put(wsR, 'A26', 'Net finance income (FY2026E)', fmt=None)
-putf(wsR, 'C27', "='Income Statement'!E15", assoc_e[0], NUM1, green=True)
-put(wsR, 'A27', 'Share of JV and associate profit (FY2026E)', fmt=None)
-putf(wsR, 'C28', f"=(C25+C26+C27)*(1-{AR('Tax rate')})*(1-{AR('Minority share of profit')})/{AR('Shares outstanding (mn)')}",
+put(wsR, 'A27', 'JV share EXCLUDED from the multiplied base (enters at book below) — '
+    'the base framing carries the JV at carrying value in every lens', fmt=None)
+putf(wsR, 'C28', f"=(C25+C26)*(1-{AR('Tax rate')})*(1-{AR('Minority share of profit')})/{AR('Shares outstanding (mn)')}",
      NRM['eps'], '0.000')
-put(wsR, 'A28', 'Normalised earnings per share', fmt=None)
-putf(wsR, 'C29', f"={AR('Justified price/earnings')}*C28*DCF!C61-{AR('FY2025 dividend per share (AED, approved 12 March 2026)')}",
+put(wsR, 'A28', 'Normalised earnings per share (ex-JV)', fmt=None)
+NORM_TAIL = (f"*C28*DCF!C61+{AR('JV and associates at carrying value (AED mn, audited)')}"
+             f"/{AR('Shares outstanding (mn)')}*DCF!C63"
+             f"-{AR('FY2025 dividend per share (AED, approved 12 March 2026)')}")
+putf(wsR, 'C29', f"={AR('Justified price/earnings')}{NORM_TAIL}",
      LN['normalized']['base'], PX, bold=True)
 put(wsR, 'A29', 'Normalised value per share at the anchor', bold=True, fmt=None)
-putf(wsR, 'C31', f"={AR('Normalised lens — bear P/E')}*C28*DCF!C61-{AR('FY2025 dividend per share (AED, approved 12 March 2026)')}",
-     LN['normalized']['bear'], PX)
+putf(wsR, 'C31', f"={AR('Normalised lens — bear P/E')}{NORM_TAIL}", LN['normalized']['bear'], PX)
 put(wsR, 'A31', 'Bear (10x)', fmt=None)
-putf(wsR, 'C32', f"={AR('Normalised lens — bull P/E')}*C28*DCF!C61-{AR('FY2025 dividend per share (AED, approved 12 March 2026)')}",
-     LN['normalized']['bull'], PX)
+putf(wsR, 'C32', f"={AR('Normalised lens — bull P/E')}{NORM_TAIL}", LN['normalized']['bull'], PX)
 put(wsR, 'A32', 'Bull (16x)', fmt=None)
 hdr(wsR, 35, ['Book value and sustainable return', '', 'Value'])
 putf(wsR, 'C36', f"={AR('Equity attributable to owners, FY2025 (AED mn, audited)')}/{AR('Shares outstanding (mn)')}",
@@ -901,8 +984,10 @@ put(wsR, 'A37', 'Justified price-to-book value per share at the anchor', bold=Tr
 putf(wsR, 'C38', f"=({AR('Sustainable return on equity')}-{AR('Terminal growth')})/(DCF!C21-{AR('Terminal growth')})",
      BK['pb_just'], MULT)
 put(wsR, 'A38', 'Justified P/B multiple', fmt=None)
-putf(wsR, 'C39', f"=(({AR('Sustainable return on equity')}-0.02)/(0.5*(DCF!C10+DCF!C21)-0.015))*C36*DCF!C61-{AR('FY2025 dividend per share (AED, approved 12 March 2026)')}",
+putf(wsR, 'C39', f"=(({AR('Sustainable return on equity')}-0.02-0.015)/(0.5*(DCF!C10+DCF!C21)-0.015))*C36*DCF!C61-{AR('FY2025 dividend per share (AED, approved 12 March 2026)')}",
      LN['book']['bear'], PX)
+put(wsR, 'A41', 'The bear leg holds the same Gordon identity as base and bull: '
+    '(ROE_bear - g_bear)/(k_bear - g_bear).', fmt=None, wrap=True)
 put(wsR, 'A39', 'Bear construction', fmt=None)
 putf(wsR, 'C40', f"=(({AR('Sustainable return on equity')}+0.02-{AR('Terminal growth')})/(DCF!C21-{AR('Terminal growth')}))*C36*DCF!C61-{AR('FY2025 dividend per share (AED, approved 12 March 2026)')}",
      LN['book']['bull'], PX)
@@ -996,10 +1081,11 @@ for lbl, v1, v3, fmt in MC_ROWS:
 put(wsM, f'A{r+1}', f"Struck at AED {STK['spot']:.2f} on {STK['anchor_date']} with a 5.7% trailing dividend "
     "yield netted from the drift. How much to trust these bands: over the stock's full history the "
     "simulation's probability bands beat a naive random-walk benchmark by a small margin on a standard "
-    "probabilistic accuracy score (+0.7%), and over the recent four-plus years the two are statistically "
-    "indistinguishable — the bands are honest, not clairvoyant. Realised outcomes landed inside the 80% "
-    "band 83% of the time and inside the 90% band 89% of the time, about as close to nominal as a small "
-    "sample allows.", fmt=None, wrap=True)
+    "probabilistic accuracy score (+0.7% over the full 58-window history, 2012-2026), and over the "
+    "recent four-plus years the two are statistically indistinguishable — the bands are honest, not "
+    "clairvoyant. Realised outcomes landed inside the 80% band 79% of the time and inside the 90% band "
+    "86% of the time over that same full history — ONE window set, quoted identically in the study.",
+    fmt=None, wrap=True)
 
 # ============ 14 SENSITIVITY ===================================================
 wsX = sheet('Sensitivity')
@@ -1037,6 +1123,21 @@ vec('Fare per passenger (multiplier)', SN['fare_grid'], SN['grid_fare'])
 vec('Fleet capex (multiplier)', SN['capex_grid'], SN['grid_capex'])
 vec('JV network value in the bridge (AED mn)', [f"{x:,.0f}" for x in SN['jv_grid']], SN['grid_jv'])
 vec('Working capital / revenue', [f"{x:.0%}" for x in SN['nwc_grid']], SN['grid_nwc'])
+put(wsX, f'A{r}', 'Published scenario driver vectors — type these into the Scenario cells on '
+    'Assumptions to reproduce each pasted output LIVE in this workbook', bold=True, fmt=None); r += 1
+hdr(wsX, r, ['Scenario', 'Passenger x', 'Fare x', 'Fuel path', 'Capex x', 'Rate shift',
+             'Terminal g', 'Output (AED/sh)']); r += 1
+for nm, px_, fx_, fu, cx, sh_, g_, outv in [
+        ('High-fuel alternative', 1.0, 1.0, 'alternative (switch=1)', 1.0, '0bp', '2.5%', DCF['ps_iata_fuel']),
+        ('Bear', 0.94, 0.97, 'alternative (switch=1)', 1.15, '+100bp', '1.5%', DCF['bear']),
+        ('Bull (JV capitalised)', 1.05, 1.03, 'base (switch=0)', 0.90, '-100bp', '3.5%', DCF['bull'])]:
+    put(wsX, f'A{r}', nm, fmt=None)
+    for col, v in zip(['B', 'C', 'D', 'E', 'F', 'G', 'H'],
+                      [px_, fx_, fu, cx, sh_, g_, outv]):
+        put(wsX, f'{col}{r}', v, BLUE, PX if col == 'H' else (NUM2 if isinstance(v, float) else None))
+    r += 1
+put(wsX, f'A{r}', 'The bull additionally switches the SOTP Bridge to the JV-capitalised row. '
+    'Every other figure in the workbook reprices live when the Scenario cells change.', fmt=None); r += 1
 
 # ============ 15 PER-SHARE & RATIOS ===========================================
 wsP = sheet('Per-Share & Ratios')

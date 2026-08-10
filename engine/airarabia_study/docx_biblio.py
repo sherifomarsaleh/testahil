@@ -149,6 +149,22 @@ rows += [
      'The share-price series 2011–2026 (3,908 sessions) for the price map, beta and technicals'],
     ['DFM General Index history', 'Yahoo Finance (aggregator, index only)', '16-Jul-2026',
      'The regression index for beta — market data only, never a source for company figures'],
+    ['Quarterly Economic Review, June-2026 edition', 'Central Bank of the UAE', '30-Jun-2026',
+     'The CURRENT 2026 projection: real GDP +1.7% (2027: +9.8%), inflation 2.3% — replacing the '
+     'stale March-2026 vintage an earlier draft cited'],
+    ['2025 GDP outturn release', 'UAE Federal Competitiveness and Statistics Centre', '30-May-2026',
+     'Real GDP +6.2% in 2025, non-oil +6.8% — the outturn, replacing a forecast vintage'],
+    ['Daily par yield curve', 'US Department of the Treasury', '07-Aug-2026',
+     '5-year US Treasury at 4.35% — the peg-consistency check on the AED risk-free construction'],
+    ['Ryanair FY26 results and Q1-FY27 report', 'Ryanair Holdings plc', 'May / 26-Jul-2026',
+     'EBITDA €3,747.6mn (operating profit + depreciation), 1,039.2mn shares, €2.7bn net cash — '
+     'the 6.5× peer multiple from the primary filings'],
+    ['Wizz Air FY2026 final results', 'Wizz Air Holdings plc', '11-Jun-2026',
+     'EBITDA €1,318.3mn and net debt — the peer multiple previously suppressed as n/m'],
+    ['Interim IFRS financial statements', 'Pegasus Hava Taşımacılığı A.Ş.', '2026',
+     'Euro functional currency, no inflation restatement — correcting an earlier basis label'],
+    ['AGM dividend release for FY2021', 'Air Arabia PJSC', '11-Mar-2022',
+     'The 8.5-fils FY2021 dividend — the base of the ladder, previously misstated as a 5-fil step'],
 ]
 table(rows, [2.30, 1.85, 0.85, 4.75])
 
@@ -258,6 +274,11 @@ P('Discrepancy recorded, not repaired: in the FY2025 filing\'s restated FY2024 r
   'records the footing inconsistency here. Additionally, the FY2022–FY2024 statement PDFs are '
   'image scans: they were machine-read, and every figure carried into the model was cross-checked '
   'against the following year\'s typed comparative column.', size=8.8)
+P('This edition responds to four external audits (9-10 Aug-2026): every accepted finding is '
+  'implemented and the full 71-row finding-by-finding response, with receipts and prices, is in the '
+  'study repository. Extracts of the decisive filing passages (the finance-sublease note, the '
+  'operating-lease lessor note, the tax reconciliation, the fleet allocation) are quoted in the '
+  'response so the next auditor can tie them without machine-reading the scanned PDFs.', size=8.8)
 P('The regression index history (DFM General Index) ends 16-Jul-2026, three weeks before the '
   'stock series — the beta window is truncated to the overlap, costing 3 of ~260 weekly '
   'observations; recorded rather than papered over.', size=8.8)

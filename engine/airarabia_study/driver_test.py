@@ -32,7 +32,9 @@ def read(overrides=None):
                 wacc=bk.cell_value('DCF', 'C17'),
                 wacc_term=bk.cell_value('DCF', 'C24'),
                 nd30=bk.cell_value('Cash Flow', 'F16'),
-                jvcap=bk.cell_value('SOTP Bridge', 'C20'))
+                jvcap=bk.cell_value('SOTP Bridge', 'C20'),
+                dcf_split=bk.cell_value('SOTP Bridge', 'C15'),
+                eq30=bk.cell_value('Balance Sheet', 'I15'))
 
 base = read()
 print('base:  ' + ' · '.join(f'{k} {v:,.4f}' for k, v in base.items()))
@@ -48,8 +50,22 @@ CASES = [
      'less negative working capital absorbs cash and must lower the valuation'),
     ('Tax rate', 'C', +0.05, 'dcf', -1,
      'a higher tax rate must lower NOPAT and the valuation'),
-    ('Fuel cost per passenger (AED) — base path', 'C', +20.0, 'dcf', -1,
-     'dearer fuel in FY2027 must cut EBITDA and the valuation'),
+    ('Effective jet fuel price (USD/bbl) — base path', 'C', +10.0, 'dcf', -1,
+     'a dearer jet-fuel path in FY2027 must cut EBITDA and the valuation'),
+    ('Fuel intensity (AED per passenger per USD/bbl of effective jet price)', 'C', +0.2, 'dcf', -1,
+     'a higher fuel burn per passenger must cut the valuation'),
+    ('Scenario: passenger multiplier', 'C', -0.06, 'dcf', -1,
+     'the bear scenario passenger cut must lower the valuation through the live engine'),
+    ('Scenario: fare multiplier', 'C', +0.03, 'dcf', +1,
+     'the bull scenario fare lift must raise the valuation through the live engine'),
+    ('Scenario: high-fuel switch (0 = base path, 1 = alternative)', 'C', +1.0, 'dcf', -1,
+     'flipping to the high-fuel framing must reprice the whole workbook downward'),
+    ('Scenario: cost-of-capital shift', 'C', +0.01, 'dcf', -1,
+     'a 100bp rate shift must lower the valuation through both discount rates'),
+    ('Leased aircraft additions (units)', 'C', +1.0, 'dcf', -1,
+     'an extra leased aircraft is real capacity cost now charged inside FCFF'),
+    ('Booked finance-cost rate on the debt book', 'C', +0.01, 'nd30', +1,
+     'a dearer debt book must leave more net debt at the end of the forecast'),
     ('Passengers (millions)', 'D', +1.0, 'dcf', +1,
      'more passengers in FY2028 must lift revenue faster than pax-linked cash costs'),
     ('Passenger + baggage revenue per passenger (AED)', 'C', +20.0, 'dcf', +1,
@@ -82,14 +98,14 @@ CASES = [
      'more of the cheaper after-tax debt must lower the terminal cost of capital'),
     ('Administrative cost growth', 'C', +0.05, 'dcf', -1,
      'faster administrative cost growth must lower the valuation'),
-    # NOTE: bumping this path in a LATER year (e.g. FY2027) moves forecast earnings, the
-    # dividend stream and closing net debt but — correctly — no lens: the DCF values the
-    # JV network in the bridge, not inside FCFF, and the normalised lens reads FY2026
-    # associate income. The first hypothesis on the initial failure was the expectation,
-    # and decomposing the mechanism confirmed it: the FY2026 column is the one that chains
-    # into a lens, so that is what this case perturbs.
-    ('Growth in the share of joint-venture and associate profit', 'B', +0.10, 'central', +1,
-     'faster FY2026 JV profit growth lifts the normalised lens through FY2026E earnings'),
+    # NOTE (mechanism re-decomposed after the de-JV fix): the JV share now reaches NO lens
+    # by construction — the base framing carries the JV at its constant book value in every
+    # lens, and the capitalised framing prices it off the multiple, not the growth path.
+    # Equity-accounted profit is non-cash, and forecast dividends sit at the 30-fil floor,
+    # so faster JV growth flows to forecast EPS and the EQUITY roll — which is what this
+    # case now asserts.
+    ('Growth in the share of joint-venture and associate profit', 'B', +0.10, 'eq30', +1,
+     'faster JV profit growth must accumulate in forecast retained equity'),
     ('Aircraft-lease revenue growth', 'C', +0.10, 'dcf', +1,
      'faster lease income growth must lift revenue and the valuation'),
 ]
@@ -109,8 +125,11 @@ for label, col, bump, key, sign, why in CASES:
         fails.append((label, key, delta, why))
 
 DEAD_OK = {
-    # consumed only by the pasted engine outputs or by display rows, by design:
-    'Fuel cost per passenger (AED) — high-fuel alternative',   # whole-model re-run only
+    # consumed only when the high-fuel switch is on, or by display rows, by design:
+    'Effective jet fuel price (USD/bbl) — high-fuel alternative',  # live only when switch=1
+    'Rating-table sovereign spread (alternative netting, disclosed)',  # published alternative
+    'Consolidated fleet, year-end (aircraft)',   # display of the capacity ramp; pax is the driver
+    'Marginal cost of debt path',                # drives the WACC glide shape via DCF!27 (tested via wacc rows)
     'Spot price (AED)',                    # comparison anchor, not a valuation input
     'Relative lens — bear multiple', 'Relative lens — bull multiple',
     'Normalised lens — bear P/E', 'Normalised lens — bull P/E',

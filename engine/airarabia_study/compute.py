@@ -332,23 +332,37 @@ INP = dict(
               "2026-08-09", "House"),
 
     # ---- cost stack: ONE ESCALATOR PER DRIVER CLASS -------------------------
-    fuel_per_pax=I([195.0, 165.0, 168.3, 171.7, 175.1],
-                   "Fuel cost per passenger, AED — the study's CENTRAL CONTESTED JUDGEMENT, "
-                   "priced BOTH ways (see fuel_per_pax_alt). BASE = the EIA path: jet fuel "
-                   "averaged ~USD 89/bbl in 2025 (IATA), spiked to ~USD 158 (IATA monitor, "
-                   "early Aug-2026) on the H1 conflict, and the EIA July-2026 STEO has Brent "
-                   "81.91 (2026) -> 64.76 (2027). FY2026 +13% on FY2025's 172.4 (H1 spike "
-                   "averaged against H2 relief), FY2027 -15% as the EIA curve realises, then "
-                   "+2%/yr on its own commodity escalator — never a domestic CPI proxy. "
-                   "~55%-hedged 2026-2028 book (Note 24 commodity swaps/collars) damps both "
-                   "directions; hedge RATIOS are not disclosed — FLAGGED",
-                   "2026-08-09", "Industry"),
-    fuel_per_pax_alt=I([210.0, 205.0, 206.0, 208.1, 210.1],
-                       "The ALTERNATIVE fuel framing: IATA's June-2026 full-year assumption "
-                       "(jet USD 152/bbl avg, Brent 95) persists — no EIA-style relief. "
-                       "FY2026 +22% on FY2025, then held with +1%/yr drift. Published side by "
-                       "side with the base everywhere the base appears",
-                       "2026-08-09", "Industry"),
+    jet_eff_base=I([100.7, 85.2, 86.9, 88.6, 90.4],
+                   "EFFECTIVE (hedge-blended) jet fuel price path, USD/bbl — the study's "
+                   "CENTRAL CONTESTED JUDGEMENT, priced BOTH ways (see jet_eff_alt). BASE = "
+                   "the EIA-curve framing: 2025 market average ~USD 89/bbl (IATA); H1-2026 "
+                   "spiked (IATA monitor USD 158.77 early Aug-2026) but the book is partly "
+                   "hedged 2026-2028 (Note 24 swaps/collars; RATIOS undisclosed — flagged) and "
+                   "Q1-2026's realised margin shows nothing like a spot-price hit; EIA "
+                   "July-2026 STEO Brent 81.91 (2026) -> 64.76 (2027) then a mild crack-"
+                   "normalised drift. Fuel cost per passenger = intensity x this path — its own "
+                   "commodity escalator, never a CPI proxy", "2026-08-10", "Industry"),
+    jet_eff_alt=I([108.4, 105.8, 106.4, 107.5, 108.5],
+                  "The ALTERNATIVE fuel framing: IATA's June-2026 high-fuel view persists "
+                  "through the hedge blend — no EIA-style relief. Published side by side with "
+                  "the base everywhere the base appears", "2026-08-10", "Industry"),
+    fuel_intensity=I(1.937, "Fuel intensity, AED per passenger per USD/bbl of effective jet "
+                     "price: FY2025 audited fuel cost/pax 172.4 (Note 29 / presentations) over "
+                     "the ~USD 89/bbl 2025 market average (IATA) = 1.937. Held flat — the "
+                     "neo's ~20% lower burn is an upside not credited", "2026-08-10",
+                     "Company/Industry"),
+    fleet_cons=I(dict(fy25_end=56, ends=[58, 61, 64, 68, 72],
+                      owned_adds=[1, 1, 1, 2, 2], leased_adds=[1, 2, 2, 2, 2],
+                      ac_cost_owned=184.0, ac_rou=175.0, loan_per_owned=150.0),
+                 "CONSOLIDATED fleet block (Sharjah + Ras Al Khaimah): YE2025 = 56 aircraft "
+                 "per the company's own FY2025 presentation fleet allocation (Sharjah 54, RAK "
+                 "2; the 90 total is GROUP-wide incl. the JV hubs). Forward: 16 net additions "
+                 "to ~72 by FY2030 (within the 120-aircraft order and Airbus's constrained "
+                 "output), split ~7 owned / ~9 leased at ~AED 184mn owned cost (~USD 50mn "
+                 "A320neo family net) and ~AED 175mn right-of-use inception value per leased "
+                 "aircraft; owned units loan-financed ~AED 150mn each (FY2025 actual: AED "
+                 "849.6mn for 5 = 170/unit). The owned/leased split remains UNDISCLOSED — "
+                 "flagged and sensitised", "2026-08-10", "Company/House"),
     staff_per_pax=I([84.4, 86.9, 89.5, 92.2, 94.9],
                     "Direct staff cost per passenger, AED, +3%/yr on FY2025's 81.9 (FY2024: "
                     "78.9, FY2023: 76.6) — UAE aviation wage drift, its own labour escalator, "
@@ -419,6 +433,14 @@ INP = dict(
          "July-2026 — January-2031 tranche YTM 4.48% (4bp over comparable UST; May-2026 "
          "auction: 4.30%). The LOCAL-currency government bond, per the standing rule, not a "
          "USD proxy", "2026-07-30", "Country"),
+    sov_spread_obs=I(0.0004, "The OBSERVED default spread embedded in the AED sovereign "
+                     "yield actually used: the July-2026 MoF auction priced the January-2031 "
+                     "tranche 4bp over comparable US Treasuries (May-2026: 14bp). Netting THIS "
+                     "spread — not the 42bp rating-table spread — keeps the risk-free rate "
+                     "currency-consistent under the 1:1 peg (UST 5-yr 4.35% on 07-Aug-2026, "
+                     "US Treasury daily curve): 4.48% - 0.04% = 4.44% > 4.35%. Adopted after "
+                     "external critique; the rating-basis netting (4.06%) is published as the "
+                     "alternative construction", "2026-08-10", "Country"),
     sov_spread_rating=I(0.0042, "Damodaran adjusted default spread, United Arab Emirates row "
                         "(Moody's Aa2), original ctryprem file last updated 5-Jan-2026. "
                         "Netted out of the local yield so sovereign risk is not double-counted",
@@ -435,6 +457,15 @@ INP = dict(
                 "General Index (DFMGI), 5-year window to 16-Jul-2026: beta 1.086, R-squared "
                 "0.402, n=258, SE 0.083, CI90 [0.95, 1.22] — clears the usability gate, not "
                 "weak-instrument flagged. See beta_result.json", "2026-08-09", "House"),
+    kd_booked_path=I([0.031, 0.033, 0.035, 0.036, 0.037],
+                     "BOOKED blended finance-cost rate on the rolling gross debt book: FY2025 "
+                     "effective 2.73% (finance costs 66.7 / average gross debt), rising as new "
+                     "leases (~4%, Note 25) and new aircraft loans (~marginal 5.4%) replace "
+                     "older cheaper layers", "2026-08-10", "Company/House"),
+    debt_amort=I([500.0, 520.0, 540.0, 560.0, 580.0],
+                 "Scheduled repayments of borrowings + lease principal (FY2025 actuals: "
+                 "393.7 borrowings repaid + 248.1 lease principal ≈ 642 gross; forward net of "
+                 "refinancing ~500-580/yr)", "2026-08-10", "Company/House"),
     kd=I(0.055, "Marginal AED cost of debt: the AED sovereign 4.48% (Jan-2031) plus ~100bp "
          "unsecured corporate allowance for an unrated but NET-CASH flag carrier affiliate. "
          "Evidence table: FY2025 lease book carries an average 4% finance charge (Note 25, "
@@ -464,12 +495,14 @@ INP = dict(
              "Sensitised 1.5-3.5%", "2026-08-09", "House"),
 
     # ---- lens inputs -------------------------------------------------------
-    ev_ebitda_just=I(7.5, "Justified EV/EBITDA on mid-cycle FY2027E EBITDA. Peer cross-checks "
-                     "(secondary sources, labelled): Ryanair 7.8x, EIA— easyJet 3.5x, IndiGo "
-                     "11.1x, Pegasus 6.6x (TRY basis), Damodaran Air Transport 7.58x "
-                     "(Jan-2026). 7.5x sits at the sector centre; Air Arabia's franchise "
-                     "margin argues higher, its Gulf concentration argues lower. Bear 6.0x / "
-                     "bull 9.0x", "2026-08-09", "Industry"),
+    ev_ebitda_just=I(6.5, "Justified EV/EBITDA on mid-cycle FY2027E EBITDA EXCLUDING the "
+                     "fee/other-income stream (valued separately — basis matched to how peer "
+                     "multiples are computed). Peer set rebuilt from PRIMARY filings after "
+                     "external critique: Ryanair 6.50x (FY26 EBITDA EUR 3,747.6mn = op profit "
+                     "2,374.2 + dep 1,373.4; 1,039.2mn shares and EUR 2.7bn net cash per the "
+                     "Q1-FY27 report), Wizz ~4.75x (FY26 EBITDA 1,318.3), easyJet ~3.5x, "
+                     "IndiGo 11.1x, Pegasus ~6.6x (EUR-functional IFRS) -> median 6.5x. "
+                     "Bear 5.0x / bull 8.0x", "2026-08-10", "Industry"),
     pe_just=I(13.0, "Justified through-cycle P/E on normalised earnings. Peers: Ryanair 12.6x, "
               "easyJet 12.4x, Jazeera ~17.7x computed, Damodaran profitable-airlines 12.87x. "
               "13x reflects a structurally profitable LCC with net cash and a growing "
@@ -482,6 +515,9 @@ INP = dict(
             "at 15x — a growth-LCC multiple in line with Jazeera and above the mature peers. "
             "The BASE framing carries the audited carrying value 363.386 instead. THE "
             "CONTESTED JUDGEMENT, published both ways, never averaged", "2026-08-09", "House"),
+    nci_book=I(1.287, "Non-controlling interests at audited carrying value, 31-Dec-2025 "
+               "— the correct deduction basis (the prior profit-share-ratio proxy deducted "
+               "2.9)", "2026-02-13", "Company"),
     lens_weights=I(dict(dcf=0.45, relative=0.20, normalized=0.20, book=0.15),
                    "DCF primary for an operating airline with a disclosed unit history; "
                    "relative and normalised secondary; book least — an airline's book equity "
@@ -498,6 +534,12 @@ for k, rec in INP.items():
     assert rec['source'] and rec['date'] and rec['ring'], f"INPUT {k} missing provenance"
 
 V = {k: rec['value'] for k, rec in INP.items()}
+V['fuel_per_pax'] = [V['fuel_intensity'] * p for p in V['jet_eff_base']]
+V['fuel_per_pax_alt'] = [V['fuel_intensity'] * p for p in V['jet_eff_alt']]
+FL = V['fleet_cons']
+leased_gross = [FL['leased_adds'][i] * FL['ac_rou'] for i in range(5)]
+fleet_ends = [FL['fy25_end']] + FL['ends']
+fleet_avg = [(fleet_ends[i] + fleet_ends[i + 1]) / 2 for i in range(5)]
 LOG = []
 def say(s):
     LOG.append(s); print(s)
@@ -614,7 +656,8 @@ assert V['kd'] > kd_eff_fy25, "marginal unsecured Kd must exceed the secured eff
 assert V['kd'] > 0.0441, "marginal Kd must exceed the deposit yield"
 
 # ---- cost of capital (v2: rf normalised, single-count of country risk) -----
-rf_star = V['rf'] - V['sov_spread_rating']
+rf_star = V['rf'] - V['sov_spread_obs']
+rf_star_rating_alt = V['rf'] - V['sov_spread_rating']
 BETA = V['beta_used']
 ke_exp = rf_star + BETA * V['erp_rating']
 kd_at = V['kd'] * (1 - TAX)
@@ -624,10 +667,11 @@ wacc_exp = we_gross * ke_exp + wd_gross * kd_at
 wd_net = nd_fy25 / (nd_fy25 + MKTCAP)     # negative: net cash
 wacc_net = (1 - wd_net) * ke_exp + wd_net * kd_at
 say(f"[Cost of equity] AED sovereign {V['rf']:.2%} (MoF T-Bond auction Jul-2026, Jan-2031 "
-    f"tranche) less the UAE's own Aa2 default spread {V['sov_spread_rating']:.2%} = rf* "
-    f"{rf_star:.2%}; + beta {BETA:.3f} (own-stock weekly vs DFMGI, R2 0.40) x ERP "
-    f"{V['erp_rating']:.2%} (Damodaran UAE row, Jan-2026, rating basis; CDS column NA for "
-    f"the UAE — stated, not substituted) -> Ke {ke_exp:.2%}.")
+    f"tranche) less the OBSERVED 4bp spread the auction itself priced over US Treasuries = rf* "
+    f"{rf_star:.2%} — currency-consistent under the peg (UST 5-yr 4.35% on 07-Aug-2026); the "
+    f"rating-basis netting ({rf_star_rating_alt:.2%}) is published as the alternative. + beta "
+    f"{BETA:.3f} (own-stock weekly vs DFMGI, R2 0.40) x ERP {V['erp_rating']:.2%} (Damodaran "
+    f"UAE row, Jan-2026; CDS column NA — stated, not substituted) -> Ke {ke_exp:.2%}.")
 say(f"[WACC explicit] GROSS-debt weights {wd_gross:.1%}/{we_gross:.1%} -> {wacc_exp:.2%}. "
     f"On the NET basis the company is net cash (weight {wd_net:.1%}), which would push the "
     f"rate to {wacc_net:.2%}; the gross basis is used because the bridge separately credits "
@@ -724,7 +768,14 @@ nopat = [e * (1 - TAX) for e in ebit_incl]     # fees/other income are operating
 capex = list(V['capex_path'])
 nwc = [V['nwc_pct'] * r for r in rev]
 dnwc = [nwc[0] - nwc_fy25] + [nwc[i] - nwc[i - 1] for i in range(1, 5)]
-fcff = [nopat[i] + dna[i] - capex[i] - dnwc[i] for i in range(5)]
+fcff = [nopat[i] + dna[i] - capex[i] - leased_gross[i] - dnwc[i] for i in range(5)]
+say(f"[Leased-fleet charge — adopted from external critique] the forecast leased aircraft "
+    f"({sum(FL['leased_adds'])} of the 16 consolidated additions) are no longer acquired for "
+    f"free: their gross right-of-use inception value ({', '.join(f'{x:,.0f}' for x in leased_gross)}) "
+    f"is charged inside FCFF as leased capex — the 'firm buys all capacity with capital' "
+    f"convention, with the financing mix left to the WACC. The NPV-0-financing alternative "
+    f"(strip leased assets from invested capital, charge nothing) is worth ~+0.09/share and is "
+    f"noted, not adopted.")
 pv = [fcff[i] * df[i] for i in range(5)]
 pv_explicit = float(sum(pv))
 say(f"[FCFF waterfall] NOPAT (on EBIT including the recurring fee/other-income line, at the "
@@ -735,26 +786,35 @@ say(f"[FCFF waterfall] NOPAT (on EBIT including the recurring fee/other-income l
 
 # ---- forward net-finance, profit, dividend, equity, net debt -----------------
 nci_share = (V['pat_fy25'] - V['npa_fy25']) / V['pat_fy25']
-interest_path, fininc_path, np_fc, div_fc, eq_fc, nd_fc, assoc_fc = [], [], [], [], [], [], []
-_nd, _eq, _assoc = nd_fy25, V['eqp_fy25'], V['assoc_fy25']
+DPS_FLOOR = 1400.0   # AED mn = 30 fils held — the ladder is not broken by the base case
+interest_path, fininc_path, np_fc, div_fc, eq_fc, nd_fc, assoc_fc, debt_fc = [], [], [], [], [], [], [], []
+_nd, _eq, _assoc, _debt = nd_fy25, V['eqp_fy25'], V['assoc_fy25'], debt_fy25
 for i in range(5):
-    _liq = max(-_nd, 0.0) + debt_fy25          # cash+deposits stack (net cash + gross debt)
-    _fin_in = V['dep_rate_path'][i] * _liq
-    _fin_out = V['kd_path'][i] * debt_fy25 * 0.8   # blended booked cost below marginal (secured)
+    _debt_open = _debt
+    _debt = _debt + leased_gross[i] + FL['owned_adds'][i] * FL['loan_per_owned'] - V['debt_amort'][i]
+    _liq_open = _debt_open - _nd
+    _fin_in = V['dep_rate_path'][i] * _liq_open
+    _fin_out = V['kd_booked_path'][i] * (_debt_open + _debt) / 2
     _assoc = _assoc * (1 + V['assoc_g'][i])
-    _pbt = ebit_incl[i] + _fin_in - _fin_out + _assoc
-    _pat = _pbt * (1 - TAX)
+    _pat = (ebit_incl[i] + _fin_in - _fin_out) * (1 - TAX) + _assoc   # JV share BELOW the tax line
     _npa = _pat * (1 - nci_share)
-    _div = V['payout'][i] * _npa
+    _div = max(V['payout'][i] * _npa, DPS_FLOOR)
     _eq += _npa - _div
-    _nd = _nd - (fcff[i] + _fin_in - _fin_out * (1 - TAX)) + _div
+    _nd = _nd - (fcff[i] + (_fin_in - _fin_out) * (1 - TAX)) + _div
     interest_path.append(_fin_out); fininc_path.append(_fin_in); assoc_fc.append(_assoc)
     np_fc.append(_npa); div_fc.append(_div); eq_fc.append(_eq); nd_fc.append(_nd)
-say(f"[Forecast net finance] finance income " + ", ".join(f"{x:,.0f}" for x in fininc_path) +
-    f" on the cash-and-deposit stack at the rolled-down deposit rate; finance costs " +
-    ", ".join(f"{x:,.0f}" for x in interest_path) + ". Attributable profit " +
+    debt_fc.append(_debt)
+say(f"[Forecast net finance — rebuilt after critique] gross debt now ROLLS with the financing "
+    f"of the fleet (leases + aircraft loans - amortisation): " +
+    " -> ".join(f"{d:,.0f}" for d in debt_fc) + f"; finance costs at the booked blended rate " +
+    ", ".join(f"{x:,.0f}" for x in interest_path) + f" (no hardcoded factor); finance income " +
+    ", ".join(f"{x:,.0f}" for x in fininc_path) + ". BOTH financing legs are tax-effected in "
+    "the net-debt roll; the JV/associate share sits BELOW the tax line (equity-method income "
+    "arrives net of the ventures' own tax). Attributable profit " +
     ", ".join(f"{x:,.0f}" for x in np_fc) + "; EPS " +
-    ", ".join(f"{x/SH:.3f}" for x in np_fc) + "; dividend held at 30 fils then ~85-90% payout.")
+    ", ".join(f"{x/SH:.3f}" for x in np_fc) + "; DPS floored at 30 fils throughout — the "
+    "dividend ladder holds in the base case by construction, funded by net cash in the dip "
+    "year.")
 
 # ---- invested capital, terminal ---------------------------------------------
 fleet_assets_fy25 = V['ppe_fy25'] + V['rou_fy25'] + V['adv_fy25']
@@ -762,7 +822,7 @@ ic_fy25 = fleet_assets_fy25 + V['intang_fy25'] + nwc_fy25
 ppe = []
 p = fleet_assets_fy25
 for i in range(5):
-    p += capex[i] - dna[i] + 300.0    # +300/yr: leased (ROU) additions net of their dep, FY25 pace
+    p += capex[i] + leased_gross[i] - dna[i]
     ppe.append(p)
 ic = [nwc[i] + ppe[i] + V['intang_fy25'] for i in range(5)]
 roic = [nopat[i] / ic[i] for i in range(5)]
@@ -800,26 +860,38 @@ say(f"[JV network — BOTH WAYS, never averaged] BASE: audited carrying value {j
 
 def bridge(ev_ops, jv_val):
     eq_pre = ev_ops - nd_fy25 + non_op + jv_val
-    nci_val = nci_share * eq_pre
+    nci_val = V['nci_book']                      # NCI at audited carrying value
     return eq_pre - nci_val, nci_val
+
+T_ANCHOR = V['anchor_days'] / 365.0
+ROLL = (1 + ke_exp) ** T_ANCHOR
+ROLL_CASH = (1 + V['dep_rate_path'][0]) ** T_ANCHOR   # cash legs accrete at the cash yield
+def to_anchor(v):
+    return v * ROLL - V['dps_fy25']
+def to_anchor_split(ev_ops, jv_val):
+    """Operating equity rolls at Ke; the cash/near-cash legs (net cash, non-operating
+    assets, JV book) roll at the deposit yield — adopted from external critique: cash
+    does not compound at the cost of equity."""
+    cash_legs = -nd_fy25 + non_op + jv_val
+    eq_pre = ev_ops + cash_legs
+    op_part = (ev_ops) * ROLL
+    cash_part = cash_legs * ROLL_CASH
+    return (op_part + cash_part - V['nci_book']) / SH - V['dps_fy25']
 
 eq_attr, nci_val = bridge(ev, jv_book)
 dcf_ps_dec = eq_attr / SH
-eq_attr_alt, _ = bridge(ev, jv_cap)
-T_ANCHOR = V['anchor_days'] / 365.0
-ROLL = (1 + ke_exp) ** T_ANCHOR
-def to_anchor(v):
-    return v * ROLL - V['dps_fy25']
-dcf_ps = to_anchor(dcf_ps_dec)
-dcf_ps_jvcap = to_anchor(eq_attr_alt / SH)
+dcf_ps = to_anchor_split(ev, jv_book)
+dcf_ps_jvcap = to_anchor_split(ev, jv_cap)
 say(f"[Bridge] operating EV {ev:,.0f} + NET CASH {-nd_fy25:,.0f} + non-operating assets "
     f"(FVOCI investments {V['fvoci_fy25']:,.0f} + investment property {V['invprop_fy25']:,.0f} "
     f"+ net investment in lease {V['nil_fy25']:,.0f}) + JV network at carrying value "
     f"{jv_book:,.0f} = {eq_attr + nci_val:,.0f}; less minorities ({nci_share:.2%}) "
     f"{nci_val:,.0f} -> equity {eq_attr:,.0f} = AED {dcf_ps_dec:.2f}/share at 31-Dec-2025; "
     f"rolled {V['anchor_days']}/365 at Ke (x{ROLL:.4f}) less the AED 0.30 dividend paid in "
-    f"the window = AED {dcf_ps:.2f} vs spot {SPOT:.2f} ({dcf_ps/SPOT-1:+.0%}). ON THE "
-    f"ALTERNATIVE JV FRAMING: AED {dcf_ps_jvcap:.2f} ({dcf_ps_jvcap/SPOT-1:+.0%}).")
+    f"the window = AED {dcf_ps:.2f} vs spot {SPOT:.2f} ({dcf_ps/SPOT-1:+.0%}) — the "
+    f"operating equity rolls at Ke, the cash/near-cash legs at the deposit yield, and "
+    f"minorities are deducted at their audited carrying value. ON THE ALTERNATIVE JV "
+    f"FRAMING: AED {dcf_ps_jvcap:.2f} ({dcf_ps_jvcap/SPOT-1:+.0%}).")
 assert abs((ev - nd_fy25 + non_op + jv_book - nci_val) - eq_attr) < 1e-6, "bridge does not close"
 assert -nd_fy25 > 0, "net cash must ADD to equity value"
 assert dcf_ps_jvcap > dcf_ps, "JV capitalised framing must exceed the book framing"
@@ -839,7 +911,8 @@ def dcf_scenario(pax_mult=1.0, fare_mult=1.0, fuel_mult=1.0, cost_shift=0.0,
     _capex = [c_ * capex_mult for c_ in capex]
     _nwc = [nwc_pct * r for r in _rev]
     _dnwc = [_nwc[0] - nwc_fy25] + [_nwc[i] - _nwc[i - 1] for i in range(1, 5)]
-    _f = [_nopat[i] + dna[i] - _capex[i] - _dnwc[i] for i in range(5)]
+    _f = [_nopat[i] + dna[i] - _capex[i] - leased_gross[i] * capex_mult - _dnwc[i]
+          for i in range(5)]
     _we, _wt = wacc_exp + wacc_shift, wacc_term + wacc_shift
     _fwd = [_we - (_we - _wt) * fr for fr in glide_frac]
     _df, cc = [], 1.0
@@ -847,13 +920,12 @@ def dcf_scenario(pax_mult=1.0, fare_mult=1.0, fuel_mult=1.0, cost_shift=0.0,
         cc /= (1 + w); _df.append(cc)
     _ppe, pp = [], fleet_assets_fy25
     for i in range(5):
-        pp += _capex[i] - dna[i] + 300.0; _ppe.append(pp)
+        pp += _capex[i] + leased_gross[i] * capex_mult - dna[i]; _ppe.append(pp)
     _roic = _nopat[-1] * (1 + g) / (_nwc[-1] + _ppe[-1] + V['intang_fy25'])
     _rr = min(g / max(_roic, 1e-6), 0.95)
     _tv = _nopat[-1] * (1 + g) * (1 - _rr) / max(_wt - g, 0.02)
     _ev = sum(_f[i] * _df[i] for i in range(5)) + _tv * _df[-1]
-    _eq, _ = bridge(_ev, jv_val)
-    return to_anchor(_eq / SH)
+    return to_anchor_split(_ev, jv_val)
 
 _base_chk = dcf_scenario()
 assert abs(_base_chk - dcf_ps) < 0.02, f'scenario engine does not reproduce base: {_base_chk}'
@@ -872,44 +944,57 @@ say(f"[DCF scenarios] bear {dcf_bear:.2f} / base {dcf_ps:.2f} / bull {dcf_bull:.
 
 # ---- lens 2: relative --------------------------------------------------------
 REL_I = 1
-ebitda_mid = ebitda_incl[REL_I]
+ebitda_mid = ebitda[REL_I]                       # EX-fee EBITDA — basis matched to the peers
+fees_mid = other_inc[REL_I]
 df_rel = df[REL_I]
-ev_rel_fwd = V['ev_ebitda_just'] * ebitda_mid
+fee_value = fees_mid * (1 - TAX) / (wacc_term - V['g_term'])   # the fee stream, valued as its own annuity
+ev_rel_fwd = V['ev_ebitda_just'] * ebitda_mid + fee_value
 ev_rel = ev_rel_fwd * df_rel + pv[0] + pv[1]
 def _rel(mult):
-    _eq, _ = bridge((mult * ebitda_mid) * df_rel + pv[0] + pv[1], jv_book)
-    return to_anchor(_eq / SH)
-rel_ps, rel_bear, rel_bull = _rel(V['ev_ebitda_just']), _rel(6.0), _rel(9.0)
+    _ev = (mult * ebitda_mid + fee_value) * df_rel + pv[0] + pv[1]
+    return to_anchor_split(_ev, jv_book)
+rel_ps, rel_bear, rel_bull = _rel(V['ev_ebitda_just']), _rel(5.0), _rel(8.0)
 ev_trailing = MKTCAP + nd_fy25            # nd negative: EV below mcap
 ev_ebitda_trailing = ev_trailing / hist_is['FY25']['ebitda_incl']
+ev_ebitda_trailing_ex = ev_trailing / hist_is['FY25']['ebitda']
 pe_trailing = SPOT / (V['npa_fy25'] / SH)
-say(f"[Relative lens] {V['ev_ebitda_just']}x FY2027E EBITDA {ebitda_mid:,.0f} discounted at "
-    f"the year-2 factor plus interim flows -> AED {rel_ps:.2f}/share. Trailing prints for "
-    f"context: EV/EBITDA {ev_ebitda_trailing:.1f}x, P/E {pe_trailing:.1f}x — the market "
-    f"already pays a premium to the global LCC set (Ryanair 7.8x/12.6x), which is the "
-    f"relative lens's message, not its input.")
+say(f"[Relative lens — basis-matched after critique] {V['ev_ebitda_just']}x FY2027E EBITDA "
+    f"EXCLUDING fees/other income ({ebitda_mid:,.0f}) — the same basis peer multiples are "
+    f"computed on — plus the fee stream valued separately as an after-tax annuity "
+    f"({fee_value:,.0f}), discounted and bridged -> AED {rel_ps:.2f}/share. Trailing prints "
+    f"for context, BOTH bases: EV/EBITDA {ev_ebitda_trailing_ex:.1f}x ex-fees / "
+    f"{ev_ebitda_trailing:.1f}x incl-fees; P/E {pe_trailing:.1f}x. Peer set rebuilt from "
+    f"primary filings: Ryanair 6.50x, Wizz 4.75x, easyJet 3.5x, IndiGo 11.1x, Pegasus 6.6x "
+    f"-> median 6.5x.")
 
 # ---- lens 3: normalized earnings power ---------------------------------------
+# De-JV'd after critique: the earnings base no longer capitalises the JV share at the
+# multiple (that silently averaged the two framings); the JV enters at BOOK, as the base
+# framing demands, and the capitalised JV lives only in the labelled alternative.
 norm_margin = ebitda_margin[2]
 norm_rev = rev[0]
 norm_ebitda = norm_margin * norm_rev + other_inc[0]
 norm_ebit = norm_ebitda - dna[0]
 norm_fin = fininc_path[0] - interest_path[0]
-norm_assoc = assoc_fc[0]
-norm_np = (norm_ebit + norm_fin + norm_assoc) * (1 - TAX) * (1 - nci_share)
+norm_assoc = assoc_fc[0]                        # excluded from the multiplied base; shown
+norm_np = (norm_ebit + norm_fin) * (1 - TAX) * (1 - nci_share)
 norm_eps = norm_np / SH
-norm_ps = to_anchor(V['pe_just'] * norm_eps)
-norm_bear = to_anchor(10.0 * norm_eps)
-norm_bull = to_anchor(16.0 * norm_eps)
-say(f"[Normalised lens] mid-cycle EBITDA margin {norm_margin:.1%} (FY2028E) on FY2026E "
-    f"revenue {norm_rev:,.0f} + fees/other + net finance income + JV share -> normalised EPS "
-    f"{norm_eps:.3f} x {V['pe_just']:.0f} = AED {norm_ps:.2f}/share.")
+def _norm(pe):
+    return pe * norm_eps * ROLL + (jv_book / SH) * ROLL_CASH - V['dps_fy25']
+norm_ps = _norm(V['pe_just'])
+norm_bear = _norm(10.0)
+norm_bull = _norm(16.0)
+say(f"[Normalised lens — de-JV'd] mid-cycle EBITDA margin {norm_margin:.1%} (FY2028E) on "
+    f"FY2026E revenue {norm_rev:,.0f} + fees/other + net finance income, EXCLUDING the JV "
+    f"share -> normalised EPS {norm_eps:.3f} x {V['pe_just']:.0f} plus the JV network at "
+    f"BOOK (AED {jv_book/SH:.2f}/share) = AED {norm_ps:.2f}/share. The base-framing central "
+    f"now genuinely carries the JV at carrying value in every lens.")
 
 # ---- lens 4: book / justified P/B --------------------------------------------
 bvps = V['eqp_fy25'] / SH
 pb_just = (V['roe_sust'] - V['g_term']) / (ke_term - V['g_term'])
 book_ps = to_anchor(pb_just * bvps)
-book_bear = to_anchor(((V['roe_sust'] - 0.02) / (0.5 * (ke_exp + ke_term) - 0.015)) * bvps)
+book_bear = to_anchor(((V['roe_sust'] - 0.02 - 0.015) / (0.5 * (ke_exp + ke_term) - 0.015)) * bvps)  # (ROE_bear - g_bear)/(k_bear - g_bear): the Gordon identity held in ALL three legs
 book_bull = to_anchor(((V['roe_sust'] + 0.02 - V['g_term']) / (ke_term - V['g_term'])) * bvps)
 roe_trailing = V['npa_fy25'] / ((V['eqp_fy24'] + V['eqp_fy25']) / 2)
 say(f"[Book lens] justified P/B {pb_just:.2f}x = ({V['roe_sust']:.0%} - {V['g_term']:.1%}) / "
@@ -929,9 +1014,14 @@ lenses = dict(
               bull=book_bull, w=W['book']),
 )
 central = sum(l['base'] * l['w'] for l in lenses.values())
-lo = min(l['bear'] for l in lenses.values())
+lo_w = sum(l['bear'] * l['w'] for l in lenses.values())     # the range, weighted like the base
+hi_w = sum(l['bull'] * l['w'] for l in lenses.values())
+lo = min(l['bear'] for l in lenses.values())                # widest single-lens span, labelled
 hi = max(l['bull'] for l in lenses.values())
-lenses['central'] = dict(name='Weighted central', bear=lo, base=central, bull=hi, w=1.0)
+lenses['central'] = dict(name='Weighted central', bear=lo_w, base=central, bull=hi_w, w=1.0)
+say(f"[Range — weighted after critique] the published bear/bull are now weighted the same "
+    f"way as the base: {lo_w:.2f} - {hi_w:.2f}; the widest single-lens span "
+    f"({lo:.2f} - {hi:.2f}, the DCF scenarios) is shown separately and labelled as such.")
 central_jvcap = central + W['dcf'] * (dcf_ps_jvcap - dcf_ps)
 say(f"[Synthesis] weighted central AED {central:.2f}; full span {lo:.2f} - {hi:.2f}; spot "
     f"{SPOT:.2f} ({central/SPOT-1:+.0%} to the central). On the JV-capitalised framing the "
@@ -997,12 +1087,9 @@ pv_ep = sum(ep_[i] * df[i] for i in range(5))
 ep_term = nopat[-1] * (1 + V['g_term']) - wacc_term * ic[-1] * (1 + V['g_term'])
 pv_ep_term = ep_term / (wacc_term - V['g_term']) * df[-1]
 e3_ev = ic_fy25 + pv_ep + pv_ep_term
-e3_eq, _ = bridge(e3_ev, jv_book)
-e3_base = to_anchor(e3_eq / SH)
-e3_lo_eq, _ = bridge(ic_fy25 + pv_ep * 0.6 + pv_ep_term * 0.55, jv_book)
-e3_lo = to_anchor(e3_lo_eq / SH)
-e3_hi_eq, _ = bridge(e3_ev, jv_cap)
-e3_hi = to_anchor(e3_hi_eq / SH)
+e3_base = to_anchor_split(e3_ev, jv_book)
+e3_lo = to_anchor_split(ic_fy25 + pv_ep * 0.6 + pv_ep_term * 0.55, jv_book)
+e3_hi = to_anchor_split(e3_ev, jv_cap)
 experts = dict(
     e1=dict(method_short='earnings power', base=e1_base, rng=[e1_lo, e1_hi], eps=e1_eps,
             margin=e1_margin, rev=e1_rev, ebit=e1_ebit, interest=-e1_fin, pe=13.0),
@@ -1016,6 +1103,12 @@ panel_centre = float(sorted([e1_base, e2_base, e3_base])[1])
 say(f"[Expert panel] Expert 1 {e1_base:.2f} [{e1_lo:.2f}-{e1_hi:.2f}]; Expert 2 {e2_base:.2f} "
     f"[{e2_lo:.2f}-{e2_hi:.2f}]; Expert 3 {e3_base:.2f} [{e3_lo:.2f}-{e3_hi:.2f}]; panel "
     f"median {panel_centre:.2f} ({panel_centre/SPOT-1:+.0%} vs spot)")
+
+# ---- the defined per-quarter fuel-deferral quantity (replaces the unsourced 0.04) ----
+fuel_defer_q = ((V['fuel_per_pax'][0] - V['fuel_per_pax'][1]) * pax_f[1] * (1 - TAX) / 4) / SH
+say(f"[Catalyst quantity, defined] one quarter's deferral of the FY2027 fuel relief = "
+    f"(fuel/pax FY26 - FY27) x FY27 passengers x (1-t) / 4 / shares = AED {fuel_defer_q:.3f} "
+    f"per share per quarter.")
 
 # ---- fan for the figure ---------------------------------------------------------
 paths3 = np.load(os.path.join(HERE, 'paths_3M.npy'))
@@ -1065,6 +1158,8 @@ OUT = dict(
               assoc=assoc_fc, div=div_fc, seg_rev=seg_rev,
               seg_shares=[{s: seg_rev[i][s] / rev[i] for s in SUBS} for i in range(5)],
               dcost_cash=_B['dcost_cash'], ga=_B['ga'], sm=_B['sm'],
+              debt=debt_fc, leased_gross=leased_gross, fleet_ends=fleet_ends,
+              fleet_avg=fleet_avg,
               cash_cost_pax=_B['cash_cost_pax'], payout=V['payout'],
               glide_frac=glide_frac, fleet_assets_fy25=fleet_assets_fy25,
               eqp_fy25=V['eqp_fy25'], assoc_fy25=V['assoc_fy25'], debt_fy25=debt_fy25,
@@ -1078,7 +1173,8 @@ OUT = dict(
                   pax_hist=PAX, lf_hist=V['lf_hist'], fleet=V['fleet'],
                   jv_detail=V['jv_detail'],
                   q1_26_implied_fy=_impl26),
-    wacc=dict(rf=V['rf'], rf_star=rf_star, ke_exp=ke_exp, kd=V['kd'], kd_at=kd_at,
+    wacc=dict(rf=V['rf'], rf_star=rf_star, rf_star_rating_alt=rf_star_rating_alt,
+              sov_spread_obs=V['sov_spread_obs'], ke_exp=ke_exp, kd=V['kd'], kd_at=kd_at,
               we_exp=we_gross, wd_exp=wd_gross, wacc_exp=wacc_exp, wacc_net=wacc_net,
               wd_net=wd_net, ke_term=ke_term, kd_term=V['kd_term'], kd_term_at=kd_term_at,
               wacc_term=wacc_term, glide_frac=glide_frac, kd_path=V['kd_path'],
@@ -1089,11 +1185,22 @@ OUT = dict(
              nci_share=nci_share, nci_val=nci_val, eq_attr=eq_attr, ps=dcf_ps,
              ps_dec=dcf_ps_dec, ps_jvcap=dcf_ps_jvcap, ps_iata_fuel=dcf_ps_iata, roll=ROLL,
              anchor_days=V['anchor_days'], roic_term=roic_term, rr_term=rr_term,
-             g=V['g_term'], bear=dcf_bear, bull=dcf_bull),
-    lenses=lenses, central=central, central_jvcap=central_jvcap, span=[lo, hi], spot=SPOT,
+             g=V['g_term'], bear=dcf_bear, bull=dcf_bull, roll_cash=ROLL_CASH,
+             nci_book=V['nci_book'],
+             scenario_vectors=dict(
+                 high_fuel=dict(use_alt_fuel=True),
+                 bear=dict(pax_mult=0.94, fare_mult=0.97, use_alt_fuel=True,
+                           wacc_shift=+0.01, g=0.015, capex_mult=1.15),
+                 bull=dict(pax_mult=1.05, fare_mult=1.03, wacc_shift=-0.01, g=0.035,
+                           capex_mult=0.90, jv_val='15x profit share'))),
+    lenses=lenses, central=central, central_jvcap=central_jvcap,
+    span=[lo_w, hi_w], span_widest=[lo, hi], spot=SPOT,
+    fuel_defer_q=fuel_defer_q,
     experts=experts, panel_centre=panel_centre,
     sens_wg=dict(g_grid=g_grid, wacc_grid=wt_grid, table=grid_wacc_g),
-    rel=dict(ebitda_mid=ebitda_mid, ev_rel=ev_rel, ev_rel_fwd=ev_rel_fwd,
+    rel=dict(ebitda_mid=ebitda_mid, fee_value=fee_value, fees_mid=fees_mid,
+             ev_ebitda_trailing_ex=ev_ebitda_trailing_ex,
+             ev_rel=ev_rel, ev_rel_fwd=ev_rel_fwd,
              pv_interim=pv[0] + pv[1], ev_ebitda_trailing=ev_ebitda_trailing,
              pe_trailing=pe_trailing, just_mult=V['ev_ebitda_just']),
     norm=dict(margin=norm_margin, rev=norm_rev, ebitda=norm_ebitda, ebit=norm_ebit,

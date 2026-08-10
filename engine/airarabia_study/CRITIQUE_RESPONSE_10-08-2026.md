@@ -168,3 +168,19 @@ interact; CC's "3.66–3.93" brackets the computed result.
 **Not implemented until approval** (procedure step 9). On approval: apply the A/B bucket,
 re-run compute → workbook → recalc/driver test → docs → QC gate, and report before/after
 plus any defect the fixes surface.
+
+---
+
+## IMPLEMENTED — 10-Aug-2026 (procedure step 9, on approval)
+
+The full A/B bucket plus the deeper bottom-up rebuild is implemented and pushed. Realised
+against the indicative plan above: base central **3.61** (plan ≈3.62), JV-capitalised
+**3.86** (≈3.88), DCF lens **3.51/4.06** by framing (≈3.59/4.15 — the small extra fall is
+the debt walk's booked-rate interest and dividend floor, added in the rebuild, not in the
+plan's arithmetic). Every gate re-run on the corrected edition: recalc **673/673 formula
+cells, 0 unresolvable, 0 unchecked, 43 reconciliations**; driver test **31 drivers, zero
+dead inputs**; scrub/figure/table checks clean; SIGCM + model-study attestation re-raised
+nothing; all three PDFs re-rendered and the study re-read page-by-page (17/17). The
+before/after table and the defects the fixes surfaced (Expert 2 → 2.08, terminal share →
+94%, FY2030E net debt → +3,380mn) are recorded in `QC_GATE_09-08-2026.md` under
+"Post-critique re-run — what changed".

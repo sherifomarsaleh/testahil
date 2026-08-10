@@ -922,29 +922,67 @@
    "date": "2026-08-09",
    "ring": "House"
   },
-  "fuel_per_pax": {
+  "jet_eff_base": {
    "value": [
-    195.0,
-    165.0,
-    168.3,
-    171.7,
-    175.1
+    100.7,
+    85.2,
+    86.9,
+    88.6,
+    90.4
    ],
-   "source": "Fuel cost per passenger, AED \u2014 the study's CENTRAL CONTESTED JUDGEMENT, priced BOTH ways (see fuel_per_pax_alt). BASE = the EIA path: jet fuel averaged ~USD 89/bbl in 2025 (IATA), spiked to ~USD 158 (IATA monitor, early Aug-2026) on the H1 conflict, and the EIA July-2026 STEO has Brent 81.91 (2026) -> 64.76 (2027). FY2026 +13% on FY2025's 172.4 (H1 spike averaged against H2 relief), FY2027 -15% as the EIA curve realises, then +2%/yr on its own commodity escalator \u2014 never a domestic CPI proxy. ~55%-hedged 2026-2028 book (Note 24 commodity swaps/collars) damps both directions; hedge RATIOS are not disclosed \u2014 FLAGGED",
-   "date": "2026-08-09",
+   "source": "EFFECTIVE (hedge-blended) jet fuel price path, USD/bbl \u2014 the study's CENTRAL CONTESTED JUDGEMENT, priced BOTH ways (see jet_eff_alt). BASE = the EIA-curve framing: 2025 market average ~USD 89/bbl (IATA); H1-2026 spiked (IATA monitor USD 158.77 early Aug-2026) but the book is partly hedged 2026-2028 (Note 24 swaps/collars; RATIOS undisclosed \u2014 flagged) and Q1-2026's realised margin shows nothing like a spot-price hit; EIA July-2026 STEO Brent 81.91 (2026) -> 64.76 (2027) then a mild crack-normalised drift. Fuel cost per passenger = intensity x this path \u2014 its own commodity escalator, never a CPI proxy",
+   "date": "2026-08-10",
    "ring": "Industry"
   },
-  "fuel_per_pax_alt": {
+  "jet_eff_alt": {
    "value": [
-    210.0,
-    205.0,
-    206.0,
-    208.1,
-    210.1
+    108.4,
+    105.8,
+    106.4,
+    107.5,
+    108.5
    ],
-   "source": "The ALTERNATIVE fuel framing: IATA's June-2026 full-year assumption (jet USD 152/bbl avg, Brent 95) persists \u2014 no EIA-style relief. FY2026 +22% on FY2025, then held with +1%/yr drift. Published side by side with the base everywhere the base appears",
-   "date": "2026-08-09",
+   "source": "The ALTERNATIVE fuel framing: IATA's June-2026 high-fuel view persists through the hedge blend \u2014 no EIA-style relief. Published side by side with the base everywhere the base appears",
+   "date": "2026-08-10",
    "ring": "Industry"
+  },
+  "fuel_intensity": {
+   "value": 1.937,
+   "source": "Fuel intensity, AED per passenger per USD/bbl of effective jet price: FY2025 audited fuel cost/pax 172.4 (Note 29 / presentations) over the ~USD 89/bbl 2025 market average (IATA) = 1.937. Held flat \u2014 the neo's ~20% lower burn is an upside not credited",
+   "date": "2026-08-10",
+   "ring": "Company/Industry"
+  },
+  "fleet_cons": {
+   "value": {
+    "fy25_end": 56,
+    "ends": [
+     58,
+     61,
+     64,
+     68,
+     72
+    ],
+    "owned_adds": [
+     1,
+     1,
+     1,
+     2,
+     2
+    ],
+    "leased_adds": [
+     1,
+     2,
+     2,
+     2,
+     2
+    ],
+    "ac_cost_owned": 184.0,
+    "ac_rou": 175.0,
+    "loan_per_owned": 150.0
+   },
+   "source": "CONSOLIDATED fleet block (Sharjah + Ras Al Khaimah): YE2025 = 56 aircraft per the company's own FY2025 presentation fleet allocation (Sharjah 54, RAK 2; the 90 total is GROUP-wide incl. the JV hubs). Forward: 16 net additions to ~72 by FY2030 (within the 120-aircraft order and Airbus's constrained output), split ~7 owned / ~9 leased at ~AED 184mn owned cost (~USD 50mn A320neo family net) and ~AED 175mn right-of-use inception value per leased aircraft; owned units loan-financed ~AED 150mn each (FY2025 actual: AED 849.6mn for 5 = 170/unit). The owned/leased split remains UNDISCLOSED \u2014 flagged and sensitised",
+   "date": "2026-08-10",
+   "ring": "Company/House"
   },
   "staff_per_pax": {
    "value": [
@@ -1108,6 +1146,12 @@
    "date": "2026-07-30",
    "ring": "Country"
   },
+  "sov_spread_obs": {
+   "value": 0.0004,
+   "source": "The OBSERVED default spread embedded in the AED sovereign yield actually used: the July-2026 MoF auction priced the January-2031 tranche 4bp over comparable US Treasuries (May-2026: 14bp). Netting THIS spread \u2014 not the 42bp rating-table spread \u2014 keeps the risk-free rate currency-consistent under the 1:1 peg (UST 5-yr 4.35% on 07-Aug-2026, US Treasury daily curve): 4.48% - 0.04% = 4.44% > 4.35%. Adopted after external critique; the rating-basis netting (4.06%) is published as the alternative construction",
+   "date": "2026-08-10",
+   "ring": "Country"
+  },
   "sov_spread_rating": {
    "value": 0.0042,
    "source": "Damodaran adjusted default spread, United Arab Emirates row (Moody's Aa2), original ctryprem file last updated 5-Jan-2026. Netted out of the local yield so sovereign risk is not double-counted",
@@ -1131,6 +1175,30 @@
    "source": "Tier-1 OWN-STOCK regression: AIRARABIA weekly log-returns vs the DFM General Index (DFMGI), 5-year window to 16-Jul-2026: beta 1.086, R-squared 0.402, n=258, SE 0.083, CI90 [0.95, 1.22] \u2014 clears the usability gate, not weak-instrument flagged. See beta_result.json",
    "date": "2026-08-09",
    "ring": "House"
+  },
+  "kd_booked_path": {
+   "value": [
+    0.031,
+    0.033,
+    0.035,
+    0.036,
+    0.037
+   ],
+   "source": "BOOKED blended finance-cost rate on the rolling gross debt book: FY2025 effective 2.73% (finance costs 66.7 / average gross debt), rising as new leases (~4%, Note 25) and new aircraft loans (~marginal 5.4%) replace older cheaper layers",
+   "date": "2026-08-10",
+   "ring": "Company/House"
+  },
+  "debt_amort": {
+   "value": [
+    500.0,
+    520.0,
+    540.0,
+    560.0,
+    580.0
+   ],
+   "source": "Scheduled repayments of borrowings + lease principal (FY2025 actuals: 393.7 borrowings repaid + 248.1 lease principal \u2248 642 gross; forward net of refinancing ~500-580/yr)",
+   "date": "2026-08-10",
+   "ring": "Company/House"
   },
   "kd": {
    "value": 0.055,
@@ -1181,9 +1249,9 @@
    "ring": "House"
   },
   "ev_ebitda_just": {
-   "value": 7.5,
-   "source": "Justified EV/EBITDA on mid-cycle FY2027E EBITDA. Peer cross-checks (secondary sources, labelled): Ryanair 7.8x, EIA\u2014 easyJet 3.5x, IndiGo 11.1x, Pegasus 6.6x (TRY basis), Damodaran Air Transport 7.58x (Jan-2026). 7.5x sits at the sector centre; Air Arabia's franchise margin argues higher, its Gulf concentration argues lower. Bear 6.0x / bull 9.0x",
-   "date": "2026-08-09",
+   "value": 6.5,
+   "source": "Justified EV/EBITDA on mid-cycle FY2027E EBITDA EXCLUDING the fee/other-income stream (valued separately \u2014 basis matched to how peer multiples are computed). Peer set rebuilt from PRIMARY filings after external critique: Ryanair 6.50x (FY26 EBITDA EUR 3,747.6mn = op profit 2,374.2 + dep 1,373.4; 1,039.2mn shares and EUR 2.7bn net cash per the Q1-FY27 report), Wizz ~4.75x (FY26 EBITDA 1,318.3), easyJet ~3.5x, IndiGo 11.1x, Pegasus ~6.6x (EUR-functional IFRS) -> median 6.5x. Bear 5.0x / bull 8.0x",
+   "date": "2026-08-10",
    "ring": "Industry"
   },
   "pe_just": {
@@ -1203,6 +1271,12 @@
    "source": "Capitalisation multiple for the JV/associate airline network in the ALTERNATIVE bridge framing: the share of profit (189.975, growing double-digit) at 15x \u2014 a growth-LCC multiple in line with Jazeera and above the mature peers. The BASE framing carries the audited carrying value 363.386 instead. THE CONTESTED JUDGEMENT, published both ways, never averaged",
    "date": "2026-08-09",
    "ring": "House"
+  },
+  "nci_book": {
+   "value": 1.287,
+   "source": "Non-controlling interests at audited carrying value, 31-Dec-2025 \u2014 the correct deduction basis (the prior profit-share-ratio proxy deducted 2.9)",
+   "date": "2026-02-13",
+   "ring": "Company"
   },
   "lens_weights": {
    "value": {
@@ -1382,25 +1456,25 @@
    10951.944844065187
   ],
   "ebitda": [
-   1663.4423174320002,
-   2056.6507547828405,
-   2171.198647254292,
-   2290.116619953279,
-   2398.1491785658973
+   1662.7240024319992,
+   2056.19877478284,
+   2170.8153522542916,
+   2291.4540499532786,
+   2398.0649385658962
   ],
   "ebitda_incl": [
-   1876.3448774320002,
-   2286.585519582841,
-   2419.5281932382923,
-   2555.829234156159,
-   2679.80454962095
+   1875.6265624319992,
+   2286.13353958284,
+   2419.1448982382917,
+   2557.1666641561587,
+   2679.720309620949
   ],
   "ebitda_margin": [
-   0.21139695988557397,
-   0.2433635133439566,
-   0.2345409702768245,
-   0.2268625506778292,
-   0.2189701658208628
+   0.2113056735177516,
+   0.24331003054406675,
+   0.2344995653223234,
+   0.22699503859504241,
+   0.21896247403632585
   ],
   "other_inc": [
    212.90256000000002,
@@ -1417,25 +1491,25 @@
    1060.0
   ],
   "ebit": [
-   943.4423174320002,
-   1246.6507547828405,
-   1271.1986472542922,
-   1310.116619953279,
-   1338.1491785658973
+   942.7240024319992,
+   1246.1987747828398,
+   1270.8153522542916,
+   1311.4540499532786,
+   1338.0649385658962
   ],
   "ebit_incl": [
-   1156.3448774320002,
-   1476.5855195828408,
-   1519.5281932382923,
-   1575.8292341561591,
-   1619.8045496209502
+   1155.6265624319992,
+   1476.13353958284,
+   1519.1448982382917,
+   1577.1666641561587,
+   1619.7203096209491
   ],
   "nopat": [
-   982.8931458172001,
-   1255.0976916454147,
-   1291.5989642525483,
-   1339.4548490327352,
-   1376.8338671778076
+   982.2825780671993,
+   1254.713508645414,
+   1291.273163502548,
+   1340.591664532735,
+   1376.7622631778067
   ],
   "capex": [
    2000.0,
@@ -1459,88 +1533,88 @@
    -548.616304766263
   ],
   "fcff": [
-   -447.9030429827999,
-   537.6622833894153,
-   807.6208715203875,
-   905.4589342563522,
-   985.4501719440705
+   -623.5136107328008,
+   187.2781003894147,
+   457.29507077038716,
+   556.5957497563522,
+   635.3785679440698
   ],
   "df": [
-   0.918514072470142,
-   0.8444586592558633,
-   0.7767379017002765,
-   0.7147830119637965,
-   0.6577698256691816
+   0.9156445408092467,
+   0.8405022282855052,
+   0.7724926755171095,
+   0.7108763974532527,
+   0.6541748141726196
   ],
   "pv": [
-   -411.4052480819006,
-   454.0335709634716,
-   627.3097411140943,
-   647.2066642372846,
-   648.1993878053163
+   -570.9168337877508,
+   157.40766068637961,
+   353.2570927202023,
+   395.67078142458786,
+   415.648656614077
   ],
   "fwd_wacc": [
-   0.08871494729603803,
-   0.08769572364801902,
-   0.08718611182400951,
+   0.0921268630250337,
+   0.08940168151251685,
+   0.08803909075625842,
    0.0866765,
    0.0866765
   ],
   "ppe": [
-   10250.864,
-   11640.864,
-   12940.864,
-   14210.864,
-   15450.864
+   10125.864,
+   11565.864,
+   12915.864,
+   14235.864,
+   15525.864
   ],
   "ic": [
-   6577.3231888,
-   7594.758597055999,
-   8378.73668978816,
-   9112.732604564542,
-   9804.11629979828
+   6452.3231888,
+   7519.758597055999,
+   8353.73668978816,
+   9137.732604564542,
+   9879.11629979828
   ],
   "roic": [
-   0.14943665038246723,
-   0.1652584049388924,
-   0.15415199356088177,
-   0.14698717795821267,
-   0.1404342650653926
+   0.1522370391756343,
+   0.1668555569239466,
+   0.1545743194277402,
+   0.14670944341959333,
+   0.1393608721061335
   ],
   "np_attr": [
-   1226.4471750073615,
-   1468.2908229992145,
-   1515.1709608918902,
-   1595.8482514124632,
-   1664.8651527160746
+   1286.0423733228445,
+   1510.7624218126728,
+   1544.4091763576303,
+   1599.8213398901455,
+   1643.2081256173547
   ],
   "equity": [
-   8408.904,
-   8555.733082299921,
-   8783.008726433705,
-   9022.385964145575,
-   9272.115737052985
+   8294.946373322844,
+   8405.708795135517,
+   8550.117971493148,
+   8749.939311383294,
+   8993.147437000649
   ],
   "net_debt": [
-   -853.9605008098385,
-   -109.95453093073456,
-   359.79866746254754,
-   802.466441906789,
-   1223.807344771382
+   -503.9740122171993,
+   681.1116780487705,
+   1640.245630053017,
+   2534.448135611832,
+   3379.8787115327546
   ],
   "interest": [
-   120.157992,
-   115.707696,
-   113.48254800000001,
-   111.25740000000002,
-   111.25740000000002
+   83.511985,
+   85.682355,
+   89.825225,
+   93.29166,
+   98.84309499999999
   ],
   "fininc": [
    213.148012,
-   138.14502903077386,
-   106.98141264443717,
-   102.913095,
-   102.913095
+   118.19554246425356,
+   70.49696291219549,
+   33.529006688038365,
+   3.773513982362207
   ],
   "assoc": [
    193.7745,
@@ -1550,11 +1624,11 @@
    347.51735857439996
   ],
   "div": [
-   1226.4471750073615,
-   1321.4617406992932,
-   1287.8953167581067,
-   1356.4710137005936,
-   1415.1353798086634
+   1400.0,
+   1400.0,
+   1400.0,
+   1400.0,
+   1400.0
   ],
   "seg_rev": [
    {
@@ -1631,11 +1705,11 @@
    }
   ],
   "dcost_cash": [
-   5800.49,
-   5966.415,
-   6631.155,
-   7321.53,
-   8041.41
+   5801.208315000001,
+   5966.866980000001,
+   6631.538295,
+   7320.19257,
+   8041.494240000001
   ],
   "ga": [
    289.99215,
@@ -1651,12 +1725,41 @@
    147.38308527087133,
    159.89839472335171
   ],
+  "debt": [
+   2606.435,
+   2586.435,
+   2546.435,
+   2636.435,
+   2706.435
+  ],
+  "leased_gross": [
+   175.0,
+   350.0,
+   350.0,
+   350.0,
+   350.0
+  ],
+  "fleet_ends": [
+   56,
+   58,
+   61,
+   64,
+   68,
+   72
+  ],
+  "fleet_avg": [
+   57.0,
+   59.5,
+   62.5,
+   66.0,
+   70.0
+  ],
   "cash_cost_pax": [
-   451.4,
-   427.7,
-   437.7,
-   447.79999999999995,
-   458.2
+   451.45590000000004,
+   427.73240000000004,
+   437.7253,
+   447.71819999999997,
+   458.20480000000003
   ],
   "payout": [
    1.0,
@@ -1832,14 +1935,16 @@
  },
  "wacc": {
   "rf": 0.0448,
-  "rf_star": 0.0406,
-  "ke_exp": 0.0934882,
+  "rf_star": 0.0444,
+  "rf_star_rating_alt": 0.0406,
+  "sov_spread_obs": 0.0004,
+  "ke_exp": 0.0972882,
   "kd": 0.055,
   "kd_at": 0.04675,
   "we_exp": 0.8978725602620135,
   "wd_exp": 0.10212743973798659,
-  "wacc_exp": 0.08871494729603803,
-  "wacc_net": 0.09861522073171292,
+  "wacc_exp": 0.0921268630250337,
+  "wacc_net": 0.10283206773866889,
   "wd_net": -0.10969658077788418,
   "ke_term": 0.091585,
   "kd_term": 0.05,
@@ -1883,130 +1988,158 @@
   }
  },
  "dcf": {
-  "pv_explicit": 1965.3441160382663,
-  "tv": 18907.5548444269,
-  "pv_tv": 12436.819053849173,
-  "ev": 14402.163169887439,
-  "tv_share": 0.8635382690186791,
+  "pv_explicit": 751.067357657496,
+  "tv": 18875.96430183773,
+  "pv_tv": 12348.180439483696,
+  "ev": 13099.247797141192,
+  "tv_share": 0.942663321643445,
   "nd": -2417.297,
   "non_op": 1069.2839999999999,
   "jv_book": 363.386,
   "jv_cap": 2849.625,
   "jv_pe": 15.0,
   "nci_share": 0.00015963308948355068,
-  "nci_val": 2.9136439286750564,
-  "eq_attr": 18249.216525958764,
-  "ps": 3.8259389877121137,
-  "ps_dec": 3.910518466144977,
-  "ps_jvcap": 4.387959438332954,
-  "ps_iata_fuel": 2.166584340889459,
-  "roll": 1.055087457950173,
+  "nci_val": 1.287,
+  "eq_attr": 16947.92779714119,
+  "ps": 3.512603465076654,
+  "ps_dec": 3.63167287315259,
+  "ps_jvcap": 4.05836563565316,
+  "ps_iata_fuel": 1.855923186986279,
+  "roll": 1.0572858631655142,
   "anchor_days": 219,
-  "roic_term": 0.1439451216920274,
-  "rr_term": 0.17367729941892615,
+  "roic_term": 0.1428448939087868,
+  "rr_term": 0.17501500624841151,
   "g": 0.025,
-  "bear": 0.8120922184796022,
-  "bull": 7.532643851437822
+  "bear": 0.4703575469948413,
+  "bull": 7.2283224391613405,
+  "roll_cash": 1.0244020472003612,
+  "nci_book": 1.287,
+  "scenario_vectors": {
+   "high_fuel": {
+    "use_alt_fuel": true
+   },
+   "bear": {
+    "pax_mult": 0.94,
+    "fare_mult": 0.97,
+    "use_alt_fuel": true,
+    "wacc_shift": 0.01,
+    "g": 0.015,
+    "capex_mult": 1.15
+   },
+   "bull": {
+    "pax_mult": 1.05,
+    "fare_mult": 1.03,
+    "wacc_shift": -0.01,
+    "g": 0.035,
+    "capex_mult": 0.9,
+    "jv_val": "15x profit share"
+   }
+  }
  },
  "lenses": {
   "dcf": {
    "name": "Discounted cash flow (primary)",
-   "bear": 0.8120922184796022,
-   "base": 3.8259389877121137,
-   "bull": 7.532643851437822,
+   "bear": 0.4703575469948413,
+   "base": 3.512603465076654,
+   "bull": 7.2283224391613405,
    "w": 0.45
   },
   "relative": {
    "name": "Relative multiples",
-   "bear": 3.1988755136886806,
-   "base": 3.8536117016443994,
-   "bull": 4.508347889600118,
+   "bear": 3.0123326051920727,
+   "base": 3.599656630378422,
+   "bull": 4.1869806555647715,
    "w": 0.2
   },
   "normalized": {
    "name": "Normalised earnings power",
-   "bear": 2.822782354089028,
-   "base": 3.759617060315736,
-   "bull": 4.696451766542444,
+   "bear": 2.605886759227711,
+   "base": 3.453722384635215,
+   "bull": 4.3015580100427195,
    "w": 0.2
   },
   "book": {
    "name": "Book value and sustainable return",
-   "bear": 3.623116466778414,
-   "base": 4.125611286033992,
-   "bull": 4.696657903586765,
+   "bear": 3.177517238085694,
+   "base": 4.134832594522667,
+   "bull": 4.707069058332042,
    "w": 0.15
   },
   "central": {
    "name": "Weighted central",
-   "bear": 0.8120922184796022,
-   "base": 3.8631599897675772,
-   "bull": 7.532643851437822,
+   "bear": 1.8119323547444894,
+   "base": 3.6115722514656223,
+   "bull": 5.656513189493908,
    "w": 1.0
   }
  },
- "central": 3.8631599897675772,
- "central_jvcap": 4.116069192546956,
+ "central": 3.6115722514656223,
+ "central_jvcap": 3.8571652282250497,
  "span": [
-  0.8120922184796022,
-  7.532643851437822
+  1.8119323547444894,
+  5.656513189493908
+ ],
+ "span_widest": [
+  0.4703575469948413,
+  7.2283224391613405
  ],
  "spot": 5.24,
+ "fuel_defer_q": 0.019071487949193208,
  "experts": {
   "e1": {
    "method_short": "earnings power",
-   "base": 4.153316563596437,
+   "base": 4.129528799401232,
    "rng": [
-    3.1256281258434133,
-    5.181005001349461
+    3.1073298456932554,
+    5.151727753109209
    ],
-   "eps": 0.3246771724970301,
-   "margin": 0.2345409702768245,
+   "eps": 0.3222713898293985,
+   "margin": 0.2344995653223234,
    "rev": 9257.225484706,
-   "ebit": 1519.5281932382923,
-   "interest": 6.5011353555628375,
+   "ebit": 1519.1448982382917,
+   "interest": 19.328262087804518,
    "pe": 13.0
   },
   "e2": {
    "method_short": "owner cash earnings",
-   "base": 3.4458209598253005,
+   "base": 2.081606312243687,
    "rng": [
-    2.6529868092480675,
-    4.372637418702393
+    1.4495334638043407,
+    2.7521322491017166
    ],
-   "fcff": 899.5099925736034,
-   "fcfe": 997.7543742765339,
+   "fcff": 549.7564628236031,
+   "fcfe": 604.3580575572056,
    "ke": 0.091585,
-   "int_at": 7.0926592500000165
+   "int_at": 50.79825531516738
   },
   "e3": {
    "method_short": "cash returns vs cost of capital",
-   "base": 3.5094090478127336,
+   "base": 3.461161670069188,
    "rng": [
-    2.7068720938602406,
-    4.071429498433575
+    2.6697461366326007,
+    4.006923840645693
    ],
    "ic0": 4846.526999999999,
-   "pv_ep": 2393.989944079185,
-   "pv_ep_term": 5761.396323200331,
-   "ev": 13001.913267279515,
+   "pv_ep": 2367.209427267733,
+   "pv_ep_term": 5658.455061712302,
+   "ev": 12872.191488980036,
    "ep": [
-    552.9337584433749,
-    678.2945749367027,
-    629.4414919332663,
-    613.2152783403117,
-    586.974099578269
+    535.7872489910719,
+    677.8649659044894,
+    629.2404539111803,
+    616.5190063403114,
+    584.7355830782682
    ],
    "spread": [
-    0.0607217030864292,
-    0.07756268129087339,
-    0.06696588173687226,
-    0.06031067795821267,
-    0.05375776506539261
+    0.0601101761506006,
+    0.07745387541142976,
+    0.06653522867148177,
+    0.060032943419593324,
+    0.052684372106133484
    ]
   }
  },
- "panel_centre": 3.5094090478127336,
+ "panel_centre": 3.461161670069188,
  "sens_wg": {
   "g_grid": [
    0.015,
@@ -2024,59 +2157,62 @@
   ],
   "table": [
    [
-    4.8600015927271905,
-    5.125639335220155,
-    5.453202808218446,
-    5.868018473014169,
-    6.411403485131497
+    4.563727371978012,
+    4.8268338173142356,
+    5.151250713834374,
+    5.562052885138246,
+    6.100146969325265
    ],
    [
-    4.134192488387557,
-    4.293347755299112,
-    4.481883386446197,
-    4.709241080832226,
-    4.98939348367895
+    3.8448940633716884,
+    4.0022520335521214,
+    4.188636361804018,
+    4.413374983406841,
+    4.690272186155007
    ],
    [
-    3.6115055980302144,
-    3.711215481738839,
-    3.8259389877121137,
-    3.9596496205589986,
-    4.117858723019506
+    3.3282047075972936,
+    3.426565626328664,
+    3.539716388425919,
+    3.671571273184506,
+    3.827559476465596
    ],
    [
-    3.217308493774543,
-    3.281345105144399,
-    3.3533528303548508,
-    3.43512490551771,
-    3.529036064109843
+    2.939350044427541,
+    3.002332932445859,
+    3.0731356826405687,
+    3.1535175045179575,
+    3.245808071052985
    ],
    [
-    2.9095333341255585,
-    2.9510185417885664,
-    2.996762467409751,
-    3.0475982315589443,
-    3.1045914216730357
+    2.6364460546893627,
+    2.677083058851147,
+    2.7218713084893027,
+    2.7716228996455845,
+    2.8273765287235806
    ]
   ]
  },
  "rel": {
-  "ebitda_mid": 2286.585519582841,
-  "ev_rel": 14524.58038893755,
-  "ev_rel_fwd": 17149.391396871306,
-  "pv_interim": 42.62832288157102,
+  "ebitda_mid": 2056.19877478284,
+  "fee_value": 3168.865776754518,
+  "fees_mid": 229.93476480000004,
+  "ev_ebitda_trailing_ex": 11.650876239440239,
+  "ev_rel": 13483.487311417346,
+  "ev_rel_fwd": 16534.157812842976,
+  "pv_interim": -413.5091731013712,
   "ev_ebitda_trailing": 10.55116374831818,
   "pe_trailing": 15.016201046991819,
-  "just_mult": 7.5
+  "just_mult": 6.5
  },
  "norm": {
-  "margin": 0.2345409702768245,
+  "margin": 0.2344995653223234,
   "rev": 7868.80908,
-  "ebitda": 2058.460676546287,
-  "ebit": 1338.4606765462868,
-  "interest": -92.99002,
-  "np": 1381.2208933029972,
-  "eps": 0.2959737916092736,
+  "ebitda": 2058.1348688643516,
+  "ebit": 1338.1348688643516,
+  "interest": -129.636027,
+  "np": 1247.406102402352,
+  "eps": 0.2672993983762299,
   "pe": 13.0,
   "year": "FY26E",
   "margin_year": "FY28E",
@@ -2105,84 +2241,84 @@
    0.10667650000000001
   ],
   "we_grid": [
-   0.06871494729603803,
-   0.07871494729603803,
-   0.08871494729603803,
-   0.09871494729603802,
-   0.10871494729603803
+   0.0721268630250337,
+   0.0821268630250337,
+   0.0921268630250337,
+   0.1021268630250337,
+   0.1121268630250337
   ],
   "grid_wacc_g": [
    [
-    4.8600015927271905,
-    5.125639335220155,
-    5.453202808218446,
-    5.868018473014169,
-    6.411403485131497
+    4.563727371978012,
+    4.8268338173142356,
+    5.151250713834374,
+    5.562052885138246,
+    6.100146969325265
    ],
    [
-    4.134192488387557,
-    4.293347755299112,
-    4.481883386446197,
-    4.709241080832226,
-    4.98939348367895
+    3.8448940633716884,
+    4.0022520335521214,
+    4.188636361804018,
+    4.413374983406841,
+    4.690272186155007
    ],
    [
-    3.6115055980302144,
-    3.711215481738839,
-    3.8259389877121137,
-    3.9596496205589986,
-    4.117858723019506
+    3.3282047075972936,
+    3.426565626328664,
+    3.539716388425919,
+    3.671571273184506,
+    3.827559476465596
    ],
    [
-    3.217308493774543,
-    3.281345105144399,
-    3.3533528303548508,
-    3.43512490551771,
-    3.529036064109843
+    2.939350044427541,
+    3.002332932445859,
+    3.0731356826405687,
+    3.1535175045179575,
+    3.245808071052985
    ],
    [
-    2.9095333341255585,
-    2.9510185417885664,
-    2.996762467409751,
-    3.0475982315589443,
-    3.1045914216730357
+    2.6364460546893627,
+    2.677083058851147,
+    2.7218713084893027,
+    2.7716228996455845,
+    2.8273765287235806
    ]
   ],
   "grid_exp_term": [
    [
-    5.615531082125334,
-    4.611779535138628,
-    3.9339389582610407,
-    3.445582025385977,
-    3.0770957877250953
+    5.304018537245045,
+    4.309353735514492,
+    3.6388372003844496,
+    3.1567359787435243,
+    2.7937933974863878
    ],
    [
-    5.5334236616713985,
-    4.546077717134472,
-    3.8793131657361064,
-    3.398933742908868,
-    3.03646490985513
+    5.226747607739238,
+    4.248294800245155,
+    3.588702352857153,
+    3.1144517652714985,
+    2.757416260096355
    ],
    [
-    5.453202808218446,
-    4.481883386446197,
-    3.8259389877121137,
-    3.3533528303548508,
-    2.996762467409751
+    5.151250713834374,
+    4.188636361804018,
+    3.539716388425919,
+    3.0731356826405687,
+    2.7218713084893027
    ],
    [
-    5.374811450093459,
-    4.419150986997378,
-    3.773778639541364,
-    3.3088070978258037,
-    2.9579604883747623
+    5.077474294187578,
+    4.13033617316109,
+    3.4918446793207267,
+    3.0327585749190824,
+    2.6871335007958215
    ],
    [
-    5.298194679313306,
-    4.3578366886059525,
-    3.7227957670597505,
-    3.26526557327047,
-    2.9200320583037995
+    5.005366813033706,
+    4.0733535839857575,
+    3.445053905711079,
+    2.9932923867835872,
+    2.653178739906747
    ]
   ],
   "beta_grid": [
@@ -2193,11 +2329,11 @@
    1.35
   ],
   "grid_beta": [
-   4.55525352719996,
-   4.2137104346058525,
-   3.8259389877121137,
-   3.5536933118314904,
-   3.25162256389066
+   4.257253763870267,
+   3.9209136184422686,
+   3.539716388425919,
+   3.272618534148231,
+   2.976910757184894
   ],
   "fuel_grid": [
    0.85,
@@ -2207,11 +2343,11 @@
    1.15
   ],
   "grid_fuel": [
-   5.089658942693668,
-   4.457798965202891,
-   3.8259389877121137,
-   3.1940790102213366,
-   2.56221903273056
+   4.772475002449729,
+   4.14253923376319,
+   3.512603465076654,
+   2.882667696390122,
+   2.2527319277035835
   ],
   "paxg_grid": [
    0.9,
@@ -2221,11 +2357,11 @@
    1.1
   ],
   "grid_pax": [
-   3.1488075832079487,
-   3.4873732854600306,
-   3.8259389877121137,
-   4.164504689964191,
-   4.503070392216276
+   2.8373890907602286,
+   3.174996277918442,
+   3.512603465076654,
+   3.850210652234865,
+   4.187817839393076
   ],
   "fare_grid": [
    0.94,
@@ -2235,11 +2371,11 @@
    1.06
   ],
   "grid_fare": [
-   2.339775855100146,
-   3.08285742140613,
-   3.8259389877121137,
-   4.569020554018098,
-   5.312102120324081
+   2.030923191697147,
+   2.7717633283869003,
+   3.512603465076654,
+   4.253443601766409,
+   4.994283738456162
   ],
   "capex_grid": [
    0.8,
@@ -2249,11 +2385,11 @@
    1.3
   ],
   "grid_capex": [
-   4.288271530765242,
-   4.057105259238678,
-   3.8259389877121137,
-   3.479189580422266,
-   3.132440173132419
+   4.047106184932743,
+   3.7798548250046986,
+   3.512603465076654,
+   3.111726425184587,
+   2.7108493852925197
   ],
   "jv_grid": [
    363.386,
@@ -2263,11 +2399,11 @@
    3799.5
   ],
   "grid_jv": [
-   3.8259389877121137,
-   4.087349221154775,
-   4.2591264881137345,
-   4.387959438332954,
-   4.602681022031653
+   3.512603465076654,
+   3.766451552378421,
+   3.9332595999639857,
+   4.05836563565316,
+   4.2668756951351146
   ],
   "nwc_grid": [
    -0.58,
@@ -2277,11 +2413,11 @@
    -0.7
   ],
   "grid_nwc": [
-   3.6573765691449673,
-   3.7416577784285394,
-   3.8259389877121137,
-   3.9102201969956853,
-   3.9945014062792588
+   3.34435094460545,
+   3.4284772048410517,
+   3.512603465076654,
+   3.5967297253122568,
+   3.6808559855478578
   ]
  },
  "step0": {
@@ -2573,25 +2709,28 @@
   "[Working capital, audited] operating WC (inventories + current receivables less payables, deferred income, maintenance provisions and staff benefits): FY23 -3,918 (-65.3% of revenue), FY24 -4,208 (-62.2%), FY25 -5,187 (-66.6%) \u2014 deeply NEGATIVE: tickets are sold before they are flown and maintenance/end-of-service obligations accrue ahead of cash. Growth releases cash.",
   "[Net debt] gross borrowings + lease liabilities: FY23 2,279, FY24 2,101, FY25 2,781; cash + fixed deposits 5,246 / 5,320 / 5,199 -> NET CASH of 2,417 at FY2025 (3,218 FY2024). The bridge quantity is interest-bearing debt less cash and deposits; deferred income and provisions live in working capital, never double-counted.",
   "[Kd integrity] (i) the audited book is SECURED and cheap: leases at an average 4% finance charge (Note 25), the FY2025 aircraft loan mortgage-secured; effective finance cost / average gross debt = 2.73%. (ii) the adopted MARGINAL Kd 5.50% deliberately sits ABOVE the secured effective rate and ABOVE the AED sovereign 4.48% \u2014 a same-currency corporate cannot fund below its sovereign unsecured. (iii) deposits earn 4.41%: the marginal Kd also clears the opportunity yield on the asset side.",
-  "[Cost of equity] AED sovereign 4.48% (MoF T-Bond auction Jul-2026, Jan-2031 tranche) less the UAE's own Aa2 default spread 0.42% = rf* 4.06%; + beta 1.086 (own-stock weekly vs DFMGI, R2 0.40) x ERP 4.87% (Damodaran UAE row, Jan-2026, rating basis; CDS column NA for the UAE \u2014 stated, not substituted) -> Ke 9.35%.",
-  "[WACC explicit] GROSS-debt weights 10.2%/89.8% -> 8.87%. On the NET basis the company is net cash (weight -11.0%), which would push the rate to 9.86%; the gross basis is used because the bridge separately credits the cash pile at face value, and the gross basis is the conservative (lower-discount-rate-on-nothing) choice here: it is the LOWER of the two, matched by adding cash in the bridge rather than pretending the discount rate is higher.",
+  "[Cost of equity] AED sovereign 4.48% (MoF T-Bond auction Jul-2026, Jan-2031 tranche) less the OBSERVED 4bp spread the auction itself priced over US Treasuries = rf* 4.44% \u2014 currency-consistent under the peg (UST 5-yr 4.35% on 07-Aug-2026); the rating-basis netting (4.06%) is published as the alternative. + beta 1.086 (own-stock weekly vs DFMGI, R2 0.40) x ERP 4.87% (Damodaran UAE row, Jan-2026; CDS column NA \u2014 stated, not substituted) -> Ke 9.73%.",
+  "[WACC explicit] GROSS-debt weights 10.2%/89.8% -> 9.21%. On the NET basis the company is net cash (weight -11.0%), which would push the rate to 10.28%; the gross basis is used because the bridge separately credits the cash pile at face value, and the gross basis is the conservative (lower-discount-rate-on-nothing) choice here: it is the LOWER of the two, matched by adding cash in the bridge rather than pretending the discount rate is higher.",
   "[WACC terminal] Ke 9.16% (rf 4.00% + beta x ERP 4.75%); Kd after tax 4.25%; weights 90%/10% -> 8.67%",
-  "[Glide] forward WACC 8.87% -> 8.77% -> 8.72% -> 8.67% -> 8.67%; discount factors 0.9185, 0.8445, 0.7767, 0.7148, 0.6578. The glide fractions are the cost-of-debt path's own cumulative progress.",
+  "[Glide] forward WACC 9.21% -> 8.94% -> 8.80% -> 8.67% -> 8.67%; discount factors 0.9156, 0.8405, 0.7725, 0.7109, 0.6542. The glide fractions are the cost-of-debt path's own cumulative progress.",
   "[Forecast, unit build] passengers 12.85mn -> 13.95mn -> 15.15mn -> 16.35mn -> 17.55mn; revenue 7,869 -> 8,451 -> 9,257 -> 10,095 -> 10,952 (growth +1.0%, +7.4%, +9.5%, +9.0%, +8.5%)",
-  "[Margins are OUTPUTS] EBITDA margin 21.1% -> 24.3% -> 23.5% -> 22.7% -> 21.9% (FY2025 actual 24.3%). The FY2026 compression is the fuel spike + flat traffic; FY2027 recovers on the EIA fuel path.",
+  "[Margins are OUTPUTS] EBITDA margin 21.1% -> 24.3% -> 23.4% -> 22.7% -> 21.9% (FY2025 actual 24.3%). The FY2026 compression is the fuel spike + flat traffic; FY2027 recovers on the EIA fuel path.",
   "[FY2026 cross-check against the print] Q1-2026 revenue 1,800.4 grossed up on Q1-2025's seasonal share of FY2025 implies 7,880; the build produces 7,869 (-0.1%).",
-  "[FCFF waterfall] NOPAT (on EBIT including the recurring fee/other-income line, at the 15% DMTT) 983, 1,255, 1,292, 1,339, 1,377; capex 2,000, 1,900, 1,900, 1,950, 2,000; working-capital release -151, +373, +516, +536, +549 -> FCFF -448, 538, 808, 905, 985.",
-  "[Forecast net finance] finance income 213, 138, 107, 103, 103 on the cash-and-deposit stack at the rolled-down deposit rate; finance costs 120, 116, 113, 111, 111. Attributable profit 1,226, 1,468, 1,515, 1,596, 1,665; EPS 0.263, 0.315, 0.325, 0.342, 0.357; dividend held at 30 fils then ~85-90% payout.",
-  "[Invested capital] FY2025: fleet assets (PP&E + right-of-use + pre-delivery payments) 8,671 + intangibles 1,362 + working capital -5,187 = 4,847; ROIC 25.7%. Terminal ROIC (NOPAT(n+1)/IC(n)) 14.4%.",
-  "[Terminal value] reinvestment g/ROIC = 17.4%; terminal NOPAT 1,411; TV 18,908 at terminal WACC 8.67% minus g 2.5%, discounted at the year-5 factor 0.6578 -> PV 12,437. Terminal value is 86% of operating enterprise value \u2014 HIGH, because the explicit window carries the fleet build-out's capex while its revenue tail sits beyond FY2030; said plainly, not hidden.",
+  "[Leased-fleet charge \u2014 adopted from external critique] the forecast leased aircraft (9 of the 16 consolidated additions) are no longer acquired for free: their gross right-of-use inception value (175, 350, 350, 350, 350) is charged inside FCFF as leased capex \u2014 the 'firm buys all capacity with capital' convention, with the financing mix left to the WACC. The NPV-0-financing alternative (strip leased assets from invested capital, charge nothing) is worth ~+0.09/share and is noted, not adopted.",
+  "[FCFF waterfall] NOPAT (on EBIT including the recurring fee/other-income line, at the 15% DMTT) 982, 1,255, 1,291, 1,341, 1,377; capex 2,000, 1,900, 1,900, 1,950, 2,000; working-capital release -151, +373, +516, +536, +549 -> FCFF -624, 187, 457, 557, 635.",
+  "[Forecast net finance \u2014 rebuilt after critique] gross debt now ROLLS with the financing of the fleet (leases + aircraft loans - amortisation): 2,606 -> 2,586 -> 2,546 -> 2,636 -> 2,706; finance costs at the booked blended rate 84, 86, 90, 93, 99 (no hardcoded factor); finance income 213, 118, 70, 34, 4. BOTH financing legs are tax-effected in the net-debt roll; the JV/associate share sits BELOW the tax line (equity-method income arrives net of the ventures' own tax). Attributable profit 1,286, 1,511, 1,544, 1,600, 1,643; EPS 0.276, 0.324, 0.331, 0.343, 0.352; DPS floored at 30 fils throughout \u2014 the dividend ladder holds in the base case by construction, funded by net cash in the dip year.",
+  "[Invested capital] FY2025: fleet assets (PP&E + right-of-use + pre-delivery payments) 8,671 + intangibles 1,362 + working capital -5,187 = 4,847; ROIC 25.7%. Terminal ROIC (NOPAT(n+1)/IC(n)) 14.3%.",
+  "[Terminal value] reinvestment g/ROIC = 17.5%; terminal NOPAT 1,411; TV 18,876 at terminal WACC 8.67% minus g 2.5%, discounted at the year-5 factor 0.6542 -> PV 12,348. Terminal value is 94% of operating enterprise value \u2014 HIGH, because the explicit window carries the fleet build-out's capex while its revenue tail sits beyond FY2030; said plainly, not hidden.",
   "[JV network \u2014 BOTH WAYS, never averaged] BASE: audited carrying value 363. ALTERNATIVE: capitalised share of FY2025 profit 190 x 15 = 2,850. The gap (+0.53/share) is the single most consequential contested judgement in this study: five airline JVs (Abu Dhabi, Egypt at a raised 49%, Fly Jinnah, Maroc, the pre-operational Saudi DMM) whose combined 100%-basis profits grew ~65% in FY2025 sit on the balance sheet at less than 2.0x their annual profit share.",
-  "[Bridge] operating EV 14,402 + NET CASH 2,417 + non-operating assets (FVOCI investments 458 + investment property 277 + net investment in lease 335) + JV network at carrying value 363 = 18,252; less minorities (0.02%) 3 -> equity 18,249 = AED 3.91/share at 31-Dec-2025; rolled 219/365 at Ke (x1.0551) less the AED 0.30 dividend paid in the window = AED 3.83 vs spot 5.24 (-27%). ON THE ALTERNATIVE JV FRAMING: AED 4.39 (-16%).",
-  "[Fuel framing both ways] BASE (EIA July-2026 STEO path, relief in 2027): AED 3.83. ALTERNATIVE (IATA June-2026 high-fuel assumption held): AED 2.17 \u2014 -1.66/share. Both published; the workbook carries the base and the alternative side by side.",
-  "[DCF scenarios] bear 0.81 / base 3.83 / bull 7.53 (the bull adopts the JV-capitalised framing; the bear the IATA fuel path)",
-  "[Relative lens] 7.5x FY2027E EBITDA 2,287 discounted at the year-2 factor plus interim flows -> AED 3.85/share. Trailing prints for context: EV/EBITDA 10.6x, P/E 15.0x \u2014 the market already pays a premium to the global LCC set (Ryanair 7.8x/12.6x), which is the relative lens's message, not its input.",
-  "[Normalised lens] mid-cycle EBITDA margin 23.5% (FY2028E) on FY2026E revenue 7,869 + fees/other + net finance income + JV share -> normalised EPS 0.296 x 13 = AED 3.76/share.",
+  "[Bridge] operating EV 13,099 + NET CASH 2,417 + non-operating assets (FVOCI investments 458 + investment property 277 + net investment in lease 335) + JV network at carrying value 363 = 16,949; less minorities (0.02%) 1 -> equity 16,948 = AED 3.63/share at 31-Dec-2025; rolled 219/365 at Ke (x1.0573) less the AED 0.30 dividend paid in the window = AED 3.51 vs spot 5.24 (-33%) \u2014 the operating equity rolls at Ke, the cash/near-cash legs at the deposit yield, and minorities are deducted at their audited carrying value. ON THE ALTERNATIVE JV FRAMING: AED 4.06 (-23%).",
+  "[Fuel framing both ways] BASE (EIA July-2026 STEO path, relief in 2027): AED 3.51. ALTERNATIVE (IATA June-2026 high-fuel assumption held): AED 1.86 \u2014 -1.66/share. Both published; the workbook carries the base and the alternative side by side.",
+  "[DCF scenarios] bear 0.47 / base 3.51 / bull 7.23 (the bull adopts the JV-capitalised framing; the bear the IATA fuel path)",
+  "[Relative lens \u2014 basis-matched after critique] 6.5x FY2027E EBITDA EXCLUDING fees/other income (2,056) \u2014 the same basis peer multiples are computed on \u2014 plus the fee stream valued separately as an after-tax annuity (3,169), discounted and bridged -> AED 3.60/share. Trailing prints for context, BOTH bases: EV/EBITDA 11.7x ex-fees / 10.6x incl-fees; P/E 15.0x. Peer set rebuilt from primary filings: Ryanair 6.50x, Wizz 4.75x, easyJet 3.5x, IndiGo 11.1x, Pegasus 6.6x -> median 6.5x.",
+  "[Normalised lens \u2014 de-JV'd] mid-cycle EBITDA margin 23.4% (FY2028E) on FY2026E revenue 7,869 + fees/other + net finance income, EXCLUDING the JV share -> normalised EPS 0.267 x 13 plus the JV network at BOOK (AED 0.08/share) = AED 3.45/share. The base-framing central now genuinely carries the JV at carrying value in every lens.",
   "[Book lens] justified P/B 2.33x = (18% - 2.5%) / (9.16% - 2.5%) on BVPS 1.80 -> AED 4.13/share. Trailing ROE 19.9%.",
-  "[Synthesis] weighted central AED 3.86; full span 0.81 - 7.53; spot 5.24 (-26% to the central). On the JV-capitalised framing the central becomes 4.12 (-21%) \u2014 both stated, never averaged.",
-  "[Expert panel] Expert 1 4.15 [3.13-5.18]; Expert 2 3.45 [2.65-4.37]; Expert 3 3.51 [2.71-4.07]; panel median 3.51 (-33% vs spot)"
+  "[Range \u2014 weighted after critique] the published bear/bull are now weighted the same way as the base: 1.81 - 5.66; the widest single-lens span (0.47 - 7.23, the DCF scenarios) is shown separately and labelled as such.",
+  "[Synthesis] weighted central AED 3.61; full span 0.47 - 7.23; spot 5.24 (-31% to the central). On the JV-capitalised framing the central becomes 3.86 (-26%) \u2014 both stated, never averaged.",
+  "[Expert panel] Expert 1 4.13 [3.11-5.15]; Expert 2 2.08 [1.45-2.75]; Expert 3 3.46 [2.67-4.01]; panel median 3.46 (-34% vs spot)",
+  "[Catalyst quantity, defined] one quarter's deferral of the FY2027 fuel relief = (fuel/pax FY26 - FY27) x FY27 passengers x (1-t) / 4 / shares = AED 0.019 per share per quarter."
  ]
 }
