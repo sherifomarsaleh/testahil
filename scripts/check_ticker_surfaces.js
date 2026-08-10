@@ -39,11 +39,11 @@ const SURFACES = [
   { file: 'trade.html',     what: 'Trade name search',     search: '#t-sym' },
   { file: 'portfolio.html', what: 'Portfolio name search', search: '#p-sel' },
   { file: 'ledger.html',    what: 'forecast ledger' },
-  // The Ticker Picker used to be EGX-only, because engine/fv_overlay.py could only scope
-  // rows for EG and its output file could carry one market's calibration. It now runs
-  // --all-markets: every market with a fitted profile, each row priced with its OWN
-  // profile and cash hurdle, sectioned per market on the page. So it carries every
-  // covered name and is checked for every covered name -- no markets restriction.
+  // [CHANGED 10-Aug-2026] The picker now carries EVERY covered name, each row computed
+  // under its own market's committed fit and cash hurdle (fv_overlay.py resolves markets
+  // per row from assets/markets.js). The old EGX-only carve-out let the first non-EG
+  // publish ship an overlay that silently recomputed every EGX row under the AE config
+  // -- this gate skipped the one page that would have shown it.
   { file: 'picker.html',    what: 'Ticker Picker' },
 ];
 
@@ -70,10 +70,10 @@ const SURFACES = [
   const p = await b.newPage();
   const bad = [];
   // Word boundary, not substring: "SCEM" must not be satisfied by some longer token, and
-  // a three-letter ticker must not match inside a sentence. Case-INSENSITIVE, because
-  // three names are spelled one way in TICKERS and another everywhere a reader sees
-  // them (SAMSUNG/Samsung, KAKAO/Kakao, XPTUSD/Platinum): a case-sensitive test failed
-  // those on pages that were rendering them perfectly well, which is a gate crying wolf.
+  // a three-letter ticker must not match inside a sentence.
+  // Case-INSENSITIVE: three names are spelled one way in TICKERS and another
+  // everywhere a reader sees them (SAMSUNG/Samsung, KAKAO/Kakao), so a
+  // case-sensitive test failed them on pages rendering them perfectly well.
   const re = new RegExp('\\b' + TK + '\\b', 'i');
 
   for (const s of targets) {
@@ -104,7 +104,7 @@ const SURFACES = [
     console.error(`\nFAIL: ${TK} is missing from ${bad.length} surface(s) that should carry it:`);
     for (const m of bad) console.error('   ! ' + m);
     console.error('\nA generated surface is stale until it is regenerated. The usual causes:');
-    console.error('  picker.html   -> python3 engine/fv_overlay.py --all-markets --js assets/fv_overlay.js');
+    console.error('  picker.html   -> python3 engine/fv_overlay.py --js assets/fv_overlay.js');
     console.error('  stocks/market -> python3 scripts/build_market_registry.py --write');
     console.error('  ledger.html   -> the LEDGER rows and MARKET_OF in the registry');
     process.exit(1);

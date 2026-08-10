@@ -39,9 +39,11 @@ proves the reconstruction reproduces the published quantiles.
 
 Usage
 -----
-    python3 engine/fv_overlay.py --market EG
-    python3 engine/fv_overlay.py --market EG --ticker ELEC --verbose
-    python3 engine/fv_overlay.py --market EG --json out.json --md out.md
+    python3 engine/fv_overlay.py                       # every covered name, per-row market
+    python3 engine/fv_overlay.py --ticker ELEC --verbose
+    python3 engine/fv_overlay.py --json out.json --md out.md
+(--market is accepted for CLI compatibility but rows resolve their own market
+from assets/markets.js — see run_market.)
 """
 from __future__ import annotations
 
@@ -386,104 +388,65 @@ def overlay_for_ticker(tkr, t, profile, market="EG", n_paths=N_PATHS, seed=SEED)
     return row
 
 
-_MKT_OF: dict | None = None
+def load_market_of():
+    """TICKERS-key -> market, from the generated registry. File placement is the
+    single source of a name's market; assets/markets.js is the committed bridge."""
+    src = open(os.path.join(REPO, "assets", "markets.js"), encoding="utf-8").read()
+    m = re.search(r"const MARKET_OF = (\{.*?\});", src, re.S)
+    if not m:
+        raise RuntimeError("MARKET_OF not found in assets/markets.js — "
+                           "run scripts/build_market_registry.py --write first")
+    # The registry keys two names by their LEDGER instrument casing ("Samsung",
+    # "Kakao") while TICKERS keys are uppercase — fold case so neither is
+    # spuriously BLOCKED. Uppercase collisions would be a registry bug; assert.
+    raw = json.loads(m.group(1))
+    up = {k.upper(): v for k, v in raw.items()}
+    assert len(up) == len(raw), "MARKET_OF has case-colliding keys"
+    return up
 
 
-def market_of_ticker(tkr: str) -> str | None:
-    """The ticker's market, decided by FILE PLACEMENT: engine/raw_ohlc/{MKT}/{TKR}.csv.
+def run_market(market="ALL", only=None, n_paths=N_PATHS, seed=SEED):
+    """Every covered name, EACH computed under ITS OWN market's committed profile
+    and cash hurdle.
 
-    Read from assets/markets.js — the registry scripts/build_market_registry.py already
-    bakes from that same placement — rather than re-deriving it here. Re-deriving it
-    misses the three names whose site key differs from their filename (ADIBUAE is
-    AE/ADIB, distinct from EG/ADIB; ALRAJHI is SA/RAJHI; 2POINTZERO is AE/TWOPOINTZERO
-    because a JS identifier cannot start with a digit) and would silently drop them off
-    the picker. One registry, one answer, on every surface.
-
-    Never inferred from the exchange prefix in `code`: that does not survive a market
-    with two exchanges — the UAE lists on both ADX and DFM.
-    """
-    global _MKT_OF
-    if _MKT_OF is None:
-        js = os.path.join(REPO, "assets", "markets.js")
-        script = (
-            "const fs=require('fs'),vm=require('vm');const s={};vm.createContext(s);"
-            f"vm.runInContext(fs.readFileSync({json.dumps(js)},'utf8')"
-            "+';globalThis.__M=MARKET_OF;',s);"
-            "process.stdout.write(JSON.stringify(s.__M));"
-        )
-        out = subprocess.run(["node", "-e", script], capture_output=True, text=True,
-                             check=True)
-        _MKT_OF = json.loads(out.stdout)
-        # Case-insensitive index: the registry is keyed on the LEDGER spelling, and
-        # TICKERS spells three of them differently (SAMSUNG/Samsung, KAKAO/Kakao).
-        _MKT_OF.update({k.upper(): v for k, v in list(_MKT_OF.items())})
-    return _MKT_OF.get(tkr) or _MKT_OF.get(str(tkr).upper())
-
-
-def run_market(market="EG", only=None, n_paths=N_PATHS, seed=SEED):
-    """Overlay every covered name IN THIS MARKET, priced with this market's own profile.
-
-    Scoping used to be an EG-only exchange-prefix hack (`prefix = {"EG": "EGX"}`), so any
-    other market ran with NO filter at all and swept in every covered name on the site —
-    each one then priced with the requested market's nu, width_cal and cash hurdle. That
-    is exactly what shipped: an AE run emitted 79 rows across eight exchanges, and every
-    Egyptian name on the live Ticker Picker was drawn with UAE calibration and a 3.65%
-    cash hurdle instead of Egypt's 19.5%. Membership is FILE PLACEMENT, for every market.
-    """
-    profile = PROFILES[market]
+    [CHANGED 10-Aug-2026] This used to take one market, filter to it (a prefix map
+    that only knew EG), and stamp that single profile on every row. The first
+    non-EG publish (MODON, ADX) exposed both defects at once: the EG-only prefix
+    map filtered NOTHING for AE, so all 79 names were emitted — every EGX row
+    silently recomputed under the AE fit and judged against a 3.65% cash hurdle
+    instead of 19.5%. Markets are now resolved PER ROW from the registry and the
+    profile/hurdle follow the row, never the CLI argument. The `market` argument
+    is retained for CLI compatibility but no longer filters rows or selects a
+    profile. A name missing from the registry is emitted as a BLOCKED row, loudly,
+    never silently dropped."""
+    market_of = load_market_of()
     tickers = load_tickers()
-    rows = []
+    rows, configs = [], {}
     for tkr, t in tickers.items():
-        if market_of_ticker(tkr) != market:
-            continue
         if only and tkr != only:
             continue
-        rows.append(overlay_for_ticker(tkr, t, profile, market=market,
-                                       n_paths=n_paths, seed=seed))
+        mkt = market_of.get(tkr)
+        if mkt is None or mkt not in PROFILES:
+            rows.append({"ticker": tkr, "overlay_status":
+                         f"BLOCKED — no market registry entry or profile ({mkt})"})
+            continue
+        profile = PROFILES[mkt]
+        configs.setdefault(mkt, {
+            "nu": profile.nu, "width_cal": profile.width_cal,
+            "rf_live": profile.rf_live,
+            "width_overlay_active": profile.width_overlay_active})
+        row = overlay_for_ticker(tkr, t, profile, market=mkt,
+                                 n_paths=n_paths, seed=seed)
+        row["market"] = mkt
+        rows.append(row)
     # 1e9 for a blocked row (no "3M") and for a base G that is None (a zero fair value):
     # both sort to the end rather than raising on abs(None).
     rows.sort(key=lambda r: abs(r.get("3M", {}).get("G", {}).get("base") or 1e9))
     return {
         "protocol": "Fundamental_MC_Integration_Protocol.md (PROPOSED 6-Aug-2026)",
-        "phase": "A", "market": market,
-        "generated_from": "assets/data.js",
-        "engine_config": {"nu": profile.nu, "width_cal": profile.width_cal,
-                          "rf_live": profile.rf_live,
-                          "width_overlay_active": profile.width_overlay_active},
-        "n": len(rows), "rows": rows,
-    }
-
-
-def run_all(markets=None, n_paths=N_PATHS, seed=SEED):
-    """Every market that has BOTH a fitted profile and a price library, merged.
-
-    The site's Ticker Picker is one page covering every published name, so it needs one
-    file covering every market — but each row must carry its OWN market's calibration and
-    cash hurdle, which a single-market file cannot express for anyone but that market.
-    Rows are stamped with `market`, and `engine_config_by_market` carries each profile so
-    the page can label a section's hurdle with the rate that actually applies to it.
-    """
-    if markets is None:
-        root = os.path.join(REPO, "engine", "raw_ohlc")
-        have = {d for d in os.listdir(root)
-                if os.path.isdir(os.path.join(root, d))} if os.path.isdir(root) else set()
-        markets = [m for m in PROFILES if m in have and PROFILES[m].nu is not None]
-    rows, cfg = [], {}
-    for m in sorted(markets):
-        res = run_market(m, n_paths=n_paths, seed=seed)
-        for r in res["rows"]:
-            r["market"] = m
-        rows.extend(res["rows"])
-        cfg[m] = res["engine_config"]
-    rows.sort(key=lambda r: abs(r.get("3M", {}).get("G", {}).get("base") or 1e9))
-    return {
-        "protocol": "Fundamental_MC_Integration_Protocol.md (PROPOSED 6-Aug-2026)",
         "phase": "A", "market": "ALL",
-        "markets": sorted(markets),
         "generated_from": "assets/data.js",
-        # Kept for any reader of the old shape; per-market config is the real one.
-        "engine_config": cfg.get("EG", next(iter(cfg.values()), {})),
-        "engine_config_by_market": cfg,
+        "engine_configs": {m: configs[m] for m in sorted(configs)},
         "n": len(rows), "rows": rows,
     }
 
@@ -492,13 +455,12 @@ def run_all(markets=None, n_paths=N_PATHS, seed=SEED):
 def to_markdown(res: dict) -> str:
     rows = [r for r in res["rows"] if "1M" in r]
     blocked = [r for r in res["rows"] if "1M" not in r]
-    rf = res["engine_config"]["rf_live"]
+    eng = "; ".join(f"{m}: nu={c['nu']}, width={c['width_cal']}, "
+                    f"rf={c['rf_live']:.2%}"
+                    for m, c in res["engine_configs"].items())
     L = [f"# Fair-value / MC overlay — {res['market']} (Phase A)", "",
          f"Protocol: `{res['protocol']}`  ",
-         f"Engine: nu={res['engine_config']['nu']}, "
-         f"width_cal={res['engine_config']['width_cal']}, "
-         f"overlay_active={res['engine_config']['width_overlay_active']}, "
-         f"cash hurdle rf={rf:.2%}  ",
+         f"Engine (per market): {eng}  ",
          f"Names: {len(rows)} computed, {len(blocked)} blocked", "",
          "`G` is the fair-value gap in the name's own horizon volatility "
          "(drift-free). Probabilities are suppressed in NOT-EXPRESSIBLE per "
@@ -552,9 +514,6 @@ def to_markdown(res: dict) -> str:
 def main():
     ap = argparse.ArgumentParser(description="Phase A fair-value / MC overlay")
     ap.add_argument("--market", default="EG")
-    ap.add_argument("--all-markets", action="store_true",
-                    help="every fitted market in one file, each row priced with its own "
-                         "market's profile — what the site's Ticker Picker reads")
     ap.add_argument("--ticker", default=None)
     ap.add_argument("--json", dest="json_out", default=None)
     ap.add_argument("--md", dest="md_out", default=None)
@@ -565,8 +524,7 @@ def main():
     ap.add_argument("--verbose", action="store_true")
     a = ap.parse_args()
 
-    res = (run_all(n_paths=a.paths) if a.all_markets
-           else run_market(a.market, only=a.ticker, n_paths=a.paths))
+    res = run_market(a.market, only=a.ticker, n_paths=a.paths)
     md = to_markdown(res)
 
     fails = [r["ticker"] for r in res["rows"] if "1M" in r
@@ -586,7 +544,7 @@ def main():
     if a.js_out:
         with open(a.js_out, "w") as fh:
             fh.write("/* GENERATED by engine/fv_overlay.py — do not hand-edit.\n"
-                     "   Regenerate: python3 engine/fv_overlay.py --all-markets "
+                     "   Regenerate: python3 engine/fv_overlay.py "
                      "--js assets/fv_overlay.js */\n"
                      "const FV_OVERLAY = " + json.dumps(res, indent=1) + ";\n")
         print(f"wrote {a.js_out}")

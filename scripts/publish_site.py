@@ -136,16 +136,13 @@ def surfaces(ticker: str) -> None:
     # consecutive EG publishes shipped without ever reaching the Ticker Picker — the
     # page simply read a file nobody had regenerated.
     #
-    # It is rebuilt for EVERY market, not for the ticker's own. A per-market rebuild
-    # wrote a file scoped to one market and DELETED every other market's rows from the
-    # page — and worse, fv_overlay's scoping was EG-only, so an AE rebuild kept all 79
-    # names and priced every Egyptian one with UAE calibration and a 3.65% cash hurdle
-    # instead of Egypt's 19.5%. That shipped. The overlay now carries each row's own
-    # market, profile and hurdle, and the page sections by market, so the whole file has
-    # to be rebuilt together or it is internally inconsistent.
+    # It rebuilds EVERY market in one file — fv_overlay resolves each row's market from
+    # the registry and prices it with that market's own profile and cash hurdle, so no
+    # --market argument is needed or wanted. The page sections by market on top of that,
+    # which only holds together if the whole file is rebuilt at once.
     mkt = market_of(ticker)
     if mkt:
-        out = run(["python3", "engine/fv_overlay.py", "--all-markets",
+        out = run(["python3", "engine/fv_overlay.py",
                    "--js", "assets/fv_overlay.js"])
         blocked = [l for l in out.splitlines() if "BLOCKED" in l]
         if blocked:
