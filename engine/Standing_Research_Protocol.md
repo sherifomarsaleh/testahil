@@ -178,7 +178,29 @@ THE RULE, from now on:
 
 (b) **A constituent composite is not a substitute and is not a tier.** It may be reported as a labelled cross-check; it may never be the regressor.
 
-(c) **Match the exchange, not the country.** A DFM-listed name is regressed against a DFM index, not an ADX one, even though both are "AE" in the engine's market coding. If the correct index is not held, that is case (d).
+(c) **Match the exchange, not the country — and key the resolver on the exchange.** A DFM-listed name is regressed against a DFM index, not an ADX one, even though both are "AE" in the engine's market coding. If the correct index is not held, that is case (d).
+
+[RE-KEYED 10-Aug-2026, the same day, per instruction] The first implementation of this rule mapped **one index per market code** and therefore contradicted the clause it existed to enforce. Market `AE` holds **14 ADX names and 6 DFM names** — DEWA, DIB, EMAAR, EMAARDEV, ENBD, SALIK — every one of which resolved to `FADGI`, an ADX index. The counter-example was written into the rule and the code did the forbidden thing anyway, in the same commit.
+
+`wacc_builder.EXCHANGE_INDEX` is now keyed `(market, exchange)`, and `market_index_path(market, exchange)` **refuses to resolve a market that spans more than one exchange** unless told which. Unknown market, ambiguous market, unregistered exchange and missing file all raise.
+
+| market / exchange | index | status |
+|---|---|---|
+| AE / ADX | FADGI (FTSE ADX General) | registered |
+| AE / DFM | — | **not supplied; 6 covered names blocked** |
+| EG / EGX | EGX30 | registered, blue-chip subset |
+| IN / NSE | NIFTY50 | registered, subset |
+| KR / KRX | KOSPI100 | registered, subset |
+| QA / QSE | QATAR10 | registered, subset |
+| SA / TADAWUL | TASI | registered, **broad all-share** |
+| US / NASDAQ | NASDAQCOMP | registered, tech-weighted |
+| BR, GB | — | not supplied |
+
+**Where the exchange comes from.** `assets/data.js` records it per ticker as the `code` prefix (`ADX:`, `DFM:`, `EGX:`, `TADAWUL:`, `QSE:`, `KRX:`, `NSE:`, `NASDAQ:`). Read it. Never infer the exchange from the `raw_ohlc/{MARKET}/` folder — that groups by market code and is exactly what mixed ADX with DFM.
+
+**Dual-listed names.** Orascom Construction trades on both ADX and EGX. The same issuer therefore has two legitimate regressors, and only the *series* tells you which: an EGP-denominated series filed under `EG` regresses on the EGX index; a dirham series of the same company would regress on the ADX index. Verify the series' currency and price magnitude against the exchange it is filed under before regressing, and flag dual listings explicitly in the Sweep Register. Nothing in the file name carries this.
+
+**Broad versus subset, stated openly rather than quietly ignored.** Clause (a) says prefer the broad all-share. Only TASI actually is one. EGX30 covers 30 names against a 37-name covered panel that includes small caps (KABO, DSCW, LCSW); NIFTY50, KOSPI100 and QATAR10 are subsets by construction; NASDAQCOMP is tech-weighted rather than a market proxy. Each needs either a broad replacement series or a documented reason for the subset. Until then the subset is a known, recorded compromise — not a silent one.
 
 (d) **If the index is not in `raw_indices/`, STOP AND ASK for it** — the same stop-and-inform discipline SIGCM applies to missing primary financials. Do not build a composite and proceed. The index is one file; the request costs a message.
 

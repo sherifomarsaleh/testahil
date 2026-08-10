@@ -100,41 +100,79 @@ class RegressionBetaAttempt:
         return w
 
 
-MARKET_INDEX = {
-    "AE": "FADGI",        # FTSE ADX General — ADX-listed names
-    "EG": "EGX30",
-    "IN": "NIFTY50",
-    "KR": "KOSPI100",
-    "QA": "QATAR10",
-    "SA": "TASI",         # Tadawul All Share
-    "US": "NASDAQCOMP",
+# Keyed by EXCHANGE, not by market code. A market code can span two exchanges — "AE"
+# holds ADX and DFM names — and the beta rule says match the EXCHANGE, not the country.
+# (market, exchange) -> index file stem under raw_indices/{market}/
+EXCHANGE_INDEX = {
+    ("AE", "ADX"): "FADGI",       # FTSE ADX General
+    ("AE", "DFM"): None,          # DFM General — NOT SUPPLIED, see market_index_path
+    ("EG", "EGX"): "EGX30",       # blue-chip 30; a broad EGX all-share is the open item
+    ("IN", "NSE"): "NIFTY50",     # 50-name subset
+    ("KR", "KRX"): "KOSPI100",    # 100-name subset
+    ("QA", "QSE"): "QATAR10",     # 10-name subset
+    ("SA", "TADAWUL"): "TASI",    # broad all-share
+    ("US", "NASDAQ"): "NASDAQCOMP",
 }
 
+# Only markets that map to exactly ONE exchange may be resolved without naming it.
+_MARKET_SOLE_EXCHANGE = {}
+for _m, _x in EXCHANGE_INDEX:
+    _MARKET_SOLE_EXCHANGE.setdefault(_m, []).append(_x)
+_MARKET_SOLE_EXCHANGE = {m: x[0] for m, x in _MARKET_SOLE_EXCHANGE.items() if len(x) == 1}
 
-def market_index_path(market: str, root: Optional[str] = None) -> str:
-    """Path to the PUBLISHED index a beta for `market` must be regressed against.
 
-    [ADDED 10-Aug-2026] The beta regressor is the published index of the stock's own
-    exchange -- never a composite of the names this engine happens to cover. That
-    substitution was in force in every study in the repo and, measured on FERTIGLB,
-    understated beta by ~40% (0.492 vs 0.931) and overstated fair value by 21.6%.
+def market_index_path(market: str, exchange: Optional[str] = None,
+                      root: Optional[str] = None) -> str:
+    """Path to the PUBLISHED index a beta for this stock must be regressed against.
 
-    A HARD GATE, not a warning: if the file is absent this RAISES, so a study must stop
-    and ask for the index rather than quietly fall back to a basket. Same discipline
-    SIGCM applies to inaccessible primary financials.
+    [ADDED 10-Aug-2026, RE-KEYED ON EXCHANGE the same day] The regressor is the published
+    index of the exchange the stock is LISTED on -- never a composite of the names this
+    engine happens to cover. On FERTIGLB the composite understated beta by ~40% (0.492 vs
+    0.931) and overstated fair value by 21.6%.
+
+    The first cut keyed this by MARKET CODE, which quietly contradicted the rule it was
+    written to enforce: market "AE" holds 14 ADX names AND 6 DFM names (DEWA, DIB, EMAAR,
+    EMAARDEV, ENBD, SALIK), so every DFM name resolved to an ADX index. Resolution is now
+    per (market, exchange), and a market that spans two exchanges REFUSES to resolve
+    without being told which one.
+
+    A HARD GATE, not a warning: unknown market, ambiguous market, unregistered exchange or
+    missing file all RAISE, so a study stops and asks rather than falling back to a basket.
     """
     import os
     root = root or os.path.join(os.path.dirname(os.path.abspath(__file__)), "raw_indices")
-    if market not in MARKET_INDEX:
+    if exchange is None:
+        if market not in _MARKET_SOLE_EXCHANGE:
+            spans = sorted(x for (m, x) in EXCHANGE_INDEX if m == market)
+            if spans:
+                raise ValueError(
+                    f"market {market!r} spans more than one exchange ({', '.join(spans)}); "
+                    f"name the exchange -- a {spans[0]} index is not the regressor for a "
+                    f"{spans[-1]}-listed share. Match the exchange, not the country."
+                )
+            raise KeyError(
+                f"no published index registered for market {market!r}. Supply one at "
+                f"raw_indices/{market}/<INDEX>.csv and register it in EXCHANGE_INDEX. "
+                f"A constituent composite is NOT a substitute -- stop and ask for it."
+            )
+        exchange = _MARKET_SOLE_EXCHANGE[market]
+    key = (market, exchange)
+    if key not in EXCHANGE_INDEX:
         raise KeyError(
-            f"no published index registered for market {market!r}. Supply one at "
-            f"raw_indices/{market}/<INDEX>.csv and register it in MARKET_INDEX. "
-            f"A constituent composite is NOT a substitute -- stop and ask for the index."
+            f"no index registered for exchange {exchange!r} in market {market!r}. "
+            f"Stop and ask for it; do not substitute a composite."
         )
-    p = os.path.join(root, market, f"{MARKET_INDEX[market]}.csv")
+    stem = EXCHANGE_INDEX[key]
+    if stem is None:
+        raise FileNotFoundError(
+            f"{exchange} ({market}) has no index series in this repo. The {exchange}-listed "
+            f"names cannot be given a conforming beta until one is supplied at "
+            f"raw_indices/{market}/<INDEX>.csv. Stop and ask for it."
+        )
+    p = os.path.join(root, market, f"{stem}.csv")
     if not os.path.exists(p):
         raise FileNotFoundError(
-            f"{market} index {MARKET_INDEX[market]} is registered but missing at {p}. "
+            f"{market}/{exchange} index {stem} is registered but missing at {p}. "
             f"Do not substitute a composite of covered names -- stop and ask for the file."
         )
     return p
