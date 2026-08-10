@@ -105,7 +105,7 @@ class RegressionBetaAttempt:
 # (market, exchange) -> index file stem under raw_indices/{market}/
 EXCHANGE_INDEX = {
     ("AE", "ADX"): "FADGI",       # FTSE ADX General
-    ("AE", "DFM"): None,          # DFM General — NOT SUPPLIED, see market_index_path
+    ("AE", "DFM"): "FADGI",       # INTERIM by instruction 10-Aug-2026 — see INTERIM_INDEX
     ("EG", "EGX"): "EGX30",       # blue-chip 30; a broad EGX all-share is the open item
     ("IN", "NSE"): "NIFTY50",     # 50-name subset
     ("KR", "KRX"): "KOSPI100",    # 100-name subset
@@ -113,6 +113,28 @@ EXCHANGE_INDEX = {
     ("SA", "TADAWUL"): "TASI",    # broad all-share
     ("US", "NASDAQ"): "NASDAQCOMP",
 }
+
+# INTERIM SUBSTITUTIONS. An exchange whose own index is not held, standing on another
+# exchange's index BY EXPLICIT INSTRUCTION until the real series is supplied. Any beta
+# built on one of these MUST quote the note — it is not a conforming clause-(a) regressor.
+INTERIM_INDEX = {
+    ("AE", "DFM"): (
+        "INTERIM: DFM-listed name regressed against FTSE ADX General, by instruction "
+        "10-Aug-2026, because no DFM General series is held. Empirically the better-"
+        "supported half of the substitution: over five years of weekly returns FADGI "
+        "explains the six DFM names BETTER than it explains the ADX names it actually "
+        "covers (median R2 0.240 vs 0.127; median beta 1.067 vs 1.037), and all six "
+        "clear the R2>=5% usability gate. Replace with a DFM index when one is supplied."
+    ),
+}
+
+
+def index_interim_note(market: str, exchange: Optional[str] = None) -> Optional[str]:
+    """The disclosure a study must carry if its regressor is an interim substitute."""
+    if exchange is None:
+        exchange = _MARKET_SOLE_EXCHANGE.get(market)
+    return INTERIM_INDEX.get((market, exchange))
+
 
 # Only markets that map to exactly ONE exchange may be resolved without naming it.
 _MARKET_SOLE_EXCHANGE = {}

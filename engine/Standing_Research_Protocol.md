@@ -187,7 +187,7 @@ THE RULE, from now on:
 | market / exchange | index | status |
 |---|---|---|
 | AE / ADX | FADGI (FTSE ADX General) | registered |
-| AE / DFM | — | **not supplied; 6 covered names blocked** |
+| AE / DFM | FADGI | **INTERIM by instruction 10-Aug-2026** — see below |
 | EG / EGX | EGX30 | registered, blue-chip subset |
 | IN / NSE | NIFTY50 | registered, subset |
 | KR / KRX | KOSPI100 | registered, subset |
@@ -195,6 +195,17 @@ THE RULE, from now on:
 | SA / TADAWUL | TASI | registered, **broad all-share** |
 | US / NASDAQ | NASDAQCOMP | registered, tech-weighted |
 | BR, GB | — | not supplied |
+
+**The DFM interim [instruction, 10-Aug-2026].** No DFM General series is held, so the six DFM-listed names — DEWA, DIB, EMAAR, EMAARDEV, ENBD, SALIK — stand on FTSE ADX General until one is supplied. This is a deliberate, labelled exception to clause (c), not a quiet fallback: `wacc_builder.INTERIM_INDEX` carries the disclosure and `index_interim_note()` returns it, and **any beta built on it must quote that note**. It is not a conforming clause-(a) regressor.
+
+It is also the better-evidenced half of the substitution, which is worth stating because the intuition runs the other way. Over five years of weekly returns, FADGI explains the DFM names **better** than it explains the ADX names it actually covers:
+
+| | median R² vs FADGI | median β | range |
+|---|---|---|---|
+| ADX names (15) | 0.127 | 1.037 | AGTHIA 0.037 → FAB 0.606 |
+| DFM names (6) | **0.240** | 1.067 | DEWA 0.101 → ENBD 0.304 |
+
+All six DFM names clear the R²≥5% usability gate; several ADX names barely do (AGTHIA 0.037 fails it outright, IHC 0.088, FERTIGLB 0.091). The large Dubai names co-move with the UAE market as a whole, while Abu Dhabi carries more low-float and ADNOC-family idiosyncrasy. The substitution is therefore defensible on evidence for the interim — but it remains a substitution, and a real DFM index replaces it.
 
 **Where the exchange comes from.** `assets/data.js` records it per ticker as the `code` prefix (`ADX:`, `DFM:`, `EGX:`, `TADAWUL:`, `QSE:`, `KRX:`, `NSE:`, `NASDAQ:`). Read it. Never infer the exchange from the `raw_ohlc/{MARKET}/` folder — that groups by market code and is exactly what mixed ADX with DFM.
 
