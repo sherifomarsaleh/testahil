@@ -233,6 +233,16 @@ All six DFM names clear the R²≥5% usability gate; several ADX names barely do
 
 (f) Every beta previously built on a composite is **non-conforming and must be re-derived before that study is re-issued or rolled forward**. Affected: AMOC, ARCC, EGCH, ELEC, PHAR, SCEM, SWDY (all EGX, all against the EG composite; EGX30 has been in the repo since 09-Aug-2026) and FERTIGLB (corrected 10-Aug-2026). The WACC/Ke, fair-value range and any sensitivity anchored on beta all move with it.
 
+(h) **Never hand-roll a study-local beta script; the rule is enforced in code, not in prose.**
+
+Writing (a)–(f) down did not make them obeyed. `market_index_path()` raised for an unregistered index, but nothing forced a study to CALL it — eight study-local `beta_reg.py` scripts went on building composites and passing every gate, including the QC gate. Prose cannot execute. Three mechanisms now close that:
+
+- **`engine/beta_regression.py` is the only sanctioned way to produce a regression beta.** `own_stock_beta(ticker, market, exchange)` resolves the regressor itself through `wacc_builder`, runs Step 0.0 on both series, matches the weekly grid to the exchange's real trading week (EG/SA/QA Sun–Thu → `W-THU`; AE post-2022 and the rest → `W-FRI` — a mismatched grid silently drops observations), and returns provenance with the number. A study cannot reach a basket without deleting the call, which a reviewer can see in the diff.
+- **`research_protocol.assert_beta_provenance()` inspects the record, not a boolean.** `SIGCMChecklist.beta_own_history_vs_egx30` is a flag a study sets itself, and every study set it `True` while regressing on a composite. A self-attestation cannot catch that. The gate fails a regressor outside `raw_indices/`, a beta missing the usability gate without a documented tier-2/3 fallback, and an interim substitution whose disclosure note is absent.
+- **The exchange is read from `assets/data.js`**, as the ticker's `code` prefix — never inferred from the `raw_ohlc/{MARKET}/` folder, which groups by market code and is precisely what mixed ADX with DFM.
+
+(i) **Re-deriving a study's beta has its own canonical prompt** — `engine/Beta_Reissue_Prompt.md`, with the FERTIGLB pass as the worked precedent. It carries a step most rebuilds forget: **hunt the stale prose.** The number propagates through the build chain automatically; the sentences describing it do not. FERTIGLB's own source line still read *"equal-weight ADX/DFM composite built from the 17-name UAE price library"* while the model already carried the index beta — a false provenance statement that would have shipped in both the study and the bibliography. Provenance strings must be BUILT FROM THE RECORD, never typed.
+
 (g) Markets whose index is still absent as of 10-Aug-2026: **BR, GB.** SA/TASI was supplied 10-Aug-2026, so every Tadawul beta (STC and any future Saudi name) must be re-derived against it. No conforming beta can be produced for a name in those markets until the file is supplied.
 
 [NEW 13-Jul r2] KE / KD / WACC — standing procedure
