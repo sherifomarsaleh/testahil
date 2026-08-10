@@ -58,10 +58,25 @@ Cross-check and relative-multiples use only — competitor data is never a sourc
 subject company's own historicals, no matter how well-disclosed the peer is.
 
 **6. Beta.**
-From the stock's own price history, regressed against its own local index (EGX30 for
-EGX-listed names, and the equivalent local benchmark elsewhere) — the SAME beta the
-standing BETA procedure and the `wacc_builder.py` usability gate produce. Not a second,
-independently-run method that could quietly disagree with the WACC block's own number.
+From the stock's own price history, regressed against **the published index of the
+exchange the stock is listed on**, read from `engine/raw_indices/{MARKET}/{INDEX}.csv`
+(EGX30 for EGX, FTSE ADX General for ADX, TASI for Tadawul, and so on) — the SAME beta
+the standing BETA procedure and the `wacc_builder.py` usability gate produce. Not a
+second, independently-run method that could quietly disagree with the WACC block's own
+number.
+
+[AMENDED 10-Aug-2026] **A constituent composite is NOT a substitute and NOT a tier.** An
+equal-weight or turnover-weight basket of the names this engine happens to cover is a
+coverage artefact, not a market: it changes whenever a stock is posted, it mixes
+exchanges inside one market code (ADX with DFM), and it shares constituents with the
+panel it is used to price. Measured on FERTIGLB, the composite understated beta by ~40%
+(0.492 against 0.931) and overstated fair value by 21.6%. A composite may appear as a
+labelled cross-check; it may never be the regressor.
+
+**If the index file is not present, STOP AND INFORM** — the same discipline this mandate
+applies to inaccessible primary financials. Do not build a composite and proceed. Every
+beta previously built on a composite is non-conforming and must be re-derived before that
+study is re-issued or rolled forward.
 
 **7. Formula-based, always.**
 Every constructed financial statement is a live formula model: driver → income statement

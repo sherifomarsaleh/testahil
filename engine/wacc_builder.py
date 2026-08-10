@@ -100,6 +100,46 @@ class RegressionBetaAttempt:
         return w
 
 
+MARKET_INDEX = {
+    "AE": "FADGI",        # FTSE ADX General — ADX-listed names
+    "EG": "EGX30",
+    "IN": "NIFTY50",
+    "KR": "KOSPI100",
+    "QA": "QATAR10",
+    "SA": "TASI",         # Tadawul All Share
+    "US": "NASDAQCOMP",
+}
+
+
+def market_index_path(market: str, root: Optional[str] = None) -> str:
+    """Path to the PUBLISHED index a beta for `market` must be regressed against.
+
+    [ADDED 10-Aug-2026] The beta regressor is the published index of the stock's own
+    exchange -- never a composite of the names this engine happens to cover. That
+    substitution was in force in every study in the repo and, measured on FERTIGLB,
+    understated beta by ~40% (0.492 vs 0.931) and overstated fair value by 21.6%.
+
+    A HARD GATE, not a warning: if the file is absent this RAISES, so a study must stop
+    and ask for the index rather than quietly fall back to a basket. Same discipline
+    SIGCM applies to inaccessible primary financials.
+    """
+    import os
+    root = root or os.path.join(os.path.dirname(os.path.abspath(__file__)), "raw_indices")
+    if market not in MARKET_INDEX:
+        raise KeyError(
+            f"no published index registered for market {market!r}. Supply one at "
+            f"raw_indices/{market}/<INDEX>.csv and register it in MARKET_INDEX. "
+            f"A constituent composite is NOT a substitute -- stop and ask for the index."
+        )
+    p = os.path.join(root, market, f"{MARKET_INDEX[market]}.csv")
+    if not os.path.exists(p):
+        raise FileNotFoundError(
+            f"{market} index {MARKET_INDEX[market]} is registered but missing at {p}. "
+            f"Do not substitute a composite of covered names -- stop and ask for the file."
+        )
+    return p
+
+
 def relever_beta(unlevered_beta_peers_median: float, target_debt_to_equity: float,
                  tax_rate: float) -> float:
     """Tier-2 beta: re-lever the median UNLEVERED peer beta to the target D/E
