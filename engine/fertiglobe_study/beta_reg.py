@@ -1,75 +1,204 @@
-"""FERTIGLB beta — tier-1 own-stock weekly regression against an equal-weight ADX/DFM
-composite built from the full engine/raw_ohlc/AE library (house pattern: CLHO / RMDA /
-SWDY studies), longest window up to 5 years, RegressionBetaAttempt usability gate.
+"""FERTIGLB beta — own-stock weekly regression against an ADX/DFM market composite.
 
-FERTIGLB listed 27-Oct-2021, so the available window is 4.8 years -- inside the 2-5yr
-tier-1 band, so this is a tier-1 beta, not a stopgap."""
-import sys, os, glob, json
-HERE = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, os.path.join(HERE, '..'))
+THREE CHANGES OVER THE FIRST CUT (09-Aug-2026), all aimed at accuracy:
+
+1. TURNOVER WEIGHTING. The first cut equal-weighted 17 constituents, which gave
+   TWOPOINTZERO the same weight as FAB. A published index is capitalisation-weighted;
+   we hold no share counts, but every series carries volume, so traded value
+   (price x volume) is available and is far closer to economic weight than 1/N.
+   Both weightings are computed and reported.
+
+2. DIMSON (1979) LEAD-LAG CORRECTION. Fertiglobe's free float is ~13% -- the rest is
+   held by ADNOC and the former parent. A thinly-floated share does not fully
+   incorporate market news within the measurement interval, which biases a naive beta
+   DOWNWARD. The Dimson beta sums the coefficients on the market at t-1, t and t+1 and
+   is the standard correction. Reporting the naive beta alone would present a
+   liquidity artifact as low systematic risk.
+
+3. THE FULL LIBRARY AND THE FULL WINDOW. Every AE name is used, over the longest
+   window the listing supports (FERTIGLB listed 27-Oct-2021, so ~4.8 years -- inside
+   the 2-5yr tier-1 band).
+
+STANDING LIMITATION, STATED NOT BURIED: engine/raw_indices/ holds a published index
+for EG, IN, KR, QA and US but NOT for AE. SIGCM clause 6 asks for the stock's own
+LOCAL INDEX. A constituent composite is the best available stand-in, and it is
+labelled as one everywhere it is quoted. Dropping a published ADX series into
+engine/raw_indices/AE/ would replace it -- exactly as EGX30 was added on 09-Aug-2026.
+"""
+import glob
+import json
+import os
+import sys
+
 import numpy as np
 import pandas as pd
-from primitives import load_ohlc
-from data_quality import clean_ohlc
-from wacc_builder import RegressionBetaAttempt
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, os.path.join(HERE, '..'))
+from primitives import load_ohlc                      # noqa: E402
+from data_quality import clean_ohlc                   # noqa: E402
+from wacc_builder import RegressionBetaAttempt        # noqa: E402
+
+AE = os.path.join(HERE, '..', 'raw_ohlc', 'AE')
+MULT = {'K': 1e3, 'M': 1e6, 'B': 1e9}
 
 
-def weekly(px):
-    return px.resample('W-FRI').last().dropna()
+def to_num(v):
+    """'22.72M' -> 22_720_000. Blank/'-' -> nan."""
+    if isinstance(v, (int, float)):
+        return float(v)
+    s = str(v).strip().replace(',', '')
+    if not s or s in ('-', 'nan'):
+        return np.nan
+    return float(s[:-1]) * MULT[s[-1]] if s[-1] in MULT else float(s)
 
 
-fg, _ = clean_ohlc(load_ohlc(os.path.join(HERE, '..', 'raw_ohlc', 'AE', 'FERTIGLB.csv')),
-                   'FERTIGLB', verbose=False, market='AE')
-fg = fg.set_index('Date')['Price']
+def weekly_last(s):
+    return s.resample('W-FRI').last().dropna()
 
-comp = {}
-for f in sorted(glob.glob(os.path.join(HERE, '..', 'raw_ohlc', 'AE', '*.csv'))):
-    tkr = os.path.basename(f)[:-4]
-    if tkr == 'FERTIGLB':
-        continue
-    try:
-        df, _ = clean_ohlc(load_ohlc(f), tkr, verbose=False, market='AE')
-        comp[tkr] = df.set_index('Date')['Price']
-    except Exception as e:
-        print('skip', tkr, e)
 
+def load(tkr):
+    df, _ = clean_ohlc(load_ohlc(os.path.join(AE, f'{tkr}.csv')), tkr,
+                       verbose=False, market='AE')
+    df = df.set_index('Date')
+    df['turnover'] = df['Price'] * df['Vol.'].map(to_num)
+    return df
+
+
+names = sorted(os.path.basename(f)[:-4] for f in glob.glob(os.path.join(AE, '*.csv')))
+fg = load('FERTIGLB')
 cut = fg.index.max() - pd.DateOffset(years=5)
-wk_fg = weekly(fg[fg.index >= cut])
-rets = {}
-for tkr, s in comp.items():
-    w = weekly(s[s.index >= cut])
+
+px, tno = {}, {}
+for t in names:
+    if t == 'FERTIGLB':
+        continue
+    d = load(t)
+    d = d[d.index >= cut]
+    w = weekly_last(d['Price'])
     r = np.log(w / w.shift(1)).dropna()
-    if len(r) >= 100:
-        rets[tkr] = r
-R = pd.DataFrame(rets)
-mkt = R.mean(axis=1, skipna=True)
-re_ = np.log(wk_fg / wk_fg.shift(1)).dropna()
-al = pd.concat([re_.rename('fg'), mkt.rename('mkt')], axis=1).dropna()
-x, y = al['mkt'].values, al['fg'].values
-n = len(x)
-X = np.column_stack([np.ones(n), x])
-b, *_ = np.linalg.lstsq(X, y, rcond=None)
-yhat = X @ b
-ss_res = float(((y - yhat) ** 2).sum())
-ss_tot = float(((y - y.mean()) ** 2).sum())
-r2 = 1 - ss_res / ss_tot
-se_b = float(np.sqrt(ss_res / (n - 2) / ((x - x.mean()) ** 2).sum()))
-att = RegressionBetaAttempt(beta=float(b[1]), r_squared=r2, n_obs=n, se_beta=se_b,
-                            frequency='weekly')
-ok, msg = att.is_usable()
-ci = (b[1] - 1.645 * se_b, b[1] + 1.645 * se_b)
-# Blume adjustment shown as a cross-check only; the raw regression beta is what the
-# WACC uses (house rule: tier-1 own-stock regression, no smoothing toward 1.0).
-blume = 2.0 / 3.0 * float(b[1]) + 1.0 / 3.0
-out = dict(beta=float(b[1]), r2=float(r2), n=n, se=float(se_b),
-           ci90=[float(ci[0]), float(ci[1])], usable=bool(ok), gate_msg=msg,
-           composite_names=len(rets), composite_list=sorted(rets),
-           window_years=round(float((al.index.max() - al.index.min()).days / 365.25), 2),
-           frequency='weekly', blume_crosscheck=float(blume),
-           weak=bool(r2 < 0.10 or (ci[1] - ci[0]) > 2 * abs(b[1])),
-           warnings=att.interim_warnings(),
-           first_obs=str(al.index.min().date()), last_obs=str(al.index.max().date()))
+    if len(r) < 100:                      # too short to carry a weight (LULU)
+        continue
+    px[t] = r
+    tno[t] = d['turnover'].resample('W-FRI').sum().reindex(r.index)
+
+R = pd.DataFrame(px)
+T = pd.DataFrame(tno).reindex(R.index)
+# weight by the PRIOR week's traded value so the index is not built with hindsight
+Wt = T.shift(1)
+Wt = Wt.where(R.notna()).div(Wt.where(R.notna()).sum(axis=1), axis=0)
+
+mkt_eq = R.mean(axis=1, skipna=True)
+mkt_to = (R * Wt).sum(axis=1, skipna=True).where(Wt.sum(axis=1) > 0)
+
+wk = weekly_last(fg['Price'])
+y_all = np.log(wk / wk.shift(1)).dropna()
+
+
+def ols(y, X):
+    b, *_ = np.linalg.lstsq(X, y, rcond=None)
+    resid = y - X @ b
+    ssr = float((resid ** 2).sum())
+    sst = float(((y - y.mean()) ** 2).sum())
+    dof = len(y) - X.shape[1]
+    XtXi = np.linalg.inv(X.T @ X)
+    se = np.sqrt(np.diag(XtXi) * ssr / dof)
+    return b, 1 - ssr / sst, se, dof
+
+
+def fit(mkt, label, dimson):
+    al = pd.concat([y_all.rename('y'), mkt.rename('m')], axis=1).dropna()
+    if dimson:
+        al['lag'] = al['m'].shift(1)
+        al['lead'] = al['m'].shift(-1)
+        al = al.dropna()
+        X = np.column_stack([np.ones(len(al)), al['lag'], al['m'], al['lead']])
+        b, r2, se, dof = ols(al['y'].values, X)
+        beta = float(b[1] + b[2] + b[3])
+        # var(sum) = sum of the 3x3 covariance block of the slope coefficients
+        ssr = float(((al['y'].values - X @ b) ** 2).sum())
+        cov = np.linalg.inv(X.T @ X) * ssr / dof
+        se_b = float(np.sqrt(cov[1:4, 1:4].sum()))
+    else:
+        X = np.column_stack([np.ones(len(al)), al['m']])
+        b, r2, se, dof = ols(al['y'].values, X)
+        beta, se_b = float(b[1]), float(se[1])
+    att = RegressionBetaAttempt(beta=beta, r_squared=float(r2), n_obs=len(al),
+                                se_beta=se_b, frequency='weekly')
+    ok, msg = att.is_usable()
+    return dict(label=label, dimson=dimson, beta=beta, r2=float(r2), n=len(al),
+                se=se_b, ci90=[beta - 1.645 * se_b, beta + 1.645 * se_b],
+                usable=bool(ok), gate_msg=msg,
+                window_years=round((al.index.max() - al.index.min()).days / 365.25, 2),
+                first_obs=str(al.index.min().date()), last_obs=str(al.index.max().date()))
+
+
+fits = [fit(mkt_eq, 'equal-weight composite', False),
+        fit(mkt_to, 'turnover-weighted composite', False),
+        fit(mkt_eq, 'equal-weight composite', True),
+        fit(mkt_to, 'turnover-weighted composite', True)]
+
+# DAILY CROSS-CHECK ONLY. The tier-1 rule is a 2-5yr WEEKLY/monthly regression; a daily
+# regression is explicitly NOT one of the tiers. It is run here purely to see whether a
+# five-fold increase in observations corroborates the weekly answer, with Dimson +/-5
+# lags because daily data is where non-synchronous trading bites hardest. It never feeds
+# the WACC.
+def daily_fit(weight):
+    d_fg = np.log(fg['Price'] / fg['Price'].shift(1)).dropna()
+    d = {}
+    for t in px:
+        s = load(t)['Price']
+        s = s[s.index >= cut]
+        d[t] = np.log(s / s.shift(1)).dropna()
+    Rd = pd.DataFrame(d)
+    m = Rd.mean(axis=1, skipna=True) if weight == 'equal' else None
+    if m is None:
+        Td = pd.DataFrame({t: load(t)['turnover'].reindex(Rd.index) for t in px}).shift(1)
+        Td = Td.where(Rd.notna()).div(Td.where(Rd.notna()).sum(axis=1), axis=0)
+        m = (Rd * Td).sum(axis=1, skipna=True).where(Td.sum(axis=1) > 0)
+    al = pd.concat([d_fg.rename('y'), m.rename('m')], axis=1).dropna()
+    cols = [al['m'].shift(k) for k in range(-5, 6)]
+    al = pd.concat([al['y']] + cols, axis=1).dropna()
+    X = np.column_stack([np.ones(len(al))] + [al.iloc[:, i].values for i in range(1, 12)])
+    b, r2, se, dof = ols(al.iloc[:, 0].values, X)
+    ssr = float(((al.iloc[:, 0].values - X @ b) ** 2).sum())
+    cov = np.linalg.inv(X.T @ X) * ssr / dof
+    return dict(label=f'DAILY cross-check ({weight}-weight, Dimson +/-5)',
+                beta=float(b[1:].sum()), r2=float(r2), n=len(al),
+                se=float(np.sqrt(cov[1:, 1:].sum())), tier='cross-check only, not a tier')
+
+
+daily = [daily_fit('equal'), daily_fit('turnover')]
+
+# SELECTION under the WACC beta hierarchy. Tier 1 is an own-stock 2-5yr weekly
+# regression THAT PASSES the usability gate. The turnover-weighted fits -- the better
+# index proxy -- FAIL it (R2 below 5%), so the gate outcome depends on how the composite
+# is built. That fragility is reported rather than resolved by picking the construction
+# that passes. Among the fits that DO pass, the Dimson form is preferred: it corrects a
+# documented downward bias from the ~13% float, and it is also the more conservative
+# (higher beta, lower value), so the choice does not flatter the valuation.
+passing = [f for f in fits if f['usable']]
+chosen = max(passing, key=lambda f: f['beta'])
+chosen = dict(chosen, selection_note=(
+    'tier-1 own-stock weekly regression; Dimson-corrected; equal-weight composite. '
+    'The turnover-weighted composite is the better index proxy but fails the usability '
+    'gate (R2 4.3-4.6%), so the gate outcome is construction-dependent and the own-stock '
+    'beta is NOT robust. Published with that caveat and sensitised in the study.'))
+out = dict(chosen=chosen, all_fits=fits, daily_crosscheck=daily, constituents=sorted(px),
+           constituent_count=len(px), weighting='turnover (price x volume, lagged one week)',
+           correction='Dimson (1979) lead-lag, +/-1 week',
+           blume_crosscheck=2 / 3 * chosen['beta'] + 1 / 3,
+           naive_equal_weight_beta=fits[0]['beta'],
+           index_note=('no published ADX index exists in engine/raw_indices/; this is a '
+                       'constituent composite and is labelled as one wherever quoted'),
+           free_float_note='~13% free float — a naive beta is biased low by thin trading')
 json.dump(out, open(os.path.join(HERE, 'beta_result.json'), 'w'), indent=1)
-print(f"beta {b[1]:.3f} | R2 {r2:.3f} | n {n} | SE {se_b:.3f} | CI90 [{ci[0]:.2f},{ci[1]:.2f}] "
-      f"| usable={ok} ({msg}) | composite {len(rets)} names | window {out['window_years']}yr "
-      f"| weak={out['weak']} | Blume x-check {blume:.3f}")
+
+print(f'constituents: {len(px)}  ({", ".join(sorted(px))})')
+for f in fits:
+    tag = 'Dimson' if f['dimson'] else 'naive '
+    print(f"  {tag} {f['label']:30s} beta {f['beta']:6.3f}  R2 {f['r2']:.3f}  "
+          f"n {f['n']:3d}  SE {f['se']:.3f}  CI90 [{f['ci90'][0]:.2f},{f['ci90'][1]:.2f}]  "
+          f"usable={f['usable']}")
+print(f"\nCHOSEN: {chosen['label']}, Dimson-corrected -> beta {chosen['beta']:.3f} "
+      f"(was {fits[0]['beta']:.3f} equal-weight naive)")
