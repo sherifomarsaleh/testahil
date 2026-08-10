@@ -1,172 +1,40 @@
 {
- "chosen": {
-  "label": "FTSE ADX General (published index)",
-  "dimson": true,
-  "beta": 0.9314887244038168,
-  "r2": 0.09960762477978913,
-  "n": 242,
-  "se": 0.283328369471792,
-  "ci90": [
-   0.46541355662271894,
-   1.3975638921849147
-  ],
-  "usable": true,
-  "gate_msg": "passes minimum usability gate",
-  "window_years": 4.68,
-  "first_obs": "2021-11-12",
-  "last_obs": "2026-07-17",
-  "selection_note": "tier-1 own-stock weekly regression against the PUBLISHED FTSE ADX General index (engine/raw_indices/AE/FADGI.csv). The constituent composites are reported as cross-checks only -- they mixed ADX and DFM names and covered only the 17 names this engine holds, so they were never the right regressor for an ADX-listed share."
- },
- "all_fits": [
-  {
-   "label": "FTSE ADX General (published index)",
-   "dimson": false,
-   "beta": 0.8101870844634188,
-   "r2": 0.09108460643948046,
-   "n": 244,
-   "se": 0.16451930604346496,
-   "ci90": [
-    0.5395528260219189,
-    1.0808213429049187
-   ],
-   "usable": true,
-   "gate_msg": "passes minimum usability gate",
-   "window_years": 4.71,
-   "first_obs": "2021-11-05",
-   "last_obs": "2026-07-24"
-  },
-  {
-   "label": "FTSE ADX General (published index)",
-   "dimson": true,
-   "beta": 0.9314887244038168,
-   "r2": 0.09960762477978913,
-   "n": 242,
-   "se": 0.283328369471792,
-   "ci90": [
-    0.46541355662271894,
-    1.3975638921849147
-   ],
-   "usable": true,
-   "gate_msg": "passes minimum usability gate",
-   "window_years": 4.68,
-   "first_obs": "2021-11-12",
-   "last_obs": "2026-07-17"
-  },
-  {
-   "label": "equal-weight composite [cross-check]",
-   "dimson": false,
-   "beta": 0.49170467247561433,
-   "r2": 0.06152028593246317,
-   "n": 246,
-   "se": 0.12294551603733717,
-   "ci90": [
-    0.2894592985941947,
-    0.693950046357034
-   ],
-   "usable": true,
-   "gate_msg": "passes minimum usability gate",
-   "window_years": 4.71,
-   "first_obs": "2021-11-05",
-   "last_obs": "2026-07-24"
-  },
-  {
-   "label": "turnover-weighted composite [cross-check]",
-   "dimson": false,
-   "beta": 0.3755552635369102,
-   "r2": 0.04266518722497947,
-   "n": 246,
-   "se": 0.11388696987883047,
-   "ci90": [
-    0.18821119808623407,
-    0.5628993289875863
-   ],
-   "usable": false,
-   "gate_msg": "R^2=0.043 < minimum 0.05 \u2014 index barely explains the stock's returns",
-   "window_years": 4.71,
-   "first_obs": "2021-11-05",
-   "last_obs": "2026-07-24"
-  },
-  {
-   "label": "equal-weight composite [cross-check]",
-   "dimson": true,
-   "beta": 0.5358642445847095,
-   "r2": 0.06534060862276492,
-   "n": 244,
-   "se": 0.2045003131742574,
-   "ci90": [
-    0.19946122941305605,
-    0.872267259756363
-   ],
-   "usable": true,
-   "gate_msg": "passes minimum usability gate",
-   "window_years": 4.68,
-   "first_obs": "2021-11-12",
-   "last_obs": "2026-07-17"
-  },
-  {
-   "label": "turnover-weighted composite [cross-check]",
-   "dimson": true,
-   "beta": 0.34344036243566034,
-   "r2": 0.04642624788230598,
-   "n": 244,
-   "se": 0.18835420480352627,
-   "ci90": [
-    0.033597695533859606,
-    0.6532830293374611
-   ],
-   "usable": false,
-   "gate_msg": "R^2=0.046 < minimum 0.05 \u2014 index barely explains the stock's returns",
-   "window_years": 4.68,
-   "first_obs": "2021-11-12",
-   "last_obs": "2026-07-17"
-  }
+ "ticker": "FERTIGLB",
+ "market": "AE",
+ "exchange": "ADX",
+ "beta": 0.9314887244038245,
+ "r2": 0.09960762477978735,
+ "se": 0.2833283694717916,
+ "n": 242,
+ "ci90": [
+  0.4654135566227273,
+  1.3975638921849216
  ],
- "daily_crosscheck": [
-  {
-   "label": "DAILY cross-check (equal-weight, Dimson +/-5)",
-   "beta": 0.34200337027727035,
-   "r2": 0.051326381125467835,
-   "n": 1173,
-   "se": 0.16363685862164234,
-   "tier": "cross-check only, not a tier"
-  },
-  {
-   "label": "DAILY cross-check (turnover-weight, Dimson +/-5)",
-   "beta": 0.27303100162946736,
-   "r2": 0.03970454263339973,
-   "n": 1173,
-   "se": 0.1505042001845146,
-   "tier": "cross-check only, not a tier"
-  }
- ],
- "constituents": [
-  "ADCB",
-  "ADIB",
-  "ADNOCGAS",
-  "AGTHIA",
-  "ALDAR",
-  "ALPHADHABI",
-  "BURJEEL",
-  "DEWA",
-  "DIB",
-  "EAND",
-  "EMAAR",
-  "EMAARDEV",
-  "ENBD",
-  "FAB",
-  "IHC",
-  "SALIK",
-  "TWOPOINTZERO"
- ],
- "constituent_count": 17,
- "weighting": "turnover (price x volume, lagged one week)",
- "correction": "Dimson (1979) lead-lag, +/-1 week",
- "blume_crosscheck": 0.9543258162692112,
- "naive_equal_weight_beta": 0.49170467247561433,
- "index_file": "engine/raw_indices/AE/FADGI.csv (FTSE ADX General)",
+ "usable": true,
+ "gate_msg": "passes minimum usability gate",
+ "dimson": true,
+ "frequency": "weekly",
+ "weak": true,
+ "warnings": [],
+ "window_years": 4.68,
+ "first_obs": "2021-11-12",
+ "last_obs": "2026-07-17",
+ "blume_crosscheck": 0.9543258162692163,
+ "index_file": "raw_indices/AE/FADGI.csv",
+ "index_asof": "2026-07-24",
  "index_dq": [
   "dropped 1 interior stale/no-trade rows"
  ],
- "index_note": "published FTSE ADX General index supplied 10-Aug-2026 and now the regressor",
- "free_float_note": "~13% free float \u2014 a naive beta is biased low by thin trading"
+ "stock_dq": [],
+ "week_rule": "W-FRI",
+ "interim_note": null,
+ "conforming": true,
+ "composite_crosscheck_RETIRED": {
+  "beta": 0.493551965992403,
+  "r2": 0.0626234336850543,
+  "n": 248,
+  "names": 19,
+  "note": "RETIRED equal-weight composite \u2014 shown only to size the correction"
+ },
+ "naive_index_beta": 0.8101870844634133
 }

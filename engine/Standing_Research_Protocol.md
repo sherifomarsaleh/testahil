@@ -178,13 +178,70 @@ THE RULE, from now on:
 
 (b) **A constituent composite is not a substitute and is not a tier.** It may be reported as a labelled cross-check; it may never be the regressor.
 
-(c) **Match the exchange, not the country.** A DFM-listed name is regressed against a DFM index, not an ADX one, even though both are "AE" in the engine's market coding. If the correct index is not held, that is case (d).
+(c) **Match the exchange, not the country — and key the resolver on the exchange.** A DFM-listed name is regressed against a DFM index, not an ADX one, even though both are "AE" in the engine's market coding. If the correct index is not held, that is case (d).
+
+[RE-KEYED 10-Aug-2026, the same day, per instruction] The first implementation of this rule mapped **one index per market code** and therefore contradicted the clause it existed to enforce. Market `AE` holds **14 ADX names and 6 DFM names** — DEWA, DIB, EMAAR, EMAARDEV, ENBD, SALIK — every one of which resolved to `FADGI`, an ADX index. The counter-example was written into the rule and the code did the forbidden thing anyway, in the same commit.
+
+`wacc_builder.EXCHANGE_INDEX` is now keyed `(market, exchange)`, and `market_index_path(market, exchange)` **refuses to resolve a market that spans more than one exchange** unless told which. Unknown market, ambiguous market, unregistered exchange and missing file all raise.
+
+| market / exchange | index | status |
+|---|---|---|
+| AE / ADX | FADGI (FTSE ADX General) | registered |
+| AE / DFM | FADGI | **INTERIM by instruction 10-Aug-2026** — see below |
+| EG / EGX | EGX30 | registered, blue-chip subset |
+| IN / NSE | NIFTY50 | registered, subset |
+| KR / KRX | KOSPI100 | registered, subset |
+| QA / QSE | QATAR10 | registered, subset |
+| SA / TADAWUL | TASI | registered, **broad all-share** |
+| US / NASDAQ | NASDAQCOMP | registered, tech-weighted |
+| BR, GB | — | not supplied |
+
+**The DFM interim [instruction, 10-Aug-2026].** No DFM General series is held, so the six DFM-listed names — DEWA, DIB, EMAAR, EMAARDEV, ENBD, SALIK — stand on FTSE ADX General until one is supplied. This is a deliberate, labelled exception to clause (c), not a quiet fallback: `wacc_builder.INTERIM_INDEX` carries the disclosure and `index_interim_note()` returns it, and **any beta built on it must quote that note**. It is not a conforming clause-(a) regressor.
+
+It is also the better-evidenced half of the substitution, which is worth stating because the intuition runs the other way. Over five years of weekly returns, FADGI explains the DFM names **better** than it explains the ADX names it actually covers:
+
+| | median R² vs FADGI | median β | range |
+|---|---|---|---|
+| ADX names (15) | 0.127 | 1.037 | AGTHIA 0.037 → FAB 0.606 |
+| DFM names (6) | **0.240** | 1.067 | DEWA 0.101 → ENBD 0.304 |
+
+All six DFM names clear the R²≥5% usability gate; several ADX names barely do (AGTHIA 0.037 fails it outright, IHC 0.088, FERTIGLB 0.091). The large Dubai names co-move with the UAE market as a whole, while Abu Dhabi carries more low-float and ADNOC-family idiosyncrasy. The substitution is therefore defensible on evidence for the interim — but it remains a substitution, and a real DFM index replaces it.
+
+**Where the exchange comes from.** `assets/data.js` records it per ticker as the `code` prefix (`ADX:`, `DFM:`, `EGX:`, `TADAWUL:`, `QSE:`, `KRX:`, `NSE:`, `NASDAQ:`). Read it. Never infer the exchange from the `raw_ohlc/{MARKET}/` folder — that groups by market code and is exactly what mixed ADX with DFM.
+
+**Dual-listed names.** Orascom Construction trades on both ADX and EGX. The same issuer therefore has two legitimate regressors, and only the *series* tells you which: an EGP-denominated series filed under `EG` regresses on the EGX index; a dirham series of the same company would regress on the ADX index. Verify the series' currency and price magnitude against the exchange it is filed under before regressing, and flag dual listings explicitly in the Sweep Register. Nothing in the file name carries this.
+
+**Broad versus subset — SETTLED 10-Aug-2026, per instruction.** Clause (a) prefers the broad all-share, and only TASI actually is one: EGX30 is 30 names against a 37-name covered panel that includes small caps (KABO, DSCW, LCSW); NIFTY50, KOSPI100 and QATAR10 are subsets by construction; NASDAQCOMP is tech-weighted rather than a market proxy. **The user supplied all seven series explicitly as "the indices to use", so these ARE the regressors** and the subset question is closed by decision, not left as a drifting compromise. All seven uploads were byte-identical to the copies already in `raw_indices/`, so the registrations were already correct. The documented "why" required by clause (a) is this instruction. Revisit only on a further instruction.
+
+**All seven passed Step 0.0 on 10-Aug-2026** — density screened against each exchange's real calendar, max one-day move against that exchange's own price limit:
+
+| market / exchange | index | rows | sessions/yr 2021-25 | max abs 1-day log move | limit |
+|---|---|---|---|---|---|
+| AE / ADX | FADGI | 3,883 | 238–252 | 0.084 | 0.211 |
+| EG / EGX | EGX30 | 3,745 | 241–244 | 0.111 | 0.290 |
+| IN / NSE | NIFTY50 | 3,857 | 246–249 | 0.139 | 0.290 |
+| KR / KRX | KOSPI100 | 3,624 | 243–248 | 0.127 | 0.464 |
+| QA / QSE | QATAR10 | 2,878 | **188–201** | 0.116 | 0.137 |
+| SA / TADAWUL | TASI | 3,882 | 248–251 | 0.087 | 0.137 |
+| US / NASDAQ | NASDAQCOMP | 3,913 | 250–252 | 0.132 | none |
+
+**QATAR10 carries a standing caveat — weekly only.** It runs ~198 sessions a year while QSE stocks (QNB, IQCD, QGTS) all carry 248–250, a systematic ~20% shortfall that is stable at 188–201 every year for fourteen years. That consistency means it is a property of how the series is published, not vendor corruption, so Step 0.0 correctly passes it. It does NOT impair the weekly regression this protocol mandates: over the last five years the index supplies 255 weekly points against a stock's 259, and 255 of them align — 98.5% coverage. It WOULD impair any daily use of QATAR10, which is therefore not permitted without re-screening. Quote this caveat wherever a Qatari beta is quoted.
 
 (d) **If the index is not in `raw_indices/`, STOP AND ASK for it** — the same stop-and-inform discipline SIGCM applies to missing primary financials. Do not build a composite and proceed. The index is one file; the request costs a message.
 
 (e) The index series passes **Step 0.0** like any other series before use, and its as-of date is quoted wherever the beta is quoted.
 
 (f) Every beta previously built on a composite is **non-conforming and must be re-derived before that study is re-issued or rolled forward**. Affected: AMOC, ARCC, EGCH, ELEC, PHAR, SCEM, SWDY (all EGX, all against the EG composite; EGX30 has been in the repo since 09-Aug-2026) and FERTIGLB (corrected 10-Aug-2026). The WACC/Ke, fair-value range and any sensitivity anchored on beta all move with it.
+
+(h) **Never hand-roll a study-local beta script; the rule is enforced in code, not in prose.**
+
+Writing (a)–(f) down did not make them obeyed. `market_index_path()` raised for an unregistered index, but nothing forced a study to CALL it — eight study-local `beta_reg.py` scripts went on building composites and passing every gate, including the QC gate. Prose cannot execute. Three mechanisms now close that:
+
+- **`engine/beta_regression.py` is the only sanctioned way to produce a regression beta.** `own_stock_beta(ticker, market, exchange)` resolves the regressor itself through `wacc_builder`, runs Step 0.0 on both series, matches the weekly grid to the exchange's real trading week (EG/SA/QA Sun–Thu → `W-THU`; AE post-2022 and the rest → `W-FRI` — a mismatched grid silently drops observations), and returns provenance with the number. A study cannot reach a basket without deleting the call, which a reviewer can see in the diff.
+- **`research_protocol.assert_beta_provenance()` inspects the record, not a boolean.** `SIGCMChecklist.beta_own_history_vs_egx30` is a flag a study sets itself, and every study set it `True` while regressing on a composite. A self-attestation cannot catch that. The gate fails a regressor outside `raw_indices/`, a beta missing the usability gate without a documented tier-2/3 fallback, and an interim substitution whose disclosure note is absent.
+- **The exchange is read from `assets/data.js`**, as the ticker's `code` prefix — never inferred from the `raw_ohlc/{MARKET}/` folder, which groups by market code and is precisely what mixed ADX with DFM.
+
+(i) **Re-deriving a study's beta has its own canonical prompt** — `engine/Beta_Reissue_Prompt.md`, with the FERTIGLB pass as the worked precedent. It carries a step most rebuilds forget: **hunt the stale prose.** The number propagates through the build chain automatically; the sentences describing it do not. FERTIGLB's own source line still read *"equal-weight ADX/DFM composite built from the 17-name UAE price library"* while the model already carried the index beta — a false provenance statement that would have shipped in both the study and the bibliography. Provenance strings must be BUILT FROM THE RECORD, never typed.
 
 (g) Markets whose index is still absent as of 10-Aug-2026: **BR, GB.** SA/TASI was supplied 10-Aug-2026, so every Tadawul beta (STC and any future Saudi name) must be re-derived against it. No conforming beta can be produced for a name in those markets until the file is supplied.
 

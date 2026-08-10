@@ -317,10 +317,19 @@ inp('eu_tariff_russia_jul26', 60.0, MDA26 + " — EU tariffs on Russian and Bela
 
 # --- beta -------------------------------------------------------------------
 _beta = json.load(open(os.path.join(HERE, 'beta_result.json')))
+# The provenance string is BUILT FROM THE RECORD, never typed. It previously described an
+# "equal-weight ADX/DFM composite" and kept saying so after the regressor became the real
+# index — a false source line that would have shipped in the study and the bibliography.
+_IDXNAME = {'FADGI': 'the FTSE ADX General index', 'EGX30': 'the EGX30 index',
+            'TASI': 'the Tadawul All Share index', 'QATAR10': 'the FTSE NASDAQ Qatar 10 index',
+            'NIFTY50': 'the Nifty 50 index', 'KOSPI100': 'the KOSPI 100 index',
+            'NASDAQCOMP': 'the NASDAQ Composite index'}
+_stem = os.path.basename(_beta['index_file'])[:-4]
 BETA = inp('beta', round(_beta['beta'], 3),
-           "Own-stock weekly regression against an equal-weight ADX/DFM composite built from the "
-           f"17-name UAE price library, {_beta['window_years']} years, n={_beta['n']}, "
-           f"R-squared {_beta['r2']:.3f}, standard error {_beta['se']:.3f}",
+           f"Own-stock weekly regression against {_IDXNAME.get(_stem, _stem)} "
+           f"(published, as of {_beta['index_asof']}), {_beta['window_years']} years, "
+           f"n={_beta['n']}, R-squared {_beta['r2']:.3f}, standard error {_beta['se']:.3f}"
+           + (f". {_beta['interim_note']}" if _beta.get('interim_note') else ''),
            '2026-08-07', 'MARKET')
 
 # ---------------------------------------------------------------------------

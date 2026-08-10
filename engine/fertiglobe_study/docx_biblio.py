@@ -432,7 +432,7 @@ keep_rows_whole(B.table([['Source', 'Publisher', 'Date read', 'What was taken fr
           'weekly returns used in the beta regression'],
          ['Daily price history for the covered UAE equity library',
           'Study price history', 'to 7 Aug 2026',
-          'The 17-name equal-weight composite used as the local market proxy in that regression'],
+          'The published FTSE ADX General index, the regressor for an ADX-listed share'],
          ],
         [1.55, 1.15, 0.80, 3.50], size=7.9, align_right_from=99))
 
@@ -518,8 +518,8 @@ JUD = [
      'across that span'],
     [f'Beta of {W["beta"]:.3f} from the share\'s own history, despite a weak fit',
      f'{W["beta"]:.3f}, from {W["beta_n"]} weekly observations over {W["beta_window"]:.1f} years '
-     'against an equal-weight composite of the local market. It is used as measured, not '
-     'adjusted toward one',
+     'against the published FTSE ADX General index — the index of the exchange the share is '
+     'listed on. It is used as measured, not adjusted toward one',
      f'The regression explains only {W["beta_r2"] * 100:.1f}% of the variance and the standard '
      f'error is {W["beta_se"]:.3f}, so the 90% interval runs from {W["beta_ci90"][0]:.2f} to '
      f'{W["beta_ci90"][1]:.2f} — a genuinely weak fit, which is what a 12.6% free float on a '
