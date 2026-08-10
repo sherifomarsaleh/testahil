@@ -211,7 +211,7 @@
 
 <footer><div class="wrap"><div class="foot-studies"><b>Studies:</b> <a href="phdc.html">Palm Hills</a> &middot; <a href="tmgh.html">Talaat Moustafa</a> &middot; <a href="ocdi.html">SODIC</a> &middot; <a href="orhd.html">Orascom Dev</a> &middot; <a href="oras.html">Orascom Const</a> &middot; <a href="comi.html">CIB</a> &middot; <a href="emfd.html">Emaar Misr</a> &middot; <a href="gold.html">Gold</a> &middot; <a href="stocks.html">all &rarr;</a></div><b>Disclaimer:</b> Educational valuation studies and personal analytical opinion — not investment advice, not recommendations. The preparer is not licensed by Egypt's FRA, manages no money, accepts no clients, and may hold positions in instruments mentioned. <a href="method.html#disclaimer">Full text</a>.<br><br><span class="social" style="font-size:var(--fs-lead);font-weight:700">Follow Testahil &mdash; <a href="https://t.me/testahil_markets" target="_blank" rel="noopener">Telegram</a> &middot; <a href="https://www.facebook.com/testahil.markets" target="_blank" rel="noopener">Facebook</a> &middot; <a href="https://www.linkedin.com/company/testahil" target="_blank" rel="noopener">LinkedIn</a></span></div></footer>
 
-<script src="assets/data.js?v=20260805c"></script>
+<script src="assets/markets.js?v=20260729d"></script><script src="assets/data.js?v=20260805c"></script>
 <script>
 (function(){
   'use strict';
@@ -303,8 +303,33 @@
     return { bigGain:bigGain, smallGain:smallGain, smallLoss:smallLoss, bigLoss:bigLoss };
   }
 
-  /* ---------- ticker list, grouped by exchange ---------- */
+  /* ---------- ticker list, grouped by MARKET (not by exchange ticker prefix) ----------
+     Grouping used to split on the exchange prefix inside `code`, so the UAE arrived as
+     TWO sections — "ADX" and "DFM" — sorted apart from each other with Gulf and Korean
+     groups in between, and a reader looking for a UAE name had to know which of the two
+     exchanges it listed on. Market is decided by FILE PLACEMENT (engine/raw_ohlc/{MKT}/),
+     which is what assets/markets.js bakes: MARKET_OF gives the market, MARKET_META its
+     label ("UAE — ADX & DFM"), MARKET_ORDER the render order. ledger.html already reads
+     that registry; this page and portfolio.html now read the same one, so all three
+     surfaces section identically and a new market appears everywhere at once.
+     The exchange prefix stays as the FALLBACK for anything not in the registry, so an
+     unregistered name still lands in a sensible group rather than vanishing. */
   function exOf(t){ var c=(t.code||''); var i=c.indexOf(':'); return i>0 ? c.slice(0,i) : 'Other'; }
+  function mktOf(k, t){
+    // marketOf() comes from assets/markets.js and resolves the LEDGER-vs-TICKERS
+    // spelling difference (SAMSUNG/Samsung, KAKAO/Kakao) that a bare MARKET_OF[k]
+    // lookup silently misses. Exchange prefix only as a last resort.
+    if(typeof marketOf === 'function'){ var m = marketOf(k); if(m) return m; }
+    return exOf(t);
+  }
+  function mktLabel(m){
+    if(typeof marketLabel === 'function') return marketLabel(m);
+    return m;
+  }
+  function mktRank(m){
+    if(typeof marketRank === 'function') return marketRank(m);
+    return 99;
+  }
 
   /* ---------- searchable name/ticker combobox ----------
      Replaces the old plain <select id="t-sym">: type any part of the company name or
@@ -320,11 +345,15 @@
       return t && t.spot && t.dist && t.dist.t20 && t.dist.t60;
     });
     var groups = {};
-    keys.forEach(function(k){ var g = exOf(TICKERS[k]); (groups[g] = groups[g] || []).push(k); });
-    // EGX first — same reasoning as portfolio.html's picker: it's the bulk of the
-    // coverage and what most readers come for, so it shouldn't sort below Gulf groups.
+    keys.forEach(function(k){ var g = mktOf(k, TICKERS[k]); (groups[g] = groups[g] || []).push(k); });
+    // Registry order (Egypt, UAE, Saudi Arabia, Qatar, India, Korea, US, metals) — Egypt
+    // first because it is the bulk of the coverage and what most readers come for, and
+    // the UAE second as one section rather than an ADX half and a DFM half. Anything the
+    // registry does not know sorts to the end, alphabetically, rather than jumping ahead.
     var groupNames = Object.keys(groups).sort(function(a,b){
-      if(a==='EGX') return -1; if(b==='EGX') return 1; return a.localeCompare(b);
+      var ra = mktRank(a), rb = mktRank(b);
+      if(ra !== rb) return ra - rb;
+      return a.localeCompare(b);
     });
     groupNames.forEach(function(g){
       groups[g].sort(function(a,b){ return TICKERS[a].name.localeCompare(TICKERS[b].name); });
@@ -368,7 +397,7 @@
       var html = '';
       if(!gs.length) html = '<div class="t-combo-empty">No match — try a name or a ticker like DSCW</div>';
       gs.forEach(function(g){
-        html += '<div class="t-combo-group">' + g[0] + '</div>';
+        html += '<div class="t-combo-group">' + mktLabel(g[0]) + '</div>';
         g[1].forEach(function(k){
           var t = TICKERS[k];
           html += '<div class="t-combo-opt' + (k===selected?' sel':'') + (k===activeKey?' active':'') +
