@@ -151,6 +151,43 @@ What triggered this. CLHO's regression beta was 0.446 (weekly vs. a 27-name equa
 
 QC consequence. A WACC/Ke section stating a beta without the diagnostic triple + CI, the weak-instrument flag where applicable, the sensitivity table, and the plausibility cross-check where the beta is an outlier, is a QC FAIL going forward.
 
+[AMENDED 10-Aug-2026, per instruction] 6. THE REGRESSOR IS THE PUBLISHED MARKET INDEX FOR THE STOCK'S OWN EXCHANGE. NOT A COMPOSITE.
+
+The rule above always said "its own local index." It was not honoured. Every beta in this repo — all eight studies, SWDY the model study included — was regressed against an **equal-weight composite of whichever names the engine happened to cover in that market**. Clause 4 of this same procedure even names "a 27-name equal-weight EGX composite" in the CLHO precedent that established the procedure, so the substitution was not an oversight in one study: the house pattern normalised it, and each new study copied the last.
+
+What it cost, measured on FERTIGLB (ADX) on 10-Aug-2026, the first name regressed both ways:
+
+| regressor | β | R² |
+|---|---|---|
+| FTSE ADX General, Dimson | **0.931** | **10.0%** |
+| FTSE ADX General, naive | 0.810 | 9.1% |
+| 17-name equal-weight composite, naive *(what shipped)* | 0.492 | 6.2% |
+| 17-name turnover-weighted composite, naive | 0.376 | 4.3% — fails the gate |
+
+The composite understated beta by ~40% and explained materially less of the variance. It carried the WACC from 11.90% to 8.53% and the fair-value centre from AED 2.15 to AED 2.74 — a 21.6% overstatement of value, from the choice of regressor alone. Three defects, none subtle:
+
+- **It mixed exchanges.** The `AE` library holds ADX names (ADCB, FAB, ALDAR, ADNOCGAS) beside DFM names (EMAAR, DIB, ENBD, SALIK). FERTIGLB is ADX-listed. An ADX share was being regressed against an ADX/DFM mongrel.
+- **It was a coverage artefact, not a market.** 17 names this engine happens to hold, not the exchange. The composite changes every time a stock is posted.
+- **Equal weighting is not a weighting scheme.** It gave TWOPOINTZERO the weight of FAB. Turnover weighting only proxied the free-float-cap scheme the real index applies properly.
+
+There is a second, subtler harm. A composite built from the covered panel shares constituents with the panel it is used to price, injecting self-covariance; `scem_study/beta_reg.py` already noted this and proceeded anyway.
+
+THE RULE, from now on:
+
+(a) The regressor is the **published index of the exchange the stock is listed on**, read from `engine/raw_indices/{MARKET}/{INDEX}.csv`. EGX30 for EGX, FTSE ADX General for ADX, TASI for Tadawul, and so on. Where a market has several indices, prefer the broad all-share over a blue-chip subset unless the study states why.
+
+(b) **A constituent composite is not a substitute and is not a tier.** It may be reported as a labelled cross-check; it may never be the regressor.
+
+(c) **Match the exchange, not the country.** A DFM-listed name is regressed against a DFM index, not an ADX one, even though both are "AE" in the engine's market coding. If the correct index is not held, that is case (d).
+
+(d) **If the index is not in `raw_indices/`, STOP AND ASK for it** — the same stop-and-inform discipline SIGCM applies to missing primary financials. Do not build a composite and proceed. The index is one file; the request costs a message.
+
+(e) The index series passes **Step 0.0** like any other series before use, and its as-of date is quoted wherever the beta is quoted.
+
+(f) Every beta previously built on a composite is **non-conforming and must be re-derived before that study is re-issued or rolled forward**. Affected: AMOC, ARCC, EGCH, ELEC, PHAR, SCEM, SWDY (all EGX, all against the EG composite; EGX30 has been in the repo since 09-Aug-2026) and FERTIGLB (corrected 10-Aug-2026). The WACC/Ke, fair-value range and any sensitivity anchored on beta all move with it.
+
+(g) Markets whose index is still absent as of 10-Aug-2026: **BR, GB.** SA/TASI was supplied 10-Aug-2026, so every Tadawul beta (STC and any future Saudi name) must be re-derived against it. No conforming beta can be produced for a name in those markets until the file is supplied.
+
 [NEW 13-Jul r2] KE / KD / WACC — standing procedure
 
 [NEW 13-Jul r3] SCOPE, stated explicitly before the mechanics. The sliding schedule is a device for markets in monetary transition, not a universal replacement for a flat WACC. It applies where the current risk-free rate sits materially above its own long-run/norm-built level — currently: Egypt. It does not apply to currency-pegged markets (UAE, Saudi, Qatar) where the risk-free rate already sits at its long-run level by construction of the peg — there, today is the terminal, the glide collapses to flat, and applying it produces zero effect while adding needless complexity (measured on EAND: +0.0%). The sovereign-double-count fix (Ke section, item 3) is a separate, market-agnostic correction and applies everywhere a country ERP is stacked on a local rf, GCC included.
