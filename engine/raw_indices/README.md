@@ -24,11 +24,29 @@ Nothing in this directory is part of any MC panel.
 
 | Market | File | Span | Source format |
 |---|---|---|---|
+| AE | `AE/FADGI.csv` (FTSE ADX General) | 2011-01-02 → 2026-07-24 | investing.com daily export |
 | EG | `EG/EGX30.csv` | 2011-01-02 → 2026-07-22 | investing.com daily export |
 | IN | `IN/NIFTY50.csv` | — | investing.com daily export |
 | KR | `KR/KOSPI100.csv` | — | investing.com daily export |
 | QA | `QA/QATAR10.csv` | — | investing.com daily export |
 | US | `US/NASDAQCOMP.csv` | — | investing.com daily export |
+
+## Missing — no conforming beta is possible in these markets
+
+**SA (Tadawul/TASI), BR, GB.** Under the amended BETA rule (10-Aug-2026) a constituent
+composite is not a substitute, so a study on a name in these markets must STOP AND ASK
+for the index rather than build one.
+
+AE/FADGI was added 10-Aug-2026. Until then every AE beta ran against an equal-weight
+composite of the covered `raw_ohlc/AE/` names — which mixed ADX and DFM constituents,
+so an ADX-listed share was regressed against an ADX/DFM mongrel. On FERTIGLB that
+composite gave beta 0.492 (R² 6.2%) against the real index's 0.931 (R² 10.0%): a ~40%
+understatement that overstated fair value by 21.6%. The same substitution was in force
+in all seven EGX studies. See the BETA section of `Standing_Research_Protocol.md`.
+
+**A market having a file here is not the same as its studies using it.** EGX30 landed
+09-Aug-2026 and no EGX study regressed against it; they all kept the composite until the
+rule was made explicit. When adding an index, re-derive the betas that predate it.
 
 EG/EGX30 was added 9-Aug-2026. Until then this directory carried an index for
 every covered market EXCEPT Egypt — the largest panel, and the one whose beta
