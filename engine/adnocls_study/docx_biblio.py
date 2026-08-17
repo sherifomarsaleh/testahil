@@ -260,6 +260,7 @@ DOCS = {
     'CALLQ126': 'Q1 2026 earnings call transcript',
     'CALL25': 'FY2025 earnings call transcript',
     'REL25': 'FY2025 earnings release',
+    'ACQ26': 'Announcement of the purchase of eleven vessels, 7 August 2026',
 }
 
 
@@ -282,7 +283,9 @@ CNT = {
     'REL25': n_from('FY2025 earnings release'),
     'FS22': n_from('Consolidated Financial Statements FY2022'),
     'AR24': n_from('Annual Report and Accounts 2024 '),
+    'ACQ26': n_from('Announced 7 August 2026'),
 }
+assert CNT['ACQ26'] >= 1, 'the August purchase supplies no input to the model'
 
 
 def supplies(key):
@@ -541,7 +544,24 @@ T([['Document', 'Date', 'File held', 'What was taken from it'],
    ['Earnings release, 2025 full year', fdate('2026-01-31'), held('REL_FY2025.pdf'),
     'The realised sale of a 2017-built very large crude carrier in January 2026, its carrying '
     'value and the gain — the only market evidence of what this fleet is worth secondhand. '
-    + supplies('REL25')]],
+    + supplies('REL25')],
+   ['Announcement of the purchase of eleven vessels',
+    fdate(INP['acq_2026_cost']['date']), 'announcement, not a filed document',
+    f"The single most consequential document in this edition, and it is dated the same day "
+    f"as the closing price the study is anchored on. It gives the number of vessels by "
+    f"class — {IV['acq_2026_vlcc']:,.0f} very large crude carriers and "
+    f"{IV['acq_2026_gas']:,.0f} gas carriers — the approximate consideration of "
+    f"{usdm(IV['acq_2026_cost'])}, the delivery quarters, and the fleet counts the company "
+    f"says the purchase takes it to. WHAT IT CHANGED: the first edition of the study did "
+    f"not carry the transaction at all, so a fair value that excluded the vessels was being "
+    f"compared with a market price that already included them. The vessels now join the "
+    f"model on their announced delivery dates and earn from those dates, and the "
+    f"consideration is added both to the debt-like deduction in the bridge and to the asset "
+    f"base that depreciates. It also confirms a correction the previous edition had already "
+    f"made from a different document: the company states the purchase takes the crude fleet "
+    f"to fourteen, and the corrected valuation-date count of "
+    f"{D['fleet']['owned']['vlcc']:,.0f} plus {IV['acq_2026_vlcc']:,.0f} is fourteen. "
+    + supplies('ACQ26')]],
   [1.62, 0.75, 1.15, 3.58], aligns=['L', 'L', 'L', 'L'], size=7.7)
 
 H2('External documents')
@@ -742,6 +762,54 @@ JUD = [
      "published average differently — by revenue rather than by vessel-days, say, or "
      "excluding off-hire — the solved rate is too high by the amount the average is "
      "understated, and a reported half-year would show it."),
+    ('How the eleven vessels bought on 7 August 2026 are phased into the model',
+     f"On their announced delivery dates, and not before. The announcement gives delivery "
+     f"quarters rather than dates, so each group is placed at the start of the quarter it "
+     f"is announced for: the crude carriers and the secondhand gas carriers in the third "
+     f"quarter of 2026, the gas carrier newbuildings in the fourth. From those dates they "
+     f"earn the same open-market rate the rest of their class earns, and they depreciate on "
+     f"the same rate as the rest of the fleet. The whole consideration of "
+     f"{usdm(IV['acq_2026_cost'])} is deducted in the bridge at once, because it is "
+     f"committed at the valuation date whether or not the ships have arrived. What is "
+     f"judged is the phasing WITHIN the announced quarters and the assumption that the "
+     f"ships trade on the class rate rather than on terms of their own.",
+     "A delivery notice, or the half-year and full-year statements, which will show the "
+     "vessels on the balance sheet and the consideration paid. A slipped delivery would "
+     "take earnings out of 2026 while leaving the deduction in, which is the direction the "
+     "phasing risk runs. Note that only the part-year matters: from 2027 every vessel is in "
+     "for the full year on any phasing inside the announced quarters."),
+    ('The rate carried for the smallest tanker class',
+     f"{fval('handysize_relative', IV['handysize_relative'])} of the medium-range rate. No "
+     f"quarterly rate is published for the handysize class at any point in the record. The "
+     f"previous edition stood the medium-range rate in for it unadjusted; on the "
+     f"first-quarter call the company said handysize rates were softer while medium range "
+     f"was up, so the two classes were moving in opposite directions and the substitution "
+     f"was importing a rise into a class that was falling. The disclosed relative move is "
+     f"used instead of the substitution.",
+     "A published handysize rate, which would replace the scaling outright. Failing that, a "
+     "second disclosure of the relative move in a later quarter. The class is "
+     f"{D['fleet']['owned']['hs']:,.0f} of "
+     f"{sum(D['fleet']['owned'].values()):,.0f} owned tankers and the lowest earner in the "
+     f"fleet, so the amount at stake is small — but a substitution that points the wrong "
+     f"way is a different kind of error from one that is merely approximate."),
+    ('The revenue basis the receivable cycle is measured against',
+     f"Receivable days are {IV['dso_days']:,.1f}, not the "
+     f"{IV['dso_days_reported']:,.1f} that receivables over REPORTED 2025 revenue gives. "
+     f"The two differ because 2025 revenue carries a gross-up of "
+     f"{IV['tnk_grossup_25']:,.2f}x over the owned tanker fleet's own charter-equivalent "
+     f"revenue, from chartered-in and relet trading, while the forecast revenue line is "
+     f"built at {IV['tnk_grossup_26']:,.2f}x. A day count calibrated on one basis and "
+     f"applied to the other understates the receivable balance by the whole difference "
+     f"between the two conventions, so the count is re-based onto the basis the forecast "
+     f"uses.",
+     f"A change in the trading mix that moves the gross-up itself, which would move both "
+     f"the ratio and its base together. This correction also falsified a claim the previous "
+     f"edition printed — that the gross-up moves the revenue line and never the earnings "
+     f"line, and therefore cannot affect the valuation. The first half is true and the "
+     f"conclusion does not follow: revenue is the denominator the conversion cycle is "
+     f"expressed in, so the convention reaches the valuation through receivables and the "
+     f"change in working capital. The claim is reprinted and corrected in the study's own "
+     f"caveats rather than dropped."),
     ('The rate at which the excess return fades in the asset lens',
      f"{fval('ri_fade', IV['ri_fade'])} a year. The asset lens is built as residual income "
      f"— opening ordinary book, plus the return earned above the cost of equity on that "
@@ -1014,6 +1082,21 @@ NEG = [
      f"scale of the upward pull the published-index slope also carries, and it is disclosed in "
      f"the study. It works against the study's own conclusion, since removing it would lower "
      f"the beta and lift the valuation."),
+    ("The comparators' own filings, for the multiples used in the comparison lens",
+     fdate('2026-08-09'),
+     "Not obtained, and not attempted at the level the subject's own accounts were. The "
+     "three comparator multiples come from data-aggregator statistics pages, each named "
+     "and dated in the external documents table above. Rebuilding them would mean three "
+     "more sets of filings on three reporting conventions in three currencies. The rule "
+     "that admits only a company's own issued documents governs the SUBJECT's reported "
+     "history and is met in full for it; the comparators sit outside that rule and the "
+     "consequence is specific rather than rhetorical — the study cannot show that a "
+     "comparator's earnings are struck on the same definition as the subject's, which is "
+     "why the comparison lens is presented as evidence about relative pricing rather than "
+     "as an independent valuation. It is the largest block of non-company data behind the "
+     "study, and the two lenses that use it carry "
+     f"{(LW['relative'] + LW['normalized']) * 100:.0f}% of the weighted central between "
+     f"them."),
     ('The Annual Report and Accounts for 2023 as a separate volume',
      fdate('2026-08-09'),
      "Not obtained from the investor pages. It costs the study nothing: the 2023 audited "
@@ -1089,6 +1172,36 @@ DISC = [
     "added the chartered vessels again at their own rates, charging the drag of the "
     "charters twice and understating the fleet. The correction is set out in the study's "
     "own section on what changed in this edition."],
+   ['Whether the tanker revenue gross-up can reach the valuation',
+    f"The previous edition of the study printed a caveat that said it could not: the ratio "
+    f"“moves the revenue line and never the earnings line, so it cannot affect the "
+    f"valuation”. That reading is stated here because the study itself made it, in print, "
+    f"and it was a falsifiable claim rather than an opinion.",
+    f"It does affect the valuation. Receivable days were calibrated on 2025 revenue, which "
+    f"carries the {IV['tnk_grossup_25']:,.2f}x gross-up, and applied to a forecast revenue "
+    f"line built at {IV['tnk_grossup_26']:,.2f}x. Re-based onto the basis the forecast "
+    f"uses, {IV['dso_days_reported']:,.1f} days becomes {IV['dso_days']:,.1f}, which moves "
+    f"the receivable balance, the change in working capital and therefore the cash flow "
+    f"being discounted.",
+    "The second reading, and the first is corrected on the face of the study rather than "
+    "deleted from it. This row is not a source disagreeing with a source: it is the study "
+    "disagreeing with itself, one edition to the next, on a claim it could have tested and "
+    "did not. A study that quietly withdraws a claim it has made leaves a reader unable to "
+    "tell which of its other claims have been tested, so the withdrawal is recorded here "
+    "with the arithmetic that forced it."],
+   ['What the adopted cost of debt is an average of',
+    f"The previous edition described the adopted pre-tax cost of debt as a figure “weighted "
+    f"across the drawn book”. On that description a reader would take "
+    f"{W['kd'] * 100:.2f}% to be a balance-weighted number.",
+    f"It is the plain arithmetic AVERAGE of three constructions — the marginal drawdown "
+    f"rate on the parent facility ({W['kd_method1'] * 100:.2f}%), the weighted blend of the "
+    f"instruments actually outstanding ({W['kd_method2'] * 100:.2f}%), and the midpoint of "
+    f"the disclosed third-party bank range ({W['kd_method3'] * 100:.2f}%). The genuinely "
+    f"balance-weighted construction is {W['kd_balance_weighted'] * 100:.2f}%, and it is one "
+    f"of the three being averaged rather than the answer.",
+    'Both are published, and the average is now described as an average. The figure did not '
+    'change; only the sentence describing it did, and a sentence that misdescribes a '
+    'construction is a defect in the same way a wrong figure is.'],
    ['The beta, measured against two different definitions of the same market',
     f"An equal-weight composite of the exchange's own listed names — {BR['composite_names']:,} "
     f"of them, the subject excluded — gives a slope of {BC['beta']:.3f} over the same window "
@@ -1141,6 +1254,66 @@ T([['The definition', 'At 31 Mar 2026', 'Used?'],
     f"deducted in the bridge in their own right rather than netted into debt, so nothing is "
     f"counted twice and nothing is dropped."]],
   [2.95, 0.85, 3.30], aligns=['L', 'R', 'L'], size=7.7)
+
+# ============================================================================
+# 7b  THE TESTS BEHIND THE PRICE MAP AND THE BETA
+# ============================================================================
+# A review pointed out that the study asserts the price map is tested before it publishes a
+# range, and then delivers nothing a reader can check the test against. The window-by-window
+# record is small enough to print, so it is printed.
+H1_NEW_PAGE('The tests behind the price map, window by window')
+P("Section 3 of the study states that the price map is tested before it is allowed to "
+  "publish a range, and gives the summary scores. A summary score is not evidence a reader "
+  "can check. The record below is every independent three-month window the test ran on: "
+  "the date the map was struck from, the date it was scored on, the price at each, and "
+  "whether the outcome fell inside the middle 50%, 80% and 90% of the distribution the map "
+  "produced. Each window uses only data available on the day it was struck.")
+_BTR = []
+with open(os.path.join(HERE, 'backtest_rows.csv')) as _f:
+    _hdr = _f.readline().rstrip('\n').split(',')
+    for _line in _f:
+        if _line.strip():
+            _BTR.append(dict(zip(_hdr, _line.rstrip('\n').split(','))))
+assert _BTR, 'the window record is empty'
+
+
+def _yn(s):
+    return 'yes' if s.strip().lower() == 'true' else 'no'
+
+
+_rows = [['Struck from', 'Scored on', 'Price when struck', 'Price when scored',
+          'Inside the middle 50%', 'Inside 80%', 'Inside 90%']]
+for _r in _BTR:
+    _rows.append([fdate(_r['origin']), fdate(_r['grade_date']),
+                  f"{float(_r['spot']):,.2f}", f"{float(_r['realized']):,.2f}",
+                  _yn(_r['in50']), _yn(_r['in80']), _yn(_r['in90'])])
+_in = [sum(1 for _r in _BTR if _r[k].strip().lower() == 'true')
+       for k in ('in50', 'in80', 'in90')]
+_rows.append([f'{len(_BTR)} windows', '', '', '',
+              f"{_in[0]} of {len(_BTR)}", f"{_in[1]} of {len(_BTR)}",
+              f"{_in[2]} of {len(_BTR)}"])
+T(_rows, [1.00, 1.00, 1.05, 1.05, 1.15, 0.90, 0.95],
+  aligns=['L', 'L', 'R', 'R', 'R', 'R', 'R'], size=7.9)
+P(f"Prices are in dirhams. The share listed in June 2023, so there are only "
+  f"{len(_BTR)} independent three-month windows to be had — that is the binding limit on "
+  f"this test and no arrangement of the data removes it. The counts in the last row are the "
+  f"coverage figures quoted in the study, and they are small-sample counts rather than "
+  f"percentages that mean anything on their own: one window either way moves the middle "
+  f"figure by more than a tenth. The one-month horizon has three times as many windows and "
+  f"behaves better, and the width setting itself rests on a much larger group of Abu Dhabi "
+  f"names rather than on this share alone. Both of those are stated in the study.", size=9.5)
+P(f"The same principle applies to the beta and to the price structure in section 2, and "
+  f"here the honest answer is a limitation rather than a table. The regression pairs "
+  f"{BR['n']:,} weekly returns of the share against the index series named in the external "
+  f"documents table, over {BR['window_years']:.2f} years, and reports a slope of "
+  f"{BR['beta']:.3f} with a standard error of {BR['se']:.3f} and an R-squared of "
+  f"{BR['r2']:.3f}. The paired series itself is not reproduced in these documents, and nor "
+  f"is the daily price history the moving averages and the level ladder are computed from — "
+  f"they are thousands of rows. What a reader can check without them is stated instead: the "
+  f"observation count, the span, the two variants the same returns give against different "
+  f"definitions of the market, and the 52-week high and low, which any price source will "
+  f"confirm. A reader who wants to reproduce the regression needs the two closing series, "
+  f"and this document names exactly which two and over exactly which dates.", size=9.5)
 
 # ============================================================================
 # 8  SOURCE INTEGRITY

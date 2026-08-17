@@ -280,8 +280,74 @@ checks = [
     # ---- the three derived cells that now sit on the driver sheet as formulas ----
     ('Assumptions running cost per vessel-day is a link, not a pasted result',
      g('Assumptions', f"C{ROWS['Assumptions']['opex_day']}"), FL['opex_day'], 0.005),
-    ('Assumptions days sales outstanding is derived from the audited columns',
-     g('Assumptions', f"C{ROWS['Assumptions']['dso']}"), D['ccc']['dso'][2], 0.005),
+    ('Assumptions days sales outstanding on REPORTED revenue is derived from the audited '
+     'columns', g('Assumptions', f"C{ROWS['Assumptions']['dso_rep']}"), D['ccc']['dso'][2],
+     0.005),
+    # the re-basing, in the sheet: the reported ratio scaled by the revenue basis the
+    # forecast is built on. It is checked against the committed input, which records it to
+    # one decimal, and against the arithmetic recomputed here from the committed parts.
+    ('Assumptions days sales outstanding, re-based onto the forecast revenue basis',
+     g('Assumptions', f"C{ROWS['Assumptions']['dso']}"), V_['dso_days'], 0.05),
+    ('The re-basing arithmetic, recomputed independently',
+     g('Assumptions', f"C{ROWS['Assumptions']['dso']}"),
+     D['ccc']['dso'][2] * V_['rev_fy25']
+     / (V_['rev_fy25'] - V_['seg_rev_tankers_fy25']
+        + FL['tce_rev_25'] * V_['tnk_grossup_26']), 0.005),
+    ('The 2025 gross-up shown beside it — reported tanker revenue over the same fleet\'s '
+     'charter-equivalent revenue',
+     g('Assumptions', f"C{ROWS['Assumptions']['gu25']}"), V_['tnk_grossup_25'], 0.0005),
+    ('The 2026 gross-up shown beside it',
+     g('Assumptions', f"C{ROWS['Assumptions']['gu26']}"), V_['tnk_grossup_26'], 1e-9),
+    # ---- the fleet purchase announced on the anchor date ----------------------
+    ('The eleven vessels bought on 7 August 2026, at the announced price',
+     g('Assumptions', f"C{ROWS['Assumptions']['acq_cost']}"), V_['acq_2026_cost'], 1.0),
+    ('Crude carriers acquired', g('Assumptions', f"B{ROWS['Assumptions']['acq_vlcc']}"),
+     V_['acq_2026_vlcc'], 1e-9),
+    ('Gas carriers acquired', g('Assumptions', f"B{ROWS['Assumptions']['acq_gas']}"),
+     V_['acq_2026_gas'], 1e-9),
+    ('Vessels acquired in total, added up in the sheet',
+     g('Assumptions', f"B{ROWS['Assumptions']['acq_total']}"),
+     V_['acq_2026_vlcc'] + V_['acq_2026_gas'], 1e-9),
+    ('Acquired crude-carrier vessel-days in 2026 — from the delivery date to the year end',
+     g('Segments', f"B{SG['yacd0'] + 4}"),
+     V_['acq_2026_vlcc'] * (dt.date(2027, 1, 1) - dt.date(2026, 9, 1)).days, 0.5),
+    ('Acquired crude-carrier vessel-days in 2027 — a full year of them',
+     g('Segments', f"C{SG['yacd0'] + 4}"), V_['acq_2026_vlcc'] * 365, 0.5),
+    ('No acquired vessel-days in a class where nothing was bought',
+     g('Segments', f"C{SG['yacd0']}"), 0.0, 1e-9),
+    ('Gas vessel-years the purchase adds in 2027 — all five, for the whole year',
+     g('Assumptions', f"C{ROWS['Assumptions']['gas_vy_acq']}"), V_['acq_2026_gas'], 1e-6),
+    ('Gas contracted vessel-years, 2027 — the contract table plus the purchase',
+     g('Assumptions', f"C{ROWS['Assumptions']['gas_vy']}"), FL['gas_vessel_years'][1],
+     1e-6),
+    ('The purchase price is carried in the equity bridge',
+     g('DCF', f"C{DF_['acq']}"), -V_['acq_2026_cost'], 1.0),
+    ('The purchase price is capitalised in the asset roll',
+     g('Balance Sheet', f"B{ROWS['Balance Sheet']['ppeacq']}"), V_['acq_2026_cost'], 1.0),
+    ('The purchase price is carried in the opening net debt',
+     g('Balance Sheet', f"B{ROWS['Balance Sheet']['ndopen']}"),
+     V_['q1_26_netdebt'] + V_['q1_26_pcp'] + V_['acq_2026_cost'], 1.0),
+    # ---- the smallest tankers, scaled rather than substituted -----------------
+    ('Handysize published blend, first quarter 2026 — the medium-range rate scaled by the '
+     'disclosed relative move', g('Segments', f"F{SG['blend0']}"),
+     FL['blend_q1_26']['mr'] * V_['handysize_relative'], 0.5),
+    ('Handysize 2025 blend, the same scaling', g('Segments', f"B{SG['blend0']}"),
+     FL['blend_fy25']['hs'], 0.5),
+    # ---- the cost of debt, labelled for what each figure is -------------------
+    ('Cost of debt — the balance-weighted construction alone',
+     g('DCF', f"C{DF_['kdbal']}"), WACC['kd_balance_weighted'], 0.00005),
+    # ---- the earnings multiple on both bases ----------------------------------
+    ('Blended forward price/earnings', g('Peer & Sector', f"C{ROWS['Peer & Sector']['pe']}"),
+     REL['blend_pe'], 0.0005),
+    ('Blended trailing price/earnings, built the same way on the trailing figures',
+     g('Peer & Sector', f"C{ROWS['Peer & Sector']['pe_t']}"),
+     (1 - REL['spot_weight']) * D['peers'][0]['pe_ttm']
+     + REL['spot_weight'] * D['peers'][1]['pe_ttm'], 0.0005),
+    ('The company on the trailing basis',
+     g('Relative & Normalized', f"C{RN['pe_ttm']}"), REL['own_pe_ttm'], 0.005),
+    ('The company on the forward basis — the basis the peer multiples are quoted on',
+     g('Relative & Normalized', f"C{RN['pe_fwd']}"),
+     WACC['mktcap'] / FIN['npa_ordinary'][0], 0.005),
     ('Assumptions opening net working capital is derived from the audited columns',
      g('Assumptions', f"C{ROWS['Assumptions']['nwc25']}"), HB['nwc'][2], 1.0),
 ]

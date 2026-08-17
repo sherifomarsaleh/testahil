@@ -33,13 +33,16 @@ for row in wb['Assumptions'].iter_rows(min_col=1, max_col=1):
 
 HEADLINES = ['fv', 'fv_beta_alt', 'central', 'central_beta_alt', 'pv_expl', 'tv', 'ev',
              'tv_share', 'wacc', 'wacc_term', 'ke', 'ke_ci_lo', 'ke_ci_hi', 'ke_dimson',
-             'kd', 'wh', 'kh', 'kh_term', 'rev26', 'ebitda26', 'ebitda30',
-             'nopat26', 'tax26', 'fcff26', 'tankers26', 'tankers30', 'gas28', 'relative',
+             'kd', 'kd_balance_weighted', 'wh', 'kh', 'kh_term', 'rev26', 'ebitda26',
+             'ebitda30',
+             'nopat26', 'tax26', 'fcff26', 'tankers26', 'tankers30', 'gas26', 'gas28',
+             'relative',
              'normalized', 'book', 'book_bear', 'book_bull', 'book_equity', 'roe_sust',
-             'sotp', 'nd30', 'bvps30', 'nwc26', 'ppe30', 'npa26', 'ordn26',
+             'sotp', 'nd30', 'bvps30', 'nwc26', 'ppe26', 'ppe30', 'npa26', 'ordn26',
              'eps26', 'eps26_pre', 'eveb_bridge',
              'tnk_spot_vlcc_q1', 'tnk_tce26', 'tnk_tce30', 'tnk_opexday',
-             'gas_rate_solved']
+             'tnk_chrev26', 'tnk_sprev26', 'tnk_acqdays26',
+             'gas_rate_solved', 'gas_vy27', 'dso', 'dso_reported']
 
 
 def split(ref):
@@ -261,10 +264,27 @@ CASES = [
      'the fixture runs through the first quarter of 2026, and the published blend for that '
      'quarter is fixed, so a dearer charter must leave a CHEAPER implied spot rate behind '
      'it — this is the identity the whole derivation rests on'),
+    ('Zakum — very large crude carrier, fixed for 22 months', 'B', +10000.0,
+     'tnk_chrev26', +1,
+     'the fixture channel: the vessel earns its own contracted rate for its own days, so '
+     'charter revenue in 2026 rises'),
+    ('Zakum — very large crude carrier, fixed for 22 months', 'B', +10000.0,
+     'tnk_sprev26', -1,
+     'the opposing channel: the cheaper implied spot rate is earned by every spot day the '
+     'class trades, and since 7 August 2026 that includes six more crude carriers from '
+     'delivery, so spot revenue falls'),
+    # DECOMPOSED, NOT ASSUMED — AND RE-DECOMPOSED AFTER THE FLEET GREW. Before the August
+    # purchase the extra charter revenue on the one fixture outweighed the cheaper spot
+    # rate it left behind, and 2026 charter-equivalent revenue rose 0.09%. It does not any
+    # more, and the reason is countable: the six crude carriers bought on 7 August 2026
+    # add 732 spot vessel-days to that class in 2026, so the same one-dollar fall in the
+    # implied spot rate is now earned across a larger spot fleet. Charter revenue rises
+    # 2.41%; spot revenue falls 0.33%; the net is -0.015%. Both channels are asserted
+    # above so neither can go quiet, and the model was not touched.
     ('Zakum — very large crude carrier, fixed for 22 months', 'B', +10000.0, 'tnk_tce26',
-     +1,
-     'and within 2026 the extra charter revenue on that vessel outweighs the cheaper spot '
-     'rate on the rest of the class, so charter-equivalent revenue rises'),
+     -1,
+     'net of the two the spot side now wins, because the vessels bought in August 2026 '
+     'enlarged the spot fleet the cheaper rate is earned on — decomposed, not assumed'),
     ('Navig8 Prosperity — long range 2, fixed for 36 months', 'B', +10000.0, 'fv', -1,
      'this fixture is the one that runs through the first quarter of 2025 as well, so it '
      'cuts the implied spot rate that sets the MID-CYCLE ANCHOR — and the anchor governs '
@@ -288,14 +308,123 @@ CASES = [
     ('Vessels owned at 31 December 2025', 'F', +1.0, 'tnk_opexday', +1,
      'the opposing channel: it also enlarges the 2025 revenue the running cost is solved '
      'from, and 2025 earnings are fixed, so the cost per vessel-day rises'),
-    ('Vessels owned at 31 December 2025', 'F', +1.0, 'fv', +1,
-     'net of the two the earnings side wins, but only just — decomposed, not assumed'),
+    ('Vessels owned at 31 December 2025', 'F', +1.0, 'tankers30', -1,
+     'the third channel, and the one that decides it: the vessel count is the DENOMINATOR '
+     'of the implied-spot solve, so one more vessel means a LOWER implied spot rate — and '
+     'that lower rate is now earned by the six crude carriers bought in August 2026 as '
+     'well, which is a larger fleet than the one extra vessel it adds'),
+    ('Vessels owned at 31 December 2025', 'F', +1.0, 'central', +1,
+     'the multiple lenses value 2026 earnings, which rise, so the weighted central figure '
+     'still rises'),
+    # DECOMPOSED, NOT ASSUMED — AND RE-DECOMPOSED AFTER THE FLEET GREW. The cash-flow lens
+    # used to rise 0.06% on this bump and now falls 0.20%. Nothing about the mechanism
+    # changed: 2026 tanker earnings still rise 2.17% and the solved running cost still
+    # rises 8.75%. What changed is the third channel above — the implied spot rate falls
+    # 4.64% and is now earned across the enlarged fleet, which is why 2030 earnings fall
+    # 0.64% and the far end of the path, where most of the discounted value sits, is worth
+    # less. The weighted central figure, which leans on 2026, still rises 0.40%.
+    ('Vessels owned at 31 December 2025', 'F', +1.0, 'fv', -1,
+     'net of the three the far end of the rate path wins in the cash-flow lens — '
+     'decomposed, not assumed'),
     ('All-in running cost per vessel per day (USD)', 'C', +500.0, 'fv', -1,
      'a higher running cost per vessel-day must lower tanker earnings and the valuation'),
+    # ---- the eleven vessels bought on 7 August 2026 ------------------------------------
+    # The price lands in TWO places, and both are asserted: it is carried in net debt,
+    # because the purchase is committed and funded, and it is capitalised in the asset
+    # base, where it depreciates and shields tax. The earnings of the ships themselves are
+    # a separate driver — the counts below — so raising the PRICE alone buys nothing extra
+    # and must lower the valuation.
+    ('Purchase price — added BOTH to net debt, because it is committed and funded, and to '
+     'the opening asset base, so it depreciates and shields tax (USD 000)', 'C',
+     +250000.0, 'ppe26', +1,
+     'a dearer purchase is a larger asset base in the year it arrives'),
+    ('Purchase price — added BOTH to net debt, because it is committed and funded, and to '
+     'the opening asset base, so it depreciates and shields tax (USD 000)', 'C',
+     +250000.0, 'fcff26', +1,
+     'and the heavier depreciation on it shields tax, so free cash flow to the firm rises '
+     'slightly — the second half of the same treatment'),
+    ('Purchase price — added BOTH to net debt, because it is committed and funded, and to '
+     'the opening asset base, so it depreciates and shields tax (USD 000)', 'C',
+     +250000.0, 'nd30', +1,
+     'the opposing channel: it is funded, so it is carried in net debt from the valuation '
+     'date and is still there at the end of the forecast'),
+    ('Purchase price — added BOTH to net debt, because it is committed and funded, and to '
+     'the opening asset base, so it depreciates and shields tax (USD 000)', 'C',
+     +250000.0, 'fv', -1,
+     'net of the two, paying more for the same eleven ships must lower the valuation'),
+    ('Very large crude carriers bought secondhand — they join the spot fleet on delivery '
+     'and earn at the implied spot rate from that date', 'B', +1.0, 'tnk_acqdays26', +1,
+     'one more acquired ship is more acquired vessel-days from its delivery date'),
+    ('Very large crude carriers bought secondhand — they join the spot fleet on delivery '
+     'and earn at the implied spot rate from that date', 'B', +1.0, 'tankers26', +1,
+     'and those days earn at the implied spot rate, so 2026 tanker earnings rise'),
+    ('Very large crude carriers bought secondhand — they join the spot fleet on delivery '
+     'and earn at the implied spot rate from that date', 'B', +1.0, 'fv', +1,
+     'and the valuation with them'),
+    ('Gas carriers acquired in total — they add contracted vessel-years to the gas fleet',
+     'B', +1.0, 'gas_vy27', +1,
+     'one more gas carrier is one more contracted vessel-year once it is delivered'),
+    ('Gas carriers acquired in total — they add contracted vessel-years to the gas fleet',
+     'B', +1.0, 'gas28', +1,
+     'which earns the solved day rate, so gas-carrier earnings rise'),
+    ('Gas carriers acquired in total — they add contracted vessel-years to the gas fleet',
+     'B', +1.0, 'fv', +1, 'and the valuation with them'),
+    # The tranche split changes WHEN, not HOW MANY: moving a vessel from the fourth-quarter
+    # newbuilding tranche to the third-quarter secondhand one leaves the total untouched —
+    # the newbuilding count is the total less this one — and only the part-year in 2026
+    # moves. So this driver must move 2026 and leave 2027 exactly where it was.
+    ('Of which bought secondhand, delivering in the third quarter', 'B', +1.0, 'gas26', +1,
+     'an earlier delivery is more vessel-years inside 2026'),
+    ('Of which bought secondhand, delivering in the third quarter', 'B', +1.0, 'gas_vy27',
+     0,
+     'and it must NOT change 2027, because the tranche split moves when the ships arrive, '
+     'never how many arrive'),
+    ('Of which bought secondhand, delivering in the third quarter', 'B', +1.0, 'fv', +1,
+     'earning three months earlier is worth a little more'),
+    # ---- the smallest tankers, scaled rather than substituted --------------------------
+    # DECOMPOSED, NOT ASSUMED. The scalar reaches the model on both sides of the same
+    # solve, exactly as the published 2025 blends do. A higher handysize rate raises the
+    # 2025 charter-equivalent revenue the running cost is solved from — and 2025 tanker
+    # earnings are a disclosed fixed number, so that whole increase becomes cost, charged
+    # on all 53 vessels — while the rate benefit accrues to two handysize vessels. 2026
+    # earnings still rise, 2030 earnings fall, and the cash-flow value falls by three
+    # ten-thousandths of a per cent. The weighted central figure rises.
+    ('Handysize rate as a proportion of the medium-range rate — the company disclosed '
+     'Handysize DOWN 21% against medium range UP 29%, so the two smallest classes moved '
+     'in OPPOSITE directions and the medium-range rate cannot stand in for the smallest '
+     'unadjusted. It scales the medium-range rate in every window and on both sides of '
+     'the mid-cycle average', 'C', +0.10, 'tnk_opexday', +1,
+     'the solve channel: a higher handysize rate raises the 2025 revenue the running cost '
+     'is solved from, and 2025 earnings are fixed, so the cost per vessel-day rises'),
+    ('Handysize rate as a proportion of the medium-range rate — the company disclosed '
+     'Handysize DOWN 21% against medium range UP 29%, so the two smallest classes moved '
+     'in OPPOSITE directions and the medium-range rate cannot stand in for the smallest '
+     'unadjusted. It scales the medium-range rate in every window and on both sides of '
+     'the mid-cycle average', 'C', +0.10, 'tnk_tce26', +1,
+     'the rate channel that opposes it: the two handysize vessels earn more'),
+    ('Handysize rate as a proportion of the medium-range rate — the company disclosed '
+     'Handysize DOWN 21% against medium range UP 29%, so the two smallest classes moved '
+     'in OPPOSITE directions and the medium-range rate cannot stand in for the smallest '
+     'unadjusted. It scales the medium-range rate in every window and on both sides of '
+     'the mid-cycle average', 'C', +0.10, 'tankers30', -1,
+     'by 2030 the escalated cost, charged on the whole fleet, has outgrown the extra '
+     'revenue on two vessels'),
+    ('Handysize rate as a proportion of the medium-range rate — the company disclosed '
+     'Handysize DOWN 21% against medium range UP 29%, so the two smallest classes moved '
+     'in OPPOSITE directions and the medium-range rate cannot stand in for the smallest '
+     'unadjusted. It scales the medium-range rate in every window and on both sides of '
+     'the mid-cycle average', 'C', +0.10, 'fv', -1,
+     'net of the two the cost side wins by a hair — decomposed, not assumed'),
+    ('Gross-up from time-charter-equivalent revenue to reported revenue', 'C', +0.20,
+     'dso', -1,
+     'the receivable ratio is re-based onto the revenue basis the forecast uses, so a '
+     'wider gross-up is FEWER days on a bigger revenue line — the channel through which a '
+     'presentational ratio that touches no earnings line reaches the valuation at all'),
     ('Gross-up from time-charter-equivalent revenue to reported revenue', 'C', +0.20,
      'nwc26', -1,
-     'payable days on the incremental gross revenue exceed the receivable and inventory '
-     'days it carries, so grossing up releases working capital'),
+     'and net working capital falls: payable days on the incremental gross revenue exceed '
+     'the receivable and inventory days it carries, and the re-based receivable days fall '
+     'as well'),
     ('Gross-up from time-charter-equivalent revenue to reported revenue', 'C', +0.20, 'fv',
      +1, 'and the released working capital raises the valuation slightly — decomposed, '
      'not assumed'),
@@ -304,8 +433,26 @@ CASES = [
      f'more capital expenditure in {name} must lower the valuation')
     for col, name in YRCOL
 ] + [
-    ('Days sales outstanding', 'C', +15.0, 'fv', -1,
+    ('Days sales outstanding measured on REPORTED 2025 revenue', 'C', +15.0, 'dso', +1,
+     'the re-based ratio is the reported one scaled, so it must move with it'),
+    ('Days sales outstanding measured on REPORTED 2025 revenue', 'C', +15.0, 'fv', -1,
      'slower collection absorbs cash into working capital and must lower the valuation'),
+    # THE RE-BASING, DRIVER BY DRIVER. The reported ratio is measured on 2025 revenue,
+    # which carries the 2025 gross-up; the forecast revenue it is applied to is built at
+    # the 2026 one. So a WIDER 2025 gross-up means the ratio was measured against a wider
+    # base than the forecast uses and the re-based figure rises, while a wider 2026
+    # gross-up means the forecast base is wider and it falls. Both are asserted, because
+    # this is the channel through which the gross-up — which touches no earnings line at
+    # all — reaches the valuation.
+    ('Gross-up inside 2025 reported revenue — reported tanker revenue over the same '
+     'fleet\'s charter-equivalent revenue', 'C', +0.20, 'dso', +1,
+     'a wider gross-up inside the year the ratio was measured on means more days once it '
+     'is re-based onto the narrower basis the forecast uses'),
+    ('Gross-up inside 2025 reported revenue — reported tanker revenue over the same '
+     'fleet\'s charter-equivalent revenue', 'C', +0.20, 'fv', -1,
+     'and those extra days absorb cash into working capital'),
+    ('Gross-up the forecast is built at, from 2026 onward', 'C', +0.20, 'dso', -1,
+     'the same arithmetic the other way: a wider forecast revenue base is fewer days'),
     ('Days payable outstanding', 'C', +15.0, 'fv', +1,
      'slower payment releases cash from working capital and must raise the valuation'),
     ('Days inventory outstanding', 'C', +5.0, 'fv', -1,

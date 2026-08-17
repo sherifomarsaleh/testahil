@@ -210,6 +210,233 @@ def segkey(s):
     return s.lower().replace(' ', '_').replace('-', '_')
 
 
+# ---- the review record, counted off the register rather than remembered -------
+# Two rounds of external review. The count and the number of readers are read from the
+# committed adjudication file, so a document that states them cannot drift from it.
+_ADJ = json.load(open(os.path.join(HERE, 'critique_adjudication.json')))
+N_FINDINGS = len(_ADJ)
+N_REVIEWS = len({r['source'] for r in _ADJ})
+assert N_FINDINGS and N_REVIEWS, 'the review register is empty'
+
+# The two superseded editions' headline figures, recovered from the register the reviews
+# were adjudicated in rather than remembered. A running total is the one number a reader
+# cannot reconstruct for themselves, so it has to come from a committed file like the rest.
+import re as _re
+import collections as _collections
+
+
+def _prior(field, key):
+    counts = _collections.Counter()
+    for r in _ADJ:
+        for chunk in _re.split(r';', r.get(field) or ''):
+            if key in chunk.lower():
+                m = _re.search(r'(\d+\.\d\d)\s*(?:→|->)', chunk)
+                if m:
+                    counts[m.group(1)] += 1
+                break
+    assert counts, f'no prior {key} recoverable from the review register'
+    return float(counts.most_common(1)[0][0])
+
+
+def _prior2(pattern):
+    counts = _collections.Counter(
+        m.group(1) for r in _ADJ
+        for m in [_re.search(pattern, r.get('evidence') or '')] if m)
+    assert counts, f'no figure recoverable for {pattern!r}'
+    return float(counts.most_common(1)[0][0])
+
+
+CENTRAL_ED1 = _prior('claimed_impact', 'weighted central')
+DCF_ED1 = _prior('claimed_impact', 'dcf')
+CENTRAL_ED2 = _prior2(r'central from (\d+\.\d+) to')
+DCF_ED2 = _prior2(r'published DCF base of (\d+\.\d+)')
+for _lbl, _v in (('first-edition central', CENTRAL_ED1), ('first-edition cash flow', DCF_ED1),
+                 ('second-edition central', CENTRAL_ED2),
+                 ('second-edition cash flow', DCF_ED2)):
+    assert 1.0 < _v < 100.0, f'{_lbl} recovered as {_v}, which is not a share price'
+
+# ---- the purchase announced on the anchor date -------------------------------
+# Eleven vessels for about USD 1.3 billion, announced on the same day as the closing price
+# this study is anchored on. The first edition left it out entirely, which compared a fair
+# value that excluded the vessels with a market price that already included them.
+ACQ_COST = IN['acq_2026_cost']
+ACQ_VLCC, ACQ_GAS_N = IN['acq_2026_vlcc'], IN['acq_2026_gas']
+ACQ_DATE = fdate(D['inputs']['acq_2026_cost']['date'])
+VLCC_AFTER = FLT['owned']['vlcc'] + ACQ_VLCC
+# The bridge deducts net debt in three pieces and the purchase is the third of them.
+NET_DEBT_TOTAL = BR['net_debt_company'] + BR['deferred'] + ACQ_COST
+assert abs(NET_DEBT_TOTAL - BR['net_debt']) < 1e-6, \
+    'the bridge deduction does not reconcile to its three published components'
+
+# ---- the earnings multiple, on both bases ------------------------------------
+# The peers' FORWARD multiples are applied to the company's forward earnings, which is
+# consistent. What was not consistent was quoting the company on a TRAILING multiple in the
+# table beside them. Both blends are published; the forward one is the one applied.
+BLEND_PE_TTM = ((1 - REL['spot_weight']) * PEERS[0]['pe_ttm']
+                + REL['spot_weight'] * PEERS[1]['pe_ttm'])
+# and the company's own multiple on the same forward basis, so the comparison table shows
+# like against like in both columns rather than a trailing figure beside forward peers
+OWN_PE_FWD = M['mktcap_usd000'] / REL['npa_ord_26']
+
+# ---- price to book on the book the asset lens actually uses -------------------
+# The market multiple must be struck on the SAME denominator as the justified multiple it
+# is printed beside, or the comparison reverses its own sign.
+PB_MARKET_ORD = W['mktcap'] / IN['q1_26_eqp']
+PB_MARKET_WIDE = REL['own_pb']
+
+# ---- one return-on-equity convention, end to end ------------------------------
+# Closing equity in both halves. The model's own forecast row divides by AVERAGE equity,
+# which is a different measure; splicing the two produced a rise that was an artefact of
+# the switch rather than a fact about the business.
+ROE_HIST = [HI['npa'][i] / HB['equity_parent'][i] for i in range(3)]
+ROE_FCST = [FIN['npa'][i] / FBS[i]['equity_parent'] for i in range(5)]
+ROE_FCST_AVGEQ = [b['roe'] for b in FBS]
+
+# ---- one earnings definition in the leverage ratio ----------------------------
+ND_EBITDA_HIST = [HB['net_debt'][i] / HI['ebitda_op'][i] for i in range(3)]
+
+# ---- the first quarter, on the two bases the company itself publishes ---------
+# The reviewed statements and the management commentary do not carry the same first-quarter
+# 2025 revenue: tanker revenue for the first three quarters of 2025 was re-presented, with
+# no effect on profit. The unit table is on the re-presented basis, so a growth rate quoted
+# beside unit figures has to be on that basis too.
+Q1_REV_26_UNITS = sum(IN[f'q1_26_rev_{segkey(s)}'] for s in SEGS)
+Q1_REV_25_UNITS = sum(IN[f'q1_25_rev_{segkey(s)}'] for s in SEGS)
+Q1_YOY_UNITS = Q1_REV_26_UNITS / Q1_REV_25_UNITS - 1
+Q1_YOY_STAT = IN['q1_26_rev'] / IN['q1_25_rev'] - 1
+
+# ---- depreciation against earnings, across the forecast and not just year one -
+DNA_SHARE = [d / e for d, e in zip(F['dna'], F['ebitda'])]
+DNA_SHARE_AVG = sum(DNA_SHARE) / len(DNA_SHARE)
+
+# ---- the sum of the parts, with the exposure share re-based to its own leg -----
+# The disclosed spot share is a GROUP share, and every dollar of spot exposure sits inside
+# one leg. Applied to that leg's own earnings it is materially larger.
+SOTP_LEG = {l['leg']: l for l in SOTP['legs']}
+SHIP_W_LEG = min(1.0, REL['spot_weight'] * F['ebitda'][0] / FGR['Shipping']['ebitda'][0])
+SHIP_MULT_LEG = ((1 - SHIP_W_LEG) * REL['contracted_multiple']
+                 + SHIP_W_LEG * REL['spot_multiple'])
+SOTP_EV_REBASED = (SOTP['ev_ops'] - SOTP_LEG['Shipping']['ev']
+                   + SOTP_LEG['Shipping']['ebitda_26'] * SHIP_MULT_LEG)
+SOTP_FV_REBASED = aed_ps(SOTP_EV_REBASED + SOTP['jv'] - SOTP['net_debt']
+                         - SOTP['hybrid'] - SOTP['nci'])
+
+# ---- the perpetual securities capitalised at their OWN required return --------
+# Their coupon divided by their own coupon rate returns the carrying value to the dollar,
+# which is what makes the alternative treatment a statement about the discount rate rather
+# than a second valuation of the same claim.
+HYB_AT_OWN_COUPON = FIN['hybrid_coupon'] / W['kh']
+
+# ---- the second expert on the same bridge the other two use -------------------
+E2_BRIDGED = aed_ps(E2['value'] * (1 - IN['nci_share']) + BR['jv'])
+
+# ---- the disclosed useful lives, quoted from the source rather than restated ---
+# The lives are a list of numbers in an accounting policy note. Retyping them into a builder
+# is exactly how a document drifts from its own filing, so the sentence is taken from the
+# committed source text and only the leading citation is trimmed off it.
+DEP_LIVES = SRC['life_tankers'].split(' — ', 1)[1]
+assert 'depreciated straight line' in DEP_LIVES, \
+    'the useful-life source text is not the policy sentence this quotes'
+
+# ---- the vessel sale, on both carrying values its own release supports --------
+VSALE_BOOK_IMPLIED = IN['vessel_sale_price'] - IN['vessel_sale_gain']
+VSALE_RATIO_IMPLIED = IN['vessel_sale_price'] / VSALE_BOOK_IMPLIED
+
+# ---- what the beta alone is worth, read off the published grid ----------------
+BETA_ONLY_BEAR = SN['grid_beta_g'][SN['betas'].index(BF['ci90'][1])][g_col]
+BETA_ONLY_ALT = SN['grid_beta_g'][SN['betas'].index(BFA['beta'])][g_col]
+
+# ---- the terminal risk-free basis switch, priced by read-across ----------------
+# The explicit window takes an observed bond yield net of the sovereign's own spread; the
+# terminal takes a constructed long-run anchor. That is a change of basis and it is worth
+# stating. It has no row of its own in the grid, so it is priced by the beta step that
+# moves the cost of equity by the same amount — which OVERSTATES it, because a beta step
+# moves every year and this one moves only the terminal.
+RF_BASIS_GAP = W['rf_star'] - W['rf_terminal']
+_dbeta_equiv = RF_BASIS_GAP / W['erp']
+_steps = [(abs((SN['betas'][i + 1] - SN['betas'][i]) - _dbeta_equiv), i)
+          for i in range(len(SN['betas']) - 1)]
+_rf_i = min(_steps)[1]
+RF_READACROSS_BETA = SN['betas'][_rf_i + 1] - SN['betas'][_rf_i]
+RF_READACROSS = (SN['grid_beta_g'][_rf_i][g_col] - SN['grid_beta_g'][_rf_i + 1][g_col])
+
+# ---- management's guidance, converted from its own percentages ----------------
+# The company publishes DIRECTIONAL guidance — a band in words — for the group and for each
+# business unit. Every figure below is this study's own conversion of those words into
+# dollars at the midpoint of the band, applied to the reported figure it grows from. The
+# three unit rows and the group row do not reconcile, and that is a property of the
+# guidance rather than of the conversion.
+GPCT = {'Integrated Logistics': ('g26_rev_il', 'g26_ebitda_il'),
+        'Shipping': ('g26_rev_ship', 'g26_ebitda_ship'),
+        'Services': ('g26_rev_serv', 'g26_ebitda_serv')}
+GUID_UNITS_REV = sum(GD[g]['guided_revenue'] for g in GROUPS)
+GUID_UNITS_EBITDA = sum(GD[g]['guided_ebitda'] for g in GROUPS)
+GUID_REV_GAP = GD['Group']['guided_revenue'] - GUID_UNITS_REV
+GUID_EBITDA_GAP = GD['Group']['guided_ebitda'] - GUID_UNITS_EBITDA
+BUILT_VS_UNITS = F['ebitda'][0] / GUID_UNITS_EBITDA - 1
+# the guided figures must be the ones the model holds, not a second conversion done here
+for _g in GROUPS:
+    assert abs(GRPH[_g]['revenue'][2] * (1 + IN[GPCT[_g][0]])
+               - GD[_g]['guided_revenue']) < 1.0, f'{_g} guided revenue does not reconcile'
+    assert abs(GRPH[_g]['ebitda'][2] * (1 + IN[GPCT[_g][1]])
+               - GD[_g]['guided_ebitda']) < 1.0, f'{_g} guided earnings do not reconcile'
+
+# ---- where a value sits, computed rather than asserted ------------------------
+# Both of these were prose in an earlier edition and both went stale the moment the model
+# moved: the cash-flow lens crossed the market price in this rebuild, and every sentence
+# that placed it "below" or "between the first and second supports" would have survived the
+# rebuild reading perfectly plausibly.
+_LADDER = sorted(TC['levels']['sup'] + TC['levels']['res'])
+# The year the modelled balance sheet turns to net cash is read off the path, never named:
+# the August purchase pushed it out by a year and a sentence naming the old one would have
+# read perfectly well.
+_nc = [i for i, b in enumerate(FBS) if b['net_debt'] < 0]
+NET_CASH_WORD = (f"net cash by {YRL[_nc[0]]}" if _nc
+                 else f"{xt(FIN['nd_ebitda'][4], 2)} by {YRL[4]}, without reaching net cash "
+                      f"inside the forecast")
+
+
+def ladder(x):
+    below = [lv for lv in _LADDER if lv <= x]
+    above = [lv for lv in _LADDER if lv > x]
+    if not below:
+        return f"below every computed level, the lowest of which is {p2(_LADDER[0])}"
+    if not above:
+        return f"above every computed level, the highest of which is {p2(_LADDER[-1])}"
+    return f"between the computed levels of {p2(below[-1])} and {p2(above[0])}"
+
+
+_PCT3 = [('5th', H3M['pct']['p5']), ('25th', H3M['pct']['p25']),
+         ('50th', H3M['pct']['p50']), ('75th', H3M['pct']['p75']),
+         ('95th', H3M['pct']['p95'])]
+
+
+def zone3m(x):
+    lo = [nm for nm, v in _PCT3 if v <= x]
+    hi = [nm for nm, v in _PCT3 if v > x]
+    if not lo:
+        return f"below the {_PCT3[0][0]} percentile of the three-month distribution"
+    if not hi:
+        return f"above the {_PCT3[-1][0]} percentile of the three-month distribution"
+    return (f"between the {lo[-1]} and {hi[0]} percentile of the three-month "
+            f"distribution")
+
+
+# ---- the Services driver rationale, reconciled to the model -------------------
+# The committed rationale for this unit still credits the margin to a profit share the
+# forecast explicitly removes and adds once in the bridge instead. Guarded, so a later
+# rewrite of the rationale cannot leave a silent no-op behind.
+_SERV_OLD = 'and the growing profit share from the bunkering associate'
+_SERV_NEW = ('and the warehouse activity moved into it. The group’s share of the '
+             'bunkering associate is NOT in this line: it is taken out of the unit before '
+             'the forecast starts and the stake is added once, at book value, in the '
+             'bridge')
+assert _SERV_OLD in WHY['Services'], \
+    'the Services rationale no longer carries the clause this correction replaces'
+WHY = dict(WHY)
+WHY['Services'] = WHY['Services'].replace(_SERV_OLD, _SERV_NEW)
+
+
 # ============================ 1  MASTHEAD / READ FIRST =======================
 masthead()
 H2('Independent Valuation Study — Educational Analysis')
@@ -253,19 +480,24 @@ box([("READ FIRST — what this document is. ",
       f"{p2(LN['dcf_beta_alt']['base'])}. The first is adopted. Both are computed in full, "
       f"both appear side by side in every table that matters, and they are never averaged "
       f"into a single number."),
-     ("This is a corrected edition, and the corrections are listed. ",
-      "An earlier edition of this study was sent out for review, and four independent "
-      "readers came back with findings. Five were substantive enough to change the answer "
-      "and all five have been acted on: the tanker fleet is now built vessel by vessel, "
-      "the cost of capital now charges for every kind of capital the company actually "
-      "uses, the earnings of the joint ventures are no longer counted twice, the asset "
-      "lens has been rebuilt on a method this company's distribution policy does not "
-      "break, and earnings per share is now struck after the coupon on securities that "
-      "rank ahead of the ordinary shares. Two of those moved the value up and three moved "
-      "it down. The section headed “What changed in this edition, and why”, immediately "
-      "after the caveats, sets out every one of them with its direction and its size. A "
-      "study that has been corrected and does not say so is worse than one that was right "
-      "the first time.")])
+     ("This is a twice-corrected edition, and both rounds of correction are listed. ",
+      f"This study has been through two rounds of external review. {n0(N_REVIEWS)} "
+      f"independent readers raised {n0(N_FINDINGS)} findings between them; every one was "
+      f"priced and "
+      f"adjudicated, and the ones that survived scrutiny have been acted on. The first round "
+      f"rebuilt the tanker fleet vessel by vessel, made the cost of capital charge for every "
+      f"kind of capital the company actually uses, stopped the joint ventures being counted "
+      f"twice, replaced the asset lens with a method this company's distribution policy does "
+      f"not break, and struck earnings per share after the coupon on securities that rank "
+      f"ahead of the ordinary shares. The second round put a USD {b1(ACQ_COST)} billion "
+      f"vessel purchase into the model that the first edition had omitted altogether, "
+      f"stopped the smallest tankers being carried at a rate that moved the opposite way "
+      f"from theirs, re-based receivable days onto the revenue the forecast is actually "
+      f"built at, and corrected two descriptions that did not match what the model does. "
+      f"The section headed “What changed in this edition, and why”, immediately after the "
+      f"caveats, sets both rounds out row by row with the direction and the size of each. A "
+      f"study that has been corrected and does not say so is worse than one that was right "
+      f"the first time.")])
 
 # ================================ 2  HEADLINE ================================
 H2('Headline')
@@ -279,6 +511,26 @@ P(f"ADNOC Logistics & Services is the marine logistics and shipping arm of the A
   f"and onshore logistics. Revenue was USD {m0(REV[2])} million in {HYRS[2]}, compounding "
   f"{sgn(rev_cagr)} a year over the two years from {HYRS[0]}, and the group earned USD "
   f"{m0(EBITDA_H[2])} million before interest, tax, depreciation and amortisation.")
+P(f"On {ACQ_DATE} — the day the closing price this study is anchored on was set — the "
+  f"company announced the purchase of {n0(ACQ_VLCC + ACQ_GAS_N)} more vessels for about USD "
+  f"{b1(ACQ_COST)} billion: {n0(ACQ_VLCC)} very large crude carriers and "
+  f"{n0(ACQ_GAS_N)} gas carriers. The crude carriers and most of the gas carriers were "
+  f"bought secondhand for delivery in the third quarter of {YRL[0][:4]}; the rest are gas "
+  f"carrier newbuildings resold from a Chinese yard, arriving in the fourth. It takes the "
+  f"owned crude fleet from {n0(FLT['owned']['vlcc'])} "
+  f"vessels to {n0(VLCC_AFTER)} and the gas fleet to twelve very large gas carriers. The "
+  f"first edition of this study omitted it entirely, which meant a fair value that excluded "
+  f"the vessels was being compared with a market price that already included them. They are "
+  f"now in the model: each class joins the fleet on its own announced delivery date and "
+  f"earns from that date, and the USD {b1(ACQ_COST)} billion is added both to net debt in "
+  f"the bridge and to the asset base that depreciates. The announcement also corroborates a "
+  f"correction the first round of review produced. That round cut the crude fleet from the "
+  f"{n0(owned_total_fy25)} tankers on the books at the {HYRS[2]} year end to the "
+  f"{n0(owned_total)} owned at the valuation date, because a very large crude carrier had "
+  f"been sold in January — taking that class to {n0(FLT['owned']['vlcc'])}. The company now "
+  f"says the purchase takes it to {n0(VLCC_AFTER)}, and {n0(FLT['owned']['vlcc'])} plus "
+  f"{n0(ACQ_VLCC)} is {n0(VLCC_AFTER)}. The corrected count is the one the company itself "
+  f"is counting from.")
 P(f"The two halves of the business behave completely differently, and averaging them is "
   f"the main way this company gets mis-valued. About {pc(IN['contracted_2026_share'], 0)} "
   f"of {YRL[0]} revenue is already contracted with the parent group, against a long-term "
@@ -307,19 +559,32 @@ P(f"That merchant half is having an extraordinary year, and reading how extraord
   f"that class already on charter out, each at its own disclosed rate, and the rate the "
   f"remaining vessels must have earned in the first quarter is USD {n0(VS_SPOT)} a day. "
   f"The long-range classes moved the same way. The first quarter as a whole showed revenue of USD "
-  f"{m0(IN['q1_26_rev'])} million ({sgn(IN['q1_26_rev']/IN['q1_25_rev']-1)} year on year, "
-  f"because low-margin chartered-in trading fell away), earnings before interest, tax, "
-  f"depreciation and amortisation of USD {m0(IN['q1_26_ebitda_group'])} million "
+  f"{m0(Q1_REV_26_UNITS)} million ({sgn(Q1_YOY_UNITS)} year on year, because low-margin "
+  f"chartered-in trading fell away), earnings before interest, tax, depreciation and "
+  f"amortisation of USD {m0(IN['q1_26_ebitda_group'])} million "
   f"({sgn(IN['q1_26_ebitda_group']/q1_25_ebitda-1)}) and attributable profit of USD "
-  f"{m0(IN['q1_26_npa'])} million ({sgn(IN['q1_26_npa']/IN['q1_25_npa']-1)}). Whether "
-  f"those rates hold is the whole valuation.")
+  f"{m0(IN['q1_26_npa'])} million ({sgn(IN['q1_26_npa']/IN['q1_25_npa']-1)}). All three of "
+  f"those movements are on the basis the company's own commentary uses, which is the basis "
+  f"its business-unit table is on. The reviewed statements carry a different first-quarter "
+  f"{HYRS[2][2:]} revenue comparative — tanker revenue and direct costs for the first three "
+  f"quarters of that year were re-presented, with no effect on profit — and on the "
+  f"statutory comparative the same revenue movement is {sgn(Q1_YOY_STAT)} rather than "
+  f"{sgn(Q1_YOY_UNITS)}. The statements are what every historical line in this study is "
+  f"built from; the commentary basis is the only one on which the two years are comparable "
+  f"unit by unit, so it is the one quoted beside unit figures, and the difference is stated "
+  f"rather than left to be discovered. Whether those rates hold is the whole valuation.")
 P(f"This study says they do not hold, and prices the fleet reverting over five years to "
   f"the average of what it earned in {HYRS[1]} and {HYRS[2]}. That is a judgement, and "
   f"section 1.7 sets out the outside evidence for it. On that base the four lenses centre "
   f"at AED {p2(D['central'])} against a market price of {p2(SPOT)} — {ab(D['central'])}. "
   f"The cash-flow lens on its own lands at AED {p2(LN['dcf']['base'])}, "
-  f"{ab(LN['dcf']['base'])}. The honest conclusion is that this share is close to fairly "
-  f"priced on the evidence assembled here, not materially cheap.")
+  f"{ab(LN['dcf']['base'])}, and the three notional experts in Appendix C, who price "
+  f"mid-cycle earnings rather than a terminal value, centre at AED {p2(PANEL)}, "
+  f"{ab(PANEL)}. The honest conclusion is that the evidence brackets the screen price "
+  f"rather than pointing away from it: the widest reads sit meaningfully above, the asset "
+  f"lens sits well below, and the two constructions that stay closest to the company's own "
+  f"reported cash — the cash-flow lens and the expert panel — sit within a few per cent of "
+  f"the market. This is not a study that finds a mispricing.")
 P(f"The reason that conclusion is stronger than it looks rests on the discount rate. "
   f"Measured against {BFP['label']}, this share's beta is {p3(IN['beta'])} — it moves with "
   f"the market, near enough one for one, on {n0(BE['n'])} weekly observations. The economic "
@@ -350,7 +615,9 @@ rows = [['Read', 'Basis', 'Range (AED/sh)', 'Central', 'vs price'],
         ['Relative multiples',
          f"a blended {xt(REL['blend_ev_ebitda'], 2)} enterprise value to earnings and "
          f"{xt(REL['blend_pe'], 2)} price to earnings on {YRL[0]}, weighted "
-         f"{pc(REL['weight_ev_ebitda'], 0)} to the enterprise measure",
+         f"{pc(REL['weight_ev_ebitda'], 0)} to the enterprise measure. The earnings "
+         f"multiple is the peers' FORWARD multiple applied to forward earnings; on their "
+         f"trailing multiples the same blend is {xt(BLEND_PE_TTM, 2)}",
          f"{p2(LN['relative']['bear'])} – {p2(LN['relative']['bull'])}",
          p2(LN['relative']['base']), vs(LN['relative']['base'])],
         ['Normalised earnings power',
@@ -393,7 +660,11 @@ rows = [['Read', 'Basis', 'Range (AED/sh)', 'Central', 'vs price'],
         ['Perpetual securities at coupon value',
          f"the same model deducting the perpetual capital securities at the present value "
          f"of their coupon, USD {m0(BR['hybrid_pv_coupon'])} million, instead of their "
-         f"carrying value of USD {m0(BR['hybrid'])} million (section 1.1)",
+         f"carrying value of USD {m0(BR['hybrid'])} million (section 1.1). Read what makes "
+         f"the two differ: capitalising the same coupon at the securities' OWN rate of "
+         f"{pc(W['kh'], 2)} returns USD {m0(HYB_AT_OWN_COUPON)} million, the carrying value "
+         f"to the dollar. This alternative is therefore a statement about the rate the "
+         f"claim should be discounted at, not a second valuation of it",
          '—', p2(DCFH['fv_aed']), vs(DCFH['fv_aed'])]]
 table(rows, [1.42, 2.86, 1.06, 0.82, 0.84], band_rows={5, 7}, size=8.4,
       left_cols=(1,))
@@ -404,11 +675,19 @@ caption(f"The alternative readings are shown so that each genuinely contested or
         f"against which this share's risk is measured should itself be measured, where "
         f"shipping rates settle, and whether a perpetual security is a liability at face "
         f"or at coupon — and blending them would hide the difference instead of showing "
-        f"it. Ranges are bear-to-bull within each lens; within the cash-flow lens the two "
-        f"bounds are set by the two ends of the beta's own 90% confidence interval, "
-        f"{BF['ci90'][1]:.3f} at the bear end and {BF['ci90'][0]:.3f} at the bull end, so "
-        f"the published span is the span the estimate itself supports rather than a pair "
-        f"of round numbers chosen by hand. The index reading is the largest of the three "
+        f"it. Ranges are bear-to-bull within each lens, and within the cash-flow lens the "
+        f"bear and bull cases are a COMPOSITE of three stresses moved together, not the "
+        f"beta alone. Each end takes one end of the beta's own 90% confidence interval — "
+        f"{BF['ci90'][1]:.3f} at the bear end and {BF['ci90'][0]:.3f} at the bull end — and "
+        f"moves the mid-cycle rate anchor and the capital programme against the value at "
+        f"the same time. Reading the beta off by itself, the published grid in section 1.9 "
+        f"puts the {BF['ci90'][1]:.3f} case at AED {p2(BETA_ONLY_BEAR)} against a published "
+        f"bear of {p2(LN['dcf']['bear'])}, so roughly AED "
+        f"{p2(BETA_ONLY_BEAR-LN['dcf']['bear'])} of that bound is the other two stresses "
+        f"rather than the statistics. The bounds are still drawn from the estimate's own "
+        f"interval rather than from round numbers chosen by hand — but they are not the "
+        f"span the estimate alone supports, and an earlier edition described them as though "
+        f"they were. The index reading is the largest of the three "
         f"alternatives: AED {p2(beta_gap)} a share separates the two constructions on the "
         f"cash-flow lens and AED {p2(central_gap)} on the weighted central, and both are "
         f"carried at full size through section 1.1, section 1.8, the comparison in "
@@ -438,6 +717,16 @@ rows = [['Item', 'Detail'],
          f"{n0(IN['gas_lt_contracted'])} of them on long-term contracts; "
          f"{n0(IN['jub_owned'])} owned jack-up barges plus {n0(IN['jub_chartered'])} "
          f"chartered in; {n0(IN['osv_owned'])} owned offshore support vessels"],
+        ['The purchase announced on the anchor date',
+         f"{n0(ACQ_VLCC + ACQ_GAS_N)} more vessels for about USD {b1(ACQ_COST)} billion, "
+         f"announced {ACQ_DATE}: {n0(ACQ_VLCC)} very large crude carriers, taking that "
+         f"class from {n0(FLT['owned']['vlcc'])} to {n0(VLCC_AFTER)}, and "
+         f"{n0(ACQ_GAS_N)} gas carriers, taking the gas fleet to twelve very large gas "
+         f"carriers. The crude carriers and most of the gas carriers deliver in the third "
+         f"quarter of {YRL[0][:4]}; the remaining gas carrier newbuildings, resold from a "
+         f"Chinese yard, in the fourth. Each vessel enters the model on its own delivery "
+         f"date and earns from it, and the purchase price is added to net debt in the "
+         f"bridge and to the depreciating asset base"],
         ['Scale',
          f"{HYRS[2]} revenue USD {m0(REV[2])} million; earnings before interest, tax, "
          f"depreciation and amortisation of USD {m0(EBITDA_H[2])} million on the "
@@ -471,7 +760,10 @@ rows = [['Item', 'Detail'],
          f"USD {m0(IN['q1_26_netdebt'])} million at 31 March 2026 — "
          f"{xt(IN['q1_26_netdebt']/F['ebitda'][0], 2)} the {YRL[0]} earnings this study "
          f"forecasts, against the company's own stated medium-term target range of "
-         f"{xt(IN['nd_ebitda_target_lo'], 1)} to {xt(IN['nd_ebitda_target_hi'], 1)}"],
+         f"{xt(IN['nd_ebitda_target_lo'], 1)} to {xt(IN['nd_ebitda_target_hi'], 1)}. The "
+         f"bridge in section 1.1 deducts USD {m0(NET_DEBT_TOTAL)} million, which is that "
+         f"figure plus the deferred consideration of USD {m0(BR['deferred'])} million and "
+         f"the USD {b1(ACQ_COST)} billion committed to the August purchase"],
         ['Perpetual capital securities',
          f"USD {b1(IN['hybrid_face'])} billion of perpetual capital securities were "
          f"issued in {HYRS[2]}, carried at USD {m0(IN['q1_26_hybrid'])} million and priced "
@@ -569,7 +861,40 @@ caption(f"Every line is computed, not typed. The waterfall runs earnings before 
         f"{pc(IN['tax_stat'], 0)} statutory rate: international shipping income is "
         f"relieved under UAE law and the shipping units bore about "
         f"{pc(IN['tax_shipping'], 0)} in {HYRS[2]}. Working capital is carried at the "
-        f"collection, inventory and payment cycle the {HYRS[2]} statements actually show.")
+        f"collection, inventory and payment cycle the {HYRS[2]} statements actually show, "
+        f"re-based onto the revenue this forecast is built at — the two paragraphs below "
+        f"set out why that re-basing was needed and what it cost.")
+H2('Two lines that price a fleet, and how each is set')
+P(f"The capital-intensive lines in that waterfall are depreciation and working capital, and "
+  f"both were challenged in review. Neither is an assumption dropped in from outside, and "
+  f"both are worth showing rather than asserting.")
+rows = [['Line', 'What the model uses', 'The evidence, and what a reviewer proposed instead'],
+        ['Depreciation on property, plant and equipment',
+         pc(IN['dep_rate_ppe'], 2) + ' of the average balance',
+         f"The company's own accounting policy note reads: “{DEP_LIVES}”. Written off "
+         f"straight line over the tanker life it discloses, the fleet's stated lives imply "
+         f"about {pc(1.0/IN['life_tankers'], 1)} a year before the short-lived dry-docking "
+         f"components are added. The rate used is the first quarter of {YRL[0][:4]} "
+         f"annualised over that quarter's average balance. A reviewer proposed the "
+         f"{HYRS[2]} realised rate of {pc(IN['dep_rate_realised_fy25'], 2)} instead. Both "
+         f"candidates sit ABOVE what the disclosed lives imply, which is what the "
+         f"dry-docking components do to the blend; between the two, the rate used is the "
+         f"LOWER — the more conservative of the two available forward bases, because a "
+         f"lower charge means a higher taxable base rather than a flattered one, and the "
+         f"{HYRS[2]} average balance is distorted by a fleet acquired at the start of that "
+         f"year. It is kept, and it is sensitised"],
+        ['Receivable days in working capital',
+         f"{n1(IN['dso_days'])} days",
+         f"Receivables over revenue in the {HYRS[2]} statements is {n1(IN['dso_days_reported'])} "
+         f"days. But {HYRS[2]} revenue carries a gross-up of {xt(IN['tnk_grossup_25'], 2)} "
+         f"over the owned tanker fleet's own charter-equivalent revenue, from chartered-in "
+         f"and relet trading, while the forecast is built at {xt(IN['tnk_grossup_26'], 2)}. "
+         f"A day count calibrated on the first and applied to the second understates the "
+         f"receivable balance by the whole difference between the two conventions. Re-based "
+         f"onto the revenue the forecast actually produces, {n1(IN['dso_days_reported'])} "
+         f"days becomes {n1(IN['dso_days'])}. This is the correction that falsified a "
+         f"caveat the previous edition printed — see the caveats in section 7"]]
+table(rows, [1.55, 1.15, 4.30], size=8.2, left_cols=(1, 2))
 
 H2('The bridge from enterprise value to the equity')
 rows = [['Line', 'USD mn', 'Note'],
@@ -606,6 +931,16 @@ rows = [['Line', 'USD mn', 'Note'],
          'payable in mid-2027 and carried against the investment reserve — a real claim '
          'on the enterprise and treated as one. It is also the reason the minority line '
          'below is not simply the book figure'],
+        ['Less the vessels bought in August 2026', neg(m0(ACQ_COST)),
+         f"the {n0(ACQ_VLCC + ACQ_GAS_N)} vessels announced on {ACQ_DATE} — "
+         f"{n0(ACQ_VLCC)} very large crude carriers and {n0(ACQ_GAS_N)} gas carriers — at "
+         f"the announced price. The purchase is committed and unpaid at the valuation date, "
+         f"so it is debt-like and comes out here; the vessels themselves are on the other "
+         f"side of the ledger, earning inside the forecast from their own delivery dates "
+         f"and depreciating in the asset base from the same dates. Taking the cost without "
+         f"the earnings, or the earnings without the cost, would be the error in either "
+         f"direction; the first edition of this study did neither and simply left the whole "
+         f"transaction out"],
         ['Less perpetual capital securities', neg(m0(BR['hybrid'])),
          f"at carrying value. They sit inside total equity in the accounts but rank ahead "
          f"of the ordinary shares and carry a coupon of USD {m0(FIN['hybrid_coupon'])} "
@@ -635,7 +970,15 @@ rows = [['Line', 'USD mn', 'Note'],
          f"carrying value. Worth AED {p2(DCFH['fv_aed']-DCF['fv_aed'])} a share. The "
          f"securities are perpetual and non-amortising, so which of the two is right "
          f"depends on whether the company ever calls them; both are shown"]]
-table(rows, [2.55, 0.95, 3.50], size=8.2, band_rows={5, 12, 14, 15},
+# The bridge must FOOT. The line the first edition was missing was worth USD 1.3 billion and
+# nothing in the document would have shown it: every figure in the table was individually
+# correct and the column simply did not add up to the equity value printed under it.
+_bridge_sum = (DCF['ev'] - BR['net_debt_company'] - BR['deferred'] - ACQ_COST
+               - BR['hybrid'] - DCF['nci'])
+assert abs(_bridge_sum - DCF['equity']) < 1.0, (
+    f'the bridge table does not foot: the deductions shown leave '
+    f'{_bridge_sum:,.0f} against a published equity value of {DCF["equity"]:,.0f}')
+table(rows, [2.55, 0.95, 3.50], size=8.2, band_rows={5, 13, 15, 16},
       align_right_from=1, left_cols=(2,))
 
 H2('How the market is measured, computed both ways')
@@ -655,8 +998,16 @@ P(f"One input in the construction above moves the answer further than any operat
   f"services provider at "
   f"{BE['plausibility']['contracted_services_prior'].split(': ')[1]} — and the regression "
   f"now agrees with that prior rather than contradicting it.")
-P(f"Run the same regression against {BFA['label']} and it gives {p3(BFA['beta'])} instead. "
-  f"That is a large difference and it has nothing to do with this company: a published "
+P(f"Run the same returns against {BFA['label']} and the slope is {p3(BFA['beta'])} instead. "
+  f"One qualification before the explanation, because the two runs are not quite the "
+  f"identical regression: the published-index run pairs {n0(BE['n'])} weekly observations "
+  f"and the composite run pairs {n0(BE['composite_variant']['n'])}, because the index "
+  f"series obtained stops earlier than the exchange's own price history does. The samples "
+  f"differ by {n0(abs(BE['composite_variant']['n'] - BE['n']))} weeks out of "
+  f"{n0(BE['n'])}, so a small part of the gap between the two slopes is sample rather than "
+  f"market definition, and an earlier edition called them the same regression without "
+  f"saying so. The rest of the difference is large and it has nothing to do with this "
+  f"company: a published "
   f"index is weighted by size and is therefore dominated by the same large-capitalisation "
   f"group the subject belongs to, while an equal-weight composite gives the exchange's "
   f"smallest and least liquid names the same say as its largest. Measuring a share's "
@@ -703,10 +1054,23 @@ P(f"Equity attributable to ordinary shareholders was USD {m0(IN['q1_26_eqp'])} m
   f"belong to the ordinary shareholder. The return earned on that equity, struck after the "
   f"coupon those securities take ahead of it, runs {pc(BK['roe_path'][0])} in {YRL[0]} and "
   f"falls to {pc(BK['roe_path'][4])} by {YRL[4]} as the rate cycle normalises and the "
-  f"capital base grows; across the five years it averages {pc(sum(BK['roe_path'])/5)}. On "
-  f"the wider measure that includes the coupon the five-year average is "
-  f"{pc(BK['roe_sustainable'])}, and the reported history was {pc(HB['roe'][0])}, "
-  f"{pc(HB['roe'][1])} and {pc(HB['roe'][2])}.")
+  f"capital base grows; across the five years it averages {pc(sum(BK['roe_path'])/5)}. That "
+  f"path is struck on OPENING book, which is the convention this lens is built on and the "
+  f"one it uses throughout.")
+P(f"A separate return figure runs through the appendix and it is on a different convention, "
+  f"so the two are set out together rather than spliced. On CLOSING equity attributable to "
+  f"ordinary shareholders — the measure the reported history is naturally computed on — the "
+  f"return ran {pc(ROE_HIST[0])} in {HYRS[0]}, {pc(ROE_HIST[1])} in {HYRS[1]} and "
+  f"{pc(ROE_HIST[2])} in {HYRS[2]}, and the five forecast years run "
+  f"{' · '.join(pc(x) for x in ROE_FCST)}, averaging {pc(sum(ROE_FCST)/5)}. Appendix A.2 "
+  f"now carries that row on closing equity end to end. An earlier edition put the reported "
+  f"years on closing equity and the forecast years on AVERAGE equity in the same row and "
+  f"the same sentence, which made the series read as a rise into a sustainable level; on "
+  f"the average-equity convention the forecast years are "
+  f"{' · '.join(pc(x) for x in ROE_FCST_AVGEQ)} instead. The direction of the series depends "
+  f"on which of the two is used, so mixing them was manufacturing a trend rather than "
+  f"reporting one. Neither convention is wrong and this study uses closing equity in the "
+  f"appendix, opening book in the lens below, and says which is which at each place.")
 P(f"The textbook form of this lens is a justified price-to-book multiple: the sustainable "
   f"return less growth, divided by the cost of equity less growth. It is not used here, and "
   f"the reason is arithmetic rather than taste. That formula describes a steady state in "
@@ -763,22 +1127,39 @@ rows = [['Line', 'Value'],
         ['Implied price to book', xt(BK['pb_fair'], 2)],
         ['Fair value per share (AED)', p2(LN['book']['base'])],
         [f"Range — bear at the top of the beta's 90% interval ({BF['ci90'][1]:.3f}, cost "
-         f"of equity {pc(BK['ke_bear'], 2)}) and a return one seventh lower; bull at the "
-         f"bottom of it ({BF['ci90'][0]:.3f}, {pc(BK['ke_bull'], 2)}) and a return one "
-         f"seventh higher",
+         f"of equity {pc(BK['ke_bear'], 2)}) with the return on that book scaled down; bull "
+         f"at the bottom of it ({BF['ci90'][0]:.3f}, {pc(BK['ke_bull'], 2)}) with the same "
+         f"scaling applied upward",
          f"{p2(LN['book']['bear'])} – {p2(LN['book']['bull'])}"],
-        ['Memorandum — the price the market pays for that book today',
-         xt(REL['own_pb'], 2)],
+        ['Memorandum — the price the market pays for the SAME book, ordinary equity only',
+         xt(PB_MARKET_ORD, 2)],
+        ['Memorandum — the same on the wider book that also counts the perpetual securities',
+         xt(PB_MARKET_WIDE, 2)],
         ['Memorandum — realised value against carrying value on the January vessel sale',
-         xt(BK['vessel_value_to_book'], 2)]]
+         f"{xt(BK['vessel_value_to_book'], 2)} on the disclosed carrying value, "
+         f"{xt(VSALE_RATIO_IMPLIED, 2)} on the carrying value the disclosed gain implies"]]
 table(rows, [4.90, 2.10], size=8.5, band_rows={8})
+P(f"The first of those memorandum lines is the one to read against the justified multiple "
+  f"above it, and an earlier edition printed the wrong one. The lens values ORDINARY equity "
+  f"— AED {p2(BK['bvps_aed'])} a share, excluding the perpetual capital securities — so the "
+  f"market multiple has to be struck on the same denominator. On that basis the market pays "
+  f"{xt(PB_MARKET_ORD, 2)} book against the {xt(BK['pb_fair'], 2)} this lens justifies, "
+  f"which says the share is EXPENSIVE on the asset lens. Struck on the wider book that also "
+  f"counts the perpetual securities the market appears to pay {xt(PB_MARKET_WIDE, 2)}, which "
+  f"printed beneath a justified multiple computed on the narrower book invites the opposite "
+  f"conclusion from a comparison that is not like for like. Both are now shown and the "
+  f"comparable one is named. The peer in section 1.3 that publishes a price-to-book figure "
+  f"trades at {xt(PEERS[0]['pb'], 2)}, and that comparison is on the ordinary-book basis "
+  f"too.")
 P(f"The bounds move with the beta and with the return together: the bear bound of AED "
   f"{p2(LN['book']['bear'])} takes a cost of equity of {pc(BK['ke_bear'], 2)}, built on the "
   f"upper end {BF['ci90'][1]:.3f} of the beta's own 90% confidence interval, together with "
-  f"a return one seventh lower; the bull bound of AED {p2(LN['book']['bull'])} takes "
-  f"{pc(BK['ke_bull'], 2)} on the lower end {BF['ci90'][0]:.3f} of the same interval with a "
-  f"return one seventh higher. Both ends are drawn from the estimate's own statistical "
-  f"uncertainty rather than from round numbers chosen by hand. The lens carries the lowest "
+  f"a proportionally lower return on that book; the bull bound of AED "
+  f"{p2(LN['book']['bull'])} takes "
+  f"{pc(BK['ke_bull'], 2)} on the lower end {BF['ci90'][0]:.3f} of the same interval with "
+  f"the same proportion applied upward. Only the cost of equity in those bounds comes from "
+  f"the estimate's own statistical uncertainty; the return stress beside it is a judgement, "
+  f"as it is in the cash-flow lens. The lens carries the lowest "
   f"weight of the four, at {pc(LW['book'], 0)}, because it inherits the same cost of equity "
   f"as the cash-flow model rather than testing it independently, and because carrying value "
   f"is a poor description of what a fleet is worth.")
@@ -787,7 +1168,14 @@ P(f"On that last point there is one piece of hard evidence, and it is worth more
   f"2017-built very large crude carrier for USD {m0(BK['vessel_sale_price'])} million "
   f"against a carrying value of USD {m0(BK['vessel_sale_book'])} million — a realised "
   f"market value of {xt(BK['vessel_value_to_book'], 2)} book, on its own asset, disclosed "
-  f"in its own earnings release. That tells the reader which way this lens is biased. "
+  f"in its own earnings release. The same release discloses a gain of USD "
+  f"{m0(IN['vessel_sale_gain'])} million on the sale, which implies a carrying value of USD "
+  f"{m0(VSALE_BOOK_IMPLIED)} million and a ratio of {xt(VSALE_RATIO_IMPLIED, 2)} instead — "
+  f"the company's own two disclosures about one transaction do not quite reconcile, and "
+  f"both readings are shown rather than one being picked. Two further qualifications belong "
+  f"with the figure: the vessel was 90% owned, so the group did not keep all of the "
+  f"proceeds, and the sale was struck in a strong market. That tells the reader which way "
+  f"this lens is biased. "
   f"Carrying values understate realisable value, so a book-based read of this company is "
   f"conservative rather than neutral, and the gap is not small: applied across the fleet, "
   f"a {xt(BK['vessel_value_to_book'], 2)} ratio would lift the asset base by roughly a "
@@ -802,26 +1190,41 @@ P(f"There is no clean comparable for this company, and the reason is the same re
   f"oil company with an open-market tanker fleet. The frame used here therefore takes two "
   f"multiples from two different kinds of shipowner and blends them on the company's own "
   f"disclosed exposure, rather than picking one peer and pretending it fits.")
-rows = [['Company', 'Market', 'Business model', 'EV / earnings', 'Price / earnings',
-         'Price / book']]
+rows = [['Company', 'Market', 'Business model', 'EV / earnings',
+         'Price / earnings (fwd / trailing)', 'Price / book']]
 for pr in PEERS:
     rows.append([pr['name'], pr['market'], pr['model'], xt(pr['ev_ebitda'], 2),
-                 xt(pr['pe_fwd'], 2) if pr['pe_fwd'] else '—',
+                 ' / '.join(xt(x, 2) if x else '—'
+                            for x in (pr['pe_fwd'], pr['pe_ttm'])),
                  xt(pr['pb'], 2) if pr['pb'] else '—'])
 rows.append(['ADNOC Logistics & Services', M['exchange'].replace('Securities ', ''),
              'half contracted logistics, half merchant fleet',
              f"{xt(REL['own_ev_ebitda_ttm'], 2)} trailing / "
              f"{xt(REL['own_ev_ebitda_26'], 2)} on {YRL[0]}",
-             xt(REL['own_pe_ttm'], 2), xt(REL['own_pb'], 2)])
-table(rows, [1.62, 0.92, 1.72, 1.28, 0.84, 0.62], size=8.0, band_rows={4},
+             f"{xt(OWN_PE_FWD, 2)} / {xt(REL['own_pe_ttm'], 2)}",
+             xt(PB_MARKET_ORD, 2)])
+table(rows, [1.50, 0.86, 1.50, 1.12, 1.24, 0.78], size=8.0, band_rows={4},
       left_cols=(1, 2))
 caption(f"The contracted-fleet multiple of {xt(REL['contracted_multiple'], 2)} comes from "
         f"the long-term contracted gas shipowner; the spot multiple of "
         f"{xt(REL['spot_multiple'], 2)} is the average of the two listed spot tanker "
-        f"owners. Peer figures are as published on the dates recorded in this study's "
-        f"source register, and the company's own trailing multiple uses the operating "
-        f"earnings definition used throughout, not the company's own wider reported one. "
-        f"The company's own multiple in the last column is struck on the same convention "
+        f"owners. Two sourcing points belong on the face of this table. First, the peer "
+        f"multiples are taken from data-aggregator statistics pages, named and dated in the "
+        f"source register, and NOT recomputed from each peer's own filings — the rule that "
+        f"admits only a company's own issued statements governs the subject's reported "
+        f"history, and it is the subject's history, not the comparators', that this study "
+        f"builds from. The consequence is real and is stated rather than buried: the study "
+        f"cannot demonstrate that a comparator's earnings are struck on the same definition "
+        f"as its own, which is a reason to read this lens as a cross-check on relative "
+        f"pricing rather than as an independent valuation. Second, the price-to-earnings "
+        f"column now shows forward and trailing for every row, because the multiple this "
+        f"lens APPLIES is the peers' forward multiple and quoting the company on a trailing "
+        f"figure beside forward peers — as an earlier edition did — compares two different "
+        f"things. The company's own price-to-book is struck on ordinary equity, the same "
+        f"book the comparator's figure uses and the same book the asset lens in section 1.2 "
+        f"values. The company's own trailing enterprise multiple uses the operating "
+        f"earnings definition used throughout, not the company's own wider reported one, "
+        f"and is struck on the same convention "
         f"the peer figures use — market capitalisation plus net debt — so that the "
         f"comparison is like for like. On this study's own bridge, which additionally "
         f"treats the perpetual capital securities and the minorities as claims ranking "
@@ -863,9 +1266,17 @@ rows = [['Measure', 'Value', 'Comment'],
          f"{YRL[0]} — the weighting is taken from the company rather than chosen"],
         ['Blended enterprise multiple', xt(REL['blend_ev_ebitda'], 2),
          f"applied to {YRL[0]} earnings of USD {m0(REL['ebitda_26'])} million"],
-        ['Blended price-to-earnings multiple', xt(REL['blend_pe'], 2),
-         f"applied to {YRL[0]} attributable profit after the perpetual coupon of USD "
-         f"{m0(REL['npa_ord_26'])} million"],
+        ['Blended price-to-earnings multiple, forward', xt(REL['blend_pe'], 2),
+         f"the peers' FORWARD multiples blended on the same weight, applied to {YRL[0]} "
+         f"attributable profit after the perpetual coupon of USD "
+         f"{m0(REL['npa_ord_26'])} million. This is the multiple the lens uses: a forward "
+         f"multiple belongs on forward earnings"],
+        ['The same blend on the peers’ trailing multiples', xt(BLEND_PE_TTM, 2),
+         f"published so that a reader who prefers the trailing basis can see it. It is "
+         f"higher, so using it would raise this lens; it is not used, because the earnings "
+         f"it would be applied to are forecast rather than reported. The company's own "
+         f"multiple is {xt(OWN_PE_FWD, 2)} forward and {xt(REL['own_pe_ttm'], 2)} trailing, "
+         f"and an earlier edition quoted only the second beside peers shown on the first"],
         ['Value on the enterprise multiple (AED/share)', p2(REL['value_ev_ebitda']), ''],
         ['Value on the earnings multiple (AED/share)', p2(REL['value_pe']),
          'materially lower, because depreciation on a young, recently expanded fleet and '
@@ -877,9 +1288,16 @@ rows = [['Measure', 'Value', 'Comment'],
          'for a capital-intensive fleet owner and neutralises differences in leverage, '
          'depreciation policy and tax relief across the comparators'],
         ['Range', f"{p2(LN['relative']['bear'])} – {p2(LN['relative']['bull'])}",
-         'the whole group at the spot multiple, and the whole group at the contracted '
-         'multiple — the two corners the blend sits between']]
-table(rows, [2.30, 1.00, 3.70], size=8.3, band_rows={8}, left_cols=(2,))
+         f"the whole group at the spot multiple, and the whole group at the contracted "
+         f"multiple — the two corners the ENTERPRISE reading sits between. Read the base "
+         f"against it carefully: the base is a weighted blend of the enterprise reading and "
+         f"the earnings reading, while both bounds flex the enterprise reading only, so the "
+         f"base of AED {p2(LN['relative']['base'])} does not sit in the middle of its own "
+         f"published span. It sits at about the "
+         f"{(LN['relative']['base']-LN['relative']['bear'])/(LN['relative']['bull']-LN['relative']['bear'])*100:.0f}"
+         f"th percentile of it. The span is a multiple range, not a symmetric error bar "
+         f"around the base, and it is labelled as one"]]
+table(rows, [2.30, 1.00, 3.70], size=8.3, band_rows={9}, left_cols=(2,))
 
 H2('Sum of the parts — the same multiples, applied where they belong')
 P(f"Applying one multiple to the whole group is the mistake the frame above is trying to "
@@ -912,7 +1330,15 @@ rows.append(['Less non-controlling interests', '', '', neg(m0(SOTP['nci'])),
              f"cross-check"])
 rows.append(['Equity value', '', '', m0(SOTP['equity']),
              f"AED {p2(SOTP['fv_aed'])} a share, {ab(SOTP['fv_aed'])}"])
-table(rows, [1.75, 1.02, 0.72, 1.11, 2.40], size=8.0, band_rows={4, 9},
+rows.append(['MEMORANDUM — the Shipping leg with the exposure share re-based to it', '',
+             xt(SHIP_MULT_LEG, 2), m0(SOTP_EV_REBASED),
+             f"AED {p2(SOTP_FV_REBASED)} a share. The {pc(REL['spot_weight'], 0)} weight in "
+             f"the row above is the company's disclosed share of GROUP earnings exposed to "
+             f"spot rates, and every dollar of that exposure sits inside Shipping. Measured "
+             f"against Shipping's own {YRL[0]} earnings rather than the group's it is "
+             f"{pc(SHIP_W_LEG, 0)}, which lowers the leg multiple to {xt(SHIP_MULT_LEG, 2)} "
+             f"and the cross-check by AED {p2(SOTP['fv_aed']-SOTP_FV_REBASED)} a share"])
+table(rows, [1.75, 1.02, 0.72, 1.11, 2.40], size=8.0, band_rows={4, 9, 10},
       left_cols=(4,))
 caption(f"The sum of the parts lands at AED {p2(SOTP['fv_aed'])} against the blended "
         f"relative lens at AED {p2(LN['relative']['base'])}, and the difference is almost "
@@ -947,17 +1373,28 @@ rows = [['Line', 'Value'],
         [f"At the blended {xt(NRM['pe'], 2)} price-to-earnings multiple (AED/share)",
          p2(NRM['value_pe'])],
         ['Fair value per share — the average of the two (AED)', p2(LN['normalized']['base'])],
-        ['Range — the whole group at the spot multiple, and at the contracted multiple',
+        ['Range — the whole group at the spot multiple, and at the contracted multiple '
+         '(the enterprise reading only; the base is an average of the two readings, so it '
+         'does not sit in the middle of this span)',
          f"{p2(LN['normalized']['bear'])} – {p2(LN['normalized']['bull'])}"]]
 table(rows, [4.90, 2.10], size=8.5, band_rows={9})
 caption(f"The two constructions disagree by a wide margin — AED "
         f"{p2(2*NRM['base']-NRM['value_pe'])} against AED {p2(NRM['value_pe'])} — and the "
         f"gap is depreciation and the perpetual coupon. This is a young fleet: "
-        f"depreciation runs at about {pc(F['dna'][0]/F['ebitda'][0])} of earnings before "
-        f"interest, tax, depreciation and amortisation across the forecast, so an "
-        f"enterprise measure and an after-tax earnings measure will never agree on a "
-        f"company like this. Averaging them is a deliberate refusal to pick, and the "
-        f"lens carries {pc(LW['normalized'], 0)} weight accordingly.")
+        f"depreciation runs from {pc(min(DNA_SHARE))} of earnings before interest, tax, "
+        f"depreciation and amortisation in the lightest forecast year to "
+        f"{pc(max(DNA_SHARE))} in the heaviest, averaging {pc(DNA_SHARE_AVG)} across the "
+        f"five — and RISING through them, as the newbuild programme and the vessels bought "
+        f"in August {YRL[0][:4]} come into the asset base. An earlier edition quoted the "
+        f"first year's figure as though it were the average, which understated the very "
+        f"wedge this paragraph exists to explain. An enterprise measure and an after-tax "
+        f"earnings measure will never agree on a company like this. Averaging them is a "
+        f"deliberate refusal to pick, and the lens carries {pc(LW['normalized'], 0)} weight "
+        f"accordingly. The published range flexes the enterprise reading between the spot "
+        f"and contracted multiples; the base is the average of that reading and the "
+        f"earnings reading, so it sits at about the "
+        f"{(LN['normalized']['base']-LN['normalized']['bear'])/(LN['normalized']['bull']-LN['normalized']['bear'])*100:.0f}"
+        f"th percentile of its own span rather than at the middle of it.")
 
 # ---- 1.5 synthesis -----------------------------------------------------------
 H2('1.5  Synthesis — four lenses, one field')
@@ -974,34 +1411,75 @@ lensnames = [('dcf', 'Cash-flow model — published index'),
 for k, nm in lensnames:
     l = LN[k]
     rows.append([nm, p2(l['bear']), p2(l['base']), p2(l['bull']), pc(LW[k], 0),
-                 p2(l['base'] * LW[k])])
+                 f"{l['base'] * LW[k]:.3f}"])
 rows.append(['Weighted central — published index', p2(LN['central']['bear']),
-             p2(D['central']), p2(LN['central']['bull']), pc(1.0, 0), p2(D['central'])])
-rows.append(['Cash-flow model — equal-weight composite', p2(LN['dcf_beta_alt']['bear']),
-             p2(LN['dcf_beta_alt']['base']), p2(LN['dcf_beta_alt']['bull']),
-             pc(LW['dcf'], 0), p2(LN['dcf_beta_alt']['base'] * LW['dcf'])])
+             p2(D['central']), p2(LN['central']['bull']), pc(1.0, 0),
+             f"{D['central']:.3f}"])
+# The composite rows carry the PRIMARY construction's bear and bull, because only their
+# base was re-run on the composite beta. Printing those bounds beside a base two dirhams
+# higher puts a range around a number the range was not built for, so the cells say so
+# instead of showing a figure that belongs to a different construction.
+_borrowed = (LN['dcf_beta_alt']['bear'], LN['dcf_beta_alt']['bull']) == \
+            (LN['dcf']['bear'], LN['dcf']['bull'])
+_nb = 'not re-run' if _borrowed else None
+rows.append(['Cash-flow model — equal-weight composite',
+             _nb or p2(LN['dcf_beta_alt']['bear']), p2(LN['dcf_beta_alt']['base']),
+             _nb or p2(LN['dcf_beta_alt']['bull']),
+             pc(LW['dcf'], 0), f"{LN['dcf_beta_alt']['base'] * LW['dcf']:.3f}"])
 rows.append(['Weighted central — equal-weight composite',
-             p2(LN['central_beta_alt']['bear']), p2(D['central_beta_alt']),
-             p2(LN['central_beta_alt']['bull']), pc(1.0, 0), p2(D['central_beta_alt'])])
+             _nb or p2(LN['central_beta_alt']['bear']), p2(D['central_beta_alt']),
+             _nb or p2(LN['central_beta_alt']['bull']), pc(1.0, 0),
+             f"{D['central_beta_alt']:.3f}"])
 table(rows, [2.42, 0.86, 0.86, 0.86, 0.86, 1.14], size=8.5, band_rows={5, 7})
+caption(f"Contributions are shown to three decimals so that the four of them add to the "
+        f"weighted central exactly; rounded to the nearest fil they would come up one fil "
+        f"short of it, which is a display artefact rather than an arithmetic one. The two "
+        f"composite rows have no bear and bull of their own: only their base case was "
+        f"re-run on the composite beta, so the low and high cells are left empty rather "
+        f"than filled with the primary construction's bounds. An earlier edition filled "
+        f"them, which put a span around a base that sat near the top of it. One further "
+        f"thing a reader should know about the composite reading: at {p3(BFA['beta'])} it "
+        f"lies BELOW the lower bound of the adopted estimate's own 90% confidence interval "
+        f"of [{BF['ci90'][0]:.3f}, {BF['ci90'][1]:.3f}]. It is carried at full size "
+        f"throughout this study because the difference between the two measurements is a "
+        f"fact about index construction that a reader is entitled to see — but it is a "
+        f"more aggressive statement about the discount rate than this study's own bull "
+        f"case, and that is now on its face rather than left to be worked out.")
 P(f"The four lenses do not agree and the disagreement is informative. The two that price "
   f"earnings through a multiple — relative and normalised — land at AED "
-  f"{p2(LN['relative']['base'])} and AED {p2(LN['normalized']['base'])}, both above the "
-  f"market. The two that discount or capitalise a cost of equity land below it: the "
-  f"cash-flow model at AED {p2(LN['dcf']['base'])} and the book lens at AED "
-  f"{p2(LN['book']['base'])}. That split is not a coincidence, and it is the most useful "
-  f"thing this table says. The multiple-based lenses import a cost of capital rather than "
-  f"state one, and the comparators they import it from are a contracted shipowner and a "
-  f"pair of spot tanker owners, so they already embed an answer to the question the "
-  f"cash-flow model now asks explicitly and answers with a measured beta of "
-  f"{p3(IN['beta'])}. Where the two families disagree, the disagreement is about the "
-  f"discount rate rather than about the cash flows.")
+  f"{p2(LN['relative']['base'])} and AED {p2(LN['normalized']['base'])}, the furthest above "
+  f"the market of the four. The two that state a cost of equity rather than importing one "
+  f"land lower: the cash-flow model at AED {p2(LN['dcf']['base'])}, close to the screen, "
+  f"and the book lens at AED {p2(LN['book']['base'])}, well below it. That ordering is not "
+  f"a coincidence and it is the most useful thing this table says. The multiple-based "
+  f"lenses import a cost of capital rather than state one, and the comparators they import "
+  f"it from are a contracted shipowner and a pair of spot tanker owners, so they already "
+  f"embed an answer to the question the cash-flow model asks explicitly and answers with a "
+  f"measured beta of {p3(IN['beta'])}. Where the two families disagree, the disagreement is "
+  f"about the discount rate rather than about the cash flows.")
+P(f"There is a weakness in this weighting that a reader should be told about rather than "
+  f"left to find, and it is the largest single item still open against this study. The "
+  f"relative lens and the normalised lens are not independent of each other. They use the "
+  f"SAME three multiples — the contracted-fleet multiple, the spot multiple and the "
+  f"blend of them — and the same weighting between the enterprise and earnings readings. "
+  f"What differs between them is only the earnings denominator those multiples are applied "
+  f"to: the {YRL[0]} build in one, the five-year average of the same build in the other. "
+  f"Together they carry {pc(LW['relative']+LW['normalized'], 0)} of the weighted central. "
+  f"So {pc(LW['relative']+LW['normalized'], 0)} of the headline rests on one method "
+  f"presented as two reads, and the four-lens field is narrower evidence than four bars "
+  f"make it look. The counterfactual is easy to state: dropping the normalised lens and "
+  f"redistributing its weight would move the central toward the cash-flow and asset lenses, "
+  f"which are the two that sit lower. This has not been changed, because both denominators "
+  f"are legitimate questions to ask and neither is redundant on its own terms — but the "
+  f"overlap is real, it is not neutral in direction, and it is disclosed here rather than "
+  f"absorbed.")
 P(f"Weighted together, the four centre at AED {p2(D['central'])}, {ab(D['central'])}. "
   f"Measuring the market as an equal-weight composite instead lifts that to AED "
   f"{p2(D['central_beta_alt'])}, {ab(D['central_beta_alt'])}. Neither figure supports a "
   f"claim that this share is materially mispriced: on the adopted construction the centre "
   f"of the evidence sits about {abs(D['central']/SPOT-1)*100:.0f}% above the screen, which "
-  f"is well inside the width of any one of these lenses. The honest reading of the field "
+  f"is narrower than the bear-to-bull width of any single lens in the table and narrower "
+  f"than the three-month price dispersion in section 3. The honest reading of the field "
   f"is that the share is close to fairly priced, with the fleet's earning power in "
   f"{YRL[1][:4]} and beyond — not the discount rate — deciding which way it resolves.")
 
@@ -1049,7 +1527,13 @@ rows.append(['Tankers',
              f"the level implied by the second, and a second half stepped halfway back "
              f"toward the {HYRS[2]} implied rate; from {YRL[1]} the market rate glides "
              f"over four years to the mid-cycle anchor, the average of the {HYRS[1]} and "
-             f"{HYRS[2]} outcomes. Running cost is USD "
+             f"{HYRS[2]} outcomes. The {n0(ACQ_VLCC)} very large crude carriers bought on "
+             f"{ACQ_DATE} join the fleet on their announced delivery date and trade at that "
+             f"same market rate from it, so they earn part of {YRL[0]} and all of every "
+             f"year after. The smallest class is not broken out in any published rate "
+             f"table, so it is carried at the medium-range rate scaled by "
+             f"{xt(IN['handysize_relative'], 2)} — the relative move the company itself "
+             f"disclosed for it, not a substitution. Running cost is USD "
              f"{n0(FLT['opex_day'])} a vessel-day, solved so that the owned fleet's "
              f"earnings reproduce the reported {HYRS[2]} result, escalated "
              f"{pc(IN['opex_escalation'], 0)} a year on wages and technical management "
@@ -1093,8 +1577,10 @@ caption(f"No margin in this table is an assumption applied to the group. For the
         f"mix, not a path anyone chose. The margin rises against {HYRS[2]}'s "
         f"{pc(EBITDA_H[2]/REV[2])} mainly because the low-margin chartered-in trading that "
         f"grossed up {HYRS[2]} revenue is not repeated: the first quarter of {YRL[0][:4]} "
-        f"showed revenue {sgn(IN['q1_26_rev']/IN['q1_25_rev']-1)} year on year while "
-        f"earnings rose {sgn(IN['q1_26_ebitda_group']/q1_25_ebitda-1)}.")
+        f"showed revenue {sgn(Q1_YOY_UNITS)} year on year while "
+        f"earnings rose {sgn(IN['q1_26_ebitda_group']/q1_25_ebitda-1)} — both movements on "
+        f"the business-unit basis this table is built on, which is the basis the company's "
+        f"own commentary uses.")
 
 figure(os.path.join(HERE, 'fig7_mix.png'), 6.9,
        "Figure 2 — earnings by business unit, reported and forecast, with the group "
@@ -1104,6 +1590,48 @@ figure(os.path.join(HERE, 'fig7_mix.png'), 6.9,
 H2("The build against the company's own guidance — a gap, stated plainly")
 P(f"This build sits materially above what management has guided for {YRL[0][:4]}, and that "
   f"is a deliberate result of the method rather than an accident to be reconciled away.")
+P(f"One thing has to be established before the comparison can be read at all: the company "
+  f"does not publish a dollar guidance figure, for the group or for any business unit. What "
+  f"it publishes is DIRECTIONAL — a band in words, for revenue and for earnings, at group "
+  f"level and for each of the three units. Every guided figure below is this study's own "
+  f"conversion of those words into dollars, taken at the midpoint of the band and applied "
+  f"to the {HYRS[2]} figure it grows from. The conversion is shown line by line so that a "
+  f"reader who reads a band differently can redo it.")
+rows = [['Line', f"{HYRS[2]} base (USD mn)", 'Guided change', 'Converted (USD mn)']]
+for g in GROUPS:
+    rows.append([f'{g} — revenue', m0(GRPH[g]['revenue'][2]), sgn(IN[GPCT[g][0]], 1),
+                 m0(GD[g]['guided_revenue'])])
+rows.append(['Sum of the three units — revenue', m0(sum(GRPH[g]['revenue'][2]
+                                                        for g in GROUPS)), '',
+             m0(GUID_UNITS_REV)])
+rows.append(['Group — revenue, on the group band', m0(IN['rev_fy25']),
+             sgn(IN['g26_rev_group'], 1), m0(GD['Group']['guided_revenue'])])
+rows.append(['Difference — the group band against the three unit bands', '', '',
+             f"{'+' if GUID_REV_GAP >= 0 else ''}{m0(GUID_REV_GAP)}"])
+for g in GROUPS:
+    rows.append([f'{g} — earnings', m0(GRPH[g]['ebitda'][2]), sgn(IN[GPCT[g][1]], 1),
+                 m0(GD[g]['guided_ebitda'])])
+rows.append(['Sum of the three units — earnings',
+             m0(sum(GRPH[g]['ebitda'][2] for g in GROUPS)), '', m0(GUID_UNITS_EBITDA)])
+rows.append(["Group — earnings, on the group band and the company's own reported measure",
+             m0(HI['ebitda_reported'][2]), sgn(IN['g26_ebitda_group'], 1),
+             m0(GD['Group']['guided_ebitda'])])
+rows.append(['Difference — the group band against the three unit bands', '', '',
+             f"{'+' if GUID_EBITDA_GAP >= 0 else ''}{m0(GUID_EBITDA_GAP)}"])
+table(rows, [3.10, 1.30, 1.10, 1.50], size=8.2, band_rows={4, 6, 11, 13}, left_cols=(0,))
+caption(f"Every row multiplies out. The two DIFFERENCE rows are the point of the table and "
+        f"they are a property of the guidance, not of this conversion: management's three "
+        f"unit bands and its group band do not reconcile at their midpoints. On revenue the "
+        f"three units imply USD {m0(GUID_UNITS_REV)} million against a group band implying "
+        f"USD {m0(GD['Group']['guided_revenue'])} million; on earnings the units imply more "
+        f"than the group band does, and part of that second gap is a measure difference as "
+        f"well — the group band is stated against the company's own reported earnings "
+        f"figure, which adds the share of joint ventures and one-off items to the "
+        f"USD {m0(sum(GRPH[g]['ebitda'][2] for g in GROUPS))} million the three units sum "
+        f"to. An earlier edition of this study printed the unit rows and the group row in "
+        f"one column that did not add up, with no note that it did not. Both totals are now "
+        f"shown and the gap between them is named.")
+H2('The build against that guidance')
 rows = [['Business unit', 'Guided revenue', 'Built revenue', 'Guided earnings',
          'Built earnings', 'Gap on earnings']]
 for g in GROUPS + ['Group']:
@@ -1111,10 +1639,16 @@ for g in GROUPS + ['Group']:
     rows.append([g, m0(gd['guided_revenue']), m0(gd['built_revenue']),
                  m0(gd['guided_ebitda']), m0(gd['built_ebitda']),
                  sgn(gd['ebitda_gap'])])
-table(rows, [1.60, 1.08, 1.08, 1.08, 1.08, 1.08], size=8.3, band_rows={4})
-caption('Revenue and earnings in USD million. Guidance is the midpoint of the ranges the '
-        'company published for the year; the built figures are the output of the unit '
-        'model in this section.')
+rows.append(['Group, measured against the three units instead', m0(GUID_UNITS_REV),
+             m0(GD['Group']['built_revenue']), m0(GUID_UNITS_EBITDA),
+             m0(GD['Group']['built_ebitda']), sgn(BUILT_VS_UNITS)])
+table(rows, [1.60, 1.08, 1.08, 1.08, 1.08, 1.08], size=8.3, band_rows={4, 5})
+caption(f"Revenue and earnings in USD million; guided figures are the converted ones from "
+        f"the table above. The last row exists because the group guidance and the unit "
+        f"guidance do not agree with each other, so the gap this build carries depends on "
+        f"which of the two it is measured against: {sgn(GD['Group']['ebitda_gap'])} against "
+        f"the group band, {sgn(BUILT_VS_UNITS)} against the sum of the unit bands. Both are "
+        f"published. The built figures are the output of the unit model in this section.")
 P(f"The group gap is {sgn(GD['Group']['ebitda_gap'])} on earnings. Management's own "
   f"explanation for why its guidance is set where it is, given with the guidance itself, "
   f"is that its shipping assumptions are set well below prevailing spot rates and its "
@@ -1212,11 +1746,19 @@ caption(f"US dollars per vessel per day. “Published” is the company's own cl
         f"vessel on charter out the two are the same figure, which is the check that the "
         f"construction is doing only what it claims. The mid-cycle anchor is the implied "
         f"rate for the average of the {HYRS[1]} and {HYRS[2]} outcomes, which is what the "
-        f"base case reverts to over four years from {YRL[1]}. Two substitutions are carried "
-        f"and flagged: quarterly rates for the medium-range class are not disclosed for "
-        f"{HYRS[1]}, so the {HYRS[2]} average stands in, and the handysize vessels are not "
-        f"broken out at all and are carried at the medium-range rate. Both are immaterial — "
-        f"together those classes are {n0(FLT['owned']['mr']+FLT['owned']['hs'])} of "
+        f"base case reverts to over four years from {YRL[1]}. Counts are at the valuation "
+        f"date and therefore BEFORE the {n0(ACQ_VLCC)} very large crude carriers bought on "
+        f"{ACQ_DATE}, which take that class to {n0(VLCC_AFTER)} from their delivery date "
+        f"and are carried in the forecast from it. Two disclosure gaps are handled and "
+        f"flagged. Quarterly rates for the medium-range class are not disclosed for "
+        f"{HYRS[1]}, so the {HYRS[2]} average stands in. And the handysize vessels are not "
+        f"broken out in any rate table at all: an earlier edition carried them at the "
+        f"medium-range rate unadjusted, which was wrong in DIRECTION and not merely in "
+        f"size — the company said on the first-quarter call that handysize rates were "
+        f"softer while medium range was up, so the two smallest classes were moving "
+        f"opposite ways. They are now carried at {xt(IN['handysize_relative'], 2)} the "
+        f"medium-range rate, the relative move the company itself disclosed. Both classes "
+        f"remain small: together {n0(FLT['owned']['mr']+FLT['owned']['hs'])} of "
         f"{n0(owned_total)} vessels, none of them on charter out, and the smallest earners.")
 P(f"The scale of the move is easiest to see in the largest class. Very large crude "
   f"carriers averaged a published USD {n0(FLT['blend_fy24']['vlcc'])} a day in {HYRS[1]} "
@@ -1330,9 +1872,20 @@ rows = [['Component', 'Explicit window', 'Terminal', 'Source and construction'],
          f"composite's {p3(BFA['beta'])} it would be {pc(W['ke_beta1'], 2)}; on the "
          f"lead-lag sum beta of {p3(IN['beta_dimson'])}, {pc(W['ke_dimson'], 2)}"],
         ['Cost of debt, pre-tax', pc(W['kd'], 2), pc(W['kd_term'], 2),
-         'a weighted read of six disclosed instruments — the evidence table follows'],
+         f"the plain AVERAGE of three constructions built on six disclosed instruments — "
+         f"the evidence table follows. It is not a weighted figure and an earlier edition "
+         f"described it as one. Weighted by what is actually drawn the same evidence gives "
+         f"{pc(W['kd_balance_weighted'], 2)}, which is one of the three constructions being "
+         f"averaged; both are published"],
         ['Cost of debt, after tax', pc(W['kd_after_tax'], 2), '',
-         f"at the {pc(W['tax_stat'], 0)} statutory rate"],
+         f"at the {pc(W['tax_stat'], 0)} statutory rate. This is the one place in the study "
+         f"where the statutory rate is used rather than the rate the company actually "
+         f"bears: the model taxes profit unit by unit at effective rates running near "
+         f"{pc(F['tax_rate'][0])}, and a shield taken at {pc(W['tax_stat'], 0)} is larger "
+         f"than the relief the group in fact receives. It is inconsistent, it is disclosed, "
+         f"and it is worth almost nothing — debt is {pc(W['wd'], 1)} of capital, so the "
+         f"whole difference between a statutory and an effective shield is a fraction of a "
+         f"basis point on the cost of capital"],
         ['Cost of the perpetual capital securities', pc(W['kh'], 2), pc(W['kh_term'], 2),
          f"their own contractual coupon — the overnight financing rate plus "
          f"{IN['hybrid_margin']*10000:,.0f} basis points. It is not tax-relieved, because "
@@ -1434,14 +1987,24 @@ P(f"A single disclosed range is not evidence of what a company pays. Six separat
 rows = [['Instrument', 'Basis', 'Rate']]
 for name, basis, rate in W['kd_evidence']:
     rows.append([name, basis, pc(rate, 2)])
-rows.append(['Adopted cost of debt, pre-tax', 'weighted across the drawn book',
-             pc(W['kd'], 2)])
-table(rows, [4.10, 1.55, 1.35], size=8.3, band_rows={7}, left_cols=(1,))
+rows.append(['Memorandum — the same evidence weighted by what is actually drawn',
+             'balance-weighted', pc(W['kd_balance_weighted'], 2)])
+rows.append(['Adopted cost of debt, pre-tax',
+             'the plain average of three constructions', pc(W['kd'], 2)])
+table(rows, [4.10, 1.55, 1.35], size=8.3, band_rows={8}, left_cols=(1,))
 caption(f"The spread of the evidence is the point. The parent revolving facility at the "
         f"secured overnight financing rate plus 80 basis points is the cheapest money in "
         f"the book and is a genuine benefit of the ownership structure; third-party bank "
         f"debt costs {(W['kd_bank_mid']-W['kd_method1'])*10000:,.0f} basis points more. "
-        f"The adopted rate sits between them, weighted by what is actually drawn. It sits "
+        f"The adopted rate sits between them. It is the plain AVERAGE of three "
+        f"constructions — the marginal drawdown rate on the parent facility, the blend of "
+        f"the instruments actually outstanding, and the midpoint of the disclosed "
+        f"third-party bank range — and not a figure weighted across the book, which is what "
+        f"an earlier edition of this study called it. The genuinely balance-weighted "
+        f"construction is {pc(W['kd_balance_weighted'], 2)}, is one of the three being "
+        f"averaged, and is shown above so that a reader who wants it can take it directly; "
+        f"the two are {abs(W['kd']-W['kd_balance_weighted'])*10000:,.0f} basis points "
+        f"apart on a tranche that is {pc(W['wd'], 1)} of capital. The adopted rate sits "
         f"above the local sovereign yield of {pc(W['rf_observed'], 2)}, as a corporate "
         f"borrowing in the same currency must. The perpetual capital securities appear in "
         f"the evidence because they price the company's own subordinated risk, and they "
@@ -1453,7 +2016,7 @@ caption(f"The spread of the evidence is the point. The parent revolving facility
         f"is what the earlier edition of this study got wrong.")
 
 H2('Where this construction is contested, and what the alternatives are worth')
-P("Five choices above are legitimately arguable. Each alternative is computed and its "
+P("Six choices above are legitimately arguable. Each alternative is computed and its "
   "value published, so a reader who prefers a different convention can take the number "
   "directly instead of guessing at its size.")
 rows = [['The choice made', 'The alternative', 'Value on the alternative', 'Why ours'],
@@ -1492,6 +2055,22 @@ rows = [['The choice made', 'The alternative', 'Value on the alternative', 'Why 
          'against 5.01% on the agency credit-rating basis, a gap of about seventy basis '
          'points. A reader should treat the single available basis as carrying that much '
          'construction uncertainty'],
+        ['The terminal risk-free rate on a constructed long-run anchor',
+         f"Carrying the explicit window's basis into the terminal instead — the observed "
+         f"government yield net of the sovereign's own default spread, "
+         f"{pc(W['rf_star'], 2)}, rather than the {pc(W['rf_terminal'], 2)} long-run anchor "
+         f"used",
+         f"raises the terminal risk-free rate by "
+         f"{RF_BASIS_GAP*10000:,.0f} basis points and the value with it. It has no row of "
+         f"its own in the grid overleaf, so the closest read-across is the beta: a step of "
+         f"{p3(RF_READACROSS_BETA)} in the beta moves the cost of equity by about the same "
+         f"amount and is worth AED {p2(RF_READACROSS)} — an OVERSTATEMENT of this item, "
+         f"because a beta step moves every year and this one moves only the terminal",
+         'The explicit window should be priced off a rate the market is quoting today; a '
+         'perpetuity should not, because today’s yield is a point on a cycle and a '
+         'perpetuity is not. Both are defensible and the basis genuinely changes between '
+         'them, which is why it is listed here rather than left inside the cost-of-capital '
+         'table. An earlier edition made the switch without listing it as a choice'],
         ['Tax charged unit by unit at each unit’s own disclosed effective rate',
          f"A uniform {pc(IN['tax_topup_rate'], 0)} across the group, the domestic minimum top-up rate",
          f"AED {p2(SN['tax']['0.15'])} against {p2(DCF['fv_aed'])}",
@@ -1518,13 +2097,20 @@ for j, g in enumerate(SN['gs']):
                 [p2(SN['grid_beta_g'][i][j]) for i in range(len(SN['betas']))])
 table(rows, [1.60, 1.08, 1.08, 1.08, 1.08, 1.08], size=8.4)
 caption(f"Fair value in AED per share. The adopted construction is the {p3(IN['beta'])} "
-        f"column at {pc(IN['g_terminal'], 1)} growth; the equal-weight composite "
-        f"alternative is the {p3(SN['betas'][0])} column at the same growth. The "
-        f"right-hand column of {p3(SN['betas'][-1])} is the top of the regression's own "
-        f"90% confidence interval and is where the bear case is struck; the bull case is "
-        f"struck at the bottom of that interval, {BF['ci90'][0]:.3f}, which sits just "
-        f"inside the left-hand column. Beta moves the answer across the whole width of "
-        f"this table; growth moves it a fraction of that.")
+        f"column at {pc(IN['g_terminal'], 1)} growth, and its cell is the published "
+        f"cash-flow base of AED {p2(LN['dcf']['base'])} exactly. The bear case is struck at "
+        f"{p3(SN['betas'][-1])}, the top of the regression's own 90% confidence interval "
+        f"and the right-hand column here; the bull case is struck at the bottom of that "
+        f"interval, {BF['ci90'][0]:.3f}, which falls between the first and second columns. "
+        f"The equal-weight composite alternative is the {p3(SN['betas'][0])} column — and "
+        f"note where that sits: BELOW the bottom of the interval, so the composite reading "
+        f"is a lower discount rate than this study's own bull case takes. Beta moves the "
+        f"answer across the whole width of this table; growth moves it a fraction of that. "
+        f"Read "
+        f"the beta columns against the published bear and bull of AED "
+        f"{p2(LN['dcf']['bear'])} and {p2(LN['dcf']['bull'])} and the difference is "
+        f"visible: those two also move the rate anchor and the capital programme, so they "
+        f"are wider than the beta alone.")
 rows = [['Sensitivity', 'Range tested', 'Fair value span (AED/share)', 'Swing']]
 rows.append(['Beta in the cost of equity',
              f"{p3(SN['betas'][0])} – {p3(SN['betas'][-1])}",
@@ -1549,19 +2135,26 @@ rows.append(['Terminal growth',
              f"{pc(SN['gs'][0], 1)} – {pc(SN['gs'][-1], 1)}",
              f"{p2(min(g_span))} – {p2(max(g_span))}",
              p2(max(g_span) - min(g_span))])
-rows.append(['Bear-to-bull scenario composite',
-             f"rates, capital expenditure and the beta at the two ends of its own 90% "
-             f"interval — {BF['ci90'][1]:.3f} in the bear, {BF['ci90'][0]:.3f} in the bull",
+rows.append(['Bear-to-bull scenario composite — THE PUBLISHED RANGE',
+             f"three things at once: the beta at the two ends of its own 90% interval "
+             f"({BF['ci90'][1]:.3f} in the bear, {BF['ci90'][0]:.3f} in the bull), a lower "
+             f"mid-cycle rate anchor and a heavier capital programme in the bear, and the "
+             f"reverse of both in the bull",
              f"{p2(LN['dcf']['bear'])} – {p2(LN['dcf']['bull'])}",
              p2(LN['dcf']['bull'] - LN['dcf']['bear'])])
+rows.append(['Memorandum — the bear beta on its own',
+             f"{p3(BF['ci90'][1])}, with the rate anchor and the capital programme left at "
+             f"the base",
+             f"{p2(BETA_ONLY_BEAR)} against a published bear of "
+             f"{p2(LN['dcf']['bear'])}",
+             p2(BETA_ONLY_BEAR - LN['dcf']['bear'])])
 table(rows, [2.10, 1.95, 1.60, 1.35], size=8.4, left_cols=(1, 2))
 caption(f"Ranked by single-row swing, the beta is the largest by a wide margin — larger "
         f"than the operating crux, larger than the capital programme, larger than the tax "
         f"exposure. That is worth reading precisely. The width of the beta row is the "
-        f"width of a measured statistical interval, and the study publishes its bear and "
-        f"bull cases at that interval's two ends rather than choosing a comfortable point "
-        f"inside it; the width of the rate-anchor row is a judgement about the future that "
-        f"no amount of data settles. The first is uncertainty that has been quantified, "
+        f"width of a measured statistical interval; the width of the rate-anchor row is a "
+        f"judgement about the future that no amount of data settles. The first is "
+        f"uncertainty that has been quantified, "
         f"the second is uncertainty that has not. The tax row deserves its own note: at a "
         f"uniform {pc(IN['tax_topup_rate'], 0)} the "
         f"value falls to AED {p2(SN['tax']['0.15'])}, a loss of AED "
@@ -1610,16 +2203,14 @@ P(f"{TC['tech']['summary']}")
 P(f"The structure to watch is straightforward. {TC['tech']['bull']} {TC['tech']['bear']} "
   f"None of this is a valuation argument — it is the price context the valuation has to be "
   f"read against. It is worth noting where the fundamental estimates sit relative to this "
-  f"ladder, because on the adopted construction they now sit inside it rather than far "
-  f"above it: the weighted central of AED {p2(D['central'])} sits at the furthest computed "
-  f"resistance of {p2(TC['levels']['res'][-1])}, and the cash-flow lens on its own, at AED "
-  f"{p2(LN['dcf']['base'])}, sits between the first and second computed supports of "
-  f"{p2(TC['levels']['sup'][0])} and {p2(TC['levels']['sup'][1])}. The equal-weight "
-  f"composite reading of AED {p2(D['central_beta_alt'])} is the only one of the three "
-  f"above every level in the table. A valuation and a level ladder are unrelated "
-  f"constructions and their agreeing here proves nothing; it is recorded because the two "
-  f"disagreed markedly under the study's earlier measurement of the market and no longer "
-  f"do.", space_after=10)
+  f"ladder: the weighted central of AED {p2(D['central'])} sits {ladder(D['central'])}, the "
+  f"cash-flow lens on its own, at AED {p2(LN['dcf']['base'])}, sits "
+  f"{ladder(LN['dcf']['base'])}, the equal-weight composite reading of AED "
+  f"{p2(D['central_beta_alt'])} sits {ladder(D['central_beta_alt'])}, and the asset lens at "
+  f"AED {p2(LN['book']['base'])} sits {ladder(LN['book']['base'])}. A valuation and a level "
+  f"ladder are unrelated constructions and any agreement between them proves nothing; the "
+  f"placement is computed off the same ladder printed above rather than described, so it "
+  f"cannot go stale while the table beside it moves.", space_after=10)
 
 # =========================== 7  §3  PRICE MAP ================================
 H1('3  A probabilistic price map')
@@ -1744,14 +2335,17 @@ rows = [['Read', 'What it says', 'What it assumes'],
          'that volatility persists as it has; no view on value at all']]
 table(rows, [1.85, 2.05, 3.10], size=8.3, align_right_from=9)
 P(f"Read down that table and the striking thing is how little room there is between the "
-  f"reads. The market price of AED {p2(SPOT)} sits above the cash-flow lens of AED "
-  f"{p2(LN['dcf']['base'])} and below the weighted central of AED {p2(D['central'])}, a "
-  f"band of roughly {abs(D['central']/LN['dcf']['base']-1)*100:.0f}% from end to end. The "
-  f"two multiple lenses land above the market, but they import their cost of capital from "
-  f"comparators rather than state one, so they are evidence about relative pricing rather "
-  f"than an independent answer; the expert panel in Appendix C, which prices mid-cycle "
-  f"earnings rather than a terminal value, centres at AED {p2(PANEL)}, {ab(PANEL)}. Read "
-  f"together, the evidence brackets the screen price. It does not point away from it.")
+  f"reads that stay closest to the company's own reported cash. The cash-flow lens lands at "
+  f"AED {p2(LN['dcf']['base'])}, {ab(LN['dcf']['base'])}; the expert panel in Appendix C, "
+  f"which prices mid-cycle earnings and capitalises no terminal value at all, centres at "
+  f"AED {p2(PANEL)}, {ab(PANEL)}. Two constructions that share no machinery land within AED "
+  f"{p2(abs(LN['dcf']['base']-PANEL))} of each other and both within a few per cent of the "
+  f"screen. The two multiple lenses land materially higher, but they import their cost of "
+  f"capital from comparators rather than state one — and they import the same three "
+  f"multiples as each other, so they are one piece of evidence about relative pricing "
+  f"rather than two independent answers (section 1.5). The asset lens lands materially "
+  f"lower, on carrying values the company's own vessel sale says are understated. Read "
+  f"together, the evidence brackets the screen price rather than pointing away from it.")
 P(f"This is a weaker claim than the study previously made, and the reason is worth stating "
   f"plainly. The cash-flow lens rests on a beta of {p3(IN['beta'])}, measured on "
   f"{n0(BE['n'])} weekly observations against the {BE['regressor']} — the published index "
@@ -1763,7 +2357,10 @@ P(f"This is a weaker claim than the study previously made, and the reason is wor
   f"difference of AED {p2(central_gap)} a share that turns entirely on index weighting. "
   f"Both numbers are in this document at full size and neither is hidden inside an "
   f"average, but the adopted one is the published index, and on it this share is close to "
-  f"fairly priced rather than materially cheap.")
+  f"fairly priced rather than materially cheap. The composite reading should be read with "
+  f"one further fact attached to it: at {p3(BFA['beta'])} it sits below the bottom of the "
+  f"adopted estimate's own 90% interval, so it is a more aggressive discount rate than this "
+  f"study's own bull case takes.")
 P("No recommendation and no forecast of the share price is expressed here or anywhere "
   "else in this document. The output is a range and a distribution.", space_after=10)
 
@@ -1794,11 +2391,13 @@ rows = [['Catalyst', 'Why it matters', 'What to watch'],
          'on-time delivery of the ethane and Ruwais carriers, and new long-term charters'],
         ['Capital allocation, because the model runs to net cash',
          f"on this build net debt falls from {xt(FIN['nd_ebitda'][0], 2)} earnings in "
-         f"{YRL[0]} to net cash by {YRL[3]}, against a stated target of "
+         f"{YRL[0]} to {NET_CASH_WORD}, against a stated target of "
          f"{xt(IN['nd_ebitda_target_lo'], 1)} to {xt(IN['nd_ebitda_target_hi'], 1)}. "
-         f"The company will not sit there",
-         'acquisitions, a step-up in distributions beyond the stated 5% a year, or a '
-         'larger newbuild programme — see section 7'],
+         f"The company will not sit there — and the purchase announced on "
+         f"{ACQ_DATE} is the first evidence of that, USD {b1(ACQ_COST)} billion of it, "
+         f"committed within days of the balance sheet this study values",
+         'further acquisitions, a step-up in distributions beyond the stated 5% a year, or '
+         'a larger newbuild programme — see section 7'],
         ['The tax relief on international shipping',
          f"the shipping units bore about {pc(IN['tax_shipping'], 0)} in {HYRS[2]}; a "
          f"uniform {pc(IN['tax_topup_rate'], 0)} would cost AED "
@@ -1833,26 +2432,29 @@ rows = [['Zone', 'Three-month range (AED)', 'How to read it'],
          'parent'],
         ['Lower half of the central band',
          f"{p2(H3M['pct']['p25'])} – {p2(H3M['pct']['p50'])}",
-         'ordinary drift lower; the cash-flow lens on its own sits inside this zone and '
-         'the book lens below it, so this is not a range at which the fundamental work '
-         'would call the share cheap'],
+         'ordinary drift lower; the asset lens sits well below this zone and no other '
+         'fundamental read in the study reaches down into it'],
         ['Upper half of the central band',
          f"{p2(H3M['pct']['p50'])} – {p2(H3M['pct']['p75'])}",
-         'ordinary drift higher; this zone contains the study’s own weighted central, so '
+         'ordinary drift higher; the cash-flow lens on its own sits inside this zone, so '
          'no repricing of the business is needed to reach it'],
         ['Upper tail', f"above {p2(H3M['pct']['p95'])}",
          'a 1-in-20 outcome; the zone in which the market would be pricing the rate '
          'strength as durable, or the equal-weight reading of the discount rate'],
         ['Where the weighted central sits', p2(D['central']),
-         f"between the 50th and 75th percentile of the three-month distribution. The "
-         f"valuation and the price map — which knows nothing about value — are in the same "
-         f"place, which is a change from this study's earlier measurement of the market "
-         f"and is the clearest sign that the share is close to fairly priced"],
+         f"{zone3m(D['central'])}. Reaching it inside a quarter is an ordinary outcome "
+         f"rather than a repricing"],
         ['Where the cash-flow lens alone sits', p2(LN['dcf']['base']),
-         f"between the 25th and 50th percentile — below the price today, and reachable "
-         f"inside the horizon without anything unusual happening"],
+         f"{zone3m(LN['dcf']['base'])} — close enough to the price today that the "
+         f"distribution treats the two as the same place"],
+        ['Where the expert panel centres', p2(PANEL),
+         f"{zone3m(PANEL)}. Three methods that share no machinery with the cash-flow model "
+         f"land essentially on the screen price"],
         ['Where the equal-weight composite central sits', p2(D['central_beta_alt']),
-         f"between the 75th and 95th percentile of the three-month distribution"]]
+         zone3m(D['central_beta_alt'])],
+        ['Where the asset lens sits', p2(LN['book']['base']),
+         f"{zone3m(LN['book']['base'])} — the one fundamental read the three-month "
+         f"distribution treats as a tail outcome"]]
 table(rows, [1.80, 1.70, 3.50], size=8.4, left_cols=(2,))
 
 # ============================= 11  §7  CAVEATS ===============================
@@ -1901,7 +2503,10 @@ for head, body in [
      f"{m0(nd_target_debt)} million of net debt, so the modelled path leaves roughly USD "
      f"{m0(nd_target_debt-FIN['net_debt'][4])} million of unused capacity, on top of an "
      f"undrawn committed revolving facility of USD {b1(IN['rcf_committed'])} billion. The "
-     f"company will either lever up for acquisitions or return more capital. This does not "
+     f"company will either lever up for acquisitions or return more capital, and on "
+     f"{ACQ_DATE} it did the first: USD {b1(ACQ_COST)} billion of vessels, committed within "
+     f"days of the balance sheet this study values, and now carried in the model. This does "
+     f"not "
      f"change the answer, and the reason is worth being explicit about: free cash flow to "
      f"the firm is struck before financing, so the enterprise value is indifferent to the "
      f"mix of debt, dividends and buybacks. What the choice changes is the shape of the "
@@ -1925,13 +2530,34 @@ for head, body in [
      f"call, not an audited or reported outcome. It is one of the four quarters that sets "
      f"the {YRL[0]} rate, so an error there flows into the first forecast year. The "
      f"reported half-year will settle it."),
-    ("Two rate substitutions are carried in the fleet build. ",
+    ("One rate substitution is still carried in the fleet build, and a second has been "
+     "replaced. ",
      f"Quarterly rates for the medium-range class are not disclosed for {HYRS[1]}, so the "
-     f"{HYRS[2]} average stands in; the handysize vessels are not broken out at all and "
-     f"are carried at the medium-range rate. Together those are "
-     f"{n0(FLT['owned']['mr']+FLT['owned']['hs'])} of {n0(owned_total)} vessels and the "
-     f"lowest earners in the fleet, so the effect is small — but it is a substitution, and "
-     f"it is labelled as one."),
+     f"{HYRS[2]} average stands in. That one remains, and it is labelled as a substitution "
+     f"wherever it appears. The second has gone: an earlier edition carried the handysize "
+     f"vessels, which are not broken out in any published rate table, at the medium-range "
+     f"rate unadjusted. That was not merely imprecise — it had the sign wrong. The company "
+     f"said on the first-quarter call that handysize rates were SOFTER while medium range "
+     f"was UP, so the two smallest classes were moving in opposite directions and the "
+     f"substitution was importing a rise into a class that was falling. They are now "
+     f"carried at {xt(IN['handysize_relative'], 2)} the medium-range rate, which is the "
+     f"relative move the company itself disclosed rather than a stand-in. The two classes "
+     f"together are {n0(FLT['owned']['mr']+FLT['owned']['hs'])} of {n0(owned_total)} "
+     f"vessels and the lowest earners in the fleet, so neither is large — but a "
+     f"substitution that points the wrong way is a different kind of error from one that "
+     f"is merely approximate, and it is corrected rather than re-flagged."),
+    ("The vessels bought on the anchor date are announced, not delivered. ",
+     f"The USD {b1(ACQ_COST)} billion purchase of {n0(ACQ_VLCC + ACQ_GAS_N)} vessels was "
+     f"announced on {ACQ_DATE} and none of them had been delivered when this study was "
+     f"struck. The model carries them from their announced delivery dates and adds the "
+     f"announced price to net debt, which is the only treatment that keeps the fair value "
+     f"and the market price on the same set of assets — the market price this study is "
+     f"compared against was set on the day of the announcement. What is assumed is that the "
+     f"vessels arrive on the announced schedule at the announced price, and that they trade "
+     f"on the same rate path as the rest of the class. A delayed delivery would take "
+     f"earnings out of {YRL[0]} while leaving the debt in; a price different from the one "
+     f"announced would move the bridge directly. The half-year and full-year statements are "
+     f"the first confirmation of either."),
     ("The open-market rate is solved out of a published average, and that construction "
      "has a load-bearing assumption inside it. ",
      f"The company publishes one rate per vessel class per quarter and states that it is "
@@ -1962,15 +2588,42 @@ for head, body in [
      f"over consolidated vessel-years. Neither is disclosed at a finer level anywhere in "
      f"the filings. Both are labelled as solved wherever they appear, and both are "
      f"anchored on a reported outcome rather than assumed."),
-    ("The revenue gross-up for the tanker fleet is presentational. ",
+    ("The revenue gross-up for the tanker fleet is presentational at the earnings line — "
+     "and an earlier edition of this study said it could not reach the valuation, which "
+     "was wrong. ",
      f"Reported Tankers revenue was {xt(IN['tnk_grossup_25'], 2)} the owned fleet's own "
      f"charter-equivalent revenue in {HYRS[2]}, because of chartered-in and relet trading "
      f"that carries almost no margin. The forecast sets that ratio at "
      f"{xt(IN['tnk_grossup_26'], 2)} from {YRL[0]}, on the evidence of the first quarter, "
      f"where revenue fell year on year while the rate earned per vessel more than doubled. "
-     f"The ratio moves the revenue line and never the earnings line, so it cannot affect "
-     f"the valuation — but a reader comparing this study's revenue forecast with a "
-     f"broker's should know the two may be on different conventions."),
+     f"The earlier edition printed this caveat with a claim attached: that the ratio moves "
+     f"the revenue line and never the earnings line, SO IT CANNOT AFFECT THE VALUATION. The "
+     f"first half of that is true and the conclusion does not follow, and the correction is "
+     f"printed here rather than the sentence being quietly dropped. Revenue is not only an "
+     f"output — it is the denominator the working-capital cycle is expressed in. Receivable "
+     f"days were calibrated on {HYRS[2]} revenue, which carries the "
+     f"{xt(IN['tnk_grossup_25'], 2)} gross-up, and then applied to a forecast revenue line "
+     f"built at {xt(IN['tnk_grossup_26'], 2)}. Two different conventions on the two sides "
+     f"of one ratio understate the receivable balance, and the change in working capital is "
+     f"a line in the free-cash-flow waterfall. Re-based onto the revenue the forecast "
+     f"actually produces, {n1(IN['dso_days_reported'])} days becomes "
+     f"{n1(IN['dso_days'])} — and that reaches the valuation, through working capital, by "
+     f"exactly the route the earlier caveat said did not exist. A study that quietly drops "
+     f"a claim it has made is worse than one that says the claim was wrong. Separately and "
+     f"still true: a reader comparing this study's revenue forecast with a broker's should "
+     f"know the two may be on different conventions."),
+    ("The four lenses are less independent of one another than four lenses sound. ",
+     f"The relative lens and the normalised lens apply the SAME three multiples to two "
+     f"different earnings denominators — the first forecast year in one, the five-year "
+     f"average of the same forecast in the other. Between them they carry "
+     f"{pc(LW['relative']+LW['normalized'], 0)} of the weighted central, so that much of "
+     f"the headline rests on one method presented as two reads. Both denominators are "
+     f"legitimate questions and neither read is redundant on its own terms, so nothing has "
+     f"been dropped — but the overlap is not neutral in direction. Those two lenses are the "
+     f"two that sit highest; collapsing them to one would move the central toward the "
+     f"cash-flow and asset lenses, which sit lower. This is the largest single item "
+     f"the reviews raised that has been left open rather than acted on, and it is stated "
+     f"here so that a reader weighs the field knowing it."),
     ("The tax relief on international shipping is a policy, not a right. ",
      f"The model taxes each unit at its own disclosed {HYRS[2]} effective rate, which is "
      f"about {pc(IN['tax_shipping'], 0)} in shipping because international shipping income "
@@ -2002,20 +2655,33 @@ for head, body in [
 P('', space_after=8)
 
 # ==================== 11b  WHAT CHANGED IN THIS EDITION ======================
-H1('What changed in this edition, and why')
-P(f"An earlier edition of this study was circulated for review, and four independent "
-  f"readers came back with findings. Five of those findings were substantive enough to "
-  f"change the answer. All five have been acted on, and every one of them is set out below "
-  f"with the direction it moved the value and roughly how far. None of this is presented "
-  f"as refinement: three of the five were errors, and they are called errors here. A study "
-  f"that has been corrected and does not say so is worse than one that was right the first "
-  f"time, because the reader has no way of telling which they are holding.")
-P(f"Two of the corrections raised the value and three lowered it. On the cash-flow lens "
-  f"the net effect is a move to AED {p2(LN['dcf']['base'])} a share and the weighted "
-  f"central to AED {p2(D['central'])}, against a market price of {p2(SPOT)}. The "
-  f"conclusion the study reaches — that this share is close to fairly priced on the "
-  f"evidence assembled here rather than materially cheap — is unchanged, but it is now "
-  f"reached from a materially different model.")
+H1('What changed in these editions, and why')
+P(f"This study has been through two rounds of external review. {n0(N_REVIEWS)} independent "
+  f"readers raised {n0(N_FINDINGS)} findings between them. Every one was priced — what "
+  f"would it move the answer by, if it were right — and then adjudicated on its own "
+  f"evidence rather than on its confidence. Many were rejected with the receipt that "
+  f"rejects them; the ones that survived are below. None of this is presented as "
+  f"refinement: several were errors, and they are called errors here. A study that has been "
+  f"corrected and does not say so is worse than one that was right the first time, because "
+  f"the reader has no way of telling which they are holding.")
+rows = [['Edition', 'Cash-flow lens (AED)', 'Weighted central (AED)', 'Against the market '
+         f"price of {p2(SPOT)}"],
+        ['As first issued', p2(DCF_ED1), p2(CENTRAL_ED1), vs(CENTRAL_ED1)],
+        ['After the first round of corrections', p2(DCF_ED2), p2(CENTRAL_ED2),
+         vs(CENTRAL_ED2)],
+        ['This edition, after the second round', p2(LN['dcf']['base']), p2(D['central']),
+         vs(D['central'])]]
+table(rows, [2.30, 1.55, 1.60, 1.55], size=8.5, band_rows={3})
+caption(f"Read the two rounds together and the headline has moved less than the work "
+        f"behind it. The first round changed the central by AED "
+        f"{CENTRAL_ED2-CENTRAL_ED1:+.2f} — essentially nothing — while replacing the "
+        f"tanker build, the cost of capital, the asset lens and the treatment of the joint "
+        f"ventures, because the corrections ran in both directions and very nearly "
+        f"cancelled. The second round moved it AED {D['central']-CENTRAL_ED2:+.2f}, and "
+        f"almost all of that is one item: a vessel purchase the first edition did not know "
+        f"about. The composition of the answer has changed far more than the answer has, "
+        f"which is the honest summary of both rounds.")
+H2('Round one — the corrections made in the previous edition')
 rows = [['What changed', 'What was wrong before', 'What it is now', 'Which way it moved '
          'the answer']]
 rows.append([
@@ -2108,6 +2774,102 @@ rows.append([
     f"value would have cost — the criticism was right about the premise and wrong about "
     f"the conclusion."])
 table(rows, [1.34, 2.06, 2.06, 1.54], size=7.8, align_right_from=9)
+
+H2('Round two — the corrections made in this edition')
+P(f"The second round of review produced one finding that moves the answer materially and "
+  f"several that do not move it at all but damage the document — a table that does not "
+  f"foot, a claim that contradicts the model behind it, two conventions spliced into one "
+  f"series. The second kind is easy to wave through precisely because it costs nothing. "
+  f"They are corrected here on the same terms as the first kind.")
+rows = [['What changed', 'What was wrong before', 'What it is now', 'Which way it moved '
+         'the answer']]
+rows.append([
+    f"A USD {b1(ACQ_COST)} billion vessel purchase is in the model",
+    f"On {ACQ_DATE} — the anchor date of this study — the company announced the purchase "
+    f"of {n0(ACQ_VLCC + ACQ_GAS_N)} vessels for about USD {b1(ACQ_COST)} billion. The "
+    f"previous edition omitted it entirely. That is not a modelling choice: it compared a "
+    f"fair value that excluded the vessels with a market price that already included them.",
+    f"{n0(ACQ_VLCC)} very large crude carriers and {n0(ACQ_GAS_N)} gas carriers join the "
+    f"fleet on their announced delivery dates and earn from those dates; the USD "
+    f"{b1(ACQ_COST)} billion is added to net debt in the bridge and to the depreciating "
+    f"asset base. It also independently confirms the fleet count corrected in round one: "
+    f"the company says the purchase takes it to {n0(VLCC_AFTER)} crude carriers, and the "
+    f"corrected valuation-date count of {n0(FLT['owned']['vlcc'])} plus {n0(ACQ_VLCC)} is "
+    f"{n0(VLCC_AFTER)}. Headline, company overview, section 1.1 and section 1.7.",
+    'UP, and it is nearly the whole of the second round. The earning fleet grows by more '
+    'than the debt costs, on the rate path this study already assumed.'])
+rows.append([
+    'The smallest tankers are no longer carried at a rate that moved the opposite way',
+    f"The handysize class is not broken out in any published rate table, so the previous "
+    f"edition carried it at the medium-range rate unadjusted. On the first-quarter call the "
+    f"company said handysize rates were SOFTER while medium range was UP — the two classes "
+    f"moved in opposite directions, so the substitution had the sign wrong, not merely the "
+    f"magnitude.",
+    f"Carried at {xt(IN['handysize_relative'], 2)} the medium-range rate, the relative move "
+    f"the company itself disclosed. Section 1.7.",
+    f"DOWN, and small: {n0(FLT['owned']['hs'])} of {n0(owned_total)} owned tankers and the "
+    f"lowest earners in the fleet. A substitution that points the wrong way is still worth "
+    f"correcting."])
+rows.append([
+    'Receivable days are re-based onto the revenue the forecast is built at',
+    f"Receivable days were calibrated on {HYRS[2]} revenue, which carries a "
+    f"{xt(IN['tnk_grossup_25'], 2)} gross-up over the owned fleet's own charter-equivalent "
+    f"revenue, and then applied to a forecast revenue line built at "
+    f"{xt(IN['tnk_grossup_26'], 2)}. Two conventions on the two sides of one ratio.",
+    f"Re-based onto the basis the forecast uses: {n1(IN['dso_days_reported'])} days becomes "
+    f"{n1(IN['dso_days'])}. Section 1.1.",
+    f"DOWN. A larger receivable balance means a larger build in working capital, and the "
+    f"change in working capital is a line in the cash-flow waterfall. This is also what "
+    f"falsified a caveat the previous edition printed — see section 7."])
+rows.append([
+    'The cost of debt is described as the average it is',
+    f"The previous edition called the adopted pre-tax cost of debt a figure “weighted "
+    f"across the drawn book”. It is not weighted. It is the plain average of three "
+    f"constructions, one of which happens to be the balance-weighted one.",
+    f"Published as an average, at {pc(W['kd'], 2)}, with the genuinely balance-weighted "
+    f"construction shown beside it at {pc(W['kd_balance_weighted'], 2)}. Section 1.8.",
+    f"NO MOVEMENT — the figure did not change, only the description of it. The two "
+    f"constructions are {abs(W['kd']-W['kd_balance_weighted'])*10000:,.0f} basis points "
+    f"apart on a tranche that is {pc(W['wd'], 1)} of capital."])
+rows.append([
+    'The depreciation rate is kept, and now carries its evidence',
+    f"A reviewer proposed replacing the rate used with the {HYRS[2]} realised rate of "
+    f"{pc(IN['dep_rate_realised_fy25'], 2)}. The previous edition gave no evidence either "
+    f"way, which made the choice look arbitrary.",
+    f"The disclosed useful lives, the realised rate and the rate used are now shown "
+    f"together. Both candidates sit ABOVE what the stated lives imply for the fleet, "
+    f"because dry-docking components are written off over a few years; the rate used, "
+    f"{pc(IN['dep_rate_ppe'], 2)}, is the LOWER — the more conservative of the two forward "
+    f"bases. Section 1.1.",
+    'NO MOVEMENT. The rate is unchanged; the reader can now see why, and disagree on the '
+    'evidence rather than on assertion.'])
+rows.append([
+    'The earnings multiple is published on both bases',
+    f"The previous edition applied the peers' FORWARD multiple to forward earnings, which "
+    f"is right, but quoted the company's own multiple on a TRAILING basis in the table "
+    f"beside peers shown forward.",
+    f"Both bases are published throughout: the blend is {xt(REL['blend_pe'], 2)} forward "
+    f"and {xt(BLEND_PE_TTM, 2)} trailing, and the company is shown at "
+    f"{xt(OWN_PE_FWD, 2)} forward beside {xt(REL['own_pe_ttm'], 2)} trailing. Section 1.3.",
+    'NO MOVEMENT on the lens, which always used the forward blend. It removes a comparison '
+    'that was not like for like.'])
+rows.append([
+    'Several tables that did not foot, or described themselves wrongly',
+    "The bridge from enterprise value to equity did not add up once the purchase above was "
+    "in the model. The guidance reconciliation did not foot and called the study's own "
+    "conversion of directional guidance “the midpoint of the ranges the company "
+    "published”. Return on equity ran on closing equity in the reported years and average "
+    "equity in the forecast years, inside one row and one sentence. The leverage ratio ran "
+    "on two different earnings definitions in the same row. The price-to-book memorandum "
+    "was struck on a wider book than the multiple printed above it. The published "
+    "bear-to-bull range was described as the beta's own interval when it also moves the "
+    "rate anchor and the capital programme.",
+    "Each is corrected in place and the superseded description is named rather than "
+    "removed. Sections 1.1, 1.2, 1.3, 1.5, 1.6, 1.8, 1.9 and Appendix A.2.",
+    "NO MOVEMENT on any fair value. Every one of them was a defect in what the document "
+    "says about itself, which is the class of finding that gets waved through because it "
+    "prices at zero."])
+table(rows, [1.34, 2.06, 2.06, 1.54], size=7.8, align_right_from=9)
 P(f"One thing did not change and is worth saying so. The reversion judgement in section "
   f"1.7 — that the fleet glides over four years to the average of what it earned in "
   f"{HYRS[1]} and {HYRS[2]} — is the same judgement it was, and it remains the largest "
@@ -2115,7 +2877,18 @@ P(f"One thing did not change and is worth saying so. The reversion judgement in 
   f"FROM, not the view about where it settles. Nor did the beta change: it is still "
   f"{p3(IN['beta'])} against the published index of the share's own exchange, with the "
   f"equal-weight composite reading of {p3(BFA['beta'])} published beside it at full size "
-  f"throughout.", space_after=10)
+  f"throughout.")
+P(f"And one finding has been left open rather than acted on, which a reader should know "
+  f"before weighing the field. The relative lens and the normalised lens share all three "
+  f"multiples and the same weighting between the enterprise and earnings readings; what "
+  f"differs between them is only the earnings denominator those multiples are applied to. "
+  f"Together they carry {pc(LW['relative']+LW['normalized'], 0)} of the weighted central, "
+  f"so {pc(LW['relative']+LW['normalized'], 0)} of the headline rests on one method "
+  f"presented as two reads. It has not been changed, because both denominators are "
+  f"legitimate questions and neither read is redundant on its own terms. But it is not "
+  f"neutral in direction — those are the two lenses that sit highest — and it is the "
+  f"largest single item still outstanding from either round of review. Section 1.5 and "
+  f"section 7 both carry it.", space_after=10)
 
 
 # =========================== 12  APPENDIX A ==================================
@@ -2229,10 +3002,10 @@ rows.append(['Book value per share (USD)'] +
             [f"{HB['equity_parent'][i]/SH/1000.0:.4f}" for i in range(3)] +
             [f"{b['bvps']:.4f}" for b in FBS])
 rows.append(['Net debt / earnings'] +
-            [xt(HB['net_debt_ebitda'][i], 2) for i in range(3)] +
+            [xt(ND_EBITDA_HIST[i], 2) for i in range(3)] +
             [xt(x, 2) for x in FIN['nd_ebitda']])
-rows.append(['Return on equity'] + [pc(x) for x in HB['roe']] +
-            [pc(b['roe']) for b in FBS])
+rows.append(['Return on equity'] + [pc(x) for x in ROE_HIST] +
+            [pc(x) for x in ROE_FCST])
 table(rows, [1.72, 0.66, 0.66, 0.66, 0.66, 0.66, 0.66, 0.66, 0.66], size=7.5,
       band_rows={8, 15})
 caption(f"All three reported years are audited; every line is the closing figure from the "
@@ -2244,7 +3017,18 @@ caption(f"All three reported years are audited; every line is the closing figure
         f"accounts include inside total equity. The perpetual securities are the reason "
         f"total equity jumped from USD {m0(HB['total_equity'][1])} million to USD "
         f"{m0(HB['total_equity'][2])} million in {HYRS[2]} while equity attributable to "
-        f"ordinary shareholders barely moved.")
+        f"ordinary shareholders barely moved. Two ratio rows carry one definition each, end "
+        f"to end, and both were spliced in an earlier edition. Return on equity is "
+        f"attributable profit over CLOSING equity attributable to ordinary shareholders in "
+        f"every column; the forecast years were previously shown over AVERAGE equity, which "
+        f"is a different measure and made the series read as a rise where a consistent "
+        f"basis shows a fall. On the average-equity convention the same forecast years are "
+        f"{' · '.join(pc(x) for x in ROE_FCST_AVGEQ)}, and the residual-income lens in "
+        f"section 1.2 uses a third convention — OPENING book — which is the right one for "
+        f"that construction and is named there. Net debt to earnings is on the operating "
+        f"earnings definition used throughout this study in every column; the reported "
+        f"years were previously shown against the company's own wider reported earnings "
+        f"figure, which is a different denominator from the one the forecast columns use.")
 
 H2('A.3  Forecast balance-sheet and cash-flow markers')
 rows = [['USD mn'] + YRL,
@@ -2360,9 +3144,15 @@ table(rows, [1.80, 2.75, 2.45], size=8.1, align_right_from=9)
 
 H2('B.3  The research register — layers, dated, negative results included')
 P("Research for this study proceeded in four layers: the global backdrop, the country, "
-  "the industry and the company itself. Company figures come only from the company's own "
-  "issued statements and disclosures; no data vendor, broker or press report is used as "
-  "the source of any reported historical figure. The full input-by-input register, with a "
+  "the industry and the company itself. Figures the SUBJECT COMPANY reports about itself "
+  "come only from its own issued statements and disclosures; no data vendor, broker or "
+  "press report is the source of any of the subject's reported historical figures. That "
+  "rule is scoped deliberately and the scope matters: the comparator multiples in section "
+  "1.3 ARE taken from data-aggregator statistics pages, named and dated, and were not "
+  "recomputed from each comparator's own filings. It is the largest block of non-company "
+  "data in the study, it is labelled wherever it is used, and the limitation it carries — "
+  "that a comparator's earnings cannot be shown to be struck on the same definition as the "
+  "subject's — is stated at the table rather than here. The full input-by-input register, with a "
   "value, a source, a date and a research layer for each of the several hundred inputs "
   "behind this study, is published as a separate document accompanying it. The primary "
   "documents are listed below, followed by the negative results — the things that could "
@@ -2423,6 +3213,18 @@ for head, body in [
      f"The USD {n0(FLT['opex_day'])} a day used is solved so that the owned fleet's "
      f"charter-equivalent revenue less running cost reproduces the reported {HYRS[2]} "
      f"result for the unit."),
+    ("The comparators' own filings were not used, and their multiples were not "
+     "recomputed. ",
+     f"The three comparator multiples in section 1.3 come from data-aggregator statistics "
+     f"pages, each named and dated in the source register. Rebuilding them from each "
+     f"comparator's own accounts — three more sets of filings, on three different reporting "
+     f"conventions, in three different currencies — was not undertaken. The consequence is "
+     f"specific and is stated at the table itself: the study cannot demonstrate that a "
+     f"comparator's earnings are struck on the same definition as its own, which is a "
+     f"reason to read the comparison lens as evidence about relative pricing rather than as "
+     f"an independent valuation. It is the largest block of non-company data in the study, "
+     f"and the two lenses that rest on it carry {pc(LW['relative']+LW['normalized'], 0)} of "
+     f"the weighted central between them."),
     ("The UAE has no sovereign credit-default-swap entry in the country-risk file. ",
      "The alternative premium basis therefore cannot be built for this country, and the "
      "study says so rather than omitting the comparison silently. Gulf comparators that "
@@ -2512,6 +3314,17 @@ rows = [['Line', 'Value'],
          f"with higher growth",
          f"{p2(E2['rng'][0])} – {p2(E2['rng'][1])}"]]
 table(rows, [4.80, 2.20], size=8.4, band_rows={8})
+P(f"One thing this leg does NOT do, and it is a genuine inconsistency across the panel "
+  f"rather than a feature of the method. The stream it capitalises starts from group free "
+  f"cash flow, which includes the {pc(IN['nci_share'])} of profit that belongs to the "
+  f"minority holders, and it never adds the joint-venture stakes that the main bridge and "
+  f"Expert 3 both add at book value. Expert 1 deducts the minorities and Expert 3 runs the "
+  f"full bridge; this one does neither. Put on the same bridge as the other two — the "
+  f"minority share out, the joint ventures in — this expert would land at AED "
+  f"{p2(E2_BRIDGED)} rather than AED {p2(E2['base'])}, a move of AED "
+  f"{E2_BRIDGED-E2['base']:+.2f}. The published figure is left as the method produces it "
+  f"and the difference is stated here, because three experts presented as independent "
+  f"reads of one balance sheet should not be quietly running three different bridges.")
 P(f"This expert lands at AED {p2(E2['base'])}, below the study's own weighted central of "
   f"AED {p2(D['central'])}, and the reason is specific: the five-year average free cash "
   f"flow of USD {m0(E2['fcff'])} million is dragged down by the investment years. Free "
@@ -2654,8 +3467,9 @@ P(f"The panel spans AED {p2(min(E1['base'], E2['base'], E3['base']))} to "
   f"standards of this series. That narrowness is itself informative: three methods that "
   f"share almost nothing methodologically land within AED "
   f"{p2(max(E1['base'], E2['base'], E3['base'])-min(E1['base'], E2['base'], E3['base']))} "
-  f"of one another. All three land at or below the market price, and all three below this "
-  f"study's own weighted central of AED {p2(D['central'])}.")
+  f"of one another. The market price of AED {p2(SPOT)} falls inside that span, and so does "
+  f"this study's own cash-flow lens; the weighted central of AED {p2(D['central'])} sits "
+  f"{'inside it as well' if min(E1['base'], E2['base'], E3['base']) <= D['central'] <= max(E1['base'], E2['base'], E3['base']) else 'above all three'}.")
 P(f"The panel centre of AED {p2(PANEL)} sits {ab(PANEL)} and "
   f"{sgn(PANEL/D['central']-1, 0)} against this study's weighted central. That gap is "
   f"real and it has a single explanation: every one of the three experts works from "
@@ -2695,7 +3509,15 @@ rows = [['Assumption', 'Expert 1', 'Expert 2', 'Expert 3', 'Why it swings the an
          'deducted at carrying value in the bridge and weighted in the cost of capital at '
          'their own coupon',
          'the two bridge treatments differ by AED '
-         + p2(DCFH['fv_aed'] - DCF['fv_aed']) + ' a share in the main model']]
+         + p2(DCFH['fv_aed'] - DCF['fv_aed']) + ' a share in the main model'],
+        ['The minorities and the joint ventures',
+         f"minorities deducted at {pc(IN['nci_share'])} of mid-cycle profit; joint ventures "
+         f"not added",
+         'neither deducted nor added — the one inconsistency in this panel',
+         'both, on the same bridge the cash-flow model uses',
+         f"putting Expert 2 on the same bridge as the other two would move it AED "
+         f"{E2_BRIDGED-E2['base']:+.2f} and the panel centre with it. The published figures "
+         f"are each method's own; the gap is stated in C.2 rather than smoothed"]]
 table(rows, [1.30, 1.42, 1.42, 1.42, 1.44], size=7.9, align_right_from=9)
 P("The instruction to the reader is not to average these three. It is to decide which "
   "premise is true — whether a fleet's investment years should be charged against its "
@@ -2721,12 +3543,17 @@ P(f"Where a judgement has two legitimate constructions, both are computed and bo
   f"alongside the new one at full size rather than quietly replaced — that is why the "
   f"equal-weight composite reading of AED {p2(D['central_beta_alt'])} appears throughout "
   f"this document beside the adopted AED {p2(D['central'])}.")
-P(f"The same rule governs correction. Where a study has been reviewed and found wrong, "
-  f"the corrections are listed in the document itself, with the direction and the size of "
-  f"each, rather than absorbed into a new set of numbers that looks as though it was "
-  f"always there. This edition carries such a list, under “What changed in this edition, "
-  f"and why”, immediately after the caveats. It is the section a reader who has seen the "
-  f"earlier edition should read first.")
+P(f"The same rule governs correction, and it extends to a study's own words about itself. "
+  f"Where a study has been reviewed and found wrong, the corrections are listed in the "
+  f"document itself, with the direction and the size of each, rather than absorbed into a "
+  f"new set of numbers that looks as though it was always there — and where a superseded "
+  f"edition made a CLAIM that later work falsified, the claim is reprinted and corrected "
+  f"rather than deleted. This edition does that twice: for a caveat that said a revenue "
+  f"convention could not reach the valuation, and for a cost of debt described as weighted "
+  f"when it is an average. This document carries the full list, under “What changed in "
+  f"these editions, and why”, immediately after the caveats. It covers both rounds of "
+  f"review and it is the section a reader who has seen an earlier edition should read "
+  f"first.")
 P("The probabilistic price map in section 3 is produced by a volatility model that is "
   "tested before it is allowed to publish a range: the model is re-run at successive past "
   "dates using only the data available on each of those dates, and every forecast it made "

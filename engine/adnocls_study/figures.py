@@ -57,6 +57,16 @@ names = [f'Cash-flow model\n(published index, beta {BETA_P:.3f})',
          'Book value and\nsustainable return',
          'Weighted central\n(published index)',
          'Weighted central\n(equal-weight composite)']
+# The two composite rows do NOT have bear and bull cases of their own: the committed file
+# carries the PRIMARY construction's bounds against them, because only the base was re-run
+# on the composite beta. Drawing a span there would put a bar around a base that bar does
+# not belong to — the base would sit at the far right of a range built for a number two
+# dirhams lower. Those rows are therefore drawn as a base marker only, and the figure says
+# so. Detected by comparing the bounds, not by naming the rows, so a later re-run that DOES
+# produce composite bounds starts drawing them automatically.
+BORROWED = {k for k in keys if k.endswith('_beta_alt')
+            and (L[k]['bear'], L[k]['bull'])
+            == (L[k.replace('_beta_alt', '')]['bear'], L[k.replace('_beta_alt', '')]['bull'])}
 fig, ax = plt.subplots(figsize=(9.7, 5.3), dpi=110)
 xmax = max(max(L[k]['bull'], L[k]['base']) for k in keys)
 xmin = min(min(L[k]['bear'], L[k]['base']) for k in keys)
@@ -69,6 +79,11 @@ for i, k in enumerate(keys):
     lo_, hi_ = min(b, ba, bu), max(b, ba, bu)
     central = k.startswith('central')
     col = GOLD if central else SAGE
+    if k in BORROWED:
+        ax.plot([ba], [y], marker='D', ms=9, color=BRASS, mfc=col, mew=1.8, zorder=4)
+        ax.text(ba + 0.02 * rng, y, f'base {ba:.2f}  ·  no span of its own',
+                va='center', fontsize=8.6, color=INK)
+        continue
     ax.barh(y, hi_ - lo_, left=lo_, height=0.50, color=col,
             alpha=0.50 if central else 0.32, edgecolor=col, linewidth=1.1)
     ax.plot([ba, ba], [y - 0.25, y + 0.25], color=BRASS, lw=3.4)
@@ -85,7 +100,8 @@ ax.set_ylim(-1.15, len(keys) - 0.40)
 ax.set_title('ADNOC Logistics & Services — fair-value field by lens\n'
              '(bear–bull span; brass tick = base). The two cash-flow rows are the same '
              'model,\nwith the beta measured against two different market series — never '
-             'averaged',
+             'averaged.\nDiamonds mark a base with no span of its own: the composite rows '
+             'were never re-run bear-to-bull',
              fontsize=9.6, pad=10)
 style(ax)
 fig.tight_layout()
@@ -108,8 +124,13 @@ for i in range(tab.shape[0]):
 ax.set_xticks(range(len(S['gs'])))
 ax.set_xticklabels([f'{x*100:.1f}%' for x in S['gs']], fontsize=8.6)
 BFG = D['beta_framing']
+# The composite slope sits BELOW the lower bound of the adopted estimate's own 90%
+# interval, so its row is labelled as outside that interval rather than merely
+# "composite". Tested against the committed bound, not asserted.
+_alt_outside = BFG['alternative']['beta'] < BFG['ci90'][0]
 _tags = {round(IN['beta'], 3): 'adopted',
-         round(BFG['alternative']['beta'], 3): 'composite',
+         round(BFG['alternative']['beta'], 3):
+             'composite\nbelow the 90%\ninterval' if _alt_outside else 'composite',
          round(BFG['ci90'][1], 3): '90% upper'}
 ax.set_yticks(range(len(S['betas'])))
 ax.set_yticklabels([f'{b:.3f}\n{_tags[round(b, 3)]}' if round(b, 3) in _tags
@@ -130,7 +151,7 @@ for x, y in zip(xs, ys):
                  ha='center', fontsize=8.8, color=INK)
 ax2.axhline(SPOT, color=INK, lw=1.4, ls=':')
 ax2.text(xs[0], SPOT, f' market price {SPOT:.2f}', color=INK, fontsize=8.4,
-         ha='left', va='bottom')
+         ha='left', va='top')
 ax2.set_xticks(xs)
 ax2.set_xticklabels([f'{x:.0%}' for x in xs], fontsize=8.6)
 ax2.set_xlabel('mid-cycle tanker rate anchor, against the base', fontsize=9)
@@ -370,13 +391,18 @@ ax.set_title('Published rate by class, by quarter — a blend across the whole c
              fontsize=9.6, pad=9)
 style(ax)
 
-# right panel — the same first quarter, published blend against the rate solved out of it
-labs = [lbl.replace('Very large crude carriers', 'Very large\ncrude carriers')
-           .replace('Long range ', 'Long range\n').replace('Medium range', 'Medium\nrange')
-        for _, lbl, _ in CLS]
-bx = np.arange(len(CLS))
-blend = [FL['blend_q1_26'][k] for k, _, _ in CLS]
-spot = [FL['spot_q1_26'][k] for k, _, _ in CLS]
+# right panel — the same first quarter, published blend against the rate solved out of it.
+# Handysize appears here and not on the left: no quarterly rate is published for the class
+# at all, so it has no series to plot, but it DOES have a first-quarter figure — the
+# medium-range rate scaled by the move the company disclosed for it on the call. Leaving it
+# off the figure entirely was how the earlier substitution stayed invisible.
+CLS_R = CLS + [('hs', 'Handysize', SAGE)]
+labs = [lbl.replace('Very large crude carriers', 'Very large\ncrude\ncarriers')
+           .replace('Long range ', 'Long\nrange ').replace('Medium range', 'Medium\nrange')
+        for _, lbl, _ in CLS_R]
+bx = np.arange(len(CLS_R))
+blend = [FL['blend_q1_26'][k] for k, _, _ in CLS_R]
+spot = [FL['spot_q1_26'][k] for k, _, _ in CLS_R]
 axb.bar(bx - 0.20, blend, width=0.38, color=SAGE, alpha=0.85, edgecolor=SAGE,
         label='published blended rate')
 axb.bar(bx + 0.20, spot, width=0.38, color=GOLD, alpha=0.95, edgecolor=BRASS,
@@ -394,7 +420,7 @@ for i, (b_, s_) in enumerate(zip(blend, spot)):
     axb.text(i + 0.20, s_ + pad_, f'{s_:,.0f}', ha='center', va='bottom', fontsize=8.2,
              color=BRASS, fontweight='bold')
 axb.set_xticks(bx)
-axb.set_xticklabels(labs, fontsize=8.2)
+axb.set_xticklabels(labs, fontsize=7.6)
 axb.set_ylim(0, max(spot) * 1.30)
 axb.set_yticks([0, 50000, 100000, 150000, 200000])
 axb.set_yticklabels(['0', '50k', '100k', '150k', '200k'], fontsize=8.6)

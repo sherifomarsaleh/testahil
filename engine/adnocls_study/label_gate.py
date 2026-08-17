@@ -22,6 +22,7 @@ SG, RN, DF_ = ROWS['Segments'], ROWS['Relative & Normalized'], ROWS['DCF']
 IS, BS, CF = ROWS['Income Statement'], ROWS['Balance Sheet'], ROWS['Cash Flow']
 SB, SU, FV, PR = (ROWS['SOTP Bridge'], ROWS['Summary'], ROWS['Fundamental Valuation'],
                   ROWS['Peer & Sector'])
+AS = ROWS['Assumptions']
 wb = openpyxl.load_workbook(
     os.path.join(HERE, 'ADNOCLS_Valuation_Model_09082026_public.xlsx'))
 V = {k: v['value'] for k, v in D['inputs'].items()}
@@ -49,6 +50,17 @@ def _charter_window(klass, a, b):
 
 CHD_VLCC_Q1, CHR_VLCC_Q1 = _charter_window('vlcc', '2026-01-01', '2026-04-01')
 CHD_VLCC_26, CHR_VLCC_26 = _charter_window('vlcc', '2026-01-01', '2027-01-01')
+# the crude carriers bought on 7 August 2026 trade spot from their delivery date, so the
+# spot vessel-days of that class in 2026 are the owned fleet's days, less the charter days,
+# plus theirs — recomputed here from the committed count and that date
+ACQ_VLCC_DAYS_26 = V['acq_2026_vlcc'] * (dt.date(2027, 1, 1) - dt.date(2026, 9, 1)).days
+# the receivable ratio the forecast uses: the reported one re-based onto the revenue basis
+# the forecast is built at, recomputed here from the committed parts
+DSO_REBASED = (D['ccc']['dso'][2] * V['rev_fy25']
+               / (V['rev_fy25'] - V['seg_rev_tankers_fy25']
+                  + FL['tce_rev_25'] * V['tnk_grossup_26']))
+BLEND_PE_TTM = ((1 - D['rel']['spot_weight']) * D['peers'][0]['pe_ttm']
+                + D['rel']['spot_weight'] * D['peers'][1]['pe_ttm'])
 SH, PEG = D['meta']['shares_mn'], D['meta']['fx']
 
 
@@ -133,8 +145,18 @@ CASES = [
      CHD_VLCC_26),
     ('Segments', f"A{SG['ycrb']}", f"B{SG['ycr0']+4}", ['charter revenue', 'class'],
      CHR_VLCC_26 / 1000.0),
-    ('Segments', f"A{SG['ysdb']}", f"B{SG['ysd0']+4}", ['spot vessel-days'],
-     FL['owned']['vlcc'] * 365 - CHD_VLCC_26),
+    ('Segments', f"A{SG['ysdb']}", f"B{SG['ysd0']+4}",
+     ['spot vessel-days', 'acquired'],
+     FL['owned']['vlcc'] * 365 - CHD_VLCC_26 + ACQ_VLCC_DAYS_26),
+    # the purchase announced on the anchor date, wherever it lands
+    ('Segments', f"A{SG['yacd0']+4}", f"B{SG['yacd0']+4}", ['very large crude carrier'],
+     ACQ_VLCC_DAYS_26),
+    ('Segments', f"A{SG['acqn']}", f"F{SG['acqn']}", ['bought', '7 august 2026'],
+     V['acq_2026_vlcc']),
+    ('Segments', f"A{SG['gasvya']}", f"C{SG['gasvya']}",
+     ['vessel-years', 'bought on 7 august 2026'], float(V['acq_2026_gas'])),
+    ('Segments', f"A{SG['gasvy']}", f"C{SG['gasvy']}", ['contracted vessel-years'],
+     FL['gas_vessel_years'][1]),
     ('Segments', f"A{SG['vdays25']}", f"B{SG['vdays25']}", ['vessel-days in 2025'],
      FL['vessel_days_25']),
     ('Segments', f"A{SG['tcerev25']}", f"B{SG['tcerev25']}",
@@ -347,8 +369,51 @@ CASES = [
     # --- Peer & Sector -------------------------------------------------------
     ('Peer & Sector', f"A{PR['mev']}", f"C{PR['mev']}", ['blended enterprise multiple'],
      REL['blend_ev_ebitda']),
-    ('Peer & Sector', f"A{PR['pe']}", f"C{PR['pe']}", ['blended price/earnings'],
-     REL['blend_pe']),
+    ('Peer & Sector', f"A{PR['pe']}", f"C{PR['pe']}",
+     ['blended forward price/earnings'], REL['blend_pe']),
+    # the earnings multiple on BOTH bases, each labelled for which it is: the first edition
+    # quoted the company trailing against peers shown forward
+    ('Peer & Sector', f"A{PR['pe_t']}", f"C{PR['pe_t']}",
+     ['blended trailing price/earnings'], BLEND_PE_TTM),
+    ('Relative & Normalized', f"A{RN['pe_fwd']}", f"C{RN['pe_fwd']}",
+     ['price /', 'forward'], D['wacc']['mktcap'] / D['fin']['npa_ordinary'][0]),
+    # --- the cost of debt, labelled for what each construction is ------------
+    ('DCF', f"A{DF_['kdbal']}", f"C{DF_['kdbal']}",
+     ['balance-weighted', 'method 2'], D['wacc']['kd_balance_weighted']),
+    # --- the fleet purchase, in the bridge and on the driver sheet -----------
+    ('DCF', f"A{DF_['acq']}", f"C{DF_['acq']}", ['bought on 7 august 2026'],
+     -V['acq_2026_cost']),
+    ('SOTP Bridge', f"A{SB['acq']}", f"C{SB['acq']}", ['bought on 7 august 2026'],
+     -V['acq_2026_cost']),
+    ('Assumptions', f"A{AS['acq_cost']}", f"C{AS['acq_cost']}",
+     ['purchase price', 'net debt', 'asset base'], V['acq_2026_cost']),
+    ('Assumptions', f"A{AS['acq_vlcc']}", f"B{AS['acq_vlcc']}",
+     ['very large crude carriers', 'secondhand'], V['acq_2026_vlcc']),
+    ('Assumptions', f"A{AS['acq_gas']}", f"B{AS['acq_gas']}",
+     ['gas carriers acquired in total'], V['acq_2026_gas']),
+    ('Assumptions', f"A{AS['acq_total']}", f"B{AS['acq_total']}", ['vessels acquired'],
+     V['acq_2026_vlcc'] + V['acq_2026_gas']),
+    ('Balance Sheet', f"A{BS['ppeacq']}", f"B{BS['ppeacq']}",
+     ['acquired', '7 august 2026'], V['acq_2026_cost']),
+    # --- the receivable ratio, re-based rather than carried across ----------
+    ('Assumptions', f"A{AS['dso_rep']}", f"C{AS['dso_rep']}",
+     ['days sales outstanding', 'reported'], D['ccc']['dso'][2]),
+    ('Assumptions', f"A{AS['dso']}", f"C{AS['dso']}",
+     ['days sales outstanding', 're-based'], DSO_REBASED),
+    ('Assumptions', f"A{AS['gu25']}", f"C{AS['gu25']}", ['gross-up', '2025'],
+     V['seg_rev_tankers_fy25'] / FL['tce_rev_25']),
+    ('Assumptions', f"A{AS['gu26']}", f"C{AS['gu26']}", ['gross-up', '2026'],
+     V['tnk_grossup_26']),
+    # --- depreciation: the rate used, the rate realised, the disclosed lives -
+    ('Assumptions', f"A{AS['dep_used']}", f"B{AS['dep_used']}", ['the rate used'],
+     V['dep_ppe'] if 'dep_ppe' in V else V['dep_rate_ppe']),
+    ('Assumptions', f"A{AS['dep_realised']}", f"B{AS['dep_realised']}",
+     ['realised in 2025'], V['dep_rate_realised_fy25']),
+    ('Assumptions', f"A{AS['dep_life']}", f"B{AS['dep_life']}",
+     ['useful life', 'tankers'], V['life_tankers']),
+    # --- the smallest tankers, scaled rather than substituted ---------------
+    ('Assumptions', f"A{AS['hs_rel']}", f"C{AS['hs_rel']}",
+     ['handysize', 'proportion of the medium-range rate'], V['handysize_relative']),
 ]
 
 fails, checked = [], 0
