@@ -1,0 +1,89 @@
+{
+ "adopted_beta": 1.278,
+ "adopted_window": "5y",
+ "index_name": "FTSE ADX General Index",
+ "index_last_session": "2026-07-24",
+ "windows": {
+  "2y": {
+   "beta": 1.5805674230661857,
+   "alpha": -0.0010371995734323673,
+   "se": 0.2393045338772803,
+   "r2": 0.3058665468323153,
+   "n": 101,
+   "gate": true,
+   "gate_limbs": {
+    "n": true,
+    "r2": true,
+    "se": true
+   }
+  },
+  "2y_proxy": {
+   "beta": 0.9805698569841573,
+   "alpha": -0.000776640635522757,
+   "se": 0.13084465968962178,
+   "r2": 0.35286192633296243,
+   "n": 105
+  },
+  "3y": {
+   "beta": 1.800407232657855,
+   "alpha": 0.0007421773263666607,
+   "se": 0.24980730419355987,
+   "r2": 0.258498045686418,
+   "n": 151,
+   "gate": true,
+   "gate_limbs": {
+    "n": true,
+    "r2": true,
+    "se": true
+   }
+  },
+  "3y_proxy": {
+   "beta": 1.1145626323556508,
+   "alpha": 0.0005593066433094939,
+   "se": 0.13982565936525468,
+   "r2": 0.2934273526390391,
+   "n": 155
+  },
+  "5y": {
+   "beta": 1.2783723642126017,
+   "alpha": -0.0015842589468900955,
+   "se": 0.25762941490903774,
+   "r2": 0.08868903457808175,
+   "n": 255,
+   "gate": true,
+   "gate_limbs": {
+    "n": true,
+    "r2": true,
+    "se": true
+   }
+  },
+  "5y_proxy": {
+   "beta": 1.1175991611264302,
+   "alpha": -0.0016667863725665754,
+   "se": 0.19225687063041189,
+   "r2": 0.11620547251261315,
+   "n": 259
+  }
+ },
+ "dq_index": {
+  "rows": 3884,
+  "first": "2011-01-02",
+  "last": "2026-07-24",
+  "span_years": 15.56,
+  "density": 249.7,
+  "max_abs_log_move": 0.0841,
+  "limit_breaches": [],
+  "nonpositive_dropped": 0
+ },
+ "dq_subject": {
+  "rows": 1577,
+  "first": "2017-12-06",
+  "last": "2026-08-07",
+  "span_years": 8.67,
+  "density": 181.9,
+  "max_abs_log_move": 0.1396,
+  "limit_breaches": [],
+  "nonpositive_dropped": 0
+ },
+ "peers_in_retired_proxy": 19
+}

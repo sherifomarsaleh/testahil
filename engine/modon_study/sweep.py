@@ -239,18 +239,27 @@ f_h1r = R.add(Ring.COMPANY, "IR communications (calls, presentations, releases)"
                  "the bridge uses the 30-Jun balance sheet and available cash, and "
                  "the run-off scenario is demoted to a stress reading.")
 
-f_beta = R.add(Ring.INDUSTRY, "beta evidence (regression + industry cross-check)",
-    FindingClass.S,
-    "Own-stock weekly regression vs an equal-weight proxy of the 18 ADX/DFM names in "
-    "the house library: beta 1.025 (3y, SE 0.109, R2 0.367, n 155, gate PASS); 1.071 "
-    "(5y); 1.055 (2y). Damodaran EM industry route rejected as primary (RE Development "
+f_beta = R.add(Ring.INDUSTRY, "beta evidence (official-index regression + industry cross-check)",
+    FindingClass.B,
+    "TIER 1 — own-stock weekly regression vs the stock's OWN local index, the official "
+    "FTSE ADX General (3,884 sessions, 02-Jan-2011 to 24-Jul-2026, screened for data quality before use: "
+    "249.7 rows/yr on ADX's own calendar, zero moves beyond the +/-15% constituent "
+    "limit, zero repairs). Beta 1.278 (5y, SE 0.258, R2 0.089, n 255, clears the usability test) is "
+    "adopted as the longest window clearing the gate; 3y 1.800 (R2 0.258), 2y 1.581 "
+    "(R2 0.306) both read HIGHER. The retired revision-2 proxy (equal-weight composite "
+    "of the 19 house UAE names) re-run on the same weeks reads 1.118 at 5y - it "
+    "under-read at every window because the official index is 1.30x less volatile than "
+    "the composite (11.5% vs 14.9% annualised) at a similar correlation (0.298 vs "
+    "0.343). Damodaran EM industry route stays rejected as primary (RE Development "
     "unlevered 0.45 dominated by highly-levered Chinese developers, D/E 1.97); "
     "retained as a lower-bound cross-check (relevered 0.56-0.59)",
-    "House regression on the price library; Damodaran betaemerg.xls (07-Jan-2026)",
-    PMD, "2026-08-09",
-    model_impact="Beta upgrades from the tier-3 assumption 1.0 to 1.03 (proxy-index "
-                 "regression, flagged: proxy is not the official benchmark); "
-                 "sensitised 0.8-1.2.")
+    "Official FTSE ADX General daily history (requester-supplied, 10-Aug-2026); house "
+    "regression beta_official.py; Damodaran betaemerg.xls (07-Jan-2026)",
+    PMD, "2026-08-10",
+    model_impact="Beta 1.03 (proxy) -> 1.278 (official index): Ke 9.08% -> 10.28%, "
+                 "WACC 8.30% -> 9.30%, DCF 5.29 -> 4.51, book 2.65 -> 2.24, weighted "
+                 "central 3.38 -> 2.98 (-11.6%). Sensitised +/-1 SE (1.02-1.54). The "
+                 "single largest change in revision 3 and it moves against value.")
 
 # ---- primary access log (successes AND failures, per the standing rule) -------
 R.record_primary_access("https://www.modon.ae/investor-relations", True, SWEEP_DATE,

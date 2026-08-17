@@ -1,4 +1,4 @@
-"""MODON_Valuation_Model_09082026_public.xlsx — revision 2. 16 sheets, house canonical
+"""MODON_Valuation_Model_10082026_public.xlsx — revision 2. 16 sheets, house canonical
 model. Blue = inputs · black = formulas · green = cross-sheet links.
 
 Revision-2 changes, from the external audits and the re-audit:
@@ -595,7 +595,7 @@ r_book = r
 
 # ============ SUMMARY =========================================================
 ws = wb.create_sheet('Summary')
-title(ws, 'Summary — valuation at a glance (revision 2)',
+title(ws, 'Summary — valuation at a glance (revision 3)',
       'All values link live to their source sheets', 7, awidth=44, cwidth=15)
 hdr(ws, 4, ['Lens', 'Bear', 'Base', 'Bull', 'Weight', 'Contribution', 'vs spot'])
 LENS_SRC = {'dcf': f"=DCF!C{ANCH['dcf']['ps']}", 'relative': "='Relative & Normalized'!C11",
@@ -1177,7 +1177,7 @@ assert set(ORDER) == set(wb.sheetnames), (set(ORDER) ^ set(wb.sheetnames))
 wb._sheets = [wb[n] for n in ORDER]
 wb.calculation.fullCalcOnLoad = True
 
-XLSX = os.path.join(HERE, 'MODON_Valuation_Model_09082026_public.xlsx')
+XLSX = os.path.join(HERE, 'MODON_Valuation_Model_10082026_public.xlsx')
 wb.save(XLSX)
 with open(os.path.join(HERE, 'xlsx_expected.json'), 'w') as f:
     json.dump(dict(expected=EXPECT,

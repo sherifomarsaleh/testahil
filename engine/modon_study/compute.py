@@ -636,9 +636,17 @@ for t in range(NY):
 fcff_f = [nopat_f[t] + dna_f[t] - capex_f[t] - dnwc_f[t] for t in range(NY)]
 
 # =============================================================================
-# COST OF CAPITAL v2 — beta upgraded from the tier-3 assumption to a
-# proxy-index regression, cross-checked against the industry route
+# COST OF CAPITAL v3 — beta is now TIER 1: the own-stock regression against the
+# stock's OWN local index, the official FTSE ADX General. Revision 2 ran a
+# flagged PROXY (equal-weight composite) because the official series could not
+# be obtained through ten logged sources; it arrived 10-Aug-2026 and replaces
+# the proxy. The proxy was not a harmless stand-in: the official index is 1.30x
+# LESS volatile than the composite at a similar correlation, and beta is
+# corr x (sigma_stock / sigma_market), so the smaller denominator lifts beta
+# 1.03 -> 1.278 and takes the central down 3.38 -> 2.98. Numbers below are READ
+# from beta_official.json — none is typed here.
 # =============================================================================
+_BETA = json.load(open(os.path.join(HERE, 'beta_official.json')))
 rf_gross = inp('rf', 0.0448, 'AED sovereign anchor: Jan-2031 dirham T-Bond, 4.48% '
                'YTM, July-2026 auction, ~4bp over UST (UAE MoF via WAM) — the '
                'longest liquid AED government tranche; the tenor choice (4.4y vs a '
@@ -652,23 +660,53 @@ erp_rating = inp('erp_rating', 0.0487, 'Damodaran total ERP, UAE row, rating bas
 inp('erp_cds_na', 'NA', 'No UAE sovereign CDS row is published — the CDS-basis '
     'WACC cannot be built; rating basis stands alone, stated', '2026-01-05',
     'Country')
-beta = inp('beta', 1.03, 'OWN-STOCK regression against an equal-weight proxy of '
-           'the 18 ADX/DFM names in the house library (the official FTSE ADX '
-           'General index remains unobtainable — 7 sources logged): 3-year weekly '
-           'beta 1.025 (SE 0.109, R2 0.367, n 155, gate PASS); 5-year 1.071 '
-           '(R2 0.142, spans the pre-2022 thin-trading regime); 2-year 1.055 '
-           '(R2 0.460). Adopted 1.03, FLAGGED: proxy index, not the official '
-           'benchmark. The Damodaran EM industry route (business-weighted '
-           'unlevered 0.50 -> relevered 0.56-0.59) is REJECTED as a primary: the '
-           '786-firm Real-Estate-Development row is dominated by highly-levered '
-           'Chinese developers (D/E 1.97) unrepresentative of a UAE state '
-           'platform; it is retained as a lower-bound cross-check. Sensitised '
-           '0.8-1.2', '2026-08-09', 'House')
-inp('beta_reg_detail', dict(w3y=[1.025, 0.109, 0.367, 155], w5y=[1.071, 0.164, 0.142, 259],
-                            w2y=[1.055, 0.114, 0.460, 103]),
+_bw = _BETA['windows']
+beta = inp('beta', _BETA['adopted_beta'],
+           'TIER 1 — OWN-STOCK weekly regression against its OWN local index, the '
+           'FTSE ADX General (3,884 sessions, 02-Jan-2011 -> 24-Jul-2026, screened for '
+           'data quality before use: 249.7 rows/yr on ADX\'s own calendar, zero moves beyond the '
+           '±15% constituent limit, zero repairs). Longest window up to 5 years '
+           'that clears the usability gate is adopted, per the standing hierarchy: '
+           f'5-year beta {_bw["5y"]["beta"]:.3f} (SE {_bw["5y"]["se"]:.3f}, R2 '
+           f'{_bw["5y"]["r2"]:.3f}, n {_bw["5y"]["n"]}, gate PASS). SHORTER WINDOWS '
+           f'READ HIGHER, NOT LOWER: 3-year {_bw["3y"]["beta"]:.3f} (R2 '
+           f'{_bw["3y"]["r2"]:.3f}), 2-year {_bw["2y"]["beta"]:.3f} (R2 '
+           f'{_bw["2y"]["r2"]:.3f}) — so the adopted figure is the FRIENDLIEST of '
+           'the three, and the risk on this input is to the downside of value. '
+           'SUPERSEDES the revision-2 proxy (equal-weight house composite, 1.03): '
+           'the official index is 1.30x LESS volatile than that composite (11.5% '
+           'vs 14.9% annualised) at a similar correlation (0.298 vs 0.343), and '
+           'beta = corr x (sigma_stock / sigma_market), so the true benchmark '
+           'RAISES beta rather than lowering it. A turnover-weighted composite had '
+           'pointed the other way (0.842) and was wrong — recorded because it was '
+           'the reasoning that the official series overturned. The Damodaran EM '
+           'industry route (business-weighted unlevered 0.50 -> relevered '
+           '0.56-0.59) stays REJECTED as a primary: the 786-firm '
+           'Real-Estate-Development row is dominated by highly-levered Chinese '
+           'developers (D/E 1.97) unrepresentative of a UAE state platform; it is '
+           f'retained as a lower-bound cross-check. Sensitised ±1 SE, '
+           f'{_BETA["adopted_beta"] - _bw["5y"]["se"]:.2f}-'
+           f'{_BETA["adopted_beta"] + _bw["5y"]["se"]:.2f}',
+           '2026-08-10', 'Company')
+inp('beta_reg_detail',
+    {w: [round(_bw[w]['beta'], 3), round(_bw[w]['se'], 3),
+         round(_bw[w]['r2'], 3), _bw[w]['n']] for w in ('2y', '3y', '5y')},
     'Regression detail (beta, SE, R2, n) per window: MODON weekly log-returns vs '
-    'the equal-weight 18-name panel proxy, computed from the house price library',
+    'the FTSE ADX General Index, both series screened for data quality before use',
+    '2026-08-10', 'Company')
+inp('beta_rev2_published', 1.03,
+    'The beta PUBLISHED at revision 2 (proxy composite, 3-year window). Registered '
+    'so the revision-3 correction can be stated against what readers actually saw, '
+    'not against a re-run they never read',
     '2026-08-09', 'House')
+inp('beta_proxy_retired',
+    {w: [round(_bw[w + '_proxy']['beta'], 3), round(_bw[w + '_proxy']['se'], 3),
+         round(_bw[w + '_proxy']['r2'], 3), _bw[w + '_proxy']['n']]
+     for w in ('2y', '3y', '5y')},
+    'The RETIRED revision-2 proxy (equal-weight composite of the 19 house UAE '
+    'names), re-run on the same weeks so the change is priced rather than '
+    'asserted: it under-reads the official beta at every window',
+    '2026-08-10', 'House')
 inp('beta_industry_check', dict(unlevered_weighted=0.501, relevered_fy25=0.563,
                                 relevered_h1=0.588),
     'Damodaran January-2026 EM industry betas (betaemerg.xls, saved 07-Jan-2026): '
@@ -1082,7 +1120,8 @@ A(abs(dcf_shift() - ps) < 0.02, 'sensitivity engine reproduces the base at the '
 g_grid = [0.015, 0.02, 0.025, 0.03, 0.035]
 w_grid = [-0.01, -0.005, 0.0, 0.005, 0.01]
 sens_wg = [[dcf_shift(w_add=wx, g_x=gx) for gx in g_grid] for wx in w_grid]
-beta_grid = [0.8, 0.9, 1.03, 1.1, 1.2]
+_bse = _bw['5y']['se']
+beta_grid = [round(beta + k * _bse, 3) for k in (-2, -1, 0, 1, 2)]
 grid_beta = [dcf_shift(beta_x=b) for b in beta_grid]
 mg_grid = [-0.04, -0.02, 0.0, 0.02, 0.04]
 grid_margin = [dcf_shift(margin_shift=m) for m in mg_grid]

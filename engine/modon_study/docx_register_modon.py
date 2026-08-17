@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""MODON_Bibliography_09-08-2026.docx — standalone bibliography: primary documents,
+"""MODON_Bibliography_10-08-2026.docx — standalone bibliography: primary documents,
 the FULL input register (every input, four fields), judgements with overturn
 conditions, negative results, aggregator-discrepancy notes."""
 import os, json
@@ -51,18 +51,25 @@ pd_rows = [['Document', 'Period', 'Retrieved from', 'Used for'],
   'primary, receipt in the study)'],
  ['Uploaded ADX daily price history for MODON (1,577 sessions, Dec-2017 – Aug-2026)', 'to 7 Aug 2026',
   'user-supplied export', 'price anchor, volatility model, technical read, beta regression '
-  '(with the 18-name house panel as the proxy composite)']]
+  '(against the official index below)'],
+ ['FTSE ADX General Index daily history (3,884 sessions, Jan-2011 – Jul-2026)', 'to 24 Jul 2026',
+  'user-supplied export', 'beta regressor — the stock\'s own local index; screened for data quality '
+  '(249.7 sessions a year on ADX\'s calendar, no impossible moves, no repairs needed)']]
 table(pd_rows, [2.9, 1.05, 1.6, 1.4], size=8.2)
 
 H1('2 · Negative results — searched, not found')
 neg = [['What was sought', 'Where', 'Outcome'],
  ['FTSE ADX General Index daily history (beta regressor)',
-  'stooq (^adx); Yahoo Finance FADGI.FGI / FADX15.FGI / ^ADI; investing.com page + API; '
-  'TradingEconomics chart API; WSJ/MarketWatch charting API; adx.ae + apigateway.adx.ae',
-  'No downloadable series from any of seven sources. At revision 2 beta comes from a weekly '
-  'regression of MODON against an equal-weight composite of the 18 house-library UAE names '
-  '(3y beta 1.025, R² 0.37, n 155, gate PASS) — adopted 1.03, flagged as a proxy-index '
-  'regression; the Damodaran industry route (0.45 unlevered) rejected as primary with receipt.'],
+  'stooq (^adx, ^adi, adsmi — JS challenge); Yahoo Finance FADGI.FGI / FADX15.FGI / ^ADI / '
+  '^ADSMI (v8 and v2, rate-limited); investing.com page + API; TradingEconomics chart API; '
+  'WSJ/MarketWatch charting API; FMP; adx.ae + apigateway.adx.ae',
+  'CLOSED at revision 3 — ten sources failed over two sessions and the series was supplied '
+  'directly by the requester on 10-Aug-2026 (3,884 sessions, 02-Jan-2011 to 24-Jul-2026). '
+  'Beta is now the tier-1 own-stock regression against the official index; the proxy composite '
+  'is retired. The failure was not cosmetic: the proxy under-read beta at every window '
+  '(5y 1.118 vs 1.278 official), because the official index is 1.30x less volatile than the '
+  'composite at a similar correlation. Logged here because a negative result that is later '
+  'closed is evidence about how much the substitute cost.'],
  ['UAE sovereign CDS spread (for a CDS-basis equity premium)',
   'Damodaran ctryprem, January 2026', 'Published as NA for the UAE — no CDS-basis cost of '
   'capital can be built; the rating basis stands alone.'],
@@ -97,11 +104,13 @@ jd = [['Judgement', 'Basis', 'What would overturn it'],
  ['Tax at 15.5% (DMTT floor + foreign uplift)',
   'note 11 (DMTT charged from 2025); H1-2026 effective 15.4%',
   'a DMTT carve-out, or foreign profits growing beyond ~1/4 of the mix'],
- ['Beta 1.03 (own-stock regression vs the equal-weight 18-name panel proxy)',
-  '3y weekly beta 1.025 (R² 0.37, n 155, usability gate PASS); 2y 1.055; 5y 1.071; '
-  'industry route rejected as primary (receipt in the study)',
-  'the official index becoming downloadable and its regression disagreeing materially '
-  'with the proxy'],
+ ['Beta 1.278 — TIER 1: own-stock weekly regression vs the official FTSE ADX General Index',
+  '5y beta 1.278 (SE 0.258, R² 0.089, n 255, usability gate PASS) — the longest window that '
+  'clears the gate, per the standing hierarchy; 3y 1.800 (R² 0.26), 2y 1.581 (R² 0.31), so '
+  'the adopted figure is the friendliest of the three; industry route rejected as primary',
+  'a longer or cleaner index history moving the 5y estimate, or the fit staying this loose '
+  '(R² 0.089) while the shorter windows keep reading 1.6-1.8 — in which case the adopted '
+  'beta is too low and the central too high'],
  ['Terminal ROIC 8.5% — between the FY2025 clean 6.1% and the model\'s own forward path (~15%)',
   'at-cost land bank converting to recognised profit; deliberate mean-reversion below the path',
   'land monetisation stalling: at the clean achieved return the terminal value falls ~16% '
@@ -114,7 +123,7 @@ jd = [['Judgement', 'Basis', 'What would overturn it'],
   'a float event or dividend policy would raise the market lenses\' weight']]
 table(jd, [2.0, 2.45, 2.5], size=8.2)
 
-H1('3b · Corrections adopted at revision 2 (external audits + re-audit)')
+H1('3b · Corrections adopted at revisions 2 and 3 (external audits, re-audit, official index)')
 corr = [['Item', 'First edition', 'Revision 2', 'Why'],
  ['Development backlog driver', '42,600 (31-Dec-25)', '62,130 (30-Jun-26, 65.4bn × 95%)',
   'H1-2026 release superseded the anchor 11 days before publication'],
@@ -130,6 +139,8 @@ corr = [['Item', 'First edition', 'Revision 2', 'Why'],
   'absorbing through FY2028', 'H1 actuals show absorption while growth runs'],
  ['D&A driver', '4.2% of revenue', '3.4% on the average asset base', 'asset-base charge'],
  ['Beta', '1.0 assumed (tier-3)', '1.03 regressed vs panel proxy', 'evidence obtained'],
+ ['Beta (revision 3)', '1.03 vs a proxy composite', '1.278 vs the official FTSE ADX General',
+  'the official index was obtained; the proxy under-read beta at every window'],
  ['Peer table', 'mixed bases/vintages; multiples irreconcilable',
   'one attributable basis, every multiple = printed numerator/denominator',
   'Aldar backlog was the 9M-2025 vintage; Emaar Dev backlog was the parent\'s figure; '
@@ -198,5 +209,5 @@ H1('Disclosure')
 P('Companion to the Modon Holding valuation study of 9 August 2026. Educational analysis; not '
   'investment advice. © Testahil 2026.', size=9)
 
-doc.save('MODON_Bibliography_09-08-2026.docx')
-print('wrote MODON_Bibliography_09-08-2026.docx —', len(INP), 'inputs')
+doc.save('MODON_Bibliography_10-08-2026.docx')
+print('wrote MODON_Bibliography_10-08-2026.docx —', len(INP), 'inputs')

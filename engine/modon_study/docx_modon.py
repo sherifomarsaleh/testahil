@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""MODON_Valuation_Study_09-08-2026_public.docx — revision 2. All numbers from
+"""MODON_Valuation_Study_10-08-2026_public.docx — revision 2. All numbers from
 study_numbers.json; no financial numeral typed here. External-reader clean."""
 import os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -28,13 +28,25 @@ masthead()
 P('Modon Holding PSC', size=24, bold=True, space_after=0)
 rich([('ADX: MODON · Abu Dhabi Securities Exchange · United Arab Emirates dirham (AED)',
        dict(color=GREY, size=11))], space_after=2)
-rich([(f'Independent valuation study · revision 2 · 9 August 2026 · valuation date 30 June 2026 · '
+rich([(f'Independent valuation study · revision 3 · 10 August 2026 · valuation date 30 June 2026 · '
        f'price anchor AED {px(SPOT)} (close 7 August 2026)', dict(color=GREY, size=10))],
      space_after=10)
 box([
  ('READ FIRST. ', 'This study is an independent, educational analysis of Modon Holding PSC. '
   'It is not investment advice, not a recommendation, and it contains no price target. '
   'Every value is a model output presented as a range with its assumptions shown.'),
+ ('Revision 3. ', f'One input changed and it changed the answer. Revisions 1 and 2 could not '
+  f'obtain the exchange\'s official index and measured the stock\'s market sensitivity against '
+  f'a composite built from this study\'s own price library, flagged in both editions as a '
+  f'stand-in. The official FTSE ADX General series has since been obtained and the regression '
+  f're-run against it. Beta rises from {IN["beta_rev2_published"]:.2f} to '
+  f'{IN["beta"]:.2f} (like for like on the same five-year window the stand-in read '
+  f'{IN["beta_proxy_retired"]["5y"][0]:.2f}), the cost of equity from 9.08% to '
+  f'{pc(W["ke_exp"], 2)}, and the '
+  f'weighted central falls from AED 3.38 to AED {px(CEN)} — against a price of AED '
+  f'{px(SPOT)}, the margin narrows from about 19% to about '
+  f'{pc(CEN / SPOT - 1, 0)}. Nothing else in the forecast moved. The stand-in flattered '
+  f'the company, and the correction is reported here rather than absorbed quietly.'),
  ('Revision 2. ', 'The first edition (earlier the same day) struck its development drivers on '
   '31-December-2025 disclosures although the company\'s H1-2026 results release of 29 July 2026 '
   '— which this study cites for other figures — had superseded them: the revenue backlog had '
@@ -351,18 +363,27 @@ P(f'Rates are sourced and each risk charged once. The AED government curve gives
   f'exists for the UAE, so no CDS-basis alternative can be built; and the spread-basis mix in '
   f'the first edition — rating-based for the netting, market-based for retiring the conflict '
   f'premium — is now stated: on a like-for-like basis the two constructions differ by ~6bp).')
-P(f'Beta is no longer an assumption. The exchange\'s official index remains unobtainable '
-  f'(seven sources logged in the bibliography), so this edition regresses MODON\'s weekly '
-  f'returns against an equal-weight composite of the eighteen UAE names in this study\'s own '
-  f'price library: beta {IN["beta_reg_detail"]["w3y"][0]:.2f} over three years (R² '
-  f'{IN["beta_reg_detail"]["w3y"][2]:.2f}, n {IN["beta_reg_detail"]["w3y"][3]}), '
-  f'{IN["beta_reg_detail"]["w2y"][0]:.2f} over two, {IN["beta_reg_detail"]["w5y"][0]:.2f} over '
-  f'five — adopted {IN["beta"]:.2f}, flagged: the composite is a proxy, not the official '
-  f'benchmark. A published industry-average route (emerging-market real-estate development, '
-  f'unlevered ~0.45) was tested and rejected as primary: that average is dominated by '
-  f'highly-levered developers unrepresentative of a state platform, and it is kept only as a '
-  f'lower-bound cross-check worth ~+1 dirham per share if adopted — the 0.8–1.2 strip in '
-  f'section 1.9 brackets it.')
+P(f'Beta is measured against the exchange\'s own index. Earlier editions could not obtain the '
+  f'FTSE ADX General series and used a composite of this study\'s own UAE price library as a '
+  f'stand-in, flagged as such. The official series has since been obtained — 3,884 sessions '
+  f'from January 2011 to July 2026, screened for data quality before use — and MODON\'s weekly '
+  f'returns are now regressed against it: beta {IN["beta_reg_detail"]["5y"][0]:.2f} over five '
+  f'years (R² {IN["beta_reg_detail"]["5y"][2]:.2f}, n {IN["beta_reg_detail"]["5y"][3]}), which '
+  f'is the longest window that clears the usability test and is therefore the one adopted. '
+  f'The shorter windows read HIGHER, not lower — {IN["beta_reg_detail"]["3y"][0]:.2f} over '
+  f'three years and {IN["beta_reg_detail"]["2y"][0]:.2f} over two — so the adopted figure is '
+  f'the most favourable of the three and the risk on this input runs against value, not for '
+  f'it. The stand-in was not harmless: the official index is about a third less volatile than '
+  f'the composite at a similar correlation, and because beta divides the stock\'s volatility '
+  f'by the market\'s, the true benchmark RAISES beta from '
+  f'{IN["beta_proxy_retired"]["5y"][0]:.2f} to {IN["beta"]:.2f} — worth about AED '
+  f'{abs(SN["grid_beta"][2] - SN["grid_beta"][4]):.2f} per share on the cash-flow lens. That '
+  f'correction is the single largest change in this edition and it moves against the company. '
+  f'A published industry-average route (emerging-market real-estate development, unlevered '
+  f'~0.45) was tested and rejected as primary: that average is dominated by highly-levered '
+  f'developers unrepresentative of a state platform, and it is kept only as a lower-bound '
+  f'cross-check. Section 1.9 sensitises beta one standard error either side of the adopted '
+  f'figure rather than around a convention.')
 wt = [['Cost of capital', 'Value', 'Construction'],
       ['Risk-free rate, normalised', pc(W['rf_star'], 2), f'{pc(IN["rf"], 2)} − '
        f'{pc(IN["sov_spread_rating"], 2)} default spread'],
@@ -406,7 +427,9 @@ figure('fig2_sens.png', 6.4, 'Figure 2 — DCF fair value across cost-of-equity 
        'the flat rows: with the terminal rate near the terminal return on capital, growth is '
        'close to value-neutral.')
 sens_rows = [['One-way strip (DCF per share)', '−2', '−1', 'base', '+1', '+2'],
-             ['Beta 0.8 → 1.2 (base 1.03)'] + [px(v) for v in SN['grid_beta']],
+             [f'Beta {SN["beta_grid"][0]:.2f} → {SN["beta_grid"][-1]:.2f} '
+              f'(base {IN["beta"]:.2f}, steps of one standard error)']
+             + [px(v) for v in SN['grid_beta']],
              ['Development margin ±4pts'] + [px(v) for v in SN['grid_margin']],
              ['Conversion rate ±6pts'] + [px(v) for v in SN['grid_conv']],
              ['New sales 50%→150% of base'] + [px(v) for v in SN['grid_sales']],
@@ -540,9 +563,12 @@ bullet(f' H1-2026 consumed AED 3.9bn of operating cash into receivables. The com
 bullet(' FY2024 is a perimeter break and FY2023 belongs to a smaller predecessor: exactly two '
        'audited years of the modern group exist. Every trend read off this history carries '
        'that caveat.', 'Short clean history.')
-bullet(' Beta comes from a regression against a self-built equal-weight composite, not the '
-       'official index; the 0.8–1.2 strip bounds what the official benchmark could change.',
-       'Beta.')
+bullet(f' Beta is now regressed against the exchange\'s official index rather than a self-built '
+       f'stand-in, which raised it to {IN["beta"]:.2f} and cut the central. Two limits remain: '
+       f'the fit is loose (R² {IN["beta_reg_detail"]["5y"][2]:.2f} over five years), and the '
+       f'shorter windows read higher still — {IN["beta_reg_detail"]["3y"][0]:.2f} over three '
+       f'years would take the central to about AED {SN["grid_beta"][4]:.2f} on the cash-flow '
+       f'lens. A rising beta is the live risk to this valuation.', 'Beta.')
 bullet(f' {pc(DCF["tv_share"])} of the DCF\'s enterprise value is terminal. At the terminal '
        f'return of {pc(IN["roic_term"], 1)} the block assumes the land bank converts to '
        f'recognised profit; at FY2025\'s clean achieved '
@@ -796,5 +822,5 @@ P('Educational analysis. Not investment advice, not a recommendation, not an off
   'appears. The authors hold no position in MODON. Data as of 9 August 2026; prices as of '
   'the 7 August 2026 close. © Testahil 2026.', size=9)
 
-doc.save('MODON_Valuation_Study_09-08-2026_public.docx')
-print('wrote MODON_Valuation_Study_09-08-2026_public.docx (revision 2)')
+doc.save('MODON_Valuation_Study_10-08-2026_public.docx')
+print('wrote MODON_Valuation_Study_10-08-2026_public.docx (revision 3)')

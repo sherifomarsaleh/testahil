@@ -439,3 +439,60 @@ invariant reads a period as covered only when both documents carry findings. Whe
 release post-dates the statements it accompanies, the release's operating anchors
 (backlog, sales, net debt on the company definition) supersede any older anchors in the
 driver set, or the study must state explicitly why they do not.
+
+## The beta regressor is the OFFICIAL local index, and a proxy is a debt to be repaid [ADOPTED 10-Aug-2026 — MODON revision 3]
+
+The beta hierarchy already said it: tier 1 is the stock's own price history regressed
+against **its own local index**. What it never said is what to do when that index cannot be
+downloaded — and the honest-looking answer, a self-built composite of the names already in
+the house library, turns out to be a substantive analytical choice rather than a neutral
+stand-in.
+
+**The rule.**
+1. Every market's OFFICIAL index series lives at `engine/raw_ohlc/INDEX/{MARKET}.csv`, placed
+   the same way price libraries are: by file placement, screened by the same data-quality
+   gate as any other series (per-market limit, trading-day density against that exchange's
+   own calendar) before a single regression runs. EGX30 for EG, FTSE ADX General for AE, and
+   so on per market. This library is as much a standing asset as the price library.
+2. Beta for any study is regressed against the subject's OWN market's index from that
+   library. Not a regional index, not a composite, not a peer basket.
+3. A proxy composite is permitted ONLY as an interim when the official series is genuinely
+   unobtainable, and only under three conditions, all of them: it is FLAGGED in the study and
+   in the source-integrity gate; every failed retrieval is logged as a negative result; and it
+   is REPLACED, with the study re-issued, the moment the official series is obtained. A
+   flagged proxy is a debt, not a resolution.
+4. When the official series replaces a proxy, the study must PRICE the swap — publish what
+   the proxy read on the same weeks, what the official index reads, and what the difference
+   was worth per share — rather than silently restating the new number.
+
+**Adopted from the failure it describes.** MODON revisions 1 and 2 could not obtain the
+FTSE ADX General series across ten logged sources over two sessions, and regressed against an
+equal-weight composite of the house UAE library, flagged in both editions. When the series was
+supplied on 10-Aug-2026 the proxy proved to have under-read beta at EVERY window (5-year 1.118
+proxy vs 1.278 official; 3-year and 2-year read 1.800 and 1.581). The mechanism is arithmetic,
+not bad luck: β = corr × (σ_stock / σ_market), and a real broad index is far better diversified
+than a 19-name composite — the FTSE ADX General ran 11.5% annualised volatility against the
+composite's 14.9%, a factor of 1.30, at a similar correlation (0.298 vs 0.343). Dividing by a
+smaller market volatility RAISES beta. Ke went 9.08% → 10.28%, WACC 8.30% → 9.30%, the
+cash-flow lens AED 5.29 → 4.51, and the weighted central AED 3.38 → 2.98, an 11.6% cut —
+comfortably past the 5%-of-central threshold that mandates a full re-derivation.
+
+**Two corollaries, both learned the hard way in the same session.**
+- A proxy's error has no reliable sign. Before the official series arrived, a turnover-weighted
+  composite — built precisely because it was *closer* to a cap-weighted index than equal
+  weighting — pointed the other way (β 0.842, central AED 3.78) and a block bootstrap confirmed
+  that difference was statistically real at every block size. It was real, robust, and wrong
+  about the destination. A proxy can be defensibly constructed, internally validated, and still
+  land on the opposite side of the answer. **Do not reason about the direction of a missing
+  input's effect from a proxy and present the reasoning as a finding.**
+- The published sensitivity band must contain the plausible range of the input, not a
+  comfortable range around the adopted point. MODON revision 2 sensitised beta 0.8–1.2; the
+  true value was 1.278, OUTSIDE the published band, so the study's own disclosed range did not
+  bracket the answer. Beta strips are now centred on the adopted estimate in steps of ONE
+  STANDARD ERROR of that regression, so the band is a property of the measurement rather than
+  a set of round numbers.
+
+**Retrospective scope.** Any delivered study whose beta rests on a proxy composite, a
+short-window stopgap, or the tier-3 default of 1.0, and whose market now HAS an official index
+in the library, is to be re-issued on the official regressor — the same treatment the v2
+cost-of-capital method got when it superseded the double-counted sovereign construction.

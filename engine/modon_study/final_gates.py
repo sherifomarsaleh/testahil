@@ -15,27 +15,27 @@ sig = SIGCMChecklist(
     asset_conversion_cycle=True,        # NWC studied (inventory/DWIP/receivables/escrow) and
                                         # BS/CF projected from a stated release schedule
     competitors=True,                   # Aldar/Emaar/EmaarDev (in-country) from own releases
-    beta_own_history_vs_egx30=False,    # regression vs a PROXY composite, not the official index
-    formula_based_model=True,           # 537 formula cells; recalc + driver test green
-    flags_raised_before_issue=True,     # beta interim flag, segment-level gap, EIBOR mirror
-    stop_and_inform_honoured=True,      # nothing official was inaccessible for the build itself
-    na_reasons={'beta_own_history_vs_egx30':
-                'The official FTSE ADX General Index remains unobtainable (seven sources '
-                'logged). REVISION 2: beta is now an OWN-STOCK weekly regression against an '
-                'equal-weight composite of the 18 house-library UAE names — 3y beta 1.025 '
-                '(SE 0.109, R2 0.367, n 155, usability gate PASS), adopted 1.03 — the own-'
-                'history clause satisfied in substance, flagged because the regressor is a '
-                'proxy composite rather than the official index. Damodaran EM industry route '
-                'rejected as primary with receipt; sensitised 0.8-1.2.'})
+    beta_own_history_vs_egx30=True,     # TIER 1: own-stock weekly regression vs the
+                                        # official FTSE ADX General, the stock's own local
+                                        # index. REVISION 3: the series was obtained on
+                                        # 10-Aug-2026 after ten failed sources, Step 0.0
+                                        # screened, and the proxy composite is RETIRED.
+                                        # 5y beta 1.278 (SE 0.258, R2 0.089, n 255, gate
+                                        # PASS) adopted as the longest passing window; 3y
+                                        # 1.800 and 2y 1.581 both read higher. The clause is
+                                        # now satisfied outright, not in substance.
+    formula_based_model=True,
+    flags_raised_before_issue=True,
+    stop_and_inform_honoured=True)
 assert_sigcm(sig)
-print('SIGCM gate: PASS (beta = own-stock regression vs proxy composite, flagged)')
+print('SIGCM gate: PASS (beta = TIER 1 own-stock regression vs the official FTSE ADX General)')
 
 chk = ModelStudyChecklist(
     structure_matches_model=True,        # 16 sections, 16 sheets, same order
     bibliography_document=True,          # standalone: primary docs, 176-input register,
                                          # judgements+overturns, negatives, discrepancies
     provenance_four_field=True,          # every input value/source/date/ring, asserted
-    numeric_traceability=True,           # builders read study_numbers.json only; recalc 537/537
+    numeric_traceability=True,           # builders read study_numbers.json only; recalc all cells
     external_reader_scrub=True,          # programmatic scrub, zero hits
     figure_discipline=True,              # opaque light canvases verified; rendered-image pass
     table_discipline=True,               # fixed layouts; width check across both documents

@@ -257,18 +257,18 @@
   "rf_star": 0.0406,
   "sov_spread": 0.0042,
   "erp": 0.0487,
-  "beta": 1.03,
-  "ke_exp": 0.09076100000000001,
+  "beta": 1.278,
+  "ke_exp": 0.1028386,
   "kd": 0.0536,
   "kd_at": 0.045292,
   "we_exp": 0.8290140771361635,
   "wd_exp": 0.17098592286383657,
-  "wacc_exp": 0.08298644107330422,
-  "ke_term": 0.09076100000000001,
+  "wacc_exp": 0.09299894149132394,
+  "ke_term": 0.1028386,
   "kd_term": 0.0536,
   "kd_term_at": 0.045292,
   "wd_term": 0.08020685679031156,
-  "wacc_term": 0.08711407442860132,
+  "wacc_term": 0.09822296809503066,
   "eibor6": 0.0371,
   "kd_margin": 0.0165,
   "kd_eff_fy25": 0.0591569493325048,
@@ -277,11 +277,11 @@
  },
  "contested": {
   "name": "development sales trajectory (sustained-normalising vs run-off stress)",
-  "base_ps": 5.2917989217253325,
-  "runoff_ps": 3.7840783271845235,
-  "bull_ps": 6.305618176058718,
-  "runoff_ev": 60900.95719247659,
-  "base_ev": 85824.33874042283,
+  "base_ps": 4.514141619355214,
+  "runoff_ps": 3.2805491274883187,
+  "bull_ps": 5.3386506401370015,
+  "runoff_ev": 52515.23126412226,
+  "base_ev": 72883.77252940522,
   "runoff_rev": [
    11045.65,
    25019.21139,
@@ -299,8 +299,8 @@
   "note": "published side by side; the run-off is now labelled a stress: the H1-2026 disclosure falsified it as a live central path"
  },
  "egy_stress": {
-  "ke": 0.10671706478266589,
-  "ps": 4.311736370448707,
+  "ke": 0.12263651339053107,
+  "ps": 3.644801413211377,
   "fgn_share": 0.170797409390457
  },
  "fcst": {
@@ -445,18 +445,18 @@
    9423.119532835542
   ],
   "df": [
-   0.9609227828448683,
-   0.8872897631964225,
-   0.8192990507961165,
-   0.7565182902790014,
-   0.6985482565499589
+   0.9565113534608563,
+   0.8751255990749273,
+   0.8006646354852612,
+   0.732539259729573,
+   0.6702104017869149
   ],
   "pv": [
-   1303.5682104409495,
-   1798.2958598471819,
-   4059.461619025206,
-   5604.218620631863,
-   6582.503720924131
+   1297.5837554875784,
+   1773.6423961360897,
+   3967.1318480168206,
+   5426.5841453830935,
+   6315.472728187835
   ],
   "red_rev": [
    7223.65,
@@ -597,11 +597,11 @@
   "nwc_30jun": 33953.649000000005
  },
  "dcf": {
-  "pv_explicit": 19348.04803086933,
-  "tv": 95163.4909775188,
-  "pv_tv": 66476.2907095535,
-  "ev": 85824.33874042283,
-  "tv_share": 0.7745622242498387,
+  "pv_explicit": 18780.41487321142,
+  "tv": 80725.92951697472,
+  "pv_tv": 54103.3576561938,
+  "ev": 72883.77252940522,
+  "tv_share": 0.7423237818043188,
   "cash_avail": 8600.0,
   "cash_total": 12303.24,
   "restricted": 3703.24,
@@ -610,21 +610,21 @@
   "assoc": 2826.454,
   "finass": 392.972,
   "nci_book": 922.342,
-  "nci_val": 1730.6987748084564,
-  "eq_attr": 85726.58196561437,
-  "ps_jun": 5.244152592733037,
-  "roll": 1.0090856107158896,
-  "ps": 5.2917989217253325,
+  "nci_val": 1471.8874505881042,
+  "eq_attr": 73044.8270788171,
+  "ps_jun": 4.468371542735284,
+  "roll": 1.010243122395304,
+  "ps": 4.514141619355214,
   "anchor_days": 38,
   "roic_term": 0.085,
   "rr_term": 0.29411764705882354,
   "g": 0.025,
   "nopat_term": 8373.905562072772,
-  "ps_grosscash": 5.520395478237414,
-  "ps_booknci": 5.341697814358385,
-  "bear": 3.7840783271845235,
-  "bull": 6.305618176058718,
-  "ps_egystress": 4.311736370448707
+  "ps_grosscash": 4.743000396615691,
+  "ps_booknci": 4.54810331232425,
+  "bear": 3.2805491274883187,
+  "bull": 5.3386506401370015,
+  "ps_egystress": 3.644801413211377
  },
  "rel": {
   "pe_just": 7.5,
@@ -693,8 +693,8 @@
  "book": {
   "bvps": 3.4499512451153356,
   "roe_sust": 0.075,
-  "pb_just": 0.7603290704216783,
-  "base": 2.6469306725241797,
+  "pb_just": 0.6423548213868182,
+  "base": 2.23879252580139,
   "roe_fy25": 0.07762394723744538,
   "roe_fy25_clean": 0.06563074392980686,
   "pb_trailing": 0.8203014474499886,
@@ -702,10 +702,10 @@
  },
  "sotp": {
   "ev_split": {
-   "red": 57565.24153144195,
-   "aim": 8531.299060054273,
-   "hosp": 2724.392916174382,
-   "ect": 17003.40523275221
+   "red": 48885.572915014985,
+   "aim": 7244.952529770703,
+   "hosp": 2313.609827903678,
+   "ect": 14439.637256715847
   },
   "weights": {
    "red": 2261.929994799141,
@@ -719,9 +719,9 @@
  "lenses": {
   "dcf": {
    "name": "Discounted cash flow (primary)",
-   "bear": 3.7840783271845235,
-   "base": 5.2917989217253325,
-   "bull": 6.305618176058718,
+   "bear": 3.2805491274883187,
+   "base": 4.514141619355214,
+   "bull": 5.3386506401370015,
    "w": 0.4
   },
   "relative": {
@@ -740,23 +740,23 @@
   },
   "book": {
    "name": "Book value and sustainable return",
-   "bear": 1.5881584035145078,
-   "base": 2.6469306725241797,
-   "bull": 3.705702941533852,
+   "bear": 1.3432755154808345,
+   "base": 2.23879252580139,
+   "bull": 3.1343095361219473,
    "w": 0.2
   },
   "central": {
    "name": "Weighted central",
    "bear": 1.0308987135928862,
-   "base": 3.3772715975978316,
-   "bull": 6.305618176058718,
+   "base": 2.9845810473052263,
+   "bull": 5.3386506401370015,
    "w": 1.0
   }
  },
- "central": 3.3772715975978316,
+ "central": 2.9845810473052263,
  "span": [
   1.0308987135928862,
-  6.305618176058718
+  5.3386506401370015
  ],
  "spot": 2.83,
  "sens": {
@@ -768,62 +768,62 @@
    0.035
   ],
   "wacc_grid": [
-   0.07298644107330422,
-   0.07798644107330421,
-   0.08298644107330422,
-   0.08798644107330422,
-   0.09298644107330421
+   0.08299894149132395,
+   0.08799894149132394,
+   0.09299894149132394,
+   0.09799894149132395,
+   0.10299894149132394
   ],
   "table": [
    [
-    6.042201126082581,
-    6.10721428904692,
-    6.180544547870568,
-    6.264795543624948,
-    6.363784279482363
+    5.135945744600284,
+    5.138812073446458,
+    5.1389761955919475,
+    5.13575140073886,
+    5.128196759308634
    ],
    [
-    5.630966604933419,
-    5.664779705951927,
-    5.7008811742258265,
-    5.739924640865718,
-    5.782838862569954
+    4.835479449075304,
+    4.822998160207793,
+    4.805807914669146,
+    4.782798528449781,
+    4.752481070281463
    ],
    [
-    5.272022262605483,
-    5.28268685237433,
-    5.2917989217253325,
-    5.298950728670187,
-    5.303578050656447
+    4.568097507468987,
+    4.544090838640758,
+    4.514141619355214,
+    4.476943277070172,
+    4.43077591712916
    ],
    [
-    4.95597119576637,
-    4.94933727846957,
-    4.938715350961064,
-    4.923136085639504,
-    4.9012883190227905
+    4.328608355357156,
+    4.295950559516222,
+    4.256630910410033,
+    4.209277186871849,
+    4.152112513638633
    ],
    [
-    4.675542181427662,
-    4.655928128818662,
-    4.6308093130353045,
-    4.598940538029852,
-    4.558670424322702
+    4.112853574076101,
+    4.07372943708763,
+    4.027568712014446,
+    3.9730080871162423,
+    3.908307753881965
    ]
   ],
   "beta_grid": [
-   0.8,
-   0.9,
-   1.03,
-   1.1,
-   1.2
+   0.763,
+   1.02,
+   1.278,
+   1.536,
+   1.793
   ],
   "grid_beta": [
-   6.308360959810829,
-   5.820961579529833,
-   5.2917989217253325,
-   5.0457112922861365,
-   4.7322477167536325
+   6.510626196563375,
+   5.328980810999784,
+   4.514141619355214,
+   3.919614776849756,
+   3.4678001975441535
   ],
   "mg_grid": [
    -0.04,
@@ -833,11 +833,11 @@
    0.04
   ],
   "grid_margin": [
-   4.792998926154786,
-   5.042398923940059,
-   5.2917989217253325,
-   5.541198919510606,
-   5.790598917295879
+   4.101699708787219,
+   4.307920664071217,
+   4.514141619355214,
+   4.720362574639212,
+   4.926583529923213
   ],
   "conv_grid": [
    -0.06,
@@ -847,11 +847,11 @@
    0.06
   ],
   "grid_conv": [
-   4.8493419852166895,
-   5.088978093938395,
-   5.2917989217253325,
-   5.462012652655713,
-   5.603513696301147
+   4.115282609580926,
+   4.330430916658174,
+   4.514141619355214,
+   4.669939085002252,
+   4.801087363937239
   ],
   "sales_grid": [
    0.5,
@@ -861,11 +861,11 @@
    1.5
   ],
   "grid_sales": [
-   4.098077467988583,
-   4.694938194856958,
-   5.2917989217253325,
-   5.888659648593707,
-   6.485520375462085
+   3.5346677525173194,
+   4.024404685936267,
+   4.514141619355214,
+   5.003878552774162,
+   5.493615486193113
   ],
   "nwc_grid": [
    -1000.0,
@@ -875,11 +875,11 @@
    1000.0
   ],
   "grid_nwc": [
-   5.0424067612814465,
-   5.1671028415033895,
-   5.2917989217253325,
-   5.4164950019472755,
-   5.5411910821692185
+   4.26976432886109,
+   4.391952974108152,
+   4.514141619355214,
+   4.636330264602278,
+   4.75851890984934
   ],
   "dso_grid": [
    -60.0,
@@ -889,11 +889,11 @@
    60.0
   ],
   "grid_dso": [
-   5.615709443012417,
-   5.4537541823688755,
-   5.2917989217253325,
-   5.12984366108179,
-   4.967888400438247
+   4.834670586632007,
+   4.67440610299361,
+   4.514141619355214,
+   4.353877135716818,
+   4.193612652078424
   ],
   "ke_grid": [
    0.0,
@@ -903,18 +903,18 @@
    0.02
   ],
   "grid_ke": [
-   5.2917989217253325,
-   4.938715350961064,
-   4.6308093130353045,
-   4.359881599769382,
-   4.119606091590888
+   4.514141619355214,
+   4.256630910410033,
+   4.027568712014446,
+   3.822454095112012,
+   3.637689564664102
   ]
  },
  "market_implied": {
-  "ke_add": 0.061803349912400676,
+  "ke_add": 0.04972574991240068,
   "ke": 0.1525643499124007,
   "note": "cost-of-equity adder reconciling the base DCF to the market price",
-  "runoff_discount": 0.25212964550191763
+  "runoff_discount": 0.13733954590500885
  },
  "experts": {
   "e1": {
@@ -932,12 +932,12 @@
   },
   "e2": {
    "method_short": "owner cash flow, run-off stress basis",
-   "base": 3.6195916268074533,
+   "base": 3.1160624271112485,
    "rng": [
-    2.895673301445963,
-    5.027208975639065
+    2.492849941688999,
+    4.2884345383874525
    ],
-   "runoff_ps": 3.7840783271845235,
+   "runoff_ps": 3.2805491274883187,
    "haircut": 0.25,
    "rp_book": 10755.509,
    "note": "builds on the study's own run-off scenario with an independent receivable haircut \u2014 labelled as derived, not independent"
@@ -953,7 +953,7 @@
    "npa26": 4785.094650150099
   }
  },
- "panel_centre": 3.6195916268074533,
+ "panel_centre": 3.1160624271112485,
  "terminal_recon": {
   "roic_fy25_clean": 0.06134848228063011,
   "roic_path": [
@@ -2345,34 +2345,65 @@
    "ring": "Country"
   },
   "beta": {
-   "value": 1.03,
-   "source": "OWN-STOCK regression against an equal-weight proxy of the 18 ADX/DFM names in the house library (the official FTSE ADX General index remains unobtainable \u2014 7 sources logged): 3-year weekly beta 1.025 (SE 0.109, R2 0.367, n 155, gate PASS); 5-year 1.071 (R2 0.142, spans the pre-2022 thin-trading regime); 2-year 1.055 (R2 0.460). Adopted 1.03, FLAGGED: proxy index, not the official benchmark. The Damodaran EM industry route (business-weighted unlevered 0.50 -> relevered 0.56-0.59) is REJECTED as a primary: the 786-firm Real-Estate-Development row is dominated by highly-levered Chinese developers (D/E 1.97) unrepresentative of a UAE state platform; it is retained as a lower-bound cross-check. Sensitised 0.8-1.2",
-   "date": "2026-08-09",
-   "ring": "House"
+   "value": 1.278,
+   "source": "TIER 1 \u2014 OWN-STOCK weekly regression against its OWN local index, the FTSE ADX General (3,884 sessions, 02-Jan-2011 -> 24-Jul-2026, screened for data quality before use: 249.7 rows/yr on ADX's own calendar, zero moves beyond the \u00b115% constituent limit, zero repairs). Longest window up to 5 years that clears the usability gate is adopted, per the standing hierarchy: 5-year beta 1.278 (SE 0.258, R2 0.089, n 255, gate PASS). SHORTER WINDOWS READ HIGHER, NOT LOWER: 3-year 1.800 (R2 0.258), 2-year 1.581 (R2 0.306) \u2014 so the adopted figure is the FRIENDLIEST of the three, and the risk on this input is to the downside of value. SUPERSEDES the revision-2 proxy (equal-weight house composite, 1.03): the official index is 1.30x LESS volatile than that composite (11.5% vs 14.9% annualised) at a similar correlation (0.298 vs 0.343), and beta = corr x (sigma_stock / sigma_market), so the true benchmark RAISES beta rather than lowering it. A turnover-weighted composite had pointed the other way (0.842) and was wrong \u2014 recorded because it was the reasoning that the official series overturned. The Damodaran EM industry route (business-weighted unlevered 0.50 -> relevered 0.56-0.59) stays REJECTED as a primary: the 786-firm Real-Estate-Development row is dominated by highly-levered Chinese developers (D/E 1.97) unrepresentative of a UAE state platform; it is retained as a lower-bound cross-check. Sensitised \u00b11 SE, 1.02-1.54",
+   "date": "2026-08-10",
+   "ring": "Company"
   },
   "beta_reg_detail": {
    "value": {
-    "w3y": [
-     1.025,
-     0.109,
-     0.367,
-     155
+    "2y": [
+     1.581,
+     0.239,
+     0.306,
+     101
     ],
-    "w5y": [
-     1.071,
-     0.164,
-     0.142,
-     259
+    "3y": [
+     1.8,
+     0.25,
+     0.258,
+     151
     ],
-    "w2y": [
-     1.055,
-     0.114,
-     0.46,
-     103
+    "5y": [
+     1.278,
+     0.258,
+     0.089,
+     255
     ]
    },
-   "source": "Regression detail (beta, SE, R2, n) per window: MODON weekly log-returns vs the equal-weight 18-name panel proxy, computed from the house price library",
+   "source": "Regression detail (beta, SE, R2, n) per window: MODON weekly log-returns vs the FTSE ADX General Index, both series screened for data quality before use",
+   "date": "2026-08-10",
+   "ring": "Company"
+  },
+  "beta_rev2_published": {
+   "value": 1.03,
+   "source": "The beta PUBLISHED at revision 2 (proxy composite, 3-year window). Registered so the revision-3 correction can be stated against what readers actually saw, not against a re-run they never read",
    "date": "2026-08-09",
+   "ring": "House"
+  },
+  "beta_proxy_retired": {
+   "value": {
+    "2y": [
+     0.981,
+     0.131,
+     0.353,
+     105
+    ],
+    "3y": [
+     1.115,
+     0.14,
+     0.293,
+     155
+    ],
+    "5y": [
+     1.118,
+     0.192,
+     0.116,
+     259
+    ]
+   },
+   "source": "The RETIRED revision-2 proxy (equal-weight composite of the 19 house UAE names), re-run on the same weeks so the change is priced rather than asserted: it under-reads the official beta at every window",
+   "date": "2026-08-10",
    "ring": "House"
   },
   "beta_industry_check": {
@@ -2653,6 +2684,6 @@
   "Step 0 PASS carried",
   "strike anchor equals study spot",
   "q=0 sourced",
-  "input register carries 205 four-field inputs"
+  "input register carries 207 four-field inputs"
  ]
 }

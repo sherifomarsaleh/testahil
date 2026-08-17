@@ -11,7 +11,7 @@ import openpyxl
 import xlcalc
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-wb = openpyxl.load_workbook(os.path.join(HERE, 'MODON_Valuation_Model_09082026_public.xlsx'))
+wb = openpyxl.load_workbook(os.path.join(HERE, 'MODON_Valuation_Model_10082026_public.xlsx'))
 XP = json.load(open(os.path.join(HERE, 'xlsx_expected.json')))
 AD = XP['anchors']['dcf']
 A = {}
