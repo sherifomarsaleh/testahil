@@ -49,7 +49,7 @@ const FV_OVERLAY = {
    "width_overlay_active": false
   }
  },
- "n": 83,
+ "n": 84,
  "rows": [
   {
    "ticker": "HELI",
@@ -7098,6 +7098,82 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.0038
    },
    "market": "EG"
+  },
+  {
+   "ticker": "BOROUGE",
+   "name": "Borouge plc",
+   "code": "ADX:BOROUGE",
+   "ccy": "AED",
+   "spot": 2.4,
+   "anchor_date": "2026-08-07",
+   "fv_asof": "2026-08-07",
+   "fv_lag_days": 0,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 1.3,
+   "fv_base": 1.48,
+   "fv_full": 2.55,
+   "gap_base_pct": -38.3,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 8.0,
+    "width_cal": 0.979,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.046659,
+    "mu_h": -0.004175,
+    "G": {
+     "bear": -13.14,
+     "base": -10.36,
+     "full": 1.3
+    },
+    "band": "NOT-EXPRESSIBLE",
+    "informative": false,
+    "already_converged": false,
+    "p_term": null,
+    "p_touch": null,
+    "required_cagr": {
+     "bear": -0.9994,
+     "base": -0.997,
+     "full": 1.0699
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00154
+   },
+   "3M": {
+    "h_sessions": 63,
+    "sigma_h": 0.087061,
+    "mu_h": -0.008368,
+    "G": {
+     "bear": -7.04,
+     "base": -5.55,
+     "full": 0.7
+    },
+    "band": "NOT-EXPRESSIBLE",
+    "informative": false,
+    "already_converged": false,
+    "p_term": null,
+    "p_touch": null,
+    "required_cagr": {
+     "bear": -0.9139,
+     "base": -0.8554,
+     "full": 0.2744
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00077
+   },
+   "market": "AE"
   },
   {
    "ticker": "EGCH",
