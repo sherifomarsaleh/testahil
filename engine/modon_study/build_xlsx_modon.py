@@ -1,4 +1,4 @@
-"""MODON_Valuation_Model_09082026_public.xlsx — revision 2. 16 sheets, house canonical
+"""MODON_Valuation_Model_10082026_public.xlsx — revision 2. 16 sheets, house canonical
 model. Blue = inputs · black = formulas · green = cross-sheet links.
 
 Revision-2 changes, from the external audits and the re-audit:
@@ -210,7 +210,7 @@ band(aws, _r, 8); put(aws, f'A{_r}', 'Cost of capital build', bold=True, fmt=Non
 r_rf     = arow('AED government bond yield (Jan-2031 T-Bond auction)', IN['rf'], PCT2)
 r_ss     = arow('UAE sovereign default spread (rating basis, netted out)', IN['sov_spread_rating'], PCT2)
 r_erp    = arow('Equity risk premium (UAE row, rating basis)', IN['erp_rating'], PCT2)
-r_beta   = arow('Beta (own-stock regression vs equal-weight AE panel proxy)', IN['beta'], PX)
+r_beta   = arow('Beta (own-stock regression vs the published FTSE ADX General index)', IN['beta'], PX)
 r_eib    = arow('6-month EIBOR (31-Mar-2026 fixing, dated)', IN['eibor6m'], PCT2)
 r_kdm    = arow('Marginal debt margin over 6M EIBOR', IN['kd_margin'], PCT2)
 r_g      = arow('Terminal growth', IN['g_term'], PCT2)
@@ -595,7 +595,7 @@ r_book = r
 
 # ============ SUMMARY =========================================================
 ws = wb.create_sheet('Summary')
-title(ws, 'Summary — valuation at a glance (revision 2)',
+title(ws, 'Summary — valuation at a glance (revision 3)',
       'All values link live to their source sheets', 7, awidth=44, cwidth=15)
 hdr(ws, 4, ['Lens', 'Bear', 'Base', 'Bull', 'Weight', 'Contribution', 'vs spot'])
 LENS_SRC = {'dcf': f"=DCF!C{ANCH['dcf']['ps']}", 'relative': "='Relative & Normalized'!C11",
@@ -1177,7 +1177,7 @@ assert set(ORDER) == set(wb.sheetnames), (set(ORDER) ^ set(wb.sheetnames))
 wb._sheets = [wb[n] for n in ORDER]
 wb.calculation.fullCalcOnLoad = True
 
-XLSX = os.path.join(HERE, 'MODON_Valuation_Model_09082026_public.xlsx')
+XLSX = os.path.join(HERE, 'MODON_Valuation_Model_10082026_public.xlsx')
 wb.save(XLSX)
 with open(os.path.join(HERE, 'xlsx_expected.json'), 'w') as f:
     json.dump(dict(expected=EXPECT,

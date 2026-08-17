@@ -11,7 +11,7 @@ import openpyxl
 import xlcalc
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-wb = openpyxl.load_workbook(os.path.join(HERE, 'MODON_Valuation_Model_09082026_public.xlsx'))
+wb = openpyxl.load_workbook(os.path.join(HERE, 'MODON_Valuation_Model_10082026_public.xlsx'))
 XP = json.load(open(os.path.join(HERE, 'xlsx_expected.json')))
 AD = XP['anchors']['dcf']
 A = {}
@@ -40,11 +40,19 @@ base = read()
 print('base:  ' + ' · '.join(f'{k} {v:,.4f}' for k, v in base.items()))
 
 CASES = [
-    # decomposed 09-Aug: at terminal ROIC 8.5% vs derived terminal WACC 8.71%, growth
-    # is VALUE-NEUTRAL by construction — asserted as a bounded near-zero move below
-    ('Terminal growth', 'C', +0.005, 'dcf', 0,
-     'at ROIC ≈ terminal WACC extra growth must be close to value-neutral (|Δ| < 1%)'),
-    ('Beta (own-stock regression vs equal-weight AE panel proxy)', 'C', +0.20, 'dcf', -1,
+    # decomposed 09-Aug and RE-DECOMPOSED 10-Aug: at revision 2 the terminal ROIC (8.5%)
+    # sat within 21bp of the derived terminal WACC (8.71%), so extra terminal growth was
+    # value-NEUTRAL and the case asserted a bounded near-zero move. The revision-3 beta
+    # lifts the terminal WACC to 11.92% while the terminal ROIC is unchanged at 8.5%, so
+    # the terminal block now reinvests BELOW its cost of capital and the growth gradient
+    # INVERTS: more growth destroys value. The sign flip is the model behaving correctly
+    # under a changed premise, not a regression — the expectation was re-derived first,
+    # exactly as the standing rule requires, and the study's own figure caption was
+    # corrected in the same pass.
+    ('Terminal growth', 'C', +0.005, 'dcf', -1,
+     'terminal ROIC 8.5% now sits BELOW the terminal WACC 11.92%, so growth reinvested '
+     'at a sub-WACC return must SUBTRACT value'),
+    ('Beta (own-stock regression vs the published FTSE ADX General index)', 'C', +0.20, 'dcf', -1,
      'a higher beta raises the cost of equity and must lower the valuation'),
     ('AED government bond yield (Jan-2031 T-Bond auction)', 'C', +0.01, 'dcf', -1,
      'a higher risk-free rate must lower the valuation'),
