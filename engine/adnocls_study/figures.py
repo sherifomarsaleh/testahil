@@ -46,28 +46,33 @@ def save(fig, name):
 
 # ---- F1 valuation football field --------------------------------------------
 L = D['lenses']
-keys = ['dcf', 'dcf_asset_beta', 'relative', 'normalized', 'book',
-        'central', 'central_asset_beta']
-names = ['Cash-flow model\n(own regressed beta)',
-         'Cash-flow model\n(asset-risk beta 1.0)',
+BF = D['beta_framing']
+BETA_P, BETA_A = BF['primary']['beta'], BF['alternative']['beta']
+keys = ['dcf', 'dcf_beta_alt', 'relative', 'normalized', 'book',
+        'central', 'central_beta_alt']
+names = [f'Cash-flow model\n(published index, beta {BETA_P:.3f})',
+         f'Cash-flow model\n(equal-weight composite, beta {BETA_A:.3f})',
          'Relative multiples',
          'Normalised\nearnings power',
          'Book value and\nsustainable return',
-         'Weighted central\n(own beta)',
-         'Weighted central\n(asset beta)']
+         'Weighted central\n(published index)',
+         'Weighted central\n(equal-weight composite)']
 fig, ax = plt.subplots(figsize=(9.7, 5.3), dpi=110)
-xmax = max(L[k]['bull'] for k in keys)
-xmin = min(L[k]['bear'] for k in keys)
+xmax = max(max(L[k]['bull'], L[k]['base']) for k in keys)
+xmin = min(min(L[k]['bear'], L[k]['base']) for k in keys)
 rng = xmax - xmin
 for i, k in enumerate(keys):
     y = len(keys) - 1 - i
     b, ba, bu = L[k]['bear'], L[k]['base'], L[k]['bull']
+    # A base must never fall outside its own bar: draw the span over the full extent of
+    # the three, so an inverted bound shows as a wide bar rather than a tick in mid-air.
+    lo_, hi_ = min(b, ba, bu), max(b, ba, bu)
     central = k.startswith('central')
     col = GOLD if central else SAGE
-    ax.barh(y, bu - b, left=b, height=0.50, color=col,
+    ax.barh(y, hi_ - lo_, left=lo_, height=0.50, color=col,
             alpha=0.50 if central else 0.32, edgecolor=col, linewidth=1.1)
     ax.plot([ba, ba], [y - 0.25, y + 0.25], color=BRASS, lw=3.4)
-    ax.text(bu + 0.02 * rng, y, f'{b:.2f}–{bu:.2f}  ·  base {ba:.2f}',
+    ax.text(hi_ + 0.02 * rng, y, f'{lo_:.2f}–{hi_:.2f}  ·  base {ba:.2f}',
             va='center', fontsize=8.6, color=INK)
 ax.axvline(SPOT, color=INK, lw=1.7)
 ax.text(SPOT + 0.010 * rng, -0.80, f'market price {SPOT:.2f}', color=INK, fontsize=9,
@@ -78,8 +83,8 @@ ax.set_xlabel('AED per share')
 ax.set_xlim(xmin - 0.06 * rng, xmax + 0.34 * rng)
 ax.set_ylim(-1.15, len(keys) - 0.40)
 ax.set_title('ADNOC Logistics & Services — fair-value field by lens (bear–bull span; '
-             'brass tick = base)\nThe two cash-flow rows are the same model on two '
-             'costs of equity, shown side by side and never averaged',
+             'brass tick = base)\nThe two cash-flow rows are the same model with the beta '
+             'measured against two different market series, never averaged',
              fontsize=10, pad=11)
 style(ax)
 fig.tight_layout()

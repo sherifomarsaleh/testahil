@@ -2257,11 +2257,15 @@ P("This series publishes independent, educational valuation studies of listed co
   "never carry a recommendation or a forecast of the share price. Where a figure is "
   "estimated or solved rather than disclosed, it is labelled. Where a source could not be "
   "reached, the gap is recorded rather than filled.")
-P("Where a judgement has two legitimate constructions, both are computed and both are "
-  "published side by side. This study does that twice: for the cost of equity, which is "
-  "the widest single sensitivity in it, and for the treatment of the perpetual capital "
-  "securities. Neither pair is averaged, because an average of two constructions is a "
-  "number that neither construction supports.")
+P(f"Where a judgement has two legitimate constructions, both are computed and both are "
+  f"published side by side. This study does that twice: for the series the beta is "
+  f"measured against, which is the widest single sensitivity in it, and for the treatment "
+  f"of the perpetual capital securities. Neither pair is averaged, because an average of "
+  f"two constructions is a number that neither construction supports. Where a construction "
+  f"has been changed since an earlier version of a study, the superseded one is published "
+  f"alongside the new one at full size rather than quietly replaced — that is why the "
+  f"equal-weight composite reading of AED {p2(D['central_beta_alt'])} appears throughout "
+  f"this document beside the adopted AED {p2(D['central'])}.")
 P("The probabilistic price map in section 3 is produced by a volatility model that is "
   "tested before it is allowed to publish a range: the model is re-run at successive past "
   "dates using only the data available on each of those dates, and every forecast it made "

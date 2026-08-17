@@ -689,7 +689,7 @@ JUD = [
      "in the study rather than buried, because the first half is already realised and only "
      "the back half is assumed."),
     ('Which measurement of the market the beta is regressed against',
-     f"The published index of the exchange the share is listed on — {BR['regressor']} — "
+     f"The published index of the exchange the share is listed on — the {BR['regressor']} — "
      f"because that is the market the share actually trades in and the measurement the method "
      f"calls for. Weekly returns over the full listed history give a slope of {BR['beta']:.3f} "
      f"({BR['n']:,} paired observations, R-squared {BR['r2']:.3f}, standard error "
@@ -707,7 +707,8 @@ JUD = [
      f"index it is measured against materially inflates the slope: it is a constituent, so its "
      f"own returns sit on both sides of the regression and cannot be taken out of a "
      f"capitalisation-weighted index. How large that pull is has been measured on the "
-     f"composite, where the share CAN be removed, and it is set out overleaf."),
+     f"composite, where the share CAN be removed, and it is set out with the empty searches "
+     f"that follow."),
     ('The beta used in the low and the high case',
      f"The regression's own {CI_LEVEL} confidence bounds rather than round numbers picked by "
      f"hand: {BF['ci90'][1]:.3f} in the low case and {BF['ci90'][0]:.3f} in the high case. A "
@@ -969,8 +970,8 @@ DISC = [
     f"of them, the subject excluded — gives a slope of {BC['beta']:.3f} over the same window "
     f"(R-squared {BC['r2']:.3f}, standard error {BC['se']:.3f}, {BC['n']:,} observations). "
     f"This is the measurement the study used before the published index could be obtained.",
-    f"{BR['regressor']}, the capitalisation-weighted index the exchange itself publishes and "
-    f"the share is a constituent of, gives {BR['beta']:.3f} on the same returns over the same "
+    f"The {BR['regressor']}, the capitalisation-weighted index the exchange itself publishes "
+    f"and the share is a constituent of, gives {BR['beta']:.3f} on the same returns over the same "
     f"window (R-squared {BR['r2']:.3f}, standard error {BR['se']:.3f}, {BR['n']:,} "
     f"observations).",
     "The published index, and the gap between the two is worth more than the answer. This is "
@@ -1034,7 +1035,7 @@ P("The company's own website was reached for every one of those documents. Three
   "pages on the same site, so no company figure rests on anything but a document downloaded "
   "from the company itself.")
 P(f"One source in this document is neither a company filing nor an aggregator, and it is worth "
-  f"being explicit about why it is admissible. The beta is regressed against "
+  f"being explicit about why it is admissible. The beta is regressed against the "
   f"{BR['regressor']} — {BR['regressor_rows']:,} daily sessions from {fdate(IDX_FROM)} to "
   f"{fdate(IDX_TO)}, checked against the exchange's own trading calendar before use. An index "
   f"level is market data, not company data: it is the price at which a market cleared, not a "
