@@ -195,8 +195,11 @@ CROSS_EXAMINATION = [
          response=(f"Conceded in part. The guided floor is {E3['payout_check_2026']*100:.0f}% of "
                    f"the profit this model forecasts for 2026 and "
                    f"{E3['payout_check_2030']*100:.0f}% by 2030, so it is covered by earnings "
-                   f"with room to spare, and the company funded a 58% dividend increase in 2025 "
-                   f"out of operating cash flow while capital expenditure ran at $815 million. "
+                   f"with room to spare, and the company funded a "
+                   f"{(IN['div_fy25']['value'] / IN['div_fy24']['value'] - 1) * 100:.0f}% "
+                   f"increase in dividends paid in 2025 out of operating cash flow while "
+                   f"capital expenditure ran at ${H['2025']['capex'] / 1000:,.0f} million on "
+                   f"the audited cash-flow statement. "
                    f"But the challenge stands where it matters: the floor is uncontracted, and "
                    f"the valuation of a promise is not the valuation of an obligation. Expert 3 "
                    f"is the widest of the three for exactly that reason."),

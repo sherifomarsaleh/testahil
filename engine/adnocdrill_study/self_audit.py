@@ -1,194 +1,167 @@
-"""Self-audit: price every defect found in the study before judging it.
+"""ADNOC Drilling — self-audit of THIS edition, run before anyone else reads it.
 
-Each entry re-runs the valuation with ONE thing changed and reports the move in
-the weighted central, in dirhams per share and as a percentage of it. Nothing is
-called immaterial here without a number beside the word.
+This is not the previous edition's self-audit re-run. That one found ten things
+and all ten are now inside the model, so re-running it would report ten changes
+of nothing and call that a pass — which is how a self-audit becomes a formality.
+The file has been rewritten to interrogate the model as it now stands, including
+the corrections themselves: a correction is a new claim, and a new claim is a new
+place to be wrong.
 
-The harness imports compute.py's own objects so the alternatives are computed by
-the same code that produced the delivered answer, not by a re-implementation.
+Every finding here is PRICED before it is judged. Nothing is called immaterial
+without a number beside it.
 """
-import json, os, sys, importlib
+import os, sys, json, importlib.util
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, HERE)
-sys.path.insert(0, os.path.join(HERE, '..'))
-import numpy as np
-import compute as C
+spec = importlib.util.spec_from_file_location('adnoc_compute', os.path.join(HERE, 'compute.py'))
+C = importlib.util.module_from_spec(spec)
+sys.stdout = open(os.devnull, 'w')
+spec.loader.exec_module(C)
+sys.stdout = sys.__stdout__
 
-BASE = C.central
-SPOT = C.V('spot_aed')
-FINDINGS = []
+FV, SPOT = C.central, C.V('spot_aed')
+rows = C.CASE['A']['rows']
+findings = []
 
 
 def price(tag, what, new_central, note=''):
-    d = new_central - BASE
-    FINDINGS.append(dict(tag=tag, what=what, central=new_central, delta=d,
-                         pct_of_central=d / BASE, note=note))
-    print(f"{tag:5s} {what[:66]:66s} AED {new_central:5.2f}  {d:+5.2f}  "
-          f"{d/BASE*100:+6.1f}%")
+    d = new_central - FV
+    findings.append(dict(tag=tag, what=what, central=new_central, delta=d, pct=d / FV, note=note))
+    return d
 
 
-def reweight(fair):
-    return sum(fair[k] * C.LENS_WEIGHT[k] for k in fair)
+def reweighted(overrides):
+    f = dict(C.FAIR)
+    f.update(overrides)
+    w = C.LENS_WEIGHT
+    return sum(f[k] * w[k] for k in f) / sum(w[k] for k in f)
 
 
-print(f"BASE weighted central AED {BASE:.2f} against a market price of AED {SPOT:.2f}\n")
-print(f"{'':5s} {'':66s} {'central':>9s} {'move':>6s} {'':>7s}")
+print(f'SELF-AUDIT OF THE CURRENT EDITION — weighted central AED {FV:.2f} against a market '
+      f'price of AED {SPOT:.2f}\n')
+print(f'{"":6}{"":72}{"central":>9}{"move":>8}\n')
 
-# ---------------------------------------------------------------- A. WORKING CAPITAL
-# The three-year average is 5.91% of revenue. The most recent balance sheet —
-# 30 June 2026, which the study already uses for the bridge — implies 9.01% on
-# annualised revenue. The model's own first forecast year is therefore below the
-# latest observed level.
-wc_1h26 = (342783.0 + 233060.0 + 1418236.0) - (1197504.0 + 40533.0) - 312862.0
-wc_pct_1h26 = wc_1h26 / (C.V('rev_1h26') * 2)
-orig_wc = C.WC_PCT_REVENUE
-for label, pct in (('A1', wc_pct_1h26), ('A2', (orig_wc + wc_pct_1h26) / 2)):
-    C.WC_PCT_REVENUE = pct
-    cases = {c: C.build_case(c) for c in ('A', 'B')}
-    fair = dict(C.FAIR)
-    fair['dcf_A'] = cases['A']['value_per_share_aed']
-    fair['dcf_B'] = cases['B']['value_per_share_aed']
-    price(label, f'working capital at {pct*100:.2f}% of revenue '
-                 f'({"the 1H-2026 actual" if label == "A1" else "midway to it"})',
-          reweight(fair))
-C.WC_PCT_REVENUE = orig_wc
+# ---------------------------------------------------------------------- A ----
+# The unit build sets the SHAPE of the forecast; the company's FY2026 segment
+# guidance sets its LEVEL. That is a deliberate choice and it is defensible, but
+# it means the phrase "built from the bottom up" is doing less work in 2026 than
+# a reader would assume. The size of the correction is the honest measure of how
+# much the guidance is carrying, so it is published.
+cal = C.CALIB
+uncal = C.CALIB_UNCALIBRATED
+print('A1    HOW MUCH OF FY2026 IS THE UNIT BUILD AND HOW MUCH IS THE GUIDANCE')
+for k, nice in (('onshore', 'Onshore'), ('offshore', 'Offshore'), ('ofs', 'Oilfield Services')):
+    print(f'        {nice:<20} unit build reconciled to guidance by a factor of {cal[k]:.3f} '
+          f'({(cal[k]-1)*100:+.1f}%)')
+print(f'        Group revenue before reconciliation {uncal["total"]/1e6:.3f}bn against guidance '
+      f'of {C.V("g26_revenue")/1e6:.3f}bn ({uncal["total"]/C.V("g26_revenue")-1:+.1%})')
+print('        The unit rates therefore determine the GROWTH PATH, not the FY2026 level. '
+      'A driver\n        test on any FY2025 unit rate correctly shows FY2026 unmoved.\n')
 
-# ---------------------------------------------------------------- B. TERMINAL RATE
-# The terminal value is discounted at today's cost of capital, which carries a
-# 7.7% debt weight. The model's own forecast has net debt turning NEGATIVE by
-# 2030, so the terminal firm is all-equity and should be discounted at the cost
-# of equity.
-orig_wacc = C.WACC
-for label, w, desc in (('B1', C.ke_rating, 'terminal discounted at the cost of equity '
-                        '(the model\'s own 2030 firm is net cash)'),):
-    C.WACC = w
-    cases = {c: C.build_case(c) for c in ('A', 'B')}
-    fair = dict(C.FAIR)
-    fair['dcf_A'] = cases['A']['value_per_share_aed']
-    fair['dcf_B'] = cases['B']['value_per_share_aed']
-    # the normalised lens also capitalises at WACC - g
-    nev = C.norm_nopat / (w - C.V('terminal_growth_B'))
-    neq = (nev + C.V('jvinv_1h26') + C.V('cash_1h26') - C.V('debt_1h26')
-           - C.V('lease_1h26') - C.V('nci_1h26') - C.V('finliab_1h26'))
-    fair['normalised'] = neq / C.shares_out_k * C.V('fx_aed_usd')
-    price(label, desc, reweight(fair))
-C.WACC = orig_wacc
-
-# ---------------------------------------------------------------- C. BOOK LENS
-# The lens uses a 36.74% sustainable return on equity. The model's OWN forecast
-# has the return falling from 33.8% to 29.2% across the window, because equity
-# compounds faster than profit under the guided dividend floor.
-rows = C.CASE['A']['rows']
-prev = C.H[2025]['equity']
-roes = []
-for r in rows:
-    eq = r['balance_sheet']['equity_residual']
-    roes.append(r['pat'] / ((prev + eq) / 2))
-    prev = eq
-for label, roe, desc in (('C1', roes[-1], 'book lens at the return the model itself forecasts '
-                          'for 2030'),
-                         ('C2', float(np.mean(roes)), 'book lens at the average forecast return')):
-    pb = (roe - C.g_book) / (C.ke_rating - C.g_book)
-    fair = dict(C.FAIR)
-    fair['book'] = pb * C.book_equity_now / C.shares_out_k * C.V('fx_aed_usd')
-    price(label, f'{desc} ({roe*100:.1f}%)', reweight(fair))
-
-# ---------------------------------------------------------------- D. NORMALISED LENS
-# (i) The lens is described as crediting no growth, but capitalises at the cost
-# of capital LESS a 1.5% terminal growth rate. (ii) Its depreciation charge sits
-# midway between maintenance capex and the 2030 charge, while the fleet it prices
-# is the 2026 fleet.
-fair = dict(C.FAIR)
-ev = C.norm_nopat / C.WACC
-eq = (ev + C.V('jvinv_1h26') + C.V('cash_1h26') - C.V('debt_1h26') - C.V('lease_1h26')
-      - C.V('nci_1h26') - C.V('finliab_1h26'))
-fair['normalised'] = eq / C.shares_out_k * C.V('fx_aed_usd')
-price('D1', 'normalised lens with genuinely no growth (capitalised at the cost of capital)',
-      reweight(fair))
-
-fair = dict(C.FAIR)
-dna_full = rows[0]['dna']          # the depreciation the 2026 fleet actually carries
-ev = (C.norm_ebitda - dna_full) * (1 - C.V('tax_rate')) / (C.WACC - C.V('terminal_growth_B'))
-eq = (ev + C.V('jvinv_1h26') + C.V('cash_1h26') - C.V('debt_1h26') - C.V('lease_1h26')
-      - C.V('nci_1h26') - C.V('finliab_1h26'))
-fair['normalised'] = eq / C.shares_out_k * C.V('fx_aed_usd')
-price('D2', f'normalised lens at the depreciation the priced fleet carries '
-            f'({dna_full/1e3:,.0f}m, not {C.norm_dna/1e3:,.0f}m)', reweight(fair))
-
-# ---------------------------------------------------------------- E. NCI
-# The bridge deducts non-controlling interests at book value while the forecast
-# consolidates 100% of the regional businesses' earnings. Deducting the minority
-# on an EARNINGS basis is the coherent treatment.
-seg_rev_regional = rows[0]['rev_regional']
-minority_share = 0.25          # 30% of SLDC, 20% of MBPS — weighted by rig count
-mult = C.CASE['A']['enterprise_value'] / rows[0]['ebitda_ex_jv']
-# the regional book earns roughly the group conventional margin
-nci_earnings_basis = seg_rev_regional * rows[0]['ebitda_ex_jv'] / rows[0]['revenue'] \
-    * minority_share * mult
-for label, v, desc in (('E1', nci_earnings_basis,
-                        'minorities deducted on an earnings basis, not at book'),):
-    for c in ('A', 'B'):
-        pass
-    fair = dict(C.FAIR)
-    for k, case in (('dcf_A', C.CASE['A']), ('dcf_B', C.CASE['B'])):
-        eqv = (case['enterprise_value'] + C.V('jvinv_1h26') + C.V('cash_1h26')
-               - C.V('debt_1h26') - C.V('lease_1h26') - v - C.V('finliab_1h26'))
-        fair[k] = eqv / C.shares_out_k * C.V('fx_aed_usd')
-    price(label, f'{desc} ({v/1e3:,.0f}m vs {C.V("nci_1h26")/1e3:,.0f}m book)', reweight(fair))
-
-# ---------------------------------------------------------------- F. REGIONAL RAMP
-# The average-deployed convention opens the regional fleet at ZERO for 2025 and
-# averages to the 2026 year-end count, giving 15 rig-years. The rigs were
-# actually consolidated in January and during the first half of 2026, and the
-# 1H-2026 accounts already carry roughly 19 of them.
-orig_fleet = C.FLEET['A']['regional'][2026], C.FLEET['B']['regional'][2026]
-print('       (the model books 15.0 regional rig-years in 2026 against roughly 19 '
-      'already consolidated in 1H-2026)')
-
-# ---------------------------------------------------------------- G. FY26 MARGIN
+# ---------------------------------------------------------------------- B ----
+# The build's FY2026 EBITDA margin against the company's own guided range. The
+# label on this line in the previous edition said ABOVE when the number was
+# below; it is computed now.
 g26_margin = rows[0]['ebitda'] / rows[0]['revenue']
 lo = C.V('g26_ebitda_lo') / C.V('g26_revenue')
 hi = C.V('g26_ebitda_hi') / C.V('g26_revenue')
-print(f"\nG1    FY2026 built margin {g26_margin*100:.2f}% against guidance of "
-      f"{lo*100:.0f}-{hi*100:.0f}% — ABOVE the guided range")
+where = ('ABOVE' if g26_margin > hi else 'BELOW' if g26_margin < lo else 'INSIDE')
+gap = (g26_margin - (lo + hi) / 2)
+print(f'B1    FY2026 built EBITDA margin {g26_margin*100:.2f}% against guidance of '
+      f'{lo*100:.1f}-{hi*100:.1f}% — {where} the guided range')
+print(f'        Distance from the guided midpoint: {gap*100:+.2f} percentage points, or USD '
+      f'{gap*rows[0]["revenue"]/1e3:,.0f} million of FY2026 EBITDA.')
+# priced: run the whole model with the cost stack scaled so FY2026 hits the guided midpoint
+mid = (lo + hi) / 2
+scale = (rows[0]['revenue'] * mid - rows[0]['ebitda']) / rows[0]['conv_cash_cost']
+lift = [dict(r) for r in rows]
+pv = 0.0
+for n, r in enumerate(lift, start=1):
+    eb = r['ebitda_ex_jv'] - r['conv_cash_cost'] * scale
+    ebit = eb - r['dna']
+    nop = ebit * (1 - C.V('tax_rate'))
+    pv += (nop + r['dna'] - r['capex'] - r['delta_wc']) / (1 + C.WACC) ** n
+    last_nopat = nop
+g = C.TERMINAL_G['A']
+tv = last_nopat * (1 + g) * (1 - g / C.V('terminal_roic')) / (C.WACC - g)
+ev25 = pv + tv / (1 + C.WACC) ** len(lift)
+price('B1', 'cost stack scaled so FY2026 EBITDA lands on the guided midpoint',
+      reweighted(dict(dcf_A=C.bridge(C.roll_ev_to_jun26(ev25)))))
+f = findings[-1]
+print(f'      {"B1":<6}{"the same model with FY2026 EBITDA on the guided midpoint":<72}'
+      f'AED {f["central"]:5.2f} {f["delta"]:+6.2f}  {f["pct"]:+6.1%}\n')
 
-# ---------------------------------------------------------------- H. RELATIVE LENS
-# The peer multiples are enterprise value over LAST TWELVE MONTHS EBITDA. They
-# are applied to ADNOC Drilling's FORWARD guided EBITDA. Applying a trailing
-# multiple to a forward number is a mismatch in the company's favour.
-fair = dict(C.FAIR)
-rel_ev = C.blended_multiple * C.H[2025]['ebitda']
-rel_eq = (rel_ev + C.V('jvinv_1h26') + C.V('cash_1h26') - C.V('debt_1h26')
-          - C.V('lease_1h26') - C.V('nci_1h26') - C.V('finliab_1h26'))
-fair['relative'] = rel_eq / C.shares_out_k * C.V('fx_aed_usd')
-price('H1', 'relative lens on trailing EBITDA, matching the trailing peer multiples',
-      reweight(fair))
+# ---------------------------------------------------------------------- C ----
+# The contingent consideration recognised on the SLDC acquisition is a real
+# obligation. It sits inside trade and other payables on the 30-Jun-2026 balance
+# sheet, which the bridge treats as working capital rather than as debt. Priced
+# as a bridge deduction to show the size of the question.
+cc = C.V('acq_contingent')
+alt = {k: C.bridge(C.CASE[k[-1]]['enterprise_value'] - cc) for k in ('dcf_A', 'dcf_B')}
+price('C1', 'contingent consideration treated as debt-like in the bridge', reweighted(alt))
+f = findings[-1]
+print(f'{"C1":<6}{"contingent consideration deducted in the bridge as debt-like":<72}'
+      f'AED {f["central"]:5.2f} {f["delta"]:+6.2f}  {f["pct"]:+6.1%}')
+print(f'        USD {cc/1e3:,.1f} million. It is presented inside trade and other payables at 30 '
+      f'June 2026,\n        so it is already inside working capital; deducting it again in the '
+      f'bridge would double count.\n        Reported as a bound, not applied.\n')
 
-# ---------------------------------------------------------------- I. JV CASH
-# Equity-accounted income is in forecast profit and therefore in forecast cash,
-# but no joint-venture distribution is modelled. This does not touch enterprise
-# value; it overstates the forecast cash balance.
+# ---------------------------------------------------------------------- D ----
+# Liabilities assumed with the acquisitions that no forecast driver generates are
+# held flat across the window. Priced by releasing them entirely.
+al = rows[0]['balance_sheet']['acquisition_liabilities']
+print(f'D1    acquisition liabilities held FLAT at USD {al/1e3:,.1f} million to 2030')
+print(f'        {al/rows[-1]["balance_sheet"]["total_assets"]*100:.2f}% of 2030 total assets. '
+      f'They do not enter free cash flow to the firm,\n        so the effect on the valuation is '
+      f'nil; they affect the forecast balance sheet only.\n')
+
+# ---------------------------------------------------------------------- E ----
+# Joint-venture income sits in forecast profit but is not received as cash unless
+# the joint ventures distribute. This overstates the forecast cash balance.
 jv_cum = sum(r['jv_share'] for r in rows)
-print(f"\nI1    joint-venture income in forecast profit but never received as cash: "
-      f"{jv_cum/1e3:,.0f}m cumulative to 2030 — overstates the forecast cash balance "
-      f"({rows[-1]['cash_close']/1e3:,.0f}m), not enterprise value")
+print(f'E1    joint-venture income in forecast profit but never received as cash: USD '
+      f'{jv_cum/1e3:,.0f} million cumulative')
+print(f'        to 2030, against a forecast 2030 cash balance of USD '
+      f'{rows[-1]["cash_close"]/1e3:,.0f} million. It is excluded from\n        EBITDA before the '
+      f'cash-flow waterfall, so it does NOT touch enterprise value — the overstatement\n        '
+      f'is confined to the forecast balance sheet.\n')
 
-# ---------------------------------------------------------------- combined
-C.WC_PCT_REVENUE = (orig_wc + wc_pct_1h26) / 2
-C.WACC = C.ke_rating
-cases = {c: C.build_case(c) for c in ('A', 'B')}
-fair = dict(C.FAIR)
-fair['dcf_A'] = cases['A']['value_per_share_aed']
-fair['dcf_B'] = cases['B']['value_per_share_aed']
-pb = (float(np.mean(roes)) - C.g_book) / (C.ke_rating - C.g_book)
-fair['book'] = pb * C.book_equity_now / C.shares_out_k * C.V('fx_aed_usd')
-ev = (C.norm_ebitda - dna_full) * (1 - C.V('tax_rate')) / (C.ke_rating - C.V('terminal_growth_B'))
-eq = (ev + C.V('jvinv_1h26') + C.V('cash_1h26') - C.V('debt_1h26') - C.V('lease_1h26')
-      - C.V('nci_1h26') - C.V('finliab_1h26'))
-fair['normalised'] = eq / C.shares_out_k * C.V('fx_aed_usd')
-price('ALL', 'every accepted correction applied together', reweight(fair))
-C.WC_PCT_REVENUE, C.WACC = orig_wc, orig_wacc
+# ---------------------------------------------------------------------- F ----
+# Gross debt is held flat in nominal terms for five years while the business
+# grows into it. That is a policy assumption, not a forecast.
+nd0, nd5 = rows[0]['net_debt'], rows[-1]['net_debt']
+print(f'F1    gross interest-bearing debt held FLAT at USD '
+      f'{rows[0]["balance_sheet"]["debt"]/1e3:,.0f} million to 2030')
+print(f'        Net debt therefore falls from USD {nd0/1e3:,.0f} million in 2026 to USD '
+      f'{nd5/1e3:,.0f} million in 2030,\n        and the terminal firm holds net cash. The '
+      f'terminal block is nonetheless capitalised at the\n        weighted cost of capital, not '
+      f'the cost of equity — see the note on the DCF sheet.\n')
 
-json.dump(dict(base_central=BASE, spot=SPOT, findings=FINDINGS),
+# ---------------------------------------------------------------------- G ----
+# Terminal value share. Not a defect, but the number a reader should see first.
+print(f'G1    terminal value is {C.CASE["A"]["tv_pct_of_ev"]*100:.1f}% of enterprise value in '
+      f'the expansion case and\n        {C.CASE["B"]["tv_pct_of_ev"]*100:.1f}% in the plateau '
+      f'case. Both are high, and both are stated in the summary\n        table rather than '
+      f'buried.\n')
+
+# ---------------------------------------------------------------------- H ----
+# The regional book opens at the count consolidated at 30 June 2026 rather than
+# at the count consolidated on 1 January, which overstates 2026 regional
+# rig-years. FY2026 revenue is reconciled to guidance so the LEVEL is unaffected;
+# the mix is not.
+print(f'H1    the regional book opens at the {C.V("rigs_regional_2q26"):.0f} rigs consolidated '
+      f'at 30 June 2026, not at the count')
+print(f'        consolidated on 1 January. FY2026 regional rig-years of '
+      f'{rows[0]["avg_regional"]:.1f} are therefore an\n        upper bound. FY2026 revenue is '
+      f'reconciled to the segment guidance, so this moves the MIX\n        inside the onshore '
+      f'segment and not the level.\n')
+
+allf = reweighted(dict(dcf_A=C.bridge(C.roll_ev_to_jun26(ev25 - cc)),
+                       dcf_B=C.bridge(C.CASE['B']['enterprise_value'] - cc)))
+price('ALL', 'the two priced findings applied together', allf)
+f = findings[-1]
+print(f'{"ALL":<6}{"the two priced findings applied together":<72}'
+      f'AED {f["central"]:5.2f} {f["delta"]:+6.2f}  {f["pct"]:+6.1%}')
+
+json.dump(dict(base=FV, spot=SPOT, findings=findings),
           open(os.path.join(HERE, 'self_audit.json'), 'w'), indent=1)

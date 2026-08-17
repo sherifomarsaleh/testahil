@@ -164,6 +164,7 @@ r = 4
 
 
 def arow(label, unit, value, source, fmt=N2, section=False):
+    """A DISCLOSED or JUDGEMENT driver: a blue cell nothing in the workbook derives."""
     global r
     if section:
         c = lab(A, r, label, bold=True, fill=FILL_B)
@@ -181,8 +182,61 @@ def arow(label, unit, value, source, fmt=N2, section=False):
     r += 1
 
 
+def afml(label, unit, formula, expected, source, fmt=N2):
+    """A DERIVED driver: a live formula built out of the disclosed cells above it.
+
+    Every rate, ratio and margin the model computes rather than reads is written
+    this way. Perturb any disclosed cell the formula reaches and this cell moves,
+    and so does everything downstream of it — which is what the driver test
+    exists to prove, one input at a time.
+    """
+    global r
+    lab(A, r, label)
+    A.cell(row=r, column=2, value=unit).font = F_TXT
+    fml(A, f'C{r}', formula, expected, fmt)
+    c = A.cell(row=r, column=4, value=source)
+    c.font = F_TXT
+    c.alignment = WRAP
+    AR[label] = r
+    r += 1
+
+
 def SRC(k):
     return IN[k]['source']
+
+
+def AC(label):
+    return f"Assumptions!$C${AR[label]}"
+
+
+# A handful of Assumptions rows are formulas over cells on sheets written LATER —
+# last-twelve-month EBITDA off the income statement, the sustainable return off
+# the forecast. They are placed here in reading order and their formula text is
+# filled in once those rows exist. Nothing is left as a pasted number: DEFERRED is
+# drained at the end of the build and asserted empty.
+DEFERRED = []
+
+
+def adef(label, unit, expected, source, fmt=N2):
+    """An Assumptions row whose formula is supplied later by resolve_deferred()."""
+    global r
+    lab(A, r, label)
+    A.cell(row=r, column=2, value=unit).font = F_TXT
+    DEFERRED.append((label, f'C{r}', float(expected), fmt))
+    c = A.cell(row=r, column=4, value=source)
+    c.font = F_TXT
+    c.alignment = WRAP
+    AR[label] = r
+    r += 1
+
+
+def resolve_deferred(label, formula):
+    for i, (lbl, coord, expected, fmt) in enumerate(DEFERRED):
+        if lbl == label:
+            fml(A, coord, formula, expected, fmt)
+            DEFERRED.pop(i)
+            return
+    raise KeyError(f'no deferred Assumptions row called {label!r}')
 
 
 arow('MARKET AND SHARE COUNT', '', 0, '', section=True)
@@ -212,7 +266,8 @@ FLEET_NICE = (('onshore_ad', 'Abu Dhabi onshore rigs, year end'),
               ('regional', 'Regional onshore rigs, year end'),
               ('jackup', 'Jack-up rigs, year end'),
               ('island', 'Island rigs, year end'),
-              ('ids', 'Integrated-services rigs, year end'))
+              ('ids', 'Integrated-services rigs, year end'),
+              ('discrete', 'Rigs given at least one discrete service, year end'))
 FLEET_SRC = {
     'A': {'onshore_ad': 'Abu Dhabi onshore fleet held at the FY2025 disclosed 92 rigs and grown '
                         'two a year thereafter under the continued-expansion case',
@@ -222,14 +277,19 @@ FLEET_SRC = {
           'island': 'FY2025 disclosed 12, plus the six island rigs the company has ordered for '
                     'gradual delivery between 2026 and 2028',
           'ids': "The company's own target of approximately 70 integrated-services rigs by the "
-                 'end of 2026, extended at four a year and tapering'},
+                 'end of 2026, extended at four a year and tapering',
+          'discrete': 'The second rig population Oilfield Services serves and the company '
+                      'discloses separately: 48 at end-2024, 58 at end-2025, 53 at 30 June 2026. '
+                      'Held broadly flat, because it has not grown as the integrated fleet has'},
     'B': {'onshore_ad': 'Held flat at the FY2025 disclosed 92 rigs: the domestic fleet stops '
                         'growing once the production-capacity target is met',
           'regional': 'Held flat at the 30 regional rigs disclosed at 30 June 2026',
           'jackup': 'Held flat at the FY2025 disclosed 36',
           'island': 'The six ordered island rigs still arrive — they are already paid for — but '
                     'nothing follows them',
-          'ids': 'Stops just above the stated end-2026 target of approximately 70'},
+          'ids': 'Stops just above the stated end-2026 target of approximately 70',
+          'discrete': 'Held flat at the disclosed count on the same reasoning as the expansion '
+                      'case: this population is not growing'},
 }
 CASE_TAG = {'A': '', 'B': ' (plateau)'}
 for case in ('A', 'B'):
@@ -240,22 +300,107 @@ for case in ('A', 'B'):
             v = FLEET[case][key][y]
             arow(f'{nice}{CASE_TAG[case]} — {y}', 'rigs', float(v), FLEET_SRC[case][key], N0)
 
-arow('UNIT REVENUE RATES', '', 0, '', section=True)
-arow('Revenue per Abu Dhabi onshore rig-year', "USD '000",
+arow('DISCLOSED BASE FOR THE UNIT RATES (reported figures, nothing derived)', '', 0, '',
+     section=True)
+arow('Onshore segment revenue — FY2025', "USD '000", H['2025']['seg_onshore'],
+     SRC('seg_on_fy25'), N0)
+arow('Offshore segment revenue — FY2025', "USD '000", H['2025']['seg_offshore'],
+     SRC('seg_off_fy25'), N0)
+arow('Oilfield Services segment revenue — FY2024', "USD '000", H['2024']['seg_ofs'],
+     SRC('seg_ofs_fy24'), N0)
+arow('Oilfield Services segment revenue — FY2025', "USD '000", H['2025']['seg_ofs'],
+     SRC('seg_ofs_fy25'), N0)
+arow('Offshore Island revenue — FY2023', "USD '000", IN['seg_island_fy23']['value'],
+     SRC('seg_island_fy23'), N0)
+arow('Offshore Jack-up revenue — FY2023', "USD '000", IN['seg_jackup_fy23']['value'],
+     SRC('seg_jackup_fy23'), N0)
+arow('Unconventional revenue — FY2025', "USD '000", IN['unconv_fy25']['value'],
+     SRC('unconv_fy25'), N0)
+arow('Unconventional booked to Oilfield Services — FY2024', "USD '000",
+     IN['unconv_ofs_fy24']['value'], SRC('unconv_ofs_fy24'), N0)
+arow('Unconventional booked to Oilfield Services — FY2025', "USD '000",
+     IN['unconv_ofs_fy25']['value'], SRC('unconv_ofs_fy25'), N0)
+for _k, _nice in (('rigs_onshore_fy24', 'Abu Dhabi onshore rigs — FY2024 year end'),
+                  ('rigs_onshore_fy25', 'Abu Dhabi onshore rigs — FY2025 year end'),
+                  ('rigs_jackup_fy22', 'Jack-up rigs — FY2022 year end'),
+                  ('rigs_jackup_fy23', 'Jack-up rigs — FY2023 year end'),
+                  ('rigs_jackup_fy24', 'Jack-up rigs — FY2024 year end'),
+                  ('rigs_jackup_fy25', 'Jack-up rigs — FY2025 year end'),
+                  ('rigs_island_fy23', 'Island rigs — FY2023 year end'),
+                  ('rigs_island_fy24', 'Island rigs — FY2024 year end'),
+                  ('rigs_island_fy25', 'Island rigs — FY2025 year end'),
+                  ('ids_fy24', 'Integrated-services rigs — FY2024 year end'),
+                  ('ids_fy25', 'Integrated-services rigs — FY2025 year end'),
+                  ('discrete_fy24', 'Rigs given at least one discrete service — FY2024'),
+                  ('discrete_fy25', 'Rigs given at least one discrete service — FY2025'),
+                  ('rigs_regional_2q26', 'Regional onshore rigs — 30 June 2026'),
+                  ('rigs_island_2q26', 'Island rigs — 30 June 2026'),
+                  ('ids_2q26', 'Integrated-services rigs — 30 June 2026'),
+                  ('discrete_2q26', 'Rigs given at least one discrete service — 30 June 2026'),
+                  ):
+    arow(_nice, 'rigs' if 'Wells' not in _nice else 'wells', IN[_k]['value'], SRC(_k), N0)
+
+arow('UNIT REVENUE RATES (every one derived from the block above)', '', 0, '', section=True)
+afml('Revenue per Abu Dhabi onshore rig-year', "USD '000",
+     f'=({AC("Onshore segment revenue — FY2025")}'
+     f'-({AC("Unconventional revenue — FY2025")}'
+     f'-{AC("Unconventional booked to Oilfield Services — FY2025")}))'
+     f'/(({AC("Abu Dhabi onshore rigs — FY2024 year end")}'
+     f'+{AC("Abu Dhabi onshore rigs — FY2025 year end")})/2)',
      U['2025']['rev_per_onshore_rig'],
-     'Derived from FY2025 disclosed Onshore segment revenue less the disclosed unconventional '
-     'land-drilling contribution, over the average of the FY2024 and FY2025 disclosed rig counts',
-     N0)
+     'FY2025 reported Onshore segment revenue less the unconventional land-drilling revenue '
+     'inside it, over the average of the FY2024 and FY2025 reported rig counts', N0)
 arow('Revenue per regional onshore rig-year', "USD '000", IN['rev_per_rig_regional']['value'],
      SRC('rev_per_rig_regional'), N0)
-arow('Revenue per jack-up rig-year', "USD '000", UE['rev_per_jackup_fy25'],
-     'Derived: FY2025 disclosed Offshore revenue split between jack-ups and island rigs on the '
-     'FY2023 ratio, the last year the two were reported separately', N0)
-arow('Revenue per island rig-year', "USD '000", UE['rev_per_island_fy25'],
-     'Derived on the same FY2023 ratio', N0)
-arow('Revenue per integrated-services rig-year', "USD '000", U['2025']['rev_per_ids_rig'],
-     'Derived from FY2025 disclosed Oilfield Services revenue less the disclosed unconventional '
-     'contribution, over the average of the FY2024 and FY2025 disclosed counts', N0)
+afml('Island-to-jack-up revenue ratio', 'x',
+     f'=({AC("Offshore Island revenue — FY2023")}/{AC("Island rigs — FY2023 year end")})'
+     f'/({AC("Offshore Jack-up revenue — FY2023")}'
+     f'/(({AC("Jack-up rigs — FY2022 year end")}+{AC("Jack-up rigs — FY2023 year end")})/2))',
+     UE['island_to_jackup_ratio'],
+     'FY2023 is the last year the island and jack-up businesses were reported separately, so it '
+     'is the only year that can fix the ratio between them. Revenue per island rig-year over '
+     'revenue per jack-up rig-year, both on that year', N3)
+afml('Revenue per jack-up rig-year', "USD '000",
+     f'={AC("Offshore segment revenue — FY2025")}'
+     f'/((({AC("Jack-up rigs — FY2024 year end")}+{AC("Jack-up rigs — FY2025 year end")})/2)'
+     f'+{AC("Island-to-jack-up revenue ratio")}'
+     f'*(({AC("Island rigs — FY2024 year end")}+{AC("Island rigs — FY2025 year end")})/2))',
+     UE['rev_per_jackup_fy25'],
+     'FY2025 reported Offshore segment revenue divided across jack-up-equivalent rig-years, '
+     'island rigs counted at the ratio above', N0)
+afml('Revenue per island rig-year', "USD '000",
+     f'={AC("Revenue per jack-up rig-year")}*{AC("Island-to-jack-up revenue ratio")}',
+     UE['rev_per_island_fy25'], 'The jack-up rate at the FY2023 island-to-jack-up ratio', N0)
+afml('Rigs served by Oilfield Services — FY2024', 'rigs',
+     f'={AC("Integrated-services rigs — FY2024 year end")}'
+     f'+{AC("Rigs given at least one discrete service — FY2024")}',
+     UE['ofs_served']['2024'],
+     'Oilfield Services serves TWO rig populations, and the company discloses both: the '
+     'integrated-services fleet and, separately, the rigs given at least one discrete service. '
+     'The first edition of this model recognised only the first', N0)
+afml('Rigs served by Oilfield Services — FY2025', 'rigs',
+     f'={AC("Integrated-services rigs — FY2025 year end")}'
+     f'+{AC("Rigs given at least one discrete service — FY2025")}',
+     UE['ofs_served']['2025'], 'The same two populations a year later', N0)
+afml('Revenue per rig served — FY2024', "USD '000",
+     f'=({AC("Oilfield Services segment revenue — FY2024")}'
+     f'-{AC("Unconventional booked to Oilfield Services — FY2024")})'
+     f'/{AC("Rigs served by Oilfield Services — FY2024")}',
+     UE['ofs_rev_per_served']['2024'],
+     'FY2024 reported Oilfield Services revenue less the unconventional revenue inside it, over '
+     'the rigs served', N0)
+afml('Revenue per rig served — FY2025', "USD '000",
+     f'=({AC("Oilfield Services segment revenue — FY2025")}'
+     f'-{AC("Unconventional booked to Oilfield Services — FY2025")})'
+     f'/{AC("Rigs served by Oilfield Services — FY2025")}',
+     UE['ofs_rev_per_served']['2025'], 'The same construction a year later', N0)
+afml('Realised growth in revenue per rig served', '%',
+     f'={AC("Revenue per rig served — FY2025")}/{AC("Revenue per rig served — FY2024")}-1',
+     UE['ofs_intensity_realised'],
+     'Measured, not assumed: what the company actually achieved between the two disclosed years. '
+     'It fades to the contract escalator across the forecast, because a gain of this size in '
+     'revenue per rig served is a mix and efficiency effect that cannot compound indefinitely',
+     P1)
 
 arow('ESCALATORS — ONE PER DRIVER CLASS', '', 0, '', section=True)
 arow('Contract day-rate escalation', '%', IN['esc_dayrate']['value'], SRC('esc_dayrate'), P2)
@@ -264,20 +409,50 @@ arow('Oilfield-services cost escalation', '%', IN['esc_oilfield']['value'], SRC(
 arow('Fuel escalation (own commodity path)', '%', IN['esc_fuel']['value'], SRC('esc_fuel'), P2)
 arow('General escalation', '%', IN['esc_general']['value'], SRC('esc_general'), P2)
 
-arow('FY2025 CONVENTIONAL COST STACK (base for the escalation)', '', 0, '', section=True)
+arow('Unconventional EBITDA margin', '%', IN['unconv_ebitda_margin']['value'],
+     SRC('unconv_ebitda_margin'), P2)
+
+arow('FY2025 DIRECT COST — AS REPORTED IN THE COST NOTE', '', 0, '', section=True)
+_dc_first = r
 CS = UE['conventional_cost_stack_fy25']
 CS_LABEL = {'repairs': 'Repairs and maintenance', 'staff': 'Staff costs',
             'hire': 'Hire of equipment', 'chemicals': 'Chemicals',
             'fuel': 'Fuel and lubricants', 'major_maintenance': 'Major maintenance charges',
             'other': 'Other direct cost'}
+CS_KEY = {'repairs': 'dc_repairs_fy25', 'staff': 'dc_staff_fy25', 'hire': 'dc_hire_fy25',
+          'chemicals': 'dc_chem_fy25', 'fuel': 'dc_fuel_fy25',
+          'major_maintenance': 'dc_majmaint_fy25', 'other': 'dc_other_fy25'}
 for k, nice in CS_LABEL.items():
-    arow(f'{nice} — conventional base', "USD '000", CS[k],
-         f"FY2025 direct-cost note line, net of the share of direct cost carried by the "
-         f"unconventional programme", N0)
-arow('General and administrative expenses excluding depreciation', "USD '000",
+    arow(f'{nice} — as reported', "USD '000", IN[CS_KEY[k]]['value'], SRC(CS_KEY[k]), N0)
+_dc_last = r - 1
+_DC_RANGE = f'Assumptions!$C${_dc_first}:$C${_dc_last}'
+arow('General and administrative expenses — as reported', "USD '000", IN['gna_fy25']['value'],
+     SRC('gna_fy25'), N0)
+arow('Depreciation inside general and administrative expenses', "USD '000",
+     IN['gna_dep_fy25']['value'], SRC('gna_dep_fy25'), N0)
+afml('Direct cost carried by the unconventional programme', "USD '000",
+     f'={AC("Unconventional revenue — FY2025")}*(1-{AC("Unconventional EBITDA margin")})',
+     UE['unconventional_cost_fy25'],
+     'FY2025 unconventional revenue at one minus the unconventional EBITDA margin — the cash '
+     'cost the unconventional programme carried, which has to come out of the reported direct '
+     'cost before the remainder can be escalated on conventional volume drivers', N0)
+
+arow('FY2025 CONVENTIONAL COST STACK (reported cost less the unconventional share)', '', 0, '',
+     section=True)
+for k, nice in CS_LABEL.items():
+    afml(f'{nice} — conventional base', "USD '000",
+         f'={AC(f"{nice} — as reported")}'
+         f'*(1-{AC("Direct cost carried by the unconventional programme")}'
+         f'/SUM({_DC_RANGE}))',
+         CS[k],
+         'The reported line less its pro-rata share of the direct cost the unconventional '
+         'programme carried', N0)
+afml('General and administrative expenses excluding depreciation', "USD '000",
+     f'={AC("General and administrative expenses — as reported")}'
+     f'-{AC("Depreciation inside general and administrative expenses")}',
      IN['gna_fy25']['value'] - IN['gna_dep_fy25']['value'],
-     'FY2025 disclosed general and administrative expenses less the depreciation and '
-     'amortisation inside them', N0)
+     'FY2025 reported general and administrative expenses less the depreciation and '
+     'amortisation inside them, which is charged separately in the model', N0)
 arow('Other income, FY2025 base', "USD '000", IN['othinc_fy25']['value'], SRC('othinc_fy25'), N0)
 arow('Share of joint-venture results, FY2025 base', "USD '000", IN['jv_fy25']['value'],
      SRC('jv_fy25'), N0)
@@ -291,11 +466,13 @@ for y in YRS_F:
     arow(f'Unconventional revenue (plateau) — {y}', "USD '000", FLEET['B']['unconv'][y],
          'The same programme with no successor contract: Phase 1 runs off and nothing replaces '
          'it', N0)
-arow('Unconventional EBITDA margin', '%', IN['unconv_ebitda_margin']['value'],
-     SRC('unconv_ebitda_margin'), P2)
-arow('Unconventional share booked to Onshore', '%',
+afml('Unconventional share booked to Onshore', '%',
+     f'=({AC("Unconventional revenue — FY2025")}'
+     f'-{AC("Unconventional booked to Oilfield Services — FY2025")})'
+     f'/{AC("Unconventional revenue — FY2025")}',
      (IN['unconv_fy25']['value'] - IN['unconv_ofs_fy25']['value']) / IN['unconv_fy25']['value'],
-     'FY2025 disclosed split: $158 million of the $692 million was Onshore land drilling', P2)
+     'The FY2025 reported split, carried forward: the residual of total unconventional revenue '
+     'over the part reported inside Oilfield Services is the part reported inside Onshore', P2)
 
 arow('CAPITAL AND WORKING CAPITAL', '', 0, '', section=True)
 for y in YRS_F:
@@ -307,11 +484,56 @@ for y in YRS_F:
     arow(f'Capital expenditure (plateau) — {y}', "USD '000", CAPEX_PLAN['B'][y],
          'The same FY2026 guidance, stepping down faster once the ordered rigs are delivered and '
          'nothing follows them', N0)
-arow('Depreciation rate on opening fixed assets', '%', UE['depreciation_rate'],
-     'FY2025 disclosed depreciation and amortisation over opening property, equipment, '
-     'right-of-use assets and intangibles', P2)
-arow('Working capital / revenue', '%', UE['wc_pct_revenue'],
-     'Average of the three audited years: 5.5%, 6.9% and 5.4%', P2)
+arow('Depreciation and amortisation — FY2025 as reported', "USD '000", IN['dna_fy25']['value'],
+     SRC('dna_fy25'), N0)
+arow('Property and equipment — FY2024 as reported', "USD '000", IN['ppe_fy24']['value'],
+     SRC('ppe_fy24'), N0)
+arow('Right-of-use assets — FY2024 as reported', "USD '000", IN['rou_fy24']['value'],
+     SRC('rou_fy24'), N0)
+arow('Intangible assets — FY2024 as reported', "USD '000", IN['intang_fy24']['value'],
+     SRC('intang_fy24'), N0)
+afml('Depreciation rate on opening fixed assets', '%',
+     f'={AC("Depreciation and amortisation — FY2025 as reported")}'
+     f'/({AC("Property and equipment — FY2024 as reported")}'
+     f'+{AC("Right-of-use assets — FY2024 as reported")}'
+     f'+{AC("Intangible assets — FY2024 as reported")})',
+     UE['depreciation_rate'],
+     'FY2025 reported depreciation and amortisation over the opening (FY2024) property, '
+     'equipment, right-of-use assets and intangibles it was charged on', P2)
+
+arow('WORKING CAPITAL — THE 30 JUNE 2026 BALANCE SHEET, WHICH IS THE ONLY ONE THAT '
+     'CONSOLIDATES THE ACQUISITIONS', '', 0, '', section=True)
+for _k, _nice in (('inv_1h26', 'Inventories — 30 June 2026'),
+                  ('recv_1h26', 'Trade and other receivables — 30 June 2026'),
+                  ('dfrp_1h26', 'Due from related parties — 30 June 2026'),
+                  ('tp_1h26', 'Trade and other payables — 30 June 2026'),
+                  ('dtrp_1h26', 'Due to related parties — 30 June 2026'),
+                  ('rev_1h26', 'Revenue — first half of 2026')):
+    arow(_nice, "USD '000", IN[_k]['value'], SRC(_k), N0)
+afml('Working capital — 30 June 2026', "USD '000",
+     f'={AC("Inventories — 30 June 2026")}'
+     f'+{AC("Trade and other receivables — 30 June 2026")}'
+     f'+{AC("Due from related parties — 30 June 2026")}'
+     f'-{AC("Trade and other payables — 30 June 2026")}'
+     f'-{AC("Due to related parties — 30 June 2026")}',
+     UE['wc_1h26'], 'The same five lines the audited years are measured on', N0)
+afml('Working capital / revenue', '%',
+     f'={AC("Working capital — 30 June 2026")}/({AC("Revenue — first half of 2026")}*2)',
+     UE['wc_pct_revenue'],
+     'Working capital at 30 June 2026 over annualised first-half revenue. The first edition used '
+     'the average of the three audited years, every one of which pre-dates the two regional '
+     'acquisitions, and applied it to a revenue line that includes them. A mid-year balance sheet '
+     'is not seasonally flattering here: over the first half of 2025 working capital RELEASED '
+     'cash, so this company runs BELOW its year end at mid-year rather than above it', P2)
+arow("FY2026 GUIDANCE — THE COMPANY GUIDES ALL THREE SEGMENTS, SO ALL THREE ARE RECONCILED",
+     '', 0, '', section=True)
+arow('FY2026 guided Onshore revenue', "USD '000", IN['g26_rev_onshore']['value'],
+     SRC('g26_rev_onshore'), N0)
+arow('FY2026 guided Offshore revenue', "USD '000", IN['g26_rev_offshore']['value'],
+     SRC('g26_rev_offshore'), N0)
+arow('FY2026 guided Oilfield Services revenue', "USD '000", IN['g26_rev_ofs']['value'],
+     SRC('g26_rev_ofs'), N0)
+
 arow('Dividend, FY2026 floor', "USD '000", IN['g26_dividend']['value'], SRC('g26_dividend'), N0)
 arow('Dividend growth', '%', 0.05, 'The guided floor is stated as 5% above the prior year', P2)
 
@@ -323,27 +545,120 @@ arow('Terminal growth — capacity plateau', '%', IN['terminal_growth_B']['value
 arow('Terminal return on invested capital', '%', IN['terminal_roic']['value'],
      SRC('terminal_roic'), P2)
 
+arow('THE 2026 BUSINESS COMBINATIONS (note 5 of the interim, line by line)', '', 0, '',
+     section=True)
+for _k, _nice in (('acq_ppe', 'Property and equipment acquired'),
+                  ('acq_rou', 'Right-of-use assets acquired'),
+                  ('acq_goodwill', 'Provisional goodwill'),
+                  ('acq_inventories', 'Inventories acquired'),
+                  ('acq_receivables', 'Trade and other receivables acquired'),
+                  ('acq_payables', 'Trade and other payables assumed'),
+                  ('acq_cash', 'Cash acquired'),
+                  ('acq_borrowings', 'Term loans, overdraft and borrowings assumed'),
+                  ('acq_leases', 'Lease liabilities assumed'),
+                  ('acq_deferred_tax', 'Deferred tax liability assumed'),
+                  ('acq_income_tax', 'Income tax payable assumed'),
+                  ('acq_eosb', 'End-of-service benefits assumed'),
+                  ('acq_contingent', 'Contingent consideration outstanding'),
+                  ('acq_nci', 'Minority interests recognised'),
+                  ('acq_consideration_2026', 'Cash consideration paid in 2026'),
+                  ('acq_cash_returned', 'Consideration received back against the 2025 advance'),
+                  ('advacq_fy25', 'The 2025 advance for acquisition of a subsidiary')):
+    arow(_nice, "USD '000", IN[_k]['value'], SRC(_k), N0)
+
+arow('THE 31 DECEMBER 2025 BALANCE SHEET THE FORECAST OPENS ON', '', 0, '', section=True)
+for _k, _nice in (('debt_fy25', 'Borrowings — FY2025 audited'),
+                  ('lease_fy25', 'Lease liabilities — FY2025 audited'),
+                  ('eosb_fy25', "End-of-service benefits — FY2025 audited"),
+                  ('dta_fy25', 'Deferred tax assets — FY2025 audited'),
+                  ('advnc_fy25', 'Advances — FY2025 audited'),
+                  ('jvinv_fy25', 'Investment in joint ventures — FY2025 audited'),
+                  ('cash_fy25', 'Cash and cash equivalents — FY2025 audited'),
+                  ('equity_fy25', 'Total equity — FY2025 audited'),
+                  ('taxpay_fy25', 'Income tax payable — FY2025 audited'),
+                  ('ppe_fy25', 'Property and equipment — FY2025 audited'),
+                  ('rou_fy25', 'Right-of-use assets — FY2025 audited'),
+                  ('intang_fy25', 'Intangible assets — FY2025 audited')):
+    arow(_nice, "USD '000", IN[_k]['value'], SRC(_k), N0)
+
 arow('BRIDGE FROM ENTERPRISE VALUE TO EQUITY (30 June 2026)', '', 0, '', section=True)
 arow('Investment in joint ventures', "USD '000", IN['jvinv_1h26']['value'], SRC('jvinv_1h26'), N0)
 arow('Cash and cash equivalents', "USD '000", IN['cash_1h26']['value'], SRC('cash_1h26'), N0)
 arow('Borrowings', "USD '000", IN['debt_1h26']['value'], SRC('debt_1h26'), N0)
 arow('Lease liabilities', "USD '000", IN['lease_1h26']['value'], SRC('lease_1h26'), N0)
-arow('Non-controlling interests', "USD '000", IN['nci_1h26']['value'], SRC('nci_1h26'), N0)
 arow('Financial liability over the acquired minorities', "USD '000", IN['finliab_1h26']['value'],
-     SRC('finliab_1h26'), N0)
+     SRC('finliab_1h26'),
+     N0)
+arow('Non-controlling interests (NOT deducted — see the note)', "USD '000",
+     IN['nci_1h26']['value'],
+     'Reported at 30 June 2026 and shown here for completeness, but NOT deducted in the bridge. '
+     'The financial liability above is the present value of the exercise price over these same '
+     'minorities, and the company has already charged a matching investment reserve of the same '
+     'amount against owners equity. Deducting the liability and the minority both would charge '
+     'the parent twice for one claim', N0)
+arow('Net cash from operating activities — first half of 2026', "USD '000",
+     IN['cfo_1h26']['value'], SRC('cfo_1h26'), N0)
+arow('Capital expenditure — first half of 2026', "USD '000", IN['capex_1h26']['value'],
+     SRC('capex_1h26'), N0)
+arow('Days from 30 June 2026 to the price anchor', 'days', IN['days_jun26_to_anchor']['value'],
+     SRC('days_jun26_to_anchor'), N0)
 
 arow('OTHER LENSES', '', 0, '', section=True)
-arow('Sustainable return on equity', '%', BOOK['roe_sustainable'],
-     'Average of the FY2024 and FY2025 returns on average equity, both computed from the '
-     'audited statements', P2)
-arow('Book equity attributable to owners', "USD '000", BOOK['book_equity'],
-     'Total equity at 30 June 2026 less non-controlling interests', N0)
-arow('Normalised EBITDA margin', '%', NORM['ebitda_margin'],
-     "The company's own FY2026 guided group EBITDA margin — the midpoint of the $2.2-2.3 "
-     'billion range over the approximately $5 billion revenue guide', P2)
-arow('Normalised depreciation and amortisation', "USD '000", NORM['dna'],
-     'Midway between the stated maintenance capital expenditure of around $250 million and the '
-     'depreciation the grown fleet carries by 2030', N0)
+arow('Total equity — 30 June 2026', "USD '000", IN['equity_1h26']['value'], SRC('equity_1h26'), N0)
+afml('Book equity attributable to owners', "USD '000",
+     f'={AC("Total equity — 30 June 2026")}'
+     f'-{AC("Non-controlling interests (NOT deducted — see the note)")}',
+     BOOK['book_equity'], 'Total equity at 30 June 2026 less non-controlling interests', N0)
+arow('EBITDA — first half of 2026', "USD '000", IN['ebitda_1h26']['value'], SRC('ebitda_1h26'), N0)
+arow('EBITDA — first half of 2025', "USD '000", IN['ebitda_1h25']['value'], SRC('ebitda_1h25'), N0)
+arow('Share of joint-venture results — first half of 2026', "USD '000", IN['jv_1h26']['value'],
+     SRC('jv_1h26'), N0)
+arow('Share of joint-venture results — first half of 2025', "USD '000", IN['jv_1h25']['value'],
+     SRC('jv_1h25'), N0)
+arow('Depreciation and amortisation — first half of 2026', "USD '000", IN['dna_1h26']['value'],
+     SRC('dna_1h26'), N0)
+arow('FY2026 guided revenue', "USD '000", IN['g26_revenue']['value'], SRC('g26_revenue'), N0)
+arow('FY2026 guided EBITDA — bottom of the range', "USD '000", IN['g26_ebitda_lo']['value'],
+     SRC('g26_ebitda_lo'), N0)
+arow('FY2026 guided EBITDA — top of the range', "USD '000", IN['g26_ebitda_hi']['value'],
+     SRC('g26_ebitda_hi'), N0)
+afml('Normalised EBITDA margin', '%',
+     f'=({AC("FY2026 guided EBITDA — bottom of the range")}'
+     f'+{AC("FY2026 guided EBITDA — top of the range")})/2/{AC("FY2026 guided revenue")}',
+     NORM['ebitda_margin'],
+     "The company's own FY2026 guided group EBITDA margin — the midpoint of the guided EBITDA "
+     'range over the guided revenue. Deliberately the GROUP margin and not the higher '
+     'conventional-only margin guided separately, because the fleet priced in this lens includes '
+     'the lower-margin oilfield-services book', P2)
+afml('Normalised depreciation and amortisation', "USD '000",
+     f'={AC("Depreciation and amortisation — first half of 2026")}*2',
+     NORM['dna'],
+     'The charge the fleet being priced actually carries: the first-half 2026 charge, annualised. '
+     'The first edition set this halfway between maintenance capital expenditure and the 2030 '
+     'charge — but the 2030 charge belongs to a larger fleet than this lens is allowed to price',
+     N0)
+adef('EBITDA — FY2025 audited', "USD '000", H['2025']['ebitda'],
+     'Read live off the FY2025 column of the income statement in this workbook, which is itself '
+     'built from the audited statements', N0)
+adef('Sustainable return on equity', '%', BOOK['roe_sustainable'],
+     'The return on average equity this workbook itself forecasts for FY2030, read live off the '
+     'forecast statements. The first edition used the FY2024-25 realised average of 36.7%, which '
+     'was earned on a smaller balance sheet than the one the model builds: putting a historical '
+     'return into a perpetual formula made this lens richer than the cash-flow model four '
+     'sections above it, for no reason other than that the past was measured on less capital',
+     P1)
+afml('Last-twelve-month EBITDA excluding joint ventures', "USD '000",
+     f'={AC("EBITDA — FY2025 audited")}'
+     f'+{AC("EBITDA — first half of 2026")}-{AC("EBITDA — first half of 2025")}'
+     f'-({AC("Share of joint-venture results, FY2025 base")}'
+     f'+{AC("Share of joint-venture results — first half of 2026")}'
+     f'-{AC("Share of joint-venture results — first half of 2025")})',
+     REL['applied_ebitda'],
+     'Audited FY2025 plus the first half of 2026 less the first half of 2025, then less the share '
+     'of joint-venture results on the same basis. Every peer multiple in the table is an '
+     'enterprise value struck today over that peer\'s last twelve months, so the earnings it is '
+     'applied to are on the same footing — and the joint ventures are stripped out here because '
+     'their carrying value is added back on the bridge', N0)
 arow('Peer median EV/EBITDA — MENA national-oil-company drillers', 'x', REL['median_mena'],
      'Median of ADES Holding and Arabian Drilling on their own latest reported EBITDA and net '
      'debt, at market prices on 07-Aug-2026', N2)
@@ -353,8 +668,6 @@ arow('Peer median EV/EBITDA — global offshore drillers', 'x', REL['median_offs
      'Median of Valaris, Noble and Borr Drilling', N2)
 arow('Peer median EV/EBITDA — diversified oilfield services', 'x', REL['median_ofs'],
      'Median of SLB, Halliburton, Baker Hughes and Weatherford', N2)
-arow('FY2026 guided EBITDA (midpoint)', "USD '000", REL['applied_ebitda'],
-     'Midpoint of the reaffirmed $2.2-2.3 billion guidance range', N0)
 
 arow('LENS WEIGHTS', '', 0, '', section=True)
 LW = FV['weights']
@@ -367,10 +680,6 @@ for k, nice in (('dcf_A', 'Weight — discounted cash flow, continued expansion'
          'The two discounted-cash-flow framings carry equal weight and half the total, because '
          'the study refuses to choose between them; the remaining three lenses split the rest',
          P1)
-
-
-def AC(label):
-    return f"Assumptions!$C${AR[label]}"
 
 
 # ================================================================ SEGMENTS ===
@@ -391,20 +700,26 @@ UNIT_KEY = {'onshore_ad': ('Abu Dhabi onshore rigs, year end', 'avg_onshore_ad',
             'regional': ('Regional onshore rigs, year end', 'avg_regional', 'regional'),
             'jackup': ('Jack-up rigs, year end', 'avg_jackup', 'jackup'),
             'island': ('Island rigs, year end', 'avg_island', 'island'),
-            'ids': ('Integrated-services rigs, year end', 'avg_ids', 'ids')}
+            'ids': ('Integrated-services rigs, year end', 'avg_ids', 'ids'),
+            'discrete': ('Rigs given at least one discrete service, year end', 'avg_discrete',
+                         'discrete')}
 UNIT_NICE = {'onshore_ad': 'Average Abu Dhabi onshore rigs',
              'regional': 'Average regional onshore rigs',
              'jackup': 'Average jack-up rigs', 'island': 'Average island rigs',
-             'ids': 'Average integrated-services rigs'}
+             'ids': 'Average integrated-services rigs',
+             'discrete': 'Average rigs given at least one discrete service'}
 RATE_LBL = {'onshore_ad': 'Revenue per Abu Dhabi onshore rig-year',
             'regional': 'Revenue per regional onshore rig-year',
             'jackup': 'Revenue per jack-up rig-year', 'island': 'Revenue per island rig-year',
             'ids': 'Revenue per integrated-services rig-year'}
 REV_MK = {'onshore_ad': 'rev_onshore_ad', 'regional': 'rev_regional', 'jackup': 'rev_jackup',
           'island': 'rev_island', 'ids': 'rev_ids'}
-OPEN_FLEET = {'onshore_ad': IN['rigs_onshore_fy25']['value'], 'regional': 0.0,
-              'jackup': IN['rigs_jackup_fy25']['value'],
-              'island': IN['rigs_island_fy25']['value'], 'ids': IN['ids_fy25']['value']}
+OPEN_FLEET = {'onshore_ad': AC('Abu Dhabi onshore rigs — FY2025 year end'),
+              'regional': AC('Regional onshore rigs — 30 June 2026'),
+              'jackup': AC('Jack-up rigs — FY2025 year end'),
+              'island': AC('Island rigs — FY2025 year end'),
+              'ids': AC('Integrated-services rigs — FY2025 year end'),
+              'discrete': AC('Rigs given at least one discrete service — FY2025')}
 BASE_DRILL = U['2025']['onshore'] + U['2025']['offshore']
 
 
@@ -446,20 +761,74 @@ def segment_block(case, model_rows, start, with_history):
             model_rows[i]['day_rate_index'], N3)
     rr += 2
 
-    lab(S, rr, 'REVENUE BY UNIT', bold=True, fill=FILL_B)
+    R['ofs_served'] = rr
+    lab(S, rr, 'Rigs served by Oilfield Services (integrated plus discrete)')
+    if with_history:
+        for y in YRS_H:
+            put(S, f'{HCOL[y]}{rr}', U[str(y)]['ids'] + U[str(y)].get('discrete_avg', 0.0), N1)
+    for i, y in enumerate(YRS_F):
+        c = FCOL[y]
+        fml(S, f'{c}{rr}', f'={c}{R["units"]["ids"]}+{c}{R["units"]["discrete"]}',
+            model_rows[i]['avg_ids'] + model_rows[i]['avg_discrete'], N1)
     rr += 1
-    R['rev'] = {}
-    for fkey in UNIT_KEY:
-        R['rev'][fkey] = rr
+    R['ofs_index'] = rr
+    lab(S, rr, 'Oilfield-services revenue-per-rig-served index (2025 = 1.00)')
+    for i, y in enumerate(YRS_F):
+        c = FCOL[y]
+        # The step fades linearly from what the company actually achieved between
+        # the two disclosed years to the contract escalator, and the index is the
+        # running product of those steps.
+        fade = i / (len(YRS_F) - 1)
+        step = (f'({AC("Realised growth in revenue per rig served")}*{1 - fade:.6f}'
+                f'+{AC("Contract day-rate escalation")}*{fade:.6f})')
+        prev = '1' if i == 0 else f'{FCOL[YRS_F[i-1]]}{rr}'
+        fml(S, f'{c}{rr}', f'={prev}*(1+{step})',
+            model_rows[i]['ofs_intensity'], N3)
+    rr += 2
+
+    lab(S, rr, 'REVENUE BY UNIT — BEFORE RECONCILIATION TO FY2026 GUIDANCE', bold=True,
+        fill=FILL_B)
+    rr += 1
+    R['raw'] = {}
+    for fkey in ('onshore_ad', 'regional', 'jackup', 'island', 'ids'):
+        R['raw'][fkey] = rr
         lab(S, rr, {'onshore_ad': 'Onshore conventional — Abu Dhabi',
                     'regional': 'Onshore conventional — regional',
                     'jackup': 'Offshore — jack-up', 'island': 'Offshore — island',
-                    'ids': 'Oilfield Services — integrated services'}[fkey])
+                    'ids': 'Oilfield Services — rigs served'}[fkey])
         for i, y in enumerate(YRS_F):
             c = FCOL[y]
-            fml(S, f'{c}{rr}', f'={c}{R["units"][fkey]}*{AC(RATE_LBL[fkey])}*{c}{R["index"]}',
-                model_rows[i][REV_MK[fkey]], N0)
+            if fkey == 'ids':
+                f = (f'={c}{R["ofs_served"]}*{AC("Revenue per rig served — FY2025")}'
+                     f'*{c}{R["ofs_index"]}')
+                exp = model_rows[i]['rev_ids_raw']
+            else:
+                f = f'={c}{R["units"][fkey]}*{AC(RATE_LBL[fkey])}*{c}{R["index"]}'
+                exp = model_rows[i][REV_MK[fkey] + '_raw']
+            fml(S, f'{c}{rr}', f, exp, N0)
         rr += 1
+    rr += 1
+    lab(S, rr, 'RECONCILIATION TO THE FY2026 SEGMENT GUIDANCE', bold=True, fill=FILL_B)
+    rr += 1
+    R['cal'] = {}
+    E = FCOL[2026]
+    _CAL_SPEC = (
+        ('onshore', 'Onshore — factor on the conventional unit build',
+         f'=({AC("FY2026 guided Onshore revenue")}-{E}{{unc_on}})'
+         f'/({E}{R["raw"]["onshore_ad"]}+{E}{R["raw"]["regional"]})', 'calib_onshore'),
+        ('offshore', 'Offshore — factor on the conventional unit build',
+         f'={AC("FY2026 guided Offshore revenue")}'
+         f'/({E}{R["raw"]["jackup"]}+{E}{R["raw"]["island"]})', 'calib_offshore'),
+        ('ofs', 'Oilfield Services — factor on the conventional unit build',
+         f'=({AC("FY2026 guided Oilfield Services revenue")}-{E}{{unc_ofs}})'
+         f'/{E}{R["raw"]["ids"]}', 'calib_ofs'))
+    for key, nice, _f, _mk in _CAL_SPEC:
+        R['cal'][key] = rr
+        lab(S, rr, nice)
+        rr += 1
+    R['cal_spec'] = _CAL_SPEC
+    rr += 1
+
     R['unc_on'], R['unc_ofs'] = rr, rr + 1
     lab(S, rr, 'Unconventional — Onshore land drilling')
     lab(S, rr + 1, 'Unconventional — Oilfield Services')
@@ -476,9 +845,31 @@ def segment_block(case, model_rows, start, with_history):
         fml(S, f'{c}{R["unc_ofs"]}',
             f'={unc}*(1-{AC("Unconventional share booked to Onshore")})',
             model_rows[i]['unconv_ofs'], N0)
+    # The three reconciliation factors, now that the unconventional rows they net
+    # off exist. Written only in the FY2026 column and referenced absolutely from
+    # every later year, so the correction is a level shift on the unit rate rather
+    # than a plug that is reapplied annually.
+    for key, nice, f, mk in R['cal_spec']:
+        fml(S, f'{E}{R["cal"][key]}',
+            f.replace('{unc_on}', str(R['unc_on'])).replace('{unc_ofs}', str(R['unc_ofs'])),
+            model_rows[0][mk], N3)
     rr += 3
 
     lab(S, rr, 'REVENUE BY REPORTED SEGMENT', bold=True, fill=FILL_B)
+    rr += 1
+    R['rev'] = {}
+    for fkey, calkey in (('onshore_ad', 'onshore'), ('regional', 'onshore'),
+                         ('jackup', 'offshore'), ('island', 'offshore'), ('ids', 'ofs')):
+        R['rev'][fkey] = rr
+        lab(S, rr, {'onshore_ad': 'Onshore conventional — Abu Dhabi',
+                    'regional': 'Onshore conventional — regional',
+                    'jackup': 'Offshore — jack-up', 'island': 'Offshore — island',
+                    'ids': 'Oilfield Services — rigs served'}[fkey] + ' (reconciled)')
+        for i, y in enumerate(YRS_F):
+            c = FCOL[y]
+            fml(S, f'{c}{rr}', f'={c}{R["raw"][fkey]}*${E}${R["cal"][calkey]}',
+                model_rows[i][REV_MK[fkey]], N0)
+        rr += 1
     rr += 1
     R['seg_on'], R['seg_off'], R['seg_ofs'] = rr, rr + 1, rr + 2
     R['total'], R['conv'] = rr + 3, rr + 4
@@ -643,26 +1034,38 @@ hdr(BS, 3, ["USD thousands"] + YHDR)
 b = 4
 lab(BS, b, 'FIXED-ASSET ROLL-FORWARD', bold=True, fill=FILL_B)
 b += 1
-R_FA_OPEN, R_CAPEX, R_DNA, R_FA_CLOSE = b, b + 1, b + 2, b + 3
+R_FA_OPEN, R_FA_ACQ, R_CAPEX, R_DNA, R_FA_CLOSE = b, b + 1, b + 2, b + 3, b + 4
 lab(BS, R_FA_OPEN, 'Opening property, equipment, right-of-use and intangibles')
+lab(BS, R_FA_ACQ, 'Acquired with the 2026 business combinations')
 lab(BS, R_CAPEX, 'Capital expenditure')
 lab(BS, R_DNA, 'Depreciation and amortisation')
 lab(BS, R_FA_CLOSE, 'Closing fixed assets', bold=True)
 for y in YRS_H:
     c = HCOL[y]
+    put(BS, f'{c}{R_FA_ACQ}', 0.0, N0)
     put(BS, f'{c}{R_CAPEX}', H[str(y)]['capex'], N0)
     put(BS, f'{c}{R_DNA}', H[str(y)]['dna'], N0)
     fml(BS, f'{c}{R_FA_CLOSE}',
         f'={H[str(y)]["ppe"]}+{H[str(y)]["rou"]}+{H[str(y)]["intangibles"]}',
         H[str(y)]['ppe'] + H[str(y)]['rou'] + H[str(y)]['intangibles'], N0, bold=True)
+_FA_2025 = (f'({AC("Property and equipment — FY2025 audited")}'
+            f'+{AC("Right-of-use assets — FY2025 audited")}'
+            f'+{AC("Intangible assets — FY2025 audited")})')
+_FA_ACQ = (f'({AC("Property and equipment acquired")}+{AC("Right-of-use assets acquired")}'
+           f'+{AC("Provisional goodwill")})')
 for i, y in enumerate(YRS_F):
     c = FCOL[y]
     prev = 'D' if i == 0 else FCOL[YRS_F[i - 1]]
-    fml(BS, f'{c}{R_FA_OPEN}', f'={prev}{R_FA_CLOSE}', RA[i]['ppe_open'], N0)
+    fml(BS, f'{c}{R_FA_OPEN}', f'={_FA_2025}' if i == 0 else f'={prev}{R_FA_CLOSE}',
+        RA[i]['ppe_open'] - (UE['acquisition_entry'][0][1] if i == 0 else 0.0), N0)
+    fml(BS, f'{c}{R_FA_ACQ}', f'={_FA_ACQ}' if i == 0 else '=0',
+        UE['acquisition_entry'][0][1] if i == 0 else 0.0, N0)
     fml(BS, f'{c}{R_CAPEX}', f'={AC(f"Capital expenditure — {y}")}', RA[i]['capex'], N0)
-    fml(BS, f'{c}{R_DNA}', f'={c}{R_FA_OPEN}*{AC("Depreciation rate on opening fixed assets")}',
+    fml(BS, f'{c}{R_DNA}',
+        f'=({c}{R_FA_OPEN}+{c}{R_FA_ACQ})*{AC("Depreciation rate on opening fixed assets")}',
         RA[i]['dna'], N0)
-    fml(BS, f'{c}{R_FA_CLOSE}', f'={c}{R_FA_OPEN}+{c}{R_CAPEX}-{c}{R_DNA}', RA[i]['ppe_close'],
+    fml(BS, f'{c}{R_FA_CLOSE}',
+        f'={c}{R_FA_OPEN}+{c}{R_FA_ACQ}+{c}{R_CAPEX}-{c}{R_DNA}', RA[i]['ppe_close'],
         N0, bold=True)
 b = R_FA_CLOSE + 2
 
@@ -681,15 +1084,31 @@ HIST_BS = {'fixed_assets': lambda h: h['ppe'] + h['rou'] + h['intangibles'],
            'cash': lambda h: h['cash'] + h['assets_held_for_sale'],
            'debt': lambda h: h['debt'] + h['leases'], 'payables': lambda h: h['payables'],
            'due_to_rp': lambda h: h['due_to_rp'], 'eosb': lambda h: h['eosb'],
-           'tax_payable': lambda h: h['tax_payable']}
+           'tax_payable': lambda h: h['tax_payable'],
+           'acquisition_liabilities': lambda h: 0.0, 'nci': lambda h: 0.0}
 WCM = {k: H['2025'][k] / abs(H['2025']['working_capital']) for k in
        ('inventories', 'receivables', 'due_from_rp', 'payables', 'due_to_rp')}
 R_WC = None
+# The FY2025 column is the balance sheet the forecast opens on, so each of its
+# lines is written as a live reference to the single disclosed cell that holds it
+# on the Assumptions sheet, rather than pasted a second time here.
+FY25_LINK = {'other_non_current': f'={AC("Deferred tax assets — FY2025 audited")}'
+                                  f'+{AC("Advances — FY2025 audited")}'
+                                  f'+{AC("The 2025 advance for acquisition of a subsidiary")}',
+             'jv_investment': f'={AC("Investment in joint ventures — FY2025 audited")}',
+             'cash': f'={AC("Cash and cash equivalents — FY2025 audited")}',
+             'debt': f'={AC("Borrowings — FY2025 audited")}'
+                     f'+{AC("Lease liabilities — FY2025 audited")}',
+             'eosb': f'={AC("End-of-service benefits — FY2025 audited")}',
+             'tax_payable': f'={AC("Income tax payable — FY2025 audited")}'}
 for nice, key in BS_ASSETS:
     R_BS[key] = b
     lab(BS, b, nice)
     for y in YRS_H:
-        put(BS, f'{HCOL[y]}{b}', HIST_BS[key](H[str(y)]), N0)
+        if y == 2025 and key in FY25_LINK:
+            fml(BS, f'{HCOL[y]}{b}', FY25_LINK[key], HIST_BS[key](H[str(y)]), N0)
+        else:
+            put(BS, f'{HCOL[y]}{b}', HIST_BS[key](H[str(y)]), N0)
     b += 1
 R_TA = b
 lab(BS, R_TA, 'Total assets', bold=True)
@@ -700,16 +1119,22 @@ for nice, key in [('Borrowings and lease liabilities', 'debt'),
                   ('Trade and other payables', 'payables'),
                   ('Due to related parties', 'due_to_rp'),
                   ("Employees' end of service benefits", 'eosb'),
-                  ('Income tax payable', 'tax_payable')]:
+                  ('Income tax payable', 'tax_payable'),
+                  ('Liabilities assumed with the 2026 acquisitions', 'acquisition_liabilities')]:
     R_BS[key] = b
     lab(BS, b, nice)
     for y in YRS_H:
-        put(BS, f'{HCOL[y]}{b}', HIST_BS[key](H[str(y)]), N0)
+        if y == 2025 and key in FY25_LINK:
+            fml(BS, f'{HCOL[y]}{b}', FY25_LINK[key], HIST_BS[key](H[str(y)]), N0)
+        else:
+            put(BS, f'{HCOL[y]}{b}', HIST_BS[key](H[str(y)]), N0)
     b += 1
-R_TL, R_EQ, R_TLE = b, b + 1, b + 2
+R_TL, R_NCI, R_EQ, R_TLE = b, b + 1, b + 2, b + 3
 lab(BS, R_TL, 'Total liabilities', bold=True)
-lab(BS, R_EQ, 'Total equity', bold=True)
+lab(BS, R_NCI, 'Non-controlling interests')
+lab(BS, R_EQ, 'Equity attributable to owners of the company', bold=True)
 lab(BS, R_TLE, 'Total liabilities and equity', bold=True)
+b = R_TLE + 1
 R_WCAP, R_ND, R_NDE = R_TLE + 2, R_TLE + 3, R_TLE + 4
 lab(BS, R_WCAP, 'Working capital')
 lab(BS, R_ND, 'Net debt')
@@ -723,8 +1148,13 @@ for y in YRS_H:
     fml(BS, f'{c}{R_TL}', f'=SUM({c}{R_BS["debt"]}:{c}{R_BS["tax_payable"]})',
         sum(HIST_BS[k](h) for k in ('debt', 'payables', 'due_to_rp', 'eosb', 'tax_payable')),
         N0, bold=True)
-    put(BS, f'{c}{R_EQ}', h['equity'], N0, font=F_TOT)
-    fml(BS, f'{c}{R_TLE}', f'={c}{R_TL}+{c}{R_EQ}',
+    put(BS, f'{c}{R_NCI}', 0.0, N0)
+    if y == 2025:
+        fml(BS, f'{c}{R_EQ}', f'={AC("Total equity — FY2025 audited")}', h['equity'], N0,
+            bold=True)
+    else:
+        put(BS, f'{c}{R_EQ}', h['equity'], N0, font=F_TOT)
+    fml(BS, f'{c}{R_TLE}', f'={c}{R_TL}+{c}{R_NCI}+{c}{R_EQ}',
         sum(HIST_BS[k](h) for k in ('debt', 'payables', 'due_to_rp', 'eosb', 'tax_payable'))
         + h['equity'], N0, bold=True)
     fml(BS, f'{c}{R_WCAP}', f'={c}{R_BS["inventories"]}+{c}{R_BS["receivables"]}'
@@ -735,7 +1165,16 @@ for y in YRS_H:
     fml(BS, f'{c}{R_NDE}', f'={c}{R_ND}/Segments!{c}{R_EBITDA}',
         (HIST_BS['debt'](h) - HIST_BS['cash'](h)) / h['ebitda'], N2)
 
-DEBT_FLAT = H['2025']['debt'] + H['2025']['leases']
+# Debt is held flat at the audited FY2025 gross balance and then STEPS UP by the
+# borrowings and leases that came with the two 2026 acquisitions. The other
+# non-current assets fall by the 2025 advance, which converts into those same
+# acquired assets rather than staying on the balance sheet.
+_DEBT_OPEN = f'({AC("Borrowings — FY2025 audited")}+{AC("Lease liabilities — FY2025 audited")})'
+_ACQ_DEBT = (f'({AC("Term loans, overdraft and borrowings assumed")}'
+             f'+{AC("Lease liabilities assumed")})')
+_ACQ_LIAB = (f'({AC("Deferred tax liability assumed")}+{AC("Income tax payable assumed")}'
+             f'+{AC("Contingent consideration outstanding")})')
+_OTHER_NC = (f'(D{{ONC}}-{AC("The 2025 advance for acquisition of a subsidiary")})')
 OTHER_NC = H['2025']['deferred_tax_asset'] + H['2025']['advances']
 for i, y in enumerate(YRS_F):
     c = FCOL[y]
@@ -744,24 +1183,34 @@ for i, y in enumerate(YRS_F):
     fml(BS, f'{c}{R_WCAP}', f'=Segments!{c}{R_REV_TOT}*{AC("Working capital / revenue")}',
         RA[i]['working_capital'], N0)
     fml(BS, f'{c}{R_BS["fixed_assets"]}', f'={c}{R_FA_CLOSE}', bsrow['fixed_assets'], N0)
-    fml(BS, f'{c}{R_BS["other_non_current"]}', f'={OTHER_NC}', OTHER_NC, N0)
-    fml(BS, f'{c}{R_BS["jv_investment"]}', f'={H["2025"]["jv_investment"]}',
+    fml(BS, f'{c}{R_BS["other_non_current"]}',
+        f'={_OTHER_NC}'.replace('{ONC}', str(R_BS['other_non_current'])),
+        bsrow['other_non_current'], N0)
+    fml(BS, f'{c}{R_BS["jv_investment"]}', f'={AC("Investment in joint ventures — FY2025 audited")}',
         bsrow['jv_investment'], N0)
     for k in ('inventories', 'receivables', 'due_from_rp', 'payables', 'due_to_rp'):
         fml(BS, f'{c}{R_BS[k]}', f'={c}{R_WCAP}*{WCM[k]}', bsrow[k], N0)
-    fml(BS, f'{c}{R_BS["debt"]}', f'={DEBT_FLAT}', bsrow['debt'], N0)
+    fml(BS, f'{c}{R_BS["debt"]}', f'={_DEBT_OPEN}+{_ACQ_DEBT}', bsrow['debt'], N0)
     fml(BS, f'{c}{R_BS["eosb"]}',
-        f'={H["2025"]["eosb"]}*(1+{AC("Wage escalation (domestic labour only)")})^{i+1}',
+        f'=({AC("End-of-service benefits — FY2025 audited")}'
+        f'+{AC("End-of-service benefits assumed")})'
+        f'*(1+{AC("Wage escalation (domestic labour only)")})^{i+1}',
         bsrow['eosb'], N0)
+    fml(BS, f'{c}{R_BS["acquisition_liabilities"]}', f'={_ACQ_LIAB}',
+        bsrow['acquisition_liabilities'], N0)
     fml(BS, f'{c}{R_BS["tax_payable"]}',
         f"='Income Statement'!{c}{'TAXROW'}", bsrow['tax_payable'], N0)   # patched below
     fml(BS, f'{c}{R_BS["cash"]}', f"='Cash Flow'!{c}{'CASHROW'}", bsrow['cash'], N0)  # patched
     fml(BS, f'{c}{R_TA}', f'=SUM({c}{R_BS["fixed_assets"]}:{c}{R_BS["cash"]})',
         bsrow['total_assets'], N0, bold=True)
-    fml(BS, f'{c}{R_TL}', f'=SUM({c}{R_BS["debt"]}:{c}{R_BS["tax_payable"]})',
+    fml(BS, f'{c}{R_TL}',
+        f'=SUM({c}{R_BS["debt"]}:{c}{R_BS["acquisition_liabilities"]})',
         bsrow['total_liabilities'], N0, bold=True)
-    fml(BS, f'{c}{R_EQ}', f'={c}{R_TA}-{c}{R_TL}', bsrow['equity_residual'], N0, bold=True)
-    fml(BS, f'{c}{R_TLE}', f'={c}{R_TL}+{c}{R_EQ}', bsrow['total_assets'], N0, bold=True)
+    fml(BS, f'{c}{R_NCI}', f'={AC("Minority interests recognised")}', bsrow['nci'], N0)
+    fml(BS, f'{c}{R_EQ}', f'={c}{R_TA}-{c}{R_TL}-{c}{R_NCI}', bsrow['equity_residual'], N0,
+        bold=True)
+    fml(BS, f'{c}{R_TLE}', f'={c}{R_TL}+{c}{R_NCI}+{c}{R_EQ}', bsrow['total_assets'], N0,
+        bold=True)
     fml(BS, f'{c}{R_ND}', f'={c}{R_BS["debt"]}-{c}{R_BS["cash"]}', RA[i]['net_debt'], N0)
     fml(BS, f'{c}{R_NDE}', f'={c}{R_ND}/Segments!{c}{R_EBITDA}',
         RA[i]['net_debt'] / RA[i]['ebitda'], N2)
@@ -772,28 +1221,85 @@ for i, y in enumerate(YRS_F):
 bp = R_NDE + 2
 lab(BS, bp, 'CAPACITY-PLATEAU CASE — FIXED ASSETS AND WORKING CAPITAL', bold=True, fill=FILL_B)
 bp += 1
-RB_FA_OPEN, RB_CAPEX, RB_DNA, RB_FA_CLOSE, RB_WCAP = bp, bp + 1, bp + 2, bp + 3, bp + 4
+(RB_FA_OPEN, RB_FA_ACQ, RB_CAPEX, RB_DNA, RB_FA_CLOSE, RB_WCAP, RB_DEBT,
+ RB_INT, RB_FIN, RB_JV, RB_EBIT, RB_PBT, RB_TAX, RB_PAT, RB_EOSB, RB_TAXP,
+ RB_CASH, RB_ND) = range(bp, bp + 18)
 lab(BS, RB_FA_OPEN, 'Opening fixed assets')
+lab(BS, RB_FA_ACQ, 'Acquired with the 2026 business combinations')
 lab(BS, RB_CAPEX, 'Capital expenditure')
 lab(BS, RB_DNA, 'Depreciation and amortisation')
 lab(BS, RB_FA_CLOSE, 'Closing fixed assets', bold=True)
 lab(BS, RB_WCAP, 'Working capital')
+lab(BS, RB_DEBT, 'Borrowings and lease liabilities')
+lab(BS, RB_INT, 'Finance cost')
+lab(BS, RB_FIN, 'Finance income')
+lab(BS, RB_JV, 'Share of joint-venture results')
+lab(BS, RB_EBIT, 'EBIT')
+lab(BS, RB_PBT, 'Profit before tax')
+lab(BS, RB_TAX, 'Income tax')
+lab(BS, RB_PAT, 'Profit after tax', bold=True)
+lab(BS, RB_EOSB, "Employees' end of service benefits")
+lab(BS, RB_TAXP, 'Income tax payable')
+lab(BS, RB_CASH, 'Closing cash')
+lab(BS, RB_ND, 'Net debt', bold=True)
 for i, y in enumerate(YRS_F):
     c = FCOL[y]
     prev = 'D' if i == 0 else FCOL[YRS_F[i - 1]]
-    if i == 0:
-        fml(BS, f'{c}{RB_FA_OPEN}', f'=D{R_FA_CLOSE}', RB[i]['ppe_open'], N0)
-    else:
-        fml(BS, f'{c}{RB_FA_OPEN}', f'={prev}{RB_FA_CLOSE}', RB[i]['ppe_open'], N0)
+    fml(BS, f'{c}{RB_FA_OPEN}', f'={_FA_2025}' if i == 0 else f'={prev}{RB_FA_CLOSE}',
+        RB[i]['ppe_open'] - (UE['acquisition_entry'][0][1] if i == 0 else 0.0), N0)
+    fml(BS, f'{c}{RB_FA_ACQ}', f'={_FA_ACQ}' if i == 0 else '=0',
+        UE['acquisition_entry'][0][1] if i == 0 else 0.0, N0)
     fml(BS, f'{c}{RB_CAPEX}', f'={AC(f"Capital expenditure (plateau) — {y}")}', RB[i]['capex'],
         N0)
     fml(BS, f'{c}{RB_DNA}',
-        f'={c}{RB_FA_OPEN}*{AC("Depreciation rate on opening fixed assets")}', RB[i]['dna'], N0)
-    fml(BS, f'{c}{RB_FA_CLOSE}', f'={c}{RB_FA_OPEN}+{c}{RB_CAPEX}-{c}{RB_DNA}',
+        f'=({c}{RB_FA_OPEN}+{c}{RB_FA_ACQ})*{AC("Depreciation rate on opening fixed assets")}',
+        RB[i]['dna'], N0)
+    fml(BS, f'{c}{RB_FA_CLOSE}', f'={c}{RB_FA_OPEN}+{c}{RB_FA_ACQ}+{c}{RB_CAPEX}-{c}{RB_DNA}',
         RB[i]['ppe_close'], N0, bold=True)
     fml(BS, f'{c}{RB_WCAP}',
         f'=Segments!{c}{SEG_B["total"]}*{AC("Working capital / revenue")}',
         RB[i]['working_capital'], N0)
+    fml(BS, f'{c}{RB_DEBT}', f'={_DEBT_OPEN}+{_ACQ_DEBT}', RB[i]['balance_sheet']['debt'], N0)
+    # The plateau case gets its OWN profit and cash statement, because the terminal
+    # capitalisation rate is decided by whether THIS case's 2030 firm holds net
+    # cash — a question its own balance sheet has to answer, not case A's.
+    _copen = (f'{AC("Cash and cash equivalents — FY2025 audited")}' if i == 0
+              else f'{prev}{RB_CASH}')
+    _acqc = (f'+{AC("Cash acquired")}-{AC("Cash consideration paid in 2026")}'
+             f'+{AC("Consideration received back against the 2025 advance")}') if i == 0 else ''
+    _wcprev = f'D{R_WCAP}' if i == 0 else f'{prev}{RB_WCAP}'
+    _acqwc = (f'-({AC("Inventories acquired")}+{AC("Trade and other receivables acquired")}'
+              f'-{AC("Trade and other payables assumed")})') if i == 0 else ''
+    _eosb_prev = (f'({AC("End-of-service benefits — FY2025 audited")}'
+                  f'+{AC("End-of-service benefits assumed")})') if i == 0 \
+        else f'{prev}{RB_EOSB}'
+    _taxp_prev = (f'{AC("Income tax payable — FY2025 audited")}' if i == 0
+                  else f'{prev}{RB_TAXP}')
+    fml(BS, f'{c}{RB_INT}',
+        f'={c}{RB_DEBT}*({AC("US 5-year Treasury yield")}'
+        f'+{AC("Borrowing margin over Term SOFR on the latest facility")})',
+        RB[i]['interest'], N0)
+    fml(BS, f'{c}{RB_FIN}', f'=({_copen}{_acqc})*{AC("Secured Overnight Financing Rate, spot")}',
+        RB[i]['finance_income'], N0)
+    fml(BS, f'{c}{RB_JV}', f'=Segments!{c}{SEG_B["jv"]}', RB[i]['jv_share'], N0)
+    fml(BS, f'{c}{RB_EBIT}', f'=Segments!{c}{SEG_B["ebitda_xjv"]}-{c}{RB_DNA}', RB[i]['ebit'], N0)
+    fml(BS, f'{c}{RB_PBT}', f'={c}{RB_EBIT}+{c}{RB_JV}-{c}{RB_INT}+{c}{RB_FIN}', RB[i]['pbt'], N0)
+    fml(BS, f'{c}{RB_TAX}', f'={c}{RB_PBT}*{AC("Corporate income tax rate")}', RB[i]['tax'], N0)
+    fml(BS, f'{c}{RB_PAT}', f'={c}{RB_PBT}-{c}{RB_TAX}', RB[i]['pat'], N0, bold=True)
+    fml(BS, f'{c}{RB_EOSB}',
+        f'=({AC("End-of-service benefits — FY2025 audited")}'
+        f'+{AC("End-of-service benefits assumed")})'
+        f'*(1+{AC("Wage escalation (domestic labour only)")})^{i+1}',
+        RB[i]['balance_sheet']['eosb'], N0)
+    fml(BS, f'{c}{RB_TAXP}',
+        f'={c}{RB_TAX}*{H["2025"]["tax_payable"] / H["2025"]["tax"]}',
+        RB[i]['balance_sheet']['tax_payable'], N0)
+    fml(BS, f'{c}{RB_CASH}',
+        f'={_copen}{_acqc}+{c}{RB_PAT}+{c}{RB_DNA}-({c}{RB_WCAP}-{_wcprev}{_acqwc})'
+        f'+({c}{RB_EOSB}-{_eosb_prev})+({c}{RB_TAXP}-{_taxp_prev})'
+        f'-{c}{RB_CAPEX}-{AC("Dividend, FY2026 floor")}*(1+{AC("Dividend growth")})^{i}',
+        RB[i]['cash_close'], N0)
+    fml(BS, f'{c}{RB_ND}', f'={c}{RB_DEBT}-{c}{RB_CASH}', RB[i]['net_debt'], N0, bold=True)
 
 # ============================================================ INCOME STATEMENT
 IS = ws('Income Statement', [46] + [13] * 8)
@@ -842,8 +1348,13 @@ for i, y in enumerate(YRS_F):
         x['ebit'], N0)
     fml(IS, f'{c}{IROW["interest"]}', f"=-'Balance Sheet'!{c}{R_BS['debt']}"
                                       f'*(DCFRATE)', -x['interest'], N0)   # patched below
-    prevcash = f"'Balance Sheet'!D{R_BS['cash']}" if i == 0 else \
-        f"'Balance Sheet'!{FCOL[YRS_F[i-1]]}{R_BS['cash']}"
+    # Opening cash for 2026 is the audited FY2025 balance PLUS the net cash the two
+    # business combinations brought in, because that is the balance the year is
+    # actually earning interest on.
+    prevcash = ((f"('Balance Sheet'!D{R_BS['cash']}+{AC('Cash acquired')}"
+                 f"-{AC('Cash consideration paid in 2026')}"
+                 f"+{AC('Consideration received back against the 2025 advance')})") if i == 0
+                else f"'Balance Sheet'!{FCOL[YRS_F[i-1]]}{R_BS['cash']}")
     fml(IS, f'{c}{IROW["fin_income"]}',
         f'={prevcash}*{AC("Secured Overnight Financing Rate, spot")}', x['finance_income'], N0)
     fml(IS, f'{c}{IROW["pbt"]}', f'={c}{IROW["ebit"]}+{c}{IROW["jv"]}+{c}{IROW["interest"]}'
@@ -864,7 +1375,9 @@ for nice, key in [('Profit after tax', 'pat'), ('Depreciation and amortisation',
                   ('Increase in working capital', 'dwc'),
                   ('Movement in provisions and tax payable', 'prov'),
                   ('Net cash from operating activities', 'cfo'),
-                  ('Capital expenditure', 'capex'), ('Dividends paid', 'div'),
+                  ('Capital expenditure', 'capex'),
+                  ('Net cash on the 2026 business combinations', 'acq'),
+                  ('Dividends paid', 'div'),
                   ('Net movement in cash', 'net'), ('Opening cash', 'open'),
                   ('Closing cash', 'close'),
                   ('Memo: free cash flow to the firm', 'fcff')]:
@@ -883,21 +1396,41 @@ for i, y in enumerate(YRS_F):
     prev = 'D' if i == 0 else FCOL[YRS_F[i - 1]]
     fml(CF, f'{c}{CROW["pat"]}', f"='Income Statement'!{c}{IROW['pat']}", x['pat'], N0)
     fml(CF, f'{c}{CROW["dna"]}', f"='Balance Sheet'!{c}{R_DNA}", x['dna'], N0)
-    fml(CF, f'{c}{CROW["dwc"]}', f"=-('Balance Sheet'!{c}{R_WCAP}-'Balance Sheet'!{prev}{R_WCAP})",
+    # The working capital that ARRIVED with the acquisitions was bought, not funded
+    # out of operations, so it is taken out of the operating movement in 2026.
+    # Leaving it in would charge the free cash flow twice for the same balance —
+    # once inside the consideration and once again here.
+    _acq_wc = (f'-({AC("Inventories acquired")}+{AC("Trade and other receivables acquired")}'
+               f'-{AC("Trade and other payables assumed")})') if i == 0 else ''
+    fml(CF, f'{c}{CROW["dwc"]}',
+        f"=-('Balance Sheet'!{c}{R_WCAP}-'Balance Sheet'!{prev}{R_WCAP}{_acq_wc})",
         -x['delta_wc'], N0)
+    # The end-of-service provision assumed with the acquisitions arrived on the
+    # balance sheet with the businesses; it is not a movement operations generated.
+    _acq_eosb = f'-{AC("End-of-service benefits assumed")}' if i == 0 else ''
     fml(CF, f'{c}{CROW["prov"]}',
-        f"=('Balance Sheet'!{c}{R_BS['eosb']}-'Balance Sheet'!{prev}{R_BS['eosb']})"
+        f"=('Balance Sheet'!{c}{R_BS['eosb']}-'Balance Sheet'!{prev}{R_BS['eosb']}{_acq_eosb})"
         f"+('Balance Sheet'!{c}{R_BS['tax_payable']}-'Balance Sheet'!{prev}{R_BS['tax_payable']})",
         x['cfo'] - x['pat'] - x['dna'] + x['delta_wc'], N0)
     fml(CF, f'{c}{CROW["cfo"]}', f'={c}{CROW["pat"]}+{c}{CROW["dna"]}+{c}{CROW["dwc"]}'
                                  f'+{c}{CROW["prov"]}', x['cfo'], N0, bold=True)
     fml(CF, f'{c}{CROW["capex"]}', f"=-'Balance Sheet'!{c}{R_CAPEX}", -x['capex'], N0)
+    _acq_cash = (f'={AC("Cash acquired")}-{AC("Cash consideration paid in 2026")}'
+                 f'+{AC("Consideration received back against the 2025 advance")}') if i == 0 \
+        else '=0'
+    fml(CF, f'{c}{CROW["acq"]}', _acq_cash,
+        (IN['acq_cash']['value'] - IN['acq_consideration_2026']['value']
+         + IN['acq_cash_returned']['value']) if i == 0 else 0.0, N0)
     fml(CF, f'{c}{CROW["div"]}',
         f'=-{AC("Dividend, FY2026 floor")}*(1+{AC("Dividend growth")})^{i}', -x['dividend'], N0)
-    fml(CF, f'{c}{CROW["net"]}', f'={c}{CROW["cfo"]}+{c}{CROW["capex"]}+{c}{CROW["div"]}',
-        x['cash_close'] - x['cash_open'], N0)
+    fml(CF, f'{c}{CROW["net"]}',
+        f'={c}{CROW["cfo"]}+{c}{CROW["capex"]}+{c}{CROW["acq"]}+{c}{CROW["div"]}',
+        x['cash_close'] - x['cash_open']
+        + ((IN['acq_cash']['value'] - IN['acq_consideration_2026']['value']
+            + IN['acq_cash_returned']['value']) if i == 0 else 0.0), N0)
     if i == 0:
-        fml(CF, f'{c}{CROW["open"]}', f'={H["2025"]["cash"]}', x['cash_open'], N0)
+        fml(CF, f'{c}{CROW["open"]}', f'={AC("Cash and cash equivalents — FY2025 audited")}',
+            H['2025']['cash'], N0)
     else:
         fml(CF, f'{c}{CROW["open"]}', f'={prev}{CROW["close"]}', x['cash_open'], N0)
     fml(CF, f'{c}{CROW["close"]}', f'={c}{CROW["open"]}+{c}{CROW["net"]}', x['cash_close'], N0,
@@ -924,7 +1457,7 @@ d_ += 1
 DR = {}
 
 
-def drow(key, nice, formula=None, value=None, expected=None, fmt=P2, bold=False):
+def drow(key, nice, formula=None, value=None, expected=None, fmt=P2, bold=False, note=''):
     global d_
     DR[key] = d_
     lab(DC, d_, nice, bold=bold)
@@ -932,6 +1465,10 @@ def drow(key, nice, formula=None, value=None, expected=None, fmt=P2, bold=False)
         fml(DC, f'C{d_}', formula, expected, fmt, bold=bold)
     else:
         put(DC, f'C{d_}', value, fmt, font=F_TOT if bold else F_FX)
+    if note:
+        cc = DC.cell(row=d_, column=4, value=note)
+        cc.font = F_TXT
+        cc.alignment = WRAP
     d_ += 1
 
 
@@ -973,7 +1510,13 @@ drow('mcap', 'Market capitalisation',
 drow('nd', 'Net debt at 30 June 2026',
      f'={AC("Borrowings")}+{AC("Lease liabilities")}-{AC("Cash and cash equivalents")}',
      expected=W['net_debt'], fmt=N0)
-drow('we', 'Weight of equity', f'=C{DR["mcap"]}/(C{DR["mcap"]}+C{DR["nd"]})',
+drow('gd', 'Gross interest-bearing debt at 30 June 2026',
+     f'={AC("Borrowings")}+{AC("Lease liabilities")}',
+     expected=W['gross_debt'], fmt=N0,
+     note='The weights are struck on GROSS debt. Interest is paid on the gross balance, and cash '
+          'is bridged separately in the enterprise-value-to-equity step; netting it off here as '
+          'well would take credit for the same cash twice')
+drow('we', 'Weight of equity', f'=C{DR["mcap"]}/(C{DR["mcap"]}+C{DR["gd"]})',
      expected=W['weight_equity'], fmt=P1)
 drow('wd', 'Weight of debt', f'=1-C{DR["we"]}', expected=W['weight_debt'], fmt=P1)
 drow('wacc_r', 'Weighted average cost of capital — rating basis',
@@ -1029,8 +1572,11 @@ for i, y in enumerate(YRS_F):
     fml(DC, f'{c}{WR["addback"]}', f"='Balance Sheet'!{sc}{R_DNA}", x['dna'], N0)
     fml(DC, f'{c}{WR["capex"]}', f"=-'Balance Sheet'!{sc}{R_CAPEX}", -x['capex'], N0)
     prev = 'D' if i == 0 else FCOL[YRS_F[i - 1]]
+    _acq_wc = (f'-({AC("Inventories acquired")}+{AC("Trade and other receivables acquired")}'
+               f'-{AC("Trade and other payables assumed")})') if i == 0 else ''
     fml(DC, f'{c}{WR["dwc"]}',
-        f"=-('Balance Sheet'!{sc}{R_WCAP}-'Balance Sheet'!{prev}{R_WCAP})", -x['delta_wc'], N0)
+        f"=-('Balance Sheet'!{sc}{R_WCAP}-'Balance Sheet'!{prev}{R_WCAP}{_acq_wc})",
+        -x['delta_wc'], N0)
     fml(DC, f'{c}{WR["fcff"]}', f'={c}{WR["nopat"]}+{c}{WR["addback"]}+{c}{WR["capex"]}'
                                 f'+{c}{WR["dwc"]}', x['fcff'], N0, bold=True)
     fml(DC, f'{c}{WR["df"]}', f'=1/(1+$C${DR["wacc_r"]})^{i+1}', x['discount_factor'], N3)
@@ -1059,17 +1605,30 @@ trow('nopat_t', 'Terminal-year NOPAT (one year beyond the window)',
      f'={last}{WR["nopat"]}*(1+C{TR["g"]})', CA['terminal_nopat'], N0)
 trow('reinv', 'Reinvestment rate = growth / return on capital',
      f'=C{TR["g"]}/C{TR["roic"]}', CA['reinvestment_rate'], P1)
+trow('tnd', 'Net debt in the terminal year, off this model\'s own balance sheet',
+     f"='Balance Sheet'!{FCOL[2030]}{R_ND}", CA['terminal_net_debt'], N0)
+trow('trate', 'Terminal capitalisation rate', f'=$C${DR["wacc_r"]}', CA['terminal_rate'], P2,
+     bold=True)
 trow('tv', 'Terminal value',
-     f'=C{TR["nopat_t"]}*(1-C{TR["reinv"]})/($C${DR["wacc_r"]}-C{TR["g"]})',
+     f'=C{TR["nopat_t"]}*(1-C{TR["reinv"]})/(C{TR["trate"]}-C{TR["g"]})',
      CA['terminal_value'], N0, bold=True)
 trow('pv_tv', 'Present value of the terminal value',
      f'=C{TR["tv"]}*{last}{WR["df"]}', CA['pv_terminal'], N0)
 trow('pv_exp', 'Present value of the explicit five years',
      f'=SUM({WCOL[2026]}{WR["pv"]}:{last}{WR["pv"]})', CA['pv_explicit'], N0)
-trow('ev', 'Enterprise value', f'=C{TR["pv_exp"]}+C{TR["pv_tv"]}', CA['enterprise_value'], N0,
-     bold=True)
+trow('ev', 'Enterprise value at 31 December 2025', f'=C{TR["pv_exp"]}+C{TR["pv_tv"]}',
+     CA['enterprise_value_dec25'], N0, bold=True)
 trow('tvshare', 'Terminal value as a share of enterprise value',
      f'=C{TR["pv_tv"]}/C{TR["ev"]}', CA['tv_pct_of_ev'], P1, bold=True)
+lab(DC, TR['tnd'], "This model's own 2030 balance sheet has the firm holding net cash. A "
+    'self-audit of this study proposed capitalising the terminal block at the cost of equity on '
+    'that basis, and it was accepted and priced before being implemented. It was then reversed. '
+    'The capital-structure weights above are struck on GROSS debt, because interest is paid on '
+    'the gross balance and cash is bridged separately — and a firm holding cash alongside '
+    'undiminished gross borrowings has not de-levered. Reading the terminal structure off net '
+    'debt after refusing to read today\'s off net debt is one quantity treated two ways. The '
+    'terminal net debt is published here because it is worth seeing; it does not set the rate.',
+    col=4, wrap=True)
 
 d_ += 1
 lab(DC, d_, 'CAPACITY-PLATEAU CASE — the same waterfall on the plateau fleet plan',
@@ -1107,7 +1666,9 @@ for i, y in enumerate(YRS_F):
     prev = 'D' if i == 0 else FCOL[YRS_F[i - 1]]
     prev_wc = (f"'Balance Sheet'!D{R_WCAP}" if i == 0
                else f"'Balance Sheet'!{prev}{RB_WCAP}")
-    fml(DC, f'{c}{BR["dwc"]}', f"=-('Balance Sheet'!{sc}{RB_WCAP}-{prev_wc})",
+    _acq_wc_b = (f'-({AC("Inventories acquired")}+{AC("Trade and other receivables acquired")}'
+                 f'-{AC("Trade and other payables assumed")})') if i == 0 else ''
+    fml(DC, f'{c}{BR["dwc"]}', f"=-('Balance Sheet'!{sc}{RB_WCAP}-{prev_wc}{_acq_wc_b})",
         -RB[i]['delta_wc'], N0)
     fml(DC, f'{c}{BR["fcff"]}', f'={c}{BR["nopat"]}+{c}{BR["addback"]}+{c}{BR["capex"]}'
                                 f'+{c}{BR["dwc"]}', RB[i]['fcff'], N0, bold=True)
@@ -1120,24 +1681,30 @@ for key, nice, formula, expected, fmt in (
          CB['terminal_growth'], P2),
         ('nopat_t', 'Terminal-year NOPAT', f'={RB[-1]["nopat"]}*(1+C{d_})', CB['terminal_nopat'],
          N0),
+        ('tnd', 'Net debt in the terminal year — plateau', '', CB['terminal_net_debt'], N0),
+        ('trate', 'Terminal capitalisation rate — plateau', '', CB['terminal_rate'], P2),
         ('tv', 'Terminal value', '', CB['terminal_value'], N0),
         ('pv_tv', 'Present value of the terminal value', '', CB['pv_terminal'], N0),
         ('pv_exp', 'Present value of the explicit five years',
          f'=SUM({WCOL[2026]}{BR["pv"]}:{last}{BR["pv"]})', CB['pv_explicit'], N0),
-        ('ev', 'Enterprise value — plateau', '', CB['enterprise_value'], N0),
+        ('ev', 'Enterprise value — plateau, at 31 December 2025', '',
+         CB['enterprise_value_dec25'], N0),
         ('tvshare', 'Terminal value as a share of enterprise value', '', CB['tv_pct_of_ev'], P1)):
     BT[key] = d_
     lab(DC, d_, nice, bold=key in ('ev', 'tvshare'))
     d_ += 1
 fml(DC, f'C{BT["g"]}', f'={AC("Terminal growth — capacity plateau")}', CB['terminal_growth'], P2)
 fml(DC, f'C{BT["nopat_t"]}', f'={last}{BR["nopat"]}*(1+C{BT["g"]})', CB['terminal_nopat'], N0)
+fml(DC, f'C{BT["tnd"]}', f"='Balance Sheet'!{FCOL[2030]}{RB_ND}", CB['terminal_net_debt'], N0)
+fml(DC, f'C{BT["trate"]}', f'=$C${DR["wacc_r"]}', CB['terminal_rate'], P2)
 fml(DC, f'C{BT["tv"]}',
-    f'=C{BT["nopat_t"]}*(1-C{BT["g"]}/C{TR["roic"]})/($C${DR["wacc_r"]}-C{BT["g"]})',
+    f'=C{BT["nopat_t"]}*(1-C{BT["g"]}/C{TR["roic"]})/(C{BT["trate"]}-C{BT["g"]})',
     CB['terminal_value'], N0)
 fml(DC, f'C{BT["pv_tv"]}', f'=C{BT["tv"]}*{last}{BR["df"]}', CB['pv_terminal'], N0)
 fml(DC, f'C{BT["pv_exp"]}', f'=SUM({WCOL[2026]}{BR["pv"]}:{last}{BR["pv"]})', CB['pv_explicit'],
     N0)
-fml(DC, f'C{BT["ev"]}', f'=C{BT["pv_exp"]}+C{BT["pv_tv"]}', CB['enterprise_value'], N0, bold=True)
+fml(DC, f'C{BT["ev"]}', f'=C{BT["pv_exp"]}+C{BT["pv_tv"]}', CB['enterprise_value_dec25'],
+    N0, bold=True)
 fml(DC, f'C{BT["tvshare"]}', f'=C{BT["pv_tv"]}/C{BT["ev"]}', CB['tv_pct_of_ev'], P1, bold=True)
 
 # ============================================================== SOTP BRIDGE ===
@@ -1161,13 +1728,40 @@ def grow_(key, nice, fa, fb, ea, eb, note='', fmt=N0, bold=False):
     g_ += 1
 
 
-grow_('ev', 'Enterprise value', f'=DCF!$C${TR["ev"]}', f'=DCF!$C${BT["ev"]}',
-      CA['enterprise_value'], CB['enterprise_value'],
-      'Present value of the explicit five years plus the discounted terminal value', bold=True)
+grow_('ev25', 'Enterprise value at 31 December 2025', f'=DCF!$C${TR["ev"]}',
+      f'=DCF!$C${BT["ev"]}', CA['enterprise_value_dec25'], CB['enterprise_value_dec25'],
+      'Present value of the explicit five years plus the discounted terminal value. Discounting '
+      'FY2026 cash flow by a full year places the answer at the START of FY2026, which is 31 '
+      'December 2025 — six months before the balance sheet the deductions below come from',
+      bold=True)
 grow_('tvshare', 'of which terminal value', f'=DCF!$C${TR["tvshare"]}',
       f'=DCF!$C${BT["tvshare"]}', CA['tv_pct_of_ev'], CB['tv_pct_of_ev'],
       'The share of the answer that rests on the period beyond 2030 — read this before the '
       'valuation', fmt=P1, bold=True)
+grow_('carry', 'carried forward half a year at the cost of capital',
+      f'=B{GR["ev25"]}*((1+DCF!$C${DR["wacc_r"]})^0.5-1)',
+      f'=C{GR["ev25"]}*((1+DCF!$C${DR["wacc_r"]})^0.5-1)',
+      CA['enterprise_value_dec25'] * ((1 + W['wacc_rating']) ** 0.5 - 1),
+      CB['enterprise_value_dec25'] * ((1 + W['wacc_rating']) ** 0.5 - 1),
+      'An enterprise compounds at its own cost of capital. Closing the six-month gap rather than '
+      'ignoring it is what puts both sides of this bridge on one date')
+_stub = -UE['fcff_1h26'] * (1 + W['wacc_rating']) ** 0.25
+grow_('stub', 'less the free cash flow the business actually generated over that half year',
+      f'=-({AC("Net cash from operating activities — first half of 2026")}'
+      f'-{AC("Capital expenditure — first half of 2026")})'
+      f'*(1+DCF!$C${DR["wacc_r"]})^0.25',
+      f'=-({AC("Net cash from operating activities — first half of 2026")}'
+      f'-{AC("Capital expenditure — first half of 2026")})'
+      f'*(1+DCF!$C${DR["wacc_r"]})^0.25',
+      _stub, _stub,
+      'Reported, not forecast. Cash the enterprise has already handed out is no longer inside it. '
+      'Acquisition consideration is deliberately NOT deducted here: it bought assets that sit '
+      'inside the same enterprise, so it nets out of an enterprise-value roll-forward')
+grow_('ev', 'Enterprise value at 30 June 2026',
+      f'=B{GR["ev25"]}+B{GR["carry"]}+B{GR["stub"]}',
+      f'=C{GR["ev25"]}+C{GR["carry"]}+C{GR["stub"]}',
+      CA['enterprise_value'], CB['enterprise_value'],
+      'Now on the same date as every line beneath it', bold=True)
 grow_('jv', 'add investment in joint ventures', f'={AC("Investment in joint ventures")}',
       f'={AC("Investment in joint ventures")}', IN['jvinv_1h26']['value'],
       IN['jvinv_1h26']['value'],
@@ -1181,17 +1775,28 @@ grow_('debt', 'less borrowings', f'=-{AC("Borrowings")}', f'=-{AC("Borrowings")}
       'Current and non-current term loans')
 grow_('lease', 'less lease liabilities', f'=-{AC("Lease liabilities")}',
       f'=-{AC("Lease liabilities")}', -IN['lease_1h26']['value'], -IN['lease_1h26']['value'], '')
-grow_('nci', 'less non-controlling interests', f'=-{AC("Non-controlling interests")}',
-      f'=-{AC("Non-controlling interests")}', -IN['nci_1h26']['value'], -IN['nci_1h26']['value'],
-      'Arising on the SLDC and MBPS acquisitions completed in the first half of 2026')
 grow_('finliab', 'less the financial liability over the acquired minorities',
       f'=-{AC("Financial liability over the acquired minorities")}',
       f'=-{AC("Financial liability over the acquired minorities")}',
       -IN['finliab_1h26']['value'], -IN['finliab_1h26']['value'],
-      'The put obligation the company recognised over those same minorities')
-grow_('eq', 'Equity value',
+      'The present value of the price at which the parent may be required to buy the 30% of SLDC '
+      'and the 20% of MBPS it does not own. The minority interests reported at 30 June 2026 are '
+      'NOT deducted as well: that is the same claim under another name, and the company has '
+      'already charged a matching investment reserve against owners equity for it')
+grow_('eqjun', 'Equity value at 30 June 2026',
       f'=B{GR["ev"]}+SUM(B{GR["jv"]}:B{GR["finliab"]})',
       f'=C{GR["ev"]}+SUM(C{GR["jv"]}:C{GR["finliab"]})',
+      CA['bridge']['equity_30jun26'], CB['bridge']['equity_30jun26'], '', bold=True)
+grow_('accr', 'accreted to the price anchor at the cost of equity',
+      f'=B{GR["eqjun"]}*((1+DCF!$C${DR["ke_r"]})'
+      f'^({AC("Days from 30 June 2026 to the price anchor")}/365)-1)',
+      f'=C{GR["eqjun"]}*((1+DCF!$C${DR["ke_r"]})'
+      f'^({AC("Days from 30 June 2026 to the price anchor")}/365)-1)',
+      CA['bridge']['accretion'], CB['bridge']['accretion'],
+      'The remaining 38 days from the balance-sheet date to the share price this value is '
+      'compared against')
+grow_('eq', 'Equity value at the price anchor',
+      f'=B{GR["eqjun"]}+B{GR["accr"]}', f'=C{GR["eqjun"]}+C{GR["accr"]}',
       CA['equity_value'], CB['equity_value'], '', bold=True)
 grow_('sh', 'Shares outstanding (thousands)',
       f'={AC("Shares issued")}-{AC("Treasury shares held by the market maker")}',
@@ -1249,18 +1854,29 @@ nrow('m_ofs', 'Multiple applied to Oilfield Services',
 nrow('blend', 'Segment-weighted multiple',
      f'=C{NR["w_on"]}*C{NR["m_on"]}+C{NR["w_off"]}*C{NR["m_off"]}+C{NR["w_ofs"]}*C{NR["m_ofs"]}',
      REL['blended_multiple'], N2, bold=True)
-nrow('ebitda', 'FY2026 guided EBITDA (midpoint)', f'={AC("FY2026 guided EBITDA (midpoint)")}',
-     REL['applied_ebitda'], N0)
+nrow('ebitda', 'Last-twelve-month EBITDA excluding joint ventures',
+     f'={AC("Last-twelve-month EBITDA excluding joint ventures")}',
+     REL['applied_ebitda'], N0,
+     'The multiple and the earnings it multiplies are on the same footing: every peer multiple '
+     'above is an enterprise value struck today over that peer\'s last twelve months, and the '
+     'joint-venture earnings are taken out here because the joint-venture carrying value is '
+     'added back on the bridge below')
 nrow('ev', 'Implied enterprise value', f'=C{NR["blend"]}*C{NR["ebitda"]}', REL['enterprise_value'],
      N0, bold=True)
-nrow('eq', 'Implied equity value',
+nrow('eq', 'Implied equity value at 30 June 2026',
      f'=C{NR["ev"]}+{AC("Investment in joint ventures")}+{AC("Cash and cash equivalents")}'
-     f'-{AC("Borrowings")}-{AC("Lease liabilities")}-{AC("Non-controlling interests")}'
-     f'-{AC("Financial liability over the acquired minorities")}', REL['equity_value'], N0)
+     f'-{AC("Borrowings")}-{AC("Lease liabilities")}'
+     f'-{AC("Financial liability over the acquired minorities")}',
+     REL['bridge']['equity_30jun26'], N0,
+     'The same bridge the cash-flow lenses use, and the minority is deducted once')
+nrow('eqa', 'Accreted to the price anchor at the cost of equity',
+     f'=C{NR["eq"]}*(1+DCF!$C${DR["ke_r"]})'
+     f'^({AC("Days from 30 June 2026 to the price anchor")}/365)',
+     REL['equity_value'], N0)
 nrow('ps', 'Implied value per share (AED)',
-     f'=C{NR["eq"]}/({AC("Shares issued")}-{AC("Treasury shares held by the market maker")})'
+     f'=C{NR["eqa"]}/({AC("Shares issued")}-{AC("Treasury shares held by the market maker")})'
      f'*{AC("AED per USD")}', REL['value_per_share_aed'], N2, bold=True)
-nrow('own', 'The company\'s own enterprise value / guided EBITDA',
+nrow('own', 'The company\'s own enterprise value / last-twelve-month EBITDA',
      f'=(DCF!$C${DR["mcap"]}+DCF!$C${DR["nd"]})/C{NR["ebitda"]}', REL['implied_own_ev_ebitda'],
      X2, 'The gap between this and the segment-weighted peer multiple is the whole of the '
          'relative lens', bold=True)
@@ -1269,32 +1885,47 @@ n_ += 1
 lab(RN, n_, 'NORMALISED EARNINGS POWER — the installed fleet, no growth credited',
     bold=True, fill=FILL_B)
 n_ += 1
-NU = NORM['units']
-nrow('nrev', 'Normalised revenue on the installed fleet',
-     f'={NU["onshore"]}*{AC("Revenue per Abu Dhabi onshore rig-year")}'
-     f'+{NU["regional"]}*{AC("Revenue per regional onshore rig-year")}'
-     f'+{NU["jackup"]}*{AC("Revenue per jack-up rig-year")}'
-     f'+{NU["island"]}*{AC("Revenue per island rig-year")}'
-     f'+{NU["ids"]}*{AC("Revenue per integrated-services rig-year")}', NORM['revenue'], N0,
-     'The rigs the company already owns or has taken delivery of, at FY2025 realised rates')
+nrow('nrev', 'Normalised revenue on the fleet installed at 30 June 2026',
+     f'={AC("Abu Dhabi onshore rigs — FY2025 year end")}'
+     f'*{AC("Revenue per Abu Dhabi onshore rig-year")}'
+     f'+{AC("Regional onshore rigs — 30 June 2026")}'
+     f'*{AC("Revenue per regional onshore rig-year")}'
+     f'+{AC("Jack-up rigs — FY2025 year end")}*{AC("Revenue per jack-up rig-year")}'
+     f'+{AC("Island rigs — 30 June 2026")}*{AC("Revenue per island rig-year")}'
+     f'+({AC("Integrated-services rigs — 30 June 2026")}'
+     f'+{AC("Rigs given at least one discrete service — 30 June 2026")})'
+     f'*{AC("Revenue per rig served — FY2025")}', NORM['revenue'], N0,
+     'The rigs the company has ALREADY taken delivery of, at FY2025 realised rates. The first '
+     'edition carried 14 island rigs and the 70 integrated rigs the company TARGETS for the end '
+     'of 2026; the reported counts at 30 June 2026 are 13 and 61. A target is growth, and this '
+     'lens is the one that credits none')
 nrow('nebitda', 'Normalised EBITDA', f'=C{NR["nrev"]}*{AC("Normalised EBITDA margin")}',
      NORM['ebitda'], N0)
 nrow('ndna', 'Normalised depreciation and amortisation',
-     f'={AC("Normalised depreciation and amortisation")}', NORM['dna'], N0)
+     f'={AC("Normalised depreciation and amortisation")}', NORM['dna'], N0,
+     'The charge the fleet being priced actually carries, annualised off the first half of 2026')
 nrow('nebit', 'Normalised EBIT', f'=C{NR["nebitda"]}-C{NR["ndna"]}', NORM['ebit'], N0)
 nrow('nnopat', 'Normalised NOPAT',
      f'=C{NR["nebit"]}*(1-{AC("Corporate income tax rate")})', NORM['nopat'], N0, bold=True)
-nrow('ncap', 'Capitalisation rate',
-     f'=DCF!$C${DR["wacc_r"]}-{AC("Terminal growth — capacity plateau")}',
-     NORM['capitalisation_rate'], P2)
+nrow('ncap', 'Capitalisation rate — the cost of capital, with no growth deducted from it',
+     f'=DCF!$C${DR["wacc_r"]}',
+     NORM['capitalisation_rate'], P2,
+     'The first edition divided by the cost of capital LESS a terminal growth rate while the '
+     'text beside it said no growth was credited. A denominator of cost-of-capital-minus-growth '
+     'IS the growth credit; there is no other reason for the growth rate to appear in it')
 nrow('nev', 'Implied enterprise value', f'=C{NR["nnopat"]}/C{NR["ncap"]}',
      NORM['enterprise_value'], N0)
-nrow('neq', 'Implied equity value',
+nrow('neq', 'Implied equity value at 30 June 2026',
      f'=C{NR["nev"]}+{AC("Investment in joint ventures")}+{AC("Cash and cash equivalents")}'
-     f'-{AC("Borrowings")}-{AC("Lease liabilities")}-{AC("Non-controlling interests")}'
-     f'-{AC("Financial liability over the acquired minorities")}', NORM['equity_value'], N0)
+     f'-{AC("Borrowings")}-{AC("Lease liabilities")}'
+     f'-{AC("Financial liability over the acquired minorities")}',
+     NORM['bridge']['equity_30jun26'], N0)
+nrow('neqa', 'Accreted to the price anchor at the cost of equity',
+     f'=C{NR["neq"]}*(1+DCF!$C${DR["ke_r"]})'
+     f'^({AC("Days from 30 June 2026 to the price anchor")}/365)',
+     NORM['equity_value'], N0)
 nrow('nps', 'Implied value per share (AED)',
-     f'=C{NR["neq"]}/({AC("Shares issued")}-{AC("Treasury shares held by the market maker")})'
+     f'=C{NR["neqa"]}/({AC("Shares issued")}-{AC("Treasury shares held by the market maker")})'
      f'*{AC("AED per USD")}', NORM['value_per_share_aed'], N2, bold=True)
 
 n_ += 1
@@ -1314,7 +1945,9 @@ nrow('bv', 'Book equity attributable to owners', f'={AC("Book equity attributabl
 nrow('bvps', 'Book value per share (AED)',
      f'=C{NR["bv"]}/({AC("Shares issued")}-{AC("Treasury shares held by the market maker")})'
      f'*{AC("AED per USD")}', BOOK['book_equity'] / SH * FX, N2)
-nrow('bps', 'Implied value per share (AED)', f'=C{NR["pb"]}*C{NR["bvps"]}',
+nrow('bps', 'Implied value per share (AED)',
+     f'=C{NR["pb"]}*C{NR["bvps"]}*(1+C{NR["ke"]})'
+     f'^({AC("Days from 30 June 2026 to the price anchor")}/365)',
      BOOK['value_per_share_aed'], N2, bold=True)
 nrow('cpb', 'The company\'s own price / book', f'={AC("Market price")}/C{NR["bvps"]}',
      BOOK['current_pb'], X2)
@@ -1570,7 +2203,7 @@ lab(PR, pr, 'ADNOC Drilling', col=2, bold=True)
 fml(PR, f'C{pr}', f'=DCF!$C${DR["mcap"]}/1000', M['market_cap_usd_k'] / 1000, N0)
 fml(PR, f'D{pr}', f'=DCF!$C${DR["nd"]}/1000', W['net_debt'] / 1000, N0)
 fml(PR, f'E{pr}', f'=C{pr}+D{pr}', M['enterprise_value_usd_k'] / 1000, N0)
-fml(PR, f'F{pr}', f'={AC("FY2026 guided EBITDA (midpoint)")}/1000', REL['applied_ebitda'] / 1000,
+fml(PR, f'F{pr}', f'={AC("Last-twelve-month EBITDA excluding joint ventures")}/1000', REL['applied_ebitda'] / 1000,
     N0)
 fml(PR, f'G{pr}', f'=E{pr}/F{pr}', REL['implied_own_ev_ebitda'], X2, bold=True)
 
@@ -1725,6 +2358,18 @@ for text, is_head in READ:
     RF.row_dimensions[rrow].height = 16 if is_head else max(30, 13 * (len(text) // 105 + 1))
     rrow += 1 if is_head else 2
 
+# ------------------------------------------- the deferred Assumptions rows ---
+# Two rows on the Assumptions sheet are formulas over cells on sheets written
+# after it. They are filled in here, and DEFERRED is then asserted empty so that
+# a row placed with adef() and never resolved cannot ship as a blank cell.
+resolve_deferred('EBITDA — FY2025 audited', f"='Income Statement'!$D${IROW['ebitda']}")
+_bk_eq_2030, _bk_eq_2029 = FCOL[2030], FCOL[2029]
+resolve_deferred(
+    'Sustainable return on equity',
+    f"='Income Statement'!{_bk_eq_2030}{IROW['pat']}"
+    f"/(('Balance Sheet'!{_bk_eq_2029}{R_EQ}+'Balance Sheet'!{_bk_eq_2030}{R_EQ})/2)")
+assert not DEFERRED, [d[0] for d in DEFERRED]
+
 # --------------------------------------------------------------- sheet order -
 ORDER = ['READ FIRST', 'Summary', 'Fundamental Valuation', 'Assumptions', 'SOTP Bridge',
          'Segments', 'Relative & Normalized', 'DCF', 'Income Statement', 'Balance Sheet',
@@ -1739,7 +2384,7 @@ anchors = dict(central_row=SM_CENTRAL, lens_rows=LV, dcf=DR, waterfall=WR, termi
                plateau=BT, bridge=GR, relnorm=NR, segments=dict(
                    revenue=R_REV_TOT, ebitda=R_EBITDA, ebitda_ex_jv=R_EBITDA_XJV,
                    conv=R_CONV),
-               balance=dict(equity=R_EQ, net_debt=R_ND, dna=R_DNA, capex=R_CAPEX,
+               balance=dict(equity=R_EQ, nci=R_NCI, net_debt=R_ND, dna=R_DNA, capex=R_CAPEX,
                             wcap=R_WCAP, total_assets=R_TA, total_liabilities=R_TL),
                income=IROW, cash=CROW, fundamental_central=R_CENTRAL)
 json.dump(dict(expected=EXPECT, anchors=anchors),

@@ -25,6 +25,7 @@ D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 XP = json.load(open(os.path.join(HERE, 'xlsx_expected.json')))
 EXPECT, ANCH = XP['expected'], XP['anchors']
 CA, CB = D['cases']['A'], D['cases']['B']
+IN = D['inputs']
 W, M, FV, REL, NORM, BOOK, H = (D['wacc'], D['market'], D['fair_value'], D['relative'],
                                 D['normalised'], D['book'], D['history'])
 
@@ -82,11 +83,22 @@ checks = [
     ('Present value of the explicit five years', g('DCF', f"C{TR['pv_exp']}"),
      CA['pv_explicit'], 1.0),
     ('Present value of the terminal value', g('DCF', f"C{TR['pv_tv']}"), CA['pv_terminal'], 1.0),
-    ('Enterprise value — continued expansion', g('DCF', f"C{TR['ev']}"),
-     CA['enterprise_value'], 1.0),
+    ('Enterprise value at 31-Dec-2025 — continued expansion', g('DCF', f"C{TR['ev']}"),
+     CA['enterprise_value_dec25'], 1.0),
+    ('Enterprise value at 30-Jun-2026 — continued expansion',
+     g('SOTP Bridge', f"B{GR['ev']}"), CA['enterprise_value'], 1.0),
+    ('Terminal capitalisation rate — expansion', g('DCF', f"C{TR['trate']}"),
+     CA['terminal_rate'], 1e-9),
     ('Terminal value share of enterprise value — expansion', g('DCF', f"C{TR['tvshare']}"),
      CA['tv_pct_of_ev'], 1e-6),
-    ('Enterprise value — capacity plateau', g('DCF', f"C{BT['ev']}"), CB['enterprise_value'], 1.0),
+    ('Enterprise value at 31-Dec-2025 — capacity plateau', g('DCF', f"C{BT['ev']}"),
+     CB['enterprise_value_dec25'], 1.0),
+    ('Enterprise value at 30-Jun-2026 — capacity plateau',
+     g('SOTP Bridge', f"C{GR['ev']}"), CB['enterprise_value'], 1.0),
+    ('Terminal capitalisation rate — plateau', g('DCF', f"C{BT['trate']}"),
+     CB['terminal_rate'], 1e-9),
+    ('The minority is deducted once, through the put and not also as a separate line',
+     g('SOTP Bridge', f"B{GR['finliab']}"), -IN['finliab_1h26']['value'], 1.0),
     ('Terminal value share of enterprise value — plateau', g('DCF', f"C{BT['tvshare']}"),
      CB['tv_pct_of_ev'], 1e-6),
     ('Bridge equity value — expansion', g('SOTP Bridge', f"B{GR['eq']}"), CA['equity_value'], 1.0),
@@ -99,7 +111,8 @@ checks = [
      REL['value_per_share_aed'], 0.005),
     ('Segment-weighted peer multiple', g('Relative & Normalized', f"C{NR['blend']}"),
      REL['blended_multiple'], 0.005),
-    ("The company's own EV/EBITDA", g('Relative & Normalized', f"C{NR['own']}"),
+    ("The company's own EV/EBITDA on the same trailing basis",
+     g('Relative & Normalized', f"C{NR['own']}"),
      REL['implied_own_ev_ebitda'], 0.005),
     ('Normalised lens value per share', g('Relative & Normalized', f"C{NR['nps']}"),
      NORM['value_per_share_aed'], 0.005),
@@ -140,12 +153,13 @@ for name, got, want, tol in checks:
 # ---- the forecast balance sheet must balance in the DELIVERED file -----------
 BALR, EQR, TLR = (ANCH['balance']['total_assets'], ANCH['balance']['equity'],
                   ANCH['balance']['total_liabilities'])
+NCIR = ANCH['balance']['nci']
 bal_gap = []
 for col in ('E', 'F', 'G', 'H', 'I'):
-    ta, tl, eq = (g('Balance Sheet', f'{col}{BALR}'), g('Balance Sheet', f'{col}{TLR}'),
-                  g('Balance Sheet', f'{col}{EQR}'))
-    if abs(ta - (tl + eq)) > 1.0:
-        bal_gap.append((col, ta, tl + eq))
+    ta, tl, eq, nci = (g('Balance Sheet', f'{col}{BALR}'), g('Balance Sheet', f'{col}{TLR}'),
+                       g('Balance Sheet', f'{col}{EQR}'), g('Balance Sheet', f'{col}{NCIR}'))
+    if abs(ta - (tl + nci + eq)) > 1.0:
+        bal_gap.append((col, ta, tl + nci + eq))
 print(f'forecast balance sheet balances in every year: {not bal_gap}')
 
 assert not errors, f'{len(errors)} unresolvable formulas'

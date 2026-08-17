@@ -57,6 +57,7 @@ FS23 = "FY2023 audited consolidated financial statements (KPMG Lower Gulf Limite
 FS24 = "FY2024 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)"
 FS25 = "FY2025 audited consolidated financial statements (Deloitte & Touche (M.E.), unqualified)"
 IH26 = "1H-2026 condensed consolidated interim financial information (reviewed)"
+MDA24 = "FY2024 management discussion and analysis"
 MDA25 = "FY2025 management discussion and analysis"
 MDA26 = "1H-2026 management discussion and analysis"
 PR26 = "1H-2026 earnings press release"
@@ -192,8 +193,18 @@ INP = dict(
     dta_fy25=I(1_228.0, f"Deferred tax assets, {FS25}", "2026-02-11", "Company"),
     advnc_fy23=I(1_654.0, f"Advances (non-current), {FS23}", "2024-02-12", "Company"),
     advnc_fy24=I(2_230.0, f"Advances (non-current), {FS24}", "2025-02-11", "Company"),
-    advnc_fy25=I(99_218.0, f"Advances 8,292 plus advance for acquisition of a subsidiary 90,926, "
-                 f"{FS25}", "2026-02-11", "Company"),
+    advnc_fy25=I(8_292.0, f"Advances (non-current), {FS25}", "2026-02-11", "Company"),
+    # Carried as its own line rather than inside advances, because it is not an
+    # advance that stays on the balance sheet: it is consideration already paid
+    # for SLDC, and in 2026 it converts into the acquired assets. The forecast
+    # roll-forward releases exactly this figure, read from here.
+    advacq_fy25=I(90_926.0, f"Advance for acquisition of a subsidiary, {FS25}. Nil at 31 December "
+                  f"2024 and nil again at 30 June 2026, when the SLDC acquisition completed",
+                  "2026-02-11", "Company"),
+    advacq_fy23=I(0.0, f"No advance for acquisition of a subsidiary is presented in {FS23}",
+                  "2024-02-12", "Company"),
+    advacq_fy24=I(0.0, f"No advance for acquisition of a subsidiary is presented in {FS24}",
+                  "2025-02-11", "Company"),
     inv_fy23=I(206_107.0, f"Inventories, {FS23}", "2024-02-12", "Company"),
     inv_fy24=I(223_083.0, f"Inventories, {FS24}", "2025-02-11", "Company"),
     inv_fy25=I(279_030.0, f"Inventories, {FS25}", "2026-02-11", "Company"),
@@ -286,6 +297,45 @@ INP = dict(
                    f"over the non-controlling interests in the acquired regional businesses",
                    "2026-06-30", "Company"),
 
+    # --- the 30-Jun-2026 working-capital lines ------------------------------
+    # These carry the forecast working-capital ratio. The 30-Jun-2026 balance
+    # sheet is the ONLY one that consolidates the two acquired regional
+    # businesses, so it is the only basis on which a ratio can be set for a
+    # revenue line that likewise consolidates them.
+    ebitda_1h25=I(1_078_000.0, f"{MDA26} financial summary, 1H-2025 comparative column — group "
+                  f"EBITDA of $1,078 million", "2026-07-30", "Company/IR"),
+    jv_1h26=I(16_479.0, f"Share of results of joint ventures, {IH26} statement of cash flows",
+              "2026-06-30", "Company"),
+    jv_1h25=I(14_000.0, f"Share of results of joint ventures, {IH26} statement of cash flows, "
+              f"1H-2025 comparative column", "2026-06-30", "Company"),
+    cfo_1h26=I(843_049.0, f"Net cash generated from operating activities, {IH26}. Stated after "
+               f"income tax and end-of-service benefits paid and BEFORE finance cost paid, which "
+               f"this company presents inside financing — so the figure is already unlevered",
+               "2026-06-30", "Company"),
+    capex_1h26=I(189_878.0, f"Payments for purchase of property and equipment, {IH26}",
+                 "2026-06-30", "Company"),
+    days_jun26_to_anchor=I(38.0, "Calendar days from 30 June 2026, the date the bridge is struck "
+                           "on, to the 7 August 2026 price anchor", "2026-08-07", "Market"),
+    inv_1h26=I(342_783.0, f"Inventories, {IH26}", "2026-06-30", "Company"),
+    recv_1h26=I(233_060.0, f"Trade and other receivables, {IH26}", "2026-06-30", "Company"),
+    dfrp_1h26=I(1_418_236.0, f"Due from related parties, {IH26}", "2026-06-30", "Company"),
+    tp_1h26=I(1_238_037.0, f"Trade and other payables, {IH26}: non-current 40,533 plus current "
+              f"1,197,504", "2026-06-30", "Company"),
+    dtrp_1h26=I(312_862.0, f"Due to related parties, {IH26}", "2026-06-30", "Company"),
+    # The 1H-2025 comparative movements in the same statement of cash flows are
+    # what rule OUT a seasonal reading of the ratio: over 1H-2025 working capital
+    # RELEASED cash, so a mid-year balance sheet runs BELOW the year end for this
+    # company rather than above it. The 1H-2026 build is therefore real.
+    wc_move_1h25=I(154_080.0, f"{IH26} statement of cash flows, 1H-2025 comparative column — "
+                   f"inventories (6,132), receivables (3,671), due from related parties (57,523), "
+                   f"payables 58,261, due to related parties 163,145; a net RELEASE of working "
+                   f"capital of 154,080 over the first half of 2025", "2026-07-30", "Company"),
+    wc_move_1h26=I(-172_636.0, f"{IH26} statement of cash flows — inventories (50,645), "
+                   f"receivables (2,127), due from related parties (53,442), payables 36,787, "
+                   f"due to related parties (103,209); a net ABSORPTION of 172,636 over the first "
+                   f"half of 2026, before the working capital that arrived with the acquisitions",
+                   "2026-07-30", "Company"),
+
     # ---------------- operating units (from the company's own MD&A) ----------
     rigs_onshore_fy22=I(74.0, "FY2023 MD&A operational highlights, FY22 comparative column — "
                         "onshore rigs at year end", "2024-02-12", "Company/IR"),
@@ -317,8 +367,75 @@ INP = dict(
                "Company/IR"),
     ids_fy25=I(60.0, f"{MDA25} — integrated-drilling-services rigs at year end", "2026-02-11",
                "Company/IR"),
+    rigs_island_2q26=I(13.0, f"{MDA26}: 'One additional AI-enabled Island rig entered the domestic "
+                       f"fleet during the second quarter, ahead of schedule' — 12 at 31 December "
+                       f"2025 plus one", "2026-07-30", "Company/IR"),
     ids_2q26=I(61.0, f"{MDA26} — integrated-drilling-services rigs at 30 June 2026", "2026-07-30",
                "Company/IR"),
+    # --- the SECOND oilfield-services volume driver, added 17-Aug-2026 --------
+    # The segment serves two distinct books: rigs under a full integrated-drilling
+    # contract, and rigs taking at least one discrete service. Only the first was
+    # modelled before; the company discloses both, and the second is the larger
+    # count in 2025.
+    discrete_fy24=I(48.0, "FY2024 MD&A: 'offered at least one discrete service to an additional 48 "
+                    "rigs between onshore and offshore'", "2025-02-11", "Company/IR"),
+    discrete_fy25=I(58.0, f"{MDA25}: 'The segment offered at least one discrete service to an "
+                    f"additional 58 rigs between onshore and offshore in the fourth quarter. All "
+                    f"in all, oilfield services are offered to 118 rigs'", "2026-02-11",
+                    "Company/IR"),
+    discrete_2q26=I(53.0, f"{MDA26}: 'at least one discrete service was delivered across an "
+                    f"additional 53 rigs... resulting in OFS coverage across a total of 114 rigs'",
+                    "2026-07-30", "Company/IR"),
+
+    # --- the two 2026 business combinations, from Note 5 of the interim ------
+    # Every figure below is the sum of the two acquisition tables. Two independent
+    # cross-checks tie exactly: goodwill 16,830 equals the goodwill line on the
+    # face of the 30-Jun-2026 balance sheet, and the minority interests of 49,931
+    # equal the 'Acquisition of non-controlling interest' line in the statement of
+    # changes in equity.
+    acq_ppe=I(282_531.0, f"Note 5, {IH26} — property and equipment acquired: SLDC 138,622 plus "
+              f"MBPS 143,909", "2026-06-30", "Company"),
+    acq_rou=I(10_037.0, f"Note 5, {IH26} — right-of-use assets acquired (MBPS)", "2026-06-30",
+              "Company"),
+    acq_goodwill=I(16_830.0, f"Note 5, {IH26} — provisional goodwill: SLDC 7,029 plus MBPS 9,801. "
+                   f"Ties exactly to the goodwill line on the face of the balance sheet",
+                   "2026-06-30", "Company"),
+    acq_inventories=I(13_590.0, f"Note 5, {IH26} — inventories acquired: 3,348 plus 10,242",
+                      "2026-06-30", "Company"),
+    acq_receivables=I(80_557.0, f"Note 5, {IH26} — trade and other receivables acquired: 11,531 "
+                      f"plus 69,026", "2026-06-30", "Company"),
+    acq_payables=I(53_013.0, f"Note 5, {IH26} — trade and other payables assumed: 13,094 plus "
+                   f"39,919", "2026-06-30", "Company"),
+    acq_cash=I(42_683.0, f"Note 5, {IH26} — cash acquired: 4,086 plus 38,597", "2026-06-30",
+               "Company"),
+    acq_borrowings=I(172_931.0, f"Note 5, {IH26} — term loans, overdraft and borrowings assumed "
+                     f"with MBPS", "2026-06-30", "Company"),
+    acq_leases=I(6_717.0, f"Note 5, {IH26} — lease liabilities assumed with MBPS", "2026-06-30",
+                 "Company"),
+    acq_nci=I(49_931.0, f"Note 5, {IH26} — minority interests recognised on acquisition: 40,559 "
+              f"plus 9,372. Ties exactly to the statement of changes in equity", "2026-06-30",
+              "Company"),
+    acq_consideration_2026=I(47_287.0, f"Note 5, {IH26} — MBPS total purchase consideration, paid "
+                             f"in cash in the period per that acquisition's own analysis of "
+                             f"cash flows", "2026-06-30", "Company"),
+    acq_deferred_tax=I(4_697.0, f"Note 5, {IH26} — deferred tax liability assumed with SLDC. Ties "
+                       f"to the new 'deferred tax liability' line on the face of the 30-Jun-2026 "
+                       f"balance sheet, which was nil at 31-Dec-2025", "2026-06-30", "Company"),
+    acq_income_tax=I(7_293.0, f"Note 5, {IH26} — income tax payable assumed: SLDC 4,600 plus MBPS "
+                     f"2,693", "2026-06-30", "Company"),
+    acq_eosb=I(2_693.0, f"Note 5, {IH26} — provision for employees' end of service benefits "
+               f"assumed with MBPS", "2026-06-30", "Company"),
+    acq_contingent=I(20_372.0, f"Note 5, {IH26} — contingent consideration inside SLDC's purchase "
+                     f"consideration, at fair value at the acquisition date, payable over three "
+                     f"years against EBITDA-based performance targets", "2026-06-30", "Company"),
+    acq_cash_returned=I(9_632.0, f"Note 5, {IH26}, SLDC analysis of cash flows — 'consideration "
+                        f"received against acquisition paid in the prior year'", "2026-06-30",
+                        "Company"),
+    div_paid_1h26=I(512_500.0, f"Dividends paid, {IH26} statement of cash flows", "2026-06-30",
+                    "Company"),
+    days_dec25_to_anchor=I(219.0, "Calendar days from 31 December 2025, the date the discounting "
+                           "convention places enterprise value on, to the 7 August 2026 price "
+                           "anchor", "2026-08-07", "Market"),
     ids_target_fy26=I(70.0, f"{PR26}: 'ADNOC Drilling targets to deploy approximately 70 IDS rigs "
                       f"by the end of 2026'", "2026-07-30", "Company/IR"),
     rigs_regional_2q26=I(30.0, f"{MDA26}: 30 regional rigs outside the UAE at 30 June 2026 — 8 in "
@@ -343,6 +460,11 @@ INP = dict(
     unconv_ofs_fy25=I(534_000.0, f"{MDA25} Oilfield Services commentary — unconventional "
                       f"contribution rose from $95 million in 2024 to $534 million in 2025",
                       "2026-02-11", "Company/IR"),
+    unconv_ofs_fy24=I(95_000.0, f"{MDA25} Oilfield Services commentary, prior-year comparative — "
+                      f"the unconventional contribution inside Oilfield Services was $95 million "
+                      f"in 2024", "2026-02-11", "Company/IR"),
+    ids_fy22=I(40.0, "FY2023 MD&A operational highlights, FY2022 comparative column — "
+               "integrated-drilling-services rigs at year end", "2024-02-12", "Company/IR"),
     unconv_remaining_2025=I(860_000.0, f"{MDA25}: 'The remaining $0.86 billion contract value for "
                             f"unconventional ($1.7 billion total contract value less...)'",
                             "2026-02-11", "Company/IR"),
@@ -352,6 +474,14 @@ INP = dict(
     conv_ebitda_margin_fy25=I(0.51, f"{MDA25} financial summary — conventional EBITDA margin for "
                               f"FY2025, defined by the company as excluding the contribution of "
                               f"the unconventional business", "2026-02-11", "Company/IR"),
+    conv_ebitda_margin_fy24=I(0.52, f"{MDA24} financial summary — conventional EBITDA margin for "
+                              f"FY2024, on the same definition", "2025-02-11", "Company/IR"),
+    seg_island_fy23=I(209_079.0, f"{FS23} segment note — Offshore Island revenue for FY2023, the "
+                      f"last year the island and jack-up businesses were reported as separate "
+                      f"segments; from 1Q-2025 they are presented as one Offshore segment",
+                      "2024-02-12", "Company"),
+    seg_jackup_fy23=I(799_726.0, f"{FS23} segment note — Offshore Jack-up revenue for FY2023",
+                      "2024-02-12", "Company"),
 
     # ---------------- FY2026 company guidance --------------------------------
     g26_revenue=I(5_000_000.0, f"{PR26} full-year 2026 guidance — revenue of approximately $5 "
@@ -538,7 +668,9 @@ for y in YRS_H:
         tax=V(f'tax_{s}'), pat=V(f'pat_{s}'),
         seg_onshore=V(f'seg_on_{s}'), seg_offshore=V(f'seg_off_{s}'), seg_ofs=V(f'seg_ofs_{s}'),
         ppe=V(f'ppe_{s}'), rou=V(f'rou_{s}'), intangibles=V(f'intang_{s}'),
-        jv_investment=V(f'jvinv_{s}'), deferred_tax_asset=V(f'dta_{s}'), advances=V(f'advnc_{s}'),
+        jv_investment=V(f'jvinv_{s}'), deferred_tax_asset=V(f'dta_{s}'),
+        advances=V(f'advnc_{s}') + V(f'advacq_{s}'),
+        advance_for_acquisition=V(f'advacq_{s}'),
         inventories=V(f'inv_{s}'), receivables=V(f'tr_{s}'), due_from_rp=V(f'dfrp_{s}'),
         cash=V(f'cash_{s}'), assets_held_for_sale=V(f'afs_{s}'),
         debt=V(f'debt_{s}'), leases=V(f'lease_{s}'), payables=V(f'tp_{s}'),
@@ -589,19 +721,26 @@ UNITS_H = {
     2023: dict(onshore=avg(V('rigs_onshore_fy22'), V('rigs_onshore_fy23')),
                jackup=avg(V('rigs_jackup_fy22'), V('rigs_jackup_fy23')),
                island=avg(V('rigs_island_fy22'), V('rigs_island_fy23')),
-               ids=avg(40.0, V('ids_fy23')), wells=V('wells_fy23'), regional=0.0,
+               ids=avg(V('ids_fy22'), V('ids_fy23')), wells=V('wells_fy23'), regional=0.0,
                unconv=0.0, unconv_ofs=0.0),
     2024: dict(onshore=avg(V('rigs_onshore_fy23'), V('rigs_onshore_fy24')),
                jackup=avg(V('rigs_jackup_fy23'), V('rigs_jackup_fy24')),
                island=avg(V('rigs_island_fy23'), V('rigs_island_fy24')),
                ids=avg(V('ids_fy23'), V('ids_fy24')), wells=V('wells_fy24'), regional=0.0,
-               unconv=V('unconv_fy24'), unconv_ofs=95_000.0),
+               unconv=V('unconv_fy24'), unconv_ofs=V('unconv_ofs_fy24')),
     2025: dict(onshore=avg(V('rigs_onshore_fy24'), V('rigs_onshore_fy25')),
                jackup=avg(V('rigs_jackup_fy24'), V('rigs_jackup_fy25')),
                island=avg(V('rigs_island_fy24'), V('rigs_island_fy25')),
                ids=avg(V('ids_fy24'), V('ids_fy25')), wells=V('wells_fy25'), regional=0.0,
                unconv=V('unconv_fy25'), unconv_ofs=V('unconv_ofs_fy25')),
 }
+# The oilfield-services segment serves TWO books, and the company discloses both
+# counts. Modelling only the integrated-services rigs — as the first edition did —
+# leaves the larger of the two out of the volume driver entirely.
+UNITS_H[2024]['discrete'] = V('discrete_fy24')
+UNITS_H[2025]['discrete'] = V('discrete_fy25')
+UNITS_H[2023]['discrete'] = float('nan')      # not disclosed for 2023; see below
+
 for y in YRS_H:
     u = UNITS_H[y]
     u['unconv_onshore'] = u['unconv'] - u['unconv_ofs']
@@ -611,11 +750,34 @@ for y in YRS_H:
     u['rev_per_ids_rig'] = (H[y]['seg_ofs'] - u['unconv_ofs']) / u['ids']
     u['wells_per_rig'] = u['wells'] / (u['onshore'] + u['offshore'])
 
+# --- oilfield services: rigs served, and revenue per rig served --------------
+# A two-driver model with CONSTANT rates is falsified by the company's own
+# numbers: solving 57a + 48b = 718,116 and 60a + 58b = 928,004 returns a NEGATIVE
+# rate for integrated services. Coverage grew 12% while conventional segment
+# revenue grew 29%, so the growth is in revenue PER RIG SERVED, not in the count.
+# That is what the company says too — "22% overall improvement in IDS drilling
+# efficiency", "expanded delivery of discrete services". So the driver is total
+# rigs served and the price is an intensity that is measured, not assumed.
+OFS_SERVED = {2024: V('ids_fy24') + V('discrete_fy24'),
+              2025: V('ids_fy25') + V('discrete_fy25')}
+OFS_CONV = {y: H[y]['seg_ofs'] - UNITS_H[y]['unconv_ofs'] for y in (2024, 2025)}
+OFS_REV_PER_SERVED = {y: OFS_CONV[y] / OFS_SERVED[y] for y in (2024, 2025)}
+OFS_INTENSITY_REALISED = OFS_REV_PER_SERVED[2025] / OFS_REV_PER_SERVED[2024] - 1
+_ofs_neg_check = np.linalg.solve(
+    np.array([[V('ids_fy24'), V('discrete_fy24')], [V('ids_fy25'), V('discrete_fy25')]]),
+    np.array([OFS_CONV[2024], OFS_CONV[2025]]))
+assert _ofs_neg_check[0] < 0, ("the constant-rate two-driver solve is expected to be infeasible; "
+                               "if it is not, the intensity construction below is unnecessary",
+                               _ofs_neg_check)
+OFS_SOLVE_INFEASIBLE = dict(implied_ids_rate=float(_ofs_neg_check[0]),
+                            implied_discrete_rate=float(_ofs_neg_check[1]))
+
 # The FY2023 offshore split is the only year the two offshore segments were
 # reported separately; it fixes the island-to-jackup revenue ratio used to carry
 # a split forward after the segments were merged into one from 1Q-2025.
-_rev_per_island_23 = 209_079.0 / V('rigs_island_fy23')
-_rev_per_jackup_23 = 799_726.0 / avg(V('rigs_jackup_fy22'), V('rigs_jackup_fy23'))
+_rev_per_island_23 = V('seg_island_fy23') / V('rigs_island_fy23')
+_rev_per_jackup_23 = V('seg_jackup_fy23') / avg(V('rigs_jackup_fy22'),
+                                                 V('rigs_jackup_fy23'))
 ISLAND_TO_JACKUP = _rev_per_island_23 / _rev_per_jackup_23
 REV_PER_JACKUP_25 = H[2025]['seg_offshore'] / (UNITS_H[2025]['jackup']
                                                + ISLAND_TO_JACKUP * UNITS_H[2025]['island'])
@@ -631,7 +793,8 @@ _m1 = (H[2025]['ebitda'] - V('conv_ebitda_margin_fy25') * _conv_rev_25) / V('unc
 # discarded — on a $117m revenue base, half a point of rounding in the disclosed
 # margin moves the answer by more than the answer.
 _conv_rev_24 = H[2024]['revenue'] - V('unconv_fy24')
-_m2 = (H[2024]['ebitda'] - 0.52 * _conv_rev_24) / V('unconv_fy24')
+_m2 = ((H[2024]['ebitda'] - V('conv_ebitda_margin_fy24') * _conv_rev_24)
+       / V('unconv_fy24'))
 # Method (iii): the FY2024-to-FY2025 incremental bridge.
 _d_ebitda = H[2025]['ebitda'] - H[2024]['ebitda']
 _d_conv_rev = _conv_rev_25 - _conv_rev_24
@@ -668,11 +831,75 @@ shares_out_k = V('shares_issued_k') - V('treasury_shares_k')
 spot_usd = V('spot_aed') / V('fx_aed_usd')
 mkt_cap = shares_out_k * spot_usd                       # USD '000
 net_debt_now = V('debt_1h26') + V('lease_1h26') - V('cash_1h26')
-w_e = mkt_cap / (mkt_cap + net_debt_now)
+# Capital-structure weights are struck on GROSS interest-bearing debt, not net.
+# The first edition netted cash off debt before weighting, which is a category
+# error: the cost of debt is paid on the gross balance, and cash is bridged
+# separately in the EV-to-equity step. Netting it twice understates the debt
+# weight — here by 355,423, about 1.3 points of weight and 4 basis points of
+# discount rate. The direction of the correction is to LOWER the WACC, because
+# after-tax debt is cheaper than equity, and so to RAISE value.
+gross_debt_now = V('debt_1h26') + V('lease_1h26')
+w_e = mkt_cap / (mkt_cap + gross_debt_now)
 w_d = 1 - w_e
 wacc_rating = w_e * ke_rating + w_d * kd_after_tax
 wacc_cds = w_e * ke_cds + w_d * kd_after_tax
 WACC = wacc_rating
+
+
+# ==================== THE EV-TO-EQUITY BRIDGE, ONCE ==========================
+# Every lens bridges through this one function, so a change to the bridge cannot
+# reach one lens and miss another. Two corrections are built into it.
+#
+# (1) THE MINORITY IS DEDUCTED ONCE, NOT TWICE. The first edition deducted BOTH
+#     the non-controlling interests of 53,594 AND the 62,530 financial liability
+#     recognised over those same minorities. Those are two names for one claim:
+#     under the shareholders' arrangements the parent may be required to buy the
+#     30% of SLDC and the 20% of MBPS, and the company has recognised the present
+#     value of that exercise price as a liability with a matching INVESTMENT
+#     RESERVE of (62,530) charged directly to owners' equity — which is why the
+#     30-Jun-2026 equity statement shows the reserve as negative. Deducting both
+#     charges the parent twice for the same 30% and 20%. The put is the deduction
+#     that survives, because it is the cash the parent would actually pay.
+# (2) THE VALUATION DATE IS THE SAME ON BOTH SIDES. The first edition discounted
+#     FY2026 free cash flow by a full year, which dates enterprise value at
+#     31-Dec-2025, and then bridged it across the 30-Jun-2026 balance sheet. That
+#     is half a year of mismatch, and it runs against the reader: enterprise value
+#     was dated six months before the net debt deducted from it. Enterprise value
+#     is now rolled forward to 30-Jun-2026 at the cost of capital, less the free
+#     cash flow the business ACTUALLY generated over that half year, and the
+#     resulting equity value is accreted the further 38 days to the price anchor
+#     at the cost of equity.
+FCFF_1H26 = V('cfo_1h26') - V('capex_1h26')
+STUB_YEARS = 0.5                     # 31-Dec-2025 to 30-Jun-2026
+ANCHOR_YEARS = V('days_jun26_to_anchor') / 365.0
+
+
+def roll_ev_to_jun26(ev_dec25):
+    """Enterprise value dated 31-Dec-2025, carried to 30-Jun-2026.
+
+    The enterprise compounds at the cost of capital and is reduced by the cash it
+    actually handed back over the half year. Acquisition consideration is NOT a
+    reduction: it buys an asset that sits inside the same enterprise, so it nets
+    out of an enterprise-value roll-forward by construction.
+    """
+    return (ev_dec25 * (1 + WACC) ** STUB_YEARS
+            - FCFF_1H26 * (1 + WACC) ** (STUB_YEARS / 2))
+
+
+def bridge(ev_jun26, detail=False):
+    """Enterprise value at 30-Jun-2026 to equity per share at the price anchor."""
+    eq_jun26 = (ev_jun26 + V('jvinv_1h26') + V('cash_1h26')
+                - V('debt_1h26') - V('lease_1h26') - V('finliab_1h26'))
+    eq_anchor = eq_jun26 * (1 + ke_rating) ** ANCHOR_YEARS
+    usd = eq_anchor / shares_out_k
+    if not detail:
+        return usd * V('fx_aed_usd')
+    return dict(enterprise_value=ev_jun26, jv_investment=V('jvinv_1h26'), cash=V('cash_1h26'),
+                debt=-V('debt_1h26'), leases=-V('lease_1h26'), put_liability=-V('finliab_1h26'),
+                equity_30jun26=eq_jun26, accretion_years=ANCHOR_YEARS,
+                accretion=eq_anchor - eq_jun26, equity_value=eq_anchor,
+                value_per_share_usd=usd, value_per_share_aed=usd * V('fx_aed_usd'))
+
 
 # ============================ FORECAST =======================================
 YRS_F = [2026, 2027, 2028, 2029, 2030]
@@ -684,9 +911,11 @@ FLEET = {
     'A': dict(
         onshore_ad={2026: 92, 2027: 94, 2028: 96, 2029: 98, 2030: 100},
         regional={2026: 30, 2027: 32, 2028: 34, 2029: 36, 2030: 38},
+        # NB the regional book OPENS at 30, not at zero — see OPEN_FLEET below
         jackup={2026: 36, 2027: 36, 2028: 36, 2029: 36, 2030: 36},
         island={2026: 14, 2027: 16, 2028: 18, 2029: 18, 2030: 18},
         ids={2026: 70, 2027: 74, 2028: 78, 2029: 80, 2030: 82},
+        discrete={2026: 56, 2027: 58, 2028: 60, 2029: 62, 2030: 64},
         unconv={2026: 400_000.0, 2027: 260_000.0, 2028: 200_000.0,
                 2029: 200_000.0, 2030: 200_000.0},
     ),
@@ -700,6 +929,7 @@ FLEET = {
         jackup={2026: 36, 2027: 36, 2028: 36, 2029: 36, 2030: 36},
         island={2026: 14, 2027: 16, 2028: 18, 2029: 18, 2030: 18},
         ids={2026: 70, 2027: 72, 2028: 72, 2029: 72, 2030: 72},
+        discrete={2026: 56, 2027: 56, 2028: 56, 2029: 56, 2030: 56},
         unconv={2026: 400_000.0, 2027: 200_000.0, 2028: 60_000.0, 2029: 0.0, 2030: 0.0},
     ),
 }
@@ -735,7 +965,30 @@ BASE_UNITS_25 = dict(
     conv_revenue=H[2025]['revenue'] - V('unconv_fy25'))
 
 DEP_RATE = V('dna_fy25') / (H[2024]['ppe'] + H[2024]['rou'] + H[2024]['intangibles'])
-WC_PCT_REVENUE = np.mean([H[y]['working_capital'] / H[y]['revenue'] for y in YRS_H])
+
+# ---- working capital: the ratio comes off the 30-Jun-2026 balance sheet ------
+# The first edition projected the FY2023-25 audited average, 5.91% of revenue.
+# That average was constructed entirely from year ends that PRE-DATE the two
+# regional acquisitions, and it was applied to a revenue line that consolidates
+# them from 2026 — an internal inconsistency, and the one the audit priced.
+#
+# The 30-Jun-2026 balance sheet is the only one that consolidates the acquired
+# book, so it is the only coherent basis. Two questions had to be settled before
+# using a mid-year balance sheet for a full-year ratio:
+#   (1) is a mid-year balance sheet seasonally inflated for this company? The
+#       1H-2025 comparative movements in the same statement of cash flows say
+#       the opposite: working capital RELEASED 154,080 over 1H-2025, so a
+#       mid-year balance sheet here runs BELOW the year end, not above it. The
+#       ratio is therefore, if anything, understated rather than seasonal.
+#   (2) how much of the 1H-2026 build is the acquisition rather than the
+#       business? The acquired book is separable from note 5 and is taken out
+#       below, so both the total ratio and the organic ratio are visible.
+WC_ACQUIRED = V('acq_inventories') + V('acq_receivables') - V('acq_payables')
+WC_1H26 = (V('inv_1h26') + V('recv_1h26') + V('dfrp_1h26') - V('tp_1h26') - V('dtrp_1h26'))
+REV_1H26_ANNUALISED = V('rev_1h26') * 2
+WC_PCT_REVENUE = WC_1H26 / REV_1H26_ANNUALISED
+WC_PCT_REVENUE_ORGANIC = (WC_1H26 - WC_ACQUIRED) / REV_1H26_ANNUALISED
+WC_PCT_REVENUE_HIST = float(np.mean([H[y]['working_capital'] / H[y]['revenue'] for y in YRS_H]))
 
 
 # FY2025 working-capital composition, used to split the forecast working-capital
@@ -744,15 +997,42 @@ WC_MIX = {k: H[2025][k] / abs(H[2025]['working_capital']) for k in
           ('inventories', 'receivables', 'due_from_rp', 'payables', 'due_to_rp')}
 
 
-def build_case(case):
+# The regional book OPENS at the count already consolidated, not at zero. Opening
+# it at zero averaged 15 rig-years into 2026 when the interim accounts already
+# carried roughly 19 in the first half alone — a full-year average cannot sit
+# below the first-half average of a growing fleet.
+ADVANCE_FOR_ACQUISITION = H[2025]['advance_for_acquisition']
+
+# The 2026 business combinations as one entry, published so a reader can add it up.
+# It is asserted to close to zero against owners' equity inside build_case().
+ACQ_ENTRY = [
+    ('Property, equipment, right-of-use assets and goodwill acquired',
+     V('acq_ppe') + V('acq_rou') + V('acq_goodwill')),
+    ('Working capital acquired', V('acq_inventories') + V('acq_receivables') - V('acq_payables')),
+    ('Cash acquired', V('acq_cash')),
+    ('Borrowings and lease liabilities assumed', -(V('acq_borrowings') + V('acq_leases'))),
+    ('Deferred tax, income tax and end-of-service benefits assumed',
+     -(V('acq_deferred_tax') + V('acq_income_tax') + V('acq_eosb'))),
+    ('Contingent consideration outstanding', -V('acq_contingent')),
+    ('Minority interests recognised', -V('acq_nci')),
+    ('The 2025 advance, released against consideration', -ADVANCE_FOR_ACQUISITION),
+    ('Cash consideration paid in 2026, net of the amount received back',
+     -(V('acq_consideration_2026') - V('acq_cash_returned'))),
+]
+OPEN_FLEET = dict(onshore_ad=V('rigs_onshore_fy25'), regional=V('rigs_regional_2q26'),
+                  jackup=V('rigs_jackup_fy25'), island=V('rigs_island_fy25'),
+                  ids=V('ids_fy25'), discrete=V('discrete_fy25'))
+
+
+def build_case(case, calib=None):
     fl, cx = FLEET[case], CAPEX_PLAN[case]
-    prev = dict(onshore_ad=V('rigs_onshore_fy25'), regional=0.0, jackup=V('rigs_jackup_fy25'),
-                island=V('rigs_island_fy25'), ids=V('ids_fy25'))
-    # The forecast balance sheet opens on the FY2025 AUDITED balance sheet — the
-    # last one that is complete, internally consistent and signed. (The
-    # enterprise-value-to-equity bridge separately uses the 30-Jun-2026 net debt
-    # and non-controlling interests, because a bridge should be struck on the
-    # most recent capital structure, not on a year-old one.)
+    cal = calib or dict(onshore=1.0, offshore=1.0, ofs=1.0)
+    prev = dict(OPEN_FLEET)
+    # The forecast balance sheet opens on the FY2025 AUDITED balance sheet and the
+    # two 2026 business combinations are then added IN 2026, which is when they
+    # actually closed. The first edition consolidated the acquired REVENUE from
+    # 2026 while leaving the acquired asset base, the assumed borrowings and the
+    # minority interests out of the roll-forward entirely.
     ppe_open = H[2025]['ppe'] + H[2025]['rou'] + H[2025]['intangibles']
     other_nc = H[2025]['deferred_tax_asset'] + H[2025]['advances']
     # Debt policy: hold gross interest-bearing debt flat at the audited FY2025
@@ -763,7 +1043,15 @@ def build_case(case):
     equity_open = H[2025]['equity']
     cash_open = H[2025]['cash']
     jv_book = H[2025]['jv_investment']
+    
     eosb_open, taxpay_open = H[2025]['eosb'], H[2025]['tax_payable']
+    nci_book = 0.0
+    # Liabilities that came with the two acquisitions and that no forecast driver
+    # generates: the deferred tax liability, the income tax payable assumed, and
+    # the contingent consideration still outstanding. Held flat across the window
+    # and disclosed as such — 32,362 on an 8.6bn balance sheet.
+    acq_liab = 0.0
+    intensity_prev = 1.0
     rows = []
     for n, y in enumerate(YRS_F, start=1):
         esc = (1 + V('esc_dayrate')) ** n
@@ -772,12 +1060,28 @@ def build_case(case):
         a_ju = avg(prev['jackup'], fl['jackup'][y])
         a_is = avg(prev['island'], fl['island'][y])
         a_ids = avg(prev['ids'], fl['ids'][y])
+        a_disc = avg(prev['discrete'], fl['discrete'][y])
+        a_served = a_ids + a_disc
+        # Oilfield-services intensity: revenue per rig served grew 15.0% from
+        # FY2024 to FY2025 on the company's own disclosed counts and segment
+        # revenue. That is measured, not assumed. It fades linearly to the
+        # contract escalator by the end of the window, because a 15% annual gain
+        # in revenue per rig served is an efficiency and mix effect that cannot
+        # compound indefinitely.
+        fade = (n - 1) / (len(YRS_F) - 1)
+        step = OFS_INTENSITY_REALISED * (1 - fade) + V('esc_dayrate') * fade
+        intensity = (intensity_prev := intensity_prev * (1 + step))
 
-        r_on = a_on * UNITS_H[2025]['rev_per_onshore_rig'] * esc
-        r_rg = a_rg * V('rev_per_rig_regional') * esc
-        r_ju = a_ju * REV_PER_JACKUP_25 * esc
-        r_is = a_is * REV_PER_ISLAND_25 * esc
-        r_ids = a_ids * UNITS_H[2025]['rev_per_ids_rig'] * esc
+        r_on_raw = a_on * UNITS_H[2025]['rev_per_onshore_rig'] * esc
+        r_rg_raw = a_rg * V('rev_per_rig_regional') * esc
+        r_ju_raw = a_ju * REV_PER_JACKUP_25 * esc
+        r_is_raw = a_is * REV_PER_ISLAND_25 * esc
+        r_ids_raw = a_served * OFS_REV_PER_SERVED[2025] * intensity
+        r_on = r_on_raw * cal['onshore']
+        r_rg = r_rg_raw * cal['onshore']
+        r_ju = r_ju_raw * cal['offshore']
+        r_is = r_is_raw * cal['offshore']
+        r_ids = r_ids_raw * cal['ofs']
         unconv = fl['unconv'][y]
         unconv_on = unconv * (V('unconv_fy25') and
                               (V('unconv_fy25') - V('unconv_ofs_fy25')) / V('unconv_fy25'))
@@ -788,6 +1092,42 @@ def build_case(case):
         seg_ofs = r_ids + unconv_ofs
         revenue = seg_on + seg_off + seg_ofs
         conv_revenue = revenue - unconv
+
+        if n == 1:
+            # The two business combinations closed in 2026 and enter here, in the
+            # year they closed, as the single entry note 5 supports line by line.
+            # Every figure below is disclosed; nothing is a plug, and the entry is
+            # asserted to balance to zero against owners' equity immediately after
+            # it is applied — a business combination cannot move the parent's
+            # equity, so an entry that does is wrong by construction.
+            #
+            #   Dr  property, plant, right-of-use and goodwill        309,398
+            #   Dr  working capital acquired                           41,134
+            #   Dr  cash acquired                                      42,683
+            #   Cr  borrowings and lease liabilities assumed          179,648
+            #   Cr  deferred tax, income tax and end-of-service        14,683
+            #   Cr  contingent consideration outstanding               20,372
+            #   Cr  minority interests recognised                      49,931
+            #   Cr  the 2025 advance, released against consideration   90,926
+            #   Cr  cash consideration paid in 2026, net of the
+            #       9,632 received back against the 2025 advance       37,655
+            #                                          Dr 393,215  Cr 393,215
+            acq_fixed = V('acq_ppe') + V('acq_rou') + V('acq_goodwill')
+            acq_debt = V('acq_borrowings') + V('acq_leases')
+            acq_liab = V('acq_deferred_tax') + V('acq_income_tax') + V('acq_contingent')
+            acq_cash_net = V('acq_cash') - V('acq_consideration_2026') + V('acq_cash_returned')
+            ppe_open += acq_fixed
+            other_nc -= ADVANCE_FOR_ACQUISITION      # the 2025 advance converts into the above
+            debt += acq_debt
+            cash_open += acq_cash_net
+            eosb_open += V('acq_eosb')
+            nci_book = V('acq_nci')
+            _entry = (acq_fixed + WC_ACQUIRED + V('acq_cash')
+                      - acq_debt - V('acq_deferred_tax') - V('acq_income_tax') - V('acq_eosb')
+                      - V('acq_contingent') - V('acq_nci') - ADVANCE_FOR_ACQUISITION
+                      - (V('acq_consideration_2026') - V('acq_cash_returned')))
+            assert abs(_entry) < 1.0, ('the business-combination entry does not close against '
+                                       'owners equity', _entry)
 
         units = dict(rig_years=a_on + a_rg + a_ju + a_is + a_ids,
                      offshore_rig_years=a_ju + a_is,
@@ -813,7 +1153,11 @@ def build_case(case):
         nopat = ebit * (1 - V('tax_rate'))
         wc = revenue * WC_PCT_REVENUE
         wc_prev = (H[2025]['working_capital'] if n == 1 else rows[-1]['working_capital'])
-        d_wc = wc - wc_prev
+        # The working capital that ARRIVED with the acquisitions was bought, not
+        # funded out of operations, so it is stripped out of the operating
+        # movement. Leaving it in would charge the free cash flow twice for the
+        # same 41,134 — once in the consideration and once again here.
+        d_wc = wc - wc_prev - (WC_ACQUIRED if n == 1 else 0.0)
         fcff = nopat + dna - capex - d_wc
         df = 1 / (1 + WACC) ** n
         ppe_close = ppe_open + capex - dna
@@ -840,22 +1184,27 @@ def build_case(case):
                   cash=cash_close,
                   debt=debt, payables=wc * WC_MIX['payables'],
                   due_to_rp=wc * WC_MIX['due_to_rp'],
-                  eosb=eosb_close, tax_payable=taxpay_close)
+                  eosb=eosb_close, tax_payable=taxpay_close,
+                  acquisition_liabilities=acq_liab, nci=nci_book)
         bs['total_assets'] = (bs['fixed_assets'] + bs['other_non_current'] + bs['jv_investment']
                               + bs['inventories'] + bs['receivables'] + bs['due_from_rp']
                               + bs['cash'])
         bs['total_liabilities'] = (bs['debt'] + bs['payables'] + bs['due_to_rp'] + bs['eosb']
-                                   + bs['tax_payable'])
+                                   + bs['tax_payable'] + bs['acquisition_liabilities'])
         # Equity is the residual of a balance sheet whose every other line is
         # driven. The roll-forward equity above is the independent check on it,
         # and the two must agree — asserted after the loop.
-        bs['equity_residual'] = bs['total_assets'] - bs['total_liabilities']
+        bs['equity_residual'] = bs['total_assets'] - bs['total_liabilities'] - nci_book
         bs['equity_rollforward'] = equity_close
         bs['balance_check'] = bs['equity_residual'] - equity_close
 
         rows.append(dict(
             year=y, avg_onshore_ad=a_on, avg_regional=a_rg, avg_jackup=a_ju, avg_island=a_is,
-            avg_ids=a_ids, day_rate_index=esc,
+            avg_ids=a_ids, avg_discrete=a_disc, avg_served=a_served,
+            day_rate_index=esc, ofs_intensity=intensity,
+            rev_onshore_ad_raw=r_on_raw, rev_regional_raw=r_rg_raw, rev_jackup_raw=r_ju_raw,
+            rev_island_raw=r_is_raw, rev_ids_raw=r_ids_raw,
+            calib_onshore=cal['onshore'], calib_offshore=cal['offshore'], calib_ofs=cal['ofs'],
             rev_onshore_ad=r_on, rev_regional=r_rg, rev_jackup=r_ju, rev_island=r_is,
             rev_ids=r_ids, unconventional=unconv, unconv_onshore=unconv_on,
             unconv_ofs=unconv_ofs,
@@ -884,21 +1233,79 @@ def build_case(case):
     roic_t = V('terminal_roic')
     nopat_t1 = rows[-1]['nopat'] * (1 + g)
     reinvest_rate = g / roic_t
-    tv = nopat_t1 * (1 - reinvest_rate) / (WACC - g)
+    # THE TERMINAL BLOCK IS CAPITALISED AT THE WEIGHTED COST OF CAPITAL — and this
+    # is a REVERSAL of a correction this study's own self-audit accepted and
+    # priced at -0.157 a share. It was implemented, and it did not survive
+    # implementation. The finding was that by 2030 the model's own balance sheet
+    # has the firm holding net cash, so the terminal rate should be the cost of
+    # equity rather than a leveraged weighted cost.
+    #
+    # It fails a coherence test against a correction accepted in the same pass.
+    # The capital-structure weights were moved from NET debt onto GROSS debt on
+    # the argument that interest is paid on the gross balance and cash is bridged
+    # separately — accept that, and a firm holding cash alongside undiminished
+    # gross borrowings has not de-levered at all. It still pays interest on the
+    # same debt and still earns the same tax shield. Reading the terminal capital
+    # structure off NET debt after refusing to read today's off net debt is the
+    # same quantity treated two ways in one model.
+    #
+    # Implementing it also produced a defect neither framing predicted: a rate
+    # that switches on the SIGN of terminal net debt is discontinuous, and a
+    # driver test caught it — raising the working-capital ratio cut the present
+    # value of the explicit five years by 546,000, flipped the 2030 firm into net
+    # debt, moved the capitalisation rate DOWN 32 basis points and lifted the
+    # answer. A heavier working-capital burden made the company more valuable.
+    # That is not a result, it is a kink.
+    #
+    # Terminal net debt is still computed and still published, because it is worth
+    # seeing. It just no longer sets the rate.
+    terminal_net_debt = rows[-1]['net_debt']
+    terminal_is_net_cash = terminal_net_debt < 0
+    terminal_rate = WACC
+    tv = nopat_t1 * (1 - reinvest_rate) / (terminal_rate - g)
     pv_tv = tv * rows[-1]['discount_factor']
     pv_explicit = sum(r['pv_fcff'] for r in rows)
-    ev = pv_explicit + pv_tv
-    equity = (ev + V('jvinv_1h26') + V('cash_1h26') - V('debt_1h26') - V('lease_1h26')
-              - V('nci_1h26') - V('finliab_1h26'))
+    ev_dec25 = pv_explicit + pv_tv
+    ev = roll_ev_to_jun26(ev_dec25)
+    br = bridge(ev, detail=True)
     return dict(case=case, rows=rows, terminal_growth=g, terminal_roic=roic_t,
                 terminal_nopat=nopat_t1, reinvestment_rate=reinvest_rate,
+                terminal_net_debt=terminal_net_debt, terminal_is_net_cash=terminal_is_net_cash,
+                terminal_rate=terminal_rate,
                 terminal_value=tv, pv_terminal=pv_tv, pv_explicit=pv_explicit,
-                enterprise_value=ev, tv_pct_of_ev=pv_tv / ev,
-                equity_value=equity, value_per_share_usd=equity / shares_out_k,
-                value_per_share_aed=equity / shares_out_k * V('fx_aed_usd'))
+                enterprise_value_dec25=ev_dec25, stub_fcff=FCFF_1H26,
+                enterprise_value=ev, tv_pct_of_ev=pv_tv / ev_dec25, bridge=br,
+                equity_value=br['equity_value'],
+                value_per_share_usd=br['value_per_share_usd'],
+                value_per_share_aed=br['value_per_share_aed'])
 
 
-CASE = {c: build_case(c) for c in ('A', 'B')}
+# ---- segment calibration to the company's own FY2026 guidance ----------------
+# The first edition reconciled to guidance at GROUP level (-1.8%) while the
+# segment build missed Oilfield Services by -9.6%. The company guides all three
+# segments, so the build is reconciled to all three: the ratio of guided to built
+# revenue becomes a persistent level correction on that segment's unit rate,
+# carried through every forecast year rather than plugged into 2026.
+# The factor is solved on the CONVENTIONAL part of each segment, which is the part
+# the unit rates build. The unconventional programme is contracted revenue on its
+# own schedule and is not scaled by a unit-rate correction; solving the factor over
+# the whole segment and then applying it to part of the segment would leave the
+# calibrated year short of the guidance it was solved against, which is what the
+# first edition did — it missed the group guide by 1.8% AFTER calibrating to it.
+_raw = build_case('A')
+_r0 = _raw['rows'][0]
+CALIB = dict(
+    onshore=((V('g26_rev_onshore') - _r0['unconv_onshore'])
+             / (_r0['rev_onshore_ad'] + _r0['rev_regional'])),
+    offshore=V('g26_rev_offshore') / _r0['seg_offshore'],
+    ofs=(V('g26_rev_ofs') - _r0['unconv_ofs']) / _r0['rev_ids'])
+CALIB_UNCALIBRATED = dict(onshore=_r0['seg_onshore'], offshore=_r0['seg_offshore'],
+                          ofs=_r0['seg_ofs'], total=_r0['revenue'],
+                          onshore_conventional=_r0['rev_onshore_ad'] + _r0['rev_regional'],
+                          offshore_conventional=_r0['seg_offshore'],
+                          ofs_conventional=_r0['rev_ids'])
+
+CASE = {c: build_case(c, CALIB) for c in ('A', 'B')}
 
 # ============================ OTHER LENSES ===================================
 with open(os.path.join(HERE, 'peers_raw.json')) as f:
@@ -945,18 +1352,39 @@ mult_mena, mult_land, mult_offs, mult_ofsg = (med(mena, 'ev_ebitda'), med(land, 
 blended_multiple = (seg_w['onshore'] / seg_tot * np.mean([mult_mena, mult_land])
                     + seg_w['offshore'] / seg_tot * np.mean([mult_mena, mult_offs])
                     + seg_w['ofs'] / seg_tot * mult_ofsg)
-rel_ev = blended_multiple * ebitda_fy26
-rel_equity = (rel_ev + V('jvinv_1h26') + V('cash_1h26') - V('debt_1h26') - V('lease_1h26')
-              - V('nci_1h26') - V('finliab_1h26'))
+
+# The multiple and the earnings it multiplies are now on the SAME basis, on two
+# counts the first edition got wrong in the same direction.
+#   TRAILING ON TRAILING. Every peer multiple in the table is an enterprise value
+#   struck today over the LAST TWELVE MONTHS of that peer's EBITDA. The first
+#   edition applied those trailing multiples to ADNOC Drilling's GUIDED FY2026
+#   EBITDA, which credits the company with a year of growth no peer in the
+#   denominator is credited with. The multiple is now applied to the same
+#   last-twelve-months EBITDA basis: audited FY2025 plus 1H-2026 less 1H-2025.
+#   EX-JOINT-VENTURE ON EX-JOINT-VENTURE. This company's reported EBITDA includes
+#   its share of the results of Enersol and Turnwell. The carrying value of those
+#   joint ventures is then added back on the bridge. Capitalising the earnings AND
+#   adding back the asset that produces them counts the joint ventures twice. The
+#   share of results is stripped out of the multiplied earnings; the carrying
+#   value stays in the bridge, which is the side of the pair that is observable.
+ltm_ebitda = H[2025]['ebitda'] + V('ebitda_1h26') - V('ebitda_1h25')
+ltm_jv = V('jv_fy25') + V('jv_1h26') - V('jv_1h25')
+ltm_ebitda_ex_jv = ltm_ebitda - ltm_jv
+rel_ev = blended_multiple * ltm_ebitda_ex_jv
+rel_bridge = bridge(rel_ev, detail=True)
 RELATIVE = dict(peers=peer_rows,
                 median_mena=mult_mena, median_land=mult_land, median_offshore=mult_offs,
                 median_ofs=mult_ofsg, blended_multiple=float(blended_multiple),
                 segment_weights={k: v / seg_tot for k, v in seg_w.items()},
-                applied_ebitda=ebitda_fy26, enterprise_value=float(rel_ev),
-                equity_value=float(rel_equity),
-                value_per_share_usd=float(rel_equity / shares_out_k),
-                value_per_share_aed=float(rel_equity / shares_out_k * V('fx_aed_usd')),
-                implied_own_ev_ebitda=float((mkt_cap + net_debt_now) / ebitda_fy26),
+                ltm_ebitda=float(ltm_ebitda), ltm_jv_share=float(ltm_jv),
+                guided_ebitda_fy26=float(ebitda_fy26),
+                applied_ebitda=float(ltm_ebitda_ex_jv), enterprise_value=float(rel_ev),
+                bridge=rel_bridge,
+                equity_value=float(rel_bridge['equity_value']),
+                value_per_share_usd=float(rel_bridge['value_per_share_usd']),
+                value_per_share_aed=float(rel_bridge['value_per_share_aed']),
+                implied_own_ev_ebitda=float((mkt_cap + gross_debt_now - V('cash_1h26'))
+                                            / ltm_ebitda_ex_jv),
                 median_pe_mena=med(mena, 'pe'), median_pe_land=med(land, 'pe'),
                 median_pe_offshore=med(offs, 'pe'), median_pe_ofs=med(ofsg, 'pe'))
 
@@ -964,29 +1392,65 @@ RELATIVE = dict(peers=peer_rows,
 # A return-on-equity franchise lens: the justified price-to-book of a business
 # earning ROE against a cost of equity, growing at g. P/B = (ROE - g)/(Ke - g).
 roe_fy25 = H[2025]['pat'] / avg(H[2024]['equity'], H[2025]['equity'])
-roe_sustainable = np.mean([H[y]['pat'] / avg(H[y - 1]['equity'] if y > 2023 else H[2023]['equity'],
-                                             H[y]['equity']) for y in (2024, 2025)])
+roe_historical = np.mean([H[y]['pat'] / avg(H[y - 1]['equity'] if y > 2023 else H[2023]['equity'],
+                                            H[y]['equity']) for y in (2024, 2025)])
+# The return that goes into a PERPETUAL formula has to be a return the business
+# can be held to in perpetuity, and this study already contains a forecast of
+# exactly that. The first edition used the FY2024-25 realised average, 36.7%. Its
+# own cash-flow model, on its own drivers, has the return falling as the capital
+# base grows into the fleet being built. Using the historical return here made the
+# book lens richer than the model that sits four sections above it, on nothing
+# more than the fact that the past was measured on a smaller balance sheet. The
+# 2030 return the model itself forecasts is the number used; the average across
+# the forecast window is published beside it so a reader can see the spread.
+_bk = CASE['A']['rows']
+roe_forecast_2030 = _bk[-1]['pat'] / avg(_bk[-2]['equity_close'], _bk[-1]['equity_close'])
+roe_forecast_mean = float(np.mean([r['pat'] / avg(r['equity_open'], r['equity_close'])
+                                   for r in _bk]))
+roe_sustainable = roe_forecast_2030
 g_book = V('terminal_growth_A')
 justified_pb = (roe_sustainable - g_book) / (ke_rating - g_book)
 book_equity_now = V('equity_1h26') - V('nci_1h26')
-BOOK = dict(roe_fy25=roe_fy25, roe_sustainable=roe_sustainable, justified_pb=justified_pb,
+_book_eq = (justified_pb * book_equity_now) * (1 + ke_rating) ** ANCHOR_YEARS
+BOOK = dict(roe_fy25=roe_fy25, roe_historical=float(roe_historical),
+            roe_forecast_2030=float(roe_forecast_2030), roe_forecast_mean=roe_forecast_mean,
+            roe_sustainable=float(roe_sustainable), justified_pb=justified_pb,
             cost_of_equity=ke_rating, growth=g_book, book_equity=book_equity_now,
-            equity_value=justified_pb * book_equity_now,
-            value_per_share_usd=justified_pb * book_equity_now / shares_out_k,
-            value_per_share_aed=justified_pb * book_equity_now / shares_out_k * V('fx_aed_usd'),
+            equity_value=_book_eq,
+            value_per_share_usd=_book_eq / shares_out_k,
+            value_per_share_aed=_book_eq / shares_out_k * V('fx_aed_usd'),
             current_pb=mkt_cap / book_equity_now)
 
 # --- normalised earnings power ------------------------------------------------
-# What the installed fleet earns at a mid-cycle utilisation and the conventional
-# margin the company itself guides to, capitalised at the cost of equity net of
-# the terminal growth rate. No fleet growth is credited.
+# What the fleet ALREADY INSTALLED earns at the margin the company itself guides
+# to, capitalised in perpetuity with no growth credited at all. This lens is the
+# floor of the set, and the first edition failed it in three separate places, each
+# of which made the floor higher than a floor can be. All three are corrected here.
+#
+#   (1) IT CAPITALISED AT A GROWTH-ADJUSTED RATE. The first edition divided by
+#       (WACC minus the terminal growth rate) while the text beside it said no
+#       growth was credited. A denominator of WACC-minus-g IS the growth credit:
+#       there is no other reason for the g to be there. A lens that credits no
+#       growth divides by the cost of capital, full stop. This is the single
+#       largest correction in the whole response and it is conceded in full.
+#   (2) IT PRICED A FLEET THAT IS NOT INSTALLED YET. It carried 14 island rigs
+#       and the 70 integrated-drilling-services rigs the company TARGETS for the
+#       end of 2026. At 30 June 2026 the company disclosed 13 island rigs and 61
+#       integrated rigs. A target is growth. The installed count is what an
+#       installed-fleet lens may price.
+#   (3) IT CHARGED LESS DEPRECIATION THAN THE FLEET IT PRICED CARRIES. It set
+#       normalised depreciation halfway between maintenance capital expenditure
+#       and the 2030 charge, which is the charge on a fleet larger than the one
+#       being valued. The fleet priced here is the fleet at 30 June 2026, so the
+#       depreciation is what that fleet carries: the annualised 1H-2026 charge.
 norm_units = dict(onshore=V('rigs_onshore_fy25'), regional=V('rigs_regional_2q26'),
-                  jackup=V('rigs_jackup_fy25'), island=14.0, ids=V('ids_target_fy26'))
+                  jackup=V('rigs_jackup_fy25'), island=V('rigs_island_2q26'),
+                  ids=V('ids_2q26') + V('discrete_2q26'))
 norm_rev = (norm_units['onshore'] * UNITS_H[2025]['rev_per_onshore_rig']
             + norm_units['regional'] * V('rev_per_rig_regional')
             + norm_units['jackup'] * REV_PER_JACKUP_25
             + norm_units['island'] * REV_PER_ISLAND_25
-            + norm_units['ids'] * UNITS_H[2025]['rev_per_ids_rig'])
+            + norm_units['ids'] * OFS_REV_PER_SERVED[2025])
 # The normalised margin is the company's own FY2026 guided group EBITDA margin —
 # the midpoint of the $2.2-2.3bn EBITDA range over the ~$5bn revenue guide. That
 # is deliberately the GROUP margin, not the "circa 50%" domestic-conventional
@@ -995,21 +1459,30 @@ norm_rev = (norm_units['onshore'] * UNITS_H[2025]['rev_per_onshore_rig']
 # margin to the whole revenue base would double-count the mix.
 norm_margin = (V('g26_ebitda_lo') + V('g26_ebitda_hi')) / 2 / V('g26_revenue')
 norm_ebitda = norm_rev * norm_margin
-# Normalised depreciation sits between maintenance capital expenditure (the
-# floor, since a fleet held flat must still be replaced) and the depreciation the
-# grown fleet carries by 2030.
-norm_dna = V('g_maint_capex') + (CASE['A']['rows'][-1]['dna'] - V('g_maint_capex')) * 0.5
+# Depreciation is the charge the fleet being priced actually carries: the 1H-2026
+# charge, annualised, which is measured on that fleet and no other. Two reference
+# points are carried beside it so the choice is visible rather than asserted —
+# maintenance capital expenditure, which is the floor a flat fleet must still
+# spend, and the 2030 charge, which belongs to a larger fleet this lens is not
+# permitted to price.
+norm_dna = V('dna_1h26') * 2
+norm_dna_maintenance_floor = V('g_maint_capex')
+norm_dna_2030_reference = CASE['A']['rows'][-1]['dna']
 norm_ebit = norm_ebitda - norm_dna
 norm_nopat = norm_ebit * (1 - V('tax_rate'))
-norm_ev = norm_nopat / (WACC - V('terminal_growth_B'))
-norm_equity = (norm_ev + V('jvinv_1h26') + V('cash_1h26') - V('debt_1h26') - V('lease_1h26')
-               - V('nci_1h26') - V('finliab_1h26'))
+norm_rate = WACC                      # no growth credited means no g in the denominator
+norm_ev = norm_nopat / norm_rate
+norm_bridge = bridge(norm_ev, detail=True)
 NORMALISED = dict(units=norm_units, revenue=norm_rev, ebitda=norm_ebitda,
-                  ebitda_margin=norm_ebitda / norm_rev, dna=norm_dna, ebit=norm_ebit,
-                  nopat=norm_nopat, capitalisation_rate=WACC - V('terminal_growth_B'),
-                  enterprise_value=norm_ev, equity_value=norm_equity,
-                  value_per_share_usd=norm_equity / shares_out_k,
-                  value_per_share_aed=norm_equity / shares_out_k * V('fx_aed_usd'))
+                  ebitda_margin=norm_ebitda / norm_rev, dna=norm_dna,
+                  dna_maintenance_floor=norm_dna_maintenance_floor,
+                  dna_2030_reference=norm_dna_2030_reference,
+                  ebit=norm_ebit,
+                  nopat=norm_nopat, capitalisation_rate=norm_rate,
+                  enterprise_value=norm_ev, bridge=norm_bridge,
+                  equity_value=norm_bridge['equity_value'],
+                  value_per_share_usd=norm_bridge['value_per_share_usd'],
+                  value_per_share_aed=norm_bridge['value_per_share_aed'])
 
 # ============================ SENSITIVITY ====================================
 def revalue(wacc=None, g=None, margin_shift=0.0, case='A'):
@@ -1025,11 +1498,15 @@ def revalue(wacc=None, g=None, margin_shift=0.0, case='A'):
         pv += f / (1 + w) ** n
         tot = nopat
     nopat_t1 = tot * (1 + gg)
-    tv = nopat_t1 * (1 - gg / V('terminal_roic')) / (w - gg)
-    ev = pv + tv / (1 + w) ** len(rows)
-    eq = (ev + V('jvinv_1h26') + V('cash_1h26') - V('debt_1h26') - V('lease_1h26')
-          - V('nci_1h26') - V('finliab_1h26'))
-    return eq / shares_out_k * V('fx_aed_usd')
+    # The terminal rate follows the same rule the base case follows: the terminal
+    # capital structure, not today's. A sensitivity that moved the weighted cost
+    # of capital but left the terminal rate behind would be measuring something
+    # the model does not do.
+    t_rate = w
+    tv = nopat_t1 * (1 - gg / V('terminal_roic')) / (t_rate - gg)
+    ev_dec25 = pv + tv / (1 + w) ** len(rows)
+    return bridge(ev_dec25 * (1 + w) ** STUB_YEARS
+                  - FCFF_1H26 * (1 + w) ** (STUB_YEARS / 2))
 
 
 WACC_GRID = [round(WACC + d, 6) for d in (-0.010, -0.005, 0.0, 0.005, 0.010)]
@@ -1040,9 +1517,9 @@ SENS = dict(
     margin_shift=[dict(shift=s, aed=revalue(margin_shift=s))
                   for s in (-0.04, -0.02, 0.0, 0.02, 0.04)],
     beta_grid=[dict(beta=b,
-                    aed=revalue(wacc=(mkt_cap / (mkt_cap + net_debt_now))
+                    aed=revalue(wacc=(mkt_cap / (mkt_cap + gross_debt_now))
                                 * (rf_star + b * V('erp_rating'))
-                                + (net_debt_now / (mkt_cap + net_debt_now)) * kd_after_tax))
+                                + (gross_debt_now / (mkt_cap + gross_debt_now)) * kd_after_tax))
                # The grid spans the whole robustness set: the equal-weight-composite
                # beta at the bottom, the adopted index beta in the middle, and the
                # top of its own 90% interval — which reaches 1.01 — at the top.
@@ -1057,11 +1534,14 @@ assert kd_pretax > sovereign_floor, ("marginal cost of debt must exceed the sove
 assert kd_pretax > rf_star * 0.5, "cost of debt implausibly low"
 for c in ('A', 'B'):
     r = CASE[c]
-    assert r['terminal_growth'] < WACC, (c, "terminal growth exceeds the discount rate")
+    assert r['terminal_growth'] < r['terminal_rate'], (c, "terminal growth exceeds its rate")
     assert 0 < r['reinvestment_rate'] < 1, (c, r['reinvestment_rate'])
-    bridge = (r['enterprise_value'] + V('jvinv_1h26') + V('cash_1h26') - V('debt_1h26')
-              - V('lease_1h26') - V('nci_1h26') - V('finliab_1h26'))
-    assert abs(bridge - r['equity_value']) < 1.0, (c, "bridge does not close")
+    _b = r['bridge']
+    assert abs(_b['equity_30jun26'] - (r['enterprise_value'] + V('jvinv_1h26') + V('cash_1h26')
+                                      - V('debt_1h26') - V('lease_1h26')
+                                      - V('finliab_1h26'))) < 1.0, (c, "bridge does not close")
+    # the minority is deducted exactly once, through the put and not also as NCI
+    assert 'nci' not in _b, (c, "the bridge must not carry a separate minority deduction")
     assert 0.3 < r['tv_pct_of_ev'] < 0.95, (c, r['tv_pct_of_ev'])
     dfs = [x['discount_factor'] for x in r['rows']]
     assert all(dfs[i] > dfs[i + 1] for i in range(len(dfs) - 1)), "discount factors not decreasing"
@@ -1075,7 +1555,8 @@ for c in ('A', 'B'):
         b = x['balance_sheet']
         assert abs(b['balance_check']) < 25.0, (c, x['year'], "balance sheet does not tie",
                                                 b['balance_check'])
-        assert abs(b['total_assets'] - (b['total_liabilities'] + b['equity_residual'])) < 1e-6
+        assert abs(b['total_assets'] - (b['total_liabilities'] + b['equity_residual']
+                                        + b['nci'])) < 1e-6
         assert x['revenue'] > 0 and x['ebitda'] > 0 and x['cash_close'] > 0
 # FY2026 build must reconcile to the company's own guidance
 g26 = CASE['A']['rows'][0]
@@ -1100,8 +1581,8 @@ def _quartiles(vals):
 
 
 def _pb_at(ke):
-    return (roe_sustainable - g_book) / (ke - g_book) * book_equity_now / shares_out_k \
-        * V('fx_aed_usd')
+    return ((roe_sustainable - g_book) / (ke - g_book) * book_equity_now
+            * (1 + ke) ** ANCHOR_YEARS) / shares_out_k * V('fx_aed_usd')
 
 
 _rel_lo_mult, _rel_hi_mult = _quartiles([r['ev_ebitda'] for r in peer_rows])
@@ -1110,17 +1591,11 @@ _norm_hi = norm_rev * (norm_margin + 0.02)
 
 
 def _norm_ps(eb):
-    ev = (eb - norm_dna) * (1 - V('tax_rate')) / (WACC - V('terminal_growth_B'))
-    eq = (ev + V('jvinv_1h26') + V('cash_1h26') - V('debt_1h26') - V('lease_1h26')
-          - V('nci_1h26') - V('finliab_1h26'))
-    return eq / shares_out_k * V('fx_aed_usd')
+    return bridge((eb - norm_dna) * (1 - V('tax_rate')) / norm_rate)
 
 
 def _rel_ps(mult):
-    ev = mult * ebitda_fy26
-    eq = (ev + V('jvinv_1h26') + V('cash_1h26') - V('debt_1h26') - V('lease_1h26')
-          - V('nci_1h26') - V('finliab_1h26'))
-    return eq / shares_out_k * V('fx_aed_usd')
+    return bridge(mult * ltm_ebitda_ex_jv)
 
 
 # Bear and bull for each lens are the SAME lens re-run on a stated stress, not a
@@ -1165,6 +1640,21 @@ OUT = dict(
                         cost_driver=COST_DRIVER, cost_escalator=COST_ESCALATOR,
                         base_units_fy25=BASE_UNITS_25,
                         depreciation_rate=DEP_RATE, wc_pct_revenue=float(WC_PCT_REVENUE),
+                        wc_pct_revenue_organic=float(WC_PCT_REVENUE_ORGANIC),
+                        wc_pct_revenue_historical=WC_PCT_REVENUE_HIST,
+                        wc_1h26=float(WC_1H26), wc_acquired=float(WC_ACQUIRED),
+                        rev_1h26_annualised=float(REV_1H26_ANNUALISED),
+                        ofs_served={str(k): v for k, v in OFS_SERVED.items()},
+                        ofs_conventional_revenue={str(k): v for k, v in OFS_CONV.items()},
+                        ofs_rev_per_served={str(k): v for k, v in OFS_REV_PER_SERVED.items()},
+                        ofs_intensity_realised=float(OFS_INTENSITY_REALISED),
+                        segment_calibration=CALIB,
+                        segment_uncalibrated=CALIB_UNCALIBRATED,
+                        acquisition_entry=ACQ_ENTRY,
+                        ofs_solve_infeasible=OFS_SOLVE_INFEASIBLE,
+                        gna_ex_da_fy25=GNA_EX_DA_FY25,
+                        fcff_1h26=FCFF_1H26, stub_years=STUB_YEARS,
+                        anchor_years=ANCHOR_YEARS,
                         unconventional_cost_fy25=unconv_cost_fy25),
     wacc=dict(rf_observed=V('ust10'), us_default_spread=V('us_default_spread'), rf_star=rf_star,
               beta=BETA, erp_rating=V('erp_rating'), erp_cds=V('erp_cds'),
@@ -1172,6 +1662,7 @@ OUT = dict(
               kd_candidates=KD_CANDIDATES, kd_passing_sovereign_floor=list(KD_PASS),
               sovereign_floor=sovereign_floor, kd_pretax=kd_pretax, kd_after_tax=kd_after_tax,
               tax_rate=V('tax_rate'), market_cap=mkt_cap, net_debt=net_debt_now,
+              gross_debt=gross_debt_now,
               weight_equity=w_e, weight_debt=w_d,
               wacc_rating=wacc_rating, wacc_cds=wacc_cds, wacc_used=WACC),
     market=dict(spot_aed=V('spot_aed'), spot_usd=spot_usd, fx=V('fx_aed_usd'),

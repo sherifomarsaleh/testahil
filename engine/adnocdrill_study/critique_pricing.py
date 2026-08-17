@@ -1,12 +1,21 @@
-"""Price every critique finding before judging it.
+"""ADNOC Drilling — every critique finding, PRICED BEFORE IT IS JUDGED.
 
-One entry per finding that touches a number. Each re-runs the valuation with
-ONE thing changed and reports the move in the weighted central, in dirhams per
-share and as a percentage of it. The combined package is re-derived in full
-because it exceeds the 5% escalation threshold.
+FROZEN. This file is the record of the pricing pass, and it was run against the
+FIRST EDITION of the model. It must not be re-run against the current one: every
+accepted finding is now inside the baseline, so applying one again applies it
+twice and the output becomes nonsense — the gross-debt row would read "8.01% not
+8.01%". The question this file answered was "what would this be worth". The
+question that comes after it is "did it reach the model", and that is answered by
+implementation_check.py.
 
-Findings that touch no number are priced at zero explicitly rather than being
-called immaterial without one.
+The guard below refuses to run against a corrected baseline rather than printing
+a plausible-looking table nobody would think to distrust. The record of the pass
+itself is preserved in critique_pricing.json.
+
+One entry per finding that touches a number. Each re-runs the valuation with ONE
+thing changed and reports the move in the weighted central, in dirhams per share
+and as a percentage of it. Findings that touch no number are priced at zero
+explicitly rather than being called immaterial without one.
 """
 import json, os, sys
 
@@ -15,6 +24,16 @@ sys.path.insert(0, HERE)
 sys.path.insert(0, os.path.join(HERE, '..'))
 import numpy as np
 import compute as C
+
+# --- the guard ---------------------------------------------------------------
+# One unambiguous fingerprint of the corrected model: its bridge no longer carries
+# a separate minority deduction.
+if 'nci' not in C.CASE['A']['bridge']:
+    raise SystemExit(
+        'critique_pricing.py is FROZEN against the first edition, and this is the corrected\n'
+        'model: every finding below is already applied, so pricing it again would apply it\n'
+        'twice. The record of that pass is critique_pricing.json. Whether each finding\n'
+        'actually reached the model is answered by implementation_check.py.')
 
 BASE = C.central
 SPOT = C.V('spot_aed')

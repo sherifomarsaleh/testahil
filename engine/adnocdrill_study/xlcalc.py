@@ -19,6 +19,10 @@ import re
 from openpyxl.utils import range_boundaries, get_column_letter
 
 FUNC = re.compile(r'\b(SUM|MIN|MAX|MEDIAN|AVERAGE)\(([^()]*)\)')
+# IF is parsed separately: its arguments are an inequality and two values, not a
+# list of numbers, so it cannot go through arg_values.
+IFFN = re.compile(r'\bIF\(([^()]*)\)')
+COMPARE = re.compile(r'^(.*?)(<=|>=|<>|<|>|=)(.*)$')
 # An UNQUOTED sheet name may not contain a hyphen or a space: every sheet in this workbook
 # whose name does is written quoted. Allowing them made "C34-Assumptions!$C$45" parse as a
 # reference to a sheet called "C34-Assumptions", which silently swallowed the subtraction.
@@ -79,8 +83,44 @@ class Book:
             return self.range_values(tgt, rng.replace('$', ''))
         return [float(self.evaluate(part, sheet)) for part in arg.split(',') if part.strip()]
 
+    @staticmethod
+    def split_args(arg):
+        """Split on commas that are not inside brackets."""
+        out, depth, cur = [], 0, ''
+        for ch in arg:
+            if ch == '(':
+                depth += 1
+            elif ch == ')':
+                depth -= 1
+            if ch == ',' and depth == 0:
+                out.append(cur); cur = ''
+            else:
+                cur += ch
+        out.append(cur)
+        return [x.strip() for x in out]
+
     def evaluate(self, expr, sheet):
         e = expr
+        # IF(condition, then, else) — resolved before anything else, because its
+        # branches are expressions rather than a list of numbers
+        while True:
+            m = IFFN.search(e)
+            if not m:
+                break
+            parts = self.split_args(m.group(1))
+            if len(parts) != 3:
+                raise ValueError(f'IF takes three arguments: {expr!r}')
+            cond, then, other = parts
+            cm = COMPARE.match(cond)
+            if not cm:
+                raise ValueError(f'unparsed IF condition: {cond!r}')
+            lhs = float(self.evaluate(cm.group(1), sheet))
+            rhs = float(self.evaluate(cm.group(3), sheet))
+            op = cm.group(2)
+            hit = {'<': lhs < rhs, '>': lhs > rhs, '<=': lhs <= rhs, '>=': lhs >= rhs,
+                   '=': lhs == rhs, '<>': lhs != rhs}[op]
+            val = float(self.evaluate(then if hit else other, sheet))
+            e = e[:m.start()] + repr(val) + e[m.end():]
         # functions over ranges or scalar lists (possibly cross-sheet)
         while True:
             m = FUNC.search(e)

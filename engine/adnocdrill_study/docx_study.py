@@ -77,25 +77,40 @@ d.box([
      f'peg of {FX} dirhams to the dollar.'),
     ('One judgement, computed both ways. ', 'The most consequential question in this study — '
      'what happens to drilling demand once Abu Dhabi\'s production-capacity target is met — has '
-     'two defensible answers. Both are computed in full and published side by side. Neither is '
-     'averaged away.'),
+     'two defensible answers. Both are computed in full and published side by side, and both '
+     'appear in the summary table as separate lines. They are NOT collapsed into a single '
+     'cash-flow answer before the reader sees them. They do, however, both enter the weighted '
+     'central figure, at a quarter of the weight each — so that figure is a blend of the two, '
+     'and a reader who holds a view on which future arrives should read the case that matches '
+     'it rather than the blend.'),
 ])
+
+# Counts used in prose. Computed, never written: an earlier edition asserted that
+# the market price sat above every lens, which had been true of an earlier set of
+# numbers and was not re-read against the current ones.
+_ABOVE_SPOT = [k for k, v in FV['by_lens'].items() if v > FV['spot']]
+_NW_H = {0: 'none', 1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'all five'}
 
 # ============================== 2. HEADLINE ==================================
 H_1('Headline')
-P(f'ADNOC Drilling trades at AED {SPOT:.2f}. Five independent lenses put fair value between '
+P(f'ADNOC Drilling trades at AED {SPOT:.2f}. Five lenses put fair value between '
   f'AED {FV["low"]:.2f} and AED {FV["high"]:.2f}, with a weighted central of '
   f'AED {FV["central"]:.2f} — {pc(abs(FV["upside_central"]))} '
-  f'{"below" if FV["upside_central"] < 0 else "above"} the market — and the market price sits '
-  f'above every one of the five lenses. The company is priced for the continuation of a '
+  f'{"below" if FV["upside_central"] < 0 else "above"} the market. '
+  f'{"The market price sits above every one of the five lenses. " if not _ABOVE_SPOT else ""}'
+  f'{"" if not _ABOVE_SPOT else ("The market price sits above " + _NW_H[5 - len(_ABOVE_SPOT)] + " of the five lenses and below " + _NW_H[len(_ABOVE_SPOT)] + ". ")}'
+  f'The company is priced for the continuation of a '
   f'programme that its own customer has not yet extended beyond 2027, and for a cost of capital '
   f'at the defensive end of what its own trading record supports.')
 P('Three things carry the analysis.', bold=True, space_after=3)
 d.bullet('The business is an exceptional operator on almost any measure. Revenue compounded '
          f'from USD {bn(H["2023"]["revenue"])}bn in 2023 to USD {bn(H["2025"]["revenue"])}bn in '
-         f'2025, EBITDA margins have run between {pc(H["2023"]["ebitda_margin"])} and '
-         f'{pc(H["2024"]["ebitda_margin"])}, and the return on capital employed was '
-         f'{pc(H["2025"]["roic"],0)} in 2025 and unchanged in the first half of 2026. Very few '
+         f'2025, EBITDA margins have run between '
+         f'{pc(min(H[str(y)]["ebitda_margin"] for y in (2023, 2024, 2025)))} and '
+         f'{pc(max(H[str(y)]["ebitda_margin"] for y in (2023, 2024, 2025)))} across the three '
+         f'audited years, and the return on capital employed was '
+         f'{pc(H["2025"]["roic"],1)} in 2025 and broadly unchanged in the first half of 2026. '
+         'Very few '
          'listed drillers anywhere earn that on that scale.',
          bold_head='It is a very good business. ')
 d.bullet('Every rig works for one customer group. Revenue is billed to ADNOC Onshore, ADNOC '
@@ -107,8 +122,9 @@ d.bullet('Every rig works for one customer group. Revenue is billed to ADNOC Ons
 d.bullet('First-half 2026 revenue grew 4% against 22% for full-year 2025. The company has '
          'reaffirmed roughly USD 5 billion of revenue for 2026 and has explicitly declined to '
          'guide 2027 until rig and services phasing is fixed. The market is paying '
-         f'{REL["implied_own_ev_ebitda"]:.1f} times guided EBITDA against a segment-weighted '
-         f'peer median of {REL["blended_multiple"]:.1f} times. That gap is the whole argument.',
+         f'{REL["implied_own_ev_ebitda"]:.1f} times its own last-twelve-month EBITDA against a '
+         f'segment-weighted peer median of {REL["blended_multiple"]:.1f} times struck the same '
+         'way. That gap is the whole argument.',
          bold_head='The growth rate has already turned. ')
 
 d.figure(os.path.join(HERE, 'fig1_football.png'), 6.9,
@@ -141,8 +157,12 @@ d.caption('The terminal-value share is shown beside each discounted-cash-flow le
 
 P('Why the two discounted-cash-flow cases carry equal weight and half the total: they are the '
   'same model on two different answers to one question, and the study does not claim to know '
-  'which is right. Averaging them into a single case would hide exactly the uncertainty the '
-  'reader needs to see.')
+  'which is right. They are published as separate lines above and are never collapsed into one '
+  'cash-flow number. They do both feed the weighted central, at a quarter of the weight each, '
+  f'so that single figure of AED {FV["central"]:.2f} is a blend — which is precisely why the '
+  f'two cases are shown beside it, at AED {CA["value_per_share_aed"]:.2f} and AED '
+  f'{CB["value_per_share_aed"]:.2f}. A reader who holds a view on which future arrives should '
+  'read the case, not the blend.')
 
 # ============================== 4. COMPANY OVERVIEW ==========================
 H_1('Company overview')
@@ -246,22 +266,49 @@ for lbl, a, b_, note in BR:
 rows.append(['Terminal value as a share of enterprise value', pc(CA['tv_pct_of_ev']),
              pc(CB['tv_pct_of_ev']),
              'More than seven-tenths of the answer sits beyond 2030 in both cases'])
-for lbl, key, sign in (('add investment in joint ventures', 'jvinv_1h26', 1),
-                       ('add cash and cash equivalents', 'cash_1h26', 1),
-                       ('less borrowings', 'debt_1h26', -1),
-                       ('less lease liabilities', 'lease_1h26', -1),
-                       ('less non-controlling interests', 'nci_1h26', -1),
-                       ('less the financial liability over the acquired minorities',
-                        'finliab_1h26', -1)):
+rows.append(['carried forward half a year at the cost of capital',
+             mn(CA['enterprise_value'] - CA['enterprise_value_dec25'] + UE['fcff_1h26']
+                * (1 + W['wacc_rating']) ** 0.25),
+             mn(CB['enterprise_value'] - CB['enterprise_value_dec25'] + UE['fcff_1h26']
+                * (1 + W['wacc_rating']) ** 0.25),
+             'Discounting 2026 by a full year dates the figure above at 31 December 2025; the '
+             'balance sheet beneath it is dated 30 June 2026. The gap is closed rather than '
+             'ignored'])
+_stub_pv = UE['fcff_1h26'] * (1 + W['wacc_rating']) ** 0.25
+rows.append(['less the free cash flow actually generated over that half year',
+             f'({mn(_stub_pv)})', f'({mn(_stub_pv)})',
+             'Reported, not forecast. Cash the enterprise has already handed out is no longer '
+             'inside it'])
+rows.append(['Enterprise value at 30 June 2026', mn(CA['enterprise_value']),
+             mn(CB['enterprise_value']), 'On the same date as every line below'])
+for lbl, key, sign, note in (
+        ('add investment in joint ventures', 'jvinv_1h26', 1,
+         'Enersol and Turnwell at carrying value; their earnings are outside the discounted '
+         'cash flow, so the stake is added here'),
+        ('add cash and cash equivalents', 'cash_1h26', 1, ''),
+        ('less borrowings', 'debt_1h26', -1, ''),
+        ('less lease liabilities', 'lease_1h26', -1, ''),
+        ('less the financial liability over the acquired minorities', 'finliab_1h26', -1,
+         'The present value of the price at which the parent may be required to buy the 30% of '
+         'the Sea and Land holding and the 20% of the MBPS holding it does not own. The '
+         'minority interests reported at 30 June 2026 are NOT deducted as well: that is the '
+         'same claim under a second name, and the company has already charged a matching '
+         'reserve against owners equity for it')):
     v = V(key)
-    s = mn(v) if sign > 0 else f'({mn(v)})'
-    rows.append([lbl, s, s, ''])
+    st = mn(v) if sign > 0 else f'({mn(v)})'
+    rows.append([lbl, st, st, note])
+rows.append(['Equity value at 30 June 2026', mn(CA['bridge']['equity_30jun26']),
+             mn(CB['bridge']['equity_30jun26']), ''])
+rows.append([f'accreted {V("days_jun26_to_anchor"):.0f} days to the price anchor at the cost '
+             f'of equity', mn(CA['bridge']['accretion']), mn(CB['bridge']['accretion']),
+             'The remaining days between the balance-sheet date and the share price this value '
+             'is compared against'])
 rows.append(['Equity value', mn(CA['equity_value']), mn(CB['equity_value']), ''])
 rows.append(['Shares outstanding (million)', f'{SH/1e3:,.0f}', f'{SH/1e3:,.0f}',
              'Issued shares less the shares the appointed market maker holds'])
 rows.append(['Value per share (AED)', f'{CA["value_per_share_aed"]:.2f}',
              f'{CB["value_per_share_aed"]:.2f}', 'Converted at the peg'])
-T(rows, [2.65, 1.18, 1.18, 2.02], band_rows={3, 4, 12, 14})
+T(rows, [2.65, 1.18, 1.18, 2.02], band_rows={3, 4, 15, 20, 22}, size=8.4)
 
 H_2('1.2 Book value and sustainable return')
 P(f'A business earning a return on equity of {pc(BOOK["roe_sustainable"])} against a cost of '
@@ -301,27 +348,54 @@ rows.append(['Segment-weighted multiple', f'{REL["blended_multiple"]:.2f}x', '',
 rows.append(["ADNOC Drilling's own multiple at AED %.2f" % SPOT,
              f'{REL["implied_own_ev_ebitda"]:.2f}x', '', '', ''])
 T(rows, [2.75, 1.15, 1.25, 0.95, 0.93], band_rows={8, 9})
-P(f'Applying {REL["blended_multiple"]:.2f} times to the reaffirmed FY2026 EBITDA guidance '
-  f'midpoint of USD {bn(REL["applied_ebitda"])}bn gives an enterprise value of USD '
-  f'{bn(REL["enterprise_value"])}bn and, through the same bridge, AED '
-  f'{REL["value_per_share_aed"]:.2f} a share. This is the lens that sits furthest below the '
-  'market price, and the reason is a single observable fact: the shares are valued at '
-  f'{REL["implied_own_ev_ebitda"]:.1f} times guided EBITDA when the closest regional comparators '
-  f'— two drillers serving national oil companies on multi-year contracts — trade at '
-  f'{REL["median_mena"]:.1f} times and the global land drillers at {REL["median_land"]:.1f} '
+P('The multiple and the earnings it is applied to are put on the same footing, on two counts '
+  'that both cut the same way. Every multiple in the table above is an enterprise value struck '
+  'today over that company\'s LAST TWELVE MONTHS of EBITDA, so this company\'s earnings are '
+  'measured the same way — audited 2025 plus the first half of 2026 less the first half of '
+  f'2025, or USD {bn(REL["ltm_ebitda"])}bn — rather than on the guided 2026 figure of USD '
+  f'{bn(REL["guided_ebitda_fy26"])}bn, which would credit this company with a year of growth no '
+  'peer in the denominator is credited with. And the share of joint-venture results inside that '
+  f'number, USD {REL["ltm_jv_share"]/1e3:,.0f} million, is taken out, because the carrying value '
+  'of those joint ventures is added back on the bridge — capitalising the earnings and adding '
+  'back the asset that produces them would count them twice.', space_after=4)
+P(f'Applying {REL["blended_multiple"]:.2f} times to USD {bn(REL["applied_ebitda"])}bn on that '
+  f'basis gives an enterprise value of USD {bn(REL["enterprise_value"])}bn and, through the same '
+  f'bridge, AED {REL["value_per_share_aed"]:.2f} a share. This is the lens that sits furthest '
+  'below the market price, and the reason is a single observable fact: the shares are valued at '
+  f'{REL["implied_own_ev_ebitda"]:.1f} times the same trailing EBITDA when the closest regional '
+  f'comparators — two drillers serving national oil companies on multi-year contracts — trade '
+  f'at {REL["median_mena"]:.1f} times and the global land drillers at {REL["median_land"]:.1f} '
   'times. A premium is defensible; the size of it is the question.')
 
 H_2('1.4 Normalised earnings power')
-P('This lens asks what the fleet the company already owns or has taken delivery of earns at the '
-  'margin management itself guides to, with no growth credited at all, and capitalises it.',
-  space_after=4)
+P('This lens asks what the fleet the company had ALREADY TAKEN DELIVERY OF at 30 June 2026 '
+  'earns at the margin management itself guides to, with no growth credited at all, and '
+  'capitalises it in perpetuity. It is the floor of the set, and three things about it are '
+  'worth stating before the table, because an earlier edition of this study got all three '
+  'wrong in the same direction.', space_after=4)
+d.bullet('It is capitalised at the cost of capital itself, with nothing subtracted from the '
+         'denominator for growth. A denominator of cost-of-capital-less-growth IS a growth '
+         'credit; there is no other reason for a growth rate to appear in it, and a lens that '
+         'says it credits none may not have one.', bold_head='No growth in the denominator. ')
+d.bullet('The counts below are the ones the company reported at 30 June 2026 — including '
+         f'{NORM["units"]["island"]:.0f} island rigs and '
+         f'{V("ids_2q26"):.0f} integrated-services rigs — not the '
+         f'{V("ids_target_fy26"):.0f} integrated rigs the company TARGETS for the end of 2026. '
+         'A target is growth.', bold_head='Delivered, not targeted. ')
+d.bullet('The charge is the first-half 2026 depreciation annualised, which is what the fleet '
+         'being priced actually carries. The 2030 charge this study forecasts, USD '
+         f'{NORM["dna_2030_reference"]/1e3:,.0f} million, belongs to a larger fleet and is not '
+         'available to this lens; the maintenance capital expenditure of USD '
+         f'{NORM["dna_maintenance_floor"]/1e3:,.0f} million is a spending floor, not a '
+         'depreciation charge.', bold_head='The depreciation this fleet carries. ')
 rows = [['', 'Units', 'Revenue per rig-year (USD mn)', 'Revenue (USD mn)']]
 NU = NORM['units']
 for lbl, key, rate in (('Abu Dhabi onshore rigs', 'onshore', U['2025']['rev_per_onshore_rig']),
                        ('Regional onshore rigs', 'regional', V('rev_per_rig_regional')),
                        ('Jack-up rigs', 'jackup', UE['rev_per_jackup_fy25']),
                        ('Island rigs', 'island', UE['rev_per_island_fy25']),
-                       ('Integrated-services rigs', 'ids', U['2025']['rev_per_ids_rig'])):
+                       ('Rigs served by oilfield services', 'ids',
+                        UE['ofs_rev_per_served']['2025'])):
     rows.append([lbl, f'{NU[key]:.0f}', f'{rate/1e3:.1f}', mn(NU[key] * rate)])
 rows.append(['Normalised revenue', '', '', mn(NORM['revenue'])])
 rows.append([f'Normalised EBITDA at the guided margin of {pc(NORM["ebitda_margin"])}', '', '',
@@ -330,22 +404,25 @@ rows.append(['less normalised depreciation and amortisation', '', '', f'({mn(NOR
 rows.append(['Normalised EBIT', '', '', mn(NORM['ebit'])])
 rows.append([f'Normalised NOPAT after tax at {pc(V("tax_rate"),0)}', '', '',
              mn(NORM['nopat'])])
-rows.append([f'Capitalised at {pc(NORM["capitalisation_rate"], 2)}', '', '',
-             mn(NORM['enterprise_value'])])
+rows.append([f'Capitalised at the cost of capital of {pc(NORM["capitalisation_rate"], 2)}, with '
+             f'no growth deducted from it', '', '', mn(NORM['enterprise_value'])])
 rows.append(['Value per share (AED)', '', '', f'{NORM["value_per_share_aed"]:.2f}'])
 T(rows, [2.90, 0.85, 1.75, 1.55], band_rows={6, 7, 9, 10, 11, 12})
 
 H_2('1.5 Synthesis — four lenses, one field')
+P('Four methods, five readings: the cash-flow method is run on two different futures and each '
+  'is reported as its own line, which is why the heading says four and the table below says '
+  'five.', space_after=4)
 P(f'The five readings span AED {FV["low"]:.2f} to AED {FV["high"]:.2f}, and the width is '
   'informative rather than embarrassing: the multiple lens sits well below the rest because it '
   'reads the company as one of a class of drillers, while the cash-flow and franchise lenses '
   'read it as a business earning an exceptional return on a modest asset base. What has changed '
   'since the cost of capital was rebuilt on the published index is where the market price sits '
   f'relative to that field. At a cost of capital of {pc(W["wacc_rating"], 2)} the market price '
-  f'of AED {SPOT:.2f} is above every one of the five lenses, not merely above the weighted central. That is a '
-  'stronger statement than this study made on a lower beta, and it rests on a single input — so '
-  'the beta table in section 1.8 and the beta row of the sensitivity in section 1.9 should be '
-  'read before the conclusion is.')
+  f'of AED {SPOT:.2f} sits above {_NW_H[5 - len(_ABOVE_SPOT)]} of the five lenses'
+  f'{"" if not _ABOVE_SPOT else " and below " + _NW_H[len(_ABOVE_SPOT)]}, and above the '
+  'weighted central. The conclusion rests heavily on one input — so the beta table in section '
+  '1.8 and the beta row of the sensitivity in section 1.9 should be read before it is.')
 
 H_2('1.6 Drivers')
 P('Revenue is built from the bottom up: rigs in service times revenue per rig-year, by class, '
@@ -365,8 +442,121 @@ T(rows, [3.30, 1.20, 1.20, 1.20])
 P('The onshore rate rose from 2023 to 2024 and then fell back in 2025; it is not a trend, so '
   f'the forecast escalates it at {pc(V("esc_dayrate"), 1)}, the domestic inflation rate, rather '
   'than extrapolating the 2024 step. The offshore rate rose steadily as jack-ups and island '
-  'rigs came into service. The integrated-services rate is the cleanest growth story in the '
-  'business and the least contracted.')
+  'rigs came into service.', space_after=4)
+
+P('Oilfield services needs two volume drivers, not one.', bold=True, space_after=3)
+P('The company discloses TWO rig populations that this segment serves, and they are different '
+  'populations. One is the integrated-drilling-services fleet, which it reports at '
+  f'{V("ids_fy24"):.0f} rigs at the end of 2024 and {V("ids_fy25"):.0f} at the end of 2025. '
+  'The other is the rigs given at least one discrete service, reported separately at '
+  f'{V("discrete_fy24"):.0f} and {V("discrete_fy25"):.0f} over the same two year ends. An '
+  'earlier edition of this study built the segment on the first population alone. That is not a '
+  'simplification, it is a build the company\'s own numbers refute: solve for one constant '
+  'revenue rate on each population across the two disclosed years and the integrated rate comes '
+  f'out at MINUS USD {abs(UE["ofs_solve_infeasible"]["implied_ids_rate"])/1e3:,.1f} million a '
+  'rig. A negative price is not a rounding problem; it says the one-driver model cannot be '
+  'made to fit.', space_after=4)
+rows = [['Oilfield services', 'FY2024', 'FY2025']]
+rows.append(['Integrated-services rigs at year end',
+             f'{V("ids_fy24"):.0f}', f'{V("ids_fy25"):.0f}'])
+rows.append(['Rigs given at least one discrete service',
+             f'{V("discrete_fy24"):.0f}', f'{V("discrete_fy25"):.0f}'])
+rows.append(['Rigs served, total', f'{UE["ofs_served"]["2024"]:.0f}',
+             f'{UE["ofs_served"]["2025"]:.0f}'])
+rows.append(['Segment revenue excluding the unconventional programme (USD mn)',
+             mn(UE['ofs_conventional_revenue']['2024']),
+             mn(UE['ofs_conventional_revenue']['2025'])])
+rows.append(['Revenue per rig served (USD mn)',
+             f'{UE["ofs_rev_per_served"]["2024"]/1e3:.2f}',
+             f'{UE["ofs_rev_per_served"]["2025"]/1e3:.2f}'])
+rows.append(['Realised growth in revenue per rig served', '',
+             pc(UE['ofs_intensity_realised'], 1)])
+T(rows, [3.90, 1.40, 1.40], band_rows={3, 6})
+P('The forecast carries both populations and lets the revenue per rig served grow at the rate '
+  f'the company actually achieved between the two disclosed years, {pc(UE["ofs_intensity_realised"], 1)}, '
+  f'fading linearly to the contract escalator of {pc(V("esc_dayrate"), 1)} by the end of the '
+  'window. It fades because a gain of that size in revenue per rig served is a mix and '
+  'efficiency effect — more services sold onto the same rig — and mix effects do not compound '
+  'indefinitely. This is the cleanest growth story in the business and the least contracted.',
+  space_after=4)
+
+P('The two 2026 acquisitions are consolidated, on both sides of the balance sheet.',
+  bold=True, space_after=3)
+P('An earlier edition of this study consolidated the REVENUE of the two regional businesses '
+  'acquired in the first half of 2026 while leaving their asset base, the borrowings assumed '
+  'with them and the minority interests recognised out of the roll-forward entirely. They are '
+  'now entered as the single transaction the acquisition note supports, line by line. Nothing '
+  'in it is a plug: the entry closes to zero against owners equity, which is the test a '
+  'business combination has to pass — buying a business cannot, by itself, make the parent\'s '
+  'shareholders richer or poorer.', space_after=4)
+rows = [['The 2026 business combinations, as entered', 'USD mn']]
+for lbl, val in UE['acquisition_entry']:
+    rows.append([lbl, mn(val) if val >= 0 else f'({mn(-val)})'])
+rows.append(['Net effect on equity attributable to owners',
+             mn(sum(v for _, v in UE['acquisition_entry']))])
+T(rows, [4.70, 2.00], band_rows={len(rows) - 1})
+P('Two independent checks tie the entry to the face of the accounts: the goodwill it recognises '
+  'equals the goodwill line on the 30 June 2026 balance sheet, which was nil six months '
+  'earlier, and the minority interests it recognises equal the corresponding line in the '
+  'statement of changes in equity.', space_after=4)
+
+P('Working capital is set on the only balance sheet that includes what was bought.',
+  bold=True, space_after=3)
+P('An earlier edition projected working capital at the average of the three audited years, '
+  f'{pc(UE["wc_pct_revenue_historical"], 2)} of revenue, and applied it to a revenue line that '
+  'consolidates two businesses none of those three year ends contained. The ratio now comes off '
+  'the 30 June 2026 balance sheet, the only one that consolidates them: working capital of USD '
+  f'{mn(UE["wc_1h26"])} million on annualised first-half revenue, or '
+  f'{pc(UE["wc_pct_revenue"], 2)}. Of that, USD {mn(UE["wc_acquired"])} million came with the '
+  f'acquisitions, leaving {pc(UE["wc_pct_revenue_organic"], 2)} organic — so the acquisitions '
+  'explain part of the increase and the business explains the rest.', space_after=4)
+P('The obvious objection is that a mid-year balance sheet flatters or punishes the ratio '
+  'seasonally. The company\'s own cash-flow statement answers it, and answers it against this '
+  'study: over the first half of 2025 working capital RELEASED USD '
+  f'{V("wc_move_1h25")/1e3:,.0f} million of cash, so this company runs BELOW its year end at '
+  'mid-year rather than above it. Over the first half of 2026 it ABSORBED USD '
+  f'{abs(V("wc_move_1h26"))/1e3:,.0f} million. The build is real, it is not seasonal, and '
+  'raising the ratio to meet it lowers this valuation rather than raising it.')
+
+P('What the unit build decides, and what the guidance decides.', bold=True, space_after=3)
+P('The company guides all three segments for 2026, and this study reconciles the unit build to '
+  'all three rather than to the group total. That reconciliation is a real correction and its '
+  'size is published here rather than absorbed silently, because it says how much of the FY2026 '
+  'figure is the bottom-up build and how much is the company\'s own guidance.', space_after=4)
+rows = [['FY2026, conventional revenue only', 'Unit build before reconciliation (USD mn)',
+         'Guided, less the contracted unconventional programme (USD mn)', 'Correction']]
+_UNC_ON, _UNC_OFS = RA[0]['unconv_onshore'], RA[0]['unconv_ofs']
+_SPEC = (('onshore', 'Onshore', 'g26_rev_onshore', _UNC_ON),
+         ('offshore', 'Offshore', 'g26_rev_offshore', 0.0),
+         ('ofs', 'Oilfield Services', 'g26_rev_ofs', _UNC_OFS))
+for k, nice, gk, unc in _SPEC:
+    rows.append([nice, mn(UE['segment_uncalibrated'][k + '_conventional']), mn(V(gk) - unc),
+                 f'{(UE["segment_calibration"][k]-1)*100:+.1f}%'])
+_BUILT = sum(UE['segment_uncalibrated'][k + '_conventional'] for k, _, _, _ in _SPEC)
+_GUIDED = V('g26_revenue') - _UNC_ON - _UNC_OFS
+rows.append(['Group', mn(_BUILT), mn(_GUIDED), f'{_BUILT / _GUIDED - 1:+.1%}'])
+T(rows, [1.55, 1.85, 1.90, 1.20], band_rows={4}, size=8.6)
+P('The unconventional programme is contracted revenue on its own schedule and is not scaled by '
+  'a unit-rate correction, so it is taken out of both columns above; the reconciliation is '
+  'solved on the part of each segment the unit rates actually build.', space_after=4)
+P('The group total is close, and an earlier edition stopped there. The segments are not: the '
+  'onshore build runs above the guidance and the oilfield-services build below it, and those '
+  'two errors were cancelling. The correction is applied as a persistent level shift on each '
+  'segment\'s unit rate rather than as a one-year plug, so it carries through every forecast '
+  'year. The consequence for a reader is worth stating plainly: THE UNIT RATES SET THE GROWTH '
+  'PATH, AND THE COMPANY\'S GUIDANCE SETS THE FY2026 LEVEL. A change to any FY2025 unit rate '
+  'moves 2027 onwards and leaves 2026 where the guidance put it.', space_after=4)
+P(f'The margin is NOT reconciled, and that is deliberate. The build produces an FY2026 EBITDA '
+  f'margin of {pc(RA[0]["ebitda"]/RA[0]["revenue"], 2)} against guidance of '
+  f'{pc(V("g26_ebitda_lo")/V("g26_revenue"), 1)} to '
+  f'{pc(V("g26_ebitda_hi")/V("g26_revenue"), 1)} — below the guided range, by roughly USD '
+  f'{abs(RA[0]["ebitda"] - RA[0]["revenue"]*(V("g26_ebitda_lo")+V("g26_ebitda_hi"))/2/V("g26_revenue"))/1e3:,.0f} '
+  'million of EBITDA. Scaling the cost stack to close that gap would move the weighted central '
+  'figure by about six fils. It is not done, because the margin here is an OUTPUT of a cost '
+  'stack built line by line from the company\'s own cost note, each line on its own volume '
+  'driver and its own escalator. A margin that has been scaled to meet a guided margin is no '
+  'longer evidence about anything. The gap is reported instead, and it is a reason to read the '
+  'cost table below closely.', space_after=4)
 
 P('Costs are escalated one class at a time. A single blended inflation rate applied across '
   'physically different cost lines is the fastest way to manufacture a margin trend that is '
@@ -376,13 +566,18 @@ rows = [['Cost line', 'FY2025 conventional base (USD mn)', 'Volume driver', 'Esc
 CSL = {'repairs': 'Repairs and maintenance', 'staff': 'Staff costs',
        'hire': 'Hire of equipment', 'chemicals': 'Chemicals', 'fuel': 'Fuel and lubricants',
        'major_maintenance': 'Major maintenance', 'other': 'Other direct cost'}
-ESCN = {V('esc_oilfield'): 'Oilfield-services cost index',
-        V('esc_wages'): 'Domestic wage inflation', V('esc_fuel'): 'Own commodity path',
-        V('esc_general'): 'Domestic inflation'}
+# Keyed by the cost line's NAME, not by its escalator's VALUE. Two of these
+# escalators happen to carry the same rate today, and a dictionary keyed on the
+# rate silently collapsed them — every line that used either printed the label of
+# whichever one was written last.
+ESCN = {'repairs': 'Oilfield-services cost index', 'staff': 'Domestic wage inflation',
+        'hire': 'Oilfield-services cost index', 'chemicals': 'Oilfield-services cost index',
+        'fuel': 'Own commodity path', 'major_maintenance': 'Oilfield-services cost index',
+        'other': 'Domestic inflation'}
 for k, nice in CSL.items():
     e = UE['cost_escalator'][k]
     rows.append([nice, mn(UE['conventional_cost_stack_fy25'][k]),
-                 UE['cost_driver'][k].replace('_', ' '), ESCN[e],
+                 UE['cost_driver'][k].replace('_', ' '), ESCN[k],
                  pc(e, 1) if e else '0.0% flat nominal'])
 T(rows, [1.42, 1.60, 1.18, 1.55, 1.25])
 P('Fuel is the line that most often gets this wrong. It is a globally traded input, so it is '
@@ -628,7 +823,10 @@ d.figure(os.path.join(HERE, 'fig6_dist.png'), 6.2,
 
 H_2('How well has this map worked?')
 P('A probability map that has never been scored is decoration, so the record is stated plainly. '
-  'Run backwards across every three-month window this share has produced since listing — '
+  'Run backwards across every non-overlapping three-month window that the price history used '
+  f'here can score — the first of them opens on {S0["first_origin"]} and the last on '
+  f'{S0["last_origin"]}, which is not the whole listed history: the earliest windows are held '
+  'back to fit the model that predicts them — '
   f'{S0["windows_scored"]} independent, non-overlapping windows — the map scored '
   f'{abs(S0["skill_norm"])*100:.2f}% WORSE than a simple no-information benchmark that assumes '
   'the price simply drifts with the risk-free rate less the dividend. That shortfall held under '
@@ -644,9 +842,14 @@ P('The reason is specific and worth stating, because it is not the reason most r
   'never wrong and is not very useful, and a scoring rule that rewards sharpness penalises it '
   'accordingly.', space_after=4)
 P('The cause is mechanical. The bands are calibrated across a panel of Abu Dhabi and Dubai '
-  'listed companies, and this share\'s own realised volatility of '
+  'listed companies, and this share\'s own realised volatility — measured as the annualised '
+  'standard deviation of its daily returns over the whole price history used here — of '
   f'{pc(S0D["own_annualised_vol"])} sits at the {S0D["own_vol_percentile_in_panel"]*100:.0f}th '
-  f'percentile of that panel, below its median of {pc(S0D["panel_median_vol"])}. A band sized '
+  f'percentile of that panel, below the panel median of {pc(S0D["panel_median_vol"])} on the '
+  'same measure. (Two other volatility figures appear in this study and are not the same '
+  'quantity: the shorter-window figure quoted in the technical section, which is measured over '
+  'the recent trading range only, and the forward volatility embedded in the probability map, '
+  'which is what the panel calibration produces.) A band sized '
   'for the average name is too wide for a below-average-volatility one. Narrowing it to '
   '80% of the panel width would have turned the score positive, and that is reported as a '
   'diagnosis rather than applied, because a width chosen after seeing the outcomes it is '
@@ -685,11 +888,29 @@ rows.append(['Normalised earnings power', f'{NORM["value_per_share_aed"]:.2f}',
              'As a floor that credits no growth at all',
              'When the installed fleet is genuinely still being built out'])
 T(rows, [1.55, 0.80, 1.55, 1.55, 1.55], size=8.6)
-P('The lenses disagree in a structured way rather than randomly. The two that read the company '
-  'as a set of assets or as one of a class of drillers sit below the market; the two that read '
-  'it as a franchise earning an above-cost return sit above. That is the same disagreement the '
-  'expert panel in Appendix C reaches from three different starting points, and it is the '
-  'disagreement a reader has to resolve for themselves.')
+# The count in this paragraph is COMPUTED, not written. An earlier edition said
+# two lenses sat above the market when only one did — a sentence that had been
+# true of an earlier set of numbers and was never re-read against the current one.
+_ABOVE = _ABOVE_SPOT
+_BELOW = [k for k, v in FV['by_lens'].items() if v <= FV['spot']]
+_NW = {1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five'}
+_LENS_NAME = {'dcf_A': 'the continued-expansion cash-flow case',
+              'dcf_B': 'the capacity-plateau cash-flow case',
+              'relative': 'the peer-multiple lens', 'book': 'the book-value lens',
+              'normalised': 'the normalised-earnings lens'}
+
+
+def _join(keys):
+    names = [_LENS_NAME[k] for k in keys]
+    return names[0] if len(names) == 1 else ', '.join(names[:-1]) + ' and ' + names[-1]
+
+
+P('The lenses disagree in a structured way rather than randomly, and the disagreement is about '
+  'one thing: whether the return this business earns on its capital is durable. '
+  f'{_NW[len(_BELOW)].capitalize()} of the five sit at or below the market price — '
+  f'{_join(_BELOW)} — and {_NW[len(_ABOVE)]} sits above it, {_join(_ABOVE)}. '
+  'That is the same disagreement the expert panel in Appendix C reaches from three different '
+  'starting points, and it is the disagreement a reader has to resolve for themselves.')
 
 # ============================== 9. §5 CATALYSTS ==============================
 H_1('5. Catalysts')
@@ -706,8 +927,10 @@ rows.append(['Completion of the MBPS acquisition',
              '22 of the 30 regional rigs already in the June 2026 fleet count come through it',
              'Down if it fails'])
 rows.append(['Delivery of the remaining ordered island rigs', 'Gradually to 2028',
-             'Four of the six ordered rigs are still to arrive; they are the most visible '
-             'contracted growth in the model', 'Up'])
+             f'{6 - (IN["rigs_island_2q26"]["value"] - IN["rigs_island_fy25"]["value"]):.0f} of '
+             'the six ordered rigs are still to arrive — one entered the fleet in the second '
+             'quarter of 2026, ahead of schedule; they are the most visible contracted growth '
+             'in the model', 'Up'])
 rows.append(['An unconventional Phase 2 award', 'Not announced',
              'Would extend a revenue line that is large but, on the evidence in section 1.7, '
              'barely profitable', 'Up, but less than it looks'])
