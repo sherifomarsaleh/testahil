@@ -110,6 +110,21 @@
   },
   {
    "fid": "F08",
+   "ring": "COUNTRY",
+   "category": "market benchmark for the cost-of-equity regression",
+   "klass": "STRUCTURAL",
+   "headline": "The ordinary shares are listed on the Dubai Financial Market \u2014 stated identically in Note 1 of the FY2025 audited statements, the FY2025 annual report, and the Q1-2026 interim (Note 1); the annual report's own share-price performance chart benchmarks the stock against the DFM general index. The company's INVESTMENT portfolio holds both DFM-listed (AED 5,631mn) and Abu Dhabi-listed (AED 4,730mn) securities (Note 11), which is why the listing venue was read off the filing rather than inferred. The FTSE ADX General Index 2011-2026 was also obtained and regressed as an alternative benchmark",
+   "source_name": "FY2025 audited financial statements Note 1 and Note 11; FY2025 annual report; Q1-2026 interim Note 1; FTSE ADX General Index history (aggregator, index only)",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-08-17",
+   "detail": "",
+   "url": "",
+   "model_impact": "Beta ADOPTED from the own-stock 5-year weekly regression against the DFM general index (1.086, R2 0.40). The same regression against the Abu Dhabi index gives 0.812 at R2 0.14 \u2014 a third of the explanatory power \u2014 worth +0.83/share if adopted; published as a priced cross-check, not adopted.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F09",
    "ring": "INDUSTRY",
    "category": "demand drivers & capacity/supply balance",
    "klass": "STRUCTURAL",
@@ -124,7 +139,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F09",
+   "fid": "F10",
    "ring": "INDUSTRY",
    "category": "pricing",
    "klass": "STRUCTURAL",
@@ -139,7 +154,7 @@
    "fiscal_period": "Q1-2026"
   },
   {
-   "fid": "F10",
+   "fid": "F11",
    "ring": "INDUSTRY",
    "category": "new entrants (named-competitor level)",
    "klass": "STRUCTURAL",
@@ -154,7 +169,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F11",
+   "fid": "F12",
    "ring": "INDUSTRY",
    "category": "technology substitution",
    "klass": "COLOR",
@@ -169,7 +184,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F12",
+   "fid": "F13",
    "ring": "INDUSTRY",
    "category": "competitor capacity / price moves (named)",
    "klass": "STRUCTURAL",
@@ -184,7 +199,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F13",
+   "fid": "F14",
    "ring": "COMPANY",
    "category": "strategic plans & guidance",
    "klass": "STRUCTURAL",
@@ -199,7 +214,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F14",
+   "fid": "F15",
    "ring": "COMPANY",
    "category": "regular disclosures",
    "klass": "DRIVER_UNLOCK",
@@ -214,7 +229,7 @@
    "fiscal_period": "FY2025"
   },
   {
-   "fid": "F15",
+   "fid": "F16",
    "ring": "COMPANY",
    "category": "official financial statements",
    "klass": "DRIVER_UNLOCK",
@@ -229,7 +244,7 @@
    "fiscal_period": "FY2024"
   },
   {
-   "fid": "F16",
+   "fid": "F17",
    "ring": "COMPANY",
    "category": "official financial statements",
    "klass": "DRIVER_UNLOCK",
@@ -244,7 +259,7 @@
    "fiscal_period": "FY2023"
   },
   {
-   "fid": "F17",
+   "fid": "F18",
    "ring": "COMPANY",
    "category": "official financial statements",
    "klass": "COLOR",
@@ -259,7 +274,7 @@
    "fiscal_period": "FY2022"
   },
   {
-   "fid": "F18",
+   "fid": "F19",
    "ring": "COMPANY",
    "category": "IR communications (calls, presentations, releases)",
    "klass": "STRUCTURAL",
@@ -274,7 +289,7 @@
    "fiscal_period": "Q1-2026"
   },
   {
-   "fid": "F19",
+   "fid": "F20",
    "ring": "COMPANY",
    "category": "one-off base-resetting transactions",
    "klass": "STRUCTURAL",
@@ -289,7 +304,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F20",
+   "fid": "F21",
    "ring": "COMPANY",
    "category": "ownership / stake changes (named-transaction rule)",
    "klass": "COLOR",
@@ -304,7 +319,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F21",
+   "fid": "F22",
    "ring": "COMPANY",
    "category": "management & capital actions",
    "klass": "STRUCTURAL",
@@ -319,7 +334,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F22",
+   "fid": "F23",
    "ring": "COMPANY",
    "category": "regular disclosures",
    "klass": "NEGATIVE_SEARCH",
@@ -334,7 +349,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F23",
+   "fid": "F24",
    "ring": "COMPANY",
    "category": "regular disclosures",
    "klass": "NEGATIVE_SEARCH",
@@ -349,7 +364,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F24",
+   "fid": "F25",
    "ring": "COMPANY",
    "category": "strategic plans & guidance",
    "klass": "NEGATIVE_SEARCH",
@@ -370,9 +385,9 @@
    "mode": "BOTTOM_UP",
    "justification": "Disclosed pax and LF per presentation KEY PERFORMANCE tables FY2022-Q1-2026; fleet path from the disclosed order/deliveries",
    "sweep_refs": [
-    "F18",
-    "F13",
-    "F08"
+    "F19",
+    "F14",
+    "F09"
    ]
   },
   {
@@ -380,8 +395,8 @@
    "mode": "BOTTOM_UP",
    "justification": "Note 28a passenger+baggage revenue over disclosed pax",
    "sweep_refs": [
-    "F14",
-    "F09"
+    "F15",
+    "F10"
    ]
   },
   {
@@ -389,7 +404,7 @@
    "mode": "BOTTOM_UP",
    "justification": "Note 28a 'other airline related services' over disclosed pax",
    "sweep_refs": [
-    "F14"
+    "F15"
    ]
   },
   {
@@ -397,7 +412,7 @@
    "mode": "BOTTOM_UP",
    "justification": "Note 29 fuel line over disclosed pax; forward path on the EIA/IATA commodity escalator \u2014 its own driver class, never a CPI proxy",
    "sweep_refs": [
-    "F14",
+    "F15",
     "F02"
    ]
   },
@@ -406,7 +421,7 @@
    "mode": "BOTTOM_UP",
    "justification": "Note 29 lines over disclosed pax, one escalator per driver class (wage, MRO, tariff-CPI)",
    "sweep_refs": [
-    "F14",
+    "F15",
     "F05"
    ]
   },
@@ -415,8 +430,8 @@
    "mode": "TOP_DOWN",
    "justification": "Owned-vs-leased forward delivery split is NOT disclosed (dated negative search) \u2014 capex path is a top-down construction on the FY2025 actual and the order ladder, flagged and heavily sensitised",
    "sweep_refs": [
-    "F24",
-    "F13"
+    "F25",
+    "F14"
    ]
   },
   {
@@ -424,8 +439,8 @@
    "mode": "BOTTOM_UP",
    "justification": "Note 12 per-investee 100%-basis P&Ls and shares",
    "sweep_refs": [
-    "F19",
-    "F14"
+    "F20",
+    "F15"
    ]
   },
   {
@@ -433,8 +448,8 @@
    "mode": "BOTTOM_UP",
    "justification": "Deferred income / payables / maintenance provisions from the audited balance sheets, three-year centre",
    "sweep_refs": [
-    "F14",
-    "F15"
+    "F15",
+    "F16"
    ]
   }
  ],
@@ -456,5 +471,5 @@
  "study_quarters_disclosed": [
   "Q1-2026"
  ],
- "qc_line": "QC(m) \u2014 Information Sweep [AIRARABIA, 2026-08-09]: PASS \u2014 4/4 rings, 24 findings (0 B \u00b7 15 S \u00b7 3 D \u00b7 3 C \u00b7 3 NEG), driver gate 8 rows (7 bottom-up / 1 top-down) | primary access: attempted (2) | FS years: 4 ['FY2022', 'FY2023', 'FY2024', 'FY2025'] | IR findings: 3"
+ "qc_line": "QC(m) \u2014 Information Sweep [AIRARABIA, 2026-08-09]: PASS \u2014 4/4 rings, 25 findings (0 B \u00b7 16 S \u00b7 3 D \u00b7 3 C \u00b7 3 NEG), driver gate 8 rows (7 bottom-up / 1 top-down) | primary access: attempted (2) | FS years: 4 ['FY2022', 'FY2023', 'FY2024', 'FY2025'] | IR findings: 3"
 }

@@ -274,9 +274,23 @@ rows = [['Component', 'Value', 'Evidence'],
          'the yield actually embeds keeps the rate currency-consistent under the peg (UST 5-yr 4.35% '
          'on 07-Aug-2026); the rating-table netting (0.42%, rf* 4.06%) is the disclosed alternative'],
         ['Net risk-free rate', pct(W['rf_star'],2), 'derived'],
-        ['Beta', f"{IN['beta_used']:.3f}",
-         'own-stock five-year weekly regression against the Dubai (DFM) general index: R² 0.40, 258 '
-         'weeks, standard error 0.083, 90% interval 0.95–1.22'],
+        ['Beta — adopted', f"{IN['beta_used']:.3f}",
+         'own-stock five-year weekly regression against the general index of the exchange the shares '
+         'actually trade on: R² 0.40, 258 weeks, standard error 0.083, 90% interval 0.95–1.22. Every '
+         'filing states the ordinary shares are listed on the Dubai Financial Market (2025 statements '
+         'note 1; 2025 annual report; the Q1-2026 interim, note 1), and the annual report itself '
+         'benchmarks the share price against that index'],
+        ['Beta — alternative benchmark (published, not adopted)', f"{W['beta_alt']:.3f}",
+         'the identical regression against the Abu Dhabi general index, the other UAE market proxy, '
+         f"on the same window and the same usability test: R² {W['beta']['alt_benchmark']['r2']:.2f}, "
+         f"{W['beta']['alt_benchmark']['n']} weeks, standard error "
+         f"{W['beta']['alt_benchmark']['se']:.3f}, 90% interval "
+         f"{W['beta']['alt_benchmark']['ci90'][0]:.2f}–{W['beta']['alt_benchmark']['ci90'][1]:.2f}. "
+         'It is the lower beta, and it would RAISE the valuation — but it explains a third as much of '
+         f"the share's weekly movement, which is the reason it is not adopted. Priced in full: cost of "
+         f"equity {pct(W['ke_alt'],2)}, cost of capital {pct(W['wacc_alt'],2)}, cash-flow value AED "
+         f"{D['dcf']['ps_beta_alt']:.2f} per share ({D['dcf']['ps_beta_alt']-D['dcf']['ps']:+.2f}, "
+         f"{D['dcf']['ps_beta_alt']/D['dcf']['ps']-1:+.0%})"],
         ['Equity risk premium', pct(IN['erp_rating'],2),
          'Damodaran UAE row, January-2026 (mature 4.23% + country 0.64%). The same file publishes no '
          'usable UAE sovereign-swap-based alternative — stated rather than substituted'],
@@ -316,7 +330,8 @@ figure('fig2_sens.png', 6.3,
        'Figure 3 — DCF fair value across terminal cost of capital × terminal growth.')
 rows = [['Driver (whole-model re-runs)', '-2 steps', '-1', 'Base', '+1', '+2']]
 for lbl, xs, vals, fmtx in [
-        ('Beta', SN['beta_grid'], SN['grid_beta'], lambda x: f'{x:.2f}'),
+        ('Beta (leftmost = the alternative benchmark)', SN['beta_grid'], SN['grid_beta'],
+         lambda x: f'{x:.2f}'),
         ('Fuel path multiplier', SN['fuel_grid'], SN['grid_fuel'], lambda x: f'{x:.3g}×'),
         ('Passenger volumes', SN['paxg_grid'], SN['grid_pax'], lambda x: f'{x:.2f}×'),
         ('Fare per passenger', SN['fare_grid'], SN['grid_fare'], lambda x: f'{x:.2f}×'),
@@ -325,11 +340,16 @@ for lbl, xs, vals, fmtx in [
         ('Working capital / revenue', SN['nwc_grid'], SN['grid_nwc'], lambda x: f'{x:.0%}')]:
     rows.append([f'{lbl}  [{fmtx(xs[0])} … {fmtx(xs[4])}]'] + [px(v) for v in vals])
 table(rows, [2.90, 0.82, 0.82, 0.82, 0.82, 0.82], size=8.6)
-caption('Each cell is a complete revaluation at the perturbed driver, all else held (the anchor-roll '
-        'rate is held at the base cost of equity inside these re-runs; rolling at each perturbed rate '
-        'moves off-base cells by no more than ~0.03). The middle column is the base DCF of AED '
+caption('Each cell is a complete revaluation at the perturbed driver, all else held. Where the '
+        'perturbation moves the cost of capital, the accretion from the balance-sheet date to the '
+        'pricing date moves with it — the accretion is a cost-of-equity effect, so holding it fixed '
+        'while changing the rate would be inconsistent. (An earlier edition did hold it fixed, which '
+        'left the base column of the rate rows reading AED 3.54 against a headline of '
+        + px(DCF['ps']) + '; corrected, and the agreement is now checked automatically on every '
+        'rebuild.) The middle column is the base value of AED '
         + px(DCF['ps']) + ' on every row EXCEPT the JV row, whose base (the audited carrying value) is '
-        'its leftmost column — the remaining columns price successively richer JV framings.')
+        'its leftmost column — the remaining columns price successively richer JV framings — and the '
+        'beta row, whose leftmost column is the alternative-benchmark regression described in 1.8.')
 
 # ============================== 2 TECHNICAL ====================================
 H1('2  Technical and price structure')

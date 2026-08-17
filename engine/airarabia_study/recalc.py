@@ -68,6 +68,8 @@ checks = [
     ('DCF fair value at 31-Dec-2025', g('DCF', 'C60'), DCF['ps_dec'], 0.02),
     ('DCF anchor accretion factor', g('DCF', 'C61'), DCF['roll'], 0.0005),
     ('DCF fair value at the anchor (split roll)', g('DCF', 'C64'), DCF['ps'], 0.02),
+    ('DCF beta at the neutral benchmark switch', g('DCF', 'C8'), W['beta']['beta'], 0.0005),
+    ('DCF cost of equity — explicit', g('DCF', 'C10'), W['ke_exp'], 0.0002),
     ('DCF cost of capital — explicit', g('DCF', 'C17'), W['wacc_exp'], 0.0002),
     ('DCF cost of capital — terminal', g('DCF', 'C24'), W['wacc_term'], 0.0002),
     ('DCF terminal return on capital', g('DCF', 'C51'), DCF['roic_term'], 0.001),

@@ -42,8 +42,13 @@ print('base:  ' + ' · '.join(f'{k} {v:,.4f}' for k, v in base.items()))
 CASES = [
     ('Terminal growth', 'C', +0.005, 'dcf', +1,
      'higher terminal growth must raise the discounted cash flow'),
-    ('Beta (five-year weekly, vs the Dubai index)', 'C', +0.20, 'dcf', -1,
+    ('Beta — adopted (own stock, five-year weekly vs the Dubai market index)', 'C', +0.20,
+     'dcf', -1,
      'a higher beta raises the cost of equity and must lower the valuation'),
+    ('Scenario: beta benchmark switch (0 = adopted index, 1 = alternative index)', 'C', +1.0,
+     'dcf', +1,
+     'flipping to the alternative-benchmark beta (0.812, lower) must cut the cost of equity '
+     'and raise the valuation — the published cross-check, live in the sheet'),
     ('Terminal risk-free rate', 'C', +0.01, 'dcf', -1,
      'a higher terminal risk-free rate must lower the valuation'),
     ('Working capital / revenue', 'C', +0.05, 'dcf', -1,
@@ -127,6 +132,8 @@ for label, col, bump, key, sign, why in CASES:
 DEAD_OK = {
     # consumed only when the high-fuel switch is on, or by display rows, by design:
     'Effective jet fuel price (USD/bbl) — high-fuel alternative',  # live only when switch=1
+    # live only when the beta benchmark switch = 1; conditionally asserted below
+    'Beta — alternative benchmark (same regression vs the Abu Dhabi market index)',
     'Rating-table sovereign spread (alternative netting, disclosed)',  # published alternative
     'Consolidated fleet, year-end (aircraft)',   # display of the capacity ramp; pax is the driver
     'Marginal cost of debt path',                # drives the WACC glide shape via DCF!27 (tested via wacc rows)
@@ -151,6 +158,23 @@ if dead:
     print('  inputs that changed nothing:', dead)
 else:
     print('  none — every remaining driver reprices the model')
+
+# CONDITIONAL DRIVERS: inert at neutral defaults BY DESIGN, and required to be live once
+# the switch that consumes them is flipped. Being inert is not being dead.
+r_bsw = row_of('Scenario: beta benchmark switch (0 = adopted index, 1 = alternative index)')
+r_alt = row_of('Beta — alternative benchmark (same regression vs the Abu Dhabi market index)')
+on = read({('Assumptions', f'C{r_bsw}'): 1.0})
+on_bumped = read({('Assumptions', f'C{r_bsw}'): 1.0,
+                  ('Assumptions', f'C{r_alt}'): wb['Assumptions'][f'C{r_alt}'].value + 0.20})
+assert on_bumped['dcf'] < on['dcf'] - 1e-6, (
+    'with the benchmark switch on, a higher alternative beta must lower the valuation')
+r_adopt = row_of('Beta — adopted (own stock, five-year weekly vs the Dubai market index)')
+on_adopt = read({('Assumptions', f'C{r_bsw}'): 1.0,
+                 ('Assumptions', f'C{r_adopt}'): wb['Assumptions'][f'C{r_adopt}'].value + 0.20})
+assert abs(on_adopt['dcf'] - on['dcf']) < 1e-9, (
+    'with the benchmark switch on, the adopted beta must be the one that goes inert')
+print(f"  [OK ] benchmark switch: adopted DCF {base['dcf']:,.3f} -> alternative-benchmark "
+      f"DCF {on['dcf']:,.3f}; each beta is live only under its own setting")
 
 # the excluded labels must still move the things they are FOR
 r = row_of('Weight — relative')

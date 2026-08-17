@@ -30,6 +30,10 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, '..'))
 import numpy as np
 
+# the beta regressions (adopted + alternative benchmark) are needed while the cost of
+# capital is built, not only at emit time
+beta_res_pre = json.load(open(os.path.join(HERE, 'beta_result.json')))
+
 # ============================ INPUTS =========================================
 def I(value, source, date, ring):
     return dict(value=value, source=source, date=date, ring=ring)
@@ -456,7 +460,17 @@ INP = dict(
     beta_used=I(1.086, "Tier-1 OWN-STOCK regression: AIRARABIA weekly log-returns vs the DFM "
                 "General Index (DFMGI), 5-year window to 16-Jul-2026: beta 1.086, R-squared "
                 "0.402, n=258, SE 0.083, CI90 [0.95, 1.22] — clears the usability gate, not "
-                "weak-instrument flagged. See beta_result.json", "2026-08-09", "House"),
+                "weak-instrument flagged. DFMGI is the stock's own market: every filing states "
+                "the ordinary shares are listed on the Dubai Financial Market (FY2025 note 1; "
+                "FY2025 annual report; Q1-2026 interim note 1) and the annual report benchmarks "
+                "the share price against DFMGI. See beta_result.json", "2026-08-09", "House"),
+    beta_alt_benchmark=I(0.812, "ALTERNATIVE-BENCHMARK cross-check, published not adopted: the "
+                "same own-stock 5-year weekly regression run against the FTSE ADX General Index "
+                "(index series to 24-Jul-2026): beta 0.812, R-squared 0.135, n=260, SE 0.128, "
+                "CI90 [0.60, 1.02]. It clears the same usability gate but explains a THIRD as "
+                "much of the stock's weekly variance as its own exchange's composite does, which "
+                "is itself the evidence that DFMGI is the right regressor for a DFM-listed name. "
+                "Priced in full rather than mentioned", "2026-08-17", "House"),
     kd_booked_path=I([0.031, 0.033, 0.035, 0.036, 0.037],
                      "BOOKED blended finance-cost rate on the rolling gross debt book: FY2025 "
                      "effective 2.73% (finance costs 66.7 / average gross debt), rising as new "
@@ -868,15 +882,26 @@ ROLL = (1 + ke_exp) ** T_ANCHOR
 ROLL_CASH = (1 + V['dep_rate_path'][0]) ** T_ANCHOR   # cash legs accrete at the cash yield
 def to_anchor(v):
     return v * ROLL - V['dps_fy25']
-def to_anchor_split(ev_ops, jv_val):
+def to_anchor_split(ev_ops, jv_val, roll=None):
     """Operating equity rolls at Ke; the cash/near-cash legs (net cash, non-operating
     assets, JV book) roll at the deposit yield — adopted from external critique: cash
-    does not compound at the cost of equity."""
+    does not compound at the cost of equity. `roll` is overridable so a re-valuation at
+    a PERTURBED cost of equity also accretes at that perturbed rate."""
+    roll = ROLL if roll is None else roll
     cash_legs = -nd_fy25 + non_op + jv_val
-    eq_pre = ev_ops + cash_legs
-    op_part = (ev_ops) * ROLL
+    op_part = (ev_ops) * roll
     cash_part = cash_legs * ROLL_CASH
     return (op_part + cash_part - V['nci_book']) / SH - V['dps_fy25']
+
+def ke_from_wacc(we_):
+    """Invert an explicit-window WACC to the cost of equity that produced it. The anchor
+    roll is a Ke accretion, so a sensitivity that moves the discount rate must move the
+    roll with it; inverting the weights is the one rule that does this consistently
+    whether the perturbation entered as a beta, a rate shift or a WACC directly."""
+    return (we_ - wd_gross * kd_at) / we_gross
+
+def roll_at(ke_):
+    return (1 + ke_) ** T_ANCHOR
 
 eq_attr, nci_val = bridge(ev, jv_book)
 dcf_ps_dec = eq_attr / SH
@@ -925,7 +950,7 @@ def dcf_scenario(pax_mult=1.0, fare_mult=1.0, fuel_mult=1.0, cost_shift=0.0,
     _rr = min(g / max(_roic, 1e-6), 0.95)
     _tv = _nopat[-1] * (1 + g) * (1 - _rr) / max(_wt - g, 0.02)
     _ev = sum(_f[i] * _df[i] for i in range(5)) + _tv * _df[-1]
-    return to_anchor_split(_ev, jv_val)
+    return to_anchor_split(_ev, jv_val, roll=roll_at(ke_from_wacc(_we)))
 
 _base_chk = dcf_scenario()
 assert abs(_base_chk - dcf_ps) < 0.02, f'scenario engine does not reproduce base: {_base_chk}'
@@ -1041,17 +1066,37 @@ def dcf_at(we_, wt_, g_):
     _rr = min(g_ / roic_term, 0.95)
     _tv = nopat[-1] * (1 + g_) * (1 - _rr) / max(wt_ - g_, 0.02)
     _ev = sum(fcff[i] * _df[i] for i in range(5)) + _tv * _df[-1]
-    _eq, _ = bridge(_ev, jv_book)
-    return to_anchor(_eq / SH)
+    # SPLIT roll, at the cost of equity implied by the perturbed rate — the same
+    # convention as the headline. (Defect found 17-Aug-2026: these grids were still on
+    # the superseded single-roll-at-base-Ke convention, so the base cell of every rate
+    # grid printed 3.54 against a headline of 3.51 while the caption claimed they
+    # matched. The assertion below now makes that claim machine-enforced.)
+    return to_anchor_split(_ev, jv_book, roll=roll_at(ke_from_wacc(we_)))
 grid_wacc_g = [[dcf_at(wacc_exp, wt, g) for g in g_grid] for wt in wt_grid]
 grid_exp_term = [[dcf_at(we, wt, V['g_term']) for wt in wt_grid] for we in we_grid]
-beta_grid = [0.85, 0.95, round(BETA, 3), 1.20, 1.35]
 def dcf_beta(b):
     ke = rf_star + b * V['erp_rating']
     we_ = we_gross * ke + wd_gross * kd_at
     wt_ = (1 - V['wd_term']) * (V['rf_term'] + b * V['erp_term']) + V['wd_term'] * kd_term_at
     return dcf_at(we_, wt_, V['g_term'])
+# the alternative-benchmark regression sits in the grid as its own labelled column, so the
+# reader sees the priced consequence of the other UAE market proxy, not just its coefficient
+BETA_ALT = V['beta_alt_benchmark']
+beta_grid = [round(BETA_ALT, 3), 0.95, round(BETA, 3), 1.20, 1.35]
 grid_beta = [dcf_beta(b) for b in beta_grid]
+dcf_ps_beta_alt = dcf_beta(BETA_ALT)
+ke_alt = rf_star + BETA_ALT * V['erp_rating']
+wacc_alt = we_gross * ke_alt + wd_gross * kd_at
+say(f"[Beta — respective market, both benchmarks priced] ADOPTED: own-stock 5-year weekly vs "
+    f"the DFM General Index, the exchange the filings say the shares are listed on = "
+    f"{BETA:.3f} (R2 {beta_res_pre['r2']:.3f}, n {beta_res_pre['n']}) -> Ke {ke_exp:.2%}, WACC "
+    f"{wacc_exp:.2%}, DCF AED {dcf_ps:.2f}. CROSS-CHECK on the other UAE market proxy, the "
+    f"FTSE ADX General Index, same window and gate = {BETA_ALT:.3f} (R2 "
+    f"{beta_res_pre['alt_benchmark']['r2']:.3f}, n {beta_res_pre['alt_benchmark']['n']}) -> Ke "
+    f"{ke_alt:.2%}, WACC {wacc_alt:.2%}, DCF AED {dcf_ps_beta_alt:.2f} "
+    f"({dcf_ps_beta_alt-dcf_ps:+.2f}/share, {dcf_ps_beta_alt/dcf_ps-1:+.1%}). The adopted "
+    f"regressor explains {beta_res_pre['r2']/beta_res_pre['alt_benchmark']['r2']:.1f}x as much "
+    f"of the stock's weekly variance; the cross-check is published, not adopted.")
 fuel_grid = [0.85, 0.925, 1.0, 1.075, 1.15]
 grid_fuel = [dcf_scenario(fuel_mult=m) for m in fuel_grid]
 paxg_grid = [0.90, 0.95, 1.0, 1.05, 1.10]
@@ -1064,6 +1109,18 @@ jv_grid = [jv_book, 8 * V['assoc_fy25'], 12 * V['assoc_fy25'], jv_cap, 20 * V['a
 grid_jv = [dcf_scenario(jv_val=j) for j in jv_grid]
 nwcg = [-0.58, -0.61, -0.64, -0.67, -0.70]
 grid_nwc = [dcf_scenario(nwc_pct=p_) for p_ in nwcg]
+
+# CAPTION LOCK: the sensitivity tables claim the middle column is the base DCF on every row
+# except the JV row (whose base is its leftmost column). Assert it rather than assert it in
+# prose — this is the check that would have caught the 3.54-vs-3.51 grid defect on delivery.
+for _nm, _c in [('beta', grid_beta[2]), ('explicit x terminal', grid_exp_term[2][2]),
+                ('terminal x g', grid_wacc_g[2][2]), ('fuel', grid_fuel[2]),
+                ('passengers', grid_pax[2]), ('fare', grid_fare[2]),
+                ('capex', grid_capex[2]), ('working capital', grid_nwc[2])]:
+    assert abs(_c - dcf_ps) < 0.005, (
+        f'{_nm} sensitivity base cell {_c:.4f} does not reproduce the headline DCF '
+        f'{dcf_ps:.4f} — grids and headline are on different conventions')
+assert abs(grid_jv[0] - dcf_ps) < 0.005, 'JV grid leftmost cell must be the base (book) framing'
 
 # ---- expert panel: three genuinely different methods ---------------------------
 e1_margin = ebitda_margin[2]
@@ -1118,7 +1175,7 @@ np.save(os.path.join(HERE, 'fan.npy'), fan)
 # ============================ EMIT ==============================================
 step0 = json.load(open(os.path.join(HERE, 'step0_result.json')))
 strike = json.load(open(os.path.join(HERE, 'strike_result.json')))
-beta_res = json.load(open(os.path.join(HERE, 'beta_result.json')))
+beta_res = beta_res_pre
 bt5 = json.load(open(os.path.join(HERE, 'backtest_5y.json')))
 
 OUT = dict(
@@ -1179,8 +1236,10 @@ OUT = dict(
               wd_net=wd_net, ke_term=ke_term, kd_term=V['kd_term'], kd_term_at=kd_term_at,
               wacc_term=wacc_term, glide_frac=glide_frac, kd_path=V['kd_path'],
               kd_eff_fy25=kd_eff_fy25, erp=V['erp_rating'], erp_cds_note='NA for UAE',
-              sov_spread=V['sov_spread_rating'], beta=beta_res),
+              sov_spread=V['sov_spread_rating'], beta=beta_res,
+              beta_alt=BETA_ALT, ke_alt=ke_alt, wacc_alt=wacc_alt),
     dcf=dict(pv_explicit=pv_explicit, tv=tv, pv_tv=pv_tv, ev=ev, tv_share=tv_share,
+             ps_beta_alt=dcf_ps_beta_alt,
              nd=nd_fy25, non_op=non_op, jv_book=jv_book, jv_cap=jv_cap, jv_pe=V['jv_pe'],
              nci_share=nci_share, nci_val=nci_val, eq_attr=eq_attr, ps=dcf_ps,
              ps_dec=dcf_ps_dec, ps_jvcap=dcf_ps_jvcap, ps_iata_fuel=dcf_ps_iata, roll=ROLL,
