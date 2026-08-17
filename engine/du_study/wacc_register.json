@@ -1,8 +1,8 @@
 {
   "rf": {
     "value": 0.0448,
-    "source": "AED risk-free anchor: UAE federal AED T-bond, January-2031 tranche, auction yield 4.48% (22-Jul-2026 auction, +4bp over matched UST) - the longest LIQUID recent AED government primary print. There is no liquid 10-year AED point (longest AED primary ever is the Feb-2033 tranche at 4.13%, Apr-2026, now stale); the 10-year peg-extrapolated alternative (Abu Dhabi USD 10y 4.73% Feb-2026 less the ~4bp AED-through-USD basis ~= 4.69%) is carried as rf_alt and PRICED in section 1.8 rather than averaged in",
-    "date": "2026-07-22",
+    "source": "AED risk-free anchor: UAE federal AED T-bond, January-2031 tranche, auction yield 4.48% (July-2026 auction; cited to the MoF/WAM results release of 30-Jul-2026 rather than an inferred auction weekday, after review noted 22-Jul-2026 was a Wednesday and the published auction calendar runs on Tuesdays; +4bp over matched UST) - the longest LIQUID recent AED government primary print. There is no liquid 10-year AED point (longest AED primary ever is the Feb-2033 tranche at 4.13%, Apr-2026, now stale); the 10-year peg-extrapolated alternative (Abu Dhabi USD 10y 4.73% Feb-2026 less the ~4bp AED-through-USD basis ~= 4.69%) is carried as rf_alt and PRICED in section 1.8 rather than averaged in",
+    "date": "2026-07-30",
     "ring": "Country"
   },
   "rf_alt": {
@@ -12,27 +12,27 @@
     "ring": "Country"
   },
   "sov_spread_rating": {
-    "value": 0.0042,
-    "source": "Damodaran ctryprem dataset (05-Jan-2026 update), United Arab Emirates row: Moody's Aa2, rating-based adjusted default spread 0.42%",
-    "date": "2026-01-05",
+    "value": 0.0004,
+    "source": "PRIMARY BASIS (changed 17-Aug-2026): UAE sovereign default spread 4bp, MARKET-OBSERVED on the very instrument this model uses as its risk-free rate. The UAE MoF/WAM auction release states the January-2031 AED T-Bond priced at 4.48%, 'a spread of ... 4 basis points ... ABOVE comparable US Treasuries'. The prior edition netted Damodaran's RATING-based 42bp instead, which drove rf* to 4.06% - roughly 26bp BELOW the matched-tenor US Treasury. A synthetic default-free dirham rate cannot sit below the default-free dollar rate under a hard peg, and that no-arbitrage test is now asserted in code. The rating basis (42bp with the 4.87% ERP, Ke 6.44%) is retained and published as the alternative construction per the both-bases rule; it is NOT averaged in. Note a floor applied to the rating basis was considered and REJECTED as incoherent: it would net a market spread while adding back a rating-based country premium, the exact same-basis violation the method exists to prevent",
+    "date": "2026-07-30",
     "ring": "Country"
   },
   "erp_rating": {
-    "value": 0.0487,
-    "source": "Damodaran ctryprem (05-Jan-2026): UAE total equity risk premium 4.87% = 4.23% mature-market base + 0.64% country risk premium (rating basis). This is ERP basis 1",
-    "date": "2026-01-05",
+    "value": 0.0429,
+    "source": "PRIMARY BASIS (changed 17-Aug-2026): UAE total equity risk premium 4.29% on the MARKET-spread basis = Damodaran's 4.23% mature-market base (Jan-2026) + a country risk premium of 6bp, scaled off the 4bp market default spread using Damodaran's own CRP/spread multiple (0.64/0.42 = 1.524). Paired with the 4bp netting above so the same basis is stripped as is added back. ALTERNATIVE PUBLISHED: the rating basis, 4.87% = 4.23% + 0.64% CRP (Aa2), paired with the 42bp netting -> Ke 6.44%. A third variant using the live implied US premium (4.28% + 0.06% = 4.34%) is disclosed for completeness. All three sit within 10bp of one another on Ke, which is what the same-basis rule is for",
+    "date": "2026-08-01",
     "ring": "Country"
   },
   "sov_spread_mkt": {
-    "value": 0.0025,
-    "source": "Market-spread basis: Abu Dhabi USD 10-year traded at UST+25bp (Feb-2026 issue; UAE CDS itself unreachable - cbonds 403, Damodaran shows NA for UAE CDS; failure logged, never substituted silently). Basis-2 default spread = 0.25%",
-    "date": "2026-02-15",
+    "value": 0.0042,
+    "source": "The RATING-basis default spread, now carried as the ALTERNATIVE construction (it was primary before 17-Aug-2026): Damodaran ctryprem (05-Jan-2026), UAE row, Moody's Aa2, rating-based adjusted default spread 0.42%, paired with the 4.87% rating ERP",
+    "date": "2026-01-05",
     "ring": "Country"
   },
   "erp_mkt": {
-    "value": 0.0466,
-    "source": "ERP basis 2 (market-spread, fresher base): Damodaran live implied US ERP 4.28% (01-Aug-2026, T12m adjusted payout) + CRP scaled off the market default spread 0.25% x 1.52 (Damodaran's own CRP/spread multiple 0.64/0.42) = 0.38% -> 4.66%. Same-basis consistency: this WACC strips the 0.25% market spread from rf, never the 0.42% rating spread",
-    "date": "2026-08-01",
+    "value": 0.0487,
+    "source": "The RATING-basis total ERP, now the ALTERNATIVE: 4.87% = 4.23% mature + 0.64% CRP (Aa2), Damodaran 05-Jan-2026. Same-basis pair with the 0.42% rating spread",
+    "date": "2026-01-05",
     "ring": "Country"
   },
   "beta": {
@@ -60,9 +60,9 @@
     "ring": "Country/House"
   },
   "erp_term": {
-    "value": 0.0487,
-    "source": "Terminal ERP held at the rating-basis UAE ERP 4.87% (no structural convergence assumed for an Aa2 sovereign already near mature-market pricing)",
-    "date": "2026-01-05",
+    "value": 0.0429,
+    "source": "Terminal ERP held at the primary market-basis UAE ERP 4.29% (no structural convergence assumed for an Aa2 sovereign already priced at 4bp over US Treasuries)",
+    "date": "2026-08-01",
     "ring": "Country"
   },
   "wd_term": {
@@ -84,15 +84,15 @@
     "ring": "House"
   },
   "pe_just": {
-    "value": 15.5,
-    "source": "Justified P/E 15.5x = the GCC-telecom peer median: e& 20.7x, stc 18.9x, Mobily 15.5x, Ooredoo ~12.5x, Omantel 11.4x, Zain ~9x (trailing, public aggregator reads 08/09-Aug-2026, labelled CROSS-CHECK). Mobily is the closest structural analogue (second operator, growth phase). du itself trades ~16.5x trailing",
-    "date": "2026-08-09",
+    "value": 12.9,
+    "source": "Justified P/E 12.9x, RE-DERIVED FROM ISSUER FILINGS at the 06-Aug-2026 anchor after an external audit showed the prior 15.5x did not exist on any earnings base at that date. Mobily (Etihad Etisalat, Tadawul 7020) - the closest structural analogue, a #2 operator in a GCC duopoly-like market: TTM EPS SAR 4.76 (FY2025 4.51 + H1-2026 2.32 - H1-2025 2.07, each from Mobily's own Saudi Exchange issuer announcements) on a 06-Aug-2026 close of SAR 61.30 = 12.88x; the market-cap route (SAR 47,048mn / TTM net income SAR 3,650mn) independently ties at 12.89x. e& is the only other peer whose multiple derives end-to-end from issuer filings: 15.7x (TTM EPS AED 1.33 reported-attributable, close AED 20.98). NO PEER MEDIAN IS CLAIMED - only two of six peers survive as clean observations, so a median is not supportable: Zain's provider returned a corrupt 11365x and was refused, Omantel's provider P/E and yield are mutually contradictory, and Omantel holds ~21.9% of Zain so they are not independent. (For the record the 5-name median also lands on 12.89x, which is coincidence, not corroboration.) SUPERSEDES 15.5x, which was a January-2026 aggregator read on FY2024 earnings mis-dated as an August-2026 read",
+    "date": "2026-08-06",
     "ring": "Industry"
   },
   "div_yield_peer": {
-    "value": 0.052,
-    "source": "GCC telecom incumbent dividend-yield bracket ~4.8-6.7% (e& 4.8%, stc 5.2%, Omantel 6.7%, aggregator reads Aug-2026, cross-check label); 5.2% (stc, the regional benchmark payer) used as the yield-lens anchor",
-    "date": "2026-08-09",
+    "value": 0.0489,
+    "source": "Peer dividend-yield anchor 4.89% = Mobily's trailing yield at the 06-Aug-2026 close, derived from its own declared distributions - the same name and the same date as the justified P/E, so the two market anchors are consistent. SUPERSEDES 5.2% (stc, aggregator). The published Mobily yield of 2.9% in the prior edition matched neither the issuer data (4.89%) nor this study's own sweep record (3.7%) - a typed numeral that escaped the register, now corrected. Sourceable bracket at the anchor: e& 4.50%, stc 5.07%, Ooredoo 5.70%, Omantel ~6.7% (aggregator, internally inconsistent)",
+    "date": "2026-08-06",
     "ring": "Industry"
   },
   "roe_sust": {
@@ -100,5 +100,11 @@
     "source": "Sustainable ROE 27%: audited ROE on average equity FY2023 18.5%, FY2024 26.0%, FY2025 29.0% - the step-up is the 2024 regime change (43.6% take vs 53.1%) plus operating leverage; 27% sits just below the FY2025 print and is consistent with the ~100% payout / 2.5% growth pair (implied retention 9%)",
     "date": "2026-08-09",
     "ring": "Company/House"
+  },
+  "ust_matched": {
+    "value": 0.0432,
+    "source": "Matched-tenor US Treasury yield ~4.32% at the anchor (3y 4.25% / 5y 4.35% on 07-Aug-2026, treasury.gov, interpolated to the Jan-2031 tranche's ~4.4-year point). Used ONLY as the no-arbitrage floor test on rf*: under a hard peg a default-free AED rate may not sit below the default-free USD rate at matched tenor. Never used as the risk-free rate itself - the protocol requires the local government bond even for a pegged currency",
+    "date": "2026-08-07",
+    "ring": "Country"
   }
 }

@@ -159,6 +159,24 @@ table([['Document', 'What it provided', 'Date', 'Where read'],
         'sessions)', '2021-2026', 'api2.dfm.ae / finance.yahoo.com'],
        ['stc USD sukuk curve quotes', 'the GCC telecom credit spread behind the marginal '
         'cost of debt', '06-Aug-2026', 'public market data'],
+       ['Mobily FY2025 and H1-2026 results announcements (Saudi Exchange issuer filings) and '
+        'FY2025 earnings release', 'the justified price/earnings multiple and the peer '
+        'dividend-yield anchor, both re-derived from filed earnings after the first edition '
+        'used a stale aggregator figure: trailing EPS SAR 4.76 = FY2025 4.51 + H1-2026 2.32 - '
+        'H1-2025 2.07, giving 12.9x on the 06-Aug-2026 close of SAR 61.30 (the market-cap '
+        'route ties independently)', '06-Aug-2026', 'saudiexchange.sa / mobily.com.sa'],
+       ['e& FY2025, H1-2025 and H1-2026 results releases', 'the second filing-derived peer '
+        'multiple: trailing EPS AED 1.33 reported-attributable, 15.7x on the 06-Aug-2026 '
+        'close of AED 20.98. NOTE the basis trap: e&\'s own H1-2026 release quotes the '
+        'H1-2025 comparative on an ADJUSTED basis, which if used fabricates a 12.6x',
+        '06-Aug-2026', 'eand.com'],
+       ['du dividend-distribution disclosure to DFM, Ref RME/14/2026', 'the interim dividend '
+        'timetable that determines which dividends are still in the anchor price: ex-date '
+        '31-Jul-2026, record 03-Aug-2026, payment 21-Aug-2026', '2026-07-31',
+        'du filing via DFM'],
+       ['du disclosure announcement, "Extension of Federal Royalty Scheme for the Period '
+        '2027-2029"', 'the settled 2027-2029 fiscal regime, including the express retention '
+        'of the AED 1.8bn combined annual floor', '2026-07-24', 'du company disclosure'],
        ['IMF World Economic Outlook (Apr-2026) and July-2026 Update', 'UAE and regional '
         'growth/inflation; the war\'s macro baseline', 'Apr/Jul-2026', 'imf.org']],
       [2.30, 2.95, 0.85, 0.90])
@@ -179,10 +197,18 @@ for ring, items in groups.items():
 H1('The judgements, stated separately')
 P('Every forecast rests on judgements. Each is stated here with what would overturn it.')
 table([['Judgement', 'Basis', 'What would overturn it'],
-       ['The fiscal regime persists at the current 43.6% combined take (Framing A is the '
-        'base)', 'the legislated 2024-2026 regime; a ministry notification extending the '
-        'structure to 2027-2029 disclosed by the peer operator', 'du\'s own disclosure of '
-        'different post-2026 terms — Framing B is priced throughout in case'],
+       ['THE CENTRAL JUDGEMENT — what required return the business deserves. Framing 1 uses '
+        'du\'s own measured beta; Framing 2 declines the terminal re-rating that implies and '
+        'holds du\'s current trailing EV/EBITDA in perpetuity', 'the beta is du\'s own '
+        '5-year weekly regression, gate-passed; the market multiple is du\'s own audited '
+        'figures at the anchor', 'Both are published side by side and never averaged. Either '
+        'is overturned by the other being right: a sustained re-rating toward the implied exit '
+        'multiple, or a beta that behaves like the sector\'s ~0.80 rather than the measured '
+        'figure'],
+       ['The 2027-2029 fiscal regime is settled at the current take (base case rests on '
+        'disclosed fact)', 'du\'s own disclosure of 24-Jul-2026 extending the 38% royalty + '
+        '9% corporate tax and retaining the AED 1.8bn combined floor', 'nothing — this is '
+        'disclosed, not assumed. What IS assumed is the period after 2029, priced as a tail'],
        ['Mobile recovers to 9,450k subscribers by end-2026, then adds ~210-310k/yr',
         'the company\'s own Q2 commentary (recovery underway, gross adds below pre-war), '
         'Dubai population re-acceleration', 'a re-opened conflict, or two quarters of '
@@ -221,10 +247,24 @@ table([['What was sought', 'Where', 'Outcome'],
        ['Concluded TDRA licence-renewal terms', 'TDRA site, du IR disclosure list, DFM '
         'announcements, press', 'NOT FOUND at the sweep date — the licence note in the '
         'H1-2026 interims is the latest primary word; treated as catalyst 2'],
-       ['du\'s own disclosure of the post-2026 royalty regime', 'du filings and DFM '
-        'disclosures', 'NOT FOUND — the H1-2026 notes still say "effective from 2024 to '
-        '2026"; the extension notification is disclosed by e&, not yet by du; both '
-        'framings priced'],
+       ['Post-2029 royalty/corporate-tax regime', 'du filings, e& filings, MoF releases, '
+        'Cabinet decisions', 'NOT DISCLOSED by anyone — so a reversion after 2029 is carried '
+        'as a priced tail, not forecast. NOTE: the FIRST EDITION of this study recorded the '
+        'post-2026 regime as undisclosed by du. That was WRONG — du published its own '
+        '"Extension of Federal Royalty Scheme for the Period 2027-2029" on 24-Jul-2026, '
+        'sixteen days before the sweep date, retaining the AED 1.8bn floor. The negative '
+        'search was stale, not the disclosure absent'],
+       ['Licence FEE / revenue-share terms on the renewed licence', 'TDRA announcement of '
+        '12-Aug-2026, du filings', 'NOT DISCLOSED — the 20-year renewal (effective '
+        '09-Aug-2026) publishes obligations only, no economics. The study holds the fee ratio '
+        'at its historical level and flags that as an assumption'],
+       ['Peer EV/EBITDA from issuer filings', 'peer annual reports and results releases',
+        'net-debt detail per peer not retrieved within scope — the relative lens runs on '
+        'earnings and dividend yield only, both sourced, rather than on an estimated multiple'],
+       ['Trailing P/E for Zain and a priced multiple for Omantel', 'aggregators and issuer '
+        'filings', 'REFUSED rather than passed through: the provider returned 11,365x for '
+        'Zain, and Omantel\'s quoted multiple and yield are mutually inconsistent. Neither '
+        'enters the peer frame as a number'],
        ['Wholesale and ICT unit KPIs (minutes, racks, MW, backlog)', 'AR2023-AR2025, all '
         'interims, all decks', 'never disclosed — both segments built top-down, flagged'],
        ['Numeric FY2026 capex guidance', 'Feb/Apr/Jul-2026 releases and decks',
@@ -232,6 +272,24 @@ table([['What was sought', 'Where', 'Outcome'],
        ['Analyst consensus on du', 'public sources', 'not cleanly retrievable (searches '
         'polluted by the exchange\'s own ticker); noted, not used']],
       [2.20, 2.30, 2.55], size=7.8)
+
+H1('Corrections made after external review')
+P('Four input errors were found by external audit and by re-audit, and are corrected in this '
+  'edition rather than left standing. First, the justified price/earnings multiple: the first '
+  'edition used 15.5x, described as a peer median. It was neither a median of the stated peer set '
+  'nor a current figure — it was a January-2026 aggregator reading built on FY2024 earnings, '
+  'published with an August-2026 date. Re-derived from the peers\' own filings it is 12.9x, and '
+  'no median is claimed because only two of six peers survive as clean observations. Second, the '
+  'dividend roll: the first edition netted only the final dividend PAID before the anchor, on the '
+  'reasoning that the interim was declared but unpaid. The correct test is the EX-date, which had '
+  'passed six sessions earlier, so AED 0.66 is now netted, not 0.40. Third, the staff-cost input: '
+  'its own source note said it applied the prior year\'s second-half seasonal ratio, but the '
+  'figure used implied 1.09 against a true 1.196 — which pushed total forecast operating expenses '
+  'BELOW the audited prior-year actual while revenue grew, and made the margin expansion an '
+  'artefact of one input. Fourth, and most consequential for how this study reads: du had '
+  'disclosed the 2027-2029 royalty extension itself, before the first edition\'s sweep date, so '
+  'the "contested judgement" that edition was built around was not contested. It is recast here '
+  'as the required return.')
 
 H1('A note on source discrepancies')
 P('Three discrepancies a checking reader will find, all explained rather than smoothed: '

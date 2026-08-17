@@ -125,10 +125,14 @@ for i, ln in enumerate([
  'tariff). Wholesale and ICT are grown on their own paths — the war-hit roaming/transit recovery and the',
  'data-centre ramp respectively. Contribution margins are the audited Note 38 rates; the opex stack below',
  'them carries ONE escalator per cost class. Group EBITDA margin is an OUTPUT of all of this, not an input.', '',
- 'The fiscal regime — the study\'s contested judgement. The 38% federal royalty + 9% corporate tax regime',
- '(43.6% combined take) is legislated for 2024-2026 only. The base model carries it forward (Framing A);',
- 'the Fundamental Valuation sheet also shows the DCF under a reversion to the pre-2024 construction',
- '(Framing B, a 51-52% take). Both are shown; they are never averaged.', '',
+ 'The contested judgement — the required return. This is the one judgement that moves the answer more',
+ 'than any other, so it is computed BOTH WAYS on the Fundamental Valuation sheet and never averaged.',
+ "Framing 1 takes du's own measured beta and capitalises the terminal at the Gordon rate. Framing 2",
+ "refuses the re-rating that implies and holds du's CURRENT trailing EV/EBITDA into perpetuity instead.",
+ 'The gap between them is the study, and it is published, not resolved. (The post-2026 fiscal regime',
+ 'was the prior edition\'s contested judgement; it is no longer contested — du disclosed the 2027-2029',
+ 'extension itself on 24 July 2026 on the same structure, with the AED 1.8bn combined floor retained.',
+ 'A reversion after 2029 is still priced, as a named tail, on the same sheet.)', '',
  'What it is not. It is not investment advice, a recommendation, or a price target. Values are model outputs',
  'shown as ranges.', '',
  'Sourcing note, up front. FY2023, FY2024 and FY2025 all come from the company\'s own audited consolidated',
@@ -137,11 +141,20 @@ for i, ln in enumerate([
  'consolidated revenue in every year (Note 38). du carries ZERO drawn borrowings in every year studied; the',
  'only debt-like item is IFRS-16 lease liabilities, and the bridge treats them as debt. Every input is',
  'annotated where it appears and listed with source and date in the companion bibliography document.', '',
- 'Discount convention. Each explicit year is discounted at its own forward cost of capital, gliding',
- f"{W['wacc_exp']*100:.2f}% -> {W['wacc_term']*100:.2f}% on the AED risk-free path (du has no debt whose cost could define the",
- 'glide); the terminal value is capitalised at the terminal rate and discounted at the year-5 cumulative',
- 'factor. One date, one price of time: the bridge is dated 31-Dec-2025 and rolled to the 07-Aug-2026 anchor',
- 'at the cost of equity, net of the AED 0.40 final dividend paid 28-Apr-2026.', '',
+ 'Leases are debt, and charged once. du has no drawn borrowings; its only debt-like item is the IFRS-16',
+ 'lease liability. That liability is deducted in the enterprise-to-equity bridge and carries a debt',
+ 'weight in the cost of capital, so NO lease charge belongs in the cash-flow waterfall as well —',
+ 'perpetual renewal is already paid for in the terminal, where invested capital includes the',
+ 'right-of-use asset and terminal reinvestment maintains it. The right-of-use book is held flat because',
+ 'a new lease creates an asset and a liability together and is non-cash.', '',
+ 'Discount convention, stated. Each explicit year is discounted at its own forward cost of capital,',
+ f"at full-year END-of-period factors, gliding {W['wacc_exp']*100:.2f}% -> {W['wacc_term']*100:.2f}% "
+ 'on the AED risk-free path (du has no debt whose cost could',
+ 'define the glide); the terminal value, a value dated at the end of year five, is discounted at the',
+ 'year-five factor. A mid-year convention would raise the answer and is not adopted.',
+ 'One date, one price of time: the bridge is dated 31-Dec-2025 and rolled to the 07-Aug-2026 anchor at',
+ f"the cost of equity, net of the AED {IN['div_between']:.2f} of dividends whose EX-dates fall in that",
+ 'window (the 0.40 final, paid 28-Apr-2026, and the 0.26 interim, ex 31-Jul-2026).', '',
  f"Currency. AED million unless stated. Spot AED {SPOT:.2f} ({M['asof']} close). Sheets: READ FIRST · Summary ·",
  'Fundamental Valuation · Assumptions · SOTP Bridge · Segments · Relative & Normalized · DCF · Income',
  'Statement · Balance Sheet · Cash Flow · Summary Financials · Monte Carlo · Sensitivity · Per-Share &',
@@ -179,16 +192,26 @@ for k in ['dcf', 'relative', 'normalized', 'book']:
     r += 1
 band(ws, r, 7)
 LK = ['dcf', 'relative', 'normalized', 'book']
+# CORRECTED 17-Aug-2026: the bear and bull cells on this row are now WEIGHTED on the same
+# 45/25/20/10 basis as the base. They previously held MIN/MAX across lenses under a "Weighted"
+# label, which overstated the published range in both directions.
+_WB = sum(LN[k]['bear'] * LN[k]['w'] for k in LK)
+_WU = sum(LN[k]['bull'] * LN[k]['w'] for k in LK)
 put(ws, f'A{r}', 'Weighted central', bold=True, fmt=None)
-putf(ws, f'B{r}', '=MIN(B5:B8)', min(LN[k]['bear'] for k in LK), PX, bold=True)
+putf(ws, f'B{r}', '=B5*E5+B6*E6+B7*E7+B8*E8', _WB, PX, bold=True)
 putf(ws, f'C{r}', '=SUM(F5:F8)', D['central'], PX, bold=True)
-putf(ws, f'D{r}', '=MAX(D5:D8)', max(LN[k]['bull'] for k in LK), PX, bold=True)
+putf(ws, f'D{r}', '=D5*E5+D6*E6+D7*E7+D8*E8', _WU, PX, bold=True)
 putf(ws, f'E{r}', '=SUM(E5:E8)', 1.0, PCT, bold=True)
 putf(ws, f'G{r}', f'=C{r}/$C$14-1', D['central'] / SPOT - 1, PCT, bold=True)
-r += 2                                             # r = 11
-put(ws, f'A{r}', 'Alternative reading — the fiscal regime reverts (Framing B DCF)', fmt=None)
-putf(ws, f'C{r}', "='Fundamental Valuation'!C19", DCF['ps_framing_b'], PX, green=True)
-putf(ws, f'G{r}', f'=C{r}/$C$14-1', DCF['ps_framing_b'] / SPOT - 1, PCT)
+r += 1
+put(ws, f'A{r}', 'Span across lenses (min/max — NOT weighted)', fmt=None)
+putf(ws, f'B{r}', '=MIN(B5:B8)', min(LN[k]['bear'] for k in LK), PX)
+putf(ws, f'D{r}', '=MAX(D5:D8)', max(LN[k]['bull'] for k in LK), PX)
+r += 1
+put(ws, f'A{r}', "Contested judgement, other way — no terminal re-rating (Framing 2)", fmt=None)
+SUMMARY_ALT_ROW = r   # resolved after the Fundamental Valuation rows are known
+put(ws, f'C{r}', DCF['ps_mkt_term'], BLUE, PX)
+putf(ws, f'G{r}', f'=C{r}/$C$14-1', DCF['ps_mkt_term'] / SPOT - 1, PCT)
 r += 1                                             # r = 12
 put(ws, f'A{r}', 'Terminal value share of DCF enterprise value', fmt=None)
 putf(ws, f'C{r}', '=DCF!C29', DCF['tv_share'], PCT, green=True)
@@ -244,35 +267,45 @@ r += 1
 band(ws, r, 3); put(ws, f'A{r}', 'Weighted central', bold=True, fmt=None)
 putf(ws, f'C{r}', '=Summary!C9', D['central'], PX, bold=True, green=True)   # row 12
 r += 2
-put(ws, f'A{r}', 'THE CONTESTED JUDGEMENT — THE POST-2026 FISCAL REGIME, BOTH WAYS', bold=True,
-    fmt=None); r += 1                              # r = 15
+put(ws, f'A{r}', 'THE CONTESTED JUDGEMENT — THE REQUIRED RETURN, BOTH WAYS', bold=True,
+    fmt=None); r += 1
+_F1_ROW = r                                   # Framing 1 lands here; rows captured, never hardcoded
 for lab, val, fmt, xp, fml in [
-        ('Framing A (base): 38% royalty + 9% tax persist — combined take', TAX, PCT, None, None),
-        ('Fair value under Framing A (the primary DCF)', None, PX, DCF['ps'], '=DCF!C63'),
-        ('Framing B: reversion to the pre-2024 construction — year-1 take',
-         F['taxB_path'][0], PCT, None, None),
-        ('  15% of regulated revenue (69.0% share) + 30% of the regulated profit remainder',
-         None, None, None, None),
-        ('Fair value under Framing B (engine re-run of the same DCF)', DCF['ps_framing_b'], PX,
-         None, None),
-        ('The judgement is worth (A minus B, per share)', None, PX,
-         DCF['ps'] - DCF['ps_framing_b'], "=C16-C19")]:
+        ("Framing 1: du's own measured beta sets the cost of equity", None, PX, DCF['ps'],
+         '=DCF!C63'),
+        ('  the terminal that implies — exit multiple on terminal EBITDA',
+         DCF['tv_implied_mult'], MULT, None, None),
+        ("  against du's OWN current trailing EV/EBITDA", DCF['ev_ebitda_now'], MULT, None, None),
+        ("Framing 2: no terminal re-rating — du's current multiple held in perpetuity",
+         DCF['ps_mkt_term'], PX, None, None),
+        ('The judgement is worth (Framing 1 less Framing 2, per share)', None, PX,
+         DCF['ps'] - DCF['ps_mkt_term'], 'GAP'),
+        ('Post-2029 fiscal tail: the pre-2024 royalty construction returns after the disclosed '
+         '2027-2029 extension lapses', DCF['ps_framing_b'], PX, None, None)]:
     put(ws, f'A{r}', lab, fmt=None)
-    if fml is not None:
+    if fml == 'GAP':
+        putf(ws, f'C{r}', f'=C{_F1_ROW}-C{_F1_ROW + 3}', xp, fmt)
+    elif fml is not None:
         putf(ws, f'C{r}', fml, xp, fmt, green='DCF' in fml)
     elif val is not None:
         put(ws, f'C{r}', val, BLUE, fmt)
-    r += 1                                          # B lands on row 19; gap row 20
+    r += 1
+FRAMING2_ROW = _F1_ROW + 3
+ANCH['fv_framing1'] = f'C{_F1_ROW}'; ANCH['fv_framing2'] = f'C{FRAMING2_ROW}'
+ANCH['fv_gap'] = f'C{_F1_ROW + 4}'; ANCH['fv_tail'] = f'C{_F1_ROW + 5}'
 r += 1
 put(ws, f'A{r}', 'EXPERT PANEL', bold=True, fmt=None); r += 1
 hdr(ws, r, ['Expert', 'Method', 'Base (AED/share)', 'Low', 'High']); r += 1
+_PANEL_FIRST = r
 for k, nm in [('e1', 'Expert 1'), ('e2', 'Expert 2'), ('e3', 'Expert 3')]:
     e = EXP[k]
     put(ws, f'A{r}', nm, fmt=None); put(ws, f'B{r}', e['method_short'], fmt=None)
     put(ws, f'C{r}', e['base'], BLUE, PX); put(ws, f'D{r}', e['rng'][0], BLUE, PX)
     put(ws, f'E{r}', e['rng'][1], BLUE, PX); r += 1
 band(ws, r, 5); put(ws, f'A{r}', 'Panel median', bold=True, fmt=None)
-putf(ws, f'C{r}', '=MEDIAN(C24:C26)', D['panel_centre'], PX, bold=True)   # row 27
+putf(ws, f'C{r}', f'=MEDIAN(C{_PANEL_FIRST}:C{_PANEL_FIRST + 2})', D['panel_centre'],
+     PX, bold=True)
+ANCH['fv_panel'] = f'C{r}'
 r += 2
 put(ws, f'A{r}', 'The risk-free tenor question, priced', fmt=None); r += 1
 put(ws, f'A{r}', 'There is no liquid 10-year AED government point. The base model uses the '
@@ -352,7 +385,7 @@ block('Capital intensity and working capital', [
      IN['dep_rate_ppe'], PCT),
     ('amort_rate', 'Intangibles amortisation rate on opening balance (audited FY2025)',
      IN['amort_rate'], PCT),
-    ('rou_dep', 'Right-of-use depreciation = lease replacement capex (AED mn)',
+    ('rou_dep', 'Right-of-use depreciation, matched by non-cash lease additions (AED mn)',
      IN['rou_dep_path'], NUM0),
     ('nwc_pct', 'Net working capital / revenue (audited FY2025 component days)', NWC_PCT, PCT)])
 block('Cost of capital', [
@@ -372,12 +405,14 @@ block('Balance-sheet and bridge anchors', [
     ('lease', 'Lease liabilities at FY2025 (AED mn, audited — the only debt-like item)',
      IN['lease_fy25'], NUM0),
     ('netcash', 'Cash and term deposits at FY2025 (AED mn, audited)', NETCASH, NUM0),
-    ('investees', 'Equity-accounted investees at carrying value (AED mn)', 0.511, NUM1),
+    ('investees', 'Equity-accounted investees at carrying value (AED mn)',
+     IN['investees_bv'], NUM1),
     ('payout', 'Forecast dividend payout ratio (FY2024 actual 98%, FY2025 ~100%)', PAYOUT, PCT),
     ('dep_yield', 'Yield on cash and term deposits (audited FY2025 effective)',
      F['dep_yield'], PCT),
     ('lease_rate', 'Lease interest rate (audited FY2025 effective)', F['lease_rate'], PCT),
-    ('div_between', 'Final FY2025 dividend paid 28-Apr-2026 (AED/share)', IN['div_between'], PX),
+    ('div_between', 'Dividends gone ex between 31-Dec-2025 and the anchor (AED/share)',
+     IN['div_between'], PX),
     ('anchor_days', 'Days from the 31-Dec-2025 valuation date to the 07-Aug-2026 anchor',
      IN['anchor_days'], NUM0)])
 block('Lens inputs', [
@@ -651,7 +686,9 @@ for lab, v, xp, fmt in [
     r += 1
 band(ws, r - 1, 3)                                 # implied value lands on row 35
 put(ws, 'D35', 'bear / bull constructions (E / F):', fmt=None)
-putf(ws, 'E35', f"=(({a('roe_sust')}-0.04)/((DCF!C40+DCF!C50)/2+0.01-0.02))*C30"
+# ONE g in a justified price-to-book, taken from the registered terminal growth; the bear is the
+# +100bp stress on the cost of equity, not a second, different growth rate (corrected 17-Aug-2026)
+putf(ws, 'E35', f"=(({a('roe_sust')}-{a('g_term')})/((DCF!C40+DCF!C50)/2+0.01-{a('g_term')}))*C30"
      f"*DCF!$C$62-{a('div_between')}", LN['book']['bear'], PX)
 putf(ws, 'F35', f"=(({a('roe_sust')}+0.02-{a('g_term')})/(DCF!C50-{a('g_term')}))*C30"
      f"*DCF!$C$62-{a('div_between')}", LN['book']['bull'], PX)
@@ -681,13 +718,17 @@ wf(10, f"NOPAT — EBIT x (1 - {TAX:.1%} combined royalty and tax)",
 wf(11, 'Add back depreciation and amortisation', lambda i: f'=-{CD[i]}8', F['dna'])
 wf(12, 'Less capital expenditure', lambda i: f'=-{CD[i]}5*{a("capex_pct", i)}',
    [-x for x in F['capex']])
-wf(13, 'Less lease replacement (at right-of-use depreciation)',
-   lambda i: f'=-{a("rou_dep", i)}', [-x for x in F['rou_repl']])
+# CORRECTED 17-Aug-2026: this line is NO LONGER DEDUCTED. Leases are debt — the liability is
+# netted in the bridge and carries a debt weight in the cost of capital, and perpetual renewal is
+# paid for in the terminal (invested capital includes the right-of-use asset). Charging it here as
+# well billed the same obligation twice. The figure is kept visible as a memo, outside the sum.
+wf(13, 'Memo — lease replacement at right-of-use depreciation, NOT deducted (leases are debt)',
+   lambda i: f'={a("rou_dep", i)}', DCF['rou_repl_retired'])
 wf(14, 'Less change in working capital',
    lambda i: (f"=-({CD[i]}5*{a('nwc_pct')}-'Balance Sheet'!D11)" if i == 0
               else f'=-({CD[i]}5-{CD[i-1]}5)*{a("nwc_pct")}'), [-x for x in F['dnwc']])
 wf(15, 'Free cash flow to the firm',
-   lambda i: f'={CD[i]}10+{CD[i]}11+{CD[i]}12+{CD[i]}13+{CD[i]}14', F['fcff'], bd=True)
+   lambda i: f'={CD[i]}10+{CD[i]}11+{CD[i]}12+{CD[i]}14', F['fcff'], bd=True)
 wf(16, 'Forward cost of capital', lambda i: f'=$C$47-($C$47-$C$54)*{CD[i]}58', F['fwd_wacc'], PCT2)
 wf(17, 'Discount factor', lambda i: (f'=1/(1+{CD[i]}16)' if i == 0
                                      else f'={CD[i-1]}17/(1+{CD[i]}16)'), F['df'], DF4)
@@ -796,9 +837,11 @@ def isline(r, lab, hist, fc_f, fc_v, fmt=NUM0, bd=False, hist_f=None, hist_v=Non
             putf(ws, f'{FCOL[i]}{r}', fc_f(i), fc_v[i], fmt, bold=bd, green=green)
     if bd: band(ws, r, 9)
 
-DIRECT = {'FY24': -4818.442, 'FY25': -5259.425}
-CONTRIB_H = {'FY24': 9817.475, 'FY25': 10645.996}
-OPEX_H = {'FY24': -3347.636, 'FY25': -3307.608}
+# every figure below is READ from the committed numbers file — no financial numeral is typed
+# into this builder (numeric-traceability rule; the prior edition violated it in 30 places)
+DIRECT = IN['direct_costs_hist']
+OPEX_H = IN['opex_before_dna_hist']
+CONTRIB_H = {y: HI[y]['rev'] + DIRECT[y] for y in ('FY24', 'FY25')}
 isline(5, 'Revenue', [HI[y]['rev'] for y in H3], lambda i: f'=DCF!{CD[i]}5', F['rev'], bd=True,
        green=True)
 put(ws, 'A6', 'Direct costs (interconnect, commissions, devices)', fmt=None)
@@ -833,12 +876,14 @@ isline(11, 'Depreciation and amortisation', [-abs(HI[y]['dna']) for y in H3],
                   f"+{a('rou_dep', i)})"), [-x for x in F['dna']])
 isline(12, 'Operating profit (EBIT)', None, lambda i: f'={FCOL[i]}9+{FCOL[i]}11', F['ebit'],
        bd=True, hist_f=lambda i: f'={HC[i]}9+{HC[i]}11', hist_v=[HI[y]['ebit'] for y in H3])
-isline(13, 'Interest income', [61.327, 82.214, 74.672],
+isline(13, 'Interest income', [IN['int_inc_fy23'], IN['int_inc_fy24'], IN['int_inc_fy25']],
        lambda i: (f"={a('dep_yield')}*MAX('Balance Sheet'!{'D' if i == 0 else FCOL[i-1]}12,0)"),
        F['int_inc'])
-isline(14, 'Interest expense (principally leases)', [-101.430, -89.770, -95.054],
+isline(14, 'Interest expense (principally leases)',
+       [-IN['int_exp_fy23'], -IN['int_exp_fy24'], -IN['int_exp_fy25']],
        lambda i: f"=-{a('lease_rate')}*'Balance Sheet'!{FCOL[i]}13", [-x for x in F['int_exp']])
-isline(15, 'Share of equity-accounted investments', [-2.720, -2.427, -0.894], None, None)
+isline(15, 'Share of equity-accounted investments',
+       [IN['assoc_hist'][y] for y in H3], None, None)
 put(ws, 'A16', 'Profit before federal royalty and income tax', bold=True, fmt=None)
 for i, v in enumerate([HI[y]['pbt'] for y in H3]):
     put(ws, f'{HC[i]}16', v, BLUE, NUM0, bold=True)   # printed line (face); small net-impairment
@@ -875,8 +920,8 @@ title(ws, 'Balance sheet — condensed', 'AED mn, consolidated. Every FY2023-25 
       awidth=40, cwidth=12)
 hdr(ws, 4, ['AED mn'] + YH + YF)
 
-DEP_H = [1544.182, 1569.189, 1557.989]
-AMO_H = [209.053, 209.896, 245.881]
+DEP_H = [IN['dep_ppe_hist'][y] for y in H3]
+AMO_H = [IN['amort_hist'][y] for y in H3]
 put(ws, 'A5', 'Property, plant and equipment', fmt=None)
 for i, y in enumerate(H3):
     put(ws, f'{HC[i]}5', HB[y]['ppe'], BLUE, NUM0)
@@ -894,8 +939,9 @@ put(ws, 'A7', 'Right-of-use assets', fmt=None)
 for i, y in enumerate(H3):
     put(ws, f'{HC[i]}7', HB[y]['rou'], BLUE, NUM0)
 for i in range(5):
-    putf(ws, f'{FCOL[i]}7', f'={"D" if i == 0 else FCOL[i-1]}7+{a("rou_dep",i)}-{a("rou_dep",i)}',
-         F['rou'][i], NUM0)
+    # additions equal depreciation BY CONSTRUCTION (a new lease creates asset and liability
+    # together and is non-cash), so the book is held flat — stated, not dressed as a driver link
+    putf(ws, f'{FCOL[i]}7', f'=$D$7', F['rou'][i], NUM0)
 put(ws, 'A8', 'Intangible assets (excl. goodwill)', fmt=None)
 put(ws, 'B8', HB['FY23']['intang'], BLUE, NUM0)
 put(ws, 'C8', HB['FY24']['intang'], BLUE, NUM0); put(ws, 'D8', HB['FY25']['intang'], BLUE, NUM0)
@@ -926,7 +972,7 @@ for i, y in enumerate(H3):
 for i in range(5):
     putf(ws, f'{FCOL[i]}12',
          f"={'D' if i == 0 else FCOL[i-1]}12+'Income Statement'!{FCOL[i]}18"
-         f"-'Income Statement'!{FCOL[i]}11+DCF!{CD[i]}12+DCF!{CD[i]}13+DCF!{CD[i]}14"
+         f"-'Income Statement'!{FCOL[i]}11+DCF!{CD[i]}12+DCF!{CD[i]}14"
          f"-'Income Statement'!{FCOL[i]}18*{a('payout')}",
          F['net_cash'][i], NUM0)
 put(ws, 'A13', 'Lease liabilities (the only debt-like item)', fmt=None)
@@ -974,9 +1020,12 @@ putf(ws, 'C5', "='Income Statement'!D9", HI['FY25']['ebitda'], NUM0, green=True)
 for i in range(5):
     putf(ws, f'{CFF[i]}5', f"='Income Statement'!{FCOL[i]}9", F['ebitda'][i], NUM0, green=True)
 for r_, lab, v24, v25 in [
-        (6, 'Federal royalty and income tax paid', -1928.939, -1883.442),
-        (7, 'Net cash generated from operating activities', 4636.508, 5229.823),
-        (8, 'Purchase of PP&E and intangibles', -1920.468, -2353.230)]:
+        (6, 'Federal royalty and income tax paid',
+         IN['tax_paid_hist']['FY24'], IN['tax_paid_hist']['FY25']),
+        (7, 'Net cash generated from operating activities',
+         IN['ocf_hist']['FY24'], IN['ocf_hist']['FY25']),
+        (8, 'Purchase of PP&E and intangibles',
+         -IN['capex_cash_hist']['FY24'], -IN['capex_cash_hist']['FY25'])]:
     put(ws, f'A{r_}', lab, fmt=None)
     put(ws, f'B{r_}', v24, BLUE, NUM0)
     put(ws, f'C{r_}', v25, BLUE, NUM0)
@@ -992,10 +1041,10 @@ put(ws, 'A11', 'Capital expenditure', fmt=None)
 put(ws, 'B11', '-', BLACK, NUM0); put(ws, 'C11', '-', BLACK, NUM0)
 for i in range(5):
     putf(ws, f'{CFF[i]}11', f'=DCF!{CD[i]}12', -F['capex'][i], NUM0, green=True)
-put(ws, 'A12', 'Lease replacement', fmt=None)
+put(ws, 'A12', 'Memo — lease replacement, NOT deducted (leases are debt)', fmt=None)
 put(ws, 'B12', '-', BLACK, NUM0); put(ws, 'C12', '-', BLACK, NUM0)
 for i in range(5):
-    putf(ws, f'{CFF[i]}12', f'=DCF!{CD[i]}13', -F['rou_repl'][i], NUM0, green=True)
+    putf(ws, f'{CFF[i]}12', f'=DCF!{CD[i]}13', DCF['rou_repl_retired'][i], NUM0, green=True)
 put(ws, 'A13', 'Change in working capital', fmt=None)
 put(ws, 'B13', '-', BLACK, NUM0)
 putf(ws, 'C13', "=-('Balance Sheet'!D11-'Balance Sheet'!C11)",
@@ -1005,16 +1054,17 @@ for i in range(5):
 put(ws, 'A14', 'Free cash flow to the firm', bold=True, fmt=None)
 put(ws, 'B14', '-', BLACK, NUM0); put(ws, 'C14', '-', BLACK, NUM0)
 for i in range(5):
-    putf(ws, f'{CFF[i]}14', f'={CFF[i]}9+{CFF[i]}10+{CFF[i]}11+{CFF[i]}12+{CFF[i]}13',
+    putf(ws, f'{CFF[i]}14', f'={CFF[i]}9+{CFF[i]}10+{CFF[i]}11+{CFF[i]}13',
          F['fcff'][i], NUM0, bold=True)
 band(ws, 14, 9)
 put(ws, 'A16', 'Dividends paid', fmt=None)
-put(ws, 'B16', -1858.491, BLUE, NUM0); put(ws, 'C16', -2629.085, BLUE, NUM0)
+put(ws, 'B16', IN['div_paid_hist']['FY24'], BLUE, NUM0)
+put(ws, 'C16', IN['div_paid_hist']['FY25'], BLUE, NUM0)
 for i in range(5):
     putf(ws, f'{CFF[i]}16', f"=-'Income Statement'!{FCOL[i]}18*{a('payout')}",
          -F['div'][i], NUM0)
 put(ws, 'A17', 'Cash conversion — operating cash flow as a share of EBITDA, FY2025', fmt=None)
-putf(ws, 'C17', '=C7/C5', 5229.823 / HI['FY25']['ebitda'], PCT)
+putf(ws, 'C17', '=C7/C5', IN['ocf_hist']['FY25'] / HI['FY25']['ebitda'], PCT)
 put(ws, 'A18', 'du converts EBITDA to operating cash at over 70% AFTER the 43.6% fiscal take — '
     'the negative-working-capital model means growth releases cash. The constraint on equity '
     'cash flow is the ~100% payout plus the data-centre capex ramp, which is why term deposits '
@@ -1137,9 +1187,12 @@ put(ws, f'A{r}', 'Single-driver sensitivities — five engine re-runs per row; t
 hdr(ws, r, ['Driver (parameter grid)', '', '', '', '', '', '', 'Swing']); r += 1
 for lab, grid, vals, gfmt in [
         ('Beta (regression CI ends, then priors)', SN['beta_grid'], SN['grid_beta'], '{:.2f}'),
-        ('Combined fiscal take (Framing B ~51.5%)', SN['tax_grid'], SN['grid_tax'], '{:.1%}'),
-        ('Blended ARPU multiplier', SN['arpu_grid'], SN['grid_arpu'], '{:.2f}x'),
-        ("Subscriber path shift ('000)", SN['subs_grid'], SN['grid_subs'], '{:+.0f}'),
+        ('Combined fiscal take (top of grid = the pre-2024 construction\'s FY2023 take)',
+         SN['tax_grid'], SN['grid_tax'], '{:.1%}'),
+        ('Blended ARPU multiplier — applied to BOTH the mobile ARPU and the implied fixed '
+         'revenue-per-subscriber paths', SN['arpu_grid'], SN['grid_arpu'], '{:.2f}x'),
+        ("Subscriber path shift ('000) — applied in full to the mobile base and at 8% of that "
+         'to the fixed base', SN['subs_grid'], SN['grid_subs'], '{:+.0f}'),
         ('Contribution margins, multiplicative', SN['mg_grid'], SN['grid_margin'], '{:.2f}x'),
         ('Capex path multiplier', SN['capex_grid'], SN['grid_capex'], '{:.3f}x'),
         ('Working capital / revenue', SN['nwc_grid'], SN['grid_nwc'], '{:.1%}'),
@@ -1201,7 +1254,7 @@ ratio('Return on equity',
       skip=(0,))
 ratio('Return on invested capital', lambda i: f"='Summary Financials'!{ALL[i]}14",
       [None] * 3 + F['roic'], PCT, skip=(0, 1, 2))
-capex_h = [2227.558, 1920.468, 2353.230]
+capex_h = [IN['capex_cash_hist'][y] for y in H3]
 ratio('Capital expenditure / revenue (capital intensity)',
       lambda i: (f"=-'Cash Flow'!{CFF[i-3]}11/'Income Statement'!{ALL[i]}5" if i >= 3 else None),
       [None] * 3 + [F['capex'][i] / F['rev'][i] for i in range(5)], PCT, skip=(0, 1, 2))
@@ -1214,29 +1267,31 @@ ratio('Working capital / revenue',
 r += 1
 put(ws, f'A{r}', 'Operating KPIs (company-disclosed history, house forecast)', bold=True,
     fmt=None); r += 1
+SMH, SFH, AH = (IN['subs_mobile_hist_display'], IN['subs_fixed_hist_display'],
+                IN['arpu_hist_display'])
 kpi_rows = [
-    ("Mobile subscribers, end of year ('000)",
-     [8916, None, 9704] if True else None, IN['subs_mobile_path'], NUM0),
-    ("Fixed subscribers, end of year ('000)", [682, None, 735], IN['subs_fixed_path'], NUM0),
-    ('Blended mobile ARPU (AED/month)', [None, 65.8, 63.3], IN['arpu_mobile_path'], NUM1),
+    ("Mobile subscribers, end of year ('000)", [None, SMH['FY24'], SMH['FY25']],
+     IN['subs_mobile_path'], NUM0, 'subs_m'),
+    ("Fixed subscribers, end of year ('000)", [None, SFH['FY24'], SFH['FY25']],
+     IN['subs_fixed_path'], NUM0, 'subs_f'),
+    ('Blended mobile ARPU (AED/month)', [None, AH['FY24'], AH['FY25']],
+     IN['arpu_mobile_path'], NUM1, 'arpu_m'),
 ]
-for lab, hist, path, fmt in kpi_rows:
+for lab, hist, path, fmt, key in kpi_rows:
     put(ws, f'A{r}', lab, fmt=None)
     for i in range(3):
-        v = hist[i] if hist else None
+        v = hist[i]
         put(ws, f'{HC[i]}{r}', v if v is not None else '-', BLUE if v is not None else BLACK,
             fmt)
-    key = {'Mobile': 'subs_m', 'Fixed s': 'subs_f', 'Blended': 'arpu_m'}[lab[:7].split(',')[0][:7]
-                                                                         [:6].strip()[:6]] \
-        if False else ('subs_m' if lab.startswith('Mobile') else
-                       'subs_f' if lab.startswith('Fixed') else 'arpu_m')
     for i in range(5):
         putf(ws, f'{FCOL[i]}{r}', f'={a(key, i)}', path[i], fmt, green=True)
     r += 1
-put(ws, f'A{r+1}', 'Mobile subscriber history: 8,916k (Q4-2024), 9,704k (Q4-2025) — the FY2024 '
-    'column carries the Q4-2024 base and the ARPU column the company\'s quarterly prints (65.8 '
-    'Q4-2024, 63.3 FY2025). Q2-2026 actual: 9,280k after the war quarter (−412k), the base the '
-    'forecast recovers from.', fmt=None).font = SUB
+put(ws, f'A{r+1}', 'Subscriber and ARPU history are the company\'s own year-end prints; FY2023 is '
+    'not shown because the KPI series in the current disclosure pack starts at Q4-2024. The '
+    'Q2-2026 actual mobile base is '
+    f"{BU['subs_mobile']['Q2_2026']:,.0f}k after the war quarter (total base −"
+    f"{BU['subs_mobile']['Q1_2026']-BU['subs_mobile']['Q2_2026']:,.0f}k on the quarter), which is "
+    'the base the forecast recovers from.', fmt=None).font = SUB
 
 # ============ 16 PEER & SECTOR ===============================================================
 ws = sheet('Peer & Sector')
@@ -1287,6 +1342,11 @@ for _ws in wb.worksheets:
     _ws.page_setup.fitToWidth = 1
     _ws.page_setup.fitToHeight = 0
     _ws.sheet_properties.pageSetUpPr.fitToPage = True
+# post-pass: Summary's contested-judgement alternative links LIVE to the captured FV cell
+_ws = wb['Summary']
+putf(_ws, f'C{SUMMARY_ALT_ROW}', f"='Fundamental Valuation'!{ANCH['fv_framing2']}",
+     DCF['ps_mkt_term'], PX, green=True)
+
 out = os.path.join(HERE, 'DU_Valuation_Model_09082026_public.xlsx')
 wb.save(out)
 json.dump({'expected': EXPECT, 'anchors': ANCH},

@@ -99,14 +99,14 @@ f_reg = R.add(Ring.COUNTRY, "regulatory environment (regulator, caps, tariffs, t
                  "sensitivity (each +1pp of revenue in licence fees is ~AED -1.0/share).")
 f_fiscal = R.add(Ring.COUNTRY, "fiscal / political events with sector read-through",
     FindingClass.B,
-    "THE CONTESTED JUDGEMENT'S EVIDENCE BASE: the 38% federal royalty + 9% CT regime "
-    "(combined floor AED 1.8bn/yr) is legislated 2024-2026 (Cabinet 8/38 of 2023). du's own "
-    "H1-2026 notes (22-Jul-2026) still describe 2024-2026 only. e&'s market disclosure of an "
-    "MoF notification dated 17-Jul-2026 reports a THREE-YEAR EXTENSION (2027-2029) on the "
-    "same structure — peer-operator disclosure, not yet mirrored in du's own filings",
-    "du H1-2026 FS Note 14 (COMPANY_OFFICIAL) + e& disclosure of MoF notification (17-Jul-2026)",
+    "The 38% federal royalty + 9% CT regime (combined floor AED 1.8bn/yr) is legislated "
+    "2024-2026 by Cabinet decision 8/38 of 2023, and du's H1-2026 statement notes (22-Jul-2026) "
+    "describe that window. An MoF notification extending the same structure to 2027-2029 was "
+    "disclosed by e& and — SEE THE CORRECTED ENTRY BELOW — by du itself on 24-Jul-2026, which "
+    "this study's first edition missed",
+    "du H1-2026 FS Note 14 (COMPANY_OFFICIAL) + e& disclosure of the MoF notification",
     REG, "2026-07-17",
-    model_impact="Framing A (base): 43.6% combined take persists. Framing B: reversion to the "
+    model_impact="Current regime is the base on DISCLOSED FACT through 2029. A reversion after "
                  "pre-2024 construction (15% regulated revenue + 30% regulated profit = 51-53% "
                  "take). BOTH computed: AED 19.14 vs 16.29 per share on the DCF.")
 
@@ -239,8 +239,12 @@ R.add_negative(Ring.COMPANY, "one-off base-resetting transactions",
     "du M&A / acquisitions / disposals 2025-2026 beyond the DC programme and SPO "
     "(press, DFM disclosures)", SWEEP_DATE)
 R.add_negative(Ring.COUNTRY, "regulatory environment (regulator, caps, tariffs, tax/subsidy)",
-    "TDRA or du announcement of CONCLUDED licence-renewal terms (TDRA site, du IR "
-    "disclosure list, DFM announcements, press)", SWEEP_DATE)
+    "licence FEE or revenue-share TERMS for the renewed licence. The renewal itself was "
+    "announced by TDRA on 12-Aug-2026 (20 years, effective 09-Aug-2026, superseding the 2006 "
+    "licence) - AFTER this study's anchor and date-stamp - but the announcement sets out "
+    "obligations only and publishes no fee or revenue-share term, so the economics remain "
+    "unsourced and the study's held fee ratio is an assumption, not a confirmed fact",
+    "2026-08-17")
 neg_whl = R.add_negative(Ring.COMPANY, "regular disclosures",
     "wholesale unit KPIs (transit minutes, IRU capacity, roaming volumes) anywhere in "
     "AR2023-AR2025, interim FS, or any analyst deck", SWEEP_DATE)
@@ -250,10 +254,27 @@ neg_ict = R.add_negative(Ring.COMPANY, "regular disclosures",
 neg_capex = R.add_negative(Ring.COMPANY, "strategic plans & guidance",
     "numeric FY2026 capex guidance in the Feb/Apr/Jul-2026 releases and decks "
     "(revenue growth and EBITDA margin are guided; capex is not)", SWEEP_DATE)
-neg_regime = R.add_negative(Ring.COUNTRY, "fiscal / political events with sector read-through",
-    "post-2026 royalty/CT regime in du's OWN filings and DFM disclosures (H1-2026 notes "
-    "still say 'effective from 2024 to 2026'; the 17-Jul-2026 MoF extension notification "
-    "is disclosed by e&, not yet by du)", SWEEP_DATE)
+neg_regime = R.add(Ring.COUNTRY, "fiscal / political events with sector read-through",
+    FindingClass.B,
+    "CORRECTED 17-Aug-2026 — THIS WAS PREVIOUSLY LOGGED AS A NEGATIVE SEARCH, WRONGLY. du "
+    "published its OWN disclosure announcement 'Extension of Federal Royalty Scheme for the "
+    "Period 2027-2029' on 24-JUL-2026 — sixteen days before this sweep date. The extension "
+    "carries the SAME structure (38% federal royalty on post-royalty UAE net profit + 9% "
+    "corporate income tax) and EXPRESSLY RETAINS the floor: 'The aggregate annual amount of "
+    "Federal Royalty and Corporate Tax payable by the Company shall not be lower than AED 1.8 "
+    "billion'. Period covered: 1-Jan-2027 to 31-Dec-2029. The prior edition recorded that only "
+    "e& had disclosed the extension; that was a sourcing failure, not a genuine absence",
+    "du disclosure announcement, Extension of Federal Royalty Scheme 2027-2029", CO,
+    "2026-07-24", fiscal_period="Q2-2026",
+    model_impact="DEMOTES the study's former contested judgement. The 2027-2029 regime is settled, "
+                 "so Framing A is the base on disclosed fact rather than on assumption, and a "
+                 "reversion is repriced as a POST-2029 TAIL. The contested judgement is recast as "
+                 "the REQUIRED RETURN (measured beta vs the market's own terminal multiple).")
+neg_regime_post29 = R.add_negative(Ring.COUNTRY,
+    "fiscal / political events with sector read-through",
+    "any disclosure of the royalty/corporate-tax regime applying AFTER 31-Dec-2029, in du's "
+    "filings, e&'s filings, MoF releases or Cabinet decisions - none exists; the post-2029 "
+    "reversion is therefore modelled as a tail, not forecast", "2026-08-17")
 
 # ---------------------------------------------------------------- DRIVER GATE
 R.add_driver("Mobile revenue (subscribers x ARPU)", DriverMode.BOTTOM_UP,
@@ -283,9 +304,13 @@ R.add_driver("Capex path (15.5% -> 13.0% of revenue)", DriverMode.TOP_DOWN,
              "No numeric FY2026 capex guidance published — FLAGGED as a house path anchored "
              "on disclosed commitments (2,411.8mn) and the disclosed DC programme",
              [f_dc, f_q2, neg_capex])
-R.add_driver("Post-2026 fiscal regime (the contested judgement)", DriverMode.TOP_DOWN,
-             "Not legislated in du's own filings beyond 2026; BOTH framings computed and "
-             "published side by side", [f_fiscal, f_fs23, neg_regime])
+R.add_driver("Post-2029 fiscal regime (a priced tail, NOT the contested judgement)",
+             DriverMode.TOP_DOWN,
+             "2027-2029 is SETTLED by du's own 24-Jul-2026 disclosure, so the base case rests on "
+             "disclosed fact rather than assumption. Nothing is disclosed for any period after "
+             "31-Dec-2029 (dated negative search), so a reversion to the pre-2024 construction is "
+             "carried as a named tail scenario and priced, never averaged into the base",
+             [f_fiscal, f_fs23, neg_regime, neg_regime_post29])
 
 errors, warnings = R.validate()
 print(R.qc_line())

@@ -13,12 +13,31 @@ M, HI, HB, F = D['meta'], D['hist_is'], D['hist_bs'], D['fcst']
 W, DCF, LN, SN = D['wacc'], D['dcf'], D['lenses'], D['sens']
 EXP, REL, NRM, BK = D['experts'], D['rel'], D['norm'], D['book']
 SEG, S0, STK, BU = D['seg_fy25'], D['step0'], D['strike'], D['bottomup']
-BT = D['backtest']; BT5, BTF = BT['five_year'], BT['full']
+BT = D['backtest']; BT5, BTF = BT['production'], BT['full']   # production = the post-break set actually used
 SPOT, SH = M['spot'], M['shares_mn']
 CEN, LO_, HI_ = D['central'], D['span'][0], D['span'][1]
 H1M, H3M = STK['horizons']['1M'], STK['horizons']['3M']
+_W = {k: LN[k]['w'] for k in ('dcf', 'relative', 'normalized', 'book')}
+WBEAR_H = sum(LN[k]['bear'] * _W[k] for k in _W)
+WBULL_H = sum(LN[k]['bull'] * _W[k] for k in _W)
 SEGS = ['mobile', 'fixed', 'wholesale', 'ict']
 TAXA = IN['tax_eff']
+# trailing-twelve-month basis, so both framings of du's own multiples can be shown (the
+# FY2025-only basis is seven months stale at the anchor)
+NP_TTM = IN['np_fy25'] + IN['h1_26_np'] - IN['h1_25_np']
+EPS_TTM = NP_TTM / SH
+EBITDA_TTM = IN['ebitda_fy25'] + IN['h1_26_ebitda'] - IN['h1_25_ebitda']
+EV_TTM = (M['mktcap'] + HB['FY25']['lease'] - HB['FY25']['net_cash']) / EBITDA_TTM
+
+_TN = [0]; _FN = [0]
+def T():
+    """Next table label. Auto-numbered so inserting a table cannot collide with or
+    orphan another — the defect this replaced was two tables both labelled 'Table 4'."""
+    _TN[0] += 1
+    return f'Table {_TN[0]}'
+def FG():
+    _FN[0] += 1
+    return f'Figure {_FN[0]}'
 
 def p2(x):  return f'{x:,.2f}'
 def p1(x):  return f'{x:,.1f}'
@@ -55,21 +74,30 @@ box([
   f"EBITDA margin of {pc(HI['FY25']['ebitda']/HI['FY25']['rev'])} — with ZERO drawn debt in "
   'every year studied and a dividend paid out of essentially all of profit.'),
  ('The valuation. ', f'Weighted central AED {p2(CEN)} per share against a spot of '
-  f'AED {p2(SPOT)} ({sgn(CEN/SPOT-1,0)}), inside a full bear-to-bull span of AED {p2(LO_)} to '
+  f'AED {p2(SPOT)} ({sgn(CEN/SPOT-1,0)}), inside a weighted bear-to-bull range of AED '
+  f'{p2(WBEAR_H)} to {p2(WBULL_H)} and a wider span across the four lenses of AED {p2(LO_)} to '
   f'AED {p2(HI_)}. The cash-flow lens alone reads AED {p2(DCF["ps"])}; the market-anchored '
   f'relative lens reads AED {p2(LN["relative"]["base"])}. That gap is the study\'s honest '
   'tension, and section 4 explains rather than hides it.'),
- ('The contested judgement. ', 'The 38% federal royalty plus 9% corporate tax regime '
-  f'(a {pc(TAXA)} combined take) is legislated only through 2026. Carried forward it gives '
-  f'AED {p2(DCF["ps"])}; a reversion to the heavier pre-2024 construction gives '
-  f'AED {p2(DCF["ps_framing_b"])}. Both are published side by side — the judgement is worth '
-  f'AED {p2(DCF["ps"]-DCF["ps_framing_b"])} per share and is never averaged into one number.'),
+ ('The contested judgement. ', 'What required return does this business deserve? On du\'s own '
+  f'measured beta the cash-flow lens reads AED {p2(DCF["ps"])} — but the terminal that implies '
+  f'values du at {DCF["tv_implied_mult"]:.1f}x forward EBITDA in perpetuity, against the '
+  f'{DCF["ev_ebitda_now"]:.1f}x the market pays for it today. Refuse that re-rating and hold '
+  f'today\'s multiple instead and the same cash flows are worth AED {p2(DCF["ps_mkt_term"])}. '
+  f'Both are published side by side — the judgement is worth AED '
+  f'{p2(DCF["ps"]-DCF["ps_mkt_term"])} per share and is never averaged into one number.'),
+ ('What is NOT contested. ', 'The fiscal regime. The 38% royalty plus 9% corporate tax was '
+  f'legislated only to 2026, but du disclosed the extension itself on 24 July 2026, covering '
+  '2027 to 2029 on the same structure with the AED 1.8bn combined floor expressly retained. A '
+  f'reversion after 2029 is priced as a named tail (AED {p2(DCF["ps_framing_b"])}), not as a '
+  'live coin-flip.'),
  ('The moment. ', 'This study is struck weeks after a regional war collapsed Gulf tourism and '
   f"took {n0(-BU['subs_mobile']['Q2_2026']+BU['subs_mobile']['Q1_2026'])} thousand mobile "
   'customers off du\'s base in a single quarter, and days after the company cut its own '
-  'revenue guidance while raising the interim dividend. The company\'s operating licence '
-  'renewal was disclosed as expected to conclude by 8 August 2026 — one day after this '
-  'study\'s price anchor.'),
+  'revenue guidance to 4-6% while raising the interim dividend. The company\'s operating '
+  'licence was disclosed as running only to 8 August 2026, one day after this study\'s price '
+  'anchor; it has since been renewed for twenty years, on terms the regulator has not '
+  'published.'),
 ], fill=F_CREAM)
 
 # =========================== VALUATION SUMMARY ===============================
@@ -80,21 +108,27 @@ for k, nm in [('dcf', 'Discounted cash flow (primary)'), ('relative', 'Relative 
     l = LN[k]
     rows.append([nm, p2(l['bear']), p2(l['base']), p2(l['bull']), pc(l['w'], 0),
                  sgn(l['base']/SPOT-1, 0)])
-rows.append(['Weighted central', p2(LO_), p2(CEN), p2(HI_), '100%', sgn(CEN/SPOT-1, 0)])
-rows.append(['DCF under Framing B (fiscal reversion)', '', p2(DCF['ps_framing_b']), '', '—',
-             sgn(DCF['ps_framing_b']/SPOT-1, 0)])
+W_ = {k: LN[k]['w'] for k in ('dcf', 'relative', 'normalized', 'book')}
+WBEAR = sum(LN[k]['bear'] * W_[k] for k in W_); WBULL = sum(LN[k]['bull'] * W_[k] for k in W_)
+rows.append(['Weighted central', p2(WBEAR), p2(CEN), p2(WBULL), '100%', sgn(CEN/SPOT-1, 0)])
+rows.append(['Span across lenses (min/max, not weighted)', p2(LO_), '', p2(HI_), '—', ''])
+rows.append(['Contested judgement, other way — no terminal re-rating',
+             '', p2(DCF['ps_mkt_term']), '', '—', sgn(DCF['ps_mkt_term']/SPOT-1, 0)])
 rows.append(['Expert panel median (Appendix C)', '', p2(D['panel_centre']), '', '—',
              sgn(D['panel_centre']/SPOT-1, 0)])
 rows.append([f"DCF terminal value share of enterprise value: {pc(DCF['tv_share'],0)}",
              '', '', '', '', ''])
-table(rows, [2.55, 0.85, 0.85, 0.85, 0.75, 0.85], band_rows={5})
-caption(f'Table 1 — the valuation summary. Weighted central AED {p2(CEN)}; every lens value is '
-        f'dated at the {M["asof"]} anchor, net of the AED {p2(IN["div_between"])} final FY2025 '
-        f'dividend paid 28-Apr-2026. The terminal value is {pc(DCF["tv_share"],0)} of the DCF '
-        'enterprise value — stated here because a reader should know how much of the primary '
-        'lens rests on the far future.')
+table(rows, [2.55, 0.85, 0.85, 0.85, 0.75, 0.85], band_rows={5}, size=8.8)
+caption(f'{T()} — the valuation summary. Weighted central AED {p2(CEN)}, with its bear and bull '
+        f'columns weighted on the same 45/25/20/10 basis; the row beneath shows the wider '
+        f'min/max span across lenses, which is NOT a weighted figure. Every lens value is dated '
+        f'at the {M["asof"]} anchor, net of the AED {p2(IN["div_between"])} of dividends whose '
+        f'ex-dates fall between the 31-Dec-2025 valuation date and that anchor (the 0.40 final, '
+        f'paid 28-Apr-2026, and the 0.26 interim, ex 31-Jul-2026). The terminal value is '
+        f'{pc(DCF["tv_share"],0)} of the DCF enterprise value, and the terminal it implies is '
+        f'priced explicitly in section 1.7 rather than left as a caveat.')
 figure(os.path.join(HERE, 'fig1_football.png'), 7.0,
-       'Figure 1 — the valuation football field: bear-to-bull span per lens, brass tick = base, '
+       f'{FG()} — the valuation football field: bear-to-bull span per lens, brass tick = base, '
        'dark line = spot.')
 
 # =========================== COMPANY OVERVIEW ===============================
@@ -166,7 +200,7 @@ for lab, series in [('Revenue', F['rev']), ('EBITDA', F['ebitda']),
     fmt = p2 if lab.startswith('discount') else n0
     rows.append([lab] + [fmt(x) for x in series])
 table(rows, [2.30, 0.94, 0.94, 0.94, 0.94, 0.94], band_rows={2, 4, 10, 12}, size=8.8)
-caption(f'Table 2 — the FCFF waterfall. EBITDA margin holds near {pc(F["ebitda_margin"][0])} '
+caption(f'{T()} — the FCFF waterfall. EBITDA margin holds near {pc(F["ebitda_margin"][0])} '
         '(an OUTPUT of the segment build, not an input); capital intensity glides from '
         f'{pc(IN["capex_pct"][0])} of revenue at the data-centre peak to {pc(IN["capex_pct"][-1])}; '
         'lease replacement is charged at right-of-use depreciation so the lease book neither '
@@ -198,7 +232,7 @@ rows = [['Step', 'AED mn', 'AED / share'],
          f"{p2(IN['div_between'])} final dividend paid 28-Apr-2026", '', ''],
         ['Fair value per share at the 07-Aug-2026 anchor', '', p2(DCF['ps'])]]
 table(rows, [4.05, 1.30, 1.30], band_rows={3, 8, 10})
-caption('Table 3 — enterprise value to equity. There are no minority interests (every '
+caption(f'{T()} — enterprise value to equity. There are no minority interests (every '
         'subsidiary is wholly owned) and no borrowings to net: the bridge is leases out, cash '
         'in. The H1-2026 interim dividend of AED 0.26, declared 23-Jul-2026 but unpaid at the '
         'anchor, stays in the share.')
@@ -223,24 +257,45 @@ P(f"Book value per share is AED {p2(BK['bvps'])} (audited FY2025 equity of AED "
   f"carries only a {pc(LN['book']['w'],0)} weight.")
 
 H2('1.3  Relative multiples')
-P(f"du trades at {REL['pe_trailing']:.1f}× trailing earnings and "
-  f"{REL['ev_ebitda_trailing']:.1f}× trailing EV/EBITDA (both computed from the audited "
-  f"figures, not quoted). The Gulf telecom bracket runs from roughly 9× (Zain) through "
-  f"11-12× (Omantel, Ooredoo) and 15.5× (Mobily) to 18.9× (stc) and 20.7× (e&) on trailing "
-  'earnings — aggregator reads, used as a cross-check frame and labelled as such, never as a '
-  'build source. The justified multiple applied here is the peer median '
-  f"{IN['pe_just']:.1f}×: du's growth and payout sit above the bracket's middle, its fiscal "
-  'take and single-market concentration below the top names. Applied to FY2026E earnings per '
-  f"share of AED {p2(REL['eps26'])} and rolled to the anchor: AED {p2(LN['relative']['base'])} "
-  f"per share [bear 12× → AED {p2(LN['relative']['bear'])}; bull 18.5× → AED "
-  f"{p2(LN['relative']['bull'])}].")
-P(f"A second, independent market cross-check from the dividend: du's FY2026E dividend of AED "
-  f"{p2(REL['dps26'])} per share at the regional benchmark payer's yield "
-  f"({pc(IN['div_yield_peer'])}, stc) is worth AED {p2(D['yield_ps'])} — usefully ABOVE the "
-  'earnings-multiple read, because du pays out more of its earnings than the bracket. Peer '
-  'EV/EBITDA could not be reliably sourced from public aggregators at the sweep date '
-  '(net-debt figures missing) and the lens therefore runs on earnings and yield only; that '
-  'limitation is stated rather than papered over.')
+P(f"du trades at {REL['pe_trailing']:.1f}× its FY2025 earnings and "
+  f"{REL['ev_ebitda_trailing']:.1f}× FY2025 EBITDA — and on the more current basis, including the "
+  f"reviewed first half of 2026, at {SPOT/EPS_TTM:.1f}× and {EV_TTM:.1f}×. Both framings are "
+  'given because the trailing-year basis is seven months stale at the anchor and makes the share '
+  'look dearer than the newer figures do.')
+P('The peer frame is where the previous edition of this study was wrong, and the correction '
+  'matters enough to state in full. That edition applied a "peer median" of 15.5×. It was not a '
+  'median of its own stated peer set, and it was not a current figure: it was a January-2026 '
+  'aggregator reading built on FY2024 earnings. Re-derived from the peers\' own filings at this '
+  f"study's anchor, the multiple is {IN['pe_just']:.1f}×.")
+rows = [['Peer', 'Price (6-Aug-2026)', 'Trailing EPS', 'P/E', 'Yield', 'Basis'],
+        ['Mobily', 'SAR 61.30', '4.76', '12.9×', '4.9%', 'its own exchange filings'],
+        ['e&', 'AED 20.98', '1.33', '15.7×', '4.5%', 'its own filings, reported'],
+        ['stc', 'SAR 43.38', '2.94', '14.8×', '5.1%', 'aggregator'],
+        ['Ooredoo', 'QAR 13.04', '1.18', '11.2×', '5.7%', 'aggregator, off-anchor'],
+        ['Omantel', 'not sourced', '0.123', '12.0×', '6.7%', 'aggregator, self-contradictory'],
+        ['Zain', 'KWD 0.611', 'not sourced', 'refused', '6.7%', 'provider returned 11,365×'],
+        ['du (this company)', f'AED {p2(SPOT)}', f'{EPS_TTM:.2f}', f'{SPOT/EPS_TTM:.1f}×',
+         f"{IN['dps_fy25']/SPOT*100:.1f}%", 'its own audited figures']]
+table(rows, [1.30, 1.25, 0.90, 0.62, 0.60, 2.20], size=8.2)
+caption(f"{T()} — the peer frame, re-derived. Only two of the six peers survive as clean "
+        f"observations: Mobily, whose {IN['pe_just']:.1f}× reconciles two independent ways from "
+        f"its own filings, and e& at 15.7×. Of the rest, one provider returned a corrupt "
+        f"11,365× for Zain (refused rather than passed through), Omantel's quoted multiple and "
+        f"yield are mutually inconsistent, and Omantel in any case holds about 22% of Zain, so "
+        f"the two are not independent observations. NO PEER MEDIAN IS THEREFORE CLAIMED. The "
+        f"justified multiple is Mobily's own, defended as the closest structural analogue — a "
+        f"number-two operator in a Gulf duopoly-like market that closed the gap on its "
+        f"incumbent. Note what the corrected table shows about du itself: at "
+        f"{SPOT/EPS_TTM:.1f}× it trades ABOVE every peer in the set.")
+P(f"Applied to FY2026E earnings per share of AED {p2(REL['eps26'])} and rolled to the anchor: "
+  f"AED {p2(LN['relative']['base'])} per share [bear 12× → AED {p2(LN['relative']['bear'])}; "
+  f"bull 18.5× → AED {p2(LN['relative']['bull'])}]. A second, independent market cross-check "
+  f"from the dividend: du's FY2026E dividend of AED {p2(REL['dps26'])} at Mobily's own trailing "
+  f"yield ({pc(IN['div_yield_peer'])}) is worth AED {p2(D['yield_ps'])} — well ABOVE the "
+  'earnings-multiple read, because du pays out far more of its earnings than the peer does. '
+  'Peer EV/EBITDA could not be built from filings within this study\'s scope (net-debt detail '
+  'per peer was not retrieved), so the lens runs on earnings and yield only; that limitation is '
+  'stated rather than papered over.')
 
 H2('1.4  Normalised earnings power — mid-cycle margin at current scale')
 P('The lens strips the cycle: the mid-cycle EBITDA margin (the middle forecast year, '
@@ -249,9 +304,14 @@ P('The lens strips the cycle: the mid-cycle EBITDA margin (the middle forecast y
   f"the combined {pc(TAXA)}: normalised earnings of AED {n0(NRM['np'])}mn, or AED "
   f"{p2(NRM['eps'])} per share. At the justified {IN['pe_just']:.1f}× and rolled to the "
   f"anchor: AED {p2(LN['normalized']['base'])} [12× → {p2(LN['normalized']['bear'])}; 18.5× → "
-  f"{p2(LN['normalized']['bull'])}]. It reads within a few fils of the relative lens because "
-  'du\'s current year IS close to mid-cycle: the war knocked the top line, not the margin '
-  '(H1-2026 printed the best margin in the company\'s history).')
+  f"{p2(LN['normalized']['bull'])}]. It reads within a few fils of the relative lens, and that "
+  'is worth being blunt about rather than presenting as corroboration: du\'s current year IS '
+  'close to mid-cycle — the war knocked the top line, not the margin, and the first half of 2026 '
+  'printed the best margin in the company\'s history — so normalising changes the earnings base '
+  'by less than a fil. The two market-anchored lenses are therefore ONE reading of one multiple '
+  f"against one earnings number, carrying {pc(LN['relative']['w']+LN['normalized']['w'],0)} of the "
+  'weighted central between them, not two independent reads. The synthesis in 1.5 and the '
+  'comparison in section 4 should be read on that basis.')
 
 H2('1.5  Synthesis — four lenses, one field')
 P(f"Weighted central: AED {p2(CEN)} ({sgn(CEN/SPOT-1,0)} to spot), full span AED {p2(LO_)} to "
@@ -272,16 +332,16 @@ for s, nm in [('mobile', 'Mobile'), ('fixed', 'Fixed'), ('wholesale', 'Wholesale
 rows.append(['Total', n0(sum(SR['FY23'].values())), n0(sum(SR['FY24'].values())),
              n0(sum(SR['FY25'].values())), n0(sum(SC['FY25'].values())), ''])
 table(rows, [1.55, 1.02, 1.02, 1.02, 1.42, 0.85], band_rows={5})
-caption('Table 4 — segment revenue (AED mn) and FY2025 contribution (revenue less direct '
+caption(f'{T()} — segment revenue (AED mn) and FY2025 contribution (revenue less direct '
         'costs, the company\'s own Note 38 measure). *FY2023 is on the pre-2024 segment basis '
         '(the wholesale/other boundary moved in the re-segmentation) and is shown for '
         'continuity, not comparability; the forecast is built off the consistent FY2024-25 '
         'basis. Segment revenue ties exactly to consolidated revenue in every year.')
 H2('How the forecast is driven')
 P('Mobile and Fixed are built as volume × price — the finest level the company disclosed. '
-  f"Mobile: the quarterly customer base ({n0(BU['subs_mobile']['Q4_2024'])}k end-2024 → "
-  f"{n0(BU['subs_mobile']['Q4_2025'])}k end-2025 → {n0(BU['subs_mobile']['Q2_2026'])}k after "
-  'the war quarter) times blended ARPU (AED '
+  f"Mobile: the quarterly customer base ({n0(BU['subs_mobile']['Q4_2024'])}k at 31-Dec-2024 → "
+  f"{n0(BU['subs_mobile']['Q4_2025'])}k at 31-Dec-2025 → {n0(BU['subs_mobile']['Q2_2026'])}k at "
+  '30-Jun-2026, after the war quarter) times blended ARPU (AED '
   f"{BU['arpu']['FY2025']:.1f}/month in FY2025, {BU['arpu']['Q2_2026']:.1f} in Q2-2026). The "
   'frame reproduces the audited FY2025 mobile segment to within 0.1%: average base '
   f"{n0((BU['subs_mobile']['Q4_2024']+BU['subs_mobile']['Q4_2025'])/2)}k × AED "
@@ -292,8 +352,9 @@ P('Mobile and Fixed are built as volume × price — the finest level the compan
   'roughly a quarter-million customers a year, well below the boom year 2025 added, with ARPU '
   f"essentially flat (AED {IN['arpu_mobile_path'][0]:.1f} → {IN['arpu_mobile_path'][-1]:.1f}: "
   'postpaid mix gains offsetting prepaid dilution, and no price war anywhere in the record).')
-P(f"Fixed: subscribers {n0(BU['subs_fixed']['Q4_2024'])}k → {n0(BU['subs_fixed']['Q2_2026'])}k, "
-  f"forecast to {n0(IN['subs_fixed_path'][-1])}k on continued fibre and fixed-wireless share "
+P(f"Fixed: subscribers {n0(BU['subs_fixed']['Q4_2024'])}k at 31-Dec-2024 → "
+  f"{n0(BU['subs_fixed']['Q4_2025'])}k at 31-Dec-2025 → {n0(BU['subs_fixed']['Q2_2026'])}k at "
+  f"30-Jun-2026, forecast to {n0(IN['subs_fixed_path'][-1])}k on continued fibre and fixed-wireless share "
   'gain, times an implied revenue per subscription (a consumer-plus-enterprise blend, so a '
   'revenue-intensity metric rather than a tariff) rising gently with the enterprise mix. '
   'Wholesale and ICT disclose no unit measures anywhere in the filings — that gap is flagged, '
@@ -311,58 +372,106 @@ rows.append(['EBITDA (AED mn)', n0(HI['FY25']['ebitda'])] + [n0(x) for x in F['e
 rows.append(['EBITDA margin — an OUTPUT', pc(HI['FY25']['ebitda']/HI['FY25']['rev'])]
             + [pc(m) for m in F['ebitda_margin']])
 table(rows, [1.95, 0.72, 0.72, 0.72, 0.72, 0.72, 0.72], band_rows={4}, size=8.4)
-caption(f'Table 5 — the build\'s output. FY2026E growth of {sgn(F["rev"][0]/HI["FY25"]["rev"]-1,1)} '
+caption(f'{T()} — the build\'s output. FY2026E growth of {sgn(F["rev"][0]/HI["FY25"]["rev"]-1,1)} '
         'lands inside the company\'s own revised 4-6% guidance; the margin output sits just '
         'above the guided 46-47% because the first half already printed 49.2% and the build '
         'holds the audited contribution margins rather than forcing the guidance midpoint. '
         'The cost stack behind it carries one escalator per cost class: wages on UAE wage '
         'inflation, network on network scale, the licence fee and credit losses on revenue, '
-        'administration on CPI — never one blended index.')
+        'administration on CPI — never one blended index. Two things a reader should be able to '
+        'see: the ICT contribution margin is LIFTED across the forecast, from the audited '
+        f"{pc(SEG['margin']['ict'])} to {pc(IN['contrib_margin_path']['ict'][-1])}, on "
+        'data-centre scale — the other three segments are held at their audited rates; and total '
+        f"operating expenses before depreciation RISE {pc(F['opex'][0]/3307.608-1,1)} in FY2026E "
+        'against the audited 2025 figure. In the previous edition of this study they fell, '
+        'because the staff line was built on a mis-stated seasonal ratio — which made the margin '
+        'expansion an artefact of one input rather than an output of the build. That is corrected '
+        'here, and the FY2026E margin now lands inside the company\'s own 46-47% guidance.')
 figure(os.path.join(HERE, 'fig7_mix.png'), 7.0,
-       'Figure 2 — revenue by segment and the EBITDA margin path. ICT is the growth leg; '
+       f'{FG()} — revenue by segment and the EBITDA margin path. ICT is the growth leg; '
        'mobile the recovery story; the margin is flat by construction of the disclosed '
        'contribution margins and the escalating cost stack.')
 
 # =========================== 1.7 CRUX ========================================
-H2('1.7  The crux — the state\'s take first, the licence second, the war third')
-P('Every valuation has one judgement that moves it more than all the others. Here it is the '
-  f"FISCAL REGIME. At the current {pc(TAXA)} combined take the cash-flow lens reads AED "
-  f"{p2(DCF['ps'])}; at the pre-2024 construction's take it reads AED "
-  f"{p2(DCF['ps_framing_b'])}. In real observable units: every single percentage point of "
-  f"combined take is worth roughly AED {p2(SN['dcf_tax_per_pp'])} "
-  'per share, and the regime that applies from 1 January 2027 was, at this study\'s sweep '
-  'date, disclosed in du\'s own filings only as "effective from 2024 to 2026". A ministry '
-  'notification extending the same structure to 2027-2029 has been disclosed by the OTHER '
-  'operator; du\'s own confirmation had not yet been filed. Section 5 treats that as the '
-  'first catalyst, and both framings are priced throughout this study.')
-P('Second, the licence: the regulator extended du\'s operating licence only to 8 August 2026 '
-  '— one day after this study\'s price anchor — with renewal "in final stage" per the '
-  'reviewed interim statements. The base case carries renewal on comparable terms (the '
-  f"licence fee held at {pc(IN['licence_pct'])} of revenue); every percentage point of "
-  'revenue added to that fee costs about AED '
-  f"{p2(LN['dcf']['base'] - SN['dcf_opex_1pp'])} per share — priced in the "
-  'sensitivity table, not waved at. Third, the war recovery: the subscriber sensitivity in '
-  'section 1.9 spans the outcome from a renewed conflict to a boom-style rebound.')
+H2('1.7  The crux — what required return does this business deserve?')
+P('Every valuation has one judgement that moves it more than all the others. Here it is not an '
+  'operating driver and it is not the tax regime: it is the price of time. Both readings are '
+  'computed and published; neither is averaged away.')
+rows = [['', 'Framing 1 — the measured return', 'Framing 2 — the market\'s return'],
+        ['How the terminal is set',
+         f"capitalised at {pc(W['wacc_term'],2)} with growth of {pc(IN['g_term'])}",
+         "du's own current trailing EV/EBITDA held into perpetuity"],
+        ['What that implies for the exit multiple',
+         f"{DCF['tv_implied_mult']:.2f}x forward EBITDA",
+         f"{DCF['ev_ebitda_now']:.2f}x — no re-rating"],
+        ['Cash-flow fair value at the anchor', p2(DCF['ps']), p2(DCF['ps_mkt_term'])],
+        ['Weighted central on the same lens set', p2(CEN),
+         p2(CEN - LN['dcf']['w'] * (DCF['ps'] - DCF['ps_mkt_term']))],
+        ['The judgement is worth', f"AED {p2(DCF['ps'] - DCF['ps_mkt_term'])} per share on the "
+         f"cash-flow lens", '']]
+table(rows, [1.95, 2.55, 2.50], size=8.8)
+caption(f'{T()} — the study\'s central judgement, both ways. The cash-flow lens rests on du\'s '
+        f"own measured beta of {IN['beta']:.3f}, which prices its equity at {pc(W['ke_exp'],2)}. "
+        f"That is internally consistent — but the terminal it produces values du at "
+        f"{DCF['tv_implied_mult']:.2f} times forward EBITDA forever, against the "
+        f"{DCF['ev_ebitda_now']:.2f} times the market pays today: a "
+        f"{pc(DCF['tv_implied_mult']/DCF['ev_ebitda_now']-1,0)} re-rating embedded in a figure "
+        'presented as intrinsic value. Framing 2 simply declines to assume it. This is the '
+        f"honest form of the observation that {pc(DCF['tv_share'],0)} of enterprise value sits "
+        'beyond year five.')
+P(f"In real observable units, the two legs of the judgement price out like this. On the return "
+  f"leg: every 0.10 on beta is worth roughly AED "
+  f"{p2(abs(SN['grid_beta'][1]-SN['grid_beta'][4])/((SN['beta_grid'][4]-SN['beta_grid'][1])*10)):s} "
+  f"per share, so the regression's own 90% interval ({SN['beta_grid'][0]:.2f} to "
+  f"{SN['beta_grid'][2]:.2f}) spans AED {p2(SN['grid_beta'][2])} to {p2(SN['grid_beta'][0])}, and "
+  f"a sector-average 0.80 gives AED {p2(SN['grid_beta'][4])}. On the terminal leg: each turn of "
+  f"the exit multiple is worth about AED "
+  f"{p2((DCF['ps']-DCF['ps_mkt_term'])/(DCF['tv_implied_mult']-DCF['ev_ebitda_now'])):s} per "
+  'share. A reader who believes the market is simply wrong about du should take Framing 1; a '
+  'reader who thinks a licensed single-market operator does not re-rate by a third should take '
+  'Framing 2; the study refuses to choose for them.')
+H2('The two judgements that are NOT the crux, and why')
+P('The fiscal regime was the previous edition of this study\'s central judgement. It is not one '
+  'any more, and the correction is worth stating plainly: du published its own disclosure of the '
+  'royalty extension on 24 July 2026 — "Extension of Federal Royalty Scheme for the Period '
+  '2027-2029" — carrying the same 38% royalty and 9% corporate tax and expressly retaining the '
+  'AED 1.8 billion combined annual floor. The prior edition recorded, wrongly, that only the '
+  'other operator had disclosed it. A reversion to the pre-2024 construction after 2029 remains '
+  f"a real tail and is priced: AED {p2(DCF['ps_framing_b'])} per share, against AED "
+  f"{p2(DCF['ps'])} on the current regime. It is a tail, not a coin-flip.")
+P(f"The licence is the second. The regulator extended du\'s operating licence only to 8 August "
+  f"2026 — one day after this study\'s anchor — and has since renewed it for twenty years from "
+  f"9 August 2026. The renewal announcement sets out obligations (resilience, route diversity, "
+  f"quality of service, national roaming) but publishes NO fee or revenue-share terms. This "
+  f"study therefore holds the licence fee at its historical {pc(IN['licence_pct'])} of revenue "
+  f"and flags that as an assumption, not a confirmed fact: each additional percentage point of "
+  f"revenue taken in licence fees costs about AED "
+  f"{p2(LN['dcf']['base'] - SN['dcf_opex_1pp'])} per share.")
 
 # =========================== 1.8 MACRO & COUNTRY =============================
 H2('1.8  Macro and country — rates, the peg, and the sourced cost of capital')
 P('The dirham is hard-pegged to the dollar, so the UAE imports US monetary policy: the '
   'central bank\'s base rate tracks the Fed, and at the sweep date the market was pricing '
   'possible HIKES rather than the cuts of six months earlier. The UAE sovereign is rated '
-  'Aa2 and its dirham curve auctions THROUGH the US Treasury curve at matched tenors. '
+  'Aa2, and its dirham curve prices a few basis points ABOVE the US Treasury curve at matched '
+  'tenors — the July-2026 auction release puts the January-2031 dirham bond at 4 basis points '
+  'over comparable Treasuries. (The previous edition of this study said "through", which was '
+  'backwards, and netted a ratings-table spread ten times the market\'s. Both are corrected '
+  'below.) '
   'Growth is strong (around 5% real in 2025) even as the regional war cut the wider region\'s '
   '2026 outlook; inflation is around 2%.')
 rows = [['Component', 'Value', 'Source basis'],
         ['Risk-free rate (Jan-2031 AED T-bond, the longest liquid AED tenor)', pc(IN['rf'],2),
-         'UAE MoF auction, 22-Jul-2026'],
-        ['less UAE sovereign default spread (Aa2, rating basis)',
-         pc(IN['sov_spread_rating'],2), 'Damodaran dataset, Jan-2026'],
+         'UAE MoF/WAM auction release, 30-Jul-2026'],
+        ['less UAE sovereign default spread — MARKET-observed on this very bond',
+         pc(IN['sov_spread_rating'],2), 'UAE MoF/WAM auction release: +4bp over UST'],
         ['Risk-free net of the sovereign spread', pc(W['rf_star'],2),
-         'country risk enters ONCE, via the premium'],
+         f"country risk enters ONCE, via the premium; and this clears the "
+         f"{pc(IN['ust_matched'],2)} matched-tenor Treasury floor"],
         ['Beta — DU weekly vs the FTSE ADX General Index, 5 years',
          f"{IN['beta']:.3f}", 'own regression; details below'],
-        ['Equity risk premium (UAE total, rating basis)', pc(IN['erp_rating'],2),
-         'Damodaran, mature 4.23% + country 0.64%'],
+        ['Equity risk premium (UAE total, same market basis)', pc(IN['erp_rating'],2),
+         'Damodaran mature 4.23% + a 6bp country premium scaled off the same 4bp'],
         ['Cost of equity', pc(W['ke_exp'],2), 'build, not assumption'],
         ['Marginal cost of debt (AED sovereign + GCC telecom spread)', pc(IN['kd'],2),
          'stc sukuk curve evidence; du has no debt'],
@@ -372,12 +481,18 @@ rows = [['Component', 'Value', 'Source basis'],
         ['Cost of capital — terminal', pc(W['wacc_term'],2),
          f"terminal risk-free {pc(IN['rf_term'],2)}, debt weight {pc(IN['wd_term'],0)}"]]
 table(rows, [3.30, 1.10, 2.25], band_rows={6, 9, 10}, size=8.8)
-caption('Table 6 — the cost of capital, built from sourced parts. The sovereign spread is '
-        'stripped from the risk-free rate because the equity premium already carries the '
-        'country premium — counting it twice is the classic error this construction exists '
-        'to avoid. On the second premium basis (market-spread, with the live implied US '
-        f'premium), the same build gives {pc(W["ke_mkt_alt"],2)} cost of equity and '
-        f'{pc(W["wacc_exp_mkt"],2)} cost of capital — both bases are published.')
+caption(f'{T()} — the cost of capital, built from sourced parts. The sovereign spread is '
+        'stripped from the risk-free rate because the equity premium already carries the country '
+        'premium: counting it twice is the classic error this construction exists to avoid. The '
+        'spread stripped and the premium added back are on the SAME basis — 4 basis points out, a '
+        '6 basis-point country premium in — which is the discipline that makes the netting safe. '
+        'The alternative RATINGS basis (42bp out, a 64bp country premium in, giving a '
+        f'{pc(W["ke_mkt_alt"],2)} cost of equity and {pc(W["wacc_exp_mkt"],2)} cost of capital) is '
+        'published alongside and not averaged in. One test governs the choice: a default-free '
+        'dirham rate cannot sit BELOW the default-free dollar rate at matched tenor under a hard '
+        f'peg. The market basis clears that floor at {pc(W["rf_star"],2)} against '
+        f'{pc(IN["ust_matched"],2)}; the ratings basis would breach it by about 26 basis points, '
+        'which is why it is the alternative and not the primary.')
 H2('The beta — measured, gated, and honestly low')
 BR = W['beta']
 P(f"du's beta is measured, not assumed: weekly log-returns against the FTSE ADX General "
@@ -395,33 +510,41 @@ P(f"du's beta is measured, not assumed: weekly log-returns against the FTSE ADX 
   'this study, because at these weights the cost of capital is essentially the cost of '
   f"equity. Betas of {SN['beta_grid'][2]:.2f} (the interval's top), 0.65 and 0.80 are priced "
   f"in section 1.9: the last takes the DCF from AED {p2(SN['grid_beta'][1])} to AED "
-  f"{p2(SN['grid_beta'][4])}. The market, at {REL['pe_trailing']:.1f}× earnings, is "
-  'implicitly charging a HIGHER required return than any of these regressions produce; '
-  'section 4 prices that disagreement rather than dismissing it.')
+  f"{p2(SN['grid_beta'][4])} — close to the spot price. The market, at "
+  f"{REL['pe_trailing']:.1f}× trailing earnings, is implicitly charging a HIGHER required return "
+  'than any of these regressions produce; section 1.7 prices that disagreement as the study\'s '
+  'central judgement rather than dismissing it.')
 H2('Where this construction is contested, and what the alternatives are worth')
 rows = [['Contested construction', 'Base', 'Alternative', 'Worth (AED/share)'],
         ['Risk-free tenor: Jan-2031 AED print vs 10y peg-extrapolated proxy',
          pc(IN['rf'],2), pc(IN['rf_alt'],2),
          f"{p2(DCF['ps_rf_alt'])} vs {p2(DCF['ps'])} ({p2(DCF['ps_rf_alt']-DCF['ps'])})"],
-        ['Equity premium basis: rating vs market-spread',
-         pc(IN['erp_rating'],2), pc(IN['erp_mkt'],2),
-         f"cost of capital {pc(W['wacc_exp'],2)} vs {pc(W['wacc_exp_mkt'],2)}"],
+        ['Sovereign basis: market-observed 4bp (primary) vs the ratings table 42bp',
+         f"spread {pc(IN['sov_spread_rating'],2)}, ERP {pc(IN['erp_rating'],2)}",
+         f"spread {pc(IN['sov_spread_mkt'],2)}, ERP {pc(IN['erp_mkt'],2)}",
+         f"cost of capital {pc(W['wacc_exp'],2)} vs {pc(W['wacc_exp_mkt'],2)}; the ratings basis "
+         f"breaches the matched-tenor Treasury floor"],
         ['Beta: regression vs the sector-implied prior',
          f"{IN['beta']:.3f}", '0.80',
          f"{p2(SN['grid_beta'][1])} vs {p2(SN['grid_beta'][4])}"],
-        ['Fiscal regime: Framing A vs Framing B',
+        ['Terminal: capitalised at the cost of capital vs du\'s own current multiple',
+         f"{DCF['tv_implied_mult']:.2f}x implied", f"{DCF['ev_ebitda_now']:.2f}x held",
+         f"{p2(DCF['ps'])} vs {p2(DCF['ps_mkt_term'])} — the study\'s central judgement"],
+        ['Post-2029 fiscal tail (no longer contested for 2027-29 — du disclosed the extension)',
          pc(TAXA), pc(F['taxB_path'][0]),
          f"{p2(DCF['ps'])} vs {p2(DCF['ps_framing_b'])}"]]
-table(rows, [2.90, 0.95, 1.05, 1.75], size=8.8)
-caption('Table 7 — every contested construction priced, not just named. The retired error is '
-        f'also preserved for the audit trail: an UN-netted risk-free rate would have given a '
-        f'{pc(W["ke_raw_retired"],2)} cost of equity — the sovereign-risk double-count this '
-        'method exists to prevent.')
+table(rows, [2.35, 1.10, 1.10, 2.10], size=8.2)
+caption(f'{T()} — every contested construction priced, not just named. Two retired errors are '
+        'preserved for the audit trail: an UN-netted risk-free rate would give a '
+        f'{pc(W["ke_raw_retired"],2)} cost of equity, the sovereign-risk double-count this method '
+        'exists to prevent; and netting the ratings-table spread while adding back a ratings-based '
+        'country premium — the previous edition\'s construction — put the "risk-free" dirham rate '
+        'below the matched-tenor Treasury, which a hard peg cannot support.')
 
 # =========================== 1.9 SENSITIVITY =================================
 H2('1.9  Sensitivity — the discount rate, the growth, the regime and the war')
 figure(os.path.join(HERE, 'fig2_sens.png'), 6.6,
-       'Figure 3 — DCF fair value against the terminal cost of capital and terminal growth. '
+       f'{FG()} — DCF fair value against the terminal cost of capital and terminal growth. '
        'Bold cells sit within about 80 fils of spot.')
 rows = [['Driver (grid)', '', '', 'base', '', '', 'swing']]
 for lab, grid, vals, gf in [
@@ -435,16 +558,19 @@ for lab, grid, vals, gf in [
     rows.append([f"{lab}  ({' / '.join(gf.format(g) for g in grid)})"]
                 + [p2(v) for v in vals] + [p2(max(vals) - min(vals))])
 table(rows, [2.60, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70], size=8.2)
-caption('Table 8 — single-driver sensitivities on the DCF (AED/share); the middle column is '
-        'the base. Each cell is a complete re-run of the model including the unit build. The '
-        'rank order is the study\'s honest hierarchy: the discount rate and the fiscal regime '
-        'dwarf every operating driver; among operating drivers ARPU is king, which is why a '
-        'duopoly that does not price-war deserves its premium.')
+caption(f'{T()} — single-driver sensitivities on the DCF (AED/share); the middle column is '
+        'the base. Each cell is a complete re-run of the model including the unit build, and each '
+        'grid returns the base case at its base parameter — a check this study failed in its '
+        'previous edition, where the beta row was computed on a retired construction and its base '
+        'cell missed the headline by AED 1.77. The rank order is the honest hierarchy: the '
+        'discount rate dwarfs every operating driver, and the fiscal take comes next; among '
+        'operating drivers ARPU is king, which is why a duopoly that does not price-war deserves '
+        'its premium.')
 
 # =========================== 2 TECHNICAL ======================================
 H1('2  Technical and price structure')
 figure(os.path.join(HERE, 'fig3_ma.png'), 7.0,
-       'Figure 4 — price against the 20-, 50-, 100- and 200-session moving averages over the '
+       f'{FG()} — price against the 20-, 50-, 100- and 200-session moving averages over the '
        'last 260 sessions.')
 import numpy as np
 from primitives import load_ohlc
@@ -464,7 +590,10 @@ rows = [['Marker', 'Level (AED)', 'Reading'],
         ['52-week high (closing basis)', p2(hi52), f"{sgn(SPOT/hi52-1,1)} from the high"],
         ['52-week high (intraday)', p2(hi52i), f"{sgn(SPOT/hi52i-1,1)} from the high — the "
          'conventional basis, and the wider of the two'],
-        ['52-week low', p2(lo52), f"{sgn(SPOT/lo52-1)} from the low"],
+        ['52-week low (closing basis)', p2(lo52), f"{sgn(SPOT/lo52-1)} from the low"],
+        ['52-week low (intraday)', p2(float(np.min(_df['Low'].to_numpy()[-252:]))),
+         f"{sgn(SPOT/float(np.min(_df['Low'].to_numpy()[-252:]))-1)} from the low — the same two "
+         'bases as the high above'],
         ['Annualised volatility', pc(H3M['anchor_vol_ann'],1),
          'the fitted range-based volatility model\'s CURRENT state — elevated by the '
          'war-quarter swings — and the input to the price cone in section 3']]
@@ -492,21 +621,25 @@ P(f"The widths below are tested rather than assumed, and the honest result is st
   f"origins {BT5['first_origin']} to {BT5['last_origin']}, each forecast using only data "
   f"available before it), the model scored {BT5['skill_norm']*100:+.2f}% against a random-walk "
   f"benchmark anchored on the same cost of carry — statistically indistinguishable from the "
-  f"benchmark (the confidence interval spans zero), neither better nor worse. Outcomes fell "
-  f"inside the stated bands at least as often as advertised ({BT5['cov50']*100:.0f}% inside "
-  f"the 50% band, {BT5['cov80']*100:.0f}% inside the 80%, {BT5['cov90']*100:.0f}% inside the "
-  f"90%) and were spread evenly across the distribution — a uniformity test returns p = "
-  f"{BT5['chi2_p']:.2f}, comfortably consistent with a calibrated forecast. The one real "
-  f"limitation: for this particular low-volatility share the bands run about "
-  f"{(BT5['width_vs_benchmark']-1)*100:.0f}% wider than the benchmark's — the cone is "
-  'over-cautious rather than over-confident, and a reader should treat the outer bands as '
-  'generous. Over the full history the model UNDERPERFORMS the benchmark on windows that '
-  'predate the 2022 change in the exchange\'s trading week; those windows are excluded from '
-  'the production calibration for that reason, and the exclusion is disclosed here.')
+  f"benchmark (the confidence interval spans zero), neither better nor worse. Outcomes were "
+  f"spread evenly across the distribution: a uniformity test returns p = {BT5['chi2_p']:.2f}, "
+  f"which at {BT5['windows']} windows means the test cannot reject uniformity — a statement "
+  f"about the test's power, not a certificate of calibration. On coverage the honest finding is "
+  f"OVER-dispersion, not calibration: outcomes fell inside the stated bands MORE often than "
+  f"advertised at every level ({BT5['cov50']*100:.0f}% inside the 50% band, "
+  f"{BT5['cov80']*100:.0f}% inside the 80%, {BT5['cov90']*100:.0f}% inside the 90%), and for "
+  f"this low-volatility share the bands run about "
+  f"{(BT5['width_vs_benchmark']-1)*100:.0f}% wider than the benchmark's. The cone is too wide "
+  'rather than too confident, and a reader should treat the outer bands as generous. Over the full history the model UNDERPERFORMS the benchmark on windows that '
+  'predate the 2022 change in the exchange\'s trading week. Those windows are excluded from the '
+  'calibration for that reason, and the figures quoted above are the post-exclusion set — '
+  f"{BT5['windows']} windows with origins from {BT5['first_origin']} to {BT5['last_origin']}, all "
+  'after the change. The previous edition quoted a nineteen-window set beginning 27 October 2021 '
+  'in the same breath as the exclusion, which was inconsistent.')
 P('This is a map of price dispersion, not a forecast, and it is never blended with the '
   'fair-value work above.')
 figure(os.path.join(HERE, 'fig4_fan.png'), 7.0,
-       f"Figure 5 — the forward price cone to three months. The dashed brass line is the "
+       f"{FG()} — the forward price cone to three months. The dashed brass line is the "
        f"fundamental central estimate of {p2(CEN)}; the dotted line is the spot of {p2(SPOT)}.")
 H2('Percentile map (AED/share)')
 rows = [['Horizon', '5th', '25th', 'Median', '75th', '95th', 'P(above spot)'],
@@ -515,8 +648,8 @@ rows = [['Horizon', '5th', '25th', 'Median', '75th', '95th', 'P(above spot)'],
         [f"Three months — to {H3M['grade_date']}"] + [p2(H3M['pct'][k]) for k in
          ('p5', 'p25', 'p50', 'p75', 'p95')] + [pc(H3M['p_above'],0)]]
 table(rows, [1.95, 0.80, 0.80, 0.80, 0.80, 0.80, 1.05], size=8.8)
-figure(os.path.join(HERE, 'fig5_dist.png'), 5.4, 'Figure 6 — price distribution at one month.')
-figure(os.path.join(HERE, 'fig6_dist.png'), 5.4, 'Figure 7 — price distribution at three months.')
+figure(os.path.join(HERE, 'fig5_dist.png'), 5.4, f'{FG()} — price distribution at one month.')
+figure(os.path.join(HERE, 'fig6_dist.png'), 5.4, f'{FG()} — price distribution at three months.')
 H2('Level-touch ladder')
 rows = [['Event', 'One month', 'Three months'],
         ['Finishes 10% or more above spot', pc(H1M['p_up10'],0), pc(H3M['p_up10'],0)],
@@ -549,9 +682,10 @@ P('What would close the gap from each side. The DCF is right and the market re-r
   f"{p2(SN['grid_beta'][4])}); or terminal reinvestment needs are heavier than "
   f"{pc(DCF['rr_term'])} of profit. The weighted central of AED {p2(CEN)} embodies exactly "
   'this balance: it leans toward the cash flows but pays the market-anchored lenses the '
-  f"{pc(LN['relative']['w']+LN['normalized']['w'],0)} respect their discipline has earned.")
+  f"{pc(LN['relative']['w']+LN['normalized']['w'],0)} respect their discipline has earned — while "
+  'noting, as 1.4 does, that those two lenses are one reading of one multiple, not two.')
 figure(os.path.join(HERE, 'figD1_experts.png'), 7.0,
-       'Figure 8 — the expert panel\'s three independent reads (Appendix C), against spot.')
+       f'{FG()} — the expert panel\'s three independent reads (Appendix C), against spot.')
 
 # =========================== 5 CATALYSTS ======================================
 H1('5  Catalysts to watch')
@@ -611,7 +745,7 @@ P('The cone is honest about its own limits: for this share its bands have histor
 # =========================== 7 CAVEATS ========================================
 H1('7  Caveats and what would change our mind')
 for head, body in [
-    ('The discount rate is the study. ', 'A 0.47 measured beta against an Aa2 curve prices '
+    ('The discount rate is the study. ', f'A {IN["beta"]:.3f} measured beta against an Aa2 curve prices '
      f"du's equity at {pc(W['ke_exp'],1)}. Every conclusion that differs from the market "
      'traces to that number; section 1.8 prices the alternatives and section 4 takes the '
      'other side seriously. If du\'s risk is the sector\'s rather than its regression\'s, '
@@ -654,8 +788,12 @@ rows.append(isrow('Depreciation & amortisation', [-HI[y]['dna'] for y in H3Y],
                   [-x for x in F['dna']]))
 rows.append(isrow('Operating profit (EBIT)', [HI[y]['ebit'] for y in H3Y], F['ebit']))
 rows.append(isrow('Net finance income / (cost)',
-                  [None, HI['FY24']['fin'], HI['FY25']['fin']],
+                  [IN['int_inc_fy23'] - IN['int_exp_fy23'], HI['FY24']['fin'], HI['FY25']['fin']],
                   [F['int_inc'][i] - F['int_exp'][i] for i in range(5)]))
+rows.append(isrow('Share of equity-accounted investments and net impairment',
+                  [IN['assoc_hist'][y] + (HI[y]['pbt'] - HI[y]['ebit']
+                   - (IN[f'int_inc_fy{y[2:]}'] - IN[f'int_exp_fy{y[2:]}']) - IN['assoc_hist'][y])
+                   for y in H3Y], [0.0] * 5, fmt=p1))
 rows.append(isrow('Profit before royalty and tax', [HI[y]['pbt'] for y in H3Y], pbt_f))
 rows.append(isrow('Federal royalty and income tax',
                   [-(HI[y]['royalty'] + HI[y]['tax']) for y in H3Y],
@@ -666,7 +804,9 @@ rows.append(isrow('Earnings per share (AED)', [HI[y]['eps'] for y in H3Y],
 rows.append(isrow('Dividend per share (AED)',
                   [IN['dps_fy23'], IN['dps_fy24'], IN['dps_fy25']], F['dps'], fmt=p2))
 table(rows, [1.86] + [0.63]*8, band_rows={2, 9}, size=8.2)
-caption('Table A1 — FY2023-25 are the audited figures (FY2024 on the re-presented basis of '
+caption(f'Table A1 — every column now foots: the associates-and-impairment line, previously omitted, '
+        'is what reconciled operating profit to profit before royalty in the audited statements. '
+        'FY2023-25 are the audited figures (FY2024 on the re-presented basis of '
         'the FY2025 statements, so the two recent years sit on one presentation; FY2023 '
         'EBITDA is derived from audited components because the older format prints no such '
         'line, and is flagged as such). The FY2023 royalty is the old-regime charge; no '
@@ -687,7 +827,7 @@ rows.append(isrow('Net cash after leases',
                   [HB[y]['net_cash'] - HB[y]['lease'] for y in H3Y],
                   [F['net_cash'][i] - HB['FY25']['lease'] for i in range(5)]))
 table(rows, [1.86] + [0.63]*8, band_rows={8}, size=8.2)
-caption('Table A2 — a condensed layout: receivables, payables, contract balances and the '
+caption(f'Table A2 — a condensed layout: receivables, payables, contract balances and the '
         'royalty accrual are netted inside working capital (the FY2023 payables line still '
         'contained the royalty accrual, separately disclosed from FY2024; it is excluded in '
         'every year so the series is like-for-like). Zero drawn borrowings in every year '
@@ -696,8 +836,9 @@ H2('A.3  Forecast balance sheet and cash-flow markers')
 P(f"The equity walk: profit less the {pc(F['payout'],0)} payout compounds equity from AED "
   f"{n0(HB['FY25']['eq'])}mn to AED {n0(F['equity'][-1])}mn by FY2030E. The cash walk is the "
   'stress line: at a near-total payout plus the data-centre capex peak, cash and term '
-  f"deposits fall from AED {n0(HB['FY25']['net_cash'])}mn to AED {n0(min(F['net_cash']))}mn "
-  'at the trough before rebuilding — the audited mid-2026 position (term deposits nil after '
+  f"deposits fall from AED {n0(HB['FY25']['net_cash'])}mn to AED {n0(F['net_cash'][-1])}mn by "
+  'the last forecast year, declining in every year of the forecast with no rebuild inside the '
+  'window — the audited mid-2026 position (term deposits nil after '
   'the royalty settlement and final dividend) already shows exactly this mechanic, and the '
   'undrawn AED 2.0bn facility is the disclosed backstop. Working capital RELEASES cash every '
   'year; the lease book is held flat with replacement charged at depreciation.',
@@ -731,7 +872,7 @@ rows = [['Risk', 'Mechanism', 'Where it is priced'],
          f"~AED {p2(LN['dcf']['base'] - SN['dcf_opex_1pp'])}/share per +1pp (section 1.9)"],
         ['War re-escalation', 'prepaid, roaming, wholesale transit reverse',
          'subscriber sensitivity and the DCF bear'],
-        ['Required-return mismeasurement', 'the 0.47 regression beta understates true risk',
+        ['Required-return mismeasurement', f'the {IN["beta"]:.3f} regression beta understates true risk',
          f"beta grid to 0.80: AED {p2(SN['grid_beta'][4])}"],
         ['Data-centre execution', 'ICT ramp slips; capex stays high without the revenue',
          'ICT growth and capex grids'],
@@ -755,8 +896,14 @@ P('The full input register — every input with value, source and date, grouped 
 
 # =========================== APPENDIX C =======================================
 H1('Appendix C  The expert valuation panel')
-P('Three experts, three genuinely different methods, each with worked arithmetic, a named '
-  'sensitivity and a falsifier stated in advance. They are labelled Expert 1/2/3; their '
+P('Three experts, three methods, each with worked arithmetic, a named sensitivity and a falsifier '
+  'stated in advance. One caveat a reader is owed up front, because it limits what the panel '
+  'proves: Expert 3\'s economic-profit method is ALGEBRAICALLY equivalent to the cash-flow model '
+  'given the same profit, capital and cost of capital, and Expert 2\'s dividend model is a '
+  'perpetuity on the same terminal cost of equity and growth at a payout near 100%. So of the '
+  'three, only Expert 1 is genuinely independent of the primary lens; the other two are better '
+  'read as consistency checks on it than as external corroboration. The panel median is reported '
+  'on that understanding. They are labelled Expert 1/2/3; their '
   'methods, not their names, are the point. Cast by method: an '
   'earnings-power investor, a dividend-stream investor, and an economic-profit analyst.')
 
@@ -768,9 +915,12 @@ P('Worldview: buy durable earnings power at a multiple that does not need the st
 rows = [['Step', 'Value'],
         ['Mid-cycle earnings per share (FY2028E)', p2(E1['eps'])],
         ['Through-cycle multiple applied', f"{E1['pe']:.1f}×"],
-        ['Value at FY2028, discounted two years at the cost of equity',
-         p2(E1['base'] + IN['div_between']) + '  (before the paid-dividend adjustment)'],
-        ['less the final FY2025 dividend paid before the anchor', p2(IN['div_between'])],
+        ['Value at FY2028 (EPS × multiple)', p2(E1['eps'] * E1['pe'])],
+        ['discounted two years at the cost of equity',
+         p2(E1['eps'] * E1['pe'] / (1 + W['ke_exp']) ** 2)],
+        [f"× the anchor accretion factor of {DCF['roll']:.4f}, as every other lens is rolled",
+         p2(E1['base'] + IN['div_between'])],
+        ['less the dividends gone ex before the anchor', p2(IN['div_between'])],
         ['Expert 1 fair value (anchor date)', p2(E1['base'])],
         ['Range: 12× to 17.5× the same earnings', f"{p2(E1['rng'][0])} – {p2(E1['rng'][1])}"]]
 table(rows, [4.30, 2.30], band_rows={5})
@@ -787,9 +937,10 @@ P('Worldview: for a company that pays out essentially everything, the dividend I
 rows = [['Step', 'Value'],
         ['FY2026E dividend per share', p2(E2['dps'])],
         [f"grown at {pc(E2['g'])} into a perpetuity at the terminal cost of equity "
-         f"{pc(E2['ke'],2)}", f"{p2(E2['dps'])} × {1+E2['g']:.3f} / "
-         f"({pc(E2['ke'],2)} − {pc(E2['g'])})"],
-        ['less the final FY2025 dividend paid before the anchor', p2(IN['div_between'])],
+         f"{pc(E2['ke'],2)}", p2(E2['dps'] * (1 + E2['g']) / (E2['ke'] - E2['g']))],
+        [f"× the anchor accretion factor of {DCF['roll']:.4f}, as every other lens is rolled",
+         p2(E2['base'] + IN['div_between'])],
+        ['less the dividends gone ex before the anchor', p2(IN['div_between'])],
         ['Expert 2 fair value (anchor date)', p2(E2['base'])],
         ['Range: cut-and-higher-rate bear to 3%-growth bull',
          f"{p2(E2['rng'][0])} – {p2(E2['rng'][1])}"]]
@@ -812,7 +963,7 @@ rows = [['Step', 'AED mn'],
         ['PV of the terminal economic-profit annuity', n0(E3['pv_ep_term'])],
         ['Implied enterprise value', n0(E3['ev'])],
         ['bridge to equity (leases out, cash in), per share at the anchor', p2(E3['base'])],
-        ['Range: fading spreads bear to the rate-tenor bull',
+        ['Range: fading spreads on the low side; a judgemental +12% on the high side',
          f"{p2(E3['rng'][0])} – {p2(E3['rng'][1])}"]]
 table(rows, [4.30, 2.30], band_rows={5})
 P(f"The return spread behind it: forecast returns on capital of "
@@ -845,9 +996,9 @@ P(f"Where they land: Expert 1 at AED {p2(E1['base'])}, Expert 2 at AED {p2(E2['b
   f"Expert 3 at AED {p2(E3['base'])} — a panel median of AED {p2(D['panel_centre'])}. The "
   'shape of the disagreement is the study in miniature: the earnings-power read hugs the '
   'market because it borrows the market\'s multiple; the two cash-based reads sit together '
-  'well above it because they price du\'s cash at du\'s measured risk. The room\'s one joint '
-  'statement: at spot, the market is paying for the annuity and giving the growth legs — '
-  'data centres, the war recovery, the postpaid mix — away for little.')
+  'well above it because they price du\'s cash at du\'s measured risk — and, as section 1.7 sets '
+  'out, that gap is itself the study\'s central unresolved judgement rather than a conclusion '
+  'about it.')
 H2('C.6  Reading the divergence')
 rows = [['Gap', 'Driver of the gap', 'Worth (AED/share)'],
         [f"Expert 1 ({p2(E1['base'])}) vs Expert 2 ({p2(E2['base'])})",

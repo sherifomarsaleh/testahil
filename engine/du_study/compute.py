@@ -59,11 +59,17 @@ INP = dict(
                 "unchanged across FY2023-FY2025 and both 2026 interims", "2026-02-09", "Company"),
     anchor_days=I(219.0, "31-Dec-2025 valuation date to the 07-Aug-2026 price anchor", "2026-08-07",
                   "House"),
-    div_between=I(0.40, "Final FY2025 cash dividend AED 0.40/share, approved AGM 30-Mar-2026, "
-                  "PAID 28-Apr-2026 (AED 1,813,162k) — value that left the share between the "
-                  "valuation date and the anchor. The H1-2026 interim of AED 0.26 was declared "
-                  "23-Jul-2026 but not yet paid at the anchor, so it stays in the share",
-                  "2026-07-22", "Company"),
+    div_between=I(0.66, "Dividends whose EX-DATE falls between the 31-Dec-2025 valuation date and "
+                  "the 07-Aug-2026 anchor, and which are therefore no longer in the share price: "
+                  "the final FY2025 AED 0.40 (AGM 30-Mar-2026, paid 28-Apr-2026) PLUS the H1-2026 "
+                  "interim AED 0.26 — Board-approved 22-Jul-2026, EX-DATE 31-JULY-2026, record "
+                  "03-Aug-2026, paid 21-Aug-2026, per du's own dividend disclosure to DFM (Ref "
+                  "RME/14/2026). CORRECTED 17-Aug-2026: the prior edition carried only 0.40, on the "
+                  "reasoning that the interim was declared but unpaid at the anchor so it 'stays in "
+                  "the share'. That applied the PAYMENT date; the correct test is the EX-date, which "
+                  "had passed six trading sessions before the anchor. The anchor spot of AED 12.30 "
+                  "is ex the 0.26, so every lens rolled to that anchor must be ex it too",
+                  "2026-07-31", "Company"),
 
     # ---- historical income statement (AED mn, consolidated, AUDITED) ------
     # FY2024 figures are the IFRS 18 re-presented comparatives in the FY2025
@@ -225,6 +231,52 @@ INP = dict(
                     "2026-02-09", "Company"),
     lease_paid_fy25=I(282.473, AR25 + ", repayment of lease liabilities (financing)",
                       "2026-02-09", "Company"),
+    investees_bv=I(0.511, AR25 + ", Note 10: investments accounted for using the equity method, "
+                   "carrying value AED 0.511mn at 31-Dec-2025 (FY2024: 2.716mn). REGISTERED "
+                   "17-Aug-2026 — this figure was previously typed directly into the bridge, so it "
+                   "was an input with no four-field record and the completeness assertion passed "
+                   "over it", "2026-02-09", "Company"),
+    # ---- by-nature historical detail, REGISTERED 17-Aug-2026 -----------------
+    # These lines were previously typed as numerals into the workbook builder, which broke the
+    # numeric-traceability rule (every builder reads the committed numbers file exclusively).
+    direct_costs_hist=I(dict(FY24=-4818.442, FY25=-5259.425),
+                        AR25 + ", face of the income statement: interconnect + commission + devices "
+                        "and other direct services cost", "2026-02-09", "Company"),
+    opex_before_dna_hist=I(dict(FY24=-3347.636, FY25=-3307.608),
+                           AR25 + ", total net operating expenses before depreciation and "
+                           "amortization", "2026-02-09", "Company"),
+    int_inc_fy23=I(61.327, AR23 + ", finance income", "2024-02-13", "Company"),
+    int_exp_fy23=I(101.430, AR23 + ", finance costs", "2024-02-13", "Company"),
+    assoc_hist=I(dict(FY23=-2.720, FY24=-2.427, FY25=-0.894),
+                 "Share of loss of associate and joint venture: " + AR23 + " (FY2023); " + AR25
+                 + " (FY2024 comparative and FY2025)", "2026-02-09", "Company"),
+    dep_ppe_hist=I(dict(FY23=1544.182, FY24=1569.189, FY25=1557.989),
+                   "Depreciation and impairment of property, plant and equipment: " + AR23
+                   + " Note 26 (FY2023); " + AR25 + " Note 31 (FY2024-25)", "2026-02-09", "Company"),
+    amort_hist=I(dict(FY23=209.053, FY24=209.896, FY25=245.881),
+                 "Amortisation and impairment of intangible assets, same notes as above",
+                 "2026-02-09", "Company"),
+    capex_cash_hist=I(dict(FY23=2227.558, FY24=1920.468, FY25=2353.230),
+                      "Cash capital expenditure = purchase of PP&E + purchase of intangible assets, "
+                      "audited consolidated statements of cash flows (AR2023 for FY2023; AR2025 for "
+                      "the FY2024 comparative and FY2025)", "2026-02-09", "Company"),
+    tax_paid_hist=I(dict(FY24=-1928.939, FY25=-1883.442),
+                    "Federal royalty paid + income tax paid, audited consolidated statements of cash "
+                    "flows (" + AR25 + ")", "2026-02-09", "Company"),
+    ocf_hist=I(dict(FY24=4636.508, FY25=5229.823),
+               AR25 + ", net cash generated from operating activities", "2026-02-09", "Company"),
+    div_paid_hist=I(dict(FY24=-1858.491, FY25=-2629.085),
+                    AR25 + ", dividends paid (financing activities)", "2026-02-09", "Company"),
+    subs_mobile_hist_display=I(dict(FY24=8916.0, FY25=9704.0),
+                               IRQ2 + " and the Q4/FY2025 deck: mobile customers at 31-Dec-2024 and "
+                               "31-Dec-2025 ('000)", "2026-02-10", "Company"),
+    subs_fixed_hist_display=I(dict(FY24=682.0, FY25=735.0),
+                              IRQ2 + " and the Q4/FY2025 deck: fixed customers at 31-Dec-2024 and "
+                              "31-Dec-2025 ('000)", "2026-02-10", "Company"),
+    arpu_hist_display=I(dict(FY24=65.8, FY25=63.3),
+                        "Blended mobile ARPU (AED/month): Q4-2024 print 65.8 and the FY2025 average "
+                        "63.3, both from the company's quarterly analyst decks", "2026-02-10",
+                        "Company"),
     lease_int_fy25=I(71.094, AR25 + ", interest paid on lease liabilities", "2026-02-09",
                      "Company"),
     dps_fy23=I(0.34, AR23 + "/AR24: interim 0.13 (paid 23-Aug-2023) + final 0.21 (paid "
@@ -349,10 +401,17 @@ INP = dict(
     ecl_pct=I(0.0145, "Expected-credit-loss charge at 1.45% of revenue (FY2025 1.33%, H1-2026 "
               "1.64% — conflict-quarter receivables stress; forecast between the two)",
               "2026-08-09", "House"),
-    staff_fy26=I(985.0, "FY2026E staff cost: H1-2026 actual 471.360 + H2 at the H2-2025 "
-                 "seasonal ratio (H2 runs above H1; 513.6 = H1 x 1.09) — the company's own "
-                 "run-rate after the efficiency program, escalated 2%/yr thereafter",
-                 "2026-08-09", "House"),
+    staff_fy26=I(1035.16, "FY2026E staff cost: H1-2026 reviewed actual 471.360 grossed up by the "
+                 "company's OWN disclosed H2/H1 seasonality of 1.1961 (H2-2025 602.018 / H1-2025 "
+                 "503.310, from the audited FY2025 and reviewed H1-2025 statements) = 471.360 + "
+                 "563.80 = 1,035.16 — which is −6.35% on the audited FY2025 1,105.328, exactly the "
+                 "−6.35% y/y the company printed at the half. CORRECTED 17-Aug-2026: the prior 985.0 "
+                 "applied a ratio of 1.09 while its own note described it as 'the H2-2025 seasonal "
+                 "ratio'; the true ratio is 1.1961, so staff cost was understated by AED 50.2mn and "
+                 "total FY2026E operating expenses fell BELOW the audited FY2025 actual even as "
+                 "revenue rose 4.3% — impossible in a stack where every class escalates, and "
+                 "correctly identified by external audit as falsifying the margin-as-an-output claim",
+                 "2026-08-17", "Company/House"),
     other_inc_path=I(15.0, "Other operating income held at AED 15mn/yr (FY2025 21.7, H1-2026 "
                      "5.8 — lumpy, small)", "2026-08-09", "House"),
 
@@ -648,14 +707,25 @@ dnwc = [nwc_fc[0] - nwc_fy25] + [nwc_fc[i] - nwc_fc[i - 1] for i in range(1, 5)]
 # Leases: lease liabilities are DEBT in the bridge, so lease payments never hit
 # FCFF; the offsetting cost is lease REPLACEMENT capex, set equal to ROU
 # depreciation (steady-state; actual FY2025 additions 96.034 ran well below).
-rou_repl = [0.0]*5 if FLAGS.get('no_lease_repl') else list(V['rou_dep_path'])
+# LEASES ARE DEBT (corrected 17-Aug-2026). The bridge deducts the full lease liability and the
+# WACC carries a lease-debt weight, so charging a lease-replacement capex in FCFF as well billed the
+# same obligation twice (PV ~1,450mn). Perpetual renewal IS charged in the terminal: terminal
+# invested capital includes the right-of-use asset and terminal reinvestment (g/ROIC) maintains it.
+rou_repl = [0.0] * 5
+rou_repl_retired = list(V['rou_dep_path'])   # audit trail only
 fcff = [nopat[i] + dna[i] - capex[i] - rou_repl[i] - dnwc[i] for i in range(5)]
 say(f"[FCFF waterfall] " + " -> ".join(f"{f:,.0f}" for f in fcff))
 
 # ---- cost of capital: explicit window (sovereign double-count removed) -------
 rf_star = V['rf'] - V['sov_spread_rating']
+# NO-ARBITRAGE FLOOR (added 17-Aug-2026): under a hard peg a DEFAULT-FREE dirham rate cannot sit
+# below the default-free dollar rate at matched tenor. The prior edition netted the 42bp RATING
+# spread, driving rf* to 4.06% — about 26bp through the matched-tenor UST — and nothing caught it.
+assert rf_star >= V['ust_matched'] - 0.0005, (
+    f"rf* {rf_star:.4%} sits below the matched-tenor US Treasury {V['ust_matched']:.4%}: a "
+    f"default-free AED rate cannot be below the default-free USD rate under a hard peg")
 ke_exp = rf_star + V['beta'] * V['erp_rating']
-ke_mkt_alt = (V['rf'] - V['sov_spread_mkt']) + V['beta'] * V['erp_mkt']
+ke_mkt_alt = (V['rf'] - V['sov_spread_mkt']) + V['beta'] * V['erp_mkt']  # rating basis
 ke_raw_retired = V['rf'] + V['beta'] * V['erp_rating']
 kd_at = V['kd'] * (1 - TAX)
 LEASE, NETCASH = V['lease_fy25'], net_cash['FY25']
@@ -687,8 +757,10 @@ df, c = [], 1.0
 for w in fwd:
     c /= (1 + w); df.append(c)
 df_tv = df[-1]
-if FLAGS.get('midyear'):
-    df = [d * (1 + fwd[i]) ** 0.5 for i, d in enumerate(df)]
+# CONVENTION, stated rather than left implicit: full-year END-of-period factors on the explicit
+# window, and the terminal value (a value dated at the end of year 5) discounted at the year-5
+# factor. Mid-year convention on the explicit window alone would add ~AED 0.09/share; it is the
+# less conservative choice and is not adopted.
 assert all(fwd[i] >= fwd[i + 1] for i in range(len(fwd) - 1)), 'glide not monotone'
 say("[Glide] forward WACC " + " -> ".join(f"{w:.2%}" for w in fwd) +
     "; discount factors " + ", ".join(f"{d:.4f}" for d in df))
@@ -719,11 +791,18 @@ say(f"[Profit path] EPS " + " -> ".join(f"{e:.2f}" for e in eps_fc) +
 
 # ---- invested capital, terminal ----------------------------------------------
 ic_fy25 = (V['ppe_fy25'] + V['rou_fy25'] + V['intang_fy25'] + V['goodwill_fy25'] + nwc_fy25)
+# The right-of-use ASSET is held flat because the lease LIABILITY is held flat: a new lease
+# creates an asset and a liability simultaneously and is NON-CASH, so additions equal
+# depreciation. This is separate from the FCFF question — no cash charge belongs in FCFF (the
+# liability is deducted in the bridge and its interest sits in the WACC), but the asset must
+# still be maintained in invested capital or the terminal reinvestment is understated.
+rou_additions = list(V['rou_dep_path'])   # non-cash, equal to depreciation
 rou_path = []
 rb = V['rou_fy25']
 for i in range(5):
-    rb = rb + rou_repl[i] - V['rou_dep_path'][i]
+    rb = rb + rou_additions[i] - V['rou_dep_path'][i]
     rou_path.append(rb)
+assert abs(rou_path[-1] - V['rou_fy25']) < 1e-9, 'right-of-use book must stay flat'
 ic = [ppe_path[i] + rou_path[i] + int_path[i] + V['goodwill_fy25'] + nwc_fc[i]
       for i in range(5)]
 roic = [nopat[i] / ((ic[i] + ([ic_fy25] + ic)[i]) / 2) for i in range(5)]
@@ -739,8 +818,8 @@ pv_explicit = sum(pv)
 pv_tv = tv * df_tv
 ev = pv_explicit + pv_tv
 tv_share = pv_tv / ev
-assoc_val = 0.511 / 1000 * 1000 * 0.001  # equity-accounted investees, AED 0.511mn — negligible
-eq_val = ev - LEASE + NETCASH + V['assoc_fy25'] * 0 + 0.511
+INVEST = V['investees_bv']
+eq_val = ev - LEASE + NETCASH + INVEST
 dcf_ps_dec = eq_val / SH
 T_ANCHOR = V['anchor_days'] / 365.0
 ROLL = (1 + ke_exp) ** T_ANCHOR
@@ -752,10 +831,35 @@ say(f"[DCF] PV(explicit) {pv_explicit:,.0f} + PV(terminal) {pv_tv:,.0f} "
     f"{NETCASH:,.0f} + investees 0.5 = equity {eq_val:,.0f} -> AED {dcf_ps_dec:.2f} at "
     f"31-Dec-2025; x accretion {ROLL:.4f} − final dividend {V['div_between']:.2f} paid "
     f"28-Apr-2026 = AED {dcf_ps:.2f} at the 07-Aug-2026 anchor")
-assert abs((ev - LEASE + NETCASH + 0.511) - eq_val) < 0.01, 'bridge does not close'
+assert abs((ev - LEASE + NETCASH + INVEST) - eq_val) < 0.01, 'bridge does not close'
 assert tv_share < 0.90, 'terminal value share implausibly high'
 
 # ---- THE CONTESTED JUDGEMENT, COMPUTED BOTH WAYS ------------------------------
+# RECAST 17-Aug-2026. The prior edition's contested judgement was the post-2026 fiscal regime.
+# It is no longer contested: du disclosed the 2027-2029 extension ITSELF on 24-Jul-2026, on the
+# same structure and with the AED 1.8bn combined floor expressly retained — sixteen days before
+# this study's own sweep date, which the prior edition's dated negative search missed. That
+# framing is demoted to a named post-2029 tail scenario (still computed, below).
+# The judgement that IS live, and the one the whole study turns on, is THE REQUIRED RETURN:
+#   Framing 1 — du's own measured beta (0.488 on the ADX regression) sets the cost of equity.
+#   Framing 2 — the market's own required return, revealed by refusing to re-rate the terminal:
+#              hold du's CURRENT trailing EV/EBITDA into perpetuity instead of capitalising at
+#              the Gordon rate. This is the honest form of the "85% of value is terminal" caveat,
+#              and it is what section 4's disagreement is actually about.
+ev_ebitda_now = (MKTCAP + LEASE - NETCASH) / V['ebitda_fy25']
+ebitda_term = ebitda[-1] * (1 + V['g_term'])
+tv_implied_mult = tv / ebitda_term
+tv_at_market = ev_ebitda_now * ebitda_term
+ev_at_market = pv_explicit + tv_at_market * df_tv
+dcf_ps_mkt_term = ((ev_at_market - LEASE + NETCASH + INVEST) / SH) * ROLL - V['div_between']
+say(f"[Contested judgement — THE REQUIRED RETURN, both ways] Framing 1 (measured beta "
+    f"{V['beta']:.3f}, Gordon terminal): AED {dcf_ps:.2f}, whose terminal implies an exit multiple "
+    f"of {tv_implied_mult:.2f}x EBITDA against du's OWN current {ev_ebitda_now:.2f}x — i.e. a "
+    f"{tv_implied_mult/ev_ebitda_now-1:+.0%} re-rating. Framing 2 (no re-rating: du's current "
+    f"multiple held into perpetuity): AED {dcf_ps_mkt_term:.2f}. Gap {dcf_ps - dcf_ps_mkt_term:+.2f}"
+    f"/share. Published side by side; never averaged.")
+assert tv_implied_mult > 0
+
 # Framing A (base, above): the 2024-2026 regime (38% royalty + 9% CT, combined
 # 43.6%) persists — now supported by the e& market disclosure of an MoF
 # notification (17-Jul-2026) extending the regime to 2027-2029 on the same
@@ -774,16 +878,16 @@ def framingB():
         tb.append(t_)
         fcffB.append(ebit[i] * (1 - t_) + dna[i] - capex[i] - rou_repl[i] - dnwc[i])
         npB.append(pbt_ * (1 - t_))
-    _rrB = rr_term
-    if FLAGS.get('framingB_own_rr'):
-        _roicB = ebit[-1] * (1 - tb[-1]) * (1 + V['g_term']) / ic[-1]
-        _rrB = min(V['g_term'] / _roicB, 0.95)
+    # Framing B must earn its own reinvestment rate off its own NOPAT, not inherit Framing A's
+    _roicB = ebit[-1] * (1 - tb[-1]) * (1 + V['g_term']) / ic[-1]
+    _rrB = min(V['g_term'] / _roicB, 0.95)
     tvB = ebit[-1] * (1 - tb[-1]) * (1 + V['g_term']) * (1 - _rrB) / (wacc_term - V['g_term'])
     evB = sum(fcffB[i] * df[i] for i in range(5)) + tvB * df[-1]
-    psB = (evB - LEASE + NETCASH + 0.511) / SH * ROLL - V['div_between']
+    psB = (evB - LEASE + NETCASH + INVEST) / SH * ROLL - V['div_between']
     return tb, fcffB, npB, psB
 taxB_path, fcffB, npB, dcf_ps_B = framingB()
-say(f"[Contested judgement — BOTH WAYS] Framing A (regime persists, 43.6% take): AED "
+say(f"[Post-2029 fiscal tail — no longer the contested judgement, du disclosed the 2027-2029 "
+    f"extension itself on 24-Jul-2026] Current regime ({TAX:.1%} take): AED "
     f"{dcf_ps:.2f}. Framing B (reversion to the pre-2024 construction, effective take "
     f"{taxB_path[0]:.1%} -> {taxB_path[-1]:.1%}): AED {dcf_ps_B:.2f}. Gap "
     f"{dcf_ps - dcf_ps_B:+.2f}/share ({(dcf_ps_B/dcf_ps-1):+.0%}). Published side by side; "
@@ -799,7 +903,7 @@ for w in _fwd_alt:
     cc /= (1 + w); _df_alt.append(cc)
 _tv_alt = nopat[-1] * (1 + V['g_term']) * (1 - rr_term) / (wacc_term + _shift - V['g_term'])
 _ev_alt = sum(fcff[i] * _df_alt[i] for i in range(5)) + _tv_alt * _df_alt[-1]
-dcf_ps_rf_alt = (_ev_alt - LEASE + NETCASH + 0.511) / SH * ((1 + ke_rf_alt) ** T_ANCHOR) \
+dcf_ps_rf_alt = (_ev_alt - LEASE + NETCASH + INVEST) / SH * ((1 + ke_rf_alt) ** T_ANCHOR) \
                 - V['div_between']
 say(f"[rf tenor gap, PRICED] 10y peg-extrapolated rf {V['rf_alt']:.2%} instead of the Jan-2031 "
     f"AED print {V['rf']:.2%} -> WACC {wacc_rf_alt:.2%} -> AED {dcf_ps_rf_alt:.2f} "
@@ -840,7 +944,7 @@ def dcf_scenario(arpu_mult=1.0, subs_shift=0.0, contrib_mult=1.0, opex_shift=0.0
     _rr = min(g / _roic, 0.95)
     _tv = _nopat[-1] * (1 + g) * (1 - _rr) / max(_wt - g, 0.015)
     _ev = sum(_f[i] * _df[i] for i in range(5)) + _tv * _df[-1]
-    return ((_ev - LEASE + NETCASH + 0.511) / SH) * ROLL - V['div_between']
+    return ((_ev - LEASE + NETCASH + INVEST) / SH) * ROLL - V['div_between']
 
 _base_chk = dcf_scenario()
 assert abs(_base_chk - dcf_ps) < 0.02, f'scenario engine != base: {_base_chk} vs {dcf_ps}'
@@ -861,7 +965,9 @@ rel_bull = to_anchor(18.5 * eps_fc[0]) - V['div_between']
 yield_ps = dps_fc[0] / V['div_yield_peer']
 say(f"[Relative lens] trailing P/E {pe_trailing:.1f}x, trailing EV/EBITDA "
     f"{ev_ebitda_trailing:.1f}x (du's own, computed from audited figures). Justified P/E "
-    f"{V['pe_just']:.1f}x (GCC peer median) x FY26E EPS {eps_fc[0]:.2f} -> AED {rel_ps:.2f} at "
+    f"{V['pe_just']:.1f}x (Mobily, the closest structural analogue, from its own filings — NO peer "
+    f"median is claimed: only 2 of 6 peers survive as clean observations) x FY26E EPS "
+    f"{eps_fc[0]:.2f} -> AED {rel_ps:.2f} at "
     f"the anchor [bear 12x {rel_bear:.2f} / bull 18.5x {rel_bull:.2f}]. Dividend-yield cross: "
     f"DPS {dps_fc[0]:.2f} / peer benchmark {V['div_yield_peer']:.1%} = AED {yield_ps:.2f}. "
     f"Peer EV/EBITDA was NOT reliably sourceable from public aggregators (flagged) — the "
@@ -884,8 +990,13 @@ say(f"[Normalised lens] mid-cycle margin {norm_margin:.1%} (FY2028E) on FY2026E 
 bvps = V['eq_fy25'] / SH
 pb_just = (V['roe_sust'] - V['g_term']) / (ke_term - V['g_term'])
 book_ps = to_anchor(pb_just * bvps) - V['div_between']
-_bear_g = 0.02 if FLAGS.get('single_g_book') else 0.04
-book_bear = to_anchor(((V['roe_sust'] - _bear_g) / (0.5 * (ke_exp + ke_term) + 0.01 - 0.02)) * bvps) - V['div_between']
+# ONE g throughout a justified price-to-book, and it is the REGISTERED terminal growth — not a
+# second, different number. The bear is the +100bp stress on the cost of equity. The prior edition
+# ran g=4% in the numerator against g=2% in the denominator; an interim fix then used a 2.0%
+# literal against the registered 2.5%, which still left two growth rates in one Gordon.
+_bear_g = V['g_term']
+book_bear = to_anchor(((V['roe_sust'] - _bear_g)
+                       / (0.5 * (ke_exp + ke_term) + 0.01 - _bear_g)) * bvps) - V['div_between']
 book_bull = to_anchor(((V['roe_sust'] + 0.02 - V['g_term']) / (ke_term - V['g_term'])) * bvps) - V['div_between']
 roe_trailing = V['np_fy25'] / ((V['eq_fy24'] + V['eq_fy25']) / 2)
 say(f"[Book lens] justified P/B = ({V['roe_sust']:.0%} − {V['g_term']:.1%}) / ({ke_term:.2%} − "
@@ -928,7 +1039,7 @@ def dcf_at(we_, wt_, g_):
     _rr = min(g_ / roic_term, 0.95)
     _tv = nopat[-1] * (1 + g_) * (1 - _rr) / max(wt_ - g_, 0.012)
     _ev = sum(fcff[i] * _df[i] for i in range(5)) + _tv * _df[-1]
-    return ((_ev - LEASE + NETCASH + 0.511) / SH) * ROLL - V['div_between']
+    return ((_ev - LEASE + NETCASH + INVEST) / SH) * ROLL - V['div_between']
 
 grid_wacc_g = [[dcf_at(wacc_exp, wt, g) for g in g_grid] for wt in wt_grid]
 grid_exp_term = [[dcf_at(we, wt, V['g_term']) for wt in wt_grid] for we in we_grid]
@@ -937,8 +1048,10 @@ beta_grid = [round(_bci[0], 2), round(V['beta'], 3), round(_bci[1], 2), 0.65, 0.
 def dcf_beta(b):
     ke = rf_star + b * V['erp_rating']
     we_ = we_exp * ke + wd_exp * kd_at
-    _rft = (V['rf_term'] - V['sov_spread_rating']) if FLAGS.get('beta_grid_netted') else V['rf_term']
-    wt_ = (1 - V['wd_term']) * (_rft + b * V['erp_term']) + V['wd_term'] * kd_term_at
+    # the grid MUST use the same netted basis as the base case, or its base cell contradicts the
+    # headline (it did, by AED 1.77, before 17-Aug-2026)
+    wt_ = (1 - V['wd_term']) * ((V['rf_term'] - V['sov_spread_rating']) + b * V['erp_term']) \
+        + V['wd_term'] * kd_term_at
     return dcf_at(we_, wt_, V['g_term'])
 grid_beta = [dcf_beta(b) for b in beta_grid]
 tax_grid = [0.40, TAX, 0.47, 0.50, 0.531]
@@ -958,7 +1071,7 @@ def dcf_roic(r_):
     _rr = min(V['g_term'] / r_, 0.95)
     _tv = nopat[-1] * (1 + V['g_term']) * (1 - _rr) / (wacc_term - V['g_term'])
     _ev = pv_explicit + _tv * df[-1]
-    return ((_ev - LEASE + NETCASH + 0.511) / SH) * ROLL - V['div_between']
+    return ((_ev - LEASE + NETCASH + INVEST) / SH) * ROLL - V['div_between']
 grid_roic = [dcf_roic(r_) for r_ in roic_grid]
 dcf_opex_1pp = dcf_scenario(opex_shift=+0.01)   # +1pp of revenue in the cost stack
 dcf_tax_per_pp = (grid_tax[0] - grid_tax[4]) / ((tax_grid[4] - tax_grid[0]) * 100)
@@ -982,8 +1095,8 @@ pv_ep = sum(ep_[i] * df[i] for i in range(5))
 ep_term = nopat[-1] * (1 + V['g_term']) - wacc_term * ic[-1] * (1 + V['g_term'])
 pv_ep_term = ep_term / (wacc_term - V['g_term']) * df[-1]
 e3_ev = ic_fy25 + pv_ep + pv_ep_term
-e3_base = ((e3_ev - LEASE + NETCASH + 0.511) / SH) * ROLL - V['div_between']
-e3_lo = ((ic_fy25 + pv_ep * 0.7 + pv_ep_term * 0.6 - LEASE + NETCASH + 0.511) / SH) * ROLL \
+e3_base = ((e3_ev - LEASE + NETCASH + INVEST) / SH) * ROLL - V['div_between']
+e3_lo = ((ic_fy25 + pv_ep * 0.7 + pv_ep_term * 0.6 - LEASE + NETCASH + INVEST) / SH) * ROLL \
         - V['div_between']
 e3_hi = dcf_ps_rf_alt if dcf_ps_rf_alt > e3_base else e3_base * 1.12
 experts = dict(
@@ -1048,11 +1161,14 @@ OUT = dict(
               erp_rating=V['erp_rating'], erp_mkt=V['erp_mkt'],
               sov_spread_rating=V['sov_spread_rating'], sov_spread_mkt=V['sov_spread_mkt']),
     dcf=dict(pv_explicit=pv_explicit, tv=tv, pv_tv=pv_tv, ev=ev, tv_share=tv_share,
-             lease=LEASE, net_cash=NETCASH, investees=0.511, eq_val=eq_val,
+             lease=LEASE, net_cash=NETCASH, investees=INVEST, eq_val=eq_val,
              ps=dcf_ps, ps_dec=dcf_ps_dec, roll=ROLL, anchor_days=V['anchor_days'],
              div_between=V['div_between'], roic_term=roic_term, rr_term=rr_term,
              g=V['g_term'], bear=dcf_bear, bull=dcf_bull,
-             ps_framing_b=dcf_ps_B, ps_rf_alt=dcf_ps_rf_alt),
+             ps_framing_b=dcf_ps_B, ps_rf_alt=dcf_ps_rf_alt,
+             ev_ebitda_now=ev_ebitda_now, ebitda_term=ebitda_term,
+             tv_implied_mult=tv_implied_mult, ps_mkt_term=dcf_ps_mkt_term,
+             rou_repl_retired=rou_repl_retired),
     terminal_recon=dict(roic_term=roic_term, rr=rr_term,
                         nopat=dict(FY25=(V['pbt_fy25'] - netfin_fy25) * (1 - TAX)),
                         roic_path=roic),
