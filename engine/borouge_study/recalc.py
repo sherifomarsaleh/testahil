@@ -129,7 +129,8 @@ result = dict(formulas=nform, unresolvable=len(errors), checked=nchk,
 with open(os.path.join(HERE, 'recalc_result.json'), 'w') as f:
     json.dump(result, f, indent=1)
 
-print(f"\n{nchk} of {nform} formula cells reproduce the model, "
+ok = nchk - len(drift)
+print(f"\n{ok} of {nform} formula cells reproduce the model, {len(drift)} DISAGREE, "
       f"{len(errors)} unresolvable, {len(uncovered)} unchecked.")
 if errors or drift or uncovered or fails:
     sys.exit(1)

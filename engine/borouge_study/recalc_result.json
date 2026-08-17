@@ -1,12 +1,12 @@
 {
- "formulas": 759,
+ "formulas": 758,
  "unresolvable": 0,
- "checked": 759,
+ "checked": 758,
  "disagreements": 0,
  "unchecked": 0,
  "headline_failures": [],
  "pasted": {
-  "history": 298,
+  "history": 306,
   "unit_build": 2,
   "rerun": 87
  }

@@ -290,7 +290,10 @@ E_WEIGHT = mktcap / (mktcap + net_debt)
 DE_RATIO = net_debt / mktcap
 
 # The two constructions of beta. Neither is averaged into the other.
-BETA_BU = relever(m('sector_unlevered_beta'), DE_RATIO, ETR)
+# The EV/EBITDA anchor is Damodaran's Chemical (Diversified) row. The beta must come from
+# the SAME row, or the study prices one industry's risk against another industry's
+# multiple — which is what it did (beta from Chemical (Basic), multiple from Diversified).
+BETA_BU = relever(m('sector_unlevered_beta_diversified'), DE_RATIO, ETR)
 KE_OWN = build_ke(beta_used_own, ERP_RATING)
 KE_BU = build_ke(BETA_BU, ERP_RATING)
 KE_OWN_DS = build_ke(beta_used_own, ERP_DS)
@@ -366,10 +369,10 @@ FRAMINGS = {
                 "was what capped production."),
         util_pe=[0.80, 0.85, 0.93, 1.00, 1.02],
         util_pp=[0.86, 0.90, 0.96, 1.00, 1.01],
-        bench_pe=[1060, 1030, 960, 910, 890],
-        bench_pp=[1105, 1070, 995, 940, 920],
-        prem_pe=[300, 275, 240, 215, 200],
-        prem_pp=[195, 180, 160, 148, 140],
+        bench_pe=[1010, 900, 860, 870, 885],   # price path HELD to the central case
+        bench_pp=[1050, 930, 890, 900, 915],   # a downside must not pay MORE per tonne
+        prem_pe=[260, 210, 200, 200, 200],
+        prem_pp=[165, 145, 140, 140, 140],
         sd_per_t=[172, 165, 140, 110, 90],
         feed_market_share=[0.62, 0.58, 0.45, 0.35, 0.30],
     ),
@@ -408,7 +411,8 @@ def run_framing(f, wacc, tax=None, terminal_g=None, capex_override=None,
         upp = f['util_pp'][i] + util_shift
         vol_pe = cap_pe * upe
         vol_pp = cap_pp * upp
-        vol_tot = vol_pe + vol_pp
+        vol_tot = vol_pe + vol_pp                      # PRODUCTION: drives cost
+        vol_sold = vol_tot * SOURCING_UPLIFT            # SALES: drives revenue and freight
 
         bpe = f['bench_pe'][i] * (1 + bench_shift)
         bpp = f['bench_pp'][i] * (1 + bench_shift)
@@ -417,7 +421,7 @@ def run_framing(f, wacc, tax=None, terminal_g=None, capex_override=None,
 
         price_pe = (bpe + ppe_prem) * rpe
         price_pp = (bpp + ppp_prem) * rpp
-        rev = (vol_pe * price_pe + vol_pp * price_pp) / 1000.0
+        rev = (vol_pe * price_pe + vol_pp * price_pp) / 1000.0 * SOURCING_UPLIFT
         rev_other = v('rev_oth_fy25') * (1 - 0.10) ** (i + 1)
         rev += rev_other
 
@@ -436,7 +440,7 @@ def run_framing(f, wacc, tax=None, terminal_g=None, capex_override=None,
         feedstock = feed_unit * vol_tot / 1000.0
 
         othprod = (OTHPROD_FIXED * (1 + CPI) ** (i + 1)) + OTHPROD_VAR * vol_tot
-        sd = (f['sd_per_t'][i] * (1 + sd_shift)) * vol_tot / 1000.0
+        sd = (f['sd_per_t'][i] * (1 + sd_shift)) * vol_sold / 1000.0
         ga = v('ga_exda_fy25') * (1 + CPI) ** (i + 1)
         other_income = v('othinc_fy25') * USDm * (1 + CPI) ** (i + 1)
 
@@ -471,7 +475,7 @@ def run_framing(f, wacc, tax=None, terminal_g=None, capex_override=None,
 
         rows.append(dict(
             year=yr, util_pe=upe, util_pp=upp, vol_pe=vol_pe, vol_pp=vol_pp,
-            vol_tot=vol_tot, bench_pe=bpe, bench_pp=bpp, prem_pe=ppe_prem,
+            vol_tot=vol_tot, vol_sold=vol_sold, bench_pe=bpe, bench_pp=bpp, prem_pe=ppe_prem,
             prem_pp=ppp_prem, price_pe=price_pe, price_pp=price_pp,
             revenue=rev, feedstock=feedstock, feed_unit=feed_unit, othprod=othprod,
             sd=sd, sd_per_t=f['sd_per_t'][i], ga=ga, other_income=other_income,
@@ -579,6 +583,12 @@ ev_mult = float(np.median(list(tri.values())))
 mid_ebitda = float(np.mean([RES['normalisation']['rows'][2]['ebitda'],
                             RES['prolonged']['rows'][2]['ebitda']]))
 rel_ev = mid_ebitda * ev_mult
+# The Borouge 4 stream is a separable asset of the SAME company. It was added to the
+# cash-flow lens and omitted from this one and from normalised earnings, so three lenses
+# valued three different asset sets. It is now added to all of them, consistently, at the
+# same value the cash-flow lens carries.
+B4_VALUE = RES['normalisation']['b4']['value']
+rel_ev = rel_ev + B4_VALUE
 rel_equity = rel_ev - net_debt - leases - m('nci_value')
 rel_aed = rel_equity / shares_out * 1e6 * v('aed_per_usd')
 say(f"Relative lens: {peers_loss_making} of {len(peer_table)} listed peers are "
@@ -610,6 +620,7 @@ nda = 400.0
 nebit = nebitda - nda
 nnopat = nebit * (1 - ETR)
 nep_ev = nnopat / (WACC - m('terminal_growth')) * (1 - m('terminal_growth') / m('terminal_roc'))
+nep_ev = nep_ev + B4_VALUE
 nep_equity = nep_ev - net_debt - leases - m('nci_value')
 nep_aed = nep_equity / shares_out * 1e6 * v('aed_per_usd')
 say(f"Normalised earnings power: mid-cycle EBITDA ${nebitda:,.0f}m capitalised at "
@@ -691,7 +702,7 @@ for wk, row in GRID_2X2.items():
 justified_pb_bu = (ROE_SUST - g_bv) / (KE_BU - g_bv)
 pb_value_aed_bu = justified_pb_bu * bvps_usd * v('aed_per_usd')
 nep_ev_bu = nnopat / (WACC_BU - m('terminal_growth')) * \
-    (1 - m('terminal_growth') / m('terminal_roc'))
+    (1 - m('terminal_growth') / m('terminal_roc')) + B4_VALUE   # the same separable asset, in this lens too
 nep_aed_bu = (nep_ev_bu - net_debt - leases - m('nci_value')) / shares_out * 1e6 * \
     v('aed_per_usd')
 
@@ -732,6 +743,7 @@ OUT = dict(
         realisation_pe_h126=real_pe_h126, realisation_pp_h126=real_pp_h126,
         feed_per_t=feed_per_t, feed_per_t_h126=feed_per_t_h126,
         othprod_fixed=OTHPROD_FIXED, othprod_var_per_t=OTHPROD_VAR,
+        sourcing_uplift=SOURCING_UPLIFT,
         sd_per_t=sd_per_t, sd_per_t_h126=sd_per_t_h126,
         vol_pe=vol_pe_hist, vol_pp=vol_pp_hist, vol_tot=vol_tot_hist,
         bench_pe=bench_pe_hist, bench_pp=bench_pp_hist,

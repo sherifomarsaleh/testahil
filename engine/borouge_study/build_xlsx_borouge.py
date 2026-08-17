@@ -189,8 +189,9 @@ inp(r, 'UAE adjusted default spread', MC['uae_default_spread_rating'], PCT2,
     'the alternative premium basis', key='uae_ds'); r += 1
 inp(r, "Beta — the share's own five-year weekly regression", W['beta_own'], NUM3,
     'weak: R-squared 8.8%', key='beta_own'); r += 1
-inp(r, 'Beta — sector bottom-up, unlevered', W['sector_unlevered'], NUM3,
-    'global chemicals, corrected for cash', key='beta_unlev'); r += 1
+inp(r, 'Beta — sector bottom-up, unlevered', MC['sector_unlevered_beta_diversified'],
+    NUM3, 'Chemical (Diversified) — the SAME industry row the EV/EBITDA anchor uses',
+    key='beta_unlev'); r += 1
 inp(r, 'Debt to equity at market value', W['de_ratio'], PCT,
     'for re-levering the sector beta', key='de_ratio'); r += 1
 inp(r, 'Marginal pre-tax cost of debt', W['kd'], PCT2,
@@ -203,6 +204,9 @@ inp(r, 'Polyethylene nameplate capacity', UB['capacity_pe'], NUM0, 'kt a year',
     key='cap_pe'); r += 1
 inp(r, 'Polypropylene nameplate capacity', UB['capacity_pp'], NUM0, 'kt a year',
     key='cap_pp'); r += 1
+inp(r, 'Sales over production (partner sourcing)', UB['sourcing_uplift'], NUM4,
+    'sales exceed production because Borouge sources from partners — measured from the '
+    'audited record and held flat', key='sourcing'); r += 1
 inp(r, 'Realisation residual — polyethylene', UB['realisation_pe'], NUM4,
     'three-year mean; computed on Segments', key='real_pe'); r += 1
 inp(r, 'Realisation residual — polypropylene', UB['realisation_pp'], NUM4,
@@ -240,6 +244,13 @@ inp(r, 'Maintenance capital expenditure, steady state', MC['maintenance_capex'],
     'USD million a year', key='capex_maint'); r += 1
 inp(r, 'Property, plant and equipment, opening', CI['ppe_fy25'] * USDm, NUM0,
     'USD million at 31 December 2025', key='ppe_open'); r += 1
+inp(r, 'Equity attributable to owners, 30 June 2026', CI['eq_owners_h126'] * USDm, NUM0,
+    'USD million — the book-value lens reads this, on the SAME date as the bridge',
+    key='eq_owners'); r += 1
+for _i, _y in enumerate(('2023', '2024', '2025')):
+    inp(r, f'Return on equity, FY{_y}', BV['roe_hist'][_i], PCT,
+        'profit attributable to owners over opening equity, from the audited statements',
+        key=f'roe{_y[2:]}'); r += 1
 inp(r, 'Depreciation rate on the property balance',
     FR['normalisation']['rows'][0]['da'] / (CI['ppe_fy25'] * USDm), PCT2,
     'the H1-2026 charge annualised, over the opening property balance',
@@ -334,7 +345,8 @@ wsF.cell(row=r, column=3, value=f"R-squared {BETA['r2']:.3f} on {BETA['n']} week
                                 f"observations — statistically weak").font = SUB
 r += 1
 lab(wsF, r, 'Sector unlevered beta (global chemicals)')
-putf(wsF, f'B{r}', f'={a("beta_unlev")}', W['sector_unlevered'], NUM3, green=True); r += 1
+putf(wsF, f'B{r}', f'={a("beta_unlev")}', MC['sector_unlevered_beta_diversified'],
+     NUM3, green=True); r += 1
 lab(wsF, r, "Re-levered at the company's debt-to-equity and tax rate", bold=True)
 B_BU = f'B{r}'
 putf(wsF, f'B{r}', f'=B{r - 1}*(1+(1-{a("tax")})*{a("de_ratio")})', W['beta_bottom_up'],
@@ -514,7 +526,7 @@ def waterfall(ws, r0, rows_, drv, seg, wacc_ref, heading):
         putf(ws, f'{col}{R["revenue"]}',
              f'=(Segments!{col}${seg["vol_pe"]}*Segments!{col}${seg["price_pe"]}'
              f'+Segments!{col}${seg["vol_pp"]}*Segments!{col}${seg["price_pp"]})/1000'
-             f'+{a("rev_oth")}*(1-0.1)^{i + 1}', row['revenue'], NUM0)
+             f'*{a("sourcing")}+{a("rev_oth")}*(1-0.1)^{i + 1}', row['revenue'], NUM0)
         putf(ws, f'{col}{R["feedstock"]}',
              f'=Segments!{col}${seg["feed_unit"]}*Segments!{col}${seg["vol_tot"]}/1000',
              row['feedstock'], NUM0)
@@ -522,8 +534,8 @@ def waterfall(ws, r0, rows_, drv, seg, wacc_ref, heading):
              f'={a("oth_fixed")}*(1+{a("cpi")})^{i + 1}+{a("oth_var")}'
              f'*Segments!{col}${seg["vol_tot"]}', row['othprod'], NUM0)
         putf(ws, f'{col}{R["sd"]}',
-             f'=Assumptions!{ac}${drv["sd_per_t"]}*Segments!{col}${seg["vol_tot"]}/1000',
-             row['sd'], NUM0)
+             f'=Assumptions!{ac}${drv["sd_per_t"]}*Segments!{col}${seg["vol_tot"]}'
+             f'*{a("sourcing")}/1000', row['sd'], NUM0)
         putf(ws, f'{col}{R["ga"]}', f'={a("ga_base")}*(1+{a("cpi")})^{i + 1}', row['ga'],
              NUM1)
         putf(ws, f'{col}{R["other_income"]}',
@@ -661,6 +673,108 @@ note(wsD, r, 'The sector-beta enterprise values are a complete re-solve of the s
 DCF_TVSHARE_OWN_N = f"'DCF'!$E${VPS['own_n']}"
 
 # =============================================================================
+# 5  SOTP BRIDGE — enterprise value to equity, with the Borouge 4 fee stream
+# =============================================================================
+wsB = WS['SOTP Bridge']
+title(wsB, 'Enterprise value to equity value',
+      'Borouge is one operating business plus one operator fee stream. The fee stream is '
+      'valued separately and never consolidated as owned capacity.', 9, 56, 15)
+r = 4
+band(wsB, r, 'THE BOROUGE 4 FEE STREAM — QUANTIFIED TWO WAYS, THE LOWER CARRIED'); r += 1
+B4 = FR['normalisation']['b4']
+lab(wsB, r, 'From the disclosed three-year cumulative net profit')
+putf(wsB, f'B{r}', f'={a("b4_cum")}/{sum([0.10, 0.30, 0.60])!r}',
+     B4['steady_from_cumulative'], NUM1); r += 1
+lab(wsB, r, 'From the disclosed post-ramp-up earnings accretion')
+putf(wsB, f'B{r}',
+     f"={a('b4_accr')}*AVERAGE('DCF'!B{RN['nopat']}:F{RN['nopat']})",
+     B4['steady_from_accretion'], NUM1); r += 1
+lab(wsB, r, 'Steady-state fee carried — the LOWER of the two', bold=True)
+B4_STEADY = f'B{r}'
+putf(wsB, f'B{r}', f'=MIN(B{r - 2},B{r - 1})', B4['steady_adopted'], NUM1, bold=True)
+wsB.cell(row=r, column=3, value='The sponsors\' two figures do not agree; the study does '
+                                'not average them').font = SUB
+r += 2
+hdr(wsB, r, [''] + [str(y) for y in YF]); r += 1
+lab(wsB, r, 'Ramp-up fraction')
+B4_RAMP = r
+for i, col in enumerate(DC):
+    put(wsB, f'{col}{r}', B4['rows'][i]['ramp'], BLUE, PCT, cls='history')
+r += 1
+lab(wsB, r, 'Fee to Borouge plc (USD million)')
+B4_CASH = r
+for i, col in enumerate(DC):
+    putf(wsB, f'{col}{r}', f'=${B4_STEADY}*{col}{B4_RAMP}', B4['rows'][i]['net_profit'],
+         NUM1)
+r += 1
+lab(wsB, r, 'Present value of the fee')
+B4_PV = r
+for i, col in enumerate(DC):
+    putf(wsB, f'{col}{r}', f"={col}{B4_CASH}*'DCF'!{col}${RN['discount_factor']}",
+         B4['rows'][i]['pv'], NUM1)
+r += 2
+lab(wsB, r, 'Present value of the explicit fee years')
+putf(wsB, f'B{r}', f'=SUM(B{B4_PV}:F{B4_PV})', B4['pv_explicit'], NUM1); r += 1
+lab(wsB, r, 'Present value of the fee beyond the forecast')
+putf(wsB, f'B{r}', f'=${B4_STEADY}*0', B4['pv_terminal'], NUM1)
+wsB.cell(row=r, column=3,
+         value='NIL by construction: the Asset Usage Agreement runs only until the '
+               'assets are acquired by the parent group, which the company says is not '
+               'anticipated before 2029. A stream that ends cannot carry a '
+               'perpetuity').font = SUB
+r += 1
+lab(wsB, r, 'Value of the Borouge 4 fee stream', bold=True)
+B4_VAL = f'B{r}'
+putf(wsB, f'B{r}', f'=B{r - 2}+B{r - 1}', B4['value'], NUM1, bold=True)
+B4V = B4['value']
+r += 2
+
+band(wsB, r, 'THE BRIDGE — BOTH CONSTRUCTIONS, BOTH BETAS'); r += 1
+hdr(wsB, r, ['', 'Normalisation, own beta', 'Normalisation, sector beta',
+             'Prolonged, own beta', 'Prolonged, sector beta']); r += 1
+BR_COLS = {'own_n': 'B', 'bu_n': 'C', 'own_p': 'D', 'bu_p': 'E'}
+rows_map = [('Enterprise value', 'B', NUM0),
+            ('Less: net debt', None, NUM0),
+            ('Less: lease liabilities', None, NUM1),
+            ('Less: non-controlling interests', None, NUM1),
+            ('Equity value', None, NUM0),
+            ('Shares in issue (million)', None, NUM0),
+            ('Value per share (USD)', None, NUM4),
+            ('Value per share (AED)', None, PX),
+            ('Terminal value as a share of enterprise value', None, PCT)]
+BR = {}
+for i, (label_, _, fmt) in enumerate(rows_map):
+    lab(wsB, r, label_, bold=label_ in ('Equity value', 'Value per share (AED)',
+                                        'Terminal value as a share of enterprise value'))
+    BR[label_] = r
+    r += 1
+for tag, col in BR_COLS.items():
+    src = VPS[tag]
+    frk = 'normalisation' if tag.endswith('_n') else 'prolonged'
+    own = tag.startswith('own')
+    ev_v = FR[frk]['ev'] if own else ALT['ev'][frk]
+    eq = ev_v - NET_DEBT - LEASES - NCI
+    tvs = (FR[frk]['pv_terminal'] / ev_v) if own else ALT['tv_share'][frk]
+    putf(wsB, f'{col}{BR["Enterprise value"]}', f"='DCF'!$B${src}", ev_v, NUM0, green=True)
+    putf(wsB, f'{col}{BR["Less: net debt"]}', f'=-{a("net_debt")}', -NET_DEBT, NUM0)
+    putf(wsB, f'{col}{BR["Less: lease liabilities"]}', f'=-{a("leases")}', -LEASES, NUM1)
+    putf(wsB, f'{col}{BR["Less: non-controlling interests"]}', f'=-{a("nci")}', -NCI, NUM1)
+    putf(wsB, f'{col}{BR["Equity value"]}',
+         f'=SUM({col}{BR["Enterprise value"]}:{col}{BR["Less: non-controlling interests"]})',
+         eq, NUM0, bold=True)
+    putf(wsB, f'{col}{BR["Shares in issue (million)"]}', f'={a("shares")}', SHARES, NUM0)
+    putf(wsB, f'{col}{BR["Value per share (USD)"]}',
+         f'={col}{BR["Equity value"]}/{col}{BR["Shares in issue (million)"]}',
+         eq / SHARES, NUM4)
+    putf(wsB, f'{col}{BR["Value per share (AED)"]}',
+         f'={col}{BR["Value per share (USD)"]}*{a("fx")}', eq / SHARES * FX, PX, bold=True)
+    putf(wsB, f'{col}{BR["Terminal value as a share of enterprise value"]}',
+         f"='DCF'!$E${src}", tvs, PCT, green=True, bold=True)
+note(wsB, r, 'The terminal value share is shown in the bridge itself, live, so a reader '
+             'can see at a glance how much of each answer rests on the years beyond the '
+             'forecast rather than inside it.', 9)
+
+# =============================================================================
 # 7  RELATIVE & NORMALIZED
 # =============================================================================
 wsR = WS['Relative & Normalized']
@@ -702,7 +816,15 @@ wsR.cell(row=r, column=3, value='The third forecast year of each construction, a
                                 '— the mid-point of the cycle the study models').font = SUB
 r += 1
 lab(wsR, r, 'Enterprise value = multiple x mid-cycle EBITDA')
-putf(wsR, f'B{r}', f'={MULT_CELL}*{MIDEB}', REL['ev'], NUM0); r += 1
+putf(wsR, f'B{r}', f'={MULT_CELL}*{MIDEB}', REL['ev'] - B4V, NUM0); r += 1
+lab(wsR, r, 'Add: the Borouge 4 fee stream, on the same basis as the cash-flow lens')
+putf(wsR, f'B{r}', f"='SOTP Bridge'!{B4_VAL.replace('B', '$B$')}", B4V, NUM1, green=True)
+wsR.cell(row=r, column=3, value='The same separable asset the cash-flow lens carries. '
+                                'Omitting it here valued three different companies '
+                                'under three lenses').font = SUB
+r += 1
+lab(wsR, r, 'Enterprise value including the fee stream')
+putf(wsR, f'B{r}', f'=B{r - 2}+B{r - 1}', REL['ev'], NUM0); r += 1
 lab(wsR, r, 'Less: net debt, leases and non-controlling interests')
 putf(wsR, f'B{r}', f'=-{a("net_debt")}-{a("leases")}-{a("nci")}',
      -(NET_DEBT + LEASES + NCI), NUM0); r += 1
@@ -778,7 +900,8 @@ putf(wsR, f'B{r}', f'={NEBIT}*(1-{a("tax")})', NRM['nopat'], NUM0, bold=True); r
 lab(wsR, r, 'Enterprise value = NOPAT x (1 - reinvestment) / (cost of capital - growth)')
 NEV_OWN = f'B{r}'
 putf(wsR, f'B{r}',
-     f'={NNOP}/({WACC_OWN_REF}-{a("g")})*(1-{a("g")}/{a("roc")})', NRM['ev'], NUM0); r += 1
+     f'={NNOP}/({WACC_OWN_REF}-{a("g")})*(1-{a("g")}/{a("roc")})'
+     f"+'SOTP Bridge'!{B4_VAL.replace('B', '$B$')}", NRM['ev'], NUM0); r += 1
 lab(wsR, r, 'Normalised earnings lens — own-stock beta (AED)', bold=True)
 NE_OWN = f'B{r}'
 putf(wsR, f'B{r}', f'=({NEV_OWN}-{a("net_debt")}-{a("leases")}-{a("nci")})'
@@ -788,6 +911,7 @@ lab(wsR, r, 'Normalised earnings lens — sector bottom-up beta (AED)', bold=Tru
 NE_BU = f'B{r}'
 putf(wsR, f'B{r}',
      f'=({NNOP}/({WACC_BU_REF}-{a("g")})*(1-{a("g")}/{a("roc")})'
+     f"+'SOTP Bridge'!{B4_VAL.replace('B', '$B$')}"
      f'-{a("net_debt")}-{a("leases")}-{a("nci")})/{a("shares")}*{a("fx")}',
      LEN_['normalised_earnings_sector_beta'], PX, bold=True)
 r += 1
@@ -816,11 +940,10 @@ putf(wsF, f'C{r}', f"='DCF'!$F${VPS['own_p']}", LEN_['dcf_prolonged_own_beta'], 
 LR['dcf_p'] = r; r += 1
 lab(wsF, r, 'Book value per share (USD)')
 BVPS = f'B{r}'
-putf(wsF, f'B{r}', f'={CI["eq_owners_h126"] * USDm!r}/{a("shares")}', BV['bvps_usd'],
-     NUM4); r += 1
+putf(wsF, f'B{r}', f'={a("eq_owners")}/{a("shares")}', BV['bvps_usd'], NUM4); r += 1
 lab(wsF, r, 'Sustainable return on equity (three audited years)')
 ROE = f'B{r}'
-putf(wsF, f'B{r}', '=AVERAGE(' + ','.join(repr(x) for x in BV['roe_hist']) + ')',
+putf(wsF, f'B{r}', f'=AVERAGE({a("roe23")},{a("roe24")},{a("roe25")})',
      BV['roe_sustainable'], PCT); r += 1
 lab(wsF, r, 'Justified price to book = (return - growth) / (cost of equity - growth)')
 putf(wsF, f'B{r}', f'=({ROE}-{a("g")})/({KE_BU}-{a("g")})',
@@ -847,8 +970,10 @@ putf(wsF, f'C{r}', f"='Relative & Normalized'!{REL_VPS.replace('B', '$B$')}",
 LR['rel'] = r; r += 2
 
 band(wsF, r, 'THE FIELD'); r += 1
+# The relative lens is beta-independent, so it appears in BOTH columns. Counting it twice
+# would weight it double in the median. It enters the field ONCE.
 cells = ','.join([f'B{LR[k]}' for k in ('dcf_n', 'dcf_p', 'bv', 'ne', 'rel')] +
-                 [f'C{LR[k]}' for k in ('dcf_n', 'dcf_p', 'bv', 'ne', 'rel')])
+                 [f'C{LR[k]}' for k in ('dcf_n', 'dcf_p', 'bv', 'ne')])
 lab(wsF, r, 'Lowest lens reading (AED)')
 FV_LOW = f'$B${r}'
 putf(wsF, f'B{r}', f'=MIN({cells})', D['fair_low'], PX); r += 1
@@ -863,102 +988,6 @@ putf(wsF, f'B{r}', f'={a("spot")}', SPOT, PX, green=True); r += 1
 lab(wsF, r, 'Median lens reading against the close')
 putf(wsF, f'B{r}', f'={FV_MID}/B{r - 1}-1', D['fair_mid'] / SPOT - 1, PCT)
 FV_LR = LR
-
-# =============================================================================
-# 5  SOTP BRIDGE — enterprise value to equity, with the Borouge 4 fee stream
-# =============================================================================
-wsB = WS['SOTP Bridge']
-title(wsB, 'Enterprise value to equity value',
-      'Borouge is one operating business plus one operator fee stream. The fee stream is '
-      'valued separately and never consolidated as owned capacity.', 9, 56, 15)
-r = 4
-band(wsB, r, 'THE BOROUGE 4 FEE STREAM — QUANTIFIED TWO WAYS, THE LOWER CARRIED'); r += 1
-B4 = FR['normalisation']['b4']
-lab(wsB, r, 'From the disclosed three-year cumulative net profit')
-putf(wsB, f'B{r}', f'={a("b4_cum")}/{sum([0.10, 0.30, 0.60])!r}',
-     B4['steady_from_cumulative'], NUM1); r += 1
-lab(wsB, r, 'From the disclosed post-ramp-up earnings accretion')
-putf(wsB, f'B{r}',
-     f"={a('b4_accr')}*AVERAGE('DCF'!B{RN['nopat']}:F{RN['nopat']})",
-     B4['steady_from_accretion'], NUM1); r += 1
-lab(wsB, r, 'Steady-state fee carried — the LOWER of the two', bold=True)
-B4_STEADY = f'B{r}'
-putf(wsB, f'B{r}', f'=MIN(B{r - 2},B{r - 1})', B4['steady_adopted'], NUM1, bold=True)
-wsB.cell(row=r, column=3, value='The sponsors\' two figures do not agree; the study does '
-                                'not average them').font = SUB
-r += 2
-hdr(wsB, r, [''] + [str(y) for y in YF]); r += 1
-lab(wsB, r, 'Ramp-up fraction')
-B4_RAMP = r
-for i, col in enumerate(DC):
-    put(wsB, f'{col}{r}', B4['rows'][i]['ramp'], BLUE, PCT, cls='history')
-r += 1
-lab(wsB, r, 'Fee to Borouge plc (USD million)')
-B4_CASH = r
-for i, col in enumerate(DC):
-    putf(wsB, f'{col}{r}', f'=${B4_STEADY}*{col}{B4_RAMP}', B4['rows'][i]['net_profit'],
-         NUM1)
-r += 1
-lab(wsB, r, 'Present value of the fee')
-B4_PV = r
-for i, col in enumerate(DC):
-    putf(wsB, f'{col}{r}', f"={col}{B4_CASH}*'DCF'!{col}${RN['discount_factor']}",
-         B4['rows'][i]['pv'], NUM1)
-r += 2
-lab(wsB, r, 'Present value of the explicit fee years')
-putf(wsB, f'B{r}', f'=SUM(B{B4_PV}:F{B4_PV})', B4['pv_explicit'], NUM1); r += 1
-lab(wsB, r, 'Present value of the fee beyond the forecast')
-putf(wsB, f'B{r}',
-     f"=${B4_STEADY}*(1+{a('g')})/('DCF'!F${RN['wacc_row']}-{a('g')})"
-     f"*'DCF'!F${RN['discount_factor']}", B4['pv_terminal'], NUM1); r += 1
-lab(wsB, r, 'Value of the Borouge 4 fee stream', bold=True)
-B4_VAL = f'B{r}'
-putf(wsB, f'B{r}', f'=B{r - 2}+B{r - 1}', B4['value'], NUM1, bold=True); r += 2
-
-band(wsB, r, 'THE BRIDGE — BOTH CONSTRUCTIONS, BOTH BETAS'); r += 1
-hdr(wsB, r, ['', 'Normalisation, own beta', 'Normalisation, sector beta',
-             'Prolonged, own beta', 'Prolonged, sector beta']); r += 1
-BR_COLS = {'own_n': 'B', 'bu_n': 'C', 'own_p': 'D', 'bu_p': 'E'}
-rows_map = [('Enterprise value', 'B', NUM0),
-            ('Less: net debt', None, NUM0),
-            ('Less: lease liabilities', None, NUM1),
-            ('Less: non-controlling interests', None, NUM1),
-            ('Equity value', None, NUM0),
-            ('Shares in issue (million)', None, NUM0),
-            ('Value per share (USD)', None, NUM4),
-            ('Value per share (AED)', None, PX),
-            ('Terminal value as a share of enterprise value', None, PCT)]
-BR = {}
-for i, (label_, _, fmt) in enumerate(rows_map):
-    lab(wsB, r, label_, bold=label_ in ('Equity value', 'Value per share (AED)',
-                                        'Terminal value as a share of enterprise value'))
-    BR[label_] = r
-    r += 1
-for tag, col in BR_COLS.items():
-    src = VPS[tag]
-    frk = 'normalisation' if tag.endswith('_n') else 'prolonged'
-    own = tag.startswith('own')
-    ev_v = FR[frk]['ev'] if own else ALT['ev'][frk]
-    eq = ev_v - NET_DEBT - LEASES - NCI
-    tvs = (FR[frk]['pv_terminal'] / ev_v) if own else ALT['tv_share'][frk]
-    putf(wsB, f'{col}{BR["Enterprise value"]}', f"='DCF'!$B${src}", ev_v, NUM0, green=True)
-    putf(wsB, f'{col}{BR["Less: net debt"]}', f'=-{a("net_debt")}', -NET_DEBT, NUM0)
-    putf(wsB, f'{col}{BR["Less: lease liabilities"]}', f'=-{a("leases")}', -LEASES, NUM1)
-    putf(wsB, f'{col}{BR["Less: non-controlling interests"]}', f'=-{a("nci")}', -NCI, NUM1)
-    putf(wsB, f'{col}{BR["Equity value"]}',
-         f'=SUM({col}{BR["Enterprise value"]}:{col}{BR["Less: non-controlling interests"]})',
-         eq, NUM0, bold=True)
-    putf(wsB, f'{col}{BR["Shares in issue (million)"]}', f'={a("shares")}', SHARES, NUM0)
-    putf(wsB, f'{col}{BR["Value per share (USD)"]}',
-         f'={col}{BR["Equity value"]}/{col}{BR["Shares in issue (million)"]}',
-         eq / SHARES, NUM4)
-    putf(wsB, f'{col}{BR["Value per share (AED)"]}',
-         f'={col}{BR["Value per share (USD)"]}*{a("fx")}', eq / SHARES * FX, PX, bold=True)
-    putf(wsB, f'{col}{BR["Terminal value as a share of enterprise value"]}',
-         f"='DCF'!$E${src}", tvs, PCT, green=True, bold=True)
-note(wsB, r, 'The terminal value share is shown in the bridge itself, live, so a reader '
-             'can see at a glance how much of each answer rests on the years beyond the '
-             'forecast rather than inside it.', 9)
 
 # =============================================================================
 # 9  INCOME STATEMENT — 3 historical + 5 forecast
@@ -1173,8 +1202,7 @@ for i, y in enumerate(HY):
     put(wsC, f'{c}{CF["ebitda"]}', h['ebitda'], BLUE, NUM0, cls='history')
     put(wsC, f'{c}{CF["cfo"]}', h['cfo'], BLUE, NUM0, cls='history')
     put(wsC, f'{c}{CF["capex"]}', h['capex'], BLUE, NUM0, cls='history')
-    putf(wsC, f'{c}{CF["tax_paid"]}', f'={c}{CF["ebitda"]}*0+{h["tax"]!r}', h['tax'],
-         NUM0)
+    put(wsC, f'{c}{CF["tax_paid"]}', h['tax'], BLUE, NUM0, cls='history')
     putf(wsC, f'{c}{CF["fcff"]}', f'={c}{CF["cfo"]}-{c}{CF["capex"]}',
          h['cfo'] - h['capex'], NUM0, bold=True)
 for i, col in enumerate(FC):

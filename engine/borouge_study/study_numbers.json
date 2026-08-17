@@ -116,6 +116,7 @@
   "feed_per_t_h126": 394.5049248315189,
   "othprod_fixed": 789.7908363659598,
   "othprod_var_per_t": 0.20063484938358858,
+  "sourcing_uplift": 1.0295632626992652,
   "sd_per_t": {
    "2023": 78.08737294761532,
    "2024": 88.46541705716963,
@@ -188,13 +189,13 @@
   "crp": 0.0064,
   "beta_own": 0.41528940171777734,
   "beta_used": 0.41528940171777734,
-  "beta_bottom_up": 1.121165861667308,
+  "beta_bottom_up": 1.0182347577122213,
   "sector_unlevered": 1.0021,
   "de_ratio": 0.16672711800998807,
   "ke_own": 0.06442459386365576,
-  "ke_bottom_up": 0.0988007774631979,
+  "ke_bottom_up": 0.09378803270058518,
   "ke_own_ds": 0.06351095717987665,
-  "ke_bu_ds": 0.09633421256752983,
+  "ke_bu_ds": 0.0915479162336183,
   "sofr": 0.0365,
   "kd_related_party": 0.05523714285714286,
   "kd": 0.0555,
@@ -206,20 +207,20 @@
   "debt_weight": 0.142901553787799,
   "tax": 0.2873603961007691,
   "wacc_own": 0.060870189819571104,
-  "wacc_bottom_up": 0.09033396336944403,
+  "wacc_bottom_up": 0.08603754762215031,
   "wacc_own_ds": 0.06008711323750156,
-  "wacc_bu_ds": 0.08821987442988537,
+  "wacc_bu_ds": 0.08411754727897863,
   "wacc": 0.060870189819571104,
   "mktcap": 19642.875370782847
  },
  "grid_2x2": {
   "own_stock_beta": {
-   "normalisation": 2.2817838925873115,
-   "prolonged": 2.2737395952312784
+   "normalisation": 2.549854919607749,
+   "prolonged": 2.348085070915562
   },
   "bottom_up_sector_beta": {
-   "normalisation": 1.2104108606831834,
-   "prolonged": 1.212923013030737
+   "normalisation": 1.4769944608534211,
+   "prolonged": 1.31003678279902
   }
  },
  "working_capital": {
@@ -364,32 +365,33 @@
      "vol_pe": 2365.0,
      "vol_pp": 2007.0,
      "vol_tot": 4372.0,
+     "vol_sold": 4501.250584521187,
      "bench_pe": 1010.0,
      "bench_pp": 1050.0,
      "prem_pe": 260.0,
      "prem_pp": 165.0,
      "price_pe": 1355.823733601132,
      "price_pp": 1254.0093887215537,
-     "revenue": 5762.919973130835,
+     "revenue": 5932.119985008454,
      "feedstock": 1264.0782608695654,
      "feed_unit": 289.13043478260875,
      "othprod": 1683.5520054346941,
-     "sd": 655.8,
+     "sd": 675.1875876781781,
      "sd_per_t": 150,
      "ga": 191.94799999999998,
      "other_income": 26.873741,
-     "ebitda": 1994.4154478265757,
-     "ebitda_margin": 0.34607724159373754,
+     "ebitda": 2144.227872026016,
+     "ebitda_margin": 0.36146063758738356,
      "da": 400.00000000000006,
-     "ebit": 1594.4154478265757,
-     "ebit_margin": 0.27666798346331606,
-     "nopat": 1136.2435931899456,
+     "ebit": 1744.227872026016,
+     "ebit_margin": 0.29403111812202,
+     "nopat": 1243.0058598306184,
      "capex": 300,
-     "nwc": 555.8705568712008,
-     "d_nwc": 0.8863110705930239,
-     "fcff": 1235.3572821193525,
+     "nwc": 579.4618086573954,
+     "d_nwc": 24.477562856787586,
+     "fcff": 1318.528296973831,
      "discount_factor": 0.9426223958372101,
-     "pv_fcff": 1164.4754409862883,
+     "pv_fcff": 1242.874302272629,
      "ppe_close": 5982.232
     },
     {
@@ -399,32 +401,33 @@
      "vol_pe": 2805.0,
      "vol_pp": 2230.0,
      "vol_tot": 5035.0,
+     "vol_sold": 5183.8510276908,
      "bench_pe": 900.0,
      "bench_pp": 930.0,
      "prem_pe": 210.0,
      "prem_pp": 145.0,
      "price_pe": 1185.0112947222492,
      "price_pp": 1109.5144797330618,
-     "revenue": 5833.813971500637,
+     "revenue": 6005.226911796152,
      "feedstock": 1331.7859738528364,
      "feed_unit": 264.5056551842773,
      "othprod": 1833.506815898536,
-     "sd": 503.5,
+     "sd": 518.38510276908,
      "sd_per_t": 100,
      "ga": 195.97890799999996,
      "other_income": 27.438089560999995,
-     "ebitda": 1996.4803633102654,
-     "ebitda_margin": 0.3422255788517557,
+     "ebitda": 2153.008200836701,
+     "ebitda_margin": 0.3585223726696349,
      "da": 393.42346691148913,
-     "ebit": 1603.0568963987762,
-     "ebit_margin": 0.2747871125527886,
-     "nopat": 1142.4018316775541,
+     "ebit": 1759.5847339252116,
+     "ebit_margin": 0.2930088670702575,
+     "nopat": 1253.9497678115963,
      "capex": 320.0,
-     "nwc": 547.4684244322419,
-     "d_nwc": -8.402132438958915,
-     "fcff": 1224.2274310280022,
+     "nwc": 571.3682208273409,
+     "d_nwc": -8.093587830054503,
+     "fcff": 1335.46682255314,
      "discount_factor": 0.8885369811338819,
-     "pv_fcff": 1087.7713457869088,
+     "pv_fcff": 1186.6116589158246,
      "ppe_close": 5908.808533088511
     },
     {
@@ -434,32 +437,33 @@
      "vol_pe": 2832.5,
      "vol_pp": 2252.3,
      "vol_tot": 5084.8,
+     "vol_sold": 5235.123278173224,
      "bench_pe": 860.0,
      "bench_pp": 890.0,
      "prem_pe": 200.0,
      "prem_pp": 140.0,
      "price_pe": 1131.6324075725984,
      "price_pp": 1063.0696875581896,
-     "revenue": 5631.776651736695,
+     "revenue": 5797.322073141234,
      "feedstock": 1320.5435307272182,
      "feed_unit": 259.7041241990281,
      "othprod": 1860.7879487321338,
-     "sd": 416.95360000000005,
+     "sd": 429.28010881020435,
      "sd_per_t": 82,
      "ga": 200.09446506799995,
      "other_income": 28.014289441780992,
-     "ebitda": 1861.4113966511245,
-     "ebitda_margin": 0.3305193923265961,
+     "ebitda": 2014.6303092454589,
+     "ebitda_margin": 0.3475105029232656,
      "da": 388.59474831532316,
-     "ebit": 1472.8166483358013,
-     "ebit_margin": 0.26151900890487595,
-     "nopat": 1049.5874728862182,
+     "ebit": 1626.0355609301357,
+     "ebit_margin": 0.2804804598425702,
+     "nopat": 1158.7773380673157,
      "capex": 320.0,
-     "nwc": 517.9512476221112,
-     "d_nwc": -29.517176810130763,
-     "fcff": 1147.6993980116722,
+     "nwc": 541.0329464651995,
+     "d_nwc": -30.335274362141377,
+     "fcff": 1257.70736074478,
      "discount_factor": 0.8375548579463817,
-     "pv_fcff": 961.2612062668139,
+     "pv_fcff": 1053.398909866713,
      "ppe_close": 5840.213784773187
     },
     {
@@ -469,32 +473,33 @@
      "vol_pe": 2832.5,
      "vol_pp": 2252.3,
      "vol_tot": 5084.8,
+     "vol_sold": 5235.123278173224,
      "bench_pe": 870.0,
      "bench_pp": 900.0,
      "prem_pe": 200.0,
      "prem_pp": 140.0,
      "price_pe": 1142.3081850025285,
      "price_pp": 1073.390752485939,
-     "revenue": 5682.054325843743,
+     "revenue": 5849.180946457251,
      "feedstock": 1325.1356607749542,
      "feed_unit": 260.60723347525055,
      "othprod": 1878.4405459304498,
-     "sd": 422.0384,
+     "sd": 434.51523208837756,
      "sd_per_t": 83,
      "ga": 204.29644883442793,
      "other_income": 28.602589520058395,
-     "ebitda": 1880.7458598239696,
-     "ebitda_margin": 0.33099751462596105,
+     "ebitda": 2035.3956483490997,
+     "ebitda_margin": 0.34797960038865,
      "da": 384.0835919953851,
-     "ebit": 1496.6622678285844,
-     "ebit_margin": 0.26340161181164723,
-     "nopat": 1066.580805716287,
+     "ebit": 1651.3120563537145,
+     "ebit_margin": 0.2823150918854521,
+     "nopat": 1176.7903697539355,
      "capex": 320.0,
-     "nwc": 523.0924986746829,
-     "d_nwc": 5.141251052571761,
-     "fcff": 1125.5231466591003,
+     "nwc": 546.3946612650782,
+     "d_nwc": 5.361714799878655,
+     "fcff": 1235.512246949442,
      "discount_factor": 0.7894979668425125,
-     "pv_fcff": 888.5982359215467,
+     "pv_fcff": 975.4344069756087,
      "ppe_close": 5776.130192777802
     },
     {
@@ -504,93 +509,94 @@
      "vol_pe": 2832.5,
      "vol_pp": 2252.3,
      "vol_tot": 5084.8,
+     "vol_sold": 5235.123278173224,
      "bench_pe": 885.0,
      "bench_pp": 915.0,
      "prem_pe": 200.0,
      "prem_pp": 140.0,
      "price_pe": 1158.3218511474238,
      "price_pp": 1088.872349877563,
-     "revenue": 5759.395397004313,
+     "revenue": 5928.893816431274,
      "feedstock": 1332.0238558465574,
      "feed_unit": 261.9618973895841,
      "othprod": 1896.46384766993,
-     "sd": 432.208,
+     "sd": 444.9854786447241,
      "sd_per_t": 85,
      "ga": 208.5866742599509,
      "other_income": 29.203243899979615,
-     "ebitda": 1919.3162631278544,
-     "ebitda_margin": 0.33324960882633026,
+     "ebitda": 2076.037203910091,
+     "ebitda_margin": 0.3501559090426925,
      "da": 379.86911336350227,
-     "ebit": 1539.4471497643522,
-     "ebit_margin": 0.26729318681003894,
-     "nopat": 1097.0710070318678,
+     "ebit": 1696.168090546589,
+     "ebit_margin": 0.286085084851047,
+     "nopat": 1208.7565561936358,
      "capex": 320.0,
-     "nwc": 531.7831035999073,
-     "d_nwc": 8.69060492522442,
-     "fcff": 1148.2495154701455,
+     "nwc": 555.415961811263,
+     "d_nwc": 9.021300546184762,
+     "fcff": 1259.6043690109532,
      "discount_factor": 0.7441984650136955,
-     "pv_fcff": 854.5255268656018,
+     "pv_fcff": 937.3956379424958,
      "ppe_close": 5716.2610794143
     }
    ],
-   "pv_explicit": 4956.631755827159,
-   "terminal_nopat": 1119.012427172505,
+   "pv_explicit": 5395.714915973271,
+   "terminal_nopat": 1232.9316873175085,
    "reinvestment_rate": 0.16666666666666669,
    "terminal_roc": 0.12,
    "terminal_growth": 0.02,
-   "terminal_fcff": 932.5103559770876,
-   "terminal_value": 22816.394053803622,
-   "pv_terminal": 16979.925431988264,
-   "ev_core": 21936.557187815422,
-   "ev": 22199.843927146794,
-   "tv_share_of_ev": 0.7648668831957228,
+   "terminal_fcff": 1027.4430727645904,
+   "terminal_value": 25139.18034881719,
+   "pv_terminal": 18708.53942729221,
+   "ev_core": 24104.25434326548,
+   "ev": 24393.879666430217,
+   "tv_share_of_ev": 0.7669357922199672,
    "b4": {
     "steady_from_cumulative": 400.0,
-    "steady_from_accretion": 109.83769421003745,
-    "steady_adopted": 109.83769421003745,
+    "steady_from_accretion": 120.82559783314203,
+    "steady_adopted": 120.82559783314203,
     "rows": [
      {
       "year": 2026,
       "ramp": 0.1,
-      "net_profit": 10.983769421003746,
-      "pv": 10.353547046950037
+      "net_profit": 12.082559783314203,
+      "pv": 11.389291450793955
      },
      {
       "year": 2027,
       "ramp": 0.3,
-      "net_profit": 32.951308263011235,
-      "pv": 29.27845596842794
+      "net_profit": 36.24767934994261,
+      "pv": 32.20740358270696
      },
      {
       "year": 2028,
       "ramp": 0.6,
-      "net_profit": 65.90261652602247,
-      "pv": 55.19705662274762
+      "net_profit": 72.49535869988522,
+      "pv": 60.71883985765435
      },
      {
       "year": 2029,
       "ramp": 1.0,
-      "net_profit": 109.83769421003745,
-      "pv": 86.71663626149417
+      "net_profit": 120.82559783314203,
+      "pv": 95.39156383179672
      },
      {
       "year": 2030,
       "ramp": 1.0,
-      "net_profit": 109.83769421003745,
-      "pv": 81.74104343175354
+      "net_profit": 120.82559783314203,
+      "pv": 89.91822444178638
      }
     ],
-    "pv_explicit": 263.2867393313733,
+    "pv_explicit": 289.62532316473835,
     "pv_terminal": 0.0,
-    "value": 263.2867393313733,
-    "share_of_ev": 0.011859846411326185
+    "value": 289.62532316473835,
+    "share_of_ev": 0.011872868404910104
    },
    "net_debt": 3275.0,
    "leases": 222.68,
    "nci": 26.832,
-   "equity": 18675.331927146795,
-   "per_share_usd": 0.6213162403232979,
-   "per_share_aed": 2.2817838925873115,
+   "equity": 20869.36766643022,
+   "per_share_usd": 0.6943103933581345,
+   "per_share_aed": 2.549854919607749,
    "wacc": 0.060870189819571104,
    "tax": 0.2873603961007691
   },
@@ -605,32 +611,33 @@
      "vol_pe": 2200.0,
      "vol_pp": 1917.8,
      "vol_tot": 4117.8,
-     "bench_pe": 1060.0,
-     "bench_pp": 1105.0,
-     "prem_pe": 300.0,
-     "prem_pp": 195.0,
-     "price_pe": 1451.9057304705036,
-     "price_pp": 1341.7384406074236,
-     "revenue": 5806.978588432025,
-     "feedstock": 1250.1196666236617,
-     "feed_unit": 303.5892142949297,
+     "vol_sold": 4239.535603143035,
+     "bench_pe": 1010.0,
+     "bench_pp": 1050.0,
+     "prem_pe": 260.0,
+     "prem_pp": 165.0,
+     "price_pe": 1355.823733601132,
+     "price_pp": 1254.0093887215537,
+     "revenue": 5586.630930189035,
+     "feedstock": 1207.8490408979492,
+     "feed_unit": 293.3238721885349,
      "othprod": 1632.550626721386,
-     "sd": 708.2615999999999,
+     "sd": 729.200123740602,
      "sd_per_t": 172,
      "ga": 191.94799999999998,
      "other_income": 26.873741,
-     "ebitda": 2050.9724360869777,
-     "ebitda_margin": 0.3531909761425127,
+     "ebitda": 1851.9568798290977,
+     "ebitda_margin": 0.33149798205238395,
      "da": 400.00000000000006,
-     "ebit": 1650.9724360869777,
-     "ebit_margin": 0.284308338828018,
-     "nopat": 1176.5483429015721,
+     "ebit": 1451.9568798290977,
+     "ebit_margin": 0.2598984787026137,
+     "nopat": 1034.7219757201713,
      "capex": 300,
-     "nwc": 567.4711336069108,
-     "d_nwc": 12.486887806303002,
-     "fcff": 1264.0614550952691,
+     "nwc": 540.2997930250065,
+     "d_nwc": -14.684452775601358,
+     "fcff": 1149.4064284957726,
      "discount_factor": 0.9426223958372101,
-     "pv_fcff": 1191.5326372873726,
+     "pv_fcff": 1083.456241419376,
      "ppe_close": 5982.232
     },
     {
@@ -640,32 +647,33 @@
      "vol_pe": 2337.5,
      "vol_pp": 2007.0,
      "vol_tot": 4344.5,
-     "bench_pe": 1030.0,
-     "bench_pp": 1070.0,
-     "prem_pe": 275.0,
-     "prem_pp": 180.0,
-     "price_pe": 1393.1889546058876,
-     "price_pp": 1290.1331159686765,
-     "revenue": 5881.516345140396,
-     "feedstock": 1279.106146733755,
-     "feed_unit": 294.41964477701805,
+     "vol_sold": 4472.9375947969575,
+     "bench_pe": 900.0,
+     "bench_pp": 930.0,
+     "prem_pe": 210.0,
+     "prem_pp": 145.0,
+     "price_pe": 1185.0112947222492,
+     "price_pp": 1109.5144797330618,
+     "revenue": 5180.1199748646795,
+     "feedstock": 1172.9085034189138,
+     "feed_unit": 269.97548703393113,
      "othprod": 1694.9684523991677,
-     "sd": 716.8425,
+     "sd": 738.0347031414981,
      "sd_per_t": 165,
      "ga": 195.97890799999996,
      "other_income": 27.438089560999995,
-     "ebitda": 2022.058427568473,
-     "ebitda_margin": 0.3437988282119116,
+     "ebitda": 1405.6674974660998,
+     "ebitda_margin": 0.27135809677898826,
      "da": 393.42346691148913,
-     "ebit": 1628.6349606569838,
-     "ebit_margin": 0.276907325438727,
-     "nopat": 1160.6297732590324,
+     "ebit": 1012.2440305546106,
+     "ebit_margin": 0.19540937960245863,
+     "nopat": 721.3651849837987,
      "capex": 320.0,
-     "nwc": 570.1845337407601,
-     "d_nwc": 2.713400133849291,
-     "fcff": 1231.3398400366723,
+     "nwc": 481.31222152820305,
+     "d_nwc": -58.98757149680341,
+     "fcff": 853.7762233920912,
      "discount_factor": 0.8885369811338819,
-     "pv_fcff": 1094.0909842160618,
+     "pv_fcff": 758.6117480966955,
      "ppe_close": 5908.808533088511
     },
     {
@@ -675,32 +683,33 @@
      "vol_pe": 2557.5,
      "vol_pp": 2140.7999999999997,
      "vol_tot": 4698.299999999999,
-     "bench_pe": 960.0,
-     "bench_pp": 995.0,
-     "prem_pe": 240.0,
-     "prem_pp": 160.0,
-     "price_pe": 1281.0932915916208,
-     "price_pp": 1192.0829991550572,
-     "revenue": 5860.4833778367165,
-     "feedstock": 1295.2703728551153,
-     "feed_unit": 275.68915838816497,
+     "vol_sold": 4837.197077139957,
+     "bench_pe": 860.0,
+     "bench_pp": 890.0,
+     "prem_pe": 200.0,
+     "prem_pp": 140.0,
+     "price_pe": 1131.6324075725984,
+     "price_pp": 1063.0696875581896,
+     "revenue": 5354.8866350652515,
+     "feedstock": 1228.4418894336213,
+     "feed_unit": 261.4651872876618,
      "othprod": 1783.2425794453768,
-     "sd": 657.7619999999998,
+     "sd": 677.2075907995941,
      "sd_per_t": 140,
      "ga": 200.09446506799995,
      "other_income": 28.014289441780992,
-     "ebitda": 1952.1282499100064,
-     "ebitda_margin": 0.3331002110325235,
+     "ebitda": 1493.9143997604408,
+     "ebitda_margin": 0.2789815175503219,
      "da": 388.59474831532316,
-     "ebit": 1563.5335015946832,
-     "ebit_margin": 0.2667925836130997,
-     "nopat": 1114.2358952596126,
+     "ebit": 1105.3196514451176,
+     "ebit_margin": 0.20641326824870287,
+     "nopat": 787.6945585878846,
      "capex": 320.0,
-     "nwc": 558.4776348290236,
-     "d_nwc": -11.706898911736516,
-     "fcff": 1194.5375424866722,
+     "nwc": 493.5977401356107,
+     "d_nwc": 12.285518607407653,
+     "fcff": 844.0037882958001,
      "discount_factor": 0.8375548579463817,
-     "pv_fcff": 1000.4907217090447,
+     "pv_fcff": 706.8994730122969,
      "ppe_close": 5840.213784773187
     },
     {
@@ -710,32 +719,33 @@
      "vol_pe": 2750.0,
      "vol_pp": 2230.0,
      "vol_tot": 4980.0,
-     "bench_pe": 910.0,
-     "bench_pp": 940.0,
-     "prem_pe": 215.0,
-     "prem_pp": 148.0,
-     "price_pe": 1201.0249608671445,
-     "price_pp": 1122.931864139136,
-     "revenue": 5835.82509941492,
-     "feedstock": 1322.4852277125535,
-     "feed_unit": 265.5592826732035,
+     "vol_sold": 5127.225048242341,
+     "bench_pe": 870.0,
+     "bench_pp": 900.0,
+     "prem_pe": 200.0,
+     "prem_pp": 140.0,
+     "price_pe": 1142.3081850025285,
+     "price_pp": 1073.390752485939,
+     "revenue": 5727.510208563851,
+     "feedstock": 1301.4969681331443,
+     "feed_unit": 261.34477271749887,
      "othprod": 1857.4140137150496,
-     "sd": 547.8,
+     "sd": 563.9947553066575,
      "sd_per_t": 110,
      "ga": 204.29644883442793,
      "other_income": 28.602589520058395,
-     "ebitda": 1932.431998672947,
-     "ebitda_margin": 0.3311326103427407,
+     "ebitda": 1828.91061209463,
+     "ebitda_margin": 0.3193203583225427,
      "da": 384.0835919953851,
-     "ebit": 1548.3484066775618,
-     "ebit_margin": 0.26531782229607836,
-     "nopat": 1103.4143952327029,
+     "ebit": 1444.827020099245,
+     "ebit_margin": 0.25226092446573384,
+     "nopat": 1029.640955306432,
      "capex": 320.0,
-     "nwc": 546.521682224426,
-     "d_nwc": -11.955952604597655,
-     "fcff": 1179.4539398326856,
+     "nwc": 533.182845764171,
+     "d_nwc": 39.585105628560314,
+     "fcff": 1054.139441673257,
      "discount_factor": 0.7894979668425125,
-     "pv_fcff": 931.1764874822964,
+     "pv_fcff": 832.2409459695376,
      "ppe_close": 5776.130192777802
     },
     {
@@ -745,93 +755,94 @@
      "vol_pe": 2805.0,
      "vol_pp": 2252.3,
      "vol_tot": 5057.3,
-     "bench_pe": 890.0,
-     "bench_pp": 920.0,
+     "vol_sold": 5206.8102884489945,
+     "bench_pe": 885.0,
+     "bench_pp": 915.0,
      "prem_pe": 200.0,
      "prem_pp": 140.0,
-     "price_pe": 1163.659739862389,
-     "price_pp": 1094.0328823414377,
-     "revenue": 5754.137391211621,
-     "feedstock": 1327.1035509396638,
-     "feed_unit": 262.41345202769537,
+     "price_pe": 1158.3218511474238,
+     "price_pp": 1088.872349877563,
+     "revenue": 5896.098261762387,
+     "feedstock": 1324.8199036683438,
+     "feed_unit": 261.9618973895841,
      "othprod": 1890.9463893118814,
-     "sd": 455.157,
+     "sd": 468.61292596040954,
      "sd_per_t": 90,
      "ga": 208.5866742599509,
      "other_income": 29.203243899979615,
-     "ebitda": 1901.5470206001044,
-     "ebitda_margin": 0.33046604405107965,
+     "ebitda": 2032.335612461781,
+     "ebitda_margin": 0.3446916116785172,
      "da": 379.86911336350227,
-     "ebit": 1521.677907236602,
-     "ebit_margin": 0.2644493524886429,
-     "nopat": 1084.4079410753027,
+     "ebit": 1652.4664990982787,
+     "ebit_margin": 0.28026440973939,
+     "nopat": 1177.613071374146,
      "capex": 320.0,
-     "nwc": 531.9269102487219,
-     "d_nwc": -14.59477197570402,
-     "fcff": 1158.871826414509,
+     "nwc": 551.9121167223377,
+     "d_nwc": 18.729270958166694,
+     "fcff": 1218.7529137794818,
      "discount_factor": 0.7441984650136955,
-     "pv_fcff": 862.4306343652954,
+     "pv_fcff": 906.9940476656591,
      "ppe_close": 5716.2610794143
     }
    ],
-   "pv_explicit": 5079.721465060071,
-   "terminal_nopat": 1106.0960998968087,
+   "pv_explicit": 4288.202456163565,
+   "terminal_nopat": 1201.1653328016291,
    "reinvestment_rate": 0.16666666666666669,
    "terminal_roc": 0.12,
    "terminal_growth": 0.02,
-   "terminal_fcff": 921.7467499140072,
-   "terminal_value": 22553.033249496173,
-   "pv_terminal": 16783.93272567789,
-   "ev_core": 21863.654190737958,
-   "ev": 22134.005122809263,
-   "tv_share_of_ev": 0.7582871980264393,
+   "terminal_fcff": 1000.9711106680242,
+   "terminal_value": 24491.472026114716,
+   "pv_terminal": 18226.515887760434,
+   "ev_core": 22514.718343924,
+   "ev": 22742.488003329243,
+   "tv_share_of_ev": 0.8014301638893808,
    "b4": {
     "steady_from_cumulative": 400.0,
-    "steady_from_accretion": 112.78472695456446,
-    "steady_adopted": 112.78472695456446,
+    "steady_from_accretion": 95.02071491944866,
+    "steady_adopted": 95.02071491944866,
     "rows": [
      {
       "year": 2026,
       "ramp": 0.1,
-      "net_profit": 11.278472695456447,
-      "pv": 10.631340953575712
+      "net_profit": 9.502071491944866,
+      "pv": 8.956865395153523
      },
      {
       "year": 2027,
       "ramp": 0.3,
-      "net_profit": 33.83541808636934,
-      "pv": 30.064020241865357
+      "net_profit": 28.5062144758346,
+      "pv": 25.32882575391304
      },
      {
       "year": 2028,
       "ramp": 0.6,
-      "net_profit": 67.67083617273867,
-      "pv": 56.67803757777101
+      "net_profit": 57.0124289516692,
+      "pv": 47.75103683179348
      },
      {
       "year": 2029,
       "ramp": 1.0,
-      "net_profit": 112.78472695456446,
-      "pv": 89.04331262151656
+      "net_profit": 95.02071491944866,
+      "pv": 75.01866123682672
      },
      {
       "year": 2030,
       "ramp": 1.0,
-      "net_profit": 112.78472695456446,
-      "pv": 83.93422067657563
+      "net_profit": 95.02071491944866,
+      "pv": 70.71427018755764
      }
     ],
-    "pv_explicit": 270.35093207130427,
+    "pv_explicit": 227.7696594052444,
     "pv_terminal": 0.0,
-    "value": 270.35093207130427,
-    "share_of_ev": 0.012214279818373475
+    "value": 227.7696594052444,
+    "share_of_ev": 0.010015160143072363
    },
    "net_debt": 3275.0,
    "leases": 222.68,
    "nci": 26.832,
-   "equity": 18609.493122809265,
-   "per_share_usd": 0.619125825794766,
-   "per_share_aed": 2.2737395952312784,
+   "equity": 19217.976003329244,
+   "per_share_usd": 0.6393696585202348,
+   "per_share_aed": 2.348085070915562,
    "wacc": 0.060870189819571104,
    "tax": 0.2873603961007691
   }
@@ -915,31 +926,31 @@
     1.01
    ],
    "bench_pe": [
-    1060,
-    1030,
-    960,
-    910,
-    890
+    1010,
+    900,
+    860,
+    870,
+    885
    ],
    "bench_pp": [
-    1105,
-    1070,
-    995,
-    940,
-    920
+    1050,
+    930,
+    890,
+    900,
+    915
    ],
    "prem_pe": [
-    300,
-    275,
-    240,
-    215,
+    260,
+    210,
+    200,
+    200,
     200
    ],
    "prem_pp": [
-    195,
-    180,
-    160,
-    148,
+    165,
+    145,
+    140,
+    140,
     140
    ],
    "sd_per_t": [
@@ -959,19 +970,19 @@
   }
  },
  "lenses": {
-  "dcf_normalisation_own_beta": 2.2817838925873115,
-  "dcf_prolonged_own_beta": 2.2737395952312784,
-  "dcf_normalisation_sector_beta": 1.2104108606831834,
-  "dcf_prolonged_sector_beta": 1.212923013030737,
+  "dcf_normalisation_own_beta": 2.549854919607749,
+  "dcf_prolonged_own_beta": 2.348085070915562,
+  "dcf_normalisation_sector_beta": 1.4769944608534211,
+  "dcf_prolonged_sector_beta": 1.31003678279902,
   "book_value_own_beta": 2.3897784314647748,
-  "book_value_sector_beta": 1.3472574720665518,
-  "relative_multiples": 1.5857451305481918,
-  "normalised_earnings_own_beta": 2.3104363121941898,
-  "normalised_earnings_sector_beta": 1.1621691122982196
+  "book_value_sector_beta": 1.4387825824377205,
+  "relative_multiples": 1.4598686181140186,
+  "normalised_earnings_own_beta": 2.34582322793206,
+  "normalised_earnings_sector_beta": 1.3011839069629867
  },
- "fair_low": 1.1621691122982196,
- "fair_mid": 1.5857451305481918,
- "fair_high": 2.3897784314647748,
+ "fair_low": 1.3011839069629867,
+ "fair_mid": 1.4769944608534211,
+ "fair_high": 2.549854919607749,
  "book_value": {
   "bvps_usd": 0.12396151546472536,
   "roe_hist": [
@@ -982,8 +993,8 @@
   "roe_sustainable": 0.25320208114182485,
   "justified_pb": 5.2493914037244584,
   "value_aed": 2.3897784314647748,
-  "justified_pb_sector_beta": 2.9593880752094934,
-  "value_aed_sector_beta": 1.3472574720665518
+  "justified_pb_sector_beta": 3.160432289719732,
+  "value_aed_sector_beta": 1.4387825824377205
  },
  "relative": {
   "triangulation": {
@@ -992,10 +1003,10 @@
    "Damodaran global Chemical (Diversified) sector EV/EBITDA": 8.655
   },
   "median_ev_ebitda": 8.655,
-  "midcycle_ebitda": 1906.7698232805656,
-  "ev": 16503.092820493293,
-  "equity": 12978.580820493293,
-  "value_aed": 1.5857451305481918
+  "midcycle_ebitda": 1754.2723545029498,
+  "ev": 15472.852551387768,
+  "equity": 11948.340551387768,
+  "value_aed": 1.4598686181140186
  },
  "normalised": {
   "util_pe": 1.06,
@@ -1011,10 +1022,10 @@
   "da": 400.0,
   "ebit": 1543.9436607020775,
   "nopat": 1100.275398805457,
-  "ev": 22434.350555234,
-  "equity": 18909.838555234,
-  "value_aed": 2.3104363121941898,
-  "value_aed_sector_beta": 1.1621691122982196
+  "ev": 22723.975878398738,
+  "equity": 19199.46387839874,
+  "value_aed": 2.34582322793206,
+  "value_aed_sector_beta": 1.3011839069629867
  },
  "sensitivity": {
   "wacc_grid": [
@@ -1034,76 +1045,76 @@
   "grids": {
    "normalisation": [
     [
-     2.594160271557079,
-     2.8144708344415155,
-     3.104736455382218,
-     3.505518331578058,
-     4.096247644209408
+     2.893894044153059,
+     3.1366329695082693,
+     3.456448615077962,
+     3.8980314454965534,
+     4.548899005574333
     ],
     [
-     2.277437579458597,
-     2.435406241367574,
-     2.6362274512040353,
-     2.9007235046088287,
-     3.265814217794608
+     2.5449976143681523,
+     2.7190480218000452,
+     2.9403135118701047,
+     3.2317361605328987,
+     3.633994346502716
     ],
     [
-     2.022659736148975,
-     2.138552188399184,
-     2.2817838925873115,
-     2.463787427719254,
-     2.703402245951167
+     2.264351045241041,
+     2.392041742172137,
+     2.549854919607749,
+     2.7503870318694346,
+     3.0143954512356355
     ],
     [
-     1.8132050573844254,
-     1.8996797281217102,
-     2.0041213701629963,
-     2.1331241434754804,
-     2.2969588877430676
+     2.0336405376399926,
+     2.1289186231316295,
+     2.243992778539845,
+     2.3861284716801685,
+     2.5666421485492172
     ],
     [
-     1.6379129013106002,
-     1.7032328020438645,
-     1.780613590795812,
-     1.8739992957248561,
-     1.9892639718260032
+     1.8405692865639587,
+     1.9125389747201216,
+     1.9977973901989965,
+     2.100690076601443,
+     2.22768908764244
     ]
    ],
    "prolonged": [
     [
-     2.5831780881300896,
-     2.800945691469655,
-     3.0878608887100354,
-     3.4840166948521283,
-     4.067927447699854
+     2.6802235010882014,
+     2.9167082837062632,
+     3.2282839129949283,
+     3.6584894084942428,
+     4.292587434729233
     ],
     [
-     2.269773725664626,
-     2.425919016459061,
-     2.624422224808529,
-     2.885865302655635,
-     3.2467419150661967
+     2.3418486227941155,
+     2.5114146398879305,
+     2.7269792480097075,
+     3.010893422953637,
+     3.40278746930901
     ],
     [
-     2.0176064086234144,
-     2.132161159159417,
-     2.2737395952312784,
-     2.453642334010997,
-     2.690491371151265
+     2.069937173674011,
+     2.1943379333045914,
+     2.348085070915562,
+     2.5434504945152154,
+     2.800656764880761
     ],
     [
-     1.8102461153210563,
-     1.8957226424084777,
-     1.998958755005175,
-     2.1264724992424537,
-     2.2884161624776005
+     1.8466478761721872,
+     1.9394711318687474,
+     2.0515804138343268,
+     2.190053995874659,
+     2.365916756952206
     ],
     [
-     1.6366608380687007,
-     1.7012267764732194,
-     1.7777143887348057,
-     1.8700221786215816,
-     1.983956399185598
+     1.6600014001267371,
+     1.7301167968798299,
+     1.8131785383017205,
+     1.9134202055220242,
+     2.037147100476304
     ]
    ]
   },
@@ -1111,45 +1122,45 @@
    "normalisation": [
     [
      -100,
-     1.3695484271677099
+     1.6106507974803603
     ],
     [
      -50,
-     1.8256661598775112
+     2.080252858544056
     ],
     [
      0,
-     2.2817838925873115
+     2.549854919607749
     ],
     [
      50,
-     2.7379016252971136
+     3.019456980671444
     ],
     [
      100,
-     3.194019358006916
+     3.4890590417351404
     ]
    ],
    "prolonged": [
     [
      -100,
-     1.3777164194633704
+     1.4255725266177968
     ],
     [
      -50,
-     1.8257280073473263
+     1.8868287987666774
     ],
     [
      0,
-     2.2737395952312784
+     2.348085070915562
     ],
     [
      50,
-     2.7217511831152343
+     2.8093413430644443
     ],
     [
      100,
-     3.1697627709991876
+     3.270597615213326
     ]
    ]
   },
@@ -1157,45 +1168,45 @@
    "normalisation": [
     [
      -0.1,
-     1.7850843369519316
+     2.0266913916077964
     ],
     [
      -0.05,
-     2.033434114769622
+     2.2882731556077753
     ],
     [
      0.0,
-     2.2817838925873115
+     2.549854919607749
     ],
     [
      0.05,
-     2.5301336704050024
+     2.811436683607727
     ],
     [
      0.1,
-     2.7784834482226923
+     3.073018447607703
     ]
    ],
    "prolonged": [
     [
      -0.1,
-     1.767528486965866
+     1.8360393142341613
     ],
     [
      -0.05,
-     2.0206340410985746
+     2.09206219257486
     ],
     [
      0.0,
-     2.2737395952312784
+     2.348085070915562
     ],
     [
      0.05,
-     2.5268451493639867
+     2.6041079492562607
     ],
     [
      0.1,
-     2.7799507034966933
+     2.86013082759696
     ]
    ]
   }
@@ -1208,35 +1219,35 @@
    "basis": "Tier-1 own-stock weekly regression against the FTSE ADX General Index \u2014 the company's own local market index, which is what the beta rule asks for. It passes the usability gate on all three conditions.",
    "against": "It is flagged weak by the same machinery: an R-squared of 0.094 and a 90% interval of [0.27, 0.56] spanning 0.70 times the point estimate. A Dimson lead-lag correction moves it DOWN, not up, so thin trading does not explain it. What it most plausibly measures is a share with a 10% free float that has traded in a narrow band, not the risk of a business whose earnings track a global commodity benchmark. It is, however, materially HIGHER than the 0.271 an equal-weight composite of the other listed UAE names produces, because an equal-weight composite over-weights small, thinly traded constituents and understates covariance with any single large name.",
    "value_aed": {
-    "normalisation": 2.2817838925873115,
-    "prolonged": 2.2737395952312784
+    "normalisation": 2.549854919607749,
+    "prolonged": 2.348085070915562
    },
    "ev": {
-    "normalisation": 22199.843927146794,
-    "prolonged": 22134.005122809263
+    "normalisation": 24393.879666430217,
+    "prolonged": 22742.488003329243
    },
    "tv_share": {
-    "normalisation": 0.7648668831957228,
-    "prolonged": 0.7582871980264393
+    "normalisation": 0.7669357922199672,
+    "prolonged": 0.8014301638893808
    }
   },
   "bottom_up_sector_beta": {
-   "beta": 1.121165861667308,
-   "ke": 0.0988007774631979,
-   "wacc": 0.09033396336944403,
+   "beta": 1.0182347577122213,
+   "ke": 0.09378803270058518,
+   "wacc": 0.08603754762215031,
    "basis": "Global Chemical (Basic) unlevered beta corrected for cash, re-levered to Borouge's own market-value capital structure and effective tax rate. It prices the business rather than the listing.",
    "against": "It imports the capital-structure and cyclicality of a 909-firm global set, most of which lack Borouge's contracted ethane position, and it overrides an own-stock estimate that did pass its gate.",
    "value_aed": {
-    "normalisation": 1.2104108606831834,
-    "prolonged": 1.212923013030737
+    "normalisation": 1.4769944608534211,
+    "prolonged": 1.31003678279902
    },
    "ev": {
-    "normalisation": 13431.157701600738,
-    "prolonged": 13451.71849138216
+    "normalisation": 15613.019549116816,
+    "prolonged": 14246.549189859363
    },
    "tv_share": {
-    "normalisation": 0.6405859698225463,
-    "prolonged": 0.6322241076959121
+    "normalisation": 0.6595621515533581,
+    "prolonged": 0.7042011380077203
    }
   }
  },
@@ -3103,17 +3114,17 @@
   "Selling and distribution: $78 / $88 / $77 per tonne sold in the audited years, against $177 in H1-2026 while alternative logistics routes are in use.",
   "Asset-conversion cycle from the statements: 51 days sales outstanding, 62 days inventory, 92 days payable, a cash cycle of 20 days. The balance sheet and the cash flow are projected from these, not plugged.",
   "Cost of capital: rf* = 4.65% US 10-year less 0.23% US default spread = 4.42%; the dirham construction gives 4.48% less 0.42% = 4.06%, and the +0.36% gap under a hard peg is reported, not reconciled away.",
-  "  Beta: own-stock regression 0.415 (weak, R-squared 0.094); sector bottom-up 1.0021 unlevered re-levered at a 0.167 debt-to-equity ratio = 1.121.",
-  "  Ke 6.44% on the own-stock beta and 9.88% on the bottom-up beta. Kd marginal 5.55% pre-tax (arm's-length margin 0.900% over the long dollar rate) against a 5.07% sovereign; the related-party facilities price 5.52%, inside arm's length by 0.03%.",
-  "  Equity weight 85.7% on market value. WACC 6.09% on the own-stock beta and 9.03% on the bottom-up beta \u2014 the study's central contested judgement, published both ways.",
-  "DCF [Normalisation]: EV $22,200m, terminal value 76.5% of enterprise value, equity $18,675m, AED 2.28 per share against a AED 2.40 close.",
-  "DCF [Prolonged disruption]: EV $22,134m, terminal value 75.8% of enterprise value, equity $18,609m, AED 2.27 per share against a AED 2.40 close.",
+  "  Beta: own-stock regression 0.415 (weak, R-squared 0.094); sector bottom-up 1.0021 unlevered re-levered at a 0.167 debt-to-equity ratio = 1.018.",
+  "  Ke 6.44% on the own-stock beta and 9.38% on the bottom-up beta. Kd marginal 5.55% pre-tax (arm's-length margin 0.900% over the long dollar rate) against a 5.07% sovereign; the related-party facilities price 5.52%, inside arm's length by 0.03%.",
+  "  Equity weight 85.7% on market value. WACC 6.09% on the own-stock beta and 8.60% on the bottom-up beta \u2014 the study's central contested judgement, published both ways.",
+  "DCF [Normalisation]: EV $24,394m, terminal value 76.7% of enterprise value, equity $20,869m, AED 2.55 per share against a AED 2.40 close.",
+  "DCF [Prolonged disruption]: EV $22,742m, terminal value 80.1% of enterprise value, equity $19,218m, AED 2.35 per share against a AED 2.40 close.",
   "Book value lens: sustainable return on equity 25.3% against a cost of equity of 6.44% justifies 5.25x book of $0.1240 per share, or AED 2.39.",
-  "Relative lens: 9 of 11 listed peers are loss-making and 2 have undefined EV/EBITDA, so the naive median of 13.4x is rejected. Three through-cycle anchors (LyondellBasell 7.18x, Industries 9.90x, Damodaran 8.65x) give a median of 8.65x, which on a mid-cycle EBITDA of $1,907m is AED 1.59 per share.",
-  "Normalised earnings power: mid-cycle EBITDA $1,944m capitalised at 6.09% gives AED 2.31 per share.",
+  "Relative lens: 9 of 11 listed peers are loss-making and 2 have undefined EV/EBITDA, so the naive median of 13.4x is rejected. Three through-cycle anchors (LyondellBasell 7.18x, Industries 9.90x, Damodaran 8.65x) give a median of 8.65x, which on a mid-cycle EBITDA of $1,754m is AED 1.46 per share.",
+  "Normalised earnings power: mid-cycle EBITDA $1,944m capitalised at 6.09% gives AED 2.35 per share.",
   "The 2x2 of the two contested judgements, AED per share:",
-  "   own_stock_beta           normalisation=2.28  prolonged=2.27",
-  "   bottom_up_sector_beta    normalisation=1.21  prolonged=1.21",
-  "All lenses across both constructions span AED 1.16 to AED 2.39, median AED 1.59, against a close of AED 2.40."
+  "   own_stock_beta           normalisation=2.55  prolonged=2.35",
+  "   bottom_up_sector_beta    normalisation=1.48  prolonged=1.31",
+  "All lenses across both constructions span AED 1.30 to AED 2.55, median AED 1.48, against a close of AED 2.40."
  ]
 }
