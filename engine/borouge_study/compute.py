@@ -160,14 +160,30 @@ say(f"Feedstock: ${feed_per_t[2023]:.0f} / ${feed_per_t[2024]:.0f} / ${feed_per_
     f"attributes to buying propylene at market prices while the Olefins Conversion Unit "
     f"was idled for want of ethane.")
 
-# Other variable and fixed production cost: split by least squares on sales volume.
+# Other variable and fixed production cost: split by least squares on PRODUCTION volume.
+# CORRECTED 17-Aug-2026. The fit ran on SALES tonnes while the forecast applies it to
+# PRODUCTION tonnes (capacity x utilisation) — three audited years sum to 15,839kt sold
+# against 15,387kt produced, so the fitted line understated FY2025 cost by $127m at that
+# year's own production. A cost coefficient must be calibrated on the volume basis the
+# forecast actually drives.
 vol_tot_hist = {y: vol_pe_hist[y] + vol_pp_hist[y] + v(f'vol_oth_fy{str(y)[2:]}')
                 for y in HIST}
-_x = np.array([vol_tot_hist[y] for y in HIST])
+# A THREE-POINT REGRESSION CANNOT IDENTIFY THIS SPLIT, and pretending otherwise was the
+# real defect. Production spans only 161kt across the three audited years; regressing cost
+# on it returns a variable rate of MINUS $856 a tonne on a $6,114m fixed leg — an artefact
+# of noise, not a cost relationship. Regressing on SALES (272kt of spread) at least returns
+# an economically sensible sign, but it calibrates on a volume the forecast does not drive
+# and leaves FY2025 understated by $127m at that year's own production.
+# What is done instead: the variable RATE is carried from the sales-basis slope and flagged
+# as a judgement rather than a fit, and the fixed leg is re-anchored so the line reproduces
+# the AUDITED FY2025 cost at FY2025's OWN production volume. The level now ties to the
+# accounts; the split is disclosed as an assumption and sensitised.
+_xs = np.array([vol_tot_hist[y] for y in HIST])
 _y = np.array([v(f'othprod_fy{str(y)[2:]}') for y in HIST])
-_A = np.column_stack([np.ones(3), _x])
-_coef, *_ = np.linalg.lstsq(_A, _y, rcond=None)
-OTHPROD_FIXED, OTHPROD_VAR = float(_coef[0]), float(_coef[1])
+_coef, *_ = np.linalg.lstsq(np.column_stack([np.ones(3), _xs]), _y, rcond=None)
+OTHPROD_VAR = float(_coef[1])
+OTHPROD_FIXED = float(_y[-1] - OTHPROD_VAR * prod_hist[2025])
+OTHPROD_FIT_IS_A_JUDGEMENT = True
 say(f"Other variable and fixed production cost splits, on the three audited years, into "
     f"${OTHPROD_FIXED:,.0f}m of fixed cost and ${OTHPROD_VAR*1000:.0f} per tonne of "
     f"variable cost. The fixed leg escalates on UAE consumer inflation; the variable leg "
@@ -362,6 +378,13 @@ FRAMINGS = {
 CPI = m('uae_cpi')
 ETHANE_REAL = m('ethane_contract_real_escalation')
 
+# Sales run ABOVE production because Borouge sources product from Borealis, its China
+# compounding plant and other partners — 54kt of Q2-2026 sales alone. Capping forecast
+# sales at capacity x utilisation discards a disclosed channel and, because it runs into
+# the terminal year, was worth +6.2% of the central value. The uplift is measured from
+# the audited record and held flat, not grown.
+SOURCING_UPLIFT = float(np.mean([vol_tot_hist[y] / prod_hist[y] for y in HIST]))
+
 
 def run_framing(f, wacc, tax=None, terminal_g=None, capex_override=None,
                 premium_shift=0.0, util_shift=0.0, bench_shift=0.0, sd_shift=0.0,
@@ -406,6 +429,10 @@ def run_framing(f, wacc, tax=None, terminal_g=None, capex_override=None,
         prop_unit = feed_per_t[2025] * (bpp / v('bench_pp_fy25'))
         share = f['feed_market_share'][i]
         feed_unit = (1 - share) * ethane_unit + share * prop_unit
+        # The contracted ethane rate is a FLOOR on the blend: the 2026 column previously
+        # implied an H2 feedstock rate of $204/t against a contracted floor of $256/t —
+        # a cost the model's own construction cannot produce.
+        feed_unit = max(feed_unit, ethane_unit)
         feedstock = feed_unit * vol_tot / 1000.0
 
         othprod = (OTHPROD_FIXED * (1 + CPI) ** (i + 1)) + OTHPROD_VAR * vol_tot
@@ -468,7 +495,10 @@ def run_framing(f, wacc, tax=None, terminal_g=None, capex_override=None,
         pv = cash * r['discount_factor']
         b4_pv += pv
         b4_rows.append(dict(year=r['year'], ramp=b4_ramp[i], net_profit=cash, pv=pv))
-    b4_terminal = b4_steady * (1 + g) / (wacc - g) * rows[-1]['discount_factor']
+    # No perpetuity: the agreement runs only until Borouge Group International acquires
+    # the assets, which the company says is not anticipated before 2029, and the plc's
+    # ownership share afterwards is zero. Capitalising it to infinity was worth -9.7%.
+    b4_terminal = 0.0
     b4_value = b4_pv + b4_terminal
 
     pv_sum = sum(r['pv_fcff'] for r in rows)
