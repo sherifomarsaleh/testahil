@@ -2,7 +2,7 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-08-10", latest: "AMR" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
+const SITE = { updated: "2026-08-10", latest: "FERTIGLB" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
 /* ---------- covered tickers ----------
    HORIZON FIELDS (see the HORIZON CONVENTION block above the LEDGER):
@@ -24,6 +24,38 @@ const SITE = { updated: "2026-08-10", latest: "AMR" };  // latest = the LAST-PUB
                            label would then misstate what was simulated.
    ------------------------------------- */
 const TICKERS = {
+  FERTIGLB: {
+    name: "Fertiglobe plc",
+    nameAr: "فيرتيجلوب",
+    code: "ADX:FERTIGLB",
+    spot: 2.54,
+    spotDate: "close 7 Aug 2026",
+    fairAsof: "2026-08-07",
+    ccy: "AED",
+    fair: { bear: 1.27, base: 2.15, full: 2.79 },   // 10 Aug 2026 — four lenses, one field, AED 1.27 to 2.79. Weighted central 2.15 on cash flow 45% / relative 20% / normalised 20% / book 15%: cash flow 2.19, relative multiples 2.06, normalised earnings power 2.79, book value and sustainable return 1.27. Against a close of 2.54 the market is FULLY PRICED (spot sits above the weighted centre). The company reports in US dollars; the valuation runs in dollars and converts at the 3.6725 peg only at the final step. THE CONTESTED JUDGEMENT — whether the 2026 nitrogen price spike is a war premium that fades or a structurally tight market — is computed BOTH WAYS and never averaged: normalisation gives AED 1.76, a structurally tight market gives 2.62. Revenue is built bottom-up: installed capacity x a utilisation path, split urea and merchant ammonia, priced off published benchmarks x a realisation ratio measured at 1.00 across three disclosed periods. The cost side is the crux — gas in Egypt and Algeria is PRODUCT-LINKED, so roughly 48 cents of every extra dollar of realised price comes back out as cost; a model escalating cost on general inflation would have overstated this company badly. Beta 0.931 from the share's own weekly history against the FTSE ADX General index, the published index of the exchange it is listed on — an earlier edition used a constituent composite and understated beta by ~40%, carrying WACC from 11.90% to 8.53% and the centre from 2.15 to 2.74. Terminal value is 55.2% of enterprise value under the normalisation framing and the study says so.
+    dist: {
+      t20: { label: "1 month", p5: 2.24, p25: 2.42, p50: 2.54, p75: 2.66, p95: 2.87, resolve: "2026-09-07" },
+      t60: { label: "3 months", p5: 2.01, p25: 2.32, p50: 2.53, p75: 2.76, p95: 3.19, resolve: "2026-11-09" }
+    },
+    hz: { h1: 20, h3: 63, l1: "1 month", l3: "3 months", cal: true },
+    touch: [[3.05, 2, 16], [2.92, 5, 26], [2.79, 16, 42], [2.67, 42, 65], [2.41, 41, 65], [2.29, 13, 39]],
+    levels: { res:[2.59, 2.69, 2.74], sup:[2.45, 2.34, 2.25] },
+    tech: {
+      trend: "Trading below the whole moving-average stack, under a flat 200-day; fresh death-cross",
+      summary: "The price closed 2.54 below a falling 20-day (2.63), a falling 50-day (2.77) and a flat 200-day (2.78). Momentum is soft: RSI(14) is ~34 and the daily ATR near 0.06 (~2.4%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22120.06 / \u22120.06 / +0.00). The 50-day crossed beneath the 200-day 1 session ago \u2014 a fresh death-cross, a momentum-regime change rather than noise inside an intact trend. Over the last year it has ranged 2.35\u20133.85; the last close sits 34% below that high and 8% above that low.",
+      bull: "A daily close back above 2.59 would clear the nearest resistance and open the 2.74 zone.",
+      bear: "A close below 2.45 would break the nearest support and open the 2.25 zone."
+    },
+    asof: {
+      mc:   { data:"2026-08-07", computed:"2026-08-10" },
+      tech: { data:"2026-08-07", computed:"2026-08-17" }
+    },
+    files: {
+      study:  "files/FERTIGLB_Valuation_Study_09-08-2026.pdf?v=0810a",
+      model:  "files/FERTIGLB_Valuation_Model_09082026.xlsx?v=0810a",
+      biblio: "files/FERTIGLB_Bibliography_09-08-2026.pdf?v=0810a"
+    }
+  },
   AMR: {
     name: "Americana Restaurants International PLC",
     nameAr: "أمريكانا للمطاعم العالمية",
@@ -2762,6 +2794,32 @@ const COMING = [
    session it lands on can, and by at most a few days.
    ========================================================================== */
 const LEDGER = [
+  {
+    instrument:"FERTIGLB", asset_class:"equity",
+    anchor_date:"2026-08-07", run_date:"2026-08-10", anchor_price:2.54, ccy:"AED",
+    horizon_label:"1 month", grade_date:"2026-09-07", grade_basis:"projected", horizon_days:20,
+    cycle_no:1, anchor_vol:0.2821,
+    note:"First coverage, 10-Aug-2026 — cycle 1, struck on the study's own committed path arrays at the 2026-08-07 anchor and NOT re-simulated at publish: re-striking a frozen cone would publish a forecast the study never made. Production chain, no approximation: Step 0.0 data-quality gate → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF per the AE profile. q_annual = 0.053, SOURCED not defaulted. AE live fit nu=10.0, width_cal=0.979; rf_live 3.65%. Horizons resolved by horizons.resolve() on the UAE's own realized calendar, not a session count. Name-level calibration: PARITY, and ROBUSTLY so — scale-normalized CRPS skill −0.0015 against the carry-anchored random walk, the bootstrap CI90 straddling zero at every block size ([−0.028,+0.013] / [−0.030,+0.009] / [−0.031,+0.005]). The method neither beat the benchmark nor lost to it, and the study says so rather than claiming an edge it did not demonstrate. Fertiglobe listed 27-Oct-2021, so its record yields 14 non-overlapping quarterly origins (2022-11-11 → 2026-02-19); a literal five-year test predates the instrument, so the test covers its whole listed life — the maximum evidence that exists. The SHAPE limb passes: PIT Kolmogorov-Smirnov p=0.44, chi-square p=0.74, coverage 43/79/100 per cent against the 50/80/90 bands. What carries the cone is the MARKET-level gate: the 18-name UAE panel scores +0.0068 over 261 windows, PARITY with the CI90 straddling zero, and that panel is the standing gate. No single-name edge exists on this name and none is claimed. The price map is a map of dispersion around today's price, never a forecast of value.",
+    p5:2.24, p25:2.42, p50:2.54, p75:2.66, p95:2.87,
+    touch:{"+5":42,"+10":16,"+15":5,"+20":2,"-5":41,"-10":13},
+    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
+    realized_quantile:null, median_err:null,
+    touch_hit:{"+5":null,"+10":null,"+15":null,"+20":null,"-5":null,"-10":null},
+    reanchor_from:null
+  },
+  {
+    instrument:"FERTIGLB", asset_class:"equity",
+    anchor_date:"2026-08-07", run_date:"2026-08-10", anchor_price:2.54, ccy:"AED",
+    horizon_label:"3 months", grade_date:"2026-11-09", grade_basis:"projected", horizon_days:63,
+    cycle_no:1, anchor_vol:0.2898,
+    note:"First coverage, 10-Aug-2026 — cycle 1, struck on the study's own committed path arrays at the 2026-08-07 anchor and NOT re-simulated at publish: re-striking a frozen cone would publish a forecast the study never made. Production chain, no approximation: Step 0.0 data-quality gate → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF per the AE profile. q_annual = 0.053, SOURCED not defaulted. AE live fit nu=10.0, width_cal=0.979; rf_live 3.65%. Horizons resolved by horizons.resolve() on the UAE's own realized calendar, not a session count. Name-level calibration: PARITY, and ROBUSTLY so — scale-normalized CRPS skill −0.0015 against the carry-anchored random walk, the bootstrap CI90 straddling zero at every block size ([−0.028,+0.013] / [−0.030,+0.009] / [−0.031,+0.005]). The method neither beat the benchmark nor lost to it, and the study says so rather than claiming an edge it did not demonstrate. Fertiglobe listed 27-Oct-2021, so its record yields 14 non-overlapping quarterly origins (2022-11-11 → 2026-02-19); a literal five-year test predates the instrument, so the test covers its whole listed life — the maximum evidence that exists. The SHAPE limb passes: PIT Kolmogorov-Smirnov p=0.44, chi-square p=0.74, coverage 43/79/100 per cent against the 50/80/90 bands. What carries the cone is the MARKET-level gate: the 18-name UAE panel scores +0.0068 over 261 windows, PARITY with the CI90 straddling zero, and that panel is the standing gate. No single-name edge exists on this name and none is claimed. The price map is a map of dispersion around today's price, never a forecast of value.",
+    p5:2.01, p25:2.32, p50:2.53, p75:2.76, p95:3.19,
+    touch:{"+5":65,"+10":42,"+15":26,"+20":16,"-5":65,"-10":39},
+    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
+    realized_quantile:null, median_err:null,
+    touch_hit:{"+5":null,"+10":null,"+15":null,"+20":null,"-5":null,"-10":null},
+    reanchor_from:null
+  },
   // ---- MODON · equity (ADX Abu Dhabi) · cycle 1 (9 Aug 2026 published study; MC PASS — own fitted verdict, scale-normalized skill +0.0424, CI90 EXCLUDES zero at every bootstrap block {2,3,4} ([+1.8%,+6.1%] / [+2.1%,+6.1%] / [+1.9%,+5.7%]) — robust PASS; 18-name AE panel PARITY +0.0068, CI90 [−0.001,+0.014], 261 windows) ----
   {
     instrument:"MODON", asset_class:"equity",
