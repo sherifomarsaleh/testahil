@@ -191,13 +191,16 @@ PCT_EXACT = {
     'dep_rate_ppe', 'shldr_margin', 'hybrid_margin', 'bank_loan_lo', 'bank_loan_hi',
     'other_borr_lo', 'other_borr_hi', 'rel_weight_ev_ebitda', 'gdp_growth_26',
     'inflation_26', 'tanker_orderbook_pct_fleet', 'spot_share_ebitda_26',
-    'spot_share_ebitda_29',
+    'spot_share_ebitda_29', 'ri_fade',
 }
 PCT_PREFIX = ('drv_mar_', 'lens_weight_', 'g26_')
 PERDAY_EXACT = {'tnk_opex_day', 'gas_rate_day', 'vlcc_1y_tc_market', 'vlcc_spot_clarksons_jan26'}
-PERDAY_PREFIX = ('tce_', 'tc_out_')
+# every charter-out rate is a rate PER VESSEL PER DAY; without this prefix they render
+# in the register's default unit of thousands of dollars, which is off by a factor of
+# a thousand and reads as though a vessel earned 19.75 million dollars a day
+PERDAY_PREFIX = ('tce_', 'tc_out_', 'charter_')
 COUNT_EXACT = {'spot_vessels_total', 'jub_owned', 'jub_chartered', 'osv_owned', 'gas_owned',
-               'gas_lt_contracted'}
+               'gas_lt_contracted', 'vlcc_sold_jan26'}
 COUNT_RE = re.compile(r'^tnk_[a-z0-9]+_(n|spot)$')
 RATIO3 = {'beta', 'beta_se', 'beta_r2', 'beta_dimson', 'beta_composite',
           'beta_ci_lo', 'beta_ci_hi'}

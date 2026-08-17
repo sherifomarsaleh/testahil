@@ -2721,6 +2721,12 @@ P(f"Where a judgement has two legitimate constructions, both are computed and bo
   f"alongside the new one at full size rather than quietly replaced — that is why the "
   f"equal-weight composite reading of AED {p2(D['central_beta_alt'])} appears throughout "
   f"this document beside the adopted AED {p2(D['central'])}.")
+P(f"The same rule governs correction. Where a study has been reviewed and found wrong, "
+  f"the corrections are listed in the document itself, with the direction and the size of "
+  f"each, rather than absorbed into a new set of numbers that looks as though it was "
+  f"always there. This edition carries such a list, under “What changed in this edition, "
+  f"and why”, immediately after the caveats. It is the section a reader who has seen the "
+  f"earlier edition should read first.")
 P("The probabilistic price map in section 3 is produced by a volatility model that is "
   "tested before it is allowed to publish a range: the model is re-run at successive past "
   "dates using only the data available on each of those dates, and every forecast it made "
