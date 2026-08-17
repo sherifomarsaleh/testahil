@@ -171,7 +171,7 @@ RATE_KEYS = {
     'vol_retail_g', 'vol_comm_g', 'gp_retfuel_per_l_g', 'gp_comm_per_l_g', 'rev_nonfuel_g',
     'gm_nonfuel', 'cash_opex_g', 'other_income_g',
 }
-COEFF_KEYS = {'beta', 'beta_terminal'}
+COEFF_KEYS = {'beta', 'beta_drift_frac'}
 PER_UNIT_KEYS = {'spot', 'dps', 'eps_fy23', 'eps_fy24', 'eps_fy25', 'price_retfuel', 'price_comm'}
 
 
@@ -524,12 +524,17 @@ J = [
      'holding flat. Either would say the drag being priced is not there.'),
     ('The beta is measured against the local exchange, with the company taken out of the index',
      f"A beta of {fmt_value('beta', INP['beta']['value'])}, from "
-     f"{BETA['primary_ex_subject']['n']} weekly observations against an equal-weight composite "
-     f"of the exchange's own listed names, with the company itself removed from that composite "
-     f"so it is not being regressed partly against itself. The regression has an R-squared of "
-     f"{BETA['primary_ex_subject']['r2']:.3f} and a standard error of "
-     f"{BETA['primary_ex_subject']['se']:.3f}. Left in the index the coefficient would be "
-     f"{BETA['primary']['beta']:.3f}; the more conservative construction is the one carried.",
+     f"{BETA['primary']['n']} weekly observations against the published FTSE ADX "
+     f"General Index, the headline index of the company's own exchange, over the five "
+     f"years to {nice_date(BETA['index_series_end'])}. R-squared is "
+     f"{BETA['primary']['r2']:.3f} with a standard error of "
+     f"{BETA['primary']['se']:.3f} and a 90% interval of "
+     f"{BETA['primary']['ci90'][0]:.2f} to {BETA['primary']['ci90'][1]:.2f}. An "
+     f"equal-weight composite of the exchange's members, which earlier editions used "
+     f"as a stand-in for the index, gives "
+     f"{BETA['crosscheck_adx_composite_ex']['beta']:.3f} instead — lower because that "
+     f"composite is the more volatile series and beta divides by the market's own "
+     f"variance, so the stand-in was biased low by construction.",
      'The regression losing significance — a standard error that stops being comfortably '
      'smaller than the coefficient — or the share\'s own volatility converging on the exchange '
      'median, which would pull the coefficient toward one.'),
@@ -602,9 +607,12 @@ J = [
      f"The discount rate moves from {pct(W['wacc'])} today to {pct(W['wacc_terminal'])} at the "
      f"end of the forecast, as the beta drifts from "
      f"{fmt_value('beta', INP['beta']['value'])} to "
-     f"{fmt_value('beta_terminal', INP['beta_terminal']['value'])} and the debt weight from "
-     f"{pct(W['wd'])} to {fmt_value('wd_terminal', INP['wd_terminal']['value'])}. "
-     f"{INP['beta_terminal']['source']}.",
+     f"{W['beta_terminal']:.3f} and the debt weight from "
+     f"{pct(W['wd'])} to {fmt_value('wd_terminal', INP['wd_terminal']['value'])}. The "
+     f"terminal beta is DERIVED rather than asserted: it travels "
+     f"{pct(INP['beta_drift_frac']['value'])} of the distance from the measured beta to a "
+     f"market beta of one, so re-measuring the beta moves the terminal with it. "
+     f"{INP['beta_drift_frac']['source']}.",
      'A stated policy of holding leverage where it is, or evidence that the transition risk in '
      'the business is not rising — either would argue for the flat construction instead.'),
     ('The terminal return on capital fades from what the company earns today',

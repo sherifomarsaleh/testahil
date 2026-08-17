@@ -392,10 +392,13 @@ INP = dict(
                  "mature-market equity risk premium", "2026-01-01", "Country"),
     crp=I(0.0064, "Damodaran country risk premium file, January 2026 vintage: United Arab "
           "Emirates country risk premium", "2026-01-01", "Country"),
-    beta=I(0.509, "Five-year weekly regression of the company's own returns against an "
-           "equal-weight composite of the Abu Dhabi exchange's listed names, excluding the "
-           "company itself; 257 observations, R-squared 0.194, standard error 0.065",
-           "2026-08-07", "Market"),
+    beta=I(0.6494, "Five-year weekly regression of the company's own returns against the "
+           "FTSE ADX General Index, the published index of its own exchange; 257 weekly "
+           "observations to 24-Jul-2026, R-squared 0.179, standard error 0.087, 90% "
+           "confidence interval 0.51 to 0.79. Supersedes the 0.509 carried by the first "
+           "edition, which regressed against an equal-weight composite of the exchange's "
+           "listed names because no published index series was held at the time",
+           "2026-07-24", "Market"),
     credit_margin=I(0.0060, AUD25 + ", borrowings note: the term loan refinanced in October "
                     "2022 carries EIBOR plus a margin of 0.60% on the dirham portion and the "
                     "Secured Overnight Financing Rate plus 0.85% on the US dollar portion",
@@ -522,10 +525,14 @@ INP = dict(
                     "2026 on its own measure; the terminal figure fades that toward a level "
                     "a mature, more capital-intensive network would sustain",
                     "2026-08-05", "Company"),
-    beta_terminal=I(0.700, "Terminal beta, drifting from the measured 0.509 toward the "
-                    "market as the transition risk in the business rises and the regulated "
-                    "margin becomes a smaller share of a more diversified earnings base",
-                    "2026-08-05", "Market"),
+    beta_drift_frac=I(0.389, "Fraction of the distance from the measured beta to the "
+                      "market beta of one that the terminal beta is allowed to travel, as "
+                      "transition risk in the business rises and the regulated margin "
+                      "becomes a smaller share of a more diversified earnings base. Stated "
+                      "as a fraction so the terminal beta is DERIVED from the measured one "
+                      "rather than asserted alongside it: re-measure the beta and the "
+                      "terminal beta follows",
+                      "2026-08-05", "Market"),
     wd_terminal=I(0.100, "Terminal debt weight, above today's 5.5% because the current "
                   "weight reflects an unusually high equity market value against a small "
                   "and stable borrowing book", "2026-08-05", "Market"),
@@ -784,7 +791,9 @@ W['net_debt_incl_leases'] = H['FY2025']['net_debt_incl_leases']
 W['we'] = W['mcap'] / (W['mcap'] + W['net_debt'])
 W['wd'] = 1 - W['we']
 W['wacc'] = W['we'] * W['ke'] + W['wd'] * W['kd_aftertax']
-W['beta_terminal'] = V['beta_terminal']
+# Terminal beta DERIVED from the measured beta, not pasted beside it.
+W['beta_drift_frac'] = V['beta_drift_frac']
+W['beta_terminal'] = W['beta'] + V['beta_drift_frac'] * (1 - W['beta'])
 W['ke_terminal'] = W['rf_star'] + W['beta_terminal'] * W['erp']
 W['wd_terminal'] = V['wd_terminal']
 W['wacc_terminal'] = ((1 - W['wd_terminal']) * W['ke_terminal']
@@ -989,7 +998,7 @@ SENS = {}
 SENS['wacc'] = [[r, revalue(wacc_t=r)] for r in
                 [W['wacc_terminal'] + d for d in (-0.010, -0.005, 0.0, 0.005, 0.010)]]
 SENS['g'] = [[gg, revalue(g=gg)] for gg in (0.005, 0.010, 0.015, 0.020, 0.025)]
-SENS['beta'] = [[b, revalue(beta=b)] for b in (0.35, 0.45, 0.509, 0.70, 1.00)]
+SENS['beta'] = [[b, revalue(beta=b)] for b in (0.45, 0.55, 0.6494, 0.80, 1.00)]
 SENS['volume'] = [[d, revalue(volg=d)] for d in (-0.010, -0.005, 0.0, 0.005, 0.010)]
 SENS['margin'] = [[d, revalue(marg=d)] for d in (-0.10, -0.05, 0.0, 0.05, 0.10)]
 SENS['inventory'] = [[lvl, revalue(inv=[F['invmove_A'][0]] + [lvl] * 4)]

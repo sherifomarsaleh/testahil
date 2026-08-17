@@ -170,7 +170,8 @@ drow('rfstar', 'Normalised risk-free rate = yield less sovereign spread',
      f'={c("rf")}-{c("sov")}', W['rf_star'])
 arow('erp', 'Total equity risk premium', 'published country-risk file, Jan-2026',
      V['erp_total'], fmt=PCT2)
-arow('beta', 'Beta', "own five-year weekly regression vs its exchange", V['beta'], fmt=PS3)
+arow('beta', 'Beta', 'own five-year weekly regression against the published index of its '
+     'own exchange', V['beta'], fmt=PS3)
 drow('ke', 'Cost of equity = normalised risk-free + beta x premium',
      f'={c("rfstar")}+{c("beta")}*{c("erp")}', W['ke'])
 arow('cmargin', 'Credit margin over the sovereign', "company's own disclosed loan margin",
@@ -189,8 +190,11 @@ drow('we', 'Equity weight = market capitalisation / (market capitalisation + net
 drow('wd', 'Debt weight = 1 less the equity weight', f'=1-{c("we")}', W['wd'], fmt=PCT)
 drow('wacc', 'Cost of capital, first forecast year',
      f'={c("we")}*{c("ke")}+{c("wd")}*{c("kdaft")}', W['wacc'])
-arow('betaterm', 'Terminal beta', 'drift toward the market as transition risk rises',
-     V['beta_terminal'], fmt=PS3)
+arow('betadrift', 'Terminal beta drift, as a fraction of the distance to a market beta of one',
+     'so the terminal beta is DERIVED from the measured one, not asserted beside it',
+     V['beta_drift_frac'], fmt=PCT)
+drow('betaterm', 'Terminal beta = measured beta + drift x (1 less measured beta)',
+     f'={c("beta")}+{c("betadrift")}*(1-{c("beta")})', W['beta_terminal'], fmt=PS3)
 drow('keterm', 'Terminal cost of equity = normalised risk-free + terminal beta x premium',
      f'={c("rfstar")}+{c("betaterm")}*{c("erp")}', W['ke_terminal'])
 arow('wdterm', 'Terminal debt weight', 'normalised capital structure', V['wd_terminal'],

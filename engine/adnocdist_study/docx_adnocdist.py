@@ -8,7 +8,7 @@ NO FINANCIAL NUMERAL IS TYPED IN THIS FILE. Every number is an f-string interpol
 lookup into study_numbers.json, technicals.json, strike_result.json, beta_result.json or
 the research record.
 """
-import json, os, sys
+import json, os, re, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
@@ -82,6 +82,8 @@ E = {e['id']: e for e in ENTRIES}
 DRIVERS = [e for e in ENTRIES if e.get('classification') == 'D']
 
 A, Bf = DCFD['frame_A'], DCFD['frame_B']
+
+
 BT = CAL['backtest']
 VOL = CAL['vol']
 WID = CAL['width']
@@ -109,6 +111,59 @@ def n0(x): return f'{x:,.0f}'
 def n1(x): return f'{x:,.1f}'
 def n2(x): return f'{x:,.2f}'
 def pc(x, d=1): return f'{x * 100:.{d}f}%'
+
+# The reverse valuation's answer is a NUMBER and its sign is not knowable in advance:
+# re-measure the beta and the implied growth rate moves with it. Every clause that
+# characterises it is therefore SELECTED FROM the number rather than written around one
+# particular outcome. The first edition of this study hardcoded "permanent decline" into
+# five separate places, and changing the market index the beta is measured against would
+# have left all five asserting the opposite of what the model now says.
+_G_IMP = CRUX['g_implied']
+_INFL = V['gp_retfuel_per_l_g'][-1]        # the domestic escalator, looked up not typed
+_REAL_EROSION = _INFL - _G_IMP             # positive: the base erodes in real terms
+
+if _G_IMP < 0:
+    _G_CHAR = 'a business whose volume base is in permanent, if gentle, decline'
+    _G_SIGN_NOTE = 'a NEGATIVE number'
+    _G_SHORT = 'permanent volume decline'
+    _G_CURVE = 'the traded price crosses the curve below zero'
+elif _G_IMP < _INFL:
+    _G_CHAR = (f"a business growing at well under the {pc(_INFL, 0)} that this same model "
+               f"escalates its costs at — one whose earning base therefore erodes in REAL "
+               f"terms every year, forever, without ever shrinking in litres")
+    _G_SIGN_NOTE = (f"positive, but far below the {pc(_INFL, 0)} the cost stack escalates at")
+    _G_SHORT = 'growth below the cost escalator'
+    _G_CURVE = (f"the traded price crosses the curve above zero but well below the "
+                f"{pc(_INFL, 0)} cost escalator")
+else:
+    _G_CHAR = 'a business growing roughly in line with its own cost base'
+    _G_SIGN_NOTE = f"above the {pc(_INFL, 0)} the cost stack escalates at"
+    _G_SHORT = 'growth at or below the model'
+    _G_CURVE = 'the traded price crosses the curve above the cost escalator'
+
+# The dividend-capitalisation reading's POSITION relative to the traded price is an output,
+# not a premise. An earlier edition asserted it landed "within a few fils" of the price and
+# built an argument on that closeness; re-measuring the beta moved the cost of equity, moved
+# the reading, and would have left the assertion standing over a number that no longer
+# supported it. So the claim is selected from where the reading actually falls.
+_DIV_GAP = LN['div_ps'] / SPOT - 1
+_DCF_PS = DCFD['frame_A']['per_share']
+if abs(_DIV_GAP) < 0.025:
+    _DIV_CHAR = (f"within a few fils of the traded price. That is not a coincidence, and "
+                 f"section 4 explains why: the market appears to be pricing the dividend the "
+                 f"company pays rather than the cash the business generates")
+elif LN['div_ps'] < SPOT < _DCF_PS:
+    _DIV_CHAR = (f"{pc(abs(_DIV_GAP), 0)} BELOW the traded price. So the price sits between "
+                 f"the two readings that matter most: above what the fixed dividend promise "
+                 f"alone is worth at this cost of equity, and below what the cash the "
+                 f"business generates is worth. Section 4 takes that gap apart")
+elif LN['div_ps'] > SPOT:
+    _DIV_CHAR = (f"{pc(abs(_DIV_GAP), 0)} ABOVE the traded price — the dividend promise alone "
+                 f"is worth more than the market is paying for the whole business. Section 4 "
+                 f"takes that apart")
+else:
+    _DIV_CHAR = (f"{pc(abs(_DIV_GAP), 0)} below the traded price, and below the cash-flow "
+                 f"reading as well. Section 4 sets the readings against each other")
 
 
 def paren(x, f=n0):
@@ -207,17 +262,15 @@ P(f"The question this study asks is not whether the business is sound. It is wha
   f"on {n1(LN['pe_now'])} times trailing earnings and yield {pc(LN['div_yield_now'])} on a "
   f"dividend the board has committed to through 2030. Neither of those looks demanding. But "
   f"run the cash-flow model backwards from the traded price and it requires a terminal growth "
-  f"rate of {pc(CRUX['g_implied'], 2)} a year — a business whose volume base is in permanent, "
-  f"if gentle, decline. That is a coherent thing to believe about a fuel retailer in 2026. It "
+  f"rate of {pc(CRUX['g_implied'], 2)} a year — {_G_CHAR}. That is a coherent thing to "
+  f"believe about a fuel retailer in 2026. It "
   f"is not what this study's own drivers, built segment by segment from the company's "
   f"disclosed volumes and margins per litre, produce.")
 P(f"Four independent methods put the shares between {M['currency']} {n2(LN['fair_bear'])} and "
   f"{M['currency']} {n2(LN['fair_bull'])}, with weighted centres of {M['currency']} "
   f"{n2(LN['centre_A'])} and {M['currency']} {n2(LN['centre_B'])} on the two framings of the "
   f"inventory judgement. A fifth reading — capitalising the fixed policy dividend — lands at "
-  f"{M['currency']} {n2(LN['div_ps'])}, within a few fils of the traded price. That is not a "
-  f"coincidence, and section 4 explains why: the market appears to be pricing the dividend "
-  f"the company pays rather than the cash the business generates.")
+  f"{M['currency']} {n2(LN['div_ps'])}, {_DIV_CHAR}.")
 fig('fig1_field.png', 6.9,
     f"the field of value. Each method is an independent reading; the spread between them is "
     f"the uncertainty, and the two centres are the contested judgement carried both ways.")
@@ -719,10 +772,9 @@ caption(f"Table {tnum()} — every external driver in the model, with the eviden
 H2('1.7 The crux')
 P(f"Here is the whole study in one calculation. Take the cash-flow model exactly as built, "
   f"hold every driver, and solve for the terminal growth rate at which it returns the traded "
-  f"price of {M['currency']} {n2(SPOT)}. The answer is {pc(CRUX['g_implied'], 2)} — a "
-  f"NEGATIVE number. Against the model's {pc(CRUX['g_base'], 1)}, the market is not pricing a "
-  f"slower-growing fuel retailer. It is pricing one whose real volume base shrinks a little "
-  f"every year, forever.")
+  f"price of {M['currency']} {n2(SPOT)}. The answer is {pc(CRUX['g_implied'], 2)} — "
+  f"{_G_SIGN_NOTE}. Against the model's {pc(CRUX['g_base'], 1)}, the market is not pricing a "
+  f"slower-growing fuel retailer. It is pricing {_G_CHAR}.")
 rows = [['Solving the market price backwards', 'The model', 'Implied by the price']]
 rows += [['Terminal growth rate', pc(CRUX['g_base'], 2), pc(CRUX['g_implied'], 2)],
          ['Terminal discount rate', pc(CRUX['wacc_term_base'], 2),
@@ -735,37 +787,42 @@ caption(f"Table {tnum()} — the reverse valuation, run three ways. Each column 
         f"explanations of the same gap rather than a combined scenario. A reader who believes "
         f"the implied beta of {n2(CRUX['beta_implied'])} — close to the market average — is "
         f"the right one has a complete and internally consistent case for the traded price "
-        f"without needing volumes to decline at all.")
+        f"without needing the growth story at all.")
 fig('fig7_crux.png', 6.6,
-    'the crux. Value per share against terminal growth; the traded price crosses the curve '
-    'below zero.')
+    f'the crux. Value per share against terminal growth; {_G_CURVE}.')
 
 P("Now put that implied growth rate into units a reader can actually observe, because a "
   "terminal growth rate is not something anyone can check.")
 rows = [['What the implied growth rate means in observable units', 'Value']]
 _lit_per_txn = V['vol_retail_h126'] / V['fueltxn_h126']
-_litres_lost = UB['vol_retail_fy25'] * abs(CRUX['g_implied'])
+# The observable quantity is the REAL-TERMS shortfall the implied rate embeds: the base
+# grows at the implied rate while the cost stack escalates at the domestic rate, so the gap
+# between them is what has to come out of this network's economics every year, forever.
+_litres_lost = UB['vol_retail_fy25'] * _REAL_EROSION
+_m = re.search(r'([+-]?\d+(?:\.\d+)?%\s*y/y)', E['C-04']['unit'])
+_parc_growth = _m.group(1) if _m else E['C-04']['unit']
 rows += [[f"FY2025 retail fuel volume", f"{n0(UB['vol_retail_fy25'])}m litres"],
          ['Implied perpetual rate of change in the volume base', pc(CRUX['g_implied'], 2)],
-         ['Litres of retail fuel lost in the first such year',
+         [f"Real-terms shortfall against a {pc(_INFL, 0)} cost escalator, in litres",
           f"{n0(_litres_lost)}m litres"],
          ['Litres per fuel transaction, first half of 2026', f"{n1(_lit_per_txn)} litres"],
-         ['Fuel transactions that disappear, per year',
+         ['Equivalent fuel transactions given up, per year',
           f"{n1(_litres_lost / _lit_per_txn)}m"],
          ['   against fuel transactions in the first half of 2026',
           f"{n1(V['fueltxn_h126'])}m"],
          ['   so, as a share of the half-year transaction base',
           pc(_litres_lost / _lit_per_txn / V['fueltxn_h126'], 2)],
          ['UAE registered vehicles, mid-2025', f"{n1(E['C-04']['value'])} million"],
-         ['   growing at', E['C-04']['unit']],
+         ['   growing at', _parc_growth],
          ['UAE policy target for electric vehicles on the road by 2030',
           f"{n0(E['I-06']['value'])}%"],
          ['Global electric share of new car sales, 2026 forecast',
           f"{n0(E['G-06']['value'])}%"]]
 table(rows, [5.15, 1.15], size=8.8)
 caption(f"Table {tnum()} — the crux in real units. For the market to be right, this network "
-        f"must lose roughly {n1(_litres_lost / _lit_per_txn)} million fuel transactions a "
-        f"year, every year, in perpetuity — and it must do so while the UAE vehicle parc is "
+        f"must give up roughly {n1(_litres_lost / _lit_per_txn)} million fuel transactions a "
+        f"year in real terms, every year, in perpetuity — and it must do so while the UAE "
+        f"vehicle parc is "
         f"growing at {E['C-04']['unit'].split(';')[-1].strip()}. That combination requires "
         f"electric displacement to outrun parc growth permanently from here. It is possible. "
         f"It is a proposition a reader can watch, quarter by quarter, in the company's own "
@@ -785,9 +842,21 @@ rows = [['The terminal growth rate, sensitised', f"Value per share ({M['currency
 for g, v in CRUX['ramp']:
     rows.append([pc(g, 1), n2(v), pc(v / SPOT - 1, 0)])
 table(rows, [2.6, 2.1, 1.6], size=8.8)
+# Which two rows bracket the traded price depends on the model's own output, so it is
+# LOCATED rather than asserted: a caption naming fixed rows would silently start lying the
+# moment any driver moved the curve.
+_bracket = None
+for _i in range(len(CRUX['ramp']) - 1):
+    if CRUX['ramp'][_i][1] <= SPOT <= CRUX['ramp'][_i + 1][1]:
+        _bracket = (CRUX['ramp'][_i][0], CRUX['ramp'][_i + 1][0])
+        break
+_where = (f"sits between the {pc(_bracket[0], 1)} and {pc(_bracket[1], 1)} rows"
+          if _bracket else
+          (f"sits below the whole curve, under the {pc(CRUX['ramp'][0][0], 1)} row"
+           if SPOT < CRUX['ramp'][0][1] else
+           f"sits above the whole curve, over the {pc(CRUX['ramp'][-1][0], 1)} row"))
 caption(f"Table {tnum()} — the whole curve, published rather than its comfortable half. The "
-        f"traded price of {M['currency']} {n2(SPOT)} sits between the "
-        f"{pc(CRUX['ramp'][1][0], 1)} and {pc(CRUX['ramp'][2][0], 1)} rows.")
+        f"traded price of {M['currency']} {n2(SPOT)} {_where}.")
 P(f"And the same discipline applied to the contested judgement. Carrying inventory movements "
   f"at the FY2024–FY2025 average of {M['currency']} {n0(CRUX['avg_24_25'])} million in "
   f"perpetuity is worth {M['currency']} "
@@ -1164,10 +1233,13 @@ table(rows, [1.95, 0.8, 1.9, 2.3], size=8.4)
 caption(f"Table {tnum()} — the methods against each other, including where each one fails.")
 P(f"The readings disagree in an informative direction, and one disagreement is worth more "
   f"than the rest. The dividend-capitalisation reading lands at {M['currency']} "
-  f"{n2(LN['div_ps'])} — within {M['currency']} {n2(abs(LN['div_ps'] - SPOT))} of the traded "
-  f"price of {M['currency']} {n2(SPOT)}. The cash-flow model lands at {M['currency']} "
-  f"{n2(A['per_share'])}. The gap between those two numbers, {M['currency']} "
-  f"{n2(A['per_share'] - LN['div_ps'])} a share, is not a modelling artefact. It is the "
+  f"{n2(LN['div_ps'])}, {M['currency']} {n2(abs(LN['div_ps'] - SPOT))} "
+  f"{'below' if LN['div_ps'] < SPOT else 'above'} the traded price of {M['currency']} "
+  f"{n2(SPOT)}. The cash-flow model lands at {M['currency']} {n2(A['per_share'])}, "
+  f"{M['currency']} {n2(abs(A['per_share'] - SPOT))} "
+  f"{'above' if A['per_share'] > SPOT else 'below'} it. The traded price sits between them, "
+  f"and the gap between those two readings — {M['currency']} "
+  f"{n2(A['per_share'] - LN['div_ps'])} a share — is not a modelling artefact. It is the "
   f"difference between what the company PAYS and what the business EARNS.")
 P(f"The dividend is a fixed policy commitment: USD {n0(E['CO-06']['value'])} million a year, "
   f"{M['currency']} {n2(V['dps'])} a share, held flat from 2024 through 2030 unless "
@@ -1230,7 +1302,7 @@ rows += [['The South African acquisition',
           f"the UAE policy target is {n0(E['I-06']['value'])}% of vehicles on the road "
           f"electric by 2030, against a vehicle parc growing at "
           f"{clip(E['C-04']['unit'], 60)}. Section 1.7 shows the market price already embeds "
-          f"permanent volume decline; this is the mechanism that would deliver it. The "
+          f"{_G_SHORT}; this is the mechanism that would deliver it. The "
           f"company is building charging points — {n0(V['evpoints_h126'])} of them by mid-"
           f"2026 — which converts part of the threat into a different revenue line",
           'continuous'],
@@ -1571,9 +1643,10 @@ rows += [['The crude path reverses the inventory gains',
           f"2026 unwinds as prices fall toward the forecast {n0(E['G-04']['value'])} dollars. "
           f"The parental backstop covers regulated retail stock quarterly and cash-settles, "
           f"which truncates but does not eliminate this", 'High'],
-         ['Permanent volume decline',
+         [_G_SHORT.capitalize(),
           f"the risk the market is already pricing. Section 1.7 shows the traded price embeds "
-          f"{pc(CRUX['g_implied'], 2)} terminal growth", 'High'],
+          f"{pc(CRUX['g_implied'], 2)} terminal growth against a cost stack escalating at "
+          f"{pc(_INFL, 0)}", 'High'],
          ['Non-fuel conversion keeps deteriorating',
           f"non-fuel transactions per fuel transaction fell year on year in the first half of "
           f"2026. The high-margin leg is the one that is supposed to offset fuel maturity",
@@ -1781,9 +1854,9 @@ P(f"Named sensitivity: which explanation is chosen. They are not equivalent. The
 P(f"Falsifier: \"If total fuel volume grows at more than one per cent a year for three "
   f"consecutive years from here — the company reported {n0(V['vol_retail_h126'])} million "
   f"litres of retail volume in the first half of 2026 against "
-  f"{n0(V['vol_retail_h125'])} million a year earlier — then the market's implied permanent "
-  f"decline is refuted by observation and I would say the price, not the model, is the thing "
-  f"that needs explaining.\"")
+  f"{n0(V['vol_retail_h125'])} million a year earlier — then the market's implied "
+  f"{_G_SHORT} is refuted by observation and I would say the price, not the model, is the "
+  f"thing that needs explaining.\"")
 
 H2('C.4 Cross-examination')
 rows = [['Challenge', 'Conceded or rejected']]

@@ -124,7 +124,8 @@ CASES = [
     ('Beta', f'C{R("Beta")}', 1.50, -1, 'raises the cost of equity'),
     ('Credit margin over the sovereign', f'C{R("Credit margin over the sovereign")}',
      1.50, -1, 'raises the after-tax cost of debt, and the debt weight is small but real'),
-    ('Terminal beta', f'C{R("Terminal beta")}', 1.20, -1,
+    ('Terminal beta drift', f'C{R("Terminal beta drift")}', 1.20, -1,
+     'the terminal beta is derived from the measured one plus this drift, so more drift '
      'raises the terminal cost of capital, which discounts three-quarters of the value'),
     ('Terminal debt weight', f'C{R("Terminal debt weight")}', 1.50, +1,
      'debt is cheaper than equity after tax, so more of it lowers the terminal rate'),
