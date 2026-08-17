@@ -46,7 +46,7 @@ const TICKERS = {
       [3.87, 30, 58],
       [3.66, 6, 29]
     ],
-    levels: { res:[4.15, 4.3, 4.4], sup:[4.0, 3.77, 3.65] },
+    levels: { res:[4.15, 4.30, 4.40], sup:[4, 3.77, 3.65] },
     tech: {
       trend: "Trading above the whole moving-average stack, on a rising 200-day; fresh golden-cross",
       summary: "The price closed 4.07 above a rising 20-day (4.00), a rising 50-day (3.94) and a rising 200-day (3.87). Momentum is firm: RSI(14) is ~61 and the daily ATR near 0.06 (~1.4%) points to an orderly tape. MACD (12\u00b726\u00b79) is positive and rising (+0.04 / +0.03 / +0.01). The 50-day crossed above the 200-day 23 sessions ago \u2014 a fresh golden-cross, a momentum-regime change rather than noise inside an intact trend. Over the last year it has ranged 3.47\u20134.18; the last close sits 3% below that high and 17% above that low.",
@@ -55,7 +55,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-07", computed:"2026-08-09" },
-      tech: { data:"2026-08-07", computed:"2026-08-09" }
+      tech: { data:"2026-08-07", computed:"2026-08-17" }
     },
     files: {
       study: "files/ADNOCDIST_Valuation_Study_09-08-2026.pdf?v=0809a",
