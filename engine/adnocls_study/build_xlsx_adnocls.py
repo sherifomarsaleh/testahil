@@ -301,10 +301,13 @@ KD_T_AT = KD_T * (1 - TAXS)
 # the perpetual pays a floating coupon, so its cost normalises with the risk-free rate
 KH_T = V['rf_terminal'] + V['hybrid_margin']
 W_TERM = WE * KE_T + WD * KD_T_AT + WH * KH_T
-# The alternative index construction is carried as the study runs it: the contested change
-# is the cost of EQUITY, so the alternative reprices the equity leg over the explicit
-# window and leaves the perpetual leg to the terminal, where its cost has normalised.
-W_EXP_A = WE * KE_A + WD * KD_AT
+# EVERY cost-of-capital construction in this model carries the SAME THREE TRANCHES. The
+# alternative index construction changes the cost of equity and nothing else; it does not
+# change what the company is financed with. An earlier build let the perpetual tranche
+# reach the base and terminal rates but not the scenario rate, which left the sensitivity
+# grid struck 63 basis points cheap and its own centre cell printing a figure the study
+# never published.
+W_EXP_A = WE * KE_A + WD * KD_AT + WH * KH
 W_TERM_A = WE * KE_T_A + WD * KD_T_AT + WH * KH_T
 
 STUB = 0.75
@@ -357,18 +360,7 @@ def dcf_legs(w, wt):
 
 DC = dcf_legs(W_EXP, W_TERM)
 DA = dcf_legs(W_EXP_A, W_TERM_A)
-# THE SENSITIVITY GRIDS DO NOT DISCOUNT AT THE PUBLISHED RATE, and the workbook has to say
-# so rather than claim they do. Each grid cell is a complete re-run of the model, and those
-# re-runs price the equity and debt legs only: the perpetual capital securities, which the
-# published cost of capital now weights at their own coupon, are absent from the explicit
-# rate in every grid and from the terminal rate in the beta grid as well. The published rate
-# is the dearer of the two, so every grid reads high. Both constructions are reproduced here
-# and pinned by assertion at the foot of this file, so the gap is measured and stated on the
-# sheet instead of being papered over.
-W_EXP_ED = WE * KE + WD * KD_AT
-W_TERM_ED = WE * KE_T + WD * KD_T_AT
-GRID_CENTRE = dcf_legs(W_EXP_ED, W_TERM_ED)['fv_aed']
-ANCHOR_CENTRE = dcf_legs(W_EXP_ED, W_TERM)['fv_aed']
+
 
 # --- the funding roll and the forecast statements -----------------------------
 DPS = [V['dps_2026_usd'] * 1000.0 * (1 + V['div_growth']) ** i for i in range(5)]
@@ -2141,11 +2133,11 @@ for rw, lab, fml, xp, fmt, gr in [
          f"=C{DF_['rfstar']}+C{DF_['betaa']}*C{DF_['erp']}", KE_A, PCT2, False),
         (DF_['keta'], 'Terminal cost of equity on the composite-index beta',
          f"=C{DF_['rfterm']}+C{DF_['betaa']}*C{DF_['erp']}", KE_T_A, PCT2, False),
-        (DF_['wacca'], 'Cost of capital — explicit window, composite-index beta. The '
-         'contested change is the cost of EQUITY, so the alternative reprices the equity '
-         'leg over the explicit window and leaves the perpetual leg to the terminal, where '
-         'its cost has normalised',
-         f"=C{DF_['we']}*C{DF_['kea']}+C{DF_['wd']}*C{DF_['kdat']}", W_EXP_A, PCT2, False),
+        (DF_['wacca'], 'Cost of capital — explicit window, composite-index beta. Only the '
+         'cost of EQUITY changes: the same three tranches of capital are carried, because '
+         'how the market is measured does not change what the company is financed with',
+         f"=C{DF_['we']}*C{DF_['kea']}+C{DF_['wd']}*C{DF_['kdat']}"
+         f"+C{DF_['whyb']}*C{DF_['kh']}", W_EXP_A, PCT2, False),
         (DF_['wactermsa'], 'Terminal cost of capital, composite-index beta',
          f"=C{DF_['we']}*C{DF_['keta']}+C{DF_['wd']}*C{DF_['kdtermat']}"
          f"+C{DF_['whyb']}*C{DF_['khterm']}", W_TERM_A, PCT2, False)]:
@@ -2774,17 +2766,12 @@ note(ws, f"A{SE['bg0']+len(SN['betas'])}",
      f"equal-weight composite of the exchange's own names, {V['beta']:.3f} is the adopted "
      f"regression against the exchange's published index, and {SN['betas'][-1]:.3f} is the "
      f"top of that regression's own 90% confidence interval (its bottom, "
-     f"{V['beta_ci_lo']:.3f}, sits just above the composite reading). "
-     f"READ THIS GRID AS A SHAPE, NOT AS A LEVEL. Every cell is a complete re-run of the "
-     f"model discounted at a rate built from the equity and the debt alone. The rate the "
-     f"valuation itself uses also carries the perpetual capital securities at their own "
-     f"coupon, which makes it dearer — {W_EXP:.2%} against {W_EXP_ED:.2%} over the forecast "
-     f"years and {W_TERM:.2%} against {W_TERM_ED:.2%} in the terminal — so every cell here "
-     f"sits above the published figure. At the {V['beta']:.3f} row and the "
-     f"{V['g_terminal']:.1%} column the grid reads AED {GRID_CENTRE:.2f} against the "
-     f"published AED {DC['fv_aed']:.2f}, a gap of {GRID_CENTRE / DC['fv_aed'] - 1:.1%}. "
-     f"What the grid is for is the slope: how much the answer moves for a given move in "
-     f"the beta or in terminal growth.")
+     f"{V['beta_ci_lo']:.3f}, sits just above the composite reading). The terminal growth "
+     f"column at {V['g_terminal']:.1%} is the one the model runs on, so the cell where "
+     f"that column meets the {V['beta']:.3f} row is the published cash-flow value of AED "
+     f"{DC['fv_aed']:.2f} — every cell here is a complete re-run of the model discounted "
+     f"at the same three tranches of capital the valuation itself uses, equity, debt and "
+     f"the perpetual securities, so the grid is centred on the figure it brackets.")
 band(ws, SE['ab'], 8)
 put(ws, f"A{SE['ab']}", 'Mid-cycle tanker rate anchor, as a multiple of the base anchor',
     bold=True, fmt=None)
@@ -2796,12 +2783,10 @@ for j, m in enumerate(_am):
 put(ws, f"A{SE['aswing']}", 'Swing across the grid', fmt=None)
 putf(ws, f"C{SE['aswing']}", f"=MAX(B{SE['a0']}:F{SE['a0']})-MIN(B{SE['a0']}:F{SE['a0']})",
      max(SN['anchor'].values()) - min(SN['anchor'].values()), PX)
-note(ws, f"A{SE['aswing']+1}", f"The same caution applies to this row and the one below it: "
-     f"each is a re-run discounted over the forecast years at {W_EXP_ED:.2%}, the rate the "
-     f"equity and the debt alone imply, rather than at the {W_EXP:.2%} the valuation uses. "
-     f"At 1.00x it reads AED {ANCHOR_CENTRE:.2f} against the published AED "
-     f"{DC['fv_aed']:.2f}, {ANCHOR_CENTRE / DC['fv_aed'] - 1:.1%} above it. The swing "
-     f"across the row is what it is for.")
+note(ws, f"A{SE['aswing']+1}", f"This row and the one below it are re-runs of the whole "
+     f"model at the same {W_EXP:.2%} cost of capital the valuation uses, so the 1.00x cell "
+     f"reproduces the published AED {DC['fv_aed']:.2f} exactly and the swing across the row "
+     f"is a clean read of what that single driver is worth.")
 band(ws, SE['cb'], 8)
 put(ws, f"A{SE['cb']}", 'Capital expenditure, as a multiple of the guided path', bold=True,
     fmt=None)
@@ -3404,22 +3389,22 @@ close(SN['betas'][2], V['beta'], 1e-12)
 close(SN['betas'][4], V['beta_ci_hi'], 1e-12)
 assert SN['betas'] == sorted(SN['betas']), 'the sensitivity beta grid is not monotone'
 _gi = SN['gs'].index(G)
-# THE GRIDS DO NOT RECONCILE TO THE PUBLISHED VALUE, AND THE WORKBOOK MUST SAY SO RATHER
-# THAN CLAIM THEY DO. Each grid cell is a complete re-run of the model, and those re-runs
-# discount at a rate built from the equity and debt legs alone — the perpetual capital
-# securities, which the published cost of capital now weights at their own coupon, are
-# absent from the explicit rate in every grid and from the terminal rate in the beta grid.
-# The published cost of capital is dearer, so every grid reads high. The exact
-# constructions are pinned below so they cannot drift unnoticed, and the note on the
-# Sensitivity sheet states the reconciliation in plain terms instead of asserting an
-# identity that no longer holds.
-close(SN['grid_beta_g'][2][_gi], GRID_CENTRE, 1e-6)
-close(SN['anchor']['1.0'], ANCHOR_CENTRE, 1e-6)
-close(SN['capex']['1.0'], ANCHOR_CENTRE, 1e-6)
+# THE GRID MUST BE CENTRED ON THE VALUE IT BRACKETS. Every cell is a complete re-run of
+# the model, so nothing forces those re-runs to discount at the rate the published
+# valuation uses — and for one edition they did not: the perpetual tranche reached the base
+# and terminal rates but not the scenario rate, and the grid's own centre cell printed 6.85
+# against a published 6.03. The identity is asserted here, at the centre cell and at 1.00x
+# on both single-driver rows, and the whole beta row is reproduced from its own beta so a
+# grid that silently changed construction could not pass.
+close(SN['grid_beta_g'][2][_gi], DC['fv_aed'], 1e-6)
+close(SN['grid_beta_g'][0][_gi], DA['fv_aed'], 1e-6)
+close(SN['anchor']['1.0'], DC['fv_aed'], 1e-6)
+close(SN['capex']['1.0'], DC['fv_aed'], 1e-6)
 for _bi, _b in enumerate(SN['betas']):
     _kes = RF_STAR + _b * V['erp_total']; _ket = V['rf_terminal'] + _b * V['erp_total']
     close(SN['grid_beta_g'][_bi][_gi],
-          dcf_legs(WE * _kes + WD * KD_AT, WE * _ket + WD * KD_T_AT)['fv_aed'], 1e-6)
+          dcf_legs(WE * _kes + WD * KD_AT + WH * KH,
+                   WE * _ket + WD * KD_T_AT + WH * KH_T)['fv_aed'], 1e-6)
 
 close(CENTRAL_BEAR, LN['central']['bear'], 1e-9)
 close(CENTRAL_BULL, LN['central']['bull'], 1e-9)

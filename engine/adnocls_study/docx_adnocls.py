@@ -118,6 +118,15 @@ def _pdate(s):
     return _dt.date(*map(int, s.split('-')))
 
 
+_MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+
+
+def fdate(s):
+    """ISO date -> '28 Mar 2027', so a table of contract expiries reads like prose."""
+    d = _pdate(s)
+    return f'{d.day} {_MON[d.month - 1]} {d.year}'
+
+
 # The fleet is counted AT THE VALUATION DATE, and the split between vessels trading at
 # spot and vessels already fixed is read off the published charter table rather than off a
 # second disclosure: a vessel is on charter out on a date if its own contract runs over it.
@@ -157,6 +166,12 @@ WACC_TERM_PRIOR = _we_ed * W['ke_term'] + _wd_ed * W['kd_term'] * (1 - W['tax_st
 # and not of two different sets of assumptions.
 PB_SINGLE = (BK['roe_sustainable'] - BK['g']) / (BK['ke'] - BK['g'])
 BOOK_SINGLE = PB_SINGLE * BK['bvps_aed']
+# Where the base rate path crosses the independent one-year charter, read off the path
+# itself rather than named in prose — the rebuilt path moved it, and a sentence naming the
+# old years would have survived the rebuild looking perfectly plausible.
+_vp, _tc = MCC['vlcc_path'], MCC['vlcc_1y_tc']
+TC_CROSS = next((i for i in range(len(_vp) - 1) if _vp[i] >= _tc >= _vp[i + 1]),
+                len(_vp) - 2)
 NCI_LIFT = aed_ps(DCF['nci'] - DCF['nci_book'])
 NCI_FLAT = IN['nci_share'] * (DCF['ev'] - DCF['net_debt'])
 NCI_FLAT_COST = aed_ps(NCI_FLAT - DCF['nci_book'])
@@ -1150,10 +1165,10 @@ H2('The twelve vessels chartered out, exactly as published')
 rows = [['Vessel', 'Class', 'Fixed rate (USD/day)', 'Period', 'Runs to']]
 for c in CHT:
     rows.append([c['name'], dict(CLS)[c['klass']], n0(c['rate']),
-                 f"{n0(c['period_months'])} months", c['end']])
+                 f"{n0(c['period_months'])} months", fdate(c['end'])])
 rows.append([f"{n0(len(CHT))} vessels", '',
              f"{n0(min(c['rate'] for c in CHT))} – {n0(max(c['rate'] for c in CHT))}",
-             '', f"last expiry {charter_last}"])
+             '', f"last expiry {fdate(charter_last)}"])
 table(rows, [1.62, 1.66, 1.32, 1.10, 1.30], size=8.0, band_rows={13}, left_cols=(0, 1))
 caption(f"Every field is disclosed in the company's own contract table; the start date is "
         f"the stated expiry less the stated period, so no date is invented. At the "
@@ -1244,11 +1259,16 @@ rows = [['Evidence', 'What it shows'],
          f"market exists when they deliver, and this is the mechanism by which every "
          f"previous tanker upcycle ended"],
         ["This study's own base path",
-         f"The base case runs the very large crude carrier rate from USD "
-         f"{n0(MCC['vlcc_path'][0])} in {YRL[0]} down to USD {n0(MCC['vlcc_path'][4])} by "
-         f"{YRL[4]}, a straight glide to the {HYRS[1]}-{HYRS[2]} average. It crosses the "
-         f"one-year charter rate above in {YRL[1]}-{YRL[2]}, which is to say it is "
-         f"broadly consistent with what the forward market was willing to pay"]]
+         f"The base case runs the market rate for a very large crude carrier not on "
+         f"charter out from USD {n0(MCC['vlcc_path'][0])} in {YRL[0]} down to USD "
+         f"{n0(MCC['vlcc_path'][4])} by {YRL[4]}, a straight glide to the "
+         f"{HYRS[1]}-{HYRS[2]} average. Read against the one-year charter above, that "
+         f"path is the LESS pessimistic of the two: it stays above USD "
+         f"{n0(MCC['vlcc_1y_tc'])} until it crosses between {YRL[TC_CROSS]} and "
+         f"{YRL[TC_CROSS+1]}, so for {n0(TC_CROSS+1)} of the five forecast years this "
+         f"study assumes the fleet earns more than a counterparty was willing to commit "
+         f"to for twelve months. That cuts against this study's own conclusion and is "
+         f"stated rather than left for a reader to work out"]]
 table(rows, [2.30, 4.70], size=8.3, align_right_from=9)
 P(f"The alternative — rates settling {pc(0.30, 0)} above the mid-cycle anchor rather than "
   f"at it — is the direction the company's own guidance and its contracted expansion point "
