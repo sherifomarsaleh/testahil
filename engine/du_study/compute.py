@@ -405,6 +405,16 @@ for k, rec in _wr.items():
     INP[k] = rec
 assert INP['rf']['ring'] != 'SENTINEL', 'WACC register did not overwrite the sentinel rf'
 
+# ---- audit-response override hook (pricing harness only; unset in the delivered build) ----
+# Lets a finding be PRICED on the real chain rather than on a re-implementation.
+_ovr = os.environ.get('DU_OVERRIDE')
+FLAGS = {}
+if _ovr:
+    _o = json.loads(_ovr)
+    for _k, _v in _o.get('inputs', {}).items():
+        INP[_k]['value'] = _v
+    FLAGS = _o.get('flags', {})
+
 V = {k: rec['value'] for k, rec in INP.items()}
 LOG = []
 def say(s):
@@ -638,7 +648,7 @@ dnwc = [nwc_fc[0] - nwc_fy25] + [nwc_fc[i] - nwc_fc[i - 1] for i in range(1, 5)]
 # Leases: lease liabilities are DEBT in the bridge, so lease payments never hit
 # FCFF; the offsetting cost is lease REPLACEMENT capex, set equal to ROU
 # depreciation (steady-state; actual FY2025 additions 96.034 ran well below).
-rou_repl = list(V['rou_dep_path'])
+rou_repl = [0.0]*5 if FLAGS.get('no_lease_repl') else list(V['rou_dep_path'])
 fcff = [nopat[i] + dna[i] - capex[i] - rou_repl[i] - dnwc[i] for i in range(5)]
 say(f"[FCFF waterfall] " + " -> ".join(f"{f:,.0f}" for f in fcff))
 
@@ -676,6 +686,9 @@ fwd = [wacc_exp - (wacc_exp - wacc_term) * f for f in glide_frac]
 df, c = [], 1.0
 for w in fwd:
     c /= (1 + w); df.append(c)
+df_tv = df[-1]
+if FLAGS.get('midyear'):
+    df = [d * (1 + fwd[i]) ** 0.5 for i, d in enumerate(df)]
 assert all(fwd[i] >= fwd[i + 1] for i in range(len(fwd) - 1)), 'glide not monotone'
 say("[Glide] forward WACC " + " -> ".join(f"{w:.2%}" for w in fwd) +
     "; discount factors " + ", ".join(f"{d:.4f}" for d in df))
@@ -723,7 +736,7 @@ say(f"[Terminal] ROIC(term) {roic_term:.1%}; reinvestment = g/ROIC = {rr_term:.1
 # ---- DCF and the EV -> equity bridge ------------------------------------------
 pv = [fcff[i] * df[i] for i in range(5)]
 pv_explicit = sum(pv)
-pv_tv = tv * df[-1]
+pv_tv = tv * df_tv
 ev = pv_explicit + pv_tv
 tv_share = pv_tv / ev
 assoc_val = 0.511 / 1000 * 1000 * 0.001  # equity-accounted investees, AED 0.511mn — negligible
@@ -761,7 +774,11 @@ def framingB():
         tb.append(t_)
         fcffB.append(ebit[i] * (1 - t_) + dna[i] - capex[i] - rou_repl[i] - dnwc[i])
         npB.append(pbt_ * (1 - t_))
-    tvB = ebit[-1] * (1 - tb[-1]) * (1 + V['g_term']) * (1 - rr_term) / (wacc_term - V['g_term'])
+    _rrB = rr_term
+    if FLAGS.get('framingB_own_rr'):
+        _roicB = ebit[-1] * (1 - tb[-1]) * (1 + V['g_term']) / ic[-1]
+        _rrB = min(V['g_term'] / _roicB, 0.95)
+    tvB = ebit[-1] * (1 - tb[-1]) * (1 + V['g_term']) * (1 - _rrB) / (wacc_term - V['g_term'])
     evB = sum(fcffB[i] * df[i] for i in range(5)) + tvB * df[-1]
     psB = (evB - LEASE + NETCASH + 0.511) / SH * ROLL - V['div_between']
     return tb, fcffB, npB, psB
@@ -867,7 +884,8 @@ say(f"[Normalised lens] mid-cycle margin {norm_margin:.1%} (FY2028E) on FY2026E 
 bvps = V['eq_fy25'] / SH
 pb_just = (V['roe_sust'] - V['g_term']) / (ke_term - V['g_term'])
 book_ps = to_anchor(pb_just * bvps) - V['div_between']
-book_bear = to_anchor(((V['roe_sust'] - 0.04) / (0.5 * (ke_exp + ke_term) + 0.01 - 0.02)) * bvps) - V['div_between']
+_bear_g = 0.02 if FLAGS.get('single_g_book') else 0.04
+book_bear = to_anchor(((V['roe_sust'] - _bear_g) / (0.5 * (ke_exp + ke_term) + 0.01 - 0.02)) * bvps) - V['div_between']
 book_bull = to_anchor(((V['roe_sust'] + 0.02 - V['g_term']) / (ke_term - V['g_term'])) * bvps) - V['div_between']
 roe_trailing = V['np_fy25'] / ((V['eq_fy24'] + V['eq_fy25']) / 2)
 say(f"[Book lens] justified P/B = ({V['roe_sust']:.0%} − {V['g_term']:.1%}) / ({ke_term:.2%} − "
@@ -919,7 +937,8 @@ beta_grid = [round(_bci[0], 2), round(V['beta'], 3), round(_bci[1], 2), 0.65, 0.
 def dcf_beta(b):
     ke = rf_star + b * V['erp_rating']
     we_ = we_exp * ke + wd_exp * kd_at
-    wt_ = (1 - V['wd_term']) * (V['rf_term'] + b * V['erp_term']) + V['wd_term'] * kd_term_at
+    _rft = (V['rf_term'] - V['sov_spread_rating']) if FLAGS.get('beta_grid_netted') else V['rf_term']
+    wt_ = (1 - V['wd_term']) * (_rft + b * V['erp_term']) + V['wd_term'] * kd_term_at
     return dcf_at(we_, wt_, V['g_term'])
 grid_beta = [dcf_beta(b) for b in beta_grid]
 tax_grid = [0.40, TAX, 0.47, 0.50, 0.531]
