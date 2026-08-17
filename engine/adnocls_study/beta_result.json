@@ -1,12 +1,44 @@
 {
  "ticker": "ADNOCLS",
- "beta": 1.084848415226132,
- "r2": 0.15790158938231924,
- "n": 161,
- "se": 0.19868206712311615,
+ "sanctioned": {
+  "ticker": "ADNOCLS",
+  "market": "AE",
+  "exchange": "ADX",
+  "beta": 1.1032195993700773,
+  "r2": 0.18143771474475046,
+  "se": 0.3147485189035996,
+  "n": 159,
+  "ci90": [
+   0.5854582857736559,
+   1.6209809129664987
+  ],
+  "usable": true,
+  "gate_msg": "passes minimum usability gate",
+  "dimson": true,
+  "frequency": "weekly",
+  "weak": false,
+  "warnings": [],
+  "window_years": 3.09,
+  "first_obs": "2023-06-16",
+  "last_obs": "2026-07-17",
+  "blume_crosscheck": 1.0688130662467181,
+  "index_file": "raw_indices/AE/FADGI.csv",
+  "index_asof": "2026-07-24",
+  "index_dq": [
+   "dropped 1 interior stale/no-trade rows"
+  ],
+  "stock_dq": [],
+  "week_rule": "W-FRI",
+  "interim_note": null,
+  "conforming": true
+ },
+ "beta": 1.1032195993700773,
+ "r2": 0.18143771474475046,
+ "n": 159,
+ "se": 0.3147485189035996,
  "ci90": [
-  0.7580164148086059,
-  1.411680415643658
+  0.5854582857736559,
+  1.6209809129664987
  ],
  "usable": true,
  "gate_msg": "passes minimum usability gate",
@@ -28,13 +60,13 @@
  "frequency": "weekly",
  "window_note": "The stock listed on 02-Jun-2023, so the longest window available is 3.18 years, short of the five-year target. The regression uses the full listed history.",
  "weak": false,
- "weak_reason": "R-squared = 15.8% against the 10% weak-instrument threshold; the 90% confidence interval [0.76, 1.41] spans 0.60x the point estimate",
+ "weak_reason": "R-squared = 18.1% against the 10% weak-instrument threshold; the 90% confidence interval [0.59, 1.62] spans 0.94x the point estimate",
  "warnings": [],
  "adopted": {
-  "beta_used": 1.084848415226132,
-  "basis": "tier-1 own-stock weekly regression (usability gate PASSED)",
-  "why": "n = 161 weekly observations, R-squared = 0.158 against the 0.05 floor, SE(beta) = 0.199 against |beta| = 1.085. All three conditions of the usability gate are met, so the regression estimate is adopted rather than a default.",
-  "corroboration": "Cross-checked three ways. (i) The Dimson sum-beta is 1.164 with a 90% interval of [0.57, 1.76]; the adopted 1.08 sits inside it. (ii) Regressing against an equal-weight composite of the exchange's own names instead of the published index gives 0.705 (R-squared 0.172), and against the wider ADX+DFM library 0.663 (R-squared 0.168). (iii) The sector prior for a listed tanker owner is 0.9-1.4 and for a contracted, fee-based marine services provider 0.5-0.9; the adopted figure is read against both in the study rather than accepted at face value.",
+  "beta_used": 1.1032195993700773,
+  "basis": "tier-1 own-stock weekly regression against the exchange's published index, produced by the engine's sanctioned routine",
+  "why": "n = 159 weekly observations against the published index of the share's own exchange, R-squared = 0.181, SE(beta) = 0.315. passes minimum usability gate.",
+  "corroboration": "Cross-checked three ways. (i) The Dimson sum-beta is 1.164 with a 90% interval of [0.57, 1.76]; the adopted 1.10 sits inside it. (ii) Regressing against an equal-weight composite of the exchange's own names instead of the published index gives 0.705 (R-squared 0.172), and against the wider ADX+DFM library 0.771 (R-squared 0.183). (iii) The sector prior for a listed tanker owner is 0.9-1.4 and for a contracted, fee-based marine services provider 0.5-0.9; the adopted figure is read against both in the study rather than accepted at face value.",
   "sensitivity_required": [
    0.5,
    0.7,
@@ -52,11 +84,11 @@
   "note": "Equal-weight composite of the exchange's own listed names, the subject excluded. This was the regressor before the published index was available; disclosed so the effect of the change is visible, not adopted."
  },
  "full_library_variant": {
-  "beta": 0.6629468802329991,
-  "r2": 0.16770385447087355,
-  "n": 163,
-  "se": 0.11639470197057153,
-  "names": 18,
+  "beta": 0.7713669694474867,
+  "r2": 0.18309914814468886,
+  "n": 165,
+  "se": 0.12761706387805016,
+  "names": 26,
   "note": "ADX + DFM equal-weight composite; disclosed, not adopted."
  },
  "dimson": {
@@ -74,7 +106,7 @@
    "lag1": -0.2995088049239431,
    "lag2": 0.0771739267725888
   },
-  "uplift_vs_ols": 0.0790686775943148,
+  "uplift_vs_ols": 0.060697493450369455,
   "note": "Dimson (1979) sum-beta over one lead, the contemporaneous term and two lags. The uplift over the contemporaneous OLS beta measures how much co-movement is booked late because the stock does not trade on every session."
  },
  "self_inclusion_bias": {
@@ -86,8 +118,8 @@
  },
  "thin_trading": {
   "flat_frac": 0.0793,
-  "ae_panel_median": 0.1183,
-  "ratio": 0.67,
+  "ae_panel_median": 0.1282,
+  "ratio": 0.62,
   "note": "Share of sessions closing unchanged, against the median of the UAE library. A high ratio is the documented mechanism for a downward-biased contemporaneous beta."
  },
  "plausibility": {

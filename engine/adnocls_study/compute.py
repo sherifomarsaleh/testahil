@@ -632,12 +632,13 @@ IN('tax_topup_rate', 0.15, "Domestic minimum top-up tax of 15% applying in the U
    '2025-01-01', 'Country')
 IN('tax_stat', 0.09, "UAE corporate tax, Federal Decree-Law 47 of 2022 — the 9% standard "
    "rate applying to taxable income above the threshold", '2023-06-01', 'Country')
-IN('beta', 1.085, "Weekly regression of the stock's own returns on the FTSE ADX General "
-   "Index — the published index of the exchange the share is listed on — over the full "
-   "listed history to the index's last available session", '2026-07-24', 'Market')
-IN('beta_se', 0.199, "Standard error of the same regression", '2026-07-24', 'Market')
-IN('beta_r2', 0.158, "R-squared of the same regression", '2026-07-24', 'Market')
-IN('beta_dimson', 1.164, "Lead-lag sum beta from the same series, one lead and two lags — "
+IN('beta', 1.1032, "Weekly regression of the share's own returns on the published index of its own "
+   "exchange, produced by the engine's sanctioned beta routine — 159 weekly observations "
+   "from 2023-06-16 to 2026-07-17, R-squared 0.181, standard error 0.315",
+   '2026-07-24', 'Market')
+IN('beta_se', 0.3147, "Standard error of the same regression", '2026-07-24', 'Market')
+IN('beta_r2', 0.1814, "R-squared of the same regression", '2026-07-24', 'Market')
+IN('beta_dimson', 1.0688, "Lead-lag sum beta from the same series, one lead and two lags — "
    "the correction for co-movement a share books late because it does not trade every "
    "session", '2026-07-24', 'Market')
 IN('beta_composite', 0.705, "The same regression run against an equal-weight composite of "
@@ -645,9 +646,9 @@ IN('beta_composite', 0.705, "The same regression run against an equal-weight com
    "gap between the two is large and is a property of index construction, not of the "
    "company: the published index is weighted by size and is dominated by the same "
    "large-capitalisation group the subject belongs to", '2026-08-07', 'Market')
-IN('beta_ci_lo', 0.758, "Lower bound of the 90% confidence interval on the regressed beta",
+IN('beta_ci_lo', 0.5855, "Lower bound of the 90% confidence interval on the regressed beta",
    '2026-07-24', 'Market')
-IN('beta_ci_hi', 1.412, "Upper bound of the 90% confidence interval on the regressed beta",
+IN('beta_ci_hi', 1.6210, "Upper bound of the 90% confidence interval on the regressed beta",
    '2026-07-24', 'Market')
 IN('g_terminal', 0.02, FS25 + " — the company's own value-in-use test projects cash flows "
    "beyond its plan at a growth rate equal to an estimated 2% inflation rate; adopted here "
@@ -1705,7 +1706,7 @@ panel_centre = (e1['base'] + e2['base'] + e3['base']) / 3.0
 # ============================================================================
 # SENSITIVITY
 # ============================================================================
-BETAS = [0.705, 0.90, 1.085, 1.25, 1.412]   # composite · mid · adopted · mid · CI top
+BETAS = [0.705, 0.90, 1.1032, 1.35, 1.621]   # composite · mid · adopted · mid · CI top   # composite · mid · adopted · mid · CI top
 GS = [0.010, 0.015, 0.020, 0.025]
 sens_beta_g = [[dcf_scenario(b, 1.0, 1.0, True)['fv_aed'] if g == V['g_terminal'] else None
                 for g in GS] for b in BETAS]
@@ -1857,7 +1858,7 @@ A('the price map was struck on the same close as the study',
   abs(strike['spot'] - spot_aed) < 1e-9)
 A('the technical read was computed on the same close', abs(tech['close'] - spot_aed) < 1e-9)
 A('the beta used is the one the regression produced',
-  abs(V['beta'] - round(beta_res['adopted']['beta_used'], 3)) < 1e-9)
+  abs(V['beta'] - round(beta_res['adopted']['beta_used'], 4)) < 1e-9)
 # Every published range must bracket its own base. A bound built on an alternative cost of
 # equity silently inverts the moment that alternative stops being the demanding one, which
 # is exactly what happened when the regressor changed, so it is asserted rather than assumed.

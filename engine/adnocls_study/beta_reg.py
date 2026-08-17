@@ -30,6 +30,7 @@ import pandas as pd
 from primitives import load_ohlc
 from data_quality import clean_ohlc, screen
 from wacc_builder import RegressionBetaAttempt
+from beta_regression import own_stock_beta   # the only sanctioned producer of a beta
 
 TKR = 'ADNOCLS'
 # ADX-listed names in the UAE library. DFM names (DEWA, DIB, EMAAR, EMAARDEV, ENBD,
@@ -169,8 +170,26 @@ else:
            f"forbidden; a default shown with the diagnostics that triggered it is "
            f"permitted, and this is that case.")
 
+# The engine's sanctioned routine resolves the regressor itself from the (market,
+# exchange) registry, runs the data-quality gate on BOTH series and matches the weekly
+# grid to the exchange's real trading week. A study-local composite is no longer an
+# admissible source for a beta, so the adopted figure comes from here and the composites
+# below survive only as disclosure.
+SANCTIONED = own_stock_beta(TKR, 'AE', 'ADX')
+beta, se_beta, r2, n = (SANCTIONED['beta'], SANCTIONED['se'],
+                        SANCTIONED['r2'], SANCTIONED['n'])
+ci = tuple(SANCTIONED['ci90'])
+ok, msg = SANCTIONED['usable'], SANCTIONED['gate_msg']
+beta_used = beta
+basis = ('tier-1 own-stock weekly regression against the exchange\'s published index, '
+         'produced by the engine\'s sanctioned routine')
+why = (f"n = {n} weekly observations against the published index of the share's own "
+       f"exchange, R-squared = {r2:.3f}, SE(beta) = {se_beta:.3f}. {msg}.")
+weak = bool(SANCTIONED['weak'])
+
 out = dict(
     ticker=TKR,
+    sanctioned=SANCTIONED,
     beta=beta, r2=float(r2), n=int(n), se=se_beta,
     ci90=[float(ci[0]), float(ci[1])],
     usable=bool(ok), gate_msg=msg,
