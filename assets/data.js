@@ -2,7 +2,7 @@
    testahil — the ONLY file you edit in the weekly ritual.
    ========================================================= */
 
-const SITE = { updated: "2026-08-10", latest: "AMR" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
+const SITE = { updated: "2026-08-10", latest: "FERTIGLB" };  // latest = the LAST-PUBLISHED study (drives the homepage hero); set this on every publish
 
 /* ---------- covered tickers ----------
    HORIZON FIELDS (see the HORIZON CONVENTION block above the LEDGER):
@@ -24,6 +24,38 @@ const SITE = { updated: "2026-08-10", latest: "AMR" };  // latest = the LAST-PUB
                            label would then misstate what was simulated.
    ------------------------------------- */
 const TICKERS = {
+  FERTIGLB: {
+    name: "Fertiglobe plc",
+    nameAr: "فيرتيجلوب",
+    code: "ADX:FERTIGLB",
+    spot: 2.54,
+    spotDate: "close 7 Aug 2026",
+    fairAsof: "2026-08-07",
+    ccy: "AED",
+    fair: { bear: 1.27, base: 2.15, full: 2.79 },   // 10 Aug 2026 — four lenses, one field, AED 1.27 to 2.79. Weighted central 2.15 on cash flow 45% / relative 20% / normalised 20% / book 15%: cash flow 2.19, relative multiples 2.06, normalised earnings power 2.79, book value and sustainable return 1.27. Against a close of 2.54 the market is FULLY PRICED (spot sits above the weighted centre). The company reports in US dollars; the valuation runs in dollars and converts at the 3.6725 peg only at the final step. THE CONTESTED JUDGEMENT — whether the 2026 nitrogen price spike is a war premium that fades or a structurally tight market — is computed BOTH WAYS and never averaged: normalisation gives AED 1.76, a structurally tight market gives 2.62. Revenue is built bottom-up: installed capacity x a utilisation path, split urea and merchant ammonia, priced off published benchmarks x a realisation ratio measured at 1.00 across three disclosed periods. The cost side is the crux — gas in Egypt and Algeria is PRODUCT-LINKED, so roughly 48 cents of every extra dollar of realised price comes back out as cost; a model escalating cost on general inflation would have overstated this company badly. Beta 0.931 from the share's own weekly history against the FTSE ADX General index, the published index of the exchange it is listed on — an earlier edition used a constituent composite and understated beta by ~40%, carrying WACC from 11.90% to 8.53% and the centre from 2.15 to 2.74. Terminal value is 55.2% of enterprise value under the normalisation framing and the study says so.
+    dist: {
+      t20: { label: "1 month", p5: 2.24, p25: 2.42, p50: 2.54, p75: 2.66, p95: 2.87, resolve: "2026-09-07" },
+      t60: { label: "3 months", p5: 2.01, p25: 2.32, p50: 2.53, p75: 2.76, p95: 3.19, resolve: "2026-11-09" }
+    },
+    hz: { h1: 20, h3: 63, l1: "1 month", l3: "3 months", cal: true },
+    touch: [[3.05, 2, 16], [2.92, 5, 26], [2.79, 16, 42], [2.67, 42, 65], [2.41, 41, 65], [2.29, 13, 39]],
+    levels: { res:[2.59, 2.69, 2.74], sup:[2.45, 2.34, 2.25] },
+    tech: {
+      trend: "Trading below the whole moving-average stack, under a flat 200-day; fresh death-cross",
+      summary: "The price closed 2.54 below a falling 20-day (2.63), a falling 50-day (2.77) and a flat 200-day (2.78). Momentum is soft: RSI(14) is ~34 and the daily ATR near 0.06 (~2.4%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22120.06 / \u22120.06 / +0.00). The 50-day crossed beneath the 200-day 1 session ago \u2014 a fresh death-cross, a momentum-regime change rather than noise inside an intact trend. Over the last year it has ranged 2.35\u20133.85; the last close sits 34% below that high and 8% above that low.",
+      bull: "A daily close back above 2.59 would clear the nearest resistance and open the 2.74 zone.",
+      bear: "A close below 2.45 would break the nearest support and open the 2.25 zone."
+    },
+    asof: {
+      mc:   { data:"2026-08-07", computed:"2026-08-10" },
+      tech: { data:"2026-08-07", computed:"2026-08-17" }
+    },
+    files: {
+      study:  "files/FERTIGLB_Valuation_Study_09-08-2026.pdf?v=0810a",
+      model:  "files/FERTIGLB_Valuation_Model_09082026.xlsx?v=0810a",
+      biblio: "files/FERTIGLB_Bibliography_09-08-2026.pdf?v=0810a"
+    }
+  },
   AMR: {
     name: "Americana Restaurants International PLC",
     nameAr: "أمريكانا للمطاعم العالمية",
@@ -71,7 +103,8 @@ const TICKERS = {
     spotDate: "close 7 Aug 2026",
     fairAsof: "2026-08-07",   // the close the FAIR VALUE is struck on — not the publication date in the filename
     ccy: "AED",
-    fair: { bear: 1.03, base: 3.38, full: 6.31 },   // 9 Aug 2026 (revision 2, restruck same day on the 29-Jul-2026 H1 results release after external critique) — four lenses, one field, AED 1.03 to 6.31. Weighted central 3.38 (+19% vs spot 2.83) on FCFF DCF 40% / relative multiples 20% / normalised earnings power 20% / book value & sustainable return 20%: 5.29 / 2.20 / 1.46 / 2.65. THE GAP BETWEEN THE LENSES IS THE STORY: the cash-flow lens capitalises an AED 65.4bn contracted backlog (95% development, H1-2026 sales AED 26bn) that today's P&L barely shows, while the earnings lenses price the P&L as it stands — both are published, never averaged. The contested judgement (does the sales machine keep running?) is computed BOTH WAYS: base path AED 12→30→26→23→21bn of new sales gives DCF 5.29; a RUN-OFF that sells nothing new after the current backlog still gives 3.78, ABOVE spot — the market price is below the wind-down reading of the development book. Built bottom-up from the H1-2026 release anchors: backlog conversion 10.5%→32% per year, component working capital (receivable days 440→370, payables-and-advances cover 1.86×→1.40×, inventory added at 10% of new sales and consumed at 20% of recognised revenue), D&A at 3.4% of the average depreciable asset base, terminal debt weight DERIVED from the model's own FY2030E balance sheet (8.0%), escrow cash EXCLUDED from the bridge as funding the very backlog being valued, minorities capitalised at max(book, 2% of equity). WACC 8.30% explicit → 8.71% terminal; Ke 9.08% on an own-stock weekly regression beta of 1.03 vs an equal-weight 18-name UAE composite (flagged: the regressor is a proxy composite, not the official index). TV is 77.5% of EV and is said plainly, not hidden.
+    fair: { bear: 1.03, base: 2.50, full: 4.13 },   // 10 Aug 2026 (revision 3 — beta re-measured against the exchange's OFFICIAL published index) — four lenses, one field, AED 1.03 to 4.13. Weighted central 2.50 (−12% vs spot 2.83) on FCFF DCF 40% / relative multiples 20% / normalised earnings power 20% / book value & sustainable return 20%: 3.54 / 2.20 / 1.46 / 1.74. REVISION 3 CHANGED ONE INPUT AND FLIPPED THE VERDICT: revisions 1-2 could not obtain the FTSE ADX General series and regressed beta against a composite of this engine's own UAE library, flagged both times as a stand-in. The official index arrived and the regression was re-run through the house module against it, thin-trading (Dimson) corrected — warranted by a float with 84.75% in a single holder. Beta 1.03 → 1.746 (SE 0.397, R² 0.128, n 253 weekly obs over 4.9 years, 90% range 1.09–2.40; uncorrected 1.394 on the same weeks; Blume cross-check 1.497). Ke 9.08% → 12.56%, WACC 8.30% → 11.14% explicit / 11.92% terminal, DCF 5.29 → 3.54, book 2.65 → 1.74, central 3.38 → 2.50. NOT ONE FORECAST LINE MOVED — no revenue, no margin, no backlog. A composite of the names a research programme happens to cover is a coverage artefact, not a market, and it flattered the company; the correction is published rather than absorbed. THE GAP BETWEEN THE LENSES IS STILL THE STORY: the cash-flow lens capitalises an AED 65.4bn contracted backlog (95% development, H1-2026 sales AED 26bn) that today's P&L barely shows, while the earnings lenses price the P&L as it stands — both published, never averaged. The contested judgement (does the sales machine keep running?) is computed BOTH WAYS: base path AED 12→30→26→23→21bn of new sales gives DCF 3.54; a RUN-OFF selling nothing new after the current backlog gives 2.64. Built bottom-up from the H1-2026 release anchors: backlog conversion 10.5%→32% a year, component working capital (receivable days 440→370, payables-and-advances cover 1.86×→1.40×), D&A at 3.4% of the average depreciable asset base, terminal debt weight DERIVED from the model's own FY2030E balance sheet (8.0%), escrow cash EXCLUDED from the bridge as funding the very backlog being valued. TV is 68.7% of EV. NOTE THE INVERTED GROWTH GRADIENT: terminal ROIC 8.5% now sits BELOW the terminal WACC 11.92%, so more terminal growth SUBTRACTS value — a consequence of the beta correction, not a change in the business. Beta is the input this valuation is most exposed to and its 90% range is wide; the study prices it one standard error at a time.
+
     dist: {
       t20: { label:"1 month",   p5:2.54, p25:2.72, p50:2.84, p75:2.96, p95:3.17, resolve:"2026-09-07" },
       t60: { label:"3 months",  p5:2.32, p25:2.64, p50:2.86, p75:3.09, p95:3.52, resolve:"2026-11-09" }
@@ -94,13 +127,13 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-07", computed:"2026-08-09" },
-      tech: { data:"2026-08-07", computed:"2026-08-10" }
+      tech: { data:"2026-08-07", computed:"2026-08-17" }
     },
     files: {
-      study: "files/MODON_Valuation_Study_09-08-2026_public.docx?v=0810a",
-      model: "files/MODON_Valuation_Model_09082026_public.xlsx?v=0810a",
-      pdf:   "files/MODON_Valuation_Study_09-08-2026_public.pdf?v=0810a",
-      biblio: "files/MODON_Bibliography_09-08-2026.pdf?v=0810a"
+      study: "files/MODON_Valuation_Study_10-08-2026_public.docx?v=0810c",
+      model: "files/MODON_Valuation_Model_10082026_public.xlsx?v=0810c",
+      pdf:   "files/MODON_Valuation_Study_10-08-2026_public.pdf?v=0810c",
+      biblio: "files/MODON_Bibliography_10-08-2026.pdf?v=0810c"
     }
   },
   PHAR: {
@@ -2761,6 +2794,32 @@ const COMING = [
    session it lands on can, and by at most a few days.
    ========================================================================== */
 const LEDGER = [
+  {
+    instrument:"FERTIGLB", asset_class:"equity",
+    anchor_date:"2026-08-07", run_date:"2026-08-10", anchor_price:2.54, ccy:"AED",
+    horizon_label:"1 month", grade_date:"2026-09-07", grade_basis:"projected", horizon_days:20,
+    cycle_no:1, anchor_vol:0.2821,
+    note:"First coverage, 10-Aug-2026 — cycle 1, struck on the study's own committed path arrays at the 2026-08-07 anchor and NOT re-simulated at publish: re-striking a frozen cone would publish a forecast the study never made. Production chain, no approximation: Step 0.0 data-quality gate → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF per the AE profile. q_annual = 0.053, SOURCED not defaulted. AE live fit nu=10.0, width_cal=0.979; rf_live 3.65%. Horizons resolved by horizons.resolve() on the UAE's own realized calendar, not a session count. Name-level calibration: PARITY, and ROBUSTLY so — scale-normalized CRPS skill −0.0015 against the carry-anchored random walk, the bootstrap CI90 straddling zero at every block size ([−0.028,+0.013] / [−0.030,+0.009] / [−0.031,+0.005]). The method neither beat the benchmark nor lost to it, and the study says so rather than claiming an edge it did not demonstrate. Fertiglobe listed 27-Oct-2021, so its record yields 14 non-overlapping quarterly origins (2022-11-11 → 2026-02-19); a literal five-year test predates the instrument, so the test covers its whole listed life — the maximum evidence that exists. The SHAPE limb passes: PIT Kolmogorov-Smirnov p=0.44, chi-square p=0.74, coverage 43/79/100 per cent against the 50/80/90 bands. What carries the cone is the MARKET-level gate: the 18-name UAE panel scores +0.0068 over 261 windows, PARITY with the CI90 straddling zero, and that panel is the standing gate. No single-name edge exists on this name and none is claimed. The price map is a map of dispersion around today's price, never a forecast of value.",
+    p5:2.24, p25:2.42, p50:2.54, p75:2.66, p95:2.87,
+    touch:{"+5":42,"+10":16,"+15":5,"+20":2,"-5":41,"-10":13},
+    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
+    realized_quantile:null, median_err:null,
+    touch_hit:{"+5":null,"+10":null,"+15":null,"+20":null,"-5":null,"-10":null},
+    reanchor_from:null
+  },
+  {
+    instrument:"FERTIGLB", asset_class:"equity",
+    anchor_date:"2026-08-07", run_date:"2026-08-10", anchor_price:2.54, ccy:"AED",
+    horizon_label:"3 months", grade_date:"2026-11-09", grade_basis:"projected", horizon_days:63,
+    cycle_no:1, anchor_vol:0.2898,
+    note:"First coverage, 10-Aug-2026 — cycle 1, struck on the study's own committed path arrays at the 2026-08-07 anchor and NOT re-simulated at publish: re-striking a frozen cone would publish a forecast the study never made. Production chain, no approximation: Step 0.0 data-quality gate → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF per the AE profile. q_annual = 0.053, SOURCED not defaulted. AE live fit nu=10.0, width_cal=0.979; rf_live 3.65%. Horizons resolved by horizons.resolve() on the UAE's own realized calendar, not a session count. Name-level calibration: PARITY, and ROBUSTLY so — scale-normalized CRPS skill −0.0015 against the carry-anchored random walk, the bootstrap CI90 straddling zero at every block size ([−0.028,+0.013] / [−0.030,+0.009] / [−0.031,+0.005]). The method neither beat the benchmark nor lost to it, and the study says so rather than claiming an edge it did not demonstrate. Fertiglobe listed 27-Oct-2021, so its record yields 14 non-overlapping quarterly origins (2022-11-11 → 2026-02-19); a literal five-year test predates the instrument, so the test covers its whole listed life — the maximum evidence that exists. The SHAPE limb passes: PIT Kolmogorov-Smirnov p=0.44, chi-square p=0.74, coverage 43/79/100 per cent against the 50/80/90 bands. What carries the cone is the MARKET-level gate: the 18-name UAE panel scores +0.0068 over 261 windows, PARITY with the CI90 straddling zero, and that panel is the standing gate. No single-name edge exists on this name and none is claimed. The price map is a map of dispersion around today's price, never a forecast of value.",
+    p5:2.01, p25:2.32, p50:2.53, p75:2.76, p95:3.19,
+    touch:{"+5":65,"+10":42,"+15":26,"+20":16,"-5":65,"-10":39},
+    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
+    realized_quantile:null, median_err:null,
+    touch_hit:{"+5":null,"+10":null,"+15":null,"+20":null,"-5":null,"-10":null},
+    reanchor_from:null
+  },
   // ---- MODON · equity (ADX Abu Dhabi) · cycle 1 (9 Aug 2026 published study; MC PASS — own fitted verdict, scale-normalized skill +0.0424, CI90 EXCLUDES zero at every bootstrap block {2,3,4} ([+1.8%,+6.1%] / [+2.1%,+6.1%] / [+1.9%,+5.7%]) — robust PASS; 18-name AE panel PARITY +0.0068, CI90 [−0.001,+0.014], 261 windows) ----
   {
     instrument:"MODON", asset_class:"equity",
