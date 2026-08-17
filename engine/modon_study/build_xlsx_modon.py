@@ -210,7 +210,7 @@ band(aws, _r, 8); put(aws, f'A{_r}', 'Cost of capital build', bold=True, fmt=Non
 r_rf     = arow('AED government bond yield (Jan-2031 T-Bond auction)', IN['rf'], PCT2)
 r_ss     = arow('UAE sovereign default spread (rating basis, netted out)', IN['sov_spread_rating'], PCT2)
 r_erp    = arow('Equity risk premium (UAE row, rating basis)', IN['erp_rating'], PCT2)
-r_beta   = arow('Beta (own-stock regression vs equal-weight AE panel proxy)', IN['beta'], PX)
+r_beta   = arow('Beta (own-stock regression vs the published FTSE ADX General index)', IN['beta'], PX)
 r_eib    = arow('6-month EIBOR (31-Mar-2026 fixing, dated)', IN['eibor6m'], PCT2)
 r_kdm    = arow('Marginal debt margin over 6M EIBOR', IN['kd_margin'], PCT2)
 r_g      = arow('Terminal growth', IN['g_term'], PCT2)

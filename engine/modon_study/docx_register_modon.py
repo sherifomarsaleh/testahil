@@ -104,13 +104,15 @@ jd = [['Judgement', 'Basis', 'What would overturn it'],
  ['Tax at 15.5% (DMTT floor + foreign uplift)',
   'note 11 (DMTT charged from 2025); H1-2026 effective 15.4%',
   'a DMTT carve-out, or foreign profits growing beyond ~1/4 of the mix'],
- ['Beta 1.278 — TIER 1: own-stock weekly regression vs the official FTSE ADX General Index',
-  '5y beta 1.278 (SE 0.258, R² 0.089, n 255, usability gate PASS) — the longest window that '
-  'clears the gate, per the standing hierarchy; 3y 1.800 (R² 0.26), 2y 1.581 (R² 0.31), so '
-  'the adopted figure is the friendliest of the three; industry route rejected as primary',
-  'a longer or cleaner index history moving the 5y estimate, or the fit staying this loose '
-  '(R² 0.089) while the shorter windows keep reading 1.6-1.8 — in which case the adopted '
-  'beta is too low and the central too high'],
+ ['Beta 1.746 — own-stock weekly regression vs the exchange\'s published index (FTSE ADX '
+  'General), thin-trading corrected',
+  '253 weekly observations over 4.9 years to 17-Jul-2026: SE 0.397, R² 0.128, 90% range '
+  '1.09-2.40, usability gate PASS. The thin-trading correction is worth +0.35 of beta '
+  '(uncorrected 1.394 on the same weeks) and is warranted by a float with 84.75% in one '
+  'holder. Long-run-adjusted cross-check 1.497; industry route rejected as primary',
+  'the wide interval resolving low — at the bottom of the 90% range the cash-flow lens is '
+  'worth materially more; equally, a longer index history or a less thinly traded float '
+  'could move it either way. This is the study\'s largest single exposure to one input'],
  ['Terminal ROIC 8.5% — between the FY2025 clean 6.1% and the model\'s own forward path (~15%)',
   'at-cost land bank converting to recognised profit; deliberate mean-reversion below the path',
   'land monetisation stalling: at the clean achieved return the terminal value falls ~16% '
@@ -139,8 +141,12 @@ corr = [['Item', 'First edition', 'Revision 2', 'Why'],
   'absorbing through FY2028', 'H1 actuals show absorption while growth runs'],
  ['D&A driver', '4.2% of revenue', '3.4% on the average asset base', 'asset-base charge'],
  ['Beta', '1.0 assumed (tier-3)', '1.03 regressed vs panel proxy', 'evidence obtained'],
- ['Beta (revision 3)', '1.03 vs a proxy composite', '1.278 vs the official FTSE ADX General',
-  'the official index was obtained; the proxy under-read beta at every window'],
+ ['Beta (revision 3)', '1.03 vs a self-built composite of covered names',
+  '1.746 vs the exchange\'s published index, thin-trading corrected',
+  'the official index was obtained; a composite of covered names is a coverage artefact, not '
+  'a market. Two separate corrections, both upward: the benchmark swap (+0.36, the index is '
+  'less volatile than the composite) and the thin-trading correction (+0.35, 84.75% of the '
+  'float is held by one entity)'],
  ['Peer table', 'mixed bases/vintages; multiples irreconcilable',
   'one attributable basis, every multiple = printed numerator/denominator',
   'Aldar backlog was the 9M-2025 vintage; Emaar Dev backlog was the parent\'s figure; '

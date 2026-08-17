@@ -686,7 +686,13 @@ function cohortChartBlock(t, rows){
 // international names — all 18 UAE, all 11 Tadawul, AAPL/NVDA/TSLA, INFY/RELIANCE,
 // QGTS — silently rendered under the EGX heading. Nothing threw; the page just lied.
 // asset_class now means asset class and nothing else.
-const marketOf = t => (typeof MARKET_OF !== "undefined" && MARKET_OF[t]) || null;
+// marketOf() now comes FROM assets/markets.js, which this page already loads — the same
+// resolver trade.html, portfolio.html and picker.html use, so every surface answers
+// "which market is this name in?" identically. The local copy this replaces indexed
+// MARKET_OF directly, which returns nothing for the three names LEDGER and TICKERS
+// spell differently (Samsung/SAMSUNG, Kakao/KAKAO); the resolver falls back to a
+// case-insensitive match. Redeclaring it here is a SyntaxError that takes the whole
+// page down, so it is deleted, not shadowed.
 const mkBtns = arr => arr.map(t=>`<button class="tab-btn" data-tab="${t}">${t}</button>`).join("");
 
 let _tb = `<div class="tab-row"><button class="tab-btn active" data-tab="all">All</button></div>`;

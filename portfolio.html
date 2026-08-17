@@ -251,7 +251,7 @@ window.addEventListener('error', function(e){
   }catch(_){}
 });
 </script>
-<script src="assets/data.js?v=20260805c"></script>
+<script src="assets/markets.js?v=20260729d"></script><script src="assets/data.js?v=20260805c"></script>
 <script>
 (function(){
   'use strict';
@@ -495,7 +495,30 @@ window.addEventListener('error', function(e){
   }
 
   /* ---------- UI: name picker ---------- */
+  /* Grouping is by MARKET, not by the exchange prefix inside `code`. On the prefix the
+     UAE arrived as TWO sections, "ADX" and "DFM", sorted apart with other countries in
+     between, so a reader had to know which of the two exchanges a UAE name listed on.
+     Market is decided by FILE PLACEMENT (engine/raw_ohlc/{MKT}/), which assets/markets.js
+     bakes: MARKET_OF the market, MARKET_META the label ("UAE — ADX & DFM"), MARKET_ORDER
+     the order. ledger.html, trade.html and this page all read that one registry, so the
+     sections match everywhere and a new market appears on all of them at once. The
+     exchange prefix stays as the fallback for anything the registry does not carry. */
   function exOf(t){ var c=(t.code||''); var i=c.indexOf(':'); return i>0 ? c.slice(0,i) : 'Other'; }
+  function mktOf(k, t){
+    // marketOf() comes from assets/markets.js and resolves the LEDGER-vs-TICKERS
+    // spelling difference (SAMSUNG/Samsung, KAKAO/Kakao) that a bare MARKET_OF[k]
+    // lookup silently misses. Exchange prefix only as a last resort.
+    if(typeof marketOf === 'function'){ var m = marketOf(k); if(m) return m; }
+    return exOf(t);
+  }
+  function mktLabel(m){
+    if(typeof marketLabel === 'function') return marketLabel(m);
+    return m;
+  }
+  function mktRank(m){
+    if(typeof marketRank === 'function') return marketRank(m);
+    return 99;
+  }
   var KEYS = Object.keys(TICKERS).filter(function(k){ var t=TICKERS[k]; return t && t.spot && t.dist && t.dist.t20 && t.dist.t60; });
 
   /* ---------- searchable name/ticker combobox ----------
@@ -514,12 +537,15 @@ window.addEventListener('error', function(e){
   function buildAddPicker(){
     var mount = $('p-sel-mount');
     var groups = {};
-    KEYS.forEach(function(k){ var g = exOf(TICKERS[k]); (groups[g] = groups[g] || []).push(k); });
-    // EGX first — it's the bulk of the coverage and what most readers come for.
-    // Alphabetical group order buried all 30 EGX names below 18 Gulf ones, which
-    // read as "the stock I want isn't in this list."
+    KEYS.forEach(function(k){ var g = mktOf(k, TICKERS[k]); (groups[g] = groups[g] || []).push(k); });
+    // Registry order — Egypt first because it is the bulk of the coverage and what most
+    // readers come for (alphabetical order once buried all 30 EGX names below 18 Gulf
+    // ones, which reads as "the stock I want isn't in this list"), then the UAE as ONE
+    // section. Markets the registry does not know sort to the end, alphabetically.
     var groupNames = Object.keys(groups).sort(function(a,b){
-      if(a==='EGX') return -1; if(b==='EGX') return 1; return a.localeCompare(b);
+      var ra = mktRank(a), rb = mktRank(b);
+      if(ra !== rb) return ra - rb;
+      return a.localeCompare(b);
     });
     groupNames.forEach(function(g){
       groups[g].sort(function(a,b){ return TICKERS[a].name.localeCompare(TICKERS[b].name); });
@@ -564,7 +590,7 @@ window.addEventListener('error', function(e){
       var html = '';
       if(!gs.length) html = '<div class="t-combo-empty">No match — try a name or a ticker like DSCW</div>';
       gs.forEach(function(g){
-        html += '<div class="t-combo-group">' + g[0] + '</div>';
+        html += '<div class="t-combo-group">' + mktLabel(g[0]) + '</div>';
         g[1].forEach(function(k){
           var t = TICKERS[k];
           html += '<div class="t-combo-opt' + (k===activeKey?' active':'') + '" role="option" data-key="' + k + '">' +

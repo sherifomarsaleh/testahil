@@ -71,7 +71,10 @@ const SURFACES = [
   const bad = [];
   // Word boundary, not substring: "SCEM" must not be satisfied by some longer token, and
   // a three-letter ticker must not match inside a sentence.
-  const re = new RegExp('\\b' + TK + '\\b');
+  // Case-INSENSITIVE: three names are spelled one way in TICKERS and another
+  // everywhere a reader sees them (SAMSUNG/Samsung, KAKAO/Kakao), so a
+  // case-sensitive test failed them on pages rendering them perfectly well.
+  const re = new RegExp('\\b' + TK + '\\b', 'i');
 
   for (const s of targets) {
     const errs = [];
