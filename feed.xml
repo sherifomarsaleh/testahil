@@ -6,21 +6,21 @@
     <atom:link href="https://testahil.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>دراسات تقييم تعليمية مستقلة لأسهم البورصة المصرية — توزيعات احتمالية، وليست توصيات. Educational EGX valuation studies — distributions, not tips.</description>
     <language>ar</language>
-    <lastBuildDate>Sun, 09 Aug 2026 08:30:00 +0300</lastBuildDate>
-
-    <item>
-      <title>Americana Restaurants International PLC (AMR): Valuation Study — is it worth it?</title>
-      <link>https://testahil.com/amr.html</link>
-      <guid isPermaLink="true">https://testahil.com/amr.html</guid>
-      <description>Latest 2.23 · 3-month median 2.23 · range 1.68–2.96 AED — educational analysis, a distribution not a recommendation.</description>
-      <pubDate>Sun, 09 Aug 2026 08:30:00 +0300</pubDate>
-    </item>
+    <lastBuildDate>Mon, 10 Aug 2026 08:30:00 +0300</lastBuildDate>
 
     <item>
       <title>Modon Holding PSC (MODON): Valuation Study — is it worth it?</title>
       <link>https://testahil.com/modon.html</link>
       <guid isPermaLink="true">https://testahil.com/modon.html</guid>
       <description>Latest 2.83 · 3-month median 2.86 · range 2.32–3.52 AED — educational analysis, a distribution not a recommendation.</description>
+      <pubDate>Mon, 10 Aug 2026 08:30:00 +0300</pubDate>
+    </item>
+
+    <item>
+      <title>Americana Restaurants International PLC (AMR): Valuation Study — is it worth it?</title>
+      <link>https://testahil.com/amr.html</link>
+      <guid isPermaLink="true">https://testahil.com/amr.html</guid>
+      <description>Latest 2.23 · 3-month median 2.23 · range 1.68–2.96 AED — educational analysis, a distribution not a recommendation.</description>
       <pubDate>Sun, 09 Aug 2026 08:30:00 +0300</pubDate>
     </item>
 

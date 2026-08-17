@@ -71,7 +71,8 @@ const TICKERS = {
     spotDate: "close 7 Aug 2026",
     fairAsof: "2026-08-07",   // the close the FAIR VALUE is struck on — not the publication date in the filename
     ccy: "AED",
-    fair: { bear: 1.03, base: 3.38, full: 6.31 },   // 9 Aug 2026 (revision 2, restruck same day on the 29-Jul-2026 H1 results release after external critique) — four lenses, one field, AED 1.03 to 6.31. Weighted central 3.38 (+19% vs spot 2.83) on FCFF DCF 40% / relative multiples 20% / normalised earnings power 20% / book value & sustainable return 20%: 5.29 / 2.20 / 1.46 / 2.65. THE GAP BETWEEN THE LENSES IS THE STORY: the cash-flow lens capitalises an AED 65.4bn contracted backlog (95% development, H1-2026 sales AED 26bn) that today's P&L barely shows, while the earnings lenses price the P&L as it stands — both are published, never averaged. The contested judgement (does the sales machine keep running?) is computed BOTH WAYS: base path AED 12→30→26→23→21bn of new sales gives DCF 5.29; a RUN-OFF that sells nothing new after the current backlog still gives 3.78, ABOVE spot — the market price is below the wind-down reading of the development book. Built bottom-up from the H1-2026 release anchors: backlog conversion 10.5%→32% per year, component working capital (receivable days 440→370, payables-and-advances cover 1.86×→1.40×, inventory added at 10% of new sales and consumed at 20% of recognised revenue), D&A at 3.4% of the average depreciable asset base, terminal debt weight DERIVED from the model's own FY2030E balance sheet (8.0%), escrow cash EXCLUDED from the bridge as funding the very backlog being valued, minorities capitalised at max(book, 2% of equity). WACC 8.30% explicit → 8.71% terminal; Ke 9.08% on an own-stock weekly regression beta of 1.03 vs an equal-weight 18-name UAE composite (flagged: the regressor is a proxy composite, not the official index). TV is 77.5% of EV and is said plainly, not hidden.
+    fair: { bear: 1.03, base: 2.50, full: 4.13 },   // 10 Aug 2026 (revision 3 — beta re-measured against the exchange's OFFICIAL published index) — four lenses, one field, AED 1.03 to 4.13. Weighted central 2.50 (−12% vs spot 2.83) on FCFF DCF 40% / relative multiples 20% / normalised earnings power 20% / book value & sustainable return 20%: 3.54 / 2.20 / 1.46 / 1.74. REVISION 3 CHANGED ONE INPUT AND FLIPPED THE VERDICT: revisions 1-2 could not obtain the FTSE ADX General series and regressed beta against a composite of this engine's own UAE library, flagged both times as a stand-in. The official index arrived and the regression was re-run through the house module against it, thin-trading (Dimson) corrected — warranted by a float with 84.75% in a single holder. Beta 1.03 → 1.746 (SE 0.397, R² 0.128, n 253 weekly obs over 4.9 years, 90% range 1.09–2.40; uncorrected 1.394 on the same weeks; Blume cross-check 1.497). Ke 9.08% → 12.56%, WACC 8.30% → 11.14% explicit / 11.92% terminal, DCF 5.29 → 3.54, book 2.65 → 1.74, central 3.38 → 2.50. NOT ONE FORECAST LINE MOVED — no revenue, no margin, no backlog. A composite of the names a research programme happens to cover is a coverage artefact, not a market, and it flattered the company; the correction is published rather than absorbed. THE GAP BETWEEN THE LENSES IS STILL THE STORY: the cash-flow lens capitalises an AED 65.4bn contracted backlog (95% development, H1-2026 sales AED 26bn) that today's P&L barely shows, while the earnings lenses price the P&L as it stands — both published, never averaged. The contested judgement (does the sales machine keep running?) is computed BOTH WAYS: base path AED 12→30→26→23→21bn of new sales gives DCF 3.54; a RUN-OFF selling nothing new after the current backlog gives 2.64. Built bottom-up from the H1-2026 release anchors: backlog conversion 10.5%→32% a year, component working capital (receivable days 440→370, payables-and-advances cover 1.86×→1.40×), D&A at 3.4% of the average depreciable asset base, terminal debt weight DERIVED from the model's own FY2030E balance sheet (8.0%), escrow cash EXCLUDED from the bridge as funding the very backlog being valued. TV is 68.7% of EV. NOTE THE INVERTED GROWTH GRADIENT: terminal ROIC 8.5% now sits BELOW the terminal WACC 11.92%, so more terminal growth SUBTRACTS value — a consequence of the beta correction, not a change in the business. Beta is the input this valuation is most exposed to and its 90% range is wide; the study prices it one standard error at a time.
+
     dist: {
       t20: { label:"1 month",   p5:2.54, p25:2.72, p50:2.84, p75:2.96, p95:3.17, resolve:"2026-09-07" },
       t60: { label:"3 months",  p5:2.32, p25:2.64, p50:2.86, p75:3.09, p95:3.52, resolve:"2026-11-09" }
@@ -94,13 +95,13 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-08-07", computed:"2026-08-09" },
-      tech: { data:"2026-08-07", computed:"2026-08-10" }
+      tech: { data:"2026-08-07", computed:"2026-08-17" }
     },
     files: {
-      study: "files/MODON_Valuation_Study_09-08-2026_public.docx?v=0810a",
-      model: "files/MODON_Valuation_Model_09082026_public.xlsx?v=0810a",
-      pdf:   "files/MODON_Valuation_Study_09-08-2026_public.pdf?v=0810a",
-      biblio: "files/MODON_Bibliography_09-08-2026.pdf?v=0810a"
+      study: "files/MODON_Valuation_Study_10-08-2026_public.docx?v=0810c",
+      model: "files/MODON_Valuation_Model_10082026_public.xlsx?v=0810c",
+      pdf:   "files/MODON_Valuation_Study_10-08-2026_public.pdf?v=0810c",
+      biblio: "files/MODON_Bibliography_10-08-2026.pdf?v=0810c"
     }
   },
   PHAR: {
