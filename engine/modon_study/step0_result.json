@@ -1,0 +1,63 @@
+{
+ "windows_scored": 17,
+ "windows_prebreak_dropped": 6,
+ "first_origin": "2022-02-18",
+ "last_origin": "2026-02-26",
+ "nu": 10.0,
+ "width_cal": 0.979,
+ "skill_norm": 0.04239890936861235,
+ "skill_raw": 0.04170978097251532,
+ "verdict": "PASS",
+ "ci_blocks": {
+  "2": [
+   0.017504775503982977,
+   0.06146357103980062,
+   "PASS"
+  ],
+  "3": [
+   0.02061627663911192,
+   0.06055123205912056,
+   "PASS"
+  ],
+  "4": [
+   0.018955221376480157,
+   0.057298623237740154,
+   "PASS"
+  ]
+ },
+ "cov50": 0.5882352941176471,
+ "cov80": 0.9411764705882353,
+ "cov90": 0.9411764705882353,
+ "pit_mean": 0.439185294117647,
+ "pit_hist": [
+  0,
+  5,
+  1,
+  3,
+  1,
+  2,
+  2,
+  1,
+  1,
+  1
+ ],
+ "w90_ratio": 1.0180031385663446,
+ "market_gate": {
+  "verdict": "PARITY",
+  "skill": 0.0068,
+  "ci90": [
+   -0.001,
+   0.014
+  ],
+  "fit_date": "2026-07-29",
+  "panel_names": 18,
+  "windows": 261
+ },
+ "pending_refit": {
+  "note": "19-name AE refit including MODON, engine/PENDING_REVIEW/AE_2026-08-09.md \u2014 market PASS +0.0099 CI[0.002,0.017], MODON per-name PASS +0.0424 under LONO; width_cal 0.979 -> 0.972 proposed (-0.7% band move, under the 5% gate)"
+ },
+ "dq_log": [],
+ "clean_rows": 1577,
+ "density_rows_per_yr": 181.93280164245104,
+ "span_years": 8.668035592060233
+}

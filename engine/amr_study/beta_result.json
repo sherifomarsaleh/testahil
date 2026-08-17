@@ -1,0 +1,32 @@
+{
+ "ticker": "AMR",
+ "market": "AE",
+ "exchange": "ADX",
+ "beta": 0.9299087790790266,
+ "r2": 0.08363934022735375,
+ "se": 0.41196340857611885,
+ "n": 183,
+ "ci90": [
+  0.2522289719713111,
+  1.607588586186742
+ ],
+ "usable": true,
+ "gate_msg": "passes minimum usability gate",
+ "dimson": true,
+ "frequency": "weekly",
+ "weak": true,
+ "warnings": [],
+ "window_years": 3.55,
+ "first_obs": "2022-12-30",
+ "last_obs": "2026-07-17",
+ "blume_crosscheck": 0.9532725193860176,
+ "index_file": "raw_indices/AE/FADGI.csv",
+ "index_asof": "2026-07-24",
+ "index_dq": [
+  "dropped 1 interior stale/no-trade rows"
+ ],
+ "stock_dq": [],
+ "week_rule": "W-FRI",
+ "interim_note": null,
+ "conforming": true
+}

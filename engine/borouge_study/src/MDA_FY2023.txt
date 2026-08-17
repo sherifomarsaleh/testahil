@@ -1,0 +1,329 @@
+
+=== [MDA_FY2023.pdf p1] ===
+Borouge Classification:
+BOROUGE PLC Q4 / FY 2023
+Management Discussion & Analysis
+1st February 2024
+1
+
+=== [MDA_FY2023.pdf p2] ===
+1. Summary of Operational & Financial Performance
+In a challenging polyolefins market, Borouge PLC (Borouge) delivered resilient FY 2023 results
+supported by high operating rates, strong sales volumes, and outperformance of the Value
+Enhancement Programme.
+The Company reported full year 2023 revenue of $5,791 million, representing a year-on-year decline of
+14 percent, primarily due to a 16 percent drop in average selling prices. Healthy sales volumes of
+5,116kt partially offset the price decline from the high pricing levels achieved in 2022. Sales volumes
+for Polyethylene (PE) and Polypropylene (PP) are up by 2 percent and 8 percent respectively, on a
+year-on-year basis. High production utilisation rates of 101 percent for PE and 97 percent for PP for the
+year resulted in over 4.9 million tonnes of polyolefin production (5.1 million including ethylene and
+others) despite the executed Borouge 2 turnaround in Q1 2023.
+Fourth quarter revenue of $1,497 million is in-line with the previous quarter and down 6 percent year-
+on-year. Sales volumes are down 3 percent from the previous quarter and down 4 percent versus the
+previous year. Average selling prices remained relatively unchanged from the previous quarter and
+down 3 percent year-on-year. Borouge achieved a Premia above benchmark price of $187 per tonne
+for PE and $111 per tonne for PP during the fourth quarter, up 7 percent and 4 percent respectively,
+from the previous quarter. For the full year, premium for PE of $215 per tonne (above management’s
+over-the-cycle guidance of $200 per tonne) while premium for PP of $125 per tonne (below
+management’s over-the-cycle guidance of $140 per tonne).
+For the full year 2023, Borouge reported an adjusted EBITDA of $2,171 million, operating profit of
+$1,597 million, and a net profit of $ 1,001 million. Fourth quarter net profit came in at $288 million, up
+16 percent from the previous year. Adjusted EBITDA is up 11 percent year-on-year to $600 million,
+operating profit is up 17 percent to $452 million for the same period.
+The Value Enhancement Program delivered $607 million in the year versus a 2022 baseline,
+outperforming the revised target of $500 million and playing a critical role in supporting the bottom-line
+in a weak polyolefins pricing environment.
+Cash conversion in the fourth quarter is 88 percent versus 97 percent in the previous quarter mainly
+due to higher capex spend associated with upcoming operational maintenance. Net Debt stood at
+$2,957 million as of 31 December 2023.
+Q4 Q4 YoY Q3 QoQ FY FY YoY
+2023 2022 (%) 2023 (%) 2023 2022 (%)
+$m $m $m $m $m
+Revenue 1,497 1,593 -6% 1,496 0.0% 5,791 6,727 -14%
+Cost of sales (896) (1,010) -11% (915) -2% (3,627) (3,792) -4%
+Gross profit 601 583 3% 581 3% 2,164 2,935 -26%
+General and administrative
+(50) (59) -15% (41) 22% (183) (176) 4%
+expenses (excluding D&A)
+Selling & distribution expense (100) (148) -33% (95) 5% (399) (703) -43%
+Other income and expenses 2 13 -87% 4 -56% 16 19 -19%
+Operating profit 452 388 17% 449 1% 1,597 2,075 -23%
+Profit for the period 288 247 16% 282 2% 1,001 1,409 -29%
+Profit margin (%) 19% 16% 19% 17% 21%
+Total Comprehensive Income 285 269 6% 282 1% 993 1,419 -30%
+Adjusted EBITDA(1) 600 541 11% 592 1% 2,171 2,646 -18%
+Adjusted EBITDA margin (%) 40% 34% 18% 40% 1% 38% 39% -5%
+Basic earnings per share (US$) 0.01 0.01 0.01 0.03 0.05
+Diluted earnings per share
+(US$) 0.01 0.01 0.01 0.03 0.05
+Net debt 2,957 3,010 -2% 3,173 -7% 2,957 3,010 -2%
+(1) Adjusted EBITDA is calculated as EBITDA plus adjustments on foreign exchange gain or loss and impairment loss on property, plant and equipment.
+2
+
+=== [MDA_FY2023.pdf p3] ===
+Q4 Q4 YoY Q3 QoQ FY FY YoY
+2023 2022 (%) 2023 (%) 2023 2022 (%)
+Total sales volumes (kt) 1,359 1,415 -4% 1,395 -3% 5,116 5,083 1%
+Polyethylene 751 733 3% 733 3% 2,715 2,676 2%
+Polypropylene 608 628 -3% 642 -5% 2,285 2,126 8%
+Ethylene and others - 54 -100% 20 -100% 116 281 -59%
+Average selling price ($/t) 1,039 1,071 -3% 1,035 0% 1,077 1,276 -16%
+Polyethylene 1,077 1,116 -3% 1,093 -1% 1,129 1,318 -14%
+Polypropylene 991 1,016 -2% 967 2% 1,016 1,222 -17%
+Product premia ($/t)
+Polyethylene 187 217 -14% 174 7% 215 311 -31%
+Polypropylene 111 117 -5% 107 4% 125 208 -40%
+2. Operational Review
+During 2023, we secured the highest product quality while introducing a significant volume of new
+advanced and diversified grades to support Borouge’s strategic focus on delivering high value added
+and differentiated products. We remain committed to operational and commercial excellence, with a
+detailed efficiency enhancement strategy focused on safety, plant reliability and integrity, and opex
+optimisation.
+In the fourth quarter, production operated at very high utilisation rates of 112 percent and 99 percent
+for PE and PP, respectively. In the full year, high production utilisation rates of 101 percent for PE and
+97 percent for PP resulted in over 4.9 million tonnes of polyolefin production (5.1 million including
+ethylene and others) despite the executed Borouge 2 turnaround in Q1 2023.
+Q4 Q4 YoY Q3 QoQ FY FY YoY
+2023 2022 (%) 2023 (%) 2023 2022 (%)
+Production capacity (kt) 1,255 1,255 - 1,255 - 4,980 4,939 1%
+Polyethylene 693 693 - 693 - 2,750 2,750 -
+Polypropylene 562 562 - 562 - 2,230 2,189 2%
+Utilisation rate
+Polyethylene 112% 99% 14% 104% 8% 101% 91% 11%
+Polypropylene 99% 102% -3% 109% -8% 97% 92% 5%
+The Olefin Conversion Unit (OCU), which allows Borouge to internally produce large amounts of
+propylene from ethylene also operated at a high utilization rate of 92% in the fourth quarter. Ethylene
+is typically prioritized for use in maximizing PE production and the additional quantities are sent to the
+OCU. Any excess ethylene can be sold in the market.
+A planned turnaround of the Borouge 3 plant and feedstock-related operations is scheduled for 2024
+with a total volume impact of 500kt in FY2024. This will take place in two phases as follows:
+(1) Q1 2024: c. 170kt volume impact from a feedstock-related operational stop
+(2) Q4 2024: c. 330kt volume impact from Borouge 3 plant shutdown
+Borouge continued to focus on safe and reliable operations while maximizing production and achieving
+some of the highest ever utilization rates. Growth in scale has been achieved while maintaining industry
+leading levels of asset reliability and operational excellence. This underscores Borouge’s commitment
+to operational excellence and ambitious future growth and is a testament to Borouge’s capability.
+3
+
+=== [MDA_FY2023.pdf p4] ===
+3. Revenue & Pricing
+Q4 Q4 YoY Q3 QoQ FY FY YoY
+H
+2023 2022 (%) 2023 (%) 2023 2022 (%)
+Sales volumes by product (kt) 1,359 1,415 -4% 1,395 -3% 5,116 5,083 1%
+Polyethylene 751 733 3% 733 3% 2,715 2,676 2%
+Polypropylene 608 628 -3% 642 -5% 2,285 2,126 8%
+Ethylene and others - 54 -100% 20 -100% 116 281 -59%
+Polyethylene (US$ / t)
+Average sales prices 1,077 1,116 -3% 1,093 -1% 1,129 1,318 -14%
+Premia 187 217 -14% 174 7% 215 311 -31%
+Benchmark 890 899 -1% 919 -3% 914 1,007 -9%
+Polypropylene (US$ / t)
+Average sales prices 991 1,016 -2% 967 2% 1,016 1,222 -17%
+Premia 111 117 -5% 107 4% 125 208 -40%
+Benchmark 880 899 -2% 860 2% 891 1,014 -12%
+Q4 Q4 YoY Q3 QoQ FY FY YoY
+H
+2023 2022 (%) 2023 (%) 2023 2022 (%)
+$m $m $m $m $m
+Revenue by product
+Polyethylene 858 880 -3% 840 2% 3,276 3,775 -13%
+Polypropylene 620 672 -8% 637 -3% 2,402 2,706 -11%
+Ethylene and others 19 41 -52% 20 -0.3% 113 247 -54%
+Total revenues 1,497 1,593 -6% 1,496 0% 5,791 6,728 -14%
+(1) Benchmark prices represent HDPE Blow Molding NEA CFR and polypropylene Raffia NEA CFR prices as per IHS Markit data.
+(2) Average sales prices are equal to revenue over sales volumes (including commissions).
+(3) Premia is equal to the difference between average sales prices and the benchmark prices.
+Strong sales volumes of 5,116kt partially counteracted the price declines in 2023. PE sales volumes
+are up by 2 percent and PP sales volumes are up by 8 percent on a year-on-year basis.
+Sales volumes from infrastructure solutions represent 39 percent of overall sales for the year, exhibiting
+Borouge’s strategic focus on high value-add products. The Asian market continues to be the top
+destination for Borouge’s differentiated products with 62 percent of sales volumes, followed by Middle
+East and Africa at 29 percent.
+In the fourth quarter, sales volumes are down by 4 percent from the previous quarter to 1,359kt. Sales
+volumes from infrastructure solutions represent 36 percent of total quarterly volumes. Asia Pacific
+region accounted for 63 percent of total sales volumes during the same period.
+In 2023, blended average selling prices were down by 16 percent from the previous year. Average
+selling prices for Polyethylene (PE) and Polypropylene (PP) were down by 14 percent and 17 percent
+respectively on a year-on-year basis.
+Despite tough market conditions, Borouge maintained a healthy Premia above benchmark prices in all
+four quarters of 2023. In 2023, Borouge achieved a premium over benchmark for PE of $215 per tonne
+(above management’s over-the-cycle guidance of $200 per tonne) and premium over benchmark for
+PP of $125 per tonne (below management’s over-the-cycle guidance of $140 per tonne). In the fourth
+quarter, premia for PE and PP were up 7 percent and 4 percent respectively on a quarter-on-quarter
+basis.
+Despite challenges, Borouge remains committed to its strategic focus on differentiated and durable
+products and strives to be a leader in specialty and value-add segments. Further progress was made
+in the year towards the circular economy with more than 18 new recyclates partnerships to explore
+sustainable applications and two new mobility grades made from up to 70 percent recycled materials
+were also launched. The Company maintains its focus on innovation, with approximately 20 percent of
+Borouge’s annual sales volume comprised of new products. The 2024 product pipeline includes new
+applications including the introduction of healthcare grades.
+4
+
+=== [MDA_FY2023.pdf p5] ===
+Segmental revenue breakdown (includes polyolefins and olefins)
+Q4 Q4 YoY Q3 QoQ FY FY YoY
+2023 2022 (%) 2023 (%) 2023 2022 (%)
+By product group
+Polyethylene 57% 55% 4% 56% 2% 57% 56% 1%
+Polypropylene 41% 42% -2% 43% -3% 41% 40% 3%
+Ethylene and others 1% 3% -49% 1% 0% 2% 4% -47%
+By end market
+Consumer solutions 56% 48% 16% 53% 5% 52% 47% 9%
+Infrastructure solutions 40% 46% -14% 43% -6% 44% 46% -5%
+Other 4% 6% -21% 4% 3% 5% 6% -25%
+By geography
+Asia Pacific 63% 65% -4% 62% 2% 62% 60% 3%
+Middle East & Africa 29% 26% 13% 31% -4% 29% 30% -2%
+Rest of World 6% 6% 5% 6% 0% 6% 6% 3%
+Ethylene & others 1% 3% -49% 1% 0% 2% 4% -47%
+(1) Consumer Solutions includes sales to the agriculture sector.
+(2) “Other” in “By End Markets” includes mobility and healthcare sectors and ethylene and other products.
+Segmental volume breakdown (includes polyolefins and olefins)
+Q4 Q4 YoY Q3 QoQ FY FY YoY
+2023 2022 (%) 2023 (%) 2023 2022 (%)
+By product group
+Polyethylene 55% 52% 7% 53% 5% 53% 53% 1%
+Polypropylene 45% 44% 1% 46% -3% 45% 42% 7%
+Ethylene and others 0% 4% -100% 1% -100% 2% 6% -59%
+By end market
+Consumer solutions 61% 52% 17% 58% 5% 57% 50% 14%
+Infrastructure solutions 36% 42% -12% 38% -4% 39% 42% -9%
+Other 3% 6% -59% 4% -36% 5% 8% -41%
+By geography
+Asia Pacific 63% 65% -2% 62% 2% 62% 61% 2%
+Middle East & Africa 30% 26% 18% 30% -1% 29% 28% 4%
+Rest of World 7% 6% 14% 6% 4% 7% 6% 14%
+Ethylene & others 0% 4% -100% 1% -100% 2% 6% -59%
+(1) Consumer Solutions includes sales to the agriculture sector.
+(2) “Other” in “By End Markets” includes mobility and healthcare sectors and ethylene and other products.
+4. Costs
+Q4 Q4 YoY Q3 QoQ FY FY YoY
+2023 2022 (%) 2023 (%) 2023 2022 (%)
+$m $m $m $m $m
+Revenue 1,497 1,593 -6% 1,496 0% 5,791 6,727 -14%
+Cost of sales (excluding D&A) (754) (861) -12% (773) -2% (3,062) (3,237) -5%
+…Feedstock costs (335) (332) 1% (323) 4% (1,357) (1,226) 7%
+…Other variable and fixed
+(419) (530) -21% (450) -7% (1,704) (1,971) -14%
+production costs
+…as % of revenue 50% 54% 52% 53% 48%
+General and administrative
+(46) (59) -23% (40) 15% (177) (176) 1%
+expenses (excluding D&A)
+…as % of revenue 3% 4% 3% 15% 3% 3%
+Selling and distribution
+(100) (149) -33% (95) 5% (399) (703) -43%
+expenses
+…as % of revenue 7% 9% 6% 144% 7% 11%
+Other income and expenses 2 13 -87% 4 -56% 16 19 -19%
+5
+
+=== [MDA_FY2023.pdf p6] ===
+Depreciation and amortization (146) (149) -2% (143) 2% (572) (555) 3%
+Operating profit 452 388 17% 449 1% 1,597 2,076
+…as % of revenue 30% 24% 30% 28% 31%
+The Value Enhancement Program significantly outperforms the initial and revised targets of $400 million
+and $500 million respectively, reflecting management’s focus on cost discipline and the strong
+execution from across the organisation.
+In 2023, the overall cost base decreased by 10 percent versus the previous year. Total cost per tonne
+is down by 15 percent during the same period. In the fourth quarter, the overall cost base is down 13
+percent and total cost per tonne is lower by 15 percent versus the same period last year.
+For the full year 2023, cost of sales is down by 5 percent driven by a 14 percent decrease in other
+variable and fixed costs. Selling and distribution expenses are down by 43 percent on a year-on-year
+due to significant reduction in unit costs over the period, primarily driven by logistics. General and admin
+expenses remained flat year-on-year.
+5. Cash Generation
+Q4 Q4 YoY Q3 QoQ FY FY YoY
+2023 2022 (%) 2023 (%) 2023 2022 (%)
+$m $m $m $m $m
+Profit for the period 288 247 16% 282 2% 1,001 1,409 -29%
+-3%
+Income tax expense 112 94 19% 116 400 564 -29%
+Net finance loss, including
+1%
+foreign exchange loss 52 46 12% 51 196 102 92%
+Depreciation of property, plant,
+1%
+and equipment 138 142 -3% 137 540 530 2%
+Depreciation of right-of-use
+6%
+assets 1 1 1% 1 4 4 2%
+Amortisation of intangible
+21%
+assets 7 5 32% 6 28 21 36%
+Impairment loss on property,
+-
+plant & equipment 2 4 -56% 0 2 16 -89%
+Adjusted EBITDA (1) 600 541 11% 592 1% 2,171 2,646 -18%
+Capital expenditure (2) 74 76 -2% 20 273% 199 189 5%
+Adjusted operating free cash
+526 465 13% 573 -8% 1,972 2,457 -20%
+flow (3)
+Cash conversion (%) 88% 86% 2% 97% -9% 91% 93% -2%
+(1) Adjusted EBITDA is calculated as EBITDA plus adjustments on foreign exchange gain or loss and impairment loss on property, plant and equipment.
+(2) Capital expenditure is calculated as additions to property, plant and equipment for the period.
+(3) Adjusted Operating Free Cash Flow is calculated as Adjusted EBITDA less capital expenditure.
+Adjusted EBITDA for the fourth quarter increased by 11 percent on a year-on-year basis to $600 million.
+Adjusted operating free cash flow of $526 million represents an increase of 13 percent versus the same
+quarter last year. Cash conversion in the fourth quarter of 88 percent versus 97 percent in the third
+quarter due to capex spend related to upcoming operational maintenance.
+Throughout 2023 Borouge has managed to repay $850 million debt under the Commercial Facility and
+disposed of a further $500 million Revolving Credit Facility, which was fully undrawn at the 31
+December. Cash and Cash equivalents stood at $354 million at the period end.
+Full year 2023 adjusted EBITDA of $2,171 million down 18 percent versus the previous year, and cash
+conversion remained strong at 91 percent.
+6
+
+=== [MDA_FY2023.pdf p7] ===
+6. Current Trading & Outlook
+The polyolefins market remains challenging in 2024 against the backdrop of macroeconomic and
+geopolitical uncertainty, short term polyolefin capacity increases and muted global demand. Market
+analysts anticipate a soft pricing environment to continue until a delayed recovery materializes. Borouge
+management expects pricing in Q1 2024 to be slightly higher than levels achieved in Q4 2023 for both
+PE and PP.
+An operational update in relation to Borouge’s regular plant maintenance program in 2024. A planned
+turnaround of the Borouge 3 plant (330kt impact in Q4 2024) and feedstock-related operational stop
+(170kt impact in Q1 2024) will have a total production volume impact of 500kt in FY2024.
+The Borouge 4 project being built on behalf of the current project owners, ADNOC and Borealis, has
+crossed the halfway construction phase and is to be completed by the end of 2025. With the re-
+contribution of Borouge 4, Borouge’s production capacity will increase by 1.4 million tonnes per annum
+to 6.4 million tonnes per annum. The plant, powered by third generation Borealis Borstar® technology
+will enable Borouge to increase production of more innovative and differentiated polyolefins solutions.
+Borouge is well-positioned from an overall cost basis going into 2024, following the successful
+implementation of the Value Enhancement Program in 2023. Within Borouge’s cost base, ethane costs
+will remain essentially fixed under a long-term pricing agreement with ADNOC, which provides Borouge
+with significant long-term feedstock security, a key competitive advantage. Propylene costs, which
+broadly track oil prices, remain elevated. The OCU will continue to be run at high rates in the coming
+quarter, generating cost effective propylene feedstock for PP production.
+Management intends to pay a dividend of $1.3 billion for FY 2024, demonstrating the Company’s strong
+through-the-cycle cash flow generation and focus on shareholder returns.
+Borouge management updated guidance for 2024 is summarised below:
+Metric Management Guidance
+Production impact from (1) B3
+▪ Q1 24: -170kt (feedstock-related stop)
+turnaround and (2) related feedstock
+▪ Q4 24: -330 kt (Borouge 3 planned turnaround)
+operational stop
+▪ Polyethylene: $200 / tonne
+Through-the-cycle product premia
+▪ Polypropylene: $140 / tonne
+FY2024 Dividend ▪ $1.3 billion ($0.043 / share)
+Borouge will announce its Q2 2024 results on 31st July 2024.
+7
+
+=== [MDA_FY2023.pdf p8] ===
+Management Q4 / FY 2023 Earnings Call
+Borouge management will host its Q4 / FY 2023 earnings call on 1 February 2024 at 1:30 pm UAE time.
+Webcast and call access details are provided below.
+Webcast Link:
+https://webcast.openbriefing.com/borouge-feb24/
+Conference Call Dial-in Details:
+Operator Assisted Dial-In:
+UAE (Toll-Free): 800 0357 04553
+United Kingdom (Local): +44 20 3936 2999
+United Kingdom (Toll-Free): +44 800 358 1035
+Global Dial-In Numbers
+Access Code: 615322
+8

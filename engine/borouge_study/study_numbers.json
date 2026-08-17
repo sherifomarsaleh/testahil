@@ -1,0 +1,3130 @@
+{
+ "ticker": "BOROUGE",
+ "market": "AE",
+ "exchange": "Abu Dhabi Securities Exchange",
+ "company": "Borouge plc",
+ "reporting_currency": "USD",
+ "listing_currency": "AED",
+ "spot_aed": 2.4,
+ "spot_usd": 0.6535057862491491,
+ "spot_date": "2026-08-07",
+ "aed_per_usd": 3.6725,
+ "shares_out": 30057691583.0,
+ "mktcap_usd": 19642.875370782847,
+ "net_debt": 3275.0,
+ "leases": 222.68,
+ "nci_value": 26.832,
+ "history": {
+  "2023": {
+   "revenue": 5791.345,
+   "cogs": 3627.3830000000003,
+   "gross_profit": 2163.962,
+   "other_income": 17.35,
+   "ga": 182.915,
+   "sd": 399.495,
+   "impairment": 1.731,
+   "ebit": 1597.171,
+   "da": 572.169,
+   "ebitda": 2169.34,
+   "fin_income": 26.815,
+   "fin_cost": 220.909,
+   "fx": -2.074,
+   "pbt": 1401.0030000000002,
+   "tax": 400.333,
+   "pat": 1000.6700000000001,
+   "pat_owners": 991.125,
+   "etr": 0.2857474252374906,
+   "capex": 198.78,
+   "cfo": 1768.72
+  },
+  "2024": {
+   "revenue": 6026.1230000000005,
+   "cogs": 3490.989,
+   "gross_profit": 2535.1340000000005,
+   "other_income": 53.951,
+   "ga": 193.121,
+   "sd": 471.963,
+   "impairment": 3.082,
+   "ebit": 1920.9190000000003,
+   "da": 552.65,
+   "ebitda": 2473.5690000000004,
+   "fin_income": 28.554000000000002,
+   "fin_cost": 202.025,
+   "fx": -2.1390000000000002,
+   "pbt": 1745.3090000000004,
+   "tax": 506.361,
+   "pat": 1238.948,
+   "pat_owners": 1225.2730000000001,
+   "etr": 0.2901268485981565,
+   "capex": 167.383,
+   "cfo": 1913.152
+  },
+  "2025": {
+   "revenue": 5847.773,
+   "cogs": 3565.985,
+   "gross_profit": 2281.788,
+   "other_income": 26.321,
+   "ga": 196.577,
+   "sd": 416.028,
+   "impairment": 1.441,
+   "ebit": 1694.063,
+   "da": 476.314,
+   "ebitda": 2170.377,
+   "fin_income": 23.718,
+   "fin_cost": 175.924,
+   "fx": -2.013,
+   "pbt": 1539.8440000000003,
+   "tax": 440.714,
+   "pat": 1099.13,
+   "pat_owners": 1089.178,
+   "etr": 0.28620691446666024,
+   "capex": 308.233,
+   "cfo": 1920.976
+  }
+ },
+ "etr_hist": [
+  0.2857474252374906,
+  0.2901268485981565,
+  0.28620691446666024
+ ],
+ "etr": 0.2873603961007691,
+ "etr_h126": 0.2509704331287283,
+ "unit_build": {
+  "realisation_pe": 1.0675777429930173,
+  "realisation_pp": 1.0321064927749413,
+  "realisation_by_year": {
+   "2023": {
+    "pe": 1.0687598177627489,
+    "pp": 1.0346491152500905
+   },
+   "2024": {
+    "pe": 1.0580170281582952,
+    "pp": 1.0263297456304679
+   },
+   "2025": {
+    "pe": 1.0759563830580083,
+    "pp": 1.0353406174442652
+   }
+  },
+  "realisation_pe_h126": 1.0946985634429285,
+  "realisation_pp_h126": 1.018649400392139,
+  "feed_per_t": {
+   "2023": 265.2462861610633,
+   "2024": 246.93251533742333,
+   "2025": 256.18199802176065
+  },
+  "feed_per_t_h126": 394.5049248315189,
+  "othprod_fixed": 789.7908363659598,
+  "othprod_var_per_t": 0.20063484938358858,
+  "sourcing_uplift": 1.0295632626992652,
+  "sd_per_t": {
+   "2023": 78.08737294761532,
+   "2024": 88.46541705716963,
+   "2025": 77.21380846325167
+  },
+  "sd_per_t_h126": 177.22165474974463,
+  "vol_pe": {
+   "2023": 2715,
+   "2024": 3072,
+   "2025": 3053
+  },
+  "vol_pp": {
+   "2023": 2285,
+   "2024": 2253,
+   "2025": 2322
+  },
+  "vol_tot": {
+   "2023": 5116,
+   "2024": 5335,
+   "2025": 5388
+  },
+  "bench_pe": {
+   "2023": 914,
+   "2024": 898,
+   "2025": 822
+  },
+  "bench_pp": {
+   "2023": 891,
+   "2024": 897,
+   "2025": 851
+  },
+  "prem_pe": {
+   "2023": 215,
+   "2024": 197,
+   "2025": 224
+  },
+  "prem_pp": {
+   "2023": 125,
+   "2024": 150,
+   "2025": 134
+  },
+  "rev_pe": {
+   "2023": 3276.0,
+   "2024": 3559.0,
+   "2025": 3436
+  },
+  "rev_pp": {
+   "2023": 2402.0,
+   "2024": 2421.0,
+   "2025": 2368
+  },
+  "production": {
+   "2023": 5116.0,
+   "2024": 5216.0,
+   "2025": 5055.0
+  },
+  "capacity_pe": 2750,
+  "capacity_pp": 2230
+ },
+ "wacc": {
+  "rf_usd": 0.0465,
+  "us_default_spread": 0.0023,
+  "rf_star": 0.0442,
+  "rf_local_aed": 0.0448,
+  "uae_default_spread": 0.0042,
+  "rf_star_aed": 0.0406,
+  "erp_rating": 0.0487,
+  "erp_default_spread_basis": 0.0465,
+  "mature_erp": 0.0423,
+  "crp": 0.0064,
+  "beta_own": 0.41528940171777734,
+  "beta_used": 0.41528940171777734,
+  "beta_bottom_up": 1.0182347577122213,
+  "sector_unlevered": 1.0021,
+  "de_ratio": 0.16672711800998807,
+  "ke_own": 0.06442459386365576,
+  "ke_bottom_up": 0.09378803270058518,
+  "ke_own_ds": 0.06351095717987665,
+  "ke_bu_ds": 0.0915479162336183,
+  "sofr": 0.0365,
+  "kd_related_party": 0.05523714285714286,
+  "kd": 0.0555,
+  "kd_spot_floating": 0.0455,
+  "margin_arms": 0.009,
+  "margin_related": 0.008737142857142857,
+  "sovereign_usd": 0.0507,
+  "equity_weight": 0.857098446212201,
+  "debt_weight": 0.142901553787799,
+  "tax": 0.2873603961007691,
+  "wacc_own": 0.060870189819571104,
+  "wacc_bottom_up": 0.08603754762215031,
+  "wacc_own_ds": 0.06008711323750156,
+  "wacc_bu_ds": 0.08411754727897863,
+  "wacc": 0.060870189819571104,
+  "mktcap": 19642.875370782847
+ },
+ "grid_2x2": {
+  "own_stock_beta": {
+   "normalisation": 2.549854919607749,
+   "prolonged": 2.348085070915562
+  },
+  "bottom_up_sector_beta": {
+   "normalisation": 1.4769944608534211,
+   "prolonged": 1.31003678279902
+  }
+ },
+ "working_capital": {
+  "dso": 50.89129017431239,
+  "dio": 61.83088660781963,
+  "dpo": 92.49608922133605,
+  "ccc": 20.22608756079596,
+  "dso_hist": {
+   "2023": 50.21094926998823,
+   "2024": 52.015254252194985,
+   "2025": 50.44766700075396
+  },
+  "dio_hist": {
+   "2023": 64.92067697290305,
+   "2024": 66.96793516106753,
+   "2025": 53.60404768948832
+  },
+  "dpo_hist": {
+   "2023": 88.08249776767437,
+   "2024": 91.68628145204697,
+   "2025": 97.71948844428678
+  }
+ },
+ "peer_table": {
+  "SABIC (Tadawul 2010)": {
+   "ev_ebitda": 10.83,
+   "pe_fwd": 24.65,
+   "pb": 1.02,
+   "div_yield": 0.0435,
+   "ebitda_margin": 0.1393,
+   "profit_margin": -0.1974,
+   "loss_making": true
+  },
+  "Saudi Kayan (2350)": {
+   "ev_ebitda": 32.52,
+   "pe_fwd": null,
+   "pb": 0.99,
+   "div_yield": 0.0,
+   "ebitda_margin": 0.0604,
+   "profit_margin": -0.3014,
+   "loss_making": true
+  },
+  "Yansab (2290)": {
+   "ev_ebitda": 12.24,
+   "pe_fwd": 33.04,
+   "pb": 1.61,
+   "div_yield": 0.0669,
+   "ebitda_margin": 0.2035,
+   "profit_margin": 0.0494,
+   "loss_making": false
+  },
+  "Industries Qatar (IQCD)": {
+   "ev_ebitda": 9.9,
+   "pe_fwd": 17.04,
+   "pb": 1.86,
+   "div_yield": 0.0638,
+   "ebitda_margin": null,
+   "profit_margin": null,
+   "loss_making": false
+  },
+  "LyondellBasell (LYB)": {
+   "ev_ebitda": 12.96,
+   "pe_fwd": 7.42,
+   "pb": 1.8,
+   "div_yield": 0.0463,
+   "ebitda_margin": 0.0765,
+   "profit_margin": -0.0113,
+   "loss_making": true
+  },
+  "Dow Inc (DOW)": {
+   "ev_ebitda": 13.39,
+   "pe_fwd": 13.74,
+   "pb": 1.34,
+   "div_yield": 0.0477,
+   "ebitda_margin": 0.0658,
+   "profit_margin": -0.0313,
+   "loss_making": true
+  },
+  "Westlake (WLK)": {
+   "ev_ebitda": null,
+   "pe_fwd": 20.34,
+   "pb": 1.14,
+   "div_yield": 0.0274,
+   "ebitda_margin": -0.0066,
+   "profit_margin": -0.1094,
+   "loss_making": true
+  },
+  "Braskem (BAK)": {
+   "ev_ebitda": null,
+   "pe_fwd": null,
+   "pb": null,
+   "div_yield": null,
+   "ebitda_margin": -0.0006,
+   "profit_margin": -0.1368,
+   "loss_making": true
+  },
+  "Formosa Plastics (1301)": {
+   "ev_ebitda": 55.97,
+   "pe_fwd": 14.8,
+   "pb": 0.91,
+   "div_yield": 0.009,
+   "ebitda_margin": 0.0157,
+   "profit_margin": -0.0401,
+   "loss_making": true
+  },
+  "LG Chem (051910)": {
+   "ev_ebitda": 13.39,
+   "pe_fwd": 15.48,
+   "pb": 0.43,
+   "div_yield": 0.0072,
+   "ebitda_margin": 0.1003,
+   "profit_margin": -0.0452,
+   "loss_making": true
+  },
+  "Petronas Chemicals (PCHEM)": {
+   "ev_ebitda": 22.92,
+   "pe_fwd": 21.18,
+   "pb": 0.97,
+   "div_yield": 0.0156,
+   "ebitda_margin": 0.0512,
+   "profit_margin": -0.0642,
+   "loss_making": true
+  }
+ },
+ "peer_naive_median": 13.39,
+ "peers_loss_making": 9,
+ "peers_ev_undefined": 2,
+ "relative_triangulation": {
+  "LyondellBasell ten-year median EV/EBITDA": 7.18,
+  "Industries Qatar current EV/EBITDA": 9.9,
+  "Damodaran global Chemical (Diversified) sector EV/EBITDA": 8.655
+ },
+ "framings": {
+  "normalisation": {
+   "label": "Normalisation",
+   "thesis": "Navigation through the Strait of Hormuz is restored during the second half of 2026, on the basis of the United States-Iran memorandum signed on 18 June 2026 and the Energy Information Administration's July expectation that most shut-in production returns by the end of 2026. Utilisation returns to the high-capacity rates the plant demonstrated in 2024 and 2025, benchmark prices give back the shortage premium over 2027, realised premia revert to the company's own through-the-cycle guidance, and freight returns to the cost of the direct route. Prices settle BELOW the 2023-2024 level, not back at it, because the structural oversupply is untouched by the war: global polyethylene capacity still rises 22% to 2034 and the producer consensus on a return to healthy operating rates has moved out to 2032.",
+   "rows": [
+    {
+     "year": 2026,
+     "util_pe": 0.86,
+     "util_pp": 0.9,
+     "vol_pe": 2365.0,
+     "vol_pp": 2007.0,
+     "vol_tot": 4372.0,
+     "vol_sold": 4501.250584521187,
+     "bench_pe": 1010.0,
+     "bench_pp": 1050.0,
+     "prem_pe": 260.0,
+     "prem_pp": 165.0,
+     "price_pe": 1355.823733601132,
+     "price_pp": 1254.0093887215537,
+     "revenue": 5932.119985008454,
+     "feedstock": 1264.0782608695654,
+     "feed_unit": 289.13043478260875,
+     "othprod": 1683.5520054346941,
+     "sd": 675.1875876781781,
+     "sd_per_t": 150,
+     "ga": 191.94799999999998,
+     "other_income": 26.873741,
+     "ebitda": 2144.227872026016,
+     "ebitda_margin": 0.36146063758738356,
+     "da": 400.00000000000006,
+     "ebit": 1744.227872026016,
+     "ebit_margin": 0.29403111812202,
+     "nopat": 1243.0058598306184,
+     "capex": 300,
+     "nwc": 579.4618086573954,
+     "d_nwc": 24.477562856787586,
+     "fcff": 1318.528296973831,
+     "discount_factor": 0.9426223958372101,
+     "pv_fcff": 1242.874302272629,
+     "ppe_close": 5982.232
+    },
+    {
+     "year": 2027,
+     "util_pe": 1.02,
+     "util_pp": 1.0,
+     "vol_pe": 2805.0,
+     "vol_pp": 2230.0,
+     "vol_tot": 5035.0,
+     "vol_sold": 5183.8510276908,
+     "bench_pe": 900.0,
+     "bench_pp": 930.0,
+     "prem_pe": 210.0,
+     "prem_pp": 145.0,
+     "price_pe": 1185.0112947222492,
+     "price_pp": 1109.5144797330618,
+     "revenue": 6005.226911796152,
+     "feedstock": 1331.7859738528364,
+     "feed_unit": 264.5056551842773,
+     "othprod": 1833.506815898536,
+     "sd": 518.38510276908,
+     "sd_per_t": 100,
+     "ga": 195.97890799999996,
+     "other_income": 27.438089560999995,
+     "ebitda": 2153.008200836701,
+     "ebitda_margin": 0.3585223726696349,
+     "da": 393.42346691148913,
+     "ebit": 1759.5847339252116,
+     "ebit_margin": 0.2930088670702575,
+     "nopat": 1253.9497678115963,
+     "capex": 320.0,
+     "nwc": 571.3682208273409,
+     "d_nwc": -8.093587830054503,
+     "fcff": 1335.46682255314,
+     "discount_factor": 0.8885369811338819,
+     "pv_fcff": 1186.6116589158246,
+     "ppe_close": 5908.808533088511
+    },
+    {
+     "year": 2028,
+     "util_pe": 1.03,
+     "util_pp": 1.01,
+     "vol_pe": 2832.5,
+     "vol_pp": 2252.3,
+     "vol_tot": 5084.8,
+     "vol_sold": 5235.123278173224,
+     "bench_pe": 860.0,
+     "bench_pp": 890.0,
+     "prem_pe": 200.0,
+     "prem_pp": 140.0,
+     "price_pe": 1131.6324075725984,
+     "price_pp": 1063.0696875581896,
+     "revenue": 5797.322073141234,
+     "feedstock": 1320.5435307272182,
+     "feed_unit": 259.7041241990281,
+     "othprod": 1860.7879487321338,
+     "sd": 429.28010881020435,
+     "sd_per_t": 82,
+     "ga": 200.09446506799995,
+     "other_income": 28.014289441780992,
+     "ebitda": 2014.6303092454589,
+     "ebitda_margin": 0.3475105029232656,
+     "da": 388.59474831532316,
+     "ebit": 1626.0355609301357,
+     "ebit_margin": 0.2804804598425702,
+     "nopat": 1158.7773380673157,
+     "capex": 320.0,
+     "nwc": 541.0329464651995,
+     "d_nwc": -30.335274362141377,
+     "fcff": 1257.70736074478,
+     "discount_factor": 0.8375548579463817,
+     "pv_fcff": 1053.398909866713,
+     "ppe_close": 5840.213784773187
+    },
+    {
+     "year": 2029,
+     "util_pe": 1.03,
+     "util_pp": 1.01,
+     "vol_pe": 2832.5,
+     "vol_pp": 2252.3,
+     "vol_tot": 5084.8,
+     "vol_sold": 5235.123278173224,
+     "bench_pe": 870.0,
+     "bench_pp": 900.0,
+     "prem_pe": 200.0,
+     "prem_pp": 140.0,
+     "price_pe": 1142.3081850025285,
+     "price_pp": 1073.390752485939,
+     "revenue": 5849.180946457251,
+     "feedstock": 1325.1356607749542,
+     "feed_unit": 260.60723347525055,
+     "othprod": 1878.4405459304498,
+     "sd": 434.51523208837756,
+     "sd_per_t": 83,
+     "ga": 204.29644883442793,
+     "other_income": 28.602589520058395,
+     "ebitda": 2035.3956483490997,
+     "ebitda_margin": 0.34797960038865,
+     "da": 384.0835919953851,
+     "ebit": 1651.3120563537145,
+     "ebit_margin": 0.2823150918854521,
+     "nopat": 1176.7903697539355,
+     "capex": 320.0,
+     "nwc": 546.3946612650782,
+     "d_nwc": 5.361714799878655,
+     "fcff": 1235.512246949442,
+     "discount_factor": 0.7894979668425125,
+     "pv_fcff": 975.4344069756087,
+     "ppe_close": 5776.130192777802
+    },
+    {
+     "year": 2030,
+     "util_pe": 1.03,
+     "util_pp": 1.01,
+     "vol_pe": 2832.5,
+     "vol_pp": 2252.3,
+     "vol_tot": 5084.8,
+     "vol_sold": 5235.123278173224,
+     "bench_pe": 885.0,
+     "bench_pp": 915.0,
+     "prem_pe": 200.0,
+     "prem_pp": 140.0,
+     "price_pe": 1158.3218511474238,
+     "price_pp": 1088.872349877563,
+     "revenue": 5928.893816431274,
+     "feedstock": 1332.0238558465574,
+     "feed_unit": 261.9618973895841,
+     "othprod": 1896.46384766993,
+     "sd": 444.9854786447241,
+     "sd_per_t": 85,
+     "ga": 208.5866742599509,
+     "other_income": 29.203243899979615,
+     "ebitda": 2076.037203910091,
+     "ebitda_margin": 0.3501559090426925,
+     "da": 379.86911336350227,
+     "ebit": 1696.168090546589,
+     "ebit_margin": 0.286085084851047,
+     "nopat": 1208.7565561936358,
+     "capex": 320.0,
+     "nwc": 555.415961811263,
+     "d_nwc": 9.021300546184762,
+     "fcff": 1259.6043690109532,
+     "discount_factor": 0.7441984650136955,
+     "pv_fcff": 937.3956379424958,
+     "ppe_close": 5716.2610794143
+    }
+   ],
+   "pv_explicit": 5395.714915973271,
+   "terminal_nopat": 1232.9316873175085,
+   "reinvestment_rate": 0.16666666666666669,
+   "terminal_roc": 0.12,
+   "terminal_growth": 0.02,
+   "terminal_fcff": 1027.4430727645904,
+   "terminal_value": 25139.18034881719,
+   "pv_terminal": 18708.53942729221,
+   "ev_core": 24104.25434326548,
+   "ev": 24393.879666430217,
+   "tv_share_of_ev": 0.7669357922199672,
+   "b4": {
+    "steady_from_cumulative": 400.0,
+    "steady_from_accretion": 120.82559783314203,
+    "steady_adopted": 120.82559783314203,
+    "rows": [
+     {
+      "year": 2026,
+      "ramp": 0.1,
+      "net_profit": 12.082559783314203,
+      "pv": 11.389291450793955
+     },
+     {
+      "year": 2027,
+      "ramp": 0.3,
+      "net_profit": 36.24767934994261,
+      "pv": 32.20740358270696
+     },
+     {
+      "year": 2028,
+      "ramp": 0.6,
+      "net_profit": 72.49535869988522,
+      "pv": 60.71883985765435
+     },
+     {
+      "year": 2029,
+      "ramp": 1.0,
+      "net_profit": 120.82559783314203,
+      "pv": 95.39156383179672
+     },
+     {
+      "year": 2030,
+      "ramp": 1.0,
+      "net_profit": 120.82559783314203,
+      "pv": 89.91822444178638
+     }
+    ],
+    "pv_explicit": 289.62532316473835,
+    "pv_terminal": 0.0,
+    "value": 289.62532316473835,
+    "share_of_ev": 0.011872868404910104
+   },
+   "net_debt": 3275.0,
+   "leases": 222.68,
+   "nci": 26.832,
+   "equity": 20869.36766643022,
+   "per_share_usd": 0.6943103933581345,
+   "per_share_aed": 2.549854919607749,
+   "wacc": 0.060870189819571104,
+   "tax": 0.2873603961007691
+  },
+  "prolonged": {
+   "label": "Prolonged disruption",
+   "thesis": "Navigation remains impaired into 2027 and normalises only slowly thereafter. Utilisation stays capped by feedstock and logistics, benchmark prices hold a persistent shortage premium, Borouge's own premia stay above guidance because differentiated grades are scarce, and distribution cost per tonne stays at the elevated level the second quarter of 2026 established. The binding constraint is feedstock, not export capacity: management stated on the July call that it shipped every tonne it made without the strait, and that ethane availability was what capped production.",
+   "rows": [
+    {
+     "year": 2026,
+     "util_pe": 0.8,
+     "util_pp": 0.86,
+     "vol_pe": 2200.0,
+     "vol_pp": 1917.8,
+     "vol_tot": 4117.8,
+     "vol_sold": 4239.535603143035,
+     "bench_pe": 1010.0,
+     "bench_pp": 1050.0,
+     "prem_pe": 260.0,
+     "prem_pp": 165.0,
+     "price_pe": 1355.823733601132,
+     "price_pp": 1254.0093887215537,
+     "revenue": 5586.630930189035,
+     "feedstock": 1207.8490408979492,
+     "feed_unit": 293.3238721885349,
+     "othprod": 1632.550626721386,
+     "sd": 729.200123740602,
+     "sd_per_t": 172,
+     "ga": 191.94799999999998,
+     "other_income": 26.873741,
+     "ebitda": 1851.9568798290977,
+     "ebitda_margin": 0.33149798205238395,
+     "da": 400.00000000000006,
+     "ebit": 1451.9568798290977,
+     "ebit_margin": 0.2598984787026137,
+     "nopat": 1034.7219757201713,
+     "capex": 300,
+     "nwc": 540.2997930250065,
+     "d_nwc": -14.684452775601358,
+     "fcff": 1149.4064284957726,
+     "discount_factor": 0.9426223958372101,
+     "pv_fcff": 1083.456241419376,
+     "ppe_close": 5982.232
+    },
+    {
+     "year": 2027,
+     "util_pe": 0.85,
+     "util_pp": 0.9,
+     "vol_pe": 2337.5,
+     "vol_pp": 2007.0,
+     "vol_tot": 4344.5,
+     "vol_sold": 4472.9375947969575,
+     "bench_pe": 900.0,
+     "bench_pp": 930.0,
+     "prem_pe": 210.0,
+     "prem_pp": 145.0,
+     "price_pe": 1185.0112947222492,
+     "price_pp": 1109.5144797330618,
+     "revenue": 5180.1199748646795,
+     "feedstock": 1172.9085034189138,
+     "feed_unit": 269.97548703393113,
+     "othprod": 1694.9684523991677,
+     "sd": 738.0347031414981,
+     "sd_per_t": 165,
+     "ga": 195.97890799999996,
+     "other_income": 27.438089560999995,
+     "ebitda": 1405.6674974660998,
+     "ebitda_margin": 0.27135809677898826,
+     "da": 393.42346691148913,
+     "ebit": 1012.2440305546106,
+     "ebit_margin": 0.19540937960245863,
+     "nopat": 721.3651849837987,
+     "capex": 320.0,
+     "nwc": 481.31222152820305,
+     "d_nwc": -58.98757149680341,
+     "fcff": 853.7762233920912,
+     "discount_factor": 0.8885369811338819,
+     "pv_fcff": 758.6117480966955,
+     "ppe_close": 5908.808533088511
+    },
+    {
+     "year": 2028,
+     "util_pe": 0.93,
+     "util_pp": 0.96,
+     "vol_pe": 2557.5,
+     "vol_pp": 2140.7999999999997,
+     "vol_tot": 4698.299999999999,
+     "vol_sold": 4837.197077139957,
+     "bench_pe": 860.0,
+     "bench_pp": 890.0,
+     "prem_pe": 200.0,
+     "prem_pp": 140.0,
+     "price_pe": 1131.6324075725984,
+     "price_pp": 1063.0696875581896,
+     "revenue": 5354.8866350652515,
+     "feedstock": 1228.4418894336213,
+     "feed_unit": 261.4651872876618,
+     "othprod": 1783.2425794453768,
+     "sd": 677.2075907995941,
+     "sd_per_t": 140,
+     "ga": 200.09446506799995,
+     "other_income": 28.014289441780992,
+     "ebitda": 1493.9143997604408,
+     "ebitda_margin": 0.2789815175503219,
+     "da": 388.59474831532316,
+     "ebit": 1105.3196514451176,
+     "ebit_margin": 0.20641326824870287,
+     "nopat": 787.6945585878846,
+     "capex": 320.0,
+     "nwc": 493.5977401356107,
+     "d_nwc": 12.285518607407653,
+     "fcff": 844.0037882958001,
+     "discount_factor": 0.8375548579463817,
+     "pv_fcff": 706.8994730122969,
+     "ppe_close": 5840.213784773187
+    },
+    {
+     "year": 2029,
+     "util_pe": 1.0,
+     "util_pp": 1.0,
+     "vol_pe": 2750.0,
+     "vol_pp": 2230.0,
+     "vol_tot": 4980.0,
+     "vol_sold": 5127.225048242341,
+     "bench_pe": 870.0,
+     "bench_pp": 900.0,
+     "prem_pe": 200.0,
+     "prem_pp": 140.0,
+     "price_pe": 1142.3081850025285,
+     "price_pp": 1073.390752485939,
+     "revenue": 5727.510208563851,
+     "feedstock": 1301.4969681331443,
+     "feed_unit": 261.34477271749887,
+     "othprod": 1857.4140137150496,
+     "sd": 563.9947553066575,
+     "sd_per_t": 110,
+     "ga": 204.29644883442793,
+     "other_income": 28.602589520058395,
+     "ebitda": 1828.91061209463,
+     "ebitda_margin": 0.3193203583225427,
+     "da": 384.0835919953851,
+     "ebit": 1444.827020099245,
+     "ebit_margin": 0.25226092446573384,
+     "nopat": 1029.640955306432,
+     "capex": 320.0,
+     "nwc": 533.182845764171,
+     "d_nwc": 39.585105628560314,
+     "fcff": 1054.139441673257,
+     "discount_factor": 0.7894979668425125,
+     "pv_fcff": 832.2409459695376,
+     "ppe_close": 5776.130192777802
+    },
+    {
+     "year": 2030,
+     "util_pe": 1.02,
+     "util_pp": 1.01,
+     "vol_pe": 2805.0,
+     "vol_pp": 2252.3,
+     "vol_tot": 5057.3,
+     "vol_sold": 5206.8102884489945,
+     "bench_pe": 885.0,
+     "bench_pp": 915.0,
+     "prem_pe": 200.0,
+     "prem_pp": 140.0,
+     "price_pe": 1158.3218511474238,
+     "price_pp": 1088.872349877563,
+     "revenue": 5896.098261762387,
+     "feedstock": 1324.8199036683438,
+     "feed_unit": 261.9618973895841,
+     "othprod": 1890.9463893118814,
+     "sd": 468.61292596040954,
+     "sd_per_t": 90,
+     "ga": 208.5866742599509,
+     "other_income": 29.203243899979615,
+     "ebitda": 2032.335612461781,
+     "ebitda_margin": 0.3446916116785172,
+     "da": 379.86911336350227,
+     "ebit": 1652.4664990982787,
+     "ebit_margin": 0.28026440973939,
+     "nopat": 1177.613071374146,
+     "capex": 320.0,
+     "nwc": 551.9121167223377,
+     "d_nwc": 18.729270958166694,
+     "fcff": 1218.7529137794818,
+     "discount_factor": 0.7441984650136955,
+     "pv_fcff": 906.9940476656591,
+     "ppe_close": 5716.2610794143
+    }
+   ],
+   "pv_explicit": 4288.202456163565,
+   "terminal_nopat": 1201.1653328016291,
+   "reinvestment_rate": 0.16666666666666669,
+   "terminal_roc": 0.12,
+   "terminal_growth": 0.02,
+   "terminal_fcff": 1000.9711106680242,
+   "terminal_value": 24491.472026114716,
+   "pv_terminal": 18226.515887760434,
+   "ev_core": 22514.718343924,
+   "ev": 22742.488003329243,
+   "tv_share_of_ev": 0.8014301638893808,
+   "b4": {
+    "steady_from_cumulative": 400.0,
+    "steady_from_accretion": 95.02071491944866,
+    "steady_adopted": 95.02071491944866,
+    "rows": [
+     {
+      "year": 2026,
+      "ramp": 0.1,
+      "net_profit": 9.502071491944866,
+      "pv": 8.956865395153523
+     },
+     {
+      "year": 2027,
+      "ramp": 0.3,
+      "net_profit": 28.5062144758346,
+      "pv": 25.32882575391304
+     },
+     {
+      "year": 2028,
+      "ramp": 0.6,
+      "net_profit": 57.0124289516692,
+      "pv": 47.75103683179348
+     },
+     {
+      "year": 2029,
+      "ramp": 1.0,
+      "net_profit": 95.02071491944866,
+      "pv": 75.01866123682672
+     },
+     {
+      "year": 2030,
+      "ramp": 1.0,
+      "net_profit": 95.02071491944866,
+      "pv": 70.71427018755764
+     }
+    ],
+    "pv_explicit": 227.7696594052444,
+    "pv_terminal": 0.0,
+    "value": 227.7696594052444,
+    "share_of_ev": 0.010015160143072363
+   },
+   "net_debt": 3275.0,
+   "leases": 222.68,
+   "nci": 26.832,
+   "equity": 19217.976003329244,
+   "per_share_usd": 0.6393696585202348,
+   "per_share_aed": 2.348085070915562,
+   "wacc": 0.060870189819571104,
+   "tax": 0.2873603961007691
+  }
+ },
+ "framing_drivers": {
+  "normalisation": {
+   "label": "Normalisation",
+   "thesis": "Navigation through the Strait of Hormuz is restored during the second half of 2026, on the basis of the United States-Iran memorandum signed on 18 June 2026 and the Energy Information Administration's July expectation that most shut-in production returns by the end of 2026. Utilisation returns to the high-capacity rates the plant demonstrated in 2024 and 2025, benchmark prices give back the shortage premium over 2027, realised premia revert to the company's own through-the-cycle guidance, and freight returns to the cost of the direct route. Prices settle BELOW the 2023-2024 level, not back at it, because the structural oversupply is untouched by the war: global polyethylene capacity still rises 22% to 2034 and the producer consensus on a return to healthy operating rates has moved out to 2032.",
+   "util_pe": [
+    0.86,
+    1.02,
+    1.03,
+    1.03,
+    1.03
+   ],
+   "util_pp": [
+    0.9,
+    1.0,
+    1.01,
+    1.01,
+    1.01
+   ],
+   "bench_pe": [
+    1010,
+    900,
+    860,
+    870,
+    885
+   ],
+   "bench_pp": [
+    1050,
+    930,
+    890,
+    900,
+    915
+   ],
+   "prem_pe": [
+    260,
+    210,
+    200,
+    200,
+    200
+   ],
+   "prem_pp": [
+    165,
+    145,
+    140,
+    140,
+    140
+   ],
+   "sd_per_t": [
+    150,
+    100,
+    82,
+    83,
+    85
+   ],
+   "feed_market_share": [
+    0.55,
+    0.35,
+    0.3,
+    0.3,
+    0.3
+   ]
+  },
+  "prolonged": {
+   "label": "Prolonged disruption",
+   "thesis": "Navigation remains impaired into 2027 and normalises only slowly thereafter. Utilisation stays capped by feedstock and logistics, benchmark prices hold a persistent shortage premium, Borouge's own premia stay above guidance because differentiated grades are scarce, and distribution cost per tonne stays at the elevated level the second quarter of 2026 established. The binding constraint is feedstock, not export capacity: management stated on the July call that it shipped every tonne it made without the strait, and that ethane availability was what capped production.",
+   "util_pe": [
+    0.8,
+    0.85,
+    0.93,
+    1.0,
+    1.02
+   ],
+   "util_pp": [
+    0.86,
+    0.9,
+    0.96,
+    1.0,
+    1.01
+   ],
+   "bench_pe": [
+    1010,
+    900,
+    860,
+    870,
+    885
+   ],
+   "bench_pp": [
+    1050,
+    930,
+    890,
+    900,
+    915
+   ],
+   "prem_pe": [
+    260,
+    210,
+    200,
+    200,
+    200
+   ],
+   "prem_pp": [
+    165,
+    145,
+    140,
+    140,
+    140
+   ],
+   "sd_per_t": [
+    172,
+    165,
+    140,
+    110,
+    90
+   ],
+   "feed_market_share": [
+    0.62,
+    0.58,
+    0.45,
+    0.35,
+    0.3
+   ]
+  }
+ },
+ "lenses": {
+  "dcf_normalisation_own_beta": 2.549854919607749,
+  "dcf_prolonged_own_beta": 2.348085070915562,
+  "dcf_normalisation_sector_beta": 1.4769944608534211,
+  "dcf_prolonged_sector_beta": 1.31003678279902,
+  "book_value_own_beta": 2.3897784314647748,
+  "book_value_sector_beta": 1.4387825824377205,
+  "relative_multiples": 1.4598686181140186,
+  "normalised_earnings_own_beta": 2.34582322793206,
+  "normalised_earnings_sector_beta": 1.3011839069629867
+ },
+ "fair_low": 1.3011839069629867,
+ "fair_mid": 1.4769944608534211,
+ "fair_high": 2.549854919607749,
+ "book_value": {
+  "bvps_usd": 0.12396151546472536,
+  "roe_hist": [
+   0.2186715799422921,
+   0.27455707565286336,
+   0.26637758783031906
+  ],
+  "roe_sustainable": 0.25320208114182485,
+  "justified_pb": 5.2493914037244584,
+  "value_aed": 2.3897784314647748,
+  "justified_pb_sector_beta": 3.160432289719732,
+  "value_aed_sector_beta": 1.4387825824377205
+ },
+ "relative": {
+  "triangulation": {
+   "LyondellBasell ten-year median EV/EBITDA": 7.18,
+   "Industries Qatar current EV/EBITDA": 9.9,
+   "Damodaran global Chemical (Diversified) sector EV/EBITDA": 8.655
+  },
+  "median_ev_ebitda": 8.655,
+  "midcycle_ebitda": 1754.2723545029498,
+  "ev": 15472.852551387768,
+  "equity": 11948.340551387768,
+  "value_aed": 1.4598686181140186
+ },
+ "normalised": {
+  "util_pe": 1.06,
+  "util_pp": 0.99,
+  "bench_pe": 878.0,
+  "bench_pp": 879.6666666666666,
+  "volume": 5122.7,
+  "revenue": 5678.117879262157,
+  "feedstock": 1312.3435212660731,
+  "othprod": 1817.582979303269,
+  "sd": 416.24771799073704,
+  "ebitda": 1943.9436607020775,
+  "da": 400.0,
+  "ebit": 1543.9436607020775,
+  "nopat": 1100.275398805457,
+  "ev": 22723.975878398738,
+  "equity": 19199.46387839874,
+  "value_aed": 2.34582322793206,
+  "value_aed_sector_beta": 1.3011839069629867
+ },
+ "sensitivity": {
+  "wacc_grid": [
+   0.0508701898195711,
+   0.055870189819571106,
+   0.060870189819571104,
+   0.0658701898195711,
+   0.0708701898195711
+  ],
+  "g_grid": [
+   0.01,
+   0.015,
+   0.02,
+   0.025,
+   0.03
+  ],
+  "grids": {
+   "normalisation": [
+    [
+     2.893894044153059,
+     3.1366329695082693,
+     3.456448615077962,
+     3.8980314454965534,
+     4.548899005574333
+    ],
+    [
+     2.5449976143681523,
+     2.7190480218000452,
+     2.9403135118701047,
+     3.2317361605328987,
+     3.633994346502716
+    ],
+    [
+     2.264351045241041,
+     2.392041742172137,
+     2.549854919607749,
+     2.7503870318694346,
+     3.0143954512356355
+    ],
+    [
+     2.0336405376399926,
+     2.1289186231316295,
+     2.243992778539845,
+     2.3861284716801685,
+     2.5666421485492172
+    ],
+    [
+     1.8405692865639587,
+     1.9125389747201216,
+     1.9977973901989965,
+     2.100690076601443,
+     2.22768908764244
+    ]
+   ],
+   "prolonged": [
+    [
+     2.6802235010882014,
+     2.9167082837062632,
+     3.2282839129949283,
+     3.6584894084942428,
+     4.292587434729233
+    ],
+    [
+     2.3418486227941155,
+     2.5114146398879305,
+     2.7269792480097075,
+     3.010893422953637,
+     3.40278746930901
+    ],
+    [
+     2.069937173674011,
+     2.1943379333045914,
+     2.348085070915562,
+     2.5434504945152154,
+     2.800656764880761
+    ],
+    [
+     1.8466478761721872,
+     1.9394711318687474,
+     2.0515804138343268,
+     2.190053995874659,
+     2.365916756952206
+    ],
+    [
+     1.6600014001267371,
+     1.7301167968798299,
+     1.8131785383017205,
+     1.9134202055220242,
+     2.037147100476304
+    ]
+   ]
+  },
+  "premium_grid": {
+   "normalisation": [
+    [
+     -100,
+     1.6106507974803603
+    ],
+    [
+     -50,
+     2.080252858544056
+    ],
+    [
+     0,
+     2.549854919607749
+    ],
+    [
+     50,
+     3.019456980671444
+    ],
+    [
+     100,
+     3.4890590417351404
+    ]
+   ],
+   "prolonged": [
+    [
+     -100,
+     1.4255725266177968
+    ],
+    [
+     -50,
+     1.8868287987666774
+    ],
+    [
+     0,
+     2.348085070915562
+    ],
+    [
+     50,
+     2.8093413430644443
+    ],
+    [
+     100,
+     3.270597615213326
+    ]
+   ]
+  },
+  "util_grid": {
+   "normalisation": [
+    [
+     -0.1,
+     2.0266913916077964
+    ],
+    [
+     -0.05,
+     2.2882731556077753
+    ],
+    [
+     0.0,
+     2.549854919607749
+    ],
+    [
+     0.05,
+     2.811436683607727
+    ],
+    [
+     0.1,
+     3.073018447607703
+    ]
+   ],
+   "prolonged": [
+    [
+     -0.1,
+     1.8360393142341613
+    ],
+    [
+     -0.05,
+     2.09206219257486
+    ],
+    [
+     0.0,
+     2.348085070915562
+    ],
+    [
+     0.05,
+     2.6041079492562607
+    ],
+    [
+     0.1,
+     2.86013082759696
+    ]
+   ]
+  }
+ },
+ "alt_wacc": {
+  "own_stock_beta": {
+   "beta": 0.41528940171777734,
+   "ke": 0.06442459386365576,
+   "wacc": 0.060870189819571104,
+   "basis": "Tier-1 own-stock weekly regression against the FTSE ADX General Index \u2014 the company's own local market index, which is what the beta rule asks for. It passes the usability gate on all three conditions.",
+   "against": "It is flagged weak by the same machinery: an R-squared of 0.094 and a 90% interval of [0.27, 0.56] spanning 0.70 times the point estimate. A Dimson lead-lag correction moves it DOWN, not up, so thin trading does not explain it. What it most plausibly measures is a share with a 10% free float that has traded in a narrow band, not the risk of a business whose earnings track a global commodity benchmark. It is, however, materially HIGHER than the 0.271 an equal-weight composite of the other listed UAE names produces, because an equal-weight composite over-weights small, thinly traded constituents and understates covariance with any single large name.",
+   "value_aed": {
+    "normalisation": 2.549854919607749,
+    "prolonged": 2.348085070915562
+   },
+   "ev": {
+    "normalisation": 24393.879666430217,
+    "prolonged": 22742.488003329243
+   },
+   "tv_share": {
+    "normalisation": 0.7669357922199672,
+    "prolonged": 0.8014301638893808
+   }
+  },
+  "bottom_up_sector_beta": {
+   "beta": 1.0182347577122213,
+   "ke": 0.09378803270058518,
+   "wacc": 0.08603754762215031,
+   "basis": "Global Chemical (Basic) unlevered beta corrected for cash, re-levered to Borouge's own market-value capital structure and effective tax rate. It prices the business rather than the listing.",
+   "against": "It imports the capital-structure and cyclicality of a 909-firm global set, most of which lack Borouge's contracted ethane position, and it overrides an own-stock estimate that did pass its gate.",
+   "value_aed": {
+    "normalisation": 1.4769944608534211,
+    "prolonged": 1.31003678279902
+   },
+   "ev": {
+    "normalisation": 15613.019549116816,
+    "prolonged": 14246.549189859363
+   },
+   "tv_share": {
+    "normalisation": 0.6595621515533581,
+    "prolonged": 0.7042011380077203
+   }
+  }
+ },
+ "beta_detail": {
+  "ticker": "BOROUGE",
+  "regressor": "FTSE ADX General Index",
+  "regressor_file": "engine/raw_indices/AE/FADGI.csv",
+  "regressor_span": [
+   "2011-01-02",
+   "2026-07-24"
+  ],
+  "regressor_rows": 3883,
+  "regressor_repairs": [
+   "dropped 1 interior stale/no-trade rows"
+  ],
+  "regressor_flat_frac": 0.0,
+  "regressor_max_abs_log": 0.0841,
+  "beta": 0.41528940171777734,
+  "r2": 0.09449503178860574,
+  "n": 215,
+  "se": 0.08808500376795605,
+  "ci90": [
+   0.27038957051948964,
+   0.560189232916065
+  ],
+  "usable": true,
+  "gate_msg": "passes minimum usability gate",
+  "window_years": 5,
+  "frequency": "weekly",
+  "weak": true,
+  "weak_reason": "R-squared = 9.4% against the 10% weak-instrument threshold; the 90% confidence interval [0.27, 0.56] spans 0.70x the point estimate",
+  "warnings": [],
+  "window_sensitivity": {
+   "2": {
+    "years": 2,
+    "beta": 0.38235683667954184,
+    "r2": 0.07398564667825736,
+    "n": 102,
+    "se": 0.13527077619018538,
+    "alpha": -0.00010185914310172898
+   },
+   "3": {
+    "years": 3,
+    "beta": 0.38410666070202965,
+    "r2": 0.07555808968839939,
+    "n": 154,
+    "se": 0.10897562608459944,
+    "alpha": -0.0009000571402267985
+   },
+   "4": {
+    "years": 4,
+    "beta": 0.3645097543937371,
+    "r2": 0.0680186047609751,
+    "n": 206,
+    "se": 0.09446780680717118,
+    "alpha": -0.001019666453990293
+   },
+   "5": {
+    "years": 5,
+    "beta": 0.41528940171777734,
+    "r2": 0.09449503178860574,
+    "n": 215,
+    "se": 0.08808500376795605,
+    "alpha": -0.0012279942319211562
+   }
+  },
+  "adopted": {
+   "beta_used": 0.41528940171777734,
+   "basis": "tier-1 own-stock weekly regression against its own local index (usability gate PASSED)",
+   "why": "n = 215 weekly observations against the ADX general index, R-squared = 0.094 against the 0.05 floor, SE(beta) = 0.088 against |beta| = 0.415. All three conditions of the usability gate are met, so the regression estimate is adopted rather than a default.",
+   "corroboration": "Cross-checked three ways. (i) The Dimson sum-beta is 0.351 with a 90% interval of [0.06, 0.64]; the adopted 0.42 sits inside it. (ii) The same regression against an equal-weight composite of the other 17 names in the AE library gives 0.271 (R-squared 0.088) \u2014 a different construction of 'the market' reaching a similar answer. (iii) The simple prior for a cyclical, capital-intensive materials business is 1.0-1.5 and for a defensive or staple business 0.6-0.9; the adopted figure is read against both in the study rather than accepted at face value.",
+   "sensitivity_required": [
+    0.6,
+    0.8,
+    1.0,
+    1.15,
+    1.3
+   ]
+  },
+  "dimson": {
+   "sum_beta": 0.35070738192588663,
+   "se_sum": 0.17800085299401422,
+   "r2": 0.09653119195127946,
+   "n": 212,
+   "ci90": [
+    0.05789597875073321,
+    0.64351878510104
+   ],
+   "coefficients": {
+    "lead": 0.022073109662263612,
+    "contemporaneous": 0.395836610184398,
+    "lag1": 0.057282332808116176,
+    "lag2": -0.12448467072889115
+   },
+   "uplift_vs_ols": -0.06458201979189071,
+   "note": "Dimson (1979) sum-beta over one lead, the contemporaneous term and two lags. The uplift over the contemporaneous OLS beta measures how much co-movement is booked late because the stock does not trade on every session."
+  },
+  "composite_corroboration": {
+   "beta": 0.27098462571939275,
+   "r2": 0.08825322272667646,
+   "se": 0.05954010511035082,
+   "n": 216,
+   "names": 17,
+   "note": "An equal-weight composite of the other AE names in the price library, the regressor the previous revision of this study used. It is retained as a corroboration only. An equal-weight composite over-weights small, thinly traded constituents, which is why the capitalisation-weighted general index is the correct regressor and this is the cross-check."
+  },
+  "index_membership": {
+   "subject_is_constituent": true,
+   "market_cap_aed_bn": 72.1,
+   "adx_total_aed_bn": 3100.0,
+   "weight_upper_bound": 0.0233,
+   "weight_estimate_free_float": 0.0023,
+   "note": "The subject IS a constituent of its own regressor, which injects a self-covariance term into the numerator exactly as it did with the composite. The difference is magnitude: in a seventeen-name equal-weight composite the subject carried about a seventeenth of the index; in a free-float capitalisation-weighted general index with roughly a 10% float it carries well under one per cent. The contamination is therefore an order of magnitude smaller and is bounded above rather than assumed away."
+  },
+  "thin_trading": {
+   "flat_frac": 0.2483,
+   "ae_panel_median": 0.1261,
+   "ratio": 1.97,
+   "index_flat_frac": 0.0,
+   "note": "Share of sessions closing unchanged, against the median of the AE library and against the index itself. A high ratio is the documented mechanism for a downward-biased contemporaneous beta, and it is why the Dimson correction is run."
+  },
+  "plausibility": {
+   "sector_prior": "cyclical / capital-intensive materials: 1.0-1.5",
+   "defensive_prior": "defensive or staple: 0.6-0.9",
+   "net_cash_note": "The company carries roughly 0.8x net debt to EBITDA and its earnings are levered to a global commodity price benchmark, both of which argue for an estimate at or above the cyclical band rather than below it."
+  }
+ },
+ "macro": {
+  "ust_10y": {
+   "value": 0.0465,
+   "source": "US 10-year Treasury note yield, 4.65% on 7 August 2026",
+   "date": "2026-08-07",
+   "ring": "Global"
+  },
+  "us_default_spread": {
+   "value": 0.0023,
+   "source": "Aswath Damodaran, same file, United States row: Aa1, adjusted default spread 0.23%, country risk premium 0.23%, equity risk premium 4.46%, sovereign CDS 0.30%",
+   "date": "2026-01-05",
+   "ring": "Global"
+  },
+  "uae_govt_yield_aed": {
+   "value": 0.0448,
+   "source": "UAE Ministry of Finance July 2026 Treasury Bond and Sukuk auction, reported by the Emirates News Agency (WAM): the January-2031 T-Bond cleared at a yield to maturity of 4.48%, a spread of 4 basis points over the comparable US Treasury; AED 1.1 billion issued against AED 4.83 billion of bids, 4.4 times covered. This is the SECONDARY-market-clearing yield on the same bond whose Final Terms are cited below, and it supersedes the January issue coupon as the current local risk-free observation. Government of the United Arab Emirates acting through the Ministry of Finance, Final Terms dated 29 January 2026, Treasury Bonds Programme, Series AED01826C264: aggregate face amount AED 550,000,000, issue price 100%, issue date 29 January 2026, maturity date 29 January 2031, coupon 3.90% fixed per annum payable semi-annually; listed on Nasdaq Dubai",
+   "date": "2026-07-30",
+   "ring": "Country"
+  },
+  "uae_govt_yield_aed_issue_coupon": {
+   "value": 0.039,
+   "source": "Government of the United Arab Emirates acting through the Ministry of Finance, Final Terms dated 29 January 2026, Treasury Bonds Programme, Series AED01826C264: aggregate face amount AED 550,000,000, issue price 100%, issue date 29 January 2026, maturity date 29 January 2031, coupon 3.90% fixed per annum payable semi-annually; listed on Nasdaq Dubai. Carried as the issue-date observation; the same bond yielded 4.30% at the May 2026 auction and 4.48% at the July 2026 auction, so the local curve rose materially across the first half of 2026",
+   "date": "2026-01-29",
+   "ring": "Country"
+  },
+  "uae_default_spread_rating": {
+   "value": 0.0042,
+   "source": "Aswath Damodaran, 'Country Default Spreads and Risk Premiums', pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/ctryprem.html, file last updated 5 January 2026, United Arab Emirates row read from the original file \u2014 Moody's rating Aa2, adjusted default spread 0.42%",
+   "date": "2026-01-05",
+   "ring": "Country"
+  },
+  "uae_crp": {
+   "value": 0.0064,
+   "source": "Aswath Damodaran, 'Country Default Spreads and Risk Premiums', pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/ctryprem.html, file last updated 5 January 2026, United Arab Emirates row read from the original file \u2014 country risk premium 0.64%",
+   "date": "2026-01-05",
+   "ring": "Country"
+  },
+  "uae_erp_rating": {
+   "value": 0.0487,
+   "source": "Aswath Damodaran, 'Country Default Spreads and Risk Premiums', pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/ctryprem.html, file last updated 5 January 2026, United Arab Emirates row read from the original file \u2014 total equity risk premium 4.87%, being the mature-market premium plus a country risk premium scaled by relative equity-market volatility",
+   "date": "2026-01-05",
+   "ring": "Country"
+  },
+  "mature_erp": {
+   "value": 0.0423,
+   "source": "Aswath Damodaran, same file, United States row: Aa1, adjusted default spread 0.23%, country risk premium 0.23%, equity risk premium 4.46%, sovereign CDS 0.30%; the mature-market equity risk premium is the US equity risk premium of 4.46% less the US default spread of 0.23%, which is 4.23%, and the same 4.23% is recovered from the UAE row as 4.87% less the 0.64% country risk premium",
+   "date": "2026-01-05",
+   "ring": "Global"
+  },
+  "uae_erp_default_spread_basis": {
+   "value": 0.0465,
+   "source": "Mature-market equity risk premium of 4.23% plus the UAE adjusted default spread of 0.42%, the construction Damodaran describes in the same file as standard practice. Aswath Damodaran, 'Country Default Spreads and Risk Premiums', pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/ctryprem.html, file last updated 5 January 2026, United Arab Emirates row read from the original file",
+   "date": "2026-01-05",
+   "ring": "Country"
+  },
+  "uae_cds_available": {
+   "value": 0.0,
+   "source": "Aswath Damodaran, 'Country Default Spreads and Risk Premiums', pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/ctryprem.html, file last updated 5 January 2026, United Arab Emirates row read from the original file \u2014 the sovereign CDS and the CDS-based equity risk premium columns both read NA for the United Arab Emirates, so a CDS-basis cost of capital cannot be published for this sovereign and none is invented",
+   "date": "2026-01-05",
+   "ring": "Country"
+  },
+  "sofr": {
+   "value": 0.0365,
+   "source": "Secured Overnight Financing Rate as published by the Federal Reserve Bank of New York, 3.65% for 6 August 2026",
+   "date": "2026-08-06",
+   "ring": "Global"
+  },
+  "cbuae_base_rate": {
+   "value": 0.0365,
+   "source": "Central Bank of the UAE Base Rate, held at 3.65% since 17 June 2026; the dirham peg means the Base Rate tracks the Federal Reserve's policy path",
+   "date": "2026-06-17",
+   "ring": "Country"
+  },
+  "adx_index_sessions": {
+   "value": 3883,
+   "source": "FTSE ADX General Index daily history, 2 January 2011 to 24 July 2026, 3,883 sessions after the cleaning gate (one stale no-trade row dropped). This is the regressor for the company's own beta: the beta rule requires a stock's own price history against its OWN local index. Trading-day density runs 238-252 sessions a year against an ADX calendar of about 250, and no session closes unchanged, so the series carries no stale-price artefact that would bias a covariance downward",
+   "date": "2026-07-24",
+   "ring": "Country"
+  },
+  "adx_index_last": {
+   "value": 9828.14,
+   "source": "FTSE ADX General Index close on 24 July 2026, the last session in the series. It ends two weeks behind the share price series, which is immaterial for a five-year weekly regression but is the as-of date any beta quoted from it carries",
+   "date": "2026-07-24",
+   "ring": "Country"
+  },
+  "sector_unlevered_beta": {
+   "value": 1.0021,
+   "source": "Aswath Damodaran, 'Betas by Sector (Global)', pages.stern.nyu.edu/~adamodar/pc/datasets/betaGlobal.xls, Industry Averages sheet, file dated 5 January 2026, Chemical (Basic) row: 909 firms, levered beta 1.2560, D/E 0.5048, effective tax rate 14.72%, unlevered beta 0.9123, cash/firm value 8.96%, unlevered beta corrected for cash 1.0021. Chemical (Basic) is the right row: Borouge sells commodity polyethylene and polypropylene against published Northeast Asia benchmarks, not specialty formulations",
+   "date": "2026-01-05",
+   "ring": "Industry"
+  },
+  "sector_unlevered_beta_diversified": {
+   "value": 0.9101,
+   "source": "Same file, Chemical (Diversified) row, unlevered beta corrected for cash, shown as the adjacent classification",
+   "date": "2026-01-05",
+   "ring": "Industry"
+  },
+  "peer_lyb_ltm": {
+   "value": 24.0,
+   "source": "GuruFocus, LyondellBasell EV-to-EBITDA (trailing twelve months) of 24.00 as at 7 August 2026, reported by the same source as 234% above its ten-year median",
+   "date": "2026-08-07",
+   "ring": "Industry"
+  },
+  "peer_lyb_10y_median": {
+   "value": 7.18,
+   "source": "GuruFocus, LyondellBasell ten-year median EV/EBITDA",
+   "date": "2026-08-07",
+   "ring": "Industry"
+  },
+  "peer_lyb_forward": {
+   "value": 6.5,
+   "source": "Wells Fargo research note on LyondellBasell, cited in an Investing.com report of the upgrade, applying a 2026 EV/EBITDA multiple of approximately 6.5x to an adjusted EBITDA outlook of USD 6.5 billion. Third-party opinion, used only as one of three through-cycle anchors",
+   "date": "2026-03-19",
+   "ring": "Industry"
+  },
+  "peer_iqcd": {
+   "value": 9.9,
+   "source": "TradingView / PitchBook company profile, Industries Qatar (QE: IQCD) enterprise value to EBITDA of 9.90 as at 2 July 2026. Industries Qatar is the closest listed Gulf comparator: a state-affiliated producer of ethylene, polyethylene and other petrochemicals on advantaged regional feedstock",
+   "date": "2026-07-02",
+   "ring": "Industry"
+  },
+  "peer_sector_ev_ebitda": {
+   "value": 8.655,
+   "source": "Aswath Damodaran, 'EV/EBITDA Multiples by Sector (Global)', pages.stern.nyu.edu/~adamodar/pc/datasets/vebitdaGlobal.xls, Industry Averages sheet, file dated 5 January 2026, Chemical (Diversified) row, EV/EBITDA 8.655x across 63 firms",
+   "date": "2026-01-05",
+   "ring": "Industry"
+  },
+  "peer_table": {
+   "value": {
+    "SABIC (Tadawul 2010)": {
+     "ev_ebitda": 10.83,
+     "pe_fwd": 24.65,
+     "pb": 1.02,
+     "div_yield": 0.0435,
+     "ebitda_margin": 0.1393,
+     "profit_margin": -0.1974,
+     "loss_making": true
+    },
+    "Saudi Kayan (2350)": {
+     "ev_ebitda": 32.52,
+     "pe_fwd": null,
+     "pb": 0.99,
+     "div_yield": 0.0,
+     "ebitda_margin": 0.0604,
+     "profit_margin": -0.3014,
+     "loss_making": true
+    },
+    "Yansab (2290)": {
+     "ev_ebitda": 12.24,
+     "pe_fwd": 33.04,
+     "pb": 1.61,
+     "div_yield": 0.0669,
+     "ebitda_margin": 0.2035,
+     "profit_margin": 0.0494,
+     "loss_making": false
+    },
+    "Industries Qatar (IQCD)": {
+     "ev_ebitda": 9.9,
+     "pe_fwd": 17.04,
+     "pb": 1.86,
+     "div_yield": 0.0638,
+     "ebitda_margin": null,
+     "profit_margin": null,
+     "loss_making": false
+    },
+    "LyondellBasell (LYB)": {
+     "ev_ebitda": 12.96,
+     "pe_fwd": 7.42,
+     "pb": 1.8,
+     "div_yield": 0.0463,
+     "ebitda_margin": 0.0765,
+     "profit_margin": -0.0113,
+     "loss_making": true
+    },
+    "Dow Inc (DOW)": {
+     "ev_ebitda": 13.39,
+     "pe_fwd": 13.74,
+     "pb": 1.34,
+     "div_yield": 0.0477,
+     "ebitda_margin": 0.0658,
+     "profit_margin": -0.0313,
+     "loss_making": true
+    },
+    "Westlake (WLK)": {
+     "ev_ebitda": null,
+     "pe_fwd": 20.34,
+     "pb": 1.14,
+     "div_yield": 0.0274,
+     "ebitda_margin": -0.0066,
+     "profit_margin": -0.1094,
+     "loss_making": true
+    },
+    "Braskem (BAK)": {
+     "ev_ebitda": null,
+     "pe_fwd": null,
+     "pb": null,
+     "div_yield": null,
+     "ebitda_margin": -0.0006,
+     "profit_margin": -0.1368,
+     "loss_making": true
+    },
+    "Formosa Plastics (1301)": {
+     "ev_ebitda": 55.97,
+     "pe_fwd": 14.8,
+     "pb": 0.91,
+     "div_yield": 0.009,
+     "ebitda_margin": 0.0157,
+     "profit_margin": -0.0401,
+     "loss_making": true
+    },
+    "LG Chem (051910)": {
+     "ev_ebitda": 13.39,
+     "pe_fwd": 15.48,
+     "pb": 0.43,
+     "div_yield": 0.0072,
+     "ebitda_margin": 0.1003,
+     "profit_margin": -0.0452,
+     "loss_making": true
+    },
+    "Petronas Chemicals (PCHEM)": {
+     "ev_ebitda": 22.92,
+     "pe_fwd": 21.18,
+     "pb": 0.97,
+     "div_yield": 0.0156,
+     "ebitda_margin": 0.0512,
+     "profit_margin": -0.0642,
+     "loss_making": true
+    }
+   },
+   "source": "stockanalysis.com company statistics pages, all eleven observed 9 August 2026, except Industries Qatar, whose figures come from TradingView and PitchBook profiles carrying no precise observation date and should be read as approximately July-August 2026. AGGREGATOR-SOURCED market data, used only as a relative-multiple cross-check and never as a source for any reported financial figure",
+   "date": "2026-08-09",
+   "ring": "Industry"
+  },
+  "peer_borouge_market": {
+   "value": {
+    "ev_ebitda": 12.02,
+    "pe_trailing": 24.01,
+    "pe_fwd": 9.19,
+    "div_yield": 0.0675,
+    "ebitda_margin": 0.3305,
+    "shares_out_bn": 29.75
+   },
+   "source": "stockanalysis.com, Borouge plc statistics page observed 9 August 2026. Shown for contrast against the peer table: Borouge's 33.05% EBITDA margin against a peer set clustered between zero and 14% is the whole question the ground-up build has to answer from the feedstock position and the product premia. Aggregator-sourced, cross-check only",
+   "date": "2026-08-09",
+   "ring": "Market"
+  },
+  "uae_cpi": {
+   "value": 0.021,
+   "source": "Central Bank of the UAE, Quarterly Economic Review, June 2026: inflation forecast of 2.3% for 2026 and 1.9% for 2027; the model carries the 2.1% average of the two as the escalator for domestic cost lines. NOTE: there is no retrievable UAE NATIONAL consumer price index \u2014 the Central Bank publishes emirate-level series only (Abu Dhabi +1.4% year on year for January-February 2026, Dubai +3.7% for January-April 2026). Dubai's June 2026 print of +5.7% is running well above the Central Bank's own full-year forecast, which was set on a 12 May 2026 cut-off, so this escalator is more likely too low than too high",
+   "date": "2026-06-30",
+   "ring": "Country"
+  },
+  "uae_gdp_growth_cbuae": {
+   "value": 0.017,
+   "source": "Central Bank of the UAE, Quarterly Economic Review, June 2026 \u2014 real GDP growth of 6.2% actual for 2025, forecast 1.7% for 2026 and 9.8% for 2027, the collapse and rebound reflecting the conflict and the recovery of oil output",
+   "date": "2026-06-30",
+   "ring": "Country"
+  },
+  "uae_gdp_growth_imf": {
+   "value": 0.031,
+   "source": "International Monetary Fund country page, April 2026 World Economic Outlook vintage \u2014 UAE real GDP growth of 3.1% for 2026, against 5.0% in the October 2025 vintage. Reported beside the Central Bank's own 1.7% because the two genuinely disagree by 1.4 percentage points and averaging them would hide that",
+   "date": "2026-04-30",
+   "ring": "Country"
+  },
+  "global_growth_imf": {
+   "value": 0.03,
+   "source": "International Monetary Fund, World Economic Outlook Update, July 2026, 'Global Economy in Crosscurrents of War and Technology', published 8 July 2026, Table 1: global growth of 3.0% in 2026 and 3.4% in 2027, against 3.5% in each of 2024 and 2025",
+   "date": "2026-07-08",
+   "ring": "Global"
+  },
+  "hormuz_mou": {
+   "value": 1.0,
+   "source": "United States-Iran Memorandum of Understanding signed 18 June 2026 to end the conflict and reopen the Strait of Hormuz, recorded in the US Energy Information Administration Short-Term Energy Outlook, July 2026 edition. The EIA expects most shut-in crude production back near pre-conflict averages by the end of 2026 and the majority back online in the first quarter of 2027. This is the dated, external basis on which the normalisation framing rests \u2014 it is an agreement, not a completed restoration of traffic, and Borouge's own July guidance still makes recovery conditional on freedom of navigation",
+   "date": "2026-06-18",
+   "ring": "Global"
+  },
+  "brent_eia": {
+   "value": 82.0,
+   "source": "US Energy Information Administration, Short-Term Energy Outlook, July 2026: Brent spot averaging USD 69/bbl in 2025, USD 82/bbl in 2026 and USD 65/bbl in 2027; June 2026 actual USD 85/bbl, down USD 32/bbl from the April 2026 peak",
+   "date": "2026-07-31",
+   "ring": "Global"
+  },
+  "pe_capacity_growth": {
+   "value": 0.22,
+   "source": "Global polyethylene nameplate capacity rising 22% between 2026 and 2034, from 158 million tonnes to 193 million tonnes, per OPIS in the Asia Petrochemical Industry Conference compiled proceedings of 29 May 2026, hosted by the Singapore Chemical Industry Council. ICIS material in the same proceedings states polyethylene capacity additions exceed demand growth until 2030",
+   "date": "2026-05-29",
+   "ring": "Industry"
+  },
+  "pp_capacity_growth": {
+   "value": 0.2,
+   "source": "Global polypropylene capacity rising 20% between 2026 and 2034, from 125 million tonnes to 151 million tonnes, per OPIS in the same Asia Petrochemical Industry Conference proceedings",
+   "date": "2026-05-29",
+   "ring": "Industry"
+  },
+  "operating_rate_recovery_year": {
+   "value": 2032.0,
+   "source": "Producer consensus on the return to 1992-2021 average operating rates moved out to 2032, from 2030 a year earlier \u2014 ICIS Asian Chemical Connections, 'Five Forecasts for Global Chemical Markets in 2026', January 2026. This is why the forecast benchmark path settles below the 2023-2024 level rather than returning to it",
+   "date": "2026-01-31",
+   "ring": "Industry"
+  },
+  "uae_corporate_tax": {
+   "value": 0.09,
+   "source": "Aswath Damodaran, 'Country Default Spreads and Risk Premiums', pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/ctryprem.html, file last updated 5 January 2026, United Arab Emirates row read from the original file \u2014 corporate tax rate column, 9.00%. Borouge's own effective rate is far above this because its Abu Dhabi operations are taxed under a separate concession-style regime; the model uses the company's own disclosed effective rate, not this headline",
+   "date": "2026-01-05",
+   "ring": "Country"
+  },
+  "terminal_growth": {
+   "value": 0.02,
+   "source": "Long-run nominal growth in US dollars for a producer whose owned capacity is fixed. Borouge plc owns no part of the Borouge 4 expansion, so terminal growth cannot embed volume expansion; 2.0% is a price-and-mix rate, below the 4.42% normalised risk-free and below long-run global nominal growth. Sensitised across 1.0% to 3.0% in the study and in the workbook",
+   "date": "2026-08-09",
+   "ring": "Model"
+  },
+  "terminal_roc": {
+   "value": 0.12,
+   "source": "Terminal return on capital. Borouge earned a return on invested capital in the high teens across the three audited years on advantaged ethane feedstock; 12.0% carries a deliberate competitive erosion toward the level a global polyolefin producer can defend once the current capacity wave is absorbed, while staying above the cost of capital. It sets the terminal reinvestment rate as growth divided by return on capital rather than as a free assumption",
+   "date": "2026-08-09",
+   "ring": "Model"
+  },
+  "maintenance_capex": {
+   "value": 320.0,
+   "source": "Steady-state maintenance capital expenditure, USD million a year. The three audited years ran 199, 167 and 308; 2026 is guided below 300. The forecast carries 320 from 2027 because the 2025 reassessment of asset useful lives defers replacement spending without removing it, and a plant running above nameplate consumes maintenance faster than one running below it",
+   "date": "2026-08-09",
+   "ring": "Model"
+  },
+  "ethane_contract_real_escalation": {
+   "value": 0.0,
+   "source": "Real escalation on contracted ethane feedstock. Borouge does not publish the pricing formula of its ADNOC feedstock arrangement, so no escalator can be sourced; the model holds the contracted leg flat in real terms and flags this as an unsourced driver. It is recorded as a negative search result, not as a finding",
+   "date": "2026-08-09",
+   "ring": "Model"
+  },
+  "b4_owner_adnoc": {
+   "value": 0.7,
+   "source": "ADNOC press release, 'ADNOC and OMV advance formation of Borouge Group International AG', 19 March 2026 \u2014 Borouge 4 is owned 70% by ADNOC and 30% by OMV, and is NOT owned by Borouge plc",
+   "date": "2026-03-19",
+   "ring": "Company"
+  },
+  "b4_cumulative_net_profit_3y": {
+   "value": 400.0,
+   "source": "ADNOC press release, 19 March 2026 \u2014 the Asset Usage Agreement is expected to deliver Borouge plc USD 400 million of cumulative net profit over the next three years",
+   "date": "2026-03-19",
+   "ring": "Company"
+  },
+  "b4_accretion_post_rampup": {
+   "value": 0.1,
+   "source": "ADNOC press release, 19 March 2026 \u2014 approximately 10% annual earnings accretion to Borouge plc after Borouge 4 ramp-up",
+   "date": "2026-03-19",
+   "ring": "Company"
+  },
+  "b4_capacity": {
+   "value": 1400.0,
+   "source": "Borouge 4 adds 1.4 million tonnes per annum of polyethylene, making Ruwais the world's largest single-site polyolefin complex \u2014 ADNOC and OMV completion releases. Borouge plc markets this volume but does not own the capacity, so it never enters the unit build",
+   "date": "2026-03-31",
+   "ring": "Industry"
+  },
+  "b4_recontribution": {
+   "value": 2029.0,
+   "source": "ADNOC press release, 19 March 2026 \u2014 recontribution of Borouge 4 into Borouge Group International is 'not expected before 2029', deferred from an original expectation of end-2026. Any model built before 19 March 2026 carries the old date",
+   "date": "2026-03-19",
+   "ring": "Company"
+  },
+  "bgi_ownership_omv": {
+   "value": 0.5,
+   "source": "OMV press release, 'OMV and XRG complete transactions to create Borouge International', 31 March 2026 \u2014 at completion Borouge Group International is held 50% by OMV and 50% by XRG, a wholly owned ADNOC subsidiary, under joint control. The 46.94/46.94/6.12 split announced on 4 March 2025 was a pro-forma structure contingent on Borouge plc's free float accepting an exchange that has not happened. Borouge plc minorities were NOT rolled in and Borouge plc remains separately listed on ADX",
+   "date": "2026-03-31",
+   "ring": "Company"
+  },
+  "bgi_tender_year": {
+   "value": 2027.0,
+   "source": "ADNOC (19 March 2026) and OMV (31 March 2026) \u2014 a tender offer converting Borouge plc shares into Borouge Group International AG shares is expected in 2027, subject to market conditions, a BGI equity raise and Securities and Commodities Authority approval. NO EXCHANGE RATIO AND NO IMPLIED VALUATION OF BOROUGE PLC HAS BEEN PUBLISHED as at 9 August 2026; this was verified as absent across all three primary announcements rather than assumed",
+   "date": "2026-03-19",
+   "ring": "Company"
+  },
+  "analyst_consensus_target": {
+   "value": 2.78,
+   "source": "Consensus of 13 analysts, average target price AED 2.78, reported by stockanalysis.com on 9 August 2026; a second panel of 5 analysts on Investing.com averages AED 2.66 with a high of AED 3.048 and a low of AED 2.299. THIRD-PARTY OPINION, recorded for contrast only and used in no calculation",
+   "date": "2026-08-09",
+   "ring": "Market"
+  },
+  "nci_value": {
+   "value": 26.832,
+   "source": "Non-controlling interests carried at their book value of USD 26.832 million from the FY2025 audited balance sheet. The minority holds 0.9% of group profit, so a market-value uplift on it would not move the per-share result at the second decimal",
+   "date": "2025-12-31",
+   "ring": "Model"
+  }
+ },
+ "company_inputs": {
+  "spot_aed": {
+   "value": 2.4,
+   "source": "Closing price 07-Aug-2026 on the supplied ADX daily series for Borouge (open 2.40, high 2.41, low 2.39, volume 10.94m shares)",
+   "date": "2026-08-07",
+   "ring": "Market"
+  },
+  "aed_per_usd": {
+   "value": 3.6725,
+   "source": "AED/USD central parity. The dirham has been pegged to the US dollar at this rate since November 1997 and the Central Bank of the UAE has maintained it without interruption since",
+   "date": "2026-08-07",
+   "ring": "Country"
+  },
+  "shares_issued": {
+   "value": 30057691583,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young, note 14 (share capital) and note 29: 30,057,691,583 ordinary shares of USD 0.16 each in issue",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "shares_wavg_fy25": {
+   "value": 29937557774,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young, note 29: weighted average number of shares in issue for the year, after the weighted effect of treasury shares acquired during 2025",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "shares_wavg_fy24": {
+   "value": 30057691583,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young, note 29, comparative column",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "treasury_cost_h126": {
+   "value": 216703,
+   "source": "Borouge plc condensed consolidated interim financial statements for the six months ended 30 June 2026 (unaudited), reviewed, statement of changes in equity: cumulative cost of own shares acquired, USD'000",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "treasury_cost_fy25": {
+   "value": 158223,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young, note 31 (treasury shares), USD'000",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "rev_fy23": {
+   "value": 5791345,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2023 (statutory), Ernst & Young, signed 31 January 2024 \u2014 consolidated statement of profit or loss, revenue",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "rev_fy24": {
+   "value": 6026123,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2024 (statutory), Ernst & Young \u2014 consolidated statement of profit or loss, revenue",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "rev_fy25": {
+   "value": 5847773,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young \u2014 consolidated statement of profit or loss, revenue (note 19)",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "cogs_fy23": {
+   "value": 3627383,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2023 (statutory), Ernst & Young, signed 31 January 2024 \u2014 cost of sales",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "cogs_fy24": {
+   "value": 3490989,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2024 (statutory), Ernst & Young \u2014 cost of sales",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "cogs_fy25": {
+   "value": 3565985,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young \u2014 cost of sales (note 20)",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "othinc_fy23": {
+   "value": 17350,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2023 (statutory), Ernst & Young, signed 31 January 2024 \u2014 other income",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "othinc_fy24": {
+   "value": 53951,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2024 (statutory), Ernst & Young \u2014 other income",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "othinc_fy25": {
+   "value": 26321,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young \u2014 other income (note 22)",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "ga_fy23": {
+   "value": 182915,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2023 (statutory), Ernst & Young, signed 31 January 2024 \u2014 general and administrative expenses",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "ga_fy24": {
+   "value": 193121,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2024 (statutory), Ernst & Young \u2014 general and administrative expenses",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "ga_fy25": {
+   "value": 196577,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young \u2014 general and administrative expenses (note 23)",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "sd_fy23": {
+   "value": 399495,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2023 (statutory), Ernst & Young, signed 31 January 2024 \u2014 selling and distribution expenses",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "sd_fy24": {
+   "value": 471963,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2024 (statutory), Ernst & Young \u2014 selling and distribution expenses",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "sd_fy25": {
+   "value": 416028,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young \u2014 selling and distribution expenses (note 24)",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "imp_fy23": {
+   "value": 1731,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2023 (statutory), Ernst & Young, signed 31 January 2024 \u2014 impairment loss on property, plant and equipment and intangible assets",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "imp_fy24": {
+   "value": 3082,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2024 (statutory), Ernst & Young \u2014 impairment loss on property, plant and equipment and intangible assets",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "imp_fy25": {
+   "value": 1441,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young \u2014 impairment loss on property, plant and equipment and intangible assets (note 6)",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "ebit_fy23": {
+   "value": 1597171,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2023 (statutory), Ernst & Young, signed 31 January 2024 \u2014 operating profit",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "ebit_fy24": {
+   "value": 1920919,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2024 (statutory), Ernst & Young \u2014 operating profit",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "ebit_fy25": {
+   "value": 1694063,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young \u2014 operating profit",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "fininc_fy23": {
+   "value": 26815,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2023 (statutory), Ernst & Young, signed 31 January 2024 \u2014 finance income",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "fininc_fy24": {
+   "value": 28554,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2024 (statutory), Ernst & Young \u2014 finance income",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "fininc_fy25": {
+   "value": 23718,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young \u2014 finance income",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "fincost_fy23": {
+   "value": 220909,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2023 (statutory), Ernst & Young, signed 31 January 2024 \u2014 finance costs",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "fincost_fy24": {
+   "value": 202025,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2024 (statutory), Ernst & Young \u2014 finance costs",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "fincost_fy25": {
+   "value": 175924,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young \u2014 finance costs (note 17.1: interest on loans 164,476, interest on lease liabilities 6,193, others 5,255)",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "fx_fy23": {
+   "value": -2074,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2023 (statutory), Ernst & Young, signed 31 January 2024 \u2014 foreign exchange loss",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "fx_fy24": {
+   "value": -2139,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2024 (statutory), Ernst & Young \u2014 foreign exchange loss",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "fx_fy25": {
+   "value": -2013,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young \u2014 foreign exchange loss",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "pbt_fy23": {
+   "value": 1401003,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2023 (statutory), Ernst & Young, signed 31 January 2024 \u2014 profit before tax",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "pbt_fy24": {
+   "value": 1745309,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2024 (statutory), Ernst & Young \u2014 profit before tax",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "pbt_fy25": {
+   "value": 1539844,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young \u2014 profit before tax",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "tax_fy23": {
+   "value": 400333,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2023 (statutory), Ernst & Young, signed 31 January 2024 \u2014 income tax expense (note 12a)",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "tax_fy24": {
+   "value": 506361,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2024 (statutory), Ernst & Young \u2014 income tax expense (note 12a)",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "tax_fy25": {
+   "value": 440714,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young \u2014 income tax expense (note 13a): current UAE 385,236, current foreign 11,360, deferred 44,118",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "pat_fy23": {
+   "value": 1000670,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2023 (statutory), Ernst & Young, signed 31 January 2024 \u2014 profit for the year",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "pat_fy24": {
+   "value": 1238948,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2024 (statutory), Ernst & Young \u2014 profit for the year",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "pat_fy25": {
+   "value": 1099130,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young \u2014 profit for the year",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "pat_owners_fy23": {
+   "value": 991125,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2023 (statutory), Ernst & Young, signed 31 January 2024 \u2014 profit attributable to owners of the Company",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "pat_owners_fy24": {
+   "value": 1225273,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2024 (statutory), Ernst & Young \u2014 profit attributable to owners",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "pat_owners_fy25": {
+   "value": 1089178,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young \u2014 profit attributable to shareholders of the Parent",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "nci_fy25": {
+   "value": 9952,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young \u2014 profit attributable to non-controlling interests",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "tax_applicable_rate_fy25": {
+   "value": 0.3824,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young, note 13(b) reconciliation of effective tax rate: the applicable rate on accounting profit, which the Group states as 38.24% for 2025 against 29.66% for 2024",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "ppe_fy23": {
+   "value": 6677355,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2024 (statutory), Ernst & Young \u2014 property, plant and equipment, comparative column",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "ppe_fy24": {
+   "value": 6292502,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2024 (statutory), Ernst & Young \u2014 property, plant and equipment",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "ppe_fy25": {
+   "value": 6082232,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young \u2014 property, plant and equipment (note 6)",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "intang_fy23": {
+   "value": 60126,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2024 (statutory), Ernst & Young \u2014 intangible assets, comparative",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "intang_fy24": {
+   "value": 60643,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2024 (statutory), Ernst & Young \u2014 intangible assets",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "intang_fy25": {
+   "value": 104573,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young \u2014 intangible assets (note 7)",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "rou_fy24": {
+   "value": 24797,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2024 (statutory), Ernst & Young \u2014 right-of-use assets",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "rou_fy25": {
+   "value": 23327,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young \u2014 right-of-use assets (note 8a)",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "sublease_nc_fy25": {
+   "value": 135697,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young \u2014 investment in sublease, non-current",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "sublease_c_fy25": {
+   "value": 5952,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young \u2014 investments in sublease, current",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "loans_emp_nc_fy25": {
+   "value": 21905,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young \u2014 loans to employees, non-current",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "loans_emp_c_fy25": {
+   "value": 13245,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young \u2014 loans to employees, current",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "dta_fy25": {
+   "value": 1992,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young \u2014 deferred tax assets (note 13c)",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "inv_fy23": {
+   "value": 645184,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2024 (statutory), Ernst & Young \u2014 inventories, comparative",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "inv_fy24": {
+   "value": 640505,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2024 (statutory), Ernst & Young \u2014 inventories",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "inv_fy25": {
+   "value": 523702,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young \u2014 inventories (note 9)",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "ar_fy23": {
+   "value": 796682,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2024 (statutory), Ernst & Young \u2014 trade receivables, comparative",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "ar_fy24": {
+   "value": 858768,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2024 (statutory), Ernst & Young \u2014 trade receivables",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "ar_fy25": {
+   "value": 808237,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young \u2014 trade receivables (note 10a)",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "duefrom_fy23": {
+   "value": 181549,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2024 (statutory), Ernst & Young \u2014 amounts due from related parties, comparative",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "duefrom_fy24": {
+   "value": 209937,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2024 (statutory), Ernst & Young \u2014 amounts due from related parties",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "duefrom_fy25": {
+   "value": 293251,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young \u2014 amounts due from related parties (note 12d)",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "prepaid_fy25": {
+   "value": 48090,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young \u2014 prepayments and other receivables (note 10b)",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "cash_fy23": {
+   "value": 353921,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2024 (statutory), Ernst & Young \u2014 cash and cash equivalents, comparative",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "cash_fy24": {
+   "value": 418506,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2024 (statutory), Ernst & Young \u2014 cash and cash equivalents",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "cash_fy25": {
+   "value": 426901,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young \u2014 cash and cash equivalents (note 11)",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "ta_fy23": {
+   "value": 8943896,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2024 (statutory), Ernst & Young \u2014 total assets, comparative",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "ta_fy24": {
+   "value": 8707465,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2024 (statutory), Ernst & Young \u2014 total assets",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "ta_fy25": {
+   "value": 8489104,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young \u2014 total assets",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "eq_owners_fy23": {
+   "value": 4532482,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2024 (statutory), Ernst & Young \u2014 equity attributable to owners, comparative",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "eq_owners_fy24": {
+   "value": 4462726,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2024 (statutory), Ernst & Young \u2014 equity attributable to owners of the Company",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "eq_owners_fy25": {
+   "value": 4088850,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young \u2014 equity attributable to the owners of the Company",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "nci_bs_fy25": {
+   "value": 26832,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young \u2014 non-controlling interests",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "eq_total_fy25": {
+   "value": 4115682,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young \u2014 total equity",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "ap_fy23": {
+   "value": 308333,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2024 (statutory), Ernst & Young \u2014 trade and other payables, comparative",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "ap_fy24": {
+   "value": 356660,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2024 (statutory), Ernst & Young \u2014 trade and other payables",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "ap_fy25": {
+   "value": 378200,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young \u2014 trade and other payables (note 18): trade accounts payable 79,430, accrued expenses 248,325, contract liabilities 20,568, other payables 29,877",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "ap_trade_only_fy25": {
+   "value": 79430,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young \u2014 note 18, trade accounts payable component only",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "dueto_fy23": {
+   "value": 567034,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2024 (statutory), Ernst & Young \u2014 amounts due to related parties, comparative: current 532,645 plus non-current 34,389",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "dueto_fy24": {
+   "value": 520260,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2024 (statutory), Ernst & Young \u2014 amounts due to related parties, current",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "dueto_fy25": {
+   "value": 576502,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young \u2014 amounts due to related parties (note 12c)",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "debt_fy23": {
+   "value": 3140725,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2024 (statutory), Ernst & Young \u2014 bank loans, non-current, comparative",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "debt_fy24": {
+   "value": 2944100,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2024 (statutory), Ernst & Young \u2014 bank loans, non-current",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "debt_fy25": {
+   "value": 2957730,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young \u2014 bank loans (note 17), reclassified to current liabilities because the 5-year facility dated 19 December 2021 matures within twelve months of the reporting date",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "debt_gross_fy25": {
+   "value": 2960680,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young \u2014 note 17 before unamortised transaction costs of 2,950: commercial term facility 2,600,000, Islamic facility 350,000, receivables discounting 10,680",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "lease_nc_fy25": {
+   "value": 156652,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young \u2014 lease liabilities, non-current (note 8c)",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "lease_c_fy25": {
+   "value": 9528,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young \u2014 lease liabilities, current (note 8c)",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "dtl_fy25": {
+   "value": 128972,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young \u2014 deferred tax liability (note 13c)",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "eosb_nc_fy25": {
+   "value": 93044,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young \u2014 provision for employees' end of service benefits, non-current (note 16)",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "eosb_c_fy25": {
+   "value": 12293,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young \u2014 provision for employees' end of service benefits, current (note 16)",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "taxpay_fy25": {
+   "value": 54499,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young \u2014 income tax payable",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "tl_fy25": {
+   "value": 4373422,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young \u2014 total liabilities",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "dep_ppe_fy23": {
+   "value": 539612,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2024 (statutory), Ernst & Young \u2014 depreciation on property, plant and equipment, cash flow statement comparative",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "dep_ppe_fy24": {
+   "value": 524116,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2024 (statutory), Ernst & Young \u2014 depreciation on property, plant and equipment",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "dep_ppe_fy25": {
+   "value": 449384,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young \u2014 depreciation on property, plant and equipment (note 6)",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "dep_rou_fy23": {
+   "value": 4376,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2024 (statutory), Ernst & Young \u2014 depreciation on right-of-use assets, comparative",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "dep_rou_fy24": {
+   "value": 4786,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2024 (statutory), Ernst & Young \u2014 depreciation on right-of-use assets",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "dep_rou_fy25": {
+   "value": 3609,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young \u2014 depreciation on right-of-use assets (note 8a)",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "amort_fy23": {
+   "value": 28181,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2024 (statutory), Ernst & Young \u2014 amortisation of intangible assets, comparative",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "amort_fy24": {
+   "value": 23748,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2024 (statutory), Ernst & Young \u2014 amortisation of intangible assets",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "amort_fy25": {
+   "value": 23321,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young \u2014 amortisation of intangible assets (note 7)",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "cfo_fy23": {
+   "value": 1768720,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2024 (statutory), Ernst & Young \u2014 net cash generated from operating activities, comparative",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "cfo_fy24": {
+   "value": 1913152,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2024 (statutory), Ernst & Young \u2014 net cash generated from operating activities",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "cfo_fy25": {
+   "value": 1920976,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young \u2014 net cash generated from operating activities",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "capex_ppe_fy23": {
+   "value": 191504,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2024 (statutory), Ernst & Young \u2014 payments for purchase of property, plant and equipment, comparative",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "capex_ppe_fy24": {
+   "value": 160124,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2024 (statutory), Ernst & Young \u2014 payments for purchase of property, plant and equipment",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "capex_ppe_fy25": {
+   "value": 275687,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young \u2014 payments for purchase of property, plant and equipment (note 6)",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "capex_intang_fy25": {
+   "value": 32546,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young \u2014 payments for purchase of intangible assets",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "capex_intang_fy24": {
+   "value": 7259,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2024 (statutory), Ernst & Young \u2014 payments for purchase of intangible assets",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "capex_intang_fy23": {
+   "value": 7276,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2024 (statutory), Ernst & Young \u2014 payments for purchase of intangible assets, comparative",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "div_paid_fy23": {
+   "value": 1317242,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2024 (statutory), Ernst & Young \u2014 payment of dividends, comparative",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "div_paid_fy24": {
+   "value": 1307024,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2024 (statutory), Ernst & Young \u2014 payment of dividends",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "div_paid_fy25": {
+   "value": 1312080,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young \u2014 payment of dividends (note 12b)",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "taxpaid_fy25": {
+   "value": 389595,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young \u2014 tax paid",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "intpaid_fy25": {
+   "value": 161769,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young \u2014 payment of interest on bank loan",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "rev_h126": {
+   "value": 2581161,
+   "source": "Borouge plc condensed consolidated interim financial statements for the six months ended 30 June 2026 (unaudited), reviewed \u2014 revenue for the six-month period",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "rev_q126": {
+   "value": 1175190,
+   "source": "Borouge plc Q2 2026 Management Discussion & Analysis \u2014 Q1 2026 revenue of USD 1,175 million; the interim statements report the six-month figure and the three-month figure, and Q1 is the difference (2,581,161 less 1,405,971)",
+   "date": "2026-03-31",
+   "ring": "Company"
+  },
+  "rev_q226": {
+   "value": 1405971,
+   "source": "Borouge plc condensed consolidated interim financial statements for the six months ended 30 June 2026 (unaudited), reviewed \u2014 revenue for the three-month period ended 30 June 2026",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "cogs_h126": {
+   "value": 1631518,
+   "source": "Borouge plc condensed consolidated interim financial statements for the six months ended 30 June 2026 (unaudited), reviewed \u2014 cost of sales, six months",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "ga_h126": {
+   "value": 96053,
+   "source": "Borouge plc condensed consolidated interim financial statements for the six months ended 30 June 2026 (unaudited), reviewed \u2014 general and administrative expenses, six months",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "sd_h126": {
+   "value": 346738,
+   "source": "Borouge plc condensed consolidated interim financial statements for the six months ended 30 June 2026 (unaudited), reviewed \u2014 selling and distribution expenses, six months",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "othinc_h126": {
+   "value": 37190,
+   "source": "Borouge plc condensed consolidated interim financial statements for the six months ended 30 June 2026 (unaudited), reviewed \u2014 other income, six months, including approximately USD 25 million pre-tax of insurance claim proceeds relating to the regional geopolitical disruption",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "imp_h126": {
+   "value": 6436,
+   "source": "Borouge plc condensed consolidated interim financial statements for the six months ended 30 June 2026 (unaudited), reviewed \u2014 impairment loss on property, plant and equipment, in respect of assets damaged in the 5 April 2026 incident",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "ebit_h126": {
+   "value": 537606,
+   "source": "Borouge plc condensed consolidated interim financial statements for the six months ended 30 June 2026 (unaudited), reviewed \u2014 operating profit, six months",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "pbt_h126": {
+   "value": 462680,
+   "source": "Borouge plc condensed consolidated interim financial statements for the six months ended 30 June 2026 (unaudited), reviewed \u2014 profit before tax, six months",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "tax_h126": {
+   "value": 116119,
+   "source": "Borouge plc condensed consolidated interim financial statements for the six months ended 30 June 2026 (unaudited), reviewed \u2014 income tax expense, six months (note 15)",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "pat_h126": {
+   "value": 346561,
+   "source": "Borouge plc condensed consolidated interim financial statements for the six months ended 30 June 2026 (unaudited), reviewed \u2014 profit for the six-month period",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "ta_h126": {
+   "value": 8595755,
+   "source": "Borouge plc condensed consolidated interim financial statements for the six months ended 30 June 2026 (unaudited), reviewed \u2014 total assets",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "eq_total_h126": {
+   "value": 3748031,
+   "source": "Borouge plc condensed consolidated interim financial statements for the six months ended 30 June 2026 (unaudited), reviewed \u2014 total equity",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "eq_owners_h126": {
+   "value": 3725997,
+   "source": "Borouge plc condensed consolidated interim financial statements for the six months ended 30 June 2026 (unaudited), reviewed \u2014 equity attributable to owners of the Company",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "debt_rp_nc_h126": {
+   "value": 2800000,
+   "source": "Borouge plc condensed consolidated interim financial statements for the six months ended 30 June 2026 (unaudited), reviewed, note 11(iv) \u2014 related party loans and borrowings, non-current: Term Facility 1 of USD 1,500 million and Term Facility 2 of USD 1,300 million, both with Borouge Group International AG",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "debt_rp_c_h126": {
+   "value": 50000,
+   "source": "Borouge plc condensed consolidated interim financial statements for the six months ended 30 June 2026 (unaudited), reviewed, note 11(iv)(b) \u2014 revolving credit facility with Borouge Group International AG, drawn",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "debt_ext_h126": {
+   "value": 399998,
+   "source": "Borouge plc condensed consolidated interim financial statements for the six months ended 30 June 2026 (unaudited), reviewed, note 10(ii) \u2014 limited recourse receivables discounting agreement with an external commercial bank, of a USD 400 million facility",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "netdebt_h126": {
+   "value": 3275000,
+   "source": "Borouge plc Q2 2026 Management Discussion & Analysis \u2014 net debt of USD 3,275 million as at 30 June 2026, against USD 2,694 million at 30 June 2025",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "netdebt_fy25": {
+   "value": 2696000,
+   "source": "Borouge plc Q4/FY 2025 Management Discussion & Analysis \u2014 net debt of USD 2,696 million",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "lease_add_xlpe2": {
+   "value": 56500,
+   "source": "Borouge plc condensed consolidated interim financial statements for the six months ended 30 June 2026 (unaudited), reviewed \u2014 right-of-use asset and corresponding lease liability of approximately USD 56.5 million recognised on the commencement of commercial operations at the XLPE 2 plant",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "cap_pe_fy25": {
+   "value": 2750,
+   "source": "Borouge plc Q4/FY 2025 Management Discussion & Analysis \u2014 polyethylene production capacity, FY2025, kt",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "cap_pp_fy25": {
+   "value": 2230,
+   "source": "Borouge plc Q4/FY 2025 Management Discussion & Analysis \u2014 polypropylene production capacity, FY2025, kt",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "cap_nameplate": {
+   "value": 5000,
+   "source": "Borouge plc Q2 2026 Management Discussion & Analysis \u2014 footnote to the management guidance table: 'Ruwais plant nameplate capacity: 5 mtpa'",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "vol_pe_fy23": {
+   "value": 2715,
+   "source": "Borouge plc Q4/FY 2024 Management Discussion & Analysis \u2014 polyethylene sales volumes, FY2023 comparative, kt",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "vol_pp_fy23": {
+   "value": 2285,
+   "source": "Borouge plc Q4/FY 2024 Management Discussion & Analysis \u2014 polypropylene sales volumes, FY2023 comparative, kt",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "vol_oth_fy23": {
+   "value": 116,
+   "source": "Borouge plc Q4/FY 2024 Management Discussion & Analysis \u2014 ethylene and others sales volumes, FY2023, kt",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "vol_pe_fy24": {
+   "value": 3072,
+   "source": "Borouge plc Q4/FY 2025 Management Discussion & Analysis \u2014 polyethylene sales volumes, FY2024 comparative, kt",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "vol_pp_fy24": {
+   "value": 2253,
+   "source": "Borouge plc Q4/FY 2025 Management Discussion & Analysis \u2014 polypropylene sales volumes, FY2024 comparative, kt",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "vol_oth_fy24": {
+   "value": 10,
+   "source": "Borouge plc Q4/FY 2025 Management Discussion & Analysis \u2014 ethylene and others sales volumes, FY2024, kt",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "vol_pe_fy25": {
+   "value": 3053,
+   "source": "Borouge plc Q4/FY 2025 Management Discussion & Analysis \u2014 polyethylene sales volumes, FY2025, kt",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "vol_pp_fy25": {
+   "value": 2322,
+   "source": "Borouge plc Q4/FY 2025 Management Discussion & Analysis \u2014 polypropylene sales volumes, FY2025, kt",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "vol_oth_fy25": {
+   "value": 13,
+   "source": "Borouge plc Q4/FY 2025 Management Discussion & Analysis \u2014 ethylene and others sales volumes, FY2025, kt",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "vol_pe_h126": {
+   "value": 1048,
+   "source": "Borouge plc Q2 2026 Management Discussion & Analysis \u2014 polyethylene sales volumes, H1 2026, kt",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "vol_pp_h126": {
+   "value": 910,
+   "source": "Borouge plc Q2 2026 Management Discussion & Analysis \u2014 polypropylene sales volumes, H1 2026, kt",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "prod_pe_fy25": {
+   "value": 2817,
+   "source": "Borouge plc Q4/FY 2025 Management Discussion & Analysis \u2014 polyethylene production volume, FY2025, kt",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "prod_pp_fy25": {
+   "value": 2225,
+   "source": "Borouge plc Q4/FY 2025 Management Discussion & Analysis \u2014 polypropylene production volume, FY2025, kt",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "util_pe_fy25": {
+   "value": 1.02,
+   "source": "Borouge plc Q4/FY 2025 Management Discussion & Analysis \u2014 polyethylene utilisation rate, FY2025, stated as 102% including the impact of the Borouge 3 turnaround in Q2 2025",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "util_pp_fy25": {
+   "value": 1.0,
+   "source": "Borouge plc Q4/FY 2025 Management Discussion & Analysis \u2014 polypropylene utilisation rate, FY2025, 100%",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "util_pe_fy24": {
+   "value": 1.1,
+   "source": "Borouge plc Q4/FY 2025 Management Discussion & Analysis \u2014 polyethylene utilisation rate, FY2024, 110%",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "util_pp_fy24": {
+   "value": 0.98,
+   "source": "Borouge plc Q4/FY 2025 Management Discussion & Analysis \u2014 polypropylene utilisation rate, FY2024, 98%",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "util_pe_h126": {
+   "value": 0.73,
+   "source": "Borouge plc Q2 2026 Management Discussion & Analysis \u2014 polyethylene utilisation rate, H1 2026, 73%, after the 5 April incident and the Strait of Hormuz closure",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "util_pp_h126": {
+   "value": 0.84,
+   "source": "Borouge plc Q2 2026 Management Discussion & Analysis \u2014 polypropylene utilisation rate, H1 2026, 84%",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "prod_h126": {
+   "value": 1929,
+   "source": "Borouge plc Q2 2026 Management Discussion & Analysis \u2014 total production, H1 2026, kt, against 2,201 kt in H1 2025",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "bench_pe_fy23": {
+   "value": 914,
+   "source": "Borouge plc Q4/FY 2024 Management Discussion & Analysis \u2014 polyethylene average benchmark, FY2023, USD/t",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "bench_pp_fy23": {
+   "value": 891,
+   "source": "Borouge plc Q4/FY 2024 Management Discussion & Analysis \u2014 polypropylene average benchmark, FY2023, USD/t",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "bench_pe_fy24": {
+   "value": 898,
+   "source": "Borouge plc Q4/FY 2025 Management Discussion & Analysis \u2014 polyethylene average benchmark, FY2024, USD/t",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "bench_pp_fy24": {
+   "value": 897,
+   "source": "Borouge plc Q4/FY 2025 Management Discussion & Analysis \u2014 polypropylene average benchmark, FY2024, USD/t",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "bench_pe_fy25": {
+   "value": 822,
+   "source": "Borouge plc Q4/FY 2025 Management Discussion & Analysis \u2014 polyethylene average benchmark, FY2025, USD/t",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "bench_pp_fy25": {
+   "value": 851,
+   "source": "Borouge plc Q4/FY 2025 Management Discussion & Analysis \u2014 polypropylene average benchmark, FY2025, USD/t",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "bench_pe_h126": {
+   "value": 970,
+   "source": "Borouge plc Q2 2026 Management Discussion & Analysis \u2014 polyethylene average benchmark, H1 2026, USD/t",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "bench_pp_h126": {
+   "value": 1018,
+   "source": "Borouge plc Q2 2026 Management Discussion & Analysis \u2014 polypropylene average benchmark, H1 2026, USD/t",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "bench_pe_q226": {
+   "value": 1144,
+   "source": "Borouge plc Q2 2026 Management Discussion & Analysis \u2014 polyethylene average benchmark, Q2 2026, USD/t, up 38% year on year during the Strait of Hormuz closure",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "bench_pp_q226": {
+   "value": 1202,
+   "source": "Borouge plc Q2 2026 Management Discussion & Analysis \u2014 polypropylene average benchmark, Q2 2026, USD/t",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "prem_pe_fy23": {
+   "value": 215,
+   "source": "Borouge plc Q4/FY 2024 Management Discussion & Analysis \u2014 polyethylene premia, FY2023, USD/t",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "prem_pp_fy23": {
+   "value": 125,
+   "source": "Borouge plc Q4/FY 2024 Management Discussion & Analysis \u2014 polypropylene premia, FY2023, USD/t",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "prem_pe_fy24": {
+   "value": 197,
+   "source": "Borouge plc Q4/FY 2025 Management Discussion & Analysis \u2014 polyethylene premia, FY2024, USD/t",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "prem_pp_fy24": {
+   "value": 150,
+   "source": "Borouge plc Q4/FY 2025 Management Discussion & Analysis \u2014 polypropylene premia, FY2024, USD/t",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "prem_pe_fy25": {
+   "value": 224,
+   "source": "Borouge plc Q4/FY 2025 Management Discussion & Analysis \u2014 polyethylene premia, FY2025, USD/t",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "prem_pp_fy25": {
+   "value": 134,
+   "source": "Borouge plc Q4/FY 2025 Management Discussion & Analysis \u2014 polypropylene premia, FY2025, USD/t",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "prem_pe_h126": {
+   "value": 300,
+   "source": "Borouge plc Q2 2026 Management Discussion & Analysis \u2014 polyethylene premia, H1 2026, USD/t",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "prem_pp_h126": {
+   "value": 187,
+   "source": "Borouge plc Q2 2026 Management Discussion & Analysis \u2014 polypropylene premia, H1 2026, USD/t",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "prem_pe_ttc": {
+   "value": 200,
+   "source": "Borouge plc Q2 2026 Management Discussion & Analysis \u2014 management through-the-cycle premia guidance for polyethylene, reiterated at Q2 2026, c. USD 200/t",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "prem_pp_ttc": {
+   "value": 140,
+   "source": "Borouge plc Q2 2026 Management Discussion & Analysis \u2014 management through-the-cycle premia guidance for polypropylene, reiterated at Q2 2026, c. USD 140/t",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "asp_pe_fy25": {
+   "value": 1046,
+   "source": "Borouge plc Q4/FY 2025 Management Discussion & Analysis \u2014 polyethylene average sales price, FY2025, USD/t",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "asp_pp_fy25": {
+   "value": 985,
+   "source": "Borouge plc Q4/FY 2025 Management Discussion & Analysis \u2014 polypropylene average sales price, FY2025, USD/t",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "rev_pe_fy25": {
+   "value": 3436,
+   "source": "Borouge plc Q4/FY 2025 Management Discussion & Analysis \u2014 polyethylene revenue, FY2025, USD million",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "rev_pp_fy25": {
+   "value": 2368,
+   "source": "Borouge plc Q4/FY 2025 Management Discussion & Analysis \u2014 polypropylene revenue, FY2025, USD million",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "rev_oth_fy25": {
+   "value": 44,
+   "source": "Borouge plc Q4/FY 2025 Management Discussion & Analysis \u2014 ethylene and others revenue, FY2025, USD million",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "feed_fy23": {
+   "value": 1357,
+   "source": "Borouge plc Q4/FY 2023 Management Discussion & Analysis \u2014 feedstock costs, FY2023, USD million",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "feed_fy24": {
+   "value": 1288,
+   "source": "Borouge plc Q4/FY 2025 Management Discussion & Analysis \u2014 feedstock costs, FY2024 comparative, USD million",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "feed_fy25": {
+   "value": 1295,
+   "source": "Borouge plc Q4/FY 2025 Management Discussion & Analysis \u2014 feedstock costs, FY2025, USD million",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "feed_h126": {
+   "value": 761,
+   "source": "Borouge plc Q2 2026 Management Discussion & Analysis \u2014 feedstock costs, H1 2026, USD million, up 33% year on year on higher purchased propylene prices after the Olefins Conversion Unit was idled",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "othprod_fy23": {
+   "value": 1704,
+   "source": "Borouge plc Q4/FY 2023 Management Discussion & Analysis \u2014 other variable and fixed production costs, FY2023, USD million",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "othprod_fy24": {
+   "value": 1659,
+   "source": "Borouge plc Q4/FY 2025 Management Discussion & Analysis \u2014 other variable and fixed production costs, FY2024 comparative, USD million",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "othprod_fy25": {
+   "value": 1804,
+   "source": "Borouge plc Q4/FY 2025 Management Discussion & Analysis \u2014 other variable and fixed production costs, FY2025, USD million",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "othprod_h126": {
+   "value": 676,
+   "source": "Borouge plc Q2 2026 Management Discussion & Analysis \u2014 other variable and fixed production costs, H1 2026, USD million",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "cos_exda_fy23": {
+   "value": 3062,
+   "source": "Borouge plc Q4/FY 2023 Management Discussion & Analysis \u2014 cost of sales excluding depreciation and amortisation, FY2023, USD million",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "cos_exda_fy24": {
+   "value": 2947,
+   "source": "Borouge plc Q4/FY 2025 Management Discussion & Analysis \u2014 cost of sales excluding D&A, FY2024 comparative, USD million",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "cos_exda_fy25": {
+   "value": 3099,
+   "source": "Borouge plc Q4/FY 2025 Management Discussion & Analysis \u2014 cost of sales excluding D&A, FY2025, USD million",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "ga_exda_fy25": {
+   "value": 188,
+   "source": "Borouge plc Q4/FY 2025 Management Discussion & Analysis \u2014 general and administrative expenses excluding D&A, FY2025, USD million",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "sd_exda_h126": {
+   "value": 347,
+   "source": "Borouge plc Q2 2026 Management Discussion & Analysis \u2014 selling and distribution expenses, H1 2026, USD million, up 81% year on year on higher freight and logistics costs while alternative routes are in use",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "ebitda_adj_fy23": {
+   "value": 2171,
+   "source": "Borouge plc Q4/FY 2024 Management Discussion & Analysis \u2014 adjusted EBITDA, FY2023, USD million",
+   "date": "2023-12-31",
+   "ring": "Company"
+  },
+  "ebitda_adj_fy24": {
+   "value": 2477,
+   "source": "Borouge plc Q4/FY 2025 Management Discussion & Analysis \u2014 adjusted EBITDA, FY2024, USD million",
+   "date": "2024-12-31",
+   "ring": "Company"
+  },
+  "ebitda_adj_fy25": {
+   "value": 2172,
+   "source": "Borouge plc Q4/FY 2025 Management Discussion & Analysis \u2014 adjusted EBITDA, FY2025, USD million",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "ebitda_adj_h126": {
+   "value": 744,
+   "source": "Borouge plc Q2 2026 Management Discussion & Analysis \u2014 adjusted EBITDA, H1 2026, USD million, down 26% year on year",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "capex_h126": {
+   "value": 163,
+   "source": "Borouge plc Q2 2026 Management Discussion & Analysis \u2014 capital expenditure, H1 2026, USD million",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "dep_reassessment_benefit": {
+   "value": 163,
+   "source": "Borouge plc Q4/FY 2025 Management Discussion & Analysis \u2014 the Q3 2025 reassessment of the useful life of certain fixed assets, which extended asset life by up to an additional 10 years and is expected to result in a recurring annual benefit of USD 163 million in lower depreciation charges over the next 5 financial years compared with 2024 levels",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "div_fils_guided": {
+   "value": 0.162,
+   "source": "Borouge plc Q2 2026 Management Discussion & Analysis \u2014 'For FY 2026, management intends to pay dividends amounting to 16.2 fils per share, in line with the Company's commitment to maintain a minimum dividend of 16.2 fils per share per annum until at least 2030'; 16.2 fils is AED 0.162",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "capex_guide_2026": {
+   "value": 300,
+   "source": "Borouge plc Q2 2026 Management Discussion & Analysis \u2014 'The repairs are expected to have only a limited impact on 2026 maintenance capex, which is guided to be below USD 300 million'",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "util_guide_2026": {
+   "value": 1.05,
+   "source": "Borouge plc Q4/FY 2025 Management Discussion & Analysis \u2014 'management expects to achieve average utilisation of around 105% for FY 2026', guidance given before the 5 April 2026 incident and the Strait of Hormuz closure and superseded by the Q2 2026 statement that management is targeting higher utilisation in H2 2026 subject to feedstock and logistics availability and freedom of navigation",
+   "date": "2025-12-31",
+   "ring": "Company"
+  },
+  "b4_ownership": {
+   "value": 0.0,
+   "source": "Borouge plc condensed consolidated interim financial statements for the six months ended 30 June 2026 (unaudited), reviewed and Borouge plc Q2 2026 Management Discussion & Analysis \u2014 'Under the Asset Usage Agreement signed in March 2026, Borouge operates the Borouge 4 assets on behalf of the project's owners, ADNOC and OMV, and will market all Borouge 4 production volumes in return for an at-cost asset utilisation fee.' Borouge plc therefore owns none of the Borouge 4 capacity and earns no production margin on it",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "kd_margin_t1": {
+   "value": 0.00725,
+   "source": "Borouge plc condensed consolidated interim financial statements for the six months ended 30 June 2026 (unaudited), reviewed, note 11(iv)(a) \u2014 Term Facility 1, USD 1,500 million, 3 years from inception, reference agreement signed 9 April 2026, interest at SOFR + 0.725% plus an annualised participation fee of 0.08% of loan value",
+   "date": "2026-04-09",
+   "ring": "Company"
+  },
+  "kd_margin_t2": {
+   "value": 0.00875,
+   "source": "Borouge plc condensed consolidated interim financial statements for the six months ended 30 June 2026 (unaudited), reviewed, note 11(iv)(a) \u2014 Term Facility 2, USD 1,300 million, 5 years from inception, agreement signed 9 April 2026, interest at SOFR + 0.875% plus an annualised participation fee of 0.078%",
+   "date": "2026-04-09",
+   "ring": "Company"
+  },
+  "kd_fee_t1": {
+   "value": 0.0008,
+   "source": "Borouge plc condensed consolidated interim financial statements for the six months ended 30 June 2026 (unaudited), reviewed, note 11(iv)(a) \u2014 annualised participation fee on Term Facility 1",
+   "date": "2026-04-09",
+   "ring": "Company"
+  },
+  "kd_fee_t2": {
+   "value": 0.00078,
+   "source": "Borouge plc condensed consolidated interim financial statements for the six months ended 30 June 2026 (unaudited), reviewed, note 11(iv)(a) \u2014 annualised participation fee on Term Facility 2",
+   "date": "2026-04-09",
+   "ring": "Company"
+  },
+  "kd_margin_old": {
+   "value": 0.009,
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young, note 17 \u2014 the superseded external commercial term facility carried SOFR + 0.90%; it was arranged with a consortium of banks on 19 December 2021 and was repaid in full on 9 April 2026, so it is the last ARM'S-LENGTH price Borouge paid for term debt",
+   "date": "2021-12-19",
+   "ring": "Company"
+  },
+  "debt_currency": {
+   "value": "USD",
+   "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young note 17 and Borouge plc condensed consolidated interim financial statements for the six months ended 30 June 2026 (unaudited), reviewed notes 10 and 11(iv) \u2014 every borrowing in the book, before and after the April 2026 refinancing, is denominated in US dollars, which is also the Group's presentation and functional currency. There is no foreign-currency tranche to carry at a local-equivalent cost",
+   "date": "2026-06-30",
+   "ring": "Company"
+  }
+ },
+ "log": [
+  "HISTORY rebuilt from the audited statements; operating profit and profit before tax reproduce the filed figures to the dollar in all three years.",
+  "Effective tax rate: 28.57% / 29.01% / 28.62% across the three audited years, mean 28.74%; the H1-2026 interim ran 25.10%.",
+  "Realisation residual: polyethylene revenue per tonne runs 1.0676x the benchmark-plus-premium construct across the three audited years and 1.0947x in H1-2026; polypropylene 1.0321x and 1.0186x. The forecast carries the audited three-year mean, not the half-year.",
+  "Feedstock: $265 / $247 / $256 per tonne of production across the audited years, against $395 in H1-2026 \u2014 a +54% step, which the company attributes to buying propylene at market prices while the Olefins Conversion Unit was idled for want of ethane.",
+  "Other variable and fixed production cost splits, on the three audited years, into $790m of fixed cost and $201 per tonne of variable cost. The fixed leg escalates on UAE consumer inflation; the variable leg moves with tonnes.",
+  "Selling and distribution: $78 / $88 / $77 per tonne sold in the audited years, against $177 in H1-2026 while alternative logistics routes are in use.",
+  "Asset-conversion cycle from the statements: 51 days sales outstanding, 62 days inventory, 92 days payable, a cash cycle of 20 days. The balance sheet and the cash flow are projected from these, not plugged.",
+  "Cost of capital: rf* = 4.65% US 10-year less 0.23% US default spread = 4.42%; the dirham construction gives 4.48% less 0.42% = 4.06%, and the +0.36% gap under a hard peg is reported, not reconciled away.",
+  "  Beta: own-stock regression 0.415 (weak, R-squared 0.094); sector bottom-up 1.0021 unlevered re-levered at a 0.167 debt-to-equity ratio = 1.018.",
+  "  Ke 6.44% on the own-stock beta and 9.38% on the bottom-up beta. Kd marginal 5.55% pre-tax (arm's-length margin 0.900% over the long dollar rate) against a 5.07% sovereign; the related-party facilities price 5.52%, inside arm's length by 0.03%.",
+  "  Equity weight 85.7% on market value. WACC 6.09% on the own-stock beta and 8.60% on the bottom-up beta \u2014 the study's central contested judgement, published both ways.",
+  "DCF [Normalisation]: EV $24,394m, terminal value 76.7% of enterprise value, equity $20,869m, AED 2.55 per share against a AED 2.40 close.",
+  "DCF [Prolonged disruption]: EV $22,742m, terminal value 80.1% of enterprise value, equity $19,218m, AED 2.35 per share against a AED 2.40 close.",
+  "Book value lens: sustainable return on equity 25.3% against a cost of equity of 6.44% justifies 5.25x book of $0.1240 per share, or AED 2.39.",
+  "Relative lens: 9 of 11 listed peers are loss-making and 2 have undefined EV/EBITDA, so the naive median of 13.4x is rejected. Three through-cycle anchors (LyondellBasell 7.18x, Industries 9.90x, Damodaran 8.65x) give a median of 8.65x, which on a mid-cycle EBITDA of $1,754m is AED 1.46 per share.",
+  "Normalised earnings power: mid-cycle EBITDA $1,944m capitalised at 6.09% gives AED 2.35 per share.",
+  "The 2x2 of the two contested judgements, AED per share:",
+  "   own_stock_beta           normalisation=2.55  prolonged=2.35",
+  "   bottom_up_sector_beta    normalisation=1.48  prolonged=1.31",
+  "All lenses across both constructions span AED 1.30 to AED 2.55, median AED 1.48, against a close of AED 2.40."
+ ]
+}
