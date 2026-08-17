@@ -1,0 +1,124 @@
+{
+ "panel_vol": [
+  {
+   "ticker": "IHC",
+   "n": 1143,
+   "ann_vol": 0.1258360143305976,
+   "rank": 1
+  },
+  {
+   "ticker": "DEWA",
+   "n": 1071,
+   "ann_vol": 0.1881379309825729,
+   "rank": 2
+  },
+  {
+   "ticker": "ADNOCGAS",
+   "n": 840,
+   "ann_vol": 0.19089232004913437,
+   "rank": 3
+  },
+  {
+   "ticker": "ADNOCDIST",
+   "n": 1152,
+   "ann_vol": 0.19568384563163888,
+   "rank": 4
+  },
+  {
+   "ticker": "DIB",
+   "n": 1143,
+   "ann_vol": 0.21168671126318747,
+   "rank": 5
+  },
+  {
+   "ticker": "EAND",
+   "n": 1137,
+   "ann_vol": 0.23231773716354767,
+   "rank": 6
+  },
+  {
+   "ticker": "LULU",
+   "n": 420,
+   "ann_vol": 0.2542535977287186,
+   "rank": 7
+  },
+  {
+   "ticker": "AGTHIA",
+   "n": 1140,
+   "ann_vol": 0.25587547113684833,
+   "rank": 8
+  },
+  {
+   "ticker": "SALIK",
+   "n": 956,
+   "ann_vol": 0.25759456920608725,
+   "rank": 9
+  },
+  {
+   "ticker": "FAB",
+   "n": 1143,
+   "ann_vol": 0.25820812856787967,
+   "rank": 10
+  },
+  {
+   "ticker": "ADCB",
+   "n": 1128,
+   "ann_vol": 0.2837531016471744,
+   "rank": 11
+  },
+  {
+   "ticker": "ENBD",
+   "n": 1143,
+   "ann_vol": 0.2846052271682178,
+   "rank": 12
+  },
+  {
+   "ticker": "ADIB",
+   "n": 1132,
+   "ann_vol": 0.2886316650949053,
+   "rank": 13
+  },
+  {
+   "ticker": "ALDAR",
+   "n": 1141,
+   "ann_vol": 0.29844449511443055,
+   "rank": 14
+  },
+  {
+   "ticker": "EMAAR",
+   "n": 1142,
+   "ann_vol": 0.30233258232249,
+   "rank": 15
+  },
+  {
+   "ticker": "ALPHADHABI",
+   "n": 1141,
+   "ann_vol": 0.30573130759582773,
+   "rank": 16
+  },
+  {
+   "ticker": "BURJEEL",
+   "n": 948,
+   "ann_vol": 0.30955402960733686,
+   "rank": 17
+  },
+  {
+   "ticker": "EMAARDEV",
+   "n": 1143,
+   "ann_vol": 0.3304349245771342,
+   "rank": 18
+  },
+  {
+   "ticker": "TWOPOINTZERO",
+   "n": 1144,
+   "ann_vol": 0.3788287962609433,
+   "rank": 19
+  }
+ ],
+ "adnocdist_vol": 0.19568384563163888,
+ "rank": 4,
+ "n": 19,
+ "panel_median": 0.270980615107527,
+ "panel_mean": 0.2642843672120574,
+ "ratio_to_median": 0.7221322660072572
+}

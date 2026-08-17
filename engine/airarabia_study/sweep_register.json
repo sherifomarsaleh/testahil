@@ -1,0 +1,475 @@
+{
+ "ticker": "AIRARABIA",
+ "asset_class": "STOCK",
+ "sweep_date": "2026-08-09",
+ "findings": [
+  {
+   "fid": "F01",
+   "ring": "GLOBAL",
+   "category": "rate cycle & USD/FX regime",
+   "klass": "STRUCTURAL",
+   "headline": "CBUAE base rate 3.65%, maintained 29-Jul-2026 mirroring the Fed hold; latest dot plot tilts hawkish (nine policymakers back higher 2026 rates). AED hard-pegged",
+   "source_name": "CBUAE press release; Gulf News Fed coverage",
+   "source_type": "REGULATOR_OFFICIAL",
+   "source_date": "2026-07-29",
+   "detail": "",
+   "url": "https://www.centralbank.ae/en/news-and-publications/news-and-insights/press-release/cbuae-maintains-the-base-rate-at-3-65-1/",
+   "model_impact": "Deposit-yield path on the AED 5.2bn cash pile (4.41% disclosed avg rolls to ~3.7%) and the Kd glide; the MC carry anchor stays the Fed path per the pegged-currency rule.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F02",
+   "ring": "GLOBAL",
+   "category": "commodity complex (input/output)",
+   "klass": "STRUCTURAL",
+   "headline": "Jet fuel USD 158.77/bbl (IATA monitor, early Aug-2026) after the H1 conflict spike; IATA's June-2026 full-year assumption jet USD 152/Brent 95 vs EIA July STEO Brent 81.91 (2026) -> 64.76 (2027) \u2014 the 2026-27 fuel path is genuinely contested between the two official-sector sources",
+   "source_name": "IATA Jet Fuel Price Monitor; IATA 07-Jun-2026 outlook; EIA July-2026 STEO",
+   "source_type": "REGULATOR_OFFICIAL",
+   "source_date": "2026-08-09",
+   "detail": "",
+   "url": "https://www.iata.org/en/publications/economics/fuel-monitor/",
+   "model_impact": "Fuel cost per pax is the study's CENTRAL CONTESTED JUDGEMENT, priced both ways: base = EIA relief path (195 -> 165 AED/pax), alternative = IATA high-fuel persistence (210 -> 205). Fuel is 37% of direct costs.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F03",
+   "ring": "GLOBAL",
+   "category": "global sector demand",
+   "klass": "STRUCTURAL",
+   "headline": "IATA June-2026 mid-year update: 2026 global RPK growth cut to +2.1% (from +4.9% in Dec-2025), net margin 2.0%, MIDDLE EAST RPK -11.4% on the Feb-Mar airspace closures with phased restoration to ~1-Jun-2026",
+   "source_name": "IATA press release 07-Jun-2026",
+   "source_type": "REGULATOR_OFFICIAL",
+   "source_date": "2026-06-07",
+   "detail": "",
+   "url": "https://www.iata.org/en/pressroom/2026-releases/06-07-middle-east-disruptions-high-fuel-prices-halve-airline-industry-profitability/",
+   "model_impact": "FY2026 pax path set at -1.6% (Q1 actual -11%, H2 recovery) \u2014 the regional average is dominated by the big hub carriers; Air Arabia's own Q1 print (-5% group pax, record 86.4% load factor) shows milder impact and anchors the recovery slope.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F04",
+   "ring": "GLOBAL",
+   "category": "trade / sanctions / supply chains",
+   "klass": "STRUCTURAL",
+   "headline": "Airbus A320-family rate-75 target pushed to end-2027; GTF powder-metal inspections still constrain engines; Jan-Feb 2026 deliveries ~20% below 2025 pace; Airbus filed a damages claim against Pratt & Whitney (Mar-2026). Air Arabia's neos are CFM LEAP-powered \u2014 exposure is via market tightness, not its own engines. Narrowbody lease rates easing from record highs (new A320neo >= ~USD 400k/mo, IBA)",
+   "source_name": "Aerospace Global News; Simple Flying; IBA public articles",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-03-31",
+   "detail": "",
+   "url": "",
+   "model_impact": "Caps the feasible delivery ramp (~10/yr vs the order's nominal pace) and supports the wet-lease unwind assumption inside other-costs/pax.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F05",
+   "ring": "COUNTRY",
+   "category": "sovereign macro (inflation, policy rate, FX/deval risk)",
+   "klass": "STRUCTURAL",
+   "headline": "UAE GDP +5.6% (2025 est.) with ~5.6% projected for 2026 (CBUAE QER Mar-2026; IMF +4.8%/+5.0%); inflation projected 1.8% (2026), 2.0% (2027). AED T-Bond auction Jul-2026: Jan-2031 tranche YTM 4.48%, 4bp over UST; May-2026: 4.30%",
+   "source_name": "CBUAE Quarterly Economic Review Mar-2026; UAE Ministry of Finance auction results",
+   "source_type": "REGULATOR_OFFICIAL",
+   "source_date": "2026-07-30",
+   "detail": "",
+   "url": "https://mof.gov.ae/en/news/uae-successfully-concludes-may-2026-treasury-bond-auction/",
+   "model_impact": "rf = 4.48% AED sovereign less the UAE's own 0.42% Aa2 default spread = 4.06% rf*; cost-class escalators for landing/handling at UAE CPI ~2%; terminal rf norm-built at 4.0%.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F06",
+   "ring": "COUNTRY",
+   "category": "regulatory environment (regulator, caps, tariffs, tax/subsidy)",
+   "klass": "STRUCTURAL",
+   "headline": "UAE Domestic Minimum Top-up Tax (DMTT) 15% effective 1-Jan-2025 for Pillar-Two groups \u2014 Air Arabia is in scope and provides at 15% (Note 27, FY2025 filing); FY2024 was the 9% CT year, FY2023 untaxed",
+   "source_name": "FY2025 audited financial statements Note 27; UAE MoF Pillar Two announcement",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-02-13",
+   "detail": "",
+   "url": "",
+   "model_impact": "Forecast tax rate held at the statutory 15% (audited effective prints: 8.79% FY2024, 11.60% FY2025 \u2014 exempt income keeps realised below statutory; holding 15% is the conservative anchor).",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F07",
+   "ring": "COUNTRY",
+   "category": "fiscal / political events with sector read-through",
+   "klass": "STRUCTURAL",
+   "headline": "Feb-Mar 2026 regional conflict closed or restricted 7+ countries' airspace (Iran, Iraq, Israel, Kuwait, Bahrain, Lebanon, parts of Jordan) with phased restoration through ~1-Jun-2026; Sharjah's own hub kept operating",
+   "source_name": "Simple Flying disruption round-up; Air Arabia Q1-2026 press release",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-06-01",
+   "detail": "",
+   "url": "",
+   "model_impact": "Explains the Q1-2026 prints (pax -11% consolidated, net profit -22%) and sets FY2026 as a dip-then-recover year rather than a trend break; recurrence carried in the bear scenario.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F08",
+   "ring": "COUNTRY",
+   "category": "market benchmark for the cost-of-equity regression",
+   "klass": "STRUCTURAL",
+   "headline": "The ordinary shares are listed on the Dubai Financial Market \u2014 stated identically in Note 1 of the FY2025 audited statements, the FY2025 annual report, and the Q1-2026 interim (Note 1); the annual report's own share-price performance chart benchmarks the stock against the DFM general index. The company's INVESTMENT portfolio holds both DFM-listed (AED 5,631mn) and Abu Dhabi-listed (AED 4,730mn) securities (Note 11), which is why the listing venue was read off the filing rather than inferred. The FTSE ADX General Index 2011-2026 is the series the exchange-keyed beta rule resolves for DFM names under a registered interim substitution (no DFM General series is registered)",
+   "source_name": "FY2025 audited financial statements Note 1 and Note 11; FY2025 annual report; Q1-2026 interim Note 1; FTSE ADX General Index history (aggregator, index only)",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-08-17",
+   "detail": "",
+   "url": "",
+   "model_impact": "Beta ADOPTED from the own-stock 5-year weekly regression against the FTSE ADX General index (0.812, R2 0.135), the regressor the rule resolves for a DFM-listed name. The DFM General series held in the repo gives 1.086 at R2 0.402 \u2014 3x the explanatory power and worth -0.83/share \u2014 and is published as a priced cross-check; registering it is a pending rule amendment, not a study-level choice.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F09",
+   "ring": "INDUSTRY",
+   "category": "demand drivers & capacity/supply balance",
+   "klass": "STRUCTURAL",
+   "headline": "Sharjah Airport 2025: 19.48mn passengers +13.9% (2024: 17.1mn, 2023: 15.36mn); Dubai tourism record 19.59mn visitors 2025; UAE tourism ~13% of GDP",
+   "source_name": "Sharjah Airport Authority press release Jan-2026; Khaleej Times",
+   "source_type": "REGULATOR_OFFICIAL",
+   "source_date": "2026-01-31",
+   "detail": "",
+   "url": "https://www.sharjahairport.ae/en/",
+   "model_impact": "Supports the +8-9%/yr pax path FY2027-30 at the home hub \u2014 the airport itself is growing double-digit and Air Arabia is its anchor carrier.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F10",
+   "ring": "INDUSTRY",
+   "category": "pricing",
+   "klass": "STRUCTURAL",
+   "headline": "Q1-2026: Air Arabia revenue +1% on -11% consolidated pax with a RECORD 86.4% load factor \u2014 constrained regional capacity lifted yields materially; IATA expects yield normalisation as capacity restores",
+   "source_name": "Air Arabia Q1-2026 results presentation",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-05-13",
+   "detail": "",
+   "url": "",
+   "model_impact": "Fare path: +1.9% FY2026 then -1.6% FY2027 (give-back) then +1%/yr \u2014 yield discipline without extrapolating a conflict-scarcity price.",
+   "is_fs_data": false,
+   "fiscal_period": "Q1-2026"
+  },
+  {
+   "fid": "F11",
+   "ring": "INDUSTRY",
+   "category": "new entrants (named-competitor level)",
+   "klass": "STRUCTURAL",
+   "headline": "Wizz Air Abu Dhabi permanently ceased operations 01-Sep-2025 (engine degradation in hot/harsh conditions, geopolitics, market access) \u2014 the only true ULCC challenger in the UAE exited; Air Arabia Abu Dhabi is expanding ~40% capacity into the vacuum",
+   "source_name": "Wizz Air strategic realignment statement; Khaleej Times 14-Jul-2025",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2025-09-01",
+   "detail": "",
+   "url": "",
+   "model_impact": "Supports the JV-network growth path (assoc profit +18%/yr mid-window) and the ancillary/yield assumptions at the Abu Dhabi hub.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F12",
+   "ring": "INDUSTRY",
+   "category": "technology substitution",
+   "klass": "COLOR",
+   "headline": "No modal substitution threat at Air Arabia's stage lengths (2-5hr international short-haul across GCC/South Asia/Levant \u2014 no rail alternative crosses these borders); the relevant technology shift is the A320neo's ~20% lower fuel burn, which the company itself cites",
+   "source_name": "Q4-2025 results presentation; company press release on first neo",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-02-13",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F13",
+   "ring": "INDUSTRY",
+   "category": "competitor capacity / price moves (named)",
+   "klass": "STRUCTURAL",
+   "headline": "flydubai: 12 MAX deliveries due 2026, ordered up to 150 A321neo (first Airbus order, Nov-2025) + 75 firm MAX; Etihad record 22.4mn pax 2025, summer-2026 capacity +10%; Emirates summer-2026 frequencies ~-12% y/y post-conflict; Jazeera Airways FY2025 net profit KWD 21.8mn (+114%) on 5mn+ pax",
+   "source_name": "FlightGlobal; VisaHQ/Etihad; Zawya Jazeera FY2025 coverage",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-02-28",
+   "detail": "",
+   "url": "",
+   "model_impact": "Competitive capacity re-expands into 2027 \u2014 one driver of the FY2027 fare give-back; Jazeera's multiple anchors the relative lens.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F14",
+   "ring": "COMPANY",
+   "category": "strategic plans & guidance",
+   "klass": "STRUCTURAL",
+   "headline": "120-aircraft A320/A321neo-family order (73 A320neo + 27 A321neo + 20 A321XLR, 2019, ~USD 14bn list): first neo delivered 29-Sep-2025 (CFM LEAP, 174 seats), nine A320-family added in FY2025 to a 90-aircraft operating fleet; pre-delivery payments 2,028.3 on the balance sheet",
+   "source_name": "Company press release (first neo); Q4-2025 results presentation; FY2025 FS Note 7",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-02-13",
+   "detail": "",
+   "url": "",
+   "model_impact": "Fleet-led pax path 90 -> ~115 aircraft by FY2030; capex path ~AED 1.9-2.0bn/yr incl. the PDP ladder; D&A path fleet-driven.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F15",
+   "ring": "COMPANY",
+   "category": "regular disclosures",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "Audited FY2025 consolidated statements (KPMG Lower Gulf, unqualified, 13-Feb-2026): revenue 7,787.6 (+15%), net profit 1,628.7, EPS 0.35; Note 43 restates FY2024 comparatives (lease-rental revenue reclass, maintenance provisions, lease/borrowing classification). FY2024, FY2023, FY2022 audited statements all retrieved from the same IR page",
+   "source_name": "airarabia.com investor relations \u2014 audited FS FY2022-FY2025",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-02-13",
+   "detail": "",
+   "url": "",
+   "model_impact": "Unlocks the full bottom-up build: revenue disaggregation (Note 28a), the 11-line direct-cost stack (Note 29), unit economics per pax, and the restated balance-sheet history.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2025"
+  },
+  {
+   "fid": "F16",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "FY2024 audited statements (revenue 6,639.1 as reported / 6,765.9 restated; net profit 1,467.6); FY2023 audited (5,999.8 / 1,547.7); FY2022 audited (5,241.8 / 1,222.3) \u2014 four complete audited fiscal years in hand, each cross-checked against the following filing's comparative column",
+   "source_name": "airarabia.com investor relations \u2014 audited FS FY2022-FY2024",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2025-02-13",
+   "detail": "",
+   "url": "",
+   "model_impact": "Three-year historical IS/BS/CF in the study (FY2023-25) with FY2022 as the fourth-year context column; DSO/DPO/deferred-income cycle measured from the statements.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2024"
+  },
+  {
+   "fid": "F17",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "FY2023 audited statements: revenue 5,999.750, PBT 1,547.696, D&A 647.327, no income tax (pre-CT era)",
+   "source_name": "airarabia.com IR \u2014 FY2023 audited FS (OCR'd scan, figures confirmed against the FY2024 filing's typed comparatives)",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2024-02-13",
+   "detail": "",
+   "url": "",
+   "model_impact": "FY2023 column of the historical statements and the cost-stack history (fuel 1,690.6, staff 774.8, maintenance 438.9).",
+   "is_fs_data": true,
+   "fiscal_period": "FY2023"
+  },
+  {
+   "fid": "F18",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "COLOR",
+   "headline": "FY2022 audited statements: revenue 5,241.830, profit 1,222.306, EPS 0.26",
+   "source_name": "airarabia.com IR \u2014 FY2022 audited FS (OCR'd scan, confirmed against FY2023 comparatives)",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2023-02-13",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": true,
+   "fiscal_period": "FY2022"
+  },
+  {
+   "fid": "F19",
+   "ring": "COMPANY",
+   "category": "IR communications (calls, presentations, releases)",
+   "klass": "STRUCTURAL",
+   "headline": "Q1-2026 reviewed interim + results presentation: revenue 1,800.4 (+1%), net profit 278.1 (-22%), consolidated pax 2.68mn (-11%), group pax 4.70mn (-5%), record 86.4% load factor \u2014 the study year's only disclosed quarter, swept in BEFORE the build. Q4-2025 presentation: FY2025 pax 13.06mn, LF 85.3%, fleet 90 +5 short-term leases, 219 destinations, cash AED 5.3bn",
+   "source_name": "Air Arabia Q1-2026 and Q4-2025 results presentations",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-05-13",
+   "detail": "",
+   "url": "",
+   "model_impact": "FY2026 revenue cross-check (Q1 seasonal gross-up = 7,880 vs build 7,869); pax/LF/fleet unit history that no financial statement carries.",
+   "is_fs_data": false,
+   "fiscal_period": "Q1-2026"
+  },
+  {
+   "fid": "F20",
+   "ring": "COMPANY",
+   "category": "one-off base-resetting transactions",
+   "klass": "STRUCTURAL",
+   "headline": "During FY2025 the Group raised Air Arabia Egypt from 40% to 49% and entered 'Air Arabia DMM LLC' \u2014 a new 49% Saudi JV with Saudi investors to establish a Dammam-based airline (Note 1h); Fly Arna (Armenia) and Air Arabia Jordan are in liquidation",
+   "source_name": "FY2025 audited FS Note 1",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-02-13",
+   "detail": "",
+   "url": "",
+   "model_impact": "JV-network share-of-profit path (+18%/yr mid-window with FY2026 held flat for DMM start-up costs); the JV network is the study's dual-framed bridge item (book 363.4 vs capitalised 2,850).",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F21",
+   "ring": "COMPANY",
+   "category": "ownership / stake changes (named-transaction rule)",
+   "klass": "COLOR",
+   "headline": "Share capital unchanged at 4,666.7mn shares since FY2022; the FY2025 auditor's report notes the Group PURCHASED SHARES during 2025 (legal-requirement disclosure item v) \u2014 no cancellation disclosed, capital unchanged; no named-stake change in the free float found",
+   "source_name": "FY2025 audited FS \u2014 auditor's report and Note 18",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-02-13",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F22",
+   "ring": "COMPANY",
+   "category": "management & capital actions",
+   "klass": "STRUCTURAL",
+   "headline": "FY2025 dividend 30 fils/share (AED 1.4bn, ~USD 381mn) APPROVED at the AGM of 12-Mar-2026; board elected for three years. DPS ladder: 0.15 (FY22) / 0.20 (FY23) / 0.25 (FY24) / 0.30 (FY25)",
+   "source_name": "Air Arabia press release \u2014 AGM 12-Mar-2026",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-03-12",
+   "detail": "",
+   "url": "https://press.airarabia.com/air-arabia-shareholders-approve-30-dividend-distribution-at-annual-general-meeting/",
+   "model_impact": "q_annual for the price cone = 0.30/5.24 = 5.73%; payout path 100% -> ~85%; the anchor roll nets the 0.30 paid inside the window.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F23",
+   "ring": "COMPANY",
+   "category": "regular disclosures",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found (ASK/seat-capacity, stage-length or per-route disclosure in FS, annual report or IR decks (searched all retrieved documents))",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-08-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F24",
+   "ring": "COMPANY",
+   "category": "regular disclosures",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found (fuel hedge RATIO/volume disclosure (Note 24 discloses instruments and fair values 2026-2028 but no hedged share))",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-08-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F25",
+   "ring": "COMPANY",
+   "category": "strategic plans & guidance",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found (owned-vs-leased split of forward aircraft deliveries (searched FS notes, AR, presentations))",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-08-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  }
+ ],
+ "drivers": [
+  {
+   "driver": "Passengers x load factor (pax path)",
+   "mode": "BOTTOM_UP",
+   "justification": "Disclosed pax and LF per presentation KEY PERFORMANCE tables FY2022-Q1-2026; fleet path from the disclosed order/deliveries",
+   "sweep_refs": [
+    "F19",
+    "F14",
+    "F09"
+   ]
+  },
+  {
+   "driver": "Fare + baggage per pax",
+   "mode": "BOTTOM_UP",
+   "justification": "Note 28a passenger+baggage revenue over disclosed pax",
+   "sweep_refs": [
+    "F15",
+    "F10"
+   ]
+  },
+  {
+   "driver": "Ancillary per pax",
+   "mode": "BOTTOM_UP",
+   "justification": "Note 28a 'other airline related services' over disclosed pax",
+   "sweep_refs": [
+    "F15"
+   ]
+  },
+  {
+   "driver": "Fuel cost per pax (dual-framed)",
+   "mode": "BOTTOM_UP",
+   "justification": "Note 29 fuel line over disclosed pax; forward path on the EIA/IATA commodity escalator \u2014 its own driver class, never a CPI proxy",
+   "sweep_refs": [
+    "F15",
+    "F02"
+   ]
+  },
+  {
+   "driver": "Staff / maintenance / landing / handling per pax",
+   "mode": "BOTTOM_UP",
+   "justification": "Note 29 lines over disclosed pax, one escalator per driver class (wage, MRO, tariff-CPI)",
+   "sweep_refs": [
+    "F15",
+    "F05"
+   ]
+  },
+  {
+   "driver": "Fleet capex incl. pre-delivery payments",
+   "mode": "TOP_DOWN",
+   "justification": "Owned-vs-leased forward delivery split is NOT disclosed (dated negative search) \u2014 capex path is a top-down construction on the FY2025 actual and the order ladder, flagged and heavily sensitised",
+   "sweep_refs": [
+    "F25",
+    "F14"
+   ]
+  },
+  {
+   "driver": "JV/associate profit share",
+   "mode": "BOTTOM_UP",
+   "justification": "Note 12 per-investee 100%-basis P&Ls and shares",
+   "sweep_refs": [
+    "F20",
+    "F15"
+   ]
+  },
+  {
+   "driver": "Working capital ratio",
+   "mode": "BOTTOM_UP",
+   "justification": "Deferred income / payables / maintenance provisions from the audited balance sheets, three-year centre",
+   "sweep_refs": [
+    "F15",
+    "F16"
+   ]
+  }
+ ],
+ "primary_access": [
+  {
+   "url": "https://www.airarabia.com/en/about-us/investor-relations",
+   "reachable": true,
+   "attempt_date": "2026-08-09",
+   "note": "Reachable. Served audited FS FY2022-FY2025, Q1-2026 reviewed interim, annual report 2025 and results presentations directly. FY2022-24 FS PDFs are image scans \u2014 OCR'd locally, figures cross-checked against later filings' typed comparatives."
+  },
+  {
+   "url": "https://www.dfm.ae/the-exchange/market-information/company/AIRARABIA",
+   "reachable": true,
+   "attempt_date": "2026-08-09",
+   "note": "DFM disclosure page reachable (HTTP 200) \u2014 used as the exchange cross-check for the listing venue and disclosures; documents themselves taken from the company's own IR page."
+  }
+ ],
+ "study_year": "2026",
+ "study_quarters_disclosed": [
+  "Q1-2026"
+ ],
+ "qc_line": "QC(m) \u2014 Information Sweep [AIRARABIA, 2026-08-09]: PASS \u2014 4/4 rings, 25 findings (0 B \u00b7 16 S \u00b7 3 D \u00b7 3 C \u00b7 3 NEG), driver gate 8 rows (7 bottom-up / 1 top-down) | primary access: attempted (2) | FS years: 4 ['FY2022', 'FY2023', 'FY2024', 'FY2025'] | IR findings: 3"
+}

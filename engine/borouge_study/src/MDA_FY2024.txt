@@ -1,0 +1,297 @@
+
+=== [MDA_FY2024.pdf p1] ===
+BOROUGE PLC Q4 / FY 2024
+Management
+Discussion & Analysis
+4th February 2025
+1
+
+=== [MDA_FY2024.pdf p2] ===
+Summary of Operational & Financial Performance
+Borouge reported fourth quarter revenue of $1,621 million, representing a quarter-on-quarter increase of
+1 percent. Sales volumes for Polyethylene (PE) and Polypropylene (PP) were up by 2 percent and 5 percent,
+respectively, versus the previous quarter. Average selling prices for both PE and PP decreased by 3 percent
+on a quarter-on-quarter basis. The company continues to maintain high utilisation rates in the quarter of
+113 percent for PE and 98 percent for PP.
+On a year-on-year basis, overall sales volumes are up by 8 percent in the fourth quarter. Sales volumes for
+PE and PP are up by 10 percent and 5 percent, respectively. Blended average selling prices moderately
+improved by 1 percent, on a year-on-year basis while selling prices for PE recorded a moderate decline of
+2 percent and PP average selling prices are up by 3 percent.
+Borouge achieved a premium above benchmark price of $178 per tonne for PE and $140 per tonne for PP
+during the fourth quarter. Premium above benchmark for PE is down 5 percent while premium for PP
+improved by 26 percent, respectively, versus the previous year. On a quarter-on-quarter basis, premia
+above benchmark for PE and PP are down by 10 percent and 13 percent respectively.
+The company reported an adjusted EBITDA of $650 million, up 8 percent on a year-on-year basis and
+EBITDA margin of 40 percent in the fourth quarter. Total operating costs (excluding depreciation &
+amortisation) in the fourth quarter increased by 2 percent on a quarter-on-quarter basis and up 6 percent
+on a year-on-year basis, driven by strong production and sales volumes. The company maintained a high
+cash conversion of 88 percent during the quarter.
+On a full-year basis, net profit is up 24 percent to $1,239 million and EBITDA is up by 14 percent to $2,477
+million. This is supported by record production and sales volumes which are up by 3 percent and 4 percent,
+respectively, versus the previous year. The company continues to maintain cost discipline as reflected by
+a 2 percent decrease in the total operating costs (excluding depreciation & amortisation) on a year-on-year
+basis, despite higher volumes.
+Net Debt stood at $2,691 million as of 31 December 2024.
+Q4 Q4 YoY Q3 QoQ FY FY YoY
+2024 2023 (%) 2024 (%) 2024 2023 (%)
+$m $m $m $m $m
+Revenue 1,621 1,497 8% 1,600 1% 6,026 5,791 4%
+Cost of sales (972) (896) 8% (916) 6% (3,491) (3,627) -4%
+Gross profit 649 601 8% 684 -5% 2,535 2,164 17%
+General and administrative
+32 50 -35% 57 -43% 193 183 6%
+expenses
+Selling & distribution expense 144 100 44% 127 -14% 472 400 18%
+Other income and expenses 37 2 n.m. 5 582% 51 16 226%
+Operating profit 510 452 13% 506 1% 1,921 1,597 20%
+Profit for the period 331 288 15% 328 1% 1,239 1,001 24%
+Profit margin (%) 21% 19% 20% 21% 17%
+Total Comprehensive Income 335 285 18% 321 4% 1,243 994 25%
+EBITDA 650 599 9% 645 1% 2,474 2,169 14%
+Adjusted EBITDA(1) 650 600 8% 646 1% 2,477 2,171 14%
+Adjusted EBITDA margin (%) 40% 40% 40% 41% 38%
+Basic earnings per share (US$) 0.01 0.01 0.01 0.04 0.03
+Diluted earnings per share (US$) 0.01 0.01 0.01 0.04 0.03
+Net debt 2,691 2,957 -9% 3,107 -13% 2,691 2,957 -9%
+(1) Adjusted EBITDA is calculated as EBITDA plus adjustments on foreign exchange gain or loss and impairment loss on property, plant and equipment
+2
+
+=== [MDA_FY2024.pdf p3] ===
+Q4 Q4 YoY Q3 QoQ FY FY YoY
+2024 2023 (%) 2024 (%) 2024 2023 (%)
+Total sales volumes (kt) 1,467 1,359 8% 1,422 3% 5,336 5,116 4%
+Polyethylene 823 751 10% 809 2% 3,072 2,715 13%
+Polypropylene 640 608 5% 607 5% 2,253 2,285 -1%
+Ethylene and others 4 - - 6 -33% 10 116 -91%
+Average selling price ($/t) 1,045 1,039 1% 1,076 -3% 1,075 1,077 0%
+Polyethylene 1,059 1,077 -2% 1,093 -3% 1,095 1,129 -3%
+Polypropylene 1,025 991 3% 1,053 -3% 1,047 1,016 3%
+Product premia ($/t)
+Polyethylene 178 187 -5% 198 -10% 198 215 -8%
+Polypropylene 140 111 26% 160 -13% 150 125 20%
+1. Operational Review
+Borouge achieved a record production volume of 5.2 million tonnes in 2024, supported by a high asset
+reliability rate of 98.5 percent.
+During the fourth quarter, production operated at one of the highest utilisation rates of 113 percent for PE
+and 98 percent for PP, achieving high utilisation rates on a consecutive basis.
+The Olefin Conversion Unit (OCU) was maintained at a high-capacity utilization rate. Ethylene is typically
+prioritized for use in maximizing PE production and the additional quantities are sent to the OCU. Any
+excess ethylene can be sold in the market.
+Q4 Q4 YoY Q3 QoQ FY FY YoY
+2024 2023 (%) 2024 (%) 2024 2023 (%)
+Production capacity (kt) 1,255 1,255 - 1,255 - 4,994 4,980 -
+Polyethylene 693 693 - 693 - 2,758 2,750 -
+Polypropylene 562 562 - 562 - 2,236 2,230 -
+Utilisation rate
+Polyethylene 113% 112% 106% 110% 101%
+Polypropylene 98% 99% 110% 98% 97%
+Borouge 3 planned turnaround will take place in Q2 2025 and will have an estimated impact of 320kt in the
+second quarter.
+Our planned operational maintenance turnarounds are a key part of Borouge’s regular asset management
+which keep the Company’s world-class asset base well-maintained and supports our high utilisation rates,
+industry-leading asset reliability, and efficient and safe operations.
+Borouge maintains an unwavering focus on achieving the highest standards of health, safety and
+environmental performance.
+3
+
+=== [MDA_FY2024.pdf p4] ===
+2. Revenue & Pricing
+Q4 Q4 YoY Q3 QoQ FY FY YoY
+2024 2023 (%) 2024 (%) 2024 2023 (%)
+Sales volumes by product (kt) 1,467 1,359 8% 1,422 3% 5,336 5,116 4%
+Polyethylene 823 751 10% 809 2% 3,072 2,715 13%
+Polypropylene 640 608 5% 607 5% 2,253 2,285 -1%
+Ethylene and others 4 - - 6 -33% 10 116 -91%
+Polyethylene (US$ / t)
+Average sales prices 1,059 1,077 -2% 1,093 -3% 1,095 1,129 -3%
+Premia 178 187 -5% 198 -10% 198 215 -8%
+Benchmark 881 890 -1% 895 -2% 898 914 -2%
+Polypropylene (US$ / t)
+Average sales prices 1,025 991 3% 1,053 -3% 1,047 1,016 3%
+Premia 140 111 26% 160 -13% 150 125 20%
+Benchmark 885 880 1% 893 -1% 897 891 1%
+Q4 Q4 YoY Q3 QoQ FY FY YoY
+2024 2023 (%) 2024 (%) 2024 2023 (%)
+$m $m $m $m $m
+Revenue by product
+Polyethylene 933 858 9% 928 1% 3,559 3,276 9%
+Polypropylene 676 620 9% 657 3% 2,421 2,402 1%
+Ethylene and others 13 19 -35% 15 -16% 47 113 -59%
+Total revenues 1,621 1,497 8% 1,600 1% 6,026 5,791 4%
+(1) Benchmark prices represent HDPE Blow Molding NEA CFR for polyethylene and Raffia NEA CFR for polypropylene (as per CMA).
+(2) Average sales prices are equal to revenue over sales volumes (including commissions).
+(3) Premia is equal to the difference between average sales prices and the benchmark prices.
+During the quarter, total sales volumes are up by 3 percent versus the previous quarter and up by 8 percent
+on a year-on-year basis. Quarterly sales volumes from Polyethylene (PE) and Polypropylene (PP) are up by
+2 percent and 5 percent respectively versus the third quarter. Sales volumes from infrastructure solutions
+contributed 39 percent to total sales volumes. Asia Pacific region continues to be the region with highest
+sales of 63 percent of total sales volumes followed by Middle East and Africa at 7 percent. This is driven by
+company’s strategic focus on differentiated, durable products, geographic optimization, and agility in
+navigating market challenges.
+Borouge achieved a premia over benchmark of $178 per tonne for PE and $140 per tonne for PP. Premia
+for PE is slightly below management’s through-the-cycle guidance of $200 per tonne for PE and in-line with
+$140 per tonne for PP.
+In the fourth quarter, blended average prices were up 1 percent versus the previous year and down by 3
+percent on a quarter-on-quarter basis. Average selling prices for PE declined by 2 percent versus the
+previous year and 3 percent on a quarter-on-quarter basis. Average selling prices for PP increased by 3
+percent on year-on-year basis and declined by 3 percent on quarter-on-quarter basis. Product
+benchmarks for PE and PP remained almost flat on a quarterly basis. Premium above benchmark for PE
+and PP declined by 10 percent and 13 percent, respectively, versus the previous quarter.
+On a full-year basis, blended average selling prices are flat and average selling prices for PE are down by 3
+percent and up by 3 percent for PP versus the previous year. The company achieved premia above product
+benchmark of $198 per tonne for PE and $150 per tonne for PP.
+Borouge’s commercial excellence, has been consistently reflected in the company’s strong financial
+performance.
+4
+
+=== [MDA_FY2024.pdf p5] ===
+Segmental revenue breakdown (includes polyolefins and olefins)
+Q4 Q4 YoY Q3 FY FY YoY
+QoQ (%)
+2024 2023 (%) 2024 2024 2023 (%)
+By product group
+Polyethylene 58% 57% 58% 59% 57%
+Polypropylene 42% 41% 41% 40% 41%
+Ethylene and others 1% 1% 1% 1% 2%
+By end market
+Consumer solutions 55% 56% 56% 54% 52%
+Infrastructure solutions 42% 40% 40% 43% 44%
+Other 3% 4% 3% 3% 5%
+By geography
+Asia Pacific 62% 63% 63% 62% 62%
+Middle East & Africa 30% 29% 30% 31% 29%
+Rest of World 7% 6% 6% 7% 6%
+Ethylene & others 1% 1% 1% 1% 2%
+(1) Consumer Solutions includes sales to the agriculture sector.
+(2) “Other” in “By End Markets” includes mobility and healthcare sectors and ethylene and other products.
+Segmental volume breakdown (includes polyolefins and olefins)
+Q4 Q4 YoY Q3 FY FY YoY
+QoQ (%)
+2024 2023 (%) 2024 2024 2023 (%)
+By product group
+Polyethylene 56% 55% 57% 58% 53%
+Polypropylene 44% 45% 43% 42% 45%
+Ethylene and others 0% 0% - - 2%
+By end market
+Consumer solutions 59% 61% 59% 57% 57%
+Infrastructure solutions 39% 36% 38% 40% 39%
+Other 3% 3% 3% 3% 5%
+By geography
+Asia Pacific 63% 63% 65% 63% 62%
+Middle East & Africa 30% 30% 29% 30% 29%
+Rest of World 7% 7% 6% 7% 7%
+Ethylene & others - - - - 2%
+(1) Consumer Solutions includes sales to the agriculture sector.
+(2) “Other” in “By End Markets” includes mobility and healthcare sectors and ethylene and other products.
+3. Costs
+Q4 Q4 YoY Q3 FY FY YoY
+QoQ (%)
+2024 2023 (%) 2024 2024 2023 (%)
+$m $m $m $m $m
+Revenue 1,621 1,497 8% 1,600 1% 6,026 5,791 4%
+Cost of sales (excluding D&A) (837) (754) 11% (779) 7% (2,947) (3,062) -4%
+…Feedstock costs (338) (335) 1% (359) -6% (1,288) (1,357) -5%
+…Other variable and fixed
+(499) (419) 19% (420) 19% (1,659) (1,705) -3%
+production costs
+…as % of revenue 52% 50% 49% 49% 53%
+General and administrative
+(27) (45) -40% (55) -50% (185) (177) 5%
+expenses (excluding D&A)
+…as % of revenue 2% 3% 3% 3% 3%
+Selling and distribution expenses (145) (100) 44% (127) 14% (472) (399) 18%
+…as % of revenue 9% 7% 8% 8% 7%
+Other income and expenses 37 2 n.m. 5 582% 51 16 226%
+5
+
+=== [MDA_FY2024.pdf p6] ===
+Depreciation and amortization (140) (146) -4% (139) 1% (553) (572) -3%
+Operating profit 510 452 13% 506 1% 1,921 1,597 20%
+…as % of revenue 31% 30% 32% 32% 28%
+During the fourth quarter, overall operating costs (excluding depreciation & amortisation) increased 6
+percent on a year-on-year basis and 2 percent versus the previous quarter driven by higher volumes.
+Cost of goods sold (excluding depreciation and amortization) increased by 11 percent on a year-on-year
+basis and up by 7 percent versus the previous quarter. On a full-year basis, total cost of goods sold
+declined by 4 percent despite record volumes. This decrease was supported by 5 percent decline in
+feedstock cost and 3 percent decrease in other variable and fixed costs for the full year.
+General and administrative expenses are down significantly both year-on-year and on a quarterly basis by
+40 percent and 50 percent respectively due to one-off adjustments. Selling and distribution expense
+increased on a quarter-on-quarter basis by 14 percent due to higher shipping related costs during the
+quarter. Other income in Q4 2024 relates mainly to a one-off receipt from an insurance claim.
+On a full-year basis, the overall operating cost base (excluding depreciation & amortisation) declined by 2
+percent on a year-on-year basis, reflecting company’s focus on strategic cost management even after the
+successful completion of the Value Enhancement Program in 2023 that delivered $607 million through
+revenue optimization and cost reductions.
+Selling and distribution expenses are up 18 percent on year-on-year basis due to freight costs. General and
+administrative expenses increased by 5 percent on a year-on-year basis due to one-off items.
+4. Cash Generation
+Q4 Q4 YoY Q3 QoQ FY FY YoY
+2024 2023 (%) 2024 (%) 2024 2023 (%)
+$m $m $m $m $m
+Profit for the period 331 288 15% 328 1% 1,239 1,001 24%
+Income tax expense 137 112 22% 134 2% 506 400 26%
+Net finance loss, including
+foreign exchange loss 42 52 -20% 45 -7% 176 196 -10%
+Depreciation of property, plant,
+and equipment 133 138 -4% 131 1% 524 540 -3%
+Depreciation of right-of-use
+assets 1 1 -4% 1 -13% 5 4 9%
+Amortisation of intangible assets 6 7 -9% 6 - 24 28 -16%
+Impairment loss on property,
+plant & equipment 0.2 1.7 -90% 1 -80% 3 2 78%
+Adjusted EBITDA (1) 650 600 8% 646 1% 2,477 2,171 14%
+EBITDA 650 599 9% 645 1% 2,474 2,169 14%
+Capital expenditure (2) 78 74 5% 41 88% 167 199 -16%
+Adjusted operating free cash
+572 526 9% 605 -5% 2,309 1,972 17%
+flow (3)
+Cash conversion (%) 88% 88% 94% 93% 91%
+(1) Adjusted EBITDA is calculated as EBITDA plus adjustments on foreign exchange gain or loss and impairment loss on property, plant and equipment.
+(2) Capital expenditure is calculated as additions to property, plant and equipment for the period.
+(3) Adjusted Operating Free Cash Flow is calculated as Adjusted EBITDA less capital expenditure.
+Adjusted EBITDA for the fourth quarter increased by 8 percent on a year-on-year basis to $650 million and
+an industry leading margin of 40 percent. Adjusted operating free cash flow of $572 million represents an
+6
+
+=== [MDA_FY2024.pdf p7] ===
+increase of 9 percent versus the same quarter last year. Cash conversion in the fourth quarter is 88
+percent.
+For the Full-year ended 31 December 2024, Borouge reported an adjusted EBITDA of $2,477 million, up 14
+percent on a year-on-year basis and an EBITDA margin of 41 percent. Cash conversion for the period is 93
+percent versus 91 percent during the same period last year.
+5. Current Trading & Outlook
+Expectations of a stable macro environment in Borouge core markets with positive expectations from
+Chinese market, following ongoing stimulus efforts.
+Borouge remains committed in its focus on innovation and strives to generate at least 20 percent of annual
+sales volumes from new products. Management reiterates its over-the-cycle premia guidance of $200 per
+tonne for PE and $140 per tonne for PP.
+Management intends to pay a dividend of $1.3 billion for FY 2025. The final dividend for FY 2024 of $650
+million will be paid in April 2025.
+Borouge management guidance summarised below:
+Metric Management Guidance
+Planned Turnaround of
+▪ Production volume impact in Q2 2025 of 320,000 tonnes
+Borouge 3 (Q2 2025)
+▪ Sales volumes and pricing expected to be in-line with Q1
+Q1 2025 commercial outlook
+2024 levels
+Through-the-cycle product ▪ Polyethylene: $200 / tonne premia
+premia guidance(1) ▪ Polypropylene: $140 / tonne premia
+FY 2025 Dividend ▪ $1.3 billion ($0.0433 / share)
+(1) Benchmark prices represent HDPE Blow Molding NEA CFR for polyethylene and Raffia NEA CFR for polypropylene (as per CMA).
+Borouge will announce its Q1 2025 results on 30th April 2025.
+Management Q4 / FY 2024 Earnings Call
+Borouge management will host its Q4 2024 earnings call on 4th February 2025 at 12:00 pm UAE time.
+Webcast and call access details are provided below.
+Webcast Link:
+https://webcast.openbriefing.com/borouge-q4feb25/
+Conference Call Dial-in Details:
+Operator Assisted Dial-In:
+United Arab Emirates (Toll-Free): +971 800 0357 04553
+United Kingdom (Local): +44 20 3936 2999
+United Kingdom (Toll-Free): +44 800 358 1035
+United States (Local): +1 646 664 1960
+United States (Toll-Free): +1 855 9796 654
+Global Dial-In Numbers
+Access Code: 938632
+7

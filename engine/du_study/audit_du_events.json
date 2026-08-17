@@ -1,0 +1,118 @@
+{
+  "ticker": "DU",
+  "company": "Emirates Integrated Telecommunications Company PJSC (du)",
+  "exchange": "Dubai Financial Market (DFM)",
+  "compiled": "2026-08-17",
+
+  "interim_dividend": {
+    "amount_aed_per_share": 0.26,
+    "period": "H1 2026 interim cash dividend",
+    "board_approval_date": "2026-07-22",
+    "board_approval_note": "du's own DFM disclosure letter states the Board met at 2pm on WEDNESDAY 22 JULY 2026, not 23 July. The 23 July 2026 date in circulation is the results press release / investor presentation date ('Q2 2026 results July 23, 2026, Fahad Al Hassawi, Chief Executive Officer'). The dividend approval itself is dated 22 July 2026 and the disclosure letter is Ref RME/14/2026 dated 22 July 2026.",
+    "last_entitlement_date": "2026-07-30",
+    "last_entitlement_date_weekday": "Thursday",
+    "last_entitlement_date_label": "LED - last day to buy cum-dividend",
+    "ex_date": "2026-07-31",
+    "ex_date_weekday": "Friday",
+    "ex_date_label": "EXD - first day trading ex-dividend",
+    "record_date": "2026-08-03",
+    "record_date_weekday": "Monday",
+    "record_date_label": "RCD - register closure / entitled shareholder of record (T+2)",
+    "payment_date": "2026-08-21",
+    "payment_date_weekday": "Friday",
+    "payment_date_confidence": "high but secondary - the payment date is NOT stated in du's own disclosure letter; it comes from the DFM/Dubai CSD Dividends Distribution Summary and is independently matched by stockanalysis.com. The letter says the distribution is 'subject to Capital Market Authority approval'.",
+
+    "was_ex_before_7_aug_2026": true,
+
+    "evidence": "PRIMARY SOURCE, fully decisive. du's own signed disclosure letter to DFM (Ref RME/14/2026, dated 22 July 2026, on du letterhead, addressed to DFM CEO Hamed Ahmed Ali, signed by Company Secretary Ali Al Ali and stamped by the eitc Chairman Office) carries an explicit bilingual three-column dividend timetable table: LED (last entitlement date) 30 July 2026 | EXD (ex-dividend date) 31 July 2026 | RCD (record closure date) 3 August 2026. Therefore DU went ex the AED 0.26 interim on FRIDAY 31 JULY 2026, which is SEVEN CALENDAR DAYS (six DFM trading sessions: 31 Jul, 3, 4, 5, 6, 7 Aug) BEFORE the close on Friday 7 August 2026. At the 7 August 2026 close the AED 0.26 was NOT in the price - the shares had already traded ex for a week. The dividend was however still UNPAID at that date (payment 21 August 2026), so for valuation purposes it is a declared-but-unsettled distribution: out of the share price, still a liability on the balance sheet / a cash outflow yet to occur.",
+
+    "corroboration": [
+      "DFM Dividends Distribution Summary row for DU: disclosure 22/07/2026, ex-dividend (T+1) 31/07/2026, settlement (T+2) 03/08/2026, 26 Fils, payment 21/08/2026. NOTE: the entitlement (T+0) cell in that DFM table reads 30/06/2026, which is internally inconsistent with an ex-date of 31/07/2026 under DFM's own T+0/T+1/T+2 convention (T+0 must be the trading day immediately before the ex-date). du's own letter gives LED = 30 July 2026, so the DFM summary cell is a month-digit data-entry slip (or is showing the 30 June 2026 period end); it does not affect the ex-date.",
+      "stockanalysis.com (DFM:DU) dividend history: Ex-Dividend Date Jul 31 2026, Record Date Aug 3 2026, Pay Date Aug 21 2026, 0.260 AED.",
+      "digrin.com (DU.AE): ex-dividend date 2026-07-31, 0.2600 AED.",
+      "PRIOR-YEAR PATTERN CONFIRMS THE SHAPE: Dubai CSD Dividends Distribution Summary for the 2025 interim (24 Fils): entitlement (T+0) 31/07/2025 (Thu), ex-dividend (T+1) 01/08/2025 (Fri), settlement (T+2) 04/08/2025 (Mon), payment 22/08/2025 (Fri). The 2026 interim is the identical calendar structure shifted one day earlier: cum Thu 30 Jul, ex Fri 31 Jul, record Mon 3 Aug, pay Fri 21 Aug. (User's note of a 21 Aug 2025 payment is one day off the CSD record of 22 Aug 2025.)",
+      "FY2025 final (40 Fils) per DFM summary: entitlement 07/04/2026, ex-dividend 08/04/2026, settlement 09/04/2026, payment 29/04/2026 - i.e. the ex-date was 8 April 2026, and DFM records payment on 29 April 2026 (user's note said 28 April 2026, one day off). The 30 March 2026 AGM approval date is consistent."
+    ],
+
+    "price_action_caveat": "A mechanical ex-dividend drop is NOT visible in aggregator daily closes (stockanalysis: 30 Jul 12.20 -> 31 Jul 12.16, a -0.33% move, not the ~2.1% the AED 0.26 would imply; 7 Aug 2026 close 12.30). This does not undercut the ex-date, which is a documented matter of record in du's own filing: aggregator series may be dividend-adjusted, and in any case a stock can rise through its ex-date on market moves. Do NOT infer the ex-date from price action here - the filing governs. Note also that Monday 3 August 2026 is absent from that aggregator's price table despite being a DFM trading day, so treat its DU daily series as incomplete.",
+
+    "valuation_implication": "Any 7 August 2026 spot used as a valuation anchor is an EX-dividend price. Do not deduct the AED 0.26 from it again, and do not add it back as though the dividend were still in the price. If the model carries declared-but-unpaid dividends as a liability, the AED 0.26 (payable 21 August 2026) was still outstanding at the 7 August 2026 close.",
+
+    "sources": [
+      "https://feeds.dfm.ae/documents//2026/Jul/22/e6ee3121-df18-43d0-895e-e05d5b39bfd6/RME14%202026%2007%2022%20Notification%20Of%20The%20Results%20Of%20Th.pdf",
+      "https://www.dfm.ae/investing/services/dividends-distribution-summary",
+      "https://www.dubaicsd.ae/investing/dividends-distribution-summary",
+      "https://stockanalysis.com/quote/dfm/DU/dividend/",
+      "https://www.digrin.com/stocks/detail/DU.AE/"
+    ]
+  },
+
+  "royalty_extension": {
+    "du_disclosed": true,
+    "date": "2026-07-24",
+    "document_title": "Emirates Integrated Telecommunications Company PJSC (\"du\") - Disclosure Announcement - Extension of Federal Royalty Scheme for the Period 2027-2029",
+    "document_authenticity": "du-branded standalone disclosure announcement (du logo, dateline 'Dubai, UAE - 24 July 2026'). PDF metadata: Microsoft Word, author 'Bisrat Marcos', CreationDate Fri 24 Jul 2026 14:02:28 UTC - i.e. the file was created on the date it carries, consistent with a company-issued release rather than a press rewrite. Read as a rendered image to confirm branding and wording.",
+    "period": "1 January 2027 to 31 December 2029 (a further three-year period)",
+    "notifying_authority": "UAE Ministry of Finance",
+    "royalty_rate": "38% of net profits generated in the UAE",
+    "corporate_tax_rate": "9% of net profits generated in the UAE after deduction of the Federal Royalty amount",
+
+    "floor_treatment": "CARRIES OVER - the AED 1.8 billion per year combined minimum floor is expressly retained in the extension, not lapsed. It is stated as an aggregate annual floor on Federal Royalty PLUS Corporate Tax combined (not royalty alone), the same construction as the 2024-2026 regime.",
+    "floor_aed_per_year": 1800000000,
+    "payment_timing": "Payable within five months from the end of the relevant fiscal year",
+
+    "quoted_words": {
+      "extension": "Emirates Integrated Telecommunications Company PJSC (\"du\" or the \"Company\"), listed on the Dubai Financial Market under ticker symbol DU, announces that it has been notified by the Ministry of Finance of the extension of the existing Federal Royalty regime and Corporate Tax Law applicable to the telecommunications sector for a further three-year period, commencing on 1 January 2027 and ending on 31 December 2029.",
+      "royalty_rate": "A Federal Royalty rate of 38% shall apply to net profits generated in the UAE.",
+      "corporate_tax": "A Corporate Tax rate of 9% shall apply to net profits generated in the UAE after deduction of the Federal Royalty amount.",
+      "floor": "The aggregate annual amount of Federal Royalty and Corporate Tax payable by the Company shall not be lower than AED 1.8 billion.",
+      "payment_timing": "The annual Federal Royalty and Corporate Tax amounts shall be payable within five months from the end of the relevant fiscal year."
+    },
+
+    "exclusions_from_royalty_calculation": [
+      "Profits generated by international controlled entities.",
+      "Profits generated by international non-controlled entities, including associates and joint ventures.",
+      "Dividends or other profit distributions received from international investments that are subject to local corporate tax, or a similar tax, in the relevant jurisdiction at a rate of 9% or above.",
+      "Profit attributable to non-controlling interest holders in UAE controlled entities."
+    ],
+
+    "notes": "The user's premise of a Ministry of Finance notification dated around 17 July 2026 could not be confirmed as a date stated by du - du's announcement gives no date for the MoF notification itself, only its own disclosure date of 24 July 2026. Sequence: Board meeting and Q2 approval 22 July, results release/investor call 23 July, royalty-extension disclosure 24 July. e&'s disclosure of the same extension is corroborated in e&'s Q2 2026 earnings release. du's own IR portal (investors.du.ae) could not be read directly - it returns HTTP 503 to the fetcher and times out on the response body over curl - so the du announcement was obtained from its mirrored copy; the mirrored file is nonetheless du's own branded document, not third-party reporting.",
+
+    "sources": [
+      "https://argaamplus.s3.amazonaws.com/2d240ca9-bc2b-42e7-9942-ffddbbcd5fcc.pdf",
+      "https://argaamplus.s3.amazonaws.com/1014dead-3034-4615-8932-b079ba18c0e8.pdf"
+    ]
+  },
+
+  "licence_renewal": {
+    "date": "2026-08-12",
+    "date_basis": "Date of the TDRA Board announcement as carried by press (Khaleej Times article published Wednesday 12 August 2026; Gulf Today 12 August 2026; Zawya press release).",
+    "effective_from": "2026-08-09",
+    "expires": "2046-08-08",
+    "term_years": 20,
+    "licensees": [
+      "Emirates Telecommunications Group Company PJSC (e&)",
+      "Emirates Integrated Telecommunications Company PJSC (du)"
+    ],
+    "replaces": "The Public Telecommunications Licences originally issued in 2006",
+    "granting_authority": "Telecommunications and Digital Government Regulatory Authority (TDRA) Board of Directors",
+
+    "fee_terms": "NOT DISCLOSED. No licence fee, royalty rate, or revenue-share term appears in the TDRA announcement or in any of the press coverage reviewed. The renewal is described only in regulatory/obligation terms - network resilience and backup capacity, geographic diversification of international connectivity across multiple terrestrial systems and submarine cables, removal of single points of failure, disaster-recovery testing, quality of service, interconnection and access, national roaming, universal service, subscriber protection, and prevention of anti-competitive practices - framed as a shift from 'connectivity leadership to AI leadership'. Treat the absence of published fee terms as an open item, not as evidence that terms are unchanged.",
+
+    "du_own_disclosure_found": false,
+    "du_own_disclosure_note": "No du-issued DFM disclosure announcement of the licence renewal was located. All located coverage traces to TDRA's own announcement rather than to a company filing. Not exhaustively ruled out - du's IR portal was unreadable (503 / body timeout) and the DFM per-company disclosure listing is JavaScript-rendered and returned 404 on the direct path tried.",
+
+    "sources": [
+      "https://www.khaleejtimes.com/business/uae-telecom-firms-e-and-du-get-licences-renewed-for-20-more-years",
+      "https://www.zawya.com/en/press-release/government-news/tdra-board-renews-telecom-licences-of-both-operators-for-another-20-years-429265",
+      "https://www.gulftoday.ae/news/2026/08/12/tdra-renews-telecom-licences-of-e-and-du-for-another-20-years",
+      "https://satelliteprome.com/news/tdra-renews-public-telecommunications-licences-for-e-and-du/"
+    ]
+  },
+
+  "unresolved": [
+    "du's IR portal (investors.du.ae) was never readable in this pass - HTTP 503 to the fetcher, response-body timeout over curl - so no item was confirmed from du's own hosted IR pages; the du documents used were obtained from DFM's own document feed (dividend disclosure) and a mirror of du's branded announcement (royalty extension).",
+    "The interim dividend PAYMENT date of 21 August 2026 rests on DFM's distribution summary and one aggregator, not on du's own letter, which states no payment date.",
+    "Whether du filed its own disclosure of the TDRA licence renewal, and whether any licence fee or revenue-share term changed, remain unconfirmed."
+  ]
+}

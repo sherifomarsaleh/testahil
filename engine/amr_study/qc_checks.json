@@ -1,0 +1,31 @@
+{
+ "scrub_hits": 0,
+ "scrub_detail": {
+  "AMR_Valuation_Study_09-08-2026_public.docx": [],
+  "AMR_Bibliography_09-08-2026.docx": [],
+  "AMR_Valuation_Model_09082026_public.xlsx": []
+ },
+ "table_issues": [],
+ "n_figures": 9,
+ "figure_issues": [],
+ "pdf_inventory": [
+  {
+   "file": "AMR_Valuation_Study_09-08-2026_public.pdf",
+   "pages": 27,
+   "images": 9,
+   "kb": 1314
+  },
+  {
+   "file": "AMR_Bibliography_09-08-2026.pdf",
+   "pages": 27,
+   "images": 0,
+   "kb": 702
+  },
+  {
+   "file": "AMR_Valuation_Model_09082026_public.pdf",
+   "pages": 54,
+   "images": 0,
+   "kb": 116
+  }
+ ]
+}

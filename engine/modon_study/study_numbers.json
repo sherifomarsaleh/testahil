@@ -1,0 +1,2684 @@
+{
+ "meta": {
+  "ticker": "MODON",
+  "company": "Modon Holding PSC",
+  "market": "ADX",
+  "currency": "AED",
+  "asof": "2026-08-09",
+  "spot": 2.83,
+  "shares_mn": 16347.08,
+  "mktcap": 46262.2364,
+  "klass": "diversified city-developer group (development + recurring income + hospitality + events platform)",
+  "revision": 2,
+  "valuation_date": "2026-06-30"
+ },
+ "hist_is": {
+  "FY23": {
+   "rev": 994.293,
+   "gp": 599.559,
+   "ebitda": 673.3530000000001,
+   "dna": 27.719,
+   "ebit": 645.634,
+   "fin": 8.518,
+   "assoc": -0.697,
+   "ebt": 653.455,
+   "tax": -79.504,
+   "pat": 573.951,
+   "nci": 112.68200000000002,
+   "npa": 461.269
+  },
+  "FY24": {
+   "rev": 6511.182,
+   "gp": 2316.507,
+   "ebitda": 9794.942,
+   "dna": 265.122,
+   "ebit": 9529.82,
+   "fin": -156.66699999999997,
+   "assoc": 115.114,
+   "ebt": 9488.267,
+   "tax": -98.815,
+   "pat": 9389.452,
+   "nci": -33.7390000000014,
+   "npa": 9423.191
+  },
+  "FY25": {
+   "rev": 13828.869,
+   "gp": 5025.259,
+   "ebitda": 4895.552000000001,
+   "dna": 610.483,
+   "ebit": 4285.069,
+   "fin": -127.46600000000001,
+   "assoc": 263.592,
+   "ebt": 4421.195,
+   "tax": -495.49,
+   "pat": 3925.705,
+   "nci": -94.39699999999993,
+   "npa": 4020.102
+  }
+ },
+ "oneoff": {
+  "fy25": {
+   "fv_ip": 343.426,
+   "fv_pl": 221.952,
+   "disp": 169.677,
+   "total": 735.055,
+   "ebit_clean": 3550.0140000000006,
+   "ebitda_clean": 4160.497
+  },
+  "fy24": {
+   "bargain": 9192.243,
+   "impair": 1024.726,
+   "ebit_ex": 1574.4099999999994,
+   "npa_ex": 230.94800000000032
+  }
+ },
+ "hist_bs": {
+  "FY23": {
+   "ppe": 789.463,
+   "ip": 7536.858,
+   "inv": 2246.917,
+   "recv": 1685.533,
+   "cash": 2259.902,
+   "assets": 21311.081,
+   "debt": 1976.135,
+   "eqp": 13769.094,
+   "nci": 1149.566,
+   "nd": -283.76700000000005,
+   "nwc": NaN
+  },
+  "FY24": {
+   "ppe": 7593.191,
+   "ip": 9336.725,
+   "inv": 29586.274,
+   "dwip": 2461.672,
+   "recv": 3529.025,
+   "duefr": 9314.779,
+   "cash": 7009.67,
+   "assets": 75925.281,
+   "debt": 5364.11,
+   "pay": 8248.542,
+   "dueto": 9781.37,
+   "eqp": 49676.408,
+   "nci": 1186.183,
+   "nd": -1645.5600000000004,
+   "nwc": 26861.837999999996
+  },
+  "FY25": {
+   "ppe": 8812.397,
+   "ip": 9461.777,
+   "inv": 27297.588,
+   "dwip": 6111.794,
+   "recv": 8703.594,
+   "duefr": 7931.529,
+   "cash": 12641.987,
+   "assets": 87030.985,
+   "debt": 6789.085999999999,
+   "pay": 21407.874,
+   "dueto": 1693.721,
+   "eqp": 53902.504,
+   "nci": 847.48,
+   "nd": -5852.901,
+   "nwc": 26942.909999999996
+  }
+ },
+ "netcash": {
+  "strict": 2761.5550000000003,
+  "company": -912.0,
+  "note": "30-Jun-2026: strict all-cash basis net cash 2,762; company definition net DEBT 912 (available cash only). The bridge uses the available-cash basis; the strict basis is the disclosed alternative"
+ },
+ "hist_cf": {
+  "FY24": {
+   "ocf": 3231.447,
+   "capex": 1247.0
+  },
+  "FY25": {
+   "ocf": 3860.373,
+   "capex": 1260.566
+  }
+ },
+ "h1": {
+  "rev": 9188.304,
+  "gp": 3201.275,
+  "pbt": 2601.227,
+  "pat": 2202.138,
+  "npa": 2162.966,
+  "eff_tax": 0.1542356741645385,
+  "ga": 685.124,
+  "ocf": -3921.027,
+  "debt": 9541.685,
+  "cash": 12303.24,
+  "eqp": 56396.629,
+  "rev_yoy": 0.403854789258391
+ },
+ "seg_fy25": {
+  "rev": {
+   "red": 7403.313,
+   "aim": 654.658,
+   "hosp": 791.771,
+   "ect": 5008.749
+  },
+  "gp": {
+   "red": 3232.891,
+   "aim": 421.083,
+   "hosp": 210.893,
+   "ect": 1325.029
+  },
+  "pbt": {
+   "red": 2547.573,
+   "aim": 685.082,
+   "hosp": -69.15,
+   "ect": 1061.602
+  },
+  "assets": {
+   "red": 55738.581,
+   "aim": 11095.849,
+   "hosp": 4601.757,
+   "ect": 14118.268
+  },
+  "oth_rev": -29.622,
+  "oth_gp": -164.637,
+  "names": {
+   "red": "Real Estate Development",
+   "aim": "Asset & Investment Management",
+   "hosp": "Hospitality",
+   "ect": "Events, Catering & Tourism"
+  },
+  "gp_margin": {
+   "red": 0.43668165860338476,
+   "aim": 0.643210653501523,
+   "hosp": 0.2663560549704397,
+   "ect": 0.26454290282863047
+  },
+  "rev24": {
+   "red": 2869.294,
+   "aim": 578.358,
+   "hosp": 569.87,
+   "ect": 2493.66
+  },
+  "h1_rev": {
+   "red": 5675.275,
+   "aim": 360.966,
+   "hosp": 388.398,
+   "ect": 2775.402
+  },
+  "h1_gp": {
+   "red": 2342.842,
+   "aim": 258.38,
+   "hosp": 105.504,
+   "ect": 552.062
+  },
+  "h1_gp_margin": {
+   "red": 0.4128155904339438,
+   "aim": 0.7158014882288082,
+   "hosp": 0.2716388858850972,
+   "ect": 0.1989124458366752
+  }
+ },
+ "units": {
+  "total": {
+   "sales": 36300.0,
+   "units": 6358,
+   "px": 5.709342560553633
+  },
+  "uae": {
+   "sales": 29800.0,
+   "units": 4243,
+   "px": 7.023332547725666
+  },
+  "intl": {
+   "sales": 6600.0,
+   "units": 2115,
+   "px": 3.120567375886525
+  },
+  "backlog": 46000.0,
+  "dev_backlog": 42600.0
+ },
+ "h1_anchors": {
+  "backlog": 65400.0,
+  "dev_backlog": 62130.0,
+  "sales": 26000.0,
+  "netdebt": 912.0,
+  "avail_cash": 8600.0,
+  "cash_total": 12303.24,
+  "debt": 9541.685,
+  "lease": 644.799,
+  "assoc": 2826.454,
+  "finass": 392.972,
+  "nci": 922.342,
+  "eqp": 56396.629,
+  "recv": 22155.68,
+  "invdwip": 34087.289000000004,
+  "pay": 22289.32,
+  "nwc": 33953.649000000005,
+  "adj_ebitda": 2995.0
+ },
+ "wacc": {
+  "rf": 0.0448,
+  "rf_star": 0.0406,
+  "sov_spread": 0.0042,
+  "erp": 0.0487,
+  "beta": 1.746,
+  "ke_exp": 0.1256302,
+  "kd": 0.0536,
+  "kd_at": 0.045292,
+  "we_exp": 0.8290140771361635,
+  "wd_exp": 0.17098592286383657,
+  "wacc_exp": 0.11189349873178052,
+  "ke_term": 0.1256302,
+  "kd_term": 0.0536,
+  "kd_term_at": 0.045292,
+  "wd_term": 0.08020685679031156,
+  "wacc_term": 0.11918652549780859,
+  "eibor6": 0.0371,
+  "kd_margin": 0.0165,
+  "kd_eff_fy25": 0.0591569493325048,
+  "cds_basis": "NA \u2014 no UAE sovereign CDS published",
+  "weights_note": "market-value equity per the standing method; the circularity (using the market's weights while arguing the market misprices the equity) is acknowledged: at the study's own equity value the WACC would be ~30bp higher and the DCF ~1% lower"
+ },
+ "contested": {
+  "name": "development sales trajectory (sustained-normalising vs run-off stress)",
+  "base_ps": 3.542281748960128,
+  "runoff_ps": 2.643232316556594,
+  "bull_ps": 4.1337524764574205,
+  "runoff_ev": 41969.431808136535,
+  "base_ev": 56712.41961510183,
+  "runoff_rev": [
+   11045.65,
+   25019.21139,
+   26966.534638970006,
+   26539.82479830767,
+   25445.600938549094
+  ],
+  "runoff_fcff": [
+   1844.3469121780822,
+   3455.8188849437156,
+   5259.9965178122875,
+   6142.4428885830275,
+   6661.895146596579
+  ],
+  "note": "published side by side; the run-off is now labelled a stress: the H1-2026 disclosure falsified it as a live central path"
+ },
+ "egy_stress": {
+  "ke": 0.15267805350537342,
+  "ps": 2.8275647592104556,
+  "fgn_share": 0.170797409390457
+ },
+ "fcst": {
+  "years": [
+   "H2-26E",
+   "FY27E",
+   "FY28E",
+   "FY29E",
+   "FY30E"
+  ],
+  "yrfrac": [
+   0.5,
+   1.0,
+   1.0,
+   1.0,
+   1.0
+  ],
+  "t_exp": [
+   0.5,
+   1.5,
+   2.5,
+   3.5,
+   4.5
+  ],
+  "rev": [
+   11045.65,
+   26019.21139,
+   32006.534638970006,
+   34927.82479830767,
+   36188.64093854909
+  ],
+  "gp": [
+   4164.576499999999,
+   9618.595855500002,
+   11783.50421198225,
+   12806.978845467507,
+   13143.29411112225
+  ],
+  "ga": [
+   916.78895,
+   2289.69060232,
+   2784.5685135903905,
+   3003.7929326544595,
+   3076.034479776673
+  ],
+  "sm": [
+   187.77605,
+   468.34580501999994,
+   544.1110888624902,
+   593.7730215712305,
+   579.0182550167855
+  ],
+  "invinc": [
+   80.0,
+   165.0,
+   170.0,
+   175.0,
+   180.0
+  ],
+  "ebitda": [
+   3481.475777999999,
+   7734.278218708002,
+   9361.296941878736,
+   10149.395164291305,
+   10462.464252094598
+  ],
+  "ebitda_margin": [
+   0.31518976049395003,
+   0.2972525993497454,
+   0.2924808026696135,
+   0.29058194213064953,
+   0.28910906794926655
+  ],
+  "dna": [
+   341.46427800000004,
+   708.7187705480002,
+   736.4723323493681,
+   764.9822730494897,
+   794.2228757658071
+  ],
+  "ebit": [
+   3140.011499999999,
+   7025.559448160002,
+   8624.824609529369,
+   9384.412891241816,
+   9668.241376328791
+  ],
+  "nopat": [
+   2653.3097174999994,
+   5936.597733695201,
+   7287.976795052316,
+   7929.828893099335,
+   8169.663962997828
+  ],
+  "capex": [
+   700.0,
+   1500.0,
+   1550.0,
+   1600.0,
+   1650.0
+  ],
+  "dnwc": [
+   938.1944308219099,
+   3118.587543267815,
+   1519.6507359222742,
+   -313.0977934151888,
+   -2109.2326940719067
+  ],
+  "recv": [
+   24391.615780821914,
+   30652.76958273973,
+   35952.54575884302,
+   37320.14156531505,
+   36684.37574592648
+  ],
+  "invdwip": [
+   34434.8983,
+   35238.707800000004,
+   34923.233113,
+   33972.068982900004,
+   32686.861034996004
+  ],
+  "pay": [
+   23934.67065,
+   27881.04640865,
+   31345.697161831024,
+   32075.22663161824,
+   32263.485558397577
+  ],
+  "nwc": [
+   34891.843430821915,
+   38010.43097408973,
+   39530.081710012004,
+   39216.983916596815,
+   37107.75122252491
+  ],
+  "fcff": [
+   1356.5795646780894,
+   2026.7289609753861,
+   4954.79839147941,
+   7407.908959564013,
+   9423.119532835542
+  ],
+  "df": [
+   0.9483494672093778,
+   0.8529139421096175,
+   0.7670824076968219,
+   0.689888382809821,
+   0.6204626464645254
+  ],
+  "pv": [
+   1286.5115073895959,
+   1728.6253876932456,
+   3800.7386797883664,
+   5110.630332116,
+   5846.693683294703
+  ],
+  "red_rev": [
+   7223.65,
+   18301.5875,
+   23897.333500000004,
+   26432.2287,
+   27300.064096
+  ],
+  "aim_rev": [
+   385.0,
+   813.1029400000001,
+   882.2166899000001,
+   952.7940250920002,
+   1029.0175470993602
+  ],
+  "hosp_rev": [
+   452.0,
+   899.2258600000001,
+   962.1716702000002,
+   1019.9019704120003,
+   1081.0960886367204
+  ],
+  "ect_rev": [
+   3000.0,
+   6035.29509,
+   6294.812778869999,
+   6552.900102803669,
+   6808.463206813011
+  ],
+  "dev_rev": [
+   6523.65,
+   16901.5875,
+   22597.333500000004,
+   25232.2287,
+   26200.064096
+  ],
+  "land_rev": [
+   700.0,
+   1400.0,
+   1300.0,
+   1200.0,
+   1100.0
+  ],
+  "bl_open": [
+   62130.0,
+   67606.35,
+   80704.76250000001,
+   84107.429,
+   81875.2003
+  ],
+  "bl_close": [
+   67606.35,
+   80704.76250000001,
+   84107.429,
+   81875.2003,
+   76675.136204
+  ],
+  "new_sales": [
+   12000.0,
+   30000.0,
+   26000.0,
+   23000.0,
+   21000.0
+  ],
+  "assoc": [
+   95.0,
+   210.0,
+   227.0,
+   245.0,
+   264.0
+  ],
+  "np": [
+   2675.6414797449993,
+   6036.8581003139525,
+   7478.799721034663,
+   8296.168244545614,
+   8788.881133242237
+  ],
+  "np_attr": [
+   2622.1286501500995,
+   5916.120938307673,
+   7329.22372661397,
+   8130.244879654701,
+   8613.103510577392
+  ],
+  "equity": [
+   59994.612479744996,
+   66031.47058005894,
+   73510.27030109361,
+   81806.43854563922,
+   90595.31967888145
+  ],
+  "net_debt": [
+   -4045.4663269230896,
+   -5962.455654517224,
+   -10881.076971978979,
+   -18410.325282989274,
+   -28188.661986069223
+  ],
+  "cash": [
+   14345.46632692309,
+   16462.455654517224,
+   20581.07697197898,
+   27210.325282989274,
+   36088.66198606922
+  ],
+  "debt": [
+   10300.0,
+   10500.0,
+   9700.0,
+   8800.0,
+   7900.0
+  ],
+  "interest": [
+   283.878579,
+   593.44,
+   577.36,
+   531.8,
+   483.56
+  ],
+  "ic": [
+   55854.146152821915,
+   59764.01492554173,
+   62097.193329114634,
+   62619.11326264996,
+   61365.657692812245
+  ],
+  "roic": [
+   0.09612434298601889,
+   0.10269316997130745,
+   0.11961110347474074,
+   0.1271658712449871,
+   0.13178495875001509
+  ],
+  "fy26_rev_total": 20233.953999999998,
+  "fy26_npa_total": 4785.094650150099,
+  "ic_30jun": 54557.416000000005,
+  "nwc_30jun": 33953.649000000005
+ },
+ "dcf": {
+  "pv_explicit": 17773.19959028191,
+  "tv": 62758.36304844542,
+  "pv_tv": 38939.22002481992,
+  "ev": 56712.41961510183,
+  "tv_share": 0.6866083353363198,
+  "cash_avail": 8600.0,
+  "cash_total": 12303.24,
+  "restricted": 3703.24,
+  "debt": 9541.685,
+  "lease": 644.799,
+  "assoc": 2826.454,
+  "finass": 392.972,
+  "nci_book": 922.342,
+  "nci_val": 1148.4603923020368,
+  "eq_attr": 57196.9012227998,
+  "ps_jun": 3.49890630148013,
+  "roll": 1.0123968588303291,
+  "ps": 3.542281748960128,
+  "anchor_days": 38,
+  "roic_term": 0.085,
+  "rr_term": 0.29411764705882354,
+  "g": 0.025,
+  "nopat_term": 8373.905562072772,
+  "ps_grosscash": 3.7716284300490335,
+  "ps_booknci": 3.5562855679963317,
+  "bear": 2.643232316556594,
+  "bull": 4.1337524764574205,
+  "ps_egystress": 2.8275647592104556
+ },
+ "rel": {
+  "pe_just": 7.5,
+  "ev_ebitda_just": 7.0,
+  "pe_ps": 2.1953896277577245,
+  "ev_ps": 2.816767914881434,
+  "base": 2.1953896277577245,
+  "fy26_npa": 4785.094650150099,
+  "fy26_ebitda": 6476.475777999999,
+  "pe_trailing_attr": 11.507727017871687,
+  "pe_trailing_group": 11.784440348930957,
+  "ev_ebitda_trailing": 8.254296022185036,
+  "peers": {
+   "ALDAR": {
+    "name": "Aldar Properties (ADX)",
+    "spot": 7.78,
+    "shares_mn": 7862.6,
+    "mcap": 61171.0,
+    "np_attr": 7548.0,
+    "eps": 0.96,
+    "pe_attr": 8.1,
+    "rev": 33800.0,
+    "ebitda": 11200.0,
+    "backlog": 71700.0,
+    "basis": "attributable EPS 0.96 disclosed in the Q4-FY25 release; FY2025 development backlog 71.7bn (66.5bn was the 9M-2025 vintage, corrected at revision 2)"
+   },
+   "EMAAR": {
+    "name": "Emaar Properties (DFM)",
+    "spot": 11.5,
+    "shares_mn": 8838.0,
+    "mcap": 101650.0,
+    "np_attr": 17599.0,
+    "eps": null,
+    "pe_attr": 5.78,
+    "rev": 49600.0,
+    "ebitda": null,
+    "backlog": 155000.0,
+    "basis": "attributable 17,599.179 from the audited DFM filing (previously marked n/d in error)"
+   },
+   "EMAARDEV": {
+    "name": "Emaar Development (DFM)",
+    "spot": 13.38,
+    "shares_mn": 4000.0,
+    "mcap": 53520.0,
+    "np_attr": 11316.0,
+    "eps": null,
+    "pe_attr": 4.73,
+    "rev": 27490.0,
+    "ebitda": null,
+    "backlog": 125200.0,
+    "basis": "attributable 11,316.189 audited; backlog 125.2bn (134.3bn was Emaar Properties' UAE figure, corrected)"
+   }
+  },
+  "note": "lens = P/E leg only; EV/EBITDA displayed as unanchored cross-check (first edition averaged the two legs, which disagreed by 43%, without showing either)"
+ },
+ "norm": {
+  "rev": 24423.4547,
+  "margin": 0.115,
+  "np": 2808.6972905,
+  "eps": 0.17181645226548103,
+  "pe": 8.5,
+  "base": 1.4604398442565887,
+  "clean_np_fy25": 3304.583525,
+  "clean_margin_fy25": 0.23896267474946795
+ },
+ "book": {
+  "bvps": 3.4499512451153356,
+  "roe_sust": 0.075,
+  "pb_just": 0.49686873324310193,
+  "base": 1.735423264423875,
+  "roe_fy25": 0.07762394723744538,
+  "roe_fy25_clean": 0.06563074392980686,
+  "pb_trailing": 0.8203014474499886,
+  "rolled": true
+ },
+ "sotp": {
+  "ev_split": {
+   "red": 38038.90808701545,
+   "aim": 5637.452257209644,
+   "hosp": 1800.2692071511474,
+   "ect": 11235.790063725586
+  },
+  "weights": {
+   "red": 2261.929994799141,
+   "aim": 335.22314377849705,
+   "hosp": 107.0504681431287,
+   "ect": 668.1204019387269
+  },
+  "tot_w": 3372.3240086594938,
+  "note": "group EV allocated on FY2025 segment gross profit less a revenue-proportional corporate load; weights and divisor are live formulas in the workbook at revision 2"
+ },
+ "lenses": {
+  "dcf": {
+   "name": "Discounted cash flow (primary)",
+   "bear": 2.643232316556594,
+   "base": 3.542281748960128,
+   "bull": 4.1337524764574205,
+   "w": 0.4
+  },
+  "relative": {
+   "name": "Relative multiples",
+   "bear": 1.3845590585725382,
+   "base": 2.1953896277577245,
+   "bull": 2.371020797978342,
+   "w": 0.2
+  },
+  "normalized": {
+   "name": "Normalised earnings power",
+   "bear": 1.0308987135928862,
+   "base": 1.4604398442565887,
+   "bull": 1.8040727487875508,
+   "w": 0.2
+  },
+  "book": {
+   "name": "Book value and sustainable return",
+   "bear": 1.041253958654325,
+   "base": 1.735423264423875,
+   "bull": 2.4295925701934253,
+   "w": 0.2
+  },
+  "central": {
+   "name": "Weighted central",
+   "bear": 1.0308987135928862,
+   "base": 2.4951632468716887,
+   "bull": 4.1337524764574205,
+   "w": 1.0
+  }
+ },
+ "central": 2.4951632468716887,
+ "span": [
+  1.0308987135928862,
+  4.1337524764574205
+ ],
+ "spot": 2.83,
+ "sens": {
+  "g_grid": [
+   0.015,
+   0.02,
+   0.025,
+   0.03,
+   0.035
+  ],
+  "wacc_grid": [
+   0.10189349873178052,
+   0.10689349873178051,
+   0.11189349873178052,
+   0.11689349873178052,
+   0.12189349873178051
+  ],
+  "table": [
+   [
+    4.001441345629771,
+    3.9594628325458303,
+    3.910344772050745,
+    3.8527483081186245,
+    3.7849775021452055
+   ],
+   [
+    3.816186596964378,
+    3.770181264157251,
+    3.716987369055611,
+    3.655330156427179,
+    3.5836145307161873
+   ],
+   [
+    3.6472096550081528,
+    3.5983026868907944,
+    3.542281748960128,
+    3.47795036510495,
+    3.4038278151253123
+   ],
+   [
+    3.4924501671133386,
+    3.441519430814956,
+    3.383630639503766,
+    3.317670925679249,
+    3.2422767350484145
+   ],
+   [
+    3.3501819166628937,
+    3.2979153140301185,
+    3.238898679586645,
+    3.1721028825091726,
+    3.0962783846695534
+   ]
+  ],
+  "beta_grid": [
+   0.952,
+   1.349,
+   1.746,
+   2.143,
+   2.54
+  ],
+  "grid_beta": [
+   5.59677097746544,
+   4.332789993007912,
+   3.542281748960128,
+   3.000067693883474,
+   2.5990309498164894
+  ],
+  "mg_grid": [
+   -0.04,
+   -0.02,
+   0.0,
+   0.02,
+   0.04
+  ],
+  "grid_margin": [
+   3.2369664650988357,
+   3.3896241070294812,
+   3.542281748960128,
+   3.694939390890774,
+   3.8475970328214215
+  ],
+  "conv_grid": [
+   -0.06,
+   -0.03,
+   0.0,
+   0.03,
+   0.06
+  ],
+  "grid_conv": [
+   3.199828427616535,
+   3.383396312468598,
+   3.542281748960128,
+   3.6791581843364947,
+   3.796504953962525
+  ],
+  "sales_grid": [
+   0.5,
+   0.75,
+   1.0,
+   1.25,
+   1.5
+  ],
+  "grid_sales": [
+   2.827625020137998,
+   3.1852380805095453,
+   3.542281748960128,
+   3.8993254174107115,
+   4.256369085861295
+  ],
+  "nwc_grid": [
+   -1000.0,
+   -500.0,
+   0.0,
+   500.0,
+   1000.0
+  ],
+  "grid_nwc": [
+   3.3068730463986626,
+   3.4245773976793954,
+   3.542281748960128,
+   3.6599861002408605,
+   3.777690451521593
+  ],
+  "dso_grid": [
+   -60.0,
+   -30.0,
+   0.0,
+   30.0,
+   60.0
+  ],
+  "grid_dso": [
+   3.8566894813899837,
+   3.6994856151750564,
+   3.542281748960128,
+   3.3850778827452,
+   3.2278740165302726
+  ],
+  "ke_grid": [
+   0.0,
+   0.005,
+   0.01,
+   0.015,
+   0.02
+  ],
+  "grid_ke": [
+   3.542281748960128,
+   3.383630639503766,
+   3.238898679586645,
+   3.106314064026041,
+   2.9843942947840536
+  ]
+ },
+ "market_implied": {
+  "ke_add": 0.026934149912400687,
+  "ke": 0.1525643499124007,
+  "note": "cost-of-equity adder reconciling the base DCF to the market price",
+  "runoff_discount": -0.0706588226367908
+ },
+ "experts": {
+  "e1": {
+   "method_short": "asset value (RNAV)",
+   "base": 4.058071128115847,
+   "rng": [
+    3.4493604588984703,
+    4.545039663489749
+   ],
+   "nav": 66337.613377,
+   "land_bv": 26610.771,
+   "uplift": 0.337,
+   "dwip_uplift": 0.15,
+   "eqp": 56396.629
+  },
+  "e2": {
+   "method_short": "owner cash flow, run-off stress basis",
+   "base": 2.478745616179524,
+   "rng": [
+    1.9829964929436192,
+    3.3651676615121215
+   ],
+   "runoff_ps": 2.643232316556594,
+   "haircut": 0.25,
+   "rp_book": 10755.509,
+   "note": "builds on the study's own run-off scenario with an independent receivable haircut \u2014 labelled as derived, not independent"
+  },
+  "e3": {
+   "method_short": "peer-multiple convergence",
+   "base": 1.8148554256130525,
+   "rng": [
+    1.3845590585725385,
+    2.371020797978342
+   ],
+   "pe": 6.2,
+   "npa26": 4785.094650150099
+  }
+ },
+ "panel_centre": 2.478745616179524,
+ "terminal_recon": {
+  "roic_fy25_clean": 0.06134848228063011,
+  "roic_path": [
+   0.09612434298601889,
+   0.10269316997130745,
+   0.11961110347474074,
+   0.1271658712449871,
+   0.13178495875001509
+  ],
+  "roic_term": 0.085,
+  "rr_term": 0.29411764705882354,
+  "note": "terminal 8.5% sits between the FY2025 clean achieved 6.1% and the model's own forward path (peaking ~15% as capital releases); the step-down from the path is a deliberate mean-reversion margin of safety, stated and sensitised"
+ },
+ "step0": {
+  "windows_scored": 17,
+  "windows_prebreak_dropped": 6,
+  "first_origin": "2022-02-18",
+  "last_origin": "2026-02-26",
+  "nu": 10.0,
+  "width_cal": 0.979,
+  "skill_norm": 0.04239890936861235,
+  "skill_raw": 0.04170978097251532,
+  "verdict": "PASS",
+  "ci_blocks": {
+   "2": [
+    0.017504775503982977,
+    0.06146357103980062,
+    "PASS"
+   ],
+   "3": [
+    0.02061627663911192,
+    0.06055123205912056,
+    "PASS"
+   ],
+   "4": [
+    0.018955221376480157,
+    0.057298623237740154,
+    "PASS"
+   ]
+  },
+  "cov50": 0.5882352941176471,
+  "cov80": 0.9411764705882353,
+  "cov90": 0.9411764705882353,
+  "pit_mean": 0.439185294117647,
+  "pit_hist": [
+   0,
+   5,
+   1,
+   3,
+   1,
+   2,
+   2,
+   1,
+   1,
+   1
+  ],
+  "w90_ratio": 1.0180031385663446,
+  "market_gate": {
+   "verdict": "PARITY",
+   "skill": 0.0068,
+   "ci90": [
+    -0.001,
+    0.014
+   ],
+   "fit_date": "2026-07-29",
+   "panel_names": 18,
+   "windows": 261
+  },
+  "pending_refit": {
+   "note": "19-name AE refit including MODON, engine/PENDING_REVIEW/AE_2026-08-09.md \u2014 market PASS +0.0099 CI[0.002,0.017], MODON per-name PASS +0.0424 under LONO; width_cal 0.979 -> 0.972 proposed (-0.7% band move, under the 5% gate)"
+  },
+  "dq_log": [],
+  "clean_rows": 1577,
+  "density_rows_per_yr": 181.93280164245104,
+  "span_years": 8.668035592060233
+ },
+ "strike": {
+  "anchor_date": "2026-08-07",
+  "spot": 2.83,
+  "nu": 10.0,
+  "width_cal": 0.979,
+  "width_overlay_mult": 1.0,
+  "rf_live": 0.0365,
+  "q_annual": 0.0,
+  "horizons": {
+   "1M": {
+    "h": 20,
+    "target_date": "2026-09-07",
+    "grade_date": "2026-09-07",
+    "anchor_vol_ann": 0.2516632167115939,
+    "sigma_h": 0.06940921978561883,
+    "drift_log_h": 0.0029713897673362237,
+    "pct": {
+     "p5": 2.5370679743017983,
+     "p25": 2.7185959605433205,
+     "p50": 2.838308856303401,
+     "p75": 2.9639421981278065,
+     "p95": 3.169632883184554
+    },
+    "p_above": 0.51874,
+    "p_up10": 0.08014,
+    "p_dn10": 0.05528,
+    "touch_up5": 0.3935,
+    "touch_dn5": 0.34584,
+    "touch_up10": 0.13004,
+    "touch_dn10": 0.0899
+   },
+   "3M": {
+    "h": 63,
+    "target_date": "2026-11-07",
+    "grade_date": "2026-11-09",
+    "anchor_vol_ann": 0.26372485108988236,
+    "sigma_h": 0.1290933146084974,
+    "drift_log_h": 0.008914169302008671,
+    "pct": {
+     "p5": 2.319965747344324,
+     "p25": 2.637975726186433,
+     "p50": 2.857647930306376,
+     "p75": 3.094773382373537,
+     "p95": 3.5237233811033115
+    },
+    "p_above": 0.53302,
+    "p_up10": 0.23496,
+    "p_dn10": 0.16866,
+    "touch_up5": 0.6544,
+    "touch_dn5": 0.589,
+    "touch_up10": 0.41418,
+    "touch_dn10": 0.31892
+   }
+  }
+ },
+ "tech": {
+  "market": "AE",
+  "series": "MODON",
+  "close": 2.83,
+  "data_date": "2026-08-07",
+  "computed_on": "2026-08-09",
+  "sessions": 1577,
+  "rows_in": 1577,
+  "repairs": [],
+  "ma": {
+   "20": 2.877,
+   "50": 2.9537999999999998,
+   "200": 3.21005
+  },
+  "ma_slope": {
+   "20": "falling",
+   "50": "falling",
+   "200": "falling"
+  },
+  "rsi": 38.55085355487371,
+  "atr": 0.04977627283703619,
+  "macd": {
+   "macd": -0.036143183544555146,
+   "signal": -0.0383230418444973,
+   "hist": 0.0021798582999421542
+  },
+  "ma_cross": {
+   "ago": 137,
+   "kind": "death"
+  },
+  "atr_pct": 0.01758878898835201,
+  "hi_52w": 3.82,
+  "lo_52w": 2.76,
+  "pct_off_high": 0.25916230366492143,
+  "pct_off_low": 0.025362318840579816,
+  "levels": {
+   "res": [
+    2.88,
+    3.3,
+    3.57
+   ],
+   "sup": [
+    2.76,
+    2.7,
+    2.4
+   ]
+  },
+  "level_detail": {
+   "res": [
+    {
+     "level": 2.8845048709861856,
+     "score": 46.051069257242105,
+     "kind": "swing",
+     "touches": 8
+    },
+    {
+     "level": 3.3027212686270344,
+     "score": 32.49148781627587,
+     "kind": "swing",
+     "touches": 14
+    },
+    {
+     "level": 3.56600504029309,
+     "score": 27.16382362369587,
+     "kind": "swing",
+     "touches": 15
+    }
+   ],
+   "sup": [
+    {
+     "level": 2.76,
+     "score": 1.63777707852686,
+     "kind": "swing",
+     "touches": 1
+    },
+    {
+     "level": 2.6999999999999997,
+     "score": 1.1646251264773504,
+     "kind": "swing",
+     "touches": 2
+    },
+    {
+     "level": 2.4,
+     "score": 0.25234120703505597,
+     "kind": "swing",
+     "touches": 1
+    }
+   ]
+  },
+  "tech": {
+   "trend": "Trading below the whole moving-average stack, under a falling 200-day",
+   "summary": "The price closed 2.83 below a falling 20-day (2.88), a falling 50-day (2.95) and a falling 200-day (3.21). Momentum is soft: RSI(14) is ~39 and the daily ATR near 0.05 (~1.8%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22120.04 / \u22120.04 / +0.00). Over the last year it has ranged 2.76\u20133.82; the last close sits 26% below that high and 3% above that low.",
+   "bull": "A daily close back above 2.88 would clear the nearest resistance and open the 3.57 zone.",
+   "bear": "A close below 2.76 would break the nearest support and open the 2.40 zone."
+  }
+ },
+ "inputs": {
+  "spot": {
+   "value": 2.83,
+   "source": "Uploaded ADX daily price history, last close",
+   "date": "2026-08-07",
+   "ring": "Market"
+  },
+  "shares_mn": {
+   "value": 16347.08,
+   "source": "Share capital note 23: 16,347,080 thousand shares of AED 1 each, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "rev_fy23": {
+   "value": 994.293,
+   "source": "Consolidated statement of profit or loss (revenue from contracts 473.338 + rental 409.058 + dividends 111.897), Audited consolidated financial statements FY2023, Q Holding PSC, modon.com investor relations",
+   "date": "2024-02-15",
+   "ring": "Company"
+  },
+  "rev_fy24": {
+   "value": 6511.182,
+   "source": "Consolidated statement of profit or loss, FY2024 comparatives, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "rev_fy25": {
+   "value": 13828.869,
+   "source": "Consolidated statement of profit or loss, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "gp_fy24": {
+   "value": 2316.507,
+   "source": "Gross profit, FY2024 comparatives, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "gp_fy25": {
+   "value": 5025.259,
+   "source": "Gross profit, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "gp_fy23_house": {
+   "value": 599.559,
+   "source": "House proxy: revenue less contract costs 394.734 (P&L by nature carries no gross-profit line), Audited consolidated financial statements FY2023, Q Holding PSC, modon.com investor relations",
+   "date": "2024-02-15",
+   "ring": "Company/House"
+  },
+  "fin_inc_fy25": {
+   "value": 262.923,
+   "source": "Finance income note 9, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "fin_cost_fy25": {
+   "value": 390.389,
+   "source": "Finance costs note 10, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "fin_inc_fy24": {
+   "value": 126.776,
+   "source": "Finance income, FY2024 comparatives, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "fin_cost_fy24": {
+   "value": 283.443,
+   "source": "Finance costs, FY2024 comparatives, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "assoc_fy25": {
+   "value": 263.592,
+   "source": "Share of profit from associates and joint ventures note 17, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "assoc_fy24": {
+   "value": 115.114,
+   "source": "Share of profit from associates and JVs, FY2024 comparatives, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "ebt_fy25": {
+   "value": 4421.195,
+   "source": "Profit before tax incl. discontinued 0.182, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "ebt_fy24": {
+   "value": 9488.267,
+   "source": "Profit before tax incl. discontinued, FY2024 comparatives, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "ebt_fy23": {
+   "value": 653.455,
+   "source": "Profit before tax incl. discontinued 4.051, Audited consolidated financial statements FY2023, Q Holding PSC, modon.com investor relations",
+   "date": "2024-02-15",
+   "ring": "Company"
+  },
+  "tax_fy25": {
+   "value": 495.49,
+   "source": "Income tax expense note 11 (incl. DMTT 350.356), Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "tax_fy24": {
+   "value": 98.815,
+   "source": "Income tax expense, FY2024 comparatives, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "tax_fy23": {
+   "value": 79.504,
+   "source": "Income tax expense, Audited consolidated financial statements FY2023, Q Holding PSC, modon.com investor relations",
+   "date": "2024-02-15",
+   "ring": "Company"
+  },
+  "pat_fy25": {
+   "value": 3925.705,
+   "source": "Profit for the year, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "pat_fy24": {
+   "value": 9389.452,
+   "source": "Profit for the year, FY2024 comparatives, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "pat_fy23": {
+   "value": 573.951,
+   "source": "Profit for the year after tax, Audited consolidated financial statements FY2023, Q Holding PSC, modon.com investor relations",
+   "date": "2024-02-15",
+   "ring": "Company"
+  },
+  "npa_fy25": {
+   "value": 4020.102,
+   "source": "Profit attributable to owners of the Parent, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "npa_fy24": {
+   "value": 9423.191,
+   "source": "Profit attributable to owners, FY2024 comparatives, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "npa_fy23": {
+   "value": 461.269,
+   "source": "Profit attributable to owners of the Parent, Audited consolidated financial statements FY2023, Q Holding PSC, modon.com investor relations",
+   "date": "2024-02-15",
+   "ring": "Company"
+  },
+  "bargain_fy24": {
+   "value": 9192.243,
+   "source": "Bargain purchase gain on acquisition of subsidiaries, note 4.2, FY2024 comparatives, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "dna_fy25": {
+   "value": 610.483,
+   "source": "Depreciation on PP&E 468.264 + amortisation 76.645 + right-of-use depreciation 65.574, cash flow statement adjustments, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "dna_fy24": {
+   "value": 265.122,
+   "source": "Same three lines, FY2024 comparatives, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "dna_fy23": {
+   "value": 27.719,
+   "source": "Depreciation and amortisation lines, cash flow statement, Audited consolidated financial statements FY2023, Q Holding PSC, modon.com investor relations",
+   "date": "2024-02-15",
+   "ring": "Company"
+  },
+  "ga_fy25": {
+   "value": 1547.476,
+   "source": "General and administrative expenses note 7, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "sm_fy25": {
+   "value": 266.211,
+   "source": "Selling and marketing expenses, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "invinc_fy25": {
+   "value": 338.26,
+   "source": "Investment and other income note 8, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "fv_ip_fy25": {
+   "value": 343.426,
+   "source": "Fair value gain on revaluation of investment properties note 16, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "fv_fvtpl_fy25": {
+   "value": 221.952,
+   "source": "Change in fair value of investments at FVTPL note 18, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "disp_assoc_fy25": {
+   "value": 169.677,
+   "source": "Gain on disposal of an associate note 17(ii), Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "fin_net_fy23": {
+   "value": 8.518,
+   "source": "Finance income (costs), net, note 10, Audited consolidated financial statements FY2023, Q Holding PSC, modon.com investor relations",
+   "date": "2024-02-15",
+   "ring": "Company"
+  },
+  "assoc_fy23": {
+   "value": -0.697,
+   "source": "Share of loss from associates and JVs, Audited consolidated financial statements FY2023, Q Holding PSC, modon.com investor relations",
+   "date": "2024-02-15",
+   "ring": "Company"
+  },
+  "impair_fy24": {
+   "value": 1024.726,
+   "source": "Impairment of PP&E 539.922 + development WIP 406.663 + goodwill 78.141, FY2024 comparatives, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "ppe_fy25": {
+   "value": 8812.397,
+   "source": "Property, plant and equipment, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "ip_fy25": {
+   "value": 9461.777,
+   "source": "Investment properties, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "intang_fy25": {
+   "value": 952.423,
+   "source": "Intangible assets and goodwill, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "rou_fy25": {
+   "value": 530.349,
+   "source": "Right-of-use assets, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "assoc_bv_fy25": {
+   "value": 3723.897,
+   "source": "Investments in associates and JVs, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "finass_fy25": {
+   "value": 394.305,
+   "source": "Investments in financial assets, non-current 339.620 + current 54.685, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "inv_fy25": {
+   "value": 27297.588,
+   "source": "Inventories (land plots 26,610.771 + properties 635.198 + spares 51.619), Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "dwip_fy25": {
+   "value": 6111.794,
+   "source": "Development work-in-progress, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "recv_fy25": {
+   "value": 8703.594,
+   "source": "Trade and other receivables, NC + C, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "duefr_fy25": {
+   "value": 7931.529,
+   "source": "Amounts due from related parties, NC + C (incl. Department of Finance 5,998.151), Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "cash_fy25": {
+   "value": 12641.987,
+   "source": "Cash and bank balances (incl. escrow 3,311.941 + restricted 735.174), Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "dta_fy25": {
+   "value": 469.345,
+   "source": "Deferred tax assets, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "assets_fy25": {
+   "value": 87030.985,
+   "source": "Total assets, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "eqp_fy25": {
+   "value": 53902.504,
+   "source": "Equity attributable to owners of the Parent, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "nci_fy25": {
+   "value": 847.48,
+   "source": "Non-controlling interests, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "loans_fy25": {
+   "value": 5136.373,
+   "source": "Loans and borrowings, NC 2,943.416 + C 2,192.957, note 29, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "rploan_fy25": {
+   "value": 1652.713,
+   "source": "Loan from a related party, note 30, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "lease_fy25": {
+   "value": 623.7660000000001,
+   "source": "Lease liabilities, NC + C, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "pay_fy25": {
+   "value": 21407.874,
+   "source": "Trade and other payables, NC + C, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "dueto_fy25": {
+   "value": 1693.721,
+   "source": "Amounts due to related parties, NC + C, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "taxpay_fy25": {
+   "value": 468.089,
+   "source": "Income tax payable, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "dtl_fy25": {
+   "value": 1131.012,
+   "source": "Deferred tax liabilities, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "eosb_fy25": {
+   "value": 167.453,
+   "source": "Employees' end of service benefits, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "liab_fy25": {
+   "value": 32281.001,
+   "source": "Total liabilities, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "ppe_fy24": {
+   "value": 7593.191,
+   "source": "PP&E, FY2024 comparatives, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "ip_fy24": {
+   "value": 9336.725,
+   "source": "Investment properties, FY2024 comparatives, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "inv_fy24": {
+   "value": 29586.274,
+   "source": "Inventories, FY2024 comparatives, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "dwip_fy24": {
+   "value": 2461.672,
+   "source": "Development WIP, FY2024 comparatives, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "recv_fy24": {
+   "value": 3529.025,
+   "source": "Trade and other receivables, FY2024, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "duefr_fy24": {
+   "value": 9314.779,
+   "source": "Amounts due from related parties, FY2024, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "cash_fy24": {
+   "value": 7009.67,
+   "source": "Cash and bank balances, FY2024, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "assets_fy24": {
+   "value": 75925.281,
+   "source": "Total assets, FY2024, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "eqp_fy24": {
+   "value": 49676.408,
+   "source": "Equity attributable to owners, FY2024, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "nci_fy24": {
+   "value": 1186.183,
+   "source": "Non-controlling interests, FY2024, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "loans_fy24": {
+   "value": 3711.397,
+   "source": "Loans and borrowings, FY2024, note 29, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "rploan_fy24": {
+   "value": 1652.713,
+   "source": "Loan from a related party, FY2024, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "lease_fy24": {
+   "value": 511.97700000000003,
+   "source": "Lease liabilities, FY2024, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "pay_fy24": {
+   "value": 8248.542,
+   "source": "Trade and other payables, FY2024, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "dueto_fy24": {
+   "value": 9781.37,
+   "source": "Amounts due to related parties, FY2024, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "assoc_bv_fy24": {
+   "value": 2242.891,
+   "source": "Investments in associates and JVs, FY2024, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "assets_fy23": {
+   "value": 21311.081,
+   "source": "Total assets, Audited consolidated financial statements FY2023, Q Holding PSC, modon.com investor relations",
+   "date": "2024-02-15",
+   "ring": "Company"
+  },
+  "eqp_fy23": {
+   "value": 13769.094,
+   "source": "Equity attributable to owners, Audited consolidated financial statements FY2023, Q Holding PSC, modon.com investor relations",
+   "date": "2024-02-15",
+   "ring": "Company"
+  },
+  "nci_fy23": {
+   "value": 1149.566,
+   "source": "Non-controlling interests, Audited consolidated financial statements FY2023, Q Holding PSC, modon.com investor relations",
+   "date": "2024-02-15",
+   "ring": "Company"
+  },
+  "loans_fy23": {
+   "value": 1976.135,
+   "source": "Loans and borrowings, NC + C, Audited consolidated financial statements FY2023, Q Holding PSC, modon.com investor relations",
+   "date": "2024-02-15",
+   "ring": "Company"
+  },
+  "cash_fy23": {
+   "value": 2259.902,
+   "source": "Cash and bank balances, Audited consolidated financial statements FY2023, Q Holding PSC, modon.com investor relations",
+   "date": "2024-02-15",
+   "ring": "Company"
+  },
+  "ip_fy23": {
+   "value": 7536.858,
+   "source": "Investment properties, Audited consolidated financial statements FY2023, Q Holding PSC, modon.com investor relations",
+   "date": "2024-02-15",
+   "ring": "Company"
+  },
+  "inv_fy23": {
+   "value": 2246.917,
+   "source": "Inventory properties, Audited consolidated financial statements FY2023, Q Holding PSC, modon.com investor relations",
+   "date": "2024-02-15",
+   "ring": "Company"
+  },
+  "netcash_company": {
+   "value": 1800.0,
+   "source": "Net cash AED 1.8bn on the company definition (available cash incl. qualifying escrow less total debt incl. the related-party loan), Modon FY2025 results announcement, modon.com media centre, 18-Feb-2026",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "ocf_fy25": {
+   "value": 3860.373,
+   "source": "Net cash generated from operating activities, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "ocf_fy24": {
+   "value": 3231.447,
+   "source": "Net cash from operating activities, FY2024 comparatives, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "capex_fy25": {
+   "value": 1260.566,
+   "source": "Purchases of PP&E 1,072.497 + intangibles 25.513 + investment properties 162.556, cash flow statement, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "capex_fy24": {
+   "value": 1247.0,
+   "source": "Same three lines, FY2024 comparatives, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "h1_26_rev": {
+   "value": 9188.304,
+   "source": "Revenues, Interim condensed consolidated financial statements, 30-Jun-2026 (reviewed, unaudited), modon.com investor relations",
+   "date": "2026-08-07",
+   "ring": "Company"
+  },
+  "h1_26_gp": {
+   "value": 3201.275,
+   "source": "Gross profit, Interim condensed consolidated financial statements, 30-Jun-2026 (reviewed, unaudited), modon.com investor relations",
+   "date": "2026-08-07",
+   "ring": "Company"
+  },
+  "h1_26_pbt": {
+   "value": 2601.227,
+   "source": "Profit before tax, continuing, Interim condensed consolidated financial statements, 30-Jun-2026 (reviewed, unaudited), modon.com investor relations",
+   "date": "2026-08-07",
+   "ring": "Company"
+  },
+  "h1_26_pat": {
+   "value": 2202.138,
+   "source": "Profit for the period, Interim condensed consolidated financial statements, 30-Jun-2026 (reviewed, unaudited), modon.com investor relations",
+   "date": "2026-08-07",
+   "ring": "Company"
+  },
+  "h1_26_npa": {
+   "value": 2162.966,
+   "source": "Profit attributable to owners, Interim condensed consolidated financial statements, 30-Jun-2026 (reviewed, unaudited), modon.com investor relations",
+   "date": "2026-08-07",
+   "ring": "Company"
+  },
+  "h1_26_tax": {
+   "value": 401.202,
+   "source": "Income tax expense, Interim condensed consolidated financial statements, 30-Jun-2026 (reviewed, unaudited), modon.com investor relations",
+   "date": "2026-08-07",
+   "ring": "Company"
+  },
+  "h1_26_ga": {
+   "value": 685.124,
+   "source": "General and administrative expenses, Interim condensed consolidated financial statements, 30-Jun-2026 (reviewed, unaudited), modon.com investor relations",
+   "date": "2026-08-07",
+   "ring": "Company"
+  },
+  "h1_26_ocf": {
+   "value": -3921.027,
+   "source": "Net cash used in operating activities (receivables and related-party balances built up AED 5.4bn), Interim condensed consolidated financial statements, 30-Jun-2026 (reviewed, unaudited), modon.com investor relations",
+   "date": "2026-08-07",
+   "ring": "Company"
+  },
+  "h1_26_loans": {
+   "value": 8541.685,
+   "source": "Loans and borrowings NC 3,821.289 + C 4,720.396, Interim condensed consolidated financial statements, 30-Jun-2026 (reviewed, unaudited), modon.com investor relations",
+   "date": "2026-08-07",
+   "ring": "Company"
+  },
+  "h1_26_rploan": {
+   "value": 1000.0,
+   "source": "Loan from a related party, current, Interim condensed consolidated financial statements, 30-Jun-2026 (reviewed, unaudited), modon.com investor relations",
+   "date": "2026-08-07",
+   "ring": "Company"
+  },
+  "h1_26_cash": {
+   "value": 12303.24,
+   "source": "Cash and bank balances, Interim condensed consolidated financial statements, 30-Jun-2026 (reviewed, unaudited), modon.com investor relations",
+   "date": "2026-08-07",
+   "ring": "Company"
+  },
+  "h1_26_eqp": {
+   "value": 56396.629,
+   "source": "Equity attributable to owners, Interim condensed consolidated financial statements, 30-Jun-2026 (reviewed, unaudited), modon.com investor relations",
+   "date": "2026-08-07",
+   "ring": "Company"
+  },
+  "seg_red_rev25": {
+   "value": 7403.313,
+   "source": "Segment revenues, note 33, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "seg_aim_rev25": {
+   "value": 654.658,
+   "source": "Segment revenues, note 33, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "seg_hosp_rev25": {
+   "value": 791.771,
+   "source": "Segment revenues, note 33, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "seg_ect_rev25": {
+   "value": 5008.749,
+   "source": "Segment revenues, note 33, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "seg_oth_rev25": {
+   "value": -29.622,
+   "source": "Others segment (corporate, eliminations), note 33, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "seg_red_gp25": {
+   "value": 3232.891,
+   "source": "Segment gross profit, note 33, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "seg_aim_gp25": {
+   "value": 421.083,
+   "source": "Segment gross profit, note 33, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "seg_hosp_gp25": {
+   "value": 210.893,
+   "source": "Segment gross profit, note 33, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "seg_ect_gp25": {
+   "value": 1325.029,
+   "source": "Segment gross profit, note 33, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "seg_oth_gp25": {
+   "value": -164.637,
+   "source": "Others segment gross loss, note 33, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "seg_pbt25": {
+   "value": {
+    "red": 2547.573,
+    "aim": 685.082,
+    "hosp": -69.15,
+    "ect": 1061.602
+   },
+   "source": "Segment profit before tax, note 33, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "seg_assets25": {
+   "value": {
+    "red": 55738.581,
+    "aim": 11095.849,
+    "hosp": 4601.757,
+    "ect": 14118.268
+   },
+   "source": "Segment assets, note 33, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "seg_rev24": {
+   "value": {
+    "red": 2869.294,
+    "aim": 578.358,
+    "hosp": 569.87,
+    "ect": 2493.66
+   },
+   "source": "Segment revenues FY2024, note 33 comparatives, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "h1_seg": {
+   "value": {
+    "rev": {
+     "red": 5675.275,
+     "aim": 360.966,
+     "hosp": 388.398,
+     "ect": 2775.402
+    },
+    "gp": {
+     "red": 2342.842,
+     "aim": 258.38,
+     "hosp": 105.504,
+     "ect": 552.062
+    }
+   },
+   "source": "Segment table, note 28, Interim condensed consolidated financial statements, 30-Jun-2026 (reviewed, unaudited), modon.com investor relations",
+   "date": "2026-08-07",
+   "ring": "Company"
+  },
+  "sales25_total": {
+   "value": 36300.0,
+   "source": "Total real estate sales AED 36.3bn across 6,358 units, Modon Annual Report 2025, modon.com investor relations",
+   "date": "2026-03-31",
+   "ring": "Company"
+  },
+  "units25": {
+   "value": 6358,
+   "source": "Units sold across launches, Modon Annual Report 2025, modon.com investor relations",
+   "date": "2026-03-31",
+   "ring": "Company"
+  },
+  "sales25_uae": {
+   "value": 29800.0,
+   "source": "UAE sales (incl. JV) AED 29.8bn across 4,243 units, Modon Annual Report 2025, modon.com investor relations",
+   "date": "2026-03-31",
+   "ring": "Company"
+  },
+  "units25_uae": {
+   "value": 4243,
+   "source": "UAE units, Modon Annual Report 2025, modon.com investor relations",
+   "date": "2026-03-31",
+   "ring": "Company"
+  },
+  "sales25_intl": {
+   "value": 6600.0,
+   "source": "International sales (Egypt+Spain+JV) AED 6.6bn across 2,115 units, Modon Annual Report 2025, modon.com investor relations",
+   "date": "2026-03-31",
+   "ring": "Company"
+  },
+  "units25_intl": {
+   "value": 2115,
+   "source": "International units, Modon Annual Report 2025, modon.com investor relations",
+   "date": "2026-03-31",
+   "ring": "Company"
+  },
+  "backlog": {
+   "value": 46000.0,
+   "source": "Revenue backlog AED 46.0bn, 93% development sales, Modon FY2025 results announcement, modon.com media centre, 18-Feb-2026",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "dev_backlog": {
+   "value": 42600.0,
+   "source": "Development backlog (UAE + Egypt) AED 42.6bn, Modon Annual Report 2025, modon.com investor relations",
+   "date": "2026-03-31",
+   "ring": "Company"
+  },
+  "h1_backlog": {
+   "value": 65400.0,
+   "source": "Group revenue backlog AED 65.4bn, doubling y/y, +42% vs FY2025; Modon H1-2026 results announcement, modon.com media centre, 29-Jul-2026 (verified via Zawya/WAM syndication of the official release)",
+   "date": "2026-07-29",
+   "ring": "Company"
+  },
+  "h1_dev_share": {
+   "value": 0.95,
+   "source": "Development projects across the UAE and Egypt = 95% of the total backlog; Modon H1-2026 results announcement, modon.com media centre, 29-Jul-2026 (verified via Zawya/WAM syndication of the official release)",
+   "date": "2026-07-29",
+   "ring": "Company"
+  },
+  "h1_sales": {
+   "value": 26000.0,
+   "source": "H1-2026 real estate sales AED 26bn (2.6x H1-2025), incl. AED 23bn Abu Dhabi; Hudayriyat Golf Estates AED 13bn within days; Modon H1-2026 results announcement, modon.com media centre, 29-Jul-2026 (verified via Zawya/WAM syndication of the official release)",
+   "date": "2026-07-29",
+   "ring": "Company"
+  },
+  "h1_netdebt": {
+   "value": 912.0,
+   "source": "Net debt AED 912mn (0.02x equity) at 30-Jun-2026, company definition; Modon H1-2026 results announcement, modon.com media centre, 29-Jul-2026 (verified via Zawya/WAM syndication of the official release)",
+   "date": "2026-07-29",
+   "ring": "Company"
+  },
+  "h1_avail_cash": {
+   "value": 8600.0,
+   "source": "AED 8.6bn of unrestricted cash plus AED 1.5bn undrawn committed facilities; Modon H1-2026 results announcement, modon.com media centre, 29-Jul-2026 (verified via Zawya/WAM syndication of the official release)",
+   "date": "2026-07-29",
+   "ring": "Company"
+  },
+  "h1_adj_ebitda": {
+   "value": 2995.0,
+   "source": "H1-2026 Group Adjusted EBITDA AED 3.0bn, margin 32.6% (32.6% x 9,188 = 2,995); Modon H1-2026 results announcement, modon.com media centre, 29-Jul-2026 (verified via Zawya/WAM syndication of the official release)",
+   "date": "2026-07-29",
+   "ring": "Company"
+  },
+  "h1_keys": {
+   "value": 3613,
+   "source": "Hospitality portfolio 3,613 keys across 16 owned, operated and JV hotels (narrower perimeter than the FY2025 report's 7,137 keys across 27 hotels incl. managed); Modon H1-2026 results announcement, modon.com media centre, 29-Jul-2026 (verified via Zawya/WAM syndication of the official release)",
+   "date": "2026-07-29",
+   "ring": "Company"
+  },
+  "h1_recurring": {
+   "value": 3500.0,
+   "source": "Recurring revenues +22% y/y to AED 3.5bn = 38% of Group revenues; Modon H1-2026 results announcement, modon.com media centre, 29-Jul-2026 (verified via Zawya/WAM syndication of the official release)",
+   "date": "2026-07-29",
+   "ring": "Company"
+  },
+  "h1_lease": {
+   "value": 644.799,
+   "source": "Lease liabilities NC + C, Interim condensed consolidated financial statements, 30-Jun-2026 (reviewed, unaudited), modon.com investor relations",
+   "date": "2026-08-07",
+   "ring": "Company"
+  },
+  "h1_assoc_bv": {
+   "value": 2826.454,
+   "source": "Investments in associates and JVs, Interim condensed consolidated financial statements, 30-Jun-2026 (reviewed, unaudited), modon.com investor relations",
+   "date": "2026-08-07",
+   "ring": "Company"
+  },
+  "h1_finass": {
+   "value": 392.972,
+   "source": "Investments in financial assets, NC + C, Interim condensed consolidated financial statements, 30-Jun-2026 (reviewed, unaudited), modon.com investor relations",
+   "date": "2026-08-07",
+   "ring": "Company"
+  },
+  "h1_nci": {
+   "value": 922.342,
+   "source": "Non-controlling interests, Interim condensed consolidated financial statements, 30-Jun-2026 (reviewed, unaudited), modon.com investor relations",
+   "date": "2026-08-07",
+   "ring": "Company"
+  },
+  "h1_recv_total": {
+   "value": 22155.68,
+   "source": "Trade and other receivables (NC+C) + amounts due from related parties (NC+C), 30-Jun-2026, Interim condensed consolidated financial statements, 30-Jun-2026 (reviewed, unaudited), modon.com investor relations",
+   "date": "2026-08-07",
+   "ring": "Company"
+  },
+  "h1_inv_dwip": {
+   "value": 34087.289000000004,
+   "source": "Inventories + development work-in-progress, 30-Jun-2026, Interim condensed consolidated financial statements, 30-Jun-2026 (reviewed, unaudited), modon.com investor relations",
+   "date": "2026-08-07",
+   "ring": "Company"
+  },
+  "h1_pay_total": {
+   "value": 22289.32,
+   "source": "Trade and other payables (NC+C, incl. customer advances/contract liabilities) + amounts due to related parties, 30-Jun-2026, Interim condensed consolidated financial statements, 30-Jun-2026 (reviewed, unaudited), modon.com investor relations",
+   "date": "2026-08-07",
+   "ring": "Company"
+  },
+  "conv_path": {
+   "value": [
+    0.105,
+    0.25,
+    0.28,
+    0.3,
+    0.32
+   ],
+   "source": "Backlog conversion on opening development backlog (H2-2026 is a half-year rate). Anchor: H1-2026 realised development revenue ex-land 4,237 = 9.9% of the 42,600 opening \u2014 a ~20-23% annualised pace on a growing base, stepping up as the record construction book mobilises",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "new_sales": {
+   "value": [
+    12000.0,
+    30000.0,
+    26000.0,
+    23000.0,
+    21000.0
+   ],
+   "source": "New development sales, BASE path, POST-H1 (the AED 26bn H1-2026 actual is already inside the opening backlog): H2-2026 12bn (no assumed repeat of the 13bn Golf Estates launch), then fading 30->21bn/yr \u2014 still below the 52bn annualised H1 run-rate throughout",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "land_rev": {
+   "value": [
+    700.0,
+    1400.0,
+    1300.0,
+    1200.0,
+    1100.0
+   ],
+   "source": "Point-in-time land and plot sales: H1-2026 actual was 1,438; tapering path",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "red_margin": {
+   "value": [
+    0.41,
+    0.4,
+    0.39,
+    0.385,
+    0.38
+   ],
+   "source": "RED gross margin: FY2025 43.7%, H1-2026 actual 41.3%; glides to 38% as related-party land mix fades and the ~4% tender-price escalator runs ahead of ~2% realised-price escalation",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "aim_growth": {
+   "value": [
+    null,
+    0.09,
+    0.085,
+    0.08,
+    0.08
+   ],
+   "source": "AIM revenue growth off the FY2026E base; H2-2026E set directly",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "aim_h2": {
+   "value": 385.0,
+   "source": "AIM H2-2026E revenue: H1 actual 361 with contracted occupancy 96% and GLA additions",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "aim_margin": {
+   "value": [
+    0.68,
+    0.66,
+    0.65,
+    0.64,
+    0.64
+   ],
+   "source": "AIM gross margin: FY2025 64.3%, H1-2026 actual 71.6%; held near the blend",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "hosp_growth": {
+   "value": [
+    null,
+    0.07,
+    0.07,
+    0.06,
+    0.06
+   ],
+   "source": "Hospitality growth off FY2026E; H2 set directly",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "hosp_h2": {
+   "value": 452.0,
+   "source": "Hospitality H2-2026E: H1 actual 388 plus the winter-season weighting (H2-2025 was 52% of the year)",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "hosp_margin": {
+   "value": [
+    0.29,
+    0.28,
+    0.29,
+    0.3,
+    0.3
+   ],
+   "source": "Hospitality gross margin: H1-2026 actual 27.2%, recovering to 30%",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "ect_growth": {
+   "value": [
+    null,
+    0.045,
+    0.043,
+    0.041,
+    0.039
+   ],
+   "source": "ECT growth off FY2026E; H2 set directly",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "ect_h2": {
+   "value": 3000.0,
+   "source": "ECT H2-2026E: H1 actual 2,775 plus the H2-weighted events season (ADNEC calendar; Arena full-period)",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "ect_margin": {
+   "value": [
+    0.29,
+    0.27,
+    0.275,
+    0.28,
+    0.28
+   ],
+   "source": "ECT gross margin: H1-2026 actual 19.9% (temporary-infrastructure mix), recovering toward the FY2025 26.5% as the events season carries H2",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "oth_rev_f": {
+   "value": -30.0,
+   "source": "Others / eliminations, full-year rate",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "oth_gp_f": {
+   "value": -120.0,
+   "source": "Others gross loss, full-year rate (H1-2026 actual -57.5)",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "ga_pct": {
+   "value": [
+    0.083,
+    0.088,
+    0.087,
+    0.086,
+    0.085
+   ],
+   "source": "G&A / revenue. Anchors stated: FY2025 11.19%; H1-2026 headline 7.46% flattered by a -77.9 ECL reversal \u2014 ex-reversal 8.30%. The path glides 8.3% -> 8.5-8.8%, i.e. BELOW FY2025 on realised operating leverage but ABOVE the flattered H1 print. The first edition's conservatism claim is withdrawn: this is a generous assumption relative to FY2025 and is now labelled as such",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "sm_pct": {
+   "value": [
+    0.017,
+    0.018,
+    0.017,
+    0.017,
+    0.016
+   ],
+   "source": "S&M / revenue: FY2025 1.93%, H1-2026 1.64%",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "invinc_f": {
+   "value": [
+    80.0,
+    165.0,
+    170.0,
+    175.0,
+    180.0
+   ],
+   "source": "Investment and other income, recurring component (H1-2026 actual 71 incl. one-offs)",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "assoc_f_path": {
+   "value": [
+    95.0,
+    210.0,
+    227.0,
+    245.0,
+    264.0
+   ],
+   "source": "Associate/JV income: H1-2026 actual 88.3 post the Q2 JV disposal; ~8%/yr thereafter",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "dna_rate": {
+   "value": 0.034,
+   "source": "Depreciation & amortisation as a rate on the AVERAGE depreciable asset base (PP&E + investment properties + right-of-use + intangibles): FY2025 charge 610.5 on an average base of ~17,940 = 3.4%. Respecified off the asset base at revision 2 \u2014 the first edition drove D&A off revenue, a mis-specified driver both external audits flagged",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "asset_base_30jun": {
+   "value": 19736.134000000002,
+   "source": "Depreciable base at 30-Jun-2026: PP&E 8,702.928 + investment properties 9,496.084 + right-of-use 529.636 + intangibles 1,007.486, Interim condensed consolidated financial statements, 30-Jun-2026 (reviewed, unaudited), modon.com investor relations",
+   "date": "2026-08-07",
+   "ring": "Company"
+  },
+  "capex_f": {
+   "value": [
+    700.0,
+    1500.0,
+    1550.0,
+    1600.0,
+    1650.0
+   ],
+   "source": "Capital expenditure (H2 stub then annual): H1-2026 actual 312.5 (PP&E 206.9 + intangibles 63.5 + IP 42.0); rising with Olympia and venue pipeline",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "tax_f": {
+   "value": 0.155,
+   "source": "Effective tax: DMTT 15% floor + foreign uplift; H1-2026 actual 15.4%",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "nci_pct": {
+   "value": 0.02,
+   "source": "NCI share of profit: H1-2026 actual 1.8%",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "dso_path": {
+   "value": [
+    440.0,
+    430.0,
+    410.0,
+    390.0,
+    370.0
+   ],
+   "source": "Receivable days (trade + contract + related-party receivables over revenue): FY2025 439 days, 30-Jun-2026 440 days \u2014 held flat through 2026 then declining as Department-of-Finance balances collect. THE collection caveat in one driver",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "inv_addition": {
+   "value": 0.1,
+   "source": "New-project WIP added per dirham of new development sales (mobilisation, infrastructure)",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "inv_consumption": {
+   "value": 0.2,
+   "source": "Share of RED direct costs drawn from the existing land bank / WIP (land content of cost of sales)",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "pay_cover": {
+   "value": [
+    1.86,
+    1.7,
+    1.55,
+    1.45,
+    1.4
+   ],
+   "source": "Trade payables + customer advances + related-party payables as a multiple of annual direct costs: FY2025 2.62x (advance-heavy), 30-Jun-2026 1.86x; declining as handovers recognise advances. This is the presale-funding mechanism: customers, not the balance sheet, fund construction",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "rf": {
+   "value": 0.0448,
+   "source": "AED sovereign anchor: Jan-2031 dirham T-Bond, 4.48% YTM, July-2026 auction, ~4bp over UST (UAE MoF via WAM) \u2014 the longest liquid AED government tranche; the tenor choice (4.4y vs a perpetual stream) is stated as a limitation",
+   "date": "2026-07-30",
+   "ring": "Country"
+  },
+  "sov_spread_rating": {
+   "value": 0.0042,
+   "source": "Damodaran adjusted default spread, UAE (Aa2), rating basis, January-2026 ctryprem (the July-2026 refresh carries the same UAE parameters per independent verification; vintage stated)",
+   "date": "2026-01-05",
+   "ring": "Country"
+  },
+  "erp_rating": {
+   "value": 0.0487,
+   "source": "Damodaran total ERP, UAE row, rating basis",
+   "date": "2026-01-05",
+   "ring": "Country"
+  },
+  "erp_cds_na": {
+   "value": "NA",
+   "source": "No UAE sovereign CDS row is published \u2014 the CDS-basis WACC cannot be built; rating basis stands alone, stated",
+   "date": "2026-01-05",
+   "ring": "Country"
+  },
+  "beta": {
+   "value": 1.746,
+   "source": "TIER 1 \u2014 own-stock weekly regression against the PUBLISHED INDEX OF THE EXCHANGE THE STOCK IS LISTED ON (FTSE ADX General, raw_indices/AE/FADGI.csv, as of 2026-07-24), produced by the house regression module and passed through the beta-provenance gate, not by a study-local script. Dimson lead-lag corrected, which matters here: 84.75% of the shares sit with a single holder, and non-synchronous trading biases a naive beta DOWNWARD \u2014 the correction is worth +0.352 of beta (1.394 naive on the same weeks). Diagnostics: SE 0.397, R2 0.128, n 253, 90% CI [1.092, 2.399], usability gate PASS. Blume cross-check 1.497. THE CONFIDENCE INTERVAL IS WIDE \u2014 this beta is quoted with its interval everywhere it supports a conclusion, never as a precise point. SUPERSEDES both earlier regressors: revision 2 used an equal-weight composite of the house UAE library (1.03 adopted) and an intermediate revision-3 pass used a study-local naive regression on the official series (1.278). A constituent composite is not a substitute and not a tier. The Damodaran EM industry route (business-weighted unlevered 0.50 -> relevered 0.56-0.59) stays REJECTED as a primary: the 786-firm Real-Estate-Development row is dominated by highly-levered Chinese developers (D/E 1.97) unrepresentative of a UAE state platform; it is retained as a lower-bound cross-check. Sensitised in steps of one standard error",
+   "date": "2026-08-10",
+   "ring": "Company"
+  },
+  "beta_record": {
+   "value": {
+    "beta": 1.7457708115733528,
+    "se": 0.39715649701645106,
+    "r2": 0.12846332548762018,
+    "n": 253,
+    "ci90": [
+     1.092448373981291,
+     2.3990932491654147
+    ],
+    "usable": true,
+    "weak": false,
+    "dimson": true,
+    "index_file": "raw_indices/AE/FADGI.csv",
+    "index_asof": "2026-07-24",
+    "window_years": 4.89,
+    "first_obs": "2021-08-27",
+    "last_obs": "2026-07-17",
+    "blume_crosscheck": 1.4971805410489016,
+    "conforming": true
+   },
+   "source": "Full beta provenance record as returned by the house regression module and accepted by the beta-provenance gate: regressor, as-of date, diagnostics, confidence interval and conformance flag",
+   "date": "2026-08-10",
+   "ring": "Company"
+  },
+  "beta_naive_same_weeks": {
+   "value": {
+    "beta": 1.394333684644842,
+    "se": 0.2382946319446572,
+    "r2": 0.11919648249083459,
+    "n": 255
+   },
+   "source": "The same regression WITHOUT the Dimson thin-trading correction, on the same weeks, so the correction is visible rather than buried in a default argument",
+   "date": "2026-08-10",
+   "ring": "Company"
+  },
+  "beta_retired_regressors": {
+   "value": {
+    "rev2_proxy_composite": 1.03,
+    "rev3_naive_on_official": 1.278
+   },
+   "source": "Retired regressors, kept so the swap can be priced: the revision-2 equal-weight composite of the house UAE library, and the intermediate study-local naive regression on the official series",
+   "date": "2026-08-10",
+   "ring": "House"
+  },
+  "beta_rev2_published": {
+   "value": 1.03,
+   "source": "The beta PUBLISHED at revision 2 (proxy composite). Registered so the correction can be stated against what readers actually saw",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "beta_industry_check": {
+   "value": {
+    "unlevered_weighted": 0.501,
+    "relevered_fy25": 0.563,
+    "relevered_h1": 0.588
+   },
+   "source": "Damodaran January-2026 EM industry betas (betaemerg.xls, saved 07-Jan-2026): RE Development unlevered 0.452 (cash-corrected, 786 firms, D/E 1.97), RE Operations 0.590, Hotel/Gaming 0.580; gross-profit-weighted and relevered at Modon's structure. Cross-check only",
+   "date": "2026-01-07",
+   "ring": "Industry"
+  },
+  "eibor6m": {
+   "value": 0.0371,
+   "source": "EIBOR 6M 3.71% (31-Mar-2026 published set; the CBUAE page again refused this session \u2014 fixing retained WITH ITS DATE; a 25bp EIBOR move is ~3bp of WACC)",
+   "date": "2026-03-31",
+   "ring": "Country"
+  },
+  "kd_margin": {
+   "value": 0.0165,
+   "source": "Blended forward margin over 6M EIBOR from the note-29 tranche table (+0.60% newest large AED tranche to +2.5% construction; SONIA +0.95-2.05% GBP)",
+   "date": "2026-02-18",
+   "ring": "Company/House"
+  },
+  "g_term": {
+   "value": 0.025,
+   "source": "Terminal growth 2.5%",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "roic_term": {
+   "value": 0.085,
+   "source": "Terminal ROIC 8.5% \u2014 deliberately BELOW the model's own forecast path (which reaches ~15% by FY2030E as invested capital shrinks while NOPAT grows): a mean-reversion margin of safety on the block that carries ~70% of EV, and above the FY2025 clean achieved 6.1% because the at-cost land bank converts. Both anchors stated; the step-down is a choice, priced in sensitivity",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "debt_path": {
+   "value": [
+    10300.0,
+    10500.0,
+    9700.0,
+    8800.0,
+    7900.0
+   ],
+   "source": "Gross debt path incl. related-party loan from the 30-Jun-2026 actual 9,542: construction peak then amortising",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "cash_yield": {
+   "value": 0.035,
+   "source": "Yield on cash",
+   "date": "2026-06-17",
+   "ring": "Country"
+  },
+  "lease_int": {
+   "value": 36.0,
+   "source": "Annual interest on lease liabilities (H1-2026 actual ~18 per half), now an explicit input rather than an embedded numeral",
+   "date": "2026-08-07",
+   "ring": "Company"
+  },
+  "wd_term_derived": {
+   "value": 0.08020685679031156,
+   "source": "Terminal debt weight DERIVED from the model's own FY2030E balance sheet: gross debt / (gross debt + book equity). Assumed-15% retired at revision 2",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "anchor_days": {
+   "value": 38,
+   "source": "Days from the 30-Jun-2026 valuation date (reviewed balance sheet) to the 7-Aug-2026 price anchor \u2014 the first edition's 219-day accretion from 31-Dec-2025 is retired with the restrike",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "new_sales_runoff": {
+   "value": [
+    8000.0,
+    15000.0,
+    11000.0,
+    9000.0,
+    8000.0
+   ],
+   "source": "RUN-OFF path, post-H1: launches halve from the realised pace and fade \u2014 now a stress reading, not a live alternative: the H1-2026 disclosure (26bn in six months) falsified the first edition's run-off premise as a central scenario",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "red_margin_runoff": {
+   "value": [
+    0.4,
+    0.385,
+    0.37,
+    0.36,
+    0.35
+   ],
+   "source": "Run-off margins",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "new_sales_bull": {
+   "value": [
+    15000.0,
+    34000.0,
+    34000.0,
+    34000.0,
+    34000.0
+   ],
+   "source": "GROWTH-HOLD path: sales hold near the realised H1-2026 annualised pace less the launch effect",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "red_margin_bull": {
+   "value": [
+    0.42,
+    0.42,
+    0.41,
+    0.41,
+    0.4
+   ],
+   "source": "Growth-hold margins (published in full at revision 2 \u2014 the first edition left this vector undisclosed)",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "egy_crp": {
+   "value": 0.0971,
+   "source": "Damodaran CRP, Egypt (Caa1), Jan-2026",
+   "date": "2026-01-05",
+   "ring": "Country"
+  },
+  "fgn_share": {
+   "value": 0.170797409390457,
+   "source": "Revenue OUTSIDE the UAE, FY2025 audited geographic split, note 5 (11,466.934 within / 2,361.935 outside) \u2014 recognised REVENUE, not contracted sales; one external audit asserted this split is unpublished; it is note 5 of the audited statements",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "peers": {
+   "value": {
+    "ALDAR": {
+     "name": "Aldar Properties (ADX)",
+     "spot": 7.78,
+     "shares_mn": 7862.6,
+     "mcap": 61171.0,
+     "np_attr": 7548.0,
+     "eps": 0.96,
+     "pe_attr": 8.1,
+     "rev": 33800.0,
+     "ebitda": 11200.0,
+     "backlog": 71700.0,
+     "basis": "attributable EPS 0.96 disclosed in the Q4-FY25 release; FY2025 development backlog 71.7bn (66.5bn was the 9M-2025 vintage, corrected at revision 2)"
+    },
+    "EMAAR": {
+     "name": "Emaar Properties (DFM)",
+     "spot": 11.5,
+     "shares_mn": 8838.0,
+     "mcap": 101650.0,
+     "np_attr": 17599.0,
+     "eps": null,
+     "pe_attr": 5.78,
+     "rev": 49600.0,
+     "ebitda": null,
+     "backlog": 155000.0,
+     "basis": "attributable 17,599.179 from the audited DFM filing (previously marked n/d in error)"
+    },
+    "EMAARDEV": {
+     "name": "Emaar Development (DFM)",
+     "spot": 13.38,
+     "shares_mn": 4000.0,
+     "mcap": 53520.0,
+     "np_attr": 11316.0,
+     "eps": null,
+     "pe_attr": 4.73,
+     "rev": 27490.0,
+     "ebitda": null,
+     "backlog": 125200.0,
+     "basis": "attributable 11,316.189 audited; backlog 125.2bn (134.3bn was Emaar Properties' UAE figure, corrected)"
+    }
+   },
+   "source": "Peer table REBUILT at revision 2 on one attributable-earnings basis from the peers' own audited filings/releases (figures per the external audits' primary-source checks, adopted after verification); market caps from prices at 07-Aug-2026. Cross-check only",
+   "date": "2026-08-09",
+   "ring": "Industry"
+  },
+  "pe_just": {
+   "value": 7.5,
+   "source": "Justified P/E on FY2026E attributable profit: peer attributable trailing set 4.7x / 5.8x / 8.1x (EmaarDev / Emaar / Aldar). 7.5x = parity-minus with the sector leader: the growth and recurring-income premium and the 15%-float/related-party discount are treated as offsetting, stated as a judgement. (The first edition's 8.0x was described as a premium to Aldar off a broken peer table)",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "ev_ebitda_just": {
+   "value": 7.0,
+   "source": "EV/EBITDA 7.0x \u2014 HOUSE JUDGEMENT WITHOUT A PEER ANCHOR (no peer EV/EBITDA is computable from reachable disclosures: peer net debt not held). Shown as a cross-check only; EXCLUDED from the lens average at revision 2",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "norm_sales": {
+   "value": 20000.0,
+   "source": "Through-cycle development sales raised 18bn -> 20bn: the realised H1-2026 26bn lifts the cycle evidence; still far below the 38bn FY2026E in-year pace",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "norm_margin": {
+   "value": 0.115,
+   "source": "Through-cycle net margin",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "recurring_base": {
+   "value": 6455.178,
+   "source": "Recurring/operating legs base = FY2025 AIM + Hospitality + ECT segment revenue (6,455.178), grown 15% to mid-cycle",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "norm_pe": {
+   "value": 8.5,
+   "source": "Through-cycle P/E",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "roe_sust": {
+   "value": 0.075,
+   "source": "Sustainable ROE 7.5%. Receipts, one cleaning only: mechanical FY2025 clean ROE (ex the 735.1 of fair-value/disposal gains, tax-effected) = 6.6%; the model's own forward attributable ROE path runs 7.8% -> 9.8%. 7.5% sits between the two, below the forward path \u2014 a forward-sustainable judgement, not a historical cleaning (the first edition conflated the two)",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "lens_weights": {
+   "value": {
+    "dcf": 0.4,
+    "relative": 0.2,
+    "normalized": 0.2,
+    "book": 0.2
+   },
+   "source": "Weights unchanged: DCF primary on backlog visibility; three market lenses carry 60% jointly \u2014 that structure, not an additional holdco discount, is how float/governance friction is priced (a 30% haircut on top would double-count it; the reading is still shown in section 4)",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "land_bv": {
+   "value": 26610.771,
+   "source": "Land plots at cost, note 19, Audited consolidated financial statements FY2025, Modon Holding PSC, signed 18-Feb-2026, modon.com investor relations",
+   "date": "2026-02-18",
+   "ring": "Company"
+  },
+  "e1_land_uplift": {
+   "value": 0.337,
+   "source": "Expert 1 land mark-up = exactly HALF the realised 67.4% related-party land-sale gross margin (1 - 818.033/2,512.837), as the arms-length haircut \u2014 the first edition said \"half\" but used 35%; aligned at revision 2",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "dwip_bv_h1": {
+   "value": 6487.697,
+   "source": "Development WIP at 30-Jun-2026, Interim condensed consolidated financial statements, 30-Jun-2026 (reviewed, unaudited), modon.com investor relations",
+   "date": "2026-08-07",
+   "ring": "Company"
+  },
+  "e2_rp_haircut": {
+   "value": 0.25,
+   "source": "Expert 2 haircut on the related-party receivable book (30-Jun-2026: 10,756 gross due-from)",
+   "date": "2026-08-09",
+   "ring": "House"
+  },
+  "rp_book_h1": {
+   "value": 10755.509,
+   "source": "Amounts due from related parties NC + C, 30-Jun-2026, Interim condensed consolidated financial statements, 30-Jun-2026 (reviewed, unaudited), modon.com investor relations",
+   "date": "2026-08-07",
+   "ring": "Company"
+  },
+  "e3_pe": {
+   "value": 6.2,
+   "source": "Expert 3 multiple = the arithmetic MEAN of the rebuilt attributable peer set (4.73 + 5.78 + 8.10)/3 = 6.20x \u2014 the first edition claimed \"centre of the set\" but used 6.5x; the statistic is now the one named",
+   "date": "2026-08-09",
+   "ring": "House"
+  }
+ },
+ "assert_log": [
+  "FY2025 house EBITDA 4895.6 reconciles to the company adjusted EBITDA 4,900 within rounding (release: 4.9bn, 35.2% margin)",
+  "FY2025 balance sheet foots: equity + NCI + liabilities = total assets",
+  "FY2025 liability components sum to total liabilities",
+  "segment revenues + others sum to group revenue FY2025",
+  "segment gross profit + others sums to group gross profit FY2025",
+  "marginal Kd above the AED sovereign",
+  "scenario engine reproduces the base DCF",
+  "sensitivity engine reproduces the base at the unshifted point (grid convention fixed at revision 2)",
+  "Step 0 PASS carried",
+  "strike anchor equals study spot",
+  "q=0 sourced",
+  "input register carries 208 four-field inputs"
+ ]
+}

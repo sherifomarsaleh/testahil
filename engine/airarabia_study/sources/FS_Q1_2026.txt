@@ -1,0 +1,1061 @@
+Ait Arabia PJSC
+
+and its subsidiaries |
+Condensed Consolidated Interim
+Financial Information
+
+For the period ended March 31, 2026
+Air Arabia PJSC and its subsidiaries
+
+Condensed Consolidated Interim Financial Information
+
+For the period ended March 31, 2026
+
+Table of contents
+
+Page(s)
+
+Report on review of the condensed consolidated interim financial information 1
+Condensed consolidated statement of financial position 2-3
+Condensed consolidated statement of profit or loss 4
+Condensed consolidated statement of comprehensive income 5
+Condensed consolidated statement of changes in equity 6-7
+Condensed consolidated statement of cash flows 8
+Notes to the condensed consolidated interim financial information 9-20
+© ra nt Thornton Grant Thornton Audit and
+Accounting Limited
+(Dubai Branch)
+The Offices 5
+Level 3
+‘ Office 302, 303, 308
+One Central, DWTC
+Dubai, UAE
+Report on Review of the Condensed P.O. Box 1620
+Consolidated Interim Financial Information hovt ; saa. es
+To the Shareholders of Air Arabia PJSC www-grantthornton.ae
+Introduction
+We have reviewed the accompanying condensed consolidated statement of financial position of Air Arabia
+PJSC (“the Company”) and its subsidiaries (collectively referred to as “the Group”) as at March 31, 2026,
+and the related condensed consolidated statement of profit or loss, condensed consolidated statement of
+comprehensive income, condensed consolidated statement of changes in equity and condensed
+consolidated statement of cash flows for the three-month period then ended, and explanatory notes.
+Management is responsible for the preparation and presentation of this condensed consolidated interim
+financial information in accordance with International Accounting Standard 34, Interim Financial Reporting
+(“IAS 34”). Our responsibility is to express a conclusion on this condensed consolidated interim financial
+information based on our review.
+Scope of Review
+We conducted our review in accordance with International Standard on Review Engagements 2410,
+“Review of Interim Financial Information Performed by the Independent Auditor of the Entity”. A review of condensed
+consolidated interim financial information consists of making inquiries, primarily of persons responsible
+for financial and accounting matters, and applying analytical and other review procedures. A review is
+substantially less in scope than an audit conducted in accordance with International Standards on Auditing
+and, consequently, does not enable us to obtain assurance that we would become aware of all Significant
+matters that might be identified in an audit. Accordingly, we do not express an audit opinion.
+Conclusion ,
+Based on our review, nothing has come to our attention that causes us to believe that the accompanying
+condensed consolidated interim financial information is not prepared, in all material respects, in accordance
+with IAS 34.
+Other Matter
+The condensed consolidated interim financial information of the Group for the three-month period ended
+, March 31, 2025, were reviewed by another auditor who expressed an unmodified conclusion on those
+condensed consolidated interim financial information on May 13, 2025 and the consolidated financial
+statements of the Group as at and for the year ended December 31, 2025 were audited by another auditor
+who expressed an unmodified opinion on those consolidated financial statements on February 13, 2026.
+RANT THORNTON UAE
+[@ %\
+ify Oo \
+“ P.O. Box: 1620 SS
+\-g DUBAI-ULA.E. ¢ }
+Dr. Osafda Babak &/
+. e “OO a» ee / ‘i
+Registration No.935 “= 4iecout”
+Dubai, United Arab Emirates”
+May 14, 2026
+l
+(©2026 GrantThommtonUAEAlirghtstesened.
+Grant Thornton UAE is the trading name for Grant Thornton Audit and Accounting Limited (incorporated in the British Virgin Islands and registered with the Dubai Financial
+Services Authority), its licensed branches in Abu Dhabi, Dubai, Sharjah, Abu Dhabi Global Market and its subsidiary Grant Thornton LLC.
+“Grant Thornton” refers to the brand name under which the Grant Thornton member firms provide services to their clients and/or refers to one or more member firms, as the
+context requires. Grant Thornton International Limited (GTIL) and the member firms, including Grant Thornton UAE, are not a worldwide partnership. GTIL and each member
+firm are separate legal entities. Services are delivered by the member firms, GTIL does not provide services to clients. GTIL and its member firms are not agents of, and do not
+obligate, one another and are not liable for one another's acts or omissions.
+Air Atabia PJSC and its subsidiaries
+Condensed Consolidated Interim Financial Information
+Condensed consolidated statement of financial position
+As at March 31, 2026
+Match 31, December 31,
+Notes 2026 2025
+(Unaudited) (Audited)
+AED ‘000 AED ‘000
+ASSETS
+Non-current assets
+Property and equipment 4 5,782,432 5,790,022
+Right-of-use assets 10 1,107,054 852,577
+Advance for new aircrafts 5 2,076,013 2,028,265
+Investment property 281,892 277,090
+Net investment in lease 317,038 334,666
+Intangible assets 6 1,363,137 1,362,497
+Deferred charges 11,821 9,253
+Investments measured at fair value through other
+comprehensive income 7 447,723 457,528
+Investments in associates and joint ventures 337,000 363,386
+Trade and other receivables 271,198 31,349
+11,995,308 11,506,633
+Current assets
+Inventories 105,564 97,042
+Trade and other receivables 1,159,057 896,388
+Fixed deposits 8 4,308,354 4,126,040
+Cash and cash equivalents 9 662,719 1,072,692
+6,235,694 6,192,162
+TOTAL ASSETS 18,231,002 17,698,795
+EQUITY AND LIABILITIES
+Equity
+Share capital 4,666,700 4,666,700
+Statutory reserve 1,224,015 1,202,225
+General reserve 663,013 641,223
+Other reserves 252,542 (49,011)
+Retained earnings 752,333 1,947,767
+Total equity attributable to the owners of the
+Company 7,558,603 8,408,904
+Non-controlling interest 1,332 1,287
+Total equity 7,559,935 8,410,191
+Liabilities
+Non-current liabilities
+Provision for staff termination benefits 295,727 271,202
+Provision for maintenance 1,199,640 1,058,906
+Trade and other payables 28,630 114,461
+Bank borrowings 1,041,294 1,121,341
+Lease liabilities 10 1,251,890 1,003,700
+Income tax liabilities 68,409 62,358
+3,885,590 3,631,968
+The accompanying notes from 1 to 20 form an integral part of this condensed consolidated interim financial
+information.
+2
+Air Arabia PJSC and its subsidiaries ,
+Condensed Consolidated Interim Financial Information
+Condensed consolidated statement of financial position (continued)
+As at March 31, 2026
+Match 31, December 31,
+Notes 2026 2025
+(Unaudited) (Audited)
+AED ‘000 "* AED ‘000
+Current liabilities
+Deferred income 969,492 1,100,030
+Provision for maintenance 487,564 817,418
+Trade and other payables 4,533,151 2,932,708
+Bank borrowings 376,466 393,727
+Lease liabilities F 10 244,867 262,667
+Current income tax liabilities 173,937 150,086
+6,785,477 5,656,636
+Total liabilities 10,671,067 9,288,604
+TOTAL EQUITY AND LIABILITIES 18,231,002 17,698,795
+This condensed consolidated. intcrim financial information was approved and authorised for issue by the
+Board of Dircctors on | 11/41/25 and were signed on their behalf by:
+Ny
+f e’
+~ ba veh
+AT :
+Chaitman~"" Chief Executive Officer Director of Finance
+The accompanying notes from 1 to 20 form an integral part of this condensed consolidated interim financial
+information.
+3
+Air Arabia PJSC and its subsidiaries
+Condensed Consolidated Interim Financial Information
+Condensed consolidated statement of profit or loss
+For the period ended March 31, 2026
+Three-month Three-month
+period ended period ended
+Notes March 31,2026 March 31, 2025
+(Unaudited) (Unaudited)
+AED ‘000 AED ‘000
+Revenue 1,800,435 1,779,274
+Direct costs (1,498,433) (1,406,581)
+GROSS PROFIT 302,002 372,693
+Administrative and general expenses (91,564) (80,034)
+Selling and marketing expenses (28,546) (25,565)
+Finance income 55,852 64,353
+Finance costs (21,743) (17,143)
+Share of profit on investments in associates
+and joint ventures 13,614 6,855
+Other income, net 48,488 34,188
+PROFIT FOR THE PERIOD BEFORE TAX 278,103 355,347
+Income tax expense 18 (29,902) (50,214)
+PROFIT FOR THE PERIOD 248,201 305,133
+Profit for the period attributable to:
+Owners of the Company 248,156 305,104
+Non-controlling interest 45 29
+248,201 305,133
+Basic and diluted earnings per share (AED) 12 0.053 0.065
+The accompanying notes from 1 to 20 form an integral part of this condensed consolidated interim financial
+information.
+4
+Air Arabia PJSC and its subsidiaries
+Condensed Consolidated Interim Financial Information
+Condensed consolidated statement of comprehensive income
+For the period ended March 31, 2026
+Three-month Three-month
+period ended period ended
+March 31, 2026 = March 31, 2025
+(Unaudited) (Unaudited)
+AED ‘000 AED ‘000
+Profit for the period 248,201 305,133
+Other comprehensive income/ (loss)
+Items that will never be subsequently reclassified to profit or loss
+Change in fair value of investments measured at fair value
+through other comprehensive income (10,713) 5,230
+Items that may be reclassified subsequently to profit or loss
+Cash flow hedge
+Effective portion of changes in fair value 312,266 (14,989)
+Total other comprehensive income/ (loss) for the period 301,553 (9,759)
+TOTAL COMPREHENSIVE INCOME
+FOR THE PERIOD 549,754 295,374
+Total comprehensive income for the period attributable to:
+Owners of the Company 549,709 295,345
+Non-controlling interest 45 29
+549,754 295,374
+The accompanying notes from 1 to 20 form an integral part of this condensed consolidated interim financial
+information.
+5
+ape
+22S a = a Bl |
+(e} oO “4 ~N i ty = 3]
+Bo. oc > —t) og 3
+So S£ € Sg S| |
+- oA a) = in
+qos = “4
+— “|
+L woro |
+segs bo y ‘ |
+sage 8 ° an | 8
+He A “ “|
+. of ~
+3
+PSsors + No) Sa) a
+tenes & @ nl & S
+oo 8. e- SoS =| 5 S
+Sgifo 8 € ag 3 ¢
+a2889 & & 8&8 S| &
+ShOVa @ ™ =
+ce: : +, at |
+ys 7
+8 5s 8 ‘|e s | :
+qo ~ ) a Es = ey F
+g Z a Col oa in S | :
+dQ ty oS a » =i * g
+an) an N a By S &
+a gy) € og} :
+J | g
+i | r
+vo E
+ssez g@  aigsl | lg
+aoe 8 aq a 5 :
+n <4 8 a. ai qi = :
+o| BQ a a} ow atl P
+eB} 8 “ 2 al 4 S|
+5 3 BI oc a &
+: Hw
+8
+y VdrHO :
+5 Ps |
+#| Bess 8 a] Ss) a: E
+e) es oO = - ER) OR 2 :
+4 a ~ ~ = s
+2£E 2 a cs} Ss S| g
+gE Q Ss} s = 3
+ny ~ 7
+2 avo Sa) :
+= ge8 9 1 1 ' Oo ' 3
+s gge 3 : S :
+£ % 56*#Q S z| :
+| 2 ~ " . ;
+F 8
+g peo nN | E
+& ty Ss ! ' '
+e «¢ s&s A & | | :
+— S B 8 wv = S| F
+a a= 842A o } q :
+= S A B =| N a q
+12) em ~ -
+e 3 : :
+~ 4 S
+& " HES = 1 ' 1 ' '
+é 5 2 BS 5 = :
+wo “A §'¢ S = :
+bm Ee 8 Q ‘9 Z| |
+a oN = S :
+3° So = ¥ g :
+a6 38 S g
+~ oe 7
+£2] os
+s5 38
+oo os g 3 :
+aa 33 Too: Y
+8 3s S) Vv o —
+ug 4 es Ss & . :
+rat oU g 8 2
+go G3 Z gg 5
+ries) = ‘D ; 7 3
+GZ oie ee oO pi | nw
+n o Oo 2% ~ eS 4 Es s ae 2
+Tied a) 8 2 6 ge sy & :
+ino] ao =) 5 Oo v g & 8 8 - :
+ag OF “ a § 38 8 s om 5
+33 0-5 = 9 5 oO Qs aa j
+Be g8 ¢ 2 byig 2 iz 32 :
+o vo : | 2 5 fe
+av Os gq 5 68 BE % Su ay
+2 Es 2 € 8382 8 S82 28 :
+26 08 # & Egge ¢ 3 as :
+Oo Of a ¢£ S886 9 §F ® :
+& O Ff “ HQ “
+EF AA =
+aro es) sz) at 1 fr) rm]
+g28 8 8 &ls gg
+ES: 3) vy ow >| uy oft
+%Q iY) ° Ala 2 oll
+ay a Sa) N Ss =
+wT et ~|
+sPgg 8 8 ‘Ja ' 1 B
+aS ar yy
+Zoek bom) _
+B.g
+§ & |
+Bees BS f—) =" a2 ' oC [—)
+p2es73 8 = ae g| &
+Sa2een FF SF ae 3| &
+cis 5S 8 yn 7 “TA Ms} 2
+58 6° ™ —e i
+Hs R
+| e
+Bes 8 s ‘Ja © ge g
+gf#s & & =| 3 | & 3
+g¢ ron wW us a eS foe} 8
+3A ee 2 S ) a) ° rs
+mo mS cn a V a ad fe)
+< al =! ‘%
+a
+See_eeS —~ ' AS ! ; on) BY
+4omPp S N co} oO — a
+a} Qeaogs o. Al AY ne a
+ied “on N ] | aq
+5 “gy a2 cs} Es) vo)
+| :
+“~~ g g
+i} ~~
+~j}s g458 8 ' gla ° ‘| gl s
+ve g 2 hOf et NY ~ a]
+2 | o| afFaq © li = :
+Bs gs a 3
+cs} S|
+= S) g
+3 maYvYO a a 1 Oe foro) ‘ Q| sg; =
+L geS 8 2 | 8
+Goa ”* an an an ia © |
+o o
+o
+is iow z
+2 vo Peso No) ' lor co 1 + fe}
+pa Ss oP S S oS ~ cy)
+Ss . so 2 7, “a, Ny 2
+E n £3Q 8 a % €
+1?) 84 f—) ros) Gu
+a ¢ a°g s = :
+~
+= ay , a
+=z = fas S ' ' 1 1 S a
+om Gq gs a "
+DO Se “230 & S Bp
+q ° ras | v
+g z a + + g
+as
+yo By v ia] a
+E a & §
+Ss oY oO °
+iS og bi —) Ke}
+ca an gy oO oe
+a «UV or vo wv Oo
+oo Oo wt oo] AN
+oO 5 se) y aol i}
+se 06 c= ate) o -
+o's ae) = 1 5 <a
+n SS Oo Oo VY — §
+» + Pm] wg a4 3
+“as US as 26 9 & E
+ut 3 6 8 6 06CU ‘tf
+| oF —™ ®
+a 9 wo wn Y w b & Ye) 5
+az <¢y xn & > o s N g
+O s 5 & SoS © 23 P x 3 S
+n 9 o & N 5 o Ss oO Sy ‘ op
+me O =| — a. a8 rs 25 oot o
+Pa wy aoe) 0 xO par = oO isa) g
+so 28 g os eH 2 3° 4 a
+a 2 g¢ QQ q be 5 2 8g | rs]
+S Oo 0 wv ss & o § & 8 § = a
+ay 35 ¢ &© 8a ¢ §38 4 g
+fe) Se 8
+. ° 0 8 cor) 4 ° Ba] £5 n 2
+235 S¢€ ao OR F KA < =
+Air Arabia PJSC and its subsidiaries
+Condensed Consolidated Interim Financial Information
+Condensed consolidated statement of cash flows
+For the period ended March 31, 2026
+Three-month Three-month
+period ended period ended
+Notes March 31,2026 March 31, 2025
+(Unaudited) (Unaudited)
+AED ‘000 AED ‘000
+OPERATING ACTIVITIES
+Profit for the period before tax 278,103 355,347
+Adjustments for:
+Depreciation and amortisation 166,805 147,840
+Provision for staff termination benefits 28,934 16,172
+Share of profit on investments in associates and joint
+ventures (13,614) (6,855)
+Finance income (55,852) (64,353)
+Finance cost 21,743 17,143
+Operating cash flows before changes in working capital 426,119 465,294
+Changes in working capital
+Inventories (8,522) (9,938)
+Trade and other receivables (140,501) (146,083)
+Trade and other payables (74,338) 198,343
+Deferred income (130,538) 109,710
+Cash flows from operations 72,220 617,326
+Staff terminal benefits paid (4,409) (3,577)
+Net cash flows from operating activities 67,811 613,749
+INVESTING ACTIVITIES
+Additions to property and equipment 4 (112,095) (88,079)
+Proceeds from net investment in lease 26,256 17,713
+Payments in relation to advances for new aircrafts-net (47,748) (416,933)
+Change in fixed deposits (182,315) 636,053
+Finance income received 18,097 74,700
+Additions to intangible assets 6.1 (2,786) (4,711)
+Additions to investment property (4,802) (11,873)
+Dividend received from joint ventures 20,000 41,720
+Investments at fair value through OCI — net - 5:13!
+Net cash flows (used in)/from investing activities (285,393) 253,721
+FINANCING ACTIVITES
+Payments of lease liabilities 10.1 (73,339) (84,374)
+Interest on payment of lease liabilities 10.1 (5,012) (8,240)
+Movement in bank borrowings - net (97,309) (104,771)
+Finance cost paid (16,731) (11,381)
+Net cash flows used in financing activities (192,391) (208,766)
+Net change in cash and cash equivalents (409,973) 658,704
+Cash and cash equivalents at the beginning of the period 1,072,692 700,229
+Cash and cash equivalents at the end of the period 9 662,719 1,358,933
+The accompanying notes from 1 to 20 form an integral part of this condensed consolidated interim financial
+information.
+8
+Air Arabia PJSC and its subsidiaries
+Condensed Consolidated Interim Financial Information
+Notes to the condensed consolidated interim financial information
+For the period ended March 31, 2026
+1 Legal status and principal activities
+Air Arabia PJSC ("the Company") was incorporated on June 19, 2007 as a Public Joint Stock Company.
+The Company operates in the United Arab Emirates under a trade license issued by the Economic
+Development Department of the Government of Sharjah and Air Operator's Certificate Number AC 2
+issued by the General Civil Aviation Authority, United Arab Emirates.
+The Company's ordinary shares are listed on the Dubai Financial Market, United Arab Emirates. The
+registered office address is P.O. Box 132, Sharjah, United Arab Emirates.
+The condensed consolidated interim financial information for the period ended March 31, 2026 includes
+the financial performance and position of the Company and its subsidiaries (collectively referred to as "the
+Group") and the Group's interest in associates and joint ventures.
+The licensed activities of the Group are international commercial air transportation, aircraft trading, aircraft
+rental, aircraft spare parts trading, travel and tourist agencies, commercial brokerage, hotels, hotel apartment
+rentals, airline companies' representative office, passenger transport, cargo services, air cargo agents,
+documents transfer services, aviation training and aircraft repairs and maintenance.
+The details of the Group's ownership in its various subsidiaries, joint ventures and associates and their
+principal activities are as follows:
+Legal/
+beneficial
+ownership Country of
+interest operation and
+Name 2026 2025 ownership Principal activities
+Subsidiaries
+International Business Company 100% 100% United Arab Dealing in International
+(FZE) Emirates Business and shares
+Air Arabia Holidays L.L.C 100% 100% United Arab Tout operations
+Emirates
+Information System Associates FZE 100% 100% United Arab IT services to aviation industry.
+Emirates
+Action Hospitality 100% 100% United Arab Hospitality services, tourism,
+Emirates managing and operating
+restaurants and hotels.
+COZMO Travel LLC — Sole 100% 100% United Arab Travel and tours, tourism and
+proprietorship (a) Emirates cargo services.
+Impact Aviation Services Limited 100% 100% Ireland Management of lease contracts
+Air Arabia Service Center W.L.L 100% 100% Bahrain Office administrative and
+support services, call center and
+computer programming services
+Centro Sharjah Hotel L.L.C.SP 100% 100% United Arab Hotel
+Emirates
+Radisson Blu Hotel Apartment — 100% 100% United Arab Renting hotel apartments
+Dubai Marina LLC Emirates
+Subsidiaries of International Business Company (FZE) (sub-
+subsidiaries)
+Olgana Real Estate Development 100% 100% United Arab Real estate development
+LLC Emirates
+Air Arabia Academy LLC 100% 100% United Arab Aviation training services
+Emirates
+Nexasoft Innovations Private Limited 100% 100% India Software designing, development
+(b) and solutions
+Coreops Services Private Limited (b) 100% 100% India Backend support solutions
+9
+Air Arabia PJSC and its subsidiaries
+
+Condensed Consolidated Interim Financial Information
+
+Notes to the condensed consolidated interim financial information (continued)
+
+For the period ended March 31, 2026
+
+1 Legal status and principal activities (continued)
+
+Legal/
+beneficial Country of
+ownership operation
+interest and
+Name 2026 2025 ~ownership _ Principal activities
+Joint ventures
+Alpha Flight Services UAE L.L.C 51% 51% United Arab Flight and retail catering and ancillary
+Emirates services to the Air Arabia PJSC.
+Sharjah Aviation Services L.L.C 50% 50% United Arab Aircraft handling, passenger and cargo
+Emirates services at the Sharjah International
+Airport.
+Cozmo Travel (CJSC) (“Cozmo 75% 75% Armenia Travels and tours, tourism and cargo
+Armenia”) (c) services
+Air Arabia Abu Dhabi L.L.C. 49% 49% United Arab International commercial air
+Emirates transportation.
+Air Arabia - Egypt Company S.A.E. 49% 49% Egypt International commercial air
+transportation.
+Fly Jinnah Services (Private) Limited 45% 45% Pakistan International commercial air
+transportation.
+Armenian National Airlines (CJSC) 49% 49% Armenia International commercial air
+(“Fly Arna”) (d) transportation.
+Air Arabia DMM, LLC (e) 49% 49% KSA International commercial air
+Transportation
+Tune Protection Commercial 51% 51% United Arab Transportation Commercial brokers
+Brokerage LLC Emirates
+
+Associates
+
+Air Arabia Maroc, S.A 44.13% 44.13% Morocco International commercial air
+
+transportation.
+
+Air Arabia Jordan LLC (d) 49% 49% Jordan International commercial air
+
+transportation.
+
+(a) COZMO Travel LLC - Sole proprietorship controls subsidiaries in Qatar, Kingdom of Saudi Arabia,
+Kuwait, Bahrain, United Arab Emirates, India, Oman, Jordan and Egypt.
+
+(b) In 2024, the Group incorporated fully owned subsidiaries named “Nexasoft Innovations Private
+Limited” and “Coreops Services Private Limited” in India through its wholly owned subsidiaty,
+International Business Company (FZE). The subsidiaries became operational in 2025.
+
+(©) The Group suspended the operation of Cozmo Armenia in 2024.
+
+(d) In 2024, the Group has initiated the process of liquidating its joint ventures Fly Arna and Air Arabia
+Jordan LLC.
+
+(e) In 2025, the Group entered into a joint venture with Saudi investors to establish an airline in Kingdom
+of Saudi Arabia “Air Arabia DMM, LLC” in which the Group owns 49% of the shares.
+
+2 Basis of preparation and material accounting policies
+a) Basis of preparation
+The condensed consolidated interim financial information of the Group has been prepared in accordance
+with International Accounting Standard (IAS) 34, Interim Financial Reporting. The condensed consolidated
+interim financial information does not include all of the information requited for full annual consolidated
+financial statements prepared in accordance with the International Financial Reporting Standards (IFRSs)
+and should be read in conjunction with the consolidated financial statements of the Group for the year
+ended December 31, 2025.
+
+10
+Air Arabia PJSC and its subsidiaries
+
+Condensed Consolidated Interim Financial Information
+
+Notes to the condensed consolidated interim financial information (continued)
+For the period ended March 31, 2026
+
+2 Basis of preparation and material accounting policies (continued)
+
+a) Basis of preparation (continued)
+
+Accounting policies, related adjustments, estimates and assumptions adopted for the preparation of this
+condensed consolidated interim financial information are same as those applied in the preparation of the
+audited consolidated financial statements for the year ended December 31, 2025.
+
+The condensed consolidated interim financial information has been prepared on the historical cost basis
+except for derivative financial instruments and investments measured at fair value through other
+comprehensive income (FVOCI), which are measured at their fair values.
+
+b) Functional and presentation currency
+
+The condensed consolidated interim financial information is presented in United Arab Emirates Dirham
+("AED"), which is the Group's functional currency. All values are rounded to the nearest thousands (‘000)
+except where noted otherwise.
+
+c) Basis of consolidation
+
+This condensed consolidated interim financial information incorporates the financial information of the
+Company and entities directly or indirectly controlled by the Company. Control is achieved where the
+Company has the power over the investee, exposure, or rights, to variable returns from its involvement
+with the investee and the ability to use its power over the investee to affect the amount of the investot’s
+returns.
+
+d) Significant accounting estimates and judgments
+
+The preparation of the condensed consolidated interim financial information in conformity with LAS 34,
+requires management to make judgments, estimates and assumptions that affect the application of
+accounting policies and the reported amounts of assets and liabilities, income and expenses. Actual results
+may differ from these estimates.
+
+The significant judgements made by the management in applying the Group’s accounting policies and the
+key sources of estimation uncertainty were the same as those that were applied in preparation of the
+consolidated financial statements of the Group as at and for the year ended December 31, 2025.
+
+2.1 New or revised Standards or Interpretations
+
+There are no accounting pronouncements which have become effective from 1 January 2026 that have a
+significant impact on the Group’s condensed consolidated interim financial information.
+
+At the date of authorisation of this condensed consolidated interim financial information, several new, but
+not yet effective, Standards, amendments to existing Standards, and interpretations have been published by
+the IASB and IFRS Interpretations Committee (IFRIC). None of these Standards or amendments to
+existing Standards have been adopted early by the Group and no interpretations have been issued that are
+applicable and need to be taken into consideration by the Group at the reporting date.
+The new standards, amendments and interpretations not adopted in the current period are not expected to
+have a material impact on the Group’s condensed consolidated interim financial information, except for
+IFRS 18 ‘Presentation and Disclosure in Financial Statements’, which has an effective date of January 1,
+2027. The Group is currently working to identify all of the impacts that IFRS 18 will have on the
+consolidated financial statements.
+
+11
+Air Arabia PJSC and its subsidiaries
+Condensed Consolidated Interim Financial Information
+Notes to the condensed consolidated interim financial information (continued)
+For the period ended March 31, 2026
+3 Financial risk management
+The Group’s financial risk management objectives and policies are consistent with those disclosed in the
+consolidated financial statements of the Group as at and for the year ended December 31, 2025.
+4 Property and equipment
+During the period ended March 31, 2026, the Group acquired various property and equipment amounting
+to AED 112.1 million (the period ended March 31, 2025: AED 88.1 million).
+Depreciation charge on property and equipment for the period ended March 31, 2026 amounted to
+AED 119.7 million (the period ended March 31, 2025: AED 99.7 million).
+5 Advance for new aircrafts
+These represent pre-delivery payments made to suppliers for an amount of AED 2,076 million as of March
+31, 2026 (December 31, 2025: AED 2,028.2 million) in respect of 115 new aircrafts consisting of A320 and
+A321 family.
+6 Intangible assets
+Match 31, December 31,
+2026 2025
+(Unaudited) (Audited)
+AED ‘000 AED ‘000
+Intangible assets (Note 6.1) 1,164,615 1,163,975
+Goodwill (Note 6.2) 198,522 198,522
+1,363,137 1,362,497
+6.1 Intangible assets
+i) The movement in the intangible assets during the year can be reconciled as follows:
+Match 31, December 31,
+2026 2025
+(Unaudited) (Audited)
+AED ‘000 AED ‘000
+As at January 1, 1,163,975 1,151,748
+Additions during the period/year 2,786 18,282
+Amortisation during the period/year (2,146) (6,055)
+1,164,615 1,163,975
+The Group holds the intangible assets with indefinite useful lives, as follows:
+March 31, December 31,
+2026 2025
+(Unaudited) (Audited)
+AED ‘000 AED ‘000
+Trade name 395,410 395,410
+Landing rights 468,273 468,273
+Price benefit from related parties 180,281 180,281
+Handling license - Sharjah Aviation Services 48,383 48,383
+1,092,347 1,092,347
+12
+Air Arabia PJSC and its subsidiaries
+Condensed Consolidated Interim Financial Information
+Notes to the condensed consolidated interim financial information (continued)
+For the period ended March 31, 2026
+6 Intangible assets (continued)
+6.2 Goodwill
+Goodwill comprises of the following:
+March 31, December 31,
+2026 2025
+(Unaudited) (Audited)
+AED ‘000 AED ‘000
+Goodwill on acquisition of Air Arabia LLC * 189,474 189,474
+Goodwill on step acquisition of Information Systems Associates FZC 9,048 9,048
+198,522 198,522
+* Goodwill arising on the acquisition of Air Arabia LLC in 2007, determined by an independent valuer,
+was as follows:
+AED ‘000
+Total fair value of Air Arabia LLC 1,400,000
+Fair value of intangible assets (1,092,347)
+Fair value of intangible assets - net (118,179)
+189,474
+7 Investments measured at fair value through other comprehensive income
+March 31, December 31,
+2026 2025
+(Unaudited) (Audited)
+AED ‘000 AED ‘000
+Quoted investments in equity instruments in UAE * 9,487 10,361
+Unquoted investments in debt instruments in UAE 239,396 270,817
+Unquoted investments in debt instruments outside UAE 198,840 176,350
+447,723 457,528
+*Movement in quoted investments in equity instruments during the period/year were as follow:
+March 31, December 31,
+2026 2025
+(Unaudited) (Audited)
+AED ‘000 AED ‘000
+As at January 1, 10,361 9,013
+Change in fair value (874) 1,348
+9,487 10,361
+The market rates as at March 31, 2026 and December 31, 2025 are considered for the calculation of the fair
+value of the investments that are quoted on the stock exchange market.
+Movement in unquoted investments in debt instruments during the period/year were as follow:
+Match 31, December 31,
+2026 2025
+(Unaudited) (Audited)
+AED ‘000 AED ‘000
+As at January 1, 447,167 411,353
+Additions during the period/year - 21,528
+Change in fair value (8,931) 14,286
+438,236 447,167
+13
+Air Arabia PJSC and its subsidiaries
+Condensed Consolidated Interim Financial Information
+Notes to the condensed consolidated interim financial information (continued)
+For the period ended Match 31, 2026
+7 Investments measured at fair value through other comprehensive income
+(continued)
+The fair values of these debt instruments were determined using market interest rates of similar debt
+instruments as at March 31, 2026 and December 31, 2025.
+8 Fixed deposits
+March 31, December 31,
+2026 2025
+(Unaudited) (Audited)
+AED ‘000 AED ‘000
+Fixed deposits* 4,308,354 4,126,040
+*These deposits carry an average interest rate of 4.36% (2025: 4.41%) per annum.
+9 Cash and cash equivalents
+Match 31, December 31,
+2026 2025
+(Unaudited) (Audited)
+AED ‘000 AED ‘000
+Bank balances:
+Current accounts 390,922 682,530
+Call deposits 269,153 387,478
+660,075 1,070,008
+Cash in hand 2,644 2,684
+Cash and cash equivalents 662,719 1,072,692
+10 Right of use assets and lease liabilities
+10.1 Right-of-use assets
+The movement of the right-of-use assets is summarised as below:
+Match 31, December 31,
+2026 2025
+(Unaudited) (Audited)
+AED ‘000 AED ‘000
+As at January 1, 852,577 784,706
+Remeasurement of right-of-use assets 298,717 -
+Additions during the period/year - 333,102
+Derecognition during the period/year - (88,050)
+Depreciation during the period/year (44,240) (177,181)
+1,107,054 852,577
+14
+Air Arabia PJSC and its subsidiaries
+Condensed Consolidated Interim Financial Information
+Notes to the condensed consolidated interim financial information (continued)
+For the petiod ended March 31, 2026
+10 Right of use assets and lease liabilities (continued)
+10.2 Lease liabilities
+The Group has entered into leasing agreements with the leasing companies to finance the purchase of
+aircrafts and hangar. The terms of the leases are 5 -15 years for aircrafts and hangar.
+March 31, December 31,
+2026 2025
+(Unaudited) (Audited)
+AED ‘000 AED ‘000
+As at January 1, 1,266,367 1,042,276
+Remeasurement of lease liabilities 298,717 -
+Additions to lease liabilities for the period/year - 472,157
+Accretion of interest 5,012 31,530
+Payments made during the petiod/year (73,339) (279,596)
+1,496,757 1,266,367
+Current Non-current
+Match 31, December 31, March 31, December 31,
+2026 2025 2026 2025
+(Unaudited) (Audited) (Unaudited) (Audited)
+AED ‘000 AED ‘000 AED ‘000 AED ‘000
+Lease liabilities 244,867 262,667 1,251,890 1,003,700
+The lease agreements are subject to certain financial and operational covenants including compliance with
+various regulations, restrictions on unapproved subleasing, insurance coverage and maintenance of total
+debt to equity ratio.
+11 Related parties
+Match 31, December 31,
+2026 2025
+(Unaudited) (Audited)
+AED ‘000 AED ‘000
+Amounts due from related parties
+Included in trade and other receivables
+Receivable from associates and joint ventures, net of allowance
+for expected credit losses 112,426 46,672
+Amounts due to related parties
+Included in trade and other payables
+Payable to joint ventures 404,195 359,216
+Amounts due from/(to) related parties are unsecured, bear no interest and have no fixed repayment terms.
+The management considers these to be current assets/current liabilities respectively.
+15
+Air Arabia PJSC and its subsidiaries
+Condensed Consolidated Interim Financial Information
+Notes to the condensed consolidated interim financial information (continued)
+For the period ended March 31, 2026
+12 Basic and diluted earnings per share
+Three-month Three-month
+period ended period ended
+Match 31, 2026 March 31, 2025
+(Unaudited) (Unaudited)
+AED ‘000 AED ‘000
+Profit attributable to the owners of the Company 248,156 305,104
+Weighted average number of shares (in ‘000) 4,666,700 4,666,700
+Basic and diluted earnings per share (AED) 0.053 0.065
+13 Operating lease commitments
+The Group is a lessor
+As at March 31, 2026, the Group has leased out 17 aircrafts (as at December 31, 2025: 17) under non-
+cancellable operating lease agreements to the related patties.
+The leases have varying terms and renewal rights. The future minimum lease receivable under non-
+cancellable operating leases contracted for at the reporting date but not recognised as receivables, are shown
+below:
+March 31, December 31,
+2026 2025
+(Unaudited) (Audited)
+AED ‘000 AED ‘000
+Within one year 157,005 166,435
+Between 2 and 5 years 91,984 126,401
+248,989 292,836
+The carrying amount of the leased aircraft owned by the Group under operating leases at the reporting date
+are as follow:
+March 31, December 31,
+2026 2025
+(Unaudited) (Audited)
+AED ‘000 AED ‘000
+Net book value 942,414 967,384
+Accumulated depreciation 1,876,279 1,851,309
+Depreciation charge for the period/year 24,970 101,344
+14 Contingent liabilities
+The Group have letters of guarantees and credits entered into as part of the normal course of business
+activities amounting to AED 98 million as at March 31, 2026 (December 31, 2025: AED 98 million), which
+as at March 31, 2026 are not expected to result in material losses for the Group in the foreseen future and
+not consider it probable that there will be an outflow of economic resources with regard to these contingent
+liabilities.
+16
+Air Arabia PJSC and its subsidiaries
+Condensed Consolidated Interim Financial Information
+Notes to the condensed consolidated interim financial information (continued)
+For the period ended March 31, 2026
+15 Capital commitments
+March 31, December 31,
+2026 2025
+(Unaudited) (Audited)
+AED'000 AED'000
+Authorised and contracted:
+Aircraft fleet 21,870,334 21,918,082
+16 Segment information
+The following table presents revenue and profit information for the Group’s operating segments for the
+period ended March 31, 2026 and March 31, 2025 respectively:
+Three-month period ended Other
+March 31, 2026 (Unaudited) Airline segments Eliminations Total
+AED ‘000 AED ‘000 AED ‘000 AED ‘000
+Revenue
+External sales 1,681,710 118,725 - 1,800,435
+Inter-segment sales - 21,253 (21,253) :
+Total revenue 1,681,710 139,978 (21,253) 1,800,435
+Result
+Segment result 215,294 20,253 (960) 234,587
+Share of profit of investments in associates
+and joint ventures 13,614
+Profit for the period 248,201
+Other information
+Additions to property and equipment and
+deferred charges 103,825 12,310 - 116,135
+Depreciation and amortisation ___ (11,581) (55,224) - (166,805)
+Three-month period ended Other
+March 31, 2025 (Unaudited) Airline segments Eliminations Total
+AED ‘000 AED ‘000 AED ‘000 AED ‘000
+Revenue
+External sales 1,661,999 117,275 - 1,779,274
+Inter-segment sales - 13,077 (13,077) P
+Total revenue 1,661,999 130,352 (13,07 2 1,779,274
+Result
+Segment result 304,516 27,672 (33,910) 298,278
+Share of profit of investments in associates
+and joint ventures 6,855
+Profit for the period 305,133
+Other information
+Additions to property and equipment and
+deferred charges 58,567 29,512 = 88,079
+Depreciation and amortisation 96,868 50,972 : 147,840
+17
+Air Arabia PJSC and its subsidiaries
+Condensed Consolidated Interim Financial Information
+Notes to the condensed consolidated interim financial information (continued)
+For the period ended March 31, 2026
+16 Segment information (continued)
+The following table presents assets and liabilities information for the Group’s operating segments as at
+March 31, 2026 and March 31, 2025, respectively:
+Other
+Airline segments Hliminations Total
+AED ‘000 AED ‘000 AED ‘000 AED ‘000
+March 31, 2026 (Unaudited)
+Assets
+Segment assets 16,952,131 2,570,014 (1,291,143) 18,231,002
+Liabilities
+Segment liabilities 11,535,190 427,020 _(1,291,143) 10,671,067
+Other
+Airline segments Eliminations Total
+AED ‘000 AED ‘000 AED ‘000 AED ‘000
+Match 31, 2025 (Unaudited)
+Assets
+Segment assets, 14,939,296 2,304,182 (1,272,868) 15,970,610
+Liabilities
+Segment liabilities 9,782,288 380,433 (1,272,868) 8,889,853
+Inter-segment sales are charged at prevailing market prices.
+Geogtaphical segments
+The majority of assets and liabilities of the Group are geographically located in United Arab Emirates.
+Therefore, detailed disclosures have not been provided. Geographical location-wise disaggregation of
+revenue of the Group are as follows:
+Three-month Three-month
+petiod ended period ended
+March 31, 2026 March 31, 2025
+(Unaudited) (Unaudited)
+AED ‘000 AED ‘000
+Within United Arab Emirates 1,776,473 1,759,124
+Outside United Arab Emirates 23,962 20,150
+1,800,435 1,779,274
+The accounting policies of the reportable segments are the same as the Group’s accounting policies
+described in Note 4 to the consolidated financial statements as at and for the year ended December 31,
+2025. Segment result represents the profit earned by each segment without considering share of
+profit/(loss) on equity accounted investments.
+Segment assets do not include fixed deposits, investments, investment properties and investment in
+subsidiaries, joint ventures and associates. Goodwill and intangible assets have been allocated to the Airline
+segment.
+18
+Air Arabia PJSC and its subsidiaries
+Condensed Consolidated Interim Financial Information
+Notes to the condensed consolidated intetim financial information (continued)
+For the period ended March 31, 2026
+17 Dividends
+At the Annual General Meeting held on March 12, 2026, the Board of Directors proposed, and the
+shareholders approved a cash dividend of AED 1,400 million at AED 0.30 per share for the year ended
+December 31, 2025 (2025: AED 1,167 million at AED 0.25 per share).
+18 Taxation
+On 9 December 2022, the UAE Ministry of Finance released Federal Decree-Law No. 47 of 2022 on the
+Taxation of Corporations and Businesses (Corporate Tax Law or the Law) to enact a Federal corporate tax
+(C1) regime in the UAE. The CT regime has become effective for accounting periods beginning on or after
+June 1, 2023. The Cabinet of Ministers Decision No. 116 of 2022 (widely accepted to be effective from
+January 16, 2023) specified the threshold of taxable income to which the 0% UAE CT rate would apply,
+and above which the 9% UAE CT rate would apply.
+Current tax is measured at the amount expected to be paid to or recovered from the tax authorities by
+reference to tax rates and laws that have been enacted or substantively enacted, by the end of any reporting
+period.
+Since the Group is expected to pay tax in accordance with the provision of the "Domestic Minimum Top-
+up Tax" (DMTT) which has been implemented with effect from January 1, 2025 at the rate of 15%,
+accordingly provision for current taxes have been accounted for on the same basis in this condensed
+consolidated financial information for the period ended March 31, 2026.
+Three-month Three-month
+period ended period ended
+March 31, 2026 March 31, 2025
+(Unaudited) (Unaudited)
+AED ‘000 AED ‘000
+Current tax expense 29,902 50,214
+For determining the tax expense for the period, the accounting profit has been adjusted for tax purposes.
+Adjustments for tax purpose include items relating to both income and expense. After giving effect to these
+adjustments, the average effective tax rate is estimated to 10.75% (2025 : 11.60%).
+Movement of current tax liabilities
+March 31, December 31,
+2026 2025
+(Unaudited) (Audited)
+AED'000 AED'000
+As at January 1, 212,444 141,508
+Tax expense for the period/year 29,902 212,444
+Tax paid - (131,118)
+Tax adjustment of prior period/year - (10,390)
+242,346 212,444
+Current Non-current
+March 31, December 31, March 31, December 31,
+2026 2025 2026 2025
+(Unaudited) (Audited) (Unaudited) (Audited)
+AED ‘000 AED ‘000 AED ‘000 AED ‘000
+Income tax liabilities 173,937 150,086 68,409 62,358
+19
+Air Arabia PJSC and its subsidiaries
+
+Condensed Consolidated Interim Financial Information
+
+Notes to the condensed consolidated interim financial information (continued)
+For the period ended March 31, 2026
+
+18 Taxation (continued)
+
+Deferred taxes analysed by type of temporary difference
+
+Differences between IFRS Accounting Standards and statutory taxation regulations in the United Arab
+Emirates give rise to temporary differences between the carrying amount of assets and liabilities for financial
+reporting purposes and their tax bases. The Group has concluded that the tax effect of the movements in
+these temporary differences was not material to the condensed consolidated interim financial information
+for the period ended March 31, 2026.
+
+Pillar Two Model Rules
+
+In 2021, the Organisation for Economic Cooperation and Development ("OECD") published the Global
+Anti-Base Erosion Model Rules ("Pillar Two Model Rules") with an objective to address the tax challenges
+arising from the digitalisation of the global economy. The Group qualifies to be in scope under the Pillar
+Two Model Rules.
+
+On December 9, 2024, the concerned authorities in United Arab Emirates announced that a "Domestic
+Minimum Top-up Tax" (DMTT) will be implemented with effect from January 1, 2025. The Group has
+assessed the impact as at reporting date as per the current guidance and regulations and therefore current
+tax provision at 15% is recorded.
+
+Furthermore, the Group is closely monitoring further developments and legislations that will impact the
+overall Pillar Two tax position on a going-forward basis. Amendments to IAS 12 introduce a temporary
+mandatory relief from accounting for deferred tax that arises from legislation implementing Pillar Two. The
+Group has applied the exception to recognising and disclosing information about deferred tax assets and
+liabilities related to Pillar Two income taxes.
+
+19 Impact of geopolitical developments in the Middle East
+
+On February 28, 2026, the security situation in the Middle East escalated significantly following the
+commencement of a major military conflict involving certain countries. The escalation had resulted in the
+temporarily temporary closure of certain regional airspace, disruption to international flight operations and
+heightened geopolitical uncertainty, with implications for multiple countries, including the United Arab
+Emirates (“UAE”).
+
+In addition to operational disruptions, the escalation has contributed to increased volatility in global oil
+markets, resulting in higher aviation fuel prices, including within the UAE. Fuel costs represent a significant
+component of the Group’s operating expense base, and movements in oil prices remain a key driver of the
+Group’s operating performance.
+
+Given its operations as an international airline, the Group is exposed to geopolitical developments in the
+region, particularly those affecting airspace accessibility, route scheduling, passenger demand, fuel prices
+and broader economic conditions. During the petiod ended March 31, 2026, the Group implemented
+operational adjustments, including rerouting of certain services and changes to flight schedules, in response
+to evolving airspace restrictions and regulatory directives.
+Management has assessed the potential financial and operational implications of these events, taking into
+account the duration and extent of disruptions during the reporting period, as well as prevailing fuel price
+trends and demand patterns.
+Based on the information available as at the date of issuance of this condensed consolidated interim
+financial information, and considering the mitigating actions undertaken, the Group has not identified
+significant indicators that the conflict has adversely affected the safety of its personnel, the continuity of its
+operations, its liquidity position or the recoverability of its assets.
+20 Comparative information
+Comparative information for the three-month period ended March 31, 2026 has been reclassified to
+conform to the presentation of the consolidated financial statements for the year ended December 31,
+2025.
+
+20
+

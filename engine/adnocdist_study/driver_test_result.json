@@ -1,0 +1,436 @@
+{
+ "base": 4.783957863288805,
+ "cases": [
+  {
+   "driver": "Service-station network growth",
+   "cell": "C29",
+   "multiplier": 1.5,
+   "expected": "up",
+   "base": 4.783957863288805,
+   "moved_to": 4.838761755691499,
+   "change": 0.05480389240269368,
+   "ok": true,
+   "why": "more sites selling fuel and running shops"
+  },
+  {
+   "driver": "Litres per station",
+   "cell": "C30",
+   "multiplier": 1.5,
+   "expected": "down",
+   "base": 4.783957863288805,
+   "moved_to": 4.757759351656084,
+   "change": -0.026198511632721022,
+   "ok": true,
+   "why": "EXPECTATION CORRECTED. This driver is a GROWTH RATE and it is NEGATIVE \u2014 throughput per site is falling. Multiplying a negative rate by 1.5 accelerates the decline, so volume and value fall. The first expectation read the driver as a level rather than a rate."
+  },
+  {
+   "driver": "Corporate fuel volume growth",
+   "cell": "D31",
+   "multiplier": 1.5,
+   "expected": "up",
+   "base": 4.783957863288805,
+   "moved_to": 4.789926986927265,
+   "change": 0.005969123638459806,
+   "ok": true,
+   "why": "more litres on the business-to-business leg at the same margin per litre"
+  },
+  {
+   "driver": "Aviation fuel volume growth",
+   "cell": "D32",
+   "multiplier": 1.5,
+   "expected": "up",
+   "base": 4.783957863288805,
+   "moved_to": 4.792896189461397,
+   "change": 0.008938326172591715,
+   "ok": true,
+   "why": "same mechanism on the jet-fuel leg, now modelled separately because it moved the opposite way to corporate"
+  },
+  {
+   "driver": "Retail margin per litre, escalation",
+   "cell": "C36",
+   "multiplier": 1.5,
+   "expected": "up",
+   "base": 4.783957863288805,
+   "moved_to": 4.833070325593485,
+   "change": 0.049112462304679916,
+   "ok": true,
+   "why": "the margin per litre IS the economics of a regulated fuel retailer"
+  },
+  {
+   "driver": "Commercial margin per litre, escalation",
+   "cell": "C37",
+   "multiplier": 1.2,
+   "expected": "up",
+   "base": 4.783957863288805,
+   "moved_to": 4.869080367269545,
+   "change": 0.08512250398073995,
+   "ok": true,
+   "why": "same, commercial legs"
+  },
+  {
+   "driver": "Fuel transaction growth",
+   "cell": "C38",
+   "multiplier": 1.5,
+   "expected": "up",
+   "base": 4.783957863288805,
+   "moved_to": 4.790833936776292,
+   "change": 0.006876073487487311,
+   "ok": true,
+   "why": "transactions drive the non-fuel leg through the conversion rate"
+  },
+  {
+   "driver": "Non-fuel conversion rate",
+   "cell": "C39",
+   "multiplier": 1.5,
+   "expected": "down",
+   "base": 4.783957863288805,
+   "moved_to": 4.780467996845409,
+   "change": -0.0034898664433962168,
+   "ok": true,
+   "why": "EXPECTATION CORRECTED, same reason as litres per station: the conversion GROWTH rate is negative, so scaling it up deepens the deterioration."
+  },
+  {
+   "driver": "Non-fuel basket",
+   "cell": "C40",
+   "multiplier": 1.5,
+   "expected": "up",
+   "base": 4.783957863288805,
+   "moved_to": 4.794221165095249,
+   "change": 0.01026330180644397,
+   "ok": true,
+   "why": "spend per non-fuel visit"
+  },
+  {
+   "driver": "Non-fuel retail gross margin",
+   "cell": "C41",
+   "multiplier": 1.1,
+   "expected": "up",
+   "base": 4.783957863288805,
+   "moved_to": 4.790946976486717,
+   "change": 0.006989113197912289,
+   "ok": true,
+   "why": "more gross profit on the same non-fuel revenue"
+  },
+  {
+   "driver": "Realised retail price per litre",
+   "cell": "C33",
+   "multiplier": 1.1,
+   "expected": "up",
+   "base": 4.783957863288805,
+   "moved_to": 4.785111076861898,
+   "change": 0.0011532135730929483,
+   "ok": true,
+   "why": "A PASS-THROUGH, and the direction is not the obvious one. It lifts revenue and direct cost by the same amount and leaves gross profit \u2014 volume x margin per litre \u2014 untouched, so it reaches value ONLY through working capital. Receivable plus inventory days less payable days is about MINUS 31, so a higher price makes an already negative balance more negative and RELEASES cash. The move is tiny, which is what a pass-through should look like."
+  },
+  {
+   "driver": "Realised corporate price per litre",
+   "cell": "C34",
+   "multiplier": 1.1,
+   "expected": "up",
+   "base": 4.783957863288805,
+   "moved_to": 4.784494710806226,
+   "change": 0.0005368475174210019,
+   "ok": true,
+   "why": "same pass-through mechanism on the corporate leg"
+  },
+  {
+   "driver": "Realised aviation price per litre",
+   "cell": "C35",
+   "multiplier": 1.1,
+   "expected": "up",
+   "base": 4.783957863288805,
+   "moved_to": 4.7840997545575545,
+   "change": 0.00014189126874963875,
+   "ok": true,
+   "why": "same pass-through mechanism on the aviation leg"
+  },
+  {
+   "driver": "Cash operating cost growth",
+   "cell": "C45",
+   "multiplier": 1.5,
+   "expected": "down",
+   "base": 4.783957863288805,
+   "moved_to": 4.719886732051163,
+   "change": -0.0640711312376423,
+   "ok": true,
+   "why": "costs compound against a margin that does not"
+  },
+  {
+   "driver": "Impairments and other operating expenses",
+   "cell": "C47",
+   "multiplier": 1.5,
+   "expected": "down",
+   "base": 4.783957863288805,
+   "moved_to": 4.771917813337552,
+   "change": -0.01204004995125274,
+   "ok": true,
+   "why": "straight charge against operating profit"
+  },
+  {
+   "driver": "Depreciation rate on the opening base",
+   "cell": "C50",
+   "multiplier": 1.5,
+   "expected": "down",
+   "base": 4.783957863288805,
+   "moved_to": 4.626180383683625,
+   "change": -0.15777747960517985,
+   "ok": true,
+   "why": "NOT the obvious direction, and the mechanism is worth stating. Work the waterfall through: free cash flow = EBITDA x (1 - tax) + depreciation x tax - capital spending - working capital. Depreciation does not cancel \u2014 it leaves a TAX SHIELD worth depreciation x the tax rate. That shield outweighs the lower terminal NOPAT here. EXPECTATION CORRECTED AND THE MECHANISM CHANGED. When depreciation was a pasted array the shield dominated and value rose. Now that depreciation is DERIVED from an asset base the model rolls forward, a higher rate also shrinks that base faster, so later depreciation and the terminal NOPAT both fall \u2014 and the terminal effect now dominates. Making the charge endogenous flipped the sign, which is itself worth knowing."
+  },
+  {
+   "driver": "Maintenance capital spending rate",
+   "cell": "C51",
+   "multiplier": 1.5,
+   "expected": "down",
+   "base": 4.783957863288805,
+   "moved_to": 4.504032911061333,
+   "change": -0.27992495222747227,
+   "ok": true,
+   "why": "cash out of the door, and it is not in the terminal reinvestment rate"
+  },
+  {
+   "driver": "Capital cost per station added",
+   "cell": "C52",
+   "multiplier": 1.5,
+   "expected": "down",
+   "base": 4.783957863288805,
+   "moved_to": 4.728728422440434,
+   "change": -0.05522944084837089,
+   "ok": true,
+   "why": "growth spending is now per station added rather than a pasted total"
+  },
+  {
+   "driver": "Inventory movement, normalised frame",
+   "cell": "C42",
+   "multiplier": 2.0,
+   "expected": "up",
+   "base": 4.783957863288805,
+   "moved_to": 4.834223547766399,
+   "change": 0.050265684477594164,
+   "ok": true,
+   "why": "straight addition to gross profit in the frame the headline uses"
+  },
+  {
+   "driver": "Receivable days",
+   "cell": "C53",
+   "multiplier": 1.2,
+   "expected": "down",
+   "base": 4.783957863288805,
+   "moved_to": 4.718453677943298,
+   "change": -0.06550418534550673,
+   "ok": true,
+   "why": "slower collection absorbs cash"
+  },
+  {
+   "driver": "Inventory days",
+   "cell": "C54",
+   "multiplier": 1.2,
+   "expected": "down",
+   "base": 4.783957863288805,
+   "moved_to": 4.753226855290083,
+   "change": -0.03073100799872197,
+   "ok": true,
+   "why": "more stock absorbs cash"
+  },
+  {
+   "driver": "Payable days",
+   "cell": "C55",
+   "multiplier": 1.2,
+   "expected": "up",
+   "base": 4.783957863288805,
+   "moved_to": 4.9159616967327855,
+   "change": 0.1320038334439806,
+   "ok": true,
+   "why": "paying later releases cash \u2014 why the working-capital line is a source every year"
+  },
+  {
+   "driver": "Government bond yield",
+   "cell": "C7",
+   "multiplier": 1.2,
+   "expected": "down",
+   "base": 4.783957863288805,
+   "moved_to": 4.11390858344275,
+   "change": -0.6700492798460553,
+   "ok": true,
+   "why": "lifts the cost of equity and the cost of debt together"
+  },
+  {
+   "driver": "Sovereign default spread",
+   "cell": "C8",
+   "multiplier": 1.5,
+   "expected": "up",
+   "base": 4.783957863288805,
+   "moved_to": 4.8003394252748,
+   "change": 0.016381561985995496,
+   "ok": true,
+   "why": "THE SIGN LOOKS WRONG AND IS NOT. The spread is SUBTRACTED from the quoted yield to normalise it, so a larger spread means a lower normalised risk-free rate. That is the point of normalising: country risk is priced once, inside the equity premium. What CHANGED after audit is the SIZE of the strip \u2014 4 basis points, the spread the bond actually carries over comparable US Treasuries, not a 42-basis-point ratings lookup that pushed the result below the risk-free rate of the currency it is pegged to."
+  },
+  {
+   "driver": "Total equity risk premium",
+   "cell": "C10",
+   "multiplier": 1.2,
+   "expected": "down",
+   "base": 4.783957863288805,
+   "moved_to": 4.314725380250403,
+   "change": -0.46923248303840204,
+   "ok": true,
+   "why": "raises the cost of equity in the explicit years and the terminal alike, because the cost of capital is now flat"
+  },
+  {
+   "driver": "Beta",
+   "cell": "C11",
+   "multiplier": 1.5,
+   "expected": "down",
+   "base": 4.783957863288805,
+   "moved_to": 3.7522997083288336,
+   "change": -1.0316581549599713,
+   "ok": true,
+   "why": "raises the cost of equity. With a flat pegged-market cost of capital the terminal beta IS the measured beta, so the beta ladder now reproduces the model at every point"
+  },
+  {
+   "driver": "Credit margin over the sovereign",
+   "cell": "C13",
+   "multiplier": 1.5,
+   "expected": "down",
+   "base": 4.783957863288805,
+   "moved_to": 4.770912475864277,
+   "change": -0.013045387424527988,
+   "ok": true,
+   "why": "raises the after-tax cost of debt; the debt weight is small but real"
+  },
+  {
+   "driver": "Long-run growth",
+   "cell": "C26",
+   "multiplier": 1.5,
+   "expected": "up",
+   "base": 4.783957863288805,
+   "moved_to": 5.2327327003911925,
+   "change": 0.44877483710238764,
+   "ok": true,
+   "why": "the terminal is a perpetuity and growth is in its denominator"
+  },
+  {
+   "driver": "Terminal return on invested capital",
+   "cell": "C27",
+   "multiplier": 1.5,
+   "expected": "up",
+   "base": 4.783957863288805,
+   "moved_to": 4.8661026076076555,
+   "change": 0.08214474431885055,
+   "ok": true,
+   "why": "a higher return needs less reinvestment to fund the same growth \u2014 and it now moves the normalised lens too, which charges the same reinvestment"
+  },
+  {
+   "driver": "Statutory tax rate",
+   "cell": "C15",
+   "multiplier": 1.5,
+   "expected": "up",
+   "base": 4.783957863288805,
+   "moved_to": 4.794932822478849,
+   "change": 0.010974959190043876,
+   "ok": true,
+   "why": "THE SIGN LOOKS WRONG AND IS NOT. The statutory rate no longer taxes the cash flows \u2014 the effective rate does. All it still does is size the interest tax shield inside the after-tax cost of debt, so raising it LOWERS the discount rate."
+  },
+  {
+   "driver": "Effective tax rate",
+   "cell": "C16",
+   "multiplier": 1.2,
+   "expected": "down",
+   "base": 4.783957863288805,
+   "moved_to": 4.666970945877086,
+   "change": -0.11698691741171885,
+   "ok": true,
+   "why": "this is the rate that taxes the cash flows"
+  },
+  {
+   "driver": "Share price",
+   "cell": "C3",
+   "multiplier": 1.2,
+   "expected": "down",
+   "base": 4.783957863288805,
+   "moved_to": 4.76137469893852,
+   "change": -0.022583164350284513,
+   "ok": true,
+   "why": "a higher price raises the market capitalisation and therefore the equity weight, and equity is the dearer money"
+  },
+  {
+   "driver": "Net debt excluding leases",
+   "cell": "C18",
+   "multiplier": 1.5,
+   "expected": "down",
+   "base": 4.783957863288805,
+   "moved_to": 4.731004431859106,
+   "change": -0.05295343142969866,
+   "ok": true,
+   "why": "straight deduction in the bridge, and it lifts the debt weight"
+  },
+  {
+   "driver": "Lease liabilities, FY2025",
+   "cell": "C80",
+   "multiplier": 1.5,
+   "expected": "down",
+   "base": 4.783957863288805,
+   "moved_to": 4.726104783288805,
+   "change": -0.05785308000000011,
+   "ok": true,
+   "why": "deducted in the bridge on the same basis as debt"
+  },
+  {
+   "driver": "Non-controlling interests, FY2025",
+   "cell": "C78",
+   "multiplier": 1.5,
+   "expected": "down",
+   "base": 4.783957863288805,
+   "moved_to": 4.7747429032888045,
+   "change": -0.009214960000000438,
+   "ok": true,
+   "why": "deducted in the bridge"
+  },
+  {
+   "driver": "Shares in issue",
+   "cell": "C4",
+   "multiplier": 1.2,
+   "expected": "down",
+   "base": 4.783957863288805,
+   "moved_to": 3.9678122491154335,
+   "change": -0.8161456141733714,
+   "ok": true,
+   "why": "the same equity value spread over more shares"
+  }
+ ],
+ "failures": [],
+ "live_inputs": 89,
+ "dead_inputs": [],
+ "excluded_by_design": [
+  [
+   "C68",
+   "Retail fuel volume, FY2025 (million litres)"
+  ],
+  [
+   "C69",
+   "Commercial fuel volume, FY2025 (million litres)"
+  ],
+  [
+   "C72",
+   "Non-fuel retail revenue, FY2025 (AED m)"
+  ],
+  [
+   "C82",
+   "Term deposits, FY2025 (AED m)"
+  ]
+ ],
+ "headlines": [
+  "value per share, Frame A",
+  "value per share, Frame B",
+  "weighted centre, Frame A",
+  "weighted centre, Frame B",
+  "book and sustainable return lens",
+  "relative multiples lens",
+  "normalised earnings power lens",
+  "dividend capitalisation lens",
+  "first forecast year earnings per share",
+  "final year total assets",
+  "final year net debt",
+  "cost of equity"
+ ]
+}

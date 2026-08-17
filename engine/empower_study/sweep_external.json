@@ -1,0 +1,329 @@
+{
+  "sweep": "EMPOWER external context sweep (Country / Industry / Peers / Company-news rings)",
+  "as_of": "2026-08-09",
+  "note": "External context only. Empower's own reported historicals are sourced from audited statements elsewhere (SIGCM clause 1); aggregator figures below are used for peer comps, market context and event identification only. Where sources conflict, both are recorded.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/2026_Iranian_strikes_on_the_United_Arab_Emirates",
+      "title": "2026 Iranian strikes on the United Arab Emirates (Wikipedia)",
+      "date_accessed": "2026-08-09",
+      "ring": "COUNTRY",
+      "evidenced": "Strike timeline 28-Feb-2026 onward; targets incl. Dubai International Airport (1-Mar and 16-Mar fuel-tank fire), Jebel Ali Port debris fire, Ruwais refinery, Fujairah Oil Industry Zone, EGA aluminium facility (~1 year repairs), AWS data center, Oracle building, Fairmont The Palm, 23 Marina, US Consulate Dubai, Al Dhafra/Al Minhad air bases; 15 killed, 246 injured; UAE oil output fell ~1/3 (3.6m to 2.4m b/d by March); ceasefire from 8-Apr-2026, page status 'Ongoing'."
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/2026_Iran_war_ceasefire",
+      "title": "2026 Iran war ceasefire (Wikipedia)",
+      "date_accessed": "2026-08-09",
+      "ring": "COUNTRY",
+      "evidenced": "Ceasefire agreed 8-Apr-2026 (Pakistan-mediated, initially two weeks), extended indefinitely 21-Apr; multiple violations (Iran drone/missile attacks on Gulf states 8-Apr incl. 35 on UAE; US strikes 7-May and 25-May); a 60-day ceasefire agreed 12-Jun with Islamabad Memorandum signed 17-Jun-2026; Trump declared the ceasefire 'over' 8-Jul-2026 per the page; low-intensity fighting reported resumed after 8-Jul. Page gives no clear post-July status - August 2026 status AMBIGUOUS across sources (see conflicts_noted)."
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/2026_Lavan_Island_attack",
+      "title": "2026 Lavan Island attack (Wikipedia)",
+      "date_accessed": "2026-08-09",
+      "ring": "COUNTRY",
+      "evidenced": "UAE airstrike on Iranian Lavan Island oil refinery around 8-Apr-2026 as the ceasefire was being announced (attribution partly unverified)."
+    },
+    {
+      "url": "https://www.investing.com/news/company-news/empower-h1-2026-slides-profit-jumps-16-as-capacity-crosses-2m-rt-93CH-4841803",
+      "title": "Empower H1 2026 slides: profit jumps 16% as capacity crosses 2m RT (Investing.com)",
+      "date": "2026-08-06",
+      "ring": "COMPANY_NEWS",
+      "evidenced": "H1-2026 (event identification only): revenue AED 1.52bn +4.5% YoY; EBITDA AED 773m +7.5% (~51% margin); net profit after tax AED 468m +16.1%; gross margin 46.3% vs 44.7%; contracted capacity 2,018k RT (crossed 2m), connected 1,707k RT (+51.1k in H1); FY26 guidance: connected 1,756-1,766k RT year-end, capex AED 450-500m, additions 100-110k RT. Negatives: Q2 revenue -2.7% to AED 889m; consumption -42m RTh YoY; effective full-load hours -9.0% to 698 (lower hospitality occupancy amid regional geopolitical tensions); CBUAE cut UAE 2026 GDP forecast to 1.7%. Dividend: AED 875m annual for 2025 and 2026 reaffirmed; AED 437.5m paid Apr-2026 as final 2025 instalment. Stock at time of writing +0.63% to 1.60."
+    },
+    {
+      "url": "http://www.bignewsnetwork.com/news/279224578/empower-h1-net-profit-after-tax-rises-to-aed468-million",
+      "title": "Empower H1 net profit after tax rises to AED468 million (WAM syndication)",
+      "date": "2026-08-05",
+      "ring": "COMPANY_NEWS",
+      "evidenced": "H1-2026 results press release (announced ~5-Aug-2026): net profit after tax AED 468m +16.2%, revenue AED 1.519bn +4.5%, EBITDA AED 773m +7.5%, PBT AED 514m +16.2%; 61 new contracts for 73,415 RT; buildings served 1,796; fifth Business Bay plant design contract awarded (up to 44,000 RT). Fetch of full text blocked (403); figures corroborated by Investing.com, Emirates 24/7, TradeArabia, Zawya."
+    },
+    {
+      "url": "https://stockanalysis.com/quote/dfm/EMPOWER/statistics/",
+      "title": "Emirates Central Cooling Systems (DFM:EMPOWER) Statistics (stockanalysis.com)",
+      "date": "2026-08-07",
+      "ring": "COMPANY_NEWS",
+      "evidenced": "Cross-check only, NOT a source of reported historicals: close AED 1.50 on 07-Aug-2026 (-3.23% on the day); market cap AED 15.0bn; 10.0bn shares; trailing P/E 14.16, forward P/E 13.56; EV/EBITDA 10.79; dividend yield 5.83% (annual DPS AED 0.0875); net debt ~AED 2.92bn; stock -13.79% over 12 months; consensus 'Buy', average analyst target AED 2.07."
+    },
+    {
+      "url": "https://stockanalysis.com/quote/dfm/EMPOWER/dividend/",
+      "title": "EMPOWER dividend history (stockanalysis.com)",
+      "date_accessed": "2026-08-09",
+      "ring": "COMPANY_NEWS",
+      "evidenced": "Dividend paid semi-annually; annual DPS AED 0.088 (yield ~5.4-5.7%); last ex-dividend date 17-Oct-2025; next earnings noted as 11-Aug-2026 (conflicts with the H1 release already out 5-Aug - possibly a stale calendar entry or a BoD meeting date)."
+    },
+    {
+      "url": "https://za.investing.com/news/company-news/empower-q4-2025-slides-district-cooling-giant-posts-105-profit-growth-raises-dividend-93CH-4105944",
+      "title": "Empower Q4 2025 slides: 10.5% profit growth, raises dividend (Investing.com)",
+      "date": "2026-02",
+      "ring": "COMPANY_NEWS",
+      "evidenced": "FY2025 (event identification): revenue AED 3.419bn +4.9%; net profit AED 1.004bn +10.5%; dividend raised to AED 875m annually for 2025 and 2026 (from AED 850m), paid in two AED 437.5m instalments (April and October)."
+    },
+    {
+      "url": "https://www.khaleejtimes.com/kt-network/empower-agm-approves-dh4375-million-cash-dividend-for-after-record-profit-in-2025",
+      "title": "Empower AGM approves Dh437.5m cash dividend after record 2025 profit (Khaleej Times)",
+      "date": "2026-03",
+      "ring": "COMPANY_NEWS",
+      "evidenced": "AGM (March 2026) approved the H2-2025 instalment of AED 437.5m (paid April 2026), completing the AED 875m FY2025 dividend after record FY2025 profit."
+    },
+    {
+      "url": "https://www.gulftoday.ae/business/2026/03/09/empower-distributes-dhs2575-billion-in-dividends-since-dfm-listing",
+      "title": "Empower distributes Dhs2.575 billion in dividends since DFM listing (Gulf Today)",
+      "date": "2026-03-09",
+      "ring": "COMPANY_NEWS",
+      "evidenced": "Cumulative dividends since Nov-2022 IPO: AED 2.575bn over three years."
+    },
+    {
+      "url": "https://www.zawya.com/en/capital-markets/equities/dubai-holding-sells-24-stake-in-empower-to-dewa-for-14bln-k15o02bn",
+      "title": "Dubai Holding sells 24% stake in Empower to DEWA for $1.4bn (Zawya)",
+      "date": "2026-02-10",
+      "ring": "COMPANY_NEWS",
+      "evidenced": "DEWA raised its Empower stake from 56% to 80%, buying 2.4bn shares from Emirates Power Investment (Dubai Holding) for AED 5.18bn = AED 2.16/share - a large premium to the then market price (~1.7). Empower remains DFM-listed; free float now ~20%."
+    },
+    {
+      "url": "https://www.mediaoffice.ae/en/news/2026/february/11-02/empower-notes-increase",
+      "title": "Empower Notes Increase in DEWA's Ownership Stake to 80.00% (Dubai Media Office)",
+      "date": "2026-02-11",
+      "ring": "COMPANY_NEWS",
+      "evidenced": "Official confirmation: DEWA ownership 80.00%, transacted at AED 2.16/share via Dubai CSD; Empower continues as an independent listed company."
+    },
+    {
+      "url": "https://www.agbi.com/utilities/2026/02/dewa-spends-1-4bn-to-acquire-24-stake-in-empower/",
+      "title": "DEWA spends $1.4bn to acquire 24% stake in Empower (AGBI)",
+      "date": "2026-02",
+      "ring": "COMPANY_NEWS",
+      "evidenced": "Deal context; also cites Empower 2025: revenue AED 3.4bn +5%, net profit AED 1.0bn +11%, buildings served 1,747 in 2025 (+7%)."
+    },
+    {
+      "url": "https://dlp.dubai.gov.ae/Legislation%20Reference/2025/Executive%20Council%20Resolution%20No.%20(87)%20of%202025%20to%20District%20Cooling%20Service.pdf",
+      "title": "Executive Council Resolution No. (87) of 2025 - Fees and Fines for District Cooling Services",
+      "date": "2025",
+      "ring": "INDUSTRY",
+      "evidenced": "2025 update approving the fees and fines related to district cooling services in Dubai, issued under the framework of Executive Council Resolution No. (6) of 2021."
+    },
+    {
+      "url": "https://rsbdubai.gov.ae/media/baufmpnp/rd10-tariffs-v14.pdf",
+      "title": "RSB RD10: Regulation on the Approval of District Cooling Tariffs, Charges and Fees (v14)",
+      "date_accessed": "2026-08-09",
+      "ring": "INDUSTRY",
+      "evidenced": "RSB (Regulatory and Supervisory Bureau) regulation, issued pursuant to Executive Council Resolution (6) of 2021 and approved by the Dubai Supreme Council of Energy, governing approval, application and adjustment of district cooling tariffs/charges/fees in Dubai; providers must comply within one year of activation. Empower's tariffs are therefore RSB-regulated - a pricing-power constraint for the forecast."
+    },
+    {
+      "url": "https://www.khaleejtimes.com/news/dubai-issues-new-regulations-for-district-cooling-services",
+      "title": "Dubai issues new regulations for district cooling services (Khaleej Times)",
+      "date": "2021",
+      "ring": "INDUSTRY",
+      "evidenced": "Executive Council Resolution 6 of 2021: legal framework covering cooling-plant power, distribution, delivery, billing; consumption metering and billing per RSB-approved tariff system."
+    },
+    {
+      "url": "https://www.centralbank.ae/en/news-and-publications/news-and-insights/press-release/cbuae-maintains-the-base-rate-at-3-65-4/",
+      "title": "CBUAE Maintains the Base Rate at 3.65% (Central Bank of the UAE)",
+      "date": "2026-07-29",
+      "ring": "COUNTRY",
+      "evidenced": "CBUAE base rate (ODF) held at 3.65% on 29-Jul-2026, mirroring the Fed hold; dirham peg keeps UAE policy tracking the Fed."
+    },
+    {
+      "url": "https://gulfnews.com/business/banking/uae-keeps-key-interest-rate-unchanged-in-july-mirroring-us-fed-move-1.500624740",
+      "title": "UAE keeps key interest rate unchanged in July, mirroring US Fed (Gulf News)",
+      "date": "2026-07",
+      "ring": "COUNTRY",
+      "evidenced": "Fed on hold through 2026 so far; nearly half of US policymakers signalled possible HIKE later in 2026 (nine backing higher rates) - a shift from March's one-cut central forecast. Rate path risk is now two-sided."
+    },
+    {
+      "url": "https://www.investing.com/news/company-news/empower-h1-2026-slides-profit-jumps-16-as-capacity-crosses-2m-rt-93CH-4841803",
+      "title": "CBUAE 2026 GDP forecast cut (cited in Empower H1-2026 coverage)",
+      "date": "2026-08-06",
+      "ring": "COUNTRY",
+      "evidenced": "UAE Central Bank cut the country's 2026 GDP growth forecast to 1.7% from 5.6% due to war-related disruptions to trade, tourism and shipping."
+    },
+    {
+      "url": "https://www.cleartax.com/ae/corporate-tax-in-uae",
+      "title": "UAE Corporate Tax 2026 guide (ClearTax)",
+      "date_accessed": "2026-08-09",
+      "ring": "COUNTRY",
+      "evidenced": "UAE corporate tax unchanged: 9% above AED 375k taxable income (0% below). No 2026 rate change found."
+    },
+    {
+      "url": "https://taxadepts.com/complete-guide-to-dmtt-for-multinationals-uae",
+      "title": "UAE DMTT 2026: 15% minimum tax guide (ADEPTS)",
+      "date_accessed": "2026-08-09",
+      "ring": "COUNTRY",
+      "evidenced": "OECD Pillar Two Domestic Minimum Top-up Tax (15%) effective for FYs starting on/after 1-Jan-2025, but only for MNE groups with consolidated global revenue >= EUR 750m in 2 of the prior 4 years. Whether Empower is swept in depends on DEWA-group consolidation (DEWA group revenue ~AED 31bn > EUR 750m) - flag for the tax-rate assumption; Empower's standalone rate is 9%."
+    },
+    {
+      "url": "https://www.dubai.pn/dubais-2026-population-surge-and-urban-expansion-what-it-means-for-real-estate-investors/",
+      "title": "Dubai's 2026 population surge and urban expansion (Dubai Property Network)",
+      "date_accessed": "2026-08-09",
+      "ring": "COUNTRY",
+      "evidenced": "Dubai population ~3.7-4.0m in 2026 (expected to exceed 4m during 2026; daytime population >4.7m); ~210,000 housing units projected for 2025-2026 delivery; 15+ mega projects >AED 1tn combined - the structural district-cooling demand driver."
+    },
+    {
+      "url": "https://www.drivenproperties.com/blog/dubai-2040-urban-master-plan",
+      "title": "Dubai 2040 Urban Master Plan overview (Driven Properties)",
+      "date_accessed": "2026-08-09",
+      "ring": "COUNTRY",
+      "evidenced": "Dubai 2040 Urban Master Plan (launched 2021): 7.8m residents targeted by 2040 vs ~4m in Aug-2025, growth across five urban centres - long-run demand anchor for connected-capacity growth."
+    },
+    {
+      "url": "https://www.gminsights.com/industry-analysis/district-cooling-market",
+      "title": "District Cooling Market Size 2026-2035 (Global Market Insights)",
+      "date_accessed": "2026-08-09",
+      "ring": "INDUSTRY",
+      "evidenced": "Global district cooling market est. USD 133.6bn (2025) to USD 200.2bn (2035), ~4% CAGR. CONFLICTS with SkyQuest sizing (USD 16.94bn 2024, 7.2% CAGR to USD 31.67bn 2033) - definitions differ wildly across vendors; use direction/growth-rate only, never a level."
+    },
+    {
+      "url": "https://www.skyquestt.com/report/district-cooling-market",
+      "title": "District Cooling Market (SkyQuest)",
+      "date_accessed": "2026-08-09",
+      "ring": "INDUSTRY",
+      "evidenced": "Alternative sizing: USD 16.94bn (2024) -> USD 31.67bn (2033), 7.2% CAGR. GCC ~40% of global district-cooling capacity; Dubai the world's largest DC market."
+    },
+    {
+      "url": "https://www.tabreed.ae/en/news/tabreed-reports-fy-2025-revenue-aed-246-billion-capacity-growth-and-strategic-execution-drive",
+      "title": "Tabreed FY2025 results (company press release)",
+      "date": "2026-02-13",
+      "ring": "INDUSTRY",
+      "evidenced": "Peer FY2025: revenue AED 2.46bn; EBITDA AED 1.27bn (51.6% margin); net profit AED 465m; connected capacity 1.57m RT (+19% YoY, incl. PAL Cooling acquisition); net debt/EBITDA 4.6x; FY2025 DPS 13.0 fils (6.5 fils final paid Apr-2026); 2026 guidance: capacity-led growth, PAL Cooling integration, Palm Jebel Ali development, UAE+KSA expansion."
+    },
+    {
+      "url": "https://www.zawya.com/en/capital-markets/equities/tabreed-reports-q1-2026-revenue-of-13242mln-pfbtv0kf",
+      "title": "Tabreed Q1 2026 results (Zawya/Reuters)",
+      "date": "2026-05-15",
+      "ring": "INDUSTRY",
+      "evidenced": "Peer Q1-2026: revenue AED 486m; EBITDA AED 285m (~59% margin); net profit AED 78m, -32% YoY on higher finance costs (investment cycle + 2025 refinancing) and timing of associate/acquisition contributions; net debt/EBITDA 4.5x; Moody's Baa3 stable reaffirmed. H1-2026 release not yet surfaced in search as of 09-Aug-2026."
+    },
+    {
+      "url": "https://pitchbook.com/profiles/company/58959-64",
+      "title": "Tabreed company profile (PitchBook)",
+      "date": "2026-06-22",
+      "ring": "INDUSTRY",
+      "evidenced": "Tabreed market cap ~USD 2.11bn (~AED 7.7bn) as of 22-Jun-2026; 2.85bn shares outstanding. Implies trailing P/E ~16.6x on FY2025 NP AED 465m and dividend yield ~4.8% at 13 fils on ~AED 2.72/share - derived, cross-check against live quote before use."
+    },
+    {
+      "url": "https://stockanalysis.com/quote/dfm/DEWA/",
+      "title": "DEWA PJSC quote and statistics (stockanalysis.com / multiple)",
+      "date_accessed": "2026-08-09",
+      "ring": "INDUSTRY",
+      "evidenced": "Parent/comparable utility: DEWA price AED 2.67; market cap AED 133.5bn; 50bn shares; normalized P/E ~16.8; trailing yield ~4.4-5.0% (DPS AED 0.12); 14 analysts, consensus Buy, avg target AED 3.14. DEWA consolidates Empower as a segment."
+    },
+    {
+      "url": "https://www.emicool.com/en/media-center/press-releases/dubai-investments-divests-50-stake-in-emirates-district-cooling-company-emicool-to-actis-at-a-corporate-valuation-of-us-1-bn",
+      "title": "Dubai Investments divests 50% of Emicool to Actis at US$1bn valuation",
+      "date": "2022-04",
+      "ring": "INDUSTRY",
+      "evidenced": "Competitor Emicool: 50/50 JV Dubai Investments/Actis since 2022 (corporate valuation USD 1bn); ~355,000 RT capacity, 22,000+ customers; expanded to Abu Dhabi via Al Reef Cooling concession (operational Jul-2025). Unlisted - private-market valuation datapoint only."
+    },
+    {
+      "url": "https://mydewabill.com/fuel-surcharge-dewa/",
+      "title": "DEWA fuel surcharge 2026 (aggregator of DEWA tariff page)",
+      "date": "2026-06",
+      "ring": "INDUSTRY",
+      "evidenced": "Empower's key input cost: DEWA electricity fuel surcharge 6 fils/kWh (Jun-2026); base commercial/residential slab tariffs 23-38 fils/kWh (residential tiers: 23 to 2,000 kWh, 28 to 4,000, 32 to 6,000, 38 above). Surcharge floats with fuel prices - verify against dewa.gov.ae before use in the cost stack."
+    },
+    {
+      "url": "https://www.investing.com/indices/dfmgi",
+      "title": "DFM General Index (Investing.com)",
+      "date_accessed": "2026-08-09",
+      "ring": "COUNTRY",
+      "evidenced": "DFMGI 52-week range 5,184.47-6,785.48; quoted level 5,895.93 (matches the study library's 16-Jul-2026 close - treat the web quote as possibly stale; use the repo's dfmgi_daily.csv for exact levels)."
+    },
+    {
+      "url": "local:engine/empower_study/dfmgi_daily.csv",
+      "title": "Study library: DFMGI daily closes (repo)",
+      "date": "2026-07-16",
+      "ring": "COUNTRY",
+      "evidenced": "2026 closing peak 6,774.38 (09-Feb-2026); war-drawdown closing trough 5,288.70 (16-Mar-2026) = -21.9% from peak; last library close 5,895.93 (16-Jul-2026) = recovered to -13.0% from peak, +11.5% off the trough."
+    },
+    {
+      "url": "local:engine/empower_study/EMPOWER_Stock_Price_History.csv",
+      "title": "Study library: EMPOWER daily prices (repo)",
+      "date": "2026-08-07",
+      "ring": "COMPANY_NEWS",
+      "evidenced": "07-Aug-2026: open 1.55, close 1.50, -3.23%, vol 12.72m - the sell-off day after the ~5-Aug H1 release (6-Aug intraday it still printed 1.60 per Investing.com). IPO-era (Nov-2022) prices 1.33-1.39 for context."
+    },
+    {
+      "url": "https://gulfnews.com/business/markets/uae-stock-markets-plunge-after-two-day-halt-as-regional-tensions-escalate-1.500463193",
+      "title": "UAE stock markets plunge after two-day halt as regional tensions escalate (Gulf News)",
+      "date": "2026-03",
+      "ring": "COUNTRY",
+      "evidenced": "March-2026 war selloff: DFM reopened after a two-day halt with broad losses concentrated in banks, real estate and aviation (Emaar, Emaar Development, Deyaar, Emirates NBD); commentary framed it as sentiment-driven rather than a fundamentals break."
+    }
+  ],
+  "country_uae_macro": {
+    "conflict_2026": {
+      "strikes_on_uae": "Iran struck the UAE from 28-Feb-2026 (retaliation for Israeli-US strikes on Iran), multi-day missile/drone waves aimed mainly at US assets; hits on Dubai International Airport (1-Mar, 16-Mar), Jebel Ali, Ruwais, Fujairah oil zone, EGA, hotels/towers in Dubai Marina/Palm; 15 killed, 246 injured; UAE oil output briefly -33%",
+      "ceasefire_status_aug_2026": "AMBIGUOUS - record both: (i) initial ceasefire 8-Apr-2026, extended 21-Apr; (ii) repeated violations Apr-May (incl. US strikes 7-May, 25-May); (iii) 60-day ceasefire agreed 12-Jun-2026, Islamabad Memorandum 17-Jun; (iv) Trump declared the ceasefire 'over' 8-Jul-2026 and low-intensity fighting reportedly resumed; no direct strikes on UAE territory reported since early April in the sources reviewed. Treat as fragile-truce/low-intensity-conflict, not resolved.",
+      "uae_economic_impact": "CBUAE cut 2026 UAE GDP growth forecast to 1.7% from 5.6% (war disruption to trade, tourism, shipping); hospitality occupancy down - directly visible in Empower's H1-2026 consumption (-42m RTh, EFLH -9%)"
+    },
+    "rates": {
+      "cbuae_base_rate": "3.65% (ODF), held 29-Jul-2026",
+      "fed_path_2026": "On hold all year; June dots shifted hawkish - nine policymakers pencilled a possible 2026 HIKE vs one-cut baseline in March; two-sided rate risk for AED discount rates"
+    },
+    "tax": {
+      "corporate_tax": "9% above AED 375k, unchanged",
+      "dmtt": "15% Pillar-Two DMTT effective FY2025+ for MNE groups >= EUR 750m global revenue; Empower standalone is below, but DEWA group consolidation (80% owner) plausibly sweeps it in - flag as a contested tax-rate input to price both ways if material"
+    },
+    "dubai_demand": {
+      "population": "~3.7-4.0m residents 2026, crossing 4m during the year; daytime >4.7m",
+      "pipeline": "~210k housing units slated 2025-2026; >AED 1tn of mega projects in construction/tender",
+      "dubai_2040": "Master plan targets 7.8m residents by 2040 across five urban centres - structural multi-decade cooling-demand growth"
+    },
+    "dfm_index": {
+      "peak_2026_close": {"value": 6774.38, "date": "2026-02-09"},
+      "war_trough_close": {"value": 5288.70, "date": "2026-03-16", "drawdown_from_peak": "-21.9%"},
+      "latest_library_close": {"value": 5895.93, "date": "2026-07-16", "vs_peak": "-13.0%", "vs_trough": "+11.5%"},
+      "intraday_52w_range": "5,184.47 - 6,785.48 (Investing.com)"
+    }
+  },
+  "industry_district_cooling": {
+    "market": "GCC holds ~40% of global district-cooling capacity; Dubai is the world's largest DC market. Global sizing conflicts wildly by vendor (GMI USD 133.6bn 2025 @4% CAGR vs SkyQuest USD 16.9bn 2024 @7.2% CAGR) - use growth direction only",
+    "regulation": "Dubai DC is regulated: Executive Council Resolution 6/2021 (framework: plants, distribution, billing, metering) + RSB regulation RD10 on approval/adjustment of DC tariffs, charges and fees (issued under 6/2021, DSCE-approved; compliance within 1 year of activation) + Executive Council Resolution 87/2025 updating DC fees and fines. Tariffs require RSB approval - caps Empower's pricing power; no 2024-2026 tariff CUT found, but the 2025 resolution tightens the fee/fine regime",
+    "input_costs": "Electricity is the dominant input: DEWA slab tariffs 23-38 fils/kWh + fuel surcharge 6 fils/kWh (Jun-2026), surcharge floats monthly with fuel",
+    "competition": {
+      "tabreed": "DFM-listed regional #2 in Dubai/#1 UAE-wide; 1.57m RT connected (multi-emirate + KSA/Bahrain/Oman/India), concession-backed",
+      "emicool": "Dubai Investments/Actis 50-50 JV, ~355k RT, USD 1bn 2022 corporate valuation, expanding to Abu Dhabi",
+      "dewa": "Parent (80% owner) and power/water monopoly; consolidates Empower as a reporting segment",
+      "notes": "Qatar Cool and Saudi Tabreed are NOT separately listed - no usable listed comp beyond TABREED and DEWA"
+    }
+  },
+  "peers_relative_multiples": {
+    "note": "Cross-check only, never a source for Empower's own historicals. All figures dated; refresh at build time.",
+    "TABREED": {
+      "market_cap": "USD 2.11bn (~AED 7.7bn), 2.85bn shares (PitchBook, 22-Jun-2026)",
+      "fy2025": {"revenue_aed_m": 2460, "ebitda_aed_m": 1270, "ebitda_margin": "51.6%", "net_profit_aed_m": 465, "connected_rt_m": 1.57, "net_debt_ebitda": "4.6x", "dps_fils": 13.0},
+      "q1_2026": {"revenue_aed_m": 486, "ebitda_aed_m": 285, "net_profit_aed_m": 78, "np_change": "-32% YoY (finance costs)", "net_debt_ebitda": "4.5x", "rating": "Moody's Baa3 stable"},
+      "derived_multiples": "trailing P/E ~16.6x, dividend yield ~4.8% (derived from PitchBook cap / FY2025 NP and DPS - verify against live quote)",
+      "ev_ebitda": "not found directly; derivable ~ (7.7 + ~5.8 net debt)/1.27 ~ 10.6x on FY2025 - DERIVED, verify net debt from Tabreed FY2025 accounts before publishing"
+    },
+    "EMPOWER_market_snapshot": {
+      "price": "AED 1.50 (07-Aug-2026, -3.23%)",
+      "market_cap_aed_bn": 15.0,
+      "trailing_pe": 14.16, "forward_pe": 13.56, "ev_ebitda": 10.79,
+      "dividend_yield": "5.83%", "net_debt_aed_bn": 2.92,
+      "analyst": "consensus Buy, avg target AED 2.07 (stockanalysis.com, 07-Aug-2026)",
+      "source_caveat": "aggregator snapshot for comp table context only"
+    },
+    "DEWA": {
+      "price": "AED 2.67; market cap AED 133.5bn; 50bn shares; normalized P/E ~16.8; yield ~4.4-5.0% (DPS 0.12); 14 analysts Buy, target 3.14",
+      "note": "Parent; consolidates Empower - not fully independent as a comp"
+    }
+  },
+  "company_news_empower": {
+    "h1_2026_results": "Announced ~5-Aug-2026: NP after tax AED 468m +16.2%, revenue AED 1.519bn +4.5%, EBITDA AED 773m +7.5%, PBT AED 514m; contracted capacity crossed 2.0m RT (2,018k), connected 1,707k RT, 1,796 buildings; 5th Business Bay plant (44k RT) design awarded; FY26 guidance connected 1,756-1,766k RT, capex AED 450-500m",
+    "aug_2026_selloff_explanation": "Stock slid ~1.60 (6-Aug intraday) to 1.50 (7-Aug close, -3.23%, vol 12.7m). No negative company announcement found. Most consistent explanation from the H1 detail: headline profit growth (+16.2%, helped by margin/below-the-line items) masked a weak volume quarter - Q2 revenue -2.7% YoY to AED 889m, consumption -42m RTh, effective full-load hours -9.0% to 698 on lower hospitality occupancy amid the war, plus the CBUAE GDP-forecast cut to 1.7% cited in the same deck; no interim dividend surprise (875m annual policy simply reaffirmed). Record as results-driven de-rating on consumption/war exposure, not a corporate event. No contrary source found.",
+    "fy2025": "Revenue AED 3.419bn +4.9%; net profit AED 1.004bn +10.5%; dividend AED 875m for FY2025 (two AED 437.5m instalments, Oct-2025 and Apr-2026), raised from AED 850m; same AED 875m committed for 2026; cumulative AED 2.575bn distributed since the Nov-2022 IPO",
+    "ownership": "DEWA 80.00% since 10/11-Feb-2026 (bought Dubai Holding's Emirates Power Investment 24% = 2.4bn shares at AED 2.16/share = AED 5.18bn, a ~27% premium to the then market); free float ~20%; Empower stays DFM-listed. The AED 2.16 control-transaction price is a valuation datapoint (related-party, control context - do not treat as arm's-length fair value without adjustment)",
+    "ma_and_capacity": "No Emicool-Empower M&A found (Emicool remains Dubai Investments/Actis JV). Organic growth: 61 new contracts / 73,415 RT signed in H1-2026; 5th Business Bay plant up to 44k RT",
+    "index_and_float": "No confirmed MSCI/FTSE inclusion/exclusion event found post the float reduction to 20% - flag as an open check (index treatment of the reduced float)",
+    "analyst_coverage": "Consensus Buy, average target AED 2.07 (~38% above 1.50), per stockanalysis.com aggregation 07-Aug-2026; named-broker coverage list not surfaced",
+    "earnings_calendar_conflict": "stockanalysis.com lists 'next earnings 11-Aug-2026' while the H1 release hit ~5-Aug - likely a stale calendar or a board-meeting date; noted as a source conflict"
+  },
+  "conflicts_noted": [
+    "Ceasefire status Aug-2026: Wikipedia UAE-strikes page says ceasefire 'since 8-Apr, ongoing'; the ceasefire page records Trump declaring it 'over' 8-Jul-2026 with low-intensity fighting after, plus a 60-day Jun-12 ceasefire / Jun-17 Islamabad Memorandum. Both recorded; treat as unresolved fragile truce.",
+    "Global district-cooling market size: GMI USD 133.6bn (2025) vs SkyQuest USD 16.94bn (2024) - definitional; use growth rates only.",
+    "Casualties: search summary said 13 killed/224 injured; the fuller Wikipedia page read gave 15 killed/246 injured - later figure kept, both noted.",
+    "Empower next-earnings date 11-Aug-2026 (stockanalysis) vs H1 results already out ~5-Aug-2026.",
+    "Tabreed 'EBITDA $285 million' in one aggregator is AED 285m (transcription error in the aggregator; company release says AED).",
+    "DFMGI 'live' web quote 5,895.93 equals the repo library's 16-Jul-2026 close - web quote likely stale; repo CSV is the working series."
+  ]
+}

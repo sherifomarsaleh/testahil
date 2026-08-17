@@ -1,0 +1,3303 @@
+{
+ "meta": {
+  "company": "Abu Dhabi National Oil Company for Distribution PJSC",
+  "short": "ADNOC Distribution",
+  "ticker": "ADNOCDIST",
+  "market": "AE",
+  "exchange": "Abu Dhabi Securities Exchange",
+  "currency": "AED",
+  "sector": "Fuel retail, convenience retail and commercial fuel distribution",
+  "company_class": "operating company",
+  "reference_pattern": "operating company",
+  "study_date": "2026-08-09",
+  "price_date": "2026-08-07",
+  "fy_end": "31 December",
+  "audited_years": [
+   "FY2023",
+   "FY2024",
+   "FY2025"
+  ],
+  "forecast_years": [
+   "FY2026E",
+   "FY2027E",
+   "FY2028E",
+   "FY2029E",
+   "FY2030E"
+  ],
+  "spot": 4.07,
+  "shares_mn": 12500.0,
+  "mcap": 50875.0,
+  "listing_date": "2017-12-13"
+ },
+ "inputs": {
+  "spot": {
+   "value": 4.07,
+   "source": "Daily price history for the ADX listing supplied for this study, cleaned through the study's own data screen; last close 7 August 2026",
+   "date": "2026-08-07",
+   "layer": "Market"
+  },
+  "shares_mn": {
+   "value": 12500.0,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2025, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, share capital note: AED 1,000,000 thousand of issued capital in shares of AED 0.08 each",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "rev_fy23": {
+   "value": 34629.178,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2023, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million",
+   "date": "2023-12-31",
+   "layer": "Company"
+  },
+  "rev_fy24": {
+   "value": 35453.716,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2024, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "rev_fy25": {
+   "value": 35896.617,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2025, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "dc_fy23": {
+   "value": 28792.893,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2023, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, direct costs",
+   "date": "2023-12-31",
+   "layer": "Company"
+  },
+  "dc_fy24": {
+   "value": 29237.684,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2024, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, direct costs",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "dc_fy25": {
+   "value": 28950.827,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2025, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, direct costs",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "gp_fy23": {
+   "value": 5836.285,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2023, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, gross profit",
+   "date": "2023-12-31",
+   "layer": "Company"
+  },
+  "gp_fy24": {
+   "value": 6216.032,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2024, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, gross profit",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "gp_fy25": {
+   "value": 6945.79,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2025, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, gross profit",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "da_exp_fy23": {
+   "value": 2916.538,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2023, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, distribution and administrative expenses",
+   "date": "2023-12-31",
+   "layer": "Company"
+  },
+  "da_exp_fy24": {
+   "value": 3194.942,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2024, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, distribution and administrative expenses",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "da_exp_fy25": {
+   "value": 3323.546,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2025, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, distribution and administrative expenses",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "oi_fy23": {
+   "value": 145.645,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2023, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, other income",
+   "date": "2023-12-31",
+   "layer": "Company"
+  },
+  "oi_fy24": {
+   "value": 138.059,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2024, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, other income",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "oi_fy25": {
+   "value": 167.665,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2025, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, other income",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "imp_fy23": {
+   "value": 82.143,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2023, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, impairment losses and other operating expenses",
+   "date": "2023-12-31",
+   "layer": "Company"
+  },
+  "imp_fy24": {
+   "value": 90.254,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2024, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, impairment losses and other operating expenses",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "imp_fy25": {
+   "value": 284.305,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2025, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, impairment losses and other operating expenses",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "op_fy23": {
+   "value": 2983.249,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2023, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, operating profit",
+   "date": "2023-12-31",
+   "layer": "Company"
+  },
+  "op_fy24": {
+   "value": 3068.895,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2024, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, operating profit",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "op_fy25": {
+   "value": 3505.604,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2025, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, operating profit",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "intinc_fy23": {
+   "value": 98.834,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2023, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, interest income",
+   "date": "2023-12-31",
+   "layer": "Company"
+  },
+  "intinc_fy24": {
+   "value": 143.893,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2024, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, interest income",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "intinc_fy25": {
+   "value": 71.274,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2025, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, interest income",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "fin_fy23": {
+   "value": 432.757,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2023, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, finance costs",
+   "date": "2023-12-31",
+   "layer": "Company"
+  },
+  "fin_fy24": {
+   "value": 457.111,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2024, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, finance costs",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "fin_fy25": {
+   "value": 402.945,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2025, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, finance costs",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "pbt_fy23": {
+   "value": 2649.326,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2023, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, profit before tax",
+   "date": "2023-12-31",
+   "layer": "Company"
+  },
+  "pbt_fy24": {
+   "value": 2755.677,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2024, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, profit before tax",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "pbt_fy25": {
+   "value": 3173.933,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2025, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, profit before tax",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "tax_fy23": {
+   "value": 18.837,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2023, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, income tax expense",
+   "date": "2023-12-31",
+   "layer": "Company"
+  },
+  "tax_fy24": {
+   "value": 283.394,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2024, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, income tax expense",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "tax_fy25": {
+   "value": 322.891,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2025, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, income tax expense",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "np_fy23": {
+   "value": 2630.489,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2023, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, profit for the year",
+   "date": "2023-12-31",
+   "layer": "Company"
+  },
+  "np_fy24": {
+   "value": 2472.283,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2024, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, profit for the year",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "np_fy25": {
+   "value": 2851.042,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2025, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, profit for the year",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "nci_fy23": {
+   "value": 29.068,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2023, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, profit attributable to non-controlling interests",
+   "date": "2023-12-31",
+   "layer": "Company"
+  },
+  "nci_fy24": {
+   "value": 52.008,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2024, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, profit attributable to non-controlling interests",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "nci_fy25": {
+   "value": 57.042,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2025, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, profit attributable to non-controlling interests",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "eps_fy23": {
+   "value": 0.208,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2023, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, basic and diluted earnings per share",
+   "date": "2023-12-31",
+   "layer": "Company"
+  },
+  "eps_fy24": {
+   "value": 0.194,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2024, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, basic and diluted earnings per share",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "eps_fy25": {
+   "value": 0.224,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2025, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, basic and diluted earnings per share",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "dep_ppe_fy23": {
+   "value": 507.107,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2024, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, cash-flow statement, FY2023 comparative column",
+   "date": "2023-12-31",
+   "layer": "Company"
+  },
+  "dep_ppe_fy24": {
+   "value": 602.186,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2024, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, cash-flow statement",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "dep_ppe_fy25": {
+   "value": 594.222,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2025, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, cash-flow statement",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "dep_rou_fy23": {
+   "value": 146.412,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2024, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, cash-flow statement, FY2023 comparative column",
+   "date": "2023-12-31",
+   "layer": "Company"
+  },
+  "dep_rou_fy24": {
+   "value": 151.669,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2024, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, cash-flow statement",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "dep_rou_fy25": {
+   "value": 151.0,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2025, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, cash-flow statement",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "amort_fy23": {
+   "value": 43.046,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2024, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, cash-flow statement, FY2023 comparative column",
+   "date": "2023-12-31",
+   "layer": "Company"
+  },
+  "amort_fy24": {
+   "value": 31.952,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2024, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, cash-flow statement",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "amort_fy25": {
+   "value": 30.724,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2025, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, cash-flow statement",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "ocf_fy23": {
+   "value": 5051.268,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2024, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, FY2023 comparative",
+   "date": "2023-12-31",
+   "layer": "Company"
+  },
+  "ocf_fy24": {
+   "value": 3931.453,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2024, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "ocf_fy25": {
+   "value": 3922.041,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2025, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "capex_ppe_fy23": {
+   "value": 1000.29,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2024, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, payments for purchases of property, plant and equipment, FY2023 comparative",
+   "date": "2023-12-31",
+   "layer": "Company"
+  },
+  "capex_ppe_fy24": {
+   "value": 1116.83,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2024, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, payments for purchases of property, plant and equipment",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "capex_ppe_fy25": {
+   "value": 1180.747,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2025, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, payments for purchases of property, plant and equipment",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "capex_adv_fy23": {
+   "value": 31.951,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2024, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, payments for advances to contractors, FY2023 comparative",
+   "date": "2023-12-31",
+   "layer": "Company"
+  },
+  "capex_adv_fy24": {
+   "value": 62.403,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2024, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, payments for advances to contractors",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "capex_adv_fy25": {
+   "value": 26.647,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2025, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, payments for advances to contractors",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "divpaid_fy23": {
+   "value": 2622.89,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2024, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, dividends paid, FY2023 comparative",
+   "date": "2023-12-31",
+   "layer": "Company"
+  },
+  "divpaid_fy24": {
+   "value": 2613.7,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2024, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, dividends paid",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "divpaid_fy25": {
+   "value": 2599.146,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2025, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, dividends paid",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "leasepay_fy25": {
+   "value": 201.454,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2025, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, payment of lease liabilities",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "ppe_fy23": {
+   "value": 7189.661,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2023, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, property, plant and equipment",
+   "date": "2023-12-31",
+   "layer": "Company"
+  },
+  "ppe_fy24": {
+   "value": 7552.178,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2024, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, property, plant and equipment",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "ppe_fy25": {
+   "value": 8032.197,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2025, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, property, plant and equipment",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "rou_fy23": {
+   "value": 1778.418,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2023, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, right-of-use assets",
+   "date": "2023-12-31",
+   "layer": "Company"
+  },
+  "rou_fy24": {
+   "value": 1726.351,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2024, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, right-of-use assets",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "rou_fy25": {
+   "value": 1445.804,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2025, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, right-of-use assets",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "gwi_fy23": {
+   "value": 1053.811,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2023, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, goodwill and intangible assets",
+   "date": "2023-12-31",
+   "layer": "Company"
+  },
+  "gwi_fy24": {
+   "value": 599.307,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2024, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, goodwill and intangible assets",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "gwi_fy25": {
+   "value": 621.853,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2025, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, goodwill and intangible assets",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "onca_fy23": {
+   "value": 56.183,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2023, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, advances to contractors 38.466 plus deferred tax asset 2.166 plus other non-current assets 15.551",
+   "date": "2023-12-31",
+   "layer": "Company"
+  },
+  "onca_fy24": {
+   "value": 62.103,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2024, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, advances to contractors 47.656 plus other non-current assets 14.447",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "onca_fy25": {
+   "value": 49.42,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2025, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, advances to contractors 36.596 plus other non-current assets 12.824",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "inv_fy23": {
+   "value": 1294.423,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2023, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, inventories",
+   "date": "2023-12-31",
+   "layer": "Company"
+  },
+  "inv_fy24": {
+   "value": 1619.887,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2024, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, inventories",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "inv_fy25": {
+   "value": 1574.254,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2025, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, inventories",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "tr_fy23": {
+   "value": 3519.413,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2023, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, trade receivables and other current assets",
+   "date": "2023-12-31",
+   "layer": "Company"
+  },
+  "tr_fy24": {
+   "value": 2935.982,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2024, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, trade receivables and other current assets",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "tr_fy25": {
+   "value": 2632.515,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2025, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, trade receivables and other current assets",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "dfrp_fy23": {
+   "value": 805.558,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2023, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, due from related parties",
+   "date": "2023-12-31",
+   "layer": "Company"
+  },
+  "dfrp_fy24": {
+   "value": 750.723,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2024, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, due from related parties",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "dfrp_fy25": {
+   "value": 758.468,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2025, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, due from related parties",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "td_fy23": {
+   "value": 200.225,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2023, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, term deposits",
+   "date": "2023-12-31",
+   "layer": "Company"
+  },
+  "td_fy24": {
+   "value": 200.225,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2024, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, term deposits",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "td_fy25": {
+   "value": 200.0,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2025, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, term deposits",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "cash_fy23": {
+   "value": 2993.937,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2023, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, cash and bank balances",
+   "date": "2023-12-31",
+   "layer": "Company"
+  },
+  "cash_fy24": {
+   "value": 2734.038,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2024, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, cash and bank balances",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "cash_fy25": {
+   "value": 2360.854,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2025, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, cash and bank balances",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "ta_fy23": {
+   "value": 18891.629,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2023, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, total assets",
+   "date": "2023-12-31",
+   "layer": "Company"
+  },
+  "ta_fy24": {
+   "value": 18180.794,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2024, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, total assets",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "ta_fy25": {
+   "value": 17675.365,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2025, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, total assets",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "eqp_fy23": {
+   "value": 3472.066,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2023, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, equity attributable to owners of the Company",
+   "date": "2023-12-31",
+   "layer": "Company"
+  },
+  "eqp_fy24": {
+   "value": 2991.839,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2024, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, equity attributable to owners of the Company",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "eqp_fy25": {
+   "value": 3230.423,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2025, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, equity attributable to owners of the Company",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "nciq_fy23": {
+   "value": 323.767,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2023, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, non-controlling interests",
+   "date": "2023-12-31",
+   "layer": "Company"
+  },
+  "nciq_fy24": {
+   "value": 189.437,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2024, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, non-controlling interests",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "nciq_fy25": {
+   "value": 230.374,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2025, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, non-controlling interests",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "borr_fy23": {
+   "value": 5492.28,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2023, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, borrowings: term loan non-current 5,492.280, no short term borrowing",
+   "date": "2023-12-31",
+   "layer": "Company"
+  },
+  "borr_fy24": {
+   "value": 5590.644,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2024, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, borrowings: term loan non-current 5,494.859 plus short term borrowings 95.785",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "borr_fy25": {
+   "value": 5545.975,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2025, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, borrowings note: term loan non-current 5,499.591 plus short term borrowings 46.384",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "lease_fy23": {
+   "value": 1747.264,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2023, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, lease liabilities: non-current 1,564.251 plus current 183.013",
+   "date": "2023-12-31",
+   "layer": "Company"
+  },
+  "lease_fy24": {
+   "value": 1722.622,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2024, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, lease liabilities: non-current 1,540.894 plus current 181.728",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "lease_fy25": {
+   "value": 1446.327,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2025, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, lease liabilities note: non-current 1,289.459 plus current 156.868",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "tp_fy23": {
+   "value": 2541.355,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2023, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, trade and other payables",
+   "date": "2023-12-31",
+   "layer": "Company"
+  },
+  "tp_fy24": {
+   "value": 2797.054,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2024, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, trade and other payables",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "tp_fy25": {
+   "value": 3115.634,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2025, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, trade and other payables",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "dtrp_fy23": {
+   "value": 4827.631,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2023, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, due to related parties",
+   "date": "2023-12-31",
+   "layer": "Company"
+  },
+  "dtrp_fy24": {
+   "value": 4439.345,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2024, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, due to related parties",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "dtrp_fy25": {
+   "value": 3646.512,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2025, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, due to related parties",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "provs_fy25": {
+   "value": 453.592,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2025, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, provision for decommissioning 167.399 plus provision for employees' end of service benefit 207.103 plus deferred tax liability 79.090",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "oncl_fy25": {
+   "value": 6.528,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2025, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, other non-current liabilities",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "tl_fy25": {
+   "value": 14214.568,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2025, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, total liabilities",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "rev_retfuel_fy24": {
+   "value": 22223.252,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2025, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, revenue note, FY2024 comparative: Retail (B2C) fuel",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "rev_retfuel_fy25": {
+   "value": 22796.987,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2025, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, revenue note: Retail (B2C) fuel",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "rev_nonfuel_fy24": {
+   "value": 1575.41,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2025, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, revenue note, FY2024 comparative: Retail (B2C) non-fuel",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "rev_nonfuel_fy25": {
+   "value": 1783.747,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2025, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, revenue note: Retail (B2C) non-fuel",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "rev_corp_fy24": {
+   "value": 10084.84,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2025, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, revenue note, FY2024 comparative: Commercial (B2B) corporate",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "rev_corp_fy25": {
+   "value": 9571.682,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2025, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, revenue note: Commercial (B2B) corporate",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "rev_avi_fy24": {
+   "value": 1570.214,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2025, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, revenue note, FY2024 comparative: Commercial (B2B) aviation",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "rev_avi_fy25": {
+   "value": 1744.201,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2025, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, revenue note: Commercial (B2B) aviation",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "rev_retfuel_h126": {
+   "value": 13169.965,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, reviewed interim condensed consolidated financial statements for the six months ended 30 June 2026, published on the company's investor-relations site, revenue note: Retail (B2C) fuel, six months",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "rev_nonfuel_h126": {
+   "value": 927.421,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, reviewed interim condensed consolidated financial statements for the six months ended 30 June 2026, published on the company's investor-relations site, revenue note: Retail (B2C) non-fuel, six months",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "rev_corp_h126": {
+   "value": 6282.376,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, reviewed interim condensed consolidated financial statements for the six months ended 30 June 2026, published on the company's investor-relations site, revenue note: Commercial (B2B) corporate, six months",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "rev_avi_h126": {
+   "value": 1655.242,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, reviewed interim condensed consolidated financial statements for the six months ended 30 June 2026, published on the company's investor-relations site, revenue note: Commercial (B2B) aviation, six months",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "rev_h126": {
+   "value": 22035.004,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, reviewed interim condensed consolidated financial statements for the six months ended 30 June 2026, published on the company's investor-relations site, revenue, six months ended 30 June 2026",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "gp_h126": {
+   "value": 4252.102,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, reviewed interim condensed consolidated financial statements for the six months ended 30 June 2026, published on the company's investor-relations site, gross profit, six months ended 30 June 2026",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "op_h126": {
+   "value": 2516.642,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, reviewed interim condensed consolidated financial statements for the six months ended 30 June 2026, published on the company's investor-relations site, operating profit, six months ended 30 June 2026",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "np_h126": {
+   "value": 2127.694,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, reviewed interim condensed consolidated financial statements for the six months ended 30 June 2026, published on the company's investor-relations site, profit for the period, six months ended 30 June 2026",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "daexp_h126": {
+   "value": 1646.28,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, reviewed interim condensed consolidated financial statements for the six months ended 30 June 2026, published on the company's investor-relations site, distribution and administrative expenses, six months",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "dna_h126": {
+   "value": 369.702,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, reviewed interim condensed consolidated financial statements for the six months ended 30 June 2026, published on the company's investor-relations site, distribution and administrative expenses note: depreciation and amortisation, six months",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "oi_h126": {
+   "value": 90.705,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, reviewed interim condensed consolidated financial statements for the six months ended 30 June 2026, published on the company's investor-relations site, other income, six months",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "imp_h126": {
+   "value": 179.885,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, reviewed interim condensed consolidated financial statements for the six months ended 30 June 2026, published on the company's investor-relations site, impairment losses and other operating expenses, six months",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "rev_q126": {
+   "value": 8833.596,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, reviewed interim condensed consolidated financial statements for the six months ended 30 June 2026, published on the company's investor-relations site, revenue for the six months 22,035.004 less the three months ended 30 June 13,201.408",
+   "date": "2026-03-31",
+   "layer": "Company"
+  },
+  "rev_retfuel_h125": {
+   "value": 10771.947,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, reviewed interim condensed consolidated financial statements for the six months ended 30 June 2026, published on the company's investor-relations site, revenue note, prior-period comparative column: Retail (B2C) fuel",
+   "date": "2025-06-30",
+   "layer": "Company"
+  },
+  "rev_nonfuel_h125": {
+   "value": 838.658,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, reviewed interim condensed consolidated financial statements for the six months ended 30 June 2026, published on the company's investor-relations site, revenue note, prior-period comparative column: Retail (B2C) non-fuel",
+   "date": "2025-06-30",
+   "layer": "Company"
+  },
+  "rev_corp_h125": {
+   "value": 4685.586,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, reviewed interim condensed consolidated financial statements for the six months ended 30 June 2026, published on the company's investor-relations site, revenue note, prior-period comparative column: Commercial (B2B) corporate",
+   "date": "2025-06-30",
+   "layer": "Company"
+  },
+  "rev_avi_h125": {
+   "value": 815.393,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, reviewed interim condensed consolidated financial statements for the six months ended 30 June 2026, published on the company's investor-relations site, revenue note, prior-period comparative column: Commercial (B2B) aviation",
+   "date": "2025-06-30",
+   "layer": "Company"
+  },
+  "gp_retfuel_h125": {
+   "value": 1993.0,
+   "source": "Derived from ADNOC Distribution, Management Discussion & Analysis Report, second quarter and first half 2026, 5 August 2026: fuel retail gross profit of AED 2,462 million in the first half of 2026 was stated to be 23.5% above the prior period, which places the prior period at AED 1,993 million. The company does not print the prior-period segment figure itself",
+   "date": "2025-06-30",
+   "layer": "Company"
+  },
+  "gp_comm_h125": {
+   "value": 841.0,
+   "source": "Derived from ADNOC Distribution, Management Discussion & Analysis Report, second quarter and first half 2026, 5 August 2026: commercial gross profit of AED 1,268 million was stated to be 50.8% above the prior period, which places the prior period at AED 841 million",
+   "date": "2025-06-30",
+   "layer": "Company"
+  },
+  "gp_nonfuel_h125": {
+   "value": 465.0,
+   "source": "Derived from ADNOC Distribution, Management Discussion & Analysis Report, second quarter and first half 2026, 5 August 2026: non-fuel retail gross profit of AED 522 million was stated to be 12.3% above the prior period, which places the prior period at AED 465 million",
+   "date": "2025-06-30",
+   "layer": "Company"
+  },
+  "rev_fy22": {
+   "value": 32111.061,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2023, FY2022 comparative column",
+   "date": "2022-12-31",
+   "layer": "Company"
+  },
+  "np_fy22": {
+   "value": 2748.508,
+   "source": "FY2023 audited filing, FY2022 comparative column: profit for the year",
+   "date": "2022-12-31",
+   "layer": "Company"
+  },
+  "vol_retail_fy24": {
+   "value": 10349.0,
+   "source": "ADNOC Distribution, results presentation, full year 2025, 3 February 2026, operating-performance appendix, fuel volumes: Retail (B2C), FY2024 comparative",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "vol_retail_fy25": {
+   "value": 11042.0,
+   "source": "ADNOC Distribution, results presentation, full year 2025, 3 February 2026, operating-performance appendix, fuel volumes: Retail (B2C)",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "vol_comm_fy24": {
+   "value": 4680.0,
+   "source": "ADNOC Distribution, results presentation, full year 2025, 3 February 2026, operating-performance appendix, fuel volumes: Commercial (B2B), FY2024 comparative",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "vol_comm_fy25": {
+   "value": 4668.0,
+   "source": "ADNOC Distribution, results presentation, full year 2025, 3 February 2026, operating-performance appendix, fuel volumes: Commercial (B2B)",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "vol_retail_h126": {
+   "value": 5376.0,
+   "source": "ADNOC Distribution, results presentation, second quarter and first half 2026, 5 August 2026, operating-performance appendix, fuel volumes: Retail (B2C), six months",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "vol_retail_h125": {
+   "value": 5324.0,
+   "source": "ADNOC Distribution, results presentation, second quarter and first half 2026, 5 August 2026, operating-performance appendix, fuel volumes: Retail (B2C), prior-period comparative",
+   "date": "2025-06-30",
+   "layer": "Company"
+  },
+  "vol_comm_h126": {
+   "value": 2372.0,
+   "source": "ADNOC Distribution, results presentation, second quarter and first half 2026, 5 August 2026, operating-performance appendix, fuel volumes: Commercial (B2B), six months",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "vol_comm_h125": {
+   "value": 2300.0,
+   "source": "ADNOC Distribution, results presentation, second quarter and first half 2026, 5 August 2026, operating-performance appendix, fuel volumes: Commercial (B2B), prior-period comparative",
+   "date": "2025-06-30",
+   "layer": "Company"
+  },
+  "vol_corp_h126": {
+   "value": 2015.0,
+   "source": "ADNOC Distribution, results presentation, second quarter and first half 2026, 5 August 2026, operating-performance appendix, of which corporate, six months",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "vol_avi_h126": {
+   "value": 357.0,
+   "source": "ADNOC Distribution, results presentation, second quarter and first half 2026, 5 August 2026, operating-performance appendix, of which aviation, six months",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "vol_corp_h125": {
+   "value": 2068.0,
+   "source": "ADNOC Distribution, results presentation, second quarter and first half 2026, 5 August 2026, operating-performance appendix, of which corporate, prior-period comparative",
+   "date": "2025-06-30",
+   "layer": "Company"
+  },
+  "vol_avi_h125": {
+   "value": 232.0,
+   "source": "ADNOC Distribution, results presentation, second quarter and first half 2026, 5 August 2026, operating-performance appendix, of which aviation, prior-period comparative",
+   "date": "2025-06-30",
+   "layer": "Company"
+  },
+  "gp_retfuel_fy25": {
+   "value": 4233.0,
+   "source": "ADNOC Distribution, Management Discussion & Analysis Report, full year 2025, 3 February 2026, fuel retail gross profit",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "gp_nonfuel_fy25": {
+   "value": 984.0,
+   "source": "ADNOC Distribution, Management Discussion & Analysis Report, full year 2025, 3 February 2026, non-fuel retail gross profit",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "gp_comm_fy25": {
+   "value": 1729.0,
+   "source": "ADNOC Distribution, Management Discussion & Analysis Report, full year 2025, 3 February 2026, commercial gross profit",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "gp_retfuel_h126": {
+   "value": 2462.0,
+   "source": "ADNOC Distribution, Management Discussion & Analysis Report, second quarter and first half 2026, 5 August 2026, fuel retail gross profit, six months",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "gp_nonfuel_h126": {
+   "value": 522.0,
+   "source": "ADNOC Distribution, Management Discussion & Analysis Report, second quarter and first half 2026, 5 August 2026, non-fuel retail gross profit, six months",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "gp_comm_h126": {
+   "value": 1268.0,
+   "source": "ADNOC Distribution, Management Discussion & Analysis Report, second quarter and first half 2026, 5 August 2026, commercial gross profit, six months",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "invgain_fy24": {
+   "value": 254.0,
+   "source": "ADNOC Distribution, Management Discussion & Analysis Report, full year 2025, 3 February 2026, inventory gains of AED 254 million in 2024",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "invgain_fy25": {
+   "value": 335.0,
+   "source": "ADNOC Distribution, Management Discussion & Analysis Report, full year 2025, 3 February 2026, inventory gains of AED 335 million in 2025",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "invgain_retfuel_fy25": {
+   "value": 321.0,
+   "source": "ADNOC Distribution, Management Discussion & Analysis Report, full year 2025, 3 February 2026, fuel retail inventory gains",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "invgain_comm_fy25": {
+   "value": 14.0,
+   "source": "ADNOC Distribution, Management Discussion & Analysis Report, full year 2025, 3 February 2026, commercial segment inventory gains",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "invgain_h125": {
+   "value": 147.0,
+   "source": "ADNOC Distribution, Management Discussion & Analysis Report, second quarter and first half 2026, 5 August 2026, inventory gains of AED 147 million in H1 2025",
+   "date": "2025-06-30",
+   "layer": "Company"
+  },
+  "invgain_h126": {
+   "value": 762.0,
+   "source": "ADNOC Distribution, Management Discussion & Analysis Report, second quarter and first half 2026, 5 August 2026, inventory gains of AED 762 million in H1 2026",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "invgain_retfuel_h126": {
+   "value": 528.0,
+   "source": "ADNOC Distribution, Management Discussion & Analysis Report, second quarter and first half 2026, 5 August 2026, fuel retail inventory gains, six months",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "invgain_comm_h126": {
+   "value": 233.0,
+   "source": "ADNOC Distribution, Management Discussion & Analysis Report, second quarter and first half 2026, 5 August 2026, commercial segment inventory gains, six months",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "invgain_retfuel_h125": {
+   "value": 148.0,
+   "source": "ADNOC Distribution, Management Discussion & Analysis Report, second quarter and first half 2026, 5 August 2026, fuel retail inventory gains, prior-period comparative",
+   "date": "2025-06-30",
+   "layer": "Company"
+  },
+  "invgain_comm_h125": {
+   "value": -1.0,
+   "source": "ADNOC Distribution, Management Discussion & Analysis Report, second quarter and first half 2026, 5 August 2026, commercial segment inventory losses of AED 1 million, prior-period comparative",
+   "date": "2025-06-30",
+   "layer": "Company"
+  },
+  "ebitda_und_fy24": {
+   "value": 3633.0,
+   "source": "ADNOC Distribution, Management Discussion & Analysis Report, full year 2025, 3 February 2026, underlying EBITDA, defined by the company as EBITDA excluding inventory movements and one-off items",
+   "date": "2024-12-31",
+   "layer": "Company"
+  },
+  "ebitda_und_fy25": {
+   "value": 4001.0,
+   "source": "ADNOC Distribution, Management Discussion & Analysis Report, full year 2025, 3 February 2026, underlying EBITDA",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "stations_fy25": {
+   "value": 1010.0,
+   "source": "ADNOC Distribution, Management Discussion & Analysis Report, full year 2025, 3 February 2026, total stations network: 567 UAE, 199 Saudi Arabia, 244 Egypt",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "stations_h126": {
+   "value": 1045.0,
+   "source": "ADNOC Distribution, Management Discussion & Analysis Report, second quarter and first half 2026, 5 August 2026, total stations network: 569 UAE, 231 Saudi Arabia, 245 Egypt",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "stations_h125": {
+   "value": 939.0,
+   "source": "ADNOC Distribution, results presentation, second quarter and first half 2026, 5 August 2026, operating-performance appendix, total service stations, prior-period comparative",
+   "date": "2025-06-30",
+   "layer": "Company"
+  },
+  "stations_uae_h126": {
+   "value": 569.0,
+   "source": "ADNOC Distribution, results presentation, second quarter and first half 2026, 5 August 2026, operating-performance appendix, service stations, UAE",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "stations_ksa_h126": {
+   "value": 231.0,
+   "source": "ADNOC Distribution, results presentation, second quarter and first half 2026, 5 August 2026, operating-performance appendix, service stations, Saudi Arabia",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "stations_egy_h126": {
+   "value": 245.0,
+   "source": "ADNOC Distribution, results presentation, second quarter and first half 2026, 5 August 2026, operating-performance appendix, service stations, Egypt",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "cstores_h126": {
+   "value": 541.0,
+   "source": "ADNOC Distribution, Management Discussion & Analysis Report, second quarter and first half 2026, 5 August 2026, total convenience stores network: 387 UAE, 15 Saudi Arabia, 139 Egypt",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "fueltxn_h126": {
+   "value": 100.9,
+   "source": "ADNOC Distribution, results presentation, second quarter and first half 2026, 5 August 2026, operating-performance appendix, fuel transactions, UAE, millions, six months",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "fueltxn_h125": {
+   "value": 96.2,
+   "source": "ADNOC Distribution, results presentation, second quarter and first half 2026, 5 August 2026, operating-performance appendix, fuel transactions, UAE, prior-period comparative",
+   "date": "2025-06-30",
+   "layer": "Company"
+  },
+  "nonfueltxn_h126": {
+   "value": 26.4,
+   "source": "ADNOC Distribution, results presentation, second quarter and first half 2026, 5 August 2026, operating-performance appendix, non-fuel transactions, UAE, millions, six months",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "nonfueltxn_h125": {
+   "value": 26.0,
+   "source": "ADNOC Distribution, results presentation, second quarter and first half 2026, 5 August 2026, operating-performance appendix, non-fuel transactions, UAE, prior-period comparative",
+   "date": "2025-06-30",
+   "layer": "Company"
+  },
+  "evpoints_h126": {
+   "value": 406.0,
+   "source": "ADNOC Distribution, Management Discussion & Analysis Report, second quarter and first half 2026, 5 August 2026, electric-vehicle fast and super-fast charging points in the UAE",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "rf_observed": {
+   "value": 0.0448,
+   "source": "UAE Ministry of Finance, July 2026 auction of dirham-denominated federal Treasury Bonds: yield to maturity of 4.48% on the January 2031 tranche, 4 basis points above comparable US Treasuries. This is a local-currency sovereign yield at a tenor matching the forecast horizon, not a US Treasury substituted for one",
+   "date": "2026-07-30",
+   "layer": "Country"
+  },
+  "sov_spread": {
+   "value": 0.0004,
+   "source": "Sovereign default spread ACTUALLY EMBEDDED IN THE INSTRUMENT the risk-free rate is taken from: the UAE Ministry of Finance July-2026 auction cleared the January-2031 dirham Treasury Bond at 4.48%, a spread of 4 basis points over comparable US Treasuries. CHANGED 09-Aug-2026, superseding the 0.42% ratings-based figure from the published country-risk file. The normalisation exists to remove sovereign credit risk from the observed yield so it is not counted twice inside the equity risk premium; the amount to remove is the amount the yield actually contains. Removing 42 basis points from a bond carrying 4 produced a normalised rate 38 basis points BELOW the matched-tenor US Treasury and 59 below the US 10-year, which cannot be right for a currency hard-pegged to the dollar. The 0.42% ratings figure remains the basis of the country risk premium added back inside the equity risk premium, so country risk still enters exactly once",
+   "date": "2026-07-30",
+   "layer": "Country"
+  },
+  "erp_total": {
+   "value": 0.0487,
+   "source": "Damodaran country risk premium file, January 2026 vintage: United Arab Emirates total equity risk premium 4.87%, being the 4.23% mature-market premium plus a 0.64% country risk premium",
+   "date": "2026-01-01",
+   "layer": "Country"
+  },
+  "erp_mature": {
+   "value": 0.0423,
+   "source": "Damodaran country risk premium file, January 2026 vintage: mature-market equity risk premium",
+   "date": "2026-01-01",
+   "layer": "Country"
+  },
+  "crp": {
+   "value": 0.0064,
+   "source": "Damodaran country risk premium file, January 2026 vintage: United Arab Emirates country risk premium",
+   "date": "2026-01-01",
+   "layer": "Country"
+  },
+  "beta": {
+   "value": 0.6494,
+   "source": "Five-year weekly regression of the company's own returns against the FTSE ADX General Index, the published index of its own exchange; 257 weekly observations to 24-Jul-2026, R-squared 0.179, standard error 0.087, 90% confidence interval 0.51 to 0.79. Supersedes the 0.509 carried by the first edition, which regressed against an equal-weight composite of the exchange's listed names because no published index series was held at the time",
+   "date": "2026-07-24",
+   "layer": "Market"
+  },
+  "credit_margin": {
+   "value": 0.006,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2025, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, borrowings note: the term loan refinanced in October 2022 carries EIBOR plus a margin of 0.60% on the dirham portion and the Secured Overnight Financing Rate plus 0.85% on the US dollar portion",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "credit_margin_usd": {
+   "value": 0.0085,
+   "source": "Abu Dhabi National Oil Company for Distribution PJSC, audited consolidated financial statements for the year ended 31 December 2025, published on the company's investor-relations site; figures as reported in AED'000 and converted to AED million, borrowings note: US dollar facility margin",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "cb_base_rate": {
+   "value": 0.0365,
+   "source": "Central Bank of the UAE, Base Rate applicable to the Overnight Deposit Facility, maintained at 3.65% at the July 2026 review",
+   "date": "2026-07-29",
+   "layer": "Country"
+  },
+  "tax_statutory": {
+   "value": 0.09,
+   "source": "United Arab Emirates federal corporate tax at 9%, in force for financial years beginning on or after 1 June 2023",
+   "date": "2023-06-01",
+   "layer": "Country"
+  },
+  "tax_effective": {
+   "value": 0.1017,
+   "source": "Computed from the audited filings: income tax expense of AED 322.891 million over profit before tax of AED 3,173.933 million in FY2025, above the 9% federal rate because the Egyptian subsidiary is taxed at a higher rate",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "vol_retail_g": {
+   "value": [
+    0.012,
+    0.02,
+    0.018,
+    0.015,
+    0.012
+   ],
+   "source": "Retail fuel volume growth. Anchored on the 1.0% achieved in the first half of 2026 and the 6.7% of FY2025, then set from the two forces that actually move it: network expansion (the network went from 939 to 1,045 stations year on year, with Saudi Arabia growing 65% on a capital-light dealer-owned model) against a slow electric-vehicle drag that builds through the decade. The taper to 1.2% by FY2030 is the drag being priced, not an assumption of decline",
+   "date": "2026-08-05",
+   "layer": "Company"
+  },
+  "vol_comm_g": {
+   "value": [
+    0.03,
+    0.025,
+    0.02,
+    0.018,
+    0.015
+   ],
+   "source": "Commercial fuel volume growth. The first half of 2026 grew 3.1%, with aviation up 53.9% offsetting a deliberate 2.5% reduction in corporate volumes under a stated value-over-volume strategy. Aviation growth decelerates off a small base",
+   "date": "2026-08-05",
+   "layer": "Company"
+  },
+  "gp_retfuel_per_l_g": {
+   "value": [
+    0.02,
+    0.02,
+    0.02,
+    0.02,
+    0.02
+   ],
+   "source": "Escalation of the structural retail fuel margin per litre. This is a domestic regulated-margin line, so it takes the domestic inflation escalator, not a commodity path \u2014 the fuel itself is a pass-through cost and is escalated separately through the realised price",
+   "date": "2026-08-05",
+   "layer": "Industry"
+  },
+  "gp_comm_per_l_g": {
+   "value": [
+    0.17,
+    0.02,
+    0.02,
+    0.02,
+    0.02
+   ],
+   "source": "Escalation of the structural commercial margin per litre. The 17% step in FY2026 is the realised first-half outcome, where corporate gross profit per litre excluding inventory movements was 28% higher year on year on the company's own disclosure; it then reverts to the domestic inflation escalator",
+   "date": "2026-08-05",
+   "layer": "Company"
+  },
+  "rev_nonfuel_g": {
+   "value": [
+    0.1,
+    0.1,
+    0.09,
+    0.08,
+    0.08
+   ],
+   "source": "Non-fuel retail revenue growth, driven by transactions and store format rather than by fuel. The company's own medium-term target is to double non-fuel transactions between 2023 and 2030, which is 10.4% a year compounded; the forecast takes that rate for two years and then fades it. Supporting evidence: 16 new properties opened in the first half of 2026 against 8 a year earlier, a partnership announced with Americana Restaurants for up to 200 quick-service restaurants, and 30 large-format sites planned by 2030 of which seven are open",
+   "date": "2026-08-05",
+   "layer": "Company"
+  },
+  "gm_nonfuel": {
+   "value": [
+    0.56,
+    0.56,
+    0.56,
+    0.56,
+    0.56
+   ],
+   "source": "Non-fuel retail gross margin, held at the level realised in the first half of 2026 (AED 522 million of gross profit on AED 927 million of revenue, 56.3%) and the 55.2% of FY2025",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "price_retfuel": {
+   "value": [
+    2.42,
+    2.34,
+    2.363,
+    2.387,
+    2.411
+   ],
+   "source": "Realised retail price per litre. The first half of 2026 realised AED 2.4498 against AED 2.0233 a year earlier, a 21% increase driven by crude, not by the company. The path assumes the second half of 2026 moderates, crude normalises through FY2027, and the realised price then escalates at 1.0% a year. This is a globally-traded input on its own commodity path \u2014 it is deliberately NOT escalated on a domestic inflation index",
+   "date": "2026-08-05",
+   "layer": "Global"
+  },
+  "price_comm": {
+   "value": [
+    3.05,
+    2.95,
+    2.98,
+    3.01,
+    3.04
+   ],
+   "source": "Realised commercial price per litre, on the same crude path as the retail price. The first half of 2026 realised AED 3.3453 across corporate and aviation combined against AED 2.3924 a year earlier",
+   "date": "2026-08-05",
+   "layer": "Global"
+  },
+  "cash_opex_g": {
+   "value": [
+    0.04,
+    0.04,
+    0.04,
+    0.04,
+    0.04
+   ],
+   "source": "Cash operating cost growth. Staff, utilities, repairs and marketing are domestic service costs, so they take the domestic inflation escalator of about 2% plus roughly 2.5% of network growth, less the company's stated efficiency programme of up to AED 184 million of like-for-like cost reduction over 2024-2028. The first half of 2026 grew 4.0% year on year, which is the rate carried",
+   "date": "2026-08-05",
+   "layer": "Country"
+  },
+  "other_income_g": {
+   "value": [
+    0.03,
+    0.03,
+    0.03,
+    0.03,
+    0.03
+   ],
+   "source": "Other income growth, held at the domestic inflation escalator",
+   "date": "2026-08-05",
+   "layer": "Country"
+  },
+  "impair_norm": {
+   "value": [
+    360.0,
+    220.0,
+    225.0,
+    230.0,
+    235.0
+   ],
+   "source": "Impairment losses and other operating expenses. FY2025 carried AED 284.3 million and the first half of 2026 AED 179.9 million, both elevated by what the company describes as prudence-based provisioning; FY2026 carries the realised first half annualised, then a normalised level escalating with inflation",
+   "date": "2026-08-05",
+   "layer": "Company"
+  },
+  "stations_g": {
+   "value": [
+    0.025,
+    0.045,
+    0.04,
+    0.035,
+    0.03
+   ],
+   "source": "Service-station network growth. The network grew 11.3% in the year to June 2026 (939 to 1,045 stations) on the company's stated expansion programme across the United Arab Emirates, Saudi Arabia and Egypt. The path decelerates from that realised rate as the domestic network saturates and the incremental site becomes marginal. This is a CAPITAL decision and is modelled separately from throughput because the two have different futures",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "litres_per_station_g": {
+   "value": [
+    -0.01,
+    -0.025,
+    -0.02,
+    -0.01,
+    -0.005
+   ],
+   "source": "Growth in litres sold per station. Realised at MINUS 9.3% in the year to June 2026: retail volume rose 1.0% while the network rose 11.3%, so throughput per site fell. The decline fades as the expansion rate itself slows and the newest sites mature toward the network average. This is the single most important observable on the terminal-growth question and it is now a model driver rather than a narrative aside",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "vol_corp_g": {
+   "value": [
+    0.0,
+    0.005,
+    0.01,
+    0.01,
+    0.01
+   ],
+   "source": "Corporate fuel volume growth. Realised MINUS 2.6% in the first half of 2026 (2,068 to 2,015 million litres) on customer rationalisation. Held roughly flat thereafter",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "vol_avi_g": {
+   "value": [
+    0.0,
+    0.04,
+    0.03,
+    0.025,
+    0.02
+   ],
+   "source": "Aviation fuel volume growth. Realised PLUS 53.9% in the first half of 2026 (232 to 357 million litres) on new airline contracts and Gulf traffic recovery. Faded hard, because a 54% step is a contract ramp and not a growth rate; carrying it forward would capitalise a one-off",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "price_corp": {
+   "value": [
+    3.05,
+    2.95,
+    2.98,
+    3.01,
+    3.04
+   ],
+   "source": "Realised corporate price per litre, on the same crude path as the retail leg. Anchored on the 3.12 realised in the first half of 2026",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "price_avi": {
+   "value": [
+    4.55,
+    4.4,
+    4.44,
+    4.49,
+    4.53
+   ],
+   "source": "Realised aviation price per litre, on the same crude path. Anchored on the 4.64 realised in the first half of 2026. Jet fuel prices roughly 50% above the corporate leg, which is why blending the two destroys information",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "fueltxn_g": {
+   "value": [
+    0.01,
+    0.025,
+    0.022,
+    0.02,
+    0.018
+   ],
+   "source": "Growth in fuel transactions. Realised 4.9% in the first half of 2026 (96.2 to 100.9 million) on the larger network",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "conversion_g": {
+   "value": [
+    -0.005,
+    -0.01,
+    0.0,
+    0.005,
+    0.005
+   ],
+   "source": "Growth in the non-fuel conversion rate \u2014 the share of fuel customers who also buy inside. It FELL from 27.0% to 26.2% in the year to June 2026, which is the opposite of what the non-fuel strategy needs, and the forecast carries that deterioration before assuming it stabilises",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "basket_g": {
+   "value": [
+    0.015,
+    0.035,
+    0.03,
+    0.03,
+    0.03
+   ],
+   "source": "Growth in the average non-fuel basket, on the domestic price escalator plus the stated shift toward higher-margin food service",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "dep_rate": {
+   "value": 0.0836,
+   "source": "Depreciation and amortisation as a share of the OPENING fixed and right-of-use asset base, measured off the audited FY2025 accounts (775.9 on an opening base of 9,278.5). Replaces a hardcoded five-year depreciation array: the charge is now an output of the asset base the model itself rolls forward",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "maint_capex_rate": {
+   "value": 0.0836,
+   "source": "Maintenance capital spending as a share of the opening fixed and right-of-use base, set equal to the depreciation rate \u2014 the standard steady-state condition that a network replaces what it consumes. Growth spending is modelled separately, per station added",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "capex_per_station": {
+   "value": 3.5924,
+   "source": "Capital cost per station added, in AED million. Backed out of the company's OWN FY2026 capital-spending guidance: the guidance midpoint of 1,010 less maintenance of 792.4 on the opening base leaves 217.6 for the 60.6 stations the network plan adds, giving 3.59 per station (about USD 1.0 million). So FY2026 still reconciles to guidance while FY2027-30 follow the network plan rather than a pasted array",
+   "date": "2026-02-03",
+   "layer": "Company"
+  },
+  "dna_fwd": {
+   "value": [
+    800.0,
+    830.0,
+    862.0,
+    894.0,
+    926.0
+   ],
+   "source": "Depreciation and amortisation, grown on the asset base as capital spending exceeds the current charge; the first half of 2026 charge of AED 369.7 million annualises to AED 739 million before the year's additions",
+   "date": "2026-08-05",
+   "layer": "Company"
+  },
+  "capex_fwd": {
+   "value": [
+    1010.0,
+    1060.0,
+    1100.0,
+    1140.0,
+    1180.0
+   ],
+   "source": "Capital expenditure. FY2026 takes the midpoint of the company's own reaffirmed guidance of US$250-300 million, which is AED 0.9-1.1 billion; FY2025 spent AED 1,051 million on an accrual basis. Later years grow with the network target of 1,150 stations by 2028 from about 1,000 at the end of 2025. Saudi expansion is capital-light because those stations are dealer-owned and company-operated",
+   "date": "2026-08-05",
+   "layer": "Company"
+  },
+  "tax_dmtt": {
+   "value": 0.15,
+   "source": "United Arab Emirates domestic minimum top-up tax of 15%, in force for financial years beginning on or after 1 January 2025 for groups with consolidated revenue above EUR 750 million. The FY2025 audited tax reconciliation does NOT apply it \u2014 that note reconciles at the 9% domestic rate for an effective 10.2% \u2014 so the base case follows the filing and the 15% case is priced as a sensitivity rather than assumed",
+   "date": "2025-01-01",
+   "layer": "Country"
+  },
+  "invmove_A": {
+   "value": [
+    762.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "source": "Inventory movements, NORMALISED frame. FY2026 carries only the AED 762 million already realised in the first half; nothing is assumed for the second half and nothing thereafter, on the view that a timing difference on a pass-through cost nets to zero through a full price cycle",
+   "date": "2026-08-05",
+   "layer": "Company"
+  },
+  "invmove_B": {
+   "value": [
+    950.0,
+    295.0,
+    295.0,
+    295.0,
+    295.0
+   ],
+   "source": "Inventory movements, THROUGH-CYCLE frame. FY2026 carries the realised first half plus a second half at the FY2025 second-half rate of AED 188 million; later years carry the FY2024-FY2025 average of AED 295 million, on the view that a company holding physical stock in a market with a persistent upward price drift earns a small positive contribution on average",
+   "date": "2026-08-05",
+   "layer": "Company"
+  },
+  "g_terminal": {
+   "value": 0.015,
+   "source": "Terminal growth. Set below the 2% domestic inflation escalator because a fuel retailer's principal volume driver faces a structural electric-vehicle drag beyond the forecast horizon; the non-fuel business grows faster but is a fifth of gross profit",
+   "date": "2026-08-05",
+   "layer": "Industry"
+  },
+  "roic_terminal": {
+   "value": 0.25,
+   "source": "Terminal return on invested capital. The company earned a 32.7% return on capital employed in FY2025 and 40.1% in the first half of 2026 on its own measure; the terminal figure fades that toward a level a mature, more capital-intensive network would sustain",
+   "date": "2026-08-05",
+   "layer": "Company"
+  },
+  "beta_drift_frac": {
+   "value": 0.389,
+   "source": "Fraction of the distance from the measured beta to the market beta of one that the terminal beta is allowed to travel, as transition risk in the business rises and the regulated margin becomes a smaller share of a more diversified earnings base. Stated as a fraction so the terminal beta is DERIVED from the measured one rather than asserted alongside it: re-measure the beta and the terminal beta follows",
+   "date": "2026-08-05",
+   "layer": "Market"
+  },
+  "wd_terminal": {
+   "value": 0.1,
+   "source": "Terminal debt weight, above today's 5.5% because the current weight reflects an unusually high equity market value against a small and stable borrowing book",
+   "date": "2026-08-05",
+   "layer": "Market"
+  },
+  "payout_floor": {
+   "value": 0.75,
+   "source": "Dividend policy FLOOR as the company actually states it: USD 700 million a year, or a minimum of 75% of net profit, whichever is higher, for the years 2024 to 2030. ADDED 09-Aug-2026: the study previously used the realised 92% payout as though it were the policy term, in two places, contradicting both the primary disclosure and the study's own catalyst table",
+   "date": "2026-04-01",
+   "layer": "Company"
+  },
+  "payout": {
+   "value": 0.92,
+   "source": "Dividend payout used in the equity roll-forward. Dividends paid were AED 2,622.9 million, AED 2,613.7 million and AED 2,599.1 million in FY2023, FY2024 and FY2025 against profit attributable to owners of AED 2,601.4 million, AED 2,420.3 million and AED 2,794.0 million \u2014 a payout that has run at or above 100% of earnings and is set slightly below that as profits step up",
+   "date": "2025-12-31",
+   "layer": "Company"
+  },
+  "dps": {
+   "value": 0.2057,
+   "source": "Dividend per share. FY2025 dividends paid of AED 2,599.146 million over 12,500 million shares is AED 0.2079; the company's stated policy sets a fixed annual dividend of 20.57 fils per share",
+   "date": "2025-12-31",
+   "layer": "Company"
+  }
+ },
+ "history": {
+  "FY2023": {
+   "revenue": 34629.178,
+   "direct_costs": 28792.893,
+   "gross_profit": 5836.285,
+   "gross_margin": 0.16853663116115547,
+   "opex": 2916.538,
+   "dna": 696.565,
+   "cash_opex": 2219.973,
+   "other_income": 145.645,
+   "impairments": 82.143,
+   "ebitda": 3679.814,
+   "ebitda_margin": 0.10626339441265398,
+   "ebit": 2983.249,
+   "interest_income": 98.834,
+   "finance_costs": 432.757,
+   "pbt": 2649.326,
+   "tax": 18.837,
+   "tax_rate": 0.0071101102695553505,
+   "net_profit": 2630.489,
+   "nci": 29.068,
+   "np_attributable": 2601.421,
+   "eps": 0.208,
+   "ppe": 7189.661,
+   "rou": 1778.418,
+   "goodwill_intangibles": 1053.811,
+   "other_nca": 56.183,
+   "inventories": 1294.423,
+   "receivables": 3519.413,
+   "due_from_rp": 805.558,
+   "term_deposits": 200.225,
+   "cash": 2993.937,
+   "total_assets": 18891.629,
+   "equity_parent": 3472.066,
+   "nci_equity": 323.767,
+   "total_equity": 3795.8329999999996,
+   "borrowings": 5492.28,
+   "leases": 1747.264,
+   "payables": 2541.355,
+   "due_to_rp": 4827.631,
+   "ocf": 5051.268,
+   "capex": 1032.241,
+   "dividends_paid": 2622.89,
+   "net_debt_company": 2298.118,
+   "net_debt_incl_leases": 4045.382,
+   "fcf": 4019.027,
+   "roce": 0.48954266287996084
+  },
+  "FY2024": {
+   "revenue": 35453.716,
+   "direct_costs": 29237.684,
+   "gross_profit": 6216.032,
+   "gross_margin": 0.17532808126516272,
+   "opex": 3194.942,
+   "dna": 785.807,
+   "cash_opex": 2409.135,
+   "other_income": 138.059,
+   "impairments": 90.254,
+   "ebitda": 3854.702,
+   "ebitda_margin": 0.10872490770784084,
+   "ebit": 3068.895,
+   "interest_income": 143.893,
+   "finance_costs": 457.111,
+   "pbt": 2755.677,
+   "tax": 283.394,
+   "tax_rate": 0.10284006434716406,
+   "net_profit": 2472.283,
+   "nci": 52.008,
+   "np_attributable": 2420.275,
+   "eps": 0.194,
+   "ppe": 7552.178,
+   "rou": 1726.351,
+   "goodwill_intangibles": 599.307,
+   "other_nca": 62.103,
+   "inventories": 1619.887,
+   "receivables": 2935.982,
+   "due_from_rp": 750.723,
+   "term_deposits": 200.225,
+   "cash": 2734.038,
+   "total_assets": 18180.794,
+   "equity_parent": 2991.839,
+   "nci_equity": 189.437,
+   "total_equity": 3181.276,
+   "borrowings": 5590.644,
+   "leases": 1722.622,
+   "payables": 2797.054,
+   "due_to_rp": 4439.345,
+   "ocf": 3931.453,
+   "capex": 1179.233,
+   "dividends_paid": 2613.7,
+   "net_debt_company": 2656.3810000000003,
+   "net_debt_incl_leases": 4379.003000000001,
+   "fcf": 2752.2200000000003,
+   "roce": 0.525706631958678
+  },
+  "FY2025": {
+   "revenue": 35896.617,
+   "direct_costs": 28950.827,
+   "gross_profit": 6945.79,
+   "gross_margin": 0.193494278304833,
+   "opex": 3323.546,
+   "dna": 775.946,
+   "cash_opex": 2547.6,
+   "other_income": 167.665,
+   "impairments": 284.305,
+   "ebitda": 4281.55,
+   "ebitda_margin": 0.11927447090626954,
+   "ebit": 3505.604,
+   "interest_income": 71.274,
+   "finance_costs": 402.945,
+   "pbt": 3173.933,
+   "tax": 322.891,
+   "tax_rate": 0.10173214116366036,
+   "net_profit": 2851.042,
+   "nci": 57.042,
+   "np_attributable": 2794.0,
+   "eps": 0.224,
+   "ppe": 8032.197,
+   "rou": 1445.804,
+   "goodwill_intangibles": 621.853,
+   "other_nca": 49.42,
+   "inventories": 1574.254,
+   "receivables": 2632.515,
+   "due_from_rp": 758.468,
+   "term_deposits": 200.0,
+   "cash": 2360.854,
+   "total_assets": 17675.365,
+   "equity_parent": 3230.423,
+   "nci_equity": 230.374,
+   "total_equity": 3460.7969999999996,
+   "borrowings": 5545.975,
+   "leases": 1446.327,
+   "payables": 3115.634,
+   "due_to_rp": 3646.512,
+   "ocf": 3922.041,
+   "capex": 1207.394,
+   "dividends_paid": 2599.146,
+   "net_debt_company": 2985.1210000000005,
+   "net_debt_incl_leases": 4431.448,
+   "fcf": 2714.647,
+   "roce": 0.5438486806689132
+  }
+ },
+ "unit_build": {
+  "vol_retail_fy24": 10349.0,
+  "vol_retail_fy25": 11042.0,
+  "vol_comm_fy24": 4680.0,
+  "vol_comm_fy25": 4668.0,
+  "vol_total_fy25": 15710.0,
+  "vol_total_fy24": 15029.0,
+  "price_retail_fy25": 2.064570458250317,
+  "price_retail_fy24": 2.1473815827616196,
+  "rev_comm_fy25": 11315.883000000002,
+  "rev_comm_fy24": 11655.054,
+  "price_comm_fy25": 2.424139460154242,
+  "price_comm_fy24": 2.4903961538461536,
+  "price_retail_h126": 2.449770275297619,
+  "price_retail_h125": 2.023280803906837,
+  "rev_comm_h126": 7937.618,
+  "rev_comm_h125": 5500.979,
+  "price_comm_h126": 3.3463819561551436,
+  "price_comm_h125": 2.39173,
+  "price_corp_h126": 3.1178044665012408,
+  "price_avi_h126": 4.636532212885154,
+  "gp_retfuel_struct_fy25": 3912.0,
+  "gp_comm_struct_fy25": 1715.0,
+  "margin_retail_fy25": 0.3542836442673429,
+  "margin_comm_fy25": 0.36739502999143103,
+  "gp_retfuel_struct_h126": 1934.0,
+  "gp_comm_struct_h126": 1035.0,
+  "margin_retail_h126": 0.35974702380952384,
+  "margin_comm_h126": 0.4363406408094435,
+  "margin_retail_h125": 0.34654395191585274,
+  "margin_comm_h125": 0.3660869565217391,
+  "margin_retail_growth_h1": 0.03809927087366116,
+  "margin_comm_growth_h1": 0.19190436325619964,
+  "gm_nonfuel_fy25": 0.5516477392814115,
+  "gm_nonfuel_h126": 0.5628511754640018,
+  "litres_per_station_fy25": 10.932673267326733,
+  "litres_per_station_h126": 5.144497607655502,
+  "litres_per_station_h125": 5.66986155484558,
+  "litres_per_station_growth_h1": -0.09265904327788943,
+  "stations_growth_h1": 0.11288604898828547,
+  "corp_share_vol_h125": 0.8991304347826087,
+  "vol_corp_fy25": 4197.140869565217,
+  "vol_avi_fy25": 470.8591304347827,
+  "price_corp_fy25": 2.2805243610971613,
+  "price_avi_fy25": 3.7042947396802877,
+  "price_corp_h125": 2.2657572533849133,
+  "price_avi_h125": 3.514625,
+  "vol_corp_growth_h1": -0.02562862669245647,
+  "vol_avi_growth_h1": 0.5387931034482758,
+  "litres_per_txn_h126": 53.2804757185332,
+  "fueltxn_fy25": 207.2428943452381,
+  "conversion_h126": 0.2616451932606541,
+  "conversion_h125": 0.2702702702702703,
+  "conversion_fy25": 0.2702702702702703,
+  "basket_fy25": 31.846032264949628,
+  "basket_h126": 35.129583333333336,
+  "fixed_base_fy24": 9278.529,
+  "fixed_base_fy25": 9478.001,
+  "dep_rate_fy25": 0.08362812682915578
+ },
+ "forecast": {
+  "years": [
+   "FY2026E",
+   "FY2027E",
+   "FY2028E",
+   "FY2029E",
+   "FY2030E"
+  ],
+  "stations": [
+   1071.125,
+   1119.325625,
+   1164.09865,
+   1204.8421027499999,
+   1240.9873658324998
+  ],
+  "litres_per_station": [
+   10.186105263157895,
+   9.931452631578948,
+   9.732823578947368,
+   9.635495343157894,
+   9.587317866442104
+  ],
+  "vol_retail": [
+   10910.592,
+   11116.529424,
+   11329.9667889408,
+   11609.250470288189,
+   11897.740344474849
+  ],
+  "vol_corp": [
+   4030.0,
+   4050.1499999999996,
+   4090.6514999999995,
+   4131.558015,
+   4172.873595149999
+  ],
+  "vol_avi": [
+   714.0,
+   742.5600000000001,
+   764.8368,
+   783.95772,
+   799.6368744
+  ],
+  "vol_comm": [
+   4744.0,
+   4792.71,
+   4855.488299999999,
+   4915.515735,
+   4972.5104695499995
+  ],
+  "vol_total": [
+   15654.592,
+   15909.239424,
+   16185.455088940798,
+   16524.76620528819,
+   16870.250814024846
+  ],
+  "margin_retail": [
+   0.3669419642857143,
+   0.37428080357142857,
+   0.3817664196428571,
+   0.38940174803571426,
+   0.39718978299642854
+  ],
+  "margin_comm": [
+   0.5105185497470489,
+   0.52072892074199,
+   0.5311434991568298,
+   0.5417663691399663,
+   0.5526016965227657
+  ],
+  "price_retail": [
+   2.42,
+   2.34,
+   2.363,
+   2.387,
+   2.411
+  ],
+  "price_corp": [
+   3.05,
+   2.95,
+   2.98,
+   3.01,
+   3.04
+  ],
+  "price_avi": [
+   4.55,
+   4.4,
+   4.44,
+   4.49,
+   4.53
+  ],
+  "rev_retfuel": [
+   26403.63264,
+   26012.67885216,
+   26772.71152226711,
+   27711.280872577907,
+   28685.451970528862
+  ],
+  "rev_corp": [
+   12291.5,
+   11947.9425,
+   12190.141469999999,
+   12435.989625149998,
+   12685.535729255998
+  ],
+  "rev_avi": [
+   3248.7,
+   3267.2640000000006,
+   3395.8753920000004,
+   3519.9701628000003,
+   3622.3550410320004
+  ],
+  "rev_comm": [
+   15540.2,
+   15215.2065,
+   15586.016861999999,
+   15955.959787949998,
+   16307.890770287999
+  ],
+  "price_comm": [
+   3.2757588532883646,
+   3.1746561965985842,
+   3.2099792850906472,
+   3.2460398151792305,
+   3.279609137105311
+  ],
+  "fuel_txn": [
+   203.818,
+   208.91344999999998,
+   213.50954589999998,
+   217.77973681799998,
+   221.699772080724
+  ],
+  "nonfuel_txn": [
+   53.06136000000001,
+   53.84401506,
+   55.02858339132,
+   56.40980083444212,
+   57.71230313570939
+  ],
+  "basket": [
+   35.65652708333333,
+   36.904505531249995,
+   38.011640697187495,
+   39.15198991810312,
+   40.326549615646215
+  ],
+  "rev_nonfuel": [
+   1891.9838199185,
+   1987.086751606478,
+   2091.726739946075,
+   2208.555953552283,
+   2327.3380558353992
+  ],
+  "revenue": [
+   43835.816459918504,
+   43214.97210376647,
+   44450.455124213186,
+   45875.79661408019,
+   47320.68079665226
+  ],
+  "gp_retfuel_struct": [
+   4003.5540600000004,
+   4160.70356574015,
+   4325.400855686407,
+   4520.662426514658,
+   4725.660905569818
+  ],
+  "gp_comm_struct": [
+   2421.9,
+   2495.7027057293426,
+   2578.9610457770464,
+   2663.061112201323,
+   2747.817721450544
+  ],
+  "gp_nonfuel": [
+   1059.5109391543601,
+   1112.7685808996278,
+   1171.3669743698022,
+   1236.7913339892787,
+   1303.3093112678237
+  ],
+  "gp_struct": [
+   7484.96499915436,
+   7769.17485236912,
+   8075.728875833255,
+   8420.51487270526,
+   8776.787938288186
+  ],
+  "invmove_A": [
+   762.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "invmove_B": [
+   950.0,
+   295.0,
+   295.0,
+   295.0,
+   295.0
+  ],
+  "gross_profit_A": [
+   8246.96499915436,
+   7769.17485236912,
+   8075.728875833255,
+   8420.51487270526,
+   8776.787938288186
+  ],
+  "gross_profit_B": [
+   8434.96499915436,
+   8064.17485236912,
+   8370.728875833254,
+   8715.51487270526,
+   9071.787938288186
+  ],
+  "direct_costs_A": [
+   35588.85146076414,
+   35445.79725139735,
+   36374.72624837993,
+   37455.28174137493,
+   38543.89285836407
+  ],
+  "direct_costs_B": [
+   35400.85146076414,
+   35150.79725139735,
+   36079.72624837993,
+   37160.28174137493,
+   38248.89285836407
+  ],
+  "cash_opex": [
+   2649.504,
+   2755.48416,
+   2865.7035264,
+   2980.331667456,
+   3099.5449341542403
+  ],
+  "other_income": [
+   172.69495,
+   177.8757985,
+   183.212072455,
+   188.70843462865,
+   194.3696876675095
+  ],
+  "impairments": [
+   360.0,
+   220.0,
+   225.0,
+   230.0,
+   235.0
+  ],
+  "dna": [
+   792.3608836,
+   810.71822722,
+   825.1940625709,
+   838.640505185736,
+   850.8767679652367
+  ],
+  "capex": [
+   1011.9463336,
+   983.8741524699998,
+   986.0366775808998,
+   985.0072848448358,
+   980.7250110628095
+  ],
+  "fixed_base": null,
+  "ebitda_A": [
+   5410.155949154359,
+   4971.566490869121,
+   5168.237421888256,
+   5398.89163987791,
+   5636.612691801454
+  ],
+  "ebit_A": [
+   4617.795065554359,
+   4160.848263649121,
+   4343.043359317356,
+   4560.251134692175,
+   4785.735923836218
+  ],
+  "ebitda_margin_A": [
+   0.12341861943192417,
+   0.11504268657009767,
+   0.11626961765511819,
+   0.11768496763761664,
+   0.11911520707031377
+  ],
+  "gross_margin_A": [
+   0.1881330305937158,
+   0.1797797030555525,
+   0.18167932934018982,
+   0.1835502703863858,
+   0.1854746759879479
+  ],
+  "ebitda_B": [
+   5598.155949154359,
+   5266.566490869121,
+   5463.237421888254,
+   5693.89163987791,
+   5931.612691801454
+  ],
+  "ebit_B": [
+   4805.795065554359,
+   4455.848263649121,
+   4638.043359317354,
+   4855.251134692175,
+   5080.735923836218
+  ],
+  "ebitda_margin_B": [
+   0.127707349862482,
+   0.12186902442568288,
+   0.12290622011904448,
+   0.12411537368552947,
+   0.12534926784529885
+  ],
+  "gross_margin_B": [
+   0.19242176102427364,
+   0.1866060409111377,
+   0.18831593180411613,
+   0.1899806764342986,
+   0.19170873676293299
+  ],
+  "nwc_A": [
+   -2236.4424422995316,
+   -2269.455822385251,
+   -2319.2065961088483,
+   -2378.1933057779643,
+   -2436.7774510924282
+  ],
+  "delta_nwc_A": [
+   -439.53344229953063,
+   -33.01338008571929,
+   -49.750773723597376,
+   -58.98670966911595,
+   -58.58414531446397
+  ],
+  "nwc_B": [
+   -2236.4424422995316,
+   -2269.455822385251,
+   -2319.2065961088483,
+   -2378.1933057779643,
+   -2436.7774510924282
+  ],
+  "delta_nwc_B": [
+   -439.53344229953063,
+   -33.01338008571929,
+   -49.750773723597376,
+   -58.98670966911595,
+   -58.58414531446397
+  ]
+ },
+ "wacc": {
+  "rf_observed": 0.0448,
+  "sov_spread": 0.0004,
+  "rf_star": 0.0444,
+  "erp": 0.0487,
+  "erp_mature": 0.0423,
+  "crp": 0.0064,
+  "beta": 0.6494,
+  "ke": 0.07602578,
+  "kd_pretax": 0.0508,
+  "kd_pretax_usd_basis": 0.0533,
+  "kd_floating_basis": 0.042499999999999996,
+  "tax_statutory": 0.09,
+  "tax_effective": 0.1017,
+  "tax_fcff": 0.1017,
+  "tax_dmtt": 0.15,
+  "kd_aftertax": 0.046228,
+  "mcap": 50875.0,
+  "net_debt": 2985.1210000000005,
+  "net_debt_incl_leases": 4431.448,
+  "we": 0.944576414895169,
+  "wd": 0.05542358510483103,
+  "wacc": 0.07437428020423498,
+  "beta_drift_frac": 0.0,
+  "beta_terminal": 0.6494,
+  "ke_terminal": 0.07602578,
+  "wd_terminal": 0.05542358510483103,
+  "wacc_terminal": 0.07437428020423498,
+  "glide_frac": [
+   0.2,
+   0.4,
+   0.6,
+   0.8,
+   1.0
+  ],
+  "disc_rate": [
+   0.07437428020423498,
+   0.07437428020423498,
+   0.07437428020423498,
+   0.07437428020423498,
+   0.07437428020423498
+  ],
+  "df": [
+   0.930774329230874,
+   0.8663408519551834,
+   0.8063678253638898,
+   0.7505464717664332,
+   0.6985893888150009
+  ],
+  "cb_base_rate": 0.0365,
+  "credit_margin": 0.006
+ },
+ "dcf": {
+  "frame_A": {
+   "ebitda": [
+    5410.155949154359,
+    4971.566490869121,
+    5168.237421888256,
+    5398.89163987791,
+    5636.612691801454
+   ],
+   "ebit": [
+    4617.795065554359,
+    4160.848263649121,
+    4343.043359317356,
+    4560.251134692175,
+    4785.735923836218
+   ],
+   "dna": [
+    792.3608836,
+    810.71822722,
+    825.1940625709,
+    838.640505185736,
+    850.8767679652367
+   ],
+   "nopat": [
+    4148.16530738748,
+    3737.689995236005,
+    3901.3558496747805,
+    4096.473594293981,
+    4299.026580382075
+   ],
+   "capex": [
+    1011.9463336,
+    983.8741524699998,
+    986.0366775808998,
+    985.0072848448358,
+    980.7250110628095
+   ],
+   "delta_nwc": [
+    -439.53344229953063,
+    -33.01338008571929,
+    -49.750773723597376,
+    -58.98670966911595,
+    -58.58414531446397
+   ],
+   "fcff": [
+    4368.113299687011,
+    3597.5474500717246,
+    3790.264008388378,
+    4009.093524303997,
+    4227.762482598966
+   ],
+   "df": [
+    0.930774329230874,
+    0.8663408519551834,
+    0.8063678253638898,
+    0.7505464717664332,
+    0.6985893888150009
+   ],
+   "pv": [
+    4065.7277265206376,
+    3116.7023228443354,
+    3056.3469459991566,
+    3009.01099964802,
+    2953.4700087738024
+   ],
+   "pv_sum": 16201.258003785952,
+   "g": 0.015,
+   "roic_term": 0.25,
+   "reinvest_rate": 0.06,
+   "nopat_term": 4363.511979087805,
+   "fcff_term": 4101.701260342536,
+   "tv": 69082.12185871645,
+   "pv_tv": 48260.037287324136,
+   "ev": 64461.29529111009,
+   "tv_share": 0.7486668871511137,
+   "net_debt": 2985.1210000000005,
+   "leases": 1446.327,
+   "nci": 230.374,
+   "equity": 59799.47329111009,
+   "per_share": 4.783957863288807,
+   "tax_rate": 0.1017
+  },
+  "frame_B": {
+   "ebitda": [
+    5598.155949154359,
+    5266.566490869121,
+    5463.237421888254,
+    5693.89163987791,
+    5931.612691801454
+   ],
+   "ebit": [
+    4805.795065554359,
+    4455.848263649121,
+    4638.043359317354,
+    4855.251134692175,
+    5080.735923836218
+   ],
+   "dna": [
+    792.3608836,
+    810.71822722,
+    825.1940625709,
+    838.640505185736,
+    850.8767679652367
+   ],
+   "nopat": [
+    4317.04570738748,
+    4002.688495236005,
+    4166.354349674779,
+    4361.47209429398,
+    4564.0250803820745
+   ],
+   "capex": [
+    1011.9463336,
+    983.8741524699998,
+    986.0366775808998,
+    985.0072848448358,
+    980.7250110628095
+   ],
+   "delta_nwc": [
+    -439.53344229953063,
+    -33.01338008571929,
+    -49.750773723597376,
+    -58.98670966911595,
+    -58.58414531446397
+   ],
+   "fcff": [
+    4536.993699687011,
+    3862.5459500717243,
+    4055.262508388377,
+    4274.092024303996,
+    4492.760982598966
+   ],
+   "df": [
+    0.930774329230874,
+    0.8663408519551834,
+    0.8063678253638898,
+    0.7505464717664332,
+    0.6985893888150009
+   ],
+   "pv": [
+    4222.917267550879,
+    3346.2813491011807,
+    3270.0332101688487,
+    3207.904688846417,
+    3138.595148925694
+   ],
+   "pv_sum": 17185.73166459302,
+   "g": 0.015,
+   "roic_term": 0.25,
+   "reinvest_rate": 0.06,
+   "nopat_term": 4632.485456587805,
+   "fcff_term": 4354.536329192536,
+   "tv": 73340.44832566981,
+   "pv_tv": 51234.85897124783,
+   "ev": 68420.59063584084,
+   "tv_share": 0.7488222258112079,
+   "net_debt": 2985.1210000000005,
+   "leases": 1446.327,
+   "nci": 230.374,
+   "equity": 63758.76863584084,
+   "per_share": 5.100701490867267,
+   "tax_rate": 0.1017
+  }
+ },
+ "lenses": {
+  "bv_ps": 0.25843383999999997,
+  "roe_sust": 0.807701380608098,
+  "roe_hist": [
+   0.7492429579391636,
+   0.8089589713885006,
+   0.8649022124966298
+  ],
+  "just_pb": 12.989614890757611,
+  "book_ps": 3.3569560563396696,
+  "own_pe_history": [
+   19.567307692307693,
+   20.97938144329897,
+   18.169642857142858
+  ],
+  "own_pe_mean": 19.572110664249838,
+  "pe_now": 18.169642857142858,
+  "eps_fwd_A": 0.3034546598469985,
+  "eps_fwd_B": 0.3169650918469985,
+  "pe_method_today": 18.169642857142858,
+  "pe_method_own_mean": 19.572110664249838,
+  "pe_retention_implied": 0.018571219958429287,
+  "pe_payout_implied": 0.9814287800415707,
+  "pe_method_justified": 16.32343268274808,
+  "pe_methods": [
+   18.169642857142858,
+   19.572110664249838,
+   16.32343268274808
+  ],
+  "pe_context": [
+   18.169642857142858,
+   19.572110664249838
+  ],
+  "just_fwd_pe": 16.32343268274808,
+  "rel_A": 4.953421712278697,
+  "rel_B": 5.173958339545543,
+  "norm_ebitda": 4648.15594915436,
+  "norm_ebit": 3855.7950655543605,
+  "norm_nopat": 3463.660707387482,
+  "norm_reinvest": 0.06,
+  "norm_ev": 54835.882704511576,
+  "norm_equity": 50174.060704511576,
+  "norm_ps": 4.013924856360926,
+  "dps": 0.2057,
+  "div_yield_now": 0.05054054054054054,
+  "div_ps": 2.7056611586227723,
+  "div_ps_grown": 3.4212672087108102,
+  "items_A": [
+   {
+    "name": "Discounted cash flow",
+    "value": 4.783957863288807,
+    "weight": 0.4
+   },
+   {
+    "name": "Normalised earnings power",
+    "value": 4.013924856360926,
+    "weight": 0.25
+   }
+  ],
+  "items_B": [
+   {
+    "name": "Discounted cash flow",
+    "value": 5.100701490867267,
+    "weight": 0.4
+   },
+   {
+    "name": "Normalised earnings power",
+    "value": 4.013924856360926,
+    "weight": 0.25
+   }
+  ],
+  "shared": [
+   {
+    "name": "Relative multiples",
+    "value": 4.953421712278697,
+    "weight": 0.2
+   },
+   {
+    "name": "Book value and sustainable return",
+    "value": 3.3569560563396696,
+    "weight": 0.15
+   }
+  ],
+  "unweighted": [
+   {
+    "name": "Dividend capitalisation",
+    "value": 2.7056611586227723,
+    "weight": 0.0
+   }
+  ],
+  "centre_A": 4.411292110312444,
+  "shared_B": [
+   {
+    "name": "Relative multiples",
+    "value": 5.173958339545543,
+    "weight": 0.2
+   },
+   {
+    "name": "Book value and sustainable return",
+    "value": 3.3569560563396696,
+    "weight": 0.15
+   }
+  ],
+  "centre_B": 4.582096886797197,
+  "readings_all": [
+   4.783957863288807,
+   5.100701490867267,
+   4.013924856360926,
+   4.953421712278697,
+   5.173958339545543,
+   3.3569560563396696,
+   2.7056611586227723
+  ],
+  "fair_bear": 2.7056611586227723,
+  "fair_bull": 5.173958339545543,
+  "book_lens": 3.3569560563396696
+ },
+ "sensitivity": {
+  "wacc": [
+   [
+    0.06437428020423498,
+    5.713836104953238
+   ],
+   [
+    0.06937428020423497,
+    5.206306997169102
+   ],
+   [
+    0.07437428020423498,
+    4.783957863288807
+   ],
+   [
+    0.07937428020423498,
+    4.4269440364099015
+   ],
+   [
+    0.08437428020423497,
+    4.1211418407320535
+   ]
+  ],
+  "g": [
+   [
+    0.005,
+    4.3341079907364835
+   ],
+   [
+    0.01,
+    4.541936057842556
+   ],
+   [
+    0.015,
+    4.783957863288807
+   ],
+   [
+    0.02,
+    5.069606287348343
+   ],
+   [
+    0.025,
+    5.4121351795252375
+   ]
+  ],
+  "beta": [
+   [
+    0.45,
+    5.721632266901376
+   ],
+   [
+    0.55,
+    5.212160196485639
+   ],
+   [
+    0.6494,
+    4.783957863288807
+   ],
+   [
+    0.8,
+    4.247686654673135
+   ],
+   [
+    1.0,
+    3.687579642884075
+   ]
+  ],
+  "volume": [
+   [
+    -0.01,
+    4.503551144301958
+   ],
+   [
+    -0.005,
+    4.681463152860606
+   ],
+   [
+    0.0,
+    4.862800051117585
+   ],
+   [
+    0.005,
+    5.047612510089233
+   ],
+   [
+    0.01,
+    5.235951704116874
+   ]
+  ],
+  "margin": [
+   [
+    -0.1,
+    3.980351258054539
+   ],
+   [
+    -0.05,
+    4.3821545606716725
+   ],
+   [
+    0.0,
+    4.783957863288807
+   ],
+   [
+    0.05,
+    5.185761165905943
+   ],
+   [
+    0.1,
+    5.5875644685230785
+   ]
+  ],
+  "inventory": [
+   [
+    0.0,
+    4.783957863288807
+   ],
+   [
+    150.0,
+    4.938619794286794
+   ],
+   [
+    295.0,
+    5.088126327584848
+   ],
+   [
+    450.0,
+    5.247943656282771
+   ],
+   [
+    600.0,
+    5.402605587280759
+   ]
+  ],
+  "tax": [
+   [
+    0.09,
+    4.851251222861921
+   ],
+   [
+    0.1017,
+    4.783957863288807
+   ],
+   [
+    0.12,
+    4.678704147033425
+   ],
+   [
+    0.15,
+    4.506157071204932
+   ],
+   [
+    0.18,
+    4.333609995376437
+   ]
+  ],
+  "capex": [
+   [
+    -0.2,
+    4.848178505227209
+   ],
+   [
+    -0.1,
+    4.816068184258008
+   ],
+   [
+    0.0,
+    4.783957863288807
+   ],
+   [
+    0.1,
+    4.751847542319606
+   ],
+   [
+    0.2,
+    4.719737221350404
+   ]
+  ],
+  "tax_dmtt_impact": -0.277800792083875,
+  "grid_wacc": [
+   0.06437428020423498,
+   0.06937428020423497,
+   0.07437428020423498,
+   0.07937428020423498,
+   0.08437428020423497
+  ],
+  "grid_g": [
+   0.005,
+   0.01,
+   0.015,
+   0.02,
+   0.025
+  ],
+  "grid": [
+   [
+    5.037845630037896,
+    5.345214853859902,
+    5.713836104953238,
+    6.1644146297994595,
+    6.728172817732825
+   ],
+   [
+    4.658763041404357,
+    4.9098906104080235,
+    5.206306997169102,
+    5.561771030445217,
+    5.9962428018400855
+   ],
+   [
+    4.3341079907364835,
+    4.541936057842556,
+    4.783957863288807,
+    5.069606287348343,
+    5.4121351795252375
+   ],
+   [
+    4.052905511891289,
+    4.226787299827193,
+    4.4269440364099015,
+    4.660013683874013,
+    4.935075786102526
+   ],
+   [
+    3.806945979527142,
+    3.9537967789290347,
+    4.1211418407320535,
+    4.3137565804444105,
+    4.538024994088219
+   ]
+  ],
+  "grid_lo": 3.806945979527142,
+  "grid_hi": 6.728172817732825
+ },
+ "crux": {
+  "spot": 4.07,
+  "normalised_value": 4.783957863288807,
+  "throughcycle_value": 5.100701490867267,
+  "g_base": 0.015,
+  "g_implied": -0.0025595825137578535,
+  "wacc_term_base": 0.07437428020423498,
+  "wacc_term_implied": 0.08528680069131703,
+  "beta_base": 0.6494,
+  "beta_implied": 0.8579588580738686,
+  "tv_share": 0.7486668871511137,
+  "fy25_actual": 335.0,
+  "fy24_actual": 254.0,
+  "h126_actual": 762.0,
+  "avg_24_25": 294.5,
+  "inventory_floor_value": 4.783957863288807,
+  "inventory_zero_all_years": 4.732988318495171,
+  "ramp": [
+   [
+    -0.02,
+    3.6176554569641595
+   ],
+   [
+    -0.01,
+    3.854996832710069
+   ],
+   [
+    0.0,
+    4.15357737909304
+   ],
+   [
+    0.01,
+    4.541936057842556
+   ],
+   [
+    0.015,
+    4.783957863288807
+   ]
+  ],
+  "inv_ramp": [
+   [
+    0.0,
+    4.783957863288807
+   ],
+   [
+    150.0,
+    4.938619794286794
+   ],
+   [
+    295.0,
+    5.088126327584848
+   ],
+   [
+    500.0,
+    5.2994976332821
+   ],
+   [
+    762.0,
+    5.569640472758585
+   ]
+  ]
+ },
+ "cost_exposure": {
+  "commodity_share": 0.8292500150875877,
+  "domestic_opex_share": 0.060441534205769545,
+  "commodity_escalator": "own crude-linked realised-price path",
+  "domestic_escalator": "domestic inflation, about 2% a year",
+  "note": "The fuel itself is a globally-traded input and is escalated on its own crude-linked price path through the realised price per litre, never on a domestic inflation index. Staff, utilities, repairs and marketing are domestic service costs and take the domestic escalator. The regulated margin per litre is a domestic administered price and takes the domestic escalator as well."
+ },
+ "working_capital": {
+  "dso_trade": 26.76764707381757,
+  "dso_all": 34.47981727637454,
+  "dio": 19.847540451953236,
+  "dpo_trade": 39.2806191684956,
+  "dpo_all": 85.25432762248899,
+  "ccc_trade": 7.334568357275209,
+  "ccc_all": -30.92696989416121,
+  "nwc_fy25": -1796.909000000001
+ },
+ "calibration": {
+  "step0": {
+   "ticker": "ADNOCDIST",
+   "market": "AE",
+   "windows_scored": 17,
+   "windows_prebreak_dropped": 13,
+   "first_origin": "2022-03-30",
+   "last_origin": "2026-04-06",
+   "nu": 10.0,
+   "width_cal": 0.979,
+   "skill_norm": -0.0413436295244074,
+   "skill_raw": -0.04358661362406746,
+   "verdict": "FAIL",
+   "ci_blocks": {
+    "2": [
+     -0.07698855119493443,
+     -0.009847568719388454,
+     "FAIL"
+    ],
+    "3": [
+     -0.07522116196834383,
+     -0.006347336654428658,
+     "FAIL"
+    ],
+    "4": [
+     -0.0634558640731622,
+     -0.0048469929533936935,
+     "FAIL"
+    ]
+   },
+   "cov50": 0.7647058823529411,
+   "cov80": 1.0,
+   "cov90": 1.0,
+   "pit_mean": 0.4440882352941177,
+   "pit_hist": [
+    0,
+    0,
+    3,
+    5,
+    4,
+    0,
+    4,
+    0,
+    1,
+    0
+   ],
+   "w90_ratio": 1.161665197956871,
+   "market_gate": {
+    "verdict": "PARITY",
+    "skill": 0.0068,
+    "ci90": [
+     -0.001,
+     0.014
+    ],
+    "fit_date": "2026-07-29",
+    "panel_names": 18,
+    "windows": 261
+   },
+   "dq_log": [],
+   "clean_rows": 2162,
+   "raw_rows": 2162,
+   "density_rows_per_yr": 249.97483380816715,
+   "span_years": 8.648870636550308,
+   "sessions_per_year": {
+    "2017": 12,
+    "2018": 250,
+    "2019": 248,
+    "2020": 251,
+    "2021": 249,
+    "2022": 250,
+    "2023": 251,
+    "2024": 252,
+    "2025": 252,
+    "2026": 147
+   },
+   "max_abs_log": 0.10536051565782623,
+   "flat_frac": 0.14622859787135586,
+   "artifact_threshold": 0.21127460834710743
+  },
+  "backtest": {
+   "full": {
+    "label": "FULL cleaned history",
+    "windows": 30,
+    "first_origin": "2018-12-30",
+    "last_origin": "2026-04-06",
+    "span_years": 7.27,
+    "skill_norm": -0.02311130366461356,
+    "skill_raw": -0.024308755282410832,
+    "verdict": "FAIL",
+    "ci_blocks": {
+     "2": [
+      -0.0408,
+      -0.0053,
+      "FAIL"
+     ],
+     "3": [
+      -0.0399,
+      -0.0041,
+      "FAIL"
+     ],
+     "4": [
+      -0.0362,
+      -0.0046,
+      "FAIL"
+     ]
+    },
+    "cov50": 0.6666666666666666,
+    "cov80": 0.9333333333333333,
+    "cov90": 0.9666666666666667,
+    "pit_mean": 0.5161999999999999,
+    "pit_hist": [
+     0,
+     1,
+     3,
+     8,
+     5,
+     2,
+     4,
+     2,
+     3,
+     2
+    ],
+    "chi2": 15.33,
+    "chi2_p": 0.082,
+    "ks_stat": 0.178,
+    "ks_p": 0.266,
+    "width_vs_benchmark": 1.119903073154711
+   },
+   "five_year": {
+    "label": "LAST FIVE YEARS of origins",
+    "windows": 19,
+    "first_origin": "2021-09-30",
+    "last_origin": "2026-04-06",
+    "span_years": 4.51,
+    "skill_norm": -0.03441249034120952,
+    "skill_raw": -0.03573044746615395,
+    "verdict": "FAIL",
+    "ci_blocks": {
+     "2": [
+      -0.0685,
+      -0.0047,
+      "FAIL"
+     ],
+     "3": [
+      -0.0668,
+      -0.0036,
+      "FAIL"
+     ],
+     "4": [
+      -0.0623,
+      -0.0066,
+      "FAIL"
+     ]
+    },
+    "cov50": 0.7894736842105263,
+    "cov80": 1.0,
+    "cov90": 1.0,
+    "pit_mean": 0.4534447368421053,
+    "pit_hist": [
+     0,
+     0,
+     3,
+     5,
+     5,
+     1,
+     4,
+     0,
+     1,
+     0
+    ],
+    "chi2": 21.53,
+    "chi2_p": 0.011,
+    "ks_stat": 0.268,
+    "ks_p": 0.107,
+    "width_vs_benchmark": 1.145742203483004
+   },
+   "production": {
+    "label": "production window set (post-break origins)",
+    "windows": 17,
+    "first_origin": "2022-03-30",
+    "last_origin": "2026-04-06",
+    "span_years": 4.02,
+    "skill_norm": -0.0413436295244074,
+    "skill_raw": -0.04358661362406746,
+    "verdict": "FAIL",
+    "ci_blocks": {
+     "2": [
+      -0.077,
+      -0.0098,
+      "FAIL"
+     ],
+     "3": [
+      -0.0752,
+      -0.0063,
+      "FAIL"
+     ],
+     "4": [
+      -0.0635,
+      -0.0048,
+      "FAIL"
+     ]
+    },
+    "cov50": 0.7647058823529411,
+    "cov80": 1.0,
+    "cov90": 1.0,
+    "pit_mean": 0.4440882352941177,
+    "pit_hist": [
+     0,
+     0,
+     3,
+     5,
+     4,
+     0,
+     4,
+     0,
+     1,
+     0
+    ],
+    "chi2": 22.41,
+    "chi2_p": 0.008,
+    "ks_stat": 0.262,
+    "ks_p": 0.161,
+    "width_vs_benchmark": 1.161665197956871
+   },
+   "h1_full": {
+    "label": "1-month horizon, FULL cleaned history",
+    "windows": 88,
+    "first_origin": "2018-12-30",
+    "last_origin": "2026-06-08",
+    "span_years": 7.44,
+    "skill_norm": 0.008638785547366523,
+    "skill_raw": 0.011839443318866993,
+    "verdict": "PARITY",
+    "ci_blocks": {
+     "2": [
+      -0.0045,
+      0.0212,
+      "PARITY"
+     ],
+     "3": [
+      -0.004,
+      0.0216,
+      "PARITY"
+     ],
+     "4": [
+      -0.0031,
+      0.0226,
+      "PARITY"
+     ]
+    },
+    "cov50": 0.7045454545454546,
+    "cov80": 0.8863636363636364,
+    "cov90": 0.9659090909090909,
+    "pit_mean": 0.5124670454545455,
+    "pit_hist": [
+     3,
+     1,
+     16,
+     11,
+     12,
+     15,
+     8,
+     9,
+     6,
+     7
+    ],
+    "chi2": 24.05,
+    "chi2_p": 0.004,
+    "ks_stat": 0.17,
+    "ks_p": 0.011,
+    "width_vs_benchmark": 1.081669590430105
+   },
+   "h1_five_year": {
+    "label": "1-month horizon, LAST FIVE YEARS",
+    "windows": 57,
+    "first_origin": "2021-08-18",
+    "last_origin": "2026-06-08",
+    "span_years": 4.8,
+    "skill_norm": 0.01223032278023839,
+    "skill_raw": 0.012748462666851701,
+    "verdict": "PARITY",
+    "ci_blocks": {
+     "2": [
+      -0.0049,
+      0.0264,
+      "PARITY"
+     ],
+     "3": [
+      -0.0051,
+      0.0266,
+      "PARITY"
+     ],
+     "4": [
+      -0.0055,
+      0.0267,
+      "PARITY"
+     ]
+    },
+    "cov50": 0.7719298245614035,
+    "cov80": 0.9298245614035088,
+    "cov90": 0.9824561403508771,
+    "pit_mean": 0.46562719298245614,
+    "pit_hist": [
+     2,
+     1,
+     13,
+     8,
+     8,
+     10,
+     5,
+     5,
+     3,
+     2
+    ],
+    "chi2": 24.58,
+    "chi2_p": 0.003,
+    "ks_stat": 0.169,
+    "ks_p": 0.068,
+    "width_vs_benchmark": 1.1068944371348204
+   },
+   "h1_production": {
+    "label": "1-month horizon, production window set",
+    "windows": 52,
+    "first_origin": "2022-01-21",
+    "last_origin": "2026-06-08",
+    "span_years": 4.38,
+    "skill_norm": 0.008286484007637873,
+    "skill_raw": 0.008466878403509348,
+    "verdict": "PARITY",
+    "ci_blocks": {
+     "2": [
+      -0.0098,
+      0.0226,
+      "PARITY"
+     ],
+     "3": [
+      -0.0102,
+      0.0213,
+      "PARITY"
+     ],
+     "4": [
+      -0.0106,
+      0.0219,
+      "PARITY"
+     ]
+    },
+    "cov50": 0.7692307692307693,
+    "cov80": 0.9230769230769231,
+    "cov90": 0.9807692307692307,
+    "pit_mean": 0.4732105769230769,
+    "pit_hist": [
+     2,
+     1,
+     11,
+     8,
+     7,
+     8,
+     5,
+     5,
+     3,
+     2
+    ],
+    "chi2": 18.38,
+    "chi2_p": 0.031,
+    "ks_stat": 0.164,
+    "ks_p": 0.107,
+    "width_vs_benchmark": 1.1246358361754336
+   },
+   "fit": {
+    "nu": 10.0,
+    "width_cal": 0.979,
+    "market_verdict": "PARITY",
+    "market_skill": 0.0068,
+    "market_ci90": [
+     -0.001,
+     0.014
+    ],
+    "fit_date": "2026-07-29",
+    "panel_names": 18
+   }
+  },
+  "vol": {
+   "panel_vol": [
+    {
+     "ticker": "IHC",
+     "n": 1143,
+     "ann_vol": 0.1258360143305976,
+     "rank": 1
+    },
+    {
+     "ticker": "DEWA",
+     "n": 1071,
+     "ann_vol": 0.1881379309825729,
+     "rank": 2
+    },
+    {
+     "ticker": "ADNOCGAS",
+     "n": 840,
+     "ann_vol": 0.19089232004913437,
+     "rank": 3
+    },
+    {
+     "ticker": "ADNOCDIST",
+     "n": 1152,
+     "ann_vol": 0.19568384563163888,
+     "rank": 4
+    },
+    {
+     "ticker": "DIB",
+     "n": 1143,
+     "ann_vol": 0.21168671126318747,
+     "rank": 5
+    },
+    {
+     "ticker": "EAND",
+     "n": 1137,
+     "ann_vol": 0.23231773716354767,
+     "rank": 6
+    },
+    {
+     "ticker": "LULU",
+     "n": 420,
+     "ann_vol": 0.2542535977287186,
+     "rank": 7
+    },
+    {
+     "ticker": "AGTHIA",
+     "n": 1140,
+     "ann_vol": 0.25587547113684833,
+     "rank": 8
+    },
+    {
+     "ticker": "SALIK",
+     "n": 956,
+     "ann_vol": 0.25759456920608725,
+     "rank": 9
+    },
+    {
+     "ticker": "FAB",
+     "n": 1143,
+     "ann_vol": 0.25820812856787967,
+     "rank": 10
+    },
+    {
+     "ticker": "ADCB",
+     "n": 1128,
+     "ann_vol": 0.2837531016471744,
+     "rank": 11
+    },
+    {
+     "ticker": "ENBD",
+     "n": 1143,
+     "ann_vol": 0.2846052271682178,
+     "rank": 12
+    },
+    {
+     "ticker": "ADIB",
+     "n": 1132,
+     "ann_vol": 0.2886316650949053,
+     "rank": 13
+    },
+    {
+     "ticker": "ALDAR",
+     "n": 1141,
+     "ann_vol": 0.29844449511443055,
+     "rank": 14
+    },
+    {
+     "ticker": "EMAAR",
+     "n": 1142,
+     "ann_vol": 0.30233258232249,
+     "rank": 15
+    },
+    {
+     "ticker": "ALPHADHABI",
+     "n": 1141,
+     "ann_vol": 0.30573130759582773,
+     "rank": 16
+    },
+    {
+     "ticker": "BURJEEL",
+     "n": 948,
+     "ann_vol": 0.30955402960733686,
+     "rank": 17
+    },
+    {
+     "ticker": "EMAARDEV",
+     "n": 1143,
+     "ann_vol": 0.3304349245771342,
+     "rank": 18
+    },
+    {
+     "ticker": "TWOPOINTZERO",
+     "n": 1144,
+     "ann_vol": 0.3788287962609433,
+     "rank": 19
+    }
+   ],
+   "adnocdist_vol": 0.19568384563163888,
+   "rank": 4,
+   "n": 19,
+   "panel_median": 0.270980615107527,
+   "panel_mean": 0.2642843672120574,
+   "ratio_to_median": 0.7221322660072572
+  },
+  "width": {
+   "w90_ratio_mean": 1.161665197956871,
+   "w90_ratio_median": 1.1170587252952233,
+   "wider_windows": 16,
+   "n": 17,
+   "std_u": 0.5025881892600813,
+   "implied_name_width": 0.4920338372856196,
+   "pooled_width": 0.979
+  }
+ }
+}

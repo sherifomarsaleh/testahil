@@ -1,0 +1,628 @@
+{
+  "_meta": {
+    "company": "Emirates Central Cooling Systems Corporation P.J.S.C (EMPOWER)",
+    "source_document": "FY2025 audited consolidated financial statements (Directors' report + consolidated FS), year ended 31 December 2025, with FY2024 comparatives",
+    "units": "AED'000 unless stated",
+    "extracted_from": "OCR text empower_fs_2025_ocr.txt (85 pages)",
+    "extraction_date": "2026-08-09",
+    "auditor": "PricewaterhouseCoopers Limited Partnership Dubai Branch (License no. 102451); engagement partner Liana Kalakesh, Registered Auditor No. 5599",
+    "audit_opinion": "Unqualified (present fairly, IFRS Accounting Standards); key audit matter: accuracy of revenue from consumption charges",
+    "opinion_date": "2026-02-09",
+    "fs_approved_by_board": "2026-02-09",
+    "share_count_thousands": 10000000,
+    "par_value_aed": 0.10,
+    "share_capital_aed000": 1000000,
+    "ownership": {
+      "DEWA": 0.56,
+      "Emirates_Power_Investment_LLC": 0.24,
+      "public_free_float": 0.20,
+      "note": "DEWA contributed AED 560,000k, Emirates Power Investment LLC AED 240,000k, public AED 200,000k of the AED 1,000,000k capital. Pre-IPO: DEWA 70% / TECOM 30%; TECOM's 30% transferred to Emirates Power Investment LLC on 9 May 2022; listed on DFM 15 Nov 2022 (20% of capital)."
+    },
+    "subsidiaries": {
+      "Empower Insulated Pipe Systems LLC (ex Empower Logstor)": "100% (100% in 2024; 3% minority bought from Logstor Holding in 2024 for AED 159k)",
+      "Palm District Cooling LLC": "100%",
+      "Palm Utilities LLC": "100%",
+      "Empower FM LLC": "100%",
+      "Empower Engineering & Consultancy LLC": "100%",
+      "Empower Snow LLC": "100% (acquired 2021 from Nakheel for AED 673,900k)",
+      "DXB CoolCo FZCO": "85% (acquired 2023 from DACC for AED 892,500k; NCI recorded at AED 157,500k; 35-year exclusive district-cooling concession for Dubai International Airport from 5 July 2023)"
+    },
+    "ocr_unreadable_sections": [
+      "Consolidated statement of changes in equity (page 15) — table column-scrambled; year-end equity balances taken from balance sheet instead",
+      "Note 5 Property, plant and equipment cost/depreciation matrix (pages 54-55) — table column-scrambled; only cross-verifiable figures recorded, category detail nulled",
+      "Note 11 trade receivables ageing / provision matrix (page 61) — table column-scrambled",
+      "Note 24 operating segments results table (pages 73-74) — table column-scrambled; segment P&L figures nulled"
+    ]
+  },
+  "2025": {
+    "income_statement": {
+      "revenue": 3419304,
+      "interest_income_amortised_cost": 58307,
+      "cost_of_sales": -1989283,
+      "gross_profit": 1488328,
+      "ga_expenses": -256383,
+      "reversal_of_expected_credit_losses": 16137,
+      "other_income": 24430,
+      "operating_profit": 1272512,
+      "finance_income": 55347,
+      "finance_costs": -224698,
+      "finance_costs_net": -169351,
+      "profit_before_tax": 1103161,
+      "income_tax": -99226,
+      "profit_after_tax": 1003935,
+      "profit_equity_holders": 993302,
+      "profit_nci": 10633,
+      "eps_aed": 0.099,
+      "other_comprehensive_income": {
+        "fvoci_fair_value_change": 68,
+        "deferred_tax_on_fvoci": -6,
+        "remeasurement_post_employment_benefits": -5021,
+        "total_oci_net_of_tax": -4959
+      },
+      "total_comprehensive_income": 998976,
+      "tci_equity_holders": 988343,
+      "tci_nci": 10633
+    },
+    "balance_sheet": {
+      "non_current_assets": {
+        "property_plant_and_equipment": 7194990,
+        "right_of_use_assets": 1878,
+        "intangible_assets": 315668,
+        "financial_assets_at_amortised_cost": 1284009,
+        "financial_assets_fvoci": 55778,
+        "investment_properties": 170793,
+        "deferred_tax_assets": 15077,
+        "investment_in_joint_venture": 0,
+        "total": 9038193
+      },
+      "current_assets": {
+        "inventories": 55718,
+        "trade_and_other_receivables": 303818,
+        "due_from_related_parties": 39353,
+        "financial_assets_at_amortised_cost": 20830,
+        "financial_assets_fvtpl": 45461,
+        "term_deposits": 57704,
+        "cash_and_cash_equivalents": 2255745,
+        "total": 2778629
+      },
+      "total_assets": 11816822,
+      "equity": {
+        "share_capital": 1000000,
+        "statutory_reserve": 500000,
+        "other_reserves": 13809,
+        "contributed_capital": 82190,
+        "retained_earnings": 1714934,
+        "equity_attributable_to_parent": 3310933,
+        "non_controlling_interests": 186378,
+        "total_equity": 3497311
+      },
+      "non_current_liabilities": {
+        "bank_borrowings": 5500000,
+        "government_grants": 299998,
+        "employees_end_of_service_benefits": 70893,
+        "retentions_payable": 15835,
+        "lease_liabilities": 0,
+        "total": 5886726
+      },
+      "current_liabilities": {
+        "trade_and_other_payables": 2165056,
+        "due_to_related_parties": 161670,
+        "current_tax_liabilities": 97585,
+        "bank_borrowings": 3418,
+        "government_grants": 3170,
+        "lease_liabilities": 1886,
+        "total": 2432785
+      },
+      "total_liabilities": 8319511,
+      "total_equity_and_liabilities": 11816822
+    },
+    "cash_flow": {
+      "profit_before_tax": 1103161,
+      "adjustments": {
+        "depreciation_ppe": 352199,
+        "depreciation_right_of_use_assets": 5361,
+        "depreciation_investment_properties": 6317,
+        "amortisation_intangibles": 12157,
+        "remeasurement_of_financial_assets": 22463,
+        "share_of_loss_from_joint_venture": 191,
+        "amortisation_of_arrangement_fee": 3781,
+        "impairment_charge_project_cost": 0,
+        "reversal_of_impairment_trade_receivables": -16137,
+        "loss_on_disposal_ppe": 0,
+        "provision_end_of_service_benefits": 9164,
+        "interest_on_lease_liabilities": 164,
+        "interest_income_financial_assets_amortised_cost": -58307,
+        "finance_income": -55347,
+        "interest_expense_bank_borrowings": 220753,
+        "government_grant_income": -2780
+      },
+      "operating_cash_flows_before_wc": 1603140,
+      "working_capital_changes": {
+        "inventories": -1929,
+        "financial_assets": 55792,
+        "trade_and_other_receivables": -21880,
+        "due_from_related_parties": -21277,
+        "trade_and_other_payables": 336170,
+        "due_to_related_parties": 2414
+      },
+      "cash_generated_from_operations": 1952430,
+      "end_of_service_benefits_paid": -1435,
+      "income_tax_paid": -88953,
+      "net_cash_from_operating": 1862042,
+      "investing": {
+        "acquisition_of_interest_in_subsidiary": 0,
+        "capital_expenditure_net_of_project_cost_accruals": -440039,
+        "short_term_deposits_gt_3m_net": -26900,
+        "investment_in_fvtpl_assets": -19829,
+        "finance_income_received": 54641,
+        "net_cash_used_in_investing": -432127
+      },
+      "financing": {
+        "proceeds_from_bank_borrowings_net_of_arrangement_fee": 6749358,
+        "repayment_of_bank_borrowings": -6750000,
+        "dividends_paid": -875000,
+        "lease_principal_paid": -5391,
+        "lease_interest_paid": -164,
+        "finance_costs_paid": -229600,
+        "net_cash_used_in_financing": -1110797
+      },
+      "net_increase_in_cash": 319118,
+      "cash_at_beginning": 1936627,
+      "cash_at_end": 2255745,
+      "net_debt": {
+        "cash_and_cash_equivalents": 2255745,
+        "borrowings_within_one_year": -3418,
+        "borrowings_after_one_year": -5500000,
+        "lease_liabilities": -1886,
+        "net_debt": -3249559,
+        "gross_debt_fixed_rate": 0,
+        "gross_debt_variable_rate": -5503418
+      },
+      "non_cash_transactions": {
+        "capital_expenditure": 171085,
+        "additions_right_of_use_assets": 1726
+      }
+    },
+    "notes": {
+      "revenue_note23": {
+        "district_cooling_services": 3402090,
+        "sale_of_pre_insulated_pipes": 17214,
+        "total": 3419304,
+        "consumption_revenue_within_district_cooling": 1923892,
+        "consumption_revenue_source": "Auditor's key-audit-matter text: 'revenues from district cooling services of AED 3,402,090 thousand (Note 23)... of which AED 1,923,892 relates to consumption revenue'",
+        "capacity_demand_revenue": null,
+        "connection_charges_revenue": null,
+        "streams_no_numeric_split": "Note 23 splits only district cooling vs pipes. Revenue policy (Note 2.16) describes streams: demand (capacity) charges, consumption charges, ETS service charges, connection charges (recognised over service period), other services. No numeric disaggregation by stream is disclosed beyond the KAM consumption figure.",
+        "deferred_revenue_movement": {
+          "at_1_january": 520094,
+          "billed_during_year": 1632119,
+          "income_recognised_during_year": -1410342,
+          "at_31_december": 741871,
+          "revenue_recognised_from_opening_contract_liability": 146034
+        }
+      },
+      "cost_of_sales_note25": {
+        "utilities_cost": 1481133,
+        "depreciation_ppe": 341696,
+        "staff_costs": 52134,
+        "repairs_and_maintenance": 45416,
+        "amortisation_intangibles": 12157,
+        "materials": 10138,
+        "depreciation_right_of_use": 1325,
+        "impairment_charge_ppe": 0,
+        "others_spares_consumables_insurance_freight": 45284,
+        "total": 1989283
+      },
+      "ga_note26": {
+        "staff_costs": 177603,
+        "depreciation_ppe": 10503,
+        "consultancy_charges": 7363,
+        "depreciation_investment_properties": 6317,
+        "board_remuneration": 5940,
+        "communication": 5931,
+        "bank_charges": 5300,
+        "advertising_marketing": 5188,
+        "software_maintenance": 4388,
+        "depreciation_right_of_use": 4036,
+        "hse_equipment": 2764,
+        "water_and_electricity": 2226,
+        "repairs_maintenance": 2167,
+        "business_travel": 1676,
+        "rent_short_term_leases": 556,
+        "others": 14425,
+        "total": 256383,
+        "social_contributions_within_advertising": 14
+      },
+      "staff_costs_note27": {
+        "salaries": 149795,
+        "staff_benefits": 70778,
+        "end_of_service_benefits": 9164,
+        "total": 229737,
+        "charged_to_cost_of_sales": 52134,
+        "charged_to_ga": 177603
+      },
+      "ppe_note5": {
+        "closing_net_book_value": 7194990,
+        "depreciation_total": 352199,
+        "depreciation_in_cos": 341696,
+        "depreciation_in_ga": 10503,
+        "impairment_charge": 0,
+        "transfers_to_investment_properties": 33408,
+        "additions": null,
+        "capital_work_in_progress_closing": null,
+        "transfers_from_cwip": null,
+        "cost_and_category_detail": null,
+        "ocr_note": "The PPE matrix (pages 54-55) is column-scrambled OCR and unreadable. Depreciation, impairment (nil) and the AED 33,408k transfer to investment properties are cross-verified from Notes 25/26/37 and the cash-flow statement. Cash capex net of project-cost accruals was AED 440,039k and non-cash capex AED 171,085k (Note 36), but the additions/CWIP split within Note 5 could not be read."
+      },
+      "borrowings_note19": {
+        "term_loan": 0,
+        "revolving_credit_facilities_principal": 5500000,
+        "interest_accrued": 3418,
+        "total_borrowings": 5503418,
+        "current_portion": 3418,
+        "non_current_portion": 5500000,
+        "movement": {
+          "at_1_january": 5498415,
+          "drawdown": 6749358,
+          "interest_expense": 220753,
+          "interest_capitalised": 10711,
+          "interest_paid": -229600,
+          "principal_repayment": -6750000,
+          "arrangement_fee_charged_to_pl": 3781,
+          "at_31_december": 5503418
+        },
+        "facilities": [
+          {
+            "facility": "RCF - Conventional & Islamic",
+            "maturity": "September 2027",
+            "interest_basis": "EIBOR + margin (margin not disclosed)",
+            "amount_aed000": 2750000
+          },
+          {
+            "facility": "RCF - Conventional & Islamic",
+            "maturity": "February 2028",
+            "interest_basis": "EIBOR + margin (margin not disclosed)",
+            "amount_aed000": 2750000
+          }
+        ],
+        "currency": "AED (EIBOR-priced; conventional & Islamic tranches)",
+        "exact_margin_bps": null,
+        "undrawn_facilities": 0,
+        "maturity_profile": {
+          "within_one_year": 3418,
+          "one_to_three_years": 5500000
+        },
+        "contractual_undiscounted_cash_flows_incl_interest": {
+          "total": 5911182,
+          "less_than_1_year": 207887,
+          "between_1_and_5_years": 5703295
+        },
+        "security_guarantees": "Facilities guaranteed by the Company and Palm District Cooling LLC; no bank guarantees or letters of credit outstanding",
+        "covenants": "Net debt / tangible net worth and net debt / EBITDA; complied with at period end; the Feb-2025 change in financial covenants assessed as not substantial",
+        "refinancing_25_feb_2025": "Exchanged facilities with an existing lender: maturity extended from September 2027 to February 2028, interest margin reduced, term loans converted to revolving facilities. Quantitative 10% PV test not met but qualitative changes judged substantial, so accounted for as extinguishment of the old liability and recognition of a new one at fair value; AED 5,065k charged to P&L including AED 3,781k unamortised arrangement fee of the previous borrowings.",
+        "repricing": "All borrowings variable rate; contractual repricing 1-12 months (re-pricing bucket: 3 months or less for the full AED 5,503,418k); no hedging",
+        "rate_sensitivity_1pct": 48653,
+        "principal_lender_related_party": "Emirates NBD PJSC (entity under common control of ultimate parent); finance cost from Emirates NBD in 2025: AED 215,289k"
+      },
+      "finance_costs_note30": {
+        "finance_income": {
+          "interest_income_short_term_bank_deposits": 49180,
+          "interest_income_fvoci": 3305,
+          "interest_income_call_accounts": 1384,
+          "interest_income_fvtpl": 1478,
+          "total": 55347
+        },
+        "finance_costs": {
+          "interest_expense_bank_borrowings": -228728,
+          "amortisation_of_arrangement_fees": -3781,
+          "arrangement_fees_paid_on_refinance": -2736,
+          "interest_on_lease_liabilities": -164,
+          "subtotal": -235409,
+          "interest_capitalised": 10711,
+          "total": -224698
+        },
+        "finance_costs_net": -169351,
+        "capitalisation_rate_pct": 4.92
+      },
+      "income_tax_note28": {
+        "regime": "UAE corporate tax, first effective year FY2025 for current tax accrual base shown; statutory rate 9%; Pillar Two assessed and Group concluded out of scope",
+        "current_tax": 98082,
+        "deferred_tax": 1144,
+        "total_income_tax": 99226,
+        "profit_before_tax": 1103161,
+        "tax_at_statutory_9pct": 99284,
+        "income_exempt": -66,
+        "other_adjustments": 8,
+        "effective_tax_rate_pct": 9.0,
+        "current_tax_liabilities": 97585,
+        "deferred_tax_asset_net": 15077,
+        "income_tax_paid_in_year": 88953
+      },
+      "segments_note24": {
+        "structure": "Two reportable segments: 'Chilled water' (district cooling) and 'Pre-insulated pipe business'; CODM is the Board of Directors; segment performance evaluated on operating profit and monitored to net profit level",
+        "segment_results_table": null,
+        "ocr_note": "Segment results table (pages 73-74) is column-scrambled OCR. Revenue by segment recoverable from Note 23: district cooling AED 3,402,090k, pipes AED 17,214k (external)."
+      },
+      "related_parties_note12": {
+        "services_received_from_DEWA": 1467650,
+        "services_received_from_DEWA_2024": 1442388,
+        "dewa_note": "DEWA (56% shareholder) supplies electricity and water; accrued expenses for water and electricity payable to DEWA within other liabilities: AED 50,207k (2024: 37,967k); deposit receivable from DEWA AED 4,490k",
+        "services_rendered_to_common_control_entities": {
+          "Dubai_Properties_Group": 160395,
+          "Nakheel_PJSC": 168797,
+          "Tecom_Investments": 66942,
+          "Jumeirah_Group": 58976,
+          "Meraas_Holding": 39307,
+          "Meydan_Group": 18337,
+          "Global_Village_Dubai": 623,
+          "total": 513377
+        },
+        "services_rendered_to_Dubai_Airports_Corporation": 256678,
+        "finance_cost_from_Emirates_NBD": 215289,
+        "dividends_to_shareholders": {
+          "Emirates_Power_Investment": 210000,
+          "DEWA": 490000,
+          "total": 700000
+        },
+        "key_management": {
+          "board_remuneration": 5940,
+          "short_term_benefits": 9639,
+          "end_of_service_benefits": 520,
+          "total_kmp_compensation": 10159
+        },
+        "due_from_related_parties": {
+          "Nakheel_PJSC": 16308,
+          "Jumeirah_Group": 3720,
+          "Tecom_Investments": 2291,
+          "Meraas_Holding": 69,
+          "others": 30,
+          "Dubai_Airports_Corporation": 16171,
+          "DACC": 764,
+          "total": 39353
+        },
+        "due_to_related_parties": {
+          "DEWA": 103483,
+          "Meydan_City_Corporation": 28551,
+          "Dubai_Properties_Group": 21333,
+          "Dubai_Airports_Corporation": 8046,
+          "others": 257,
+          "total": 161670
+        },
+        "balances_within_other_captions": {
+          "DEWA_deposit_in_receivables": 4490,
+          "Emirates_NBD": 5921192,
+          "DACC_financial_asset": 1012906,
+          "Nakheel_financial_asset": 291933,
+          "Dubai_Islamic_Bank": 291838,
+          "Emirates_Islamic_Bank": 138725,
+          "note": "Amounts included across bank borrowings, financial assets at amortised cost, cash and cash equivalents and trade and other receivables"
+        }
+      },
+      "dividends_note39": {
+        "final_dividend_for_fy2024_declared_19_mar_2025_paid_16_apr_2025": 437500,
+        "final_dividend_per_share_aed": 0.04375,
+        "interim_dividend_for_h1_2025_declared_9_oct_2025_paid_30_oct_2025": 437500,
+        "interim_dividend_per_share_aed": 0.04375,
+        "total_dividends_paid_in_2025": 875000
+      },
+      "capacity_operations": {
+        "new_customer_agreements_2025": 163,
+        "new_demand_capacity_rt": 171696,
+        "total_contracted_capacity_rt": 1940000,
+        "major_agreements": [
+          "DMCC — next phase of Uptown Dubai, 24,675 RT",
+          "Wasl Group — 'The Island' project, 23,853 RT"
+        ],
+        "source": "Directors' report; no plant-count or customer-count disclosure elsewhere in the FS"
+      },
+      "financial_assets_amortised_cost_note8": {
+        "at_1_january": 1324787,
+        "interest_earned": 58307,
+        "remeasurement_and_settlement": -78255,
+        "at_31_december": 1304839,
+        "current_portion": 20830,
+        "non_current_portion": 1284009,
+        "components": {
+          "Nakheel_PJSC_receivable": 291933,
+          "DACC_IFRIC12_receivable": 1012906
+        },
+        "nature": "(a) Receivable from Nakheel PJSC re acquisition of Empower Snow (2021), deriving from Nakheel's minimum demand-load commitment in the Master Concession Agreement; (b) receivable from DACC (grantor) under IFRIC 12 service-concession accounting from the DXB Cool acquisition (2023). Initially at fair value (competitive-bid transaction price, DCF), subsequently amortised cost; level 3."
+      },
+      "government_grants_note20": {
+        "at_1_january": 305948,
+        "released_to_income": -2780,
+        "at_31_december": 303168,
+        "current_portion": 3170,
+        "non_current_portion": 299998,
+        "nature": "Grants (land) received prior to 23 Nov 2009, recognised as income over useful life of plants constructed on granted land"
+      },
+      "other_income_note29": {
+        "rental_income": 18094,
+        "government_grant_release": 2780,
+        "scrap_sale": 1482,
+        "others": 2074,
+        "total": 24430
+      },
+      "investment_properties_note37": {
+        "at_1_january": 118015,
+        "additions": 25687,
+        "transfers_from_ppe": 33408,
+        "depreciation": -6317,
+        "at_31_december": 170793,
+        "land_within": 2536,
+        "fair_value": 239350,
+        "rental_income_recognised": 16030,
+        "nature": "HQ project (2 towers) started 2021; residential tower complete and leased; in 2025 three floors of the office tower reclassified from PPE to investment property after decision to lease them; office tower for own use expected complete Q2 2026"
+      },
+      "trade_receivables_note11": {
+        "trade_receivables_gross": 199213,
+        "accrued_revenues": 44424,
+        "provision_for_ecl": -41078,
+        "net_trade_receivables": 202559,
+        "other_receivables": 16556,
+        "advances_to_contractors_suppliers": 65633,
+        "prepayments": 19070,
+        "total": 303818,
+        "ecl_movement": {
+          "at_1_january": 57215,
+          "reversal_for_year": -16137,
+          "at_31_december": 41078
+        },
+        "concentration": "Three customers = 15.5% of trade receivables (2024: 21.4%); AED 22,398k provided against them"
+      },
+      "trade_and_other_payables_note22": {
+        "deferred_revenue": 741871,
+        "refundable_customer_security_deposits": 549132,
+        "project_cost_accruals": 361648,
+        "project_payables": 143675,
+        "retentions_payable": 108514,
+        "other_liabilities": 276051,
+        "total": 2180891,
+        "non_current_retentions": -15835,
+        "current_portion": 2165056,
+        "dewa_utilities_accrual_within_other_liabilities": 50207
+      },
+      "eosb_note21": {
+        "current_service_cost": 6408,
+        "interest_cost": 2756,
+        "pl_expense": 9164,
+        "actuarial_loss_in_oci_net_of_tax": 5021,
+        "obligation_at_31_december": 70893,
+        "discount_rate_pct": 4.4,
+        "salary_increase_pct": 3.0,
+        "pension_contributions_uae_nationals": 5123
+      },
+      "nci_note32": {
+        "subsidiary": "DXB CoolCo FZCO (85% owned)",
+        "current_assets": 279358,
+        "current_liabilities": 35870,
+        "non_current_assets": 998773,
+        "net_assets": 1242261,
+        "accumulated_nci": 186377,
+        "accumulated_nci_note": "Note 32 prints 186,377; balance sheet prints 186,378 (1k rounding difference, both as printed)",
+        "total_comprehensive_income": 70883,
+        "profit_allocated_to_nci": 10633,
+        "cash_from_operating": 64644,
+        "cash_from_investing": 5488,
+        "net_increase_in_cash": 70132,
+        "net_increase_in_cash_note": "OCR printed '0,132'; 70,132 = 64,644 + 5,488 exactly (no financing line in the table) — flagged as OCR-inferred but arithmetic-exact"
+      },
+      "commitments_note34": {
+        "capital_commitments_projects_in_progress": 825129
+      },
+      "gearing_note3": {
+        "total_borrowings": 5503418,
+        "less_cash": -2255745,
+        "net_debt": 3247673,
+        "total_equity": 3497311,
+        "total_capital": 6744984,
+        "gearing_ratio_pct": 48.2
+      },
+      "leases_note6": {
+        "right_of_use_nbv": 1878,
+        "lease_liabilities": 1886,
+        "additions_rou": 1726,
+        "depreciation_rou": 5361,
+        "interest": 164,
+        "lease_payments_total": 5555,
+        "nature": "Semi-permanent plants leased from DEWA (15y with extension option), head office and labour accommodation (1y)"
+      },
+      "intangibles_note7": {
+        "at_1_january": 327825,
+        "amortisation": -12157,
+        "at_31_december": 315668,
+        "nature": "Rights to charge users, acquired, recognised at fair value at acquisition; 30-year useful life"
+      },
+      "fvoci_note9": {
+        "balance": 55778,
+        "nature": "Listed perpetual Tier 1 Capital Certificates, 6% non-cumulative semi-annual coupon at issuer's discretion",
+        "interest_income": 3305
+      },
+      "fvtpl_note13": {
+        "balance": 45461,
+        "nature": "Investment in National Bonds Corporation; AED 19,829k added in 2025"
+      },
+      "term_deposits_note14": {
+        "balance": 57704,
+        "rate_range_pct": "3.9-4.6"
+      },
+      "cash_note15": {
+        "cash_at_bank": 204886,
+        "short_term_deposits_lt_3m": 2050859,
+        "total": 2255745,
+        "deposit_rate_range_pct": "3.9-4.8"
+      },
+      "inventories_note10": {
+        "spares_consumables": 37988,
+        "pre_insulated_pipes": 18119,
+        "provision_slow_moving": -389,
+        "total": 55718
+      }
+    }
+  },
+  "2024_comparative": {
+    "income_statement": {
+      "revenue": 3260489,
+      "interest_income_amortised_cost": 59151,
+      "cost_of_sales": -1917497,
+      "gross_profit": 1402143,
+      "ga_expenses": -235119,
+      "reversal_of_expected_credit_losses": 17482,
+      "other_income": 7938,
+      "operating_profit": 1192444,
+      "finance_income": 54027,
+      "finance_costs": -248139,
+      "finance_costs_net": -194112,
+      "profit_before_tax": 998332,
+      "income_tax": -90097,
+      "profit_after_tax": 908235,
+      "profit_equity_holders": 896754,
+      "profit_nci": 11481,
+      "eps_aed": 0.090,
+      "total_comprehensive_income": 912493
+    },
+    "balance_sheet": {
+      "property_plant_and_equipment": 6995160,
+      "right_of_use_assets": 5513,
+      "intangible_assets": 327825,
+      "financial_assets_amortised_cost_non_current": 1304838,
+      "financial_assets_fvoci": 55709,
+      "investment_properties": 118015,
+      "deferred_tax_assets": 16228,
+      "investment_in_joint_venture": 307,
+      "non_current_assets": 8823595,
+      "inventories": 53789,
+      "trade_and_other_receivables": 275280,
+      "due_from_related_parties": 18076,
+      "financial_assets_amortised_cost_current": 19949,
+      "financial_assets_fvtpl": 25466,
+      "term_deposits": 30264,
+      "cash_and_cash_equivalents": 1936627,
+      "current_assets": 2359451,
+      "total_assets": 11183046,
+      "equity_attributable_to_parent": 3197590,
+      "non_controlling_interests": 175745,
+      "total_equity": 3373335,
+      "bank_borrowings_non_current": 5496219,
+      "bank_borrowings_current": 2196,
+      "trade_and_other_payables_current": 1677637,
+      "due_to_related_parties": 159372,
+      "current_tax_liabilities": 88953,
+      "total_liabilities": 7809711
+    },
+    "cash_flow": {
+      "net_cash_from_operating": 1824402,
+      "net_cash_used_in_investing": -272121,
+      "net_cash_used_in_financing": -154434,
+      "net_increase_in_cash": 1397847,
+      "dividends_paid": -850000,
+      "capex_net_of_accruals": -306781
+    },
+    "dividends_paid_in_2024": {
+      "final_for_fy2023": 425000,
+      "interim_for_fy2024": 425000,
+      "total": 850000,
+      "per_share_each_aed": 0.0425
+    }
+  }
+}
