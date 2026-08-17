@@ -1,0 +1,32 @@
+{
+ "ticker": "ADNOCLS",
+ "market": "AE",
+ "exchange": "ADX",
+ "beta": 1.1032195993700773,
+ "r2": 0.18143771474475046,
+ "se": 0.3147485189035996,
+ "n": 159,
+ "ci90": [
+  0.5854582857736559,
+  1.6209809129664987
+ ],
+ "usable": true,
+ "gate_msg": "passes minimum usability gate",
+ "dimson": true,
+ "frequency": "weekly",
+ "weak": false,
+ "warnings": [],
+ "window_years": 3.09,
+ "first_obs": "2023-06-16",
+ "last_obs": "2026-07-17",
+ "blume_crosscheck": 1.0688130662467181,
+ "index_file": "raw_indices/AE/FADGI.csv",
+ "index_asof": "2026-07-24",
+ "index_dq": [
+  "dropped 1 interior stale/no-trade rows"
+ ],
+ "stock_dq": [],
+ "week_rule": "W-FRI",
+ "interim_note": null,
+ "conforming": true
+}

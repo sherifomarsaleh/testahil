@@ -1,0 +1,631 @@
+
+===== PAGE 1 =====
+ADNOC Classification: Public
+Q1 2026 Earnings Call Transcript
+14 May 2026
+
+===== PAGE 2 =====
+ADNOC Classification: Public
+Corporate Participants
+Abdulkareem Al Masabi – ADNOC L&S – Chief Executive Officer
+Hugh Baker – ADNOC L&S – Chief Financial Officer
+Rahoof Khaleel Rahman – ADNOC L&S – VP Finance
+Engy El Dishish – ADNOC L&S – Investor Relations Manager
+Engy El Dishish – ADNOC L&S – Investor Relations Manager
+Thank you, Ali. Hello, and good afternoon to everyone, and welcome to the ADNOC L&S first Quarter 2026
+financial results earnings call. My name is Engy El Dishish. I am Investor Relations Manager at ADNOC L&S. On
+behalf of the entire team, I'd like to warmly welcome everyone and sincerely thank you for your ongoing interest
+in ADNOC L&S. We're pleased to have you with us for today's call. By now, you should have received the full
+year earnings presentation. If you haven't, you can download it from ADNOC L&S website in the Investor
+Relations section.
+I would like to direct your attention to our disclaimer on Slide #2 before we begin. It contains important information,
+and we advise caution on the interpretation and limitations of historical data and forward-looking statements. Our
+presenters today include Captain Abdulkareem Al Masabi, ADNOC L&S CEO; and Mr. Hugh Baker, ADNOC
+L&S CFO. I will now hand over to our CEO for his opening remarks.
+Abdulkareem Al Masabi – ADNOC L&S – Chief Executive Officer
+Thank you, Engy, and good afternoon, everyone, and thank you for joining us today. It is a privilege to speak to
+all of you. We delivered a very strong start to 2026, underpinned by shipping market strength, disciplined
+execution and continued balance sheet resilience considering an unprecedented operating environment. Net
+profit increased 20% year-on-year to $222 million, while EBITDA rose 7% to $368 million, reflecting solid
+operating leverage, and this was driven primarily by a significant uplift in shipping TCE rates, which translated
+into strong growth across our core financial metrics, with shipping revenue, EBITDA, and net profit up 4%, 37%,
+and 103% year-on-year, respectively.
+Importantly, the strong operational performance continued to support excellent cash generation. Operating free
+cash flow increased 45% year-on-year to $394 million, reflecting strong cash conversion, enabling us to both
+fund our growth strategy and continue delivering attractive shareholder returns. Given this momentum and the
+visibility we have across the rest of the year, I am glad to share that we have upgraded our full year 2026 guidance
+across key financial metrics, including revenue, EBITDA and net profit, which Hugh will explain as we progress
+through the presentation.
+In line with our dividend policy, we are proposing a Q1 dividend of USD 85.3 million, up 5% year-on-year,
+reinforcing our commitment to delivering progressive returns to our shareholders. Overall, this quarter reflects
+the strength of our global and diversified platform, contract structure, and our ability to convert market
+opportunities into earnings, cash flow, and shareholders' value.
+
+===== PAGE 3 =====
+ADNOC Classification: Public
+Go to Slide 5. Our competitive advantage comes from our strategic partnership with ADNOC as it expands
+globally. As ADNOC's leading energy logistics provider, we benefit from the secure long-term contracted revenue
+streams with growing EBITDA margins, and we have secured $25 billion in future contracted revenue with $21
+billion coming directly from ADNOC. Over half of our revenue in 2026 is contracted, providing resilience growth
+and the ability to better plan and optimize our assets.
+As we speak, we have received all [ 5 ] LNG vessels commencing contracts with ADNOC Gas beginning from
+May 2026, with 4 on 15 years contracts and 1 on a 7-year contract. And while currently, they are operating in the
+spot market, benefiting greatly from the surging LNG rates. Additionally, we have contracted 1 vessel out of the
+4 very large ammonia carriers newbuilds upon its delivery during the third quarter of this year with ADNOC Global
+Trading. While each time 1 of our 9 VLECs are delivered, they commence 20-year contracts with Wanhua
+Chemicals.
+These contracts commencements are expected to continue to contribute to the ongoing growth of EBITDA
+margins in our gas carrier segment. And we continue to demonstrate financial discipline despite our rapid growth
+with our balance sheet showing ample liquidity underpinned by $695 million cash position and a prudent net debt-
+to-EBITDA ratio of just 0.28x. In short, we have built a business with high earnings visibility, strong growth
+prospects, disciplined leverage and an attractive shareholder return proposition, and we remain firmly focused
+on continuing to deliver sustainable value for our shareholders over the long term.
+We set a very high standard for health, safety, and environment performance and have achieved outstanding
+HSE results in the first quarter of this year due to our s trong safety culture and commitment to protecting our
+people, assets, and environment. The company reported 0 fatalities along with a significant reduction in lost time
+incident frequency and total recordable incident rate down to 0 and 0.06, respectively. And I would like to take a
+moment to emphasize the unmatched business continuity and operational maturity ADNOC L&S has delivered
+across the organization during this demanding period.
+The company demonstrated strength, maturity, and speed of its crisis response across all 3 business segments.
+Our crisis management framework was activated with 6 hourly executive reporting, giving full real-time visibility
+to senior management. And this allowed us to first deliver one of the largest safe transport operations in our
+history, successfully and safely relocating more than 16,000 offshore personnel using over 80 vessels with 0
+incidents. This outcome reflects the quality of our planning, crew training and operational control.
+Second, we maintained full logistics continuity for key ADNOC Group partners. For example, we strengthened
+land transport capacity for Borouge, enhanced storage solutions for Fertiglobe, and upgraded crude loading
+capability in Fujairah, ensuring that critical supply chains continue to operate without disruption. These outcomes,
+among several others, reflect a deeply embedded culture of HSE discipline and operational accountability.
+Our ability to respond quickly, operate safely, and protect continuity under pressure is a strategic differentiator
+and one that directly underpins the trust placed in us by ADNOC, our partners and, of course, our shareholders.
+AI is a core enabler of our strategic advantage at ADNOC Logistics & Services across shipping, offshore logistics
+and warehousing. AI allows us to operate smarter, safer, and more efficiently at scale from optimizing vessel
+routing, cargo planning and asset deployment to real-time safety, monitoring and intelligent warehousing.
+
+===== PAGE 4 =====
+ADNOC Classification: Public
+AI is directly improving performance, utilization, and decision-making. These are embedded operational tools that
+enhance reliability, reduce risk, and increase productivity across our end-to-end logistics platform. As the energy
+value chain becomes more complex and global, AI strengthens our resilience, supports growth, and ensures we
+continue to deliver safe, efficient, and dependable logistics for ADNOC and our global customers. Now I think
+Hugh will provide a detailed update on our results. Over to you.
+Hugh Baker – ADNOC L&S – Chief Financial Officer
+Thank you very much, Captain Abdulkareem, and thank you to all of the analysts and investors joining us on this
+call. Next slide, please. Let me get straight to the headline. This was a record quarter for our shipping segment,
+and it powered the entire group to deliver net profit of $222 million, up 20% year-on-year and EBITDA of $368
+million, up 7%. Group revenue was $1.08 billion, which was down 10% year-on-year on a reported basis. But I
+want to put that in context immediately. The decline is entirely attributable to the wind down of the G-Island EPC
+project in full year 2025. Strip that out, and the underlying business grew revenue 7% year-on-year.
+At the EBITDA level, the group delivered $368 million, up 7% year-on-year, and net profit rose 20% to $222
+million. Look at the segment mix here. Shipping now represents 53% of group EBITDA, up meaningfully, driven
+by record time charter equivalent rates and fleet expansion. Shipping EBITDA was up 37%, and net profit more
+than doubled, up 103%. Integrated Logistics was softer. Revenue down 23%, EBITDA down 17%, but again, this
+is the EPC effect. Services was steady, with revenue up 5% and EBITDA up 13%. The quality of earnings this
+quarter is the highest we've seen. I should flag one material item within the quarter that impacted EBITDA, a $22
+million expected credit loss provision related to our integrated logistics business, which I'll discuss in more detail
+later. Notwithstanding this, we still delivered EBITDA growth and significant margin expansion.
+Next slide. This is our consolidated P&L, balance sheet and cash flow summary, and the numbers tell a
+compelling story. Revenue of $1.08 billion, EBITDA of $368 million and EBITDA margins hitting 34%, a 500 basis
+point expansion year-on-year and 100 basis points sequentially. That margin trajectory reflects the structural
+improvement in our earnings mix as low-margin EPC profits or low-margin EPC business rolls off and high-margin
+spot and contracted shipping rates flow through.
+Net profit was $222 million, up 20% year-on-year. EPS, earnings per share, increased 12% to $0.03 per share. I
+would flag 2 items within the quarter, a $22 million expected credit loss provision predominantly related to offshore
+contracting. And additionally, within our shipping segment, we took a $9 million FFA mark-to-market loss, a
+modest cost of managing rate exposure that is a fraction of the upside on our spot rate -- spot fleet captured in
+the quarter.
+On the cash flow, operating free cash flow of $394 million was up 45% year-on-year, actually exceeding EBITDA.
+This is optimal cash conversion and speaks to the cash-generative nature of our operations. And on the balance
+sheet, net debt of just $420 million was down 62% year-on-year with a net debt-to-EBITDA ratio of 0.28x. That is
+a fortress balance sheet, providing enormous capacity to fund our growth ambitions. With healthy operating free
+cash flow and careful balance sheet management, ADNOC L&S is well positioned for ongoing growth and
+increasing our value.
+Now, let's unpack Integrated Logistics. Total segment revenue was $481 million, down 23% and EBITDA was
+$151 million, down 17%. But the underlying performance is significantly better than these headline numbers
+
+===== PAGE 5 =====
+ADNOC Classification: Public
+suggest. The entire decline is driven by offshore projects, where the G-Island EPC wrapped up. Excluding
+offshore projects and the $21 million in provisions I discussed earlier, EBITDA actually grew 5% year-on-year.
+Importantly, segment EBITDA margins expanded 200 basis points to 31% as the lower EPC mix fell away.
+Offshore contracting revenue was up 4% to $312 million. Offshore services grew 22% to [indiscernible] (00:15:13),
+while offshore projects fell from $192 million to just $4 million. That's the EPC wind down.
+Look at the EPC margin chart on this slide. You can see the offshore contracting margin trend running consistently
+in the low to mid-40 percentiles and offshore services margin steadily climbing from the low 20s towards 29%.
+This is operational leverage at work. Diving deeper into offshore contracting, which is the operational backbone
+of Integrated Logistics. All 45 jack-up barges remain fully employed. We grew the fleet from 43 to 45 barges over
+the past year with select units offering daily rate discounts to sustain full utilization across the fleet.
+Utilization was marginally lower at around 92%, reflecting scheduled dry docking and vessel repositioning for
+contract changeovers. Material handling volumes are ILS, I'll describe it, Integrated Logistics Services platform.
+Operations were stable year-on-year, but declined 15% quarter-on-quarter. This is primarily driven by ADNOC
+offshore production management constraints in March during the heightened geopolitical environment.
+The good news, volumes have gradually improved during April despite us remaining conservative on our full year
+upgraded guidance, which I'll touch upon later. Our own vessel count grew 5% to 54 vessels and vessel utilization
+held at 93%. This is a resilient operation, and we are confident in the near-term recovery.
+Next slide. Offshore Services was a genuine bright spo t this quarter. EBITDA grew 39% year-on-year to $48
+million, with margins expanding 200 basis points to 29%. Revenue was up 22% to $166 million, driven by
+increased offshore logistics demand from ADNOC and other non-ADNOC customers. We delivered 1 additional
+offshore support vessel and 1 Flat Top barge during the first quarter, expanding the fleet to 80 vessels, an 18%
+increase from a year ago. This fleet expansion is directly supporting growing demand requirements across
+ADNOC and other offshore engineering and energy-related companies, including vessel chartering on 1- to 2-
+year contracts, ferry terminal operations for the transportation of crew, our diesel sales contract through 2032
+and subsea services. Utilization dipped to 89%, reflecting scheduled maintenance and redeployment of vessels
+onto new contracts, but the underlying demand trajectory is firmly positive.
+Now let's turn to where the real excitement is, and we make no apologies for spending a little time here because
+this is a record quarter for our shipping business unit. Revenue grew 4% to $512 million. EBITDA surged 37% to
+$197 million, and net profit more than doubled up 103% to $125 million. And shipping EBITDA margins expanded
+a remarkable 900 basis points year-on-year to 38%. Breaking this down by subsegment, we have tankers with
+an EBITDA of $131 million, up 67% year-on-year with net profit nearly quadrupling, up 298% to $100 million. This
+is the powerhouse of the quarter.
+Gas carriers reported EBITDA of $37 million, down 23%, but this comparison is misleading. Q1 2025 included a
+one-off $26 million gain from a vessel contract termination and sale of the medium gas carrier, yes. Normalizing
+that, gas carrier EBITDA grew 63% year-on-year, and gas carrier EBITDA margins are running at an exceptional
+66%. Dry Bulk and Container, EBITDA of $9 million, up 62%, although Ultramax, Supramax time charter
+equivalent rates eased slightly quarter-on-quarter from higher Q4 2025 levels due to normal seasonality, but
+continue to track comfortably above historical and year-on-year averages, up 42% for Supramax/Ultramax year-
+on-year.
+
+===== PAGE 6 =====
+ADNOC Classification: Public
+Handysize rates were softer, down 21%, reflecting market normalization. Our container feeder fleet operates
+under a $531 million, 15-year contract supporting the Borouge container terminal in Ruwais, providing long-dated
+contracted revenue and insulating us from container market volatility.
+Look at the margin chart on the top right. You can see that the tanker margin recovering strongly from Q1 2025
+-- from the Q1 2025 trough. Gas carrier margins increasing consistently in the -- well, being consistently in the
+55% to 66% range, which we expect to further improve with the current deliveries of 5 LNG carriers on contract
+with ADNOC Gas at approximately 80% EBITDA margins. Every sub-segment is moving in the right direction.
+Next slide. This is one of the most important slides in the deck, and I want to emphasize a critical point for
+investors. These tanker earnings are not dependent on us securing ADNOC cargo. Our tanker fleet trades
+globally on the open market. Our 52 owned tankers, MRs, LR1s, LR2s and VLCCs compete for and are winning
+cargo from international oil majors, trading houses and refiners globally. What you see in our TCE rates reflects
+genuine market pricing, and the market is paying very handsomely.
+VLCCs, the TCE is up 268% year-on-year to approximately $145,000 per day. Into Q2, we are seeing indicative
+VLCCs at approximately $260,000 per day, truly exceptional levels. For LR2s, we are seeing an increase of up
+88% to approximately $58,000 a day, with Q2 currently crossing $95,000 per day. LR1s, up 67% to $36,000 per
+day, currently crossing $55,000 per day into Q2. and MRs up 29% to approximately $30,000 per day with Q2
+currently above $44,000 a day.
+With a significant amount of our fleet on spot, we are ma ximizing our exposure to this structurally strong market.
+The drivers supporting these rates remain firmly intact. While the Iran situation has created additional upside, we
+believe the structural fundamentals that were driving tanker rates prior to the conflict remain post conflict.
+Next slide. So this is the story -- this is the slide where the growth story really comes alive. And I want to be very
+clear with investors. We are at a genuine inflection point for our gas carrier fleet. You can see the contract matrix
+here. Starting this month, May 2026, 5 Das LNG carriers are progressively commencing long-term contracts with
+ADNOC Gas, 4 on 15-year contracts and 1 on a 7-year contract at low double-digit unlevered IRRs, delivering
+80% EBITDA margins. These are vessels that until now have been earning at spot rates. And I'm pleased to say
+that they've been enjoying very strong spot rates recently.
+LNG TCEs actually increased despite some Gulf volume disruptions as longer replacement trade routes and
+higher gas prices supported earnings. But the strategic value is that these 5 LNG vessels are now transitioning
+into firm long-term contracted EBITDA with ADNOC Gas, providing visibility and stability for years to come.
+Beyond Das LNG, look at the delivery pipeline on this slide, 2 VLECs, that's very large ethane carriers already in
+the fleet with the program scaling up to 9 VLECs by 2028, contracted on delivery with AW Shipping through to
+2045, 2047 at very high single-digit IRRs.
+1 VLAC, that's a very large ammonia carrier delivering in Q3 2026 on a 3-year spot-linked contract. 8 Ruwais
+LNG contracts -- 8 Ruwais LNG newbuilds arriving in 2028 contracted with ADNOC Gas through to 2048. Again,
+delivering on approximately 80% EBITDA margins for 20-year contracts. Each vessel delivery directly adds to
+contracted EBITDA at significant margins. Gas carrier margins are currently 66%, and this is a compounding
+EBITDA growth engine for the business. The contracted nature of these earnings underpinned by creditworthy
+counterparties in ADNOC Gas and AW Shipping, makes this genuinely infrastructure-like cash flow, which we
+
+===== PAGE 7 =====
+ADNOC Classification: Public
+don't see being rewarded in our share price. For those of you who are not aware, I can say that AW Shipping is
+a 50-50 joint venture between ADNOC L&S and Wanhua Chemicals in China, which is the third largest chemical
+company in China.
+Next slide. Services revenue was up 5% to $89 million and EBITDA rose 13% year-on-year to $20 million.
+EBITDA more than doubled quarter-on-quarter, up 122% as stronger commercial pooling activity and higher
+integrate bunkering profit share, and a partial reallocation of relets to Services drove margins to 23%. This
+segment houses our Navig8 Commercial Pools, Technical Management, Agency and Bunkering operations, all
+of which are benefiting from the elevated shipping rates environment and our growing fleet scale.
+Next slide. So, this is a slide I'm particularly proud of because it illustrates the resilience embedded in our business
+model. We have $25 billion in total long-term contracted revenue, spanning over 935 vessel years. Approximately
+56% of the rest of 2026 volumes are already contracted with $1.7 billion secured with ADNOC alone. Breaking
+this down, in Integrated Logistics, 80% -- around 88% of 2026 revenue is contracted. ILSP contracts to 2032,
+Hail and Ghasha to 2030, and ZMI jack-up barge contracts of up to 5 years.
+In shipping, 30% of 2026 contracted -- revenue has been contracted to date. This 2026 number benefits from the
+12 tankers we currently have chartered out, as well as the LNG vessels commencing contracts. The 2027 to
+2029 number, we would expect to grow if we maintain the same spot versus chartered exposure on our tanker
+fleet as we have today, along with the gas carrier fleet going on contracts that I spoke about before.
+Services, 84% is contracted, reflecting the highly contr acted nature of that business. The forward contracted
+revenue pipeline is $6.5 billion for 2027 to 2029 and a further $16.4 billion for 2030 and beyond. This is the kind
+of earnings visibility that highlights the resilience in our earnings. During the quarter, we were active on both sides
+of the portfolio. On the delivery side, we took 1 OSV and 1 Flat Top barge into the offshore services fleet at a
+combined cost of approximately $19 million.
+On the disposal side, as highlighted in our full year 2025 results, we completed the sale of the VLCC Leicester,
+a 2017-built vessel, for $111 million, netting $99 million in proceeds and a $27.2 million gain on the sale. We
+remain disciplined capital allocators, harvesting excess cash flow generated from our tanker shipping business
+into new long-term contracted assets across our core integrated logistics and gas shipping businesses. Looking
+at the vessel delivery schedule, you can see the pipeline extending through to 2028. Two LNG carriers have
+already delivered in 2026 with 1 VLAC and 2 VLGCs still to deliver this year, followed by a further acceleration in
+2027 to '28 with additional VLEC and VLAC vessels and the 8 Ruwais LNG vessels. Each delivery is an
+incremental EBITDA contribution.
+Next slide. This slide ties together the contracted fleet story and its impact on our EBITDA earnings profile. On a
+total group basis, shipping spot rated exposure represents an average of just 29% of ADNOC L&S total EBITDA.
+However, given elevated shipping rates in 2026, shipping now represents 43% of total EBITDA, up from 31% at
+the time of our full year 2025 results, highlighting the current strong rate environment.
+Next slide. Cash flow was exceptional this quarter. You can see the waterfall here. Starting from EBITDA of $368
+million, adding $36 million of working capital improvement and deducting a minimum income tax charge, we
+arrive at operating free cash flow of $394 million. That's a conversion rate above 100% of EBITDA. After CapEx
+of $264 million, which reflects our accelerating new build program, free cash flow was $130 million. Our net debt
+
+===== PAGE 8 =====
+ADNOC Classification: Public
+has been reduced from $497 million full year 2025 to $420 million with the ratio of net debt to EBITDA falling from
+0.46x to 0.28x, and that's the net debt-to-EBITDA ratio. We have significant cash of $695 million against
+borrowings and leases, providing a substantial liquidity headroom.
+Next slide. This slide shows how we fund our transformational growth strategy. Our remaining CapEx obligations
+are approximately $3.3 billion for the 20 newbuild vessels still to be delivered, plus the remaining 20% of Navig8
+scheduled for 2027. Our investment hurdles are disciplined. Low double-digit unlevered IRRs are required for our
+investment plans. On funding, we have $2 billion revolving credit facility with ADNOC at a rate of SOFR plus 80
+basis points with 6 and 8 tenor, and we have $2 billion in financing from our hybrid credit instrument at 125 basis
+points. Despite this robust investment program, we have significant incremental capacity beyond the projects
+already announced, all within our targeted 2 to 2.5x net debt-to-EBITDA range. We are not capital constrained,
+and we remain proactive in deploying this capital.
+Now, let me get to the part I've been looking forward to our guidance upgrade, which covers Slides 23 and 24.
+And I want to be very direct with you on this because the numbers speak for themselves. We have upgraded our
+full year 2026 guidance across every key group metric, and we've done it just 1 quarter into the year.
+Let me walk you through the moves. EBITDA has been upgraded from low to mid-single-digit growth to mid- to
+high single-digit growth. Net profit, and this is the one I want you to focus on, upgraded from low to mid-single-
+digit growth to mid- to high teens growth. That is a significant step-up in profitability. And for revenue, that's
+narrowed from a mid-single-digit reduction to a low to mid-single-digit reduction, reflecting better-than-expected
+top line performance across our fleet.
+The driver of this upgrade is unmistakable. It is shipping and the magnitude of the revision tells the story. We
+have taken shipping EBITDA guidance from high single-digit growth to mid- to high 50% year-on-year growth.
+Let that number land for a moment. At the start of the year, we guided shipping revenue flat. We are now guiding
+mid- to high teens revenue growth, and this would be higher without the impact of the progressive removal of our
+high revenue and low EBITDA margin relets business from tankers.
+Q1 delivered shipping EBITDA of $197 million, up 37% year-on-year, with margins expanding 900 basis points
+to 38%. Net profit in shipping more than doubled. Our tanker fleet is earning at levels we have not seen before.
+VLCC is at approximately [ $135,000 ] in Q1, trending above $250,000 a day into Q2. LR2s, LR1s, and MRs all
+tracking meaningfully higher. And here's what I want to be crystal clear about. Our updated shipping assumptions
+from May onwards remain conservative relative to where the market is trading today.
+We have locked in actual performance through April and applied prudent rate assumptions for the balance of the
+year, well below prevailing spot rates. The demand-supply fundamentals all remain firmly supportive. So, when I
+tell you this guidance is conservative, I really do mean it. If current market conditions persist, and we see strong
+reasons why they should, there is room for further outperformance. This is not guidance. It's simply the math.
+Now, let me address Integrated Logistics head on as I know investors will look at the revised segment guidance
+and ask questions. We have adjusted Integrated Logistics EBITDA guidance from a mid- to high 20% year-on-
+year reduction from the flat rate -- reduction from the flat previously. Integrated Logistics revenue guidance moves
+to a mid- to high 20% reduction from a mid teens reduction.
+
+===== PAGE 9 =====
+ADNOC Classification: Public
+Let me be very transparent about what's happening here and why this is actually a sign of discipline and not
+weakness. First, the G-Island EPC project completed in Q4 2025. That revenue stream has ended and it ended
+as planned. This is not a surprise. Strip out EPC entirely, and the underlying Integrated Logistics business is
+performing in line with expectations. Second, and this is important, we have deliberately set integrated logistics
+guidance at minimum activity levels to reflect the regional geopolitical uncertainty we experienced in March, while
+lowering jack-up barge utilization and rates.
+We have chosen not to assume a rapid recovery in our guidance, even though April volumes have seen a gradual
+improvement. In other words, we're giving you a floor, not a ceiling. Our 45 jack-up barges remain fully deployed.
+Our ILSP contracts remain in place. The asset base is intact, the contracts are intact, and the demand is intact.
+If activity normalizes and early signs indicate a gradual improvement, there is meaningful upside to these
+numbers that we have not built into our guidance.
+So let me frame the overall message for you. We have upgraded group EBITDA and net profit guidance after just
+1 quarter, and we have done so while applying conservative shipping rate assumptions below current spot rates
+for May through December, assuming minimum activity levels in offshore contracting amid regional uncertainty,
+and we've assumed lower jack-up barge and utilization and rates. Every assumption embedded in this guidance
+has a conservative bias.
+The actual market environment today, tanker rates at multiyear highs, gas carrier earnings strong, offshore
+activity showing gradual improvement is more supportive than what our guidance reflects. And beyond 2026, the
+structural growth story only gets stronger. 5 Das LNG ves sels commencing long-term ADNOC gas contracts from
+this month, 8 Ruwais LNG new builds arriving in 2027, 2028 into long-term contracts. 9 VLECs progressively
+delivering through to 2028 into long-term contracts.
+Every vessel delivery has contracted high-margin EBITDA and our medium-term CAGR guidance for greater
+than 9% through 2029 is confirmed and it is unchanged. We have $25 billion in long-term contracted revenue, a
+fortress balance sheet, strong operating free cash flow, and we have substantial capacity for investment beyond
+announced projects. This is a business that is delivering today and is building for tomorrow, and we believe the -
+- we believe the best is definitely still ahead of us. Thank you very much for listening in. And with that, I'll hand
+back to Captain Abdulkareem.
+Abdulkareem Al Masabi – ADNOC L&S – Chief Executive Officer
+Thank you, Hugh. What you have heard today is a business delivering on every front. Record shipping earnings
+driven by our globally competitive tanker fleet, a gas carrier program reaching an exciting inflection point as
+newbuild vessels commence long-term contracts and an integrated logistics business that continues to
+demonstrate the resilience even in the most challenging operating environment.
+We upgraded our full year guidance after just 1 quarter, and we did so conservatively. The structural tailwinds in
+our markets, the depth of our contracted revenue base and the compounding EBITDA growth from our gas
+carriers deliver -- deliveries gives us strong confidence that ADNOC L&S is entering its most exciting phase of
+earnings growth since IPO. Our strategy is executing as designed. We remain focused on disciplined capital
+
+===== PAGE 10 =====
+ADNOC Classification: Public
+allocation, operational excellence, and delivering consistent growing returns to our shareholders. And with that,
+I would like to open the floor for your questions. Thank you very much.
+Q&A Session:
+Mohamed El-Messiry (Analyst)
+Hi, everyone. Thank you for the presentation. I just had one question, please, regarding the relet activity in the
+tanker segment. You mentioned why revenues from tankers was flat. If you can just shed some color on that?
+And also, is that something we can expect going forward, I mean, higher spot rates, the relet activity fighting in,
+so it's not flowing into revenues despite high spot rates on both product tankers and VLCCs? Thank you.
+Hugh Baker (Chief Financial Officer)
+So the relet activity is related to our EBN relet portfolio, which is slowly being moved into the main business. It's
+not a recurring element, but what I can tell you is that the recurring part of it is the higher tanker rates. I think we
+are seeing obviously elevated spot rates in the first quarter. And those, as I just said, are very much continuing
+into the second quarter and through the year. And I think as we said, we do see all of the conditions really
+available to make sure that the spot rates for the rest of the year are going to be elevated even if the crisis current
+political situation changes.
+Okay. Thank you.
+Unknown Speaker 1 (Analyst)
+Yes. Hi, thanks for having us on the call, and congratulations on the great results despite the adverse conditions.
+My question -- 2 questions related to the shipping segment. So the first one, what was the impact of the losses
+on hedging instruments related to the FFAs during the first quarter? And were those on Navig8 or on ADNOC
+L&S? That's the first part of the question. The second part is related to the 4 LNGs that chartering contract would
+expire on June 2026. Will ADNOC L&S sell those LNGs? And are there any gains expected on the sale of those
+vessels if that takes place?
+Hugh Baker (Chief Financial Officer)
+On your first question, Mohammed, we took a $9 million hit on the FFAs. That was related to hedging. One
+hedging we did of a VLCC, was a hedge through to November, where we were trying to lock in the very favorable
+rates at the time. So, I think we're very happy that we are hedging and trying to make the most of the really strong
+rates. But as you know, the rates subsequently went to places that we've never seen before, and that created an
+FFA -- a mark-to-market FFA loss.
+That loss was principally taken in AL&S because it was related to our VLCCs, and our VLCCs are within the
+AL&S part of our balance sheet. And in terms of the LNG vessel, we own 4 legacy LNG vessels. They've been
+on charter to ADNOC Gas for most of their lives. Those vessels are now being redelivered from ADNOC Gas
+because we obviously have the new vessels replacing them. However, the delivery of those -- redelivery of those
+vessels keeps getting delayed because there is obviously a use for those vessels still.
+And -- so we are expecting those vessels to gently retire next this year, but it doesn't seem to be happening.
+They seem to continue to be working productively for us. It is our long-term aim to see if we can put those vessels
+
+===== PAGE 11 =====
+ADNOC Classification: Public
+into employment as floating regasification and storage units or floating storage units. And that's a long-term
+business development project that we're continuing to work on.
+Faisal Al Azmeh (Analyst)
+Thank you for the opportunity to ask questions. I have 3, please. The first is when we think about, obviously,
+some of the -- any potential or any of the prior attacks that took place in the country, should any of the ships get
+damaged, is this covered by insurance providers? And how should we think about the disruption of operations
+from any attacks? That's my first question.
+My second question relates to the guidance for growth for the year. Obviously, you've mentioned that you expect
+revenues to be down for the year. But then when we think about the pace of decline versus the first quarter
+decline, that implies a higher second half or second quarter and third quarter of the year. When we think about
+the guidance that you've provided, how much of that concentration of growth should we expect for Q2? And how
+much have you baked into that from the VLCCs? And should we expect that trend to continue in the third and
+fourth quarter of the year?
+And then finally, maybe just a housekeeping question. Just when we look at the guidance that you provided in
+the medium term, obviously, you have a low-digit CAGR in the medium term on the revenue line. Should we take
+that as a base from 2025 onwards or from 2026 onwards? So should we take it from the lower base of '26 to '29?
+Or should we take '25 as a starting point? Thank you.
+Hugh Baker (Chief Financial Officer)
+I'll answer that question sort of last first. You should take the CAGR from 2025 onwards. Then I'll go back to the
+guidance question. And I think, I'm trying to understand the question, but I would like to guide you that the -- I
+think we're seeing, obviously, a lot of the good growth guidance that we are showing is related to sort of a very
+strong second quarter. I think we're obviously going into the second quarter with these hugely elevated oil tanker
+rates, and we're seeing obviously a recovery, a gentle recovery in our offshore production volumes and our
+offshore businesses.
+So, we're going to probably see the most of the earnings growth coming from the second quarter. And as we did
+in our guidance, we're guiding very conservatively for the remainder of the third and fourth quarters as it's
+appropriate for us to do that. So -- and in that case, we've been guiding, as you know, that sort of there is more
+of a reversion to mean on tanker rates. And we're not -- so we're not looking at higher tanker rates in the third
+and fourth quarters. But obviously, we're actually optimistic about the third and fourth quarters, so they're
+generically higher.
+And again, we use for our own assumptions, internally, but also the assumptions that we guide you on, we use
+a service called MSI. They provide tanker rate outlook for us. They provide tanker rate outlook for many
+companies and -- including banks and other institutions. And that is the sort of the guidance that we base our
+assumptions on. It's not a case of me sitting there saying, "I think tanker rates are going to be higher. This is a
+third party who has a track record of indeed has the job of predicting rates."
+So that -- I think that's the question there. In terms of insurance, I can't really talk too much about insurance, but
+I'll just say that every asset that we own is fully insured, particularly the ships. They are insured for their value.
+They're insured for oil pollution, and they cover all of the main risks. And so any damage or incidents are
+effectively covered by insurance, and we are comprehensively and appropriately covered by insurance. And it's
+our policy always to remain so.
+
+===== PAGE 12 =====
+ADNOC Classification: Public
+Scott Darling (Analyst)
+Everyone, congratulations on an excellent set of results and also guidance. Well done to all the team. I have 2
+questions. The first one, you mentioned about your fortress balance sheet. I mean, do you think that's a little bit
+too much fortress? Because, this quarter, net debt to equity will be a lot lower than it is last quarter. Can you talk
+about -- you can easily fund your fleet delivery this decade. Any thoughts about what are you going to do a little
+bit more with the balance sheet?
+I noticed on Slide 22, you've taken out your $3 billion plus incremental capacity investment. So also maybe if you
+can discuss sort of how you're thinking about asset values as well in your industry. I suspect things have obviously
+been bid up a lot. Do you see yourself ever using that incremental capacity to do deals? That's the first question.
+And then any thoughts in general on sort of shipping day rates if the Straits was opened immediately today?
+Thank you.
+Hugh Baker (Chief Financial Officer)
+Scott, firstly, thank you for initiating coverage on our company. We look forward to meeting you. So, the capacity
+question is a great question, and it makes us all laugh because you noticed that we took out the $3 billion capacity
+question. And that's because we have more than $3 billion of capacity for future expansion. And we're debating
+internally as to whether we give you a set number.
+But -- what I can tell you is, we have a very dynamic balance sheet, but we have very limited leverage. We have
+an extraordinary long base of forward contract cover. So you could very much argue that we are not fully utilizing
+our balance sheet, and you'd be 100% correct. We are -- it is a battle every day for us to find unlevered
+investments, investments that give us the unlevered low double-digit return that we require. We've been pretty
+good at finding these investments in the past, and we're going to -- we're working really hard to make sure that
+we can do so.
+And so we do expect our leverage to increase. It will increase with the delivery of these long-term contracted
+assets, but there is considerable capacity for more, and we are working night and day to make sure that we
+increase our -- we don't -- it's great having a fortress balance sheet, but we do want to increase our leverage
+because that does mean that we're investing in the right things in the right places. So, we're working really hard
+on finding new projects. And the team here is really good at doing that, and they are finding those projects. I think
+in terms of the rates, I might pass you to Captain Abdulkareem, and he can sort of talk about how the Strait of
+Hormuz is affecting our tanker business going forward.
+Captain Abdulkareem Al Masabi (Chief Executive Officer)
+Hi, Scott. And if you look at the forecast for the Q2, Q3, Q4, all still looking positive and looking strong. And this
+is how we are forecasting it in our forecast. Definitely, if you look at the MSI reports and if you look at the other
+publications, which gives this kind of forecast, it does forecast that the market will remain strong and elevated
+from the normal rates that we have seen back in 2025. However, the SOH does impact the flow and does impact
+the volume.
+But more importantly, we always look at the ton mile and we look at the vessels that's being used for storage.
+We're looking at the order book of the vessels and the delivery -- and the success delivery of tonnage in the
+market, all of which you can see that still there's a greater inefficiency, I would say, in the supply chain. And you
+can see that the vessels now is moving longer distances, heightened risks across many strategic, I would say,
+waterways. Vessels are sometimes used for storages.
+So, we do expect this to be the same for the next few quarters. And I think the inventory, if you look at it, when
+countries have started high inventories, but again, look at how much of that inventory has been consumed. And
+definitely, there will be activity to restocking and rush to find replacement barrels as well. So, all of these elements
+
+===== PAGE 13 =====
+ADNOC Classification: Public
+does support a stronger market going forward. Of course, we cannot forecast beyond the 3 quarters, depending
+on how and when things will be normalizing. I hope that answers your question.
+Unknown Speaker 2 (Analyst)
+Hi. Thank you management for the presentation and congratulations on the results. I have a simple question
+regarding Slide #13, if you could go there. Regarding the tankers, we've seen it increase 4%. However, I don't
+understand if you could give us a clearance about why the EBITDA margin has rose to 37%. So, is it lower cost
+accomplished by the company? Or is it a different mix in the fleet?
+Hugh Baker (Chief Financial Officer)
+It's the EBITDA has increased by 37%, which is the real reason, and that's the -- I think, the key number to look
+at. Revenues were reflected by EBNs and -- which is something I discussed earlier. But the EBITDA from that
+business has gone up -- has increased by 37%. So that's where you're seeing the strong position.
+Hugh Baker (Chief Financial Officer)
+The day rates it's -- the day rates are up, and we are -- and that's flowed through into our EBITDA.
+Unknown Speaker 2 (Analyst)
+Yes. That's regarding my question. If the rate has risen, it will be reflected in the revenue. And correct me if I'm
+wrong.
+Rahoof Khaleel Rahman (Vice President of Finance)
+Exactly. So the answer to that question is Q1 2025 results primarily -- mainly included EBN numbers or EBN and
+relate numbers of up to $150 million to $180 million, and that's not recurring now. So that's where revenue goes
+up only to the extent of 4% because we've exited that business. And then you see the impact of the TCEs. In
+VLCCs, you see that it has gone up something like 2.5x to 3x. And then we are forecasting further increase in
+quarter 4 -- sorry, quarter 2, where we're telling it's going up 8 to 10x compared to last year numbers. I hope that
+clarifies, yes?
+Ildar Khaziev (Analyst)
+Sorry. Thanks very much for the presentation. I have a question about Slide 14, where you have charts with the
+TCE rate. I'm a little bit confused about like average TCE rates, let's say, for VLCCs. I think you said it's on
+average was $144,000 per day. As far as I recall, I think 4 of your VLCCs are on long-term charters with the rate
+of $50 to $70. That would imply that the rest of the fleet would have been at rates of $250 or something to average
+$144.
+Are these the market rates on those charts or these are the rates which you achieved during the quarter? So
+that's my first question. And secondly, has there been any changes in terms of your expectations for the CapEx
+for this year? And what's the total CapEx budget you have in mind? Thank you.
+Hugh Baker (Chief Financial Officer)
+No, the $144,000 was related to our full fleet of 8, and it includes all the vessels on long-term charter as well. So
+it will be -- because the long-term charter vessels are at lower rates than the spot market, you're going to see a
+slightly lower number. But it's all 8 vessels. In terms of the CapEx, we're essentially -- we are on track to meet
+our CapEx. If you look at the CapEx slide, you'll see that it is really related principally to, obviously, a payment
+
+===== PAGE 14 =====
+ADNOC Classification: Public
+we have to make for the Navig8 acquisition, but also it is based on shipbuilding contracts where we actually have
+to pay the shipyards. There's -- and that is essentially 100% on schedule.
+Ildar Khaziev (Analyst)
+I think these numbers are mostly for the shipping segment, right? Is there anything we should expect for the
+logistics as well?
+Hugh Baker (Chief Financial Officer)
+There is some limited logistics CapEx, but the fixed CapEx, obviously, which is what we report, is generally
+related to the ships because once you order the ship, it sort of becomes official CapEx.
+Ildar Khaziev (Analyst)
+Sure. Thank you. And just coming back to the TCE question. So $144,000 day rate on average for the VLCCs,
+is my understanding correct that the rest of the fleet, which are not on long-term charters, they have generated
+TCE rates in excess of 2,000 -- sorry, $200,000 a day?
+Rahoof Khaleel Rahman (Vice President of Finance)
+Exactly. And that's what you see going ahead as well in 2Q, right? So it's the average, $144,000 is the average.
+We see what has come out in publications by quarter 1 results of DHT, you will see something around $106,000,
+but we have contracted rates much, much higher. So, if you look at the average where we contracted our long
+term with $55,000 and $70,000, but our average comes to $145,000, which means we have contracted vessels
+at $300,000. And that's continuing into or even, I mean, we are bidding much more than that in Q2 basis we are
+contracted as of now.
+Hugh Baker (Chief Financial Officer)
+We have 4 VLCCs on charter. So, it's a blended rate that we give there, which is obviously less than the spot
+rate of the 4 unchartered vessels on the spot market are making.
+Ildar Khaziev (Analyst)
+Amazing. Thank you. And lastly, I think you've exhibited appetite to do long-term charter deals in the past. We
+haven't, I think, seen in your disclosure any new deals. Is that because the appetite has declined for this from the
+customer side? Or it's like basically, it's how you -- you would prefer to have a spot exposure?
+Captain Abdulkareem Al Masabi (Chief Executive Officer)
+I think we have said that we like to tap into the spot side of the business. And we've always highlighted that there
+is a benefit actually from the spot. If you've seen our presentations earlier in the previous quarters, we've always
+said that 30% is always a good number, just above 30% of the business and the shipping was spot. And I think
+it plays well actually towards this Q and maybe this year. So, definitely, I think balanced approach between what
+is in spot, what is in long-term contracted, that is the strategy going forward.
+Jean-Pierre Dmirdjian (Analyst)
+Yes. Hi, this is Jean-Pierre Dmirdjian from Kepler Cheuvreux. I would like to have a quick clarification regarding
+the offshore project subsegment. You explained quite clearly that the absence of new major projects after the
+completion of G-Island last year would impact revenue. However, you've not commented on the loss-making
+
+===== PAGE 15 =====
+ADNOC Classification: Public
+position of that business. When I look at the EBITDA level, I noticed that it is negative $4 million in Q1. It was
+even more negative last quarter at minus $11 million.
+So, I guess there are 2 questions here. First, can you explain why you reported losses in that subsegment in the
+last 2 quarters? Is it because of high fixed costs not absorbing lower revenue or potentially execution issues or a
+combination of the 2? And the second question is in the absence of new large projects, what should we expect
+in terms of profitability for this business? Could it break even? Or should we expect the loss-making position to
+persist or potentially worsen? Thank you.
+Hugh Baker (Chief Financial Officer)
+Hi, Jean-Pierre. We're not in the business of maintaining loss-making positions. So it will sort of normalize over
+time. Clearly, we had this enormous project, the G-Island project in 2025. That ended. And the division is a lot
+smaller now. And what we're seeing is -- in the negative result is really around costs related to the team who are
+obviously no longer working on any big projects.
+We're not necessarily looking at further big projects, but we will also -- I think so we are going to manage that
+situation. And -- but we're also -- obviously, there are other things that we are -- that, that team is doing. And --
+so I think that the result is simply going to normalize over time. And we are -- I think what you'll see in the next
+few quarters is a sort of a return to normality at lower levels for that team.
+Lydia Rainforth (Analyst)
+Hello, and good afternoon. Firstly, thank you for the time and for the team for the performance. I know that won't
+have been easy. Two questions, if I could, gentlemen. First, I mean, given the upgrading guidance, and that is
+really impressive, the results from the business that you produced so far, it would be easy to think almost that
+there wasn't a crisis at all and there wasn't an impact. So, can I just ask you to talk through some examples of
+what has changed in how you're operating and what has become more difficult and how you're dealing with that?
+And then the second, just to switch to the longer term. Can you talk through how, if at all, your strategic thinking
+has changed? For example, UAE leaving OPEC, that might provide more domestic opportunity. At the same time,
+there may be some more options outside the UAE as you talked about from a longer-term perspective that there
+are more options. So, I just want to talk about that. Anything become more important to you that you see as an
+opportunity? Thanks.
+Captain Abdulkareem Al Masabi (Chief Executive Officer)
+I think the answer to that is that if you look at our structure and how diversified is this platform, it's scalable. It has
+a global presence, and it's not mainly focused here in this region. So definitely, over the past years, we made
+sure that we do have a global logistical and shipping platform that can basically protect us against any downturn
+in any of the sectors, but also against any cyclicality in the shipping or logistics market, but also the geopolitics
+as well.
+So today, you can see that we have managed to navigate through these geopolitical situation -- geopolitical
+situations, also some of the economical challenges that we have seen over the last year. So, diversification is
+very important to us going forward, how we diversified within the shipping side between tankers, between gas,
+bulk and also having the big portion of our business in the integrated logistics and in the jack-up barges, which
+played extremely well and made us continuously growing and give us a big outlook in terms of too many
+opportunities that we can see not only regionally but at a global stage.
+On the other aspect, when we say about OPEC, ADNOC or UAE is leading OPEC and OPEC Plus. For us, we
+are seeing it positive to the world, basically by being a responsible energy supplier that will give us, I think, more
+scope in terms of how we can help and support the UAE and their aspirations to service their customers at a
+
+===== PAGE 16 =====
+ADNOC Classification: Public
+global stage, more shipping, maybe more drilling, all of which is already witnessed today through the global
+expansion of ADNOC and ADNOC Group companies through their big international arms on the acquisition when
+it comes to Covestro, when it comes to forming BGI, XRG, all these global concessions that we are signing.
+You should always reflect it and have think about ADNOC Logistics & Services and how does that impact ADNOC
+Logistics and Services, which, of course, all of this will need logistics, and we are at the forefront to make sure
+that we provide logistical solutions to our group companies. I hope that answers you.
+Ahmed Kamal (Analyst)
+Hello. Thank you for taking my question and congratulations on the strong set. Just a follow-up question on the
+UAE exit from OPEC. Just to make sure I understand correctly, is the current business handled by ADNOC
+Logistics is reflective of the production capacity of the UAE, which is close to the 5 million barrel per day or the
+production -- the actual production, which is close to the 3.5 million barrels per day?
+Captain Abdulkareem Al Masabi (Chief Executive Officer)
+I think, we cannot comment on behalf of our shareholders. I mean, they do have their forecast, and I'm sure you
+can read it from there. But for us, you can see that any increase in production, any increase in volumes, that
+always supports us regardless. But in terms of, if you look at it globally, the expansion on the global stage as well,
+that supports us through the BGI, or the Covestro, or even the concessions that we are having at multiple
+locations across the globe. So, all in all, as a logistics and a shipping company, we do see the positiveness within
+that decision.
+Ahmed Kamal (Analyst)
+And is the current tanker fleet, like, enough to serve the 5 million barrel per day production? Or you need to add
+more to the tanker fleet?
+Captain Abdulkareem Al Masabi (Chief Executive Officer)
+Well, it's a part of our growth strategy that we've said that we always look at our fleet in general and to make sure
+that we can help and service our customers. Definitely, I mean, if you look at the crude side, there will be more
+in the crude side, not necessarily just to service the 4 million or 5 million because we are servicing almost every
+trader, every IOC globally. And for us, we are running a global business rather than mainly focused on ADNOC
+production. But definitely, the number needs to increase, not necessarily just to service the 5 million. But looking
+at the global movements of barrels, I think we will need more tankers to service our customers at a global scale.
+Ahmed Kamal (Analyst)
+Okay. Just one final question. In case the current tanker rates continue until year-end and you manage to beat
+your guidance, do you have any plan to distribute extra dividend for this year just to reward more your
+shareholders beyond the 5% growth?
+Hugh Baker (Chief Financial Officer)
+I think we have a very fixed dividend policy, obviously, which is increasing at 5% per year. I think that the decision
+to increase dividends is certainly not being made, and we're not talking about it. But -- no but actually -- I mean,
+yes, it's not something that's on our mind at the moment.
+Captain Abdulkareem Al Masabi (Chief Executive Officer)
+
+===== PAGE 17 =====
+ADNOC Classification: Public
+It's just dynamic. And I must say that, you've seen -- just we have revised it last year. So to us, we do set our
+guidance in terms of the dividend policy. But of course, this is all subjected to our shareholders and how we are
+seeing this. In our capacity. There's no reason why not to revise it. But at the same time, the one that is actually
+publicly used, that it is at $325 million from last year announced and with a 5% incremental every year.
+Drew (Operator)
+Thank you. That's all we have time for the Q&A session today. With that, I'll hand back over to management for
+closing comments.
+Hugh Baker (Chief Financial Officer)
+We'd like to thank everyone for joining the call, and please support -- continue to support the company with your
+investment and your good thoughts. Thank you.
