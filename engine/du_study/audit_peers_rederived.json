@@ -1,0 +1,313 @@
+{
+  "_meta": {
+    "purpose": "Primary-source re-derivation of trailing P/E and dividend yield for GCC telecom peers, anchored on 6-Aug-2026 (valuation anchor 2026-08-07).",
+    "compiled_on": "2026-08-17",
+    "anchor_date": "2026-08-06",
+    "source_grade_definitions": {
+      "primary-issuer": "Every earnings input taken from the issuer's own regulatory filing (Saudi Exchange issuer announcement) or the issuer's own results release (eand.com newsroom). Both arithmetic routes reconcile.",
+      "aggregator": "Earnings input taken from a third-party data aggregator; NOT verified against the issuer's filing.",
+      "unsourced": "Could not be sourced to an acceptable standard; reported as unsourced, NOT estimated."
+    },
+    "price_source_caveat": "Closing prices are NOT primary-issuer data. Neither saudiexchange.sa nor adx.ae historical price series were retrievable through this environment. Prices below are from third-party market-data providers and, where stated, were CONFIRMED BY TWO INDEPENDENT PROVIDERS agreeing to the fils/halala. The repo's own OHLC library (engine/raw_ohlc/) could not corroborate: engine/raw_ohlc/AE/EAND.csv ends 2026-07-24 (close 20.08) and engine/raw_ohlc/SA/STC.csv ends 2026-07-26 (close 43.10) - both stale relative to the 6-Aug anchor. Mobily (7020) is not in the library at all."
+  },
+
+  "MOBILY": {
+    "company": "Etihad Etisalat Company (Mobily)",
+    "exchange_ticker": "Saudi Exchange (Tadawul) 7020",
+    "currency": "SAR",
+    "price": 61.30,
+    "price_date": "2026-08-06",
+    "price_note": "6-Aug-2026 was the low of that week. Surrounding closes: 2-Aug 62.50, 3-Aug 62.30, 4-Aug 62.00, 5-Aug 62.55, 6-Aug 61.30, 9-Aug 61.50, 10-Aug 62.60. Confirmed by an independent provider quote page showing 767.50M shares / EPS TTM 4.75 / DPS 3.00.",
+    "shares_mn": 767.5,
+    "shares_note": "767,500 thousand = the weighted-average share count DISCLOSED IN MOBILY'S OWN H1-2026 FILING. Two other legitimate share counts exist: 769,052,646 = FY2025 weighted average per the FY2025 filing (net of 2.5mn treasury shares held for the Long-Term Incentive Plan); 770,000,000 = shares ISSUED (share capital SAR 7,700mn / SAR 10 par, per Mobily's FY2025 earnings release). P/E varies only 12.88x-12.93x across all three.",
+    "eps_ttm": 4.76,
+    "eps_basis": "REPORTED basic EPS attributable to shareholders, trailing twelve months = FY2025 + H1-2026 - H1-2025. No normalisation applied; no material one-off items identified in any of the three legs.",
+    "pe_ttm": 12.89,
+    "pe_ttm_range": "12.88x - 12.93x depending on share-count convention",
+    "dps_ttm": 3.00,
+    "dps_basis": "Declared basis, trailing twelve months to the anchor: SAR 1.60 H2-2025 dividend (declared 16-Feb-2026) + SAR 1.40 H1-2026 interim (declared Jul-2026, payable 19-Aug-2026) = SAR 3.00. Independently corroborated by a provider quote page showing DPS 3.00. NOTE the alternative framing: Mobily's own FY2025 earnings release discloses FY2025 DPS of SAR 2.80 (payout 62.1%, up 27.3% from SAR 2.20 in 2024); on that fiscal-year basis the yield is 4.57%.",
+    "yield": 0.0489,
+    "arithmetic": "shown",
+    "arithmetic_detail": {
+      "filed_inputs": {
+        "FY2025_net_profit_attributable_SARmn": 3466,
+        "FY2025_EPS_SAR": 4.51,
+        "FY2025_weighted_avg_shares": 769052646,
+        "FY2024_net_profit_attributable_SARmn": 3107,
+        "FY2024_EPS_SAR": 4.03,
+        "H1_2026_net_profit_attributable_SARmn": 1781,
+        "H1_2026_EPS_SAR": 2.32,
+        "H1_2026_weighted_avg_shares_thousands": 767500,
+        "H1_2025_net_profit_attributable_SARmn": 1597,
+        "H1_2025_EPS_SAR": 2.07
+      },
+      "step1_ttm_net_income": "3,466 + 1,781 - 1,597 = SAR 3,650mn",
+      "step2_route_A_per_share": "TTM EPS = 4.51 + 2.32 - 2.07 = SAR 4.76  ->  P/E = 61.30 / 4.76 = 12.88x",
+      "step2_route_B_market_cap": "Market cap = 61.30 x 767.5mn = SAR 47,047.75mn (~47,048mn)  ->  P/E = 47,048 / 3,650 = 12.89x",
+      "step2_route_B_variant_769mn": "Market cap = 61.30 x 769.05mn = SAR 47,143mn  ->  P/E = 47,143 / 3,650 = 12.92x  (equivalently TTM EPS = 3,650 / 769.05 = SAR 4.75)",
+      "step2_route_B_variant_770mn_issued": "Market cap = 61.30 x 770.0mn = SAR 47,201mn  ->  P/E = 47,201 / 3,650 = 12.93x",
+      "routes_reconcile": true,
+      "step3_yield": "3.00 / 61.30 = 4.89%  (alternative FY2025-declared basis: 2.80 / 61.30 = 4.57%)"
+    },
+    "source_grade": "primary-issuer",
+    "sources": [
+      "https://www.saudiexchange.sa/wps/portal/saudiexchange/newsandreports/issuer-news/issuer-announcements/issuer-announcements-details/?anId=93172&anCat=1&cs=7020&locale=en",
+      "https://www.saudiexchange.sa/wps/portal/saudiexchange/newsandreports/issuer-news/issuer-announcements/issuer-announcements-details/?anId=96842&anCat=1&cs=7020&locale=en",
+      "https://www.mobily.com.sa/wps/wcm/connect/9100d996-06b2-4997-8281-2ef9e354fbd0/Earnings_Release_FY-25_+EN.pdf?MOD=AJPERES",
+      "https://stockanalysis.com/quote/tadawul/7020/",
+      "https://stockanalysis.com/quote/tadawul/7020/history/"
+    ],
+    "claim_adjudication": {
+      "critique_1_claim": "Trailing P/E 12.88x-12.90x; price SAR 61.30; TTM EPS SAR 4.76; market cap SAR 47,048mn on 767.5mn shares.",
+      "verdict": "CONFIRMED. Every figure reproduces from the issuer's own filings. Price SAR 61.30 is the correct 6-Aug-2026 close. TTM EPS SAR 4.76 is exactly 4.51 + 2.32 - 2.07. Market cap 47,048mn is exactly 61.30 x 767.5mn.",
+      "internal_inconsistency_resolved": "The '767.5mn vs 3,650mn' tension the tasking flagged is a LABELLING error in the critique's prose, not an arithmetic error, and NEITHER route is wrong. 767.5mn is the weighted-average SHARE COUNT disclosed in Mobily's H1-2026 filing. 3,650 is the TTM NET INCOME IN SAR MILLIONS (3,466 + 1,781 - 1,597 = 3,650), not a share count. Both numbers are correct and both belong in the calculation - one as the denominator of the per-share route, one as the denominator of the market-cap route. They are not two rival share counts.",
+      "critique_2_claim": "Aggregators read 14.0x-15.6x.",
+      "verdict": "NOT REPRODUCIBLE from filed numbers at the 6-Aug price. Filed numbers give 12.88x-12.93x. A live aggregator checked on 17-Aug-2026 reads 13.41x at SAR 63.55 on EPS TTM 4.75 - consistent with ~12.9x at SAR 61.30, not with 14.0x-15.6x. LIKELY ORIGIN (hypothesis, flagged as such, not sourced): an aggregator carrying stale FY2024 EPS of SAR 4.03 gives 61.30 / 4.03 = 15.21x, which falls inside the quoted 14.0x-15.6x band. Using FY2025 EPS 4.51 alone gives 13.59x. Neither is a TTM."
+    }
+  },
+
+  "EAND": {
+    "company": "Emirates Telecommunications Group Company PJSC (e&, formerly Etisalat)",
+    "exchange_ticker": "ADX EAND",
+    "currency": "AED",
+    "price": 20.98,
+    "price_date": "2026-08-06",
+    "price_note": "CONFIRMED BY TWO INDEPENDENT PROVIDERS agreeing to the fil on the whole early-August series: 3-Aug 20.30, 4-Aug 21.00, 5-Aug 21.00, 6-Aug 20.98, 7-Aug 20.50. 52-week range 17.40-21.60. NO SESSION IN THIS WINDOW CLOSED AT AED 20.70.",
+    "price_alt_7aug": 20.50,
+    "shares_mn": 8696.75,
+    "shares_note": "8,696.75mn confirmed three ways by back-solving the issuer's own disclosed EPS against its own disclosed net profit (see arithmetic_detail.eps_crosscheck), and corroborated by a provider quote page showing 8.70bn.",
+    "eps_ttm": 1.33,
+    "eps_basis": "REPORTED net profit attributable to owners of the company, trailing twelve months = FY2025 + H1-2026 - H1-2025, all three legs on a REPORTED (NOT normalised) basis. See eps_basis_warning - this distinction is load-bearing for e&.",
+    "eps_basis_warning": "e& carries large one-off and associate items and its own releases quote BOTH bases, so the bridge must not mix them. (1) The H1-2026 release quotes the H1-2025 comparative EPS as AED 0.67 ADJUSTED - i.e. stripped of the Khazna disposal gain and the Maroc Telecom settlement. Using that adjusted comparative in the bridge (1.65 + 0.69 - 0.67 = 1.67) IS WRONG, because FY2025's reported 1.65 still CONTAINS those same one-offs; subtracting an adjusted figure leaves them double-counted inside the trailing window. The correct bridge subtracts the REPORTED H1-2025 EPS of AED 1.01. (2) Because those H1-2025 one-offs sit in the SUBTRACTED leg, this TTM is simultaneously reported-basis AND effectively free of the Khazna gain and the MT settlement - they have rolled out of the window. (3) The Vodafone stake disposal (AED 21.9bn cash proceeds, AED 4.8bn net cash gain) COMPLETED IN JULY 2026 = Q3-2026, so it is NOT in H1-2026 and NOT in this TTM. It will inflate reported TTM EPS from Q3-2026 onward and depress the apparent P/E - a forward audit trap. (4) H1-2026 figures exclude Careem Technologies following deconsolidation after a partial sale.",
+    "pe_ttm": 15.73,
+    "pe_ttm_at_7aug_price": 15.37,
+    "dps_ttm": 0.945,
+    "dps_basis": "Declared basis, trailing twelve months to the anchor: 47.0 fils H2-2025 dividend (proposed with FY2025 results, 24-Feb-2026) + 47.5 fils H1-2026 interim (declared 30-Jul-2026, +10.5% YoY) = 94.5 fils = AED 0.945. e& guided total 2026 DPS of 95 fils versus 90 fils for full-year 2025.",
+    "yield": 0.0450,
+    "arithmetic": "shown",
+    "arithmetic_detail": {
+      "filed_inputs": {
+        "FY2025_net_profit_attributable_AEDbn": 14.4,
+        "FY2025_EPS_AED": 1.65,
+        "FY2024_net_profit_attributable_AEDbn": 10.8,
+        "FY2024_EPS_AED": 1.24,
+        "H1_2026_net_profit_attributable_AEDbn": 6.0,
+        "H1_2026_EPS_AED": 0.69,
+        "H1_2025_net_profit_attributable_AEDbn_REPORTED": 8.8,
+        "H1_2025_EPS_AED_REPORTED": 1.01,
+        "H1_2025_EPS_AED_ADJUSTED_DO_NOT_USE_IN_BRIDGE": 0.67,
+        "H1_2024_net_profit_attributable_AEDbn": 5.5,
+        "H1_2024_EPS_AED": 0.63
+      },
+      "eps_crosscheck": "Each disclosed EPS divides its disclosed net profit into the SAME share count, proving all three legs are attributable-to-owners (not total incl. NCI) and confirming the denominator: 14.4bn / 8,696.75mn = 1.656 ~ 1.65 OK; 6.0bn / 8,696.75mn = 0.690 ~ 0.69 OK; 8.8bn / 8,696.75mn = 1.012 ~ 1.01 OK.",
+      "step1_ttm_net_income": "14.4 + 6.0 - 8.8 = AED 11.6bn",
+      "step2_route_A_per_share": "TTM EPS = 1.65 + 0.69 - 1.01 = AED 1.33  ->  P/E = 20.98 / 1.3338 = 15.73x",
+      "step2_route_B_market_cap": "Market cap = 20.98 x 8,696.75mn = AED 182,458mn  ->  P/E = 182,458 / 11,600 = 15.73x",
+      "routes_reconcile": true,
+      "step2_route_C_at_7aug": "P/E = 20.50 / 1.3338 = 15.37x",
+      "step3_yield": "0.945 / 20.98 = 4.50%",
+      "independent_corroboration": "A provider quote page on 17-Aug-2026 independently shows EPS TTM 1.33, Net Income TTM AED 11.54bn, shares 8.70bn, trailing P/E 15.76 at AED 21.18, DPS 0.95, yield 4.50% - reproducing the entire build from a separate data path. Their slightly more precise TTM net income of 11.54bn (vs 11.6bn from the issuer's rounded AED-billion disclosures) gives EPS 1.327 and a 6-Aug P/E of 15.81x, so the honest statement of e&'s trailing P/E at the anchor is 15.7x-15.8x."
+    },
+    "source_grade": "primary-issuer",
+    "sources": [
+      "https://www.eand.com/en/news/24-feb-26-eand-delivers-record-revenue-and-net-profit-in-FY-2025.html",
+      "https://www.eand.com/en/news/30-07-26-eand-reports-11-6-increase-revenue.html",
+      "https://www.eand.com/en/news/31-july-25-eand-reports-60-7--increase-in-consolidated-net-profit.html",
+      "https://stockanalysis.com/quote/adx/EAND/",
+      "https://stockanalysis.com/quote/adx/EAND/history/"
+    ],
+    "claim_adjudication": {
+      "critique_eps_claim": "TTM EPS AED 1.33.",
+      "critique_eps_verdict": "CONFIRMED EXACTLY. 1.65 + 0.69 - 1.01 = 1.33 on a reported attributable basis, and 11.6bn / 8,696.75mn = 1.334 by the market-cap route. Independently corroborated.",
+      "critique_price_claim": "Price AED 20.50.",
+      "critique_price_verdict": "WRONG DATE. AED 20.50 is the 7-Aug-2026 close. The 6-Aug-2026 close was AED 20.98. Since the tasking anchors on 6-Aug, 20.98 is the correct price.",
+      "critique_pe_claim": "Trailing P/E 15.3x-15.6x.",
+      "critique_pe_verdict": "SLIGHTLY LOW for the 6-Aug anchor, because it prices off the 7-Aug close. Correct: 15.7x-15.8x at 6-Aug (AED 20.98); 15.4x at 7-Aug (AED 20.50). The critique's range is right for its own price but mislabelled as to date.",
+      "critique_transcription_allegation": "The study's 20.7x is actually e&'s share price of AED 20.70 on 6-Aug-2026, mistranscribed as a multiple.",
+      "critique_transcription_verdict": "NOT CORROBORATED - the specific diagnosis fails on the price record. e& did NOT close at AED 20.70 on 6-Aug-2026 (it closed at 20.98) nor on 7-Aug (20.50), and no session in the 3-7 Aug window printed a 20.70 close (20.30 / 21.00 / 21.00 / 20.98 / 20.50). Two independent providers agree on that series. So the alleged source number AED 20.70 does not exist as a closing price at the anchor, and the transcription theory is unproven. HOWEVER the critique's UNDERLYING POINT SURVIVES INDEPENDENTLY: the study's 20.7x is not supportable from filed numbers on any basis. A 20.7x multiple on TTM EPS of AED 1.33 implies a price of AED 27.5-27.6 (20.7 x 1.3338 = 27.61), which is far outside e&'s 52-week range of 17.40-21.60. The filed-numbers trailing P/E is ~15.7x. So the 20.7x figure is wrong by roughly 5 turns regardless of how it arose - the error is established, its cause is not."
+    }
+  },
+
+  "STC": {
+    "company": "Saudi Telecom Company (stc)",
+    "exchange_ticker": "Saudi Exchange (Tadawul) 7010",
+    "currency": "SAR",
+    "price": 43.38,
+    "price_date": "2026-08-06",
+    "price_note": "Surrounding closes: 4-Aug 43.54, 5-Aug 43.58, 6-Aug 43.38, 9-Aug 43.58. 52-week range 40.20-45.38.",
+    "shares_mn": 4988.7,
+    "shares_note": "4,988,738 thousand weighted-average ordinary shares, per stc's own FY2025 filing.",
+    "eps_ttm": 2.94,
+    "eps_basis": "AGGREGATOR TTM EPS - NOT primary-derived. A primary TTM bridge could NOT be completed: stc's FY2025 filing gives EPS 2.97 on attributable net profit of SAR 14,828mn, but the REPORTED attributable net profit for H1-2026 and H1-2025 was not obtainable from the issuer's filing within this task's time budget. Available coverage of the H1-2026 release quotes only NORMALISED net profit growth of +6.3% 'after excluding non-recurring items IN BOTH PERIODS', plus revenue SAR 40.11bn, gross profit SAR 19.64bn, operating profit SAR 7.77bn, EBITDA SAR 12.97bn - no reported attributable net profit figure. Because both halves carry undisclosed non-recurring items, a reported TTM cannot be inferred from the normalised growth rate.",
+    "pe_ttm": 14.75,
+    "pe_ttm_note": "43.38 / 2.94 = 14.75x on the AGGREGATOR EPS. NOT primary-derived - excluded from median_of_set.",
+    "dps_ttm": 2.20,
+    "dps_basis": "AGGREGATOR annual DPS. Corroborating primary-channel datapoint: stc declared a Q2-2026 dividend of SAR 0.55/share (~SAR 2.7bn total), consistent with a SAR 2.20 annualised run-rate at 4 x 0.55. Not built from four individually filed declarations.",
+    "yield": 0.0507,
+    "arithmetic": "shown",
+    "arithmetic_detail": {
+      "filed_inputs_FY2025_primary": {
+        "FY2025_net_profit_attributable_SARmn": 14828,
+        "FY2025_EPS_SAR": 2.97,
+        "FY2024_net_profit_attributable_SARmn": 24689,
+        "FY2024_EPS_SAR": 4.95,
+        "FY2025_revenue_SARmn": 77819,
+        "FY2025_operating_profit_SARmn": 14438,
+        "weighted_avg_shares_thousands": 4988738,
+        "FY2024_distortion": "FY2024 included a SAR 13,973mn non-recurring net profit from discontinued operations (sale of controlling stakes in telecom tower and digital infrastructure subsidiaries), which is why FY2025 attributable profit fell 39.9% YoY. Any TTM or YoY comparison spanning FY2024 is distorted by this."
+      },
+      "ttm_bridge": "NOT COMPLETED - H1-2026 and H1-2025 reported attributable net profit unsourced from primary.",
+      "pe_shown": "43.38 / 2.94 = 14.75x (aggregator EPS basis)",
+      "yield_shown": "2.20 / 43.38 = 5.07%",
+      "fy2025_only_reference": "For reference only, on the primary FY2025 EPS of SAR 2.97: 43.38 / 2.97 = 14.61x. This is a fiscal-year P/E, NOT a TTM."
+    },
+    "source_grade": "aggregator",
+    "source_grade_note": "FY2025 earnings inputs are primary-issuer. The TRAILING (TTM) EPS - the metric requested - is aggregator-grade. Graded to the weaker of the two.",
+    "sources": [
+      "https://www.saudiexchange.sa/wps/portal/saudiexchange/newsandreports/issuer-news/issuer-announcements/issuer-announcements-details/?anId=93192&anCat=1&cs=7010&locale=en",
+      "https://stockanalysis.com/quote/tadawul/7010/",
+      "https://stockanalysis.com/quote/tadawul/7010/history/"
+    ]
+  },
+
+  "OOREDOO": {
+    "company": "Ooredoo Q.P.S.C.",
+    "exchange_ticker": "Qatar Stock Exchange ORDS",
+    "currency": "QAR",
+    "price": 13.04,
+    "price_date": "2026-08-17",
+    "price_date_note": "NOT the 6-Aug anchor. The 6-Aug-2026 close was NOT sourced. This is the 17-Aug-2026 quote, so the P/E below is NOT anchor-dated and is not comparable to Mobily's and e&'s anchor-dated figures without repricing.",
+    "shares_mn": 3200.0,
+    "eps_ttm": 1.18,
+    "eps_basis": "AGGREGATOR TTM EPS - NOT primary-derived. Basis (reported vs normalised) NOT established. This matters here: Ooredoo's H1-2026 REPORTED net profit FELL ~5% on a one-off legal provision in Algeria while NORMALISED net profit ROSE ~4% to almost QAR 2bn, so reported and normalised TTM figures diverge materially and the aggregator's basis is unknown.",
+    "pe_ttm": 11.19,
+    "dps_ttm": 0.75,
+    "dps_basis": "AGGREGATOR annual DPS. QAR 0.75 reported as 15% above prior year.",
+    "yield": 0.0570,
+    "arithmetic": "shown",
+    "arithmetic_detail": {
+      "pe_shown": "13.04 / 1.18 = 11.05x by direct division; provider states 11.19x (implying EPS 1.165 before rounding). Both quoted as aggregator-grade.",
+      "market_cap_route": "Market cap = 13.04 x 3,200mn = QAR 41,728mn; provider states QAR 42.12bn (implying ~3,230mn shares or a different price timestamp). Routes DO NOT fully reconcile - a further reason to treat this as aggregator-grade.",
+      "routes_reconcile": false,
+      "yield_shown": "0.75 / 13.04 = 5.75%; provider states 5.70%",
+      "h1_2026_context": "Revenue +~5% to QAR 12.5bn; EBITDA +7%, margin 44.4%; free cash flow +~8% to QAR 3.9bn; normalised net profit +~4% to ~QAR 2bn; reported net profit -~5% (Algeria legal provision)."
+    },
+    "source_grade": "aggregator",
+    "sources": [
+      "https://stockanalysis.com/quote/qse/ORDS/"
+    ]
+  },
+
+  "ZAIN": {
+    "company": "Mobile Telecommunications Company K.S.C.P. (Zain Group)",
+    "exchange_ticker": "Boursa Kuwait ZAIN",
+    "currency": "KWD",
+    "price": 0.611,
+    "price_date": "early-Aug-2026",
+    "price_date_note": "Reported as the Boursa Kuwait close in early-August-2026 press coverage of Zain's H1-2026 results, up ~18% year-to-date. NOT pinned to 6-Aug-2026 specifically.",
+    "shares_mn": null,
+    "eps_ttm": null,
+    "eps_basis": "UNSOURCED.",
+    "pe_ttm": null,
+    "pe_ttm_note": "UNSOURCED AND THE AVAILABLE AGGREGATOR DATA IS UNUSABLE. One provider returned a trailing P/E of 11365.2 and another indicated '>1000 at end-2025'. These are not plausible figures for a profitable incumbent telecom paying a ~6.7% dividend yield, and are almost certainly a corrupted or wrongly-scaled earnings denominator. REPORTED AS UNSOURCED RATHER THAN PASSED THROUGH. Do not use, and do not substitute an estimate.",
+    "dps_ttm": 0.035,
+    "dps_basis": "AGGREGATOR annual DPS of KWD 0.035/share. Additionally, Zain declared an EXCEPTIONAL interim dividend of 17 fils/share for H1-2026, payable 6-Oct-2026, which is NOT included in the 0.035 figure and would raise a trailing yield materially. The trailing DPS is therefore also not cleanly established.",
+    "yield": 0.0670,
+    "yield_note": "AGGREGATOR figure ~6.70%, on the KWD 0.035 annual DPS and excluding the exceptional 17-fils H1-2026 interim.",
+    "arithmetic": "not computable",
+    "arithmetic_detail": {
+      "pe_shown": "NOT COMPUTED - no usable EPS. Refusing to divide by a denominator known to be corrupted.",
+      "h1_2026_context": "Revenue +5% YoY to KD 1.1bn (~USD 3.7bn) for the six months to 30-Jun-2026.",
+      "ownership_note": "Omantel holds ~21.9% of Zain and the Kuwait Investment Authority ~16%. Zain and Omantel are therefore NOT independent observations in a peer median - Omantel equity-accounts a large Zain stake, so including both double-counts the same earnings stream."
+    },
+    "source_grade": "unsourced",
+    "sources": [
+      "https://www.agbi.com/telecoms/2026/08/kuwaits-zain-group-to-pay-dividend-after-revenue-growth/",
+      "https://stockanalysis.com/quote/kwse/ZAIN/dividend/"
+    ]
+  },
+
+  "OMANTEL": {
+    "company": "Oman Telecommunications Company SAOG (Omantel)",
+    "exchange_ticker": "Muscat Stock Exchange OTEL",
+    "currency": "OMR",
+    "price": null,
+    "price_date": null,
+    "price_note": "NOT SOURCED. No 6-Aug-2026 close obtained. The P/E below is a provider-computed ratio at an unstated date, not a figure I repriced to the anchor.",
+    "shares_mn": null,
+    "eps_ttm": 0.123,
+    "eps_basis": "AGGREGATOR TTM EPS in OMR - NOT primary-derived. Basis (reported vs normalised) NOT established. Note Omantel's reported earnings include a large equity-accounted contribution from its ~21.9% Zain stake, so its EPS is not a clean read on Omani domestic operations.",
+    "pe_ttm": 11.96,
+    "pe_ttm_note": "AGGREGATOR-computed trailing P/E at an unstated date. Because the price is unsourced, I could NOT verify this by either arithmetic route.",
+    "dps_ttm": 0.055,
+    "dps_basis": "AGGREGATOR / press: full-year dividend of 55 baizas per share = OMR 0.055.",
+    "yield": 0.0666,
+    "yield_note": "AGGREGATOR figure ~6.66%.",
+    "arithmetic": "not verifiable",
+    "arithmetic_detail": {
+      "pe_shown": "NOT INDEPENDENTLY COMPUTED - price unsourced, so neither the per-share nor the market-cap route could be run. Provider states 11.96x against a stated industry average of 54.108x (that industry average is itself implausible and lowers confidence in the provider's ratio set).",
+      "implied_price_check": "If P/E 11.96x and EPS 0.123 are mutually consistent, the implied price is 11.96 x 0.123 = OMR 1.471. Consistency check only - NOT a sourced price, and must not be used as one.",
+      "yield_crosscheck": "0.055 / 1.471 (implied) = 3.74%, which CONTRADICTS the provider's own stated 6.66% yield. The provider's figures are mutually inconsistent, so at least one of price, EPS, P/E or yield is wrong. Treat all Omantel figures as unreliable."
+    },
+    "source_grade": "aggregator",
+    "source_grade_note": "Downgrade warning: the provider's own P/E and yield for Omantel cannot both be true (see yield_crosscheck). Not fit for audit use without a primary rebuild.",
+    "sources": [
+      "https://www.investing.com/equities/omantel-ratios",
+      "https://ir.omantel.om/share-information/dividends/",
+      "https://www.marketscreener.com/news/omantel-fy-dividend-55-baizas-share-ce7e5cdcde81f122"
+    ]
+  },
+
+  "median_of_set": {
+    "definition": "Median trailing P/E across ONLY those companies whose trailing EPS was derived end-to-end from primary/issuer data, with both arithmetic routes reconciling, priced at the 6-Aug-2026 anchor.",
+    "qualifying_companies": ["MOBILY", "EAND"],
+    "qualifying_pe_values": [12.89, 15.73],
+    "median_pe_ttm": 14.31,
+    "computation": "Median of {12.89, 15.73} = (12.89 + 15.73) / 2 = 14.31x",
+    "statistical_caveat": "THIS IS A TWO-NAME MEDIAN, WHICH IS JUST THE MEAN OF TWO NUMBERS AND CARRIES NO CENTRAL-TENDENCY INFORMATION. It should NOT be presented as a peer-group median in the study. Only 2 of the 6 requested names cleared the primary-source bar. The two values also straddle a wide 2.8-turn spread, so a midpoint is not a meaningful anchor.",
+    "excluded_and_why": {
+      "STC": "TTM EPS aggregator-grade only; H1-2026 and H1-2025 reported attributable net profit not obtainable from the issuer's filing within the time budget.",
+      "OOREDOO": "TTM EPS aggregator-grade; price not anchor-dated (17-Aug not 6-Aug); market-cap and per-share routes do not reconcile.",
+      "ZAIN": "Trailing P/E unsourced; available aggregator P/E values (11365.2x, '>1000x') are corrupted and were refused rather than passed through.",
+      "OMANTEL": "Price unsourced so P/E unverifiable; the provider's own P/E and dividend yield are mutually contradictory."
+    },
+    "informational_only_wider_median": {
+      "note": "PROVIDED FOR CONTEXT ONLY - MIXES SOURCE GRADES AND PRICE DATES, SO IT MUST NOT BE USED AS AN AUDIT FIGURE.",
+      "values": [11.19, 11.96, 12.89, 14.75, 15.73],
+      "companies": ["OOREDOO", "OMANTEL", "MOBILY", "STC", "EAND"],
+      "median": 12.89,
+      "computation": "Sorted {11.19, 11.96, 12.89, 14.75, 15.73}; n=5; median = 3rd value = 12.89x",
+      "observation": "On this wider (weaker) basis the median sits at 12.89x - i.e. AT Mobily's own primary-derived multiple - and e& at 15.7x is the most expensive of the five, not the median. Zain excluded entirely as unsourced. Also note Omantel and Zain are not independent observations (Omantel holds ~21.9% of Zain)."
+    }
+  },
+
+  "notes": {
+    "headline_findings": [
+      "MOBILY: the 12.88x-12.90x critique is CONFIRMED from Mobily's own Saudi Exchange filings. TTM EPS SAR 4.76 = 4.51 + 2.32 - 2.07; P/E = 61.30 / 4.76 = 12.88x; market-cap route 47,048 / 3,650 = 12.89x. Both routes reconcile.",
+      "MOBILY: the flagged '767.5mn vs 3,650mn' inconsistency is NOT a numerical error. 767.5mn is the H1-2026 filing's weighted-average share count; 3,650 is TTM net income in SAR millions. Both are correct inputs to different routes of the same calculation. Neither route is wrong.",
+      "MOBILY: the rival '14.0x-15.6x aggregator' claim does NOT reproduce from filed numbers (which give 12.88x-12.93x). A stale FY2024 EPS of 4.03 would give 15.21x, inside that band - offered as an unverified hypothesis for the discrepancy, not as a sourced finding.",
+      "EAND: the critique's TTM EPS of AED 1.33 is CONFIRMED EXACTLY on a reported attributable basis (1.65 + 0.69 - 1.01).",
+      "EAND: the critique's price of AED 20.50 is the 7-AUG close, not 6-Aug. The 6-Aug-2026 close was AED 20.98, giving a trailing P/E of 15.7x-15.8x rather than the critique's 15.3x-15.6x.",
+      "EAND: the allegation that the study's 20.7x is the 6-Aug share price 'AED 20.70' mistranscribed is NOT CORROBORATED - e& closed at 20.98 on 6-Aug and 20.50 on 7-Aug, and no session in 3-7 Aug closed at 20.70 (20.30 / 21.00 / 21.00 / 20.98 / 20.50), per two independent providers agreeing to the fil. The critique's CONCLUSION nonetheless holds by an independent route: 20.7x is unsupportable on filed numbers, since 20.7x on EPS 1.33 implies AED 27.5-27.6, far outside the 52-week range of 17.40-21.60. The study's error is established; its cause is not.",
+      "EAND: the reported-vs-normalised distinction is the single biggest trap in this comparison. e&'s own H1-2026 release quotes the H1-2025 comparative on an ADJUSTED basis (EPS 0.67). Substituting that into the TTM bridge yields a spurious 1.67 and a P/E of ~12.6x, because FY2025's reported 1.65 still contains the same Khazna and Maroc Telecom one-offs. Any critique or study quoting an e& P/E near 12-13x should be checked for exactly this mixed-basis error."
+    ],
+    "could_not_source": [
+      "PRIMARY EXCHANGE PRICE DATA FOR ANY NAME. Neither saudiexchange.sa nor adx.ae historical closing-price series were retrievable through this environment. All prices are third-party market-data providers. Mobily's SAR 61.30 and e&'s AED 20.98/20.50 are each corroborated by two independent providers agreeing exactly, which is strong but is NOT issuer-grade. Flag this in the audit rather than presenting prices as primary.",
+      "The repo's own OHLC library could not corroborate the anchor prices: engine/raw_ohlc/AE/EAND.csv ends 2026-07-24 (close 20.08) and engine/raw_ohlc/SA/STC.csv ends 2026-07-26 (close 43.10). Both are stale relative to the 6-Aug-2026 anchor. Mobily (7020) has no file in engine/raw_ohlc/SA/ at all.",
+      "Mobily's H1-2026 interim FINANCIAL STATEMENTS themselves (only the Saudi Exchange results ANNOUNCEMENT was parsed). The announcement carries the net profit, EPS and weighted-average share count used here, so the TTM build is sound, but the underlying statements were not opened.",
+      "Mobily's FY2025 earnings-release PDF rendered as binary on first fetch and had to be converted locally; the DPS 2.80 / payout 62.1% / 770mn-shares figures come from that converted text.",
+      "stc's H1-2026 and H1-2025 REPORTED attributable net profit, from the issuer's filing. Only normalised growth (+6.3%) was available, and since BOTH periods contain undisclosed non-recurring items, no reported TTM could be inferred. stc's trailing P/E is therefore aggregator-grade (14.75x at SAR 43.38) and is excluded from the primary median.",
+      "Ooredoo's 6-Aug-2026 closing price, and the reported-vs-normalised basis of its aggregator TTM EPS. Its H1-2026 reported net profit FELL ~5% (Algeria legal provision) while normalised ROSE ~4%, so the two bases diverge materially and the aggregator's basis is unknown. Its per-share and market-cap routes also fail to reconcile.",
+      "Zain's trailing EPS and P/E entirely. Aggregator values returned 11365.2x and '>1000x', which are corrupted; these were REFUSED rather than passed through or replaced with an estimate. Zain's trailing DPS is also unclear because an exceptional 17-fils H1-2026 interim (payable 6-Oct-2026) sits outside the quoted KWD 0.035 annual figure.",
+      "Omantel's share price at any date, hence no independent verification of its 11.96x. Worse, the provider's own P/E and 6.66% yield are mutually contradictory (a P/E of 11.96x on EPS 0.123 implies OMR 1.471, at which 55 baizas is a 3.74% yield, not 6.66%). All Omantel figures should be treated as unreliable pending a primary rebuild."
+    ],
+    "methodological_flags_for_the_audit": [
+      "TTM CONSTRUCTION: all TTM figures here use FY + H1(current) - H1(prior), as instructed. This is a legitimate trailing construction but it is NOT the same as summing four actual quarters, and for issuers reporting only semi-annually it is the only option. State the method in the study.",
+      "SHARE-COUNT CONVENTION: Mobily has three defensible share counts (767.5mn H1-2026 weighted average, 769.05mn FY2025 weighted average, 770.0mn issued). The P/E only moves 12.88x to 12.93x across them, so the choice is immaterial here - but the study should state which it uses, since the critiques' apparent disagreement partly traces to this.",
+      "BASIS CONSISTENCY IS THE BINDING CONSTRAINT, NOT PRECISION. Both critiques' arithmetic is broadly sound; the disagreements trace to (a) which DATE the price is taken from, and (b) whether the subtracted prior-period leg is REPORTED or ADJUSTED. Resolve those two and the numbers converge.",
+      "PEER-SET INDEPENDENCE: Omantel holds ~21.9% of Zain, so those two are not independent observations and should not both enter a peer median. Any peer multiple set spanning both double-counts the same earnings stream.",
+      "FORWARD TRAP ON e&: the Vodafone disposal (AED 21.9bn proceeds, AED 4.8bn net cash gain) completed in JULY 2026 = Q3-2026. It is outside this TTM window but will enter from Q3-2026, inflating reported TTM EPS and depressing the apparent trailing P/E. Any later re-derivation of e&'s trailing P/E must normalise for it or the peer comparison will silently break.",
+      "NO RATING OR PRICE TARGET is expressed or implied anywhere in this file. Analyst consensus figures encountered on provider pages were deliberately NOT carried into the dataset."
+    ]
+  }
+}

@@ -1,0 +1,302 @@
+{
+ "full": {
+  "label": "FULL cleaned history",
+  "windows": 30,
+  "first_origin": "2018-12-30",
+  "last_origin": "2026-04-06",
+  "span_years": 7.27,
+  "skill_norm": -0.02311130366461356,
+  "skill_raw": -0.024308755282410832,
+  "verdict": "FAIL",
+  "ci_blocks": {
+   "2": [
+    -0.0408,
+    -0.0053,
+    "FAIL"
+   ],
+   "3": [
+    -0.0399,
+    -0.0041,
+    "FAIL"
+   ],
+   "4": [
+    -0.0362,
+    -0.0046,
+    "FAIL"
+   ]
+  },
+  "cov50": 0.6666666666666666,
+  "cov80": 0.9333333333333333,
+  "cov90": 0.9666666666666667,
+  "pit_mean": 0.5161999999999999,
+  "pit_hist": [
+   0,
+   1,
+   3,
+   8,
+   5,
+   2,
+   4,
+   2,
+   3,
+   2
+  ],
+  "chi2": 15.33,
+  "chi2_p": 0.082,
+  "ks_stat": 0.178,
+  "ks_p": 0.266,
+  "width_vs_benchmark": 1.119903073154711
+ },
+ "five_year": {
+  "label": "LAST FIVE YEARS of origins",
+  "windows": 19,
+  "first_origin": "2021-09-30",
+  "last_origin": "2026-04-06",
+  "span_years": 4.51,
+  "skill_norm": -0.03441249034120952,
+  "skill_raw": -0.03573044746615395,
+  "verdict": "FAIL",
+  "ci_blocks": {
+   "2": [
+    -0.0685,
+    -0.0047,
+    "FAIL"
+   ],
+   "3": [
+    -0.0668,
+    -0.0036,
+    "FAIL"
+   ],
+   "4": [
+    -0.0623,
+    -0.0066,
+    "FAIL"
+   ]
+  },
+  "cov50": 0.7894736842105263,
+  "cov80": 1.0,
+  "cov90": 1.0,
+  "pit_mean": 0.4534447368421053,
+  "pit_hist": [
+   0,
+   0,
+   3,
+   5,
+   5,
+   1,
+   4,
+   0,
+   1,
+   0
+  ],
+  "chi2": 21.53,
+  "chi2_p": 0.011,
+  "ks_stat": 0.268,
+  "ks_p": 0.107,
+  "width_vs_benchmark": 1.145742203483004
+ },
+ "production": {
+  "label": "production window set (post-break origins)",
+  "windows": 17,
+  "first_origin": "2022-03-30",
+  "last_origin": "2026-04-06",
+  "span_years": 4.02,
+  "skill_norm": -0.0413436295244074,
+  "skill_raw": -0.04358661362406746,
+  "verdict": "FAIL",
+  "ci_blocks": {
+   "2": [
+    -0.077,
+    -0.0098,
+    "FAIL"
+   ],
+   "3": [
+    -0.0752,
+    -0.0063,
+    "FAIL"
+   ],
+   "4": [
+    -0.0635,
+    -0.0048,
+    "FAIL"
+   ]
+  },
+  "cov50": 0.7647058823529411,
+  "cov80": 1.0,
+  "cov90": 1.0,
+  "pit_mean": 0.4440882352941177,
+  "pit_hist": [
+   0,
+   0,
+   3,
+   5,
+   4,
+   0,
+   4,
+   0,
+   1,
+   0
+  ],
+  "chi2": 22.41,
+  "chi2_p": 0.008,
+  "ks_stat": 0.262,
+  "ks_p": 0.161,
+  "width_vs_benchmark": 1.161665197956871
+ },
+ "h1_full": {
+  "label": "1-month horizon, FULL cleaned history",
+  "windows": 88,
+  "first_origin": "2018-12-30",
+  "last_origin": "2026-06-08",
+  "span_years": 7.44,
+  "skill_norm": 0.008638785547366523,
+  "skill_raw": 0.011839443318866993,
+  "verdict": "PARITY",
+  "ci_blocks": {
+   "2": [
+    -0.0045,
+    0.0212,
+    "PARITY"
+   ],
+   "3": [
+    -0.004,
+    0.0216,
+    "PARITY"
+   ],
+   "4": [
+    -0.0031,
+    0.0226,
+    "PARITY"
+   ]
+  },
+  "cov50": 0.7045454545454546,
+  "cov80": 0.8863636363636364,
+  "cov90": 0.9659090909090909,
+  "pit_mean": 0.5124670454545455,
+  "pit_hist": [
+   3,
+   1,
+   16,
+   11,
+   12,
+   15,
+   8,
+   9,
+   6,
+   7
+  ],
+  "chi2": 24.05,
+  "chi2_p": 0.004,
+  "ks_stat": 0.17,
+  "ks_p": 0.011,
+  "width_vs_benchmark": 1.081669590430105
+ },
+ "h1_five_year": {
+  "label": "1-month horizon, LAST FIVE YEARS",
+  "windows": 57,
+  "first_origin": "2021-08-18",
+  "last_origin": "2026-06-08",
+  "span_years": 4.8,
+  "skill_norm": 0.01223032278023839,
+  "skill_raw": 0.012748462666851701,
+  "verdict": "PARITY",
+  "ci_blocks": {
+   "2": [
+    -0.0049,
+    0.0264,
+    "PARITY"
+   ],
+   "3": [
+    -0.0051,
+    0.0266,
+    "PARITY"
+   ],
+   "4": [
+    -0.0055,
+    0.0267,
+    "PARITY"
+   ]
+  },
+  "cov50": 0.7719298245614035,
+  "cov80": 0.9298245614035088,
+  "cov90": 0.9824561403508771,
+  "pit_mean": 0.46562719298245614,
+  "pit_hist": [
+   2,
+   1,
+   13,
+   8,
+   8,
+   10,
+   5,
+   5,
+   3,
+   2
+  ],
+  "chi2": 24.58,
+  "chi2_p": 0.003,
+  "ks_stat": 0.169,
+  "ks_p": 0.068,
+  "width_vs_benchmark": 1.1068944371348204
+ },
+ "h1_production": {
+  "label": "1-month horizon, production window set",
+  "windows": 52,
+  "first_origin": "2022-01-21",
+  "last_origin": "2026-06-08",
+  "span_years": 4.38,
+  "skill_norm": 0.008286484007637873,
+  "skill_raw": 0.008466878403509348,
+  "verdict": "PARITY",
+  "ci_blocks": {
+   "2": [
+    -0.0098,
+    0.0226,
+    "PARITY"
+   ],
+   "3": [
+    -0.0102,
+    0.0213,
+    "PARITY"
+   ],
+   "4": [
+    -0.0106,
+    0.0219,
+    "PARITY"
+   ]
+  },
+  "cov50": 0.7692307692307693,
+  "cov80": 0.9230769230769231,
+  "cov90": 0.9807692307692307,
+  "pit_mean": 0.4732105769230769,
+  "pit_hist": [
+   2,
+   1,
+   11,
+   8,
+   7,
+   8,
+   5,
+   5,
+   3,
+   2
+  ],
+  "chi2": 18.38,
+  "chi2_p": 0.031,
+  "ks_stat": 0.164,
+  "ks_p": 0.107,
+  "width_vs_benchmark": 1.1246358361754336
+ },
+ "fit": {
+  "nu": 10.0,
+  "width_cal": 0.979,
+  "market_verdict": "PARITY",
+  "market_skill": 0.0068,
+  "market_ci90": [
+   -0.001,
+   0.014
+  ],
+  "fit_date": "2026-07-29",
+  "panel_names": 18
+ }
+}

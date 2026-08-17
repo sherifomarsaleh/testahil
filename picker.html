@@ -4,7 +4,7 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <title>Ticker Picker — can it reach its fair value in time? | testahil?</title>
-<meta name="description" content="For every covered EGX stock: how far our published fair value sits from the price in that stock's own volatility, and the odds of reaching it within 1 or 3 months — read off already-published studies and simulations.">
+<meta name="description" content="For every covered stock: how far our published fair value sits from the price in that stock's own volatility, and the odds of reaching it within 1 or 3 months — read off already-published studies and simulations.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;700;800&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
@@ -54,6 +54,12 @@
   .pk-table th:nth-child(6){min-width:128px}
   .pk-table th:nth-child(7){min-width:118px}
   .pk-table td{padding:8px 8px;border-bottom:1px solid var(--line);vertical-align:middle;white-space:nowrap}
+  /* market section heading: one band per market, so the UAE reads as its own block
+     rather than as rows interleaved with markets it shares no cash rate, calendar or
+     calibration with. */
+  .pk-table tr.pk-mkt td{background:var(--tint2);font-weight:700;font-size:var(--fs-caption);
+    letter-spacing:.04em;text-transform:uppercase;padding:9px 8px;border-bottom:1px solid var(--line)}
+  .pk-table tr.pk-mkt td .pk-flag{text-transform:none;letter-spacing:0;font-weight:400}
   .pk-table td.pk-stock{white-space:normal;min-width:132px}
   .pk-table td.num,.pk-table th.num{text-align:right;font-family:'IBM Plex Mono',monospace}
   .pk-wrap{overflow-x:auto}
@@ -124,7 +130,7 @@
       </div>
       <div class="pk-controls">
         <label class="ck"><input type="checkbox" id="pk-reach"> only names whose fair value is in reach</label>
-        <label class="ck"><input type="checkbox" id="pk-cash"> only names whose case beats <span id="pk-rf-label">19.5%</span> EGP cash</label>
+        <label class="ck"><input type="checkbox" id="pk-cash"> only names whose case beats its own market&rsquo;s cash rate</label>
         <label class="ck"><input type="checkbox" id="pk-up"> only undervalued (fair value above price)</label>
       </div>
     </div>
@@ -166,7 +172,7 @@ window.addEventListener('error', function(e){
   }catch(_){}
 });
 </script>
-<script src="assets/data.js?v=20260805c"></script>
+<script src="assets/markets.js?v=20260729d"></script><script src="assets/data.js?v=20260805c"></script>
 <script src="assets/fv_overlay.js?v=20260806"></script>
 <script>
 (function(){
@@ -188,9 +194,34 @@ window.addEventListener('error', function(e){
     { key:'cash',  label:null,          num:false, defDir:'desc' }, // label carries the live rf%
     { key:'asof',  label:'As of',       num:false, defDir:'desc' }
   ];
-  var rfPct = Math.round((FV_OVERLAY.engine_config && FV_OVERLAY.engine_config.rf_live || 0.195) * 1000) / 10;
-  var rfLabelEl = document.getElementById('pk-rf-label');
-  if (rfLabelEl) rfLabelEl.textContent = rfPct + '%';
+  // Each row is computed under its OWN market's committed fit and cash hurdle
+  // (per-row markets, 10-Aug-2026); the hurdle is shown in the cell, not one
+  // global rate in the header — a mixed table has no single rf.
+
+  /* ---------- market sections ----------
+     Rows are grouped into one block per market, in the registry's own order, so the
+     UAE is a section rather than twenty rows scattered through the Egyptian ones.
+     Resolution goes through marketOf() in assets/markets.js — the same resolver
+     ledger.html, trade.html and portfolio.html use, so every surface answers "which
+     market is this name in?" identically, including for the three names LEDGER and
+     TICKERS spell differently (Samsung/SAMSUNG, Kakao/KAKAO). */
+  function mktOf(r){
+    if (r.market) return r.market;
+    if (typeof marketOf === 'function'){ var m = marketOf(r.ticker); if (m) return m; }
+    return 'OTHER';
+  }
+  function mktLabel(m){ return (typeof marketLabel === 'function') ? marketLabel(m) : m; }
+  function mktRank(m){ return (typeof marketRank === 'function') ? marketRank(m) : 99; }
+  // The section's cash hurdle is read off ITS OWN ROWS (`hurdle_rf`, stamped per row by
+  // the overlay under that market's profile), not off a top-level config block — the
+  // rows are the authority on what each name was actually judged against.
+  function rfTxt(rows, h){
+    for (var i = 0; i < rows.length; i++){
+      var o = rows[i][h];
+      if (o && typeof o.hurdle_rf === 'number') return (Math.round(o.hurdle_rf*1000)/10) + '%';
+    }
+    return null;
+  }
 
   function pageFor(t){ return t.toLowerCase() + '.html'; }
   function pct(x, signed){
@@ -240,7 +271,7 @@ window.addEventListener('error', function(e){
     });
 
     var reachLabel = 'Reachability (' + (h==='1M'?'1 month':'3 months') + ')';
-    var cashLabel = 'Beats ' + rfPct + '% cash?';
+    var cashLabel = 'Beats local cash?';
     var thHtml = '<tr>' + COLS.map(function(c){
       var label = c.key==='reach' ? reachLabel : (c.key==='cash' ? cashLabel : c.label);
       var active = state.sortKey === c.key;
@@ -252,7 +283,21 @@ window.addEventListener('error', function(e){
            + label + '<span class="pk-care">'+caret+'</span></button></th>';
     }).join('') + '</tr>';
 
-    var rowsHtml = shown.map(function(r){
+    // One section per market, registry order. The active sort still orders rows INSIDE
+    // each section, so clicking a heading reorders every section by that column rather
+    // than shuffling markets together.
+    var order = [], byMkt = {};
+    shown.forEach(function(r){
+      var m = mktOf(r);
+      if (!byMkt[m]){ byMkt[m] = []; order.push(m); }
+      byMkt[m].push(r);
+    });
+    order.sort(function(a,b){
+      var ra = mktRank(a), rb = mktRank(b);
+      return ra !== rb ? ra - rb : a.localeCompare(b);
+    });
+
+    var rowOf = function(r){
       var o = r[h];
       var t = (typeof TICKERS !== 'undefined') && TICKERS[r.ticker];
       var nm = (t && t.name) || r.name || r.ticker;
@@ -273,14 +318,24 @@ window.addEventListener('error', function(e){
         + '<td class="num pk-dir '+gapCls+'">'+pct(r.gap_base_pct/100, true)+'</td>'
         + '<td><span class="band '+BANDCLS[o.band]+'">'+BANDTXT[o.band]+'</span></td>'
         + '<td class="num">'+p+'</td>'
-        + '<td>'+(o.beats_cash ? 'yes' : 'no')+'</td>'
+        + '<td>'+(o.beats_cash ? 'yes' : 'no')+(o.hurdle_rf != null ? ' <span class="pk-flag">vs '+(o.hurdle_rf*100).toFixed(1)+'%</span>' : '')+'</td>'
         + '<td class="pk-flag">'+(r.anchor_date||'')+'</td>'
         + '</tr>';
+    };
+
+    var rowsHtml = order.map(function(m){
+      var rf = rfTxt(byMkt[m], h);
+      return '<tr class="pk-mkt"><td colspan="' + COLS.length + '">'
+           + mktLabel(m)
+           + '<span class="pk-flag"> · ' + byMkt[m].length + ' name'
+           + (byMkt[m].length === 1 ? '' : 's')
+           + (rf ? ' · cash hurdle ' + rf : '') + '</span></td></tr>'
+           + byMkt[m].map(rowOf).join('');
     }).join('');
 
     document.getElementById('pk-table').innerHTML = '<thead>'+thHtml+'</thead><tbody>'+rowsHtml+'</tbody>';
     document.getElementById('pk-count').textContent =
-      'Showing ' + shown.length + ' of ' + rows.length + ' covered EGX names · fair values as published, prices as of each name’s own anchor date.';
+      'Showing ' + shown.length + ' of ' + rows.length + ' covered names across ' + order.length + ' market' + (order.length===1?'':'s') + ' · fair values as published, prices as of each name’s own anchor date · each name grouped under its own market and computed under that market’s engine fit and cash rate.';
 
     document.querySelectorAll('.pk-sortbtn').forEach(function(btn){
       btn.addEventListener('click', function(){

@@ -1,0 +1,1083 @@
+
+=== [FS_Q2_2026.pdf p1] ===
+Borouge PLC
+DIRECTORS’ REPORT, REVIEW REPORT AND
+CONDENSED CONSOLIDATED INTERIM
+FINANCIAL STATEMENTS
+30 JUNE 2026
+1
+
+=== [FS_Q2_2026.pdf p2] ===
+Borouge PLC
+DIRECTORS’ REPORT, REVIEW REPORT AND CONDENSED CONSOLIDATED
+INTERIM FINANCIAL STATEMENTS
+FOR THE SIX-MONTH PERIOD ENDED 30 JUNE 2026
+Pages
+Directors’ report 4
+Independent auditor’s report on review of condensed consolidated interim financial statements 6-7
+Condensed consolidated interim statement of financial position 8-9
+Condensed consolidated interim statement of profit or loss and other comprehensive income 10
+Condensed consolidated interim statement of changes in equity 11
+Condensed consolidated interim statement of cash flows 12
+Notes to the condensed consolidated interim financial statements 13 – 30
+
+=== [FS_Q2_2026.pdf p3] ===
+BOROUGE PLC
+DIRECTORS’ REPORT
+FOR THE SIX-MONTH PERIOD ENDED 30 JUNE 2026
+The Directors present their report together with the condensed consolidated interim financial statements of Borouge
+PLC ("the Company") and its subsidiaries (the “Group”) for the six-month period ended 30 June 2026.
+Principal activities
+The purpose of the Company is to serve as a holding company for Abu Dhabi Polymers Co. Ltd (Borouge) –
+Sole Proprietorship L.L.C. (“ADP”) and Borouge Pte Ltd. which are engaged in the principal activities of production
+of ethylene, propylene, polyethylene, polypropylene and trading of polyolefins, respectively.
+Financial results
+The financial results of the Group represent a profit for the period of USD 346.56 million (period ended 30 June 2025:
+USD 474.25 million) as presented in these condensed consolidated interim financial statements.
+For the Board of Directors
+_________________________
+Chairman
+Date: 30 July 2026
+Abu Dhabi, UAE
+4
+
+=== [FS_Q2_2026.pdf p4] ===
+KPMG Lower Gulf Limited
+Office No 15-111, 15th Floor
+Al Khatem Tower,
+Abu Dhabi Global Market Square, Al Maryah Island
+Abu Dhabi, United Arab Emirates
+Tel. +971 (2) 401 4800, www.kpmg.com/ae
+To the Shareholders of Borouge PLC
+Introduction
+We have reviewed the accompanying 30 June 2026 condensed consolidated interim financial
+statements of Borouge PLC (the Company) and its subsidiaries (the Group), which
+comprises:
+the condensed consolidated interim statement of financial position as at 30 June 2026;
+the condensed consolidated interim statements of profit or loss and other
+comprehensive income for the three-month and six-month periods ended 30 June 2026;
+the condensed consolidated interim statements of changes in equity for the six-month
+period ended 30 June 2026;
+the condensed consolidated interim statements of cash flows for the six-month period
+ended 30 June 2026; and
+notes to the interim financial statements.
+Management is responsible for the preparation and presentation of this condensed consolidated
+interim financial statements in accordance with IAS 34, Interim Financial Reporting. Our
+responsibility is to express a conclusion on this condensed consolidated interim financial
+statements based on our review.
+Scope of Review
+We conducted our review in accordance with the International Standard on Review Engagements
+2410, Review of Interim Financial Information Performed by the Independent Auditor of the
+Entity. A review of condensed consolidated interim financial statements consists of making
+inquiries, primarily of persons responsible for financial and accounting matters, and applying
+analytical and other review procedures. A review is substantially less in scope than an audit
+conducted in accordance with International Standards on Auditing and consequently does not
+enable us to obtain assurance that we would become aware of all significant matters that might be
+identified in an audit. Accordingly, we do not express an audit opinion.
+6
+© 2026 KPMG Lower Gulf Limited, licensed in the United Arab Emirates and a member firm of the KPMG global organization of independent member firms affiliated with KPMG International
+Limited, a private English company limited by guarantee. All rights reserved. KPMG Lower Gulf Limited is registered and licensed under the rules and regulations of Abu Dhabi Global Markets.
+
+=== [FS_Q2_2026.pdf p5] ===
+Borouge PLC
+Independent Auditors Report on
+Review of Condensed Consolidated Interim Financial Statements
+30 June 2026
+Conclusion
+Based on our review, nothing has come to our attention that causes us to believe that the
+accompanying 30 June 2026 condensed consolidated interim financial statements is not prepared,
+in all material respects, in accordance with IAS 34, Interim Financial Reporting.
+Other Matter
+The condensed consolidated interim financial statements of the Group for the three-month and six-
+month periods ended 30 June 2025, were reviewed by another auditor who expressed an
+unmodified conclusion on those condensed consolidated interim financial statements on 30 July
+2025. The condensed consolidated interim financial statements of the Group for the three-month
+period ended 31 March 2026 were reviewed by another auditor who expressed an unmodified
+conclusion on those condensed consolidated interim financial statements on 29 April 2026.
+Furthermore, the consolidated financial statements of the Group as at and for the year ended
+31 December 2025 were audited by another auditor who expressed an unmodified opinion on those
+consolidated financial statements on 3 February 2026.
+KPMG Lower Gulf Limited
+Adil Abid
+Abu Dhabi, United Arab Emirates
+Date:
+7
+© 2026 KPMG Lower Gulf Limited, licensed in the United Arab Emirates and a member firm of the KPMG global organization of independent member firms affiliated with KPMG International
+Limited, a private English company limited by guarantee. All rights reserved. KPMG Lower Gulf Limited is registered and licensed under the rules and regulations of Abu Dhabi Global Markets.
+
+=== [FS_Q2_2026.pdf p6] ===
+Borouge PLC
+CONDENSED CONSOLIDATED INTERIM STATEMENT OF FINANCIAL
+POSITION
+As at 30 June 2026
+30 June 31 December
+2026 2025
+USD’000 USD’000
+Notes (Unaudited) (Audited)
+ASSETS
+Non-current assets
+Property, plant and equipment 4 6,051,221 6,082,232
+Intangible assets 95,811 104,573
+Right-of-use assets 5 76,462 23,327
+Investment in sublease 135,326 135,697
+Loans to employees 22,442 21,905
+Deferred tax assets 3,525 1,992
+Total non-current assets 6,384,787 6,369,726
+Current assets
+Inventories 6 656,121 523,702
+Amounts due from related parties 11 312,271 293,251
+Trade receivables 7 945,582 808,237
+Loans to employees 12,855 13,245
+Investments in sublease 5,922 5,952
+Prepayments and other receivables 8 83,743 48,090
+Cash and cash equivalents 9 194,474 426,901
+Total current assets 2,210,968 2,119,378
+TOTAL ASSETS 8,595,755 8,489,104
+EQUITY AND LIABILITIES
+Equity
+Share capital 4,809,231 4,809,231
+Merger reserve (4,446,467) (4,446,467)
+Treasury shares 20 (216,703) (158,223)
+Other reserve 20 111 368
+Restricted reserve 186,869 186,869
+Capital reserve 12,490 12,490
+Cash flow hedge reserve - (6,002)
+Actuarial reserve 17,127 17,125
+Translation reserve (1,770) (4,426)
+Retained earnings 3,365,109 3,677,885
+Equity attributable to the owners of the Company 3,725,997 4,088,850
+Non-controlling interests 22,034 26,832
+Total equity 3,748,031 4,115,682
+8
+
+=== [FS_Q2_2026.pdf p7] ===
+Borouge PLC
+CONDENSED CONSOLIDATED INTERIM STATEMENT OF FINANCIAL
+POSITION continued
+As at 30 June 2026
+30 June 31 December
+2026 2025
+USD’000 USD’000
+Notes (Unaudited) (Audited)
+EQUITY AND LIABILITIES continued
+Non-current liabilities
+Provision for employees’ end of service benefits 93,409 93,044
+Lease liabilities 200,733 156,652
+Related party loans and borrowings 11 2,800,000 -
+Deferred tax liability 158,071 128,972
+Total non-current liabilities 3,252,213 378,668
+Current liabilities
+Trade and other payables 497,365 378,200
+Related party loans and borrowings 11 50,000 -
+Loans and borrowings 10 399,998 2,957,730
+Derivative financial instruments 1,955 6,002
+Amounts due to related parties 11 588,060 576,502
+Lease liabilities 19,916 9,528
+Provisions for employees end of service benefits 12,293 12,293
+Income tax payable 25,924 54,499
+Total current liabilities 1,595,511 3,994,754
+Total liabilities 4,847,724 4,373,422
+TOTAL EQUITY AND LIABILITIES 8,595,755 8,489,104
+H.E. Dr. Sultan Ahmed Al Jaber Hazeem Sultan Al Suwaidi
+Chairman Chief Executive Officer
+Siegfried Wengler
+Chief Financial Officer
+The notes on pages 13 to 30 are an integral part of these consolidated condensed interim financial statements.
+9
+
+=== [FS_Q2_2026.pdf p8] ===
+Borouge PLC
+CONDENSED CONSOLIDATED INTERIM STATEMENT OF PROFIT OR LOSS
+AND OTHER COMPREHENSIVE INCOME
+For the periods ended 30 June
+For the For the For the For the
+three-month three-month six-month six-month
+period ended period ended period ended period ended
+30 June 30 June 30 June 30 June
+2026 2025 2026 2025
+USD’000 USD’000 USD’000 USD’000
+Notes (Unaudited) (Unaudited) (Unaudited) (Unaudited)
+Revenue 12 1,405,971 1,305,263 2,581,161 2,724,874
+Cost of sales 13 (865,118) (865,840) (1,631,518) (1,711,393)
+Gross profit 540,853 439,423 949,643 1,013,481
+Other income 30,883 5,974 37,190 12,024
+General and administrative expenses (49,994) (41,944) (96,053) (102,518)
+Selling and distribution expenses 14 (221,999) (101,367) (346,738) (191,307)
+Impairment loss (6,436) - (6,436) -
+Operating profit 293,307 302,086 537,606 731,680
+Finance income 4,574 8,682 10,816 16,579
+Finance costs (45,779) (43,361) (86,688) (85,984)
+Foreign exchange loss/(gain) 1,282 (1,430) 946 (2,150)
+Net finance costs (39,923) (36,109) (74,926) (71,555)
+Profit for the period before tax 253,384 265,977 462,680 660,125
+Income tax expense 15 (62,403) (72,798) (116,119) (185,879)
+Profit for the period 190,981 193,179 346,561 474,246
+Profit for the period attributable to:
+Owners of the company 189,509 191,705 344,213 470,488
+Non-controlling interests 1,472 1,474 2,348 3,758
+190,981 193,179 346,561 474,246
+Other comprehensive income
+Items that will not be reclassified to profit or loss in
+subsequent periods
+Defined benefit plan remeasurements - - 2 -
+Items that may be reclassified to profit or loss
+Fair value gain/(loss) on derivatives used in effective
+cash flow hedge relationship - 434 2,499 (1,485)
+Gain on discontinuation of cash flow hedge 3,503 - 3,503 -
+Foreign currency translation differences for foreign
+operations 1,535 1,281 3,135 1,807
+Total other comprehensive income for the period 5,038 1,715 9,139 322
+Total comprehensive income for the period, net of 196,019 194,894 355,700 474,568
+tax
+Total comprehensive income for
+the period attributable to:
+Shareholders of the Parent 194,313 193,225 352,873 470,535
+Non-controlling interests 1,706 1,669 2,827 4,033
+196,019 194,894 355,700 474,568
+Earnings per share:
+Basic and diluted (USD) 16 0.01 0.01 0.01 0.02
+The notes on pages 13 to 30 are an integral part of these consolidated condensed interim financial statements.
+10
+
+=== [FS_Q2_2026.pdf p9] ===
+Borouge PLC
+CONDENSED CONSOLIDATED INTERIM STATEMENT OF CHANGES IN EQUITY
+30 June 2026
+Equity
+Cash flow attributable Non-
+Share Treasury Other Merger Restricted Capital Actuarial hedge Translation Retained to Owners of controlling Total
+capital Shares Reserve reserve reserve reserve reserve reserve reserve earnings the Company interests equity
+USD’000 USD’000 USD’000 USD’000 USD’000 USD’000 USD’000 USD’000 USD’000 USD’000 USD’000 USD’000 USD’000
+Balance at 1 January 2025 (audited) 4,809,231 - - (4,446,467) 186,770 12,490 18,320 (5,993) (7,741) 3,896,116 4,462,726 19,337 4,482,063
+Profit for the period - - - - - - - - - 470,488 470,488 3,758 474,246
+Other comprehensive income / (loss) for the
+period - - - - - - - (1,485) 1,532 - 47 275 322
+Total comprehensive income / (loss) for the - - - - - - - (1,485) 1,532 470,488 470,535 4,033 474,568
+period
+Transactions with owners of the company:
+Dividends (note 11) - - - - - - - - - (649,204) (649,204) (1,525) (650,729)
+Transfer to statutory reserve - - - - 28 - - - - (28) - - -
+Own shares acquired in the period (note 20) - (91,323) 791 - - - - - - - (90,532) - (90,532)
+Balance at 30 June 2025 (Unaudited) 4,809,231 (91,323) 791 (4,446,467) 186,798 12,490 18,320 (7,478) (6,209) 3,717,372 4,193,525 21,845 4,215,370
+Balance at 1 January 2026 (audited) 4,809,231 (158,223) 368 (4,446,467) 186,869 12,490 17,125 (6,002) (4,426) 3,677,885 4,088,850 26,832 4,115,682
+Profit for the period - - - - - - - - - 344,213 344,213 2,348 346,561
+Other comprehensive income for the period - - - - - - 2 2,499 2,656 - 5,157 479 5,636
+Gain on discontinuation of cash flow hedge - - - - - - - 3,503 - - 3,503 - 3,503
+Total comprehensive income for the period - - - - - - 2 6,002 2,656 344,213 352,873 2,827 355,700
+Transactions with owners of the company:
+Dividends (note 11) - - - - - - - - - (656,989) (656,989) (7,625) (664,614)
+Own shares acquired in the period (note 20) - (58,480) (257) - - - - - - - (58,737) - (58,737)
+Balance at 30 June 2026 (Unaudited) 4,809,231 (216,703) 111 (4,446,467) 186,869 12,490 17,127 - (1,770) 3,365,109 3,725,997 22,034 3,748,031
+The notes on pages 13 to 30 are an integral part of these consolidated condensed interim financial statements.
+11
+
+=== [FS_Q2_2026.pdf p10] ===
+Borouge PLC
+CONDENSED CONSOLIDATED INTERIM STATEMENT OF CASHFLOWS
+For the six-month ended 30 June 2026
+For the six- For the six-
+month period month period
+ended ended
+30 June 30 June
+Notes 2026 2025
+USD’000 USD’000
+(Unaudited) (Unaudited)
+Cash flows from operating activities
+Profits before tax for the period 462,680 660,125
+Adjustments for:
+Depreciation on property, plant, and equipment 4 184,569 261,537
+Insurance income related to plant, property and equipment (13,178)
+Impairment of property, plant, and equipment 4 6,436 -
+Depreciation on right-of-use assets 3,548 1,777
+Amortization of intangible assets 11,902 11,078
+Provision for expected credit loss on trade receivables 7 941 397
+Provision for slow moving and obsolete inventories 6 35,675 147
+Gain on disposal of property, plant and equipment (1) (1)
+Employees’ end of service benefits charge 4,519 7,397
+Finance costs 86,688 85,984
+Finance income (10,816) (16,579)
+Exchange loss differences 235 405
+Net cash flows from operating activities before
+changes in working capital 773,198 1,012,267
+Changes in working capital:
+(Increase) / decrease trade receivables (138,752) 131,883
+Increase in amounts due from related parties (3,977) (37,211)
+(Increase)/decrease in inventories (167,854) 62,996
+Increase in prepayments and other receivables (37,609) (55,529)
+Increase/decrease) in amounts due to related parties (18,150) 13,336
+Decrease/(increase) in trade payables 68,744 (1,870)
+Decrease in other payables 58,822 31,290
+(Decrease)/Increase in contract liabilities (8,817) 1,181
+Cash generated from operating activities 525,605 1,158,343
+Employees’ end of service benefits paid (4,142) (2,772)
+Tax paid (117,002) (173,893)
+Net cash generated from operating activities 404,461 981,678
+Cash flows from investing activities
+Proceeds from disposal of property, plant and equipment 1 4
+Payments for purchase of property, plant and equipment 4 (158,989) (169,427)
+Payments for purchase of intangible assets (3,853) (873)
+Proceeds from investments in sub-lease 123 2,897
+Finance income received 8,535 13,741
+Net cash used in investing activities (154,183) (153,658)
+Cash flows from financing activities
+Repayment of bank loans (Commercial and Islamic term facility) 10(i) (2,950,000) -
+Proceeds from Related party loans and borrowings - RCF 11(iv) 50,000 -
+Proceeds from Related party loans and borrowings – Commercial 11(iv) 2,800,000 -
+Repurchase of Treasury shares 20 (58,737) (91,323)
+Net proceeds from receivables discounting agreement 10 389,248 -
+Payment of dividends (664,614) (651,377)
+Payment of interest on bank loan (48,676) (81,088)
+Payment of lease liabilities (1,895) (4,992)
+Net cash used in financing activities (484,674) (828,780)
+Net (decrease) / increase in cash and cash equivalents (234,396) 357
+Net foreign exchange difference 1,969 1,117
+Cash and cash equivalents at 1 January 426,901 418,506
+Cash and cash equivalents at end of period 9 194,474 418,863
+The notes on pages 13 to 30 are an integral part of these consolidated condensed interim financial statements.
+12
+
+=== [FS_Q2_2026.pdf p11] ===
+Borouge PLC
+NOTES TO THE CONDENSED CONSOLIDATED INTERIM FINANCIAL STATEMENTS
+30 June 2026
+1 REPORTING ENTITY
+Borouge PLC (the “Company”) was incorporated on 28 April 2022 as a public company limited by shares, with
+registration number 000007602, pursuant to the Abu Dhabi Global Market Companies (Amendment No. 1)
+Regulations 2020. The Company has been established for the purpose of serving as a holding company for Abu Dhabi
+Polymers Co. Ltd (Borouge) – Sole Proprietorship L.L.C. and Borouge Pte. Ltd.
+In the period, the Company’s ultimate major shareholders - Abu Dhabi National Oil Company P.J.S.C. (“ADNOC”)
+and OMV Aktiengesellschaft (“OMV”) – announced they had formed a new jointly controlled entity, Borouge Group
+International AG (“BGI”). This transaction involved combining Borouge PLC with Borealis GMBH (“Borealis”),
+with the newly formed entity acquiring Nova Chemicals Corporation. BGI will serve as ADNOC and OMV’s strategic
+platform for growth and acquisitions in the polyolefins sector. Pursuant to a resolution of the Shareholders dated 10
+May 2022, the shareholders approved listing the Company’s shares on Abu Dhabi Securities Exchange whereby 10%
+of its shares were offered in an Initial Public Offering (“IPO”). As at the reporting date, BGI (the “Ultimate Parent”)
+held 90% of the issued share capital of the Company while the remaining 10% are floated on the Abu Dhabi Securities
+Exchange (“ADX”). BGI is considered to be the ultimate parent
+On 25 March 2026, ADNOC (including on behalf of XRG Austria GMBH (“XRG Austria”)) transferred its entire
+shareholding in the Company to BGI in exchange for new shares in BGI; Borealis Middle East Holding GMBH
+transferred its entire shareholding in the Company and Borouge PTE Ltd to BGI and OMV made cash contribution in
+exchange for new shares in BGI.
+In addition, BGI issued new shares to XRG Austria, XRG P.J.S.C. and OMV, resulting in the effective shareholding
+of 50% of BGI being held by XRG and 50% of the shareholding in BGI being held by OMV. BGI is jointly controlled
+by XRG and OMV from 25 March 2026.
+The BGI transaction represented a shareholder restructuring transaction. Management assessed the transaction and
+concluded that there was no change in control of the Group requiring business combination accounting under IFRS 3
+and therefore no remeasurement of assets and liabilities arose.
+These condensed consolidated interim financial statements (the ‘interim financial statements’) as at and for six months
+30 June 2026 comprise the Company and its subsidiaries (together referred to as the “Group”). The condensed
+consolidated interim financial statements were approved by the Board of Directors and authorised for issuance on 30
+July 2026.
+2 BASIS OF PREPARATION
+2.1 STATEMENT OF COMPLIANCE
+The condensed consolidated interim financial statements as at and for the six-month period ended 30 June 2026 have
+been prepared in accordance with International Accounting Standard IAS 34, Interim Financial Reporting (“IAS 34”).
+The Group has prepared the financial statements on the basis that it will continue to operate as a going concern.
+These condensed consolidated interim financial statements do not include all the information and disclosures required
+in the complete set of annual financial statements prepared in accordance with International Financial Reporting
+Standards (“IFRS”) Accounting Standards as Issued by the International Accounting Standards Board (“IASB”)
+(“IFRS Accounting Standards”), and should be read in conjunction with the Group’s annual consolidated financial
+statements as at and for the year ended 31 December 2025. However, selected explanatory notes are included to
+explain events and transactions that are significant to an understanding of the changes in the Group’s financial position
+and performance since the last annual consolidated financial statements. In addition, results for the six-month period
+ended 30 June 2026 are not necessarily indicative of the results for the year ending 31 December 2026.
+13
+
+=== [FS_Q2_2026.pdf p12] ===
+Borouge PLC
+NOTES TO THE CONDENSED CONSOLIDATED INTERIM FINANCIAL STATEMENTS
+30 June 2026
+2 BASIS OF PREPARATION continued
+2.2 FUNCTIONAL AND PRESENTATION CURRENCY
+These condensed consolidated interim financial statements are presented in US Dollar (“USD”), which is the
+Company’s functional and the Group’s presentation currency, as a significant proportion of the Group’s assets,
+liabilities, income and expenses are denominated in USD. Subsidiaries within the Group also have USD as their
+functional currency. All amounts have been rounded to the nearest thousand, unless otherwise indicated.
+2.3 GOING CONCERN
+The directors have, at the time of approving the condensed consolidated interim financial statements, reasonable
+expectation that the Group will continue in operational existence for the foreseeable future as its subsidiaries have a
+history of profitable operations and the Group has ready access to financial resources. Thus, they continue to adopt
+the going concern basis of accounting in preparing the condensed consolidated interim financial statements.
+2.4 FINANCIAL RISK MANAGEMENT
+The financial risk management objectives and policies adopted by the Group are consistent with those disclosed in the
+audited annual consolidated financial statements as at and for the year ended December 31, 2025.
+2.5 MIDDLE EAST GEOPOLITICAL TENSION
+Subsequent to the year end, geopolitical tensions in parts of the Middle East have escalated following the conflict
+between the United States and Iran. The Group is assessing the potential implications of these developments on its
+operations, financial position and performance. In this context, management has identified several risk factors,
+including the Group’s reliance on ocean freight routes for its Middle Eastern operations—particularly through key
+maritime corridors such as the Strait of Hormuz - as well as potential uncertainties surrounding the continuity of
+feedstock availability.
+These developments may continue affect the Group’s operations and financial performance through, among other
+factors, potential interruptions in export logistics, increases in insurance, freight and security costs, and volatility in
+international product and feedstock prices. Given the continuing uncertainty and the evolving nature of the situation,
+it is not currently practicable to reliably estimate the full financial effect of these events on the current or future
+reporting periods.
+The Group delivered a resilient second quarter performance in 2026, demonstrating the strength of its operations,
+supply chain agility and financial discipline despite adverse regional developments. Following the incident on 5
+April at its Ruwais complex, the Company restored full asset availability ahead of schedule with the successful
+repair of affected assets completed by the end of June. The Company successfully shipped all volumes produced
+during the quarter as well as additional volumes from inventory.
+The Group successfully developed alternative logistics routes via road, rail and sea which enabled it to ship beyond
+volumes produced during the quarter, supporting continued customer supply despite regional disruption.
+Borouge’s utilisation rates in the quarter averaged at 60%. With asset availability now fully restored, Borouge is
+well positioned to return to high utilisation rates during the second half of 2026 depending on logistics and feedstock
+availability.
+Management has also considered these developments in assessing whether any indicators of impairment existed in
+respect of the Group’s non-financial assets as at the reporting date, taking into account the Group’s financial
+performance for the quarter and management’s current assessment of the likely operational and pricing impacts. Based
+on this assessment, management concluded that no significant impact of those indicators that existed at the reporting
+date and, accordingly, an impairment loss of 6.4 MUSD has been recognised for the period in these condensed
+consolidated interim financial statements.
+14
+
+=== [FS_Q2_2026.pdf p13] ===
+Borouge PLC
+NOTES TO THE CONDENSED CONSOLIDATED INTERIM FINANCIAL STATEMENTS
+30 June 2026
+2 BASIS OF PREPARATION continued
+2.6 NEW STANDARDS, INTERPRETATIONS AND AMENDMENTS ADOPTED BY THE GROUP
+The accounting policies adopted in the preparation of the condensed consolidated interim financial statements are
+consistent with those followed in the preparation of the Group’s annual consolidated financial statements as at and for
+the year ended 31 December 2025, except for the adoption of new standards effective as at 1 January 2026.
+A number of new accounting standards and amendments to accounting standards are effective for annual periods
+beginning after 1 January 2026 and earlier application is permitted.
+The Group has not early adopted any new or amended accounting standards in the preparation of this condensed
+consolidated interim financial information.
+IFRS 18 Presentation and Disclosure in Financial Statements
+IFRS 18 will replace IAS 1 Presentation of Financial Statements and applies for annual reporting periods beginning
+on or after 1 January 2027. The new standard introduces the following key new requirements.
+• Entities are required to classify all income and expenses into five categories in the statement of profit or loss,
+namely the operating, investing, financing, discontinued operations and income tax categories. Entities are
+also required to present a newly-defined operating profit subtotal. Entities’ net profit will not change.
+• Management-defined performance measures (MPMs) are disclosed in a single note in the financial
+statements.
+• Enhanced guidance is provided on how to group information in the financial statements.
+In addition, all entities are required to use the operating profit subtotal as the starting point for the statement of cash
+flows when presenting operating cash flows under the indirect method. The Group is still in the process of assessing
+the impact of the new standard, particularly with respect to the structure of the Group’s consolidated statement of
+profit or loss, the statement of cash flows and the additional disclosures required for MPMs. The Group is also
+assessing the impact on how information is grouped in the financial statements, including for items currently labelled
+as ‘other’.
+Other accounting standards
+The following new and amended accounting standards are not expected to have a significant impact on the Group’s
+consolidated financial statements.
+New and revised IFRSs and amendments Effective for annual periods
+beginning on or after
+Classification and Measurement of Financial Instruments – Amendments to 1 January 2026
+IFRS 9 and IFRS 7
+2026 Annual Improvements to IFRS Accounting Standards – Volume 11 1 January 2026
+IFRS 19 Subsidiaries without Public Accountability: Disclosures 1 January 2027
+Sale or Contribution of Assets between an Investor and its Associate or Joint Available for optional adoption/
+Venture – Amendments to IFRS 10 and IAS 28 effective deferred indefinitely
+There are no other applicable new standards and amendments to published standards or interpretations that have been
+issued that would be expected to have a material impact on the condensed consolidated interim financial information
+of the Group.
+15
+
+=== [FS_Q2_2026.pdf p14] ===
+Borouge PLC
+NOTES TO THE CONDENSED CONSOLIDATED INTERIM FINANCIAL STATEMENTS
+30 June 2026
+2 BASIS OF PREPARATION continued
+2.7 CRITICAL ACCOUNTING ESTIMATES AND JUDGEMENTS
+The preparation of these condensed consolidated interim financial statements in conformity with the IFRS Accounting
+Standards requires management to make judgments, estimates and assumptions that affect the reported amounts of
+assets and liabilities and income and expenses. It also requires management to exercise judgment in the application of
+its accounting policies. The estimates and assumptions are based on historical experience and various other factors
+that are believed to be reasonable under the circumstances. These estimates and assumptions are reviewed on an
+ongoing basis. Revisions to accounting estimates are recognised in the period in which the estimate is revised if the
+revision affects only that period, or in the period of revision and future periods if the revision affects both current and
+future periods.
+The significant judgments made by management in applying its accounting policies and the key sources of estimation
+uncertainty were the same as those applied to the annual consolidated financial statements of the Group as at and for
+the year ended December 31, 2025.
+Recognition / derecognition of financial assets
+Subsequent to the year end, management has reassessed the judgment relating to the derecognition of trade receivables
+sold under the Limited Recourse Receivables Discounting Agreement entered into with an external commercial bank.
+Management assessed the arrangement under IFRS 9 derecognition requirements and concluded that substantially all
+risks and rewards of ownership had not been transferred. Accordingly, the receivables remain recognised and funding
+received is recognised as a financial liability.
+There is no impact on the condensed consolidated interim statement of profit or loss resulting from the change in
+judgement.
+16
+
+=== [FS_Q2_2026.pdf p15] ===
+Borouge PLC
+NOTES TO THE CONDENSED CONSOLIDATED INTERIM FINANCIAL STATEMENTS
+30 June 2026
+2 BASIS OF PREPARATION continued
+2.8 SEGMENTAL ANALYSIS
+For the period ended 30 June 2026 the Chief Operating Decision Maker (“CODM”) has determined that the Group has
+only one operating segment, which is consistent with the internal reporting and performance measurement.
+The Group does not have any operating segments that are aggregated. The CODM has considered the following criteria
+in determining the operating segments of the Group:
+• the nature of products and services;
+• the nature of the production processes;
+• the type or class of customer for their products and services; and
+• the methods used to distribute their products or provide their services;
+Based on the criteria and evaluation above, the CODM has determined that the Group has only one operating segment,
+which is consistent with the internal reporting and performance measurement.
+Further details of the analysis can be found in the Annual Financial Statements of the Group, for the year ended
+31 December 2025, whereby the same conclusion was reached.
+3 GROUP INFORMATION
+Details of the Company’s subsidiaries as at 30 June 2026 and 31 December 2025 are as follows:
+Ownership Parent Country of
+Name of subsidiary Principal activities
+interest Company incorporation
+Abu Dhabi Polymers Co. Ltd 100% PLC U.A.E Production of ethylene,
+(Borouge) - Sole Proprietorship propylene, polyethylene and
+L.L.C. (“ADP”) polypropylene
+Borouge Pte Ltd (“PTE”) 84.746% PLC Singapore Trading of polyolefins
+Borouge (India) Pvt Ltd 100% PTE India Marketing and support services
+Borouge Compounding Holding
+100% PTE Singapore Investment Holding
+PTE Ltd (“PTECOM”)
+Borouge Compounding People’s Republic
+100% PTECOM Trading polyolefins products
+(Shanghai) Co. Ltd of China
+Borouge Sales and Marketing People’s Republic
+100% PTE Marketing and support services
+(Shanghai) Co. Ltd of China
+Arab Republic
+Borouge Egypt LLC 100% PTE Marketing and support services
+Egypt
+Borouge Kenya Ltd 100% PTE Kenya Marketing and support services
+Borouge Korea Co. Ltd Trading of polyolefins products
+100% PTE South Korea
+and sales and marketing support
+The Company together with its subsidiaries is referred to as the “Group”.
+17
+
+=== [FS_Q2_2026.pdf p16] ===
+Borouge PLC
+NOTES TO THE CONDENSED CONSOLIDATED INTERIM FINANCIAL STATEMENTS
+30 June 2026
+4 PROPERTY, PLANT AND EQUIPMENT
+Furniture, Capital
+Plant and fixtures and Motor work-in-
+Buildings machinery equipment vehicles progress Total
+USD’000 USD’000 USD’000 USD’000 USD’000 USD’000
+30 June 2026
+Cost:
+Balance at 31 December 2025 (audited) 718,265 12,945,813 198,248 14,093 290,376 14,166,795
+Additions - 2,995 57 - 157,336 160,388
+Disposals - (31) (1,330) - - (1,361)
+Transfers from capital work in progress - 28,796 847 - (29,643) -
+Transfers to intangibles - - - - (1,206) (1,206)
+Exchange differences 641 1,582 445 - (10) 2,658
+At 30 June 2026 (Unaudited) 718,906 12,979,155 198,267 14,093 416,853 14,327,274
+Accumulated depreciation and impairment:
+Balance at 31 December 2025 (audited) 387,947 7,505,423 175,286 13,701 2,206 8,084,563
+Depreciation 7,528 172,345 4,696 - - 184,569
+Impairment - 6,436 - - - 6,436
+Disposals - (31) (1,330) - - (1,361)
+Exchange differences 315 1,170 361 - - 1,846
+At 30 June 2026 (Unaudited) 395,790 7,685,343 179,013 13,701 2,206 8,276,053
+Net book value:
+At 30 June 2026 (Unaudited) 323,116 5,293,812 19,254 392 414,647 6,051,221
+At 31 December 2025 (audited) 330,318 5,440,390 22,962 392 288,170 6,082,232
+18
+
+=== [FS_Q2_2026.pdf p17] ===
+Borouge PLC
+NOTES TO THE CONDENSED CONSOLIDATED INTERIM FINANCIAL STATEMENTS
+30 June 2026
+4 PROPERTY, PLANT AND EQUIPMENT continued
+Furniture, Capital
+Plant and Motor fixtures and work-in-
+Buildings machinery vehicles equipment progress Total
+USD’000 USD’000 USD’000 USD’000 USD’000 USD’000
+2025
+Cost:
+Balance at 31 December 2024 716,770 12,751,222 14,093 194,204 257,273 13,933,562
+Additions 22 87,312 - 1,823 186,530 275,687
+Disposals - (90) - (9,077) - (9,167)
+Write off - - - - (1,078) (1,078)
+Transfers from capital work in progress 704 105,493 - 9,989 (116,186) -
+Transfers to intangibles - - - - (36,198) (36,198)
+Exchange differences 769 1,876 - 1,309 35 3,989
+At 31 December 2025 718,265 12,945,813 14,093 198,248 290,376 14,166,795
+Accumulated depreciation and impairment:
+Balance at 31 December 2024 366,869 7,084,935 13,562 173,850 1,844 7,641,060
+Impairment - - - - 363 363
+Depreciation 20,714 419,235 136 9,299 - 449,384
+Disposals - (90) - (9,077) - (9,167)
+Exchange differences 364 1,343 3 1,214 (1) 2,923
+At 31 December 2025 387,947 7,505,423 13,701 175,286 2,206 8,084,563
+Net book value:
+At 31 December 2025 330,318 5,440,390 392 22,962 288,170 6,082,232
+19
+
+=== [FS_Q2_2026.pdf p18] ===
+Borouge PLC
+NOTES TO THE CONDENSED CONSOLIDATED INTERIM FINANCIAL STATEMENTS
+30 June 2026
+5 RIGHT-OF-USE ASSETS AND LEASE LIABILITIES
+The right and license to use the land in Ruwais, on which the buildings, plant and machinery are constructed, was
+granted by the Supreme Petroleum Council, free of all fees, in accordance with a letter dated 28 October 1998. The
+land in Ruwais continues to be free of all fees, except for the Borouge 4-Plant Site in accordance with an agreement
+signed between the Group and ADNOC on 16 November 2021. On the same day, the Group signed an agreement with
+ADNOC for the lease of the Sas Al Nakhl Area where rent will be payable on land for the Innovation Centre Site.
+(a) Right-of-use assets
+30 June 31 December
+2026 2025
+USD’000 USD’000
+Cost:
+Balance at 1 January 45,756 51,214
+Additions 56,488 1,802
+Disposals - (8,529)
+Modification on lease liability (67) (62)
+Exchange differences 489 1,331
+At 31 December 102,666 45,756
+Accumulated depreciation:
+Balance at 1 January 22,429 26,417
+Charge for the year 3,547 3,609
+Disposal - (8,529)
+Exchange differences 228 932
+At 31 December 26,204 22,429
+Carrying amount:
+At period/year ended 76,462 23,327
+(b) Lease liabilities
+30 June 31 December
+2026 2025
+USD’000 USD’000
+Balance at 1 January 166,180 167,124
+Additions 56,498 1,802
+Payments (6,036) (9,808)
+Interest expense 3,763 6,193
+Modification of lease liability - (107)
+Exchange differences 244 976
+At 31 December 220,649 166,180
+Non-current 200,733 156,652
+Current 19,916 9,528
+Total 220,649 166,180
+In the period, a right-of-use asset and corresponding lease liability have been recognised in relation to the XLPE 2
+facility within Borouge 4, which is leased to the Group under the asset usage agreement, which was signed on 19
+March 2026, between the Group and Borouge 4 LLC.
+20
+
+=== [FS_Q2_2026.pdf p19] ===
+Borouge PLC
+NOTES TO THE CONDENSED CONSOLIDATED INTERIM FINANCIAL STATEMENTS
+30 June 2026
+6 INVENTORIES
+30 June 31 December
+2026 2025
+USD’000 USD’000
+(Unaudited) (audited)
+Finished goods 385,626 266,352
+Spare parts 183,811 166,930
+Raw materials 176,254 133,686
+Goods in transit 8,894 14,566
+Work in progress - 4,957
+754,585 586,491
+Less: allowance for slow moving and obsolete inventories (98,464) (62,789)
+656,121 523,702
+7 TRADE RECEIVABLES
+30 June 31 December
+2026 2025
+USD’000 USD’000
+(Unaudited) (audited)
+Trade receivables 949,966 811,680
+Provision for expected credit losses (4,384) (3,443)
+945,582 808,237
+Movement in the allowance for expected credit losses against trade receivables during the period was as follows:
+30 June 31 December
+2026 2025
+USD’000 USD’000
+(Unaudited) (audited)
+Balance at 1 January 3,443 1,146
+Transfer from prepayments and other receivables - 2,010
+Charge for the period/year 941 811
+Write off - (524)
+At the end of the period/year 4,384 3,443
+8 PREPAYMENTS AND OTHER RECEIVABLES
+30 June 31 December
+2026 2025
+USD’000 USD’000
+(Unaudited) (audited)
+Other receivables 30,482 25,871
+Taxes recoverable 212 3,741
+Deposits 16,169 13,234
+Prepayments 36,880 5,244
+83,743 48,090
+21
+
+=== [FS_Q2_2026.pdf p20] ===
+Borouge PLC
+NOTES TO THE CONDENSED CONSOLIDATED INTERIM FINANCIAL STATEMENTS
+30 June 2026
+8 PREPAYMENTS AND OTHER RECEIVABLES continued
+An amount included within deposits of USD 14,746 thousand (31 December 2025: USD 11,705 thousand) represents
+cash held by the Liquidity provider and Share Buyback program. See note 20 for further details.
+9 CASH AND CASH EQUIVALENTS
+For the purpose of the condensed consolidated interim statement of cash flows, cash and cash equivalents are
+comprised of the following:
+30 June 31 December
+2026 2025
+USD’000 USD’000
+(Unaudited) (audited)
+Cash at bank – current accounts 141,765 114,643
+Short-term deposits 52,707 312,248
+Cash on hand 2 10
+Cash and cash equivalents 194,474 426,901
+Short-term deposits are mainly denominated in US Dollar (“USD”) and earn interest at floating rate of 3.93% per
+annum (2025: 4.67%) with an original maturity of less than three months.
+10 LOANS AND BORROWINGS
+30 June 31 December
+2026 2025
+USD’000 USD’000
+(Unaudited) (audited)
+Commercial term facility (i) - 2,600,000
+Islamic facility (i) - 350,000
+Receivables discounting (ii) 399,998 10,680
+399,998 2,960,680
+Unamortised transaction costs - (2,950)
+399,998 2,957,730
+(i) During the period and as a result of Borouge Group International merger transaction, the group undertook a
+refinancing program, whereby the external loan facilities held with a consortium of banks, were fully repaid
+and replaced with a facility provided by its parent, Borouge Group International.
+The existing loan comprising a commercial term facility of USD 3,650 million and an Islamic facility of USD
+350 million, had amounts of USD 2,450 million and USD 350 million outstanding, respectively, before
+settlement. On 9 April 2026, the facilities were settled in full via voluntary settlement notice, which triggered
+cancellation of agreements upon receipt of payment by the banks.
+The commercial term facility carried an interest rate of SOFR + 0.90% margin per annum and the Islamic
+facility carried a profit margin amount. During the period ended 30 June 2026, the Group repaid an amount
+of USD 2,800 million (2025: USD nil). There were no bank covenants or collateral maintained for the loans.
+As part of the refinancing, the Group’s revolving loan facility with First Abu Dhabi Bank amounting to USD
+500 million, valid for up to 5 years from December 2024 was cancelled. The facility had an interest rate at
+SOFR plus margin per annum of 0.8%.
+22
+
+=== [FS_Q2_2026.pdf p21] ===
+Borouge PLC
+NOTES TO THE CONDENSED CONSOLIDATED INTERIM FINANCIAL STATEMENTS
+30 June 2026
+10 LOANS AND BORROWINGS (continued)
+Further details of the new financing facilities can be found in note 11(iv), detailing the new loan and revolving
+credit facilities obtained.
+(ii) Limited recourse receivables discounting agreement
+During the year-ended 31 December 2025, a subsidiary of the Company entered into a Limited Recourse
+Receivables Discounting Agreement (“agreement”) with an external Commercial Bank (“Purchaser”). The
+agreed structure provides for discounting of trade receivables of the Group and was successfully initiated in
+December 2025. As part of this agreement, there is a facility to sell up to USD 400 million of trade receivables.
+11 RELATED PARTIES – TRANSACTIONS AND BALANCES
+Related parties comprise the Government of Abu Dhabi and related departments and institutions (owner of the
+majority shareholder), associated companies, joint ventures, shareholders, directors and key management personnel
+of the Group, and entities controlled, jointly controlled or significantly influenced by such parties. Pricing policies
+and terms of these transactions are approved by the Group's management.
+Amounts due to / from related parties are disclosed in condensed consolidated interim statement of financial position
+as follows:
+30 June 31 December
+2026 2025
+USD’000 USD’000
+(Unaudited) (audited)
+Investment in sublease – current (ii) 5,922 5,952
+Investment in sublease – non-current (ii) 135,326 135,697
+Amounts due from related parties – current (ii) 312,271 293,251
+Amounts due from related parties 453,519 434,900
+Amounts due to related parties – current – (iii) 588,060 576,502
+Related party loans and borrowings – current (iv) 50,000 -
+Related party loans and borrowings – non-current (iv) 2,800,000 -
+Amounts due to related parties 3,438,060 576,502
+23
+
+=== [FS_Q2_2026.pdf p22] ===
+Borouge PLC
+NOTES TO THE CONDENSED CONSOLIDATED INTERIM FINANCIAL STATEMENTS
+30 June 2026
+11 RELATED PARTIES – TRANSACTIONS AND BALANCES continued
+i. Related party transactions
+For the For the For the For the
+three-month three-month six-month six- month
+period ended period ended period ended period ended
+30 June 30 June 30 June 30 June
+2026 2025 2026 2025
+USD’000 USD’000 USD’000 USD’000
+(Unaudited) (Unaudited) (Unaudited) (Unaudited)
+Shareholders
+Sale of goods - - - -
+Purchase of goods - - - -
+Other income and expenses (30,198) - (30,198) -
+Other related parties
+Sale of goods 174,453 162,093 315,741 324,894
+Purchase of goods (607,794) (487,281) (1,175,784) (1,057,349)
+Other income and expenses (74,530) (41,480) (133,229) (91,946)
+Compensation of key management personnel
+Short-term benefits 1,970 2,157 5,937 5,129
+Long-term benefits 156 236 307 363
+Due to the group restructuring (see note 1), ADNOC and Borealis are no longer the immediate parent of the company
+and hence have been reclassified as “Other related parties” in the period, rather than “Shareholders”.
+ii. Amounts due from related parties
+30 June 31 December
+2026 2025
+Nature USD’000 USD’000
+(Unaudited) (audited)
+Borealis AG Affiliate 202,526 223,174
+ADNOC Affiliate 79,385 43,977
+Borouge 4 Affiliate 29,698 23,044
+ADNOC Refining Affiliate 662 2,501
+Borealis AG Abu Dhabi Affiliate - 551
+ADNOC Global Trading Affiliate - 4
+312,271 293,251
+OMV Supply & Trading Singapore PTE Ltd Affiliate 73 96
+Borouge 4- Investment in sublease Affiliate 141,175 141,553
+141,248 141,649
+453,519 434,900
+24
+
+=== [FS_Q2_2026.pdf p23] ===
+Borouge PLC
+NOTES TO THE CONDENSED CONSOLIDATED INTERIM FINANCIAL STATEMENTS
+30 June 2026
+11 RELATED PARTIES – TRANSACTIONS AND BALANCES continued
+iii. Amounts due to related parties
+30 June 31 December
+2026 2025
+Nature USD’000 USD’000
+(Unaudited) (audited)
+Borouge Group International Shareholder 30,017 -
+ADNOC Affiliate 305,972 334,017
+Borealis AG Affiliate 134,939 121,998
+ADNOC Gas Facility Affiliate 38,780 41,924
+ADNOC Logistics Affiliate 36,190 44,658
+ADNOC Refining Affiliate 24,196 18,242
+DYM Solution Co. Ltd Affiliate 14,566 12,680
+ADNOC Distribution Affiliate 1,512 1,632
+ADNOC Industrial Gas Elixier Affiliate 557 679
+Borouge 4 Affiliate 727 29
+Nova Chemicals Affiliate 351 -
+Borealis Compounds Inc. Affiliate 147 539
+ADNOC Global Trading Affiliate 91 90
+OMV Supply & Trading Singapore Pte Ltd Affiliate 12 12
+ADNOC Onshore Affiliate 3 2
+588,060 576,502
+iv. Related party loans and borrowings
+30 June 31 December
+2026 2025
+USD’000 USD’000
+(Unaudited) (audited)
+Term Facility 1 – non-current – (a) 1,500,000 -
+Term Facility 2 – non-current – (a) 1,300,000 -
+Revolving Credit Facility – current – (b) 50,000 -
+2,850,000 -
+(a) This represents facilities held with Borouge Group International AG, the majority shareholder of Borouge
+PLC. Term Facility 1 is a USD 1,500 million facility, which is due payable 3 years from inception of
+agreement, for which the reference agreement was signed on 9 April 2026. This term facility carries an
+interest rate of SOFR + 0.725% margin per annum. The Company pays an annualised participation fee on
+this facility of 0.08% of the loan value per annum. Interest charged since inception of this facility equates to
+USD 15,298 thousand (30 June 2025: nil). Total participation fees recognised during the period amounted
+to USD 303 thousand (30 June 2025: USD nil thousand).
+Term facility 2 is a USD 1,300 million facility, which is due payable 5 years from inception of the
+agreement, for which the referenced agreement was signed on 9 April 2026. This term facility carries and
+interest rate of SOFR + 0.875% margin per annum. The Company pays an annualised participation fee on
+this facility of 0.078% of the loan value per annum. Interest charged since inception of this facility equates
+to USD 13,708 thousand (30 June 2025: nil). Total participation fees recognised during the period
+amounted to USD 256 thousand (30 June 2025: USD nil thousand).
+There are no covenants or collateral maintained for the loans.
+25
+
+=== [FS_Q2_2026.pdf p24] ===
+Borouge PLC
+NOTES TO THE CONDENSED CONSOLIDATED INTERIM FINANCIAL STATEMENTS
+30 June 2026
+11 RELATED PARTIES – TRANSACTIONS AND BALANCES continued
+iv. Related party loans and borrowings
+(b) As at 30 June 2026, the Group has a revolving loan facility with Borouge Group International AG
+amounting to USD 500 million, valid for up to 5 years from 31 March 2026. At 30 June 2026, the facility
+was drawn by USD 50 million (31 December 2025: nil). The facility bears an interest rate at SOFR plus
+margin per annum of 0.55%. Total participation fees recognised during the period amounted to USD 302
+thousand (30 June 2025: USD nil thousand). Interest charged since inception of this facility equates to USD
+331 thousand (30 June 2025: nil). There are no covenants or collateral maintained for this facility.
+During the period and as a result of Borouge Group International merger transaction, the group undertook a
+refinancing program, whereby the external loan facilities held with a consortium of banks, were fully repaid
+and replaced with a facility provided by its parent, Borouge Group International. Given the related party
+nature of the facilities acquired in the period, the amounts disclosed in the comparative period are nil.
+Further details of the settled financing facilities can be found in note 10, detailing the existing facilities held
+by the Group.
+12 REVENUE
+The Group derives its revenue from contracts with customers for the transfer of goods and services at a point in time
+in the following major lines of business.
+For the For the three- For the For the
+three-month month period six-month six-month
+period ended ended period ended period ended
+30 June 30 June 30 June 30 June
+2026 2025 2026 2025
+USD’000 USD’000 USD’000 USD’000
+(Unaudited) (Unaudited) (Unaudited) (Unaudited)
+Sale of goods
+Polyethylene 774,940 751,686 1,449,133 1,606,804
+Polypropylene 630,324 540,452 1,124,529 1,090,517
+Ethylene and others 707 13,125 7,499 27,553
+1,405,971 1,305,263 2,581,161 2,724,874
+Timing of revenue recognition
+At a point in time 1,405,971 1,305,263 2,581,161 2,724,874
+26
+
+=== [FS_Q2_2026.pdf p25] ===
+Borouge PLC
+NOTES TO THE CONDENSED CONSOLIDATED INTERIM FINANCIAL STATEMENTS
+30 June 2026
+12 REVENUE continued
+Geographical information
+Revenue is based on the geographical location of end customers as follows:
+For the For the For the For the
+three-month three-month six-month six-month
+period ended period ended period ended period ended
+30 June 30 June 30 June 30 June
+2026 2025 2026 2025
+USD’000 USD’000 USD’000 USD’000
+(Unaudited) (Unaudited) (Unaudited) (Unaudited)
+People’s Republic of China 212,236 305,273 446,230 685,384
+United Arab Emirates 198,145 171,556 365,156 334,266
+India 189,502 206,728 358,749 398,415
+Austria 167,778 140,778 298,327 284,779
+Egypt 88,012 54,161 154,769 120,771
+Pakistan 62,999 63,346 121,343 129,285
+Saudi Arabia 62,810 37,665 103,933 72,876
+Vietnam 39,181 30,696 67,041 66,806
+Others 385,308 295,060 665,613 632,292
+Revenue from contracts with end customers 1,405,971 1,305,263 2,581,161 2,724,874
+13 COST OF SALES
+For the For the For the For the
+three-month three-month six-month six-month
+period ended period ended period ended period ended
+30 June 30 June 30 June 30 June
+2026 2025 2026 2025
+USD’000 USD’000 USD’000 USD’000
+(Unaudited) (Unaudited) (Unaudited) (Unaudited)
+Cost of production and other related costs 728,243 705,213 1,415,299 1,476,313
+Depreciation on property, plant and equipment 121,631 144,938 187,057 206,347
+Royalty expenses 8,470 9,755 17,250 20,064
+Amortisation of intangible assets 6,391 5,881 10,570 8,587
+Depreciation on right-of-use assets 383 53 1,342 82
+865,118 865,840 1,631,518 1,711,393
+27
+
+=== [FS_Q2_2026.pdf p26] ===
+Borouge PLC
+NOTES TO THE CONDENSED CONSOLIDATED INTERIM FINANCIAL STATEMENTS
+30 June 2026
+14 SELLING AND DISTRIBUTION EXPENSES
+For the For the For the For the
+three-month three-month six-month six-month
+period ended period ended period ended period ended
+30 June 30 June 30 June
+30 June 2026
+2026 2025 2025
+USD’000 USD’000 USD’000 USD’000
+(Unaudited) (Unaudited) (Unaudited) (Unaudited)
+Shipping cost 150,647 24,247 206,663 57,537
+Storage cost 39,235 39,455 78,753 71,434
+Salaries and wages 23,269 28,163 48,848 48,786
+General service cost 1,044 1,968 2,116 2,936
+Travel cost 321 556 643 949
+Depreciation of plant, property and equipment - 26 - 26
+Amortisation of intangible assets 41 37 82 73
+Others 7,442 6,915 9,633 9,566
+221,999 101,367 346,738 191,307
+15 INCOME TAX EXPENSE
+For the For the For the For the
+three-month three-month six-month six-month
+period ended period ended period ended period ended
+30 June 30 June 30 June 30 June
+2026 2025 2026 2025
+USD’000 USD’000 USD’000 USD’000
+(Unaudited) (Unaudited) (Unaudited) (Unaudited)
+Income tax expense
+- UAE 47,799 66,117 84,688 171,329
+- Foreign jurisdictions 1,582 1,805 2,333 5,042
+Deferred tax charge (credit) 13,022 4,876 29,098 9,508
+62,403 72,798 116,119 185,879
+United Arab Emirates
+Income tax expense is recognised at an amount determined by multiplying the profit before tax for the interim reporting
+period by management’s best estimate of the weighted average annual income tax rate expected for the full financial
+year, adjusted for the tax effect of certain items recognised in full in the interim period. As such, the effective tax rate
+in the interim financial statements may differ from management’s estimate of the effective tax rate for the annual
+financial statements. Effective tax rate for the period 30 June 2026 is 25.63% (30 June 2025: 29.84%).
+The Company is subject to Abu Dhabi Income Tax on its taxable income attributable to its operations in respect of
+Borouge 1, Borouge 2 and Borouge 3.
+Foreign jurisdictions
+The Group’s subsidiaries in foreign jurisdictions are subject to taxation. Income tax for the current period is provided
+on the basis of estimated taxable income computed by the Group using tax rates, enacted, or substantially enacted at
+the reporting date, applicable in the respective countries in which the subsidiaries operate and any adjustment to tax in
+respect of previous years.
+28
+
+=== [FS_Q2_2026.pdf p27] ===
+Borouge PLC
+NOTES TO THE CONDENSED CONSOLIDATED INTERIM FINANCIAL STATEMENTS
+30 June 2026
+16 BASIC AND DILUTED EARNINGS PER SHARE
+Earnings per share amounts are calculated by dividing the profit attributable to shareholders of the Company by the
+weighted average number of share outstanding during the period.
+For the For the For the For the
+three-month three- month six-month six-month
+period ended period ended period ended period ended
+30 June 30 June 30 June 30 June
+2026 2025 2026 2025
+(Unaudited) (Unaudited) (Unaudited) (Unaudited)
+Profit attributable to owners of
+the Company (USD ’000) 189,509 191,705 344,213 470,488
+Weighted average number of shares in issue 29,800,082,771 29,974,257,630 29,800,082,771 29,974,257,630
+Earnings per share (USD) 0.01 0.01 0.01 0.02
+The weighted average number of ordinary shares takes into account the weighted average effect of changes in treasury
+shares (note 20) during the year.
+17 CONTINGENCIES AND CAPITAL COMMITMENTS
+At 30 June 2026, the Group has authorised and committed estimated future capital expenditure amounting to
+USD 172,941 thousand (31 December 2025: USD 324,736 thousand).
+18 SEASONALITY OF RESULTS
+There is no impact of seasonality on the Group’s operating results.
+19 FAIR VALUE OF FINANCIAL ASSETS AND LIABILITIES
+Management considers that the fair values of the financial instruments of the Group are not materially different from
+their carrying values at the reporting date.
+Fair value hierarchy
+As at 30 June 2026 and 31 December 2025, the fair value measurement hierarchy of the Group’s assets and liabilities
+is as follows:
+Level 1 Level 2 Level 3 Total
+USD’000 USD’000 USD’000 USD’000
+Items measured at fair value
+At 30 June 2026
+I nterest rate swap – hedged - - - -
+At 31 December 2025
+Interest rate swap – hedged - (6,002) - (6,002)
+29
+
+=== [FS_Q2_2026.pdf p28] ===
+Borouge PLC
+NOTES TO THE CONDENSED CONSOLIDATED INTERIM FINANCIAL STATEMENTS
+30 June 2026
+19 FAIR VALUE OF FINANCIAL ASSETS AND LIABILITIES continued
+Cash flow hedge
+At 30 June 2026, the Group had interest rate swap agreements in place with a notional amount of USD 500,000
+thousand (31 December 2025: USD 500,000 thousand) whereby the Group pays a fixed rate of interest of 4.65% (31
+December 2025: 4.65%) and receives interest at a variable rate of the notional amount. The swap is being used to
+hedge the exposure to variability of cash flows associated with the variable interest bearing loan held by the Group.
+During the period ended 30 June 2026, the Group earned a fair value gain on derivatives used in effective cashflow
+hedge relationship of USD 2,499 thousand (period ended 30 June 2025: loss of USD 1,485 thousand).
+During the period, the Group refinanced its external borrowings, resulting in the extinguishment of the original debt
+that formed the hedged item in the designated cash flow hedge relationship. As the original hedged cash flows were
+no longer expected to occur and the replacement borrowing referenced a different benchmark tenor, the hedge
+relationship was de-designated. Consequently, the balance previously recognised in the cash flow hedge reserve was
+reclassified from equity to profit or loss, and all subsequent fair value movements on the hedging instrument have
+been recognised directly in profit or loss. The company recognised a gain on discontinuation of cash flow hedge for
+the period of USD 3,503 thousand (period ended 30 June 2025: nil).
+20 TREASURY SHARES AND SHARE PREMIUM
+During the previous period, the Company appointed Al Ramz Capital a licensed Market Maker on the Abu Dhabi
+Securities Exchange (ADX) that offers liquidity provision services, to place buy and sell orders of the Company’s
+shares with the objective of reducing bid/ask spreads as well as reducing price and volume volatility.
+The Market Maker trades and operates within the predetermined parameters approved by the Company. The Company
+has provided the funding to the Market Maker to trade the Company’s shares and it carries all risks and rewards
+associated with the arrangement. Given the nature and substance of the arrangement, the shares have been classified
+as “Treasury Shares” in Equity.
+At 30 June 2026, the Market Maker held 11,290 thousand shares (31 December 2025: 14,664 thousand) on behalf of
+the Company, which are classified under equity as treasury shares amounting to USD 7,847 thousand (31 December
+2025: USD 10,405 thousand). A cumulative net gain of USD 111 thousand has been recognised at 30 June 2026 (30
+June 2025: 791 thousand) in ‘other reserve’ under equity.
+In addition to the Liquidity provider services, on 7 April 2025, in the Annual General Assembly meeting the
+Shareholders of the Company approved the purchase of up to a maximum of 2.5% of the Company’s issued shares
+The share buyback program commenced after shareholder approval was received and at 30 June 2026, the Company
+held 299,247 thousand shares (31 December 2025: 211,847 thousand), which are classified under equity as treasury
+shares at acquisition cost amounting to USD 208,856 thousand (31 December 2025: 147,818 thousand).
+30

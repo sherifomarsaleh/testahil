@@ -1,0 +1,438 @@
+{
+  "_meta_header": {
+    "company": "Emirates Central Cooling Systems Corporation P.J.S.C (Empower)",
+    "units": "AED'000 unless stated otherwise",
+    "sources": {
+      "q1_filing": "Interim condensed consolidated FS, three-month period ended 31-Mar-2026 (OCR text; empower_fs_q1_2026_ocr.txt)",
+      "q2_filing": "Interim condensed consolidated FS, three-month and six-month periods ended 30-Jun-2026 (text layer; empower_fs_q2_2026.txt)",
+      "ir_deck": "H1 2026 Earnings Call presentation (empower_ir_h1_2026.txt)"
+    },
+    "extraction_date": "2026-08-09"
+  },
+
+  "q1_2026": {
+    "income_statement": {
+      "period": "Three months ended 31-Mar-2026, unaudited",
+      "revenue": 630573,
+      "interest_income_on_financial_asset_at_amortised_cost": 14196,
+      "cost_of_sales": -322525,
+      "gross_profit": 322244,
+      "general_and_administrative_expenses": -65360,
+      "other_income": 5824,
+      "operating_profit": 262708,
+      "finance_income": 15095,
+      "finance_costs": -48772,
+      "finance_costs_net": -33677,
+      "profit_before_income_tax": 229031,
+      "income_tax_expense": -20546,
+      "profit_after_tax": 208485,
+      "profit_to_equity_holders": 207094,
+      "profit_to_nci": 1391,
+      "eps_basic_diluted_aed": 0.0207,
+      "revenue_breakdown_note17": {
+        "district_cooling_services": 618239,
+        "sale_of_pre_insulated_pipes": 12334
+      },
+      "ocr_notes": "Cost of sales printed as '(322,525.' and finance-costs-net as '33,677)' in OCR; both verified by cross-footing (630,573+14,196-322,525=322,244; 15,095-48,772=-33,677)."
+    },
+    "balance_sheet_31_mar_2026_highlights": {
+      "total_assets": 12117057,
+      "cash_and_cash_equivalents": 2452708,
+      "term_deposits": 120442,
+      "bank_borrowings_non_current": 5500000,
+      "bank_borrowings_current": 2817,
+      "bank_borrowings_total": 5502817,
+      "total_equity": 3268219,
+      "equity_attributable_to_equity_holders": 3080450,
+      "non_controlling_interests": 187769,
+      "retained_earnings": 1484528,
+      "note": "Total equity cross-foots: 1,000,000+500,000+13,732+82,190+1,484,528=3,080,450; +187,769 NCI = 3,268,219."
+    },
+    "cash_flow_highlights": {
+      "net_cash_from_operating_activities": 402284,
+      "capital_expenditure_net_of_project_cost_accruals": -102227,
+      "dividends_paid": 0,
+      "dividends_paid_note": "No dividends paid in Q1-2026; the FY2025 final dividend of AED 437,500k was paid 23-Apr-2026 (Q2). Financing activities in Q1 comprised borrowings drawdown 1,000,000, repayment -1,000,000, finance costs paid -51,083, lease payments -602.",
+      "net_increase_in_cash": 196963,
+      "cash_end_of_period": 2452708
+    }
+  },
+
+  "q1_2025_comparative": {
+    "income_statement": {
+      "period": "Three months ended 31-Mar-2025, unaudited",
+      "revenue": 539959,
+      "interest_income_on_financial_asset_at_amortised_cost": 14414,
+      "cost_of_sales": -290763,
+      "gross_profit": 263610,
+      "general_and_administrative_expenses": -60891,
+      "other_income": 1416,
+      "operating_profit": 204135,
+      "finance_income": 13098,
+      "finance_costs": -58165,
+      "finance_costs_net": -45067,
+      "profit_before_income_tax": 159068,
+      "income_tax_expense": -14249,
+      "profit_after_tax": 144819,
+      "profit_to_equity_holders": 142971,
+      "profit_to_nci": 1848,
+      "eps_basic_diluted_aed": 0.0143,
+      "revenue_breakdown_note17": {
+        "district_cooling_services": 538251,
+        "sale_of_pre_insulated_pipes": 1708
+      }
+    },
+    "balance_sheet_note": "The Q1-2026 filing carries no 31-Mar-2025 balance sheet; its BS comparative is 31-Dec-2025 (audited): total assets 11,816,822; total equity 3,497,311.",
+    "cash_flow_highlights": {
+      "net_cash_from_operating_activities": 370869,
+      "capital_expenditure_net_of_project_cost_accruals": -79722,
+      "additions_to_investment_properties": -25686,
+      "dividends_paid": 0,
+      "dividends_paid_note": "FY2024 final dividend of AED 437,500k was paid 16-Apr-2025, i.e. in Q2-2025.",
+      "net_increase_in_cash": 206373,
+      "cash_end_of_period": 2143000
+    }
+  },
+
+  "h1_2026": {
+    "income_statement": {
+      "period": "Six months ended 30-Jun-2026, unaudited",
+      "revenue": 1519415,
+      "interest_income_on_financial_asset_at_amortised_cost": 28501,
+      "cost_of_sales": -844454,
+      "gross_profit": 703462,
+      "general_and_administrative_expenses": -134953,
+      "other_income": 12340,
+      "operating_profit": 580849,
+      "finance_income": 31221,
+      "finance_costs": -98062,
+      "finance_costs_net": -66841,
+      "profit_before_income_tax": 514008,
+      "income_tax_expense": -46084,
+      "profit_after_tax": 467924,
+      "profit_to_equity_holders": 463557,
+      "profit_to_nci": 4367,
+      "eps_basic_diluted_aed": 0.0464
+    },
+    "q2_2026_reported_three_month_column": {
+      "revenue": 888842,
+      "interest_income_on_financial_asset_at_amortised_cost": 14305,
+      "cost_of_sales": -521929,
+      "gross_profit": 381218,
+      "general_and_administrative_expenses": -69593,
+      "other_income": 6516,
+      "operating_profit": 318141,
+      "finance_income": 16126,
+      "finance_costs": -49290,
+      "finance_costs_net": -33164,
+      "profit_before_income_tax": 284977,
+      "income_tax_expense": -25538,
+      "profit_after_tax": 259439,
+      "profit_to_equity_holders": 256463,
+      "profit_to_nci": 2976,
+      "eps_basic_diluted_aed": 0.0256
+    },
+    "balance_sheet_30_jun_2026_full": {
+      "non_current_assets": {
+        "property_plant_and_equipment": 7274608,
+        "right_of_use_assets": 864,
+        "investment_properties": 168716,
+        "intangible_assets": 309590,
+        "financial_assets_at_amortised_cost": 1273130,
+        "financial_assets_fvtoci": 74564,
+        "deferred_tax_assets": 14531,
+        "total": 9116003
+      },
+      "current_assets": {
+        "inventories": 57258,
+        "trade_and_other_receivables": 433972,
+        "due_from_related_parties": 73053,
+        "financial_assets_at_amortised_cost": 21312,
+        "financial_assets_fvtpl": 53411,
+        "term_deposits": 40212,
+        "cash_and_cash_equivalents": 2472012,
+        "total": 3151230
+      },
+      "total_assets": 12267233,
+      "equity": {
+        "share_capital": 1000000,
+        "statutory_reserve": 500000,
+        "other_reserves": 14800,
+        "contributed_capital": 82190,
+        "retained_earnings": 1740595,
+        "attributable_to_equity_holders": 3337585,
+        "non_controlling_interests": 190745,
+        "total_equity": 3528330
+      },
+      "non_current_liabilities": {
+        "bank_borrowings": 5500000,
+        "government_grant": 298472,
+        "provision_for_employees_end_of_service_benefits": 75549,
+        "retention_payable": 13280,
+        "total": 5887301
+      },
+      "current_liabilities": {
+        "trade_and_other_payables": 2458563,
+        "bank_borrowings": 2845,
+        "current_tax_liabilities": 143181,
+        "due_to_related_parties": 242971,
+        "government_grant": 3170,
+        "lease_liabilities": 872,
+        "total": 2851602
+      },
+      "total_liabilities": 8738903,
+      "borrowings_split": {
+        "current": 2845,
+        "non_current": 5500000,
+        "total": 5502845
+      }
+    },
+    "cash_flow_major_lines": {
+      "profit_before_income_tax": 514008,
+      "depreciation_ppe": 183250,
+      "operating_cash_flows_before_wc": 759581,
+      "cash_generated_from_operations": 947084,
+      "net_cash_from_operating_activities": 946673,
+      "capital_expenditure_ppe_net_of_project_cost_accruals": -212363,
+      "redemption_of_fvoci_financial_asset": 55080,
+      "investment_in_fvoci_financial_assets": -73684,
+      "investment_in_fvtpl_financial_assets": -7998,
+      "short_term_deposits_over_3m_net": 17700,
+      "interest_received": 31490,
+      "net_cash_used_in_investing_activities": -189775,
+      "proceeds_from_bank_borrowings": 2000000,
+      "repayment_of_bank_borrowings": -2000000,
+      "lease_payments": -1045,
+      "interest_paid": -102086,
+      "dividends_paid": -437500,
+      "net_cash_used_in_financing_activities": -540631,
+      "net_increase_in_cash": 216267,
+      "cash_end_of_period": 2472012
+    },
+    "revenue_stream_breakdown_interim_notes": {
+      "note": "The interim notes (note 17) split revenue only by District cooling services vs Sale of pre-insulated pipes. NO capacity(demand)-vs-consumption split appears in the interim FS notes; that split is disclosed only in the IR deck (H1-2026: Demand 40% / Consumption 49% / Others 11%, deck p17; consumption % of total revenue Q1-2026 38.46%, Q2-2026 56.55%, deck p10).",
+      "h1_2026": {"district_cooling_services": 1491122, "sale_of_pre_insulated_pipes": 28293, "total": 1519415},
+      "q2_2026": {"district_cooling_services": 872883, "sale_of_pre_insulated_pipes": 15959, "total": 888842},
+      "segment_note18_h1_2026": {
+        "chilled_water": {"external_revenue": 1491122, "gross_profit": 696414, "operating_profit": 576459, "profit_for_period": 462886, "segment_assets": 12122372, "segment_liabilities": 8711788, "capex_ppe": 255607},
+        "pre_insulated_pipe": {"external_revenue": 28293, "inter_segment_revenue": 19801, "gross_profit": 15206, "operating_profit": 12548, "profit_for_period": 12673, "segment_assets": 144861, "segment_liabilities": 27115, "capex_ppe": 178},
+        "elimination_profit": -7635
+      }
+    },
+    "dividends_2026": {
+      "declared_2026": {"description": "Final dividend for FY2025", "amount_aed_000": 437500, "per_share_aed": 0.04375, "approved": "AGM 26-Mar-2026", "paid": "23-Apr-2026"},
+      "interim_h1_2026": "No interim dividend proposed/declared for the six-month period ended 30-Jun-2026 (as of the Q2 filing date 5-Aug-2026)",
+      "policy_context_ir_deck": "New dividend policy of AED 875m per year for 2025 and 2026 approved at Mar-2025 AGM (deck p12)."
+    },
+    "borrowings_note_detail": {
+      "facilities": [
+        {"facility": "RCF - Conventional & Islamic", "maturity": "September 2027", "interest_rate": "EIBOR + margin", "amount": 2750000},
+        {"facility": "RCF - Conventional & Islamic", "maturity": "February 2028", "interest_rate": "EIBOR + margin", "amount": 2750000}
+      ],
+      "principal_total": 5500000,
+      "interest_accrued_current": 2845,
+      "total_borrowings": 5502845,
+      "movement_h1_2026": {"opening": 5503418, "drawdown": 2000000, "interest_expense": 98031, "interest_capitalised": 3482, "interest_paid": -102086, "principal_repayment": -2000000, "closing": 5502845},
+      "undrawn_facilities": 0,
+      "guarantors": "The Company and Palm District Cooling LLC",
+      "classification": "RCF classified non-current (right to defer settlement >= 12 months)",
+      "margin_note_ir_deck": "Margin on RCF is lower than the old term-loan facilities; refinanced from AED 5,500m term loan, maturities extended to Sep-27/Feb-28 (deck p11)."
+    },
+    "related_party_dewa": {
+      "dewa_shareholding": "80% from 10-Feb-2026 (EPI transferred its 24% to DEWA; previously DEWA 56%)",
+      "services_received_from_dewa_h1_2026": 543036,
+      "services_received_from_dewa_q2_2026": 366336,
+      "services_received_from_dewa_h1_2025": 579398,
+      "dividend_to_dewa_h1_2026": 350000,
+      "dividend_to_dewa_h1_2025": 245000,
+      "due_to_dewa_30_jun_2026": 175654,
+      "due_to_dewa_31_dec_2025": 103483,
+      "deposit_receivable_from_dewa": 4490,
+      "accrued_water_electricity_payable_to_dewa_30_jun_2026": 105679,
+      "accrued_water_electricity_payable_to_dewa_31_dec_2025": 50207,
+      "other_related_party_context": {
+        "finance_cost_from_emirates_nbd_h1_2026": 101089,
+        "services_rendered_to_common_control_entities_h1_2026": 267706
+      }
+    }
+  },
+
+  "h1_2025_comparative": {
+    "income_statement": {
+      "period": "Six months ended 30-Jun-2025, unaudited",
+      "revenue": 1453433,
+      "interest_income_on_financial_asset_at_amortised_cost": 28938,
+      "cost_of_sales": -832121,
+      "gross_profit": 650250,
+      "general_and_administrative_expenses": -125017,
+      "other_income": 5866,
+      "operating_profit": 531099,
+      "finance_income": 24451,
+      "finance_costs": -113192,
+      "finance_costs_net": -88741,
+      "profit_before_income_tax": 442358,
+      "income_tax_expense": -39695,
+      "profit_after_tax": 402663,
+      "profit_to_equity_holders": 397944,
+      "profit_to_nci": 4719,
+      "eps_basic_diluted_aed": 0.0398
+    },
+    "q2_2025_reported_three_month_column": {
+      "revenue": 913474,
+      "cost_of_sales": -541358,
+      "gross_profit": 386640,
+      "operating_profit": 326964,
+      "profit_before_income_tax": 283290,
+      "profit_after_tax": 257844,
+      "profit_to_equity_holders": 254973,
+      "eps_basic_diluted_aed": 0.0255
+    },
+    "revenue_breakdown_note17": {
+      "h1_2025": {"district_cooling_services": 1445361, "sale_of_pre_insulated_pipes": 8072},
+      "q2_2025": {"district_cooling_services": 907110, "sale_of_pre_insulated_pipes": 6364}
+    },
+    "cash_flow_major_lines": {
+      "net_cash_from_operating_activities": 849106,
+      "capital_expenditure_ppe_net_of_project_cost_accruals": -163340,
+      "additions_to_investment_properties": -25687,
+      "interest_paid": -116726,
+      "dividends_paid": -437500,
+      "net_cash_used_in_investing_activities": -185436,
+      "net_cash_used_in_financing_activities": -557646,
+      "net_increase_in_cash": 106024,
+      "cash_end_of_period": 2042651
+    },
+    "equity_30_jun_2025": {"total_equity": 3337919, "attributable_to_equity_holders": 3157455, "non_controlling_interests": 180464}
+  },
+
+  "q2_2026_standalone": {
+    "label": "derived",
+    "method": "h1_2026 minus q1_2026, computed arithmetically",
+    "revenue": 888842,
+    "gross_profit": 381218,
+    "operating_profit": 318141,
+    "net_profit_after_tax": 259439,
+    "net_profit_to_equity_holders": 256463,
+    "verification": "Derived figures for revenue (1,519,415-630,573), gross profit (703,462-322,244), operating profit (580,849-262,708), PAT (467,924-208,485) and equity-holder profit (463,557-207,094) all match the Q2 three-month column reported in the Q2 filing exactly (888,842 / 381,218 / 318,141 / 259,439 / 256,463)."
+  },
+
+  "ir_deck": {
+    "title": "Earnings Call H1 2026 - 'Next-Gen Sustainability Champion' (pages referenced as deck page numbers)",
+    "capacity_and_operations": {
+      "connected_capacity_rt": {"value": "1,707k RT at 30-Jun-2026, +51k RT vs Dec-25", "pages": [3, 4, 10, 13]},
+      "contracted_capacity_rt": {"value": "2,018k RT at 30-Jun-2026, +74k RT vs Dec-25 (excludes new concession agreement)", "pages": [3, 4, 10]},
+      "connected_added_h1_2026_rt": {"value": 51100, "page": 13},
+      "connected_added_2025_rt": {"value": 90000, "page": 13},
+      "connected_capacity_history_k_rt": {"value": {"2017": 992, "2021": 1368, "2022": 1405, "2024": 1566, "2025": 1656, "H1_2026": 1707}, "page": 13, "note": "6.6% CAGR annotation; 'Additions in 2022E' bar between 2021 and 2022"},
+      "quarterly_connected_load_k_rt": {"value": {"2026_Q1": 1690, "2026_Q2": 1707, "2025_Q4": 1656, "2024_Q4": 1566}, "page": 10},
+      "quarterly_contracted_load_k_rt": {"value": {"2026_Q1": 1981, "2026_Q2": 2018, "2025_Q4": 1944, "2024_Q4": 1764}, "page": 10},
+      "consumption_rth": {"value": "1,174m RTh in H1-2026, -42m RTh YoY", "page": 4},
+      "eflh_hours": {"value": "698 hrs EFLH in H1-2026, -9.0% YoY", "page": 4},
+      "customers": {"value": "161,000+ long-term and diversified customer base (corporates and individuals)", "page": 3},
+      "contracted_revenue_duration": {"value": "25+ years long-term contracted revenue", "page": 3},
+      "number_of_plants": {"value": null, "note": "Not stated in this deck"},
+      "network_km": {"value": null, "note": "Not stated in this deck"},
+      "market_share": {"value": "'World's Largest District Cooling Services Provider, 20+ years experience' (p3); no numeric market-share % in deck. Dubai DC penetration currently c.25%, targeted 40% by 2030 (DSCE target)", "pages": [3, 21]},
+      "tariffs": {"value": null, "note": "No tariff figures in this deck"},
+      "site_capacities_key_projects": {"value": {"Business Bay": "452k RT", "Meydan": "382k RT", "Jumeirah Village South": "260k RT (printed '260 RT')", "Palm Jumeirah": "225k RT", "Jumeirah Lake Towers": "150k RT", "Dubai Production City": "125k RT", "Dubailand Residential": "120k RT", "Dubai International Airport": "110k RT", "TECOM A/B/C": "109k RT", "DIFC": "107k RT", "Discovery Gardens": "89k RT", "Nakheel Projects": "88k RT", "Jumeirah Beach Residence": "85k RT", "Dubai Design District": "84k RT", "Dubai HealthCare City 2": "77k RT", "Dubai Intl Academic City": "72k RT", "Dubai Studio City": "70k RT", "Dubai World Trade Centre": "58k RT", "Dubai HealthCare City 1": "43k RT", "Al Quoz": "35k RT", "JISA / Al Khail": "25k RT", "Bluewaters": "22k RT", "Mirdiff": "20k RT", "Global Village": "15k RT (listed with Deira Waterfront Ph1; text-layer pairing ambiguous)"}, "page": 16, "note": "Ordering of the last two site/value pairs ambiguous in text layer"}
+    },
+    "h1_2026_kpis_as_presented": {
+      "revenue": {"value": "AED 1,519m, +4.5% YoY", "pages": [4, 9]},
+      "ebitda": {"value": "AED 773m, +7.5% YoY (H1-2025: AED 719m)", "pages": [4, 9]},
+      "ebitda_margin": {"value": "Q1-2026: 56.80%; Q2-2026: 46.70%; LTM: 48.86% (FY2025: 48.21%)", "page": 10},
+      "profit_before_tax": {"value": "AED 514m, +16.1% YoY", "pages": [4, 9]},
+      "net_profit_after_tax": {"value": "AED 468m H1-2026 vs 403m H1-2025 (+16.1%); Q2: 259 vs 258 (+0.4%)", "page": 9},
+      "net_debt": {"value": "AED 2,991m; Net Debt/LTM EBITDA 1.8x", "pages": [4, 11]},
+      "quarterly_table": {
+        "revenue_aed_m": {"2026_Q1": 631, "2026_Q2": 889, "LTM": 3486, "2025": {"Q1": 540, "Q2": 913, "Q3": 1133, "Q4": 833, "FY": 3419}, "2024": {"Q1": 538, "Q2": 814, "Q3": 1100, "Q4": 809, "FY": 3260}},
+        "ebitda_aed_m": {"2026_Q1": 358, "2026_Q2": 415, "LTM": 1703, "2025": {"Q1": 296, "Q2": 423, "Q3": 450, "Q4": 479, "FY": 1649}, "2024": {"Q1": 313, "Q2": 381, "Q3": 430, "Q4": 427, "FY": 1551}},
+        "ebit_aed_m": {"2026_Q1": 263, "2026_Q2": 318, "LTM": 1323, "2025": {"Q1": 204, "Q2": 327, "Q3": 357, "Q4": 385, "FY": 1273}, "2024": {"Q1": 229, "Q2": 295, "Q3": 344, "Q4": 324, "FY": 1192}},
+        "consumption_pct_of_total_revenue": {"2026_Q1": "38.46%", "2026_Q2": "56.55%", "LTM": "54.42%", "2025_FY": "56.27%", "2024_FY": "58.13%"},
+        "page": 10
+      },
+      "annual_series_aed_m": {"revenue": {"2021": 2464, "2022": 2793, "2023": 3035, "2024": 3260, "2025": 3419, "CAGR": "8.5%"}, "ebitda": {"2021": 1206, "2022": 1376, "2023": 1461, "2024": 1551, "2025": 1649, "CAGR": "8.1%"}, "page": 9},
+      "annual_pbt_pat_bars": {"value": null, "note": "PBT/PAT annual bar labels on p9 are jumbled in the text layer ('1,103 936 1,001 943 998 / 936 1,001 960 908 1,004') and cannot be mapped to years with certainty beyond FY2025 PBT AED 1,103m and the 'Tax Impact AED 90m' annotation (consistent with 2024 PBT 998 vs PAT 908). Left null rather than guessed; H1/Q2 figures corroborated by FS.", "page": 9}
+    },
+    "business_mix": {
+      "h1_2026_revenue_composition": {"value": "Demand 40% / Consumption 49% / Others 11%", "page": 17},
+      "utilities_cost": {"value": "H1-2026 utilities cost AED 546,066k vs 580,951k H1-2025; other COS (depreciation, staff etc.) 298,388 vs 251,170", "page": 17},
+      "financial_asset_explanation": {"value": "Financial asset = upfront consideration paid by Empower against which demand charges settled by Dubai Airport/Nakheel over concession term; Dubai Airport full demand charges, Nakheel partial (guaranteed extent)", "page": 17}
+    },
+    "leverage": {
+      "gross_debt_ltm_ebitda": {"value": "3.2x at H1-2026 (2025: 3.3x)", "page": 11},
+      "net_debt_ltm_ebitda": {"value": "1.8x at H1-2026 (2025: 1.9x)", "page": 11},
+      "gross_debt_aed_m": {"value": {"2021": 627, "2022": 4490, "2023": 4492, "2024": 5498, "2025": 5503, "H1_2026": 5503}, "page": 11, "note": "Chart values; 2021-2023 mapping of 627/1,988 net vs gross partially ambiguous in text layer — gross series read as 627(2021)...5,503; net debt series 3,004(2025)->2,991(H1-2026) firm"},
+      "net_debt_aed_m_h1_2026": {"value": 2991, "pages": [4, 11]},
+      "deleveraging_guidance": {"value": "Gradual de-leveraging to below 2.0x (net) in the medium term; significant headroom to fund inorganic growth while maintaining healthy target leverage ratio of 3-4x", "page": 11},
+      "rcf_refinancing": {"value": "Refinanced AED 5,500m term loan (original maturities Sep-25 and Sep-27) into RCFs maturing Sep-27 to Feb-28 at lower margin", "page": 11}
+    },
+    "dividends": {
+      "policy": {"value": "Post-IPO commitment AED 850m/yr paid 2023 and 2024; new policy AED 875m/yr for 2025 and 2026 approved at Mar-25 AGM", "page": 12},
+      "payments_aed_m": {"value": {"2021": 400, "2022": "3,400 (incl. one-time special 2,900; regular 500)", "2023": 850, "2024": 850, "2025": 875, "H1_2026": 437.5}, "page": 12},
+      "payout_ratio": {"value": "44% / 351% / 87% / 91% / 92% / 41% (2021-H1 2026; calculated as Dividend(t)/Average Net Income(t,t-1))", "page": 12},
+      "recent_payments": {"value": "AED 437.5m Apr-2025 (FY24 final), AED 437.5m Oct-2025 (FY25 interim), AED 437.5m Apr-2026 (FY25 final)", "page": 12},
+      "dps_history_aed": {"value": {"Apr-23": 0.0425, "Oct-23": 0.0425, "Apr-24": 0.0425, "Oct-24": 0.0425, "Apr-25": 0.04375, "Oct-25": 0.04375, "Apr-26": 0.04375}, "page": 20}
+    },
+    "guidance": {
+      "connected_capacity_2026_h2": {"value": "Expected connected capacity additions in 2026 (Q3-Q4): 49,000-59,000 RT", "page": 13},
+      "connected_capacity_2026_full_year": {"value": "Full-year 2026 connected-capacity additions guidance 100,000-110,000 RT; potential capacity by 2026E: 1,756-1,766k RT", "page": 13},
+      "new_concession": {"value": "Feb-2026: Citywalk concession, 15,200 RT (signed with Meraas for City Walk phase 3)", "page": 13},
+      "capex_guidance": {"value": null, "note": "No explicit AED capex guidance figure in this deck"}
+    },
+    "macro": {
+      "uae_growth": {"value": "CBUAE June report cut 2026 UAE growth forecast to 1.7% from 5.6% (war-related trade/tourism/shipping disruption); 9.8% rebound projected 2027", "page": 6},
+      "inflation": {"value": "CBUAE 2026 inflation forecast 2.3%; 2027: 1.9%", "page": 6},
+      "rates": {"value": "CBUAE Base Rate cut 50bp to 3.65% in Q4-2025, maintained through H1-2026", "page": 6},
+      "dubai_population": {"value": "4,737,729 in H1-2026 (2025: 4,580,300)", "page": 7},
+      "dubai_stimulus": {"value": "AED 2.5bn business support package (AED 1.0bn Mar + AED 1.5bn Q2-2026, 33 initiatives)", "page": 7},
+      "dubai_real_estate": {"value": "June 2026: 13,766 sales, AED 32.66bn, +31.3% MoM; H1 second-strongest on record at AED 286.43bn", "page": 7}
+    },
+    "market_and_coverage": {
+      "market_cap": {"value": "AED 16.3bn at 30-Jun-2026", "page": 22},
+      "analyst_coverage": {"value": "13 firms; target prices AED 2.00-2.50, all listed actions 'Buy' (Emirates NBD Securities action blank): Al Ramz 2.10, BofA 2.10, Bernstein 2.10, Citi 2.00, EFG Hermes 2.30, Emirates NBD 2.21, FAB 2.15, HSBC 2.50, International Securities 2.27, Jefferies 2.00, JP Morgan 2.11, Kepler Cheuvreux 2.20, Morgan Stanley 2.00", "page": 20, "note": "Recorded as third-party coverage evidence only; TESTAHIL never issues ratings/targets"}
+    },
+    "sustainability_regulatory": {
+      "dubai_dc_penetration_target": {"value": "DSCE targets 40% district cooling penetration in Dubai by 2030 (from c.25% current); pillar of Dubai Integrated Energy Strategy 2030, Dubai 2040 Urban Master Plan, DSM Strategy, UAE Net Zero 2050", "pages": [3, 21]},
+      "electricity_savings": {"value": "c.50% electricity savings vs traditional cooling systems", "page": 3},
+      "solar": {"value": "941k kWh produced using solar power in H1-2026", "page": 22},
+      "ro_capacity": {"value": "RO plant capacity 24,969 m3/day at end of H1-2026", "page": 22},
+      "leed": {"value": "LEED Gold certification for DLRC District Cooling Plant; TSE for cooling; VSDs for energy efficiency", "page": 22},
+      "staff": {"value": "39 new staff recruited in H1-2026; 776 HSE trainings, 5,231 attendees", "page": 22},
+      "social": {"value": "16,380 iftar meals distributed over 30 days to workers in Al Quoz and Jebel Ali accommodation", "page": 22}
+    },
+    "ir_contact": {"value": "investor.relations@empower.ae; +971 4 375 1236; empower.ae/investor-relations", "page": 23}
+  },
+
+  "meta": {
+    "reporting_basis": "Both interim FS prepared under IAS 34, condensed consolidated, REVIEWED not audited (ISRE 2410 review reports, no audit opinion). BS comparatives are the audited 31-Dec-2025 consolidated FS; income/CF comparatives are the prior-year unaudited interims.",
+    "auditor": "PricewaterhouseCoopers Limited Partnership Dubai Branch (Registered Auditor No. 1301; Q2 report signed Murad Alnsour); re-appointed for 2026 at AGM held 26-Mar-2026",
+    "q1_2026_filing": {"period": "Three months ended 31-Mar-2026", "board_approval_and_review_report_date": "6-May-2026"},
+    "q2_2026_filing": {"period": "Three-month and six-month periods ended 30-Jun-2026", "board_approval_and_review_report_date": "5-Aug-2026"},
+    "share_capital": "AED 1,000,000 thousand; 10,000,000 thousand shares of AED 0.10",
+    "ownership_change": "10-Feb-2026: EPI transferred its 24% stake to DEWA; DEWA now 80% (free float 20%)",
+    "tax": "UAE CT 9%; effective rate H1-2026 9.0% (Q1-2026 8.97%); Group outside OECD Pillar Two scope",
+    "seasonality": "Interim revenues/earnings weather-sensitive; H1 not indicative of full year (note 26)",
+    "regional_conflict_note": "Q2 filing note 30: Middle East developments had limited impact on consumption revenue, mainly lower customer activity in hospitality"
+  },
+
+  "cross_checks": {
+    "fy2025_audited_vs_h1_bs_comparative": {
+      "total_assets": {"fy2025_audited_expected": 11816822, "q2_filing_31dec2025_comparative": 11816822, "match": true},
+      "total_equity": {"fy2025_audited_expected": 3497311, "q2_filing_31dec2025_comparative": 3497311, "match": true},
+      "q1_filing_31dec2025_comparative": {"total_assets": 11816822, "total_equity": 3497311, "match": true},
+      "outcome": "MATCH — both interim filings' 31-Dec-2025 BS comparatives equal the FY2025 audited totals exactly."
+    },
+    "q2_derivation_vs_reported": "Derived Q2-2026 standalone (H1 minus Q1) matches the Q2 filing's reported three-month column exactly on revenue, gross profit, operating profit, PAT and equity-holder profit.",
+    "internal_footing": "Q1 BS equity cross-foots; Q1 cash-flow closing cash ties to BS cash; H1 changes-in-equity statement rolls 3,497,311 + 468,519 - 437,500 = 3,528,330."
+  },
+
+  "unreadable_or_null_items": [
+    "Q1 OCR: statement of changes in equity (page 8) fully garbled — not extracted (H1 filing's clean statement of changes in equity covers the period).",
+    "Q1 OCR: PPE movement table (pages 14-15) and segment tables (pages 26-28) garbled — not extracted; not among required fields. Clean H1 equivalents extracted from Q2 filing.",
+    "IR deck p9: annual PBT/PAT bar labels jumbled in text layer — left null rather than guessed (only FY2025 PBT 1,103m and 'Tax Impact AED 90m' are unambiguous).",
+    "IR deck p11: 2021-2024 gross-vs-net debt chart label pairing partially ambiguous; H1-2026 gross 5,503 / net 2,991 firm.",
+    "IR deck p16: pairing of last two site capacities (Global Village / Deira Waterfront Ph1 at 20k/15k RT) ambiguous in text layer.",
+    "IR deck: number of plants, network km, tariff figures, explicit AED capex guidance — not present in this deck (null).",
+    "Interim FS notes carry no capacity-vs-consumption revenue split — only IR deck does (flagged, not fabricated)."
+  ]
+}

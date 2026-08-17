@@ -1,0 +1,490 @@
+{
+ "ticker": "AMR",
+ "asset_class": "STOCK",
+ "sweep_date": "2026-08-09",
+ "findings": [
+  {
+   "fid": "F01",
+   "ring": "GLOBAL",
+   "category": "rate cycle & USD/FX regime",
+   "klass": "STRUCTURAL",
+   "headline": "The US ten-year Treasury yields 4.66% and the Federal Reserve has eased to a 3.50\u20133.75% policy target; the dirham and riyal are pegged to the dollar, so this is the group's own rate cycle, not a foreign one",
+   "source_name": "US Treasury constant-maturity yield, close of 7 August 2026; Federal Reserve policy target",
+   "source_type": "PRIMARY_MARKET_DATA",
+   "source_date": "2026-08-07",
+   "detail": "",
+   "url": "",
+   "model_impact": "Sets the risk-free rate in the cost of capital at 4.66% less the US sovereign default spread, and the terminal rate at 4.30%.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F02",
+   "ring": "GLOBAL",
+   "category": "commodity complex (input/output)",
+   "klass": "STRUCTURAL",
+   "headline": "Food and packaging input costs fell as a share of revenue through 2025 and into 2026 \u2014 29.2% of sales in the first half of 2025 against 27.4% a year later \u2014 which the company attributes to procurement and menu work rather than to prices",
+   "source_name": "H1 2026 earnings presentation, cost of inventory evolution",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-07-28",
+   "detail": "",
+   "url": "",
+   "model_impact": "Anchors the food and packaging cost line at 27.4% of revenue and makes the structural-versus-cyclical reading of that fall the study's central contested judgement, computed both ways.",
+   "is_fs_data": false,
+   "fiscal_period": "Q2-2026"
+  },
+  {
+   "fid": "F03",
+   "ring": "GLOBAL",
+   "category": "global sector demand",
+   "klass": "COLOR",
+   "headline": "Listed quick-service comparators outside the region trade on a wide spread of enterprise value to EBITDA, with franchisors at the top of the range and operator-franchisees well below it \u2014 the structural split that governs where this company belongs",
+   "source_name": "Peer market data, retrieved 9 August 2026, used as a cross-check only",
+   "source_type": "AGGREGATOR",
+   "source_date": "2026-08-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F04",
+   "ring": "GLOBAL",
+   "category": "trade / sanctions / supply chains",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found (searched the 2025 annual report, the FY2025 and H1 2026 filings and both earnings releases for supply-chain interruption, sanctions exposure and import restriction disclosures; the filings note higher input costs arising from the regional geopolitical situation but disclose no interruption to supply)",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-08-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F05",
+   "ring": "COUNTRY",
+   "category": "regulatory environment (regulator, caps, tariffs, tax/subsidy)",
+   "klass": "STRUCTURAL",
+   "headline": "The OECD Pillar Two global minimum tax now bites: the group booked USD 14.0 million of domestic minimum top-up tax in FY2025, and the legislation was effective at the reporting date in the United Arab Emirates, Kuwait, Qatar, Bahrain and Oman",
+   "source_name": "Audited consolidated financial statements for the year ended 31 December 2025, note 28",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-02-06",
+   "detail": "",
+   "url": "",
+   "model_impact": "Sets the effective tax rate path from 14.5% to 16.0%, converging on the 15% minimum plus withholding and non-deductible drag. The rate was 4% as recently as FY2023.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F06",
+   "ring": "COUNTRY",
+   "category": "sovereign macro (inflation, policy rate, FX/deval risk)",
+   "klass": "STRUCTURAL",
+   "headline": "The IMF projects about 2% inflation from 2028 in the pegged Gulf markets that produce most of the revenue, against 5\u20136% in Egypt and 5\u20139% in Kazakhstan, the two large non-pegged exposures",
+   "source_name": "IMF World Economic Outlook, retrieved through the IMF DataMapper API",
+   "source_type": "REGULATOR_OFFICIAL",
+   "source_date": "2026-08-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "Sets the currency drag on US dollar revenue per restaurant \u2014 zero in the pegged markets, 2.5% a year in Egypt and 1.5% in the Kazakhstan-led segment \u2014 and anchors terminal growth at 3.0%.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F07",
+   "ring": "COUNTRY",
+   "category": "fiscal / political events with sector read-through",
+   "klass": "STRUCTURAL",
+   "headline": "Sovereign risk across the twelve operating countries spans an equity risk premium of 4.87% in the United Arab Emirates and Qatar to 13.94% in Egypt and Iraq and 30.89% in Lebanon",
+   "source_name": "Country default spreads and risk premiums, Aswath Damodaran, NYU Stern, read from the original data file",
+   "source_type": "REGULATOR_OFFICIAL",
+   "source_date": "2026-01-05",
+   "detail": "",
+   "url": "",
+   "model_impact": "The blended equity risk premium is revenue-weighted across all twelve countries and comes out at 6.31% on the ratings basis and 5.95% on the credit-default-swap basis; both are published.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F08",
+   "ring": "INDUSTRY",
+   "category": "demand drivers & capacity/supply balance",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "The restaurant estate is disclosed country by country and brand by brand at each period end \u2014 2,590 at the end of 2024, 2,749 at the end of 2025 and 2,746 at 30 June 2026 \u2014 which is what makes a volume-times-price build possible rather than a single growth rate",
+   "source_name": "FY 2024, FY 2025 and H1 2026 earnings presentations, portfolio evolution appendices",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-07-28",
+   "detail": "",
+   "url": "",
+   "model_impact": "Converts revenue from a top-down growth rate into restaurants times revenue per restaurant across seven market units, with the restaurant count and the revenue per restaurant each grown on their own driver.",
+   "is_fs_data": false,
+   "fiscal_period": "Q2-2026"
+  },
+  {
+   "fid": "F09",
+   "ring": "INDUSTRY",
+   "category": "pricing",
+   "klass": "STRUCTURAL",
+   "headline": "Like-for-like sales grew 9.7% in FY2025 and 6.3% in the first half of 2026, and management guides to mid-single-digit like-for-like growth for the full year",
+   "source_name": "FY 2025 earnings presentation; H1 2026 earnings release",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-07-28",
+   "detail": "",
+   "url": "",
+   "model_impact": "Sets the price side of the unit build: revenue per restaurant grows 5.5% in FY2026 and tapers to 3.5%, converging on long-run inflation in the pegged markets.",
+   "is_fs_data": false,
+   "fiscal_period": "Q2-2026"
+  },
+  {
+   "fid": "F10",
+   "ring": "INDUSTRY",
+   "category": "new entrants (named-competitor level)",
+   "klass": "COLOR",
+   "headline": "The company entered the premium retail category with the launch of carpo in Qatar and acquired the Malak Al Tawouk business in the United Arab Emirates and Saudi Arabia, moving into the Arabic category where local independents dominate",
+   "source_name": "H1 2026 earnings release and presentation",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-07-28",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": "Q2-2026"
+  },
+  {
+   "fid": "F11",
+   "ring": "INDUSTRY",
+   "category": "technology substitution",
+   "klass": "COLOR",
+   "headline": "Home delivery is now 52% of revenue against 44% two years ago, and the company reports improving unit economics in the channel through its own ordering application rather than third-party platforms",
+   "source_name": "FY 2025 and H1 2026 earnings presentations, channel mix",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-07-28",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": "Q2-2026"
+  },
+  {
+   "fid": "F12",
+   "ring": "INDUSTRY",
+   "category": "competitor capacity / price moves (named)",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found (searched for disclosed capacity or price actions by named regional quick-service competitors \u2014 Alamar Foods, Herfy Food Services and the unlisted local operators \u2014 in company filings and the regional listed peers' own published results; nothing is disclosed at a level that would change a driver here)",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-08-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F13",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "BASE_CHANGER",
+   "headline": "Audited consolidated financial statements for the year ended 31 December 2025: revenue USD 2,508.8 million, EBITDA USD 595.6 million, profit attributable to shareholders USD 219.1 million, total assets USD 1,734.1 million",
+   "source_name": "Audited consolidated financial statements for the year ended 31 December 2025, audited by Deloitte & Touche (M.E.) LLP, signed 6 February 2026",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-02-06",
+   "detail": "",
+   "url": "https://www.americanarestaurants.com/investors/financial-information/",
+   "model_impact": "The entire historical income statement, balance sheet and cash flow for FY2025, and the base the forecast is struck from.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2025"
+  },
+  {
+   "fid": "F14",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "BASE_CHANGER",
+   "headline": "Audited consolidated financial statements for the year ended 31 December 2024: revenue USD 2,196.8 million, EBITDA USD 483.7 million, profit attributable to shareholders USD 158.8 million",
+   "source_name": "Audited consolidated financial statements for the year ended 31 December 2024, audited by Deloitte & Touche (M.E.) LLP",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2025-02-11",
+   "detail": "",
+   "url": "https://www.americanarestaurants.com/investors/financial-information/",
+   "model_impact": "The FY2024 historical column, and the comparative source for every FY2023 balance-sheet line.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2024"
+  },
+  {
+   "fid": "F15",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "BASE_CHANGER",
+   "headline": "Audited consolidated financial statements for the year ended 31 December 2023: revenue USD 2,413.1 million, EBITDA USD 546.0 million, profit attributable to shareholders USD 259.5 million \u2014 the peak year the two that followed fell short of",
+   "source_name": "Audited consolidated financial statements for the year ended 31 December 2023",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2024-02-15",
+   "detail": "",
+   "url": "https://www.americanarestaurants.com/investors/financial-information/",
+   "model_impact": "The FY2023 historical column; establishes that revenue FELL in FY2024 and has only just regained the FY2023 level, which is why the margin question is framed against a three-year average rather than a single prior year.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2023"
+  },
+  {
+   "fid": "F16",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "BASE_CHANGER",
+   "headline": "Audited consolidated financial statements for the year ended 31 December 2022, carried as the comparative column of the FY2023 filing: revenue USD 2,378.5 million, operating profit USD 292.6 million, profit attributable to shareholders USD 259.2 million, and revenue by country for the United Arab Emirates, Saudi Arabia, Kuwait and Egypt",
+   "source_name": "Audited consolidated financial statements for the year ended 31 December 2023, comparative column and note 34 \u2014 the company's own audited figures for FY2022",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2024-02-15",
+   "detail": "",
+   "url": "https://www.americanarestaurants.com/investors/financial-information/",
+   "model_impact": "Establishes the four-year revenue and margin arc the central contested judgement is framed against, and shows that FY2023 was itself only marginally above FY2022.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2022"
+  },
+  {
+   "fid": "F17",
+   "ring": "COMPANY",
+   "category": "split of planned restaurant openings by market",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found (searched the H1 2026 and FY 2025 earnings presentations, both earnings releases and the 2025 annual report for a country-level breakdown of the 120-130 net new restaurants guided for 2026; the guidance is given at group level and by brand pipeline stage only, never by country)",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-08-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F18",
+   "ring": "COMPANY",
+   "category": "regular disclosures",
+   "klass": "BASE_CHANGER",
+   "headline": "Reviewed condensed consolidated interim financial statements for the three months ended 31 March 2026: revenue USD 649.7 million",
+   "source_name": "Reviewed condensed consolidated interim financial statements, three months ended 31 March 2026",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-04-28",
+   "detail": "",
+   "url": "https://www.americanarestaurants.com/investors/financial-information/",
+   "model_impact": "The first of the two disclosed quarters of the study year, swept in before the build.",
+   "is_fs_data": true,
+   "fiscal_period": "Q1-2026"
+  },
+  {
+   "fid": "F19",
+   "ring": "COMPANY",
+   "category": "regular disclosures",
+   "klass": "BASE_CHANGER",
+   "headline": "Reviewed condensed consolidated interim financial statements for the six months ended 30 June 2026: revenue USD 1,364.5 million, up 12.1%; EBITDA USD 348.2 million at a 25.5% margin, up 290 basis points; profit attributable to shareholders USD 147.2 million, up 59.2%",
+   "source_name": "Reviewed condensed consolidated interim financial statements, six months ended 30 June 2026, review report by Deloitte & Touche (M.E.) LLP dated 28 July 2026",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-07-28",
+   "detail": "",
+   "url": "https://www.americanarestaurants.com/investors/financial-information/",
+   "model_impact": "Resets the FY2026 base: the forecast year is half actual, and the margin and the food-cost ratio are anchored on disclosed outturn rather than on an assumption.",
+   "is_fs_data": true,
+   "fiscal_period": "Q2-2026"
+  },
+  {
+   "fid": "F20",
+   "ring": "COMPANY",
+   "category": "strategic plans & guidance",
+   "klass": "STRUCTURAL",
+   "headline": "Management guides to 120\u2013130 net new restaurants in 2026, mid-single-digit like-for-like growth, and net income margin expansion of 100 to 150 basis points against 2025",
+   "source_name": "H1 2026 earnings release and presentation",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-07-28",
+   "detail": "",
+   "url": "",
+   "model_impact": "Sets the volume driver directly \u2014 the net-new-restaurant path starts at the 125 midpoint \u2014 and bounds the margin path.",
+   "is_fs_data": false,
+   "fiscal_period": "Q2-2026"
+  },
+  {
+   "fid": "F21",
+   "ring": "COMPANY",
+   "category": "IR communications (calls, presentations, releases)",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "The company publishes average capital expenditure per restaurant by brand (USD 402 thousand across 356 gross openings, three-year average payback), four-wall EBITDA, net working capital, channel mix and the free-cash-flow bridge \u2014 none of which appears in any financial statement",
+   "source_name": "H1 2026 earnings presentation, key metrics by restaurant and the appendix",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-07-28",
+   "detail": "",
+   "url": "",
+   "model_impact": "Turns capital expenditure into a ground-up driver: gross openings times the disclosed cost per restaurant, plus a maintenance charge derived as the residual against actual FY2025 spend.",
+   "is_fs_data": false,
+   "fiscal_period": "Q2-2026"
+  },
+  {
+   "fid": "F22",
+   "ring": "COMPANY",
+   "category": "one-off base-resetting transactions",
+   "klass": "BASE_CHANGER",
+   "headline": "Two named acquisitions: the Pizza Hut business in Oman, bought on 23 January 2025 for USD 10.6 million net of cash acquired and adding 40 net restaurants, and Malak Al Tawouk, whose United Arab Emirates franchisee (7 restaurants) consolidated in the first half of 2026 with the Saudi acquisition completing on 9 July 2026",
+   "source_name": "Audited consolidated financial statements for the year ended 31 December 2025, note 36; H1 2026 earnings presentation",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-02-06",
+   "detail": "",
+   "url": "",
+   "model_impact": "Explains why the FY2025 restaurant count rose by 159 against 119 organic net additions, and why the FY2026 forecast is built on the organic guidance rather than on the reported change.",
+   "is_fs_data": false,
+   "fiscal_period": "FY2025"
+  },
+  {
+   "fid": "F23",
+   "ring": "COMPANY",
+   "category": "ownership / stake changes (named-transaction rule)",
+   "klass": "COLOR",
+   "headline": "Adeptio AD Investments holds 66.03% of the company. Adeptio AD Holdings, its parent, is owned equally by Mohamed Ali Rashed Alabbar and the Saudi Company for Gulf Food Investments, a subsidiary of the Public Investment Fund of Saudi Arabia. The named stake was searched for and read off the filing rather than estimated",
+   "source_name": "Audited consolidated financial statements for the year ended 31 December 2025, note 1; confirmed unchanged in the interim statements to 30 June 2026",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-07-28",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": "FY2025"
+  },
+  {
+   "fid": "F24",
+   "ring": "COMPANY",
+   "category": "management & capital actions",
+   "klass": "STRUCTURAL",
+   "headline": "The board declared USD 201.6 million against FY2025 \u2014 91.99% of net profit \u2014 and has already declared a USD 100.8 million interim, USD 0.012 a share, against 2026. It holds 25 million treasury shares against a long-term incentive plan. The chief financial officer changed between the FY2025 and H1 2026 filings",
+   "source_name": "FY 2025 earnings presentation; H1 2026 earnings release; signature pages of the FY2025 and H1 2026 statements",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-07-28",
+   "detail": "",
+   "url": "",
+   "model_impact": "Sets the dividend yield inside the carry anchor of the price distribution at 3.95%, and the forecast payout ratio at 85%.",
+   "is_fs_data": false,
+   "fiscal_period": "Q2-2026"
+  }
+ ],
+ "drivers": [
+  {
+   "driver": "Revenue \u2014 restaurant count by market unit",
+   "mode": "BOTTOM_UP",
+   "justification": "The restaurant estate is published country by country at each period end, and segment revenue before eliminations is published for the same units, so revenue is built as restaurants times revenue per restaurant across seven units. The build reproduces reported revenue exactly in all three audited years.",
+   "sweep_refs": [
+    "F08",
+    "F13",
+    "F14",
+    "F15"
+   ]
+  },
+  {
+   "driver": "Revenue \u2014 revenue per restaurant",
+   "mode": "BOTTOM_UP",
+   "justification": "The price side is anchored on disclosed like-for-like sales growth, with a currency drag applied only to the two non-pegged exposures.",
+   "sweep_refs": [
+    "F09",
+    "F06",
+    "F19"
+   ]
+  },
+  {
+   "driver": "Food and packaging cost",
+   "mode": "BOTTOM_UP",
+   "justification": "Escalated on a traded food basket and anchored on the 27.4% of revenue actually recorded in the first half of 2026 \u2014 a disclosed, dated figure, not a macro proxy.",
+   "sweep_refs": [
+    "F02",
+    "F19"
+   ]
+  },
+  {
+   "driver": "Royalties",
+   "mode": "BOTTOM_UP",
+   "justification": "A contractual percentage of branded sales, read off the expense note in each of the three audited years and held flat rather than escalated.",
+   "sweep_refs": [
+    "F13",
+    "F14"
+   ]
+  },
+  {
+   "driver": "Staff cost",
+   "mode": "BOTTOM_UP",
+   "justification": "Wage escalation against a falling headcount per restaurant, both disclosed: 37,207 full-time equivalents across 2,749 restaurants in FY2025 against 41,575 across 2,435 in FY2023.",
+   "sweep_refs": [
+    "F13",
+    "F14"
+   ]
+  },
+  {
+   "driver": "Delivery and transportation cost",
+   "mode": "BOTTOM_UP",
+   "justification": "Driven by delivery-channel volume and fuel \u2014 its own driver class, not the wage index \u2014 with the channel share disclosed each half.",
+   "sweep_refs": [
+    "F13",
+    "F21"
+   ]
+  },
+  {
+   "driver": "Capital expenditure",
+   "mode": "BOTTOM_UP",
+   "justification": "Gross openings times the company's own published average cost per restaurant, plus a maintenance charge derived as the residual against actual FY2025 spend.",
+   "sweep_refs": [
+    "F21",
+    "F13"
+   ]
+  },
+  {
+   "driver": "Effective tax rate",
+   "mode": "BOTTOM_UP",
+   "justification": "Built from the disclosed Pillar Two position and the jurisdiction-by-jurisdiction rate table the company publishes, not from a single assumed rate.",
+   "sweep_refs": [
+    "F05",
+    "F19"
+   ]
+  },
+  {
+   "driver": "Cost of debt",
+   "mode": "BOTTOM_UP",
+   "justification": "The group's own incremental borrowing rate, read out of its lease accounting: lease finance cost over the average lease liability. It carries no bank debt.",
+   "sweep_refs": [
+    "F13",
+    "F14"
+   ]
+  },
+  {
+   "driver": "Competitor capacity and pricing",
+   "mode": "TOP_DOWN",
+   "justification": "No named regional competitor discloses capacity or price actions at a level that would change a driver here, so the industry ring contributes context rather than a number. Closed by a dated negative search.",
+   "sweep_refs": [
+    "F12"
+   ]
+  },
+  {
+   "driver": "Allocation of net new restaurants across markets",
+   "mode": "TOP_DOWN",
+   "justification": "The total is the company's own guidance, but it does not publish the split by market. The allocation follows where the estate has actually grown over the last eighteen months. Flagged as an estimate at the allocation step only.",
+   "sweep_refs": [
+    "F17",
+    "F20"
+   ]
+  }
+ ],
+ "primary_access": [
+  {
+   "url": "https://www.americanarestaurants.com/investors/financial-information/",
+   "reachable": true,
+   "attempt_date": "2026-08-09",
+   "note": "The company investor-relations library was reachable and served every document used here directly: the audited consolidated financial statements for 2022 through 2025, the reviewed interim statements for the first quarter and first half of 2026, the 2025 annual report and the full run of earnings presentations and releases. No aggregator was used for any company figure."
+  },
+  {
+   "url": "https://www.adx.ae/en/main-market/company-profile/overview?symbols=AMR",
+   "reachable": false,
+   "attempt_date": "2026-08-09",
+   "note": "The Abu Dhabi Securities Exchange company page returned 403 to an automated request from this environment. It was not needed: every document the exchange would carry was obtained from the company investor-relations library itself, which is the issuer's own publication of the same filings."
+  }
+ ],
+ "study_year": "2026",
+ "study_quarters_disclosed": [
+  "Q1-2026",
+  "Q2-2026"
+ ],
+ "qc_line": "QC(m) \u2014 Information Sweep [AMR, 2026-08-09]: PASS \u2014 4/4 rings, 24 findings (7 B \u00b7 8 S \u00b7 2 D \u00b7 4 C \u00b7 3 NEG), driver gate 11 rows (9 bottom-up / 2 top-down) | primary access: attempted (2) | FS years: 4 ['FY2022', 'FY2023', 'FY2024', 'FY2025'] | IR findings: 8"
+}

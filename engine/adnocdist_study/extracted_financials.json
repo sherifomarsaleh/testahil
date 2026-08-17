@@ -1,0 +1,4823 @@
+{
+ "meta": {
+  "company": "Abu Dhabi National Oil Company for Distribution PJSC (ADNOC Distribution)",
+  "ticker": "ADNOCDIST (Abu Dhabi Securities Exchange)",
+  "extraction_date": "2026-08-09",
+  "unit": "AED'000 (AED thousands) for all financial-statement figures unless a field name says otherwise",
+  "unit_evidence": "Every primary statement and note in the FY2023/FY2024/FY2025 audited consolidated financial statements and both 2026 reviewed interims is headed 'AED’000'.",
+  "operating_kpi_units": "MD&A / IR-deck figures are in AED million, million litres, or counts as labelled in each field name. Never mix with the AED'000 statement blocks.",
+  "sign_convention": "Figures are recorded exactly as printed; amounts printed in parentheses are recorded as negative numbers. No derived, rounded or corrected figures.",
+  "page_numbering": "'pages' are 1-based PDF page indices as extracted (physical page of the PDF file), NOT the printed page number shown in the document footer (which typically runs 2 lower in the audited FS).",
+  "fiscal_year_end": "31 December",
+  "presentation_currency": "AED",
+  "auditors": {
+   "FY2023_FY2024_FY2025": "Ernst & Young (audited annual) — per audit reports in each annual filing",
+   "H1_2026_interim_review": "Grant Thornton UAE (review report in source_Q2_2026_reviewed_interim.pdf)"
+  },
+  "not_found": [
+   "FY2023 and FY2022 operating KPIs (fuel volumes by segment, station counts, convenience-store metrics, EV points, transactions) — the FY2023 and FY2024 MD&A / IR decks were NOT among the supplied files; the FY2025 MD&A only carries 2025 and 2024 columns, and the 2025 Integrated Report ESG index carries only environmental/HR series for 2022-2025.",
+   "FY2023 and FY2022 EBITDA / underlying EBITDA — EBITDA is a non-IFRS measure disclosed only in the MD&A, and only FY2025/FY2024 MD&A was supplied.",
+   "Borrowings note does NOT disclose an outstanding AED-vs-USD tranche split at any balance sheet date; only the original 2017 drawdown split and the per-currency margin basis are disclosed (see borrowings_note).",
+   "Term loan maturity date is not stated explicitly in FY2025; only 'refinanced on 26 October 2022 for another 5-year term' is disclosed.",
+   "No separate 'EBITDA' or 'D&A' line is presented on the face of the consolidated statement of profit or loss in any year; D&A is disclosed inside the distribution & administrative expenses note and split in the cash-flow adjustments.",
+   "Q1-2026 MD&A was not supplied (Q1 reviewed interim + Q1 IR deck were)."
+  ]
+ },
+ "income_statement": {
+  "unit": "AED'000",
+  "source": {
+   "file": "source_FY2025_audited_consolidated.pdf",
+   "pages": [
+    14
+   ]
+  },
+  "sources_by_year": {
+   "FY2025": {
+    "file": "source_FY2025_audited_consolidated.pdf",
+    "pages": [
+     14
+    ]
+   },
+   "FY2024": {
+    "file": "source_FY2025_audited_consolidated.pdf",
+    "pages": [
+     14
+    ]
+   },
+   "FY2024_own_filing": {
+    "file": "source_FY2024_audited_consolidated.pdf",
+    "pages": [
+     14
+    ]
+   },
+   "FY2023": {
+    "file": "source_FY2024_audited_consolidated.pdf",
+    "pages": [
+     14
+    ]
+   },
+   "FY2023_own_filing": {
+    "file": "source_FY2023_audited_consolidated.pdf",
+    "pages": [
+     15
+    ]
+   },
+   "FY2022": {
+    "file": "source_FY2023_audited_consolidated.pdf",
+    "pages": [
+     15
+    ]
+   }
+  },
+  "FY2025": {
+   "revenue": 35896617,
+   "direct_costs": -28950827,
+   "gross_profit": 6945790,
+   "distribution_and_administrative_expenses": -3323546,
+   "other_income": 167665,
+   "impairment_losses_and_other_operating_expenses": -284305,
+   "operating_profit": 3505604,
+   "interest_income": 71274,
+   "finance_costs": -402945,
+   "profit_before_tax": 3173933,
+   "income_tax_expense": -322891,
+   "profit_for_the_year": 2851042,
+   "attributable_to_equity_holders": 2794000,
+   "attributable_to_nci": 57042,
+   "basic_and_diluted_eps_AED": 0.224,
+   "weighted_average_shares_thousands": 12497785,
+   "note_refs": {
+    "revenue": "note 20",
+    "direct_costs": "note 21",
+    "dist_admin": "note 22",
+    "other_income": "note 23",
+    "impairment": "note 24",
+    "finance_costs": "note 26",
+    "tax": "note 27",
+    "eps": "note 29"
+   }
+  },
+  "FY2024": {
+   "revenue": 35453716,
+   "direct_costs": -29237684,
+   "gross_profit": 6216032,
+   "distribution_and_administrative_expenses": -3194942,
+   "other_income": 138059,
+   "impairment_losses_and_other_operating_expenses": -90254,
+   "operating_profit": 3068895,
+   "interest_income": 143893,
+   "finance_costs": -457111,
+   "profit_before_tax": 2755677,
+   "income_tax_expense": -283394,
+   "profit_for_the_year": 2472283,
+   "attributable_to_equity_holders": 2420275,
+   "attributable_to_nci": 52008,
+   "basic_and_diluted_eps_AED": 0.194,
+   "weighted_average_shares_thousands": 12500000
+  },
+  "FY2023": {
+   "revenue": 34629178,
+   "direct_costs": -28792893,
+   "gross_profit": 5836285,
+   "distribution_and_administrative_expenses": -2916538,
+   "other_income": 145645,
+   "impairment_losses_and_other_operating_expenses": -82143,
+   "impairment_losses_on_trade_and_other_receivables_as_originally_presented": -27766,
+   "other_impairment_losses_and_expenses_as_originally_presented": -54377,
+   "operating_profit": 2983249,
+   "interest_income": 98834,
+   "finance_costs": -432757,
+   "profit_before_tax": 2649326,
+   "income_tax_expense": -18837,
+   "profit_for_the_year": 2630489,
+   "attributable_to_equity_holders": 2601421,
+   "attributable_to_nci": 29068,
+   "basic_and_diluted_eps_AED": 0.208,
+   "weighted_average_shares_thousands": 12500000
+  },
+  "FY2022": {
+   "revenue": 32111061,
+   "direct_costs": -26443179,
+   "gross_profit": 5667882,
+   "distribution_and_administrative_expenses": -2761631,
+   "other_income": 103342,
+   "impairment_losses_on_trade_and_other_receivables": -20351,
+   "other_impairment_losses_and_expenses": -15826,
+   "operating_profit": 2973416,
+   "interest_income": 54697,
+   "finance_costs": -279605,
+   "profit_before_tax": 2748508,
+   "income_tax_expense": 0,
+   "income_tax_expense_as_printed": "-",
+   "profit_for_the_year": 2748508,
+   "attributable_to_equity_holders": 2748508,
+   "attributable_to_nci": 0,
+   "basic_and_diluted_eps_AED": 0.22,
+   "weighted_average_shares_thousands": 12500000
+  }
+ },
+ "revenue_disaggregation": {
+  "unit": "AED'000",
+  "basis": "Revenue from contracts with customers, by major line of business (same basis as the IFRS 8 segment note).",
+  "source": {
+   "FY2025_FY2024": {
+    "file": "source_FY2025_audited_consolidated.pdf",
+    "pages": [
+     51
+    ]
+   },
+   "FY2024_FY2023": {
+    "file": "source_FY2024_audited_consolidated.pdf",
+    "pages": [
+     49
+    ]
+   },
+   "FY2023_FY2022": {
+    "file": "source_FY2023_audited_consolidated.pdf",
+    "pages": [
+     49
+    ]
+   }
+  },
+  "FY2025": {
+   "retail_b2c_fuel": 22796987,
+   "retail_b2c_non_fuel": 1783747,
+   "commercial_b2b_corporate": 9571682,
+   "commercial_b2b_aviation": 1744201,
+   "total": 35896617
+  },
+  "FY2024": {
+   "retail_b2c_fuel": 22223252,
+   "retail_b2c_non_fuel": 1575410,
+   "commercial_b2b_corporate": 10084840,
+   "commercial_b2b_aviation": 1570214,
+   "total": 35453716
+  },
+  "FY2023": {
+   "retail_b2c_fuel": 21794445,
+   "retail_b2c_non_fuel": 1422726,
+   "commercial_b2b_corporate": 9872507,
+   "commercial_b2b_aviation": 1539500,
+   "total": 34629178
+  },
+  "FY2022": {
+   "retail_b2c_fuel": 20308082,
+   "retail_b2c_non_fuel": 1149929,
+   "commercial_b2b_corporate": 9603265,
+   "commercial_b2b_aviation": 1049785,
+   "total": 32111061
+  },
+  "aviation_service_agreement_cost_plus_margin_recognised_as_revenue": {
+   "FY2025": 200940,
+   "FY2024": 187042,
+   "FY2023": 174356,
+   "FY2022": 170915,
+   "terms": "Parent Company reimburses the Company and pays an additional margin of 8% of the total distribution and administrative costs of the Civil Aviation Division."
+  },
+  "remaining_performance_obligations_next_period": {
+   "FY2025": 27839,
+   "FY2024": 25884,
+   "FY2023": 34010,
+   "FY2022": 50388
+  }
+ },
+ "cost_and_expense_notes": {
+  "unit": "AED'000",
+  "direct_costs": {
+   "source": {
+    "FY2025_FY2024": {
+     "file": "source_FY2025_audited_consolidated.pdf",
+     "pages": [
+      51
+     ]
+    },
+    "FY2024_FY2023": {
+     "file": "source_FY2024_audited_consolidated.pdf",
+     "pages": [
+      50
+     ]
+    },
+    "FY2023_FY2022": {
+     "file": "source_FY2023_audited_consolidated.pdf",
+     "pages": [
+      49
+     ]
+    }
+   },
+   "FY2025": {
+    "materials": 28696068,
+    "staff_costs": 254759,
+    "total": 28950827
+   },
+   "FY2024": {
+    "materials": 28968280,
+    "staff_costs": 269404,
+    "total": 29237684
+   },
+   "FY2023": {
+    "materials": 28503924,
+    "staff_costs": 288969,
+    "total": 28792893
+   },
+   "FY2022": {
+    "materials": 26249476,
+    "staff_costs": 193703,
+    "total": 26443179
+   }
+  },
+  "distribution_and_administrative_expenses": {
+   "source": {
+    "FY2025_FY2024": {
+     "file": "source_FY2025_audited_consolidated.pdf",
+     "pages": [
+      51
+     ]
+    },
+    "FY2024_FY2023": {
+     "file": "source_FY2024_audited_consolidated.pdf",
+     "pages": [
+      50
+     ]
+    },
+    "FY2023_FY2022": {
+     "file": "source_FY2023_audited_consolidated.pdf",
+     "pages": [
+      50
+     ]
+    }
+   },
+   "FY2025": {
+    "staff_costs": 1642792,
+    "depreciation_and_amortisation": 775946,
+    "repairs_maintenance_consumables": 206648,
+    "utilities": 232837,
+    "distribution_and_marketing": 118823,
+    "insurance": 13141,
+    "others": 333359,
+    "total": 3323546
+   },
+   "FY2024": {
+    "staff_costs": 1588613,
+    "depreciation_and_amortisation": 785807,
+    "repairs_maintenance_consumables": 191629,
+    "utilities": 218252,
+    "distribution_and_marketing": 110917,
+    "insurance": 11272,
+    "others": 288452,
+    "total": 3194942
+   },
+   "FY2023": {
+    "staff_costs": 1461227,
+    "depreciation_and_amortisation": 696565,
+    "repairs_maintenance_consumables": 202869,
+    "utilities": 210268,
+    "distribution_and_marketing": 65279,
+    "insurance": 9658,
+    "others": 270672,
+    "total": 2916538
+   },
+   "FY2022": {
+    "staff_costs": 1480421,
+    "depreciation_and_amortisation": 543931,
+    "repairs_maintenance_consumables": 187110,
+    "utilities": 198478,
+    "distribution_and_marketing": 54908,
+    "insurance": 18780,
+    "others": 278003,
+    "total": 2761631
+   }
+  },
+  "other_income": {
+   "source": {
+    "FY2025_FY2024": {
+     "file": "source_FY2025_audited_consolidated.pdf",
+     "pages": [
+      51
+     ]
+    },
+    "FY2023_FY2022": {
+     "file": "source_FY2023_audited_consolidated.pdf",
+     "pages": [
+      50
+     ]
+    }
+   },
+   "FY2025": {
+    "gain_on_disposal_of_ppe": 0,
+    "gain_on_disposal_as_printed": "-",
+    "miscellaneous_income": 167665,
+    "total": 167665
+   },
+   "FY2024": {
+    "gain_on_disposal_of_ppe": 8467,
+    "miscellaneous_income": 129592,
+    "total": 138059
+   },
+   "FY2023": {
+    "gain_on_disposal_of_ppe": 2608,
+    "miscellaneous_income": 143037,
+    "total": 145645
+   },
+   "FY2022": {
+    "gain_on_disposal_of_ppe": 2963,
+    "miscellaneous_income": 100379,
+    "total": 103342
+   },
+   "note": "Miscellaneous income consists mainly of convenience store income for consigned goods and sales of scrap items, used oil, batteries, tires."
+  },
+  "impairment_losses_and_other_operating_expenses": {
+   "source": {
+    "FY2025_FY2024": {
+     "file": "source_FY2025_audited_consolidated.pdf",
+     "pages": [
+      52
+     ]
+    },
+    "FY2024_FY2023": {
+     "file": "source_FY2024_audited_consolidated.pdf",
+     "pages": [
+      50
+     ]
+    },
+    "FY2023_FY2022": {
+     "file": "source_FY2023_audited_consolidated.pdf",
+     "pages": [
+      50
+     ]
+    }
+   },
+   "FY2025": {
+    "impairment_charge_losses_on_receivables": 232431,
+    "provision_for_slow_moving_inventories": 5066,
+    "impairment_of_capital_work_in_progress": 2812,
+    "loss_on_disposal_of_ppe": 1713,
+    "expected_credit_losses_of_bank_balances": 645,
+    "inventories_written_off": 262,
+    "miscellaneous_expenses": 41376,
+    "total": 284305
+   },
+   "FY2024": {
+    "impairment_charge_losses_on_receivables": 55239,
+    "provision_for_slow_moving_inventories": 1303,
+    "impairment_of_capital_work_in_progress": 5748,
+    "expected_credit_losses_of_bank_balances": 22,
+    "inventories_written_off": 2285,
+    "miscellaneous_expenses": 25657,
+    "total": 90254
+   },
+   "FY2023": {
+    "impairment_charge_losses_on_receivables": 27766,
+    "provision_for_slow_moving_inventories": 0,
+    "impairment_of_capital_work_in_progress": 5152,
+    "expected_credit_losses_of_bank_balances": 155,
+    "inventories_written_off": 4018,
+    "miscellaneous_expenses": 45052,
+    "total": 82143
+   },
+   "FY2022_other_impairment_losses_and_expenses_only": {
+    "inventories_written_off": 5251,
+    "impairment_of_capital_work_in_progress": 8075,
+    "miscellaneous_expenses": 2500,
+    "total": 15826,
+    "separate_line_impairment_losses_on_trade_and_other_receivables": 20351
+   }
+  },
+  "staff_costs": {
+   "source": {
+    "FY2025_FY2024": {
+     "file": "source_FY2025_audited_consolidated.pdf",
+     "pages": [
+      52
+     ]
+    },
+    "FY2024_FY2023": {
+     "file": "source_FY2024_audited_consolidated.pdf",
+     "pages": [
+      50
+     ]
+    },
+    "FY2023_FY2022": {
+     "file": "source_FY2023_audited_consolidated.pdf",
+     "pages": [
+      50
+     ]
+    }
+   },
+   "FY2025": {
+    "salaries_and_allowances": 1606487,
+    "other_benefits": 295465,
+    "eosb": 36141,
+    "total": 1938093,
+    "allocated_to_dist_admin": 1642792,
+    "allocated_to_direct_costs": 254759,
+    "allocated_to_cwip": 40542
+   },
+   "FY2024": {
+    "salaries_and_allowances": 1599923,
+    "other_benefits": 247906,
+    "eosb": 31157,
+    "total": 1878986,
+    "allocated_to_dist_admin": 1588613,
+    "allocated_to_direct_costs": 269404,
+    "allocated_to_cwip": 20969
+   },
+   "FY2023": {
+    "salaries_and_allowances": 1471391,
+    "other_benefits": 271765,
+    "eosb": 30989,
+    "total": 1774145,
+    "allocated_to_dist_admin": 1461227,
+    "allocated_to_direct_costs": 288969,
+    "allocated_to_cwip": 23949
+   },
+   "FY2022": {
+    "salaries_and_allowances": 1399834,
+    "other_benefits": 261884,
+    "eosb": 29053,
+    "total": 1690771,
+    "allocated_to_dist_admin": 1480421,
+    "allocated_to_direct_costs": 193703,
+    "allocated_to_cwip": 16647
+   }
+  },
+  "finance_costs": {
+   "source": {
+    "FY2025_FY2024": {
+     "file": "source_FY2025_audited_consolidated.pdf",
+     "pages": [
+      52
+     ]
+    },
+    "FY2024_FY2023": {
+     "file": "source_FY2024_audited_consolidated.pdf",
+     "pages": [
+      51
+     ]
+    },
+    "FY2023_FY2022": {
+     "file": "source_FY2023_audited_consolidated.pdf",
+     "pages": [
+      51
+     ]
+    }
+   },
+   "FY2025": {
+    "finance_charges_on_bank_facilities": 295138,
+    "interest_on_lease_liabilities": 101909,
+    "interest_on_decommissioning_provision": 5898,
+    "total": 402945
+   },
+   "FY2024": {
+    "finance_charges_on_bank_facilities": 355286,
+    "interest_on_lease_liabilities": 95870,
+    "interest_on_decommissioning_provision": 5955,
+    "total": 457111
+   },
+   "FY2023": {
+    "finance_charges_on_bank_facilities": 331754,
+    "interest_on_lease_liabilities": 95567,
+    "interest_on_decommissioning_provision": 5436,
+    "total": 432757
+   },
+   "FY2022": {
+    "finance_charges_on_bank_facilities": 212041,
+    "interest_on_lease_liabilities": 62800,
+    "interest_on_decommissioning_provision": 4764,
+    "total": 279605
+   }
+  }
+ },
+ "depreciation_and_amortisation_split": {
+  "unit": "AED'000",
+  "source": {
+   "FY2025_FY2024": {
+    "file": "source_FY2025_audited_consolidated.pdf",
+    "pages": [
+     17
+    ]
+   },
+   "FY2024_FY2023": {
+    "file": "source_FY2024_audited_consolidated.pdf",
+    "pages": [
+     17
+    ]
+   },
+   "FY2023_FY2022": {
+    "file": "source_FY2023_audited_consolidated.pdf",
+    "pages": [
+     18
+    ]
+   },
+   "note": "Taken from the cash-flow-statement adjustments, which is where the split is disclosed. The P&L shows only a combined D&A inside the distribution & administrative expenses note."
+  },
+  "FY2025": {
+   "depreciation_of_ppe": 594222,
+   "depreciation_of_right_of_use_assets": 151000,
+   "amortisation_of_intangibles": 30724,
+   "total_from_cash_flow": 775946,
+   "dist_admin_note_D_and_A": 775946
+  },
+  "FY2024": {
+   "depreciation_of_ppe": 602186,
+   "depreciation_of_right_of_use_assets": 151669,
+   "amortisation_of_intangibles": 31952,
+   "total_from_cash_flow": 785807,
+   "dist_admin_note_D_and_A": 785807
+  },
+  "FY2023": {
+   "depreciation_of_ppe": 507107,
+   "depreciation_of_right_of_use_assets": 146412,
+   "amortisation_of_intangibles": 43046,
+   "total_from_cash_flow": 696565,
+   "dist_admin_note_D_and_A": 696565
+  },
+  "FY2022": {
+   "depreciation_of_ppe": 437960,
+   "depreciation_of_right_of_use_assets": 105971,
+   "amortisation_of_intangibles": 0,
+   "amortisation_as_printed": "-",
+   "total_from_cash_flow": 543931,
+   "dist_admin_note_D_and_A": 543931
+  }
+ },
+ "balance_sheet": {
+  "unit": "AED'000",
+  "sources_by_date": {
+   "31-Dec-2025": {
+    "file": "source_FY2025_audited_consolidated.pdf",
+    "pages": [
+     13
+    ]
+   },
+   "31-Dec-2024": {
+    "file": "source_FY2025_audited_consolidated.pdf",
+    "pages": [
+     13
+    ]
+   },
+   "31-Dec-2024_own_filing": {
+    "file": "source_FY2024_audited_consolidated.pdf",
+    "pages": [
+     13
+    ]
+   },
+   "31-Dec-2023": {
+    "file": "source_FY2024_audited_consolidated.pdf",
+    "pages": [
+     13
+    ]
+   },
+   "31-Dec-2023_own_filing": {
+    "file": "source_FY2023_audited_consolidated.pdf",
+    "pages": [
+     14
+    ]
+   },
+   "31-Dec-2022": {
+    "file": "source_FY2023_audited_consolidated.pdf",
+    "pages": [
+     14
+    ]
+   }
+  },
+  "FY2025": {
+   "property_plant_and_equipment": 8032197,
+   "right_of_use_assets": 1445804,
+   "goodwill_and_intangible_assets": 621853,
+   "advances_to_contractors": 36596,
+   "deferred_tax_assets": null,
+   "other_non_current_assets": 12824,
+   "total_non_current_assets": 10149274,
+   "inventories": 1574254,
+   "trade_receivables_and_other_current_assets": 2632515,
+   "due_from_related_parties": 758468,
+   "term_deposits": 200000,
+   "cash_and_bank_balances": 2360854,
+   "total_current_assets": 7526091,
+   "total_assets": 17675365,
+   "share_capital": 1000000,
+   "treasury_shares": -10479,
+   "statutory_reserve": 508817,
+   "other_reserve": -257,
+   "foreign_currency_translation_reserve": -271698,
+   "retained_earnings": 2004040,
+   "equity_attributable_to_owners": 3230423,
+   "non_controlling_interests": 230374,
+   "total_equity": 3460797,
+   "lease_liabilities_non_current": 1289459,
+   "borrowings_non_current": 5499591,
+   "provision_for_decommissioning": 167399,
+   "provision_for_eosb": 207103,
+   "deferred_tax_liability": 79090,
+   "other_non_current_liabilities": 6528,
+   "total_non_current_liabilities": 7249170,
+   "lease_liabilities_current": 156868,
+   "trade_and_other_payables": 3115634,
+   "due_to_related_parties": 3646512,
+   "short_term_borrowings": 46384,
+   "total_current_liabilities": 6965398,
+   "total_liabilities": 14214568,
+   "total_equity_and_liabilities": 17675365
+  },
+  "FY2024": {
+   "property_plant_and_equipment": 7552178,
+   "right_of_use_assets": 1726351,
+   "goodwill_and_intangible_assets": 599307,
+   "advances_to_contractors": 47656,
+   "deferred_tax_assets": null,
+   "deferred_tax_assets_as_printed": "-",
+   "other_non_current_assets": 14447,
+   "total_non_current_assets": 9939939,
+   "inventories": 1619887,
+   "trade_receivables_and_other_current_assets": 2935982,
+   "due_from_related_parties": 750723,
+   "term_deposits": 200225,
+   "cash_and_bank_balances": 2734038,
+   "total_current_assets": 8240855,
+   "total_assets": 18180794,
+   "share_capital": 1000000,
+   "treasury_shares": 0,
+   "statutory_reserve": 506402,
+   "other_reserve": 0,
+   "foreign_currency_translation_reserve": -298268,
+   "retained_earnings": 1783705,
+   "equity_attributable_to_owners": 2991839,
+   "non_controlling_interests": 189437,
+   "total_equity": 3181276,
+   "lease_liabilities_non_current": 1540894,
+   "borrowings_non_current": 5494859,
+   "provision_for_decommissioning": 162277,
+   "provision_for_eosb": 200996,
+   "deferred_tax_liability": 80064,
+   "other_non_current_liabilities": 6516,
+   "total_non_current_liabilities": 7485606,
+   "lease_liabilities_current": 181728,
+   "trade_and_other_payables": 2797054,
+   "due_to_related_parties": 4439345,
+   "short_term_borrowings": 95785,
+   "total_current_liabilities": 7513912,
+   "total_liabilities": 14999518,
+   "total_equity_and_liabilities": 18180794
+  },
+  "FY2023": {
+   "property_plant_and_equipment": 7189661,
+   "right_of_use_assets": 1778418,
+   "goodwill_and_intangible_assets": 1053811,
+   "advances_to_contractors": 38466,
+   "deferred_tax_assets": 2166,
+   "other_non_current_assets": 15551,
+   "total_non_current_assets": 10078073,
+   "inventories": 1294423,
+   "trade_receivables_and_other_current_assets": 3519413,
+   "due_from_related_parties": 805558,
+   "term_deposits": 200225,
+   "cash_and_bank_balances": 2993937,
+   "total_current_assets": 8813556,
+   "total_assets": 18891629,
+   "share_capital": 1000000,
+   "treasury_shares": null,
+   "statutory_reserve": 503921,
+   "other_reserve": null,
+   "foreign_currency_translation_reserve": -2995,
+   "retained_earnings": 1971140,
+   "equity_attributable_to_owners": 3472066,
+   "non_controlling_interests": 323767,
+   "total_equity": 3795833,
+   "lease_liabilities_non_current": 1564251,
+   "borrowings_non_current": 5492280,
+   "provision_for_decommissioning": 149362,
+   "provision_for_eosb": 192271,
+   "deferred_tax_liability": 134962,
+   "other_non_current_liabilities": 10671,
+   "total_non_current_liabilities": 7543797,
+   "lease_liabilities_current": 183013,
+   "trade_and_other_payables": 2541355,
+   "due_to_related_parties": 4827631,
+   "short_term_borrowings": null,
+   "total_current_liabilities": 7551999,
+   "total_liabilities": 15095796,
+   "total_equity_and_liabilities": 18891629
+  },
+  "FY2022": {
+   "property_plant_and_equipment": 6385075,
+   "right_of_use_assets": 1373338,
+   "goodwill_and_intangible_assets": 1128,
+   "advances_to_contractors": 47297,
+   "deferred_tax_assets": null,
+   "other_non_current_assets": 13313,
+   "total_non_current_assets": 7820151,
+   "inventories": 1286377,
+   "trade_receivables_and_other_current_assets": 3295714,
+   "due_from_related_parties": 868868,
+   "term_deposits": 130225,
+   "cash_and_bank_balances": 2617099,
+   "total_current_assets": 8198283,
+   "total_assets": 16018434,
+   "share_capital": 1000000,
+   "statutory_reserve": 500000,
+   "foreign_currency_translation_reserve": null,
+   "retained_earnings": 1944890,
+   "equity_attributable_to_owners": 3444890,
+   "non_controlling_interests": null,
+   "total_equity": 3444890,
+   "lease_liabilities_non_current": 1184538,
+   "borrowings_non_current": 5482124,
+   "provision_for_decommissioning": 134532,
+   "provision_for_eosb": 194439,
+   "deferred_tax_liability": null,
+   "other_non_current_liabilities": null,
+   "total_non_current_liabilities": 6995633,
+   "lease_liabilities_current": 129789,
+   "trade_and_other_payables": 1995664,
+   "due_to_related_parties": 3452458,
+   "short_term_borrowings": null,
+   "total_current_liabilities": 5577911,
+   "total_liabilities": 12573544,
+   "total_equity_and_liabilities": 16018434
+  },
+  "Q1_2026_31Mar2026_unaudited": {
+   "source": {
+    "file": "source_Q1_2026_reviewed_interim.pdf",
+    "pages": [
+     5
+    ]
+   },
+   "property_plant_and_equipment": 8047921,
+   "right_of_use_assets": 1410663,
+   "goodwill_and_intangible_assets": 537876,
+   "advances_to_contractors": 31885,
+   "other_non_current_assets": 10816,
+   "total_non_current_assets": 10039161,
+   "inventories": 1665084,
+   "trade_receivables_and_other_current_assets": 3001977,
+   "due_from_related_parties": 894367,
+   "term_deposits": 200000,
+   "cash_and_bank_balances": 2379280,
+   "total_current_assets": 8140708,
+   "total_assets": 18179869,
+   "share_capital": 1000000,
+   "treasury_shares": -12733,
+   "statutory_reserve": 508817,
+   "other_reserve": -559,
+   "foreign_currency_translation_reserve": -332294,
+   "retained_earnings": 1489089,
+   "equity_attributable_to_owners": 2652320,
+   "non_controlling_interests": 215170,
+   "total_equity": 2867490,
+   "lease_liabilities_non_current": 1257683,
+   "borrowings_non_current": 5500702,
+   "provision_for_decommissioning": 169188,
+   "provision_for_eosb": 211152,
+   "deferred_tax_liability": 68061,
+   "other_non_current_liabilities": 5437,
+   "total_non_current_liabilities": 7212223,
+   "lease_liabilities_current": 154999,
+   "trade_and_other_payables": 4385941,
+   "due_to_related_parties": 3525488,
+   "short_term_borrowings": 33728,
+   "total_current_liabilities": 8100156,
+   "total_liabilities": 15312379,
+   "total_equity_and_liabilities": 18179869
+  },
+  "H1_2026_30Jun2026_unaudited": {
+   "source": {
+    "file": "source_Q2_2026_reviewed_interim.pdf",
+    "pages": [
+     5
+    ]
+   },
+   "property_plant_and_equipment": 8079909,
+   "right_of_use_assets": 1513030,
+   "goodwill_and_intangible_assets": 591496,
+   "advances_to_contractors": 37388,
+   "other_non_current_assets": 10259,
+   "total_non_current_assets": 10232082,
+   "inventories": 2110918,
+   "trade_receivables_and_other_current_assets": 4491776,
+   "due_from_related_parties": 1127560,
+   "term_deposits": 200000,
+   "cash_and_bank_balances": 2190863,
+   "total_current_assets": 10121117,
+   "total_assets": 20353199,
+   "share_capital": 1000000,
+   "treasury_shares": -12037,
+   "statutory_reserve": 508817,
+   "other_reserve": 78,
+   "foreign_currency_translation_reserve": -287911,
+   "retained_earnings": 2160949,
+   "equity_attributable_to_owners": 3369896,
+   "non_controlling_interests": 201770,
+   "total_equity": 3571666,
+   "lease_liabilities_non_current": 1331372,
+   "borrowings_non_current": 5501983,
+   "provision_for_decommissioning": 171317,
+   "provision_for_eosb": 211649,
+   "deferred_tax_liability": 74263,
+   "other_non_current_liabilities": 6393,
+   "total_non_current_liabilities": 7296977,
+   "lease_liabilities_current": 141478,
+   "trade_and_other_payables": 3434848,
+   "due_to_related_parties": 5811666,
+   "short_term_borrowings": 96564,
+   "total_current_liabilities": 9484556,
+   "total_liabilities": 16781533,
+   "total_equity_and_liabilities": 20353199
+  }
+ },
+ "cash_flow": {
+  "unit": "AED'000",
+  "sources_by_year": {
+   "FY2025": {
+    "file": "source_FY2025_audited_consolidated.pdf",
+    "pages": [
+     17
+    ]
+   },
+   "FY2024": {
+    "file": "source_FY2025_audited_consolidated.pdf",
+    "pages": [
+     17
+    ]
+   },
+   "FY2024_own_filing": {
+    "file": "source_FY2024_audited_consolidated.pdf",
+    "pages": [
+     17
+    ]
+   },
+   "FY2023": {
+    "file": "source_FY2024_audited_consolidated.pdf",
+    "pages": [
+     17
+    ]
+   },
+   "FY2023_own_filing": {
+    "file": "source_FY2023_audited_consolidated.pdf",
+    "pages": [
+     18
+    ]
+   },
+   "FY2022": {
+    "file": "source_FY2023_audited_consolidated.pdf",
+    "pages": [
+     18
+    ]
+   },
+   "Q1_2026": {
+    "file": "source_Q1_2026_reviewed_interim.pdf",
+    "pages": [
+     9
+    ]
+   },
+   "H1_2026": {
+    "file": "source_Q2_2026_reviewed_interim.pdf",
+    "pages": [
+     9
+    ]
+   }
+  },
+  "FY2025": {
+   "profit_before_tax": 3173933,
+   "adj_depreciation_of_ppe": 594222,
+   "adj_depreciation_of_rou": 151000,
+   "adj_amortisation_of_intangibles": 30724,
+   "adj_impairment_losses_on_receivables": 232431,
+   "adj_recoveries_on_receivables": -4615,
+   "adj_eosb_charge": 36141,
+   "adj_gain_on_disposal_of_ppe_and_rou_modifications": -43051,
+   "adj_impairment_of_ppe": 2812,
+   "adj_finance_costs": 402945,
+   "adj_interest_income": -71274,
+   "adj_provisions_writeoffs_for_inventories": 5328,
+   "operating_cash_flows_before_wc": 4510596,
+   "wc_inventories": 41218,
+   "wc_trade_receivables_and_other_current_assets": 80363,
+   "wc_due_from_related_parties": -7745,
+   "wc_trade_and_other_payables": 388634,
+   "wc_due_to_related_parties": -792833,
+   "cash_generated_from_operations": 4220233,
+   "eosb_paid": -29965,
+   "income_taxes_paid": -268227,
+   "net_cash_from_operating": 3922041,
+   "capex_purchases_of_ppe": -1180747,
+   "payments_for_advances_to_contractors": -26647,
+   "proceeds_from_disposal_of_ppe": 5900,
+   "proceeds_from_term_deposits_gt_3m": 225,
+   "interest_received": 73454,
+   "net_cash_used_in_investing": -1127815,
+   "payment_of_lease_liabilities": -201454,
+   "net_short_term_borrowings": -58901,
+   "repayment_of_borrowings": -859,
+   "own_shares_acquired": -10479,
+   "dividends_paid": -2599146,
+   "finance_cost_paid": -302878,
+   "net_cash_used_in_financing": -3173717,
+   "net_change_in_cash": -379491,
+   "cash_at_beginning": 2734038,
+   "fx_effect": 6307,
+   "cash_at_end": 2360854,
+   "non_cash_accruals_for_ppe": 376775,
+   "non_cash_advances_to_contractors_transferred_to_ppe": 37707,
+   "non_cash_additions_to_rou_for_land_leases": 42315,
+   "non_cash_finance_cost_on_decommissioning": 5898
+  },
+  "FY2024": {
+   "profit_before_tax": 2755677,
+   "adj_depreciation_of_ppe": 602186,
+   "adj_depreciation_of_rou": 151669,
+   "adj_amortisation_of_intangibles": 31952,
+   "adj_impairment_losses_on_receivables": 55237,
+   "adj_recoveries_on_receivables": -19874,
+   "adj_eosb_charge": 31157,
+   "adj_gain_on_disposal_of_ppe_and_rou_modifications": -8467,
+   "adj_impairment_of_ppe": 5748,
+   "adj_finance_costs": 457111,
+   "adj_interest_income": -143893,
+   "adj_provisions_writeoffs_for_inventories": 5035,
+   "operating_cash_flows_before_wc": 3923538,
+   "wc_inventories": -368020,
+   "wc_trade_receivables_and_other_current_assets": 508349,
+   "wc_due_from_related_parties": 34966,
+   "wc_trade_and_other_payables": 229946,
+   "wc_due_to_related_parties": -351508,
+   "cash_generated_from_operations": 3977271,
+   "eosb_paid": -23583,
+   "income_taxes_paid": -22235,
+   "net_cash_from_operating": 3931453,
+   "capex_purchases_of_ppe": -1116830,
+   "payments_for_advances_to_contractors": -62403,
+   "proceeds_from_disposal_of_ppe": 23264,
+   "increase_in_term_deposits_gt_3m": 0,
+   "interest_received": 143893,
+   "net_cash_used_in_investing": -1012076,
+   "payment_of_lease_liabilities": -208300,
+   "net_proceeds_from_borrowings": 97996,
+   "repayment_of_borrowings": -1284,
+   "dividends_paid": -2613700,
+   "finance_cost_paid": -355264,
+   "net_cash_used_in_financing": -3080552,
+   "net_change_in_cash": -161175,
+   "cash_at_beginning": 2993937,
+   "fx_effect": -98724,
+   "cash_at_end": 2734038,
+   "non_cash_accruals_for_ppe": 517652,
+   "non_cash_advances_to_contractors_transferred_to_ppe": 53213,
+   "non_cash_additions_to_rou_for_land_leases": 158427,
+   "non_cash_finance_cost_on_decommissioning": 5955
+  },
+  "FY2023": {
+   "profit_before_tax": 2649326,
+   "adj_depreciation_of_ppe": 507107,
+   "adj_depreciation_of_rou": 146412,
+   "adj_amortisation_of_intangibles": 43046,
+   "adj_impairment_losses_on_receivables": 27766,
+   "adj_recoveries_on_receivables": -5925,
+   "adj_eosb_charge": 30989,
+   "adj_gain_on_disposal_of_ppe": -2608,
+   "adj_impairment_of_ppe": 5152,
+   "adj_inventories_written_off": 4018,
+   "adj_finance_costs": 432757,
+   "adj_interest_income": -98834,
+   "operating_cash_flows_before_wc": 3739206,
+   "wc_inventories": 78776,
+   "wc_trade_receivables_and_other_current_assets": -142350,
+   "wc_due_from_related_parties": 110643,
+   "wc_trade_and_other_payables": 106038,
+   "wc_due_to_related_parties": 1207509,
+   "cash_generated_from_operations": 5099822,
+   "eosb_paid": -33157,
+   "income_taxes_paid": -15397,
+   "net_cash_from_operating": 5051268,
+   "capex_purchases_of_ppe": -1000290,
+   "payments_for_advances_to_contractors": -31951,
+   "proceeds_from_disposal_of_ppe": 5971,
+   "increase_in_term_deposits": -70000,
+   "interest_received": 98834,
+   "payments_for_acquisition_of_subsidiary_net_of_cash": -539100,
+   "net_cash_used_in_investing": -1536536,
+   "payment_of_lease_liabilities": -200322,
+   "proceeds_from_borrowings": 2788,
+   "repayment_of_borrowings": -1725,
+   "dividends_paid": -2622890,
+   "finance_cost_paid": -307871,
+   "net_cash_used_in_financing": -3130020,
+   "net_change_in_cash": 384712,
+   "cash_at_beginning": 2617099,
+   "fx_effect": -7874,
+   "cash_at_end": 2993937,
+   "non_cash_accruals_for_ppe": 610117,
+   "non_cash_advances_to_contractors_transferred_to_ppe": 41887,
+   "non_cash_additions_to_rou_for_land_leases": 511560,
+   "non_cash_finance_cost_on_decommissioning": 5436
+  },
+  "FY2022": {
+   "profit_before_tax": 2748508,
+   "adj_depreciation_of_ppe": 437960,
+   "adj_depreciation_of_rou": 105971,
+   "adj_amortisation_of_intangibles": null,
+   "adj_impairment_losses_on_receivables": 20351,
+   "adj_recoveries_on_receivables": -11631,
+   "adj_eosb_charge": 29053,
+   "adj_gain_on_disposal_of_ppe": -2963,
+   "adj_impairment_of_ppe": 8075,
+   "adj_inventories_written_off": 5251,
+   "adj_finance_costs": 279605,
+   "adj_interest_income": -54697,
+   "operating_cash_flows_before_wc": 3565483,
+   "wc_inventories": -245470,
+   "wc_trade_receivables_and_other_current_assets": -621159,
+   "wc_due_from_related_parties": 356732,
+   "wc_trade_and_other_payables": 319107,
+   "wc_due_to_related_parties": 1159948,
+   "cash_generated_from_operations": 4534641,
+   "eosb_paid": -27197,
+   "income_taxes_paid": 0,
+   "net_cash_from_operating": 4507444,
+   "capex_purchases_of_ppe": -1063481,
+   "payments_for_advances_to_contractors": -56394,
+   "proceeds_from_disposal_of_ppe": 2963,
+   "interest_received": 54697,
+   "net_cash_used_in_investing": -1062215,
+   "payment_of_lease_liabilities": -150194,
+   "proceeds_from_borrowings": 5479742,
+   "repayment_of_borrowings": -5505938,
+   "dividends_paid": -2571250,
+   "finance_cost_paid": -206030,
+   "net_cash_used_in_financing": -2953670,
+   "net_change_in_cash": 491559,
+   "cash_at_beginning": 2125540,
+   "fx_effect": null,
+   "cash_at_end": 2617099,
+   "non_cash_accruals_for_ppe": 451232,
+   "non_cash_advances_to_contractors_transferred_to_ppe": 50405,
+   "non_cash_additions_to_rou_for_land_leases": 551482,
+   "non_cash_finance_cost_on_decommissioning": 4764
+  },
+  "Q1_2026_3m": {
+   "profit_before_tax": 872663,
+   "adj_depreciation_of_ppe": 140465,
+   "adj_depreciation_of_rou": 32014,
+   "adj_amortisation_of_intangibles": 8177,
+   "adj_impairment_losses_on_receivables": 69325,
+   "adj_eosb_charge": 7409,
+   "adj_impairment_of_ppe": 696,
+   "adj_gain_on_disposal_of_ppe": -43,
+   "adj_finance_costs": 91945,
+   "adj_interest_income": -16100,
+   "operating_cash_flows_before_wc": 1206551,
+   "wc_inventories": -90749,
+   "wc_trade_receivables_and_other_current_assets": -445138,
+   "wc_due_from_related_parties": -135899,
+   "wc_trade_and_other_payables": -98551,
+   "wc_due_to_related_parties": -121024,
+   "cash_generated_from_operations": 315190,
+   "eosb_paid": -3790,
+   "income_taxes_paid": null,
+   "net_cash_from_operating": 311400,
+   "capex_purchases_of_ppe": -174576,
+   "payments_for_advances_to_contractors": -807,
+   "proceeds_from_disposal_of_ppe": 140,
+   "interest_received": 16616,
+   "proceeds_from_term_deposits": 0,
+   "net_cash_used_in_investing": -158627,
+   "payment_of_lease_liabilities": -49654,
+   "net_short_term_borrowings": -7622,
+   "repayment_of_borrowings": -165,
+   "finance_cost_paid": -63806,
+   "own_shares_acquired": -2254,
+   "dividends_paid": null,
+   "net_cash_used_in_financing": -123501,
+   "net_change_in_cash": 29272,
+   "cash_at_beginning": 2360854,
+   "fx_effect": -10846,
+   "cash_at_end": 2379280
+  },
+  "H1_2026_6m": {
+   "profit_before_tax": 2366562,
+   "adj_depreciation_of_ppe": 282115,
+   "adj_depreciation_of_rou": 71651,
+   "adj_amortisation_of_intangibles": 15936,
+   "adj_impairment_losses_on_receivables": 139923,
+   "adj_recoveries_on_receivables": -2267,
+   "adj_eosb_charge": 15132,
+   "adj_provisions_writeoffs_for_inventories": 5587,
+   "adj_gain_on_disposal_of_ppe_and_rou_modifications": -12369,
+   "adj_impairment_of_ppe": 8483,
+   "adj_finance_costs": 181181,
+   "adj_interest_income": -31101,
+   "operating_cash_flows_before_wc": 3040833,
+   "wc_inventories": -542449,
+   "wc_trade_receivables_and_other_current_assets": -1996572,
+   "wc_due_from_related_parties": -369092,
+   "wc_trade_and_other_payables": 147812,
+   "wc_due_to_related_parties": 2165154,
+   "cash_generated_from_operations": 2445686,
+   "eosb_paid": -10926,
+   "income_taxes_paid": -32537,
+   "net_cash_from_operating": 2402223,
+   "capex_purchases_of_ppe": -372391,
+   "payments_for_advances_to_contractors": -7074,
+   "proceeds_from_disposal_of_ppe": 489,
+   "interest_received": 31670,
+   "net_cash_used_in_investing": -347306,
+   "payment_of_lease_liabilities": -148034,
+   "net_proceeds_from_short_term_borrowings": 44028,
+   "repayment_of_borrowings": -325,
+   "finance_cost_paid": -122344,
+   "own_shares_acquired": -1558,
+   "dividends_paid": -1990722,
+   "net_cash_used_in_financing": -2218955,
+   "net_change_in_cash": -164038,
+   "cash_at_beginning": 2360854,
+   "fx_effect": -5953,
+   "cash_at_end": 2190863,
+   "non_cash_accruals_for_ppe": 347758,
+   "non_cash_advances_to_contractors_transferred_to_ppe": 6282,
+   "non_cash_additions_and_modification_to_rou": 140548
+  }
+ },
+ "notes": {
+  "borrowings": {
+   "unit": "AED'000",
+   "source": {
+    "FY2025_FY2024": {
+     "file": "source_FY2025_audited_consolidated.pdf",
+     "pages": [
+      49,
+      50
+     ]
+    },
+    "FY2024_FY2023": {
+     "file": "source_FY2024_audited_consolidated.pdf",
+     "pages": [
+      48
+     ]
+    },
+    "FY2023_FY2022": {
+     "file": "source_FY2023_audited_consolidated.pdf",
+     "pages": [
+      47,
+      48
+     ]
+    },
+    "Q1_2026": {
+     "file": "source_Q1_2026_reviewed_interim.pdf",
+     "pages": [
+      16
+     ]
+    },
+    "H1_2026": {
+     "file": "source_Q2_2026_reviewed_interim.pdf",
+     "pages": [
+      16
+     ]
+    }
+   },
+   "balances": {
+    "FY2025": {
+     "short_term_borrowing": 46384,
+     "term_loan_non_current": 5499591,
+     "total": 5545975
+    },
+    "FY2024": {
+     "short_term_borrowing": 95785,
+     "term_loan_non_current": 5494859,
+     "total": 5590644
+    },
+    "FY2023": {
+     "short_term_borrowing": null,
+     "term_loan_non_current": 5492280,
+     "total": 5492280
+    },
+    "FY2022": {
+     "short_term_borrowing": null,
+     "term_loan_non_current": 5482124,
+     "total": 5482124
+    },
+    "31Mar2026": {
+     "short_term_borrowing": 33728,
+     "term_loan_non_current": 5500702,
+     "total": 5534430
+    },
+    "30Jun2026": {
+     "short_term_borrowing": 96564,
+     "term_loan_non_current": 5501983,
+     "total": 5598547
+    }
+   },
+   "facilities": [
+    {
+     "name": "Term loan facility (refinanced)",
+     "borrower": "ADNOC Distribution PJSC (the Company)",
+     "original": "Signed 16 October 2017 mandate letter with a consortium of banks: 5-year, USD 2,250,000 thousand (AED 8,263,130 thousand) unsecured credit facility, bifurcated into a term facility commitment of USD 1,500,000 thousand (AED 5,508,750 thousand) and a revolving facility commitment of USD 750,000 thousand (AED 2,754,380 thousand). No financial covenants in the facility documents.",
+     "original_drawdown": "On 16 November 2017 the Group drew down USD 375,000 thousand and AED 4,128,750 thousand.",
+     "original_pricing": "USD LIBOR + 0.875% on the USD-denominated portion; EIBOR + 0.60% on the AED-denominated portion.",
+     "refinancing": "On 26 October 2022 the Company refinanced its maturing term loan (originally taken in November 2017) for another 5-year term with a set of lenders.",
+     "current_pricing_as_disclosed_FY2023_through_H1_2026": "Variable interest at Secured Overnight Financing Rate (SOFR) plus a margin of 0.85% for the USD-denominated facility portion, and EIBOR plus a margin of 0.60% for the AED-denominated facility portion.",
+     "currency": "Split USD / AED tranches; the notes disclose the per-currency margin basis but DO NOT disclose the outstanding USD vs AED tranche amounts at any reporting date.",
+     "maturity": "Not stated as an explicit date; disclosed only as 'refinanced ... for another 5-year term' from 26 October 2022 (i.e. implied 2027). Also, in the FY2023 filing: 'The term facility is to be repaid at final maturity which is 5 years from the date of the facility agreement.'",
+     "esg_feature": "During 2023 the Company and its lenders agreed to amend and convert the term loan facility to a sustainability-linked loan; the converted facility contains ESG covenants linked to the margin on the loan (FY2023 note 15, p.48). MD&A adds: converted an existing AED 5.5 billion (USD 1.5 billion) term loan into a Sustainability-Linked Loan in January 2023; in 2025 the Company met both KPIs under the SLL framework.",
+     "carrying_amount_FY2025": 5499591
+    },
+    {
+     "name": "Corporate revolving credit facilities agreement with the Parent Company (ADNOC)",
+     "amount": "USD 375,000 thousand and AED 1,377,188 thousand",
+     "purpose": "General corporate purposes",
+     "status": "Undrawn at 31 December 2025 and at 30 June 2026 (fully unutilised).",
+     "transaction_costs_capitalised_in_other_non_current_assets": {
+      "FY2025": 2295,
+      "FY2024": 7408,
+      "FY2023": 10558,
+      "FY2022": 13313,
+      "30Jun2026": 918
+     },
+     "pricing": "Not disclosed"
+    },
+    {
+     "name": "Egypt short-term unsecured credit facilities (subsidiary in Egypt)",
+     "detail_FY2024": "In 2024 the Group's subsidiary in Egypt entered into two unsecured short-term credit facilities for EGP 1,000,000 thousand each, term 1 year, to finance payments to local suppliers and working-capital requirements.",
+     "detail_FY2025": "A third new unsecured short-term credit facility for EGP 1,000,000 thousand was entered into during 2025; it remained undrawn at 31 December 2025 and carries interest at the Mid Corridor rate announced by the Central Bank of Egypt.",
+     "drawn": {
+      "FY2024": {
+       "EGP_thousand": 1324831,
+       "AED_thousand": 95785
+      },
+      "FY2025": {
+       "EGP_thousand": 602387,
+       "AED_thousand": 43384,
+       "note": "The FY2025 note states EGP 602,387 thousand = AED 43,384 thousand, while the balance-sheet/short-term-borrowings line is AED 46,384 thousand — see restatements/discrepancies."
+      },
+      "30Jun2026": {
+       "EGP_thousand": 1294428,
+       "AED_thousand": 96564
+      }
+     },
+     "rate_basis_FY2024_FY2025": "Egypt Lending Corridor Rate less 0.5%, and Mid Corridor plus 1%, as announced by the Central Bank of Egypt.",
+     "rate_basis_H1_2026": "Egypt Lending Corridor Rate less 0.5% as announced by the Central Bank of Egypt (three facilities of EGP 1,000,000 thousand each, term 1 year).",
+     "currency": "EGP"
+    }
+   ],
+   "reconciliation_of_liabilities_from_financing_activities": {
+    "FY2025": {
+     "opening": 5590644,
+     "payments_made": -59760,
+     "net_proceeds_from_borrowings": 0,
+     "other_charges": 15091,
+     "closing": 5545975
+    },
+    "FY2024": {
+     "opening": 5492280,
+     "payments_made": -1284,
+     "net_proceeds_from_borrowings": 97996,
+     "other_charges": 1652,
+     "closing": 5590644
+    },
+    "FY2023": {
+     "opening": 5482124,
+     "acquisition_of_subsidiary": 3756,
+     "payments_made": -1725,
+     "net_proceeds_from_borrowings": 2788,
+     "other_charges": 5337,
+     "closing": 5492280
+    },
+    "FY2022": {
+     "opening": 5499641,
+     "payments_made": -5505938,
+     "net_proceeds_from_borrowings": 5479742,
+     "other_charges": 8679,
+     "closing": 5482124
+    },
+    "other_charges_definition": "Amortisation of transaction costs of the term loan and translation movement."
+   },
+   "interest_rate_sensitivity": {
+    "source": {
+     "file": "source_FY2025_audited_consolidated.pdf",
+     "pages": [
+      59
+     ]
+    },
+    "text": "If interest rates had been 50 basis points higher/lower and all other variables held constant, profit for the year ended 31 December 2025 would have decreased/increased by AED 27,730 thousand (2024: AED 27,953 thousand), mainly attributable to variable-rate borrowings."
+   },
+   "net_debt_and_leverage_per_FS_capital_risk_note": {
+    "source": {
+     "FY2025_FY2024": {
+      "file": "source_FY2025_audited_consolidated.pdf",
+      "pages": [
+       58
+      ]
+     },
+     "FY2024_FY2023": {
+      "file": "source_FY2024_audited_consolidated.pdf",
+      "pages": [
+       59
+      ]
+     },
+     "FY2023_FY2022": {
+      "file": "source_FY2023_audited_consolidated.pdf",
+      "pages": [
+       58
+      ]
+     }
+    },
+    "FY2025": {
+     "debt": 5545975,
+     "cash_and_cash_equivalents": -2360854,
+     "net_debt": 3185121,
+     "equity": 3230423,
+     "net_debt_plus_equity": 6415544,
+     "leverage_ratio_pct": 49.6
+    },
+    "FY2024": {
+     "debt": 5590644,
+     "cash_and_cash_equivalents": -2734038,
+     "net_debt": 2856606,
+     "equity": 2991839,
+     "net_debt_plus_equity": 5848445,
+     "leverage_ratio_pct": 48.8
+    },
+    "FY2023": {
+     "debt": 5492280,
+     "cash_and_cash_equivalents": -2993937,
+     "net_debt": 2498343,
+     "equity": 3472066,
+     "net_debt_plus_equity": 5970409,
+     "leverage_ratio_pct": 41.8,
+     "note": "The FY2023 filing's own version of this table prints Equity 3,472,072 and net debt plus equity 5,970,415 — see restatements/discrepancies."
+    },
+    "FY2022": {
+     "debt": 5482124,
+     "cash_and_cash_equivalents": -2617099,
+     "net_debt": 2865025,
+     "equity": 3444890,
+     "net_debt_plus_equity": 6309915,
+     "leverage_ratio_pct": 45.4
+    },
+    "definition": "Net debt = total debt (current + non-current borrowings) less cash and cash equivalents. Note this FS definition EXCLUDES term deposits; the MD&A net debt figure includes them — the two differ."
+   }
+  },
+  "leases": {
+   "unit": "AED'000",
+   "source": {
+    "FY2025_FY2024": {
+     "file": "source_FY2025_audited_consolidated.pdf",
+     "pages": [
+      47,
+      49
+     ]
+    },
+    "FY2024_FY2023": {
+     "file": "source_FY2024_audited_consolidated.pdf",
+     "pages": [
+      46,
+      47
+     ]
+    },
+    "FY2023_FY2022": {
+     "file": "source_FY2023_audited_consolidated.pdf",
+     "pages": [
+      45,
+      46,
+      47
+     ]
+    }
+   },
+   "lease_terms": "Leasehold properties; average lease term 15-40 years in every year disclosed. Dismantling cost to return the land to its original condition is included in cost. Obligations secured by the lessor's title to the leased assets.",
+   "right_of_use_asset_movement": {
+    "FY2025": {
+     "opening": 1726351,
+     "additions_land_lease": 42315,
+     "additions_decommissioning": 1052,
+     "change_in_estimate_decommissioning": -1900,
+     "reversal_terminated_contracts": -743,
+     "depreciation": -151000,
+     "modifications": -174839,
+     "fx": 4568,
+     "closing": 1445804
+    },
+    "FY2024": {
+     "opening": 1778418,
+     "additions_land_lease": 158427,
+     "additions_decommissioning": 7610,
+     "reversal_terminated_contracts": -23776,
+     "depreciation": -151669,
+     "modifications": 1767,
+     "fx": -44426,
+     "closing": 1726351
+    },
+    "FY2023": {
+     "opening": 1373338,
+     "additions_land_lease": 511560,
+     "additions_decommissioning": 9394,
+     "acquisition_of_subsidiary": 98694,
+     "reversal_terminated_contracts": -51316,
+     "depreciation": -146412,
+     "modifications": -9173,
+     "fx": -7667,
+     "closing": 1778418
+    },
+    "FY2022": {
+     "opening": 952758,
+     "additions_land_lease": 551482,
+     "additions_decommissioning": 362,
+     "change_in_estimate_decommissioning": 180,
+     "change_in_estimate_land_lease": -5585,
+     "reversal_terminated_contracts": -19888,
+     "depreciation": -105971,
+     "closing": 1373338
+    }
+   },
+   "lease_liability_movement": {
+    "FY2025": {
+     "opening": 1722622,
+     "additions": 42315,
+     "accretion_of_interest": 101909,
+     "reversal_terminated_contracts": -810,
+     "payments": -201454,
+     "modifications": -223397,
+     "fx": 5142,
+     "closing": 1446327
+    },
+    "FY2024": {
+     "opening": 1747264,
+     "additions": 158427,
+     "accretion_of_interest": 95870,
+     "reversal_terminated_contracts": -28062,
+     "payments": -208300,
+     "modifications": 1767,
+     "fx": -44344,
+     "closing": 1722622
+    },
+    "FY2023": {
+     "opening": 1314327,
+     "additions": 511560,
+     "acquisition_of_subsidiary": 98694,
+     "accretion_of_interest": 95567,
+     "reversal_terminated_contracts": -55515,
+     "payments": -200322,
+     "modifications": -9173,
+     "fx": -7874,
+     "closing": 1747264
+    },
+    "FY2022": {
+     "opening": 876358,
+     "additions": 551482,
+     "accretion_of_interest": 62800,
+     "reversal_terminated_contracts": -20534,
+     "changes_in_estimates": -5585,
+     "payments": -150194,
+     "closing": 1314327
+    }
+   },
+   "lease_liability_split": {
+    "FY2025": {
+     "current": 156868,
+     "non_current": 1289459
+    },
+    "FY2024": {
+     "current": 181728,
+     "non_current": 1540894
+    },
+    "FY2023": {
+     "current": 183013,
+     "non_current": 1564251
+    },
+    "FY2022": {
+     "current": 129789,
+     "non_current": 1184538
+    }
+   },
+   "maturity_analysis_undiscounted_as_printed": {
+    "FY2025": {
+     "not_later_than_1y": 156868,
+     "1_to_5y": 501515,
+     "later_than_5y": 787944,
+     "total": 1446327
+    },
+    "FY2024": {
+     "not_later_than_1y": 181728,
+     "1_to_5y": 691345,
+     "later_than_5y": 849549,
+     "total": 1722622
+    },
+    "FY2023": {
+     "not_later_than_1y": 183013,
+     "1_to_5y": 617739,
+     "later_than_5y": 946512,
+     "total": 1747264
+    },
+    "FY2022": {
+     "not_later_than_1y": 129789,
+     "1_to_5y": 510838,
+     "later_than_5y": 673700,
+     "total": 1314327
+    }
+   },
+   "amounts_in_profit_or_loss": {
+    "FY2025": {
+     "rou_depreciation": 151000,
+     "lease_interest": 101909,
+     "total": 252909
+    },
+    "FY2024": {
+     "rou_depreciation": 151669,
+     "lease_interest": 95870,
+     "total": 247539
+    },
+    "FY2023": {
+     "rou_depreciation": 146412,
+     "lease_interest": 95567,
+     "total": 241979
+    },
+    "FY2022": {
+     "rou_depreciation": 105971,
+     "lease_interest": 62800
+    }
+   },
+   "total_cash_outflow_for_leases": {
+    "FY2025": 201454,
+    "FY2024": 208300,
+    "FY2023": 200322,
+    "FY2022": 150194
+   }
+  },
+  "segment_reporting": {
+   "unit": "AED'000",
+   "source": {
+    "FY2025_FY2024": {
+     "file": "source_FY2025_audited_consolidated.pdf",
+     "pages": [
+      55
+     ]
+    },
+    "FY2023": {
+     "file": "source_FY2024_audited_consolidated.pdf",
+     "pages": [
+      54
+     ]
+    },
+    "FY2022": {
+     "file": "source_FY2023_audited_consolidated.pdf",
+     "pages": [
+      53
+     ]
+    },
+    "geographical_FY2025_FY2024": {
+     "file": "source_FY2025_audited_consolidated.pdf",
+     "pages": [
+      56
+     ]
+    },
+    "geographical_FY2023": {
+     "file": "source_FY2024_audited_consolidated.pdf",
+     "pages": [
+      55
+     ]
+    },
+    "Q1_2026": {
+     "file": "source_Q1_2026_reviewed_interim.pdf",
+     "pages": [
+      19
+     ]
+    },
+    "H1_2026": {
+     "file": "source_Q2_2026_reviewed_interim.pdf",
+     "pages": [
+      19
+     ]
+    }
+   },
+   "segments_defined": "Two reportable segments under IFRS 8: Commercial (B2B) and Retail (B2C). Segment measure reported to the Board (CODM) is operating profit. No inter-segment sales. NOTE: EBITDA by segment is NOT disclosed in the audited financial statements — it appears only in the MD&A (see operating_kpis).",
+   "operating_segments": {
+    "FY2025": {
+     "commercial_b2b": {
+      "revenue": 11315883,
+      "direct_costs": -9587376,
+      "gross_profit": 1728507,
+      "dist_admin": -460528,
+      "other_income": 5441,
+      "impairment_and_other": -220315,
+      "operating_profit": 1053105
+     },
+     "retail_b2c": {
+      "revenue": 24580734,
+      "direct_costs": -19363451,
+      "gross_profit": 5217283,
+      "dist_admin": -2862901,
+      "other_income": 147745,
+      "impairment_and_other": -26293,
+      "operating_profit": 2475834
+     },
+     "unallocated": {
+      "revenue": 0,
+      "dist_admin": -117,
+      "other_income": 14479,
+      "impairment_and_other": -37697,
+      "operating_profit": -23335
+     },
+     "consolidated_operating_profit": 3505604
+    },
+    "FY2024": {
+     "commercial_b2b": {
+      "revenue": 11655054,
+      "direct_costs": -10143360,
+      "gross_profit": 1511694,
+      "dist_admin": -452130,
+      "other_income": 4953,
+      "impairment_and_other": -38900,
+      "operating_profit": 1025617
+     },
+     "retail_b2c": {
+      "revenue": 23798662,
+      "direct_costs": -19094324,
+      "gross_profit": 4704338,
+      "dist_admin": -2742668,
+      "other_income": 110404,
+      "impairment_and_other": -26508,
+      "operating_profit": 2045566
+     },
+     "unallocated": {
+      "dist_admin": -144,
+      "other_income": 22702,
+      "impairment_and_other": -24846,
+      "operating_profit": -2288
+     },
+     "consolidated_operating_profit": 3068895
+    },
+    "FY2023": {
+     "commercial_b2b": {
+      "revenue": 11412007,
+      "direct_costs": -10074973,
+      "gross_profit": 1337034,
+      "dist_admin": -384156,
+      "other_income": 36915,
+      "impairment_and_other": -25910,
+      "operating_profit": 963883
+     },
+     "retail_b2c": {
+      "revenue": 23217171,
+      "direct_costs": -18717920,
+      "gross_profit": 4499251,
+      "dist_admin": -2530849,
+      "other_income": 82793,
+      "impairment_and_other": -17764,
+      "operating_profit": 2033431
+     },
+     "unallocated": {
+      "dist_admin": -1533,
+      "other_income": 25937,
+      "impairment_and_other": -38469,
+      "operating_profit": -14065
+     },
+     "consolidated_operating_profit": 2983249
+    },
+    "FY2022": {
+     "commercial_b2b": {
+      "revenue": 10653050,
+      "direct_costs": -9217178,
+      "gross_profit": 1435872,
+      "dist_admin": -373241,
+      "other_income": 20588,
+      "impairment_and_other": -14369,
+      "operating_profit": 1068850
+     },
+     "retail_b2c": {
+      "revenue": 21458011,
+      "direct_costs": -17226001,
+      "gross_profit": 4232010,
+      "dist_admin": -2388390,
+      "other_income": 79986,
+      "impairment_and_other": -21808,
+      "operating_profit": 1901798
+     },
+     "unallocated": {
+      "other_income": 2768,
+      "operating_profit": 2768
+     },
+     "consolidated_operating_profit": 2973416
+    },
+    "Q1_2026": {
+     "commercial_b2b": {
+      "revenue": 2865310,
+      "direct_costs": -2311511,
+      "gross_profit": 553799,
+      "dist_admin": -116970,
+      "other_income": 1652,
+      "impairment_and_other": -48229,
+      "operating_profit": 390252
+     },
+     "retail_b2c": {
+      "revenue": 5968286,
+      "direct_costs": -4698518,
+      "gross_profit": 1269768,
+      "dist_admin": -705084,
+      "other_income": 34468,
+      "impairment_and_other": -21948,
+      "operating_profit": 577204
+     },
+     "unallocated": {
+      "dist_admin": -15,
+      "other_income": 109,
+      "impairment_and_other": -19042,
+      "operating_profit": -18948
+     },
+     "consolidated_operating_profit": 948508
+    },
+    "H1_2026": {
+     "commercial_b2b": {
+      "revenue": 7937618,
+      "direct_costs": -6669486,
+      "gross_profit": 1268132,
+      "dist_admin": -231594,
+      "other_income": 6449,
+      "impairment_and_other": -122636,
+      "operating_profit": 920351
+     },
+     "retail_b2c": {
+      "revenue": 14097386,
+      "direct_costs": -11113416,
+      "gross_profit": 2983970,
+      "dist_admin": -1414649,
+      "other_income": 83851,
+      "impairment_and_other": -27184,
+      "operating_profit": 1625988
+     },
+     "unallocated": {
+      "dist_admin": -37,
+      "other_income": 405,
+      "impairment_and_other": -30065,
+      "operating_profit": -29697
+     },
+     "consolidated_operating_profit": 2516642
+    },
+    "H1_2025_comparative": {
+     "commercial_b2b": {
+      "revenue": 5500979,
+      "gross_profit": 840807,
+      "operating_profit": 602013
+     },
+     "retail_b2c": {
+      "revenue": 11610605,
+      "gross_profit": 2457919,
+      "operating_profit": 1069573
+     },
+     "consolidated_operating_profit": 1662005
+    }
+   },
+   "geographical": {
+    "revenue_external_customers": {
+     "FY2025": {
+      "KSA": 988471,
+      "Egypt": 4660746
+     },
+     "FY2024": {
+      "KSA": 917989,
+      "Egypt": 3670475
+     },
+     "FY2023": {
+      "KSA": 798583,
+      "Egypt": 3494012
+     },
+     "H1_2026": {
+      "KSA": 581174,
+      "Egypt": 2842972
+     },
+     "H1_2025": {
+      "KSA": 469922,
+      "Egypt": 2051823
+     },
+     "Q1_2026": {
+      "KSA": 262909,
+      "Egypt": 1311468
+     },
+     "Q1_2025": {
+      "KSA": 230591,
+      "Egypt": 982328
+     }
+    },
+    "non_current_assets": {
+     "FY2025": {
+      "KSA": {
+       "ppe": 274425,
+       "rou": 294251,
+       "intangibles": 1128,
+       "total": 569804
+      },
+      "Egypt": {
+       "ppe": 186614,
+       "rou": 73420,
+       "intangibles": 620724,
+       "total": 880758
+      }
+     },
+     "FY2024": {
+      "KSA": {
+       "ppe": 262171,
+       "rou": 625940,
+       "intangibles": 1128,
+       "total": 889239
+      },
+      "Egypt": {
+       "ppe": 142548,
+       "rou": 66686,
+       "intangibles": 598178,
+       "total": 807412
+      }
+     },
+     "FY2023": {
+      "KSA": {
+       "ppe": 262501,
+       "rou": 617679,
+       "intangibles": 1128,
+       "total": 881308
+      },
+      "Egypt": {
+       "ppe": 192629,
+       "rou": 101822,
+       "intangibles": 1052683,
+       "total": 1347134
+      }
+     },
+     "30Jun2026": {
+      "KSA": {
+       "ppe": 272898,
+       "rou": 225085,
+       "intangibles": 1129,
+       "total": 499112
+      },
+      "Egypt": {
+       "ppe": 180860,
+       "rou": 78721,
+       "intangibles": 590367,
+       "total": 849948
+      }
+     }
+    },
+    "note": "The Group operates in the UAE, KSA and Egypt. UAE figures are not separately disclosed; they are the residual."
+   }
+  },
+  "taxation": {
+   "unit": "AED'000",
+   "source": {
+    "FY2025_FY2024": {
+     "file": "source_FY2025_audited_consolidated.pdf",
+     "pages": [
+      52,
+      53
+     ]
+    },
+    "FY2024_FY2023": {
+     "file": "source_FY2024_audited_consolidated.pdf",
+     "pages": [
+      51,
+      52
+     ]
+    },
+    "FY2023_FY2022": {
+     "file": "source_FY2023_audited_consolidated.pdf",
+     "pages": [
+      51
+     ]
+    },
+    "Q1_2026": {
+     "file": "source_Q1_2026_reviewed_interim.pdf",
+     "pages": [
+      21
+     ]
+    },
+    "H1_2026": {
+     "file": "source_Q2_2026_reviewed_interim.pdf",
+     "pages": [
+      21
+     ]
+    }
+   },
+   "uae_corporate_tax": "UAE domestic corporate tax rate applied is 9% in FY2023, FY2024 and FY2025 per the tax reconciliation tables. The FY2023 note states income tax for the year relates to overseas operations of the Group.",
+   "income_tax_expense": {
+    "FY2025": {
+     "current": 326859,
+     "deferred": -3968,
+     "total": 322891
+    },
+    "FY2024": {
+     "current": 261054,
+     "deferred": 22340,
+     "total": 283394
+    },
+    "FY2023": {
+     "current": 27118,
+     "deferred": -8281,
+     "total": 18837
+    },
+    "FY2022": {
+     "current": null,
+     "deferred": null,
+     "total": 0
+    }
+   },
+   "reconciliation": {
+    "FY2025": {
+     "profits_subject_to_income_tax": 3173933,
+     "tax_at_domestic_rate_9pct": 285654,
+     "non_deductible_expenses_income": 3503,
+     "transfer_pricing_adjustment": 3376,
+     "difference_in_overseas_tax_rates": 25723,
+     "others": 4635,
+     "income_tax_expense": 322891,
+     "effective_tax_rate_pct": 10.2
+    },
+    "FY2024": {
+     "profits_subject_to_income_tax": 2755677,
+     "tax_at_domestic_rate_9pct": 248011,
+     "income_exempt_from_taxation": 3662,
+     "non_deductible_expenses_income": 6115,
+     "transfer_pricing_adjustment": 2872,
+     "difference_in_overseas_tax_rates_egypt": 22734,
+     "income_tax_expense": 283394,
+     "effective_tax_rate_pct": 10.3
+    },
+    "FY2023": {
+     "profits_subject_to_income_tax": 2649326,
+     "tax_at_domestic_rate_9pct": 238439,
+     "non_deductible_expenses_income": 10631,
+     "income_earned_in_tax_free_jurisdictions": -236743,
+     "difference_in_overseas_tax_rates_egypt": 6510,
+     "income_tax_expense": 18837,
+     "effective_tax_rate_pct": null,
+     "note": "No effective tax rate line is printed in the FY2024 filing's FY2023 column; the FY2025 filing prints ETR only for 2025 and 2024."
+    }
+   },
+   "deferred_tax": {
+    "FY2025": {
+     "fair_value_adjustments": -73904,
+     "accelerated_depreciation": -6721,
+     "provisions": 1477,
+     "foreign_currency_translation": 58,
+     "deferred_tax_on_dividend_receivable": 0,
+     "net_deferred_tax_liability": -79090,
+     "balance_sheet_dtl": 79090
+    },
+    "FY2024": {
+     "fair_value_adjustments": -73966,
+     "accelerated_depreciation": -5152,
+     "provisions": 2298,
+     "foreign_currency_translation": -1311,
+     "deferred_tax_on_dividend_receivable": -1933,
+     "net_deferred_tax_liability": -80064,
+     "balance_sheet_dtl": 80064
+    },
+    "FY2023": {
+     "fair_value_adjustments": -134962,
+     "accelerated_depreciation": -3538,
+     "provisions": 3626,
+     "foreign_currency_translation": 2078,
+     "net_deferred_tax_liability": -132796,
+     "balance_sheet_dta": 2166,
+     "balance_sheet_dtl": 134962
+    }
+   },
+   "pillar_two_dmtt": "UAE published Federal Decree-Law No. 60 of 2023 (24 Nov 2023). Cabinet Decision No. 142 of 2024, released 11 February 2025, details the UAE Domestic Minimum Top-up Tax (DMTT) applying to fiscal years starting on or after 1 January 2025, ensuring a 15% effective tax rate on UAE profits of in-scope MNE entities. For FY2025 the Group applied the transitional CbCR safe harbour simplified ETR test; jurisdictional ETR exceeded 15%, so no top-up tax arose. Relief available until 31 December 2027. Both 2026 interims repeat that no significant DMTT impact is anticipated.",
+   "interim_uae_cit_component": {
+    "Q1_2026": 76255,
+    "Q1_2025": 63866,
+    "H1_2026": 210816,
+    "H1_2025": 132791,
+    "weighted_average_annual_uae_tax_rate": "9% in all four periods"
+   }
+  },
+  "dividends": {
+   "unit": "AED'000 unless stated",
+   "source": {
+    "FY2025": {
+     "file": "source_FY2025_audited_consolidated.pdf",
+     "pages": [
+      57
+     ]
+    },
+    "FY2024": {
+     "file": "source_FY2024_audited_consolidated.pdf",
+     "pages": [
+      58
+     ]
+    },
+    "FY2023": {
+     "file": "source_FY2023_audited_consolidated.pdf",
+     "pages": [
+      57
+     ]
+    },
+    "Q1_2026": {
+     "file": "source_Q1_2026_reviewed_interim.pdf",
+     "pages": [
+      20
+     ]
+    },
+    "H1_2026": {
+     "file": "source_Q2_2026_reviewed_interim.pdf",
+     "pages": [
+      21
+     ]
+    },
+    "policy_FY2025_MDA": {
+     "file": "source_FY2025_mda.pdf",
+     "pages": [
+      11
+     ]
+    },
+    "policy_H1_2026_MDA": {
+     "file": "source_Q2_2026_mda.pdf",
+     "pages": [
+      12
+     ]
+    }
+   },
+   "declared_per_annual_statement_of_changes_in_equity": {
+    "FY2025": 2571250,
+    "FY2024": 2571250,
+    "FY2023": 2571250,
+    "FY2022": 2571250
+   },
+   "dividends_paid_per_cash_flow": {
+    "FY2025": 2599146,
+    "FY2024": 2613700,
+    "FY2023": 2622890,
+    "FY2022": 2571250,
+    "H1_2026": 1990722,
+    "H1_2025": 1313521
+   },
+   "dividend_per_share_history_as_declared": [
+    {
+     "in_respect_of": "FY2021 final",
+     "fils_per_share": 10.285,
+     "amount": 1285625,
+     "approved": "AGM 24 March 2022",
+     "paid": "1 April 2022"
+    },
+    {
+     "in_respect_of": "H1 2022 interim",
+     "fils_per_share": 10.285,
+     "amount": 1285625,
+     "approved": "Board 28 September 2022",
+     "paid": "6 October 2022"
+    },
+    {
+     "in_respect_of": "FY2022 final",
+     "fils_per_share": 10.285,
+     "amount": 1285625,
+     "approved": "AGM 15 March 2023",
+     "paid": "29 March 2023"
+    },
+    {
+     "in_respect_of": "H1 2023 interim",
+     "fils_per_share": 10.285,
+     "amount": 1285625,
+     "approved": "Board 25 September 2023",
+     "paid": "3 October 2023"
+    },
+    {
+     "in_respect_of": "FY2023 final",
+     "fils_per_share": 10.285,
+     "amount": 1285625,
+     "approved": "AGM 27 March 2024",
+     "paid": "15 April 2024"
+    },
+    {
+     "in_respect_of": "H1 2024 interim",
+     "fils_per_share": 10.285,
+     "amount": 1285625,
+     "approved": "Board 20 September 2024",
+     "paid": "2 October 2024"
+    },
+    {
+     "in_respect_of": "FY2024 final",
+     "fils_per_share": 10.285,
+     "amount": 1285625,
+     "approved": "AGM 25 March 2025",
+     "paid": "8 April 2025"
+    },
+    {
+     "in_respect_of": "H1 2025 interim",
+     "fils_per_share": 10.285,
+     "amount": 1285625,
+     "approved": "Board 22 September 2025",
+     "paid": "1 October 2025"
+    },
+    {
+     "in_respect_of": "FY2025 final",
+     "fils_per_share": 10.285,
+     "amount": 1285625,
+     "approved": "AGM 31 March 2026",
+     "paid": "14 April 2026"
+    },
+    {
+     "in_respect_of": "Q1 2026 quarterly",
+     "fils_per_share": 5.1425,
+     "amount": 642813,
+     "approved": "Board 12 May 2026",
+     "paid": "1 June 2026"
+    },
+    {
+     "in_respect_of": "Q2 2026 quarterly",
+     "fils_per_share": 5.1425,
+     "amount": 642813,
+     "approved": "Board 4 August 2026 (after the period end)",
+     "paid": "To be paid in September 2026 per MD&A"
+    }
+   ],
+   "annual_dps_total_fils": {
+    "FY2022": 20.57,
+    "FY2023": 20.57,
+    "FY2024": 20.57,
+    "FY2025": 20.57,
+    "FY2026_expected": 20.57
+   },
+   "subsidiary_dividends_TotalEnergies_Marketing_Egypt_LLC": [
+    {
+     "in_respect_of": "FY2022",
+     "amount": 64788,
+     "approved": "AGM 4 April 2023",
+     "allocation": "50% Group / 50% NCI"
+    },
+    {
+     "in_respect_of": "FY2023",
+     "amount": 41057,
+     "approved": "AGM 23 April 2024 (per FY2024 filing); the FY2025 filing prints '23 April 2023' for the same item — see restatements/discrepancies",
+     "allocation": "50% / 50%"
+    },
+    {
+     "in_respect_of": "FY2024",
+     "amount": 55792,
+     "approved": "AGM 22 April 2024 per FY2025 filing / 55,793 approved AGM 22 April 2025 per H1-2026 interim — see restatements/discrepancies",
+     "allocation": "50% / 50%"
+    },
+    {
+     "in_respect_of": "FY2025",
+     "amount": 124568,
+     "approved": "AGM 21 April 2026",
+     "allocation": "50% / 50%"
+    }
+   ],
+   "dividends_declared_by_subsidiary_in_equity_statement": {
+    "FY2025": 27896,
+    "FY2024": 20529,
+    "FY2023": 33108,
+    "H1_2026": 62284
+   },
+   "dividend_policy": {
+    "2024_2028_policy": "Approved by shareholders in March 2024: pay AED 2.57 billion (20.57 fils per share) or a minimum of 75% of net profit, whichever is higher (per FY2025 MD&A, p.11).",
+    "2026_2030_policy": "Shareholders approved in March 2026 the extension of the existing dividend policy through 2030: the Company expects to pay AED 2.57 billion p.a. (20.57 fils per share) or a minimum of 75% of net profit, whichever is higher (per H1 2026 MD&A, p.12).",
+    "payment_frequency": "Effective from 2026 the Company introduced a QUARTERLY dividend payment schedule (previously semi-annual).",
+    "usd_framing_from_Q1_2026_deck": "2026-30: $700m floor (paid quarterly) or 75% of net profit, whichever is higher (source_Q1_2026_presentation.pdf p.25).",
+    "yield_statement": "At 20.57 fils per share, the 2026 dividend yields 5.0% at a share price of AED 4.10 as of 4 August 2026 (H1 2026 MD&A p.12); 5.0% at AED 4.08 as of 2 February 2026 (FY2025 MD&A p.11)."
+   }
+  },
+  "related_party_ADNOC": {
+   "unit": "AED'000",
+   "source": {
+    "FY2025_FY2024": {
+     "file": "source_FY2025_audited_consolidated.pdf",
+     "pages": [
+      45,
+      46,
+      47
+     ]
+    }
+   },
+   "balances_due_from_related_parties": {
+    "FY2025": {
+     "ADNOC_Logistics_and_Services": 295037,
+     "ADNOC": 172827,
+     "ADNOC_Drilling": 132525,
+     "ADNOC_Onshore": 36175,
+     "ADNOC_Offshore": 19489,
+     "ADNOC_Gas_Processing": 5142,
+     "ADNOC_others": 38261,
+     "TotalEnergies_and_affiliates": 59012,
+     "total": 758468
+    },
+    "FY2024": {
+     "ADNOC_Logistics_and_Services": 272692,
+     "ADNOC": 150984,
+     "ADNOC_Drilling": 142321,
+     "ADNOC_Onshore": 65647,
+     "ADNOC_Offshore": 27476,
+     "ADNOC_Gas_Processing": 10514,
+     "ADNOC_others": 33372,
+     "TotalEnergies_and_affiliates": 47717,
+     "total": 750723
+    }
+   },
+   "balances_due_to_related_parties": {
+    "FY2025": {
+     "ADNOC": 3598366,
+     "total_balance_sheet": 3646512
+    },
+    "FY2024": {
+     "ADNOC": 4404684,
+     "total_balance_sheet": 4439345
+    }
+   },
+   "transactions": {
+    "FY2025": {
+     "ADNOC_Group_revenue": 1794445,
+     "ADNOC_Group_purchases": 22125902,
+     "vessel_hire_and_port_charges": 127012,
+     "rendering_of_service": 200940,
+     "TotalEnergies_revenue": 711619,
+     "TotalEnergies_purchases": 156836,
+     "TotalEnergies_management_fee_and_services": 54084,
+     "TotalEnergies_dividends_paid": 28904
+    },
+    "FY2024": {
+     "ADNOC_Group_revenue": 1744496,
+     "ADNOC_Group_purchases": 22797728,
+     "vessel_hire_and_port_charges": 92418,
+     "rendering_of_service": 187042,
+     "TotalEnergies_revenue": 635620,
+     "TotalEnergies_purchases": 187423,
+     "TotalEnergies_management_fee_and_services": 61372,
+     "TotalEnergies_dividends_paid": 42450
+    }
+   },
+   "scale_comment": "ADNOC Group purchases of AED 22,125,902 thousand in FY2025 equal the great majority of the Group's AED 28,696,068 thousand of materials cost; ADNOC is the principal supplier of petroleum products to the Group.",
+   "key_management_compensation": {
+    "FY2025": {
+     "ADNOC_Group_short_term": 60880,
+     "ADNOC_Group_pension": 518,
+     "ADNOC_Group_total": 61398,
+     "TotalEnergies_short_term": 2388,
+     "TotalEnergies_pension": 159,
+     "TotalEnergies_total": 2547
+    },
+    "FY2024": {
+     "ADNOC_Group_short_term": 48171,
+     "ADNOC_Group_pension": 481,
+     "ADNOC_Group_total": 48652,
+     "TotalEnergies_short_term": 877,
+     "TotalEnergies_pension": 412,
+     "TotalEnergies_total": 1289
+    }
+   },
+   "key_agreements": [
+    "September 2017 agreement with the Parent Company and ADNOC Distribution Assets LLC (the SPV) to provide support services for the Parent's civil aviation fuel supply business; compensation on an 8% return over the operating expenditure incurred. Renewed in 2023 for five years.",
+    "Refined Products Sales Contract with the Parent Company renewed in 2023 on similar terms for five years, 1 January 2023 to 31 December 2027.",
+    "Natural gas supply agreement with ADNOC City Gas (2023) for the CNG vehicle fuelling business, to 30 September 2027.",
+    "Master Services Agreement (2024) with the Parent Company for a 10-year term covering outsourced Procurement, IT, Finance, Human Capital and General Services.",
+    "Two contracts (2024) to purchase propane from ADNOC Gas facilities and receive propane handling services from ADNOC Gas Operations and Marketing LLC, five-year term."
+   ],
+   "IAS_24_exemption": "The Group elected the IAS 24 exemption for Government of Abu Dhabi related entities other than the Parent Company and entities it owns and controls.",
+   "margin_backstop": "Under the new supply agreements, ADNOC provides the Group protection against reduction in per-litre gross profits below certain specified levels (FY2025 note 34 price risk, p.59). MD&A adds that ~60% of cash flows come from fuel retail, underpinned by fixed margins per litre and a margin backstop through the ADNOC supply agreement."
+  },
+  "share_capital_and_treasury": {
+   "source": {
+    "FY2025": {
+     "file": "source_FY2025_audited_consolidated.pdf",
+     "pages": [
+      48
+     ]
+    },
+    "EPS_FY2025": {
+     "file": "source_FY2025_audited_consolidated.pdf",
+     "pages": [
+      54
+     ]
+    }
+   },
+   "authorised": "25,000,000,000 ordinary shares of AED 0.08 each = AED 2,000,000 thousand",
+   "issued_and_fully_paid": "12,500,000,000 ordinary shares of AED 0.08 each = AED 1,000,000 thousand (unchanged FY2022-FY2025 and through 30 June 2026)",
+   "treasury_shares": {
+    "FY2025": {
+     "shares_thousands": 2678,
+     "cost_AED_000": 10479,
+     "arrangement": "Al Ramz Capital appointed as licensed Market Maker on ADX; the Company funds the Market Maker and carries all risks and rewards, so the shares are classified as Treasury Shares in equity. Cumulative net loss of AED 257 thousand recognised as other reserve."
+    },
+    "FY2024": {
+     "shares_thousands": 0,
+     "cost_AED_000": 0
+    },
+    "31Mar2026": {
+     "cost_AED_000": 12733,
+     "other_reserve": -559
+    },
+    "30Jun2026": {
+     "cost_AED_000": 12037,
+     "other_reserve": 78
+    }
+   },
+   "weighted_average_shares_thousands": {
+    "FY2025": 12497785,
+    "FY2024": 12500000,
+    "FY2023": 12500000,
+    "FY2022": 12500000,
+    "Q1_2026": 12497938,
+    "Q1_2025": 12500000,
+    "Q2_2026": 12497332,
+    "H1_2026": 12497332,
+    "H1_2025": 12499677
+   },
+   "ownership": "As of 31 December 2025, XRG (a 100%-owned subsidiary of ADNOC) owned 77%; 23% publicly owned by institutional and retail investors (FY2025 MD&A p.23).",
+   "share_price": {
+    "close_31Dec2025_AED": 3.9,
+    "2025_range_close_AED": [
+     3.16,
+     4.02
+    ],
+    "market_cap_31Dec2025_AED_billion": 48.75,
+    "avg_daily_volume_2025_shares_million": 7.4,
+    "avg_daily_traded_value_2025_AED_million": 27.2,
+    "price_4Aug2026_AED": 4.1,
+    "source": {
+     "file": "source_FY2025_mda.pdf",
+     "pages": [
+      23
+     ]
+    }
+   }
+  },
+  "other_balance_sheet_notes": {
+   "unit": "AED'000",
+   "inventories": {
+    "source": {
+     "FY2025_FY2024": {
+      "file": "source_FY2025_audited_consolidated.pdf",
+      "pages": [
+       43
+      ]
+     },
+     "FY2024_FY2023": {
+      "file": "source_FY2024_audited_consolidated.pdf",
+      "pages": [
+       42
+      ]
+     },
+     "FY2023_FY2022": {
+      "file": "source_FY2023_audited_consolidated.pdf",
+      "pages": [
+       41
+      ]
+     }
+    },
+    "FY2025": {
+     "finished_goods": 1380529,
+     "spare_parts_and_consumables": 140227,
+     "lubricants_rm_consumables_wip": 33659,
+     "lpg_cylinders": 32878,
+     "gross": 1587293,
+     "allowance_nrv": -1447,
+     "allowance_slow_moving": -11592,
+     "net": 1574254
+    },
+    "FY2024": {
+     "finished_goods": 1401111,
+     "spare_parts_and_consumables": 140804,
+     "lubricants_rm_consumables_wip": 48490,
+     "lpg_cylinders": 38106,
+     "gross": 1628511,
+     "allowance_nrv": -1447,
+     "allowance_slow_moving": -7177,
+     "net": 1619887
+    },
+    "FY2023": {
+     "finished_goods": 1099902,
+     "spare_parts_and_consumables": 135869,
+     "lubricants_rm_consumables_wip": 36781,
+     "lpg_cylinders": 32263,
+     "gross": 1304815,
+     "allowance_nrv": null,
+     "allowance_slow_moving": -10392,
+     "net": 1294423
+    },
+    "FY2022": {
+     "finished_goods": 1160063,
+     "spare_parts_and_consumables": 97418,
+     "lubricants_rm_consumables_wip": 21214,
+     "lpg_cylinders": 24730,
+     "gross": 1303425,
+     "allowance_slow_moving": -17048,
+     "net": 1286377
+    }
+   },
+   "trade_receivables_and_other_current_assets": {
+    "source": {
+     "FY2025_FY2024": {
+      "file": "source_FY2025_audited_consolidated.pdf",
+      "pages": [
+       43
+      ]
+     },
+     "FY2024_FY2023": {
+      "file": "source_FY2024_audited_consolidated.pdf",
+      "pages": [
+       42
+      ]
+     },
+     "FY2023_FY2022": {
+      "file": "source_FY2023_audited_consolidated.pdf",
+      "pages": [
+       41
+      ]
+     }
+    },
+    "FY2025": {
+     "trade_receivables_gross": 2641489,
+     "allowance_ecl": -341165,
+     "trade_receivables_net": 2300324,
+     "prepaid_expenses": 68286,
+     "receivable_from_employees": 136003,
+     "vat_receivables": 45012,
+     "other_receivables": 82890,
+     "total": 2632515
+    },
+    "FY2024": {
+     "trade_receivables_gross": 2754329,
+     "allowance_ecl": -113453,
+     "trade_receivables_net": 2640876,
+     "prepaid_expenses": 51300,
+     "receivable_from_employees": 110648,
+     "vat_receivables": 32726,
+     "other_receivables": 100432,
+     "total": 2935982
+    },
+    "FY2023": {
+     "trade_receivables_gross": 3323246,
+     "allowance_ecl": -90264,
+     "trade_receivables_net": 3232982,
+     "prepaid_expenses": 50631,
+     "receivable_from_employees": 109918,
+     "vat_receivables": 32010,
+     "other_receivables": 93872,
+     "total": 3519413
+    },
+    "FY2022": {
+     "trade_receivables_gross": 3135849,
+     "allowance_ecl": -66013,
+     "trade_receivables_net": 3069836,
+     "prepaid_expenses": 48101,
+     "receivable_from_employees": 109309,
+     "vat_receivables": 13888,
+     "other_receivables": 54580,
+     "total": 3295714
+    },
+    "credit_terms": "Average credit period on sales and services 30-60 days in every year disclosed. FY2025: five customers = 52% of trade receivables (FY2024: five, 52%; FY2023: four, 49%; FY2022: three, 47%)."
+   },
+   "trade_and_other_payables": {
+    "source": {
+     "FY2025_FY2024": {
+      "file": "source_FY2025_audited_consolidated.pdf",
+      "pages": [
+       50
+      ]
+     },
+     "FY2024_FY2023": {
+      "file": "source_FY2024_audited_consolidated.pdf",
+      "pages": [
+       49
+      ]
+     },
+     "H1_2026": {
+      "file": "source_Q2_2026_reviewed_interim.pdf",
+      "pages": [
+       16
+      ]
+     }
+    },
+    "FY2025": {
+     "trade_payables": 713252,
+     "capital_accruals": 376775,
+     "operating_accruals": 457540,
+     "vat_payable": 330269,
+     "income_tax_payable": 311971,
+     "coupon_and_prepaid_card_sales_outstanding": 128623,
+     "contract_retentions_payable": 205898,
+     "advances_from_customers": 66698,
+     "other_payables": 524608,
+     "total": 3115634
+    },
+    "FY2024": {
+     "trade_payables": 543211,
+     "capital_accruals": 517652,
+     "operating_accruals": 355520,
+     "vat_payable": 301282,
+     "income_tax_payable": 250877,
+     "coupon_and_prepaid_card_sales_outstanding": 129753,
+     "contract_retentions_payable": 170366,
+     "advances_from_customers": 61514,
+     "other_payables": 466879,
+     "total": 2797054
+    },
+    "FY2023": {
+     "trade_payables": 583141,
+     "capital_accruals": 610117,
+     "operating_accruals": 289098,
+     "vat_payable": 317956,
+     "income_tax_payable": 171,
+     "coupon_and_prepaid_card_sales_outstanding": 114831,
+     "contract_retentions_payable": 122535,
+     "advances_from_customers": 67539,
+     "other_payables": 435967,
+     "total": 2541355
+    },
+    "FY2022_partial": {
+     "trade_payables": 452368,
+     "capital_accruals": 451232,
+     "operating_accruals": 210493,
+     "total": 1995664
+    },
+    "30Jun2026": {
+     "trade_payables": 921984,
+     "capital_accruals": 347758,
+     "operating_accruals": 240619,
+     "income_tax_payable": 512390,
+     "vat_payable": 469094,
+     "coupon_and_prepaid_card_sales_outstanding": 136426,
+     "contract_retentions_payable": 213559,
+     "advances_from_customers": 89484,
+     "other_payables": 503534,
+     "total": 3434848
+    }
+   },
+   "provision_for_eosb": {
+    "source": {
+     "FY2025_FY2024": {
+      "file": "source_FY2025_audited_consolidated.pdf",
+      "pages": [
+       50
+      ]
+     },
+     "FY2024_FY2023": {
+      "file": "source_FY2024_audited_consolidated.pdf",
+      "pages": [
+       48
+      ]
+     },
+     "FY2023_FY2022": {
+      "file": "source_FY2023_audited_consolidated.pdf",
+      "pages": [
+       48
+      ]
+     }
+    },
+    "FY2025": {
+     "opening": 200996,
+     "charge": 36141,
+     "transfer_from_related_party": -69,
+     "payments": -29965,
+     "closing": 207103
+    },
+    "FY2024": {
+     "opening": 192271,
+     "charge": 31157,
+     "transfer_from_related_party": 1151,
+     "payments": -23583,
+     "closing": 200996
+    },
+    "FY2023": {
+     "opening": 194439,
+     "charge": 30989,
+     "payments": -33157,
+     "closing": 192271
+    },
+    "FY2022": {
+     "opening": 192583,
+     "charge": 29053,
+     "payments": -27197,
+     "closing": 194439
+    }
+   },
+   "provision_for_decommissioning": {
+    "source": {
+     "FY2025_FY2024": {
+      "file": "source_FY2025_audited_consolidated.pdf",
+      "pages": [
+       50
+      ]
+     },
+     "FY2024_FY2023": {
+      "file": "source_FY2024_audited_consolidated.pdf",
+      "pages": [
+       49
+      ]
+     }
+    },
+    "FY2025": {
+     "opening": 162277,
+     "additions": 1052,
+     "accretion_of_interest": 5898,
+     "change_in_estimates": -1900,
+     "fx": 72,
+     "closing": 167399,
+     "discount_rate_pct": "4.14-4.45%"
+    },
+    "FY2024": {
+     "opening": 149362,
+     "additions": 7610,
+     "accretion_of_interest": 5955,
+     "fx": -650,
+     "closing": 162277,
+     "discount_rate_pct": "4.44-4.78%"
+    },
+    "FY2023": {
+     "opening": 134532,
+     "additions": 9394,
+     "accretion_of_interest": 5436,
+     "closing": 149362,
+     "discount_rate_pct": "5.13-5.92%"
+    }
+   },
+   "cash_and_bank_balances": {
+    "source": {
+     "FY2025_FY2024": {
+      "file": "source_FY2025_audited_consolidated.pdf",
+      "pages": [
+       47
+      ]
+     },
+     "FY2024_FY2023": {
+      "file": "source_FY2024_audited_consolidated.pdf",
+      "pages": [
+       46
+      ]
+     },
+     "FY2023_FY2022": {
+      "file": "source_FY2023_audited_consolidated.pdf",
+      "pages": [
+       46
+      ]
+     }
+    },
+    "FY2025": {
+     "cash_and_bank_balances": 2360854,
+     "term_deposits_gt_3m": 200000,
+     "short_term_and_call_deposits_included": 2248055,
+     "deposit_rate_range": "0.30% to 4%"
+    },
+    "FY2024": {
+     "cash_and_bank_balances": 2734038,
+     "term_deposits_gt_3m": 200225,
+     "short_term_and_call_deposits_included": 2622651,
+     "deposit_rate_range": "0.30% to 5.25%"
+    },
+    "FY2023": {
+     "cash_and_bank_balances": 2993937,
+     "term_deposits_gt_3m": 200225,
+     "short_term_and_call_deposits_included": 2672013,
+     "deposit_rate_range": "0.30% to 5.40%"
+    },
+    "FY2022": {
+     "cash_and_bank_balances": 2617099,
+     "term_deposits_gt_3m": 130225,
+     "short_term_and_call_deposits_included": 2587748,
+     "deposit_rate_range": "0.07% to 3.60%"
+    }
+   },
+   "property_plant_and_equipment_FY2025_FY2024_movement": {
+    "source": {
+     "file": "source_FY2025_audited_consolidated.pdf",
+     "pages": [
+      37,
+      38,
+      39
+     ]
+    },
+    "FY2025": {
+     "cost_opening": 14191580,
+     "additions_to_cwip": 1089115,
+     "transfers_to_intangibles": -16090,
+     "disposals": -67903,
+     "impairment_loss": -2812,
+     "fx": 7181,
+     "cost_closing": 15205099,
+     "acc_dep_opening": 6639402,
+     "charge_for_year": 594222,
+     "acc_dep_closing": 7172902,
+     "net_book_value": 8032197,
+     "nbv_by_class": {
+      "buildings": 4971245,
+      "plant_and_machinery": 1249040,
+      "pipelines": 84353,
+      "motor_vehicles": 508689,
+      "furniture_fixtures_computer_equipment": 65541,
+      "capital_work_in_progress": 1153329
+     }
+    },
+    "FY2024": {
+     "cost_opening": 13532348,
+     "additions_to_cwip": 1077578,
+     "transfers_to_other_assets": -13011,
+     "disposals": -242699,
+     "impairment_loss": -5748,
+     "fx": -62944,
+     "cost_closing": 14191580,
+     "acc_dep_opening": 6342687,
+     "charge_for_year": 602186,
+     "transfers": 172,
+     "acc_dep_closing": 6639402,
+     "net_book_value": 7552178,
+     "nbv_by_class": {
+      "buildings": 4667112,
+      "plant_and_machinery": 1182286,
+      "pipelines": 100266,
+      "motor_vehicles": 551933,
+      "furniture_fixtures_computer_equipment": 65328,
+      "capital_work_in_progress": 985253
+     }
+    },
+    "land_note": "Buildings and facilities in the Emirate of Abu Dhabi are constructed on land given by the Government of Abu Dhabi for no consideration, carried at a nominal value of AED 1 per plot. Facilities in other Emirates are on land leased from third parties."
+   },
+   "goodwill_and_intangibles_FY2025": {
+    "source": {
+     "file": "source_FY2025_audited_consolidated.pdf",
+     "pages": [
+      40
+     ]
+    },
+    "cost_closing": 739606,
+    "acc_amortisation_closing": 117753,
+    "net_book_value": 621853,
+    "nbv_by_class": {
+     "goodwill": 243243,
+     "customer_contracts_indefinite_life": 89945,
+     "customer_contracts_finite_life": 287715,
+     "software": 950
+    },
+    "amortisation_charge_FY2025": 30724
+   },
+   "commitments_capital_expenditure_contracted_not_incurred": {
+    "FY2025": 274650,
+    "FY2024": 430695,
+    "FY2023": 368216,
+    "FY2022": 298022,
+    "31Mar2026": 218871,
+    "30Jun2026": 157895
+   },
+   "contingent_liabilities_bank_and_other_guarantees": {
+    "FY2025": 424719,
+    "FY2024": 299125,
+    "31Mar2026": 498171,
+    "30Jun2026": 498207
+   },
+   "fx_exposure_FY2025": {
+    "source": {
+     "file": "source_FY2025_audited_consolidated.pdf",
+     "pages": [
+      58
+     ]
+    },
+    "egyptian_pound": {
+     "assets": 244257,
+     "liabilities": -524054,
+     "net_exposure": -279797,
+     "effect_on_equity_5pct": 13990
+    },
+    "euro": {
+     "assets": 1430,
+     "liabilities": 0,
+     "net_exposure": 1430,
+     "effect_on_equity_5pct": -72
+    },
+    "note": "AED and SAR are pegged to USD so the Group states it is not exposed to currency risk on USD/SAR balances; the Group may be exposed on USD borrowings and its investment in a foreign subsidiary."
+   }
+  }
+ },
+ "inventory_movements": {
+  "unit": "AED million (as published in MD&A / IR decks). NOT AED'000.",
+  "definition_note": "Inventory gains/losses reflect timing differences between procurement costs and retail price changes and 'can be volatile' (2025 Integrated Report p.37). They are NOT a separately presented line in the audited financial statements — they are disclosed only in MD&A commentary and IR decks. There is no reconciliation from the audited accounts to these figures in any supplied document.",
+  "coverage_gap": "NO inventory gain/loss figure for FY2023 or FY2022 exists in any supplied file. The FY2025 MD&A carries only 2025 and 2024; the FY2023/FY2024 MD&A and IR decks were not supplied. The 2025 Integrated Report repeats only the 2025 vs 2024 pair. A through-cycle average can therefore be computed over FY2024, FY2025, H1-2026 (and their quarterly splits) ONLY.",
+  "annual": {
+   "FY2025": {
+    "total": 335,
+    "fuel_retail": 321,
+    "commercial": 14,
+    "source": {
+     "file": "source_FY2025_mda.pdf",
+     "pages": [
+      2,
+      14
+     ]
+    },
+    "cross_check_source": {
+     "file": "source_2025_integrated_report.pdf",
+     "pages": [
+      37
+     ]
+    },
+    "quote": "'2025 inventory gains amounted to AED 335 million (AED 321 million inventory gains in fuel retail and AED 14 million inventory gains in commercial segment) compared to inventory gains of AED 254 million in 2024.'"
+   },
+   "FY2024": {
+    "total": 254,
+    "fuel_retail": 276,
+    "commercial": -22,
+    "source": {
+     "file": "source_FY2025_mda.pdf",
+     "pages": [
+      2,
+      14
+     ]
+    },
+    "quote": "Fuel retail: 'higher inventory gains of AED 321 million in 2025 compared to inventory gains AED 276 million in 2024'. Commercial: 'inventory gains of AED 14 million in 2025 compared to inventory losses of AED 22 million in 2024'. Total 2024: AED 254 million.",
+    "arithmetic_note": "276 + (-22) = 254 — the published segment split reconciles to the published total."
+   },
+   "FY2023": {
+    "total": null,
+    "fuel_retail": null,
+    "commercial": null,
+    "source": null,
+    "note": "NOT DISCLOSED in any supplied file."
+   },
+   "FY2022": {
+    "total": null,
+    "fuel_retail": null,
+    "commercial": null,
+    "source": null,
+    "note": "NOT DISCLOSED in any supplied file."
+   }
+  },
+  "quarterly_and_interim": {
+   "Q4_2025": {
+    "total": 101,
+    "fuel_retail": 98,
+    "commercial": 3,
+    "source": {
+     "file": "source_FY2025_mda.pdf",
+     "pages": [
+      14,
+      17
+     ]
+    },
+    "quote": "'In Q4 2025, ADNOC Distribution recorded inventory gains of AED 101 million (AED 98 million inventory gains in fuel retail and AED 3 million inventory gains in commercial segment), vs. inventory losses of AED 9 million in Q4 2024.'"
+   },
+   "Q4_2024": {
+    "total": -9,
+    "fuel_retail": null,
+    "commercial": -9,
+    "source": {
+     "file": "source_FY2025_mda.pdf",
+     "pages": [
+      14,
+      22
+     ]
+    },
+    "note": "Printed as 'inventory losses of AED 9 million in Q4 2024'; the commercial-segment commentary on p.22 attributes the AED 9 million loss to the commercial segment. No separate group-level fuel-retail Q4-2024 split is given."
+   },
+   "Q1_2026": {
+    "total": null,
+    "fuel_retail": null,
+    "commercial": null,
+    "source": {
+     "file": "source_Q1_2026_presentation.pdf",
+     "pages": [
+      20,
+      22
+     ]
+    },
+    "note": "NOT DISCLOSED as a number. The Q1-2026 deck says gross profit grew '+13% total GP despite lower inventory gains' and EBITDA '+12% ... despite lower impact of inventory gains'. The Q1-2026 MD&A was not supplied. Implied only: Q1-26 headline EBITDA AED 1,129m vs underlying AED 1,121m (Q2-2026 MD&A p.13)."
+   },
+   "Q1_2025": {
+    "total": null,
+    "note": "NOT DISCLOSED as a number in any supplied file."
+   },
+   "Q2_2026": {
+    "total": 738,
+    "fuel_retail": 485,
+    "commercial": 253,
+    "source": {
+     "file": "source_Q2_2026_mda.pdf",
+     "pages": [
+      15
+     ]
+    },
+    "quote": "'In Q2 2026, ADNOC Distribution recorded inventory gains of AED 738 million (AED 485 million inventory gains in fuel retail and AED 253 million in commercial segment), compared to inventory gains of AED 37 million in Q2 2025.'"
+   },
+   "Q2_2025": {
+    "total": 37,
+    "fuel_retail": 43,
+    "commercial": -6,
+    "source": {
+     "file": "source_Q2_2026_mda.pdf",
+     "pages": [
+      15
+     ]
+    },
+    "quote": "'inventory gains of AED 37 million in Q2 2025 (AED 43 million inventory gains in fuel retail and AED 6 million inventory losses in commercial segment)'"
+   },
+   "H1_2026": {
+    "total": 762,
+    "fuel_retail": 528,
+    "commercial": 233,
+    "source": {
+     "file": "source_Q2_2026_mda.pdf",
+     "pages": [
+      2,
+      15,
+      19
+     ]
+    },
+    "quote": "'H1 2026 inventory gains amounted to AED 762 million (AED 528 million inventory gains in fuel retail and AED 233 million in commercial business)'",
+    "arithmetic_note": "528 + 233 = 761 vs published total 762 — a 1-unit rounding difference in the company's own printed figures. Recorded as printed; not corrected."
+   },
+   "H1_2025": {
+    "total": 147,
+    "fuel_retail": 148,
+    "commercial": -1,
+    "source": {
+     "file": "source_Q2_2026_mda.pdf",
+     "pages": [
+      2,
+      15
+     ]
+    },
+    "quote": "'compared to inventory gains of AED 147 million in H1 2025 (AED 148 million inventory gains in fuel retail and AED 1 million inventory losses in commercial business)'"
+   }
+  },
+  "qualitative_ex_inventory_growth_rates": {
+   "FY2025_fuel_retail_gross_profit_ex_inventory": "+9.6% YoY (MD&A p.18 / IR p.37)",
+   "FY2025_retail_segment_EBITDA_ex_inventory": "+15.0% YoY (MD&A p.18)",
+   "FY2025_commercial_gross_profit_ex_inventory": "+11.9% YoY (MD&A p.22)",
+   "FY2025_commercial_EBITDA_ex_inventory": "unchanged YoY (MD&A p.22)",
+   "Q4_2025_fuel_retail_gross_profit_ex_inventory": "+9.9% YoY (MD&A p.17)",
+   "Q4_2025_retail_EBITDA_ex_inventory": "+14.8% YoY (MD&A p.17)",
+   "Q4_2025_commercial_gross_profit_ex_inventory": "+1.3% YoY (MD&A p.22)",
+   "Q4_2025_commercial_EBITDA_ex_inventory": "-51.3% YoY (MD&A p.22)",
+   "H1_2026_corporate_gross_profit_per_litre_ex_inventory": "+28% YoY (H1 2026 MD&A p.6)"
+  },
+  "supply_agreement_protection": "Under the supply agreements, ADNOC provides protection against a reduction in per-litre gross profits below certain specified levels (FY2025 note 34, p.59), and the 2025 Integrated Report (p.22, p.50) describes a 'guarantee protecting against inventory losses'."
+ },
+ "underlying_vs_headline_ebitda": {
+  "unit": "AED million unless the field says USD",
+  "definition": "Underlying EBITDA is defined by the company as EBITDA excluding inventory movements AND one-off items. Neither EBITDA nor underlying EBITDA appears in the audited financial statements; both are MD&A/IR-deck measures only.",
+  "important": "The headline-minus-underlying gap does NOT equal the published inventory gain, because one-off items are also stripped out. e.g. FY2025: 4,282 - 4,001 = 281 vs published inventory gains of 335.",
+  "annual_AED_million": {
+   "FY2025": {
+    "ebitda": 4282,
+    "ebitda_margin_pct": 11.9,
+    "underlying_ebitda": 4001,
+    "operating_profit": 3506,
+    "net_profit_attributable": 2794,
+    "source": {
+     "file": "source_FY2025_mda.pdf",
+     "pages": [
+      12
+     ]
+    }
+   },
+   "FY2024": {
+    "ebitda": 3855,
+    "ebitda_margin_pct": 10.9,
+    "underlying_ebitda": 3633,
+    "operating_profit": 3069,
+    "net_profit_attributable": 2420,
+    "source": {
+     "file": "source_FY2025_mda.pdf",
+     "pages": [
+      12
+     ]
+    },
+    "discrepancy": "The 2025 Integrated Report p.117 states 2024 underlying EBITDA of AED 3,663 million ('+10.1% compared to AED 3,663 million in 2024'), while the FY2025 MD&A financial-summary table prints 3,633. Both recorded; see restatements."
+   },
+   "FY2023": {
+    "ebitda": null,
+    "underlying_ebitda": null,
+    "source": null,
+    "note": "NOT DISCLOSED in any supplied file (FY2023/FY2024 MD&A not supplied). FY2023 operating profit per the audited accounts was AED 2,983,249 thousand."
+   },
+   "FY2022": {
+    "ebitda": null,
+    "underlying_ebitda": null,
+    "note": "NOT DISCLOSED in any supplied file. FY2022 operating profit per the audited accounts was AED 2,973,416 thousand."
+   }
+  },
+  "quarterly_AED_million": {
+   "Q3_2025": {
+    "ebitda": 1170,
+    "ebitda_margin_pct": 12.5,
+    "underlying_ebitda": 1105,
+    "source": {
+     "file": "source_FY2025_mda.pdf",
+     "pages": [
+      12
+     ]
+    }
+   },
+   "Q4_2025": {
+    "ebitda": 1031,
+    "ebitda_margin_pct": 10.9,
+    "underlying_ebitda": 950,
+    "source": {
+     "file": "source_FY2025_mda.pdf",
+     "pages": [
+      12
+     ]
+    }
+   },
+   "Q4_2024": {
+    "ebitda": 954,
+    "ebitda_margin_pct": 10.8,
+    "underlying_ebitda": 986,
+    "source": {
+     "file": "source_FY2025_mda.pdf",
+     "pages": [
+      12
+     ]
+    }
+   },
+   "Q1_2026": {
+    "ebitda": 1129,
+    "ebitda_margin_pct": 12.8,
+    "underlying_ebitda": 1121,
+    "source": {
+     "file": "source_Q2_2026_mda.pdf",
+     "pages": [
+      13
+     ]
+    }
+   },
+   "Q2_2026": {
+    "ebitda": 1757,
+    "ebitda_margin_pct": 13.3,
+    "underlying_ebitda": 1094,
+    "source": {
+     "file": "source_Q2_2026_mda.pdf",
+     "pages": [
+      13
+     ]
+    }
+   },
+   "Q2_2025": {
+    "ebitda": 1069,
+    "ebitda_margin_pct": 12.4,
+    "underlying_ebitda": 1042,
+    "source": {
+     "file": "source_Q2_2026_mda.pdf",
+     "pages": [
+      13
+     ]
+    }
+   },
+   "H1_2026": {
+    "ebitda": 2886,
+    "ebitda_margin_pct": 13.1,
+    "underlying_ebitda": 2215,
+    "source": {
+     "file": "source_Q2_2026_mda.pdf",
+     "pages": [
+      13
+     ]
+    }
+   },
+   "H1_2025": {
+    "ebitda": 2080,
+    "ebitda_margin_pct": 12.2,
+    "underlying_ebitda": 1946,
+    "source": {
+     "file": "source_Q2_2026_mda.pdf",
+     "pages": [
+      13
+     ]
+    }
+   }
+  },
+  "usd_framing_from_decks": {
+   "FY2025": {
+    "ebitda_usd_m": 1166,
+    "underlying_ebitda_usd_m": 1089,
+    "net_profit_usd_m": 761,
+    "source": {
+     "file": "source_FY2025_presentation.pdf",
+     "pages": [
+      21
+     ]
+    }
+   },
+   "FY2024": {
+    "ebitda_usd_m": 1049,
+    "underlying_ebitda_usd_m": 989,
+    "net_profit_usd_m": 659,
+    "source": {
+     "file": "source_FY2025_presentation.pdf",
+     "pages": [
+      21
+     ]
+    }
+   },
+   "Q1_2026": {
+    "ebitda_usd_m": 307,
+    "underlying_ebitda_usd_m": 305,
+    "net_profit_usd_m": 210,
+    "source": {
+     "file": "source_Q1_2026_presentation.pdf",
+     "pages": [
+      29
+     ]
+    }
+   },
+   "Q1_2025": {
+    "ebitda_usd_m": 275,
+    "underlying_ebitda_usd_m": 246,
+    "net_profit_usd_m": 174,
+    "source": {
+     "file": "source_Q1_2026_presentation.pdf",
+     "pages": [
+      29
+     ]
+    }
+   },
+   "Q2_2026": {
+    "ebitda_usd_m": 478,
+    "underlying_ebitda_usd_m": 298,
+    "net_profit_usd_m": 358,
+    "source": {
+     "file": "source_Q2_2026_presentation.pdf",
+     "pages": [
+      29
+     ]
+    }
+   },
+   "Q2_2025": {
+    "ebitda_usd_m": 291,
+    "underlying_ebitda_usd_m": 284,
+    "net_profit_usd_m": 184,
+    "source": {
+     "file": "source_Q2_2026_presentation.pdf",
+     "pages": [
+      29
+     ]
+    }
+   },
+   "H1_2026": {
+    "ebitda_usd_m": 786,
+    "underlying_ebitda_usd_m": 603,
+    "net_profit_usd_m": 568,
+    "source": {
+     "file": "source_Q2_2026_presentation.pdf",
+     "pages": [
+      29
+     ]
+    }
+   },
+   "H1_2025": {
+    "ebitda_usd_m": 566,
+    "underlying_ebitda_usd_m": 530,
+    "net_profit_usd_m": 358,
+    "source": {
+     "file": "source_Q2_2026_presentation.pdf",
+     "pages": [
+      29
+     ]
+    }
+   }
+  },
+  "ebitda_by_segment_AED_million": {
+   "FY2025": {
+    "retail_b2c": 3142,
+    "commercial_b2b": 1163,
+    "of_which_corporate": 808,
+    "of_which_aviation": 355,
+    "unallocated": -23,
+    "total": 4282,
+    "source": {
+     "file": "source_FY2025_mda.pdf",
+     "pages": [
+      15
+     ]
+    }
+   },
+   "FY2024": {
+    "retail_b2c": 2728,
+    "commercial_b2b": 1129,
+    "of_which_corporate": 831,
+    "of_which_aviation": 298,
+    "unallocated": -2,
+    "total": 3855,
+    "source": {
+     "file": "source_FY2025_mda.pdf",
+     "pages": [
+      15
+     ]
+    }
+   },
+   "H1_2026": {
+    "retail_b2c": 1944,
+    "commercial_b2b": 972,
+    "of_which_corporate": 776,
+    "of_which_aviation": 196,
+    "unallocated": -30,
+    "total": 2886,
+    "source": {
+     "file": "source_Q2_2026_mda.pdf",
+     "pages": [
+      16
+     ]
+    }
+   },
+   "H1_2025": {
+    "retail_b2c": 1433,
+    "commercial_b2b": 657,
+    "of_which_corporate": 480,
+    "of_which_aviation": 177,
+    "unallocated": -10,
+    "total": 2080,
+    "source": {
+     "file": "source_Q2_2026_mda.pdf",
+     "pages": [
+      16
+     ]
+    }
+   },
+   "Q1_2026": {
+    "retail_b2c": 732,
+    "commercial_b2b": 416,
+    "of_which_corporate": 297,
+    "of_which_aviation": 119,
+    "unallocated": -19,
+    "total": 1129,
+    "source": {
+     "file": "source_Q2_2026_mda.pdf",
+     "pages": [
+      16
+     ]
+    }
+   },
+   "Q2_2026": {
+    "retail_b2c": 1212,
+    "commercial_b2b": 556,
+    "of_which_corporate": 479,
+    "of_which_aviation": 77,
+    "unallocated": -11,
+    "total": 1757,
+    "source": {
+     "file": "source_Q2_2026_mda.pdf",
+     "pages": [
+      16
+     ]
+    }
+   }
+  }
+ },
+ "headline_financial_summary_MDA": {
+  "unit": "AED million",
+  "source": {
+   "FY2025_FY2024": {
+    "file": "source_FY2025_mda.pdf",
+    "pages": [
+     12
+    ]
+   },
+   "2026_periods": {
+    "file": "source_Q2_2026_mda.pdf",
+    "pages": [
+     13
+    ]
+   }
+  },
+  "FY2025": {
+   "revenue": 35897,
+   "gross_profit": 6946,
+   "gross_margin_pct": 19.3,
+   "ebitda": 4282,
+   "ebitda_margin_pct": 11.9,
+   "underlying_ebitda": 4001,
+   "operating_profit": 3506,
+   "net_profit_attributable": 2794,
+   "net_margin_pct": 7.8,
+   "eps_AED": 0.22,
+   "net_cash_from_operating": 3922,
+   "capex_accrual": 1051,
+   "capex_cash": 1201,
+   "free_cash_flow": 2721,
+   "free_cash_flow_excl_wc": 3011,
+   "total_equity": 3461,
+   "net_debt": 2985,
+   "capital_employed": 10710,
+   "roce_pct": 32.7,
+   "roe_pct": 86.5,
+   "net_debt_to_ebitda": 0.7,
+   "leverage_ratio_pct": 46.3
+  },
+  "FY2024": {
+   "revenue": 35454,
+   "gross_profit": 6216,
+   "gross_margin_pct": 17.5,
+   "ebitda": 3855,
+   "ebitda_margin_pct": 10.9,
+   "underlying_ebitda": 3633,
+   "operating_profit": 3069,
+   "net_profit_attributable": 2420,
+   "net_margin_pct": 6.8,
+   "eps_AED": 0.19,
+   "net_cash_from_operating": 3931,
+   "capex_accrual": 1073,
+   "capex_cash": 1156,
+   "free_cash_flow": 2775,
+   "free_cash_flow_excl_wc": 2722,
+   "total_equity": 3181,
+   "net_debt": 2656,
+   "capital_employed": 10667,
+   "roce_pct": 28.8,
+   "roe_pct": 80.9,
+   "net_debt_to_ebitda": 0.69,
+   "leverage_ratio_pct": 45.5
+  },
+  "Q4_2025": {
+   "revenue": 9460,
+   "gross_profit": 1851,
+   "ebitda": 1031,
+   "underlying_ebitda": 950,
+   "operating_profit": 833,
+   "net_profit_attributable": 668,
+   "net_cash_from_operating": 1131,
+   "capex_accrual": 279,
+   "free_cash_flow": 795,
+   "net_debt": 2985
+  },
+  "Q3_2025": {
+   "revenue": 9326,
+   "gross_profit": 1796,
+   "ebitda": 1170,
+   "underlying_ebitda": 1105,
+   "operating_profit": 1010,
+   "net_profit_attributable": 811,
+   "net_debt": 2425,
+   "total_equity": 2769
+  },
+  "Q4_2024": {
+   "revenue": 8837,
+   "gross_profit": 1608,
+   "ebitda": 954,
+   "underlying_ebitda": 986,
+   "operating_profit": 744,
+   "net_profit_attributable": 580,
+   "net_debt": 2656
+  },
+  "Q1_2026": {
+   "revenue": 8834,
+   "gross_profit": 1824,
+   "gross_margin_pct": 20.6,
+   "ebitda": 1129,
+   "ebitda_margin_pct": 12.8,
+   "underlying_ebitda": 1121,
+   "operating_profit": 949,
+   "net_profit_attributable": 771,
+   "net_margin_pct": 8.7,
+   "eps_AED": 0.06,
+   "net_cash_from_operating": 311,
+   "capex_accrual": 181,
+   "capex_cash": 175,
+   "free_cash_flow": 136,
+   "free_cash_flow_excl_wc": 1028,
+   "total_equity": 2867,
+   "net_debt": 2955,
+   "capital_employed": 10080,
+   "roce_pct": 36.2,
+   "roe_pct": 110.3,
+   "net_debt_to_ebitda": 0.67,
+   "leverage_ratio_pct": 50.8
+  },
+  "Q2_2026": {
+   "revenue": 13201,
+   "gross_profit": 2429,
+   "gross_margin_pct": 18.4,
+   "ebitda": 1757,
+   "ebitda_margin_pct": 13.3,
+   "underlying_ebitda": 1094,
+   "operating_profit": 1568,
+   "net_profit_attributable": 1315,
+   "net_margin_pct": 10.0,
+   "eps_AED": 0.11,
+   "net_cash_from_operating": 2091,
+   "capex_accrual": 158,
+   "capex_cash": 204,
+   "free_cash_flow": 1887,
+   "free_cash_flow_excl_wc": 1591
+  },
+  "Q2_2025": {
+   "revenue": 8638,
+   "gross_profit": 1681,
+   "gross_margin_pct": 19.5,
+   "ebitda": 1069,
+   "underlying_ebitda": 1042,
+   "operating_profit": 857,
+   "net_profit_attributable": 677,
+   "net_cash_from_operating": 1031,
+   "capex_accrual": 272,
+   "free_cash_flow": 999,
+   "net_debt": 3242
+  },
+  "H1_2026": {
+   "revenue": 22035,
+   "gross_profit": 4252,
+   "gross_margin_pct": 19.3,
+   "ebitda": 2886,
+   "ebitda_margin_pct": 13.1,
+   "underlying_ebitda": 2215,
+   "operating_profit": 2517,
+   "net_profit_attributable": 2085,
+   "net_margin_pct": 9.5,
+   "eps_AED": 0.17,
+   "net_cash_from_operating": 2402,
+   "capex_accrual": 339,
+   "capex_cash": 379,
+   "free_cash_flow": 2023,
+   "free_cash_flow_excl_wc": 2618,
+   "total_equity": 3572,
+   "net_debt": 3208,
+   "capital_employed": 10869,
+   "roce_pct": 40.1,
+   "roe_pct": 105.8,
+   "net_debt_to_ebitda": 0.63,
+   "leverage_ratio_pct": 47.3,
+   "liquidity": "AED 5.2 billion (AED 2.4 billion cash and cash equivalents plus AED 2.8 billion unutilised credit facility)"
+  },
+  "H1_2025": {
+   "revenue": 17112,
+   "gross_profit": 3299,
+   "gross_margin_pct": 19.3,
+   "ebitda": 2080,
+   "ebitda_margin_pct": 12.2,
+   "underlying_ebitda": 1946,
+   "operating_profit": 1662,
+   "net_profit_attributable": 1315,
+   "net_margin_pct": 7.7,
+   "eps_AED": 0.11,
+   "net_cash_from_operating": 1604,
+   "capex_accrual": 492,
+   "capex_cash": 598,
+   "free_cash_flow": 1006,
+   "free_cash_flow_excl_wc": 1500,
+   "total_equity": 3203,
+   "net_debt": 3242,
+   "capital_employed": 10694,
+   "roce_pct": 30.0,
+   "roe_pct": 85.0,
+   "net_debt_to_ebitda": 0.8,
+   "leverage_ratio_pct": 50.3
+  },
+  "FY2025_liquidity": "AED 5.4 billion (AED 2.6 billion cash and cash equivalents plus AED 2.8 billion unutilised credit facility)",
+  "net_debt_definition_MDA": "Total interest-bearing debt less cash and bank balances INCLUDING term deposits with banks. This differs from the FS capital-risk note (which excludes term deposits): FY2025 MD&A net debt 2,985 vs FS note net debt 3,185,121 thousand.",
+  "revenue_and_gross_profit_by_segment_AED_million": {
+   "source": {
+    "FY2025_FY2024": {
+     "file": "source_FY2025_mda.pdf",
+     "pages": [
+      15
+     ]
+    },
+    "2026": {
+     "file": "source_Q2_2026_mda.pdf",
+     "pages": [
+      16
+     ]
+    }
+   },
+   "FY2025": {
+    "revenue": {
+     "retail": 24581,
+     "fuel_retail": 22797,
+     "non_fuel_retail": 1784,
+     "commercial": 11316,
+     "corporate": 9572,
+     "aviation": 1744,
+     "total": 35897
+    },
+    "gross_profit": {
+     "retail": 5217,
+     "fuel_retail": 4233,
+     "non_fuel_retail": 984,
+     "commercial": 1729,
+     "corporate": 1360,
+     "aviation": 369,
+     "total": 6946
+    }
+   },
+   "FY2024": {
+    "revenue": {
+     "retail": 23799,
+     "fuel_retail": 22223,
+     "non_fuel_retail": 1575,
+     "commercial": 11655,
+     "corporate": 10085,
+     "aviation": 1570,
+     "total": 35454
+    },
+    "gross_profit": {
+     "retail": 4704,
+     "fuel_retail": 3844,
+     "non_fuel_retail": 860,
+     "commercial": 1512,
+     "corporate": 1184,
+     "aviation": 327,
+     "total": 6216
+    }
+   },
+   "H1_2026": {
+    "revenue": {
+     "retail": 14097,
+     "fuel_retail": 13170,
+     "non_fuel_retail": 927,
+     "commercial": 7938,
+     "corporate": 6282,
+     "aviation": 1655,
+     "total": 22035
+    },
+    "gross_profit": {
+     "retail": 2984,
+     "fuel_retail": 2462,
+     "non_fuel_retail": 522,
+     "commercial": 1268,
+     "corporate": 1058,
+     "aviation": 211,
+     "total": 4252
+    }
+   },
+   "H1_2025": {
+    "revenue": {
+     "retail": 11611,
+     "fuel_retail": 10772,
+     "non_fuel_retail": 839,
+     "commercial": 5501,
+     "corporate": 4686,
+     "aviation": 815,
+     "total": 17112
+    },
+    "gross_profit": {
+     "retail": 2458,
+     "fuel_retail": 1993,
+     "non_fuel_retail": 465,
+     "commercial": 841,
+     "corporate": 659,
+     "aviation": 182,
+     "total": 3299
+    }
+   },
+   "Q1_2026": {
+    "revenue": {
+     "retail": 5968,
+     "fuel_retail": 5522,
+     "non_fuel_retail": 446,
+     "commercial": 2865,
+     "corporate": 2308,
+     "aviation": 557,
+     "total": 8834
+    },
+    "gross_profit": {
+     "retail": 1270,
+     "fuel_retail": 1019,
+     "non_fuel_retail": 251,
+     "commercial": 554,
+     "corporate": 430,
+     "aviation": 124,
+     "total": 1824
+    }
+   },
+   "Q2_2026": {
+    "revenue": {
+     "retail": 8129,
+     "fuel_retail": 7648,
+     "non_fuel_retail": 481,
+     "commercial": 5072,
+     "corporate": 3974,
+     "aviation": 1098,
+     "total": 13201
+    },
+    "gross_profit": {
+     "retail": 1714,
+     "fuel_retail": 1443,
+     "non_fuel_retail": 272,
+     "commercial": 714,
+     "corporate": 627,
+     "aviation": 87,
+     "total": 2429
+    }
+   }
+  }
+ },
+ "operating_kpis": {
+  "unit_note": "Volumes in million litres; revenue/gross profit/EBITDA/capex in AED million; station and store counts are absolute; transactions in millions.",
+  "coverage_gap": "NO FY2023 or FY2022 operating KPIs (volumes, stations, transactions, c-store metrics, EV points) are available: the FY2023 and FY2024 MD&A and IR decks were NOT supplied, and the FY2025 MD&A carries only 2025 and 2024 columns.",
+  "fuel_volumes_million_litres": {
+   "source": {
+    "FY2025_FY2024": {
+     "file": "source_FY2025_mda.pdf",
+     "pages": [
+      13
+     ]
+    },
+    "H1_2026_and_quarters": {
+     "file": "source_Q2_2026_mda.pdf",
+     "pages": [
+      14
+     ]
+    },
+    "Q1_2026": {
+     "file": "source_Q1_2026_presentation.pdf",
+     "pages": [
+      28
+     ]
+    }
+   },
+   "by_segment": {
+    "FY2025": {
+     "retail_b2c": 11042,
+     "retail_gcc": 8355,
+     "retail_egypt": 2687,
+     "commercial_b2b": 4668,
+     "commercial_gcc": 4104,
+     "commercial_egypt": 564,
+     "corporate": 4181,
+     "corporate_gcc": 3885,
+     "corporate_egypt": 296,
+     "aviation": 487,
+     "aviation_gcc": 218,
+     "aviation_egypt": 268,
+     "total": 15710,
+     "total_gcc": 12459,
+     "total_egypt": 3251
+    },
+    "FY2024": {
+     "retail_b2c": 10349,
+     "retail_gcc": 7708,
+     "retail_egypt": 2641,
+     "commercial_b2b": 4680,
+     "commercial_gcc": 4164,
+     "commercial_egypt": 516,
+     "corporate": 4260,
+     "corporate_gcc": 3965,
+     "corporate_egypt": 295,
+     "aviation": 420,
+     "aviation_gcc": 199,
+     "aviation_egypt": 221,
+     "total": 15029,
+     "total_gcc": 11872,
+     "total_egypt": 3157
+    },
+    "FY2023": {
+     "note": "NOT DISCLOSED in any supplied file."
+    },
+    "Q4_2025": {
+     "retail_b2c": 2884,
+     "retail_gcc": 2206,
+     "retail_egypt": 679,
+     "commercial_b2b": 1123,
+     "commercial_gcc": 969,
+     "commercial_egypt": 154,
+     "corporate": 988,
+     "aviation": 134,
+     "total": 4007,
+     "total_gcc": 3175,
+     "total_egypt": 832
+    },
+    "Q3_2025": {
+     "retail_b2c": 2833,
+     "retail_gcc": 2119,
+     "retail_egypt": 713,
+     "commercial_b2b": 1245,
+     "commercial_gcc": 1099,
+     "commercial_egypt": 146,
+     "corporate": 1125,
+     "aviation": 120,
+     "total": 4078,
+     "total_gcc": 3218,
+     "total_egypt": 860
+    },
+    "Q4_2024": {
+     "retail_b2c": 2719,
+     "retail_gcc": 2048,
+     "retail_egypt": 671,
+     "commercial_b2b": 1258,
+     "commercial_gcc": 1125,
+     "commercial_egypt": 133,
+     "corporate": 1143,
+     "aviation": 115,
+     "total": 3977,
+     "total_gcc": 3173,
+     "total_egypt": 804
+    },
+    "Q1_2026": {
+     "retail_b2c": 2690,
+     "retail_gcc": 2070,
+     "retail_egypt": 621,
+     "commercial_b2b": 1125,
+     "commercial_gcc": 976,
+     "commercial_egypt": 149,
+     "corporate": 974,
+     "corporate_gcc": 897,
+     "corporate_egypt": 77,
+     "aviation": 151,
+     "aviation_gcc": 79,
+     "aviation_egypt": 72,
+     "total": 3815,
+     "total_gcc": 3046,
+     "total_egypt": 769
+    },
+    "Q1_2025": {
+     "retail_b2c": 2594,
+     "commercial_b2b": 1132,
+     "corporate": 1025,
+     "aviation": 107,
+     "total": 3725
+    },
+    "Q2_2026": {
+     "retail_b2c": 2686,
+     "retail_gcc": 2030,
+     "retail_egypt": 656,
+     "commercial_b2b": 1247,
+     "commercial_gcc": 1108,
+     "commercial_egypt": 139,
+     "corporate": 1041,
+     "corporate_gcc": 960,
+     "corporate_egypt": 82,
+     "aviation": 205,
+     "aviation_gcc": 148,
+     "aviation_egypt": 57,
+     "total": 3933,
+     "total_gcc": 3138,
+     "total_egypt": 795
+    },
+    "Q2_2025": {
+     "retail_b2c": 2731,
+     "retail_gcc": 2084,
+     "retail_egypt": 647,
+     "commercial_b2b": 1168,
+     "commercial_gcc": 1038,
+     "commercial_egypt": 130,
+     "corporate": 1043,
+     "corporate_gcc": 977,
+     "corporate_egypt": 67,
+     "aviation": 125,
+     "aviation_gcc": 62,
+     "aviation_egypt": 63,
+     "total": 3899,
+     "total_gcc": 3122,
+     "total_egypt": 777
+    },
+    "H1_2026": {
+     "retail_b2c": 5376,
+     "retail_gcc": 4100,
+     "retail_egypt": 1277,
+     "commercial_b2b": 2372,
+     "commercial_gcc": 2084,
+     "commercial_egypt": 288,
+     "corporate": 2015,
+     "corporate_gcc": 1856,
+     "corporate_egypt": 159,
+     "aviation": 357,
+     "aviation_gcc": 228,
+     "aviation_egypt": 129,
+     "total": 7748,
+     "total_gcc": 6184,
+     "total_egypt": 1565
+    },
+    "H1_2025": {
+     "retail_b2c": 5324,
+     "retail_gcc": 4030,
+     "retail_egypt": 1295,
+     "commercial_b2b": 2300,
+     "commercial_gcc": 2036,
+     "commercial_egypt": 264,
+     "corporate": 2068,
+     "corporate_gcc": 1928,
+     "corporate_egypt": 140,
+     "aviation": 232,
+     "aviation_gcc": 108,
+     "aviation_egypt": 124,
+     "total": 7624,
+     "total_gcc": 6065,
+     "total_egypt": 1559
+    }
+   },
+   "by_product": {
+    "FY2025": {
+     "gasoline": 8668,
+     "diesel": 5741,
+     "aviation_products": 487,
+     "others": 814,
+     "total": 15710
+    },
+    "FY2024": {
+     "gasoline": 8327,
+     "diesel": 5413,
+     "aviation_products": 420,
+     "others": 869,
+     "total": 15029
+    },
+    "Q4_2025": {
+     "gasoline": 2251,
+     "diesel": 1411,
+     "aviation_products": 134,
+     "others": 211,
+     "total": 4007
+    },
+    "Q1_2026": {
+     "gasoline": 2060,
+     "diesel": 1394,
+     "aviation_products": 151,
+     "others": 210,
+     "total": 3815
+    },
+    "Q2_2026": {
+     "gasoline": 2239,
+     "diesel": 1271,
+     "aviation_products": 205,
+     "others": 217,
+     "total": 3933
+    },
+    "Q2_2025": {
+     "gasoline": 2167,
+     "diesel": 1406,
+     "aviation_products": 125,
+     "others": 201,
+     "total": 3899
+    },
+    "H1_2026": {
+     "gasoline": 4299,
+     "diesel": 2665,
+     "aviation_products": 357,
+     "others": 427,
+     "total": 7748
+    },
+    "H1_2025": {
+     "gasoline": 4204,
+     "diesel": 2790,
+     "aviation_products": 232,
+     "others": 399,
+     "total": 7624
+    },
+    "product_definitions": "Gasoline includes grade 91, 95 and 98 unleaded. Others includes CNG, LPG, kerosene, lubricants and base oil."
+   },
+   "retail_segment_by_product": {
+    "FY2025": {
+     "gasoline": 8432,
+     "diesel": 2344,
+     "other": 266,
+     "total": 11042
+    },
+    "FY2024": {
+     "gasoline": 7970,
+     "diesel": 2122,
+     "other": 257,
+     "total": 10349
+    },
+    "source": {
+     "file": "source_FY2025_mda.pdf",
+     "pages": [
+      17
+     ]
+    }
+   },
+   "commercial_segment_by_product": {
+    "FY2025": {
+     "gasoline": 236,
+     "diesel": 3397,
+     "aviation": 487,
+     "other": 549,
+     "total": 4668
+    },
+    "FY2024": {
+     "gasoline": 356,
+     "diesel": 3291,
+     "aviation": 420,
+     "other": 612,
+     "total": 4680
+    },
+    "source": {
+     "file": "source_FY2025_mda.pdf",
+     "pages": [
+      21
+     ]
+    }
+   }
+  },
+  "service_stations": {
+   "source": {
+    "FY2025_FY2024": {
+     "file": "source_FY2025_mda.pdf",
+     "pages": [
+      3,
+      18
+     ]
+    },
+    "H1_2026_H1_2025": {
+     "file": "source_Q2_2026_mda.pdf",
+     "pages": [
+      3
+     ]
+    },
+    "Q1_2026_Q1_2025": {
+     "file": "source_Q1_2026_presentation.pdf",
+     "pages": [
+      28
+     ]
+    },
+    "Q2": {
+     "file": "source_Q2_2026_presentation.pdf",
+     "pages": [
+      28
+     ]
+    }
+   },
+   "end_FY2025": {
+    "UAE": 567,
+    "Saudi_Arabia": 199,
+    "Egypt": 244,
+    "total": 1010,
+    "ksa_note": "Including 129 contracted stations in KSA under the DOCO model",
+    "new_added_2025": {
+     "UAE": 17,
+     "KSA": 99,
+     "Egypt": 3,
+     "total": 119
+    }
+   },
+   "end_FY2024": {
+    "UAE": 551,
+    "Saudi_Arabia": 100,
+    "Egypt": 245,
+    "total": 896,
+    "ksa_doco_contracted_in_2024": 30
+   },
+   "end_FY2023": {
+    "note": "NOT DISCLOSED in any supplied file."
+   },
+   "end_Q3_2025": {
+    "UAE": 562,
+    "Saudi_Arabia": 172,
+    "Egypt": 243,
+    "total": 977
+   },
+   "end_Q1_2026": {
+    "UAE": 568,
+    "Saudi_Arabia": 219,
+    "Egypt": 245,
+    "total": 1032,
+    "new_added_in_Q1_2026": {
+     "UAE": 1,
+     "Egypt": 1,
+     "KSA_contracted_DOCO": 20
+    }
+   },
+   "end_Q1_2025": {
+    "UAE": 555,
+    "Saudi_Arabia": 115,
+    "Egypt": 245,
+    "total": 915
+   },
+   "end_H1_2026": {
+    "UAE": 569,
+    "Saudi_Arabia": 231,
+    "Egypt": 245,
+    "total": 1045,
+    "new_added_H1_2026": {
+     "UAE": 2,
+     "KSA_contracted_DOCO": 32,
+     "Egypt": 1,
+     "total": 35
+    },
+    "ksa_note": "Including 161 contracted stations in KSA under the DOCO model; 52 DOCO stations operational under the ADNOC Distribution brand at end-June 2026 (vs 1 at end-H1 2025 and 31 at end-2025)",
+    "dubai_stations": 57
+   },
+   "end_H1_2025": {
+    "UAE": 556,
+    "Saudi_Arabia": 140,
+    "Egypt": 243,
+    "total": 939
+   },
+   "ksa_doco_cumulative_contracted": {
+    "2024": 30,
+    "2025": 99,
+    "H1_2026": 32,
+    "total": 161
+   },
+   "egypt_detail_H1_2026": "245 service stations; portfolio also comprises aviation fuel, lubricant and wholesale fuel operations, c.140 convenience stores, c.230 lube-changing sites and c.130 car-wash locations. 12 stations operate under the ADNOC Distribution brand following upgrades.",
+   "throughput_per_station_GCC_million_litres": {
+    "FY2025": 12.5,
+    "FY2024": 12.4,
+    "Q4_2025": 3.3,
+    "Q4_2024": 3.3,
+    "Q3_2025": 3.2,
+    "definition": "Excluding non-operational DOCO stations in KSA"
+   }
+  },
+  "convenience_stores_and_non_fuel": {
+   "source": {
+    "FY2025_FY2024": {
+     "file": "source_FY2025_mda.pdf",
+     "pages": [
+      3,
+      20
+     ]
+    },
+    "H1_2026": {
+     "file": "source_Q2_2026_mda.pdf",
+     "pages": [
+      3
+     ]
+    },
+    "Q1_2026": {
+     "file": "source_Q1_2026_presentation.pdf",
+     "pages": [
+      28
+     ]
+    },
+    "Q2_2026": {
+     "file": "source_Q2_2026_presentation.pdf",
+     "pages": [
+      28
+     ]
+    }
+   },
+   "convenience_stores_count": {
+    "end_FY2025": {
+     "UAE": 384,
+     "KSA": 15,
+     "Egypt": 137,
+     "total": 536
+    },
+    "end_FY2024": {
+     "UAE": 373
+    },
+    "end_Q3_2025": {
+     "UAE": 382
+    },
+    "end_Q1_2026": {
+     "UAE": 386,
+     "total": 539
+    },
+    "end_Q1_2025": {
+     "UAE": 378
+    },
+    "end_H1_2026": {
+     "UAE": 387,
+     "KSA": 15,
+     "Egypt": 139,
+     "total": 541
+    },
+    "end_H1_2025": {
+     "UAE": 379
+    }
+   },
+   "fuel_transactions_UAE_million": {
+    "FY2025": 199.7,
+    "FY2024": 189.2,
+    "Q4_2025": 52.1,
+    "Q3_2025": 51.4,
+    "Q4_2024": 48.6,
+    "Q1_2026": 47.6,
+    "Q1_2025": 46.6,
+    "Q2_2026": 53.3,
+    "Q2_2025": 49.5,
+    "H1_2026": 100.9,
+    "H1_2025": 96.2
+   },
+   "non_fuel_transactions_UAE_million": {
+    "FY2025": 53.9,
+    "FY2024": 49.3,
+    "Q4_2025": 14.3,
+    "Q3_2025": 13.6,
+    "Q4_2024": 13.4,
+    "Q1_2026": 12.6,
+    "Q1_2025": 12.3,
+    "Q2_2026": 13.8,
+    "Q2_2025": 13.7,
+    "H1_2026": 26.4,
+    "H1_2025": 26.0,
+    "definition": "Includes convenience stores, car wash and lube-change transactions"
+   },
+   "convenience_store_revenue_GCC_AED_million": {
+    "FY2025": 1059,
+    "FY2024": 943,
+    "Q4_2025": 299,
+    "Q3_2025": 260,
+    "Q4_2024": 258
+   },
+   "convenience_store_gross_profit_GCC_AED_million": {
+    "FY2025": 393,
+    "FY2024": 330,
+    "Q4_2025": 112,
+    "Q3_2025": 98,
+    "Q4_2024": 100,
+    "gross_margin_pct": {
+     "FY2025": 37.1,
+     "FY2024": 35.0,
+     "Q4_2025": 37.5,
+     "Q3_2025": 37.6,
+     "Q4_2024": 38.7
+    },
+    "H1_2026_growth": "C-store gross profit in the GCC increased 9.0% YoY in H1 2026 (and 12.0% YoY in Q2 2026); no absolute H1-2026 figure is published."
+   },
+   "conversion_rate_c_store_pct": {
+    "FY2025": 26.6,
+    "FY2024": 26.1,
+    "FY2023": 26.1,
+    "FY2023_note": "The 2025 Integrated Report p.36 states the 2025 rate of 26.6% is '+45bps compared to 26.1% in 2023'; the FY2025 MD&A p.19/20 gives 26.1% for 2024 and states a +50bps improvement. Both readings recorded — see restatements.",
+    "Q4_2025": 27.7,
+    "Q3_2025": 26.0,
+    "Q4_2024": 27.7,
+    "Q1_2026": 25.9,
+    "Q1_2025": 25.2,
+    "Q2_2026": 26.0,
+    "Q2_2025": 27.2,
+    "H1_2026": 25.9,
+    "H1_2025": 26.3,
+    "definition": "Number of convenience-store transactions divided by number of fuel transactions at sites with convenience stores"
+   },
+   "average_basket_size_UAE_AED": {
+    "FY2025": 22.5,
+    "FY2024": 22.2,
+    "Q4_2025": 23.7,
+    "Q3_2025": 21.6,
+    "Q4_2024": 22.3,
+    "definition": "Convenience-store revenue divided by number of convenience-store transactions"
+   },
+   "average_gross_basket_size_UAE_AED": {
+    "FY2025": 26.3,
+    "FY2024": 26.8,
+    "Q4_2025": 26.9,
+    "Q3_2025": 24.9,
+    "Q4_2024": 27.6,
+    "definition": "Convenience-store revenue including revenue from consignment items shown under other operating income, divided by number of convenience-store transactions"
+   },
+   "average_gross_basket_size_USD": {
+    "Q1_2026": 7.4,
+    "Q1_2025": 7.6,
+    "Q2_2026": 7.0,
+    "Q2_2025": 7.0,
+    "H1_2026": 7.2,
+    "H1_2025": 7.3
+   },
+   "barista_prepared_drinks_2025": "More than 15 million sold, a 20% increase vs 2024 (Integrated Report p.36)"
+  },
+  "property_and_car_care": {
+   "source": {
+    "FY2025": {
+     "file": "source_FY2025_mda.pdf",
+     "pages": [
+      20
+     ]
+    },
+    "H1_2026": {
+     "file": "source_Q2_2026_mda.pdf",
+     "pages": [
+      7
+     ]
+    }
+   },
+   "property_management_tenants_UAE": {
+    "FY2025": 332,
+    "FY2024": 331,
+    "Q4_2025": 332,
+    "Q3_2025": 328
+   },
+   "occupied_and_awarded_properties_for_rent": {
+    "FY2025": 1148,
+    "FY2024": 1151,
+    "Q3_2025": 1134,
+    "H1_2026": 1181,
+    "H1_2026_note": "+4.0% vs end-H1 2025; high-yielding F&B and car-care units +51, lower-yielding ATM and other non-F&B units -6."
+   },
+   "property_lease_income": "NOT separately disclosed. Property management is reported inside 'non-fuel retail' gross profit; only qualitative commentary ('robust double-digit gross profit growth year-on-year' in H1 2026) is given.",
+   "vehicle_inspection_centres_UAE": {
+    "FY2025": 37,
+    "FY2024": 35,
+    "Q4_2025": 37,
+    "Q3_2025": 37,
+    "H1_2026": 37,
+    "note": "Includes one permitting centre"
+   },
+   "vehicles_inspected_fresh_tests_thousands": {
+    "FY2025": 1310,
+    "FY2024": 1224,
+    "Q4_2025": 339,
+    "Q3_2025": 330,
+    "Q4_2024": 324,
+    "H1_2026": "+7.9% YoY (absolute not published)"
+   },
+   "other_vehicle_inspection_transactions_thousands": {
+    "FY2025": 279,
+    "FY2024": 242,
+    "Q4_2025": 71,
+    "Q3_2025": 70,
+    "Q4_2024": 68
+   },
+   "car_wash": {
+    "H1_2026": "Tunnel car-wash network expanded to eight locations after adding one during H1 2026; c.50% of existing automatic car-wash facilities upgraded, focused on Tier-1 locations.",
+    "FY2025": "New car-wash tunnels and upgraded automatic car washes introduced during 2025."
+   },
+   "the_hub_by_adnoc": {
+    "end_FY2025": 6,
+    "H1_2026_cumulative": 7,
+    "target": "5 new hubs planned in 2026; 30 sites by 2030",
+    "performance": "Seven hub locations delivered fuel volume growth 5 percentage points above the network average."
+   },
+   "new_properties_launched": {
+    "H1_2026": 16,
+    "H1_2025": 8,
+    "brands": "McDonald's, KFC, Hardee's, Papa John's, Al Baik, Rumailah, two Lulu Express stores in the HUBs, two Fixmate car-care outlets.",
+    "americana_partnership": "Q2 2026: strategic partnership with Americana Restaurants International — up to 200 QSRs from a portfolio of 12 brands across UAE, Saudi Arabia and Egypt."
+   }
+  },
+  "ev_charging_points_UAE": {
+   "end_FY2025": 402,
+   "end_FY2024": 220,
+   "end_Q1_2026": 400,
+   "end_Q1_2025": "~286 (deck states 1.4x growth to 400; the base is not printed as a number)",
+   "end_H1_2026": 406,
+   "end_H1_2025": 301,
+   "growth": "FY2025: 1.8x growth vs 220 at end-2024. H1 2026: +35% vs 301 at end-H1 2025.",
+   "target": "50-60 new EV charging points in 2026; 500-750 charging points by 2028; 10-15x the 2023 baseline by 2028",
+   "source": {
+    "FY2025": {
+     "file": "source_FY2025_mda.pdf",
+     "pages": [
+      3
+     ]
+    },
+    "H1_2026": {
+     "file": "source_Q2_2026_mda.pdf",
+     "pages": [
+      3,
+      11
+     ]
+    },
+    "Q1_2026": {
+     "file": "source_Q1_2026_presentation.pdf",
+     "pages": [
+      8
+     ]
+    }
+   }
+  },
+  "loyalty_programme": {
+   "adnoc_rewards_members_million": {
+    "end_FY2025": 2.61,
+    "end_FY2024": "2.25 (implied by '+15.8% Y-o-Y'; the absolute 2024 base is not printed)",
+    "end_H1_2026": 2.78,
+    "end_H1_2025": "2.47 (implied by '+12.7% Y-o-Y'; not printed as an absolute)"
+   },
+   "growth_H1_2026": "Over 160,000 new members added in H1 2026 and more than 310,000 (stated as '312 thousand') since end-H1 2025.",
+   "partners": "c.130 partners offering deals through the ADNOC Distribution app; tiered SILVER/GOLD/PLATINUM structure.",
+   "source": {
+    "FY2025": {
+     "file": "source_FY2025_mda.pdf",
+     "pages": [
+      3
+     ]
+    },
+    "H1_2026": {
+     "file": "source_Q2_2026_mda.pdf",
+     "pages": [
+      3,
+      7
+     ]
+    }
+   }
+  },
+  "lubricants": {
+   "voyager_export_markets": {
+    "end_H1_2026": 54,
+    "end_H1_2025": 47,
+    "per_integrated_report_2025": 52
+   },
+   "egypt": "Voyager lubricant line launched nationally across Egypt in May 2025, targeting 3,000 points of sale by end-2026; blending started in Egypt in 2024 with the intention of making it a regional export hub.",
+   "source": {
+    "file": "source_Q2_2026_mda.pdf",
+    "pages": [
+     6
+    ]
+   }
+  },
+  "opex_and_capex_kpis": {
+   "cash_opex_AED_million": {
+    "FY2025": 2548,
+    "FY2025_growth": "+5.7% YoY",
+    "Q4_2025": 689,
+    "H1_2026": 1277,
+    "H1_2026_growth": "+4.0% YoY",
+    "Q2_2026": 635,
+    "Q2_2026_growth": "+2.3% YoY",
+    "Q2_2026_ex_one_offs": 560,
+    "definition": "Distribution and administrative expenses excluding depreciation",
+    "source": {
+     "FY2025": {
+      "file": "source_FY2025_mda.pdf",
+      "pages": [
+       16
+      ]
+     },
+     "H1_2026": {
+      "file": "source_Q2_2026_mda.pdf",
+      "pages": [
+       16
+      ]
+     }
+    }
+   },
+   "capex_accrual_basis_AED_million": {
+    "FY2025": 1051,
+    "FY2024": 1073,
+    "Q4_2025": 279,
+    "Q3_2025": 280,
+    "Q4_2024": 396,
+    "Q1_2026": 181,
+    "Q2_2026": 158,
+    "H1_2026": 339,
+    "H1_2025": 492,
+    "Q2_2025": 272
+   },
+   "capex_cash_basis_AED_million": {
+    "FY2025": 1201,
+    "FY2024": 1156,
+    "Q4_2025": 337,
+    "Q3_2025": 267,
+    "Q4_2024": 283,
+    "Q1_2026": 175,
+    "Q2_2026": 204,
+    "H1_2026": 379,
+    "H1_2025": 598,
+    "Q2_2025": 303
+   },
+   "capex_breakdown_accrual_AED_million": {
+    "FY2025": {
+     "service_stations_projects": 501,
+     "industrial_and_other_projects": 287,
+     "machinery_and_equipment": 112,
+     "distribution_fleet": 7,
+     "technology_infrastructure": 139,
+     "office_furniture_and_equipment": 4,
+     "total": 1051
+    },
+    "FY2024": {
+     "service_stations_projects": 621,
+     "industrial_and_other_projects": 160,
+     "machinery_and_equipment": 137,
+     "distribution_fleet": 26,
+     "technology_infrastructure": 122,
+     "office_furniture_and_equipment": 8,
+     "total": 1073
+    },
+    "source": {
+     "file": "source_FY2025_mda.pdf",
+     "pages": [
+      16
+     ]
+    }
+   },
+   "capex_by_segment_AED_million": {
+    "FY2025": {
+     "retail": 797,
+     "commercial": 8
+    },
+    "FY2024": {
+     "retail": 849,
+     "commercial": 47
+    },
+    "source": {
+     "file": "source_FY2025_mda.pdf",
+     "pages": [
+      18,
+      22
+     ]
+    }
+   },
+   "H1_2026_capex_mix": "AED 339 million invested (including accruals/provisions), of which over 50% was growth CAPEX."
+  }
+ },
+ "guidance_and_targets": {
+  "FY2026_targets_reaffirmed": {
+   "source": {
+    "mda": {
+     "file": "source_Q2_2026_mda.pdf",
+     "pages": [
+      9
+     ]
+    },
+    "q1_deck": {
+     "file": "source_Q1_2026_presentation.pdf",
+     "pages": [
+      5,
+      25
+     ]
+    },
+    "q2_deck": {
+     "file": "source_Q2_2026_presentation.pdf",
+     "pages": [
+      25
+     ]
+    }
+   },
+   "new_stations": "60-70 new stations across the three markets of operation in 2026",
+   "new_ev_charging_points": "50-60 new EV charging points by end-2026 vs end-2025",
+   "capex": "US$250-300 million (AED 0.9-1.1 billion) in 2026",
+   "dividend": "AED 2.57 billion p.a. (20.57 fils per share) or a minimum of 75% of net profit, whichever is higher — paid quarterly from 2026; US$700m floor per the Q1-2026 deck",
+   "ebitda_guidance": "NOT GIVEN as a number for 2026. The company gives no quantitative FY2026 EBITDA or volume guidance in any supplied file.",
+   "volume_guidance": "NOT GIVEN as a number."
+  },
+  "medium_term_targets": {
+   "source": {
+    "mda": {
+     "file": "source_Q2_2026_mda.pdf",
+     "pages": [
+      9,
+      10
+     ]
+    },
+    "integrated_report": {
+     "file": "source_2025_integrated_report.pdf",
+     "pages": [
+      4,
+      18
+     ]
+    }
+   },
+   "network": "Grow the network of retail service stations from 1,000 to 1,150 by 2028 (excluding SDSA)",
+   "non_fuel_transactions": "Double the number of non-fuel transactions between 2023 and 2030",
+   "ev_charging": "Increase fast and super-fast charging points by 10-15x by 2028 vs the 2023 baseline; 500-750 charging points by 2028 (Integrated Report p.55)",
+   "opex": "Reduce like-for-like OPEX by up to AED 184 million (US$50 million) over 2024-28",
+   "the_hub": "30 'The HUB by ADNOC' sites by 2030; 5 new hubs planned in 2026",
+   "retail_media_network": "Expected to deliver more than US$25m in cumulative gross profit in the first five years",
+   "decarbonisation": "25% reduction in the carbon intensity of operations by 2030 vs a 2021 baseline (Scope 1 and 2)"
+  },
+  "achieved_vs_guided_2025": "The Company exceeded its upgraded 2025 guidance to add 90-100 stations, by launching 20 stations and contracting 99 new stations in KSA (H1-2026 MD&A p.10).",
+  "opex_savings_delivered": {
+   "FY2024_AED_million": 66,
+   "FY2025_AED_million": 24,
+   "H1_2026_AED_million": 9,
+   "cumulative_target_by_2028_AED_million": 184,
+   "source": {
+    "file": "source_Q2_2026_mda.pdf",
+    "pages": [
+     10
+    ]
+   }
+  }
+ },
+ "proposed_acquisition_shell_downstream_south_africa": {
+  "source": {
+   "audited_note": {
+    "file": "source_Q2_2026_reviewed_interim.pdf",
+    "pages": [
+     21
+    ]
+   },
+   "mda": {
+    "file": "source_Q2_2026_mda.pdf",
+    "pages": [
+     4,
+     5,
+     9
+    ]
+   },
+   "deck": {
+    "file": "source_Q2_2026_presentation.pdf",
+    "pages": [
+     7,
+     25
+    ]
+   }
+  },
+  "status": "Definitive agreement signed in July 2026 (disclosed as an event after the reporting date in the H1-2026 reviewed interim, note 25). Not yet closed as at the reporting date.",
+  "target": "Shell Downstream South Africa (Pty) Ltd ('SDSA'), acquired from Shell South Africa Holdings (Pty) Ltd",
+  "stake": "100% of the share capital",
+  "implied_enterprise_value": "approximately US$1 billion on a 100% basis, subject to adjustments for net debt and working capital",
+  "post_closing_selldown": "A 28% stake in SDSA is expected to be sold to a local empowerment partner and an employee share ownership plan (ESOP), reflecting ownership in line with local regulation.",
+  "expected_completion": "2027, subject to customary regulatory approvals and satisfaction of other conditions precedent",
+  "stated_accretion_MDA": {
+   "eps_accretion": "+6% in the first full year after completion",
+   "free_cash_flow_yield": "approximately 15% (estimated)",
+   "irr": "projected to generate an IRR in excess of the Company's hurdle rate",
+   "source": {
+    "file": "source_Q2_2026_mda.pdf",
+    "pages": [
+     5
+    ]
+   }
+  },
+  "stated_accretion_deck": {
+   "ebitda_accretion_from_year_1_pct": 13,
+   "eps_accretion_from_year_1_pct": 6,
+   "net_profit_growth_pct": 55,
+   "fcf_yield_pct": "~15%",
+   "incremental_run_rate_ebitda_by_year_5_usd_m": "$30-40m",
+   "sdsa_growth_outlook": "targeting mid-single-digit annual EBITDA growth and high-single-digit annual NI growth",
+   "pro_forma_scale": {
+    "stations_network_end_2025": 1010,
+    "stations_network_with_sdsa": "~1,600 (+55%)",
+    "convenience_stores_end_2025": 536,
+    "convenience_stores_with_sdsa": "~900 (+70%)",
+    "fuel_volumes_bn_litres_end_2025": 16,
+    "fuel_volumes_bn_litres_with_sdsa": "19 (+20%)"
+   },
+   "source": {
+    "file": "source_Q2_2026_presentation.pdf",
+    "pages": [
+     7
+    ]
+   }
+  },
+  "strategic_rationale": "Fourth market of operation after UAE, KSA (2018) and Egypt (50% TEME stake, 2023). Company cites a strong and transparent regulatory framework for South African fuel retail with pricing structures designed to shield from macro fluctuations, growing driving-age population and transport-infrastructure investment.",
+  "financing": "Not disclosed in any supplied document."
+ },
+ "totalenergies_marketing_egypt_treatment": {
+  "source": {
+   "business_combination_note": {
+    "file": "source_FY2023_audited_consolidated.pdf",
+    "pages": [
+     55,
+     56
+    ]
+   },
+   "segment_note": {
+    "file": "source_FY2025_audited_consolidated.pdf",
+    "pages": [
+     56
+    ]
+   },
+   "dividends": {
+    "file": "source_FY2025_audited_consolidated.pdf",
+    "pages": [
+     57
+    ]
+   }
+  },
+  "entity": "TotalEnergies Marketing Egypt LLC ('TEME'), a limited liability company registered in Cairo, Egypt",
+  "stake": "50%",
+  "accounting_treatment": "FULLY CONSOLIDATED as a subsidiary — NOT equity-accounted. The FY2023 note states the Group 'acquired control over TEME' on 6 February 2023 and the acquisition was accounted for using the acquisition method. There is no associate/joint-venture line anywhere on the balance sheet in any year.",
+  "consolidation_start_date": "1 February 2023 (management consolidated from 1 February 2023 because no financial information was available at the 6 February 2023 acquisition date and there were no significant transactions in the intervening period).",
+  "consideration_AED_000": 720580,
+  "consideration_split_AED_000": {
+   "cash_paid": 708562,
+   "contingent_consideration_liability": 12018
+  },
+  "net_cash_outflow_on_acquisition_AED_000": {
+   "cash_paid": -708562,
+   "net_cash_acquired": 169462,
+   "net_cash_outflow_in_investing": -539100,
+   "transaction_cost_in_operating": -11456,
+   "total_net_cash_outflow": -550556
+  },
+  "fair_values_acquired_AED_000": {
+   "property_plant_and_equipment": 150760,
+   "right_of_use_assets": 98694,
+   "intangibles": 680114,
+   "cash_and_bank_balances": 169462,
+   "trade_receivables_and_other_current_assets": 82706,
+   "advance_to_contractors": 4223,
+   "inventories": 95590,
+   "due_from_related_parties": 44730,
+   "total_assets": 1326279,
+   "trade_and_other_payables": 280450,
+   "deferred_tax_liability": 141028,
+   "due_to_related_parties": 135971,
+   "lease_liabilities": 98694,
+   "long_term_deposits": 5780,
+   "borrowings": 3756,
+   "total_liabilities": 665679,
+   "total_identifiable_net_assets_at_fair_value": 660600,
+   "non_controlling_interests": -330802,
+   "group_share_of_net_assets_acquired": 329798,
+   "purchase_consideration": 720580,
+   "goodwill": 390782
+  },
+  "nci_measurement": "The 50% non-controlling interest was measured by reference to the PROPORTIONATE SHARE OF NET ASSETS acquired (not fair value), amounting to AED 330,802 thousand at the acquisition date.",
+  "nci_carrying_value_AED_000": {
+   "FY2023": 323767,
+   "FY2024": 189437,
+   "FY2025": 230374,
+   "31Mar2026": 215170,
+   "30Jun2026": 201770
+  },
+  "nci_share_of_profit_AED_000": {
+   "FY2023": 29068,
+   "FY2024": 52008,
+   "FY2025": 57042,
+   "Q1_2026": 14892,
+   "H1_2026": 42347
+  },
+  "contribution_from_acquisition_to_31Dec2023": {
+   "revenue_AED_000": 3494012,
+   "profit_AED_000": 82603,
+   "acquisition_related_costs_expensed_AED_000": 11456,
+   "pro_forma_if_acquired_at_start_of_year": "Group revenue would have been higher by AED 283,485 thousand and net profit LOWER by AED 11,170 thousand."
+  },
+  "goodwill_allocation": "AED 390,782 thousand of goodwill representing expected synergies, allocated to the Group's Retail, Corporate and Aviation CGUs; none expected to be deductible for income tax purposes.",
+  "note_on_goodwill_movement": "Group goodwill and intangible assets fell from AED 1,053,811 thousand (FY2023) to AED 599,307 thousand (FY2024) — driven by EGP translation (FCTR moved from -2,995 to -298,268 and NCI fell 323,767 to 189,437 in the same year) rather than a disposal; Egypt intangibles per the geographical segment note went 1,052,683 (FY2023) -> 598,178 (FY2024) -> 620,724 (FY2025)."
+ },
+ "restatements": [
+  {
+   "item": "IAS 21 amendments — opening equity restatement at 1 January 2024",
+   "source": {
+    "file": "source_FY2024_audited_consolidated.pdf",
+    "pages": [
+     16
+    ]
+   },
+   "also_in": {
+    "file": "source_FY2025_audited_consolidated.pdf",
+    "pages": [
+     16
+    ]
+   },
+   "description": "The FY2024 statement of changes in equity shows 'Adjustments of IAS 21 amendments (note 2)' reducing 1 January 2024 balances: retained earnings/equity attributable to owners -AED 33,979 thousand and non-controlling interests -AED 33,982 thousand, total equity -AED 67,961 thousand. Adjusted opening balances: equity attributable to owners AED 3,438,087 thousand, NCI AED 289,785 thousand, total equity AED 3,727,872 thousand.",
+   "effect": "FY2023 reported P&L and balance sheet were NOT restated; the adjustment was taken to opening 2024 equity only. Therefore closing FY2023 total equity of AED 3,795,833 thousand does not equal adjusted opening FY2024 total equity of AED 3,727,872 thousand.",
+   "which_taken": "Both recorded. FY2023 balance sheet figures in this file are as reported/comparative (unchanged between the FY2023 and FY2024 filings)."
+  },
+  {
+   "item": "FY2023 income-statement presentation of impairment losses",
+   "source_original": {
+    "file": "source_FY2023_audited_consolidated.pdf",
+    "pages": [
+     15
+    ]
+   },
+   "source_restated_comparative": {
+    "file": "source_FY2024_audited_consolidated.pdf",
+    "pages": [
+     14
+    ]
+   },
+   "description": "The FY2023 filing presents two separate lines: 'Impairment losses on trade and other receivables' AED (27,766) thousand and 'Other impairment losses and expenses' AED (54,377) thousand. The FY2024 filing re-presents the FY2023 comparative as a single line 'Impairment losses and other operating expenses' AED (90,254)/(82,143) thousand.",
+   "effect": "Presentational only — 27,766 + 54,377 = 82,143. No change to operating profit or net profit.",
+   "which_taken": "The FY2024 filing's single-line comparative (82,143) is used as the primary FY2023 figure; both original lines are also recorded."
+  },
+  {
+   "item": "FY2023 leverage-ratio table equity figure",
+   "source": {
+    "file": "source_FY2023_audited_consolidated.pdf",
+    "pages": [
+     58
+    ]
+   },
+   "cross_reference": {
+    "file": "source_FY2024_audited_consolidated.pdf",
+    "pages": [
+     59
+    ]
+   },
+   "description": "The FY2023 filing's capital-risk note prints 'Equity 3,472,072' and 'Net debt plus equity 5,970,415' for 31 December 2023, whereas the FY2023 balance sheet (p.14 of the same filing) and the FY2024 filing's version of the same table both show equity attributable to owners of AED 3,472,066 thousand and net debt plus equity of AED 5,970,409 thousand. A AED 6 thousand internal inconsistency in the FY2023 filing.",
+   "which_taken": "The balance-sheet / FY2024-filing figure (3,472,066)."
+  },
+  {
+   "item": "FY2025 Egypt short-term borrowing — AED translation of the drawn EGP amount",
+   "source": {
+    "file": "source_FY2025_audited_consolidated.pdf",
+    "pages": [
+     49
+    ]
+   },
+   "description": "The FY2025 borrowings note states EGP 602,387 thousand drawn = 'AED 43,384 thousand', while the balance sheet and the same note's short-term borrowing line show AED 46,384 thousand. A 3,000-thousand difference internal to the FY2025 filing (apparent typo in the note narrative).",
+   "which_taken": "The balance-sheet figure of AED 46,384 thousand for the reported short-term borrowings balance; the note's narrative figure is recorded verbatim in the borrowings block."
+  },
+  {
+   "item": "TotalEnergies Marketing Egypt dividend in respect of FY2023 — approval date",
+   "source_a": {
+    "file": "source_FY2024_audited_consolidated.pdf",
+    "pages": [
+     58
+    ]
+   },
+   "source_b": {
+    "file": "source_FY2025_audited_consolidated.pdf",
+    "pages": [
+     57
+    ]
+   },
+   "description": "The FY2024 filing states the AED 41,057 thousand TEME dividend in respect of FY2023 was approved at the General Assembly Meeting held on 23 April 2024. The FY2025 filing states the same AED 41,057 thousand dividend for the same year was approved on 23 April 2023.",
+   "which_taken": "The FY2024 filing's date (23 April 2024) appears correct on its face (a dividend in respect of FY2023 approved after year end); both recorded."
+  },
+  {
+   "item": "TotalEnergies Marketing Egypt dividend in respect of FY2024 — amount and date",
+   "source_a": {
+    "file": "source_FY2025_audited_consolidated.pdf",
+    "pages": [
+     57
+    ]
+   },
+   "source_b": {
+    "file": "source_Q2_2026_reviewed_interim.pdf",
+    "pages": [
+     21
+    ]
+   },
+   "description": "The FY2025 filing states a TEME dividend of AED 55,792 thousand in respect of FY2024, approved at the AGM held on 22 April 2024. The H1-2026 interim states AED 55,793 thousand in respect of FY2024, approved at the AGM held on 22 April 2025.",
+   "which_taken": "The more recent H1-2026 figure (55,793; AGM 22 April 2025) is the more internally coherent (a FY2024 dividend approved in 2025); both recorded."
+  },
+  {
+   "item": "FY2024 underlying EBITDA",
+   "source_a": {
+    "file": "source_FY2025_mda.pdf",
+    "pages": [
+     12
+    ]
+   },
+   "source_b": {
+    "file": "source_2025_integrated_report.pdf",
+    "pages": [
+     117
+    ]
+   },
+   "description": "The FY2025 MD&A financial summary prints 2024 underlying EBITDA of AED 3,633 million. The 2025 Integrated Report (p.117) states 2025 underlying EBITDA of AED 4,001 million is '+10.1% compared to AED 3,663 million in 2024'.",
+   "which_taken": "The MD&A financial-summary figure (3,633) is treated as primary because it sits in the tabulated summary; the Integrated Report figure (3,663) is recorded as the discrepancy. Note 4,001/3,633 = +10.1% and 4,001/3,663 = +9.2%, so the stated +10.1% growth rate is consistent with 3,633."
+  },
+  {
+   "item": "H1 2026 inventory gains — segment split vs total",
+   "source": {
+    "file": "source_Q2_2026_mda.pdf",
+    "pages": [
+     2,
+     15
+    ]
+   },
+   "description": "Published as total AED 762 million with a split of AED 528 million fuel retail and AED 233 million commercial (sum 761). A 1-unit rounding difference in the company's own printed figures.",
+   "which_taken": "Both recorded verbatim; not reconciled."
+  },
+  {
+   "item": "Convenience-store conversion rate improvement in 2025 — stated base year",
+   "source_a": {
+    "file": "source_FY2025_mda.pdf",
+    "pages": [
+     3,
+     19,
+     20
+    ]
+   },
+   "source_b": {
+    "file": "source_2025_integrated_report.pdf",
+    "pages": [
+     36
+    ]
+   },
+   "description": "The FY2025 MD&A states conversion rate 'increased by 50 bps from 26.1% in 2024 to 26.6% in 2025' (and the operational-highlights page shows '+50 bps ... compared to 26.1% in 2024'). The 2025 Integrated Report p.36 states the rate 'increased by 45 basis points to 26.6%' and separately '+45bps compared to 26.1% in 2023'.",
+   "which_taken": "Both recorded. The 2024 metrics table (MD&A p.20) prints 26.1% for 2024, so the Integrated Report's '2023' label is probably an error, but it is recorded as printed."
+  },
+  {
+   "item": "FY2025 retail-segment revenue — fuel-retail component",
+   "source_a": {
+    "file": "source_FY2025_mda.pdf",
+    "pages": [
+     15,
+     18
+    ]
+   },
+   "source_b": {
+    "file": "source_2025_integrated_report.pdf",
+    "pages": [
+     37
+    ]
+   },
+   "description": "The FY2025 MD&A prints 2024 fuel-retail revenue of AED 22,223 million and 2024 retail-segment revenue of AED 23,799 million. The 2025 Integrated Report p.37 key-financials table prints 2024 revenue-fuel of AED 22,225 million, revenue non-fuel AED 1,574 million and total retail revenue AED 23,798 million.",
+   "which_taken": "MD&A figures (which tie to the audited revenue note: retail fuel 22,223,252 thousand; retail non-fuel 1,575,410 thousand)."
+  },
+  {
+   "item": "Reclassification of comparatives (general)",
+   "source": {
+    "file": "source_FY2025_audited_consolidated.pdf",
+    "pages": [
+     61
+    ]
+   },
+   "description": "FY2025 note 35 states: 'Certain comparative figures have been reclassified from prior year, wherever necessary, to conform to the presentation adopted in the current year.' No specific reclassifications are itemised.",
+   "which_taken": "Not applicable — no quantified effect disclosed."
+  }
+ ],
+ "verification_dump": {
+  "file": "extracted_statements_text.txt",
+  "contents": "Plain-text dump of every primary-statement and key-note page cited above, page by page, so a human can verify each figure against the source."
+ }
+}

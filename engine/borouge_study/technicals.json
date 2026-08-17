@@ -1,0 +1,96 @@
+{
+ "market": "AE",
+ "series": "/home/user/testahil/engine/borouge_study/BOROUGE_Stock_Price_History",
+ "close": 2.4,
+ "data_date": "2026-08-07",
+ "computed_on": "2026-08-09",
+ "sessions": 1048,
+ "rows_in": 1048,
+ "repairs": [],
+ "ma": {
+  "20": 2.409,
+  "50": 2.4764,
+  "200": 2.5408
+ },
+ "ma_slope": {
+  "20": "falling",
+  "50": "falling",
+  "200": "falling"
+ },
+ "rsi": 39.17459609750968,
+ "atr": 0.026762203379878842,
+ "macd": {
+  "macd": -0.023189918620202477,
+  "signal": -0.026535225592003348,
+  "hist": 0.0033453069718008717
+ },
+ "ma_cross": {
+  "ago": 69,
+  "kind": "death"
+ },
+ "atr_pct": 0.011150918074949518,
+ "hi_52w": 2.68,
+ "lo_52w": 2.38,
+ "pct_off_high": 0.1044776119402986,
+ "pct_off_low": 0.008403361344537823,
+ "levels": {
+  "res": [
+   2.43,
+   2.49,
+   2.61
+  ],
+  "sup": [
+   2.38,
+   2.29,
+   2.2
+  ]
+ },
+ "level_detail": {
+  "res": [
+   {
+    "level": 2.43,
+    "score": 1.7562478707724454,
+    "kind": "swing",
+    "touches": 1
+   },
+   {
+    "level": 2.4862064640291455,
+    "score": 1067.5419803288135,
+    "kind": "swing",
+    "touches": 52
+   },
+   {
+    "level": 2.605348786899698,
+    "score": 899.8068887444215,
+    "kind": "swing",
+    "touches": 58
+   }
+  ],
+  "sup": [
+   {
+    "level": 2.38,
+    "score": 0.9375,
+    "kind": "52w low",
+    "touches": 0
+   },
+   {
+    "level": 2.28516360132871,
+    "score": 1.1654870657951533,
+    "kind": "swing",
+    "touches": 2
+   },
+   {
+    "level": 2.2,
+    "score": 0.21000000000000008,
+    "kind": "round",
+    "touches": 0
+   }
+  ]
+ },
+ "tech": {
+  "trend": "Trading below the whole moving-average stack, under a falling 200-day",
+  "summary": "The price closed 2.40 below a falling 20-day (2.41), a falling 50-day (2.48) and a falling 200-day (2.54). Momentum is soft: RSI(14) is ~39 and the daily ATR near 0.03 (~1.1%) points to an orderly tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22120.02 / \u22120.03 / +0.00). Over the last year it has ranged 2.38\u20132.68; the last close sits 10% below that high and 1% above that low.",
+  "bull": "A daily close back above 2.43 would clear the nearest resistance and open the 2.61 zone.",
+  "bear": "A close below 2.38 would break the nearest support and open the 2.20 zone."
+ }
+}

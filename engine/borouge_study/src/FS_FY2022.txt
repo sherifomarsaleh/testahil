@@ -1,0 +1,282 @@
+
+=== [FS_FY2022.pdf p1] ===
+
+
+=== [FS_FY2022.pdf p2] ===
+
+
+=== [FS_FY2022.pdf p3] ===
+
+
+=== [FS_FY2022.pdf p4] ===
+
+
+=== [FS_FY2022.pdf p5] ===
+
+
+=== [FS_FY2022.pdf p6] ===
+Ernst & Young – Middle East Tel: +971 2 417 4400
+(ADGM Branch) +971 2 627 7522
+P.O. Box 136 Fax: +971 2 627 3383
+Sila Tower, 24th Floor, Office 2449 abudhabi@ae.ey.com
+Abu Dhabi Global Market Square ey.com
+Al Maryah Island
+Emirate of Abu Dhabi
+United Arab Emirates ADGM Registered No. 000001136
+INDEPENDENT AUDITOR’S REPORT
+TO THE SHAREHOLDERS OF BOROUGE PLC
+Report on the Audit of the Consolidated Financial Statements
+Opinion
+We have audited the consolidated financial statements of Borouge PLC (“Borouge” or the “Company”) and its
+subsidiaries (the “Group”), which comprise the consolidated statement of financial position as at 31 December 2022
+and the consolidated statement of profit or loss and other comprehensive income, consolidated statement of changes
+in equity and consolidated statement of cash flows for the period from 28 April 2022 (date of incorporation) to 31
+December 2022, and notes to the consolidated financial statements, including a summary of significant accounting
+policies.
+In our opinion, the accompanying consolidated financial statements present fairly, in all material respects, the
+financial position of the Group as at 31 December 2022, and its financial performance and its cash flows for the
+period then ended in accordance with International Financial Reporting Standards (“IFRSs”).
+Basis for opinion
+We conducted our audit in accordance with International Standards on Auditing (“ISAs”). Our responsibilities under
+those standards are further described in the Auditor’s responsibilities for the audit of the consolidated financial
+statements section of our report. We are independent of the Group in accordance with the International Code of
+Ethics for Professional Accountants (including International Independence Standards) (the “IESBA Code”) together
+with the ethical requirements that are relevant to our audit of the consolidated financial statements in the United Arab
+Emirates, and we have fulfilled our other ethical responsibilities in accordance with these requirements and the
+IESBA Code. We believe that the audit evidence we have obtained is sufficient and appropriate to provide a basis
+for our opinion.
+Key audit matters
+Key audit matters are those matters that, in our professional judgment, were of most significance in our audit of the
+consolidated financial statements of the current period. These matters were addressed in the context of our audit of
+the consolidated financial statements as a whole, and in forming our opinion thereon, and we do not provide a separate
+opinion on these matters. For each matter below, our description of how our audit addressed the matter is provided
+in that context.
+We have fulfilled the responsibilities described in the Auditor’s responsibilities for the audit of the consolidated
+financial statements section of our report, including in relation to these matters. Accordingly, our audit included the
+performance of procedures designed to respond to our assessment of the risks of material misstatement of the
+consolidated financial statements. The results of our audit procedures, including the procedures performed to address
+the matters below, provide the basis for our audit opinion on the accompanying consolidated financial statements.
+Business combination of entities under common control
+Abu Dhabi National Oil Company ("ADNOC") and Borealis AG ("Borealis") jointly owned Abu Dhabi Polymers
+Company Limited (Borouge) ("ADP") and Borouge PTE Limited ("PTE") through a joint venture capital agreement
+dated 26 April 1998. As disclosed in note 1 to the consolidated financial statements, during the period, ADNOC and
+Borealis entered into a Subscription and Transfer Agreement to rearrange the ownership in ADP and PTE and to
+combine the business of ADP and PTE after such rearrangement. On 1 June 2022, the combined business was
+transferred to Borouge PLC which was then listed on the Abu Dhabi Stock Exchange on 3 June 2022.
+A member firm of Ernst & Young Global Limited
+
+=== [FS_FY2022.pdf p7] ===
+
+
+=== [FS_FY2022.pdf p8] ===
+
+
+=== [FS_FY2022.pdf p9] ===
+
+
+=== [FS_FY2022.pdf p10] ===
+
+
+=== [FS_FY2022.pdf p11] ===
+
+
+=== [FS_FY2022.pdf p12] ===
+
+
+=== [FS_FY2022.pdf p13] ===
+
+
+=== [FS_FY2022.pdf p14] ===
+
+
+=== [FS_FY2022.pdf p15] ===
+
+
+=== [FS_FY2022.pdf p16] ===
+
+
+=== [FS_FY2022.pdf p17] ===
+
+
+=== [FS_FY2022.pdf p18] ===
+
+
+=== [FS_FY2022.pdf p19] ===
+
+
+=== [FS_FY2022.pdf p20] ===
+
+
+=== [FS_FY2022.pdf p21] ===
+
+
+=== [FS_FY2022.pdf p22] ===
+
+
+=== [FS_FY2022.pdf p23] ===
+
+
+=== [FS_FY2022.pdf p24] ===
+
+
+=== [FS_FY2022.pdf p25] ===
+
+
+=== [FS_FY2022.pdf p26] ===
+
+
+=== [FS_FY2022.pdf p27] ===
+
+
+=== [FS_FY2022.pdf p28] ===
+
+
+=== [FS_FY2022.pdf p29] ===
+
+
+=== [FS_FY2022.pdf p30] ===
+
+
+=== [FS_FY2022.pdf p31] ===
+
+
+=== [FS_FY2022.pdf p32] ===
+
+
+=== [FS_FY2022.pdf p33] ===
+
+
+=== [FS_FY2022.pdf p34] ===
+
+
+=== [FS_FY2022.pdf p35] ===
+
+
+=== [FS_FY2022.pdf p36] ===
+
+
+=== [FS_FY2022.pdf p37] ===
+
+
+=== [FS_FY2022.pdf p38] ===
+Borouge PLC
+NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
+31 December 2022
+5 PROPERTY, PLANT AND EQUIPMENT
+Furniture, Capital
+Plant and Motor fixtures and work-in-
+Buildings machinery vehicles equipment progress Total
+USD’000 USD’000 USD’000 USD’000 USD’000 USD’000
+Cost
+Balance at incorporation - - - - - -
+Balance arising on business combination (note 3) 703,515 12,376,019 13,912 173,598 293,592 13,560,636
+Additions 54 559 - 1,179 111,184 112,976
+Disposals - (65) - (2,586) - (2,651)
+Transfers from capital work in progress 5,966 72,587 181 2,180 (80,914) -
+Transfers to intangibles (note 6) - - - - (1,338) (1,338)
+Exchange differences (1,150) (2,192) - (723) (327) (4,392)
+At 31 December 2022 708,385 12,446,908 14,093 173,648 322,197 13,665,231
+Accumulated depreciation and impairment
+Balance at incorporation - - - - - -
+Balance arising on business combination (note 3) 304,537 5,821,889 13,056 166,869 - 6,306,351
+Impairment - 8,037 - - 5,446 13,483
+Depreciation 14,920 279,751 123 2,323 - 297,117
+Disposals - (58) - (2,574) - (2,632)
+Exchange differences (429) (1,200) - (655) - (2,284)
+At 31 December 2022 319,028 6,108,419 13,179 165,963 5,446 6,612,035
+Net book value
+At 31 December 2022 389,357 6,338,489 914 7,685 316,751 7,053,196
+34
+
+=== [FS_FY2022.pdf p39] ===
+
+
+=== [FS_FY2022.pdf p40] ===
+Borouge PLC
+NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS
+31 December 2022
+6 INTANGIBLE ASSETS
+Capital
+Computer Cracker License work in
+software rights costs progress Others Total
+USD’000 USD’000 USD’000 USD’000 USD’000 USD’000
+Cost
+Balance at incorporation - - - - - -
+Balance arising on business combination (note 3) 113,299 11,305 29,596 309 155,190 309,699
+Additions 853 - - 29 - 882
+Disposals (281) - - - - (281)
+Transfers from (to) property, plant, and equipment (note 5) 328 - - (238) 1,248 1,338
+Exchange differences (89) - - 71 - (18)
+At 31 December 2022 114,110 11,305 29,596 171 156,438 311,620
+Accumulated amortisation
+Balance at incorporation - - - - - -
+Balance arising on business combination (note 3) 72,097 11,305 25,343 - 136,993 245,738
+Charge for the period 6,669 - 58 - 3,881 10,608
+Disposals (281) - - - - (281)
+Exchange differences (61) - - - - (61)
+At 31 December 2022 78,424 11,305 25,401 - 140,874 256,004
+Net book value
+At 31 December 2022 35,686 - 4,195 171 15,564 55,616
+36
+
+=== [FS_FY2022.pdf p41] ===
+
+
+=== [FS_FY2022.pdf p42] ===
+
+
+=== [FS_FY2022.pdf p43] ===
+
+
+=== [FS_FY2022.pdf p44] ===
+
+
+=== [FS_FY2022.pdf p45] ===
+
+
+=== [FS_FY2022.pdf p46] ===
+
+
+=== [FS_FY2022.pdf p47] ===
+
+
+=== [FS_FY2022.pdf p48] ===
+
+
+=== [FS_FY2022.pdf p49] ===
+
+
+=== [FS_FY2022.pdf p50] ===
+
+
+=== [FS_FY2022.pdf p51] ===
+
+
+=== [FS_FY2022.pdf p52] ===
+
+
+=== [FS_FY2022.pdf p53] ===
+
+
+=== [FS_FY2022.pdf p54] ===
+
+
+=== [FS_FY2022.pdf p55] ===
+
+
+=== [FS_FY2022.pdf p56] ===
+
+
+=== [FS_FY2022.pdf p57] ===
+
+
+=== [FS_FY2022.pdf p58] ===
+
+
+=== [FS_FY2022.pdf p59] ===
+
+
+=== [FS_FY2022.pdf p60] ===
+
+
+=== [FS_FY2022.pdf p61] ===

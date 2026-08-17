@@ -1,0 +1,393 @@
+
+=== [MDA_Q2_2026.pdf p1] ===
+Borouge Classification: Public
+BOROUGE PLC Q2 2026
+Management
+Discussion & Analysis
+1
+
+=== [MDA_Q2_2026.pdf p2] ===
+Borouge Classification: Public
+Table of Contents
+1. Summary of Operational and Financial Performance
+2. Operational Review
+3. Revenue and Pricing
+4. Costs
+5. Cash Generation
+6. Current Trading and Outlook
+7. Management Q2 2026 Earnings Call
+2
+
+=== [MDA_Q2_2026.pdf p3] ===
+Borouge Classification: Public
+1. Summary of Operational and Financial Performance
+Borouge Plc (Borouge) reported revenue of $1,406 million for the three months ended 30 June 2026
+(Q2 2026), up 8 percent year-on-year (YoY) and 20 precent quarter-on-quarter (QoQ), primarily driven
+by significantly higher average selling prices amid tight polyolefins market conditions and stable
+customer demand. Production volumes declined 24 percent YoY and 40 percent QoQ to 721 kt,
+reflecting the impact of asset damage sustained at the Ruwais complex on 5 April 2026 and the closure
+of the Strait of Hormuz, which restricted exports and led upstream suppliers to temporarily reduce
+output. Following the temporary suspension of production in the affected areas after the 5 April incident,
+an initial assessment was undertaken and repair work commenced at the Ruwais complex. Repair
+activities were accelerated throughout the quarter, enabling full production availability to be restored by
+the end of June.
+Sales volumes declined 23 percent YoY and 20 percent QoQ to 873 kt. Despite operational disruptions
+during the period, Borouge successfully shipped all production volumes from Ruwais, as well as an
+additional 98 kt of product from inventory built in Q1 2026, reflecting the Company's successful
+development of alternative logistics routes and commitment to maintaining consistent deliveries to
+customers.
+Blended average selling prices increased 45 percent YoY and 53 percent QoQ to $1,535 per tonne,
+driven by record premia and significantly higher benchmark prices. Reflecting the highly differentiated
+nature of the Company’s offering and superior product performance, Borouge achieved PE and PP
+premia of $438 per tonne and $282 per tonne, respectively, substantially above management's through-
+the-cycle guidance of $200 per tonne for PE and $140 per tonne for PP.
+Borouge reported adjusted EBITDA(1) of $401 million in Q2 2026, down 9 percent YoY, with an EBITDA
+margin of 29 percent. Total operating costs were broadly flat YoY, as lower sales volumes were offset
+by higher propylene feedstock costs. Net profit declined 1 percent YoY to $191 million, while increasing
+23 percent QoQ, supported by the recognition of approximately $25 million (pre-tax) in insurance claims
+proceeds recorded within other income, relating to expected payouts associated with the regional
+geopolitical disruption. This was partially offset by a $6 million impairment loss recognised during the
+period in respect of assets damaged in the 5 April incident. Adjusted operating free cash flow was $287
+million (Q2 2025: $312 million), representing a cash conversion ratio of 71 percent.
+For the six months ended 30 June 2026, Borouge reported revenue of $2,581 million, down 5 percent
+YoY, reflecting lower sales volumes of 1,958 kt (H1 2025: 2,390 kt), partially offset by a 17 percent
+increase in average selling prices. Adjusted EBITDA declined 26 percent YoY, with an EBITDA margin
+of 29 percent, while net profit for period declined 27 percent to $347 million. The company generated
+adjusted operating free cash flow of $581 million (H1 2025: 836 million) and achieved a cash conversion
+rate of 78 percent.
+Net Debt increased to $3,275 million as at 30 June 2026 (30 June 2025: $2,694 million).
+3
+
+=== [MDA_Q2_2026.pdf p4] ===
+Borouge Classification: Public
+Q2 Q2 YoY Q1 QoQ H1 H1 YoY
+2026 2025 (%) 2026 (%) 2026 2025 (%)
+$m $m $m $m $m
+Revenue 1,406 1,305 +8% 1,175 +20% 2,581 2,725 -5%
+Total costs (865) (866) -0% (766) +13% (1,632) (1,711) -5%
+Gross Profit 541 439 +23% 409 +32% 950 1,013 -6%
+General & Administrative
+(50) (42) +19% (46) +9% (96) (103) -6%
+Expenses
+Selling & Distribution Expenses (222) (101) +119% (125) +78% (347) (191) +81%
+Other Income 31 6 +417% 6 +390% 37 12 +209%
+Impairment Loss on PPE (6) 0 - 0 - (6) 0 -
+Operating Profit 293 302 -3% 244 +20% 538 732 -27%
+Profit for the Period 191 193 -1% 156 +23% 347 474 -27%
+Profit Margin (%) 14% 15% 13% 13% 17%
+Total Comprehensive Income 196 195 +1% 160 +23% 356 475 -25%
+Adjusted EBITDA (1) 401 442 -9% 343 +17% 744 1,006 -26%
+Adjusted EBITDA Margin (%) 29% 34% 29% 29% 37%
+Basic Earnings per Share
+0.01 0.01 0.01 0.01 0.02
+(US$)
+Diluted Earnings per Share
+0.01 0.01 0.01 0.01 0.02
+(US$)
+Net Debt 3,275 2,694 +22% 2,582 +27% 3,275 2,694 +22%
+(1) Adjusted EBITDA is calculated as EBITDA plus adjustments on foreign exchange gain or loss and impairment loss on property, plant and equipment.
+Q2 Q2 YoY Q1 QoQ H1 H1 YoY
+2026 2025 (%) 2026 (%) 2026 2025 (%)
+Total Sales Volume (kt) 873 1,138 -23% 1,085 -20% 1,958 2,390 -18%
+Polyethylene 454 625 -27% 594 -24% 1,048 1,365 -23%
+Polypropylene 419 507 -17% 491 -15% 910 1,012 -10%
+Ethylene & Others 0 6 - 0 - 0 13 -
+Average Selling Price ($/t) 1,535 1,056 +45% 1,005 +53% 1,240 1,062 +17%
+Polyethylene 1,582 1,081 +46% 1,034 +53% 1,270 1,080 +18%
+Polypropylene 1,484 1,025 +45% 969 +53% 1,205 1,038 +16%
+Average Product Premia ($/t)
+Polyethylene 438 249 +76% 196 +123% 300 235 +28%
+Polypropylene 282 141 +100% 107 +164% 187 148 +26%
+4
+
+=== [MDA_Q2_2026.pdf p5] ===
+Borouge Classification: Public
+2. Operational Review
+Full production availability restored following successful repairs at the Ruwais complex
+In Q2 2026, Borouge produced 721 kt of PE and PP, with plant utilisation averaging approximately 60
+percent, and production split broadly between 45 percent PE and 55 percent PP. Production declined
+24 percent YoY and 40 percent QoQ, primarily due to asset damage sustained at the Ruwais complex
+on 5 April 2026 and the closure of the Strait of Hormuz, which disrupted export flows and led upstream
+suppliers to temporarily reduce output.
+Following the temporary suspension of production in the affected areas after the 5 April incident, an
+initial assessment was undertaken and repair work commenced at the Ruwais complex. Repair activities
+were accelerated throughout the quarter, enabling full production availability to be restored by the end
+of June. The repairs are expected to have only a limited impact on 2026 maintenance capex, which is
+guided to be below $300 million.
+During Q2 2026, reduced feedstock availability and asset damage constrained PE production in
+particular, which declined 39 percent YoY and 51 percent QoQ, with PE utilisation averaging 48 percent
+during the quarter. Lower feedstock supply also resulted in the temporary idling of Borouge's 800 ktpa
+Olefins Conversion Unit (OCU), which converts low-cost ethane into propylene and typically supplies a
+significant portion of the Company’s propylene feedstock requirements. PP production declined 4
+percent YoY and 27 percent QoQ, with PP utilisation averaging 71 percent during the period.
+For the first six months of 2026, total production stood at 1,929 kt (H1 2025: 2,201 kt), representing a
+12 percent YoY decrease, with utilisation rates of 73 percent for PE and 84 percent for PP.
+Borouge 4 megaproject
+The Company continued to advance its strategic growth projects during the quarter. Commercial
+operations at XLPE 2, the first Borouge 4 facility to come online, commenced following the successful
+completion of performance testing, with initial product volumes delivered to customers in the region.
+Production from Borouge 4 is expected to ramp up through 2026, subject to feedstock availability, as
+the remaining facilities are commissioned and brought online. Under the Asset Usage Agreement signed
+in March 2026, Borouge operates the Borouge 4 assets on behalf of the project's owners, ADNOC and
+OMV, and will market all Borouge 4 production volumes in return for an at-cost asset utilisation fee.
+Payment of the asset utilisation fee commenced during the quarter following the start of commercial
+operations at XLPE 2. In connection with the commencement of commercial operations, the Company
+recognised a right-of-use asset and corresponding lease liability of approximately $56.5 million relating
+to the XLPE 2 plant.
+Q2 Q2 YoY Q1 QoQ H1 H1 YoY
+2026 2025 (%) 2026 (%) 2026 2025 (%)
+Production Capacity (kt) 1,242 1,242 1,288 2,470 2,470
+Polyethylene 686 686 678 1,364 1,364
+Polypropylene 556 556 550 1,106 1,106
+Utilisation Rate
+Polyethylene 48% 78% 99% 73% 90%
+Polypropylene 71% 74% 98% 84% 86%
+Production Volume (kt) 721 953 -24% 1,208 -40% 1,929 2,201 -12%
+Polyethylene 327 538 -39% 671 -51% 998 1,232 -19%
+Polypropylene 394 410 -4% 537 -27% 931 956 -3%
+Ethylene & Other 0 6 - 0 - 0 13 -
+5
+
+=== [MDA_Q2_2026.pdf p6] ===
+Borouge Classification: Public
+3. Revenue and Pricing
+Q2 Q2 YoY Q1 QoQ H1 H1 YoY
+2026 2025 (%) 2026 (%) 2026 2025 (%)
+Sales Volume by Product 873 1,138 -23% 1,085 -20% 1,958 2,390 -18%
+Polyethylene 454 625 -27% 594 -24% 1,048 1,365 -23%
+Polypropylene 419 507 -17% 491 -15% 910 1,012 -10%
+Ethylene & Others 0 6 - 0 - 0 13 -
+Polyethylene (US$/t)
+Average Sales Prices (1) 1,582 1,081 +46% 1,034 +53% 1,270 1,080 +18%
+Average Premia (2) 438 249 +76% 196 +123% 300 235 +28%
+Average Benchmark (3) 1,144 832 +38% 838 +37% 970 845 +15%
+Polypropylene (US$/t)
+Average Sales Prices (1) 1,484 1,025 +45% 969 +53% 1,205 1,038 +16%
+Average Premia (2) 282 141 +100% 107 +164% 187 148 +26%
+Average Benchmark (3) 1,202 884 +36% 862 +39% 1,018 890 +14%
+Q2 Q2 YoY Q1 QoQ H1 H1 YoY
+2026 2025 (%) 2026 (%) 2026 2025 (%)
+$m $m $m $m $m $m
+Revenue by Product
+Polyethylene 779 754 +3% 678 +15% 1,457 1,613 -10%
+Polypropylene 627 538 +17% 490 +28% 1,117 1,084 +3%
+Ethylene & Others 1 13 -95% 7 -90% 7 28 -73%
+Total Revenues 1,406 1,305 +8% 1,175 +20% 2,581 2,725 -5%
+(1) Average sales prices are equal to revenue over sales volumes (including commissions).
+(2) Premia is equal to the difference between average sales prices and the benchmark prices.
+(3) Benchmark prices represent HDPE Blow Molding NEA CFR for polyethylene and Raffia NEA CFR for polypropylene (as per CMA).
+Total sales volumes declined 23 percent YoY and 20 percent QoQ to 873 kt. PE sales volumes
+decreased 27 percent YoY and 24 percent QoQ, while PP sales volumes declined 17 percent YoY and
+15 percent QoQ. Despite the challenging operating environment, the Company successfully shipped
+100 percent of Q2 production volumes and delivered sales volumes approximately 152 kt above
+production (including 54 kt of non-Ruwais sales) via alternative logistics routes, demonstrating the
+resilience of its supply chain and marketing network.
+Sales into the Middle East and Africa increased during the quarter, with the region accounting for 41
+percent of total sales volumes (Q1 2026: 39 percent), supported by higher land freight shipments. Asia
+Pacific remained the Company’s largest market, representing 49 percent of total sales, down from 52
+percent in the prior quarter. Infrastructure solutions accounted for 34 percent of total sales volumes
+during the quarter, compared with 39 percent in the prior quarter, while consumer solutions increased
+to 63 percent of total sales volumes from 58 percent.
+Borouge achieved record premia over benchmark prices of $438 per tonne for PE and $282 per tonne
+for PP, significantly above management's through-the-cycle guidance of $200 per tonne and $140 per
+tonne, respectively. The elevated premia during the quarter reflected the Company's differentiated
+product offering, strong customer demand and an acute global polyolefins supply shortage during the
+period.
+6
+
+=== [MDA_Q2_2026.pdf p7] ===
+Borouge Classification: Public
+Blended average selling prices increased 45 percent YoY, with PE and PP prices rising 46 percent and
+45 percent, respectively. On a QoQ basis, blended average selling prices increased 53 percent, driven
+by higher benchmark prices and sustained quality price premium. PE benchmark prices increased 38
+percent YoY and 37 percent QoQ, while PP benchmark prices rose 36 percent YoY and 39 percent
+QoQ.
+Total sales volumes declined 18 percent YoY during the first six months of 2026. PE sales volumes
+decreased 23 percent, while PP sales volumes declined 10 percent. Average selling prices increased
+18 percent for PE and 16 percent for PP, reflecting strong premia and elevated benchmark prices from
+March onwards. Borouge achieved average premia of $300 per tonne for PE and $187 per tonne for
+PP, both exceeding management's through-the-cycle guidance. The Company maintained its strategic
+focus on higher-value segments, with infrastructure solutions accounting for 37 percent of total sales
+volumes during the period.
+7
+
+=== [MDA_Q2_2026.pdf p8] ===
+Borouge Classification: Public
+Segmental revenue breakdown (includes polyolefins and olefins)(1)
+Q2 Q2 YoY Q1 QoQ H1 H1 YoY
+2026 2025 (%) 2026 (%) 2026 2025 (%)
+By Product Group
+Polyethylene 55% 58% 58% 56% 59%
+Polypropylene 45% 41% 42% 43% 40%
+Ethylene & Others 0% 1% 1% 0% 1%
+By End Market
+Consumer Solutions (2) 59% 51% 53% 56% 53%
+Infrastructure Solutions 38% 45% 44% 41% 43%
+Other (3) 3% 4% 3% 3% 4%
+By Geography
+Asia Pacific 51% 58% 53% 52% 59%
+Middle East & Africa 39% 33% 38% 38% 32%
+Rest of World 10% 8% 9% 10% 8%
+Ethylene & Others 0% 1% 1% 0% 1%
+(1) Percentages may not total 100 percent due to rounding differences.
+(2) Consumer Solutions includes sales to the agriculture sector.
+(3) “Other” in “By End Markets” includes mobility and healthcare sectors and ethylene and other products.
+Segmental volume breakdown (includes polyolefins and olefins)(1)
+Q2 Q2 YoY Q1 QoQ H1 H1 YoY
+2026 2025 (%) 2026 (%) 2026 2025 (%)
+By Product Group
+Polyethylene 52% 55% 55% 54% 57%
+Polypropylene 48% 45% 45% 46% 42%
+Ethylene & Others 0% 1% 0% 0% 1%
+By End Market
+Consumer Solutions (2) 63% 56% 58% 60% 58%
+Infrastructure Solutions 34% 41% 39% 37% 39%
+Other (3) 3% 4% 2% 3% 3%
+By Geography
+Asia Pacific 49% 57% 52% 51% 58%
+Middle East & Africa 41% 34% 39% 40% 33%
+Rest of World 10% 8% 9% 9% 9%
+Ethylene & Others 0% 1% 0% 0% 1%
+(1) Percentages may not total 100 percent due to rounding differences.
+(2) Consumer Solutions includes sales to the agriculture sector.
+(3) “Other” in “By End Markets” includes mobility and healthcare sectors and ethylene and other products.
+8
+
+=== [MDA_Q2_2026.pdf p9] ===
+Borouge Classification: Public
+4. Costs
+Q2 Q2 YoY Q1 QoQ H1 H1 YoY
+2026 2025 (%) 2026 (%) 2026 2025 (%)
+$m $m $m
+Revenue 1,406 1,305 +8% 1,175 +20% 2,581 2,725 -5%
+Cost of Sales (excl. D&A) (766) (728) +5% (670) +14% (1,437) (1,441) -0%
+…Feedstock Costs (391) (230) +70% (370) +6% (761) (572) +33%
+…Other Variable & Fixed
+(375) (499) -25% (301) +25% (676) (869) -22%
+Production Costs
+…as % of revenue 55% 56% 57% 56% 53%
+General & Administrative
+(47) (40) +19% (44) +9% (91) (99) -8%
+Expenses (excl. D&A)
+…as % of revenue 3% 3% 4% 4% 4%
+Selling & Distribution
+(222) (101) +119% (125) +78% (347) (191) +81%
+Expenses (excl. D&A)
+…as % of revenue 16% 8% 11% 13% 7%
+Other Income & Expenses 24 6 +309% 6 +288% 31 12 +156%
+Depreciation & Amortisation (101) (140) -27% (99) +3% (200) (274) -27%
+Operating Profit 293 302 -3% 244 +20% 538 732 -27%
+…as % of revenue 21% 23% 21% 21% 27%
+In Q2 2026, total operating costs were broadly flat YoY despite a 23 percent decline in sales volumes
+during the period. On a QoQ basis, operating costs increased 13 percent, while sales volumes declined
+20 percent. Cost of sales (excluding depreciation and amortisation) increased 5 percent YoY and 14
+percent QoQ. The increase was primarily driven by a 70 percent YoY and 6 percent QoQ rise in
+feedstock costs, reflecting higher propylene feedstock prices. Other variable and fixed production costs
+declined 25 percent YoY but grew 25 percent QoQ.
+General and administrative expenses (excluding depreciation and amortisation) increased 19 percent
+YoY and 9 percent QoQ. Selling and distribution expenses (excluding depreciation and amortisation)
+increased 119 percent YoY and 78 percent QoQ, primarily reflecting higher freight and logistics costs
+during the quarter.
+For the six months ended 30 June 2026, cost of sales (excluding depreciation and amortisation) was
+broadly flat YoY, reflecting a 22 percent reduction in variable and fixed production costs, which largely
+offset a 33 percent increase in feedstock costs. General and administrative expenses (excluding
+depreciation and amortisation) decreased 8 percent, while selling and distribution expenses rose 81
+percent compared with the same period in the prior year due to increased logistics costs.
+The Company’s overall cost base remains well positioned, reflecting its focus on disciplined cost
+management and sustained efficiencies following the successful completion of the Value Enhancement
+Program in 2023, which delivered $607 million through a combination of revenue optimisation and cost
+reductions. Building on this foundation and following strong momentum in 2025, Borouge will continue
+to implement strict cost control measures and targeted revenue improvement initiatives in 2026.
+9
+
+=== [MDA_Q2_2026.pdf p10] ===
+Borouge Classification: Public
+5. Cash Generation
+Q2 Q2 YoY Q1 QoQ H1 H1 YoY
+2026 2025 (%) 2026 (%) 2026 2025 (%)
+$m $m $m $m $m $m
+Profit for the Period 191 193 -1% 156 +23% 347 474 -27%
+Income Tax Expense 62 73 -14% 54 +16% 116 186 -38%
+Net Finance Cost 40 36 +11% 35 +14% 75 72 +5%
+Depreciation of PPE 93 133 -30% 91 +2% 185 262 -29%
+Depreciation of Right-of-Use
+3 1 +193% 1 +167% 4 2 +100%
+Assets
+Amortisation of Intangible Assets 6 5 +6% 6 -10% 12 11 +7%
+Impairment Loss on PPE 6 0 - 0 - 6 0 -
+Adjusted EBITDA (1) 401 442 -9% 343 +17% 744 1,006 -26%
+Capital Expenditure (2) 114 130 -12% 48 +136% 163 170 -4%
+Adjusted Operating Free Cash
+287 312 -8% 295 -3% 581 836 -30%
+Flow (3)
+Cash Conversion (%) 71% 71% 86% 78% 83%
+(1) Adjusted EBITDA is calculated as EBITDA plus adjustments on foreign exchange gain or loss and impairment loss on property, plant and equipment.
+(2) Capital expenditure is calculated as additions to property, plant and equipment for the period.
+(3) Adjusted Operating Free Cash Flow is calculated as Adjusted EBITDA less capital expenditure.
+Borouge reported adjusted EBITDA(1) of $401 million in Q2 2026, down 9 percent YoY, representing an
+EBITDA margin of 29 percent. The decrease primarily reflected lower sales volumes and higher
+feedstock, freight and logistics costs during the quarter. Adjusted operating cash flow was $287 million,
+down 8 percent YoY. On a QoQ basis, adjusted EBITDA increased 17 percent, while adjusted operating
+cash flow decreased 3 percent.
+Capital expenditure during Q2 2026 was $114 million, down 12 percent YoY but up 136 percent QoQ.
+The increase compared with the prior quarter primarily reflects the capitalisation of costs related to
+repair and restoration activities at the Ruwais complex following the incident on 5 April.
+For the first six months of 2026, adjusted EBITDA was $744 million, down 26 percent YoY. Adjusted
+operating cash flow was $581 million, representing a 30 percent decrease compared with the same
+period in 2025, while capital expenditure was $163 million, down 4 percent YoY.
+6. Current Trading & Outlook
+Global polyolefin prices remained significantly elevated throughout Q2 2026, driven by a global supply
+shortage following the closure of the Strait of Hormuz, which disrupted regional and international
+shipping flows. Benchmark prices declined during July from the exceptionally high levels seen
+throughout the quarter. While market conditions remain dynamic, management expects benchmark
+prices in Q3 2026 to be lower than the elevated levels experienced in Q2 2026, while remaining above
+historical averages.
+While operations were impacted by the security incident on 5 April, the Company completed the required
+asset repairs and restored full production availability by the end of June. Subject to feedstock and
+logistics availability, management is targeting high utilisation rates in the second half of 2026 to mitigate
+the impact of the disruption, supported by operational flexibility and disciplined production management.
+10
+
+=== [MDA_Q2_2026.pdf p11] ===
+Borouge Classification: Public
+However, a return to high levels of utilisation is dependent on the restoration of sustained free movement
+of commercial maritime traffic through the Strait of Hormuz.
+Management reiterates its through-the-cycle premia guidance of $200 per tonne for PE and $140 per
+tonne for PP, underpinned by the Company's differentiated product offering and long-standing customer
+relationships. The Company expects to continue utilising alternative logistics routes in the near term to
+maintain reliable customer supply and support sales volumes, with continued higher distribution costs
+incurred until previous routes can be re-established.
+For FY 2026, management intends to pay dividends amounting to 16.2 fils per share, in line with the
+Company's commitment to maintain a minimum dividend of 16.2 fils per share per annum until at least
+2030.
+Borouge management guidance:
+Metric Management Guidance
+▪ Targeting higher utilisation rates in H2 2026, subject
+Production(1) to feedstock and logistics availability and freedom of
+navigation through the Strait of Hormuz
+▪ Production expected to ramp up through 2026,
+Borouge 4 subject to feedstock availability, as units are
+commissioned and brought online
+Through-the-cycle product ▪ Polyethylene: c. $200/t premia
+premia guidance(2) ▪ Polypropylene: c. $140/t premia
+▪ Purchase propylene feedstock linked to market prices
+Costs ▪ High distribution costs to persist whilst navigation
+through Strait of Hormuz remains disrupted
+FY 2026 Dividend ▪ 16.2 fils per share
+(1) Ruwais nameplate capacity: 5 Mtpa
+(2) Premia is equal to the difference between average sales prices and the benchmark prices.
+7. Management Q2 2026 Earnings Call
+Borouge management will host its Q2 2026 earnings call on 31 July 2026 at 12:00pm UAE time.
+Webcast and call access details are provided below.
+Webcast Link:
+https://webcast.openbriefing.com/brg-q226/
+Conference Call Dial-in Details:
+Operator Assisted Dial-In:
+United Arab Emirates (Toll-Free): +971 800 0357 04553
+United Kingdom (Local): +44 20 3936 2999
+United Kingdom (Toll-Free): +44 808 189 0158
+United States (Local): +1 646 233 4753
+United States (Toll-Free): +1 855 9796 654
+Global Dial-In Numbers
+Access Code: 711255
+11

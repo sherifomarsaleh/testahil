@@ -1,0 +1,295 @@
+{
+ "ticker": "BOROUGE",
+ "verified_on": "2026-08-09",
+ "company_document_library": "https://www.borouge.com/en/investor-relations/Pages/reports-results.aspx",
+ "documents": [
+  {
+   "file": "AR2022.pdf",
+   "url": "https://www.borouge.com/en/investor-relations/Documents/IR%20Documents/Annual%20Reports/Borouge%20Annual%20Report%202022%20final.pdf",
+   "reads": "Annual Report 2022",
+   "held_locally": true,
+   "bytes_local": 5756834,
+   "sha256_local": "677d3a3b1d3fd3098f495de4b7011a3cc6d9a85dd2eea0aef41a3add2cfbf129",
+   "http_status": "200",
+   "bytes_remote": 5756834,
+   "sha256_remote": "677d3a3b1d3fd3098f495de4b7011a3cc6d9a85dd2eea0aef41a3add2cfbf129",
+   "refetch": "IDENTICAL"
+  },
+  {
+   "file": "AR2023.pdf",
+   "url": "https://www.borouge.com/en/investor-relations/Documents/IR%20Documents/Annual%20Reports/Borouge%20Annual%20Report%202023%20final.pdf",
+   "reads": "Annual Report 2023",
+   "held_locally": true,
+   "bytes_local": 10568649,
+   "sha256_local": "5a7fc9175efc85fd7ce2910ea7faeb0ad602dad8b694247adbf77a9f041da36d",
+   "http_status": "200",
+   "bytes_remote": 10568649,
+   "sha256_remote": "5a7fc9175efc85fd7ce2910ea7faeb0ad602dad8b694247adbf77a9f041da36d",
+   "refetch": "IDENTICAL"
+  },
+  {
+   "file": "AR2024.pdf",
+   "url": "https://www.borouge.com/en/investor-relations/Documents/IR%20Documents/Annual%20Reports/Borouge%20Annual%20Report%202024%20final.pdf",
+   "reads": "Annual Report 2024",
+   "held_locally": true,
+   "bytes_local": 10102777,
+   "sha256_local": "f5c698322153398088bd4d73e0ab52b2e354185922390c1f34dedcf288833cd8",
+   "http_status": "200",
+   "bytes_remote": 10102777,
+   "sha256_remote": "f5c698322153398088bd4d73e0ab52b2e354185922390c1f34dedcf288833cd8",
+   "refetch": "IDENTICAL"
+  },
+  {
+   "file": "AR2025.pdf",
+   "url": "https://www.borouge.com/en/investor-relations/Documents/IR%20Documents/Annual%20Reports/Borouge_Annual_Report_2025_ENG.pdf",
+   "reads": "Annual Report 2025",
+   "held_locally": true,
+   "bytes_local": 6028051,
+   "sha256_local": "0128f14c10bd522ad2dcb7c5c557c5870803576a90db8b8c223082124947d1ed",
+   "http_status": "200",
+   "bytes_remote": 6028051,
+   "sha256_remote": "0128f14c10bd522ad2dcb7c5c557c5870803576a90db8b8c223082124947d1ed",
+   "refetch": "IDENTICAL"
+  },
+  {
+   "file": "FS_FY2022.pdf",
+   "url": "https://www.borouge.com/en/investor-relations/Documents/IR%20Documents/Borouge-Q4-2022-EN%20Financial%20Statements.pdf",
+   "reads": "FY2022 audited consolidated financial statements (statutory)",
+   "held_locally": true,
+   "bytes_local": 19300848,
+   "sha256_local": "7595d8176b22428877cfd2b7c540eff4d02245613101b852954e4ea24ba0a5df",
+   "http_status": "200",
+   "bytes_remote": 19300848,
+   "sha256_remote": "7595d8176b22428877cfd2b7c540eff4d02245613101b852954e4ea24ba0a5df",
+   "refetch": "IDENTICAL"
+  },
+  {
+   "file": "FS_FY2023.pdf",
+   "url": "https://www.borouge.com/en/investor-relations/Documents/IR%20Documents/Borouge-Q4-2023-EN%20Financial%20Statements.pdf",
+   "reads": "FY2023 audited consolidated financial statements (statutory)",
+   "held_locally": true,
+   "bytes_local": 1396957,
+   "sha256_local": "5ef2f0a1a850d0b6ed0063da56a4b7eb8a8a6ae170bf73ff922a455f94c11931",
+   "http_status": "200",
+   "bytes_remote": 1396957,
+   "sha256_remote": "5ef2f0a1a850d0b6ed0063da56a4b7eb8a8a6ae170bf73ff922a455f94c11931",
+   "refetch": "IDENTICAL"
+  },
+  {
+   "file": "FS_FY2024.pdf",
+   "url": "https://www.borouge.com/en/investor-relations/Documents/IR%20Documents/Borouge-Q4-2024-EN%20Borouge%20Financial%20Statement.pdf",
+   "reads": "FY2024 audited consolidated financial statements (statutory)",
+   "held_locally": true,
+   "bytes_local": 1183317,
+   "sha256_local": "6c6f3c27e4403965ff983d1448a334c28dec5c274545b49c4c7a88b24f20c91a",
+   "http_status": "200",
+   "bytes_remote": 1183317,
+   "sha256_remote": "6c6f3c27e4403965ff983d1448a334c28dec5c274545b49c4c7a88b24f20c91a",
+   "refetch": "IDENTICAL"
+  },
+  {
+   "file": "FS_FY2025.pdf",
+   "url": "https://www.borouge.com/en/investor-relations/IRResults/FYQ4-25/Q4%202025%20Financial%20Statements%20-%20statutory.pdf",
+   "reads": "FY2025 audited consolidated financial statements (statutory)",
+   "held_locally": true,
+   "bytes_local": 1057217,
+   "sha256_local": "988c90166c2e3a20f693145dd45bfdd8e78a949b5cd2b0e7ec69597f9dd6a83f",
+   "http_status": "200",
+   "bytes_remote": 1057217,
+   "sha256_remote": "988c90166c2e3a20f693145dd45bfdd8e78a949b5cd2b0e7ec69597f9dd6a83f",
+   "refetch": "IDENTICAL"
+  },
+  {
+   "file": "FS_Q1_2026.pdf",
+   "url": "https://www.borouge.com/en/investor-relations/Documents/IR%20Documents/Q1%202026%20Financial%20Statements%20-%20statutory%20-%20English.pdf",
+   "reads": "Q1-2026 condensed interim financial statements (reviewed)",
+   "held_locally": true,
+   "bytes_local": 9055733,
+   "sha256_local": "026c57d65baf354c67854a544f7e6670fb813082ceff5c1792cd34d3dc2658e3",
+   "http_status": "200",
+   "bytes_remote": 9055733,
+   "sha256_remote": "026c57d65baf354c67854a544f7e6670fb813082ceff5c1792cd34d3dc2658e3",
+   "refetch": "IDENTICAL"
+  },
+  {
+   "file": "FS_Q2_2026.pdf",
+   "url": "https://www.borouge.com/en/investor-relations/Documents/IR%20Documents/Borouge-Q2-2026-EN%20Borouge%20Financial%20Statements.pdf",
+   "reads": "H1-2026 condensed interim financial statements (reviewed)",
+   "held_locally": true,
+   "bytes_local": 1074356,
+   "sha256_local": "0b2c574540e1dc76888ce9a9a9b6c3435660de087c0be77f1d21006b0674f777",
+   "http_status": "200",
+   "bytes_remote": 1074356,
+   "sha256_remote": "0b2c574540e1dc76888ce9a9a9b6c3435660de087c0be77f1d21006b0674f777",
+   "refetch": "IDENTICAL"
+  },
+  {
+   "file": "MDA_FY2023.pdf",
+   "url": "https://www.borouge.com/en/investor-relations/Documents/IR%20Documents/Borouge-Q4-2023-EN%20MDA.pdf",
+   "reads": "FY2023 Management Discussion & Analysis \u2014 physical unit build",
+   "held_locally": true,
+   "bytes_local": 507206,
+   "sha256_local": "a37aaf45a25d15a5c7a4b3d1aa9cd39d46541df3b71c0e5882f953f97f9583b8",
+   "http_status": "200",
+   "bytes_remote": 507206,
+   "sha256_remote": "a37aaf45a25d15a5c7a4b3d1aa9cd39d46541df3b71c0e5882f953f97f9583b8",
+   "refetch": "IDENTICAL"
+  },
+  {
+   "file": "MDA_FY2024.pdf",
+   "url": "https://www.borouge.com/en/investor-relations/Documents/IR%20Documents/Borouge-Q4-2024-EN%20Borouge%20MDA.pdf",
+   "reads": "FY2024 Management Discussion & Analysis \u2014 physical unit build",
+   "held_locally": true,
+   "bytes_local": 573208,
+   "sha256_local": "b3dff4de73221966400d40ac15320fa5071b77212a48dd6be92f5d49ff2d4b98",
+   "http_status": "200",
+   "bytes_remote": 573208,
+   "sha256_remote": "b3dff4de73221966400d40ac15320fa5071b77212a48dd6be92f5d49ff2d4b98",
+   "refetch": "IDENTICAL"
+  },
+  {
+   "file": "MDA_FY2025.pdf",
+   "url": "https://www.borouge.com/en/investor-relations/IRResults/FYQ4-25/Q4%202025%20Management%20Discussion%20and%20Analysis%20Report.pdf",
+   "reads": "FY2025 Management Discussion & Analysis \u2014 physical unit build",
+   "held_locally": true,
+   "bytes_local": 714471,
+   "sha256_local": "d4842ebd8a9e8ccf052b9e45b56a07f4ba39ab862fac42748da1b63a3338e8be",
+   "http_status": "200",
+   "bytes_remote": 714471,
+   "sha256_remote": "d4842ebd8a9e8ccf052b9e45b56a07f4ba39ab862fac42748da1b63a3338e8be",
+   "refetch": "IDENTICAL"
+  },
+  {
+   "file": "MDA_Q1_2026.pdf",
+   "url": "https://www.borouge.com/en/investor-relations/Documents/IR%20Documents/Q1%202026%20MDA%20-%20English.pdf",
+   "reads": "Q1-2026 Management Discussion & Analysis",
+   "held_locally": true,
+   "bytes_local": 747785,
+   "sha256_local": "cd770e6b10d939a16870247a182a8d7778ebf2a85f6a88424208d5f0abd9054d",
+   "http_status": "200",
+   "bytes_remote": 747785,
+   "sha256_remote": "cd770e6b10d939a16870247a182a8d7778ebf2a85f6a88424208d5f0abd9054d",
+   "refetch": "IDENTICAL"
+  },
+  {
+   "file": "MDA_Q2_2026.pdf",
+   "url": "https://www.borouge.com/en/investor-relations/Documents/IR%20Documents/Borouge-Q2-2026-EN%20Borouge%20MDA.pdf",
+   "reads": "H1-2026 Management Discussion & Analysis",
+   "held_locally": true,
+   "bytes_local": 762331,
+   "sha256_local": "48ad88efa6fd32d7cc4a277e11895519872a8845cced501bb226c5c833ab67c5",
+   "http_status": "200",
+   "bytes_remote": 762331,
+   "sha256_remote": "48ad88efa6fd32d7cc4a277e11895519872a8845cced501bb226c5c833ab67c5",
+   "refetch": "IDENTICAL"
+  },
+  {
+   "file": "PRES_FY2023.pdf",
+   "url": "https://www.borouge.com/en/investor-relations/Documents/IR%20Documents/Borouge-Q4-2023-EN%20Earnings%20Presentation.pdf",
+   "reads": "FY2023 earnings presentation",
+   "held_locally": true,
+   "bytes_local": 479682,
+   "sha256_local": "740e42f43bcaff47bf1dc79eaf58d2f103a8c946b2a5c8ba6aadb1bf497cc425",
+   "http_status": "200",
+   "bytes_remote": 479682,
+   "sha256_remote": "740e42f43bcaff47bf1dc79eaf58d2f103a8c946b2a5c8ba6aadb1bf497cc425",
+   "refetch": "IDENTICAL"
+  },
+  {
+   "file": "PRES_FY2024.pdf",
+   "url": "https://www.borouge.com/en/investor-relations/Documents/IR%20Documents/Borouge-Q4-2024-EN%20Borouge%20Earnings%20Presentation.pdf",
+   "reads": "FY2024 earnings presentation",
+   "held_locally": true,
+   "bytes_local": 860202,
+   "sha256_local": "bf76c11d37e59d9cbc2831b3cda42506ed6e52d96805abf1aaaa5ffdcc7814bb",
+   "http_status": "200",
+   "bytes_remote": 860202,
+   "sha256_remote": "bf76c11d37e59d9cbc2831b3cda42506ed6e52d96805abf1aaaa5ffdcc7814bb",
+   "refetch": "IDENTICAL"
+  },
+  {
+   "file": "PRES_FY2025.pdf",
+   "url": "https://www.borouge.com/en/investor-relations/IRResults/FYQ4-25/Q4%202025%20Earnings%20Presentation.pdf",
+   "reads": "FY2025 earnings presentation",
+   "held_locally": true,
+   "bytes_local": 3056611,
+   "sha256_local": "4aa5931b3ebf28453f43d0bc85a1924542367677a1f97e00d5f3b8bdd1a81b85",
+   "http_status": "200",
+   "bytes_remote": 3056611,
+   "sha256_remote": "4aa5931b3ebf28453f43d0bc85a1924542367677a1f97e00d5f3b8bdd1a81b85",
+   "refetch": "IDENTICAL"
+  },
+  {
+   "file": "PRES_Q2_2026.pdf",
+   "url": "https://www.borouge.com/en/investor-relations/Documents/IR%20Documents/Borouge-Q2-2026-EN%20Borouge%20Earnings%20Presentation.pdf",
+   "reads": "H1-2026 earnings presentation",
+   "held_locally": true,
+   "bytes_local": 3901626,
+   "sha256_local": "e57560df476af16601ec3145ef21145b0cc3d7cd1f09ab560147dda33b8c9c9b",
+   "http_status": "200",
+   "bytes_remote": 3901626,
+   "sha256_remote": "e57560df476af16601ec3145ef21145b0cc3d7cd1f09ab560147dda33b8c9c9b",
+   "refetch": "IDENTICAL"
+  },
+  {
+   "file": "REL_FY2025.pdf",
+   "url": "https://www.borouge.com/en/investor-relations/IRResults/FYQ4-25/Q4%202025%20Earnings%20Release.pdf",
+   "reads": "FY2025 earnings release",
+   "held_locally": true,
+   "bytes_local": 344029,
+   "sha256_local": "831d695270e966e1db99e2fbf18489084d9a3c1ccd4c09fcec5cde54145a1ec9",
+   "http_status": "200",
+   "bytes_remote": 344029,
+   "sha256_remote": "831d695270e966e1db99e2fbf18489084d9a3c1ccd4c09fcec5cde54145a1ec9",
+   "refetch": "IDENTICAL"
+  },
+  {
+   "file": "REL_Q2_2026.pdf",
+   "url": "https://www.borouge.com/en/investor-relations/Documents/IR%20Documents/Borouge-Q2-2026-EN%20Borouge%20Earnings%20Release.pdf",
+   "reads": "H1-2026 earnings release",
+   "held_locally": true,
+   "bytes_local": 246738,
+   "sha256_local": "a8296894170d04cdf9c55c115e81ca7e2a867b84f33c5ce64995e82891cd005c",
+   "http_status": "200",
+   "bytes_remote": 246738,
+   "sha256_remote": "a8296894170d04cdf9c55c115e81ca7e2a867b84f33c5ce64995e82891cd005c",
+   "refetch": "IDENTICAL"
+  }
+ ],
+ "exchange_files": [
+  {
+   "file": "ADB_FY2025.xlsx",
+   "describes": "Abu Dhabi Securities Exchange monthly market statistics, December 2025",
+   "held_locally": true,
+   "bytes_local": 449505,
+   "role": "cross-check only \u2014 never a source for a reported figure"
+  },
+  {
+   "file": "ADB_Q1_2026.xlsx",
+   "describes": "Abu Dhabi Securities Exchange monthly market statistics, March 2026",
+   "held_locally": true,
+   "bytes_local": 453487,
+   "role": "cross-check only \u2014 never a source for a reported figure"
+  },
+  {
+   "file": "ADB_Q2_2026.xlsx",
+   "describes": "Abu Dhabi Securities Exchange monthly market statistics, June 2026",
+   "held_locally": true,
+   "bytes_local": 456521,
+   "role": "cross-check only \u2014 never a source for a reported figure"
+  }
+ ],
+ "complete_audited_years": [
+  "2022",
+  "2023",
+  "2024",
+  "2025"
+ ],
+ "interim_periods": [
+  "Q1 2026",
+  "H1 2026"
+ ],
+ "identical": 21,
+ "total": 21,
+ "failures": []
+}

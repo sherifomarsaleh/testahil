@@ -1,0 +1,111 @@
+{
+ "primary": {
+  "label": "FTSE ADX General Index (published, includes the subject)",
+  "beta": 0.6493925111197858,
+  "alpha": -0.0010141412950914733,
+  "r2": 0.17876788595803905,
+  "n": 257,
+  "se": 0.08716164048170333,
+  "ci90": [
+   0.5060116125273838,
+   0.7927734097121878
+  ],
+  "usable": true,
+  "gate_msg": "passes minimum usability gate",
+  "warnings": []
+ },
+ "crosscheck_adx_composite_ex": {
+  "label": "Equal-weight ADX composite (ex-subject)",
+  "beta": 0.5072438188431517,
+  "alpha": -0.0006635086212387608,
+  "r2": 0.19397398404046706,
+  "n": 259,
+  "se": 0.0644990011021988,
+  "ci90": [
+   0.4011429620300347,
+   0.6133446756562688
+  ],
+  "usable": true,
+  "gate_msg": "passes minimum usability gate",
+  "warnings": []
+ },
+ "crosscheck_adx_composite": {
+  "label": "Equal-weight ADX composite (incl. subject)",
+  "beta": 0.6301839933352499,
+  "alpha": -0.0006759240173356719,
+  "r2": 0.27588390635886917,
+  "n": 259,
+  "se": 0.06368567010063125,
+  "ci90": [
+   0.5254210660197115,
+   0.7349469206507883
+  ],
+  "usable": true,
+  "gate_msg": "passes minimum usability gate",
+  "warnings": []
+ },
+ "crosscheck_all_uae_ex": {
+  "label": "Equal-weight all-UAE composite (ex-subject)",
+  "beta": 0.5089618051862763,
+  "alpha": -0.0011035643775889035,
+  "r2": 0.1929998055569222,
+  "n": 259,
+  "se": 0.06491977626063618,
+  "ci90": [
+   0.4021687732375298,
+   0.6157548371350228
+  ],
+  "usable": true,
+  "gate_msg": "passes minimum usability gate",
+  "warnings": []
+ },
+ "index_file": "engine/raw_indices/AE/ADXGENERAL.csv",
+ "index_name": "FTSE ADX General Index",
+ "index_span": [
+  "2011-01-02",
+  "2026-07-24"
+ ],
+ "index_rows": 3884,
+ "constituents_adx": [
+  "ADCB",
+  "ADIB",
+  "ADNOCGAS",
+  "AGTHIA",
+  "ALDAR",
+  "ALPHADHABI",
+  "BURJEEL",
+  "EAND",
+  "FAB",
+  "IHC",
+  "TWOPOINTZERO"
+ ],
+ "constituents_all": [
+  "ADCB",
+  "ADIB",
+  "ADNOCGAS",
+  "AGTHIA",
+  "ALDAR",
+  "ALPHADHABI",
+  "BURJEEL",
+  "DEWA",
+  "DIB",
+  "EAND",
+  "EMAAR",
+  "EMAARDEV",
+  "ENBD",
+  "FAB",
+  "IHC",
+  "SALIK",
+  "TWOPOINTZERO"
+ ],
+ "window_years": 5,
+ "frequency": "weekly (W-FRI)",
+ "first_week": "2021-08-06",
+ "last_week": "2026-07-24",
+ "price_series_end": "2026-08-07",
+ "index_series_end": "2026-07-24",
+ "chosen": "primary",
+ "chosen_rationale": "The published FTSE ADX General Index is the local index for an ADX-listed share, and the beta rule takes a stock's own history against its own local index ahead of any constructed proxy. It includes the subject, as a published index must; the equal-weight composite excluding the subject is reported alongside it to show how much that inclusion moves the coefficient.",
+ "weak": false,
+ "index_vs_composite_delta": 0.14214869227663407
+}
