@@ -1,0 +1,321 @@
+{
+ "base": 5.032139158938172,
+ "spot": 5.94,
+ "rows": [
+  {
+   "tag": "CC1a",
+   "source": "CC",
+   "what": "normalised lens: capitalise at WACC, no growth credited",
+   "central": 4.87986096728387,
+   "delta": -0.15227819165430212,
+   "pct": -0.030261124910232855,
+   "verdict": "ACCEPT"
+  },
+  {
+   "tag": "CC1b",
+   "source": "CC",
+   "what": "normalised lens: the fleet actually installed at 30-Jun-2026",
+   "central": 4.995728348556358,
+   "delta": -0.03641081038181415,
+   "pct": -0.007235652519096306,
+   "verdict": "ACCEPT"
+  },
+  {
+   "tag": "CC1c",
+   "source": "SELF",
+   "what": "normalised lens: D&A the priced fleet actually carries",
+   "central": 4.967622371122309,
+   "delta": -0.06451678781586256,
+   "pct": -0.012820946674590017,
+   "verdict": "ACCEPT"
+  },
+  {
+   "tag": "CC1*",
+   "source": "CC",
+   "what": "normalised lens: all three together",
+   "central": 4.7977376552065865,
+   "delta": -0.23440150373158541,
+   "pct": -0.04658088664246048,
+   "verdict": "ACCEPT"
+  },
+  {
+   "tag": "CC2a",
+   "source": "CC",
+   "what": "book lens on the 2030 return the model forecasts (29.2%, not 36.7%)",
+   "central": 4.843376356656116,
+   "delta": -0.18876280228205555,
+   "pct": -0.03751144320935001,
+   "verdict": "ACCEPT"
+  },
+  {
+   "tag": "CC2b",
+   "source": "CC",
+   "what": "book lens on the average forecast return (31.4%, not 36.7%)",
+   "central": 4.897665320112693,
+   "delta": -0.13447383882547914,
+   "pct": -0.02672299683656888,
+   "verdict": "ACCEPT"
+  },
+  {
+   "tag": "CC8",
+   "source": "CC",
+   "what": "relative lens: trailing multiple on trailing EBITDA",
+   "central": 5.011469918765052,
+   "delta": -0.02066924017311944,
+   "pct": -0.004107446062258907,
+   "verdict": "ACCEPT"
+  },
+  {
+   "tag": "CC9",
+   "source": "CC/GT/GR",
+   "what": "relative lens: strip JV from the EBITDA the multiple is applied to",
+   "central": 5.020604096875581,
+   "delta": -0.011535062062590917,
+   "pct": -0.002292278034899361,
+   "verdict": "ACCEPT"
+  },
+  {
+   "tag": "CC89",
+   "source": "CC",
+   "what": "relative lens: both: trailing basis AND JV stripped",
+   "central": 4.9999348567024615,
+   "delta": -0.03220430223571036,
+   "pct": -0.006399724097158268,
+   "verdict": "ACCEPT"
+  },
+  {
+   "tag": "GT1",
+   "source": "GT",
+   "what": "bridge: deduct the put OR the minority, not both",
+   "central": 5.042600236982706,
+   "delta": 0.010461078044533778,
+   "pct": 0.0020788530909270726,
+   "verdict": "ACCEPT"
+  },
+  {
+   "tag": "CC15",
+   "source": "CC",
+   "what": "WACC weights on gross debt (8.01% not 8.05%)",
+   "central": 5.05701935169329,
+   "delta": 0.024880192755118102,
+   "pct": 0.004944257694250263,
+   "verdict": "ACCEPT"
+  },
+  {
+   "tag": "CC16",
+   "source": "CC/SELF",
+   "what": "regional fleet averaging 22 rig-years in 2026, not 15",
+   "central": 5.0302740227298495,
+   "delta": -0.0018651362083224043,
+   "pct": -0.0003706447992419918,
+   "verdict": "ACCEPT"
+  },
+  {
+   "tag": "CC25",
+   "source": "CC",
+   "what": "regional rate 6.7 per rig-year on the model's own 22.8% split",
+   "central": 4.974045118117217,
+   "delta": -0.05809404082095515,
+   "pct": -0.011544601408283298,
+   "verdict": "ACCEPT"
+  },
+  {
+   "tag": "SELF-A",
+   "source": "SELF",
+   "what": "working capital at the 1H-2026 actual 9.01% of revenue",
+   "central": 5.014477080527027,
+   "delta": -0.017662078411144755,
+   "pct": -0.003509854925170952,
+   "verdict": "ACCEPT"
+  },
+  {
+   "tag": "SELF-B",
+   "source": "SELF",
+   "what": "terminal at the cost of equity (2030 firm is net cash)",
+   "central": 4.874755120123633,
+   "delta": -0.15738403881453866,
+   "pct": -0.03127577235915474,
+   "verdict": "ACCEPT"
+  },
+  {
+   "tag": "CC19a",
+   "source": "CC",
+   "what": "unconventional margin at a 50% conventional margin",
+   "central": 5.04577330479179,
+   "delta": 0.013634145853617774,
+   "pct": 0.002709413516397012,
+   "verdict": "ACCEPT (range)"
+  },
+  {
+   "tag": "CC19b",
+   "source": "CC",
+   "what": "unconventional margin at a 52% conventional margin",
+   "central": 5.021666554152059,
+   "delta": -0.010472604786112782,
+   "pct": -0.002081143715493472,
+   "verdict": "ACCEPT (range)"
+  },
+  {
+   "tag": "CC10",
+   "source": "CC",
+   "what": "peer set with Nabors on its own guidance (8.66x)",
+   "central": 5.032139158938172,
+   "delta": 0.0,
+   "pct": 0.0,
+   "verdict": "ACCEPT premise"
+  },
+  {
+   "tag": "CC3",
+   "source": "CC",
+   "what": "headline margin range omits FY2025 (44.8%)",
+   "central": 5.032139158938172,
+   "delta": 0.0,
+   "pct": 0.0,
+   "verdict": "presentation"
+  },
+  {
+   "tag": "CC4",
+   "source": "CC",
+   "what": "the two cases ARE averaged inside the weighted central",
+   "central": 5.032139158938172,
+   "delta": 0.0,
+   "pct": 0.0,
+   "verdict": "presentation"
+  },
+  {
+   "tag": "CC5",
+   "source": "CC",
+   "what": "section 4 says two lenses sit above the market; none do",
+   "central": 5.032139158938172,
+   "delta": 0.0,
+   "pct": 0.0,
+   "verdict": "presentation"
+  },
+  {
+   "tag": "CC6",
+   "source": "CC",
+   "what": "EBITDA labelled identically incl. and excl. joint ventures",
+   "central": 5.032139158938172,
+   "delta": 0.0,
+   "pct": 0.0,
+   "verdict": "presentation"
+  },
+  {
+   "tag": "CC7",
+   "source": "CC",
+   "what": "sensitivity caption vs the table beneath it",
+   "central": 5.032139158938172,
+   "delta": 0.0,
+   "pct": 0.0,
+   "verdict": "presentation"
+  },
+  {
+   "tag": "CC11",
+   "source": "CC",
+   "what": "FY2025 capex $815m (audited) vs $772m (company metric)",
+   "central": 5.032139158938172,
+   "delta": 0.0,
+   "pct": 0.0,
+   "verdict": "presentation"
+  },
+  {
+   "tag": "CC12",
+   "source": "CC",
+   "what": "\"58% dividend increase\" \u2014 the actual figure is 52%",
+   "central": 5.032139158938172,
+   "delta": 0.0,
+   "pct": 0.0,
+   "verdict": "presentation"
+  },
+  {
+   "tag": "CC13",
+   "source": "CC",
+   "what": "ROCE printed as both 24% and 23%",
+   "central": 5.032139158938172,
+   "delta": 0.0,
+   "pct": 0.0,
+   "verdict": "presentation"
+  },
+  {
+   "tag": "CC17",
+   "source": "CC",
+   "what": "\"four of the six ordered rigs\" \u2014 five remain",
+   "central": 5.032139158938172,
+   "delta": 0.0,
+   "pct": 0.0,
+   "verdict": "presentation"
+  },
+  {
+   "tag": "CC18",
+   "source": "CC",
+   "what": "\"five independent lenses\" \u2014 four share inputs",
+   "central": 5.032139158938172,
+   "delta": 0.0,
+   "pct": 0.0,
+   "verdict": "presentation"
+  },
+  {
+   "tag": "CC20",
+   "source": "CC",
+   "what": "three volatilities for one share, unlabelled",
+   "central": 5.032139158938172,
+   "delta": 0.0,
+   "pct": 0.0,
+   "verdict": "presentation"
+  },
+  {
+   "tag": "CC21",
+   "source": "CC",
+   "what": "backtest sample is not \"since listing\"",
+   "central": 5.032139158938172,
+   "delta": 0.0,
+   "pct": 0.0,
+   "verdict": "presentation"
+  },
+  {
+   "tag": "CC23",
+   "source": "CC",
+   "what": "guidance reconciles at group, not by segment",
+   "central": 5.032139158938172,
+   "delta": 0.0,
+   "pct": 0.0,
+   "verdict": "presentation"
+  },
+  {
+   "tag": "CC24",
+   "source": "CC",
+   "what": "both technical triggers sit inside one average true range",
+   "central": 5.032139158938172,
+   "delta": 0.0,
+   "pct": 0.0,
+   "verdict": "presentation"
+  },
+  {
+   "tag": "CC30",
+   "source": "CC",
+   "what": "836 wells not traced to its disclosure",
+   "central": 5.032139158938172,
+   "delta": 0.0,
+   "pct": 0.0,
+   "verdict": "presentation"
+  },
+  {
+   "tag": "SELF-I",
+   "source": "SELF",
+   "what": "JV income in forecast cash but never received",
+   "central": 5.032139158938172,
+   "delta": 0.0,
+   "pct": 0.0,
+   "verdict": "presentation"
+  },
+  {
+   "tag": "ALL",
+   "source": "all",
+   "what": "every accepted correction applied together",
+   "central": 4.421784481113837,
+   "delta": -0.6103546778243345,
+   "pct": -0.12129129551996035,
+   "verdict": "ACCEPT"
+  }
+ ]
+}

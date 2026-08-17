@@ -1,0 +1,86 @@
+{
+ "base_central": 5.032139158938172,
+ "spot": 5.94,
+ "findings": [
+  {
+   "tag": "A1",
+   "what": "working capital at 9.01% of revenue (the 1H-2026 actual)",
+   "central": 5.014477080527027,
+   "delta": -0.017662078411144755,
+   "pct_of_central": -0.003509854925170952,
+   "note": ""
+  },
+  {
+   "tag": "A2",
+   "what": "working capital at 7.46% of revenue (midway to it)",
+   "central": 5.0233081197326,
+   "delta": -0.008831039205571933,
+   "pct_of_central": -0.0017549274625853878,
+   "note": ""
+  },
+  {
+   "tag": "B1",
+   "what": "terminal discounted at the cost of equity (the model's own 2030 firm is net cash)",
+   "central": 4.874755120123633,
+   "delta": -0.15738403881453866,
+   "pct_of_central": -0.03127577235915474,
+   "note": ""
+  },
+  {
+   "tag": "C1",
+   "what": "book lens at the return the model itself forecasts for 2030 (29.2%)",
+   "central": 4.843376356656116,
+   "delta": -0.18876280228205555,
+   "pct_of_central": -0.03751144320935001,
+   "note": ""
+  },
+  {
+   "tag": "C2",
+   "what": "book lens at the average forecast return (31.4%)",
+   "central": 4.897665320112693,
+   "delta": -0.13447383882547914,
+   "pct_of_central": -0.02672299683656888,
+   "note": ""
+  },
+  {
+   "tag": "D1",
+   "what": "normalised lens with genuinely no growth (capitalised at the cost of capital)",
+   "central": 4.87986096728387,
+   "delta": -0.15227819165430212,
+   "pct_of_central": -0.030261124910232855,
+   "note": ""
+  },
+  {
+   "tag": "D2",
+   "what": "normalised lens at the depreciation the priced fleet carries (527m, not 392m)",
+   "central": 4.967622371122309,
+   "delta": -0.06451678781586256,
+   "pct_of_central": -0.012820946674590017,
+   "note": ""
+  },
+  {
+   "tag": "E1",
+   "what": "minorities deducted on an earnings basis, not at book (161m vs 54m book)",
+   "central": 5.0197733200949886,
+   "delta": -0.012365838843183319,
+   "pct_of_central": -0.002457372193536998,
+   "note": ""
+  },
+  {
+   "tag": "H1",
+   "what": "relative lens on trailing EBITDA, matching the trailing peer multiples",
+   "central": 5.011469918765052,
+   "delta": -0.02066924017311944,
+   "pct_of_central": -0.004107446062258907,
+   "note": ""
+  },
+  {
+   "tag": "ALL",
+   "what": "every accepted correction applied together",
+   "central": 4.669612063334596,
+   "delta": -0.36252709560357577,
+   "pct_of_central": -0.0720423430579516,
+   "note": ""
+  }
+ ]
+}
