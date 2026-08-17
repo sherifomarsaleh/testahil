@@ -1,0 +1,266 @@
+[
+ {
+  "row": "CC-3",
+  "location": "\u00a71.6 (Services margin narrative)",
+  "what": "\u00a71.6 admits it: Services margin \"reflects\u2026the growing profit share from the bunkering associate\".",
+  "damage": "No valuation effect; the driver rationale now describes an item the model explicitly removes, so the prose contradicts the code."
+ },
+ {
+  "row": "CC-14",
+  "location": "\u00a71.2 Table 9 (peer P/B comparison, Nakilat)",
+  "what": "Also flatters the peer read vs Nakilat's 1.65\u00d7.",
+  "damage": "No valuation effect; flatters the peer comparison by 0.69 of a turn."
+ },
+ {
+  "row": "CC-15",
+  "location": "\u00a71.6 Table 17 \"Guided\" column",
+  "what": "Guidance reconciliation. [Report says:] IL 1,846 / Shipping 2,475 / Services 375; Group 4,841. [Actually correct:] 1,846+2,475+375 = 4,696 (\u22604,841).",
+  "damage": "No valuation effect \u2014 the guidance table is a disclosure, not an input to any lens. A reconciliation table that does not add up is a direct hit on the study's own audit t"
+ },
+ {
+  "row": "CC-16",
+  "location": "\u00a71.6 Table 17 \"Guided\" column",
+  "what": "[Report says:] Earnings 606 / 959 / 62; Group 1,613. [Actually correct:] 606+959+62 = 1,627 (\u22601,613).",
+  "damage": "No valuation effect; the EBITDA row of the same reconciliation table does not foot either."
+ },
+ {
+  "row": "CC-17",
+  "location": "\u00a71.6 Table 17 \"Guided\" column",
+  "what": "Segment rows use the raised Q1-2026 guidance; group revenue 4,841 = 5,016\u00d70.965 uses the superseded Q4-2025 \"mid-single-digit reduction\", narrowed at Q1 to \"low-to-mid\". A reconciliation table that does not foot, mixing two guidance vintage",
+  "damage": "No valuation effect; mixing a superseded group guidance vintage with the raised segment vintage in one column misrepresents management's current outlook."
+ },
+ {
+  "row": "CC-20",
+  "location": "\u00a71.8 Table 20; Table 23 (\"contested choices\"); Table 25",
+  "what": "Undisclosed as a methodology switch; absent from Table 23's five \"contested choices\" and from every row of Table 25 \u2014 while terminal growth (worth AED 0.52) is tabulated.",
+  "damage": "No direct valuation effect; the largest untabulated discount-rate judgement is absent from the table of contested choices while smaller ones are shown."
+ },
+ {
+  "row": "CC-26",
+  "location": "\u00a71.2; App. A.2 ROE row",
+  "what": "Two ROE conventions in one series. [Report says:] \"ran 14.1% in FY2023, 15.4% in FY2024 and 16.8% in FY2025, and the five forecast years average 16.9%\". [Actually correct:] History is on closing equity (620,394/4,405,982 = 14.08%; 15.45%; 1",
+  "damage": "No valuation effect \u2014 the residual-income lens uses its own opening-book convention. It leaves a history-to-forecast ROE row that is not comparable end to end."
+ },
+ {
+  "row": "CC-27",
+  "location": "\u00a71.2; App. A.2 ROE row",
+  "what": "One row of Appendix A.2 and one sentence of \u00a71.2 splice two conventions; the \"rising to 16.9%\" narrative is actually a decline on a consistent basis.",
+  "damage": "No valuation effect; the 'rising to a sustainable 16.9%' narrative is an artefact of the basis switch and is not a finding about the business."
+ },
+ {
+  "row": "CC-31",
+  "location": "\u00a7Headline; \u00a71.6",
+  "what": "Q1 2026 revenue growth. [Report says:] \"revenue of USD 1,083 million (-8% year on year)\". [Actually correct:] Q1 2026 release: $1,083m vs Q1 2025 $1,204m = \u221210%. Transcription/derivation error against the company's own comparative.",
+  "damage": "No valuation effect; contradicts the company's own release on a headline figure."
+ },
+ {
+  "row": "CC-38",
+  "location": "DCF!C89\u2013C90, C101",
+  "what": "Tax shield rate. [Report says:] After-tax Kd at the 9% statutory rate. [Actually correct:] The same model taxes NOPAT at 3.75%\u20134.92% (unit rates: shipping 1%). A shield the company does not receive, inconsistent with the study's own tax tre",
+  "damage": "Rounds to no valuation effect (-0.0010 AED, -0.01%) because the debt tranche is only 7.2% of capital. What it damages is internal coherence: the model claims a tax shield"
+ },
+ {
+  "row": "CC-40",
+  "location": "Summary Table 3 note; Fundamental Valuation C6\u2013C7",
+  "what": "Attribution of the bear/bull span. [Report says:] \"the two bounds are set by the two ends of the beta's own 90% confidence interval\u2026 so the published span is the span the estimate itself supports\". [Actually correct:] The model's bear also ",
+  "damage": "No effect on the central; it overstates the statistical purity of the published span, which is the study's own honesty claim."
+ },
+ {
+  "row": "CC-41",
+  "location": "\u00a71.8 Table 21",
+  "what": "\"The same regression\". [Report says:] \"They are the SAME regression of the same weekly returns; what differs is how the market itself is measured\". [Actually correct:] Published index: n = 161. Equal-weight composite: n = 163, 12 names. Two",
+  "damage": "No valuation effect on the base; it makes an attribution claim ('the SAME regression') that the sample counts contradict."
+ },
+ {
+  "row": "CC-42",
+  "location": "\u00a71.9 Table 24 note; \u00a71.5",
+  "what": "Composite beta vs the study's own interval. [Report says:] Bull beta 0.758 \"sits just inside the left-hand column\" (the 0.705 column). [Actually correct:] 0.705 < 0.758, so the composite beta lies below the 90% interval's lower bound. The \"",
+  "damage": "No valuation effect on the base; the alternative reading is carried at full size while sitting outside the interval the study says its own estimate supports."
+ },
+ {
+  "row": "CC-43",
+  "location": "\u00a71.9 Table 24 note; \u00a71.5",
+  "what": "The alternative carried \"at full size\" throughout is outside the range the study says its estimate supports.",
+  "damage": "No valuation effect; a full-size alternative reading outside the primary interval needs that stated on its face."
+ },
+ {
+  "row": "CC-46",
+  "location": "Peer & Sector rows 5\u20137; \u00a71.3",
+  "what": "Peer multiples from aggregators. [Report says:] App. B.3: \"no data vendor, broker or press report is used as the source of any reported historical figure\"; Table 9 multiples presented as peer facts. [Actually correct:] Model's own source co",
+  "damage": "No valuation effect from disclosure alone. It is the study's largest non-DCF input block, and the sourcing claim in Appendix B.3 has to be scoped to the subject company o"
+ },
+ {
+  "row": "CC-48",
+  "location": "Peer & Sector rows 5\u20137; \u00a71.3",
+  "what": "peers' filings were not used",
+  "damage": "No valuation effect from the sourcing route alone; the study cannot demonstrate that its peer multiples are on the same accounting basis as its own."
+ },
+ {
+  "row": "CC-49",
+  "location": "\u00a71.6 Table 17 Services row",
+  "what": "Services EBITDA \"guidance\". [Report says:] \"Guidance is the midpoint of the ranges the company published\"; Services guided earnings 62. [Actually correct:] Q1 2026 release guides Services revenue (\"low-to-mid single-digit growth\" \u2192 375 \u2713) b",
+  "damage": "No valuation effect; a derived figure is presented as published guidance in a table whose stated basis is 'the midpoint of the ranges the company published'."
+ },
+ {
+  "row": "CC-53",
+  "location": "Rel&Norm C56\u2013C59",
+  "what": "Vessel-sale carrying value. [Report says:] Sold for 111,000 against carrying value 83,000 = 1.34\u00d7. [Actually correct:] Proceeds of $111m confirmed (TradeWinds); the model's own disclosed gain of 27,000 implies a carrying value of 84,000, gi",
+  "damage": "No valuation effect \u2014 the 1.34x ratio is a memorandum and is not extrapolated. It is an internal inconsistency of 800 on a transaction the company reported precisely."
+ },
+ {
+  "row": "CC-54",
+  "location": "Workbook, all sheets",
+  "what": "No cached values. [Report says:] READ FIRST: \"Every blue cell is an input; every black cell is a formula\u2026 you can change a blue cell and watch the model reprice\". [Actually correct:] Every formula cell's cached value is None \u2014 the file has ",
+  "damage": "No valuation effect; the READ FIRST promise that a reader can change a blue cell and watch the model reprice is not deliverable in a non-calculating viewer, and no self-c"
+ },
+ {
+  "row": "CC-55",
+  "location": "Workbook, all sheets",
+  "what": "A reader opening it in a non-calculating viewer sees an empty model; no self-check ever ran against the published figures.",
+  "damage": "No valuation effect; a workbook that cannot be opened in a computable state is a delivery defect against the study's own READ FIRST claim."
+ },
+ {
+  "row": "CC-59",
+  "location": "\u00a72 Table 26; \u00a73",
+  "what": "Technical indicators and Monte Carlo calibration. [Report says:] RSI(14) 51.91; MACD +0.05/+0.07/\u22120.01; MA20/50/200 6.19/6.03/5.70; support touched 12 times; crossover 40 sessions ago; back-test coverage 38%/75%/88% on 8 windows. [Why it fa",
+  "damage": "No valuation effect; the technical block and the calibration statistics are unauditable from the delivered documents alone."
+ },
+ {
+  "row": "CC-60",
+  "location": "\u00a71.8; Table 21",
+  "what": "Beta regression itself. [Report says:] \u03b2 1.085, SE 0.199, R\u00b2 0.158, n 161, CI [0.758, 1.412]; \"including the subject lifts the measured beta by 0.203\". [Why it failed:] Internal coherence is strong evidence of a real regression, but without",
+  "damage": "No valuation effect; the study's single largest discount-rate input cannot be checked by its reader."
+ },
+ {
+  "row": "CC-63",
+  "location": "\u00a71.8 beta; \u00a72 technical indicators; \u00a73 Monte Carlo back-test",
+  "what": "the price/index return series (not published, so beta, all technical indicators and the Monte Carlo back-test are unauditable)",
+  "damage": "No valuation effect; three separate blocks of the study rest on a series the reader never sees."
+ },
+ {
+  "row": "CC-66",
+  "location": "\u00a71.5 Table 13 (weighted contributions)",
+  "what": "Table 13's rounded contributions sum to 6.61 \u2014 display only",
+  "damage": "No valuation effect; a rounding display artefact."
+ },
+ {
+  "row": "GR-2",
+  "location": "Near-term (2026-2027) cash flow forecast / merchant shipping TC-E rate",
+  "what": "Most notably, the audit identifies an outsized reliance on Terminal Value (representing 78.5% of operating Enterprise Value) and an aggressively front-loaded near-term cash flow profile predicated on highly volatile, geopolitically driven t",
+  "damage": "No valuation effect; a characterisation of the forecast shape, not a defect in it."
+ },
+ {
+  "row": "GR-13",
+  "location": "Baseline of the long-term DCF / war-risk premiums embedded in near-ter",
+  "what": "While these market anomalies validate the model's short-term inputs, capitalizing war-risk premiums into the baseline of a long-term discounted cash flow model introduces immense cyclical fragility. The model's strict enforcement of a four-",
+  "damage": "No valuation effect; the reviewer concedes the glide path is the mechanism that prevents the problem it describes."
+ },
+ {
+  "row": "GR-21",
+  "location": "2026E and 2027E cash flow projections",
+  "what": "If the Strait of Hormuz or Red Sea disruptions resolve abruptly, the 2026 and 2027 cash flow projections will break to the downside.",
+  "damage": "No valuation effect; a scenario statement with no stated magnitude."
+ },
+ {
+  "row": "GR-22",
+  "location": "Beta / cost of equity input to the DCF",
+  "what": "Beta Benchmark Skew: The massive divergence between the 1.085 cap-weighted Beta and the 0.705 equal-weighted Beta swings the DCF valuation by AED 2.71 per share1.",
+  "damage": "No valuation effect; the number quoted is the model's own."
+ },
+ {
+  "row": "CW-1",
+  "location": "Workbook, Assumptions!B40:C40 \u2192 Segments!B46",
+  "what": "Model does not compute. [Report says:] \"IT IS FORMULA-DRIVEN\u2026 Anything else pasted is a defect.\" READ FIRST [Actually correct:] Assumptions!B40 and C40 hold the text '-' (Handysize/MR have no charter-out rate). Segments!B46 multiplies them ",
+  "damage": "No valuation effect; the delivered workbook cannot be opened in a computable state, which falsifies its own READ FIRST claim and means no reader can reprice anything."
+ },
+ {
+  "row": "CW-3",
+  "location": "\u00a71.7 Table 18, row 3",
+  "what": "\"Crosses the one-year charter rate\u2026 in 2027E-2028E\". [Report says:] The base VLCC path \"crosses the one-year charter rate above in 2027E-2028E, which is to say it is broadly consistent with what the forward market was willing to pay\" [Actua",
+  "damage": "No valuation effect; it removes the study's only stated external corroboration for its single most consequential judgement."
+ },
+ {
+  "row": "CW-4",
+  "location": "\u00a71.6 Table 16",
+  "what": "Guidance comparison. [Report says:] Guided revenue IL 1,846 + Shipping 2,475 + Services 375 = Group 4,841; guided EBITDA 606 + 959 + 62 = Group 1,613. \"Guidance is the midpoint of the ranges the company published for the year\" [Actually cor",
+  "damage": "No valuation effect \u2014 no lens reads the guidance table. The sourcing description ('the midpoint of the ranges the company published') is false: the company publishes no a"
+ },
+ {
+  "row": "CW-9",
+  "location": "\u00a71.2 Table 7, memorandum line; Relative & Normalized!C30",
+  "what": "Price-to-book memo. [Report says:] \"Memorandum \u2014 the price the market pays for that book today | 1.76\u00d7\", printed directly beneath \"Justified price to book 2.03\u00d7\" [Actually correct:] C30 = mcap / (equity 5,073.9 + perpetuals 1,978.6). The bo",
+  "damage": "No valuation effect \u2014 own_pb feeds no lens. It invites a comparison that is not like-for-like and reverses the sign of the implied read."
+ },
+ {
+  "row": "CW-11",
+  "location": "\u00a71.2; Appendix A.2 Table 32, ROE row",
+  "what": "Return on equity basis switch. [Report says:] \"ran 14.1% in FY2023, 15.4% in FY2024 and 16.8% in FY2025, and the five forecast years average 16.9%\" [Actually correct:] History is on closing equity (620.2/4,406.0 = 14.08%; 756.2/4,894.6 = 15",
+  "damage": "No valuation effect \u2014 the residual-income lens uses its own opening-book convention. It leaves one row of one appendix table on two definitions."
+ },
+ {
+  "row": "CW-13",
+  "location": "\u00a71.3 Table 9 \"Range\"; \u00a71.4 Table 11 \"Range\"; Relative & Normalized!C20",
+  "what": "Bear/bull bounds not on the base's construction. [Report says:] Relative \"Range 6.64 \u2013 10.09\" around a base of 8.07; Normalised \"Range 7.02 \u2013 10.63\" around 7.69 [Actually correct:] Bases are blends: relative = 0.7\u00d7EV-multiple (9.02) + 0.3\u00d7P",
+  "damage": "No valuation effect on the point estimates; the bear and bull inputs to the published weighted range are on a construction the base is not."
+ },
+ {
+  "row": "CW-14",
+  "location": "Table 2 footnote; \u00a71.9",
+  "what": "Description of the cash-flow lens's published range. [Report says:] \"within the cash-flow lens the two bounds are set by the two ends of the beta's own 90% confidence interval\u2026 so the published span is the span the estimate itself supports\"",
+  "damage": "No valuation effect; the study's honesty claim is made for a span that embeds two further judgement stresses."
+ },
+ {
+  "row": "CW-15",
+  "location": "\u00a71.2 Table 7 range note",
+  "what": "\"a return one seventh lower / higher\". [Report says:] Bear takes \"a return one seventh lower\"; bull \"one seventh higher\" [Actually correct:] C53/D53 use \u00d70.85 and \u00d71.15 \u2014 15%, and the model's own row label says so. One seventh is 14.29% [Wh",
+  "damage": "No valuation effect; prose misdescribes by 0.71 of a percentage point a stress the model states correctly on its own face."
+ },
+ {
+  "row": "CW-16",
+  "location": "\u00a71.4 narrative",
+  "what": "\"depreciation runs at about 29.0% of EBITDA across the forecast\". [Report says:] 29.0% across the forecast [Actually correct:] 29.0% is 2026E only (538.5/1,859.5). The five-year path is 29.0 / 30.7 / 31.3 / 33.1 / 35.1% \u2014 average 31.8% [Why",
+  "damage": "No valuation effect; a first-year figure presented as a forecast average, understating the wedge the paragraph exists to explain."
+ },
+ {
+  "row": "CW-18",
+  "location": "\u00a71.3 \"Sum of the parts\" Table 10; SOTP Bridge!C29",
+  "what": "Spot weight applied inside the Shipping leg. [Report says:] Shipping takes 11.10\u00d7, \"a blend\u2026 weighted by the company's own disclosed share of earnings exposed to spot rates\" (31%) [Actually correct:] 31% is a group share. All spot exposure ",
+  "damage": "No valuation effect \u2014 the SOTP is excluded from the weighted central. It moves the SOTP cross-check by AED 0.42, which is the number a reader uses to judge whether the ce"
+ },
+ {
+  "row": "CW-21",
+  "location": "Table 2 alt. reading 3; Table 5 last row; Table 22 row 2",
+  "what": "Perpetuals \"at the present value of their coupon\". [Report says:] Deducting USD 1,181m \u2014 \"the coupon capitalised at the terminal cost of capital\" \u2014 instead of 1,978.6, worth AED 0.40 [Actually correct:] The perpetual's own required return i",
+  "damage": "No valuation effect \u2014 the alternative is excluded from the headline. It offers a reader a AED 0.36 uplift that rests on a discount-rate substitution rather than on a seco"
+ },
+ {
+  "row": "CW-23",
+  "location": "\u00a71.5 Table 12, rows 6\u20137",
+  "what": "Composite-beta range. [Report says:] \"Cash-flow model \u2014 equal-weight composite | 3.48 | 8.40 | 9.00\"; weighted central composite \"4.98 | 7.68 | 9.39\" [Actually correct:] Summary!B12 = B5 and D12 = D5 \u2014 the bear and bull are the primary-beta",
+  "damage": "No valuation effect; a range that does not belong to the base it brackets, presented without saying so."
+ },
+ {
+  "row": "CW-25",
+  "location": "Appendix A.2 Table 32, net debt/EBITDA row",
+  "what": "Ratio basis. [Report says:] FY2023-25: 0.08\u00d7 / 0.47\u00d7 / 0.46\u00d7 [Actually correct:] Those are on reported EBITDA (876.3 / 1,148.8 / 1,514.6). The model's own row (Balance Sheet!23) is on operating EBITDA and gives 0.09\u00d7 / 0.48\u00d7 / 0.47\u00d7; the fo",
+  "damage": "No valuation effect; one ratio row on two bases, so the history-to-forecast trend is not comparable."
+ },
+ {
+  "row": "CW-28",
+  "location": "Appendix C.2 Table 38",
+  "what": "Expert 2 omits minorities. [Report says:] Owner cash earnings 676 capitalised at Ke \u2212 g \u2192 equity 9,388 \u2192 AED 4.66 [Actually correct:] The stream starts from group FCFF, which includes the 8.8% owned by minorities. Expert 1 deducts NCI (\u2212107",
+  "damage": "No valuation effect \u2014 the expert panel is excluded from the weighted central. It leaves three 'independent reads of the same balance sheet' on three different bridges."
+ },
+ {
+  "row": "CW-33",
+  "location": "\u00a73; Monte Carlo sheet",
+  "what": "Calibration statistics. [Report says:] +2.95% vs a random-walk benchmark over 8 windows; coverage 38/75/88%; uniformity p = 0.64 and 0.53; 1-month 24 windows 67/88/96%, p = 0.48, +0.03%; 91 pooled windows +0.66%; panel of 18 names / 261 win",
+  "damage": "No valuation effect \u2014 the price map is never blended with the fair-value work. The study claims the map 'is tested before it is allowed to publish a range' and delivers n"
+ },
+ {
+  "row": "CW-34",
+  "location": "\u00a72 Table 25",
+  "what": "Technical indicators. [Report says:] 20/50/200-session averages 6.19 / 6.03 / 5.70; RSI(14) 51.91; ATR(14) 0.11; MACD +0.05/+0.07/\u22120.01; crossover 40 sessions ago; \u03c3 28.2% [Actually correct:] No price series exists in either deliverable, so",
+  "damage": "No valuation effect; indicators asserted without the data behind them."
+ }
+]
