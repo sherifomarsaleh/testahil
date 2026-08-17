@@ -1,84 +1,32 @@
 {
- "note": "AMR \u2014 equity beta from the stock's OWN price history against a local index.\n\nBeta hierarchy (house rule, strict preference order):\n  (1) own-stock 2-5yr WEEKLY regression vs its OWN local index, usability gate\n      n>=24, R^2>=5%, SE(beta) < |beta|;\n  (2) same-country peer beta (median unlevered, re-levered);\n  (3) beta = 1.0.\n\nSOURCING NOTE (recorded, not hidden). Americana is CONCURRENTLY DUAL-LISTED:\nADX (AMR, AED) and the Saudi Exchange (6015, SAR), same shares, both home\nmarkets, both currencies hard-pegged to the US dollar. A daily history for the\nFTSE ADX General Index could not be obtained from any machine-readable source\nreachable this session (Yahoo carries the FADGI.FGI quote but returns a single\nobservation with no timeseries; stooq and investing.com's data endpoints are\nJavaScript-walled or return 403; adx.ae returns 403 and its data service\nrejected every route probed). The Saudi Exchange line and the Tadawul All Share\nIndex ARE both available as full daily series, so the tier-(1) regression is run\nthere: the company's own shares against the index of a market in which those\nsame shares are listed. Two independent cross-checks are computed and reported\nalongside \u2014 a UAE-listed consumer-peer beta from the local price library, and\nthe ADX line regressed on an equal-weighted composite of the covered UAE panel\n(a CONSTRUCTED proxy, never presented as the index).",
- "tier1_own_vs_tasi": {
-  "label": "AMR (Saudi line 6015, SAR) weekly vs Tadawul All Share Index, truncated at the 07-Aug-2026 anchor",
-  "n": 182,
-  "alpha": -0.002136972895349638,
-  "beta": 0.8943688741134201,
-  "se_beta": 0.19329454515574193,
-  "t_beta": 4.626974203502774,
-  "r2": 0.10629565681102793,
-  "first": "2022-12-30",
-  "last": "2026-07-17",
-  "gate": {
-   "n_ge_24": true,
-   "r2_ge_5pct": true,
-   "se_lt_abs_beta": true
-  },
-  "usable": true
- },
- "crosscheck_adx_line_vs_uae_composite": {
-  "label": "AMR (ADX line, AED) weekly vs equal-weighted composite of the 18 covered UAE names (CONSTRUCTED PROXY, not the exchange index)",
-  "n": 187,
-  "alpha": -0.002687600885058062,
-  "beta": 0.6028769440485089,
-  "se_beta": 0.15450540870024776,
-  "t_beta": 3.9019795431118918,
-  "r2": 0.07604150613285376,
-  "first": "2022-12-23",
-  "last": "2026-07-24",
-  "gate": {
-   "n_ge_24": true,
-   "r2_ge_5pct": true,
-   "se_lt_abs_beta": true
-  },
-  "usable": true
- },
- "crosscheck_uae_consumer_peers": {
-  "AGTHIA": {
-   "label": "AGTHIA (UAE-listed consumer) weekly vs the same constructed composite",
-   "n": 257,
-   "alpha": -0.003089786949707091,
-   "beta": 0.5023108601672728,
-   "se_beta": 0.09515324362403112,
-   "t_beta": 5.2789672851511,
-   "r2": 0.09851784327079327,
-   "first": "2021-08-20",
-   "last": "2026-07-24",
-   "gate": {
-    "n_ge_24": true,
-    "r2_ge_5pct": true,
-    "se_lt_abs_beta": true
-   },
-   "usable": true
-  },
-  "LULU": {
-   "label": "LULU (UAE-listed consumer) weekly vs the same constructed composite",
-   "n": 88,
-   "alpha": -0.008260016808860831,
-   "beta": 0.6630929796964479,
-   "se_beta": 0.16224455311270938,
-   "t_beta": 4.0869968635298655,
-   "r2": 0.1626384330630738,
-   "first": "2024-11-22",
-   "last": "2026-07-24",
-   "gate": {
-    "n_ge_24": true,
-    "r2_ge_5pct": true,
-    "se_lt_abs_beta": true
-   },
-   "usable": true
-  }
- },
- "peer_median_beta": 0.5827019199318604,
- "adopted": {
-  "beta": 0.894,
-  "tier": "(1) own-stock weekly regression against a local index of a market in which the shares are listed",
-  "basis": "AMR (Saudi line 6015, SAR) weekly vs Tadawul All Share Index, truncated at the 07-Aug-2026 anchor",
-  "n_weeks": 182,
-  "r2": 0.1063,
-  "se": 0.1933,
-  "window": "2022-12-30 .. 2026-07-17",
-  "gate_passed": true
- }
+ "ticker": "AMR",
+ "market": "AE",
+ "exchange": "ADX",
+ "beta": 0.9299087790790266,
+ "r2": 0.08363934022735375,
+ "se": 0.41196340857611885,
+ "n": 183,
+ "ci90": [
+  0.2522289719713111,
+  1.607588586186742
+ ],
+ "usable": true,
+ "gate_msg": "passes minimum usability gate",
+ "dimson": true,
+ "frequency": "weekly",
+ "weak": true,
+ "warnings": [],
+ "window_years": 3.55,
+ "first_obs": "2022-12-30",
+ "last_obs": "2026-07-17",
+ "blume_crosscheck": 0.9532725193860176,
+ "index_file": "raw_indices/AE/FADGI.csv",
+ "index_asof": "2026-07-24",
+ "index_dq": [
+  "dropped 1 interior stale/no-trade rows"
+ ],
+ "stock_dq": [],
+ "week_rule": "W-FRI",
+ "interim_note": null,
+ "conforming": true
 }

@@ -90,8 +90,14 @@ OUT = [
      'cross-check only'),
     ('Peer market data, retrieved 9 August 2026', 'trailing figures as published',
      'the peer multiple table', 'cross-check only — no peer figure enters the valuation'),
+    ('FTSE ADX General Index daily history',
+     'screened before use; history to ' + str(BETA['index_asof']),
+     'the regressor in the beta calculation — the published index of the exchange the shares '
+     'trade on, held at ' + BETA['index_file'].replace('/', ' / '),
+     'cost of capital only'),
     ('Tadawul All Share Index daily history', 'retrieved 9 August 2026',
-     'the regressor in the beta calculation', 'cost of capital only'),
+     'a disclosed beta cross-check, and the regressor this study\'s first edition used before '
+     'the Abu Dhabi index history was available', 'cross-check only'),
 ]
 table([['Source', 'Form', 'What it supplies', 'Scope']] +
       [[a, b, c, d] for a, b, c, d in OUT], [2.25, 1.55, 2.35, 0.85], size=8.6)
@@ -175,16 +181,18 @@ J = [
      f'{abs(DFL["gap_pct"])*100:.1f}%. The judgement turns out not to matter, which is itself '
      'worth knowing.'),
     ('Beta of ' + f'{D["wacc"]["beta"]:.3f}' + ', from the company\'s own shares against the '
-     'Tadawul All Share Index',
-     f'{BETA["tier1_own_vs_tasi"]["n"]} weekly observations, standard error '
-     f'{BETA["tier1_own_vs_tasi"]["se_beta"]:.3f}, R-squared '
-     f'{100*BETA["tier1_own_vs_tasi"]["r2"]:.1f}%. Americana is listed in both Abu Dhabi and '
-     'Riyadh and both currencies are pegged to the dollar. The Abu Dhabi index history was not '
-     'obtainable for this study.',
-     'An Abu Dhabi index regression materially different from this one. Two cross-checks — '
-     f'{BETA["crosscheck_adx_line_vs_uae_composite"]["beta"]:.3f} against a composite of UAE '
-     f'names, {BETA["peer_median_beta"]:.3f} for UAE consumer peers — both come out LOWER, so '
-     'the adopted figure is the conservative one.'),
+     'FTSE ADX General Index',
+     f'{BETA["n"]} weekly observations over {BETA["window_years"]} years — the whole life of '
+     f'the listing — standard error {BETA["se"]:.3f}, R-squared {100*BETA["r2"]:.1f}%, '
+     'lead-lag corrected, both series screened for data quality first. The regressor is the '
+     f'published index of the exchange the shares trade on ({BETA["index_file"]}, history to '
+     f'{BETA["index_asof"]}), in the same currency and struck at the same closing auction.',
+     'Almost anything, and that is the point: the 90% confidence interval runs from '
+     f'{BETA["ci90"][0]:.2f} to {BETA["ci90"][1]:.2f}. Three earlier estimates are on the '
+     'record and none is used — the Riyadh line against the Saudi index 0.894 (a different '
+     'country\'s market cycle, and this study\'s first published input, before the Abu Dhabi '
+     'index was available), a basket of eighteen covered UAE names 0.586, and a US-listed UAE '
+     'index fund pricing hours after the Abu Dhabi close 0.469.'),
     ('Cost of debt of ' + f'{100*D["wacc"]["kd"]:.2f}%, the company\'s own lease borrowing rate',
      'The company has no bank debt. Its lease finance cost over its average lease liability is '
      'the only borrowing rate it actually pays, and determining that rate is a key audit matter '

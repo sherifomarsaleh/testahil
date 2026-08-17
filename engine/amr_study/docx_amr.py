@@ -75,7 +75,8 @@ rich([('Four methods, on their stated weights, put the equity between a weighted
       (f' a share (the widest single-lens extremes span {aed(LN["low"]):.2f} to '
        f'{aed(LN["high"]):.2f}), with a weighted central value of AED ', dict()),
       (f'{central_a:.2f}', dict(bold=True)),
-      (f' — about {pc(LN["central"]/SPOT-1, 0)} above the AED {SPOTA:.2f} the market is paying. '
+      (f' — about {pc(abs(LN["central"]/SPOT-1), 0)} '
+       f'{"above" if LN["central"] >= SPOT else "below"} the AED {SPOTA:.2f} the market is paying. '
        'That gap is not the interesting part of this study. The interesting part is that the '
        'whole of it, and rather more, turns on a single question the filings do not answer.',
        dict())])
@@ -529,23 +530,33 @@ rows = [['Evidence on the cost of debt', 'Rate'],
         ['Bank debt outstanding at 31 December 2025', 'none']]
 table(rows, [5.60, 1.15], size=9.0)
 
-P('Beta is measured on the company\'s own share price. Americana is concurrently listed in '
-  'Abu Dhabi and Riyadh. A daily history for the Abu Dhabi general index was sought and not '
-  'obtained from the machine-readable sources tried for this study — the Yahoo quote for the '
-  'index returns a single observation with no history, and the exchange\'s own site and the '
-  'main data portals refused automated access — so the regression runs the company\'s own '
-  'shares against the index of its other home market, whose series is fully available: '
-  f'{BETA["tier1_own_vs_tasi"]["n"]} complete weekly observations, windows labelled '
-  f'{BETA["tier1_own_vs_tasi"]["first"]} to {BETA["tier1_own_vs_tasi"]["last"]}, with nothing '
-  f'after the 7 August price anchor in the sample. Beta {W["beta"]:.3f}, standard error '
-  f'{BETA["tier1_own_vs_tasi"]["se_beta"]:.3f}, R-squared '
-  f'{pc(BETA["tier1_own_vs_tasi"]["r2"])}. Two cross-checks point much lower — the Abu Dhabi '
-  f'line against an equally weighted composite of eighteen UAE-listed names gives '
-  f'{BETA["crosscheck_adx_line_vs_uae_composite"]["beta"]:.3f}, and two UAE-listed consumer '
-  f'companies give a median of {BETA["peer_median_beta"]:.3f} — so the adopted figure is the '
-  'conservative one, and the choice is worth sizing: at a beta near 0.60 the cost of capital '
-  'falls by roughly one and a half points and the cash-flow value rises by roughly a third. '
-  'The adopted beta is the single largest conservative judgement in this study.')
+P('Beta is measured on the company\'s own share price against the published index of the '
+  'exchange those shares trade on, the FTSE ADX General Index, whose history runs to '
+  f'{BETA["index_asof"]}. The regression uses {BETA["n"]} complete weekly observations over '
+  f'windows labelled {BETA["first_obs"]} to {BETA["last_obs"]} — {BETA["window_years"]} years, '
+  'the whole life of the listing, which began in December 2022 — and both series are screened '
+  'for data quality before either is used. The result carries the lead-lag correction that '
+  'applies when a stock and its index need not react to the same news on the same day: beta '
+  f'{W["beta"]:.3f}, standard error {BETA["se"]:.3f}, R-squared {pc(BETA["r2"])}.')
+
+P('The imprecision is the honest headline here rather than a footnote. A 90% confidence '
+  f'interval on this estimate runs from {BETA["ci90"][0]:.2f} to {BETA["ci90"][1]:.2f}, which '
+  'is wide enough to contain almost every figure a reasonable person might argue for, so no '
+  'part of this valuation should be read as resting on beta being exactly right. What can be '
+  'said is that the level is corroborated: adjusting the raw coefficient toward the market in '
+  f'the standard way gives {BETA["blume_crosscheck"]:.3f}, and the company sits, as one would '
+  'expect of a consumer operator, below the property and banking names that dominate this '
+  'index and above a defensive food producer.')
+
+P('Three earlier estimates are on the record and none is used. Before the Abu Dhabi index '
+  'history was available this study regressed the company\'s Riyadh-listed line against the '
+  'Saudi index and obtained 0.894 — the same shares, but priced against a different country\'s '
+  'market cycle. An equally weighted basket of eighteen UAE-listed names gave 0.586, and a '
+  'US-listed fund tracking a UAE index, which prices hours after the Abu Dhabi close, gave '
+  '0.469. The last two understated the figure by roughly half. A basket of the companies this '
+  'series happens to cover is not a market: it changes whenever another company is added to '
+  'the coverage, it mixes two exchanges together, and it contains the very company being '
+  'valued, so the shares would be regressed partly against themselves.')
 
 H2('1.9  Sensitivity')
 figure('fig8_tornado.png', 6.6,
