@@ -32,6 +32,8 @@ R.record_primary_access("https://api2.dfm.ae/web/widgets/v1/data (DFM index API)
                         SWEEP_DATE, "official DFMGI closes 2025-2026; spliced with "
                         "cross-validated Yahoo history for 2021-2024 (identical on all 307 "
                         "overlapping sessions)")
+R.record_primary_access("FTSE ADX General index history (user-supplied investing.com export, 2011..24-Jul-2026)", True, "2026-08-10",
+                        "adopted per user instruction as the UAE base market index for the beta regression; DFM General retained as the published alternative")
 R.record_primary_access("cbonds/worldgovernmentbonds UAE 5y CDS", False, SWEEP_DATE,
                         "403 / JS-only; UAE CDS also NA in Damodaran — market-spread basis "
                         "built from the traded Abu Dhabi USD 10y (+25bp) instead, and both "

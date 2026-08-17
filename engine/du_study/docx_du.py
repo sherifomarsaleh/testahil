@@ -359,7 +359,7 @@ rows = [['Component', 'Value', 'Source basis'],
          pc(IN['sov_spread_rating'],2), 'Damodaran dataset, Jan-2026'],
         ['Risk-free net of the sovereign spread', pc(W['rf_star'],2),
          'country risk enters ONCE, via the premium'],
-        ['Beta — DU weekly vs the DFM General Index, 5 years',
+        ['Beta — DU weekly vs the FTSE ADX General Index, 5 years',
          f"{IN['beta']:.3f}", 'own regression; details below'],
         ['Equity risk premium (UAE total, rating basis)', pc(IN['erp_rating'],2),
          'Damodaran, mature 4.23% + country 0.64%'],
@@ -380,20 +380,24 @@ caption('Table 6 — the cost of capital, built from sourced parts. The sovereig
         f'{pc(W["wacc_exp_mkt"],2)} cost of capital — both bases are published.')
 H2('The beta — measured, gated, and honestly low')
 BR = W['beta']
-P(f"du's beta is measured, not assumed: weekly log-returns against its OWN index (the DFM "
-  f"General), five years, {BR['n']} observations: beta {BR['beta']:.3f}, R² {BR['r2']:.2f}, "
-  f"standard error {BR['se']:.3f}, 90% confidence interval {BR['ci90'][0]:.2f} to "
-  f"{BR['ci90'][1]:.2f}. The regression passes the usability gate (enough observations, "
-  'explanatory power, an error smaller than the estimate), and an equal-weight composite of '
-  f"the market's own large names cross-checks it at {BR['composite_alt']['beta']:.3f}. A "
-  'defensive, negative-net-debt utility-like telecom measuring below 0.5 on its own index is '
-  'economically coherent — and it is also the single assumption doing the most work in this '
-  'study, because at these weights the cost of capital is essentially the cost of equity. '
-  'Betas of 0.57 (the interval\'s top), 0.65 and 0.80 are priced in section 1.9: the last '
-  'takes the DCF from AED '
-  f"{p2(SN['grid_beta'][1])} to AED {p2(SN['grid_beta'][4])}. The market, at "
-  f"{REL['pe_trailing']:.1f}× earnings, is implicitly charging a HIGHER required return than "
-  'this regression produces; section 4 prices that disagreement rather than dismissing it.')
+P(f"du's beta is measured, not assumed: weekly log-returns against the FTSE ADX General "
+  f"Index — adopted as the base market index for the UAE in this edition — five years, "
+  f"{BR['n']} observations: beta {BR['beta']:.3f}, R² {BR['r2']:.2f}, standard error "
+  f"{BR['se']:.3f}, 90% confidence interval {BR['ci90'][0]:.2f} to {BR['ci90'][1]:.2f}. The "
+  'regression passes the usability gate (enough observations, explanatory power, an error '
+  'smaller than the estimate). du itself lists on the Dubai Financial Market, so the choice '
+  'of UAE index is itself shown both ways rather than hidden: against the DFM General — the '
+  f"listing venue's own index — the same construction measures {BR['dfm_alt']['beta']:.3f} "
+  f"(R² {BR['dfm_alt']['r2']:.2f}, a tighter fit), and an equal-weight composite of the "
+  f"market's own large names cross-checks both at {BR['composite_alt']['beta']:.3f}. All "
+  'three land in the same place: a defensive, negative-net-debt telecom measuring below 0.5 '
+  'on either UAE index. That number is also the single assumption doing the most work in '
+  'this study, because at these weights the cost of capital is essentially the cost of '
+  f"equity. Betas of {SN['beta_grid'][2]:.2f} (the interval's top), 0.65 and 0.80 are priced "
+  f"in section 1.9: the last takes the DCF from AED {p2(SN['grid_beta'][1])} to AED "
+  f"{p2(SN['grid_beta'][4])}. The market, at {REL['pe_trailing']:.1f}× earnings, is "
+  'implicitly charging a HIGHER required return than any of these regressions produce; '
+  'section 4 prices that disagreement rather than dismissing it.')
 H2('Where this construction is contested, and what the alternatives are worth')
 rows = [['Contested construction', 'Base', 'Alternative', 'Worth (AED/share)'],
         ['Risk-free tenor: Jan-2031 AED print vs 10y peg-extrapolated proxy',

@@ -914,7 +914,8 @@ def dcf_at(we_, wt_, g_):
 
 grid_wacc_g = [[dcf_at(wacc_exp, wt, g) for g in g_grid] for wt in wt_grid]
 grid_exp_term = [[dcf_at(we, wt, V['g_term']) for wt in wt_grid] for we in we_grid]
-beta_grid = [0.38, round(V['beta'], 3), 0.57, 0.65, 0.80]
+_bci = json.load(open(os.path.join(HERE, 'beta_result.json')))['ci90']
+beta_grid = [round(_bci[0], 2), round(V['beta'], 3), round(_bci[1], 2), 0.65, 0.80]
 def dcf_beta(b):
     ke = rf_star + b * V['erp_rating']
     we_ = we_exp * ke + wd_exp * kd_at

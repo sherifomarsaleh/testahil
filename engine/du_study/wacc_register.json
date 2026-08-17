@@ -36,9 +36,9 @@
     "ring": "Country"
   },
   "beta": {
-    "value": 0.472,
-    "source": "Tier-1 own-stock regression: DU weekly log-returns vs the DFM General Index (official DFM API spliced with cross-validated Yahoo DFMGI.AE; identical closes on all 307 overlapping sessions), 5-year window, last-common-session weekly sampling: beta 0.472, R2 0.202, n 259, SE 0.058, CI90 [0.38, 0.57] - passes the usability gate (n>=24, R2>=5%, SE<|beta|). Equal-weight AE-library composite cross-check: 0.394 (R2 0.118). A defensive, negative-net-debt telecom regressing below 0.5 on its own index is economically coherent; betas of 0.6 and 0.8 are PRICED in the sensitivity grid",
-    "date": "2026-08-09",
+    "value": 0.488,
+    "source": "Own-stock regression vs the FTSE ADX GENERAL INDEX, adopted per explicit user instruction (10-Aug-2026) as the UAE base market index: DU weekly log-returns, 5-year window, last-common-session weekly sampling on the user-supplied index export (2011..24-Jul-2026): beta 0.488, R2 0.120, n 256, SE 0.083, CI90 [0.35, 0.62] - passes the usability gate (n>=24, R2>=5%, SE<|beta|). Published alternatives: DFM General (DU's own listing venue, the house default) 0.472 (R2 0.202, SE 0.058); equal-weight AE-library composite 0.400. A defensive, negative-net-debt telecom regressing below 0.5 on either UAE index is economically coherent; betas at the CI ends and 0.65/0.80 priors are PRICED in the sensitivity grid",
+    "date": "2026-08-10",
     "ring": "Market"
   },
   "kd": {
@@ -72,7 +72,13 @@
     "ring": "House"
   },
   "rf_path": {
-    "value": [0.0448, 0.0444, 0.0439, 0.0435, 0.043],
+    "value": [
+      0.0448,
+      0.0444,
+      0.0439,
+      0.0435,
+      0.043
+    ],
     "source": "AED risk-free glide path FY2026->FY2030: linear from the 4.48% live anchor to the 4.30% terminal - the glide fractions for the forward WACC are THIS path's own cumulative progress (the cost-of-money path, since du carries no debt whose Kd could define the glide)",
     "date": "2026-08-09",
     "ring": "House"

@@ -42,7 +42,7 @@ print('base:  ' + ' · '.join(f'{k} {v:,.4f}' for k, v in base.items()))
 CASES = [
     ('Terminal growth', 'C', +0.005, 'dcf', +1,
      'a higher terminal growth rate must raise the discounted cash flow'),
-    ('Beta (DU weekly vs DFM General Index, 5y)', 'C', +0.20, 'dcf', -1,
+    ('Beta (DU weekly vs FTSE ADX General, 5y)', 'C', +0.20, 'dcf', -1,
      'a higher beta raises the cost of equity and must lower the valuation'),
     ('Terminal risk-free rate', 'C', +0.01, 'dcf', -1,
      'a higher terminal risk-free rate must lower the valuation'),
